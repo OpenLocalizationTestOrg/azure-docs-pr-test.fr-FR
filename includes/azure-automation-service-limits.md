@@ -1,10 +1,10 @@
-| Ressource | Limite maximale |
+| <span data-ttu-id="e4ea4-101">Ressource</span><span class="sxs-lookup"><span data-stu-id="e4ea4-101">Resource</span></span> | <span data-ttu-id="e4ea4-102">Limite maximale</span><span class="sxs-lookup"><span data-stu-id="e4ea4-102">Maximum Limit</span></span> |
 | --- | --- |
-| Nombre maximum de nouveaux travaux pouvant être envoyés toutes les 30 secondes par compte Automation (travaux non planifiés) |100 |
-| Nombre maximum de travaux simultanés pendant la même instance de temps par compte Automation (travaux non planifiés) |200 |
-| Nombre maximum de modules pouvant être importés toutes les 30 secondes par compte Automation |5 |
-| Taille maximum d’un module |100 Mo |
-| Durée d’exécution de la tâche - Niveau Gratuit |500 minutes par abonnement et par mois |
-| Quantité maximale de mémoire affectée à une tâche |400 Mo |
-| Nombre maximal de sockets réseau affectés à une tâche |1 000 |
+| <span data-ttu-id="e4ea4-103">Nombre maximum de nouveaux travaux pouvant être envoyés toutes les 30 secondes par compte Automation (travaux non planifiés)</span><span class="sxs-lookup"><span data-stu-id="e4ea4-103">Max number of new jobs that can be submitted every 30 seconds per Automation Account (non Scheduled jobs)</span></span> |<span data-ttu-id="e4ea4-104">100</span><span class="sxs-lookup"><span data-stu-id="e4ea4-104">100</span></span> |
+| <span data-ttu-id="e4ea4-105">Nombre maximum de travaux simultanés pendant la même instance de temps par compte Automation (travaux non planifiés)</span><span class="sxs-lookup"><span data-stu-id="e4ea4-105">Max number of concurrent running jobs at the same instance of time per Automation Account (non Scheduled jobs)</span></span> |<span data-ttu-id="e4ea4-106">200</span><span class="sxs-lookup"><span data-stu-id="e4ea4-106">200</span></span> |
+| <span data-ttu-id="e4ea4-107">Nombre maximum de modules pouvant être importés toutes les 30 secondes par compte Automation</span><span class="sxs-lookup"><span data-stu-id="e4ea4-107">Max number of modules that can be imported every 30 seconds per Automation Account</span></span> |<span data-ttu-id="e4ea4-108">5</span><span class="sxs-lookup"><span data-stu-id="e4ea4-108">5</span></span> |
+| <span data-ttu-id="e4ea4-109">Taille maximum d’un module</span><span class="sxs-lookup"><span data-stu-id="e4ea4-109">Max size of a Module</span></span> |<span data-ttu-id="e4ea4-110">100 Mo</span><span class="sxs-lookup"><span data-stu-id="e4ea4-110">100 MB</span></span> |
+| <span data-ttu-id="e4ea4-111">Durée d’exécution de la tâche - Niveau Gratuit</span><span class="sxs-lookup"><span data-stu-id="e4ea4-111">Job Run Time - Free tier</span></span> |<span data-ttu-id="e4ea4-112">500 minutes par abonnement et par mois</span><span class="sxs-lookup"><span data-stu-id="e4ea4-112">500 minutes per subscription per calendar month</span></span> |
+| <span data-ttu-id="e4ea4-113">Quantité maximale de mémoire affectée à une tâche</span><span class="sxs-lookup"><span data-stu-id="e4ea4-113">Max amount of memory given to a job</span></span> |<span data-ttu-id="e4ea4-114">400 Mo</span><span class="sxs-lookup"><span data-stu-id="e4ea4-114">400 MB</span></span> |
+| <span data-ttu-id="e4ea4-115">Nombre maximal de sockets réseau affectés à une tâche</span><span class="sxs-lookup"><span data-stu-id="e4ea4-115">Max number of network sockets allowed per job</span></span> |<span data-ttu-id="e4ea4-116">1 000</span><span class="sxs-lookup"><span data-stu-id="e4ea4-116">1000</span></span> |
 

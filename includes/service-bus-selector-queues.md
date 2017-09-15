@@ -1,11 +1,11 @@
 > [!div class="op_single_selector"]
-> * [NET](../articles/service-bus-messaging/service-bus-dotnet-get-started-with-queues.md)
-> * [Java](../articles/service-bus-messaging/service-bus-java-how-to-use-queues.md)
-> * [Node.JS](../articles/service-bus-messaging/service-bus-nodejs-how-to-use-queues.md)
-> * [PHP](../articles/service-bus-messaging/service-bus-php-how-to-use-queues.md)
-> * [Python](../articles/service-bus-messaging/service-bus-python-how-to-use-queues.md)
-> * [Ruby](../articles/service-bus-messaging/service-bus-ruby-how-to-use-queues.md)
-> * [REST](../articles/service-bus-messaging/service-bus-brokered-tutorial-rest.md)
+> * [<span data-ttu-id="a09e6-101">NET</span><span class="sxs-lookup"><span data-stu-id="a09e6-101">NET</span></span>](../articles/service-bus-messaging/service-bus-dotnet-get-started-with-queues.md)
+> * [<span data-ttu-id="a09e6-102">Java</span><span class="sxs-lookup"><span data-stu-id="a09e6-102">Java</span></span>](../articles/service-bus-messaging/service-bus-java-how-to-use-queues.md)
+> * [<span data-ttu-id="a09e6-103">Node.JS</span><span class="sxs-lookup"><span data-stu-id="a09e6-103">Node.js</span></span>](../articles/service-bus-messaging/service-bus-nodejs-how-to-use-queues.md)
+> * [<span data-ttu-id="a09e6-104">PHP</span><span class="sxs-lookup"><span data-stu-id="a09e6-104">PHP</span></span>](../articles/service-bus-messaging/service-bus-php-how-to-use-queues.md)
+> * [<span data-ttu-id="a09e6-105">Python</span><span class="sxs-lookup"><span data-stu-id="a09e6-105">Python</span></span>](../articles/service-bus-messaging/service-bus-python-how-to-use-queues.md)
+> * [<span data-ttu-id="a09e6-106">Ruby</span><span class="sxs-lookup"><span data-stu-id="a09e6-106">Ruby</span></span>](../articles/service-bus-messaging/service-bus-ruby-how-to-use-queues.md)
+> * [<span data-ttu-id="a09e6-107">REST</span><span class="sxs-lookup"><span data-stu-id="a09e6-107">REST</span></span>](../articles/service-bus-messaging/service-bus-brokered-tutorial-rest.md)
 > 
 > 
 

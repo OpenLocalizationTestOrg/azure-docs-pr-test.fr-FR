@@ -1,29 +1,29 @@
 
 
-## <a name="use-the-portal-to-move-a-vm-to-a-different-subscription"></a>Utiliser le portail pour déplacer une machine virtuelle vers un autre abonnement
-Vous pouvez déplacer une machine virtuelle et les ressources associées vers un autre abonnement avec le portail.
+## <a name="use-the-portal-to-move-a-vm-to-a-different-subscription"></a><span data-ttu-id="490a2-101">Utiliser le portail pour déplacer une machine virtuelle vers un autre abonnement</span><span class="sxs-lookup"><span data-stu-id="490a2-101">Use the portal to move a VM to a different subscription</span></span>
+<span data-ttu-id="490a2-102">Vous pouvez déplacer une machine virtuelle et les ressources associées vers un autre abonnement avec le portail.</span><span class="sxs-lookup"><span data-stu-id="490a2-102">You can move a VM and it's associated resources to a different subscription using the portal.</span></span>
 
-1. Ouvrez le [portail Azure](https://portal.azure.com).
-2. Cliquez sur **Parcourir** > **Machines virtuelles** et sélectionnez la machine virtuelle que vous souhaitez déplacer dans la liste.
+1. <span data-ttu-id="490a2-103">Ouvrez le [portail Azure](https://portal.azure.com).</span><span class="sxs-lookup"><span data-stu-id="490a2-103">Open the [Azure portal](https://portal.azure.com).</span></span>
+2. <span data-ttu-id="490a2-104">Cliquez sur **Parcourir** > **Machines virtuelles** et sélectionnez la machine virtuelle que vous souhaitez déplacer dans la liste.</span><span class="sxs-lookup"><span data-stu-id="490a2-104">Click **Browse** > **Virtual machines** and select the VM you would like to move from the list.</span></span>
    
     ![Capture d’écran de la section Essentials où vous cliquez sur l’icône en forme de crayon pour ouvrir le panneau Déplacer des ressources.](./media/virtual-machines-common-move-vm/move-button.png)
-3. Dans la section **Essentials**, cliquez sur l’icône en forme de crayon **Modifier l’abonnement** en regard du nom de l’abonnement. Le panneau **Déplacer des ressources** s’ouvre alors.
+3. <span data-ttu-id="490a2-106">Dans la section **Essentials**, cliquez sur l’icône en forme de crayon **Modifier l’abonnement** en regard du nom de l’abonnement.</span><span class="sxs-lookup"><span data-stu-id="490a2-106">In the **Essentials** section, click on the **Change subscription** pencil icon next to the subscription name.</span></span> <span data-ttu-id="490a2-107">Le panneau **Déplacer des ressources** s’ouvre alors.</span><span class="sxs-lookup"><span data-stu-id="490a2-107">The **Move resources** blade will open.</span></span>
    
     ![Capture d’écran du panneau Déplacer des ressources.](./media/virtual-machines-common-move-vm/move.png)
-4. Sélectionnez chacune des ressources à déplacer. Dans la plupart des cas, vous devez déplacer toutes les ressources facultatives répertoriées.
-5. Sélectionnez **l’abonnement** vers lequel vous souhaitez déplacer la machine virtuelle.
-6. Sélectionnez un **groupe de ressources** existant, ou tapez un nom pour créer un groupe de ressources.
-7. Lorsque vous avez terminé, sélectionnez que vous comprenez que de nouveaux ID de ressources vont être créés et qu’ils doivent être utilisés avec la machine virtuelle une fois celle-ci déplacée, puis cliquez sur **OK**.
+4. <span data-ttu-id="490a2-109">Sélectionnez chacune des ressources à déplacer.</span><span class="sxs-lookup"><span data-stu-id="490a2-109">Select each of the resources to move.</span></span> <span data-ttu-id="490a2-110">Dans la plupart des cas, vous devez déplacer toutes les ressources facultatives répertoriées.</span><span class="sxs-lookup"><span data-stu-id="490a2-110">In most cases, you should move all of the listed optional resources.</span></span>
+5. <span data-ttu-id="490a2-111">Sélectionnez **l’abonnement** vers lequel vous souhaitez déplacer la machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="490a2-111">Select the **Subscription** where you want the VM to be moved.</span></span>
+6. <span data-ttu-id="490a2-112">Sélectionnez un **groupe de ressources** existant, ou tapez un nom pour créer un groupe de ressources.</span><span class="sxs-lookup"><span data-stu-id="490a2-112">Select an existing **Resource group** or type a name to have a new resource group created.</span></span>
+7. <span data-ttu-id="490a2-113">Lorsque vous avez terminé, sélectionnez que vous comprenez que de nouveaux ID de ressources vont être créés et qu’ils doivent être utilisés avec la machine virtuelle une fois celle-ci déplacée, puis cliquez sur **OK**.</span><span class="sxs-lookup"><span data-stu-id="490a2-113">When you are done, select that you understand that new resource IDs will be created and those need to be used with the VM once it is moved, then click **OK**.</span></span>
 
-## <a name="use-the-portal-to-move-a-vm-to-another-resource-group"></a>Utiliser le portail pour déplacer une machine virtuelle vers un autre groupe de ressources
-Vous pouvez déplacer une machine virtuelle et les ressources associées vers un autre groupe de ressources avec le portail.
+## <a name="use-the-portal-to-move-a-vm-to-another-resource-group"></a><span data-ttu-id="490a2-114">Utiliser le portail pour déplacer une machine virtuelle vers un autre groupe de ressources</span><span class="sxs-lookup"><span data-stu-id="490a2-114">Use the portal to move a VM to another resource group</span></span>
+<span data-ttu-id="490a2-115">Vous pouvez déplacer une machine virtuelle et les ressources associées vers un autre groupe de ressources avec le portail.</span><span class="sxs-lookup"><span data-stu-id="490a2-115">You can move a VM and it's associated resources to another resource group using the portal.</span></span>
 
-1. Ouvrez le [portail Azure](https://portal.azure.com).
-2. Cliquez sur **Parcourir** > **Groupes de ressources** et sélectionnez le groupe de ressources qui contient la machine virtuelle.
-3. Dans le panneau **Groupe de ressources**, sélectionnez **Déplacer** dans le menu.
+1. <span data-ttu-id="490a2-116">Ouvrez le [portail Azure](https://portal.azure.com).</span><span class="sxs-lookup"><span data-stu-id="490a2-116">Open the [Azure portal](https://portal.azure.com).</span></span>
+2. <span data-ttu-id="490a2-117">Cliquez sur **Parcourir** > **Groupes de ressources** et sélectionnez le groupe de ressources qui contient la machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="490a2-117">Click **Browse** > **Resource groups** and select the resource group that contains the VM.</span></span>
+3. <span data-ttu-id="490a2-118">Dans le panneau **Groupe de ressources**, sélectionnez **Déplacer** dans le menu.</span><span class="sxs-lookup"><span data-stu-id="490a2-118">In the **Resource group** blade, select **Move** from the menu.</span></span>
    
     ![Capture d’écran du bouton Déplacer dans le menu Groupes de ressources.](./media/virtual-machines-common-move-vm/move-rg.png)
-4. Dans le panneau **Déplacer des ressources** , sélectionnez les ressources à déplacer, puis tapez un nom de groupe de ressources existant ou choisissez de créer un nouveau groupe de ressources. Lorsque vous avez terminé, sélectionnez que vous comprenez que de nouveaux ID de ressources vont être créés et qu’ils doivent être utilisés avec la machine virtuelle une fois celle-ci déplacée, puis cliquez sur **OK**
+4. <span data-ttu-id="490a2-120">Dans le panneau **Déplacer des ressources** , sélectionnez les ressources à déplacer, puis tapez un nom de groupe de ressources existant ou choisissez de créer un nouveau groupe de ressources.</span><span class="sxs-lookup"><span data-stu-id="490a2-120">In the **Move resources** blade, select the resources to be moved and then either type an existing resource group name or choose to create a new resource group.</span></span> <span data-ttu-id="490a2-121">Lorsque vous avez terminé, sélectionnez que vous comprenez que de nouveaux ID de ressources vont être créés et qu’ils doivent être utilisés avec la machine virtuelle une fois celle-ci déplacée, puis cliquez sur **OK**</span><span class="sxs-lookup"><span data-stu-id="490a2-121">When you are done, select that you understand that new resource IDs will be created and those need to be used with the VM once it is moved, then click **OK**</span></span>
    
     ![Capture d’écran du panneau Déplacer des ressources.](./media/virtual-machines-common-move-vm/move-rg-list.png)
 

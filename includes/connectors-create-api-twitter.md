@@ -1,18 +1,18 @@
-### <a name="prerequisites"></a>Composants requis
-* un compte Twitter ; 
+### <a name="prerequisites"></a><span data-ttu-id="05c9f-101">Composants requis</span><span class="sxs-lookup"><span data-stu-id="05c9f-101">Prerequisites</span></span>
+* <span data-ttu-id="05c9f-102">un compte Twitter ;</span><span class="sxs-lookup"><span data-stu-id="05c9f-102">A Twitter account</span></span> 
 
-Pour pouvoir utiliser votre compte Twitter dans une application logique, vous devez autoriser l’application à se connecter à votre compte. Heureusement, cette opération est très simple à effectuer depuis votre application logique, sur le Portail Azure. 
+<span data-ttu-id="05c9f-103">Pour pouvoir utiliser votre compte Twitter dans une application logique, vous devez autoriser l’application à se connecter à votre compte.</span><span class="sxs-lookup"><span data-stu-id="05c9f-103">Before you can use your Twitter account in a logic app, you must authorize the logic app to connect to your Twitter account.</span></span> <span data-ttu-id="05c9f-104">Heureusement, cette opération est très simple à effectuer depuis votre application logique, sur le Portail Azure.</span><span class="sxs-lookup"><span data-stu-id="05c9f-104">Fortunately, you can do this easily from within your logic app on the Azure Portal.</span></span> 
 
-Pour autoriser votre application logique à se connecter à votre compte Twitter, procédez comme suit :
+<span data-ttu-id="05c9f-105">Pour autoriser votre application logique à se connecter à votre compte Twitter, procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="05c9f-105">Here are the steps to authorize your logic app to connect to your Twitter account:</span></span>
 
-1. Pour créer une connexion à Twitter, dans le Concepteur d’applications logiques, sélectionnez **Afficher les API gérées par Microsoft** dans la liste déroulante, puis entrez *Twitter* dans la zone de recherche. Sélectionnez le déclencheur ou l’action que vous allez utiliser :   
-   ![Image de connexion Twitter 0](./media/connectors-create-api-twitter/twitter-0.png)
-2. Si vous n’avez créé aucune connexion à Twitter auparavant, vous êtes invité à indiquer vos informations d’identification Twitter. Ces informations d’identification serviront à autoriser votre application logique à se connecter et à accéder aux données de votre compte Twitter :  
+1. <span data-ttu-id="05c9f-106">Pour créer une connexion à Twitter, dans le Concepteur d’applications logiques, sélectionnez **Afficher les API gérées par Microsoft** dans la liste déroulante, puis entrez *Twitter* dans la zone de recherche.</span><span class="sxs-lookup"><span data-stu-id="05c9f-106">To create a connection to Twitter, in the logic app designer, select **Show Microsoft managed APIs** in the drop down list then enter *Twitter* in the search box.</span></span> <span data-ttu-id="05c9f-107">Sélectionnez le déclencheur ou l’action que vous allez utiliser : </span><span class="sxs-lookup"><span data-stu-id="05c9f-107">Select the trigger or action you'll like to use:</span></span>  
+   <span data-ttu-id="05c9f-108">![Image de connexion Twitter 0](./media/connectors-create-api-twitter/twitter-0.png)</span><span class="sxs-lookup"><span data-stu-id="05c9f-108">![Twitter connection image 0](./media/connectors-create-api-twitter/twitter-0.png)</span></span>
+2. <span data-ttu-id="05c9f-109">Si vous n’avez créé aucune connexion à Twitter auparavant, vous êtes invité à indiquer vos informations d’identification Twitter.</span><span class="sxs-lookup"><span data-stu-id="05c9f-109">If you haven't created any connections to Twitter before, you'll get prompted to provide your Twitter credentials.</span></span> <span data-ttu-id="05c9f-110">Ces informations d’identification serviront à autoriser votre application logique à se connecter et à accéder aux données de votre compte Twitter :</span><span class="sxs-lookup"><span data-stu-id="05c9f-110">These credentials will be used to authorize your logic app to connect to, and access your Twitter account's data:</span></span>  
    ![Image de connexion Twitter 1](./media/connectors-create-api-twitter/twitter-1.png)  
-3. Indiquez votre nom d’utilisateur et votre mot de passe Twitter pour autoriser votre application logique :  
+3. <span data-ttu-id="05c9f-112">Indiquez votre nom d’utilisateur et votre mot de passe Twitter pour autoriser votre application logique :</span><span class="sxs-lookup"><span data-stu-id="05c9f-112">Provide your Twitter user name and password to authorize your logic app:</span></span>  
    ![Image de connexion Twitter 2](./media/connectors-create-api-twitter/twitter-2.png)  
-4. Confirmez votre autorisation :  
+4. <span data-ttu-id="05c9f-114">Confirmez votre autorisation :</span><span class="sxs-lookup"><span data-stu-id="05c9f-114">Confirm your authorization:</span></span>  
    ![Image de connexion Twitter 3](./media/connectors-create-api-twitter/twitter-3.png)  
-5. Notez que la connexion a été créée et que vous pouvez désormais poursuivre la procédure dans votre application logique :  
+5. <span data-ttu-id="05c9f-116">Notez que la connexion a été créée et que vous pouvez désormais poursuivre la procédure dans votre application logique :</span><span class="sxs-lookup"><span data-stu-id="05c9f-116">Notice the connection has been created and you are now free to proceed with the other steps in your logic app:</span></span>  
    ![Image de connexion Twitter 4](./media/connectors-create-api-twitter/twitter-4.png)
 

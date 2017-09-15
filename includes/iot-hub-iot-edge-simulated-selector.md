@@ -1,66 +1,66 @@
 > [!div class="op_single_selector"]
-> * [Linux](../articles/iot-hub/iot-hub-linux-iot-edge-simulated-device.md)
-> * [Windows](../articles/iot-hub/iot-hub-windows-iot-edge-simulated-device.md)
+> * [<span data-ttu-id="c2908-101">Linux</span><span class="sxs-lookup"><span data-stu-id="c2908-101">Linux</span></span>](../articles/iot-hub/iot-hub-linux-iot-edge-simulated-device.md)
+> * [<span data-ttu-id="c2908-102">Windows</span><span class="sxs-lookup"><span data-stu-id="c2908-102">Windows</span></span>](../articles/iot-hub/iot-hub-windows-iot-edge-simulated-device.md)
 
-Cette procédure pas à pas de [L’exemple de chargement d’un appareil simulé sur le cloud] vous indique comment utiliser [Azure IoT Edge][lnk-sdk] pour envoyer les données de télémétrie appareil-vers-cloud à IoT Hub à partir d’appareils simulés.
+<span data-ttu-id="c2908-103">Cette procédure pas à pas de [L’exemple de chargement d’un appareil simulé sur le cloud] vous indique comment utiliser [Azure IoT Edge][lnk-sdk] pour envoyer les données de télémétrie appareil-vers-cloud à IoT Hub à partir d’appareils simulés.</span><span class="sxs-lookup"><span data-stu-id="c2908-103">This walkthrough of the [Simulated Device Cloud Upload sample] shows you how to use [Azure IoT Edge][lnk-sdk] to send device-to-cloud telemetry to IoT Hub from simulated devices.</span></span>
 
-Cette procédure pas à pas inclut les étapes suivantes :
+<span data-ttu-id="c2908-104">Cette procédure pas à pas inclut les étapes suivantes :</span><span class="sxs-lookup"><span data-stu-id="c2908-104">This walkthrough covers:</span></span>
 
-* **Architecture** : informations architecturales concernant [L’exemple de chargement d’un appareil simulé sur le cloud].
-* **Créer et exécuter**: les étapes requises pour créer et exécuter l’exemple.
+* <span data-ttu-id="c2908-105">**Architecture** : informations architecturales concernant [L’exemple de chargement d’un appareil simulé sur le cloud].</span><span class="sxs-lookup"><span data-stu-id="c2908-105">**Architecture**: architectural information about the [Simulated Device Cloud Upload sample].</span></span>
+* <span data-ttu-id="c2908-106">**Créer et exécuter**: les étapes requises pour créer et exécuter l’exemple.</span><span class="sxs-lookup"><span data-stu-id="c2908-106">**Build and run**: the steps required to build and run the sample.</span></span>
 
-## <a name="architecture"></a>Architecture
+## <a name="architecture"></a><span data-ttu-id="c2908-107">Architecture</span><span class="sxs-lookup"><span data-stu-id="c2908-107">Architecture</span></span>
 
-[L’exemple de chargement d’un appareil simulé sur le cloud] vous indique comment créer une passerelle qui envoie les données de télémétrie d’appareils simulés vers IoT Hub. Un appareil peut ne pas être en mesure de se connecter directement à IoT Hub dans les cas suivants :
+<span data-ttu-id="c2908-108">[L’exemple de chargement d’un appareil simulé sur le cloud] vous indique comment créer une passerelle qui envoie les données de télémétrie d’appareils simulés vers IoT Hub.</span><span class="sxs-lookup"><span data-stu-id="c2908-108">The [Simulated Device Cloud Upload sample] shows how to create a gateway that sends telemetry from simulated devices to an IoT hub.</span></span> <span data-ttu-id="c2908-109">Un appareil peut ne pas être en mesure de se connecter directement à IoT Hub dans les cas suivants :</span><span class="sxs-lookup"><span data-stu-id="c2908-109">A device may not be able to connect directly to IoT Hub because the device:</span></span>
 
-* L’appareil n’utilise pas un protocole de communication compris par IoT Hub
-* L’appareil n’est pas suffisamment intelligent pour mémoriser l’identité qui lui a été attribuée par IoT Hub
+* <span data-ttu-id="c2908-110">L’appareil n’utilise pas un protocole de communication compris par IoT Hub</span><span class="sxs-lookup"><span data-stu-id="c2908-110">Does not use a communications protocol understood by IoT Hub.</span></span>
+* <span data-ttu-id="c2908-111">L’appareil n’est pas suffisamment intelligent pour mémoriser l’identité qui lui a été attribuée par IoT Hub</span><span class="sxs-lookup"><span data-stu-id="c2908-111">Is not smart enough to remember the identity assigned to it by IoT Hub.</span></span>
 
-Une passerelle IoT Edge peut résoudre ces problèmes de plusieurs manières :
+<span data-ttu-id="c2908-112">Une passerelle IoT Edge peut résoudre ces problèmes de plusieurs manières :</span><span class="sxs-lookup"><span data-stu-id="c2908-112">An IoT Edge gateway can solve these problems in the following ways:</span></span>
 
-* La passerelle comprend le protocole utilisé par l’appareil, reçoit les données de télémétrie appareil-vers-cloud à partir de l’appareil, puis transfère ces messages vers IoT Hub à l’aide d’un protocole compris par IoT Hub.
+* <span data-ttu-id="c2908-113">La passerelle comprend le protocole utilisé par l’appareil, reçoit les données de télémétrie appareil-vers-cloud à partir de l’appareil, puis transfère ces messages vers IoT Hub à l’aide d’un protocole compris par IoT Hub.</span><span class="sxs-lookup"><span data-stu-id="c2908-113">The gateway understands the protocol used by the device, receives device-to-cloud telemetry from the device, and forwards those messages to IoT Hub using a protocol understood by the IoT hub.</span></span>
 
-* La passerelle mappe les identités IoT Hub sur les appareils et agit comme un proxy lorsqu’un appareil envoie des messages à IoT Hub.
+* <span data-ttu-id="c2908-114">La passerelle mappe les identités IoT Hub sur les appareils et agit comme un proxy lorsqu’un appareil envoie des messages à IoT Hub.</span><span class="sxs-lookup"><span data-stu-id="c2908-114">The gateway maps IoT Hub identities to devices and acts as a proxy when a device sends messages to IoT Hub.</span></span>
 
-Le diagramme suivant montre les principaux composants de l’exemple, notamment les modules IoT Edge :
+<span data-ttu-id="c2908-115">Le diagramme suivant montre les principaux composants de l’exemple, notamment les modules IoT Edge :</span><span class="sxs-lookup"><span data-stu-id="c2908-115">The following diagram shows the main components of the sample, including the IoT Edge modules:</span></span>
 
 ![][1]
 
-Les modules ne s’échangent pas directement les messages. Les modules publient des messages vers un répartiteur interne qui remet les messages aux autres modules à l’aide d’un mécanisme d’abonnement. Pour plus d’informations, voir [Get started with Azure IoT Edge (Prise en main d’Azure IoT Edge)][lnk-gw-getstarted].
+<span data-ttu-id="c2908-116">Les modules ne s’échangent pas directement les messages.</span><span class="sxs-lookup"><span data-stu-id="c2908-116">The modules do not pass messages directly to each other.</span></span> <span data-ttu-id="c2908-117">Les modules publient des messages vers un répartiteur interne qui remet les messages aux autres modules à l’aide d’un mécanisme d’abonnement.</span><span class="sxs-lookup"><span data-stu-id="c2908-117">The modules publish messages to an internal broker that delivers the messages to the other modules using a subscription mechanism.</span></span> <span data-ttu-id="c2908-118">Pour plus d’informations, voir [Get started with Azure IoT Edge (Prise en main d’Azure IoT Edge)][lnk-gw-getstarted].</span><span class="sxs-lookup"><span data-stu-id="c2908-118">For more information, see [Get started with Azure IoT Edge][lnk-gw-getstarted].</span></span>
 
-### <a name="protocol-ingestion-module"></a>Module d'ingestion de protocole
+### <a name="protocol-ingestion-module"></a><span data-ttu-id="c2908-119">Module d'ingestion de protocole</span><span class="sxs-lookup"><span data-stu-id="c2908-119">Protocol ingestion module</span></span>
 
-Ce module constitue le point de départ pour la réception de données provenant d’appareils dans le cloud par le biais de la passerelle. Dans cet exemple, le module :
+<span data-ttu-id="c2908-120">Ce module constitue le point de départ pour la réception de données provenant d’appareils dans le cloud par le biais de la passerelle.</span><span class="sxs-lookup"><span data-stu-id="c2908-120">This module is the starting point for receiving data from devices, through the gateway, and into the cloud.</span></span> <span data-ttu-id="c2908-121">Dans cet exemple, le module :</span><span class="sxs-lookup"><span data-stu-id="c2908-121">In the sample, the module:</span></span>
 
-1. Crée les données de la température simulée. Si vous utilisez des appareils physiques, le module lit les données à partir de ces appareils.
-1. Crée un message.
-1. Place les données de la température simulée dans le contenu d’un message.
-1. Ajoute une propriété avec une adresse MAC fictive au message.
-1. Rend le message disponible pour le module suivant dans la chaîne.
+1. <span data-ttu-id="c2908-122">Crée les données de la température simulée.</span><span class="sxs-lookup"><span data-stu-id="c2908-122">Creates simulated temperature data.</span></span> <span data-ttu-id="c2908-123">Si vous utilisez des appareils physiques, le module lit les données à partir de ces appareils.</span><span class="sxs-lookup"><span data-stu-id="c2908-123">If you use physical devices, the module reads data from those physical devices.</span></span>
+1. <span data-ttu-id="c2908-124">Crée un message.</span><span class="sxs-lookup"><span data-stu-id="c2908-124">Creates a message.</span></span>
+1. <span data-ttu-id="c2908-125">Place les données de la température simulée dans le contenu d’un message.</span><span class="sxs-lookup"><span data-stu-id="c2908-125">Places the simulated temperature data into the message content.</span></span>
+1. <span data-ttu-id="c2908-126">Ajoute une propriété avec une adresse MAC fictive au message.</span><span class="sxs-lookup"><span data-stu-id="c2908-126">Adds a property with a fake MAC address to the message.</span></span>
+1. <span data-ttu-id="c2908-127">Rend le message disponible pour le module suivant dans la chaîne.</span><span class="sxs-lookup"><span data-stu-id="c2908-127">Makes the message available to the next module in the chain.</span></span>
 
-Le module appelé **Protocol X ingestion** dans le diagramme précédent est appelé **Simulated device** dans le code source.
+<span data-ttu-id="c2908-128">Le module appelé **Protocol X ingestion** dans le diagramme précédent est appelé **Simulated device** dans le code source.</span><span class="sxs-lookup"><span data-stu-id="c2908-128">The module called **Protocol X ingestion** in the previous diagram is called **Simulated device** in the source code.</span></span>
 
-### <a name="mac-lt-gt-iot-hub-id-module"></a>MAC &lt;-&gt; IoT Hub ID module
+### <a name="mac-lt-gt-iot-hub-id-module"></a><span data-ttu-id="c2908-129">MAC &lt;-&gt; IoT Hub ID module</span><span class="sxs-lookup"><span data-stu-id="c2908-129">MAC &lt;-&gt; IoT Hub ID module</span></span>
 
-Ce module analyse les messages dotés d’une propriété d’adresse Mac. Dans cet exemple, le module d’ingestion de protocole ajoute la propriété d’adresse MAC. Si le module détecte une telle propriété, il ajoute au message une autre propriété avec une clé d’appareil IoT Hub. Puis le module rend le message disponible pour le module suivant dans la chaîne.
+<span data-ttu-id="c2908-130">Ce module analyse les messages dotés d’une propriété d’adresse Mac.</span><span class="sxs-lookup"><span data-stu-id="c2908-130">This module scans for messages that have a Mac address property.</span></span> <span data-ttu-id="c2908-131">Dans cet exemple, le module d’ingestion de protocole ajoute la propriété d’adresse MAC.</span><span class="sxs-lookup"><span data-stu-id="c2908-131">In the sample, the protocol ingestion module adds the MAC address property.</span></span> <span data-ttu-id="c2908-132">Si le module détecte une telle propriété, il ajoute au message une autre propriété avec une clé d’appareil IoT Hub.</span><span class="sxs-lookup"><span data-stu-id="c2908-132">If the module finds such a property, it adds another property with an IoT Hub device key to the message.</span></span> <span data-ttu-id="c2908-133">Puis le module rend le message disponible pour le module suivant dans la chaîne.</span><span class="sxs-lookup"><span data-stu-id="c2908-133">The module then makes the message available to the next module in the chain.</span></span>
 
-Le développeur configure un mappage entre les adresses MAC et les identités IoT Hub pour associer les appareils simulés aux identités d’appareils IoT Hub. Le développeur ajoute le mappage manuellement dans le cadre de la configuration du module.
+<span data-ttu-id="c2908-134">Le développeur configure un mappage entre les adresses MAC et les identités IoT Hub pour associer les appareils simulés aux identités d’appareils IoT Hub.</span><span class="sxs-lookup"><span data-stu-id="c2908-134">The developer sets up a mapping between MAC addresses and IoT Hub identities to associate the simulated devices with IoT Hub device identities.</span></span> <span data-ttu-id="c2908-135">Le développeur ajoute le mappage manuellement dans le cadre de la configuration du module.</span><span class="sxs-lookup"><span data-stu-id="c2908-135">The developer adds the mapping manually as part of the module configuration.</span></span>
 
 > [!NOTE]
-> Cet exemple utilise une adresse MAC comme identificateur unique de l'appareil et la met en corrélation avec une identité d'appareil IoT Hub. Toutefois, vous pouvez écrire votre propre module qui utilise un autre identificateur unique. Par exemple, vos appareils peuvent comporter des numéros de série uniques, ou les données de télémétrie peuvent inclure un nom d’appareil incorporé unique.
+> <span data-ttu-id="c2908-136">Cet exemple utilise une adresse MAC comme identificateur unique de l'appareil et la met en corrélation avec une identité d'appareil IoT Hub.</span><span class="sxs-lookup"><span data-stu-id="c2908-136">This sample uses a MAC address as a unique device identifier and correlates it with an IoT Hub device identity.</span></span> <span data-ttu-id="c2908-137">Toutefois, vous pouvez écrire votre propre module qui utilise un autre identificateur unique.</span><span class="sxs-lookup"><span data-stu-id="c2908-137">However, you can write your own module that uses a different unique identifier.</span></span> <span data-ttu-id="c2908-138">Par exemple, vos appareils peuvent comporter des numéros de série uniques, ou les données de télémétrie peuvent inclure un nom d’appareil incorporé unique.</span><span class="sxs-lookup"><span data-stu-id="c2908-138">For example, your devices may have unique serial numbers or the telemetry data may include a unique embedded device name.</span></span>
 
-### <a name="iot-hub-communication-module"></a>Module de communication IoT Hub
+### <a name="iot-hub-communication-module"></a><span data-ttu-id="c2908-139">Module de communication IoT Hub</span><span class="sxs-lookup"><span data-stu-id="c2908-139">IoT Hub communication module</span></span>
 
-Ce module utilise les messages avec une propriété de clé d’appareil IoT Hub qui a été attribuée par le module précédent. Le module envoie le contenu des messages à IoT Hub à l’aide du protocole HTTP. HTTP est un des trois protocoles compris par IoT Hub.
+<span data-ttu-id="c2908-140">Ce module utilise les messages avec une propriété de clé d’appareil IoT Hub qui a été attribuée par le module précédent.</span><span class="sxs-lookup"><span data-stu-id="c2908-140">This module takes messages with an IoT Hub device key property that was assigned by the previous module.</span></span> <span data-ttu-id="c2908-141">Le module envoie le contenu des messages à IoT Hub à l’aide du protocole HTTP.</span><span class="sxs-lookup"><span data-stu-id="c2908-141">The module sends the message content to IoT Hub using the HTTP protocol.</span></span> <span data-ttu-id="c2908-142">HTTP est un des trois protocoles compris par IoT Hub.</span><span class="sxs-lookup"><span data-stu-id="c2908-142">HTTP is one of the three protocols understood by IoT Hub.</span></span>
 
-Au lieu d’ouvrir une connexion pour chaque appareil simulé, ce module ouvre une seule connexion HTTP à IoT Hub à partir de la passerelle. Puis le module multiplexe les connexions à partir de tous les appareils simulés sur cette connexion. Cette approche permet à une seule passerelle de connecter une multitude d’autres appareils.
+<span data-ttu-id="c2908-143">Au lieu d’ouvrir une connexion pour chaque appareil simulé, ce module ouvre une seule connexion HTTP à IoT Hub à partir de la passerelle.</span><span class="sxs-lookup"><span data-stu-id="c2908-143">Instead of opening a connection for each simulated device, this module opens a single HTTP connection from the gateway to the IoT hub.</span></span> <span data-ttu-id="c2908-144">Puis le module multiplexe les connexions à partir de tous les appareils simulés sur cette connexion.</span><span class="sxs-lookup"><span data-stu-id="c2908-144">The module then multiplexes connections from all the simulated devices over that connection.</span></span> <span data-ttu-id="c2908-145">Cette approche permet à une seule passerelle de connecter une multitude d’autres appareils.</span><span class="sxs-lookup"><span data-stu-id="c2908-145">This approach enables a single gateway to connect many more devices.</span></span>
 
-## <a name="before-you-get-started"></a>Avant de commencer
+## <a name="before-you-get-started"></a><span data-ttu-id="c2908-146">Avant de commencer</span><span class="sxs-lookup"><span data-stu-id="c2908-146">Before you get started</span></span>
 
-Avant de commencer, vous devez :
+<span data-ttu-id="c2908-147">Avant de commencer, vous devez :</span><span class="sxs-lookup"><span data-stu-id="c2908-147">Before you get started, you must:</span></span>
 
-* [Créez un IoT Hub][lnk-create-hub] dans votre abonnement Azure (vous avez besoin du nom de votre hub pour effectuer cette procédure pas à pas). Si vous ne possédez pas de compte, vous pouvez créer un [compte gratuit][lnk-free-trial] en quelques minutes.
-* Ajoutez deux appareils à votre hub IoT et notez leur ID et leurs clés d'appareil. Vous pouvez utiliser l’outil [Explorateur d’appareils][lnk-device-explorer] ou [iothub-explorer][lnk-iothub-explorer] pour ajouter vos appareils à l’IoT Hub que vous avez créé à l’étape précédente et récupérer ainsi leurs clés.
+* <span data-ttu-id="c2908-148">[Créez un IoT Hub][lnk-create-hub] dans votre abonnement Azure (vous avez besoin du nom de votre hub pour effectuer cette procédure pas à pas).</span><span class="sxs-lookup"><span data-stu-id="c2908-148">[Create an IoT hub][lnk-create-hub] in your Azure subscription, you need the name of your hub to complete this walkthrough.</span></span> <span data-ttu-id="c2908-149">Si vous ne possédez pas de compte, vous pouvez créer un [compte gratuit][lnk-free-trial] en quelques minutes.</span><span class="sxs-lookup"><span data-stu-id="c2908-149">If you don't have an account, you can create a [free account][lnk-free-trial] in just a couple of minutes.</span></span>
+* <span data-ttu-id="c2908-150">Ajoutez deux appareils à votre hub IoT et notez leur ID et leurs clés d'appareil.</span><span class="sxs-lookup"><span data-stu-id="c2908-150">Add two devices to your IoT hub and make a note of their ids and device keys.</span></span> <span data-ttu-id="c2908-151">Vous pouvez utiliser l’outil [Explorateur d’appareils][lnk-device-explorer] ou [iothub-explorer][lnk-iothub-explorer] pour ajouter vos appareils à l’IoT Hub que vous avez créé à l’étape précédente et récupérer ainsi leurs clés.</span><span class="sxs-lookup"><span data-stu-id="c2908-151">You can use the [device explorer][lnk-device-explorer] or [iothub-explorer][lnk-iothub-explorer] tool to add your devices to the IoT hub you created in the previous step and retrieve their keys.</span></span>
 
 ![][2]
 
@@ -69,7 +69,7 @@ Avant de commencer, vous devez :
 [2]: media/iot-hub-iot-edge-simulated-selector/image2.png
 
 <!-- Links -->
-[L’exemple de chargement d’un appareil simulé sur le cloud]: https://github.com/Azure/iot-edge/blob/master/samples/simulated_device_cloud_upload/README.md
+<span data-ttu-id="c2908-152">[L’exemple de chargement d’un appareil simulé sur le cloud]: https://github.com/Azure/iot-edge/blob/master/samples/simulated_device_cloud_upload/README.md</span><span class="sxs-lookup"><span data-stu-id="c2908-152">[Simulated Device Cloud Upload sample]: https://github.com/Azure/iot-edge/blob/master/samples/simulated_device_cloud_upload/README.md</span></span>
 [lnk-sdk]: https://github.com/Azure/iot-edge
 [lnk-gw-getstarted]: ../articles/iot-hub/iot-hub-linux-iot-edge-get-started.md
 [lnk-free-trial]: https://azure.microsoft.com/pricing/free-trial/

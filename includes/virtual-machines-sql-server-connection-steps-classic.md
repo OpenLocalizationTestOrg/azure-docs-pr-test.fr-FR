@@ -1,23 +1,23 @@
-### <a name="determine-the-dns-name-of-the-virtual-machine"></a>Détermination du nom DNS de la machine virtuelle
-Pour vous connecter au moteur de base de données SQL Server à partir d'un autre ordinateur, vous devez connaître le nom DNS de la machine virtuelle. Il s'agit du nom utilisé par Internet pour identifier une machine virtuelle. Vous pouvez utiliser l'adresse IP, mais celle-ci peut être modifiée lorsqu'Azure déplace des ressources pour des raisons de redondance ou de maintenance. Le nom DNS reste stable, car il peut être redirigé vers une nouvelle adresse IP.  
+### <a name="determine-the-dns-name-of-the-virtual-machine"></a><span data-ttu-id="0efca-101">Détermination du nom DNS de la machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="0efca-101">Determine the DNS name of the virtual machine</span></span>
+<span data-ttu-id="0efca-102">Pour vous connecter au moteur de base de données SQL Server à partir d'un autre ordinateur, vous devez connaître le nom DNS de la machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="0efca-102">To connect to the SQL Server Database Engine from another computer, you must know the Domain Name System (DNS) name of the virtual machine.</span></span> <span data-ttu-id="0efca-103">Il s'agit du nom utilisé par Internet pour identifier une machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="0efca-103">(This is the name the internet uses to identify the virtual machine.</span></span> <span data-ttu-id="0efca-104">Vous pouvez utiliser l'adresse IP, mais celle-ci peut être modifiée lorsqu'Azure déplace des ressources pour des raisons de redondance ou de maintenance.</span><span class="sxs-lookup"><span data-stu-id="0efca-104">You can use the IP address, but the IP address might change when Azure moves resources for redundancy or maintenance.</span></span> <span data-ttu-id="0efca-105">Le nom DNS reste stable, car il peut être redirigé vers une nouvelle adresse IP.</span><span class="sxs-lookup"><span data-stu-id="0efca-105">The DNS name will be stable because it can be redirected to a new IP address.)</span></span>  
 
-1. Dans le portail Azure (ou à partir de l’étape précédente), sélectionnez **Machines virtuelles (classique)**.
-2. Sélectionnez votre machine virtuelle SQL.
-3. Dans le panneau **Machine virtuelle**, copiez le **Nom DNS** de la machine virtuelle.
+1. <span data-ttu-id="0efca-106">Dans le portail Azure (ou à partir de l’étape précédente), sélectionnez **Machines virtuelles (classique)**.</span><span class="sxs-lookup"><span data-stu-id="0efca-106">In the Azure Portal (or from the previous step), select **Virtual machines (classic)**.</span></span>
+2. <span data-ttu-id="0efca-107">Sélectionnez votre machine virtuelle SQL.</span><span class="sxs-lookup"><span data-stu-id="0efca-107">Select your SQL VM.</span></span>
+3. <span data-ttu-id="0efca-108">Dans le panneau **Machine virtuelle**, copiez le **Nom DNS** de la machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="0efca-108">On the **Virtual machine** blade, copy the **DNS name** for the virtual machine.</span></span>
    
     ![Nom DNS](./media/virtual-machines-sql-server-connection-steps/sql-vm-dns-name.png)
 
-### <a name="connect-to-the-database-engine-from-another-computer"></a>Connexion au moteur de base de données à partir d'un autre ordinateur
-1. Sur un ordinateur connecté à Internet, ouvrez SQL Server Management Studio.
-2. Dans la boîte de dialogue **Se connecter au serveur** ou **Se connecter au moteur de base de données**, dans la zone **Nom du serveur**, entrez le nom DNS de la machine virtuelle (déterminé lors de la tâche précédente), ainsi que le numéro de port d’un point de terminaison public au format *NomDNS,numéro_port* tel que **mysqlvm.cloudapp.net,57500**.
+### <a name="connect-to-the-database-engine-from-another-computer"></a><span data-ttu-id="0efca-110">Connexion au moteur de base de données à partir d'un autre ordinateur</span><span class="sxs-lookup"><span data-stu-id="0efca-110">Connect to the Database Engine from another computer</span></span>
+1. <span data-ttu-id="0efca-111">Sur un ordinateur connecté à Internet, ouvrez SQL Server Management Studio.</span><span class="sxs-lookup"><span data-stu-id="0efca-111">On a computer connected to the internet, open SQL Server Management Studio.</span></span>
+2. <span data-ttu-id="0efca-112">Dans la boîte de dialogue **Se connecter au serveur** ou **Se connecter au moteur de base de données**, dans la zone **Nom du serveur**, entrez le nom DNS de la machine virtuelle (déterminé lors de la tâche précédente), ainsi que le numéro de port d’un point de terminaison public au format *NomDNS,numéro_port* tel que **mysqlvm.cloudapp.net,57500**.</span><span class="sxs-lookup"><span data-stu-id="0efca-112">In the **Connect to Server** or **Connect to Database Engine** dialog box, in the **Server name** box, enter the DNS name of the virtual machine (determined in the previous task) and a public endpoint port number in the format of *DNSName,portnumber* such as **mysqlvm.cloudapp.net,57500**.</span></span>
    
     ![Connexion en utilisant SSMS](./media/virtual-machines-sql-server-connection-steps/33Connect-SSMS.png)
    
-    Si vous ne connaissez pas le numéro de port du point de terminaison public créé précédemment, vous le trouverez dans la zone **Points de terminaison** du panneau **Machine virtuelle**.
+    <span data-ttu-id="0efca-114">Si vous ne connaissez pas le numéro de port du point de terminaison public créé précédemment, vous le trouverez dans la zone **Points de terminaison** du panneau **Machine virtuelle**.</span><span class="sxs-lookup"><span data-stu-id="0efca-114">If you don't remember the public endpoint port number you previously created, you can find it in the **Endpoints** area of the **Virtual machine** blade.</span></span>
    
     ![Port public](./media/virtual-machines-sql-server-connection-steps/sql-vm-port-number.png)
-3. Dans la zone **Authentification**, sélectionnez **Authentification SQL Server**.
-4. Dans la zone **Connexion** , entrez le nom d'une connexion créée lors d'une tâche précédente.
-5. Dans la zone **Mot de passe** , entrez le mot de passe de connexion que vous avez créé lors d'une tâche précédente.
-6. Cliquez sur **Connecter**.
+3. <span data-ttu-id="0efca-116">Dans la zone **Authentification**, sélectionnez **Authentification SQL Server**.</span><span class="sxs-lookup"><span data-stu-id="0efca-116">In the **Authentication** box, select **SQL Server Authentication**.</span></span>
+4. <span data-ttu-id="0efca-117">Dans la zone **Connexion** , entrez le nom d'une connexion créée lors d'une tâche précédente.</span><span class="sxs-lookup"><span data-stu-id="0efca-117">In the **Login** box, type the name of a login that you created in an earlier task.</span></span>
+5. <span data-ttu-id="0efca-118">Dans la zone **Mot de passe** , entrez le mot de passe de connexion que vous avez créé lors d'une tâche précédente.</span><span class="sxs-lookup"><span data-stu-id="0efca-118">In the **Password** box, type the password of the login that you create in an earlier task.</span></span>
+6. <span data-ttu-id="0efca-119">Cliquez sur **Connecter**.</span><span class="sxs-lookup"><span data-stu-id="0efca-119">Click **Connect**.</span></span>
 

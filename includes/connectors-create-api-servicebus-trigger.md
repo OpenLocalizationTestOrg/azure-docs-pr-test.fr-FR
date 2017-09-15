@@ -1,16 +1,16 @@
-Nous allons ici utiliser le déclencheur **Service Bus - Réception d’un message dans une file d’attente** pour initier un flux de travail logique application lorsqu’un nouvel élément est ajouté à une file d’attente Service Bus.  
+<span data-ttu-id="c1392-101">Nous allons ici utiliser le déclencheur **Service Bus - Réception d’un message dans une file d’attente** pour initier un flux de travail logique application lorsqu’un nouvel élément est ajouté à une file d’attente Service Bus.</span><span class="sxs-lookup"><span data-stu-id="c1392-101">Here's how to use the **Service Bus - When a message is received in a queue** trigger to initiate a logic app workflow when a new item is sent to a Service Bus queue.</span></span>  
 
 > [!NOTE]
-> Vous serez invité à vous connecter avec votre chaîne de connexion Service Bus si vous n’avez pas encore créé une connexion à Service Bus.  
+> <span data-ttu-id="c1392-102">Vous serez invité à vous connecter avec votre chaîne de connexion Service Bus si vous n’avez pas encore créé une connexion à Service Bus.</span><span class="sxs-lookup"><span data-stu-id="c1392-102">You will be prompted to sign in with your Service Bus connection string if you have not already created a connection to Service Bus.</span></span>  
 > 
 > 
 
-1. Dans la zone de recherche du concepteur d’applications logiques, entrez **service bus**. Sélectionnez le déclencheur **Service Bus - Réception d’un message dans une file d’attente** .  
-   ![Image de déclencheur Service Bus 1](./media/connectors-create-api-servicebus/trigger-1.png)   
-2. La boîte de dialogue **Réception d’un message dans une file d’attente** s’affiche.  
-   ![Image de déclencheur Service Bus 2](./media/connectors-create-api-servicebus/trigger-2.png)   
-3. Saisissez le nom de la file d’attente Service Bus que vous souhaitez que le déclencheur surveille.   
+1. <span data-ttu-id="c1392-103">Dans la zone de recherche du concepteur d’applications logiques, entrez **service bus**.</span><span class="sxs-lookup"><span data-stu-id="c1392-103">In the search box on the logic apps designer, enter **service bus**.</span></span> <span data-ttu-id="c1392-104">Sélectionnez le déclencheur **Service Bus - Réception d’un message dans une file d’attente** .</span><span class="sxs-lookup"><span data-stu-id="c1392-104">Then select the **Service Bus - When a message is received in a queue** trigger.</span></span>  
+   <span data-ttu-id="c1392-105">![Image de déclencheur Service Bus 1](./media/connectors-create-api-servicebus/trigger-1.png)</span><span class="sxs-lookup"><span data-stu-id="c1392-105">![Service Bus trigger image 1](./media/connectors-create-api-servicebus/trigger-1.png)</span></span>   
+2. <span data-ttu-id="c1392-106">La boîte de dialogue **Réception d’un message dans une file d’attente** s’affiche.</span><span class="sxs-lookup"><span data-stu-id="c1392-106">The **When a message is received in a queue** dialog box is displayed.</span></span>  
+   <span data-ttu-id="c1392-107">![Image de déclencheur Service Bus 2](./media/connectors-create-api-servicebus/trigger-2.png)</span><span class="sxs-lookup"><span data-stu-id="c1392-107">![Service Bus trigger image 2](./media/connectors-create-api-servicebus/trigger-2.png)</span></span>   
+3. <span data-ttu-id="c1392-108">Saisissez le nom de la file d’attente Service Bus que vous souhaitez que le déclencheur surveille.</span><span class="sxs-lookup"><span data-stu-id="c1392-108">Enter the name of the Service Bus queue you would like the trigger to monitor.</span></span>   
    ![Image de déclencheur Service Bus 3](./media/connectors-create-api-servicebus/trigger-3.png)   
 
-À ce stade, votre application logique a été configurée avec un déclencheur. Lorsqu’un nouvel élément est reçu dans la file d’attente que vous avez sélectionnée, le déclencheur lance une série d'autres déclencheurs et actions dans le flux de travail.    
+<span data-ttu-id="c1392-110">À ce stade, votre application logique a été configurée avec un déclencheur.</span><span class="sxs-lookup"><span data-stu-id="c1392-110">At this point, your logic app has been configured with a trigger.</span></span> <span data-ttu-id="c1392-111">Lorsqu’un nouvel élément est reçu dans la file d’attente que vous avez sélectionnée, le déclencheur lance une série d'autres déclencheurs et actions dans le flux de travail.</span><span class="sxs-lookup"><span data-stu-id="c1392-111">When a new item is received in the queue you selected, the trigger will begin a run of the other triggers and actions in the workflow.</span></span>    
 

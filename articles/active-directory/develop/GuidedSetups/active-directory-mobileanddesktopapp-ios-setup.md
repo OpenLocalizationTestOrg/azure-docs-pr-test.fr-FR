@@ -19,31 +19,31 @@ ms.translationtype: MT
 ms.contentlocale: fr-FR
 ms.lasthandoff: 08/29/2017
 ---
-## <a name="setting-up-your-ios-application"></a>Configuration de votre application iOS
+## <a name="setting-up-your-ios-application"></a><span data-ttu-id="de5e3-103">Configuration de votre application iOS</span><span class="sxs-lookup"><span data-stu-id="de5e3-103">Setting up your iOS application</span></span>
 
-Cette section fournit des instructions détaillées sur la façon de créer un projet pour illustrer comment intégrer une application iOS (Swift) avec l’option *Se connecter avec Microsoft* pour pouvoir interroger des API web qui nécessitent un jeton.
+<span data-ttu-id="de5e3-104">Cette section fournit des instructions détaillées sur la façon de créer un projet pour illustrer comment intégrer une application iOS (Swift) avec l’option *Se connecter avec Microsoft* pour pouvoir interroger des API web qui nécessitent un jeton.</span><span class="sxs-lookup"><span data-stu-id="de5e3-104">This section provides step-by-step instructions for how to create a new project to demonstrate how to integrate an iOS application (Swift) with *Sign-In with Microsoft* so it can query Web APIs that require a token.</span></span>
 
-> Vous préférez télécharger le projet XCode de cet exemple ? [Téléchargez un projet](https://github.com/Azure-Samples/active-directory-ios-swift-native-v2/archive/master.zip) et passez à l’étape [Configuration](#create-an-application-express) pour configurer l’exemple de code avant l’exécution.
+> <span data-ttu-id="de5e3-105">Vous préférez télécharger le projet XCode de cet exemple ?</span><span class="sxs-lookup"><span data-stu-id="de5e3-105">Prefer to download this sample's XCode project instead?</span></span> <span data-ttu-id="de5e3-106">[Téléchargez un projet](https://github.com/Azure-Samples/active-directory-ios-swift-native-v2/archive/master.zip) et passez à l’étape [Configuration](#create-an-application-express) pour configurer l’exemple de code avant l’exécution.</span><span class="sxs-lookup"><span data-stu-id="de5e3-106">[Download a project](https://github.com/Azure-Samples/active-directory-ios-swift-native-v2/archive/master.zip) and skip to the [Configuration step](#create-an-application-express) to configure the code sample before executing.</span></span>
 
 
-## <a name="install-carthage-to-download-and-build-msal"></a>Installer Carthage pour télécharger et générer la bibliothèque MSAL
-Le gestionnaire de package Carthage est utilisé pendant la période d’évaluation de la bibliothèque MSAL (Microsoft Authentication Library) : il s’intègre avec XCode tout en permettant à Microsoft de continuer à apporter des modifications à la bibliothèque.
+## <a name="install-carthage-to-download-and-build-msal"></a><span data-ttu-id="de5e3-107">Installer Carthage pour télécharger et générer la bibliothèque MSAL</span><span class="sxs-lookup"><span data-stu-id="de5e3-107">Install Carthage to download and build MSAL</span></span>
+<span data-ttu-id="de5e3-108">Le gestionnaire de package Carthage est utilisé pendant la période d’évaluation de la bibliothèque MSAL (Microsoft Authentication Library) : il s’intègre avec XCode tout en permettant à Microsoft de continuer à apporter des modifications à la bibliothèque.</span><span class="sxs-lookup"><span data-stu-id="de5e3-108">Carthage package manager is used during the preview period of MSAL – it integrates with XCode while maintaining the ability for Microsoft to make changes to the library.</span></span>
 
-- Téléchargez et installez la dernière version de Carthage [ici](https://github.com/Carthage/Carthage/releases "URL de téléchargement de Carthage")
+- <span data-ttu-id="de5e3-109">Téléchargez et installez la dernière version de Carthage [ici](https://github.com/Carthage/Carthage/releases "URL de téléchargement de Carthage")</span><span class="sxs-lookup"><span data-stu-id="de5e3-109">Download and install the latest release of Carthage [here](https://github.com/Carthage/Carthage/releases "Carthage download URL")</span></span>
 
-## <a name="creating-your-application"></a>Création de votre application
+## <a name="creating-your-application"></a><span data-ttu-id="de5e3-110">Création de votre application</span><span class="sxs-lookup"><span data-stu-id="de5e3-110">Creating your application</span></span>
 
-1.  Ouvrez Xcode et sélectionnez `Create a new Xcode project`.
-2.  Sélectionnez `iOS` > `Single view Application` et cliquez sur *Next*.
-3.  Donnez un nom de produit puis cliquez sur *Next*.
-4.  Sélectionnez un dossier où créer votre application, puis cliquez sur *Créer*.
+1.  <span data-ttu-id="de5e3-111">Ouvrez Xcode et sélectionnez `Create a new Xcode project`.</span><span class="sxs-lookup"><span data-stu-id="de5e3-111">Open Xcode and select `Create a new Xcode project`</span></span>
+2.  <span data-ttu-id="de5e3-112">Sélectionnez `iOS` > `Single view Application` et cliquez sur *Next*.</span><span class="sxs-lookup"><span data-stu-id="de5e3-112">Select `iOS` > `Single view Application` and click *Next*</span></span>
+3.  <span data-ttu-id="de5e3-113">Donnez un nom de produit puis cliquez sur *Next*.</span><span class="sxs-lookup"><span data-stu-id="de5e3-113">Give a product name and click *Next*</span></span>
+4.  <span data-ttu-id="de5e3-114">Sélectionnez un dossier où créer votre application, puis cliquez sur *Créer*.</span><span class="sxs-lookup"><span data-stu-id="de5e3-114">Select a folder to create your app and click *Create*</span></span>
 
-## <a name="build-the-msal-framework"></a>Générer l’infrastructure MSAL
+## <a name="build-the-msal-framework"></a><span data-ttu-id="de5e3-115">Générer l’infrastructure MSAL</span><span class="sxs-lookup"><span data-stu-id="de5e3-115">Build the MSAL Framework</span></span>
 
-Suivez les instructions ci-dessous pour extraire puis générer la version la plus récente des bibliothèques MSAL à l’aide de Carthage :
+<span data-ttu-id="de5e3-116">Suivez les instructions ci-dessous pour extraire puis générer la version la plus récente des bibliothèques MSAL à l’aide de Carthage :</span><span class="sxs-lookup"><span data-stu-id="de5e3-116">Follow the instructions below to pull and then build the latest version of MSAL libraries using Carthage:</span></span>
 
-1.  Ouvrez le terminal de l’interpréteur de commandes Bash et accédez au dossier racine de l’application.
-2.  Copiez le code ci-dessous et collez-le dans le terminal de l’interpréteur de commandes Bash pour créer un fichier « Cartfile » :
+1.  <span data-ttu-id="de5e3-117">Ouvrez le terminal de l’interpréteur de commandes Bash et accédez au dossier racine de l’application.</span><span class="sxs-lookup"><span data-stu-id="de5e3-117">Open the bash terminal and go to the App’s root folder</span></span>
+2.  <span data-ttu-id="de5e3-118">Copiez le code ci-dessous et collez-le dans le terminal de l’interpréteur de commandes Bash pour créer un fichier « Cartfile » :</span><span class="sxs-lookup"><span data-stu-id="de5e3-118">Copy the below and paste in the bash terminal to create a ‘Cartfile’ file:</span></span>
 
 ```bash
 echo "github \"AzureAD/microsoft-authentication-library-for-objc\" \"master\"" > Cartfile
@@ -51,7 +51,7 @@ echo "github \"AzureAD/microsoft-authentication-library-for-objc\" \"master\"" >
 <!-- Workaround for Docs conversion bug -->
 <ol start="3">
 <li>
-Copiez et collez le code ci-dessous. Cette commande récupère les dépendances dans un dossier Carthage/Checkouts, puis génère la bibliothèque MSAL :
+<span data-ttu-id="de5e3-119">Copiez et collez le code ci-dessous.</span><span class="sxs-lookup"><span data-stu-id="de5e3-119">Copy and paste the below.</span></span> <span data-ttu-id="de5e3-120">Cette commande récupère les dépendances dans un dossier Carthage/Checkouts, puis génère la bibliothèque MSAL :</span><span class="sxs-lookup"><span data-stu-id="de5e3-120">This command fetches dependencies into a Carthage/Checkouts folder, then builds the MSAL library:</span></span>
 </li>
 </ol>
 
@@ -59,15 +59,15 @@ Copiez et collez le code ci-dessous. Cette commande récupère les dépendances 
 carthage update
 ```
 
-> Le processus ci-dessus sert à télécharger et à générer la bibliothèque MSAL. La bibliothèque MSAL gère l’acquisition, la mise en cache et l’actualisation des jetons utilisateur qui servent à accéder aux API protégées par Azure Active Directory v2.
+> <span data-ttu-id="de5e3-121">Le processus ci-dessus sert à télécharger et à générer la bibliothèque MSAL.</span><span class="sxs-lookup"><span data-stu-id="de5e3-121">The process above is used to download and build the Microsoft Authentication Library (MSAL).</span></span> <span data-ttu-id="de5e3-122">La bibliothèque MSAL gère l’acquisition, la mise en cache et l’actualisation des jetons utilisateur qui servent à accéder aux API protégées par Azure Active Directory v2.</span><span class="sxs-lookup"><span data-stu-id="de5e3-122">MSAL handles acquiring, caching and refreshing user tokens used to access APIs protected by the Azure Active Directory v2.</span></span>
 
-## <a name="add-the-msal-framework-to-your-application"></a>Ajouter l’infrastructure MSAL à votre application
-1.  Dans Xcode, ouvrez l’onglet `General`.
-2.  Accédez à la section `Linked Frameworks and Libraries` et cliquez sur `+`.
-3.  Sélectionnez `Add other…`.
-4.  Sélectionnez : `Carthage` > `Build` > `iOS` > `MSAL.framework` et cliquez sur *Open*. `MSAL.framework` devrait être ajouté à la liste.
-5.  Accédez à l’onglet `Build Phases`, cliquez sur l’icône `+`, puis choisissez `New Run Script Phase`.
-6.  Ajoutez le contenu suivant à la *zone de script* :
+## <a name="add-the-msal-framework-to-your-application"></a><span data-ttu-id="de5e3-123">Ajouter l’infrastructure MSAL à votre application</span><span class="sxs-lookup"><span data-stu-id="de5e3-123">Add the MSAL framework to your application</span></span>
+1.  <span data-ttu-id="de5e3-124">Dans Xcode, ouvrez l’onglet `General`.</span><span class="sxs-lookup"><span data-stu-id="de5e3-124">In Xcode, open the `General` tab</span></span>
+2.  <span data-ttu-id="de5e3-125">Accédez à la section `Linked Frameworks and Libraries` et cliquez sur `+`.</span><span class="sxs-lookup"><span data-stu-id="de5e3-125">Go to the `Linked Frameworks and Libraries` section and click `+`</span></span>
+3.  <span data-ttu-id="de5e3-126">Sélectionnez `Add other…`.</span><span class="sxs-lookup"><span data-stu-id="de5e3-126">Select `Add other…`</span></span>
+4.  <span data-ttu-id="de5e3-127">Sélectionnez : `Carthage` > `Build` > `iOS` > `MSAL.framework` et cliquez sur *Open*.</span><span class="sxs-lookup"><span data-stu-id="de5e3-127">Select: `Carthage` > `Build` > `iOS` > `MSAL.framework` and click *Open*.</span></span> <span data-ttu-id="de5e3-128">`MSAL.framework` devrait être ajouté à la liste.</span><span class="sxs-lookup"><span data-stu-id="de5e3-128">You should see `MSAL.framework` added to the list.</span></span>
+5.  <span data-ttu-id="de5e3-129">Accédez à l’onglet `Build Phases`, cliquez sur l’icône `+`, puis choisissez `New Run Script Phase`.</span><span class="sxs-lookup"><span data-stu-id="de5e3-129">Go to `Build Phases` tab, and click `+` icon, choose `New Run Script Phase`</span></span>
+6.  <span data-ttu-id="de5e3-130">Ajoutez le contenu suivant à la *zone de script* :</span><span class="sxs-lookup"><span data-stu-id="de5e3-130">Add the following contents to the *script area*:</span></span>
 
 ```text
 /usr/local/bin/carthage copy-frameworks
@@ -76,7 +76,7 @@ carthage update
 <!-- Workaround for Docs conversion bug -->
 <ol start="7">
 <li>
-Ajoutez le code suivant à <code>Input Files</code> en cliquant sur <code>+</code> :
+<span data-ttu-id="de5e3-131">Ajoutez le code suivant à <code>Input Files</code> en cliquant sur <code>+</code> :</span><span class="sxs-lookup"><span data-stu-id="de5e3-131">Add the following to <code>Input Files</code> by clicking <code>+</code>:</span></span>
 </li>
 </ol>
 
@@ -84,11 +84,11 @@ Ajoutez le code suivant à <code>Input Files</code> en cliquant sur <code>+</cod
 $(SRCROOT)/Carthage/Build/iOS/MSAL.framework
 ```
 
-## <a name="creating-your-applications-ui"></a>Création de l’interface utilisateur de votre application
-Un fichier Main.storyboard doit être automatiquement créé dans le cadre de votre modèle de projet. Suivez les instructions ci-dessous pour créer l’interface utilisateur de l’application :
+## <a name="creating-your-applications-ui"></a><span data-ttu-id="de5e3-132">Création de l’interface utilisateur de votre application</span><span class="sxs-lookup"><span data-stu-id="de5e3-132">Creating your application’s UI</span></span>
+<span data-ttu-id="de5e3-133">Un fichier Main.storyboard doit être automatiquement créé dans le cadre de votre modèle de projet.</span><span class="sxs-lookup"><span data-stu-id="de5e3-133">A Main.storyboard file should automatically be created as a part of your project template.</span></span> <span data-ttu-id="de5e3-134">Suivez les instructions ci-dessous pour créer l’interface utilisateur de l’application :</span><span class="sxs-lookup"><span data-stu-id="de5e3-134">Follow the instructions below to create the app UI:</span></span>
 
-1.  Maintenez la touche Ctrl enfoncée et cliquez sur `Main.storyboard` pour faire apparaître le menu contextuel, puis cliquez sur : `Open As` > `Source Code`
-2.  Remplacez le nœud `<scenes>` par le code ci-dessous :
+1.  <span data-ttu-id="de5e3-135">Maintenez la touche Ctrl enfoncée et cliquez sur `Main.storyboard` pour faire apparaître le menu contextuel, puis cliquez sur : `Open As` > `Source Code`</span><span class="sxs-lookup"><span data-stu-id="de5e3-135">Control+click `Main.storyboard` to bring up the contextual menu, and then click: `Open As` > `Source Code`</span></span>
+2.  <span data-ttu-id="de5e3-136">Remplacez le nœud `<scenes>` par le code ci-dessous :</span><span class="sxs-lookup"><span data-stu-id="de5e3-136">Replace the `<scenes>` node with the code below:</span></span>
 
 ```xml
  <scenes>

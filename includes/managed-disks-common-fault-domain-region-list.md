@@ -1,34 +1,34 @@
-### <a name="number-of-fault-domains-per-region"></a>Nombre de domaines d’erreur par région
+### <a name="number-of-fault-domains-per-region"></a><span data-ttu-id="7237a-101">Nombre de domaines d’erreur par région</span><span class="sxs-lookup"><span data-stu-id="7237a-101">Number of Fault Domains per region</span></span>
 
-| Région              | Nombre maximum de domaines d’erreur  |
+| <span data-ttu-id="7237a-102">Région</span><span class="sxs-lookup"><span data-stu-id="7237a-102">Region</span></span>              | <span data-ttu-id="7237a-103">Nombre maximum de domaines d’erreur</span><span class="sxs-lookup"><span data-stu-id="7237a-103">Max # of Fault Domains</span></span>  |
 |---------------------|-------------------------|
-| Est des États-Unis             | 3                       |
-| Est des États-Unis 2           | 3                       |
-| Ouest des États-Unis             | 3                       |
-| Ouest des États-Unis 2           | 2                       |
-| Centre des États-Unis          | 3                       |
-| États-Unis - partie centrale septentrionale    | 3                       |
-| États-Unis - partie centrale méridionale    | 3                       |
-| Centre-Ouest des États-Unis     | 2                       |
-| Centre du Canada      | 2                       |
-| Est du Canada         | 2                       |
+| <span data-ttu-id="7237a-104">Est des États-Unis</span><span class="sxs-lookup"><span data-stu-id="7237a-104">East US</span></span>             | <span data-ttu-id="7237a-105">3</span><span class="sxs-lookup"><span data-stu-id="7237a-105">3</span></span>                       |
+| <span data-ttu-id="7237a-106">Est des États-Unis 2</span><span class="sxs-lookup"><span data-stu-id="7237a-106">East US 2</span></span>           | <span data-ttu-id="7237a-107">3</span><span class="sxs-lookup"><span data-stu-id="7237a-107">3</span></span>                       |
+| <span data-ttu-id="7237a-108">Ouest des États-Unis</span><span class="sxs-lookup"><span data-stu-id="7237a-108">West US</span></span>             | <span data-ttu-id="7237a-109">3</span><span class="sxs-lookup"><span data-stu-id="7237a-109">3</span></span>                       |
+| <span data-ttu-id="7237a-110">Ouest des États-Unis 2</span><span class="sxs-lookup"><span data-stu-id="7237a-110">West US 2</span></span>           | <span data-ttu-id="7237a-111">2</span><span class="sxs-lookup"><span data-stu-id="7237a-111">2</span></span>                       |
+| <span data-ttu-id="7237a-112">Centre des États-Unis</span><span class="sxs-lookup"><span data-stu-id="7237a-112">Central US</span></span>          | <span data-ttu-id="7237a-113">3</span><span class="sxs-lookup"><span data-stu-id="7237a-113">3</span></span>                       |
+| <span data-ttu-id="7237a-114">États-Unis - partie centrale septentrionale</span><span class="sxs-lookup"><span data-stu-id="7237a-114">North Central US</span></span>    | <span data-ttu-id="7237a-115">3</span><span class="sxs-lookup"><span data-stu-id="7237a-115">3</span></span>                       |
+| <span data-ttu-id="7237a-116">États-Unis - partie centrale méridionale</span><span class="sxs-lookup"><span data-stu-id="7237a-116">South Central US</span></span>    | <span data-ttu-id="7237a-117">3</span><span class="sxs-lookup"><span data-stu-id="7237a-117">3</span></span>                       |
+| <span data-ttu-id="7237a-118">Centre-Ouest des États-Unis</span><span class="sxs-lookup"><span data-stu-id="7237a-118">West Central US</span></span>     | <span data-ttu-id="7237a-119">2</span><span class="sxs-lookup"><span data-stu-id="7237a-119">2</span></span>                       |
+| <span data-ttu-id="7237a-120">Centre du Canada</span><span class="sxs-lookup"><span data-stu-id="7237a-120">Canada Central</span></span>      | <span data-ttu-id="7237a-121">2</span><span class="sxs-lookup"><span data-stu-id="7237a-121">2</span></span>                       |
+| <span data-ttu-id="7237a-122">Est du Canada</span><span class="sxs-lookup"><span data-stu-id="7237a-122">Canada East</span></span>         | <span data-ttu-id="7237a-123">2</span><span class="sxs-lookup"><span data-stu-id="7237a-123">2</span></span>                       |
 |                     |                         |
-| Europe du Nord        | 3                       |
-| Europe de l’Ouest         | 3                       |
-| Sud du Royaume-Uni            | 2                       |
-| Ouest du Royaume-Uni             | 2                       |
+| <span data-ttu-id="7237a-124">Europe du Nord</span><span class="sxs-lookup"><span data-stu-id="7237a-124">North Europe</span></span>        | <span data-ttu-id="7237a-125">3</span><span class="sxs-lookup"><span data-stu-id="7237a-125">3</span></span>                       |
+| <span data-ttu-id="7237a-126">Europe de l’Ouest</span><span class="sxs-lookup"><span data-stu-id="7237a-126">West Europe</span></span>         | <span data-ttu-id="7237a-127">3</span><span class="sxs-lookup"><span data-stu-id="7237a-127">3</span></span>                       |
+| <span data-ttu-id="7237a-128">Sud du Royaume-Uni</span><span class="sxs-lookup"><span data-stu-id="7237a-128">UK South</span></span>            | <span data-ttu-id="7237a-129">2</span><span class="sxs-lookup"><span data-stu-id="7237a-129">2</span></span>                       |
+| <span data-ttu-id="7237a-130">Ouest du Royaume-Uni</span><span class="sxs-lookup"><span data-stu-id="7237a-130">UK West</span></span>             | <span data-ttu-id="7237a-131">2</span><span class="sxs-lookup"><span data-stu-id="7237a-131">2</span></span>                       |
 |                     |                         |
-| Est de l'Asie           | 2                       |
-| Asie du Sud-Est     | 2                       |
-| Est du Japon          | 2                       |
-| Ouest du Japon          | 2                       |
-| Inde du Sud         | 2                       |
-| Inde centrale       | 2                       |
-| Inde occidentale          | 2                       |
-| Centre de la Corée       | 2                       |
-| Corée du Sud         | 2                       |
+| <span data-ttu-id="7237a-132">Est de l'Asie</span><span class="sxs-lookup"><span data-stu-id="7237a-132">East Asia</span></span>           | <span data-ttu-id="7237a-133">2</span><span class="sxs-lookup"><span data-stu-id="7237a-133">2</span></span>                       |
+| <span data-ttu-id="7237a-134">Asie du Sud-Est</span><span class="sxs-lookup"><span data-stu-id="7237a-134">South East Asia</span></span>     | <span data-ttu-id="7237a-135">2</span><span class="sxs-lookup"><span data-stu-id="7237a-135">2</span></span>                       |
+| <span data-ttu-id="7237a-136">Est du Japon</span><span class="sxs-lookup"><span data-stu-id="7237a-136">Japan East</span></span>          | <span data-ttu-id="7237a-137">2</span><span class="sxs-lookup"><span data-stu-id="7237a-137">2</span></span>                       |
+| <span data-ttu-id="7237a-138">Ouest du Japon</span><span class="sxs-lookup"><span data-stu-id="7237a-138">Japan West</span></span>          | <span data-ttu-id="7237a-139">2</span><span class="sxs-lookup"><span data-stu-id="7237a-139">2</span></span>                       |
+| <span data-ttu-id="7237a-140">Inde du Sud</span><span class="sxs-lookup"><span data-stu-id="7237a-140">South India</span></span>         | <span data-ttu-id="7237a-141">2</span><span class="sxs-lookup"><span data-stu-id="7237a-141">2</span></span>                       |
+| <span data-ttu-id="7237a-142">Inde centrale</span><span class="sxs-lookup"><span data-stu-id="7237a-142">Central India</span></span>       | <span data-ttu-id="7237a-143">2</span><span class="sxs-lookup"><span data-stu-id="7237a-143">2</span></span>                       |
+| <span data-ttu-id="7237a-144">Inde occidentale</span><span class="sxs-lookup"><span data-stu-id="7237a-144">West India</span></span>          | <span data-ttu-id="7237a-145">2</span><span class="sxs-lookup"><span data-stu-id="7237a-145">2</span></span>                       |
+| <span data-ttu-id="7237a-146">Centre de la Corée</span><span class="sxs-lookup"><span data-stu-id="7237a-146">Korea Central</span></span>       | <span data-ttu-id="7237a-147">2</span><span class="sxs-lookup"><span data-stu-id="7237a-147">2</span></span>                       |
+| <span data-ttu-id="7237a-148">Corée du Sud</span><span class="sxs-lookup"><span data-stu-id="7237a-148">Korea South</span></span>         | <span data-ttu-id="7237a-149">2</span><span class="sxs-lookup"><span data-stu-id="7237a-149">2</span></span>                       |
 |                     |                         |
-| Est de l’Australie      | 2                       |
-| Sud-est de l’Australie | 2                       |
+| <span data-ttu-id="7237a-150">Est de l’Australie</span><span class="sxs-lookup"><span data-stu-id="7237a-150">Australia East</span></span>      | <span data-ttu-id="7237a-151">2</span><span class="sxs-lookup"><span data-stu-id="7237a-151">2</span></span>                       |
+| <span data-ttu-id="7237a-152">Sud-est de l’Australie</span><span class="sxs-lookup"><span data-stu-id="7237a-152">Australia Southeast</span></span> | <span data-ttu-id="7237a-153">2</span><span class="sxs-lookup"><span data-stu-id="7237a-153">2</span></span>                       |
 |                     |                         |
-| Sud du Brésil        | 2                       |
+| <span data-ttu-id="7237a-154">Sud du Brésil</span><span class="sxs-lookup"><span data-stu-id="7237a-154">Brazil South</span></span>        | <span data-ttu-id="7237a-155">2</span><span class="sxs-lookup"><span data-stu-id="7237a-155">2</span></span>                       |

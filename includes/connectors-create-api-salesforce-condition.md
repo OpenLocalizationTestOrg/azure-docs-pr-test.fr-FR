@@ -1,18 +1,18 @@
-Cette condition évaluera le champ d’adresse de messagerie de chaque nouveau prospect Salesforce. Si l’adresse de messagerie contient *amazon.com*, le résultat de la condition est *True*.
+<span data-ttu-id="8fd99-101">Cette condition évaluera le champ d’adresse de messagerie de chaque nouveau prospect Salesforce.</span><span class="sxs-lookup"><span data-stu-id="8fd99-101">This condition will evaluate the email address field of each new Salesforce lead.</span></span> <span data-ttu-id="8fd99-102">Si l’adresse de messagerie contient *amazon.com*, le résultat de la condition est *True*.</span><span class="sxs-lookup"><span data-stu-id="8fd99-102">If the email address contains *amazon.com*, the condition result will be *True*.</span></span>
 
-1. Sélectionnez **+ Nouvelle étape**.  
-   ![Image de condition Salesforce 1](./media/connectors-create-api-salesforce/condition-1.png)   
-2. Sélectionnez **Ajouter une condition**.    
-   ![Image de condition Salesforce 2](./media/connectors-create-api-salesforce/condition-2.png)  
-3. Sélectionnez **Choisir une valeur**.    
-   ![Image de condition Salesforce 3](./media/connectors-create-api-salesforce/condition-3.png)  
-4. Sélectionnez le jeton *E-mail* à partir du prospect du déclencheur.    
-   ![Image de condition Salesforce 4](./media/connectors-create-api-salesforce/condition-4.png)  
-5. Sélectionnez *Contient*.      
-   ![Image de condition Salesforce 5](./media/connectors-create-api-salesforce/condition-5.png)  
-6. Sélectionnez **Choisir une valeur** en bas du contrôle.     
-   ![Image de condition Salesforce 6](./media/connectors-create-api-salesforce/condition-6.png)  
-7. Saisissez *amazon.com* en tant que valeur pour laquelle vous souhaitez évaluer l’adresse de messagerie du nouveau prospect. Si l’adresse de messagerie contient *amazon.com*, la condition correspond à *True* et les autres étapes de votre application logique peuvent s’exécuter.    
-   ![Image de condition Salesforce 7](./media/connectors-create-api-salesforce/condition-7.png)  
-8. Enregistrez vos applications logiques.  
+1. <span data-ttu-id="8fd99-103">Sélectionnez **+ Nouvelle étape**.</span><span class="sxs-lookup"><span data-stu-id="8fd99-103">Select **+ New step**.</span></span>  
+   <span data-ttu-id="8fd99-104">![Image de condition Salesforce 1](./media/connectors-create-api-salesforce/condition-1.png)</span><span class="sxs-lookup"><span data-stu-id="8fd99-104">![Salesforce condition image 1](./media/connectors-create-api-salesforce/condition-1.png)</span></span>   
+2. <span data-ttu-id="8fd99-105">Sélectionnez **Ajouter une condition**.</span><span class="sxs-lookup"><span data-stu-id="8fd99-105">Select **Add a condition**.</span></span>    
+   <span data-ttu-id="8fd99-106">![Image de condition Salesforce 2](./media/connectors-create-api-salesforce/condition-2.png)</span><span class="sxs-lookup"><span data-stu-id="8fd99-106">![Salesforce condition image 2](./media/connectors-create-api-salesforce/condition-2.png)</span></span>  
+3. <span data-ttu-id="8fd99-107">Sélectionnez **Choisir une valeur**.</span><span class="sxs-lookup"><span data-stu-id="8fd99-107">Select **Choose a value**.</span></span>    
+   <span data-ttu-id="8fd99-108">![Image de condition Salesforce 3](./media/connectors-create-api-salesforce/condition-3.png)</span><span class="sxs-lookup"><span data-stu-id="8fd99-108">![Salesforce condition image 3](./media/connectors-create-api-salesforce/condition-3.png)</span></span>  
+4. <span data-ttu-id="8fd99-109">Sélectionnez le jeton *E-mail* à partir du prospect du déclencheur.</span><span class="sxs-lookup"><span data-stu-id="8fd99-109">Select the *Email* token from the lead of the trigger.</span></span>    
+   <span data-ttu-id="8fd99-110">![Image de condition Salesforce 4](./media/connectors-create-api-salesforce/condition-4.png)</span><span class="sxs-lookup"><span data-stu-id="8fd99-110">![Salesforce condition image 4](./media/connectors-create-api-salesforce/condition-4.png)</span></span>  
+5. <span data-ttu-id="8fd99-111">Sélectionnez *Contient*.</span><span class="sxs-lookup"><span data-stu-id="8fd99-111">Select *Contains*.</span></span>      
+   <span data-ttu-id="8fd99-112">![Image de condition Salesforce 5](./media/connectors-create-api-salesforce/condition-5.png)</span><span class="sxs-lookup"><span data-stu-id="8fd99-112">![Salesforce condition image 5](./media/connectors-create-api-salesforce/condition-5.png)</span></span>  
+6. <span data-ttu-id="8fd99-113">Sélectionnez **Choisir une valeur** en bas du contrôle.</span><span class="sxs-lookup"><span data-stu-id="8fd99-113">Select **Choose a value** at the bottom of the control.</span></span>     
+   <span data-ttu-id="8fd99-114">![Image de condition Salesforce 6](./media/connectors-create-api-salesforce/condition-6.png)</span><span class="sxs-lookup"><span data-stu-id="8fd99-114">![Salesforce condition image 6](./media/connectors-create-api-salesforce/condition-6.png)</span></span>  
+7. <span data-ttu-id="8fd99-115">Saisissez *amazon.com* en tant que valeur pour laquelle vous souhaitez évaluer l’adresse de messagerie du nouveau prospect.</span><span class="sxs-lookup"><span data-stu-id="8fd99-115">Enter *amazon.com* as the value you would like to evaluate the email address of the new lead for.</span></span> <span data-ttu-id="8fd99-116">Si l’adresse de messagerie contient *amazon.com*, la condition correspond à *True* et les autres étapes de votre application logique peuvent s’exécuter.</span><span class="sxs-lookup"><span data-stu-id="8fd99-116">If the email address contains *amazon.com*, the condition will evaluate to *True* and the other steps in your logic app can proceed.</span></span>    
+   <span data-ttu-id="8fd99-117">![Image de condition Salesforce 7](./media/connectors-create-api-salesforce/condition-7.png)</span><span class="sxs-lookup"><span data-stu-id="8fd99-117">![Salesforce condition image 7](./media/connectors-create-api-salesforce/condition-7.png)</span></span>  
+8. <span data-ttu-id="8fd99-118">Enregistrez vos applications logiques.</span><span class="sxs-lookup"><span data-stu-id="8fd99-118">Save your logic apps.</span></span>  
 

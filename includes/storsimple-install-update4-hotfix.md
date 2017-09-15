@@ -1,45 +1,45 @@
 <!--author=alkohli last changed: 02/10/17-->
 
-#### <a name="to-download-hotfixes"></a>Pour télécharger des correctifs logiciels
+#### <a name="to-download-hotfixes"></a><span data-ttu-id="4f535-101">Pour télécharger des correctifs logiciels</span><span class="sxs-lookup"><span data-stu-id="4f535-101">To download hotfixes</span></span>
 
-Procédez comme suit pour télécharger la mise à jour logicielle à partir du Catalogue Microsoft Update.
+<span data-ttu-id="4f535-102">Procédez comme suit pour télécharger la mise à jour logicielle à partir du Catalogue Microsoft Update.</span><span class="sxs-lookup"><span data-stu-id="4f535-102">Perform the following steps to download the software update from the Microsoft Update Catalog.</span></span>
 
-1. Démarrez Internet Explorer et accédez à [http://catalog.update.microsoft.com](http://catalog.update.microsoft.com).
-2. Si vous utilisez le catalogue Microsoft Update pour la première fois sur cet ordinateur, cliquez sur **Installer** lorsque vous êtes invité à installer le module complémentaire Catalogue Microsoft Update.
+1. <span data-ttu-id="4f535-103">Démarrez Internet Explorer et accédez à [http://catalog.update.microsoft.com](http://catalog.update.microsoft.com).</span><span class="sxs-lookup"><span data-stu-id="4f535-103">Start Internet Explorer and navigate to [http://catalog.update.microsoft.com](http://catalog.update.microsoft.com).</span></span>
+2. <span data-ttu-id="4f535-104">Si vous utilisez le catalogue Microsoft Update pour la première fois sur cet ordinateur, cliquez sur **Installer** lorsque vous êtes invité à installer le module complémentaire Catalogue Microsoft Update.</span><span class="sxs-lookup"><span data-stu-id="4f535-104">If this is your first time using the Microsoft Update Catalog on this computer, click **Install** when prompted to install the Microsoft Update Catalog add-on.</span></span>
 
     ![Installer le catalogue](./media/storsimple-install-update2-hotfix/HCS_InstallCatalog-include.png)
 
-3. Dans la zone de recherche du Catalogue Microsoft Update, entrez le numéro KB (Base de connaissances) du correctif logiciel que vous souhaitez télécharger, par exemple **4011839**, puis cliquez sur **Rechercher**.
+3. <span data-ttu-id="4f535-106">Dans la zone de recherche du Catalogue Microsoft Update, entrez le numéro KB (Base de connaissances) du correctif logiciel que vous souhaitez télécharger, par exemple **4011839**, puis cliquez sur **Rechercher**.</span><span class="sxs-lookup"><span data-stu-id="4f535-106">In the search box of the Microsoft Update Catalog, enter the Knowledge Base (KB) number of the hotfix you want to download, for example **4011839**, and then click **Search**.</span></span>
    
-    La liste des correctifs s’affiche, par exemple **Ensemble de logiciels Update 4.0 pour StorSimple série 8000**.
+    <span data-ttu-id="4f535-107">La liste des correctifs s’affiche, par exemple **Ensemble de logiciels Update 4.0 pour StorSimple série 8000**.</span><span class="sxs-lookup"><span data-stu-id="4f535-107">The hotfix listing appears, for example, **Cumulative Software Bundle Update 4.0 for StorSimple 8000 Series**.</span></span>
    
     ![Rechercher dans le catalogue](./media/storsimple-install-update2-hotfix/HCS_SearchCatalog1-include.png)
 
-4. Cliquez sur **Télécharger**. Spécifiez ou **recherchez** l'emplacement local où vous voulez effectuer les téléchargements. Cliquez sur les fichiers à télécharger vers l’emplacement et le dossier spécifiés. Ce dossier peut également être copié sur un partage réseau accessible à partir de l’appareil.
-5. Recherchez les correctifs logiciels supplémentaires répertoriés dans le tableau ci-dessus (**4011841**) et téléchargez les fichiers correspondants vers les dossiers spécifiques répertoriés dans le tableau précédent.
+4. <span data-ttu-id="4f535-109">Cliquez sur **Télécharger**.</span><span class="sxs-lookup"><span data-stu-id="4f535-109">Click **Download**.</span></span> <span data-ttu-id="4f535-110">Spécifiez ou **recherchez** l'emplacement local où vous voulez effectuer les téléchargements.</span><span class="sxs-lookup"><span data-stu-id="4f535-110">Specify or **Browse** to a local location where you want the downloads to appear.</span></span> <span data-ttu-id="4f535-111">Cliquez sur les fichiers à télécharger vers l’emplacement et le dossier spécifiés.</span><span class="sxs-lookup"><span data-stu-id="4f535-111">Click the files to download to the specified location and folder.</span></span> <span data-ttu-id="4f535-112">Ce dossier peut également être copié sur un partage réseau accessible à partir de l’appareil.</span><span class="sxs-lookup"><span data-stu-id="4f535-112">The folder can also be copied to a network share that is reachable from the device.</span></span>
+5. <span data-ttu-id="4f535-113">Recherchez les correctifs logiciels supplémentaires répertoriés dans le tableau ci-dessus (**4011841**) et téléchargez les fichiers correspondants vers les dossiers spécifiques répertoriés dans le tableau précédent.</span><span class="sxs-lookup"><span data-stu-id="4f535-113">Search for any additional hotfixes listed in the table above (**4011841**), and download the corresponding files to the specific folders as listed in the preceding table.</span></span>
 
 > [!NOTE]
-> Les correctifs doivent être accessibles depuis les deux contrôleurs pour détecter les messages d’erreur potentiels à partir du contrôleur homologue.
+> <span data-ttu-id="4f535-114">Les correctifs doivent être accessibles depuis les deux contrôleurs pour détecter les messages d’erreur potentiels à partir du contrôleur homologue.</span><span class="sxs-lookup"><span data-stu-id="4f535-114">The hotfixes must be accessible from both controllers to detect any potential error messages from the peer controller.</span></span>
 >
-> Les correctifs doivent être copiés dans trois dossiers séparés. Par exemple, la mise à jour de l’agent MDS/Cis/du logiciel de l’appareil peut être copiée dans le dossier _FirstOrderUpdate_, tandis que toutes les autres mises à jour non perturbatrices peuvent être copiées dans le dossier _SecondOrderUpdate_ et les mises à jour du mode maintenance dans le dossier _ThirdOrderUpdate_.
+> <span data-ttu-id="4f535-115">Les correctifs doivent être copiés dans trois dossiers séparés.</span><span class="sxs-lookup"><span data-stu-id="4f535-115">The hotfixes must be copied in 3 separate folders.</span></span> <span data-ttu-id="4f535-116">Par exemple, la mise à jour de l’agent MDS/Cis/du logiciel de l’appareil peut être copiée dans le dossier _FirstOrderUpdate_, tandis que toutes les autres mises à jour non perturbatrices peuvent être copiées dans le dossier _SecondOrderUpdate_ et les mises à jour du mode maintenance dans le dossier _ThirdOrderUpdate_.</span><span class="sxs-lookup"><span data-stu-id="4f535-116">For example, the device software/Cis/MDS agent update can be copied in _FirstOrderUpdate_ folder, all the other non-disruptive updates could be copied in the _SecondOrderUpdate_ folder, and maintenance mode updates copied in _ThirdOrderUpdate_ folder.</span></span>
 
-#### <a name="to-install-and-verify-regular-mode-hotfixes"></a>Pour installer et vérifier les correctifs logiciels en mode Normal
+#### <a name="to-install-and-verify-regular-mode-hotfixes"></a><span data-ttu-id="4f535-117">Pour installer et vérifier les correctifs logiciels en mode Normal</span><span class="sxs-lookup"><span data-stu-id="4f535-117">To install and verify regular mode hotfixes</span></span>
 
-Procédez comme suit pour installer et vérifier les correctifs logiciels en mode Normal. Si vous les avez déjà installés à l’aide du portail Azure Classic, passez directement à la section [Pour installer et vérifier les correctifs logiciels en mode Maintenance](#to-install-and-verify-maintenance-mode-hotfixes).
+<span data-ttu-id="4f535-118">Procédez comme suit pour installer et vérifier les correctifs logiciels en mode Normal.</span><span class="sxs-lookup"><span data-stu-id="4f535-118">Perform the following steps to install and verify regular-mode hotfixes.</span></span> <span data-ttu-id="4f535-119">Si vous les avez déjà installés à l’aide du portail Azure Classic, passez directement à la section [Pour installer et vérifier les correctifs logiciels en mode Maintenance](#to-install-and-verify-maintenance-mode-hotfixes).</span><span class="sxs-lookup"><span data-stu-id="4f535-119">If you already installed them using the Azure classic portal, skip ahead to [install and verify maintenance mode hotfixes](#to-install-and-verify-maintenance-mode-hotfixes).</span></span>
 
-1. Pour installer les correctifs logiciels, accédez à l’interface Windows PowerShell sur la console série de votre appareil StorSimple. Suivez les instructions détaillées de la section [Utilisation de PuTTY pour se connecter à la console série de l’appareil](../articles/storsimple/storsimple-deployment-walkthrough.md#use-putty-to-connect-to-the-device-serial-console). À l'invite de commandes, appuyez sur **Entrée**.
-2. Sélectionnez **Option 1** pour vous connecter à l’appareil avec un accès complet. Nous vous recommandons d’installer le correctif d’abord sur le contrôleur passif.
-3. Pour installer le correctif logiciel, tapez ce qui suit à l’invite de commandes :
+1. <span data-ttu-id="4f535-120">Pour installer les correctifs logiciels, accédez à l’interface Windows PowerShell sur la console série de votre appareil StorSimple.</span><span class="sxs-lookup"><span data-stu-id="4f535-120">To install the hotfixes, access the Windows PowerShell interface on your StorSimple device serial console.</span></span> <span data-ttu-id="4f535-121">Suivez les instructions détaillées de la section [Utilisation de PuTTY pour se connecter à la console série de l’appareil](../articles/storsimple/storsimple-deployment-walkthrough.md#use-putty-to-connect-to-the-device-serial-console).</span><span class="sxs-lookup"><span data-stu-id="4f535-121">Follow the detailed instructions in [Use PuTTy to connect to the serial console](../articles/storsimple/storsimple-deployment-walkthrough.md#use-putty-to-connect-to-the-device-serial-console).</span></span> <span data-ttu-id="4f535-122">À l'invite de commandes, appuyez sur **Entrée**.</span><span class="sxs-lookup"><span data-stu-id="4f535-122">At the command prompt, press **Enter**.</span></span>
+2. <span data-ttu-id="4f535-123">Sélectionnez **Option 1** pour vous connecter à l’appareil avec un accès complet.</span><span class="sxs-lookup"><span data-stu-id="4f535-123">Select **Option 1** to log on to the device with full access.</span></span> <span data-ttu-id="4f535-124">Nous vous recommandons d’installer le correctif d’abord sur le contrôleur passif.</span><span class="sxs-lookup"><span data-stu-id="4f535-124">We recommend that you install the hotfix on the passive controller first.</span></span>
+3. <span data-ttu-id="4f535-125">Pour installer le correctif logiciel, tapez ce qui suit à l’invite de commandes :</span><span class="sxs-lookup"><span data-stu-id="4f535-125">To install the hotfix, at the command prompt, type:</span></span>
    
     `Start-HcsHotfix -Path <path to update file> -Credential <credentials in domain\username format>`
    
-    Utilisez IP au lieu de DNS dans le chemin d'accès du partage dans la commande ci-dessus. Le paramètre Informations d’identification n’est utilisé que si vous accédez à un partage authentifié.
+    <span data-ttu-id="4f535-126">Utilisez IP au lieu de DNS dans le chemin d'accès du partage dans la commande ci-dessus.</span><span class="sxs-lookup"><span data-stu-id="4f535-126">Use IP rather than DNS in share path in the above command.</span></span> <span data-ttu-id="4f535-127">Le paramètre Informations d’identification n’est utilisé que si vous accédez à un partage authentifié.</span><span class="sxs-lookup"><span data-stu-id="4f535-127">The credential parameter is used only if you are accessing an authenticated share.</span></span>
    
-    Nous vous recommandons d'utiliser le paramètre d'informations d'identification pour accéder aux partages. Même les partages qui sont ouverts à « tout le monde » ne sont généralement pas ouverts aux utilisateurs non authentifiés.
+    <span data-ttu-id="4f535-128">Nous vous recommandons d'utiliser le paramètre d'informations d'identification pour accéder aux partages.</span><span class="sxs-lookup"><span data-stu-id="4f535-128">We recommend that you use the credential parameter to access shares.</span></span> <span data-ttu-id="4f535-129">Même les partages qui sont ouverts à « tout le monde » ne sont généralement pas ouverts aux utilisateurs non authentifiés.</span><span class="sxs-lookup"><span data-stu-id="4f535-129">Even shares that are open to “everyone” are typically not open to unauthenticated users.</span></span>
    
-    Indiquez le mot de passe lorsque vous y êtes invité.
+    <span data-ttu-id="4f535-130">Indiquez le mot de passe lorsque vous y êtes invité.</span><span class="sxs-lookup"><span data-stu-id="4f535-130">Supply the password when prompted.</span></span>
    
-    Vous trouverez ci-dessous un exemple de sortie pour l’installation des mises à jour prioritaires. Pour la première mise à jour de commande, vous devez pointer vers le fichier spécifique.
+    <span data-ttu-id="4f535-131">Vous trouverez ci-dessous un exemple de sortie pour l’installation des mises à jour prioritaires.</span><span class="sxs-lookup"><span data-stu-id="4f535-131">A sample output for installing the first order updates is shown below.</span></span> <span data-ttu-id="4f535-132">Pour la première mise à jour de commande, vous devez pointer vers le fichier spécifique.</span><span class="sxs-lookup"><span data-stu-id="4f535-132">For the first order update, you need to point to the specific file.</span></span>
    
         ````
         Controller0>Start-HcsHotfix -Path \\10.100.100.100\share
@@ -53,10 +53,10 @@ Procédez comme suit pour installer et vérifier les correctifs logiciels en mod
         [Y] Yes [N] No [?] Help (default is "Y"): Y
    
         ````
-4. Tapez **Y** lorsque vous êtes invité à confirmer l’installation du correctif.
-5. Contrôlez la mise à jour à l'aide de l'applet de commande `Get-HcsUpdateStatus` . La mise à jour se termine d’abord sur le contrôleur passif. Une fois le contrôleur passif mis à jour, un basculement se produit et la mise à jour est ensuite appliquée à l’autre contrôleur. La mise à jour est terminée lorsque les deux contrôleurs sont mis à jour.
+4. <span data-ttu-id="4f535-133">Tapez **Y** lorsque vous êtes invité à confirmer l’installation du correctif.</span><span class="sxs-lookup"><span data-stu-id="4f535-133">Type **Y** when prompted to confirm the hotfix installation.</span></span>
+5. <span data-ttu-id="4f535-134">Contrôlez la mise à jour à l'aide de l'applet de commande `Get-HcsUpdateStatus` .</span><span class="sxs-lookup"><span data-stu-id="4f535-134">Monitor the update by using the `Get-HcsUpdateStatus` cmdlet.</span></span> <span data-ttu-id="4f535-135">La mise à jour se termine d’abord sur le contrôleur passif.</span><span class="sxs-lookup"><span data-stu-id="4f535-135">The update will first complete on the passive controller.</span></span> <span data-ttu-id="4f535-136">Une fois le contrôleur passif mis à jour, un basculement se produit et la mise à jour est ensuite appliquée à l’autre contrôleur.</span><span class="sxs-lookup"><span data-stu-id="4f535-136">Once the passive controller is updated, there will be a failover and the update will then get applied on the other controller.</span></span> <span data-ttu-id="4f535-137">La mise à jour est terminée lorsque les deux contrôleurs sont mis à jour.</span><span class="sxs-lookup"><span data-stu-id="4f535-137">The update is complete when both the controllers are updated.</span></span>
    
-    L’exemple de sortie suivant indique que la mise à jour est en cours. `RunInprogress` a la valeur `True` lorsque la mise à jour est en cours.
+    <span data-ttu-id="4f535-138">L’exemple de sortie suivant indique que la mise à jour est en cours.</span><span class="sxs-lookup"><span data-stu-id="4f535-138">The following sample output shows the update in progress.</span></span> <span data-ttu-id="4f535-139">`RunInprogress` a la valeur `True` lorsque la mise à jour est en cours.</span><span class="sxs-lookup"><span data-stu-id="4f535-139">The `RunInprogress` will be `True` when the update is in progress.</span></span>
 
     ```
     Controller0>Get-HcsUpdateStatus
@@ -67,7 +67,7 @@ Procédez comme suit pour installer et vérifier les correctifs logiciels en mod
     Controller1Events   :
     ```
    
-     L’exemple de sortie suivant indique que la mise à jour est terminée. `RunInProgress` a la valeur `False` lorsque la mise à jour est terminée.
+     <span data-ttu-id="4f535-140">L’exemple de sortie suivant indique que la mise à jour est terminée.</span><span class="sxs-lookup"><span data-stu-id="4f535-140">The following sample output indicates that the update is finished.</span></span> <span data-ttu-id="4f535-141">`RunInProgress` a la valeur `False` lorsque la mise à jour est terminée.</span><span class="sxs-lookup"><span data-stu-id="4f535-141">The `RunInProgress` will be `False` when the update has completed.</span></span>
    
     ```
     Controller0>Get-HcsUpdateStatus
@@ -79,44 +79,44 @@ Procédez comme suit pour installer et vérifier les correctifs logiciels en mod
     ```
 
     > [!NOTE]
-    > Parfois, l'applet de commande indique `False` lorsque la mise à jour est encore en cours d'exécution. Pour vous assurer que le correctif logiciel est terminé, patientez quelques minutes, exécutez à nouveau cette commande et vérifiez que `RunInProgress` est `False`. Dans ce cas, le correctif est terminé.
+    > <span data-ttu-id="4f535-142">Parfois, l'applet de commande indique `False` lorsque la mise à jour est encore en cours d'exécution.</span><span class="sxs-lookup"><span data-stu-id="4f535-142">Occasionally, the cmdlet reports `False` when the update is still in progress.</span></span> <span data-ttu-id="4f535-143">Pour vous assurer que le correctif logiciel est terminé, patientez quelques minutes, exécutez à nouveau cette commande et vérifiez que `RunInProgress` est `False`.</span><span class="sxs-lookup"><span data-stu-id="4f535-143">To ensure that the hotfix is complete, wait for a few minutes, rerun this command and verify that the `RunInProgress` is `False`.</span></span> <span data-ttu-id="4f535-144">Dans ce cas, le correctif est terminé.</span><span class="sxs-lookup"><span data-stu-id="4f535-144">If it is, then the hotfix has completed.</span></span>
 
-6. Lorsque la mise à jour logicielle est terminée, vérifiez les versions des logiciels du système. Entrez :
+6. <span data-ttu-id="4f535-145">Lorsque la mise à jour logicielle est terminée, vérifiez les versions des logiciels du système.</span><span class="sxs-lookup"><span data-stu-id="4f535-145">After the software update is complete, verify the system software versions.</span></span> <span data-ttu-id="4f535-146">Entrez :</span><span class="sxs-lookup"><span data-stu-id="4f535-146">Type:</span></span>
    
     `Get-HcsSystem`
    
-    Vous devez voir les versions suivantes :
+    <span data-ttu-id="4f535-147">Vous devez voir les versions suivantes :</span><span class="sxs-lookup"><span data-stu-id="4f535-147">You should see the following versions:</span></span>
    
    * `FriendlySoftwareVersion: StorSimple 8000 Series Update 4.0`
    *  `HcsSoftwareVersion: 6.3.9600.17820`
    
-    Si le numéro de version ne change pas après la mise à jour, cela indique que le correctif n’a pas pu s’appliquer. Dans ce cas, contactez le [Support Microsoft](../articles/storsimple/storsimple-contact-microsoft-support.md) pour obtenir une assistance supplémentaire.
+    <span data-ttu-id="4f535-148">Si le numéro de version ne change pas après la mise à jour, cela indique que le correctif n’a pas pu s’appliquer.</span><span class="sxs-lookup"><span data-stu-id="4f535-148">If the version number does not change after applying the update, it indicates that the hotfix has failed to apply.</span></span> <span data-ttu-id="4f535-149">Dans ce cas, contactez le [Support Microsoft](../articles/storsimple/storsimple-contact-microsoft-support.md) pour obtenir une assistance supplémentaire.</span><span class="sxs-lookup"><span data-stu-id="4f535-149">Should you see this, please contact [Microsoft Support](../articles/storsimple/storsimple-contact-microsoft-support.md) for further assistance.</span></span>
      
     > [!IMPORTANT]
-    > Vous devez redémarrer le contrôleur actif via la cmdlet `Restart-HcsController` avant d’appliquer la prochaine mise à jour.
+    > <span data-ttu-id="4f535-150">Vous devez redémarrer le contrôleur actif via la cmdlet `Restart-HcsController` avant d’appliquer la prochaine mise à jour.</span><span class="sxs-lookup"><span data-stu-id="4f535-150">You must restart the active controller via the `Restart-HcsController` cmdlet before applying the next update.</span></span>
      
-7. Répétez les étapes 3 à 5 pour installer l’agent MDS/Cis téléchargé vers votre dossier _FirstOrderUpdate_. 
-8. Répétez les étapes 3 à 5 pour installer les mises à jour de deuxième priorité. **Pour les mises à jour de la deuxième commande, il est possible d’installer plusieurs mises à jour en exécutant simplement `Start-HcsHotfix cmdlet` et en désignant le dossier où se trouvent les mises à jour de deuxième priorité. L’applet de commande exécute alors toutes les mises à jour disponibles dans le dossier.** La logique de mise à jour détecte les éventuelles mises à jour déjà installées et ne les applique pas. 
+7. <span data-ttu-id="4f535-151">Répétez les étapes 3 à 5 pour installer l’agent MDS/Cis téléchargé vers votre dossier _FirstOrderUpdate_.</span><span class="sxs-lookup"><span data-stu-id="4f535-151">Repeat steps 3-5 to install the Cis/MDS agent downloaded to your _FirstOrderUpdate_ folder.</span></span> 
+8. <span data-ttu-id="4f535-152">Répétez les étapes 3 à 5 pour installer les mises à jour de deuxième priorité.</span><span class="sxs-lookup"><span data-stu-id="4f535-152">Repeat steps 3-5 to install the second order updates.</span></span> <span data-ttu-id="4f535-153">**Pour les mises à jour de la deuxième commande, il est possible d’installer plusieurs mises à jour en exécutant simplement `Start-HcsHotfix cmdlet` et en désignant le dossier où se trouvent les mises à jour de deuxième priorité. L’applet de commande exécute alors toutes les mises à jour disponibles dans le dossier.**</span><span class="sxs-lookup"><span data-stu-id="4f535-153">**For second order updates, multiple updates can be installed by just running the `Start-HcsHotfix cmdlet` and pointing to the folder where second order updates are located. The cmdlet will execute all the updates available in the folder.**</span></span> <span data-ttu-id="4f535-154">La logique de mise à jour détecte les éventuelles mises à jour déjà installées et ne les applique pas.</span><span class="sxs-lookup"><span data-stu-id="4f535-154">If an update is already installed, the update logic will detect that and not apply that update.</span></span> 
 
-Une fois tous les correctifs installés, utilisez l’applet de commande `Get-HcsSystem`. Les versions doivent être les suivantes :
+<span data-ttu-id="4f535-155">Une fois tous les correctifs installés, utilisez l’applet de commande `Get-HcsSystem`.</span><span class="sxs-lookup"><span data-stu-id="4f535-155">After all the hotfixes are installed, use the `Get-HcsSystem` cmdlet.</span></span> <span data-ttu-id="4f535-156">Les versions doivent être les suivantes :</span><span class="sxs-lookup"><span data-stu-id="4f535-156">The versions should be:</span></span>
 
    * `CisAgentVersion:  1.0.9441.0`
    * `MdsAgentVersion: 35.2.2.0`
    * `Lsisas2Version: 2.0.78.00`
 
 
-#### <a name="to-install-and-verify-maintenance-mode-hotfixes"></a>Pour installer et vérifier les correctifs logiciels en mode Maintenance
-Utilisez l’article KB4011837 pour installer les mises à jour du microprogramme de disque. Ces mises à jour, qui entraînent des perturbations, nécessitent environ 30 minutes. Vous pouvez choisir de les installer dans une fenêtre de maintenance planifiée en vous connectant à la console série du périphérique.
+#### <a name="to-install-and-verify-maintenance-mode-hotfixes"></a><span data-ttu-id="4f535-157">Pour installer et vérifier les correctifs logiciels en mode Maintenance</span><span class="sxs-lookup"><span data-stu-id="4f535-157">To install and verify maintenance mode hotfixes</span></span>
+<span data-ttu-id="4f535-158">Utilisez l’article KB4011837 pour installer les mises à jour du microprogramme de disque.</span><span class="sxs-lookup"><span data-stu-id="4f535-158">Use KB4011837 to install disk firmware updates.</span></span> <span data-ttu-id="4f535-159">Ces mises à jour, qui entraînent des perturbations, nécessitent environ 30 minutes.</span><span class="sxs-lookup"><span data-stu-id="4f535-159">These are disruptive updates and take around 30 minutes to complete.</span></span> <span data-ttu-id="4f535-160">Vous pouvez choisir de les installer dans une fenêtre de maintenance planifiée en vous connectant à la console série du périphérique.</span><span class="sxs-lookup"><span data-stu-id="4f535-160">You can choose to install these in a planned maintenance window by connecting to the device serial console.</span></span>
 
-Notez que si votre microprogramme de disque est déjà à jour, vous n’aurez pas à installer ces mises à jour. Exécutez l’applet de commande `Get-HcsUpdateAvailability` à partir de la console série de l’appareil pour vérifier si des mises à jour sont disponibles et si elles risquent de provoquer une interruption de service (mode maintenance) ou non (mode normal).
+<span data-ttu-id="4f535-161">Notez que si votre microprogramme de disque est déjà à jour, vous n’aurez pas à installer ces mises à jour.</span><span class="sxs-lookup"><span data-stu-id="4f535-161">Note that if your disk firmware is already up-to-date, you won't need to install these updates.</span></span> <span data-ttu-id="4f535-162">Exécutez l’applet de commande `Get-HcsUpdateAvailability` à partir de la console série de l’appareil pour vérifier si des mises à jour sont disponibles et si elles risquent de provoquer une interruption de service (mode maintenance) ou non (mode normal).</span><span class="sxs-lookup"><span data-stu-id="4f535-162">Run the `Get-HcsUpdateAvailability` cmdlet from the device serial console to check if updates are available and whether the updates are disruptive (maintenance mode) or non-disruptive (regular mode) updates.</span></span>
 
-Pour installer les mises à jour du microprogramme de disque, suivez les instructions ci-dessous.
+<span data-ttu-id="4f535-163">Pour installer les mises à jour du microprogramme de disque, suivez les instructions ci-dessous.</span><span class="sxs-lookup"><span data-stu-id="4f535-163">To install the disk firmware updates, follow the instructions below.</span></span>
 
-1. Mettez l’appareil en mode maintenance. **Notez que vous ne devez pas utiliser l’accès distant Windows PowerShell quand vous vous connectez à un appareil en mode maintenance. À la place, exécutez cette applet de commande sur le contrôleur de l’appareil si vous êtes connecté par le biais de la console série de l’appareil.** Entrez :
+1. <span data-ttu-id="4f535-164">Mettez l’appareil en mode maintenance.</span><span class="sxs-lookup"><span data-stu-id="4f535-164">Place the device in the maintenance mode.</span></span> <span data-ttu-id="4f535-165">**Notez que vous ne devez pas utiliser l’accès distant Windows PowerShell quand vous vous connectez à un appareil en mode maintenance. À la place, exécutez cette applet de commande sur le contrôleur de l’appareil si vous êtes connecté par le biais de la console série de l’appareil.**</span><span class="sxs-lookup"><span data-stu-id="4f535-165">**Note that you should not use Windows PowerShell remoting when connecting to a device in maintenance mode. Instead run this cmdlet on the device controller when connected through the device serial console.**</span></span> <span data-ttu-id="4f535-166">Entrez :</span><span class="sxs-lookup"><span data-stu-id="4f535-166">Type:</span></span>
    
     `Enter-HcsMaintenanceMode`
    
-    Voici un exemple de sortie obtenue.
+    <span data-ttu-id="4f535-167">Voici un exemple de sortie obtenue.</span><span class="sxs-lookup"><span data-stu-id="4f535-167">A sample output is shown below.</span></span>
    
         Controller0>Enter-HcsMaintenanceMode
         Checking device state...
@@ -138,12 +138,12 @@ Pour installer les mises à jour du microprogramme de disque, suivez les instruc
         [4] Change language
         Please enter your choice>
    
-    Les deux contrôleurs redémarrent alors en mode maintenance.
-2. Pour installer la mise à jour du microprogramme de disque, tapez :
+    <span data-ttu-id="4f535-168">Les deux contrôleurs redémarrent alors en mode maintenance.</span><span class="sxs-lookup"><span data-stu-id="4f535-168">Both the controllers then restart into maintenance mode.</span></span>
+2. <span data-ttu-id="4f535-169">Pour installer la mise à jour du microprogramme de disque, tapez :</span><span class="sxs-lookup"><span data-stu-id="4f535-169">To install the disk firmware update, type:</span></span>
    
     `Start-HcsHotfix -Path <path to update file> -Credential <credentials in domain\username format>`
    
-    Voici un exemple de sortie obtenue.
+    <span data-ttu-id="4f535-170">Voici un exemple de sortie obtenue.</span><span class="sxs-lookup"><span data-stu-id="4f535-170">A sample output is shown below.</span></span>
    
         Controller1>Start-HcsHotfix -Path \\10.100.100.100\share\ThirdOrderUpdates\ -Credential contoso\john
         Enter Password:
@@ -152,16 +152,16 @@ Pour installer les mises à jour du microprogramme de disque, suivez les instruc
         This operation starts a hotfix installation and could reboot one or both of the controllers. By installing new updates you agree to, and accept any additional terms associated with, the new functionality listed in the release notes (https://go.microsoft.com/fwLink/?LinkID=613790). Are you sure you want to continue?
         [Y] Yes [N] No (Default is "Y"): Y
         WARNING: Installation is currently in progress. This operation can take several minutes to complete.
-3. Surveillez la progression de l’installation à l’aide de la commande `Get-HcsUpdateStatus` . La mise à jour est terminée quand `RunInProgress` passe à `False`.
-4. Une fois l’installation terminée, le contrôleur sur lequel le correctif logiciel en mode Maintenance a été installé redémarre. Connectez-vous avec l’option 1 (accès total) et vérifiez la version du microprogramme de disque. Entrez :
+3. <span data-ttu-id="4f535-171">Surveillez la progression de l’installation à l’aide de la commande `Get-HcsUpdateStatus` .</span><span class="sxs-lookup"><span data-stu-id="4f535-171">Monitor the install progress using `Get-HcsUpdateStatus` command.</span></span> <span data-ttu-id="4f535-172">La mise à jour est terminée quand `RunInProgress` passe à `False`.</span><span class="sxs-lookup"><span data-stu-id="4f535-172">The update is complete when the `RunInProgress` changes to `False`.</span></span>
+4. <span data-ttu-id="4f535-173">Une fois l’installation terminée, le contrôleur sur lequel le correctif logiciel en mode Maintenance a été installé redémarre.</span><span class="sxs-lookup"><span data-stu-id="4f535-173">After the installation is complete, the controller on which the maintenance mode hotfix was installed restarts.</span></span> <span data-ttu-id="4f535-174">Connectez-vous avec l’option 1 (accès total) et vérifiez la version du microprogramme de disque.</span><span class="sxs-lookup"><span data-stu-id="4f535-174">Log in as option 1 with full access and verify the disk firmware version.</span></span> <span data-ttu-id="4f535-175">Entrez :</span><span class="sxs-lookup"><span data-stu-id="4f535-175">Type:</span></span>
    
    `Get-HcsFirmwareVersion`
    
-   Les versions attendues du microprogramme de disque sont les suivantes :
+   <span data-ttu-id="4f535-176">Les versions attendues du microprogramme de disque sont les suivantes :</span><span class="sxs-lookup"><span data-stu-id="4f535-176">The expected disk firmware versions are:</span></span>
    
    `XMGJ, XGEG, KZ50, F6C2, VR08, N002, 0106`
    
-   Voici un exemple de sortie obtenue.
+   <span data-ttu-id="4f535-177">Voici un exemple de sortie obtenue.</span><span class="sxs-lookup"><span data-stu-id="4f535-177">A sample output is shown below.</span></span>
    
        -----------------------MAINTENANCE MODE------------------------
        Microsoft Azure StorSimple Appliance Model 8600
@@ -244,9 +244,9 @@ Pour installer les mises à jour du microprogramme de disque, suivez les instruc
               WD:WD4001FYYG-01SL3:VR08
               WD:WD4001FYYG-01SL3:VR08
    
-    Exécutez la commande `Get-HcsFirmwareVersion` sur le deuxième contrôleur pour vérifier que la version du logiciel a été mise à jour. Vous pouvez à présent quitter le mode Maintenance. Pour ce faire, tapez la commande suivante pour chaque contrôleur d’appareil :
+    <span data-ttu-id="4f535-178">Exécutez la commande `Get-HcsFirmwareVersion` sur le deuxième contrôleur pour vérifier que la version du logiciel a été mise à jour.</span><span class="sxs-lookup"><span data-stu-id="4f535-178">Run the `Get-HcsFirmwareVersion` command on the second controller to verify that the software version has been updated.</span></span> <span data-ttu-id="4f535-179">Vous pouvez à présent quitter le mode Maintenance.</span><span class="sxs-lookup"><span data-stu-id="4f535-179">You can then exit the maintenance mode.</span></span> <span data-ttu-id="4f535-180">Pour ce faire, tapez la commande suivante pour chaque contrôleur d’appareil :</span><span class="sxs-lookup"><span data-stu-id="4f535-180">To do so, type the following command for each device controller:</span></span>
    
    `Exit-HcsMaintenanceMode`
 
-5. Les contrôleurs redémarrent quand vous quittez le mode maintenance. Une fois que les mises à jour du microprogramme de disque ont été appliquées avec succès et que l’appareil a quitté le mode Maintenance, revenez au portail Azure Classic. Remarque : il se peut que le portail n’affiche pas les mises à jour installées en mode maintenance pendant 24 heures.
+5. <span data-ttu-id="4f535-181">Les contrôleurs redémarrent quand vous quittez le mode maintenance.</span><span class="sxs-lookup"><span data-stu-id="4f535-181">The controllers restart when you exit maintenance mode.</span></span> <span data-ttu-id="4f535-182">Une fois que les mises à jour du microprogramme de disque ont été appliquées avec succès et que l’appareil a quitté le mode Maintenance, revenez au portail Azure Classic.</span><span class="sxs-lookup"><span data-stu-id="4f535-182">After the disk firmware updates are successfully applied and the device has exited maintenance mode, return to the Azure classic portal.</span></span> <span data-ttu-id="4f535-183">Remarque : il se peut que le portail n’affiche pas les mises à jour installées en mode maintenance pendant 24 heures.</span><span class="sxs-lookup"><span data-stu-id="4f535-183">Note that the portal might not show that you installed the maintenance mode updates for 24 hours.</span></span>
 

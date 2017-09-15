@@ -1,11 +1,11 @@
-| Ressource | Limite maximale |
+| <span data-ttu-id="48e21-101">Ressource</span><span class="sxs-lookup"><span data-stu-id="48e21-101">Resource</span></span> | <span data-ttu-id="48e21-102">Limite maximale</span><span class="sxs-lookup"><span data-stu-id="48e21-102">Maximum Limit</span></span> |
 | --- | --- |
-| Utilisateurs d'App Collection |5 par App Collection |
-| Moyenne des points de données |200 par utilisateur actif par jour |
-| Ensemble App-Info moyen |50 par utilisateur actif par jour |
-| Moyenne des messages envoyés |20 par utilisateur actif par jour |
-| Segments |100 par application |
-| Critères par segment |10 |
-| Campagnes Push actives |50 par application |
-| Total des campagnes Push (actives et terminées) |1 000 par application |
+| <span data-ttu-id="48e21-103">Utilisateurs d'App Collection</span><span class="sxs-lookup"><span data-stu-id="48e21-103">App Collection Users</span></span> |<span data-ttu-id="48e21-104">5 par App Collection</span><span class="sxs-lookup"><span data-stu-id="48e21-104">5 per App Collection</span></span> |
+| <span data-ttu-id="48e21-105">Moyenne des points de données</span><span class="sxs-lookup"><span data-stu-id="48e21-105">Average Data points</span></span> |<span data-ttu-id="48e21-106">200 par utilisateur actif par jour</span><span class="sxs-lookup"><span data-stu-id="48e21-106">200 per Active User/Day</span></span> |
+| <span data-ttu-id="48e21-107">Ensemble App-Info moyen</span><span class="sxs-lookup"><span data-stu-id="48e21-107">Average App-Info set</span></span> |<span data-ttu-id="48e21-108">50 par utilisateur actif par jour</span><span class="sxs-lookup"><span data-stu-id="48e21-108">50 per Active User/Day</span></span> |
+| <span data-ttu-id="48e21-109">Moyenne des messages envoyés</span><span class="sxs-lookup"><span data-stu-id="48e21-109">Average Messages pushed</span></span> |<span data-ttu-id="48e21-110">20 par utilisateur actif par jour</span><span class="sxs-lookup"><span data-stu-id="48e21-110">20 per Active User/Day</span></span> |
+| <span data-ttu-id="48e21-111">Segments</span><span class="sxs-lookup"><span data-stu-id="48e21-111">Segments</span></span> |<span data-ttu-id="48e21-112">100 par application</span><span class="sxs-lookup"><span data-stu-id="48e21-112">100 per app</span></span> |
+| <span data-ttu-id="48e21-113">Critères par segment</span><span class="sxs-lookup"><span data-stu-id="48e21-113">Criteria per segment</span></span> |<span data-ttu-id="48e21-114">10</span><span class="sxs-lookup"><span data-stu-id="48e21-114">10</span></span> |
+| <span data-ttu-id="48e21-115">Campagnes Push actives</span><span class="sxs-lookup"><span data-stu-id="48e21-115">Active Push Campaigns</span></span> |<span data-ttu-id="48e21-116">50 par application</span><span class="sxs-lookup"><span data-stu-id="48e21-116">50 per app</span></span> |
+| <span data-ttu-id="48e21-117">Total des campagnes Push (actives et terminées)</span><span class="sxs-lookup"><span data-stu-id="48e21-117">Total Push Campaigns (includes Active & Completed)</span></span> |<span data-ttu-id="48e21-118">1 000 par application</span><span class="sxs-lookup"><span data-stu-id="48e21-118">1000 per app</span></span> |
 

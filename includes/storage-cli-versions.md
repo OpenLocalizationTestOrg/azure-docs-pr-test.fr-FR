@@ -1,6 +1,6 @@
-## <a name="versions-of-the-azure-cli"></a>Versions d’Azure CLI
+## <a name="versions-of-the-azure-cli"></a><span data-ttu-id="1665b-101">Versions d’Azure CLI</span><span class="sxs-lookup"><span data-stu-id="1665b-101">Versions of the Azure CLI</span></span>
 
-Deux versions de l’interface de ligne de commande (CLI) Azure sont actuellement disponibles :
+<span data-ttu-id="1665b-102">Deux versions de l’interface de ligne de commande (CLI) Azure sont actuellement disponibles :</span><span class="sxs-lookup"><span data-stu-id="1665b-102">There are two versions of the Azure Command-Line Interface (CLI) currently available:</span></span>
 
-* [Azure CLI 2.0](../articles/storage/common/storage-azure-cli.md) : notre interface de ligne de commande nouvelle génération écrite en Python à utiliser pour le modèle de déploiement Resource Manager.
-* [Azure CLI 1.0](../articles/storage/common/storage-azure-cli-nodejs.md) : notre interface de ligne de commande écrite dans le fichier Node.js, à utiliser pour les modèles de déploiement Azure Classic et Azure Resource Manager.
+* <span data-ttu-id="1665b-103">[Azure CLI 2.0](../articles/storage/common/storage-azure-cli.md) : notre interface de ligne de commande nouvelle génération écrite en Python à utiliser pour le modèle de déploiement Resource Manager.</span><span class="sxs-lookup"><span data-stu-id="1665b-103">[Azure CLI 2.0](../articles/storage/common/storage-azure-cli.md): Our next-generation CLI written in Python, for use with the Resource Manager deployment model.</span></span>
+* <span data-ttu-id="1665b-104">[Azure CLI 1.0](../articles/storage/common/storage-azure-cli-nodejs.md) : notre interface de ligne de commande écrite dans le fichier Node.js, à utiliser pour les modèles de déploiement Azure Classic et Azure Resource Manager.</span><span class="sxs-lookup"><span data-stu-id="1665b-104">[Azure CLI 1.0](../articles/storage/common/storage-azure-cli-nodejs.md): Our CLI written in Node.js, for use with both the classic and Resource Manager deployment models.</span></span>

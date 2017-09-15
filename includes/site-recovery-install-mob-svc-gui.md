@@ -1,15 +1,15 @@
-1. Copiez l’installation sur le serveur, puis ouvrez le programme d’installation.
-2. Dans le panneau **Option d’installation**, sélectionnez **Install Mobility Service** (Installer le service Mobilité).
+1. <span data-ttu-id="624b9-101">Copiez l’installation sur le serveur, puis ouvrez le programme d’installation.</span><span class="sxs-lookup"><span data-stu-id="624b9-101">Copy the installation to the server, and then open the installer.</span></span>
+2. <span data-ttu-id="624b9-102">Dans le panneau **Option d’installation**, sélectionnez **Install Mobility Service** (Installer le service Mobilité).</span><span class="sxs-lookup"><span data-stu-id="624b9-102">On the **Installation Option** blade, select **Install Mobility Service**.</span></span>
 
-    ![Page Option d’installation du service Mobilité ](./media/site-recovery-install-mob-svc-gui/mobility1.png)
-3. Sélectionnez l’emplacement d’installation, puis cliquez sur **Installer** pour commencer la procédure d’installation.
+    ![<span data-ttu-id="624b9-103">Page Option d’installation du service Mobilité</span><span class="sxs-lookup"><span data-stu-id="624b9-103">Mobility Service Install Option Page</span></span> ](./media/site-recovery-install-mob-svc-gui/mobility1.png)
+3. <span data-ttu-id="624b9-104">Sélectionnez l’emplacement d’installation, puis cliquez sur **Installer** pour commencer la procédure d’installation.</span><span class="sxs-lookup"><span data-stu-id="624b9-104">Select the install location  and click **Install** to being the installation procedure.</span></span>
 
-    ![Page Emplacement d’installation du service Mobilité ](./media/site-recovery-install-mob-svc-gui/mobility2.png)
-4. Vous pouvez utiliser la page **Progression de l’installation** pour surveiller la progression du programme d’installation.
-    ![Progression de l’installation du service Mobilité ](./media/site-recovery-install-mob-svc-gui/mobility3.png)
+    ![<span data-ttu-id="624b9-105">Page Emplacement d’installation du service Mobilité</span><span class="sxs-lookup"><span data-stu-id="624b9-105">Mobility Service Install Location Page</span></span> ](./media/site-recovery-install-mob-svc-gui/mobility2.png)
+4. <span data-ttu-id="624b9-106">Vous pouvez utiliser la page **Progression de l’installation** pour surveiller la progression du programme d’installation.</span><span class="sxs-lookup"><span data-stu-id="624b9-106">You can use **Installation Progress** page to monitor the installer's progress.</span></span>
+    <span data-ttu-id="624b9-107">![Progression de l’installation du service Mobilité ](./media/site-recovery-install-mob-svc-gui/mobility3.png)</span><span class="sxs-lookup"><span data-stu-id="624b9-107">![Mobility Service Install Progress ](./media/site-recovery-install-mob-svc-gui/mobility3.png)</span></span>
 
-5. Une fois l’installation terminée, cliquez sur le bouton **Proceed to Configuration** (Passer à la configuration) pour inscrire le service Mobilité sur votre serveur de configuration.
-    ![Page d’inscription du service Mobilité ](./media/site-recovery-install-mob-svc-gui/mobility4.png)
+5. <span data-ttu-id="624b9-108">Une fois l’installation terminée, cliquez sur le bouton **Proceed to Configuration** (Passer à la configuration) pour inscrire le service Mobilité sur votre serveur de configuration.</span><span class="sxs-lookup"><span data-stu-id="624b9-108">Once installation is complete, click the **Proceed to Configuration** button to register the Mobility Service with your Configuration server.</span></span>
+    <span data-ttu-id="624b9-109">![Page d’inscription du service Mobilité ](./media/site-recovery-install-mob-svc-gui/mobility4.png)</span><span class="sxs-lookup"><span data-stu-id="624b9-109">![Mobility service Register Page ](./media/site-recovery-install-mob-svc-gui/mobility4.png)</span></span>
 
-6. Cliquez sur le bouton **Inscrire** pour terminer l’inscription.
-    ![Page d’inscription du service Mobilité ](./media/site-recovery-install-mob-svc-gui/mobility5.png)
+6. <span data-ttu-id="624b9-110">Cliquez sur le bouton **Inscrire** pour terminer l’inscription.</span><span class="sxs-lookup"><span data-stu-id="624b9-110">Click on the **Register** button to complete the registration.</span></span>
+    <span data-ttu-id="624b9-111">![Page d’inscription du service Mobilité ](./media/site-recovery-install-mob-svc-gui/mobility5.png)</span><span class="sxs-lookup"><span data-stu-id="624b9-111">![Mobility service Register Page ](./media/site-recovery-install-mob-svc-gui/mobility5.png)</span></span>

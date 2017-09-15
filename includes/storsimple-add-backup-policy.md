@@ -1,14 +1,14 @@
 
 <!--author=alkohli last changed: 9/11/15-->
 
-#### <a name="to-add-a-storsimple-backup-policy"></a>Pour ajouter une stratégie de sauvegarde StorSimple
-1. Sur la page **Démarrage rapide**, cliquez sur l’onglet **Stratégies de sauvegarde**. La page **Stratégies de sauvegarde** s’affiche.
-2. En bas de cette page, cliquez sur **Ajouter**.
-3. Dans la boîte de dialogue **Ajouter une stratégie de sauvegarde** , procédez comme suit :
+#### <a name="to-add-a-storsimple-backup-policy"></a><span data-ttu-id="87c33-101">Pour ajouter une stratégie de sauvegarde StorSimple</span><span class="sxs-lookup"><span data-stu-id="87c33-101">To add a StorSimple backup policy</span></span>
+1. <span data-ttu-id="87c33-102">Sur la page **Démarrage rapide**, cliquez sur l’onglet **Stratégies de sauvegarde**.</span><span class="sxs-lookup"><span data-stu-id="87c33-102">On the device **Quick Start** page, click the **Backup Policies** tab.</span></span> <span data-ttu-id="87c33-103">La page **Stratégies de sauvegarde** s’affiche.</span><span class="sxs-lookup"><span data-stu-id="87c33-103">This will take you to the **Backup Policies** page.</span></span>
+2. <span data-ttu-id="87c33-104">En bas de cette page, cliquez sur **Ajouter**.</span><span class="sxs-lookup"><span data-stu-id="87c33-104">At the bottom of the page, click **Add**.</span></span>
+3. <span data-ttu-id="87c33-105">Dans la boîte de dialogue **Ajouter une stratégie de sauvegarde** , procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="87c33-105">In the **Add Backup Policy** dialog box, do the following:</span></span>
    
-   1. Spécifiez le nom de votre stratégie de sauvegarde (entre 3 et 150 caractères).
-   2. Affectez un ou plusieurs volumes à cette stratégie de sauvegarde. Si vous utilisez d’autres fournisseurs de services cloud, la liste déroulante affiche les volumes qui appartiennent au fournisseur de services cloud sélectionné en premier. Ceci vous permet de regrouper les volumes appartenant à un fournisseur de services cloud pour prendre un instantané.
-   3. Cliquez sur l’icône en forme de coche  ![icône en forme de coche](./media/storsimple-add-backup-policy/HCS_CheckIcon-include.png) pour enregistrer la stratégie.
+   1. <span data-ttu-id="87c33-106">Spécifiez le nom de votre stratégie de sauvegarde (entre 3 et 150 caractères).</span><span class="sxs-lookup"><span data-stu-id="87c33-106">Specify a backup policy name that contains between 3 and 150 characters.</span></span>
+   2. <span data-ttu-id="87c33-107">Affectez un ou plusieurs volumes à cette stratégie de sauvegarde.</span><span class="sxs-lookup"><span data-stu-id="87c33-107">Assign one or more volumes to this backup policy.</span></span> <span data-ttu-id="87c33-108">Si vous utilisez d’autres fournisseurs de services cloud, la liste déroulante affiche les volumes qui appartiennent au fournisseur de services cloud sélectionné en premier.</span><span class="sxs-lookup"><span data-stu-id="87c33-108">If you are using other cloud service providers, based on your first selection, the drop-down list will show volumes belonging to only that cloud service provider.</span></span> <span data-ttu-id="87c33-109">Ceci vous permet de regrouper les volumes appartenant à un fournisseur de services cloud pour prendre un instantané.</span><span class="sxs-lookup"><span data-stu-id="87c33-109">This will allow you to group volumes belonging to a single cloud service provider for taking a snapshot.</span></span>
+   3. <span data-ttu-id="87c33-110">Cliquez sur l’icône en forme de coche </span><span class="sxs-lookup"><span data-stu-id="87c33-110">Click the check icon</span></span> ![icône en forme de coche](./media/storsimple-add-backup-policy/HCS_CheckIcon-include.png) <span data-ttu-id="87c33-112">pour enregistrer la stratégie.</span><span class="sxs-lookup"><span data-stu-id="87c33-112">to save the policy.</span></span>
 
-La stratégie ajoutée s’affiche dans le tableau de la page **Stratégies de sauvegarde** .
+<span data-ttu-id="87c33-113">La stratégie ajoutée s’affiche dans le tableau de la page **Stratégies de sauvegarde** .</span><span class="sxs-lookup"><span data-stu-id="87c33-113">The newly added policy will be displayed in the tabular view on the **Backup Policies** page.</span></span>
 

@@ -1,20 +1,20 @@
 <!--author=SharS last changed: 11/04/15-->
 
 
-#### <a name="to-create-a-custom-backup-policy"></a>Pour créer une stratégie de sauvegarde personnalisée
-1. Sur la page **Appareils**, cliquez sur **Stratégies de sauvegarde**, puis sur **Ajouter**.
-2. Dans la boîte de dialogue **Ajouter une stratégie de sauvegarde**, sous **Définir votre stratégie de sauvegarde** :
+#### <a name="to-create-a-custom-backup-policy"></a><span data-ttu-id="1dc7a-101">Pour créer une stratégie de sauvegarde personnalisée</span><span class="sxs-lookup"><span data-stu-id="1dc7a-101">To create a custom backup policy</span></span>
+1. <span data-ttu-id="1dc7a-102">Sur la page **Appareils**, cliquez sur **Stratégies de sauvegarde**, puis sur **Ajouter**.</span><span class="sxs-lookup"><span data-stu-id="1dc7a-102">On the **Devices** page, click **Backup Policies** and then click **Add**.</span></span>
+2. <span data-ttu-id="1dc7a-103">Dans la boîte de dialogue **Ajouter une stratégie de sauvegarde**, sous **Définir votre stratégie de sauvegarde** :</span><span class="sxs-lookup"><span data-stu-id="1dc7a-103">In the **Add a backup policy** dialog box, under **Define your backup policy**:</span></span>
    
-   1. Indiquez le nom de la stratégie de sauvegarde.
-   2. Sélectionnez les volumes à ajouter à cette stratégie. Vous pouvez ajouter plusieurs volumes en cochant plusieurs cases.
-   3. Cliquez sur l’icône en forme de flèche  ![icône en forme de coche](./media/storsimple-create-custom-backup-policy-u2/HCS_ArrowIcon-include.png).
-3. Dans **Définir une planification**:
+   1. <span data-ttu-id="1dc7a-104">Indiquez le nom de la stratégie de sauvegarde.</span><span class="sxs-lookup"><span data-stu-id="1dc7a-104">Specify a backup policy name.</span></span>
+   2. <span data-ttu-id="1dc7a-105">Sélectionnez les volumes à ajouter à cette stratégie.</span><span class="sxs-lookup"><span data-stu-id="1dc7a-105">Select the volumes to be added to this policy.</span></span> <span data-ttu-id="1dc7a-106">Vous pouvez ajouter plusieurs volumes en cochant plusieurs cases.</span><span class="sxs-lookup"><span data-stu-id="1dc7a-106">You can choose to add multiple volumes by selecting multiple check boxes.</span></span>
+   3. <span data-ttu-id="1dc7a-107">Cliquez sur l’icône en forme de flèche </span><span class="sxs-lookup"><span data-stu-id="1dc7a-107">Click the arrow icon</span></span> ![icône en forme de coche](./media/storsimple-create-custom-backup-policy-u2/HCS_ArrowIcon-include.png)<span data-ttu-id="1dc7a-109">.</span><span class="sxs-lookup"><span data-stu-id="1dc7a-109">.</span></span>
+3. <span data-ttu-id="1dc7a-110">Dans **Définir une planification**:</span><span class="sxs-lookup"><span data-stu-id="1dc7a-110">Under **Define a Schedule**:</span></span>
    
-   1. Sélectionnez le **Type de sauvegarde** (**Instantané local** ou **Instantané cloud**).
-   2. Spécifiez la fréquence de sauvegarde en minutes, heures, jours ou semaines.
-   3. Dans la liste déroulante, sélectionnez une planification de rétention. La durée de conservation dépend de la fréquence de sauvegarde. 
-   4. Sélectionnez la date et l’heure de début de la stratégie.
-   5. Cochez la case pour activer la stratégie.
-4. Cliquez sur l’icône en forme de coche  ![icône en forme de coche](./media/storsimple-add-backup-policy-u2/HCS_CheckIcon-include.png) pour terminer.
-5. Vous êtes redirigé vers la page **Stratégies de sauvegarde** . La liste tabulaire qui répertorie les stratégies de sauvegarde sera mise à jour de manière à afficher la stratégie personnalisée.
+   1. <span data-ttu-id="1dc7a-111">Sélectionnez le **Type de sauvegarde** (**Instantané local** ou **Instantané cloud**).</span><span class="sxs-lookup"><span data-stu-id="1dc7a-111">Select the **Type of backup** (**Local Snapshot** or **Cloud Snapshot**).</span></span>
+   2. <span data-ttu-id="1dc7a-112">Spécifiez la fréquence de sauvegarde en minutes, heures, jours ou semaines.</span><span class="sxs-lookup"><span data-stu-id="1dc7a-112">Specify the backup frequency in minutes, hours, days, or weeks.</span></span>
+   3. <span data-ttu-id="1dc7a-113">Dans la liste déroulante, sélectionnez une planification de rétention.</span><span class="sxs-lookup"><span data-stu-id="1dc7a-113">Select a retention schedule from the drop-down list.</span></span> <span data-ttu-id="1dc7a-114">La durée de conservation dépend de la fréquence de sauvegarde.</span><span class="sxs-lookup"><span data-stu-id="1dc7a-114">The retention choices depend on the backup frequency.</span></span> 
+   4. <span data-ttu-id="1dc7a-115">Sélectionnez la date et l’heure de début de la stratégie.</span><span class="sxs-lookup"><span data-stu-id="1dc7a-115">Select the starting time and date for the policy.</span></span>
+   5. <span data-ttu-id="1dc7a-116">Cochez la case pour activer la stratégie.</span><span class="sxs-lookup"><span data-stu-id="1dc7a-116">Select the check box to enable the policy.</span></span>
+4. <span data-ttu-id="1dc7a-117">Cliquez sur l’icône en forme de coche </span><span class="sxs-lookup"><span data-stu-id="1dc7a-117">Click the check icon</span></span> ![icône en forme de coche](./media/storsimple-add-backup-policy-u2/HCS_CheckIcon-include.png) <span data-ttu-id="1dc7a-119">pour terminer.</span><span class="sxs-lookup"><span data-stu-id="1dc7a-119">to finish.</span></span>
+5. <span data-ttu-id="1dc7a-120">Vous êtes redirigé vers la page **Stratégies de sauvegarde** .</span><span class="sxs-lookup"><span data-stu-id="1dc7a-120">You will return to the **Backup Policies** page.</span></span> <span data-ttu-id="1dc7a-121">La liste tabulaire qui répertorie les stratégies de sauvegarde sera mise à jour de manière à afficher la stratégie personnalisée.</span><span class="sxs-lookup"><span data-stu-id="1dc7a-121">The tabular listing of the backup policies will be updated to display the custom policy.</span></span>
 

@@ -1,28 +1,28 @@
-## <a name="prepare-your-intel-nuc"></a>Préparer votre Intel NUC
+## <a name="prepare-your-intel-nuc"></a><span data-ttu-id="55eca-101">Préparer votre Intel NUC</span><span class="sxs-lookup"><span data-stu-id="55eca-101">Prepare your Intel NUC</span></span>
 
-Pour terminer la configuration matérielle, vous devez :
+<span data-ttu-id="55eca-102">Pour terminer la configuration matérielle, vous devez :</span><span class="sxs-lookup"><span data-stu-id="55eca-102">To complete the hardware setup, you need to:</span></span>
 
-- connecter votre Intel NUC à l’alimentation incluse dans le kit ;
-- connecter votre Intel NUC à votre réseau avec un câble Ethernet.
+- <span data-ttu-id="55eca-103">connecter votre Intel NUC à l’alimentation incluse dans le kit ;</span><span class="sxs-lookup"><span data-stu-id="55eca-103">Connect your Intel NUC to the power supply included in the kit.</span></span>
+- <span data-ttu-id="55eca-104">connecter votre Intel NUC à votre réseau avec un câble Ethernet.</span><span class="sxs-lookup"><span data-stu-id="55eca-104">Connect your Intel NUC to your network using an Ethernet cable.</span></span>
 
-Vous avez maintenant terminé la configuration matérielle de votre appareil de passerelle Intel NUC.
+<span data-ttu-id="55eca-105">Vous avez maintenant terminé la configuration matérielle de votre appareil de passerelle Intel NUC.</span><span class="sxs-lookup"><span data-stu-id="55eca-105">You have now completed the hardware setup of your Intel NUC gateway device.</span></span>
 
-### <a name="sign-in-and-access-the-terminal"></a>Se connecter et accéder au terminal
+### <a name="sign-in-and-access-the-terminal"></a><span data-ttu-id="55eca-106">Se connecter et accéder au terminal</span><span class="sxs-lookup"><span data-stu-id="55eca-106">Sign in and access the terminal</span></span>
 
-Deux méthodes vous permettent d’accéder à un environnement de type terminal sur votre Intel NUC :
+<span data-ttu-id="55eca-107">Deux méthodes vous permettent d’accéder à un environnement de type terminal sur votre Intel NUC :</span><span class="sxs-lookup"><span data-stu-id="55eca-107">You have two options to access a terminal environment on your Intel NUC:</span></span>
 
-- Si vous avez un clavier et un moniteur connectés à votre Intel NUC, vous pouvez accéder directement à l’interpréteur de commandes. Les informations d’identification par défaut sont le nom d’utilisateur **root** et le mot de passe **root**.
+- <span data-ttu-id="55eca-108">Si vous avez un clavier et un moniteur connectés à votre Intel NUC, vous pouvez accéder directement à l’interpréteur de commandes.</span><span class="sxs-lookup"><span data-stu-id="55eca-108">If you have a keyboard and monitor connected to your Intel NUC, you can access the shell directly.</span></span> <span data-ttu-id="55eca-109">Les informations d’identification par défaut sont le nom d’utilisateur **root** et le mot de passe **root**.</span><span class="sxs-lookup"><span data-stu-id="55eca-109">The default credentials are username **root** and password **root**.</span></span>
 
-- Accédez à l’interpréteur de commandes sur votre Intel NUC à l’aide de SSH à partir de votre ordinateur de bureau.
+- <span data-ttu-id="55eca-110">Accédez à l’interpréteur de commandes sur votre Intel NUC à l’aide de SSH à partir de votre ordinateur de bureau.</span><span class="sxs-lookup"><span data-stu-id="55eca-110">Access the shell on your Intel NUC using SSH from your desktop machine.</span></span>
 
-#### <a name="sign-in-with-ssh"></a>Se connecter avec SSH
+#### <a name="sign-in-with-ssh"></a><span data-ttu-id="55eca-111">Se connecter avec SSH</span><span class="sxs-lookup"><span data-stu-id="55eca-111">Sign in with SSH</span></span>
 
-Pour vous connecter avec SSH, vous avez besoin de l’adresse IP de votre Intel NUC. Si vous avez un clavier et un moniteur connectés à votre Intel NUC, utilisez la commande `ifconfig` pour rechercher l’adresse IP. Autrement, vous pouvez vous connecter à votre routeur pour répertorier les adresses de périphériques sur votre réseau.
+<span data-ttu-id="55eca-112">Pour vous connecter avec SSH, vous avez besoin de l’adresse IP de votre Intel NUC.</span><span class="sxs-lookup"><span data-stu-id="55eca-112">To sign in with SSH, you need the IP address of your Intel NUC.</span></span> <span data-ttu-id="55eca-113">Si vous avez un clavier et un moniteur connectés à votre Intel NUC, utilisez la commande `ifconfig` pour rechercher l’adresse IP.</span><span class="sxs-lookup"><span data-stu-id="55eca-113">If you have a keyboard and monitor connected to your Intel NUC, use the `ifconfig` command to find the IP address.</span></span> <span data-ttu-id="55eca-114">Autrement, vous pouvez vous connecter à votre routeur pour répertorier les adresses de périphériques sur votre réseau.</span><span class="sxs-lookup"><span data-stu-id="55eca-114">Alternatively, connect to your router to list the addresses of devices on your network.</span></span>
 
-Connectez-vous avec le nom d’utilisateur **root** et le mot de passe **root**.
+<span data-ttu-id="55eca-115">Connectez-vous avec le nom d’utilisateur **root** et le mot de passe **root**.</span><span class="sxs-lookup"><span data-stu-id="55eca-115">Sign in with username **root** and password **root**.</span></span>
 
-#### <a name="optional-share-a-folder-on-your-intel-nuc"></a>Facultatif : partager un dossier sur votre Intel NUC
+#### <a name="optional-share-a-folder-on-your-intel-nuc"></a><span data-ttu-id="55eca-116">Facultatif : partager un dossier sur votre Intel NUC</span><span class="sxs-lookup"><span data-stu-id="55eca-116">Optional: Share a folder on your Intel NUC</span></span>
 
-Si vous le souhaitez, vous pouvez partager un dossier sur votre Intel NUC avec votre environnement de bureau. Partager un dossier vous permet d’utiliser votre éditeur de texte de bureau favori (tel que [Visual Studio Code](https://code.visualstudio.com/) ou [Sublime Text](http://www.sublimetext.com/)) pour modifier des fichiers sur votre Intel NUC au lieu d’utiliser `nano` ou `vi`.
+<span data-ttu-id="55eca-117">Si vous le souhaitez, vous pouvez partager un dossier sur votre Intel NUC avec votre environnement de bureau.</span><span class="sxs-lookup"><span data-stu-id="55eca-117">Optionally, you may want to share a folder on your Intel NUC with your desktop environment.</span></span> <span data-ttu-id="55eca-118">Partager un dossier vous permet d’utiliser votre éditeur de texte de bureau favori (tel que [Visual Studio Code](https://code.visualstudio.com/) ou [Sublime Text](http://www.sublimetext.com/)) pour modifier des fichiers sur votre Intel NUC au lieu d’utiliser `nano` ou `vi`.</span><span class="sxs-lookup"><span data-stu-id="55eca-118">Sharing a folder enables you to use your preferred desktop text editor (such as [Visual Studio Code](https://code.visualstudio.com/) or [Sublime Text](http://www.sublimetext.com/)) to edit files on your Intel NUC instead of using `nano` or `vi`.</span></span>
 
-Pour partager un dossier avec Windows, configurez un serveur Samba sur Intel NUC. Vous pouvez également utiliser le serveur SFTP sur Intel NUC avec un client SFTP sur votre ordinateur de bureau.
+<span data-ttu-id="55eca-119">Pour partager un dossier avec Windows, configurez un serveur Samba sur Intel NUC.</span><span class="sxs-lookup"><span data-stu-id="55eca-119">To share a folder with Windows, configure a Samba server on the Intel NUC.</span></span> <span data-ttu-id="55eca-120">Vous pouvez également utiliser le serveur SFTP sur Intel NUC avec un client SFTP sur votre ordinateur de bureau.</span><span class="sxs-lookup"><span data-stu-id="55eca-120">Alternatively, use the SFTP server on the Intel NUC with an SFTP client on your desktop machine.</span></span>
