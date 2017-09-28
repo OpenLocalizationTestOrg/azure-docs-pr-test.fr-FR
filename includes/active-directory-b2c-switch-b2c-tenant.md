@@ -1,0 +1,3 @@
+<span data-ttu-id="aead7-101">Pour basculer vers votre client Azure AD B2C, sélectionnez le répertoire B2C dans le coin supérieur droit du portail.</span><span class="sxs-lookup"><span data-stu-id="aead7-101">To switch to your Azure AD B2C tenant, select the B2C directory in the top-right corner of the portal.</span></span>
+
+![Basculez vers votre client Azure AD B2C.](./media/active-directory-b2c-switch-b2c-tenant/switch-to-b2c-tenant.png)
