@@ -1,0 +1,273 @@
+---
+title: "Didacticiel : Intégration d’Azure Active Directory avec @Task| Documents Microsoft"
+description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et @Task."
+services: active-directory
+documentationcenter: 
+author: jeevansd
+manager: femila
+editor: 
+ms.assetid: aab8bd2f-f9dd-42da-a18e-d707865687d7
+ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 02/22/2017
+ms.author: jeedes
+ms.openlocfilehash: ebb19ca6cbaf04106fbce937d95651e709854cfd
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.translationtype: MT
+ms.contentlocale: fr-FR
+ms.lasthandoff: 07/11/2017
+---
+# <a name="tutorial-azure-active-directory-integration-with-task"></a><span data-ttu-id="8d069-103">Didacticiel : Intégration d'Azure Active Directory à @Task</span><span class="sxs-lookup"><span data-stu-id="8d069-103">Tutorial: Azure Active Directory integration with @Task</span></span>
+<span data-ttu-id="8d069-104">L’objectif de ce didacticiel est de vous montrer comment intégrer @Task dans Azure AD (Azure Active Directory).</span><span class="sxs-lookup"><span data-stu-id="8d069-104">The objective of this tutorial is to show you how to integrate @Task with Azure Active Directory (Azure AD).</span></span>  
+<span data-ttu-id="8d069-105">L’intégration de @Task dans Azure AD vous offre les avantages suivants :</span><span class="sxs-lookup"><span data-stu-id="8d069-105">Integrating @Task with Azure AD provides you with the following benefits:</span></span> 
+
+* <span data-ttu-id="8d069-106">Dans Azure AD, vous pouvez contrôler qui a accès à @Task</span><span class="sxs-lookup"><span data-stu-id="8d069-106">You can control in Azure AD who has access to @Task</span></span>
+* <span data-ttu-id="8d069-107">Vous pouvez autoriser vos utilisateurs à se connecter automatiquement à @Task (par authentification unique) avec leur compte Azure AD</span><span class="sxs-lookup"><span data-stu-id="8d069-107">You can enable your users to automatically get signed-on to @Task (Single Sign-On) with their Azure AD accounts</span></span>
+* <span data-ttu-id="8d069-108">Vous pouvez gérer vos comptes dans un emplacement central : le portail Azure Classic.</span><span class="sxs-lookup"><span data-stu-id="8d069-108">You can manage your accounts in one central location - the Azure classic Portal</span></span>
+
+<span data-ttu-id="8d069-109">Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="8d069-109">If you want to know more details about SaaS app integration with Azure AD, see [What is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
+
+## <a name="prerequisites"></a><span data-ttu-id="8d069-110">Composants requis</span><span class="sxs-lookup"><span data-stu-id="8d069-110">Prerequisites</span></span>
+<span data-ttu-id="8d069-111">Pour configurer l’intégration d’Azure AD avec @Task, vous devez les éléments suivants :</span><span class="sxs-lookup"><span data-stu-id="8d069-111">To configure Azure AD integration with @Task, you need the following items:</span></span>
+
+* <span data-ttu-id="8d069-112">Un abonnement Azure AD</span><span class="sxs-lookup"><span data-stu-id="8d069-112">An Azure AD subscription</span></span>
+* <span data-ttu-id="8d069-113">Un abonnement @Task pour lequel l’authentification unique est activée</span><span class="sxs-lookup"><span data-stu-id="8d069-113">An @Task single-sign on enabled subscription</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="8d069-114">Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.</span><span class="sxs-lookup"><span data-stu-id="8d069-114">To test the steps in this tutorial, we do not recommend using a production environment.</span></span>
+> 
+> 
+
+<span data-ttu-id="8d069-115">Vous devez en outre suivre les recommandations ci-dessous :</span><span class="sxs-lookup"><span data-stu-id="8d069-115">To test the steps in this tutorial, you should follow these recommendations:</span></span>
+
+* <span data-ttu-id="8d069-116">Vous ne devez pas utiliser votre environnement de production, sauf si cela est nécessaire.</span><span class="sxs-lookup"><span data-stu-id="8d069-116">You should not use your production environment, unless this is necessary.</span></span>
+* <span data-ttu-id="8d069-117">Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="8d069-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span> 
+
+## <a name="scenario-description"></a><span data-ttu-id="8d069-118">Description du scénario</span><span class="sxs-lookup"><span data-stu-id="8d069-118">Scenario Description</span></span>
+<span data-ttu-id="8d069-119">Ce didacticiel vise à vous permettre de tester l’authentification unique Azure AD dans un environnement de test.</span><span class="sxs-lookup"><span data-stu-id="8d069-119">The objective of this tutorial is to enable you to test Azure AD single sign-on in a test environment.</span></span>  
+<span data-ttu-id="8d069-120">Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :</span><span class="sxs-lookup"><span data-stu-id="8d069-120">The scenario outlined in this tutorial consists of three main building blocks:</span></span>
+
+1. <span data-ttu-id="8d069-121">Ajout de @Task depuis la galerie</span><span class="sxs-lookup"><span data-stu-id="8d069-121">Adding @Task from the gallery</span></span> 
+2. <span data-ttu-id="8d069-122">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="8d069-122">Configuring and testing Azure AD single sign-on</span></span>
+
+## <a name="adding-task-from-the-gallery"></a><span data-ttu-id="8d069-123">Ajout de @Task depuis la galerie</span><span class="sxs-lookup"><span data-stu-id="8d069-123">Adding @Task from the gallery</span></span>
+<span data-ttu-id="8d069-124">Pour configurer l’intégration de @Task avec Azure AD, vous devez ajouter @Task disponible dans la galerie, à votre liste d’applications SaaS gérées.</span><span class="sxs-lookup"><span data-stu-id="8d069-124">To configure the integration of @Task into Azure AD, you need to add @Task from the gallery to your list of managed SaaS apps.</span></span>
+
+<span data-ttu-id="8d069-125">**Pour ajouter @Task à partir de la galerie, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="8d069-125">**To add @Task from the gallery, perform the following steps:**</span></span>
+
+1. <span data-ttu-id="8d069-126">Dans le volet de navigation gauche du **portail Azure Classic**, cliquez sur **Active Directory**.</span><span class="sxs-lookup"><span data-stu-id="8d069-126">In the **Azure classic portal**, on the left navigation pane, click **Active Directory**.</span></span> 
+   
+    ![Active Directory][1] 
+2. <span data-ttu-id="8d069-128">Dans la liste **Annuaire** , sélectionnez l'annuaire pour lequel vous voulez activer l'intégration d'annuaire.</span><span class="sxs-lookup"><span data-stu-id="8d069-128">From the **Directory** list, select the directory for which you want to enable directory integration.</span></span>
+3. <span data-ttu-id="8d069-129">Pour ouvrir la vue des applications, dans la vue d'annuaire, cliquez sur **Applications** dans le menu du haut.</span><span class="sxs-lookup"><span data-stu-id="8d069-129">To open the applications view, in the directory view, click **Applications** in the top menu.</span></span>
+   
+    ![Applications][2] 
+4. <span data-ttu-id="8d069-131">Cliquez sur **Ajouter** en bas de la page.</span><span class="sxs-lookup"><span data-stu-id="8d069-131">Click **Add** at the bottom of the page.</span></span>
+   
+    ![Applications][3] 
+5. <span data-ttu-id="8d069-133">Dans la boîte de dialogue **Que voulez-vous faire ?**, cliquez sur **Ajouter une application à partir de la galerie**.</span><span class="sxs-lookup"><span data-stu-id="8d069-133">On the **What do you want to do** dialog, click **Add an application from the gallery**.</span></span>
+   
+    ![Applications][4] 
+6. <span data-ttu-id="8d069-135">Dans la zone de recherche, tapez **@Task**.</span><span class="sxs-lookup"><span data-stu-id="8d069-135">In the search box, type **@Task**.</span></span>
+   
+    ![Applications][5] 
+7. <span data-ttu-id="8d069-137">Dans le volet des résultats, sélectionnez **@Task**, puis cliquez sur **Terminer** pour ajouter l’application.</span><span class="sxs-lookup"><span data-stu-id="8d069-137">In the results pane, select **@Task**, and then click **Complete** to add the application.</span></span>
+   
+    ![Applications][30] 
+
+## <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="8d069-139">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="8d069-139">Configuring and testing Azure AD single sign-on</span></span>
+<span data-ttu-id="8d069-140">L’objectif de cette section est de vous montrer comment configurer et tester l’authentification unique Azure AD avec @Task sur un utilisateur de test appelé « Britta Simon ».</span><span class="sxs-lookup"><span data-stu-id="8d069-140">The objective of this section is to show you how to configure and test Azure AD single sign-on with @Task based on a test user called "Britta Simon".</span></span>
+
+<span data-ttu-id="8d069-141">Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur @Task équivalent dans Azure AD.</span><span class="sxs-lookup"><span data-stu-id="8d069-141">For single sign-on to work, Azure AD needs to know what the counterpart user in @Task to an user in Azure AD is.</span></span> <span data-ttu-id="8d069-142">En d’autres termes, une relation entre un utilisateur Azure AD et un utilisateur @Task associé doit être établie.</span><span class="sxs-lookup"><span data-stu-id="8d069-142">In other words, a link relationship between an Azure AD user and the related user in @Task needs to be established.</span></span>   
+<span data-ttu-id="8d069-143">Pour cela, affectez la valeur de **nom d’utilisateur** dans Azure AD comme valeur de **nom d’utilisateur** dans @Task.</span><span class="sxs-lookup"><span data-stu-id="8d069-143">This link relationship is established by assigning the value of the **user name** in Azure AD as the value of the **Username** in @Task.</span></span>
+
+<span data-ttu-id="8d069-144">Pour configurer et tester Azure AD single sign-on avec @Task, vous devez effectuer les blocs de construction suivantes :</span><span class="sxs-lookup"><span data-stu-id="8d069-144">To configure and test Azure AD single sign-on with @Task, you need to complete the following building blocks:</span></span>
+
+1. <span data-ttu-id="8d069-145">**[Configuration de l’authentification unique Azure AD](#configuring-azure-ad-single-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.</span><span class="sxs-lookup"><span data-stu-id="8d069-145">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-single-sign-on)** - to enable your users to use this feature.</span></span>
+2. <span data-ttu-id="8d069-146">**[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="8d069-146">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.</span></span>
+3. <span data-ttu-id="8d069-147">**[Création d’un utilisateur de test @Tasktest](#creating-a-halogen-software-test-user)** pour avoir un équivalent de Britta Simon dans @Taskthat lié à la représentation Azure AD associée.</span><span class="sxs-lookup"><span data-stu-id="8d069-147">**[Creating a @Tasktest user](#creating-a-halogen-software-test-user)** - to have a counterpart of Britta Simon in @Taskthat is linked to the Azure AD representation of her.</span></span>
+4. <span data-ttu-id="8d069-148">**[Affectation de l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.</span><span class="sxs-lookup"><span data-stu-id="8d069-148">**[Assigning the Azure AD test user](#assigning-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.</span></span>
+5. <span data-ttu-id="8d069-149">**[Test de l’authentification unique](#testing-single-sign-on)** pour vérifier si la configuration fonctionne.</span><span class="sxs-lookup"><span data-stu-id="8d069-149">**[Testing Single Sign-On](#testing-single-sign-on)** - to verify whether the configuration works.</span></span>
+
+### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="8d069-150">Configuration de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="8d069-150">Configuring Azure AD Single Sign-On</span></span>
+<span data-ttu-id="8d069-151">L’objectif de cette section est d’activer l’authentification unique Azure AD dans le portail Azure Classic et de configurer l’authentification unique dans votre application @Task.</span><span class="sxs-lookup"><span data-stu-id="8d069-151">The objective of this section is to enable Azure AD single sign-on in the Azure classic portal and to configure single sign-on in your @Task application.</span></span>
+
+<span data-ttu-id="8d069-152">**Pour configurer Azure AD single sign-on avec @Task, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="8d069-152">**To configure Azure AD single sign-on with @Task, perform the following steps:**</span></span>
+
+1. <span data-ttu-id="8d069-153">Dans le portail Azure Classic, dans la page d’intégration d’applications **@Task**, cliquez sur **Configurer l’authentification unique** pour ouvrir la boîte de dialogue **Configurer l’authentification unique**.</span><span class="sxs-lookup"><span data-stu-id="8d069-153">In the Azure classic portal, on the **@Task** application integration page, click **Configure single sign-on** to open the **Configure Single Sign-On**  dialog.</span></span>
+   
+    ![Configurer l’authentification unique][6] 
+2. <span data-ttu-id="8d069-155">Sur la page **Comment voulez-vous que les utilisateurs se connectent à Condeco@Task**, sélectionnez **Authentification unique Azure AD**, puis cliquez sur **Suivant**.</span><span class="sxs-lookup"><span data-stu-id="8d069-155">On the **How would you like users to sign on to @Task** page, select **Azure AD Single Sign-On**, and then click **Next**.</span></span>
+   
+    ![Authentification unique Azure AD][7] 
+3. <span data-ttu-id="8d069-157">Sur la page **Configurer les paramètres d’application** , procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="8d069-157">On the **Configure App Settings** dialog page, perform the following steps:</span></span>
+   
+    ![Configurer les paramètres d’application][8] 
+   
+     <span data-ttu-id="8d069-159">a.</span><span class="sxs-lookup"><span data-stu-id="8d069-159">a.</span></span> <span data-ttu-id="8d069-160">Dans la zone de texte **URL d’authentification**, entrez l'URL utilisée par vos utilisateurs pour se connecter à votre application @Task (par exemple : *https://<Tenant name>.attask-ondemand.com*).</span><span class="sxs-lookup"><span data-stu-id="8d069-160">In the **Sign On URL** textbox, type the URL used by your users to sign-on to your @Task application (e.g.:*https://<Tenant name>.attask-ondemand.com*).</span></span>
+   
+     <span data-ttu-id="8d069-161">b.</span><span class="sxs-lookup"><span data-stu-id="8d069-161">b.</span></span> <span data-ttu-id="8d069-162">Cliquez sur **Suivant**.</span><span class="sxs-lookup"><span data-stu-id="8d069-162">Click **Next**.</span></span>
+4. <span data-ttu-id="8d069-163">Dans la page **Configurer l’authentification unique sur @Task**, cliquez sur **Télécharger les métadonnées**, enregistrez le fichier de métadonnées localement sur votre ordinateur, puis cliquez sur **Suivant**.</span><span class="sxs-lookup"><span data-stu-id="8d069-163">On the **Configure single sign-on at @Task** page, click **Download metadata**, save the metadata file locally on your computer, and then click **Next**.</span></span>
+   
+    ![Qu’est-ce qu’Azure AD Connect ?][9] 
+5. <span data-ttu-id="8d069-165">Connectez-vous à votre site d’entreprise @Task en tant qu’administrateur.</span><span class="sxs-lookup"><span data-stu-id="8d069-165">Sign-on to your @Task company site as administrator.</span></span>
+6. <span data-ttu-id="8d069-166">Accédez à **Single Sign On Configuration**.</span><span class="sxs-lookup"><span data-stu-id="8d069-166">Go to **Single Sign On Configuration**.</span></span>
+7. <span data-ttu-id="8d069-167">Dans la boîte de dialogue **Authentification unique** , procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="8d069-167">On the **Single Sign-On** dialog, perform the following steps</span></span>
+   
+    ![Configurer l’authentification unique][23]
+   
+    <span data-ttu-id="8d069-169">a.</span><span class="sxs-lookup"><span data-stu-id="8d069-169">a.</span></span> <span data-ttu-id="8d069-170">Comme **Type**, sélectionnez **SAML 2.0**.</span><span class="sxs-lookup"><span data-stu-id="8d069-170">As **Type**, select **SAML 2.0**.</span></span>
+   
+    <span data-ttu-id="8d069-171">b.</span><span class="sxs-lookup"><span data-stu-id="8d069-171">b.</span></span> <span data-ttu-id="8d069-172">Sélectionnez **///ID fournisseur de services**.</span><span class="sxs-lookup"><span data-stu-id="8d069-172">Select **Service Provider ID**.</span></span>
+   
+    <span data-ttu-id="8d069-173">c.</span><span class="sxs-lookup"><span data-stu-id="8d069-173">c.</span></span> <span data-ttu-id="8d069-174">Dans le portail Azure Classic, copiez **l’URL de connexion distante**, puis collez-la dans la zone de texte **URL du portail de connexion**.</span><span class="sxs-lookup"><span data-stu-id="8d069-174">On the Azure classic portal, copy the **Remote Login URL**, and then paste it into the **Login Portal URL** textbox.</span></span>
+   
+    <span data-ttu-id="8d069-175">d.</span><span class="sxs-lookup"><span data-stu-id="8d069-175">d.</span></span> <span data-ttu-id="8d069-176">Dans le portail Azure Classic, copiez **l’URL du service de déconnexion unique**, puis collez-la dans la zone de texte **URL de déconnexion**.</span><span class="sxs-lookup"><span data-stu-id="8d069-176">On the Azure classic portal, copy the **Single Sign-Out Service URL**, and then paste it into the **Sign-Out URL** textbox.</span></span>
+   
+    <span data-ttu-id="8d069-177">e.</span><span class="sxs-lookup"><span data-stu-id="8d069-177">e.</span></span> <span data-ttu-id="8d069-178">Dans le portail Azure Classic, copiez la valeur **Modifier l’URL de mot de passe**, puis collez-la dans la zone de texte **Modifier l’URL de mot de passe**.</span><span class="sxs-lookup"><span data-stu-id="8d069-178">On the Azure classic portal, copy the **Change Password URL**, and then paste it into the **Change Password URL** textbox.</span></span>
+   
+    <span data-ttu-id="8d069-179">f.</span><span class="sxs-lookup"><span data-stu-id="8d069-179">f.</span></span> <span data-ttu-id="8d069-180">Cliquez sur **Enregistrer**.</span><span class="sxs-lookup"><span data-stu-id="8d069-180">Click **Save**.</span></span>
+8. <span data-ttu-id="8d069-181">Dans le portail Azure Classic, sélectionnez la confirmation de la configuration de l’authentification unique, puis cliquez sur **Suivant**.</span><span class="sxs-lookup"><span data-stu-id="8d069-181">On the Azure classic portal, select the single sign-on configuration confirmation, and then click **Next**.</span></span> 
+   
+    ![Qu’est-ce qu’Azure AD Connect ?][10]
+9. <span data-ttu-id="8d069-183">Sur la page **Confirmation de l’authentification unique**, cliquez sur **Terminer**.</span><span class="sxs-lookup"><span data-stu-id="8d069-183">On the **Single sign-on confirmation** page, click **Complete**.</span></span>  
+   
+    ![Qu’est-ce qu’Azure AD Connect ?][11]
+
+### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="8d069-185">Création d’un utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="8d069-185">Creating an Azure AD test user</span></span>
+<span data-ttu-id="8d069-186">L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure Classic.</span><span class="sxs-lookup"><span data-stu-id="8d069-186">The objective of this section is to create a test user in the Azure classic portal called Britta Simon.</span></span>  
+
+![Créer un utilisateur Azure AD][20]
+
+<span data-ttu-id="8d069-188">**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="8d069-188">**To create a test user in Azure AD, perform the following steps:**</span></span>
+
+1. <span data-ttu-id="8d069-189">Dans le volet de navigation gauche du **portail Azure Classic**, cliquez sur **Active Directory**.</span><span class="sxs-lookup"><span data-stu-id="8d069-189">In the **Azure classic portal**, on the left navigation pane, click **Active Directory**.</span></span>
+   
+    ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-attask-tutorial/create_aaduser_02.png) 
+2. <span data-ttu-id="8d069-191">Dans la liste **Annuaire** , sélectionnez l'annuaire pour lequel vous voulez activer l'intégration d'annuaire.</span><span class="sxs-lookup"><span data-stu-id="8d069-191">From the **Directory** list, select the directory for which you want to enable directory integration.</span></span>
+3. <span data-ttu-id="8d069-192">Pour afficher la liste des utilisateurs, dans le menu situé en haut, cliquez sur **Utilisateurs**.</span><span class="sxs-lookup"><span data-stu-id="8d069-192">To display the list of users, in the menu on the top, click **Users**.</span></span>
+   
+    ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-attask-tutorial/create_aaduser_03.png) 
+4. <span data-ttu-id="8d069-194">Pour ouvrir la boîte de dialogue **Ajouter un utilisateur**, cliquez sur l’option **Ajouter un utilisateur** figurant dans la barre d’outils du bas.</span><span class="sxs-lookup"><span data-stu-id="8d069-194">To open the **Add User** dialog, in the toolbar on the bottom, click **Add User**.</span></span> 
+   
+    ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-attask-tutorial/create_aaduser_04.png) 
+5. <span data-ttu-id="8d069-196">Sur la page de boîte de dialogue **Dites-nous en plus sur cet utilisateur** , procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="8d069-196">On the **Tell us about this user** dialog page, perform the following steps:</span></span> 
+   
+    ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-attask-tutorial/create_aaduser_05.png) 
+   
+    <span data-ttu-id="8d069-198">a.</span><span class="sxs-lookup"><span data-stu-id="8d069-198">a.</span></span> <span data-ttu-id="8d069-199">Dans Type d’utilisateur, sélectionnez Nouvel utilisateur dans votre organisation.</span><span class="sxs-lookup"><span data-stu-id="8d069-199">As Type Of User, select New user in your organization.</span></span>
+   
+    <span data-ttu-id="8d069-200">b.</span><span class="sxs-lookup"><span data-stu-id="8d069-200">b.</span></span> <span data-ttu-id="8d069-201">Dans la zone de texte **Nom d’utilisateur**, entrez **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="8d069-201">In the User Name **textbox**, type **BrittaSimon**.</span></span>
+   
+    <span data-ttu-id="8d069-202">c.</span><span class="sxs-lookup"><span data-stu-id="8d069-202">c.</span></span> <span data-ttu-id="8d069-203">Cliquez sur **Suivant**.</span><span class="sxs-lookup"><span data-stu-id="8d069-203">Click **Next**.</span></span>
+6. <span data-ttu-id="8d069-204">Sur la page de boîte de dialogue **Profil utilisateur** , procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="8d069-204">On the **User Profile** dialog page, perform the following steps:</span></span> 
+   
+    ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-attask-tutorial/create_aaduser_06.png) 
+   
+    <span data-ttu-id="8d069-206">a.</span><span class="sxs-lookup"><span data-stu-id="8d069-206">a.</span></span> <span data-ttu-id="8d069-207">Dans la zone de texte **First Name**, tapez **Britta**.</span><span class="sxs-lookup"><span data-stu-id="8d069-207">In the **First Name** textbox, type **Britta**.</span></span>  
+   
+    <span data-ttu-id="8d069-208">b.</span><span class="sxs-lookup"><span data-stu-id="8d069-208">b.</span></span> <span data-ttu-id="8d069-209">Dans la zone de texte **Last Name**, tapez **Simon**.</span><span class="sxs-lookup"><span data-stu-id="8d069-209">In the **Last Name** textbox, type, **Simon**.</span></span>
+   
+    <span data-ttu-id="8d069-210">c.</span><span class="sxs-lookup"><span data-stu-id="8d069-210">c.</span></span> <span data-ttu-id="8d069-211">Dans la zone de texte **Nom d’affichage**, entrez **Britta Simon**.</span><span class="sxs-lookup"><span data-stu-id="8d069-211">In the **Display Name** textbox, type **Britta Simon**.</span></span>
+   
+    <span data-ttu-id="8d069-212">d.</span><span class="sxs-lookup"><span data-stu-id="8d069-212">d.</span></span> <span data-ttu-id="8d069-213">Dans la liste **Rôle**, sélectionnez **Utilisateur**.</span><span class="sxs-lookup"><span data-stu-id="8d069-213">In the **Role** list, select **User**.</span></span>
+
+    <span data-ttu-id="8d069-214">e.</span><span class="sxs-lookup"><span data-stu-id="8d069-214">e.</span></span> <span data-ttu-id="8d069-215">Cliquez sur **Suivant**.</span><span class="sxs-lookup"><span data-stu-id="8d069-215">Click **Next**.</span></span>
+
+7. <span data-ttu-id="8d069-216">Sur la page de boîte de dialogue **Obtenir un mot de passe temporaire**, cliquez sur **créer**.</span><span class="sxs-lookup"><span data-stu-id="8d069-216">On the **Get temporary password** dialog page, click **create**.</span></span>
+   
+    ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-attask-tutorial/create_aaduser_07.png) 
+8. <span data-ttu-id="8d069-218">Sur la page de boîte de dialogue **Obtenir un mot de passe temporaire** , procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="8d069-218">On the **Get temporary password** dialog page, perform the following steps:</span></span>
+   
+    ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-attask-tutorial/create_aaduser_08.png) 
+   
+    <span data-ttu-id="8d069-220">a.</span><span class="sxs-lookup"><span data-stu-id="8d069-220">a.</span></span> <span data-ttu-id="8d069-221">Notez la valeur du **Nouveau mot de passe**.</span><span class="sxs-lookup"><span data-stu-id="8d069-221">Write down the value of the **New Password**.</span></span>
+   
+    <span data-ttu-id="8d069-222">b.</span><span class="sxs-lookup"><span data-stu-id="8d069-222">b.</span></span> <span data-ttu-id="8d069-223">Cliquez sur **Terminé**.</span><span class="sxs-lookup"><span data-stu-id="8d069-223">Click **Complete**.</span></span>   
+
+### <a name="creating-an-task-test-user"></a><span data-ttu-id="8d069-224">Création d’un utilisateur de test @Task</span><span class="sxs-lookup"><span data-stu-id="8d069-224">Creating an @Task test user</span></span>
+<span data-ttu-id="8d069-225">L’objectif de cette section est de créer un utilisateur appelé Britta Simon dans @Task.</span><span class="sxs-lookup"><span data-stu-id="8d069-225">The objective of this section is to create a user called Britta Simon in @Task.</span></span>
+
+<span data-ttu-id="8d069-226">**Pour créer un utilisateur appelé Britta Simon dans @Task, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="8d069-226">**To create a user called Britta Simon in @Task, perform the following steps:**</span></span>
+
+1. <span data-ttu-id="8d069-227">Connectez-vous à votre site d’entreprise @Task en tant qu’administrateur.</span><span class="sxs-lookup"><span data-stu-id="8d069-227">Sign on to your @Task company site as administrator.</span></span>
+2. <span data-ttu-id="8d069-228">Dans le menu situé en haut, cliquez sur **Utilisateurs**.</span><span class="sxs-lookup"><span data-stu-id="8d069-228">In the menu on the top, click **People**.</span></span>
+3. <span data-ttu-id="8d069-229">Cliquez sur **New Person**.</span><span class="sxs-lookup"><span data-stu-id="8d069-229">Click **New Person**.</span></span> 
+4. <span data-ttu-id="8d069-230">Dans la boîte de dialogue New User, procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="8d069-230">On the New Person dialog, perform the following steps:</span></span>
+   
+    ![Création d’un utilisateur de test @Task][21] 
+   
+    <span data-ttu-id="8d069-232">a.</span><span class="sxs-lookup"><span data-stu-id="8d069-232">a.</span></span> <span data-ttu-id="8d069-233">Dans la zone de texte **Prénom** , tapez Britta.</span><span class="sxs-lookup"><span data-stu-id="8d069-233">In the **First Name** textbox, type "Britta".</span></span>
+   
+    <span data-ttu-id="8d069-234">b.</span><span class="sxs-lookup"><span data-stu-id="8d069-234">b.</span></span> <span data-ttu-id="8d069-235">Dans la zone de texte **Last Name** , tapez Simon.</span><span class="sxs-lookup"><span data-stu-id="8d069-235">In the **Last Name** textbox, type "Simon".</span></span>
+   
+    <span data-ttu-id="8d069-236">c.</span><span class="sxs-lookup"><span data-stu-id="8d069-236">c.</span></span> <span data-ttu-id="8d069-237">Dans la zone de texte **Adresse de messagerie** , tapez l'adresse de messagerie de Simon Britta dans Azure Active Directory.</span><span class="sxs-lookup"><span data-stu-id="8d069-237">In the **Email Address** textbox, type Britta Simon's email address in Azure Active Directory.</span></span>
+   
+    <span data-ttu-id="8d069-238">d.</span><span class="sxs-lookup"><span data-stu-id="8d069-238">d.</span></span> <span data-ttu-id="8d069-239">Cliquez sur **Add Person**.</span><span class="sxs-lookup"><span data-stu-id="8d069-239">Click **Add Person**.</span></span>
+
+### <a name="assigning-the-azure-ad-test-user"></a><span data-ttu-id="8d069-240">Affectation de l’utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="8d069-240">Assigning the Azure AD test user</span></span>
+<span data-ttu-id="8d069-241">L’objectif de cette section est de permettre à Britta Simon d’utiliser l’authentification unique Azure en lui accordant l’accès à @Task.</span><span class="sxs-lookup"><span data-stu-id="8d069-241">The objective of this section is to enabling Britta Simon to use Azure single sign-on by granting her access to @Task.</span></span>
+
+![Affecter des utilisateurs][200] 
+
+<span data-ttu-id="8d069-243">**Pour affecter des Britta Simon à @Task, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="8d069-243">**To assign Britta Simon to @Task, perform the following steps:**</span></span>
+
+1. <span data-ttu-id="8d069-244">Pour ouvrir l’affichage des applications dans le portail Azure Classic, cliquez dans l’affichage de l’annuaire sur **Applications** dans le menu du haut.</span><span class="sxs-lookup"><span data-stu-id="8d069-244">On the Azure classic portal, to open the applications view, in the directory view, click **Applications** in the top menu.</span></span>
+   
+    ![Affecter des utilisateurs][201] 
+2. <span data-ttu-id="8d069-246">Dans la liste des applications, sélectionnez **@Task**.</span><span class="sxs-lookup"><span data-stu-id="8d069-246">In the applications list, select **@Task**.</span></span>
+   
+    ![Affecter des utilisateurs][202] 
+3. <span data-ttu-id="8d069-248">Dans le menu situé en haut, cliquez sur **Utilisateurs**.</span><span class="sxs-lookup"><span data-stu-id="8d069-248">In the menu on the top, click **Users**.</span></span>
+   
+    ![Affecter des utilisateurs][203] 
+4. <span data-ttu-id="8d069-250">Dans la liste Utilisateurs, sélectionnez **Britta Simon**.</span><span class="sxs-lookup"><span data-stu-id="8d069-250">In the Users list, select **Britta Simon**.</span></span>
+5. <span data-ttu-id="8d069-251">Dans la barre d’outils située en bas, cliquez sur **Attribuer**.</span><span class="sxs-lookup"><span data-stu-id="8d069-251">In the toolbar on the bottom, click **Assign**.</span></span>
+   
+    ![Affecter des utilisateurs][205]
+
+### <a name="testing-single-sign-on"></a><span data-ttu-id="8d069-253">Test de l’authentification unique</span><span class="sxs-lookup"><span data-stu-id="8d069-253">Testing Single Sign-On</span></span>
+<span data-ttu-id="8d069-254">L’objectif de cette section est de tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.</span><span class="sxs-lookup"><span data-stu-id="8d069-254">The objective of this section is to test your Azure AD single sign-on configuration using the Access Panel.</span></span>  
+<span data-ttu-id="8d069-255">Lorsque vous cliquez sur la vignette @Task dans le volet d’accès, vous devez être connecté automatiquement à votre application @Task.</span><span class="sxs-lookup"><span data-stu-id="8d069-255">When you click the @Task tile in the Access Panel, you should get automatically signed-on to your @Task application.</span></span>
+
+## <a name="additional-resources"></a><span data-ttu-id="8d069-256">Ressources supplémentaires</span><span class="sxs-lookup"><span data-stu-id="8d069-256">Additional Resources</span></span>
+* [<span data-ttu-id="8d069-257">Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="8d069-257">List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
+* [<span data-ttu-id="8d069-258">Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?</span><span class="sxs-lookup"><span data-stu-id="8d069-258">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
+
+<!--Image references-->
+
+[1]: ./media/active-directory-saas-attask-tutorial/tutorial_general_01.png
+[2]: ./media/active-directory-saas-attask-tutorial/tutorial_general_02.png
+[3]: ./media/active-directory-saas-attask-tutorial/tutorial_general_03.png
+[4]: ./media/active-directory-saas-attask-tutorial/tutorial_general_04.png
+[5]: ./media/active-directory-saas-attask-tutorial/tutorial_attask_01.png
+[30]: ./media/active-directory-saas-attask-tutorial/tutorial_attask_02.png
+
+
+[6]: ./media/active-directory-saas-attask-tutorial/tutorial_general_05.png
+[7]: ./media/active-directory-saas-attask-tutorial/tutorial_attask_03.png
+[8]: ./media/active-directory-saas-attask-tutorial/tutorial_attask_04.png
+[9]: ./media/active-directory-saas-attask-tutorial/tutorial_attask_05.png
+[10]: ./media/active-directory-saas-attask-tutorial/tutorial_general_06.png
+[11]: ./media/active-directory-saas-attask-tutorial/tutorial_general_07.png
+[20]: ./media/active-directory-saas-attask-tutorial/tutorial_general_100.png
+[21]: ./media/active-directory-saas-attask-tutorial/tutorial_attask_08.png
+
+
+[23]: ./media/active-directory-saas-attask-tutorial/tutorial_attask_06.png
+
+[200]: ./media/active-directory-saas-attask-tutorial/tutorial_general_200.png
+[201]: ./media/active-directory-saas-attask-tutorial/tutorial_general_201.png
+[202]: ./media/active-directory-saas-attask-tutorial/tutorial_attask_09.png
+[203]: ./media/active-directory-saas-attask-tutorial/tutorial_general_203.png
+[204]: ./media/active-directory-saas-attask-tutorial/tutorial_general_204.png
+[205]: ./media/active-directory-saas-attask-tutorial/tutorial_general_205.png
+
+
+
+
+
+
