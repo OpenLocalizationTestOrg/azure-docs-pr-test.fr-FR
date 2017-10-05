@@ -1,0 +1,50 @@
+---
+title: "Opérations d’Azure AD Connect Synchronization Service Manager | Microsoft Docs"
+description: "Comprendre l’onglet des opérations dans Synchronization Service Manager pour Azure AD Connect."
+services: active-directory
+documentationcenter: 
+author: andkjell
+manager: femila
+editor: 
+ms.assetid: 97a26565-618f-4313-8711-5925eeb47cdc
+ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 07/13/2017
+ms.author: billmath
+ms.custom: H1Hack27Feb2017
+ms.openlocfilehash: a1475e4fcd11eb008badba49665f4af6029a1697
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.translationtype: MT
+ms.contentlocale: fr-FR
+ms.lasthandoff: 08/03/2017
+---
+# <a name="using-the-sync-service-manager-operations-tab"></a><span data-ttu-id="e5b26-103">Utilisation de l’onglet Opérations de Sync Service Manager</span><span class="sxs-lookup"><span data-stu-id="e5b26-103">Using the Sync Service Manager Operations tab</span></span>
+
+![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/operations.png)
+
+<span data-ttu-id="e5b26-105">L’onglet des opérations affiche les résultats des opérations les plus récentes.</span><span class="sxs-lookup"><span data-stu-id="e5b26-105">The operations tab shows the results from the most recent operations.</span></span> <span data-ttu-id="e5b26-106">Cet onglet est essentiel pour comprendre et résoudre les problèmes.</span><span class="sxs-lookup"><span data-stu-id="e5b26-106">This tab is key to understand and troubleshoot issues.</span></span>
+
+## <a name="understand-the-information-visible-in-the-operations-tab"></a><span data-ttu-id="e5b26-107">Comprendre les informations visibles dans l’onglet des opérations</span><span class="sxs-lookup"><span data-stu-id="e5b26-107">Understand the information visible in the operations tab</span></span>
+<span data-ttu-id="e5b26-108">La partie supérieure affiche toutes les exécutions dans un ordre chronologique.</span><span class="sxs-lookup"><span data-stu-id="e5b26-108">The top half shows all runs in chronological order.</span></span> <span data-ttu-id="e5b26-109">Par défaut, le journal des opérations conserve les informations des sept derniers jours, mais vous pouvez modifier ce paramètre à l’aide du [planificateur](active-directory-aadconnectsync-feature-scheduler.md).</span><span class="sxs-lookup"><span data-stu-id="e5b26-109">By default, the operations log keeps information about the last seven days, but this setting can be changed with the [scheduler](active-directory-aadconnectsync-feature-scheduler.md).</span></span> <span data-ttu-id="e5b26-110">Vous souhaitez rechercher toute exécution qui ne présente pas un état de réussite.</span><span class="sxs-lookup"><span data-stu-id="e5b26-110">You want to look for any run that does not show a success status.</span></span> <span data-ttu-id="e5b26-111">Vous pouvez modifier le tri en cliquant sur les en-têtes.</span><span class="sxs-lookup"><span data-stu-id="e5b26-111">You can change the sorting by clicking the headers.</span></span>
+
+<span data-ttu-id="e5b26-112">La colonne **État** regroupe les informations les plus importantes et présente le problème le plus sévère pour une exécution.</span><span class="sxs-lookup"><span data-stu-id="e5b26-112">The **Status** column is the most important information and shows the most severe problem for a run.</span></span> <span data-ttu-id="e5b26-113">Voici un récapitulatif rapide des états les plus courants par ordre de priorité d’inspection (où * indique plusieurs chaînes d’erreur possibles).</span><span class="sxs-lookup"><span data-stu-id="e5b26-113">Here is a quick summary of the most common statuses in order of priority to investigate (where * indicate several possible error strings).</span></span>
+
+| <span data-ttu-id="e5b26-114">État</span><span class="sxs-lookup"><span data-stu-id="e5b26-114">Status</span></span> | <span data-ttu-id="e5b26-115">Commentaire</span><span class="sxs-lookup"><span data-stu-id="e5b26-115">Comment</span></span> |
+| --- | --- |
+| <span data-ttu-id="e5b26-116">stopped-*</span><span class="sxs-lookup"><span data-stu-id="e5b26-116">stopped-*</span></span> |<span data-ttu-id="e5b26-117">L’exécution n’a pas pu se terminer.</span><span class="sxs-lookup"><span data-stu-id="e5b26-117">The run could not complete.</span></span> <span data-ttu-id="e5b26-118">Par exemple, si le système distant est arrêté et ne peut pas être contacté.</span><span class="sxs-lookup"><span data-stu-id="e5b26-118">For example, if the remote system is down and cannot be contacted.</span></span> |
+| <span data-ttu-id="e5b26-119">stopped-error-limit</span><span class="sxs-lookup"><span data-stu-id="e5b26-119">stopped-error-limit</span></span> |<span data-ttu-id="e5b26-120">Il existe plus de 5 000 erreurs.</span><span class="sxs-lookup"><span data-stu-id="e5b26-120">There are more than 5,000 errors.</span></span> <span data-ttu-id="e5b26-121">L’exécution a été automatiquement arrêtée en raison du grand nombre d’erreurs.</span><span class="sxs-lookup"><span data-stu-id="e5b26-121">The run was automatically stopped due to the large number of errors.</span></span> |
+| <span data-ttu-id="e5b26-122">completed-\*-errors</span><span class="sxs-lookup"><span data-stu-id="e5b26-122">completed-\*-errors</span></span> |<span data-ttu-id="e5b26-123">L’exécution s’est terminée, mais il existe des erreurs (moins de 5 000) qui doivent être examinées.</span><span class="sxs-lookup"><span data-stu-id="e5b26-123">The run completed, but there are errors (fewer than 5,000) that should be investigated.</span></span> |
+| <span data-ttu-id="e5b26-124">completed-\*-warnings</span><span class="sxs-lookup"><span data-stu-id="e5b26-124">completed-\*-warnings</span></span> |<span data-ttu-id="e5b26-125">L’exécution s’est terminée, mais des données ne sont pas dans l’état attendu.</span><span class="sxs-lookup"><span data-stu-id="e5b26-125">The run completed, but some data is not in the expected state.</span></span> <span data-ttu-id="e5b26-126">Si vous avez des erreurs, alors ce message n’est, en général, qu’un symptôme.</span><span class="sxs-lookup"><span data-stu-id="e5b26-126">If you have errors, then this message is usually only a symptom.</span></span> <span data-ttu-id="e5b26-127">N’examinez pas les avertissements avant d’avoir résolu les erreurs.</span><span class="sxs-lookup"><span data-stu-id="e5b26-127">Until you have addressed errors, you should not investigate warnings.</span></span> |
+| <span data-ttu-id="e5b26-128">réussi</span><span class="sxs-lookup"><span data-stu-id="e5b26-128">success</span></span> |<span data-ttu-id="e5b26-129">Aucun problème.</span><span class="sxs-lookup"><span data-stu-id="e5b26-129">No issues.</span></span> |
+
+<span data-ttu-id="e5b26-130">Lorsque vous sélectionnez une ligne, la partie inférieure est mise à jour pour afficher les détails de cette exécution.</span><span class="sxs-lookup"><span data-stu-id="e5b26-130">When you select a row, the bottom updates to show the details of that run.</span></span> <span data-ttu-id="e5b26-131">À l’extrême gauche de la partie inférieure, une liste peut s’afficher indiquant **Step #**.</span><span class="sxs-lookup"><span data-stu-id="e5b26-131">To the far left of the bottom, you might have a list saying **Step #**.</span></span> <span data-ttu-id="e5b26-132">Cette liste ne s’affiche que si votre forêt contient plusieurs domaines et que chaque domaine est représenté par une étape.</span><span class="sxs-lookup"><span data-stu-id="e5b26-132">This list only appears if you have multiple domains in your forest where each domain is represented by a step.</span></span> <span data-ttu-id="e5b26-133">Le nom de domaine se trouve sous le titre **Partition**.</span><span class="sxs-lookup"><span data-stu-id="e5b26-133">The domain name can be found under the heading **Partition**.</span></span> <span data-ttu-id="e5b26-134">Sous **Statistiques de synchronisation**, vous trouverez plus d’informations sur le nombre de modifications qui ont été traitées.</span><span class="sxs-lookup"><span data-stu-id="e5b26-134">Under **Synchronization Statistics**, you can find more information about the number of changes that were processed.</span></span> <span data-ttu-id="e5b26-135">Vous pouvez cliquer sur les liens pour obtenir la liste des objets modifiés.</span><span class="sxs-lookup"><span data-stu-id="e5b26-135">You can click the links to get a list of the changed objects.</span></span> <span data-ttu-id="e5b26-136">Si vous avez des objets comportant des erreurs, celles-ci s’affichent sous **Erreurs de synchronisation**.</span><span class="sxs-lookup"><span data-stu-id="e5b26-136">If you have objects with errors, those errors show up under **Synchronization Errors**.</span></span>
+
+<span data-ttu-id="e5b26-137">Pour plus d’informations, consultez [Dépanner un objet qui bloque la synchronisation](active-directory-aadconnectsync-troubleshoot-object-not-syncing.md)</span><span class="sxs-lookup"><span data-stu-id="e5b26-137">For more information, see [troubleshoot an object that is not synchronizing](active-directory-aadconnectsync-troubleshoot-object-not-syncing.md)</span></span>
+
+## <a name="next-steps"></a><span data-ttu-id="e5b26-138">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="e5b26-138">Next steps</span></span>
+<span data-ttu-id="e5b26-139">En savoir plus sur la configuration de la [synchronisation Azure AD Connect](active-directory-aadconnectsync-whatis.md) .</span><span class="sxs-lookup"><span data-stu-id="e5b26-139">Learn more about the [Azure AD Connect sync](active-directory-aadconnectsync-whatis.md) configuration.</span></span>
+
+<span data-ttu-id="e5b26-140">En savoir plus sur l’ [intégration de vos identités locales avec Azure Active Directory](active-directory-aadconnect.md).</span><span class="sxs-lookup"><span data-stu-id="e5b26-140">Learn more about [Integrating your on-premises identities with Azure Active Directory](active-directory-aadconnect.md).</span></span>

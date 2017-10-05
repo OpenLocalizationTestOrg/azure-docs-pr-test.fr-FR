@@ -1,0 +1,68 @@
+---
+title: "Ajouter ou supprimer un rôle d’utilisateur | Microsoft Docs"
+description: "Découvrez comment ajouter des rôles privilégiés avec l’application Azure Active Directory Privileged Identity Management."
+services: active-directory
+documentationcenter: 
+author: billmath
+manager: femila
+editor: 
+ms.assetid: 6a47ced8-cf34-4ce8-bea2-e4fc548cfe22
+ms.service: active-directory
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: identity
+ms.date: 06/06/2017
+ms.author: billmath
+ms.custom: pim;oldportal;it-pro;
+ms.openlocfilehash: 3ac07bb7b070f44595c099a454b3d0dbc66126c9
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.translationtype: MT
+ms.contentlocale: fr-FR
+ms.lasthandoff: 08/03/2017
+---
+# <a name="azure-ad-privileged-identity-management-how-to-add-or-remove-a-user-role"></a><span data-ttu-id="263fe-103">Azure AD Privileged Identity Management : comment ajouter ou supprimer un rôle d’utilisateur</span><span class="sxs-lookup"><span data-stu-id="263fe-103">Azure AD Privileged Identity Management: How to add or remove a user role</span></span>
+<span data-ttu-id="263fe-104">Avec Azure Active Directory (AD), un administrateur général (ou un administrateur d’entreprise) peut mettre à jour les utilisateurs auxquels des rôles sont **définitivement** affectés dans Azure AD.</span><span class="sxs-lookup"><span data-stu-id="263fe-104">With Azure Active Directory (AD), a global administrator (or company administrator) can update which users are **permanently** assigned to roles in Azure AD.</span></span> <span data-ttu-id="263fe-105">Cette opération s’effectue avec les applets de commande PowerShell, telles que `Add-MsolRoleMember` et `Remove-MsolRoleMember`.</span><span class="sxs-lookup"><span data-stu-id="263fe-105">This is done with PowerShell cmdlets like `Add-MsolRoleMember` and `Remove-MsolRoleMember`.</span></span> <span data-ttu-id="263fe-106">Il peut également utiliser le portail Azure Classic comme décrit dans [Attribution de rôles d’administrateur dans Azure Active Directory](active-directory-assign-admin-roles.md).</span><span class="sxs-lookup"><span data-stu-id="263fe-106">Or they can use the Azure classic portal as described in [assigning administrator roles in Azure Active Directory](active-directory-assign-admin-roles.md).</span></span>
+
+<span data-ttu-id="263fe-107">L’application Azure AD Privileged Identity Management permet aux administrateurs de rôle privilégié de rendre les affectations de rôle permanentes.</span><span class="sxs-lookup"><span data-stu-id="263fe-107">The Azure AD Privileged Identity Management application allows privileged role administrators to make permanent role assignments, as well.</span></span> <span data-ttu-id="263fe-108">En outre, les administrateurs de rôle privilégié peuvent rendre les utilisateurs **éligibles** pour les rôles d’administrateur.</span><span class="sxs-lookup"><span data-stu-id="263fe-108">Additionally, privileged role administrators can make users **eligible** for admin roles.</span></span> <span data-ttu-id="263fe-109">Un administrateur éligible peut activer le rôle lorsqu’il en a besoin, puis l’autorisation expirera lorsqu’il aura terminé.</span><span class="sxs-lookup"><span data-stu-id="263fe-109">An eligible admin can activate the role when they need it, and then their permissions expire once they're done.</span></span>
+
+## <a name="manage-roles-with-pim-in-the-azure-portal"></a><span data-ttu-id="263fe-110">Gérer des rôles avec PIM dans le portail Azure</span><span class="sxs-lookup"><span data-stu-id="263fe-110">Manage roles with PIM in the Azure portal</span></span>
+<span data-ttu-id="263fe-111">Vous pouvez affecter aux utilisateurs de votre organisation différents rôles administratifs dans Azure AD, Office 365, et d’autres services et applications Microsoft.</span><span class="sxs-lookup"><span data-stu-id="263fe-111">In your organization, you can assign users to different administrative roles in Azure AD, Office 365, and other Microsoft services and applications.</span></span>  <span data-ttu-id="263fe-112">Vous trouverez plus d’informations sur les rôles disponibles dans [Rôles dans Azure AD PIM](active-directory-privileged-identity-management-roles.md).</span><span class="sxs-lookup"><span data-stu-id="263fe-112">More details on the available roles can be found at [Roles in Azure AD PIM](active-directory-privileged-identity-management-roles.md).</span></span>
+
+<span data-ttu-id="263fe-113">Pour ajouter ou supprimer un utilisateur dans un rôle à l’aide de Privileged Identity Management, affichez le tableau de bord PIM.</span><span class="sxs-lookup"><span data-stu-id="263fe-113">To add or remove a user in a role using Privileged Identity Management, bring up the PIM dashboard.</span></span> <span data-ttu-id="263fe-114">Puis, cliquez sur le bouton **Utilisateurs dans les rôles d’administrateur** ou sélectionnez un rôle spécifique (comme Administrateur général) dans la table des rôles.</span><span class="sxs-lookup"><span data-stu-id="263fe-114">Then either click the **Users in Admin Roles** button, or select a specific role (such as Global Administrator) from the roles table.</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="263fe-115">Si vous n’avez pas encore activé PIM dans le portail Azure, accédez à [Prise en main d’Azure AD PIM](active-directory-privileged-identity-management-getting-started.md) pour plus d’informations.</span><span class="sxs-lookup"><span data-stu-id="263fe-115">If you haven't enabled PIM in the Azure portal yet, go to [Get started with Azure AD PIM](active-directory-privileged-identity-management-getting-started.md) for details.</span></span>
+
+<span data-ttu-id="263fe-116">Si vous souhaitez donner l’accès à PIM à un autre utilisateur, consultez [Comment accorder l’accès à PIM](active-directory-privileged-identity-management-how-to-give-access-to-pim.md)pour plus d’informations sur les rôles qu’exige PIM.</span><span class="sxs-lookup"><span data-stu-id="263fe-116">If you want to give another user access to PIM itself, the roles which PIM requires the user to have are described further in [how to give access to PIM](active-directory-privileged-identity-management-how-to-give-access-to-pim.md).</span></span>
+
+## <a name="add-a-user-to-a-role"></a><span data-ttu-id="263fe-117">Ajouter un utilisateur à un rôle</span><span class="sxs-lookup"><span data-stu-id="263fe-117">Add a user to a role</span></span>
+1. <span data-ttu-id="263fe-118">Dans le [portail Azure](https://portal.azure.com/), sélectionnez la mosaïque **Azure AD Privileged Identity Management** sur le tableau de bord.</span><span class="sxs-lookup"><span data-stu-id="263fe-118">In the [Azure portal](https://portal.azure.com/), select the **Azure AD Privileged Identity Management** tile on the dashboard.</span></span>
+2. <span data-ttu-id="263fe-119">Sélectionnez **Gérer les rôles privilégiés**.</span><span class="sxs-lookup"><span data-stu-id="263fe-119">Select **Manage privileged roles**.</span></span>
+3. <span data-ttu-id="263fe-120">Dans la table **Résumé des rôles** , puis sélectionnez le rôle que vous souhaitez gérer.</span><span class="sxs-lookup"><span data-stu-id="263fe-120">In the **Role summary** table, select the role you want to manage.</span></span>
+4. <span data-ttu-id="263fe-121">Dans le panneau du rôle, sélectionnez **Ajouter**.</span><span class="sxs-lookup"><span data-stu-id="263fe-121">In the role blade, select **Add**.</span></span>
+5. <span data-ttu-id="263fe-122">Cliquez sur **Sélectionner les utilisateurs** et recherchez l’utilisateur dans le panneau **Sélectionner les utilisateurs**.</span><span class="sxs-lookup"><span data-stu-id="263fe-122">Click **Select users** and search for the user on the **Select users** blade.</span></span>  
+6. <span data-ttu-id="263fe-123">Sélectionnez l’utilisateur dans la liste des résultats, puis cliquez sur **OK**.</span><span class="sxs-lookup"><span data-stu-id="263fe-123">Select the user from the search results list, and click **Done**.</span></span>
+7. <span data-ttu-id="263fe-124">Cliquez sur **OK** pour enregistrer votre sélection.</span><span class="sxs-lookup"><span data-stu-id="263fe-124">Click **OK** to save your selection.</span></span> <span data-ttu-id="263fe-125">L’utilisateur que vous avez sélectionné apparaît comme éligible pour ce rôle.</span><span class="sxs-lookup"><span data-stu-id="263fe-125">The user you have selected will appear in the list as eligible for the role.</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="263fe-126">Les nouveaux utilisateurs d’un rôle sont uniquement éligibles pour le rôle par défaut.</span><span class="sxs-lookup"><span data-stu-id="263fe-126">New users in a role are only eligible for the role by default.</span></span> <span data-ttu-id="263fe-127">Si vous souhaitez conserver le rôle, cliquez sur l’utilisateur dans la liste.</span><span class="sxs-lookup"><span data-stu-id="263fe-127">If you want to make the role permanent, click the user in the list.</span></span> <span data-ttu-id="263fe-128">Les informations de l’utilisateur s’affichent dans un nouveau panneau.</span><span class="sxs-lookup"><span data-stu-id="263fe-128">The user's information will appear in a new blade.</span></span> <span data-ttu-id="263fe-129">Sélectionnez **Rendre permanent** dans le menu des informations utilisateur.</span><span class="sxs-lookup"><span data-stu-id="263fe-129">Select **Make perm** in the user information menu.</span></span>  
+> <span data-ttu-id="263fe-130">Si un utilisateur ne peut pas inscrire pour Azure multi-Factor Authentication (MFA), ou qu’il utilise un compte Microsoft (généralement @outlook.com), vous devez les rendre permanentes dans leurs rôles.</span><span class="sxs-lookup"><span data-stu-id="263fe-130">If a user cannot register for Azure Multi-Factor Authentication (MFA), or is using a Microsoft account (usually @outlook.com), you need to make them permanent in all their roles.</span></span> <span data-ttu-id="263fe-131">Les administrateurs éligibles sont invités à s’inscrire à MFA lors de l’activation.</span><span class="sxs-lookup"><span data-stu-id="263fe-131">Eligible admins are asked to register for MFA during activation.</span></span>
+
+<span data-ttu-id="263fe-132">Maintenant que l’utilisateur est éligible à un rôle, indiquez-lui qu’il peut l’activer en suivant les instructions dans [Comment activer ou désactiver un rôle](active-directory-privileged-identity-management-how-to-activate-role.md).</span><span class="sxs-lookup"><span data-stu-id="263fe-132">Now that the user is eligible for a role, let them know that they can activate it according to the instructions in [How to activate or deactivate a role](active-directory-privileged-identity-management-how-to-activate-role.md).</span></span>
+
+## <a name="remove-a-user-from-a-role"></a><span data-ttu-id="263fe-133">Supprimer un utilisateur d’un rôle</span><span class="sxs-lookup"><span data-stu-id="263fe-133">Remove a user from a role</span></span>
+<span data-ttu-id="263fe-134">Vous pouvez supprimer des utilisateurs des attributions de rôle éligible, mais assurez-vous qu’il reste toujours au moins un administrateur général permanent.</span><span class="sxs-lookup"><span data-stu-id="263fe-134">You can remove users from eligible role assignments, but make sure there is always at least one user who is a permanent global administrator.</span></span>
+
+<span data-ttu-id="263fe-135">Suivez ces étapes pour supprimer un utilisateur spécifique d’un rôle :</span><span class="sxs-lookup"><span data-stu-id="263fe-135">Follow these steps to remove a specific user from a role:</span></span>
+
+1. <span data-ttu-id="263fe-136">Accédez au rôle dans la liste des rôles, en sélectionnant un rôle dans le tableau de bord Azure AD PIM ou en cliquant sur le bouton **Utilisateurs dans les rôles d’administrateur** .</span><span class="sxs-lookup"><span data-stu-id="263fe-136">Navigate to the role in the role list either by selecting a role in the Azure AD PIM dashboard or by clicking on the **Users in Admin Roles** button.</span></span>
+2. <span data-ttu-id="263fe-137">Cliquez sur l’utilisateur dans la liste des utilisateurs.</span><span class="sxs-lookup"><span data-stu-id="263fe-137">Click on the user in the user list.</span></span>
+3. <span data-ttu-id="263fe-138">Cliquez sur **Supprimer**.</span><span class="sxs-lookup"><span data-stu-id="263fe-138">Click **Remove**.</span></span> <span data-ttu-id="263fe-139">Un message vous demande de confirmer.</span><span class="sxs-lookup"><span data-stu-id="263fe-139">A message will ask you to confirm.</span></span>
+4. <span data-ttu-id="263fe-140">Cliquez sur **Oui** pour supprimer le rôle de l’utilisateur.</span><span class="sxs-lookup"><span data-stu-id="263fe-140">Click **Yes** to remove the role from the user.</span></span>
+
+<span data-ttu-id="263fe-141">Si vous ne savez pas quels utilisateurs ont toujours besoin de leurs attributions de rôles, vous pouvez [démarrer une révision de l’accès pour le rôle](active-directory-privileged-identity-management-how-to-start-security-review.md).</span><span class="sxs-lookup"><span data-stu-id="263fe-141">If you're not sure which users still need their role assignments, then you can [start an access review for the role](active-directory-privileged-identity-management-how-to-start-security-review.md).</span></span>
+
+## <a name="next-steps"></a><span data-ttu-id="263fe-142">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="263fe-142">Next steps</span></span>
+[!INCLUDE [active-directory-privileged-identity-management-toc](../../includes/active-directory-privileged-identity-management-toc.md)]
+
