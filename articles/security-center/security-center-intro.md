@@ -1,0 +1,160 @@
+---
+title: "Présentation du Centre de sécurité Azure | Microsoft Docs"
+description: "Découvrez le Centre de sécurité Azure, ses fonctionnalités principales et son fonctionnement."
+services: security-center
+documentationcenter: na
+author: TerryLanfear
+manager: MBaldwin
+editor: 
+ms.assetid: 45b9756b-6449-49ec-950b-5ed1e7c56daa
+ms.service: security-center
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: na
+ms.date: 06/16/2017
+ms.author: terrylan
+ms.openlocfilehash: 8951167213da6ab5341c1ca420353ec625ef5424
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.translationtype: MT
+ms.contentlocale: fr-FR
+ms.lasthandoff: 07/11/2017
+---
+# <a name="introduction-to-azure-security-center"></a><span data-ttu-id="f4733-103">Présentation du Centre de sécurité Azure</span><span class="sxs-lookup"><span data-stu-id="f4733-103">Introduction to Azure Security Center</span></span>
+<span data-ttu-id="f4733-104">Découvrez le Centre de sécurité Azure, ses fonctionnalités principales et son fonctionnement.</span><span class="sxs-lookup"><span data-stu-id="f4733-104">Learn about Azure Security Center, its key capabilities, and how it works.</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="f4733-105">Depuis début juin 2017, Security Center utilise Microsoft Monitoring Agent pour collecter et stocker des données.</span><span class="sxs-lookup"><span data-stu-id="f4733-105">Beginning in early June 2017, Security Center will use the Microsoft Monitoring Agent to collect and store data.</span></span> <span data-ttu-id="f4733-106">Pour plus d’informations, consultez l’article [Migration de plateforme Azure Security Center](security-center-platform-migration.md).</span><span class="sxs-lookup"><span data-stu-id="f4733-106">See [Azure Security Center Platform Migration](security-center-platform-migration.md) to learn more.</span></span> <span data-ttu-id="f4733-107">Les informations contenues dans cet article représentent les fonctionnalités de Security Center après la transition vers Microsoft Monitoring Agent.</span><span class="sxs-lookup"><span data-stu-id="f4733-107">The information in this article represents Security Center functionality after transition to the Microsoft Monitoring Agent.</span></span>
+>
+>
+
+## <a name="what-is-azure-security-center"></a><span data-ttu-id="f4733-108">Qu’est-ce que le Centre de sécurité Azure ?</span><span class="sxs-lookup"><span data-stu-id="f4733-108">What is Azure Security Center?</span></span>
+ <span data-ttu-id="f4733-109">Le Centre de sécurité vous aide à prévenir, détecter et résoudre les menaces grâce à une visibilité et un contrôle accrus de la sécurité de vos ressources Azure.</span><span class="sxs-lookup"><span data-stu-id="f4733-109">Security Center helps you prevent, detect, and respond to threats with increased visibility into and control over the security of your Azure resources.</span></span> <span data-ttu-id="f4733-110">Il fournit une surveillance de la sécurité et une gestion des stratégies intégrées pour l’ensemble de vos abonnements Azure, vous aidant ainsi à détecter les menaces qui pourraient passer inaperçues. De plus, il est compatible avec un vaste écosystème de solutions de sécurité.</span><span class="sxs-lookup"><span data-stu-id="f4733-110">It provides integrated security monitoring and policy management across your Azure subscriptions, helps detect threats that might otherwise go unnoticed, and works with a broad ecosystem of security solutions.</span></span>
+
+## <a name="key-capabilities"></a><span data-ttu-id="f4733-111">Fonctionnalités clés</span><span class="sxs-lookup"><span data-stu-id="f4733-111">Key capabilities</span></span>
+ <span data-ttu-id="f4733-112">Le Centre de sécurité propose des fonctions de prévention, de détection et de réponse aux menaces conviviales et efficaces, intégrées dans Azure.</span><span class="sxs-lookup"><span data-stu-id="f4733-112">Security Center delivers easy-to-use and effective threat prevention, detection, and response capabilities that are built in to Azure.</span></span> <span data-ttu-id="f4733-113">Ses fonctionnalités principales sont les suivantes :</span><span class="sxs-lookup"><span data-stu-id="f4733-113">Key capabilities are:</span></span>
+
+| <span data-ttu-id="f4733-114">Étape</span><span class="sxs-lookup"><span data-stu-id="f4733-114">Stage</span></span> | <span data-ttu-id="f4733-115">Fonctionnalité</span><span class="sxs-lookup"><span data-stu-id="f4733-115">Capability</span></span> |
+| --- | --- |
+| <span data-ttu-id="f4733-116">Prévention</span><span class="sxs-lookup"><span data-stu-id="f4733-116">Prevent</span></span> |<span data-ttu-id="f4733-117">Surveille l’état de sécurité de vos ressources Azure</span><span class="sxs-lookup"><span data-stu-id="f4733-117">Monitors the security state of your Azure resources</span></span> |
+| <span data-ttu-id="f4733-118">Prévention</span><span class="sxs-lookup"><span data-stu-id="f4733-118">Prevent</span></span> | <span data-ttu-id="f4733-119">Définit des stratégies pour vos abonnements Azure en fonction des exigences en matière de sécurité de votre entreprise, du type d’application que vous utilisez et de la confidentialité de vos données</span><span class="sxs-lookup"><span data-stu-id="f4733-119">Defines policies for your Azure subscriptions based on your company’s security requirements, the types of applications that you use, and the sensitivity of your data</span></span> |
+| <span data-ttu-id="f4733-120">Prévention</span><span class="sxs-lookup"><span data-stu-id="f4733-120">Prevent</span></span> | <span data-ttu-id="f4733-121">Utilise des recommandations de sécurité basées sur des stratégies pour guider les propriétaires de services dans le processus d’implémentation de contrôles nécessaires.</span><span class="sxs-lookup"><span data-stu-id="f4733-121">Uses policy-driven security recommendations to guide service owners through the process of implementing needed controls</span></span> |
+| <span data-ttu-id="f4733-122">Prévention</span><span class="sxs-lookup"><span data-stu-id="f4733-122">Prevent</span></span> | <span data-ttu-id="f4733-123">Déploie rapidement des services de sécurité et les appliances de Microsoft et de partenaires</span><span class="sxs-lookup"><span data-stu-id="f4733-123">Rapidly deploys security services and appliances from Microsoft and partners</span></span> |
+| <span data-ttu-id="f4733-124">Détection</span><span class="sxs-lookup"><span data-stu-id="f4733-124">Detect</span></span> |<span data-ttu-id="f4733-125">Collecte et analyse automatiquement des données de sécurité à partir de vos ressources Azure, du réseau et des solutions partenaires telles que les logiciels anti-programme malveillant et les pare-feu.</span><span class="sxs-lookup"><span data-stu-id="f4733-125">Automatically collects and analyzes security data from your Azure resources, the network, and partner solutions like antimalware programs and firewalls</span></span> |
+| <span data-ttu-id="f4733-126">Détection</span><span class="sxs-lookup"><span data-stu-id="f4733-126">Detect</span></span> | <span data-ttu-id="f4733-127">Utilise des informations globales concernant des menaces provenant de produits et services Microsoft, de Microsoft Digital Crimes Unit (DCU), de Microsoft Security Response Center (MSRC) et de sources externes</span><span class="sxs-lookup"><span data-stu-id="f4733-127">Uses global threat intelligence from Microsoft products and services, the Microsoft Digital Crimes Unit (DCU), the Microsoft Security Response Center (MSRC), and external feeds</span></span> |
+| <span data-ttu-id="f4733-128">Détection</span><span class="sxs-lookup"><span data-stu-id="f4733-128">Detect</span></span> | <span data-ttu-id="f4733-129">Applique des analyses avancées, notamment l’apprentissage automatique (Machine Learning) et des études du comportement</span><span class="sxs-lookup"><span data-stu-id="f4733-129">Applies advanced analytics, including machine learning and behavioral analysis</span></span> |
+| <span data-ttu-id="f4733-130">Réponse</span><span class="sxs-lookup"><span data-stu-id="f4733-130">Respond</span></span> |<span data-ttu-id="f4733-131">Fournit des notifications d’incidents/alertes de sécurité hiérarchisées</span><span class="sxs-lookup"><span data-stu-id="f4733-131">Provides prioritized security incidents/alerts</span></span> |
+| <span data-ttu-id="f4733-132">Réponse</span><span class="sxs-lookup"><span data-stu-id="f4733-132">Respond</span></span> | <span data-ttu-id="f4733-133">Donne des informations sur la source de l’attaque et les ressources affectés</span><span class="sxs-lookup"><span data-stu-id="f4733-133">Offers insights into the source of the attack and impacted resources</span></span> |
+| <span data-ttu-id="f4733-134">Réponse</span><span class="sxs-lookup"><span data-stu-id="f4733-134">Respond</span></span> | <span data-ttu-id="f4733-135">Suggère des manières d’empêcher l’attaque en cours et d’empêcher des attaques futures</span><span class="sxs-lookup"><span data-stu-id="f4733-135">Suggests ways to stop the current attack and help prevent future attacks</span></span> |
+
+## <a name="introductory-walkthrough"></a><span data-ttu-id="f4733-136">Introduction pas à pas</span><span class="sxs-lookup"><span data-stu-id="f4733-136">Introductory walkthrough</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="f4733-137">Ce document présente le service à l’aide d’un exemple de déploiement.</span><span class="sxs-lookup"><span data-stu-id="f4733-137">This document introduces the service by using an example deployment.</span></span> <span data-ttu-id="f4733-138">Ce document n’est pas un guide pas à pas.</span><span class="sxs-lookup"><span data-stu-id="f4733-138">This document is not a step-by-step guide.</span></span>
+>
+>
+
+ <span data-ttu-id="f4733-139">Le Centre de sécurité est accessible à partir du [portail Azure](https://azure.microsoft.com/features/azure-portal/).</span><span class="sxs-lookup"><span data-stu-id="f4733-139">You access Security Center from the [Azure portal](https://azure.microsoft.com/features/azure-portal/).</span></span> <span data-ttu-id="f4733-140">[Connectez-vous au portail](https://portal.azure.com).</span><span class="sxs-lookup"><span data-stu-id="f4733-140">[Sign in to the portal](https://portal.azure.com).</span></span> <span data-ttu-id="f4733-141">Sous le menu principal du portail, faites défiler la page jusqu’à l’option **Centre de sécurité** ou sélectionnez la vignette **Centre de sécurité** que vous avez préalablement épinglée au tableau de bord du portail.</span><span class="sxs-lookup"><span data-stu-id="f4733-141">Under the main portal menu, scroll to the **Security Center** option or select the **Security Center** tile that you previously pinned to the portal dashboard.</span></span>
+
+![Mosaïque de sécurité dans le portail Azure][1]
+
+<span data-ttu-id="f4733-143">Dans le Centre de sécurité, vous pouvez définir des stratégies de sécurité, surveiller des configurations de sécurité et afficher des alertes de sécurité.</span><span class="sxs-lookup"><span data-stu-id="f4733-143">From Security Center, you can set security policies, monitor security configurations, and view security alerts.</span></span>
+
+### <a name="security-policies"></a><span data-ttu-id="f4733-144">Stratégies de sécurité</span><span class="sxs-lookup"><span data-stu-id="f4733-144">Security policies</span></span>
+<span data-ttu-id="f4733-145">Vous pouvez définir des stratégies pour vos abonnements Azure en fonction des besoins de votre entreprise en termes de sécurité.</span><span class="sxs-lookup"><span data-stu-id="f4733-145">You can define policies for your Azure subscriptions according to your company's security requirements.</span></span> <span data-ttu-id="f4733-146">Vous pouvez également les personnaliser selon les types d’applications que vous utilisez ou de la sensibilité des données dans chaque abonnement.</span><span class="sxs-lookup"><span data-stu-id="f4733-146">You can also tailor them to the types of applications you're using or to the sensitivity of the data in each subscription.</span></span> <span data-ttu-id="f4733-147">Par exemple, les ressources utilisées pour le développement ou le test peuvent présenter des exigences de sécurité différentes de celles qui sont utilisées pour les applications de production.</span><span class="sxs-lookup"><span data-stu-id="f4733-147">For example, resources used for development or testing may have different security requirements than those used for production applications.</span></span> <span data-ttu-id="f4733-148">De même, les applications dont les données sont réglementées telles que les informations d’identification personnelle (PII)) peuvent nécessiter un niveau de sécurité plus élevé.</span><span class="sxs-lookup"><span data-stu-id="f4733-148">Likewise, applications with regulated data like PII may require a higher level of security.</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="f4733-149">Pour modifier une stratégie de sécurité, vous devez avoir le rôle d’administrateur de la sécurité, de propriétaire ou de collaborateur pour l’abonnement concerné.</span><span class="sxs-lookup"><span data-stu-id="f4733-149">To modify a security policy, you must be a Security Administrator or the subscription's Owner or Contributor.</span></span> <span data-ttu-id="f4733-150">Pour plus d’informations sur les rôles et les actions autorisées dans Security Center, consultez [Permissions in Azure Security Center (Autorisations dans Azure Security Center)](security-center-permissions.md).</span><span class="sxs-lookup"><span data-stu-id="f4733-150">To learn more about roles and allowed actions in Security Center, see [Permissions in Azure Security Center](security-center-permissions.md).</span></span>
+>
+>
+
+<span data-ttu-id="f4733-151">Dans le panneau **Centre de sécurité**, sélectionnez la vignette **Stratégie** pour obtenir la liste de vos abonnements et groupes de ressources.</span><span class="sxs-lookup"><span data-stu-id="f4733-151">On the **Security Center** blade, select the **Policy** tile for a list of your subscriptions and resource groups.</span></span>   
+
+![Panneau Centre de sécurité][2]
+
+<span data-ttu-id="f4733-153">Dans le panneau **Stratégie de sécurité**, sélectionnez un abonnement pour afficher les détails de la stratégie.</span><span class="sxs-lookup"><span data-stu-id="f4733-153">On the **Security policy** blade, select a subscription to view the policy details.</span></span>
+
+<span data-ttu-id="f4733-154">La **collecte de données** active la collecte de données pour une stratégie de sécurité.</span><span class="sxs-lookup"><span data-stu-id="f4733-154">**Data collection** enables data collection for a security policy.</span></span> <span data-ttu-id="f4733-155">L’activation autorise les opérations suivantes :</span><span class="sxs-lookup"><span data-stu-id="f4733-155">Enabling provides:</span></span>
+
+* <span data-ttu-id="f4733-156">Analyse quotidienne de toutes les machines virtuelles prises en charge pour la surveillance de la sécurité et le suivi des recommandations.</span><span class="sxs-lookup"><span data-stu-id="f4733-156">Daily scanning of all supported virtual machines (VMs) for security monitoring and recommendations.</span></span>
+* <span data-ttu-id="f4733-157">Collecte d’événements de sécurité à des fins d’analyse et de détection de menaces.</span><span class="sxs-lookup"><span data-stu-id="f4733-157">Collection of security events for analysis and threat detection.</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="f4733-158">La collecte de données est configurée au niveau de l’abonnement.</span><span class="sxs-lookup"><span data-stu-id="f4733-158">Data collection is configured at the subscription level.</span></span>
+>
+>
+
+<span data-ttu-id="f4733-159">Sélectionnez **Stratégie de prévention** pour ouvrir le panneau **Stratégie de prévention**.</span><span class="sxs-lookup"><span data-stu-id="f4733-159">Select **Prevention policy** to open the **Prevention policy** blade.</span></span> <span data-ttu-id="f4733-160">**Afficher les recommandations pour** : vous permet de choisir les contrôles de sécurité que vous voulez surveiller et les recommandations que vous voulez voir en fonction des besoins en matière de sécurité des ressources au sein de l’abonnement.</span><span class="sxs-lookup"><span data-stu-id="f4733-160">**Show recommendations for** lets you choose the security controls that you want to monitor and the recommendations that you want to see based on the security needs of the resources within the subscription.</span></span>
+
+### <a name="security-recommendations"></a><span data-ttu-id="f4733-161">Recommandations de sécurité</span><span class="sxs-lookup"><span data-stu-id="f4733-161">Security recommendations</span></span>
+ <span data-ttu-id="f4733-162">Le Centre de sécurité analyse l’état de sécurité de vos ressources Azure pour identifier les vulnérabilités potentielles.</span><span class="sxs-lookup"><span data-stu-id="f4733-162">Security Center analyzes the security state of your Azure resources to identify potential security vulnerabilities.</span></span> <span data-ttu-id="f4733-163">Une liste de recommandations vous guide tout au long du processus de configuration des contrôles nécessaires.</span><span class="sxs-lookup"><span data-stu-id="f4733-163">A list of recommendations guides you through the process of configuring needed controls.</span></span> <span data-ttu-id="f4733-164">Voici quelques exemples :</span><span class="sxs-lookup"><span data-stu-id="f4733-164">Examples include:</span></span>
+
+* <span data-ttu-id="f4733-165">Approvisionnement d’un logiciel anti-programme malveillant pour identifier et supprimer les programmes malveillants</span><span class="sxs-lookup"><span data-stu-id="f4733-165">Provisioning antimalware to help identify and remove malicious software</span></span>
+* <span data-ttu-id="f4733-166">Configuration de groupes de sécurité réseau et de règles pour contrôler le trafic vers les machines virtuelles</span><span class="sxs-lookup"><span data-stu-id="f4733-166">Configuring network security groups and rules to control traffic to VMs</span></span>
+* <span data-ttu-id="f4733-167">Approvisionnement de pare-feu d’applications web pour protéger vos applications web contre les attaques ciblées</span><span class="sxs-lookup"><span data-stu-id="f4733-167">Provisioning of web application firewalls to help defend against attacks that target your web applications</span></span>
+* <span data-ttu-id="f4733-168">Déploiement de mises à jour système manquantes</span><span class="sxs-lookup"><span data-stu-id="f4733-168">Deploying missing system updates</span></span>
+* <span data-ttu-id="f4733-169">Correction des configurations de système d’exploitation qui ne suivent pas les recommandations</span><span class="sxs-lookup"><span data-stu-id="f4733-169">Addressing OS configurations that do not match the recommended baselines</span></span>
+
+<span data-ttu-id="f4733-170">Cliquez sur la mosaïque **Recommandations** pour obtenir une liste de recommandations.</span><span class="sxs-lookup"><span data-stu-id="f4733-170">Click the **Recommendations** tile for a list of recommendations.</span></span> <span data-ttu-id="f4733-171">Cliquez sur chaque recommandation pour afficher plus d’informations ou prendre des mesures pour résoudre le problème.</span><span class="sxs-lookup"><span data-stu-id="f4733-171">Click each recommendation to view additional information or to take action to resolve the issue.</span></span>
+
+![Recommandations de sécurité dans le Centre de sécurité Azure][5]
+
+### <a name="security-state-of-azure-resources"></a><span data-ttu-id="f4733-173">État de sécurité des ressources Azure</span><span class="sxs-lookup"><span data-stu-id="f4733-173">Security state of Azure resources</span></span>
+<span data-ttu-id="f4733-174">La section **Prévention** du tableau de bord affiche la posture de sécurité globale de votre environnement par type de ressource (machines virtuelles, applications web et autres ressources).</span><span class="sxs-lookup"><span data-stu-id="f4733-174">The **Prevention** section of the dashboard shows the overall security posture of the environment by resource type, including VMs, web applications, and other resources.</span></span>   
+
+<span data-ttu-id="f4733-175">Sélectionnez un type de ressource dans la section **Prévention** pour afficher plus d’informations, notamment une liste des vulnérabilités de sécurité potentielles qui ont été identifiées.</span><span class="sxs-lookup"><span data-stu-id="f4733-175">Select a resource type under **Prevention** to view more information, including a list of any potential security vulnerabilities that have been identified.</span></span> <span data-ttu-id="f4733-176">(Dans l’exemple ci-dessous, **Calcul** est sélectionné.)</span><span class="sxs-lookup"><span data-stu-id="f4733-176">(**Compute** is selected in the example below.)</span></span>
+
+![Mosaïque d’intégrité des ressources][6]
+
+### <a name="security-alerts"></a><span data-ttu-id="f4733-178">Alertes de sécurité</span><span class="sxs-lookup"><span data-stu-id="f4733-178">Security alerts</span></span>
+ <span data-ttu-id="f4733-179">Le Centre de sécurité collecte, analyse et intègre automatiquement les données du journal à partir de vos ressources Azure, du réseau et des solutions partenaires telles que les logiciels anti-programme malveillant et les pare-feu.</span><span class="sxs-lookup"><span data-stu-id="f4733-179">Security Center automatically collects, analyzes, and integrates log data from your Azure resources, the network, and partner solutions like antimalware programs and firewalls.</span></span> <span data-ttu-id="f4733-180">Quand des menaces sont détectées, une alerte de sécurité est créée.</span><span class="sxs-lookup"><span data-stu-id="f4733-180">When threats are detected, a security alert is created.</span></span> <span data-ttu-id="f4733-181">Voici quelques exemples de détections :</span><span class="sxs-lookup"><span data-stu-id="f4733-181">Examples include detection of:</span></span>
+
+* <span data-ttu-id="f4733-182">Des machines virtuelles compromises qui communiquent avec des adresses IP connues comme étant malveillantes</span><span class="sxs-lookup"><span data-stu-id="f4733-182">Compromised VMs communicating with known malicious IP addresses</span></span>
+* <span data-ttu-id="f4733-183">Des programmes malveillants avancés qui sont détectés à l’aide du rapport d’erreurs Windows</span><span class="sxs-lookup"><span data-stu-id="f4733-183">Advanced malware detected by using Windows error reporting</span></span>
+* <span data-ttu-id="f4733-184">Des attaques par force brute contre des machines virtuelles</span><span class="sxs-lookup"><span data-stu-id="f4733-184">Brute force attacks against VMs</span></span>
+* <span data-ttu-id="f4733-185">Des alertes de sécurité de logiciels anti-programme malveillant et de pare-feu intégrés</span><span class="sxs-lookup"><span data-stu-id="f4733-185">Security alerts from integrated antimalware programs and firewalls</span></span>
+
+<span data-ttu-id="f4733-186">Un clic sur la mosaïque **Alertes de sécurité** affiche une liste d’alertes prioritaires.</span><span class="sxs-lookup"><span data-stu-id="f4733-186">Clicking the **Security alerts** tile displays a list of prioritized alerts.</span></span>
+
+![Alertes de sécurité][7]
+
+<span data-ttu-id="f4733-188">Si vous sélectionnez une alerte, des informations supplémentaires sur l’attaque et des suggestions sur la manière d’y remédier s’affichent.</span><span class="sxs-lookup"><span data-stu-id="f4733-188">Selecting an alert shows more information about the attack and suggestions for how to remediate it.</span></span>
+
+![Détails des alertes de sécurité][8]
+
+### <a name="partner-solutions"></a><span data-ttu-id="f4733-190">Solutions de partenaires</span><span class="sxs-lookup"><span data-stu-id="f4733-190">Partner solutions</span></span>
+<span data-ttu-id="f4733-191">La vignette **Solutions de partenaires** permet de surveiller en un coup d’œil l’état de la sécurité de vos solutions de partenaires intégrées à votre abonnement Azure.</span><span class="sxs-lookup"><span data-stu-id="f4733-191">The **Partner solutions** tile lets you monitor at a glance the security state of your partner solutions integrated with your Azure subscription.</span></span> <span data-ttu-id="f4733-192">Le Centre de sécurité affiche les alertes provenant des solutions.</span><span class="sxs-lookup"><span data-stu-id="f4733-192">Security Center displays alerts coming from the solutions.</span></span>
+
+<span data-ttu-id="f4733-193">Sélectionnez la vignette **Solutions de partenaires** .</span><span class="sxs-lookup"><span data-stu-id="f4733-193">Select the **Partner solutions** tile.</span></span> <span data-ttu-id="f4733-194">Un panneau s'ouvre et affiche la liste de toutes les solutions de partenaires connectées.</span><span class="sxs-lookup"><span data-stu-id="f4733-194">A blade opens displaying a list of all connected partner solutions.</span></span>
+
+![Solutions de partenaires][9]
+
+## <a name="get-started"></a><span data-ttu-id="f4733-196">Prise en main</span><span class="sxs-lookup"><span data-stu-id="f4733-196">Get started</span></span>
+<span data-ttu-id="f4733-197">Pour utiliser le Centre de sécurité, vous devez disposer d’un abonnement à Microsoft Azure.</span><span class="sxs-lookup"><span data-stu-id="f4733-197">To get started with Security Center, you need a subscription to Microsoft Azure.</span></span> <span data-ttu-id="f4733-198">Le Centre de sécurité est activé avec votre abonnement Azure.</span><span class="sxs-lookup"><span data-stu-id="f4733-198">Security Center is enabled with your Azure subscription.</span></span> <span data-ttu-id="f4733-199">Si vous n’avez pas d’abonnement, vous pouvez vous inscrire à un [essai gratuit](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="f4733-199">If you do not have a subscription, you can sign up for a [free trial](https://azure.microsoft.com/pricing/free-trial/).</span></span>
+
+ <span data-ttu-id="f4733-200">Le Centre de sécurité est accessible à partir du [portail Azure](https://azure.microsoft.com/features/azure-portal/).</span><span class="sxs-lookup"><span data-stu-id="f4733-200">You access Security Center from the [Azure portal](https://azure.microsoft.com/features/azure-portal/).</span></span> <span data-ttu-id="f4733-201">Pour plus d’informations, voir la [documentation sur le portail](https://azure.microsoft.com/documentation/services/azure-portal/) .</span><span class="sxs-lookup"><span data-stu-id="f4733-201">See the [portal documentation](https://azure.microsoft.com/documentation/services/azure-portal/) to learn more.</span></span>
+
+<span data-ttu-id="f4733-202">[Prise en main du Centre de sécurité Azure](security-center-get-started.md) vous guide à travers les composants de surveillance de sécurité et de gestion des stratégies de sécurité du Centre de sécurité.</span><span class="sxs-lookup"><span data-stu-id="f4733-202">[Getting started with Azure Security Center](security-center-get-started.md) quickly guides you through the security-monitoring and policy-management components of Security Center.</span></span>
+
+## <a name="next-steps"></a><span data-ttu-id="f4733-203">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="f4733-203">Next steps</span></span>
+<span data-ttu-id="f4733-204">Ce document vous a donné un aperçu du Centre de sécurité, de ses fonctions clés et de sa mise en route.</span><span class="sxs-lookup"><span data-stu-id="f4733-204">In this document, you were introduced to Security Center, its key capabilities, and how to get started.</span></span> <span data-ttu-id="f4733-205">Pour en savoir plus, consultez les ressources suivantes :</span><span class="sxs-lookup"><span data-stu-id="f4733-205">To learn more, see the following resources:</span></span>
+
+* <span data-ttu-id="f4733-206">[Définition des stratégies de sécurité dans Azure Security Center](security-center-policies.md) : découvrez comment configurer des stratégies de sécurité pour vos groupes de ressources et abonnements Azure.</span><span class="sxs-lookup"><span data-stu-id="f4733-206">[Setting security policies in Azure Security Center](security-center-policies.md) — Learn how to configure security policies for your Azure subscriptions and resource groups.</span></span>
+* <span data-ttu-id="f4733-207">[Gestion des recommandations de sécurité dans Azure Security Center](security-center-recommendations.md) : découvrez la façon dont les recommandations peuvent vous aider à protéger vos ressources Azure.</span><span class="sxs-lookup"><span data-stu-id="f4733-207">[Managing security recommendations in Azure Security Center](security-center-recommendations.md) — Learn how recommendations help you protect your Azure resources.</span></span>
+* <span data-ttu-id="f4733-208">[Surveillance de l’intégrité de la sécurité dans Azure Security Center](security-center-monitoring.md) : découvrez comment surveiller l’intégrité de vos ressources Azure.</span><span class="sxs-lookup"><span data-stu-id="f4733-208">[Security health monitoring in Azure Security Center](security-center-monitoring.md) — Learn how to monitor the health of your Azure resources.</span></span>
+* <span data-ttu-id="f4733-209">[Gestion et résolution des alertes de sécurité dans Azure Security Center](security-center-managing-and-responding-alerts.md) : découvrez comment gérer et résoudre les alertes de sécurité.</span><span class="sxs-lookup"><span data-stu-id="f4733-209">[Managing and responding to security alerts in Azure Security Center](security-center-managing-and-responding-alerts.md) — Learn how to manage and respond to security alerts.</span></span>
+* <span data-ttu-id="f4733-210">[Surveillance des solutions de partenaire avec Azure Security Center](security-center-partner-solutions.md) : découvrez comment surveiller l’état d’intégrité de vos solutions de partenaire.</span><span class="sxs-lookup"><span data-stu-id="f4733-210">[Monitoring partner solutions with Azure Security Center](security-center-partner-solutions.md) — Learn how to monitor the health status of your partner solutions.</span></span>
+- <span data-ttu-id="f4733-211">[Sécurité des données Azure Security Center](security-center-data-security.md) : découvrez comment les données sont gérées et protégées dans Security Center.</span><span class="sxs-lookup"><span data-stu-id="f4733-211">[Azure Security Center data security](security-center-data-security.md) - Learn how data is managed and safeguarded in Security Center.</span></span>
+* <span data-ttu-id="f4733-212">[FAQ d’Azure Security Center](security-center-faq.md) : découvrez les réponses aux questions les plus souvent posées à propos de l’utilisation de ce service.</span><span class="sxs-lookup"><span data-stu-id="f4733-212">[Azure Security Center FAQ](security-center-faq.md) — Find frequently asked questions about using the service.</span></span>
+* <span data-ttu-id="f4733-213">[Blog sur la sécurité Azure](http://blogs.msdn.com/b/azuresecurity/) : découvrez les dernières nouvelles et informations sur la sécurité Azure.</span><span class="sxs-lookup"><span data-stu-id="f4733-213">[Azure Security blog](http://blogs.msdn.com/b/azuresecurity/) — Get the latest Azure security news and information.</span></span>
+
+<!--Image references-->
+[1]: ./media/security-center-intro/security-tile.png
+[2]: ./media/security-center-intro/security-center.png
+[3]: ./media/security-center-intro/security-policy.png
+[4]: ./media/security-center-intro/security-policy-blade.png
+[5]: ./media/security-center-intro/recommendations.png
+[6]: ./media/security-center-intro/resources-health.png
+[7]: ./media/security-center-intro/security-alert.png
+[8]: ./media/security-center-intro/security-alert-detail.png
+[9]: ./media/security-center-intro/partner-solutions.png

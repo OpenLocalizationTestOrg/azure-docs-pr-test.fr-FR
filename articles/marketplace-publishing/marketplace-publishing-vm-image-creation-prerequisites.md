@@ -1,0 +1,54 @@
+---
+title: "Conditions techniques préalables pour créer une image de machine virtuelle pour Azure Marketplace | Microsoft Docs"
+description: "Découvrez la configuration requise pour créer et déployer une image de machine virtuelle dans Azure Marketplace que d’autres utilisateurs peuvent acheter."
+services: marketplace-publishing
+documentationcenter: 
+author: HannibalSII
+manager: hascipio
+editor: 
+ms.assetid: 63c16966-0304-4b17-a715-368a0a5ccb2c
+ms.service: marketplace
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: Azure
+ms.workload: na
+ms.date: 04/29/2016
+ms.author: hascipio; v-divte
+ms.openlocfilehash: af3e2ad623d8d7bfafe676411f9ae3fbee78aab8
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.translationtype: MT
+ms.contentlocale: fr-FR
+ms.lasthandoff: 07/11/2017
+---
+# <a name="technical-prerequisites-for-creating-a-virtual-machine-image-for-the-azure-marketplace"></a><span data-ttu-id="6f564-103">Conditions techniques préalables pour créer une image de machine virtuelle pour Azure Marketplace</span><span class="sxs-lookup"><span data-stu-id="6f564-103">Technical prerequisites for creating a virtual machine image for the Azure Marketplace</span></span>
+<span data-ttu-id="6f564-104">Avant de commencer, lisez attentivement cette procédure, de manière à comprendre à quel moment effectuer une étape et pourquoi chaque étape doit être exécutée.</span><span class="sxs-lookup"><span data-stu-id="6f564-104">Read the process thoroughly before beginning and understand where and why each step is performed.</span></span> <span data-ttu-id="6f564-105">Autant que possible, préparez les informations et autres données de votre entreprise, téléchargez les outils nécessaires et/ou créez les composants techniques avant de lancer le processus de création de l’offre.</span><span class="sxs-lookup"><span data-stu-id="6f564-105">As much as possible, you should prepare your company information and other data, download necessary tools, and/or create technical components before beginning the offer creation process.</span></span> <span data-ttu-id="6f564-106">Cet article devrait vous aider à mieux comprendre ces étapes.</span><span class="sxs-lookup"><span data-stu-id="6f564-106">These items should be clear from reviewing this article.</span></span>  
+
+## <a name="download-needed-tools--applications"></a><span data-ttu-id="6f564-107">Télécharger les outils et applications nécessaires</span><span class="sxs-lookup"><span data-stu-id="6f564-107">Download needed tools & applications</span></span>
+<span data-ttu-id="6f564-108">Vous devez préparer les éléments suivants avant de commencer le processus :</span><span class="sxs-lookup"><span data-stu-id="6f564-108">You should have the following items ready before beginning the process:</span></span>
+
+* <span data-ttu-id="6f564-109">En fonction du système d’exploitation que vous ciblez, installez les [applets de commande Azure PowerShell](https://www.microsoft.com/web/handlers/webpi.ashx/getinstaller/WindowsAzurePowershellGet.3f.3f.3fnew.appids) ou [l’outil d’interface de ligne de commande Linux](https://go.microsoft.com/fwlink/?LinkId=253472&clcid=0x409) à partir de la page de [téléchargements Azure](https://azure.microsoft.com/downloads/).</span><span class="sxs-lookup"><span data-stu-id="6f564-109">Depending on which operating system you are targeting, install the [Azure PowerShell cmdlets](https://www.microsoft.com/web/handlers/webpi.ashx/getinstaller/WindowsAzurePowershellGet.3f.3f.3fnew.appids) or [Linux command-line interface tool](https://go.microsoft.com/fwlink/?LinkId=253472&clcid=0x409) from the [Azure Downloads](https://azure.microsoft.com/downloads/) page.</span></span>
+* <span data-ttu-id="6f564-110">Installez l’Explorateur de stockage Azure à partir de CodePlex.</span><span class="sxs-lookup"><span data-stu-id="6f564-110">Install Azure Storage Explorer from CodePlex.</span></span>
+* <span data-ttu-id="6f564-111">Téléchargez et installez l’outil « Certification Test Tool for Azure Certified » :</span><span class="sxs-lookup"><span data-stu-id="6f564-111">Download and install the Certification Test Tool for Azure Certified:</span></span>
+  * <span data-ttu-id="6f564-112">[http://go.microsoft.com/fwlink/?LinkID=526913](http://go.microsoft.com/fwlink/?LinkID=526913).</span><span class="sxs-lookup"><span data-stu-id="6f564-112">[http://go.microsoft.com/fwlink/?LinkID=526913](http://go.microsoft.com/fwlink/?LinkID=526913).</span></span> <span data-ttu-id="6f564-113">Vous avez besoin d’un ordinateur Windows pour exécuter l’outil de certification.</span><span class="sxs-lookup"><span data-stu-id="6f564-113">You need a Windows-based computer to run the certification tool.</span></span> <span data-ttu-id="6f564-114">Si vous n’avez pas d’ordinateur Windows disponible, vous pouvez exécuter l’outil dans une machine virtuelle Windows dans Azure.</span><span class="sxs-lookup"><span data-stu-id="6f564-114">If you do not have a Windows-based computer available, you can run the tool using a Windows-based VM in Azure.</span></span>
+
+## <a name="platforms-supported"></a><span data-ttu-id="6f564-115">Plateformes prises en charge :</span><span class="sxs-lookup"><span data-stu-id="6f564-115">Platforms supported</span></span>
+<span data-ttu-id="6f564-116">Vous pouvez développer des machines virtuelles Azure sur Windows ou Linux.</span><span class="sxs-lookup"><span data-stu-id="6f564-116">You can develop Azure-based VMs on Windows or Linux.</span></span> <span data-ttu-id="6f564-117">Certains éléments du processus de publication, tels que la création d’un disque dur virtuel compatible Azure, demandent différents outils et étapes en fonction du système d’exploitation que vous utilisez.</span><span class="sxs-lookup"><span data-stu-id="6f564-117">Some elements of the publishing process--such as creating an Azure-compatible virtual hard disk (VHD)--use different tools and steps depending on which operating system you are using:</span></span>  
+
+* <span data-ttu-id="6f564-118">Si vous utilisez Linux, reportez-vous à la section « Créer un disque dur virtuel compatible Azure (basé sur Linux) » du [Guide de publication d’une image de machine virtuelle](marketplace-publishing-vm-image-creation.md).</span><span class="sxs-lookup"><span data-stu-id="6f564-118">If you are using Linux, refer to the “Create an Azure-compatible VHD (Linux-based)” section of the [Virtual machine image publishing guide](marketplace-publishing-vm-image-creation.md).</span></span>
+* <span data-ttu-id="6f564-119">Si vous utilisez Windows, reportez-vous à la section « Créer un disque dur virtuel compatible Azure (basé sur Windows) » du [Guide de publication d’une image de machine virtuelle](marketplace-publishing-vm-image-creation.md).</span><span class="sxs-lookup"><span data-stu-id="6f564-119">If you are using Windows, refer to the “Create an Azure-compatible VHD (Windows-based)” section of the [Virtual machine image publishing guide](marketplace-publishing-vm-image-creation.md).</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="6f564-120">Vous devez accéder à une machine virtuelle Windows pour :</span><span class="sxs-lookup"><span data-stu-id="6f564-120">You need access to a Windows-based machine to:</span></span>
+> 
+> * <span data-ttu-id="6f564-121">Exécuter l’outil de validation de certification.</span><span class="sxs-lookup"><span data-stu-id="6f564-121">Run the certification validation tool.</span></span>
+> * <span data-ttu-id="6f564-122">Créer l’URL de signature d’accès partagé au disque dur virtuel pour l’envoi de la certification du disque dur virtuel.</span><span class="sxs-lookup"><span data-stu-id="6f564-122">Create the VHD shared access signature URL for the VHD certification submission.</span></span>
+> 
+> 
+
+## <a name="develop-your-vhd"></a><span data-ttu-id="6f564-123">Développement de votre disque dur virtuel</span><span class="sxs-lookup"><span data-stu-id="6f564-123">Develop your VHD</span></span>
+<span data-ttu-id="6f564-124">Vous pouvez développer des disques durs virtuels Azure dans le cloud ou localement :</span><span class="sxs-lookup"><span data-stu-id="6f564-124">You can develop Azure VHDs in the cloud or on-premises:</span></span>
+
+* <span data-ttu-id="6f564-125">Un développement dans le cloud signifie que toutes les étapes de développement sont effectuées à distance sur un disque dur virtuel résidant sur Azure.</span><span class="sxs-lookup"><span data-stu-id="6f564-125">Cloud-based development means all development steps are performed remotely on a VHD resident on Azure.</span></span>
+* <span data-ttu-id="6f564-126">Un développement local nécessite de télécharger un disque dur virtuel et de le développer dans une infrastructure locale.</span><span class="sxs-lookup"><span data-stu-id="6f564-126">On-premises development requires downloading a VHD and developing it using on-premises infrastructure.</span></span> <span data-ttu-id="6f564-127">Bien que cela soit possible, nous ne le recommandons pas.</span><span class="sxs-lookup"><span data-stu-id="6f564-127">Although this is possible, we do not recommend it.</span></span> <span data-ttu-id="6f564-128">Notez que le développement local pour Windows ou SQL implique que vous disposiez des clés de licence locales correspondantes.</span><span class="sxs-lookup"><span data-stu-id="6f564-128">Note that developing for Windows or SQL on-premises requires you to have the relevant on-premises license keys.</span></span> <span data-ttu-id="6f564-129">Vous ne pouvez pas inclure ou installer SQL Server après la création d'une machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="6f564-129">You cannot include or install SQL Server after creating a VM.</span></span> <span data-ttu-id="6f564-130">Vous devez également baser votre offre sur une image SQL approuvée du portail Azure.</span><span class="sxs-lookup"><span data-stu-id="6f564-130">You must also base your offer on an approved SQL image from the Azure portal.</span></span> <span data-ttu-id="6f564-131">Si vous décidez d’effectuer un développement local, certaines étapes diffèrent de celle d’un développement dans le cloud.</span><span class="sxs-lookup"><span data-stu-id="6f564-131">If you decide to develop on-premises, you must perform some steps differently than if you were developing in the cloud.</span></span> <span data-ttu-id="6f564-132">Pour les informations correspondantes, consultez [Création d’une image de machine virtuelle locale](marketplace-publishing-vm-image-creation-on-premise.md).</span><span class="sxs-lookup"><span data-stu-id="6f564-132">You can find relevant information in [Create an on-premises VM image](marketplace-publishing-vm-image-creation-on-premise.md).</span></span>
+
+[link-acct-creation]:marketplace-publishing-accounts-creation-registration.md
