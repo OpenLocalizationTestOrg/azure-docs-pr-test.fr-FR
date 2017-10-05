@@ -1,0 +1,37 @@
+---
+title: Connecter des machines virtuelles Windows dans un service cloud | Microsoft Docs
+description: "Connectez des machines virtuelles Windows créées avec le modèle de déploiement classique à un service cloud ou à un réseau virtuel Azure."
+services: virtual-machines-windows
+documentationcenter: 
+author: cynthn
+manager: timlt
+editor: 
+tags: azure-service-management
+ms.assetid: c1cbc802-4352-4d2e-9e49-4ccbd955324b
+ms.service: virtual-machines-windows
+ms.workload: infrastructure-services
+ms.tgt_pltfrm: vm-windows
+ms.devlang: na
+ms.topic: article
+ms.date: 06/06/2017
+ms.author: cynthn
+ms.openlocfilehash: 0c7a21461e5bb111c4359df8e949d48382b591c1
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.translationtype: MT
+ms.contentlocale: fr-FR
+ms.lasthandoff: 07/11/2017
+---
+# <a name="connect-windows-virtual-machines-created-with-the-classic-deployment-model-with-a-virtual-network-or-cloud-service"></a><span data-ttu-id="438ca-103">Connecter des machines virtuelles Windows créées avec le modèle de déploiement classique à un réseau virtuel ou à un service cloud</span><span class="sxs-lookup"><span data-stu-id="438ca-103">Connect Windows virtual machines created with the classic deployment model with a virtual network or cloud service</span></span>
+> [!IMPORTANT]
+> <span data-ttu-id="438ca-104">Azure dispose de deux modèles de déploiement différents pour créer et utiliser des ressources : [le déploiement Resource Manager et le déploiement classique](../../../resource-manager-deployment-model.md).</span><span class="sxs-lookup"><span data-stu-id="438ca-104">Azure has two different deployment models for creating and working with resources: [Resource Manager and Classic](../../../resource-manager-deployment-model.md).</span></span> <span data-ttu-id="438ca-105">Cet article traite du modèle de déploiement classique.</span><span class="sxs-lookup"><span data-stu-id="438ca-105">This article covers using the Classic deployment model.</span></span> <span data-ttu-id="438ca-106">Pour la plupart des nouveaux déploiements, Microsoft recommande d’utiliser le modèle Resource Manager.</span><span class="sxs-lookup"><span data-stu-id="438ca-106">Microsoft recommends that most new deployments use the Resource Manager model.</span></span>
+
+<span data-ttu-id="438ca-107">Les machines virtuelles Windows créées avec le modèle de déploiement classique sont toujours placées dans un service cloud.</span><span class="sxs-lookup"><span data-stu-id="438ca-107">Windows virtual machines created with the classic deployment model are always placed in a cloud service.</span></span> <span data-ttu-id="438ca-108">Le service cloud fait office de conteneur et fournit un nom DNS public unique, une adresse IP publique et un ensemble de points de terminaison pour accéder à la machine virtuelle via Internet.</span><span class="sxs-lookup"><span data-stu-id="438ca-108">The cloud service acts as a container and provides a unique public DNS name, a public IP address, and a set of endpoints to access the virtual machine over the Internet.</span></span> <span data-ttu-id="438ca-109">Le service cloud peut être dans un réseau virtuel, mais ce n’est pas obligatoire.</span><span class="sxs-lookup"><span data-stu-id="438ca-109">The cloud service can be in a virtual network, but that's not a requirement.</span></span> <span data-ttu-id="438ca-110">Vous pouvez également [connecter des machines virtuelles Linux à un réseau virtuel ou à un service cloud](../../linux/classic/connect-vms.md).</span><span class="sxs-lookup"><span data-stu-id="438ca-110">You can also [connect Linux virtual machines with a virtual network or cloud service](../../linux/classic/connect-vms.md).</span></span>
+
+<span data-ttu-id="438ca-111">Si un service cloud n’est pas dans un réseau virtuel, il est nommé « service cloud *autonome* ».</span><span class="sxs-lookup"><span data-stu-id="438ca-111">If a cloud service isn't in a virtual network, it's called a *standalone* cloud service.</span></span> <span data-ttu-id="438ca-112">Les machines virtuelles dans un service cloud autonome communiquent avec d’autres machines virtuelles à l’aide des noms DNS publics de celles-ci, et ce trafic circule sur Internet.</span><span class="sxs-lookup"><span data-stu-id="438ca-112">The virtual machines in a standalone cloud service communicate with other virtual machines by using the other virtual machines’ public DNS names, and the traffic travels over the Internet.</span></span> <span data-ttu-id="438ca-113">Si un service cloud se trouve dans un réseau virtuel, les machines virtuelles de ce service cloud peuvent communiquer avec toutes les autres machines virtuelles du réseau virtuel sans envoyer aucun trafic sur Internet.</span><span class="sxs-lookup"><span data-stu-id="438ca-113">If a cloud service is in a virtual network, the virtual machines in that cloud service can communicate with all other virtual machines in the virtual network without sending any traffic over the Internet.</span></span>
+
+<span data-ttu-id="438ca-114">Si vous placez vos machines virtuelles dans le même service cloud autonome, vous pouvez toujours utiliser l’équilibrage de charge et des groupes à haute disponibilité.</span><span class="sxs-lookup"><span data-stu-id="438ca-114">If you place your virtual machines in the same standalone cloud service, you can still use load balancing and availability sets.</span></span> <span data-ttu-id="438ca-115">Pour plus d’informations, consultez les pages [Équilibrage de charge des machines virtuelles](../../virtual-machines-windows-load-balance.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) et [Gestion de la disponibilité des machines virtuelles](../../virtual-machines-windows-manage-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="438ca-115">For details, see [Load balancing virtual machines](../../virtual-machines-windows-load-balance.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) and [Manage the availability of virtual machines](../../virtual-machines-windows-manage-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).</span></span> <span data-ttu-id="438ca-116">Toutefois, vous ne pouvez pas organiser les machines virtuelles sur des sous-réseaux ou connecter un service cloud autonome à votre réseau local.</span><span class="sxs-lookup"><span data-stu-id="438ca-116">However, you can't organize the virtual machines on subnets or connect a standalone cloud service to your on-premises network.</span></span> <span data-ttu-id="438ca-117">Voici un exemple :</span><span class="sxs-lookup"><span data-stu-id="438ca-117">Here's an example:</span></span>
+
+[!INCLUDE [virtual-machines-common-classic-connect-vms](../../../../includes/virtual-machines-common-classic-connect-vms.md)]
+
+## <a name="next-steps"></a><span data-ttu-id="438ca-118">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="438ca-118">Next steps</span></span>
+<span data-ttu-id="438ca-119">Une fois que vous avez créé une machine virtuelle, il convient de lui [ajouter un disque de données](attach-disk.md) pour que vos services et charges de travail disposent d’un emplacement de stockage des données.</span><span class="sxs-lookup"><span data-stu-id="438ca-119">After you create a virtual machine, it's a good idea to [add a data disk](attach-disk.md) so your services and workloads have a location to store data.</span></span>

@@ -1,0 +1,54 @@
+---
+title: "Résoudre les problèmes liés à Azure RemoteApp : échecs de lancement et de connexion d’applications | Microsoft Docs"
+description: "Apprenez à résoudre les problèmes liés au démarrage et à la connexion d’applications dans Azure RemoteApp."
+services: remoteapp
+documentationcenter: 
+author: ericorman
+manager: mbaldwin
+ms.assetid: e5cf7171-d1c2-4053-a38b-5af7821305e1
+ms.service: remoteapp
+ms.workload: compute
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 04/26/2017
+ms.author: mbaldwin
+ms.openlocfilehash: fc9d538991adce7fc13e9654b9a7c6d113d03fde
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.translationtype: MT
+ms.contentlocale: fr-FR
+ms.lasthandoff: 07/11/2017
+---
+# <a name="troubleshoot-azure-remoteapp---application-launch-and-connection-failures"></a><span data-ttu-id="1abf4-103">Résoudre les problèmes liés à Azure RemoteApp : échecs de lancement et de connexion d’applications</span><span class="sxs-lookup"><span data-stu-id="1abf4-103">Troubleshoot Azure RemoteApp - Application launch and connection failures</span></span>
+> [!IMPORTANT]
+> <span data-ttu-id="1abf4-104">Azure RemoteApp ne sera plus disponible à partir du 31 août 2017.</span><span class="sxs-lookup"><span data-stu-id="1abf4-104">Azure RemoteApp is being discontinued on August 31, 2017.</span></span> <span data-ttu-id="1abf4-105">Pour plus d’informations, lisez [l’annonce](https://go.microsoft.com/fwlink/?linkid=821148) .</span><span class="sxs-lookup"><span data-stu-id="1abf4-105">Read the [announcement](https://go.microsoft.com/fwlink/?linkid=821148) for details.</span></span>
+> 
+> 
+
+<span data-ttu-id="1abf4-106">Le lancement des applications hébergées dans Azure RemoteApp peut échouer pour différentes raisons.</span><span class="sxs-lookup"><span data-stu-id="1abf4-106">Applications hosted in Azure RemoteApp can fail to launch for a few different reasons.</span></span> <span data-ttu-id="1abf4-107">Cet article décrit ces diverses raisons et les messages d’erreur que les utilisateurs peuvent recevoir quand ils essaient de lancer des applications.</span><span class="sxs-lookup"><span data-stu-id="1abf4-107">This article describes various reasons and error messages users might receive when trying to launch applications.</span></span> <span data-ttu-id="1abf4-108">Il traite également des échecs de connexion.</span><span class="sxs-lookup"><span data-stu-id="1abf4-108">It also talks about connection failures.</span></span> <span data-ttu-id="1abf4-109">(Mais cet article ne décrit pas les problèmes de connexion au client Azure RemoteApp.)</span><span class="sxs-lookup"><span data-stu-id="1abf4-109">(But this article does not describe issues when signing into the Azure RemoteApp client.)</span></span>  
+
+<span data-ttu-id="1abf4-110">Lisez la suite pour plus d’informations sur les messages d’erreur courants dus à des échecs de lancement et de connexion d’applications.</span><span class="sxs-lookup"><span data-stu-id="1abf4-110">Read on for information about common error messages due to app launch and connection failures.</span></span>
+
+## <a name="were-getting-you-set-up-try-again-in-10-minutes"></a><span data-ttu-id="1abf4-111">Nous vous configurons... Réessayez dans 10 minutes.</span><span class="sxs-lookup"><span data-stu-id="1abf4-111">We're getting you set up... Try again in 10 minutes.</span></span>
+<span data-ttu-id="1abf4-112">Cette erreur signifie qu’Azure RemoteApp est monté en puissance pour répondre aux besoins en capacité de vos utilisateurs.</span><span class="sxs-lookup"><span data-stu-id="1abf4-112">This error means Azure RemoteApp is scaling up to meet the capacity need of your users.</span></span> <span data-ttu-id="1abf4-113">En arrière-plan, d’autres instances de machines virtuelles Azure RemoteApp sont créées pour gérer les besoins en capacité de vos utilisateurs.</span><span class="sxs-lookup"><span data-stu-id="1abf4-113">In the background more Azure RemoteApp VM instances are being created to handle the capacity needs of your users.</span></span> <span data-ttu-id="1abf4-114">En général, cette opération prend entre cinq et 10 minutes.</span><span class="sxs-lookup"><span data-stu-id="1abf4-114">Typically this takes around five minutes but can take up to 10 minutes.</span></span> <span data-ttu-id="1abf4-115">Parfois, elle n’est pas assez rapide alors que vous avez besoin des ressources tout de suite.</span><span class="sxs-lookup"><span data-stu-id="1abf4-115">Sometimes, this doesn't happen fast enough and resources are needed immediately.</span></span> <span data-ttu-id="1abf4-116">Exemple : un scénario dans lequel de nombreux utilisateurs ont besoin d’utiliser votre application dans Azure RemoteApp en même temps à 9h00.</span><span class="sxs-lookup"><span data-stu-id="1abf4-116">For example a 9 AM scenario where many users need to use your app in Azure RemoteAppn at the same time.</span></span> <span data-ttu-id="1abf4-117">Si cette situation se produit, nous pouvons activer le **mode capacité** sur le serveur principal.</span><span class="sxs-lookup"><span data-stu-id="1abf4-117">If this happens to you we can enable **capacity mode** on the back end.</span></span> <span data-ttu-id="1abf4-118">Pour cela, ouvrez un ticket de support Azure.</span><span class="sxs-lookup"><span data-stu-id="1abf4-118">To do this open an Azure Support ticket.</span></span> <span data-ttu-id="1abf4-119">Veillez à inclure votre ID d’abonnement dans la demande.</span><span class="sxs-lookup"><span data-stu-id="1abf4-119">Be certain to include your subscription ID in the request.</span></span>  
+
+![Nous vous configurons](./media/remoteapp-apptrouble/ra-apptrouble1.png)
+
+## <a name="could-not-auto-reconnect-to-your-applications-please-re-launch-your-application"></a><span data-ttu-id="1abf4-121">Impossible de vous reconnecter automatiquement, relancez vos applications</span><span class="sxs-lookup"><span data-stu-id="1abf4-121">Could not auto-reconnect to your applications, please re-launch your application</span></span>
+<span data-ttu-id="1abf4-122">Ce message d’erreur apparaît souvent si vous utilisez Azure RemoteApp, puis mettez votre ordinateur en veille pendant plus de 4 heures. Quand vous sortez votre ordinateur de veille, le client Azure RemoteApp tente de se reconnecter automatiquement alors que le délai d’expiration a été dépassé.</span><span class="sxs-lookup"><span data-stu-id="1abf4-122">This error message is often seen if you were using Azure RemoteApp and then put your PC to sleep longer than 4 hours and then woke your PC up and the Azure RemoteApp client attempt to auto reconnect and timeout was exceeded.</span></span>  <span data-ttu-id="1abf4-123">Demandez aux utilisateurs de revenir à l’application et d’essayer de l’ouvrir à partir du client Azure RemoteApp.</span><span class="sxs-lookup"><span data-stu-id="1abf4-123">Instruct users to navigate back to the application and attempt to open it from the Azure RemoteApp client.</span></span>
+
+![Impossible de vous reconnecter automatiquement](./media/remoteapp-apptrouble/ra-apptrouble2.png) 
+
+## <a name="problems-with-the-temp-profile"></a><span data-ttu-id="1abf4-125">Problèmes avec le profil temporaire</span><span class="sxs-lookup"><span data-stu-id="1abf4-125">Problems with the temp profile</span></span>
+<span data-ttu-id="1abf4-126">Cette erreur se produit quand le montage de votre profil utilisateur (disque de profil utilisateur) a échoué et que l’utilisateur a reçu un profil temporaire.</span><span class="sxs-lookup"><span data-stu-id="1abf4-126">This error occurs when your user profile (User Profile Disk) failed to mount and the user received a temporary profile.</span></span>  <span data-ttu-id="1abf4-127">Les administrateurs doivent accéder à la collection dans le portail Azure, puis à l’onglet **Sessions** pour essayer de **déconnecter** l’utilisateur.</span><span class="sxs-lookup"><span data-stu-id="1abf4-127">Administrators should navigate to the collection in the Azure portal and then go to the **Sessions** tab and attempt to **Log Off** the user.</span></span> <span data-ttu-id="1abf4-128">Cette intervention force la session utilisateur à se fermer totalement. L’utilisateur est ensuite invité à essayer de relancer une application.</span><span class="sxs-lookup"><span data-stu-id="1abf4-128">This will force a full log off of the user session - then have the user attempt to launch an app again.</span></span> <span data-ttu-id="1abf4-129">En cas d’échec, contactez le support Azure.</span><span class="sxs-lookup"><span data-stu-id="1abf4-129">If that fails contact Azure support.</span></span>
+
+## <a name="azure-remoteapp-has-stopped-working"></a><span data-ttu-id="1abf4-130">Azure RemoteApp a cessé de fonctionner</span><span class="sxs-lookup"><span data-stu-id="1abf4-130">Azure RemoteApp has stopped working</span></span>
+<span data-ttu-id="1abf4-131">Ce message d’erreur signifie que le client Azure RemoteApp rencontre un problème et doit être redémarré.</span><span class="sxs-lookup"><span data-stu-id="1abf4-131">This error message means the Azure RemoteApp client is having an issue and needs to be restarted.</span></span> <span data-ttu-id="1abf4-132">Demandez aux utilisateurs de fermer le programme : sélectionnez **Fermer le programme** , puis relancez le client Azure RemoteApp.</span><span class="sxs-lookup"><span data-stu-id="1abf4-132">Instruct users to close: select **Close program** and then launch the Azure RemoteApp client again.</span></span>  <span data-ttu-id="1abf4-133">Si le problème persiste, ouvrez un ticket de support Azure.</span><span class="sxs-lookup"><span data-stu-id="1abf4-133">If the issue continues open and Azure Support ticket.</span></span>
+
+![Azure RemoteApp a cessé de fonctionner](./media/remoteapp-apptrouble/ra-apptrouble3.png)  
+
+## <a name="an-error-occurred-while-remote-desktop-connection-was-accessing-this-resource-retry-the-connection-or-contact-your-system-administrator"></a><span data-ttu-id="1abf4-135">Une erreur s’est produite pendant que la connexion Bureau à distance accédait à la ressource.</span><span class="sxs-lookup"><span data-stu-id="1abf4-135">An error occurred while Remote Desktop Connection was accessing this resource.</span></span> <span data-ttu-id="1abf4-136">Essayez de vous reconnecter ou contactez votre administrateur système.</span><span class="sxs-lookup"><span data-stu-id="1abf4-136">Retry the connection or contact your system administrator</span></span>
+<span data-ttu-id="1abf4-137">Il s’agit d’un message d’erreur générique : contactez le support Azure pour que nous puissions examiner le problème.</span><span class="sxs-lookup"><span data-stu-id="1abf4-137">This is a generic error message - contact Azure support so we can investigate.</span></span> 
+
+![Message Azure RemoteApp générique](./media/remoteapp-apptrouble/ra-apptrouble4.png) 
+

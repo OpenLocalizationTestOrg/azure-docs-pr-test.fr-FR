@@ -1,0 +1,54 @@
+---
+title: "Paramètres de port d’Azure Relay | Microsoft Docs"
+description: "Fournit des informations sur les valeurs de port d’Azure Relay."
+services: service-bus-relay
+documentationcenter: na
+author: sethmanheim
+manager: timlt
+editor: 
+ms.assetid: 
+ms.service: service-bus-relay
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: na
+ms.date: 07/03/2017
+ms.author: sethm
+ms.openlocfilehash: 5906495c565dad583e74a43b2e5eed57e0c68df1
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.translationtype: MT
+ms.contentlocale: fr-FR
+ms.lasthandoff: 07/11/2017
+---
+# <a name="azure-relay-port-settings"></a><span data-ttu-id="1797d-103">Paramètres de port d’Azure Relay</span><span class="sxs-lookup"><span data-stu-id="1797d-103">Azure Relay port settings</span></span>
+
+<span data-ttu-id="1797d-104">Le tableau suivant décrit la configuration requise pour les valeurs de port d’Azure Relay.</span><span class="sxs-lookup"><span data-stu-id="1797d-104">The following table describes the required configuration for port values for Azure Relay.</span></span>
+
+## <a name="hybrid-connections"></a><span data-ttu-id="1797d-105">Connexions hybrides</span><span class="sxs-lookup"><span data-stu-id="1797d-105">Hybrid Connections</span></span>
+<span data-ttu-id="1797d-106">Les connexions hybrides font appel à WebSockets comme mécanisme de transport sous-jacent, qui utilise **HTTPS** uniquement.</span><span class="sxs-lookup"><span data-stu-id="1797d-106">Hybrid Connections uses WebSockets as the underlying transport mechanism, which uses **HTTPS** only.</span></span> 
+
+## <a name="wcf-relays"></a><span data-ttu-id="1797d-107">Relais WCF</span><span class="sxs-lookup"><span data-stu-id="1797d-107">WCF Relays</span></span>
+  
+|<span data-ttu-id="1797d-108">Liaison</span><span class="sxs-lookup"><span data-stu-id="1797d-108">Binding</span></span>|<span data-ttu-id="1797d-109">Sécurité de transport</span><span class="sxs-lookup"><span data-stu-id="1797d-109">Transport Security</span></span>|<span data-ttu-id="1797d-110">Port</span><span class="sxs-lookup"><span data-stu-id="1797d-110">Port</span></span>|  
+|-------------|------------------------|----------|  
+|<span data-ttu-id="1797d-111">[Classe BasicHttpRelayBinding Class](/dotnet/api/microsoft.servicebus.basichttprelaybinding) (client)</span><span class="sxs-lookup"><span data-stu-id="1797d-111">[BasicHttpRelayBinding Class](/dotnet/api/microsoft.servicebus.basichttprelaybinding) (client)</span></span>|<span data-ttu-id="1797d-112">Oui</span><span class="sxs-lookup"><span data-stu-id="1797d-112">Yes</span></span>|<span data-ttu-id="1797d-113">HTTPS</span><span class="sxs-lookup"><span data-stu-id="1797d-113">HTTPS</span></span>| 
+| |<span data-ttu-id="1797d-114">"</span><span class="sxs-lookup"><span data-stu-id="1797d-114">"</span></span> |<span data-ttu-id="1797d-115">Non</span><span class="sxs-lookup"><span data-stu-id="1797d-115">No</span></span>|<span data-ttu-id="1797d-116">HTTP</span><span class="sxs-lookup"><span data-stu-id="1797d-116">HTTP</span></span>|  
+|<span data-ttu-id="1797d-117">[Classe BasicHttpRelayBinding](/dotnet/api/microsoft.servicebus.basichttprelaybinding) (service)</span><span class="sxs-lookup"><span data-stu-id="1797d-117">[BasicHttpRelayBinding Class](/dotnet/api/microsoft.servicebus.basichttprelaybinding) (service)</span></span>|<span data-ttu-id="1797d-118">Vous pouvez soit utiliser</span><span class="sxs-lookup"><span data-stu-id="1797d-118">Either</span></span>|<span data-ttu-id="1797d-119">9351/HTTP</span><span class="sxs-lookup"><span data-stu-id="1797d-119">9351/HTTP</span></span>|  
+|<span data-ttu-id="1797d-120">[Classe NetEventRelayBinding](/dotnet/api/microsoft.servicebus.neteventrelaybinding) (client)</span><span class="sxs-lookup"><span data-stu-id="1797d-120">[NetEventRelayBinding Class](/dotnet/api/microsoft.servicebus.neteventrelaybinding) (client)</span></span>|<span data-ttu-id="1797d-121">Oui</span><span class="sxs-lookup"><span data-stu-id="1797d-121">Yes</span></span>|<span data-ttu-id="1797d-122">9351/HTTPS</span><span class="sxs-lookup"><span data-stu-id="1797d-122">9351/HTTPS</span></span>|  
+||<span data-ttu-id="1797d-123">"</span><span class="sxs-lookup"><span data-stu-id="1797d-123">"</span></span> |<span data-ttu-id="1797d-124">Non</span><span class="sxs-lookup"><span data-stu-id="1797d-124">No</span></span>|<span data-ttu-id="1797d-125">9350/HTTP</span><span class="sxs-lookup"><span data-stu-id="1797d-125">9350/HTTP</span></span>|  
+|<span data-ttu-id="1797d-126">[Classe NetEventRelayBinding](/dotnet/api/microsoft.servicebus.neteventrelaybinding) (service)</span><span class="sxs-lookup"><span data-stu-id="1797d-126">[NetEventRelayBinding Class](/dotnet/api/microsoft.servicebus.neteventrelaybinding) (service)</span></span>|<span data-ttu-id="1797d-127">Vous pouvez soit utiliser</span><span class="sxs-lookup"><span data-stu-id="1797d-127">Either</span></span>|<span data-ttu-id="1797d-128">9351/HTTP</span><span class="sxs-lookup"><span data-stu-id="1797d-128">9351/HTTP</span></span>|  
+|<span data-ttu-id="1797d-129">[Classe NetTcpRelayBinding](/dotnet/api/microsoft.servicebus.nettcprelaybinding) (client/service)</span><span class="sxs-lookup"><span data-stu-id="1797d-129">[NetTcpRelayBinding Class](/dotnet/api/microsoft.servicebus.nettcprelaybinding) (client/service)</span></span>|<span data-ttu-id="1797d-130">Vous pouvez soit utiliser</span><span class="sxs-lookup"><span data-stu-id="1797d-130">Either</span></span>|<span data-ttu-id="1797d-131">5671/9352/HTTP (9352/9353 en cas d’utilisation hybride)</span><span class="sxs-lookup"><span data-stu-id="1797d-131">5671/9352/HTTP (9352/9353 if using hybrid)</span></span>|  
+|<span data-ttu-id="1797d-132">[Classe NetOnewayRelayBinding](/dotnet/api/microsoft.servicebus.netonewayrelaybinding) (client)</span><span class="sxs-lookup"><span data-stu-id="1797d-132">[NetOnewayRelayBinding Class](/dotnet/api/microsoft.servicebus.netonewayrelaybinding) (client)</span></span>|<span data-ttu-id="1797d-133">Oui</span><span class="sxs-lookup"><span data-stu-id="1797d-133">Yes</span></span>|<span data-ttu-id="1797d-134">9351/HTTPS</span><span class="sxs-lookup"><span data-stu-id="1797d-134">9351/HTTPS</span></span>|  
+||<span data-ttu-id="1797d-135">"</span><span class="sxs-lookup"><span data-stu-id="1797d-135">"</span></span> |<span data-ttu-id="1797d-136">Non</span><span class="sxs-lookup"><span data-stu-id="1797d-136">No</span></span>|<span data-ttu-id="1797d-137">9350/HTTP</span><span class="sxs-lookup"><span data-stu-id="1797d-137">9350/HTTP</span></span>|  
+|<span data-ttu-id="1797d-138">[Classe NetOnewayRelayBinding](/dotnet/api/microsoft.servicebus.netonewayrelaybinding) (service)</span><span class="sxs-lookup"><span data-stu-id="1797d-138">[NetOnewayRelayBinding Class](/dotnet/api/microsoft.servicebus.netonewayrelaybinding) (service)</span></span>|<span data-ttu-id="1797d-139">Vous pouvez soit utiliser</span><span class="sxs-lookup"><span data-stu-id="1797d-139">Either</span></span>|<span data-ttu-id="1797d-140">9351/HTTP</span><span class="sxs-lookup"><span data-stu-id="1797d-140">9351/HTTP</span></span>|  
+|<span data-ttu-id="1797d-141">[Classe WebHttpRelayBinding](/dotnet/api/microsoft.servicebus.webhttprelaybinding) (client)</span><span class="sxs-lookup"><span data-stu-id="1797d-141">[WebHttpRelayBinding Class](/dotnet/api/microsoft.servicebus.webhttprelaybinding) (client)</span></span>|<span data-ttu-id="1797d-142">Oui</span><span class="sxs-lookup"><span data-stu-id="1797d-142">Yes</span></span>|<span data-ttu-id="1797d-143">HTTPS</span><span class="sxs-lookup"><span data-stu-id="1797d-143">HTTPS</span></span>|  
+||<span data-ttu-id="1797d-144">"</span><span class="sxs-lookup"><span data-stu-id="1797d-144">"</span></span> |<span data-ttu-id="1797d-145">Non</span><span class="sxs-lookup"><span data-stu-id="1797d-145">No</span></span>|<span data-ttu-id="1797d-146">HTTP</span><span class="sxs-lookup"><span data-stu-id="1797d-146">HTTP</span></span>|  
+|<span data-ttu-id="1797d-147">[Classe WebHttpRelayBinding](/dotnet/api/microsoft.servicebus.webhttprelaybinding) (service)</span><span class="sxs-lookup"><span data-stu-id="1797d-147">[WebHttpRelayBinding Class](/dotnet/api/microsoft.servicebus.webhttprelaybinding) (service)</span></span>|<span data-ttu-id="1797d-148">Vous pouvez soit utiliser</span><span class="sxs-lookup"><span data-stu-id="1797d-148">Either</span></span>|<span data-ttu-id="1797d-149">9351/HTTP</span><span class="sxs-lookup"><span data-stu-id="1797d-149">9351/HTTP</span></span>|  
+|<span data-ttu-id="1797d-150">[Classe WS2007HttpRelayBinding](/dotnet/api/microsoft.servicebus.ws2007httprelaybinding) (client)</span><span class="sxs-lookup"><span data-stu-id="1797d-150">[WS2007HttpRelayBinding Class](/dotnet/api/microsoft.servicebus.ws2007httprelaybinding) (client)</span></span>|<span data-ttu-id="1797d-151">Oui</span><span class="sxs-lookup"><span data-stu-id="1797d-151">Yes</span></span>|<span data-ttu-id="1797d-152">HTTPS</span><span class="sxs-lookup"><span data-stu-id="1797d-152">HTTPS</span></span>|  
+||<span data-ttu-id="1797d-153">"</span><span class="sxs-lookup"><span data-stu-id="1797d-153">"</span></span> |<span data-ttu-id="1797d-154">Non</span><span class="sxs-lookup"><span data-stu-id="1797d-154">No</span></span>|<span data-ttu-id="1797d-155">HTTP</span><span class="sxs-lookup"><span data-stu-id="1797d-155">HTTP</span></span>|  
+|<span data-ttu-id="1797d-156">[Classe WS2007HttpRelayBinding](/dotnet/api/microsoft.servicebus.ws2007httprelaybinding) (service)</span><span class="sxs-lookup"><span data-stu-id="1797d-156">[WS2007HttpRelayBinding Class](/dotnet/api/microsoft.servicebus.ws2007httprelaybinding) (service)</span></span>|<span data-ttu-id="1797d-157">Vous pouvez soit utiliser</span><span class="sxs-lookup"><span data-stu-id="1797d-157">Either</span></span>|<span data-ttu-id="1797d-158">9351/HTTP</span><span class="sxs-lookup"><span data-stu-id="1797d-158">9351/HTTP</span></span>|
+
+## <a name="next-steps"></a><span data-ttu-id="1797d-159">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="1797d-159">Next steps</span></span>
+<span data-ttu-id="1797d-160">Pour en savoir plus sur Azure Relay, consultez les liens suivants :</span><span class="sxs-lookup"><span data-stu-id="1797d-160">To learn more about Azure Relay, visit these links:</span></span>
+* [<span data-ttu-id="1797d-161">Qu’est-ce qu’Azure Relay ?</span><span class="sxs-lookup"><span data-stu-id="1797d-161">What is Azure Relay?</span></span>](relay-what-is-it.md)
+* [<span data-ttu-id="1797d-162">FAQ Relay</span><span class="sxs-lookup"><span data-stu-id="1797d-162">Relay FAQ</span></span>](relay-faq.md)

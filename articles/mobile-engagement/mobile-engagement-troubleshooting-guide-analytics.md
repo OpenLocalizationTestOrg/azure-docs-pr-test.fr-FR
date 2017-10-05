@@ -1,0 +1,62 @@
+---
+title: "Guide de dépannage d’Azure Mobile Engagement - Analyse"
+description: "Dépannage des problèmes d’analyse, de surveillance, de segmentation et de tableau de bord dans Azure Mobile Engagement"
+services: mobile-engagement
+documentationcenter: 
+author: piyushjo
+manager: erikre
+editor: 
+ms.assetid: 04a7020a-ad74-4491-be69-0bd574890029
+ms.service: mobile-engagement
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: mobile-multiple
+ms.workload: mobile
+ms.date: 08/19/2016
+ms.author: piyushjo
+ms.openlocfilehash: e30c9ac0a8421ffcf4fc3e2548cfd7ac49701900
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.translationtype: MT
+ms.contentlocale: fr-FR
+ms.lasthandoff: 07/11/2017
+---
+# <a name="troubleshooting-guide-for-analytics-monitoring-segmentation-and-dashboard-issues"></a><span data-ttu-id="4e720-103">Guide de dépannage pour les problèmes d’analyse, de surveillance, de segmentation et de tableau de bord</span><span class="sxs-lookup"><span data-stu-id="4e720-103">Troubleshooting guide for Analytics, Monitoring, Segmentation, and Dashboard issues</span></span>
+<span data-ttu-id="4e720-104">Les éléments suivants sont des problèmes potentiels liés à la façon dont Azure Mobile Engagement rassemble des informations sur vos applications, périphériques et utilisateurs.</span><span class="sxs-lookup"><span data-stu-id="4e720-104">The following are possible issues you may encounter with how Azure Mobile Engagement gathers information about your applications, devices, and users.</span></span>
+
+## <a name="missingdelayed-information"></a><span data-ttu-id="4e720-105">Informations manquantes/retardées</span><span class="sxs-lookup"><span data-stu-id="4e720-105">Missing/Delayed information</span></span>
+### <a name="issue"></a><span data-ttu-id="4e720-106">Problème</span><span class="sxs-lookup"><span data-stu-id="4e720-106">Issue</span></span>
+* <span data-ttu-id="4e720-107">Les informations sont retardées dans l'analyse, la segmentation ou le tableau de bord.</span><span class="sxs-lookup"><span data-stu-id="4e720-107">Information is delayed in appearing in Analytics, Segmentation, or Dashboard.</span></span>
+* <span data-ttu-id="4e720-108">Il manque des informations de surveillance.</span><span class="sxs-lookup"><span data-stu-id="4e720-108">Information is missing from Monitoring.</span></span>
+* <span data-ttu-id="4e720-109">Il manque des informations d'analyse, de segmentation ou du tableau de bord.</span><span class="sxs-lookup"><span data-stu-id="4e720-109">Information is missing from Analytics, Segmentation, or Dashboard.</span></span>
+* <span data-ttu-id="4e720-110">Limites de segmentation atteinte.</span><span class="sxs-lookup"><span data-stu-id="4e720-110">Hitting segmentation limits.</span></span>
+
+### <a name="causes"></a><span data-ttu-id="4e720-111">Causes</span><span class="sxs-lookup"><span data-stu-id="4e720-111">Causes</span></span>
+* <span data-ttu-id="4e720-112">Vous pouvez utiliser l'API Analytics, Monitor et Segments pour voir si des données manquantes dans l'IU sont visibles avec les API.</span><span class="sxs-lookup"><span data-stu-id="4e720-112">You can use the Analytics API, Monitor API, and Segments API to see if any data you are missing from the UI is visible through the APIs.</span></span>
+* <span data-ttu-id="4e720-113">Si le Kit de développement logiciel (SDK) Azure Mobile Engagement n'est pas correctement intégrée dans votre application, vous ne serez pas en mesure de voir les informations dans Analyse, Segmentation, Surveillance ou Tableaux de bord.</span><span class="sxs-lookup"><span data-stu-id="4e720-113">If the Azure Mobile Engagement SDK is not correctly integrated into your app then you won't be able to see information in the Analytics, Segmentation, Monitoring, or Dashboards.</span></span>
+* <span data-ttu-id="4e720-114">Les segments ne peuvent pas être modifiée après avoir été créés, ils peuvent uniquement être « clonés » (copiés) ou « détruits » (supprimés).</span><span class="sxs-lookup"><span data-stu-id="4e720-114">Segments can't be changed once they are created, segments can only be "cloned" (copied) or "destroyed" (deleted).</span></span> <span data-ttu-id="4e720-115">Les segments peuvent uniquement contenir 10 critères.</span><span class="sxs-lookup"><span data-stu-id="4e720-115">Segments can only contain 10 criteria.</span></span>
+* <span data-ttu-id="4e720-116">La meilleure façon de tester les informations manquantes de l'analyse consiste à configurer un périphérique de test, à désinstaller et/ou à réinstaller l'application sur le périphérique de test.</span><span class="sxs-lookup"><span data-stu-id="4e720-116">The best way to test missing information from monitoring is to setup a test device, uninstall and/or reinstall the app on the test device.</span></span>
+* <span data-ttu-id="4e720-117">Les informations sont actualisées toutes les 24 heures pour l'analyse, la segmentation ou les tableaux de bord.</span><span class="sxs-lookup"><span data-stu-id="4e720-117">Information is refreshed every 24 hours for Analytics, Segmentation, or Dashboards.</span></span>
+* <span data-ttu-id="4e720-118">Les informations figurant dans les nouveaux segments ne peuvent pas être affichées au cours de 24 heures qui suivent leur création, même si le segment est basé sur des informations antérieures.</span><span class="sxs-lookup"><span data-stu-id="4e720-118">Information in new segments may not be displayed until 24 hours after they are created even if the segment is based on previous information.</span></span>
+* <span data-ttu-id="4e720-119">Le filtrage de vos données d’analyse, dans l’interface utilisateur, affiche tous les exemples de ce type, et ce, quelle que soit la version de votre application (par exemple les « Incidents » filtrés par nom s’afficheront depuis la version 1 et la version 2 de votre application).</span><span class="sxs-lookup"><span data-stu-id="4e720-119">Filtering your analytics data in the UI will show all examples of this type regardless of the version of your app (e.g. "Crashes" filtered by name will show from version 1 and version 2 of your app).</span></span>
+* <span data-ttu-id="4e720-120">La période de l'analyse est basée sur la date des paramètres des périphériques des utilisateurs ; ainsi, un utilisateur dont le téléphone a une date incorrecte pourrait s'afficher dans une période incorrecte.</span><span class="sxs-lookup"><span data-stu-id="4e720-120">The time period for Analytics is based on the date from the users' device settings, so a user whose phone has the date incorrectly set could show up in the wrong time period.</span></span>
+* <span data-ttu-id="4e720-121">Aucune donnée côté serveur n'est enregistrée lorsque vous utilisez le bouton pour « tester » les notifications Push. Les données sont enregistrées uniquement pour les vraies campagnes de notification Push.</span><span class="sxs-lookup"><span data-stu-id="4e720-121">No server side data is logged when you use the button to "test" pushes, data is only logged for real push campaigns.</span></span>
+
+## <a name="cant-locate-items-in-ui"></a><span data-ttu-id="4e720-122">Impossible de trouver des éléments dans l'interface utilisateur</span><span class="sxs-lookup"><span data-stu-id="4e720-122">Can't locate items in UI</span></span>
+### <a name="issue"></a><span data-ttu-id="4e720-123">Problème</span><span class="sxs-lookup"><span data-stu-id="4e720-123">Issue</span></span>
+* <span data-ttu-id="4e720-124">Impossible de créer des segments en fonction de certains critères de balise d'informations d'application intégrés ou personnalisés.</span><span class="sxs-lookup"><span data-stu-id="4e720-124">Can't create segments based on certain built in or custom app info tag criteria.</span></span>
+* <span data-ttu-id="4e720-125">Impossible de trouver certains critères de balise d'informations d'application intégrés ou personnalisés dans l'analyse, la surveillance ou les tableaux de bord.</span><span class="sxs-lookup"><span data-stu-id="4e720-125">Can't find certain built in or custom app info tag criteria in Analytics, Monitoring, or Dashboards.</span></span>
+* <span data-ttu-id="4e720-126">Impossible d'interpréter les données de l'analyse, de la surveillance, de la segmentation ou des tableaux de bord.</span><span class="sxs-lookup"><span data-stu-id="4e720-126">Can't interpret the data in Analytics, Monitoring, Segmentation, or Dashboards.</span></span>
+
+### <a name="causes"></a><span data-ttu-id="4e720-127">Causes</span><span class="sxs-lookup"><span data-stu-id="4e720-127">Causes</span></span>
+* <span data-ttu-id="4e720-128">Certains éléments intégrés et certaines balises d'informations d'application sont uniquement disponibles en tant que critères push mais ne peuvent pas être ajoutés à un segment ou être visibles depuis l'analyse, la surveillance ou le tableau de bord.</span><span class="sxs-lookup"><span data-stu-id="4e720-128">Some built in items and app info tags are only available as push criteria but may not be added to a segment or visible from Analytics, Monitoring, or Dashboard.</span></span> 
+* <span data-ttu-id="4e720-129">Pour les éléments intégrés et les balises d'informations d'application qui ne peuvent pas être ajoutés à un segment, vous devrez configurer la liste des critères de ciblage dans chaque campagne pour effectuer la même fonction que le ciblage basé sur un segment.</span><span class="sxs-lookup"><span data-stu-id="4e720-129">For built in items and app info tags that can't be added to a segment, you will need to setup list of targeting criteria in each campaign to perform the same function as targeting based on a segment.</span></span>
+* <span data-ttu-id="4e720-130">Consultez les menus contextuels dans les sections Analyse, Surveillance, Segmentation et Tableaux de bord de l'interface utilisateur d'Azure Mobile Engagement pour obtenir de l'aide de l'aide et consignes.</span><span class="sxs-lookup"><span data-stu-id="4e720-130">See the context menus in the Analytics, Monitoring, Segmentation, and Dashboards sections of the Azure Mobile Engagement UI for more help and how to information.</span></span>
+
+## <a name="crash-troubleshooting"></a><span data-ttu-id="4e720-131">Dépannage d'incident</span><span class="sxs-lookup"><span data-stu-id="4e720-131">Crash troubleshooting</span></span>
+### <a name="issue"></a><span data-ttu-id="4e720-132">Problème</span><span class="sxs-lookup"><span data-stu-id="4e720-132">Issue</span></span>
+* <span data-ttu-id="4e720-133">Incidents d'application apparaissant dans l'analyse, la surveillance ou le tableau de bord.</span><span class="sxs-lookup"><span data-stu-id="4e720-133">Application Crashes appearing in Analytics, Monitoring, or Dashboard.</span></span>
+
+### <a name="causes"></a><span data-ttu-id="4e720-134">Causes</span><span class="sxs-lookup"><span data-stu-id="4e720-134">Causes</span></span>
+* <span data-ttu-id="4e720-135">Pour résoudre les problèmes d'incident d'application dans Analyse, Surveillance ou Tableau de bord, veillez à consulter les notes de publication pour les problèmes connus avec les versions précédentes du Kit de développement logiciel (SDK).</span><span class="sxs-lookup"><span data-stu-id="4e720-135">To troubleshoot Application Crashes seen in Analytics, Monitoring, or Dashboard make sure to check the release notes for known issues with previous versions of the SDK.</span></span>
+* <span data-ttu-id="4e720-136">Pour mieux résoudre les incidents d'application, effectuez un événement à partir d'un périphérique de test avec votre application installée et recherchez l'ID de votre périphérique dans la section « Moniteur – Événements » de l'interface utilisateur d'Azure Mobile Engagement.</span><span class="sxs-lookup"><span data-stu-id="4e720-136">To further troubleshoot application crashes perform an event from a test device with your application installed and look up your device ID in the “Monitor – Events” section of the Azure Mobile Engagement UI.</span></span> <span data-ttu-id="4e720-137">Effectuez ensuite l'événement à l'origine de l'incident de votre application et cherchez des informations supplémentaires dans la section « Moniteur – Incident » de l'interface utilisateur d'Azure Mobile Engagement.</span><span class="sxs-lookup"><span data-stu-id="4e720-137">Then perform the event that is causing your application to crash and look up additional information in the “Monitor – Crash” section of the Azure Mobile Engagement UI.</span></span> 
+
