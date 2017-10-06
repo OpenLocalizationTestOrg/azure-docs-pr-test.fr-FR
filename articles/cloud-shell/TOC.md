@@ -8,7 +8,7 @@
 
 # Procédure
 ## [Stockage persistant](persisting-shell-storage.md)
-## [Utilisation de la fenêtre](using-the-shell-window.md)
+## [À l’aide de la fenêtre hello](using-the-shell-window.md)
 
 # [Tarification](pricing.md)
 

@@ -1,5 +1,5 @@
 ---
-title: "Documentation Azure Advisor - Didacticiels | Microsoft Docs"
+title: aaaAzure documentation relative au conseiller - didacticiels | Documents Microsoft
 description: 
 services: advisor
 author: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: ce00af5e7382a3d6e80903711bac86ca88191cff
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1a1f8280c89b4e38af8c9cb2f5e55486a78186d3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-advisor-documentation"></a>Documentation Azure Advisor
 
-Azure Advisor est un conseiller personnalisé basé dans le cloud qui décrit les meilleures pratiques à suivre pour optimiser vos déploiements Azure. Il analyse les données de télémétrie d’utilisation et la configuration de vos ressources. Il recommande ensuite des solutions pour améliorer les performances, la sécurité et la haute disponibilité de vos ressources tout en réduisant vos dépenses Azure globales.
+Le conseiller Azure est un consultant personnalisé de cloud qui vous permet de suivre les meilleures pratiques toooptimize vos déploiements Azure. Il analyse les données de télémétrie d’utilisation et la configuration de vos ressources. Il recommande ensuite les solutions toohelp améliorer les performances de hello, sécurité, et les dépenses de haute disponibilité de vos ressources lors de la recherche d’opportunités tooreduce votre Azure globale.
 
 <ul class="panelContent cardsFTitle">
     <li>

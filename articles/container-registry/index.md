@@ -1,6 +1,6 @@
 ---
-title: "Documentation Azure Container Registry - Didacticiels, informations de référence sur les API | Microsoft Docs"
-description: "Découvrez comment créer et gérer des Registres de conteneurs pour stocker vos images de déploiement avec un service de Registre Docker géré. Didacticiels, référence d’API et autres."
+title: "aaaAzure Documentation de Registre de conteneur - didacticiels, référence de l’API | Documents Microsoft"
+description: "Découvrez comment toocreate et tenir à jour toostore de registres de conteneur d’images de votre déploiement avec un service de Registre Docker managé. Didacticiels, référence d’API et autres."
 services: container-registry
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 3962f34170cf3a19fe51b2f90b49fa21e01fc6cc
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d759eb2b00b59797cfdf8ce3b4071317a574c2b8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-container-registry-documentation"></a>Documentation Azure Container Registry
 
-Découvrez comment utiliser le Registre de conteneurs pour stocker et gérer des images pour tous les types de déploiement de conteneur. Des didacticiels, des références de l’API REST et d’autres documents vous montrent comment créer et gérer des Registres de conteneurs avec ce service de Registre Docker géré.
+Découvrez comment toouse Registre de conteneur toostore et gérer des images pour tous les types de déploiements de conteneur. Didacticiels, référence d’API REST et toute autre documentation vous montrent comment toocreate et conserver les registres de conteneur avec ce managed service de Registre Docker.
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -52,7 +52,7 @@ Découvrez comment utiliser le Registre de conteneurs pour stocker et gérer des
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Prise en main de la création d’un registre avec le portail</h3>
+                        <h3>Commencer la création d’un Registre avec le portail de hello</h3>
                     </div>
                 </div>
             </div>
@@ -70,7 +70,7 @@ Découvrez comment utiliser le Registre de conteneurs pour stocker et gérer des
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Prise en main de la création d’un registre avec l’interface de ligne de commande</h3>
+                        <h3>Prise en main la création d’un Registre avec hello CLI</h3>
                     </div>
                 </div>
             </div>

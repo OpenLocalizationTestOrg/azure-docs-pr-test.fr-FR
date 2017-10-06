@@ -1,6 +1,6 @@
 ---
-title: "Comprendre le flux du code d’autorisation OAuth 2.0 dans Azure AD | Microsoft Docs"
-description: "Cet article explique comment utiliser des messages HTTP pour autoriser l’accès aux applications web et API web dans votre client à l’aide d’Azure Active Directory et OAuth 2.0."
+title: "aaaUnderstand hello flux de code d’autorisation OAuth 2.0 dans Azure AD | Documents Microsoft"
+description: "Cet article décrit comment accéder à toouse HTTP messages tooauthorize tooweb applications et API web dans votre client à l’aide d’Azure Active Directory et OAuth 2.0."
 services: active-directory
 documentationcenter: .net
 author: dstrockis
@@ -15,26 +15,26 @@ ms.topic: article
 ms.date: 02/08/2017
 ms.author: dastrock
 ms.custom: aaddev
-ms.openlocfilehash: 35132eae4d6a7f85b19a7a49ad4034e795d7df13
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 4a6fe67d786a5fcb87d1059c2e94ba0c88d26cd3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# Autoriser l’accès aux applications web à l’aide d’OAuth 2.0 et Azure Active Directory
-Azure Active Directory (Azure AD) utilise OAuth 2.0 pour vous permettre d’autoriser l’accès aux applications web et aux API web dans votre client Azure AD. Ce guide est indépendant du langage. Il explique comment envoyer et recevoir des messages HTTP sans utiliser l’une de nos bibliothèques open source.
+# Autoriser les applications tooweb à l’aide d’OAuth 2.0 et Azure Active Directory
+Azure Active Directory (Azure AD) utilise OAuth 2.0 tooenable vous tooauthorize, accéder aux applications tooweb et API web dans votre locataire Azure AD. Ce guide est indépendante du langage et décrit comment toosend et recevoir des messages HTTP sans utiliser l’un de nos bibliothèques open source.
 
-Le flux de code d’autorisation OAuth 2.0 est décrit dans la [section 4.1 des spécifications OAuth 2.0](https://tools.ietf.org/html/rfc6749#section-4.1). Il est utilisé pour exécuter des activités d’authentification et d’autorisation dans la majorité des types d’applications, notamment les applications web et les applications installées de façon native.
+Hello flux de code d’autorisation OAuth 2.0 est décrit dans [section 4.1 de spécification de hello OAuth 2.0](https://tools.ietf.org/html/rfc6749#section-4.1). Il est utilisé tooperform l’authentification et l’autorisation dans la plupart des types d’applications, y compris les applications web et applications ont été installées en mode natif.
 
 [!INCLUDE [active-directory-protocols-getting-started](../../../includes/active-directory-protocols-getting-started.md)]
 
 ## Flux d’autorisation OAuth 2.0
-À un niveau élevé, le flux d’autorisation complet pour une application est semblable à l’illustration suivante :
+À un niveau élevé, les flux d’autorisation entière hello pour une application ressemble un peu à ceci :
 
 ![Flux de code d’authentification OAuth](media/active-directory-protocols-oauth-code/active-directory-oauth-code-flow-native-app.png)
 
 ## Demander un code d’autorisation
-Le flux de code d'autorisation commence par le client dirigeant l'utilisateur vers le point de terminaison `/authorize` . Dans cette requête, le client indique les autorisations qu’il doit obtenir auprès de l’utilisateur : Vous pouvez obtenir les points de terminaison OAuth 2.0 à partir de la page de votre application dans le portail Azure Classic, à l’aide du bouton **Points de terminaison** du panneau inférieur.
+flux de code d’autorisation Hello commence par client hello dirigeant hello utilisateur toohello `/authorize` point de terminaison. Dans cette demande, client de hello indique les autorisations hello tooacquire à partir de l’utilisateur de hello. Vous pouvez obtenir des points de terminaison hello OAuth 2.0 à partir de la page de votre application dans le portail Azure Classic Bonjour **points de terminaison** bouton dans le tiroir inférieur de hello.
 
 ```
 // Line breaks for legibility only
@@ -50,23 +50,23 @@ client_id=6731de76-14a6-49ae-97bc-6eba6914391e
 
 | Paramètre |  | Description |
 | --- | --- | --- |
-| locataire |required |La valeur `{tenant}` dans le chemin d’accès de la requête peut être utilisée pour contrôler les utilisateurs qui peuvent se connecter à l’application.  Les valeurs autorisées sont les identificateurs du client, par exemple `8eaef023-2b34-4da1-9baa-8bc8c9d6a490`, `contoso.onmicrosoft.com` ou `common` pour les jetons indépendants du client |
-| client_id |required |L’ID d’application attribué à votre application lorsque vous l’avez inscrite auprès d’Azure AD. Vous le trouverez sur le portail Azure. Cliquez sur **Active Directory**, sur le répertoire, sélectionnez l’application et cliquez sur **Configurer** |
-| response_type |required |Doit inclure `code` pour le flux de code d’autorisation. |
-| redirect_uri |recommandé |L’URI de redirection de votre application, vers lequel votre application peut envoyer et recevoir des réponses d’authentification.  Il doit correspondre exactement à l’un des URI de redirection enregistrés dans le portail, auquel s’ajoute le codage dans une URL.  Pour les applications natives et mobiles, vous devez utiliser la valeur par défaut `urn:ietf:wg:oauth:2.0:oob`. |
-| response_mode |recommandé |Spécifie la méthode à utiliser pour envoyer le jeton résultant à votre application.  Peut être `query` ou `form_post`. |
-| state |recommandé |Une valeur incluse dans la requête qui est également renvoyée dans la réponse de jeton. Une valeur unique générée de manière aléatoire est généralement utilisée pour [empêcher les falsifications de requête intersite](http://tools.ietf.org/html/rfc6749#section-10.12).  La valeur d’état est également utilisée pour coder les informations sur l’état de l’utilisateur dans l’application avant la requête d’authentification, comme la page ou l’écran sur lequel ou laquelle il était positionné. |
-| resource |facultatif |URI ID d’application de l’API web (ressource sécurisée). Pour rechercher l’URI ID d’application de l’API web, dans le portail Azure, cliquez successivement sur **Active Directory**, le répertoire, l’application et sur **Configurer**. |
-| prompt |facultatif |Indique le type d’interaction utilisateur requis.<p> Les valeurs autorisées sont : <p> *login*: l’utilisateur doit être invité à se réauthentifier. <p> *consent*: le consentement de l’utilisateur a été accordé, mais il doit être mis à jour. L’utilisateur doit être invité à donner son consentement. <p> *admin_consent* : un administrateur doit être invité à donner son consentement pour le compte de tous les utilisateurs de son organisation |
-| login_hint |facultatif |Peut être utilisé pour remplir au préalable le champ réservé au nom d’utilisateur/à l’adresse électronique de la page de connexion de l’utilisateur si vous connaissez déjà son nom d’utilisateur.  Les applications utilisent souvent ce paramètre au cours de la réauthentification, après avoir extrait le nom d’utilisateur d’une connexion précédente à l’aide de la revendication `preferred_username`. |
-| domain_hint |facultatif |Fournit une indication sur le client ou le domaine que l’utilisateur doit utiliser pour se connecter. La valeur du paramètre domain_hint est un domaine inscrit pour le client. Si le client est fédéré sur un répertoire local, AAD redirige vers le serveur de fédération du client spécifié. |
+| locataire |required |Hello `{tenant}` valeur de chemin d’accès de hello de demande de hello peut être utilisé toocontrol qui peut se connecter à l’application hello.  Hello valeurs autorisées sont des identificateurs de client, par exemple, `8eaef023-2b34-4da1-9baa-8bc8c9d6a490` ou `contoso.onmicrosoft.com` ou `common` pour les jetons d’indépendant du locataire |
+| client_id |required |Hello Id d’Application attribué tooyour application lorsque vous avez l’inscrit auprès d’Azure AD. Vous pouvez le trouver dans hello portail Azure. Cliquez sur **Active Directory**, cliquez sur le répertoire hello, choisissez l’application hello et cliquez sur **configurer** |
+| response_type |required |Doit inclure `code` pour les flux de code d’autorisation hello. |
+| redirect_uri |recommandé |Bonjour redirect_uri de votre application, où les réponses d’authentification peuvent être envoyés et reçus par votre application.  Il doit correspondre exactement à celle de redirect_uris hello que vous inscrit dans le portail hello, à ceci près qu’il doit être codée url.  Pour les applications natives et mobiles, vous devez utiliser la valeur par défaut hello `urn:ietf:wg:oauth:2.0:oob`. |
+| response_mode |recommandé |Spécifie la méthode hello qui doit être utilisés toosend hello résultant tooyour précédent jeton application.  Peut être `query` ou `form_post`. |
+| state |recommandé |Une valeur incluse dans la demande de hello est également renvoyé dans la réponse du jeton hello. Une valeur unique générée de manière aléatoire est généralement utilisée pour [empêcher les falsifications de requête intersite](http://tools.ietf.org/html/rfc6749#section-10.12).  Hello état est également utilisé tooencode informations hello l’état utilisateur dans une application hello avant de la demande d’authentification hello s’est produite, page de hello ou un affichage qu’ils étaient sur. |
+| resource |facultatif |Hello URI ID d’application de hello API web (ressource sécurisée). toofind hello URI ID d’application de hello API web, Bonjour portail Azure, cliquez sur **Active Directory**, cliquez sur le répertoire hello, cliquez sur l’application hello, puis sur **configurer**. |
+| prompt |facultatif |Indiquer le type hello d’intervention de l’utilisateur qui est requise.<p> Les valeurs autorisées sont : <p> *connexion*: hello peut être invité à tooreauthenticate. <p> *consentement*: consentement de l’utilisateur a été accordé, mais doit toobe mis à jour. utilisateur de Hello doit être invité à tooconsent. <p> *admin_consent*: un administrateur doit être invité à tooconsent pour le compte de tous les utilisateurs dans leur organisation |
+| login_hint |facultatif |Possible champ d’adresse utilisé toopre-remplissage hello nom d’utilisateur et de la messagerie de hello-page de connexion pour l’utilisateur de hello, si vous connaissez le nom d’utilisateur à l’avance.  Applications souvent utilisent ce paramètre lors de la réauthentification, ayant déjà extrait le nom d’utilisateur hello à partir d’une connexion précédente sign-in à l’aide de hello `preferred_username` de revendication. |
+| domain_hint |facultatif |Fournit une indication sur le client de hello ou un domaine qui hello utilisateur doit utiliser toosign dans. valeur Hello hello domain_hint est un domaine enregistré pour le client de hello. Si les locataires hello est tooan fédérées des services locaux, AAD redirige serveur de fédération toohello client spécifié. |
 
 > [!NOTE]
-> Si l’utilisateur fait partie d’une organisation, un administrateur de l’organisation peut donner son consentement ou refuser pour le compte de l’utilisateur, ou autoriser l’utilisateur à donner son consentement. L’utilisateur a la possibilité de donner son consentement uniquement lorsque l’administrateur le lui permet.
+> Si l’utilisateur de hello fait partie d’une organisation, un administrateur de l’organisation de hello peut donner son consentement ou refuser au nom d’utilisateur hello ou autoriser hello utilisateur tooconsent. utilisateur de Hello bénéficie hello option tooconsent uniquement lorsque hello administrateur le permet.
 >
 >
 
-À ce stade, l’utilisateur est invité à entrer ses informations d’identification et à donner son consentement vis-à-vis des autorisations indiquées dans le paramètre de requête `scope`. Une fois que l’utilisateur s’authentifie et donne son consentement, Azure AD envoie une réponse à votre application à l’adresse `redirect_uri` dans votre demande.
+À ce stade, hello utilisateur invité tooenter leurs informations d’identification et le consentement toohello autorisations indiquées dans hello `scope` paramètre de requête. Une fois que l’utilisateur de hello s’authentifie et donne son consentement, Azure AD envoie une application tooyour de réponse à hello `redirect_uri` adresse de votre requête.
 
 ### Réponse correcte
 Une réponse réussie se présenterait ainsi :
@@ -78,13 +78,13 @@ Location: http://localhost/myapp/?code= AwABAAAAvPM1KaPlrEqdFSBzjqfTGBCmLdgfSTLE
 
 | Paramètre | Description |
 | --- | --- |
-| admin_consent |La valeur est True si un administrateur a donné son consentement lorsqu’il y a été invité. |
-| code |Le code d’autorisation demandé par l’application. L’application peut utiliser ce code d’autorisation pour demander un jeton d’accès pour la ressource cible. |
-| session_state |Une valeur unique identifiant la session utilisateur actuelle. Cette valeur est un GUID, mais doit être traitée comme une valeur opaque n’ayant fait l’objet d’aucune analyse. |
-| state |Si un paramètre d’état est inclus dans la demande, la même valeur doit apparaître dans la réponse. Avant d’utiliser la réponse, il est recommandé que l’application vérifie que les valeurs d’état de la demande et de la réponse sont identiques. Cela permet de détecter les [attaques par falsification de requête intersites (CSRF, Cross Site Request Forgery)](https://tools.ietf.org/html/rfc6749#section-10.12) menaçant le client. |
+| admin_consent |valeur de Hello a la valeur True si un administrateur consenti tooa de consentement de demande. |
+| code |code d’autorisation Hello application hello demandée. application Hello peut utiliser toorequest de code d’autorisation hello un jeton d’accès pour la ressource cible de hello. |
+| session_state |Une valeur unique qui identifie la session utilisateur en cours hello. Cette valeur est un GUID, mais doit être traitée comme une valeur opaque n’ayant fait l’objet d’aucune analyse. |
+| state |Si un paramètre d’état est inclus dans la demande de hello, hello même valeur doit figurer dans la réponse de hello. Il est conseillé de tooverify d’application hello que les valeurs d’état hello dans hello demande et de réponse sont identiques avant à l’aide de la réponse de hello. Cela permet de toodetect [des attaques par falsification de demande d’intersites (CSRF)](https://tools.ietf.org/html/rfc6749#section-10.12) sur le client de hello. |
 
 ### Réponse d’erreur
-Les réponses d’erreur peuvent également être envoyées à l’élément `redirect_uri` , de manière à ce que l’application puisse les traiter de manière appropriée.
+Réponses d’erreur peuvent aussi être envoyés à toohello `redirect_uri` afin que l’application hello peut gérer de façon appropriée.
 
 ```
 GET http://localhost:12345/?
@@ -94,25 +94,25 @@ error=access_denied
 
 | Paramètre | Description |
 | --- | --- |
-| error |Une valeur de code d’erreur définie dans la section 5.2 du document [OAuth 2.0 Authorization Framework](http://tools.ietf.org/html/rfc6749)(Infrastructure d’autorisation OAuth 2.0). Le tableau suivant décrit les codes d’erreur retournés par Azure AD. |
-| error_description |Une description plus détaillée de l’erreur. Ce message n’est pas destiné à offrir une description claire à l’utilisateur final. |
-| state |La valeur d’état est une valeur non réutilisée, générée de manière aléatoire, envoyée dans la demande et retournée dans la réponse pour empêcher les falsifications de requête intersites (CSRF, Cross Site Request Forgery). |
+| error |Une valeur de code d’erreur définie dans la Section 5.2 de hello [OAuth 2.0 Authorization Framework](http://tools.ietf.org/html/rfc6749). table de Hello suivant décrit les codes d’erreur de hello retournés par Azure AD. |
+| error_description |Une description plus détaillée de l’erreur de hello. Ce message n’est pas destiné toobe nom convivial de l’utilisateur final. |
+| state |valeur d’état Hello est une valeur non réutilisée générée de façon aléatoire qui est envoyée dans la demande hello et retournée dans les attaques de hello réponse tooprevent requête forgery (CSRF). |
 
 #### Codes d’erreur pour les erreurs de point de terminaison d’autorisation
-Le tableau suivant décrit les différents codes d’erreur qui peuvent être retournés dans le paramètre `error` de la réponse d’erreur.
+Hello tableau suivant décrit hello différents codes d’erreur qui peuvent être retournées dans hello `error` paramètre de réponse d’erreur hello.
 
 | Code d'erreur | Description | Action du client |
 | --- | --- | --- |
-| invalid_request |Erreur de protocole, tel qu’un paramètre obligatoire manquant. |Corrigez l’erreur, puis envoyez à nouveau la demande. Il s’agit d’une erreur de développement généralement détectée lors des tests initiaux. |
-| unauthorized_client |L’application cliente n’est pas autorisée à demander un code d’autorisation. |Cela se produit généralement lorsque l’application cliente n’est pas inscrite dans Azure AD ou n’est pas ajoutée au client Azure AD de l’utilisateur. L’application peut proposer à l’utilisateur des instructions pour installer l’application et l’ajouter à Azure AD. |
-| access_denied |Le propriétaire de la ressource n’a pas accordé son consentement. |L’application cliente peut avertir l’utilisateur qu’elle ne peut pas continuer sans son consentement. |
-| unsupported_response_type |Le serveur d’autorisation ne prend pas en charge le type de réponse dans la demande. |Corrigez l’erreur, puis envoyez à nouveau la demande. Il s’agit d’une erreur de développement généralement détectée lors des tests initiaux. |
-| server_error |Le serveur a rencontré une erreur inattendue. |relancez la requête. Ces erreurs peuvent résulter de conditions temporaires. L’application cliente peut expliquer à l’utilisateur que sa réponse est reportée en raison d’une erreur temporaire. |
-| temporarily_unavailable |Le serveur est temporairement trop occupé pour traiter la demande. |relancez la requête. L’application cliente peut expliquer à l’utilisateur que sa réponse est reportée en raison d’une condition temporaire. |
-| invalid_resource |La ressource cible n’est pas valide car elle n’existe pas, Azure AD ne la trouve pas ou elle n’est pas configurée correctement. |Cela indique que la ressource, si elle existe, n’a pas été configurée dans le client. L’application peut proposer à l’utilisateur des instructions pour installer l’application et l’ajouter à Azure AD. |
+| invalid_request |Erreur de protocole, tel qu’un paramètre obligatoire manquant. |Corrigez et soumettez à nouveau la demande de hello. Il s’agit d’une erreur de développement généralement détectée lors des tests initiaux. |
+| unauthorized_client |Hello application cliente n’est pas autorisé à toorequest un code d’autorisation. |Cela se produit généralement lorsque l’application cliente de hello n’est pas inscrit dans Azure AD ou locataire Azure AD de l’utilisateur toohello n’est pas ajoutée. application Hello peut inviter l’utilisateur hello avec des instructions pour installer l’application hello et en l’ajoutant tooAzure AD. |
+| access_denied |Le propriétaire de la ressource n’a pas accordé son consentement. |application cliente de Hello peut avertir l’utilisateur de hello il ne peut pas continuer à moins que hello utilisateur y consent. |
+| unsupported_response_type |serveur d’autorisation de Hello ne prend pas en charge le type de réponse hello dans la demande de hello. |Corrigez et soumettez à nouveau la demande de hello. Il s’agit d’une erreur de développement généralement détectée lors des tests initiaux. |
+| server_error |serveur de Hello a rencontré une erreur inattendue. |Réessayez la demande de hello. Ces erreurs peuvent résulter de conditions temporaires. application cliente de Hello peut expliquer toohello utilisateur que sa réponse est retardée en raison de l’erreur temporaire de tooa. |
+| temporarily_unavailable |serveur de Hello est temporairement trop occupé toohandle hello demande. |Réessayez la demande de hello. application cliente de Hello peut expliquer toohello utilisateur que sa réponse est retardée en raison de la condition temporaire de tooa. |
+| invalid_resource |ressource de Hello cible n’est pas valide, car il n’existe pas, Azure AD ne peut pas trouver ou il n’est pas configuré correctement. |Cela indique la ressource de hello, s’il en existe n'a pas été configurée dans hello client. application Hello peut inviter l’utilisateur hello avec des instructions pour installer l’application hello et en l’ajoutant tooAzure AD. |
 
-## Utiliser le code d’autorisation pour demander un jeton d’accès
-Maintenant que vous avez acquis un code d’autorisation et que l’utilisateur vous a octroyé une autorisation, vous pouvez échanger le code contre un jeton d’accès à la ressource souhaitée, en envoyant une demande POST au point de terminaison `/token` :
+## Utilisez toorequest de code d’autorisation hello un jeton d’accès
+Maintenant que vous avez acquis un code d’autorisation et l’autorisation avez été accordée par l’utilisateur de hello, vous pouvez utiliser le code hello pour une ressource de jeton toohello souhaité d’accès, en envoyant un toohello de la demande POST `/token` point de terminaison :
 
 ```
 // Line breaks for legibility only
@@ -132,20 +132,20 @@ grant_type=authorization_code
 
 | Paramètre |  | Description |
 | --- | --- | --- |
-| locataire |required |La valeur `{tenant}` dans le chemin d’accès de la requête peut être utilisée pour contrôler les utilisateurs qui peuvent se connecter à l’application.  Les valeurs autorisées sont les identificateurs du client, par exemple `8eaef023-2b34-4da1-9baa-8bc8c9d6a490`, `contoso.onmicrosoft.com` ou `common` pour les jetons indépendants du client |
-| client_id |required |L’ID d’application attribué à votre application lorsque vous l’avez inscrite auprès d’Azure AD. Il est disponible sur le Portail Azure Classic. Cliquez sur **Active Directory**, sur le répertoire, sélectionnez l’application et cliquez sur **Configurer** |
-| grant_type |required |Doit être `authorization_code` pour le flux de code d'autorisation. |
-| code |required |`authorization_code` que vous avez obtenu dans la section précédente. |
-| redirect_uri |required |Valeur `redirect_uri` qui a été utilisée pour acquérir le `authorization_code`. |
-| client_secret |requis pour les applications Web |Le secret d’application que vous avez créé dans le portail d’inscription des applications pour votre application.  Il ne doit pas être utilisé dans une application native, car les clés secrètes client ne peuvent pas être stockées de manière sûre sur les appareils.  Il est requis pour les applications web et les API web, qui peuvent stocker en toute sécurité le `client_secret` sur le côté serveur. |
-| resource |requis s’il est spécifié dans la demande de code d’autorisation, facultatif dans le cas contraire |URI ID d’application de l’API web (ressource sécurisée). |
+| locataire |required |Hello `{tenant}` valeur de chemin d’accès de hello de demande de hello peut être utilisé toocontrol qui peut se connecter à l’application hello.  Hello valeurs autorisées sont des identificateurs de client, par exemple, `8eaef023-2b34-4da1-9baa-8bc8c9d6a490` ou `contoso.onmicrosoft.com` ou `common` pour les jetons d’indépendant du locataire |
+| client_id |required |Hello Id d’Application attribué tooyour application lorsque vous avez l’inscrit auprès d’Azure AD. Vous pouvez le trouver dans hello portail classique Azure. Cliquez sur **Active Directory**, cliquez sur le répertoire hello, choisissez l’application hello et cliquez sur **configurer** |
+| grant_type |required |Doit être `authorization_code` pour les flux de code d’autorisation hello. |
+| code |required |Hello `authorization_code` que vous avez obtenue dans la section précédente de hello |
+| redirect_uri |required |Hello même `redirect_uri` valeur qui a été utilisé tooacquire hello `authorization_code`. |
+| client_secret |requis pour les applications Web |secret d’application Hello que vous avez créé dans le portail de l’enregistrement d’application hello pour votre application.  Il ne doit pas être utilisé dans une application native, car les clés secrètes client ne peuvent pas être stockées de manière sûre sur les appareils.  Il est requis pour les applications web et web API, qui ont hello de hello capacité toostore `client_secret` en toute sécurité sur le côté du serveur hello. |
+| resource |requis s’il est spécifié dans la demande de code d’autorisation, facultatif dans le cas contraire |Hello URI ID d’application de hello API web (ressource sécurisée). |
 
-Pour rechercher l’URI ID d’application, dans le portail de gestion Azure, cliquez successivement sur **Active Directory**, le répertoire, l’application, puis sur **Configurer**.
+toofind hello URI ID d’application Bonjour portail de gestion Azure, cliquez sur **Active Directory**, cliquez sur le répertoire hello, cliquez sur l’application hello, puis cliquez sur **configurer**.
 
 ### Réponse correcte
-Azure AD renvoie un jeton d’accès dès réception d’une réponse correcte. Pour réduire le nombre d’appels réseau de l’application cliente et la latence associée, l’application cliente doit mettre en cache des jetons d’accès tout au long de la durée de vie des jetons, spécifiée dans la réponse OAuth 2.0. Pour déterminer la durée de vie des jetons, utilisez les valeurs de paramètre `expires_in` ou `expires_on`.
+Azure AD renvoie un jeton d’accès dès réception d’une réponse correcte. toominimize des appels de réseau à partir de l’application cliente de hello et leur latence associé, application de client hello doit mettre en cache des jetons d’accès pour hello durée de vie qui est spécifiée dans hello réponse OAuth 2.0. durée de vie jeton toodetermine hello, utilisez soit hello `expires_in` ou `expires_on` les valeurs de paramètre.
 
-Si une ressource de l’API web renvoie un code d’erreur `invalid_token` , cela peut indiquer que la ressource a déterminé que le jeton est arrivé à expiration. Si les temps horloge du client et de la ressource sont différents (on parle alors de « différence de temps »), la ressource peut considérer que le jeton a expiré avant que celui-ci n’ait été effacé du cache du client. Si cela se produit, effacez le jeton du cache, même si sa durée de vie calculée n’a pas expiré.
+Si une ressource de l’API web renvoie un `invalid_token` code d’erreur, cela peut indiquer que les ressources hello a déterminé que le jeton hello a expiré. Si le temps d’horloge hello client et les ressources sont différents (appelé un « décalage horaire »), les ressources hello envisagez toobe de jeton hello a expiré avant que le jeton de hello est effacé du cache du client de hello. Si cela se produit, désactivez le jeton hello à partir du cache hello, même si elle est toujours dans sa durée de vie calculée.
 
 Une réponse réussie se présenterait ainsi :
 
@@ -165,17 +165,17 @@ Une réponse réussie se présenterait ainsi :
 
 | Paramètre | Description |
 | --- | --- |
-| access_token |Le jeton d’accès demandé. L’application peut utiliser ce jeton pour procéder à l’authentification sur la ressource sécurisée, comme une API Web. |
-| token_type |Indique la valeur du type de jeton. Le seul type de jeton pris en charge par Azure AD est le jeton porteur. Pour plus d’informations sur les jetons du porteur, consultez le document [OAuth 2.0 Authorization Framework: Bearer Token Usage (RFC 6750)](http://www.rfc-editor.org/rfc/rfc6750.txt) |
-| expires_in |La durée de validité (en secondes) du jeton d’accès. |
-| expires_on |L’heure d’expiration du jeton d’accès. La date est représentée en nombre de secondes à partir du 1er janvier 1970 (1970-01-01T0:0:0Z) UTC jusqu’au moment de l’expiration. Cette valeur est utilisée pour déterminer la durée de vie des jetons en cache. |
-| resource |URI ID d’application de l’API web (ressource sécurisée). |
-| scope |Autorisations d’emprunt d’identité accordées à l’application cliente. L’autorisation par défaut est `user_impersonation`. Le propriétaire de la ressource sécurisée peut enregistrer des valeurs supplémentaires dans Azure AD. |
-| refresh_token |Un jeton d’actualisation OAuth 2.0. L’application peut utiliser ce jeton pour acquérir des jetons d’accès supplémentaires après l’expiration du jeton d’accès actuel.  Les jetons d’actualisation sont durables, et peuvent être utilisés pour conserver l’accès aux ressources pendant des périodes prolongées. |
-| id_token |Un jeton Web JSON non signé (JWT). L’application peut décoder les segments de ce jeton à l’aide d’un décodeur base64Url afin de demander des informations relatives à l’utilisateur qui s’est connecté. L’application peut mettre en cache les valeurs et les afficher, mais ne peut aucunement les utiliser pour les limites d’autorisation ou de sécurité. |
+| access_token |jeton d’accès demandé Hello. application Hello peut utiliser cette toohello tooauthenticate jeton ressource, telle qu’une API web sécurisée. |
+| token_type |Indique la valeur de jeton de type hello. Hello tapez uniquement que prend en charge d’Azure AD est porteur. Pour plus d’informations sur les jetons du porteur, consultez le document [OAuth 2.0 Authorization Framework: Bearer Token Usage (RFC 6750)](http://www.rfc-editor.org/rfc/rfc6750.txt) |
+| expires_in |La durée pendant laquelle le jeton d’accès hello est valide (en secondes). |
+| expires_on |Hello date d’expiration jeton d’accès hello. date de Hello est représenté en tant que nombre hello de secondes entre 1970-01-01T0:0:0Z UTC jusqu'à ce que le délai d’expiration de hello. Cette valeur est la durée de vie utilisé toodetermine hello de jetons mis en cache. |
+| resource |Hello URI ID d’application de hello API web (ressource sécurisée). |
+| scope |Application cliente de toohello les autorisations de l’emprunt d’identité accordées. autorisation de Hello par défaut est `user_impersonation`. propriétaire de Hello Hello ressource sécurisée peut enregistrer des valeurs supplémentaires dans Azure AD. |
+| refresh_token |Un jeton d’actualisation OAuth 2.0. application Hello peut utiliser ce jeton tooacquire des jetons d’accès supplémentaires après l’expiration du jeton d’accès actuel hello.  Actualiser les jetons sont de longue durées et peut être utilisé tooretain accès tooresources pendant de longues périodes de temps. |
+| id_token |Un jeton Web JSON non signé (JWT). Hello application peut base64Url décoder segments hello de ces informations de jeton toorequest sur utilisateur hello connectés. application Hello peut mettre en cache les valeurs hello et les afficher, mais il ne doit pas dépendre les pour toute l’autorisation ou des limites de sécurité. |
 
 ### Demandes de jeton JWT
-Le jeton JWT dans la valeur du paramètre `id_token` peut être décodé dans les revendications suivantes :
+jeton Web JSON de Hello dans la valeur hello hello `id_token` paramètre peut être décodé en hello suivant revendications :
 
 ```
 {
@@ -199,35 +199,35 @@ Le jeton JWT dans la valeur du paramètre `id_token` peut être décodé dans le
 }.
 ```
 
-Pour plus d’informations sur les jetons web JSON, consultez le [projet de spécification JWT de l’IETF](http://go.microsoft.com/fwlink/?LinkId=392344). Pour plus d’informations sur les types de jeton et les revendications, consultez la page [Types de jeton et de revendication pris en charge](active-directory-token-and-claims.md)
+Pour plus d’informations sur les jetons web JSON, consultez hello [spécification préliminaire JWT IETF](http://go.microsoft.com/fwlink/?LinkId=392344). Pour plus d’informations sur les types de jetons hello et revendications, consultez [pris en charge du jeton et Types de revendication](active-directory-token-and-claims.md)
 
-Le paramètre `id_token` inclut les types de revendication suivants :
+Hello `id_token` paramètre inclut hello les types de revendications suivants :
 
 | Type de revendication | Description |
 | --- | --- |
-| aud |Audience du jeton. Lorsque le jeton est émis pour une application cliente, l’audience est le `client_id` du client. |
-| exp |Heure d’expiration. L’heure d’expiration du jeton. Pour que le jeton soit valide, la date et l’heure actuelles doivent être antérieures ou identiques à la valeur `exp` . L’heure est représentée en nombre de secondes à partir du 1er janvier 1970 (1970-01-01T0:0:0Z) UTC jusqu’au moment de l’émission du jeton. |
-| family_name |Le nom de famille de l’utilisateur. L’application peut afficher cette valeur. |
-| given_name |Le prénom de l’utilisateur. L’application peut afficher cette valeur. |
-| iat |Heure d’émission. L’heure d’émission du jeton JWT. L’heure est représentée en nombre de secondes à partir du 1er janvier 1970 (1970-01-01T0:0:0Z) UTC jusqu’au moment de l’émission du jeton. |
-| iss |Identifie l’émetteur du jeton. |
-| nbf |Pas avant l’heure. Heure à laquelle le jeton entre en vigueur. Pour que le jeton soit valide, la date et l’heure actuelles doivent être postérieures ou identiques à la valeur Nbf. L’heure est représentée en nombre de secondes à partir du 1er janvier 1970 (1970-01-01T0:0:0Z) UTC jusqu’au moment de l’émission du jeton. |
-| oid |Identificateur (ID) de l’objet utilisateur dans Azure AD. |
-| sub |Identificateur du sujet du jeton. Il s’agit d’un identificateur persistant et immuable de l’utilisateur décrit par le jeton. Utilisez cette valeur dans la logique de mise en cache. |
-| tid |Identificateur (ID) du client Azure AD qui a émis le jeton. |
-| unique_name |Identificateur unique pouvant être affiché pour l’utilisateur. Il s’agit généralement d’un nom d’utilisateur principal (UPN, user principal name). |
-| upn |Nom d’utilisateur principal. |
-| ver |Version. La version du jeton JWT, généralement 1.0. |
+| aud |Audience du jeton de hello. Lorsque le jeton de hello est émis application cliente de tooa, hello s’hello `client_id` du client de hello. |
+| exp |Heure d’expiration. Hello expiration lorsque hello jeton. Pour toobe de la jeton de hello valide, hello date/heure actuelle doit être inférieur ou égal toohello `exp` valeur. temps de Hello est représenté en hello secondes à partir du 1er janvier 1970 (1970-01-01T0:0:0Z) UTC jusqu'à ce que le jeton de hello hello temps a été émis. |
+| family_name |Le nom de famille de l’utilisateur. application Hello peut afficher cette valeur. |
+| given_name |Le prénom de l’utilisateur. application Hello peut afficher cette valeur. |
+| iat |Heure d’émission. heure de Hello lorsque hello JWT a été émis. temps de Hello est représenté en hello secondes à partir du 1er janvier 1970 (1970-01-01T0:0:0Z) UTC jusqu'à ce que le jeton de hello hello temps a été émis. |
+| iss |Identifie l’émetteur de jeton hello |
+| nbf |Pas avant l’heure. heure de Hello lorsque le jeton de hello devient effective. Pour toobe de la jeton de hello valide, hello date/heure actuelle doit être supérieure ou égale toohello Nbf valeur. temps de Hello est représenté en hello secondes à partir du 1er janvier 1970 (1970-01-01T0:0:0Z) UTC jusqu'à ce que le jeton de hello hello temps a été émis. |
+| oid |Identificateur d’objet (ID) de l’objet d’utilisateur hello dans Azure AD. |
+| sub |Identificateur du sujet du jeton. Il s’agit d’un identificateur persistant et immuable pour l’utilisateur de hello hello jeton décrit. Utilisez cette valeur dans la logique de mise en cache. |
+| tid |Identificateur (ID) de client hello Azure AD qui a émis le jeton de hello du client. |
+| unique_name |Un identificateur unique pour qui peut être affichée toohello utilisateur. Il s’agit généralement d’un nom d’utilisateur principal (UPN, user principal name). |
+| upn |Nom d’utilisateur principal de l’utilisateur de hello. |
+| ver |Version. version de Hello du jeton Web JSON de hello, généralement 1.0. |
 
 ### Réponse d’erreur
-Les erreurs de point de terminaison d’émission de jeton sont des codes d’erreur HTTP, étant donné que le client appelle directement le point de terminaison d’émission de jeton. Outre le code d’état HTTP, le point de terminaison d’émission de jeton Azure AD retourne également un document JSON avec des objets qui décrivent l’erreur.
+erreurs de point de terminaison d’émission de jeton de Hello sont des codes d’erreur HTTP, car les appels du client hello hello le point de terminaison d’émission de jeton directement. En outre code d’état HTTP de toohello, point de terminaison d’émission de jeton de Azure AD hello retourne également un document JSON avec des objets qui décrivent l’erreur de hello.
 
 Une réponse d’erreur se présenterait ainsi :
 
 ```
 {
   "error": "invalid_grant",
-  "error_description": "AADSTS70002: Error validating credentials. AADSTS70008: The provided authorization code or refresh token is expired. Send a new interactive authorization request for this user and resource.\r\nTrace ID: 3939d04c-d7ba-42bf-9cb7-1e5854cdce9e\r\nCorrelation ID: a8125194-2dc8-4078-90ba-7b6592a7f231\r\nTimestamp: 2016-04-11 18:00:12Z",
+  "error_description": "AADSTS70002: Error validating credentials. AADSTS70008: hello provided authorization code or refresh token is expired. Send a new interactive authorization request for this user and resource.\r\nTrace ID: 3939d04c-d7ba-42bf-9cb7-1e5854cdce9e\r\nCorrelation ID: a8125194-2dc8-4078-90ba-7b6592a7f231\r\nTimestamp: 2016-04-11 18:00:12Z",
   "error_codes": [
     70002,
     70008
@@ -239,37 +239,37 @@ Une réponse d’erreur se présenterait ainsi :
 ```
 | Paramètre | Description |
 | --- | --- |
-| error |Une chaîne de code d’erreur pouvant être utilisée pour classer les types d’erreur se produisant, et pouvant être utilisée pour intervenir face aux erreurs. |
-| error_description |Un message d’erreur spécifique qui peut aider un développeur à identifier la cause principale d’une erreur d’authentification. |
+| error |Une chaîne de code d’erreur qui peut être utilisés tooclassify des types d’erreurs qui se produisent et peut être utilisé tooreact tooerrors. |
+| error_description |Un message d’erreur spécifique qui permettre aider un développeur à identifier la cause de hello d’une erreur d’authentification. |
 | error_codes |Liste des codes d’erreur STS spécifiques pouvant être utiles dans les tests de diagnostic. |
-| timestamp |Heure à laquelle l’erreur s’est produite. |
-| trace_id |Identifiant unique de la demande pouvant être utile dans les tests de diagnostic. |
-| correlation_id |Identifiant unique de la demande pouvant être utile dans les tests de diagnostic sur les divers composants. |
+| timestamp |heure de Hello hello erronée. |
+| trace_id |Identificateur unique pour la demande hello qui peut aider dans les diagnostics. |
+| correlation_id |Identificateur unique pour la demande hello qui peut vous aider à diagnostics entre les composants. |
 
 #### Codes d’état HTTP
-Le tableau suivant répertorie les codes d’état HTTP retournés par le point de terminaison d’émission de jeton. Dans certains cas, le code d’erreur est suffisant pour décrire la réponse, mais en cas d’erreurs, vous devez analyser le document JSON joint et examiner son code d’erreur.
+Hello tableau suivant répertorie les codes d’état HTTP de hello hello retourne de point de terminaison d’émission de jeton. Dans certains cas, code d’erreur hello est la réponse de hello toodescribe suffisante, mais s’il existe des erreurs, vous devez hello tooparse accompagnant JSON de document et examiner son code d’erreur.
 
 | Code HTTP | Description |
 | --- | --- |
-| 400 |Code HTTP par défaut. Il est utilisé dans la plupart des cas et est généralement dû à une demande incorrecte. Corrigez l’erreur, puis envoyez à nouveau la demande. |
-| 401 |Échec d’authentification. Par exemple, la demande ne contient pas le paramètre client_secret. |
-| 403 |Échec de l’autorisation. Par exemple, l’utilisateur n’est pas autorisé à accéder à la ressource. |
-| 500 |Une erreur interne s’est produite au niveau du service. relancez la requête. |
+| 400 |Code HTTP par défaut. Utilisé dans la plupart des cas et est généralement dû tooa de demande incorrect. Corrigez et soumettez à nouveau la demande de hello. |
+| 401 |Échec d’authentification. Par exemple, demande de hello hello client_secret paramètre manquant. |
+| 403 |Échec de l’autorisation. Par exemple, utilisateur de hello n’a pas de ressource d’autorisation tooaccess hello. |
+| 500 |Une erreur interne s’est produite au niveau de service de hello. Réessayez la demande de hello. |
 
 #### Codes d’erreur pour les erreurs de point de terminaison de jeton
 | Code d'erreur | Description | Action du client |
 | --- | --- | --- |
-| invalid_request |Erreur de protocole, tel qu’un paramètre obligatoire manquant. |Corrigez l’erreur, puis envoyez à nouveau la demande. |
-| invalid_grant |Le code d’autorisation n’est pas valide ou a expiré. |Essayez une nouvelle demande sur le point de terminaison `/authorize` |
-| unauthorized_client |Le client authentifié n’est pas autorisé à utiliser ce type d’octroi d’autorisation. |Cela se produit généralement lorsque l’application cliente n’est pas inscrite dans Azure AD ou n’est pas ajoutée au client Azure AD de l’utilisateur. L’application peut proposer à l’utilisateur des instructions pour installer l’application et l’ajouter à Azure AD. |
-| invalid_client |Échec d’authentification du client. |Les informations d’identification du client ne sont pas valides. Pour résoudre le problème, l’administrateur de l’application met à jour les informations d’identification. |
-| unsupported_grant_type |Le serveur d’autorisation ne prend pas en charge le type d’octroi d’autorisation. |Modifiez le type d’octroi dans la demande. Ce type d’erreur doit se produire uniquement lors du développement et doit être détecté lors du test initial. |
-| invalid_resource |La ressource cible n’est pas valide car elle n’existe pas, Azure AD ne la trouve pas ou elle n’est pas configurée correctement. |Cela indique que la ressource, si elle existe, n’a pas été configurée dans le client. L’application peut proposer à l’utilisateur des instructions pour installer l’application et l’ajouter à Azure AD. |
-| interaction_required |La demande nécessite une interaction utilisateur. Par exemple, une étape d’authentification supplémentaire est nécessaire. | Au lieu d’une demande non interactive, réessayez avec une demande d’autorisation interactive pour la même ressource. |
-| temporarily_unavailable |Le serveur est temporairement trop occupé pour traiter la demande. |relancez la requête. L’application cliente peut expliquer à l’utilisateur que sa réponse est reportée en raison d’une condition temporaire. |
+| invalid_request |Erreur de protocole, tel qu’un paramètre obligatoire manquant. |Corrigez et soumettez à nouveau la demande de hello |
+| invalid_grant |code d’autorisation de Hello n’est pas valide ou a expiré. |Essayez une nouvelle toohello de demande `/authorize` point de terminaison |
+| unauthorized_client |Hello client authentifié n’est pas autorisé toouse type d’accorder cette autorisation. |Cela se produit généralement lorsque l’application cliente de hello n’est pas inscrit dans Azure AD ou locataire Azure AD de l’utilisateur toohello n’est pas ajoutée. application Hello peut inviter l’utilisateur hello avec des instructions pour installer l’application hello et en l’ajoutant tooAzure AD. |
+| invalid_client |Échec d’authentification du client. |informations d’identification du client Hello ne sont pas valides. toofix, administrateur de l’application hello met à jour les informations d’identification hello. |
+| unsupported_grant_type |serveur d’autorisation de Hello ne prend pas en charge le type d’octroi d’autorisation hello. |Hello de modification accorder le type de demande de hello. Ce type d’erreur doit se produire uniquement lors du développement et doit être détecté lors du test initial. |
+| invalid_resource |ressource de Hello cible n’est pas valide, car il n’existe pas, Azure AD ne peut pas trouver ou il n’est pas configuré correctement. |Cela indique la ressource de hello, s’il en existe n'a pas été configurée dans hello client. application Hello peut inviter l’utilisateur hello avec des instructions pour installer l’application hello et en l’ajoutant tooAzure AD. |
+| interaction_required |demande de Hello nécessite une interaction utilisateur. Par exemple, une étape d’authentification supplémentaire est nécessaire. | Au lieu d’une demande non interactif, réessayez avec une demande d’autorisation interactive pour hello même ressource. |
+| temporarily_unavailable |serveur de Hello est temporairement trop occupé toohandle hello demande. |Réessayez la demande de hello. application cliente de Hello peut expliquer toohello utilisateur que sa réponse est retardée en raison de la condition temporaire de tooa. |
 
-## Utiliser le jeton d’accès pour accéder à la ressource
-Maintenant que vous avez acquis un jeton `access_token`, vous pouvez l'utiliser dans des requêtes dirigées vers des API Web en l'incluant dans l'en-tête `Authorization`. La spécification [RFC 6750](http://www.rfc-editor.org/rfc/rfc6750.txt) explique comment utiliser des jetons du porteur dans les requêtes HTTP pour accéder aux ressources protégées.
+## Utilisez hello accès tooaccess jeton hello ressource
+Maintenant que vous avez acquis avec succès une `access_token`, vous pouvez utiliser le jeton de hello dans les demandes tooWeb API, en l’incluant dans hello `Authorization` en-tête. Hello [RFC 6750](http://www.rfc-editor.org/rfc/rfc6750.txt) spécification explique comment les ressources protégées dans les jetons de support toouse dans tooaccess des demandes HTTP.
 
 ### Exemple de requête
 ```
@@ -279,41 +279,41 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ik5HVEZ2ZEstZn
 ```
 
 ### Réponse d’erreur
-Les ressources sécurisées qui implémentent la spécification RFC 6750 émettent des codes d’état HTTP. Si la demande n’inclut pas d’informations d’authentification ou ne contient pas le jeton, la réponse inclut un en-tête `WWW-Authenticate` . Lorsqu’une requête échoue, le serveur de ressources répond avec un code d’état HTTP et un code d’erreur.
+Les ressources sécurisées qui implémentent la spécification RFC 6750 émettent des codes d’état HTTP. Si la demande de hello n’inclut pas les informations d’identification d’authentification ou manque de réponse du jeton, hello de hello inclut un `WWW-Authenticate` en-tête. En cas d’échec d’une demande, serveur de ressources hello répond avec le code d’état HTTP hello et un code d’erreur.
 
-Voici un exemple de réponse qui échoue lorsque la demande du client n’inclut pas le jeton du porteur :
+Hello Voici un exemple d’une réponse d’échec lors de la demande du client hello n’inclut pas de jeton de support hello :
 
 ```
 HTTP/1.1 401 Unauthorized
-WWW-Authenticate: Bearer authorization_uri="https://login.microsoftonline.com/contoso.com/oauth2/authorize",  error="invalid_token",  error_description="The access token is missing.",
+WWW-Authenticate: Bearer authorization_uri="https://login.microsoftonline.com/contoso.com/oauth2/authorize",  error="invalid_token",  error_description="hello access token is missing.",
 ```
 
 #### Paramètres d’erreur
 | Paramètre | Description |
 | --- | --- |
-| authorization_uri |L’URI (point de terminaison physique) du serveur d’autorisation. Cette valeur est également utilisée comme clé de recherche pour obtenir plus d’informations sur le serveur à partir d’un point de terminaison de détection. <p><p> Le client doit valider l’approbation du serveur d’autorisation. Quand la ressource est protégée par Azure AD, il suffit de vérifier que l’URL commence par https://login.microsoftonline.com ou un autre nom d’hôte pris en charge par Azure AD. Une ressource spécifique au client doit toujours retourner un URI d’autorisation spécifique au client. |
-| error |Une valeur de code d’erreur définie dans la section 5.2 du document [OAuth 2.0 Authorization Framework](http://tools.ietf.org/html/rfc6749)(Infrastructure d’autorisation OAuth 2.0). |
-| error_description |Une description plus détaillée de l’erreur. Ce message n’est pas destiné à offrir une description claire à l’utilisateur final. |
-| resource_id |Retourne l’identificateur unique de la ressource. L’application cliente peut utiliser cet identificateur en tant que valeur du paramètre `resource` lorsqu’elle demande un jeton pour la ressource. <p><p> Il est important pour l’application cliente de vérifier cette valeur. Sinon, un service malveillant peut être en mesure de provoquer une attaque **par élévation de privilèges** <p><p> La stratégie recommandée pour empêcher une attaque consiste à vérifier que le paramètre `resource_id` correspond à la base de l’URL de l’API web faisant l’objet de l’accès. Par exemple, si https://service.contoso.com/data fait l’objet d’un accès, `resource_id` peut être htttps://service.contoso.com/. L’application cliente doit rejeter un `resource_id` qui ne commence pas par l’URL de base sauf s’il existe une autre façon fiable de vérifier l’ID. |
+| authorization_uri |Hello URI (point de terminaison physique) du serveur d’autorisation de hello. Cette valeur est également utilisée comme une recherche de clé tooget plus d’informations sur le serveur hello à partir d’un point de terminaison de découverte. <p><p> client de Hello doit valider ce hello serveur d’autorisation est approuvé. Lorsque les ressources hello sont protégé par Azure AD, il est suffisant tooverify hello URL commence par https://login.microsoftonline.com ou un autre nom d’hôte qui prend en charge par Azure AD. Une ressource spécifique au client doit toujours retourner un URI d’autorisation spécifique au client. |
+| error |Une valeur de code d’erreur définie dans la Section 5.2 de hello [OAuth 2.0 Authorization Framework](http://tools.ietf.org/html/rfc6749). |
+| error_description |Une description plus détaillée de l’erreur de hello. Ce message n’est pas destiné toobe nom convivial de l’utilisateur final. |
+| resource_id |Retourne hello identificateur unique de la ressource de hello. application cliente de Hello peut utiliser cet identificateur en tant que valeur hello Hello `resource` paramètre lorsqu’il demande un jeton pour la ressource de hello. <p><p> Il est important pour hello client application tooverify cette valeur, sinon un service malveillant peut être en mesure de tooinduce un **une élévation de privilèges** attaque <p><p> Hello stratégie recommandée pour empêcher une attaque est tooverify hello `resource_id` correspondances hello base du site web hello URL d’API qui en cours d’accès. Par exemple, si https://service.contoso.com/data est accessible, hello `resource_id` peut être htttps://service.contoso.com/. application cliente de Hello doit rejeter une `resource_id` qui ne commence pas par URL de base hello sauf s’il existe un id de hello tooverify autre façon fiable. |
 
 #### Codes d’erreur du schéma de porteur
-La spécification RFC 6750 définit les erreurs suivantes pour les ressources qui utilisent l’en-tête WWW-Authenticate et le schéma de porteur dans la réponse.
+Hello spécification RFC 6750 définit hello pour les ressources qui utilisent les en-tête WWW-Authenticate de hello et schéma de support dans la réponse de hello, les erreurs suivantes.
 
 | Code d’état HTTP | Code d'erreur | Description | Action du client |
 | --- | --- | --- | --- |
-| 400 |invalid_request |La demande n’est pas correcte. Par exemple, un paramètre est manquant ou elle utilise deux fois le même paramètre. |Corrigez l’erreur et relancez la demande. Ce type d’erreur doit se produire uniquement lors du développement et doit être détecté lors du test initial. |
-| 401 |invalid_token |Le jeton d’accès est manquant, non valide ou révoqué. La valeur du paramètre error_description fournit des détails supplémentaires. |Demandez un nouveau jeton auprès du serveur d’autorisation. Si le nouveau jeton échoue, une erreur inattendue s’est produite. Envoyez un message d’erreur à l’utilisateur et effectuez une nouvelle tentative après un délai aléatoire. |
-| 403 |insufficient_scope |Le jeton d’accès ne contient pas les autorisations d’emprunt d’identité requises pour accéder à la ressource. |Envoyez une nouvelle demande d’autorisation au point de terminaison d’autorisation. Si la réponse contient le paramètre d’étendue, utilisez la valeur d’étendue dans la demande à la ressource. |
-| 403 |insufficient_access |Le sujet du jeton n’a pas les autorisations requises pour accéder à la ressource. |Invitez l’utilisateur à utiliser un compte différent ou à demander des autorisations pour la ressource spécifiée. |
+| 400 |invalid_request |demande de Hello n’est pas correctement formée. Par exemple, il manque peut-être un paramètre ou à l’aide de hello même paramètre de deux fois. |Corrigez l’erreur de hello et nouvelle tentative de demande de hello. Ce type d’erreur doit se produire uniquement lors du développement et doit être détecté lors du test initial. |
+| 401 |invalid_token |jeton d’accès Hello est manquant, incorrect ou est révoqué. valeur Hello du paramètre d’error_description hello fournit des détails supplémentaires. |Demander un nouveau jeton hello serveur d’autorisation. Si le jeton hello échoue, une erreur inattendue s’est produite. Envoyer à un utilisateur de toohello message erreur et recommencez après un délai aléatoire. |
+| 403 |insufficient_scope |jeton d’accès Hello ne contient pas de hello d’emprunt d’identité autorisations requis tooaccess hello ressource. |Envoyer un nouveau point de terminaison d’autorisation d’autorisation demande toohello. Si la réponse de hello contient un paramètre d’étendue hello, utilisez la valeur de portée de hello dans la ressource de toohello demande hello. |
+| 403 |insufficient_access |objet Hello du jeton de hello n’a pas d’autorisations de hello des ressources hello tooaccess requis. |Hello invite utilisateur toouse un autre compte ou toorequest autorisations toohello la ressource spécifiée. |
 
-## Actualisation des jetons d’accès
-Les jetons d’accès présentent une durée de vie courte. Après leur expiration, vous devez les actualiser afin de pouvoir continuer à accéder aux ressources. Pour actualiser le `access_token`, envoyez une nouvelle requête `POST` au point de terminaison `/token` en fournissant l’élément `refresh_token` au lieu de l’élément `code`.
+## L’actualisation des jetons d’accès hello
+Les jetons d’accès sont de courte durées et doivent être actualisés après l’expiration des toocontinue l’accès aux ressources. Vous pouvez actualiser hello `access_token` en envoyant un autre `POST` demande toohello `/token` point de terminaison, mais cette fois en fournissant hello `refresh_token` au lieu de hello `code`.
 
-Les jetons d’actualisation n’ont pas de durée de vie spécifiée. En règle générale, leur durée de vie est relativement longue. Toutefois, dans certains cas, les jetons d’actualisation expirent, sont révoqués ou ne disposent pas de privilèges suffisants pour l’action souhaitée. Votre application doit envisager et gérer correctement les erreurs retournées par le point de terminaison d’émission de jeton.
+Les jetons d’actualisation n’ont pas de durée de vie spécifiée. En règle générale, les durées de vie hello des jetons d’actualisation sont relativement longues. Toutefois, dans certains cas, des jetons d’actualisation expirent, sont considérés comme révoqués ou ne disposent pas de privilèges suffisants pour l’action de hello souhaité. Votre application doit tooexpect et gérer les erreurs retournées par point de terminaison d’émission de jeton hello correctement.
 
-Lorsque vous recevez une réponse avec une erreur de jeton d’actualisation, ignorez le jeton d’actualisation actuel et demandez un nouveau code d’autorisation ou un nouveau jeton d’accès. C’est particulièrement le cas lorsque vous utilisez un jeton d’actualisation dans le flux d’octroi de code d’autorisation : si vous recevez une réponse avec le code d’erreur `interaction_required` ou `invalid_grant`, ignorez le jeton d’actualisation et demandez un nouveau code d’autorisation.
+Lorsque vous recevez une réponse avec une erreur de jeton d’actualisation, ignorez hello actuel jeton d’actualisation et demandez un nouveau code d’autorisation ou jeton d’accès. En particulier, lorsque à l’aide d’une actualisation de jeton Bonjour flux d’octroi de Code d’autorisation, si vous recevez une réponse avec hello `interaction_required` ou `invalid_grant` codes d’erreur, ignorer le jeton d’actualisation hello et demandez un nouveau code d’autorisation.
 
-Voici un exemple de demande au point de terminaison **propre au client** (vous pouvez également utiliser le point de terminaison **commun**) pour obtenir un nouveau jeton d’accès à l’aide d’un jeton d’actualisation :
+Un toohello de demande d’exemple **spécifiques du client** point de terminaison (vous pouvez également utiliser hello **commune** point de terminaison) tooget un nouveau jeton d’accès à l’aide d’un jeton d’actualisation ressemble à ceci :
 
 ```
 // Line breaks for legibility only
@@ -344,13 +344,13 @@ Une réponse de jeton réussie se présente ainsi :
 ```
 | Paramètre | Description |
 | --- | --- |
-| token_type |Le type de jeton. La seule valeur prise en charge est **bearer**. |
-| expires_in |La durée de vie restante du jeton en secondes. 3600 (une heure) est une valeur courante. |
-| expires_on |La date et l’heure auxquelles le jeton expire. La date est représentée en nombre de secondes à partir du 1er janvier 1970 (1970-01-01T0:0:0Z) UTC jusqu’au moment de l’expiration. |
-| resource |Identifie la ressource sécurisée accessible à l’aide du jeton d’accès. |
-| scope |Autorisations d’emprunt d’identité accordées à l’application cliente native. L’autorisation par défaut est **user_impersonation**. Le propriétaire de la ressource cible peut enregistrer des valeurs alternatives dans Azure AD. |
-| access_token |Le nouveau jeton d’accès qui a été demandé. |
-| refresh_token |Un nouveau jeton d’actualisation OAuth 2.0 pouvant être utilisé pour demander de nouveaux jetons d’accès lorsque celui de cette réponse expire. |
+| token_type |type de jeton Hello. la valeur Hello uniquement pris en charge est **support**. |
+| expires_in |Hello restant de durée de vie du jeton de hello en secondes. 3600 (une heure) est une valeur courante. |
+| expires_on |date de Hello et l’heure à laquelle le jeton de hello expire. date de Hello est représenté en tant que nombre hello de secondes entre 1970-01-01T0:0:0Z UTC jusqu'à ce que le délai d’expiration de hello. |
+| resource |Identifie hello ressource sécurisée ce jeton d’accès hello peut être utilisé tooaccess. |
+| scope |Application cliente native de toohello les autorisations de l’emprunt d’identité accordées. autorisation de Hello par défaut est **user_impersonation**. propriétaire de Hello de ressource de hello cible peut enregistrer des valeurs alternatives dans Azure AD. |
+| access_token |Hello nouveau jeton d’accès qui a été demandée. |
+| refresh_token |Un nouveau refresh_token OAuth 2.0 qui peuvent être utilisés toorequest nouveaux jetons d’accès quand un hello dans cette réponse expire. |
 
 ### Réponse d’erreur
 Une réponse d’erreur se présenterait ainsi :
@@ -358,7 +358,7 @@ Une réponse d’erreur se présenterait ainsi :
 ```
 {
   "error": "invalid_resource",
-  "error_description": "AADSTS50001: The application named https://foo.microsoft.com/mail.read was not found in the tenant named 295e01fc-0c56-4ac3-ac57-5d0ed568f872.  This can happen if the application has not been installed by the administrator of the tenant or consented to by any user in the tenant.  You might have sent your authentication request to the wrong tenant.\r\nTrace ID: ef1f89f6-a14f-49de-9868-61bd4072f0a9\r\nCorrelation ID: b6908274-2c58-4e91-aea9-1f6b9c99347c\r\nTimestamp: 2016-04-11 18:59:01Z",
+  "error_description": "AADSTS50001: hello application named https://foo.microsoft.com/mail.read was not found in hello tenant named 295e01fc-0c56-4ac3-ac57-5d0ed568f872.  This can happen if hello application has not been installed by hello administrator of hello tenant or consented tooby any user in hello tenant.  You might have sent your authentication request toohello wrong tenant.\r\nTrace ID: ef1f89f6-a14f-49de-9868-61bd4072f0a9\r\nCorrelation ID: b6908274-2c58-4e91-aea9-1f6b9c99347c\r\nTimestamp: 2016-04-11 18:59:01Z",
   "error_codes": [
     50001
   ],
@@ -370,11 +370,11 @@ Une réponse d’erreur se présenterait ainsi :
 
 | Paramètre | Description |
 | --- | --- |
-| error |Une chaîne de code d’erreur pouvant être utilisée pour classer les types d’erreur se produisant, et pouvant être utilisée pour intervenir face aux erreurs. |
-| error_description |Un message d’erreur spécifique qui peut aider un développeur à identifier la cause principale d’une erreur d’authentification. |
+| error |Une chaîne de code d’erreur qui peut être utilisés tooclassify des types d’erreurs qui se produisent et peut être utilisé tooreact tooerrors. |
+| error_description |Un message d’erreur spécifique qui permettre aider un développeur à identifier la cause de hello d’une erreur d’authentification. |
 | error_codes |Liste des codes d’erreur STS spécifiques pouvant être utiles dans les tests de diagnostic. |
-| timestamp |Heure à laquelle l’erreur s’est produite. |
-| trace_id |Identifiant unique de la demande pouvant être utile dans les tests de diagnostic. |
-| correlation_id |Identifiant unique de la demande pouvant être utile dans les tests de diagnostic sur les divers composants. |
+| timestamp |heure de Hello hello erronée. |
+| trace_id |Identificateur unique pour la demande hello qui peut aider dans les diagnostics. |
+| correlation_id |Identificateur unique pour la demande hello qui peut vous aider à diagnostics entre les composants. |
 
-Pour obtenir une description des codes d’erreur et connaître l’action client recommandée, consultez [Codes d’erreur pour les erreurs de point de terminaison de jeton](#error-codes-for-token-endpoint-errors).
+Pour obtenir une description des codes d’erreur hello et hello client action recommandée, consultez [codes d’erreur pour les erreurs de point de terminaison de jeton](#error-codes-for-token-endpoint-errors).

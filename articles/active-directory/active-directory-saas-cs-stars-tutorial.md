@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory à CS Stars | Microsoft Docs"
-description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et CS Stars."
+description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et CS étoiles."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,203 +13,203 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/13/2017
 ms.author: jeedes
-ms.openlocfilehash: acc9160f86e58c7af4779a8bab5627dc5c5ad721
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d84533e8a7e9bca2f7bdf4be7f3050bca2f18496
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-azure-active-directory-integration-with-cs-stars"></a><span data-ttu-id="59ffa-103">Didacticiel : Intégration d’Azure Active Directory avec CS Stars</span><span class="sxs-lookup"><span data-stu-id="59ffa-103">Tutorial: Azure Active Directory integration with CS Stars</span></span>
+# <a name="tutorial-azure-active-directory-integration-with-cs-stars"></a><span data-ttu-id="4207c-103">Didacticiel : Intégration d’Azure Active Directory avec CS Stars</span><span class="sxs-lookup"><span data-stu-id="4207c-103">Tutorial: Azure Active Directory integration with CS Stars</span></span>
 
-<span data-ttu-id="59ffa-104">Dans ce didacticiel, vous allez apprendre à intégrer CS Stars à Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="59ffa-104">In this tutorial, you learn how to integrate CS Stars with Azure Active Directory (Azure AD).</span></span>
+<span data-ttu-id="4207c-104">Dans ce didacticiel, vous découvrez comment toointegrate CS étoiles avec Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="4207c-104">In this tutorial, you learn how toointegrate CS Stars with Azure Active Directory (Azure AD).</span></span>
 
-<span data-ttu-id="59ffa-105">L’intégration de CS Stars dans Azure AD vous offre les avantages suivants :</span><span class="sxs-lookup"><span data-stu-id="59ffa-105">Integrating CS Stars with Azure AD provides you with the following benefits:</span></span>
+<span data-ttu-id="4207c-105">Intégration CS étoiles à Azure AD offre hello avantages suivants :</span><span class="sxs-lookup"><span data-stu-id="4207c-105">Integrating CS Stars with Azure AD provides you with hello following benefits:</span></span>
 
-- <span data-ttu-id="59ffa-106">Dans Azure AD, vous pouvez contrôler qui a accès à CS Stars.</span><span class="sxs-lookup"><span data-stu-id="59ffa-106">You can control in Azure AD who has access to CS Stars</span></span>
-- <span data-ttu-id="59ffa-107">Vous pouvez autoriser les utilisateurs à se connecter automatiquement à CS Stars (via l’authentification unique) avec leur compte Azure AD.</span><span class="sxs-lookup"><span data-stu-id="59ffa-107">You can enable your users to automatically get signed-on to CS Stars (Single Sign-On) with their Azure AD accounts</span></span>
-- <span data-ttu-id="59ffa-108">Vous pouvez gérer vos comptes à partir d’un emplacement central : le portail Azure</span><span class="sxs-lookup"><span data-stu-id="59ffa-108">You can manage your accounts in one central location - the Azure portal</span></span>
+- <span data-ttu-id="4207c-106">Vous pouvez contrôler dans Azure AD qui a accès tooCS étoiles</span><span class="sxs-lookup"><span data-stu-id="4207c-106">You can control in Azure AD who has access tooCS Stars</span></span>
+- <span data-ttu-id="4207c-107">Vous pouvez activer votre tooautomatically utilisateurs obtenir tooCS signés sur les étoiles (Single Sign-On) avec leurs comptes Azure AD</span><span class="sxs-lookup"><span data-stu-id="4207c-107">You can enable your users tooautomatically get signed-on tooCS Stars (Single Sign-On) with their Azure AD accounts</span></span>
+- <span data-ttu-id="4207c-108">Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure</span><span class="sxs-lookup"><span data-stu-id="4207c-108">You can manage your accounts in one central location - hello Azure portal</span></span>
 
-<span data-ttu-id="59ffa-109">Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="59ffa-109">If you want to know more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
+<span data-ttu-id="4207c-109">Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="4207c-109">If you want tooknow more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="59ffa-110">Composants requis</span><span class="sxs-lookup"><span data-stu-id="59ffa-110">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="4207c-110">Composants requis</span><span class="sxs-lookup"><span data-stu-id="4207c-110">Prerequisites</span></span>
 
-<span data-ttu-id="59ffa-111">Pour configurer l’intégration d’Azure AD avec CS Stars, vous avez besoin des éléments suivants :</span><span class="sxs-lookup"><span data-stu-id="59ffa-111">To configure Azure AD integration with CS Stars, you need the following items:</span></span>
+<span data-ttu-id="4207c-111">tooconfigure intégration d’Azure AD CS de, vous devez hello éléments suivants :</span><span class="sxs-lookup"><span data-stu-id="4207c-111">tooconfigure Azure AD integration with CS Stars, you need hello following items:</span></span>
 
-- <span data-ttu-id="59ffa-112">Un abonnement Azure AD</span><span class="sxs-lookup"><span data-stu-id="59ffa-112">An Azure AD subscription</span></span>
-- <span data-ttu-id="59ffa-113">Un abonnement CS Stars pour lequel l’authentification unique est activée</span><span class="sxs-lookup"><span data-stu-id="59ffa-113">A CS Stars single-sign on enabled subscription</span></span>
+- <span data-ttu-id="4207c-112">Un abonnement Azure AD</span><span class="sxs-lookup"><span data-stu-id="4207c-112">An Azure AD subscription</span></span>
+- <span data-ttu-id="4207c-113">Un abonnement CS Stars pour lequel l’authentification unique est activée</span><span class="sxs-lookup"><span data-stu-id="4207c-113">A CS Stars single-sign on enabled subscription</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="59ffa-114">Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.</span><span class="sxs-lookup"><span data-stu-id="59ffa-114">To test the steps in this tutorial, we do not recommend using a production environment.</span></span>
+> <span data-ttu-id="4207c-114">tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.</span><span class="sxs-lookup"><span data-stu-id="4207c-114">tootest hello steps in this tutorial, we do not recommend using a production environment.</span></span>
 
-<span data-ttu-id="59ffa-115">Vous devez en outre suivre les recommandations ci-dessous :</span><span class="sxs-lookup"><span data-stu-id="59ffa-115">To test the steps in this tutorial, you should follow these recommendations:</span></span>
+<span data-ttu-id="4207c-115">tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :</span><span class="sxs-lookup"><span data-stu-id="4207c-115">tootest hello steps in this tutorial, you should follow these recommendations:</span></span>
 
-- <span data-ttu-id="59ffa-116">N’utilisez pas votre environnement de production, sauf si cela est nécessaire.</span><span class="sxs-lookup"><span data-stu-id="59ffa-116">Do not use your production environment, unless it is necessary.</span></span>
-- <span data-ttu-id="59ffa-117">Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="59ffa-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
+- <span data-ttu-id="4207c-116">N’utilisez pas votre environnement de production, sauf si cela est nécessaire.</span><span class="sxs-lookup"><span data-stu-id="4207c-116">Do not use your production environment, unless it is necessary.</span></span>
+- <span data-ttu-id="4207c-117">Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="4207c-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
 
-## <a name="scenario-description"></a><span data-ttu-id="59ffa-118">Description du scénario</span><span class="sxs-lookup"><span data-stu-id="59ffa-118">Scenario description</span></span>
-<span data-ttu-id="59ffa-119">Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test.</span><span class="sxs-lookup"><span data-stu-id="59ffa-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="59ffa-120">Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :</span><span class="sxs-lookup"><span data-stu-id="59ffa-120">The scenario outlined in this tutorial consists of two main building blocks:</span></span>
+## <a name="scenario-description"></a><span data-ttu-id="4207c-118">Description du scénario</span><span class="sxs-lookup"><span data-stu-id="4207c-118">Scenario description</span></span>
+<span data-ttu-id="4207c-119">Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test.</span><span class="sxs-lookup"><span data-stu-id="4207c-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="4207c-120">scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :</span><span class="sxs-lookup"><span data-stu-id="4207c-120">hello scenario outlined in this tutorial consists of two main building blocks:</span></span>
 
-1. <span data-ttu-id="59ffa-121">Ajout de CS Stars à partir de la galerie</span><span class="sxs-lookup"><span data-stu-id="59ffa-121">Adding CS Stars from the gallery</span></span>
-2. <span data-ttu-id="59ffa-122">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="59ffa-122">Configuring and testing Azure AD single sign-on</span></span>
+1. <span data-ttu-id="4207c-121">Ajout d’étoiles de CS à partir de la galerie de hello</span><span class="sxs-lookup"><span data-stu-id="4207c-121">Adding CS Stars from hello gallery</span></span>
+2. <span data-ttu-id="4207c-122">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="4207c-122">Configuring and testing Azure AD single sign-on</span></span>
 
-## <a name="adding-cs-stars-from-the-gallery"></a><span data-ttu-id="59ffa-123">Ajout de CS Stars à partir de la galerie</span><span class="sxs-lookup"><span data-stu-id="59ffa-123">Adding CS Stars from the gallery</span></span>
-<span data-ttu-id="59ffa-124">Pour configurer l’intégration de CS Stars avec Azure AD, vous devez ajouter CS Stars disponible dans la galerie, à votre liste d’applications SaaS gérées.</span><span class="sxs-lookup"><span data-stu-id="59ffa-124">To configure the integration of CS Stars into Azure AD, you need to add CS Stars from the gallery to your list of managed SaaS apps.</span></span>
+## <a name="adding-cs-stars-from-hello-gallery"></a><span data-ttu-id="4207c-123">Ajout d’étoiles de CS à partir de la galerie de hello</span><span class="sxs-lookup"><span data-stu-id="4207c-123">Adding CS Stars from hello gallery</span></span>
+<span data-ttu-id="4207c-124">intégration de hello tooconfigure d’étoiles de CS dans Azure AD, vous devez tooadd CS étoiles à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.</span><span class="sxs-lookup"><span data-stu-id="4207c-124">tooconfigure hello integration of CS Stars into Azure AD, you need tooadd CS Stars from hello gallery tooyour list of managed SaaS apps.</span></span>
 
-<span data-ttu-id="59ffa-125">**Pour ajouter CS Stars à partir de la galerie, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="59ffa-125">**To add CS Stars from the gallery, perform the following steps:**</span></span>
+<span data-ttu-id="4207c-125">**tooadd étoiles CS à partir de la galerie hello, procédez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="4207c-125">**tooadd CS Stars from hello gallery, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="59ffa-126">Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**.</span><span class="sxs-lookup"><span data-stu-id="59ffa-126">In the **[Azure portal](https://portal.azure.com)**, on the left navigation panel, click **Azure Active Directory** icon.</span></span> 
+1. <span data-ttu-id="4207c-126">Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.</span><span class="sxs-lookup"><span data-stu-id="4207c-126">In hello **[Azure portal](https://portal.azure.com)**, on hello left navigation panel, click **Azure Active Directory** icon.</span></span> 
 
     ![Active Directory][1]
 
-2. <span data-ttu-id="59ffa-128">Accédez à **Applications d’entreprise**.</span><span class="sxs-lookup"><span data-stu-id="59ffa-128">Navigate to **Enterprise applications**.</span></span> <span data-ttu-id="59ffa-129">Accédez ensuite à **Toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="59ffa-129">Then go to **All applications**.</span></span>
+2. <span data-ttu-id="4207c-128">Accédez trop**des applications d’entreprise**.</span><span class="sxs-lookup"><span data-stu-id="4207c-128">Navigate too**Enterprise applications**.</span></span> <span data-ttu-id="4207c-129">Passez trop**toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="4207c-129">Then go too**All applications**.</span></span>
 
     ![Applications][2]
     
-3. <span data-ttu-id="59ffa-131">Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.</span><span class="sxs-lookup"><span data-stu-id="59ffa-131">To add new application, click **New application** button on the top of dialog.</span></span>
+3. <span data-ttu-id="4207c-131">tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.</span><span class="sxs-lookup"><span data-stu-id="4207c-131">tooadd new application, click **New application** button on hello top of dialog.</span></span>
 
     ![Applications][3]
 
-4. <span data-ttu-id="59ffa-133">Dans la zone de recherche, saisissez **CS Stars**.</span><span class="sxs-lookup"><span data-stu-id="59ffa-133">In the search box, type **CS Stars**.</span></span>
+4. <span data-ttu-id="4207c-133">Dans la zone de recherche de hello, tapez **CS étoiles**.</span><span class="sxs-lookup"><span data-stu-id="4207c-133">In hello search box, type **CS Stars**.</span></span>
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-cs-stars-tutorial/tutorial_csstars_search.png)
 
-5. <span data-ttu-id="59ffa-135">Dans le volet de résultats, sélectionnez **CS Stars**, puis cliquez sur le bouton **Ajouter** pour ajouter l’application.</span><span class="sxs-lookup"><span data-stu-id="59ffa-135">In the results panel, select **CS Stars**, and then click **Add** button to add the application.</span></span>
+5. <span data-ttu-id="4207c-135">Dans le volet de résultats hello, sélectionnez **CS étoiles**, puis cliquez sur **ajouter** bouton application hello de tooadd.</span><span class="sxs-lookup"><span data-stu-id="4207c-135">In hello results panel, select **CS Stars**, and then click **Add** button tooadd hello application.</span></span>
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-cs-stars-tutorial/tutorial_csstars_addfromgallery.png)
 
-##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="59ffa-137">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="59ffa-137">Configuring and testing Azure AD single sign-on</span></span>
-<span data-ttu-id="59ffa-138">Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec CS Stars avec un utilisateur de test appelé « Britta Simon ».</span><span class="sxs-lookup"><span data-stu-id="59ffa-138">In this section, you configure and test Azure AD single sign-on with CS Stars based on a test user called "Britta Simon."</span></span>
+##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="4207c-137">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="4207c-137">Configuring and testing Azure AD single sign-on</span></span>
+<span data-ttu-id="4207c-138">Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec CS Stars avec un utilisateur de test appelé « Britta Simon ».</span><span class="sxs-lookup"><span data-stu-id="4207c-138">In this section, you configure and test Azure AD single sign-on with CS Stars based on a test user called "Britta Simon."</span></span>
 
-<span data-ttu-id="59ffa-139">Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur CS Stars équivalent dans Azure AD.</span><span class="sxs-lookup"><span data-stu-id="59ffa-139">For single sign-on to work, Azure AD needs to know what the counterpart user in CS Stars is to a user in Azure AD.</span></span> <span data-ttu-id="59ffa-140">En d’autres termes, une relation entre l’utilisateur Azure AD et l’utilisateur CS Stars associé doit être établi.</span><span class="sxs-lookup"><span data-stu-id="59ffa-140">In other words, a link relationship between an Azure AD user and the related user in CS Stars needs to be established.</span></span>
+<span data-ttu-id="4207c-139">Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans CS étoiles est tooa utilisateur dans Azure AD.</span><span class="sxs-lookup"><span data-stu-id="4207c-139">For single sign-on toowork, Azure AD needs tooknow what hello counterpart user in CS Stars is tooa user in Azure AD.</span></span> <span data-ttu-id="4207c-140">En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans CS étoiles doit toobe établie.</span><span class="sxs-lookup"><span data-stu-id="4207c-140">In other words, a link relationship between an Azure AD user and hello related user in CS Stars needs toobe established.</span></span>
 
-<span data-ttu-id="59ffa-141">Dans CS Stars, affectez la valeur du **nom d’utilisateur** dans Azure AD comme valeur du **nom d’utilisateur** pour établir la relation.</span><span class="sxs-lookup"><span data-stu-id="59ffa-141">In CS Stars, assign the value of the **user name** in Azure AD as the value of the **Username** to establish the link relationship.</span></span>
+<span data-ttu-id="4207c-141">Dans CS étoiles, affecter la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** relation de lien tooestablish hello.</span><span class="sxs-lookup"><span data-stu-id="4207c-141">In CS Stars, assign hello value of hello **user name** in Azure AD as hello value of hello **Username** tooestablish hello link relationship.</span></span>
 
-<span data-ttu-id="59ffa-142">Pour configurer et tester l’authentification unique Azure AD avec CS Stars, vous devez suivre les indications des sections suivantes :</span><span class="sxs-lookup"><span data-stu-id="59ffa-142">To configure and test Azure AD single sign-on with CS Stars, you need to complete the following building blocks:</span></span>
+<span data-ttu-id="4207c-142">tooconfigure et test Azure AD l’authentification unique avec les étoiles CS, vous devez hello toocomplete suivant des blocs de construction :</span><span class="sxs-lookup"><span data-stu-id="4207c-142">tooconfigure and test Azure AD single sign-on with CS Stars, you need toocomplete hello following building blocks:</span></span>
 
-1. <span data-ttu-id="59ffa-143">**[Configuration de l’authentification unique Azure AD](#configuring-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.</span><span class="sxs-lookup"><span data-stu-id="59ffa-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - to enable your users to use this feature.</span></span>
-2. <span data-ttu-id="59ffa-144">**[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="59ffa-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.</span></span>
-3. <span data-ttu-id="59ffa-145">**[Création d’un utilisateur de test CS Stars](#creating-a-cs-stars-test-user)** pour avoir un équivalent de Britta Simon dans CS Stars lié à la représentation Azure AD de l’utilisateur.</span><span class="sxs-lookup"><span data-stu-id="59ffa-145">**[Creating a CS Stars test user](#creating-a-cs-stars-test-user)** - to have a counterpart of Britta Simon in CS Stars that is linked to the Azure AD representation of user.</span></span>
-4. <span data-ttu-id="59ffa-146">**[Affectation de l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.</span><span class="sxs-lookup"><span data-stu-id="59ffa-146">**[Assigning the Azure AD test user](#assigning-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.</span></span>
-5. <span data-ttu-id="59ffa-147">**[Testing Single Sign-On](#testing-single-sign-on)** pour vérifier si la configuration fonctionne.</span><span class="sxs-lookup"><span data-stu-id="59ffa-147">**[Testing Single Sign-On](#testing-single-sign-on)** - to verify whether the configuration works.</span></span>
+1. <span data-ttu-id="4207c-143">**[Configuration d’Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.</span><span class="sxs-lookup"><span data-stu-id="4207c-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - tooenable your users toouse this feature.</span></span>
+2. <span data-ttu-id="4207c-144">**[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="4207c-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - tootest Azure AD single sign-on with Britta Simon.</span></span>
+3. <span data-ttu-id="4207c-145">**[Création d’un utilisateur de test CS étoiles](#creating-a-cs-stars-test-user)**  -toohave un équivalent de Britta Simon dans CS étoiles qui est la représentation sous forme de toohello lié Azure AD de l’utilisateur.</span><span class="sxs-lookup"><span data-stu-id="4207c-145">**[Creating a CS Stars test user](#creating-a-cs-stars-test-user)** - toohave a counterpart of Britta Simon in CS Stars that is linked toohello Azure AD representation of user.</span></span>
+4. <span data-ttu-id="4207c-146">**[Utilisateur de test affectation hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="4207c-146">**[Assigning hello Azure AD test user](#assigning-the-azure-ad-test-user)** - tooenable Britta Simon toouse Azure AD single sign-on.</span></span>
+5. <span data-ttu-id="4207c-147">**[Test de l’authentification unique sur](#testing-single-sign-on)**  -tooverify hello indique si les tâches de configuration.</span><span class="sxs-lookup"><span data-stu-id="4207c-147">**[Testing Single Sign-On](#testing-single-sign-on)** - tooverify whether hello configuration works.</span></span>
 
-### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="59ffa-148">Configuration de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="59ffa-148">Configuring Azure AD single sign-on</span></span>
+### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="4207c-148">Configuration de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="4207c-148">Configuring Azure AD single sign-on</span></span>
 
-<span data-ttu-id="59ffa-149">Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure et configurer l’authentification unique dans votre application CS Stars.</span><span class="sxs-lookup"><span data-stu-id="59ffa-149">In this section, you enable Azure AD single sign-on in the Azure portal and configure single sign-on in your CS Stars application.</span></span>
+<span data-ttu-id="4207c-149">Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application CS étoiles.</span><span class="sxs-lookup"><span data-stu-id="4207c-149">In this section, you enable Azure AD single sign-on in hello Azure portal and configure single sign-on in your CS Stars application.</span></span>
 
-<span data-ttu-id="59ffa-150">**Pour configurer l’authentification unique Azure AD avec CS Stars, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="59ffa-150">**To configure Azure AD single sign-on with CS Stars, perform the following steps:**</span></span>
+<span data-ttu-id="4207c-150">**tooconfigure Azure AD single sign-on avec CS étoiles, effectuez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="4207c-150">**tooconfigure Azure AD single sign-on with CS Stars, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="59ffa-151">Dans le portail Azure, dans la page d’intégration de l’application **CS Stars**, cliquez sur **Authentification unique**.</span><span class="sxs-lookup"><span data-stu-id="59ffa-151">In the Azure portal, on the **CS Stars** application integration page, click **Single sign-on**.</span></span>
+1. <span data-ttu-id="4207c-151">Bonjour portail Azure, sur hello **CS étoiles** page d’intégration d’application, cliquez sur **l’authentification unique**.</span><span class="sxs-lookup"><span data-stu-id="4207c-151">In hello Azure portal, on hello **CS Stars** application integration page, click **Single sign-on**.</span></span>
 
     ![Configurer l’authentification unique][4]
 
-2. <span data-ttu-id="59ffa-153">Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="59ffa-153">On the **Single sign-on** dialog, select **Mode** as **SAML-based Sign-on** to enable single sign-on.</span></span>
+2. <span data-ttu-id="4207c-153">Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="4207c-153">On hello **Single sign-on** dialog, select **Mode** as   **SAML-based Sign-on** tooenable single sign-on.</span></span>
  
     ![Configurer l’authentification unique](./media/active-directory-saas-cs-stars-tutorial/tutorial_csstars_samlbase.png)
 
-3. <span data-ttu-id="59ffa-155">Dans la section **Domaine et URL CS Stars**, procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="59ffa-155">On the **CS Stars Domain and URLs** section, perform the following steps:</span></span>
+3. <span data-ttu-id="4207c-155">Sur hello **CS étoiles domaine et les URL** section, effectuer hello comme suit :</span><span class="sxs-lookup"><span data-stu-id="4207c-155">On hello **CS Stars Domain and URLs** section, perform hello following steps:</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-cs-stars-tutorial/tutorial_csstars_url.png)
 
-    <span data-ttu-id="59ffa-157">a.</span><span class="sxs-lookup"><span data-stu-id="59ffa-157">a.</span></span> <span data-ttu-id="59ffa-158">Dans la zone de texte **URL de connexion**, tapez une URL au format suivant : `https://<subdomain>.csstars.com/enterprise/default.cmdx?ssoclient=<uniqueid>`</span><span class="sxs-lookup"><span data-stu-id="59ffa-158">In the **Sign-on URL** textbox, type a URL using the following pattern: `https://<subdomain>.csstars.com/enterprise/default.cmdx?ssoclient=<uniqueid>`</span></span>
+    <span data-ttu-id="4207c-157">a.</span><span class="sxs-lookup"><span data-stu-id="4207c-157">a.</span></span> <span data-ttu-id="4207c-158">Bonjour **URL de connexion** zone de texte, tapez une URL à l’aide de hello modèle :`https://<subdomain>.csstars.com/enterprise/default.cmdx?ssoclient=<uniqueid>`</span><span class="sxs-lookup"><span data-stu-id="4207c-158">In hello **Sign-on URL** textbox, type a URL using hello following pattern: `https://<subdomain>.csstars.com/enterprise/default.cmdx?ssoclient=<uniqueid>`</span></span>
 
-    <span data-ttu-id="59ffa-159">b.</span><span class="sxs-lookup"><span data-stu-id="59ffa-159">b.</span></span> <span data-ttu-id="59ffa-160">Dans la zone de texte **Identificateur**, tapez une URL au format suivant : `https://<subdomain>.csstars.com/enterprise/`</span><span class="sxs-lookup"><span data-stu-id="59ffa-160">In the **Identifier** textbox, type a URL using the following pattern: `https://<subdomain>.csstars.com/enterprise/`</span></span>
+    <span data-ttu-id="4207c-159">b.</span><span class="sxs-lookup"><span data-stu-id="4207c-159">b.</span></span> <span data-ttu-id="4207c-160">Bonjour **identificateur** zone de texte, tapez une URL à l’aide de hello modèle :`https://<subdomain>.csstars.com/enterprise/`</span><span class="sxs-lookup"><span data-stu-id="4207c-160">In hello **Identifier** textbox, type a URL using hello following pattern: `https://<subdomain>.csstars.com/enterprise/`</span></span>
 
     > [!NOTE] 
-    > <span data-ttu-id="59ffa-161">Il ne s’agit pas de valeurs réelles.</span><span class="sxs-lookup"><span data-stu-id="59ffa-161">These values are not real.</span></span> <span data-ttu-id="59ffa-162">Mettez à jour ces valeurs avec l’URL de connexion et l’identificateur réels.</span><span class="sxs-lookup"><span data-stu-id="59ffa-162">Update these values with the actual Sign-On URL and Identifier.</span></span> <span data-ttu-id="59ffa-163">Pour obtenir ces valeurs, contactez [l’équipe du support client CS Stars](http://www.marshclearsight.com/support/).</span><span class="sxs-lookup"><span data-stu-id="59ffa-163">Contact [CS Stars Client support team](http://www.marshclearsight.com/support/) to get these values.</span></span> 
+    > <span data-ttu-id="4207c-161">Il ne s’agit pas de valeurs réelles.</span><span class="sxs-lookup"><span data-stu-id="4207c-161">These values are not real.</span></span> <span data-ttu-id="4207c-162">Mettre à jour les valeurs de hello réel Sign-On URL et l’identificateur.</span><span class="sxs-lookup"><span data-stu-id="4207c-162">Update these values with hello actual Sign-On URL and Identifier.</span></span> <span data-ttu-id="4207c-163">Contact [équipe de support CS étoiles Client](http://www.marshclearsight.com/support/) tooget ces valeurs.</span><span class="sxs-lookup"><span data-stu-id="4207c-163">Contact [CS Stars Client support team](http://www.marshclearsight.com/support/) tooget these values.</span></span> 
  
-4. <span data-ttu-id="59ffa-164">Dans la section **Certificat de signature SAML**, cliquez sur **Métadonnées XML** puis enregistrez le fichier de métadonnées sur votre ordinateur.</span><span class="sxs-lookup"><span data-stu-id="59ffa-164">On the **SAML Signing Certificate** section, click **Metadata XML** and then save the metadata file on your computer.</span></span>
+4. <span data-ttu-id="4207c-164">Sur hello **le certificat de signature SAML** , cliquez sur **Metadata XML** , puis enregistrez le fichier de métadonnées hello sur votre ordinateur.</span><span class="sxs-lookup"><span data-stu-id="4207c-164">On hello **SAML Signing Certificate** section, click **Metadata XML** and then save hello metadata file on your computer.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-cs-stars-tutorial/tutorial_csstars_certificate.png) 
 
-5. <span data-ttu-id="59ffa-166">Cliquez sur le bouton **Enregistrer** .</span><span class="sxs-lookup"><span data-stu-id="59ffa-166">Click **Save** button.</span></span>
+5. <span data-ttu-id="4207c-166">Cliquez sur le bouton **Enregistrer** .</span><span class="sxs-lookup"><span data-stu-id="4207c-166">Click **Save** button.</span></span>
 
-    <span data-ttu-id="59ffa-167">![Configurer l’authentification unique](./media/active-directory-saas-cs-stars-tutorial/tutorial_general_400.png) 
-<CS></span><span class="sxs-lookup"><span data-stu-id="59ffa-167">![Configure Single Sign-On](./media/active-directory-saas-cs-stars-tutorial/tutorial_general_400.png) 
+    <span data-ttu-id="4207c-167">![Configurer l’authentification unique](./media/active-directory-saas-cs-stars-tutorial/tutorial_general_400.png) 
+<CS></span><span class="sxs-lookup"><span data-stu-id="4207c-167">![Configure Single Sign-On](./media/active-directory-saas-cs-stars-tutorial/tutorial_general_400.png) 
 <CS></span></span>
-6. <span data-ttu-id="59ffa-168">Pour configurer l’authentification unique côté **CS Stars**, vous devez envoyer les **métadonnées XML** téléchargées à [l’équipe du support technique CS Stars](http://www.marshclearsight.com/support/).</span><span class="sxs-lookup"><span data-stu-id="59ffa-168">To configure single sign-on on **CS Stars** side, you need to send the downloaded **Metadata XML** to [CS Stars support team](http://www.marshclearsight.com/support/).</span></span> 
+6. <span data-ttu-id="4207c-168">tooconfigure l’authentification unique sur **CS étoiles** côté, vous devez hello toosend téléchargé **Metadata XML** trop[équipe de support CS étoiles](http://www.marshclearsight.com/support/).</span><span class="sxs-lookup"><span data-stu-id="4207c-168">tooconfigure single sign-on on **CS Stars** side, you need toosend hello downloaded **Metadata XML** too[CS Stars support team](http://www.marshclearsight.com/support/).</span></span> 
 <CE>
 
 > [!TIP]
-> <span data-ttu-id="59ffa-169">Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.</span><span class="sxs-lookup"><span data-stu-id="59ffa-169">You can now read a concise version of these instructions inside the [Azure portal](https://portal.azure.com), while you are setting up the app!</span></span>  <span data-ttu-id="59ffa-170">Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas.</span><span class="sxs-lookup"><span data-stu-id="59ffa-170">After adding this app from the **Active Directory > Enterprise Applications** section, simply click the **Single Sign-On** tab and access the embedded documentation through the **Configuration** section at the bottom.</span></span> <span data-ttu-id="59ffa-171">Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="59ffa-171">You can read more about the embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
+> <span data-ttu-id="4207c-169">Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !</span><span class="sxs-lookup"><span data-stu-id="4207c-169">You can now read a concise version of these instructions inside hello [Azure portal](https://portal.azure.com), while you are setting up hello app!</span></span>  <span data-ttu-id="4207c-170">Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello.</span><span class="sxs-lookup"><span data-stu-id="4207c-170">After adding this app from hello **Active Directory > Enterprise Applications** section, simply click hello **Single Sign-On** tab and access hello embedded documentation through hello **Configuration** section at hello bottom.</span></span> <span data-ttu-id="4207c-171">Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="4207c-171">You can read more about hello embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
 > 
 
-### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="59ffa-172">Création d’un utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="59ffa-172">Creating an Azure AD test user</span></span>
-<span data-ttu-id="59ffa-173">L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.</span><span class="sxs-lookup"><span data-stu-id="59ffa-173">The objective of this section is to create a test user in the Azure portal called Britta Simon.</span></span>
+### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="4207c-172">Création d’un utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="4207c-172">Creating an Azure AD test user</span></span>
+<span data-ttu-id="4207c-173">objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.</span><span class="sxs-lookup"><span data-stu-id="4207c-173">hello objective of this section is toocreate a test user in hello Azure portal called Britta Simon.</span></span>
 
 ![Créer un utilisateur Azure AD][100]
 
-<span data-ttu-id="59ffa-175">**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="59ffa-175">**To create a test user in Azure AD, perform the following steps:**</span></span>
+<span data-ttu-id="4207c-175">**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="4207c-175">**toocreate a test user in Azure AD, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="59ffa-176">Dans le panneau de navigation gauche du **portail Azure**, cliquez sur l’icône **Azure Active Directory**.</span><span class="sxs-lookup"><span data-stu-id="59ffa-176">In the **Azure portal**, on the left navigation pane, click **Azure Active Directory** icon.</span></span>
+1. <span data-ttu-id="4207c-176">Bonjour **portail Azure**, on hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.</span><span class="sxs-lookup"><span data-stu-id="4207c-176">In hello **Azure portal**, on hello left navigation pane, click **Azure Active Directory** icon.</span></span>
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-cs-stars-tutorial/create_aaduser_01.png) 
 
-2. <span data-ttu-id="59ffa-178">Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.</span><span class="sxs-lookup"><span data-stu-id="59ffa-178">To display the list of users, go to **Users and groups** and click **All users**.</span></span>
+2. <span data-ttu-id="4207c-178">liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes** et cliquez sur **tous les utilisateurs**.</span><span class="sxs-lookup"><span data-stu-id="4207c-178">toodisplay hello list of users, go too**Users and groups** and click **All users**.</span></span>
     
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-cs-stars-tutorial/create_aaduser_02.png) 
 
-3. <span data-ttu-id="59ffa-180">Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue.</span><span class="sxs-lookup"><span data-stu-id="59ffa-180">To open the **User** dialog, click **Add** on the top of the dialog.</span></span>
+3. <span data-ttu-id="4207c-180">tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello de boîte de dialogue hello.</span><span class="sxs-lookup"><span data-stu-id="4207c-180">tooopen hello **User** dialog, click **Add** on hello top of hello dialog.</span></span>
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-cs-stars-tutorial/create_aaduser_03.png) 
 
-4. <span data-ttu-id="59ffa-182">Dans la boîte de dialogue **Utilisateur**, procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="59ffa-182">On the **User** dialog page, perform the following steps:</span></span>
+4. <span data-ttu-id="4207c-182">Sur hello **utilisateur** boîte de dialogue de page, effectuer hello comme suit :</span><span class="sxs-lookup"><span data-stu-id="4207c-182">On hello **User** dialog page, perform hello following steps:</span></span>
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-cs-stars-tutorial/create_aaduser_04.png) 
 
-    <span data-ttu-id="59ffa-184">a.</span><span class="sxs-lookup"><span data-stu-id="59ffa-184">a.</span></span> <span data-ttu-id="59ffa-185">Dans la zone de texte **Nom**, entrez **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="59ffa-185">In the **Name** textbox, type **BrittaSimon**.</span></span>
+    <span data-ttu-id="4207c-184">a.</span><span class="sxs-lookup"><span data-stu-id="4207c-184">a.</span></span> <span data-ttu-id="4207c-185">Bonjour **nom** zone de texte, type **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="4207c-185">In hello **Name** textbox, type **BrittaSimon**.</span></span>
 
-    <span data-ttu-id="59ffa-186">b.</span><span class="sxs-lookup"><span data-stu-id="59ffa-186">b.</span></span> <span data-ttu-id="59ffa-187">Dans la zone de texte **Nom d’utilisateur**, tapez **l’adresse e-mail** de Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="59ffa-187">In the **User name** textbox, type the **email address** of BrittaSimon.</span></span>
+    <span data-ttu-id="4207c-186">b.</span><span class="sxs-lookup"><span data-stu-id="4207c-186">b.</span></span> <span data-ttu-id="4207c-187">Bonjour **nom d’utilisateur** hello de type zone de texte **adresse de messagerie** de BrittaSimon.</span><span class="sxs-lookup"><span data-stu-id="4207c-187">In hello **User name** textbox, type hello **email address** of BrittaSimon.</span></span>
 
-    <span data-ttu-id="59ffa-188">c.</span><span class="sxs-lookup"><span data-stu-id="59ffa-188">c.</span></span> <span data-ttu-id="59ffa-189">Sélectionnez **Afficher le mot de passe** et notez la valeur du **mot de passe**.</span><span class="sxs-lookup"><span data-stu-id="59ffa-189">Select **Show Password** and write down the value of the **Password**.</span></span>
+    <span data-ttu-id="4207c-188">c.</span><span class="sxs-lookup"><span data-stu-id="4207c-188">c.</span></span> <span data-ttu-id="4207c-189">Sélectionnez **afficher le mot de passe** et notez la valeur hello hello **mot de passe**.</span><span class="sxs-lookup"><span data-stu-id="4207c-189">Select **Show Password** and write down hello value of hello **Password**.</span></span>
 
-    <span data-ttu-id="59ffa-190">d.</span><span class="sxs-lookup"><span data-stu-id="59ffa-190">d.</span></span> <span data-ttu-id="59ffa-191">Cliquez sur **Create**.</span><span class="sxs-lookup"><span data-stu-id="59ffa-191">Click **Create**.</span></span>
+    <span data-ttu-id="4207c-190">d.</span><span class="sxs-lookup"><span data-stu-id="4207c-190">d.</span></span> <span data-ttu-id="4207c-191">Cliquez sur **Create**.</span><span class="sxs-lookup"><span data-stu-id="4207c-191">Click **Create**.</span></span>
  
-### <a name="creating-a-cs-stars-test-user"></a><span data-ttu-id="59ffa-192">Création d’un utilisateur de test CS Stars</span><span class="sxs-lookup"><span data-stu-id="59ffa-192">Creating a CS Stars test user</span></span>
+### <a name="creating-a-cs-stars-test-user"></a><span data-ttu-id="4207c-192">Création d’un utilisateur de test CS Stars</span><span class="sxs-lookup"><span data-stu-id="4207c-192">Creating a CS Stars test user</span></span>
 
-<span data-ttu-id="59ffa-193">L’objectif de cette section est de créer un utilisateur appelé Britta Simon dans CS Stars.</span><span class="sxs-lookup"><span data-stu-id="59ffa-193">The objective of this section is to create a user called Britta Simon in CS Stars.</span></span>
+<span data-ttu-id="4207c-193">objectif Hello de cette section est toocreate un utilisateur appelé Britta Simon dans CS étoiles.</span><span class="sxs-lookup"><span data-stu-id="4207c-193">hello objective of this section is toocreate a user called Britta Simon in CS Stars.</span></span>
 
-<span data-ttu-id="59ffa-194">Pour créer un utilisateur dans CS Stars, vous devez contacter [l’équipe du support technique CS Stars](http://www.marshclearsight.com/support/).</span><span class="sxs-lookup"><span data-stu-id="59ffa-194">To get a user created in CS Stars, you need to contact your [CS Stars support team](http://www.marshclearsight.com/support/).</span></span>
+<span data-ttu-id="4207c-194">tooget un utilisateur créé dans les étoiles CS, vous devez toocontact votre [équipe de support CS étoiles](http://www.marshclearsight.com/support/).</span><span class="sxs-lookup"><span data-stu-id="4207c-194">tooget a user created in CS Stars, you need toocontact your [CS Stars support team](http://www.marshclearsight.com/support/).</span></span>
 
-### <a name="assigning-the-azure-ad-test-user"></a><span data-ttu-id="59ffa-195">Affectation de l’utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="59ffa-195">Assigning the Azure AD test user</span></span>
+### <a name="assigning-hello-azure-ad-test-user"></a><span data-ttu-id="4207c-195">Affectation d’utilisateur de test hello Azure AD</span><span class="sxs-lookup"><span data-stu-id="4207c-195">Assigning hello Azure AD test user</span></span>
 
-<span data-ttu-id="59ffa-196">Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à CS Stars.</span><span class="sxs-lookup"><span data-stu-id="59ffa-196">In this section, you enable Britta Simon to use Azure single sign-on by granting access to CS Stars.</span></span>
+<span data-ttu-id="4207c-196">Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooCS étoiles.</span><span class="sxs-lookup"><span data-stu-id="4207c-196">In this section, you enable Britta Simon toouse Azure single sign-on by granting access tooCS Stars.</span></span>
 
 ![Affecter des utilisateurs][200] 
 
-<span data-ttu-id="59ffa-198">**Pour affecter Britta Simon à CS Stars, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="59ffa-198">**To assign Britta Simon to CS Stars, perform the following steps:**</span></span>
+<span data-ttu-id="4207c-198">**effectuer des étoiles, tooassign Britta Simon tooCS hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="4207c-198">**tooassign Britta Simon tooCS Stars, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="59ffa-199">Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="59ffa-199">In the Azure portal, open the applications view, and then navigate to the directory view and go to **Enterprise applications** then click **All applications**.</span></span>
+1. <span data-ttu-id="4207c-199">Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="4207c-199">In hello Azure portal, open hello applications view, and then navigate toohello directory view and go too**Enterprise applications** then click **All applications**.</span></span>
 
     ![Affecter des utilisateurs][201] 
 
-2. <span data-ttu-id="59ffa-201">Dans la liste des applications, sélectionnez **CS Stars**.</span><span class="sxs-lookup"><span data-stu-id="59ffa-201">In the applications list, select **CS Stars**.</span></span>
+2. <span data-ttu-id="4207c-201">Dans la liste des applications hello, sélectionnez **CS étoiles**.</span><span class="sxs-lookup"><span data-stu-id="4207c-201">In hello applications list, select **CS Stars**.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-cs-stars-tutorial/tutorial_csstars_app.png) 
 
-3. <span data-ttu-id="59ffa-203">Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="59ffa-203">In the menu on the left, click **Users and groups**.</span></span>
+3. <span data-ttu-id="4207c-203">Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="4207c-203">In hello menu on hello left, click **Users and groups**.</span></span>
 
     ![Affecter des utilisateurs][202] 
 
-4. <span data-ttu-id="59ffa-205">Cliquez sur le bouton **Ajouter**.</span><span class="sxs-lookup"><span data-stu-id="59ffa-205">Click **Add** button.</span></span> <span data-ttu-id="59ffa-206">Ensuite, sélectionnez **Utilisateurs et groupes** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="59ffa-206">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
+4. <span data-ttu-id="4207c-205">Cliquez sur le bouton **Ajouter**.</span><span class="sxs-lookup"><span data-stu-id="4207c-205">Click **Add** button.</span></span> <span data-ttu-id="4207c-206">Ensuite, sélectionnez **Utilisateurs et groupes** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="4207c-206">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
 
     ![Affecter des utilisateurs][203]
 
-5. <span data-ttu-id="59ffa-208">Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.</span><span class="sxs-lookup"><span data-stu-id="59ffa-208">On **Users and groups** dialog, select **Britta Simon** in the Users list.</span></span>
+5. <span data-ttu-id="4207c-208">Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.</span><span class="sxs-lookup"><span data-stu-id="4207c-208">On **Users and groups** dialog, select **Britta Simon** in hello Users list.</span></span>
 
-6. <span data-ttu-id="59ffa-209">Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="59ffa-209">Click **Select** button on **Users and groups** dialog.</span></span>
+6. <span data-ttu-id="4207c-209">Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="4207c-209">Click **Select** button on **Users and groups** dialog.</span></span>
 
-7. <span data-ttu-id="59ffa-210">Cliquez sur le bouton **Affecter** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="59ffa-210">Click **Assign** button on **Add Assignment** dialog.</span></span>
+7. <span data-ttu-id="4207c-210">Cliquez sur le bouton **Affecter** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="4207c-210">Click **Assign** button on **Add Assignment** dialog.</span></span>
     
-### <a name="testing-single-sign-on"></a><span data-ttu-id="59ffa-211">Test de l’authentification unique</span><span class="sxs-lookup"><span data-stu-id="59ffa-211">Testing single sign-on</span></span>
+### <a name="testing-single-sign-on"></a><span data-ttu-id="4207c-211">Test de l’authentification unique</span><span class="sxs-lookup"><span data-stu-id="4207c-211">Testing single sign-on</span></span>
 
-<span data-ttu-id="59ffa-212">L’objectif de cette section est de tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.</span><span class="sxs-lookup"><span data-stu-id="59ffa-212">The objective of this section is to test your Azure AD single sign-on configuration using the Access Panel.</span></span>  
-<span data-ttu-id="59ffa-213">Lorsque vous cliquez sur la vignette CS Stars dans le volet d’accès, vous devez être connecté automatiquement à votre application CS Stars.</span><span class="sxs-lookup"><span data-stu-id="59ffa-213">When you click the CS Stars tile in the Access Panel, you should get automatically signed-on to your CS Stars application.</span></span>
+<span data-ttu-id="4207c-212">objectif Hello de cette section est tootest votre configuration de l’authentification unique Azure AD à l’aide de hello panneau d’accès.</span><span class="sxs-lookup"><span data-stu-id="4207c-212">hello objective of this section is tootest your Azure AD single sign-on configuration using hello Access Panel.</span></span>  
+<span data-ttu-id="4207c-213">Lorsque vous cliquez sur hello CS étoiles vignette Bonjour volet d’accès, vous devez obtenir automatiquement signé sur tooyour application de CS étoiles.</span><span class="sxs-lookup"><span data-stu-id="4207c-213">When you click hello CS Stars tile in hello Access Panel, you should get automatically signed-on tooyour CS Stars application.</span></span>
  
 
-## <a name="additional-resources"></a><span data-ttu-id="59ffa-214">Ressources supplémentaires</span><span class="sxs-lookup"><span data-stu-id="59ffa-214">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="4207c-214">Ressources supplémentaires</span><span class="sxs-lookup"><span data-stu-id="4207c-214">Additional resources</span></span>
 
-* [<span data-ttu-id="59ffa-215">Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="59ffa-215">List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
-* [<span data-ttu-id="59ffa-216">Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?</span><span class="sxs-lookup"><span data-stu-id="59ffa-216">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
+* [<span data-ttu-id="4207c-215">Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="4207c-215">List of Tutorials on How tooIntegrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
+* [<span data-ttu-id="4207c-216">Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?</span><span class="sxs-lookup"><span data-stu-id="4207c-216">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
 
 
 

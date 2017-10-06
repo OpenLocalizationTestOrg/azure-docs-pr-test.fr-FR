@@ -1,6 +1,6 @@
 ---
-title: Azure Active Directory v2.0 et le protocole OpenID Connect | Microsoft Docs
-description: "Créez des applications web à l’aide de l’implémentation v2.0 du protocole d’authentification OpenID Connect d’Azure AD."
+title: aaaAzure protocole v2.0 et hello OpenID Connect Active Directory | Documents Microsoft
+description: "Générer des applications web à l’aide de mise en œuvre de v2.0 hello AD Azure hello OpenID Connect du protocole d’authentification."
 services: active-directory
 documentationcenter: 
 author: dstrockis
@@ -15,44 +15,44 @@ ms.topic: article
 ms.date: 02/08/2017
 ms.author: dastrock
 ms.custom: aaddev
-ms.openlocfilehash: d63692f02b3dec50a1e7df034b8915bb450b4cfd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 277bb406dbb24ccefb09e4e4c928f0421755cf61
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# Azure Active Directory v2.0 et le protocole OpenID Connect
-OpenID Connect est un protocole d’authentification basé sur OAuth 2.0 que vous pouvez utiliser pour connecter de façon sécurisée un utilisateur à une application Web. En utilisant l’implémentation du point de terminaison v2.0 d’OpenID Connect, vous pouvez ajouter l’accès à la connexion et aux API à vos applications web. Dans cet article, nous vous montrerons comment effectuant cette opération, quel que soit le langage. Nous vous expliquerons comment envoyer et recevoir des messages HTTP sans utiliser de bibliothèque open source Microsoft.
+# Protocole de Active Directory Azure v2.0 et hello OpenID Connect
+OpenID Connect est un protocole d’authentification basé sur OAuth 2.0 que vous pouvez utiliser l’authentification toosecurely dans une application web de tooa utilisateur. Lorsque vous utilisez la mise en œuvre hello v2.0 du point de terminaison de OpenID Connect, vous pouvez ajouter connectez-vous et API accès tooyour applications web. Dans cet article, nous vous indiquons comment toodo ce indépendante du langage. Nous allons décrire comment toosend et recevoir des messages HTTP sans utiliser les bibliothèques open source de Microsoft.
 
 > [!NOTE]
-> Le point de terminaison v2.0 ne prend pas en charge l’intégralité des scénarios et fonctionnalités d’Azure Active Directory. Pour déterminer si vous devez utiliser le point de terminaison v2.0, consultez les [limitations de v2.0](active-directory-v2-limitations.md).
+> point de terminaison Hello v2.0 ne prend pas en charge toutes les fonctionnalités et scénarios d’Azure Active Directory. toodetermine si vous devez utiliser le point de terminaison hello v2.0, en savoir plus sur [v2.0 limitations](active-directory-v2-limitations.md).
 > 
 > 
 
-[OpenID Connect](http://openid.net/specs/openid-connect-core-1_0.html) étend le protocole d’*autorisation* OAuth 2.0 pour l’utiliser en tant que protocole d’*authentification*, ce qui vous permet de procéder à une authentification unique à l’aide d’OAuth. OpenID Connect introduit le concept de *jeton d'ID*, qui est un jeton de sécurité permettant au client de vérifier l’identité de l’utilisateur. Il permet également les informations de base de profil de l'utilisateur. Comme OpenID Connect étend OAuth 2.0, les applications peuvent acquérir de manière sûre les *jetons d’accès* pouvant être utilisés pour accéder à des ressources sécurisées à l’aide d’un [serveur d’autorisation](active-directory-v2-protocols.md#the-basics). Nous recommandons d'utiliser OpenID Connect si vous concevez une [application web](active-directory-v2-flows.md#web-apps) hébergée sur un serveur et accessible par le biais d’un navigateur.
+[OpenID Connect](http://openid.net/specs/openid-connect-core-1_0.html) étend hello OAuth 2.0 *autorisation* toouse protocole comme un *authentification* de protocole, afin que vous puissiez effectuer seul l’authentification à l’aide d’OAuth. OpenID Connect d’introduit le concept de hello d’un *le jeton d’ID*, qui est un jeton de sécurité autorisant les clients de hello identité de hello tooverify d’utilisateur de hello. le jeton d’ID Hello obtient également des informations de profil de base sur l’utilisateur de hello. Car OpenID Connect étend OAuth 2.0, les applications peuvent obtenir en toute sécurité *jetons d’accès*, ce qui peut être utilisé tooaccess les ressources qui sont sécurisés par une [serveur d’autorisation](active-directory-v2-protocols.md#the-basics). Nous recommandons d'utiliser OpenID Connect si vous concevez une [application web](active-directory-v2-flows.md#web-apps) hébergée sur un serveur et accessible par le biais d’un navigateur.
 
 ## Schéma de protocole : Connexion
-Le flux de connexion le plus simple se compose des étapes présentées dans le diagramme suivant. Nous décrirons en détail chaque étape dans cet article.
+Hello plus simple flux de connexion comporte les étapes hello illustrés hello suivant. Nous décrirons en détail chaque étape dans cet article.
 
 ![Protocole OpenID Connect : Connexion](../../media/active-directory-v2-flows/convergence_scenarios_webapp.png)
 
-## Récupérez le document de métadonnées OpenID Connect
-OpenID Connect décrit un document de métadonnées qui contient la plupart des informations nécessaires pour qu’une application effectue la connexion. Cela inclut des informations telles que les URL à utiliser et l’emplacement des clés de signature publiques du service. Pour le point de terminaison v2.0, voici le document de métadonnées OpenID Connect que vous utilisez :
+## Extraire le document de métadonnées hello OpenID Connect
+OpenID Connect décrit un document de métadonnées qui contient la plupart des informations hello requises pour une application tooperform connexion. Ces informations indiquent notamment hello URL toouse et l’emplacement de hello publique de du service hello clés de signature. Pour le point de terminaison hello v2.0, il s’agit de document de métadonnées OpenID Connect hello que vous devez utiliser :
 
 ```
 https://login.microsoftonline.com/{tenant}/v2.0/.well-known/openid-configuration
 ```
 
-`{tenant}` peut prendre une des quatre valeurs :
+Hello `{tenant}` peut prendre une des quatre valeurs :
 
 | Valeur | Description |
 | --- | --- |
-| `common` |Les utilisateurs avec un compte Microsoft personnel et un compte professionnel/scolaire Azure Active Directory (Azure AD) peuvent se connecter à l’application. |
-| `organizations` |Seuls les utilisateurs avec des comptes professionnels ou scolaires Azure AD peuvent se connecter à l’application. |
-| `consumers` |Seuls les utilisateurs avec un compte personnel Microsoft peuvent se connecter à l’application. |
-| `8eaef023-2b34-4da1-9baa-8bc8c9d6a490` ou `contoso.onmicrosoft.com` |Seuls les utilisateurs avec un compte professionnel ou scolaire d'un client Azure AD spécifique peuvent se connecter à l’application. Le nom de domaine convivial du client Azure AD ou l’identificateur GUID du client peut être utilisé. |
+| `common` |Utilisateurs avec un compte Microsoft personnel et un compte professionnel ou scolaire d’Azure Active Directory (Azure AD) peuvent se connecter toohello application. |
+| `organizations` |Seuls les utilisateurs disposant de travail ou les comptes d’établissement scolaire d’Azure AD puissent se connecter toohello application. |
+| `consumers` |Seuls les utilisateurs avec un compte Microsoft personnel peuvent se connecter toohello application. |
+| `8eaef023-2b34-4da1-9baa-8bc8c9d6a490` ou `contoso.onmicrosoft.com` |Seuls les utilisateurs avec un compte professionnel ou scolaire à partir d’une annonce Azure client peut se connecter toohello application. Nom de domaine convivial hello de hello locataire Azure AD ou identificateur GUID du locataire hello peut être utilisé. |
 
-Les métadonnées représentent un simple document JavaScript Objet Notation (JSON). Consultez l’extrait suivant pour obtenir un exemple. Le contenu de l'extrait de code est décrit en détail dans les [spécifications d’OpenID Connect](https://openid.net).
+les métadonnées Hello sont un document JavaScript Objet Notation (JSON) simple. Consultez hello suivant extrait de code pour obtenir un exemple. Hello contenu de l’extrait de code est décrites en détail dans hello [OpenID Connect de spécification](https://openid.net).
 
 ```
 {
@@ -69,14 +69,14 @@ Les métadonnées représentent un simple document JavaScript Objet Notation (JS
 }
 ```
 
-En règle générale, vous utilisez ce document de métadonnées pour configurer une bibliothèque OpenID Connect ou un Kit de développement logiciel (SDK). La bibliothèque utilise les métadonnées pour faire son travail. Toutefois, si vous n’utilisez pas une bibliothèque OpenID Connect pré-build, vous pouvez suivre les étapes décrites dans le reste de cet article pour vous connecter à une application web à l’aide du point de terminaison v2.0.
+En règle générale, vous utiliserez ce document de métadonnées tooconfigure une bibliothèque OpenID Connect ou d’un kit de développement ; bibliothèque de Hello utiliseriez hello métadonnées toodo son travail. Toutefois, si vous n’utilisez pas une bibliothèque OpenID Connect de pré-build, vous pouvez suivre les étapes de hello dans reste hello de cet article tooperform signe dans une application web à l’aide du point de terminaison hello v2.0.
 
-## Envoyer la requête de connexion
-Lorsque votre application web a besoin d’authentifier l’utilisateur, elle peut le diriger vers le point de terminaison `/authorize`. Cette requête est similaire au premier tronçon du [flux de code d’autorisation OAuth 2.0](active-directory-v2-protocols-oauth-code.md), avec toutefois ces distinctions importantes :
+## Envoyer la demande de connexion hello
+Lorsque l’utilisateur de hello tooauthenticate a besoin de votre application web, il peut diriger hello utilisateur toohello `/authorize` point de terminaison. Cette demande est similaire toohello première branche de hello [flux de code d’autorisation OAuth 2.0](active-directory-v2-protocols-oauth-code.md), avec ces différences importantes :
 
-* La requête doit inclure l’étendue `openid` dans le paramètre `scope`.
-* Le paramètre `response_type` doit inclure `id_token`.
-* La demande doit inclure le paramètre `nonce` .
+* demande de Hello doit inclure hello `openid` étendue Bonjour `scope` paramètre.
+* Hello `response_type` paramètre doit inclure `id_token`.
+* demande de Hello doit inclure hello `nonce` paramètre.
 
 Par exemple :
 
@@ -94,28 +94,28 @@ client_id=6731de76-14a6-49ae-97bc-6eba6914391e
 ```
 
 > [!TIP]
-> Cliquez sur le lien suivant pour exécuter cette requête. Une fois que vous êtes connecté, votre navigateur sera redirigé vers https://localhost/myapp/, avec un jeton d'ID dans la barre d’adresse. Notez que cette requête utilise `response_mode=query` (pour les besoins du didacticiel uniquement). Nous vous recommandons d'utiliser `response_mode=form_post`.
+> Cliquez sur hello suivant tooexecute de lien de cette demande. Une fois que vous vous connectez, votre navigateur sera redirigé toohttps://localhost/myapp/, avec un jeton d’ID dans la barre d’adresses hello. Notez que cette requête utilise `response_mode=query` (pour les besoins du didacticiel uniquement). Nous vous recommandons d'utiliser `response_mode=form_post`.
 > <a href="https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=6731de76-14a6-49ae-97bc-6eba6914391e&response_type=id_token&redirect_uri=http%3A%2F%2Flocalhost%2Fmyapp%2F&scope=openid&response_mode=query&state=12345&nonce=678910" target="_blank">https://login.microsoftonline.com/common/oauth2/v2.0/authorize...</a>
 > 
 > 
 
 | Paramètre | Condition | Description |
 | --- | --- | --- |
-| locataire |Requis |Vous pouvez utiliser la valeur `{tenant}` dans le chemin d’accès de la requête pour contrôler les utilisateurs qui peuvent se connecter à l’application. Les valeurs autorisées sont `common`, `organizations`, `consumers` et les identificateurs du client. Pour plus d’informations, consultez les [principes de base du protocole](active-directory-v2-protocols.md#endpoints). |
-| client_id |Requis |L’ID d’application que le [portail d'inscription des applications](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList) a affecté à votre application. |
+| locataire |Requis |Vous pouvez utiliser hello `{tenant}` valeur dans le chemin d’accès de hello de hello demande toocontrol, qui peut se connecter toohello application. Hello valeurs autorisées sont `common`, `organizations`, `consumers`et les identificateurs de client. Pour plus d’informations, consultez les [principes de base du protocole](active-directory-v2-protocols.md#endpoints). |
+| client_id |Requis |Hello Application ID que hello [portail de l’enregistrement d’Application](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList) affecté tooyour application. |
 | response_type |Requis |Doit inclure `id_token` pour la connexion à OpenID Connect. Il peut également inclure d’autres valeurs `response_types`, par exemple `code`. |
-| redirect_uri |Recommandé |L’URI de redirection de votre application, vers lequel votre application peut envoyer et recevoir des réponses d’authentification. Il doit correspondre exactement à l’un des URI de redirection enregistrés dans le portail, auquel s’ajoute le codage dans une URL. |
-| scope |Requis |Une liste d’étendues séparées par des espaces. Pour OpenID Connect, vous devez inclure l’étendue `openid`, qui correspond à l’autorisation de connexion dans l’interface utilisateur de consentement. Vous pouvez inclure d’autres étendues dans cette requête pour solliciter le consentement. |
-| nonce |Requis |Une valeur incluse dans la requête, générée par l’application, qui sera intégrée dans la valeur id_token résultant en tant que revendication. L’application peut vérifier cette valeur afin de contrer les attaques par relecture de jetons. La valeur est généralement une valeur unique, aléatoire pouvant être utilisé pour identifier l’origine de la requête. |
-| response_mode |Recommandé |Spécifie la méthode à utiliser pour envoyer le code d’autorisation résultant à votre application. Peut être `query`, `form_post` ou `fragment`. Pour les applications web, nous vous recommandons d’utiliser `response_mode=form_post` pour garantir le transfert le plus sécurisé des jetons à votre application. |
-| state |Recommandé |Une valeur incluse dans la requête qui sera également renvoyée dans la réponse de jeton. Il peut s’agir d’une chaîne du contenu de votre choix. Une valeur unique générée de manière aléatoire est généralement utilisée pour [empêcher les attaques par falsification de requête intersites](http://tools.ietf.org/html/rfc6749#section-10.12). La valeur d’état est également utilisée pour coder les informations sur l’état de l’utilisateur dans l’application avant la requête d’authentification, comme la page ou l’écran sur lequel ou laquelle il était positionné. |
-| prompt |Facultatif |Indique le type d’interaction utilisateur requis. Les seules valeurs valides pour l’instant sont `login`, `none` et `consent`. La revendication `prompt=login` oblige l'utilisateur à saisir ses informations d'identification lors de cette requête, annulant de fait l'authentification unique. La revendication `prompt=none` a l'effet inverse. Cette valeur garantit qu'aucune invite interactive d'aucune sorte n'est présentée à l'utilisateur. Si la demande ne peut pas être exécutée en mode silencieux au moyen d’une authentification unique, le point de terminaison v2.0 renvoie une erreur. La revendication `prompt=consent` déclenche l'affichage de la boîte de dialogue de consentement OAuth une fois que l’utilisateur se connecte. La boîte de dialogue invite l’utilisateur à accorder des autorisations à l’application. |
-| login_hint |Facultatif |Vous pouvez utiliser ce paramètre pour remplir au préalable le champ réservé au nom d’utilisateur et à l’adresse électronique de la page de connexion de l’utilisateur si vous connaissez déjà son nom d’utilisateur. Les applications utilisent souvent ce paramètre au cours de la réauthentification, après avoir extrait le nom d’utilisateur à partir d’une connexion précédente à l’aide de la revendication `preferred_username`. |
-| domain_hint |Facultatif |Cette valeur peut être `consumers` ou `organizations`. S’il est inclus, ce paramètre ignore le processus de découverte par courrier électronique auquel l’utilisateur doit se soumettre sur la page de connexion v2.0, ce qui améliore légèrement l’expérience utilisateur. Les applications utilisent souvent ce paramètre au cours de la réauthentification, en extrayant la revendication `tid` du jeton d'ID. Si la revendication `tid` est définie sur la valeur `9188040d-6c67-4c5b-b112-36a304b66dad`, utilisez `domain_hint=consumers`. Sinon, utilisez `domain_hint=organizations`. |
+| redirect_uri |Recommandé |Hello URI de redirection de votre application, où les réponses d’authentification peuvent être envoyés et reçus par votre application. Il doit correspondre exactement à celle de redirection hello URI inscrit dans le portail hello, sauf qu’il doit être URL encodée. |
+| scope |Requis |Une liste d’étendues séparées par des espaces. Pour OpenID Connect, elle doit inclure l’étendue de hello `openid`, ce qui se traduit par toohello les autorisations « Connexion vous » dans l’interface utilisateur de consentement hello. Vous pouvez inclure d’autres étendues dans cette requête pour solliciter le consentement. |
+| nonce |Requis |Une valeur incluse dans la demande hello, généré par l’application hello, qui est incluse dans la valeur id_token résultante de hello en tant que revendication. application Hello peut vérifier des attaques par relecture jeton toomitigate valeur. valeur de Hello est généralement une chaîne aléatoire unique qui peut être l’origine de hello tooidentify utilisés de demande de hello. |
+| response_mode |Recommandé |Spécifie la méthode hello qui doit être différé tooyour code d’autorisation résultant toosend utilisé hello application. Peut être `query`, `form_post` ou `fragment`. Pour les applications web, nous vous recommandons d’utiliser `response_mode=form_post`, tooensure hello plus sécuriser le transfert de l’application tooyour de jetons. |
+| state |Recommandé |Une valeur incluse dans la demande hello qui sera également renvoyé dans la réponse du jeton hello. Il peut s’agir d’une chaîne du contenu de votre choix. Une valeur unique générée de manière aléatoire est principalement trop[empêcher les attaques par falsification de requête](http://tools.ietf.org/html/rfc6749#section-10.12). état de Hello est également utilisé tooencode informations hello l’état utilisateur dans une application hello avant de la demande d’authentification hello s’est produite, telles que les utilisateurs de hello de page ou un affichage hello a eu lieu. |
+| prompt |Facultatif |Indique le type hello d’intervention de l’utilisateur qui est requise. Hello uniquement les valeurs valides pour l’instant sont `login`, `none`, et `consent`. Hello `prompt=login` revendication force hello utilisateur tooenter leurs informations d’identification sur cette demande, ce qui rend l’authentification unique. Hello `prompt=none` revendication est hello opposé. Cette revendication garantit que hello ne s’affiche avec une invite interactive que ce soit. Si la demande de hello ne peut pas être effectuée en mode silencieux via l’authentification unique, le point de terminaison hello v2.0 renvoie une erreur. Hello `prompt=consent` revendication déclencheurs hello boîte de dialogue de consentement OAuth après hello utilisateur se connecte. boîte de dialogue de Hello demande hello utilisateur toogrant autorisations toohello application. |
+| login_hint |Facultatif |Vous pouvez utiliser ce paramètre toopre remplissage hello nom d’utilisateur et par courrier électronique adresse champ de hello-page de connexion pour l’utilisateur de hello, si vous connaissez le nom d’utilisateur hello avance. Souvent, les applications utilisent ce paramètre au cours de la réauthentification, après avoir déjà extrait les nom d’utilisateur hello à partir d’une connexion à antérieure à l’aide de hello `preferred_username` de revendication. |
+| domain_hint |Facultatif |Cette valeur peut être `consumers` ou `organizations`. Si inclus, il ignore le processus de détection d’un e-mail hello cet utilisateur hello traverse sur hello v2.0-page de connexion, pour une expérience utilisateur légèrement plus rapide. Souvent, les applications utilisent ce paramètre au cours de la réauthentification en extrayant hello `tid` de revendications de jeton d’ID hello. Si hello `tid` est de valeur de revendication `9188040d-6c67-4c5b-b112-36a304b66dad`, utilisez `domain_hint=consumers`. Sinon, utilisez `domain_hint=organizations`. |
 
-À ce stade, l’utilisateur est invité à saisir ses informations d’identification et à exécuter l’authentification. Le point de terminaison v2.0 vérifie que l’utilisateur a accepté les autorisations indiquées dans le paramètre de requête `scope` . Si l’utilisateur n’a pas accepté l’une ou plusieurs de ces autorisations, le point de terminaison v2.0 lui demande de corriger ce manquement. Vous pouvez en savoir plus sur les [autorisations consentements et applications mutualisées](active-directory-v2-scopes.md).
+À ce stade, les utilisateurs hello est invité à tooenter leurs informations d’identification et l’authentification de hello terminée. Hello v2.0 le point de terminaison vérifie que l’utilisateur hello a consenti autorisations toohello indiquées Bonjour `scope` paramètre de requête. Si l’utilisateur de hello a consenti pas tooany de ces autorisations, point de terminaison hello v2.0 invite hello utilisateur tooconsent toohello requis des autorisations. Vous pouvez en savoir plus sur les [autorisations consentements et applications mutualisées](active-directory-v2-scopes.md).
 
-Une fois que l’utilisateur a procédé à l’authentification et accordé son consentement, le point de terminaison v2.0 renvoie une réponse à votre application à l'URI de redirection indiqué, à l’aide de la méthode spécifiée dans le paramètre `response_mode`.
+Une fois que l’utilisateur de hello s’authentifie et donne son consentement, hello v2.0 point de terminaison retourne une application tooyour de réponse à hello indiquée les URI de redirection à l’aide de méthode hello spécifié dans hello `response_mode` paramètre.
 
 ### Réponse correcte
 Une réponse correcte lorsque vous utilisez `response_mode=form_post` ressemble à ceci :
@@ -130,11 +130,11 @@ id_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ik1uQ19WWmNB...&state=12345
 
 | Paramètre | Description |
 | --- | --- |
-| id_token |Le jeton d'ID que l’application a demandé. Vous pouvez utiliser le paramètre `id_token` pour vérifier l’identité de l’utilisateur et démarrer une session avec lui. Pour obtenir plus de détails sur les jetons d'ID et leur contenu, consultez la page de [référence des jetons de point de terminaison v2.0](active-directory-v2-tokens.md). |
-| state |Si un paramètre `state` est inclus dans la demande, la même valeur doit apparaître dans la réponse. L’application doit vérifier que les valeurs d’état de la demande et de la réponse sont identiques. |
+| id_token |Bonjour le jeton d’ID qui hello application demandée. Vous pouvez utiliser hello `id_token` paramètre tooverify hello l’identité de l’utilisateur et démarrer une session avec l’utilisateur de hello. Pour plus d’informations sur les jetons d’ID et leur contenu, consultez hello [référence les jetons de point de terminaison v2.0](active-directory-v2-tokens.md). |
+| state |Si un `state` paramètre est inclus dans la demande hello, même valeur hello doit apparaître dans la réponse de hello. application Hello doit vérifier que les valeurs d’état hello dans hello demande et de réponse sont identiques. |
 
 ### Réponse d’erreur
-Les réponses d’erreur peuvent également être envoyées à l'URI de redirection, de manière que l’application puisse les traiter. Une réponse d’erreur ressemble à ceci :
+Réponses d’erreur peuvent également être envoyés l’URI de redirection toohello afin que hello application puisse les gérer. Une réponse d’erreur ressemble à ceci :
 
 ```
 POST /myapp/ HTTP/1.1
@@ -146,42 +146,42 @@ error=access_denied&error_description=the+user+canceled+the+authentication
 
 | Paramètre | Description |
 | --- | --- |
-| error |Une chaîne de code d’erreur que vous pouvez utiliser pour classer les types d’erreur se produisant et pour intervenir face aux erreurs. |
-| error_description |Un message d’erreur spécifique qui peut vous aider à identifier la cause principale d’une erreur d’authentification. |
+| error |Une chaîne de code d’erreur que vous pouvez utiliser tooclassify les types d’erreurs qui se produisent et tooreact tooerrors. |
+| error_description |Un message d’erreur spécifique qui peut vous aider à identifier hello origine d’une erreur d’authentification. |
 
 ### Codes d’erreur pour les erreurs de point de terminaison d’autorisation
-Le tableau suivant décrit les codes d’erreur qui peuvent être retournés dans le paramètre `error` de la réponse d’erreur :
+Hello tableau suivant décrit les codes d’erreur qui peuvent être retournées dans hello `error` paramètre de réponse d’erreur hello :
 
 | Code d'erreur | Description | Action du client |
 | --- | --- | --- |
-| invalid_request |Erreur de protocole, tel qu’un paramètre obligatoire manquant. |Corrigez l’erreur, puis envoyez à nouveau la demande. Il s’agit d’une erreur de développement généralement détectée lors des tests initiaux. |
-| unauthorized_client |L’application cliente ne peut pas demander un code d’autorisation. |Cela se produit généralement lorsque l’application cliente n’est pas inscrite dans Azure AD ou n’est pas ajoutée au client Azure AD de l’utilisateur. L’application peut proposer à l’utilisateur des instructions pour installer l’application et l’ajouter à Azure AD. |
-| access_denied |Le propriétaire de la ressource n’a pas accordé son consentement. |L’application cliente peut avertir l’utilisateur qu’elle ne peut pas continuer sans son consentement. |
-| unsupported_response_type |Le serveur d’autorisation ne prend pas en charge le type de réponse dans la demande. |Corrigez l’erreur, puis envoyez à nouveau la demande. Il s’agit d’une erreur de développement généralement détectée lors des tests initiaux. |
-| server_error |Le serveur a rencontré une erreur inattendue. |relancez la requête. Ces erreurs peuvent résulter de conditions temporaires. L’application cliente peut expliquer à l’utilisateur que sa réponse est reportée en raison d’une erreur temporaire. |
-| temporarily_unavailable |Le serveur est temporairement trop occupé pour traiter la demande. |relancez la requête. L’application cliente peut expliquer à l’utilisateur que sa réponse est reportée en raison d’une condition temporaire. |
-| invalid_resource |La ressource cible n’est pas valide car elle n’existe pas, Azure AD ne la trouve pas ou elle n’est pas configurée correctement. |Cela indique que la ressource, si elle existe, n’a pas été configurée dans le client. L’application peut proposer à l’utilisateur des instructions pour installer l’application et l’ajouter à Azure AD. |
+| invalid_request |Erreur de protocole, tel qu’un paramètre obligatoire manquant. |Corrigez et soumettez à nouveau la demande de hello. Il s’agit d’une erreur de développement généralement détectée lors des tests initiaux. |
+| unauthorized_client |application cliente de Hello Impossible de demander un code d’autorisation. |Cela se produit généralement lorsque l’application cliente de hello n’est pas inscrit dans Azure AD ou locataire Azure AD de l’utilisateur toohello n’est pas ajoutée. application Hello pouvez hello utilisateur application hello de tooinstall instructions et l’ajouter tooAzure AD. |
+| access_denied |propriétaire de la ressource de Hello a refusé son consentement. |application cliente de Hello peut avertir l’utilisateur de hello il ne peut pas continuer à moins que hello utilisateur y consent. |
+| unsupported_response_type |serveur d’autorisation de Hello ne prend pas en charge le type de réponse hello dans la demande de hello. |Corrigez et soumettez à nouveau la demande de hello. Il s’agit d’une erreur de développement généralement détectée lors des tests initiaux. |
+| server_error |serveur de Hello a rencontré une erreur inattendue. |Réessayez la demande de hello. Ces erreurs peuvent résulter de conditions temporaires. application cliente de Hello peut expliquer toohello utilisateur que sa réponse est retardée en raison de l’erreur temporaire de tooa. |
+| temporarily_unavailable |serveur de Hello est temporairement trop occupé toohandle hello demande. |Réessayez la demande de hello. application cliente de Hello peut expliquer toohello utilisateur que sa réponse est retardée en raison de la condition temporaire de tooa. |
+| invalid_resource |ressource de Hello cible n’est pas valide, car il n’existe pas, Azure AD ne peut pas trouver ou il n’est pas configuré correctement. |Cela indique que les ressources hello, s’il en existe n'a pas été configurée dans hello client. application Hello peut invite utilisateur hello avec des instructions pour installer l’application hello et en l’ajoutant tooAzure AD. |
 
-## Validation du jeton d’ID
-La réception d’un jeton d’ID n’est pas suffisante pour authentifier l’utilisateur. Vous devez également valider la signature du jeton d’ID et vérifier les revendications du jeton selon les besoins de votre application. Le point de terminaison v2.0 utilise les [jetons web JSON (JWT)](http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html) et le chiffrement de clés publiques pour signer les jetons et vérifier leur validité.
+## Valider le jeton d’ID hello
+Réception d’un jeton d’ID n’est pas suffisant utilisateur de hello tooauthenticate. Vous devez également valider la signature du jeton d’ID hello et vérifier les revendications hello dans le jeton hello selon les besoins de votre application. point de terminaison Hello v2.0 utilise [des jetons Web JSON (Jwt)](http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html) et public jetons toosign de chiffrement de clé et vérifiez qu’ils sont valides.
 
-Vous pouvez décider de valider le jeton d'ID dans le code du client, mais une pratique courante consiste à envoyer le jeton d'ID vers un serveur principal, afin d’y appliquer la validation. Après avoir validé la signature du jeton d'ID, vous devrez vérifier quelques revendications. Pour plus d’informations, consultez la [page de référence sur les jetons v2.0](active-directory-v2-tokens.md), notamment les sections [Validation des jetons](active-directory-v2-tokens.md#validating-tokens) et [Informations importantes sur la substitution des clés de signature](active-directory-v2-tokens.md#validating-tokens). Nous recommandons d’utiliser une bibliothèque pour analyser et valider les jetons. Il existe au moins une de ces bibliothèques pour la plupart des langages et plateformes.
-<!--TODO: Improve the information on this-->
+Vous pouvez choisir le jeton d’ID toovalidate hello dans le code client, mais une pratique courante est le serveur principal tooa jeton toosend hello ID et effectuer une validation hello il. Une fois que vous avez validé la signature de hello du jeton d’ID hello, vous devez tooverify quelques revendications. Pour plus d’informations, y compris les plus d’informations sur les [valider des jetons](active-directory-v2-tokens.md#validating-tokens) et [des informations importantes sur la substitution de la clé de signature](active-directory-v2-tokens.md#validating-tokens), consultez hello [v2.0 jetons référence](active-directory-v2-tokens.md). Nous vous recommandons d’utiliser une bibliothèque tooparse et valider les jetons. Il existe au moins une de ces bibliothèques pour la plupart des langages et plateformes.
+<!--TODO: Improve hello information on this-->
 
-En fonction de votre scénario, vous pouvez également valider des revendications supplémentaires. Voici quelques validations courantes :
+Vous pouvez également toovalidate des revendications supplémentaires, en fonction de votre scénario. Voici quelques validations courantes :
 
-* Vérifier que l’utilisateur ou l’organisation s’est inscrit pour l’application.
-* Vérifier que l’utilisateur dispose des privilèges ou autorisations nécessaires.
+* Vérifiez que hello ou l’organisation utilisateur a inscrit pour l’application hello.
+* Assurez-vous que l’utilisateur hello exige des privilèges ou autorisation.
 * S’assurer de l’utilisation d’une force certaine d’authentification, comme une authentification multifacteur.
 
-Pour plus d’informations sur les revendications dans un jeton d'ID, consultez la page de [référence sur les jetons du point de terminaison v2.0](active-directory-v2-tokens.md).
+Pour plus d’informations sur les revendications hello dans un jeton d’ID, consultez hello [référence les jetons de point de terminaison v2.0](active-directory-v2-tokens.md).
 
-Une fois que vous avez entièrement validé le jeton d’ID, vous pouvez commencer une session avec l’utilisateur. Utilisez les revendications dans le jeton d’ID pour obtenir des informations sur l’utilisateur dans votre application. Vous pouvez utiliser ces informations pour l’affichage, les enregistrements, les autorisations, etc.
+Après avoir validé le jeton d’ID hello complètement, vous pouvez commencer une session avec l’utilisateur de hello. Utiliser les revendications hello hello ID jeton tooget informations utilisateur hello dans votre application. Vous pouvez utiliser ces informations pour l’affichage, les enregistrements, les autorisations, etc.
 
 ## Envoi d’une demande de déconnexion
-Si vous souhaitez déconnecter l’utilisateur de votre application, vous ne pouvez pas vous contenter de supprimer les cookies de votre application ou d’arrêter la session de l’utilisateur. Vous devez également rediriger l’utilisateur vers le point de terminaison v2.0 pour suivre la procédure de déconnexion. Si vous ne le faites pas, l’utilisateur pourra se ré-authentifier auprès de votre application sans avoir à saisir de nouveau ses informations d’identification, puisqu’il disposera d’une session d’authentification unique valide avec le point de terminaison v2.0.
+Lorsque vous souhaitez toosign utilisateur de hello à partir de votre application, il n’est pas suffisant tooclear les cookies de votre application, ou sinon terminer hello session utilisateur. Vous devez également rediriger toosign de point de terminaison hello utilisateur toohello v2.0 out. Si vous ne le faites pas, les utilisateurs hello ré-authentifie tooyour application sans entrer leurs informations d’identification, car ils auront une valide unique de session avec le point de terminaison hello v2.0.
 
-Vous pouvez rediriger l’utilisateur vers le `end_session_endpoint` répertorié dans le document de métadonnées OpenID Connect :
+Vous pouvez rediriger hello utilisateur toohello `end_session_endpoint` répertoriées dans le document de métadonnées hello OpenID Connect :
 
 ```
 GET https://login.microsoftonline.com/common/oauth2/v2.0/logout?
@@ -190,20 +190,20 @@ post_logout_redirect_uri=http%3A%2F%2Flocalhost%2Fmyapp%2F
 
 | Paramètre | Condition | Description |
 | ----------------------- | ------------------------------- | ------------ |
-| post_logout_redirect_uri | Recommandé | URL vers laquelle l’utilisateur est redirigé après sa déconnexion. Si le paramètre n’est pas inclus, un message générique généré par le point de terminaison v2.0 s’affiche. Cette URL doit correspondre exactement à l’un des URI de redirection inscrits pour votre application dans le portail d’inscription des applications.  |
+| post_logout_redirect_uri | Recommandé | URL Hello hello utilisateur est redirigé tooafter correctement la déconnexion. Si le paramètre hello n’est pas inclus, hello sont affichées un message générique qui est généré par le point de terminaison hello v2.0. Cette URL doit correspondre à un des URI inscrits pour votre application dans le portail de l’enregistrement d’application hello de redirection hello.  |
 
 ## Authentification unique
-Lorsque vous redirigez l’utilisateur vers `end_session_endpoint`, le point de terminaison v2.0 efface la session de l’utilisateur dans le navigateur. Toutefois, l’utilisateur peut rester connecté à d’autres applications qui utilisent des comptes Microsoft pour s’authentifier. Pour permettre à ces applications de déconnecter simultanément l’utilisateur, le point de terminaison v2.0 envoie une requête HTTP GET au paramètre `LogoutUrl` inscrit de toutes les applications auxquelles l’utilisateur est actuellement connecté. Les applications doivent répondre à cette requête en effaçant toute session qui identifie l’utilisateur et en renvoyant une réponse `200`.  Si vous souhaitez prendre en charge la déconnexion unique dans votre application, vous devez implémenter ce paramètre `LogoutUrl` dans le code de votre application.  Vous pouvez définir le paramètre `LogoutUrl` à partir du portail d’inscription des applications.
+Lorsque vous redirigez hello utilisateur toohello `end_session_endpoint`, point de terminaison hello v2.0 efface hello session utilisateur à partir du navigateur de hello. Toutefois, hello utilisateur peut toujours être connecté tooother les applications qui utilisent des comptes Microsoft pour l’authentification. tooenable ces utilisateurs de hello toosign applications out simultanément, les point de terminaison de v2.0 hello envoie un toohello demande HTTP GET est inscrit `LogoutUrl` de toutes les applications hello cet utilisateur hello est actuellement connecté à. Les applications doivent répondre toothis demande en désactivant toute session qui identifie l’utilisateur de hello et en retournant un `200` réponse.  Si vous souhaitez utiliser l’authentification unique toosupport expire dans votre application, vous devez implémenter ces un `LogoutUrl` dans le code de votre application.  Vous pouvez définir hello `LogoutUrl` à partir du portail de l’enregistrement d’application hello.
 
 ## Schéma de protocole : Acquisition de jeton
-Beaucoup d’applications web nécessitent une connexion de l’utilisateur, puis un accès au service web pour le compte de cet utilisateur à l’aide d’OAuth. Ce scénario utilise OpenID Connect pour l’authentification de l’utilisateur tout en récupérant un code d’autorisation vous permettant d'obtenir des jetons d’accès si vous utilisez le flux de code d’autorisation OAuth.
+De nombreuses applications web doivent toonot seul utilisateur signe hello dans, mais également tooaccess un service web pour le compte d’utilisateur de hello en utilisant OAuth. Ce scénario combine OpenID Connect pour l’authentification utilisateur lors de l’obtention de simultanément une autorisation de code que vous pouvez utiliser l’accès tooget jetons si vous utilisez le flux d’un code d’autorisation OAuth hello.
 
-Le flux complet de connexion OpenID Connect et d’acquisition des jetons ressemble à l'exemple du diagramme suivant. Nous décrirons en détail chaque étape dans les sections suivantes de cet article.
+Hello complète OpenID Connect connectez-vous et flux de l’acquisition de jeton est similaire diagramme suivant de toohello. Nous décrivent chaque étape en détail dans les sections suivants hello d’article de hello.
 
 ![Protocole OpenID Connect : Acquisition de jeton](../../media/active-directory-v2-flows/convergence_scenarios_webapp_webapi.png)
 
 ## Obtenir des jetons d’accès
-Pour acquérir des jetons d’accès, modifiez la requête de connexion :
+jetons d’accès tooacquire, modifiez la demande de connexion hello :
 
 ```
 // Line breaks are for legibility only.
@@ -221,12 +221,12 @@ https%3A%2F%2Fgraph.microsoft.com%2Fmail.read
 ```
 
 > [!TIP]
-> Cliquez sur le lien suivant pour exécuter cette requête. Une fois que vous êtes connecté, votre navigateur est redirigé vers https://localhost/myapp/, avec un jeton d'ID et un code dans la barre d’adresse. Notez que cette requête utilise `response_mode=query` (pour les besoins du didacticiel uniquement). Nous vous recommandons d'utiliser `response_mode=form_post`.
+> Cliquez sur hello suivant tooexecute de lien de cette demande. Une fois que vous vous connectez, votre navigateur est redirigé toohttps://localhost/myapp/, avec un jeton d’ID et un code dans la barre d’adresses hello. Notez que cette requête utilise `response_mode=query` (pour les besoins du didacticiel uniquement). Nous vous recommandons d'utiliser `response_mode=form_post`.
 > <a href="https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=6731de76-14a6-49ae-97bc-6eba6914391e&response_type=id_token%20code&redirect_uri=http%3A%2F%2Flocalhost%2Fmyapp%2F&response_mode=query&scope=openid%20offline_access%20https%3A%2F%2Fgraph.microsoft.com%2Fmail.read&state=12345&nonce=678910" target="_blank">https://login.microsoftonline.com/common/oauth2/v2.0/authorize...</a>
 > 
 > 
 
-En incluant des étendues d’autorisation dans la requête et en utilisant `response_type=id_token code`, le point de terminaison v2.0 garantit que l’utilisateur a accepté les autorisations indiquées dans le paramètre de requête `scope`. Il renvoie un code d’autorisation à votre application afin de l’échanger contre un jeton d’accès.
+En incluant des étendues d’autorisation dans la demande hello et à l’aide de `response_type=id_token code`, point de terminaison hello v2.0 garantit que l’utilisateur hello a consenti autorisations toohello indiquées Bonjour `scope` paramètre de requête. Elle retourne un tooexchange d’application de tooyour de code d’autorisation pour un jeton d’accès.
 
 ### Réponse correcte
 Une réponse correcte utilisant `response_mode=form_post` se présente ainsi :
@@ -241,12 +241,12 @@ id_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ik1uQ19WWmNB...&code=AwABAA
 
 | Paramètre | Description |
 | --- | --- |
-| id_token |Le jeton d'ID que l’application a demandé. Vous pouvez utiliser le jeton d'ID pour vérifier l’identité de l’utilisateur et démarrer une session avec lui. Pour plus de détails sur les jetons d'ID et leur contenu, consultez la page de [référence des jetons de point de terminaison v2.0](active-directory-v2-tokens.md). |
-| code |Le code d’autorisation demandé par l’application. L’application peut utiliser ce code d’autorisation pour demander un jeton d’accès pour la ressource cible. La durée de vie d'un code d’autorisation est très courte. En règle générale, un code d’autorisation expire au bout de 10 minutes environ. |
-| state |Si un paramètre d’état est inclus dans la demande, la même valeur doit apparaître dans la réponse. L’application doit vérifier que les valeurs d’état de la demande et de la réponse sont identiques. |
+| id_token |Bonjour le jeton d’ID qui hello application demandée. Vous pouvez utiliser l’identité de l’utilisateur hello hello ID tooverify jeton et démarrer une session avec l’utilisateur de hello. Vous trouverez plus d’informations sur les jetons d’ID et leur contenu Bonjour [référence les jetons de point de terminaison v2.0](active-directory-v2-tokens.md). |
+| code |code d’autorisation Hello hello application demandée. application Hello peut utiliser toorequest de code d’autorisation hello un jeton d’accès pour la ressource cible de hello. La durée de vie d'un code d’autorisation est très courte. En règle générale, un code d’autorisation expire au bout de 10 minutes environ. |
+| state |Si un paramètre d’état est inclus dans la demande de hello, hello même valeur doit figurer dans la réponse de hello. application Hello doit vérifier que les valeurs d’état hello dans hello demande et de réponse sont identiques. |
 
 ### Réponse d’erreur
-Les réponses d’erreur peuvent également être envoyées à l'URI de redirection, de manière que l’application puisse les traiter de manière appropriée. Une réponse d’erreur ressemble à ceci :
+Réponses d’erreur peuvent également être envoyés l’URI de redirection toohello afin que hello application peut gérer de façon appropriée. Une réponse d’erreur ressemble à ceci :
 
 ```
 POST /myapp/ HTTP/1.1
@@ -258,9 +258,9 @@ error=access_denied&error_description=the+user+canceled+the+authentication
 
 | Paramètre | Description |
 | --- | --- |
-| error |Une chaîne de code d’erreur que vous pouvez utiliser pour classer les types d’erreur se produisant et pour intervenir face aux erreurs. |
-| error_description |Un message d’erreur spécifique qui peut vous aider à identifier la cause principale d’une erreur d’authentification. |
+| error |Une chaîne de code d’erreur que vous pouvez utiliser tooclassify les types d’erreurs qui se produisent et tooreact tooerrors. |
+| error_description |Un message d’erreur spécifique qui peut vous aider à identifier hello origine d’une erreur d’authentification. |
 
 Pour obtenir une description des codes d’erreur éventuels et connaître les réponses client recommandées associées, consultez [Codes d’erreur pour les erreurs de point de terminaison d’autorisation](#error-codes-for-authorization-endpoint-errors).
 
-Une fois que vous avez obtenu un code d'autorisation et un jeton d'ID, vous pouvez connecter l’utilisateur et obtenir des jetons d’accès pour son compte. Pour connecter l’utilisateur, vous devez valider le jeton d'ID [exactement comme décrit](#validate-the-id-token). Pour obtenir des jetons d’accès, suivez la procédure décrite dans la [documentation du protocole OAuth](active-directory-v2-protocols-oauth-code.md#request-an-access-token).
+Lorsque vous avez un code d’autorisation et un jeton d’ID, vous pouvez connecter hello utilisateur et obtenir des jetons d’accès de leur part. toosign hello utilisateur, vous devez valider le jeton d’ID hello [exactement comme](#validate-the-id-token). jetons d’accès tooget, suivez les étapes de hello décrites dans nos [documentation du protocole OAuth](active-directory-v2-protocols-oauth-code.md#request-an-access-token).

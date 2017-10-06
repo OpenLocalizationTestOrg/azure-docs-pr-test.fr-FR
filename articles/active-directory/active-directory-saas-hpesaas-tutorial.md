@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory à HPE SaaS | Microsoft Docs"
-description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et HPE SaaS."
+description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et HPE SaaS."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,199 +13,199 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/15/2017
 ms.author: jeedes
-ms.openlocfilehash: 5e6f0da531df85359aa47477248dd020a039e7e3
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 7a846fb2298e51d249f4a406527130828bf7bbd7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-azure-active-directory-integration-with-hpe-saas"></a><span data-ttu-id="40ebf-103">Didacticiel : Intégration d’Azure Active Directory à HPE SaaS</span><span class="sxs-lookup"><span data-stu-id="40ebf-103">Tutorial: Azure Active Directory integration with HPE SaaS</span></span>
+# <a name="tutorial-azure-active-directory-integration-with-hpe-saas"></a><span data-ttu-id="1eee2-103">Didacticiel : Intégration d’Azure Active Directory à HPE SaaS</span><span class="sxs-lookup"><span data-stu-id="1eee2-103">Tutorial: Azure Active Directory integration with HPE SaaS</span></span>
 
-<span data-ttu-id="40ebf-104">Dans ce didacticiel, vous allez apprendre à intégrer HPE SaaS dans Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="40ebf-104">In this tutorial, you learn how to integrate HPE SaaS with Azure Active Directory (Azure AD).</span></span>
+<span data-ttu-id="1eee2-104">Dans ce didacticiel, vous apprendrez comment toointegrate SaaS HPE avec Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="1eee2-104">In this tutorial, you learn how toointegrate HPE SaaS with Azure Active Directory (Azure AD).</span></span>
 
-<span data-ttu-id="40ebf-105">L’intégration de HPE SaaS dans Azure AD offre les avantages suivants :</span><span class="sxs-lookup"><span data-stu-id="40ebf-105">Integrating HPE SaaS with Azure AD provides you with the following benefits:</span></span>
+<span data-ttu-id="1eee2-105">Intégration HPE SaaS à Azure AD offre hello avantages suivants :</span><span class="sxs-lookup"><span data-stu-id="1eee2-105">Integrating HPE SaaS with Azure AD provides you with hello following benefits:</span></span>
 
-- <span data-ttu-id="40ebf-106">Dans Azure AD, vous pouvez contrôler qui a accès à HPE SaaS.</span><span class="sxs-lookup"><span data-stu-id="40ebf-106">You can control in Azure AD who has access to HPE SaaS</span></span>
-- <span data-ttu-id="40ebf-107">Vous pouvez autoriser vos utilisateurs à se connecter automatiquement à HPE SaaS (via l’authentification unique) avec leur compte Azure AD.</span><span class="sxs-lookup"><span data-stu-id="40ebf-107">You can enable your users to automatically get signed-on to HPE SaaS (Single Sign-On) with their Azure AD accounts</span></span>
-- <span data-ttu-id="40ebf-108">Vous pouvez gérer vos comptes à partir d’un emplacement central : le portail Azure</span><span class="sxs-lookup"><span data-stu-id="40ebf-108">You can manage your accounts in one central location - the Azure portal</span></span>
+- <span data-ttu-id="1eee2-106">Vous pouvez contrôler dans Azure AD qui a accès tooHPE SaaS</span><span class="sxs-lookup"><span data-stu-id="1eee2-106">You can control in Azure AD who has access tooHPE SaaS</span></span>
+- <span data-ttu-id="1eee2-107">Vous pouvez activer vos utilisateurs tooautomatically get connecté tooHPE SaaS (Single Sign-On) avec leurs comptes Azure AD</span><span class="sxs-lookup"><span data-stu-id="1eee2-107">You can enable your users tooautomatically get signed-on tooHPE SaaS (Single Sign-On) with their Azure AD accounts</span></span>
+- <span data-ttu-id="1eee2-108">Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure</span><span class="sxs-lookup"><span data-stu-id="1eee2-108">You can manage your accounts in one central location - hello Azure portal</span></span>
 
-<span data-ttu-id="40ebf-109">Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="40ebf-109">If you want to know more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
+<span data-ttu-id="1eee2-109">Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="1eee2-109">If you want tooknow more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="40ebf-110">Composants requis</span><span class="sxs-lookup"><span data-stu-id="40ebf-110">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="1eee2-110">Composants requis</span><span class="sxs-lookup"><span data-stu-id="1eee2-110">Prerequisites</span></span>
 
-<span data-ttu-id="40ebf-111">Pour configurer l’intégration d’Azure AD à HPE SaaS, vous avez besoin des éléments suivants :</span><span class="sxs-lookup"><span data-stu-id="40ebf-111">To configure Azure AD integration with HPE SaaS, you need the following items:</span></span>
+<span data-ttu-id="1eee2-111">tooconfigure intégration d’Azure AD avec HPE SaaS, vous devez hello éléments suivants :</span><span class="sxs-lookup"><span data-stu-id="1eee2-111">tooconfigure Azure AD integration with HPE SaaS, you need hello following items:</span></span>
 
-- <span data-ttu-id="40ebf-112">Un abonnement Azure AD</span><span class="sxs-lookup"><span data-stu-id="40ebf-112">An Azure AD subscription</span></span>
-- <span data-ttu-id="40ebf-113">Un abonnement HPE SaaS pour lequel l’authentification unique est activée</span><span class="sxs-lookup"><span data-stu-id="40ebf-113">An HPE SaaS single sign-on enabled subscription</span></span>
+- <span data-ttu-id="1eee2-112">Un abonnement Azure AD</span><span class="sxs-lookup"><span data-stu-id="1eee2-112">An Azure AD subscription</span></span>
+- <span data-ttu-id="1eee2-113">Un abonnement HPE SaaS pour lequel l’authentification unique est activée</span><span class="sxs-lookup"><span data-stu-id="1eee2-113">An HPE SaaS single sign-on enabled subscription</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="40ebf-114">Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.</span><span class="sxs-lookup"><span data-stu-id="40ebf-114">To test the steps in this tutorial, we do not recommend using a production environment.</span></span>
+> <span data-ttu-id="1eee2-114">tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.</span><span class="sxs-lookup"><span data-stu-id="1eee2-114">tootest hello steps in this tutorial, we do not recommend using a production environment.</span></span>
 
-<span data-ttu-id="40ebf-115">Vous devez en outre suivre les recommandations ci-dessous :</span><span class="sxs-lookup"><span data-stu-id="40ebf-115">To test the steps in this tutorial, you should follow these recommendations:</span></span>
+<span data-ttu-id="1eee2-115">tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :</span><span class="sxs-lookup"><span data-stu-id="1eee2-115">tootest hello steps in this tutorial, you should follow these recommendations:</span></span>
 
-- <span data-ttu-id="40ebf-116">N’utilisez pas votre environnement de production, sauf si cela est nécessaire.</span><span class="sxs-lookup"><span data-stu-id="40ebf-116">Do not use your production environment, unless it is necessary.</span></span>
-- <span data-ttu-id="40ebf-117">Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois ici : [offre d’essai](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="40ebf-117">If you don't have an Azure AD trial environment, you can get a one-month trial here: [Trial offer](https://azure.microsoft.com/pricing/free-trial/).</span></span>
+- <span data-ttu-id="1eee2-116">N’utilisez pas votre environnement de production, sauf si cela est nécessaire.</span><span class="sxs-lookup"><span data-stu-id="1eee2-116">Do not use your production environment, unless it is necessary.</span></span>
+- <span data-ttu-id="1eee2-117">Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois ici : [offre d’essai](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="1eee2-117">If you don't have an Azure AD trial environment, you can get a one-month trial here: [Trial offer](https://azure.microsoft.com/pricing/free-trial/).</span></span>
 
-## <a name="scenario-description"></a><span data-ttu-id="40ebf-118">Description du scénario</span><span class="sxs-lookup"><span data-stu-id="40ebf-118">Scenario description</span></span>
-<span data-ttu-id="40ebf-119">Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test.</span><span class="sxs-lookup"><span data-stu-id="40ebf-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="40ebf-120">Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :</span><span class="sxs-lookup"><span data-stu-id="40ebf-120">The scenario outlined in this tutorial consists of two main building blocks:</span></span>
+## <a name="scenario-description"></a><span data-ttu-id="1eee2-118">Description du scénario</span><span class="sxs-lookup"><span data-stu-id="1eee2-118">Scenario description</span></span>
+<span data-ttu-id="1eee2-119">Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test.</span><span class="sxs-lookup"><span data-stu-id="1eee2-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="1eee2-120">scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :</span><span class="sxs-lookup"><span data-stu-id="1eee2-120">hello scenario outlined in this tutorial consists of two main building blocks:</span></span>
 
-1. <span data-ttu-id="40ebf-121">Ajout de HPE SaaS à partir de la galerie</span><span class="sxs-lookup"><span data-stu-id="40ebf-121">Adding HPE SaaS from the gallery</span></span>
-2. <span data-ttu-id="40ebf-122">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="40ebf-122">Configuring and testing Azure AD single sign-on</span></span>
+1. <span data-ttu-id="1eee2-121">Ajout de HPE SaaS à partir de la galerie de hello</span><span class="sxs-lookup"><span data-stu-id="1eee2-121">Adding HPE SaaS from hello gallery</span></span>
+2. <span data-ttu-id="1eee2-122">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="1eee2-122">Configuring and testing Azure AD single sign-on</span></span>
 
-## <a name="adding-hpe-saas-from-the-gallery"></a><span data-ttu-id="40ebf-123">Ajout de HPE SaaS à partir de la galerie</span><span class="sxs-lookup"><span data-stu-id="40ebf-123">Adding HPE SaaS from the gallery</span></span>
-<span data-ttu-id="40ebf-124">Pour configurer l’intégration de HPE SaaS à Azure AD, vous devez ajouter HPE SaaS à partir de la galerie à votre liste d’applications SaaS gérées.</span><span class="sxs-lookup"><span data-stu-id="40ebf-124">To configure the integration of HPE SaaS into Azure AD, you need to add HPE SaaS from the gallery to your list of managed SaaS apps.</span></span>
+## <a name="adding-hpe-saas-from-hello-gallery"></a><span data-ttu-id="1eee2-123">Ajout de HPE SaaS à partir de la galerie de hello</span><span class="sxs-lookup"><span data-stu-id="1eee2-123">Adding HPE SaaS from hello gallery</span></span>
+<span data-ttu-id="1eee2-124">tooconfigure hello intégration de HPE SaaS dans Azure AD, vous devez tooadd HPE SaaS à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.</span><span class="sxs-lookup"><span data-stu-id="1eee2-124">tooconfigure hello integration of HPE SaaS into Azure AD, you need tooadd HPE SaaS from hello gallery tooyour list of managed SaaS apps.</span></span>
 
-<span data-ttu-id="40ebf-125">**Pour ajouter HPE SaaS à partir de la galerie, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="40ebf-125">**To add HPE SaaS from the gallery, perform the following steps:**</span></span>
+<span data-ttu-id="1eee2-125">**tooadd SaaS HPE à partir de la galerie hello, procédez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="1eee2-125">**tooadd HPE SaaS from hello gallery, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="40ebf-126">Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**.</span><span class="sxs-lookup"><span data-stu-id="40ebf-126">In the **[Azure portal](https://portal.azure.com)**, on the left navigation panel, click **Azure Active Directory** icon.</span></span> 
+1. <span data-ttu-id="1eee2-126">Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.</span><span class="sxs-lookup"><span data-stu-id="1eee2-126">In hello **[Azure portal](https://portal.azure.com)**, on hello left navigation panel, click **Azure Active Directory** icon.</span></span> 
 
     ![Active Directory][1]
 
-2. <span data-ttu-id="40ebf-128">Accédez à **Applications d’entreprise**.</span><span class="sxs-lookup"><span data-stu-id="40ebf-128">Navigate to **Enterprise applications**.</span></span> <span data-ttu-id="40ebf-129">Accédez ensuite à **Toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="40ebf-129">Then go to **All applications**.</span></span>
+2. <span data-ttu-id="1eee2-128">Accédez trop**des applications d’entreprise**.</span><span class="sxs-lookup"><span data-stu-id="1eee2-128">Navigate too**Enterprise applications**.</span></span> <span data-ttu-id="1eee2-129">Passez trop**toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="1eee2-129">Then go too**All applications**.</span></span>
 
     ![Applications][2]
     
-3. <span data-ttu-id="40ebf-131">Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.</span><span class="sxs-lookup"><span data-stu-id="40ebf-131">To add new application, click **New application** button on the top of dialog.</span></span>
+3. <span data-ttu-id="1eee2-131">tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.</span><span class="sxs-lookup"><span data-stu-id="1eee2-131">tooadd new application, click **New application** button on hello top of dialog.</span></span>
 
     ![Applications][3]
 
-4. <span data-ttu-id="40ebf-133">Dans la zone de recherche, tapez **HPE SaaS**.</span><span class="sxs-lookup"><span data-stu-id="40ebf-133">In the search box, type **HPE SaaS**.</span></span>
+4. <span data-ttu-id="1eee2-133">Dans la zone de recherche de hello, tapez **HPE SaaS**.</span><span class="sxs-lookup"><span data-stu-id="1eee2-133">In hello search box, type **HPE SaaS**.</span></span>
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-hpesaas-tutorial/tutorial_hpesaas_search.png)
 
-5. <span data-ttu-id="40ebf-135">Dans le panneau des résultats, sélectionnez **HPE SaaS**, puis cliquez sur le bouton **Ajouter** pour ajouter l’application.</span><span class="sxs-lookup"><span data-stu-id="40ebf-135">In the results panel, select **HPE SaaS**, and then click **Add** button to add the application.</span></span>
+5. <span data-ttu-id="1eee2-135">Dans le volet de résultats hello, sélectionnez **HPE SaaS**, puis cliquez sur **ajouter** bouton application hello de tooadd.</span><span class="sxs-lookup"><span data-stu-id="1eee2-135">In hello results panel, select **HPE SaaS**, and then click **Add** button tooadd hello application.</span></span>
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-hpesaas-tutorial/tutorial_hpesaas_addfromgallery.png)
 
-##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="40ebf-137">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="40ebf-137">Configuring and testing Azure AD single sign-on</span></span>
-<span data-ttu-id="40ebf-138">Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec HPE SaaS avec un utilisateur de test appelé « Britta Simon ».</span><span class="sxs-lookup"><span data-stu-id="40ebf-138">In this section, you configure and test Azure AD single sign-on with HPE SaaS based on a test user called "Britta Simon".</span></span>
+##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="1eee2-137">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="1eee2-137">Configuring and testing Azure AD single sign-on</span></span>
+<span data-ttu-id="1eee2-138">Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec HPE SaaS avec un utilisateur de test appelé « Britta Simon ».</span><span class="sxs-lookup"><span data-stu-id="1eee2-138">In this section, you configure and test Azure AD single sign-on with HPE SaaS based on a test user called "Britta Simon".</span></span>
 
-<span data-ttu-id="40ebf-139">Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur HPE SaaS équivalent dans Azure AD.</span><span class="sxs-lookup"><span data-stu-id="40ebf-139">For single sign-on to work, Azure AD needs to know what the counterpart user in HPE SaaS is to a user in Azure AD.</span></span> <span data-ttu-id="40ebf-140">En d’autres termes, une relation entre l’utilisateur Azure AD et l’utilisateur HPE SaaS associé doit être établie.</span><span class="sxs-lookup"><span data-stu-id="40ebf-140">In other words, a link relationship between an Azure AD user and the related user in HPE SaaS needs to be established.</span></span>
+<span data-ttu-id="1eee2-139">Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur équivalent hello HPE SaaS est tooa utilisateur dans Azure AD.</span><span class="sxs-lookup"><span data-stu-id="1eee2-139">For single sign-on toowork, Azure AD needs tooknow what hello counterpart user in HPE SaaS is tooa user in Azure AD.</span></span> <span data-ttu-id="1eee2-140">En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans HPE SaaS doit toobe établie.</span><span class="sxs-lookup"><span data-stu-id="1eee2-140">In other words, a link relationship between an Azure AD user and hello related user in HPE SaaS needs toobe established.</span></span>
 
-<span data-ttu-id="40ebf-141">Dans HPE SaaS, assignez la valeur du **nom d’utilisateur** d’Azure AD comme valeur de **Username** (Nom d’utilisateur) pour établir la relation.</span><span class="sxs-lookup"><span data-stu-id="40ebf-141">In HPE SaaS, assign the value of the **user name** in Azure AD as the value of the **Username** to establish the link relationship.</span></span>
+<span data-ttu-id="1eee2-141">Dans HPE SaaS, affecter la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** relation de lien tooestablish hello.</span><span class="sxs-lookup"><span data-stu-id="1eee2-141">In HPE SaaS, assign hello value of hello **user name** in Azure AD as hello value of hello **Username** tooestablish hello link relationship.</span></span>
 
-<span data-ttu-id="40ebf-142">Pour configurer et tester l’authentification unique Azure AD avec HPE SaaS, vous devez suivre les indications des sections suivantes :</span><span class="sxs-lookup"><span data-stu-id="40ebf-142">To configure and test Azure AD single sign-on with HPE SaaS, you need to complete the following building blocks:</span></span>
+<span data-ttu-id="1eee2-142">tooconfigure et test Azure AD l’authentification unique avec HPE SaaS, vous devez hello toocomplete suivant des blocs de construction :</span><span class="sxs-lookup"><span data-stu-id="1eee2-142">tooconfigure and test Azure AD single sign-on with HPE SaaS, you need toocomplete hello following building blocks:</span></span>
 
-1. <span data-ttu-id="40ebf-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.</span><span class="sxs-lookup"><span data-stu-id="40ebf-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - to enable your users to use this feature.</span></span>
-2. <span data-ttu-id="40ebf-144">**[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="40ebf-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.</span></span>
-3. <span data-ttu-id="40ebf-145">**[Création d’un utilisateur de test HPE SaaS](#creating-an-hpe-saas-test-user)** pour avoir dans HPE SaaS un équivalent de Britta Simon lié à la représentation Azure AD associée.</span><span class="sxs-lookup"><span data-stu-id="40ebf-145">**[Creating an HPE SaaS test user](#creating-an-hpe-saas-test-user)** - to have a counterpart of Britta Simon in HPE SaaS that is linked to the Azure AD representation of user.</span></span>
-4. <span data-ttu-id="40ebf-146">**[Affectation de l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.</span><span class="sxs-lookup"><span data-stu-id="40ebf-146">**[Assigning the Azure AD test user](#assigning-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.</span></span>
-5. <span data-ttu-id="40ebf-147">**[Testing Single Sign-On](#testing-single-sign-on)** pour vérifier si la configuration fonctionne.</span><span class="sxs-lookup"><span data-stu-id="40ebf-147">**[Testing Single Sign-On](#testing-single-sign-on)** - to verify whether the configuration works.</span></span>
+1. <span data-ttu-id="1eee2-143">**[Configuration d’Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.</span><span class="sxs-lookup"><span data-stu-id="1eee2-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - tooenable your users toouse this feature.</span></span>
+2. <span data-ttu-id="1eee2-144">**[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="1eee2-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - tootest Azure AD single sign-on with Britta Simon.</span></span>
+3. <span data-ttu-id="1eee2-145">**[Création d’un utilisateur de test HPE SaaS](#creating-an-hpe-saas-test-user)**  -toohave un équivalent de Britta Simon dans HPE SaaS qui est la représentation sous forme de toohello lié Azure AD de l’utilisateur.</span><span class="sxs-lookup"><span data-stu-id="1eee2-145">**[Creating an HPE SaaS test user](#creating-an-hpe-saas-test-user)** - toohave a counterpart of Britta Simon in HPE SaaS that is linked toohello Azure AD representation of user.</span></span>
+4. <span data-ttu-id="1eee2-146">**[Utilisateur de test affectation hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="1eee2-146">**[Assigning hello Azure AD test user](#assigning-the-azure-ad-test-user)** - tooenable Britta Simon toouse Azure AD single sign-on.</span></span>
+5. <span data-ttu-id="1eee2-147">**[Test de l’authentification unique sur](#testing-single-sign-on)**  -tooverify hello indique si les tâches de configuration.</span><span class="sxs-lookup"><span data-stu-id="1eee2-147">**[Testing Single Sign-On](#testing-single-sign-on)** - tooverify whether hello configuration works.</span></span>
 
-### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="40ebf-148">Configuration de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="40ebf-148">Configuring Azure AD single sign-on</span></span>
+### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="1eee2-148">Configuration de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="1eee2-148">Configuring Azure AD single sign-on</span></span>
 
-<span data-ttu-id="40ebf-149">Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure et configurer l’authentification unique dans votre application HPE SaaS.</span><span class="sxs-lookup"><span data-stu-id="40ebf-149">In this section, you enable Azure AD single sign-on in the Azure portal and configure single sign-on in your HPE SaaS application.</span></span>
+<span data-ttu-id="1eee2-149">Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application HPE SaaS.</span><span class="sxs-lookup"><span data-stu-id="1eee2-149">In this section, you enable Azure AD single sign-on in hello Azure portal and configure single sign-on in your HPE SaaS application.</span></span>
 
-<span data-ttu-id="40ebf-150">**Pour configurer l’authentification unique Azure AD avec HPE SaaS, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="40ebf-150">**To configure Azure AD single sign-on with HPE SaaS, perform the following steps:**</span></span>
+<span data-ttu-id="1eee2-150">**tooconfigure Azure AD single sign-on avec HPE SaaS, effectuez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="1eee2-150">**tooconfigure Azure AD single sign-on with HPE SaaS, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="40ebf-151">Dans le portail Azure, dans la page d’intégration de l’application **HPE SaaS**, cliquez sur **Authentification unique**.</span><span class="sxs-lookup"><span data-stu-id="40ebf-151">In the Azure portal, on the **HPE SaaS** application integration page, click **Single sign-on**.</span></span>
+1. <span data-ttu-id="1eee2-151">Bonjour portail Azure, sur hello **HPE SaaS** page d’intégration d’application, cliquez sur **l’authentification unique**.</span><span class="sxs-lookup"><span data-stu-id="1eee2-151">In hello Azure portal, on hello **HPE SaaS** application integration page, click **Single sign-on**.</span></span>
 
     ![Configurer l’authentification unique][4]
 
-2. <span data-ttu-id="40ebf-153">Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="40ebf-153">On the **Single sign-on** dialog, select **Mode** as **SAML-based Sign-on** to enable single sign-on.</span></span>
+2. <span data-ttu-id="1eee2-153">Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="1eee2-153">On hello **Single sign-on** dialog, select **Mode** as   **SAML-based Sign-on** tooenable single sign-on.</span></span>
  
     ![Configurer l’authentification unique](./media/active-directory-saas-hpesaas-tutorial/tutorial_hpesaas_samlbase.png)
 
-3. <span data-ttu-id="40ebf-155">Dans la section **HPE SaaS Domain and URLs** (Domaine et URL HPE SaaS), procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="40ebf-155">On the **HPE SaaS Domain and URLs** section, perform the following steps:</span></span>
+3. <span data-ttu-id="1eee2-155">Sur hello **HPE SaaS domaine et les URL** section, effectuer hello comme suit :</span><span class="sxs-lookup"><span data-stu-id="1eee2-155">On hello **HPE SaaS Domain and URLs** section, perform hello following steps:</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-hpesaas-tutorial/tutorial_hpesaas_url.png)
 
-    <span data-ttu-id="40ebf-157">a.</span><span class="sxs-lookup"><span data-stu-id="40ebf-157">a.</span></span> <span data-ttu-id="40ebf-158">Dans la zone de texte **URL d’authentification**, tapez l’URL : `https://login.saas.hpe.com/msg`</span><span class="sxs-lookup"><span data-stu-id="40ebf-158">In the **Sign-on URL** textbox, type a URL as: `https://login.saas.hpe.com/msg`</span></span>
+    <span data-ttu-id="1eee2-157">a.</span><span class="sxs-lookup"><span data-stu-id="1eee2-157">a.</span></span> <span data-ttu-id="1eee2-158">Bonjour **URL de connexion** zone de texte, tapez une URL en tant que :`https://login.saas.hpe.com/msg`</span><span class="sxs-lookup"><span data-stu-id="1eee2-158">In hello **Sign-on URL** textbox, type a URL as: `https://login.saas.hpe.com/msg`</span></span>
 
-    <span data-ttu-id="40ebf-159">b.</span><span class="sxs-lookup"><span data-stu-id="40ebf-159">b.</span></span> <span data-ttu-id="40ebf-160">Dans la zone de texte **Identificateur**, tapez une URL au format suivant : `https://<subdomain>.saas.hpe.com`</span><span class="sxs-lookup"><span data-stu-id="40ebf-160">In the **Identifier** textbox, type a URL using the following pattern: `https://<subdomain>.saas.hpe.com`</span></span>
+    <span data-ttu-id="1eee2-159">b.</span><span class="sxs-lookup"><span data-stu-id="1eee2-159">b.</span></span> <span data-ttu-id="1eee2-160">Bonjour **identificateur** zone de texte, tapez une URL à l’aide de hello modèle :`https://<subdomain>.saas.hpe.com`</span><span class="sxs-lookup"><span data-stu-id="1eee2-160">In hello **Identifier** textbox, type a URL using hello following pattern: `https://<subdomain>.saas.hpe.com`</span></span>
 
     > [!NOTE] 
-    > <span data-ttu-id="40ebf-161">Il ne s’agit pas de valeurs réelles.</span><span class="sxs-lookup"><span data-stu-id="40ebf-161">These values are not real.</span></span> <span data-ttu-id="40ebf-162">Mettez à jour ces valeurs avec l’URL de connexion et l’identificateur réels.</span><span class="sxs-lookup"><span data-stu-id="40ebf-162">Update these values with the actual Sign-On URL and Identifier.</span></span> <span data-ttu-id="40ebf-163">Pour obtenir ces valeurs, contactez l’[équipe de support client HPE SaaS](https://saas.hpe.com/en-us/contact).</span><span class="sxs-lookup"><span data-stu-id="40ebf-163">Contact [HPE SaaS Client support team](https://saas.hpe.com/en-us/contact) to get these values.</span></span> 
+    > <span data-ttu-id="1eee2-161">Il ne s’agit pas de valeurs réelles.</span><span class="sxs-lookup"><span data-stu-id="1eee2-161">These values are not real.</span></span> <span data-ttu-id="1eee2-162">Mettre à jour les valeurs de hello réel Sign-On URL et l’identificateur.</span><span class="sxs-lookup"><span data-stu-id="1eee2-162">Update these values with hello actual Sign-On URL and Identifier.</span></span> <span data-ttu-id="1eee2-163">Contact [équipe de support Client de SaaS HPE](https://saas.hpe.com/en-us/contact) tooget ces valeurs.</span><span class="sxs-lookup"><span data-stu-id="1eee2-163">Contact [HPE SaaS Client support team](https://saas.hpe.com/en-us/contact) tooget these values.</span></span> 
  
-4. <span data-ttu-id="40ebf-164">Dans la section **Certificat de signature SAML**, cliquez sur **Métadonnées XML** puis enregistrez le fichier de métadonnées sur votre ordinateur.</span><span class="sxs-lookup"><span data-stu-id="40ebf-164">On the **SAML Signing Certificate** section, click **Metadata XML** and then save the metadata file on your computer.</span></span>
+4. <span data-ttu-id="1eee2-164">Sur hello **le certificat de signature SAML** , cliquez sur **Metadata XML** , puis enregistrez le fichier de métadonnées hello sur votre ordinateur.</span><span class="sxs-lookup"><span data-stu-id="1eee2-164">On hello **SAML Signing Certificate** section, click **Metadata XML** and then save hello metadata file on your computer.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-hpesaas-tutorial/tutorial_hpesaas_certificate.png) 
 
-5. <span data-ttu-id="40ebf-166">Cliquez sur le bouton **Enregistrer** .</span><span class="sxs-lookup"><span data-stu-id="40ebf-166">Click **Save** button.</span></span>
+5. <span data-ttu-id="1eee2-166">Cliquez sur le bouton **Enregistrer** .</span><span class="sxs-lookup"><span data-stu-id="1eee2-166">Click **Save** button.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-hpesaas-tutorial/tutorial_general_400.png)
 
-6. <span data-ttu-id="40ebf-168">Pour configurer l’authentification unique du côté **HPE SaaS**, vous devez envoyer le **XML des métadonnées** téléchargé à [l’équipe de support HPE SaaS](https://saas.hpe.com/en-us/contact).</span><span class="sxs-lookup"><span data-stu-id="40ebf-168">To configure single sign-on on **HPE SaaS** side, you need to send the downloaded **Metadata XML** to [HPE SaaS support team](https://saas.hpe.com/en-us/contact).</span></span> <span data-ttu-id="40ebf-169">Celles-ci configurent ensuite ce paramètre pour que la connexion SSO SAML soit définie correctement des deux côtés.</span><span class="sxs-lookup"><span data-stu-id="40ebf-169">They set this setting to have the SAML SSO connection set properly on both sides.</span></span>
+6. <span data-ttu-id="1eee2-168">tooconfigure l’authentification unique sur **HPE SaaS** côté, vous devez hello toosend téléchargé **Metadata XML** trop[équipe de support technique HPE SaaS](https://saas.hpe.com/en-us/contact).</span><span class="sxs-lookup"><span data-stu-id="1eee2-168">tooconfigure single sign-on on **HPE SaaS** side, you need toosend hello downloaded **Metadata XML** too[HPE SaaS support team](https://saas.hpe.com/en-us/contact).</span></span> <span data-ttu-id="1eee2-169">Ils définir ce hello toohave de paramètre connexion SSO SAML correctement des deux côtés.</span><span class="sxs-lookup"><span data-stu-id="1eee2-169">They set this setting toohave hello SAML SSO connection set properly on both sides.</span></span>
 
 > [!TIP]
-> <span data-ttu-id="40ebf-170">Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.</span><span class="sxs-lookup"><span data-stu-id="40ebf-170">You can now read a concise version of these instructions inside the [Azure portal](https://portal.azure.com), while you are setting up the app!</span></span>  <span data-ttu-id="40ebf-171">Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas.</span><span class="sxs-lookup"><span data-stu-id="40ebf-171">After adding this app from the **Active Directory > Enterprise Applications** section, simply click the **Single Sign-On** tab and access the embedded documentation through the **Configuration** section at the bottom.</span></span> <span data-ttu-id="40ebf-172">Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="40ebf-172">You can read more about the embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
+> <span data-ttu-id="1eee2-170">Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !</span><span class="sxs-lookup"><span data-stu-id="1eee2-170">You can now read a concise version of these instructions inside hello [Azure portal](https://portal.azure.com), while you are setting up hello app!</span></span>  <span data-ttu-id="1eee2-171">Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello.</span><span class="sxs-lookup"><span data-stu-id="1eee2-171">After adding this app from hello **Active Directory > Enterprise Applications** section, simply click hello **Single Sign-On** tab and access hello embedded documentation through hello **Configuration** section at hello bottom.</span></span> <span data-ttu-id="1eee2-172">Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="1eee2-172">You can read more about hello embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
 
-### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="40ebf-173">Création d’un utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="40ebf-173">Creating an Azure AD test user</span></span>
-<span data-ttu-id="40ebf-174">L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.</span><span class="sxs-lookup"><span data-stu-id="40ebf-174">The objective of this section is to create a test user in the Azure portal called Britta Simon.</span></span>
+### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="1eee2-173">Création d’un utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="1eee2-173">Creating an Azure AD test user</span></span>
+<span data-ttu-id="1eee2-174">objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.</span><span class="sxs-lookup"><span data-stu-id="1eee2-174">hello objective of this section is toocreate a test user in hello Azure portal called Britta Simon.</span></span>
 
 ![Créer un utilisateur Azure AD][100]
 
-<span data-ttu-id="40ebf-176">**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="40ebf-176">**To create a test user in Azure AD, perform the following steps:**</span></span>
+<span data-ttu-id="1eee2-176">**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="1eee2-176">**toocreate a test user in Azure AD, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="40ebf-177">Dans le panneau de navigation gauche du **portail Azure**, cliquez sur l’icône **Azure Active Directory**.</span><span class="sxs-lookup"><span data-stu-id="40ebf-177">In the **Azure portal**, on the left navigation pane, click **Azure Active Directory** icon.</span></span>
+1. <span data-ttu-id="1eee2-177">Bonjour **portail Azure**, on hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.</span><span class="sxs-lookup"><span data-stu-id="1eee2-177">In hello **Azure portal**, on hello left navigation pane, click **Azure Active Directory** icon.</span></span>
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-hpesaas-tutorial/create_aaduser_01.png) 
 
-2. <span data-ttu-id="40ebf-179">Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.</span><span class="sxs-lookup"><span data-stu-id="40ebf-179">To display the list of users, go to **Users and groups** and click **All users**.</span></span>
+2. <span data-ttu-id="1eee2-179">liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes** et cliquez sur **tous les utilisateurs**.</span><span class="sxs-lookup"><span data-stu-id="1eee2-179">toodisplay hello list of users, go too**Users and groups** and click **All users**.</span></span>
     
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-hpesaas-tutorial/create_aaduser_02.png) 
 
-3. <span data-ttu-id="40ebf-181">Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue.</span><span class="sxs-lookup"><span data-stu-id="40ebf-181">To open the **User** dialog, click **Add** on the top of the dialog.</span></span>
+3. <span data-ttu-id="1eee2-181">tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello de boîte de dialogue hello.</span><span class="sxs-lookup"><span data-stu-id="1eee2-181">tooopen hello **User** dialog, click **Add** on hello top of hello dialog.</span></span>
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-hpesaas-tutorial/create_aaduser_03.png) 
 
-4. <span data-ttu-id="40ebf-183">Dans la boîte de dialogue **Utilisateur**, procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="40ebf-183">On the **User** dialog page, perform the following steps:</span></span>
+4. <span data-ttu-id="1eee2-183">Sur hello **utilisateur** boîte de dialogue de page, effectuer hello comme suit :</span><span class="sxs-lookup"><span data-stu-id="1eee2-183">On hello **User** dialog page, perform hello following steps:</span></span>
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-hpesaas-tutorial/create_aaduser_04.png) 
 
-    <span data-ttu-id="40ebf-185">a.</span><span class="sxs-lookup"><span data-stu-id="40ebf-185">a.</span></span> <span data-ttu-id="40ebf-186">Dans la zone de texte **Nom**, entrez **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="40ebf-186">In the **Name** textbox, type **BrittaSimon**.</span></span>
+    <span data-ttu-id="1eee2-185">a.</span><span class="sxs-lookup"><span data-stu-id="1eee2-185">a.</span></span> <span data-ttu-id="1eee2-186">Bonjour **nom** zone de texte, type **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="1eee2-186">In hello **Name** textbox, type **BrittaSimon**.</span></span>
 
-    <span data-ttu-id="40ebf-187">b.</span><span class="sxs-lookup"><span data-stu-id="40ebf-187">b.</span></span> <span data-ttu-id="40ebf-188">Dans la zone de texte **Nom d’utilisateur**, tapez **l’adresse e-mail** de Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="40ebf-188">In the **User name** textbox, type the **email address** of BrittaSimon.</span></span>
+    <span data-ttu-id="1eee2-187">b.</span><span class="sxs-lookup"><span data-stu-id="1eee2-187">b.</span></span> <span data-ttu-id="1eee2-188">Bonjour **nom d’utilisateur** hello de type zone de texte **adresse de messagerie** de BrittaSimon.</span><span class="sxs-lookup"><span data-stu-id="1eee2-188">In hello **User name** textbox, type hello **email address** of BrittaSimon.</span></span>
 
-    <span data-ttu-id="40ebf-189">c.</span><span class="sxs-lookup"><span data-stu-id="40ebf-189">c.</span></span> <span data-ttu-id="40ebf-190">Sélectionnez **Afficher le mot de passe** et notez la valeur du **mot de passe**.</span><span class="sxs-lookup"><span data-stu-id="40ebf-190">Select **Show Password** and write down the value of the **Password**.</span></span>
+    <span data-ttu-id="1eee2-189">c.</span><span class="sxs-lookup"><span data-stu-id="1eee2-189">c.</span></span> <span data-ttu-id="1eee2-190">Sélectionnez **afficher le mot de passe** et notez la valeur hello hello **mot de passe**.</span><span class="sxs-lookup"><span data-stu-id="1eee2-190">Select **Show Password** and write down hello value of hello **Password**.</span></span>
 
-    <span data-ttu-id="40ebf-191">d.</span><span class="sxs-lookup"><span data-stu-id="40ebf-191">d.</span></span> <span data-ttu-id="40ebf-192">Cliquez sur **Create**.</span><span class="sxs-lookup"><span data-stu-id="40ebf-192">Click **Create**.</span></span>
+    <span data-ttu-id="1eee2-191">d.</span><span class="sxs-lookup"><span data-stu-id="1eee2-191">d.</span></span> <span data-ttu-id="1eee2-192">Cliquez sur **Create**.</span><span class="sxs-lookup"><span data-stu-id="1eee2-192">Click **Create**.</span></span>
  
-### <a name="creating-an-hpe-saas-test-user"></a><span data-ttu-id="40ebf-193">Création d’un utilisateur de test HPE SaaS</span><span class="sxs-lookup"><span data-stu-id="40ebf-193">Creating an HPE SaaS test user</span></span>
+### <a name="creating-an-hpe-saas-test-user"></a><span data-ttu-id="1eee2-193">Création d’un utilisateur de test HPE SaaS</span><span class="sxs-lookup"><span data-stu-id="1eee2-193">Creating an HPE SaaS test user</span></span>
 
-<span data-ttu-id="40ebf-194">L’objectif de cette section est de créer un utilisateur appelé Britta Simon dans HPE SaaS.</span><span class="sxs-lookup"><span data-stu-id="40ebf-194">The objective of this section is to create a user called Britta Simon in HPE SaaS.</span></span> <span data-ttu-id="40ebf-195">Pour ajouter des utilisateurs au compte HPE SaaS, contactez l’[équipe de support HPE SaaS](https://saas.hpe.com/en-us/contact).</span><span class="sxs-lookup"><span data-stu-id="40ebf-195">Please work with [HPE SaaS support team](https://saas.hpe.com/en-us/contact) to add the users in the HPE SaaS account.</span></span> 
+<span data-ttu-id="1eee2-194">objectif Hello de cette section est toocreate un utilisateur appelé Britta Simon dans HPE SaaS.</span><span class="sxs-lookup"><span data-stu-id="1eee2-194">hello objective of this section is toocreate a user called Britta Simon in HPE SaaS.</span></span> <span data-ttu-id="1eee2-195">Collaborez avec [équipe de support technique HPE SaaS](https://saas.hpe.com/en-us/contact) utilisateurs hello tooadd hello HPE SaaS compte.</span><span class="sxs-lookup"><span data-stu-id="1eee2-195">Please work with [HPE SaaS support team](https://saas.hpe.com/en-us/contact) tooadd hello users in hello HPE SaaS account.</span></span> 
 
-### <a name="assigning-the-azure-ad-test-user"></a><span data-ttu-id="40ebf-196">Affectation de l’utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="40ebf-196">Assigning the Azure AD test user</span></span>
+### <a name="assigning-hello-azure-ad-test-user"></a><span data-ttu-id="1eee2-196">Affectation d’utilisateur de test hello Azure AD</span><span class="sxs-lookup"><span data-stu-id="1eee2-196">Assigning hello Azure AD test user</span></span>
 
-<span data-ttu-id="40ebf-197">Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à HPE SaaS.</span><span class="sxs-lookup"><span data-stu-id="40ebf-197">In this section, you enable Britta Simon to use Azure single sign-on by granting access to HPE SaaS.</span></span>
+<span data-ttu-id="1eee2-197">Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooHPE SaaS.</span><span class="sxs-lookup"><span data-stu-id="1eee2-197">In this section, you enable Britta Simon toouse Azure single sign-on by granting access tooHPE SaaS.</span></span>
 
 ![Affecter des utilisateurs][200] 
 
-<span data-ttu-id="40ebf-199">**Pour affecter Britta Simon à HPE SaaS, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="40ebf-199">**To assign Britta Simon to HPE SaaS, perform the following steps:**</span></span>
+<span data-ttu-id="1eee2-199">**tooassign Britta Simon tooHPE SaaS, effectuez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="1eee2-199">**tooassign Britta Simon tooHPE SaaS, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="40ebf-200">Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="40ebf-200">In the Azure portal, open the applications view, and then navigate to the directory view and go to **Enterprise applications** then click **All applications**.</span></span>
+1. <span data-ttu-id="1eee2-200">Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="1eee2-200">In hello Azure portal, open hello applications view, and then navigate toohello directory view and go too**Enterprise applications** then click **All applications**.</span></span>
 
     ![Affecter des utilisateurs][201] 
 
-2. <span data-ttu-id="40ebf-202">Dans la liste des applications, sélectionnez **HPE SaaS**.</span><span class="sxs-lookup"><span data-stu-id="40ebf-202">In the applications list, select **HPE SaaS**.</span></span>
+2. <span data-ttu-id="1eee2-202">Dans la liste des applications hello, sélectionnez **HPE SaaS**.</span><span class="sxs-lookup"><span data-stu-id="1eee2-202">In hello applications list, select **HPE SaaS**.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-hpesaas-tutorial/tutorial_hpesaas_app.png) 
 
-3. <span data-ttu-id="40ebf-204">Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="40ebf-204">In the menu on the left, click **Users and groups**.</span></span>
+3. <span data-ttu-id="1eee2-204">Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="1eee2-204">In hello menu on hello left, click **Users and groups**.</span></span>
 
     ![Affecter des utilisateurs][202] 
 
-4. <span data-ttu-id="40ebf-206">Cliquez sur le bouton **Ajouter**.</span><span class="sxs-lookup"><span data-stu-id="40ebf-206">Click **Add** button.</span></span> <span data-ttu-id="40ebf-207">Ensuite, sélectionnez **Utilisateurs et groupes** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="40ebf-207">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
+4. <span data-ttu-id="1eee2-206">Cliquez sur le bouton **Ajouter**.</span><span class="sxs-lookup"><span data-stu-id="1eee2-206">Click **Add** button.</span></span> <span data-ttu-id="1eee2-207">Ensuite, sélectionnez **Utilisateurs et groupes** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="1eee2-207">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
 
     ![Affecter des utilisateurs][203]
 
-5. <span data-ttu-id="40ebf-209">Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.</span><span class="sxs-lookup"><span data-stu-id="40ebf-209">On **Users and groups** dialog, select **Britta Simon** in the Users list.</span></span>
+5. <span data-ttu-id="1eee2-209">Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.</span><span class="sxs-lookup"><span data-stu-id="1eee2-209">On **Users and groups** dialog, select **Britta Simon** in hello Users list.</span></span>
 
-6. <span data-ttu-id="40ebf-210">Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="40ebf-210">Click **Select** button on **Users and groups** dialog.</span></span>
+6. <span data-ttu-id="1eee2-210">Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="1eee2-210">Click **Select** button on **Users and groups** dialog.</span></span>
 
-7. <span data-ttu-id="40ebf-211">Cliquez sur le bouton **Affecter** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="40ebf-211">Click **Assign** button on **Add Assignment** dialog.</span></span>
+7. <span data-ttu-id="1eee2-211">Cliquez sur le bouton **Affecter** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="1eee2-211">Click **Assign** button on **Add Assignment** dialog.</span></span>
     
-### <a name="testing-single-sign-on"></a><span data-ttu-id="40ebf-212">Test de l’authentification unique</span><span class="sxs-lookup"><span data-stu-id="40ebf-212">Testing single sign-on</span></span>
+### <a name="testing-single-sign-on"></a><span data-ttu-id="1eee2-212">Test de l’authentification unique</span><span class="sxs-lookup"><span data-stu-id="1eee2-212">Testing single sign-on</span></span>
 
-<span data-ttu-id="40ebf-213">Dans cette section, vous allez tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.</span><span class="sxs-lookup"><span data-stu-id="40ebf-213">In this section, you test your Azure AD single sign-on configuration using the Access Panel.</span></span>
+<span data-ttu-id="1eee2-213">Dans cette section, vous tester votre configuration Azure AD unique de session à l’aide de hello panneau d’accès.</span><span class="sxs-lookup"><span data-stu-id="1eee2-213">In this section, you test your Azure AD single sign-on configuration using hello Access Panel.</span></span>
 
-<span data-ttu-id="40ebf-214">Quand vous cliquez sur la vignette HPE SaaS dans le volet d’accès, vous devez être connecté automatiquement à votre application HPE SaaS.</span><span class="sxs-lookup"><span data-stu-id="40ebf-214">When you click the HPE SaaS tile in the Access Panel, you should get automatically signed-on to your HPE SaaS application.</span></span>
-<span data-ttu-id="40ebf-215">Pour plus d’informations sur le panneau d’accès, consultez [Présentation du panneau d’accès](active-directory-saas-access-panel-introduction.md).</span><span class="sxs-lookup"><span data-stu-id="40ebf-215">For more information about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).</span></span>
+<span data-ttu-id="1eee2-214">Lorsque vous cliquez sur hello HPE SaaS vignette Bonjour volet d’accès, vous devez obtenir automatiquement signé sur tooyour application HPE SaaS.</span><span class="sxs-lookup"><span data-stu-id="1eee2-214">When you click hello HPE SaaS tile in hello Access Panel, you should get automatically signed-on tooyour HPE SaaS application.</span></span>
+<span data-ttu-id="1eee2-215">Pour plus d’informations sur hello volet d’accès, consultez [Introduction toohello volet d’accès](active-directory-saas-access-panel-introduction.md).</span><span class="sxs-lookup"><span data-stu-id="1eee2-215">For more information about hello Access Panel, see [Introduction toohello Access Panel](active-directory-saas-access-panel-introduction.md).</span></span>
 
-## <a name="additional-resources"></a><span data-ttu-id="40ebf-216">Ressources supplémentaires</span><span class="sxs-lookup"><span data-stu-id="40ebf-216">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="1eee2-216">Ressources supplémentaires</span><span class="sxs-lookup"><span data-stu-id="1eee2-216">Additional resources</span></span>
 
-* [<span data-ttu-id="40ebf-217">Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="40ebf-217">List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
-* [<span data-ttu-id="40ebf-218">Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?</span><span class="sxs-lookup"><span data-stu-id="40ebf-218">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
+* [<span data-ttu-id="1eee2-217">Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="1eee2-217">List of Tutorials on How tooIntegrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
+* [<span data-ttu-id="1eee2-218">Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?</span><span class="sxs-lookup"><span data-stu-id="1eee2-218">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
 
 
 

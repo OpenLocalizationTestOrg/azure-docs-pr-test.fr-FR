@@ -1,6 +1,6 @@
 ---
-title: "Aide-mémoire XPath de configuration d’un rôle Services cloud | Microsoft Docs"
-description: "Les différents paramètres XPath que vous pouvez utiliser dans la configuration d’un rôle de service cloud pour exposer les paramètres sous la forme d'une variable d'environnement."
+title: "aide-mémoire aaaCloud rôle des Services Configuration XPath | Documents Microsoft"
+description: "Bonjour divers paramètres XPath que vous pouvez utiliser dans les paramètres du rôle config tooexpose pour hello cloud service comme une variable d’environnement."
 services: cloud-services
 documentationcenter: 
 author: Thraka
@@ -14,115 +14,115 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 04/19/2017
 ms.author: adegeo
-ms.openlocfilehash: fd6efac829d3fd9e2840362b8d2ff423add566d9
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 27f98f956a1c790c9bb30f9fefe1ab1736b2b150
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="expose-role-configuration-settings-as-an-environment-variable-with-xpath"></a><span data-ttu-id="287e1-103">Exposer les paramètres de configuration de rôle comme variable d'environnement avec XPath</span><span class="sxs-lookup"><span data-stu-id="287e1-103">Expose role configuration settings as an environment variable with XPath</span></span>
-<span data-ttu-id="287e1-104">Dans le fichier de définition de service du rôle Web ou du rôle de travail du service cloud, vous pouvez exposer les valeurs de configuration de l'exécution en tant que variables d'environnement.</span><span class="sxs-lookup"><span data-stu-id="287e1-104">In the cloud service worker or web role service definition file, you can expose runtime configuration values as environment variables.</span></span> <span data-ttu-id="287e1-105">Les valeurs XPath suivantes sont prises en charge (qui correspondent aux valeurs de l'API).</span><span class="sxs-lookup"><span data-stu-id="287e1-105">The following XPath values are supported (which correspond to API values).</span></span>
+# <a name="expose-role-configuration-settings-as-an-environment-variable-with-xpath"></a><span data-ttu-id="c3452-103">Exposer les paramètres de configuration de rôle comme variable d'environnement avec XPath</span><span class="sxs-lookup"><span data-stu-id="c3452-103">Expose role configuration settings as an environment variable with XPath</span></span>
+<span data-ttu-id="c3452-104">Dans le traitement du service cloud hello ou fichier de définition de service de rôle web, vous pouvez exposer les valeurs de configuration d’exécution en tant que variables d’environnement.</span><span class="sxs-lookup"><span data-stu-id="c3452-104">In hello cloud service worker or web role service definition file, you can expose runtime configuration values as environment variables.</span></span> <span data-ttu-id="c3452-105">Hello les valeurs XPath suivantes est prises en charge (qui correspondent à des valeurs de tooAPI).</span><span class="sxs-lookup"><span data-stu-id="c3452-105">hello following XPath values are supported (which correspond tooAPI values).</span></span>
 
-<span data-ttu-id="287e1-106">Ces valeurs XPath sont également disponibles via la bibliothèque [Microsoft.WindowsAzure.ServiceRuntime](https://msdn.microsoft.com/library/microsoft.windowsazure.serviceruntime.roleenvironment.aspx) .</span><span class="sxs-lookup"><span data-stu-id="287e1-106">These XPath values are also available through the [Microsoft.WindowsAzure.ServiceRuntime](https://msdn.microsoft.com/library/microsoft.windowsazure.serviceruntime.roleenvironment.aspx) library.</span></span> 
+<span data-ttu-id="c3452-106">Ces valeurs XPath sont également disponibles via hello [Microsoft.WindowsAzure.ServiceRuntime](https://msdn.microsoft.com/library/microsoft.windowsazure.serviceruntime.roleenvironment.aspx) bibliothèque.</span><span class="sxs-lookup"><span data-stu-id="c3452-106">These XPath values are also available through hello [Microsoft.WindowsAzure.ServiceRuntime](https://msdn.microsoft.com/library/microsoft.windowsazure.serviceruntime.roleenvironment.aspx) library.</span></span> 
 
-## <a name="app-running-in-emulator"></a><span data-ttu-id="287e1-107">Application qui s'exécute dans l'émulateur</span><span class="sxs-lookup"><span data-stu-id="287e1-107">App running in emulator</span></span>
-<span data-ttu-id="287e1-108">Indique que l'application s'exécute dans l'émulateur.</span><span class="sxs-lookup"><span data-stu-id="287e1-108">Indicates that the app is running in the emulator.</span></span>
+## <a name="app-running-in-emulator"></a><span data-ttu-id="c3452-107">Application qui s'exécute dans l'émulateur</span><span class="sxs-lookup"><span data-stu-id="c3452-107">App running in emulator</span></span>
+<span data-ttu-id="c3452-108">Indique que cette application hello est en cours d’exécution dans l’émulateur de hello.</span><span class="sxs-lookup"><span data-stu-id="c3452-108">Indicates that hello app is running in hello emulator.</span></span>
 
-| <span data-ttu-id="287e1-109">Type</span><span class="sxs-lookup"><span data-stu-id="287e1-109">Type</span></span> | <span data-ttu-id="287e1-110">Exemple</span><span class="sxs-lookup"><span data-stu-id="287e1-110">Example</span></span> |
+| <span data-ttu-id="c3452-109">Type</span><span class="sxs-lookup"><span data-stu-id="c3452-109">Type</span></span> | <span data-ttu-id="c3452-110">Exemple</span><span class="sxs-lookup"><span data-stu-id="c3452-110">Example</span></span> |
 | --- | --- |
-| <span data-ttu-id="287e1-111">XPath</span><span class="sxs-lookup"><span data-stu-id="287e1-111">XPath</span></span> |<span data-ttu-id="287e1-112">xpath="/RoleEnvironment/Deployment/@emulated"</span><span class="sxs-lookup"><span data-stu-id="287e1-112">xpath="/RoleEnvironment/Deployment/@emulated"</span></span> |
-| <span data-ttu-id="287e1-113">Code</span><span class="sxs-lookup"><span data-stu-id="287e1-113">Code</span></span> |<span data-ttu-id="287e1-114">var x = RoleEnvironment.IsEmulated;</span><span class="sxs-lookup"><span data-stu-id="287e1-114">var x = RoleEnvironment.IsEmulated;</span></span> |
+| <span data-ttu-id="c3452-111">XPath</span><span class="sxs-lookup"><span data-stu-id="c3452-111">XPath</span></span> |<span data-ttu-id="c3452-112">xpath="/RoleEnvironment/Deployment/@emulated"</span><span class="sxs-lookup"><span data-stu-id="c3452-112">xpath="/RoleEnvironment/Deployment/@emulated"</span></span> |
+| <span data-ttu-id="c3452-113">Code</span><span class="sxs-lookup"><span data-stu-id="c3452-113">Code</span></span> |<span data-ttu-id="c3452-114">var x = RoleEnvironment.IsEmulated;</span><span class="sxs-lookup"><span data-stu-id="c3452-114">var x = RoleEnvironment.IsEmulated;</span></span> |
 
-## <a name="deployment-id"></a><span data-ttu-id="287e1-115">ID de déploiement</span><span class="sxs-lookup"><span data-stu-id="287e1-115">Deployment ID</span></span>
-<span data-ttu-id="287e1-116">Récupère l'ID de déploiement de l'instance.</span><span class="sxs-lookup"><span data-stu-id="287e1-116">Retrieves the deployment ID for the instance.</span></span>
+## <a name="deployment-id"></a><span data-ttu-id="c3452-115">ID de déploiement</span><span class="sxs-lookup"><span data-stu-id="c3452-115">Deployment ID</span></span>
+<span data-ttu-id="c3452-116">Récupère l’ID de déploiement hello pour l’instance de hello.</span><span class="sxs-lookup"><span data-stu-id="c3452-116">Retrieves hello deployment ID for hello instance.</span></span>
 
-| <span data-ttu-id="287e1-117">Type</span><span class="sxs-lookup"><span data-stu-id="287e1-117">Type</span></span> | <span data-ttu-id="287e1-118">Exemple</span><span class="sxs-lookup"><span data-stu-id="287e1-118">Example</span></span> |
+| <span data-ttu-id="c3452-117">Type</span><span class="sxs-lookup"><span data-stu-id="c3452-117">Type</span></span> | <span data-ttu-id="c3452-118">Exemple</span><span class="sxs-lookup"><span data-stu-id="c3452-118">Example</span></span> |
 | --- | --- |
-| <span data-ttu-id="287e1-119">XPath</span><span class="sxs-lookup"><span data-stu-id="287e1-119">XPath</span></span> |<span data-ttu-id="287e1-120">xpath="/RoleEnvironment/Deployment/@id"</span><span class="sxs-lookup"><span data-stu-id="287e1-120">xpath="/RoleEnvironment/Deployment/@id"</span></span> |
-| <span data-ttu-id="287e1-121">Code</span><span class="sxs-lookup"><span data-stu-id="287e1-121">Code</span></span> |<span data-ttu-id="287e1-122">var deploymentId = RoleEnvironment.DeploymentId;</span><span class="sxs-lookup"><span data-stu-id="287e1-122">var deploymentId = RoleEnvironment.DeploymentId;</span></span> |
+| <span data-ttu-id="c3452-119">XPath</span><span class="sxs-lookup"><span data-stu-id="c3452-119">XPath</span></span> |<span data-ttu-id="c3452-120">xpath="/RoleEnvironment/Deployment/@id"</span><span class="sxs-lookup"><span data-stu-id="c3452-120">xpath="/RoleEnvironment/Deployment/@id"</span></span> |
+| <span data-ttu-id="c3452-121">Code</span><span class="sxs-lookup"><span data-stu-id="c3452-121">Code</span></span> |<span data-ttu-id="c3452-122">var deploymentId = RoleEnvironment.DeploymentId;</span><span class="sxs-lookup"><span data-stu-id="c3452-122">var deploymentId = RoleEnvironment.DeploymentId;</span></span> |
 
-## <a name="role-id"></a><span data-ttu-id="287e1-123">ID de rôle</span><span class="sxs-lookup"><span data-stu-id="287e1-123">Role ID</span></span>
-<span data-ttu-id="287e1-124">Récupère l'ID de rôle actuel de l'instance.</span><span class="sxs-lookup"><span data-stu-id="287e1-124">Retrieves the current role ID for the instance.</span></span>
+## <a name="role-id"></a><span data-ttu-id="c3452-123">ID de rôle</span><span class="sxs-lookup"><span data-stu-id="c3452-123">Role ID</span></span>
+<span data-ttu-id="c3452-124">Récupère l’ID du rôle actuel hello pour l’instance de hello.</span><span class="sxs-lookup"><span data-stu-id="c3452-124">Retrieves hello current role ID for hello instance.</span></span>
 
-| <span data-ttu-id="287e1-125">Type</span><span class="sxs-lookup"><span data-stu-id="287e1-125">Type</span></span> | <span data-ttu-id="287e1-126">Exemple</span><span class="sxs-lookup"><span data-stu-id="287e1-126">Example</span></span> |
+| <span data-ttu-id="c3452-125">Type</span><span class="sxs-lookup"><span data-stu-id="c3452-125">Type</span></span> | <span data-ttu-id="c3452-126">Exemple</span><span class="sxs-lookup"><span data-stu-id="c3452-126">Example</span></span> |
 | --- | --- |
-| <span data-ttu-id="287e1-127">XPath</span><span class="sxs-lookup"><span data-stu-id="287e1-127">XPath</span></span> |<span data-ttu-id="287e1-128">xpath="/RoleEnvironment/CurrentInstance/@id"</span><span class="sxs-lookup"><span data-stu-id="287e1-128">xpath="/RoleEnvironment/CurrentInstance/@id"</span></span> |
-| <span data-ttu-id="287e1-129">Code</span><span class="sxs-lookup"><span data-stu-id="287e1-129">Code</span></span> |<span data-ttu-id="287e1-130">var id = RoleEnvironment.CurrentRoleInstance.Id;</span><span class="sxs-lookup"><span data-stu-id="287e1-130">var id = RoleEnvironment.CurrentRoleInstance.Id;</span></span> |
+| <span data-ttu-id="c3452-127">XPath</span><span class="sxs-lookup"><span data-stu-id="c3452-127">XPath</span></span> |<span data-ttu-id="c3452-128">xpath="/RoleEnvironment/CurrentInstance/@id"</span><span class="sxs-lookup"><span data-stu-id="c3452-128">xpath="/RoleEnvironment/CurrentInstance/@id"</span></span> |
+| <span data-ttu-id="c3452-129">Code</span><span class="sxs-lookup"><span data-stu-id="c3452-129">Code</span></span> |<span data-ttu-id="c3452-130">var id = RoleEnvironment.CurrentRoleInstance.Id;</span><span class="sxs-lookup"><span data-stu-id="c3452-130">var id = RoleEnvironment.CurrentRoleInstance.Id;</span></span> |
 
-## <a name="update-domain"></a><span data-ttu-id="287e1-131">Mettre à jour le domaine</span><span class="sxs-lookup"><span data-stu-id="287e1-131">Update domain</span></span>
-<span data-ttu-id="287e1-132">Récupère le domaine de mise à jour de l'instance.</span><span class="sxs-lookup"><span data-stu-id="287e1-132">Retrieves the update domain of the instance.</span></span>
+## <a name="update-domain"></a><span data-ttu-id="c3452-131">Mettre à jour le domaine</span><span class="sxs-lookup"><span data-stu-id="c3452-131">Update domain</span></span>
+<span data-ttu-id="c3452-132">Récupère le domaine de mise à jour hello d’instance de hello.</span><span class="sxs-lookup"><span data-stu-id="c3452-132">Retrieves hello update domain of hello instance.</span></span>
 
-| <span data-ttu-id="287e1-133">Type</span><span class="sxs-lookup"><span data-stu-id="287e1-133">Type</span></span> | <span data-ttu-id="287e1-134">Exemple</span><span class="sxs-lookup"><span data-stu-id="287e1-134">Example</span></span> |
+| <span data-ttu-id="c3452-133">Type</span><span class="sxs-lookup"><span data-stu-id="c3452-133">Type</span></span> | <span data-ttu-id="c3452-134">Exemple</span><span class="sxs-lookup"><span data-stu-id="c3452-134">Example</span></span> |
 | --- | --- |
-| <span data-ttu-id="287e1-135">XPath</span><span class="sxs-lookup"><span data-stu-id="287e1-135">XPath</span></span> |<span data-ttu-id="287e1-136">xpath="/RoleEnvironment/CurrentInstance/@updateDomain"</span><span class="sxs-lookup"><span data-stu-id="287e1-136">xpath="/RoleEnvironment/CurrentInstance/@updateDomain"</span></span> |
-| <span data-ttu-id="287e1-137">Code</span><span class="sxs-lookup"><span data-stu-id="287e1-137">Code</span></span> |<span data-ttu-id="287e1-138">var ud = RoleEnvironment.CurrentRoleInstance.UpdateDomain;</span><span class="sxs-lookup"><span data-stu-id="287e1-138">var ud = RoleEnvironment.CurrentRoleInstance.UpdateDomain;</span></span> |
+| <span data-ttu-id="c3452-135">XPath</span><span class="sxs-lookup"><span data-stu-id="c3452-135">XPath</span></span> |<span data-ttu-id="c3452-136">xpath="/RoleEnvironment/CurrentInstance/@updateDomain"</span><span class="sxs-lookup"><span data-stu-id="c3452-136">xpath="/RoleEnvironment/CurrentInstance/@updateDomain"</span></span> |
+| <span data-ttu-id="c3452-137">Code</span><span class="sxs-lookup"><span data-stu-id="c3452-137">Code</span></span> |<span data-ttu-id="c3452-138">var ud = RoleEnvironment.CurrentRoleInstance.UpdateDomain;</span><span class="sxs-lookup"><span data-stu-id="c3452-138">var ud = RoleEnvironment.CurrentRoleInstance.UpdateDomain;</span></span> |
 
-## <a name="fault-domain"></a><span data-ttu-id="287e1-139">Domaine d'erreur</span><span class="sxs-lookup"><span data-stu-id="287e1-139">Fault domain</span></span>
-<span data-ttu-id="287e1-140">Récupère le domaine d’erreur de l'instance.</span><span class="sxs-lookup"><span data-stu-id="287e1-140">Retrieves the fault domain of the instance.</span></span>
+## <a name="fault-domain"></a><span data-ttu-id="c3452-139">Domaine d'erreur</span><span class="sxs-lookup"><span data-stu-id="c3452-139">Fault domain</span></span>
+<span data-ttu-id="c3452-140">Récupère le domaine par défaut de l’instance de hello hello.</span><span class="sxs-lookup"><span data-stu-id="c3452-140">Retrieves hello fault domain of hello instance.</span></span>
 
-| <span data-ttu-id="287e1-141">Type</span><span class="sxs-lookup"><span data-stu-id="287e1-141">Type</span></span> | <span data-ttu-id="287e1-142">Exemple</span><span class="sxs-lookup"><span data-stu-id="287e1-142">Example</span></span> |
+| <span data-ttu-id="c3452-141">Type</span><span class="sxs-lookup"><span data-stu-id="c3452-141">Type</span></span> | <span data-ttu-id="c3452-142">Exemple</span><span class="sxs-lookup"><span data-stu-id="c3452-142">Example</span></span> |
 | --- | --- |
-| <span data-ttu-id="287e1-143">XPath</span><span class="sxs-lookup"><span data-stu-id="287e1-143">XPath</span></span> |<span data-ttu-id="287e1-144">xpath="/RoleEnvironment/CurrentInstance/@faultDomain"</span><span class="sxs-lookup"><span data-stu-id="287e1-144">xpath="/RoleEnvironment/CurrentInstance/@faultDomain"</span></span> |
-| <span data-ttu-id="287e1-145">Code</span><span class="sxs-lookup"><span data-stu-id="287e1-145">Code</span></span> |<span data-ttu-id="287e1-146">var fd = RoleEnvironment.CurrentRoleInstance.FaultDomain;</span><span class="sxs-lookup"><span data-stu-id="287e1-146">var fd = RoleEnvironment.CurrentRoleInstance.FaultDomain;</span></span> |
+| <span data-ttu-id="c3452-143">XPath</span><span class="sxs-lookup"><span data-stu-id="c3452-143">XPath</span></span> |<span data-ttu-id="c3452-144">xpath="/RoleEnvironment/CurrentInstance/@faultDomain"</span><span class="sxs-lookup"><span data-stu-id="c3452-144">xpath="/RoleEnvironment/CurrentInstance/@faultDomain"</span></span> |
+| <span data-ttu-id="c3452-145">Code</span><span class="sxs-lookup"><span data-stu-id="c3452-145">Code</span></span> |<span data-ttu-id="c3452-146">var fd = RoleEnvironment.CurrentRoleInstance.FaultDomain;</span><span class="sxs-lookup"><span data-stu-id="c3452-146">var fd = RoleEnvironment.CurrentRoleInstance.FaultDomain;</span></span> |
 
-## <a name="role-name"></a><span data-ttu-id="287e1-147">Nom de rôle</span><span class="sxs-lookup"><span data-stu-id="287e1-147">Role name</span></span>
-<span data-ttu-id="287e1-148">Récupère le nom de rôle des instances.</span><span class="sxs-lookup"><span data-stu-id="287e1-148">Retrieves the role name of the instances.</span></span>
+## <a name="role-name"></a><span data-ttu-id="c3452-147">Nom de rôle</span><span class="sxs-lookup"><span data-stu-id="c3452-147">Role name</span></span>
+<span data-ttu-id="c3452-148">Récupère le nom du rôle d’instances de hello hello.</span><span class="sxs-lookup"><span data-stu-id="c3452-148">Retrieves hello role name of hello instances.</span></span>
 
-| <span data-ttu-id="287e1-149">Type</span><span class="sxs-lookup"><span data-stu-id="287e1-149">Type</span></span> | <span data-ttu-id="287e1-150">Exemple</span><span class="sxs-lookup"><span data-stu-id="287e1-150">Example</span></span> |
+| <span data-ttu-id="c3452-149">Type</span><span class="sxs-lookup"><span data-stu-id="c3452-149">Type</span></span> | <span data-ttu-id="c3452-150">Exemple</span><span class="sxs-lookup"><span data-stu-id="c3452-150">Example</span></span> |
 | --- | --- |
-| <span data-ttu-id="287e1-151">XPath</span><span class="sxs-lookup"><span data-stu-id="287e1-151">XPath</span></span> |<span data-ttu-id="287e1-152">xpath="/RoleEnvironment/CurrentInstance/@roleName"</span><span class="sxs-lookup"><span data-stu-id="287e1-152">xpath="/RoleEnvironment/CurrentInstance/@roleName"</span></span> |
-| <span data-ttu-id="287e1-153">Code</span><span class="sxs-lookup"><span data-stu-id="287e1-153">Code</span></span> |<span data-ttu-id="287e1-154">var rname = RoleEnvironment.CurrentRoleInstance.Role.Name;</span><span class="sxs-lookup"><span data-stu-id="287e1-154">var rname = RoleEnvironment.CurrentRoleInstance.Role.Name;</span></span> |
+| <span data-ttu-id="c3452-151">XPath</span><span class="sxs-lookup"><span data-stu-id="c3452-151">XPath</span></span> |<span data-ttu-id="c3452-152">xpath="/RoleEnvironment/CurrentInstance/@roleName"</span><span class="sxs-lookup"><span data-stu-id="c3452-152">xpath="/RoleEnvironment/CurrentInstance/@roleName"</span></span> |
+| <span data-ttu-id="c3452-153">Code</span><span class="sxs-lookup"><span data-stu-id="c3452-153">Code</span></span> |<span data-ttu-id="c3452-154">var rname = RoleEnvironment.CurrentRoleInstance.Role.Name;</span><span class="sxs-lookup"><span data-stu-id="c3452-154">var rname = RoleEnvironment.CurrentRoleInstance.Role.Name;</span></span> |
 
-## <a name="config-setting"></a><span data-ttu-id="287e1-155">Paramètre de configuration</span><span class="sxs-lookup"><span data-stu-id="287e1-155">Config setting</span></span>
-<span data-ttu-id="287e1-156">Récupère la valeur du paramètre de configuration spécifié.</span><span class="sxs-lookup"><span data-stu-id="287e1-156">Retrieves the value of the specified configuration setting.</span></span>
+## <a name="config-setting"></a><span data-ttu-id="c3452-155">Paramètre de configuration</span><span class="sxs-lookup"><span data-stu-id="c3452-155">Config setting</span></span>
+<span data-ttu-id="c3452-156">Valeur hello récupère hello spécifiée de configuration.</span><span class="sxs-lookup"><span data-stu-id="c3452-156">Retrieves hello value of hello specified configuration setting.</span></span>
 
-| <span data-ttu-id="287e1-157">Type</span><span class="sxs-lookup"><span data-stu-id="287e1-157">Type</span></span> | <span data-ttu-id="287e1-158">Exemple</span><span class="sxs-lookup"><span data-stu-id="287e1-158">Example</span></span> |
+| <span data-ttu-id="c3452-157">Type</span><span class="sxs-lookup"><span data-stu-id="c3452-157">Type</span></span> | <span data-ttu-id="c3452-158">Exemple</span><span class="sxs-lookup"><span data-stu-id="c3452-158">Example</span></span> |
 | --- | --- |
-| <span data-ttu-id="287e1-159">XPath</span><span class="sxs-lookup"><span data-stu-id="287e1-159">XPath</span></span> |<span data-ttu-id="287e1-160">xpath="/RoleEnvironment/CurrentInstance/ConfigurationSettings/ConfigurationSetting[@name='Setting1']/@value"</span><span class="sxs-lookup"><span data-stu-id="287e1-160">xpath="/RoleEnvironment/CurrentInstance/ConfigurationSettings/ConfigurationSetting[@name='Setting1']/@value"</span></span> |
-| <span data-ttu-id="287e1-161">Code</span><span class="sxs-lookup"><span data-stu-id="287e1-161">Code</span></span> |<span data-ttu-id="287e1-162">var setting = RoleEnvironment.GetConfigurationSettingValue("Setting1");</span><span class="sxs-lookup"><span data-stu-id="287e1-162">var setting = RoleEnvironment.GetConfigurationSettingValue("Setting1");</span></span> |
+| <span data-ttu-id="c3452-159">XPath</span><span class="sxs-lookup"><span data-stu-id="c3452-159">XPath</span></span> |<span data-ttu-id="c3452-160">xpath="/RoleEnvironment/CurrentInstance/ConfigurationSettings/ConfigurationSetting[@name='Setting1']/@value"</span><span class="sxs-lookup"><span data-stu-id="c3452-160">xpath="/RoleEnvironment/CurrentInstance/ConfigurationSettings/ConfigurationSetting[@name='Setting1']/@value"</span></span> |
+| <span data-ttu-id="c3452-161">Code</span><span class="sxs-lookup"><span data-stu-id="c3452-161">Code</span></span> |<span data-ttu-id="c3452-162">var setting = RoleEnvironment.GetConfigurationSettingValue("Setting1");</span><span class="sxs-lookup"><span data-stu-id="c3452-162">var setting = RoleEnvironment.GetConfigurationSettingValue("Setting1");</span></span> |
 
-## <a name="local-storage-path"></a><span data-ttu-id="287e1-163">Chemin de stockage local</span><span class="sxs-lookup"><span data-stu-id="287e1-163">Local storage path</span></span>
-<span data-ttu-id="287e1-164">Récupère le chemin de stockage local de l'instance.</span><span class="sxs-lookup"><span data-stu-id="287e1-164">Retrieves the local storage path for the instance.</span></span>
+## <a name="local-storage-path"></a><span data-ttu-id="c3452-163">Chemin de stockage local</span><span class="sxs-lookup"><span data-stu-id="c3452-163">Local storage path</span></span>
+<span data-ttu-id="c3452-164">Récupère le chemin d’accès de stockage local hello pour l’instance de hello.</span><span class="sxs-lookup"><span data-stu-id="c3452-164">Retrieves hello local storage path for hello instance.</span></span>
 
-| <span data-ttu-id="287e1-165">Type</span><span class="sxs-lookup"><span data-stu-id="287e1-165">Type</span></span> | <span data-ttu-id="287e1-166">Exemple</span><span class="sxs-lookup"><span data-stu-id="287e1-166">Example</span></span> |
+| <span data-ttu-id="c3452-165">Type</span><span class="sxs-lookup"><span data-stu-id="c3452-165">Type</span></span> | <span data-ttu-id="c3452-166">Exemple</span><span class="sxs-lookup"><span data-stu-id="c3452-166">Example</span></span> |
 | --- | --- |
-| <span data-ttu-id="287e1-167">XPath</span><span class="sxs-lookup"><span data-stu-id="287e1-167">XPath</span></span> |<span data-ttu-id="287e1-168">xpath="/RoleEnvironment/CurrentInstance/LocalResources/LocalResource[@name='LocalStore1']/@path"</span><span class="sxs-lookup"><span data-stu-id="287e1-168">xpath="/RoleEnvironment/CurrentInstance/LocalResources/LocalResource[@name='LocalStore1']/@path"</span></span> |
-| <span data-ttu-id="287e1-169">Code</span><span class="sxs-lookup"><span data-stu-id="287e1-169">Code</span></span> |<span data-ttu-id="287e1-170">var localResourcePath = RoleEnvironment.GetLocalResource("LocalStore1").RootPath;</span><span class="sxs-lookup"><span data-stu-id="287e1-170">var localResourcePath = RoleEnvironment.GetLocalResource("LocalStore1").RootPath;</span></span> |
+| <span data-ttu-id="c3452-167">XPath</span><span class="sxs-lookup"><span data-stu-id="c3452-167">XPath</span></span> |<span data-ttu-id="c3452-168">xpath="/RoleEnvironment/CurrentInstance/LocalResources/LocalResource[@name='LocalStore1']/@path"</span><span class="sxs-lookup"><span data-stu-id="c3452-168">xpath="/RoleEnvironment/CurrentInstance/LocalResources/LocalResource[@name='LocalStore1']/@path"</span></span> |
+| <span data-ttu-id="c3452-169">Code</span><span class="sxs-lookup"><span data-stu-id="c3452-169">Code</span></span> |<span data-ttu-id="c3452-170">var localResourcePath = RoleEnvironment.GetLocalResource("LocalStore1").RootPath;</span><span class="sxs-lookup"><span data-stu-id="c3452-170">var localResourcePath = RoleEnvironment.GetLocalResource("LocalStore1").RootPath;</span></span> |
 
-## <a name="local-storage-size"></a><span data-ttu-id="287e1-171">Taille du stockage local</span><span class="sxs-lookup"><span data-stu-id="287e1-171">Local storage size</span></span>
-<span data-ttu-id="287e1-172">Récupère la taille du stockage local de l'instance.</span><span class="sxs-lookup"><span data-stu-id="287e1-172">Retrieves the size of the local storage for the instance.</span></span>
+## <a name="local-storage-size"></a><span data-ttu-id="c3452-171">Taille du stockage local</span><span class="sxs-lookup"><span data-stu-id="c3452-171">Local storage size</span></span>
+<span data-ttu-id="c3452-172">Récupère la taille de hello de hello le stockage local pour l’instance de hello.</span><span class="sxs-lookup"><span data-stu-id="c3452-172">Retrieves hello size of hello local storage for hello instance.</span></span>
 
-| <span data-ttu-id="287e1-173">Type</span><span class="sxs-lookup"><span data-stu-id="287e1-173">Type</span></span> | <span data-ttu-id="287e1-174">Exemple</span><span class="sxs-lookup"><span data-stu-id="287e1-174">Example</span></span> |
+| <span data-ttu-id="c3452-173">Type</span><span class="sxs-lookup"><span data-stu-id="c3452-173">Type</span></span> | <span data-ttu-id="c3452-174">Exemple</span><span class="sxs-lookup"><span data-stu-id="c3452-174">Example</span></span> |
 | --- | --- |
-| <span data-ttu-id="287e1-175">XPath</span><span class="sxs-lookup"><span data-stu-id="287e1-175">XPath</span></span> |<span data-ttu-id="287e1-176">xpath="/RoleEnvironment/CurrentInstance/LocalResources/LocalResource[@name='LocalStore1']/@sizeInMB"</span><span class="sxs-lookup"><span data-stu-id="287e1-176">xpath="/RoleEnvironment/CurrentInstance/LocalResources/LocalResource[@name='LocalStore1']/@sizeInMB"</span></span> |
-| <span data-ttu-id="287e1-177">Code</span><span class="sxs-lookup"><span data-stu-id="287e1-177">Code</span></span> |<span data-ttu-id="287e1-178">var localResourceSizeInMB = RoleEnvironment.GetLocalResource("LocalStore1").MaximumSizeInMegabytes;</span><span class="sxs-lookup"><span data-stu-id="287e1-178">var localResourceSizeInMB = RoleEnvironment.GetLocalResource("LocalStore1").MaximumSizeInMegabytes;</span></span> |
+| <span data-ttu-id="c3452-175">XPath</span><span class="sxs-lookup"><span data-stu-id="c3452-175">XPath</span></span> |<span data-ttu-id="c3452-176">xpath="/RoleEnvironment/CurrentInstance/LocalResources/LocalResource[@name='LocalStore1']/@sizeInMB"</span><span class="sxs-lookup"><span data-stu-id="c3452-176">xpath="/RoleEnvironment/CurrentInstance/LocalResources/LocalResource[@name='LocalStore1']/@sizeInMB"</span></span> |
+| <span data-ttu-id="c3452-177">Code</span><span class="sxs-lookup"><span data-stu-id="c3452-177">Code</span></span> |<span data-ttu-id="c3452-178">var localResourceSizeInMB = RoleEnvironment.GetLocalResource("LocalStore1").MaximumSizeInMegabytes;</span><span class="sxs-lookup"><span data-stu-id="c3452-178">var localResourceSizeInMB = RoleEnvironment.GetLocalResource("LocalStore1").MaximumSizeInMegabytes;</span></span> |
 
-## <a name="endpoint-protocol"></a><span data-ttu-id="287e1-179">Protocole du point de terminaison</span><span class="sxs-lookup"><span data-stu-id="287e1-179">Endpoint protocol</span></span>
-<span data-ttu-id="287e1-180">Récupère le protocole du point de terminaison de l'instance.</span><span class="sxs-lookup"><span data-stu-id="287e1-180">Retrieves the endpoint protocol for the instance.</span></span>
+## <a name="endpoint-protocol"></a><span data-ttu-id="c3452-179">Protocole du point de terminaison</span><span class="sxs-lookup"><span data-stu-id="c3452-179">Endpoint protocol</span></span>
+<span data-ttu-id="c3452-180">Récupère le protocole de point de terminaison hello pour l’instance de hello.</span><span class="sxs-lookup"><span data-stu-id="c3452-180">Retrieves hello endpoint protocol for hello instance.</span></span>
 
-| <span data-ttu-id="287e1-181">Type</span><span class="sxs-lookup"><span data-stu-id="287e1-181">Type</span></span> | <span data-ttu-id="287e1-182">Exemple</span><span class="sxs-lookup"><span data-stu-id="287e1-182">Example</span></span> |
+| <span data-ttu-id="c3452-181">Type</span><span class="sxs-lookup"><span data-stu-id="c3452-181">Type</span></span> | <span data-ttu-id="c3452-182">Exemple</span><span class="sxs-lookup"><span data-stu-id="c3452-182">Example</span></span> |
 | --- | --- |
-| <span data-ttu-id="287e1-183">XPath</span><span class="sxs-lookup"><span data-stu-id="287e1-183">XPath</span></span> |<span data-ttu-id="287e1-184">xpath="/RoleEnvironment/CurrentInstance/Endpoints/Endpoint[@name='Endpoint1']/@protocol"</span><span class="sxs-lookup"><span data-stu-id="287e1-184">xpath="/RoleEnvironment/CurrentInstance/Endpoints/Endpoint[@name='Endpoint1']/@protocol"</span></span> |
-| <span data-ttu-id="287e1-185">Code</span><span class="sxs-lookup"><span data-stu-id="287e1-185">Code</span></span> |<span data-ttu-id="287e1-186">var prot = RoleEnvironment.CurrentRoleInstance.InstanceEndpoints["Endpoint1"].Protocol;</span><span class="sxs-lookup"><span data-stu-id="287e1-186">var prot = RoleEnvironment.CurrentRoleInstance.InstanceEndpoints["Endpoint1"].Protocol;</span></span> |
+| <span data-ttu-id="c3452-183">XPath</span><span class="sxs-lookup"><span data-stu-id="c3452-183">XPath</span></span> |<span data-ttu-id="c3452-184">xpath="/RoleEnvironment/CurrentInstance/Endpoints/Endpoint[@name='Endpoint1']/@protocol"</span><span class="sxs-lookup"><span data-stu-id="c3452-184">xpath="/RoleEnvironment/CurrentInstance/Endpoints/Endpoint[@name='Endpoint1']/@protocol"</span></span> |
+| <span data-ttu-id="c3452-185">Code</span><span class="sxs-lookup"><span data-stu-id="c3452-185">Code</span></span> |<span data-ttu-id="c3452-186">var prot = RoleEnvironment.CurrentRoleInstance.InstanceEndpoints["Endpoint1"].Protocol;</span><span class="sxs-lookup"><span data-stu-id="c3452-186">var prot = RoleEnvironment.CurrentRoleInstance.InstanceEndpoints["Endpoint1"].Protocol;</span></span> |
 
-## <a name="endpoint-ip"></a><span data-ttu-id="287e1-187">IP du point de terminaison</span><span class="sxs-lookup"><span data-stu-id="287e1-187">Endpoint IP</span></span>
-<span data-ttu-id="287e1-188">Récupère l'adresse IP du point de terminaison spécifié.</span><span class="sxs-lookup"><span data-stu-id="287e1-188">Gets the specified endpoint's IP address.</span></span>
+## <a name="endpoint-ip"></a><span data-ttu-id="c3452-187">IP du point de terminaison</span><span class="sxs-lookup"><span data-stu-id="c3452-187">Endpoint IP</span></span>
+<span data-ttu-id="c3452-188">Obtient hello spécifié l’adresse du point de terminaison.</span><span class="sxs-lookup"><span data-stu-id="c3452-188">Gets hello specified endpoint's IP address.</span></span>
 
-| <span data-ttu-id="287e1-189">Type</span><span class="sxs-lookup"><span data-stu-id="287e1-189">Type</span></span> | <span data-ttu-id="287e1-190">Exemple</span><span class="sxs-lookup"><span data-stu-id="287e1-190">Example</span></span> |
+| <span data-ttu-id="c3452-189">Type</span><span class="sxs-lookup"><span data-stu-id="c3452-189">Type</span></span> | <span data-ttu-id="c3452-190">Exemple</span><span class="sxs-lookup"><span data-stu-id="c3452-190">Example</span></span> |
 | --- | --- |
-| <span data-ttu-id="287e1-191">XPath</span><span class="sxs-lookup"><span data-stu-id="287e1-191">XPath</span></span> |<span data-ttu-id="287e1-192">xpath="/RoleEnvironment/CurrentInstance/Endpoints/Endpoint[@name='Endpoint1']/@address"</span><span class="sxs-lookup"><span data-stu-id="287e1-192">xpath="/RoleEnvironment/CurrentInstance/Endpoints/Endpoint[@name='Endpoint1']/@address"</span></span> |
-| <span data-ttu-id="287e1-193">Code</span><span class="sxs-lookup"><span data-stu-id="287e1-193">Code</span></span> |<span data-ttu-id="287e1-194">var address = RoleEnvironment.CurrentRoleInstance.InstanceEndpoints["Endpoint1"].IPEndpoint.Address</span><span class="sxs-lookup"><span data-stu-id="287e1-194">var address = RoleEnvironment.CurrentRoleInstance.InstanceEndpoints["Endpoint1"].IPEndpoint.Address</span></span> |
+| <span data-ttu-id="c3452-191">XPath</span><span class="sxs-lookup"><span data-stu-id="c3452-191">XPath</span></span> |<span data-ttu-id="c3452-192">xpath="/RoleEnvironment/CurrentInstance/Endpoints/Endpoint[@name='Endpoint1']/@address"</span><span class="sxs-lookup"><span data-stu-id="c3452-192">xpath="/RoleEnvironment/CurrentInstance/Endpoints/Endpoint[@name='Endpoint1']/@address"</span></span> |
+| <span data-ttu-id="c3452-193">Code</span><span class="sxs-lookup"><span data-stu-id="c3452-193">Code</span></span> |<span data-ttu-id="c3452-194">var address = RoleEnvironment.CurrentRoleInstance.InstanceEndpoints["Endpoint1"].IPEndpoint.Address</span><span class="sxs-lookup"><span data-stu-id="c3452-194">var address = RoleEnvironment.CurrentRoleInstance.InstanceEndpoints["Endpoint1"].IPEndpoint.Address</span></span> |
 
-## <a name="endpoint-port"></a><span data-ttu-id="287e1-195">Port du point de terminaison</span><span class="sxs-lookup"><span data-stu-id="287e1-195">Endpoint port</span></span>
-<span data-ttu-id="287e1-196">Récupère le port du point de terminaison de l'instance.</span><span class="sxs-lookup"><span data-stu-id="287e1-196">Retrieves the endpoint port for the instance.</span></span>
+## <a name="endpoint-port"></a><span data-ttu-id="c3452-195">Port du point de terminaison</span><span class="sxs-lookup"><span data-stu-id="c3452-195">Endpoint port</span></span>
+<span data-ttu-id="c3452-196">Récupère le port du point de terminaison hello pour l’instance de hello.</span><span class="sxs-lookup"><span data-stu-id="c3452-196">Retrieves hello endpoint port for hello instance.</span></span>
 
-| <span data-ttu-id="287e1-197">Type</span><span class="sxs-lookup"><span data-stu-id="287e1-197">Type</span></span> | <span data-ttu-id="287e1-198">Exemple</span><span class="sxs-lookup"><span data-stu-id="287e1-198">Example</span></span> |
+| <span data-ttu-id="c3452-197">Type</span><span class="sxs-lookup"><span data-stu-id="c3452-197">Type</span></span> | <span data-ttu-id="c3452-198">Exemple</span><span class="sxs-lookup"><span data-stu-id="c3452-198">Example</span></span> |
 | --- | --- |
-| <span data-ttu-id="287e1-199">XPath</span><span class="sxs-lookup"><span data-stu-id="287e1-199">XPath</span></span> |<span data-ttu-id="287e1-200">xpath="/RoleEnvironment/CurrentInstance/Endpoints/Endpoint[@name='Endpoint1']/@port"</span><span class="sxs-lookup"><span data-stu-id="287e1-200">xpath="/RoleEnvironment/CurrentInstance/Endpoints/Endpoint[@name='Endpoint1']/@port"</span></span> |
-| <span data-ttu-id="287e1-201">Code</span><span class="sxs-lookup"><span data-stu-id="287e1-201">Code</span></span> |<span data-ttu-id="287e1-202">var port = RoleEnvironment.CurrentRoleInstance.InstanceEndpoints["Endpoint1"].IPEndpoint.Port;</span><span class="sxs-lookup"><span data-stu-id="287e1-202">var port = RoleEnvironment.CurrentRoleInstance.InstanceEndpoints["Endpoint1"].IPEndpoint.Port;</span></span> |
+| <span data-ttu-id="c3452-199">XPath</span><span class="sxs-lookup"><span data-stu-id="c3452-199">XPath</span></span> |<span data-ttu-id="c3452-200">xpath="/RoleEnvironment/CurrentInstance/Endpoints/Endpoint[@name='Endpoint1']/@port"</span><span class="sxs-lookup"><span data-stu-id="c3452-200">xpath="/RoleEnvironment/CurrentInstance/Endpoints/Endpoint[@name='Endpoint1']/@port"</span></span> |
+| <span data-ttu-id="c3452-201">Code</span><span class="sxs-lookup"><span data-stu-id="c3452-201">Code</span></span> |<span data-ttu-id="c3452-202">var port = RoleEnvironment.CurrentRoleInstance.InstanceEndpoints["Endpoint1"].IPEndpoint.Port;</span><span class="sxs-lookup"><span data-stu-id="c3452-202">var port = RoleEnvironment.CurrentRoleInstance.InstanceEndpoints["Endpoint1"].IPEndpoint.Port;</span></span> |
 
-## <a name="example"></a><span data-ttu-id="287e1-203">Exemple</span><span class="sxs-lookup"><span data-stu-id="287e1-203">Example</span></span>
-<span data-ttu-id="287e1-204">Voici un exemple de rôle de travail qui crée une tâche de démarrage avec une variable d’environnement nommée `TestIsEmulated`, définie sur la [valeur xpath @emulated](#app-running-in-emulator).</span><span class="sxs-lookup"><span data-stu-id="287e1-204">Here is an example of a worker role that creates a startup task with an environment variable named `TestIsEmulated` set to the [@emulated xpath value](#app-running-in-emulator).</span></span> 
+## <a name="example"></a><span data-ttu-id="c3452-203">Exemple</span><span class="sxs-lookup"><span data-stu-id="c3452-203">Example</span></span>
+<span data-ttu-id="c3452-204">Voici un exemple d’un rôle de travail qui crée une tâche de démarrage avec une variable d’environnement nommée `TestIsEmulated` définir toohello [ @emulated valeur xpath](#app-running-in-emulator).</span><span class="sxs-lookup"><span data-stu-id="c3452-204">Here is an example of a worker role that creates a startup task with an environment variable named `TestIsEmulated` set toohello [@emulated xpath value](#app-running-in-emulator).</span></span> 
 
 ```xml
 <WorkerRole name="Role1">
@@ -161,10 +161,10 @@ ms.lasthandoff: 07/11/2017
 </WorkerRole>
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="287e1-205">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="287e1-205">Next steps</span></span>
-<span data-ttu-id="287e1-206">En savoir plus sur le fichier [ServiceConfiguration.cscfg](cloud-services-model-and-package.md#serviceconfigurationcscfg) .</span><span class="sxs-lookup"><span data-stu-id="287e1-206">Learn more about the [ServiceConfiguration.cscfg](cloud-services-model-and-package.md#serviceconfigurationcscfg) file.</span></span>
+## <a name="next-steps"></a><span data-ttu-id="c3452-205">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="c3452-205">Next steps</span></span>
+<span data-ttu-id="c3452-206">En savoir plus sur hello [ServiceConfiguration.cscfg](cloud-services-model-and-package.md#serviceconfigurationcscfg) fichier.</span><span class="sxs-lookup"><span data-stu-id="c3452-206">Learn more about hello [ServiceConfiguration.cscfg](cloud-services-model-and-package.md#serviceconfigurationcscfg) file.</span></span>
 
-<span data-ttu-id="287e1-207">Créer un package [ServicePackage.cspkg](cloud-services-model-and-package.md#servicepackagecspkg) .</span><span class="sxs-lookup"><span data-stu-id="287e1-207">Create a [ServicePackage.cspkg](cloud-services-model-and-package.md#servicepackagecspkg) package.</span></span>
+<span data-ttu-id="c3452-207">Créer un package [ServicePackage.cspkg](cloud-services-model-and-package.md#servicepackagecspkg) .</span><span class="sxs-lookup"><span data-stu-id="c3452-207">Create a [ServicePackage.cspkg](cloud-services-model-and-package.md#servicepackagecspkg) package.</span></span>
 
-<span data-ttu-id="287e1-208">Activer le [Bureau à distance](cloud-services-role-enable-remote-desktop.md) pour un rôle.</span><span class="sxs-lookup"><span data-stu-id="287e1-208">Enable [remote desktop](cloud-services-role-enable-remote-desktop.md) for a role.</span></span>
+<span data-ttu-id="c3452-208">Activer le [Bureau à distance](cloud-services-role-enable-remote-desktop.md) pour un rôle.</span><span class="sxs-lookup"><span data-stu-id="c3452-208">Enable [remote desktop](cloud-services-role-enable-remote-desktop.md) for a role.</span></span>
 

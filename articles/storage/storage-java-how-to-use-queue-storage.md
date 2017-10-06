@@ -1,6 +1,6 @@
 ---
-title: "Utilisation du stockage de files d’attente à partir de Java | Microsoft Docs"
-description: "Découvrez comment utiliser le service de File d'attente Azure pour créer et supprimer des files d'attente, ainsi que pour insérer, récupérer et supprimer des messages. Les exemples sont écrits en Java."
+title: "aaaHow toouse stockage de file d’attente à partir de Java | Documents Microsoft"
+description: "Découvrez comment toouse hello file d’attente Azure service toocreate et les files d’attente de suppression, insertion, obtenir et supprimer les messages. Les exemples sont écrits en Java."
 services: storage
 documentationcenter: java
 author: robinsh
@@ -14,52 +14,52 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 12/08/2016
 ms.author: robinsh
-ms.openlocfilehash: 03faea986221453d1862ff0f0d6d1ec21f92f3bb
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c2d5211ec5b6454f7dbc126aad4ba9950df13661
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-queue-storage-from-java"></a><span data-ttu-id="52c05-104">Utilisation du stockage de files d'attente à partir de Java</span><span class="sxs-lookup"><span data-stu-id="52c05-104">How to use Queue storage from Java</span></span>
+# <a name="how-toouse-queue-storage-from-java"></a><span data-ttu-id="e6b67-104">Comment toouse stockage de file d’attente à partir de Java</span><span class="sxs-lookup"><span data-stu-id="e6b67-104">How toouse Queue storage from Java</span></span>
 [!INCLUDE [storage-selector-queue-include](../../includes/storage-selector-queue-include.md)]
 
 [!INCLUDE [storage-check-out-samples-java](../../includes/storage-check-out-samples-java.md)]
 
-## <a name="overview"></a><span data-ttu-id="52c05-105">Vue d'ensemble</span><span class="sxs-lookup"><span data-stu-id="52c05-105">Overview</span></span>
-<span data-ttu-id="52c05-106">Ce guide décrit le déroulement de scénarios courants dans le cadre de l'utilisation du service de stockage des files d'attente Azure.</span><span class="sxs-lookup"><span data-stu-id="52c05-106">This guide will show you how to perform common scenarios using the Azure Queue storage service.</span></span> <span data-ttu-id="52c05-107">Les exemples sont écrits en Java et utilisent le [Kit de développement logiciel (SDK) Stockage Azure pour Java][Azure Storage SDK for Java].</span><span class="sxs-lookup"><span data-stu-id="52c05-107">The samples are written in Java and use the [Azure Storage SDK for Java][Azure Storage SDK for Java].</span></span> <span data-ttu-id="52c05-108">Les scénarios traités incluent **l’insertion**, la **lecture furtive**, la **récupération** et la **suppression** des messages de file d’attente, ainsi que la **création** et **suppression** des files d’attente.</span><span class="sxs-lookup"><span data-stu-id="52c05-108">The scenarios covered include **inserting**, **peeking**, **getting**, and **deleting** queue messages, as well as **creating** and **deleting** queues.</span></span> <span data-ttu-id="52c05-109">Pour plus d’informations sur les files d’attente, consultez la section [Étapes suivantes](#Next-Steps).</span><span class="sxs-lookup"><span data-stu-id="52c05-109">For more information on queues, see the [Next steps](#Next-Steps) section.</span></span>
+## <a name="overview"></a><span data-ttu-id="e6b67-105">Vue d'ensemble</span><span class="sxs-lookup"><span data-stu-id="e6b67-105">Overview</span></span>
+<span data-ttu-id="e6b67-106">Ce guide vous explique comment tooperform des scénarios courants utilisant hello service de stockage de file d’attente Azure.</span><span class="sxs-lookup"><span data-stu-id="e6b67-106">This guide will show you how tooperform common scenarios using hello Azure Queue storage service.</span></span> <span data-ttu-id="e6b67-107">exemples de Hello sont écrits en Java et utiliser hello [SDK de stockage Azure pour Java][Azure Storage SDK for Java].</span><span class="sxs-lookup"><span data-stu-id="e6b67-107">hello samples are written in Java and use hello [Azure Storage SDK for Java][Azure Storage SDK for Java].</span></span> <span data-ttu-id="e6b67-108">Hello scénarios abordés incluent **insertion**, **lecture**, **mise en route**, et **suppression** file d’attente de messages, ainsi que  **Création** et **suppression** les files d’attente.</span><span class="sxs-lookup"><span data-stu-id="e6b67-108">hello scenarios covered include **inserting**, **peeking**, **getting**, and **deleting** queue messages, as well as **creating** and **deleting** queues.</span></span> <span data-ttu-id="e6b67-109">Pour plus d’informations sur les files d’attente, consultez hello [étapes](#Next-Steps) section.</span><span class="sxs-lookup"><span data-stu-id="e6b67-109">For more information on queues, see hello [Next steps](#Next-Steps) section.</span></span>
 
-<span data-ttu-id="52c05-110">Remarque : un Kit de développement logiciel (SDK) est disponible pour les développeurs qui utilisent Azure Storage sur des appareils Android.</span><span class="sxs-lookup"><span data-stu-id="52c05-110">Note: An SDK is available for developers who are using Azure Storage on Android devices.</span></span> <span data-ttu-id="52c05-111">Pour plus d’informations, consultez la page [Kit de développement logiciel (SDK) Stockage Azure pour Android][Azure Storage SDK for Android].</span><span class="sxs-lookup"><span data-stu-id="52c05-111">For more information, see the [Azure Storage SDK for Android][Azure Storage SDK for Android].</span></span>
+<span data-ttu-id="e6b67-110">Remarque : un Kit de développement logiciel (SDK) est disponible pour les développeurs qui utilisent Azure Storage sur des appareils Android.</span><span class="sxs-lookup"><span data-stu-id="e6b67-110">Note: An SDK is available for developers who are using Azure Storage on Android devices.</span></span> <span data-ttu-id="e6b67-111">Pour plus d’informations, consultez hello [stockage de Azure SDK pour Android][Azure Storage SDK for Android].</span><span class="sxs-lookup"><span data-stu-id="e6b67-111">For more information, see hello [Azure Storage SDK for Android][Azure Storage SDK for Android].</span></span>
 
 [!INCLUDE [storage-queue-concepts-include](../../includes/storage-queue-concepts-include.md)]
 
 [!INCLUDE [storage-create-account-include](../../includes/storage-create-account-include.md)]
 
-## <a name="create-a-java-application"></a><span data-ttu-id="52c05-112">Création d’une application Java</span><span class="sxs-lookup"><span data-stu-id="52c05-112">Create a Java application</span></span>
-<span data-ttu-id="52c05-113">Dans ce guide, vous allez utiliser des fonctionnalités de stockage qui peuvent être exécutées dans une application Java en local, ou dans le code s'exécutant dans un rôle Web ou un rôle de travail dans Azure.</span><span class="sxs-lookup"><span data-stu-id="52c05-113">In this guide, you will use storage features which can be run within a Java application locally, or in code running within a web role or worker role in Azure.</span></span>
+## <a name="create-a-java-application"></a><span data-ttu-id="e6b67-112">Création d’une application Java</span><span class="sxs-lookup"><span data-stu-id="e6b67-112">Create a Java application</span></span>
+<span data-ttu-id="e6b67-113">Dans ce guide, vous allez utiliser des fonctionnalités de stockage qui peuvent être exécutées dans une application Java en local, ou dans le code s'exécutant dans un rôle Web ou un rôle de travail dans Azure.</span><span class="sxs-lookup"><span data-stu-id="e6b67-113">In this guide, you will use storage features which can be run within a Java application locally, or in code running within a web role or worker role in Azure.</span></span>
 
-<span data-ttu-id="52c05-114">Pour ce faire, vous devez installer le Kit de développement Java (JDK) et créer un compte Azure Storage dans votre abonnement Azure.</span><span class="sxs-lookup"><span data-stu-id="52c05-114">To do so, you will need to install the Java Development Kit (JDK) and create an Azure storage account in your Azure subscription.</span></span> <span data-ttu-id="52c05-115">Vous devez ensuite vérifier que votre système de développement répond à la configuration minimale requise et aux dépendances répertoriées dans le référentiel [Kit de développement logiciel (SDK) Stockage Azure pour Java][Azure Storage SDK for Java] sur GitHub.</span><span class="sxs-lookup"><span data-stu-id="52c05-115">Once you have done so, you will need to verify that your development system meets the minimum requirements and dependencies which are listed in the [Azure Storage SDK for Java][Azure Storage SDK for Java] repository on GitHub.</span></span> <span data-ttu-id="52c05-116">Si tel est le cas, vous pouvez suivre les instructions relatives au téléchargement et à l'installation des bibliothèques Azure Storage pour Java sur votre système à partir du référentiel.</span><span class="sxs-lookup"><span data-stu-id="52c05-116">If your system meets those requirements, you can follow the instructions for downloading and installing the Azure Storage Libraries for Java on your system from that repository.</span></span> <span data-ttu-id="52c05-117">Une fois ces tâches effectuées, vous pouvez créer une application Java utilisant les exemples de cet article.</span><span class="sxs-lookup"><span data-stu-id="52c05-117">Once you have completed those tasks, you will be able to create a Java application which uses the examples in this article.</span></span>
+<span data-ttu-id="e6b67-114">toodo par conséquent, vous devez tooinstall hello du Kit de développement Java (JDK) et créer un compte de stockage Azure dans votre abonnement Azure.</span><span class="sxs-lookup"><span data-stu-id="e6b67-114">toodo so, you will need tooinstall hello Java Development Kit (JDK) and create an Azure storage account in your Azure subscription.</span></span> <span data-ttu-id="e6b67-115">Une fois que vous l’avez fait, vous devez tooverify votre système de développement répond aux exigences minimales de hello et les dépendances qui sont répertoriées dans hello [SDK de stockage Azure pour Java] [ Azure Storage SDK for Java] référentiel sur GitHub.</span><span class="sxs-lookup"><span data-stu-id="e6b67-115">Once you have done so, you will need tooverify that your development system meets hello minimum requirements and dependencies which are listed in hello [Azure Storage SDK for Java][Azure Storage SDK for Java] repository on GitHub.</span></span> <span data-ttu-id="e6b67-116">Si votre système répond à ces exigences, vous pouvez suivre les instructions de hello pour télécharger et installer les bibliothèques de stockage Azure hello pour Java sur votre système à partir de ce référentiel.</span><span class="sxs-lookup"><span data-stu-id="e6b67-116">If your system meets those requirements, you can follow hello instructions for downloading and installing hello Azure Storage Libraries for Java on your system from that repository.</span></span> <span data-ttu-id="e6b67-117">Une fois ces tâches terminées, vous serez en mesure de toocreate une application Java qui utilise des exemples de hello dans cet article.</span><span class="sxs-lookup"><span data-stu-id="e6b67-117">Once you have completed those tasks, you will be able toocreate a Java application which uses hello examples in this article.</span></span>
 
-## <a name="configure-your-application-to-access-queue-storage"></a><span data-ttu-id="52c05-118">Configuration de votre application pour accéder au stockage de files d'attente</span><span class="sxs-lookup"><span data-stu-id="52c05-118">Configure your application to access queue storage</span></span>
-<span data-ttu-id="52c05-119">Ajoutez les instructions import suivantes au début du fichier Java dans lequel vous voulez utiliser des API de stockage Azure pour accéder aux files d'attente :</span><span class="sxs-lookup"><span data-stu-id="52c05-119">Add the following import statements to the top of the Java file where you want to use Azure storage APIs to access queues:</span></span>
+## <a name="configure-your-application-tooaccess-queue-storage"></a><span data-ttu-id="e6b67-118">Configurer votre stockage de file d’attente d’application tooaccess</span><span class="sxs-lookup"><span data-stu-id="e6b67-118">Configure your application tooaccess queue storage</span></span>
+<span data-ttu-id="e6b67-119">Ajoutez hello après importation instructions toohello en haut de hello Java fichier dans lequel les files d’attente de toouse stockage Azure API tooaccess :</span><span class="sxs-lookup"><span data-stu-id="e6b67-119">Add hello following import statements toohello top of hello Java file where you want toouse Azure storage APIs tooaccess queues:</span></span>
 
 ```java
-// Include the following imports to use queue APIs.
+// Include hello following imports toouse queue APIs.
 import com.microsoft.azure.storage.*;
 import com.microsoft.azure.storage.queue.*;
 ```
 
-## <a name="setup-an-azure-storage-connection-string"></a><span data-ttu-id="52c05-120">Configuration d’une chaîne de connexion de stockage Azure</span><span class="sxs-lookup"><span data-stu-id="52c05-120">Setup an Azure storage connection string</span></span>
-<span data-ttu-id="52c05-121">Un client de stockage Azure utilise une chaîne de connexion de stockage pour stocker des points de terminaison et des informations d’identification permettant d’accéder aux services de gestion des données.</span><span class="sxs-lookup"><span data-stu-id="52c05-121">An Azure storage client uses a storage connection string to store endpoints and credentials for accessing data management services.</span></span> <span data-ttu-id="52c05-122">Lors de l’exécution dans une application cliente, vous devez spécifier la chaîne de connexion au stockage au format suivant, en indiquant le nom de votre compte de stockage et sa clé d’accès primaire, correspondant aux valeurs *AccountName* et *AccountKey*, sur le [portail Azure](https://portal.azure.com).</span><span class="sxs-lookup"><span data-stu-id="52c05-122">When running in a client application, you must provide the storage connection string in the following format, using the name of your storage account and the Primary access key for the storage account listed in the [Azure Portal](https://portal.azure.com) for the *AccountName* and *AccountKey* values.</span></span> <span data-ttu-id="52c05-123">Cet exemple vous montre comment déclarer un champ statique pour qu’il contienne une chaîne de connexion :</span><span class="sxs-lookup"><span data-stu-id="52c05-123">This example shows how you can declare a static field to hold the connection string:</span></span>
+## <a name="setup-an-azure-storage-connection-string"></a><span data-ttu-id="e6b67-120">Configuration d’une chaîne de connexion de stockage Azure</span><span class="sxs-lookup"><span data-stu-id="e6b67-120">Setup an Azure storage connection string</span></span>
+<span data-ttu-id="e6b67-121">Un client de stockage Azure utilise une terminaison de stockage connexion chaîne toostore et informations d’identification pour accéder aux services de gestion de données.</span><span class="sxs-lookup"><span data-stu-id="e6b67-121">An Azure storage client uses a storage connection string toostore endpoints and credentials for accessing data management services.</span></span> <span data-ttu-id="e6b67-122">Lors de l’exécution dans une application cliente, vous devez fournir la chaîne de connexion de stockage hello Bonjour suivant le format, à l’aide du nom de hello de votre compte de stockage et clé d’accès primaire pour le compte de stockage hello dans hello de hello [Azure Portal](https://portal.azure.com)pour hello *AccountName* et *AccountKey* valeurs.</span><span class="sxs-lookup"><span data-stu-id="e6b67-122">When running in a client application, you must provide hello storage connection string in hello following format, using hello name of your storage account and hello Primary access key for hello storage account listed in hello [Azure Portal](https://portal.azure.com) for hello *AccountName* and *AccountKey* values.</span></span> <span data-ttu-id="e6b67-123">Cet exemple montre comment vous pouvez déclarer une chaîne de connexion de champ statique toohold hello :</span><span class="sxs-lookup"><span data-stu-id="e6b67-123">This example shows how you can declare a static field toohold hello connection string:</span></span>
 
 ```java
-// Define the connection-string with your values.
+// Define hello connection-string with your values.
 public static final String storageConnectionString =
     "DefaultEndpointsProtocol=http;" +
     "AccountName=your_storage_account;" +
     "AccountKey=your_storage_account_key";
 ```
 
-<span data-ttu-id="52c05-124">Dans une application exécutée au sein d'un rôle dans Microsoft Azure, cette chaîne peut être stockée dans le fichier de configuration de service *ServiceConfiguration.cscfg*et elle est accessible en appelant la méthode **RoleEnvironment.getConfigurationSettings** .</span><span class="sxs-lookup"><span data-stu-id="52c05-124">In an application running within a role in Microsoft Azure, this string can be stored in the service configuration file, *ServiceConfiguration.cscfg*, and can be accessed with a call to the **RoleEnvironment.getConfigurationSettings** method.</span></span> <span data-ttu-id="52c05-125">Voici un exemple de code vous permettant d'extraire la chaîne de connexion à partir d'un élément **Setting** nommé *StorageConnectionString* dans le fichier de configuration de service :</span><span class="sxs-lookup"><span data-stu-id="52c05-125">Here's an example of getting the connection string from a **Setting** element named *StorageConnectionString* in the service configuration file:</span></span>
+<span data-ttu-id="e6b67-124">Dans une application en cours d’exécution au sein d’un rôle dans Microsoft Azure, cette chaîne peut être stockée dans le fichier de configuration de service hello, *ServiceConfiguration.cscfg*et sont accessibles avec un appel toohello  **RoleEnvironment.getConfigurationSettings** (méthode).</span><span class="sxs-lookup"><span data-stu-id="e6b67-124">In an application running within a role in Microsoft Azure, this string can be stored in hello service configuration file, *ServiceConfiguration.cscfg*, and can be accessed with a call toohello **RoleEnvironment.getConfigurationSettings** method.</span></span> <span data-ttu-id="e6b67-125">Voici un exemple de mise en route de la chaîne de connexion hello un **paramètre** élément nommé *StorageConnectionString* dans le fichier de configuration de service hello :</span><span class="sxs-lookup"><span data-stu-id="e6b67-125">Here's an example of getting hello connection string from a **Setting** element named *StorageConnectionString* in hello service configuration file:</span></span>
 
 ```java
 // Retrieve storage account from connection-string.
@@ -67,12 +67,12 @@ String storageConnectionString =
     RoleEnvironment.getConfigurationSettings().get("StorageConnectionString");
 ```
 
-<span data-ttu-id="52c05-126">Les exemples ci-dessous partent du principe que vous avez utilisé l’une de ces deux méthodes pour obtenir la chaîne de connexion de stockage.</span><span class="sxs-lookup"><span data-stu-id="52c05-126">The following samples assume that you have used one of these two methods to get the storage connection string.</span></span>
+<span data-ttu-id="e6b67-126">Hello exemples suivants supposent que vous avez utilisé une de ces chaînes de connexion de stockage de deux méthodes tooget hello.</span><span class="sxs-lookup"><span data-stu-id="e6b67-126">hello following samples assume that you have used one of these two methods tooget hello storage connection string.</span></span>
 
-## <a name="how-to-create-a-queue"></a><span data-ttu-id="52c05-127">Création d'une file d'attente</span><span class="sxs-lookup"><span data-stu-id="52c05-127">How to: Create a queue</span></span>
-<span data-ttu-id="52c05-128">Un objet **CloudQueueClient** vous permet d'obtenir les objets de référence pour les files d'attente.</span><span class="sxs-lookup"><span data-stu-id="52c05-128">A **CloudQueueClient** object lets you get reference objects for queues.</span></span> <span data-ttu-id="52c05-129">Le code suivant crée un objet **CloudQueueClient** .</span><span class="sxs-lookup"><span data-stu-id="52c05-129">The following code creates a **CloudQueueClient** object.</span></span> <span data-ttu-id="52c05-130">(Remarque : d’autres méthodes permettent de créer des objets **CloudStorageAccount**. Pour plus d’informations, reportez-vous à la classe **CloudStorageAccount** dans la page [Référence du Kit de développement logiciel (SDK) du client Azure Storage].)</span><span class="sxs-lookup"><span data-stu-id="52c05-130">(Note: There are additional ways to create **CloudStorageAccount** objects; for more information, see **CloudStorageAccount** in the [Azure Storage Client SDK Reference].)</span></span>
+## <a name="how-to-create-a-queue"></a><span data-ttu-id="e6b67-127">Création d'une file d'attente</span><span class="sxs-lookup"><span data-stu-id="e6b67-127">How to: Create a queue</span></span>
+<span data-ttu-id="e6b67-128">Un objet **CloudQueueClient** vous permet d'obtenir les objets de référence pour les files d'attente.</span><span class="sxs-lookup"><span data-stu-id="e6b67-128">A **CloudQueueClient** object lets you get reference objects for queues.</span></span> <span data-ttu-id="e6b67-129">Hello de code suivant crée un **CloudQueueClient** objet.</span><span class="sxs-lookup"><span data-stu-id="e6b67-129">hello following code creates a **CloudQueueClient** object.</span></span> <span data-ttu-id="e6b67-130">(Remarque : il existe des méthodes supplémentaires toocreate **CloudStorageAccount** objets ; pour plus d’informations, consultez **CloudStorageAccount** Bonjour [référence SDK cliente de stockage Azure].)</span><span class="sxs-lookup"><span data-stu-id="e6b67-130">(Note: There are additional ways toocreate **CloudStorageAccount** objects; for more information, see **CloudStorageAccount** in hello [Azure Storage Client SDK Reference].)</span></span>
 
-<span data-ttu-id="52c05-131">Utilisez l'objet **CloudQueueClient** pour obtenir une référence pointant vers la file d'attente à utiliser.</span><span class="sxs-lookup"><span data-stu-id="52c05-131">Use the **CloudQueueClient** object to get a reference to the queue you want to use.</span></span> <span data-ttu-id="52c05-132">Si la file d'attente n'existe pas, vous pouvez la créer :</span><span class="sxs-lookup"><span data-stu-id="52c05-132">You can create the queue if it doesn't exist.</span></span>
+<span data-ttu-id="e6b67-131">Hello d’utilisation **CloudQueueClient** tooget une référence toohello file d’attente toouse de l’objet.</span><span class="sxs-lookup"><span data-stu-id="e6b67-131">Use hello **CloudQueueClient** object tooget a reference toohello queue you want toouse.</span></span> <span data-ttu-id="e6b67-132">Vous pouvez créer la file d’attente hello si elle n’existe pas.</span><span class="sxs-lookup"><span data-stu-id="e6b67-132">You can create hello queue if it doesn't exist.</span></span>
 
 ```java
 try
@@ -81,24 +81,24 @@ try
     CloudStorageAccount storageAccount =
        CloudStorageAccount.parse(storageConnectionString);
 
-   // Create the queue client.
+   // Create hello queue client.
    CloudQueueClient queueClient = storageAccount.createCloudQueueClient();
 
-   // Retrieve a reference to a queue.
+   // Retrieve a reference tooa queue.
    CloudQueue queue = queueClient.getQueueReference("myqueue");
 
-   // Create the queue if it doesn't already exist.
+   // Create hello queue if it doesn't already exist.
    queue.createIfNotExists();
 }
 catch (Exception e)
 {
-    // Output the stack trace.
+    // Output hello stack trace.
     e.printStackTrace();
 }
 ```
 
-## <a name="how-to-add-a-message-to-a-queue"></a><span data-ttu-id="52c05-133">Ajout d'un message à une file d'attente</span><span class="sxs-lookup"><span data-stu-id="52c05-133">How to: Add a message to a queue</span></span>
-<span data-ttu-id="52c05-134">Pour insérer un message dans une file d'attente existante, commencez par créer un **CloudQueueMessage**.</span><span class="sxs-lookup"><span data-stu-id="52c05-134">To insert a message into an existing queue, first create a new **CloudQueueMessage**.</span></span> <span data-ttu-id="52c05-135">Appelez ensuite la méthode **addMessage** .</span><span class="sxs-lookup"><span data-stu-id="52c05-135">Next, call the **addMessage** method.</span></span> <span data-ttu-id="52c05-136">Un **CloudQueueMessage** peut être créé à partir d'une chaîne (au format UTF-8) ou d'un tableau d'octets.</span><span class="sxs-lookup"><span data-stu-id="52c05-136">A **CloudQueueMessage** can be created from either a string (in UTF-8 format) or a byte array.</span></span> <span data-ttu-id="52c05-137">Voici le code qui crée une file d'attente (si elle n'existe pas) et insère le message « Hello, World ».</span><span class="sxs-lookup"><span data-stu-id="52c05-137">Here is code which creates a queue (if it doesn't exist) and inserts the message "Hello, World".</span></span>
+## <a name="how-to-add-a-message-tooa-queue"></a><span data-ttu-id="e6b67-133">Comment : ajouter une file d’attente de messages tooa</span><span class="sxs-lookup"><span data-stu-id="e6b67-133">How to: Add a message tooa queue</span></span>
+<span data-ttu-id="e6b67-134">tooinsert un message dans une file d’attente existante, commencez par créer un **CloudQueueMessage**.</span><span class="sxs-lookup"><span data-stu-id="e6b67-134">tooinsert a message into an existing queue, first create a new **CloudQueueMessage**.</span></span> <span data-ttu-id="e6b67-135">Ensuite, appelez hello **addMessage** (méthode).</span><span class="sxs-lookup"><span data-stu-id="e6b67-135">Next, call hello **addMessage** method.</span></span> <span data-ttu-id="e6b67-136">Un **CloudQueueMessage** peut être créé à partir d'une chaîne (au format UTF-8) ou d'un tableau d'octets.</span><span class="sxs-lookup"><span data-stu-id="e6b67-136">A **CloudQueueMessage** can be created from either a string (in UTF-8 format) or a byte array.</span></span> <span data-ttu-id="e6b67-137">Voici le code qui crée une file d’attente (s’il n’existe pas) et le message de type hello insertions « Hello, World ».</span><span class="sxs-lookup"><span data-stu-id="e6b67-137">Here is code which creates a queue (if it doesn't exist) and inserts hello message "Hello, World".</span></span>
 
 ```java
 try
@@ -107,28 +107,28 @@ try
     CloudStorageAccount storageAccount =
        CloudStorageAccount.parse(storageConnectionString);
 
-    // Create the queue client.
+    // Create hello queue client.
     CloudQueueClient queueClient = storageAccount.createCloudQueueClient();
 
-    // Retrieve a reference to a queue.
+    // Retrieve a reference tooa queue.
     CloudQueue queue = queueClient.getQueueReference("myqueue");
 
-    // Create the queue if it doesn't already exist.
+    // Create hello queue if it doesn't already exist.
     queue.createIfNotExists();
 
-    // Create a message and add it to the queue.
+    // Create a message and add it toohello queue.
     CloudQueueMessage message = new CloudQueueMessage("Hello, World");
     queue.addMessage(message);
 }
 catch (Exception e)
 {
-    // Output the stack trace.
+    // Output hello stack trace.
     e.printStackTrace();
 }
 ```
 
-## <a name="how-to-peek-at-the-next-message"></a><span data-ttu-id="52c05-138">Lecture furtive du message suivant</span><span class="sxs-lookup"><span data-stu-id="52c05-138">How to: Peek at the next message</span></span>
-<span data-ttu-id="52c05-139">Vous pouvez lire furtivement le message au début de la file d'attente sans l'enlever de la file d'attente en appelant **peekMessage**.</span><span class="sxs-lookup"><span data-stu-id="52c05-139">You can peek at the message in the front of a queue without removing it from the queue by calling **peekMessage**.</span></span>
+## <a name="how-to-peek-at-hello-next-message"></a><span data-ttu-id="e6b67-138">Comment : lire des message de type hello suivant</span><span class="sxs-lookup"><span data-stu-id="e6b67-138">How to: Peek at hello next message</span></span>
+<span data-ttu-id="e6b67-139">Vous pouvez lire message hello devant hello une file d’attente sans le supprimer de la file d’attente hello en appelant **peekMessage**.</span><span class="sxs-lookup"><span data-stu-id="e6b67-139">You can peek at hello message in hello front of a queue without removing it from hello queue by calling **peekMessage**.</span></span>
 
 ```java
 try
@@ -137,16 +137,16 @@ try
     CloudStorageAccount storageAccount =
        CloudStorageAccount.parse(storageConnectionString);
 
-    // Create the queue client.
+    // Create hello queue client.
     CloudQueueClient queueClient = storageAccount.createCloudQueueClient();
 
-    // Retrieve a reference to a queue.
+    // Retrieve a reference tooa queue.
     CloudQueue queue = queueClient.getQueueReference("myqueue");
 
-    // Peek at the next message.
+    // Peek at hello next message.
     CloudQueueMessage peekedMessage = queue.peekMessage();
 
-    // Output the message value.
+    // Output hello message value.
     if (peekedMessage != null)
     {
       System.out.println(peekedMessage.getMessageContentAsString());
@@ -154,15 +154,15 @@ try
 }
 catch (Exception e)
 {
-    // Output the stack trace.
+    // Output hello stack trace.
     e.printStackTrace();
 }
 ```
 
-## <a name="how-to-change-the-contents-of-a-queued-message"></a><span data-ttu-id="52c05-140">Modification du contenu d'un message en file d'attente</span><span class="sxs-lookup"><span data-stu-id="52c05-140">How to: Change the contents of a queued message</span></span>
-<span data-ttu-id="52c05-141">Vous pouvez modifier le contenu d'un message placé dans la file d'attente.</span><span class="sxs-lookup"><span data-stu-id="52c05-141">You can change the contents of a message in-place in the queue.</span></span> <span data-ttu-id="52c05-142">Si le message représente une tâche, vous pouvez utiliser cette fonctionnalité pour mettre à jour l'état de la tâche.</span><span class="sxs-lookup"><span data-stu-id="52c05-142">If the message represents a work task, you could use this feature to update the status of the work task.</span></span> <span data-ttu-id="52c05-143">Le code suivant met à jour le message de la file d'attente avec un nouveau contenu et ajoute 60 secondes au délai d'expiration de la visibilité.</span><span class="sxs-lookup"><span data-stu-id="52c05-143">The following code updates the queue message with new contents, and sets the visibility timeout to extend another 60 seconds.</span></span> <span data-ttu-id="52c05-144">Cette opération enregistre l'état de la tâche associée au message et accorde une minute supplémentaire au client pour traiter le message.</span><span class="sxs-lookup"><span data-stu-id="52c05-144">This saves the state of work associated with the message, and gives the client another minute to continue working on the message.</span></span> <span data-ttu-id="52c05-145">Vous pouvez utiliser cette technique pour suivre des flux de travail à plusieurs étapes sur les messages de file d'attente, sans devoir reprendre du début si une étape du traitement échoue à cause d'une défaillance matérielle ou logicielle.</span><span class="sxs-lookup"><span data-stu-id="52c05-145">You could use this technique to track multi-step workflows on queue messages, without having to start over from the beginning if a processing step fails due to hardware or software failure.</span></span> <span data-ttu-id="52c05-146">Normalement, vous conservez aussi un nombre de nouvelles tentatives et si le message est retenté plus de *n* fois, vous le supprimez.</span><span class="sxs-lookup"><span data-stu-id="52c05-146">Typically, you would keep a retry count as well, and if the message is retried more than *n* times, you would delete it.</span></span> <span data-ttu-id="52c05-147">Cela protège du déclenchement d'une erreur d'application par un message chaque fois qu'il est traité.</span><span class="sxs-lookup"><span data-stu-id="52c05-147">This protects against a message that triggers an application error each time it is processed.</span></span>
+## <a name="how-to-change-hello-contents-of-a-queued-message"></a><span data-ttu-id="e6b67-140">Comment : modifier le contenu de hello d’un message en file d’attente</span><span class="sxs-lookup"><span data-stu-id="e6b67-140">How to: Change hello contents of a queued message</span></span>
+<span data-ttu-id="e6b67-141">Vous pouvez modifier le contenu de hello d’un message en place dans la file d’attente hello.</span><span class="sxs-lookup"><span data-stu-id="e6b67-141">You can change hello contents of a message in-place in hello queue.</span></span> <span data-ttu-id="e6b67-142">Si le message de type hello représente une tâche de travail, vous pouvez utiliser cet état de hello tooupdate la fonctionnalité de tâche hello.</span><span class="sxs-lookup"><span data-stu-id="e6b67-142">If hello message represents a work task, you could use this feature tooupdate hello status of hello work task.</span></span> <span data-ttu-id="e6b67-143">Hello suivant code met à jour le message de file d’attente hello avec le nouveau contenu et jeux hello tooextend de délai d’attente de visibilité un autre 60 secondes.</span><span class="sxs-lookup"><span data-stu-id="e6b67-143">hello following code updates hello queue message with new contents, and sets hello visibility timeout tooextend another 60 seconds.</span></span> <span data-ttu-id="e6b67-144">Cela enregistre l’état hello du travail associé au message de type hello, ainsi que les clients hello un autre toocontinue minute travaillant sur un message de type hello.</span><span class="sxs-lookup"><span data-stu-id="e6b67-144">This saves hello state of work associated with hello message, and gives hello client another minute toocontinue working on hello message.</span></span> <span data-ttu-id="e6b67-145">Vous pouvez utiliser ce flux de travail à plusieurs étapes de tootrack technique sur les messages de la file d’attente, sans avoir toostart sur du début de hello si une étape de traitement échoue en raison de l’erreur toohardware ou logicielle.</span><span class="sxs-lookup"><span data-stu-id="e6b67-145">You could use this technique tootrack multi-step workflows on queue messages, without having toostart over from hello beginning if a processing step fails due toohardware or software failure.</span></span> <span data-ttu-id="e6b67-146">En règle générale, vous conservez ainsi un nombre de tentatives, et si hello message est retentée plusieurs  *n*  fois, vous le supprimez.</span><span class="sxs-lookup"><span data-stu-id="e6b67-146">Typically, you would keep a retry count as well, and if hello message is retried more than *n* times, you would delete it.</span></span> <span data-ttu-id="e6b67-147">Cela protège du déclenchement d'une erreur d'application par un message chaque fois qu'il est traité.</span><span class="sxs-lookup"><span data-stu-id="e6b67-147">This protects against a message that triggers an application error each time it is processed.</span></span>
 
-<span data-ttu-id="52c05-148">L'exemple de code suivant effectue une recherche dans la file d'attente de messages, recherche le premier message dont le contenu correspond à « Hello, World », modifie le contenu du message, puis se ferme.</span><span class="sxs-lookup"><span data-stu-id="52c05-148">The following code sample searches through the queue of messages, locates the first message that matches "Hello, World" for the content, then modifies the message content and exits.</span></span>
+<span data-ttu-id="e6b67-148">suivant de Hello code recherche d’exemple via la file d’attente hello de messages, localise hello premier message qui correspond à « Hello, World » pour le contenu de hello, puis modifie le contenu du message hello et se termine.</span><span class="sxs-lookup"><span data-stu-id="e6b67-148">hello following code sample searches through hello queue of messages, locates hello first message that matches "Hello, World" for hello content, then modifies hello message content and exits.</span></span>
 
 ```java
 try
@@ -171,28 +171,28 @@ try
     CloudStorageAccount storageAccount =
         CloudStorageAccount.parse(storageConnectionString);
 
-    // Create the queue client.
+    // Create hello queue client.
     CloudQueueClient queueClient = storageAccount.createCloudQueueClient();
 
-    // Retrieve a reference to a queue.
+    // Retrieve a reference tooa queue.
     CloudQueue queue = queueClient.getQueueReference("myqueue");
 
-    // The maximum number of messages that can be retrieved is 32.
+    // hello maximum number of messages that can be retrieved is 32.
     final int MAX_NUMBER_OF_MESSAGES_TO_PEEK = 32;
 
-    // Loop through the messages in the queue.
+    // Loop through hello messages in hello queue.
     for (CloudQueueMessage message : queue.retrieveMessages(MAX_NUMBER_OF_MESSAGES_TO_PEEK,1,null,null))
     {
         // Check for a specific string.
         if (message.getMessageContentAsString().equals("Hello, World"))
         {
-            // Modify the content of the first matching message.
+            // Modify hello content of hello first matching message.
             message.setMessageContent("Updated contents.");
-            // Set it to be visible in 30 seconds.
+            // Set it toobe visible in 30 seconds.
             EnumSet<MessageUpdateFields> updateFields =
                 EnumSet.of(MessageUpdateFields.CONTENT,
                 MessageUpdateFields.VISIBILITY);
-            // Update the message.
+            // Update hello message.
             queue.updateMessage(message, 30, updateFields, null, null);
             break;
         }
@@ -200,12 +200,12 @@ try
 }
 catch (Exception e)
 {
-    // Output the stack trace.
+    // Output hello stack trace.
     e.printStackTrace();
 }
 ```
 
-<span data-ttu-id="52c05-149">L'exemple de code suivant met simplement à jour le premier message visible dans la file d'attente.</span><span class="sxs-lookup"><span data-stu-id="52c05-149">Alternatively, the following code sample updates just the first visible message on the queue.</span></span>
+<span data-ttu-id="e6b67-149">Vous pouvez également hello exemple de code suivant met à jour uniquement hello premier message d’erreur sur la file d’attente hello.</span><span class="sxs-lookup"><span data-stu-id="e6b67-149">Alternatively, hello following code sample updates just hello first visible message on hello queue.</span></span>
 
 ```java
 try
@@ -214,36 +214,36 @@ try
     CloudStorageAccount storageAccount =
        CloudStorageAccount.parse(storageConnectionString);
 
-    // Create the queue client.
+    // Create hello queue client.
     CloudQueueClient queueClient = storageAccount.createCloudQueueClient();
 
-    // Retrieve a reference to a queue.
+    // Retrieve a reference tooa queue.
     CloudQueue queue = queueClient.getQueueReference("myqueue");
 
-    // Retrieve the first visible message in the queue.
+    // Retrieve hello first visible message in hello queue.
     CloudQueueMessage message = queue.retrieveMessage();
 
     if (message != null)
     {
-        // Modify the message content.
+        // Modify hello message content.
         message.setMessageContent("Updated contents.");
-        // Set it to be visible in 60 seconds.
+        // Set it toobe visible in 60 seconds.
         EnumSet<MessageUpdateFields> updateFields =
             EnumSet.of(MessageUpdateFields.CONTENT,
             MessageUpdateFields.VISIBILITY);
-        // Update the message.
+        // Update hello message.
         queue.updateMessage(message, 60, updateFields, null, null);
     }
 }
 catch (Exception e)
 {
-    // Output the stack trace.
+    // Output hello stack trace.
     e.printStackTrace();
 }
 ```
 
-## <a name="how-to-get-the-queue-length"></a><span data-ttu-id="52c05-150">Obtention de la longueur de la file d'attente</span><span class="sxs-lookup"><span data-stu-id="52c05-150">How to: Get the queue length</span></span>
-<span data-ttu-id="52c05-151">Vous pouvez obtenir une estimation du nombre de messages dans une file d'attente.</span><span class="sxs-lookup"><span data-stu-id="52c05-151">You can get an estimate of the number of messages in a queue.</span></span> <span data-ttu-id="52c05-152">La méthode **downloadAttributes** demande au service de File d'attente plusieurs valeurs actives, y compris le nombre de messages dans une file d'attente.</span><span class="sxs-lookup"><span data-stu-id="52c05-152">The **downloadAttributes** method asks the Queue service for several current values, including a count of how many messages are in a queue.</span></span> <span data-ttu-id="52c05-153">Ce nombre est approximatif étant donné que des messages peuvent être ajoutés ou supprimés une fois que le service de File d'attente a répondu à votre demande.</span><span class="sxs-lookup"><span data-stu-id="52c05-153">The count is only approximate because messages can be added or removed after the Queue service responds to your request.</span></span> <span data-ttu-id="52c05-154">La méthode **getApproximateMessageCount** renvoie la dernière valeur extraite par l’appel à **downloadAttributes**, sans appeler le service de File d’attente.</span><span class="sxs-lookup"><span data-stu-id="52c05-154">The **getApproximateMessageCount** method returns the last value retrieved by the call to **downloadAttributes**, without calling the Queue service.</span></span>
+## <a name="how-to-get-hello-queue-length"></a><span data-ttu-id="e6b67-150">Comment : obtenir la longueur de file d’attente hello</span><span class="sxs-lookup"><span data-stu-id="e6b67-150">How to: Get hello queue length</span></span>
+<span data-ttu-id="e6b67-151">Vous pouvez obtenir une estimation du nombre de hello de messages dans une file d’attente.</span><span class="sxs-lookup"><span data-stu-id="e6b67-151">You can get an estimate of hello number of messages in a queue.</span></span> <span data-ttu-id="e6b67-152">Hello **downloadAttributes** méthode vous demande de service de file d’attente hello plusieurs valeurs en cours, y compris un nombre du nombre de messages dans une file d’attente.</span><span class="sxs-lookup"><span data-stu-id="e6b67-152">hello **downloadAttributes** method asks hello Queue service for several current values, including a count of how many messages are in a queue.</span></span> <span data-ttu-id="e6b67-153">nombre de Hello uniquement est approximatif, car les messages peuvent être ajoutées ou supprimées une fois le service de file d’attente de hello répond tooyour demande.</span><span class="sxs-lookup"><span data-stu-id="e6b67-153">hello count is only approximate because messages can be added or removed after hello Queue service responds tooyour request.</span></span> <span data-ttu-id="e6b67-154">Hello **getApproximateMessageCount** méthode renvoie hello dernière valeur récupérée par l’appel de hello trop**downloadAttributes**, sans appeler le service de file d’attente hello.</span><span class="sxs-lookup"><span data-stu-id="e6b67-154">hello **getApproximateMessageCount** method returns hello last value retrieved by hello call too**downloadAttributes**, without calling hello Queue service.</span></span>
 
 ```java
 try
@@ -252,30 +252,30 @@ try
     CloudStorageAccount storageAccount =
        CloudStorageAccount.parse(storageConnectionString);
 
-    // Create the queue client.
+    // Create hello queue client.
     CloudQueueClient queueClient = storageAccount.createCloudQueueClient();
 
-    // Retrieve a reference to a queue.
+    // Retrieve a reference tooa queue.
     CloudQueue queue = queueClient.getQueueReference("myqueue");
 
-   // Download the approximate message count from the server.
+   // Download hello approximate message count from hello server.
     queue.downloadAttributes();
 
-    // Retrieve the newly cached approximate message count.
+    // Retrieve hello newly cached approximate message count.
     long cachedMessageCount = queue.getApproximateMessageCount();
 
-    // Display the queue length.
+    // Display hello queue length.
     System.out.println(String.format("Queue length: %d", cachedMessageCount));
 }
 catch (Exception e)
 {
-    // Output the stack trace.
+    // Output hello stack trace.
     e.printStackTrace();
 }
 ```
 
-## <a name="how-to-dequeue-the-next-message"></a><span data-ttu-id="52c05-155">Procédure : Suppression du message suivant dans la file d’attente</span><span class="sxs-lookup"><span data-stu-id="52c05-155">How to: Dequeue the next message</span></span>
-<span data-ttu-id="52c05-156">Votre code enlève un message d'une file d'attente en deux étapes.</span><span class="sxs-lookup"><span data-stu-id="52c05-156">Your code dequeues a message from a queue in two steps.</span></span> <span data-ttu-id="52c05-157">Lorsque vous appelez **retrieveMessage**, vous obtenez le message suivant dans une file d'attente.</span><span class="sxs-lookup"><span data-stu-id="52c05-157">When you call **retrieveMessage**, you get the next message in a queue.</span></span> <span data-ttu-id="52c05-158">Un message renvoyé par **retrieveMessage** devient invisible de tout autre code lisant les messages de cette file d'attente.</span><span class="sxs-lookup"><span data-stu-id="52c05-158">A message returned from **retrieveMessage** becomes invisible to any other code reading messages from this queue.</span></span> <span data-ttu-id="52c05-159">Par défaut, ce message reste invisible pendant 30 secondes.</span><span class="sxs-lookup"><span data-stu-id="52c05-159">By default, this message stays invisible for 30 seconds.</span></span> <span data-ttu-id="52c05-160">Pour finaliser la suppression du message de la file d'attente, vous devez aussi appeler **deleteMessage**.</span><span class="sxs-lookup"><span data-stu-id="52c05-160">To finish removing the message from the queue, you must also call **deleteMessage**.</span></span> <span data-ttu-id="52c05-161">Ce processus de suppression d'un message en deux étapes garantit que, si votre code ne parvient pas à traiter un message à cause d'une défaillance matérielle ou logicielle, une autre instance de votre code peut obtenir le même message et réessayer.</span><span class="sxs-lookup"><span data-stu-id="52c05-161">This two-step process of removing a message assures that if your code fails to process a message due to hardware or software failure, another instance of your code can get the same message and try again.</span></span> <span data-ttu-id="52c05-162">Votre code appelle **deleteMessage** juste après le traitement du message.</span><span class="sxs-lookup"><span data-stu-id="52c05-162">Your code calls **deleteMessage** right after the message has been processed.</span></span>
+## <a name="how-to-dequeue-hello-next-message"></a><span data-ttu-id="e6b67-155">Comment : message d’appel suivant de retrait</span><span class="sxs-lookup"><span data-stu-id="e6b67-155">How to: Dequeue hello next message</span></span>
+<span data-ttu-id="e6b67-156">Votre code enlève un message d'une file d'attente en deux étapes.</span><span class="sxs-lookup"><span data-stu-id="e6b67-156">Your code dequeues a message from a queue in two steps.</span></span> <span data-ttu-id="e6b67-157">Lorsque vous appelez **retrieveMessage**, vous obtenez un message de type hello suivante dans une file d’attente.</span><span class="sxs-lookup"><span data-stu-id="e6b67-157">When you call **retrieveMessage**, you get hello next message in a queue.</span></span> <span data-ttu-id="e6b67-158">Un message retourné à partir de **retrieveMessage** devient invisible tooany tout autre code de la lecture de messages à partir de cette file d’attente.</span><span class="sxs-lookup"><span data-stu-id="e6b67-158">A message returned from **retrieveMessage** becomes invisible tooany other code reading messages from this queue.</span></span> <span data-ttu-id="e6b67-159">Par défaut, ce message reste invisible pendant 30 secondes.</span><span class="sxs-lookup"><span data-stu-id="e6b67-159">By default, this message stays invisible for 30 seconds.</span></span> <span data-ttu-id="e6b67-160">toofinish lors de la suppression du message de salutation à partir de la file d’attente hello, vous devez également appeler **deleteMessage**.</span><span class="sxs-lookup"><span data-stu-id="e6b67-160">toofinish removing hello message from hello queue, you must also call **deleteMessage**.</span></span> <span data-ttu-id="e6b67-161">Ce processus en deux étapes de la suppression d’un message garantit que si votre code échoue tooprocess qu'un message en raison de la défaillance toohardware ou logiciel, une autre instance de votre code peut obtenir hello même message puis réessayez.</span><span class="sxs-lookup"><span data-stu-id="e6b67-161">This two-step process of removing a message assures that if your code fails tooprocess a message due toohardware or software failure, another instance of your code can get hello same message and try again.</span></span> <span data-ttu-id="e6b67-162">Votre code appelle **deleteMessage** juste après le message de salutation a été traité.</span><span class="sxs-lookup"><span data-stu-id="e6b67-162">Your code calls **deleteMessage** right after hello message has been processed.</span></span>
 
 ```java
 try
@@ -284,32 +284,32 @@ try
     CloudStorageAccount storageAccount =
         CloudStorageAccount.parse(storageConnectionString);
 
-    // Create the queue client.
+    // Create hello queue client.
     CloudQueueClient queueClient = storageAccount.createCloudQueueClient();
 
-    // Retrieve a reference to a queue.
+    // Retrieve a reference tooa queue.
     CloudQueue queue = queueClient.getQueueReference("myqueue");
 
-    // Retrieve the first visible message in the queue.
+    // Retrieve hello first visible message in hello queue.
     CloudQueueMessage retrievedMessage = queue.retrieveMessage();
 
     if (retrievedMessage != null)
     {
-        // Process the message in less than 30 seconds, and then delete the message.
+        // Process hello message in less than 30 seconds, and then delete hello message.
         queue.deleteMessage(retrievedMessage);
     }
 }
 catch (Exception e)
 {
-    // Output the stack trace.
+    // Output hello stack trace.
     e.printStackTrace();
 }
 ```
 
-## <a name="additional-options-for-dequeuing-messages"></a><span data-ttu-id="52c05-163">Options supplémentaires pour la suppression des messages dans la file d'attente</span><span class="sxs-lookup"><span data-stu-id="52c05-163">Additional options for dequeuing messages</span></span>
-<span data-ttu-id="52c05-164">Il existe deux façons de personnaliser l'extraction des messages à partir d'une file d'attente.</span><span class="sxs-lookup"><span data-stu-id="52c05-164">There are two ways you can customize message retrieval from a queue.</span></span> <span data-ttu-id="52c05-165">Premièrement, vous pouvez obtenir un lot de messages (jusqu'à 32).</span><span class="sxs-lookup"><span data-stu-id="52c05-165">First, you can get a batch of messages (up to 32).</span></span> <span data-ttu-id="52c05-166">Deuxièmement, vous pouvez définir un délai d'expiration de l'invisibilité plus long ou plus court afin d'accorder à votre code plus ou moins de temps pour traiter complètement chaque message.</span><span class="sxs-lookup"><span data-stu-id="52c05-166">Second, you can set a longer or shorter invisibility timeout, allowing your code more or less time to fully process each message.</span></span>
+## <a name="additional-options-for-dequeuing-messages"></a><span data-ttu-id="e6b67-163">Options supplémentaires pour la suppression des messages dans la file d'attente</span><span class="sxs-lookup"><span data-stu-id="e6b67-163">Additional options for dequeuing messages</span></span>
+<span data-ttu-id="e6b67-164">Il existe deux façons de personnaliser l'extraction des messages à partir d'une file d'attente.</span><span class="sxs-lookup"><span data-stu-id="e6b67-164">There are two ways you can customize message retrieval from a queue.</span></span> <span data-ttu-id="e6b67-165">Tout d’abord, vous pouvez obtenir un lot de messages (haut too32).</span><span class="sxs-lookup"><span data-stu-id="e6b67-165">First, you can get a batch of messages (up too32).</span></span> <span data-ttu-id="e6b67-166">Ensuite, vous pouvez définir un délai d’attente de l’invisibilité plus ou moins longtemps, ce qui permet de votre code plus ou moins toofully temps traitent chaque message.</span><span class="sxs-lookup"><span data-stu-id="e6b67-166">Second, you can set a longer or shorter invisibility timeout, allowing your code more or less time toofully process each message.</span></span>
 
-<span data-ttu-id="52c05-167">L'exemple de code suivant utilise la méthode **retrieveMessages** pour obtenir 20 messages en un appel.</span><span class="sxs-lookup"><span data-stu-id="52c05-167">The following code example uses the **retrieveMessages** method to get 20 messages in one call.</span></span> <span data-ttu-id="52c05-168">Ensuite, il traite chaque message à l'aide d'une boucle **for** .</span><span class="sxs-lookup"><span data-stu-id="52c05-168">Then it processes each message using a **for** loop.</span></span> <span data-ttu-id="52c05-169">Il définit également le délai d'expiration de l'invisibilité sur cinq minutes (300 secondes) pour chaque message.</span><span class="sxs-lookup"><span data-stu-id="52c05-169">It also sets the invisibility timeout to five minutes (300 seconds) for each message.</span></span> <span data-ttu-id="52c05-170">Notez que le délai de cinq minutes démarre en même temps pour tous les messages, donc une fois les cinq minutes écoulées après l'appel de **retrieveMessages**, tous les messages n'ayant pas été supprimés redeviennent visibles.</span><span class="sxs-lookup"><span data-stu-id="52c05-170">Note that the five minutes starts for all messages at the same time, so when five minutes have passed since the call to **retrieveMessages**, any messages which have not been deleted will become visible again.</span></span>
+<span data-ttu-id="e6b67-167">exemple de code suivant Hello utilise hello **retrieveMessages** messages tooget 20 de méthode dans un seul appel.</span><span class="sxs-lookup"><span data-stu-id="e6b67-167">hello following code example uses hello **retrieveMessages** method tooget 20 messages in one call.</span></span> <span data-ttu-id="e6b67-168">Ensuite, il traite chaque message à l'aide d'une boucle **for** .</span><span class="sxs-lookup"><span data-stu-id="e6b67-168">Then it processes each message using a **for** loop.</span></span> <span data-ttu-id="e6b67-169">Il définit également hello invisibilité du délai d’attente toofive minutes (300 secondes pour chaque message).</span><span class="sxs-lookup"><span data-stu-id="e6b67-169">It also sets hello invisibility timeout toofive minutes (300 seconds) for each message.</span></span> <span data-ttu-id="e6b67-170">Notez que hello cinq minutes démarre pour tous les messages à hello même heure, par conséquent, si cinq minutes se sont écoulées depuis l’appel de hello trop**retrieveMessages**, tous les messages qui n’ont pas été supprimés devient visibles à nouveau.</span><span class="sxs-lookup"><span data-stu-id="e6b67-170">Note that hello five minutes starts for all messages at hello same time, so when five minutes have passed since hello call too**retrieveMessages**, any messages which have not been deleted will become visible again.</span></span>
 
 ```java
 try
@@ -318,13 +318,13 @@ try
     CloudStorageAccount storageAccount =
         CloudStorageAccount.parse(storageConnectionString);
 
-    // Create the queue client.
+    // Create hello queue client.
     CloudQueueClient queueClient = storageAccount.createCloudQueueClient();
 
-    // Retrieve a reference to a queue.
+    // Retrieve a reference tooa queue.
     CloudQueue queue = queueClient.getQueueReference("myqueue");
 
-    // Retrieve 20 messages from the queue with a visibility timeout of 300 seconds.
+    // Retrieve 20 messages from hello queue with a visibility timeout of 300 seconds.
     for (CloudQueueMessage message : queue.retrieveMessages(20, 300, null, null)) {
         // Do processing for all messages in less than 5 minutes,
         // deleting each message after processing.
@@ -333,13 +333,13 @@ try
 }
 catch (Exception e)
 {
-    // Output the stack trace.
+    // Output hello stack trace.
     e.printStackTrace();
 }
 ```
 
-## <a name="how-to-list-the-queues"></a><span data-ttu-id="52c05-171">Procédure : Obtention de la liste des files d’attente</span><span class="sxs-lookup"><span data-stu-id="52c05-171">How to: List the queues</span></span>
-<span data-ttu-id="52c05-172">Pour obtenir la liste des files d’attente en cours, appelez la méthode **CloudQueueClient.listQueues()**, qui renvoie une collection d’objets **CloudQueue**.</span><span class="sxs-lookup"><span data-stu-id="52c05-172">To obtain a list of the current queues, call the **CloudQueueClient.listQueues()** method, which will return a collection of **CloudQueue** objects.</span></span>
+## <a name="how-to-list-hello-queues"></a><span data-ttu-id="e6b67-171">Comment : répertorier les files d’attente hello</span><span class="sxs-lookup"><span data-stu-id="e6b67-171">How to: List hello queues</span></span>
+<span data-ttu-id="e6b67-172">tooobtain une liste de files d’attente en cours de hello, appel hello **CloudQueueClient.listQueues()** méthode qui retourne une collection de **CloudQueue** objets.</span><span class="sxs-lookup"><span data-stu-id="e6b67-172">tooobtain a list of hello current queues, call hello **CloudQueueClient.listQueues()** method, which will return a collection of **CloudQueue** objects.</span></span>
 
 ```java
 try
@@ -348,11 +348,11 @@ try
     CloudStorageAccount storageAccount =
         CloudStorageAccount.parse(storageConnectionString);
 
-    // Create the queue client.
+    // Create hello queue client.
     CloudQueueClient queueClient =
         storageAccount.createCloudQueueClient();
 
-    // Loop through the collection of queues.
+    // Loop through hello collection of queues.
     for (CloudQueue queue : queueClient.listQueues())
     {
         // Output each queue name.
@@ -361,13 +361,13 @@ try
 }
 catch (Exception e)
 {
-    // Output the stack trace.
+    // Output hello stack trace.
     e.printStackTrace();
 }
 ```
 
-## <a name="how-to-delete-a-queue"></a><span data-ttu-id="52c05-173">Suppression d'une file d'attente</span><span class="sxs-lookup"><span data-stu-id="52c05-173">How to: Delete a queue</span></span>
-<span data-ttu-id="52c05-174">Pour supprimer une file d’attente et tous les messages qu’elle contient, appelez la méthode **deleteIfExists** sur l’objet **CloudQueue**.</span><span class="sxs-lookup"><span data-stu-id="52c05-174">To delete a queue and all the messages contained in it, call the **deleteIfExists** method on the **CloudQueue** object.</span></span>
+## <a name="how-to-delete-a-queue"></a><span data-ttu-id="e6b67-173">Suppression d'une file d'attente</span><span class="sxs-lookup"><span data-stu-id="e6b67-173">How to: Delete a queue</span></span>
+<span data-ttu-id="e6b67-174">toodelete une file d’attente et tous les messages hello qu’il contient, appel hello **deleteIfExists** méthode sur hello **CloudQueue** objet.</span><span class="sxs-lookup"><span data-stu-id="e6b67-174">toodelete a queue and all hello messages contained in it, call hello **deleteIfExists** method on hello **CloudQueue** object.</span></span>
 
 ```java
 try
@@ -376,33 +376,33 @@ try
     CloudStorageAccount storageAccount =
         CloudStorageAccount.parse(storageConnectionString);
 
-    // Create the queue client.
+    // Create hello queue client.
     CloudQueueClient queueClient = storageAccount.createCloudQueueClient();
 
-    // Retrieve a reference to a queue.
+    // Retrieve a reference tooa queue.
     CloudQueue queue = queueClient.getQueueReference("myqueue");
 
-    // Delete the queue if it exists.
+    // Delete hello queue if it exists.
     queue.deleteIfExists();
 }
 catch (Exception e)
 {
-    // Output the stack trace.
+    // Output hello stack trace.
     e.printStackTrace();
 }
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="52c05-175">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="52c05-175">Next steps</span></span>
-<span data-ttu-id="52c05-176">Maintenant que vous connaissez les bases du stockage des files d'attente, consultez les liens suivants pour apprendre à exécuter les tâches de stockage plus complexes.</span><span class="sxs-lookup"><span data-stu-id="52c05-176">Now that you've learned the basics of queue storage, follow these links to learn about more complex storage tasks.</span></span>
+## <a name="next-steps"></a><span data-ttu-id="e6b67-175">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="e6b67-175">Next steps</span></span>
+<span data-ttu-id="e6b67-176">Maintenant que vous avez appris les notions de base de hello de stockage de la file d’attente, suivez ces toolearn des liens sur les tâches de stockage plus complexes.</span><span class="sxs-lookup"><span data-stu-id="e6b67-176">Now that you've learned hello basics of queue storage, follow these links toolearn about more complex storage tasks.</span></span>
 
-* <span data-ttu-id="52c05-177">[Kit de développement logiciel (SDK) Stockage Azure pour Java][Azure Storage SDK for Java]</span><span class="sxs-lookup"><span data-stu-id="52c05-177">[Azure Storage SDK for Java][Azure Storage SDK for Java]</span></span>
-* <span data-ttu-id="52c05-178">[Référence du Kit de développement logiciel (SDK) du client Azure Storage][Référence du Kit de développement logiciel (SDK) du client Azure Storage]</span><span class="sxs-lookup"><span data-stu-id="52c05-178">[Azure Storage Client SDK Reference][Azure Storage Client SDK Reference]</span></span>
-* <span data-ttu-id="52c05-179">[API REST services Stockage Azure][Azure Storage Services REST API]</span><span class="sxs-lookup"><span data-stu-id="52c05-179">[Azure Storage Services REST API][Azure Storage Services REST API]</span></span>
-* <span data-ttu-id="52c05-180">[Blog de l’équipe Stockage Azure][Azure Storage Team Blog]</span><span class="sxs-lookup"><span data-stu-id="52c05-180">[Azure Storage Team Blog][Azure Storage Team Blog]</span></span>
+* <span data-ttu-id="e6b67-177">[Kit de développement logiciel (SDK) Azure Storage pour Java][Azure Storage SDK for Java]</span><span class="sxs-lookup"><span data-stu-id="e6b67-177">[Azure Storage SDK for Java][Azure Storage SDK for Java]</span></span>
+* <span data-ttu-id="e6b67-178">[référence SDK cliente de stockage Azure][référence SDK cliente de stockage Azure]</span><span class="sxs-lookup"><span data-stu-id="e6b67-178">[Azure Storage Client SDK Reference][Azure Storage Client SDK Reference]</span></span>
+* <span data-ttu-id="e6b67-179">[API REST services Stockage Azure][Azure Storage Services REST API]</span><span class="sxs-lookup"><span data-stu-id="e6b67-179">[Azure Storage Services REST API][Azure Storage Services REST API]</span></span>
+* <span data-ttu-id="e6b67-180">[Blog de l’équipe Stockage Azure][Azure Storage Team Blog]</span><span class="sxs-lookup"><span data-stu-id="e6b67-180">[Azure Storage Team Blog][Azure Storage Team Blog]</span></span>
 
 [Azure SDK for Java]: http://go.microsoft.com/fwlink/?LinkID=525671
 [Azure Storage SDK for Java]: https://github.com/azure/azure-storage-java
 [Azure Storage SDK for Android]: https://github.com/azure/azure-storage-android
-<span data-ttu-id="52c05-181">[Référence du Kit de développement logiciel (SDK) du client Azure Storage]: http://dl.windowsazure.com/storage/javadoc/</span><span class="sxs-lookup"><span data-stu-id="52c05-181">[Azure Storage Client SDK Reference]: http://dl.windowsazure.com/storage/javadoc/</span></span>
+[référence SDK cliente de stockage Azure]: http://dl.windowsazure.com/storage/javadoc/
 [Azure Storage Services REST API]: https://msdn.microsoft.com/library/azure/dd179355.aspx
 [Azure Storage Team Blog]: http://blogs.msdn.com/b/windowsazurestorage/

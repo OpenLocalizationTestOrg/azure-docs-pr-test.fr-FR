@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory à Optimizely |Microsoft Docs"
-description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et Optimizely."
+description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et Optimizely."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,233 +13,233 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/23/2017
 ms.author: jeedes
-ms.openlocfilehash: 4d6f6da6bace09fbd6ab105530a1162653675c99
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 868aefae27ca155d2963f3dcfcd79bbb564b48ba
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-azure-active-directory-integration-with-optimizely"></a><span data-ttu-id="42b0f-103">Didacticiel : Intégration d’Azure Active Directory avec Optimizely</span><span class="sxs-lookup"><span data-stu-id="42b0f-103">Tutorial: Azure Active Directory integration with Optimizely</span></span>
+# <a name="tutorial-azure-active-directory-integration-with-optimizely"></a><span data-ttu-id="5c50b-103">Didacticiel : Intégration d’Azure Active Directory avec Optimizely</span><span class="sxs-lookup"><span data-stu-id="5c50b-103">Tutorial: Azure Active Directory integration with Optimizely</span></span>
 
-<span data-ttu-id="42b0f-104">Dans ce didacticiel, vous allez apprendre à intégrer Optimizely avec Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="42b0f-104">In this tutorial, you learn how to integrate Optimizely with Azure Active Directory (Azure AD).</span></span>
+<span data-ttu-id="5c50b-104">Dans ce didacticiel, vous apprendrez comment toointegrate Optimizely avec Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="5c50b-104">In this tutorial, you learn how toointegrate Optimizely with Azure Active Directory (Azure AD).</span></span>
 
-<span data-ttu-id="42b0f-105">L’intégration d’Optimizely à Azure AD vous offre les avantages suivants :</span><span class="sxs-lookup"><span data-stu-id="42b0f-105">Integrating Optimizely with Azure AD provides you with the following benefits:</span></span>
+<span data-ttu-id="5c50b-105">Intégration Optimizely à Azure AD offre hello avantages suivants :</span><span class="sxs-lookup"><span data-stu-id="5c50b-105">Integrating Optimizely with Azure AD provides you with hello following benefits:</span></span>
 
-- <span data-ttu-id="42b0f-106">Dans Azure AD, vous pouvez contrôler qui a accès à Optimizely.</span><span class="sxs-lookup"><span data-stu-id="42b0f-106">You can control in Azure AD who has access to Optimizely</span></span>
-- <span data-ttu-id="42b0f-107">Vous pouvez autoriser les utilisateurs à se connecter automatiquement à Optimizely (via l’authentification unique) avec leur compte Azure AD.</span><span class="sxs-lookup"><span data-stu-id="42b0f-107">You can enable your users to automatically get signed-on to Optimizely (Single Sign-On) with their Azure AD accounts</span></span>
-- <span data-ttu-id="42b0f-108">Vous pouvez gérer vos comptes à partir d’un emplacement central : le portail Azure</span><span class="sxs-lookup"><span data-stu-id="42b0f-108">You can manage your accounts in one central location - the Azure portal</span></span>
+- <span data-ttu-id="5c50b-106">Vous pouvez contrôler dans Azure AD qui a accès tooOptimizely</span><span class="sxs-lookup"><span data-stu-id="5c50b-106">You can control in Azure AD who has access tooOptimizely</span></span>
+- <span data-ttu-id="5c50b-107">Vous pouvez activer vos utilisateurs tooautomatically get connecté tooOptimizely (Single Sign-On) avec leurs comptes Azure AD</span><span class="sxs-lookup"><span data-stu-id="5c50b-107">You can enable your users tooautomatically get signed-on tooOptimizely (Single Sign-On) with their Azure AD accounts</span></span>
+- <span data-ttu-id="5c50b-108">Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure</span><span class="sxs-lookup"><span data-stu-id="5c50b-108">You can manage your accounts in one central location - hello Azure portal</span></span>
 
-<span data-ttu-id="42b0f-109">Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="42b0f-109">If you want to know more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
+<span data-ttu-id="5c50b-109">Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="5c50b-109">If you want tooknow more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="42b0f-110">Composants requis</span><span class="sxs-lookup"><span data-stu-id="42b0f-110">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="5c50b-110">Composants requis</span><span class="sxs-lookup"><span data-stu-id="5c50b-110">Prerequisites</span></span>
 
-<span data-ttu-id="42b0f-111">Pour configurer l’intégration d’Azure AD avec Optimizely, vous avez besoin des éléments suivants :</span><span class="sxs-lookup"><span data-stu-id="42b0f-111">To configure Azure AD integration with Optimizely, you need the following items:</span></span>
+<span data-ttu-id="5c50b-111">tooconfigure intégration d’Azure AD avec Optimizely, vous devez hello éléments suivants :</span><span class="sxs-lookup"><span data-stu-id="5c50b-111">tooconfigure Azure AD integration with Optimizely, you need hello following items:</span></span>
 
-- <span data-ttu-id="42b0f-112">Un abonnement Azure AD</span><span class="sxs-lookup"><span data-stu-id="42b0f-112">An Azure AD subscription</span></span>
-- <span data-ttu-id="42b0f-113">Un abonnement Optimizely pour lequel l’authentification unique est activée</span><span class="sxs-lookup"><span data-stu-id="42b0f-113">An Optimizely single sign-on enabled subscription</span></span>
+- <span data-ttu-id="5c50b-112">Un abonnement Azure AD</span><span class="sxs-lookup"><span data-stu-id="5c50b-112">An Azure AD subscription</span></span>
+- <span data-ttu-id="5c50b-113">Un abonnement Optimizely pour lequel l’authentification unique est activée</span><span class="sxs-lookup"><span data-stu-id="5c50b-113">An Optimizely single sign-on enabled subscription</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="42b0f-114">Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.</span><span class="sxs-lookup"><span data-stu-id="42b0f-114">To test the steps in this tutorial, we do not recommend using a production environment.</span></span>
+> <span data-ttu-id="5c50b-114">tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.</span><span class="sxs-lookup"><span data-stu-id="5c50b-114">tootest hello steps in this tutorial, we do not recommend using a production environment.</span></span>
 
-<span data-ttu-id="42b0f-115">Vous devez en outre suivre les recommandations ci-dessous :</span><span class="sxs-lookup"><span data-stu-id="42b0f-115">To test the steps in this tutorial, you should follow these recommendations:</span></span>
+<span data-ttu-id="5c50b-115">tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :</span><span class="sxs-lookup"><span data-stu-id="5c50b-115">tootest hello steps in this tutorial, you should follow these recommendations:</span></span>
 
-- <span data-ttu-id="42b0f-116">N’utilisez pas votre environnement de production, sauf si cela est nécessaire.</span><span class="sxs-lookup"><span data-stu-id="42b0f-116">Do not use your production environment, unless it is necessary.</span></span>
-- <span data-ttu-id="42b0f-117">Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="42b0f-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
+- <span data-ttu-id="5c50b-116">N’utilisez pas votre environnement de production, sauf si cela est nécessaire.</span><span class="sxs-lookup"><span data-stu-id="5c50b-116">Do not use your production environment, unless it is necessary.</span></span>
+- <span data-ttu-id="5c50b-117">Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="5c50b-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
 
-## <a name="scenario-description"></a><span data-ttu-id="42b0f-118">Description du scénario</span><span class="sxs-lookup"><span data-stu-id="42b0f-118">Scenario description</span></span>
-<span data-ttu-id="42b0f-119">Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test.</span><span class="sxs-lookup"><span data-stu-id="42b0f-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="42b0f-120">Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :</span><span class="sxs-lookup"><span data-stu-id="42b0f-120">The scenario outlined in this tutorial consists of two main building blocks:</span></span>
+## <a name="scenario-description"></a><span data-ttu-id="5c50b-118">Description du scénario</span><span class="sxs-lookup"><span data-stu-id="5c50b-118">Scenario description</span></span>
+<span data-ttu-id="5c50b-119">Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test.</span><span class="sxs-lookup"><span data-stu-id="5c50b-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="5c50b-120">scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :</span><span class="sxs-lookup"><span data-stu-id="5c50b-120">hello scenario outlined in this tutorial consists of two main building blocks:</span></span>
 
-1. <span data-ttu-id="42b0f-121">Ajout d’Optimizely à partir de la galerie</span><span class="sxs-lookup"><span data-stu-id="42b0f-121">Adding Optimizely from the gallery</span></span>
-2. <span data-ttu-id="42b0f-122">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="42b0f-122">Configuring and testing Azure AD single sign-on</span></span>
+1. <span data-ttu-id="5c50b-121">Ajout de Optimizely à partir de la galerie de hello</span><span class="sxs-lookup"><span data-stu-id="5c50b-121">Adding Optimizely from hello gallery</span></span>
+2. <span data-ttu-id="5c50b-122">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="5c50b-122">Configuring and testing Azure AD single sign-on</span></span>
 
-## <a name="adding-optimizely-from-the-gallery"></a><span data-ttu-id="42b0f-123">Ajout d’Optimizely à partir de la galerie</span><span class="sxs-lookup"><span data-stu-id="42b0f-123">Adding Optimizely from the gallery</span></span>
-<span data-ttu-id="42b0f-124">Pour configurer l’intégration d’Optimizely avec Azure AD, vous devez ajouter Optimizely à partir de la galerie à votre liste d’applications SaaS gérées.</span><span class="sxs-lookup"><span data-stu-id="42b0f-124">To configure the integration of Optimizely into Azure AD, you need to add Optimizely from the gallery to your list of managed SaaS apps.</span></span>
+## <a name="adding-optimizely-from-hello-gallery"></a><span data-ttu-id="5c50b-123">Ajout de Optimizely à partir de la galerie de hello</span><span class="sxs-lookup"><span data-stu-id="5c50b-123">Adding Optimizely from hello gallery</span></span>
+<span data-ttu-id="5c50b-124">intégration de hello tooconfigure de Optimizely dans Azure AD, vous devez tooadd Optimizely à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.</span><span class="sxs-lookup"><span data-stu-id="5c50b-124">tooconfigure hello integration of Optimizely into Azure AD, you need tooadd Optimizely from hello gallery tooyour list of managed SaaS apps.</span></span>
 
-<span data-ttu-id="42b0f-125">**Pour ajouter Optimizely à partir de la galerie, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="42b0f-125">**To add Optimizely from the gallery, perform the following steps:**</span></span>
+<span data-ttu-id="5c50b-125">**tooadd Optimizely à partir de la galerie hello, procédez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="5c50b-125">**tooadd Optimizely from hello gallery, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="42b0f-126">Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**.</span><span class="sxs-lookup"><span data-stu-id="42b0f-126">In the **[Azure portal](https://portal.azure.com)**, on the left navigation panel, click **Azure Active Directory** icon.</span></span> 
+1. <span data-ttu-id="5c50b-126">Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.</span><span class="sxs-lookup"><span data-stu-id="5c50b-126">In hello **[Azure portal](https://portal.azure.com)**, on hello left navigation panel, click **Azure Active Directory** icon.</span></span> 
 
     ![Active Directory][1]
 
-2. <span data-ttu-id="42b0f-128">Accédez à **Applications d’entreprise**.</span><span class="sxs-lookup"><span data-stu-id="42b0f-128">Navigate to **Enterprise applications**.</span></span> <span data-ttu-id="42b0f-129">Accédez ensuite à **Toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="42b0f-129">Then go to **All applications**.</span></span>
+2. <span data-ttu-id="5c50b-128">Accédez trop**des applications d’entreprise**.</span><span class="sxs-lookup"><span data-stu-id="5c50b-128">Navigate too**Enterprise applications**.</span></span> <span data-ttu-id="5c50b-129">Passez trop**toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="5c50b-129">Then go too**All applications**.</span></span>
 
     ![Applications][2]
     
-3. <span data-ttu-id="42b0f-131">Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.</span><span class="sxs-lookup"><span data-stu-id="42b0f-131">To add new application, click **New application** button on the top of dialog.</span></span>
+3. <span data-ttu-id="5c50b-131">tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.</span><span class="sxs-lookup"><span data-stu-id="5c50b-131">tooadd new application, click **New application** button on hello top of dialog.</span></span>
 
     ![Applications][3]
 
-4. <span data-ttu-id="42b0f-133">Dans la zone de recherche, tapez **Optimizely**.</span><span class="sxs-lookup"><span data-stu-id="42b0f-133">In the search box, type **Optimizely**.</span></span>
+4. <span data-ttu-id="5c50b-133">Dans la zone de recherche de hello, tapez **Optimizely**.</span><span class="sxs-lookup"><span data-stu-id="5c50b-133">In hello search box, type **Optimizely**.</span></span>
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-optimizely-tutorial/tutorial_optimizely_search.png)
 
-5. <span data-ttu-id="42b0f-135">Dans le volet de résultats, sélectionnez **Optimizely**, puis cliquez sur **Ajouter** pour ajouter l’application.</span><span class="sxs-lookup"><span data-stu-id="42b0f-135">In the results panel, select **Optimizely**, and then click **Add** button to add the application.</span></span>
+5. <span data-ttu-id="5c50b-135">Dans le volet de résultats hello, sélectionnez **Optimizely**, puis cliquez sur **ajouter** bouton application hello de tooadd.</span><span class="sxs-lookup"><span data-stu-id="5c50b-135">In hello results panel, select **Optimizely**, and then click **Add** button tooadd hello application.</span></span>
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-optimizely-tutorial/tutorial_optimizely_addfromgallery.png)
 
-##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="42b0f-137">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="42b0f-137">Configuring and testing Azure AD single sign-on</span></span>
-<span data-ttu-id="42b0f-138">Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec Optimizely avec un utilisateur de test appelé « Britta Simon ».</span><span class="sxs-lookup"><span data-stu-id="42b0f-138">In this section, you configure and test Azure AD single sign-on with Optimizely based on a test user called "Britta Simon."</span></span>
+##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="5c50b-137">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="5c50b-137">Configuring and testing Azure AD single sign-on</span></span>
+<span data-ttu-id="5c50b-138">Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec Optimizely avec un utilisateur de test appelé « Britta Simon ».</span><span class="sxs-lookup"><span data-stu-id="5c50b-138">In this section, you configure and test Azure AD single sign-on with Optimizely based on a test user called "Britta Simon."</span></span>
 
-<span data-ttu-id="42b0f-139">Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur Optimizely équivalent dans Azure AD.</span><span class="sxs-lookup"><span data-stu-id="42b0f-139">For single sign-on to work, Azure AD needs to know what the counterpart user in Optimizely is to a user in Azure AD.</span></span> <span data-ttu-id="42b0f-140">En d’autres termes, une relation entre l’utilisateur Azure AD et l’utilisateur Optimizely associé doit être établie.</span><span class="sxs-lookup"><span data-stu-id="42b0f-140">In other words, a link relationship between an Azure AD user and the related user in Optimizely needs to be established.</span></span>
+<span data-ttu-id="5c50b-139">Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans Optimizely est tooa utilisateur dans Azure AD.</span><span class="sxs-lookup"><span data-stu-id="5c50b-139">For single sign-on toowork, Azure AD needs tooknow what hello counterpart user in Optimizely is tooa user in Azure AD.</span></span> <span data-ttu-id="5c50b-140">En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans Optimizely doit toobe établie.</span><span class="sxs-lookup"><span data-stu-id="5c50b-140">In other words, a link relationship between an Azure AD user and hello related user in Optimizely needs toobe established.</span></span>
 
-<span data-ttu-id="42b0f-141">Pour cela, affectez la valeur de **nom d’utilisateur** dans Azure AD comme valeur de **nom d’utilisateur** dans Optimizely.</span><span class="sxs-lookup"><span data-stu-id="42b0f-141">This link relationship is established by assigning the value of the **user name** in Azure AD as the value of the **Username** in Optimizely.</span></span>
+<span data-ttu-id="5c50b-141">Cette relation de lien est établie en assignant la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** dans Optimizely.</span><span class="sxs-lookup"><span data-stu-id="5c50b-141">This link relationship is established by assigning hello value of hello **user name** in Azure AD as hello value of hello **Username** in Optimizely.</span></span>
 
-<span data-ttu-id="42b0f-142">Pour configurer et tester l’authentification unique Azure AD avec Optimizely, vous devez suivre les indications des sections suivantes :</span><span class="sxs-lookup"><span data-stu-id="42b0f-142">To configure and test Azure AD single sign-on with Optimizely, you need to complete the following building blocks:</span></span>
+<span data-ttu-id="5c50b-142">tooconfigure et test Azure AD l’authentification unique avec Optimizely, vous devez hello toocomplete suivant des blocs de construction :</span><span class="sxs-lookup"><span data-stu-id="5c50b-142">tooconfigure and test Azure AD single sign-on with Optimizely, you need toocomplete hello following building blocks:</span></span>
 
-1. <span data-ttu-id="42b0f-143">**[Configuration de l’authentification unique Azure AD](#configuring-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.</span><span class="sxs-lookup"><span data-stu-id="42b0f-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - to enable your users to use this feature.</span></span>
-2. <span data-ttu-id="42b0f-144">**[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="42b0f-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.</span></span>
-3. <span data-ttu-id="42b0f-145">**[Création d’un utilisateur de test Optimizely](#creating-an-optimizely-test-user)** pour avoir un équivalent de Britta Simon dans Optimizely lié à la représentation Azure AD associée.</span><span class="sxs-lookup"><span data-stu-id="42b0f-145">**[Creating an Optimizely test user](#creating-an-optimizely-test-user)** - to have a counterpart of Britta Simon in Optimizely that is linked to the Azure AD representation of user.</span></span>
-4. <span data-ttu-id="42b0f-146">**[Affectation de l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.</span><span class="sxs-lookup"><span data-stu-id="42b0f-146">**[Assigning the Azure AD test user](#assigning-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.</span></span>
-5. <span data-ttu-id="42b0f-147">**[Testing Single Sign-On](#testing-single-sign-on)** pour vérifier si la configuration fonctionne.</span><span class="sxs-lookup"><span data-stu-id="42b0f-147">**[Testing Single Sign-On](#testing-single-sign-on)** - to verify whether the configuration works.</span></span>
+1. <span data-ttu-id="5c50b-143">**[Configuration d’Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.</span><span class="sxs-lookup"><span data-stu-id="5c50b-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - tooenable your users toouse this feature.</span></span>
+2. <span data-ttu-id="5c50b-144">**[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="5c50b-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - tootest Azure AD single sign-on with Britta Simon.</span></span>
+3. <span data-ttu-id="5c50b-145">**[Création d’un utilisateur de test Optimizely](#creating-an-optimizely-test-user)**  -toohave un équivalent de Britta Simon dans Optimizely est la représentation sous forme de toohello lié Azure AD de l’utilisateur.</span><span class="sxs-lookup"><span data-stu-id="5c50b-145">**[Creating an Optimizely test user](#creating-an-optimizely-test-user)** - toohave a counterpart of Britta Simon in Optimizely that is linked toohello Azure AD representation of user.</span></span>
+4. <span data-ttu-id="5c50b-146">**[Utilisateur de test affectation hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="5c50b-146">**[Assigning hello Azure AD test user](#assigning-the-azure-ad-test-user)** - tooenable Britta Simon toouse Azure AD single sign-on.</span></span>
+5. <span data-ttu-id="5c50b-147">**[Test de l’authentification unique sur](#testing-single-sign-on)**  -tooverify hello indique si les tâches de configuration.</span><span class="sxs-lookup"><span data-stu-id="5c50b-147">**[Testing Single Sign-On](#testing-single-sign-on)** - tooverify whether hello configuration works.</span></span>
 
-### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="42b0f-148">Configuration de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="42b0f-148">Configuring Azure AD single sign-on</span></span>
+### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="5c50b-148">Configuration de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="5c50b-148">Configuring Azure AD single sign-on</span></span>
 
-<span data-ttu-id="42b0f-149">Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure et configurer l’authentification unique dans votre application Optimizely.</span><span class="sxs-lookup"><span data-stu-id="42b0f-149">In this section, you enable Azure AD single sign-on in the Azure portal and configure single sign-on in your Optimizely application.</span></span>
+<span data-ttu-id="5c50b-149">Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application Optimizely.</span><span class="sxs-lookup"><span data-stu-id="5c50b-149">In this section, you enable Azure AD single sign-on in hello Azure portal and configure single sign-on in your Optimizely application.</span></span>
 
-<span data-ttu-id="42b0f-150">**Pour configurer l’authentification unique Azure AD avec Optimizely, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="42b0f-150">**To configure Azure AD single sign-on with Optimizely, perform the following steps:**</span></span>
+<span data-ttu-id="5c50b-150">**tooconfigure Azure AD single sign-on avec Optimizely, effectuez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="5c50b-150">**tooconfigure Azure AD single sign-on with Optimizely, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="42b0f-151">Dans le portail Azure, sur la page d’intégration de l’application **Optimizely**, cliquez sur **Authentification unique**.</span><span class="sxs-lookup"><span data-stu-id="42b0f-151">In the Azure portal, on the **Optimizely** application integration page, click **Single sign-on**.</span></span>
+1. <span data-ttu-id="5c50b-151">Bonjour portail Azure, sur hello **Optimizely** page d’intégration d’application, cliquez sur **l’authentification unique**.</span><span class="sxs-lookup"><span data-stu-id="5c50b-151">In hello Azure portal, on hello **Optimizely** application integration page, click **Single sign-on**.</span></span>
 
     ![Configurer l’authentification unique][4]
 
-2. <span data-ttu-id="42b0f-153">Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="42b0f-153">On the **Single sign-on** dialog, select **Mode** as **SAML-based Sign-on** to enable single sign-on.</span></span>
+2. <span data-ttu-id="5c50b-153">Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="5c50b-153">On hello **Single sign-on** dialog, select **Mode** as   **SAML-based Sign-on** tooenable single sign-on.</span></span>
  
     ![Configurer l’authentification unique](./media/active-directory-saas-optimizely-tutorial/tutorial_optimizely_samlbase.png)
 
-3. <span data-ttu-id="42b0f-155">Dans la section **Domaine et URL Optimizely**, procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="42b0f-155">On the **Optimizely Domain and URLs** section, perform the following steps:</span></span>
+3. <span data-ttu-id="5c50b-155">Sur hello **Optimizely domaine et les URL** section, effectuer hello comme suit :</span><span class="sxs-lookup"><span data-stu-id="5c50b-155">On hello **Optimizely Domain and URLs** section, perform hello following steps:</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-optimizely-tutorial/tutorial_optimizely_url.png)
 
-    <span data-ttu-id="42b0f-157">a.</span><span class="sxs-lookup"><span data-stu-id="42b0f-157">a.</span></span> <span data-ttu-id="42b0f-158">Dans la zone de texte **URL de connexion**, tapez une URL au format suivant : `https://app.optimizely.net/<instance name>`</span><span class="sxs-lookup"><span data-stu-id="42b0f-158">In the **Sign-on URL** textbox, type a URL using the following pattern: `https://app.optimizely.net/<instance name>`</span></span>
+    <span data-ttu-id="5c50b-157">a.</span><span class="sxs-lookup"><span data-stu-id="5c50b-157">a.</span></span> <span data-ttu-id="5c50b-158">Bonjour **URL de connexion** zone de texte, tapez une URL à l’aide de hello modèle :`https://app.optimizely.net/<instance name>`</span><span class="sxs-lookup"><span data-stu-id="5c50b-158">In hello **Sign-on URL** textbox, type a URL using hello following pattern: `https://app.optimizely.net/<instance name>`</span></span>
 
-    <span data-ttu-id="42b0f-159">b.</span><span class="sxs-lookup"><span data-stu-id="42b0f-159">b.</span></span> <span data-ttu-id="42b0f-160">Dans la zone de texte **Identificateur**, tapez une URL au format suivant : `urn:auth0:optimizely:contoso`</span><span class="sxs-lookup"><span data-stu-id="42b0f-160">In the **Identifier** textbox, type a URL using the following pattern:  `urn:auth0:optimizely:contoso`</span></span>
+    <span data-ttu-id="5c50b-159">b.</span><span class="sxs-lookup"><span data-stu-id="5c50b-159">b.</span></span> <span data-ttu-id="5c50b-160">Bonjour **identificateur** zone de texte, tapez une URL à l’aide de hello modèle :`urn:auth0:optimizely:contoso`</span><span class="sxs-lookup"><span data-stu-id="5c50b-160">In hello **Identifier** textbox, type a URL using hello following pattern:  `urn:auth0:optimizely:contoso`</span></span>
 
     > [!NOTE] 
-    > <span data-ttu-id="42b0f-161">Il ne s’agit pas des valeurs réelles.</span><span class="sxs-lookup"><span data-stu-id="42b0f-161">These values are not the real.</span></span> <span data-ttu-id="42b0f-162">Vous mettrez à jour la valeur avec l’URL de connexion et l’identificateur réels. La procédure est expliquée plus loin dans le didacticiel.</span><span class="sxs-lookup"><span data-stu-id="42b0f-162">You will update the value with the actual Sign-on URL and Identifier, which is explained later in the tutorial.</span></span> 
+    > <span data-ttu-id="5c50b-161">Ces valeurs ne sont pas hello réel.</span><span class="sxs-lookup"><span data-stu-id="5c50b-161">These values are not hello real.</span></span> <span data-ttu-id="5c50b-162">Vous mettrez à jour la valeur de hello avec l’URL de connexion réel hello et identificateur, qui est expliquée plus loin dans le didacticiel de hello.</span><span class="sxs-lookup"><span data-stu-id="5c50b-162">You will update hello value with hello actual Sign-on URL and Identifier, which is explained later in hello tutorial.</span></span> 
 
-4. <span data-ttu-id="42b0f-163">Dans la section **Certificat de signature SAML**, cliquez sur **Téléchargez le certificat (Base64)** puis enregistrez le fichier du certificat sur votre ordinateur.</span><span class="sxs-lookup"><span data-stu-id="42b0f-163">On the **SAML Signing Certificate** section, click **Certificate(Base64)** and then save the certificate file on your computer.</span></span>
+4. <span data-ttu-id="5c50b-163">Sur hello **le certificat de signature SAML** , cliquez sur **Certificate(Base64)** , puis enregistrez le fichier de certificat hello sur votre ordinateur.</span><span class="sxs-lookup"><span data-stu-id="5c50b-163">On hello **SAML Signing Certificate** section, click **Certificate(Base64)** and then save hello certificate file on your computer.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-optimizely-tutorial/tutorial_optimizely_certificate.png) 
 
-5. <span data-ttu-id="42b0f-165">Cliquez sur le bouton **Enregistrer** .</span><span class="sxs-lookup"><span data-stu-id="42b0f-165">Click **Save** button.</span></span>
+5. <span data-ttu-id="5c50b-165">Cliquez sur le bouton **Enregistrer** .</span><span class="sxs-lookup"><span data-stu-id="5c50b-165">Click **Save** button.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-optimizely-tutorial/tutorial_general_400.png)
 
-6. <span data-ttu-id="42b0f-167">Dans la section **Configuration d’Optimizely**, cliquez sur **Configurer Optimizely** pour ouvrir la fenêtre **Configurer l’authentification**.</span><span class="sxs-lookup"><span data-stu-id="42b0f-167">On the **Optimizely Configuration** section, click **Configure Optimizely** to open **Configure sign-on** window.</span></span> <span data-ttu-id="42b0f-168">Copiez l**’URL du service d’authentification unique SAML** à partir de la **section Référence rapide.**</span><span class="sxs-lookup"><span data-stu-id="42b0f-168">Copy the **SAML Single Sign-On Service URL** from the **Quick Reference section.**</span></span>
+6. <span data-ttu-id="5c50b-167">Sur hello **Optimizely Configuration** , cliquez sur **Optimizely de configurer** tooopen **configurer l’authentification** fenêtre.</span><span class="sxs-lookup"><span data-stu-id="5c50b-167">On hello **Optimizely Configuration** section, click **Configure Optimizely** tooopen **Configure sign-on** window.</span></span> <span data-ttu-id="5c50b-168">Hello de copie **SAML Sign-On URL du Service unique** de hello **section de référence rapide.**</span><span class="sxs-lookup"><span data-stu-id="5c50b-168">Copy hello **SAML Single Sign-On Service URL** from hello **Quick Reference section.**</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-optimizely-tutorial/tutorial_optimizely_configure.png) 
 
-7. <span data-ttu-id="42b0f-170">Pour configurer l’authentification unique côté **Optimizely**, contactez votre responsable de compte Optimizely et fournissez-lui le **certificat (Base64)** téléchargé et **l’URL du service d’authentification unique SAML**.</span><span class="sxs-lookup"><span data-stu-id="42b0f-170">To configure single sign-on on **Optimizely** side, contact your Optimizely Account Manager and provide the downloaded **Certificate (Base64)**, and **SAML Single Sign-On Service URL**.</span></span> 
+7. <span data-ttu-id="5c50b-170">tooconfigure l’authentification unique sur **Optimizely** côté, contactez votre responsable de compte Optimizely et fournissez hello téléchargé **certificat (Base64)**, et **SAML Sign-On URL du Service unique** .</span><span class="sxs-lookup"><span data-stu-id="5c50b-170">tooconfigure single sign-on on **Optimizely** side, contact your Optimizely Account Manager and provide hello downloaded **Certificate (Base64)**, and **SAML Single Sign-On Service URL**.</span></span> 
 
-8. <span data-ttu-id="42b0f-171">En réponse à votre e-mail, Optimizely vous fournit l’URL de connexion (authentification unique initiée par le fournisseur de service) et l’identificateur (ID d’entité du fournisseur de service).</span><span class="sxs-lookup"><span data-stu-id="42b0f-171">In response to your email, Optimizely provides you with the Sign On URL (SP-initiated SSO) and the Identifier (Service Provider Entity ID) values.</span></span>
+8. <span data-ttu-id="5c50b-171">Par courrier électronique de réponse tooyour, Optimizely vous offre hello URL de connexion (l’authentification unique initiée par le Service Pack) et hello des valeurs d’identificateur (ID d’entité fournisseur de Service).</span><span class="sxs-lookup"><span data-stu-id="5c50b-171">In response tooyour email, Optimizely provides you with hello Sign On URL (SP-initiated SSO) and hello Identifier (Service Provider Entity ID) values.</span></span>
 
-    <span data-ttu-id="42b0f-172">a.</span><span class="sxs-lookup"><span data-stu-id="42b0f-172">a.</span></span> <span data-ttu-id="42b0f-173">Copiez **l’URL d’authentification unique initiée par SP** fournie par Optimizely, puis collez-la dans la zone de texte **URL de connexion** de la section **Domaine et URL Optimizely** sur le portail Azure.</span><span class="sxs-lookup"><span data-stu-id="42b0f-173">Copy the **SP-initiated SSO URL** provided by Optimizely, and paste into the **Sign On URL** textbox in **Optimizely Domain and URLs** section on Azure portal</span></span> 
+    <span data-ttu-id="5c50b-172">a.</span><span class="sxs-lookup"><span data-stu-id="5c50b-172">a.</span></span> <span data-ttu-id="5c50b-173">Hello de copie **URL d’authentification unique initiée par SP** fourni par Optimizely, puis coller dans hello **URL de connexion** zone de texte dans **Optimizely domaine et les URL** section sur le portail Azure</span><span class="sxs-lookup"><span data-stu-id="5c50b-173">Copy hello **SP-initiated SSO URL** provided by Optimizely, and paste into hello **Sign On URL** textbox in **Optimizely Domain and URLs** section on Azure portal</span></span> 
 
-    <span data-ttu-id="42b0f-174">b.</span><span class="sxs-lookup"><span data-stu-id="42b0f-174">b.</span></span> <span data-ttu-id="42b0f-175">Copiez **l’ID d’entité du fournisseur d’identité** fourni par Optimizely, puis collez-le dans la zone de texte **Identificateur** de la section **Domaine et URL Optimizely** sur le portail Azure.</span><span class="sxs-lookup"><span data-stu-id="42b0f-175">Copy the **Service Provider Entity ID** provided by Optimizely, and paste into the **Identifier** textbox in **Optimizely Domain and URLs** section on Azure portal</span></span> 
+    <span data-ttu-id="5c50b-174">b.</span><span class="sxs-lookup"><span data-stu-id="5c50b-174">b.</span></span> <span data-ttu-id="5c50b-175">Hello de copie **ID d’entité de fournisseur de Service** fourni par Optimizely, puis coller dans hello **identificateur** zone de texte dans **Optimizely domaine et les URL** section sur le portail Azure</span><span class="sxs-lookup"><span data-stu-id="5c50b-175">Copy hello **Service Provider Entity ID** provided by Optimizely, and paste into hello **Identifier** textbox in **Optimizely Domain and URLs** section on Azure portal</span></span> 
 
-9. <span data-ttu-id="42b0f-176">Dans une autre fenêtre de navigateur, connectez-vous à votre application Optimizely.</span><span class="sxs-lookup"><span data-stu-id="42b0f-176">In a different browser window, sign-on to your Optimizely application.</span></span>
+9. <span data-ttu-id="5c50b-176">Dans une autre fenêtre de navigateur, l’authentification tooyour Optimizely application.</span><span class="sxs-lookup"><span data-stu-id="5c50b-176">In a different browser window, sign-on tooyour Optimizely application.</span></span>
 
-10. <span data-ttu-id="42b0f-177">Cliquez sur le nom de votre compte dans l’angle supérieur droit, puis sur **Paramètres du compte**.</span><span class="sxs-lookup"><span data-stu-id="42b0f-177">Click you account name in the top right corner and then **Account Settings**.</span></span>
+10. <span data-ttu-id="5c50b-177">Cliquez sur vous nom du compte dans la partie supérieure de hello coin supérieur droit, puis **les paramètres de compte**.</span><span class="sxs-lookup"><span data-stu-id="5c50b-177">Click you account name in hello top right corner and then **Account Settings**.</span></span>
    
     ![Authentification unique Azure AD](./media/active-directory-saas-optimizely-tutorial/tutorial_optimizely_09.png)
 
-11. <span data-ttu-id="42b0f-179">Sous l’onglet Compte, cochez la case **Activer l’authentification unique** sous Authentification unique dans la section **Vue d’ensemble**.</span><span class="sxs-lookup"><span data-stu-id="42b0f-179">In the Account tab, check the box **Enable SSO** under Single Sign On in the **Overview** section.</span></span>
+11. <span data-ttu-id="5c50b-179">Dans l’onglet compte hello hello case **activez SSO** sous Single Sign On Bonjour **vue d’ensemble** section.</span><span class="sxs-lookup"><span data-stu-id="5c50b-179">In hello Account tab, check hello box **Enable SSO** under Single Sign On in hello **Overview** section.</span></span>
    
     ![Authentification unique Azure AD](./media/active-directory-saas-optimizely-tutorial/tutorial_optimizely_10.png)
     
-12. <span data-ttu-id="42b0f-181">Cliquez sur **Enregistrer**.</span><span class="sxs-lookup"><span data-stu-id="42b0f-181">Click **Save**</span></span>
+12. <span data-ttu-id="5c50b-181">Cliquez sur **Enregistrer**.</span><span class="sxs-lookup"><span data-stu-id="5c50b-181">Click **Save**</span></span>
 
 > [!TIP]
-> <span data-ttu-id="42b0f-182">Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.</span><span class="sxs-lookup"><span data-stu-id="42b0f-182">You can now read a concise version of these instructions inside the [Azure portal](https://portal.azure.com), while you are setting up the app!</span></span>  <span data-ttu-id="42b0f-183">Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas.</span><span class="sxs-lookup"><span data-stu-id="42b0f-183">After adding this app from the **Active Directory > Enterprise Applications** section, simply click the **Single Sign-On** tab and access the embedded documentation through the **Configuration** section at the bottom.</span></span> <span data-ttu-id="42b0f-184">Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="42b0f-184">You can read more about the embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
+> <span data-ttu-id="5c50b-182">Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !</span><span class="sxs-lookup"><span data-stu-id="5c50b-182">You can now read a concise version of these instructions inside hello [Azure portal](https://portal.azure.com), while you are setting up hello app!</span></span>  <span data-ttu-id="5c50b-183">Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello.</span><span class="sxs-lookup"><span data-stu-id="5c50b-183">After adding this app from hello **Active Directory > Enterprise Applications** section, simply click hello **Single Sign-On** tab and access hello embedded documentation through hello **Configuration** section at hello bottom.</span></span> <span data-ttu-id="5c50b-184">Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="5c50b-184">You can read more about hello embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
 > 
 
-### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="42b0f-185">Création d’un utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="42b0f-185">Creating an Azure AD test user</span></span>
-<span data-ttu-id="42b0f-186">L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.</span><span class="sxs-lookup"><span data-stu-id="42b0f-186">The objective of this section is to create a test user in the Azure portal called Britta Simon.</span></span>
+### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="5c50b-185">Création d’un utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="5c50b-185">Creating an Azure AD test user</span></span>
+<span data-ttu-id="5c50b-186">objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.</span><span class="sxs-lookup"><span data-stu-id="5c50b-186">hello objective of this section is toocreate a test user in hello Azure portal called Britta Simon.</span></span>
 
 ![Créer un utilisateur Azure AD][100]
 
-<span data-ttu-id="42b0f-188">**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="42b0f-188">**To create a test user in Azure AD, perform the following steps:**</span></span>
+<span data-ttu-id="5c50b-188">**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="5c50b-188">**toocreate a test user in Azure AD, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="42b0f-189">Dans le panneau de navigation gauche du **portail Azure**, cliquez sur l’icône **Azure Active Directory**.</span><span class="sxs-lookup"><span data-stu-id="42b0f-189">In the **Azure portal**, on the left navigation pane, click **Azure Active Directory** icon.</span></span>
+1. <span data-ttu-id="5c50b-189">Bonjour **portail Azure**, on hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.</span><span class="sxs-lookup"><span data-stu-id="5c50b-189">In hello **Azure portal**, on hello left navigation pane, click **Azure Active Directory** icon.</span></span>
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-optimizely-tutorial/create_aaduser_01.png) 
 
-2. <span data-ttu-id="42b0f-191">Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.</span><span class="sxs-lookup"><span data-stu-id="42b0f-191">To display the list of users, go to **Users and groups** and click **All users**.</span></span>
+2. <span data-ttu-id="5c50b-191">liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes** et cliquez sur **tous les utilisateurs**.</span><span class="sxs-lookup"><span data-stu-id="5c50b-191">toodisplay hello list of users, go too**Users and groups** and click **All users**.</span></span>
     
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-optimizely-tutorial/create_aaduser_02.png) 
 
-3. <span data-ttu-id="42b0f-193">Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue.</span><span class="sxs-lookup"><span data-stu-id="42b0f-193">To open the **User** dialog, click **Add** on the top of the dialog.</span></span>
+3. <span data-ttu-id="5c50b-193">tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello de boîte de dialogue hello.</span><span class="sxs-lookup"><span data-stu-id="5c50b-193">tooopen hello **User** dialog, click **Add** on hello top of hello dialog.</span></span>
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-optimizely-tutorial/create_aaduser_03.png) 
 
-4. <span data-ttu-id="42b0f-195">Dans la boîte de dialogue **Utilisateur**, procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="42b0f-195">On the **User** dialog page, perform the following steps:</span></span>
+4. <span data-ttu-id="5c50b-195">Sur hello **utilisateur** boîte de dialogue de page, effectuer hello comme suit :</span><span class="sxs-lookup"><span data-stu-id="5c50b-195">On hello **User** dialog page, perform hello following steps:</span></span>
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-optimizely-tutorial/create_aaduser_04.png) 
 
-    <span data-ttu-id="42b0f-197">a.</span><span class="sxs-lookup"><span data-stu-id="42b0f-197">a.</span></span> <span data-ttu-id="42b0f-198">Dans la zone de texte **Nom**, entrez **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="42b0f-198">In the **Name** textbox, type **BrittaSimon**.</span></span>
+    <span data-ttu-id="5c50b-197">a.</span><span class="sxs-lookup"><span data-stu-id="5c50b-197">a.</span></span> <span data-ttu-id="5c50b-198">Bonjour **nom** zone de texte, type **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="5c50b-198">In hello **Name** textbox, type **BrittaSimon**.</span></span>
 
-    <span data-ttu-id="42b0f-199">b.</span><span class="sxs-lookup"><span data-stu-id="42b0f-199">b.</span></span> <span data-ttu-id="42b0f-200">Dans la zone de texte **Nom d’utilisateur** , tapez l’**adresse de messagerie** de Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="42b0f-200">In the **User name** textbox, type the **email address** of Britta Simon.</span></span>
+    <span data-ttu-id="5c50b-199">b.</span><span class="sxs-lookup"><span data-stu-id="5c50b-199">b.</span></span> <span data-ttu-id="5c50b-200">Bonjour **nom d’utilisateur** hello de type zone de texte **adresse de messagerie** de Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="5c50b-200">In hello **User name** textbox, type hello **email address** of Britta Simon.</span></span>
 
-    <span data-ttu-id="42b0f-201">c.</span><span class="sxs-lookup"><span data-stu-id="42b0f-201">c.</span></span> <span data-ttu-id="42b0f-202">Sélectionnez **Afficher le mot de passe** et notez la valeur du **mot de passe**.</span><span class="sxs-lookup"><span data-stu-id="42b0f-202">Select **Show Password** and write down the value of the **Password**.</span></span>
+    <span data-ttu-id="5c50b-201">c.</span><span class="sxs-lookup"><span data-stu-id="5c50b-201">c.</span></span> <span data-ttu-id="5c50b-202">Sélectionnez **afficher le mot de passe** et notez la valeur hello hello **mot de passe**.</span><span class="sxs-lookup"><span data-stu-id="5c50b-202">Select **Show Password** and write down hello value of hello **Password**.</span></span>
 
-    <span data-ttu-id="42b0f-203">d.</span><span class="sxs-lookup"><span data-stu-id="42b0f-203">d.</span></span> <span data-ttu-id="42b0f-204">Cliquez sur **Create**.</span><span class="sxs-lookup"><span data-stu-id="42b0f-204">Click **Create**.</span></span>
+    <span data-ttu-id="5c50b-203">d.</span><span class="sxs-lookup"><span data-stu-id="5c50b-203">d.</span></span> <span data-ttu-id="5c50b-204">Cliquez sur **Create**.</span><span class="sxs-lookup"><span data-stu-id="5c50b-204">Click **Create**.</span></span>
  
-### <a name="creating-an-optimizely-test-user"></a><span data-ttu-id="42b0f-205">Création d’un utilisateur de test Optimizely</span><span class="sxs-lookup"><span data-stu-id="42b0f-205">Creating an Optimizely test user</span></span>
+### <a name="creating-an-optimizely-test-user"></a><span data-ttu-id="5c50b-205">Création d’un utilisateur de test Optimizely</span><span class="sxs-lookup"><span data-stu-id="5c50b-205">Creating an Optimizely test user</span></span>
 
-<span data-ttu-id="42b0f-206">Dans cette section, vous allez créer un utilisateur appelé Britta Simon dans Optimizely.</span><span class="sxs-lookup"><span data-stu-id="42b0f-206">In this section, you create a user called Britta Simon in Optimizely.</span></span>
+<span data-ttu-id="5c50b-206">Dans cette section, vous allez créer un utilisateur appelé Britta Simon dans Optimizely.</span><span class="sxs-lookup"><span data-stu-id="5c50b-206">In this section, you create a user called Britta Simon in Optimizely.</span></span>
 
-1. <span data-ttu-id="42b0f-207">Sur la page d’accueil, sélectionnez l’onglet **Collaborateurs**.</span><span class="sxs-lookup"><span data-stu-id="42b0f-207">On the home page, select **Collaborators** tab.</span></span>
+1. <span data-ttu-id="5c50b-207">Sur la page d’accueil hello, sélectionnez **collaborateurs** onglet.</span><span class="sxs-lookup"><span data-stu-id="5c50b-207">On hello home page, select **Collaborators** tab.</span></span>
 
-2. <span data-ttu-id="42b0f-208">Pour ajouter un nouveau collaborateur au projet, cliquez sur **Nouveau collaborateur**.</span><span class="sxs-lookup"><span data-stu-id="42b0f-208">To add new collaborator to the project, click **New Collaborator**.</span></span>
+2. <span data-ttu-id="5c50b-208">tooadd collaborateur toohello projet, cliquez sur **nouveau collaborateur**.</span><span class="sxs-lookup"><span data-stu-id="5c50b-208">tooadd new collaborator toohello project, click **New Collaborator**.</span></span>
    
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-optimizely-tutorial/create_aaduser_10.png)
 
-3. <span data-ttu-id="42b0f-210">Renseignez l’adresse de messagerie et assignez un rôle au nouveau collaborateur.</span><span class="sxs-lookup"><span data-stu-id="42b0f-210">Fill in the email address and assign them a role.</span></span> <span data-ttu-id="42b0f-211">Cliquez sur **Inviter**.</span><span class="sxs-lookup"><span data-stu-id="42b0f-211">Click **Invite**.</span></span>
+3. <span data-ttu-id="5c50b-210">Adresse de messagerie hello et attribuez-leur un rôle.</span><span class="sxs-lookup"><span data-stu-id="5c50b-210">Fill in hello email address and assign them a role.</span></span> <span data-ttu-id="5c50b-211">Cliquez sur **Invite**.</span><span class="sxs-lookup"><span data-stu-id="5c50b-211">Click **Invite**.</span></span>
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-optimizely-tutorial/create_aaduser_11.png)
 
-4. <span data-ttu-id="42b0f-213">Il reçoit une invitation par courrier électronique.</span><span class="sxs-lookup"><span data-stu-id="42b0f-213">They receive an email invite.</span></span> <span data-ttu-id="42b0f-214">À l’aide de l’adresse de messagerie, il doit se connecter à Optimizely.</span><span class="sxs-lookup"><span data-stu-id="42b0f-214">Using the email address, they have to log in to Optimizely.</span></span>
+4. <span data-ttu-id="5c50b-213">Il reçoit une invitation par courrier électronique.</span><span class="sxs-lookup"><span data-stu-id="5c50b-213">They receive an email invite.</span></span> <span data-ttu-id="5c50b-214">À l’aide d’adresse de messagerie hello, ils ont toolog dans tooOptimizely.</span><span class="sxs-lookup"><span data-stu-id="5c50b-214">Using hello email address, they have toolog in tooOptimizely.</span></span>
 
-### <a name="assigning-the-azure-ad-test-user"></a><span data-ttu-id="42b0f-215">Affectation de l’utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="42b0f-215">Assigning the Azure AD test user</span></span>
+### <a name="assigning-hello-azure-ad-test-user"></a><span data-ttu-id="5c50b-215">Affectation d’utilisateur de test hello Azure AD</span><span class="sxs-lookup"><span data-stu-id="5c50b-215">Assigning hello Azure AD test user</span></span>
 
-<span data-ttu-id="42b0f-216">Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à Optimizely.</span><span class="sxs-lookup"><span data-stu-id="42b0f-216">In this section, you enable Britta Simon to use Azure single sign-on by granting access to Optimizely.</span></span>
+<span data-ttu-id="5c50b-216">Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooOptimizely.</span><span class="sxs-lookup"><span data-stu-id="5c50b-216">In this section, you enable Britta Simon toouse Azure single sign-on by granting access tooOptimizely.</span></span>
 
 ![Affecter des utilisateurs][200] 
 
-<span data-ttu-id="42b0f-218">**Pour affecter Britta Simon à Optimizely, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="42b0f-218">**To assign Britta Simon to Optimizely, perform the following steps:**</span></span>
+<span data-ttu-id="5c50b-218">**tooassign Britta Simon tooOptimizely, effectuez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="5c50b-218">**tooassign Britta Simon tooOptimizely, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="42b0f-219">Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="42b0f-219">In the Azure portal, open the applications view, and then navigate to the directory view and go to **Enterprise applications** then click **All applications**.</span></span>
+1. <span data-ttu-id="5c50b-219">Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="5c50b-219">In hello Azure portal, open hello applications view, and then navigate toohello directory view and go too**Enterprise applications** then click **All applications**.</span></span>
 
     ![Affecter des utilisateurs][201] 
 
-2. <span data-ttu-id="42b0f-221">Dans la liste des applications, sélectionnez **Optimizely**.</span><span class="sxs-lookup"><span data-stu-id="42b0f-221">In the applications list, select **Optimizely**.</span></span>
+2. <span data-ttu-id="5c50b-221">Dans la liste des applications hello, sélectionnez **Optimizely**.</span><span class="sxs-lookup"><span data-stu-id="5c50b-221">In hello applications list, select **Optimizely**.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-optimizely-tutorial/tutorial_optimizely_app.png) 
 
-3. <span data-ttu-id="42b0f-223">Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="42b0f-223">In the menu on the left, click **Users and groups**.</span></span>
+3. <span data-ttu-id="5c50b-223">Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="5c50b-223">In hello menu on hello left, click **Users and groups**.</span></span>
 
     ![Affecter des utilisateurs][202] 
 
-4. <span data-ttu-id="42b0f-225">Cliquez sur le bouton **Ajouter**.</span><span class="sxs-lookup"><span data-stu-id="42b0f-225">Click **Add** button.</span></span> <span data-ttu-id="42b0f-226">Ensuite, sélectionnez **Utilisateurs et groupes** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="42b0f-226">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
+4. <span data-ttu-id="5c50b-225">Cliquez sur le bouton **Ajouter**.</span><span class="sxs-lookup"><span data-stu-id="5c50b-225">Click **Add** button.</span></span> <span data-ttu-id="5c50b-226">Ensuite, sélectionnez **Utilisateurs et groupes** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="5c50b-226">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
 
     ![Affecter des utilisateurs][203]
 
-5. <span data-ttu-id="42b0f-228">Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.</span><span class="sxs-lookup"><span data-stu-id="42b0f-228">On **Users and groups** dialog, select **Britta Simon** in the Users list.</span></span>
+5. <span data-ttu-id="5c50b-228">Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.</span><span class="sxs-lookup"><span data-stu-id="5c50b-228">On **Users and groups** dialog, select **Britta Simon** in hello Users list.</span></span>
 
-6. <span data-ttu-id="42b0f-229">Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="42b0f-229">Click **Select** button on **Users and groups** dialog.</span></span>
+6. <span data-ttu-id="5c50b-229">Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="5c50b-229">Click **Select** button on **Users and groups** dialog.</span></span>
 
-7. <span data-ttu-id="42b0f-230">Cliquez sur le bouton **Affecter** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="42b0f-230">Click **Assign** button on **Add Assignment** dialog.</span></span>
+7. <span data-ttu-id="5c50b-230">Cliquez sur le bouton **Affecter** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="5c50b-230">Click **Assign** button on **Add Assignment** dialog.</span></span>
     
-### <a name="testing-single-sign-on"></a><span data-ttu-id="42b0f-231">Test de l’authentification unique</span><span class="sxs-lookup"><span data-stu-id="42b0f-231">Testing single sign-on</span></span>
+### <a name="testing-single-sign-on"></a><span data-ttu-id="5c50b-231">Test de l’authentification unique</span><span class="sxs-lookup"><span data-stu-id="5c50b-231">Testing single sign-on</span></span>
 
-<span data-ttu-id="42b0f-232">Dans cette section, vous allez tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.</span><span class="sxs-lookup"><span data-stu-id="42b0f-232">In this section, you test your Azure AD single sign-on configuration using the Access Panel.</span></span>
+<span data-ttu-id="5c50b-232">Dans cette section, vous tester votre configuration Azure AD unique de session à l’aide de hello panneau d’accès.</span><span class="sxs-lookup"><span data-stu-id="5c50b-232">In this section, you test your Azure AD single sign-on configuration using hello Access Panel.</span></span>
 
-<span data-ttu-id="42b0f-233">Lorsque vous cliquez sur la vignette Optimizely dans le volet d’accès, vous devez être connecté automatiquement à votre application Optimizely.</span><span class="sxs-lookup"><span data-stu-id="42b0f-233">When you click the Optimizely tile in the Access Panel, you should get automatically signed-on to your Optimizely application.</span></span> 
+<span data-ttu-id="5c50b-233">Lorsque vous cliquez sur mosaïque Optimizely hello hello volet d’accès, vous devez obtenir automatiquement signé sur tooyour Optimizely application.</span><span class="sxs-lookup"><span data-stu-id="5c50b-233">When you click hello Optimizely tile in hello Access Panel, you should get automatically signed-on tooyour Optimizely application.</span></span> 
 
-## <a name="additional-resources"></a><span data-ttu-id="42b0f-234">Ressources supplémentaires</span><span class="sxs-lookup"><span data-stu-id="42b0f-234">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="5c50b-234">Ressources supplémentaires</span><span class="sxs-lookup"><span data-stu-id="5c50b-234">Additional resources</span></span>
 
-* [<span data-ttu-id="42b0f-235">Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="42b0f-235">List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
-* [<span data-ttu-id="42b0f-236">Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?</span><span class="sxs-lookup"><span data-stu-id="42b0f-236">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
+* [<span data-ttu-id="5c50b-235">Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="5c50b-235">List of Tutorials on How tooIntegrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
+* [<span data-ttu-id="5c50b-236">Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?</span><span class="sxs-lookup"><span data-stu-id="5c50b-236">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
 
 
 

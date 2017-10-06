@@ -1,6 +1,6 @@
 ---
-title: "Documentation du portail Azure - Didacticiels, informations de référence sur les API | Microsoft Docs"
-description: "Découvrez comment déployer et gérer des ressources dans le portail Azure. Didacticiels, références d’API et autres documents."
+title: "portail aaaAzure documentation - didacticiels, référence de l’API | Documents Microsoft"
+description: "Découvrez comment toodeploy et gérer les ressources Bonjour portail Azure. Didacticiels, références d’API et autres documents."
 services: 
 documentationcenter: 
 author: squillace
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/22/2017
 ms.author: tysonn
-ms.openlocfilehash: d9145591f768f2d5a8e55f28b0764b31e2ee452b
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 10dbec2bab5c5f1de29a3125aeeb33f80d722282
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-portal-documentation"></a>Documentation du portail Azure
-Découvrez les fonctionnalités à votre disposition pour déployer des ressources dans le portail Azure. Des didacticiels, des références d’API et d’autres documents vous montrent comment déployer, gérer et suivre des ressources Azure.
+En savoir plus sur les fonctions hello que vous pouvez utiliser les ressources toodeploy Bonjour portail Azure. Didacticiels, des références de l’API et toute autre documentation vous montrent comment toodeploy, gérer et surveiller des ressources Azure.
