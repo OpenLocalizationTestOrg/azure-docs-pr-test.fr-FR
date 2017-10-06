@@ -1,6 +1,6 @@
 ---
-title: "Aide-mémoire XPath de configuration d’un rôle Services cloud | Microsoft Docs"
-description: "Les différents paramètres XPath que vous pouvez utiliser dans la configuration d’un rôle de service cloud pour exposer les paramètres sous la forme d'une variable d'environnement."
+title: "aide-mémoire aaaCloud rôle des Services Configuration XPath | Documents Microsoft"
+description: "Bonjour divers paramètres XPath que vous pouvez utiliser dans les paramètres du rôle config tooexpose pour hello cloud service comme une variable d’environnement."
 services: cloud-services
 documentationcenter: 
 author: Thraka
@@ -14,19 +14,19 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 04/19/2017
 ms.author: adegeo
-ms.openlocfilehash: fd6efac829d3fd9e2840362b8d2ff423add566d9
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 27f98f956a1c790c9bb30f9fefe1ab1736b2b150
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="expose-role-configuration-settings-as-an-environment-variable-with-xpath"></a>Exposer les paramètres de configuration de rôle comme variable d'environnement avec XPath
-Dans le fichier de définition de service du rôle Web ou du rôle de travail du service cloud, vous pouvez exposer les valeurs de configuration de l'exécution en tant que variables d'environnement. Les valeurs XPath suivantes sont prises en charge (qui correspondent aux valeurs de l'API).
+Dans le traitement du service cloud hello ou fichier de définition de service de rôle web, vous pouvez exposer les valeurs de configuration d’exécution en tant que variables d’environnement. Hello les valeurs XPath suivantes est prises en charge (qui correspondent à des valeurs de tooAPI).
 
-Ces valeurs XPath sont également disponibles via la bibliothèque [Microsoft.WindowsAzure.ServiceRuntime](https://msdn.microsoft.com/library/microsoft.windowsazure.serviceruntime.roleenvironment.aspx) . 
+Ces valeurs XPath sont également disponibles via hello [Microsoft.WindowsAzure.ServiceRuntime](https://msdn.microsoft.com/library/microsoft.windowsazure.serviceruntime.roleenvironment.aspx) bibliothèque. 
 
 ## <a name="app-running-in-emulator"></a>Application qui s'exécute dans l'émulateur
-Indique que l'application s'exécute dans l'émulateur.
+Indique que cette application hello est en cours d’exécution dans l’émulateur de hello.
 
 | Type | Exemple |
 | --- | --- |
@@ -34,7 +34,7 @@ Indique que l'application s'exécute dans l'émulateur.
 | Code |var x = RoleEnvironment.IsEmulated; |
 
 ## <a name="deployment-id"></a>ID de déploiement
-Récupère l'ID de déploiement de l'instance.
+Récupère l’ID de déploiement hello pour l’instance de hello.
 
 | Type | Exemple |
 | --- | --- |
@@ -42,7 +42,7 @@ Récupère l'ID de déploiement de l'instance.
 | Code |var deploymentId = RoleEnvironment.DeploymentId; |
 
 ## <a name="role-id"></a>ID de rôle
-Récupère l'ID de rôle actuel de l'instance.
+Récupère l’ID du rôle actuel hello pour l’instance de hello.
 
 | Type | Exemple |
 | --- | --- |
@@ -50,7 +50,7 @@ Récupère l'ID de rôle actuel de l'instance.
 | Code |var id = RoleEnvironment.CurrentRoleInstance.Id; |
 
 ## <a name="update-domain"></a>Mettre à jour le domaine
-Récupère le domaine de mise à jour de l'instance.
+Récupère le domaine de mise à jour hello d’instance de hello.
 
 | Type | Exemple |
 | --- | --- |
@@ -58,7 +58,7 @@ Récupère le domaine de mise à jour de l'instance.
 | Code |var ud = RoleEnvironment.CurrentRoleInstance.UpdateDomain; |
 
 ## <a name="fault-domain"></a>Domaine d'erreur
-Récupère le domaine d’erreur de l'instance.
+Récupère le domaine par défaut de l’instance de hello hello.
 
 | Type | Exemple |
 | --- | --- |
@@ -66,7 +66,7 @@ Récupère le domaine d’erreur de l'instance.
 | Code |var fd = RoleEnvironment.CurrentRoleInstance.FaultDomain; |
 
 ## <a name="role-name"></a>Nom de rôle
-Récupère le nom de rôle des instances.
+Récupère le nom du rôle d’instances de hello hello.
 
 | Type | Exemple |
 | --- | --- |
@@ -74,7 +74,7 @@ Récupère le nom de rôle des instances.
 | Code |var rname = RoleEnvironment.CurrentRoleInstance.Role.Name; |
 
 ## <a name="config-setting"></a>Paramètre de configuration
-Récupère la valeur du paramètre de configuration spécifié.
+Valeur hello récupère hello spécifiée de configuration.
 
 | Type | Exemple |
 | --- | --- |
@@ -82,7 +82,7 @@ Récupère la valeur du paramètre de configuration spécifié.
 | Code |var setting = RoleEnvironment.GetConfigurationSettingValue("Setting1"); |
 
 ## <a name="local-storage-path"></a>Chemin de stockage local
-Récupère le chemin de stockage local de l'instance.
+Récupère le chemin d’accès de stockage local hello pour l’instance de hello.
 
 | Type | Exemple |
 | --- | --- |
@@ -90,7 +90,7 @@ Récupère le chemin de stockage local de l'instance.
 | Code |var localResourcePath = RoleEnvironment.GetLocalResource("LocalStore1").RootPath; |
 
 ## <a name="local-storage-size"></a>Taille du stockage local
-Récupère la taille du stockage local de l'instance.
+Récupère la taille de hello de hello le stockage local pour l’instance de hello.
 
 | Type | Exemple |
 | --- | --- |
@@ -98,7 +98,7 @@ Récupère la taille du stockage local de l'instance.
 | Code |var localResourceSizeInMB = RoleEnvironment.GetLocalResource("LocalStore1").MaximumSizeInMegabytes; |
 
 ## <a name="endpoint-protocol"></a>Protocole du point de terminaison
-Récupère le protocole du point de terminaison de l'instance.
+Récupère le protocole de point de terminaison hello pour l’instance de hello.
 
 | Type | Exemple |
 | --- | --- |
@@ -106,7 +106,7 @@ Récupère le protocole du point de terminaison de l'instance.
 | Code |var prot = RoleEnvironment.CurrentRoleInstance.InstanceEndpoints["Endpoint1"].Protocol; |
 
 ## <a name="endpoint-ip"></a>IP du point de terminaison
-Récupère l'adresse IP du point de terminaison spécifié.
+Obtient hello spécifié l’adresse du point de terminaison.
 
 | Type | Exemple |
 | --- | --- |
@@ -114,7 +114,7 @@ Récupère l'adresse IP du point de terminaison spécifié.
 | Code |var address = RoleEnvironment.CurrentRoleInstance.InstanceEndpoints["Endpoint1"].IPEndpoint.Address |
 
 ## <a name="endpoint-port"></a>Port du point de terminaison
-Récupère le port du point de terminaison de l'instance.
+Récupère le port du point de terminaison hello pour l’instance de hello.
 
 | Type | Exemple |
 | --- | --- |
@@ -122,7 +122,7 @@ Récupère le port du point de terminaison de l'instance.
 | Code |var port = RoleEnvironment.CurrentRoleInstance.InstanceEndpoints["Endpoint1"].IPEndpoint.Port; |
 
 ## <a name="example"></a>Exemple
-Voici un exemple de rôle de travail qui crée une tâche de démarrage avec une variable d’environnement nommée `TestIsEmulated`, définie sur la [valeur xpath @emulated](#app-running-in-emulator). 
+Voici un exemple d’un rôle de travail qui crée une tâche de démarrage avec une variable d’environnement nommée `TestIsEmulated` définir toohello [ @emulated valeur xpath](#app-running-in-emulator). 
 
 ```xml
 <WorkerRole name="Role1">
@@ -162,7 +162,7 @@ Voici un exemple de rôle de travail qui crée une tâche de démarrage avec une
 ```
 
 ## <a name="next-steps"></a>Étapes suivantes
-En savoir plus sur le fichier [ServiceConfiguration.cscfg](cloud-services-model-and-package.md#serviceconfigurationcscfg) .
+En savoir plus sur hello [ServiceConfiguration.cscfg](cloud-services-model-and-package.md#serviceconfigurationcscfg) fichier.
 
 Créer un package [ServicePackage.cspkg](cloud-services-model-and-package.md#servicepackagecspkg) .
 

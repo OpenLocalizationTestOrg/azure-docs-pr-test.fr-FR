@@ -1,6 +1,6 @@
 ---
-title: "Considérations relatives à la mise en réseau avec un environnement Azure App Service"
-description: "Cet article présente le trafic réseau d’un environnement App Service Environment (ASE) et explique comment définir des groupes de sécurité réseau et des itinéraires définis par l’utilisateur (UDR) avec votre ASE."
+title: "Considérations relatives à l’aaaNetworking avec un environnement Azure App Service"
+description: "Explique le trafic réseau de hello ASE et comment tooset UDRs avec votre ASE et les groupes de sécurité réseau"
 services: app-service
 documentationcenter: na
 author: ccompy
@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/08/2017
 ms.author: ccompy
-ms.openlocfilehash: 3be0d7a202ff53f5532fd7169a50a04cfaf88832
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: d4d3000f4d4d75814b1e6d47079d967334eb1a3b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="networking-considerations-for-an-app-service-environment"></a>Considérations relatives à la mise en réseau pour un environnement App Service #
 
@@ -25,16 +25,16 @@ ms.lasthandoff: 08/29/2017
 
  [App Service Environment Azure][Intro] est un déploiement d’Azure App Service dans un sous-réseau d’un réseau virtuel Azure (VNet). Il existe deux types de déploiement pour un environnement App Service (ASE) :
 
-- **ASE externe** : expose les applications hébergées dans l’ASE sur une adresse IP accessible via Internet. Pour plus d’informations, consultez [Créer un environnement App Service externe][MakeExternalASE].
-- **ASE ILB** : expose les applications hébergées dans l’ASE sur une adresse IP à l’intérieur de votre réseau virtuel. Le point de terminaison interne est un équilibreur de charge interne (ILB), d’où cette appellation d’ASE ILB. Pour plus d’informations, consultez [Create and use an ILB ASE][MakeILBASE] (Créer et utiliser un ASE ILB).
+- **ASE externe**: expose hello ASE hébergeant des applications sur une adresse IP accessible via internet. Pour plus d’informations, consultez [Créer un environnement App Service externe][MakeExternalASE].
+- **Équilibrage de charge interne ASE**: expose hello ASE hébergeant des applications sur une adresse IP à l’intérieur de votre réseau virtuel. point de terminaison interne Hello est un équilibreur de charge interne (ILB), c’est pourquoi il s’agit d’un environnement app service Équilibrage de charge interne. Pour plus d’informations, consultez [Create and use an ILB ASE][MakeILBASE] (Créer et utiliser un ASE ILB).
 
-Il existe deux versions de l’application App Service : ASEv1 et ASEv2. Pour plus d’informations sur ASEv1, consultez la [Présentation de l’environnement App Service v1][ASEv1Intro]. Un ASEv1 peut être déployé dans un réseau virtuel classique ou Resource Manager. Un ASEv2 peut uniquement être déployé dans un réseau virtuel Resource Manager.
+Il existe deux versions de l’application App Service : ASEv1 et ASEv2. Pour plus d’informations sur ASEv1, consultez [Introduction tooApp environnement Service v1][ASEv1Intro]. Un ASEv1 peut être déployé dans un réseau virtuel classique ou Resource Manager. Un ASEv2 peut uniquement être déployé dans un réseau virtuel Resource Manager.
 
-Tous les appels d’un ASE à destination d’Internet quittent le réseau virtuel via une adresse IP virtuelle assignée à l’ASE. L’adresse IP publique de cette adresse IP virtuelle constitue ensuite l’adresse IP source de tous les appels de l’ASE à destination d’Internet. Si les applications hébergées dans votre environnement ASE appellent des ressources de votre réseau virtuel ou hébergées dans un VPN, l’adresse IP source sera l’une des adresses IP du sous-réseau utilisé par votre environnement ASE. Comme l’ASE se trouve à l’intérieur du réseau virtuel, il peut également accéder aux ressources de celui-ci sans configuration supplémentaire. Si le réseau virtuel est connecté à votre réseau local, les applications dans votre environnement ASE ont également accès aux ressources. Vous n’avez pas besoin de configurer l’ASE ou votre application plus en avant.
+Tous les appels à partir d’un environnement app service qui vont toohello internet laisser hello réseau virtuel via une adresse IP virtuelle affectée pour hello ASE. Hello adresse IP publique de cette adresse IP virtuelle est ensuite hello IP source pour tous les appels à partir de hello ASE qui vont toohello internet. Si les applications hello dans votre ASE apportez tooresources d’appels dans votre réseau virtuel ou sur un réseau privé virtuel, hello IP source est un des hello des adresses IP de sous-réseau hello utilisé par votre ASE. Hello ASE étant dans hello réseau virtuel, il peut également accéder aux ressources au sein de hello réseau virtuel sans aucune configuration supplémentaire. Si hello réseau virtuel est connecté tooyour local du réseau, les applications dans votre ASE ont également accès tooresources il. Vous n’avez pas besoin tooconfigure hello ASE ou votre application tous les autres.
 
 ![ASE externe][1] 
 
-Si vous avez un ASE externe, l’adresse IP virtuelle publique est également le point de terminaison que vos applications ASE peuvent résoudre :
+Si vous avez un environnement app service externe, adresse IP virtuelle publique de hello est également hello point de terminaison que vos applications ASE résoudre toofor :
 
 * HTTP/S. 
 * FTP/S. 
@@ -43,40 +43,40 @@ Si vous avez un ASE externe, l’adresse IP virtuelle publique est également le
 
 ![ASE ILB][2]
 
-Si vous possédez un ASE ILB, l’adresse IP de l’équilibreur de charge interne est le point de terminaison pour les protocoles HTTP/S et FTP/S, le déploiement Web et le débogage à distance.
+Si vous avez un environnement app service Équilibrage de charge interne, adresse IP hello hello équilibrage de charge interne est hello de point de terminaison pour HTTP/S, FTP/S, le déploiement web et le débogage distant.
 
-Les ports d’accès normaux pour les applications sont les suivants :
+ports d’accès application normal Hello sont :
 
-| Utilisation | À partir | À |
+| Utilisation | À partir | trop|
 |----------|---------|-------------|
 |  HTTP/HTTPS  | Configurable par l’utilisateur |  80, 443 |
 |  FTP/FTPS    | Configurable par l’utilisateur |  21, 990, 10001-10020 |
 |  Débogage distant de Visual Studio  |  Configurable par l’utilisateur |  4016, 4018, 4020, 4022 |
 
-Ces ports s’appliquent aussi bien pour un ASE externe que pour un ASE ILB. Si vous êtes dans un ASE externe, appuyez sur ces ports sur l’adresse IP virtuelle publique. Si vous vous trouvez dans un ASE ILB, vous atteignez ces ports sur l’équilibreur de charge interne. Si vous verrouillez le port 443, certaines fonctionnalités exposées dans le portail peuvent être affectées. Pour plus d’informations, consultez la section [Dépendances du portail](#portaldep).
+Ces ports s’appliquent aussi bien pour un ASE externe que pour un ASE ILB. Si vous êtes dans un environnement app service externe, vous appuyer sur ces ports sur l’adresse IP virtuelle publique de hello. Si vous êtes dans un environnement app service Équilibrage de charge interne, vous appuyer sur ces ports sur hello équilibrage de charge interne. Si vous verrouillez le port 443, il peut y avoir une incidence sur certaines fonctionnalités exposées dans le portail de hello. Pour plus d’informations, consultez la section [Dépendances du portail](#portaldep).
 
 ## <a name="ase-dependencies"></a>Dépendances d’un ASE ##
 
 Un ASE présente la dépendance d’accès entrant suivante :
 
-| Utilisation | À partir | À |
+| Utilisation | À partir | trop|
 |-----|------|----|
 | Gestion | Adresses de gestion App Service | Sous-réseau de l’ASE : 454, 455 |
 |  Communications internes de l’ASE | Sous-réseau de l’ASE : tous les ports | Sous-réseau de l’ASE : tous les ports
 |  Autoriser le trafic entrant provenant d’Azure Load Balancer | Équilibrage de charge Azure | Sous-réseau de l’ASE : tous les ports
 |  Adresses IP affectées par l’application | Adresses affectées par l’application | Sous-réseau de l’ASE : tous les ports
 
-Le trafic entrant fournit la commande et le contrôle de l’ASE en plus de la surveillance du système. Les adresses IP sources pour ce trafic sont répertoriées dans le document [Adresses de gestion App Service Environment][ASEManagement]. Par conséquent, la configuration de la sécurité réseau doit autoriser l’accès sur les ports 454 et 455 à partir de toutes les adresses IP.
+Hello le trafic entrant fournit commande et contrôle de ASE hello dans l’analyse des toosystem d’addition. source de Hello des adresses IP pour ce trafic sont répertoriées dans hello [ASE gestion des adresses] [ ASEManagement] document. configuration de la sécurité réseau Hello doit tooallow l’accès à partir de toutes les adresses IP sur les ports 454 et 455.
 
-Le sous-réseau de l’ASE comprend divers ports utilisés pour la communication des composants internes ; ces ports peuvent changer.  Tous les ports du sous-réseau de l’ASE doivent être accessibles à partir du sous-réseau de l’ASE. 
+Au sein du sous-réseau hello ASE sont grand nombre de ports utilisés pour la communication de composant interne et elles peuvent changer.  Cela nécessite tous les ports hello dans hello ASE sous-réseau toobe accessible à partir du sous-réseau de ASE hello. 
 
-Pour permettre la communication entre l’équilibreur de charge Azure et le sous-réseau de l’ASE, les ports 454, 455 et 16001 (au minimum) doivent être ouverts. Le port 16001 sert à maintenir le trafic entre l’équilibreur de charge et le sous-réseau de l’ASE. Si vous utilisez un ASE ILB, vous pouvez limiter le trafic aux ports 454, 455 et 16001.  Si vous utilisez un ASE externe, vous devez prendre en compte les ports d’accès application normaux.  Si vous utilisez des adresses affectées par l’application, vous devez les ouvrir à tous les ports.  Quand une adresse est affectée à une application spécifique, l’équilibreur de charge utilise des ports qui ne sont pas connus à l’avance pour l’envoi du trafic HTTP et HTTPS à l’ASE.
+Pour la communication hello entre l’équilibrage de charge Azure hello et hello ASE hello minimale les ports du sous-réseau que toobe besoin ouvert sont 454 et 455 de 16001. port de 16001 Hello est utilisé pour conserver le trafic actif entre l’équilibrage de charge hello et hello ASE. Si vous utilisez un environnement app service Équilibrage de charge interne vous pouvez verrouiller le trafic vers le bas toojust hello 454, 455, 16001 ports.  Si vous utilisez un environnement app service externe vous devez tootake dans les ports d’accès de compte hello application normal.  Si vous utilisez des adresses d’application affectée vous devez tooopen il tooall ports.  Lorsqu’une adresse est assignée application spécifique de tooa, équilibrage de charge hello utilisera les ports qui ne sont pas connus d’avance toosend HTTP et HTTPS traffic toohello ASE.
 
-Si vous utilisez des adresses IP affectées par l’application, vous devez autoriser le trafic entre les adresses IP affectées à vos applications et le sous-réseau de l’ASE.
+Si vous utilisez des adresses IP application affectée, vous devez tooallow trafic hello que des adresses IP affectées sous-réseau de ASE toohello tooyour applications.
 
-Pour l’accès sortant, un ASE dépend de plusieurs systèmes externes. Ces dépendances système sont définies avec des noms DNS et ne sont pas mappées à un ensemble fixe d’adresses IP. Par conséquent, l’ASE requiert un accès sortant vers toutes les adresses IP sur divers ports à partir de son sous-réseau. Un ASE présente les dépendances d’accès sortant suivantes :
+Pour l’accès sortant, un ASE dépend de plusieurs systèmes externes. Ces dépendances système sont définis avec des noms DNS et ne sont pas tooa ensemble fixé d’adresses IP. Par conséquent, hello ASE requiert un accès sortant à partir de hello ASE sous-réseau tooall des adresses IP externes dans une gamme de ports. Un environnement app service a hello suivant dépendances sortantes :
 
-| Utilisation | À partir | À |
+| Utilisation | À partir | trop|
 |-----|------|----|
 | Azure Storage | Sous-réseau de l’ASE | table.core.windows.net, blob.core.windows.net, queue.core.windows.net, file.core.windows.net : 80, 443, 445 (le port 445 est requis uniquement pour ASEv1) |
 | Azure SQL Database | Sous-réseau de l’ASE | database.windows.net : 1433, 11000-11999, 14000-14999 (pour plus d’informations, consultez [Port utilisé par SQL Database V12](../../sql-database/sql-database-develop-direct-route-ports-adonet-v12.md).)|
@@ -87,19 +87,19 @@ Pour l’accès sortant, un ASE dépend de plusieurs systèmes externes. Ces dé
 | DNS Azure                     | Sous-réseau de l’ASE            |  Internet : 53
 | Communications internes de l’ASE    | Sous-réseau de l’ASE : tous les ports |  Sous-réseau de l’ASE : tous les ports
 
-Si l’ASE n’a plus accès à ces dépendances, il cesse de fonctionner. Si cela dure plus d’un certain temps, l’ASE est suspendu.
+Si hello ASE perd l’accès des dépendances de toothese, il cesse de fonctionner. Lorsque cela produit long suffisamment, hello ASE est suspendue.
 
 ### <a name="customer-dns"></a>DNS client ###
 
-Si le réseau virtuel est configuré avec un serveur DNS défini par un client, les charges de travail du client l’utilisent. L’ASE a toujours besoin de communiquer avec le DNS Azure à des fins de gestion. 
+Si hello réseau virtuel est configuré avec un serveur DNS défini par le client, les charges de travail clientes hello l’utiliser. Hello ASE doit toujours toocommunicate avec Azure DNS à des fins de gestion. 
 
-Si le réseau virtuel est configuré avec un DNS client de l’autre côté d’un réseau VPN, le serveur DNS doit être accessible à partir du sous-réseau contenant l’ASE.
+Si hello réseau virtuel est configuré avec un client DNS sur hello autre côté d’un réseau VPN, serveur DNS de hello doit être accessible à partir du sous-réseau hello contenant hello ASE.
 
 <a name="portaldep"></a>
 
 ## <a name="portal-dependencies"></a>Dépendances du portail ##
 
-Outre les dépendances fonctionnelles que présente un ASE, il existe quelques éléments supplémentaires liés à l’utilisation du portail. Certaines des fonctionnalités du portail Azure dépendent d’un accès direct au _site du Gestionnaire de contrôle des services (SCM)_. Pour chaque application dans Azure App Service, il existe deux URL. La première URL sert à accéder à votre application. La seconde permet d’accéder au site SCM, également désigné sous le nom de _console Kudu_. Voici quelques-unes des fonctionnalités qui utilisent le site SCM :
+Dans dépendances fonctionnelles toohello ASE de plus, il existe quelques éléments supplémentaires associées toohello portail expérience. Certaines des fonctionnalités hello Bonjour portail Azure dépendent site_ de too_SCM un accès direct. Pour chaque application dans Azure App Service, il existe deux URL. Hello première URL est tooaccess votre application. URL du deuxième Hello est tooaccess hello SCM site, ce qui est également appelé hello _console de Kudu_. Les fonctionnalités qui utilisent le site SCM hello :
 
 -   Tâches web
 -   Fonctions
@@ -109,62 +109,62 @@ Outre les dépendances fonctionnelles que présente un ASE, il existe quelques �
 -   Process Explorer
 -   Console
 
-Lorsque vous utilisez un ASE ILB, le site SCM n’est pas accessible depuis l’extérieur du réseau virtuel d’internet. Quand votre application est hébergée sur un ASE ILB, certaines fonctionnalités ne sont pas opérationnelles à partir du portail.  
+Lorsque vous utilisez un environnement app service Équilibrage de charge interne, site SCM hello n’est pas accessible depuis l’extérieur hello réseau virtuel d’internet. Lorsque votre application est hébergée sur un environnement app service Équilibrage de charge interne, certaines fonctionnalités ne fonctionneront pas à partir du portail de hello.  
 
-La plupart des fonctionnalités qui dépendent du site SCM sont également disponibles dans la console Kudu. Vous pouvez vous y connecter directement au lieu d’utiliser le portail. Si votre application est hébergée dans un ASE ILB, vous devez vous connecter à l’aide de vos informations d’identification de publication. L’URL d’une application hébergée dans un ASE ILB permettant d’accéder au site SCM présente le format suivant : 
+La plupart de ces fonctions qui varient en fonction du site SCM hello sont également disponibles directement dans la console de Kudu hello. Vous pouvez vous connecter tooit directement, plutôt qu’en utilisant le portail de hello. Si votre application est hébergée dans un environnement app service Équilibrage de charge interne, utilisez votre publication toosign d’informations d’identification dans. Hello URL tooaccess hello SCM site d’une application hébergée dans un environnement app service Équilibrage de charge interne a hello suivant le format : 
 
 ```
-<appname>.scm.<domain name the ILB ASE was created with> 
+<appname>.scm.<domain name hello ILB ASE was created with> 
 ```
 
-Si votre ASE ILB est le nom de domaine *contoso.net* et le nom de votre application est *testapp*, l’application est atteinte sur *testapp.contoso.net*. Le site SCM qui le suit est atteinte sur *testapp.scm.contoso.net*.
+Si votre ASE d’équilibrage de charge interne est le nom de domaine hello *contoso.net* et le nom de votre application est *testapp*, application hello est atteinte au *testapp.contoso.net*. site SCM Hello qui le suit est atteinte au *testapp.scm.contoso.net*.
 
 ### <a name="functions-and-web-jobs"></a>Fonctions et tâches web ###
 
-Les fonctions et tâches web varient selon le site SCM mais elles sont prises en charge pour une utilisation dans le portail, même si vos applications sont dans un ASE ILB, tant que votre navigateur peut accéder au site SCM.  Si vous utilisez un certificat auto-signé avec votre ASE ILB, vous devez activer votre navigateur pour approuver ce certificat.  Pour Internet Explorer ou Edge, cela signifie que le certificat doit se trouver dans le magasin d’approbations de l’ordinateur.  Si vous utilisez Chrome, cela signifie que vous avez préalablement accepté le certificat dans le navigateur, vraisemblablement en appuyant directement sur le site SCM.  La meilleure solution consiste à utiliser un certificat commercial qui se trouve dans la chaîne d’approbation du navigateur.  
+Les fonctions et Web travaux dépendent de hello SCM site mais sont prises en charge pour une utilisation dans le portail de hello, même si vos applications sont dans un environnement app service Équilibrage de charge interne, tant que votre navigateur peut atteindre le site SCM hello.  Si vous utilisez un certificat auto-signé avec votre ASE d’équilibrage de charge interne, vous devez tooenable votre tootrust de navigateur de certificat.  Pour Internet Explorer ou Edge qui signifie que le certificat de hello a toobe en mode de confiance ordinateur hello stocker.  Si vous utilisez Chrome qui signifie que vous avez accepté certificat hello dans le navigateur de hello précédemment en vraisemblablement appuyant directement sur site de scm hello.  Hello meilleure solution consiste toouse un certificat commercial qui se trouve dans la chaîne du navigateur hello d’approbation.  
 
 ## <a name="ase-ip-addresses"></a>Adresses IP d’un ASE ##
 
-Un ASE présente quelques adresses IP qu’il est important de connaître. Il s'agit de :
+Un environnement app service a quelques toobe adresses IP prenant en charge de. Il s'agit de :
 
 - **Adresse IP entrante publique** : utilisée pour le trafic d’applications dans un ASE externe et pour le trafic de gestion aussi bien dans un ASE externe que dans un ASE ILB.
-- **Adresse IP publique sortante**  : utilisée en tant qu’adresse IP source pour les connexions sortantes de l’ASE quittant le réseau virtuel, qui ne sont pas acheminées via un VPN.
+- **Adresse IP publique sortant**: utilisé comme hello IP « de » pour les connexions sortantes à partir de hello ASE que hello laissez réseau virtuel, qui ne sont pas routé vers un réseau privé virtuel.
 - **Adresse IP ILB** : si vous utilisez un ASE ILB.
 - **Adresse SSL basée sur IP attribuée par l’application** : uniquement possibles avec un ASE externe et lorsque le mode SSL basé sur IP est configuré.
 
-Toutes ces adresses IP sont facilement visibles pour un ASEv2 à partir de l’interface utilisateur de l’ASE dans le portail Azure. Si vous possédez un ASE ILB, l’adresse IP de l’ILB est répertoriée.
+Toutes ces adresses IP sont facilement visibles dans un ASEv2 Bonjour portail Azure à partir de hello ASE UI. Si vous avez un environnement app service Équilibrage de charge interne, IP hello pour hello équilibrage de charge interne est répertorié.
 
 ![Adresses IP][3]
 
 ### <a name="app-assigned-ip-addresses"></a>Adresses IP attribuées par l’application ###
 
-Avec un ASE externe, vous pouvez assigner des adresses IP à des applications individuelles. Ce n’est pas possible avec un ASE ILB. Pour savoir comment configurer votre application de sorte qu’elle possède sa propre adresse IP, consultez [Lier un certificat SSL existant à des applications Web Azure](../../app-service-web/app-service-web-tutorial-custom-ssl.md).
+Avec un environnement app service externe, vous pouvez affecter des adresses IP tooindividual applications. Ce n’est pas possible avec un ASE ILB. Pour plus d’informations sur la façon de tooconfigure toohave de votre application sa propre adresse IP, consultez [lier un existant SSL certificat tooAzure web applications personnalisées](../../app-service-web/app-service-web-tutorial-custom-ssl.md).
 
-Lorsqu’une application possède sa propre adresse SSL basée sur IP, l’ASE réserve deux ports pour le mappage à cette adresse IP. Un port est destiné au trafic HTTP et l’autre au trafic HTTPS. Ces ports sont répertoriés dans l’interface utilisateur de l’ASE, dans la section des adresses IP. Le trafic doit pouvoir atteindre ces ports à partir de l’adresse IP virtuelle. Sinon, les applications ne sont pas accessibles. Il est important de ne pas oublier cela lorsque vous configurez des groupes de sécurité réseau (NSG).
+Lorsqu’une application possède sa propre adresse SSL basé sur IP, hello ASE réserve adresse IP de deux ports toomap toothat. Un port pour le trafic HTTP, et hello autre port est pour le protocole HTTPS. Ces ports sont répertoriés dans hello UI ASE dans la section d’adresses IP hello. Le trafic doit être en mesure de tooreach ces ports à partir de hello VIP ou les applications de hello sont inaccessibles. Cette exigence est tooremember important lorsque vous configurez des groupes de sécurité réseau (NSG).
 
-## <a name="network-security-groups"></a>Groupes de sécurité réseau ##
+## <a name="network-security-groups"></a>Network Security Group ##
 
-Les [groupes de sécurité réseau][NSGs] permettent de contrôler l’accès réseau au sein d’un réseau virtuel. Lorsque vous utilisez le portail, il existe une règle de refus implicite au niveau de priorité le plus bas qui fait que tout accès est refusé. Ce que vous créez sont vos règles d’autorisation.
+[Groupes de sécurité réseau] [ NSGs] hello capacité toocontrol l’accès d’un réseau virtuel. Lorsque vous utilisez le portail de hello, il est implicite deny de règle à hello la plus basse priorité toodeny tous les éléments. Ce que vous créez sont vos règles d’autorisation.
 
-Dans un ASE, vous n’avez pas accès aux machines virtuelles utilisées pour héberger l’ASE lui-même. Elles se trouvent dans un abonnement géré par Microsoft. Si vous souhaitez restreindre l’accès aux applications dans l’ASE, définissez les groupes de sécurité réseau sur le sous-réseau de l’ASE. Ce faisant, vous devez prêter une attention particulière aux dépendances de l’ASE. Si vous bloquez certaines dépendances, l’ASE cesse de fonctionner.
+Dans un environnement app service, vous n’avez accès toohello machines virtuelles utilisées toohost hello ASE lui-même. Elles se trouvent dans un abonnement géré par Microsoft. Si vous souhaitez que les applications toohello toorestrict accès sur hello ASE, définir des groupes de sécurité réseau sur le sous-réseau de ASE hello. Ce faisant, soyez très attentif dépendances de ASE toohello. Si vous bloquez toutes les dépendances, hello ASE cesse de fonctionner.
 
-Les groupes de sécurité réseau peuvent être configurés à l’aide du portail Azure ou via PowerShell. Seul le portail Azure est illustré ici. Les groupes de sécurité réseau sont créés et gérés en tant que ressources de niveau supérieur dans la section **Mise en réseau** du portail.
+Groupes de sécurité réseau peuvent être configurés via hello portail Azure ou via PowerShell. informations Hello ici montrent hello portail Azure. Vous créez et gérez des groupes de sécurité réseau dans le portail de hello comme une ressource de niveau supérieur sous **réseau**.
 
-En tenant compte des exigences liées au trafic entrant et sortant, les groupes de sécurité réseau doivent se ressembler aux groupes de sécurité réseau présentés dans cet exemple. La plage d’adresses du réseau virtuel est _192.168.250.0/16_ et le sous-réseau dans lequel l’ASE se trouve est _192.168.251.128/25_.
+Hello exigences entrantes et sortantes sont prises en compte, hello groupes de sécurité réseau doit se présenter comme toohello groupes de sécurité réseau illustrés dans cet exemple. Hello, plage d’adresses réseau virtuel est _192.168.250.0/16_, et le sous-réseau hello hello ASE dans est _192.168.251.128/25_.
 
-Les deux premières exigences liées au trafic entrant pour l’ASE figurent en haut de la liste dans cet exemple. Elles permettent la gestion de l’ASE et autorisent l’ASE à communiquer avec lui-même. Les autres entrées sont toutes configurables par le client et peuvent régir l’accès réseau aux applications hébergées dans l’ASE. 
+Hello tout d’abord deux entrant conditions hello ASE toofunction sont affichées en haut de hello de liste de hello dans cet exemple. Ils activer la gestion de ASE et autoriser toocommunicate ASE de hello avec lui-même. Bonjour autres entrées sont tous les locataires configurable et peuvent contrôler les applications réseau accès toohello ASE hébergé. 
 
 ![Règles de sécurité de trafic entrant][4]
 
-Une règle par défaut permet la communication entre les adresses IP dans le réseau virtuel avec le sous-réseau ASE. Une autre règle par défaut permet la communication entre l’équilibrage de charges, également appelé l’adresse IP virtuelle publique, et l’ASE. Vous pouvez afficher les règles par défaut en sélectionnant **Règles par défaut** en regard de l’icône **Ajouter**. Si vous placez une règle de refus pour toute autre communication après les règles de groupes de sécurité réseau illustrées, vous empêchez le trafic entre l’adresse IP virtuelle et l’ASE. Pour éviter le trafic provenant de l’intérieur du réseau virtuel, ajoutez votre propre règle pour autoriser le trafic entrant. Utilisez une source égale à AzureLoadBalancer avec une destination **Tout** et une plage de ports **\***. Étant donné que la règle de groupes de sécurité réseau est appliquée au sous-réseau de l’ASE, vous n’avez pas besoin de définir une destination spécifique.
+Une règle par défaut permet de hello des adresses IP dans le sous-réseau ASE toohello hello réseau virtuel tootalk. Une autre règle par défaut permet l’équilibrage de charge hello, également appelée adresse IP virtuelle publique de hello, toocommunicate avec hello ASE. Sélectionnez des règles par défaut de hello toosee, **règles par défaut** toohello suivant **ajouter** icône. Si vous placez une instruction deny tout le reste de règles une fois hello NSG règles affichées, vous empêchez le trafic entre les adresses IP virtuelles hello et hello ASE. le trafic tooprevent d’à l’intérieur de hello réseau virtuel, ajoutez vos propres tooallow règle entrante. Utiliser un tooAzureLoadBalancer égal source avec une destination **tout** et une plage de ports de  **\*** . Règle de groupe de sécurité réseau hello étant appliqués toohello ASE sous-réseau, vous n’avez pas besoin spécifique de toobe dans la destination de hello.
 
-Si vous avez attribué une adresse IP à votre application, assurez-vous que vous conservez les ports ouverts. Vous pouvez consulter les ports utilisés en sélectionnant **App Service Environment** > **Adresses IP**.  
+Si vous avez affecté à une application de tooyour d’adresses IP, assurez-vous que vous conservez hello ports ouverts. sélectionner des ports de hello toosee, **environnement App Service** > **des adresses IP**.  
 
-Tous les éléments affichés dans les règles de trafic sortant suivants sont nécessaires, à l’exception du dernier élément. Ils autorisent l’accès réseau aux dépendances de l’ASE décrites plus haut dans ce document. Si vous bloquez un d'entre eux, votre ASE cesse de fonctionner. Le dernier élément de la liste autorise votre ASE à communiquer avec les autres ressources de votre réseau virtuel.
+Tous les éléments hello illustrés hello suivant les règles de trafic sortant sont nécessaires à l’exception du dernier élément de hello. Elles permettent de réseau accès toohello ASE dépendances qui ont été notées précédemment dans cet article. Si vous bloquez un d'entre eux, votre ASE cesse de fonctionner. Hello dernier élément de liste de hello permet à votre toocommunicate ASE avec d’autres ressources dans votre réseau virtuel.
 
 ![Règles de sécurité de trafic entrant][5]
 
-Une fois vos groupes de sécurité réseau définis, vous devez les attribuer au sous-réseau dans lequel se trouve votre ASE. Si vous ne connaissez pas le réseau virtuel ou le sous-réseau de l’ASE, vous pouvez l’afficher dans le portail de gestion de l’ASE. Pour assigner le groupe de sécurité réseau à votre sous-réseau, accédez à l’interface utilisateur du sous-réseau et sélectionnez le groupe de sécurité réseau.
+Une fois vos groupes de sécurité réseau sont définies, affectez-les sous-réseau toohello votre ASE sur. Si vous ne connaissez pas hello ASE réseaux ou sous-réseaux, vous pouvez le voir à partir du portail de gestion ASE hello. tooassign hello sous-réseau tooyour de groupe de sécurité réseau, le sous-réseau toohello l’interface utilisateur, sélectionnez hello groupe de sécurité réseau.
 
 ## <a name="routes"></a>Itinéraires ##
 
@@ -176,51 +176,51 @@ Les itinéraires posent le plus souvent problème lorsque vous configurez votre 
 
 Les itinéraires BGP prennent le pas sur les itinéraires système. Les UDR prennent le pas sur les itinéraires BGP. Pour plus d’informations sur les itinéraires dans les réseaux virtuels Azure, consultez [Présentation des itinéraires définis par l’utilisateur][UDRs].
 
-La base de données SQL Azure qu’utilise l’ASE pour gérer le système dispose d’un pare-feu. Il requiert une communication provenant de l’adresse IP virtuelle publique ASE. Les connexions à la base de données SQL à partir de l’ASE sont refusées si elles sont envoyées via la connexion ExpressRoute et depuis une autre adresse IP.
+base de données SQL Azure Hello que hello ASE utilise un système de hello toomanage doté d’un pare-feu. Il requiert toooriginate de communication à partir de hello ASE publique VIP. Connexions toohello base de données SQL hello ASE sera refusé si elles sont envoyées vers le bas hello connexion ExpressRoute et une autre adresse IP.
 
-Si les réponses aux requêtes de gestion entrantes sont envoyées via le circuit ExpressRoute, l’adresse de réponse est différente de celle de destination. Cette incohérence interrompt la communication TCP.
+Si les demandes de gestion des réponses tooincoming sont envoyées vers le bas hello ExpressRoute, adresse de réponse hello est différent de celui de destination d’origine de hello. Cette incompatibilité interrompt les communications TCP hello.
 
-Pour que votre ASE fonctionne lorsque votre réseau virtuel est configuré avec un circuit ExpressRoute, le plus simple consiste à :
+Pour votre toowork ASE pendant la configuration de votre réseau virtuel avec un ExpressRoute, hello plus simple chose toodo est :
 
--   Configurer ExpressRoute pour qu’il publie _0.0.0.0/0_. Par défaut, il tunnélise de force tout le trafic sortant local.
--   Créer un UDR. Appliquez l’UDR au sous-réseau qui contient l’ASE, avec le préfixe d’adresse _0.0.0.0/0_ et le type de tronçon suivant _Internet_.
+-   Configurer ExpressRoute tooadvertise _0.0.0.0/0_. Par défaut, il tunnélise de force tout le trafic sortant local.
+-   Créer un UDR. Sous-réseau toohello contenant ASE hello avec un préfixe d’adresse de l’appliquer _0.0.0.0/0_ et en regard de type de tronçon _Internet_.
 
-Si vous apportez ces deux modifications, le trafic à destination d’Internet provenant du sous-réseau de l’ASE n’est plus acheminé de force via le circuit ExpressRoute et l’ASE peut fonctionner. 
+Si vous modifiez ces deux, destinés à l’internet le trafic en provenance du sous-réseau de ASE hello n’est pas forcé hello ExpressRoute et hello ASE fonctionne. 
 
 > [!IMPORTANT]
-> Les itinéraires définis dans un UDR doivent être suffisamment spécifiques pour avoir la priorité sur les itinéraires annoncés par la configuration ExpressRoute. L’exemple précédent utilise la plage d’adresses 0.0.0.0/0 large. Il peut potentiellement être remplacé accidentellement par des annonces de routage utilisant des plages d’adresses plus spécifiques.
+> itinéraires Hello définis dans un UDR doivent être suffisamment spécifique tootake priorité sur les itinéraires annoncés par la configuration de ExpressRoute hello. Hello exemple précédent utilise plage d’adresses 0.0.0.0/0 large hello. Il peut potentiellement être remplacé accidentellement par des annonces de routage utilisant des plages d’adresses plus spécifiques.
 >
-> Les ASE ne sont pas pris en charge avec les configurations ExpressRoute qui annoncent de façon croisée des itinéraires à partir du chemin d’accès d’homologation publique vers le chemin d’accès d’homologation privée. Les configurations ExpressRoute ayant une homologation publique configurée reçoivent les publications de routage de Microsoft. Les publications contiennent un grand ensemble de plages d’adresses IP de Microsoft Azure. Si ces plages d’adresses sont publiées de façon croisée sur le chemin d’accès d’homologation privée, il en résulte que tous les paquets réseau sortants du sous-réseau de l’environnement App Service sont tunnélisés de force vers l’infrastructure réseau local d’un client. Ce flux de réseau n’est actuellement pas pris en charge par les environnements App Service. L’une des solutions à ce problème consiste à arrêter les itinéraires croisés depuis le chemin d’accès d’homologation publique vers le chemin d’accès d’homologation privée.
+> ASEs ne sont pas pris en charge avec des configurations ExpressRoute entre-publier des routes de hello d’homologation publique toohello d’homologation privée chemin d’accès. Les configurations ExpressRoute ayant une homologation publique configurée reçoivent les publications de routage de Microsoft. les publications Hello contiennent un grand ensemble de plages d’adresses IP de Microsoft Azure. Si les plages d’adresses hello sont publiés entre sur le chemin d’accès de hello d’homologation privée, tous les paquets réseau sortant à partir du sous-réseau de hello de ASE sont infrastructure de réseau local du client force tooa tunnel. Ce flux de réseau n’est actuellement pas pris en charge par les environnements App Service. Un problème de toothis de solution est toostop les itinéraires de publication croisée de hello d’homologation publique toohello d’homologation privée chemin d’accès.
 
-Pour créer un UDR, procédez comme suit :
+toocreate un UDR, procédez comme suit :
 
-1. Accédez au portail Azure. Sélectionnez **Mise en réseau** > **Tables d’itinéraires**.
+1. Accédez toohello portail Azure. Sélectionnez **Mise en réseau** > **Tables d’itinéraires**.
 
-2. Créez une nouvelle table d’itinéraires dans la même région que votre réseau virtuel.
+2. Créer une table de routage Bonjour même région que votre réseau virtuel.
 
 3. À partir de l’interface utilisateur de votre table d’itinéraires, sélectionnez **Itinéraires** > **Ajouter**.
 
-4. Définissez le **Type de tronçon suivant** sur **Internet** et **Préfixe de l’adresse** sur **0.0.0.0/0**. Sélectionnez **Enregistrer**.
+4. Ensemble hello **type de tronçon suivant** trop**Internet** et hello **préfixe d’adresse** trop**0.0.0.0/0**. Sélectionnez **Enregistrer**.
 
-    Le résultat suivant s’affiche :
+    Vous voyez alors hello suivant :
 
     ![Itinéraires fonctionnels][6]
 
-5. Après avoir créé la nouvelle table d’itinéraires, accédez au sous-réseau contenant votre ASE. Dans la liste du portail, sélectionnez votre table d’itinéraires. Une fois la modification enregistrée, les groupes de sécurité réseau et les itinéraires s’affichent dans les informations de votre sous-réseau.
+5. Après avoir créé une nouvelle table d’itinéraires hello, accédez sous-réseau toohello qui contient votre ASE. Sélectionnez votre table de routage à partir de la liste de hello dans le portail de hello. Après avoir enregistré les modifications de hello, vous devez puis Voir groupes de sécurité réseau hello et itinéraires notées avec votre sous-réseau.
 
     ![Itinéraires et groupes de sécurité réseau][7]
 
 ### <a name="deploy-into-existing-azure-virtual-networks-that-are-integrated-with-expressroute"></a>Déploiement dans des réseaux virtuels Azure existants intégrés à ExpressRoute ###
 
-Pour déployer votre ASE dans un réseau virtuel intégré à ExpressRoute, préconfigurez le sous-réseau dans lequel vous souhaitez que l’ASE soit déployé. Utilisez alors un modèle Resource Manager pour le déployer. Pour créer un ASE dans un réseau virtuel pour lequel ExpressRoute est déjà configuré :
+toodeploy votre ASE dans un réseau virtuel qui est intégré à ExpressRoute, préconfigurer sous-réseau hello où vous souhaitez ASE hello déployé. Utilisez ensuite une toodeploy de modèle de gestionnaire de ressources qu’il. toocreate ASE dans un réseau virtuel qui a déjà ExpressRoute configuré :
 
-- Créez un sous-réseau pour héberger l’ASE.
+- Créer un Bonjour toohost de sous-réseau ASE.
 
     > [!NOTE]
-    > Le sous-réseau doit contenir uniquement l’ASE. Veillez à choisir un espace d’adressage qui permet une croissance future. Vous ne pouvez pas modifier ce paramètre par la suite. Nous vous recommandons une taille de `/25` avec 128 adresses.
+    > Rien d’autre ne peut être dans le sous-réseau de hello mais hello ASE. Être toochoose qu’un espace d’adressage qui permet une croissance future. Vous ne pouvez pas modifier ce paramètre par la suite. Nous vous recommandons une taille de `/25` avec 128 adresses.
 
-- Créez des UDR (par exemple des tables d’itinéraires) en suivant la procédure décrite précédemment et définissez-les sur le sous-réseau.
-- Créez l’ASE à l’aide d’un modèle Resource Manager en suivant la procédure décrite dans [Création d’un ASE à l’aide d’un modèle ARM][MakeASEfromTemplate].
+- Créez UDRs (par exemple, les tables d’itinéraires) comme décrit précédemment et le définir sur le sous-réseau de hello.
+- Créer hello ASE à l’aide d’un modèle de gestionnaire de ressources comme décrit dans [créer un environnement app service à l’aide d’un modèle de gestionnaire de ressources][MakeASEfromTemplate].
 
 <!--Image references-->
 [1]: ./media/network_considerations_with_an_app_service_environment/networkase-overflow.png

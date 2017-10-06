@@ -1,6 +1,6 @@
 ---
-title: "Protéger votre API avec Gestion des API Azure | Microsoft Docs"
-description: "Découvrez comment protéger votre API avec les quotas et les stratégies (limite de débit) de limitation."
+title: aaaProtect votre API avec gestion des API Azure | Documents Microsoft
+description: "Découvrez comment tooprotect votre API avec les quotas et la limitation des stratégies (débit maximal)."
 services: api-management
 documentationcenter: 
 author: vladvino
@@ -14,106 +14,106 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 12/15/2016
 ms.author: apimpm
-ms.openlocfilehash: 5553bcb8f9fd38630f694151dc644a684266387c
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 3113fd277d434da0c051b8b90fd629a102bf4867
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="protect-your-api-with-rate-limits-using-azure-api-management"></a>Protéger votre API avec des limites de débit à l’aide de la gestion des API Azure
-Ce guide vous montre combien il est facile d’ajouter une protection à votre API principale en configurant des limites de débit et des stratégies de quota avec la gestion des API Azure.
+Ce guide vous explique comment il est facile de protection tooadd pour votre serveur principal API en configurant des stratégies de quota et la limite de taux avec gestion des API Azure.
 
-Dans ce didacticiel, vous allez créer une version d’évaluation gratuite d’un produit API qui permet aux développeurs de passer jusqu’à 10 appels par minute dans la limite de 200 appels par semaine vers votre API en utilisant les stratégies consistant à [Limiter la fréquence des appels par abonnement](https://msdn.microsoft.com/library/azure/dn894078.aspx#LimitCallRate) et à [Définir le quota d’utilisation par abonnement](https://msdn.microsoft.com/library/azure/dn894078.aspx#SetUsageQuota). Vous pourrez ensuite publier l’API et tester la stratégie de limite de débit
+Dans ce didacticiel, vous allez créer un produit « Version d’évaluation gratuite « API qui permet aux développeurs toomake too10 des appels par minute et au maximum de 200 appels par semaine tooyour API est à l’aide de hello tooa [taux d’appels limite par abonnement](https://msdn.microsoft.com/library/azure/dn894078.aspx#LimitCallRate) et [ Définir le quota d’utilisation par abonnement](https://msdn.microsoft.com/library/azure/dn894078.aspx#SetUsageQuota) stratégies. Puis vous publiez hello API et tester la stratégie de limite de taux hello.
 
-Pour consulter des scénarios de limitation plus avancés utilisant les stratégies [limiter-fréquence-par-clé](https://msdn.microsoft.com/library/azure/dn894078.aspx#LimitCallRateByKey) et [quota-par-clé](https://msdn.microsoft.com/library/azure/dn894078.aspx#SetUsageQuotaByKey), consultez l’article [Limitation de requêtes avancée avec la gestion des API Azure](api-management-sample-flexible-throttling.md).
+Plus avancés de la limitation des scénarios à l’aide de hello [taux limite par clé](https://msdn.microsoft.com/library/azure/dn894078.aspx#LimitCallRateByKey) et [par clé de quota](https://msdn.microsoft.com/library/azure/dn894078.aspx#SetUsageQuotaByKey) stratégies, consultez [demande avancée limitation avec gestion des API Azure](api-management-sample-flexible-throttling.md).
 
-## <a name="create-product"> </a>Pour créer un produit.
+## <a name="create-product"></a>toocreate un produit
 Dans cette étape, vous allez créer un produit en version d’évaluation gratuite, qui ne requiert aucune approbation d’abonnement.
 
 > [!NOTE]
-> Si vous disposez déjà d’un produit configuré et que vous souhaitez l’utiliser pour ce didacticiel, vous pouvez passer directement à la rubrique [Configuration de la limite de débit d’appels et des stratégies de quota][Configure call rate limit and quota policies] et suivre le didacticiel à partir de là, en utilisant votre produit à la place de celui en version d’évaluation gratuite.
+> Si vous avez déjà disposer d’un produit configuré et que vous souhaitez toouse il pour ce didacticiel, vous pouvez sauter trop[configurer les stratégies de quota et la limite de taux d’appels] [ Configure call rate limit and quota policies] et suivez le didacticiel de hello à partir de là, l’utilisation du produit à la place de produit d’évaluation gratuite de hello.
 > 
 > 
 
-Pour commencer, cliquez sur **Portail des éditeurs** dans le portail Azure de votre service Gestion des API.
+tooget démarré, cliquez sur **portail de publication** Bonjour portail Azure pour votre service de gestion des API.
 
 ![Portail des éditeurs][api-management-management-console]
 
-> Si vous n’avez pas encore créé d’instance de service Gestion des API, consultez la page [Création d'une instance du service API Management][Create an API Management service instance] dans le didacticiel [Gérer votre première API dans Gestion des API Azure][Manage your first API in Azure API Management].
+> Si vous n’avez pas encore créé une instance de service de gestion des API, consultez [de créer une instance de service de gestion des API] [ Create an API Management service instance] Bonjour [gérer votre première API de gestion des API Azure] [ Manage your first API in Azure API Management] didacticiel.
 > 
 > 
 
-Cliquez sur **Produits** dans le menu **Gestion des API** sur la gauche pour afficher la page **Produits**.
+Cliquez sur **produits** Bonjour **gestion des API** menu Bonjour toodisplay gauche Bonjour **produits** page.
 
 ![Add product][api-management-add-product]
 
-Cliquez sur **Ajouter un produit** pour afficher la boîte de dialogue **Ajouter un nouveau produit**.
+Cliquez sur **ajouter produit** toodisplay hello **ajouter un nouveau produit** boîte de dialogue.
 
 ![Ajouter un nouveau produit][api-management-new-product-window]
 
-Dans la zone **Titre**, saisissez **Version d’évaluation gratuite**.
+Bonjour **titre** , tapez **version d’évaluation gratuite**.
 
-Dans la zone **Description**, saisissez le texte suivant : **Les abonnés pourront effectuer 10 appels/minute jusqu’à un maximum de 200 appels/semaine, après lesquels l’accès est refusé.**
+Bonjour **Description** boîte, hello du type suivant de texte : **abonnés peuvent être en mesure de toorun 10 appels/minute jusqu'à tooa maximum 200 appels par semaine, après laquelle l’accès est refusé.**
 
-Les produits de Gestion des API peuvent être protégés ou ouverts. Pour pouvoir utiliser les produits protégés, vous devez vous y abonner au préalable. Les produits ouverts sont utilisables sans abonnement. Vérifiez que la case à cocher **Require subscription (Abonnement obligatoire)** est activée afin de créer un produit protégé qui requiert un abonnement. Il s’agit du paramètre par défaut.
+Les produits de Gestion des API peuvent être protégés ou ouverts. Produits protégés doivent être souscrit toobefore ils peuvent être utilisés. Les produits ouverts sont utilisables sans abonnement. Vérifiez que **abonnement** toocreate sélectionné n’est un produit protégé qui nécessite un abonnement. Il s’agit de paramètre par défaut de hello.
 
-Si vous souhaitez qu’un administrateur vérifie et accepte ou refuse les tentatives d’abonnement à ce produit, sélectionnez **Require subscription approval (Approbation d'abonnement obligatoire)**. Si la case à cocher n’est pas activée, les tentatives d’abonnement sont approuvées automatiquement. Dans cet exemple, les abonnements sont approuvés automatiquement. Donc, inutile d’activer la case à cocher.
+Si vous souhaitez un tooreview administrateur et l’accepter ou rejeter abonnement tente toothis produit, sélectionnez **exiger l’approbation de l’abonnement**. Si la case à cocher hello n’est pas sélectionnée, les tentatives d’abonnement sera approuvée automatiquement. Dans cet exemple, les abonnements sont automatiquement approuvées, n’activez ne pas hello à.
 
-Pour autoriser les comptes de développeur à s’abonner plusieurs fois au nouveau produit, activez la case à cocher **Allow multiple simultaneous subscriptions (Autoriser plusieurs abonnements simultanés)**. Ce didacticiel ne nécessite pas l’utilisation de plusieurs abonnements simultanés. Vous pouvez donc laisser cette case décochée.
+tooallow développeur comptes toosubscribe plusieurs fois toohello nouveau produit, sélectionnez hello **autoriser plusieurs abonnements simultanés** case à cocher. Ce didacticiel ne nécessite pas l’utilisation de plusieurs abonnements simultanés. Vous pouvez donc laisser cette case décochée.
 
-Une fois toutes les valeurs saisies, cliquez sur **Enregistrer** pour créer le produit.
+Une fois toutes les valeurs sont entrées, cliquez sur **enregistrer** produit de hello toocreate.
 
 ![Product added][api-management-product-added]
 
-Par défaut, les nouveaux produits sont visibles pour les utilisateurs dans le groupe **Administrateurs** . Nous allons ajouter le groupe **Développeurs** . Cliquez sur **Version d’évaluation gratuite**, puis sur l’onglet **Visibilité**.
+Par défaut, les nouveaux produits sont visibles toousers Bonjour **administrateurs** groupe. Nous allons tooadd hello **les développeurs** groupe. Cliquez sur **version d’évaluation gratuite**, puis cliquez sur hello **visibilité** onglet.
 
-> Dans Gestion des API, les groupes permettent de gérer la visibilité des produits pour les développeurs. Les produits accordent de la visibilité aux groupes. Les développeurs peuvent afficher les produits visibles pour les groupes auxquels ils appartiennent et s'y abonner. Pour plus d'informations, consultez la page [Création et utilisation de groupes dans Gestion des API Azure][How to create and use groups in Azure API Management].
+> Gestion des API, les groupes sont visibilité de hello utilisé toomanage de toodevelopers de produits. Produits accorder toogroups de visibilité, et les développeurs peuvent afficher et s’abonner toohello les produits qui sont des groupes toohello visible dans laquelle ils appartiennent. Pour plus d’informations, consultez [comment toocreate et l’utilisation de groupes dans la gestion des API Azure][How toocreate and use groups in Azure API Management].
 > 
 > 
 
 ![Add developers group][api-management-add-developers-group]
 
-Activez la case à cocher **Développeurs**, puis cliquez sur **Enregistrer**.
+Sélectionnez hello **les développeurs** case à cocher, puis cliquez sur **enregistrer**.
 
-## <a name="add-api"> </a>Ajout d’une API au produit
-Dans cette étape du didacticiel, nous allons ajouter l'API Echo au nouveau produit en version d'évaluation gratuite.
+## <a name="add-api"></a>tooadd une API toohello produit
+Dans cette étape du didacticiel de hello, nous allons ajouter hello Echo produit API de toohello nouvelle version d’évaluation gratuite.
 
-> Chaque instance du service Gestion des API est pré-configurée avec une API Echo qui peut être utilisée pour faire des expériences et en savoir plus sur la gestion des API. Pour plus d’informations, consultez [Gérer votre première API dans Gestion des API Azure][Manage your first API in Azure API Management].
+> Chaque instance de service de gestion des API est préconfigurée avec une API d’écho qui peuvent être utilisé tooexperiment avec et en savoir plus sur la gestion des API. Pour plus d’informations, consultez [Gérer votre première API dans Gestion des API Azure][Manage your first API in Azure API Management].
 > 
 > 
 
-Cliquez sur **Produits** dans le menu **Gestion des API** sur la gauche, puis cliquez sur **Version d’évaluation gratuite** pour configurer le produit.
+Cliquez sur **produits** de hello **gestion des API** menu sur hello gauche, puis cliquez sur **version d’évaluation gratuite** produit de hello tooconfigure.
 
 ![Configure product][api-management-configure-product]
 
-Cliquez sur **Ajouter l'API au produit**.
+Cliquez sur **tooproduct d’ajouter les API**.
 
-![Ajouter l'API au produit][api-management-add-api]
+![Ajouter les API tooproduct][api-management-add-api]
 
 Sélectionnez **API Echo**, puis cliquez sur **Enregistrer**.
 
 ![Add Echo API][api-management-add-echo-api]
 
-## <a name="policies"> </a>Configuration de la limite de débit d’appels et des stratégies de quota
-Les limites de débit et les quotas sont configurés dans l'éditeur de stratégie. Les deux stratégies que nous ajouterons dans ce didacticiel sont les stratégies [Limiter la fréquence des appels par abonnement](https://msdn.microsoft.com/library/azure/dn894078.aspx#LimitCallRate) et [Définir le quota d’utilisation par abonnement](https://msdn.microsoft.com/library/azure/dn894078.aspx#SetUsageQuota). Elles doivent être appliquées dans l’étendue du produit.
+## <a name="policies"></a>tooconfigure les stratégies de quota et la limite de taux d’appels
+Quotas et limites de taux sont configurés dans l’éditeur de stratégie hello. Dans ce didacticiel, nous allons ajouter des stratégies Hello deux sont hello [taux d’appels limite par abonnement](https://msdn.microsoft.com/library/azure/dn894078.aspx#LimitCallRate) et [définir le quota d’utilisation par abonnement](https://msdn.microsoft.com/library/azure/dn894078.aspx#SetUsageQuota) stratégies. Ces stratégies doivent être appliquées à la portée du produit hello.
 
-Cliquez sur **Stratégies** sous le menu **Gestion des API** sur la gauche. Dans la liste **Produit** cliquez sur **Version d’évaluation gratuite**.
+Cliquez sur **stratégies** sous hello **gestion des API** menu à gauche de hello. Bonjour **produit** , cliquez sur **version d’évaluation gratuite**.
 
 ![Product policy][api-management-product-policy]
 
-Cliquez sur **Ajouter une stratégie** pour importer le modèle de stratégie et commencer à créer la limite de débit et les stratégies de quota.
+Cliquez sur **ajouter une stratégie** tooimport hello du modèle de stratégie et commencer à créer des stratégies de quota et la limite de taux hello.
 
 ![Add policy][api-management-add-policy]
 
-La limite de débit et les stratégies de quota sont des stratégies entrantes. Positionnez donc le curseur sur l'élément entrant.
+Stratégies de quota et la limite de taux sont des stratégies entrants, dans ce curseur hello de position dans l’élément d’entrants hello.
 
 ![Policy editor][api-management-policy-editor-inbound]
 
-Parcourez la liste déroulante des stratégies et recherchez l’entrée de la stratégie **Limiter la fréquence des appels par abonnement**.
+Faites défiler la liste des stratégies hello et localiser hello **taux d’appels limite par abonnement** entrée de stratégie.
 
 ![Policy statements][api-management-limit-policies]
 
-Une fois le curseur positionné dans l’élément de stratégie **inbound**, cliquez sur la flèche en regard de **Limiter la fréquence des appels par abonnement** pour insérer son modèle de stratégie.
+Après avoir hello le curseur est positionné dans hello **entrant** élément de stratégie, cliquez sur la flèche de hello **taux d’appels limite par abonnement** tooinsert son modèle de stratégie.
 
 ```xml
 <rate-limit calls="number" renewal-period="seconds">
@@ -123,21 +123,21 @@ Une fois le curseur positionné dans l’élément de stratégie **inbound**, cl
 </rate-limit>
 ```
 
-Comme vous pouvez le voir à partir de l’extrait de code, la stratégie permet de définir des limites pour les opérations et les API du produit. Dans ce didacticiel, nous n’utiliserons pas cette fonctionnalité, supprimez donc les éléments **api** et **operation** de l’élément **rate-limit** pour ne laisser que l’élément externe **rate-limit**, comme le montre l’exemple suivant.
+Comme vous pouvez le voir à partir de l’extrait de code hello, stratégie de hello permet de définition des limites pour les opérations et les API du produit hello. Dans ce didacticiel, nous allons ne sera pas utiliser cette fonctionnalité, donc supprimer hello **api** et **opération** éléments à partir de hello **limite de taux** élément, de sorte que seuls hello externe**limite de taux** élément reste, comme indiqué dans hello l’exemple suivant.
 
 ```xml
 <rate-limit calls="number" renewal-period="seconds">
 </rate-limit>
 ```
 
-Dans le produit en version d’évaluation gratuite, le débit d’appels maximum autorisé est de 10 appels par minute. Tapez **10** en tant que valeur pour l’attribut **calls** et **60** pour l’attribut **renewal-period**.
+Dans le produit d’évaluation gratuite de hello, taux d’appels d’autorisée maximale de hello 10 appels par minute, tapez **10** en tant que valeur hello pour hello **appelle** attribut, et **60** pour hello **période de renouvellement** attribut.
 
 ```xml
 <rate-limit calls="10" renewal-period="60">
 </rate-limit>
 ```
 
-Pour configurer la stratégie **Définir le quota d’utilisation par abonnement**, positionnez votre curseur immédiatement sous l’élément **rate-limit** nouvellement ajouté dans l’élément **inbound**, puis recherchez et cliquez sur la flèche à gauche de **Définir le quota d’utilisation par abonnement**.
+tooconfigure hello **définir le quota d’utilisation par abonnement** stratégie, la position de votre curseur juste en dessous hello récemment ajouté **limite de taux** élément hello **entrant** élément, puis localisez et cliquez sur hello flèche toohello gauche **définir le quota d’utilisation par abonnement**.
 
 ```xml
 <quota calls="number" bandwidth="kilobytes" renewal-period="seconds">
@@ -147,32 +147,32 @@ Pour configurer la stratégie **Définir le quota d’utilisation par abonnement
 </quota>
 ```
 
-Comme la stratégie **Limiter la fréquence des appels par abonnement**, la stratégie **Définir le quota d’utilisation par abonnement** permet de définir des plafonds pour les opérations et les API sur le produit. Dans ce didacticiel, nous n’utiliserons pas cette fonctionnalité, supprimez donc les éléments **api** et **operation** de l’élément **quota**, comme le montre l’exemple suivant.
+De même toohello **définir le quota d’utilisation par abonnement** stratégie, **définir le quota d’utilisation par abonnement** stratégie permet de définir des majuscules pour sur les API du produit hello et des opérations. Dans ce didacticiel, nous allons ne sera pas utiliser cette fonctionnalité, donc supprimer hello **api** et **opération** éléments à partir de hello **quota** élément, comme indiqué dans hello l’exemple suivant.
 
 ```xml
 <quota calls="number" bandwidth="kilobytes" renewal-period="seconds">
 </quota>
 ```
 
-Les quotas peuvent être basés sur le nombre d’appels par intervalle et/ou par bande passante. Dans ce didacticiel, nous ne définirons pas de limitation de bande passante. Supprimez donc l’attribut **bandwidth**.
+Les quotas peuvent reposer sur le nombre de hello d’appels par intervalle, la bande passante ou les deux. Dans ce didacticiel, nous sommes sans limitation en fonction de la bande passante, donc supprimer hello **la bande passante** attribut.
 
 ```xml
 <quota calls="number" renewal-period="seconds">
 </quota>
 ```
 
-Dans le produit en version d'évaluation gratuite, le quota est de 200 appels par semaine. Indiquez **200** en tant que valeur pour l’attribut **calls**, puis indiquez **604800** en tant que valeur pour l’attribut **renewal-period**.
+Dans le produit d’évaluation gratuite de hello, quota de hello est de 200 appels par semaine. Spécifiez **200** en tant que valeur hello pour hello **appelle** d’attribut et spécifiez **604800** en tant que valeur hello pour hello **période de renouvellement** attribut.
 
 ```xml
 <quota calls="200" renewal-period="604800">
 </quota>
 ```
 
-> Les intervalles de stratégie sont spécifiés en secondes. Pour calculer l’intervalle pour une semaine, vous pouvez multiplier le nombre de jours (7) par le nombre d’heures dans une journée (24) par le nombre de minutes dans une heure (60) par le nombre de secondes dans une minute (60) : 7 * 24 * 60 * 60 = 604 800.
+> Les intervalles de stratégie sont spécifiés en secondes. intervalle de salutation toocalculate pendant une semaine, vous pouvez multiplier hello nombre de jours (7) par nombre de hello d’heures par jour (24) par un nombre de minutes dans une heure (60) par un nombre de secondes dans une minute (60) hello hello : 7 * 24 * 60 * 60 = 604800.
 > 
 > 
 
-Lorsque vous avez terminé la configuration de la stratégie, elle doit correspondre à l'exemple ci-dessous.
+Lorsque vous avez terminé la configuration de la stratégie de hello, elle doit correspondre à hello l’exemple suivant.
 
 ```xml
 <policies>
@@ -192,27 +192,27 @@ Lorsque vous avez terminé la configuration de la stratégie, elle doit correspo
 </policies>
 ```
 
-Une fois les stratégies de votre choix configurées, cliquez sur **Enregistrer**.
+Une fois hello souhaité de stratégies sont configurées, cliquez sur **enregistrer**.
 
 ![Save policy][api-management-policy-save]
 
-## <a name="publish-product"> </a> Publication du produit
-Maintenant que les API sont ajoutées et les stratégies configurées, le produit doit être publié pour pouvoir être utilisé par des développeurs. Cliquez sur **Produits** dans le menu **Gestion des API** sur la gauche, puis cliquez sur **Version d’évaluation gratuite** pour configurer le produit.
+## <a name="publish-product"></a> produit de hello toopublish
+Maintenant que hello hello API ont été ajoutées et hello stratégies sont configurées, produit de hello doit être publié afin qu’il peut être utilisé par les développeurs. Cliquez sur **produits** de hello **gestion des API** menu sur hello gauche, puis cliquez sur **version d’évaluation gratuite** produit de hello tooconfigure.
 
 ![Configure product][api-management-configure-product]
 
-Cliquez sur **Publier**, puis sur **Oui, publier** pour confirmer.
+Cliquez sur **publier**, puis cliquez sur **Oui, publiez-le** tooconfirm.
 
 ![Publish product][api-management-publish-product]
 
-## <a name="subscribe-account"> </a>Abonnement d’un compte de développeur au produit
-Maintenant que le produit est publié, il est disponible pour abonnement et utilisation par les développeurs.
+## <a name="subscribe-account"></a>toosubscribe un produit de toohello de compte de développeur
+Maintenant ce produit hello est publié, il est tooand toobe disponible abonné utilisé par les développeurs.
 
-> Les administrateurs d'une instance Gestion des API sont automatiquement abonnés à chaque produit. Dans cette étape du didacticiel, nous abonnerons l’un des comptes de développeur non administrateurs au produit en version d’évaluation gratuite. Si votre compte de développeur fait partie du rôle Administrateur, vous pouvez suivre cette étape, même si vous êtes déjà abonné.
+> Les administrateurs d’une instance de la gestion des API sont automatiquement souscrit tooevery produit. Dans cette étape du didacticiel, nous peuvent s’abonner à un des comptes de développeur de non-administrateur hello toohello version d’évaluation gratuite produit. Si votre compte de développeur fait partie du rôle des administrateurs de hello, vous pouvez ensuite suivre en même temps que cette étape, même si vous êtes déjà inscrit.
 > 
 > 
 
-Cliquez sur **Utilisateurs** sur le menu **Gestion des API** situé à gauche, puis cliquez sur le nom de votre compte de développeur. Dans cet exemple, nous utilisons le compte de développeur **Clayton Gragg** .
+Cliquez sur **utilisateurs** sur hello **gestion des API** hello menu gauche, puis cliquez sur nom hello de votre compte de développeur. Dans cet exemple, nous utilisons hello **Clayton Gragg** compte de développeur.
 
 ![Configure developer][api-management-configure-developer]
 
@@ -225,23 +225,23 @@ Sélectionnez **Version d’évaluation gratuite**, puis cliquez sur **S’abonn
 ![Ajouter un abonnement][api-management-add-subscription]
 
 > [!NOTE]
-> Dans ce didacticiel, l’option autorisant plusieurs abonnements simultanés est désactivée pour le produit en version d’évaluation gratuite. Dans le cas contraire, vous auriez été invité à indiquer le nom de l’abonnement, comme dans l’exemple suivant.
+> Dans ce didacticiel, plusieurs abonnements simultanées ne sont pas activés pour le produit d’évaluation gratuite de hello. S’il s’agissait, vous serait tooname demandées hello abonnement, comme indiqué dans hello l’exemple suivant.
 > 
 > 
 
 ![Ajouter un abonnement][api-management-add-subscription-multiple]
 
-Après avoir cliqué sur **S’abonner**, le produit s’affiche dans la liste **Abonnement** de l’utilisateur.
+Après avoir cliqué sur **s’abonner**, produit de hello apparaît dans hello **abonnement** liste pour l’utilisateur de hello.
 
 ![Abonnement ajouté][api-management-subscription-added]
 
-## <a name="test-rate-limit"> </a>Appel d’une opération et test de la limite de débit
-Maintenant que le produit en version d'évaluation gratuite est configuré et publié, nous pouvons appeler des opérations et tester la stratégie de limite de débit.
-Basculez vers le portail de développeur en cliquant sur **Portail des développeurs** dans le menu supérieur droit.
+## <a name="test-rate-limit"></a>toocall une limite de fréquence hello opération et de test
+Maintenant hello produit de la version d’évaluation gratuite est configuré et publié, nous permet appeler certaines opérations et de tester la stratégie de limite de taux hello.
+Portail des développeurs commutateur toohello en cliquant sur **portail des développeurs** dans le menu supérieur droit de hello.
 
 ![Portail des développeurs][api-management-developer-portal-menu]
 
-Cliquez sur **API** dans le menu supérieur, puis sélectionnez **API Echo**.
+Cliquez sur **API** dans hello menu supérieur, puis cliquez sur **Echo API**.
 
 ![Portail des développeurs][api-management-developer-portal-api-menu]
 
@@ -249,29 +249,29 @@ Cliquez sur **Ressource GET**, puis sur **Essayez-le**.
 
 ![Open console][api-management-open-console]
 
-Conservez la valeur par défaut des paramètres et sélectionnez votre clé d’abonnement pour le produit en version d’évaluation gratuite.
+Conserver les valeurs de paramètre par défaut de hello et sélectionnez votre clé d’abonnement pour le produit d’évaluation gratuite de hello.
 
 ![Clé d’abonnement][api-management-select-key]
 
 > [!NOTE]
-> Si vous possédez plusieurs abonnements, pensez à sélectionner la clé pour la **Version d’évaluation gratuite**, sinon, les stratégies configurées aux étapes précédentes ne seront pas effectives.
+> Si vous avez plusieurs abonnements, être Vérifiez que la touche tooselect hello pour **version d’évaluation gratuite**, ou autre stratégies hello qui ont été configurés dans les étapes précédentes hello ne sera pas en vigueur.
 > 
 > 
 
-Cliquez sur **Envoyer**, puis affichez la réponse. Notez l'**État de réponse** **200 OK**.
+Cliquez sur **envoyer**, puis affichez la réponse de hello. Hello de note **état de la réponse** de **200 OK**.
 
 ![Operation results][api-management-http-get-results]
 
-Cliquez sur **Envoyer** à une fréquence supérieure à la stratégie de limite de fréquence de 10 appels par minute. Une fois la stratégie de limite de débit dépassée, un état de réponse **429 Trop de requêtes** est renvoyé.
+Cliquez sur **envoyer** à une fréquence supérieure à la stratégie de limite de taux de hello 10 appels par minute. Une fois la stratégie de limite de taux de hello est dépassée, un état de réponse de **429 trop grand nombre de demandes** est retourné.
 
 ![Operation results][api-management-http-get-429]
 
-Le **Contenu de réponse** indique l’intervalle restant avant la réussite des nouvelles tentatives.
+Hello **contenu de la réponse** indique hello restant intervalle avant nouvelle tentative sera établie.
 
-Lorsque la stratégie de limite de débit de 10 appels par minute est appliquée, les appels suivants échouent jusqu’à ce que 60 secondes se soient écoulées à partir du premier des 10 appels réussis vers le produit avant le dépassement de la limite de débit. Dans cet exemple, l’intervalle restant est de 54 secondes.
+Lors de la stratégie de limite de taux de hello 10 appels par minute, les appels suivants échoueront jusqu'à ce que 60 secondes à partir de hello premier du produit de toohello hello 10 appels réussis avant que la limite du taux de hello a été dépassé. Dans cet exemple, hello restant intervalle est 54 secondes.
 
-## <a name="next-steps"> </a>Étapes suivantes
-* Consultez une démonstration relative à la définition de limites de débit et de quotas dans la vidéo suivante.
+## <a name="next-steps"></a>Étapes suivantes
+* Regarder une démonstration de la définition de quotas et limites de taux Bonjour suivant vidéo.
 
 > [!VIDEO https://channel9.msdn.com/Blogs/AzureApiMgmt/Rate-Limits-and-Quotas/player]
 > 
@@ -304,24 +304,24 @@ Lorsque la stratégie de limite de débit de 10 appels par minute est appliqué
 [api-management-subscription-added]: ./media/api-management-howto-product-with-rules/api-management-subscription-added.png
 [api-management-add-subscription-multiple]: ./media/api-management-howto-product-with-rules/api-management-add-subscription-multiple.png
 
-[How to add operations to an API]: api-management-howto-add-operations.md
-[How to add and publish a product]: api-management-howto-add-products.md
+[How tooadd operations tooan API]: api-management-howto-add-operations.md
+[How tooadd and publish a product]: api-management-howto-add-products.md
 [Monitoring and analytics]: ../api-management-monitoring.md
-[Add APIs to a product]: api-management-howto-add-products.md#add-apis
+[Add APIs tooa product]: api-management-howto-add-products.md#add-apis
 [Publish a product]: api-management-howto-add-products.md#publish-product
 [Manage your first API in Azure API Management]: api-management-get-started.md
-[How to create and use groups in Azure API Management]: api-management-howto-create-groups.md
-[View subscribers to a product]: api-management-howto-add-products.md#view-subscribers
+[How toocreate and use groups in Azure API Management]: api-management-howto-create-groups.md
+[View subscribers tooa product]: api-management-howto-add-products.md#view-subscribers
 [Get started with Azure API Management]: api-management-get-started.md
 [Create an API Management service instance]: api-management-get-started.md#create-service-instance
 [Next steps]: #next-steps
 
 [Create a product]: #create-product
 [Configure call rate limit and quota policies]: #policies
-[Add an API to the product]: #add-api
-[Publish the product]: #publish-product
-[Subscribe a developer account to the product]: #subscribe-account
-[Call an operation and test the rate limit]: #test-rate-limit
+[Add an API toohello product]: #add-api
+[Publish hello product]: #publish-product
+[Subscribe a developer account toohello product]: #subscribe-account
+[Call an operation and test hello rate limit]: #test-rate-limit
 
 [Limit call rate]: https://msdn.microsoft.com/library/azure/dn894078.aspx#LimitCallRate
 [Set usage quota]: https://msdn.microsoft.com/library/azure/dn894078.aspx#SetUsageQuota

@@ -1,6 +1,6 @@
 ---
-title: "Surveillance des opérations Azure IoT Hub | Microsoft Docs"
-description: "Découvrez comment utiliser la surveillance des opérations Azure IoT Hub pour surveiller l’état des opérations sur votre hub IoT en temps réel."
+title: "surveillance des opérations IoT Hub aaaAzure | Documents Microsoft"
+description: "Comment les opérations de Azure IoT Hub toouse analyse toomonitor hello état des opérations sur votre IoT hub en temps réel."
 services: iot-hub
 documentationcenter: 
 author: nberdy
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/25/2017
 ms.author: nberdy
-ms.openlocfilehash: b6de5c5df5f9401a41be152bfa06eb994594e83d
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a0b233ef2d9bd0827e19fa30fdbdd49b2b61b813
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="iot-hub-operations-monitoring"></a>Surveillance des opérations IoT Hub
 
-La surveillance des opérations IoT Hub vous permet de surveiller l’état des opérations sur votre hub IoT en temps réel. IoT Hub effectue le suivi des événements entre différentes catégories d’opérations. Vous pouvez opter pour l’envoi des événements d’une ou plusieurs catégories à un point de terminaison de votre IoT Hub en vue de leur traitement. Vous pouvez surveiller les données des erreurs ou configurer un traitement plus complexe basé sur des modèles de données.
+Surveillance des opérations IoT Hub vous permet d’état de hello toomonitor des opérations sur votre IoT hub en temps réel. IoT Hub effectue le suivi des événements entre différentes catégories d’opérations. Vous pouvez choisir d’envoyer des événements à partir d’une ou plusieurs catégories tooan point de terminaison de votre hub IoT pour le traitement. Vous pouvez analyser les données hello pour les erreurs ou configurer un traitement plus complexe basé sur des modèles de données.
 
 IoT Hub surveille six catégories d’événements :
 
@@ -33,28 +33,28 @@ IoT Hub surveille six catégories d’événements :
 * Chargements de fichiers
 * Routage de messages
 
-## <a name="how-to-enable-operations-monitoring"></a>Comment activer la surveillance des opérations
+## <a name="how-tooenable-operations-monitoring"></a>La surveillance des opérations tooenable
 
-1. Créez un hub IoT. Pour savoir comment créer un hub IoT, consultez le guide [Prise en main][lnk-get-started].
+1. Créez un hub IoT. Vous trouverez des instructions sur la façon de toocreate un hub IoT Bonjour [prise en main] [ lnk-get-started] guide.
 
-1. Ouvrez le panneau de votre hub IoT. De là, cliquez sur **Surveillance des opérations**.
+1. Ouvrez le panneau hello de votre hub IoT. De là, cliquez sur **Surveillance des opérations**.
 
-    ![Accéder à la configuration de la surveillance des opérations dans le portail][1]
+    ![Opérations d’accès hello portail d’analyse][1]
 
-1. Sélectionnez les catégories de surveillance qui vous intéressent, puis cliquez sur **Enregistrer**. Les événements sont disponibles en lecture depuis le point de terminaison compatible avec le hub d’événements répertorié dans **Paramètres de surveillance**. Le point de terminaison IoT Hub s’appelle `messages/operationsmonitoringevents`.
+1. Hello Sélectionnez analyse des catégories que vous souhaitez toomonitor, puis cliquez sur **enregistrer**. Hello événements sont disponibles pour la lecture à partir du point de terminaison hello compatible concentrateur d’événements répertoriée dans **paramètres d’analyse**. Hello point de terminaison IoT Hub est appelée `messages/operationsmonitoringevents`.
 
     ![Configurer la surveillance des opérations sur votre IoT Hub][2]
 
 > [!NOTE]
-> Si vous sélectionnez la surveillance **détaillée** dans la catégorie **Connexions**, IoT Hub génère des messages de diagnostic supplémentaires. Pour toutes les autres catégories, le paramètre **Détaillée** modifie la quantité d’informations qu’IoT Hub inclut dans chaque message d’erreur.
+> En sélectionnant **Verbose** analyse pour hello **connexions** catégorie provoque IoT Hub toogenerate les messages de diagnostic supplémentaires. Pour toutes les autres catégories, hello **Verbose** inclut les modifications apportées au paramètre quantité hello d’informations IoT Hub dans chaque message d’erreur.
 
-## <a name="event-categories-and-how-to-use-them"></a>Catégories d’événements et utilisation respective
+## <a name="event-categories-and-how-toouse-them"></a>Catégories d’événements et comment toouse les
 
 Chaque catégorie de surveillance d’opérations assure le suivi d’un type spécifique d’interaction avec IoT Hub et a un schéma qui définit la façon dont sont structurés les événements qu’elle comporte.
 
 ### <a name="device-identity-operations"></a>Opérations d’identité des appareils
 
-La catégorie d’opérations d’identité des appareils effectue le suivi des erreurs qui se produisent quand vous tentez de créer, mettre à jour ou supprimer une entrée dans le registre d’identité de votre hub IoT. Le suivi de cette catégorie est utile pour les scénarios d’approvisionnement.
+catégorie d’opérations Hello appareils identité effectue le suivi des erreurs qui se produisent lorsque vous essayez de toocreate, mettre à jour ou supprimer une entrée dans le Registre des identités de votre hub IoT. Le suivi de cette catégorie est utile pour les scénarios d’approvisionnement.
 
 ```json
 {
@@ -73,7 +73,7 @@ La catégorie d’opérations d’identité des appareils effectue le suivi des 
 
 ### <a name="device-telemetry"></a>Télémétrie d’appareil
 
-La catégorie de télémétrie d’appareil effectue le suivi des erreurs qui se produisent au niveau du hub IoT et qui sont liées au pipeline de télémétrie. Cette catégorie inclut notamment les erreurs concernant l’envoi d’événements de télémétrie (par exemple, une limitation) et la réception des événements de télémétrie (par exemple, un lecteur non autorisé). Cette catégorie ne peut pas intercepter les erreurs provoquées par le code en cours d’exécution sur l’appareil lui-même.
+catégorie de télémétrie de périphérique Hello effectue le suivi des erreurs qui se produisent au hub IoT de hello et sont le pipeline de télémétrie toohello connexes. Cette catégorie inclut notamment les erreurs concernant l’envoi d’événements de télémétrie (par exemple, une limitation) et la réception des événements de télémétrie (par exemple, un lecteur non autorisé). Cette catégorie ne peut pas intercepter des erreurs provoquées par le code en cours d’exécution sur l’appareil hello lui-même.
 
 ```json
 {
@@ -97,7 +97,7 @@ La catégorie de télémétrie d’appareil effectue le suivi des erreurs qui se
 
 ### <a name="cloud-to-device-commands"></a>Commandes cloud-à-appareil
 
-La catégorie de commandes cloud-à-appareil effectue le suivi des erreurs qui se produisent au niveau du hub IoT et qui sont liées au pipeline de messages cloud-à-appareil. Cette catégorie inclut notamment les erreurs concernant l’envoi de messages cloud-à-appareil (telles qu’un expéditeur non autorisé), la réception des messages cloud-à-appareil (telles que le dépassement du nombre de remises) et la réception des commentaires de message cloud-à-appareil (telles que des commentaires arrivés à expiration). Cette catégorie n’intercepte pas d’erreurs dans le cas d’un appareil qui gère mal un message cloud-à-appareil si le message a été correctement remis.
+catégorie de commandes de cloud-à-appareil Hello effectue le suivi des erreurs qui se produisent au hub IoT de hello et sont le pipeline de message du cloud-à-appareil toohello connexes. Cette catégorie inclut notamment les erreurs concernant l’envoi de messages cloud-à-appareil (telles qu’un expéditeur non autorisé), la réception des messages cloud-à-appareil (telles que le dépassement du nombre de remises) et la réception des commentaires de message cloud-à-appareil (telles que des commentaires arrivés à expiration). Cette catégorie n’intercepte pas d’erreurs à partir d’un périphérique qui gère correctement un message cloud-à-appareil si le message de salutation cloud sur l’appareil a été remis avec succès.
 
 ```json
 {
@@ -121,7 +121,7 @@ La catégorie de commandes cloud-à-appareil effectue le suivi des erreurs qui s
 
 ### <a name="connections"></a>Connexions
 
-La catégorie de connexions effectue le suivi des erreurs provoquées par la connexion des appareils à un hub IoT ou leur déconnexion de celui-ci. Le suivi de cette catégorie est utile pour identifier les tentatives de connexion non autorisées et pour repérer les moments auxquels une connexion est perdue pour les appareils qui se trouvent dans des zones bénéficiant d’une connectivité médiocre.
+catégorie de connexions Hello effectue le suivi des erreurs qui se produisent lorsque les appareils se connecteront ou se déconnecter d’un hub IoT. Le suivi de cette catégorie est utile pour identifier les tentatives de connexion non autorisées et pour repérer les moments auxquels une connexion est perdue pour les appareils qui se trouvent dans des zones bénéficiant d’une connectivité médiocre.
 
 ```json
 {
@@ -141,13 +141,13 @@ La catégorie de connexions effectue le suivi des erreurs provoquées par la con
 
 ### <a name="file-uploads"></a>Chargements de fichiers
 
-La catégorie de chargement de fichiers effectue le suivi des erreurs qui se produisent au niveau de l’IoT hub et qui sont liées à la fonctionnalité de chargement. Cette catégorie inclut :
+catégorie de téléchargement de fichier Hello effectue le suivi des erreurs qui se produisent au hub IoT de hello et sont une fonctionnalité de téléchargement toofile connexes. Cette catégorie inclut :
 
-* Erreurs qui se produisent avec l’URI SAP, par exemple en cas d’expiration avant qu’un appareil notifie le hub d’un téléchargement terminé.
-* Échecs des téléchargements signalés par l’appareil.
+* Erreurs qui se produisent avec hello SAS URI, par exemple lorsqu’il expire avant un périphérique notifie hub hello d’un téléchargement terminé.
+* Échec de téléchargements signalées par le périphérique de hello.
 * Erreurs qui se produisent lorsqu’un fichier est introuvable dans le stockage lors de la création du message de notification IoT Hub.
 
-Cette catégorie ne peut pas détecter les erreurs qui surviennent directement pendant que l’appareil charge un fichier de stockage.
+Cette catégorie ne peut pas intercepter les erreurs qui directement se produisent lors de l’appareil de hello transfère un toostorage de fichier.
 
 ```json
 {
@@ -168,7 +168,7 @@ Cette catégorie ne peut pas détecter les erreurs qui surviennent directement p
 
 ### <a name="message-routing"></a>Routage de messages
 
-La catégorie de routage des messages assure le suivi des erreurs qui se produisent pendant l’évaluation du routage des messages et de l’intégrité du point de terminaison perçue par IoT Hub. Cette catégorie inclut les événements tels qu’une règle prenant la valeur « Non définie », lorsqu’IoT Hub marque un point de terminaison comme inactif et toute autre erreur reçue à partir d’un point de terminaison. Cette catégorie n’inclut pas les erreurs spécifiques sur les messages eux-mêmes (telles que les erreurs de limitation des appareils) qui sont signalées dans la catégorie « télémétrie des appareils ».
+catégorie du routage des messages Hello effectue le suivi des erreurs qui se produisent pendant l’évaluation de routage de message et de contrôle d’intégrité du point de terminaison perçue par IoT Hub. Cette catégorie inclut des événements tels que lorsqu’une règle prend trop « indéfini », lorsque IoT Hub la marque un point de terminaison en tant que de lettres mortes et les autres erreurs reçues à partir d’un point de terminaison. Cette catégorie n’inclut pas les erreurs spécifiques sur les messages hello eux-mêmes (par exemple, le périphérique erreurs de limitation), qui sont signalées sous la catégorie de « télémétrie de l’appareil » hello.
 
 ```json
 {
@@ -187,49 +187,49 @@ La catégorie de routage des messages assure le suivi des erreurs qui se produis
 
 ## <a name="view-events"></a>Visualiser les événements
 
-Vous pouvez utiliser l’outil *iothub-explorer* pour vérifier rapidement que votre IoT Hub génère des événements de surveillance. Pour installer l’outil, consultez les instructions dans le dépôt [iothub-explorer][lnk-iothub-explorer] GitHub.
+Vous pouvez utiliser hello *iothub-explorer* tooquickly de l’outil de test que votre hub IoT génère des événements de contrôle. tooinstall hello outil, consultez les instructions hello Bonjour [iothub-explorer] [ lnk-iothub-explorer] référentiel GitHub.
 
-1. Vérifiez que la catégorie de surveillance **Connexions** a la valeur **Verbose** (Mode détaillé) dans le portail.
+1. Vérifiez que hello **connexions** analyse catégorie est défini trop**Verbose** dans le portail de hello.
 
-1. À une invite de commandes, exécutez la commande suivante pour lire le point de terminaison de surveillance :
+1. À une invite de commandes, exécutez hello suivant commande tooread hello surveillance de point de terminaison :
 
     ```
     iothub-explorer monitor-ops --login {your iothubowner connection string}
     ```
 
-1. Dans une autre invite de commandes, exécutez la commande suivante pour simuler un appareil envoyant des messages de l’appareil au cloud :
+1. Dans l’invite de commandes une autre, exécutez hello suivant commande toosimulate un périphérique d’envoi de messages de l’appareil-à-cloud :
 
     ```
     iothub-explorer simulate-device {your device name} --send "My test message" --login {your iothubowner connection string}
     ```
 
-1. La première invite de commandes affiche les événements de surveillance quand l’appareil simulé se connecte à votre IoT Hub.
+1. Hello première ligne de commande affiche les événements de surveillance de hello comme tooyour IoT hub connecte l’appareil simulé de hello.
 
-## <a name="connect-to-the-monitoring-endpoint"></a>Se connecter au point de terminaison de surveillance
+## <a name="connect-toohello-monitoring-endpoint"></a>Se connecter toohello surveillance de point de terminaison
 
-Le point de terminaison de surveillance de votre IoT Hub est un point de terminaison compatible Event Hub. Vous pouvez utiliser n’importe quel mécanisme compatible avec Event Hubs pour lire les messages de surveillance à partir de ce point de terminaison. L’exemple suivant crée un lecteur de base qui ne convient pas dans le cas d’un déploiement à débit élevé. Pour plus d’informations sur la façon de traiter les messages à partir des concentrateurs d’événements, reportez-vous au didacticiel [Prise en main des concentrateurs d’événements][lnk-eventhubs-tutorial].
+Hello surveillance de point de terminaison sur votre hub IoT est un point de terminaison de Hub d’événements compatibles. Vous pouvez utiliser n’importe quel mécanisme qui fonctionne avec les concentrateurs d’événements tooread analyse les messages à partir de ce point de terminaison. Hello exemple suivant crée un lecteur de base qui n’est pas approprié pour un déploiement d’un débit élevé. Pour plus d’informations sur la tooprocess des messages à partir de concentrateurs d’événements, consultez hello [prise en main les concentrateurs d’événements] [ lnk-eventhubs-tutorial] didacticiel.
 
-Pour vous connecter au point de terminaison de surveillance, vous avez besoin d’une chaîne de connexion et du nom du point de terminaison. Les étapes suivantes vous montrent comment trouver les valeurs nécessaires dans le portail :
+point de terminaison analyse tooconnect toohello, vous devez un nom de point de terminaison hello et de chaîne de connexion. Hello suit vous montrent comment toofind hello les valeurs nécessaires dans le portail de hello :
 
-1. Dans le portail, accédez à votre panneau de ressources IoT Hub.
+1. Dans le portail de hello, accédez tooyour panneau des ressources IoT Hub.
 
-1. Sélectionnez **Surveillance des opérations**, notez les valeurs du **Nom compatible Event Hub** et du **Point de terminaison compatible Event Hub** :
+1. Choisissez **surveillance des opérations**et prenez note de hello **nom du concentrateur d’événements compatibles** et **point de terminaison de Hub d’événements compatibles** valeurs :
 
     ![Valeurs du point de terminaison compatible Event Hub][img-endpoints]
 
-1. Sélectionnez **Stratégies d’accès partagé**, puis **service**. Prenez note de la valeur de **Clé primaire** :
+1. Sélectionnez **Stratégies d’accès partagé**, puis **service**. Prenez note de hello **clé primaire** valeur :
 
     ![Clé primaire de la stratégie d’accès partagé du service][img-service-key]
 
-L’exemple de code C# suivant est extrait d’une application console C# **Bureau classique Windows** de Visual Studio. Le projet possède le package NuGet **WindowsAzure.ServiceBus**.
+exemple de code c# suivant Hello est effectuée à partir de Visual Studio **de bureau Windows classique** application de console c#. projet de Hello a hello **WindowsAzure.ServiceBus** package NuGet installé.
 
-* Remplacez l’espace réservé de chaîne de connexion par une chaîne de connexion qui utilise les valeurs du **Point de terminaison compatible Event Hub** et de la **Clé primaire** du service notées précédemment, comme l’illustre l’exemple suivant :
+* Remplacez l’espace réservé chaîne de connexion hello avec une chaîne de connexion qui utilise hello **point de terminaison de Hub d’événements compatibles** et le service **clé primaire** valeurs notées précédemment, comme indiqué dans les éléments suivants de hello exemple :
 
     ```cs
     "Endpoint={your Event Hub-compatible endpoint};SharedAccessKeyName=service;SharedAccessKey={your service primary key value}"
     ```
 
-* Remplacez l’espace réservé de nom de point de terminaison de surveillance par la valeur du **Nom compatible Event Hub** notée précédemment.
+* Remplacez hello analyse l’espace réservé de nom de point de terminaison avec hello **nom du concentrateur d’événements compatibles** valeur que vous avez notée précédemment.
 
 ```cs
 class Program
@@ -240,7 +240,7 @@ class Program
 
     static void Main(string[] args)
     {
-        Console.WriteLine("Monitoring. Press Enter key to exit.\n");
+        Console.WriteLine("Monitoring. Press Enter key tooexit.\n");
 
         eventHubClient = EventHubClient.CreateFromConnectionString(connectionString, monitoringEndpointName);
         var d2cPartitions = eventHubClient.GetRuntimeInformation().PartitionIds;
@@ -282,7 +282,7 @@ class Program
 ```
 
 ## <a name="next-steps"></a>Étapes suivantes
-Pour explorer davantage les capacités de IoT Hub, consultez :
+toofurther Explorez les fonctionnalités de hello d’IoT Hub, consultez :
 
 * [Guide du développeur IoT Hub][lnk-devguide]
 * [Simulation d’un appareil avec Azure IoT Edge][lnk-iotedge]

@@ -1,6 +1,6 @@
 ---
-title: Environnement App Service| Microsoft Docs
-description: "Qu’est-ce qu’un environnement Azure App Service ? Présentation de l’environnement App Service."
+title: aaaApp Service environnement | Documents Microsoft
+description: "Qu’est-ce qu’un environnement Azure App Service ? Une présentation tooApp environnement de Service."
 keywords: "environnement azure app service, réseau virtuel, sécurisation des réseaux"
 services: app-service
 documentationcenter: 
@@ -15,11 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/01/2016
 ms.author: stefsch
-ms.openlocfilehash: 1de3f2c513f4f5ce6fd2ab2b57514122955a9a98
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1b59fed4e5a72d4c4805e1dca203747e07e77103
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="app-service-environment-documentation"></a>Documentation sur l’environnement App Service
 Un environnement App Service est une option de plan de service [Premium][PremiumTier] d’Azure App Service qui fournit un environnement totalement isolé et dédié pour exécuter en toute sécurité des applications Azure App Service de grande envergure, comme [Web Apps][WebApps], [Mobile Apps][MobileApps] et [API Apps][APIApps].  
@@ -31,9 +31,9 @@ Les environnements App Service constituent le meilleur choix pour les charges d
 
 Les clients peuvent créer plusieurs environnements App Service au sein d’une même région Azure, ainsi que dans plusieurs régions Azure.  Les environnements App Service sont donc parfaits pour l’évolution horizontale des applications sans état pour la prise en charge de lourdes charges de travail RPS.
 
-Les environnements App Service sont isolés de façon à exécuter les applications d’un seul client et ils sont toujours déployés dans un réseau virtuel.  Les clients peuvent contrôler précisément le trafic réseau entrant et sortant des applications à l’aide des [groupes de sécurité réseau][NetworkSecurityGroups].  Les applications peuvent également établir des connexions sécurisées à haute vitesse via des réseaux virtuels aux ressources d’entreprise locales.
+Les environnements App Service sont isolé toorunning uniquement les applications d’un client unique et sont toujours déployés dans un réseau virtuel.  Les clients peuvent contrôler précisément le trafic réseau entrant et sortant des applications à l’aide des [groupes de sécurité réseau][NetworkSecurityGroups].  Applications peuvent également établir des connexions sécurisées à grande vitesse sur les ressources d’entreprise de réseaux virtuels tooon local.
 
-Les applications doivent souvent accéder à des ressources d’entreprise telles que des bases de données internes et des services web.  Les applications s’exécutant dans des environnements App Service peuvent accéder aux ressources joignables via des connexions VPN [site à site][SiteToSite] et [Azure ExpressRoute][ExpressRoute].
+Les applications ont souvent besoin tooaccess des ressources d’entreprise telles que les bases de données internes et les services web.  Les applications s’exécutant dans des environnements App Service peuvent accéder aux ressources joignables via des connexions VPN [site à site][SiteToSite] et [Azure ExpressRoute][ExpressRoute].
 
 * [Qu'est-ce qu'un environnement App Service ?](../app-service-web/app-service-app-service-environment-intro.md)
 * [Création d'un environnement App Service](../app-service-web/app-service-web-how-to-create-an-app-service-environment.md)

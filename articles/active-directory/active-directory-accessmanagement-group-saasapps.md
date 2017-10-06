@@ -1,6 +1,6 @@
 ---
-title: "Utilisation d’un groupe pour gérer l’accès aux applications SaaS| Microsoft Docs"
-description: "Comment utiliser les groupes dans Azure Active Directory Premium ou Basic pour attribuer l’accès à des applications SaaS intégrées à Azure Active Directory."
+title: "aaaUsing un tooSaaS d’accès groupe toomanage Applications | Documents Microsoft"
+description: "Comment les groupes dans Azure Active Directory Premium ou Basic tooassign toouse d’accéder aux applications tooSaaS sont intégrées à Azure Active Directory."
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -16,38 +16,38 @@ ms.date: 08/04/2017
 ms.author: curtand
 ms.reviewer: piotrci
 ms.custom: it-pro;oldportal
-ms.openlocfilehash: d350011ee9fc5ced9ddb16993f68d3c840a645a5
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: f45ea4472b3d88e8ea514af3db31b4cc9ea68d58
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="using-a-group-to-manage-access-to-saas-applications"></a>Utilisation d’un groupe pour gérer l’accès aux applications SaaS
-En utilisant Azure Active Directory (Azure AD) avec une licence Azure AD Premium ou Azure AD Basic, vous pouvez utiliser les groupes pour attribuer l’accès à une application SaaS intégrée à Azure AD. Par exemple, si vous souhaitez attribuer l’accès à différentes applications SaaS au service marketing, vous pouvez créer un groupe comportant les utilisateurs du service marketing, puis allouer ce groupe aux cinq applications SaaS dont il a besoin. De cette manière, vous pouvez gagner du temps en gérant de manière centralisée l’adhésion du service marketing. Ensuite, les utilisateurs sont affectés à l’application lorsqu’ils sont ajoutés en tant que membres du groupe marketing. Leurs attributions sont retirées de l’application lors de leur suppression du groupe marketing.
+# <a name="using-a-group-toomanage-access-toosaas-applications"></a>À l’aide d’une application de groupe toomanage accès tooSaaS
+À l’aide d’Azure Active Directory (Azure AD) avec une licence Azure AD Premium ou Azure AD Basic, vous pouvez utiliser des groupes tooassign accès tooa application SaaS intégrée à Azure AD. Par exemple, si vous souhaitez accéder tooassign pour hello marketing service toouse cinq applications SaaS différentes, vous pouvez créer un groupe qui contient des utilisateurs hello hello département de marketing et puis affectez ce groupe toothese cinq applications SaaS qui sont requis par le service marketing de hello. Cette façon vous pouvez gagner du temps en gérant l’appartenance de hello Hello marketing service dans un seul emplacement. Les utilisateurs sont ensuite affectées toohello application lorsqu’ils sont ajoutés en tant que membres du groupe marketing de hello et leur affectation est supprimée à partir de l’application hello lorsqu’ils sont supprimés hello groupe marketing.
 
 > [!IMPORTANT]
-> Microsoft recommande de gérer Azure AD à l’aide du [Centre d’administration Azure AD](https://aad.portal.azure.com) dans le portail Azure au lieu d’utiliser le portail Azure classique référencé dans cet article. 
+> Microsoft recommande de gérer Azure AD en utilisant hello [centre d’administration Azure AD](https://aad.portal.azure.com) Bonjour portail Azure au lieu d’utiliser hello portail Azure classic référencée dans cet article. 
 
-Cette fonctionnalité peut être utilisée avec des centaines d’applications pouvant être ajoutées à partir de la galerie d’applications Azure AD.
+Cette fonctionnalité peut être utilisée avec des centaines d’applications que vous pouvez ajouter à partir de hello Galerie d’applications Azure AD.
 
-**Pour attribuer à un groupe l’accès à une application SaaS**
+**accès tooassign pour un groupe de tooa application SaaS**
 
-1. Dans le [portail Azure Classic](https://manage.windowsazure.com), sélectionnez **Active Directory** dans la barre de navigation à gauche.
-2. Sélectionnez l’onglet **Répertoire** , puis ouvrez le répertoire dans lequel vous souhaitez attribuer l’accès à un groupe à une application SaaS.
-3. Sélectionnez l’onglet **Applications** . Sélectionnez une application ajoutée à partir de la galerie d’applications, puis cliquez sur l’onglet **Utilisateurs et groupes** .
-4. Sous l’onglet **Utilisateurs et groupes**, dans le champ **Commencer par**, saisissez le nom du groupe auquel vous souhaitez attribuer l’accès, puis cliquez sur la coche dans le coin supérieur droit. Il vous suffit de saisir le début du nom d’un groupe.
-5. Sélectionnez le groupe, puis cliquez sur le bouton **Autoriser l’accès** . Sélectionnez **Oui** lorsque vous voyez le message de confirmation. Les appartenances à des groupes imbriquées ne sont pas prises en charge pour l’affectation basée sur le groupe à des applications à ce stade.
-6. Vous pouvez également voir quels utilisateurs sont affectés à l’application, soit directement ou en étudiant l’adhésion au sein d’un groupe. Pour ce faire, modifiez la définition de la **liste déroulante Affichage de Groupe** sur **Tous les utilisateurs**. La liste affiche les utilisateurs du répertoire et indique s’ils sont affectés ou non à l’application. Elle indique également si les utilisateurs sont affectés directement à l’application (type d’affectation direct) ou par le biais de l’adhésion à un groupe (type d’affectation hérité).
+1. Bonjour [portail Azure classic](https://manage.windowsazure.com), sélectionnez **Active Directory** sur la barre de navigation hello sur le côté gauche de hello.
+2. Sélectionnez hello **répertoire** onglet et répertoire puis ouvrez hello dans lequel vous souhaitez tooassign l’accès pour un groupe de tooa application SaaS.
+3. Sélectionnez hello **Applications** onglet. Sélectionnez une application que vous avez ajouté à partir de hello Galerie d’applications, puis cliquez sur hello **utilisateurs et groupes** onglet.
+4. Sur hello **utilisateurs et groupes** onglet hello **commençant par** , entrez le nom de hello de hello groupe toowhich vous choix tooassign accès, puis sélectionnez hello case à cocher dans le coin supérieur droit de hello. Vous ne devez tootype hello première partie du nom d’un groupe.
+5. Sélectionnez le groupe de hello, puis sélectionnez hello **attribuer un accès** bouton. Sélectionnez **Oui** lorsque vous voyez le message de confirmation hello. Appartenances aux groupes imbriqués ne sont pas pris en charge pour l’affectation basée sur le groupe tooapplications à ce stade.
+6. Vous pouvez également voir quels utilisateurs sont affectés toohello application, directement ou par l’appartenance à un groupe. toodo, hello modification **afficher la liste déroulante à partir de « Groupes »** trop**« Tous les utilisateurs »**. liste de Hello montre aux utilisateurs dans le répertoire de hello et s’il faut ou non chaque utilisateur se voit affecter toohello application. liste de Hello indique également si les utilisateurs de hello affecté assignés toohello application directement (type d’affectation « Direct »), ou en vertu de l’appartenance au groupe (type d’affectation comme « Hérité »)
 
 > [!NOTE]
-> L’onglet Utilisateurs et groupes ne s’affiche qu’une fois que vous avez activé Azure AD Premium ou Azure AD Basic.
+> Vous pouvez voir hello utilisateurs et onglet groupes uniquement après avoir activé Azure AD Premium ou Azure AD Basic.
 >
 >
 
 ### <a name="next-steps"></a>Étapes suivantes
 Ces articles fournissent des informations supplémentaires sur Azure Active Directory.
 
-* [Gestion de l’accès aux ressources avec les groupes Azure Active Directory](active-directory-manage-groups.md)
+* [La gestion des accès tooresources avec les groupes Azure Active Directory](active-directory-manage-groups.md)
 * [Index d’articles pour la gestion des applications dans Azure Active Directory](active-directory-apps-index.md)
 * [Configuration des paramètres de groupe avec les applets de commande Azure Active Directory](active-directory-accessmanagement-groups-settings-cmdlets.md)
 * [Qu’est-ce qu’Azure Active Directory ?](active-directory-whatis.md)

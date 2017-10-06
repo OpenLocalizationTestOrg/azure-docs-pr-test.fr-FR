@@ -1,5 +1,5 @@
 ---
-title: Groupes dynamiques et Azure Active Directory B2B Collaboration | Microsoft Docs
+title: aaaDynamic groupes et Azure Active Directory B2B collaboration | Documents Microsoft
 description: "Azure Active Directory B2B Collaboration peut être utilisé avec des groupes dynamiques Azure AD"
 services: active-directory
 documentationcenter: 
@@ -16,31 +16,31 @@ ms.workload: identity
 ms.date: 06/27/2017
 ms.author: curtand
 ms.reviewer: sasubram
-ms.openlocfilehash: 5818c41610c8c5df89abcb0dcd058bcbe9579ce7
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b011298de5fd2c851c6d9caaf5c2b257807ef0a4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="dynamic-groups-and-azure-active-directory-b2b-collaboration"></a>Groupes dynamiques et Azure Active Directory B2B Collaboration
 
 ## <a name="what-are-dynamic-groups"></a>Qu'est-ce-que les groupes dynamiques ?
-La configuration dynamique de l’appartenance au groupe de sécurité pour Azure Active Directory (Azure AD) est disponible dans le [portail Azure](https://portal.azure.com). Les administrateurs peuvent définir des règles pour remplir les groupes créés dans Azure Active Directory en fonction d'attributs utilisateur (par exemple, userType, département ou pays). Les membres peuvent être automatiquement ajoutés ou supprimés d’un groupe de sécurité en fonction de leurs attributs. Ces groupes permettent d’accorder l’accès à des applications ou à des ressources cloud (sites SharePoint, documents) et d’attribuer des licences à des utilisateurs. En savoir plus sur les groupes dynamiques dans [Groupes dédiés dans Azure Active Directory](active-directory-accessmanagement-dedicated-groups.md).
+Configuration dynamique de l’appartenance au groupe de sécurité pour Azure Active Directory (Azure AD) est disponible dans [hello Azure portal](https://portal.azure.com). Les administrateurs peuvent définir des règles toopopulate groupes qui sont créés dans Azure Active Directory basées sur les attributs de l’utilisateur (par exemple, userType, département ou pays). Les membres peuvent être ajoutées automatiquement tooor supprimé d’un groupe de sécurité en fonction de leurs attributs. Ces groupes peuvent fournir des accès des ressources cloud ou tooapplications (les sites SharePoint, des documents) et tooassign toomembers de licences. En savoir plus sur les groupes dynamiques dans [Groupes dédiés dans Azure Active Directory](active-directory-accessmanagement-dedicated-groups.md).
 
-La [licence Azure AD Premium P1 ou P2](https://azure.microsoft.com/pricing/details/active-directory/) appropriée est nécessaire pour créer et utiliser des groupes dynamiques. Pour en savoir plus, consultez l’article [Créer des règles basées sur les attributs pour l’appartenance à un groupe dynamique dans Azure Active Directory](active-directory-groups-dynamic-membership-azure-portal.md).
+Hello approprié [licence Azure AD Premium P1 ou P2](https://azure.microsoft.com/pricing/details/active-directory/) est requis toocreate et l’utilisation des groupes dynamiques. En savoir plus, consultez l’article de hello [créer des règles d’attribut pour l’appartenance aux groupes dynamiques dans Azure Active Directory](active-directory-groups-dynamic-membership-azure-portal.md).
 
-## <a name="what-are-the-built-in-dynamic-groups"></a>Que sont les groupes dynamiques intégrés ?
-Le groupe dynamique **Tous les utilisateurs** permet à des administrateurs de locataires de créer un groupe contenant tous les utilisateurs dans le locataire en un seul clic. Par défaut, le groupe **Tous les utilisateurs** inclut tous les utilisateurs du répertoire, dont les invités et les utilisateurs externes.
-Dans le nouveau portail d’administration Azure Active Directory, vous pouvez choisir d’activer le groupe **Tous les utilisateurs** dans l’affichage des paramètres de groupe.
+## <a name="what-are-hello-built-in-dynamic-groups"></a>Quelles sont les groupes dynamiques intégrés hello ?
+Hello **tous les utilisateurs** permet à toocreate d’administrateurs client cliquez sur le groupe contenant tous les utilisateurs de client hello avec un seul groupe dynamique. Par défaut, hello **tous les utilisateurs** groupe comprend tous les utilisateurs de répertoire hello, y compris les membres et invités.
+Dans le portail d’administration hello nouveau Azure Active Directory, vous pouvez choisir tooenable hello **tous les utilisateurs** groupe hello afficher les paramètres de groupe.
 
 ![groupes intégrés](media/active-directory-b2b-dynamic-groups/built-in-groups.png)
 
-## <a name="hardening-the-all-users-dynamic-group"></a>Renforcement de la sécurité du groupe dynamique Tous les utilisateurs
-Par défaut, le groupe **Tous les utilisateurs** contient également vos utilisateurs B2B Collaboration (invités). Vous pouvez sécuriser davantage votre groupe **Tous les utilisateurs** en utilisant une règle pour supprimer les utilisateurs invités. L’illustration suivante montre le groupe **Tous les utilisateurs** modifié de manière à exclure les invités.
+## <a name="hardening-hello-all-users-dynamic-group"></a>Sécurisation renforcée hello groupe dynamique de tous les utilisateurs
+Par défaut, hello **tous les utilisateurs** groupe contient également les utilisateurs de collaboration (invité) B2B. Vous pouvez sécuriser davantage votre **tous les utilisateurs** groupe à l’aide d’une règle d’utilisateurs invités tooremove. Hello l’illustration suivante hello **tous les utilisateurs** groupe modifié tooexclude invités.
 
 ![activer le groupe Tous les utilisateurs](media/active-directory-b2b-dynamic-groups/enable-all-users-group.png)
 
-Vous trouverez peut-être aussi utile de créer un groupe dynamique contenant uniquement les utilisateurs invités, afin de pouvoir leur appliquer des stratégies (telles que des stratégies d’accès conditionnel Azure AD).
+Il peut également s’avérer utile toocreate un nouveau groupe dynamique qui contient uniquement les utilisateurs invités, afin que vous pouvez appliquer des stratégies (telles que les stratégies d’accès conditionnel de Azure AD) toothem.
 Ce groupe pourrait ressembler à ceci :
 
 ![exclure les utilisateurs invités](media/active-directory-b2b-dynamic-groups/exclude-guest-users.png)
@@ -51,7 +51,7 @@ Consultez les autres articles sur la collaboration B2B d'Azure AD :
 
 * [Qu’est-ce qu’Azure AD B2B Collaboration ?](active-directory-b2b-what-is-azure-ad-b2b.md)
 * [Propriétés de l’utilisateur B2B Collaboration](active-directory-b2b-user-properties.md)
-* [Ajout d’un utilisateur B2B Collaboration à un rôle](active-directory-b2b-add-guest-to-role.md)
+* [Ajout d’un rôle tooa B2B collaboration](active-directory-b2b-add-guest-to-role.md)
 * [Déléguer des invitations B2B Collaboration](active-directory-b2b-delegate-invitations.md)
 * [Code B2B Collaboration et exemples PowerShell](active-directory-b2b-code-samples.md)
 * [Configurer des applications SaaS pour B2B Collaboration](active-directory-b2b-configure-saas-apps.md)

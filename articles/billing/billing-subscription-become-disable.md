@@ -1,6 +1,6 @@
 ---
-title: "Réactivation d’un abonnement Azure désactivé | Microsoft Docs"
-description: "Décrit les cas où un abonnement Azure peut être désactivé et comment le réactiver."
+title: "aaaReactivate désactivée abonnement Azure | Documents Microsoft"
+description: "Décrit quand vous avez un abonnement Azure désactivé et comment les tooreactivate il."
 keywords: "abonnement azure désactivé"
 services: 
 documentationcenter: 
@@ -16,51 +16,51 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/13/2017
 ms.author: genli
-ms.openlocfilehash: 0603786292cf29c2eff60bbc90a72c9cd1ea2860
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2c9712304dd25431a7b66a33a2c5816f1547cfee
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="why-is-my-azure-subscription-disabled-and-how-do-i-reactivate-it"></a>Pourquoi mon abonnement Azure est-il désactivé et comment puis-je le réactiver ?
-Votre abonnement Azure peut être désactivé si vous avez atteint votre limite de dépense, si vous avez une facture en attente de paiement, si vous avez atteint la limite de votre carte de crédit ou si l’abonnement a été annulé par l’administrateur du compte. Consultez le problème qui vous concerne et suivez les étapes de cet article pour réactiver votre abonnement.
+Peut-être que votre abonnement Azure désactivée, car vous atteint votre limite de dépense, ont une échéance, a atteint la limite de votre carte de crédit, ou parce que l’abonnement de hello a été annulée par l’administrateur de compte hello. Consultez le problème s’applique tooyou et suivez les étapes de hello dans cette tooget article votre abonnement réactivé.
 
 ## <a name="you-reached-your-spending-limit"></a>Vous avez atteint votre limite de dépense
-Lorsque votre utilisation dépasse les quantités mensuelles comprises dans votre abonnement, nous désactivons votre service pour le reste du mois de facturation concerné. Votre service est désactivé pour vous protéger contre tout risque d’encourir accidentellement des frais d’utilisation dépassant le montant inclus dans votre abonnement. Vous pouvez supprimer la limite de dépense et [configurer des alertes de facturation pour vos abonnements Microsoft Azure](billing-set-up-alerts.md) afin de surveiller et de gérer l’activité de facturation de vos comptes Azure.
+Lorsque votre utilisation épuise les montants mensuels hello inclus dans votre abonnement, nous désactivons votre service reste hello de ce mois de facturation. Votre service est désactivé tooprotect vous accidentellement comptabilisation des frais pour toute utilisation dépassant hello montant inclus avec votre abonnement. Vous pouvez supprimer la limite de dépense de hello et [configurer la facturation des alertes pour vos abonnements Microsoft Azure](billing-set-up-alerts.md) toohelp surveiller et de gérer l’activité de facturation pour vos comptes Azure.
 
-Pour supprimer votre limite de dépense,
+tooremove vos dépenses limiter,
 
-1. Connectez-vous au [Centre des comptes Azure](https://account.windowsazure.com/Home/Index).
+1. Connectez-vous à toohello [centre des comptes Azure](https://account.windowsazure.com/Home/Index).
 2. Cliquez sur **Abonnements**.
 3. Sélectionnez un abonnement.
-4. Cliquez sur **L’abonnement a atteint la limite de dépense et a été désactivé pour empêcher les frais**.
+4. Cliquez sur **abonnement atteint hello limite de dépense et a été désactivé tooprevent frais**.
 
-    Si cette option ne s’affiche pas, cliquez sur **Supprimer la limite de dépense** dans la zone **État** de l’abonnement.
-5. Sélectionnez l’une des options suivantes :
+    Si vous ne voyez pas cette option, cliquez sur **supprimer limite de dépense** dans l’abonnement de hello **état** zone.
+5. Sélectionnez une des options suivantes de hello :
 
 | Option | Résultat |
 | --- | --- |
-| Supprimer la limite de dépense pour une durée indéterminée |Supprime la limite de dépense jusqu’à ce qu’elle soit de nouveau activée. |
-| Supprimer la limite de dépense pour la période de facturation en cours |Supprime la limite de dépense, mais la limite de dépense est réactivée pour la prochaine période de facturation. |
+| Supprimer la limite de dépense pour une durée indéterminée |Supprime hello limite de dépense jusqu'à ce que vous remettre sous tension. |
+| Supprimer la limite de dépense pour hello en cours de période de facturation |Supprime la limite de dépense de hello mais hello redémarrages de limite de dépense pour hello prochaine période de facturation. |
 
-Si vous utilisez un abonnement d’essai gratuit et que vous supprimez la limite de dépense, votre abonnement est converti en paiement à l’utilisation au terme de l’essai gratuit.
+Si vous avez un abonnement d’essai gratuit et supprimez les limites de dépense de hello, votre abonnement convertit tooPay-sous-vous-Go à fin hello de version d’évaluation gratuite de hello.
 
 ## <a name="your-bill-is-past-due"></a>Votre facture est en retard
-Payez votre solde en souffrance dans son intégralité. Consultez l’article [Pourquoi avez-vous reçu une notification vous informant que votre abonnement Azure présente un solde impayé ?](billing-azure-subscription-past-due-balance.md#how-to-resolve-the-issue)
+Payez votre solde en souffrance dans son intégralité. Consultez l’article hello [pourquoi vous avez reçu une notification que votre abonnement Azure a un passé solde dû ?](billing-azure-subscription-past-due-balance.md#how-to-resolve-the-issue)
 
-## <a name="the-bill-exceeds-your-credit-card-limit"></a>La facture dépasse la limite de votre carte de crédit
-Pour résoudre ce problème, [basculez vers une autre carte de crédit](billing-how-to-change-credit-card.md). Ou si vous représentez une entreprise, vous pouvez [basculer vers le paiement par facture](https://azure.microsoft.com/pricing/invoicing/).
+## <a name="hello-bill-exceeds-your-credit-card-limit"></a>facture de Hello dépasse la limite de votre carte de crédit
+tooresolve ce problème, [tooa de commutateur autre carte de crédit](billing-how-to-change-credit-card.md). Ou si vous êtes représentant une entreprise, vous pouvez [commutateur toopay par facture](https://azure.microsoft.com/pricing/invoicing/).
 
-## <a name="the-subscription-was-canceled-by-the-account-administrator"></a>L’abonnement a été annulé par l’administrateur de compte
-Si vous êtes l’administrateur de compte, réactivez votre abonnement de type paiement à l’utilisation en suivant les étapes ci-dessous :
+## <a name="hello-subscription-was-canceled-by-hello-account-administrator"></a>abonnement de Hello a été annulée par hello administrateur de compte
+Si vous êtes administrateur de compte hello, réactiver votre paiement à l’abonnement à l’aide de hello comme suit :
 
-1. Connectez-vous au [Centre des comptes Azure](https://account.windowsazure.com/Home/Index).
-2. Sélectionnez l’abonnement annulé.
+1. Connectez-vous à toohello [centre des comptes Azure](https://account.windowsazure.com/Home/Index).
+2. Sélectionnez hello annulé l’abonnement.
 3. Cliquez sur **Réactiver**.
 
-![Capture d’écran illustrant les liens Réactiver dans le volet droit.](./media/billing-how-to-cancel-azure-subscription/reactivate-sub.png)
+![Capture d’écran réactiver les liens dans le volet de droite hello.](./media/billing-how-to-cancel-azure-subscription/reactivate-sub.png)
 
-Pour les autres types d’abonnement, [contactez le support technique](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) pour réactiver votre abonnement.
+Pour les autres types d’abonnement, [contactez le support technique](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) toohave votre abonnement réactivé.
 
 ## <a name="need-help-contact-support"></a>Vous avez besoin d’aide ? Contactez le support technique.
-Si vous avez besoin d’aide, [contactez le support technique](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) pour obtenir une prise en charge rapide de votre problème.
+Si vous avez besoin d’aide, [contactez le support technique](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) tooget votre problème résolu rapidement.

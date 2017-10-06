@@ -1,5 +1,5 @@
 ---
-title: Exemple de script Azure CLI - Surveiller une application web avec les journaux de serveur web | Microsoft Docs
+title: aaaAzure exemple de Script CLI - analyser une application web avec les journaux du serveur web | Documents Microsoft
 description: Exemple de script Azure CLI - Surveiller une application web avec les journaux de serveur web
 services: appservice
 documentationcenter: appservice
@@ -16,31 +16,31 @@ ms.workload: web
 ms.date: 06/19/2017
 ms.author: cfowler
 ms.custom: mvc
-ms.openlocfilehash: df4ca5b1270ada849e231ad9608a5b1d2edda8be
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 012b800c03af77387bed3d098fae3c96d82aee29
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="monitor-a-web-app-with-web-server-logs"></a>Surveiller une application web avec les journaux de serveur web
 
-Dans ce scénario, vous créez un groupe de ressources, un plan App Service, une application web, et vous configurez l’application web afin d’activer les journaux de serveur web. Vous téléchargez ensuite les fichiers journaux pour révision.
+Dans ce scénario, vous créez un groupe de ressources, le plan de service d’application, l’application web et configurer les journaux du serveur web tooenable hello web app. Vous télécharge alors les fichiers de journaux hello pour révision.
 
 [!INCLUDE [quickstarts-free-trial-note](../../../includes/quickstarts-free-trial-note.md)]
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-Si vous choisissez d’installer et d’utiliser l’interface de ligne de commande localement, vous devez exécuter Azure CLI version 2.0 ou une version ultérieure pour poursuivre la procédure décrite dans cet article. Exécutez `az --version` pour trouver la version. Si vous devez installer ou mettre à niveau, consultez [Installation d’Azure CLI 2.0]( /cli/azure/install-azure-cli). 
+Si vous choisissez tooinstall et que vous utilisez hello CLI localement, cette rubrique requiert que vous exécutez hello CLI d’Azure version 2.0 ou ultérieure. Exécutez `az --version` version de hello toofind. Si vous avez besoin de tooinstall ou mise à niveau, consultez [installer Azure CLI 2.0]( /cli/azure/install-azure-cli). 
 
 ## <a name="sample-script"></a>Exemple de script
 
-[!code-azurecli-interactive[principal](../../../cli_scripts/app-service/monitor-with-logs/monitor-with-logs.sh "Surveiller les journaux")]
+[!code-azurecli-interactive[main](../../../cli_scripts/app-service/monitor-with-logs/monitor-with-logs.sh "Monitor Logs")]
 
 [!INCLUDE [cli-script-clean-up](../../../includes/cli-script-clean-up.md)]
 
 ## <a name="script-explanation"></a>Explication du script
 
-Ce script utilise les commandes suivantes pour créer un groupe de ressources, une application web et toutes les ressources associées. Chaque commande du tableau renvoie à une documentation spécifique.
+Ce script utilise hello suivant de commandes toocreate un groupe de ressources, l’application web et toutes les ressources associées. Chaque commande figurant dans la documentation spécifique du toocommand liens table hello.
 
 | Commande | Remarques |
 |---|---|
@@ -48,10 +48,10 @@ Ce script utilise les commandes suivantes pour créer un groupe de ressources, u
 | [az appservice plan create](https://docs.microsoft.com/cli/azure/appservice/plan#create) | Crée un plan App Service. Cela équivaut à une batterie de serveurs pour votre application web Azure. |
 | [az webapp create](https://docs.microsoft.com/cli/azure/webapp#create) | Crée une application web Azure. |
 | [az webapp log config](https://docs.microsoft.com/cli/azure/webapp/log#config) | Configure les journaux dans lesquels une application web Azure est conservée. |
-| [az webapp log download](https://docs.microsoft.com/cli/azure/webapp/log#download) | Télécharge les journaux d’une application web Azure sur votre ordinateur local. |
+| [az webapp log download](https://docs.microsoft.com/cli/azure/webapp/log#download) | Téléchargements hello consigne de hello un ordinateur local du tooyour d’application web Azure. |
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Pour plus d’informations sur l’interface Azure CLI, consultez la [documentation relative à l’interface Azure CLI](https://docs.microsoft.com/cli/azure/overview).
+Pour plus d’informations sur hello CLI d’Azure, consultez [documentation relative à Azure CLI](https://docs.microsoft.com/cli/azure/overview).
 
-Vous trouverez des exemples supplémentaires de scripts CLI App Service dans la [documentation relative à Azure App Service](../app-service-cli-samples.md).
+Vous trouverez des exemples de script CLI de Service d’application supplémentaires Bonjour [documentation d’Azure App Service](../app-service-cli-samples.md).

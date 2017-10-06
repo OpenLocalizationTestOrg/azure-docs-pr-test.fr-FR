@@ -1,5 +1,5 @@
 ---
-title: "Limitations d’Azure Active Directory B2B Collaboration | Microsoft Docs"
+title: "aaaLimitations d’Azure Active Directory B2B collaboration | Documents Microsoft"
 description: "Limitations actuelles d’Azure Active Directory B2B Collaboration"
 services: active-directory
 documentationcenter: 
@@ -15,20 +15,20 @@ ms.tgt_pltfrm: NA
 ms.workload: identity
 ms.date: 05/23/2017
 ms.author: sasubram
-ms.openlocfilehash: 581e5d1fb5fb08d0dc89ed2c85edcb5f0005650b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 322081f32fbacfe67ee1300993c7df1870e498bd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="limitations-of-azure-ad-b2b-collaboration"></a>Limitations d’Azure AD B2B Collaboration
-Azure Active Directory (Azure AD) B2B Collaboration subit actuellement les limitations décrites dans le présent article.
+Azure Active Directory (Azure AD) B2B collaboration est actuellement les limitations de toohello sujet décrites dans cet article.
 
 ## <a name="possible-double-multi-factor-authentication"></a>Risque de redondance de l’authentification multifacteur
-Avec Azure AD B2B, vous pouvez appliquer l’authentification multifacteur au niveau de l’organisation de la ressource (l’organisation à l’origine de l’invitation). Les raisons de cette approche sont détaillées dans l’article [Conditional access for B2B collaboration users](active-directory-b2b-mfa-instructions.md) (Accès conditionnel pour les utilisateurs de B2B Collaboration). Si un partenaire a déjà configuré et appliqué l’authentification multifacteur, ses utilisateurs devront peut-être effectuer l’authentification une fois dans leur organisation d’origine, puis de nouveau dans les vôtres.
+Avec Azure AD B2B, vous pouvez appliquer l’authentification multifacteur à l’organisation de ressource hello (hello invitation d’organisation). raisons Hello de cette approche sont détaillées dans [accès conditionnel pour les utilisateurs de collaboration B2B](active-directory-b2b-mfa-instructions.md). Si un partenaire possède déjà plusieurs facteurs d’authentification configuré et appliquée, leurs les utilisateurs peuvent avoir l’authentification hello tooperform qu’une seule fois dans leur organisation d’origine, puis à nouveau dans le vôtre.
 
 ## <a name="instant-on"></a>Activation instantanée
-Dans les flux B2B Collaboration, nous ajoutons des utilisateurs au répertoire et les mettons à jour de manière dynamique pendant l’échange d’invitation, l’affectation d’application, etc. Les mises à jour et les écritures se produisent d’ordinaire dans une instance de répertoire et doivent être répliquées entre toutes les instances. La réplication est terminée une fois toutes les instances mises à jour. Parfois, lorsque l’objet est écrit ou mis à jour dans une instance et quand l’appel pour récupérer cet objet se fait vers une autre instance, des latences de réplication peuvent se produire. Si cela se produit, actualisez ou recommencez. Si vous écrivez une application à l’aide de notre API, effectuer de nouvelles tentatives avec des temporisations peut être une pratique judicieuse et préventive pour atténuer ce problème.
+Dans le flux de collaboration hello B2B, nous ajouter les utilisateurs toohello répertoire et les mettre à jour dynamiquement pendant l’échange d’invitation, assignation d’application et ainsi de suite. Hello les mises à jour et les écritures normalement se produisent dans une instance d’un répertoire et doivent être répliqués sur toutes les instances. La réplication est terminée une fois toutes les instances mises à jour. Lorsque hello objet est écrit ou mis à jour dans une seule instance et hello appeler tooretrieve cet objet est parfois tooanother instance, des latences de réplication peuvent se produire. Si cela se produit, actualisez ou réessayez toohelp. Si vous écrivez une application à l’aide de notre API, puis les nouvelles tentatives avec certains temporisation est un tooalleviate correct, la pratique ce problème.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
@@ -36,7 +36,7 @@ Consultez les autres articles sur la collaboration B2B d'Azure AD :
 
 * [Qu’est-ce qu’Azure AD B2B Collaboration ?](active-directory-b2b-what-is-azure-ad-b2b.md)
 * [Propriétés de l’utilisateur B2B Collaboration](active-directory-b2b-user-properties.md)
-* [Ajout d’un utilisateur B2B Collaboration à un rôle](active-directory-b2b-add-guest-to-role.md)
+* [Ajout d’un rôle tooa B2B collaboration](active-directory-b2b-add-guest-to-role.md)
 * [Déléguer des invitations B2B Collaboration](active-directory-b2b-delegate-invitations.md)
 * [Groupes dynamiques et B2B Collaboration](active-directory-b2b-dynamic-groups.md)
 * [Code B2B Collaboration et exemples PowerShell](active-directory-b2b-code-samples.md)

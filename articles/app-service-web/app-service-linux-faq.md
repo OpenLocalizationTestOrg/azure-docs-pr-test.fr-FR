@@ -1,5 +1,5 @@
 ---
-title: "FAQ de l’application web Azure App Service sur Linux | Microsoft Docs"
+title: "aaaAzure application de Service d’applications Web sur le Forum aux questions sur Linux | Documents Microsoft"
 description: "FAQ de l’application web Azure App Service sur Linux."
 keywords: azure app service, application web, faq, linux, oss
 services: app-service
@@ -15,57 +15,57 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/04/2017
 ms.author: aelnably;wesmc
-ms.openlocfilehash: 6122f28b35d143ec26a379ae9aa8aee9bdaaff9e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: c7798d9144d936eecdc0e191fc870b0ee0b220c8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-app-service-web-app-on-linux-faq"></a>FAQ de l’application web Azure App Service sur Linux
 
 [!INCLUDE [app-service-linux-preview](../../includes/app-service-linux-preview.md)]
 
 
-Avec la mise en production de l’application web sur Linux, nous travaillons à l’ajout de fonctionnalités et à l’amélioration de notre plateforme. Voici quelques-unes des questions courantes que nos clients nous ont posées au cours des derniers mois.
-Si vous avez une question, commentez l’article ; nous vous répondrons dès que possible.
+Avec la version hello de l’application Web sur Linux, nous travaillons sur l’ajout de fonctionnalités et de la plateforme de tooour améliorations. Ici sont Forum aux questions (FAQ) que nos clients ont demandé nous sur hello derniers mois.
+Si vous avez une question, commentaire sur l’article de hello et nous répondrons il dès que possible.
 
 ## <a name="built-in-images"></a>Images prédéfinies
 
-**Q :** Je veux répliquer les conteneurs Docker prédéfinis fournis par la plateforme. Où se trouvent ces fichiers ?
+**Q :** je veux toofork hello intégrés conteneurs Docker qui hello plateforme fournit. Où se trouvent ces fichiers ?
 
 **R :** vous trouverez tous les fichiers Docker sur [GitHub](https://github.com/azure-app-service). Vous trouverez tous les conteneurs Docker sur [Docker Hub](https://hub.docker.com/u/appsvc/).
 
-**Q :** Quelles sont les valeurs attendues de la section Fichier de démarrage lorsque je configure la pile d’exécution ?
+**Q :** quelles sont les valeurs attendues hello pour hello section du fichier de démarrage lors de la configuration de la pile d’exécution hello ?
 
-**R :** Pour Node.Js, vous spécifiez le fichier de configuration PM2 ou votre fichier de script. Pour .NET Core, vous spécifiez le nom de votre DLL compilée. Pour Ruby, vous pouvez spécifier le script Ruby avec lequel initialiser votre application.
+**R :** pour Node.Js, vous spécifiez au fichier de configuration hello PM2 ou votre fichier de script. Pour .NET Core, vous spécifiez le nom de votre DLL compilée. Pour Ruby, vous pouvez spécifier hello Ruby script que vous souhaitez tooinitialize votre application avec.
 
 ## <a name="management"></a>Gestion
 
-**Q :** Que se passe-t-il lorsque j’appuie sur le bouton Redémarrer dans le portail Azure ?
+**Q :** que se passe-t-il quand je bouton hello redémarrage Bonjour portail Azure ?
 
-**R :** Cela revient à redémarrer Docker.
+**R :** cela est hello équivalents au redémarrage de Docker.
 
-**Q :** Puis-je utiliser Secure Shell (SSH) pour me connecter à la machine virtuelle du conteneur d’application ?
+**Q :** puis-je utiliser Secure Shell (SSH) tooconnect toohello application conteneur machine virtuelle (VM) ?
 
-**R :** Oui, vous pouvez le faire via le site SCM,. Consultez l’article suivant pour en savoir plus sur [la prise en charge SSH pour l’application Web sur Linux](./app-service-linux-ssh-support.md)
+**R :** Oui, vous pouvez effectuer que via le site SCM hello, cocher hello article suivant pour plus d’informations [prise en charge SSH pour l’application Web sur Linux](./app-service-linux-ssh-support.md)
 
-**Q :** Je souhaite créer un plan App Service Linux via le Kit SDK ou un modèle ARM, comment faire ?
+**Q :** je veux toocreate un plan de Service d’applications Linux via le Kit de développement logiciel ou un modèle ARM, comment puis-je effectuer cette opération ?
 
-**R :** Vous devez définir le champ `reserved` du service d’application sur `true`.
+**R :** vous devez tooset hello `reserved` trop de champs de l’application hello service`true`.
 
 ## <a name="continuous-integrationdeployment"></a>Intégration/Déploiement en continu
 
-**Q :** Mon application web utilise toujours une ancienne image de conteneur Docker après la mise à jour de l’image sur DockerHub. Prenez-vous en charge l’intégration continue / le déploiement continu de conteneurs personnalisés ?
+**Q :** mon application web utilise toujours une ancienne image de conteneur Docker une fois que j’ai mis à jour image hello sur le Hub d’ancrage. Prenez-vous en charge l’intégration continue / le déploiement continu de conteneurs personnalisés ?
 
-**R :** Pour configurer l’intégration/le déploiement en continu des images Azure Container Registry ou DockerHub, consultez l’article [Déploiement continu avec l’application web Azure sur Linux](./app-service-linux-ci-cd.md). Pour les registres privés, vous pouvez actualiser le conteneur en arrêtant puis démarrant votre application web. Vous pouvez également modifier ou ajouter un paramètre d’application factice pour forcer une actualisation de votre conteneur.
+**R :** tooset d’intégration/déploiement continu pour les images docker Hub ou de Registre de conteneur Azure par hello de vérification de l’article suivant [déploiement continu avec l’application Web Azure sous Linux](./app-service-linux-ci-cd.md). Pour les registres privés, vous pouvez actualiser le conteneur de hello en arrêtant et avant de démarrer votre application web. Ou vous pouvez modifier ou ajouter une paramètre tooforce une actualisation de votre conteneur d’application factice.
 
 **Q :** Prenez-vous en charge les environnements intermédiaires ?
 
 **R :** Oui.
 
-**Q :** Puis-je utiliser le **déploiement web** pour déployer mon application web ?
+**Q :** puis-je utiliser **déploiement web** toodeploy mon application web ?
 
-**R :** Oui, vous devez définir le paramètre d’application `WEBSITE_WEBDEPLOY_USE_SCM` sur `false`.
+**R :** Oui, vous avez besoin de tooset une application appelé `WEBSITE_WEBDEPLOY_USE_SCM` trop`false`.
 
 ## <a name="language-support"></a>Support multilingue
 
@@ -75,31 +75,31 @@ Si vous avez une question, commentez l’article ; nous vous répondrons dès q
 
 **Q :** Prenez-vous en charge Composer en tant que gestionnaire de dépendances pour les applications PHP ?
 
-**R :** Oui. Lors d’un déploiement Git, Kudu doit détecter que vous déployez une application PHP (grâce à la présence d’un fichier composer.json) et déclenchera une installation Composer pour vous.
+**R :** Oui. Lors d’un déploiement Git, Kudu doit détecter que vous déployez une application PHP (Merci de toohello présence d’un fichier composer.json) et déclenchera une installation composer pour vous.
 
 ## <a name="custom-containers"></a>Conteneurs personnalisés
 
-**Q :** J’utilise mon propre conteneur personnalisé. Mon application se trouve dans le répertoire `\home\`, mais je ne trouve pas mes fichiers lorsque je parcours le contenu avec le [site SCM](https://github.com/projectkudu/kudu) ou un client FTP. Où sont mes fichiers ?
+**Q :** J’utilise mon propre conteneur personnalisé. Mon application réside dans hello `\home\` active, mais je ne trouvons pas mes fichiers lorsque je parcourir le contenu de hello à l’aide de hello [site SCM](https://github.com/projectkudu/kudu) ou un client FTP. Où sont mes fichiers ?
 
-**R :** Nous montons un partage SMB dans le répertoire `\home\`. Cela remplace tout le contenu qui s’y trouve.
+**R :** nous monter une toohello de partage SMB `\home\` active. Cela remplace tout le contenu qui s’y trouve.
 
-**Q :** J’utilise mon propre conteneur personnalisé. Je ne souhaite pas que la plateforme monte un partage SMB sur `\home\`.
+**Q :** J’utilise mon propre conteneur personnalisé. Je ne souhaite pas hello plateforme toomount un toohello de partage SMB `\home\`.
 
-**R :** Pour cela, définissez le paramètre d’application `WEBSITES_ENABLE_APP_SERVICE_STORAGE` sur `false`.
+**R :** vous suffit de définition de hello `WEBSITES_ENABLE_APP_SERVICE_STORAGE` application aussi un paramètre`false`.
 
-**Q :** Mon conteneur personnalisé met longtemps à démarrer, et la plateforme le redémarre avant qu’il ait terminé.
+**Q :** mon conteneur personnalisé prend un toostart beaucoup de temps, et la fin de conteneur de hello hello plateforme redémarrage avant son démarrage.
 
-**R :** Vous pouvez configurer le temps d’attente de la plateforme avant le redémarrage de votre conteneur. Pour cela, définissez le paramètre d’application `WEBSITES_CONTAINER_START_TIME_LIMIT` sur la valeur souhaitée en secondes. La valeur par défaut est de 230 secondes, la valeur maximale de 600 secondes.
+**R :** vous pouvez configurer hello plateforme de hello attendra avant le redémarrage de votre conteneur. Cela est possible en définissant les hello `WEBSITES_CONTAINER_START_TIME_LIMIT` toohello de paramètre d’application de valeur souhaitée en secondes. valeur par défaut Hello est 230 secondes et hello maximale est de 600 secondes.
 
-**Q :** Quel est le format de l’URL du serveur de registre privé ?
+**Q :** What format hello pour l’url du serveur de Registre privé ?
 
-**R :** Vous devez fournir l’URL de registre complète, y compris `http://` ou `https://`.
+**R :** vous avez besoin d’y compris les url Registre complet de hello de tooprovide `http://` ou `https://`.
 
-**Q :** Quel est le format du nom d’image dans l’option de registre privé ?
+**Q :** What format hello pour le nom de l’image hello dans l’option de Registre privé ?
 
-**R :** Vous devez ajouter le nom d’image complet, y compris l’URL de registre privé (par exemple : myacr.azurecr.io/dotnet:latest)
+**R :** vous devez tooadd hello complet nom de l’image, notamment hello Registre privé url (par exemple). myacr.azurecr.io/dotnet:latest)
 
-**Q :** Je veux exposer plusieurs ports sur l’image de mon conteneur personnalisé. Est-ce possible ?
+**Q :** souhaitée tooexpose plusieurs ports sur mon image de conteneur personnalisée. Est-ce possible ?
 
 **R :** Cela n’est actuellement pas pris en charge.
 
@@ -107,33 +107,33 @@ Si vous avez une question, commentez l’article ; nous vous répondrons dès q
 
 **R :** Cela n’est pas actuellement pris en charge.
 
-**Q :** Je n’arrive pas à parcourir le système de fichiers de mon conteneur personnalisé à partir du site SCM. Pourquoi ?
+**Q :** je ne peux pas naviguer sur fichier système ou en cours d’exécution des processus du mon conteneur personnalisé à partir du site SCM hello. Pourquoi ?
 
-**R :** Le site SCM s’exécute dans un conteneur distinct. Vous ne pouvez pas vérifier le système de fichiers ou les processus en cours d’exécution du conteneur d’application.
+**R :** site SCM hello s’exécute dans un conteneur distinct. Vous ne peut pas vérifier le système de fichiers hello ou de l’exécution du processus de conteneur d’application hello.
 
-**Q :** Mon conteneur personnalisé écoute un autre port que le port 80. Comment puis-je configurer mon application pour acheminer les demandes vers ce port ?
+**Q :** mon conteneur personnalisé écoute le port tooa autre que le port 80. Comment puis-je configurer mon port toothat de demandes application tooroute hello ?
 
-**R :** La détection automatique du port est activée, mais vous pouvez aussi spécifier un paramètre d’application appelé **WEBSITES_PORT** et lui attribuer la valeur du numéro de port attendu. Auparavant, la plateforme utilisait le paramètre d’application `PORT`, mais nous envisageons de déconseiller l’utilisation de ce paramètre d’application pour recommander une utilisation exclusive de `WEBSITES_PORT`.
+**R :** nous avons la détection automatique du port, vous pouvez également spécifier une application appelé **WEBSITES_PORT**et lui donner la valeur hello du numéro de port hello attendu. Précédemment a été à l’aide de la plateforme de hello `PORT` application définissant, nous planifiez toodeprecate hello utiliser cette application définissant et déplacer toousing `WEBSITES_PORT` exclusivement.
 
-**Q :** Dois-je implémenter HTTPS dans mon conteneur personnalisé ?
+**Q :** dois-je tooimplement HTTPS dans mon conteneur personnalisé.
 
-**R :** Non, la plateforme gère l’annulation HTTPS au niveau des serveurs frontaux partagés.
+**R :** non, plateforme de hello gère arrêt du protocole HTTPS pour les serveurs frontaux hello partagé.
 
 ## <a name="pricing-and-sla"></a>Tarifs et contrat SLA
 
-**Q :** Quelle est la tarification pour l’utilisation de la préversion publique ?
+**Q :** quel est hello le prix pendant que vous utilisez une version préliminaire publique de hello ?
 
-**R :** La moitié du nombre d’heures d’exécution de votre application vous est facturée, à la tarification Azure App Service normale. Cela signifie que vous bénéficiez d’une remise de 50 pour cent sur la tarification normale d’Azure App Service.
+**R :** vous êtes facturé moitié nombre hello d’heures pendant lesquelles votre application s’exécute avec la tarification de Azure App Service normal hello. Cela signifie que vous bénéficiez d’une remise de 50 pour cent sur la tarification normale d’Azure App Service.
 
 ## <a name="other"></a>Autres
 
-**Q :** Quels sont les caractères pris en charge dans les noms de paramètres d’application ?
+**Q :** quels sont les caractères hello pris en charge dans les noms de paramètres d’application ?
 
-**R :** Vous ne pouvez utiliser que les caractères A-Z, a-z, 0-9 et le trait de soulignement pour les paramètres d’application.
+**R :** vous pouvez uniquement utiliser A-Z, a-z, 0-9 et hello trait de soulignement pour les paramètres de l’application.
 
 **Q :** Où puis-je demander de nouvelles fonctionnalités ?
 
-**R :** Vous pouvez proposer votre idée sur le [Forum de commentaires pour Web Apps](https://aka.ms/webapps-uservoice). Ajoutez « [Linux] » au titre de votre idée.
+**R :** vous pouvez soumettre votre idée à hello [forum de commentaires d’applications Web](https://aka.ms/webapps-uservoice). Ajouter un titre de toohello « [Linux] » de votre idée.
 
 ## <a name="next-steps"></a>Étapes suivantes
 * [Qu’est-ce qu’Azure Web App sur Linux ?](app-service-linux-intro.md)

@@ -1,6 +1,6 @@
 ---
-title: "Instructions de connexion à Azure pour le kit de ressources Azure pour Eclipse | Microsoft Docs"
-description: "Découvrez comment vous connecter à Microsoft Azure à l’aide du kit de ressources Azure pour Eclipse."
+title: "aaaSign dans des Instructions pour hello boîte à outils Azure pour Eclipse | Documents Microsoft"
+description: "Découvrez comment toosign dans Microsoft Azure à l’aide de hello boîte à outils Azure pour Eclipse."
 services: 
 documentationcenter: java
 author: rmcmurray
@@ -14,26 +14,26 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 04/14/2017
 ms.author: robmcm
-ms.openlocfilehash: 02dd9935086c4c40d9ed54cc9ff2412ca96889f5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 95be64750ca0147f76dae8f364fad80cb9ccc969
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-sign-in-instructions-for-the-azure-toolkit-for-eclipse"></a>Instructions de connexion à Azure pour le kit de ressources Azure pour Eclipse
+# <a name="azure-sign-in-instructions-for-hello-azure-toolkit-for-eclipse"></a>Connexion Azure dans des Instructions pour hello boîte à outils Azure pour Eclipse
 
-Le kit de ressources Azure pour Eclipse propose deux méthodes pour vous connecter à votre compte Azure :
+Hello boîte à outils Azure pour Eclipse fournit deux méthodes pour la connexion à votre compte Azure :
 
   * **Interactive** : si vous utilisez cette méthode, vous devez entrer vos informations d’identification Azure à chaque fois que vous vous connectez à votre compte Azure.
-  * **Automatisée** : si vous utilisez cette méthode, vous devez créer un fichier d’informations d’identification qui contiendra vos données de principal de service, après quoi vous pourrez utiliser le fichier d’informations d’identification pour vous connecter automatiquement à votre compte Azure.
+  * **Automatisée** - lorsque vous utilisez cette méthode, vous allez créer un fichier d’informations d’identification qui contient vos données de principal du service, après laquelle vous pouvez utiliser le signe de tooautomatically fichier hello informations d’identification à votre compte Azure.
 
-Les étapes décrites dans les sections suivantes décrivent l’utilisation de chaque méthode.
+Hello étapes Bonjour les sections suivantes décrivent comment toouse chaque méthode.
 
 [!INCLUDE [azure-toolkit-for-eclipse-prerequisites](../includes/azure-toolkit-for-eclipse-prerequisites.md)]
 
 ## <a name="signing-into-your-azure-account-interactively"></a>Connexion interactive à votre compte Azure
 
-La procédure suivante indique comment vous connecter à Azure en entrant manuellement vos informations d’identification Azure.
+Hello suit illustre comment toosign dans Azure en entrant manuellement vos informations d’identification Azure.
 
 1. Ouvrez votre projet avec Eclipse.
 
@@ -41,33 +41,33 @@ La procédure suivante indique comment vous connecter à Azure en entrant manuel
 
    ![Menu d’Eclipse pour la connexion à Azure][I01]
 
-1. Lorsque la boîte de dialogue **Connexion à Azure** s’affiche, sélectionnez **Interactive**, puis cliquez sur **Se connecter**.
+1. Hello lorsque **Azure Sign In** boîte de dialogue s’affiche, sélectionnez **Interactive**, puis cliquez sur **connexion**.
 
    ![Boîte de dialogue Se connecter][I02]
 
-1. Lorsque la boîte de dialogue **Connexion à Azure** s’affiche, entrez vos informations d’identification Azure, puis cliquez sur **Se connecter**.
+1. Hello lorsque **Azure journal dans** boîte de dialogue s’affiche, entrez vos informations d’identification Azure, puis cliquez sur **connexion**.
 
    ![Boîte de dialogue Connexion à Azure][I03]
 
-1. Lorsque la boîte de dialogue **Sélectionner des abonnements** s’affiche, sélectionnez les abonnements que vous souhaitez utiliser, puis cliquez sur **OK**.
+1. Hello lorsque **sélectionnez les abonnements** boîte de dialogue s’affiche, abonnements hello select que vous souhaitez toouse, puis cliquez sur **OK**.
 
    ![Boîte de dialogue Sélectionner des abonnements][I04]
 
 ## <a name="signing-out-of-your-azure-account-when-you-signed-in-interactively"></a>Déconnexion de votre compte Azure lorsque vous vous êtes connecté de manière interactive
 
-Après avoir configuré les étapes indiquées dans la section précédente, vous êtes déconnecté automatiquement de votre compte Azure à chaque redémarrage d’Eclipse. Toutefois, si vous souhaitez vous déconnecter de votre compte Azure sans redémarrer Eclipse, procédez comme suit.
+Après avoir configuré les étapes hello dans la section précédente de hello, sera automatiquement déconnecté de votre compte Azure, chaque fois que vous redémarrez Eclipse. Toutefois, si vous souhaitez toosign hors de votre compte Azure sans avoir à redémarrer Eclipse, utilisez hello comme suit.
 
 1. Dans Eclipse, cliquez successivement sur **Outils**, **Azure** et **Se déconnecter**.
 
    ![Menu d’Eclipse pour la déconnexion d’Azure][L01]
 
-1. Lorsque la boîte de dialogue **Déconnexion d’Azure** s’affiche, cliquez sur **Oui**.
+1. Hello lorsque **Azure se déconnecter** boîte de dialogue s’affiche, cliquez sur **Oui**.
 
    ![Boîte de dialogue Se déconnecter][L02]
 
-## <a name="signing-into-your-azure-account-automatically-and-creating-a-credentials-file-to-use-in-the-future"></a>Connexion automatique à votre compte Azure et création d’un fichier d’informations d’identification à utiliser à l’avenir
+## <a name="signing-into-your-azure-account-automatically-and-creating-a-credentials-file-toouse-in-hello-future"></a>Connecter automatiquement à votre compte Azure et la création d’un informations d’identification de fichier toouse Bonjour future
 
-La procédure suivante vous guide dans la création d’un fichier d’informations d’identification qui contient vos données de principal de service. Une fois que vous avez effectué ces étapes, Eclipse utilise automatiquement le fichier d’informations d’identification pour vous connecter automatiquement à Azure à chaque fois que vous ouvrez votre projet.
+Hello étapes suivantes vous guidera dans la création d’un fichier d’informations d’identification qui contient vos données de principal du service. Une fois que vous avez terminé ces étapes, la volonté d’Eclipse automatiquement utilisez hello informations d’identification de fichier tooautomatically signe que vous dans Azure chaque fois que vous ouvrez votre projet.
 
 1. Ouvrez votre projet avec Eclipse.
 
@@ -75,45 +75,45 @@ La procédure suivante vous guide dans la création d’un fichier d’informati
 
    ![Menu d’Eclipse pour la connexion à Azure][A01]
 
-1. Lorsque la boîte de dialogue **Connexion à Azure** s’affiche, sélectionnez **Automatisée**, puis cliquez sur **Nouveau**.
+1. Hello lorsque **Azure Sign In** boîte de dialogue s’affiche, sélectionnez **automatisée**, puis cliquez sur **nouveau**.
 
    ![Boîte de dialogue Se connecter][A02]
 
-1. Lorsque la boîte de dialogue **Connexion à Azure** s’affiche, entrez vos informations d’identification Azure, puis cliquez sur **Se connecter**.
+1. Hello lorsque **Azure journal dans** boîte de dialogue s’affiche, entrez vos informations d’identification Azure, puis cliquez sur **connexion**.
 
    ![Boîte de dialogue Connexion à Azure][A03]
 
-1. Lorsque la boîte de dialogue **Create authentication files (Créer des fichiers d’authentification)** s’affiche, sélectionnez les abonnements que vous souhaitez utiliser, choisissez votre répertoire de destination, puis cliquez sur **Démarrer**.
+1. Hello lorsque **créer les fichiers d’authentification** boîte de dialogue s’affiche, abonnements hello select que vous souhaitez toouse, choisissez votre répertoire de destination, puis cliquez sur **Démarrer**.
 
    ![Boîte de dialogue Connexion à Azure][A04]
 
-1. La boîte de dialogue **Service Principal Creation Status (État de création du principal de service)** s’affiche, et une fois que vos fichiers ont été créés, cliquez sur **OK**.
+1. Hello **état de création d’un système Principal du Service** boîte de dialogue s’affiche et une fois que vos fichiers ont été créées avec succès, cliquez sur **OK**.
 
    ![Boîte de dialogue Service Principal Creation Status (État de création du principal de service)][A05]
 
-1. Lorsque la boîte de dialogue **Connexion à Azure** s’affiche, cliquez sur **Se connecter**.
+1. Hello lorsque **Azure Sign In** boîte de dialogue s’affiche, cliquez sur **connexion**.
 
    ![Boîte de dialogue Connexion à Azure][A06]
 
-1. Lorsque la boîte de dialogue **Sélectionner des abonnements** s’affiche, sélectionnez les abonnements que vous souhaitez utiliser, puis cliquez sur **OK**.
+1. Hello lorsque **sélectionnez les abonnements** boîte de dialogue s’affiche, abonnements hello select que vous souhaitez toouse, puis cliquez sur **OK**.
 
    ![Boîte de dialogue Sélectionner des abonnements][A07]
 
 ## <a name="signing-out-of-your-azure-account-when-you-signed-in-automatically"></a>Déconnexion de votre compte Azure lorsque vous vous êtes connecté automatiquement
 
-Après avoir configuré les étapes indiquées dans la section précédente, le kit de ressources Azure vous connecte automatiquement à votre compte Azure à chaque redémarrage d’Eclipse. Toutefois, pour vous déconnecter de votre compte Azure et empêcher le kit de ressources Azure de vous connecter automatiquement, procédez comme suit.
+Après avoir configuré les étapes hello dans la section précédente de hello, hello boîte à outils Azure sera automatiquement connecté à votre compte Azure, chaque fois que vous redémarrez Eclipse. Toutefois, toosign hors de votre compte Azure et hello boîte à outils Azure empêche de vous connecter automatiquement, utilisez les hello comme suit.
 
 1. Dans Eclipse, cliquez successivement sur **Outils**, **Azure** et **Se déconnecter**.
 
    ![Menu d’Eclipse pour la déconnexion d’Azure][L01]
 
-1. Lorsque la boîte de dialogue **Déconnexion d’Azure** s’affiche, cliquez sur **Oui**.
+1. Hello lorsque **Azure se déconnecter** boîte de dialogue s’affiche, cliquez sur **Oui**.
 
    ![Boîte de dialogue Se déconnecter][L03]
 
 ## <a name="signing-into-your-azure-account-automatically-using-a-credentials-file-which-you-have-already-created"></a>Connexion automatique à votre compte Azure et utilisation d’un fichier d’informations d’identification que vous avez déjà créé
 
-Si vous vous déconnectez d’Azure lorsque vous utilisez Eclipse, vous devez reconfigurer le kit de ressources Azure pour Eclipse afin d’utiliser un fichier d’informations d’identification qui a été créé pour pouvoir vous connecter automatiquement à votre compte Azure. La procédure suivante vous guide dans la configuration du kit de ressources Azure pour utiliser un fichier d’informations d’identification existant.
+Si vous vous connectez en dehors d’Azure lorsque vous utilisez Eclipse, vous devez tooreconfigure hello boîte à outils Azure pour Eclipse toouse un fichier d’informations d’identification qui ont créé avant de vous connecter automatiquement à votre compte Azure. Hello étapes suivantes vous guidera dans la configuration toouse de boîte à outils Azure hello un fichier d’informations d’identification existant.
 
 1. Ouvrez votre projet avec Eclipse.
 
@@ -121,52 +121,52 @@ Si vous vous déconnectez d’Azure lorsque vous utilisez Eclipse, vous devez re
 
    ![Menu d’Eclipse pour la connexion à Azure][A01]
 
-1. Lorsque la boîte de dialogue **Connexion à Azure** s’affiche, sélectionnez **Automatisée**, puis cliquez sur **Parcourir**.
+1. Hello lorsque **Azure Sign In** boîte de dialogue s’affiche, sélectionnez **automatisée**, puis cliquez sur **Parcourir**.
 
    ![Boîte de dialogue Se connecter][A02]
 
-1. Lorsque la boîte de dialogue **Select Authenticated File (Sélectionner un fichier authentifié)** s’affiche, sélectionnez un fichier d’informations d’identification que vous avez créé précédemment, puis cliquez sur **Sélectionner**.
+1. Hello lorsque **sélectionner le fichier authentifié** boîte de dialogue s’affiche, sélectionnez un fichier d’informations d’identification que vous avez créé précédemment, puis cliquez sur **sélectionnez**.
 
    ![Boîte de dialogue Se connecter][A08]
 
-1. Lorsque la boîte de dialogue **Connexion à Azure** s’affiche, cliquez sur **Se connecter**.
+1. Hello lorsque **Azure Sign In** boîte de dialogue s’affiche, cliquez sur **connexion**.
 
    ![Boîte de dialogue Connexion à Azure][A06]
 
-1. Lorsque la boîte de dialogue **Sélectionner des abonnements** s’affiche, sélectionnez les abonnements que vous souhaitez utiliser, puis cliquez sur **OK**.
+1. Hello lorsque **sélectionnez les abonnements** boîte de dialogue s’affiche, abonnements hello select que vous souhaitez toouse, puis cliquez sur **OK**.
 
    ![Boîte de dialogue Sélectionner des abonnements][A07]
 
 ## <a name="see-also"></a>Voir aussi
-Pour plus d’informations sur les boîtes à outils Azure pour les environnements de développement Java, consultez les liens suivants :
+Pour plus d’informations sur hello boîtes à outils Azure pour Java IDE, consultez hello suivant liens :
 
-* [Kit de ressources Azure pour Eclipse]
-  * [Nouveautés du kit de ressources Azure pour Eclipse]
-  * [Installation du kit de ressources Azure pour Eclipse]
-  * *Instructions de connexion à Azure pour le kit de ressources Azure pour Eclipse (cet article)*
+* [boîte à outils Azure pour Eclipse]
+  * [Nouveautés dans hello boîte à outils Azure pour Eclipse]
+  * [Lors de l’installation hello boîte à outils Azure pour Eclipse]
+  * *Authentification dans des Instructions pour hello boîte à outils Azure pour Eclipse (Cet Article)*
   * [Créer une application web « Hello World » pour Azure dans Eclipse]
 * [Kit de ressources Azure pour IntelliJ]
-  * [Nouveautés du Kit de ressources Azure pour IntelliJ]
-  * [Installation du kit de ressources Azure pour IntelliJ]
-  * [Instructions de connexion à Azure pour le kit de ressources Azure pour IntelliJ]
+  * [Nouveautés dans hello Azure Toolkit pour IntelliJ]
+  * [Lors de l’installation Bonjour Azure Toolkit pour IntelliJ]
+  * [Authentification dans des Instructions pour hello Azure Toolkit pour IntelliJ]
   * [Créer une application web « Hello World » pour Azure dans IntelliJ]
 
-Pour plus d’informations sur l’utilisation d’Azure avec Java, consultez le [Centre de développement Java pour Azure] et les [outils Java pour Visual Studio Team Services].
+Pour plus d’informations sur l’utilisation d’Azure avec Java, consultez hello [centre de développement Java Azure] et hello [outils Java pour Visual Studio Team Services].
 
 <!-- URL List -->
 
-[Kit de ressources Azure pour Eclipse]: ./azure-toolkit-for-eclipse.md
+[boîte à outils Azure pour Eclipse]: ./azure-toolkit-for-eclipse.md
 [Kit de ressources Azure pour IntelliJ]: ./azure-toolkit-for-intellij.md
 [Créer une application web « Hello World » pour Azure dans Eclipse]: ./app-service-web/app-service-web-eclipse-create-hello-world-web-app.md
 [Créer une application web « Hello World » pour Azure dans IntelliJ]: ./app-service-web/app-service-web-intellij-create-hello-world-web-app.md
-[Installation du kit de ressources Azure pour Eclipse]: ./azure-toolkit-for-eclipse-installation.md
-[Installation du kit de ressources Azure pour IntelliJ]: ./azure-toolkit-for-intellij-installation.md
-[Sign In Instructions for the Azure Toolkit for Eclipse]: ./azure-toolkit-for-eclipse-sign-in-instructions.md
-[Instructions de connexion à Azure pour le kit de ressources Azure pour IntelliJ]: ./azure-toolkit-for-intellij-sign-in-instructions.md (Instructions de connexion à Azure pour le kit de ressources Azure pour IntelliJ)
-[Nouveautés du kit de ressources Azure pour Eclipse]: ./azure-toolkit-for-eclipse-whats-new.md
-[Nouveautés du Kit de ressources Azure pour IntelliJ]: ./azure-toolkit-for-intellij-whats-new.md
+[Lors de l’installation hello boîte à outils Azure pour Eclipse]: ./azure-toolkit-for-eclipse-installation.md
+[Lors de l’installation Bonjour Azure Toolkit pour IntelliJ]: ./azure-toolkit-for-intellij-installation.md
+[Sign In Instructions for hello Azure Toolkit for Eclipse]: ./azure-toolkit-for-eclipse-sign-in-instructions.md
+[Authentification dans des Instructions pour hello Azure Toolkit pour IntelliJ]: ./azure-toolkit-for-intellij-sign-in-instructions.md
+[Nouveautés dans hello boîte à outils Azure pour Eclipse]: ./azure-toolkit-for-eclipse-whats-new.md
+[Nouveautés dans hello Azure Toolkit pour IntelliJ]: ./azure-toolkit-for-intellij-whats-new.md
 
-[Centre de développement Java pour Azure]: https://azure.microsoft.com/develop/java/
+[centre de développement Java Azure]: https://azure.microsoft.com/develop/java/
 [outils Java pour Visual Studio Team Services]: https://java.visualstudio.com/
 
 <!-- IMG List -->

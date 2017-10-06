@@ -1,6 +1,6 @@
 ---
-title: Obtenir du support pour Azure Active Directory B2B Collaboration | Microsoft Docs
-description: "Quelle est l’expérience en matière de support pour Azure Active Directory B2B Collaboration ?"
+title: "prise en charge d’aaaGetting pour Azure Active Directory B2B collaboration | Documents Microsoft"
+description: "Qu’est hello expérience du support technique pour Azure Active Directory B2B collaboration ?"
 services: active-directory
 documentationcenter: 
 author: sasubram
@@ -15,17 +15,17 @@ ms.tgt_pltfrm: NA
 ms.workload: identity
 ms.date: 05/26/2017
 ms.author: sasubram
-ms.openlocfilehash: ce4731966baefa76b72e5a1a065c06379fac065d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: bbdfd40a1deab8fed82b533b942b70ed8cffbb1a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="getting-support-for-b2b-collaboration"></a>Obtenir du support pour B2B Collaboration
 
-Vous avez lu la documentation, vous avez fait tout ce qu’il fallait, mais quelque chose ne fonctionne toujours pas ? Ouvrez un ticket de support (plan de support requis) :
+Vous avez lu via la documentation de hello, vous avez effectué les choses correctement hello, mais ne peut pas qu’un élément toowork ? Ouvrez un ticket de support (plan de support requis) :
 
-1. Dans [portail Azure](https://portal.azure.com), accédez au panneau Aide et support, et sélectionnez Nouvelle demande de support :
+1. Dans [hello portail Azure](https://portal.azure.com), accédez toohello aide et panneau de prise en charge et sélectionnez Nouvelle demande de prise en charge :
   - Type de problème : technique
   - Abonnement : choisissez l’abonnement concerné
     - Service : Active Directory
@@ -34,11 +34,11 @@ Vous avez lu la documentation, vous avez fait tout ce qu’il fallait, mais quel
   ![nouvelle demande de support](media/active-directory-b2b-support/new-support-request.png)
 
 2. Décrivez votre problème :
-  - Choisissez le niveau de gravité approprié qui reflète vos besoins.
+  - Choisissez la gravité approprié hello qui reflète vous a besoin.
   - Pour Type de problème, choisissez Gestion des utilisateurs et des groupes
   - Pour Catégorie, choisissez Ajout d’utilisateurs (B2B)
   - Incluez les messages d’erreur, tels que l’ID de mise en correspondance, les utilisateurs concernés, etc.
 
   ![description du problème sur le ticket de support](media/active-directory-b2b-support/problem-description.png)
 
-3. Ajoutez vos coordonnées et un technicien du support vous contactera pour toute résolution de problème supplémentaire.
+3. Pour un toocontact représentatif de prise en charge pour résoudre le problème, ajoutez vos informations de contact.

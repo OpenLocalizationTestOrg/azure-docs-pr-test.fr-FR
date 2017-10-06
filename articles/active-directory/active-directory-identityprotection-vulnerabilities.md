@@ -1,6 +1,6 @@
 ---
-title: "Vulnérabilités détectées par Azure Active Directory Identity Protection | Microsoft Docs"
-description: "Présentation des vulnérabilités détectées par Azure Active Directory Identity Protection."
+title: "aaaVulnerabilities détectés par la Protection d’identité Azure Active Directory | Documents Microsoft"
+description: "Vue d’ensemble des vulnérabilités hello détectés par la Protection d’identité Azure Active Directory."
 services: active-directory
 keywords: "azure active directory identity protection, cloud app discovery, gestion d’applications, sécurité, risque, niveau de risque, vulnérabilité, stratégie de sécurité"
 documentationcenter: 
@@ -15,26 +15,26 @@ ms.topic: article
 ms.date: 07/12/2017
 ms.author: markvi
 ms.reviewer: nigu
-ms.openlocfilehash: 364873ff54099a6123e40b12e819d1745751f285
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 5e1cb401f8b566a180eb46e3420a090bcfc66767
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="vulnerabilities-detected-by-azure-active-directory-identity-protection"></a>Vulnérabilités détectées par Azure Active Directory Identity Protection
-Les vulnérabilités sont des points faibles exploitables par un cybercriminel au sein de votre environnement. Nous vous recommandons de les résoudre afin d’améliorer la posture de sécurité de votre organisation et d’empêcher des personnes malveillantes d’en tirer parti.
+Les vulnérabilités sont des points faibles exploitables par un cybercriminel au sein de votre environnement. Nous vous recommandons de résoudre ces posture de sécurité hello tooimprove des vulnérabilités de votre organisation et d’empêcher les intrus de les exploiter.
 
 
 ![vulnérabilités](./media/active-directory-identityprotection-vulnerabilities/101.png "vulnérabilités")
 
 
 
-Les sections suivantes fournissent une vue d’ensemble des vulnérabilités signalées par Identity Protection.
+Hello sections suivantes fournissent une vue d’ensemble des vulnérabilités hello signalés par la Protection de l’identité.
 
 ## <a name="multi-factor-authentication-registration-not-configured"></a>Inscription à l’authentification multifacteur non configurée
-Cette vulnérabilité vous permet de contrôler le déploiement d’Azure Multi-Factor Authentication, service d’authentification multifacteur d’Azure, dans votre organisation. 
+Cette vulnérabilité vous permet de contrôler le déploiement de hello d’Azure multi-Factor Authentication dans votre organisation. 
 
-L’authentification multifacteur d’Azure ajoute une deuxième couche de sécurité à l’authentification utilisateur. Elle contribue à sécuriser l’accès aux données et aux applications tout en répondant à la demande des utilisateurs souhaitant un processus d’authentification simple. Il fournit une authentification forte via diverses options de vérification simples : appel téléphonique, message texte, notification par application mobile ou code de vérification et jetons OATH tiers.
+L’authentification multifacteur Azure fournit une deuxième couche toouser d’authentification de sécurité. Il vous aide à toodata d’accès de sauvegarde et des applications tout en répondant à la demande de l’utilisateur pour un processus de connexion simple. Il fournit une authentification forte via diverses options de vérification simples : appel téléphonique, message texte, notification par application mobile ou code de vérification et jetons OATH tiers.
 
 Nous vous recommandons d’exiger l’authentification multifacteur d’Azure pour les connexions des utilisateurs. L’authentification multifacteur joue un rôle clé dans les stratégies d’accès conditionnel en fonction des risques disponibles via Identity Protection.
 
@@ -43,18 +43,18 @@ Pour plus d’informations, consultez [Qu’est-ce qu’Azure Multi-Factor Authe
 ## <a name="unmanaged-cloud-apps"></a>Applications cloud non gérées
 Cette vulnérabilité vous permet d’identifier les applications cloud non gérées au sein de votre organisation.
 
-Dans les entreprises modernes, les services informatiques n’ont souvent pas connaissance de toutes les applications cloud utilisées par les membres de l’organisation pour effectuer leur travail. Il est facile de comprendre pourquoi les administrateurs s’inquiètent d’un accès non autorisé aux données d'entreprise, de possibles fuites de données et autres risques de sécurité. 
+Dans les entreprises modernes, les services informatiques sont souvent pas conscients de toutes les applications de cloud hello que les utilisateurs dans leur organisation utilisent toodo leur travail. Il est facile toosee pourquoi administrateurs auront des problèmes sur les données toocorporate de tout accès non autorisé, les fuites de données possibles et les autres risques de sécurité. 
 
-Nous vous recommandons de déployer Cloud App Discovery dans votre organisation pour détecter les applications cloud non gérées et de gérer ces applications à l’aide d’Azure Active Directory.
+Nous recommandons que votre organisation déployer des applications de cloud Cloud App Discovery toodiscover non managée et toomanage ces applications à l’aide d’Azure Active Directory.
 
 Pour plus d’informations, consultez l’article [Détection des applications cloud non gérées avec Cloud App Discovery](active-directory-cloudappdiscovery-whatis.md).
 
 ## <a name="security-alerts-from-privileged-identity-management"></a>Alertes de sécurité du service Privileged Identity Management
 Cette vulnérabilité vous aide à détecter et à résoudre les alertes relatives aux identités privilégiées dans votre organisation.  
 
-Pour permettre aux utilisateurs d’effectuer des opérations privilégiées, les organisations doivent leur accorder un accès privilégié temporaire ou permanent à des ressources Azure AD, Azure ou Office 365 ou à d’autres applications SaaS. Chacun de ces utilisateurs privilégiés augmente la surface d’attaque de votre organisation. Cette vulnérabilité vous permet d’identifier les utilisateurs disposant d’un accès privilégié inutile et de prendre les mesures qui s’imposent pour réduire ou éliminer le risque associé. 
+toocarry d’utilisateurs tooenable opérations nécessitant des privilèges, les organisations ont besoin les utilisateurs toogrant temporaires ou définitives des privilèges d’accès dans Azure AD, les ressources Azure ou Office 365 ou autres applications SaaS. Chacune de ces surface d’attaque hello augmente les utilisateurs privilégiés de votre organisation. Cette vulnérabilité vous aide à identifier les utilisateurs avec un accès privilégié inutile et prendre les mesures appropriées tooreduce ou éliminer le risque de hello qu’ils représentent. 
 
-Nous vous recommandons d’utiliser le service Azure AD Privileged Identity Management dans votre organisation pour gérer, contrôler et surveiller les identités privilégiées et leur accès aux ressources dans Azure AD et dans d’autres services en ligne Microsoft tels qu’Office 365 ou Microsoft Intune.
+Il est recommandé que votre organisation utilise Azure AD Privileged Identity Management toomanage, contrôle et identités d’analyse privilégié et leurs tooresources d’accès dans Azure AD ainsi que d’autres services en ligne Microsoft comme Office 365 ou Microsoft Intune.
 
 Pour plus d’informations, consultez l’article [Azure AD Privileged Identity Management](active-directory-privileged-identity-management-configure.md). 
 

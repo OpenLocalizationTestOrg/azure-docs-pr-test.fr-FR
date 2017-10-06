@@ -1,6 +1,6 @@
 ---
-title: "Comment ajouter des opérations à une API dans Gestion des API Azure | Microsoft Docs"
-description: "Découvrez comment ajouter des opérations à une API dans Gestion des API Azure."
+title: aaaHow tooadd operations tooan API de gestion des API Azure | Documents Microsoft
+description: "Découvrez comment tooadd opérations tooan API de gestion des API Azure."
 services: api-management
 documentationcenter: 
 author: steved0x
@@ -14,124 +14,124 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/15/2016
 ms.author: apimpm
-ms.openlocfilehash: 105fc51c2d1152a40a5757985da47330e0b7b8cf
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d57fa59a2b0ceb392cde23150a0cbb326e52d27d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-add-operations-to-an-api-in-azure-api-management"></a>Ajout d'opérations à une API dans Gestion des API Azure
-Pour qu'une API puisse être utilisée dans Gestion des API, vous devez ajouter des opérations. Ce guide présente comment ajouter et configurer différents types d'opérations pour une API dans Gestion des API.
+# <a name="how-tooadd-operations-tooan-api-in-azure-api-management"></a>Comment tooadd opérations tooan API de gestion des API Azure
+Pour qu'une API puisse être utilisée dans Gestion des API, vous devez ajouter des opérations. Ce guide montre comment tooadd et configurer les différents types d’opérations tooan API de gestion des API.
 
-## <a name="add-operation"> </a>Ajout d’une opération
-Les opérations sont ajoutées et configurées dans une API sur le portail des éditeurs. Pour accéder au portail des éditeurs, cliquez sur **Portail des éditeurs** dans le portail Azure de votre service Gestion des API.
+## <a name="add-operation"></a>Ajout d’une opération
+Les opérations sont ajoutées et configurés tooan API dans le portail de publication hello. tooaccess hello cliquez portail, du serveur de publication **portail de publication** Bonjour portail Azure pour votre service de gestion des API.
 
 ![Portail des éditeurs][api-management-management-console]
 
-> Si vous n’avez pas encore créé une instance de service Gestion des API, consultez la page de [création d’une instance de service Gestion des API][Create an API Management service instance] dans le didacticiel de [prise en main de Gestion des API Azure][Get started with Azure API Management].
+> Si vous n’avez pas encore créé une instance de service de gestion des API, consultez [de créer une instance de service de gestion des API] [ Create an API Management service instance] Bonjour [prise en main Azure API Management] [ Get started with Azure API Management] didacticiel.
 > 
 > 
 
-Sélectionnez l’API souhaitée dans le portail de publication, puis l’onglet **Opérations** . 
+Sélectionnez hello souhaité API dans le portail de publication hello et puis sélectionnez hello **Operations** onglet. 
 
 ![Opérations][api-management-operations]
 
-Cliquez sur **Ajouter une opération** pour ajouter une nouvelle opération. **Nouvelle opération** s’affiche et l’onglet **Signature** est sélectionné par défaut.
+Cliquez sur **ajouter une opération** tooadd une nouvelle opération. Hello **nouvelle opération** s’affichera et hello **Signature** est activée par défaut.
 
 ![Ajouter une opération][api-management-add-operation]
 
-Spécifiez le **verbe HTTP** en le choisissant dans la liste déroulante.
+Spécifiez hello **verbe HTTP** en choisissant dans la liste déroulante de hello.
 
 ![HTTP method][api-management-http-method]
 
 <a name="url-template"></a>
 
-Définissez le modèle d'URL en tapant un fragment d'URL comprenant un ou plusieurs segments de chemin d'URL et aucun ou plusieurs paramètres de chaîne de requête. Le modèle d'URL, ajouté à l'URL de base de l'API, identifie de façon unique l'opération HTTP. Il peut contenir une ou plusieurs parties variables identifiées par des accolades. Ces parties variables sont appelées paramètres de modèle. Des valeurs leur sont affectées de façon dynamique à partir de l'URL de la demande lorsque la demande est traitée par la plateforme Gestion des API.
+Définir le modèle d’URL hello en tapant dans un fragment d’URL consistant en un ou plusieurs segments de chemin d’accès d’URL et zéro ou plusieurs paramètres de chaîne de requête. modèle d’URL Hello, URL de base toohello ajouté de hello API, identifie une seule opération HTTP. Il peut contenir une ou plusieurs parties variables identifiées par des accolades. Ces parties variables sont appelées des paramètres de modèle et sont affectés dynamiquement les valeurs extraites à partir de l’URL de la demande hello lors de la demande de hello est traitée par la plateforme de gestion des API hello.
 
-> Le modèle d’URL peut inclure des caractères génériques. Par exemple, spécifiez `/*` pour transférer toutes les demandes de cette méthode HTTP vers le service principal.
+> modèle d’URL Hello peut inclure des caractères génériques. Par exemple, la spécification `/*` par progression toutes les demandes de nouveau ce toohello de méthode HTTP ne pourront service.
 
 ![URL template][api-management-url-template]
 
 <a name="rewrite-url-template"></a>
 
-Si vous le souhaitez, spécifiez le **modèle de réécriture de l'URL**. Ceci vous permet d'utiliser le modèle d'URL standard pour traiter les demandes entrantes dans la partie frontale, tout en faisant appel à la partie principale via une URL convertie selon le modèle de réécriture. Les paramètres du modèle d'URL doivent être utilisés dans le modèle de réécriture. L'exemple qui suit montre comment un type de contenu codé sous forme de segment de chemin dans le service web de l'exemple précédent peut être utilisé comme paramètre de requête dans l'API publiée via la plateforme Gestion des API à l'aide des modèles d'URL.
+Si vous le souhaitez, spécifier hello **modèle de réécrire les URL**. Cela vous permet de modèle d’URL standard toouse hello pour le traitement des demandes entrantes sur hello frontal, lors de l’appel hello principal via une URL convertie selon toohello Réécrivez le modèle. Paramètres de modèle à partir du modèle d’URL hello doivent être utilisés dans le modèle de réécriture hello. Hello suivant montre comment le contenu type encodé comme segment de chemin d’accès dans le service web pour hello hello précédent exemple peut être fourni comme paramètre de requête Bonjour API publiés via hello plateforme de gestion des API à l’aide de modèles d’URL hello.
 
 ![URL template rewrite][api-management-url-template-rewrite]
 
-Les appelants de l’opération utilisent le format `/customers?customerid=ALFKI`, qui est mappé sur `/Customers('ALFKI')` lors de l’appel du service principal.
+Opération de toohello appelants utilisent hello format `/customers?customerid=ALFKI` et il sera mappé trop`/Customers('ALFKI')` lorsque le service principal de hello est appelé.
 
-**Nom d’affichage** et **Description** fournissent une description de l’opération et offrent des informations aux développeurs utilisant cette API dans le portail des développeurs.
+**Affichage** nom et **Description** fournissent une description de l’opération de hello et est utilisés tooprovide documentation toohello les développeurs utilisant cette API dans le portail des développeurs hello.
 
 ![Description][api-management-description]
 
-La description de l'opération peut être ajoutée en texte brut ou au format HTML dans la zone de texte **Description** .
+description de l’opération Hello peut être spécifiée en tant que texte brut ou HTML Bonjour **Description** zone de texte.
 
-## <a name="operation-caching"> </a>Mise en cache de l’opération
-La mise en cache de la réponse réduit le temps de latence perçu par les consommateurs de l'API, réduit la bande passante consommée et allège la charge sur le service web HTTP qui utilise l'API. 
+## <a name="operation-caching"></a>Mise en cache de l’opération
+Réponse mise en cache réduit la latence perçue par les consommateurs hello API, permet de réduire la consommation de bande passante et la charge de hello diminue sur l’implémentation du service web hello HTTP hello API. 
 
-Pour activer facilement et rapidement la mise en cache pour une opération, sélectionnez l’onglet **Mise en cache** et cochez la case **Activer**.
+tooeasily et d’activer rapidement la mise en cache pour l’opération de hello, sélectionnez hello **mise en cache** et vérifiez hello **activer** case à cocher.
 
 ![Mise en cache][api-management-caching-tab]
 
-**Durée** spécifie la durée pendant laquelle la réponse de l'opération reste dans le cache. La valeur par défaut est de 3600 secondes (1 heure).
+**Durée** spécifie hello laps de temps pendant le hello réponse d’opération reste dans le cache de hello. Hello par défaut est 3 600 secondes ou 1 heure.
 
-Les clés de cache permettent de faire la distinction entre les réponses, afin que la réponse correspondant à chaque clé de cache obtienne sa propre valeur mise en cache. Vous pouvez également entrer des paramètres de chaîne de requête spécifiques et/ou des en-têtes HTTP à utiliser pour calculer les valeurs de clés de cache dans les zones de texte **Variation par paramètres de chaîne de requête** et **Variation par en-têtes**. Si aucune valeur n’est spécifiée, l’URL complète de la demande et les valeurs d’en-tête HTTP suivantes sont utilisées pour générer la clé de cache : **Accept** et **Accept-Charset**.
+Les clés de cache sont toodifferentiate utilisé entre les réponses afin que la réponse hello correspondant de clé de cache différents tooeach obtiendra sa propre valeur de mise en cache distinct. Si vous le souhaitez, entrez les paramètres de chaîne de requête spécifique et/ou toobe d’en-têtes HTTP utilisés dans le calcul de valeurs de clé de cache Bonjour **variation par paramètres de chaîne de requête** et **variation par en-têtes** respectivement des zones de texte. Lorsque aucun sont des URL de demande spécifié, complète et hello valeurs d’en-tête HTTP suivantes est utilisée dans la génération de clé de cache : **accepter** et **Accept-Charset**.
 
-> Pour plus d’informations sur la mise en cache et les stratégies associée, consultez la page [Mise en cache des résultats d’opérations dans Gestion des API Azure][How to cache operation results in Azure API Management].
+> Pour plus d’informations sur la mise en cache et la mise en cache des stratégies, consultez [affichage des résultats dans la gestion des API Azure toocache opération][How toocache operation results in Azure API Management].
 > 
 > 
 
-## <a name="request-parameters"> </a>Paramètres de la demande
-Les paramètres de l'opération sont gérés dans l'onglet Paramètres. Les paramètres spécifiés dans **Modèle d’URL**, dans l’onglet **Signature**, sont automatiquement ajoutés et ne peuvent être changés qu’en modifiant le modèle d’URL. D'autres paramètres peuvent être ajoutés manuellement.
+## <a name="request-parameters"></a>Paramètres de la demande
+Paramètres de l’opération sont gérés sur l’onglet Paramètres de hello. Paramètres spécifiés dans hello **modèle d’URL** sur hello **Signature** onglet sont ajoutés automatiquement et peut être modifiée qu’en modifiant le modèle d’URL hello. D'autres paramètres peuvent être ajoutés manuellement.
 
-Pour ajouter un nouveau paramètre de requête, cliquez sur **Ajouter des paramètres de requête** et entrez les informations suivantes :
+tooadd un nouveau paramètre de requête, cliquez sur **ajouter un paramètre de requête** et entrez hello informations suivantes :
 
 * **Nom** : nom du paramètre.
-* **Description** : courte description du paramètre (facultatif).
-* **Type** : type de paramètre, sélectionné dans la liste déroulante.
-* **Valeurs** : valeurs qui peuvent être affectées à ce paramètre. Une des valeurs peut être marquée comme valeur par défaut (facultatif).
-* **Obligatoire** : activez la case à cocher pour rendre le paramètre obligatoire. 
+* **Description** -une brève description du paramètre hello (facultatif).
+* **Type** -type de paramètre, sélectionné dans la liste déroulante hello.
+* **Valeurs** -valeurs pouvant être affectées toothis paramètre. Une des valeurs de hello peut être marquée comme valeur par défaut (facultative).
+* **Requis** -que le paramètre hello obligatoire en activant la case à cocher hello. 
 
 ![Paramètres de la demande][api-management-request-parameters]
 
-## <a name="request-body"> </a>Corps de la demande
-Si l'opération l'autorise (par exemple PUT, POST) et qu'elle nécessite un corps, vous pouvez fournir un exemple dans un des formats pris en charge (JSON, XML, etc.). 
+## <a name="request-body"></a>Corps de la demande
+Si l’opération de hello permet (par exemple, PUT, POST) et nécessite un corps, vous pouvez fournir un exemple de celui-ci dans toutes les hello pris en charge les formats de représentation (par exemple, au format json, XML). 
 
-> Le corps de la demande est utilisé uniquement pour information et n'est pas validé.
+> corps de la demande Hello est utilisé uniquement à des fins de documentation et n’est pas validé.
 > 
 > 
 
-Pour entrer le corps de la demande, passez dans l'onglet **Corps** .
+tooenter un corps de demande, basculez toohello **corps** onglet.
 
-Cliquez sur **Ajouter une représentation**, tapez le nom du type de contenu (par exemple application/json), sélectionnez-le dans la liste déroulante, puis collez l'exemple souhaité au format sélectionné dans la zone de texte. 
+Cliquez sur **ajouter la représentation sous forme**, commencez à taper le nom du type de contenu de votre choix (par exemple, application/json), sélectionnez-le dans la liste déroulante de hello et coller hello souhaité d’exemple de corps de demande dans le format sélectionné de hello dans la zone de texte hello. 
 
 ![Corps de la demande][api-management-request-body]
 
-En plus des représentations, vous pouvez également spécifier une description dans la zone de texte **Description** .
+Dans toorepresentations supplémentaires, vous pouvez également spécifier une description facultative dans hello **Description** zone de texte.
 
-## <a name="responses"> </a>Réponses
-Il est conseillé de fournir des exemples de réponses pour tous les codes d'état que l'opération peut produire. Chaque code d'état peut avoir plusieurs exemples de corps de réponse, un pour chacun des types de contenu pris en charge. 
+## <a name="responses"></a>Réponses
+Il s’agit d’une bonne pratique tooprovide obtenir des exemples de réponses pour tous les codes d’état hello opération risque de générer. Chaque code d’état peut avoir plus d’un exemple de corps de réponse, une pour chaque hello pris en charge les types de contenu. 
 
-Pour ajouter une réponse, cliquez sur **Ajouter**, puis saisissez le code d’état souhaité. Dans cet exemple, le code d’état est **200 OK**. Une fois le code affiché dans la liste déroulante, sélectionnez-le. Le code de réponse est alors créé et ajouté à votre opération.
+tooadd une réponse, cliquez sur **ajouter** et commencez à taper le code d’état hello souhaité. Dans cet exemple hello d’état est code **200 OK**. Une fois que le code de hello s’affiche dans hello de liste déroulante, sélectionnez-la et code de réponse hello est créé et ajouté tooyour opération.
 
 ![Response code][api-management-response-code]
 
-Cliquez sur **Ajouter une représentation**, commencez à taper le nom du type de contenu (par exemple application/json), puis sélectionnez-le dans la liste déroulante.
+Cliquez sur **ajouter la représentation sous forme**, commencez à taper le nom de type de contenu souhaité hello (par exemple, application/json) et sélectionnez dans hello déroulante.
 
 ![Body content type][api-management-response-body-content-type]
 
-Collez l'exemple de corps de la réponse au format sélectionné dans la zone de texte. 
+Collez l’exemple de corps de réponse hello dans le format sélectionné de hello dans la zone de texte hello. 
 
 ![Response body][api-management-response-body]
 
-Si vous le souhaitez, vous pouvez spécifier une description dans la zone de texte **Description** .
+Si vous le souhaitez, ajoutez une description facultative dans hello **Description** zone de texte.
 
-Une fois l'opération configurée, cliquez sur **Enregistrer**.
+Une fois l’opération de hello est configurée, cliquez sur **enregistrer**.
 
-## <a name="next-steps"> </a>Étapes suivantes
-Une fois les opérations ajoutées à une API, l'étape suivante est l'association de l'API à un produit et sa publication, afin que les développeurs puissent appeler ses opérations.
+## <a name="next-steps"></a>Étapes suivantes
+Une fois les opérations de hello ajoutées tooan API, étape suivante de hello est tooassociate hello API avec un produit et la publier afin que les développeurs peuvent appeler ses opérations.
 
-* [Création et publication d’un produit][How to create and publish a product]
+* [Comment toocreate et publier un produit][How toocreate and publish a product]
 
 [api-management-management-console]: ./media/api-management-howto-add-operations/api-management-management-console.png
 [api-management-operations]: ./media/api-management-howto-add-operations/api-management-operations.png
@@ -166,6 +166,6 @@ Une fois les opérations ajoutées à une API, l'étape suivante est l'associati
 [Get started with Azure API Management]: api-management-get-started.md
 [Create an API Management service instance]: api-management-get-started.md#create-service-instance
 
-[How to add operations to an API]: api-management-howto-add-operations.md
-[How to create and publish a product]: api-management-howto-add-products.md
-[How to cache operation results in Azure API Management]: api-management-howto-cache.md
+[How tooadd operations tooan API]: api-management-howto-add-operations.md
+[How toocreate and publish a product]: api-management-howto-add-products.md
+[How toocache operation results in Azure API Management]: api-management-howto-cache.md

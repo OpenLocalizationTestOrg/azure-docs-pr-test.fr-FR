@@ -14,68 +14,68 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 06/30/2017
 ms.author: maheshu
-ms.openlocfilehash: 4b6da997f44860dccb2aa2571ce099ab2d0231f3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8e073df9de2996f5ad159dda746881c014ea3d66
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="enable-password-synchronization-to-azure-active-directory-domain-services"></a>Activer la synchronisation du mot de passe pour Azure Active Directory Domain Services
-Dans les tâches précédentes, vous avez activé Azure Active Directory Domain Services pour votre locataire Azure Active Directory (Azure AD). Dans la tâche suivante, vous allez activer la synchronisation des hachages d’informations d’identification requis pour l’authentification NT LAN Manager (NTLM) et Kerberos avec Services de domaine Azure AD. Une fois la synchronisation des informations d’identification configurée, les utilisateurs peuvent se connecter au domaine managé à l’aide de leurs informations d’identification d’entreprise.
+# <a name="enable-password-synchronization-tooazure-active-directory-domain-services"></a>Activer la synchronisation de mot de passe tooAzure les Services de domaine Active Directory
+Dans les tâches précédentes, vous avez activé Azure Active Directory Domain Services pour votre locataire Azure Active Directory (Azure AD). la tâche suivante Hello est synchronisation tooenable des hachages d’informations d’identification requises pour tooAzure de l’authentification NT LAN Manager (NTLM) et Kerberos, les Services de domaine Active Directory. Une fois que vous avez configuré la synchronisation des informations d’identification, les utilisateurs peuvent se connecter dans toohello le domaine géré avec leurs informations d’identification d’entreprise.
 
-Les étapes nécessaires sont différentes pour les comptes d’utilisateurs uniquement dans le cloud par rapport aux comptes d’utilisateurs qui sont synchronisés à partir de votre répertoire local à l’aide d’Azure AD Connect.  Si votre locataire Azure AD utilise une combinaison d’utilisateurs dans le cloud uniquement et d’utilisateurs provenant de votre répertoire Active Directory local, vous devez effectuer ces deux étapes.
+Hello différentes étapes sont différents pour les comptes d’utilisateur utilisateur cloud uniquement les comptes Visual Studio qui sont synchronisés à partir de votre annuaire local à l’aide d’Azure AD Connect.  Si votre client Azure AD a une combinaison de cloud uniquement les utilisateurs et les utilisateurs de votre service Active Directory, vous devez tooperform les deux étapes.
 
 <br>
 
 > [!div class="op_single_selector"]
-> * **Comptes d’utilisateurs uniquement dans le cloud** : [synchroniser les mots de passe des comptes d’utilisateurs uniquement dans le cloud avec votre domaine géré](active-directory-ds-getting-started-password-sync.md)
-> * **Comptes d’utilisateurs locaux** : [synchroniser les mots de passe des comptes d’utilisateurs synchronisés à partir de votre répertoire Active Directory local avec votre domaine géré](active-directory-ds-getting-started-password-sync-synced-tenant.md)
+> * **Comptes d’utilisateur uniquement dans le cloud**: [synchroniser les mots de passe pour le domaine géré de tooyour des comptes d’utilisateurs uniquement dans le cloud](active-directory-ds-getting-started-password-sync.md)
+> * **Comptes d’utilisateur locaux**: [synchroniser les mots de passe des comptes d’utilisateur synchronisés à partir de votre site AD tooyour gérés domaine](active-directory-ds-getting-started-password-sync-synced-tenant.md)
 >
 >
 
 <br>
 
-## <a name="task-5-enable-password-synchronization-to-your-managed-domain-for-cloud-only-user-accounts"></a>Tâche 5 : activer la synchronisation de mot de passe avec votre domaine géré pour les comptes d’utilisateurs uniquement dans le cloud
-Pour authentifier les utilisateurs sur le domaine managé, Azure AD DS exige que les hachages d’informations d’identification présentent un format adapté à l’authentification NTLM et Kerberos. Azure AD ne génère pas et ne stocke pas les hachages d’informations d’identification dans le format requis pour l’authentification NTLM ou Kerberos, à moins que vous n’activiez Azure Active Directory Domain Services pour votre locataire. Pour des raisons évidentes de sécurité, Azure AD ne stocke pas non plus d’informations de mot de passe dans un format en texte clair. Par conséquent, Azure AD n’a pas la capacité de générer automatiquement ces hachages d’informations d’identification NTLM ou Kerberos en fonction des informations d’identification existantes des utilisateurs.
+## <a name="task-5-enable-password-synchronization-tooyour-managed-domain-for-cloud-only-user-accounts"></a>Tâche 5 : activer le mot de passe tooyour managé domaine de synchronisation des comptes d’utilisateur uniquement dans le cloud
+utilisateurs tooauthenticate sur hello managée domaine, Azure Active Directory Domain Services a besoin des informations d’identification hachages dans un format qui convient pour l’authentification NTLM et Kerberos. Azure AD ne pas générer et stocker les hachages d’informations d’identification au format hello qui est requis pour l’authentification NTLM ou Kerberos, jusqu'à ce que vous activez Azure Active Directory Domain Services pour votre client. Pour des raisons évidentes de sécurité, Azure AD ne stocke pas non plus d’informations de mot de passe dans un format en texte clair. Par conséquent, Azure AD n’a pas un moyen tooautomatically générer ces hachages d’informations d’identification NTLM ou Kerberos selon les informations d’identification existantes des utilisateurs.
 
 > [!NOTE]
-> Si votre organisation utilise des comptes d’utilisateurs dans le cloud uniquement, les utilisateurs ayant besoin Azure Active Directory Domain Services doivent modifier leur mot de passe. Un compte d’utilisateur uniquement dans le cloud est un compte qui a été créé dans votre répertoire Azure AD à l’aide du portail Azure ou d’applets de commande PowerShell Azure AD. Ces comptes d’utilisateurs ne sont pas synchronisés à partir d’un répertoire local.
+> Si votre organisation a des comptes d’utilisateur uniquement dans le cloud, les utilisateurs qui ont besoin de Services de domaine Active Directory toouse Azure doivent changer leurs mots de passe. Un compte d’utilisateur uniquement dans le cloud est un compte qui a été créé dans votre annuaire Azure AD à l’aide de hello portail Azure ou applets de commande PowerShell Azure AD. Ces comptes d’utilisateurs ne sont pas synchronisés à partir d’un répertoire local.
 >
 >
 
-Le processus de modification du mot de passe entraîne la génération, dans Azure AD, des hachages d’informations d’identification requis par Azure AD DS pour l’authentification Kerberos et NTLM. Vous pouvez faire expirer les mots de passe de tous les utilisateurs du locataire qui doivent recourir à Azure AD DS, ou demander à ces utilisateurs de modifier leur mot de passe.
+Ce processus de modification de mot de passe entraîne des informations d’identification hello hachages qui sont requis par Azure Active Directory Domain Services pour toobe de l’authentification Kerberos et NTLM générée dans Azure AD. Vous pouvez soit faire expirer les mots de passe hello pour tous les utilisateurs de hello client qui ont besoin de Services de domaine Active Directory toouse Azure ou leur demander de toochange leurs mots de passe.
 
 ### <a name="enable-ntlm-and-kerberos-credential-hash-generation-for-a-cloud-only-user-account"></a>Activer la génération du hachage des informations d’identification NTLM et Kerberos pour un compte d’utilisateur dans le cloud uniquement
-Voici les instructions que vous devez fournir aux utilisateurs pour qu’ils puissent modifier leur mot de passe :
+Voici les instructions hello que nécessaires tooprovide utilisateurs, afin qu’ils peuvent modifier leurs mots de passe :
 
-1. Accédez à la [page du volet d’accès Azure AD](http://myapps.microsoft.com) de votre organisation.
+1. Accédez toohello [panneau d’accès Azure AD](http://myapps.microsoft.com) page de votre organisation.
 
-    ![Ouvrez le panneau d’accès Azure AD](./media/active-directory-domain-services-getting-started/access-panel.png)
+    ![Lancer le panneau d’accès Azure AD hello](./media/active-directory-domain-services-getting-started/access-panel.png)
 
-2. Dans l’angle supérieur droit, cliquez sur votre nom, puis sélectionnez **Profil** dans le menu.
+2. Dans hello coin supérieur droit, cliquez sur votre nom, puis sélectionnez **profil** à partir du menu de hello.
 
     ![Sélectionner un profil](./media/active-directory-domain-services-getting-started/select-profile.png)
 
-3. Sur la page **profil**, cliquez sur **Modifier le mot de passe**.
+3. Sur hello **profil** page, cliquez sur **Change password**.
 
     ![Cliquez sur « Modifier le mot de passe »](./media/active-directory-domain-services-getting-started/user-change-password.png)
 
    > [!NOTE]
-   > Si l’option **Modifier le mot de passe** ne s’affiche pas sur la fenêtre du volet d’accès, vérifiez que votre organisation a configuré la [gestion des mots de passe dans Azure AD](../active-directory/active-directory-passwords-getting-started.md).
+   > Si hello **Change password** option n’est pas affichée dans la fenêtre du panneau d’accès hello, assurez-vous que votre organisation a configuré [gestion des mots de passe dans Azure AD](../active-directory/active-directory-passwords-getting-started.md).
    >
    >
-4. Sur la page **Modifier le mot de passe**, saisissez votre ancien mot de passe, puis tapez un nouveau mot de passe et confirmez-le.
+4. Sur hello **modifier le mot de passe** page, tapez votre mot de passe (ancien), tapez un nouveau mot de passe, puis confirmez-le.
 
     ![Créer un réseau virtuel pour les services de domaine Azure AD.](./media/active-directory-domain-services-getting-started/user-change-password2.png)
 
 5. Cliquez sur **Envoyer**.
 
-Quelques minutes après cette modification, le nouveau mot de passe est utilisable Azure AD DS. Après 20 minutes environ (en général), vous pouvez vous connecter aux ordinateurs joints au domaine managé à l’aide du nouveau mot de passe.
+Quelques minutes après avoir modifié votre mot de passe, le nouveau mot de passe hello est utilisable dans Azure Active Directory Domain Services. Après quelques minutes (en général, environ 20 minutes), vous pouvez vous connecter toocomputers qui appartiennent à un domaine géré de toohello jointes à l’aide du mot de passe hello qui vient d’être modifié.
 
 ## <a name="related-content"></a>Contenu connexe
-* [Comment mettre à jour votre mot de passe](../active-directory/active-directory-passwords-update-your-own-password.md)
+* [Comment tooupdate votre mot de passe](../active-directory/active-directory-passwords-update-your-own-password.md)
 * [Prise en main de la gestion de mot de passe dans Azure AD](../active-directory/active-directory-passwords-getting-started.md)
-* [Activer la synchronisation de mot de passe dans Azure Active Directory Domain Services pour un locataire Azure AD synchronisé](active-directory-ds-getting-started-password-sync-synced-tenant.md)
+* [Activer la synchronisation de mot de passe du locataire tooAzure Active Directory Domain Services pour un Azure AD synchronisé](active-directory-ds-getting-started-password-sync-synced-tenant.md)
 * [Administrer un domaine managé par Azure Active Directory Domain Services ](active-directory-ds-admin-guide-administer-domain.md)
-* [Joindre une machine virtuelle Windows à un domaine managé par Azure Active Directory Domain Services](active-directory-ds-admin-guide-join-windows-vm.md)
-* [Joindre une machine virtuelle Red Hat Enterprise Linux à un domaine managé par Azure Active Directory Domain Services](active-directory-ds-admin-guide-join-rhel-linux-vm.md)
+* [Joindre un domaine géré par Azure Active Directory Domain Services de tooan de machine virtuelle Windows](active-directory-ds-admin-guide-join-windows-vm.md)
+* [Joindre un domaine géré par les Services de domaine Active Directory de Azure de tooan de machine virtuelle Red Hat Enterprise Linux](active-directory-ds-admin-guide-join-rhel-linux-vm.md)

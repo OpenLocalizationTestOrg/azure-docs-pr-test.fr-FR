@@ -1,5 +1,5 @@
 ---
-title: OpenShift Origin sur Azure
+title: Origine de OpenShift aaa sur Azure
 description: OpenShift Origin sur Azure
 services: multiple
 author: mlearned
@@ -11,28 +11,28 @@ ms.devlang: devops
 ms.topic: landing-page
 ms.date: 06/19/2017
 ms.author: mlearned
-ms.openlocfilehash: a3f81d16be7b01d9162c02f07a42f25ae8edac26
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b403df77aa5f3c16f37800bc62709b4ac1fadb80
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 <div class="content">
     <h1>OpenShift sur Azure</h1>
     <div class="introHolder" style="justify-content: space-between;">
         <div class="intro" style="min-width: 200px">
-OpenShift Origin est une plateforme de conteneur open source reposant sur Kubernetes. Elle simplifie le processus de déploiement, de mise à l’échelle et d’exécution d’applications mutualisées.  Découvrez comment déployer et configurer une solution OpenShift avec des démarrages rapides et des didacticiels Microsoft et OpenShift. 
+OpenShift origine est une plate-forme open source conteneur Kubernetes qui simplifie le processus hello de déploiement, mise à l’échelle et l’exploitation des applications mutualisées.  Découvrez comment toodeploy et configurer OpenShift solution et avec Démarrages rapides et des didacticiels de Microsoft et OpenShift. 
         </div>
     </div>
 <h2>Démarrages en 5 minutes</h2>
 <a href="https://azure.microsoft.com/resources/templates/openshift-origin-rhel/">Déployer le modèle de la communauté OpenShift Origin</a> 
 <h2>Didacticiels pas à pas</h2>
-<p>Découvrez comment déployer OpenShift sur Azure.</p>
+<p>Découvrez comment toodeploy OpenShift sur Azure.</p>
 <ol>
-  <li><a href="/azure/virtual-machines/linux/openshift-get-started">Déployer OpenShift Origin sur des machines virtuelles Azure</a></li>  
+  <li><a href="/azure/virtual-machines/linux/openshift-get-started">Déployer OpenShift origine tooAzure Machines virtuelles</a></li>  
 </ol>
 <h2 style="margin-top: 36px">Ressources</h2>
-<p>Consultez les liens suivants concernant d’autres supports et outils de référence à utiliser avec OpenShift sur Azure.</p>
+<p>Consultez hello suivant les liens vers d’autres documents de référence et les outils permettant de travailler avec OpenShift sur Azure.</p>
 <a href="https://docs.openshift.org/latest/getting_started/index.html">Prise en main d’OpenShift Origin</a><br/>
 <a href="https://github.com/Microsoft/openshift-container-platform">Modèle de déploiement de la plateforme de conteneur OpenShift</a><br/>
 <a href="https://docs.openshift.org/latest/welcome/index.html">En savoir plus sur OpenShift</a><br/>

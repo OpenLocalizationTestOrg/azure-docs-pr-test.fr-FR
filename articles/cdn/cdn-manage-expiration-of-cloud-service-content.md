@@ -1,6 +1,6 @@
 ---
-title: "Gérer l’expiration du contenu web dans Azure CDN | Microsoft Docs"
-description: "Découvrez comment gérer l’expiration des contenus d’Azure Web Apps/Services cloud, d’ASP.NET ou d’IIS dans le réseau de distribution de contenu (CDN) Azure."
+title: expiration aaaManage du contenu web dans Azure CDN | Documents Microsoft
+description: "Découvrez comment expiration toomanage de contenu Azure Web Apps/Cloud Services, ASP.NET ou IIS dans Azure CDN."
 services: cdn
 documentationcenter: .NET
 author: zhangmanling
@@ -14,11 +14,11 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: mazha
-ms.openlocfilehash: c207d780857a61d4b1fc0f39e6185cae67abc955
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a0154236c3893b627f4480e0688f555964862556
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-expiration-of-azure-web-appscloud-services-aspnet-or-iis-content-in-azure-cdn"></a>Gérer l’expiration des contenus d’Azure Web Apps/Services cloud, d’ASP.NET ou d’IIS dans le réseau de distribution de contenu (CDN) Azure
 > [!div class="op_single_selector"]
@@ -27,19 +27,19 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-Les fichiers d’un serveur web d’origine publiquement accessible peuvent être mis en cache dans le réseau de distribution de contenu (CDN) Azure jusqu’à l’expiration de leur durée de vie (TTL).  La durée de vie est déterminée par [l’en-tête *Cache-Control*](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9) dans la réponse HTTP du serveur d’origine.  Cet article décrit comment définir des en-têtes `Cache-Control` pour Azure Web Apps, Services cloud Azure, les applications ASP.NET et les sites Internet Information Services, qui sont tous configurés de façon similaire.
+Les fichiers d’un serveur web d’origine publiquement accessible peuvent être mis en cache dans le réseau de distribution de contenu (CDN) Azure jusqu’à l’expiration de leur durée de vie (TTL).  durée de vie Hello est déterminée par hello [ *Cache-Control* en-tête](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9) en réponse hello HTTP à partir du serveur d’origine hello.  Cet article décrit comment tooset `Cache-Control` les en-têtes pour les applications Web Azure, Azure Cloud Services, les applications ASP.NET et les sites Internet Information Services, qui sont configurés de la même façon.
 
 > [!TIP]
-> Vous pouvez choisir de ne pas définir de durée de vie sur un fichier.  Dans ce cas, Azure CDN applique automatiquement une durée de vie de sept jours par défaut.
+> Vous ne pouvez choisir tooset aucune durée de vie d’un fichier.  Dans ce cas, Azure CDN applique automatiquement une durée de vie de sept jours par défaut.
 > 
-> Pour plus d’informations sur la façon dont le CDN Azure accélère l’accès aux fichiers et à d’autres ressources, consultez [Vue d’ensemble du réseau de distribution de contenu (CDN) Azure](cdn-overview.md).
+> Pour plus d’informations sur le fonctionnement de Azure CDN toospeed toofiles d’accès et d’autres ressources, consultez hello [vue d’ensemble du CDN Azure](cdn-overview.md).
 > 
 > 
 
 ## <a name="setting-cache-control-headers-in-configuration"></a>Définition d’en-têtes Cache-Control dans la configuration
-Pour le contenu statique, tel que les images et les feuilles de style, vous pouvez contrôler la fréquence de mise à jour en modifiant les fichiers **applicationHost.config** ou **web.config** de votre application web.  L’élément **system.webServer\staticContent\clientCache** du fichier de configuration définit l’en-tête `Cache-Control` pour votre contenu. Pour **web.config**, les paramètres de configuration affectent tous les éléments du dossier et de tous les sous-dossiers, sauf s’ils sont remplacés au niveau sous-dossier.  Par exemple, vous pouvez définir une durée de vie par défaut à la racine pour que tout le contenu statique soit mis en cache pendant 3 jours, tout en définissant une durée de mise en cache de 6 heures pour un sous-dossier dont le contenu varie davantage.  Pour **applicationHost.config**, toutes les applications du site sont affectées, mais peuvent être remplacées dans les fichiers **web.config** des applications.
+Pour le contenu statique, comme des images et des feuilles de style, vous pouvez contrôler la fréquence de mise à jour hello en modifiant hello **applicationHost.config** ou **web.config** les fichiers de votre application web.  Hello **system.webServer\staticContent\clientCache** élément dans le fichier de configuration hello définira hello `Cache-Control` en-tête pour votre contenu. Pour **web.config**, paramètres de configuration hello affectent tous les éléments dans le dossier de hello et tous ses sous-dossiers, sauf si la substitution au niveau du sous-dossier hello.  Par exemple, vous pouvez définir une valeur par défaut time-to-live à hello racine toohave statique tout le contenu mis en cache pendant 3 jours, mais ont un sous-dossier qui a le plus variable avec un paramètre de cache de 6 heures.  Pour **applicationHost.config**, toutes les applications sur site de hello seront affectées, mais peut être substituées dans **web.config** fichiers dans les applications de hello.
 
-Le code XML suivant montre comment configurer **clientCache** pour spécifier un âge maximal de 3 jours :  
+Hello code XML suivant montre un exemple de paramètre **clientCache** toospecify un âge maximal de 3 jours :  
 
 ```xml
 <configuration>
@@ -51,24 +51,24 @@ Le code XML suivant montre comment configurer **clientCache** pour spécifier un
 </configuration>
 ```
 
-Le fait de spécifier **UseMaxAge** ajoute un en-tête `Cache-Control: max-age=<nnn>` à la réponse en fonction de la valeur spécifiée dans l’attribut **CacheControlMaxAge**. Le format de la période pour l’attribut **cacheControlMaxAge** est <days>.<hours>:<min>:<sec>. Pour plus d’informations sur le nœud **clientCache**, consultez [Cache client <clientCache>](http://www.iis.net/ConfigReference/system.webServer/staticContent/clientCache).  
+Spécification de **UseMaxAge** ajoute un `Cache-Control: max-age=<nnn>` toohello réponse de l’en-tête en fonction de la valeur hello spécifié dans hello **CacheControlMaxAge** attribut. format Hello hello TimeSpan concerne hello **cacheControlMaxAge** attribut est <days>.<hours>:<min>:<sec>. Pour plus d’informations sur hello **clientCache** nœud, consultez [cache du Client <clientCache> ](http://www.iis.net/ConfigReference/system.webServer/staticContent/clientCache).  
 
 ## <a name="setting-cache-control-headers-in-code"></a>Définition d’en-têtes Cache-Control dans le code
-Pour les applications ASP.NET, vous pouvez définir le comportement de mise en cache dans le CDN par programme en définissant la propriété **HttpResponse.Cache** . Pour plus d’informations sur la propriété **HttpResponse.Cache**, consultez les pages [HttpResponse.Cache, propriété](http://msdn.microsoft.com/library/system.web.httpresponse.cache.aspx) et [HttpCachePolicy, classe](http://msdn.microsoft.com/library/system.web.httpcachepolicy.aspx).  
+Pour les applications ASP.NET, vous pouvez définir comportement de mise en cache CDN hello par programme en définissant la hello **HttpResponse.Cache** propriété. Pour plus d’informations sur hello **HttpResponse.Cache** propriété, consultez [propriété HttpResponse.Cache](http://msdn.microsoft.com/library/system.web.httpresponse.cache.aspx) et [classe HttpCachePolicy](http://msdn.microsoft.com/library/system.web.httpcachepolicy.aspx).  
 
-Si vous souhaitez mettre en cache du contenu d’application par programme dans ASP.NET, assurez-vous que le contenu est marqué comme pouvant être mis en cache en définissant HttpCacheability sur *Public*. En outre, assurez-vous qu'un validateur de cache est défini. Le validateur de cache peut être un horodatage de dernière modification défini en appelant SetLastModified, ou une valeur etag définie en appelant SetETag. Si vous le souhaitez, vous pouvez également spécifier un délai d'expiration du cache en appelant SetExpires, ou vous pouvez vous en remettre à la méthode heuristique de mise en cache par défaut décrite précédemment dans ce document.  
+Si vous souhaitez que le contenu de l’application cache tooprogrammatically dans ASP.NET, assurez-vous que le contenu de hello est marqué comme pouvant être en définissant HttpCacheability trop*Public*. En outre, assurez-vous qu'un validateur de cache est défini. Validateur de cache Hello peut être une dernière modification timestamp définie en appelant SetLastModified, ou une valeur etag définie en appelant SetETag. Si vous le souhaitez, vous pouvez également spécifier un délai d’expiration de cache en appelant SetExpires, ou vous pouvez compter sur l’heuristique de cache par défaut hello décrit plus haut dans ce document.  
 
-Par exemple, pour mettre en cache du contenu pendant une heure, ajoutez les éléments suivants :  
+Par exemple, toocache le contenu d’une heure, ajoutez hello qui suit :  
 
 ```csharp
-// Set the caching parameters.
+// Set hello caching parameters.
 Response.Cache.SetExpires(DateTime.Now.AddHours(1));
 Response.Cache.SetCacheability(HttpCacheability.Public);
 Response.Cache.SetLastModified(DateTime.Now);
 ```
 
 ## <a name="next-steps"></a>Étapes suivantes
-* [Découvrir les détails de l’élément **clientCache**](http://www.iis.net/ConfigReference/system.webServer/staticContent/clientCache)
-* [Consulter la documentation de la propriété **HttpResponse.Cache**](http://msdn.microsoft.com/library/system.web.httpresponse.cache.aspx) 
-* [Lire la documentation concernant la **classe HttpCachePolicy**](http://msdn.microsoft.com/library/system.web.httpcachepolicy.aspx).  
+* [Lire les détails à propos de hello **clientCache** élément](http://www.iis.net/ConfigReference/system.webServer/staticContent/clientCache)
+* [Lire la documentation hello pour hello **HttpResponse.Cache** propriété](http://msdn.microsoft.com/library/system.web.httpresponse.cache.aspx) 
+* [Lire la documentation hello pour hello **classe HttpCachePolicy**](http://msdn.microsoft.com/library/system.web.httpcachepolicy.aspx).  
 

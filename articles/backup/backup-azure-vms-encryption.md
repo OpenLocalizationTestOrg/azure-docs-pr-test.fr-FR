@@ -1,6 +1,6 @@
 ---
-title: "Sauvegarder et restaurer les machines virtuelles chiffrées à l’aide de Sauvegarde Azure"
-description: "Cet article présente l’expérience de sauvegarde et de restauration de machines virtuelles chiffrées à l’aide d’Azure Disk Encryption (ADE)."
+title: "aaaBackup et la restauration de machines virtuelles à l’aide d’Azure Backup chiffré"
+description: "Cet article traite de la sauvegarde de hello et expérience de restauration pour les machines virtuelles chiffré à l’aide du chiffrement de disque Azure."
 services: backup
 documentationcenter: 
 author: JPallavi
@@ -15,83 +15,83 @@ ms.workload: storage-backup-recovery
 ms.date: 07/27/2017
 ms.author: pajosh;markgal;trinadhk
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 89492cda8eff23509bee7693bb5f7e6ab5eb10d1
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: c19ef6f58e3259949535dab32a55aaf7a8c658fd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-back-up-and-restore-encrypted-virtual-machines-with-azure-backup"></a>Guide pratique de sauvegarde et restauration des machines virtuelles chiffrées avec Sauvegarde Azure
-Cet article présente les étapes pour sauvegarder et restaurer des machines virtuelles à l’aide de Sauvegarde Azure. Il fournit également des détails sur les scénarios pris en charge, les composants requis et les étapes de dépannage en cas d’erreur.
+# <a name="how-tooback-up-and-restore-encrypted-virtual-machines-with-azure-backup"></a>Mode tooback configuration et restauration de chiffrement de machines virtuelles dans Azure Backup
+Cet article traite d’étapes toobackup et la restauration de machines virtuelles à l’aide d’Azure Backup. Il fournit également des détails sur les scénarios pris en charge, les composants requis et les étapes de dépannage en cas d’erreur.
 
 ## <a name="supported-scenarios"></a>Scénarios pris en charge
 > [!NOTE]
 > * La sauvegarde et la restauration de machines virtuelles chiffrées sont prises en charge uniquement pour les machines virtuelles déployées dans Resource Manager. Ces opérations ne sont pas prises en charge par les machines virtuelles classiques. <br>
-> * Il est pris en charge pour les machines virtuelles Windows et Linux utilisant Azure Disk Encryption, qui tire parti de la fonctionnalité BitLocker standard du secteur de Windows et de la fonctionnalité DM-Crypt de Linux pour proposer le chiffrement des disques. <br>
+> * Il est pris en charge pour Windows et Linux des machines virtuelles à l’aide du chiffrement de disque Azure, qui utilise une fonctionnalité standard BitLocker hello industrie de Windows et fonctionnalité Crypt-DM de chiffrement de tooprovide Linux de disques. <br>
 > * Elles sont prises en charge uniquement pour les machines virtuelles chiffrées en même temps à l’aide de la clé de chiffrement BitLocker (BEK, BitLocker Encryption Key) et de la clé KEK (Key Encryption Key, clé de chiffrement de clé). Elles ne sont pas prises en charge pour les machines virtuelles chiffrées à l’aide de la clé de chiffrement BitLocker uniquement. <br>
 >
 >
 
 ## <a name="prerequisites"></a>Prérequis
 1. Les machines virtuelles ont été chiffrées à l’aide d’[Azure Disk Encryption](../security/azure-security-disk-encryption.md). Elles doivent être chiffrées en même temps à l’aide de la clé de chiffrement BitLocker et de la clé KEK (Key Encryption Key, clé de chiffrement de clé).
-2. Le coffre Recovery Services a été créé et la réplication du stockage a été définie à l’aide des étapes mentionnées dans l’article [Préparation de l’environnement pour la sauvegarde](backup-azure-arm-vms-prepare.md).
-3. Des [autorisations d’accès au coffre de clés](#provide-permissions-to-azure-backup) contenant des clés et secrets pour les machines virtuelles chiffrées ont été accordées à Sauvegarde Azure.
+2. Coffre Recovery services a été créé et définie à l’aide de la réplication du stockage étapes mentionnées dans l’article de hello [préparer votre environnement pour la sauvegarde](backup-azure-arm-vms-prepare.md).
+3. Azure Backup a été donné [coffre de clés autorisations tooaccess](#provide-permissions-to-azure-backup) contenant des clés, secrets pour chiffré des machines virtuelles.
 
 ## <a name="backup-encrypted-vm"></a>Sauvegarde de machines virtuelles chiffrées
-Utilisez les étapes suivantes pour définir l’objectif de sauvegarde, définir une stratégie, configurer les éléments et déclencher une sauvegarde.
+Utiliser hello suivant l’objectif de sauvegarde tooset étapes, définir une stratégie, configurez les éléments et le déclenchement de la sauvegarde.
 
 ### <a name="configure-backup"></a>Configurer une sauvegarde
-1. Si l’un de vos coffres Recovery Services est déjà ouvert, passez à l’étape suivante. Si vous n’avez aucun coffre Recovery Services ouvert, mais que vous vous trouvez dans le portail Azure, cliquez sur **Parcourir**dans le menu Hub.
+1. Si vous avez déjà ouvert un coffre Recovery Services, passez toonext étape. Si vous n’avez pas d’un coffre Recovery Services est ouvert, mais sont Bonjour portail Azure, dans le menu du Hub hello, cliquez sur **Parcourir**.
 
-   * Dans la liste des ressources, tapez **Recovery Services**.
-   * Au fur et à mesure de la saisie, la liste est filtrée. Lorsque vous voyez **Coffres Recovery Services**, cliquez dessus.
+   * Dans la liste de hello des ressources, tapez **Recovery Services**.
+   * Comme vous commencez à taper, hello filtres de la liste en fonction de votre entrée. Lorsque vous voyez **Coffres Recovery Services**, cliquez dessus.
 
       ![Créer un archivage de Recovery Services - Étape 1](./media/backup-azure-vms-encryption/browse-to-rs-vaults.png) <br/>
 
-     La liste des archivages de Recovery Services s’affiche. Dans la liste des archivages de Recovery Services, sélectionnez un archivage.
+     liste Hello des archivages de Recovery Services s’affiche. À partir de la liste de hello des archivages de Recovery Services, sélectionnez un coffre.
 
-     Le tableau de bord de l’archivage sélectionné s'ouvre.
-2. Dans la liste d’éléments qui s’affiche sous le coffre, cliquez sur **Sauvegarder** pour ouvrir le panneau Sauvegarde.
+     tableau de bord Hello coffre-fort sélectionné s’ouvre.
+2. À partir de la liste hello des éléments qui s’affiche sous le coffre, cliquez sur **sauvegarde** Panneau de sauvegarde tooopen hello.
 
       ![Ouvrir le panneau Sauvegarde](./media/backup-azure-vms-encryption/select-backup.png)
-3. Dans le panneau Sauvegarde, cliquez sur **Objectif de sauvegarde** pour ouvrir le panneau Objectif de sauvegarde.
+3. Dans le panneau de sauvegarde hello, cliquez sur **objectif de sauvegarde** panneau d’objectif de sauvegarde tooopen hello.
 
       ![Ouvrir le panneau Scénario](./media/backup-azure-vms-encryption/select-backup-goal-one.png)
-4. Dans le panneau Objectif de sauvegarde, définissez **Où s’exécute votre charge de travail ?** sur Azure et **Que souhaitez-vous sauvegarder ?** sur Machine virtuelle, puis cliquez sur **OK**.
+4. Sur le panneau d’objectif de sauvegarde hello, définissez **sur lequel s’exécute votre charge de travail** tooAzure et **comment vous souhaitez toobackup** tooVirtual de l’ordinateur, puis cliquez sur **OK**.
 
-   Le panneau Objectif de sauvegarde se ferme et le panneau Stratégie de sauvegarde s’ouvre.
+   panneau d’objectif de sauvegarde Hello se ferme et panneau hello de la stratégie de sauvegarde s’ouvre.
 
    ![Ouvrir le panneau Scénario](./media/backup-azure-vms-encryption/select-backup-goal-two.png)
-5. Dans le panneau Stratégie de sauvegarde, sélectionnez la stratégie de sauvegarde à appliquer au coffre, puis cliquez sur **OK**.
+5. Dans Panneau de stratégie de sauvegarde hello, sélectionnez Stratégie de sauvegarde hello tooapply toohello coffre et cliquez sur **OK**.
 
       ![Sélectionner la stratégie de sauvegarde](./media/backup-azure-vms-encryption/setting-rs-backup-policy-new.png)
 
-    Les détails de la stratégie par défaut sont indiqués à l’écran. Pour créer une stratégie, sélectionnez **Créer** dans le menu déroulant. Lorsque vous cliquez sur **OK**, la stratégie de sauvegarde est associée au coffre.
+    Détails de Hello de stratégie par défaut de hello sont répertoriées dans les détails de hello. Si vous souhaitez toocreate une stratégie, sélectionnez **créer un nouveau** à partir du menu déroulant de hello. Une fois que vous cliquez sur **OK**, stratégie de sauvegarde hello est associé au coffre de hello.
 
-    Ensuite, choisissez les machines virtuelles à associer à l'archivage.
-6. Sélectionnez les machines virtuelles chiffrées à associer à la stratégie spécifiée, puis cliquez sur **OK**.
+    Ensuite, choisissez tooassociate de machines virtuelles hello avec le coffre de hello.
+6. Choisissez hello chiffré des machines virtuelles tooassociate avec hello spécifié de stratégie et cliquez sur **OK**.
 
       ![Sélectionner des machines virtuelles chiffrées](./media/backup-azure-vms-encryption/selected-encrypted-vms.png)
-7. Cette page affiche un message sur le coffre de clés associé aux machines virtuelles chiffrées sélectionnées. Le service de sauvegarde requiert l’accès en lecture seule aux clés et clés secrètes dans le coffre de clés. Il utilise ces autorisations pour sauvegarder la clé et la clé secrète, ainsi que les machines virtuelles associées. **Pour que les sauvegardes fonctionnent, vous devez accorder au service de sauvegarde des autorisations d’accès au coffre de clés**. Vous pouvez fournir ces autorisations à l’aide des [étapes mentionnées dans la section ci-dessous](#provide-permissions-to-azure-backup).
+7. Cette page affiche un message sur le coffre de clés sélectionnés de machines virtuelles de toohello associé chiffré. Service de sauvegarde nécessite des clés de toohello d’accès en lecture seule et les secrets dans le coffre de clés hello. Il utilise ces clés de toobackup autorisations et secret, ainsi que de hello associés des machines virtuelles. **Vous devez donner le coffre de clés autorisations toobackup service tooaccess pour les sauvegardes toowork**. Vous pouvez fournir ces autorisations à l’aide de [étapes indiquées dans la section ci-dessous sur hello](#provide-permissions-to-azure-backup).
 
       ![Message Machines virtuelles chiffrées](./media/backup-azure-vms-encryption/encrypted-vm-warning-message.png)
 
-      Maintenant que vous avez défini tous les paramètres du coffre, dans le panneau Sauvegarde, cliquez sur Activer la sauvegarde en bas de la page. Le fait d’activer la sauvegarde déploie la stratégie dans le coffre et les machines virtuelles.
-8. La prochaine phase de préparation est l’installation de l’Agent de machine virtuelle ou s’assurer que l’Agent de machine virtuelle est installé. Pour faire de même, utilisez les étapes présentées dans l’article [Préparation de l’environnement pour la sauvegarde](backup-azure-arm-vms-prepare.md).
+      Maintenant que vous avez défini tous les paramètres pour l’archivage hello, dans le panneau de sauvegarde hello, cliquez sur Activer la sauvegarde en bas hello de page de hello. Activer la sauvegarde déploie le coffre de toohello stratégie hello et les machines virtuelles de hello.
+8. Hello prochaine phase de préparation est l’installation hello Agent de machine virtuelle ou rendre hello que l’Agent de machine virtuelle est installé. toodo hello même, procédez comme hello mentionné dans l’article de hello [préparer votre environnement pour la sauvegarde](backup-azure-arm-vms-prepare.md).
 
 ### <a name="triggering-backup-job"></a>Déclenchement d’un travail de sauvegarde
-Utilisez les étapes présentées dans l’article [Sauvegarder des machines virtuelles Azure dans un coffre Recovery Services](backup-azure-arm-vms.md) pour déclencher le travail de sauvegarde.
+Utilisez les étapes hello mentionnés dans l’article de hello [coffre des services de sauvegarde Azure VMs toorecovery](backup-azure-arm-vms.md) tootrigger du travail de sauvegarde.
 
 ### <a name="continue-backups-of-already-backed-up-vms-with-encryption-enabled"></a>Continuer les sauvegardes des machines virtuelles déjà sauvegardées avec le chiffrement activé  
-Si vous avez déjà des machines virtuelles en cours de sauvegarde dans un coffre Recovery Services et si le chiffrement a été activé pour un point ultérieur, vous devez accorder des autorisations au service de sauvegarde pour qu’il puisse accéder au coffre de clés et que les sauvegardes continuent. Vous pouvez fournir ces autorisations dans PowerShell à l’aide des [étapes de la section ci-dessous](#provide-permissions-to-azure-backup) ou des étapes PowerShell présentées dans la section **Activer la sauvegarde** de la [documentation PowerShell](backup-azure-vms-automation.md). 
+Si vous avez des machines virtuelles déjà en cours de sauvegarde dans le coffre recovery services et avez été activées pour le chiffrement à un moment ultérieur, vous devez donner le coffre de clés autorisations toobackup service tooaccess pour toocontinue de sauvegardes. Vous pouvez fournir ces autorisations à l’aide de [les étapes dans la section ci-dessous sur hello](#provide-permissions-to-azure-backup) ou à l’aide de PowerShell étapes mentionnées dans **Enable Backup** section de [documentation PowerShell](backup-azure-vms-automation.md). 
 
-## <a name="provide-permissions-to-azure-backup"></a>Fournir des autorisations à Sauvegarde Azure
-Utilisez les étapes suivantes pour fournir à Sauvegarde Azure des autorisations d’accès appropriées au coffre de clés et lui permettre d’effectuer la sauvegarde des machines virtuelles chiffrées :
+## <a name="provide-permissions-tooazure-backup"></a>Fournir des autorisations tooAzure sauvegarde
+Utilisez hello suivant les étapes tooprovide autorisations pertinentes tooAzure sauvegarde tooaccess coffre de clés et effectuer la sauvegarde d’ordinateurs virtuels chiffrées :
 1. Sélectionnez **Plus de services** et recherchez **Coffres de clés**.
 
     ![Rechercher le coffre de clés](./media/backup-azure-vms-encryption/search-key-vault.png)
     
-2. Dans la liste des coffres de clés, sélectionnez celui qui est associé aux machines virtuelles chiffrées et qui doit être sauvegardé.
+2. À partir de la liste de hello des coffres de clé, sélectionnez coffre de clés hello associé chiffrée machine virtuelle, qui doit toobe sauvegardé.
 
      ![Sélectionner le coffre de clés](./media/backup-azure-vms-encryption/select-key-vault.png)
      
@@ -99,7 +99,7 @@ Utilisez les étapes suivantes pour fournir à Sauvegarde Azure des autorisation
 
     ![Ajouter une stratégie d’accès](./media/backup-azure-vms-encryption/select-key-vault-access-policy.png)
     
-4. Cliquez sur **Sélectionner le principal** et tapez **Service de gestion de sauvegarde** dans la barre de recherche. 
+4. Cliquez sur **sélectionnez principal** et type **Service de gestion de sauvegarde** dans la barre de recherche hello. 
 
     ![Rechercher le service de sauvegarde](./media/backup-azure-vms-encryption/search-backup-service.png)
     
@@ -107,7 +107,7 @@ Utilisez les étapes suivantes pour fournir à Sauvegarde Azure des autorisation
 
     ![Sélectionner le service de sauvegarde](./media/backup-azure-vms-encryption/select-backup-service.png)
     
-6. Sélectionnez **Sauvegarde Azure** dans la liste déroulante Configurer à partir du modèle. Les autorisations requises sont préremplies dans les listes déroulantes Autorisations de clé et Autorisations du secret. 
+6. Sélectionnez **Sauvegarde Azure** dans la liste déroulante Configurer à partir du modèle. Il renseigne les autorisations hello requis dans les autorisations de clé et les autorisations secrètes liste déroulante. 
 
     ![Sélectionner Sauvegarde Azure](./media/backup-azure-vms-encryption/select-backup-template.png)
     
@@ -115,22 +115,22 @@ Utilisez les étapes suivantes pour fournir à Sauvegarde Azure des autorisation
 
     ![Stratégie d’accès au service de sauvegarde](./media/backup-azure-vms-encryption/backup-service-access-policy.png)
     
-8. Cliquez sur **Enregistrer**. Cela procure les autorisations requises à Sauvegarde Azure.
+8. Cliquez sur **Enregistrer**. Cela donnera hello requis autorisations tooAzure sauvegarde.
 
     ![Stratégie d’accès au service de sauvegarde](./media/backup-azure-vms-encryption/save-access-policy.png)
 
 Une fois les autorisations fournies, vous pouvez activer la sauvegarde pour les machines virtuelles chiffrées.
 
 ## <a name="restore-encrypted-vm"></a>Restaurer une machine virtuelle chiffrée
-Pour restaurer la machine virtuelle chiffrée, commencez par restaurer les disques en suivant les étapes mentionnées dans la section **Restaurer les disques sauvegardés** dans [Choix de la configuration de restauration de la machine virtuelle](backup-azure-arm-restore-vms.md#choosing-a-vm-restore-configuration). Ensuite, vous pouvez utiliser l’une des options suivantes :
-* Suivez les étapes de PowerShell mentionnées dans [Créer une machine virtuelle à partir de disques restaurés](backup-azure-vms-automation.md#create-a-vm-from-restored-disks) pour créer une machine virtuelle complète à partir de disques restaurés.
-* OU, suivez les étapes mentionnées dans [Utiliser des modèles pour personnaliser la machine virtuelle de restauration](backup-azure-arm-restore-vms.md#use-templates-to-customize-restore-vm) pour créer des machines virtuelles à partir de disques restaurés. Les modèles peuvent uniquement être utilisés pour les points de restauration créés après le 26 avril 2017.
+toorestore chiffré machine virtuelle, d’utiliser d’abord restaurer des disques section mentionnée dans les étapes **restaurer les disques sauvegardés** dans [restaurer la configuration en choisissant la machine virtuelle](backup-azure-arm-restore-vms.md#choosing-a-vm-restore-configuration). Après cela, vous pouvez utiliser une des options suivantes de hello :
+* Utilisez les étapes de PowerShell hello mentionnés dans [créer une machine virtuelle à partir de disques restaurés](backup-azure-vms-automation.md#create-a-vm-from-restored-disks) toocreate complète des ordinateurs virtuels à partir de disques restaurés.
+* OR, [utiliser le modèle généré dans le cadre de la restauration des disques](backup-azure-arm-restore-vms.md#use-templates-to-customize-restore-vm) toocreate machines virtuelles à partir de disques restaurés. Les modèles peuvent uniquement être utilisés pour les points de restauration créés après le 26 avril 2017.
 
 ## <a name="troubleshooting-errors"></a>Résolution des erreurs
 | Opération | Détails de l’erreur | Résolution : |
 | --- | --- | --- |
-| Sauvegarde |La validation a échoué, car la machine virtuelle est chiffrée avec une clé BEK uniquement. Les sauvegardes peuvent être activées uniquement pour les machines virtuelles chiffrées aussi bien avec des clés BEK qu’avec des clés KEK. |La machine virtuelle doit être chiffrée simultanément à l’aide de clés BEK et KEK. Déchiffrez d’abord la machine virtuelle et chiffrez-la à l’aide de BEK et KEK. Activez la sauvegarde une fois que la machine virtuelle est chiffrée à l’aide de BEK et KEK. En savoir plus sur la façon dont vous pouvez [déchiffrer et chiffrer la machine virtuelle](../security/azure-security-disk-encryption.md)  |
-| Restauration |Vous ne pouvez pas restaurer cette machine virtuelle chiffrée, car le coffre de clés associé à cette machine virtuelle n’existe pas. |Pour créer un coffre de clés, voir [Prise en main d’Azure Key Vault](../key-vault/key-vault-get-started.md). Consultez [Restaurer la clé et le secret de coffre de clés à l’aide de Sauvegarde Azure](backup-azure-restore-key-secret.md) pour restaurer la clé et la clé secrète si celles-ci n’existent pas. |
-| Restauration |Vous ne pouvez pas restaurer cette machine virtuelle chiffrée, car la clé et la clé secrète associées n’existent pas. |Consultez [Restaurer la clé et le secret de coffre de clés à l’aide de Sauvegarde Azure](backup-azure-restore-key-secret.md) pour restaurer la clé et la clé secrète si celles-ci n’existent pas. |
-| Restauration |Le service de sauvegarde n’a pas l’autorisation d’accéder aux ressources dans votre abonnement. |Comme indiqué ci-dessus, commencez par restaurer les disques en suivant les étapes mentionnées dans la section **Restaurer les disques sauvegardés** dans [Choix de la configuration de restauration de la machine virtuelle](backup-azure-arm-restore-vms.md#choosing-a-vm-restore-configuration). Ensuite, utilisez PowerShell pour [Créer une machine virtuelle à partir de disques restaurés](backup-azure-vms-automation.md#create-a-vm-from-restored-disks). |
-|Sauvegarde | Le service de sauvegarde Azure n’a pas les autorisations requises sur Key Vault pour effectuer une sauvegarde des machines virtuelles chiffrées. | La machine virtuelle doit être chiffrée à l’aide de la clé de chiffrement BitLocker et de la clé KEK (Key Encryption Key, clé de chiffrement de clé). Après l’application de ce chiffrement, la sauvegarde doit être activée.  Ces autorisations doivent être accordées au service de sauvegarde à l’aide des [étapes mentionnées dans la section ci-dessus](#provide-permissions-to-azure-backup) ou des étapes PowerShell mentionnées dans la section **Activer la protection** de la documentation PowerShell dans [Utiliser les applets de commande AzureRM.RecoveryServices.Backup pour sauvegarder des machines virtuelles](backup-azure-vms-automation.md#back-up-azure-vms). |  
+| Sauvegarde |La validation a échoué, car la machine virtuelle est chiffrée avec une clé BEK uniquement. Les sauvegardes peuvent être activées uniquement pour les machines virtuelles chiffrées aussi bien avec des clés BEK qu’avec des clés KEK. |La machine virtuelle doit être chiffrée simultanément à l’aide de clés BEK et KEK. Tout d’abord hello VM de déchiffrer et chiffrer à l’aide de BEK et KEK. Activez la sauvegarde une fois que la machine virtuelle est chiffrée à l’aide de BEK et KEK. En savoir plus sur la façon dont vous pouvez [déchiffrer et chiffrer hello machine virtuelle](../security/azure-security-disk-encryption.md)  |
+| Restauration |Vous ne pouvez pas restaurer cette machine virtuelle chiffrée, car le coffre de clés associé à cette machine virtuelle n’existe pas. |Pour créer un coffre de clés, voir [Prise en main d’Azure Key Vault](../key-vault/key-vault-get-started.md). Consultez l’article de hello [restaurer le secret à l’aide d’Azure Backup et la clé de coffre de clés](backup-azure-restore-key-secret.md) toorestore clé et secret s’ils sont absent. |
+| Restauration |Vous ne pouvez pas restaurer cette machine virtuelle chiffrée, car la clé et la clé secrète associées n’existent pas. |Consultez l’article de hello [restaurer le secret à l’aide d’Azure Backup et la clé de coffre de clés](backup-azure-restore-key-secret.md) toorestore clé et secret s’ils sont absent. |
+| Restauration |Service de sauvegarde n’a pas de ressources de tooaccess d’autorisation dans votre abonnement. |Comme indiqué ci-dessus, commencez par restaurer les disques en suivant les étapes mentionnées dans la section **Restaurer les disques sauvegardés** dans [Choix de la configuration de restauration de la machine virtuelle](backup-azure-arm-restore-vms.md#choosing-a-vm-restore-configuration). Une fois, celui-ci PowerShell trop[créer une machine virtuelle à partir de disques restaurés](backup-azure-vms-automation.md#create-a-vm-from-restored-disks). |
+|Sauvegarde | Le Service Azure Backup n’a pas suffisamment autorisations tooKey coffre pour sauvegarde de chiffré les Machines virtuelles | La machine virtuelle doit être chiffrée à l’aide de la clé de chiffrement BitLocker et de la clé KEK (Key Encryption Key, clé de chiffrement de clé). Après l’application de ce chiffrement, la sauvegarde doit être activée.  Service de sauvegarde doit être fourni ces autorisations à l’aide de [étapes indiquées dans la section hello ci-dessus](#provide-permissions-to-azure-backup) ou à l’aide des étapes PowerShell mentionnées dans hello **activer la protection** section Hello PowerShell documentation à l’adresse [tooback d’applets de commande AzureRM.RecoveryServices.Backup d’utilisation des machines virtuelles](backup-azure-vms-automation.md#back-up-azure-vms). |  

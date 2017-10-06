@@ -1,5 +1,5 @@
 ---
-title: "Azure Active Directory Domain Services : mettre à jour les paramètres DNS pour le réseau virtuel Azure | Microsoft Docs"
+title: "Azure Active Directory Domain Services : Mettre à jour les paramètres DNS pour le réseau virtuel Azure de hello | Documents Microsoft"
 description: Prise en main des services de domaine Azure Active Directory
 services: active-directory-ds
 documentationcenter: 
@@ -14,41 +14,41 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 06/27/2017
 ms.author: maheshu
-ms.openlocfilehash: 8bee2a25f196d645b27f30f21305b1550e44e07a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 484ff1a197a651bccb2b416448056acf69b0d8c6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="update-dns-settings-for-the-azure-virtual-network"></a>Mettre à jour les paramètres DNS pour le réseau virtuel Azure
-## <a name="task-4-update-dns-settings-for-the-azure-virtual-network"></a>Tâche 4 : mettre à jour les paramètres DNS pour le réseau virtuel Azure
-Dans les tâches de configuration précédentes, vous avez activé Azure Active Directory Domain Services pour votre répertoire. La tâche suivante consiste à s’assurer que les ordinateurs du réseau virtuel peuvent se connecter et utiliser ces services. Dans cet article, vous mettez à jour les paramètres de serveur DNS de votre réseau virtuel afin qu’il pointe vers les deux adresses IP pour lesquelles Azure Active Directory Domain Services est disponible sur le réseau virtuel.
+# <a name="update-dns-settings-for-hello-azure-virtual-network"></a>Mettre à jour les paramètres DNS pour hello réseau virtuel Azure
+## <a name="task-4-update-dns-settings-for-hello-azure-virtual-network"></a>Tâche 4 : Mettre à jour les paramètres DNS pour hello réseau virtuel Azure
+Bonjour précédant les tâches de configuration, vous avez correctement activé Azure Active Directory Domain Services pour votre annuaire. la tâche suivante Hello est tooensure que les ordinateurs d’un réseau virtuel de hello peuvent se connecter et utilisation de ces services. Dans cet article, vous mettre à jour les paramètres du serveur DNS hello pour votre réseau virtuel toopoint toohello deux adresses IP où Azure des Services de domaine Active Directory est disponible sur le réseau virtuel de hello.
 
 > [!NOTE]
-> Après avoir activé Azure Active Directory Domain Services pour le répertoire, notez les adresses IP d’Azure Active Directory Domain Services affichées dans l’onglet **Configurer** de votre répertoire.
+> Une fois que vous avez activé Azure Active Directory Domain Services pour le répertoire de hello, notez les adresses IP hello pour Azure Active Directory Domain Services qui s’affichent sur hello **configurer** onglet de votre annuaire.
 >
 >
 
-Afin de mettre à jour le paramètre de serveur DNS pour le réseau virtuel sur lequel vous avez activé Azure Active Directory Domain Services, procédez comme suit :
+paramètre de serveur DNS tooupdate hello pour le réseau virtuel de hello dans lequel vous avez activé Azure Active Directory Domain Services hello complète comme suit :
 
-1. Connectez-vous au [Portail Azure Classic](https://manage.windowsazure.com).
-2. Dans le volet gauche, sélectionnez **Réseaux**.  
-    La fenêtre **Réseaux** s’ouvre.
+1. Accédez toohello [portail Azure classic](https://manage.windowsazure.com).
+2. Dans le volet gauche de hello, sélectionnez **réseaux**.  
+    Hello **réseaux** fenêtre s’ouvre.
 
     ![Fenêtre Réseaux virtuels](./media/active-directory-domain-services-getting-started/virtual-network-select.png)
-3. Dans l’onglet **Réseaux virtuels**, sélectionnez le réseau virtuel sur lequel vous avez activé Azure Active Directory Domain Services afin d’en afficher les propriétés.
-4. Cliquez sur l'onglet **Configurer** .
+3. Sur hello **réseaux virtuels** onglet, le réseau virtuel de select hello dans lequel vous avez activé Azure des Services de domaine Active Directory tooview ses propriétés.
+4. Cliquez sur hello **configurer** onglet.
 
     ![Fenêtre Réseaux virtuels](./media/active-directory-domain-services-getting-started/virtual-network-configure-tab.png)
-5. Dans la section **Serveurs DNS**, entrez les deux adresses IP qui étaient affichées dans la section **Services de domaine** de l’onglet **Configurer** de votre répertoire.
-6. Pour enregistrer les paramètres de serveur DNS pour ce réseau virtuel, cliquez sur **Enregistrer** dans le volet des tâches au bas de la fenêtre.
+5. Bonjour **serveurs DNS** section, entrez les deux adresses IP hello qui étaient affichés dans hello **Services de domaine** section hello **configurer** onglet de votre annuaire.
+6. Cliquez sur les paramètres du serveur DNS toosave hello pour ce réseau virtuel, dans le volet de tâches hello bas hello de fenêtre hello, **enregistrer**.
 
-   ![Mettre à jour les paramètres de serveur DNS pour le réseau virtuel](./media/active-directory-domain-services-getting-started/update-dns.png)
+   ![Mettre à jour les paramètres du serveur DNS hello pour le réseau virtuel de hello](./media/active-directory-domain-services-getting-started/update-dns.png)
 
 > [!NOTE]
->  Les machines virtuelles du réseau n’obtiendront les nouveaux paramètres DNS qu’après un redémarrage. Si vous avez besoin qu’elles obtiennent les paramètres DNS mis à jour immédiatement, déclenchez un redémarrage via le portail, PowerShell ou l’interface CLI.
+>  Machines virtuelles dans un réseau de hello obtenir uniquement les nouveaux paramètres DNS de hello après un redémarrage. Si vous devez les paramètres de DNS tooget hello mis à jour immédiatement, déclencher le redémarrage d’un portail de hello, PowerShell ou hello CLI.
 >
 >
 
 ## <a name="next-steps"></a>Étapes suivantes
-Tâche 5 : [activer la synchronisation du mot de passe pour Azure Active Directory Domain Services](active-directory-ds-getting-started-password-sync.md)
+Tâche 5 : [activer la synchronisation de mot de passe tooAzure les Services de domaine Active Directory](active-directory-ds-getting-started-password-sync.md)

@@ -1,6 +1,6 @@
 ---
-title: Ajouter une application Java dans Azure App Service Web Apps
-description: "Ce didacticiel vous montre comment ajouter une page ou une application à votre instance d’Azure App Service Web Apps déjà configurée pour utiliser Java."
+title: "aaaAdd un tooAzure d’application Java App Service Web Apps"
+description: "Ce didacticiel vous montre comment tooadd une instance tooyour page ou d’application des applications Azure App Service Web qui est déjà configuré toouse Java."
 services: app-service\web
 documentationcenter: java
 author: rmcmurray
@@ -14,33 +14,33 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 04/25/2017
 ms.author: robmcm
-ms.openlocfilehash: c28e7c499ed02b759df580f4b14a971b6aec5b67
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2feb464b2933921ad2887779a6b7589634e2e2f9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-a-java-application-to-azure-app-service-web-apps"></a>Ajouter une application Java dans Azure App Service Web Apps
-Une fois que vous avez initialisé votre application web Java dans [Azure App Service][Azure App Service] comme indiqué dans [Créer une application web Java dans Azure App Service](web-sites-java-get-started.md), vous pouvez télécharger votre application en plaçant votre fichier WAR dans le dossier **webapps**.
+# <a name="add-a-java-application-tooazure-app-service-web-apps"></a>Ajouter un tooAzure d’application Java App Service Web Apps
+Une fois que vous avez initialisé votre application web Java [Azure App Service] [ Azure App Service] comme décrit dans [créer une application de web Java dans Azure App Service](web-sites-java-get-started.md), vous pouvez télécharger votre application en plaçant votre WAR Bonjour **webapps** dossier.
 
-Le chemin d’accès au dossier **webapps** varie en fonction de la configuration de votre instance Web Apps.
+Hello toohello de chemin d’accès de navigation **webapps** dossier diffère en fonction de la manière de configurer votre instance d’applications Web.
 
-* Si vous configurez votre application web à l’aide de la Place de marché Azure, le chemin d’accès au dossier **webapps** se présente sous la forme **d:\home\site\wwwroot\bin\serveur\_applications\webapps**, où **serveur\_applications** est le nom du serveur d’applications de votre instance Web Apps. 
-* Si vous configurez votre application web à l’aide de l’interface utilisateur d’Azure, le chemin d’accès au dossier **webapps** se présente sous la forme **d:\home\site\wwwroot\webapps**. 
+* Si vous configurez votre application web à l’aide de hello Azure Marketplace, hello toohello de chemin d’accès **webapps** dossier se trouve dans un formulaire hello **d:\home\site\wwwroot\bin\application\_server\webapps**, où **application\_serveur** est le nom hello hello du serveur d’applications en vigueur pour votre instance d’applications Web. 
+* Si vous configurez votre application web à l’aide de hello interface utilisateur de configuration Azure, hello toohello de chemin d’accès **webapps** dossier se trouve dans un formulaire hello **d:\home\site\wwwroot\webapps**. 
 
-Notez que vous pouvez utiliser le contrôle de code source pour charger votre application ou vos pages web, y compris dans des [scénarios d’intégration continue](app-service-continuous-deployment.md). Le protocole FTP permet également de télécharger votre application ou des pages web. Pour plus d’informations sur le déploiement de vos applications via FTP, voir [Déploiement de votre application dans Azure App Service].
+Notez que vous pouvez utiliser tooupload de contrôle de source de votre application ou les pages web, y compris [scénarios d’intégration continue](app-service-continuous-deployment.md). FTP est également une option de téléchargement de votre application ou les pages web ; Pour plus d’informations sur le déploiement de vos applications sur FTP, consultez [déployer votre tooAzure d’application du Service d’applications].
 
-Remarque pour les applications web Tomcat : une fois que vous avez téléchargé votre fichier WAR dans le dossier **webapps** , le serveur d’applications Tomcat détecte que vous l’avez ajouté et le charge automatiquement. Notez que si vous copiez des fichiers (autres que des fichiers WAR) dans le répertoire ROOT, vous devez redémarrer le serveur d'applications avant d'utiliser ces fichiers. La fonctionnalité de chargement automatique des applications web Java Tomcat exécutées sur Azure repose sur l’ajout d’un fichier WAR ou de nouveaux fichiers ou répertoires dans le dossier **webapps** . 
+Remarque pour les applications web Tomcat : une fois que vous avez téléchargé votre toohello de fichier WAR **webapps** dossier, serveur d’applications Tomcat hello détectera que vous l’avez ajouté et chargez automatiquement. Notez que si vous copiez le répertoire racine des fichiers (autres que les fichiers WAR) de toohello, serveur d’applications hello devez toobe redémarré pour que ces fichiers sont utilisés. fonctionnalités d’autoload Hello pour les applications web de hello Tomcat Java s’exécutant sur Azure sont basée sur un nouveau fichier WAR ajouté, ou des fichiers ou répertoires ajoutés toohello **webapps** dossier. 
 
 <a name="see-also"></a>
 
 ## <a name="see-also"></a>Voir aussi
-Pour plus d’informations sur l’utilisation d’Azure avec Java, consultez le [Centre de développement Java pour Azure].
+Pour plus d’informations sur l’utilisation d’Azure avec Java, consultez hello [centre de développement Java Azure].
 
 [application-insights-app-insights-java-get-started](../application-insights/app-insights-java-get-started.md)
 
 <!-- URL List -->
 
-[Centre de développement Java pour Azure]: https://azure.microsoft.com/develop/java/
+[centre de développement Java Azure]: https://azure.microsoft.com/develop/java/
 [Azure App Service]: http://go.microsoft.com/fwlink/?LinkId=529714
-[Déploiement de votre application dans Azure App Service]: ./web-sites-deploy.md
+[déployer votre tooAzure d’application du Service d’applications]: ./web-sites-deploy.md

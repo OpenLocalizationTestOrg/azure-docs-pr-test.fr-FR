@@ -1,6 +1,6 @@
 ---
-title: Azure IoT Suite et Azure Active Directory | Microsoft Docs
-description: "Décrit comment Azure IoT Suite utilise Azure Active Directory pour gérer les autorisations."
+title: aaaAzure IoT Suite et Azure Active Directory | Documents Microsoft
+description: "Décrit comment Azure IoT Suite utilise les autorisations de toomanage d’Azure Active Directory."
 services: 
 suite: iot-suite
 documentationcenter: 
@@ -15,134 +15,134 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/09/2017
 ms.author: dobett
-ms.openlocfilehash: 518e6a481ab6385b03dd3ddc2e155fb724e677fe
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4768630f2de4bb431731fbd4e8929232bc80b9f9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="permissions-on-the-azureiotsuitecom-site"></a>Autorisations sur le site azureiotsuite.com
+# <a name="permissions-on-hello-azureiotsuitecom-site"></a>Autorisations sur le site de azureiotsuite.com hello
 
 ## <a name="what-happens-when-you-sign-in"></a>Que se passe-t-il lorsque vous vous connectez ?
 
-Lorsque vous vous connectez pour la première fois à [azureiotsuite.com][lnk-azureiotsuite], le site détermine vos niveaux d’autorisation en fonction du client Azure Active Directory (AAD) et de l’abonnement Azure sélectionné.
+Hello la première fois que vous vous connectez à [azureiotsuite.com][lnk-azureiotsuite], site de hello détermine les niveaux d’autorisation hello s’appuie sur hello actuellement sélectionné de client Azure Active Directory (AAD) et Azure abonnement.
 
-1. Tout d’abord, afin de remplir la liste des clients qui apparaît en regard de votre nom d’utilisateur, le site recherche dans Azure les clients ADD auxquels vous appartenez. Actuellement, le site peut obtenir des jetons d’utilisateur pour un seul client. Par conséquent, lorsque vous basculez sur d’autres clients en utilisant la liste déroulante dans le coin supérieur droit, le site vous reconnecte à ce client pour obtenir les jetons pour ce client.
+1. Tout d’abord, la liste hello toopopulate du nom d’utilisateur de tooyour suivant locataires vu, hello site trouve à partir d’Azure les locataires AAD auxquels vous appartenez. Actuellement, site de hello peut uniquement obtenir des jetons d’utilisateur pour un locataire à la fois. Par conséquent, lorsque vous basculez des locataires à l’aide de la liste déroulante de hello dans le coin supérieur droit de hello, site de hello vous connecte les jetons de hello tooobtain toothat client pour ce client.
 
-2. Ensuite, le site détecte à partir d’Azure, les abonnements que vous avez associés au client sélectionné. Vous pouvez voir les abonnements disponibles lorsque vous créez une nouvelle solution préconfigurée.
+2. Ensuite, site de hello recherche à partir d’Azure, les abonnements que vous avez associé hello sélectionné locataire. Vous consultez les abonnements disponibles hello lorsque vous créez une nouvelle solution préconfigurée.
 
-3. Enfin, le site extrait toutes les ressources dans les abonnements et les groupes de ressources marqués en tant que solutions préconfigurées et renseigne les mosaïques de la page d’accueil.
+3. Enfin, site de hello récupère toutes les ressources de hello dans les abonnements hello et groupes de ressources en tant que solutions préconfigurées et remplit les vignettes hello sur la page d’accueil hello.
 
-Les sections suivantes décrivent les rôles qui contrôlent l’accès aux solutions préconfigurées.
+Hello les sections suivantes décrire les rôles hello qui contrôlent les solutions d’accès toohello préconfiguré.
 
 ## <a name="aad-roles"></a>Rôles AAD
 
-Les rôles AAD contrôlent la possibilité d’approvisionnement de solutions préconfigurées et gèrent les utilisateurs dans une solution préconfigurée.
+rôles AAD Hello hello capacité disposition préconfigurée solutions de contrôle et gérer des utilisateurs dans une solution préconfigurée.
 
-Pour plus d’informations sur les rôles d’administrateur dans ADD, consultez la page [Attribution de rôles d’administrateur dans Azure AD][lnk-aad-admin]. Cet article se concentre sur les rôles d’annuaire **Administrateur général** et **Utilisateur** tels qu’utilisés par les solutions préconfigurées.
+Pour plus d’informations sur les rôles d’administrateur dans ADD, consultez la page [Attribution de rôles d’administrateur dans Azure AD][lnk-aad-admin]. article en cours de Hello se concentre sur hello **administrateur Global** et hello **utilisateur** rôles d’annuaire que celui utilisé par hello préconfiguré solutions.
 
 ### <a name="global-administrator"></a>Administrateur général
 
 Il peut y avoir de nombreux administrateurs généraux pour chaque locataire AAD :
 
-* Lorsque vous créez un client AAD, vous en devenez par défaut l’administrateur.
-* L’administrateur général peut approvisionner une solution préconfigurée et se voir attribuer le rôle **Administrateur** de l’application au sein de son locataire AAD.
-* Si un autre utilisateur du même locataire AAD crée une application, le rôle attribué par défaut à l’administrateur général est **Lecture seule**.
-* Les administrateurs généraux peuvent attribuer des rôles aux utilisateurs pour les applications à l’aide du [Portail Azure][lnk-portal].
+* Lorsque vous créez un client AAD, vous êtes administrateur global de hello par défaut de ce client.
+* administrateur général de Hello peut configurer une solution préconfigurée et est affectée une **Admin** rôle pour l’application hello dans leur locataire AAD.
+* Si un autre utilisateur de hello même locataire AAD crée une application, hello rôle par défaut accordées administrateur global de toohello est **ReadOnly**.
+* Un administrateur global peut affecter tooroles d’utilisateurs pour les applications utilisant hello [portail Azure][lnk-portal].
 
 ### <a name="domain-user"></a>Utilisateur de domaine
 
 Il peut y avoir de nombreux utilisateurs de domaine pour chaque locataire AAD :
 
-* Un utilisateur de domaine peut approvisionner une solution préconfigurée via le site [azureiotsuite.com][lnk-azureiotsuite]. Par défaut, l’utilisateur de domaine se voit accorder le rôle **Administrateur** dans l’application approvisionnée.
-* Un utilisateur de domaine peut créer une application à l’aide du script build.cmd qui se trouve dans le référentiel [azure-iot-remote-monitoring][lnk-rm-github-repo], [azure-iot-predictive-maintenance][lnk-pm-github-repo] ou [azure-iot-connected-factory][lnk-cf-github-repo]. Toutefois, le rôle accordé par défaut à l’utilisateur de domaine est **Lecture seule**, car un utilisateur de domaine n’est pas autorisé à attribuer des rôles.
-* Si un autre utilisateur du locataire AAD crée une application, l’utilisateur de domaine se voit attribuer le rôle **Lecture seule** par défaut pour cette application.
+* Un utilisateur de domaine peut configurer une solution préconfigurée via hello [azureiotsuite.com] [ lnk-azureiotsuite] site. Par défaut, utilisateur de domaine hello est accordée hello **Admin** rôle Bonjour approvisionné l’application.
+* Un utilisateur de domaine peut créer une application à l’aide du script build.cmd de hello Bonjour [azure-iot-de surveillance à distance][lnk-rm-github-repo], [azure-iot--maintenance prédictive] [ lnk-pm-github-repo], ou [azure iot-connecté-usine] [ lnk-cf-github-repo] référentiel. Toutefois, rôle par défaut de hello accordée est de l’utilisateur de domaine toohello **ReadOnly**, car un utilisateur de domaine n’a pas de rôles tooassign d’autorisation.
+* Si un autre utilisateur de client d’AAD hello crée une application, utilisateur de domaine hello est attribué hello **ReadOnly** rôle par défaut pour cette application.
 * Un utilisateur de domaine ne peut pas attribuer des rôles pour des applications ; par conséquent, il ne peut pas ajouter des utilisateurs ou des rôles pour les utilisateurs d’une application, même s’ils l’ont approvisionnée.
 
 ### <a name="guest-user"></a>Utilisateur invité
 
-Il peut y avoir de nombreux utilisateurs invités pour chaque locataire AAD. Les utilisateurs invités disposent d’un ensemble limité de droits au sein du client AAD. Par conséquent, les utilisateurs invités ne peuvent pas approvisionner une solution préconfigurée dans le client AAD.
+Il peut y avoir de nombreux utilisateurs invités pour chaque locataire AAD. Les utilisateurs invités ont un ensemble limité de droits dans le client d’AAD hello. Par conséquent, les utilisateurs invités ne peut pas prévoir une solution préconfigurée dans le client d’AAD hello.
 
-Pour plus d’informations sur les utilisateurs et les rôles dans AAD, consultez les ressources suivantes :
+Pour plus d’informations sur les utilisateurs et les rôles dans AAD, consultez hello suivant des ressources :
 
 * [Créer des utilisateurs dans Azure AD][lnk-create-edit-users]
-* [Affecter des utilisateurs aux applications][lnk-assign-app-roles]
+* [Affecter des utilisateurs tooapps][lnk-assign-app-roles]
 
 ## <a name="azure-subscription-administrator-roles"></a>Rôles de l’administrateur d’abonnement Azure
 
-Les rôles d’administration Azure permettent de contrôler la fonctionnalité de mappage d’un abonnement Azure sur un client AD.
+rôles d’administrateur Azure Hello contrôlent hello capacité toomap un client de tooan AD abonnement Azure.
 
-Pour plus d’informations sur les rôles d’administrateur Azure, consultez l’article [Guide pratique pour ajouter ou modifier le coadministrateur, l’administrateur de services fédérés et l’administrateur de compte][lnk-admin-roles].
+En savoir plus sur les rôles d’administrateur Azure hello dans l’article de hello [comment tooadd ou modifier le compte d’administrateur, administrateur de Service et Coadministrateur Azure][lnk-admin-roles].
 
 ## <a name="application-roles"></a>Rôles d’application
 
-Les rôles d’application contrôlent l’accès aux périphériques de votre solution préconfigurée.
+rôles d’application Hello contrôlent toodevices d’accès dans votre solution préconfigurée.
 
 Une application approvisionnée comporte deux rôles définis et un rôle implicite défini :
 
-* **Administrateur :** contrôle totalement l’ajout, la gestion et la suppression des appareils, ainsi que la modification des paramètres.
+* **Administrateur :** a tooadd de contrôle total, gérer, supprimer des appareils et modifier les paramètres.
 * **Lecture seule :** peut afficher les appareils, actions, règles, travaux et télémétrie.
 
-Vous pouvez trouver les autorisations attribuées à chaque rôle dans le fichier source [RolePermissions.cs][lnk-resource-cs].
+Vous pouvez trouver les autorisations hello rôle tooeach Bonjour [RolePermissions.cs] [ lnk-resource-cs] fichier source.
 
 ### <a name="changing-application-roles-for-a-user"></a>Modification des rôles d’application pour un utilisateur
 
-Vous pouvez utiliser la procédure suivante pour définir un utilisateur dans Active Directory en tant qu’administrateur de votre solution préconfigurée.
+Vous pouvez utiliser hello suivant la procédure toomake un utilisateur dans votre annuaire Active Directory, un administrateur de votre solution préconfigurée.
 
-Vous devez être un administrateur général AAD pour modifier les rôles d’un utilisateur :
+Vous devez être un rôle de toochange AAD administrateur global pour un utilisateur :
 
-1. Accédez au [portail Azure][lnk-portal].
+1. Accédez toohello [portail Azure][lnk-portal].
 2. Sélectionnez **Azure Active Directory**.
-3. Veillez à utiliser l’annuaire que vous avez choisi sur azureiotsuite.com lorsque vous avez approvisionné votre solution. Si vous avez plusieurs annuaires associés à votre abonnement, vous pouvez basculer entre eux si vous cliquez sur le nom de votre compte en haut à droite du portail.
+3. Assurez-vous que vous utilisez répertoire hello choisi sur azureiotsuite.com lors de la configuration de votre solution. Si vous avez plusieurs annuaires associés à votre abonnement, vous pouvez basculer entre les si vous cliquez sur le nom de votre compte en haut à droite de hello du portail de hello.
 4. Cliquez sur **Applications d’entreprise**, puis sur **Toutes les applications**.
 4. Affichez **toutes les applications** avec **n’importe quel** état. Recherchez ensuite une application avec le nom de votre solution préconfigurée.
-5. Cliquez sur le nom de l’application qui correspond au nom de votre solution préconfigurée.
+5. Cliquez sur nom hello application hello qui correspond au nom de votre solution préconfigurée.
 6. Cliquez sur **Utilisateurs et groupes**.
-7. Sélectionnez l’utilisateur dont vous souhaitez permuter les rôles.
-8. Cliquez sur **Attribuer**, puis sélectionnez le rôle (par exemple, **Admin**) que vous souhaitez attribuer à l’utilisateur en cochant la case correspondante.
+7. Sélectionnez utilisateur hello tooswitch rôles.
+8. Cliquez sur **affecter** et sélectionnez hello rôle (tel que **Admin**) vous aimeriez tooassign toohello utilisateur, cliquez sur la case à cocher hello.
 
 ## <a name="faq"></a>Forum Aux Questions
 
-### <a name="im-a-service-administrator-and-id-like-to-change-the-directory-mapping-between-my-subscription-and-a-specific-aad-tenant-how-do-i-complete-this-task"></a>Je suis un administrateur de service et je souhaite modifier le mappage d’annuaire entre mon abonnement et un client AAD spécifique. Comment mener à bien cette tâche ?
+### <a name="im-a-service-administrator-and-id-like-toochange-hello-directory-mapping-between-my-subscription-and-a-specific-aad-tenant-how-do-i-complete-this-task"></a>Je suis un administrateur de service et j’aimerais mappage de répertoire hello toochange entre mon abonnement et un locataire AAD spécifique. Comment mener à bien cette tâche ?
 
-1. Accédez au [portail Azure Classic][lnk-classic-portal] et cliquez sur **Paramètres** dans la liste des services sur le côté gauche.
-2. Sélectionnez l’abonnement dont vous souhaitez modifier le mappage d’annuaire.
+1. Accédez toohello [portail Azure classic][lnk-classic-portal], cliquez sur **paramètres** dans la liste hello des services sur le côté gauche de hello.
+2. Sélectionnez l’abonnement hello vous souhaitez que le mappage de répertoire hello toochange à.
 3. Cliquez sur **Modifier l’annuaire**.
-4. Sélectionnez l’ **annuaire** que vous souhaitez utiliser dans la liste déroulante. Cliquez sur la flèche Suivant.
-5. Vérifiez le mappage d’annuaire et les coadministrateurs affectés. Si vous migrez depuis un autre annuaire, tous les coadministrateurs de l’annuaire d’origine sont supprimés.
+4. Sélectionnez hello **active** toouse dans la liste déroulante de hello voulue. Cliquez sur flèche ascendante de hello.
+5. Confirmer le mappage de répertoire hello et affectées aux coadministrateurs. Si vous migrez à partir d’un autre répertoire, tous les coadministrateurs hello hello répertoire d’origine sont supprimés.
 
-### <a name="im-a-domain-usermember-on-the-aad-tenant-and-ive-created-a-preconfigured-solution-how-do-i-get-assigned-a-role-for-my-application"></a>Je suis un utilisateur/membre du domaine sur le client AAD et j’ai créé une solution préconfigurée. Comment puis-je me voir attribuer un rôle pour mon application ?
+### <a name="im-a-domain-usermember-on-hello-aad-tenant-and-ive-created-a-preconfigured-solution-how-do-i-get-assigned-a-role-for-my-application"></a>Je suis un utilisateur/membre de domaine sur le client d’AAD hello et j’ai créé une solution préconfigurée. Comment puis-je me voir attribuer un rôle pour mon application ?
 
-Demandez à un administrateur général de vous faire passer administrateur général du locataire AAD, puis attribuez vous-même des rôles aux utilisateurs. Vous pouvez également demander à un administrateur général d’attribuer directement un rôle. Si vous souhaitez modifier le client AAD sur lequel votre solution préconfigurée a été déployée, passez à la question suivante.
+Demandez à un administrateur global de toomake vous un administrateur global sur hello AAD locataire et rôles toousers vous affectez. Vous pouvez également demander à un administrateur global de tooassign vous directement un rôle. Si vous souhaitez que le client d’AAD hello toochange sur que votre solution préconfigurée a été déployée, consultez la question suivante de hello.
 
-### <a name="how-do-i-switch-the-aad-tenant-my-remote-monitoring-preconfigured-solution-and-application-are-assigned-to"></a>Comment puis-je activer le client AAD auquel la solution préconfigurée de contrôle à distance et l’application sont affectées ?
+### <a name="how-do-i-switch-hello-aad-tenant-my-remote-monitoring-preconfigured-solution-and-application-are-assigned-to"></a>Comment basculer client AAD de hello à que ma solution préconfigurée de contrôle à distance et l’application sont affectés ?
 
-Vous pouvez exécuter un déploiement cloud à partir de <https://github.com/Azure/azure-iot-remote-monitoring>, puis redéployer avec un client AAD nouvellement créé. Comme vous êtes, par défaut, administrateur général, lorsque vous créez un locataire AAD, vous disposez des autorisations nécessaires pour ajouter des utilisateurs et leur attribuer des rôles.
+Vous pouvez exécuter un déploiement cloud à partir de <https://github.com/Azure/azure-iot-remote-monitoring>, puis redéployer avec un client AAD nouvellement créé. Car vous n’êtes, par défaut, un administrateur global lorsque vous créez un locataire AAD, vous disposez des autorisations tooadd utilisateurs et attribuer des rôles aux utilisateurs de toothose.
 
-1. Créez un annuaire ADD dans le [portail Azure ][lnk-portal].
-2. Accédez à <https://github.com/Azure/azure-iot-remote-monitoring>.
+1. Créer un annuaire AAD dans hello [portail Azure][lnk-portal].
+2. Accédez trop<https://github.com/Azure/azure-iot-remote-monitoring>.
 3. Exécutez `build.cmd cloud [debug | release] {name of previously deployed remote monitoring solution}` (par exemple, `build.cmd cloud debug myRMSolution`)
-4. Lorsque vous y êtes invité, définissez le **tenantid** du client que vous venez de créer et non celui du client précédent.
+4. Lorsque vous y êtes invité, définissez hello **tenantid** toobe votre client qui vient d’être créée au lieu de votre client précédent.
 
-### <a name="i-want-to-change-a-service-administrator-or-co-administrator-when-logged-in-with-an-organisational-account"></a>Je souhaite modifier la fonctionnalité administrateur de service ou coadministrateur lors d’une connexion avec un compte de société
+### <a name="i-want-toochange-a-service-administrator-or-co-administrator-when-logged-in-with-an-organisational-account"></a>Je veux toochange un administrateur de Service ou un Coadministrateur lorsque connecté avec un compte organisationnel
 
-Voir l’article de support [Modification de la fonctionnalité Administrateur de service et Coadministrateur lors d’une connexion avec un compte de société][lnk-service-admins].
+Consultez l’article du support technique hello [modifier un administrateur de Service et le Coadministrateur lorsque connecté avec un compte organisationnel][lnk-service-admins].
 
-### <a name="why-am-i-seeing-this-error-your-account-does-not-have-the-proper-permissions-to-create-a-solution-please-check-with-your-account-administrator-or-try-with-a-different-account"></a>Pourquoi est-ce que je reçois cette erreur ? « Votre compte n’a pas les autorisations suffisantes pour créer une solution. Veuillez contacter votre administrateur de compte ou essayer avec un autre compte. »
+### <a name="why-am-i-seeing-this-error-your-account-does-not-have-hello-proper-permissions-toocreate-a-solution-please-check-with-your-account-administrator-or-try-with-a-different-account"></a>Pourquoi est-ce que je reçois cette erreur ? « Votre compte n’a pas hello des autorisations appropriées toocreate une solution. Veuillez contacter votre administrateur de compte ou essayer avec un autre compte. »
 
-Examinez le schéma suivant pour obtenir des conseils :
+Examinez hello suivant le schéma pour obtenir des instructions :
 
 ![][img-flowchart]
 
 > [!NOTE]
-> Si l’erreur persiste après votre validation en tant qu’administrateur global sur le client AAD et que coadministrateur sur l’abonnement, demandez à votre administrateur de compte de supprimer l’utilisateur et de réattribuer les autorisations nécessaires dans l’ordre suivant : tout d’abord, ajoutez l’utilisateur en tant qu’administrateur global, puis ajoutez un utilisateur en tant que coadministrateur sur l’abonnement Azure. Si les problèmes persistent, contactez le service [Aide et support][lnk-help-support].
+> Si vous continuez d’erreur de hello toosee après la validation, vous êtes un administrateur général sur le client d’AAD hello et un coadministrateur de l’abonnement de hello, demandez à votre administrateur de compte supprimer hello utilisateur et réaffecter les autorisations nécessaires dans cet ordre. Tout d’abord, ajouter un utilisateur de hello en tant qu’un administrateur global et puis ajoutez les utilisateurs en tant que coadministrateur sur hello abonnement Azure. Si les problèmes persistent, contactez le service [Aide et support][lnk-help-support].
 
-### <a name="why-am-i-seeing-this-error-when-i-have-an-azure-subscription-an-azure-subscription-is-required-to-create-pre-configured-solutions-you-can-create-a-free-trial-account-in-just-a-couple-of-minutes"></a>Pourquoi affiche-t-il cette erreur alors que j’ai un abonnement Azure ? « Vous devez avoir un abonnement Azure pour créer des solutions préconfigurées. Vous pouvez créer un compte d'essai gratuit en quelques minutes seulement. »
+### <a name="why-am-i-seeing-this-error-when-i-have-an-azure-subscription-an-azure-subscription-is-required-toocreate-pre-configured-solutions-you-can-create-a-free-trial-account-in-just-a-couple-of-minutes"></a>Pourquoi affiche-t-il cette erreur alors que j’ai un abonnement Azure ? « Un abonnement Azure est requis toocreate préconfiguré solutions. Vous pouvez créer un compte d'essai gratuit en quelques minutes seulement. »
 
-Si vous êtes sûr de disposer d’un abonnement Azure, validez le mappage de votre abonnement client et assurez-vous que c’est le bon client qui est sélectionné dans la liste déroulante. Si vous avez validé le locataire souhaité, suivez le schéma ci-dessus et validez le mappage de votre abonnement et de ce locataire AAD.
+Si vous êtes certain de que disposer d’un abonnement Azure, valider un mappage pour votre abonnement de locataire hello et locataire approprié de hello est sélectionnée dans la liste déroulante de hello. Si vous avez validé hello souhaité locataire est correct, suivez hello précédant le diagramme et de valider le mappage hello de votre abonnement et ce locataire AAD.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Pour poursuivre votre formation concernant IoT Suite, découvrez comment [personnaliser une solution préconfigurée][lnk-customize].
+toocontinue en savoir plus sur IoT Suite, consultez Comment vous pouvez [personnaliser une solution préconfigurée][lnk-customize].
 
 [img-flowchart]: media/iot-suite-permissions/flowchart.png
 

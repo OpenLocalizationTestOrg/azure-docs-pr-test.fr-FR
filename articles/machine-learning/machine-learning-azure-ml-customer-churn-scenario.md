@@ -1,5 +1,5 @@
 ---
-title: "Analyse de l’attrition des clients à l’aide de Microsoft Azure Machine Learning | Microsoft Docs"
+title: "aaaAnalyzing client évolution à l’aide de la Machine Learning | Documents Microsoft"
 description: "Étude de cas de développement d’un modèle intégré pour l’analyse et la notation de l’attrition des clients."
 services: machine-learning
 documentationcenter: 
@@ -14,90 +14,90 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/31/2017
 ms.author: jeannt
-ms.openlocfilehash: 84916fc86fd731b3544a0d389325d9a1d14e1a39
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 070e6a2ebe4f2fe439a42ffe1a3fa9d6d3788d62
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="analyzing-customer-churn-by-using-azure-machine-learning"></a>Analyse de l’attrition des clients à l’aide de Microsoft Azure Machine Learning
 ## <a name="overview"></a>Vue d’ensemble
-Cet article présente une implémentation de référence d’un projet d’analyse de l’attrition des clients, créé à l’aide de Microsoft Azure Machine Learning. Il aborde différents modèles génériques associés afin d’apporter une résolution holistique au problème de l’attrition des clients. Nous avons également mesuré la précision des modèles générés à l’aide de Machine Learning (ML), en déterminant des directions à suivre pour la suite du développement.  
+Cet article présente une implémentation de référence d’un projet d’analyse de l’attrition des clients, créé à l’aide de Microsoft Azure Machine Learning. Dans cet article, nous traitent les modèles génériques associés pour résoudre les problème hello de résiliations industriels guidage. Nous avons également mesurer la précision de hello de modèles qui sont générés à l’aide de Machine Learning, et nous évaluons les directions pour un développement ultérieur.  
 
 ### <a name="acknowledgements"></a>Remerciements
-Cette expérience a été développée et testée par Serge Berger, spécialiste des données chez Microsoft, et Roger Barga, anciennement chef de produits pour Microsoft Azure Machine Learning. L’équipe de documentation Azure leur sait gré de leur expertise et les remercie pour ce livre blanc.
+Cette expérience a été développée et testée par Serge Berger, spécialiste des données chez Microsoft, et Roger Barga, anciennement chef de produits pour Microsoft Azure Machine Learning. équipe de documentation sur Azure Hello grandement appréciées accuse réception de leurs compétences et leur Merci ce livre blanc.
 
 > [!NOTE]
-> Les données utilisées pour cette expérience ne sont pas disponibles publiquement. Pour obtenir un exemple montrant comment créer un modèle Machine Learning pour l’analyse de l’attrition, consultez : [Modèle d’attrition Retail](https://gallery.cortanaintelligence.com/Collection/Retail-Customer-Churn-Prediction-Template-1) dans la galerie [Cortana Intelligence](http://gallery.cortanaintelligence.com/)
+> les données de salutation utilisées pour cette expérience ne sont pas disponibles publiquement. Pour obtenir un exemple de comment toobuild un apprentissage de modèle pour l’analyse de l’évolution du code, consultez : [Retail évolution du modèle](https://gallery.cortanaintelligence.com/Collection/Retail-Customer-Churn-Prediction-Template-1) dans [Cortana Intelligence galerie](http://gallery.cortanaintelligence.com/)
 > 
 > 
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-## <a name="the-problem-of-customer-churn"></a>Le problème de l’attrition des clients
-Les entreprises du secteur de la consommation et de tous les secteurs en général sont confrontées au problème de l'attrition. Parfois, ce dernier est excessif et influence les décisions relatives aux politiques de l'entreprise. La solution classique consiste à prédire quels clients présenteront une forte probabilité d’attrition et à répondre à leurs besoins par le biais d’un service de conciergerie ou de campagnes marketing, ou encore en appliquant des dérogations. Les approches adoptées peuvent varier d’un secteur à l’autre, voire d’un groupe de clients à l’autre, au sein d’un même secteur (exemple : les télécommunications).
+## <a name="hello-problem-of-customer-churn"></a>problème de Hello d’évolution du client
+Les entreprises de marché hello et dans tous les secteurs de l’entreprise ont toodeal avec l’évolution du code. Parfois, ce dernier est excessif et influence les décisions relatives aux politiques de l'entreprise. les solutions traditionnelles Hello est toopredict haute-tendance churners et leurs besoins via un service de conseiller, campagnes marketing, ou en appliquant dispense spéciaux. Ces approches peuvent varier à partir d’industrie tooindustry d’un tooanother de cluster consommateur particulier dans un secteur d’activité (par exemple, les télécommunications).
 
-Le facteur commun est le suivant : les entreprises doivent réduire au minimum ces efforts particuliers de rétention des clients. Ainsi, la méthodologie logique consisterait à évaluer chaque client en fonction de sa probabilité d’attrition et à s’occuper des N clients les plus susceptibles de franchir le pas. Ces derniers sont peut-être les plus rentables. Ainsi, dans un scénario plus complexe, une fonction de rentabilité est utilisée lors de la sélection des candidats susceptibles de bénéficier d’une dérogation. Cependant, ces considérations ne représentent qu’une partie de la stratégie globale visant à résoudre le problème de l’attrition. Les entreprises doivent également prendre en compte les risques (et la tolérance à l'égard des risques associée), le niveau et le coût de l'intervention, ainsi que la segmentation possible de la clientèle.  
+facteur commun de Hello est que les entreprises doivent toominimize ces efforts de rétention client spécial. Par conséquent, une méthodologie naturelle serait être tooscore tous les clients avec une probabilité d’évolution hello et haut de hello N autres d’adresses. les clients principaux Hello peut être hello ceux qui sont plus rentables ; par exemple, dans des scénarios plus complexes, une fonction des bénéfices est employée lors de la sélection de hello des candidats dispense spéciaux. Toutefois, ces considérations sont uniquement une partie de la stratégie globale de hello pour traiter les évolution du code. Les entreprises ont également tootake dans risque de compte (et la tolérance de panne risque associé), hello niveau et le coût d’une intervention hello et la segmentation du client plausible.  
 
 ## <a name="industry-outlook-and-approaches"></a>Perspectives et approches du secteur
-La gestion sophistiquée de l'attrition témoigne de la maturité d'un secteur. Le secteur des télécommunications en est un exemple type. En effet, les abonnés sont connus pour changer fréquemment d’opérateur. Cette attrition volontaire est l’un des principaux problèmes du secteur. De plus, les opérateurs ont accumulé de nombreuses connaissances sur les *causes d’attrition*. Il s’agit des facteurs qui incitent les clients à changer d’opérateur.
+La gestion sophistiquée de l'attrition témoigne de la maturité d'un secteur. l’exemple Hello classique est télécommunications hello où les abonnés sont commutateur elles sonttrop connus à partir d’un fournisseur tooanother. Cette attrition volontaire est l’un des principaux problèmes du secteur. En outre, les fournisseurs ont accumulé connaissance importante sur *évolution pilotes*, qui sont des facteurs de hello que tooswitch de clients du lecteur.
 
-Le choix du téléphone, par exemple, est une cause d’attrition bien connue dans le secteur de la téléphonie. De ce fait, une pratique courante consiste à réduire le prix d’un téléphone pour les nouveaux abonnés, tout en faisant payer le prix fort aux abonnés existants qui veulent changer d’appareil. Traditionnellement, cette règle incite les clients à passer d’un opérateur à un autre pour obtenir une nouvelle remise. En conséquence, les opérateurs ont été amenés à revoir leurs stratégies.
+Par exemple, choix combiné ou un périphérique est un pilote bien connu d’évolution dans l’entreprise de téléphone mobile hello. Par conséquent, une stratégie populaire est toosubsidize les prix de hello d’un combiné pour les nouveaux abonnés et le chargement des clients pour une mise à niveau un tooexisting prix plein. Historiquement, cette stratégie a conduit toocustomers récurrente à partir d’un fournisseur tooanother tooget une remise, qui à son tour, a invité fournisseurs toorefine leurs stratégies.
 
-La volatilité élevée des offres de téléphone est un facteur qui invalide très rapidement les modèles d’attrition basés sur les modèles de téléphone actuels. D’autre part, les téléphones mobiles ne sont pas uniquement des outils de communication ; ce sont également des accessoires de mode (iPhone, par exemple). Ces facteurs de prédiction sociaux ne sont pas pris en compte par les jeux de données standard relatifs aux télécommunications.
+La volatilité élevée des offres de téléphone est un facteur qui invalide très rapidement les modèles d’attrition basés sur les modèles de téléphone actuels. En outre, les téléphones mobiles ne sont pas uniquement les appareils de télécommunication ; ils sont également des instructions de manière (envisagez hello iPhone), et ces réseaux sociaux PRÉDICTEURS sont en dehors portée de hello télécommunications régulière des jeux de données.
 
-Résultat : vous ne pouvez pas établir de politique sûre en éliminant simplement les motifs connus d’attrition. En fait, il est **obligatoire** de recourir à une stratégie de modélisation continue, comprenant des modèles classiques qui quantifient les variables catégoriques (ex. : arbres de décision).
+Hello pour la modélisation résulte que vous ne peut pas concevoir une stratégie sonore simplement en éliminant les raisons connues d’évolution du code. En fait, il est **obligatoire** de recourir à une stratégie de modélisation continue, comprenant des modèles classiques qui quantifient les variables catégoriques (ex. : arbres de décision).
 
-En utilisant des jeux de données volumineux sur leurs clients, les entreprises exécutent une analyse des données volumineuses (en particulier, une détection de l’attrition en fonction de ces données), afin de proposer une solution efficace à ce problème. Pour en savoir plus sur l’approche de résolution du problème d’attribution sur la base des données volumineuses, reportez-vous à la section Recommandations concernant l’ETL.  
+À l’aide de jeux de données volumineux sur leurs clients, les organisations effectuez analytique de données volumineuses (en particulier, la détection d’évolution du code basée sur les données volumineuses) comme un problème de toohello approche efficace. Vous trouverez plus d’informations sur les problème de toohello hello données volumineuses approche d’évolution Bonjour recommandations sur la section ETL.  
 
-## <a name="methodology-to-model-customer-churn"></a>Méthodologie de modélisation de l’attrition des clients
-Une méthode standard de résolution de l’attrition est décrite dans les figures 1 à 3 :  
+## <a name="methodology-toomodel-customer-churn"></a>Évolution du code client de méthodologie toomodel
+Une common-résolution des problèmes processus toosolve résiliations sont représentée dans Figures 1 à 3 :  
 
-1. Le modèle de risque vous permet d'identifier la façon dont les actions affectent la probabilité et le risque.
-2. Le modèle d’intervention vous permet d’envisager la façon dont le niveau d’intervention pourrait influer sur la probabilité d’attrition et la quantité de valeur vie client.
-3. Cela permet de bénéficier d’une analyse qualitative transformée en campagne marketing proactive, qui cible des segments de clients afin de proposer la meilleure offre.  
+1. Un modèle de risque vous permet de tooconsider répercussions des actions de probabilité et des risques.
+2. Un modèle d’intervention vous permet de tooconsider comment niveau hello d’intervention peut affecter la probabilité de hello d’évolution du code et hello montant de la valeur de durée de vie client (CLV).
+3. Cette analyse prête analyse qualitative tooa tooa promus proactive campagne marketing ciblant offre optimal de client segments toodeliver hello.  
 
 ![][1]
 
-Cette approche innovante est la meilleure façon de traiter l’attrition, mais elle s’accompagne d’une certaine complexité : nous devons développer un archétype portant sur plusieurs modèles et une trace entre les modèles. L'interaction entre les modèles peut être encapsulée, comme illustré dans le schéma suivant :  
+Cette approche orientée est hello meilleure manière tootreat évolution de ce dernier, mais il est fourni avec la complexité : nous avons toodevelop une dépendances archétype et trace comportant plusieurs modèles entre les modèles hello. interaction Hello entre les modèles peut être encapsulée comme indiqué dans hello suivant schéma :  
 
 ![][2]
 
 *Figure 4 : archétype multi-modèles unifié*  
 
-Les interactions entre les différents modèles sont primordiales si nous voulons proposer une méthode holistique permettant de fidéliser la clientèle. Chaque modèle se dégrade forcément au fil du temps. De ce fait, l’architecture est une boucle implicite (similaire à l’archétype défini par le standard d’exploration de données CRISP-DM, [***3***]).  
+Interaction entre les modèles hello est la clé si nous sommes toodeliver une durée de rétention toocustomer approche globale. Chaque modèle nécessairement dégrade au fil du temps ; Par conséquent, architecture de hello est une boucle implicite (similaire archétype toohello définie par la norme d’exploration de données hello CRISP-DM, [***3***]).  
 
-Le cycle global risque-décision-segmentation marketing/décomposition reste une structure généralisée, applicable à de nombreux problèmes d'entreprise. L’analyse de l’attrition n’est qu’une représentation parlante de ce groupe de problèmes, car elle affiche toutes les caractéristiques d’un problème commercial complexe qui ne permet pas l’utilisation d’une solution de prédiction simplifiée. Les aspects sociaux de l’approche moderne portant sur le problème de l’attrition ne sont pas particulièrement mis en lumière dans cette méthode, mais encapsulés dans l’archétype de modélisation, comme dans n’importe quel autre modèle.  
+Hello ensemble du cycle de risque de décision-marketing segmentation/décomposition est toujours une structure généralisée, qui est applicable réduire problèmes de l’entreprise. Analyse de l’évolution du code est simplement un fort représentant de ce groupe de problèmes, car elle présente toutes les caractéristiques de hello d’un problème d’entreprise complexes qui n’autorise pas une solution prédictive simplifiée. Hello sociaux aspects de hello approche moderne toochurn ne sont pas mises en surbrillance en particulier dans l’approche de hello, mais les aspects sociaux hello sont encapsulées dans archétype de modélisation hello, tels qu’ils seraient dans n’importe quel modèle.  
 
-L'analyse des données volumineuses est un ajout intéressant. Actuellement, les entreprises de télécommunications et de vente au détail récupèrent des données exhaustives sur leurs clients. De ce fait, nous pouvons prédire que le besoin d’une connectivité multi-modèles deviendra une tendance courante. En effet, les tendances émergentes, telles que l’IoT et les appareils polyvalents, permettent aux entreprises d’utiliser des solutions intelligentes à plusieurs niveaux.  
+L'analyse des données volumineuses est un ajout intéressant. Les entreprises de télécommunications et vente au détail d’aujourd'hui collectent des données exhaustives sur leurs clients, et nous pouvons facilement prévoir que hello besoin de connectivité comportant plusieurs modèle deviendra une tendance commune donnée émergentes telles que les tendances hello Internet des objets et appareils omniprésents qui autorisent des solutions smart tooemploy d’entreprise à plusieurs niveaux.  
 
  
 
-## <a name="implementing-the-modeling-archetype-in-machine-learning-studio"></a>Implémentation de l’archétype de modélisation de ML Studio
-Étant donné le problème que nous venons de décrire, quelle est la meilleure façon d'implémenter une méthode de modélisation et de notation intégrée ? Dans cette section, nous verrons comment nous y sommes parvenus à l’aide de Microsoft Azure Machine Learning Studio.  
+## <a name="implementing-hello-modeling-archetype-in-machine-learning-studio"></a>Implémentation hello modélisation archétype dans Machine Learning Studio
+Étant donné le problème hello décrit ci-dessus, nouveautés hello meilleure manière tooimplement une modélisation intégrée et l’approche de score Dans cette section, nous verrons comment nous y sommes parvenus à l’aide de Microsoft Azure Machine Learning Studio.  
 
-L’approche multi-modèles est incontournable pour concevoir un archétype global d’attrition. Même la partie évaluative (prédictive) de la méthode doit être multi-modèles.  
+approche comportant plusieurs modèles de Hello est indispensable lorsque vous concevez un archétype global pour l’évolution du code. Hello même calcul de score (prédictive) partie de l’approche de hello doit être comportant plusieurs modèle.  
 
-Le schéma suivant illustre le fonctionnement du prototype que nous avons créé, qui utilise quatre algorithmes de notation différents dans ML Studio afin de prévoir le taux d’attrition. L'utilisation d'une méthode multi-modèles n'est pas seulement utile pour créer un classifieur d'ensemble afin d'améliorer l'exactitude, mais également pour se protéger du surajustement et pour améliorer la sélection des caractéristiques prédictives.  
+Hello diagramme suivant illustre le prototype de hello que nous avons créé, qui utilise des algorithmes de calcul de score quatre des activités toopredict Machine Learning Studio. Bonjour à l’aide d’une approche comportant plusieurs modèle fait toocreate une précision de tooincrease classifieur ensemble, mais également tooprotect contre surapprentissage et sélection de fonctionnalité normative tooimprove.  
 
 ![][3]
 
 *Figure 5 : prototype d’une méthode de modélisation de l’attrition*  
 
-Les sections suivantes fournissent plus d’informations sur le modèle de notation du prototype que nous avons implémenté à l’aide de ML Studio.  
+Hello sections suivantes fournissent plus de détails sur le prototype hello score du modèle que nous avons implémentées à l’aide de Machine Learning Studio.  
 
 ### <a name="data-selection-and-preparation"></a>Sélection et préparation des données
-Les données utilisées pour établir les modèles et évaluer les clients ont été obtenues à partir d'une solution verticale de CRM. Elles ont été masquées pour protéger la confidentialité des clients. Ces données portent sur 8 000 abonnements aux États-Unis et proviennent de trois sources : données de préparation (métadonnées des abonnements), données d’activité (utilisation du système) et données de service clientèle. Elles n’incluent pas d’informations professionnelles sur les clients de l’entreprise. Par exemple, elles ne contiennent pas de métadonnées sur la fidélité ni de scores de crédit.  
+les données de salutation utilisé les modèles hello toobuild et clients de score obtenu à partir d’une solution verticale CRM, avec la confidentialité des clients tooprotect données obfusquées hello. Hello données contient des informations sur les 8 000 abonnements Bonjour des États-Unis et combine trois sources : mise en service de données (les métadonnées d’abonnement), les données d’activité (utilisation du système de hello) et les données de prise en charge de client. les données de salutation n’incluent pas de toute entreprise des informations sur les clients de hello ; par exemple, il n’inclut pas les scores de métadonnées ou le crédit de fidélité.  
 
 Pour simplifier, les processus de nettoyage des données et ETL ne sont pas utilisés, car nous estimons que la préparation des données a déjà été effectuée à un autre niveau.   
 
-La sélection des caractéristiques de modélisation se base sur une notation préliminaire de l’importance de l’ensemble des facteurs de prédiction, incluse dans le processus à l’aide du module de forêt aléatoire. Pour l’implémentation dans ML Studio, nous avons calculé les valeurs moyennes et médianes, ainsi que les plages de caractéristiques représentatives. Nous avons notamment ajouté des agrégats pour les données qualitatives, telles que des valeurs minimum et maximum pour l’activité de l’utilisateur.    
+Sélection des fonctionnalités pour la modélisation est basée sur la signification préliminaire calculer les scores du jeu hello de PRÉDICTEURS, inclus dans le processus hello qui utilise le module de forêt aléatoire hello. Pour l’implémentation de hello dans Machine Learning Studio, nous avons calculé hello moyenne, médiane et les plages pour les fonctionnalités représentatives. Par exemple, nous avons ajouté des agrégats de données qualitatives hello, telles que les valeurs minimales et maximales pour l’activité de l’utilisateur.    
 
-Nous avons également collecté des informations temporelles portant sur les 6 derniers mois. Nous avons analysé les données pendant un an. Nous avons pu déterminer que, même s’il existe des tendances significatives en termes de statistiques, l’effet sur l’attrition est fortement réduit après six mois.  
+Nous avons également capturées informations temporelles pour hello six mois les plus récents. Nous avons analysé les données pendant un an, et nous avons établi que, même s’il existe des tendances significatives, effet hello sur l’évolution du code est considérablement moindre après six mois.  
 
-Ce qui importe le plus, c’est que le processus dans son ensemble (y compris ETL, la sélection de caractéristiques et la modélisation) a été implémenté dans ML Studio, en utilisant des sources de données dans Microsoft Azure.   
+Hello plus il est important que hello tout processus, y compris ETL, sélection de fonctionnalités, et de modélisation a été implémentée dans Machine Learning Studio, à l’aide de sources de données dans Microsoft Azure.   
 
-Les schémas suivants illustrent les données utilisées :  
+Hello diagrammes suivants illustrent les données hello qui a été utilisées.  
 
 ![][4]
 
@@ -108,123 +108,123 @@ Les schémas suivants illustrent les données utilisées :
 *Figure 7 : caractéristiques extraites de la source de données*
  
 
-> Notez que ces données sont privées et que, par conséquent, le modèle et les données ne peuvent pas être partagés.
-> Toutefois, pour un modèle similaire utilisant des données disponibles publiquement, consultez cet exemple d’expérience dans la [Galerie Cortana Intelligence](http://gallery.cortanaintelligence.com/) : [attrition des clients Telco](http://gallery.cortanaintelligence.com/Experiment/31c19425ee874f628c847f7e2d93e383).
+> Notez que ces données sont privées et par conséquent les données et du modèle de hello ne peut pas être partagées.
+> Toutefois, pour un modèle semblable à l’aide des données publiquement disponibles, consultez l’exemple d’expérience suivant dans hello [Cortana Intelligence galerie](http://gallery.cortanaintelligence.com/): [évolution du client de télécommunications](http://gallery.cortanaintelligence.com/Experiment/31c19425ee874f628c847f7e2d93e383).
 > 
-> Pour plus d’informations sur la façon dont vous pouvez implémenter un modèle d’analyse de l’attrition à l’aide de Cortana Intelligence Suite, nous vous recommandons également de regarder [cette vidéo](https://info.microsoft.com/Webinar-Harness-Predictive-Customer-Churn-Model.html) proposée par le responsable de programme principal Wee Hyong Tok. 
+> toolearn plus d’informations sur la manière d’implémenter un modèle d’analyse de l’évolution à l’aide de Cortana Intelligence Suite, nous vous recommandons également [cette vidéo](https://info.microsoft.com/Webinar-Harness-Predictive-Customer-Churn-Model.html) par programme senior ouvrables Hyong Tok. 
 > 
 > 
 
-### <a name="algorithms-used-in-the-prototype"></a>Algorithmes utilisés dans le prototype
-Nous avons utilisé les quatre algorithmes d'apprentissage automatique suivants pour établir le prototype (sans personnalisation) :  
+### <a name="algorithms-used-in-hello-prototype"></a>Algorithmes utilisés dans le prototype de hello
+Nous avons utilisé hello suivant quatre algorithmes d’apprentissage automatique prototype de hello toobuild (aucune personnalisation) :  
 
 1. Régression logique (LR)
 2. Arbre de décision optimisé(BT)
 3. Perceptron moyenné (AP)
 4. Machines à vecteurs de support (SVM)  
 
-Le schéma suivant illustre une partie de la surface de conception de l’expérience, qui indique l’ordre dans lequel les modèles ont été créés :  
+Hello diagramme suivant illustre une partie de l’aire de conception d’expérience hello, qui indique la séquence hello dans le hello modèles ont été créés :  
 
 ![][6]  
 
 *Figure 8 : création de modèles dans Microsoft Azure ML Studio*  
 
 ### <a name="scoring-methods"></a>Méthodes de notation
-Nous avons effectué la notation des quatre modèles à l’aide d’un jeu de données d’apprentissage étiqueté.  
+Nous notées les modèles hello quatre à l’aide d’un jeu de données d’apprentissage étiqueté.  
 
-Nous avons également envoyé le jeu de données de notation à un modèle comparable, créé via l’édition Desktop de SAS Enterprise Miner 12. Nous avons mesuré l’exactitude du modèle SAP, ainsi que des quatre modèles ML Studio.  
+Nous avons envoyé également hello score du modèle de données comparable dataset tooa générée à l’aide d’édition de bureau hello de SAP Enterprise Miner 12. Nous avons mesuré précision hello du modèle de SAP hello et toutes les quatre modèles de Machine Learning Studio.  
 
 ## <a name="results"></a>Résultats
-Dans cette section, nous présentons nos découvertes sur l’exactitude des modèles en fonction du jeu de données d’évaluation.  
+Dans cette section, nous vous présentons nos conclusions à l’exactitude de hello de modèles hello, en fonction de hello calcul du score du jeu de données.  
 
 ### <a name="accuracy-and-precision-of-scoring"></a>Exactitude et précision de la notation
-En général, l'implémentation dans Azure ML est derrière SAP en termes d'exactitude et ce, d'environ 10 à 15 % (aire sous la courbe, ASC).  
+En règle générale, implémentation hello dans Azure Machine Learning est derrière SAS une précision d’environ 10-15 % (zone sous la courbe ou AUC).  
 
-Toutefois, la mesure la plus importante en termes d’attrition est le taux de classification incorrecte : parmi les clients les plus enclins à l’attrition, quels sont ceux qui n’ont **pas** quitté un fournisseur, mais ont bénéficié malgré tout d’un traitement spécial ? Le schéma suivant compare ces différents taux de classification incorrecte pour tous les modèles :  
+Toutefois, mesure la plus importante dans l’évolution du code hello est taux de mauvaise classification hello : autrement dit, de churners de N premiers hello comme prévu par le classifieur de hello, qui a réellement fait **pas** évolution et reçu un traitement spécial ? hello diagramme suivant compare ce taux de mauvaise classification pour tous les modèles hello :  
 
 ![][7]
 
 *Figure 9 : aire sous la courbe du prototype Passau*
 
-### <a name="using-auc-to-compare-results"></a>Utilisation de l’aire sous la courbe (ASC) pour comparer des résultats
-L’aire sous la courbe (ASC) est une mesure qui représente la mesure globale de *séparabilité* entre les distributions d’évaluations pour des populations positives et négatives. Elle est similaire à la courbe ROC (Receiver Operating Characteristic, caractéristique de fonctionnement du récepteur). Cependant, contrairement à cette dernière, elle ne vous demande pas de choisir une valeur seuil. Au lieu de cela, elle résume les résultats pour **tous** les choix possibles. En comparaison, la courbe ROC traditionnelle indique le taux de positifs sur l’axe vertical et le taux de faux positifs sur l’axe horizontal. De plus, son seuil de classification varie.   
+### <a name="using-auc-toocompare-results"></a>À l’aide des résultats de toocompare AUC
+Zone sous courbe (AUC) est une mesure qui représente une mesure globale de *séparable* entre les distributions de hello de scores pour les remplissages positifs et négatifs. Il est similaire toohello de graphique de récepteur opérateur caractéristique (ROC) traditionnelles, mais une différence importante est que cette métrique AUC hello ne nécessite pas une valeur de seuil de toochoose. Au lieu de cela, il résume les résultats de hello sur **tous les** possibles. En revanche, graphique ROC traditionnel hello affiche le taux de positif de hello sur l’axe vertical de hello et hello taux de faux positifs sur l’axe horizontal de hello et varie en fonction du seuil de classification hello.   
 
-La mesure ASC est généralement utilisée pour évaluer la valeur de différents algorithmes (ou systèmes), car elle permet de comparer des modèles à l’aide de leurs valeurs ASC. Il s’agit d’une approche populaire dans des secteurs comme la météorologie et les biosciences. Ainsi, l’ASC est un outil répandu pour évaluer les performances d’un classifieur.  
+AUC est généralement utilisé en tant que mesure d’intéressant pour différents algorithmes (ou des systèmes différents), car elle permet toobe modèles par rapport au moyen de leurs valeurs AUC. Il s’agit d’une approche populaire dans des secteurs comme la météorologie et les biosciences. Ainsi, l’ASC est un outil répandu pour évaluer les performances d’un classifieur.  
 
 ### <a name="comparing-misclassification-rates"></a>Comparaison des taux de classification incorrecte
-Nous avons comparé les taux de classification incorrecte du jeu de données concerné à l’aide des données CRM d’environ 8 000 abonnements.  
+Nous avons comparé taux de mauvaise classification hello hello du jeu de données en question à l’aide de données CRM hello d’environ 8 000 abonnements.  
 
-* Le taux d’erreur de classification de SAP se situait entre 10 et 15 %.
-* Le taux de classification incorrecte de ML Studio était de 15 à 20 % pour les 200-300 clients les plus susceptibles de changer de fournisseur.  
+* taux de mauvaise classification Hello SAP a été 10 à 15 %.
+* taux de mauvaise classification Hello Machine Learning Studio a été 15 à 20 % de churners de haut 200-300 hello.  
 
-Dans le secteur des télécommunications, il est important de s’adresser uniquement aux clients les plus susceptibles d’attrition en leur offrant un service de conciergerie ou tout autre traitement spécial. Sur ce plan, l’implémentation de ML Studio obtient des résultats identiques à ceux du modèle SAP.  
+Dans le secteur des télécommunications hello, il est important tooaddress uniquement les clients qui ont hello toochurn de risque le plus élevé en leur offrant un service de conseiller ou un traitement spécial. À cet égard, mise en œuvre de la Machine Learning Studio hello permet d’obtenir les résultats similaire à modèle de SAP hello.  
 
-De même, l’exactitude est plus importante que la précision, car nous tenons avant tout à classer correctement les personnes susceptibles de changer de fournisseur.  
+Par hello même jeton, analyse de précision est plus importante que la précision, car nous intéresse principalement correctement classification churners potentielles.  
 
-Le schéma suivant, provenant de Wikipedia, décrit cette relation sous forme de graphique dynamique facile à comprendre :  
+Hello suivant le schéma de Wikipedia décrit la relation hello dans un graphique engageante et facile à comprendre :  
 
 ![][8]
 
 *Figure 10 : équilibre entre exactitude et précision*
 
 ### <a name="accuracy-and-precision-results-for-boosted-decision-tree-model"></a>Résultats liés à l’exactitude et à la précision du modèle d’arbre de décision optimisé
-Le graphique suivant présente les résultats bruts d’une notation réalisée à l’aide du prototype Machine Learning pour le modèle d’arbre de décision optimisé. Il s’agit du modèle présentant la plus grande exactitude parmi les quatre proposés :  
+Hello suivant hello d’affiche graphique brut résultant de score à l’aide du prototype d’apprentissage hello pour le modèle d’arbre de décision hello augmenté, ce qui se produit hello toobe plus précise entre les modèles de quatre hello :  
 
 ![][9]
 
 *Figure 11 : caractéristiques du modèle d’arbre de décision optimisé*
 
 ## <a name="performance-comparison"></a>Comparaison entre les performances
-Nous avons comparé la vitesse à laquelle les données étaient notées à l’aide de modèles ML Studio et d’un modèle comparable créé à l’aide de l’édition Desktop de SAS Enterprise Miner 12.1.  
+Nous avons comparé vitesse hello à laquelle les données a été évaluées à l’aide de modèles de Machine Learning Studio hello et un modèle comparable créé à l’aide d’édition de bureau hello de SAP Enterprise Miner 12.1.  
 
-Le tableau suivant récapitule les performances des algorithmes :  
+Hello tableau suivant résume les performances hello des algorithmes de hello :  
 
-*Tableau 1. Performances générales (précision) des algorithmes*
+*Tableau 1. Performances générales (précision) des algorithmes de hello*
 
 | LR | BT | AP | SVM |
 | --- | --- | --- | --- |
-| Modèle moyen |Meilleur modèle |Mauvaises performances |Modèle moyen |
+| Modèle moyen |Hello meilleur modèle |Mauvaises performances |Modèle moyen |
 
-Les modèles hébergés dans ML Studio ont supplanté le modèle SAP de 15 à 25 % grâce à sa vitesse d’exécution, mais leur exactitude était largement équivalente.  
+modèles de Hello hébergés dans Machine Learning Studio obtenu les meilleures performances de SAS par 15 à 25 % de la vitesse d’exécution, mais précision a été en grande partie sur les par.  
 
 ## <a name="discussion-and-recommendations"></a>Considérations et recommandations
-Dans le secteur des télécommunications, plusieurs pratiques ont émergé pour l’analyse de l’attrition :  
+Dans le secteur des télécommunications hello, plusieurs méthodes sont apparus tooanalyze évolution, y compris :  
 
 * Mesures dérivées pour quatre catégories principales :
-  * **Entité (par exemple, un abonnement)**. Informations de base sur l’abonnement ou le client qui risque de se désabonner.
-  * **Activité**. Obtient toutes les informations d’utilisation possibles qui sont associées à l’entité, par exemple le nombre de connexions.
-  * **Service client**. Récupère des informations dans les journaux du service client pour indiquer si l’abonné a rencontré des problèmes ou est entré en contact avec le service client.
-  * **Données d'entreprise et concurrentielles**. Obtient toutes les informations possibles sur le client (par exemple, les données indisponibles ou difficiles à récupérer).
-* Utilisez l'importance pour la sélection des caractéristiques. Cela implique que le modèle d’arbre de décision optimisé est toujours une approche prometteuse.  
+  * **Entité (par exemple, un abonnement)**. Configurer les informations de base sur les abonnement hello et/ou de client qui est sujet hello d’évolution.
+  * **Activité**. Obtenir toutes les informations d’utilisation possibles entité toohello associées, par exemple, les nombre hello de connexions.
+  * **Service client**. Collecter des informations à partir du client prise en charge des journaux tooindicate si l’abonnement de hello avait problèmes ou les interactions avec le client prend en charge.
+  * **Données d'entreprise et concurrentielles**. Obtenir toutes les informations possibles sur un client de hello (par exemple, peut être indisponible ou dur tootrack).
+* Utilisez la sélection de fonctionnalité toodrive importance. Cela implique ce modèle d’arbre de décision augmenté de hello est toujours une approche prometteuse.  
 
-L’utilisation de ces quatre catégories donne l’impression qu’une simple approche *déterministe* , basée sur des indices formés sur des facteurs raisonnables par catégorie, doit suffire à identifier les clients risquant de se désabonner. Malheureusement, même si cette notion reste plausible, c'est une fausse idée. En effet, l'attrition est un effet temporel et les facteurs y contribuant sont habituellement dans des états temporaires. Un facteur qui incite un client à se désabonner aujourd’hui peut être différent demain, et le sera certainement dans six mois. De ce fait, un modèle *probabiliste* est nécessaire.  
+Hello utilisation de ces quatre catégories crée une illusion de hello qui simple *déterministe* approche, basée sur les index formés sur les facteurs raisonnables par catégorie, suffisante tooidentify des clients aux risques liés à l’évolution du code. Malheureusement, même si cette notion reste plausible, c'est une fausse idée. Hello raison est qu’évolution du code est un effet temporelle et facteurs hello toochurn se trouvent généralement dans les états transitoires. Entraîne un client tooconsider en laissant aujourd'hui peut-être être différente demain, et il sera certainement différents six mois à partir de maintenant. De ce fait, un modèle *probabiliste* est nécessaire.  
 
-Cette observation importante est souvent ignorée par les entreprises, qui préfèrent généralement une approche d’informatique décisionnelle, car elle est plus vendeuse et permet une automatisation directe.  
+Cette observation importante est souvent négligée dans l’entreprise, ce qui est généralement préféré par un tooanalytics d’approche orientée sur intelligence d’entreprise, principalement car il s’agit d’une vente et admet automation simple.  
 
-Cependant, la promesse d’une analyse autonome à l’aide de ML Studio permet d’envisager que les quatre catégories d’informations, évaluées par division ou service, deviendront des sources utiles pour l’apprentissage automatique relatif à l’attrition.  
+Toutefois, la promesse hello de libre-service d’analytique à l’aide de Machine Learning Studio est que hello quatre catégories d’informations, classés par division ou un service, devient une source précieuse pour l’apprentissage sur l’évolution du code.  
 
-Une autre fonctionnalité passionnante proposée par Microsoft Azure ML est la possibilité d’ajouter un module personnalisé dans le référentiel des modules prédéfinis qui sont déjà disponibles. Cette capacité permet surtout de sélectionner des bibliothèques et de créer des modèles pour les marchés verticaux. C’est un facteur de différenciation primordial de Microsoft Azure ML sur le marché.  
+Une autre fonctionnalité intéressante à venir dans Azure Machine Learning est hello capacité tooadd un référentiel de toohello module personnalisé des modules prédéfinis qui sont déjà disponibles. Cette fonctionnalité, essentiellement, crée une opportunité tooselect bibliothèques et créer des modèles pour des marchés verticaux. Il est un différentiateur important d’Azure Machine Learning en place de marché hello.  
 
-Nous espérons pouvoir à nouveau évoquer ce sujet, notamment en ce qui concerne l’analyse des données volumineuses.
+Nous espérons que toocontinue cette rubrique dans analytique de données hello toobig futures, particulièrement associées.
   
 
 ## <a name="conclusion"></a>Conclusion
-Ce document détaille une approche rationnelle pour la gestion d’un problème commun, l’attrition, à l’aide d’une structure générique. Nous avons envisagé un prototype de modèle de notation, que nous avons implémenté à l’aide de Microsoft Azure ML. Enfin, nous avons évalué l'exactitude et les performances de la solution prototype par rapport aux algorithmes comparables dans SAP.  
+Ce document décrit un problème courant hello raisonnable tootackling d’évolution du client à l’aide d’une infrastructure générique. Nous avons envisagé un prototype de modèle de notation, que nous avons implémenté à l’aide de Microsoft Azure ML. Enfin, nous évaluée d’analyse de précision hello et les performances des solutions de prototype hello avec les algorithmes de toocomparable égard dans SAP.  
 
 **Pour plus d'informations :**  
 
-Ce document vous a-t-il été utile ? Donnez-nous votre avis. Dites-nous, sur une échelle de 1 (mauvais) à 5 (excellent), comment vous évalueriez ce document et pourquoi vous lui donneriez cette note ? Par exemple :  
+Ce document vous a-t-il été utile ? Donnez-nous votre avis. Indiquez-nous, sur une échelle de 1 too5 (médiocre) (excellent), quelle note donneriez-vous ce document et pourquoi vous lui ayez donné cette évaluation ? Par exemple :  
 
-* Le notez-vous bien du fait des bons exemples, des excellentes captures d'écran, de l'écriture claire ou pour toute autre raison ?
-* Le notez-vous mal du fait de mauvais exemples, de captures d'écran floues ou d'une écriture peu claire ?  
+* Vous l’avez élevé en raison de bons exemples de toohaving, les captures d’écran excellent, désactivez l’écriture ou une autre raison ?
+* Vous l’avez jugé faible échéance toopoor exemples, captures d’écran floue ou écriture difficile de savoir ?  
 
-Ces commentaires nous aideront à améliorer la qualité des livres blancs que nous publions.   
+Ces commentaires nous aideront à améliorer la qualité des livres blancs que nous diffusons hello.   
 
 [Envoyer des commentaires](mailto:sqlfback@microsoft.com).
  
 
 ## <a name="references"></a>Références
-[1] Predictive Analytics: Beyond the Predictions, W. McKnight, Information Management, juillet/août 2011, p.18-20.  
+[1] Analytique prédictive : au-delà de prédictions hello, w. McKnight, gestion de l’Information, juillet/août 2011, p. 18 à 20.  
 
 [2] Article Wikipédia : [Accuracy and precision](http://en.wikipedia.org/wiki/Accuracy_and_precision)
 

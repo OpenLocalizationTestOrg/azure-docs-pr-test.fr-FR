@@ -1,6 +1,6 @@
 ---
-title: "Planifier la mise en réseau pour la réplication de serveurs physiques vers Azure | Microsoft Docs"
-description: "Cet article détaille la planification réseau requise lors de la réplication de serveurs physiques vers Azure."
+title: "aaaPlan mise en réseau pour le serveur physique réplication tooAzure | Documents Microsoft"
+description: "Cet article décrit la planification d’un réseau requis lors de la réplication des serveurs physiques tooAzure"
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,61 +14,61 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 06/27/2017
 ms.author: raynew
-ms.openlocfilehash: f8a20b45b50f71631122e574b634818c1912f12e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e2ca2db2a1cb58ca5468d4ee2b0406f29ff09479
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="step-4-plan-networking-for-physical-server-replication-to-azure"></a>Étape 4 : Planifier la mise en réseau pour la réplication de serveurs physiques vers Azure
+# <a name="step-4-plan-networking-for-physical-server-replication-tooazure"></a>Étape 4 : Planifier la mise en réseau pour le serveur physique réplication tooAzure
 
-Cet article résume les considérations relatives à la planification réseau lors de la réplication de serveurs physiques locaux vers Azure au moyen du service [Azure Site Recovery](site-recovery-overview.md).
+Cet article résume les considérations de planification lors de la réplication locale tooAzure serveurs physiques à l’aide de hello de réseau [Azure Site Recovery](site-recovery-overview.md) service.
 
-Publiez des commentaires au bas de cet article ou posez des questions sur le [Forum Azure Recovery Services](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
+Valider les commentaires en bas de hello de cet article, ou poser des questions dans hello [Forum sur Azure Recovery Services](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
 
 
-## <a name="connect-to-replica-azure-vms"></a>Se connecter aux machines virtuelles réplica Azure
+## <a name="connect-tooreplica-azure-vms"></a>Connecter des machines virtuelles Azure de tooreplica
 
-Lorsque vous planifiez votre stratégie de basculement et de réplication, l’une des questions clés est de savoir comment se connecter à la machine virtuelle Azure après le basculement. Il existe plusieurs options lors de la conception de votre stratégie réseau pour les machines virtuelles réplica Azure :
+Lorsque vous planifiez votre stratégie de basculement et de réplication, une des questions clés de hello est comment tooconnect toohello machine virtuelle Azure après le basculement. Il existe plusieurs options lors de la conception de votre stratégie réseau pour les machines virtuelles réplica Azure :
 
-- **Utiliser une adresse IP différente** : vous pouvez choisir d’utiliser une autre plage d’adresses IP pour le réseau de la machine virtuelle Azure répliquée. Dans ce scénario, la machine reçoit une nouvelle adresse IP après le basculement, et une mise à jour DNS est nécessaire.
-- **Utiliser la même adresse IP** : vous souhaiterez peut-être utiliser la même plage d’adresses IP que celle du site principal local pour le réseau Azure après le basculement. La conservation des mêmes adresses IP simplifie la récupération en réduisant les problèmes liés au réseau après le basculement. Toutefois, lorsque vous effectuez une réplication vers Azure, vous devez mettre à jour des itinéraires avec le nouvel emplacement des adresses IP après le basculement.
+- **Utiliser une autre adresse IP**: vous pouvez sélectionner toouse une plage d’adresses IP différentes pour hello répliquées réseau d’ordinateurs virtuels de Azure. Dans ce scénario, les ordinateur hello Obtient une nouvelle adresse IP après un basculement et une mise à jour DNS est requis.
+- **Utilisez hello même adresse IP**: vous souhaiterez peut-être toouse hello même plage d’adresses IP que celle du site principal local pour hello réseau Azure après le basculement. Hello conserver des adresses IP mêmes simplifie la récupération hello en réduisant les problèmes de réseau après le basculement. Toutefois, lorsque vous effectuez une réplication tooAzure, vous devez les itinéraires tooupdate avec hello nouvel emplacement des adresses IP de hello après le basculement.
 
 ## <a name="retain-ip-addresses"></a>Conserver les adresses IP
 
-Site Recovery offre la possibilité de conserver des adresses IP fixes lors du basculement vers Azure, grâce à un basculement de sous-réseau.
-Avec le basculement de sous-réseau, un sous-réseau spécifique est présent sur le Site 1 ou sur le Site 2, mais jamais sur les deux sites simultanément. Pour conserver l’espace d’adressage IP en cas de basculement, vous pouvez mettre en place un programme pour que l’infrastructure du routeur déplace les sous-réseaux d’un site à un autre. Pendant le basculement, les sous-réseaux se déplacent avec les machines virtuelles protégées associées. Le principal inconvénient est qu’en cas de défaillance, vous devez déplacer le sous-réseau tout entier.
+Récupération de site fournit la fonctionnalité hello tooretain fixée des adresses IP lors du basculement tooAzure, avec un basculement de sous-réseau.
+Avec le basculement de sous-réseau, un sous-réseau spécifique est présent sur le Site 1 ou sur le Site 2, mais jamais sur les deux sites simultanément. Dans l’ordre toomaintain hello espace d’adressage IP dans les événements hello d’un basculement, vous organiser par programme des sous-réseaux de hello hello routeur infrastructure toomove à partir d’un site tooanother. Pendant le basculement, déplacement de sous-réseaux hello avec hello associés à des ordinateurs virtuels protégés. Hello principal inconvénient est que dans l’événement hello d’une défaillance, vous disposez de sous-réseau entier de toomove hello.
 
 ### <a name="failover-example"></a>Exemple de basculement
 
-Examinons un exemple de basculement vers Azure.
+Examinons un exemple de tooAzure de basculement.
 
 - La banque Woodgrove, une société fictive, possède une infrastructure locale pour l’hébergement de ses applications métier. Ses applications mobiles sont hébergées sur Azure.
-- La connectivité entre les machines virtuelles de la banque Woodgrove sur Azure et les serveurs locaux est fournie par une connexion de site à site (VPN) entre le réseau de périmètre et le réseau virtuel Azure.
-- Ce type de VPN signifie que le réseau virtuel de la société dans Azure s’affiche comme une extension de son réseau local.
-- Woodgrove souhaite utiliser Site Recovery pour répliquer les charges de travail locales vers Azure.
- - Woodgrove doit traiter des applications et des configurations qui dépendent d’adresses IP codées en dur. De ce fait, la société doit conserver les adresses IP de ses applications après le basculement vers Azure.
- - Woodgrove a assigné des adresses IP de la plage 172.16.1.0/24, 172.16.2.0/24 à ses ressources exécutées dans Azure.
+- Connectivité entre machines virtuelles Woodgrove Bank serveurs locaux et Azure est fournie par une connexion (VPN) de site à site entre le réseau de périmètre local hello et hello réseau virtuel Azure.
+- Cela signifie que VPN qui hello réseau virtuel de la société dans Azure s’affiche comme une extension de leur réseau local.
+- Woodgrove veut toouse Site Recovery tooreplicate localement les charges de travail tooAzure.
+ - Woodgrove a toodeal avec des applications et des configurations dépendent codé en dur des adresses IP et doivent tooretain des adresses IP pour leurs applications après basculement tooAzure.
+ - Woodgrove a des adresses IP à partir de la plage 172.16.1.0/24, 172.16.2.0/24 tooits les ressources affectées s’exécutant dans Azure.
 
 
-Pour pouvoir répliquer ses serveurs vers Azure en conservant les adresses IP, voici ce que Woodgrove doit faire :
+Pour Woodgrove toobe en mesure de tooreplicate son tooAzure de serveurs, tandis que, en conservant hello IP adresses, ce qui est société hello doit toodo :
 
-1. Créez un réseau virtuel Azure. Il doit s’agir d’une extension du réseau local afin que les applications puissent basculer en toute transparence.
-2. Azure vous permet d’ajouter une connectivité VPN de site à site en plus de la connectivité de point à site avec les réseaux virtuels créés dans Azure.
-3. Lorsque vous configurez la connexion de site à site, dans le réseau Azure, vous pouvez acheminer le trafic vers l’emplacement local (réseau local) uniquement si la plage d’adresses IP est différente de la plage d’adresses IP locales.
-    - Cela est dû au fait qu’Azure ne prend pas en charge les sous-réseaux étirés. Si vous avez un sous-réseau local 192.168.1.0/24, vous ne pouvez donc pas ajouter un réseau local 192.168.1.0/24 dans le réseau Azure.
-    - Ceci est dû au fait que Azure ne sait pas qu’aucune machine n’est active dans le sous-réseau et que le sous-réseau est créé uniquement à des fins de récupération d’urgence.
-    - Pour pouvoir acheminer correctement le trafic réseau à partir d’un réseau Azure, les sous-réseaux du réseau et le réseau local ne doivent pas entrer en conflit.
+1. Créez un réseau virtuel Azure. Il doit être une extension de hello local réseau, afin que les applications peuvent basculer en toute transparence.
+2. Azure permet vous tooadd site-à-site connectivité VPN, en outre, les réseaux virtuels toohello toopoint-à-site connectivité créés dans Azure.
+3. Lorsque vous configurez la connexion de site à site hello, Bonjour Azure réseau, vous pouvez acheminer un emplacement de site du trafic toohello (réseau local) uniquement si la plage d’adresses IP hello est différent de la plage d’adresses IP hello localement.
+    - Cela est dû au fait qu’Azure ne prend pas en charge les sous-réseaux étirés. Par conséquent, si vous avez sous-réseau 192.168.1.0/24 locale, Impossible d’ajouter un 192.168.1.0/24 réseau local Bonjour réseau Azure.
+    - Ceci est dû au fait que Azure ne sait pas qu’aucun ordinateur n’est active dans le sous-réseau de hello et que le sous-réseau hello est en cours de création pour la récupération d’urgence uniquement.
+    - toobe toocorrectly en mesure de router le trafic réseau en dehors d’un Azure hello des sous-réseaux dans le réseau de hello et réseau local hello ne doit pas entrer en conflit.
 
 ![Avant le basculement de sous-réseau](./media/physical-walkthrough-network/network-design7.png)
 
 #### <a name="before-failover"></a>Avant le basculement
 
-1. Créez un réseau supplémentaire (par exemple, un réseau de récupération). Il s’agit du réseau dans lequel les machines virtuelles basculées sont créées.
-2. Pour vous assurer que l’adresse IP d’une machine virtuelle est conservée après un basculement, dans Propriétés de la machine virtuelle > **Configurer**, spécifiez la même adresse IP que celle utilisée par la machine virtuelle locale, puis cliquez sur **Enregistrer**.
-3. Au basculement de la machine, Azure Site Recovery affecte l’adresse IP fournie à cette machine virtuelle.
-4. Une fois que le basculement a été déclenché et que les machines virtuelles ont été créées dans Azure avec l’adresse IP requise, vous pouvez vous connecter au réseau en utilisant une [connexion de réseau virtuel à réseau virtuel](../vpn-gateway/virtual-networks-configure-vnet-to-vnet-connection.md). Cette action peut faire l’objet d’un script.
-5. Les itinéraires doivent être modifiés de façon appropriée afin de refléter le déplacement de l’adresse IP 192.168.1.0/24 vers Azure.
+1. Créez un réseau supplémentaire (par exemple, un réseau de récupération). Il s’agit hello réseau qui a échoué sur les ordinateurs virtuels sont créés.
+2. tooensure qui hello d’adresse IP pour un ordinateur est conservé après un basculement, dans les propriétés de l’ordinateur hello > **configurer**, spécifiez hello même adresse IP que hello du serveur a local, puis cliquez sur **enregistrer**.
+3. Lors de la machine de hello est basculé, Azure Site Recovery attribuera hello fourni tooit d’adresse IP.
+4. Une fois le basculement déclencheur est déclenché et machines virtuelles de hello sont créés dans Azure avec l’adresse IP de hello requis, vous pouvez vous connecter à l’aide du réseau toohello un [connexion tooVnet de réseau virtuel](../vpn-gateway/virtual-networks-configure-vnet-to-vnet-connection.md). Cette action peut être scriptée.
+5. Itinéraires doivent toobe modifiée en conséquence, tooreflect que 192.168.1.0/24 est passée tooAzure.
 
     ![Après le basculement de sous-réseau](./media/physical-walkthrough-network/network-design9.png)
 
@@ -76,10 +76,10 @@ Pour pouvoir répliquer ses serveurs vers Azure en conservant les adresses IP, 
 
 Si vous ne possédez pas de réseau Azure comme illustré ci-dessus, vous pouvez créer une connexion VPN de site à site entre votre site principal et Azure, après le basculement.
 
-## <a name="change-ip-addresses"></a>Modifier des adresses IP
+## <a name="change-ip-addresses"></a>Modifier les adresses IP
 
-Cet [article de blog](http://azure.microsoft.com/blog/2014/09/04/networking-infrastructure-setup-for-microsoft-azure-as-a-disaster-recovery-site/) explique comment configurer le service d’infrastructure réseau Azure lorsqu’il n’est pas nécessaire de conserver les adresses IP après le basculement. Il commence par une description de l’application, aborde la procédure de configuration des services de mise en réseau locaux et se conclut par des informations sur l’exécution des basculements.  
+Cela [billet de blog](http://azure.microsoft.com/blog/2014/09/04/networking-infrastructure-setup-for-microsoft-azure-as-a-disaster-recovery-site/) explique comment tooset des hello Azure infrastructure réseau lorsque vous n’avez pas besoin de tooretain IP répond après le basculement. Il commence par une description de l’application, ressemble à la tooset un réseau local et dans Azure et se termine avec des informations sur l’exécution des basculements.  
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Aller à [Étape 5 : Préparer Azure](physical-walkthrough-prepare-azure.md)
+Accédez trop[étape 5 : préparer le Azure](physical-walkthrough-prepare-azure.md)

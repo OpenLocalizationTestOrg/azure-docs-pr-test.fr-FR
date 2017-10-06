@@ -1,6 +1,6 @@
 ---
-title: "Modèles Profil utilisateur dans Gestion des API Azure | Microsoft Docs"
-description: "Découvrez comment personnaliser le contenu des pages Profil utilisateur dans le portail des développeurs dans Gestion des API Azure."
+title: "AAA » les modèles de profil utilisateur dans la gestion des API Azure | Documents Microsoft »"
+description: "Découvrez le fonctionnement des pages dans le portail des développeurs dans Gestion des API Azure hello toocustomize le contenu hello Hello profil utilisateur."
 services: api-management
 documentationcenter: 
 author: miaojiang
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-ms.openlocfilehash: 9a11bd5800068a5725ab2f099043993bff0b28d8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c8f153b310221164809acf58e4af236928ceb41d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="user-profile-templates-in-azure-api-management"></a>Modèles Profil utilisateur dans Gestion des API Azure
-Gestion des API Azure vous offre la possibilité de personnaliser le contenu des pages du portail des développeurs à l’aide d’un ensemble de modèles qui configurent leur contenu. En utilisant la syntaxe [DotLiquid](http://dotliquidmarkup.org/) et l’éditeur de votre choix, comme [DotLiquid for Designers](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers), ainsi qu’un ensemble de [ressources de chaîne](api-management-template-resources.md#strings), de [ressources de glyphe](api-management-template-resources.md#glyphs) et de [contrôles de page](api-management-page-controls.md) localisés, vous disposez d’un large choix pour configurer le contenu des pages selon vos besoins à l’aide de ces modèles.  
+Gestion des API Azure fournit que Hello de contenu de hello toocustomize possibilité de pages du portail développeur à l’aide d’un ensemble de modèles que configurer leur contenu. À l’aide de [DotLiquid](http://dotliquidmarkup.org/) syntaxe et hello l’éditeur de votre choix, tel que [DotLiquid pour les concepteurs](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers), et un ensemble fourni de localisée [ressources de type chaîne](api-management-template-resources.md#strings), [ Ressources de glyphe](api-management-template-resources.md#glyphs), et [Page les contrôles](api-management-page-controls.md), vous avez une grande souplesse tooconfigure hello contenu hello pages comme vous le souhaitez à l’aide de ces modèles.  
   
- Les modèles de cette section vous permettent de personnaliser le contenu des pages Profil utilisateur dans le portail des développeurs.  
+ modèles Hello dans cette section permettent de contenu de hello toocustomize des pages de profil utilisateur hello dans le portail des développeurs hello.  
   
 -   [Profil](#Profile)  
   
@@ -34,10 +34,10 @@ Gestion des API Azure vous offre la possibilité de personnaliser le contenu des
 -   [Mettre à jour les informations du compte](#UpdateAccountInfo)  
   
 > [!NOTE]
->  Les exemples de modèles par défaut inclus dans la documentation suivante sont susceptibles d’être modifiés et améliorés de façon régulière. Vous pouvez afficher les modèles dynamiques par défaut dans le portail des développeurs en accédant aux modèles individuels souhaités. Pour plus d’informations sur l’utilisation de modèles, consultez [Comment personnaliser le portail des développeurs Gestion des API Azure à l’aide de modèles](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/).  
+>  Exemples de modèles par défaut sont inclus dans hello suivant la documentation, mais sont toochange sujet en raison des améliorations de toocontinuous. Vous pouvez afficher les modèles par défaut dynamique hello dans le portail des développeurs hello en naviguant toohello souhaitée des modèles individuels. Pour plus d’informations sur l’utilisation des modèles, consultez [comment toocustomize hello portail des développeurs gestion des API à l’aide de modèles](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/).  
   
 ##  <a name="Profile"></a> Profil  
- Le modèle **Profil** vous permet de personnaliser la section Profil utilisateur de la page Profil utilisateur dans le portail des développeurs.  
+ Hello **profil** modèle vous permet de section de profil utilisateur toocustomize hello de page de profil utilisateur hello dans le portail des développeurs hello.  
   
  ![Page Profil utilisateur](./media/api-management-user-profile-templates/APIM-User-Profile-Page.png "Page Profil utilisateur APIM")  
   
@@ -99,21 +99,21 @@ Gestion des API Azure vous offre la possibilité de personnaliser le contenu des
 ### <a name="data-model"></a>Modèle de données  
   
 > [!NOTE]
->  Les modèles [Profil](#Profile), [Applications](#Applications) et [Abonnements](#Subscriptions) partagent le même modèle de données et reçoivent les mêmes données de modèle.  
+>  Hello [profil](#Profile), [Applications](#Applications), et [abonnements](#Subscriptions) hello des mêmes données de modèle et de réception hello partagent des modèles de données du même modèle.  
   
 |Propriété|Type|Description|  
 |--------------|----------|-----------------|  
-|firstName|string|Prénom de l’utilisateur actif.|  
-|lastName|string|Nom de l’utilisateur actif.|  
-|companyName|string|Nom de l’entreprise de l’utilisateur actif.|  
-|addresserEmail|string|Adresse e-mail de l’utilisateur actif.|  
-|developersUsageStatisticsLinkk|string|URL relative permettant d’afficher les données d’analyse relatives à l’utilisateur actif.|  
-|subscriptions|Collection d’entités [Abonnement](api-management-template-data-model-reference.md#Subscription).|Abonnements associés à l’utilisateur actif.|  
-|web|Collection d’entités [Application](api-management-template-data-model-reference.md#Application).|Applications associées à l’utilisateur actif.|  
-|changePasswordUrl|string|URL relative permettant de modifier le mot de passe de l’utilisateur actif.|  
-|changeNameOrEmailUrl|string|URL relative permettant de modifier le nom et l’e-mail de l’utilisateur actif.|  
-|canChangePassword|booléenne|Indique si l’utilisateur actif peut changer son mot de passe.|  
-|isSystemUser|booléenne|Indique si l’utilisateur actif est membre de l’un des [groupes](api-management-key-concepts.md#groups) prédéfinis.|  
+|firstName|string|Prénom de l’utilisateur actuel hello.|  
+|lastName|string|Nom de l’utilisateur actuel hello.|  
+|companyName|string|nom de l’utilisateur actuel hello Hello société.|  
+|addresserEmail|string|Adresse de messagerie de l’utilisateur actuel hello.|  
+|developersUsageStatisticsLinkk|string|Analytique de tooview URL relative pour l’utilisateur actuel de hello.|  
+|subscriptions|Collection d’entités [Abonnement](api-management-template-data-model-reference.md#Subscription).|abonnements Hello pour l’utilisateur actuel de hello.|  
+|web|Collection d’entités [Application](api-management-template-data-model-reference.md#Application).|applications Hello de l’utilisateur actuel hello.|  
+|changePasswordUrl|string|mot de passe Hello relatif URL toochange hello l’utilisateur actuel.|  
+|changeNameOrEmailUrl|string|Bonjour nom URL toochange hello et par courrier électronique pour l’utilisateur actuel de hello.|  
+|canChangePassword|booléenne|Si l’utilisateur actuel hello peut changer leur mot de passe.|  
+|isSystemUser|booléenne|Si l’utilisateur actuel hello est un membre de l’un des intégrées de hello [groupes](api-management-key-concepts.md#groups).|  
   
 ### <a name="sample-template-data"></a>Données d’un exemple de modèle  
   
@@ -130,7 +130,7 @@ Gestion des API Azure vous offre la possibilité de personnaliser le contenu des
             "Id": "57026e30de15d80041070001",  
             "ProductId": "57026e30de15d80041060001",  
             "ProductTitle": "Starter",  
-            "ProductDescription": "Subscribers will be able to run 5 calls/minute up to a maximum of 100 calls/week.",  
+            "ProductDescription": "Subscribers will be able toorun 5 calls/minute up tooa maximum of 100 calls/week.",  
             "ProductDetailsUrl": "/Products/57026e30de15d80041060001",  
             "State": "Active",  
             "DisplayName": "Starter  (default)",  
@@ -153,7 +153,7 @@ Gestion des API Azure vous offre la possibilité de personnaliser le contenu des
             "Id": "57026e30de15d80041070002",  
             "ProductId": "57026e30de15d80041060002",  
             "ProductTitle": "Unlimited",  
-            "ProductDescription": "Subscribers have completely unlimited access to the API. Administrator approval is required.",  
+            "ProductDescription": "Subscribers have completely unlimited access toohello API. Administrator approval is required.",  
             "ProductDetailsUrl": "/Products/57026e30de15d80041060002",  
             "State": "Active",  
             "DisplayName": "Unlimited  (default)",  
@@ -182,7 +182,7 @@ Gestion des API Azure vous offre la possibilité de personnaliser le contenu des
 ```  
   
 ##  <a name="Subscriptions"></a> Abonnements  
- Le modèle **Abonnements** vous permet de personnaliser la section Abonnements de la page Profil utilisateur dans le portail des développeurs.  
+ Hello **abonnements** modèle vous permet de section d’abonnements hello toocustomize de page de profil utilisateur hello dans le portail des développeurs hello.  
   
  ![Page d’abonnement utilisateur](./media/api-management-user-profile-templates/APIM-User-Subscription-Page.png "Page d’abonnement utilisateur APIM")  
   
@@ -313,28 +313,28 @@ Gestion des API Azure vous offre la possibilité de personnaliser le contenu des
 ```  
   
 ### <a name="controls"></a>Commandes  
- Ce modèle peut utiliser les [contrôles de page](api-management-page-controls.md) suivants.  
+ Ce modèle peut utiliser des éléments suivants de hello [page les contrôles](api-management-page-controls.md).  
   
 -   [subscription-cancel](api-management-page-controls.md#subscription-cancel)  
   
 ### <a name="data-model"></a>Modèle de données  
   
 > [!NOTE]
->  Les modèles [Profil](#Profile), [Applications](#Applications) et [Abonnements](#Subscriptions) partagent le même modèle de données et reçoivent les mêmes données de modèle.  
+>  Hello [profil](#Profile), [Applications](#Applications), et [abonnements](#Subscriptions) hello des mêmes données de modèle et de réception hello partagent des modèles de données du même modèle.  
   
 |Propriété|Type|Description|  
 |--------------|----------|-----------------|  
-|firstName|string|Prénom de l’utilisateur actif.|  
-|lastName|string|Nom de l’utilisateur actif.|  
-|companyName|string|Nom de l’entreprise de l’utilisateur actif.|  
-|addresserEmail|string|Adresse e-mail de l’utilisateur actif.|  
-|developersUsageStatisticsLinkk|string|URL relative permettant d’afficher les données d’analyse relatives à l’utilisateur actif.|  
-|subscriptions|Collection d’entités [Abonnement](api-management-template-data-model-reference.md#Subscription).|Abonnements associés à l’utilisateur actif.|  
-|web|Collection d’entités [Application](api-management-template-data-model-reference.md#Application).|Applications associées à l’utilisateur actif.|  
-|changePasswordUrl|string|URL relative permettant de modifier le mot de passe de l’utilisateur actif.|  
-|changeNameOrEmailUrl|string|URL relative permettant de modifier le nom et l’e-mail de l’utilisateur actif.|  
-|canChangePassword|booléenne|Indique si l’utilisateur actif peut changer son mot de passe.|  
-|isSystemUser|booléenne|Indique si l’utilisateur actif est membre de l’un des [groupes](api-management-key-concepts.md#groups) prédéfinis.|  
+|firstName|string|Prénom de l’utilisateur actuel hello.|  
+|lastName|string|Nom de l’utilisateur actuel hello.|  
+|companyName|string|nom de l’utilisateur actuel hello Hello société.|  
+|addresserEmail|string|Adresse de messagerie de l’utilisateur actuel hello.|  
+|developersUsageStatisticsLinkk|string|Analytique de tooview URL relative pour l’utilisateur actuel de hello.|  
+|subscriptions|Collection d’entités [Abonnement](api-management-template-data-model-reference.md#Subscription).|abonnements Hello pour l’utilisateur actuel de hello.|  
+|web|Collection d’entités [Application](api-management-template-data-model-reference.md#Application).|applications Hello de l’utilisateur actuel hello.|  
+|changePasswordUrl|string|mot de passe Hello relatif URL toochange hello l’utilisateur actuel.|  
+|changeNameOrEmailUrl|string|Bonjour nom URL toochange hello et par courrier électronique pour l’utilisateur actuel de hello.|  
+|canChangePassword|booléenne|Si l’utilisateur actuel hello peut changer leur mot de passe.|  
+|isSystemUser|booléenne|Si l’utilisateur actuel hello est un membre de l’un des intégrées de hello [groupes](api-management-key-concepts.md#groups).|  
   
 ### <a name="sample-template-data"></a>Données d’un exemple de modèle  
   
@@ -351,7 +351,7 @@ Gestion des API Azure vous offre la possibilité de personnaliser le contenu des
             "Id": "57026e30de15d80041070001",  
             "ProductId": "57026e30de15d80041060001",  
             "ProductTitle": "Starter",  
-            "ProductDescription": "Subscribers will be able to run 5 calls/minute up to a maximum of 100 calls/week.",  
+            "ProductDescription": "Subscribers will be able toorun 5 calls/minute up tooa maximum of 100 calls/week.",  
             "ProductDetailsUrl": "/Products/57026e30de15d80041060001",  
             "State": "Active",  
             "DisplayName": "Starter  (default)",  
@@ -374,7 +374,7 @@ Gestion des API Azure vous offre la possibilité de personnaliser le contenu des
             "Id": "57026e30de15d80041070002",  
             "ProductId": "57026e30de15d80041060002",  
             "ProductTitle": "Unlimited",  
-            "ProductDescription": "Subscribers have completely unlimited access to the API. Administrator approval is required.",  
+            "ProductDescription": "Subscribers have completely unlimited access toohello API. Administrator approval is required.",  
             "ProductDetailsUrl": "/Products/57026e30de15d80041060002",  
             "State": "Active",  
             "DisplayName": "Unlimited  (default)",  
@@ -403,7 +403,7 @@ Gestion des API Azure vous offre la possibilité de personnaliser le contenu des
 ```  
   
 ##  <a name="Applications"></a> Applications  
- Le modèle **Applications** vous permet de personnaliser la section Abonnements de la page Profil utilisateur dans le portail des développeurs.  
+ Hello **Applications** modèle vous permet de section d’abonnements hello toocustomize de page de profil utilisateur hello dans le portail des développeurs hello.  
   
  ![Page Applications du compte d’utilisateur](./media/api-management-user-profile-templates/APIM-User-Account-Applications-Page.png "APIM Applications du compte d’utilisateur APIM")  
   
@@ -476,28 +476,28 @@ Gestion des API Azure vous offre la possibilité de personnaliser le contenu des
 ```  
   
 ### <a name="controls"></a>Commandes  
- Ce modèle peut utiliser les [contrôles de page](api-management-page-controls.md) suivants.  
+ Ce modèle peut utiliser des éléments suivants de hello [page les contrôles](api-management-page-controls.md).  
   
 -   [app-actions](api-management-page-controls.md#app-actions)  
   
 ### <a name="data-model"></a>Modèle de données  
   
 > [!NOTE]
->  Les modèles [Profil](#Profile), [Applications](#Applications) et [Abonnements](#Subscriptions) partagent le même modèle de données et reçoivent les mêmes données de modèle.  
+>  Hello [profil](#Profile), [Applications](#Applications), et [abonnements](#Subscriptions) hello des mêmes données de modèle et de réception hello partagent des modèles de données du même modèle.  
   
 |Propriété|Type|Description|  
 |--------------|----------|-----------------|  
-|firstName|string|Prénom de l’utilisateur actif.|  
-|lastName|string|Nom de l’utilisateur actif.|  
-|companyName|string|Nom de l’entreprise de l’utilisateur actif.|  
-|addresserEmail|string|Adresse e-mail de l’utilisateur actif.|  
-|developersUsageStatisticsLinkk|string|URL relative permettant d’afficher les données d’analyse relatives à l’utilisateur actif.|  
-|subscriptions|Collection d’entités [Abonnement](api-management-template-data-model-reference.md#Subscription).|Abonnements associés à l’utilisateur actif.|  
-|web|Collection d’entités [Application](api-management-template-data-model-reference.md#Application).|Applications associées à l’utilisateur actif.|  
-|changePasswordUrl|string|URL relative permettant de modifier le mot de passe de l’utilisateur actif.|  
-|changeNameOrEmailUrl|string|URL relative permettant de modifier le nom et l’e-mail de l’utilisateur actif.|  
-|canChangePassword|booléenne|Indique si l’utilisateur actif peut changer son mot de passe.|  
-|isSystemUser|booléenne|Indique si l’utilisateur actif est membre de l’un des [groupes](api-management-key-concepts.md#groups) prédéfinis.|  
+|firstName|string|Prénom de l’utilisateur actuel hello.|  
+|lastName|string|Nom de l’utilisateur actuel hello.|  
+|companyName|string|nom de l’utilisateur actuel hello Hello société.|  
+|addresserEmail|string|Adresse de messagerie de l’utilisateur actuel hello.|  
+|developersUsageStatisticsLinkk|string|Analytique de tooview URL relative pour l’utilisateur actuel de hello.|  
+|subscriptions|Collection d’entités [Abonnement](api-management-template-data-model-reference.md#Subscription).|abonnements Hello pour l’utilisateur actuel de hello.|  
+|web|Collection d’entités [Application](api-management-template-data-model-reference.md#Application).|applications Hello de l’utilisateur actuel hello.|  
+|changePasswordUrl|string|mot de passe Hello relatif URL toochange hello l’utilisateur actuel.|  
+|changeNameOrEmailUrl|string|Bonjour nom URL toochange hello et par courrier électronique pour l’utilisateur actuel de hello.|  
+|canChangePassword|booléenne|Si l’utilisateur actuel hello peut changer leur mot de passe.|  
+|isSystemUser|booléenne|Si l’utilisateur actuel hello est un membre de l’un des intégrées de hello [groupes](api-management-key-concepts.md#groups).|  
   
 ### <a name="sample-template-data"></a>Données d’un exemple de modèle  
   
@@ -514,7 +514,7 @@ Gestion des API Azure vous offre la possibilité de personnaliser le contenu des
             "Id": "57026e30de15d80041070001",  
             "ProductId": "57026e30de15d80041060001",  
             "ProductTitle": "Starter",  
-            "ProductDescription": "Subscribers will be able to run 5 calls/minute up to a maximum of 100 calls/week.",  
+            "ProductDescription": "Subscribers will be able toorun 5 calls/minute up tooa maximum of 100 calls/week.",  
             "ProductDetailsUrl": "/Products/57026e30de15d80041060001",  
             "State": "Active",  
             "DisplayName": "Starter  (default)",  
@@ -537,7 +537,7 @@ Gestion des API Azure vous offre la possibilité de personnaliser le contenu des
             "Id": "57026e30de15d80041070002",  
             "ProductId": "57026e30de15d80041060002",  
             "ProductTitle": "Unlimited",  
-            "ProductDescription": "Subscribers have completely unlimited access to the API. Administrator approval is required.",  
+            "ProductDescription": "Subscribers have completely unlimited access toohello API. Administrator approval is required.",  
             "ProductDetailsUrl": "/Products/57026e30de15d80041060002",  
             "State": "Active",  
             "DisplayName": "Unlimited  (default)",  
@@ -566,7 +566,7 @@ Gestion des API Azure vous offre la possibilité de personnaliser le contenu des
 ```  
   
 ##  <a name="UpdateAccountInfo"></a> Mettre à jour les informations du compte  
- Le modèle **Mettre à jour les informations du compte** vous permet de personnaliser la page **Mettre à jour les informations du compte** dans le portail des développeurs.  
+ Hello **les informations de compte Uodate** modèle vous permet de toocustomize hello **mettre à jour les informations de compte** page dans le portail des développeurs hello.  
   
  ![Modèles de page Mettre à jour les informations du compte dans le portail des développeurs](./media/api-management-user-profile-templates/APIM-User-Account-Info-Page-Developer-Portal-Templates.png "Modèles de page Mettre à jour les informations du compte dans le portail des développeurs APIM")  
   
@@ -623,4 +623,4 @@ Gestion des API Azure vous offre la possibilité de personnaliser le contenu des
 ```
 
 ## <a name="next-steps"></a>Étapes suivantes
-Pour plus d’informations sur l’utilisation de modèles, consultez [Comment personnaliser le portail des développeurs Gestion des API Azure à l’aide de modèles](api-management-developer-portal-templates.md).
+Pour plus d’informations sur l’utilisation des modèles, consultez [comment toocustomize hello portail des développeurs gestion des API à l’aide de modèles](api-management-developer-portal-templates.md).

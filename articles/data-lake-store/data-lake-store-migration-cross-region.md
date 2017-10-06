@@ -1,5 +1,5 @@
 ---
-title: "Migration entre les régions Azure Data Lake Store | Microsoft Docs"
+title: "aaaAzure la migration entre régions Data Lake Store | Documents Microsoft"
 description: "Découvrez la migration entre les régions pour Azure Data Lake Store."
 services: data-lake-store
 documentationcenter: 
@@ -14,42 +14,42 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 01/27/2017
 ms.author: stewu
-ms.openlocfilehash: 650e1ea1a5e768ac72afc49435e4c4ab318a464a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 561ac821c1bd555886035867678cb685997564eb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="migrate-data-lake-store-across-regions"></a>Migration Data Lake Store entre les régions
 
-La disponibilité d’Azure Data Lake Store s’étendant à davantage de régions, vous pouvez décider d’effectuer une migration à usage unique pour tirer parti d’une nouvelle région. Découvrez ce que vous devez prendre en compte lorsque vous planifiez et effectuez la migration.
+Azure Data Lake Store est disponible dans les régions de nouveau, vous pouvez choisir une migration à usage unique, parti tootake de nouvelle région de hello toodo. Découvrez quels tooconsider lorsque vous planifiez et terminez la migration de hello.
 
 ## <a name="prerequisites"></a>Composants requis
 
 * **Un abonnement Azure**. Pour plus d’informations, consultez [Créer votre compte Azure gratuit](https://azure.microsoft.com/pricing/free-trial/).
 * **Un compte Data Lake Store dans deux régions différentes**. Pour plus d’informations, consultez [Prise en main d’Azure Data Lake Store](data-lake-store-get-started-portal.md).
-* **Azure Data Factory**. Pour plus d’informations, consultez [Présentation d’Azure Data Factory](../data-factory/data-factory-introduction.md).
+* **Azure Data Factory**. Pour plus d’informations, consultez [Introduction tooAzure Data Factory](../data-factory/data-factory-introduction.md).
 
 
 ## <a name="migration-considerations"></a>Considérations relatives à la migration
 
-Tout d’abord, identifiez la stratégie de migration appropriée pour votre application qui écrit, lit ou traite des données dans Data Lake Store. Lorsque vous choisissez une stratégie, tenez compte des exigences de disponibilité de votre application et du temps d’arrêt qui se produit lors d’une migration. Par exemple, votre approche la plus simple peut être d’utiliser le modèle de migration dans le cloud de type « lift-and-shift ». Dans cette approche, vous suspendez l’application dans votre région existante et toutes vos données sont copiées dans la nouvelle région. Une fois le processus de copie terminé, vous reprenez votre application dans la nouvelle région, puis supprimez l’ancien compte Data Lake Store. La migration nécessite un temps d’arrêt.
+Identifiez tout d’abord la stratégie de migration hello qui convient le mieux pour votre application qui écrit, lit ou traite les données de Data Lake Store. Lorsque vous choisissez une stratégie, prendre en compte les exigences de disponibilité de votre application et temps d’arrêt hello qui se produit lors d’une migration. Par exemple, votre approche la plus simple peut être toouse hello « courbes d’élévation et MAJ » cloud migration modèle. Dans cette approche, vous suspendez application hello dans votre région existante toutes vos données sont copiées toohello nouvelle zone. Lorsque hello copie est terminée, vous reprenez votre application dans la nouvelle région de hello, puis supprimez les compte Data Lake Store ancien hello. Temps d’arrêt pendant la migration de hello est requis.
 
-Pour réduire ce temps d’arrêt, vous pouvez immédiatement commencer à ingérer les nouvelles données dans la nouvelle région. Une fois que vous avez les données minimales requises, exécutez votre application dans la nouvelle région. En arrière-plan, continuez à copier les données plus anciennes du compte Data Lake Store existant vers le nouveau compte Data Lake Store dans la nouvelle région. Cette approche vous permet de passer à la nouvelle région avec un temps d’arrêt minimal. Une fois que toutes les anciennes données ont été copiées, supprimez l’ancien compte Data Lake Store.
+tooreduce temps d’arrêt, vous pouvez commencer immédiatement absorber les nouvelles données dans la nouvelle région de hello. Lorsque vous avez les données minimales hello si nécessaires, exécutez votre application dans la nouvelle région de hello. Dans l’arrière-plan de hello, continuer toocopy des données plus anciennes de hello Data Lake Store compte toohello nouveau Data Lake Store compte dans la nouvelle région de hello. À l’aide de cette approche, vous pouvez rendre la nouvelle zone de toohello hello commutateur avec peu de temps mort. Lorsque toutes les données plus anciennes hello a été copié, supprimer l’ancien compte Data Lake Store d’hello.
 
-D’autres informations importantes à prendre en compte lorsque vous planifiez votre migration sont :
+Autres tooconsider obtenir des informations importantes lorsque vous planifiez votre migration sont les suivantes :
 
-* **Volume de données**. Le volume de données (nombre de gigaoctets, nombre de fichiers et dossiers, etc.) a un impact sur le temps et les ressources nécessaires à la migration.
+* **Volume de données**. volume Hello de données (en gigaoctets, nombre de hello de fichiers et dossiers et ainsi de suite) affecte le temps de hello et ressources que nécessaires pour la migration de hello.
 
-* **Nom du compte Data Lake Store**. Le nouveau nom de compte dans la nouvelle région doit être globalement unique. Par exemple, le nom de votre ancien compte Data Lake Store dans la région États-Unis de l’Est 2 peut être contosoeastus2.azuredatalakestore.net. Vous pouvez nommer votre nouveau compte Data Lake Store dans la région Europe du Nord contosonortheu.azuredatalakestore.net.
+* **Nom du compte Data Lake Store**. nom du nouveau compte Hello dans la nouvelle région de hello doit être globalement unique. Par exemple, le nom hello de votre ancien compte Data Lake Store dans est des États-Unis 2 peut être contosoeastus2.azuredatalakestore.net. Vous pouvez nommer votre nouveau compte Data Lake Store dans la région Europe du Nord contosonortheu.azuredatalakestore.net.
 
-* **Outils**. Nous vous recommandons d’utiliser l’[activité de copie Azure Data Factory](../data-factory/data-factory-azure-datalake-connector.md) pour copier les fichiers Data Lake Store. Data Factory prend en charge le déplacement de données avec une fiabilité optimale et de hautes performances. N’oubliez pas que Data Factory copie uniquement l’arborescence de dossiers et le contenu des fichiers. Vous devez appliquer manuellement les listes de contrôle d’accès que vous avez utilisées dans l’ancien compte vers le nouveau compte. Pour plus d’informations, y compris sur les objectifs de performance pour les scénarios optimistes, consultez le [Guide sur les performances et le réglage de l’activité de copie](../data-factory/data-factory-copy-activity-performance.md). Si vous souhaitez copier les données plus rapidement, vous devrez peut-être utiliser des unités de déplacement des données dans le cloud supplémentaires. D’autres outils, tels que AdlCopy, ne permettent pas de copier de données entre différentes régions.  
+* **Outils**. Nous vous recommandons d’utiliser hello [activité de copie de fabrique de données Azure](../data-factory/data-factory-azure-datalake-connector.md) toocopy les fichiers de Data Lake Store. Data Factory prend en charge le déplacement de données avec une fiabilité optimale et de hautes performances. Gardez à l’esprit que la fabrique de données copie uniquement arborescence des dossiers hello et le contenu des fichiers de hello. Vous devez toomanually s’appliquent à toutes les listes de contrôle d’accès (ACL) que vous utilisez dans hello ancien compte toohello nouveau compte. Pour plus d’informations, y compris les objectifs de performances pour les scénarios optimistes, consultez hello [guide de paramétrage et de performances de l’activité de copie](../data-factory/data-factory-copy-activity-performance.md). Si vous souhaitez que les données copiées plus rapidement, vous devrez peut-être toouse unités de déplacement de données Cloud supplémentaires. D’autres outils, tels que AdlCopy, ne permettent pas de copier de données entre différentes régions.  
 
 * **Frais liés à la bande passante**. Des [frais liés à la bande passante](https://azure.microsoft.com/en-us/pricing/details/bandwidth/) s’appliquent, car les données sont transférées en dehors d’une région Azure.
 
-* **Listes de contrôle d’accès sur vos données**. Sécurisez vos données dans la nouvelle région en appliquant des listes de contrôle d’accès aux fichiers et dossiers. Pour plus d’informations, consultez [Sécurisation des données stockées dans Azure Data Lake Store](data-lake-store-secure-data.md). Nous vous recommandons de profiter de la migration pour mettre à jour et ajuster vos listes de contrôle d’accès. Vous pouvez utiliser des paramètres similaires à vos paramètres actuels. Vous pouvez afficher les listes de contrôle d’accès dans n’importe quel fichier à l’aide du portail Azure, des [applets de commande PowerShell](/powershell/module/azurerm.datalakestore/get-azurermdatalakestoreitempermission) ou des Kits de développement logiciel (SDK).  
+* **Listes de contrôle d’accès sur vos données**. Sécuriser vos données dans la nouvelle région de hello en appliquant les dossiers et les listes ACL toofiles. Pour plus d’informations, consultez [Sécurisation des données stockées dans Azure Data Lake Store](data-lake-store-secure-data.md). Nous vous recommandons d’utiliser hello migration tooupdate et ajuster vos ACL. Vous pourriez toouse paramètres tooyour actuel des paramètres similaires. Vous pouvez afficher les listes ACL hello est appliqués tooany fichier à l’aide de hello portail Azure, [applets de commande PowerShell](/powershell/module/azurerm.datalakestore/get-azurermdatalakestoreitempermission), ou les kits de développement logiciel.  
 
-* **Emplacement des services d’analyse**. Pour des performances optimales, vos services d’analyse, tels qu’Azure Data Lake Analytics ou Azure HDInsight, doivent se situer dans la même région que vos données.  
+* **Emplacement des services d’analyse**. Pour des performances optimales, vos services analytique, tels qu’Analytique de LAC de données Azure ou Azure HDInsight, doivent être Bonjour même région que vos données.  
 
 ## <a name="next-steps"></a>Étapes suivantes
 * [Présentation d’Azure Data Lake Store](data-lake-store-overview.md)

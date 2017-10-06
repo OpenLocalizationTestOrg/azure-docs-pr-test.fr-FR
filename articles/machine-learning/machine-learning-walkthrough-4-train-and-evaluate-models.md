@@ -1,6 +1,6 @@
 ---
-title: "Étape 4 : formation et évaluation des modèles d’analyse prédictive | Microsoft Docs"
-description: "Étape 4 de la procédure pas à pas du développement d’une solution prédictive : formation, notation et évaluation des multiples modèles dans Azure Machine Learning Studio."
+title: "Étape 4 : Effectuer l’apprentissage et évaluer des modèles d’analyse prédictive hello | Documents Microsoft"
+description: "Étape 4 Hello développer la procédure pas à pas une solution prédictive : effectuer l’apprentissage, évaluer et évaluer plusieurs modèles dans Azure Machine Learning Studio."
 services: machine-learning
 documentationcenter: 
 author: garyericson
@@ -14,180 +14,180 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/23/2017
 ms.author: garye
-ms.openlocfilehash: 58d46dd1464ec0a3fc9639f78d4429e0e778c2bf
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d86d7c5ae7524f71fe44d985db67c4618b7965a8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="walkthrough-step-4-train-and-evaluate-the-predictive-analytic-models"></a>Étape 4 de la procédure pas à pas : formation et évaluation des modèles d’analyse prédictive
-Cette rubrique décrit la quatrième étape de la procédure pas à pas [Développement d’une solution d’analyse prédictive avec Azure Machine Learning](machine-learning-walkthrough-develop-predictive-solution.md)
+# <a name="walkthrough-step-4-train-and-evaluate-hello-predictive-analytic-models"></a>Procédure pas à pas, étape 4 : Effectuer l’apprentissage et évaluer des modèles d’analyse prédictive hello
+Cette rubrique contient hello quatrième étape d’hello procédure pas à pas, [développer une solution prédictive analytique dans Azure Machine Learning](machine-learning-walkthrough-develop-predictive-solution.md)
 
 1. [Créer un espace de travail Machine Learning](machine-learning-walkthrough-1-create-ml-workspace.md)
 2. [Télécharger des données existantes](machine-learning-walkthrough-2-upload-data.md)
 3. [Créer une expérience](machine-learning-walkthrough-3-create-new-experiment.md)
-4. **Former et évaluer les modèles**
-5. [Déployer le service web](machine-learning-walkthrough-5-publish-web-service.md)
-6. [Accéder au service web](machine-learning-walkthrough-6-access-web-service.md)
+4. **L’apprentissage et évaluer des modèles de hello**
+5. [Déployer le service Web de hello](machine-learning-walkthrough-5-publish-web-service.md)
+6. [Accéder au service Web de hello](machine-learning-walkthrough-6-access-web-service.md)
 
 - - -
-Un des avantages de l’utilisation d’Azure Machine Learning Studio pour créer des modèles d’apprentissage automatique est la possibilité d’essayer simultanément plusieurs types de modèle dans une expérience et de comparer les résultats. Ce type d’expérimentation vous aide à trouver la meilleure solution à votre problème.
+Un des avantages de hello de l’utilisation d’Azure Machine Learning Studio pour la création de modèles d’apprentissage automatique est hello capacité tootry plus d’un type de modèle à la fois dans une expérience unique et comparer les résultats de hello. Ce type d’expérimentation vous aide à trouver des hello meilleure solution pour votre problème.
 
-Dans l’expérience développée au fil de cette procédure pas à pas, nous allons créer deux types de modèles, puis comparer les résultats d’évaluation afin de choisir l’algorithme que nous utiliserons dans notre expérience finale.  
+Dans l’expérience hello nous développons dans cette procédure pas à pas, nous créer deux différents types de modèles et ensuite comparer leur toodecide résultats score algorithme nous souhaitons toouse dans notre expérience finale.  
 
-Nous avons le choix entre différents modèles. Pour connaître les modèles disponibles, développez le nœud **Machine Learning** dans la palette des modules, puis développez **Initialiser le modèle** et les nœuds inférieurs. Pour cette expérience, nous allons sélectionner les modules [Machines à vecteurs de support à deux classes][two-class-support-vector-machine] et [Arbres de décision optimisé à deux classes][two-class-boosted-decision-tree].    
+Nous avons le choix entre différents modèles. modèles de hello toosee disponibles, développez hello **Machine Learning** nœud dans la palette de module hello, puis développez **initialiser le modèle** et nœuds hello situé sous celui-ci. Fins hello de cette expérience, nous allons sélectionner hello [Two-Class Support Vector Machine] [ two-class-support-vector-machine] (SVM) et hello [Two-Class Boosted Decision Tree] [ two-class-boosted-decision-tree] modules.    
 
 > [!TIP]
-> Pour déterminer facilement l’algorithme Machine Learning le mieux adapté au problème à résoudre, consultez [Comment choisir les algorithmes dans Microsoft Azure Machine Learning](machine-learning-algorithm-choice.md).
+> tooget déterminer plus facilement l’algorithme d’apprentissage mieux adapté à la problématique en particulier hello que vous essayez de toosolve, consultez [comment toochoose des algorithmes pour Microsoft Azure Machine Learning](machine-learning-algorithm-choice.md).
 > 
 > 
 
-## <a name="train-the-models"></a>Formation des modèles
+## <a name="train-hello-models"></a>L’apprentissage des modèles de hello
 
-Nous allons ajouter le module [Arbre de décision optimisé à deux classes][two-class-boosted-decision-tree] et le module [Machines à vecteurs de support à deux classes][two-class-support-vector-machine] dans cette expérience.
+Nous allons ajouter deux hello [Two-Class Boosted Decision Tree] [ two-class-boosted-decision-tree] module et [Two-Class Support Vector Machine] [ two-class-support-vector-machine] ce module Faites des essais.
 
 ### <a name="two-class-boosted-decision-tree"></a>Arbre de décision optimisé à deux classes
 
-Configurons d’abord le modèle Arbre de décision optimisé.
+Tout d’abord, nous allons définir modèle d’arbre de décision augmenté de hello.
 
-1. Recherchez le module [Arbre de décision optimisé à deux classes][two-class-boosted-decision-tree] dans la palette des modules et faites-le glisser sur la zone de dessin.
+1. Recherche hello [Two-Class Boosted Decision Tree] [ two-class-boosted-decision-tree] module dans la palette de module hello et faites-le glisser sur le canevas de hello.
 
-2. Recherchez le module [Former le modèle][train-model], faites-le glisser sur la zone de dessin et connectez la sortie du module [Arbre de décision optimisé à deux classes][two-class-boosted-decision-tree] au port d’entrée de gauche du module [Former le modèle][train-model].
+2. Recherche hello [Train Model] [ train-model] module, faites glisser sur la zone de dessin hello et connectez-vous sortie hello Hello [Two-Class Boosted Decision Tree] [ two-class-boosted-decision-tree]module toohello gauche d’un port d’entrée de hello [Train Model] [ train-model] module.
    
-   Le module [Arbre de décision optimisé à deux classes][two-class-boosted-decision-tree] initialise le modèle générique, tandis que le module [Former le modèle][train-model] utilise les données d’apprentissage pour former le modèle. 
+   Hello [Two-Class Boosted Decision Tree] [ two-class-boosted-decision-tree] module initialise modèle générique hello et [Train Model] [ train-model] utilise les données d’apprentissage modèle de hello tootrain. 
 
-3. Connectez la sortie de gauche du module [Exécuter le script R][execute-r-script] de gauche au port d’entrée de droite du module [Former le modèle][train-model] (à l’[étape 3](machine-learning-walkthrough-3-create-new-experiment.md) de cette procédure, nous avons décidé d’utiliser les données provenant du côté gauche du module Fractionner les données pour la formation).
+3. Connecter la sortie de gauche hello de hello à gauche [Execute R Script] [ execute-r-script] toohello module droit d’entrée de port de hello [Train Model] [ train-model] module (nous décidé dans [étape 3](machine-learning-walkthrough-3-create-new-experiment.md) de cette procédure pas à pas toouse hello les données provenant hello gauche hello fractionnement du module de données pour l’apprentissage).
    
    > [!TIP]
-   > Pour cette expérience, nous n’avons pas besoin de deux des entrées et de l’une des sorties du module [Exécuter le script R][execute-r-script]. Nous pouvons donc ne les laisser sans liaison. 
+   > Nous n’avez pas besoin de deux entrées de hello et une des sorties hello Hello [Execute R Script] [ execute-r-script] module pour cette expérience, donc nous pouvons les laisser détachés. 
    > 
    > 
 
-Cette partie de l'expérience ressemble alors à ce qui suit :  
+Cette partie de l’expérience de hello ressemble maintenant à ceci :  
 
 ![Training a model][1]
 
-Maintenant, nous devons indiquer au module [Former le modèle][train-model] que nous voulons utiliser le modèle pour prédire la valeur Risque de crédit.
+Maintenant nous devons tootell hello [Train Model] [ train-model] module que nous souhaitons valeur risque de crédit de hello modèle toopredict hello.
 
-1. Sélectionnez le module [Former le modèle][train-model]. Dans le volet **Propriétés**, cliquez sur **Lancer le sélecteur de colonne**.
+1. Sélectionnez hello [Train Model] [ train-model] module. Bonjour **propriétés** volet, cliquez sur **sélecteur de colonne lancement**.
 
-2. Dans la boîte de dialogue **Sélectionner une seule colonne**, tapez « risque de crédit » dans le champ de recherche sous **Colonnes disponibles**, sélectionnez « Risque de crédit » ci-dessous et cliquez sur la flèche droite (**>**) pour déplacer « Risque de crédit » vers **Colonnes sélectionnées**. 
+2. Bonjour **sélectionner une seule colonne** boîte de dialogue, tapez « risque de crédit » dans le champ de recherche hello sous **colonnes disponibles**, sélectionnez « Risque de crédit » ci-dessous et cliquez sur le bouton de flèche droite hello ( **>** ) toomove « Risque de crédit « trop**colonnes sélectionnées**. 
 
-    ![Sélectionnez la colonne Risque de crédit pour le module Former le modèle][0]
+    ![Sélectionnez colonne de risque de crédit hello pour le module de Train Model hello][0]
 
-3. Cliquez sur la coche **OK**.
+3. Cliquez sur hello **OK** case à cocher.
 
 ### <a name="two-class-support-vector-machine"></a>Machine à vecteurs de support à deux classes
 
-Nous configurons ensuite le modèle SVM.  
+Ensuite, nous configurons modèle SVM de hello.  
 
-Tout d’abord, une petite explication sur SVM. Les arbres de décision optimisés fonctionnent bien avec tout type de caractéristique. Toutefois, le module SVM générant un classifieur linéaire, le modèle qu'il génère obtient la meilleure erreur de test quand toutes les caractéristiques numériques sont à la même échelle. Pour convertir toutes les fonctions numériques à la même échelle, nous utilisons une transformation « Tanh » (avec le module [Normaliser les données][normalize-data]). Cette opération transforme les nombres en plage [0,1]. Le module SVM convertit les fonctions de chaîne en fonctions catégorielles, puis en fonctions 0/1 binaires. Il est donc inutile de les transformer manuellement. De même, nous ne voulons pas transformer la colonne Risque du crédit (colonne 21). Elle est numérique et contient la valeur que nous apprenons à prédire au modèle ; nous devons donc la laisser seule.  
+Tout d’abord, une petite explication sur SVM. Les arbres de décision optimisés fonctionnent bien avec tout type de caractéristique. Toutefois, étant donné que le module SVM hello génère un classifieur linéaire, modèle hello qu’elle génère a erreur de test meilleures hello lorsque toutes les fonctions numériques ont hello même échelle. tooconvert numérique toutes les fonctionnalités toohello identique à l’échelle, nous utilisons une transformation « Tanh » (avec hello [Normalize Data] [ normalize-data] module). Cela transforme les numéros de plage de hello [0,1]. module SVM Hello convertit les fonctions toocategorical fonctions de chaîne et des fonctionnalités toobinary 0/1, donc nous ne devez toomanually transformer des fonctions de chaîne. En outre, nous ne voulons pas tootransform hello risque de crédit colonne (21) : il est numérique, mais il est valeur hello nous mettons formation hello toopredict de modèle, donc vous devez tooleave elle seule.  
 
-Pour configurer le modèle SVM, procédez comme suit :
+tooset modèle SVM de hello, procédez comme hello suivant :
 
-1. Recherchez le module [Machine à vecteurs de support à deux classes][two-class-support-vector-machine] dans la palette des modules et faites-le glisser sur la zone de dessin.
+1. Recherche hello [Two-Class Support Vector Machine] [ two-class-support-vector-machine] module dans la palette de module hello et faites-le glisser sur le canevas de hello.
 
-2. Cliquez avec le bouton droit sur le module [Former le modèle][train-model], sélectionnez **Copier**, puis cliquez avec le bouton droit sur la zone de dessin et sélectionnez **Coller**. La copie du module [Former le modèle][train-model] contient les mêmes colonnes que l’original.
+2. Avec le bouton hello [Train Model] [ train-model] module, sélectionnez **copie**, puis cliquez sur la zone de dessin hello et sélectionnez **coller**. Hello copie Hello [Train Model] [ train-model] module a hello sélection de la même colonne en tant que hello d’origine.
 
-3. Connectez la sortie du module [Machines à vecteurs de support à deux classes][two-class-support-vector-machine] au port d’entrée de gauche du second module [Former le modèle][train-model].
+3. Connectez la sortie hello Hello [Two-Class Support Vector Machine] [ two-class-support-vector-machine] toohello du module reste un port d’entrée de hello deuxième [Train Model] [ train-model] module.
 
-4. Trouvez le module [Normaliser les données][normalize-data] et faites-le glisser vers la zone de dessin.
+4. Recherche hello [Normalize Data] [ normalize-data] module et faites-le glisser sur le canevas de hello.
 
-5. Connectez la sortie de gauche du module [Exécuter le script R][execute-r-script] de gauche à l’entrée de ce module (notez que le port de sortie d’un module peut être connecté à plusieurs autres modules).
+5. Connecter la sortie de gauche hello de hello à gauche [Execute R Script] [ execute-r-script] entrée toohello de module de ce module (Notez que le port de sortie hello d’un module peut être toomore connecté à un autre module).
 
-6. Connectez le port de sortie de gauche du module [Normaliser les données][normalize-data] au port d’entrée de droite du deuxième module [Former le modèle][train-model].
+6. Se connecter hello gauche du port de sortie de hello [normaliser des données] [ normalize-data] toohello module droite port d’entrée de hello deuxième [Train Model] [ train-model] module.
 
 Cette partie de l'expérience ressemble alors à ceci :  
 
-![Training the second model][2]  
+![Modèle de formation hello deuxième][2]  
 
-Configurez maintenant le module [Normaliser les données][normalize-data] :
+À présent configurer hello [Normalize Data] [ normalize-data] module :
 
-1. Cliquez pour sélectionner le module [Normaliser les données][normalize-data]. Dans le volet **Propriétés**, sélectionnez **Tanh** comme paramètre de la **Méthode de transformation**.
+1. Cliquez sur tooselect hello [Normalize Data] [ normalize-data] module. Bonjour **propriétés** volet, sélectionnez **Tanh** pour hello **méthode de Transformation** paramètre.
 
-2. Cliquez sur **Lancer le sélecteur de colonne**, sélectionnez « Aucune colonne » pour **Commencer par**, sélectionnez **Inclure** dans la première liste déroulante, **Type de colonne** dans la deuxième, puis **Numérique** dans la troisième. Cette action spécifie que toutes les colonnes numériques (et elles seules) sont transformées.
+2. Cliquez sur **sélecteur de colonne lancement**, ne sélectionnez « Aucuns colonnes » pour **commencer avec**, sélectionnez **Include** dans hello premier menu déroulant, sélectionnez **le type de colonne**dans hello le deuxième menu déroulant, puis sélectionnez **numérique** dans la liste déroulante de tiers hello. Spécifie que toutes les colonnes numériques hello (et numériques uniquement) sont transformés.
 
-3. Cliquez sur le signe plus (+) à droite de cette ligne. Cette opération crée une ligne de listes déroulantes. Sélectionnez **Exclure** dans la première liste déroulante, sélectionnez des **noms de colonne** dans la deuxième liste déroulante et entrez « Risque de crédit » dans le champ textuel. Cette opération indique que la colonne Risque de crédit doit être ignorée (en effet, celle-ci étant numérique, elle serait transformée).
+3. Cliquez sur hello toohello le signe plus (+) à droite de cette ligne, cette opération crée une rangée de menus déroulants. Sélectionnez **exclure** dans hello premier menu déroulant, sélectionnez **les noms de colonne** dans hello la deuxième liste déroulante et entrez « Risque de crédit » dans le champ de texte hello. Cela spécifie que cette colonne de risque de crédit hello doit être ignorée (nous devons toodo cela, car cette colonne est numérique et il sera transformé si nous n’avez pas l’exclure).
 
-4. Cliquez sur la coche **OK**.  
+4. Cliquez sur hello **OK** case à cocher.  
 
-    ![Sélectionner des colonnes pour le module Normaliser les données][5]
+    ![Sélectionnez des colonnes pour le module de normaliser les données hello][5]
 
-Le module [Normaliser les données][normalize-data] est maintenant configuré pour effectuer une transformation Tanh sur toutes les colonnes numériques, à l’exception de la colonne Risque de crédit.  
+Hello [Normalize Data] [ normalize-data] module est désormais ensemble tooperform une transformation Tanh sur toutes les colonnes numériques à l’exception de hello risque de crédit.  
 
-## <a name="score-and-evaluate-the-models"></a>Notation et évaluation des modèles
+## <a name="score-and-evaluate-hello-models"></a>Calcul du score et évaluer des modèles de hello
 
-Nous utilisons les données de test exclues par le module [Fractionner les données][split] pour noter nos modèles formés. Nous pouvons ensuite comparer les résultats des deux modèles pour savoir lequel donne les meilleurs résultats.  
+Nous utilisons hello test des données qui a été séparées par hello [données fractionnées] [ split] module tooscore nos modèles formés. Nous pouvons ensuite comparer les résultats hello de hello deux modèles toosee qui a généré les meilleurs résultats.  
 
-### <a name="add-the-score-model-modules"></a>Ajouter les modules Noter le modèle
+### <a name="add-hello-score-model-modules"></a>Ajouter des modules de Score Model hello
 
-1. Recherchez le module [Noter le modèle][score-model] et faites-le glisser sur la zone de dessin.
+1. Recherche hello [Score Model] [ score-model] module et faites-le glisser sur le canevas de hello.
 
-2. Connectez le module [Former le modèle][train-model] relié au module [Arbre de décision optimisé à deux classes][two-class-boosted-decision-tree], au port d’entrée de gauche du module [Noter le modèle][score-model].
+2. Se connecter hello [Train Model] [ train-model] module qui s’est connecté toohello [Two-Class Boosted Decision Tree] [ two-class-boosted-decision-tree] entrée gauche toohello de module port de hello [Score Model] [ score-model] module.
 
-3. Connectez le module [Exécuter le script R][execute-r-script] (nos données de test) au port d’entrée de droite du module [Noter le modèle][score-model].
+3. Se connecter à droite de hello [Execute R Script] [ execute-r-script] toohello de module (nos données de test) à droite d’entrée de port de hello [Score Model] [ score-model] module.
 
     ![Module Noter le modèle connecté][6]
    
-   Le module [Noter le modèle][score-model] peut maintenant récupérer les informations sur le crédit dans les données de test, les traiter à l’aide du modèle et comparer les prévisions générées par le modèle à la colonne Risque de crédit dans les données de test.
+   Hello [Score Model] [ score-model] module peut désormais tirer des informations relatives au crédit hello de hello données, exécutez-le jusqu’au modèle hello, de test et des prédictions hello de comparer les modèle hello génère par hello réel risque de crédit colonne Bonjour de données de test.
 
-4. Copiez et collez le module [Noter le modèle][score-model] pour créer une deuxième copie.
+4. Copiez et collez hello [Score Model] [ score-model] module toocreate une seconde copie.
 
-5. Connectez la sortie du modèle SVM (c’est-à-dire le port de sortie du module [Former le modèle][train-model] relié au module [Arbre de décision optimisé à deux classes][two-class-support-vector-machine]) au port d’entrée du deuxième module [Noter le modèle][score-model].
+5. Connecter la sortie hello du modèle SVM hello (autrement dit, hello sortie de hello [Train Model] [ train-model] module qui s’est connecté toohello [Two-Class Support Vector Machine] [ two-class-support-vector-machine] module) toohello port d’entrée de hello deuxième [Score Model] [ score-model] module.
 
-6. Pour le modèle SVM, nous devons effectuer la même transformation pour tester les données comme nous l’avons fait pour les données de formation. Donc, copiez et collez le module [Normaliser les données][normalize-data] pour créer une autre copie et connectez-la au module [Exécuter le script R][execute-r-script] de droite.
+6. Pour un modèle SVM de hello, nous avons toodo hello les mêmes données de test toohello transformation comme nous l’avons fait des données d’apprentissage toohello. Par conséquent, copiez et collez hello [normaliser les données] [ normalize-data] module toocreate une deuxième copie et le connecter à droite de toohello [Execute R Script] [ execute-r-script] module.
 
-7. Connectez la sortie de gauche du deuxième module [Noter le modèle][normalize-data] au port d’entrée de droite du deuxième module [Noter le modèle][score-model].
+7. Connectez ensuite de sortie de gauche de hello Hello [Normalize Data] [ normalize-data] toohello module droite port d’entrée de hello deuxième [Score Model] [ score-model] module.
 
     ![Deux modules Noter le modèle connectés][7]
 
-### <a name="add-the-evaluate-model-module"></a>Ajouter le module Évaluer le modèle
+### <a name="add-hello-evaluate-model-module"></a>Ajouter hello évaluer le modèle module
 
-Pour évaluer les deux résultats et les comparer, nous utilisons un module [Évaluer le modèle][evaluate-model].  
+tooevaluate hello deux résultats de calcul de score et de les comparer, nous utilisons un [modèle Evaluate] [ evaluate-model] module.  
 
-1. Recherchez le module [Évaluer le modèle][evaluate-model] et faites-le glisser vers la zone de dessin.
+1. Recherche hello [modèle Evaluate] [ evaluate-model] module et faites-le glisser sur le canevas de hello.
 
-2. Connectez le port de sortie du module [Noter le modèle][score-model] associé au modèle Arbre de décision optimisé, au port d’entrée gauche du module [Évaluer le modèle][evaluate-model].
+2. Connectez le port de sortie de hello de hello [Score Model] [ score-model] module associé hello augmentés décision arborescence modèle toohello gauche d’entrée de port de hello [modèle Evaluate] [ evaluate-model] module.
 
-3. Connectez l’autre module [Noter le modèle][score-model] au port d’entrée de droite.  
+3. Se connecter hello autres [Score Model] [ score-model] toohello module droit d’entrée de port.  
 
     ![Module Évaluer le modèle connecté][8]
 
-### <a name="run-the-experiment-and-check-the-results"></a>Exécuter l’expérience et vérifier les résultats
+### <a name="run-hello-experiment-and-check-hello-results"></a>Exécutez hello expérience et vérifier les résultats de hello
 
-Pour exécuter l’expérience, cliquez sur le bouton **EXÉCUTER** sous le canevas. Cette opération peut prendre quelques minutes. Un indicateur rotatif sur chaque module indique que l’exécution est en cours. Puis une coche verte s’affiche pour signaler que l’exécution du module est terminée. Lorsque tous les modules comportent une coche, l'exécution de l'expérience est terminée.
+toorun hello expérience, cliquez sur hello **exécuter** situé sous la zone de dessin hello. Cette opération peut prendre quelques minutes. Un indicateur de rotation sur chaque module indique qu’il est en cours d’exécution et ensuite une coche verte indique quand le module de hello est terminée. Lorsque tous les modules hello possèdent une coche, expérience de hello a terminé son exécution.
 
-L'expérience doit ressembler à ceci :  
+expérience de Hello doit maintenant ressembler à ceci :  
 
 ![Evaluating both models][3]
 
-Pour vérifier les résultats, cliquez sur le port de sortie du module [Évaluer le modèle][evaluate-model] et sélectionnez **Visualiser**.  
+résultats de hello toocheck, cliquez sur le port de sortie hello Hello [modèle Evaluate] [ evaluate-model] module et sélectionnez **visualiser**.  
 
-Le module [Évaluer le modèle][evaluate-model] produit une paire de courbes et de mesures qui vous permettent de comparer les résultats des deux modèles notés. Vous pouvez afficher les résultats sous forme de courbes Receiver Operator Characteristic (ROC), Precision/Recall ou Lift. Les données supplémentaires affichées comprennent une matrice de confusion, les valeurs cumulées pour l’aire sous la courbe (ASC) et d’autres mesures. Vous pouvez modifier la valeur du seuil en déplaçant le curseur vers la gauche ou la droite et voir son influence sur l'ensemble des mesures.  
+Hello [modèle Evaluate] [ evaluate-model] module génère une paire de courbes et les mesures qui permettent de résultats de hello toocompare de deux modèles de score hello. Vous pouvez afficher les résultats de hello en tant que courbes récepteur opérateur caractéristique (ROC), des courbes de précision et de rappel ou des courbes de courbes d’élévation. Données supplémentaires affichées incluent une matrice de confusion, les valeurs cumulées de zone hello sous la courbe de hello (AUC) et d’autres mesures. Vous pouvez modifier la valeur de seuil hello par déplacement de curseur hello gauche ou droite et voir comment il affecte ensemble hello de mesures.  
 
-À droite du graphique, cliquez sur **Jeu de données noté** ou **Jeu de données noté à comparer** pour mettre en surbrillance la courbe associée et afficher les mesures associées en dessous. Dans la légende des courbes, « Jeu de données noté » correspond au port d’entrée de gauche du module [Évaluer le modèle][evaluate-model] (en l’occurrence, le modèle Arbre de décision optimisé). « Jeu de données noté à comparer » correspond au port d’entrée de droite, le modèle SVM dans notre cas. Lorsque vous cliquez sur une de ces étiquettes, la courbe de ce modèle apparaît en surbrillance ainsi que les mesures correspondantes, comme dans le graphique suivant.  
+toohello à droite du graphique de hello, cliquez sur **transformée dataset** ou **transformée dataset toocompare** toohighlight Bonjour associé courbe et toodisplay Bonjour associés métriques ci-dessous. Dans légende hello pour les courbes de hello, « Transformée dataset » correspond toohello gauche d’un port d’entrée de hello [modèle Evaluate] [ evaluate-model] module - dans le cas présent, il s’agit modèle d’arbre de décision augmenté de hello. « Transformée dataset toocompare » correspond port d’entrée droite toohello - modèle SVM hello dans notre cas. Lorsque vous cliquez sur une de ces étiquettes, courbe hello pour ce modèle est mis en surbrillance et les métriques correspondant hello sont affichent, comme indiqué dans le graphique suivant de hello.  
 
 ![ROC curves for models][4]
 
-En examinant ces valeurs, vous pouvez déterminer quel modèle est le plus susceptible de fournir les résultats que vous recherchez. Vous pouvez revenir en arrière et relancer votre expérience en modifiant les valeurs des différents modèles. 
+En examinant ces valeurs, vous pouvez décider quel modèle est le plus proche toogiving que Hello de résultats que vous recherchez. Vous pouvez revenir en arrière et itérez au sein de votre expérience en modifiant les valeurs de paramètre dans des modèles différents hello. 
 
-Cette procédure n’explique pas comment interpréter ces résultats et optimiser les performances du modèle. Pour en savoir plus, consultez les articles suivants :
-- [Évaluation des performances d’un modèle dans Azure Machine Learning](machine-learning-evaluate-model-performance.md)
-- [Sélection des paramètres permettant d’optimiser des algorithmes dans Microsoft Azure Machine Learning](machine-learning-algorithm-parameters-optimize.md)
+science de Hello et art d’interpréter ces résultats et de paramétrage des performances du modèle hello est étendue de hello en dehors de cette procédure pas à pas. Pour obtenir une aide supplémentaire, vous pouvez lire hello suivant des articles :
+- [Comment tooevaluate modèle de performances dans Azure Machine Learning](machine-learning-evaluate-model-performance.md)
+- [Choisissez des paramètres toooptimize vos algorithmes dans Azure Machine Learning](machine-learning-algorithm-parameters-optimize.md)
 - [Interprétation des résultats de modèle dans Azure Machine Learning](machine-learning-interpret-model-results.md)
 
 > [!TIP]
-> À chaque exécution de l’expérience, un enregistrement de cet essai est conservé dans l’historique d’exécution. Vous pouvez afficher tous les essais de votre expérience (et y revenir) en cliquant sur **AFFICHER L'HISTORIQUE D'EXÉCUTION** , sous le canevas. Vous pouvez également cliquer sur **Exécution précédente** dans le volet **Propriétés** pour revenir à l’exécution précédant immédiatement celle que vous avez ouverte.
+> Chaque fois que vous exécutez expérience de hello un enregistrement de cette itération est conservée dans hello historique d’exécution. Vous pouvez afficher ces itérations et revenir tooany d'entre elles, en cliquant sur **afficher l’historique d’exécution** sous la zone de dessin hello. Vous pouvez également cliquer sur **exécuter préalable** Bonjour **propriétés** itération de toohello tooreturn volet précédant hello un est ouvert.
 > 
-> Vous pouvez faire une copie d’un essai de votre expérience en cliquant sur **ENREGISTRER SOUS** sous le canevas. 
-> Utilisez les propriétés **Résumé** et **Description** de l’expérience pour conserver un enregistrement de vos essais dans les itérations de l’expérience.
+> Vous pouvez effectuer une copie d’une itération de votre expérience en cliquant sur **SAVE AS** sous la zone de dessin hello. 
+> Utiliser d’expérience hello **Résumé** et **Description** propriétés tookeep un enregistrement de ce que vous avez essayé de dans les itérations de votre expérience.
 > 
 > Pour en savoir plus, consultez la section [Gérer les itérations des expériences dans Microsoft Azure Machine Learning Studio](machine-learning-manage-experiment-iterations.md).  
 > 
 > 
 
 - - -
- **: [Déployer le service web](machine-learning-walkthrough-5-publish-web-service.md)**
+**Ensuite : [déployer hello web service](machine-learning-walkthrough-5-publish-web-service.md)**
 
 [0]: ./media/machine-learning-walkthrough-4-train-and-evaluate-models/train-model-select-column.png
 [1]: ./media/machine-learning-walkthrough-4-train-and-evaluate-models/experiment-with-train-model.png

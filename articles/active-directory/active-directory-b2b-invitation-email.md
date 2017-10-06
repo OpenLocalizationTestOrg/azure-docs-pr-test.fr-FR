@@ -1,5 +1,5 @@
 ---
-title: "Éléments de l’e-mail d’invitation de collaboration d’Azure Active Directory B2B | Microsoft Docs"
+title: "éléments aaaThe d’e-mail d’invitation hello Azure Active Directory B2B collaboration | Documents Microsoft"
 description: "Modèle d’e-mail d’invitation de collaboration d’Azure Active Directory B2B"
 services: active-directory
 documentationcenter: 
@@ -15,60 +15,60 @@ ms.tgt_pltfrm: NA
 ms.workload: identity
 ms.date: 05/23/2017
 ms.author: sasubram
-ms.openlocfilehash: 458a2cab13b7e83f120e0926a95d454070181dfb
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f4908014d71a63442bbdca2182f54c7a79675a82
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="the-elements-of-the-b2b-collaboration-invitation-email"></a>Éléments de l’e-mail d’invitation de collaboration B2B
+# <a name="hello-elements-of-hello-b2b-collaboration-invitation-email"></a>éléments Hello Hello e-mail d’invitation B2B collaboration
 
-Les e-mails d’invitation sont un composant essentiel pour intégrer des partenaires comme utilisateurs de collaboration B2B dans Azure AD. Vous pouvez les utiliser pour augmenter le niveau de confiance du destinataire. Vous pouvez ajouter de la légitimité et une preuve sociale à l’e-mail de sorte ce que le destinataire sélectionne sans crainte le bouton **Prise en main** pour accepter l’invitation. Cette approbation est un élément clé pour réduire les problèmes de partage. Et elle vous permet aussi d’envoyer de superbes e-mails !
+Des e-mails d’invitation participent un composant essentiel toobring à bord en tant qu’utilisateurs de collaboration B2B dans Azure AD. Vous pouvez les utiliser une confiance tooincrease hello destinataire. Vous pouvez ajouter des légitimité et par courrier électronique toohello preuve sociaux, destinataire de hello que toomake estimez avec sélection hello **prise en main** bouton tooaccept d’invitation hello. Cette approbation est qu'une clé signifie tooreduce friction de partage. Et que vous souhaitez également toomake hello messagerie aspect excellent !
 
 ![E-mail d’invitation Azure AD B2b](media/active-directory-b2b-invitation-email/invitation-email.png)
 
-## <a name="explaining-the-email"></a>Explication de l’e-mail
-Examinons quelques-uns des éléments de l’e-mail pour savoir comment utiliser au mieux ces fonctionnalités.
+## <a name="explaining-hello-email"></a>Expliquant par courrier électronique hello
+Penchons-nous sur quelques éléments de messagerie de hello afin que vous sachiez comment mieux toouse leurs fonctionnalités.
 
 ### <a name="subject"></a>Objet
-L’objet de l’email suit le modèle suivant : vous êtes invité à rejoindre l’organisation &lt;nom_locataire&gt;
+objet du courrier électronique de hello Hello suit hello suivant le modèle : vous êtes invité toohello &lt;tenantname&gt; organisation
 
 ### <a name="from-address"></a>Adresse de l’expéditeur
-Nous utilisons un modèle similaire à LinkedIn pour l’adresse De.  Vous devez faire apparaître clairement qui est l’inviteur et à quelle entreprise il appartient, mais aussi indiquer que l’e-mail provient d’une adresse e-mail Microsoft. Le format est : &lt;nom d’affichage de l’inviteur&gt; de &lt;nom_locataire&gt; (par le biais de Microsoft)invites@microsoft.com&gt;
+Nous utilisons un modèle semblable à LinkedIn pour hello à partir de l’adresse.  Vous devez être clair inviter de hello et à partir duquel l’entreprise et également préciser que messagerie hello provient d’une adresse de messagerie de Microsoft. format de Hello est : &lt;nom complet de l’émetteur de l’invitation&gt; de &lt;tenantname&gt; (via Microsoft) <invites@microsoft.com&gt;
 
 ### <a name="reply-to"></a>Adresse de réponse
-L’adresse e-mail de réponse est définie sur l’adresse e-mail de l’inviteur quand elle est disponible : ainsi, répondre à l’e-mail envoie un e-mail en retour à l’inviteur.
+réponse Hello-tooemail est définie par courrier électronique d’inviter toohello lorsqu’il est disponible, afin que vous répondez par courrier électronique toohello envoie un émetteur de toohello précédent l’invitation par courrier électronique.
 
 ### <a name="branding"></a>Personnalisation
-Les e-mails d’invitation de votre locataire utilisent la personnalisation d’entreprise que vous avez éventuellement définie pour votre locataire. Si vous voulez tirer parti de cette capacité, [voici](https://docs.microsoft.com/azure/active-directory/active-directory-branding-custom-signon-azure-portal) les informations de configuration. Le logo de la bannière s’affiche dans l’e-mail. Suivez [ces instructions](https://docs.microsoft.com/azure/active-directory/active-directory-branding-custom-signon-azure-portal) relatives à la taille et à la qualité de l’image pour obtenir un résultat optimal. En outre, le nom de l’entreprise apparaît également dans l’invite à l’action.
+invitation Hello des messages électroniques à partir de votre client utilisent entreprise hello marque qui vous pouvez avoir configuré pour votre client. Si vous souhaitez parti tootake cette fonctionnalité, [ici](https://docs.microsoft.com/azure/active-directory/active-directory-branding-custom-signon-azure-portal) hello des détails sur la façon de tooconfigure il. logo de bannière Hello s’affiche dans l’e-mail de hello. Suivez la taille de l’image hello et des instructions de qualité [ici](https://docs.microsoft.com/azure/active-directory/active-directory-branding-custom-signon-azure-portal) pour de meilleurs résultats. En outre, nom de la société hello apparaît également dans hello appel tooaction.
 
-### <a name="call-to-action"></a>Invite à l’action
-L’invite à l’action se compose de deux parties : explication de la raison pour laquelle le destinataire a reçu l’e-mail et ce qu’il est demandé comme action au destinataire.
-- La section « Pourquoi » peut être formulée selon le modèle suivant : Vous avez été invité à accéder à des applications dans l’organisation &lt;nom_locataire&gt;
+### <a name="call-tooaction"></a>Appel tooaction
+Hello appel tooaction se compose de deux parties : expliquant pourquoi hello destinataire n’a reçu les messages hello et toodo lui a été demandé à ce que destinataire hello.
+- Hello la section « Pourquoi » peut être adressée à l’aide de hello modèle : vous avez été applications tooaccess invités Bonjour &lt;tenantname&gt; organisation
 
-- Et la section « Ce qu’il vous est demandé de faire » est indiquée par la présence du bouton **Bien démarrer**. Quand le destinataire a été ajouté sans que des invitations soient nécessaires, ce bouton ne s’affiche pas.
+- Et hello « qu’il vous est demandé toodo » une section est indiquée par la présence de hello Hello **prise en main** bouton. Lorsque les destinataire hello a été ajouté sans avoir besoin de hello pour les invitations, ce bouton n’apparaît pas.
 
 ### <a name="inviters-information"></a>Informations de l’inviteur
-Le nom d’affichage de l’inviteur est inclus dans l’e-mail. En outre, si vous avez configuré une image de profil pour votre compte Azure AD, l’e-mail d’invitation inclut également cette image. Ces deux éléments sont destinés à améliorer la confiance de votre destinataire dans l’e-mail.
+nom d’affichage d’inviter Hello est inclus dans le courrier électronique de hello. Et, en outre, si vous avez configuré une image de profil pour votre compte Azure AD, hello invitation par courrier électronique inclut également cette image. Les deux est tooincrease prévue de confiance de votre destinataire par courrier électronique hello.
 
-Si vous n’avez pas encore configuré votre image de profil, une icône comportant les initiales de l’inviteur remplace l’image, comme ceci :
+Si vous n’avez pas encore configuré votre photo de profil, une icône initiales d’inviter hello à la place d’image de hello est indiquée :
 
-  ![affichage des initiales de l’inviteur](media/active-directory-b2b-invitation-email/inviters-initials.png)
+  ![afficher les initiales d’inviter hello](media/active-directory-b2b-invitation-email/inviters-initials.png)
 
-### <a name="body"></a>body
-Le corps contient le message que l’inviteur a composé ou transmis par le biais de l’API d’invitation. Il s’agit d’une simple zone de texte qui ne traite pas les balises HTML pour des raisons de sécurité.
+### <a name="body"></a>Corps
+corps de Hello contient le message de type hello qu’inviter hello compose ou est passé par le biais d’invitation hello API. Il s’agit d’une simple zone de texte qui ne traite pas les balises HTML pour des raisons de sécurité.
 
 ### <a name="footer-section"></a>Section Pied de page
-Le pied de page contient la marque de la société Microsoft et permet au destinataire de savoir si l’e-mail a été envoyé à partir d’un alias non surveillé. Cas particuliers :
+pied de page Hello contient la marque de société Microsoft hello et informe le destinataire de hello si hello a été envoyé depuis un alias non contrôlé. Cas particuliers :
 
-- L’inviteur n’a pas d’adresse e-mail dans la location de l’inviteur
+- émetteur de l’invitation Hello n’a pas une adresse de messagerie dans hello invitant l’architecture mutualisée
 
-  ![image de l’inviteur sans adresse e-mail dans la location de l’inviteur](media/active-directory-b2b-invitation-email/inviter-no-email.png)
+  ![image de l’émetteur de l’invitation n’a pas une adresse de messagerie dans hello invitant l’architecture mutualisée](media/active-directory-b2b-invitation-email/inviter-no-email.png)
 
 
-- Le destinataire n’a pas besoin de réclamer l’invitation
+- destinataire de Hello n’a pas besoin d’invitation hello tooredeem
 
-  ![quand le destinataire n’a pas besoin de réclamer l’invitation](media/active-directory-b2b-invitation-email/when-recipient-doesnt-redeem.png)
+  ![Lorsque destinataire n’a pas besoin d’invitation tooredeem](media/active-directory-b2b-invitation-email/when-recipient-doesnt-redeem.png)
 
 
 ## <a name="next-steps"></a>Étapes suivantes

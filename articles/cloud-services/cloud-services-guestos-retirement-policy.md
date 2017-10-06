@@ -1,6 +1,6 @@
 ---
-title: "Guide de prise en charge et de stratégie de suppression pour le SE invité d’Azure | Microsoft Docs"
-description: "Fournit des informations sur les éléments pris en charge par Microsoft en ce qui concerne le SE invité d'Azure utilisé par les services cloud."
+title: "guide de stratégie aaaSupportability et de retrait pour le système d’exploitation invité de Azure | Documents Microsoft"
+description: "Fournit des informations sur ce que Microsoft prend en charge en ce qui concerne les toohello système d’exploitation invité de Azure utilisés par les Services de cloud computing."
 services: cloud-services
 documentationcenter: na
 author: raiye
@@ -14,68 +14,68 @@ ms.tgt_pltfrm: na
 ms.workload: tbd
 ms.date: 5/26/2017
 ms.author: raiye
-ms.openlocfilehash: 488a6e144b16c57c137e60b918ee68c78db1a54f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6a86c42ac95d12bbf116d900b7afb26fc3fe34e6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-guest-os-supportability-and-retirement-policy"></a>Prise en charge et stratégie de suppression du SE invité d’Azure
-Les informations de cette page concernent le système d'exploitation invité Azure ([SE invité](cloud-services-guestos-update-matrix.md)) pour les rôles Web et de travail Cloud Services (PaaS). Elles ne s'appliquent pas aux machines virtuelles (IaaS).
+Hello plus d’informations sur cette page concerne le système de d’exploitation invité Azure toohello ([système d’exploitation invité](cloud-services-guestos-update-matrix.md)) pour les rôles web et de travail des Services de Cloud (PaaS). Il ne s’applique pas tooVirtual Machines (IaaS).
 
-Microsoft a publié sa [politique de support pour le SE invité](http://support.microsoft.com/gp/azure-cloud-lifecycle-faq). La page que vous êtes en train de lire décrit l'implémentation de cette politique.
+Microsoft dispose d’un rapport publié [politique de support pour le système d’exploitation invité de hello](http://support.microsoft.com/gp/azure-cloud-lifecycle-faq). page Hello que vous lisez décrit maintenant comment la stratégie de hello est implémenté.
 
-Cette politique développe les points suivants :
+stratégie de Hello est
 
-1. Microsoft prendra en charge **au moins les deux dernières familles de systèmes d'exploitation invités**. Lorsqu'une famille est supprimée, les clients bénéficient d'un délai de 12 mois à compter de la date officielle de suppression pour passer à une famille de systèmes d'exploitation invités plus récente prise en charge.
-2. Microsoft prendra en charge **au moins les deux dernières versions des familles des systèmes d'exploitation invités prises en charge**.
-3. Microsoft prendra en charge **au moins les deux dernières versions d'Azure SDK**. Lorsqu'une version du SDK est supprimée, les clients bénéficient d'un délai de 12 mois à compter de la date officielle de suppression pour passer à une version plus récente.
+1. Microsoft prendra en charge **hello au moins les deux dernières familles du système d’exploitation invité de hello**. Lorsqu’une famille est supprimée, les clients ont 12 mois à partir de hello officielle de suppression date tooupdate tooa famille plus récente du système d’exploitation invité.
+2. Microsoft prendra en charge **hello au moins les deux dernières versions des familles de système d’exploitation invité hello pris en charge**.
+3. Microsoft prendra en charge **hello au moins les deux dernières versions de hello Azure SDK**. Lorsqu’une version de hello que Kit de développement logiciel est mis hors service, les clients ont 12 mois à partir de la version plus récente tooa du tooupdate date hello officielle de suppression.
 
-Plus de deux familles ou versions peuvent parfois être prises en charge. Les informations officielles de prise en charge du SE invité seront affichées sur les [versions de système d’exploitation invité d'Azure et la matrice de compatibilité du Kit de développement logiciel (SDK)](cloud-services-guestos-update-matrix.md).
+Plus de deux familles ou versions peuvent parfois être prises en charge. Les informations officielles de prise en charge du système d’exploitation invité seront affiche sur hello [versions de système d’exploitation invité Azure et matrice de compatibilité SDK](cloud-services-guestos-update-matrix.md).
 
 ## <a name="when-a-guest-os-family-or-version-is-retired"></a>Lorsqu'une version ou une famille de systèmes d'exploitation invités est supprimée
-Une nouvelle **famille** de systèmes d'exploitation invités est présentée après la publication d'une nouvelle version officielle du système d'exploitation Windows Server. Chaque fois qu'une nouvelle famille de systèmes d'exploitation invités est présentée, Microsoft retirera la famille des systèmes d'exploitation invités la plus ancienne.
+Un nouveau système d’exploitation invité **famille** est introduit un certain temps après la mise en production hello d’une nouvelle version officielle du système d’exploitation de serveur Windows hello. Chaque fois qu’une nouvelle famille de système d’exploitation invité est présentée, Microsoft retirera famille de système d’exploitation invité hello plus ancien.
 
-Les nouvelles **versions** de SE invité sont présentées tous les mois environ afin d'intégrer les dernières mises à jour MSRC. En raison des mises à jour mensuelles régulières, une version de SE invité est généralement désactivée 60 jours après sa publication. Cette activité permet de conserver au moins deux versions de système d'exploitation invité pour chaque famille à disposition.
+Nouveau système d’exploitation invité **versions** sont introduits sur chaque mois tooincorporate hello dernières mises à jour MSRC. En raison de hello régulières mises à jour mensuelles, une version de système d’exploitation invité est généralement désactivée 60 jours après sa publication. Cette activité permet de conserver au moins deux versions de système d'exploitation invité pour chaque famille à disposition.
 
 ### <a name="process-during-a-guest-os-family-retirement"></a>Processus de suppression d'une famille de SE invités
-Une fois la suppression annoncée, les clients bénéficient d'une période de « transition » de 12 mois avant que la famille la plus ancienne soit officiellement supprimée du service. Ce délai de transition peut être étendu à la discrétion de Microsoft. Les mises à jour seront publiées sur les [versions de système d'exploitation invité d'Azure et la matrice de compatibilité du Kit de développement logiciel (SDK)](cloud-services-guestos-update-matrix.md).
+Une fois que hello retrait annoncé, les clients ont une période de 12 mois « transition » avant de la famille plus ancienne de hello soit officiellement supprimée du service. Cette durée de transition peut être étendue à la discrétion de hello de Microsoft. Les mises à jour seront publiées sur hello [versions de système d’exploitation invité Azure et matrice de compatibilité SDK](cloud-services-guestos-update-matrix.md).
 
-Un processus de suppression progressive commencera six (6) mois après le début de la période de transition. Pendant cette période :
+Un processus de retrait progressif commence six (6) mois à la période de transition hello. Pendant cette période :
 
-1. Microsoft informe les clients de la suppression.
-2. La version la plus récente d'Azure SDK ne prend en charge la famille de SE invités supprimée.
-3. De nouveaux déploiements et redéploiements de services cloud ne seront pas autorisés pour la famille supprimée.
+1. Microsoft informe les clients de mise hors service hello.
+2. version plus récente de Hello Hello Azure SDK ne prend en charge la famille de système d’exploitation invité hello mis hors service.
+3. Ne pourra de nouveaux déploiements et redéploiements de Services Cloud sur la famille de hello mis hors service
 
-Microsoft continuera à présenter la nouvelle version de système d'exploitation invité incorporant les dernières mises à jour MSRC jusqu'au dernier jour de la période de transition, appelé « expiration date » (date d'expiration). À la date d’expiration, les services cloud en cours d'exécution sont pris en charge sous le contrat SLA Azure. Microsoft décide librement de forcer la mise à niveau, la suppression ou l'arrêt de ces services après cette date.
+Microsoft continuera à toointroduce nouvelle version du système d’exploitation invité incorporant les mises à jour MSRC dernière hello jusqu'à hello dernier jour de la période de transition hello, appelée hello « date d’expiration ». Sur la date d’expiration de hello, Services de Cloud en cours d’exécution sera pris en charge sous hello contrat SLA Azure. Microsoft a hello discrétion tooforce mise à niveau, supprimer ou arrêter ces services après cette date.
 
 ### <a name="process-during-a-guest-os-version-retirement"></a>Processus de suppression d'une version de SE invité
-Si les clients définissent la mise à jour automatique pour leur système d'exploitation invité, ils n'ont pas à se soucier de la gestion des versions de système d'exploitation invité. Ils utiliseront toujours la dernière version du SE invité.
+Si les clients définir leur mise à jour de système d’exploitation invité tooautomatically, ils n’ont jamais tooworry sur le traitement des versions de système d’exploitation invité. Il utilisera toujours dernière version de système d’exploitation invité hello.
 
-Les versions de SE invité sont publiées chaque mois. En raison de la fréquence des publications régulières, chaque version est associée à un cycle de vie défini.
+Les versions de SE invité sont publiées chaque mois. En raison de la fréquence de hello des versions normales, chaque version a un cycle de vie fixe.
 
-Après 60 jours de vie, une version obtient le statut «*désactivé*». Cela signifie que la version est supprimée du portail Azure. La version ne peut plus être définie à partir du fichier de configuration CSCFG. Les déploiements existants continuent d’être exécutés. Mais les nouveaux déploiements et les mises à jour de code et de configuration pour les déploiements existants ne seront pas autorisés.
+Après 60 jours à la durée de vie hello, est une version «*désactivé*». « Désactivé » signifie que la version hello est supprimée hello portail. version de Hello ne peut plus être définie à partir du fichier de configuration CSCFG hello. Les déploiements existants continuent d’être exécutés. Mais les nouveaux déploiements et code et la configuration des déploiements tooexisting mises à jour ne seront pas autorisées.
 
-Un certain temps après « expiration », la version du SE invité obtient le statut « *expiré* » et toutes les installations qui exécutent encore cette version sont obligatoirement mises à niveau et paramétrées pour mettre à jour automatiquement le SE invité dans le futur. L'expiration se fait par lots. Ainsi, la période de temps entre la désactivation et l'expiration peut varier.
+Après devient « disabled, » hello version du système d’exploitation invité »*expiration*» et toutes les installations qui exécutent encore cette version sont obligatoirement mis à niveau et de définir tooautomatically hello de mise à jour du système d’exploitation invité dans hello futures. L’expiration intervient en lots période hello de désactivation tooexpiration permettre varier.
 
-Ces périodes peuvent être allongées à la discrétion de Microsoft pour faciliter les transitions des clients. Toutes les modifications seront communiquées sur les [versions de système d'exploitation invité d'Azure et la matrice de compatibilité du Kit de développement logiciel (SDK)](cloud-services-guestos-update-matrix.md).
+Ces périodes peuvent être allongées aux transitions des clients tooease discrétion de Microsoft. Toutes les modifications sont communiquées sur hello [versions de système d’exploitation invité Azure et matrice de compatibilité SDK](cloud-services-guestos-update-matrix.md).
 
 ### <a name="notifications-during-retirement"></a>Notifications pendant la suppression
-* **Suppression de famille** <br>Microsoft utilise les billets de blog et la notification du portail. Les clients qui utilisent encore une famille de systèmes d'exploitation invités supprimée sont informés par une communication directe (e-mail, messages sur le portail, appel téléphonique) aux administrateurs de service nommés. Toutes les modifications seront publiées sur cette page et les flux RSS seront mentionnés au début de cette page.
-* **Suppression de version** <br>Toutes les modifications, ainsi que les dates auxquelles elles surviennent, seront publiées sur cette page et les flux RSS seront mentionnés au début de cette page, y compris la publication, la désactivation et l'expiration. Les administrateurs de services recevront des e-mails s'ils ont des déploiements en cours d'exécution sur une version ou une famille de systèmes d'exploitation invités désactivée. La date d'envoi de ces e-mails peut varier. En général, ils sont envoyés au moins un mois avant la désactivation, bien que ce délai ne soit pas officiellement fixé.
+* **Suppression de famille** <br>Microsoft utilise les billets de blog et la notification du portail. Les clients qui utilisent encore une famille de système d’exploitation invité supprimée seront notifiées via les administrateurs de service tooassigned communication directe (courrier électronique, messages de portail, appel téléphonique). Toutes les modifications sont validées toothis page et hello flux RSS répertorié au début de hello de cette page.
+* **Suppression de version** <br>Toutes les modifications et les dates hello qu’ils se produisent seront publiées toothis page et hello flux RSS répertorié au début de hello de cette page, y compris la mise en production, désactivé et l’expiration. Les administrateurs de services recevront des e-mails s'ils ont des déploiements en cours d'exécution sur une version ou une famille de systèmes d'exploitation invités désactivée. minutage Hello de ces messages électroniques peut varier. En général, ils sont envoyés au moins un mois avant la désactivation, bien que ce délai ne soit pas officiellement fixé.
 
 ## <a name="frequently-asked-questions"></a>Forum Aux Questions
-**Atténuation des impacts de la migration**
+**Comment puis-je atténuer les impacts hello de la migration ?**
 
 Nous vous recommandons d’utiliser la famille la plus récente de SE invités pour concevoir vos services cloud.
 
-1. Commencez à planifier votre migration vers une famille plus récente au plus tôt.
-2. Configurez des déploiements de test temporaires pour tester votre service cloud en cours d'exécution sur la nouvelle famille.
-3. Définissez **Automatique** pour la version de votre système d’exploitation invité (osVersion=* dans le fichier [.cscfg](cloud-services-model-and-package.md#cscfg) ) pour que la migration vers de nouvelles versions de système d’exploitation invité s’effectue automatiquement.
+1. Commencez la planification de votre famille plus récente de migration tooa tôt.
+2. Définir votre Service Cloud en cours d’exécution sur la nouvelle famille de hello tootest des déploiements de test temporaire.
+3. Définissez votre version de système d’exploitation invité trop**automatique** (osVersion = * Bonjour [.cscfg](cloud-services-model-and-package.md#cscfg) fichier) afin que les versions de système d’exploitation invité hello migration toonew se produise automatiquement.
 
-**Que se passe-t-il si mon application Web nécessite une intégration plus avancée au système d'exploitation ?**
+**Que se passe-t-il si mon application web nécessite une intégration plus étroite avec hello du système d’exploitation ?**
 
-Si l’architecture de votre application web dépend de caractéristiques sous-jacentes du système d’exploitation, utilisez les fonctionnalités de plateforme prises en charge telles que les « [tâches de démarrage](cloud-services-startup-tasks.md) » ou d’autres mécanismes d’extensibilité. Sinon, vous pouvez également utiliser les [machines virtuelles Azure](https://azure.microsoft.com/documentation/scenarios/virtual-machines/) (IaaS – Infrastructure en tant que Service), qui vous permettent d'être responsable de la maintenance du système d'exploitation sous-jacent.
+Si votre architecture d’application web dépend des fonctionnalités sous-jacentes du système d’exploitation de hello, utilisez les fonctionnalités de la plateforme prise en charge tels que [tâches de démarrage](cloud-services-startup-tasks.md) ou d’autres mécanismes d’extensibilité. Ou bien, vous pouvez également utiliser [des Machines virtuelles Azure](https://azure.microsoft.com/documentation/scenarios/virtual-machines/) (IaaS – Infrastructure en tant que Service), où vous êtes responsable de hello sous-jacente du système d’exploitation.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Consultez les dernières [versions du système d’exploitation invité](cloud-services-guestos-update-matrix.md).
+Hello révision dernières [mises à jour de système d’exploitation invité](cloud-services-guestos-update-matrix.md).

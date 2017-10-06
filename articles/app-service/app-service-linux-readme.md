@@ -1,6 +1,6 @@
 ---
-title: "Web App sur Linux | Documents Microsoft"
-description: "Qu’est-ce que Web App sur Linux ? Présentation de Web App sur Linux."
+title: aaaWeb application sur Linux | Documents Microsoft
+description: "Qu’est-ce que Web App sur Linux ? Une introduction tooWeb application sur Linux."
 keywords: azure app service, linux, oss
 services: app-service
 documentationcenter: 
@@ -15,20 +15,20 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/10/2016
 ms.author: naziml
-ms.openlocfilehash: 4207da871572cf60e3c33cafd68e8e122ce2028c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2be7bb3446aa5fcf206264370fb1e1ebcdfc44d5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="web-app-on-linux-documentation"></a>Documentation relative à Web App sur Linux
-Actuellement disponible en version préliminaire publique, Web App sur Linux permet aux clients d’exécuter leurs applications web en mode natif sur une plateforme Linux. Cela garantit une meilleure compatibilité entre les applications pour certains types d’applications et facilite la migration des applications web existantes hébergées sur une plateforme Linux vers d’autres services Azure App.
+Web application sur Linux est actuellement en version préliminaire publique et permet aux clients toorun leurs applications web en mode natif sur une plate-forme Linux. Cela permet une meilleure compatibilité des applications pour certains genres d’applications et le rend plus facile toomigrate existant applications web hébergées sur une plate-forme Linux ailleurs sur les Services d’application Azure.
 
 Les clients ne peuvent créer des applications web sur Linux que dans le cadre d’un plan App Service compatible avec Linux pouvant héberger uniquement des applications web basées sur Linux. 
 
-> La tarification de la version préliminaire publique de Web App sur Linux correspond à 50 % du prix standard. Le prix est calculé en réduisant de moitié le nombre d’heures de calcul consommées par votre plan App Service.
+> Public Preview pour l’application Web sur Linux est 50 % de prix normal de hello, et les prix hello sont calculée par la réduction de moitié nombre hello-d’heures de calcul utilisée par votre Plan App Service.
 > 
-> Aucun contrat SLA n’est proposé pendant la période de version préliminaire publique. 
+> Aucun contrat de niveau n’est proposée pendant la période d’évaluation publique de hello. 
 > 
 > 
 

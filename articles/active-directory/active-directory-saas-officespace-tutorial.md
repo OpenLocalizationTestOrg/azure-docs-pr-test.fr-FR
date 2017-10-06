@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory avec OfficeSpace Software | Microsoft Docs"
-description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et OfficeSpace Software."
+description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory à OfficeSpace Software."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -14,112 +14,112 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/27/2017
 ms.author: jeedes
-ms.openlocfilehash: 43d2ecfe851d8f6c43cd4ce7fc4bd872818f4137
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: b53afb648b8a6057c32c782d857e34c06e152c67
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-officespace-software"></a>Didacticiel : Intégration d’Azure Active Directory avec OfficeSpace Software
 
-Dans ce didacticiel, vous allez apprendre à intégrer OfficeSpace Software à Azure Active Directory (Azure AD).
+Dans ce didacticiel, vous apprendrez comment toointegrate OfficeSpace Software avec Azure Active Directory (Azure AD).
 
-L’intégration d’OfficeSpace Software à Azure AD vous offre les avantages suivants :
+Intégration de OfficeSpace Software à Azure AD offre hello avantages suivants :
 
-- Dans Azure AD, vous pouvez contrôler qui a accès à OfficeSpace Software.
-- Vous pouvez autoriser les utilisateurs à se connecter automatiquement à OfficeSpace Software (authentification unique) avec leur compte Azure AD.
-- Vous pouvez gérer vos comptes dans un emplacement central : le portail Azure.
+- Vous pouvez contrôler dans Azure AD qui a accès tooOfficeSpace logiciel.
+- Vous pouvez activer vos utilisateurs tooautomatically get connecté tooOfficeSpace logiciels (Single Sign-On) avec leurs comptes Azure AD.
+- Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure.
 
-Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).
+Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Composants requis
 
-Pour configurer l’intégration d’Azure AD avec OfficeSpace Software, vous avez besoin des éléments suivants :
+tooconfigure intégration d’Azure AD à OfficeSpace Software, vous devez hello éléments suivants :
 
 - Un abonnement Azure AD
 - Un abonnement OfficeSpace Software pour lequel l’authentification unique est activée
 
 > [!NOTE]
-> Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.
+> tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.
 
-Vous devez en outre suivre les recommandations ci-dessous :
+tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :
 
 - N’utilisez pas votre environnement de production, sauf si cela est nécessaire.
 - Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez [obtenir un essai d’un mois](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Description du scénario
-Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :
+Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :
 
-1. Ajout d’OfficeSpace Software à partir de la galerie
+1. Ajout de OfficeSpace Software à partir de la galerie de hello
 2. Configuration et test de l’authentification unique Azure AD
 
-## <a name="adding-officespace-software-from-the-gallery"></a>Ajout d’OfficeSpace Software à partir de la galerie
-Pour configurer l’intégration d’OfficeSpace Software à Azure AD, vous devez ajouter OfficeSpace Software, disponible dans la galerie, à votre liste d’applications SaaS gérées.
+## <a name="adding-officespace-software-from-hello-gallery"></a>Ajout de OfficeSpace Software à partir de la galerie de hello
+intégration de hello tooconfigure de OfficeSpace Software dans Azure AD, vous devez tooadd OfficeSpace Software à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.
 
-**Pour ajouter OfficeSpace Software à partir de la galerie, procédez comme suit :**
+**tooadd OfficeSpace Software à partir de la galerie hello, procédez hello comme suit :**
 
-1. Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**. 
+1. Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône. 
 
-    ![Bouton Azure Active Directory][1]
+    ![bouton d’Azure Active Directory Hello][1]
 
-2. Accédez à **Applications d’entreprise**. Accédez ensuite à **Toutes les applications**.
+2. Accédez trop**des applications d’entreprise**. Passez trop**toutes les applications**.
 
-    ![Panneau Applications d’entreprise][2]
+    ![panneau des applications Enterprise Hello][2]
     
-3. Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.
+3. tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.
 
-    ![Bouton Nouvelle application][3]
+    ![Nouveau bouton d’application Hello][3]
 
-4. Dans la zone de recherche, tapez **OfficeSpace Software**, sélectionnez **OfficeSpace Software** dans le volet de résultats, puis cliquez sur le bouton **Ajouter** pour ajouter l’application.
+4. Dans la zone de recherche de hello, tapez **OfficeSpace Software**, sélectionnez **OfficeSpace Software** à partir du volet de résultats, puis sur **ajouter** bouton application hello de tooadd.
 
-    ![OfficeSpace Software dans la liste des résultats](./media/active-directory-saas-officespace-tutorial/tutorial_officespace_addfromgallery.png)
+    ![Liste des résultats de OfficeSpace Software Bonjour](./media/active-directory-saas-officespace-tutorial/tutorial_officespace_addfromgallery.png)
 
 ## <a name="configure-and-test-azure-ad-single-sign-on"></a>Configurer et tester l’authentification unique Azure AD
 
 Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec OfficeSpace Software avec un utilisateur de test appelé « Britta Simon ».
 
-Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur OfficeSpace Software équivalent dans Azure AD. En d’autres termes, un lien entre un utilisateur Azure AD et l’utilisateur OfficeSpace Software associé doit être établi.
+Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans OfficeSpace Software est tooa utilisateur dans Azure AD. En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans OfficeSpace Software doit toobe établie.
 
-Dans OfficeSpace Software, affectez la valeur du **nom d’utilisateur** dans Azure AD comme valeur du **nom d’utilisateur** pour établir la relation.
+Dans OfficeSpace Software, affecter la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** relation de lien tooestablish hello.
 
-Pour configurer et tester l’authentification unique Azure AD avec OfficeSpace Software, vous devez suivre les indications des sections suivantes :
+tooconfigure et test Azure AD l’authentification unique à OfficeSpace Software, vous devez hello toocomplete suivant des blocs de construction :
 
-1. **[Configurer l’authentification unique Azure AD](#configure-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.
-2. **[Créer un utilisateur de test Azure AD](#create-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.
-3. **[Créer un utilisateur de test OfficeSpace Software](#create-a-officespace-software-test-user)** pour avoir un équivalent de Britta Simon dans OfficeSpace Software qui soit lié à la représentation Azure AD associée.
-4. **[Affecter l’utilisateur de test Azure AD](#assign-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.
-5. **[Tester l’authentification unique](#test-single-sign-on)** : pour vérifier si la configuration fonctionne.
+1. **[Configurer Azure AD Single Sign-On](#configure-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.
+2. **[Créer un utilisateur de test Azure AD](#create-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.
+3. **[Créer un utilisateur de test de OfficeSpace Software](#create-a-officespace-software-test-user)**  -toohave un équivalent de Britta Simon dans OfficeSpace Software qui est la représentation sous forme de toohello lié Azure AD de l’utilisateur.
+4. **[Affecter l’utilisateur de test hello Azure AD](#assign-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.
+5. **[Tester l’authentification unique sur](#test-single-sign-on)**  -tooverify hello indique si les tâches de configuration.
 
 ### <a name="configure-azure-ad-single-sign-on"></a>Configurer l’authentification unique Azure AD
 
-Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure et configurer l’authentification unique dans votre application OfficeSpace Software.
+Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application OfficeSpace Software.
 
-**Pour configurer l’authentification unique Azure AD avec OfficeSpace Software, procédez comme suit :**
+**tooconfigure Azure AD single sign-on avec OfficeSpace Software, procédez hello comme suit :**
 
-1. Dans le portail Azure, sur la page d’intégration de l’application **OfficeSpace Software**, cliquez sur **Authentification unique**.
+1. Bonjour portail Azure, sur hello **OfficeSpace Software** page d’intégration d’application, cliquez sur **l’authentification unique**.
 
     ![Lien Configurer l’authentification unique][4]
 
-2. Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.
+2. Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.
  
     ![Boîte de dialogue Authentification unique](./media/active-directory-saas-officespace-tutorial/tutorial_officespace_samlbase.png)
 
-3. Dans la section **Domaine et URL OfficeSpace Software**, procédez comme suit :
+3. Sur hello **OfficeSpace Software domaine et les URL** section, effectuer hello comme suit :
 
     ![Informations d’authentification unique dans Domaine et URL OfficeSpace Software](./media/active-directory-saas-officespace-tutorial/tutorial_officespace_url.png)
 
-    a. Dans la zone de texte **URL de connexion**, tapez une URL au format suivant : `https://<company name>.officespacesoftware.com/users/sign_in/saml`
+    a. Bonjour **URL de connexion** zone de texte, tapez une URL à l’aide de hello modèle :`https://<company name>.officespacesoftware.com/users/sign_in/saml`
 
-    b. Dans la zone de texte **Identificateur**, tapez une URL au format suivant : `<company name>.officespacesoftware.com`
+    b. Bonjour **identificateur** zone de texte, tapez une URL à l’aide de hello modèle :`<company name>.officespacesoftware.com`
 
     > [!NOTE] 
-    > Il ne s’agit pas de valeurs réelles. Mettez à jour ces valeurs avec l’URL de connexion et l’identificateur réels. Contactez [l’équipe de support technique d’OfficeSpace Software](mailto:support@officespacesoftware.com) pour obtenir ces valeurs. 
+    > Il ne s’agit pas de valeurs réelles. Mettre à jour les valeurs de hello réel Sign-On URL et l’identificateur. Contact [équipe de support Client de OfficeSpace Software](mailto:support@officespacesoftware.com) tooget ces valeurs. 
 
-4. Votre application OfficeSpace Software attend les assertions SAML dans un format spécifique. Configurez les revendications suivantes pour cette application. Vous pouvez gérer les valeurs de ces attributs à partir de la section « **Attributs utilisateur** » sur la page d’intégration des applications. La capture d’écran suivante montre un exemple :
+4. Application OfficeSpace Software attend les assertions SAML hello dans un format spécifique. Veuillez configurer hello suivant des revendications pour cette application. Vous pouvez gérer les valeurs de ces attributs hello depuis hello »**attributs utilisateur**« section sur la page d’intégration d’application. Hello suivant capture d’écran montre un exemple de cela.
     
     ![Configurer l’attribut](./media/active-directory-saas-officespace-tutorial/tutorial_officespace_attribute.png)
 
-5. Dans la section **Attributs utilisateur** de la boîte de dialogue **Authentification unique**, sélectionnez **user.mail** en tant **qu’identificateur d’utilisateur**, et pour chaque ligne indiquée dans le tableau ci-dessous, procédez comme suit :
+5. Bonjour **attributs utilisateur** section hello **l’authentification unique** boîte de dialogue, sélectionnez **user.mail** en tant que **identificateur d’utilisateur** et pour chaque ligne indiqué dans le tableau hello ci-dessous, effectuez hello comme suit :
     
     | Nom de l'attribut | Valeur de l’attribut |
     | --- | --- |    
@@ -128,33 +128,33 @@ Dans cette section, vous allez activer l’authentification unique Azure AD dans
     | first_name | user.givenname |
     | last_name | user.surname |
 
-    a. Cliquez sur **Ajouter un attribut** pour ouvrir la boîte de dialogue **Ajouter un attribut**.
+    a. Cliquez sur **ajouter un attribut** tooopen hello **ajouter un attribut** boîte de dialogue.
 
     ![Configurer l’ajout ](./media/active-directory-saas-officespace-tutorial/tutorial_attribute_04.png)
 
     ![Configurer l’attribut](./media/active-directory-saas-officespace-tutorial/tutorial_attribute_05.png)
     
-    b. Dans la zone de texte **Attribut**, indiquez le nom d’attribut pour cette ligne.
+    b. Bonjour **nom** zone de texte, nom d’attribut type hello indiqué pour cette ligne.
     
-    c. Dans la liste **Valeur** , saisissez la valeur d’attribut affichée pour cette ligne.
+    c. À partir de hello **valeur** liste, la valeur d’attribut type hello indiqué pour cette ligne.
     
     d. Cliquez sur **OK**.
  
-6. Dans la section **Certificat de signature SAML**, copiez la valeur **THUMBPRINT** du certificat.
+6. Sur hello **le certificat de signature SAML** section, hello de copie **l’empreinte numérique** valeur du certificat de hello.
 
-    ![Lien Téléchargement de certificat](./media/active-directory-saas-officespace-tutorial/tutorial_officespace_certificate.png) 
+    ![lien de téléchargement du certificat Hello](./media/active-directory-saas-officespace-tutorial/tutorial_officespace_certificate.png) 
 
 7. Cliquez sur le bouton **Enregistrer** .
 
     ![Bouton Enregistrer de la page Configurer l’authentification unique](./media/active-directory-saas-officespace-tutorial/tutorial_general_400.png)
 
-8. Dans **Configuration de OfficeSpace Software**, cliquez sur **Configurer OfficeSpace Software** pour ouvrir la fenêtre **Configurer l’authentification**. Copiez **l’URL de déconnexion et l’URL du service d’authentification unique SAML** à partir de la **section Référence rapide**.
+8. Sur hello **OfficeSpace Software Configuration** , cliquez sur **configurer OfficeSpace Software** tooopen **configurer l’authentification** fenêtre. Hello de copie **URL de déconnexion et SAML Sign-On URL du Service unique** de hello **section de référence rapide.**
 
     ![Configuration d’OfficeSpace Software](./media/active-directory-saas-officespace-tutorial/tutorial_officespace_configure.png) 
 
 9. Dans une autre fenêtre de navigateur web, connectez-vous à votre locataire OfficeSpace Software en tant qu’administrateur.
 
-10. Accédez à **Paramètres** et cliquez sur **Connecteurs**.
+10. Accédez trop**paramètres** et cliquez sur **connecteurs**.
 
     ![Configurer l’authentification unique côté application](./media/active-directory-saas-officespace-tutorial/tutorial_officespace_002.png)
 
@@ -162,89 +162,89 @@ Dans cette section, vous allez activer l’authentification unique Azure AD dans
 
     ![Configurer l’authentification unique côté application](./media/active-directory-saas-officespace-tutorial/tutorial_officespace_003.png)
 
-12. Dans la section **SAML Authentication** , procédez comme suit :
+12. Bonjour **l’authentification SAML** section, effectuer hello comme suit :
 
     ![Configurer l’authentification unique côté application](./media/active-directory-saas-officespace-tutorial/tutorial_officespace_004.png)
 
-    a. Dans la zone de texte **URL du fournisseur de déconnexion**, collez la valeur de l’**URL de déconnexion** que vous avez copiée à partir du portail Azure.
+    a. Bonjour **url du fournisseur de déconnexion** zone de texte, valeur hello coller **URL de déconnexion** dont vous avez copié à partir du portail Azure.
 
-    b. Dans la zone de texte **URL cible du fournisseur d’identité client**, collez la valeur de l’**URL du service d’authentification unique SAML** que vous avez copiée à partir du portail Azure.
+    b. Bonjour **Client idp target url** zone de texte, valeur hello coller **SAML Sign-On URL du Service unique** dont vous avez copié à partir du portail Azure.
 
-    c. Collez la valeur **Empreinte** que vous avez copiée à partir du portail Azure dans la zone de texte **Empreinte du certificat du fournisseur d’identité client**. 
+    c. Hello de coller **l’empreinte numérique** valeur sur laquelle vous avez copié à partir du portail Azure, dans hello **empreinte numérique du certificat Client IDP** zone de texte. 
 
     d. Cliquez sur **Save Settings**.
 
 
 > [!TIP]
-> Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.  Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas. Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !  Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello. Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="create-an-azure-ad-test-user"></a>Créer un utilisateur de test Azure AD
 
-L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.
+objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.
 
    ![Créer un utilisateur de test Azure AD][100]
 
-**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**
+**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**
 
-1. Dans le volet gauche du Portail Azure, cliquez sur le bouton **Azure Active Directory**.
+1. Bonjour portail Azure, dans le volet gauche de hello, cliquez sur hello **Azure Active Directory** bouton.
 
-    ![Bouton Azure Active Directory](./media/active-directory-saas-officespace-tutorial/create_aaduser_01.png)
+    ![bouton d’Azure Active Directory Hello](./media/active-directory-saas-officespace-tutorial/create_aaduser_01.png)
 
-2. Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.
+2. liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes**, puis cliquez sur **tous les utilisateurs**.
 
-    ![Liens « Utilisateurs et groupes » et « Tous les utilisateurs »](./media/active-directory-saas-officespace-tutorial/create_aaduser_02.png)
+    ![Hello « Utilisateurs et groupes » et « Tous les utilisateurs » liens](./media/active-directory-saas-officespace-tutorial/create_aaduser_02.png)
 
-3. Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue **Tous les utilisateurs**.
+3. tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello hello **tous les utilisateurs** boîte de dialogue.
 
-    ![Bouton Ajouter](./media/active-directory-saas-officespace-tutorial/create_aaduser_03.png)
+    ![bouton Ajouter de Hello](./media/active-directory-saas-officespace-tutorial/create_aaduser_03.png)
 
-4. Dans la boîte de dialogue **Utilisateur**, procédez comme suit :
+4. Bonjour **utilisateur** boîte de dialogue, exécutez hello comme suit :
 
-    ![Boîte de dialogue Utilisateur](./media/active-directory-saas-officespace-tutorial/create_aaduser_04.png)
+    ![boîte de dialogue utilisateur Hello](./media/active-directory-saas-officespace-tutorial/create_aaduser_04.png)
 
-    a. Dans la zone **Nom**, tapez **BrittaSimon**.
+    a. Bonjour **nom** , tapez **BrittaSimon**.
 
-    b. Dans la zone **Nom d’utilisateur** , tapez l’adresse e-mail de l’utilisateur Britta Simon.
+    b. Bonjour **nom d’utilisateur** zone, tapez Bonjour adresse de messagerie de l’utilisateur Britta Simon.
 
-    c. Cochez la case **Afficher le mot de passe**, puis notez la valeur affichée dans le champ **Mot de passe**.
+    c. Sélectionnez hello **afficher le mot de passe** case à cocher, puis écrire la valeur hello qui s’affiche dans hello **mot de passe** boîte.
 
     d. Cliquez sur **Create**.
  
 ### <a name="create-a-officespace-software-test-user"></a>Créer un utilisateur de test OfficeSpace Software
 
-L’objectif de cette section est de créer un utilisateur appelé Britta Simon dans OfficeSpace Software. OfficeSpace Software prend en charge l’approvisionnement juste-à-temps, option activée par défaut.
+objectif Hello de cette section est toocreate un utilisateur appelé Britta Simon dans OfficeSpace Software. OfficeSpace Software prend en charge l’approvisionnement juste-à-temps, option activée par défaut.
 
-Vous n’avez aucune opération à effectuer dans cette section. Un utilisateur est créé lors d’une tentative d’accès à OfficeSpace Software s’il n’existe pas déjà.
+Vous n’avez aucune opération à effectuer dans cette section. Un nouvel utilisateur s’affichera pendant une tentative de tooaccess OfficeSpace Software, s’il n’existe pas encore.
 
 > [!NOTE]
-> Si vous devez créer un utilisateur manuellement, contactez [l’équipe de support d’OfficeSpace Software](mailto:support@officespacesoftware.com).
+> Si vous devez manuellement toocreate un utilisateur, vous devez tooContact [équipe de support technique de OfficeSpace Software](mailto:support@officespacesoftware.com).
 
-### <a name="assign-the-azure-ad-test-user"></a>Affecter l’utilisateur de test Azure AD
+### <a name="assign-hello-azure-ad-test-user"></a>Affecter l’utilisateur de test hello Azure AD
 
-Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à OfficeSpace Software.
+Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooOfficeSpace logiciel.
 
-![Attribuer le rôle d’utilisateur][200] 
+![Attribuer le rôle d’utilisateur hello][200] 
 
-**Pour affecter Britta Simon à OfficeSpace Software, procédez comme suit :**
+**tooassign Britta Simon tooOfficeSpace logiciel, effectuez hello comme suit :**
 
-1. Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.
+1. Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.
 
     ![Affecter des utilisateurs][201] 
 
-2. Dans la liste des applications, sélectionnez **OfficeSpace Software**.
+2. Dans la liste des applications hello, sélectionnez **OfficeSpace Software**.
 
-    ![Lien OfficeSpace Software dans la liste des applications](./media/active-directory-saas-officespace-tutorial/tutorial_officespace_app.png)  
+    ![Hello lien OfficeSpace Software dans la liste des Applications hello](./media/active-directory-saas-officespace-tutorial/tutorial_officespace_app.png)  
 
-3. Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.
+3. Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.
 
-    ![Lien « Utilisateurs et groupes »][202]
+    ![lien de « Utilisateurs et groupes » Hello][202]
 
 4. Cliquez sur le bouton **Ajouter**. Ensuite, sélectionnez **Utilisateurs et groupes** dans la boîte de dialogue **Ajouter une affectation**.
 
-    ![Volet Ajouter une attribution][203]
+    ![volet d’ajouter l’affectation de Hello][203]
 
-5. Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.
+5. Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.
 
 6. Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.
 
@@ -252,13 +252,13 @@ Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentifi
     
 ### <a name="test-single-sign-on"></a>Tester l’authentification unique
 
-Dans cette section, vous allez tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.
+Dans cette section, vous tester votre configuration Azure AD unique de session à l’aide de hello panneau d’accès.
 
-Lorsque vous cliquez sur la vignette OfficeSpace Software dans le volet d’accès, vous êtes automatiquement connecté à votre application OfficeSpace Software.
+Lorsque vous cliquez sur hello OfficeSpace Software vignette Bonjour volet d’accès, vous devez obtenir automatiquement signé sur tooyour application OfficeSpace Software.
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-* [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md)
 
 

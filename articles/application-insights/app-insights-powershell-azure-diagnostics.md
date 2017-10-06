@@ -1,6 +1,6 @@
 ---
-title: Utilisation de PowerShell pour configurer Application Insights pour une application web Azure | Microsoft Docs
-description: "Automatiser la configuration d’Azure Diagnostics pour envoyer des données vers Application Insights"
+title: aaaUsing PowerShell toosetup Application Insights dans Azure | Documents Microsoft
+description: Automatiser la configuration des Diagnostics Azure de toopipe tooApplication Insights.
 services: application-insights
 documentationcenter: .net
 author: sbtron
@@ -13,17 +13,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/17/2015
 ms.author: bwren
-ms.openlocfilehash: 3b6da89cc33cda713b483a2af3cbb493a03d6bec
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: c48a5d8eb23df162522860935af876063aaa6976
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="using-powershell-to-set-up-application-insights-for-an-azure-web-app"></a>Utilisation de PowerShell pour configurer Application Insights pour une application web Azure
-[Microsoft Azure](https://azure.com) peut être [configuré pour envoyer des Diagnostics Azure](app-insights-azure-diagnostics.md) vers [Azure Application Insights](app-insights-overview.md). Les tests de diagnostic concernent Azure Cloud Services et les machines virtuelles Azure. Ils permettent de compléter les données de télémétrie que vous envoyez depuis l’application à l’aide du kit de développement logiciel d’Application Insights. Dans le cadre de l’automatisation du processus de création de nouvelles ressources dans Azure, vous pouvez configurer des diagnostics avec PowerShell.
+# <a name="using-powershell-tooset-up-application-insights-for-an-azure-web-app"></a>À l’aide de tooset PowerShell d’Application Insights pour une application web Azure
+[Microsoft Azure](https://azure.com) peut être [de configurer les Diagnostics de Azure toosend](app-insights-azure-diagnostics.md) trop[Azure Application Insights](app-insights-overview.md). diagnostics de Hello concernent tooAzure les Services de cloud computing et machines virtuelles Azure. Ils permettent de compléter que vous envoyez à partir d’application hello hello Application Insights SDK à l’aide de la télémétrie hello. Dans le cadre de l’automatisation des processus hello de création de nouvelles ressources dans Azure, vous pouvez configurer les diagnostics à l’aide de PowerShell.
 
 ## <a name="azure-template"></a>Modèle Azure
-Si l’application web est dans Azure et que vous créez vos ressources à l’aide d’un modèle Azure Resource Manager, vous pouvez configurer Application Insights en ajoutant cela au nœud de ressources :
+Si l’application web hello est dans Azure et créez vos ressources à l’aide d’un modèle Azure Resource Manager, vous pouvez configurer Application Insights en ajoutant ce nœud de ressources toohello :
 
     {
       resources: [
@@ -42,11 +42,11 @@ Si l’application web est dans Azure et que vous créez vos ressources à l’a
        ]
      } 
 
-* `nameOfAIAppResource` : nom de la ressource Application Insights
-* `myWebAppName` : ID de l’application web
+* `nameOfAIAppResource`-nom de hello ressource Application Insights
+* `myWebAppName`-id hello de hello web app
 
 ## <a name="enable-diagnostics-extension-as-part-of-deploying-a-cloud-service"></a>Activer l’extension de diagnostics lors du déploiement d’un service cloud
-L’applet de commande `New-AzureDeployment` comporte un paramètre `ExtensionConfiguration` qui utilise un tableau de configurations de diagnostics. Ces derniers peuvent être créés à l’aide de l’applet de commande `New-AzureServiceDiagnosticsExtensionConfig` . Par exemple :
+Hello `New-AzureDeployment` applet de commande a un paramètre `ExtensionConfiguration`, qui accepte un tableau de configurations de diagnostics. Ils peuvent être créés à l’aide de hello `New-AzureServiceDiagnosticsExtensionConfig` applet de commande. Par exemple :
 
 ```ps
 
@@ -123,9 +123,9 @@ Sur un service existant, utilisez `Set-AzureServiceDiagnosticsExtension`.
     Remove-AzureServiceDiagnosticsExtension -ServiceName "MyService"
 ```
 
-Si vous avez activé l’extension des diagnostics à l’aide de `Set-AzureServiceDiagnosticsExtension` ou de `New-AzureServiceDiagnosticsExtensionConfig` sans paramètre Rôle. Vous pouvez ensuite supprimer l’extension à l’aide de `Remove-AzureServiceDiagnosticsExtension` sans paramètre Rôle. Si le paramètre Rôle a été utilisé lors de l’activation de l’extension, il doit également être utilisé au moment de sa suppression.
+Si vous avez activé l’extension à l’aide des diagnostics hello `Set-AzureServiceDiagnosticsExtension` ou `New-AzureServiceDiagnosticsExtensionConfig` sans paramètre de rôle hello, vous pouvez ensuite supprimer à l’aide d’extension hello `Remove-AzureServiceDiagnosticsExtension` sans paramètre de rôle hello. Si le paramètre de rôle hello utilisé lors de l’activation de l’extension de hello puis il doit également être utilisé lors de la suppression d’extension de hello.
 
-Pour supprimer l’extension de diagnostics de chaque rôle individuel :
+extension des diagnostics hello tooremove à partir de chaque rôle individuel :
 
 ```ps
 
@@ -135,6 +135,6 @@ Pour supprimer l’extension de diagnostics de chaque rôle individuel :
 
 ## <a name="see-also"></a>Voir aussi
 * [Surveiller les applications Azure Cloud Services avec Application Insights](app-insights-cloudservices.md)
-* [Envoyer des diagnostics Azure vers Application Insights.](app-insights-azure-diagnostics.md)
+* [Envoyer des Diagnostics Windows Azure tooApplication Insights](app-insights-azure-diagnostics.md)
 * [Automatisation de la configuration des alertes](app-insights-powershell-alerts.md)
 

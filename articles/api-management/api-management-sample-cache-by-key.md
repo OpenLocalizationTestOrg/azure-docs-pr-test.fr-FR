@@ -1,6 +1,6 @@
 ---
-title: "Mise en cache personnalisée dans Azure API Management"
-description: "Découvrez comment mettre en cache des éléments par clé dans le service Azure API Management"
+title: aaaCustom mise en cache dans Gestion des API Azure
+description: "Découvrez comment les éléments de toocache par clé de gestion des API Azure"
 services: api-management
 documentationcenter: 
 author: darrelmiller
@@ -14,22 +14,22 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 12/15/2016
 ms.author: apimpm
-ms.openlocfilehash: f5d5f44e34fbcd122a10be0ca5b3001760c4c64d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 681380743c8c96af5d0a8e25948a8c0663e9fd35
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="custom-caching-in-azure-api-management"></a>Mise en cache personnalisée dans Azure API Management
-Le service Azure API Management prend en charge la [mise en cache de réponses HTTP](api-management-howto-cache.md) en utilisant l’URL de la ressource comme clé. La clé peut être modifiée par les en-têtes de requête à l’aide des propriétés `vary-by` . Si cette approche permet de mettre en cache l’ensemble des réponses HTTP (également appelées représentations), elle peut être aussi parfois utile pour la mise en cache d’une simple partie d’une représentation. Les nouvelles stratégies [cache-lookup-value](https://msdn.microsoft.com/library/azure/dn894086.aspx#GetFromCacheByKey) et [cache-store-value](https://msdn.microsoft.com/library/azure/dn894086.aspx#StoreToCacheByKey) permettent de stocker et de récupérer des éléments de données arbitraires à partir des définitions de stratégie. Cette fonctionnalité apporte une valeur supplémentaire à la stratégie [send-request](https://msdn.microsoft.com/library/azure/dn894085.aspx#SendRequest) présentée précédemment, puisqu’elle vous permet de mettre en cache les réponses à partir de services externes.
+Service de gestion des API Azure a une prise en charge intégrée pour [mise en cache de réponse HTTP](api-management-howto-cache.md) à l’aide des URL de ressource hello en tant que clé de hello. Hello clé peut être modifiée par des en-têtes de demande à l’aide de hello `vary-by` propriétés. Cela est utile pour la mise en cache les réponses HTTP entières (également appelé représentations), mais il est parfois utile toojust cache une partie d’une représentation. Hello nouvelle [valeur de recherche de cache](https://msdn.microsoft.com/library/azure/dn894086.aspx#GetFromCacheByKey) et [valeur du magasin de cache](https://msdn.microsoft.com/library/azure/dn894086.aspx#StoreToCacheByKey) stratégies permettent hello toostore et récupérer des éléments arbitraires de données à partir de définitions de stratégie. Cette possibilité ajoute également toohello valeur précédemment introduit [demande d’envoi](https://msdn.microsoft.com/library/azure/dn894085.aspx#SendRequest) stratégie, car vous pouvez maintenant mettre en cache les réponses à partir des services externes.
 
 ## <a name="architecture"></a>Architecture
-Le service API Management utilise un cache de données partagé par client, afin que vous puissiez continuer à accéder aux mêmes données mises en cache lorsque vous déployez plusieurs unités. Lorsque vous gérez un déploiement dans plusieurs régions, chacune des régions comporte cependant des caches indépendants. C’est pourquoi il est important de ne pas traiter le cache sous la forme d’un magasin de données où il représente la seule source de certains éléments d’informations. Si vous procédez ainsi, et que vous décidez ensuite de tirer parti du déploiement dans plusieurs régions, les clients ayant des utilisateurs nomades risquent de perdre l’accès à ces données mises en cache.
+Service de gestion des API utilise un cache de données partagées par client, afin que, lorsque vous faites évoluer les unités toomultiple vous obtiendrez toujours accès toohello même les données mises en cache. Toutefois, lorsque vous travaillez avec un déploiement de plusieurs régions, il existe des caches indépendantes dans chacune des régions de hello. Échéance toothis, il est important de toonot traiter le cache de hello comme magasin de données, où il est la seule source de hello de certains éléments d’informations. Si vous avez et ultérieurement décidé parti tootake de déploiement de plusieurs régions hello, les clients avec des utilisateurs qui se déplacent peuvent perdre accéder à des données toothat mis en cache.
 
 ## <a name="fragment-caching"></a>Mise en cache de fragments
-Il peut arriver que, dans les réponses renvoyées, une partie des données soit difficile à déterminer bien qu’elles restent à jour pendant un laps de temps raisonnable. Pensez, par exemple, à un service généré par une compagnie aérienne qui fournit des informations concernant les réservations de vol, l’état du vol, etc. Si l’utilisateur est membre du programme de points de fidélité de la compagnie aérienne, il obtiendrait également des informations relatives à l’état actuel de son adhésion et au nombre de miles cumulé. Ces informations relatives à l’utilisateur peuvent être stockées dans un autre système, mais il peut être souhaitable de les inclure dans les réponses renvoyées concernant les réservations et l’état du vol. Cette opération peut être effectuée à l’aide d’un processus appelé « mise en cache de fragments ». La représentation primaire peut être renvoyée par le serveur d’origine à l’aide d’un type de jeton pour indiquer l’emplacement où les informations relatives à l’utilisateur doivent être insérées. 
+Il existe certains cas où les réponses renvoyées contiennent une partie des données qui sont coûteuse toodetermine encore restent à jour pour un délai raisonnable. Pensez, par exemple, à un service généré par une compagnie aérienne qui fournit des informations concernant les réservations de vol, l’état du vol, etc. Si l’utilisateur de hello est membre du programme de points hello airlines, ils auraient pas également des informations concernant l’état actuel de tootheir et mileage accumulées. Ces informations relatives à l’utilisateur peuvent être stockées dans un autre système, mais il peut être souhaitable tooinclude dans les réponses retournée sur le vol et les réservations. Cette opération peut être effectuée à l’aide d’un processus appelé « mise en cache de fragments ». Hello représentation primaire peut être retournée à partir du serveur d’origine hello à l’aide d’un type de jeton tooindicate où hello des informations utilisateur sont toobe inséré. 
 
-Observez la réponse JSON suivante renvoyée par une API du serveur principal.
+Envisagez de hello suivant la réponse JSON à partir d’une API de service principal.
 
 ```json
 {
@@ -48,7 +48,7 @@ Voici la ressource secondaire disponible à l’emplacement `/userprofile/{useri
 { "username" : "Bob Smith", "Status" : "Gold" }
 ```
 
-Afin de déterminer les informations utilisateur qu’il convient d’inclure, nous devons identifier l’utilisateur final. Ce mécanisme dépend de l’implémentation. Par exemple, j’utilise la revendication `Subject` d’un jeton `JWT`. 
+Dans l’ordre toodetermine hello utilisateur approprié informations tooinclude, nous devons tooidentify qui est de l’utilisateur final de hello. Ce mécanisme dépend de l’implémentation. Par exemple, j’utilise hello `Subject` revendication d’un `JWT` jeton. 
 
 ```xml
 <set-variable
@@ -56,7 +56,7 @@ Afin de déterminer les informations utilisateur qu’il convient d’inclure, n
   value="@(context.Request.Headers.GetValueOrDefault("Authorization","").Split(' ')[1].AsJwt()?.Subject)" />
 ```
 
-Nous stockons cette valeur `enduserid` dans une variable de contexte en vue d’une utilisation ultérieure. L’étape suivante consiste à déterminer si une demande précédente a déjà permis d’extraire les informations de l’utilisateur et de les stocker dans le cache. Pour cela, nous utilisons la stratégie `cache-lookup-value` .
+Nous stockons cette valeur `enduserid` dans une variable de contexte en vue d’une utilisation ultérieure. étape suivante de Hello est toodetermine si une demande précédente a déjà les informations utilisateur hello récupérées et stocké dans le cache de hello. Pour cela, nous utilisons hello `cache-lookup-value` stratégie.
 
 ```xml
 <cache-lookup-value
@@ -64,17 +64,17 @@ key="@("userprofile-" + context.Variables["enduserid"])"
 variable-name="userprofile" />
 ```
 
-Si aucune entrée du cache ne correspond à la valeur de clé, aucune variable de contexte `userprofile` ne sera créée. Pour vérifier si la recherche a abouti, nous utilisons la stratégie de flux de contrôle `choose` .
+S’il n’existe aucune entrée dans le cache hello qui correspond la valeur de la clé toohello, puis non `userprofile` variable contextuelle sera créé. Nous vérifions réussite hello de recherche de hello à l’aide de hello `choose` stratégie de flux de contrôle.
 
 ```xml
 <choose>
     <when condition="@(!context.Variables.ContainsKey("userprofile"))">
-        <!-- If the userprofile context variable doesn’t exist, make an HTTP request to retrieve it.  -->
+        <!-- If hello userprofile context variable doesn’t exist, make an HTTP request tooretrieve it.  -->
     </when>
 </choose>
 ```
 
-Si la variable de contexte `userprofile` n’existe pas, nous allons devoir exécuter une requête HTTP pour la récupérer.
+Si hello `userprofile` variable contextuelle n’existe pas, puis nous sommes continu toohave toomake HTTP demande tooretrieve il.
 
 ```xml
 <send-request
@@ -83,7 +83,7 @@ Si la variable de contexte `userprofile` n’existe pas, nous allons devoir exé
   timeout="10"
   ignore-error="true">
 
-  <!-- Build a URL that points to the profile for the current end-user -->
+  <!-- Build a URL that points toohello profile for hello current end-user -->
   <set-url>@(new Uri(new Uri("https://apimairlineapi.azurewebsites.net/UserProfile/"),
       (string)context.Variables["enduserid"]).AbsoluteUri)
   </set-url>
@@ -91,7 +91,7 @@ Si la variable de contexte `userprofile` n’existe pas, nous allons devoir exé
 </send-request>
 ```
 
-Nous utilisons le paramètre `enduserid` pour construire l’URL sur la ressource de profil utilisateur. Une fois la réponse obtenue, nous pouvons extraire le texte du corps de la réponse et le stocker dans une variable de contexte.
+Nous utilisons hello `enduserid` ressource de profil utilisateur tooconstruct hello URL toohello. Une fois que nous avons la réponse de hello, nous pouvons extraire le corps du texte hello en dehors de la réponse de hello et stockez-le dans une variable de contexte.
 
 ```xml
 <set-variable
@@ -99,7 +99,7 @@ Nous utilisons le paramètre `enduserid` pour construire l’URL sur la ressourc
     value="@(((IResponse)context.Variables["userprofileresponse"]).Body.As<string>())" />
 ```
 
-Pour nous éviter d’avoir à réexécuter cette requête HTTP, lorsque l’utilisateur effectue une autre requête, nous pouvons stocker le profil utilisateur dans le cache.
+tooavoid de nous avoir toomake cette requête HTTP, lorsque le même utilisateur hello effectue une autre requête, nous pouvons stocker hello profil dans le cache de hello.
 
 ```xml
 <cache-store-value
@@ -107,11 +107,11 @@ Pour nous éviter d’avoir à réexécuter cette requête HTTP, lorsque l’uti
     value="@((string)context.Variables["userprofile"])" duration="100000" />
 ```
 
-Nous stockons la valeur dans le cache en utilisant la même clé que celle que nous avons initialement tenté de récupérer. La durée du stockage de la valeur doit dépendre de la fréquence à laquelle les informations sont modifiées et du degré de tolérance des utilisateurs face à des informations obsolètes. 
+Nous stockons les valeur hello dans le cache de hello à l’aide de la clé exacte même hello que nous avons tenté initialement tooretrieve avec. Hello durée nous choisir la valeur de hello toostore doit être basée sur la fréquence à laquelle hello modification des informations et des utilisateurs à la tolérance de panne sont tooout d’informations de date. 
 
-Il est important de comprendre que la récupération de données du cache est une requête réseau hors processus et qu’elle peut potentiellement ajouter des dizaines de millisecondes à la requête. On peut y voir des avantages lorsqu’il faut plus de temps que prévu pour déterminer les informations de profil utilisateur si l’on doit exécuter des requêtes de base de données ou agréger des informations à partir de plusieurs serveurs principaux.
+Il est toorealize important que la récupération à partir du cache de hello est toujours un out-of-process, la demande réseau et potentiellement pouvez toujours ajouter des dizaines de millisecondes toohello demande. avantages de Hello sont fournis lorsque les informations de profil utilisateur hello déterminant dure plus longtemps que celle en raison de requêtes de base de données tooneeding toodo ou des informations d’agrégation à partir de plusieurs systèmes principaux.
 
-La dernière étape du processus consiste à mettre à jour la réponse renvoyée avec nos informations de profil utilisateur.
+Hello dernière étape du processus de hello est hello tooupdate a retourné une réponse avec ses informations de profil utilisateur.
 
 ```xml
 <!-- Update response body with user profile-->
@@ -120,9 +120,9 @@ La dernière étape du processus consiste à mettre à jour la réponse renvoyé
     to="@((string)context.Variables["userprofile"])" />
 ```
 
-J’ai choisi d’inclure les guillemets dans le jeton de sorte que même si l’opération de remplacement ne se produit pas, la réponse renvoyée prenne toujours la forme d’un script JSON valide. L’idée était ici principalement de faciliter le débogage.
+J’ai choisi tooinclude hello guillemets dans le cadre du jeton de hello afin que même lorsque hello remplacer ne se produit pas, réponse de hello a été JSON toujours valide. Il s’agit principalement les toomake débogage.
 
-Une fois que l’on combine toutes ces étapes, on obtient une stratégie semblable à ce qui suit.
+Une fois que vous combinez toutes ces étapes, le résultat final de hello est une stratégie qui ressemble à hello suivant un.
 
 ```xml
 <policies>
@@ -132,22 +132,22 @@ Une fois que l’on combine toutes ces étapes, on obtient une stratégie sembla
           name="enduserid"
           value="@(context.Request.Headers.GetValueOrDefault("Authorization","").Split(' ')[1].AsJwt()?.Subject)" />
 
-        <!--Look for userprofile for this user in the cache -->
+        <!--Look for userprofile for this user in hello cache -->
         <cache-lookup-value
           key="@("userprofile-" + context.Variables["enduserid"])"
           variable-name="userprofile" />
 
-        <!-- If we don’t find it in the cache, make a request for it and store it -->
+        <!-- If we don’t find it in hello cache, make a request for it and store it -->
         <choose>
             <when condition="@(!context.Variables.ContainsKey("userprofile"))">
-                <!-- Make HTTP request to get user profile -->
+                <!-- Make HTTP request tooget user profile -->
                 <send-request
                   mode="new"
                   response-variable-name="userprofileresponse"
                   timeout="10"
                   ignore-error="true">
 
-                   <!-- Build a URL that points to the profile for the current end-user -->
+                   <!-- Build a URL that points toohello profile for hello current end-user -->
                     <set-url>@(new Uri(new Uri("https://apimairlineapi.azurewebsites.net/UserProfile/"),(string)context.Variables["enduserid"]).AbsoluteUri)</set-url>
                     <set-method>GET</set-method>
                 </send-request>
@@ -176,22 +176,22 @@ Une fois que l’on combine toutes ces étapes, on obtient une stratégie sembla
 </policies>
 ```
 
-Cette approche de mise en cache est principalement utilisée dans les sites web où le script HTML est composé côté serveur afin de pouvoir être restitué sur une seule page. Elle peut toutefois être également utile dans les API où les clients ne peuvent pas effectuer de mise en cache HTTP côté client, ou lorsqu’il est préférable de ne pas confier cette responsabilité au client.
+Cette approche de mise en cache est principalement utilisée dans les sites web où HTML est composé du côté serveur de hello afin qu’il peut être rendu en tant qu’une seule page. Toutefois, il peut également être utile dans les API dans lequel les clients ne peuvent pas faire client côté mise en cache HTTP ou il est préférable de tooput pas cette responsabilité sur le client de hello.
 
-Ce même type de mise en cache de fragments peut également être effectué sur les serveurs web principaux qui utilisent un serveur de mise en cache Redis ; il est cependant utile de s’appuyer sur le service API Management pour exécuter cette opération lorsque les fragments mis en cache proviennent de serveurs principaux différents de ceux des réponses principales.
+Ce même type de mise en cache de fragment peut également être effectué sur les serveurs web de hello principaux à l’aide d’un serveur de mise en cache de Redis, toutefois, à l’aide de tooperform de service de gestion des API hello ce travail est utile lorsque les fragments hello mises en cache provenant de différents systèmes principaux à hello réponses principales.
 
 ## <a name="transparent-versioning"></a>Contrôle de version transparent
-Il n’est pas rare que plusieurs versions différentes d’une implémentation d’une API soient prises en charge simultanément. Cette prise en charge simultanée permet, par exemple, de supporter des environnements différents (environnements de développement, de test, de production, etc.) ou bien de prendre en charge les versions antérieures de l’API pour laisser aux consommateurs de l’API le temps de migrer vers des versions plus récentes. 
+Il est pratique courante pour plusieurs versions d’implémentation différente d’une toobe API prises en charge à la fois. Il s’agit peut-être toosupport différents environnements, tels que le développement, test, production, etc., ou il peut être toosupport des versions antérieures de temps de toogive hello API pour les versions d’API consommateurs toomigrate toonewer. 
 
-Au lieu de demander aux développeurs client de modifier les URL de `/v1/customers` à `/v2/customers`, il est envisageable de stocker dans les données de profil du consommateur la version de l’API qu’il souhaite actuellement utiliser et d’appeler l’URL du serveur principal concerné. Afin de déterminer l’URL de serveur principal qu’il convient d’appeler pour un client particulier, il est nécessaire d’interroger des données de configuration. En mettant en cache ces données de configuration, nous pouvons limiter la perte de performances associée à ce processus de recherche.
+Toohandling une approche ce à la place de demander aux clients aux développeurs toochange hello URL à partir de `/v1/customers` trop`/v2/customers` est toostore dans les données de profil du consommateur hello quelle version de hello API ils actuellement souhaitent toouse et appellent hello approprié URL du serveur principal. Dans toocall URL ordre toodetermine hello principal correct pour un client particulier, il est nécessaire tooquery certaines données de configuration. En mettant en cache les données de cette configuration, nous pouvons réduire baisse des performances de cette recherche hello.
 
-La première étape consiste à déterminer l’identificateur utilisé pour configurer la version souhaitée. Dans cet exemple, j’ai choisi d’associer la version à la clé d’abonnement du produit. 
+Hello première étape est l’identificateur de hello toodetermine utilisait la version souhaitée de tooconfigure hello. Dans cet exemple, j’ai choisi de clé d’abonnement tooassociate hello version toohello produit. 
 
 ```xml
 <set-variable name="clientid" value="@(context.Subscription.Key)" />
 ```
 
-Nous devons ensuite effectuer une recherche dans le cache pour vérifier si nous avons déjà récupéré la version client appropriée.
+Nous avons ensuite procéder à une toosee de recherche de cache si nous avons déjà récupéré la version du client souhaité hello.
 
 ```xml
 <cache-lookup-value
@@ -199,7 +199,7 @@ key="@("clientversion-" + context.Variables["clientid"])"
 variable-name="clientversion" />
 ```
 
-Puis nous vérifions si cette version a ou non été trouvée dans le cache.
+Puis nous vérifions toosee si nous n’a pas le trouvé dans le cache de hello.
 
 ```xml
 <choose>
@@ -219,7 +219,7 @@ Dans le cas contraire, il est alors possible de l’extraire.
 </send-request>
 ```
 
-Extrayez le texte du corps de réponse à partir de la réponse.
+Extrayez le texte du corps de réponse hello de réponse de hello.
 
 ```xml
 <set-variable
@@ -227,7 +227,7 @@ Extrayez le texte du corps de réponse à partir de la réponse.
       value="@(((IResponse)context.Variables["clientconfiguresponse"]).Body.As<string>())" />
 ```
 
-Stockez-le de nouveau dans le cache pour une utilisation ultérieure.
+Stockez-le dans cache hello pour une utilisation ultérieure.
 
 ```xml
 <cache-store-value
@@ -236,14 +236,14 @@ Stockez-le de nouveau dans le cache pour une utilisation ultérieure.
       duration="100000" />
 ```
 
-Pour finir, mettez à jour l’URL du serveur principal pour sélectionner la version du service souhaitée par le client.
+Et enfin à jour hello principal URL tooselect hello version de service hello souhaité par le client de hello.
 
 ```xml
 <set-backend-service
       base-url="@(context.Api.ServiceUrl.ToString() + "api/" + (string)context.Variables["clientversion"] + "/")" />
 ```
 
-La stratégie complète se présente comme suit.
+Bonjour complètement stratégie est comme suit.
 
 ```xml
 <inbound>
@@ -251,7 +251,7 @@ La stratégie complète se présente comme suit.
     <set-variable name="clientid" value="@(context.Subscription.Key)" />
     <cache-lookup-value key="@("clientversion-" + context.Variables["clientid"])" variable-name="clientversion" />
 
-    <!-- If we don’t find it in the cache, make a request for it and store it -->
+    <!-- If we don’t find it in hello cache, make a request for it and store it -->
     <choose>
         <when condition="@(!context.Variables.ContainsKey("clientversion"))">
             <send-request mode="new" response-variable-name="clientconfiguresponse" timeout="10" ignore-error="true">
@@ -268,16 +268,16 @@ La stratégie complète se présente comme suit.
 </inbound>
 ```
 
-En permettant aux consommateurs d’API de contrôler en toute transparence la version du serveur principal utilisée par les clients sans avoir à mettre à jour et redéployer les clients, nous proposons une solution pratique qui résout de nombreux problèmes liés au contrôle de version des API.
+L’activation du contrôle de tootransparently consommateurs API version principale est accessible par les clients sans avoir tooupdate et redéployer les clients est une solution élégante qui traite de nombreux problèmes de contrôle de version d’API.
 
 ## <a name="tenant-isolation"></a>Isolation des locataires
-Dans les déploiements mutualisés plus volumineux, certaines entreprises créent des groupes de locataires spécifiques sur des déploiements distincts de matériel du serveur principal. Cette approche contribue à réduire au minimum le nombre de clients affectés par un problème matériel sur le serveur principal. Elle permet également de déployer de nouvelles versions de logiciels de manière progressive. Dans l’idéal, cette architecture de serveur principal doit être transparente pour les consommateurs d’API. Cet objectif est réalisable en adoptant une approche similaire à celle du contrôle de version transparent, puisqu’il repose sur la même technique de manipulation de l’URL du serveur principal qui utilise un état de configuration par clé d’API.  
+Dans les déploiements mutualisés plus volumineux, certaines entreprises créent des groupes de locataires spécifiques sur des déploiements distincts de matériel du serveur principal. Cela réduit le nombre de hello de clients qui sont affectés à un problème matériel sur hello principal. Il permet également de nouvelles toobe de versions logicielles transférée par étapes. Dans l’idéal, cette architecture de serveur principal doit être transparent tooAPI consommateurs. Cela peut être effectuée dans un contrôle de version de tootransparent façon similaire, car il est basé sur hello même technique de manipulation des URL de serveur principal hello en utilisant l’état de configuration par clé d’API.  
 
-Au lieu de renvoyer une version par défaut de l’API pour chaque clé d’abonnement, vous devez retourner un identificateur qui associe un locataire au groupe matériel attribué. Cet identificateur peut être utilisé pour construire l’URL du serveur principal approprié.
+Au lieu de retourner une version préférée du hello API pour chaque clé d’abonnement, vous devez retourner un identificateur qui est lié à un groupe de matériel client toohello attribué. Cet identificateur peut être utilisé tooconstruct hello principaux appropriés URL.
 
 ## <a name="summary"></a>Résumé
-L’utilisation du cache du service Azure API Management pour le stockage de n’importe quel type de données permet d’accéder efficacement aux données de configuration susceptibles d’affecter le mode de traitement d’une demande entrante. Cette mise en cache peut également être utilisée pour stocker des fragments de données pouvant augmenter les réponses retournées à partir d’une API du serveur principal.
+hello toouse de liberté Hello du cache de gestion des API Azure pour stocker n’importe quel type de données permet de données tooconfiguration un accès efficace qui peuvent affecter de manière hello qu'une demande entrante est traitée. Il peut également être utilisé toostore les fragments de données qui peuvent augmenter les réponses retournées à partir d’une API de service principal.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Faites-nous part de vos commentaires dans le thread Disqus de cette rubrique si l’utilisation des stratégies décrites s’est révélée adaptée à d’autres scénarios, ou s’il existe des scénarios que vous souhaiteriez mettre en œuvre mais qu’il vous semble impossible de déployer actuellement.
+Veuillez envoyez-nous vos commentaires Bonjour Disqus thread de cette rubrique s’il existe d’autres scénarios que ces stratégies ont activé pour vous, ou s’il existe des scénarios vous aimeriez tooachieve mais que vous n’êtes pas sont actuellement possibles.
 

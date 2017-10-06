@@ -1,6 +1,6 @@
 ---
-title: "Didacticiel de distribution mondiale Azure Cosmos DB pour l’API Graph | Microsoft Docs"
-description: "Découvrez comment configurer la distribution mondiale Azure Cosmos DB à l’aide de l’API Graph."
+title: "didacticiel de distribution globale aaaAzure Cosmos DB pour l’API Graph | Documents Microsoft"
+description: "Découvrez comment à l’aide de distribution globale de base de données Azure Cosmos toosetup hello des API Graph."
 services: cosmos-db
 keywords: distribution globale, graph, gremlin
 documentationcenter: 
@@ -15,44 +15,44 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/10/2017
 ms.author: denlee
-ms.openlocfilehash: 3c8794fe33c2ff5aa79559ea2c323cf8d92b426a
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 1629a31e12a18079f63e07c4909862b36b5f4c0e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-setup-azure-cosmos-db-global-distribution-using-the-graph-api"></a>Comment configurer la distribution mondiale Azure Cosmos DB à l’aide de l’API Graph
+# <a name="how-toosetup-azure-cosmos-db-global-distribution-using-hello-graph-api"></a>À l’aide de distribution globale de base de données Azure Cosmos toosetup comment hello des API Graph
 
-Dans cet article, nous allons vous montrer comment utiliser le portail Azure pour configurer la distribution mondiale Azure Cosmos DB avant d’établir une connexion à l’aide de l’API Graph (version préliminaire).
+Dans cet article, nous montrons comment toouse hello distribution globale de base de données Azure Cosmos toosetup portail Azure et connectez-vous à l’aide de hello l’API Graph (version préliminaire).
 
-Cet article décrit les tâches suivantes : 
+Cet article traite des hello tâches suivantes : 
 
 > [!div class="checklist"]
-> * Configurer la distribution mondiale à l’aide du portail Azure
-> * Configurer la distribution mondiale à l’aide des [API Graph](graph-introduction.md) (version préliminaire)
+> * Configurer la distribution globale à l’aide de hello portail Azure
+> * Configurer la distribution globale à l’aide de hello [API graphiques](graph-introduction.md) (version préliminaire)
 
 [!INCLUDE [cosmos-db-tutorial-global-distribution-portal](../../includes/cosmos-db-tutorial-global-distribution-portal.md)]
 
 
-## <a name="connecting-to-a-preferred-region-using-the-graph-api-using-the-net-sdk"></a>Se connecter à une région de prédilection avec l’API Graph à l’aide du SDK .NET
+## <a name="connecting-tooa-preferred-region-using-hello-graph-api-using-hello-net-sdk"></a>Connexion à l’aide de l’API Graph hello hello .NET SDK à l’aide de la région préférée tooa
 
-L’API Graph est exposée sous forme de bibliothèque d’extension sur le SDK DocumentDB.
+Hello API Graph est exposée comme une bibliothèque d’extension par-dessus hello DocumentDB SDK.
 
-Pour tirer parti de la [distribution mondiale](distribute-data-globally.md), les applications clientes peuvent spécifier la liste ordonnée de préférences de régions à utiliser pour effectuer des opérations sur les documents. Pour cela, vous devez configurer la stratégie de connexion. Selon la configuration du compte Azure Cosmos DB, la disponibilité régionale actuelle et la liste de préférences spécifiée, le Kit de développement logiciel (SDK) choisit le point de terminaison optimal pour les opérations de lecture et d’écriture.
+Dans l’avantage de tootake d’ordre de [distribution globale](distribute-data-globally.md), les applications clientes peuvent spécifier hello classés de liste de préférence des régions toobe utilisé tooperform les opérations de document. Pour ce faire, vous pouvez définir la stratégie de connexion hello. Selon la configuration du compte de base de données Azure Cosmos hello, disponibilité régionale en cours et la liste de préférence hello spécifié, hello la plupart des point de terminaison optimale sera choisi par l’écriture de tooperform hello SDK et les opérations de lecture.
 
-Cette liste de préférences est spécifiée lors de l’initialisation d’une connexion à l’aide des SDK. Les SDK acceptent un paramètre facultatif « PreferredLocations » qui est une liste ordonnée des régions Azure.
+Cette liste de préférence est spécifiée lors de l’initialisation d’une connexion à l’aide de kits de développement logiciel hello. Hello kits de développement logiciel accepte un paramètre facultatif « PreferredLocations » qui est une liste ordonnée des régions Azure.
 
-* **Écritures** : le SDK envoie automatiquement toutes les écritures vers la région d’écriture en cours.
-* **Lectures** : toutes les lectures sont envoyées vers la première région disponible dans la liste PreferredLocations. Si la demande échoue, le client passe à la région suivante dans la liste et ainsi de suite. Les SDK tentent des opérations de lecture uniquement à partir des régions spécifiées dans PreferredLocations. Ainsi, par exemple, si le compte Cosmos DB est disponible dans trois régions, mais que le client spécifie uniquement deux des régions sans écriture de PreferredLocations, aucune lecture n’est traitée hors de la région d’écriture, même en cas de basculement.
+* **Écrit**: hello Kit de développement logiciel enverra automatiquement toutes les écrit la zone d’écriture en cours toohello.
+* **Lit**: toutes les lectures seront envoyés toohello de première région disponibles dans la liste de PreferredLocations hello. En cas de demande de hello, client de hello échouer la région de hello liste toohello suivante et ainsi de suite. Hello kits de développement logiciel tente uniquement tooread de régions hello spécifié dans PreferredLocations. Ainsi, par exemple, si hello Cosmos DB compte n’est disponible dans trois régions, mais le client de hello spécifie uniquement deux des régions de non-écriture hello pour PreferredLocations, puis aucune lecture ne sera utilisée en dehors de la région d’écriture hello, même dans les cas de hello de basculement.
 
-L’application peut vérifier le point de terminaison d’écriture et le point de terminaison de lecture actuels choisis par le SDK en vérifiant deux propriétés, WriteEndpoint et ReadEndpoint, disponibles dans le SDK version 1.8 et ultérieure. Si la propriété PreferredLocations n’est pas définie, toutes les demandes seront traitées par la zone d’écriture en cours.
+application Hello peut vérifier le point de terminaison hello actuel écriture et lecture de point de terminaison choisi par hello SDK par la vérification deux propriétés, WriteEndpoint et ReadEndpoint, disponible dans la version du Kit de développement logiciel 1.8 et versions ultérieures. Si hello PreferredLocations propriété n’est pas définie, toutes les demandes seront pris en charge à partir de la zone d’écriture en cours hello.
 
-### <a name="using-the-sdk"></a>Utilisation du kit de développement logiciel
+### <a name="using-hello-sdk"></a>À l’aide du Kit de développement logiciel de hello
 
-Par exemple, dans le SDK .NET, le paramètre `ConnectionPolicy` du constructeur `DocumentClient` comporte une propriété appelée `PreferredLocations`. Cette propriété peut être définie sur une liste de noms de région. Le noms d’affichage des [régions Azure][regions] peuvent être spécifié dans `PreferredLocations`.
+Par exemple, Bonjour .NET SDK, hello `ConnectionPolicy` paramètre hello `DocumentClient` constructeur a une propriété appelée `PreferredLocations`. Cette propriété peut être définie tooa la liste des noms de région. noms d’affichage de Hello pour [régions Azure] [ regions] peut être spécifié dans le cadre de `PreferredLocations`.
 
 > [!NOTE]
-> Les URL des points de terminaison ne doivent pas être considérées comme des constantes à long terme. Le service peut les mettre à jour à tout moment. Le SDK gère ce changement automatiquement.
+> URL de Hello pour les points de terminaison hello ne doivent pas être considérés comme des constantes de longue durées. service de Hello peut mettre à jour à tout moment. Hello SDK gère cette modification automatiquement.
 >
 >
 
@@ -74,24 +74,24 @@ DocumentClient docClient = new DocumentClient(
     accountKey,
     connectionPolicy);
 
-// connect to Azure Cosmos DB
+// connect tooAzure Cosmos DB
 await docClient.OpenAsync().ConfigureAwait(false);
 ```
 
-C’est ici que s’achève ce didacticiel. Découvrez comment gérer la cohérence de votre compte répliqué à l’échelle mondiale en lisant l’article [Niveaux de cohérence dans Azure Cosmos DB](consistency-levels.md). Pour plus d’informations sur le fonctionnement de la réplication de base de données à l’échelle mondiale dans Azure Cosmos DB, voir [Diffuser des données à l’échelle mondiale avec Azure Cosmos DB](distribute-data-globally.md).
+C’est ici que s’achève ce didacticiel. Vous pouvez apprendre comment toomanage hello la cohérence de votre compte de réplication globale en lisant [niveaux de cohérence dans la base de données Azure Cosmos](consistency-levels.md). Pour plus d’informations sur le fonctionnement de la réplication de base de données à l’échelle mondiale dans Azure Cosmos DB, voir [Diffuser des données à l’échelle mondiale avec Azure Cosmos DB](distribute-data-globally.md).
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Dans ce didacticiel, vous avez effectué les tâches suivantes :
+Dans ce didacticiel, vous avez effectué les éléments suivants de hello :
 
 > [!div class="checklist"]
-> * Configurer la distribution mondiale à l’aide du portail Azure
-> * Configurer la distribution mondiale à l’aide des API DocumentDB
+> * Configurer la distribution globale à l’aide de hello portail Azure
+> * Configurer la distribution globale à l’aide de hello APIs DocumentDB
 
-Vous pouvez maintenant passer au didacticiel suivant pour apprendre à développer en local à l’aide de l’émulateur local Azure Cosmos DB.
+Vous pouvez maintenant toolearn de didacticiel suivant toohello comment toodevelop localement à l’aide de hello émulateur local de base de données Azure Cosmos.
 
 > [!div class="nextstepaction"]
-> [Développer en local avec l’émulateur](local-emulator.md)
+> [Développer localement avec l’émulateur de hello](local-emulator.md)
 
 [regions]: https://azure.microsoft.com/regions/
 

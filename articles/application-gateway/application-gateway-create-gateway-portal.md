@@ -1,6 +1,6 @@
 ---
-title: "Créer une passerelle Application Gateway - Portail Azure | Microsoft Docs"
-description: "Découvrez comment créer une passerelle Application Gateway à l’aide du portail"
+title: "aaaCreate une passerelle d’Application - portail Azure | Documents Microsoft"
+description: "Découvrez comment toocreate une passerelle d’Application à l’aide de hello portail"
 services: application-gateway
 documentationcenter: na
 author: georgewallace
@@ -15,110 +15,110 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 07/31/2017
 ms.author: gwallace
-ms.openlocfilehash: d3c39cfe3159cd4059a81f966fb551175188278b
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 24c1d5701eae372cd233162ceb58dea36a3b6a39
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-an-application-gateway-with-the-portal"></a>Créer une passerelle Application Gateway avec le portail
+# <a name="create-an-application-gateway-with-hello-portal"></a>Créer une passerelle d’application avec le portail de hello
 
-[Application Gateway](application-gateway-introduction.md) est une appliance virtuelle dédiée qui intègre Application Delivery Controller (ADC) en tant que service, offrant diverses fonctionnalités d’équilibrage de charge de couche 7 pour votre application. Cet article vous guide tout au long de la création d’une passerelle Application Gateway avec le portail Azure et l’ajout d’un serveur existant en tant que membre principal.
+[Application Gateway](application-gateway-introduction.md) est une appliance virtuelle dédiée qui intègre Application Delivery Controller (ADC) en tant que service, offrant diverses fonctionnalités d’équilibrage de charge de couche 7 pour votre application. Cet article passe en revue hello étapes toocreate une passerelle d’Application hello portail Azure et en ajoutant un serveur existant en tant que membre principal.
 
-## <a name="log-in-to-azure"></a>Connexion à Azure
+## <a name="log-in-tooazure"></a>Connectez-vous à tooAzure
 
-Connectez-vous au portail Azure à l’adresse [http://portal.azure.com](http://portal.azure.com)
+Connectez-vous toohello portail Azure à l’adresse [http://portal.azure.com](http://portal.azure.com)
 
 ## <a name="create-application-gateway"></a>Créer une passerelle Application Gateway
 
-Pour créer une passerelle Application Gateway, procédez comme suit : La passerelle Application Gateway Azure requiert son propre sous-réseau. Lorsque vous créez un réseau virtuel, assurez-vous que vous laissez suffisamment d’espace d’adresse pour disposer de plusieurs sous-réseaux. Une fois la passerelle Application Gateway déployée sur un sous-réseau, seules d’autres passerelles Application Gateway peuvent être ajoutées.
+toocreate une passerelle d’application, hello terminé les étapes qui suivent. La passerelle Application Gateway Azure requiert son propre sous-réseau. Lorsque vous créez un réseau virtuel, assurez-vous que vous laissez suffisamment toohave d’espace adresse plusieurs sous-réseaux. Une fois déployée tooa sous-réseau, passerelle d’application hello uniquement autres passerelles d’application peuvent être ajoutés tooit.
 
-1. Dans le volet Favoris, cliquez sur **Nouveau**.
-1. Dans le panneau **Nouveau**, cliquez sur **Mise en réseau**. Dans le panneau **Mise en réseau**, cliquez sur **Application Gateway**, comme indiqué dans l’image suivante :
+1. Dans le volet de favoris hello du portail de hello, cliquez sur **nouveau**
+1. Bonjour **nouveau** panneau, cliquez sur **réseau**. Bonjour **réseau** panneau, cliquez sur **Application Gateway**, comme indiqué dans hello suivant image :
 
     ![Création d’une passerelle Application Gateway][1]
 
-1. Dans le panneau **De base** qui s’affiche, entrez les valeurs suivantes et cliquez sur **OK** :
+1. Bonjour **notions de base** panneau qui s’affiche, entrez hello valeurs suivantes, puis cliquez sur **OK**:
 
    | **Paramètre** | **Valeur** | **Détails**|
    |---|---|---|
-   |**Nom**|AdatumAppGateway|Nom de la passerelle Application Gateway|
-   |**Niveau**|Standard|Les valeurs disponibles sont Standard et WAF. Consultez la page [Pare-feu d’applications web (WAF)](application-gateway-web-application-firewall-overview.md) pour en savoir plus sur WAF.|
+   |**Nom**|AdatumAppGateway|nom de Hello de passerelle d’application hello|
+   |**Niveau**|Standard|Les valeurs disponibles sont Standard et WAF. Visitez [pare-feu d’applications web](application-gateway-web-application-firewall-overview.md) toolearn plus WAF.|
    |**Taille de la référence (SKU)**|Moyenne|Si vous sélectionnez le niveau Standard, vous avez le choix entre Petite, Moyenne et Grande. Si vous choisissez le niveau WAF, les options sont limitées à Moyenne et Grande.|
-   |**Nombre d’instances**|2|Nombre d’instances de la passerelle Application Gateway pour la haute disponibilité. Un nombre d’instances de 1 doit être utilisé uniquement à des fins de test.|
-   |**Abonnement**|[Votre abonnement]|Sélectionnez l’abonnement dans lequel créer la passerelle de l’application.|
-   |**Groupe de ressources**|**Créer un nouveau :** AdatumAppGatewayRG|Créez un groupe de ressources. Le nom du groupe de ressources doit être unique au sein de l’abonnement sélectionné. Pour plus d’informations sur les groupes de ressources, consultez l’article [Présentation de Resource Manager](../azure-resource-manager/resource-group-overview.md?toc=%2fazure%2fapplication-gateway%2ftoc.json#resource-groups).|
+   |**Nombre d’instances**|2|Nombre d’instances de la passerelle d’application hello pour la haute disponibilité. Un nombre d’instances de 1 doit être utilisé uniquement à des fins de test.|
+   |**Abonnement**|[Votre abonnement]|Sélectionnez une passerelle d’application abonnement toocreate hello dans.|
+   |**Groupe de ressources**|**Créer un nouveau :** AdatumAppGatewayRG|Créez un groupe de ressources. nom de groupe de ressources Hello doit être unique au sein de l’abonnement hello sélectionné. toolearn plus d’informations sur les groupes de ressources, lire hello [le Gestionnaire de ressources](../azure-resource-manager/resource-group-overview.md?toc=%2fazure%2fapplication-gateway%2ftoc.json#resource-groups) l’article de vue d’ensemble.|
    |**Emplacement**|Ouest des États-Unis||
 
-1. Dans le panneau **Paramètres** qui s’affiche sous **Réseau virtuel**, cliquez sur **Choisir un réseau virtuel**. Le panneau **Choisir un réseau virtuel** s’affiche.  Cliquez sur **Créer un nouveau** pour ouvrir le panneau **Créer un réseau virtuel**.
+1. Bonjour **paramètres** panneau s’affiche sous **réseau virtuel**, cliquez sur **choisir un réseau virtuel**. Hello **réseau virtuel de choisir** panneau s’ouvre.  Cliquez sur **nouvel** tooopen hello **créer un réseau virtuel** panneau.
 
    ![choisir un réseau virtuel][2]
 
-1. Dans le panneau **Créer un réseau virtuel**, entrez les valeurs suivantes, puis cliquez sur **OK**. Les panneaux **Créer un réseau virtuel** et **Choisir un réseau virtuel** se ferment. En outre, le champ **Sous-réseau** du panneau **Paramètres** est automatiquement renseigné avec le nom du sous-réseau sélectionné.
+1. Sur hello **Panneau de réseau virtuel créer** , puis entrez les valeurs suivantes de hello **OK**. Hello **créer un réseau virtuel** et **réseau virtuel de choisir** panneaux ferme. Cette étape remplit hello **sous-réseau** champ hello **paramètres** panneau avec sous-réseau hello choisi.
 
    | **Paramètre** | **Valeur** | **Détails**|
    |---|---|---|
-   |**Nom**|AdatumAppGatewayVNET|Nom de la passerelle Application Gateway|
-   |**Espace d’adressage**|10.0.0.0/16|Espace d’adressage du réseau virtuel|
-   |**Nom du sous-réseau**|AppGatewaySubnet|Nom du sous-réseau de la passerelle Application Gateway|
-   |**Plage d’adresses de sous-réseau**|10.0.0.0/28|Ce sous-réseau autorise plusieurs sous-réseaux supplémentaires dans le réseau virtuel pour les membres du pool principal|
+   |**Nom**|AdatumAppGatewayVNET|Nom de la passerelle d’application hello|
+   |**Espace d’adressage**|10.0.0.0/16|Il s’agit d’espace d’adressage hello pour le réseau virtuel de hello|
+   |**Nom du sous-réseau**|AppGatewaySubnet|Nom du sous-réseau de hello pour la passerelle d’application hello|
+   |**Plage d’adresses de sous-réseau**|10.0.0.0/28|Ce sous-réseau permet à d’autres sous-réseaux supplémentaires dans le réseau virtuel de hello pour les membres du pool principal|
 
-1. Dans le panneau **Paramètres**, sous **Configuration d’adresse IP frontale**, choisissez **Public** comme **Type d’adresse IP**
+1. Sur hello **paramètres** panneau sous **configuration Frontend IP**, choisissez **Public** comme hello **type d’adresse IP**
 
-1. Dans le panneau **Paramètres**, sous **Adresse IP publique**, cliquez sur **Choisir une adresse IP publique** pour accéder au panneau **Choisir une adresse IP publique**, puis cliquez sur **Créer**.
+1. Sur hello **paramètres** panneau sous **adresse IP publique** cliquez sur **choisir une adresse IP publique**, hello **choisir une adresse IP publique** panneau s’ouvre. , cliquez sur **nouvel**.
 
    ![choisir une adresse ip publique][3]
 
-1. Dans le panneau **Créer une adresse IP publique**, acceptez la valeur par défaut et cliquez sur **OK**. Le panneau se ferme et le champ **Adresse IP publique** est renseigné avec l’adresse IP publique choisie.
+1. Sur hello **créer une adresse IP publique** panneau, acceptez la valeur par défaut de hello, puis cliquez sur **OK**. Panneau de Hello se ferme et remplit hello **adresse IP publique** avec l’adresse IP publique hello choisi.
 
-1. Dans le panneau **Paramètres**, sous **Configuration de l’écouteur**, cliquez sur **HTTP** sous **Protocole**. Entrez le port à utiliser dans le champ **Port**.
+1. Sur hello **paramètres** panneau sous **configuration de l’écouteur**, cliquez sur **HTTP** sous **protocole**. Entrez hello port toouse Bonjour **Port** champ.
 
-2. Cliquez sur **OK** dans le panneau **Paramètres** pour continuer.
+2. Cliquez sur **OK** sur hello **paramètres** toocontinue du panneau.
 
-1. Passez en revue les paramètres du panneau **Résumé** et cliquez sur **OK** pour démarrer la création de la passerelle Application Gateway. La création d’une passerelle Application Gateway est une tâche fastidieuse.
+1. Passez en revue les paramètres hello sur hello **Résumé** panneau, cliquez sur **OK** toostart la création de la passerelle d’application hello. Création d’une passerelle d’application est une tâche de longue durée et prend du temps toocomplete.
 
-## <a name="add-servers-to-backend-pools"></a>Ajouter des serveurs aux pools principaux
+## <a name="add-servers-toobackend-pools"></a>Ajouter des serveurs toobackend pools
 
-Une fois la passerelle Application Gateway créée, il reste à y ajouter les systèmes qui hébergent l’application dont la charge doit être équilibrée. Les adresses IP, les noms de domaine complets ou les cartes réseaux de ces serveurs sont ajoutés aux pools d’adresses principaux.
+Une fois que vous créez la passerelle d’application hello, les systèmes de hello qui hébergent hello application toobe équilibrée doivent toujours passerelle d’application toobe toohello ajouté. les adresses IP Hello, nom de domaine complet, ou deux cartes réseau de ces serveurs sont ajoutés toohello principaux des pools d’adresses.
 
 ### <a name="ip-address-or-fqdn"></a>Adresse IP ou nom de domaine complet
 
-1. Une fois la passerelle Application Gateway créée, allez dans le panneau **Favoris** du portail Azure, puis cliquez sur **Toutes les ressources**. Cliquez sur la passerelle **AdatumAppGateway** dans le panneau Toutes les ressources. Si l’abonnement que vous avez déjà sélectionné comporte plusieurs ressources, vous pouvez saisir **AdatumAppGateway** dans la case **Filtrer par nom…** pour accéder facilement à la passerelle d’application.
+1. Avec la passerelle d’application hello créée, Bonjour Azure portal **favoris** volet, cliquez sur **toutes les ressources**. Cliquez sur hello **AdatumAppGateway** passerelle d’application dans hello toutes les lames de ressources. Si l’abonnement hello déjà sélectionné comporte plusieurs ressources, vous pouvez entrer **AdatumAppGateway** Bonjour **filtrer par nom...** passerelle d’application hello boîte tooeasily accès.
 
-1. La passerelle Application Gateway que vous avez créée s’affiche. Cliquez sur **Pools principaux**, puis sélectionnez le pool principal actuel **appGatewayBackendPool** pour accéder au panneau **appGatewayBackendPool**.
+1. passerelle d’application Hello que vous avez créé s’affiche. Cliquez sur **pools principaux**, puis sélectionnez le pool principal en cours de hello **appGatewayBackendPool**, hello **appGatewayBackendPool** panneau s’ouvre.
 
    ![Pools principaux Application Gateway][4]
 
-1. Cliquez sur **Ajouter une cible** pour ajouter des adresses IP ou des valeurs de nom de domaine complet. Choisissez **Adresse IP ou nom de domaine complet** comme **Type** et entrez votre adresse IP ou le nom de domaine complet dans le champ. Répétez cette étape pour les autres membres du pool principal. Une fois que vous avez terminé, cliquez sur **Enregistrer**.
+1. Cliquez sur **ajouter une cible** tooadd les adresses IP des valeurs de nom de domaine complet. Choisissez **IP adresse ou le nom de domaine complet** comme hello **Type** et entrez votre adresse IP ou le nom de domaine complet dans le champ de hello. Répétez cette étape pour les autres membres du pool principal. Une fois que vous avez terminé, cliquez sur **Enregistrer**.
 
 ### <a name="virtual-machine-and-nic"></a>Machine virtuelle et carte d’interface réseau
 
-Vous pouvez également ajouter des cartes d’interface réseau de machine virtuelle en tant que membres de pool principal. Seules les machines virtuelles s’exécutant dans le même réseau virtuel que la passerelle Application Gateway peuvent être sélectionnées.
+Vous pouvez également ajouter des cartes d’interface réseau de machine virtuelle en tant que membres de pool principal. Seuls les ordinateurs virtuels au sein du même réseau virtuel que hello passerelle d’Application sont disponibles par le biais de hello hello la liste déroulante.
 
-1. Une fois la passerelle Application Gateway créée, allez dans le panneau **Favoris** du portail Azure, puis cliquez sur **Toutes les ressources**. Cliquez sur la passerelle **AdatumAppGateway** dans le panneau Toutes les ressources. Si l’abonnement que vous avez déjà sélectionné comporte plusieurs ressources, vous pouvez saisir **AdatumAppGateway** dans la case **Filtrer par nom…** pour accéder facilement à la passerelle d’application.
+1. Avec la passerelle d’application hello créée, Bonjour Azure portal **favoris** volet, cliquez sur **toutes les ressources**. Cliquez sur hello **AdatumAppGateway** passerelle d’application dans hello toutes les lames de ressources. Si l’abonnement hello déjà sélectionné comporte plusieurs ressources, vous pouvez entrer **AdatumAppGateway** Bonjour **filtrer par nom...** passerelle d’application hello boîte tooeasily accès.
 
-1. La passerelle Application Gateway que vous avez créée s’affiche. Cliquez sur **Pools principaux**, puis sélectionnez le pool principal actuel **appGatewayBackendPool** pour accéder au panneau **appGatewayBackendPool**.
+1. passerelle d’application Hello que vous avez créé s’affiche. Cliquez sur **pools principaux**, puis sélectionnez le pool principal en cours de hello **appGatewayBackendPool**, hello **appGatewayBackendPool** panneau s’ouvre.
 
    ![Pools principaux Application Gateway][5]
 
-1. Cliquez sur **Ajouter une cible** pour ajouter des adresses IP ou des valeurs de nom de domaine complet. Choisissez **Machine virtuelle** comme **Type** et sélectionnez la machine virtuelle et la carte réseau à utiliser. Une fois que vous avez terminé, cliquez sur **Enregistrer**.
+1. Cliquez sur **ajouter une cible** tooadd les adresses IP des valeurs de nom de domaine complet. Choisissez **virtuels** comme hello **Type** et sélectionnez virtuels hello et toouse de carte réseau. Une fois que vous avez terminé, cliquez sur **Enregistrer**.
 
    > [!NOTE]
-   > Seules les machines virtuelles s’exécutant dans le même réseau virtuel que la passerelle Application Gateway peuvent être sélectionnées dans la liste déroulante.
+   > Seuls les ordinateurs virtuels dans hello même réseau virtuel comme passerelle d’application hello sont disponibles dans la zone déroulante hello.
 
 ## <a name="clean-up-resources"></a>Supprimer des ressources
 
-Lorsque vous n’en avez plus besoin, supprimez le groupe de ressources, la passerelle Application Gateway et toutes les ressources associées. Pour ce faire, sélectionnez le groupe de ressources à partir du panneau de la passerelle Application Gateway, puis cliquez sur **Supprimer**.
+Si n’est plus nécessaire, supprimer le groupe de ressources hello, la passerelle d’application et toutes les ressources associées. toodo, sélectionnez groupe de ressources hello dans Panneau de passerelle d’application hello et cliquez sur **supprimer**.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Dans ce scénario, vous avez déployé une passerelle Application Gateway et ajouté un serveur au serveur principal. Les étapes suivantes consistent à configurer la passerelle Application Gateway en modifiant les paramètres et en ajustant les règles de la passerelle. Vous trouverez ces étapes dans les articles suivants :
+Dans ce scénario, vous déployé une passerelle d’application et ajouté un serveur toohello de serveur principal. les étapes suivantes Hello sont la passerelle d’application hello tooconfigure par modification des paramètres et des règles d’ajustements dans la passerelle de hello. Vous trouverez ces étapes en visitant hello suivant des articles :
 
-Apprenez à créer des sondes d’intégrité personnalisées en vous rendant sur [Créer une sonde d’intégrité personnalisée](application-gateway-create-probe-portal.md)
+Découvrez comment des sondes toocreate d’état personnalisé en vous rendant sur [créer une sonde d’intégrité personnalisé](application-gateway-create-probe-portal.md)
 
-Découvrez comment configurer le déchargement SSL et éviter à vos serveurs web le déchiffrement SSL coûteux en vous rendant sur [Configurer le déchargement SSL](application-gateway-ssl-portal.md)
+Découvrez comment tooconfigure déchargement SSL et le déchiffrement SSL coûteux take hello désactivé vos serveurs web en vous rendant sur [configurer le déchargement SSL](application-gateway-ssl-portal.md)
 
-Découvrez comment protéger vos applications grâce au [Pare-feu d’applications Web](application-gateway-webapplicationfirewall-overview.md), une fonctionnalité de passerelle Application Gateway.
+Découvrez comment tooprotect vos applications avec [pare-feu d’applications Web](application-gateway-webapplicationfirewall-overview.md) une fonctionnalité de passerelle d’application.
 
 <!--Image references-->
 [1]: ./media/application-gateway-create-gateway-portal/figure1.png

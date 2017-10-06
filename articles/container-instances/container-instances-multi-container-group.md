@@ -1,5 +1,5 @@
 ---
-title: Azure Container Instances - Groupe de conteneurs | Azure Docs
+title: aaaAzure conteneur Instances - groupe conteneur multi | Documentation Azure
 description: Azure Container Instances - Groupe de conteneurs
 services: container-instances
 documentationcenter: 
@@ -17,25 +17,25 @@ ms.workload: na
 ms.date: 07/26/2017
 ms.author: nepeters
 ms.custom: mvc
-ms.openlocfilehash: 140f58582645ea32f77e901eb13364ed145bbecf
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 976f578cd2a9bf7f05ab97f24662139bb72062ea
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploy-a-container-group"></a>Déployer un groupe de conteneurs
 
-Azure Container Instances prend en charge le déploiement de plusieurs conteneurs sur un seul hôte à l’aide d’un *groupe de conteneurs*. Cela est utile lors de la création d’une annexe d’application pour la journalisation, la surveillance ou toute autre configuration dans laquelle un service a besoin d’un deuxième processus associé. 
+Les Instances du conteneur Azure prend en charge le déploiement de hello de plusieurs conteneurs sur un seul hôte à l’aide un *groupe conteneur*. Cela est utile lors de la création d’une annexe d’application pour la journalisation, la surveillance ou toute autre configuration dans laquelle un service a besoin d’un deuxième processus associé. 
 
 Ce document décrit pas à pas une configuration simple d’annexe à plusieurs conteneurs à l’aide d’un modèle Azure Resource Manager.
 
-## <a name="configure-the-template"></a>Configurer le modèle
+## <a name="configure-hello-template"></a>Configurer le modèle de hello
 
-Créez un fichier nommé `azuredeploy.json`, puis copiez-y le json suivant. 
+Créez un fichier nommé `azuredeploy.json` et hello de copie suivante json dans celui-ci. 
 
-Dans cet exemple, un groupe de conteneurs comprenant deux conteneurs et une adresse IP publique est défini. Le premier conteneur du groupe exécute une application accessible sur Internet. Le deuxième conteneur, l’annexe, adresse une requête HTTP à l’application web principale via le réseau local du groupe. 
+Dans cet exemple, un groupe de conteneurs comprenant deux conteneurs et une adresse IP publique est défini. premier conteneur d’Hello du groupe de hello s’exécute une application exposés à internet. second conteneur Hello, annexe de hello, permet à une application de site web principal de toohello de demande HTTP via le réseau local du groupe hello. 
 
-Cet exemple d’annexe peut être étendu pour déclencher une alerte suite à la réception d’un code de réponse HTTP autre que 200 OK. 
+Cet exemple annexe peut être développé tootrigger une alerte si elle a reçu un code de réponse HTTP autre que 200 OK. 
 
 ```json
 {
@@ -109,7 +109,7 @@ Cet exemple d’annexe peut être étendu pour déclencher une alerte suite à l
   }
 ```
 
-Pour utiliser un registre d’image conteneur privé, ajoutez au document json un objet du format suivant.
+toouse un registre d’image de conteneur privé, ajouter un document json d’objet toohello avec hello suivant le format.
 
 ```json
 "imageRegistryCredentials": [
@@ -121,15 +121,15 @@ Pour utiliser un registre d’image conteneur privé, ajoutez au document json u
 ]
 ```
 
-## <a name="deploy-the-template"></a>Déployer le modèle
+## <a name="deploy-hello-template"></a>Déployer le modèle de hello
 
-Créez un groupe de ressources avec la commande [az group create](/cli/azure/group#create).
+Créer un groupe de ressources avec hello [création de groupe de az](/cli/azure/group#create) commande.
 
 ```azurecli-interactive
 az group create --name myResourceGroup --location westus
 ```
 
-Déployez ensuite le modèle avec la commande [az group deployment create](/cli/azure/group/deployment#create).
+Déployer le modèle hello avec hello [créer de déploiement de groupe az](/cli/azure/group/deployment#create) commande.
 
 ```azurecli-interactive
 az group deployment create --name myContainerGroup --resource-group myResourceGroup --template-file azuredeploy.json
@@ -139,13 +139,13 @@ Après quelques secondes, vous recevez une réponse initiale d’Azure.
 
 ## <a name="view-deployment-state"></a>Afficher l’état du déploiement
 
-Pour afficher l’état du déploiement, utilisez la commande `az container show`. Celle-ci retourne l’adresse IP publique approvisionnée via laquelle l’application est accessible.
+état de hello tooview de déploiement hello, utilisez hello `az container show` commande. Cela retourne les adresse IP publique hello configuré sur le hello application est accessible.
 
 ```azurecli-interactive
 az container show --name myContainerGroup --resource-group myResourceGroup -o table
 ```
 
-Sortie :
+Output:
 
 ```azurecli
 Name              ResourceGroup    ProvisioningState    Image                                                             IP:ports           CPU/Memory    OsType    Location
@@ -155,13 +155,13 @@ myContainerGroup  myResourceGrou2  Succeeded            microsoft/aci-tutorial-s
 
 ## <a name="view-logs"></a>Consulter les journaux   
 
-Consultez la sortie du journal d’un conteneur à l’aide de la commande `az container logs`. L’argument `--container-name` spécifie le conteneur à partir duquel extraire les journaux. Dans cet exemple, le premier conteneur est spécifié. 
+Afficher la sortie du journal d’un conteneur à l’aide de hello hello `az container logs` commande. Hello `--container-name` argument spécifie le conteneur de hello dans les journaux toopull. Dans cet exemple, le premier conteneur d’hello est spécifié. 
 
 ```azurecli-interactive
 az container logs --name myContainerGroup --container-name aci-tutorial-app --resource-group myResourceGroup
 ```
 
-Sortie :
+Output:
 
 ```bash
 istening on port 80
@@ -171,13 +171,13 @@ istening on port 80
 ::1 - - [27/Jul/2017:17:35:38 +0000] "HEAD / HTTP/1.1" 200 1663 "-" "curl/7.54.0"
 ```
 
-Pour afficher les journaux du conteneur annexe, exécutez la même commande, en spécifiant le nom du deuxième conteneur.
+les journaux de toosee hello pour le conteneur de voiture de côté hello, exécutez hello même commande spécification du nom de conteneur deuxième hello.
 
 ```azurecli-interactive
 az container logs --name myContainerGroup --container-name aci-tutorial-sidecar --resource-group myResourceGroup
 ```
 
-Sortie :
+Output:
 
 ```bash
 Every 3.0s: curl -I http://localhost                                                                                                                       Mon Jul 17 11:27:36 2017
@@ -193,11 +193,11 @@ Last-Modified: Sun, 16 Jul 2017 02:08:22 GMT
 Date: Mon, 17 Jul 2017 18:27:36 GMT
 ```
 
-Comme vous pouvez le voir, l’annexe envoie régulièrement une requête HTTP à l’application web principale via le réseau local du groupe pour s’assurer qu’il fonctionne.
+Comme vous pouvez le voir, les annexes hello sont d’effectuer régulièrement une application web principale de HTTP demande toohello via tooensure de réseau local du groupe hello qu’elle s’exécute.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Ce document a couvert les étapes nécessaires pour le déploiement d’une instance de conteneur Azure à plusieurs conteneurs. Pour une expérience d’Azure Container Instances de bout en bout, voir le didacticiel d’Azure Container Instances.
+Ce document couverte étapes hello nécessaires au déploiement d’un conteneur de plusieurs instance du conteneur Azure. Pour une fin tooend que rencontrer des Instances de conteneurs Azure, consultez le didacticiel d’Instances de conteneurs Azure hello.
 
 > [!div class="nextstepaction"]
 > [Didacticiel Azure Container Instances]: ./container-instances-tutorial-prepare-app.md

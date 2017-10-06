@@ -1,6 +1,6 @@
 ---
-title: Prise en main des relais WCF Azure Relay dans .NET | Microsoft Docs
-description: "Découvrez comment utiliser les relais WCF Azure Relay pour connecter deux applications hébergées à des emplacements différents."
+title: aaaGet en main de relais WCF de relais Azure dans .NET | Documents Microsoft
+description: "Découvrez comment toouse Azure relais WCF transmet tooconnect deux applications hébergées dans des emplacements différents."
 services: service-bus-relay
 documentationcenter: .net
 author: sethmanheim
@@ -14,57 +14,57 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/23/2017
 ms.author: sethm
-ms.openlocfilehash: 1af1ac78398d65e6a87f0d24d6198f3dfbc82ffd
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a652617fc2e9b7c8d62d39fa914f77df6e3a1771
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-azure-relay-wcf-relays-with-net"></a>Comment utiliser les relais WCF Azure Relay avec .NET
-Cet article explique comment utiliser le service Azure Relay. Les exemples sont écrits en C# et utilisent l’API WCF (Windows Communication Foundation) avec les extensions contenues dans l’assembly Service Bus. Pour plus d’informations sur Azure Relay, consultez la page [Vue d’ensemble d’Azure Relay](relay-what-is-it.md).
+# <a name="how-toouse-azure-relay-wcf-relays-with-net"></a>Comment toouse Azure relais WCF des relais avec .NET
+Cet article décrit comment toouse hello service de relais d’Azure. exemples de Hello sont écrites en c# et utilisent des API de Windows Communication Foundation (WCF) hello avec extensions contenues dans hello assembly Service Bus. Pour plus d’informations sur les relais Azure, consultez hello [vue d’ensemble de Azure relais](relay-what-is-it.md).
 
 [!INCLUDE [create-account-note](../../includes/create-account-note.md)]
 
 ## <a name="what-is-wcf-relay"></a>Qu’est-ce que WCF Relay ?
 
-Le service Azure [*WCF Relay*](relay-what-is-it.md) vous permet de créer des applications hybrides qui s’exécutent à la fois dans un centre de données Azure et dans votre propre environnement d’entreprise local. Le service Relay facilite ce processus en offrant la possibilité d’exposer en toute sécurité les services WCF (Windows Communication Foundation) qui résident dans un réseau d’entreprise sur le cloud public, sans avoir à ouvrir une connexion de pare-feu ni à exiger des modifications intrusives dans une infrastructure de réseau d’entreprise.
+Bonjour Azure [ *WCF relais* ](relay-what-is-it.md) service vous permet de toobuild d’applications hybrides qui s’exécutent dans un centre de données Azure et votre propre environnement d’entreprise local. Cela facilite le service de relais Hello en vous toosecurely exposer des services Windows Communication Foundation (WCF) qui résident dans un cloud entreprise réseau toohello public, sans avoir tooopen connexion via un pare-feu ou l’exigence infrastructure de réseau d’entreprise tooa modifications contraignant.
 
 ![Concepts du service WCF Relay](./media/service-bus-dotnet-how-to-use-relay/sb-relay-01.png)
 
-Azure Relay vous permet d’héberger des services WCF au sein de votre environnement d’entreprise actuel. Vous pouvez ensuite déléguer au service Relay s’exécutant dans Azure l’écoute des sessions et des demandes entrantes adressées à ces services WCF. Cela vous permet d'exposer ces services au code d'application s'exécutant dans Azure, à des travailleurs itinérants ou à des environnements extranet de partenaires. Relay vous permet de contrôler de manière précise et sécurisée les utilisateurs autorisés à accéder à ces services. Il offre un moyen efficace et sûr d'exposer les fonctionnalités et les données applicatives de vos solutions d'entreprise existantes et d'en tirer profit depuis le cloud.
+Relais Azure vous permet de toohost les services WCF au sein de votre environnement d’entreprise existante. Vous pouvez ensuite déléguer à l’écoute entrant sessions et demandes toothese services toohello service de relais WCF qui s’exécutent dans Azure. Ainsi, vous tooexpose ces code tooapplication des services en cours d’exécution dans Azure, ou toomobile traitements ou les environnements de partenaires de l’extranet. Relais vous permet de contrôler de toosecurely qui permettre accéder à ces services à un niveau de granularité fin. Il fournit une fonctionnalité puissante et sécurisée de l’application tooexpose et les données à partir de vos solutions d’entreprise existantes et de tirer parti de celui-ci à partir du cloud de hello.
 
-Cet article explique comment utiliser Azure Relay pour créer un service web WCF, exposé à l’aide d’une liaison de canal TCP, qui implémente une conversation sécurisée entre deux parties.
+Cet article explique comment toouse Azure relais toocreate un service web WCF, exposés à l’aide d’une liaison de canal TCP, qui implémente une conversation sécurisée entre deux parties.
 
 [!INCLUDE [service-bus-create-namespace-portal](../../includes/service-bus-create-namespace-portal.md)]
 
-## <a name="get-the-service-bus-nuget-package"></a>Obtention du package NuGet Service Bus
-Le [package NuGet Service Bus](https://www.nuget.org/packages/WindowsAzure.ServiceBus) est le moyen le plus simple de se procurer l’API Service Bus et de configurer votre application avec toutes les dépendances Service Bus. Pour installer le package NuGet dans votre projet, procédez comme suit :
+## <a name="get-hello-service-bus-nuget-package"></a>Obtenir hello du package NuGet Service Bus
+Hello [package NuGet Service Bus](https://www.nuget.org/packages/WindowsAzure.ServiceBus) est hello de tooget de façon plus simple hello API Service Bus et tooconfigure votre application avec toutes les dépendances du Service Bus hello. package de NuGet tooinstall hello dans votre projet, procédez comme hello suivant :
 
 1. Dans l’Explorateur de solutions, cliquez avec le bouton droit sur **Références**, puis cliquez sur **Gérer les packages NuGet**.
-2. Recherchez « Service Bus » et sélectionnez l’élément **Microsoft Azure Service Bus** . Cliquez sur **Installer** pour terminer l’installation, puis fermez la boîte de dialogue suivante :
+2. Recherche de « Service Bus » et sélectionnez hello **Microsoft Azure Service Bus** élément. Cliquez sur **installer** toocomplete hello installation, puis fermez hello suivant la boîte de dialogue :
    
    ![](./media/service-bus-dotnet-how-to-use-relay/getting-started-multi-tier-13.png)
 
 ## <a name="expose-and-consume-a-soap-web-service-with-tcp"></a>Exposer et consommer un service web SOAP avec TCP
-Pour exposer un service Web SOAP WCF existant pour une consommation externe, vous devez apporter des modifications aux liaisons et aux adresses du service. Vous pouvez ainsi être amené à modifier votre fichier de configuration ou votre code, selon la façon dont vous avez défini et configuré vos services WCF. Notez que WCF vous permet de disposer de plusieurs points de terminaison réseau sur un même service. Vous pouvez donc conserver les points de terminaison internes existants et ajouter en même temps des points de terminaison de relais pour l’accès externe.
+tooexpose un service web de SOAP WCF existant pour la consommation externe, vous devez vous modifications toohello service liaisons et les adresses. Cette opération peut nécessiter le fichier de configuration de tooyour de modifications, ou elle peut nécessiter des modifications du code, selon la façon dont vous avez installé et configuré vos services WCF. Notez que WCF vous permet de toohave plusieurs points de terminaison de réseau sur hello même service, afin que vous puissiez conserver hello existante des points de terminaison internes lors de l’ajout de points de terminaison de relais externe d’accès à hello même temps.
 
-Dans cette tâche, vous créez un service WCF simple et y ajoutez un écouteur de relais. Cet exercice part du principe que vous utilisez déjà Visual Studio, vous ne serez donc pas guidé pour la création de projet. Il porte essentiellement sur le code.
+Dans cette tâche, vous générez un service WCF simple et ajoutez un tooit d’écouteur de relais. Cet exercice une connaissance de Visual Studio et donc ne pas parcourt tous les détails de hello de création d’un projet. Au lieu de cela, il se concentre sur le code de hello.
 
-Avant d’effectuer ces étapes, exécutez la procédure suivante pour configurer votre environnement :
+Avant de commencer cette procédure, effectuez hello suivant tooset procédure de votre environnement :
 
-1. Dans Visual Studio, créez une application de console contenant deux projets (« Client » et « Service ») dans la solution.
-2. Ajoutez le package Service Bus NuGet pour les deux projets. Ce package ajoute toutes les références d’assembly nécessaires à vos projets.
+1. Dans Visual Studio, créez une application console qui contient deux projets, « Client » et « Service », au sein de la solution de hello.
+2. Ajouter les projets de tooboth de package NuGet Service Bus hello. Ce package ajoute tous les projets de tooyour références hello assembly nécessaires.
 
-### <a name="how-to-create-the-service"></a>Création du service
-Pour commencer, créez le service proprement dit. Un service WCF se compose d'au moins trois parties distinctes :
+### <a name="how-toocreate-hello-service"></a>Comment toocreate hello service
+Commencez par créer service hello proprement dit. Un service WCF se compose d'au moins trois parties distinctes :
 
-* Définition d'un contrat décrivant la nature des messages échangés et des opérations à appeler.
+* Définition d’un contrat qui décrit les messages sont échangés et les opérations toobe appelé.
 * Implémentation de ce contrat.
-* Hôte hébergeant ce service WCF et exposant plusieurs points de terminaison.
+* Hôte qui héberge le service WCF de hello et expose plusieurs points de terminaison.
 
-Les exemples de code présentés dans cette section portent sur chacun de ces composants.
+les exemples de code Hello dans cette section adresse chacun de ces composants.
 
-Le contrat définit une seule opération, `AddNumbers`, qui ajoute deux nombres et renvoie le résultat. L'interface `IProblemSolverChannel` permet au client de gérer plus facilement la durée de vie du proxy. Il est recommandé de créer une interface de ce type. De même, vous avez tout intérêt à placer cette définition de contrat dans un fichier distinct de façon à pouvoir y faire référence dans les deux projets (« Client » et « Service »). Vous pouvez également copier le code dans les deux projets.
+contrat de Hello définit une seule opération, `AddNumbers`, qui ajoute deux nombres et retourne le résultat de hello. Hello `IProblemSolverChannel` toomore de client hello interface permet de gérer facilement la durée de vie de proxy hello. Il est recommandé de créer une interface de ce type. Il s’agit d’une bonne idée tooput cette définition dans un fichier distinct du contrat de sorte que vous pouvez référencer ce fichier à partir de projets à la fois votre « Client » et « Service », mais vous pouvez également copier le code de hello dans les deux projets.
 
 ```csharp
 using System.ServiceModel;
@@ -79,7 +79,7 @@ interface IProblemSolver
 interface IProblemSolverChannel : IProblemSolver, IClientChannel {}
 ```
 
-Une fois que le contrat est en place, l’implémentation se déroule de la façon suivante :
+Avec le contrat hello en place, mise en œuvre hello est la suivante :
 
 ```csharp
 class ProblemSolver : IProblemSolver
@@ -92,7 +92,7 @@ class ProblemSolver : IProblemSolver
 ```
 
 ### <a name="configure-a-service-host-programmatically"></a>Configurer un hôte de service par programme
-Maintenant que le contrat et l'implémentation sont en place, vous pouvez héberger le service. L’hébergement se situe à l’intérieur d’un objet [System.ServiceModel.ServiceHost](https://msdn.microsoft.com/library/system.servicemodel.servicehost.aspx), qui se charge de gérer les instances du service et héberge les points de terminaison qui écoutent les messages. Le code suivant configure le service avec, d’une part, un point de terminaison local normal et, d’autre part, un point de terminaison de relais, pour illustrer la mise en correspondance, côte à côte, des points de terminaison internes et externes. Remplacez la chaîne *namespace* par le nom de votre espace de noms et *yourKey* par la clé SAP que vous avez obtenue à l’étape de configuration précédente.
+Avec le contrat de hello et l’implémentation en place, vous pouvez maintenant héberger le service de hello. Hébergement se produit à l’intérieur d’un [System.ServiceModel.ServiceHost](https://msdn.microsoft.com/library/system.servicemodel.servicehost.aspx) de l’objet, qui prend en charge la gestion des instances du service de hello et hôtes hello des points de terminaison qui écoutent les messages. Hello de code suivant configure hello service avec un point de terminaison local régulière et un aspect de hello tooillustrate relais point de terminaison, côte à côte, des points de terminaison internes et externes. Remplacez la chaîne de hello *espace de noms* de votre espace de noms et *yourKey* avec la clé SAS hello obtenu à l’étape d’installation précédente de hello.
 
 ```csharp
 ServiceHost sh = new ServiceHost(typeof(ProblemSolver));
@@ -109,27 +109,27 @@ sh.AddServiceEndpoint(
 
 sh.Open();
 
-Console.WriteLine("Press ENTER to close");
+Console.WriteLine("Press ENTER tooclose");
 Console.ReadLine();
 
 sh.Close();
 ```
 
-Dans l'exemple, vous créez deux points de terminaison dans le cadre de l'implémentation du même contrat. L’un est local et l’autre projeté via Azure Relay. Leurs principales différences sont les liaisons : [NetTcpBinding](https://msdn.microsoft.com/library/system.servicemodel.nettcpbinding.aspx) pour le point de terminaison local, et [NetTcpRelayBinding](/dotnet/api/microsoft.servicebus.nettcprelaybinding#microsoft_servicebus_nettcprelaybinding) pour les adresses et le point de terminaison de relais. Le point de terminaison local possède une adresse réseau locale avec un port distinct. Le point de terminaison de relais possède une adresse de point de terminaison constituée de la chaîne `sb`, du nom de votre espace de noms et du chemin « solver ». L’URI obtenu est le suivant : `sb://[serviceNamespace].servicebus.windows.net/solver`, lequel identifie le point de terminaison du service comme un point de terminaison TCP Service Bus (relais) associé à un nom DNS externe complet. Si vous insérez le code en remplaçant les espaces réservés dans la fonction `Main` de l’application **Service**, vous obtiendrez un service fonctionnel. Si vous voulez que votre service écoute exclusivement sur le relais, supprimez la déclaration du point de terminaison local.
+Dans l’exemple de hello, vous créez deux points de terminaison qui se trouvent sur hello même implémentation de contrat. L’un est local et l’autre projeté via Azure Relay. Hello principales différences entre eux sont des liaisons de hello ; [NetTcpBinding](https://msdn.microsoft.com/library/system.servicemodel.nettcpbinding.aspx) pour hello local et [NetTcpRelayBinding](/dotnet/api/microsoft.servicebus.nettcprelaybinding#microsoft_servicebus_nettcprelaybinding) pour le point de terminaison de relais hello et les adresses de hello. point de terminaison local Hello possède une adresse de réseau local avec un port distinct. point de terminaison de relais Hello possède une adresse de point de terminaison composée d’une chaîne de hello `sb`, votre nom d’espace de noms et le chemin d’accès de hello « solveur. » Cela entraîne hello URI `sb://[serviceNamespace].servicebus.windows.net/solver`, identifiant le point de terminaison de service hello comme un point de terminaison TCP de Service Bus (relais) avec un nom DNS externe qualifié complet. Si vous placez le code hello en remplaçant les espaces réservés de hello en hello `Main` fonction Hello **Service** application, vous aurez un service fonctionnel. Si vous souhaitez que votre toolisten service exclusivement sur les relais hello, supprimez la déclaration de point de terminaison local hello.
 
-### <a name="configure-a-service-host-in-the-appconfig-file"></a>Configurer un hôte de service dans le fichier App.config
-Vous pouvez également configurer l'hôte à l'aide du fichier App.config. Dans ce cas, le code d’hébergement de service s’affiche dans l’exemple suivant.
+### <a name="configure-a-service-host-in-hello-appconfig-file"></a>Configurer un hôte de service dans le fichier App.config hello
+Vous pouvez également configurer hôte hello à l’aide du fichier App.config de hello. service Hello dans ce cas le code d’hébergement s’affiche dans l’exemple suivant de hello.
 
 ```csharp
 ServiceHost sh = new ServiceHost(typeof(ProblemSolver));
 sh.Open();
-Console.WriteLine("Press ENTER to close");
+Console.WriteLine("Press ENTER tooclose");
 Console.ReadLine();
 sh.Close();
 ```
 
-Les définitions de point de terminaison se déplacent dans le fichier App.config. Le package NuGet a déjà ajouté au fichier App.config une plage de définitions qui sont les extensions de la configuration nécessaire pour Azure Relay. L’exemple suivant, équivalent exact du code précédent, doit figurer juste en dessous de l’élément **system.serviceModel**. Cet exemple de code suppose que l’espace de noms C# de votre projet se nomme **Service**.
-Remplacez les espaces réservés par le nom de votre espace de noms de relais et la clé SAS associée.
+définitions de point de terminaison Hello déplacement dans le fichier App.config de hello. package NuGet de Hello a déjà ajouté une plage d’un fichier de définitions toohello App.config, qui sont des extensions de configuration hello requis pour le relais de Azure. Hello suivant l’exemple, qui est hello exacte équivalent du code précédent de hello, doit apparaître directement sous hello **system.serviceModel** élément. Cet exemple de code suppose que l’espace de noms C# de votre projet se nomme **Service**.
+Remplacez les espaces réservés de hello avec votre nom d’espace de noms de relais et de la clé SAS.
 
 ```xml
 <services>
@@ -156,15 +156,15 @@ Remplacez les espaces réservés par le nom de votre espace de noms de relais et
 </behaviors>
 ```
 
-Une fois ces modifications effectuées, le service démarre comme précédemment, mais avec deux points de terminaison actifs : l'un local et l'autre écoutant dans le cloud.
+Après avoir apporté ces modifications, les service hello démarre comme avant, mais avec deux points de terminaison dynamiques : un utilisateur local et un à l’écoute dans le cloud de hello.
 
-### <a name="create-the-client"></a>Création du client
+### <a name="create-hello-client"></a>Créer hello client
 #### <a name="configure-a-client-programmatically"></a>Configuration d’un client par programme
-Pour consommer le service, vous pouvez construire un client WCF à l’aide d’un objet [ChannelFactory](https://msdn.microsoft.com/library/system.servicemodel.channelfactory.aspx). Service Bus utilise un modèle de sécurité basée sur un jeton, implémenté à l'aide de SAS. La classe [TokenProvider](/dotnet/api/microsoft.servicebus.tokenprovider) représente un fournisseur de jetons de sécurité dont les méthodes de fabrique intégrées renvoient des fournisseurs de jetons bien connus. L’exemple suivant utilise la méthode [CreateSharedAccessSignatureTokenProvider](/dotnet/api/microsoft.servicebus.tokenprovider#Microsoft_ServiceBus_TokenProvider_CreateSharedAccessSignatureTokenProvider_System_String_) pour gérer l’acquisition du jeton SAP approprié. Le nom et la clé sont ceux obtenus sur le portail comme indiqué dans la section précédente.
+service de hello tooconsume, vous pouvez construire un client WCF à l’aide un [ChannelFactory](https://msdn.microsoft.com/library/system.servicemodel.channelfactory.aspx) objet. Service Bus utilise un modèle de sécurité basée sur un jeton, implémenté à l'aide de SAS. Hello [TokenProvider](/dotnet/api/microsoft.servicebus.tokenprovider) classe représente un fournisseur de jetons de sécurité avec les méthodes de fabrique intégrées qui retournent des fournisseurs de jeton bien connus. exemple Hello utilise hello [CreateSharedAccessSignatureTokenProvider](/dotnet/api/microsoft.servicebus.tokenprovider#Microsoft_ServiceBus_TokenProvider_CreateSharedAccessSignatureTokenProvider_System_String_) acquisition de hello toohandle méthode de jeton SAS approprié de hello. clé et le nom hello sont celles obtenues à partir du portail hello comme décrit dans la section précédente de hello.
 
-Tout d'abord, référencez ou copiez le code du contrat `IProblemSolver` du service dans votre projet client.
+First, de référence ou de copie hello `IProblemSolver` de contrat de code à partir du service de hello dans votre projet client.
 
-Ensuite, remplacez le code dans la méthode `Main` du client, en remplaçant de nouveau le texte d’espace réservé par votre espace de noms de relais et la clé SAP associée.
+Ensuite, remplacez le code hello Bonjour `Main` méthode hello du client de, à nouveau en remplaçant texte hello avec votre espace de noms de relais et de la clé SAS.
 
 ```csharp
 var cf = new ChannelFactory<IProblemSolverChannel>(
@@ -180,10 +180,10 @@ using (var ch = cf.CreateChannel())
 }
 ```
 
-Vous pouvez maintenant créer le client et le service, les exécuter (en commençant par le service) ; le client appelle alors le service et imprime **9**. Vous pouvez exécuter le client et le serveur sur différents ordinateurs, voire sur des réseaux, la communication fonctionnera toujours. Le code client peut également être exécuté dans le cloud ou en local.
+Vous pouvez à présent générer client de hello et service hello, exécutez-les (exécution de service de hello tout d’abord), et les clients hello appelle hello service et imprime **9**. Vous pouvez exécuter hello client et le serveur sur des ordinateurs différents, même sur des réseaux, et les communications hello continueront de fonctionner. Hello client code peut également s’exécuter localement ou dans le cloud de hello.
 
-#### <a name="configure-a-client-in-the-appconfig-file"></a>Configuration d’un client dans le fichier App.config
-Vous pouvez également configurer le client à l’aide du fichier App.config.
+#### <a name="configure-a-client-in-hello-appconfig-file"></a>Configuration d’un client dans le fichier App.config hello
+Hello suivant de code montre comment le client de hello tooconfigure à l’aide de hello fichier App.config.
 
 ```csharp
 var cf = new ChannelFactory<IProblemSolverChannel>("solver");
@@ -193,7 +193,7 @@ using (var ch = cf.CreateChannel())
 }
 ```
 
-Les définitions de point de terminaison se déplacent dans le fichier App.config. L’exemple suivant, identique au code présenté précédemment, doit figurer juste au-dessous de l’élément `<system.serviceModel>`. Comme précédemment, vous devez remplacer les espaces réservés par l’espace de noms de relais et la clé SAS associée.
+définitions de point de terminaison Hello déplacement dans le fichier App.config de hello. exemple suivant, qui est hello même en tant que code hello répertoriée précédemment, Hello doit apparaître directement sous hello `<system.serviceModel>` élément. Ici, comme auparavant, vous devez remplacer des espaces réservés hello avec votre espace de noms de relais et de la clé SAS.
 
 ```xml
 <client>
@@ -216,11 +216,11 @@ Les définitions de point de terminaison se déplacent dans le fichier App.confi
 ```
 
 ## <a name="next-steps"></a>Étapes suivantes
-Maintenant que vous connaissez les principes de base d’Azure Relay, suivez ces liens pour en savoir plus.
+Maintenant que vous avez appris les notions de base de hello de relais d’Azure, suivez ces liens de toolearn plus.
 
 * [Qu’est-ce qu’Azure Relay ?](relay-what-is-it.md)
 * [Azure Service Bus](../service-bus-messaging/service-bus-fundamentals-hybrid-solutions.md)
-* Téléchargez des exemples Service Bus à la page [Exemples Azure][Azure samples] ou consultez la [vue d’ensemble des exemples Service Bus][overview of Service Bus samples].
+* Télécharger les exemples de Service Bus à partir [exemples Azure] [ Azure samples] ou consultez hello [vue d’ensemble des exemples de Service Bus][overview of Service Bus samples].
 
 [Shared Access Signature Authentication with Service Bus]: ../service-bus-messaging/service-bus-shared-access-signature-authentication.md
 [Azure samples]: https://code.msdn.microsoft.com/site/search?query=service%20bus&f%5B0%5D.Value=service%20bus&f%5B0%5D.Type=SearchText&ac=2

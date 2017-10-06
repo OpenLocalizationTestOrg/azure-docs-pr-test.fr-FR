@@ -1,5 +1,5 @@
 ---
-title: "Gestion des données Azure Automation | Microsoft Docs"
+title: "aaaManaging les données Azure Automation | Documents Microsoft"
 description: "Cet article contient plusieurs rubriques concernant la gestion d’un environnement Azure Automation.  Il inclut actuellement Conservation des données, Sauvegarde Azure Automation et Récupération d'urgence dans Azure Automation."
 services: automation
 documentationcenter: 
@@ -14,62 +14,62 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 06/02/201
 ms.author: magoedte;bwren;sngun
-ms.openlocfilehash: 92893edc4e02de148f6585e83c6861fd751401bb
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 46a164d864c4956c90ab689ca159fff6f6c08028
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="managing-azure-automation-data"></a>Gestion des données Azure Automation
 Cet article contient plusieurs rubriques concernant la gestion d’un environnement Azure Automation.
 
 ## <a name="data-retention"></a>Conservation des données
-Lorsque vous supprimez une ressource dans Azure Automation, elle est conservée pendant 90 jours à des fins d’audit avant d’être supprimée définitivement.  Vous ne pouvez ni voir ni utiliser la ressource pendant cette période.  Cette stratégie vaut aussi pour les ressources qui appartiennent à un compte Automation supprimé.
+Lorsque vous supprimez une ressource dans Azure Automation, elle est conservée pendant 90 jours à des fins d’audit avant d’être supprimée définitivement.  Vous ne peut pas voir ou utiliser les ressources hello pendant ce temps.  Cette stratégie s’applique également à tooresources qui appartient le compte d’automatisation tooan est supprimé.
 
 Azure Automation supprime automatiquement et définitivement les tâches de plus de 90 jours.
 
-Le tableau suivant récapitule la stratégie de rétention pour les différentes ressources.
+Hello tableau suivant résume la stratégie de rétention hello pour différentes ressources.
 
 | Données | Stratégie |
 |:--- |:--- |
-| Comptes |Supprimés définitivement 90 jours après leur suppression par un utilisateur. |
-| Éléments multimédias |Supprimés définitivement 90 jours après suppression des éléments multimédias par un utilisateur ou 90 jours après la suppression par un utilisateur du compte qui contient l’élément multimédia. |
-| Modules |Supprimés définitivement 90 jours après suppression du module par un utilisateur ou 90 jours après la suppression par un utilisateur du compte qui contient le module. |
-| Runbooks |Supprimés définitivement 90 jours après suppression de la ressource par un utilisateur ou 90 jours après la suppression par un utilisateur du compte qui contient la ressource. |
-| Travaux |Effacés et supprimés définitivement 90 jours après la dernière modification. Cela peut avoir lieu après la fin du travail, son arrêt ou sa suspension. |
+| Comptes |Supprimés définitivement 90 jours après que le compte de hello est supprimé par un utilisateur. |
+| Éléments multimédias |Supprimés définitivement 90 jours après l’élément multimédia de hello est supprimé par un utilisateur ou 90 jours après hello compte qui contient l’élément multimédia de hello est supprimé par un utilisateur. |
+| Modules |Supprimés définitivement 90 jours après le module de hello est supprimé par un utilisateur ou 90 jours après hello compte qui contenait le module de hello est supprimé par un utilisateur. |
+| Runbooks |Supprimés définitivement 90 jours après la ressource de hello est supprimée par un utilisateur ou 90 jours après hello compte qui contient les ressources hello est supprimé par un utilisateur. |
+| Tâches |Effacés et supprimés définitivement 90 jours après la dernière modification. Cela peut être après que le travail de hello, est arrêté ou est interrompu. |
 | Configurations de nœud/fichiers MOF |L’ancienne configuration de nœud est supprimée définitivement 90 jours après la génération d'une nouvelle configuration de nœud. |
-| Nœuds DSC |Supprimés définitivement 90 jours après l’annulation de l’enregistrement du nœud dans le compte Automation à l'aide du portail Azure ou de l’applet de commande Windows PowerShell [Unregister-AzureRMAutomationDscNode](https://msdn.microsoft.com/library/mt603500.aspx) . Les nœuds sont également supprimés définitivement 90 jours après la suppression du compte comprenant le nœud par un utilisateur. |
+| Nœuds DSC |Supprimés définitivement 90 jours après le nœud de hello est plus inscrit dans le compte Automation à l’aide du portail Azure ou hello [Unregister-AzureRMAutomationDscNode](https://msdn.microsoft.com/library/mt603500.aspx) applet de commande dans Windows PowerShell. Nœuds sont supprimés également définitivement 90 jours après compte hello qui contient le nœud de hello est supprimé par un utilisateur. |
 | Rapports sur le nœud |Supprimés définitivement 90 jours après la création d'un nouveau rapport pour le nœud en question. |
 
-La stratégie de rétention s’applique à tous les utilisateurs et ne peut actuellement pas être personnalisée.
+stratégie de rétention Hello s’applique aux utilisateurs de tooall et ne peut pas être personnalisé.
 
-Toutefois, si vous souhaitez conserver les données pendant une période plus longue, vous pouvez transférer les journaux de travail de runbook vers Log Analytics.  Pour plus d’informations, consultez [Transférer l’état d’un travail et des flux de travail d’Automation vers Log Analytics (OMS)](automation-manage-send-joblogs-log-analytics.md).   
+Toutefois, si vous avez besoin des données de tooretain pour une période plus longue, vous pouvez transférer tooLog de journaux runbook tâche Analytique.  Pour plus d’informations, consultez [transférer tooOMS de données de tâche Azure Automation Analytique de journal](automation-manage-send-joblogs-log-analytics.md).   
 
 ## <a name="backing-up-azure-automation"></a>Sauvegarde d’Azure Automation
-Lorsque vous supprimez un compte Automation dans Microsoft Azure, tous les objets du compte sont supprimés, notamment les Runbooks, les modules, les configurations, les paramètres, les tâches et les éléments multimédia. Il est impossible de récupérer les objets une fois que le compte a été supprimé.  Vous pouvez utiliser les informations suivantes pour sauvegarder le contenu de votre compte Automation avant de le supprimer. 
+Lorsque vous supprimez un compte automation dans Microsoft Azure, tous les objets de compte de hello sont supprimées, y compris les runbooks, modules, configurations, paramètres, tâches et actifs. Impossible de récupérer les objets Hello après que hello compte est supprimé.  Vous pouvez utiliser hello suivant le contenu de hello toobackup informations de votre compte automation avant de le supprimer. 
 
 ### <a name="runbooks"></a>Runbooks
-Vous pouvez exporter vos Runbooks vers vos fichiers de script en utilisant soit le portail de gestion Azure, soit l’applet de commande [Get-AzureAutomationRunbookDefinition](https://msdn.microsoft.com/library/dn690269.aspx) dans Windows PowerShell.  Ces fichiers de script peuvent être importés dans un autre compte Automation, comme indiqué dans l’article [Création ou importation d'un Runbook](https://msdn.microsoft.com/library/dn643637.aspx).
+Vous pouvez exporter vos fichiers tooscript de runbooks à l’aide de hello portail de gestion Azure ou hello [Get-AzureAutomationRunbookDefinition](https://msdn.microsoft.com/library/dn690269.aspx) applet de commande dans Windows PowerShell.  Ces fichiers de script peuvent être importés dans un autre compte Automation, comme indiqué dans l’article [Création ou importation d'un Runbook](https://msdn.microsoft.com/library/dn643637.aspx).
 
 ### <a name="integration-modules"></a>Modules d'intégration
-Vous ne pouvez pas exporter les modules d'intégration depuis Azure Automation.  Vous devez vous assurer qu'ils sont disponibles à l'extérieur du compte Automation.
+Vous ne pouvez pas exporter les modules d'intégration depuis Azure Automation.  Vous devez vous assurer qu’ils sont disponibles en dehors du compte automation de hello.
 
 ### <a name="assets"></a>Éléments multimédias
-Vous ne pouvez pas exporter d’ [éléments](https://msdn.microsoft.com/library/dn939988.aspx) depuis Azure Automation.  À l'aide du portail de gestion Azure, vous devez noter les détails des variables, des informations d'identification, des certificats, des connexions et des planifications.  Vous devez ensuite créer manuellement les ressources qui seront utilisées par les Runbooks que vous importerez dans une autre Automation.
+Vous ne pouvez pas exporter d’ [éléments](https://msdn.microsoft.com/library/dn939988.aspx) depuis Azure Automation.  À l’aide de hello portail de gestion Azure, vous devez noter les détails hello de variables, les informations d’identification, les certificats, les connexions et les planifications.  Vous devez ensuite créer manuellement les ressources qui seront utilisées par les Runbooks que vous importerez dans une autre Automation.
 
-Vous pouvez utiliser les [applets de commande Azure](https://msdn.microsoft.com/library/dn690262.aspx) pour récupérer les détails des éléments non chiffrés et les enregistrer pour vous y reporter ultérieurement ou créer des éléments équivalents dans un autre compte Automation.
+Vous pouvez utiliser [applets de commande Azure](https://msdn.microsoft.com/library/dn690262.aspx) tooretrieve les détails des biens non chiffrés et enregistrer les futur fait référence ou créer des ressources équivalentes dans un autre compte automation.
 
-Il est impossible de récupérer la valeur des variables chiffrées ou du champ du mot de passe des informations d'identification en utilisant les applets de commande.  Si vous ne connaissez pas ces valeurs, vous pouvez les récupérer à partir d’un Runbook en utilisant les activités [Get-AutomationVariable](https://msdn.microsoft.com/library/dn940012.aspx) et [Get-AutomationPSCredential](https://msdn.microsoft.com/library/dn940015.aspx).
+Vous ne peut pas récupérer la valeur hello pour les variables chiffrées ou un champ de mot de passe hello d’informations d’identification à l’aide des applets de commande.  Si vous ne connaissez pas ces valeurs, vous pouvez les récupérer à partir d’un runbook à l’aide de hello [Get-AutomationVariable](https://msdn.microsoft.com/library/dn940012.aspx) et [Get-AutomationPSCredential](https://msdn.microsoft.com/library/dn940015.aspx) activités.
 
 Vous ne pouvez pas exporter de certificats depuis Azure Automation.  Vous devez vous assurer que tous les certificats sont disponibles en dehors d'Azure.
 
 ### <a name="dsc-configurations"></a>Configurations DSC
-Vous pouvez exporter vos configurations vers vos fichiers de script en utilisant soit le portail de gestion Azure, soit l'applet de commande [Export-AzureRmAutomationDscConfiguration](https://msdn.microsoft.com/library/mt603485.aspx) dans Windows PowerShell. Ces configurations peuvent être importées et utilisées dans un autre compte Automation.
+Vous pouvez exporter votre tooscript des fichiers de configuration à l’aide de hello portail de gestion Azure ou hello [Export-AzureRmAutomationDscConfiguration](https://msdn.microsoft.com/library/mt603485.aspx) applet de commande dans Windows PowerShell. Ces configurations peuvent être importées et utilisées dans un autre compte Automation.
 
 ## <a name="geo-replication-in-azure-automation"></a>Géo-réplication dans Azure Automation
-La géo-réplication, fonction standard dans les comptes Azure Automation, sauvegarde les données de compte dans une région géographique différente à des fins de redondance. Vous pouvez choisir une région primaire quand vous configurez votre compte ; une région secondaire lui est ensuite automatiquement affectée. Les données secondaires, copiées à partir de la région primaire, sont mises à jour en permanence en cas de perte de données.  
+Géo-réplication, standard dans les comptes Azure Automation, sauvegarde de la région géographique différente tooa compte données pour assurer la redondance. Lors de la configuration de votre compte, vous pouvez choisir une région primaire, puis une région secondaire est attribuée automatiquement tooit. données secondaires Hello, copiées à partir de la région principale de hello, sont régulièrement mis à jour en cas de perte de données.  
 
-Le tableau suivant montre les paires de régions primaires et secondaires disponibles.
+Hello tableau suivant montre les couplages de la région primaire et secondaire disponible hello.
 
 | Primaire | Secondaire |
 | --- | --- |
@@ -79,5 +79,5 @@ Le tableau suivant montre les paires de régions primaires et secondaires dispon
 | Asie du Sud-Est |Asie de l'Est |
 | Est du Japon |Ouest du Japon |
 
-Dans l’éventualité peu probable que les données d’une région primaire soient perdues, Microsoft tente de les récupérer. Si les données primaires sont irrécupérables, un basculement géographique est effectué et les clients concernés en sont informés via leur abonnement.
+Hello improbable qu’une donnée de la région principale est perdue, Microsoft tente toorecover il. Si les données principales hello ne peut pas être récupérées, puis basculement géographique est effectué et hello clients concernés seront notifiées à ce sujet via leur abonnement.
 

@@ -1,5 +1,5 @@
 ---
-title: "Créer une application web Azure en cours d’exécution sur Linux | Microsoft Docs"
+title: "aaaCreate Azure web application en cours d’exécution sur Linux | Documents Microsoft"
 description: "Workflow de création d’application web Azure Web App sur Linux."
 keywords: azure app service, application web, linux, oss
 services: app-service
@@ -15,39 +15,39 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/16/2017
 ms.author: naziml;wesmc
-ms.openlocfilehash: 49091d4a85bed23927850f9c0bbc5ea8b6e8c9e1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: de1bd030345d5e2a8024012067b5bcaa2cca09dc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-azure-web-app-running-on-linux"></a>Créer une application web Azure en cours d’exécution sur Linux
 
 [!INCLUDE [app-service-linux-preview](../../includes/app-service-linux-preview.md)]
 
 
-## <a name="use-the-azure-portal-to-create-your-web-app"></a>Utiliser le portail Azure pour créer votre application web
-Vous pouvez commencer à créer votre application web sur Linux à partir du [portail Azure](https://portal.azure.com) comme indiqué dans l’image suivante :
+## <a name="use-hello-azure-portal-toocreate-your-web-app"></a>Utilisez hello toocreate portail Azure à votre application web
+Vous pouvez commencer à créer votre application web sur Linux à partir de hello [portail Azure](https://portal.azure.com) comme indiqué dans hello suivant image :
 
-![Commencez à créer une application web sur le portail Azure][1]
+![Démarrer la création d’une application web sur hello portail Azure][1]
 
-Ensuite, le **panneau Créer** s’ouvre comme indiqué dans l’image suivante :
+Ensuite, hello **créer panneau** s’ouvre comme indiqué dans hello suivant image :
 
-![Panneau Créer][2]
+![Panneau de création de Hello][2]
 
 1. Donnez un nom à votre application web.
-2. Sélectionnez un groupe de ressources existant ou créez-en un. (Consultez les régions disponibles dans la [section Limitations](app-service-linux-intro.md).)
-3. Sélectionnez un plan Azure App Service existant ou créez-en un. (Consultez les notes relatives au plan App Service dans la [section Limitations](app-service-linux-intro.md).)
-4. Sélectionnez la pile d’applications que vous souhaitez utiliser. Vous pouvez choisir entre plusieurs versions de Node.js, PHP, .Net Core et Ruby.
+2. Sélectionnez un groupe de ressources existant ou créez-en un. (Consultez les régions disponibles Bonjour [section limitations](app-service-linux-intro.md).)
+3. Sélectionnez un plan Azure App Service existant ou créez-en un. (Consultez les remarques du plan App Service Bonjour [section limitations](app-service-linux-intro.md).)
+4. Choisissez l’application hello pile que vous avez l’intention de toouse. Vous pouvez choisir entre plusieurs versions de Node.js, PHP, .Net Core et Ruby.
 
-Une fois que vous avez créé l’application, vous pouvez modifier la pile d’applications dans les paramètres de l’application comme illustré dans l’image suivante :
+Une fois que vous avez créé l’application hello, vous pouvez modifier pile de l’application hello à partir des paramètres de l’application hello comme indiqué dans hello suivant image :
 
 ![Paramètres de l’application][3]
 
 ## <a name="deploy-your-web-app"></a>Déployez votre application web
-Les **options de déploiement** disponibles dans le portail de gestion vous permettent d’utiliser un référentiel Git local ou GitHub pour déployer votre application. Les autres instructions sont similaires à celles d’une application non-Linux. Vous pouvez suivre les instructions de [déploiement Git local](app-service-deploy-local-git.md) ou [déploiement continu](app-service-continuous-deployment.md) pour déployer votre application.
+En choisissant **options de déploiement** à partir de l’offre de portail de gestion hello vous hello option toouse local Git ou GitHub référentiel toodeploy votre application. Hello autres instructions de hello sont toothose similaires pour une application web de non-Linux. Vous pouvez suivre les instructions hello dans [déploiement Git local](app-service-deploy-local-git.md) ou [déploiement continu](app-service-continuous-deployment.md) toodeploy votre application.
 
-Vous pouvez également utiliser FTP pour télécharger votre application sur votre site. Vous pouvez obtenir le point de terminaison FTP de votre application web à partir de la section des journaux de diagnostics, comme illustré dans l’image suivante :
+Vous pouvez également utiliser les tooupload FTP à votre site de tooyour d’application. Vous pouvez obtenir le point de terminaison hello FTP pour votre application web des diagnostics de hello section journaux comme indiqué dans hello suivant image :
 
 ![Journaux de diagnostics][4]
 

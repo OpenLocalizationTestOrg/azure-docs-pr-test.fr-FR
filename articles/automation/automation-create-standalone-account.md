@@ -1,6 +1,6 @@
 ---
-title: "Création d’un compte Azure Automation autonome | Microsoft Docs"
-description: "Ce didacticiel vous guide tout au long des procédures de création et de test d’une authentification de principal de sécurité dans Azure Automation. Il est complété par un exemple d’utilisation."
+title: aaaCreate autonome compte Azure Automation | Documents Microsoft
+description: "Didacticiel qui vous guide à l’aide de la création, le test et exemple hello principal d’authentification de sécurité dans Azure Automation."
 services: automation
 documentationcenter: 
 author: mgoedtel
@@ -14,76 +14,76 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 08/18/2017
 ms.author: magoedte
-ms.openlocfilehash: 6eadfb0c3f91c1f2c7783d70604b45d5dc9912a3
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 1500d25d9565d4082768933834303a17c5e84234
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-standalone-azure-automation-account"></a>Création d’un compte Azure Automation autonome
-Cette rubrique montre comment créer un compte Automation à partir du portail Azure si vous souhaitez évaluer et apprendre Azure Automation sans inclure les solutions de gestion supplémentaires ou une intégration avec OMS Log Analytics pour fournir une surveillance avancée des travaux Runbook.  Vous pourrez ajouter ces solutions de gestion ou effectuer une intégration à Log Analytics ultérieurement.  Avec le compte Automation, vous avez la possibilité d’identifier les ressources de gestion des Runbooks dans Azure Resource Manager ou le modèle de déploiement Azure Classic.
+Cette rubrique vous montre comment toocreate un compte Automation à partir de hello portail Azure, si vous souhaitez tooevaluate et que vous découvrez Azure Automation sans inclure les solutions de gestion supplémentaires hello ou intégration à l’Analytique des journaux OMS tooprovide surveillance avancée de tâches de runbook.  Vous pouvez ajouter ces solutions de gestion ou intégrer Analytique de journal à tout moment dans hello futures.  Hello compte Automation, vous êtes runbooks tooauthenticate en mesure de gérer les ressources dans Azure Resource Manager ou d’un déploiement classique Azure.
 
-Lorsque vous créez un compte Automation dans le portail Azure, il crée automatiquement :
+Lorsque vous créez un compte Automation Bonjour portail Azure, il crée automatiquement :
 
-* Un compte d’identification, qui crée un principal du service dans Azure Active Directory, un certificat, et attribue le contrôle d’accès en fonction du rôle (RBAC) Collaborateur, qui est utilisé pour gérer les ressources Resource Manager à l’aide de Runbooks.   
-* Un compte d’identification Classic en chargeant un certificat de gestion, qui est utilisé pour gérer les ressources classiques à l’aide de Runbooks.  
+* Compte d’identification, ce qui crée une nouvelle entité de service dans Azure Active Directory, un certificat, et assigne hello de contrôle d’accès en fonction du rôle de collaborateur (RBAC), qui est utilisé à l’aide de procédures opérationnelles de ressources toomanage Gestionnaire de ressources.   
+* Classique compte d’identification en téléchargeant un certificat de gestion, qui est utilisé toomanage classique de ressources à l’aide de procédures opérationnelles.  
 
-Le processus s’en trouve ainsi simplifié, et vous êtes en mesure de commencer rapidement à générer et déployer des Runbooks pour répondre à vos besoins d’automatisation.  
+Cela simplifie le processus de hello pour vous et vous aide à commencer rapidement à créer et déployer des procédures opérationnelles toosupport votre automatisation a besoin.  
 
-## <a name="permissions-required-to-create-automation-account"></a>Autorisations requises pour créer le compte Automation
-Pour créer ou mettre à jour un compte Automation conformément à cette rubrique, vous devez disposer des privilèges spécifiques suivants et des autorisations requises.   
+## <a name="permissions-required-toocreate-automation-account"></a>Autorisations toocreate requis compte Automation
+toocreate ou mise à jour un compte Automation, vous devez avoir hello suivant des privilèges spécifiques et des autorisations requises toocomplete de cette rubrique.   
  
-* Pour créer un compte Automation, votre compte utilisateur AD doit être ajouté à un rôle disposant d’autorisations équivalentes à celles du rôle Propriétaire pour les ressources Microsoft.Automation, comme indiqué dans l’article [Contrôle d’accès en fonction du rôle dans Azure Automation](automation-role-based-access-control.md).  
-* Si le paramètre Inscriptions des applications possède la valeur **Oui**, les utilisateurs non administrateurs dans votre locataire Azure AD peuvent [inscrire des applications AD](../azure-resource-manager/resource-group-create-service-principal-portal.md#check-azure-subscription-permissions).  Si le paramètre Inscriptions d’applications est défini sur **Non**, l’utilisateur qui effectue cette action doit être un administrateur général dans Azure AD. 
+* Dans l’ordre toocreate un compte Automation, votre compte d’utilisateur Active Directory doit être toobe tooa ajouté rôle rôle de propriétaire de toohello équivalent d’autorisations pour les ressources Microsoft.Automation comme indiqué dans l’article [contrôle d’accès basé sur un rôle dans Azure Automation ](automation-role-based-access-control.md).  
+* Si les inscriptions d’application hello paramètre est défini trop**Oui**, les utilisateurs non administrateurs dans votre locataire Azure AD peuvent [inscrire des applications AD](../azure-resource-manager/resource-group-create-service-principal-portal.md#check-azure-subscription-permissions).  Si les inscriptions d’application hello paramètre est défini trop**non**, utilisateur hello effectuer cette action doit être un administrateur global dans Azure AD. 
 
-Si vous n’êtes pas membre de l’instance Active Directory de l’abonnement avant d’être ajouté au rôle Administrateur général/Coadministrateur de l’abonnement, vous êtes ajouté à Active Directory en tant qu’invité. Dans ce cas, vous recevez le message d’avertissement « Vous n’avez pas les autorisations pour créer… » dans le panneau **Ajouter un compte Automation**. Les utilisateurs ayant préalablement reçu le rôle administrateur général/coadministrateur peuvent être supprimés de l’instance Active Directory de l’abonnement, puis rajoutés pour devenir des utilisateurs complets dans Active Directory. Pour vérifier si tel est le cas, dans le volet **Azure Active Directory** du portail Azure, sélectionnez **Utilisateurs et groupes** et **Tous les utilisateurs**, choisissez l’utilisateur concerné, puis sélectionnez **Profil**. La valeur de l’attribut **Type d’utilisateur** sous le profil de l’utilisateur ne doit pas être **Invité**.
+Si vous n’êtes pas un membre d’instance d’Active Directory de l’abonnement hello avant que vous êtes ajouté toohello global administrateur ou le co-administrateur rôle d’abonnement de hello, vous êtes ajouté tooActive active en tant qu’invité. Dans ce cas, vous recevez un « vous n’avez pas toocreate autorisations... » avertissement sur hello **ajouter un compte Automation** panneau. Les utilisateurs qui ont été ajoutées toohello global administrateur ou le co-administrateur rôle tout d’abord peut être supprimé à partir de l’instance d’Active Directory de l’abonnement hello et a toomake les un utilisateur complète dans Active Directory. tooverify cette situation, hello **Azure Active Directory** volet Bonjour portail Azure, sélectionnez **utilisateurs et groupes**, sélectionnez **tous les utilisateurs** et, après avoir sélectionné hello utilisateur spécifique, sélectionnez **profil**. Hello valeur Hello **type utilisateur** attribut sous le profil de l’utilisateur hello doit être **invité**.
 
-## <a name="create-a-new-automation-account-from-the-azure-portal"></a>Créer un compte Automation à partir du portail Azure
-Suivez les étapes suivantes dans cette section afin de créer un compte Azure Automation dans le portail Azure.    
+## <a name="create-a-new-automation-account-from-hello-azure-portal"></a>Créer un nouveau compte Automation à partir de hello portail Azure
+Dans cette section, effectuer hello suivant les étapes toocreate un compte Azure Automation Bonjour portail Azure.    
 
-1. Connectez-vous au portail Azure avec un compte membre du rôle Administrateurs des abonnements et coadministrateur de l’abonnement.
+1. Se connecter toohello portail Azure avec un compte qui est membre du rôle des administrateurs d’abonnements hello et coadministrateur de l’abonnement de hello.
 2. Cliquez sur **Nouveau**.<br><br> ![Sélection de l’option Nouveau dans le portail Azure](media/automation-offering-get-started/automation-portal-martketplacestart.png)<br>  
-3. Recherchez **Automation**, puis dans les résultats de recherche, sélectionnez **Automation & Control***.<br><br> ![Recherche et sélection d’Automation à partir de la Place de marché](media/automation-create-standalone-account/automation-marketplace-select-create-automationacct.png)<br> 
-3. Dans le panneau Comptes Automation, cliquez sur **Ajouter**.<br><br>![Ajouter un compte Automation](media/automation-create-standalone-account/automation-create-automationacct-properties.png)
+3. Recherchez **Automation** et puis Bonjour résultats de recherche sélectionnez **Automation & contrôle***.<br><br> ![Recherche et sélection d’Automation à partir de la Place de marché](media/automation-create-standalone-account/automation-marketplace-select-create-automationacct.png)<br> 
+3. Dans le panneau de comptes Automation hello, cliquez sur **ajouter**.<br><br>![Ajouter un compte Automation](media/automation-create-standalone-account/automation-create-automationacct-properties.png)
    
    > [!NOTE]
-   > Si l’avertissement suivant s’affiche dans le panneau **Ajouter un compte Automation**, cela signifie que votre compte n’est ni membre du rôle Administrateurs des abonnements ni coadministrateur de l’abonnement.<br><br>![Avertissement Ajouter un compte Automation](media/automation-create-standalone-account/create-account-without-perms.png)
+   > Si vous voyez hello suivant avertissement Bonjour **ajouter un compte Automation** panneau, il est, car votre compte n’est pas membre du rôle des administrateurs d’abonnements hello et co-admin d’abonnement de hello.<br><br>![Avertissement Ajouter un compte Automation](media/automation-create-standalone-account/create-account-without-perms.png)
    > 
    > 
-4. Dans le panneau **Ajouter un compte Automation**, entrez le nom de votre nouveau compte Automation dans la zone **Nom**.
-5. Si vous disposez de plusieurs abonnements, spécifiez-en un pour le nouveau compte, puis indiquez un **groupe de ressources** nouveau ou existant et un **emplacement** de centre de données Azure.
-6. Vérifiez que l’option **Créer un compte d’identification Azure** est bien définie sur la valeur **Oui**, puis cliquez sur le bouton **Créer**.  
+4. Bonjour **ajouter un compte Automation** panneau, Bonjour **nom** tapez un nom pour votre nouveau compte Automation.
+5. Si vous avez plusieurs abonnements, spécifiez un nouveau compte de hello, nouveau ou existant **groupe de ressources** et un centre de données Azure **emplacement**.
+6. Vérifier la valeur de hello **Oui** est sélectionné pour hello **créer Azure exécuter en tant que compte** , puis cliquez sur hello **créer** bouton.  
    
    > [!NOTE]
-   > Si vous choisissez de ne pas créer de compte d’identification en sélectionnant l’option **Non**, un message d’avertissement s’affiche dans le panneau **Ajouter un compte Automation**.  Bien que le compte soit créé dans le portail Azure, il ne possède pas d’identité d’authentification correspondante au sein de votre service d’annuaire d’abonnement classique ou de votre service d’annuaire d’abonnement Gestionnaire des ressources. Par conséquent, il ne peut pas accéder aux ressources dans votre abonnement.  Cela empêche tous les Runbooks faisant référence à ce compte de pouvoir s’authentifier et d’effectuer des tâches sur les ressources de ces modèles de déploiement.
+   > Si vous choisissez toonot créer le compte d’identification hello en sélectionnant l’option de hello **non**, vous voyez s’afficher un message d’avertissement Bonjour **ajouter un compte Automation** panneau.  Pendant la création de compte de hello Bonjour portail Azure, il ne possède une identité d’authentification correspondant au sein de votre classique ou service d’annuaire abonnement Gestionnaire de ressources et par conséquent, aucune tooresources accès sur votre abonnement.  Cela empêche les runbooks faisant référence à ce compte ne soient pas en mesure de tooauthenticate et effectuer des tâches sur des ressources dans les modèles de déploiement.
    > 
    > ![Avertissement Ajouter un compte Automation](media/automation-create-standalone-account/create-account-decline-create-runas-msg.png)<br>
-   > Le rôle Contributeur n’est pas attribué en cas de non-création du principal du service.
+   > Lorsque le principal du service hello n’est pas créé le rôle de collaborateur hello n’est pas affecté.
    > 
 
-7. Pour suivre la progression de la création du compte Automation, accédez à l’onglet **Notifications** du menu.
+7. Alors que Azure crée le compte d’automatisation hello, vous pouvez suivre la progression de hello sous **Notifications** à partir du menu de hello.
 
 ### <a name="resources-included"></a>Ressources incluses
-Une fois le compte Automation créé, plusieurs ressources vous sont automatiquement créées.  Le tableau ci-dessous récapitule les ressources du compte d’identification.<br>
+Lorsque hello compte Automation a été créé, plusieurs ressources sont automatiquement créées pour vous.  Hello tableau suivant résume les ressources pour hello compte d’identification.<br>
 
 | Ressource | Description |
 | --- | --- |
-| Runbook AzureAutomationTutorial |Exemple de Runbook Graphical qui illustre l’authentification à l’aide du compte d’identification et l’accès à l’ensemble des ressources Resource Manager. |
-| Runbook AzureAutomationTutorialScript |Exemple de Runbook PowerShell qui illustre l’authentification à l’aide du compte d’identification et l’accès à l’ensemble des ressources Resource Manager. |
-| AzureRunAsCertificate |Ressource de certificat créée automatiquement lors de la création du compte Automation ou à l’aide du script PowerShell ci-dessous pour un compte existant.  Elle vous permet de vous authentifier auprès d’Azure afin de pouvoir gérer les ressources Azure Resource Manager des Runbooks.  Ce certificat a une durée de vie d’un an. |
-| AzureRunAsConnection |Ressource de connexion créée automatiquement lors de la création du compte Automation ou à l’aide du script PowerShell ci-dessous pour un compte existant. |
+| Runbook AzureAutomationTutorial |Runbook graphique exemple qui montre comment l’à l’aide de tooauthenticate hello compte d’identification et obtient toutes les ressources du Gestionnaire de ressources hello. |
+| Runbook AzureAutomationTutorialScript |Un exemple de runbook PowerShell qui montre comment l’à l’aide de tooauthenticate hello compte d’identification et obtient toutes les ressources du Gestionnaire de ressources hello. |
+| AzureRunAsCertificate |Ressource de certificat automatiquement créé lors de la création du compte Automation ou à l’aide du script PowerShell de hello ci-dessous pour un compte existant.  Il vous permet de tooauthenticate avec Azure afin que vous puissiez gérer les ressources Azure Resource Manager à partir de procédures opérationnelles.  Ce certificat a une durée de vie d’un an. |
+| AzureRunAsConnection |Ressource de connexion automatiquement créé lors de la création du compte Automation ou à l’aide du script PowerShell de hello ci-dessous pour un compte existant. |
 
-Le tableau ci-dessous récapitule les ressources du compte d’identification Classic.<br>
+Hello tableau suivant résume les ressources pour hello classique compte d’identification.<br>
 
 | Ressource | Description |
 | --- | --- |
-| Runbook AzureClassicAutomationTutorial |Exemple de Runbook Graphical qui accède à toutes les machines virtuelles Classic d’un abonnement à l’aide du compte d’identification Classic (certificat), puis indique leur nom et leur état. |
-| Runbook AzureClassicAutomationTutorialScript |Exemple de Runbook PowerShell qui accède à toutes les machines virtuelles Classic d’un abonnement à l’aide du compte d’identification Classic (certificat), puis indique leur nom et leur état. |
-| AzureClassicRunAsCertificate |Ressource de certificat créée automatiquement, qui est utilisée pour l’authentification auprès d’Azure afin que vous puissiez gérer les ressources Azure Classic des Runbooks.  Ce certificat a une durée de vie d’un an. |
-| AzureClassicRunAsConnection |Ressource de connexion créée automatiquement, qui est utilisée pour l’authentification auprès d’Azure afin que vous puissiez gérer les ressources Azure Classic des Runbooks. |
+| Runbook AzureClassicAutomationTutorial |Exemple graphique de runbook, qui obtient toutes les machines virtuelles classique de hello un abonnement à l’aide de hello classique compte d’identification (certificat), puis exporte l’état et le nom de machine virtuelle hello. |
+| Runbook AzureClassicAutomationTutorialScript |Exemple PowerShell de runbook, qui obtient toutes les machines virtuelles classique de hello un abonnement à l’aide de hello classique compte d’identification (certificat), puis exporte l’état et le nom de machine virtuelle hello. |
+| AzureClassicRunAsCertificate |Ressource de certificat créé automatiquement qui est utilisée tooauthenticate avec Azure afin que vous puissiez gérer les ressources classiques Azure à partir de procédures opérationnelles.  Ce certificat a une durée de vie d’un an. |
+| AzureClassicRunAsConnection |Ressource de connexion automatiquement créée qui est utilisée tooauthenticate avec Azure afin que vous puissiez gérer les ressources classiques Azure à partir de procédures opérationnelles. |
 
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Pour en savoir plus sur la création graphique, consultez [Création de graphiques dans Azure Automation](automation-graphical-authoring-intro.md).
-* Pour une prise en main des Runbooks PowerShell, consultez [Mon premier Runbook PowerShell](automation-first-runbook-textual-powershell.md).
-* Pour obtenir des informations sur la prise en main des Runbooks de workflow PowerShell, voir [Mon premier runbook PowerShell Workflow](automation-first-runbook-textual.md).
+* toolearn plus sur la création de graphiques, consultez [de création graphique dans Azure Automation](automation-graphical-authoring-intro.md).
+* tooget main runbook PowerShell, consultez [mon runbook PowerShell premier](automation-first-runbook-textual-powershell.md).
+* tooget a démarré avec des runbooks de flux de travail PowerShell, consultez [mon premier runbook de flux de travail PowerShell](automation-first-runbook-textual.md).

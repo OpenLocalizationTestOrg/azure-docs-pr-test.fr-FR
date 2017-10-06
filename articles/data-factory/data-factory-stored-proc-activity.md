@@ -1,6 +1,6 @@
 ---
-title: "Activité de procédure stockée SQL Server"
-description: "Découvrez comment utiliser l'activité de procédure stockée SQL Server pour appeler une procédure stockée dans une base de données SQL Azure ou un entrepôt Azure SQL Data Warehouse à partir d'un pipeline Data Factory."
+title: "aaaSQL serveur activité de procédure stockée"
+description: "Découvrez comment vous pouvez utiliser l’activité de la procédure stockée SQL Server de hello tooinvoke une procédure stockée dans une base de données SQL Azure ou d’un entrepôt de données SQL Azure à partir d’un pipeline de fabrique de données."
 services: data-factory
 documentationcenter: 
 author: spelluru
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/22/2017
 ms.author: spelluru
-ms.openlocfilehash: 6505d9aa2c7ae003bd928e2fa82cd923a9615394
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 9116f80eefc59d95e866b2ba1de2feb1bdc4b1d4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sql-server-stored-procedure-activity"></a>Activité de procédure stockée SQL Server
 > [!div class="op_single_selector" title1="Transformation Activities"]
@@ -34,25 +34,25 @@ ms.lasthandoff: 08/03/2017
 > * [Activité personnalisée .NET](data-factory-use-custom-activities.md)
 
 ## <a name="overview"></a>Vue d'ensemble
-Vous utilisez des activités de transformation dans un [pipeline](data-factory-create-pipelines.md) Data Factory pour transformer et traiter des données brutes en prévisions et en analyses. L’activité de procédure stockée est l’une des activités de transformation prises en charge par Data Factory. Cet article s'appuie sur l'article [Activités de transformation des données](data-factory-data-transformation-activities.md) qui présente une vue d'ensemble de la transformation des données et les activités de transformation prises en charge dans Data Factory.
+Vous utilisez des activités de transformation des données dans une fabrique de données [pipeline](data-factory-create-pipelines.md) tootransform et traitent les données brutes dans des prédictions et des analyses. Hello activité de procédure stockée est une des activités de transformation hello qui prend en charge de la fabrique de données. Cet article s’appuie sur hello [activités de transformation des données](data-factory-data-transformation-activities.md) article, qui présente une vue d’ensemble de la transformation des données et des activités de transformation hello pris en charge dans la fabrique de données.
 
-Vous pouvez utiliser l’activité de procédure stockée pour appeler une procédure stockée dans l’une des banques de données suivantes dans votre entreprise ou sur une machine virtuelle Azure : 
+Vous pouvez utiliser tooinvoke d’activité de procédure stockée hello une procédure stockée dans un des données suivantes de hello stocke dans votre entreprise ou sur une machine virtuelle Azure (VM) : 
 
 - Base de données SQL Azure
 - Azure SQL Data Warehouse
-- Base de données SQL Server  Si vous utilisez SQL Server, installez la passerelle de gestion des données sur l’ordinateur qui héberge la base de données ou sur un autre ordinateur ayant accès à la base de données. La passerelle de gestion des données est un composant qui connecte des sources de données locales ou se trouvant sur une machine virtuelle Azure à des services cloud de manière gérée et sécurisée. Consultez l’article [Passerelle de gestion des données](data-factory-data-management-gateway.md) pour plus d’informations sur la passerelle.
+- Base de données SQL Server  Si vous utilisez SQL Server, installez la passerelle de gestion des données sur le même ordinateur que les ordinateurs hôtes hello de base de données ou sur un ordinateur distinct qui possède la base de données access toohello de hello. La passerelle de gestion des données est un composant qui connecte des sources de données locales ou se trouvant sur une machine virtuelle Azure à des services cloud de manière gérée et sécurisée. Consultez l’article [Passerelle de gestion des données](data-factory-data-management-gateway.md) pour plus d’informations sur la passerelle.
 
 > [!IMPORTANT]
-> Lorsque vous copiez des données dans Azure SQL Database ou SQL Server, vous pouvez configurer l’élément **SqlSink** dans l’activité de copie pour appeler une procédure stockée en utilisant la propriété **sqlWriterStoredProcedureName**. Pour plus de détails, consultez l’article [Appeler une procédure stockée à partir d’une activité de copie](data-factory-invoke-stored-procedure-from-copy-activity.md). Pour plus d’informations sur la propriété, consultez les articles suivants sur les connecteurs : [Azure SQL Database](data-factory-azure-sql-connector.md#copy-activity-properties), [SQL Server](data-factory-sqlserver-connector.md#copy-activity-properties). L’appel d’une procédure stockée lors de la copie de données dans Azure SQL Data Warehouse avec une activité de copie n’est pas pris en charge. Toutefois, vous pouvez utiliser l’activité de procédure stockée pour appeler une procédure stockée dans SQL Data Warehouse. 
+> Lors de la copie des données dans la base de données SQL Azure ou SQL Server, vous pouvez configurer hello **SqlSink** dans l’activité de copie tooinvoke une procédure stockée à l’aide de hello **sqlWriterStoredProcedureName** propriété. Pour plus de détails, consultez l’article [Appeler une procédure stockée à partir d’une activité de copie](data-factory-invoke-stored-procedure-from-copy-activity.md). Pour plus d’informations sur la propriété de hello, consultez suivant des articles de connecteur : [base de données SQL Azure](data-factory-azure-sql-connector.md#copy-activity-properties), [SQL Server](data-factory-sqlserver-connector.md#copy-activity-properties). L’appel d’une procédure stockée lors de la copie de données dans Azure SQL Data Warehouse avec une activité de copie n’est pas pris en charge. Toutefois, vous pouvez utiliser tooinvoke activité de procédure stockée hello une procédure stockée dans un entrepôt de données SQL. 
 >  
-> Lors de la copie de données à partir d’Azure SQL Database, SQL Server ou Azure SQL Data Warehouse, vous pouvez configurer **SqlSource** dans l’activité de copie pour appeler une procédure stockée afin de lire les données à partir de la base de données source en utilisant la propriété **sqlReaderStoredProcedureName**. Pour plus d’informations, consultez les articles suivants sur les connecteurs : [Azure SQL Database](data-factory-azure-sql-connector.md#copy-activity-properties), [SQL Server](data-factory-sqlserver-connector.md#copy-activity-properties), [Azure SQL Data Warehouse](data-factory-azure-sql-data-warehouse-connector.md#copy-activity-properties)          
+> Lors de la copie des données à partir de la base de données SQL Azure ou SQL Server ou entrepôt de données SQL Azure, vous pouvez configurer **SqlSource** dans l’activité de copie tooinvoke un tooread de données de la procédure stockée à partir de la base de données source hello à l’aide de hello  **sqlReaderStoredProcedureName** propriété. Pour plus d’informations, consultez hello suivant des articles de connecteur : [base de données SQL Azure](data-factory-azure-sql-connector.md#copy-activity-properties), [SQL Server](data-factory-sqlserver-connector.md#copy-activity-properties), [Azure SQL Data Warehouse](data-factory-azure-sql-data-warehouse-connector.md#copy-activity-properties)          
 
 
-La procédure pas à pas suivante utilise l’activité de procédure stockée dans un pipeline pour appeler une procédure stockée dans une base de données SQL Azure. 
+Hello, suivant la procédure pas à pas utilise hello activité de procédure stockée dans un pipeline de tooinvoke une procédure stockée dans une base de données SQL Azure. 
 
 ## <a name="walkthrough"></a>Procédure pas à pas
 ### <a name="sample-table-and-stored-procedure"></a>Exemple de table et de procédure stockée
-1. Créez la **table** suivante dans votre base de données SQL Azure à l’aide de SQL Server Management Studio ou d’un autre outil que vous maîtrisez. La colonne datetimestamp affiche la date et l’heure auxquelles l’ID correspondant est généré.
+1. Créer hello **table** dans votre base de données SQL Azure à l’aide de SQL Server Management Studio ou tout autre outil que vous êtes familiarisé avec. colonne de datetimestamp Hello est la date de hello et l’heure à laquelle le code hello correspondante est généré.
 
     ```SQL
     CREATE TABLE dbo.sampletable
@@ -65,12 +65,12 @@ La procédure pas à pas suivante utilise l’activité de procédure stockée d
     CREATE CLUSTERED INDEX ClusteredID ON dbo.sampletable(Id);
     GO
     ```
-    La colonne ID affiche l’identifiant unique et la colonne datetimestamp affiche la date et l’heure auxquelles l’ID correspondant est généré.
+    ID est hello unique identifié et hello datetimestamp est date de hello et l’heure à laquelle le code hello correspondante est généré.
     
     ![Exemples de données](./media/data-factory-stored-proc-activity/sample-data.png)
 
-    Dans cet exemple, la procédure stockée est dans Azure SQL Database. Si elle est dans Azure SQL Data Warehouse et dans SQL Server Database, l’approche est la même. Pour une base de données SQL Server, vous devez installer une [passerelle de gestion des données](data-factory-data-management-gateway.md).
-2. Créez la **procédure stockée** suivante qui insère des données dans la table **sampletable**.
+    Dans cet exemple, la procédure stockée hello est dans une base de données SQL Azure. Si hello procédure stockée est dans un entrepôt de données SQL Azure et de la base de données SQL Server, l’approche de hello est similaire. Pour une base de données SQL Server, vous devez installer une [passerelle de gestion des données](data-factory-data-management-gateway.md).
+2. Créer hello **procédure stockée** qui insère des données dans toohello **sampletable**.
 
     ```SQL
     CREATE PROCEDURE sp_sample @DateTime nvarchar(127)
@@ -83,53 +83,53 @@ La procédure pas à pas suivante utilise l’activité de procédure stockée d
     ```
 
    > [!IMPORTANT]
-   > Le **nom** et la **casse** du paramètre (DateTime dans cet exemple) doivent correspondre à ceux du paramètre spécifié dans le script JSON de l’activité/du pipeline. Dans la définition de procédure stockée, vérifiez que **@** est utilisé en tant que préfixe pour le paramètre.
+   > **Nom** et **casse** Hello paramètre (DateTime dans cet exemple) doit correspondre à celui du paramètre spécifié dans le pipeline/activité hello JSON. Dans hello la définition de procédure stockée, vérifiez que  **@**  est utilisé en tant que préfixe pour le paramètre hello.
 
 ### <a name="create-a-data-factory"></a>Créer une fabrique de données
-1. Connectez-vous au [portail Azure](https://portal.azure.com/).
-2. Cliquez sur **NOUVEAU** dans le menu de gauche, puis sur **Intelligence + analyse** et sur **Data Factory**.
+1. Connectez-vous trop[portail Azure](https://portal.azure.com/).
+2. Cliquez sur **nouveau** sur menu gauche hello **Intelligence + Analytique**, puis cliquez sur **Data Factory**.
 
     ![Nouvelle fabrique de données](media/data-factory-stored-proc-activity/new-data-factory.png)    
-3. Dans le panneau **Nouvelle fabrique de données**, entrez **SProcDF** dans le champ Nom. Les noms Azure Data Factory sont **globalement uniques**. Vous devez faire précéder le nom de la fabrique de données par votre nom, pour activer la création de la fabrique.
+3. Bonjour **nouvelle fabrique de données** panneau, entrez **SProcDF** pour hello nom. Les noms Azure Data Factory sont **globalement uniques**. Vous avez besoin de nom de hello tooprefix hello fabrique de données avec votre nom, tooenable hello réussi la création de la fabrique de hello.
 
    ![Nouvelle fabrique de données](media/data-factory-stored-proc-activity/new-data-factory-blade.png)         
 4. Sélectionnez votre **abonnement Azure**.
-5. Pour **Groupe de ressources**, effectuez l’une des opérations suivantes :
-   1. Cliquez sur **Créer un nouveau** et entrez un nom pour le groupe de ressources.
+5. Pour **groupe de ressources**, effectuez l’une des hello comme suit :
+   1. Cliquez sur **nouvel** et entrez un nom pour le groupe de ressources hello.
    2. Cliquez sur **Utiliser l’existant** et sélectionnez un groupe de ressources existant.  
-6. Sélectionnez **l’emplacement** de la fabrique de données.
-7. Sélectionnez **Épingler au tableau de bord** pour afficher la fabrique de données dans le tableau de bord la prochaine fois que vous vous connectez.
-8. Cliquez sur **Créer** dans le panneau **Nouvelle fabrique de données**.
-9. La fabrique de données apparaît comme étant en cours de création dans le **tableau de bord** du portail Azure. Une fois la fabrique de données créée, la page correspondante s’affiche et indique son contenu.
+6. Sélectionnez hello **emplacement** de fabrique de données hello.
+7. Sélectionnez **toodashboard du code confidentiel** afin que vous puissiez voir fabrique de données hello sur le tableau de bord hello prochaine ouverture de session dans.
+8. Cliquez sur **créer** sur hello **nouvelle fabrique de données** panneau.
+9. Vous voyez la fabrique de données hello en cours de création dans hello **tableau de bord** de hello portail Azure. Une fois que la fabrique de données hello a été créé avec succès, vous voyez page de fabrique de données hello, qui vous indique hello contenu hello fabrique de données.
 
    ![Page d’accueil Data Factory](media/data-factory-stored-proc-activity/data-factory-home-page.png)
 
 ### <a name="create-an-azure-sql-linked-service"></a>Créer un service lié Azure SQL
-Après avoir créé la fabrique de données, vous créez un service lié Azure SQL reliant votre base de données Azure SQL, qui contient la table sampletable et la procédure stockée sp_sample, à votre fabrique de données.
+Après avoir créé la fabrique de données hello, vous créez un service lié SQL Azure qui lie votre base de données SQL Azure, qui contient la table de sampletable hello et sp_sample stockées procédure, fabrique de données tooyour.
 
-1. Dans le panneau **Fabrique de données**, cliquez sur **Créer et déployer** pour que **SProcDF** lance l’éditeur de la fabrique de données.
-2. Cliquez sur **Nouvelle banque de données** dans la barre de commandes et choisissez **Azure SQL Database**. Le script JSON de création d’un service lié Azure SQL doit apparaître dans l’éditeur.
+1. Cliquez sur **auteur et déployer** sur hello **Data Factory** panneau pour **SProcDF** toolaunch hello éditeur Data Factory.
+2. Cliquez sur **nouveau magasin de données** hello de barre de commandes et choisissez **base de données SQL Azure**. Vous devez voir le service dans l’éditeur de hello de lié hello script JSON pour la création d’une SQL Azure.
 
    ![Nouveau magasin de données](media/data-factory-stored-proc-activity/new-data-store.png)
-3. Dans le script JSON, apportez les modifications suivantes :
+3. Bonjour script JSON, apportez hello modifications suivantes :
 
-   1. Remplacez `<servername>` par le nom de votre serveur Azure SQL Database.
-   2. Remplacez `<databasename>` par la base de données dans laquelle vous avez créé la table et la procédure stockée.
-   3. Remplacez `<username@servername>` par le compte d’utilisateur qui a accès à la base de données.
-   4. Remplacez `<password>` par le mot de passe du compte d’utilisateur.
+   1. Remplacez `<servername>` par nom hello de votre serveur de base de données SQL Azure.
+   2. Remplacez `<databasename>` avec la base de données hello dans lequel vous avez créé la table de hello et hello la procédure stockée.
+   3. Remplacez `<username@servername>` avec un compte d’utilisateur hello qui possède la base de données access toohello.
+   4. Remplacez `<password>` avec mot de passe hello hello compte d’utilisateur.
 
       ![Nouveau magasin de données](media/data-factory-stored-proc-activity/azure-sql-linked-service.png)
-4. Pour déployer le service lié, cliquez sur **Déployer** dans la barre de commandes. Vérifiez que AzureSqlLinkedService apparaît dans l’arborescence à gauche.
+4. toodeploy hello service lié, cliquez sur **déployer** sur la barre de commandes hello. Vérifiez que vous voyez hello AzureSqlLinkedService dans l’arborescence de hello afficher à gauche de hello.
 
     ![arborescence avec service lié](media/data-factory-stored-proc-activity/tree-view.png)
 
 ### <a name="create-an-output-dataset"></a>Créer un jeu de données de sortie
-Vous devez spécifier un jeu de données de sortie pour une activité de procédure stockée même si la procédure stockée ne génère aucune donnée. C’est parce qu’il s’agit du jeu de données de sortie qui pilote le calendrier de l’activité (fréquence d’exécution de l’activité : horaire, quotidienne, etc.). Le jeu de données de sortie doit utiliser un **service lié** qui fait référence à une base de données Azure SQL, à un Azure SQL Data Warehouse ou à une base de données SQL Server dans laquelle vous souhaitez que la procédure stockée soit exécutée. Le jeu de données de sortie peut être un moyen de passer le résultat de la procédure stockée pour traitement ultérieur par une autre activité ([chaînage des activités](data-factory-scheduling-and-execution.md#multiple-activities-in-a-pipeline)) dans le pipeline. Toutefois, Data Factory n’écrit pas automatiquement la sortie d’une procédure stockée pour ce jeu de données. C’est la procédure stockée qui écrit dans une table SQL vers laquelle le jeu de données de sortie pointe. Dans certains cas, le jeu de données de sortie peut être un **jeu de données factice** (un jeu de données qui pointe vers une table qui ne possède pas vraiment de sortie de la procédure stockée). Ce jeu de données factice est utilisé uniquement pour spécifier le calendrier d’exécution de l’activité de procédure stockée. 
+Vous devez spécifier qu'un jeu de données de sortie pour une activité de procédure stockée même si la procédure stockée de hello ne produit pas de données. C'est-à-dire, car son hello la sortie de dataset qui gère la planification hello d’activité hello (la fréquence à laquelle hello exécution activité - toutes les heures, tous les jours, etc.). Hello dataset de sortie doit utiliser un **service lié** qui fait référence tooan de base de données SQL Azure ou d’un entrepôt de données SQL Azure ou d’une base de données SQL Server dans lequel vous souhaitez hello toorun de procédure stockée. Hello dataset de sortie puisse agir comme un moyen toopass hello de résultats de la procédure stockée hello pour un traitement ultérieur par une autre activité ([chaînage des propriétés des activités](data-factory-scheduling-and-execution.md#multiple-activities-in-a-pipeline) dans le pipeline de hello. Toutefois, la fabrique de données n’écrit pas automatiquement sortie hello d’un dataset toothis de procédure stockée. Il est hello table SQL tooa écritures hello points de jeu de données de sortie à procédure stockée. Dans certains cas, le jeu de données de sortie hello peut être un **dataset factice** (un dataset qui pointe tooa table qui ne possède pas vraiment le résultat de hello ou procédure stockée). Ce jeu de données factice est utilisée uniquement de l’activité de procédure stockée de toospecify hello planification de l’exécution hello. 
 
-1. Si ce bouton n'est pas affiché dans la barre d'outils, cliquez sur **... Plus** dans la barre d’outils, sur **Nouveau jeu de données**, puis sur **SQL Azure**. Cliquez sur **Nouveau jeu de données** dans la barre de commandes et sélectionnez **SQL Azure**.
+1. Si ce bouton n'est pas affiché dans la barre d'outils, cliquez sur **... Plus** dans la barre d’outils de hello, cliquez sur **nouveau dataset**, puis cliquez sur **SQL Azure**. **Nouveau jeu de données** sur commande hello barre et sélectionnez **SQL Azure**.
 
     ![arborescence avec service lié](media/data-factory-stored-proc-activity/new-dataset.png)
-2. Copiez-collez le script JSON suivant dans l’éditeur JSON.
+2. Copiez-collez hello script JSON dans l’éditeur JSON toohello suivant.
 
     ```JSON
     {                
@@ -147,21 +147,21 @@ Vous devez spécifier un jeu de données de sortie pour une activité de procéd
         }
     }
     ```
-3. Pour déployer le jeu de données, cliquez sur **Déployer** dans la barre de commandes. Vérifiez que le jeu de données apparaît dans l’arborescence.
+3. toodeploy hello du jeu de données, cliquez sur **déployer** sur la barre de commandes hello. Vérifiez que vous voyez hello le jeu de données dans l’arborescence hello.
 
     ![arborescence avec services liés](media/data-factory-stored-proc-activity/tree-view-2.png)
 
 ### <a name="create-a-pipeline-with-sqlserverstoredprocedure-activity"></a>Créer un pipeline avec une activité SqlServerStoredProcedure
 Nous allons maintenant créer un pipeline avec une activité de procédure stockée. 
 
-Notez les propriétés suivantes : 
+Notez hello propriétés suivantes : 
 
-- La propriété **type** doit être définie sur **SqlServerStoredProcedure**. 
-- Le paramètre **storedProcedureName** dans les propriétés type est défini sur **sp_sample** (nom de la procédure stockée).
-- La section **storedProcedureParameters** contient un paramètre nommé **DataTime**. Le nom et la casse du paramètre dans JSON doivent correspondre à ceux du paramètre dans la définition de procédure stockée. Si vous avez besoin d’utiliser la valeur null pour un paramètre, utilisez la syntaxe : `"param1": null` (tout en minuscules).
+- Hello **type** propriété a la valeur trop**SqlServerStoredProcedure**. 
+- Hello **storedProcedureName** dans le type de propriétés est défini trop**sp_sample** (nom de hello ou procédure stockée).
+- Hello **storedProcedureParameters** section contient un paramètre nommé **DataTime**. Nom et la casse du paramètre hello dans JSON doivent correspondre au nom de hello et de la casse du paramètre hello dans la définition de la procédure stockée hello. Si vous avez besoin de passer null pour un paramètre, utilisez la syntaxe de hello : `"param1": null` (tout en minuscules).
  
-1. Si ce bouton n'est pas affiché dans la barre d'outils, cliquez sur **... Plus** dans la barre de commandes et sur **Nouveau pipeline**.
-2. Copiez-collez l’extrait de code JSON suivant :   
+1. Si ce bouton n'est pas affiché dans la barre d'outils, cliquez sur **... Plus** hello de barre de commandes et cliquez sur **nouveau pipeline**.
+2. Copier/coller hello suivant extrait de code JSON :   
 
     ```JSON
     {
@@ -194,32 +194,32 @@ Notez les propriétés suivantes :
         }
     }
     ```
-3. Pour déployer le pipeline, cliquez sur **Déployer** dans la barre d’outils.  
+3. pipeline de hello toodeploy, cliquez sur **déployer** sur la barre d’outils hello.  
 
-### <a name="monitor-the-pipeline"></a>Surveiller le pipeline
-1. Cliquez sur **X** pour fermer les panneaux de Data Factory Editor et revenir au panneau Data Factory, puis cliquez sur **Diagramme**.
+### <a name="monitor-hello-pipeline"></a>Pipeline d’analyse hello
+1. Cliquez sur **X** tooclose éditeur Data Factory panneaux et toonavigate Panneau de fabrique de données toohello de sauvegarde, puis cliquez sur **diagramme**.
 
     ![vignette schématique](media/data-factory-stored-proc-activity/data-factory-diagram-tile.png)
-2. Dans la **Vue de diagramme**, une vue d’ensemble des pipelines et des jeux de données utilisés dans ce didacticiel s’affiche.
+2. Bonjour **vue de diagramme**, vous voyez une vue d’ensemble des pipelines de hello et les datasets utilisés dans ce didacticiel.
 
     ![vignette schématique](media/data-factory-stored-proc-activity/data-factory-diagram-view.png)
-3. Dans la vue de diagramme, double-cliquez sur le jeu de données `sprocsampleout`. Les tranches s’affichent avec l’état Prêt. Il doit y avoir cinq tranches, car une tranche est produite pour chaque heure entre l’heure de début et l’heure de fin dans le JSON.
+3. Dans la vue de diagramme de hello, double-cliquez sur hello dataset `sprocsampleout`. Vous voyez les tranches hello dans l’état Ready. Il doit être cinq tranches, car une tranche est produite pour chaque heure entre l’heure de début hello et l’heure de fin de hello JSON.
 
     ![vignette schématique](media/data-factory-stored-proc-activity/data-factory-slices.png)
-4. Quand une tranche est à l’état **Prêt**, exécutez une requête `select * from sampletable` sur la base de données SQL Azure pour vérifier que les données ont été insérées dans la table par la procédure stockée.
+4. Lorsqu’une tranche est dans **prêt** état, exécutez un `select * from sampletable` requête sur tooverify de base de données SQL Azure hello qui hello de données a été inséré dans la table de toohello par la procédure stockée hello.
 
    ![Données de sortie](./media/data-factory-stored-proc-activity/output.png)
 
-   Consultez [Surveiller le pipeline](data-factory-monitor-manage-pipelines.md) pour plus d’informations sur la surveillance des pipelines Azure Data Factory.  
+   Consultez [pipeline d’analyse hello](data-factory-monitor-manage-pipelines.md) pour plus d’informations sur la surveillance des pipelines d’Azure Data Factory.  
 
 
 ## <a name="specify-an-input-dataset"></a>Spécifier un jeu de données d’entrée
-Dans la procédure pas à pas, l’activité de procédure stockée n’a pas de jeux de données d’entrée. Si vous spécifiez un jeu de données d’entrée, l’activité de procédure stockée ne s’exécute pas tant que la tranche du jeu de données d’entrée n’est pas disponible (à l’état Prêt). Le jeu de données peut être un jeu de données externe (non généré par une autre activité dans le même pipeline) ou un jeu de données interne généré par une activité en amont (l’activité qui s’exécute avant cette activité). Vous pouvez spécifier plusieurs jeux de données d’entrée pour l’activité de procédure stockée. Si vous procédez ainsi, l’activité de procédure stockée ne s’exécute que lorsque toutes les tranches du jeu de données d’entrée sont disponibles (à l’état Prêt). Les jeux de données d’entrée ne peuvent pas être utilisés dans la procédure stockée en tant que paramètres. Cela sert uniquement à vérifier la dépendance avant de commencer l’activité de procédure stockée.
+Procédure pas à pas de hello, activité de procédure stockée n’a pas les jeux de données d’entrée. Si vous spécifiez un jeu de données d’entrée, hello activité de procédure stockée ne s’exécute pas jusqu'à ce que la tranche hello du jeu de données d’entrée est disponible (prêt). Hello dataset peut être un jeu de données externe (qui n’est pas produit par une autre activité Bonjour même pipeline) ou un jeu de données interne qui est généré par une activité en amont (activité hello qui s’exécute avant cette activité). Vous pouvez spécifier plusieurs jeux de données d’entrée pour l’activité de procédure stockée hello. Si vous le faites, hello activité de procédure stockée s’exécute uniquement quand toutes les tranches de jeu de données d’entrée hello sont disponibles (dans l’état prêt). Hello de jeu de données d’entrée ne peut pas être utilisé dans la procédure stockée hello en tant que paramètre. Il est uniquement des dépendances hello toocheck utilisé avant l’activité de procédure stockée de départ hello.
 
 ## <a name="chaining-with-other-activities"></a>Chaînage avec d’autres activités
-Si vous souhaitez chaîner une activité en amont avec cette activité, spécifiez la sortie de l’activité en amont en tant qu’entrée de cette activité. Lorsque vous procédez ainsi, l’activité de procédure stockée ne s’exécute pas tant que l’activité en amont n’est pas terminée et que le jeu de données de sortie de l’activité en amont n’est pas disponible (à l’état Prêt). Vous pouvez spécifier des jeux de données de sortie de plusieurs activités en amont comme jeux de données d’entrée de l’activité de procédure stockée. Lorsque vous procédez ainsi, l’activité de procédure stockée ne s’exécute que lorsque toutes les tranches du jeu de données d’entrée sont disponibles.  
+Si vous souhaitez toochain une activité en amont avec cette activité, spécifiez la sortie hello d’activité en amont hello en tant qu’entrée de cette activité. Lorsque vous procédez ainsi, hello activité de procédure stockée ne s’exécute pas avant l’achèvement d’activité en amont hello et hello dataset de sortie de l’activité en amont hello est disponible (en état « prêt »). Vous pouvez spécifier des jeux de données de sortie de plusieurs activités en amont en tant que jeux de données d’entrée de l’activité de procédure stockée hello. Lorsque vous procédez ainsi, à l’activité de procédure stockée de hello s’exécute uniquement quand toutes les tranches de jeu de données d’entrée hello sont disponibles.  
 
-Dans l’exemple suivant, la sortie de l’activité de copie est : OutputDataset, qui est une entrée de l’activité de procédure stockée. Par conséquent, l’activité de procédure stockée ne s’exécute pas tant que l’activité de copie n’est pas disponible et que la tranche OutputDataset n’est pas disponible (à l’état Prêt). Si vous spécifiez plusieurs jeux de données d’entrée, l’activité de procédure stockée ne s’exécute pas tant que toutes les tranches du jeu de données d’entrée ne sont pas disponibles (à l’état Prêt). Les jeux de données d’entrée ne peuvent pas servir directement de paramètres pour l’activité de procédure stockée. 
+Dans l’exemple suivant de hello, sortie hello de l’activité de copie hello est : activité de procédure stockée de OutputDataset, qui est une entrée de hello. Par conséquent, hello activité de procédure stockée ne s’exécute pas avant l’achèvement de l’activité de copie hello et la tranche de OutputDataset hello est disponible (prêt). Si vous spécifiez plusieurs jeux de données d’entrée, hello activité de procédure stockée ne s’exécute pas jusqu'à ce que toutes les tranches de jeu de données d’entrée hello sont disponibles (dans l’état prêt). Hello de jeux de données d’entrée ne peut pas être utilisé directement en tant qu’activité de procédure stockée de toohello de paramètres. 
 
 Pour plus d’informations sur le chaînage des activités, consultez [Plusieurs activités dans un pipeline](data-factory-create-pipelines.md#multiple-activities-in-a-pipeline)
 
@@ -228,7 +228,7 @@ Pour plus d’informations sur le chaînage des activités, consultez [Plusieurs
 
     "name": "ADFTutorialPipeline",
     "properties": {
-        "description": "Copy data from a blob to blob",
+        "description": "Copy data from a blob tooblob",
         "activities": [
             {
                 "type": "Copy",
@@ -274,15 +274,15 @@ Pour plus d’informations sur le chaînage des activités, consultez [Plusieurs
 }
 ```
 
-De même, pour lier l’activité de procédure stockée avec des **activités en aval** (activités qui s’exécutent une fois l’activité de procédure stockée terminée), spécifiez le jeu de données de sortie de l’activité de procédure stockée en tant qu’entrée de l’activité en aval dans le pipeline.
+De même, toolink hello magasin activité de procédure avec **activités en aval** (activités hello exécutent une fois terminée hello activité de procédure stockée), spécifiez le dataset de sortie hello d’activité de procédure stockée hello comme un entrée de l’activité en aval hello dans le pipeline de hello.
 
 > [!IMPORTANT]
-> Lorsque vous copiez des données dans Azure SQL Database ou SQL Server, vous pouvez configurer l’élément **SqlSink** dans l’activité de copie pour appeler une procédure stockée en utilisant la propriété **sqlWriterStoredProcedureName**. Pour plus de détails, consultez l’article [Appeler une procédure stockée à partir d’une activité de copie](data-factory-invoke-stored-procedure-from-copy-activity.md). Pour plus d’informations sur la propriété, consultez les articles suivants sur les connecteurs : [Azure SQL Database](data-factory-azure-sql-connector.md#copy-activity-properties), [SQL Server](data-factory-sqlserver-connector.md#copy-activity-properties).
+> Lors de la copie des données dans la base de données SQL Azure ou SQL Server, vous pouvez configurer hello **SqlSink** dans l’activité de copie tooinvoke une procédure stockée à l’aide de hello **sqlWriterStoredProcedureName** propriété. Pour plus de détails, consultez l’article [Appeler une procédure stockée à partir d’une activité de copie](data-factory-invoke-stored-procedure-from-copy-activity.md). Pour plus d’informations sur la propriété de hello, consultez hello suivant des articles de connecteur : [base de données SQL Azure](data-factory-azure-sql-connector.md#copy-activity-properties), [SQL Server](data-factory-sqlserver-connector.md#copy-activity-properties).
 >  
-> Lors de la copie de données à partir d’Azure SQL Database, SQL Server ou Azure SQL Data Warehouse, vous pouvez configurer **SqlSource** dans l’activité de copie pour appeler une procédure stockée afin de lire les données à partir de la base de données source en utilisant la propriété **sqlReaderStoredProcedureName**. Pour plus d’informations, consultez les articles suivants sur les connecteurs : [Azure SQL Database](data-factory-azure-sql-connector.md#copy-activity-properties), [SQL Server](data-factory-sqlserver-connector.md#copy-activity-properties), [Azure SQL Data Warehouse](data-factory-azure-sql-data-warehouse-connector.md#copy-activity-properties)          
+> Lors de la copie des données à partir de la base de données SQL Azure ou SQL Server ou entrepôt de données SQL Azure, vous pouvez configurer **SqlSource** dans l’activité de copie tooinvoke un tooread de données de la procédure stockée à partir de la base de données source hello à l’aide de hello  **sqlReaderStoredProcedureName** propriété. Pour plus d’informations, consultez hello suivant des articles de connecteur : [base de données SQL Azure](data-factory-azure-sql-connector.md#copy-activity-properties), [SQL Server](data-factory-sqlserver-connector.md#copy-activity-properties), [Azure SQL Data Warehouse](data-factory-azure-sql-data-warehouse-connector.md#copy-activity-properties)          
 
 ## <a name="json-format"></a>Format JSON
-Voici le format JSON pour la définition d’une activité de procédure stockée :
+Voici le format JSON de hello pour définir une activité de procédure stockée :
 
 ```JSON
 {
@@ -293,7 +293,7 @@ Voici le format JSON pour la définition d’une activité de procédure stocké
     "outputs":  [ { "name": "outputtable" } ],
     "typeProperties":
     {
-        "storedProcedureName": "<name of the stored procedure>",
+        "storedProcedureName": "<name of hello stored procedure>",
         "storedProcedureParameters":  
         {
             "param1": "param1Value"
@@ -303,20 +303,20 @@ Voici le format JSON pour la définition d’une activité de procédure stocké
 }
 ```
 
-Le tableau suivant décrit ces paramètres JSON :
+Hello tableau suivant décrit ces propriétés JSON :
 
 | Propriété | Description | Requis |
 | --- | --- | --- |
-| name | Nom de l’activité |Oui |
-| Description |Texte décrivant la raison motivant l’activité. |Non |
+| name | Nom de l’activité hello |Oui |
+| description |Texte qui décrit quelle activité hello est utilisé pour |Non |
 | type | Doit être défini sur **SqlServerStoredProcedure** | Oui |
-| inputs | facultatif. Si vous spécifiez un jeu de données d’entrée, il doit être disponible (à l’état Prêt) pour l’activité de procédure stockée à exécuter. Les jeux de données d’entrée ne peuvent pas être utilisés dans la procédure stockée en tant que paramètres. Cela sert uniquement à vérifier la dépendance avant de commencer l’activité de procédure stockée. |Non |
-| outputs | Vous devez spécifier un jeu de données de sortie pour une activité de procédure stockée. Le jeu de données de sortie spécifie la **planification** pour l’activité de procédure stockée (horaire, hebdomadaire, mensuelle, etc.). <br/><br/>Le jeu de données de sortie doit utiliser un **service lié** qui fait référence à une base de données Azure SQL, à un Azure SQL Data Warehouse ou à une base de données SQL Server dans laquelle vous souhaitez que la procédure stockée soit exécutée. <br/><br/>Le jeu de données de sortie peut être un moyen de passer le résultat de la procédure stockée pour traitement ultérieur par une autre activité ([chaînage des activités](data-factory-scheduling-and-execution.md#multiple-activities-in-a-pipeline)) dans le pipeline. Toutefois, Data Factory n’écrit pas automatiquement la sortie d’une procédure stockée pour ce jeu de données. C’est la procédure stockée qui écrit dans une table SQL vers laquelle le jeu de données de sortie pointe. <br/><br/>Dans certains cas, le jeu de données de sortie peut être un **jeu de données factice**, qui est utilisé uniquement pour spécifier le calendrier d’exécution de l’activité de procédure stockée. |Oui |
-| storedProcedureName |Spécifiez le nom de la procédure stockée dans la base de données Azure SQL Database, Azure SQL Data Warehouse ou SQL Server qui est représenté par le service lié utilisé par la table de sortie. |Oui |
-| storedProcedureParameters |Spécifiez les valeurs des paramètres de procédure stockée. Si vous avez besoin de passer null pour un paramètre, utilisez la syntaxe : "param1": null (le tout en minuscules). Consultez l’exemple suivant pour en savoir plus sur l’utilisation de cette propriété. |Non |
+| inputs | facultatif. Si vous ne spécifiez pas un jeu de données d’entrée, il doit être disponible (en état « Prêt ») pour hello stockées toorun d’activité de procédure. Hello de jeu de données d’entrée ne peut pas être utilisé dans la procédure stockée hello en tant que paramètre. Il est uniquement des dépendances hello toocheck utilisé avant l’activité de procédure stockée de départ hello. |Non |
+| outputs | Vous devez spécifier un jeu de données de sortie pour une activité de procédure stockée. Dataset de sortie spécifie hello **planification** pour hello stockées activité de procédure (horaire, hebdomadaire, mensuelle, etc.). <br/><br/>Hello dataset de sortie doit utiliser un **service lié** qui fait référence tooan de base de données SQL Azure ou d’un entrepôt de données SQL Azure ou d’une base de données SQL Server dans lequel vous souhaitez hello toorun de procédure stockée. <br/><br/>Hello dataset de sortie puisse agir comme un moyen toopass hello de résultats de la procédure stockée hello pour un traitement ultérieur par une autre activité ([chaînage des propriétés des activités](data-factory-scheduling-and-execution.md#multiple-activities-in-a-pipeline) dans le pipeline de hello. Toutefois, la fabrique de données n’écrit pas automatiquement sortie hello d’un dataset toothis de procédure stockée. Il est hello table SQL tooa écritures hello points de jeu de données de sortie à procédure stockée. <br/><br/>Dans certains cas, le jeu de données de sortie hello peut être un **dataset factice**, qui est utilisé uniquement de l’activité de procédure stockée de toospecify hello planification de l’exécution hello. |Oui |
+| storedProcedureName |Spécifiez le nom hello de procédure stockée hello dans la base de données SQL Azure hello ou base de données Azure SQL Data Warehouse ou SQL Server qui est représenté par le service hello lié hello utilisations de table de sortie. |Oui |
+| storedProcedureParameters |Spécifiez les valeurs des paramètres de procédure stockée. Si vous avez besoin de toopass null pour un paramètre, utilisez la syntaxe de hello : « param1 » : null (toutes les minuscules). Consultez hello suivant toolearn exemple sur l’utilisation de cette propriété. |Non |
 
 ## <a name="passing-a-static-value"></a>Transmission d’une valeur statique
-À présent, ajoutons une autre colonne nommée « Scénario » dans la table contenant une valeur statique appelée « Exemple de document ».
+Maintenant, prenons l’exemple d’ajout d’une autre colonne nommée « Scénario » dans la table hello contenant une valeur statique est appelée « Exemple de Document ».
 
 ![Exemple de données 2](./media/data-factory-stored-proc-activity/sample-data-2.png)
 
@@ -347,7 +347,7 @@ BEGIN
 END
 ```
 
-Maintenant, transmettez le paramètre **Scénario** et la valeur de l’activité de procédure stockée. La section **typeProperties** de l’exemple précédent ressemble à l’extrait de code suivant :
+À présent, passez hello **scénario** activité de procédure stockée de valeur de paramètre et hello de hello. Hello **typeProperties** section Bonjour précédent exemple ressemble hello suivant extrait de code :
 
 ```JSON
 "typeProperties":

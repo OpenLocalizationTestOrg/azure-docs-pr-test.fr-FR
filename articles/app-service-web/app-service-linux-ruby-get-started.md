@@ -1,6 +1,6 @@
 ---
-title: "Création d’une application Ruby dans Web Apps sur Linux | Microsoft Docs"
-description: "Apprenez à créer des applications Ruby avec Web Apps sur Linux."
+title: aaaCreate une application Ruby avec les applications Web sur Linux | Documents Microsoft
+description: En savoir plus toocreate Ruby applications avec les fournisseurs de services web Azure sous Linux.
 keywords: azure app service, linux, oss, ruby
 services: app-service
 documentationcenter: 
@@ -15,17 +15,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/15/2017
 ms.author: wesmc;rachelap
-ms.openlocfilehash: 17f3f1a2122c508501134a0c43ab6abce412fb44
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 99ce3b5ee16703a147787387bb02973defce8190
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-ruby-app-with-web-apps-on-linux"></a>Création d’une application Ruby dans Web Apps sur Linux 
 
 [!INCLUDE [app-service-linux-preview](../../includes/app-service-linux-preview.md)]
 
-[Azure Web Apps](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview) offre un service d’hébergement web hautement évolutif appliquant des mises à jour correctives automatiques. Ce guide de démarrage rapide vous montre comment créer une application Ruby on Rails de base puis la déployer dans Azure Web App sur Linux.
+[Azure Web Apps](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview) offre un service d’hébergement web hautement évolutif appliquant des mises à jour correctives automatiques. Ce démarrage rapide vous montre comment toocreate base Ruby sur l’application de quadrillage puis déployez-le tooAzure comme une application Web sur Linux.
 
 ![Hello-world](./media/app-service-linux-ruby-get-started/hello-world-updated.png)
 
@@ -37,9 +37,9 @@ ms.lasthandoff: 08/29/2017
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
-## <a name="download-the-sample"></a>Téléchargez l’exemple
+## <a name="download-hello-sample"></a>Télécharger l’exemple hello
 
-Dans une fenêtre de terminal, exécutez la commande ci-après pour cloner le référentiel de l’exemple d’application sur votre ordinateur local :
+Dans une fenêtre de terminal, exécutez hello suivant commande tooclone hello exemple application référentiel tooyour ordinateur local :
 
 ```bash
 git clone https://github.com/Azure-Samples/ruby-docs-hello-world
@@ -47,24 +47,24 @@ git clone https://github.com/Azure-Samples/ruby-docs-hello-world
 
 [!INCLUDE [app-service-linux-preview](../../includes/app-service-linux-preview.md)]
 
-## <a name="run-the-application-locally"></a>Exécution locale de l'application
+## <a name="run-hello-application-locally"></a>Exécutez hello application localement
 
-Exécutez le serveur Rails afin que l’application fonctionne. Passez au répertoire *hello-world* et démarrez le serveur avec la commande `rails server`.
+Exécuter le serveur de rails de hello dans l’ordre pour hello application toowork. Modifier toohello *-hello world* active et hello `rails server` commande démarre hello serveur.
 
 ```bash
 cd hello-world\bin
 rails server
 ```
     
-À l’aide de votre navigateur web, accédez à `http://localhost:3000` pour tester l’application en local.    
+À l’aide de votre navigateur web, accédez trop`http://localhost:3000` tootest hello application localement.  
 
 ![Hello-world](./media/app-service-linux-ruby-get-started/hello-world.png)
 
-## <a name="modify-app-to-display-welcome-message"></a>Modification de l’application pour afficher un message d’accueil
+## <a name="modify-app-toodisplay-welcome-message"></a>Modifier le message d’accueil application toodisplay
 
-Modifiez l’application afin qu’elle affiche un message d’accueil. Modifiez le contrôleur de l’application de sorte pour qu’il renvoie le message au format HTML au navigateur. 
+Modifier l’application hello afin qu’elle affiche un message d’accueil. Modifier le contrôleur de l’application hello de sorte qu’elle retourne le message de type hello en tant que navigateur de toohello HTML. 
 
-Ouvrez *~/workspace/hello-world/app/controllers/application_controller.rb* pour le modifier. Modifiez la classe `ApplicationController` pour qu’elle ressemble à l’exemple de code suivant :
+Ouvrez *~/workspace/hello-world/app/controllers/application_controller.rb* pour le modifier. Modifier hello `ApplicationController` toolook de classe comme hello suivant l’exemple de code :
 
   ```ruby
   class ApplicationController > ActionController :: base
@@ -75,7 +75,7 @@ Ouvrez *~/workspace/hello-world/app/controllers/application_controller.rb* pour 
   end
   ```
 
-Votre application est désormais configurée. À l’aide de votre navigateur web, accédez à `http://localhost:3000` pour vérifier la page d’accueil racine.
+Votre application est désormais configurée. À l’aide de votre navigateur web, accédez trop`http://localhost:3000` page d’accueil tooconfirm hello racine.
 
 ![Hello World configurée](./media/app-service-linux-ruby-get-started/hello-world-configured.png)
 
@@ -83,32 +83,32 @@ Votre application est désormais configurée. À l’aide de votre navigateur we
 
 ## <a name="create-a-ruby-web-app-on-azure"></a>Créer une application web Ruby sur Azure
 
-Utilisez la commande [az appservice plan create](https://docs.microsoft.com/cli/azure/appservice/plan#create) pour créer un plan de service d’application pour votre application web. 
+Hello d’utilisation [création d’un plan de az](https://docs.microsoft.com/cli/azure/appservice/plan#create) commande toocreate un plan de service d’application pour votre application web. 
  
 ```azurecli-interactive
   az appservice plan create --name myAppServicePlan --resource-group myResourceGroup --is-linux
 ```
 
-Ensuite, utilisez la commande [az webapp créer](https://docs.microsoft.com/cli/azure/webapp) pour créer l’application web qui utilise le plan de service nouvellement créé. Notez que le runtime est défini sur `ruby|2.3`. N’oubliez pas de remplacer `<app name>` par un nom d’application unique.
+Ensuite, émettez hello [az webapp créer](https://docs.microsoft.com/cli/azure/webapp) commande toocreate hello l’application web qui utilise le plan de service hello nouvellement créé. Notez ce runtime hello est défini trop`ruby|2.3`. N’oubliez pas tooreplace `<app name>` avec un nom d’application unique.
 
 ```azurecli-interactive
   az webapp create --resource-group myResourceGroup --plan myAppServicePlan --name <app name> --runtime "ruby|2.3" --deployment-local-git
 ```
 
-Une fois l’application web créée, une page **Vue d’ensemble** est disponible à l’affichage. Naviguez vers cet emplacement. La page de démarrage suivante s’affiche :
+Une fois l’application hello web est créée, un **vue d’ensemble** page est tooview disponible. Accédez à tooit. Hello suivant page de démarrage s’affiche :
 
 ![Page de démarrage](./media/app-service-linux-ruby-get-started/splash-page.png)
 
 
 ## <a name="deploy-your-application"></a>Déployer votre application
 
-Utilisez Git pour déployer l’application Ruby sur Azure. Un déploiement Git est déjà configuré sur l’application web. Vous pouvez récupérer l’URL de déploiement en utilisant une commande [az webapp deployment](https://docs.microsoft.com/cli/azure/webapp/deployment).  
+Utiliser Git toodeploy hello application Ruby tooAzure. l’application web Hello dispose déjà d’un déploiement de Git configuré. Vous pouvez récupérer des URL de déploiement hello en émettant un [déploiement d’application Web az](https://docs.microsoft.com/cli/azure/webapp/deployment) commande.  
 
 ```bash
 az webapp deployment source show --name <app name> --resource-group myResourceGroup
 ```
 
-Notez que l’URL Git a la forme suivante, selon le nom de votre application web :
+Notez que hello URL Git a hello suivant du formulaire basé sur le nom de votre application web :
 
 ```bash
 https://<your web app name>.scm.azurewebsites.net/<your web app name>.git
@@ -116,7 +116,7 @@ https://<your web app name>.scm.azurewebsites.net/<your web app name>.git
 
 [!INCLUDE [Clean-up section](../../includes/configure-deployment-user-no-h.md)]
 
-Exécutez les commandes suivantes pour déployer l’application locale sur votre site web Azure :
+Exécutez hello suivant de commandes toodeploy hello application locale tooyour site Web Azure :
 
 ```bash
 git remote add azure <Git deployment URL from above>
@@ -125,7 +125,7 @@ git commit -m "Initial deployment commit"
 git push azure master
 ```
 
-Vérifiez que les opérations de déploiement à distance réussissent. Les commandes produisent une sortie semblable au texte suivant :
+Vérifiez que les opérations de déploiement à distance de hello signalent la réussite. Hello commandes produisent toohello similaire après le texte de sortie :
 
 ```bash
 remote: Using sass-rails 5.0.6
@@ -136,18 +136,18 @@ remote: ~site/repository
 remote: Finished successfully.
 remote: Running post deployment command(s)...
 remote: Deployment successful.
-To https://<your web app name>.scm.azurewebsites.net/<your web app name>.git
+toohttps://<your web app name>.scm.azurewebsites.net/<your web app name>.git
   579ccb....2ca5f31  master -> master
 myuser@ubuntu1234:~workspace/<app name>$
 ```
 
-Une fois le déploiement terminé, redémarrez votre application web pour que le déploiement prenne effet en utilisant la commande [az webapp restart](https://docs.microsoft.com/cli/azure/webapp#restart), comme présenté ici :
+Une fois le déploiement de hello est terminée, redémarrez votre application web pour effet de tootake hello déploiement à l’aide de hello [redémarrage de webapp az](https://docs.microsoft.com/cli/azure/webapp#restart) de commande, comme indiqué ici :
 
 ```azurecli-interactive 
 az webapp restart --name <app name> --resource-group myResourceGroup
 ```
 
-Accédez à votre site et vérifiez les résultats.
+Accédez tooyour site et vérifier les résultats de hello.
 
 ```bash
 http://<your web app name>.azurewebsites.net
@@ -155,7 +155,7 @@ http://<your web app name>.azurewebsites.net
 ![application web mise à jour](./media/app-service-linux-ruby-get-started/hello-world-updated.png)
 
 > [!NOTE]
-> Si vous tentez de parcourir les résultats du site pendant que l’application redémarre, vous recevrez une erreur HTTP `Error 503 Server unavailable`. Le redémarrage complet peut prendre quelques minutes.
+> Pendant le redémarrage, application hello tentative toobrowse hello site entraîne un code d’état HTTP `Error 503 Server unavailable`. Il peut prendre quelques minutes toofully redémarrage.
 >
 
 [!INCLUDE [Clean-up section](../../includes/cli-script-clean-up.md)]

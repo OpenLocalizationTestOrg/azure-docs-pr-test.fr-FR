@@ -1,5 +1,5 @@
 ---
-title: "Présentation de l'architecture réseau des environnements App Service"
+title: "aaaNetwork Architecture vue d’ensemble des applications Service environnements"
 description: "Présentation de l'architecture de la topologie de réseau des environnements App Service."
 services: app-service
 documentationcenter: 
@@ -14,77 +14,77 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/04/2016
 ms.author: stefsch
-ms.openlocfilehash: b2afe86d8774b449a257312d4e60b5f6125336ca
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3cbc86883f5687a9ada35a3ab2f577a450a3fa0b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="network-architecture-overview-of-app-service-environments"></a>Présentation de l'architecture réseau des environnements App Service
 ## <a name="introduction"></a>Introduction
-Les environnements App Service sont toujours créés dans un sous-réseau d'un [réseau virtuel][virtualnetwork]. Les applications exécutées dans un environnement App Service peuvent communiquer avec des points de terminaison privés au sein de la même topologie de réseau virtuel.  Dans la mesure où les clients peuvent verrouiller des parties de leur infrastructure de réseau virtuel, il est important de comprendre les types de flux de communication réseau qui se produisent avec un environnement App Service.
+Les environnements App Service sont toujours créés dans un sous-réseau d’un [réseau virtuel] [ virtualnetwork] -applications en cours d’exécution dans un environnement App Service peuvent communiquer avec privé points de terminaison qui trouvent dans hello même virtuel topologie du réseau.  Étant donné que les clients peuvent verrouiller des parties de leur infrastructure réseau virtuel, il est important toounderstand des types de hello de flux de communication réseau qui se produisent avec un environnement App Service.
 
 ## <a name="general-network-flow"></a>Flux réseau général
-Lorsqu’un environnement App Service (ASE) utilise une adresse IP virtuelle publique (VIP) pour les applications, tout le trafic entrant arrive sur cette adresse IP virtuelle publique.  Cela inclut le trafic HTTP et HTTPS pour les applications, ainsi que le reste du trafic pour les opérations de gestion Azure, les fonctionnalités de débogage à distance et FTP.  Pour obtenir une liste complète des ports spécifiques (obligatoires et facultatifs) disponibles sur l'adresse VIP publique, consultez l'article sur le [contrôle du trafic entrant][controllinginboundtraffic] dans un environnement App Service. 
+Lorsqu’un environnement App Service (ASE) utilise une adresse IP virtuelle publique (VIP) pour les applications, tout le trafic entrant arrive sur cette adresse IP virtuelle publique.  Cela inclut le trafic HTTP et HTTPS pour les applications, ainsi que le reste du trafic pour les opérations de gestion Azure, les fonctionnalités de débogage à distance et FTP.  Pour obtenir la liste complète de hello des ports spécifiques (requis et facultatifs) qui sont disponibles sur l’adresse IP virtuelle publique de hello consultez l’article de hello sur [contrôler le trafic entrant] [ controllinginboundtraffic] tooan environnement App Service. 
 
-Les environnements App Service prennent également en charge les applications en cours d’exécution et uniquement liées à une adresse interne de réseau virtuel, également appelée adresse ILB (équilibrage de charge interne).  Sur un ASE avec équilibrage de charge interne, le trafic HTTP et HTTPS des applications et des appels de débogage à distance arrive sur l’adresse d’équilibrage de charge interne.  Dans la plupart des configurations d’équilibrage de charge interne ASE, le trafic FTP/FTPS arrive également sur l’adresse d’équilibrage de charge interne.  Toutefois les opérations de gestion Azure continuent de transiter par les ports 454/455 sur l’adresse IP virtuelle publique d’un ASE avec équilibrage de charge interne.
+Environnements de Service d’application prennent également en charge en cours d’exécution pour les applications qui sont liées uniquement tooa virtuel réseau adresse interne, également appelée tooas une adresse d’équilibrage de charge interne (équilibrage de charge interne).  Sur un équilibrage de charge interne activé trafic ASE, HTTP et HTTPS pour les applications, ainsi que les appels de débogage à distance, arrivent sur hello adresse d’équilibrage de charge interne.  Pour les configurations d’équilibrage de charge interne-ASE les plus courantes, le trafic FTP/FTPS également parviennent sur hello adresse d’équilibrage de charge interne.  Cependant les opérations de gestion Azure continuent de circuler tooports 454/455 sur hello une adresse IP virtuelle publique d’un équilibrage de charge interne activée ASE.
 
-Le diagramme suivant montre une vue d’ensemble des différents flux réseau entrants et sortants d’un environnement App Service où les applications sont liées à une adresse IP virtuelle publique :
+diagramme Hello ci-dessous montre une vue d’ensemble de hello différents flux réseau entrantes et sortantes pour un environnement App Service où les applications de hello sont les adresse IP virtuelle publique tooa liée :
 
 ![Flux de réseau généraux][GeneralNetworkFlows]
 
-Un environnement App Service peut communiquer avec plusieurs points de terminaison client privés.  Par exemple, les applications exécutées dans l'environnement App Service peuvent se connecter au(x) serveur(s) de base de données en cours d'exécution sur des machines virtuelles IaaS dans la même topologie de réseau virtuel.
+Un environnement App Service peut communiquer avec plusieurs points de terminaison client privés.  Par exemple, les applications qui s’exécutent dans un environnement App Service peut se connecter à toodatabase ou les serveurs s’exécutant sur des machines virtuelles IaaS de hello hello même topologie de réseau virtuel.
 
 > [!IMPORTANT]
-> D’après le schéma du réseau, les « Other Computer Resources » (« Autres ressources de l’ordinateur ») sont déployées dans un sous-réseau différent de l’environnement App Service. Déployer des ressources dans le même sous-réseau avec l’ASE bloque la connectivité depuis l’ASE à ces ressources (à l’exception de certains routages intra-ASE). Il est préférable de les déployer dans un autre sous-réseau (dans le même réseau virtuel). L’environnement App Service est alors en mesure de se connecter. Aucune configuration supplémentaire n’est nécessaire.
+> En examinant organigramme hello, hello « autres calcul ressources » sont déployés dans un sous-réseau différent de celui de hello environnement App Service. Déploiement de ressources Bonjour même sous-réseau avec hello ASE bloque la connectivité à partir des ressources de toothose ASE (à l’exception spécifique intra-ASE routage). Déployer tooa sous-réseau différent à la place (dans hello même réseau virtuel). Hello environnement App Service sera alors en mesure de tooconnect. Aucune configuration supplémentaire n’est nécessaire.
 > 
 > 
 
-Les environnements App Service communiquent également avec les ressources BD SQL et stockage Azure nécessaires pour la gestion et l'exploitation d'un environnement App Service.  Certaines des ressources de stockage et Sql avec lesquelles un environnement App Service communique se trouvent dans la même région que l'environnement App Service, tandis que d'autres sont situées dans des régions Azure distantes.  Par conséquent, une connectivité sortante à Internet est toujours requise pour qu'un environnement App Service fonctionne correctement. 
+Les environnements App Service communiquent également avec les ressources BD SQL et stockage Azure nécessaires pour la gestion et l'exploitation d'un environnement App Service.  Certaines des ressources Sql et le stockage hello un environnement App Service avec lequel communique se trouvent dans hello même région que hello environnement App Service, tandis que d’autres sont situés dans des régions Azure à distance.  Par conséquent, connectivité sortante toohello Internet est toujours requis pour une environnement App Service de toofunction correctement. 
 
-Étant donné qu'un environnement App Service est déployé dans un sous-réseau, vous pouvez utiliser des groupes de sécurité réseau pour contrôler le trafic entrant vers le sous-réseau.  Pour plus d'informations sur la façon de contrôler le trafic entrant vers un environnement App Service, consultez l'[article][controllinginboundtraffic] suivant.
+Depuis un environnement App Service est déployé dans un sous-réseau, les groupes de sécurité réseau peuvent être utilisé toocontrol sous-réseau toohello de trafic entrant.  Pour plus d’informations sur la façon dont toocontrol entrants trafic tooan environnement App Service, voir hello [article][controllinginboundtraffic].
 
-Pour plus d'informations sur la façon d'autoriser la connectivité Internet sortante à partir d'un environnement App Service, consultez l'article suivant sur l'utilisation d'[ExpressRoute][ExpressRoute].  La même approche que celle décrite dans cet article s'applique avec une connectivité de site à site et l'utilisation du tunneling forcé.
+Pour plus d’informations sur la façon de tooallow une connectivité Internet sortante à partir d’un environnement App Service, consultez hello suivant de l’article sur l’utilisation de [Express Route][ExpressRoute].  Hello même approche décrite dans l’article de hello s’applique lorsque fonctionne avec la connectivité de Site à Site et que vous utilisez le tunneling forcé.
 
 ## <a name="outbound-network-addresses"></a>Adresses réseau sortantes
-Lorsqu'un environnement App Service effectue des appels sortants, une adresse IP est toujours associée aux appels sortants.  L'adresse IP spécifique utilisée varie suivant si le point de terminaison appelé se trouve dans la topologie de réseau virtuel ou en dehors de la topologie de réseau virtuel.
+Lorsqu’un environnement App Service effectue des appels sortants, une adresse IP est toujours associée les appels sortants hello.  adresse IP spécifique Hello qui est utilisée varie selon que les point de terminaison hello appelée est situé au sein de la topologie du réseau virtuel hello ou en dehors de la topologie du réseau virtuel hello.
 
-Si le point de terminaison appelé est **en dehors** de la topologie de réseau virtuel, alors l'adresse sortante (également appelé adresse NAT sortante) utilisée est l'adresse VIP publique de l'environnement App Service.  Cette adresse se trouve dans l'interface utilisateur du portail de l'environnement App Service, dans le panneau Propriétés.
+Si le point de terminaison hello appelée est **en dehors de** de topologie de réseau virtuel hello, puis hello sortant adresse (aka hello sortant NAT) qui est utilisé est hello une adresse IP virtuelle publique de hello environnement App Service.  Cette adresse peut être trouvée dans l’interface utilisateur du portail hello pour hello environnement App Service dans le panneau des propriétés.
 
 ![Adresse IP sortante][OutboundIPAddress]
 
-Il est également possible de déterminer cette adresse pour les ASE disposant uniquement d’une adresse VIP publique en créant une application dans l'environnement App Service, puis en effectuant une opération *nslookup* sur l'adresse de l'application. L'adresse IP obtenue est à la fois l'adresse IP virtuelle publique et l'adresse NAT sortante de l'environnement App Service.
+Cette adresse peut également être déterminée pour ASEs possédant uniquement une adresse VIP publique en créant une application Bonjour environnement App Service, puis en effectuant une *nslookup* sur l’adresse de l’application hello. adresse IP de la résultante Hello est hello publique VIP, ainsi que les adresse NAT sortant de l’environnement hello App Service.
 
-Si le point de terminaison appelé est **dans** la topologie de réseau virtuel, l'adresse sortante de l'application appelante sera l'adresse IP interne de la ressource de calcul individuelle exécutant l'application.  Toutefois, il n'existe pas de mappage persistant des adresses IP internes du réseau virtuel aux applications.  Les applications peuvent se déplacer entre différentes ressources de calcul et le pool de ressources de calcul disponibles dans un environnement App Service peut changer en raison d'opérations de mise à l'échelle.
+Si le point de terminaison hello appelée est **à l’intérieur de** de topologie de réseau virtuel hello, hello sortant de l’application appelante hello est adresse est hello adresse IP interne de ressources de calcul individuelles hello application hello en cours d’exécution.  Toutefois, il n’existe pas un mappage persistant de tooapps des adresses IP internes de réseau virtuel.  Applications peuvent se déplacer entre les ressources de calcul différente, et pool hello disponible des ressources de calcul dans un environnement App Service peut changer en raison d’opérations de tooscaling.
 
-Toutefois, dans la mesure où un environnement App Service est toujours situé dans un sous-réseau, vous pouvez être sûr que l'adresse IP interne d'une ressource de calcul exécutant une application sera toujours comprise dans la plage CIDR du sous-réseau.  Par conséquent, si des listes de contrôle d'accès précises ou des groupes de sécurité réseau sont utilisés pour sécuriser l'accès à d'autres points de terminaison dans le réseau virtuel, l'accès doit être accordé à la plage du sous-réseau contenant l'environnement App Service.
+Toutefois, depuis un environnement App Service est toujours situé dans un sous-réseau, vous avez la garantie que les adresse IP interne hello d’une ressource de calcul une application en cours d’exécution seront se trouvent toujours dans la plage CIDR hello du sous-réseau de hello.  Par conséquent, lorsqu’ACL affinées ou groupes de sécurité réseau sont utilisés toosecure accéder aux points de terminaison tooother au sein du réseau virtuel de hello, hello plage de sous-réseau contenant hello environnement App Service besoins toobe accordé l’accès.
 
-Le diagramme suivant illustre ces concepts plus en détail :
+Hello diagramme suivant illustre ces concepts plus en détail :
 
 ![Adresses réseau sortantes][OutboundNetworkAddresses]
 
-Dans le diagramme ci-dessus :
+Bonjour diagramme ci-dessus :
 
-* Étant donné que l'adresse VIP publique de l'environnement App Service est 192.23.1.2, cela correspond à l'adresse IP sortante utilisée lors des appels aux points de terminaison « Internet ».
-* La plage CIDR du sous-réseau conteneur pour l'environnement App Service est 10.0.1.0/26.  Les autres points de terminaison dans la même infrastructure de réseau virtuel verront les appels provenant d'applications comme émanant de quelque part dans cette plage d'adresses.
+* Hello une adresse IP virtuelle publique de hello environnement App Service étant 192.23.1.2, qui est l’adresse IP sortante hello utilisée lors d’appels trop points de terminaison « Internet ».
+* Hello la plage CIDR de hello contenant le sous-réseau pour hello environnement App Service est 10.0.1.0/26.  Autres points de terminaison dans hello même infrastructure de réseau virtuel va apparaître dans les appels à partir d’applications provenant de quelque part dans cette plage d’adresses.
 
 ## <a name="calls-between-app-service-environments"></a>Appels entre les environnements App Service
-Un scénario plus complexe peut se produire si vous déployez plusieurs environnements App Service dans le même réseau virtuel et effectuez des appels sortants à partir d’un environnement App Service vers un autre environnement App Service.  Ces types d’appels entre les environnements App Service seront également traités comme des appels « Internet ».
+Un scénario plus complexe peut se produire si vous déployez plusieurs environnements de Service d’application hello même réseau virtuel et effectuer des appels sortants à partir d’un environnement App Service tooanother environnement App Service.  Ces types d’appels entre les environnements App Service seront également traités comme des appels « Internet ».
 
-Le diagramme suivant illustre un exemple d’architecture en couches avec des applications dans un environnement App Service (par exemple,  des applications web de « porte d’entrée ») appelant des applications dans un environnement App Service (par exemple, des applications d'API internes principales qui ne sont pas destinées à être accessibles via Internet). 
+Hello suivant schéma montre un exemple d’architecture multiniveau avec les applications sur un environnement App Service (par exemple) Les applications web « Porte ») appelant des applications sur un deuxième environnement App Service (par exemple, les applications d’API principal internes non prévus toobe accessible à partir de hello Internet). 
 
 ![Appels entre les environnements App Service][CallsBetweenAppServiceEnvironments] 
 
-Dans l'exemple ci-dessus, l'environnement App Service « ASE One » possède l’adresse IP sortante 192.23.1.2.  Si une application en cours d'exécution sur cet environnement App Service effectue un appel sortant vers une application s'exécutant sur un second environnement App Service (« ASE Two ») situé sur le même réseau virtuel, l'appel sortant sera traité comme un appel « Internet ».  Par conséquent, le trafic réseau arrivant sur le deuxième environnement App Service s’affichera comme un appel provenant de l’adresse 192.23.1.2 (et non pas la plage d'adresses de sous-réseau du premier environnement App Service).
+Bonjour exemple ci-dessus hello environnement App Service « ASE un » a une adresse IP sortante de 192.23.1.2.  Si une application en cours d’exécution sur cet environnement App Service rend une application de tooan appel sortant en cours d’exécution sur un deuxième environnement App Service (« ASE deux ») situé dans hello virtuel même réseau, hello sortant appel sera traité comme un appel de « Internet ».  Par conséquent le trafic réseau de hello arrivant sur hello deuxième environnement App Service affiche comme provenant de 192.23.1.2 (autrement dit, pas hello sous-réseau plage d’adresses de hello premier environnement App Service).
 
-Même si les appels entre les différents environnements App Service sont traités comme des appels « Internet », lorsque les deux environnements App Service se trouvent dans la même région Azure, le trafic réseau reste sur le réseau Azure régional et ne circule pas physiquement sur le réseau Internet public.  Par conséquent, vous pouvez utiliser un groupe de sécurité réseau sur le sous-réseau du deuxième environnement App Service pour autoriser uniquement les appels entrants à partir du premier environnement App Service (dont l’adresse IP sortante est 192.23.1.2), afin de garantir une communication sécurisée entre les environnements App Service.
+Bien que les appels entre différents environnements de Service d’application sont traités comme des appels de « Internet », quand les deux environnements de Service d’application sont situés dans hello même région Azure hello le trafic sera disponible sur le réseau Azure hello et ne sera pas physiquement flux sur hello Internet public.  Par conséquent, vous pouvez utiliser un groupe de sécurité réseau sur le sous-réseau hello Hello deuxième environnement App Service tooonly autorisent les appels entrants de hello premier environnement App Service (dont l’adresse IP sortante est 192.23.1.2), afin de garantir une communication sécurisée entre hello Environnements App Service.
 
 ## <a name="additional-links-and-information"></a>Informations et liens supplémentaires
-Tous les articles et procédures concernant les environnements App Service sont disponibles dans le [fichier Lisez-moi des environnements App Service](../app-service/app-service-app-service-environments-readme.md).
+Tous les articles et comment-de pour les environnements App Service sont disponibles dans hello [fichier Lisezmoi pour les environnements de Service d’Application](../app-service/app-service-app-service-environments-readme.md).
 
-Vous trouverez plus d’informations sur les ports entrants utilisés par les environnements App Service et l’utilisation de groupes de sécurité réseau pour contrôler le trafic entrant [ici][controllinginboundtraffic].
+Pour plus d’informations sur entrant des ports utilisés par les environnements App Service et le trafic entrant à l’aide de toocontrol de groupes de sécurité réseau est disponible [ici][controllinginboundtraffic].
 
-Cet [article][ExpressRoute] contient des informations sur l’utilisation d’itinéraires définis par l’utilisateur pour accorder un accès Internet sortant à des environnements App Service. 
+Détails sur l’utilisation de défini par l’utilisateur itinéraires toogrant sortant Internet access tooApp environnements de Service est disponible dans cette [article][ExpressRoute]. 
 
 <!-- LINKS -->
 [virtualnetwork]: http://azure.microsoft.com/services/virtual-network/

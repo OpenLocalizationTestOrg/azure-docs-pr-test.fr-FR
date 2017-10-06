@@ -1,6 +1,6 @@
 ---
-title: "Présentation de la gestion des appareils dans Azure Active Directory | Microsoft Docs"
-description: "Découvrez comment la gestion des appareils peut vous aider à contrôler les appareils qui accèdent aux ressources de votre environnement."
+title: gestion de toodevice aaaIntroduction dans Azure Active Directory | Documents Microsoft
+description: "Découvrez comment la gestion des appareils peut vous aider à tooget contrôler les appareils hello qui accèdent à des ressources dans votre environnement."
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -15,113 +15,113 @@ ms.topic: article
 ms.date: 08/24/2017
 ms.author: markvi
 ms.reviewer: jairoc
-ms.openlocfilehash: bebbdddf6b591ea7e36cbac38b568bce614bb335
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: e2fc0a3e8d00dc69cf01db9074e34427e396cfcf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="introduction-to-device-management-in-azure-active-directory"></a>Présentation de la gestion des appareils dans Azure Active Directory
+# <a name="introduction-toodevice-management-in-azure-active-directory"></a>Gestion de toodevice introduction dans Azure Active Directory
 
-Tout d’abord, dans un appareil où mobilité et cloud occupent le premier plan, Azure Active Directory (Azure AD) autorise une authentification unique sur les appareils, applications et services depuis n’importe où. Avec la prolifération des appareils, y compris des appareils Bring Your Own Device (BYOD), les professionnels de l’informatique sont confrontés à deux objectifs contradictoires :
+Dans un monde mobile en premier, privilégie le cloud, Azure Active Directory (Azure AD) permet de toodevices de l’authentification unique, les applications et services à partir de n’importe quel endroit. Avec la prolifération de hello de périphériques - y compris votre propre appareil BYOD (Bring), les professionnels de l’informatique sont confrontés à deux objectifs différents :
 
-- Permettre aux utilisateurs d’être productifs où et quand ils le veulent
-- Protéger les ressources de l’entreprise à tout moment
+- Permettre aux toobe des utilisateurs finaux hello productif où et quand
+- Protéger les ressources d’entreprise de hello à tout moment
 
-Grâce aux appareils, les utilisateurs peuvent accéder aux ressources d’entreprise. Pour protéger vos ressources d’entreprise, en tant qu’administrateur informatique, vous souhaitez avoir le contrôle de ces appareils. Cela vous permet de vous assurer que vos utilisateurs ont accès à vos ressources à partir d’appareils qui répondent à vos normes de conformité et de sécurité. 
+Par le biais des appareils, vos utilisateurs accèdent tooyour des ressources d’entreprise. tooprotect vos ressources d’entreprise, comme un administrateur, vous voulez contrôler toohave ces appareils. Cela vous permet de toomake sûr que vos utilisateurs sont l’accès à vos ressources à partir de périphériques qui répondent à vos normes de conformité et de sécurité. 
 
-La gestion des appareils est également à la base de [l’accès conditionnel en fonction de l’appareil](active-directory-conditional-access-policy-connected-applications.md). Avec un accès conditionnel en fonction de l’appareil, vous pouvez garantir que l’accès aux ressources de votre environnement est uniquement possible pour les appareils de confiance.   
+Gestion des appareils est également foundation hello pour [accès conditionnel basés sur le périphérique](active-directory-conditional-access-policy-connected-applications.md). Avec un accès conditionnel basé sur un appareil, vous pouvez vous assurer qu’accès tooresources dans votre environnement est possible seulement avec les appareils de confiance.   
 
 Cette rubrique explique comment fonctionne la gestion des appareils dans Azure Active Directory.
 
-## <a name="getting-devices-under-the-control-of-azure-ad"></a>Donner le contrôle des appareils à Azure AD
+## <a name="getting-devices-under-hello-control-of-azure-ad"></a>Mise en route d’appareils sous contrôle de code hello d’Azure AD
 
-Pour donner le contrôle d’un appareil à Azure AD, vous avez deux options :
+tooget un appareil sous contrôle de code hello d’Azure AD, vous avez deux options :
 
 - Inscription 
 - Jonction
 
-**L’inscription** d’un appareil sur Azure AD vous permet de gérer son identité. Lors de l’inscription d’un appareil, Azure AD Device Registration fournit une identité à l’appareil qui sera utilisée pour authentifier l’appareil lors de la connexion de l’utilisateur à Azure AD. Vous pouvez utiliser cette identité pour activer ou désactiver un appareil.
+**L’enregistrement** un tooAzure appareil AD permet de vous toomanage les identités d’un appareil. Lorsqu’un appareil est inscrit, inscription des appareils Azure AD fournit appareil hello avec une identité qui est utilisé tooauthenticate hello périphérique lorsqu’un utilisateur se connecte en tooAzure AD. Vous pouvez utiliser hello identité tooenable ou désactiver un périphérique.
 
-Quand ils sont associés à une solution de gestion des périphériques mobiles (GPM) comme Microsoft Intune, les attributs de l’appareil dans Azure AD sont mis à jour avec des informations supplémentaires sur l’appareil. Cela vous permet de créer des règles d’accès conditionnel qui imposent que l’accès à partir des appareils réponde à vos critères de sécurité et de conformité. Pour plus d’informations sur l’inscription d’appareils dans Microsoft Intune, consultez Inscrire des appareils pour la gestion dans Intune.
+Lorsqu’il est associé à une solution de management(MDM) des appareils mobiles tels que Microsoft Intune, les attributs d’appareil hello dans Azure AD sont mises à jour des informations supplémentaires sur l’appareil de hello. Cela vous permet des règles d’accès conditionnel toocreate qui permettent d’accéder à partir d’appareils toomeet vos normes de conformité et de sécurité. Pour plus d’informations sur l’inscription d’appareils dans Microsoft Intune, consultez Inscrire des appareils pour la gestion dans Intune.
 
-**La jonction** d’un appareil est une extension de l’inscription d’un appareil. En d’autres termes, cela vous offre tous les avantages de l’inscription d’un appareil et modifie également l’état local de celui-ci. Modifier l’état local permet à vos utilisateurs de se connecter à un appareil à l’aide d’un compte professionnel ou scolaire d’une organisation au lieu d’un compte personnel.
+**Jointure** un appareil est une extension de tooregistering un appareil. Cela signifie que, il vous offre tous les avantages de hello de l’inscription d’un appareil et toothis de plus, il modifie également l’état local de hello d’un périphérique. La modification d’état local de hello permet à votre périphérique dans toosign tooa des utilisateurs à l’aide d’une organisation compte professionnel ou scolaire au lieu d’un compte personnel.
 
 ## <a name="azure-ad-registered-devices"></a>Appareils inscrits sur Azure AD   
 
-L’objectif des appareils inscrits sur Azure AD est de permettre la prise en charge du scénario **Bring Your Own Device (BYOD)**. Dans ce scénario, un utilisateur peut accéder aux ressources contrôlées Azure Active Directory de votre organisation à l’aide d’un appareil personnel.  
+Bonjour Azure AD inscrit les appareils vise tooprovide vous avec prise en charge pour hello **propre appareil BYOD (Bring Your)** scénario. Dans ce scénario, un utilisateur peut accéder aux ressources contrôlées Azure Active Directory de votre organisation à l’aide d’un appareil personnel.  
 
 ![Appareils inscrits sur Azure AD](./media/device-management-introduction/03.png)
 
-L’accès repose sur un compte professionnel ou scolaire saisi sur l’appareil.  
-Par exemple, Windows 10 permet aux utilisateurs d’ajouter un compte professionnel ou scolaire à un ordinateur personnel, une tablette ou un téléphone.  
-Lorsqu’un utilisateur ajoute un compte professionnel ou scolaire, l’appareil est automatiquement inscrit auprès d’Azure AD, voire éventuellement dans le système de gestion de périphériques mobiles (GPM) que votre organisation a configuré. Les utilisateurs de votre organisation peuvent facilement ajouter un compte professionnel ou scolaire à un appareil personnel :
+accès de Hello est basé sur un compte professionnel ou scolaire qui a été saisi sur l’appareil de hello.  
+Par exemple, Windows 10 permet aux utilisateurs tooadd un travail ou scolaire compte tooa ordinateur personnel, une tablette ou téléphone.  
+Lorsqu’un utilisateur a ajouté un travail ou un compte scolaire, un périphérique de hello est inscrit auprès d’Azure AD et éventuellement inscrits dans le système de gestion des appareils mobiles hello que votre organisation a configuré. Les utilisateurs de votre organisation peuvent ajouter un travail ou scolaire appareil personnel de compte tooa pour des raisons pratiques :
 
-- Pour votre premier accès à une application professionnelle
-- Manuellement via le menu **Paramètres** dans le cas de Windows 10 
+- Lors de l’accès à une application de travail pour hello pour la première fois
+- Manuellement via hello **paramètres** menu dans les cas de hello de Windows 10 
 
 Vous pouvez configurer les appareils inscrits sur Azure AD pour Windows 10, iOS, Android et macOS.
 
 ## <a name="azure-ad-joined-devices"></a>Appareils joints Azure AD
 
-Les appareils joints Azure AD ont pour objectif de simplifier :
+Hello vise des périphériques d’Azure AD joint toosimplify :
 
 - Les déploiements Windows des appareils professionnels 
-- L’accès aux applications et aux ressources d’organisation à partir de n’importe quel appareil Windows
+- Accès aux applications tooorganizational et les ressources à partir de n’importe quel appareil Windows
 
 ![Appareils inscrits sur Azure AD](./media/device-management-introduction/02.png)
 
 
-Ces objectifs sont atteints en fournissant aux utilisateurs une expérience libre-service du contrôle des appareils professionnels par Azure AD.  
+Ces objectifs sont effectuées en fournissant aux utilisateurs une expérience de libre-service pour l’obtention de travail des appareils sous contrôle de code hello d’Azure AD.  
 **Azure AD Join** est destiné aux organisations axées en priorité ou uniquement sur le cloud. Ce sont généralement les petites et moyennes entreprises qui ne possèdent pas d’infrastructure Windows Server Active Directory en local. 
 
-L’implémentation d’appareils joints Azure AD vous offre les avantages suivants :
+Implémentation des appareils Azure AD joint offre hello avantages suivants :
 
-- **L’authentification unique** à vos applications et services SaaS gérés par Azure. Vos utilisateurs ne voient pas les invites d’authentification supplémentaires lorsqu’ils accèdent aux ressources de travail. La fonctionnalité d’authentification unique est disponible même lorsqu’ils ne sont pas connectés au réseau de domaine disponible.
+- **Single-Sign-On (SSO)** tooyour Azure managed services et applications SaaS. Vos utilisateurs ne voient pas les invites d’authentification supplémentaires lorsqu’ils accèdent aux ressources de travail. Hello fonctionnalité SSO est même lorsqu’ils ne sont pas connectés toohello réseau de domaine disponible.
 
-- **L’itinérance compatible avec l’entreprise** des paramètres utilisateur sur les appareils joints. Les utilisateurs n’ont pas besoin de se connecter à un compte Microsoft (par exemple, Hotmail) pour afficher les paramètres sur les appareils.
+- **L’itinérance compatible avec l’entreprise** des paramètres utilisateur sur les appareils joints. Les utilisateurs ne doivent tooconnect un paramètres toosee de compte (par exemple, Hotmail) Microsoft pour les appareils.
 
-- **Accéder au Windows Store pour Entreprises** à l’aide d’un compte AD. Les utilisateurs peuvent choisir parmi un inventaire d’applications présélectionnées par l’organisation.
+- **Accès tooWindows Store Pro** à l’aide du compte Active Directory. Les utilisateurs peuvent choisir à partir d’un inventaire des applications présélectionnée par l’organisation de hello.
 
-- L’assistant **Windows Hello** fournit un accès sécurisé et pratique aux ressources de travail.
+- **Windows Hello** prise en charge pour les ressources toowork un accès sécurisé et pratique.
 
-- **La restriction d’accès** aux applications ne s’applique qu’aux appareils qui répondent à la stratégie de conformité.
+- **Restriction d’accès** tooapps à partir d’uniquement les périphériques qui répondent à la stratégie de conformité.
 
 Bien qu’Azure AD Join soit principalement conçu pour les organisations qui ne disposent pas d’une infrastructure Windows Server Active Directory locale, vous pouvez également l’utiliser dans les scénarios où :
 
-- Vous ne pouvez pas utiliser de jonction de domaine locale, par exemple, si vous avez besoin de contrôler des appareils mobiles, tels que des tablettes et des téléphones.
+- Vous ne pouvez pas utiliser une jointure de domaine local, par exemple, si vous avez besoin de tooget des appareils mobiles tels que les tablettes et téléphones sous contrôle de code.
 
-- Vos utilisateurs ont principalement besoin d’accéder à Office 365 ou d’autres applications SaaS intégrées à Azure AD.
+- Vos utilisateurs doivent principalement tooaccess Office 365 ou autres applications SaaS intégrées à Azure AD.
 
-- Vous souhaitez gérer un groupe d’utilisateurs dans Azure AD et non dans un répertoire Active Directory. Par exemple, cela peut concerner les travailleurs saisonniers, les prestataires ou les étudiants.
+- Vous voulez toomanage un groupe d’utilisateurs dans Azure AD et non dans Active Directory. Par exemple, cela peut concerner tooseasonal employés, prestataires de service ou les étudiants.
 
-- Vous souhaitez fournir des fonctionnalités de jonction aux travailleurs dans des succursales distantes avec une infrastructure locale limitée.
+- Vous souhaitez tooprovide jointure tooworkers de fonctionnalités dans les succursales distantes avec l’infrastructure locale limitée.
 
 Vous pouvez configurer des appareils joints Azure AD pour les appareils Windows 10.
 
 
 ## <a name="hybrid-azure-ad-joined-devices"></a>Appareils joints Azure AD hybrides
 
-Pendant plus de dix ans, de nombreuses organisations ont utilisé la jonction de domaine dans leur répertoire Active Directory local pour permettre :
+Pour plus de dix ans, de nombreuses organisations utilisent hello domaine jointure tootheir locale Active Directory tooenable :
 
-- Aux services informatiques de gérer les appareils professionnels à partir d’un emplacement central.
+- INFORMATIQUE départements toomanage travail des appareils à partir d’un emplacement central.
 
-- Aux utilisateurs de se connecter à leurs appareils à partir de leurs comptes Active Directory professionnels ou scolaires. 
+- Toosign d’utilisateurs dans les appareils tootheir avec leur annuaire Active Directory de travail ou d’établissement scolaire. 
 
-En règle générale, les organisations disposant d’empreintes locales s’appuient sur des méthodes de création d’images pour approvisionner les appareils. Ils utilisent souvent **System Center Configuration Manager (SCCM)** ou les **stratégies de groupe** pour les gérer.
+En règle générale, les organisations avec un encombrement local s’appuient sur les appareils tooprovision méthodes de création d’images, et qu’ils utilisent souvent **System Center Configuration Manager (SCCM)** ou **(GP) de la stratégie de groupe** toomanage les.
 
-Si votre environnement comporte une empreinte locale AD et vous souhaitez également profiter des fonctionnalités proposées par Azure Active Directory, vous pouvez implémenter les appareils joints Azure AD hybrides. Il s’agit d’appareils qui sont à la fois, joints à votre service Active Directory local et à Azure Active Directory.
+Si votre environnement comporte un site local encombrement d’Active Directory et que vous également tirent parti de fonctionnalités hello fournies par Azure Active Directory, vous pouvez implémenter hybrides Azure AD joint périphériques. Il s’agit des appareils qui sont à la fois, jointes tooyour locaux Active Directory et Azure Active Directory.
 
 ![Appareils inscrits sur Azure AD](./media/device-management-introduction/01.png)
 
 
 Vous devez utiliser des appareils joints Azure AD hybrides si :
 
-- Vous disposez d’applications Win32 déployées sur ces appareils qui utilisent NTLM/Kerberos.
+- Vous avez Win32 applications déployées toothese périphériques qui utilisent NTLM / Kerberos.
 
-- Vous avez besoin de stratégies de groupe ou de SCCM/DCM pour gérer les appareils.
+- Vous avez besoin de stratégie de groupe ou SCCM / appareils de toomanage DCM.
 
-- Vous souhaitez continuer à utiliser des solutions de création d’images pour configurer les appareils de vos employés.
+- Vous souhaitez que les appareils de la tooconfigure toocontinue toouse de solutions d’acquisition d’images pour vos employés.
 
 Vous pouvez configurer des appareils joints Azure AD hybrides pour Windows 10 et des appareils de bas niveau comme Windows 8 et Windows 7.
 
@@ -129,27 +129,27 @@ Vous pouvez configurer des appareils joints Azure AD hybrides pour Windows 10 e
 
 La gestion des périphériques dans Azure AD vous permet de : 
 
-- Simplifier le processus consistant à donner le contrôle d’appareils à Azure AD
+- Simplifier les processus hello consistant à placer les appareils sous contrôle de code hello d’Azure AD
 
-- Fournir à vos utilisateurs un accès facile aux ressources basées sur le cloud de votre organisation
+- Fournir à vos utilisateurs avec les ressources de cloud toouse facilement accès tooyour d’une organisation
 
 En règle générale, vous devez utiliser :
 
 - Les appareils inscrits sur Azure AD pour les appareils personnels
 
-- Les appareils joints Azure AD pour les appareils qui ne sont pas joints à un AD local 
+- Appareils joints à Azure AD pour les appareils qui ne sont pas joints à un tooan AD local 
 
-- Les appareils joints Azure AD hybrides pour les appareils joints à un AD local     
+- Appareils joints à hybrides Azure AD pour les appareils qui sont joints à un tooan AD local     
 
 
 
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-- Pour obtenir une vue d’ensemble de la gestion des appareils dans le portail Azure, consultez [Gestion des appareils via le portail Azure](device-management-azure-portal.md).
+- tooget une vue d’ensemble de comment appareil toomanage dans hello Azure portail, consultez [la gestion des appareils à l’aide de hello portail Azure](device-management-azure-portal.md)
 
-- Pour en savoir plus sur l’accès conditionnel basé sur les appareils, consultez [Configurer les stratégies d’accès conditionnel basé sur les appareils Azure Active Directory](active-directory-conditional-access-policy-connected-applications.md).
+- toolearn en savoir plus sur l’accès conditionnel basé sur un appareil, consultez [configurer des stratégies d’accès conditionnel basés sur le périphérique Azure Active Directory](active-directory-conditional-access-policy-connected-applications.md).
 
-- Pour configurer les appareils joints Azure AD hybrides, consultez [Comment configurer des appareils joints Azure AD hybrides](device-management-hybrid-azuread-joined-devices-setup.md).
+- appareils de Azure AD joint toosetup hybride, consultez [comment tooconfigure hybride Azure Active Directory appareils joints à un](device-management-hybrid-azuread-joined-devices-setup.md).
 
 

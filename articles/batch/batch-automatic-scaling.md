@@ -1,6 +1,6 @@
 ---
-title: "Mettre automatiquement à l’échelle les nœuds de calcul dans un pool Azure Batch | Microsoft Docs"
-description: "Activer la mise à l’échelle automatique sur un pool de cloud pour ajuster dynamiquement le nombre de nœuds de calcul dans le pool."
+title: "mise à l’échelle aaaAutomatically nœuds de calcul dans un pool de traitement par lots Azure | Documents Microsoft"
+description: "Activer l’échelle automatique sur un toodynamically de pool de cloud d’ajuster le nombre de hello de nœuds de calcul dans le pool de hello."
 services: batch
 documentationcenter: 
 author: tamram
@@ -15,52 +15,52 @@ ms.workload: multiple
 ms.date: 06/20/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: f0e49cd8a64a48c53f5b6104703164a597c797f0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b6d1e0c5d8e0e56e15a4d3588150f2466a689f19
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-automatic-scaling-formula-for-scaling-compute-nodes-in-a-batch-pool"></a>Mettre automatiquement à l’échelle les nœuds de calcul dans un pool Azure Batch
 
-Azure Batch peut automatiquement mettre à l’échelle des pools en fonction de paramètres que vous définissez. Grâce à la mise à l’échelle automatique, Batch ajoute dynamiquement des nœuds à un pool à mesure que les demandes de tâches augmentent, et supprime les nœuds de calcul lorsqu’elles diminuent. Vous gagnez à la fois du temps et de l’argent en ajustant automatiquement le nombre de nœuds de calcul utilisés par votre application Batch. 
+Azure Batch peut automatiquement mettre à l’échelle des pools en fonction de paramètres que vous définissez. Mise à l’échelle automatique, lot ajoute dynamiquement le pool tooa de nœuds en tant que tâche l’augmentation des demandes et supprime les nœuds de calcul car ils diminuent. Vous pouvez enregistrer le temps et argent en réglant automatiquement le nombre de hello de nœuds de calcul utilisées par votre application de traitement par lots. 
 
-Pour activer la mise à l’échelle automatique sur un pool de nœuds de calcul, associez-lui une *formule de mise à l’échelle* définie par vos soins. Le service Batch utilise la formule de mise à l’échelle automatique pour déterminer le nombre de nœuds de calcul nécessaires à l’exécution de votre charge de travail. Les nœuds de calcul peuvent être des nœuds dédiés ou des [nœuds de faible priorité](batch-low-pri-vms.md). Batch répond aux données des mesures de service collectées à intervalles réguliers. Avec ces données de mesures, Batch ajuste le nombre de nœuds de calcul dans le pool en fonction de votre formule et à intervalles configurables.
+Pour activer la mise à l’échelle automatique sur un pool de nœuds de calcul, associez-lui une *formule de mise à l’échelle* définie par vos soins. Hello service Batch utilise nombre de hello toodetermine formule hello mise à l’échelle de nœuds de calcul qui sont nécessaire tooexecute votre charge de travail. Les nœuds de calcul peuvent être des nœuds dédiés ou des [nœuds de faible priorité](batch-low-pri-vms.md). Lot répond tooservice les données de métriques sont collectées à intervalles réguliers. À l’aide de ces données de métriques, lot ajuste nombre hello de nœuds de calcul dans le pool hello en fonction de votre formule et selon un intervalle configuré.
 
-Vous pouvez activer la mise à l’échelle automatique lors de la création d’un pool ou dans un pool existant. Vous pouvez également modifier une formule existante dans un pool dont la mise à l’échelle automatique est configurée. Batch permet d’évaluer vos formules avant de les assigner à des pools et de surveiller l’état de l’exécution des mises à l’échelle automatiques.
+Vous pouvez activer la mise à l’échelle automatique lors de la création d’un pool ou dans un pool existant. Vous pouvez également modifier une formule existante dans un pool dont la mise à l’échelle automatique est configurée. Traitement par lots vous permet de tooevaluate vos formules avant de les assigner toopools et toomonitor état hello de mise à l’échelle automatique s’exécute.
 
-Cet article décrit les différentes entités qui composent vos formules de mise à l’échelle automatique, à savoir les variables, les opérateurs, les opérations et les fonctions. Nous allons expliquer comment obtenir différentes mesures de ressources et de tâches de calcul au sein de Batch. Vous pouvez utiliser ces mesures pour ajuster votre nombre de nœuds de calcul en fonction de l’utilisation des ressources et de l’état des tâches. Nous vous indiquerons ensuite comment construire une formule et activer la mise à l’échelle automatique dans un pool à l’aide des API REST et .NET de Batch. Et nous terminerons par quelques exemples de formule.
+Cet article traite de hello diverses entités qui composent votre mise à l’échelle des formules, y compris les variables, les opérateurs, les opérations et les fonctions. Nous expliquons comment tooobtain différentes métriques de ressource et de tâche dans un lot de calcul. Vous pouvez utiliser ces tooadjust mesures nombre de nœuds de votre pool en fonction de l’état de tâche et l’utilisation des ressources. Ensuite, nous décrire comment tooconstruct une formule et automatique de mise à l’échelle sur un pool à l’aide d’activer hello REST de traitement par lots et les API .NET. Et nous terminerons par quelques exemples de formule.
 
 > [!IMPORTANT]
-> Lorsque vous créez un compte Batch, vous pouvez spécifier la [configuration du compte](batch-api-basics.md#account), qui détermine si les pools sont alloués dans un abonnement au service Batch (par défaut), ou dans votre abonnement utilisateur. Si vous avez créé votre compte Batch avec la configuration de service Batch par défaut, votre compte est limité à un nombre maximal de cœurs utilisables pour le traitement. Le service Batch met à l’échelle des nœuds uniquement jusqu’à cette limite de cœurs. C’est pourquoi le service Batch peut ne pas atteindre le nombre cible de nœuds de calcul spécifié par une formule de mise à l’échelle automatique. Consultez [Quotas et limites du service Azure Batch](batch-quota-limit.md) pour obtenir des instructions sur l’affichage et l’augmentation des quotas de votre compte.
+> Lorsque vous créez un compte de traitement par lots, vous pouvez spécifier hello [configuration du compte](batch-api-basics.md#account), qui détermine si les pools sont répartis dans un abonnement au service de traitement par lots (valeur par défaut de hello), ou dans votre abonnement de l’utilisateur. Si vous avez créé votre compte Batch avec la configuration de Service Batch hello par défaut, votre compte est tooa limité le nombre maximal de cœurs qui peut être utilisé pour le traitement. Hello service Batch met à l’échelle des nœuds de calcul uniquement des toothat limite maximale du principal. Pour cette raison, hello service Batch ne peut-être pas atteint le numéro de cible hello de nœuds de calcul spécifié par une formule de mise à l’échelle. Consultez [Quotas et limites pour hello service Azure Batch](batch-quota-limit.md) pour plus d’informations sur l’affichage et d’augmenter les quotas de votre compte.
 >
->Si vous avez créé votre compte avec la configuration d’abonnement utilisateur, votre compte partage le quota de cœurs associé à l’abonnement. Pour en savoir plus, consultez le paragraphe [Limites de machines virtuelles](../azure-subscription-service-limits.md#virtual-machines-limits) de la section [Abonnement Azure et limites, quotas et contraintes de service](../azure-subscription-service-limits.md).
+>Si vous avez créé votre compte avec la configuration de l’abonnement de l’utilisateur hello, votre compte de partage dans le quota de cœurs hello pour l’abonnement de hello. Pour en savoir plus, consultez le paragraphe [Limites de machines virtuelles](../azure-subscription-service-limits.md#virtual-machines-limits) de la section [Abonnement Azure et limites, quotas et contraintes de service](../azure-subscription-service-limits.md).
 >
 >
 
 ## <a name="automatic-scaling-formulas"></a>Formules de mise à l’échelle automatique
-Une formule de mise à l’échelle automatique est une valeur de chaîne définie par vos soins qui contient une ou plusieurs instructions. La formule de mise à l’échelle automatique est affectée à l’élément [autoScaleFormula][rest_autoscaleformula] d’un pool (Batch REST) ou la propriété [CloudPool.AutoScaleFormula][net_cloudpool_autoscaleformula] (Batch .NET). Le service Batch utilise votre formule pour déterminer le nombre de nœuds de calcul cibles d’un pool pour le prochain intervalle de traitement. La chaîne de formule ne peut pas dépasser 8 Ko. Elle peut inclure jusqu’à 100 instructions séparées par des points-virgules, et peut comprendre des sauts de ligne et des commentaires.
+Une formule de mise à l’échelle automatique est une valeur de chaîne définie par vos soins qui contient une ou plusieurs instructions. formule de mise à l’échelle Hello est affectée du pool tooa [autoScaleFormula] [ rest_autoscaleformula] élément (lot REST) ou [CloudPool.AutoScaleFormula] [ net_cloudpool_autoscaleformula] propriété (lot .NET). Hello service Batch utilise votre numéro de cible toodetermine formule hello de nœuds de calcul dans le pool de hello pour hello prochain intervalle de traitement. chaîne de la formule Hello ne peut pas dépasser 8 Ko, peuvent inclure des instructions too100 qui sont séparées par des points-virgules et peuvent inclure des sauts de ligne et de commentaires.
 
-Les formules de mise à l’échelle automatique reviennent en quelque sorte à utiliser un « langage » de mise à l’échelle Batch. Les instructions de formules sont des expressions de forme libre qui peuvent inclure des variables définies par le service (variables définies par le service Batch) et des variables définies par l’utilisateur (variables que vous définissez). Elles peuvent effectuer différentes opérations sur ces valeurs à l’aide de types, d’opérateurs et de fonctions intégrés. Par exemple, une instruction peut prendre la forme suivante :
+Les formules de mise à l’échelle automatique reviennent en quelque sorte à utiliser un « langage » de mise à l’échelle Batch. Les instructions formule sont des expressions de forme libre qui peuvent inclure des variables définies par le service (variables définies par le service de traitement par lots hello) et les variables définies par l’utilisateur (les variables que vous définissez). Elles peuvent effectuer différentes opérations sur ces valeurs à l’aide de types, d’opérateurs et de fonctions intégrés. Par exemple, une instruction peut prendre hello suivant du formulaire :
 
 ```
 $myNewVariable = function($ServiceDefinedVariable, $myCustomVariable);
 ```
 
-Les formules contiennent généralement plusieurs instructions qui effectuent des opérations sur les valeurs qui sont obtenues dans les instructions précédentes : Par exemple, nous obtenons tout d’abord une valeur pour `variable1`, puis la transmettons à une fonction pour renseigner `variable2` :
+Les formules contiennent généralement plusieurs instructions qui effectuent des opérations sur les valeurs qui sont obtenues dans les instructions précédentes : Par exemple, tout d’abord nous obtenir une valeur pour `variable1`, puis passez-le tooa fonction toopopulate `variable2`:
 
 ```
 $variable1 = function1($ServiceDefinedVariable);
 $variable2 = function2($OtherServiceDefinedVariable, $variable1);
 ```
 
-Incluez ces instructions dans votre formule de mise à l’échelle pour arriver à un nombre cible de nœuds de calcul. Les nœuds dédiés et les nœuds de faible priorité ont leurs propres paramètres cibles, afin que vous puissiez définir une cible pour chaque type de nœud. Une formule de mise à l’échelle automatique peut inclure une valeur cible pour les nœuds dédiés, une valeur cible pour les nœuds de faible priorité, ou les deux.
+Inclure ces instructions dans votre tooarrive formule de mise à l’échelle à un nombre cible de nœuds de calcul. Les nœuds dédiés et les nœuds de faible priorité ont leurs propres paramètres cibles, afin que vous puissiez définir une cible pour chaque type de nœud. Une formule de mise à l’échelle automatique peut inclure une valeur cible pour les nœuds dédiés, une valeur cible pour les nœuds de faible priorité, ou les deux.
 
-Le nombre cible de nœuds peut être supérieur, inférieur ou égal au nombre actuel de nœuds de ce type dans le pool. Le service Batch évalue la formule de mise à l’échelle automatique d’un pool à un intervalle spécifique (reportez-vous aux [intervalles de mise à l’échelle automatique](#automatic-scaling-interval)). Batch ajuste ensuite le nombre cible de chaque type de nœud dans le pool en fonction du nombre spécifié par votre formule de mise à l’échelle automatique au moment de l’évaluation.
+nombre de cible Hello de nœuds est supérieure, inférieure, ou même que le nombre actuel de hello de nœuds de ce type dans le pool de hello hello. Le service Batch évalue la formule de mise à l’échelle automatique d’un pool à un intervalle spécifique (reportez-vous aux [intervalles de mise à l’échelle automatique](#automatic-scaling-interval)). Traitement par lots ajuste le nombre cible de hello de chaque type de nœud dans le nombre de toohello pool hello indiquant votre formule de mise à l’échelle au moment de l’évaluation de hello.
 
 ### <a name="sample-autoscale-formula"></a>Exemple de formule de mise à l’échelle automatique
 
-Voici un exemple de formule de mise à l’échelle automatique qui peut être adapté pour convenir à la plupart des scénarios. Les variables `startingNumberOfVMs` et `maxNumberofVMs` dans l’exemple de formule peuvent être ajustées en fonction de vos besoins. Cette formule met à l’échelle des nœuds dédiés, mais elle peut être modifiée pour s’appliquer également aux nœuds de faible priorité. 
+Voici un exemple d’une formule de mise à l’échelle peut être ajustée toowork pour la plupart des scénarios. Hello variables `startingNumberOfVMs` et `maxNumberofVMs` Bonjour formule de l’exemple peut être ajustée tooyour besoins. Cette formule met à l’échelle des nœuds dédiés, mais peut être modifiée tooapply également les nœuds de faible priorité tooscale. 
 
 ```
 startingNumberOfVMs = 1;
@@ -70,52 +70,52 @@ pendingTaskSamples = pendingTaskSamplePercent < 70 ? startingNumberOfVMs : avg($
 $TargetDedicatedNodes=min(maxNumberofVMs, pendingTaskSamples);
 ```
 
-Avec cette formule de mise à l’échelle automatique, le pool est à l’origine créé avec une seule machine virtuelle. La mesure `$PendingTasks` définit le nombre de tâches en cours d’exécution ou en file d’attente. Cette formule recherche le nombre moyen de tâches en attente au cours des 180 dernières secondes et définit la variable `$TargetDedicatedNodes` en conséquence. La formule garantit que le nombre cible de nœuds dédiés ne dépasse jamais 25 machines virtuelles. À mesure que de nouvelles tâches sont envoyées, le pool s’accroît automatiquement. Lorsque les tâches se terminent, les machines virtuelles se libèrent une par une, et la formule de mise à l’échelle automatique réduit le pool.
+Avec cette formule de mise à l’échelle, hello pool est initialement créé avec une seule machine virtuelle. Hello `$PendingTasks` métrique définit le nombre de hello de tâches qui sont en cours d’exécution ou en file d’attente. formule de Hello recherche hello moyenne d’attente de tâches Bonjour 180 dernières secondes et définit hello `$TargetDedicatedNodes` variable en conséquence. formule de Hello garantit que le numéro de cible hello de nœuds dédiés ne dépasse jamais 25 ordinateurs virtuels. Comme les nouvelles tâches sont envoyés, pool de hello croît automatiquement. En tant que tâches se terminent, machines virtuelles deviennent libre un par un et formule d’échelle hello réduit le pool de hello.
 
 ## <a name="variables"></a>variables
-Vous pouvez utiliser aussi bien des variables **définies par le service** que des variables **définies par l’utilisateur** dans les formules de mise à l’échelle automatique. Les variables définies par le service sont intégrées dans le service Batch. Certaines variables définies par le service sont en lecture-écriture, tandis que d’autres sont en lecture seule. Les variables définies par l’utilisateur sont des variables que vous définissez. Dans l’exemple de formule illustré dans la section précédente, `$TargetDedicatedNodes` et `$PendingTasks` sont des variables définies par le service. Les variables `startingNumberOfVMs` et `maxNumberofVMs` sont des variables définies par l’utilisateur.
+Vous pouvez utiliser aussi bien des variables **définies par le service** que des variables **définies par l’utilisateur** dans les formules de mise à l’échelle automatique. variables de Hello défini par le service sont générés dans toohello service Batch. Certaines variables définies par le service sont en lecture-écriture, tandis que d’autres sont en lecture seule. Les variables définies par l’utilisateur sont des variables que vous définissez. Dans la formule de l’exemple hello indiqué dans la section précédente de hello, `$TargetDedicatedNodes` et `$PendingTasks` sont des variables définies par le service. Les variables `startingNumberOfVMs` et `maxNumberofVMs` sont des variables définies par l’utilisateur.
 
 > [!NOTE]
-> Les variables définies par le service sont toujours précédées d’un signe dollar ($). Pour les variables définies par l’utilisateur, le signe dollar est facultatif.
+> Les variables définies par le service sont toujours précédées d’un signe dollar ($). Pour les variables définies par l’utilisateur, le symbole dollar hello est facultative.
 >
 >
 
-Les tableaux suivants montrent des variables en lecture-écriture et en lecture seule, définies par le service Batch.
+Hello les tableaux suivants indiquent les deux en lecture-écriture et de variables en lecture seule qui sont définis par hello service Batch.
 
-Vous pouvez obtenir et définir les valeurs de ces variables définies par le service pour gérer le nombre de nœuds de calcul dans un pool :
+Vous pouvez obtenir et définir des nombre de hello toomanage de nœuds de calcul de valeurs hello de ces variables défini par le service dans un pool :
 
 | Variables définies par le service en lecture-écriture | Description |
 | --- | --- |
-| $TargetDedicatedNodes |Nombre cible de nœuds de calcul dédiés pour le pool. Le nombre de nœuds dédiés est spécifié en tant que cible, car un pool peut ne pas toujours atteindre le nombre de nœuds souhaité. Par exemple, si le nombre cible de nœuds dédiés est modifié par une évaluation de la mise à l’échelle automatique avant que le pool n’ait atteint la cible initiale, le pool risque de ne pas atteindre la cible. <br /><br /> Un pool dans un compte créé avec la configuration de service Batch peut ne pas atteindre sa cible si la cible dépasse un quota de nœuds ou de cœurs défini pour le compte Batch. Un pool dans un compte créé avec la configuration d’abonnement utilisateur peut ne pas atteindre sa cible si la cible dépasse le quota de nœuds partagé pour l’abonnement.|
-| $TargetLowPriorityNodes |Nombre cible de nœuds de calcul de faible priorité pour le pool. Le nombre de nœuds de faible priorité est spécifié en tant que cible, car un pool peut ne pas toujours atteindre le nombre de nœuds souhaité. Par exemple, si le nombre cible de nœuds de faible priorité est modifié par une évaluation de la mise à l’échelle automatique avant que le pool n’ait atteint la cible initiale, le pool risque de ne pas atteindre la cible. Un pool peut également ne pas atteindre sa cible si la cible dépasse un quota de nœuds ou de cœurs défini pour le compte Batch. <br /><br /> Pour plus d’informations sur les nœuds de calcul de faible priorité, consultez [Utiliser des machines virtuelles de faible priorité avec Batch (préversion)](batch-low-pri-vms.md). |
-| $NodeDeallocationOption |Action exécutée lorsque des nœuds de calcul sont supprimés d’un pool. Les valeurs possibles sont les suivantes :<ul><li>**requeue** : arrête immédiatement les tâches et les replace dans la file d’attente des travaux pour qu’elles soient replanifiées.<li>**terminate** : arrête immédiatement les tâches et les supprime de la file d’attente des travaux.<li>**taskcompletion** : attend la fin des tâches en cours d’exécution, puis supprime le nœud du pool.<li>**retaineddata** : attend que toutes les données de tâche locales conservées sur le nœud aient été nettoyées avant de supprimer le nœud du pool.</ul> |
+| $TargetDedicatedNodes |nœuds pour le pool de hello de calcul du nombre de cible de Hello de dédié. nombre de Hello de nœuds dédiés est spécifié en tant que cible, car un pool ne peut pas atteindre toujours nombre hello souhaité de nœuds. Par exemple, si le nombre de cibles de hello de nœuds dédiés est modifié par une évaluation de mise à l’échelle avant hello pool a atteint cible initiale de hello, puis le pool de hello ne peut pas atteindre cible de hello. <br /><br /> Un pool dans un compte créé avec la configuration du Service de traitement par lots hello ne peut pas atteindre sa cible si la cible de hello dépasse un nœud ou core un quota de comptes Batch. Un pool dans un compte créé avec la configuration de l’abonnement de l’utilisateur hello ne peut pas atteindre sa cible si la cible de hello dépasse le quota de cœur partagé hello pour l’abonnement de hello.|
+| $TargetLowPriorityNodes |nœuds pour le pool de hello de calcul du nombre de cible de Hello de faible priorité. nombre de Hello de nœuds de faible priorité est spécifié en tant que cible, car un pool ne peut pas atteindre toujours nombre hello souhaité de nœuds. Par exemple, si le nombre de postes de faible priorité cibles de hello est modifiée par une évaluation de mise à l’échelle avant hello pool a atteint cible initiale de hello, puis le pool de hello ne peut pas atteindre cible de hello. Un pool peut également pas obtenir sa cible si la cible de hello dépasse un quota de comptes Batch nœud ou core. <br /><br /> Pour plus d’informations sur les nœuds de calcul de faible priorité, consultez [Utiliser des machines virtuelles de faible priorité avec Batch (préversion)](batch-low-pri-vms.md). |
+| $NodeDeallocationOption |action Hello qui se produit lorsque les nœuds de calcul sont supprimés à partir d’un pool. Les valeurs possibles sont les suivantes :<ul><li>**remettre**--s’arrête immédiatement des tâches et les place en file d’attente de travail hello afin qu’elles soient replanifiées.<li>**Terminer**--s’arrête immédiatement des tâches et les supprime de la file d’attente des travaux hello.<li>**taskcompletion**--attend en cours d’exécution des tâches toofinish et puis supprime le nœud de hello de pool de hello.<li>**retaineddata**--attend que toutes les hello conservés à la tâche données locales sur hello nœud toobe nettoyé avant de supprimer un nœud de hello à partir du pool de hello.</ul> |
 
-Vous pouvez obtenir la valeur des variables définies par le service ci-après pour effectuer des ajustements basés sur les mesures à partir du service Batch :
+Vous pouvez obtenir la valeur hello de ces réglages toomake défini par le service des variables qui sont basées sur les métriques à partir du service de traitement par lots hello :
 
 | Variables définies par le service en lecture seule | Description |
 | --- | --- |
-| $CPUPercent |Pourcentage moyen d’utilisation du processeur. |
-| $WallClockSeconds |Nombre de secondes consommées. |
-| $MemoryBytes |Nombre moyen de mégaoctets utilisés. |
-| $DiskBytes |Nombre moyen de gigaoctets utilisés sur les disques locaux. |
-| $DiskReadBytes |Nombre d’octets lus. |
-| $DiskWriteBytes |Nombre d’octets écrits. |
-| $DiskReadOps |Nombre d’opérations de lecture sur disque effectuées. |
-| $DiskWriteOps |Nombre d’opérations d’écriture sur disque effectuées. |
-| $NetworkInBytes |Nombre d’octets entrants. |
-| $NetworkOutBytes |Nombre d’octets sortants. |
-| $SampleNodeCount |Nombre de nœuds de calcul. |
-| $ActiveTasks |Nombre de tâches prêtes à être exécutées, mais pas encore en cours d’exécution. La valeur $ActiveTasks inclut toutes les tâches qui se trouvent dans un état actif et dont les dépendances ont été satisfaites. Toutes les tâches qui se trouvent dans un état actif mais dont les dépendances n’ont pas été satisfaites sont exclues de la valeur $ActiveTasks.|
-| $RunningTasks |Nombre de tâches en cours d’exécution. |
-| $PendingTasks |Somme de $ActiveTasks et de $RunningTasks. |
-| $SucceededTasks |Nombre de tâches ayant abouti. |
-| $FailedTasks |Nombre de tâches ayant échoué. |
-| $CurrentDedicatedNodes |Nombre actuel de nœuds de calcul dédiés. |
-| $CurrentLowPriorityNodes |Nombre actuel de nœuds de calcul de faible priorité, y compris tous les nœuds réalloués. |
-| $PreemptedNodeCount | Nombre de nœuds dans le pool qui sont à l’état Réalloué. |
+| $CPUPercent |pourcentage moyen de Hello d’utilisation du processeur. |
+| $WallClockSeconds |nombre de Hello de secondes consommées. |
+| $MemoryBytes |Nombre moyen de Hello de mégaoctets consommés. |
+| $DiskBytes |Nombre moyen de Hello de gigaoctets utilisés sur les disques locaux hello. |
+| $DiskReadBytes |nombre de Hello d’octets lus. |
+| $DiskWriteBytes |nombre de Hello d’octets écrits. |
+| $DiskReadOps |nombre de Hello d’opérations de lecture sur disque est effectuée. |
+| $DiskWriteOps |nombre de Hello disque d’opérations d’écriture effectuées. |
+| $NetworkInBytes |nombre de Hello d’octets entrants. |
+| $NetworkOutBytes |nombre de Hello d’octets sortants. |
+| $SampleNodeCount |nombre de Hello de nœuds de calcul. |
+| $ActiveTasks |nombre de Hello de tâches qui sont tooexecute prêt, mais pas l’exécution. nombre de Hello $ActiveTasks inclut toutes les tâches qui se trouvent dans un état actif de hello et dont les dépendances ont été satisfaites. Toutes les tâches qui se trouvent dans un état actif de hello mais dont les dépendances n’ont pas été satisfaites sont exclus du nombre de hello $ActiveTasks.|
+| $RunningTasks |nombre de Hello de tâches en cours d’exécution. |
+| $PendingTasks |somme de Hello de $ActiveTasks et $RunningTasks. |
+| $SucceededTasks |nombre de Hello de tâches qui s’est correctement terminée. |
+| $FailedTasks |nombre de Hello de tâches qui ont échoué. |
+| $CurrentDedicatedNodes |Nombre actuel de Hello de dédié des nœuds de calcul. |
+| $CurrentLowPriorityNodes |Nombre actuel de Hello de faible priorité des nœuds, y compris les nœuds qui ont été devancées de calcul. |
+| $PreemptedNodeCount | nombre de Hello de nœuds dans le pool de hello qui se trouvent dans un état devancée. |
 
 > [!TIP]
-> Les variables en lecture seule qui sont définies par le service et illustrées dans le tableau précédent sont des *objets* fournissant diverses méthodes pour accéder aux données qui leur sont associées. Pour plus d’informations, consultez la section [Obtenir des échantillons de données](#getsampledata) dans la suite de cet article.
+> Hello variables en lecture seule, défini par le service qui figurent dans le tableau précédent de hello sont *objets* qui fournissent diverses méthodes tooaccess les données associées à chaque. Pour plus d’informations, consultez la section [Obtenir des échantillons de données](#getsampledata) dans la suite de cet article.
 >
 >
 
@@ -126,12 +126,12 @@ Ces types sont pris en charge dans une formule :
 * doubleVec
 * doubleVecList
 * string
-* timestamp : structure composée qui inclut les éléments suivants :
+* timestamp--timestamp est une structure composée contient hello suivant des membres :
 
   * year
   * mois (1-12)
   * jour (1-31)
-  * jour de la semaine (sous forme de chiffre, par exemple 1 pour lundi)
+  * jour de la semaine (au format hello du numéro de ; par exemple, 1 pour lundi)
   * heure (au format 24 heures, par exemple, 13 signifie 1 PM)
   * minute (00-59)
   * seconde (00-59)
@@ -149,7 +149,7 @@ Ces types sont pris en charge dans une formule :
   * TimeInterval_Year
 
 ## <a name="operations"></a>Opérations
-Les opérations autorisées sur les types répertoriés dans la section précédente sont les suivantes :
+Ces opérations sont autorisées sur les types de hello qui sont répertoriées dans la section précédente de hello.
 
 | Opération | Opérateurs pris en charge | Type de résultat |
 | --- | --- | --- |
@@ -173,38 +173,38 @@ Les opérations autorisées sur les types répertoriés dans la section précéd
 Quand vous testez un double avec un opérateur ternaire (`double ? statement1 : statement2`), la valeur différente de zéro est **true** et zéro est **false**.
 
 ## <a name="functions"></a>Fonctions
-Les **fonctions** prédéfinies disponibles pour la définition d’une formule de mise à l’échelle automatique sont les suivantes.
+Ces paramètres prédéfinis **fonctions** sont disponibles pour vous toouse dans la définition d’une formule de mise à l’échelle automatique.
 
 | Fonction | Type de retour | Description |
 | --- | --- | --- |
-| avg(doubleVecList) |double |Retourne la valeur moyenne de toutes les valeurs de l’élément doubleVecList. |
-| len(doubleVecList) |double |Retourne la longueur du vecteur créé à partir de l’élément doubleVecList. |
-| lg(double) |double |Retourne la base logarithmique 2 de l’élément double. |
-| lg(doubleVecList) |doubleVec |Retourne la base logarithmique 2 au niveau composant de l’élément doubleVecList. Un élément vec(double) doit être explicitement transmis pour le paramètre. Dans le cas contraire, la version double lg(double) est prise en compte. |
-| ln(double) |double |Retourne le logarithme naturel de l’élément double. |
-| ln(doubleVecList) |doubleVec |Retourne la base logarithmique 2 au niveau composant de l’élément doubleVecList. Un élément vec(double) doit être explicitement transmis pour le paramètre. Dans le cas contraire, la version double lg(double) est prise en compte. |
-| log(double) |double |Retourne la base logarithmique 10 de l’élément double. |
-| log(doubleVecList) |doubleVec |Retourne la base logarithmique 10 au niveau composant de l’élément doubleVecList. Un élément vec(double) doit être explicitement transmis pour le paramètre de type double unique. Dans le cas contraire, la version double log(double) est prise en compte. |
-| max(doubleVecList) |double |Retourne la valeur maximale de l’élément doubleVecList. |
-| min(doubleVecList) |double |Retourne la valeur minimale de l’élément doubleVecList. |
-| norm(doubleVecList) |double |Retourne la double norme du vecteur créé à partir de l’élément doubleVecList. |
-| percentile(doubleVec v, double p) |double |Retourne l’élément de percentile du vecteur v. |
+| avg(doubleVecList) |double |Retourne hello valeur moyenne de toutes les valeurs dans doubleVecList de hello. |
+| len(doubleVecList) |double |Retourne hello longueur du vecteur de hello est créé à partir de doubleVecList de hello. |
+| lg(double) |double |Retourne hello logarithme base 2 de hello double. |
+| lg(doubleVecList) |doubleVec |Retourne hello component-wise logarithme base 2 de hello doubleVecList. Un vec (double) doit être explicitement transmis pour le paramètre hello. Sinon, la version double LG (double) de hello est supposée. |
+| ln(double) |double |Retourne hello logarithme naturel de hello en double. |
+| ln(doubleVecList) |doubleVec |Retourne hello component-wise logarithme base 2 de hello doubleVecList. Un vec (double) doit être explicitement transmis pour le paramètre hello. Sinon, la version double LG (double) de hello est supposée. |
+| log(double) |double |Retourne hello base 10 de hello double. |
+| log(doubleVecList) |doubleVec |Retourne hello component-wise base 10 de hello doubleVecList. Un vec (double) doit être explicitement transmis pour le paramètre de type double unique hello. Sinon, la version de log(double) double hello est supposée. |
+| max(doubleVecList) |double |Retourne hello valeur maximale dans doubleVecList de hello. |
+| min(doubleVecList) |double |Retourne hello valeur minimale dans doubleVecList de hello. |
+| norm(doubleVecList) |double |Retourne hello norme deux du vecteur de hello est créé à partir de doubleVecList de hello. |
+| percentile(doubleVec v, double p) |double |Retourne hello élément percentile du vecteur de hello v. |
 | rand() |double |Retourne une valeur aléatoire comprise entre 0,0 et 1,0. |
-| range(doubleVecList) |double |Retourne la différence entre les valeurs minimale et maximale de l’élément doubleVecList. |
-| std(doubleVecList) |double |Retourne l’écart type de l’échantillon des valeurs dans l’élément doubleVecList. |
-| stop() | |Arrête l’évaluation de l’expression de mise à l’échelle automatique. |
-| sum(doubleVecList) |double |Retourne la somme de tous les composants de l’élément doubleVecList. |
-| time(string dateTime="") |timestamp |Retourne l’horodatage de l’heure actuelle si aucun paramètre n’est transmis, ou l’horodatage de la chaîne dateTime dans le cas contraire. Les formats dateTime pris en charge sont W3C-DTF et RFC 1123. |
-| val(doubleVec v, double i) |double |Retourne la valeur de l’élément qui est à l’emplacement i du vecteur v avec un index de départ de zéro. |
+| range(doubleVecList) |double |Retourne la différence hello hello valeurs minimale et maximales dans doubleVecList de hello. |
+| std(doubleVecList) |double |Retourne hello exemple d’écart des valeurs hello hello doubleVecList. |
+| stop() | |Arrête l’évaluation d’expression d’échelle hello. |
+| sum(doubleVecList) |double |Retourne hello somme de tous les composants hello de hello doubleVecList. |
+| time(string dateTime="") |timestamp |Retourne les hello horodatage de hello heure actuelle, si aucun paramètre est passés ou hello horodatage de la chaîne de date/heure hello s’il est passé. Les formats dateTime pris en charge sont W3C-DTF et RFC 1123. |
+| val(doubleVec v, double i) |double |Retourne la valeur hello d’élément hello qui est à l’emplacement i dans le vecteur v, avec un index de départ de zéro. |
 
-Certaines des fonctions décrites dans le tableau précédent peuvent accepter une liste en tant qu’argument. La liste séparée par des virgules se compose de n’importe quelle combinaison d’éléments *double* et *doubleVec*. Par exemple :
+Certaines fonctions hello qui sont décrites dans le tableau précédent de hello peuvent accepter une liste en tant qu’argument. liste séparée par des virgules de Hello est n’importe quelle combinaison de *double* et *doubleVec*. Par exemple :
 
 `doubleVecList := ( (double | doubleVec)+(, (double | doubleVec) )* )?`
 
-La valeur *doubleVecList* est convertie en un seul paramètre *doubleVec* avant l’évaluation. Par exemple, si `v = [1,2,3]`, alors appeler `avg(v)` revient à appeler `avg(1,2,3)`. Appeler `avg(v, 7)` équivaut à appeler `avg(1,2,3,7)`.
+Hello *doubleVecList* valeur est convertie tooa unique *doubleVec* avant d’évaluation. Par exemple, si `v = [1,2,3]`, puis en appelant `avg(v)` est équivalent toocalling `avg(1,2,3)`. Appel de `avg(v, 7)` est équivalent toocalling `avg(1,2,3,7)`.
 
 ## <a name="getsampledata"></a>Obtenir des échantillons de données
-Les formules de mise à l’échelle automatique agissent sur les données métriques (échantillons) qui sont fournies par le service Batch. Une formule augmente ou réduit la taille du pool en fonction des valeurs obtenues à partir du service. Les variables qui sont définies par le service et illustrées ci-dessus sont des objets qui fournissent diverses méthodes pour accéder aux données associées à chaque objet. Par exemple, l’expression ci-après présente une requête visant à obtenir les cinq dernières minutes de l’utilisation du processeur :
+Formules de mise à l’échelle agissent sur les données de métrique (exemples) qui sont fournies par hello service Batch. Une formule augmente ou diminue la taille du pool en fonction des valeurs hello qu’il obtient de service de hello. Hello service défini les variables qui ont été décrites précédemment sont des objets qui fournissent diverses méthodes données tooaccess qui sont associées à cet objet. Par exemple, hello expression suivante montre un Bonjour de tooget demande cinq dernières minutes d’utilisation du processeur :
 
 ```
 $CPUPercent.GetSample(TimeInterval_Minute * 5)
@@ -212,58 +212,58 @@ $CPUPercent.GetSample(TimeInterval_Minute * 5)
 
 | Méthode | Description |
 | --- | --- |
-| GetSample() |La méthode `GetSample()` retourne un vecteur d’échantillons de données.<br/><br/>Un échantillon correspond à 30 secondes de données de métrique. En d’autres termes, des échantillons sont obtenus toutes les 30 secondes, mais comme noté ci-dessus, il existe un délai entre le moment où un échantillon est collecté et le moment où il est disponible pour une formule. Par conséquent, tous les échantillons pour une période donnée ne sont pas forcément disponibles pour évaluation par une formule.<ul><li>`doubleVec GetSample(double count)`<br/>Spécifie le nombre d’échantillons à obtenir à partir des échantillons collectés les plus récents.<br/><br/>`GetSample(1)` retourne le dernier échantillon disponible. Toutefois, pour les métriques comme `$CPUPercent`, cette fonction ne doit pas être utilisée, car il est impossible de savoir *quand* l’échantillon a été collecté. Il peut s’agir d’un événement récent ou plus ancien en raison de problèmes système. Dans ce cas de figure, il est préférable d’utiliser un intervalle de temps, comme indiqué ci-dessous.<li>`doubleVec GetSample((timestamp or timeinterval) startTime [, double samplePercent])`<br/>Spécifie le délai d’exécution de la collecte des exemples de données. Elle spécifie éventuellement le pourcentage d’échantillons qui doivent être disponibles dans le délai d’exécution demandé.<br/><br/>`$CPUPercent.GetSample(TimeInterval_Minute * 10)` doit retourner 20 échantillons si tous les échantillons des 10 dernières minutes sont présents dans l’historique CPUPercent. Cependant, si la dernière minute de l’historique n’est pas disponible, seuls 18 échantillons seraient renvoyés, Dans ce cas :<br/><br/>`$CPUPercent.GetSample(TimeInterval_Minute * 10, 95)` échouerait, car seuls 90 % des échantillons sont disponibles ;<br/><br/>`$CPUPercent.GetSample(TimeInterval_Minute * 10, 80)` aboutirait.<li>`doubleVec GetSample((timestamp or timeinterval) startTime, (timestamp or timeinterval) endTime [, double samplePercent])`<br/>Spécifie le délai d’exécution de la collecte des données avec une heure de début et une heure de fin.<br/><br/>Comme indiqué ci-dessus, il existe un délai entre le moment où un échantillon est collecté et le moment où il est disponible pour une formule. Envisagez ce délai lorsque vous utilisez la méthode `GetSample`. Consultez `GetSamplePercent` ci-dessous. |
-| GetSamplePeriod() |Retourne la période des échantillons considérés dans un jeu de données d’échantillon historiques. |
-| Count() |Renvoie le nombre total d’échantillons dans l’historique des métriques. |
-| HistoryBeginTime() |Retourne l’horodateur du plus ancien échantillon de données disponible pour la métrique. |
-| GetSamplePercent() |Retourne le pourcentage d’échantillons disponibles pour un intervalle de temps donné. Par exemple :<br/><br/>`doubleVec GetSamplePercent( (timestamp or timeinterval) startTime [, (timestamp or timeinterval) endTime] )`<br/><br/>Comme la méthode `GetSample` échoue si le pourcentage d’échantillons retourné est inférieur au `samplePercent` spécifié, vous pouvez utiliser la méthode `GetSamplePercent` pour procéder d’abord à une vérification. Vous pouvez ensuite effectuer une autre action si des échantillons insuffisants sont présents, sans arrêter l’évaluation de la mise à l’échelle automatique. |
+| GetSample() |Hello `GetSample()` méthode retourne un vecteur d’exemples de données.<br/><br/>Un échantillon correspond à 30 secondes de données de métrique. En d’autres termes, des échantillons sont obtenus toutes les 30 secondes, Mais comme indiqué ci-dessous, il existe un décalage entre quand un échantillon est collecté et lorsqu’il est disponible tooa formule. Par conséquent, tous les échantillons pour une période donnée ne sont pas forcément disponibles pour évaluation par une formule.<ul><li>`doubleVec GetSample(double count)`<br/>Spécifie le nombre hello de tooobtain exemples à partir d’échantillons les plus récents hello qui ont été collectés.<br/><br/>`GetSample(1)`Retourne la dernière hello, exemple disponible. Pour les métriques tels que `$CPUPercent`, toutefois, cela pas doit être utilisé, car il est impossible tooknow *lorsque* hello échantillon a été collecté. Il peut s’agir d’un événement récent ou plus ancien en raison de problèmes système. Il est préférable, dans ce cas de toouse un intervalle de temps, comme indiqué ci-dessous.<li>`doubleVec GetSample((timestamp or timeinterval) startTime [, double samplePercent])`<br/>Spécifie le délai d’exécution de la collecte des exemples de données. Si vous le souhaitez, il spécifie également pourcentage d’échantillons qui doivent être disponibles dans hello hello demandé laps de temps.<br/><br/>`$CPUPercent.GetSample(TimeInterval_Minute * 10)`Renvoie 20 échantillons si tous les échantillons pour hello les 10 dernières minutes sont présentes dans l’historique de CPUPercent hello. Toutefois, si hello dernière minute de l’historique n’était pas disponible, exemples uniquement 18 sont retournées. Dans ce cas :<br/><br/>`$CPUPercent.GetSample(TimeInterval_Minute * 10, 95)`échoue, car seuls 90 pour cent d’échantillons de hello sont disponibles.<br/><br/>`$CPUPercent.GetSample(TimeInterval_Minute * 10, 80)` aboutirait.<li>`doubleVec GetSample((timestamp or timeinterval) startTime, (timestamp or timeinterval) endTime [, double samplePercent])`<br/>Spécifie le délai d’exécution de la collecte des données avec une heure de début et une heure de fin.<br/><br/>Comme indiqué ci-dessus, il existe un décalage entre quand un échantillon est collecté et lorsqu’il est disponible tooa formule. Envisagez ce délai lorsque vous utilisez hello `GetSample` (méthode). Consultez `GetSamplePercent` ci-dessous. |
+| GetSamplePeriod() |Retourne la période hello d’échantillons qui ont été effectuées dans un jeu de données exemple historiques. |
+| Count() |Retourne hello nombre total d’échantillons dans l’historique de la métrique de hello. |
+| HistoryBeginTime() |Retourne hello horodatage de hello plus ancien disponible échantillon de données de mesure de hello. |
+| GetSamplePercent() |Retourne hello pourcentage des exemples qui sont disponibles pour un intervalle de temps donné. Par exemple :<br/><br/>`doubleVec GetSamplePercent( (timestamp or timeinterval) startTime [, (timestamp or timeinterval) endTime] )`<br/><br/>Étant donné que hello `GetSample` méthode échoue si le pourcentage d’échantillons retourné hello est inférieur à hello `samplePercent` spécifié, vous pouvez utiliser hello `GetSamplePercent` méthode toocheck première. Ensuite, vous pouvez effectuer une autre action si exemples insuffisantes sont présentes, sans arrêter l’évaluation de mise à l’échelle automatique hello. |
 
-### <a name="samples-sample-percentage-and-the-getsample-method"></a>Échantillons, pourcentage d’échantillonnage et méthode *GetSample()*
-La principale opération d’une formule de mise à l’échelle automatique vise à obtenir des données métriques des tâches et des ressources, puis à ajuster la taille du pool en fonction de ces données. Par conséquent, il est important de comprendre clairement comment les formules de mise à l’échelle automatique interagissent avec les données de mesures (échantillons).
+### <a name="samples-sample-percentage-and-hello-getsample-method"></a>Exemples et pourcentage de l’exemple hello *GetSample()* (méthode)
+fonctionnement de base Hello d’une formule de mise à l’échelle est données métriques tooobtain tâches et les ressources et ajustez ensuite la taille du pool basé sur ces données. Par conséquent, il est important toohave conscience de l’interagissent entre les formules de mise à l’échelle avec les données de métriques (exemples).
 
 **Exemples**
 
-Le service Batch prélève régulièrement des échantillons de mesures de tâches et de ressources pour les mettre à la disposition de vos formules de mise à l’échelle automatique. Ces échantillons sont enregistrés toutes les 30 secondes par le service Batch. Cependant, un retard est généralement constaté entre l’enregistrement de ces échantillons et leur mise à disposition (en lecture) pour vos formules de mise à l’échelle automatique. De plus, en raison de différents facteurs tels que les problèmes de réseau ou d’autres problèmes d’infrastructure, il arrive que des échantillons ne soient pas enregistrés pendant un intervalle donné.
+Hello service Batch régulièrement tire les exemples de tâches et les ressources des métriques et les formules de mise à l’échelle tooyour disponibles. Ces exemples sont enregistrées toutes les 30 secondes par hello service Batch. Toutefois, il y a généralement un délai entre lorsque ces exemples ont été enregistrés et lorsqu’elles sont rendues disponibles trop (et peuvent être lu par) vos formules de mise à l’échelle. En outre, en raison de facteurs tels que le réseau ou d’autres problèmes d’infrastructure toovarious échantillons ne soient pas enregistrées pour un intervalle donné.
 
 **Pourcentage d’échantillonnage**
 
-Quand `samplePercent` est transmis à la méthode `GetSample()` ou que la méthode `GetSamplePercent()` est appelée, le terme _pourcentage_ désigne une comparaison entre le nombre total possible d’échantillons enregistrés par le service Batch et le nombre d’échantillons effectivement disponibles pour la formule de mise à l’échelle automatique.
+Lorsque `samplePercent` est passé toohello `GetSample()` méthode ou hello `GetSamplePercent()` méthode est appelée, _%_ fait référence tooa comparer le nombre possible de hello total d’exemples qui sont enregistrées par hello service Batch et nombre de Hello d’exemples qui sont la formule de mise à l’échelle tooyour disponibles.
 
-Prenons l’exemple d’un intervalle de 10 minutes. Comme les échantillons sont enregistrés toutes les 30 secondes, au cours d’un intervalle de 10 minutes, le nombre total maximal d’échantillons enregistrés par Batch devrait être de 20 échantillons (soit 2 par minute). Toutefois, en raison de la latence inhérente au mécanisme de création de rapports, ou d’un autre problème au sein d’Azure, il se peut que 15 échantillons seulement soient disponibles en lecture pour votre formule de mise à l’échelle automatique. Ainsi, pour cette période de 10 minutes, seuls 75 % du nombre total d’échantillons enregistrés seraient réellement disponibles pour votre formule.
+Prenons l’exemple d’un intervalle de 10 minutes. Étant donné que les exemples sont enregistrées toutes les 30 secondes dans un intervalle de temps de 10 minutes, hello maximale nombre total d’exemples qui sont enregistrés par le traitement par lots serait 20 échantillons (2 par minute). Toutefois, en raison de la latence inhérente de toohello Hello reporting mécanisme et autres problèmes dans Azure, il peut être uniquement 15 échantillons sont la formule de mise à l’échelle tooyour disponibles pour la lecture. Par conséquent, par exemple, pendant cette période de 10 minutes, qu’à 75 % du nombre total de hello d’échantillons enregistré peut être tooyour disponibles formule.
 
 **Méthode GetSample() et plages d’échantillons**
 
-Vos formules de mise à l’échelle automatique vont agrandir et réduire vos pools &mdash; avec l’ajout ou la suppression de nœuds. Comme les nœuds vous coûtent de l’argent, vous souhaitez vous assurer que vos formules utiliseront une méthode d’analyse intelligente basée sur des données suffisantes. Par conséquent, nous vous recommandons d’utiliser une analyse des types de tendance dans vos formules. Ce type augmente ou réduit vos pools en fonction d’une plage d’échantillons collectés.
+Vos formules de mise à l’échelle sont augmente de toobe continu et la réduction de vos pools &mdash; Ajout de nœuds ou la suppression de nœuds. Étant donné que les nœuds de coûtent pour vous, vous souhaitez tooensure vos formules utilisent une méthode intelligente d’analyse est basée sur des données suffisantes. Par conséquent, nous vous recommandons d’utiliser une analyse des types de tendance dans vos formules. Ce type augmente ou réduit vos pools en fonction d’une plage d’échantillons collectés.
 
-Pour ce faire, utilisez `GetSample(interval look-back start, interval look-back end)` pour retourner un vecteur d’échantillons :
+toodo donc utiliser `GetSample(interval look-back start, interval look-back end)` tooreturn un vecteur d’échantillons :
 
 ```
 $runningTasksSample = $RunningTasks.GetSample(1 * TimeInterval_Minute, 6 * TimeInterval_Minute);
 ```
 
-Lorsque Batch évalue la ligne ci-dessus, il retourne une plage d’exemples sous la forme d’un vecteur de valeurs. Par exemple :
+Hello au-dessus de la ligne est évaluée par lot, il renvoie une plage d’échantillons comme un vecteur de valeurs. Par exemple :
 
 ```
 $runningTasksSample=[1,1,1,1,1,1,1,1,1,1];
 ```
 
-Une fois que vous avez collecté le vecteur d’échantillons, vous pouvez utiliser des fonctions telles que `min()`, `max()` et `avg()` pour dériver des valeurs significatives à partir de la plage collectée.
+Une fois que vous avez collecté vecteur hello d’échantillons, vous pouvez ensuite utiliser des fonctions telles que `min()`, `max()`, et `avg()` tooderive des valeurs significatives à partir de hello collectées plage.
 
-Pour plus de sécurité, vous pouvez forcer l’échec d’une évaluation de formule si le pourcentage d’échantillons disponible pendant une période donnée est inférieur à un certain seuil. Lorsque vous forcez l’échec d’une évaluation de formule, Batch reçoit l’instruction de cesser toute nouvelle évaluation de la formule si le pourcentage d’exemples spécifié n’est pas disponible. Dans ce cas, aucune modification n’est apportée à la taille du pool. Pour spécifier un pourcentage d’échantillons à respecter pour que l’évaluation aboutisse, spécifiez ce pourcentage en tant que troisième paramètre de `GetSample()`. Dans l’exemple ci-dessous, une exigence de 75 pour cent d’échantillons est spécifiée :
+Pour renforcer la sécurité, vous pouvez forcer une toofail d’évaluation de formule si inférieur à un certain pourcentage de l’exemple est disponible pour une période donnée. Lorsque vous forcez une toofail d’évaluation de formule, vous indiquez à toocease lot davantage l’évaluation de la formule de hello si hello spécifié pourcentage d’échantillons n’est pas disponible. Dans ce cas, aucune modification n’est apportée toohello taille du pool. toospecify un pourcentage obligatoire d’échantillons pour hello évaluation toosucceed, spécifiez-le comme hello troisième paramètre trop`GetSample()`. Dans l’exemple ci-dessous, une exigence de 75 pour cent d’échantillons est spécifiée :
 
 ```
 $runningTasksSample = $RunningTasks.GetSample(60 * TimeInterval_Second, 120 * TimeInterval_Second, 75);
 ```
 
-Étant donné qu’il peut y avoir un délai de disponibilité des exemples, il est important de toujours spécifier un intervalle de temps avec une heure de début différé antérieure à une minute. Il faut environ une minute aux exemples pour se propager dans le système, ce qui signifie que les exemples situés dans la plage `(0 * TimeInterval_Second, 60 * TimeInterval_Second)` ne sont pas toujours disponibles. Là encore, vous pouvez utiliser le paramètre pourcentage de `GetSample()` pour forcer une exigence de pourcentage d’échantillon particulière.
+Car il peut y avoir un délai dans la disponibilité d’exemple, il est important de tooalways spécifier une plage de temps avec une heure de début de l’aspect différée est antérieure à une minute. Il prend environ une minute pour toopropagate exemples via le système de hello, par conséquent, des exemples dans la plage de hello `(0 * TimeInterval_Second, 60 * TimeInterval_Second)` ne peuvent pas être disponibles. Là encore, vous pouvez utiliser le paramètre de pourcentage hello de `GetSample()` tooforce une exigence de pourcentage exemple spécifique.
 
 > [!IMPORTANT]
-> Nous vous **conseillons fortement** **d’éviter de vous appuyer *uniquement* sur `GetSample(1)` dans vos formules de mise à l’échelle automatique**, car la méthode `GetSample(1)` dit globalement au service Batch : « Donne-moi le dernier exemple disponible, quelle que soit son ancienneté ». Dans la mesure où il s’agit uniquement d’un simple échantillon (potentiellement ancien), il risque de ne pas être représentatif de l’état récent de la tâche ou de la ressource. Si vous utilisez tout de même `GetSample(1)`, veillez à l’intégrer dans une instruction plus générale pour éviter de l’utiliser comme unique point de données sur lequel reposera votre formule.
+> Nous vous **conseillons fortement** **d’éviter de vous appuyer *uniquement* sur `GetSample(1)` dans vos formules de mise à l’échelle automatique**, C’est parce que `GetSample(1)` essentiellement indique que le service de traitement par lots toohello, « Donnent me hello dernier échantillon avoir, quel que soit le temps écoulé de récupérer. » Dans la mesure où il est uniquement un échantillon unique, et il peut être un exemple plus anciens, peut-être pas représentatif d’image hello des tâches récentes ou l’état de la ressource. Si vous utilisez `GetSample(1)`, assurez-vous qu’il fait partie d’une instruction supérieure et pas hello seul point de données qui dépend de votre formule.
 >
 >
 
 ## <a name="metrics"></a>Mesures
-Vous pouvez utiliser à la fois les mesures de ressources et de tâches quand vous définissez une formule. Vous ajustez le nombre cible de nœuds dédiés dans le pool en fonction des données métriques que vous obtenez et évaluez. Consultez la section [Variables](#variables) ci-dessus pour plus d’informations sur chaque métrique.
+Vous pouvez utiliser à la fois les mesures de ressources et de tâches quand vous définissez une formule. Vous ajustez le nombre de cible de hello de nœuds dédiés dans le pool hello en fonction des données de métriques hello vous procurer et d’évaluez. Consultez hello [Variables](#variables) section ci-dessus pour plus d’informations sur chaque métrique.
 
 <table>
   <tr>
@@ -272,7 +272,7 @@ Vous pouvez utiliser à la fois les mesures de ressources et de tâches quand vo
   </tr>
   <tr>
     <td><b>Ressource</b></td>
-    <td><p>Les mesures de ressources sont basées sur l’utilisation du processeur, de la bande passante et de la mémoire par les nœuds de calcul, ainsi que sur le nombre de nœuds.</p>
+    <td><p>Métriques de ressources sont basés sur hello UC, la bande passante hello, utilisation de la mémoire hello de nœuds de calcul et hello du nombre de nœuds.</p>
         <p> Ces variables définies par le service sont utiles pour effectuer des ajustements en fonction du nombre de nœuds :</p>
     <p><ul>
             <li>$TargetDedicatedNodes</li>
@@ -296,8 +296,8 @@ Vous pouvez utiliser à la fois les mesures de ressources et de tâches quand vo
       <li>$NetworkOutBytes</li></ul></p>
   </tr>
   <tr>
-    <td><b>Task</b></td>
-    <td><p>Les mesures de tâches sont basées sur l’état des tâches (Active, En attente et Terminée). Les variables suivantes définies par le service sont utiles pour ajuster la taille du pool en fonction des métriques de tâche :</p>
+    <td><b>Tâche</b></td>
+    <td><p>Métriques de tâche sont basés sur l’état de hello de tâches, comme actif, en attente et s’est terminées. Hello défini par le service variables suivantes sont utiles pour effectuer les modifications de taille de pool basées sur les mesures de tâche :</p>
     <p><ul>
       <li>$ActiveTasks</li>
       <li>$RunningTasks</li>
@@ -309,15 +309,15 @@ Vous pouvez utiliser à la fois les mesures de ressources et de tâches quand vo
 </table>
 
 ## <a name="write-an-autoscale-formula"></a>Écrire une formule de mise à l’échelle automatique
-Vous générez une formule de mise à l’échelle automatique en formant des instructions qui utilisent les composants ci-dessus, puis vous combinez ces instructions dans une formule complète. Dans cette section, nous allons créer un exemple de formule capable de prendre des décisions concrètes en matière de mise à l’échelle automatique.
+Vous générez une formule de mise à l’échelle par formation d’instructions qui utilisent hello au-dessus de composants, puis combinez ces instructions dans une formule complète. Dans cette section, nous allons créer un exemple de formule capable de prendre des décisions concrètes en matière de mise à l’échelle automatique.
 
-Commençons par définir les exigences de notre nouvelle formule de mise à l’échelle automatique. La formule doit :
+Tout d’abord, nous allons définir les exigences de hello pour notre nouvelle formule de mise à l’échelle. formule de Hello doit :
 
-1. Augmenter le nombre cible de nœuds de calcul dédiés dans un pool si l’utilisation du processeur est intensive.
-2. Réduire le nombre cible de nœuds de calcul dédiés dans un pool si l’utilisation du processeur est faible.
-3. Toujours limiter le nombre maximal de nœuds dédiés à 400.
+1. Augmenter le nombre de cibles de hello dédié de nœuds de calcul dans un pool si l’utilisation du processeur est élevée.
+2. Réduire le nombre de cibles de hello dédié de nœuds de calcul dans un pool lors de l’utilisation du processeur est faible.
+3. Toujours limiter nombre maximal de hello de nœuds dédié too400.
 
-Pour augmenter le nombre de nœuds en cas d’utilisation intensive du processeur, définissez l’instruction qui renseigne une variable définie par l’utilisateur (`$totalDedicatedNodes`) en utilisant une valeur équivalente à 110 % du nombre cible actuel de nœuds dédiés si l’utilisation moyenne du processeur minimale au cours des 10 dernières minutes est supérieure à 70 %. Sinon, utilisez la valeur du nombre actuel de nœuds dédiés.
+nombre de hello tooincrease de nœuds lors de l’utilisation élevée du processeur, définir l’instruction hello qui remplit une variable définie par l’utilisateur (`$totalDedicatedNodes`) avec une valeur qui est de 110 % de hello cible nombre actuel de nœuds dédiés, mais uniquement si hello minimale utilisation moyenne du processeur au cours de hello les 10 dernières minutes était supérieure à 70 %. Sinon, utilisez hello valeur pour le nombre actuel de hello de nœuds dédiés.
 
 ```
 $totalDedicatedNodes =
@@ -325,7 +325,7 @@ $totalDedicatedNodes =
     ($CurrentDedicatedNodes * 1.1) : $CurrentDedicatedNodes;
 ```
 
-Pour *réduire* le nombre de nœuds dédiés en cas de faible utilisation du processeur, la prochaine instruction dans notre formule affecte à la même variable `$totalDedicatedNodes` 90 % du nombre cible actuel de nœuds dédiés si l’utilisation moyenne du processeur au cours des 60 dernières minutes est inférieure à 20 %. Sinon, nous utilisons la valeur actuelle de `$totalDedicatedNodes` que nous avons renseigné dans l’instruction ci-dessus.
+trop*diminuer* hello du nombre de nœuds dédiés lors de l’utilisation du processeur basse, hello l’instruction suivante dans notre hello de jeux de formules même `$totalDedicatedNodes` % too90 variable de hello cible nombre actuel de nœuds dédiés si hello utilisation moyenne du processeur Bonjour dernières minutes 60 a été sous 20 pour cent. Sinon, utilisez la valeur actuelle de hello de `$totalDedicatedNodes` que nous avons rempli dans l’instruction hello ci-dessus.
 
 ```
 $totalDedicatedNodes =
@@ -333,13 +333,13 @@ $totalDedicatedNodes =
     ($CurrentDedicatedNodes * 0.9) : $totalDedicatedNodes;
 ```
 
-Cet exemple définit le nombre cible de nœuds de calcul dédiés sur un maximum de 400 :
+Maintenant limite hello cible le nombre maximum de tooa de nœuds de calcul dédié de 400 :
 
 ```
 $TargetDedicatedNodes = min(400, $totalDedicatedNodes)
 ```
 
-Voici la formule complète :
+Voici la formule complète de hello :
 
 ```
 $totalDedicatedNodes =
@@ -353,15 +353,15 @@ $TargetDedicatedNodes = min(400, $totalDedicatedNodes)
 
 ## <a name="create-an-autoscale-enabled-pool-with-net"></a>Créer un pool avec mise à l’échelle automatique dans .NET
 
-Pour créer un pool avec mise à l’échelle automatique dans .NET, procédez comme suit :
+toocreate un pool avec l’échelle automatique activée dans .NET, procédez comme suit :
 
-1. Créez le pool avec [BatchClient.PoolOperations.CreatePool](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.pooloperations.createpool).
-2. Affectez à la propriété [CloudPool.AutoScaleEnabled](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool.autoscaleenabled) la valeur `true`.
-3. Affectez à la propriété [CloudPool.AutoScaleFormula](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool.autoscaleformula) votre formule de mise à l’échelle automatique.
-4. (Facultatif) Définissez la propriété [CloudPool.AutoScaleEvaluationInterval](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool.autoscaleevaluationinterval) (la valeur par défaut est de 15 minutes).
-5. Validez le pool avec [CloudPool.Commit](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool.commit) ou [CommitAsync](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool.commitasync).
+1. Créer le pool hello avec [BatchClient.PoolOperations.CreatePool](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.pooloperations.createpool).
+2. Ensemble hello [CloudPool.AutoScaleEnabled](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool.autoscaleenabled) propriété trop`true`.
+3. Ensemble hello [CloudPool.AutoScaleFormula](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool.autoscaleformula) propriété avec la formule de mise à l’échelle.
+4. (Facultatif) Ensemble hello [CloudPool.AutoScaleEvaluationInterval](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool.autoscaleevaluationinterval) propriété (valeur par défaut est 15 minutes).
+5. Valider le pool hello avec [CloudPool.Commit](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool.commit) ou [CommitAsync](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool.commitasync).
 
-L’extrait de code suivant crée un pool avec mise à l’échelle automatique dans .NET. La formule de mise à l’échelle automatique du pool définit le nombre cible de nœuds dédiés comme suit : 5 les lundis et 1 les autres jours de la semaine. L’[intervalle de mise à l’échelle automatique](#automatic-scaling-interval) est de 30 minutes. Dans cet extrait de code #C et les autres extraits de cet article, `myBatchClient` est une instance entièrement initialisée de la classe [BatchClient][net_batchclient].
+Hello extrait de code suivant crée un pool de mise à l’échelle dans .NET. Hello formule de mise à l’échelle du pool définit nombre cible de hello de too5 nœuds dédié lundi et 1 sur tous les jours de semaine de hello. Hello [intervalle de mise à l’échelle automatique](#automatic-scaling-interval) est définie too30 minutes. Dans ce et hello autres extraits de code c# dans cet article, `myBatchClient` est une instance initialisée correctement de hello [BatchClient] [ net_batchclient] classe.
 
 ```csharp
 CloudPool pool = myBatchClient.PoolOperations.CreatePool(
@@ -375,54 +375,54 @@ await pool.CommitAsync();
 ```
 
 > [!IMPORTANT]
-> Lorsque vous créez un pool avec mise à l’échelle automatique, ne spécifiez pas le paramètre _targetDedicatedComputeNodes_ ni le paramètre _targetLowPriorityComputeNodes_ sur l’appel à **CreatePool**. Au lieu de cela, spécifiez les propriétés **AutoScaleEnabled** et **AutoScaleFormula** sur le pool. Les valeurs de ces propriétés déterminent le nombre cible de chaque type de nœud. De même, pour redimensionner manuellement un pool avec mise à l’échelle automatique (par exemple, avec [BatchClient.PoolOperations.ResizePoolAsync][net_poolops_resizepoolasync]), vous devez dans un premier temps **désactiver** la mise à l’échelle automatique dans le pool avant de le redimensionner.
+> Lorsque vous créez un pool de mise à l’échelle, ne spécifiez pas hello _targetDedicatedComputeNodes_ paramètre ou hello _targetLowPriorityComputeNodes_ paramètre sur hello appeler trop **CreatePool**. Au lieu de cela, spécifiez hello **AutoScaleEnabled** et **AutoScaleFormula** propriétés sur le pool de hello. valeurs Hello pour ces propriétés déterminent le nombre de cible de hello de chaque type de nœud. En outre, toomanually redimensionner un pool de mise à l’échelle (par exemple, avec [BatchClient.PoolOperations.ResizePoolAsync][net_poolops_resizepoolasync]), d’abord **désactiver** mise à l’échelle automatique sur Hello pool, puis redimensionnez-le.
 >
 >
 
-En plus de Batch .NET, vous pouvez utiliser d’autres [SDK Batch](batch-apis-tools.md#azure-accounts-for-batch-development), des [API Batch REST](https://docs.microsoft.com/rest/api/batchservice/), des [applets de commande Batch PowerShell](batch-powershell-cmdlets-get-started.md) et l’[interface CLI Batch](batch-cli-get-started.md) afin de configurer la mise à l’échelle automatique.
+En outre tooBatch .NET, vous pouvez utiliser une des hello autres [kits de développement logiciel lot](batch-apis-tools.md#azure-accounts-for-batch-development), [lot reste](https://docs.microsoft.com/rest/api/batchservice/), [applets de commande PowerShell de lot](batch-powershell-cmdlets-get-started.md)et hello [lot CLI](batch-cli-get-started.md)tooconfigure échelle.
 
 
 ### <a name="automatic-scaling-interval"></a>Intervalle de mise à l’échelle automatique
-Par défaut, le service Batch ajuste la taille d’un pool en fonction de sa formule de mise à l’échelle toutes les 15 minutes. Cet intervalle peut être configuré à l’aide des propriétés de pool suivantes :
+Par défaut, hello service Batch ajuste la taille d’un pool en fonction de tooits formule de mise à l’échelle toutes les 15 minutes. Cet intervalle est configurable à l’aide de hello pool propriétés suivantes :
 
 * [CloudPool.AutoScaleEvaluationInterval][net_cloudpool_autoscaleevalinterval] (Batch .NET)
 * [autoScaleEvaluationInterval][rest_autoscaleinterval] (API REST)
 
-L’intervalle doit être compris entre cinq minutes et 168 heures. Si un intervalle en dehors de cette plage est spécifié, le service Batch renvoie une erreur de demande incorrecte (400).
+intervalle minimal de Hello est de cinq minutes et hello maximale est 168 heures. Si un intervalle en dehors de cette plage est spécifié, hello service Batch retourne une erreur demande incorrecte (400).
 
 > [!NOTE]
-> La mise à l’échelle automatique ne peut pas actuellement répondre aux modifications en moins d’une minute, mais vise plutôt à ajuster progressivement la taille de votre pool pendant l’exécution d’une charge de travail.
+> Échelle n’est pas actuellement prévue toorespond toochanges en moins d’une minute, mais au lieu de cela est prévu taille de hello tooadjust de votre pool progressivement lorsque vous exécutez une charge de travail.
 >
 >
 
 ## <a name="enable-autoscaling-on-an-existing-pool"></a>Activer la mise à l’échelle automatique sur un pool existant
 
-Chaque SDK Batch fournit un moyen d’activer la mise à l’échelle automatique. Par exemple :
+Chaque lot fournit une échelle tooenable de façon automatique. Par exemple :
 
 * [BatchClient.PoolOperations.EnableAutoScaleAsync][net_enableautoscaleasync] (Batch .NET)
 * [Activer la mise à l’échelle automatique sur un pool][rest_enableautoscale] (API REST)
 
-Quand vous activez la mise à l’échelle automatique sur un pool existant, n’oubliez pas les points suivants :
+Lorsque vous activez l’échelle sur un pool existant, gardez Bonjour l’esprit les points suivants :
 
-* Si la mise à l’échelle automatique est actuellement désactivée sur le pool au moment de l’émission de la requête d’activation, vous devez spécifier une formule de mise à l’échelle automatique valide quand vous émettez la requête. Vous pouvez éventuellement spécifier un intervalle d’évaluation de mise à l’échelle automatique. Si aucun intervalle n’est spécifié, la valeur par défaut de 15 minutes est utilisée.
-* Si la mise à l’échelle automatique est actuellement activée sur le pool, vous pouvez spécifier une formule de mise à l’échelle automatique, un intervalle d’évaluation, ou les deux. Vous devez spécifier au moins l’une de ces propriétés.
+* Si la mise à l’échelle automatique est actuellement désactivée sur le pool de hello lorsque vous émettez hello demande tooenable échelle, vous devez spécifier une formule de mise à l’échelle valide lors de l’exécution de la demande de hello. Vous pouvez éventuellement spécifier un intervalle d’évaluation de mise à l’échelle automatique. Si vous ne spécifiez pas un intervalle, la valeur par défaut de hello de 15 minutes est utilisé.
+* Si l’échelle automatique est actuellement activée sur hello pool, vous pouvez spécifier une formule de mise à l’échelle, un intervalle d’évaluation ou les deux. Vous devez spécifier au moins l’une de ces propriétés.
 
-  * Si vous spécifiez un nouvel intervalle d’évaluation de mise à l’échelle automatique, la planification d’évaluation existante est arrêtée, puis une nouvelle planification est démarrée. L’heure de début de la nouvelle planification est l’heure à laquelle la requête d’activation de mise à l’échelle automatique a été émise.
-  * Si vous omettez la formule de mise à l’échelle automatique ou l’intervalle d’évaluation, le service Batch continue d’utiliser la valeur actuelle de ce paramètre.
+  * Si vous spécifiez un nouvel intervalle d’évaluation de mise à l’échelle, puis le calendrier d’évaluation existant de hello est arrêté et une planification est démarrée. du Hello nouvelle planification démarrage hello time est à quels hello demande tooenable échelle a été émis.
+  * Si vous omettez soit intervalle de formule ou d’évaluation de la mise à l’échelle hello, hello service Batch continue la valeur actuelle de hello toouse de ce paramètre.
 
 > [!NOTE]
-> Si vous avez spécifié des valeurs pour les paramètres *targetDedicatedComputeNodes* ou *targetLowPriorityComputeNodes* de la méthode **CreatePool** lorsque vous avez créé le pool dans .NET, ou pour les paramètres comparables dans un autre langage, ces valeurs sont ignorées lors de l’évaluation de la formule de mise à l’échelle automatique.
+> Si vous avez spécifié des valeurs pour hello *targetDedicatedComputeNodes* ou *targetLowPriorityComputeNodes* paramètres Hello **CreatePool** lorsque vous avez créé hello (méthode) pool dans .NET, ou pour les paramètres de comparables hello dans une autre langue, alors ces valeurs sont ignorées lorsque hello automatique de mise à l’échelle de formule est évaluée.
 >
 >
 
-Cet extrait de code en C# utilise la bibliothèque [Batch .NET][net_api] pour activer la mise à l’échelle automatique sur un pool existant :
+Cet extrait de code c# utilise hello [Batch .NET] [ net_api] échelle tooenable de bibliothèque sur un pool existant :
 
 ```csharp
-// Define the autoscaling formula. This formula sets the target number of nodes
-// to 5 on Mondays, and 1 on every other day of the week
+// Define hello autoscaling formula. This formula sets hello target number of nodes
+// too5 on Mondays, and 1 on every other day of hello week
 string myAutoScaleFormula = "$TargetDedicatedNodes = (time().weekday == 1 ? 5:1);";
 
-// Set the autoscale formula on the existing pool
+// Set hello autoscale formula on hello existing pool
 await myBatchClient.PoolOperations.EnableAutoScaleAsync(
     "myexistingpool",
     autoscaleFormula: myAutoScaleFormula);
@@ -430,7 +430,7 @@ await myBatchClient.PoolOperations.EnableAutoScaleAsync(
 
 ### <a name="update-an-autoscale-formula"></a>Mettre à jour une formule de mise à l’échelle automatique
 
-Pour mettre à jour la formule sur un pool existant avec mise à l’échelle automatique, appelez l’opération pour réactiver la mise à l’échelle automatique à l’aide de la nouvelle formule. Par exemple, si la mise à l’échelle automatique est déjà activée sur `myexistingpool` quand le code .NET suivant est exécuté, la formule de mise à l’échelle automatique est remplacée par le contenu de `myNewFormula`.
+formule de hello tooupdate sur un activée à la mise à l’échelle pool existant, appel hello opération tooenable échelle à nouveau avec la nouvelle formule de hello. Par exemple, si l’échelle automatique est déjà activé sur `myexistingpool` lorsque hello suivant le code .NET est exécuté, sa formule de mise à l’échelle est remplacé par contenu hello de `myNewFormula`.
 
 ```csharp
 await myBatchClient.PoolOperations.EnableAutoScaleAsync(
@@ -438,9 +438,9 @@ await myBatchClient.PoolOperations.EnableAutoScaleAsync(
     autoscaleFormula: myNewFormula);
 ```
 
-### <a name="update-the-autoscale-interval"></a>Mettre à jour l’intervalle de mise à l’échelle automatique
+### <a name="update-hello-autoscale-interval"></a>Intervalle de mise à l’échelle hello mise à jour
 
-Pour mettre à jour l’intervalle d’évaluation de mise à l’échelle d’un pool existant avec mise à l’échelle automatique, appelez l’opération afin de réactiver la mise à l’échelle automatique à l’aide du nouvel intervalle. Par exemple, si vous souhaitez définir un intervalle d’évaluation de 60 minutes pour un pool avec mise à l’échelle automatique dans .NET :
+intervalle d’évaluation mise à l’échelle tooupdate hello d’un activée à la mise à l’échelle pool existant, appel hello opération tooenable échelle à nouveau avec le nouvel intervalle de hello. Par exemple, tooset hello mise à l’échelle d’évaluation intervalle too60 minutes pour un pool est déjà activé mise à l’échelle dans .NET :
 
 ```csharp
 await myBatchClient.PoolOperations.EnableAutoScaleAsync(
@@ -450,50 +450,50 @@ await myBatchClient.PoolOperations.EnableAutoScaleAsync(
 
 ## <a name="evaluate-an-autoscale-formula"></a>Évaluer une formule de mise à l’échelle automatique
 
-Vous pouvez évaluer une formule avant de l’appliquer à un pool. De cette façon, vous pouvez tester la formule pour évaluer ses instructions avant de l’utiliser en production.
+Vous pouvez évaluer une formule avant de l’appliquer tooa pool. De cette façon, vous pouvez tester les toosee formule hello comment ses instructions évaluent avant de passer de la formule de hello en production.
 
-Pour évaluer une formule de mise à l’échelle automatique, vous devez d’abord activer la mise à l’échelle automatique sur le pool à l’aide d’une formule valide. Pour tester une formule sur un pool dont la mise à l’échelle automatique n’est pas encore activée, utilisez la formule à une ligne `$TargetDedicatedNodes = 0` lors de l’activation initiale de la mise à l’échelle automatique. Ensuite, utilisez l’une des méthodes suivantes pour évaluer la formule à tester :
+tooevaluate une formule de mise à l’échelle, vous devez d’abord activer l’échelle sur pool hello avec une formule valide. tootest une formule sur un pool qui ne dispose pas encore échelle automatique est activée, une ligne hello utiliser une formule `$TargetDedicatedNodes = 0` lorsque vous activez pour la première échelle. Ensuite, utilisez une des hello suivant tooevaluate hello formule tootest :
 
 * [BatchClient.PoolOperations.EvaluateAutoScale](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.pooloperations.evaluateautoscale) ou [EvaluateAutoScaleAsync](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.pooloperations.evaluateautoscaleasync)
 
-    Ces méthodes Batch .NET nécessitent l’ID d’un pool existant et une chaîne contenant la formule de mise à l’échelle automatique à évaluer.
+    Ces méthodes de traitement par lots .NET requièrent des ID de hello d’un pool existant et une chaîne contenant tooevaluate formule de mise à l’échelle hello.
 
 * [Évaluer une formule de mise à l’échelle automatique](https://docs.microsoft.com/rest/api/batchservice/evaluate-an-automatic-scaling-formula)
 
-    Dans cette requête API REST, spécifiez l’ID du pool dans l’URI et la formule de mise à l’échelle automatique dans l’élément *autoScaleFormula* du corps de la requête. La réponse de l’opération contient les éventuelles informations d’erreur associées à la formule.
+    Dans cette demande d’API REST, spécifiez l’ID du pool hello Bonjour URI et hello formule de mise à l’échelle Bonjour *autoScaleFormula* élément hello du corps de demande. réponse Hello d’opération de hello contient toutes les informations d’erreur qui peuvent être associées toohello formule.
 
-Dans cet extrait de code [Batch .NET][net_api], nous évaluons une formule de mise à l’échelle automatique. Si la mise à l’échelle automatique n’est pas activée sur le pool, la première chose que nous faisons est de l’activer.
+Dans cet extrait de code [Batch .NET][net_api], nous évaluons une formule de mise à l’échelle automatique. Si le pool de hello n’a pas l’échelle automatique activée, nous activez-la tout d’abord.
 
 ```csharp
-// First obtain a reference to an existing pool
+// First obtain a reference tooan existing pool
 CloudPool pool = await batchClient.PoolOperations.GetPoolAsync("myExistingPool");
 
-// If autoscaling isn't already enabled on the pool, enable it.
+// If autoscaling isn't already enabled on hello pool, enable it.
 // You can't evaluate an autoscale formula on non-autoscale-enabled pool.
 if (pool.AutoScaleEnabled == false)
 {
-    // We need a valid autoscale formula to enable autoscaling on the
-    // pool. This formula is valid, but won't resize the pool:
+    // We need a valid autoscale formula tooenable autoscaling on the
+    // pool. This formula is valid, but won't resize hello pool:
     await pool.EnableAutoScaleAsync(
         autoscaleFormula: "$TargetDedicatedNodes = {pool.CurrentDedicatedNodes};",
         autoscaleEvaluationInterval: TimeSpan.FromMinutes(5));
 
-    // Batch limits EnableAutoScaleAsync calls to once every 30 seconds.
-    // Because we want to apply our new autoscale formula below if it
+    // Batch limits EnableAutoScaleAsync calls tooonce every 30 seconds.
+    // Because we want tooapply our new autoscale formula below if it
     // evaluates successfully, and we *just* enabled autoscaling on
-    // this pool, we pause here to ensure we pass that threshold.
+    // this pool, we pause here tooensure we pass that threshold.
     Thread.Sleep(TimeSpan.FromSeconds(31));
 
-    // Refresh the properties of the pool so that we've got the
+    // Refresh hello properties of hello pool so that we've got the
     // latest value for AutoScaleEnabled
     await pool.RefreshAsync();
 }
 
-// We must ensure that autoscaling is enabled on the pool prior to
+// We must ensure that autoscaling is enabled on hello pool prior to
 // evaluating a formula
 if (pool.AutoScaleEnabled == true)
 {
-    // The formula to evaluate - adjusts target number of nodes based on
+    // hello formula tooevaluate - adjusts target number of nodes based on
     // day of week and time of day
     string myFormula = @"
         $curTime = time();
@@ -503,32 +503,32 @@ if (pool.AutoScaleEnabled == true)
         $TargetDedicatedNodes = $isWorkingWeekdayHour ? 20:10;
     ";
 
-    // Perform the autoscale formula evaluation. Note that this code does not
-    // actually apply the formula to the pool.
+    // Perform hello autoscale formula evaluation. Note that this code does not
+    // actually apply hello formula toohello pool.
     AutoScaleRun eval =
         await batchClient.PoolOperations.EvaluateAutoScaleAsync(pool.Id, myFormula);
 
     if (eval.Error == null)
     {
-        // Evaluation success - print the results of the AutoScaleRun.
-        // This will display the values of each variable as evaluated by the
+        // Evaluation success - print hello results of hello AutoScaleRun.
+        // This will display hello values of each variable as evaluated by the
         // autoscale formula.
         Console.WriteLine("AutoScaleRun.Results: " +
             eval.Results.Replace("$", "\n    $"));
 
-        // Apply the formula to the pool since it evaluated successfully
+        // Apply hello formula toohello pool since it evaluated successfully
         await batchClient.PoolOperations.EnableAutoScaleAsync(pool.Id, myFormula);
     }
     else
     {
-        // Evaluation failed, output the message associated with the error
+        // Evaluation failed, output hello message associated with hello error
         Console.WriteLine("AutoScaleRun.Error.Message: " +
             eval.Error.Message);
     }
 }
 ```
 
-Une évaluation réussie de la formule indiquée dans cet extrait de code produit des résultats du type suivant :
+Évaluation réussie de formule hello indiqué dans cet extrait de code produit des résultats similaires à :
 
 ```
 AutoScaleRun.Results:
@@ -542,17 +542,17 @@ AutoScaleRun.Results:
 
 ## <a name="get-information-about-autoscale-runs"></a>Obtenir des informations sur les exécutions de mise à l’échelle automatique
 
-Pour vérifier que votre formule fonctionne comme prévu, nous vous recommandons d’examiner régulièrement les résultats des exécutions de mise à l’échelle automatique effectuées par Batch sur votre pool. Pour ce faire, obtenez (ou actualisez) une référence au pool et examinez les propriétés de la dernière exécution de mise à l’échelle automatique.
+tooensure l’exécution de votre formule comme prévu, nous vous recommandons de vérifier régulièrement les résultats hello des exécutions d’échelle hello qui effectue le traitement par lots dans votre pool. toodo, get (ou Actualiser) un toohello de référence du pool, puis examinez les propriétés hello de mise à l’échelle de sa dernière exécution.
 
-Dans Batch .NET, la propriété [CloudPool.AutoScaleRun](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool.autoscalerun) comprend plusieurs propriétés qui fournissent des informations sur la dernière exécution de mise à l’échelle automatique effectuée sur le pool :
+Dans .NET de lot, hello [CloudPool.AutoScaleRun](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool.autoscalerun) propriété possède plusieurs propriétés qui fournissent des informations sur hello dernière l’échelle automatique exécuter effectuées sur le pool de hello :
 
 * [AutoScaleRun.Timestamp](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.autoscalerun.timestamp)
 * [AutoScaleRun.Results](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.autoscalerun.results)
 * [AutoScaleRun.Error](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.autoscalerun.error)
 
-Dans l’API REST, la requête [Obtenir des informations sur un pool](https://docs.microsoft.com/rest/api/batchservice/get-information-about-a-pool) retourne des informations sur le pool, notamment des détails sur la dernière exécution de mise à l’échelle automatique dans la propriété [autoScaleRun](https://docs.microsoft.com/rest/api/batchservice/get-information-about-a-pool#bk_autrun).
+Bonjour API REST, hello [obtenir des informations sur un pool](https://docs.microsoft.com/rest/api/batchservice/get-information-about-a-pool) demande retourne des informations sur le pool de hello, qui inclut hello dernière l’échelle automatique, exécutez informations Bonjour [autoScaleRun](https://docs.microsoft.com/rest/api/batchservice/get-information-about-a-pool#bk_autrun) propriété.
 
-L’extrait de code C# suivant utilise la bibliothèque Batch .NET pour imprimer des informations sur la dernière exécution de mise à l’échelle automatique sur le pool _myPool_ :
+Hello extrait de code c# suivant utilise hello Batch .NET bibliothèque tooprint plus d’informations sur l’échelle automatique dernière hello s’exécutent sur le pool _monpool_:
 
 ```csharp
 await Cloud pool = myBatchClient.PoolOperations.GetPoolAsync("myPool");
@@ -561,7 +561,7 @@ Console.WriteLine("Result:" + pool.AutoScaleRun.Results.Replace("$", "\n  $"));
 Console.WriteLine("Error: " + pool.AutoScaleRun.Error);
 ```
 
-Exemple de sortie de l’extrait de code précédent :
+Résultat de l’exemple Hello précédant l’extrait de code :
 
 ```
 Last execution: 10/14/2016 18:36:43
@@ -576,12 +576,12 @@ Error:
 ```
 
 ## <a name="example-autoscale-formulas"></a>Exemples de formules de mise à l’échelle automatique
-Passons en revue quelques formules illustrant les différentes façons d’ajuster la quantité de ressources de calcul dans un pool.
+Examinons quelques formules qui montrent différentes manières tooadjust hello quantité des ressources de calcul dans un pool.
 
 ### <a name="example-1-time-based-adjustment"></a>Exemple 1 : ajustement en fonction du temps
-Supposons que vous souhaitiez ajuster la taille du pool selon le jour et l’heure. Cet exemple montre comment augmenter ou diminuer le nombre de nœuds dans le pool en conséquence.
+Supposons que vous souhaitez que la taille du pool hello tooadjust en fonction de la journée hello de la semaine de hello et d’une heure. Cet exemple montre comment les tooincrease ou diminuer nombre de hello de nœuds Bonjour pool en conséquence.
 
-Cette formule obtient dans un premier temps l’heure actuelle. S’il s’agit d’un jour de la semaine (1 à 5) et des heures de travail (8 heures à 18 heures), la taille du pool cible est définie sur 20 nœuds. Sinon, elle est définie sur 10 nœuds.
+formule de Hello obtient d’abord hello heure actuelle. S’il s’agit d’un jour de la semaine (1-5) et les heures de travail (too6 de 8 h 00 PM), taille de pool hello cible a la valeur too20 nœuds. Sinon, il a la valeur too10 nœuds.
 
 ```
 $curTime = time();
@@ -592,54 +592,54 @@ $TargetDedicatedNodes = $isWorkingWeekdayHour ? 20:10;
 ```
 
 ### <a name="example-2-task-based-adjustment"></a>Exemple 2 : ajustement en fonction de la tâche
-Dans cet exemple, la taille du pool est ajustée en fonction du nombre de tâches présentes dans la file d’attente. Les commentaires et les sauts de ligne sont acceptés dans les chaînes de formule.
+Dans cet exemple, la taille du pool hello est ajustée en fonction nombre hello de tâches dans la file d’attente hello. Les commentaires et les sauts de ligne sont acceptés dans les chaînes de formule.
 
 ```csharp
-// Get pending tasks for the past 15 minutes.
+// Get pending tasks for hello past 15 minutes.
 $samples = $ActiveTasks.GetSamplePercent(TimeInterval_Minute * 15);
-// If we have fewer than 70 percent data points, we use the last sample point,
-// otherwise we use the maximum of last sample point and the history average.
+// If we have fewer than 70 percent data points, we use hello last sample point,
+// otherwise we use hello maximum of last sample point and hello history average.
 $tasks = $samples < 70 ? max(0,$ActiveTasks.GetSample(1)) : max( $ActiveTasks.GetSample(1), avg($ActiveTasks.GetSample(TimeInterval_Minute * 15)));
-// If number of pending tasks is not 0, set targetVM to pending tasks, otherwise
+// If number of pending tasks is not 0, set targetVM toopending tasks, otherwise
 // half of current dedicated.
 $targetVMs = $tasks > 0? $tasks:max(0, $TargetDedicatedNodes/2);
-// The pool size is capped at 20, if target VM value is more than that, set it
-// to 20. This value should be adjusted according to your use case.
+// hello pool size is capped at 20, if target VM value is more than that, set it
+// too20. This value should be adjusted according tooyour use case.
 $TargetDedicatedNodes = max(0, min($targetVMs, 20));
 // Set node deallocation mode - keep nodes active only until tasks finish
 $NodeDeallocationOption = taskcompletion;
 ```
 
 ### <a name="example-3-accounting-for-parallel-tasks"></a>Exemple 3 : comptabilisation des tâches parallèles
-Cet exemple montre l’ajustement de la taille du pool en fonction du nombre de tâches. Cette formule prend également en compte la valeur [MaxTasksPerComputeNode][net_maxtasks] qui a été définie pour le pool. Cette approche est particulièrement utile dans les situations où [l’exécution parallèle de tâches](batch-parallel-node-tasks.md) a été activée sur votre pool.
+Cet exemple modifie la taille de pool de hello en fonction du nombre de hello de tâches. Cette formule prend également en hello de compte [MaxTasksPerComputeNode] [ net_maxtasks] valeur a été définie pour le pool de hello. Cette approche est particulièrement utile dans les situations où [l’exécution parallèle de tâches](batch-parallel-node-tasks.md) a été activée sur votre pool.
 
 ```csharp
-// Determine whether 70 percent of the samples have been recorded in the past
+// Determine whether 70 percent of hello samples have been recorded in hello past
 // 15 minutes; if not, use last sample
 $samples = $ActiveTasks.GetSamplePercent(TimeInterval_Minute * 15);
 $tasks = $samples < 70 ? max(0,$ActiveTasks.GetSample(1)) : max( $ActiveTasks.GetSample(1),avg($ActiveTasks.GetSample(TimeInterval_Minute * 15)));
-// Set the number of nodes to add to one-fourth the number of active tasks (the
-// MaxTasksPerComputeNode property on this pool is set to 4, adjust this number
+// Set hello number of nodes tooadd tooone-fourth hello number of active tasks (the
+// MaxTasksPerComputeNode property on this pool is set too4, adjust this number
 // for your use case)
 $cores = $TargetDedicatedNodes * 4;
 $extraVMs = (($tasks - $cores) + 3) / 4;
 $targetVMs = ($TargetDedicatedNodes + $extraVMs);
-// Attempt to grow the number of compute nodes to match the number of active
+// Attempt toogrow hello number of compute nodes toomatch hello number of active
 // tasks, with a maximum of 3
 $TargetDedicatedNodes = max(0,min($targetVMs,3));
-// Keep the nodes active until the tasks finish
+// Keep hello nodes active until hello tasks finish
 $NodeDeallocationOption = taskcompletion;
 ```
 
 ### <a name="example-4-setting-an-initial-pool-size"></a>Exemple 4 : définition d’une taille de pool initiale
-Cet exemple montre un extrait de code C# avec une formule de mise à l’échelle automatique qui définit la taille du pool sur un certain nombre de nœuds pour une période initiale. La taille du pool est ensuite ajustée en fonction du nombre de tâches en cours d’exécution et actives une fois la période initiale écoulée.
+Cet exemple montre d’extrait de code dans une formule de mise à l’échelle qui définit le code c# hello tooa de taille de pool spécifié le nombre de nœuds pour une période initiale. Puis il ajuste la taille du pool hello en fonction du nombre de hello en cours d’exécution et les tâches actives après hello initiale laps de temps écoulé.
 
-Dans l’extrait de code suivant, la formule :
+formule Hello Bonjour suivant extrait de code :
 
-* Définit la taille initiale du pool sur quatre nœuds.
-* N’ajuste pas la taille du pool dans les 10 premières minutes de cycle de vie du pool.
-* Après 10 minutes, obtient la valeur maximale du nombre de tâches en cours d’exécution et actives au cours des 60 dernières minutes.
-  * Si les deux valeurs sont égales à 0 (ce qui indique qu’aucune tâche n’était en cours d’exécution ni active au cours des 60 dernières minutes), la taille du pool est définie sur 0.
+* Définit le pool initial de hello nœuds toofour de taille.
+* N’ajuste pas taille du pool hello dans hello 10 premières minutes de cycle de vie du pool hello.
+* Après 10 minutes, obtient la valeur max hello hello active et du numéro de l’exécution tâches au sein de hello dernières de 60 minutes.
+  * Si les deux valeurs sont 0 (ce qui indique qu’aucune tâche n’étaient en cours d’exécution ou active Bonjour 60 dernières minutes), taille du pool hello a la valeur too0.
   * Si l’une des valeurs est supérieure à zéro, aucune modification n’est apportée.
 
 ```csharp
@@ -656,8 +656,8 @@ string formula = string.Format(@"
 ```
 
 ## <a name="next-steps"></a>Étapes suivantes
-* [Optimiser l’utilisation des ressources de calcul Azure Batch avec des tâches de nœud simultanées](batch-parallel-node-tasks.md) contient des informations sur la façon dont vous pouvez effectuer plusieurs tâches simultanément sur les nœuds de calcul de votre pool. En plus de la mise à l’échelle automatique, cette fonctionnalité peut aider à réduire la durée du travail pour certaines charges de travail et vous permettre d’économiser de l’argent.
-* Afin d’améliorer encore l’efficacité, assurez-vous que votre application Batch interroge le service Batch de la manière la plus optimale qui soit. Consultez [Interroger efficacement le service Azure Batch](batch-efficient-list-queries.md) pour découvrir comment limiter la quantité de données qui transitent par le réseau lorsque vous interrogez l’état des milliers de nœuds de calcul ou de tâches potentiels.
+* [Optimiser l’utilisation des ressources calcul Azure Batch avec les tâches simultanées nœud](batch-parallel-node-tasks.md) contient des détails sur la façon dont vous pouvez exécuter plusieurs tâches simultanément sur les nœuds de calcul hello dans votre pool. En outre tooautoscaling, cette fonctionnalité peut aider à durée du travail toolower pour certaines charges de travail, vous épargner.
+* Pour une autre amélioration de l’efficacité, assurez-vous que votre application, des requêtes par lots hello service Batch Bonjour la plupart de façon optimale. Consultez [interroger le service de traitement par lots Azure hello efficacement](batch-efficient-list-queries.md) toolearn comment toolimit hello la quantité de données qui transitent par câble de hello lorsque vous interrogez l’état hello de milliers de calcul nœuds ou des tâches.
 
 [net_api]: https://docs.microsoft.com/dotnet/api/microsoft.azure.batch
 [net_batchclient]: https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.batchclient

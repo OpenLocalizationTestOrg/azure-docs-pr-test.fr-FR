@@ -1,6 +1,6 @@
 ---
-title: "Configurer le déchargement SSL - Passerelle Azure Application Gateway - PowerShell classic | Microsoft Docs"
-description: "Cet article fournit des instructions pour créer une passerelle d’application avec le déchargement SSL en utilisant le modèle de déploiement classique Azure."
+title: "aaaConfigure SSL décharger - passerelle d’Application Azure - PowerShell classique | Documents Microsoft"
+description: "Cet article fournit des instructions toocreate déchargement d’une passerelle d’application avec SSL à l’aide de hello modèle de déploiement classique Azure."
 documentationcenter: na
 services: application-gateway
 author: georgewallace
@@ -14,13 +14,13 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/23/2017
 ms.author: gwallace
-ms.openlocfilehash: 2eba6fb24c11add12ac16d04d3445e19a3486216
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 5cb128015747ed4b71802cf751c80b60634601a9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="configure-an-application-gateway-for-ssl-offload-by-using-the-classic-deployment-model"></a>Configurer une passerelle d’application pour le déchargement SSL en utilisant le modèle de déploiement classique
+# <a name="configure-an-application-gateway-for-ssl-offload-by-using-hello-classic-deployment-model"></a>Configurer une passerelle d’application pour le déchargement SSL à l’aide du modèle de déploiement classique de hello
 
 > [!div class="op_single_selector"]
 > * [Portail Azure](application-gateway-ssl-portal.md)
@@ -28,34 +28,34 @@ ms.lasthandoff: 08/18/2017
 > * [Azure Classic PowerShell](application-gateway-ssl.md)
 > * [Azure CLI 2.0](application-gateway-ssl-cli.md)
 
-Il est possible de configurer Azure Application Gateway de façon à mettre fin à la session SSL (Secure Sockets Layer) sur la passerelle pour éviter les tâches de déchiffrement SSL coûteuses au niveau de la batterie de serveurs web. Le déchargement SSL simplifie aussi la configuration de serveur principal et la gestion de l’application web.
+Passerelle d’Application Azure peut être configuré tooterminate hello Secure Sockets Layer (SSL) session à hello passerelle tooavoid coûteux SSL déchiffrement tâches toohappen au niveau de la batterie de serveurs web hello. Déchargement SSL simplifie également la configuration de serveur frontal de hello et la gestion d’application web de hello.
 
 ## <a name="before-you-begin"></a>Avant de commencer
 
-1. Installez la dernière version des applets de commande Azure PowerShell à l’aide de Web Platform Installer. Vous pouvez télécharger et installer la dernière version à partir de la section **Windows PowerShell** de la [page Téléchargements](https://azure.microsoft.com/downloads/).
-2. Vérifiez que vous disposez d'un réseau virtuel qui fonctionne avec un sous-réseau valide. Assurez-vous qu’aucun ordinateur virtuel ou déploiement cloud n’utilise le sous-réseau. La passerelle Application Gateway doit être seule sur un sous-réseau virtuel.
-3. Les serveurs que vous configurez pour utiliser la passerelle Application Gateway doivent exister ou vous devez créer leurs points de terminaison sur le réseau virtuel ou avec une adresse IP/VIP publique affectée.
+1. Installer version la plus récente des applets de commande PowerShell Azure hello hello à l’aide de hello Web Platform Installer. Vous pouvez télécharger et installer la version la plus récente hello de hello **Windows PowerShell** section Hello [page Téléchargements](https://azure.microsoft.com/downloads/).
+2. Vérifiez que vous disposez d'un réseau virtuel qui fonctionne avec un sous-réseau valide. Assurez-vous qu’aucun ordinateur virtuel ou les déploiements de cloud ne sont à l’aide de sous-réseau de hello. passerelle d’application Hello doit être par lui-même dans un sous-réseau de réseau virtuel.
+3. serveurs Hello configurer la passerelle d’application hello toouse doivent exister ou aient leurs points de terminaison créés dans le réseau virtuel de hello ou avec une adresse IP publique/VIP affectés.
 
-Pour configurer le déchargement SSL sur une passerelle d’application, exécutez les étapes suivantes dans l’ordre indiqué.
+tooconfigure SSL décharger sur une passerelle d’application, hello dans l’ordre de hello répertoriés comme suit :
 
 1. [Créer une passerelle Application Gateway](#create-an-application-gateway)
 2. [Télécharger des certificats SSL](#upload-ssl-certificates)
-3. [Configurer la passerelle](#configure-the-gateway)
-4. [Définir la configuration de la passerelle](#set-the-gateway-configuration)
-5. [Démarrer la passerelle](#start-the-gateway)
-6. [Vérifier l'état de la passerelle](#verify-the-gateway-status)
+3. [Configurer la passerelle de hello](#configure-the-gateway)
+4. [Jeu de configuration de la passerelle hello](#set-the-gateway-configuration)
+5. [Démarrer hello passerelle](#start-the-gateway)
+6. [Vérifiez l’état de la passerelle hello](#verify-the-gateway-status)
 
 ## <a name="create-an-application-gateway"></a>Créer une passerelle Application Gateway
 
-Pour créer la passerelle, utilisez l’applet de commande `New-AzureApplicationGateway` en remplaçant les valeurs par les vôtres. La facturation de la passerelle ne démarre pas à ce stade. La facturation commence à une étape ultérieure, lorsque la passerelle a démarré correctement.
+passerelle de hello toocreate, utilisez hello `New-AzureApplicationGateway` applet de commande, en remplaçant les valeurs hello par les vôtres. La facturation pour la passerelle de hello ne démarre pas à ce stade. La facturation commence dans une étape ultérieure, lorsque la passerelle de hello a démarré correctement.
 
 ```powershell
 New-AzureApplicationGateway -Name AppGwTest -VnetName testvnet1 -Subnets @("Subnet-1")
 ```
 
-Pour valider la création de la passerelle, vous pouvez utiliser l’applet de commande `Get-AzureApplicationGateway`.
+toovalidate qui hello passerelle a été créé, vous pouvez utiliser hello `Get-AzureApplicationGateway` applet de commande.
 
-Dans l’exemple, *Description*, *InstanceCount* et *GatewaySize* sont des paramètres facultatifs. La valeur par défaut pour *InstanceCount* est 2, avec une valeur maximale de 10. La valeur par défaut pour *GatewaySize* est Medium. Les autres valeurs disponibles sont Small et Large. Les paramètres *VirtualIPs* et *DnsName* sont sans valeur, car la passerelle n’a pas encore démarré. Ces valeurs seront créées une fois la passerelle en cours d’exécution.
+Dans l’exemple hello, *Description*, *InstanceCount*, et *GatewaySize* sont des paramètres facultatifs. Hello la valeur par défaut de *InstanceCount* est 2, avec une valeur maximale de 10. Hello la valeur par défaut de *GatewaySize* est moyenne. Les autres valeurs disponibles sont Small et Large. *Présence* et *DnsName* sont affichés comme vide, car la passerelle de hello n’a pas encore démarré. Ces valeurs sont créés une fois la passerelle de hello en hello état en cours d’exécution.
 
 ```powershell
 Get-AzureApplicationGateway AppGwTest
@@ -63,17 +63,17 @@ Get-AzureApplicationGateway AppGwTest
 
 ## <a name="upload-ssl-certificates"></a>Télécharger des certificats SSL
 
-Utilisez `Add-AzureApplicationGatewaySslCertificate` pour charger le certificat de serveur au format *pfx* dans la passerelle d’application. Le nom du certificat est choisi par l'utilisateur et doit être unique au sein de la passerelle Application Gateway. Ce certificat est identifié par ce nom dans toutes les opérations de gestion de certificat sur la passerelle Application Gateway.
+Utilisez `Add-AzureApplicationGatewaySslCertificate` certificat de serveur hello tooupload dans *pfx* passerelle d’application toohello format. nom du certificat Hello est un nom d’utilisateur choisi et doit être unique au sein de la passerelle d’application hello. Ce certificat est tooby auxquels ce nom dans toutes les opérations de gestion de certificat sur la passerelle d’application hello.
 
-L’exemple suivant illustre l’applet de commande. Remplacez les valeurs utilisées ici par les vôtres.
+Cet exemple suivant montre l’applet de commande hello, remplacez les valeurs hello dans l’exemple hello par les vôtres.
 
 ```powershell
-Add-AzureApplicationGatewaySslCertificate  -Name AppGwTest -CertificateName GWCert -Password <password> -CertificateFile <full path to pfx file>
+Add-AzureApplicationGatewaySslCertificate  -Name AppGwTest -CertificateName GWCert -Password <password> -CertificateFile <full path toopfx file>
 ```
 
-Ensuite, validez le téléchargement du certificat. Utilisez l’applet de commande `Get-AzureApplicationGatewayCertificate` .
+Ensuite, validez chargement du certificat hello. Hello d’utilisation `Get-AzureApplicationGatewayCertificate` applet de commande.
 
-Cet exemple montre l'applet de commande sur la première ligne, suivie de la sortie.
+Cet exemple montre l’applet de commande hello sur la première ligne de hello, suivi par la sortie hello.
 
 ```powershell
 Get-AzureApplicationGatewaySslCertificate AppGwTest
@@ -90,28 +90,28 @@ State..........: Provisioned
 ```
 
 > [!NOTE]
-> Le mot de passe du certificat doit comprendre entre 4 et 12 caractères, lettres ou chiffres. Les caractères spéciaux ne sont pas acceptés.
+> mot de passe du certificat Hello a toobe entre 4 too12 caractères, des lettres ou chiffres. Les caractères spéciaux ne sont pas acceptés.
 
-## <a name="configure-the-gateway"></a>Configurer la passerelle
+## <a name="configure-hello-gateway"></a>Configurer la passerelle de hello
 
-La configuration d'une passerelle Application Gateway se compose de plusieurs valeurs. Les valeurs peuvent être liées ensemble pour construire la configuration.
+La configuration d'une passerelle Application Gateway se compose de plusieurs valeurs. les valeurs Hello peuvent être liées configuration de hello tooconstruct ensemble.
 
-Les valeurs sont :
+les valeurs Hello sont :
 
-* **Pool de serveurs principaux :** liste des adresses IP des serveurs principaux. Les adresses IP répertoriées doivent appartenir au sous-réseau de réseau virtuel ou doivent correspondre à une adresse IP/VIP publique.
-* **Paramètres du pool de serveurs principaux :** chaque pool comporte des paramètres tels que le port, le protocole et une affinité basée sur des cookies. Ces paramètres sont liés à un pool et sont appliqués à tous les serveurs du pool.
-* **Port frontal :** il s’agit du port public ouvert sur la passerelle Application Gateway. Le trafic atteint ce port, puis il est redirigé vers l’un des serveurs principaux.
-* **Écouteur :** l’écouteur a un port frontal, un protocole (Http ou Https, avec respect de la casse) et le nom du certificat SSL (en cas de configuration du déchargement SSL).
-* **Règle :** la règle lie l’écouteur et le pool de serveurs principaux et définit vers quel pool de serveurs principaux le trafic doit être dirigé quand il atteint un écouteur spécifique. Actuellement, seule la règle *de base* est prise en charge. La règle de *base* est la distribution de charge par tourniquet.
+* **Pool de serveur principal :** liste hello des adresses IP des serveurs principaux de hello. adresses IP de Hello répertoriés doivent appartenir soit de sous-réseau de réseau virtuel toohello ou doivent être une adresse IP/VIP publique.
+* **Paramètres du pool de serveurs principaux :** chaque pool comporte des paramètres tels que le port, le protocole et une affinité basée sur des cookies. Ces paramètres sont lié tooa pool et sont des serveurs tooall appliqué dans le pool de hello.
+* **Port frontal :** ce port est le port public hello qui est ouvert sur la passerelle d’application hello. Le trafic atteint ce port et obtient redirigés tooone de hello sur les serveurs principaux.
+* **Écouteur :** hello port d’écoute utilise un port frontal, un protocole (Http ou Https, ces valeurs respectent la casse) et le nom du certificat SSL hello (si le déchargement de la configuration de SSL).
+* **La règle :** règle de hello lie le port d’écoute hello et pool de serveur principal hello et définit le trafic de hello de pool de serveur principal doit être dirigée toowhen il atteint un écouteur particulier. Actuellement, seuls hello *base* règle est pris en charge. Hello *base* règle est la distribution de la charge de tourniquet.
 
 **Notes de configuration supplémentaires :**
 
-Pour configurer des certificats SSL, le protocole dans **HttpListener** doit passer à *Https* (sensible à la casse). L’élément **SslCert** est ajouté à **HttpListener** avec le même nom que celui utilisé pour le chargement des certificats SSL dans la section précédente. Le port du serveur frontal doit être mis à jour sur 443.
+Pour configurer des certificats SSL, hello protocole dans **HttpListener** doit également modifier*Https* (sensible à la casse). Hello **SslCert** l’élément est ajouté trop**HttpListener** avec hello valeur toohello même nom que celui de téléchargement hello de la précédente section de certificats SSL. le port frontal Hello doit être too443 mis à jour.
 
-**Pour activer l’affinité basée sur les cookies**: une passerelle Application Gateway peut être configurée pour garantir qu’une requête d’une session client est toujours dirigée vers la même machine virtuelle dans la batterie de serveurs web. Ce scénario est réalisé par l’injection d’un cookie de session, qui permet à la passerelle de diriger le trafic de manière appropriée. Pour activer l’affinité basée sur les cookies, définissez **CookieBasedAffinity** sur *Activé* dans l’élément **BackendHttpSettings**.
+**affinité basé sur cookie de tooenable**: une passerelle d’application peut être configurée tooensure qu’une demande à partir d’une session cliente est toujours dirigée toohello même machine virtuelle dans la batterie de serveurs web hello. Ce scénario est effectué par injection d’un cookie de session qui autorise le trafic toodirect de passerelle de hello de manière appropriée. l’affinité basé sur cookie tooenable, définie **CookieBasedAffinity** trop*activé* Bonjour **paramètres** élément.
 
 Vous pouvez construire votre configuration en créant un objet de configuration ou en utilisant un fichier XML de configuration.
-Pour construire votre configuration à l’aide d’un fichier XML de configuration, utilisez l’exemple suivant.
+tooconstruct votre configuration à l’aide d’une configuration de fichier XML, utilisez hello suivants exemple :
 
 **Exemple de configuration XML**
 
@@ -162,20 +162,20 @@ Pour construire votre configuration à l’aide d’un fichier XML de configurat
 </ApplicationGatewayConfiguration>
 ```
 
-## <a name="set-the-gateway-configuration"></a>Définir la configuration de la passerelle
+## <a name="set-hello-gateway-configuration"></a>Jeu de configuration de la passerelle hello
 
-Ensuite, vous définissez la passerelle Application Gateway. Vous pouvez utiliser l’applet de commande `Set-AzureApplicationGatewayConfig` avec un objet de configuration ou un fichier XML de configuration.
+Ensuite, vous définissez la passerelle d’application hello. Vous pouvez utiliser hello `Set-AzureApplicationGatewayConfig` applet de commande avec un objet de configuration ou un fichier XML de configuration.
 
 ```powershell
 Set-AzureApplicationGatewayConfig -Name AppGwTest -ConfigFile D:\config.xml
 ```
 
-## <a name="start-the-gateway"></a>Démarrer la passerelle
+## <a name="start-hello-gateway"></a>Démarrer hello passerelle
 
-Une fois la passerelle configurée, utilisez l’applet de commande `Start-AzureApplicationGateway` pour démarrer la passerelle. La facturation pour une passerelle Application Gateway commence une fois la passerelle démarrée avec succès.
+Une fois que la passerelle de hello a été configurée, utilisez hello `Start-AzureApplicationGateway` passerelle de hello toostart applet de commande. Le coût d’une passerelle d’application commence une fois la passerelle de hello a démarré.
 
 > [!NOTE]
-> La règle `Start-AzureApplicationGateway` peut prendre jusqu’à 15 à 20 minutes.
+> Hello `Start-AzureApplicationGateway` applet de commande peut prendre les toofinish too15 à 20 minutes.
 >
 >
 
@@ -183,11 +183,11 @@ Une fois la passerelle configurée, utilisez l’applet de commande `Start-Azure
 Start-AzureApplicationGateway AppGwTest
 ```
 
-## <a name="verify-the-gateway-status"></a>Vérifier l'état de la passerelle
+## <a name="verify-hello-gateway-status"></a>Vérifiez l’état de la passerelle hello
 
-Utilisez l’applet de commande `Get-AzureApplicationGateway` pour vérifier l’état de la passerelle. Si `Start-AzureApplicationGateway` a réussi à l’étape précédente, *l’état* doit être En cours d’exécution, et les paramètres *VirtualIPs* et *DnsName* doivent posséder des entrées valides.
+Hello d’utilisation `Get-AzureApplicationGateway` état de hello toocheck applet de commande de passerelle de hello. Si `Start-AzureApplicationGateway` a réussi à l’étape précédente de hello, *état* doit être en cours d’exécution, et *présence* et *DnsName* doit avoir des entrées valides.
 
-Cet exemple montre une passerelle d’application en état de s’exécuter et d’accepter du trafic.
+Cet exemple montre une passerelle d’application, en cours d’exécution, et le trafic de tootake prêt.
 
 ```powershell
 Get-AzureApplicationGateway AppGwTest

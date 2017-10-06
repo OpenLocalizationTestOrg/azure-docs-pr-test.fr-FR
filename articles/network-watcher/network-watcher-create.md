@@ -1,6 +1,6 @@
 ---
-title: "Créer une instance d’Azure Network Watcher | Microsoft Docs"
-description: "Cette page fournit la procédure nécessaire pour créer une instance de Network Watcher à l’aide du portail et de l’API REST Azure"
+title: "aaaCreate une instance de l’Observateur réseau Azure | Documents Microsoft"
+description: "Cette page fournit hello étapes toocreate une instance de l’Observateur réseau à l’aide du portail de hello et l’API REST Azure"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,42 +14,42 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: 2aeaffdd5ab552e18677cbd1a24a748dd14bf172
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 90d4f90c9709a80e4b27863e79e5b6e16de145c7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-azure-network-watcher-instance"></a>Créer une instance d’Azure Network Watcher
 
-Network Watcher est un service régional qui vous permet de surveiller et de diagnostiquer l’état au niveau d’un scénario réseau dans, vers et depuis Azure. La surveillance au niveau des scénarios vous permet de diagnostiquer les problèmes avec une vue de bout en bout du réseau. Les outils de visualisation et de diagnostic réseau disponibles avec Network Watcher vous aident à comprendre, diagnostiquer et obtenir des informations sur votre réseau dans Azure.
+Observateur réseau est un service régional qui permet de vous toomonitor et diagnostiquer des conditions à un niveau de scénario réseau, vers et depuis Azure. Surveillance au niveau du scénario vous permet de problèmes toodiagnose à une vue au niveau du réseau tooend fin. Diagnostic de réseau et les outils de visualisation disponibles avec l’Observateur réseau vous aider à comprendre, de diagnostiquer et de mieux réseau de tooyour insights dans Azure.
 
 > [!NOTE]
-> Comme Network Watcher ne prend actuellement en charge que l’interface CLI 1.0, les instructions fournies pour créer une nouvelle instance de Network Watcher s’appliquent à cette version.
+> Comme l’Observateur réseau prend actuellement en charge uniquement les CLI 1.0, hello instructions toocreate une nouvelle instance de l’Observateur réseau est fournie pour CLI 1.0.
 
-## <a name="create-a-network-watcher-in-the-portal"></a>Créer un Network Watcher dans le portail
+## <a name="create-a-network-watcher-in-hello-portal"></a>Créer un observateur réseau dans le portail de hello
 
-Accédez à **Plus de services** > **Mise en réseau** > **Network Watcher**. Vous pouvez sélectionner tous les abonnements pour lesquels vous souhaitez activer Network Watcher. Cette action crée un Network Watcher dans chaque région disponible.
+Accédez trop**plus Services** > **réseau** > **Observateur réseau**. Vous pouvez sélectionner tous les abonnements hello souhaité tooenable Observateur réseau pour. Cette action crée un Network Watcher dans chaque région disponible.
 
 ![créer un Network Watcher][1]
 
-Lorsque Network Watcher est activé à l’aide du portail, le nom de l’instance de Network Watcher est automatiquement défini comme NetworkWatcher_nom_région, où nom_région correspond à la région Azure dans laquelle l’instance a été activée.  Par exemple, une instance de Network Watcher activée dans la région États-Unis Centre-Ouest sera nommée NetworkWatcher_westcentralus.
+Lorsque vous activez Observateur réseau à l’aide de hello Portal, nom hello d’instance de l’Observateur réseau hello aura automatiquement la valeur tooNetworkWatcher_region_name où le nom de région correspond toohello région Azure où l’instance de hello a été activé.  Par exemple, une instance de Network Watcher activée dans la région États-Unis Centre-Ouest sera nommée NetworkWatcher_westcentralus.
 
-En outre, l’instance de Network Watcher sera automatiquement ajoutée à un groupe de ressources nommé NetworkWatcherRG.  Il sera créé s’il n’existe pas.
+En outre, instance de l’Observateur réseau hello est automatiquement ajoutée à un groupe de ressources appelé NetworkWatcherRG.  Il sera créé s’il n’existe pas.
 
-Si vous souhaitez personnaliser le nom d’une instance de Network Watcher et le groupe de ressources dans lequel elle est placée, vous pouvez utiliser les méthodes PowerShell, API REST et ARMClient décrites ci-dessous.  Dans chacune des options, le groupe de ressources doit déjà exister pour que vous puissiez y placer l’instance de Network Watcher.  
+Si vous voulez que le nom de hello toocustomize d’une instance de l’Observateur réseau et d’hello groupe de ressources, il est placé dans, vous pouvez utiliser les méthodes ARMClient, hello API REST ou Powershell décrites ci-dessous.  Dans chaque option, hello groupe de ressources doit exister pour que vous placez hello Observateur réseau dans celui-ci.  
 
 ## <a name="create-a-network-watcher-with-powershell"></a>Créer un Network Watcher avec PowerShell
 
-Pour créer une instance de Network Watcher, exécutez l’exemple suivant :
+toocreate une instance de l’Observateur réseau, exécutez hello l’exemple suivant :
 
 ```powershell
 New-AzureRmNetworkWatcher -Name "NetworkWatcher_westcentralus" -ResourceGroupName "NetworkWatcherRG" -Location "West Central US"
 ```
 
-## <a name="create-a-network-watcher-with-the-rest-api"></a>Créer un Network Watcher avec l’API REST
+## <a name="create-a-network-watcher-with-hello-rest-api"></a>Créer un observateur réseau avec l’API REST de hello
 
-ARMclient permet d’appeler l’API REST à l’aide de PowerShell. ARMClient est accessible sur le site chocolatey à partir de la page [ARMClient sur Chocolatey](https://chocolatey.org/packages/ARMClient).
+ARMclient est utilisé toocall hello REST API à l’aide de PowerShell. ARMClient est accessible sur le site chocolatey à partir de la page [ARMClient sur Chocolatey](https://chocolatey.org/packages/ARMClient).
 
 ### <a name="log-in-with-armclient"></a>Se connecter à ARMClient
 
@@ -57,7 +57,7 @@ ARMclient permet d’appeler l’API REST à l’aide de PowerShell. ARMClient e
 armclient login
 ```
 
-### <a name="create-the-network-watcher"></a>Créer le Network Watcher
+### <a name="create-hello-network-watcher"></a>Créer l’Observateur réseau de hello
 
 ```powershell
 $subscriptionId = '<subscription id>'
@@ -75,7 +75,7 @@ armclient put "https://management.azure.com/subscriptions/${subscriptionId}/reso
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Maintenant que vous avez une instance de Network Watcher, découvrez les fonctionnalités disponibles :
+Maintenant que vous avez une instance de l’Observateur réseau, en savoir plus sur les fonctions hello disponibles :
 
 * [Topologie](network-watcher-topology-overview.md)
 * [Capture de paquets](network-watcher-packet-capture-overview.md)
@@ -85,7 +85,7 @@ Maintenant que vous avez une instance de Network Watcher, découvrez les fonctio
 * [Journalisation des flux de groupe de sécurité réseau](network-watcher-nsg-flow-logging-overview.md)
 * [Résolution des problèmes de passerelle de réseau virtuel](network-watcher-troubleshoot-overview.md)
 
-Après la création d’une instance Network Watcher, lisez l’article [Créer une capture de paquets déclenchée par une alerte](network-watcher-alert-triggered-packet-capture.md) pour configurer la capture de paquets.
+Une fois qu’une instance de l’Observateur réseau a été créée, la capture de package peut être configurée par article hello suivant : [créer une capture de paquets déclenchées alerte](network-watcher-alert-triggered-packet-capture.md)
 
 [1]: ./media/network-watcher-create/figure1.png
 

@@ -1,6 +1,6 @@
 ---
 title: "Azure Active Directory B2C : inscription d’application | Microsoft Docs"
-description: "Inscription de votre application auprès d’Azure Active Directory B2C"
+description: Comment tooregister votre application avec Azure Active Directory B2C
 services: active-directory-b2c
 documentationcenter: 
 author: parakhj
@@ -14,31 +14,31 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 6/13/2017
 ms.author: parakhj
-ms.openlocfilehash: 3d4fe2fa10d848c8b29e4d22d284c0d378f07ae0
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: bd58e123751db387d6c8f16bd010291ba698b1a3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-b2c-register-your-application"></a>Azure Active Directory B2C : inscription de votre application
 
-Ce démarrage rapide vous aide à inscrire une application dans un client B2C Microsoft Azure Active Directory (Azure AD) en quelques minutes. Lorsque vous avez terminé, votre application est inscrite comme utilisable dans le client Azure B2C.
+Ce démarrage rapide vous aide à inscrire une application dans un client B2C Microsoft Azure Active Directory (Azure AD) en quelques minutes. Lorsque vous avez terminé, votre application est enregistrée pour une utilisation dans le locataire de hello Azure B2C.
 
 ## <a name="prerequisites"></a>Composants requis
 
-Pour générer une application acceptant l’inscription et la connexion des consommateurs, vous devez commencer par inscrire cette application auprès d’un client Azure Active Directory B2C. Obtenez votre propre client en suivant la procédure décrite dans [Création d’un client Azure AD B2C](active-directory-b2c-get-started.md).
+toobuild une application qui accepte le consommateur d’inscription et de connexion, vous devez tout d’abord d’application de hello tooregister avec un locataire Azure Active Directory B2C. Obtenir votre propre locataire à l’aide de hello étapes [créer un client Azure AD B2C](active-directory-b2c-get-started.md).
 
-Les applications créées dans le panneau Azure AD B2C dans le portail Azure doivent être gérées à partir du même emplacement. Si vous modifiez des applications B2C à l’aide de PowerShell ou d’un autre portail, ces dernières ne sont plus prises en charge et ne fonctionnent pas avec Azure AD B2C. Consultez les détails dans la section [Applications ayant généré une erreur](#faulted-apps). 
+Les applications créées à partir du panneau hello Azure AD B2C Bonjour portail Azure doivent être gérées à partir de hello même emplacement. Si vous modifiez les applications B2C hello à l’aide de PowerShell ou un autre portail, ils deviennent non pris en charge et ne fonctionnent pas avec Azure Active Directory B2C. Consultez les détails dans hello [a généré une erreur d’applications](#faulted-apps) section. 
 
-## <a name="navigate-to-b2c-settings"></a>Accéder aux paramètres B2C
+## <a name="navigate-toob2c-settings"></a>Accédez tooB2C paramètres
 
-Connectez-vous au [portail Azure](https://portal.azure.com/) en tant qu’administrateur général du client B2C. 
+Connectez-vous à toohello [portail Azure](https://portal.azure.com/) comme hello administrateur Global du client de hello B2C. 
 
 [!INCLUDE [active-directory-b2c-switch-b2c-tenant](../../includes/active-directory-b2c-switch-b2c-tenant.md)]
 
 [!INCLUDE [active-directory-b2c-portal-navigate-b2c-service](../../includes/active-directory-b2c-portal-navigate-b2c-service.md)]
 
-Choisissez les étapes suivantes en fonction du type d’application que vous inscrivez :
+Choisissez les étapes suivantes, selon le type d’application hello que l’inscription :
 
 * [Inscrire une application web](#register-a-web-app)
 * [Inscrire une API web](#register-a-web-api)
@@ -49,57 +49,57 @@ Choisissez les étapes suivantes en fonction du type d’application que vous in
 [!INCLUDE [active-directory-b2c-register-web-app](../../includes/active-directory-b2c-register-web-app.md)]
 
 Si votre application web appelle une API web sécurisée par Azure AD B2C, procédez comme suit :
-   1. Créez une clé secrète d’application en accédant au panneau **Clés** et en cliquant sur le bouton **Générer la clé**. Prenez note de la valeur **Clé d’application** . Vous utilisez la valeur en tant que secret d’application dans le code de votre application.
+   1. Créer un secret d’application en accédant de toohello **clés** lame et en cliquant sur hello **générer une clé** bouton. Prenez note de hello **clé application** valeur. Vous utilisez les valeur hello en tant que secret d’application hello dans le code de votre application.
    2. Cliquez sur **Accès d’API**, cliquez sur **Ajouter**, puis sélectionnez votre API web et les étendues (autorisations).
 
 > [!NOTE]
 > Une **Clé secrète d’application** est une information d’identification de sécurité importante, qui doit être correctement sécurisée.
 > 
 
-[Passer aux **étapes suivantes**](#next-steps)
+[Raccourcis trop**étapes suivantes**](#next-steps)
 
 ## <a name="register-a-web-api"></a>Inscrire une API web
 
 [!INCLUDE [active-directory-b2c-register-web-api](../../includes/active-directory-b2c-register-web-api.md)]
 
-Cliquez sur **Étendues publiées** pour ajouter des étendues si nécessaire. Par défaut, l’étendue « user_impersonation » est définie. L’étendue user_impersonation permet à d’autres applications d’accéder à cette API pour le compte de l’utilisateur connecté. Si vous le souhaitez, l’étendue user_impersonation peut être supprimée.
+Cliquez sur **publié étendues** tooadd plus étendues en fonction des besoins. Par défaut, l’étendue hello « user_impersonation » est défini. l’étendue user_impersonation Hello donne aux autres tooaccess de capacité hello applications Cette api pour le compte d’utilisateur connecté hello. Si vous le souhaitez, l’étendue user_impersonation hello peut être supprimée.
 
-[Passer aux **étapes suivantes**](#next-steps)
+[Raccourcis trop**étapes suivantes**](#next-steps)
 
 ## <a name="register-a-mobile-or-native-app"></a>Inscrire une application mobile/native
 
 [!INCLUDE [active-directory-b2c-register-mobile-native-app](../../includes/active-directory-b2c-register-mobile-native-app.md)]
 
-[Passer aux **étapes suivantes**](#next-steps)
+[Raccourcis trop**étapes suivantes**](#next-steps)
 
 ## <a name="limitations"></a>Limites
 
 ### <a name="choosing-a-web-app-or-api-reply-url"></a>Choix d’une URL de réponse d’API ou d’application web
 
-Pour l’instant, les applications qui sont inscrites auprès d’Azure AD B2C sont limitées à un ensemble restreint de valeurs d’URL de réponse. L’URL de réponse pour les services et applications web doit commencer par le schéma `https`, et toutes les valeurs d’URL de réponse doivent partager un même domaine DNS. Par exemple, vous ne pouvez pas inscrire une application web comportant l’une des URL de réponse suivantes :
+Actuellement, les applications qui sont inscrits auprès d’Azure AD B2C sont ensemble restreint tooa limité de valeurs d’URL de réponse. Hello réponse URL pour les services et applications web doit commencer par le schéma de hello `https`, et répondent à toutes les valeurs d’URL doivent partager un seul domaine DNS. Par exemple, vous ne pouvez pas inscrire une application web comportant l’une des URL de réponse suivantes :
 
 `https://login-east.contoso.com`
 
 `https://login-west.contoso.com`
 
-Le système d’inscription compare le nom DNS complet de l’URL de réponse existante au nom DNS de l’URL de réponse que vous ajoutez. La demande d’ajout du nom DNS échoue si l’une des conditions suivantes est remplie :
+système d’enregistrement de Hello compare hello ensemble nom DNS de hello existant réponse URL toohello nom DNS de l’URL de réponse hello que vous ajoutez. tooadd hello nom DNS de Hello demande échoue si une de hello conditions suivantes est vraie :
 
-* Le nom DNS complet de la nouvelle URL de réponse ne correspond pas au nom DNS de l’URL de réponse existante.
-* Le nom DNS complet de la nouvelle URL de réponse n’est pas un sous-domaine de l’URL de réponse existante.
+* nom DNS complet de Hello hello nouvelle URL de réponse ne correspond pas de nom DNS de hello hello existant URL de réponse.
+* nom DNS complet de Hello hello nouvelle URL de réponse n’est pas un sous-domaine de l’URL de réponse existante hello.
 
-Par exemple, si l’application a cette URL de réponse :
+Par exemple, si hello app a cette URL de réponse :
 
 `https://login.contoso.com`
 
-Vous pouvez la compléter comme suit :
+Vous pouvez ajouter tooit, comme suit :
 
 `https://login.contoso.com/new`
 
-Dans ce cas, le nom DNS correspond exactement. Vous pouvez aussi définir l’URI suivant :
+Dans ce cas, le nom DNS de hello correspond exactement. Vous pouvez aussi définir l’URI suivant :
 
 `https://new.login.contoso.com`
 
-Dans ce cas, vous faites référence à un sous-domaine DNS de login.contoso.com. Si vous voulez disposer d’une application avec login-east.contoso.com et login-west.contoso.com comme URL de réponse, vous devez ajouter ces URL de réponse dans l’ordre suivant :
+Dans ce cas, vous faites référence sous-domaine DNS de tooa de login.contoso.com. Si vous souhaitez toohave une application ayant east.contoso.com de connexion et de connexion-west.contoso.com comme URL de réponse, vous devez ajouter les URL de réponse dans cet ordre :
 
 `https://contoso.com`
 
@@ -107,16 +107,16 @@ Dans ce cas, vous faites référence à un sous-domaine DNS de login.contoso.com
 
 `https://login-west.contoso.com`
 
-Vous pouvez ajouter les deux derniers car il s’agit de sous-domaines de la première URL de réponse, contoso.com.
+Vous pouvez ajouter hello deux derniers étant sous-domaines hello première URL de réponse, contoso.com.
 
 ### <a name="choosing-a-native-app-redirect-uri"></a>Choix d’un URI de redirection d’application native
 
 Il existe deux points importants à prendre en considération lors du choix d’un URI de redirection pour les applications mobiles/natives :
 
-* **Unique** : le schéma de l’URI de redirection doit être unique pour chaque application. Dans notre exemple (com.onmicrosoft.contoso.appname://redirect/path), nous utilisons com.onmicrosoft.contoso.appname en tant que schéma. Nous vous recommandons de suivre ce modèle. Si deux applications partagent le même schéma, l’utilisateur voit une boîte de dialogue « Choix d’une application ». Si l’utilisateur effectue un choix incorrect, la connexion échoue.
-* **Complet** : l’URI de redirection doit comporter un schéma et un chemin d’accès. Le chemin d’accès doit contenir au moins une barre oblique après le domaine (par exemple, //contoso/ fonctionne, tandis que //contoso échoue).
+* **Unique**: schéma hello de l’URI de redirection hello doit être unique pour chaque application. Dans notre exemple (com.onmicrosoft.contoso.appname://redirect/path), nous utilisons com.onmicrosoft.contoso.appname en tant que schéma de hello. Nous vous recommandons de suivre ce modèle. Si les deux applications partagent hello même schéma, hello utilisateur voit une boîte de dialogue « Choisir l’application ». Si l’utilisateur de hello effectue un choix incorrect, la connexion de hello échoue.
+* **Complet** : l’URI de redirection doit comporter un schéma et un chemin d’accès. chemin d’accès Hello doit contenir au moins une barre oblique (par exemple, //contoso/ fonctionne et //contoso échoue) du domaine hello.
 
-Vérifiez que l’URI de redirection ne comporte aucun caractère spécial, tel que des traits de soulignement.
+N’Assurez-vous aucun des caractères spéciaux tels que l’uri de redirection des traits de soulignement dans hello.
 
 ### <a name="faulted-apps"></a>Applications ayant généré une erreur
 
@@ -125,13 +125,13 @@ Les applications B2C ne doivent PAS être modifiées :
 * Sur les autres portails de gestion des applications tels que le [Portail Azure Classic](https://manage.windowsazure.com/) et le [Portail d’inscription des applications](https://apps.dev.microsoft.com/)
 * À l’aide de l’API Graph ou de PowerShell
 
-Si vous modifiez l’application B2C comme décrit ci-dessus, puis que vous tentez de la modifier de nouveau dans le panneau des fonctionnalités d’Azure AD B2C sur le Portail Azure, l’application génére une erreur et n’est plus utilisable avec Azure AD B2C. Vous devez supprimer l’application, puis la recréer.
+Si vous modifiez l’application hello B2C comme décrit ci-dessus et tooedit à nouveau dans le panneau de fonctionnalités hello Azure AD B2C sur hello portail Azure, elle devient une application ayant généré une erreur, et votre application n’est plus utilisable avec Azure Active Directory B2C. Vous avez toodelete hello application et créez un nouveau.
 
-Pour supprimer l’application, accédez au [Portail d’inscription des applications](https://apps.dev.microsoft.com/), puis supprimez l’application à cet emplacement. Pour que l’application soit visible, vous devez en être le propriétaire (et non simplement un administrateur du locataire).
+application de hello toodelete, accédez toohello [portail de l’enregistrement d’Application](https://apps.dev.microsoft.com/) et supprimer l’application hello. Toobe d’application hello visible, vous devez propriétaire hello toobe application hello (et pas seulement à un administrateur de client de hello).
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-À présent que vous avez une application inscrite auprès d’Azure AD B2C, vous pouvez suivre l’un de [nos didacticiels de démarrage rapide](active-directory-b2c-overview.md#get-started) afin de devenir opérationnel.
+Maintenant que vous avez une application inscrite auprès de Azure AD B2C, vous pouvez effectuer l’une de [nos didacticiels de démarrage rapide](active-directory-b2c-overview.md#get-started) tooget haut et en cours d’exécution.
 
 > [!div class="nextstepaction"]
 > [Créer une application web ASP.NET avec inscription, connexion et réinitialisation de mot de passe](active-directory-b2c-devquickstarts-web-dotnet-susi.md)

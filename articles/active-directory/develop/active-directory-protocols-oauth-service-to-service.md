@@ -1,6 +1,6 @@
 ---
-title: "Authentification de service à service Azure AD à l’aide d’OAuth2.0 | Microsoft Docs"
-description: "Cet article explique comment utiliser des messages HTTP pour mettre en œuvre l’authentification de service à service à l’aide du flux d’octroi des informations d’identification du client OAuth2.0."
+title: "aaaAzure tooService de AD Service d’authentification à l’aide d’OAuth2.0 | Documents Microsoft"
+description: "Cet article décrit comment toouse HTTP messages tooimplement service tooservice l’authentification à l’aide de flux d’octroi d’informations d’identification client hello OAuth2.0."
 services: active-directory
 documentationcenter: .net
 author: navyasric
@@ -15,50 +15,50 @@ ms.topic: article
 ms.date: 02/08/2017
 ms.author: nacanuma
 ms.custom: aaddev
-ms.openlocfilehash: cc30a54cd56c0cb03a67f86e4552398baa764e58
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f4bfd4ea8a7de1929c7dcf7ad65a156edff74f71
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# Appels de service à service à l’aide des informations d’identification du client (secret partagé ou certificat)
-Le flux d’octroi des informations d’identification du client OAuth2.0 permet à un service web (*client confidentiel*) d’utiliser ses propres informations d’identification pour s’authentifier lorsqu’il appelle un autre service web, au lieu d’emprunter l’identité d’un utilisateur. Dans ce scénario, le client est généralement un service web de niveau intermédiaire, un service démon ou un site web. Pour augmenter le niveau d’assurance, Azure AD autorise également le service d’appel à utiliser un certificat (au lieu d’un secret partagé) comme une information d’identification.
+# Appels de tooservice service à l’aide des informations d’identification du client (secret partagé ou certificat)
+Hello flux d’octroi d’informations d’identification OAuth 2.0 Client permet à un service web (*client confidentiel*) toouse service web de ses propres informations d’identification au lieu d’emprunter l’identité d’un utilisateur, tooauthenticate lors de l’appel à un autre. Dans ce scénario, le client de hello est généralement un service web de couche intermédiaire, un service démon ou un site web. Pour augmenter le niveau d’assurance, Azure AD permet également hello appelant service toouse un certificat (au lieu d’un secret partagé) en tant qu’informations d’identification.
 
 ## Diagramme représentant le flux d’octroi des informations d’identification du client
-Le diagramme suivant explique comment fonctionne le flux d’octroi des informations d’identification du client dans Azure Active Directory (Azure AD).
+Hello diagramme suivant explique comment les informations d’identification du client hello allouer works de flux dans Azure Active Directory (Azure AD).
 
 ![Flux d’octroi des informations d’identification du client OAuth2.0](media/active-directory-protocols-oauth-service-to-service/active-directory-protocols-oauth-client-credentials-grant-flow.jpg)
 
-1. L’application cliente s’authentifie auprès du point de terminaison d’émission de jeton Azure AD et demande un jeton d’accès.
-2. Le point de terminaison d’émission de jeton Azure AD émet le jeton d’accès.
-3. Le jeton d’accès est utilisé pour l’authentification auprès de la ressource sécurisée.
-4. Les données de la ressource sécurisée sont renvoyées à l’application web.
+1. application cliente de Hello authentifie le point de terminaison d’émission de jeton de Azure AD toohello et demande un jeton d’accès.
+2. problèmes de point de terminaison d’émission de jeton Azure AD de Hello hello jeton d’accès.
+3. jeton d’accès Hello est toohello tooauthenticate utilisé ressource sécurisée.
+4. Les données à partir de la ressource sécurisée de hello sont retournées d’application web de toohello.
 
-## Inscription des services dans Azure AD
-Inscrivez à la fois le service appelant et le service de destination dans Azure Active Directory (Azure AD). Pour obtenir des instructions détaillées, consultez [Intégration d’applications dans Azure Active Directory](active-directory-integrating-applications.md).
+## Inscrire les Services hello dans Azure AD
+Enregistrer hello appel du service et hello réception service dans Azure Active Directory (Azure AD). Pour obtenir des instructions détaillées, consultez [Intégration d’applications dans Azure Active Directory](active-directory-integrating-applications.md).
 
 ## Demander un jeton d’accès
-Pour demander un jeton d’accès, envoyez une requête HTTP POST au point de terminaison Azure AD propre au client.
+toorequest un jeton d’accès, utilisez un point de terminaison HTTP POST toohello spécifique au locataire Azure AD.
 
 ```
 https://login.microsoftonline.com/<tenant id>/oauth2/token
 ```
 
 ## Demande de jeton d’accès de service à service
-Deux cas de figure se présentent, selon que l’application cliente choisit d’être sécurisée par un secret partagé ou un certificat.
+Il existe deux cas selon si application cliente de hello choisit toobe sécurisé par un secret partagé ou un certificat.
 
 ### Premier cas : demande de jeton d’accès avec un secret partagé
-Lorsque l’application utilise un secret partagé, la demande de jeton d’accès de service à service contient les paramètres suivants :
+Lorsque vous utilisez un secret partagé, une demande de jeton d’accès de service à service contient hello paramètres suivants :
 
 | Paramètre |  | Description |
 | --- | --- | --- |
-| grant_type |required |Spécifie le type d’autorisation demandée. Dans un flux d’octroi des informations d’identification du client, la valeur doit être **client_credentials**. |
-| client_id |required |Spécifie l’ID de client Azure AD du service web appelant. Pour rechercher l’ID de client de l’application appelante, dans le [portail Azure](https://portal.azure.com), cliquez successivement sur **Active Directory**, le répertoire et l’application. Le paramètre client_id est l’*ID de l’application* |
-| client_secret |required |Entrez une clé enregistrée pour le service web appelant ou l’application démon dans Azure AD. Pour créer une clé, dans le portail Azure, cliquez successivement sur **Active Directory**, le répertoire, l’application, **Paramètres** et **Clés**, puis ajoutez une clé.|
-| resource |required |Entrez l’URI ID d’application du service web de destination. Pour rechercher l’URI de l’ID d’application, dans le portail Azure, cliquez successivement sur **Active Directory**, le répertoire, l’application du service, puis sur **Paramètres** et **Propriétés**. |
+| grant_type |required |Spécifie les hello demandé accorder le type. Dans un flux d’octroi des informations d’identification du Client, la valeur de hello doit être **valeur client_credentials**. |
+| client_id |required |Spécifie l’id de client Azure AD hello Hello appel de service web. hello toofind ID de client de l’application, l’appel Bonjour [portail Azure](https://portal.azure.com), cliquez sur **Active Directory**, commutateur active, cliquez sur l’application hello. les client_id Hello est hello *ID d’Application* |
+| client_secret |required |Entrez une clé inscrite pour hello appel d’application de service ou démon web dans Azure AD. toocreate une clé, Bonjour portail Azure, cliquez sur **Active Directory**, commutateur active, cliquez sur l’application hello, cliquez sur **paramètres**, cliquez sur **clés**, et ajouter une clé.|
+| resource |required |Entrez hello URI ID d’application de réception du service web de hello. toofind hello URI ID d’application Bonjour portail Azure, cliquez sur **Active Directory**, commutateur active, cliquez sur l’application hello service, puis cliquez sur **paramètres** et **propriétés** |
 
 #### Exemple
-La requête HTTP POST suivante demande un jeton d’accès pour le service web https://service.contoso.com/. `client_id` identifie le service web qui demande le jeton d’accès.
+Hello requête HTTP POST suivante demande un jeton d’accès pour le service web de hello https://service.contoso.com/. Hello `client_id` identifie le service web hello qui demande le jeton d’accès hello.
 
 ```
 POST /contoso.com/oauth2/token HTTP/1.1
@@ -69,20 +69,20 @@ grant_type=client_credentials&client_id=625bc9f6-3bf6-4b6d-94ba-e97cf07a22de&cli
 ```
 
 ### Deuxième cas : demande de jeton d’accès avec un certificat
-Une demande de jeton d’accès de service à service avec un certificat contient les paramètres suivants :
+Une demande de jeton d’accès de service à service avec un certificat contient hello paramètres suivants :
 
 | Paramètre |  | Description |
 | --- | --- | --- |
-| grant_type |required |Spécifie le type de réponse demandé. Dans un flux d’octroi des informations d’identification du client, la valeur doit être **client_credentials**. |
-| client_id |required |Spécifie l’ID de client Azure AD du service web appelant. Pour rechercher l’ID de client de l’application appelante, dans le [portail Azure](https://portal.azure.com), cliquez successivement sur **Active Directory**, le répertoire et l’application. Le paramètre client_id est l’*ID de l’application* |
-| client_assertion_type |required |La valeur doit être `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`. |
-| client_assertion |required | Assertion (JSON Web Token) dont vous avez besoin pour créer et signer avec le certificat inscrit comme informations d’identification pour votre application. Pour découvrir comment inscrire votre certificat et le format de l’assertion, consultez la section traitant des [informations d’identification des certificats](active-directory-certificate-credentials.md).|
-| resource | required |Entrez l’URI ID d’application du service web de destination. Pour rechercher l’URI de l’ID d’application, dans le portail Azure, cliquez successivement sur **Active Directory**, le répertoire, l’application et **Configurer**. |
+| grant_type |required |Spécifie hello a demandé le type de réponse. Dans un flux d’octroi des informations d’identification du Client, la valeur de hello doit être **valeur client_credentials**. |
+| client_id |required |Spécifie l’id de client Azure AD hello Hello appel de service web. hello toofind ID de client de l’application, l’appel Bonjour [portail Azure](https://portal.azure.com), cliquez sur **Active Directory**, commutateur active, cliquez sur l’application hello. les client_id Hello est hello *ID d’Application* |
+| client_assertion_type |required |la valeur Hello doit être`urn:ietf:params:oauth:client-assertion-type:jwt-bearer` |
+| client_assertion |required | Une assertion (un jeton Web JSON) que vous avez besoin de toocreate et signe avec hello certificat que vous avez enregistré en tant qu’informations d’identification pour votre application. En savoir plus sur [informations d’identification de certificat](active-directory-certificate-credentials.md) toolearn comment tooregister votre format de certificat et hello d’assertion de hello.|
+| resource | required |Entrez hello URI ID d’application de réception du service web de hello. toofind hello URI ID d’application Bonjour portail Azure, cliquez sur **Active Directory**, cliquez sur le répertoire hello, cliquez sur l’application hello, puis cliquez sur **configurer**. |
 
-Notez que les paramètres sont presque les mêmes que dans le cas de la demande par secret partagé, sauf que le paramètre client_secret est remplacé par deux paramètres : client_assertion_type et client_assertion.
+Notez que les paramètres de hello sont presque identiques, comme dans les cas de hello de demande de hello hello par secret partagé, sauf que le paramètre de client_secret hello est remplacé par deux paramètres : un client_assertion_type et un client_assertion.
 
 #### Exemple
-La demande HTTP POST suivante demande un jeton d’accès au service web https://service.contoso.com/ avec un certificat. `client_id` identifie le service web qui demande le jeton d’accès.
+Hello suivant HTTP POST demande un jeton d’accès pour le service de web https://service.contoso.com/ hello avec un certificat. Hello `client_id` identifie le service web hello qui demande le jeton d’accès hello.
 
 ```
 POST /<tenant_id>/oauth2/token HTTP/1.1
@@ -94,19 +94,19 @@ resource=https%3A%2F%contoso.onmicrosoft.com%2Ffc7664b4-cdd6-43e1-9365-c2e1c4e1b
 
 ### Réponse de jeton d’accès de service à service
 
-Une réponse affirmative contient une réponse JSON OAuth 2.0 avec les paramètres suivants :
+Une réponse de réussite contient une réponse JSON OAuth 2.0 avec hello paramètres suivants :
 
 | Paramètre | Description |
 | --- | --- |
-| access_token |Le jeton d’accès demandé. Le service web appelant peut utiliser ce jeton pour s’authentifier auprès du service web de destination. |
-| token_type |Indique la valeur du type de jeton. Le seul type de jeton pris en charge par Azure AD est le **jeton porteur**. Pour plus d’informations sur les jetons du porteur, consultez le document [OAuth 2.2 Authorization Framework: Bearer Token Usage (RFC 6750)](http://www.rfc-editor.org/rfc/rfc6750.txt)(Infrastructure d’autorisation OAuth 2.0 : Utilisation des jetons du porteur [RFC 6750]). |
-| expires_in |La durée de validité (en secondes) du jeton d’accès. |
-| expires_on |L’heure d’expiration du jeton d’accès. La date est représentée en nombre de secondes à partir du 1er janvier 1970 (1970-01-01T0:0:0Z) UTC jusqu’au moment de l’expiration. Cette valeur est utilisée pour déterminer la durée de vie des jetons en cache. |
-| not_before |Heure à partir de laquelle le jeton d’accès devient utilisable. La date est exprimée en nombre de secondes entre 1970-01-01T0:0:0Z UTC et le début de la validité du jeton.|
-| resource |L’URI ID d’application du service web de destination. |
+| access_token |jeton d’accès demandé Hello. Hello, appel de service web peut utiliser cette toohello tooauthenticate jeton réception de service web. |
+| token_type |Indique la valeur de jeton de type hello. Hello uniquement le type qui prend en charge d’Azure AD est **support**. Pour plus d’informations sur les jetons de support, consultez hello [OAuth 2.0 Authorization Framework : Bearer Token Usage (RFC 6750)](http://www.rfc-editor.org/rfc/rfc6750.txt). |
+| expires_in |La durée pendant laquelle le jeton d’accès hello est valide (en secondes). |
+| expires_on |Hello date d’expiration jeton d’accès hello. date de Hello est représenté en tant que nombre hello de secondes entre 1970-01-01T0:0:0Z UTC jusqu'à ce que le délai d’expiration de hello. Cette valeur est la durée de vie utilisé toodetermine hello de jetons mis en cache. |
+| not_before |heure de Hello à partir de quels hello le jeton d’accès peut être utilisé. date de Hello est représenté en tant que nombre hello de secondes entre 1970-01-01T0:0:0Z UTC jusqu’au moment de validité de jeton de hello.|
+| resource |Hello URI ID d’application de réception du service web de hello. |
 
 #### Exemple de réponse
-L’exemple suivant illustre une réponse affirmative à une demande de jeton d’accès à un service web.
+Hello exemple suivant illustre une demande de tooa de réponse de réussite pour un service web de jeton tooa accès.
 
 ```
 {
@@ -120,4 +120,4 @@ L’exemple suivant illustre une réponse affirmative à une demande de jeton d�
 
 ## Voir aussi
 * [OAuth 2.0 dans Azure AD](active-directory-protocols-oauth-code.md)
-* [Exemple en C# de l’appel de service à service avec un secret partagé](https://github.com/Azure-Samples/active-directory-dotnet-daemon) et [Exemple en C# de l’appel de service à service avec un certificat](https://github.com/Azure-Samples/active-directory-dotnet-daemon-certificate-credential)
+* [Exemple en c# de hello service tooservice appel avec un secret partagé](https://github.com/Azure-Samples/active-directory-dotnet-daemon) et [exemple en c# de hello service tooservice appel avec un certificat](https://github.com/Azure-Samples/active-directory-dotnet-daemon-certificate-credential)

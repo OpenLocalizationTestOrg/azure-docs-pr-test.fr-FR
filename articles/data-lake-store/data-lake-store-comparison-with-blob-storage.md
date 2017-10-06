@@ -1,5 +1,5 @@
 ---
-title: "Comparaison d’Azure Data Lake Store avec Azure Storage Blob | Microsoft Docs"
+title: "aaaAzure comparaison Data Lake Store avec l’objet Blob de stockage Azure | Documents Microsoft"
 description: "Comparaison d’Azure Data Lake Store avec Azure Storage Blob"
 services: data-lake-store
 documentationcenter: 
@@ -14,26 +14,26 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/29/2017
 ms.author: nitinme
-ms.openlocfilehash: 29f074f1ced5a3f4305d961a98f45e4a3b7792ef
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a86553260853b4527992d54782ab1b4d7d20e27f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="comparing-azure-data-lake-store-and-azure-blob-storage"></a>Comparaison d’Azure Data Lake Store et d’Azure Blob Storage
-Le tableau de cet article résume les différences entre Azure Data Lake Store et Azure Blob Storage pour certains aspects essentiels du traitement des données volumineuses. Azure Blob Storage est un magasin d’objets extensible généraliste conçu pour s’adapter à une large gamme de scénarios de stockage. Azure Data Lake Store est un référentiel hyperscale optimisé pour les charges de travail d’analyse des données volumineuses.
+table Hello dans cet article résume les différences de hello entre Azure Data Lake Store et de stockage d’objets Blob Azure le long de certains aspects clés de traitement de données volumineuses. Azure Blob Storage est un magasin d’objets extensible généraliste conçu pour s’adapter à une large gamme de scénarios de stockage. Azure Data Lake Store est un référentiel hyperscale optimisé pour les charges de travail d’analyse des données volumineuses.
 
 |  | Azure Data Lake Store | un stockage Azure Blob |
 | --- | --- | --- |
 | Objectif |Stockage optimisé pour les charges de travail d’analyse de données volumineuses |Magasin d’objets polyvalent adapté à un large éventail de scénarios de stockage |
 | Cas d'utilisation |Données par lots, interactives, d’analyse de diffusion en continu et d’apprentissage machine (par exemple, fichiers journaux, données IoT, données sur le parcours de navigation, jeux de données volumineux) |N’importe quel type de données texte ou binaires, par exemple données d’application principale, de sauvegarde, de stockage de médias pour la diffusion en continu, et d’usage général |
-| Concepts clés |Le compte Data Lake Store contient des dossiers, qui contiennent des données stockées sous forme de fichiers |Le compte de stockage a des conteneurs, qui possèdent des données sous la forme d’objets BLOB |
+| Concepts clés |Le compte Data Lake Store contient des dossiers, qui contiennent des données stockées sous forme de fichiers |Compte de stockage a des conteneurs, qui à son tour comporte des données sous forme de hello d’objets BLOB |
 | Structure |Système de fichiers hiérarchique |Magasin d’objets avec espace de noms plat |
 | API |API REST sur HTTPS |API REST sur HTTP/HTTPS |
 | API côté serveur |[API REST compatible WebHDFS](https://msdn.microsoft.com/library/azure/mt693424.aspx) |[API REST d’Azure Blob Storage](https://msdn.microsoft.com/library/azure/dd135733.aspx) |
 | Client de système de fichiers Hadoop |Oui |Oui |
 | Opérations de données - authentification |Basées sur les [Identités Azure Active Directory](../active-directory/active-directory-authentication-scenarios.md) |Basées sur les secrets partagés - [Clés d’accès au compte](../storage/common/storage-create-storage-account.md#manage-your-storage-account) et [Clés de signature d’accès partagé](../storage/common/storage-dotnet-shared-access-signature-part-1.md). |
-| Opérations de données - protocole d’authentification |OAuth 2.0. Les appels doivent contenir un JWT (jeton web JSON) valide émis par Azure Active Directory |Code d’authentification de message basé sur hachage (HMAC). Les appels doivent contenir un hachage SHA-256 codé en Base64 sur une partie de la requête HTTP. |
+| Opérations de données - protocole d’authentification |OAuth 2.0. Les appels doivent contenir un JWT (jeton web JSON) valide émis par Azure Active Directory |Code d’authentification de message basé sur hachage (HMAC). Appels doivent contenir un hachage SHA-256 codée en Base64 sur une partie de la requête HTTP de hello. |
 | Opérations de données - autorisation |Listes de contrôle d’accès (ACL) POSIX.  Les ACL basées sur les identités Active Directory Azure peuvent être définies aux niveaux fichier et dossier. |Pour l’autorisation au niveau des comptes – utilisez des [clés d’accès au compte](../storage/common/storage-create-storage-account.md#manage-your-storage-account)<br>Pour l’autorisation au niveau d'un compte, d'un conteneur ou d'un objet blob - utilisez des [clés de signature d’accès partagé](../storage/common/storage-dotnet-shared-access-signature-part-1.md) |
 | Opérations de données - Audit |Disponible. Pour plus d’informations, voir [ici](data-lake-store-diagnostic-logs.md) . |Disponible |
 | Chiffrement des données au repos |Transparent, côté serveur <ul><li>Avec des clés gérées par le service</li><li>Avec des clés gérées par le client dans Azure KeyVault</li></ul> |<ul><li>Transparent, côté serveur</li> <ul><li>Avec des clés gérées par le service</li><li>Avec des clés gérées par le client dans Azure KeyVault (disponible prochainement)</li></ul><li>chiffrement côté client</li></ul> |

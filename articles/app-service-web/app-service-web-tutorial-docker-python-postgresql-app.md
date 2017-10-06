@@ -1,6 +1,6 @@
 ---
-title: "Créer une application web Docker Python et PostgreSQL dans Azure | Microsoft Docs"
-description: "Découvrez comment faire fonctionner une application Docker Python dans Azure en établissant une connexion à une base de données PostgreSQL."
+title: aaaBuild une application web Python de Docker et PostgreSQL dans Azure | Documents Microsoft
+description: "Découvrez comment tooget une application Python de Docker fonctionne dans Azure, avec une connexion tooa PostgreSQL de base de données."
 services: app-service\web
 documentationcenter: python
 author: berndverst
@@ -15,23 +15,23 @@ ms.topic: tutorial
 ms.date: 05/03/2017
 ms.author: beverst
 ms.custom: mvc
-ms.openlocfilehash: e70f85a1eb4a6e1a81e0ca4fae228ca97deca6fe
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: e594ef9ec8c04ef2bf725e5f998691f3fb8cf815
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="build-a-docker-python-and-postgresql-web-app-in-azure"></a>Créer une application web Docker Python et PostgreSQL dans Azure
 
-Azure Web Apps offre un service d’hébergement web hautement évolutif et appliquant des mises à jour correctives automatiques. Ce didacticiel vous montre comment créer une application web Docker Python de base dans Azure. Vous allez connecter cette application à une base de données PostgreSQL. Ceci fait, vous disposerez d’une application Python Flask s’exécutant dans un conteneur Docker sur [Azure App Service Web Apps](app-service-web-overview.md).
+Azure Web Apps fournit un service d’hébergement hautement évolutif et appliquant des mises à jour correctives automatiquement. Ce didacticiel montre comment une base Python de Docker de toocreate web application dans Azure. Vous vous connecterez à cette base de données PostgreSQL tooa application. Ceci fait, vous disposerez d’une application Python Flask s’exécutant dans un conteneur Docker sur [Azure App Service Web Apps](app-service-web-overview.md).
 
 ![Application Docker Python Flask dans Azure App Service](./media/app-service-web-tutorial-docker-python-postgresql-app/docker-flask-in-azure.png)
 
-Vous pouvez suivre la procédure ci-dessous sur macOS. Les instructions pour Linux et Windows sont identiques dans la plupart des cas, mais les différences ne sont pas détaillées dans ce didacticiel.
+Vous pouvez suivre les étapes de hello ci-dessous sur macOS. Les instructions de Linux et Windows sont même hello dans la plupart des cas, mais les différences hello ne sont pas détaillés dans ce didacticiel.
  
 ## <a name="prerequisites"></a>Composants requis
 
-Pour suivre ce didacticiel :
+toocomplete ce didacticiel :
 
 1. [Installez Git](https://git-scm.com/)
 1. [Installez Python](https://www.python.org/downloads/)
@@ -42,38 +42,38 @@ Pour suivre ce didacticiel :
 
 [!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
 
-Si vous choisissez d’installer et d’utiliser l’interface de ligne de commande localement, vous devez exécuter Azure CLI version 2.0 ou une version ultérieure pour poursuivre la procédure décrite dans cet article. Exécutez `az --version` pour trouver la version. Si vous devez installer ou mettre à niveau, consultez [Installation d’Azure CLI 2.0]( /cli/azure/install-azure-cli). 
+Si vous choisissez tooinstall et que vous utilisez hello CLI localement, cette rubrique requiert que vous exécutez hello CLI d’Azure version 2.0 ou ultérieure. Exécutez `az --version` version de hello toofind. Si vous avez besoin de tooinstall ou mise à niveau, consultez [installer Azure CLI 2.0]( /cli/azure/install-azure-cli). 
 
 ## <a name="test-local-postgresql-installation-and-create-a-database"></a>Test de l’installation PostgreSQL locale et création d’une base de données
 
-Ouvrez la fenêtre de terminal et exécutez `psql postgres` pour vous connecter à votre serveur PostgreSQL local.
+Ouvrez la fenêtre de terminal hello et exécutez `psql postgres` tooconnect tooyour local PostgreSQL serveur.
 
 ```bash
 psql postgres
 ```
 
-Si la connexion est établie, cela signifie que votre base de données PostgreSQL est en cours d’exécution. Dans le cas contraire, assurez-vous que votre base de données PostgresQL est démarrée en suivant les étapes décrites dans la page [Downloads - PostgreSQL Core Distribution (Téléchargements - Distribution principale de PostgreSQL)](https://www.postgresql.org/download/).
+Si la connexion est établie, cela signifie que votre base de données PostgreSQL est en cours d’exécution. Dans le cas contraire, assurez-vous que votre base de données PostgresQL locale est démarré en suivant les étapes de hello à [téléchargements - PostgreSQL Core Distribution](https://www.postgresql.org/download/).
 
 Créez une base de données appelée *eventregistration* et configurez un utilisateur de base de données nommé *manager* avec le mot de passe *supersecretpass*.
 
 ```bash
 CREATE DATABASE eventregistration;
 CREATE USER manager WITH PASSWORD 'supersecretpass';
-GRANT ALL PRIVILEGES ON DATABASE eventregistration TO manager;
+GRANT ALL PRIVILEGES ON DATABASE eventregistration toomanager;
 ```
-Entrez *\q* pour quitter le client PostgreSQL. 
+Type *\q* client de PostgreSQL tooexit hello. 
 
 <a name="step2"></a>
 
 ## <a name="create-local-python-flask-application"></a>Création d’une application Python Flask locale
 
-Cette étape consiste à configurer le projet Python Flask local.
+Dans cette étape, vous définir un projet local Python ballon hello.
 
-### <a name="clone-the-sample-application"></a>Clonage de l’exemple d’application
+### <a name="clone-hello-sample-application"></a>Exemple d’application hello de cloner
 
-Ouvrez la fenêtre de terminal et entrez `CD` pour accéder à un répertoire de travail.  
+Fenêtre de terminal ouverte hello et `CD` répertoire de travail tooa.  
 
-Exécutez les commandes suivantes pour cloner l’exemple de référentiel, puis accédez à la version *0.1-initialapp*.
+Suivante d’exécution hello commandes tooclone hello exemple référentiel et passer toohello *initialapp de 0,1* release.
 
 ```bash
 git clone https://github.com/Azure-Samples/docker-flask-postgres.git
@@ -83,12 +83,12 @@ git checkout tags/0.1-initialapp
 
 Cet exemple de référentiel contient une application [Flask](http://flask.pocoo.org/). 
 
-### <a name="run-the-application"></a>Exécution de l'application
+### <a name="run-hello-application"></a>Exécutez l’application hello
 
 > [!NOTE] 
-> Plus tard, vous simplifierez ce processus en créant un conteneur Docker à utiliser avec la base de données de production.
+> Dans une étape ultérieure vous simplifiez ce processus en générant un toouse de conteneur Docker avec la base de données de production hello.
 
-Installez les packages requis et démarrez l’application.
+Installer des packages hello requis et démarrer l’application hello.
 
 ```bash
 pip install virtualenv
@@ -100,31 +100,31 @@ FLASK_APP=app.py DBHOST="localhost" DBUSER="manager" DBNAME="eventregistration" 
 FLASK_APP=app.py DBHOST="localhost" DBUSER="manager" DBNAME="eventregistration" DBPASS="supersecretpass" flask run
 ```
 
-Lorsque l’application est entièrement chargée, vous obtenez un message similaire à celui-ci :
+Lors de l’application hello est entièrement chargée, vous voyez quelque chose de similaire toohello message suivant :
 
 ```bash
 INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
 INFO  [alembic.runtime.migration] Will assume transactional DDL.
 INFO  [alembic.runtime.migration] Running upgrade  -> 791cd7d80402, empty message
  * Serving Flask app "app"
- * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C tooquit)
 ```
 
-Naviguez jusqu’à http://127.0.0.1:5000 dans un navigateur. Cliquez sur **S’inscrire** et créez un utilisateur de test.
+Accédez toohttp://127.0.0.1:5000 dans un navigateur. Cliquez sur **S’inscrire** et créez un utilisateur de test.
 
 ![Application Python Flask s’exécutant localement](./media/app-service-web-tutorial-docker-python-postgresql-app/local-app.png)
 
-L’exemple d’application Flask stocke les données utilisateur dans la base de données. Si vous parvenez à inscrire un utilisateur, votre application écrit les données dans la base de données PostgreSQL locale.
+Hello, exemple d’application ballon stocke les données utilisateur dans la base de données hello. Si vous parvenez à l’inscription d’un utilisateur, votre application écrit les données toohello PostgreSQL base de données locale.
 
-À tout moment, pour arrêter le serveur Flask, tapez Ctrl+C dans le terminal. 
+serveur de ballon hello toostop à tout moment, tapez Ctrl + C dans hello Terminal Server. 
 
 ## <a name="create-a-production-postgresql-database"></a>Création d’une base de données de production PostgreSQL
 
-Dans cette étape, vous allez créer une base de données PostgreSQL dans Azure. Lorsque votre application est déployée sur Azure, elle utilise cette base de données cloud.
+Dans cette étape, vous allez créer une base de données PostgreSQL dans Azure. Lorsque votre application est déployée tooAzure, il utilisera cette base de données du cloud.
 
-### <a name="log-in-to-azure"></a>Connexion à Azure
+### <a name="log-in-tooazure"></a>Connectez-vous à tooAzure
 
-Vous allez maintenant utiliser Azure CLI 2.0 pour créer les ressources nécessaires à l’hébergement de votre application Python dans Azure App Service.  Connectez-vous à votre abonnement Azure avec la commande [az login](/cli/azure/#login) et suivez les instructions à l’écran. 
+Vous êtes en train de ressources de cours toouse hello Azure CLI 2.0 toocreate hello nécessaire toohost votre application Python dans Azure App Service.  Connectez-vous à tooyour abonnement Azure avec hello [ouverture de session az](/cli/azure/#login) commande et suivez hello à l’écran. 
 
 ```azurecli
 az login 
@@ -132,29 +132,29 @@ az login
    
 ### <a name="create-a-resource-group"></a>Créer un groupe de ressources
 
-Créez un [groupe de ressources](../azure-resource-manager/resource-group-overview.md) avec la commande [az group create](/cli/azure/group#create). 
+Créer un [groupe de ressources](../azure-resource-manager/resource-group-overview.md) avec hello [az groupe créer](/cli/azure/group#create). 
 
 [!INCLUDE [Resource group intro](../../includes/resource-group.md)]
 
-L’exemple suivant crée un groupe de ressources nommé dans la région États-Unis de l’Ouest :
+Hello exemple suivant crée un groupe de ressources dans la région ouest des États-Unis hello :
 
 ```azurecli-interactive
 az group create --name myResourceGroup --location "West US"
 ```
 
-Utilisez la commande [az appservice list-locations](/cli/azure/appservice#list-locations) dans Azure CLI pour afficher la liste des emplacements disponibles.
+Hello d’utilisation [Liste emplacements az appservice](/cli/azure/appservice#list-locations) les emplacements disponibles toolist de commande CLI d’Azure.
 
 ### <a name="create-an-azure-database-for-postgresql-server"></a>Créer un serveur Azure Database pour PostgreSQL
 
-Créez un serveur PostgreSQL avec la commande [az postgres server create](/cli/azure/documentdb#create).
+Créer un serveur de PostgreSQL avec hello [az postgres serveur créer](/cli/azure/documentdb#create) commande.
 
-Dans la commande suivante, remplacez un nom de serveur unique par l’espace réservé *\<postgresql_name>* et un nom d’utilisateur par l’espace réservé *\<admin_username>*. Le nom de serveur est utilisé dans votre point de terminaison PostgreSQL (`https://<postgresql_name>.postgres.database.azure.com`). C’est pourquoi, il doit être unique parmi l’ensemble des serveurs dans Azure. Le nom d’utilisateur correspond au compte d’utilisateur administrateur de la base de données initiale. Vous êtes invité à choisir un mot de passe pour cet utilisateur.
+Bonjour suivant de commande, remplacez par un nom unique pour hello  *\<postgresql_name >* espace réservé et un nom d’utilisateur pour hello  *\<admin_username >* espace réservé . nom du serveur Hello est utilisé dans le cadre de votre point de terminaison PostgreSQL (`https://<postgresql_name>.postgres.database.azure.com`), de sorte que le nom hello doit toobe unique sur tous les serveurs dans Azure. nom d’utilisateur Hello est pour le compte d’utilisateur admin hello initiale de la base de données. Vous êtes invité à toopick un mot de passe pour cet utilisateur.
 
 ```azurecli-interactive
 az postgres server create --resource-group myResourceGroup --name <postgresql_name> --admin-user <admin_username>
 ```
 
-Lorsque le serveur de base de données Azure pour PostgreSQL est créé, l’interface Azure CLI affiche des informations similaires à l’exemple suivant :
+Lorsque hello Azure de base de données PostgreSQL serveur est créé, hello CLI d’Azure s’affiche des informations similaires toohello est l’exemple suivant :
 
 ```json
 {
@@ -180,15 +180,15 @@ Lorsque le serveur de base de données Azure pour PostgreSQL est créé, l’int
 }
 ```
 
-### <a name="create-a-firewall-rule-for-the-azure-database-for-postgresql-server"></a>Création d’une règle de pare-feu pour le serveur de base de données Azure pour PostgreSQL
+### <a name="create-a-firewall-rule-for-hello-azure-database-for-postgresql-server"></a>Créer une règle de pare-feu pour hello Azure de base de données PostgreSQL serveur
 
-Exécutez la commande Azure CLI suivante pour autoriser l’accès à la base de données à partir de toutes les adresses IP.
+Exécutez hello suivant de base de données access toohello CLI d’Azure commande tooallow à partir de toutes les adresses IP.
 
 ```azurecli-interactive
 az postgres server firewall-rule create --resource-group myResourceGroup --server-name <postgresql_name> --start-ip-address=0.0.0.0 --end-ip-address=255.255.255.255 --name AllowAllIPs
 ```
 
-L’interface Azure CLI confirme la création de la règle de pare-feu avec une sortie similaire à celle-ci :
+Hello CLI d’Azure confirme la création de règles de pare-feu hello avec toohello similaire de sortie l’exemple suivant :
 
 ```json
 {
@@ -201,69 +201,69 @@ L’interface Azure CLI confirme la création de la règle de pare-feu avec une 
 }
 ```
 
-## <a name="connect-your-python-flask-application-to-the-database"></a>Connexion de votre application Python Flask à la base de données
+## <a name="connect-your-python-flask-application-toohello-database"></a>Se connecter à votre base de données Python ballon application toohello
 
-Dans cette étape, vous connectez votre exemple d’application Python Flask au serveur de base de données Azure pour PostgreSQL que vous avez créé.
+Dans cette étape, vous vous connectez votre application toohello base de données Azure de Python ballon exemple pour serveur PostgreSQL que vous avez créé.
 
 ### <a name="create-an-empty-database-and-set-up-a-new-database-application-user"></a>Création d’une base de données vide et configuration d’un nouvel utilisateur de l’application de base de données
 
-Créez un utilisateur de base de données avec accès à une seule base de données. Vous allez utiliser ces informations d’identification pour éviter que l’application ait un accès complet au serveur.
+Créer un utilisateur de base de données access tooa seule base de données uniquement. Vous utiliserez ces tooavoid des informations d’identification donnant hello application complète toohello serveur d’accès.
 
-Connectez-vous à la base de données (vous êtes invité à entrer votre mot de passe d’administrateur).
+Se connecter toohello de base de données (vous êtes invité à entrer votre mot de passe d’administrateur).
 
 ```bash
 psql -h <postgresql_name>.postgres.database.azure.com -U <my_admin_username>@<postgresql_name> postgres
 ```
 
-Créez la base de données et l’utilisateur à partir de l’interface de ligne de commande de PostgreSQL.
+Créer des base de données hello et l’utilisateur à partir de hello PostgreSQL CLI.
 
 ```bash
 CREATE DATABASE eventregistration;
 CREATE USER manager WITH PASSWORD 'supersecretpass';
-GRANT ALL PRIVILEGES ON DATABASE eventregistration TO manager;
+GRANT ALL PRIVILEGES ON DATABASE eventregistration toomanager;
 ```
 
-Entrez *\q* pour quitter le client PostgreSQL.
+Type *\q* client de PostgreSQL tooexit hello.
 
-### <a name="test-the-application-locally-against-the-azure-postgresql-database"></a>Test de l’application en local sur la base de données Azure PostgreSQL 
+### <a name="test-hello-application-locally-against-hello-azure-postgresql-database"></a>Tester l’application hello localement par rapport à la base de données Azure PostgreSQL hello 
 
-Revenons maintenant au dossier *app* du référentiel Github cloné. Vous pouvez exécuter l’application Python Flask en mettant à jour les variables d’environnement de la base de données.
+Si vous revenez en maintenant toohello *application* dossier Hello cloner le référentiel Github, vous pouvez exécuter des applications de Python ballon hello en mettant à jour les variables d’environnement hello de base de données.
 
 ```bash
 FLASK_APP=app.py DBHOST="<postgresql_name>.postgres.database.azure.com" DBUSER="manager@<postgresql_name>" DBNAME="eventregistration" DBPASS="supersecretpass" flask db upgrade
 FLASK_APP=app.py DBHOST="<postgresql_name>.postgres.database.azure.com" DBUSER="manager@<postgresql_name>" DBNAME="eventregistration" DBPASS="supersecretpass" flask run
 ```
 
-Lorsque l’application est entièrement chargée, vous obtenez un message similaire à celui-ci :
+Lors de l’application hello est entièrement chargée, vous voyez quelque chose de similaire toohello message suivant :
 
 ```bash
 INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
 INFO  [alembic.runtime.migration] Will assume transactional DDL.
 INFO  [alembic.runtime.migration] Running upgrade  -> 791cd7d80402, empty message
  * Serving Flask app "app"
- * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C tooquit)
 ```
 
-Naviguez jusqu’à http://127.0.0.1:5000 dans un navigateur. Cliquez sur **S’inscrire** et créez une inscription de test. Vous écrivez maintenant des données dans la base de données dans Azure.
+Accédez toohttp://127.0.0.1:5000 dans un navigateur. Cliquez sur **S’inscrire** et créez une inscription de test. Maintenant, vous écrivez toohello de données dans Azure.
 
 ![Application Python Flask s’exécutant localement](./media/app-service-web-tutorial-docker-python-postgresql-app/local-app.png)
 
-### <a name="running-the-application-from-a-docker-container"></a>Exécution de l’application à partir d’un conteneur Docker
+### <a name="running-hello-application-from-a-docker-container"></a>Exécution de l’application hello à partir d’un conteneur Docker
 
-Créez l’image conteneur Docker.
+Création d’image de conteneur Docker hello.
 
 ```bash
 cd ..
 docker build -t flask-postgresql-sample .
 ```
 
-Docker affiche une confirmation de création du conteneur.
+Docker affiche une confirmation que le conteneur de hello informatique créé avec succès.
 
 ```bash
 Successfully built 7548f983a36b
 ```
 
-Ajoutez les variables d’environnement de base de données dans le fichier de variables d’environnement *db.env*. L’application va se connecter à la base de données de production PostgreSQL dans Azure.
+Ajouter la base de données environnement variables tooan variable fichier d’environnement *db.env*. application Hello se connecte à base de données PostgreSQL toohello de production dans Azure.
 
 ```text
 DBHOST="<postgresql_name>.postgres.database.azure.com"
@@ -272,32 +272,32 @@ DBNAME="eventregistration"
 DBPASS="supersecretpass"
 ```
 
-Exécutez l’application à partir du conteneur Docker. La commande suivante spécifie le fichier de variables d’environnement et mappe le port Flask par défaut 5000 au port local 5000.
+Exécuter l’application hello de conteneur Docker de hello. Bonjour commande suivante spécifie le fichier de variable d’environnement hello et mappe hello par défaut ballon port 5000 toolocal port 5000.
 
 ```bash
 docker run -it --env-file db.env -p 5000:5000 flask-postgresql-sample
 ```
 
-La sortie est similaire à ce que vous avez vu plus haut. Toutefois, la migration de la base de données initiale n’a plus besoin d’être effectuée et elle est donc ignorée.
+sortie de Hello est toowhat similaires, vous avez vu plus haut. Toutefois, la migration de base de données initiale hello n’a plus besoin toobe effectuée et qu’elle est donc ignorée.
 
 ```bash
 INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
 INFO  [alembic.runtime.migration] Will assume transactional DDL.
  * Serving Flask app "app"
- * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C tooquit)
 ```
 
-La base de données contient déjà l’inscription que vous avez créée précédemment.
+base de données Hello contient déjà un enregistrement hello que vous avez créé précédemment.
 
 ![Application Python Flask basée sur un conteneur Docker s’exécutant localement](./media/app-service-web-tutorial-docker-python-postgresql-app/local-docker.png)
 
-## <a name="upload-the-docker-container-to-a-container-registry"></a>Charger le conteneur Docker vers un registre de conteneurs
+## <a name="upload-hello-docker-container-tooa-container-registry"></a>Télécharger le Registre de conteneur hello Docker conteneur tooa
 
-Dans cette étape, vous chargez le conteneur Docker dans un registre de conteneurs. Vous allez utiliser Azure Container Registry, mais vous pourriez aussi d’autres registres très répandus, comme Docker Hub.
+Dans cette étape, vous téléchargez Registre de conteneur tooa hello Docker conteneur. Vous allez utiliser Azure Container Registry, mais vous pourriez aussi d’autres registres très répandus, comme Docker Hub.
 
 ### <a name="create-an-azure-container-registry"></a>Création d’un Azure Container Registry
 
-Dans la commande suivante, pour créer un registre de conteneurs, remplacez *\<registry_name>* par un nom unique de registre de conteneurs Azure de votre choix.
+Bonjour suivant commande toocreate un Registre de conteneur remplacer  *\<registry_name >* avec un nom de Registre de conteneur Azure unique de votre choix.
 
 ```azurecli-interactive
 az acr create --name <registry_name> --resource-group myResourceGroup --location "West US" --sku Basic
@@ -325,16 +325,16 @@ Sortie
 }
 ```
 
-### <a name="retrieve-the-registry-credentials-for-pushing-and-pulling-docker-images"></a>Récupération des informations d’identification du Registre pour l’extraction et la transmission d’images Docker
+### <a name="retrieve-hello-registry-credentials-for-pushing-and-pulling-docker-images"></a>Récupérer les informations d’identification du Registre hello pour les poussées et les images Docker
 
-Pour afficher les informations d’identification du registre, activez d’abord le mode administration.
+informations d’identification du Registre tooshow, activer le mode d’administration tout d’abord.
 
 ```azurecli-interactive
 az acr update --name <registry_name> --admin-enabled true
 az acr credential show -n <registry_name>
 ```
 
-Vous voyez deux mots de passe. Notez le nom d’utilisateur et le premier mot de passe.
+Vous voyez deux mots de passe. Notez hello nom d’utilisateur et mot de passe premier hello.
 
 ```json
 {
@@ -352,7 +352,7 @@ Vous voyez deux mots de passe. Notez le nom d’utilisateur et le premier mot de
 }
 ```
 
-### <a name="upload-your-docker-container-to-azure-container-registry"></a>Chargement de votre conteneur Docker vers Azure Container Registry
+### <a name="upload-your-docker-container-tooazure-container-registry"></a>Télécharger votre tooAzure de conteneur Docker Registre de conteneur
 
 ```bash
 docker login <registry_name>.azurecr.io -u <registry_name> -p "<registry_password>"
@@ -360,23 +360,23 @@ docker tag flask-postgresql-sample <registry_name>.azurecr.io/flask-postgresql-s
 docker push <registry_name>.azurecr.io/flask-postgresql-sample
 ```
 
-## <a name="deploy-the-docker-python-flask-application-to-azure"></a>Déploiement de l’application Docker Python Flask sur Azure
+## <a name="deploy-hello-docker-python-flask-application-tooazure"></a>Déployer hello Docker Python ballon application tooAzure
 
-Dans cette étape, vous déployez votre application Python Flask basée sur le conteneur Docker dans Azure App Service.
+Dans cette étape, vous déployez votre tooAzure d’application de la Python ballon lors du conteneur Docker du Service d’applications.
 
 ### <a name="create-an-app-service-plan"></a>Créer un plan App Service
 
-Créez un plan App Service avec la commande [az appservice plan create](/cli/azure/appservice/plan#create). 
+Créer un plan App Service avec hello [création d’un plan de az](/cli/azure/appservice/plan#create) commande. 
 
 [!INCLUDE [app-service-plan](../../includes/app-service-plan.md)]
 
-L’exemple suivant crée un plan App Service Linux nommé *myAppServicePlan* avec le niveau tarifaire S1 :
+Hello exemple suivant crée un plan de Service d’applications basés sur Linux nommé *myAppServicePlan* à l’aide de hello S1, niveau de tarification :
 
 ```azurecli-interactive
 az appservice plan create --name myAppServicePlan --resource-group myResourceGroup --sku S1 --is-linux
 ```
 
-Lorsque le plan App Service est créé, l’interface Azure CLI affiche des informations similaires à l’exemple suivant :
+Lorsque hello plan App Service est créé, hello CLI d’Azure s’affiche des informations similaires toohello est l’exemple suivant :
 
 ```json 
 {
@@ -416,17 +416,17 @@ Lorsque le plan App Service est créé, l’interface Azure CLI affiche des in
 
 ### <a name="create-a-web-app"></a>Créer une application web
 
-Créez une application web dans le plan App Service *myAppServicePlan* avec la commande [az webapp create](/cli/azure/webapp#create). 
+Créer une application web Bonjour *myAppServicePlan* plan App Service avec hello [az webapp créer](/cli/azure/webapp#create) commande. 
 
-L’application web vous offre un espace d’hébergement pour déployer votre code, et fournit une URL pour vous permettre d’afficher l’application déployée. Utilisez  pour créer l’application web. 
+fournit les application Hello web vous un hébergement toodeploy votre code et de l’espace fournit une URL pour vous tooview hello déployé l’application. Utilisez l’application web toocreate hello. 
 
-Dans la commande suivante, remplacez l’espace réservé *\<app_name>* par un nom d’application unique. Ce nom est utilisé dans l’URL par défaut de l’application web. C’est pourquoi il doit être unique parmi l’ensemble des applications dans Azure App Service. 
+Bonjour suivant de commande, remplacez hello  *\<nom_application >* espace réservé avec un nom d’application unique. Ce nom fait partie de l’URL par défaut de hello pour l’application web de hello, par conséquent, le nom de hello doit toobe unique entre toutes les applications dans Azure App Service. 
 
 ```azurecli
 az webapp create --name <app_name> --resource-group myResourceGroup --plan myAppServicePlan
 ```
 
-Une fois l’application web créée, Azure CLI affiche des informations similaires à celles de l’exemple suivant : 
+Lors de l’application hello web a été créée, hello CLI d’Azure affiche des informations similaires toohello est l’exemple suivant : 
 
 ```json 
 {
@@ -443,13 +443,13 @@ Une fois l’application web créée, Azure CLI affiche des informations simil
 }
 ```
 
-### <a name="configure-the-database-environment-variables"></a>Configuration des variables d’environnement de base de données
+### <a name="configure-hello-database-environment-variables"></a>Configurer les variables d’environnement hello de base de données
 
-Plus haut dans ce didacticiel, vous avez défini des variables d’environnement pour vous connecter à votre base de données PostgreSQL.
+Plus haut dans le didacticiel de hello, vous avez défini de données PostgreSQL tooyour environnement variables tooconnect.
 
-Dans App Service, vous définissez les variables d’environnement comme des _paramètres d’application_ à l’aide de la commande [az webapp config appsettings set](/cli/azure/webapp/config#set). 
+Dans le Service d’application, vous définissez les variables d’environnement _paramètres de l’application_ à l’aide de hello [az webapp configuration appsettings défini](/cli/azure/webapp/config#set) commande. 
 
-L’exemple suivant spécifie les informations de connexion à la base de données comme des paramètres d’application. Il utilise également la variable *PORT* qui mappe le PORT 5000 de votre conteneur Docker pour qu’il reçoive le trafic HTTP sur le PORT 80.
+Hello exemple suivant spécifie détails de connexion de base de données hello en tant que paramètres de l’application. Il utilise également hello *PORT* variable toomap PORT 5000 à partir de votre conteneur Docker tooreceive HTTP le trafic sur le PORT 80.
 
 ```azurecli-interactive
 az webapp config appsettings set --name <app_name> --resource-group myResourceGroup --settings DBHOST="<postgresql_name>.postgres.database.azure.com" DBUSER="manager@<postgresql_name>" DBPASS="supersecretpass" DBNAME="eventregistration" PORT=5000
@@ -463,23 +463,23 @@ AppService peut automatiquement télécharger et exécuter un conteneur Docker.
 az webapp config container set --resource-group myResourceGroup --name <app_name> --docker-registry-server-user "<registry_name>" --docker-registry-server-password "<registry_password>" --docker-custom-image-name "<registry_name>.azurecr.io/flask-postgresql-sample" --docker-registry-server-url "https://<registry_name>.azurecr.io"
 ```
 
-Chaque fois que vous mettez à jour le conteneur Docker ou modifiez les paramètres, redémarrez l’application. Le redémarrage garantit que tous les paramètres sont appliqués et que le dernier conteneur est extrait du registre.
+Chaque fois que vous mettez à jour le conteneur Docker de hello ou modifiez les paramètres de hello, redémarrez l’application hello. Le redémarrage permet de s’assurer que tous les paramètres sont appliqués et conteneur de dernière hello est extraite à partir du Registre de hello.
 
 ```azurecli-interactive
 az webapp restart --resource-group myResourceGroup --name <app_name>
 ```
 
-### <a name="browse-to-the-azure-web-app"></a>Rechercher l’application web Azure 
+### <a name="browse-toohello-azure-web-app"></a>Parcourir toohello Azure web app 
 
-Accédez à l’application web déployée à l’aide de votre navigateur web. 
+Parcourir l’application web toohello déployé à l’aide de votre navigateur web. 
 
 ```bash 
 http://<app_name>.azurewebsites.net 
 ```
 > [!NOTE]
-> L’application web prend plus de temps à se charger, car le conteneur doit être téléchargé et démarré lorsque sa configuration est modifiée.
+> Hello web application prend plus de temps tooload parce que le conteneur de hello a toobe téléchargé et démarré après la modification de configuration du conteneur hello.
 
-Vous verrez des invités déjà inscrits, qui ont été enregistrés dans la base de données de production Azure à l’étape précédente.
+Vous voyez des invités précédemment enregistrées qui ont été enregistrées de base de données de production Azure toohello à l’étape précédente de hello.
 
 ![Application Python Flask basée sur un conteneur Docker s’exécutant localement](./media/app-service-web-tutorial-docker-python-postgresql-app/docker-app-deployed.png)
 
@@ -487,15 +487,15 @@ Vous verrez des invités déjà inscrits, qui ont été enregistrés dans la bas
 
 ## <a name="update-data-model-and-redeploy"></a>Mettre à jour le modèle de données et redéployer
 
-Dans cette étape, vous ajoutez le nombre de participants à chaque inscription d’événement en mettant à jour le modèle Invité.
+Dans cette étape, vous ajoutez nombre hello d’inscription d’événement de participants tooeach en mettant à jour le modèle d’invité hello.
 
-Vérifiez la version *0.2-migration* avec la commande git suivante :
+Extraire hello *0,2-migration* mise en production avec hello git commande suivante :
 
 ```bash
 git checkout tags/0.2-migration
 ```
 
-Cette version a déjà apporté les modifications nécessaires aux vues, aux contrôleurs et au modèle. Elle inclut également une migration de base de données générée via *alembic* (`flask db migrate`). Vous pouvez voir toutes les modifications apportées, via la commande git suivante :
+Cette version a déjà été hello du modèle, les contrôleurs et les modifications nécessaires tooviews. Elle inclut également une migration de base de données générée via *alembic* (`flask db migrate`). Vous pouvez voir toutes les modifications apportées via hello git commande suivante :
 
 ```bash
 git diff 0.1-initialapp 0.2-migration
@@ -503,7 +503,7 @@ git diff 0.1-initialapp 0.2-migration
 
 ### <a name="test-your-changes-locally"></a>Tester vos modifications en local
 
-Exécutez les commandes suivantes pour tester vos modifications en local en exécutant le serveur Flask.
+Exécutez hello suivant de commandes tootest vos modifications localement par serveur de ballon hello en cours d’exécution.
 
 Mac / Linux :
 ```bash
@@ -513,13 +513,13 @@ FLASK_APP=app.py DBHOST="localhost" DBUSER="manager" DBNAME="eventregistration" 
 FLASK_APP=app.py DBHOST="localhost" DBUSER="manager" DBNAME="eventregistration" DBPASS="supersecretpass" flask run
 ```
 
-Accédez à http://127.0.0.1:5000 dans votre navigateur pour afficher les modifications. Créez une inscription de test.
+Accédez à toohttp://127.0.0.1:5000 vos modifications de hello tooview navigateur. Créez une inscription de test.
 
 ![Application Python Flask basée sur un conteneur Docker s’exécutant localement](./media/app-service-web-tutorial-docker-python-postgresql-app/local-app-v2.png)
 
-### <a name="publish-changes-to-azure"></a>Publier les modifications dans Azure
+### <a name="publish-changes-tooazure"></a>Publier les modifications tooAzure
 
-Générez la nouvelle image Docker, placez-la dans le registre de conteneurs et redémarrez l’application.
+Générer la nouvelle image de docker hello, poussez-le Registre de conteneur toohello et redémarrez l’application hello.
 
 ```bash
 docker build -t flask-postgresql-sample .
@@ -528,7 +528,7 @@ docker push <registry_name>.azurecr.io/flask-postgresql-sample
 az appservice web restart --resource-group myResourceGroup --name <app_name>
 ```
 
-Accédez à votre application web Azure et essayez de nouveau la nouvelle fonctionnalité. Créez un autre enregistrement d’événements.
+Accédez tooyour Azure web app et essayer à nouveau de nouvelles fonctionnalités de hello. Créez un autre enregistrement d’événements.
 
 ```bash 
 http://<app_name>.azurewebsites.net 
@@ -538,19 +538,19 @@ http://<app_name>.azurewebsites.net
 
 ## <a name="manage-your-azure-web-app"></a>Gérer votre application web Azure
 
-Accédez au [portail Azure](https://portal.azure.com) pour voir l’application web que vous avez créée.
+Accédez toohello [portail Azure](https://portal.azure.com) toosee vous avez créé l’application web hello.
 
-Dans le menu de gauche, cliquez sur **App Services**, puis cliquez sur le nom de votre application web Azure.
+Dans le menu de gauche hello, cliquez sur **des Services d’application**, puis cliquez sur nom hello de votre application web Azure.
 
-![Navigation au sein du portail pour accéder à l’application web Azure](./media/app-service-web-tutorial-docker-python-postgresql-app/app-resource.png)
+![Application de navigation du portail tooAzure web](./media/app-service-web-tutorial-docker-python-postgresql-app/app-resource.png)
 
-Par défaut, le portail affiche la page **Vue d’ensemble** de votre application web. Cette page propose un aperçu de votre application. Ici, vous pouvez également effectuer des tâches de gestion de base (parcourir, arrêter, démarrer, redémarrer et supprimer des éléments, par exemple). Les onglets sur le côté gauche de la page affichent les différentes pages de configuration que vous pouvez ouvrir.
+Par défaut, le portail de hello affiche de votre application web **vue d’ensemble** page. Cette page propose un aperçu de votre application. Ici, vous pouvez également effectuer des tâches de gestion de base (parcourir, arrêter, démarrer, redémarrer et supprimer des éléments, par exemple). onglets Hello sur le côté gauche de hello de page de hello affichent les pages de configuration différents hello que vous pouvez l’ouvrir.
 
 ![Page App Service du Portail Azure](./media/app-service-web-tutorial-docker-python-postgresql-app/app-mgmt.png)
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Passez au didacticiel suivant pour découvrir comment mapper un nom DNS personnalisé à votre application web.
+Avancer toolearn de didacticiel suivant toohello tooyour l’application web de noms toomap DNS personnalisé.
 
 > [!div class="nextstepaction"] 
-> [Mapper un nom DNS personnalisé existant à des applications web Azure](app-service-web-tutorial-custom-domain.md)
+> [Mapper une tooAzure de nom DNS personnalisé existant Web Apps](app-service-web-tutorial-custom-domain.md)

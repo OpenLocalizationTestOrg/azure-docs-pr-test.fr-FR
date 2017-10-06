@@ -1,6 +1,6 @@
 ---
-title: "API de facturation Azure Enterprise - Détails d’utilisation | Microsoft Docs"
-description: "Découvrez les API Azure Billing Usage et RateCard, qui fournissent des vues d’ensemble des tendances et de la consommation des ressources Azure."
+title: "aaaAzure de facturation des API d’entreprise - détails d’utilisation | Documents Microsoft"
+description: "En savoir plus sur l’utilisation de facturation d’Azure et RateCard APIs, qui sont utilisés tooprovide connaître la consommation des ressources Azure et les tendances."
 services: 
 documentationcenter: 
 author: aedwin
@@ -15,20 +15,20 @@ ms.tgt_pltfrm: na
 ms.workload: billing
 ms.date: 04/25/2017
 ms.author: aedwin
-ms.openlocfilehash: 5b49220e6eb27544dba54255ee88c56ad79c3141
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: def0805008261df5872f015db3d2b26e47d25569
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="reporting-apis-for-enterprise-customers---usage-details"></a>API de création de rapports pour les clients Enterprise - Détails d’utilisation
 
-L’API Usage Details (Détails d’utilisation) offre une analyse quotidienne des quantités consommées et des frais estimés pour un abonnement. Le résultat inclut également des informations sur les instances, les compteurs et les services. L’API peut être interrogée par période de facturation ou en indiquant une date de début et de fin. 
+Hello API des détails d’utilisation offre une analyse quotidienne des quantités consommées et frais estimés par une inscription. résultat de Hello inclut également des informations sur les instances, les compteurs et les services. Hello API peut être interrogée par période de facturation ou par un début spécifiée et la date de fin. 
 ## <a name="consumption-apis"></a>API de consommation
 
 
-##<a name="request"></a>Requête 
-Les propriétés d’en-tête communes qui doivent être ajoutées sont spécifiées [ici](billing-enterprise-api.md). Si aucune période de facturation n’est spécifiée, les données de la période de facturation en cours sont retournées. Des plages de dates personnalisées peuvent être spécifiées avec les paramètres de date de début et de fin au format AAAA-MM-JJ. La période maximale prise en charge est de 36 mois.  
+##<a name="request"></a>Demande 
+Propriétés d’en-tête commun nécessitant toobe ajouté sont spécifiées [ici](billing-enterprise-api.md). Si une période de facturation n’est pas spécifiée, puis les données de facturation actuel de hello période sont retournées. Les plages de temps personnalisé peuvent être spécifiés avec le début de hello et fin des paramètres de date qui se trouvent dans un format hello AAAA-MM-JJ. plage d’heure pris en charge maximale Hello est 36 mois.  
 
 |Méthode | URI de demande|
 |-|-|
@@ -37,12 +37,12 @@ Les propriétés d’en-tête communes qui doivent être ajoutées sont spécifi
 |GET|https://consumption.azure.com/v2/enrollments/{enrollmentNumber}/usagedetailsbycustomdate?startTime=2017-01-01&endTime=2017-01-10|
 
 > [!Note]
-> Pour utiliser la préversion de l’API, remplacez v2 par v1 dans l’URL ci-dessus.
+> version d’évaluation hello toouse de l’API, remplacez v2 v1 Bonjour au-dessus des URL.
 >
 
 ## <a name="response"></a>Réponse
 
-> En raison de grands volumes potentiels de données, l’ensemble de résultats s’affiche sur plusieurs pages. La propriété nextLink, si elle est présente, spécifie le lien vers la page suivante de données. Si le lien est vide, cela indique qu’il s’agit de la dernière page. 
+> En raison de toohello potentiellement gros volume de données hello jeu est paginé. propriété de nextLink Hello, s’il est présent, spécifie le lien hello pour la page de données suivante hello. Si le lien de hello est vide, il indique à qui est la dernière page de hello. 
 <br/>
 
     {
@@ -92,42 +92,42 @@ Les propriétés d’en-tête communes qui doivent être ajoutées sont spécifi
 
 |Nom de la propriété| Type| Description
 |-|-|-|
-|id| string| ID unique de l’appel d’API. |
-|données| Tableau JSON| Tableau des détails d’utilisation quotidienne pour chaque instance ou compteur.|
-|nextLink| string| Quand il y a plus de pages de données, le lien nextLink pointe vers l’URL qui retourne la page suivante de données. |
+|id| string| Hello Id unique de l’appel d’API de hello. |
+|données| Tableau JSON| Tableau de détails d’utilisation quotidienne pour chaque instance\meter de Hello.|
+|nextLink| string| Lorsqu’il y a plus de pages de données hello nextLink points toohello URL tooreturn hello page suivante de données. |
 |accountId| int| Champ obsolète. Présent à des fins de compatibilité descendante. |
 |productId| int| Champ obsolète. Présent à des fins de compatibilité descendante. |
 |resourceLocationId| int| Champ obsolète. Présent à des fins de compatibilité descendante. |
 |consumedServiceID| int| Champ obsolète. Présent à des fins de compatibilité descendante. |
 |departmentId| int| Champ obsolète. Présent à des fins de compatibilité descendante. |
-|accountOwnerEmail| string| Compte de messagerie du propriétaire du compte. |
-|accountName| string| Nom du compte entré par le client. |
+|accountOwnerEmail| string| Le compte de messagerie du propriétaire du compte hello. |
+|accountName| string| Nom de client saisi du compte de hello. |
 |serviceAdministratorId| string| Adresse e-mail de l’administrateur de service. |
 |subscriptionId| int| Champ obsolète. Présent à des fins de compatibilité descendante. |
-|subscriptionGuid| string| Identificateur global unique de l’abonnement. |
-|subscriptionName| string| Nom de l’abonnement. |
-|date| string| Date à laquelle la consommation s’est produite. |
-|product| string| Détails supplémentaires sur le compteur. Exemple : A1(VM)Windows - Est de l’Asie-Pacifique|
-|meterId| string| Identificateur du compteur qui a émis l’utilisation. |
-|meterCategory| string| Service de plateforme Azure qui a été utilisé. |
-|meterSubCategory| string| Définit le type de service Azure pouvant affecter le tarif. Exemple : A1 VM (Non-Windows|
-|meterRegion| string| Identifie l’emplacement du centre de données pour certains services dont le prix est basé sur cet emplacement. |
-|meterName| string| Nom du compteur. |
-|consumedQuantity| double| Quantité du compteur consommée. |
-|resourceRate| double| Taux applicable par unité facturable. |
-|coût| double| Frais encourus pour le compteur. |
-|resourceLocation| string| Identifie le centre de données où le compteur s’exécute. |
-|consumedService| string| Service de plateforme Azure qui a été utilisé. |
-|instanceId| string| Cet identificateur est le nom de la ressource ou l’ID de ressource complet. Pour plus d’informations, consultez [API Azure Resource Manager](https://docs.microsoft.com/rest/api/resources/resources). |
+|subscriptionGuid| string| Identificateur Unique global pour l’abonnement de hello. |
+|subscriptionName| string| Nom de l’abonnement de hello. |
+|date| string| date de Hello sur lequel la consommation s’est produite. |
+|product| string| Détails supplémentaires sur la jauge de hello. Exemple : A1(VM)Windows - Est de l’Asie-Pacifique|
+|meterId| string| Identificateur Hello compteur hello qui a émis l’utilisation. |
+|meterCategory| string| Hello service de plateforme Azure qui a été utilisé. |
+|meterSubCategory| string| Définit le type de service Azure de hello qui peut affecter les taux de hello. Exemple : A1 VM (Non-Windows|
+|meterRegion| string| Identifie l’emplacement hello de centre de données hello pour certains services dont le prix est basée sur l’emplacement du centre de données. |
+|meterName| string| Nom du compteur de hello. |
+|consumedQuantity| double| quantité de Hello de compteur hello qui ont été consommé. |
+|resourceRate| double| taux de Hello est applicable par unité facturable. |
+|coût| double| frais de Hello engagé pour le compteur de hello. |
+|resourceLocation| string| Identifie hello de centre de données sur lequel le compteur de hello s’exécute. |
+|consumedService| string| Hello service de plateforme Azure qui a été utilisé. |
+|instanceId| string| Cet identificateur est hello nom de ressource de hello ou hello complet ID de ressource. Pour plus d’informations, consultez [API Azure Resource Manager](https://docs.microsoft.com/rest/api/resources/resources). |
 |serviceInfo1| string| Métadonnées de service Azure interne. |
 |serviceInfo2| string| Par exemple, le type d’image d’une machine virtuelle et le nom du fournisseur de services Internet pour ExpressRoute. |
 |additionalInfo| string| Métadonnées relatives au service. Par exemple, le type d’image d’une machine virtuelle. |
 |tags| string| Balises ajoutées par le client. Pour plus d’informations, voir [Organisation des ressources Azure à l’aide de balises](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-using-tags). |
 |storeServiceIdentifier| string| Cette colonne n’est pas utilisée. Présent à des fins de compatibilité descendante. |
-|departmentName| string| Nom du service. |
-|costCenter| string| Centre de coût avec lequel l’utilisation est associée. |
-|unitOfMeasure| string| Identifie l’unité dans laquelle le service est facturé. Par exemple : Go, heures, 10 000 s. |
-|resourceGroup| string| Groupe de ressources dans lequel le compteur déployé s’exécute. Pour plus d’informations, consultez [Présentation d’Azure Resource Manager](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview). |
+|departmentName| string| Nom du service de hello. |
+|costCenter| string| Centre de coût Hello qui est associée à l’utilisation de hello. |
+|unitOfMeasure| string| Identifie l’unité de hello service de hello est facturé en. Par exemple : Go, heures, 10 000 s. |
+|resourceGroup| string| groupe de ressources Hello dans quel hello compteur déployé est en cours d’exécution dans. Pour plus d’informations, consultez [Présentation d’Azure Resource Manager](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview). |
 <br/>
 ## <a name="see-also"></a>Voir aussi
 

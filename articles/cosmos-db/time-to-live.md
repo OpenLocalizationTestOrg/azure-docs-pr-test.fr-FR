@@ -1,9 +1,9 @@
 ---
-title: "Faire expirer des données dans Cosmos DB avec la durée de vie | Documents Microsoft"
-description: "Avec la TTL, Microsoft Azure Cosmos DB offre la possibilité de vider automatiquement les documents du système après une période déterminée."
+title: "aaaExpire des données dans la base de données Azure Cosmos avec heure toolive | Documents Microsoft"
+description: "Avec la durée de vie, base de données Microsoft Azure Cosmos fournit des documents de toohave de capacité hello purgés automatiquement à partir du système de hello après une période de temps."
 services: cosmos-db
 documentationcenter: 
-keywords: "durée de vie"
+keywords: heure toolive
 author: arramac
 manager: jhubbard
 editor: 
@@ -15,47 +15,47 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/25/2017
 ms.author: arramac
-ms.openlocfilehash: 6f1c43ca0113dc7579b0fc3743d3314c16ce78a4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 51d8ec46add72c9624457316a4ccd1e23fb83ad0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="expire-data-in-azure-cosmos-db-collections-automatically-with-time-to-live"></a>Faire expirer des données dans des collections Cosmos DB automatiquement avec la durée de vie
-Les applications peuvent générer et stocker de grandes quantités de données. Certaines de ces données, telles que les données d’événement générées par la machine, les journaux et les informations de session utilisateur, sont utiles uniquement pendant une certaine période. Une fois les données trop nombreuses par rapport aux besoins de l’application, vous pouvez les vider et réduire les besoins de stockage d’une application.
+# <a name="expire-data-in-azure-cosmos-db-collections-automatically-with-time-toolive"></a>Faire expirer les données dans des collections de base de données Azure Cosmos automatiquement avec le temps toolive
+Les applications peuvent générer et stocker de grandes quantités de données. Certaines de ces données, telles que les données d’événement générées par la machine, les journaux et les informations de session utilisateur, sont utiles uniquement pendant une certaine période. Une fois que les données de salutation devient toohello en surplus les besoins de l’application hello est sécurisé toopurge ces données et réduire les besoins en stockage hello d’une application.
 
-Avec la « durée de vie » (TTL, Time to Live), Microsoft Azure Cosmos DB offre la possibilité de vider automatiquement les documents de la base de données après une période déterminée. La durée de vie par défaut peut être définie au niveau de la collection et être substituée par document. Une fois la TTL définie, soit en tant que valeur par défaut de la collection, soit au niveau du document, Cosmos DB supprime automatiquement les documents existant une fois cette période (en secondes) écoulée depuis leur dernière modification.
+Par « time toolive » ou la durée de vie, base de données Microsoft Azure Cosmos fournit des documents de toohave de capacité hello purgés automatiquement à partir de la base de données hello après une période de temps. durée par défaut de Hello toolive peut être définie au niveau de collection hello et être substituée par document. Une fois la TTL définie, soit en tant que valeur par défaut de la collection, soit au niveau du document, Cosmos DB supprime automatiquement les documents existant une fois cette période (en secondes) écoulée depuis leur dernière modification.
 
-Dans Cosmos DB, la durée de vie utilise un décalage par rapport au moment où le document a été modifié pour la dernière fois. Pour ce faire, il utilise le champ `_ts` qui existe sur tous les documents. Le champ _ts est un horodateur d’époque de style Unix représentant la date et l’heure. Le champ `_ts` est mis à jour à chaque modification d’un document. 
+Temps toolive dans la base de données Cosmos utilise un décalage par rapport à lors de la dernière modification du document hello. toodo cette celle-ci utilise hello `_ts` champ qui existe sur tous les documents. champ de _ts Hello est de style unix époque timestamp représentant hello date et heure. Hello `_ts` est mis à jour chaque fois qu’un document est modifié. 
 
 ## <a name="ttl-behavior"></a>Comportement de la TTL
-La fonction TTL est contrôlée par les propriétés TTL à deux niveaux : au niveau de la collection et au niveau du document. Les valeurs sont définies en secondes et sont traitées en tant qu’écart par rapport à l’horodatage de dernière modification du document (`_ts`).
+fonctionnalité de durée de vie Hello est contrôlée par les propriétés de durée de vie à deux niveaux - niveau de la collection hello et au niveau du document hello. les valeurs Hello sont définies en secondes et sont traités comme un delta de hello `_ts` la dernière modification de ce document hello à.
 
-1. DefaultTTL pour la collection
+1. DefaultTTL pour collection de hello
    
-   * Si ce paramètre est manquant (ou a la valeur null), les documents ne sont pas supprimés automatiquement.
-   * Si ce paramètre est présent et a la valeur « -1 » (infinie), les documents n’expirent pas par défaut.
-   * Si ce paramètre est présent et que sa valeur est un nombre (« n »), les documents expirent « n » secondes après la dernière modification.
-2. TTL pour les documents : 
+   * Si des documents manquants (ou ensemble toonull), ne sont pas supprimés automatiquement.
+   * S’il est présent et la valeur de hello est « -1 » = infinie – documents n’expirent pas par défaut
+   * S’il est présent et la valeur de hello est un nombre (« n ») : documents expirent le « n » secondes après la dernière modification
+2. Durée de vie pour les documents hello : 
    
-   * La propriété s’applique uniquement si le paramètre DefaultTTL est présent pour la collection parente.
-   * Elle remplace la valeur DefaultTTL de la collection parente.
+   * Propriété est applicable uniquement si DefaultTTL est présent pour la collection de parents hello.
+   * Remplace la valeur de DefaultTTL de hello pour collection de parents hello.
 
-Dès que le document a expiré (`ttl` + `_ts` >= heure actuelle du serveur), le document est marqué comme « expiré ». Aucune opération n’est autorisée sur ces documents une fois ce délai écoulé, et les documents sont exclus des résultats de toutes les requêtes effectuées. Les documents sont physiquement supprimés du système et sont supprimés en arrière-plan de façon opportuniste ultérieurement. Ceci ne consomme aucune [unité de requête](request-units.md) du budget de la collection.
+Dès que le document de hello a expiré (`ttl`  +  `_ts` > = heure actuelle du serveur), document de hello est marqué comme « expiré ». Aucune opération ne sera autorisée sur ces documents après cette heure, et ils seront exclus des résultats des requêtes effectuées hello. documents de Hello sont physiquement supprimées dans le système de hello et sont supprimés en arrière-plan de hello façon opportuniste ultérieurement. Cela ne prend pas [unités de demande (RUs)](request-units.md) de budget de collection hello.
 
-La logique ci-dessus peut être représentée dans le tableau suivant :
+Hello ci-dessus logique peut être affichée dans hello suivant la matrice :
 
-|  | DefaultTTL manquante/non définie sur la collection | DefaultTTL = -1 sur la collection | DefaultTTL = « n » sur la collection |
+|  | DefaultTTL manquant/non défini dans la collection de hello | DefaultTTL = -1 sur la collection | DefaultTTL = « n » sur la collection |
 | --- |:--- |:--- |:--- |
-| TTL manquante sur le document |Rien à substituer au niveau du document, car aucun concept de TTL n’existe pour le document et la collection. |Aucun document de cette collection n’expire. |Les documents de cette collection expireront une fois l’intervalle n écoulé. |
-| TTL = -1 sur le document |Rien à substituer au niveau du document, car la collection ne définit pas la propriété DefaultTTL qu’un document peut substituer. La TTL sur un document n’est pas interprétée par le système. |Aucun document de cette collection n’expire. |Le document avec TTL=-1 dans cette collection n’expire jamais. Tous les autres documents expirent après l’intervalle « n ». |
-| TTL = n sur le document |Rien à substituer au niveau du document. La TTL sur un document n’est pas interprétée par le système. |Le document avec TTL = n expire après l’intervalle n, en secondes. D’autres documents héritent de l’intervalle -1 et n’expirent jamais. |Le document avec TTL = n expire après l’intervalle n, en secondes. D’autres documents héritent de l’intervalle « n » de la collection. |
+| TTL manquante sur le document |Nothing toooverride au niveau du document, car le document de hello et collection ont aucun concept de durée de vie. |Aucun document de cette collection n’expire. |Hello dans cette collection expirent lorsque n de l’intervalle est écoulé. |
+| TTL = -1 sur le document |Nothing toooverride au niveau du document hello depuis ne définit pas de collection de hello hello propriété DefaultTTL un document peut substituer. Durée de vie d’un document est non interprétée par le système de hello. |Aucun document de cette collection n’expire. |document Hello avec TTL =-1 dans cette collection n’expirera jamais. Tous les autres documents expirent après l’intervalle « n ». |
+| TTL = n sur le document |Nothing toooverride au niveau du document hello. Durée de vie d’un document dans non interprétées par le système de hello. |document Hello TTL = n va expirer après n intervalle, en secondes. D’autres documents héritent de l’intervalle -1 et n’expirent jamais. |document Hello TTL = n va expirer après n intervalle, en secondes. Autres documents héritent des « n » l’intervalle de collection de hello. |
 
 ## <a name="configuring-ttl"></a>Configuration de la TTL
-Par défaut, la durée de vie est désactivée dans toutes les collections Cosmos DB et sur tous les documents.
+Par défaut, le temps toolive est désactivée par défaut dans toutes les collections de base de données Cosmos et sur tous les documents.
 
 ## <a name="enabling-ttl"></a>Activation de la TTL
-Pour activer la TTL sur une collection ou sur les documents d’une collection, vous devez définir la propriété DefaultTTL d’une collection sur -1 ou un nombre positif non nul. Si vous définissez DefaultTTL sur -1, tous les documents de la collection auront une durée de vie infinie par défaut. Cependant, le service Cosmos DB doit alors surveiller la collection afin d’identifier les documents pour lesquels cette valeur par défaut a été remplacée.
+tooenable durée de vie sur une collection ou documents hello dans une collection, vous devez tooset hello DefaultTTL propriété un tooeither collection -1 ou un nombre positif différent de zéro. Définition des moyens de trop 1 DefaultTTL hello que par défaut, tous les documents dans la collection de hello seront trouvera indéfiniment mais hello Cosmos DB service, surveillez cette collection pour les documents qui ont remplacé cette valeur par défaut.
 
     DocumentCollection collectionDefinition = new DocumentCollection();
     collectionDefinition.Id = "orders";
@@ -68,7 +68,7 @@ Pour activer la TTL sur une collection ou sur les documents d’une collection, 
         new RequestOptions { OfferThroughput = 20000 });
 
 ## <a name="configuring-default-ttl-on-a-collection"></a>Configuration de la TTL par défaut sur une collection
-Vous pouvez configurer une durée de vie par défaut au niveau de la collection. Pour définir la durée de vie sur une collection, vous devez fournir un nombre positif non nul qui indique, en secondes, le délai d’expiration de tous les documents de la collection après l’horodatage de dernière modification du document (`_ts`). Vous pouvez également définir la valeur par défaut sur -1, ce qui implique que tous les documents insérés dans la collection auront une durée de vie infinie par défaut.
+Vous êtes tooconfigure en mesure d’un délai par défaut toolive à un niveau de la collection. tooset hello TTL sur une collection, vous devez tooprovide un nombre positif différent de zéro qui indique la période de hello, en secondes, tooexpire tous les documents dans la collection de hello après hello dernière modification de l’horodatage du document de hello (`_ts`). Ou bien, vous pouvez définir hello par défaut trop-1, ce qui implique que tous les documents sont insérés dans la collection de toohello indéfiniment par défaut.
 
     DocumentCollection collectionDefinition = new DocumentCollection();
     collectionDefinition.Id = "orders";
@@ -82,15 +82,15 @@ Vous pouvez configurer une durée de vie par défaut au niveau de la collection.
 
 
 ## <a name="setting-ttl-on-a-document"></a>Définition de la TTL sur un document
-En plus de définir une TTL par défaut sur une collection, vous pouvez définir une TTL spécifique au niveau d’un document. Cela remplace la valeur par défaut de la collection.
+En outre toosetting durée de vie par défaut sur un regroupement vous pouvez définir durée de vie spécifique à un niveau du document. Cette opération remplacera par défaut de hello de collection de hello.
 
-* Pour définir la durée de vie sur un document, vous devez fournir un nombre positif non nul qui indique, en secondes, le délai d’expiration du document après l’horodatage de dernière modification du document (`_ts`).
-* Si un document n’a pas de champ TTL, la valeur par défaut de la collection s’applique.
-* Si la TTL est désactivée au niveau de la collection, le champ TTL du document sera ignoré jusqu’à ce que la TTL soit de nouveau activée sur la collection.
+* tooset hello durée de vie d’un document, vous devez tooprovide un nombre positif différent de zéro qui indique hello période, en secondes, le document de hello tooexpire après hello dernière modification de l’horodatage du document de hello (`_ts`).
+* Si un document ne comporte aucun champ de durée de vie, puis hello par défaut de la collection de hello s’appliquent.
+* Si la durée de vie est désactivée au niveau de collection hello, champ de durée de vie hello de hello sera ignoré jusqu'à ce que la durée de vie est activée sur la collection de hello.
 
-Voici un extrait de code montrant comment définir la date d’expiration de la durée de vie dans un document :
+Voici un extrait de code montrant comment tooset hello d’expiration de durée de vie d’un document :
 
-    // Include a property that serializes to "ttl" in JSON
+    // Include a property that serializes too"ttl" in JSON
     public class SalesOrder
     {
         [JsonProperty(PropertyName = "id")]
@@ -99,14 +99,14 @@ Voici un extrait de code montrant comment définir la date d’expiration de la 
         [JsonProperty(PropertyName="cid")]
         public string CustomerId { get; set; }
         
-        // used to set expiration policy
+        // used tooset expiration policy
         [JsonProperty(PropertyName = "ttl", NullValueHandling = NullValueHandling.Ignore)]
         public int? TimeToLive { get; set; }
         
         //...
     }
     
-    // Set the value to the expiration in seconds
+    // Set hello value toohello expiration in seconds
     SalesOrder salesOrder = new SalesOrder
     {
         Id = "SO05",
@@ -116,31 +116,31 @@ Voici un extrait de code montrant comment définir la date d’expiration de la 
 
 
 ## <a name="extending-ttl-on-an-existing-document"></a>Extension de la TTL sur un document existant
-Vous pouvez réinitialiser la TTL d’un document en effectuant une opération d’écriture quelconque sur le document. Cela définit le champ `_ts` selon l’heure actuelle. Le compte à rebours jusqu’à l’expiration du document, tel que défini par la `ttl`, recommence. Si vous souhaitez modifier la `ttl` d’un document, vous pouvez mettre à jour le champ comme n’importe quel autre champ définissable.
+Vous pouvez réinitialiser hello durée de vie d’un document par toute opération d’écriture sur le document de hello. Cette opération définira hello `_ts` toohello heure actuelle et hello du compte à rebours toohello document d’expiration, telle que définie par hello `ttl`, commencera à nouveau. Si vous le souhaitez toochange hello `ttl` d’un document, vous pouvez mettre à jour les champs hello comme vous pouvez le faire avec n’importe quel autre champ définissable.
 
     response = await client.ReadDocumentAsync(
         "/dbs/salesdb/colls/orders/docs/SO05"), 
         new RequestOptions { PartitionKey = new PartitionKey("CO18009186470") });
     
     Document readDocument = response.Resource;
-    readDocument.TimeToLive = 60 * 30 * 30; // update time to live
+    readDocument.TimeToLive = 60 * 30 * 30; // update time toolive
     
     response = await client.ReplaceDocumentAsync(salesOrder);
 
 ## <a name="removing-ttl-from-a-document"></a>Suppression de la TTL d’un document
-Si une TTL a été définie sur un document et que vous ne souhaitez plus que ce document expire, vous pouvez extraire le document, supprimer le champ TTL et replacer le document sur le serveur. Lorsque le champ TTL est supprimé du document, la valeur par défaut de la collection est appliquée. Pour éviter qu’un document n’expire et n’hérite de la collection, vous devez définir la valeur de TTL sur -1.
+Si une durée de vie a été définie sur un document et que vous ne voulez plus que tooexpire de document, puis vous pouvez extraire hello du document, supprimez le champ de durée de vie hello et remplacer document hello sur le serveur de hello. Lorsque le champ de durée de vie hello est supprimé à partir du document de hello, valeur par défaut de hello de collection de hello est appliquée. toostop un document à partir de la date d’expiration et ne hérite pas de collection de hello, vous devez tooset hello TTL valeur trop-1.
 
     response = await client.ReadDocumentAsync(
         "/dbs/salesdb/colls/orders/docs/SO05"), 
         new RequestOptions { PartitionKey = new PartitionKey("CO18009186470") });
     
     Document readDocument = response.Resource;
-    readDocument.TimeToLive = null; // inherit the default TTL of the collection
+    readDocument.TimeToLive = null; // inherit hello default TTL of hello collection
     
     response = await client.ReplaceDocumentAsync(salesOrder);
 
 ## <a name="disabling-ttl"></a>Désactivation de la TTL
-Pour désactiver la TTL entièrement sur une collection et arrêter la recherche de documents expirés par le processus en arrière-plan, vous devez supprimer la propriété DefaultTTL de la collection. Supprimer cette propriété ne revient pas à la définir sur -1. Si vous la définissez sur -1, les nouveaux documents ajoutés à la collection auront une durée de vie infinie. Cependant, vous pouvez la remplacer sur des documents spécifiques de la collection. Si vous supprimez cette propriété de la collection entièrement, aucun document n’expirera, même si une valeur par défaut précédente a été explicitement remplacée sur certains documents.
+toodisable TTL entièrement sur une collection et un arrière-plan de hello arrêt du processus de recherche des documents ayant expirés, propriété DefaultTTL hello collection de hello doit être supprimée. La suppression de cette propriété est différente de la définition de trop-1. Définition de nouveaux documents trop-1 signifie ajouté toohello collection se trouvera indéfiniment, mais vous pouvez la remplacer sur des documents spécifiques dans la collection de hello. Suppression de cette propriété entièrement à partir de la collection de hello signifie qu’aucun document n’expire, même si les documents qui ont le substituer explicitement une valeur par défaut précédente.
 
     DocumentCollection collection = await client.ReadDocumentCollectionAsync("/dbs/salesdb/colls/orders");
     
@@ -153,24 +153,24 @@ Pour désactiver la TTL entièrement sur une collection et arrêter la recherche
 ## <a name="faq"></a>Forum Aux Questions
 **Quel est le coût de la TTL ?**
 
-La définition d’une TTL sur un document n’entraîne aucun coût supplémentaire.
+Il n’existe aucun coût supplémentaire de toosetting une durée de vie d’un document.
 
-**Combien de temps faut-il pour supprimer un document une fois la TTL activée ?**
+**Combien de temps faut-il toodelete mon document une fois hello TTL ?**
 
-Les documents expirent immédiatement quand la durée de vie est activée, et ils ne sont pas accessibles par le biais des opérations CRUD ou des API de requête. 
+les documents Hello ont expiré immédiatement une fois hello durée de vie est activé et n’est plus accessible via CRUD ou les API de requête. 
 
 **La TTL d’un document a-t-elle un impact sur les frais d’unités de requête ?**
 
 Non, il n’y a aucun impact sur les frais d’unités de requête pour les suppressions de documents ayant expiré par le biais de la durée de vie dans Cosmos DB.
 
-**La fonctionnalité TTL s’applique-t-elle uniquement à des documents entiers, ou puis-je faire expirer des valeurs de propriété de document individuelles ?**
+**Fonctionnalité de durée de vie hello seulement s’applique tooentire documents ou puis-je expirer la fonctionnalité les valeurs de propriété de document individuel ?**
 
-La TTL s’applique à l’ensemble du document. Si vous souhaitez faire expirer uniquement une partie d’un document, il est recommandé d’extraire la partie du document principal dans un document distinct « lié », puis d’utiliser la durée de vie sur ce document extrait.
+Durée de vie s’applique toohello ensemble du document. Si vous souhaitez que tooexpire uniquement une partie d’un document, puis il est recommandée que vous extrayez partie de hello hello principal du document dans tooa de document « lié » distinct et ensuite utilisez TTL sur ce document extrait.
 
-**La fonction TTL impose-t-elle des exigences d’indexation spécifiques ?**
+**Fonctionnalité de durée de vie hello a-t-il des exigences d’indexation spécifiques ?**
 
-Oui. La collection doit avoir une [stratégie d’indexation](indexing-policies.md) définie sur Différée ou Cohérente. Une erreur se produira si vous tentez de définir le paramètre DefaultTTL sur une collection dont l’indexation est définie sur Aucune et si vous essayez de désactiver l’indexation sur une collection dont le paramètre DefaultTTL est déjà défini.
+Oui. la collection Hello doit comporter [l’indexation de jeu de stratégie](indexing-policies.md) tooeither cohérente ou Lazy. La tentative de tooset DefaultTTL sur une collection à l’indexation de jeu tooNone entraîne une erreur, ainsi que lors de la tentative de tooturn désactiver l’indexation dans une collection ayant un DefaultTTL est déjà défini.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Pour en savoir plus sur Azure Cosmos DB, consultez la page de [*documentation*](https://azure.microsoft.com/documentation/services/cosmos-db/) du service.
+toolearn savoir plus sur la base de données Azure Cosmos, consultez toohello service [ *documentation* ](https://azure.microsoft.com/documentation/services/cosmos-db/) page.
 

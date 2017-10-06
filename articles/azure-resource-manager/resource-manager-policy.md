@@ -1,6 +1,6 @@
 ---
-title: "Stratégies de ressources Azure | Microsoft Docs"
-description: "Explique comment utiliser les stratégies d’Azure Resource Manager afin de garantir la définition de propriétés de ressource cohérentes pendant le déploiement. Les stratégies peuvent être appliquées au niveau de l’abonnement ou des groupes de ressources."
+title: "stratégies de ressources aaaAzure | Documents Microsoft"
+description: "Décrit comment les propriétés de ressource cohérent tooensure toouse Azure Resource Manager stratégies sont définies au cours du déploiement. Les stratégies peuvent être appliquées à des groupes d’abonnement ou une ressource hello."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,42 +14,42 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/02/2017
 ms.author: tomfitz
-ms.openlocfilehash: 0ee2624f45a1de0c23cae4538a38ae3e302eedd3
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: f1b0bbb5f838f6bb70721e1040ad3eac2d881cea
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="resource-policy-overview"></a>Vue d’ensemble des stratégies de ressources
-Les stratégies de ressources permettent d’établir des conventions pour les ressources de votre organisation. En définissant des conventions, vous pouvez contrôler les coûts et gérer plus facilement vos ressources. Par exemple, vous pouvez spécifier que seuls certains types de machines virtuelles sont autorisés. Vous pouvez aussi exiger que toutes les ressources soient marquées. Toutes les ressources enfants héritent des stratégies. Ainsi, si une stratégie est appliquée à un groupe de ressources, elle est applicable à toutes les ressources appartenant à ce groupe de ressources.
+Stratégies de ressources permettent de conventions tooestablish pour les ressources de votre organisation. En définissant des conventions, vous pouvez contrôler les coûts et gérer plus facilement vos ressources. Par exemple, vous pouvez spécifier que seuls certains types de machines virtuelles sont autorisés. Vous pouvez aussi exiger que toutes les ressources soient marquées. Toutes les ressources enfants héritent des stratégies. Donc, si une stratégie est un groupe de ressources appliquée tooa, ressources de hello tooall applicable dans ce groupe de ressources.
 
-Il y a deux concepts importants à comprendre concernant les stratégies :
+Il existe deux concepts toounderstand, sur les stratégies :
 
-* Définition de stratégie : vous spécifiez à quel moment la stratégie est appliquée et l’action à exécuter.
-* Affectation de stratégie : vous appliquez la définition de stratégie à une étendue (abonnement ou groupe de ressources).
+* définition de stratégie - décrivent lorsque hello appliquée et le tootake d’action
+* attribution de stratégie - que vous appliquez étendue tooa définition hello de stratégie (abonnement ou groupe de ressources)
 
-Cette rubrique porte sur la définition de stratégie. Pour plus d’informations sur l’affectation des stratégies, consultez [Utiliser le portail Azure pour attribuer et gérer les stratégies de ressources](resource-manager-policy-portal.md) ou [Attribuer et gérer les stratégies de ressources via un script](resource-manager-policy-create-assign.md).
+Cette rubrique porte sur la définition de stratégie. Pour plus d’informations sur l’attribution de stratégie, consultez [tooassign de portail utilisez Azure et de gérer les stratégies de ressources](resource-manager-policy-portal.md) ou [affecter et gérer des stratégies dans le script](resource-manager-policy-create-assign.md).
 
 Les stratégies sont évaluées lors de la création et de la mise à jour des ressources (opérations PUT et PATCH).
 
 > [!NOTE]
-> Actuellement, la stratégie n'évalue pas les types de ressources qui ne prennent pas en charge les balises, le type et l'emplacement, par exemple, le type de ressource Microsoft.Resources/deployments. Cette prise en charge sera ajoutée prochainement. Pour éviter des problèmes de compatibilité descendante, vous devriez spécifier explicitement le type lors de la création de stratégies. Par exemple, une stratégie de balises sans spécification des types est appliquée à tous les types. Dans ce cas, le déploiement d’un modèle risque d’échouer s’il existe une ressource imbriquée ne prenant pas en charge les balises, et le type de ressource du déploiement sera ajouté à l’évaluation de la stratégie. 
+> Actuellement, la stratégie n’évalue pas les types de ressources qui ne prennent pas en charge les balises, type et emplacement, par exemple, type de ressource Microsoft.Resources/deployments hello. Cette prise en charge sera ajoutée prochainement. tooavoid des problèmes de compatibilité descendante, vous devez spécifier explicitement le type lors de la création de stratégies. Par exemple, une stratégie de balises sans spécification des types est appliquée à tous les types. Dans ce cas, un déploiement de modèle peut échouer s’il existe une ressource imbriquée qui ne prennent pas en charge les balises, et type de ressource de déploiement hello a été ajouté à l’évaluation toopolicy. 
 > 
 > 
 
 ## <a name="how-is-it-different-from-rbac"></a>Quelle est la différence avec RBAC ?
-Il existe quelques différences importantes entre la stratégie et le contrôle d’accès en fonction du rôle (RBAC). RBAC porte sur les actions des **utilisateurs** dans différentes étendues. Par exemple, le rôle de contributeur vous est attribué pour un groupe de ressources dans l’étendue de votre choix, ce qui vous permet d’apporter des modifications à ce groupe de ressources. La stratégie se focalise sur les propriétés des **ressources** pendant le déploiement. Par exemple, vous pouvez utiliser des stratégies pour contrôler les types de ressources qui peuvent être approvisionnées. Vous pouvez aussi restreindre les emplacements auxquels les ressources peuvent être approvisionnées. Contrairement à RBAC, la stratégie est, par défaut, un système explicite d'autorisation et de refus. 
+Il existe quelques différences importantes entre la stratégie et le contrôle d’accès en fonction du rôle (RBAC). RBAC porte sur les actions des **utilisateurs** dans différentes étendues. Par exemple, vous sont ajoutés toohello rôle de collaborateur pour un groupe de ressources de la portée de hello souhaité pour vous permettre de groupe de ressources toothat de modifications. La stratégie se focalise sur les propriétés des **ressources** pendant le déploiement. Par exemple, via des stratégies, vous pouvez contrôler les types de hello des ressources qui peuvent être configurées. Ou bien, vous pouvez restreindre les emplacements de hello dans lequel les ressources hello peuvent être configurés. Contrairement à RBAC, la stratégie est, par défaut, un système explicite d'autorisation et de refus. 
 
-Pour utiliser des stratégies, vous devez vous authentifier au moyen de RBAC. Plus précisément, votre compte a besoin de :
+stratégies de toouse, vous devez être authentifié au moyen de RBAC. Plus précisément, votre compte a besoin de :
 
-* l’autorisation `Microsoft.Authorization/policydefinitions/write` pour définir une stratégie ;
-* l’autorisation `Microsoft.Authorization/policyassignments/write` pour affecter une stratégie. 
+* `Microsoft.Authorization/policydefinitions/write`autorisation toodefine une stratégie
+* `Microsoft.Authorization/policyassignments/write`autorisation tooassign une stratégie 
 
-Ces autorisations ne sont pas incluses dans le rôle **Contributeur**.
+Ces autorisations ne sont pas incluses dans hello **collaborateur** rôle.
 
 ## <a name="built-in-policies"></a>Stratégies prédéfinies
 
-Azure fournit certaines définitions de stratégie intégrées qui peuvent réduire le nombre de stratégies à définir. Avant de procéder à des définitions de stratégie, vous devez vous demander si une stratégie intégrée fournit déjà la définition dont vous avez besoin. Les définitions de stratégie intégrée sont les suivantes :
+Azure fournit des définitions de stratégie intégrée qui peuvent réduire hello nombre de stratégies, vous avez toodefine. Avant de procéder à des définitions de stratégie, vous devez envisager si une stratégie intégrée fournit déjà définition hello que nécessaire. les définitions de stratégie intégrée Hello sont :
 
 * Emplacements autorisés
 * Types de ressources autorisés
@@ -61,10 +61,10 @@ Azure fournit certaines définitions de stratégie intégrées qui peuvent rédu
 * Nécessitent SQL Server version 12.0
 * Nécessitent le chiffrement du compte de stockage
 
-Vous pouvez affecter l’une de ces stratégies par le biais du [portail](resource-manager-policy-portal.md), de [PowerShell](resource-manager-policy-create-assign.md#powershell) ou d’[Azure CLI](resource-manager-policy-create-assign.md#azure-cli).
+Vous pouvez affecter une de ces stratégies via hello [portal](resource-manager-policy-portal.md), [PowerShell](resource-manager-policy-create-assign.md#powershell), ou [CLI d’Azure](resource-manager-policy-create-assign.md#azure-cli).
 
 ## <a name="policy-definition-structure"></a>Structure de la définition de stratégie
-Vous devez utiliser JSON pour créer une définition de stratégie. La définition de stratégie contient des éléments pour :
+Vous utilisez JSON toocreate une définition de stratégie. définition de stratégie Hello contient les éléments de :
 
 * parameters
 * le nom d’affichage
@@ -73,7 +73,7 @@ Vous devez utiliser JSON pour créer une définition de stratégie. La définiti
   * évaluation logique
   * effet
 
-L’exemple suivant illustre une stratégie qui limite les emplacements où les ressources sont déployées :
+Hello, l’exemple suivant illustre une stratégie qui limite où vous déployez des ressources :
 
 ```json
 {
@@ -82,14 +82,14 @@ L’exemple suivant illustre une stratégie qui limite les emplacements où les 
       "allowedLocations": {
         "type": "array",
         "metadata": {
-          "description": "The list of locations that can be specified when deploying resources",
+          "description": "hello list of locations that can be specified when deploying resources",
           "strongType": "location",
           "displayName": "Allowed locations"
         }
       }
     },
     "displayName": "Allowed locations",
-    "description": "This policy enables you to restrict the locations your organization can specify when deploying resources.",
+    "description": "This policy enables you toorestrict hello locations your organization can specify when deploying resources.",
     "policyRule": {
       "if": {
         "not": {
@@ -106,7 +106,7 @@ L’exemple suivant illustre une stratégie qui limite les emplacements où les 
 ```
 
 ## <a name="parameters"></a>Paramètres
-Les paramètres permettent de simplifier la gestion des stratégies en réduisant le nombre de définitions de stratégies. Vous définissez une stratégie pour une propriété de ressource (vous limitez par exemple les emplacements où les ressources peuvent être déployées) et incluez des paramètres dans la définition. Ensuite, vous réutilisez cette définition de stratégie pour différents scénarios en transmettant différentes valeurs (vous spécifiez par exemple un ensemble d’emplacements pour un abonnement) au moment de l’affectation de la stratégie.
+À l’aide des paramètres permet de simplifier la gestion de stratégie en réduisant le nombre de hello de définitions de stratégie. Vous définissez une stratégie pour une propriété de ressource (par exemple, la limitation des emplacements de hello où les ressources peuvent être déployés) et incluez des paramètres dans la définition de hello. Ensuite, vous réutilisez cette définition de stratégie pour différents scénarios en passant des valeurs différentes (par exemple, la spécification d’un ensemble d’emplacements pour un abonnement) lorsque attribution de stratégie de hello.
 
 Vous déclarez des paramètres lorsque vous créez des définitions de stratégies.
 
@@ -115,16 +115,16 @@ Vous déclarez des paramètres lorsque vous créez des définitions de stratégi
   "allowedLocations": {
     "type": "array",
     "metadata": {
-      "description": "The list of allowed locations for resources.",
+      "description": "hello list of allowed locations for resources.",
       "displayName": "Allowed locations"
     }
   }
 }
 ```
 
-Le type d’un paramètre peut être une chaîne ou un tableau. La propriété de métadonnées est utilisée pour des outils comme le Portail Azure pour afficher des informations conviviales. 
+type Hello d’un paramètre peut être une chaîne ou le tableau. propriété de métadonnées Hello est utilisée pour les outils, tels que les informations conviviales toodisplay portail Azure. 
 
-Dans la règle de stratégie, vous référencez des paramètres avec la syntaxe suivante : 
+Dans la règle de stratégie hello, vous faites référence aux paramètres hello selon la syntaxe : 
 
 ```json
 { 
@@ -135,11 +135,11 @@ Dans la règle de stratégie, vous référencez des paramètres avec la syntaxe 
 
 ## <a name="display-name-and-description"></a>Nom d’affichage et description
 
-Vous utilisez **displayName** et **description** pour distinguer la définition de stratégie et préciser le contexte d’utilisation.
+Vous utilisez hello **displayName** et **description** tooidentify hello de définition de la stratégie et fournissent un contexte pour lorsqu’il est utilisé.
 
 ## <a name="policy-rule"></a>Règle de stratégie
 
-La règle de stratégie se compose de blocs **if** et **then**. Dans le bloc **if**, vous définissez une ou plusieurs conditions qui spécifient à quel moment la stratégie est mise en œuvre. Vous pouvez appliquer des opérateurs logiques à ces conditions pour définir avec précision le scénario d’une stratégie. Dans le bloc **then**, vous définissez l’effet qui se produit lorsque les conditions de **si** sont remplies.
+règle de stratégie Hello se compose de **si** et **puis** blocs. Bonjour **si** bloc, vous définissez une ou plusieurs conditions qui spécifient quand la stratégie de hello est appliquée. Vous pouvez appliquer des conditions de toothese d’opérateurs logiques tooprecisely définir scénario hello pour une stratégie. Bonjour **puis** bloc, vous définissez effet hello lorsque hello **si** conditions sont remplies.
 
 ```json
 {
@@ -153,15 +153,15 @@ La règle de stratégie se compose de blocs **if** et **then**. Dans le bloc **i
 ```
 
 ### <a name="logical-operators"></a>Opérateurs logiques
-Les opérateurs logiques pris en charge sont les suivants :
+les opérateurs logiques Hello pris en charge sont :
 
 * `"not": {condition  or operator}`
 * `"allOf": [{condition or operator},{condition or operator}]`
 * `"anyOf": [{condition or operator},{condition or operator}]`
 
-La syntaxe **not** inverse le résultat de la condition. La syntaxe **allOf** (semblable à l’opération logique **And**) nécessite que toutes les conditions soient remplies. La syntaxe **anyOf** (semblable à l’opération logique **Of**) nécessite qu’au moins une des conditions soit remplie.
+Hello **pas** syntaxe inverse le résultat de hello de condition de hello. Hello **tous** syntaxe (toohello similaire logique **et** opération) nécessite le vrai de toobe toutes les conditions. Hello **anyOf** syntaxe (toohello similaire logique **ou** opération) nécessite un ou plusieurs conditions toobe la valeur true.
 
-Vous pouvez imbriquer des opérateurs logiques. L’exemple suivant illustre une opération **not** imbriquée dans une opération **allOf**. 
+Vous pouvez imbriquer des opérateurs logiques. Hello suivant montre l’exemple un **pas** opération qui est imbriquée dans une **tous** opération. 
 
 ```json
 "if": {
@@ -181,7 +181,7 @@ Vous pouvez imbriquer des opérateurs logiques. L’exemple suivant illustre une
 ```
 
 ### <a name="conditions"></a>Conditions
-La condition évalue si un **champ** répond à certains critères. Les conditions prises en charge sont les suivantes :
+condition de Hello évalue si un **champ** répond à certains critères. conditions de Hello pris en charge sont :
 
 * `"equals": "value"`
 * `"like": "value"`
@@ -191,14 +191,14 @@ La condition évalue si un **champ** répond à certains critères. Les conditio
 * `"containsKey": "keyName"`
 * `"exists": "bool"`
 
-Lorsque vous utilisez la condition **like**, vous pouvez utiliser un caractère générique (*) dans la valeur.
+Lorsque vous utilisez hello **comme** condition, vous pouvez fournir un caractère générique (*) dans la valeur de hello.
 
-Lorsque vous utilisez la condition de **correspondance**, indiquez `#` pour représenter un chiffre, `?` pour une lettre et tout autre caractère pour représenter ce caractère réel. Pour obtenir des exemples, consultez [Appliquer des stratégies de ressources pour les noms et le texte](resource-manager-policy-naming-convention.md).
+Lorsque vous utilisez hello **correspond à** de condition, fournir `#` toorepresent un chiffre, `?` pour une lettre, ainsi que tout autre caractère toorepresent ce caractère réel. Pour obtenir des exemples, consultez [Appliquer des stratégies de ressources pour les noms et le texte](resource-manager-policy-naming-convention.md).
 
 ### <a name="fields"></a>Champs
-Les conditions sont formées à partir de champs. Un champ représente des propriétés dans la charge utile de la requête de ressource qui est utilisée pour décrire l'état de la ressource.  
+Les conditions sont formées à partir de champs. Un champ représente des propriétés dans la charge utile de demande hello ressource qui est utilisé toodescribe hello état de ressource de hello.  
 
-Les champs suivants sont pris en charge :
+Hello champs qui suivent est pris en charge :
 
 * `name`
 * `kind`
@@ -211,154 +211,154 @@ Les champs suivants sont pris en charge :
 ### <a name="effect"></a>Résultat
 La stratégie prend en charge trois types d’effet : `deny`, `audit` et `append`. 
 
-* **deny** génère un événement dans le journal d’audit et fait échouer la requête.
-* **audit** génère un événement d’avertissement dans le journal d’audit, mais ne fait pas échouer la requête.
-* **append** ajoute l’ensemble de champs défini à la requête. 
+* **Refuser** génère un événement dans le journal d’audit de hello et faire échouer hello demande
+* **Audit** génère un événement d’avertissement dans le journal d’audit, mais n’échoue pas de demande de hello
+* **Ajouter** ajoute ensemble hello défini de champs toohello demande 
 
-Pour **append**, vous devez fournir les détails suivants :
+Pour **ajouter**, vous devez fournir hello les détails suivants :
 
 ```json
 "effect": "append",
 "details": [
   {
     "field": "field name",
-    "value": "value of the field"
+    "value": "value of hello field"
   }
 ]
 ```
 
-La valeur peut être une chaîne ou un objet au format JSON. 
+valeur de Hello peut être une chaîne ou un objet du format JSON. 
 
 ## <a name="aliases"></a>Alias
 
-Les alias de propriété permettent d’accéder aux propriétés spécifiques d’un type de ressource. Les alias permettent de restreindre les valeurs ou les conditions autorisées pour la propriété d’une ressource. Chaque alias correspond aux chemins des différentes versions d’API d’un type de ressource donné. Lors de l’évaluation de la stratégie, le moteur de stratégie obtient le chemin de la propriété de cette version de l’API.
+Vous utilisez des alias tooaccess spécifique de propriétés pour un type de ressource. Les alias autorisent toorestrict les conditions ou les valeurs autorisées pour une propriété sur une ressource. Chaque alias mappe toopaths dans les différentes versions d’API pour un type de ressource donné. Lors de l’évaluation de stratégie, moteur de stratégie hello Obtient le chemin d’accès de propriété hello pour cette version de l’API.
 
 **Microsoft.Cache/Redis**
 
 | Alias | Description |
 | ----- | ----------- |
-| Microsoft.Cache/Redis/enableNonSslPort | Définissez si le port du serveur Redis non-ssl (6379) est activé. |
-| Microsoft.Cache/Redis/shardCount | Définissez le nombre de partitions à créer sur un cache de cluster Premium.  |
-| Microsoft.Cache/Redis/sku.capacity | Définissez la taille du cache Redis à déployer.  |
-| Microsoft.Cache/Redis/sku.family | Définissez la famille de références (SKU) à utiliser. |
-| Microsoft.Cache/Redis/sku.name | Définissez le type de cache Redis à déployer. |
+| Microsoft.Cache/Redis/enableNonSslPort | La valeur indique si de port du serveur de Redis de non-ssl hello (6379) est activée. |
+| Microsoft.Cache/Redis/shardCount | Définir nombre hello de toobe de partitions créée sur un Cache de Cluster Premium.  |
+| Microsoft.Cache/Redis/sku.capacity | Définir la taille hello de hello Redis cache toodeploy.  |
+| Microsoft.Cache/Redis/sku.family | Valeur toouse de famille hello référence (SKU). |
+| Microsoft.Cache/Redis/sku.name | Définir le type hello du Cache Redis toodeploy. |
 
 **Microsoft.Cdn/profiles**
 
 | Alias | Description |
 | ----- | ----------- |
-| Microsoft.CDN/profiles/sku.name | Définissez le nom du niveau tarifaire. |
+| Microsoft.CDN/profiles/sku.name | Hello le nom du niveau tarifaire de hello. |
 
 **Microsoft.Compute/disks**
 
 | Alias | Description |
 | ----- | ----------- |
-| Microsoft.Compute/imageOffer | Définissez l’offre de l’image de plateforme ou de l’image de Place de marché utilisée pour créer la machine virtuelle. |
-| Microsoft.Compute/imagePublisher | Définissez le serveur de publication de l’image de plateforme ou de l’image de Place de marché utilisé pour créer la machine virtuelle. |
-| Microsoft.Compute/imageSku | Définissez la référence SKU de l’image de plateforme ou de l’image de Place de marché utilisée pour créer la machine virtuelle. |
-| Microsoft.Compute/imageVersion | Définissez la version de l’image de plateforme ou de l’image de Place de marché utilisée pour créer la machine virtuelle. |
+| Microsoft.Compute/imageOffer | Offre de hello d’ensemble de l’image de plateforme hello ou une image marketplace utilisé toocreate hello virtual machine. |
+| Microsoft.Compute/imagePublisher | Serveur de publication ensemble hello d’image de plateforme hello ou d’une image marketplace utilisé toocreate hello virtual machine. |
+| Microsoft.Compute/imageSku | Ensemble hello référence (SKU) de l’image de plateforme hello ou une image marketplace utilisé toocreate hello virtual machine. |
+| Microsoft.Compute/imageVersion | Définir la version de l’image de plateforme hello ou une image marketplace hello utilisé toocreate hello virtual machine. |
 
 
 **Microsoft.Compute/virtualMachines**
 
 | Alias | Description |
 | ----- | ----------- |
-| Microsoft.Compute/imageId | Définissez l’identificateur de l’image utilisée pour créer la machine virtuelle. |
-| Microsoft.Compute/imageOffer | Définissez l’offre de l’image de plateforme ou de l’image de Place de marché utilisée pour créer la machine virtuelle. |
-| Microsoft.Compute/imagePublisher | Définissez le serveur de publication de l’image de plateforme ou de l’image de Place de marché utilisé pour créer la machine virtuelle. |
-| Microsoft.Compute/imageSku | Définissez la référence SKU de l’image de plateforme ou de l’image de Place de marché utilisée pour créer la machine virtuelle. |
-| Microsoft.Compute/imageVersion | Définissez la version de l’image de plateforme ou de l’image de Place de marché utilisée pour créer la machine virtuelle. |
-| Microsoft.Compute/licenseType | Définissez si l’image ou le disque est sous licence en local. Cette valeur est utilisée uniquement pour les images qui contiennent le système d’exploitation Windows Server.  |
-| Microsoft.Compute/virtualMachines/imageOffer | Définissez l’offre de l’image de plateforme ou de l’image de Place de marché utilisée pour créer la machine virtuelle. |
-| Microsoft.Compute/virtualMachines/imagePublisher | Définissez le serveur de publication de l’image de plateforme ou de l’image de Place de marché utilisé pour créer la machine virtuelle. |
-| Microsoft.Compute/virtualMachines/imageSku | Définissez la référence SKU de l’image de plateforme ou de l’image de Place de marché utilisée pour créer la machine virtuelle. |
-| Microsoft.Compute/virtualMachines/imageVersion | Définissez la version de l’image de plateforme ou de l’image de Place de marché utilisée pour créer la machine virtuelle. |
-| Microsoft.Compute/virtualMachines/osDisk.Uri | Définissez l’URI du disque dur virtuel. |
-| Microsoft.Compute/virtualMachines/sku.name | Définissez la taille de la machine virtuelle. |
+| Microsoft.Compute/imageId | Définir l’identificateur hello de machine virtuelle de hello image utilisée toocreate hello. |
+| Microsoft.Compute/imageOffer | Offre de hello d’ensemble de l’image de plateforme hello ou une image marketplace utilisé toocreate hello virtual machine. |
+| Microsoft.Compute/imagePublisher | Serveur de publication ensemble hello d’image de plateforme hello ou d’une image marketplace utilisé toocreate hello virtual machine. |
+| Microsoft.Compute/imageSku | Ensemble hello référence (SKU) de l’image de plateforme hello ou une image marketplace utilisé toocreate hello virtual machine. |
+| Microsoft.Compute/imageVersion | Définir la version de l’image de plateforme hello ou une image marketplace hello utilisé toocreate hello virtual machine. |
+| Microsoft.Compute/licenseType | Définir cette image hello ou disque local sous licence. Cette valeur est utilisée uniquement pour les images qui contiennent le système d’exploitation de serveur Windows hello.  |
+| Microsoft.Compute/virtualMachines/imageOffer | Offre de hello d’ensemble de l’image de plateforme hello ou une image marketplace utilisé toocreate hello virtual machine. |
+| Microsoft.Compute/virtualMachines/imagePublisher | Serveur de publication ensemble hello d’image de plateforme hello ou d’une image marketplace utilisé toocreate hello virtual machine. |
+| Microsoft.Compute/virtualMachines/imageSku | Ensemble hello référence (SKU) de l’image de plateforme hello ou une image marketplace utilisé toocreate hello virtual machine. |
+| Microsoft.Compute/virtualMachines/imageVersion | Définir la version de l’image de plateforme hello ou une image marketplace hello utilisé toocreate hello virtual machine. |
+| Microsoft.Compute/virtualMachines/osDisk.Uri | Définir le disque dur virtuel hello URI. |
+| Microsoft.Compute/virtualMachines/sku.name | Définir la taille hello de machine virtuelle de hello. |
 
 **Microsoft.Compute/virtualMachines/extensions**
 
 | Alias | Description |
 | ----- | ----------- |
-| Microsoft.Compute/virtualMachines/extensions/publisher | Définissez le nom du serveur de publication de l’extension. |
-| Microsoft.Compute/virtualMachines/extensions/type | Définissez le type d’extension. |
-| Microsoft.Compute/virtualMachines/extensions/typeHandlerVersion | Définissez la version de l’extension. |
+| Microsoft.Compute/virtualMachines/extensions/publisher | Hello le nom du serveur de publication de l’extension hello. |
+| Microsoft.Compute/virtualMachines/extensions/type | Définir le type hello d’extension. |
+| Microsoft.Compute/virtualMachines/extensions/typeHandlerVersion | Définissez la version hello d’extension de hello. |
 
 **Microsoft.Compute/virtualMachineScaleSets**
 
 | Alias | Description |
 | ----- | ----------- |
-| Microsoft.Compute/imageId | Définissez l’identificateur de l’image utilisée pour créer la machine virtuelle. |
-| Microsoft.Compute/imageOffer | Définissez l’offre de l’image de plateforme ou de l’image de Place de marché utilisée pour créer la machine virtuelle. |
-| Microsoft.Compute/imagePublisher | Définissez le serveur de publication de l’image de plateforme ou de l’image de Place de marché utilisé pour créer la machine virtuelle. |
-| Microsoft.Compute/imageSku | Définissez la référence SKU de l’image de plateforme ou de l’image de Place de marché utilisée pour créer la machine virtuelle. |
-| Microsoft.Compute/imageVersion | Définissez la version de l’image de plateforme ou de l’image de Place de marché utilisée pour créer la machine virtuelle. |
-| Microsoft.Compute/licenseType | Définissez si l’image ou le disque est sous licence en local. Cette valeur est utilisée uniquement pour les images qui contiennent le système d’exploitation Windows Server. |
-| Microsoft.Compute/VirtualMachineScaleSets/computerNamePrefix | Définissez le préfixe du nom de l’ordinateur pour toutes les machines virtuelles dans le groupe identique. |
-| Microsoft.Compute/VirtualMachineScaleSets/osdisk.imageUrl | Définisez l’URI de blob pour l’image utilisateur. |
-| Microsoft.Compute/VirtualMachineScaleSets/osdisk.vhdContainers | Définissez les URL de conteneur utilisées afin de stocker les disques du système d’exploitation pour le groupe identique. |
-| Microsoft.Compute/VirtualMachineScaleSets/sku.name | Définissez la taille des machines virtuelles dans un groupe identique. |
-| Microsoft.Compute/VirtualMachineScaleSets/sku.tier | Définissez le niveau des machines virtuelles dans un groupe identique. |
+| Microsoft.Compute/imageId | Définir l’identificateur hello de machine virtuelle de hello image utilisée toocreate hello. |
+| Microsoft.Compute/imageOffer | Offre de hello d’ensemble de l’image de plateforme hello ou une image marketplace utilisé toocreate hello virtual machine. |
+| Microsoft.Compute/imagePublisher | Serveur de publication ensemble hello d’image de plateforme hello ou d’une image marketplace utilisé toocreate hello virtual machine. |
+| Microsoft.Compute/imageSku | Ensemble hello référence (SKU) de l’image de plateforme hello ou une image marketplace utilisé toocreate hello virtual machine. |
+| Microsoft.Compute/imageVersion | Définir la version de l’image de plateforme hello ou une image marketplace hello utilisé toocreate hello virtual machine. |
+| Microsoft.Compute/licenseType | Définir cette image hello ou disque local sous licence. Cette valeur est utilisée uniquement pour les images qui contiennent le système d’exploitation de serveur Windows hello. |
+| Microsoft.Compute/VirtualMachineScaleSets/computerNamePrefix | Définir le préfixe du nom d’ordinateur hello pour tous les ordinateurs virtuels hello dans un ensemble d’échelle hello. |
+| Microsoft.Compute/VirtualMachineScaleSets/osdisk.imageUrl | Ensemble hello URI d’objet blob d’image de l’utilisateur. |
+| Microsoft.Compute/VirtualMachineScaleSets/osdisk.vhdContainers | Définir les URL du conteneur hello qui sont des disques de système d’exploitation toostore utilisé pour l’ensemble d’échelle hello. |
+| Microsoft.Compute/VirtualMachineScaleSets/sku.name | Définir la taille hello des machines virtuelles dans un ensemble d’échelle. |
+| Microsoft.Compute/VirtualMachineScaleSets/sku.tier | Définir le niveau hello des ordinateurs virtuels dans un ensemble d’échelle. |
   
 **Microsoft.Network/applicationGateways**
 
 | Alias | Description |
 | ----- | ----------- |
-| Microsoft.Network/applicationGateways/sku.name | Définissez la taille de la passerelle. |
+| Microsoft.Network/applicationGateways/sku.name | Définir la taille hello de passerelle de hello. |
 
 **Microsoft.Network/virtualNetworkGateways**
 
 | Alias | Description |
 | ----- | ----------- |
-| Microsoft.Network/virtualNetworkGateways/gatewayType | Définissez le type de cette passerelle de réseau virtuel. |
-| Microsoft.Network/virtualNetworkGateways/sku.name | Définissez la référence SKU de la passerelle. |
+| Microsoft.Network/virtualNetworkGateways/gatewayType | Valeur de type hello de cette passerelle de réseau virtuel. |
+| Microsoft.Network/virtualNetworkGateways/sku.name | Définir le nom de référence (SKU) de passerelle hello. |
 
 **Microsoft.Sql/servers**
 
 | Alias | Description |
 | ----- | ----------- |
-| Microsoft.Sql/servers/version | Définissez la version du serveur. |
+| Microsoft.Sql/servers/version | Définissez la version hello du serveur de hello. |
 
 **Microsoft.Sql/databases**
 
 | Alias | Description |
 | ----- | ----------- |
-| Microsoft.Sql/servers/databases/edition | Définissez la modification de la base de données. |
-| Microsoft.Sql/servers/databases/elasticPoolName | Définissez le nom du pool élastique dans lequel se trouve la base de données. |
-| Microsoft.Sql/servers/databases/requestedServiceObjectiveId | Définissez l’ID d’objectif de niveau de service configuré de la base de données. |
-| Microsoft.Sql/servers/databases/requestedServiceObjectiveName | Définissez le nom de l’objectif de niveau de service configuré de la base de données.  |
+| Microsoft.Sql/servers/databases/edition | Définir edition hello de base de données hello. |
+| Microsoft.Sql/servers/databases/elasticPoolName | Nom de base de données hello pool élastique hello hello est dans. |
+| Microsoft.Sql/servers/databases/requestedServiceObjectiveId | Ensemble hello configuré ID objectif de niveau de service de base de données hello. |
+| Microsoft.Sql/servers/databases/requestedServiceObjectiveName | Nom du jeu hello Hello configuré objectif de niveau de service de base de données hello.  |
 
 **Microsoft.Sql/elasticpools**
 
 | Alias | Description |
 | ----- | ----------- |
-| servers/elasticpools | Microsoft.Sql/servers/elasticPools/dtu | Définissez la valeur DTU partagée totale pour le pool élastique de la base de données. |
-| servers/elasticpools | Microsoft.Sql/servers/elasticPools/edition | Définissez la modification du pool élastique. |
+| servers/elasticpools | Microsoft.Sql/servers/elasticPools/dtu | Nombre total de SET hello partagé DTU pour le pool élastique de base de données hello. |
+| servers/elasticpools | Microsoft.Sql/servers/elasticPools/edition | Définir edition hello du pool élastique de hello. |
 
 **Microsoft.Storage/storageAccounts**
 
 | Alias | Description |
 | ----- | ----------- |
-| Microsoft.Storage/storageAccounts/accessTier | Définissez le niveau d’accès utilisé pour la facturation. |
-| Microsoft.Storage/storageAccounts/accountType | Définissez le nom de la référence SKU. |
-| Microsoft.Storage/storageAccounts/enableBlobEncryption | Définissez si le service chiffre les données lorsqu’elles sont stockées dans le service de stockage d’objets blob. |
-| Microsoft.Storage/storageAccounts/enableFileEncryption | Définissez si le service chiffre les données lorsqu’elles sont stockées dans le service de stockage de fichiers. |
-| Microsoft.Storage/storageAccounts/sku.name | Définissez le nom de la référence SKU. |
-| Microsoft.Storage/storageAccounts/supportsHttpsTrafficOnly | Indiquez que seul le trafic https est autorisé vers le service de stockage. |
+| Microsoft.Storage/storageAccounts/accessTier | Niveau d’accès hello jeu utilisé pour la facturation. |
+| Microsoft.Storage/storageAccounts/accountType | Définir le nom de référence (SKU) hello. |
+| Microsoft.Storage/storageAccounts/enableBlobEncryption | Définir si le service de hello chiffre les données de hello tel qu’il est stocké dans le service de stockage d’objets blob hello. |
+| Microsoft.Storage/storageAccounts/enableFileEncryption | Définir si le service de hello chiffre les données de hello tel qu’il est stocké dans le service de stockage hello. |
+| Microsoft.Storage/storageAccounts/sku.name | Définir le nom de référence (SKU) hello. |
+| Microsoft.Storage/storageAccounts/supportsHttpsTrafficOnly | Définir les https uniquement tooallow service toostorage du trafic. |
 
 
 ## <a name="policy-examples"></a>Exemples de stratégies
 
-Les rubriques suivantes contiennent des exemples de stratégies :
+Hello rubriques suivantes contiennent des exemples de stratégie :
 
 * Pour obtenir des exemples de stratégies de balises, consultez [Apply resource policies for tags](resource-manager-policy-tags.md) (Appliquer des stratégies de ressources pour les balises).
 * Pour obtenir des exemples de modèles d’affectation de noms et de texte, consultez [Appliquer des stratégies de ressources pour les noms et le texte](resource-manager-policy-naming-convention.md).
-* Pour obtenir des exemples de stratégies de balises, consultez [Apply resource policies to storage accounts](resource-manager-policy-storage.md) (Appliquer des stratégies de ressources aux comptes de stockage).
-* Pour obtenir des exemples de stratégies de machine virtuelle, consultez [Apply resource policies to Linux VMs](../virtual-machines/linux/policy.md?toc=%2fazure%2fazure-resource-manager%2ftoc.json) (Appliquer des stratégies de ressources aux machines virtuelles Linux) et [Apply resource policies to Windows VMs](../virtual-machines/windows/policy.md?toc=%2fazure%2fazure-resource-manager%2ftoc.json) (Appliquer des stratégies de ressources aux machines virtuelles Windows).
+* Pour obtenir des exemples de stratégies de stockage, consultez [appliquer les comptes de ressources stratégies toostorage](resource-manager-policy-storage.md).
+* Pour obtenir des exemples de stratégies de l’ordinateur virtuel, consultez [appliquer des stratégies de ressources tooLinux machines virtuelles](../virtual-machines/linux/policy.md?toc=%2fazure%2fazure-resource-manager%2ftoc.json) et [appliquer des stratégies de ressources tooWindows machines virtuelles](../virtual-machines/windows/policy.md?toc=%2fazure%2fazure-resource-manager%2ftoc.json)
 
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Après avoir défini une règle de stratégie, affectez-la à une étendue. Pour affecter des stratégies via le portail, consultez [Utiliser le portail Azure pour affecter et gérer les stratégies de ressources](resource-manager-policy-portal.md). Pour affecter des stratégies via l’API REST, PowerShell ou Azure CLI, consultez [Affecter et gérer des stratégies via un script](resource-manager-policy-create-assign.md).
-* Pour obtenir des conseils sur l’utilisation de Resource Manager par les entreprises pour gérer efficacement les abonnements, voir [Structure d’Azure Enterprise - Gouvernance normative de l’abonnement](resource-manager-subscription-governance.md).
-* Le schéma de stratégie est publié à l’adresse [http://schema.management.azure.com/schemas/2015-10-01-preview/policyDefinition.json](http://schema.management.azure.com/schemas/2015-10-01-preview/policyDefinition.json). 
+* Après avoir défini une règle de stratégie, attribuez-lui tooa étendue. stratégies tooassign via le portail de hello, voir [tooassign de portail utilisez Azure et de gérer les stratégies de ressources](resource-manager-policy-portal.md). stratégies tooassign via l’API REST, PowerShell ou CLI d’Azure, consultez [affecter et gérer des stratégies dans le script](resource-manager-policy-create-assign.md).
+* Pour obtenir des conseils comment les entreprises peuvent utiliser le Gestionnaire de ressources tooeffectively gérer les abonnements, consultez [une vue de structure Azure enterprise - gouvernance de l’abonnement normative](resource-manager-subscription-governance.md).
+* schéma de stratégie Hello est publiée à [http://schema.management.azure.com/schemas/2015-10-01-preview/policyDefinition.json](http://schema.management.azure.com/schemas/2015-10-01-preview/policyDefinition.json). 
 

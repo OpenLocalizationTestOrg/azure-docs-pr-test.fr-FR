@@ -1,6 +1,6 @@
 ---
-title: "Fonctions de modèle Azure Resource Manager - chaîne | Microsoft Docs"
-description: "Décrit les fonctions à utiliser dans un modèle Azure Resource Manager pour travailler avec des chaînes."
+title: "fonctions de modèle de gestionnaire de ressources aaaAzure - chaîne | Documents Microsoft"
+description: "Décrit toouse de fonctions hello dans un toowork de modèle Azure Resource Manager avec des chaînes."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/01/2017
 ms.author: tomfitz
-ms.openlocfilehash: 3e5c9ca546629f782a3d722b49f5fbaf5147e823
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 27f7f6a52cbe4e9915718184433e92ca92999346
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="string-functions-for-azure-resource-manager-templates"></a>Fonctions de chaînes pour les modèles Azure Resource Manager
 
-Resource Manager fournit les fonctions ci-après pour travailler avec des chaînes de caractères :
+Gestionnaire de ressources fournit hello suivant des fonctions pour manipuler des chaînes :
 
 * [base64](#base64)
 * [base64ToJson](#base64tojson)
@@ -59,21 +59,21 @@ Resource Manager fournit les fonctions ci-après pour travailler avec des chaîn
 ## <a name="base64"></a>base64
 `base64(inputString)`
 
-Retourne la représentation en base 64 de la chaîne d'entrée.
+Retourne hello représentation en base64 de la chaîne d’entrée de hello.
 
 ### <a name="parameters"></a>Paramètres
 
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
-| chaîne_entrée |Oui |string |La valeur à retourner sous la forme d’une représentation en base64. |
+| chaîne_entrée |Oui |string |Bonjour tooreturn de valeur comme une représentation en base64. |
 
 ### <a name="return-value"></a>Valeur de retour
 
-Une chaîne contenant la représentation en base64.
+Chaîne contenant la représentation sous forme de hello en base64.
 
 ### <a name="examples"></a>Exemples
 
-L’exemple suivant montre comment utiliser la fonction base64.
+Bonjour à l’exemple suivant montre comment toouse hello base64 (fonction).
 
 ```json
 {
@@ -112,7 +112,7 @@ L’exemple suivant montre comment utiliser la fonction base64.
 }
 ```
 
-La sortie de l’exemple précédent avec les valeurs par défaut se présente comme suit :
+Hello de sortie à partir de hello précédent exemple hello valeurs par défaut est :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
@@ -125,13 +125,13 @@ La sortie de l’exemple précédent avec les valeurs par défaut se présente c
 ## <a name="base64tojson"></a>base64ToJson
 `base64tojson`
 
-Convertit une représentation en base64 en un objet JSON.
+Convertit un objet JSON de tooa de représentation en base64.
 
 ### <a name="parameters"></a>Paramètres
 
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
-| base64Value |Oui |string |La représentation en base64 à convertir en un objet JSON. |
+| base64Value |Oui |string |Hello base64 représentation tooconvert tooa objet JSON. |
 
 ### <a name="return-value"></a>Valeur de retour
 
@@ -139,7 +139,7 @@ Un objet JSON.
 
 ### <a name="examples"></a>Exemples
 
-L’exemple suivant utilise la fonction base64ToJson pour convertir une valeur base64 :
+Hello exemple suivant utilise hello base64ToJson fonction tooconvert une valeur base64 :
 
 ```json
 {
@@ -178,7 +178,7 @@ L’exemple suivant utilise la fonction base64ToJson pour convertir une valeur b
 }
 ```
 
-La sortie de l’exemple précédent avec les valeurs par défaut se présente comme suit :
+Hello de sortie à partir de hello précédent exemple hello valeurs par défaut est :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
@@ -191,21 +191,21 @@ La sortie de l’exemple précédent avec les valeurs par défaut se présente c
 ## <a name="base64tostring"></a>base64ToString
 `base64ToString(base64Value)`
 
-Convertit une représentation en base64 en une chaîne.
+Convertit une chaîne de tooa de représentation en base64.
 
 ### <a name="parameters"></a>Paramètres
 
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
-| base64Value |Oui |string |La représentation en base64 à convertir en une chaîne. |
+| base64Value |Oui |string |Hello représentation tooconvert tooa la chaîne en base64. |
 
 ### <a name="return-value"></a>Valeur de retour
 
-Une chaîne de la valeur base64 convertie.
+Une chaîne de hello convertie valeur base64.
 
 ### <a name="examples"></a>Exemples
 
-L’exemple suivant utilise la fonction base64ToString pour convertir une valeur base64 :
+Hello exemple suivant utilise hello base64ToString fonction tooconvert une valeur base64 :
 
 ```json
 {
@@ -244,7 +244,7 @@ L’exemple suivant utilise la fonction base64ToString pour convertir une valeur
 }
 ```
 
-La sortie de l’exemple précédent avec les valeurs par défaut se présente comme suit :
+Hello de sortie à partir de hello précédent exemple hello valeurs par défaut est :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
@@ -259,13 +259,13 @@ La sortie de l’exemple précédent avec les valeurs par défaut se présente c
 ## <a name="concat"></a>concat
 `concat (arg1, arg2, arg3, ...)`
 
-Combine plusieurs valeurs de chaîne et retourne la chaine concaténée, ou combine plusieurs tableaux et retourne le tableau concaténé.
+Combine plusieurs valeurs de chaîne et retourne la chaîne hello concaténée ou combine plusieurs tableaux et retourne hello concaténée tableau.
 
 ### <a name="parameters"></a>Paramètres
 
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
-| arg1 |Oui |chaîne ou tableau |La première valeur pour la concaténation. |
+| arg1 |Oui |chaîne ou tableau |valeur de la première Hello pour la concaténation. |
 | arguments supplémentaires |Non |string |Valeurs supplémentaires en ordre séquentiel pour la concaténation. |
 
 ### <a name="return-value"></a>Valeur de retour
@@ -273,7 +273,7 @@ Chaîne ou tableau de valeurs concaténées.
 
 ### <a name="examples"></a>Exemples
 
-L’exemple suivant montre comment combiner deux valeurs de chaîne et retourner une chaîne concaténée.
+Bonjour à l’exemple suivant montre comment toocombine deux valeurs de chaîne et retourne une chaîne concaténée.
 
 ```json
 {
@@ -295,13 +295,13 @@ L’exemple suivant montre comment combiner deux valeurs de chaîne et retourner
 }
 ```
 
-La sortie de l’exemple précédent avec les valeurs par défaut se présente comme suit :
+Hello de sortie à partir de hello précédent exemple hello valeurs par défaut est :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
-| concatOutput | String | préfixe-5yj4yjf5mbg72 |
+| concatOutput | String | prefix-5yj4yjf5mbg72 |
 
-L’exemple suivant montre comment combiner deux tableaux.
+Bonjour à l’exemple suivant montre comment toocombine deux tableaux.
 
 ```json
 {
@@ -336,7 +336,7 @@ L’exemple suivant montre comment combiner deux tableaux.
 }
 ```
 
-La sortie de l’exemple précédent avec les valeurs par défaut se présente comme suit :
+Hello de sortie à partir de hello précédent exemple hello valeurs par défaut est :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
@@ -353,16 +353,16 @@ Vérifie si un tableau contient une valeur, un objet contient une clé ou une ch
 
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
-| conteneur |Oui |tableau, objet ou chaîne |La valeur qui contient la valeur à rechercher. |
-| itemToFind |Oui |chaîne ou entier |La valeur à trouver. |
+| conteneur |Oui |tableau, objet ou chaîne |valeur Hello contenant hello valeur toofind. |
+| itemToFind |Oui |chaîne ou entier |Hello toofind de valeur. |
 
 ### <a name="return-value"></a>Valeur de retour
 
-**True** si l’élément est trouvé ; sinon, **False**.
+**True** si l’élément de hello est trouvé ; sinon, **False**.
 
 ### <a name="examples"></a>Exemples
 
-L’exemple suivant montre comment utiliser contains avec différents types :
+Hello suivant montre comment toouse contient différents types :
 
 ```json
 {
@@ -413,7 +413,7 @@ L’exemple suivant montre comment utiliser contains avec différents types :
 }
 ```
 
-La sortie de l’exemple précédent avec les valeurs par défaut se présente comme suit :
+Hello de sortie à partir de hello précédent exemple hello valeurs par défaut est :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
@@ -429,13 +429,13 @@ La sortie de l’exemple précédent avec les valeurs par défaut se présente c
 ## <a name="datauri"></a>dataUri
 `dataUri(stringToConvert)`
 
-Convertit une valeur en un URI de données.
+Convertit des données tooa valeur URI.
 
 ### <a name="parameters"></a>Paramètres
 
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
-| stringToConvert |Oui |string |Valeur à convertir en URI de données. |
+| stringToConvert |Oui |string |valeur tooconvert tooa les données de salutation URI. |
 
 ### <a name="return-value"></a>Valeur de retour
 
@@ -443,7 +443,7 @@ Une chaîne formatée en tant qu’URI de données.
 
 ### <a name="examples"></a>Exemples
 
-L’exemple suivant convertit une valeur en un URI de données et convertit un URI de données en chaîne :
+Bonjour, l’exemple suivant convertit des données tooa valeur URI et convertit une chaîne d’URI tooa de données :
 
 ```json
 {
@@ -473,7 +473,7 @@ L’exemple suivant convertit une valeur en un URI de données et convertit un U
 }
 ```
 
-La sortie de l’exemple précédent avec les valeurs par défaut se présente comme suit :
+Hello de sortie à partir de hello précédent exemple hello valeurs par défaut est :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
@@ -485,21 +485,21 @@ La sortie de l’exemple précédent avec les valeurs par défaut se présente c
 ## <a name="datauritostring"></a>dataUriToString
 `dataUriToString(dataUriToConvert)`
 
-Convertit une valeur formatée en URI de données en chaîne.
+Convertit un URI de données mise en forme de chaîne de valeur tooa.
 
 ### <a name="parameters"></a>Paramètres
 
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
-| dataUriToConvert |Oui |string |Valeur d’URI de données à convertir. |
+| dataUriToConvert |Oui |string |données de salutation tooconvert de valeur d’URI. |
 
 ### <a name="return-value"></a>Valeur de retour
 
-Chaîne contenant la valeur convertie.
+Chaîne contenant le hello de valeur convertie.
 
 ### <a name="examples"></a>Exemples
 
-L’exemple suivant convertit une valeur en un URI de données et convertit un URI de données en chaîne :
+Bonjour, l’exemple suivant convertit des données tooa valeur URI et convertit une chaîne d’URI tooa de données :
 
 ```json
 {
@@ -529,7 +529,7 @@ L’exemple suivant convertit une valeur en un URI de données et convertit un U
 }
 ```
 
-La sortie de l’exemple précédent avec les valeurs par défaut se présente comme suit :
+Hello de sortie à partir de hello précédent exemple hello valeurs par défaut est :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
@@ -547,15 +547,15 @@ Détermine si un tableau, un objet ou une chaîne est vide.
 
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
-| itemToTest |Oui |tableau, objet ou chaîne |Valeur à vérifier pour voir si elle est vide. |
+| itemToTest |Oui |tableau, objet ou chaîne |Bonjour toocheck de valeur s’il est vide. |
 
 ### <a name="return-value"></a>Valeur de retour
 
-Retourne **True** si la valeur est vide ; sinon, **False**.
+Retourne **True** si la valeur de hello est vide ; sinon, **False**.
 
 ### <a name="examples"></a>Exemples
 
-L’exemple suivant vérifie si un tableau, un objet et une chaîne sont vides.
+Bonjour à l’exemple suivant vérifie si un tableau, un objet et une chaîne sont vides.
 
 ```json
 {
@@ -594,7 +594,7 @@ L’exemple suivant vérifie si un tableau, un objet et une chaîne sont vides.
 }
 ```
 
-La sortie de l’exemple précédent avec les valeurs par défaut se présente comme suit :
+Hello de sortie à partir de hello précédent exemple hello valeurs par défaut est :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
@@ -607,22 +607,22 @@ La sortie de l’exemple précédent avec les valeurs par défaut se présente c
 ## <a name="endswith"></a>endsWith
 `endsWith(stringToSearch, stringToFind)`
 
-Détermine si une chaîne se termine par une valeur. La comparaison respecte la casse.
+Détermine si une chaîne se termine par une valeur. comparaison de Hello respecte la casse.
 
 ### <a name="parameters"></a>Paramètres
 
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
-| stringToSearch |Oui |string |La valeur qui contient l’élément à rechercher. |
-| stringToFind |Oui |string |La valeur à trouver. |
+| stringToSearch |Oui |string |valeur Hello contenant hello élément toofind. |
+| stringToFind |Oui |string |Hello toofind de valeur. |
 
 ### <a name="return-value"></a>Valeur de retour
 
-**True** si le ou les derniers caractères de la chaîne correspondent à la valeur ; sinon, **False**.
+**True** si hello dernière ou les caractères de chaîne de hello correspond à hello ; sinon, **False**.
 
 ### <a name="examples"></a>Exemples
 
-L'exemple suivant montre comment utiliser les fonctions startsWith et endsWith :
+Bonjour à l’exemple suivant montre comment toouse hello startsWith et endsWith fonctions :
 
 ```json
 {
@@ -658,7 +658,7 @@ L'exemple suivant montre comment utiliser les fonctions startsWith et endsWith 
 }
 ```
 
-La sortie de l’exemple précédent avec les valeurs par défaut se présente comme suit :
+Hello de sortie à partir de hello précédent exemple hello valeurs par défaut est :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
@@ -674,21 +674,21 @@ La sortie de l’exemple précédent avec les valeurs par défaut se présente c
 ## <a name="first"></a>first
 `first(arg1)`
 
-Retourne le premier caractère de la chaîne ou le premier élément du tableau.
+Retourne hello le premier caractère de la chaîne de hello ou le premier élément du tableau de hello.
 
 ### <a name="parameters"></a>Paramètres
 
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
-| arg1 |Oui |tableau ou chaîne |La valeur permettant de récupérer le premier élément ou caractère. |
+| arg1 |Oui |tableau ou chaîne |premier élément Hello valeur tooretrieve hello ou caractère. |
 
 ### <a name="return-value"></a>Valeur de retour
 
-Chaîne du premier caractère ou type (chaîne, entier, tableau ou objet) du premier élément d’un tableau.
+Chaîne hello premier caractère, ou type hello (string, int, tableau ou objet) de hello premier élément dans un tableau.
 
 ### <a name="examples"></a>Exemples
 
-L’exemple suivant montre comment utiliser la première fonction avec un tableau et une chaîne.
+Hello suivant montre comment toouse hello première fonction avec un tableau et une chaîne.
 
 ```json
 {
@@ -715,7 +715,7 @@ L’exemple suivant montre comment utiliser la première fonction avec un tablea
 }
 ```
 
-La sortie de l’exemple précédent avec les valeurs par défaut se présente comme suit :
+Hello de sortie à partir de hello précédent exemple hello valeurs par défaut est :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
@@ -727,22 +727,22 @@ La sortie de l’exemple précédent avec les valeurs par défaut se présente c
 ## <a name="indexof"></a>indexOf
 `indexOf(stringToSearch, stringToFind)`
 
-Retourne la première position d’une valeur dans une chaîne. La comparaison respecte la casse.
+Retourne hello première position d’une valeur dans une chaîne. comparaison de Hello respecte la casse.
 
 ### <a name="parameters"></a>Paramètres
 
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
-| stringToSearch |Oui |string |La valeur qui contient l’élément à rechercher. |
-| stringToFind |Oui |string |La valeur à trouver. |
+| stringToSearch |Oui |string |valeur Hello contenant hello élément toofind. |
+| stringToFind |Oui |string |Hello toofind de valeur. |
 
 ### <a name="return-value"></a>Valeur de retour
 
-Entier qui représente la position de l’élément à rechercher. La valeur est basée sur zéro. Si l’élément est introuvable, la valeur -1 est retournée.
+Entier qui représente la position de hello de hello élément toofind. valeur de Hello est de base zéro. Si l’élément de hello n’est pas trouvé, -1 est retourné.
 
 ### <a name="examples"></a>Exemples
 
-L'exemple suivant montre comment utiliser les fonctions indexOf et lastIndexOf :
+Bonjour à l’exemple suivant montre comment toouse hello indexOf et lastIndexOf fonctions :
 
 ```json
 {
@@ -774,7 +774,7 @@ L'exemple suivant montre comment utiliser les fonctions indexOf et lastIndexOf :
 }
 ```
 
-La sortie de l’exemple précédent avec les valeurs par défaut se présente comme suit :
+Hello de sortie à partir de hello précédent exemple hello valeurs par défaut est :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
@@ -789,21 +789,21 @@ La sortie de l’exemple précédent avec les valeurs par défaut se présente c
 ## <a name="last"></a>last
 `last (arg1)`
 
-Retourne le dernier caractère de la chaîne ou le dernier élément du tableau.
+Retourne la dernière caractère de chaîne de hello ou hello dernier élément du tableau de hello.
 
 ### <a name="parameters"></a>Paramètres
 
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
-| arg1 |Oui |tableau ou chaîne |La valeur permettant de récupérer le dernier élément ou caractère. |
+| arg1 |Oui |tableau ou chaîne |dernier élément Hello valeur tooretrieve hello ou caractère. |
 
 ### <a name="return-value"></a>Valeur de retour
 
-Chaîne du dernier caractère ou type (chaîne, entier, tableau ou objet) du dernier élément d’un tableau.
+Une chaîne de caractères de dernière hello, ou type hello (string, int, tableau ou objet) de hello dernier élément d’un tableau.
 
 ### <a name="examples"></a>Exemples
 
-L’exemple suivant indique comment utiliser la dernière fonction avec un tableau et une chaîne.
+Hello suivant montre comment toouse hello dernière fonction avec un tableau et une chaîne.
 
 ```json
 {
@@ -830,7 +830,7 @@ L’exemple suivant indique comment utiliser la dernière fonction avec un table
 }
 ```
 
-La sortie de l’exemple précédent avec les valeurs par défaut se présente comme suit :
+Hello de sortie à partir de hello précédent exemple hello valeurs par défaut est :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
@@ -842,22 +842,22 @@ La sortie de l’exemple précédent avec les valeurs par défaut se présente c
 ## <a name="lastindexof"></a>lastIndexOf
 `lastIndexOf(stringToSearch, stringToFind)`
 
-Retourne la dernière position d’une valeur dans une chaîne. La comparaison respecte la casse.
+Retourne hello dernière position d’une valeur dans une chaîne. comparaison de Hello respecte la casse.
 
 ### <a name="parameters"></a>Paramètres
 
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
-| stringToSearch |Oui |string |La valeur qui contient l’élément à rechercher. |
-| stringToFind |Oui |string |La valeur à trouver. |
+| stringToSearch |Oui |string |valeur Hello contenant hello élément toofind. |
+| stringToFind |Oui |string |Hello toofind de valeur. |
 
 ### <a name="return-value"></a>Valeur de retour
 
-Entier qui représente la dernière position de l’élément à rechercher. La valeur est basée sur zéro. Si l’élément est introuvable, la valeur -1 est retournée.
+Entier qui représente la dernière position de hello de hello élément toofind. valeur de Hello est de base zéro. Si l’élément de hello n’est pas trouvé, -1 est retourné.
 
 ### <a name="examples"></a>Exemples
 
-L'exemple suivant montre comment utiliser les fonctions indexOf et lastIndexOf :
+Bonjour à l’exemple suivant montre comment toouse hello indexOf et lastIndexOf fonctions :
 
 ```json
 {
@@ -889,7 +889,7 @@ L'exemple suivant montre comment utiliser les fonctions indexOf et lastIndexOf :
 }
 ```
 
-La sortie de l’exemple précédent avec les valeurs par défaut se présente comme suit :
+Hello de sortie à partir de hello précédent exemple hello valeurs par défaut est :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
@@ -904,13 +904,13 @@ La sortie de l’exemple précédent avec les valeurs par défaut se présente c
 ## <a name="length"></a>length
 `length(string)`
 
-Retourne le nombre de caractères dans une chaîne ou le nombre d’éléments dans un tableau.
+Retourne le nombre hello de caractères dans une chaîne ou les éléments dans un tableau.
 
 ### <a name="parameters"></a>Paramètres
 
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
-| arg1 |Oui |tableau ou chaîne |Tableau à utiliser pour l’obtention du nombre d’éléments, ou chaîne à utiliser pour l’obtention du nombre de caractères. |
+| arg1 |Oui |tableau ou chaîne |Hello toouse de tableau pour l’obtention du nombre de hello d’éléments ou hello toouse de chaîne pour l’obtention du nombre de hello de caractères. |
 
 ### <a name="return-value"></a>Valeur de retour
 
@@ -918,7 +918,7 @@ Un entier.
 
 ### <a name="examples"></a>Exemples
 
-L’exemple suivant montre comment utiliser la longueur avec un tableau et une chaîne :
+Hello suivant montre l’exemple de la longueur de toouse avec un tableau et une chaîne :
 
 ```json
 {
@@ -952,7 +952,7 @@ L’exemple suivant montre comment utiliser la longueur avec un tableau et une c
 }
 ```
 
-La sortie de l’exemple précédent avec les valeurs par défaut se présente comme suit :
+Hello de sortie à partir de hello précédent exemple hello valeurs par défaut est :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
@@ -964,25 +964,25 @@ La sortie de l’exemple précédent avec les valeurs par défaut se présente c
 ## <a name="padleft"></a>padLeft
 `padLeft(valueToPad, totalLength, paddingCharacter)`
 
-Renvoie une chaîne alignée à droite en lui ajoutant des caractères sur la gauche jusqu’à ce que la longueur totale spécifiée ait été atteinte.
+Retourne une chaîne alignée à droite en ajoutant des caractères toohello gauche jusqu'à atteindre la longueur totale spécifiée hello.
 
 ### <a name="parameters"></a>Paramètres
 
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
-| valeur_à_remplir |Oui |chaîne ou entier |Valeur à aligner à droite. |
-| longueur_totale |Oui |int |Nombre total de caractères de la chaîne renvoyée. |
-| caractère_de_remplissage |Non |caractère unique |Caractère de remplissage à insérer sur la gauche jusqu’à ce que la longueur totale soit atteinte. La valeur par défaut est un espace. |
+| valeur_à_remplir |Oui |chaîne ou entier |Hello valeur tooright-aligner. |
+| longueur_totale |Oui |int |Nombre total de Hello de caractères Bonjour a renvoyé la chaîne. |
+| caractère_de_remplissage |Non |caractère unique |Bonjour toouse caractère de gauche-padding jusqu'à ce que la longueur totale hello est atteint. valeur par défaut de Hello est un espace. |
 
-Si la chaîne d’origine est plus longue que le nombre de caractères de remplissage, aucun caractère n’est ajouté.
+Si la chaîne d’origine de hello est plus longue que le nombre de hello de caractères toopad, aucuns caractères ne sont ajoutés.
 
 ### <a name="return-value"></a>Valeur de retour
 
-Chaîne avec au moins le nombre de caractères spécifié.
+Une chaîne avec hello au moins le nombre de caractères spécifiés.
 
 ### <a name="examples"></a>Exemples
 
-L’exemple ci-après indique comment remplir la valeur de paramètre fournie par l’utilisateur avec le caractère zéro jusqu’à atteindre le nombre total de caractères. 
+Bonjour à l’exemple suivant montre comment toopad hello la valeur du paramètre fourni par l’utilisateur en ajoutant hello zéro caractère jusqu'à ce qu’il atteigne hello le nombre total de caractères. 
 
 ```json
 {
@@ -1004,7 +1004,7 @@ L’exemple ci-après indique comment remplir la valeur de paramètre fournie pa
 }
 ```
 
-La sortie de l’exemple précédent avec les valeurs par défaut se présente comme suit :
+Hello de sortie à partir de hello précédent exemple hello valeurs par défaut est :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
@@ -1021,17 +1021,17 @@ Renvoie une nouvelle chaîne dans laquelle toutes les instances d’une chaîne 
 
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
-| chaîne_initiale |Oui |string |La valeur qu’ont toutes les instances d’une chaîne ont été remplacées par une autre. |
-| oldString |Oui |string |Chaîne à supprimer de la chaîne initiale. |
-| newString |Oui |string |Chaîne à ajouter à la place de la chaîne supprimée. |
+| chaîne_initiale |Oui |string |valeur de Hello qui a toutes les instances d’une chaîne remplacée par une autre chaîne. |
+| oldString |Oui |string |Hello chaîne toobe est supprimé de la chaîne d’origine de hello. |
+| newString |Oui |string |tooadd de chaîne Hello à la place de hello supprimé la chaîne. |
 
 ### <a name="return-value"></a>Valeur de retour
 
-Chaîne contenant les caractères remplacés.
+Une chaîne avec hello les caractères remplacés.
 
 ### <a name="examples"></a>Exemples
 
-L’exemple suivant illustre comment supprimer tous les tirets de la chaîne fournie par l’utilisateur et comment remplacer une partie de la chaîne par une autre chaîne.
+Bonjour à l’exemple suivant montre comment tooremove tous les tirets à partir de la chaîne de hello fourni par l’utilisateur, et comment tooreplace partie hello chaîne par une autre chaîne.
 
 ```json
 {
@@ -1057,7 +1057,7 @@ L’exemple suivant illustre comment supprimer tous les tirets de la chaîne fou
 }
 ```
 
-La sortie de l’exemple précédent avec les valeurs par défaut se présente comme suit :
+Hello de sortie à partir de hello précédent exemple hello valeurs par défaut est :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
@@ -1069,14 +1069,14 @@ La sortie de l’exemple précédent avec les valeurs par défaut se présente c
 ## <a name="skip"></a>skip
 `skip(originalValue, numberToSkip)`
 
-Retourne une chaîne avec tous les caractères après le nombre spécifié de caractères, ou un tableau avec tous les éléments après le nombre spécifié d’éléments.
+Retourne une chaîne contenant tous les caractères de hello après que hello spécifiée le nombre de caractères ou d’un tableau avec tous les éléments hello après hello nombre d’éléments.
 
 ### <a name="parameters"></a>Paramètres
 
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
-| originalValue |Oui |tableau ou chaîne |Tableau ou chaîne à utiliser pour ignorer les caractères. |
-| numberToSkip |Oui |int |Nombre d’éléments ou de caractères à ignorer. Si cette valeur est inférieure ou égale à 0, tous les éléments ou caractères de la valeur sont renvoyés. Si elle est supérieure à la longueur du tableau ou de la chaîne, un tableau ou une chaîne vide est renvoyé. |
+| originalValue |Oui |tableau ou chaîne |Bonjour toouse tableau ou une chaîne pour l’ignorer. |
+| numberToSkip |Oui |int |nombre de Hello d’éléments ou des caractères tooskip. Si cette valeur est inférieur ou égal à 0, tous les hello éléments ou dans la valeur de hello est renvoyé. Si elle est supérieure à la longueur du tableau de hello ou chaîne hello, un tableau vide ou une chaîne est retournée. |
 
 ### <a name="return-value"></a>Valeur de retour
 
@@ -1084,7 +1084,7 @@ Tableau ou chaîne.
 
 ### <a name="examples"></a>Exemples
 
-L’exemple suivant ignore le nombre spécifié d’éléments dans le tableau et le nombre spécifié de caractères dans une chaîne.
+Hello suivant exemple ignore hello le nombre d’éléments spécifié dans le tableau de hello et hello nombre spécifié de caractères dans une chaîne.
 
 ```json
 {
@@ -1126,7 +1126,7 @@ L’exemple suivant ignore le nombre spécifié d’éléments dans le tableau e
 }
 ```
 
-La sortie de l’exemple précédent avec les valeurs par défaut se présente comme suit :
+Hello de sortie à partir de hello précédent exemple hello valeurs par défaut est :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
@@ -1138,14 +1138,14 @@ La sortie de l’exemple précédent avec les valeurs par défaut se présente c
 ## <a name="split"></a>split
 `split(inputString, delimiter)`
 
-Renvoie un tableau de chaînes qui contient les sous-chaînes de la chaîne d’entrée séparées par les délimiteurs spécifiés.
+Retourne un tableau de chaînes qui contient les sous-chaînes hello Hello d’entrée de chaîne qui est délimitées par hello spécifié délimiteurs.
 
 ### <a name="parameters"></a>Paramètres
 
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
-| chaîne_entrée |Oui |string |Chaîne à fractionner. |
-| delimiter |Oui |chaîne ou tableau de chaînes |Le séparateur à utiliser pour fractionner la chaîne. |
+| chaîne_entrée |Oui |string |toosplit de chaîne Hello. |
+| delimiter |Oui |chaîne ou tableau de chaînes |Bonjour toouse délimiteur pour fractionner la chaîne de hello. |
 
 ### <a name="return-value"></a>Valeur de retour
 
@@ -1153,7 +1153,7 @@ Tableau de chaînes.
 
 ### <a name="examples"></a>Exemples
 
-L’exemple suivant fractionne la chaîne d’entrée par une virgule et par une virgule ou un point-virgule.
+Hello exemple suivant fractionne hello la chaîne d’entrée avec une virgule et avec une virgule ou un point-virgule.
 
 ```json
 {
@@ -1186,7 +1186,7 @@ L’exemple suivant fractionne la chaîne d’entrée par une virgule et par une
 }
 ```
 
-La sortie de l’exemple précédent avec les valeurs par défaut se présente comme suit :
+Hello de sortie à partir de hello précédent exemple hello valeurs par défaut est :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
@@ -1198,22 +1198,22 @@ La sortie de l’exemple précédent avec les valeurs par défaut se présente c
 ## <a name="startswith"></a>startsWith
 `startsWith(stringToSearch, stringToFind)`
 
-Détermine si une chaîne commence par une valeur. La comparaison respecte la casse.
+Détermine si une chaîne commence par une valeur. comparaison de Hello respecte la casse.
 
 ### <a name="parameters"></a>Paramètres
 
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
-| stringToSearch |Oui |string |La valeur qui contient l’élément à rechercher. |
-| stringToFind |Oui |string |La valeur à trouver. |
+| stringToSearch |Oui |string |valeur Hello contenant hello élément toofind. |
+| stringToFind |Oui |string |Hello toofind de valeur. |
 
 ### <a name="return-value"></a>Valeur de retour
 
-**True** si le ou les premiers caractères de la chaîne correspondent à la valeur ; sinon, **False**.
+**True** si hello premier caractère ou les caractères de chaîne de hello correspond à hello ; sinon, **False**.
 
 ### <a name="examples"></a>Exemples
 
-L'exemple suivant montre comment utiliser les fonctions startsWith et endsWith :
+Bonjour à l’exemple suivant montre comment toouse hello startsWith et endsWith fonctions :
 
 ```json
 {
@@ -1249,7 +1249,7 @@ L'exemple suivant montre comment utiliser les fonctions startsWith et endsWith 
 }
 ```
 
-La sortie de l’exemple précédent avec les valeurs par défaut se présente comme suit :
+Hello de sortie à partir de hello précédent exemple hello valeurs par défaut est :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
@@ -1265,21 +1265,21 @@ La sortie de l’exemple précédent avec les valeurs par défaut se présente c
 ## <a name="string"></a>string
 `string(valueToConvert)`
 
-Convertit la valeur spécifiée en chaîne.
+Convertit hello spécifié chaîne tooa de valeur.
 
 ### <a name="parameters"></a>Paramètres
 
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
-| valueToConvert |Oui | Quelconque |Valeur à convertir en chaîne. N’importe quel type de valeur peut être converti, y compris les objets et des tableaux. |
+| valueToConvert |Oui | Quelconque |Hello valeur tooconvert toostring. N’importe quel type de valeur peut être converti, y compris les objets et des tableaux. |
 
 ### <a name="return-value"></a>Valeur de retour
 
-Chaîne de la valeur convertie.
+Une chaîne de valeur de hello converti.
 
 ### <a name="examples"></a>Exemples
 
-L’exemple suivant montre comment convertir différents types de valeurs de chaînes :
+Bonjour à l’exemple suivant montre comment tooconvert différents types de valeurs toostrings :
 
 ```json
 {
@@ -1324,7 +1324,7 @@ L’exemple suivant montre comment convertir différents types de valeurs de cha
 }
 ```
 
-La sortie de l’exemple précédent avec les valeurs par défaut se présente comme suit :
+Hello de sortie à partir de hello précédent exemple hello valeurs par défaut est :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
@@ -1337,23 +1337,23 @@ La sortie de l’exemple précédent avec les valeurs par défaut se présente c
 ## <a name="substring"></a>substring
 `substring(stringToParse, startIndex, length)`
 
-Retourne une sous-chaîne qui commence à la position de caractère spécifiée et qui contient le nombre de caractères spécifié.
+Retourne une sous-chaîne qui commence à hello spécifié position de caractère que contient hello nombre spécifié de caractères.
 
 ### <a name="parameters"></a>Paramètres
 
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
-| chaîne_à_analyser |Oui |string |La chaîne d’origine de laquelle la sous-chaîne est extraite. |
-| index_début |Non |int |La position de caractère (commençant à zéro) de la sous-chaîne. |
-| length |Non |int |Le nombre de caractères de la sous-chaîne. Doit faire référence à un emplacement au sein de la chaîne. |
+| chaîne_à_analyser |Oui |string |chaîne d’origine de Hello de quels hello sous-chaîne est extraite. |
+| index_début |Non |int |Hello base zéro caractère position de départ de la sous-chaîne de hello. |
+| length |Non |int |nombre de Hello de caractères pour la sous-chaîne de hello. Doit faire référence emplacement tooa au sein de la chaîne de hello. |
 
 ### <a name="return-value"></a>Valeur de retour
 
-Sous-chaîne.
+sous-chaîne de Hello.
 
 ### <a name="remarks"></a>Remarques
 
-La fonction échoue lorsque la sous-chaîne s’étend au-delà de la fin de la chaîne. L’exemple suivant échoue avec l’erreur « Les paramètres d’index et de longueur doivent correspondre à un emplacement au sein de la chaîne. Paramètre d’index : « 0 », paramètre de longueur : « 11 », paramètre de longueur de la chaîne : « 10 ».
+fonction Hello échoue lors de la sous-chaîne de hello s’étend au-delà de fin hello de chaîne de hello. Bonjour à l’exemple suivant échoue avec hello erreur « paramètres d’index et la longueur hello doivent faire référence emplacement tooa au sein de la chaîne de hello. Hello paramètre index : '0', hello paramètre de longueur : 11, hello longueur hello du paramètre de chaîne : « 10 ». ».
 
 ```json
 "parameters": {
@@ -1366,7 +1366,7 @@ La fonction échoue lorsque la sous-chaîne s’étend au-delà de la fin de la 
 
 ### <a name="examples"></a>Exemples
 
-L’exemple suivant extrait une sous-chaîne à partir d’un paramètre.
+Bonjour à l’exemple suivant extrait une sous-chaîne à partir d’un paramètre.
 
 ```json
 {
@@ -1388,7 +1388,7 @@ L’exemple suivant extrait une sous-chaîne à partir d’un paramètre.
 }
 ```
 
-La sortie de l’exemple précédent avec les valeurs par défaut se présente comme suit :
+Hello de sortie à partir de hello précédent exemple hello valeurs par défaut est :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
@@ -1400,14 +1400,14 @@ La sortie de l’exemple précédent avec les valeurs par défaut se présente c
 ## <a name="take"></a>take
 `take(originalValue, numberToTake)`
 
-Retourne une chaîne avec le nombre spécifié de caractères à partir du début de la chaîne, ou un tableau avec le nombre spécifié d’éléments à partir du début du tableau.
+Retourne une chaîne avec hello nombre spécifié de caractères à partir du début hello de hello chaîne ou un tableau avec hello spécifié le nombre d’éléments à partir du début hello du tableau de hello.
 
 ### <a name="parameters"></a>Paramètres
 
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
-| originalValue |Oui |tableau ou chaîne |Tableau ou chaîne à partir duquel les éléments sont tirés. |
-| numberToTake |Oui |int |Nombre d’éléments ou de caractères à prendre. Si cette valeur est inférieure ou égale à 0, une chaîne ou un tableau vide est renvoyé. Si elle est supérieure à la longueur du tableau ou de la chaîne donné(e), tous les éléments du tableau ou de chaîne sont renvoyés. |
+| originalValue |Oui |tableau ou chaîne |Bonjour les éléments de hello tootake tableau ou une chaîne à partir de. |
+| numberToTake |Oui |int |nombre de Hello d’éléments ou des caractères tootake. Si cette valeur est inférieure ou égale à 0, une chaîne ou un tableau vide est renvoyé. Si elle est supérieure à la longueur de hello Hello donné de tableau ou une chaîne, tous les éléments hello hello tableau ou une chaîne sont retournés. |
 
 ### <a name="return-value"></a>Valeur de retour
 
@@ -1415,7 +1415,7 @@ Tableau ou chaîne.
 
 ### <a name="examples"></a>Exemples
 
-L’exemple suivant prend le nombre spécifié d’éléments du tableau, et les caractères d’une chaîne.
+Hello suivant l’exemple prend hello spécifié le nombre d’éléments de tableau de hello et les caractères d’une chaîne.
 
 ```json
 {
@@ -1457,7 +1457,7 @@ L’exemple suivant prend le nombre spécifié d’éléments du tableau, et les
 }
 ```
 
-La sortie de l’exemple précédent avec les valeurs par défaut se présente comme suit :
+Hello de sortie à partir de hello précédent exemple hello valeurs par défaut est :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
@@ -1469,21 +1469,21 @@ La sortie de l’exemple précédent avec les valeurs par défaut se présente c
 ## <a name="tolower"></a>toLower
 `toLower(stringToChange)`
 
-Convertit la chaîne spécifiée en minuscules.
+Convertit hello spécifié cas toolower de chaîne.
 
 ### <a name="parameters"></a>Paramètres
 
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
-| chaîne_à_modifier |Oui |string |La valeur à convertir en minuscules. |
+| chaîne_à_modifier |Oui |string |cas de Hello valeur tooconvert toolower. |
 
 ### <a name="return-value"></a>Valeur de retour
 
-Chaîne convertie en minuscules.
+chaîne de Hello converti toolower cas.
 
 ### <a name="examples"></a>Exemples
 
-L’exemple ci-après convertit une valeur de paramètre en minuscules et en majuscules.
+Bonjour à l’exemple suivant convertit un cas de toolower de valeur de paramètre et les cas de tooupper.
 
 ```json
 {
@@ -1509,7 +1509,7 @@ L’exemple ci-après convertit une valeur de paramètre en minuscules et en maj
 }
 ```
 
-La sortie de l’exemple précédent avec les valeurs par défaut se présente comme suit :
+Hello de sortie à partir de hello précédent exemple hello valeurs par défaut est :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
@@ -1521,21 +1521,21 @@ La sortie de l’exemple précédent avec les valeurs par défaut se présente c
 ## <a name="toupper"></a>toUpper
 `toUpper(stringToChange)`
 
-Convertit la chaîne spécifiée en majuscules.
+Convertit hello spécifié cas tooupper de chaîne.
 
 ### <a name="parameters"></a>Paramètres
 
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
-| chaîne_à_modifier |Oui |string |La valeur à convertir en majuscules. |
+| chaîne_à_modifier |Oui |string |cas de Hello valeur tooconvert tooupper. |
 
 ### <a name="return-value"></a>Valeur de retour
 
-Chaîne convertie en majuscules.
+chaîne de Hello converti tooupper cas.
 
 ### <a name="examples"></a>Exemples
 
-L’exemple ci-après convertit une valeur de paramètre en minuscules et en majuscules.
+Bonjour à l’exemple suivant convertit un cas de toolower de valeur de paramètre et les cas de tooupper.
 
 ```json
 {
@@ -1561,7 +1561,7 @@ L’exemple ci-après convertit une valeur de paramètre en minuscules et en maj
 }
 ```
 
-La sortie de l’exemple précédent avec les valeurs par défaut se présente comme suit :
+Hello de sortie à partir de hello précédent exemple hello valeurs par défaut est :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
@@ -1573,21 +1573,21 @@ La sortie de l’exemple précédent avec les valeurs par défaut se présente c
 ## <a name="trim"></a>découper
 `trim (stringToTrim)`
 
-Supprime tous les espaces de début et de fin de la chaîne indiquée.
+Supprime tous les premiers et derniers caractères d’espace blanc de hello de chaîne spécifiée.
 
 ### <a name="parameters"></a>Paramètres
 
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
-| stringToTrim |Oui |string |La valeur à supprimer. |
+| stringToTrim |Oui |string |Hello tootrim de valeur. |
 
 ### <a name="return-value"></a>Valeur de retour
 
-Chaîne sans les premiers et derniers caractères d’espace.
+chaîne Hello sans les premiers et derniers caractères d’espace blanc.
 
 ### <a name="examples"></a>Exemples
 
-L’exemple suivant supprime les espaces à partir du paramètre.
+Hello exemple suivant supprime les caractères d’espace blanc de hello de paramètre hello.
 
 ```json
 {
@@ -1609,7 +1609,7 @@ L’exemple suivant supprime les espaces à partir du paramètre.
 }
 ```
 
-La sortie de l’exemple précédent avec les valeurs par défaut se présente comme suit :
+Hello de sortie à partir de hello précédent exemple hello valeurs par défaut est :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
@@ -1620,44 +1620,44 @@ La sortie de l’exemple précédent avec les valeurs par défaut se présente c
 ## <a name="uniquestring"></a>uniqueString
 `uniqueString (baseString, ...)`
 
-Crée une chaîne de hachage déterministe basée sur les valeurs fournies en tant que paramètres. 
+Crée une chaîne de hachage déterministe en fonction des valeurs hello fournies comme paramètres. 
 
 ### <a name="parameters"></a>Paramètres
 
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
-| baseString |Oui |string |La valeur utilisée dans la fonction de hachage pour créer une chaîne unique. |
-| paramètres supplémentaires le cas échéant |Non |string |Vous pouvez ajouter autant de chaînes que nécessaire pour créer la valeur qui spécifie le niveau d’unicité. |
+| baseString |Oui |string |valeur de Hello utilisé dans toocreate de fonction de hachage hello une chaîne unique. |
+| paramètres supplémentaires le cas échéant |Non |string |Vous pouvez ajouter autant de chaînes en tant que valeur hello toocreate requis qui spécifie le niveau de hello d’unicité. |
 
 ### <a name="remarks"></a>Remarques
 
-Cette fonction est utile lorsque vous avez besoin de créer un nom unique pour une ressource. Vous fournissez des valeurs de paramètre qui limitent l’étendue d’unicité pour le résultat. Vous pouvez spécifier si le nom est unique pour l’abonnement, le groupe de ressources ou le déploiement. 
+Cette fonction est utile lorsque vous avez besoin de toocreate un nom unique pour une ressource. Vous fournissez des valeurs des paramètres qui limitent la portée hello d’unicité pour résultat de hello. Vous pouvez spécifier si les nom de hello est unique vers le bas toosubscription, groupe de ressources ou le déploiement. 
 
-La valeur renvoyée n’est pas une chaîne aléatoire, mais plutôt le résultat d’une fonction de hachage. La valeur renvoyée comprend 13 caractères. Elle n’est pas globalement unique. Il se peut que vous souhaitiez associer un préfixe de votre convention d’affectation de noms à la valeur pour créer un nom explicite. L’exemple suivant montre le format de la valeur renvoyée. La valeur réelle varie en fonction des paramètres fournis.
+Hello retourné la valeur n’est pas une chaîne aléatoire, mais plutôt hello résultat d’une fonction de hachage. Hello retourné la valeur est 13 caractères. Elle n’est pas globalement unique. Vous souhaiterez valeur hello de toocombine avec un préfixe à partir de votre toocreate de convention d’affectation de noms un nom significatif. Hello suivant montre format hello Hello retourné de valeur. valeur Hello varie selon le hello paramètres fourni.
 
     tcvhiyu5h2o5o
 
-Les exemples suivants montrent comment utiliser uniqueString afin de créer une valeur unique pour des niveaux couramment utilisés.
+Hello suivant exemples montrent comment toocreate d’uniqueString toouse unique valeur couramment utilisés niveaux.
 
-Unique limité à l’abonnement
+Toosubscription étendue unique
 
 ```json
 "[uniqueString(subscription().subscriptionId)]"
 ```
 
-Unique limité au groupe de ressources
+Groupe de tooresource étendue unique
 
 ```json
 "[uniqueString(resourceGroup().id)]"
 ```
 
-Unique limité au déploiement pour un groupe de ressources
+Unique toodeployment étendue pour un groupe de ressources
 
 ```json
 "[uniqueString(resourceGroup().id, deployment().name)]"
 ```
 
-L'exemple suivant montre comment créer un nom unique pour un compte de stockage basé sur votre groupe de ressources. Dans le groupe de ressources, le nom n’est pas unique s’il est construit de la même façon.
+Bonjour à l’exemple suivant montre comment toocreate un nom unique pour un compte de stockage en fonction de votre groupe de ressources. À l’intérieur du groupe de ressources hello, nom de hello n’est pas unique si construit hello identique.
 
 ```json
 "resources": [{ 
@@ -1672,7 +1672,7 @@ Chaîne contenant 13 caractères.
 
 ### <a name="examples"></a>Exemples
 
-L’exemple suivant renvoie les résultats à partir d’uniquestring :
+Bonjour à l’exemple suivant retourne les résultats d’uniquestring :
 
 ```json
 {
@@ -1697,30 +1697,30 @@ L’exemple suivant renvoie les résultats à partir d’uniquestring :
 ## <a name="uri"></a>URI
 `uri (baseUri, relativeUri)`
 
-Crée un URI absolu en combinant le baseUri et la chaîne relativeUri.
+Crée un URI absolu en combinant hello baseUri et la chaîne d’URI relatif hello.
 
 ### <a name="parameters"></a>Paramètres
 
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
-| baseUri |Oui |string |La chaîne d’URI de base. |
-| relativeUri |Oui |string |La chaîne d’URI relatif à ajouter à la chaîne d’URI de base. |
+| baseUri |Oui |string |chaîne d’uri de base Hello. |
+| relativeUri |Oui |string |Hello uri relatif tooadd toohello uri de base chaîne. |
 
-La valeur du paramètre **baseUri** peut inclure un fichier spécifique, mais seul le chemin de base est utilisé lors de la construction de l’URI. Par exemple, si vous passez `http://contoso.com/resources/azuredeploy.json` comme paramètre baseUri, l’URI de base résultant est `http://contoso.com/resources/`.
+Hello valeur hello **baseUri** paramètre peut inclure un fichier spécifique, mais uniquement le chemin de base hello est utilisé lors de la construction hello URI. Par exemple, le passage `http://contoso.com/resources/azuredeploy.json` en tant que résultats de paramètre baseUri hello dans un URI de base `http://contoso.com/resources/`.
 
 ### <a name="return-value"></a>Valeur de retour
 
-Chaîne représentant l’URI absolu pour les valeurs de base et relative.
+Chaîne représentant hello URI absolu pour les valeurs de base et relatifs hello.
 
 ### <a name="examples"></a>Exemples
 
-L’exemple suivant montre comment créer un lien vers un modèle imbriqué en fonction de la valeur du modèle parent.
+Bonjour à l’exemple suivant montre comment tooconstruct un lien tooa imbriquée basées sur un modèle de valeur hello du modèle parent de hello.
 
 ```json
 "templateLink": "[uri(deployment().properties.templateLink.uri, 'nested/azuredeploy.json')]"
 ```
 
-L’exemple suivant montre comment utiliser les paramètres uri, uriComponent et uriComponentToString :
+Hello suivant montre l’exemple de comment toouse uri, intégrante et uriComponentToString :
 
 ```json
 {
@@ -1749,7 +1749,7 @@ L’exemple suivant montre comment utiliser les paramètres uri, uriComponent et
 }
 ```
 
-La sortie de l’exemple précédent avec les valeurs par défaut se présente comme suit :
+Hello de sortie à partir de hello précédent exemple hello valeurs par défaut est :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
@@ -1768,15 +1768,15 @@ Encode un URI.
 
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
-| stringToEncode |Oui |string |Valeur à encoder. |
+| stringToEncode |Oui |string |Hello tooencode de valeur. |
 
 ### <a name="return-value"></a>Valeur de retour
 
-Chaîne de la valeur encodée de l’URI.
+Une chaîne de hello URI encodé de valeur.
 
 ### <a name="examples"></a>Exemples
 
-L’exemple suivant montre comment utiliser les paramètres uri, uriComponent et uriComponentToString :
+Hello suivant montre l’exemple de comment toouse uri, intégrante et uriComponentToString :
 
 ```json
 {
@@ -1805,7 +1805,7 @@ L’exemple suivant montre comment utiliser les paramètres uri, uriComponent et
 }
 ```
 
-La sortie de l’exemple précédent avec les valeurs par défaut se présente comme suit :
+Hello de sortie à partir de hello précédent exemple hello valeurs par défaut est :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
@@ -1825,7 +1825,7 @@ Retourne une chaîne de la valeur encodée de l’URI.
 
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
-| uriEncodedString |Oui |string |Valeur encodée de l’URI à convertir en une chaîne. |
+| uriEncodedString |Oui |string |Hello URI encodé de chaîne de valeur tooconvert tooa. |
 
 ### <a name="return-value"></a>Valeur de retour
 
@@ -1833,7 +1833,7 @@ Chaîne décodée de la valeur encodée de l’URI.
 
 ### <a name="examples"></a>Exemples
 
-L’exemple suivant montre comment utiliser les paramètres uri, uriComponent et uriComponentToString :
+Hello suivant montre l’exemple de comment toouse uri, intégrante et uriComponentToString :
 
 ```json
 {
@@ -1862,7 +1862,7 @@ L’exemple suivant montre comment utiliser les paramètres uri, uriComponent et
 }
 ```
 
-La sortie de l’exemple précédent avec les valeurs par défaut se présente comme suit :
+Hello de sortie à partir de hello précédent exemple hello valeurs par défaut est :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
@@ -1872,8 +1872,8 @@ La sortie de l’exemple précédent avec les valeurs par défaut se présente c
 
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Pour obtenir une description des sections d’un modèle Azure Resource Manager, consultez [Création de modèles Azure Resource Manager](resource-group-authoring-templates.md).
-* Pour fusionner plusieurs modèles, consultez [Utilisation de modèles liés avec Azure Resource Manager](resource-group-linked-templates.md).
-* Pour itérer un nombre de fois spécifié lors de la création d'un type de ressource, consultez [Création de plusieurs instances de ressources dans Azure Resource Manager](resource-group-create-multiple.md).
-* Pour savoir comment déployer le modèle que vous avez créé, consultez [Déploiement d’une application avec un modèle Azure Resource Manager](resource-group-template-deploy.md).
+* Pour obtenir une description des sections de hello dans un modèle Azure Resource Manager, consultez [les modèles de programmation Azure Resource Manager](resource-group-authoring-templates.md).
+* consultez de plusieurs modèles toomerge [à l’aide de modèles liés avec Azure Resource Manager](resource-group-linked-templates.md).
+* tooiterate un nombre spécifié de fois lors de la création d’un type de ressource, consultez [créer plusieurs instances de ressources dans Azure Resource Manager](resource-group-create-multiple.md).
+* toosee modèle de hello toodeploy que vous avez créé, voir [déployer une application avec le modèle Azure Resource Manager](resource-group-template-deploy.md).
 

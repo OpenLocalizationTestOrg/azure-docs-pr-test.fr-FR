@@ -1,6 +1,6 @@
 ---
-title: "Documentation Azure Media Services - Didacticiels, informations de référence sur les API | Microsoft Docs"
-description: "Apprenez à diffuser en continu des vidéos à la demande ou de qualité télévisuelle avec la plateforme cloud extensible Media Services. Didacticiels, références d’API et autres."
+title: "aaaAzure Documentation des Services de support - didacticiels, référence de l’API | Documents Microsoft"
+description: "Découvrez comment toosecurely flux vidéo de qualité de diffusion à la demande ou dynamique avec Media Services, une plateforme cloud extensible. Didacticiels, références d’API et autres."
 services: media-services
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: f0da57cc74e190e6684036c8a793dface3c6dd74
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c36b7dbf14434e7aadc38f2c74ca7d3830a1bd3f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="media-services-documentation"></a>Documentation Media Services
 
-Apprenez à diffuser en continu des vidéos de qualité télévisuelle avec la plateforme cloud extensible Media Services. Des didacticiels, références d’API et autres documents vous montrent comment diffuser en toute sécurité du contenu vidéo ou audio à la demande et en direct pour des millions d’utilisateurs.
+Découvrez comment toostream diffusion qualité vidéo avec Media Services, une plateforme cloud extensible. Didacticiels, des références de l’API et toute autre documentation vous montrent comment toosecurely remettre à la demande et live flux vidéo ou audio susceptibles d’évoluer toomillions d’utilisateurs.
 
 <ul class="panelContent cardsFTitle">
      <li>
@@ -70,7 +70,7 @@ Apprenez à diffuser en continu des vidéos de qualité télévisuelle avec la p
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Prise en main d’Azure Media Services à l’aide du portail Azure</h3>
+                        <h3>Prise en main avec Azure Media Services à l’aide de hello portail Azure</h3>
                     </div>
                 </div>
             </div>
@@ -88,7 +88,7 @@ Apprenez à diffuser en continu des vidéos de qualité télévisuelle avec la p
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Création d’un compte Azure Media Services avec le portail Azure</h3>
+                        <h3>Créer un compte Azure Media Services à l’aide de hello portail Azure</h3>
                     </div>
                 </div>
             </div>
@@ -106,7 +106,7 @@ Apprenez à diffuser en continu des vidéos de qualité télévisuelle avec la p
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Prendre en main la diffusion de contenus à l’aide du portail Azure</h3>
+                        <h3>Obtenir le démarrée diffuser du contenu à l’aide de hello portail Azure</h3>
                     </div>
                 </div>
             </div>

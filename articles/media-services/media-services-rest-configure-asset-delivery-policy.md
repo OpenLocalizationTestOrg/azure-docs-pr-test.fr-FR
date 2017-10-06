@@ -1,6 +1,6 @@
 ---
-title: "Configuration des stratégies de remise de ressources à l’aide de l’API REST Media Services | Microsoft Docs"
-description: "Cette rubrique montre comment configurer différentes stratégies de remise de ressources à l’aide de l’API REST Media Services."
+title: "stratégies de remise aaaConfiguring actif à l’aide des API REST Media Services | Documents Microsoft"
+description: "Cette rubrique montre comment tooconfigure des stratégies de remise différents actif à l’aide des API REST Media Services."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,31 +14,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/10/2017
 ms.author: juliako
-ms.openlocfilehash: 7ffbde11b943961dd3a3b5edebd0cfd52429e845
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 8203230d570935e17382c598820dbfe42f83f8d8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configuring-asset-delivery-policies"></a>Configuration des stratégies de remise de ressources
 [!INCLUDE [media-services-selector-asset-delivery-policy](../../includes/media-services-selector-asset-delivery-policy.md)]
 
-Si vous envisagez la remise de ressources chiffrées dynamiquement, l'une des étapes du workflow de remise de contenu Media Services consiste à configurer les stratégies de remise pour les ressources. La stratégie de remise de ressources indique à Media Services comment vous souhaitez distribuer vos ressources : dans quel protocole de diffusion en continu votre ressource doit être empaquetée dynamiquement (par exemple, MPEG DASH, HLS, Smooth Streaming ou tous), si vous souhaitez chiffrer dynamiquement votre ressource ou non et comment (chiffrement commun ou d’enveloppe).
+Si vous envisagez toodeliver dynamiquement chiffré actifs, une des hello étapes Bonjour Media Services de contenu de flux de travail de remise consiste à configurer des stratégies de remise pour les ressources. stratégie de livraison des actifs Hello indique comment vous souhaitez pour votre toobe asset remis à Media Services : dans le protocole de diffusion en continu doit votre élément multimédia dynamiquement packagé (par exemple, MPEG DASH, HLS, Smooth Streaming ou tous), vous souhaitez toodynamically ou non chiffrer votre élément multimédia et comment (enveloppe ou chiffrement commun).
 
-Cette rubrique explique pourquoi et comment créer et configurer des stratégies de livraison d’éléments multimédias.
+Cette rubrique explique pourquoi et comment toocreate et configurer des stratégies de remise d’élément multimédia.
 
 >[!NOTE]
->Une fois votre compte AMS créé, un point de terminaison de streaming **par défaut** est ajouté à votre compte à l’état **Arrêté**. Pour démarrer la diffusion en continu de votre contenu et tirer parti de l’empaquetage et du chiffrement dynamiques, le point de terminaison de streaming à partir duquel vous souhaitez diffuser du contenu doit se trouver à l’état **En cours d’exécution**. 
+>Création de votre compte AMS un **par défaut** point de terminaison de diffusion en continu est ajoutée tooyour compte Bonjour **arrêté** état. toostart de diffusion en continu de votre contenu et profitez de l’empaquetage dynamique et chiffrement dynamique, hello de point de terminaison de diffusion en continu à partir de laquelle vous souhaitez que le contenu toostream a toobe Bonjour **en cours d’exécution** état. 
 >
->De plus, pour pouvoir utiliser l’empaquetage et le chiffrement dynamiques, votre ressource doit contenir un ensemble de MP4 à débit adaptatif ou des fichiers de diffusion en continu lisse à débit adaptatif.
+>En outre, toobe toouse en mesure de mise en package dynamique et le chiffrement dynamique votre élément multimédia doit contenir un ensemble de fichiers à débit adaptatif MP4s ou des fichiers de diffusion en continu lisse à débit adaptatif.
 
-Vous pouvez appliquer des stratégies différentes à la même ressource. Par exemple, vous pouvez appliquer le chiffrement PlayReady pour la diffusion en continu lisse et AES en enveloppe pour MPEG DASH et TLS. Tous les protocoles qui ne sont pas définis dans une stratégie de remise (par exemple, en cas d’ajout d’une stratégie unique qui spécifie uniquement TLS comme protocole) seront bloqués de la diffusion en continu. Cela ne s’applique toutefois pas si vous n’avez défini aucune stratégie de remise de ressources. Tous les protocoles seront alors autorisés.
+Vous pouvez appliquer différentes stratégies toohello même actif. Par exemple, vous pouvez appliquer PlayReady chiffrement tooSmooth diffusion en continu et l’enveloppe AES chiffrement tooMPEG DASH et HLS. Tous les protocoles qui ne sont pas définis dans une stratégie de remise (par exemple, vous ajoutez une stratégie unique qui spécifie seulement le HLS en tant que protocole de hello) sera bloquée à partir de la diffusion en continu. Hello exception toothis est si vous ne disposez d’aucune stratégie de remise actif du tout défini. Ensuite, tous les protocoles seront autorisés en hello clair.
 
-Si vous souhaitez remettre une ressource à chiffrement de stockage, vous devez configurer la stratégie de remise de la ressource. Avant de pouvoir diffuser votre ressource en continu, le serveur de diffusion supprime le chiffrement de stockage et transmet en continu votre contenu à l’aide de la stratégie de remise spécifiée. Par exemple, pour remettre votre ressource chiffrée avec la clé de chiffrement d'enveloppe AES (Advanced Encryption Standard), définissez le type de stratégie sur **DynamicEnvelopeEncryption**. Pour supprimer le chiffrement de stockage et diffuser la ressource en clair, définissez le type de stratégie sur **NoDynamicEncryption**. Vous trouverez des exemples qui montrent comment configurer ces types de stratégie ci-dessous.
+Si vous voulez toodeliver un élément multimédia chiffré de stockage, vous devez configurer la stratégie de remise de l’élément multimédia hello. Avant que votre élément multimédia peut être transmis en continu, hello de diffusion en continu flux et chiffrement de stockage de serveur supprime hello votre contenu à l’aide de hello spécifié de stratégie de remise. Par exemple, toodeliver votre élément multimédia chiffré avec la clé de chiffrement d’enveloppe Standard (AES), définissez le type de stratégie hello trop**DynamicEnvelopeEncryption**. tooremove le chiffrement de stockage et les actifs de hello flux Bonjour claires, le type de stratégie hello défini trop**NoDynamicEncryption**. Exemples qui montrent comment tooconfigure suivent ces types de stratégie.
 
-Selon la configuration de la stratégie de remise de ressources, vous pourrez empaqueter dynamiquement, chiffrer dynamiquement et diffuser les protocoles de diffusion en continu suivants : Smooth Streaming, HLS et MPEG DASH.
+Selon la façon dont vous configurez la stratégie de livraison des actifs hello vous serait sera en mesure de toodynamically package, dynamiquement chiffrer et diffuser en continu hello suite de protocoles de diffusion en continu : Smooth Streaming, HLS, les flux MPEG DASH.
 
-La liste suivante présente les formats utilisés pour diffuser en continu Smooth, HLS et DASH.
+Hello suivant liste affiche hello met en forme que vous utilisez toostream Smooth, HLS, tiret.
 
 Smooth Streaming :
 
@@ -53,30 +53,30 @@ MPEG DASH
 {nom du point de terminaison de diffusion en continu-nom du compte media services}.streaming.mediaservices.windows.net/{ID_de_localisateur}/{nom_de_fichier}.ISM/Manifest(format=mpd-time-csf)
 
 
-Pour savoir comment publier une ressource et générer une URL de diffusion en continu, consultez [Générer une URL de diffusion en continu](media-services-deliver-streaming-content.md).
+Pour plus d’informations sur comment toopublish un élément multimédia et créer une URL de diffusion en continu, consultez [générer une URL de diffusion en continu](media-services-deliver-streaming-content.md).
 
 ## <a name="considerations"></a>Considérations
-* Vous ne pouvez pas supprimer une stratégie AssetDeliveryPolicy associée à un élément multimédia alors qu’un localisateur (de diffusion en continuer) OnDemand existe pour cet élément. Il est recommandé de retirer la stratégie de l’élément multimédia avant de la supprimer.
-* Il est impossible de créer un localisateur de diffusion en continu sur un élément multimédia chiffré de stockage quand aucune stratégie de distribution d’éléments multimédias n’est définie.  Si l’élément multimédia n’est pas chiffré dans le stockage, le système vous permet de créer un localisateur et de diffuser en continu l’élément multimédia en clair sans stratégie de distribution d’éléments multimédias.
-* Vous pouvez avoir plusieurs stratégies de distribution d’éléments multimédias associées à un même élément multimédia, mais vous ne pouvez spécifier qu’une seule façon de traiter un AssetDeliveryProtocol donné.  Cela signifie que si vous essayez de lier deux stratégies de distribution qui spécifient le protocole AssetDeliveryProtocol.SmoothStreaming, cela va générer une erreur, car le système ne sait pas laquelle appliquer quand un client émet une demande Smooth Streaming.
-* Si vous avez un élément multimédia avec un localisateur de diffusion en continu existant, vous ne pouvez pas lier une nouvelle stratégie à l’élément multimédia. supprimer le lien d’une stratégie existante de l’élément multimédia ou mettre à jour une stratégie de distribution associée à l’élément multimédia.  Vous devez d’abord supprimer le localisateur de diffusion en continu, ajuster les stratégies, puis recréer le localisateur de diffusion en continu.  Vous pouvez utiliser le même ID de localisateur (locatorId) quand vous recréez le localisateur de diffusion en continu. Vous devez cependant vérifier que cela ne crée pas de problèmes pour les clients, car le contenu peut être mis en cache par l’origine ou un CDN en aval.
+* Vous ne pouvez pas supprimer une stratégie AssetDeliveryPolicy associée à un élément multimédia alors qu’un localisateur (de diffusion en continuer) OnDemand existe pour cet élément. stratégie de hello tooremove à partir de l’élément multimédia de hello il est recommandé de Hello avant de supprimer la stratégie de hello.
+* Il est impossible de créer un localisateur de diffusion en continu sur un élément multimédia chiffré de stockage quand aucune stratégie de distribution d’éléments multimédias n’est définie.  Si hello actif n’est pas chiffré de stockage, système de hello sera vous permettent de créer un élément multimédia hello de recherche et de flux Bonjour effacer sans une stratégie de livraison des actifs.
+* Vous pouvez avoir plusieurs stratégies de remise actif associés à un seul élément multimédia, mais vous ne pouvez spécifier qu’une façon toohandle un AssetDeliveryProtocol donné.  Ce qui signifie que si vous essayez de toolink deux stratégies de remise qui spécifient le protocole AssetDeliveryProtocol.SmoothStreaming hello qui entraîne une erreur car le système de hello ne sait pas celui que vous souhaitez tooapply lorsqu’un client effectue une demande de diffusion en continu lisse.
+* Si vous avez un élément multimédia avec un localisateur de diffusion en continu, Impossible de lier un élément multimédia de nouvelle stratégie toohello, dissocier une stratégie existante à partir de l’élément multimédia de hello ou mettre à jour une stratégie de remise associée hello actif.  Vous tout d’abord avez localisateur de diffusion en continu tooremove hello, ajustez les stratégies de hello, puis recréez hello localisateur de diffusion en continu.  Vous pouvez utiliser hello locatorId même lorsque vous recréez hello de diffusion en continu de la recherche, mais vous devez vous assurer que causer des problèmes pour les clients, car le contenu peut être mis en cache à l’origine de hello ou un CDN en aval.
 
 >[!NOTE]
 
 >Lors de l’accès aux entités dans Media Services, vous devez définir les valeurs et les champs d’en-tête spécifiques dans vos requêtes HTTP. Pour plus d'informations, consultez [Installation pour le développement REST API de Media Services](media-services-rest-how-to-use.md).
 
-## <a name="connect-to-media-services"></a>Connexion à Media Services
+## <a name="connect-toomedia-services"></a>Connecter les Services de tooMedia
 
-Pour savoir comment vous connecter à l’API AMS, consultez [Accéder à l’API Azure Media Services avec l’authentification Azure AD](media-services-use-aad-auth-to-access-ams-api.md). 
+Pour plus d’informations sur la façon dont tooconnect toohello AMS API, consultez [hello accès API Azure Media Services avec l’authentification Azure AD](media-services-use-aad-auth-to-access-ams-api.md). 
 
 >[!NOTE]
->Après vous être connecté à https://media.windows.net, vous recevrez une redirection 301 spécifiant un autre URI Media Services. Vous devez faire d’autres appels au nouvel URI.
+>Après vous être connecté toohttps://media.windows.net, vous recevrez une redirection 301 spécifiant un autre URI de Media Services. Vous devez effectuer les appels suivants toohello nouvel URI.
 
 ## <a name="clear-asset-delivery-policy"></a>Stratégie de remise de ressources
 ### <a id="create_asset_delivery_policy"></a>Création d’une stratégie de remise d’éléments multimédias
-La requête HTTP suivante permet de créer une stratégie de remise d’éléments multimédias qui précise de ne pas appliquer de chiffrement dynamique et de fournir le flux avec l’un des protocoles suivants : MPEG DASH, HLS et Smooth Streaming. 
+Hello requête HTTP suivante crée une stratégie de remise actif qui spécifie toonot appliquer le chiffrement dynamique et de protocoles de flux de données toodeliver hello dans un des hello suivant : protocoles MPEG DASH, HLS et Smooth Streaming. 
 
-Pour plus d'informations sur les valeurs que vous pouvez spécifier au moment de la création d'une AssetDeliveryPolicy, consultez la section [Types utilisés au moment de la définition d'AssetDeliveryPolicy](#types) .   
+Pour plus d’informations sur les valeurs que vous pouvez spécifier lors de la création d’un AssetDeliveryPolicy, consultez hello [Types utilisés lors de la définition AssetDeliveryPolicy](#types) section.   
 
 Demande :
 
@@ -123,7 +123,7 @@ Réponse :
     "LastModified":"2015-02-08T06:21:27.6908329Z"}
 
 ### <a id="link_asset_with_asset_delivery_policy"></a>Liaison d’un élément multimédia à la stratégie de remise d’élément multimédia
-La demande HTTP suivante lie la ressource spécifiée à la stratégie de remise de ressources.
+Hello suivant hello de liens de demande HTTP spécifié asset toohello asset remise stratégie.
 
 Demande :
 
@@ -146,13 +146,13 @@ Réponse :
 
 
 ## <a name="dynamicenvelopeencryption-asset-delivery-policy"></a>Stratégie de remise de ressources DynamicEnvelopeEncryption
-### <a name="create-content-key-of-the-envelopeencryption-type-and-link-it-to-the-asset"></a>Création de la clé de contenu de type EnvelopeEncryption et liaison à la ressource
-Lorsque vous spécifiez la stratégie de remise DynamicEnvelopeEncryption, vous devez veiller à lier votre ressource à une clé de contenu de type EnvelopeEncryption. Pour plus d’informations, consultez la page [Création d’une clé de contenu](media-services-rest-create-contentkey.md)).
+### <a name="create-content-key-of-hello-envelopeencryption-type-and-link-it-toohello-asset"></a>Créer la clé de contenu de type de EnvelopeEncryption hello et le lier toohello actif
+Lorsque vous spécifiez la stratégie de livraison DynamicEnvelopeEncryption, vous devez toomake des toolink que votre clé de contenu tooa asset Hello EnvelopeEncryption type. Pour plus d’informations, consultez la page [Création d’une clé de contenu](media-services-rest-create-contentkey.md)).
 
 ### <a id="get_delivery_url"></a>Obtention de l’URL de remise
-Obtenez l’URL de remise pour la méthode de remise spécifiée de la clé de contenu créée à l’étape précédente. Un client utilise l’URL retournée pour demander une clé AES ou une licence PlayReady afin de lire le contenu protégé.
+URL de remise Get hello pour hello spécifié méthode de remise de clé de contenu hello créé à l’étape précédente de hello. Un client utilise hello retourné URL toorequest une clé AES ou une licence PlayReady Bonjour tooplayback de commande du contenu protégé.
 
-Spécifiez le type d’URL à obtenir dans le corps de la demande HTTP. Si vous protégez votre contenu avec PlayReady, demandez une URL d’acquisition de licence PlayReady Media Services, en utilisant 1 pour keyDeliveryType : {"keyDeliveryType":1}. Si vous protégez votre contenu avec le chiffrement d’enveloppe, demandez une URL d’acquisition de clé en spécifiant 2 pour keyDeliveryType :{"keyDeliveryType":2}.
+Spécifiez type hello de hello URL tooget dans le corps hello de requête HTTP de hello. Si vous protégez votre contenu avec PlayReady, demandez une URL d’acquisition de licence PlayReady de Media Services, à l’aide de 1 pour hello keyDeliveryType : {« keyDeliveryType » : 1}. Si vous protégez votre contenu avec chiffrement d’enveloppe hello, demandez une URL d’acquisition de clé en spécifiant 2 pour keyDeliveryType : {« keyDeliveryType » : 2}.
 
 Demande :
 
@@ -188,9 +188,9 @@ Réponse :
 
 
 ### <a name="create-asset-delivery-policy"></a>Création d’une stratégie de remise d’éléments multimédias
-La demande HTTP suivante crée la stratégie **AssetDeliveryPolicy** configurée pour appliquer le chiffrement dynamique en enveloppe (**DynamicEnvelopeEncryption**) au protocole **HLS** (dans cet exemple, les autres protocoles ne pourront pas être diffusés en continu). 
+requête HTTP suivante Hello crée hello **AssetDeliveryPolicy** tooapply configuré qui est le chiffrement dynamique enveloppe (**DynamicEnvelopeEncryption**) toohello **HLS**protocole (dans cet exemple, d’autres protocoles seront bloqués de diffusion en continu). 
 
-Pour plus d'informations sur les valeurs que vous pouvez spécifier au moment de la création d'une AssetDeliveryPolicy, consultez la section [Types utilisés au moment de la définition d'AssetDeliveryPolicy](#types) .   
+Pour plus d’informations sur les valeurs que vous pouvez spécifier lors de la création d’un AssetDeliveryPolicy, consultez hello [Types utilisés lors de la définition AssetDeliveryPolicy](#types) section.   
 
 Demande :
 
@@ -232,16 +232,16 @@ Réponse :
 Consultez la rubrique [Liaison d’un élément multimédia à la stratégie de remise d’élément multimédia](#link_asset_with_asset_delivery_policy)
 
 ## <a name="dynamiccommonencryption-asset-delivery-policy"></a>Stratégie de remise de ressources DynamicCommonEncryption
-### <a name="create-content-key-of-the-commonencryption-type-and-link-it-to-the-asset"></a>Création de la clé de contenu de type CommonEncryption et liaison à la ressource
-Lorsque vous spécifiez la stratégie de remise DynamicCommonEncryption, vous devez veiller à lier votre ressource à une clé de contenu de type CommonEncryption. Pour plus d’informations, consultez la page [Création d’une clé de contenu](media-services-rest-create-contentkey.md)).
+### <a name="create-content-key-of-hello-commonencryption-type-and-link-it-toohello-asset"></a>Créer la clé de contenu de type de CommonEncryption hello et le lier toohello actif
+Lorsque vous spécifiez la stratégie de livraison DynamicCommonEncryption, vous devez toomake des toolink que votre clé de contenu tooa asset Hello CommonEncryption type. Pour plus d’informations, consultez la page [Création d’une clé de contenu](media-services-rest-create-contentkey.md)).
 
 ### <a name="get-delivery-url"></a>Obtention de l’URL de remise
-Obtenez l’URL de remise pour la méthode de remise PlayReady de la clé de contenu créée à l’étape précédente. Un client utilise l’URL retournée pour demander une licence PlayReady afin de lire le contenu protégé. Pour plus d’informations, consultez la rubrique [Obtention de l’URL de remise](#get_delivery_url).
+Obtenir l’URL de remise hello hello PlayReady mode de livraison de la clé de contenu hello créé à l’étape précédente de hello. Un client utilise hello retourné toorequest URL protégée par une licence PlayReady Bonjour tooplayback de commande contenu. Pour plus d’informations, consultez la rubrique [Obtention de l’URL de remise](#get_delivery_url).
 
 ### <a name="create-asset-delivery-policy"></a>Création d’une stratégie de remise d’éléments multimédias
-La demande HTTP suivante crée la stratégie **AssetDeliveryPolicy** configurée pour appliquer le chiffrement dynamique commun (**DynamicCommonEncryption**) au protocole **Smooth Streaming** (dans cet exemple, les autres protocoles ne pourront pas être diffusés en continu). 
+requête HTTP suivante Hello crée hello **AssetDeliveryPolicy** tooapply configuré qui est le chiffrement commun dynamique (**DynamicCommonEncryption**) toohello **Smooth Streaming**  protocole (dans cet exemple, d’autres protocoles seront bloqués de diffusion en continu). 
 
-Pour plus d'informations sur les valeurs que vous pouvez spécifier au moment de la création d'une AssetDeliveryPolicy, consultez la section [Types utilisés au moment de la définition d'AssetDeliveryPolicy](#types) .   
+Pour plus d’informations sur les valeurs que vous pouvez spécifier lors de la création d’un AssetDeliveryPolicy, consultez hello [Types utilisés lors de la définition AssetDeliveryPolicy](#types) section.   
 
 Demande :
 
@@ -260,14 +260,14 @@ Demande :
     {"Name":"AssetDeliveryPolicy","AssetDeliveryProtocol":1,"AssetDeliveryPolicyType":4,"AssetDeliveryConfiguration":"[{\"Key\":2,\"Value\":\"https:\\/\\/amsaccount1.keydelivery.mediaservices.windows.net\/PlayReady\/"}]"}
 
 
-Si vous souhaitez protéger votre contenu à l’aide de Widevine DRM, mettez à jour les valeurs AssetDeliveryConfiguration pour utiliser WidevineLicenseAcquisitionUrl (dont la valeur est 7) et indiquez l’URL d’un service de remise de licence. Vous pouvez utiliser les partenaires AMS suivants pour vous aider à fournir des licences Widevine : [Axinom](http://www.axinom.com/press/ibc-axinom-drm-6/), [EZDRM](http://ezdrm.com/), [castLabs](http://castlabs.com/company/partners/azure/).
+Si vous souhaitez tooprotect votre contenu à l’aide de Widevine DRM, mettre à jour hello AssetDeliveryConfiguration valeurs toouse WidevineLicenseAcquisitionUrl (qui a la valeur hello 7) et spécifiez les URL de hello d’un service de remise de licences. Vous pouvez utiliser hello suivant toohelp de partenaires AMS vous fournir des licences Widevine : [Axinom](http://www.axinom.com/press/ibc-axinom-drm-6/), [EZDRM](http://ezdrm.com/), [castLabs](http://castlabs.com/company/partners/azure/).
 
 Par exemple : 
 
     {"Name":"AssetDeliveryPolicy","AssetDeliveryProtocol":2,"AssetDeliveryPolicyType":4,"AssetDeliveryConfiguration":"[{\"Key\":7,\"Value\":\"https:\\/\\/example.net\/WidevineLicenseAcquisition\/"}]"}
 
 > [!NOTE]
-> Lors du chiffrement avec Widevine, vous ne pourriez effectuer une remise qu’avec DASH. Veillez à spécifier DASH (2) dans le protocole de remise de ressources.
+> Lors du chiffrement avec Widevine, vous serez uniquement en mesure de toodeliver à l’aide de tiret. Vérifiez le protocole de livraison actif que toospecify tiret hello en (2).
 > 
 > 
 
@@ -278,7 +278,7 @@ Consultez la rubrique [Liaison d’un élément multimédia à la stratégie de 
 
 ### <a name="assetdeliveryprotocol"></a>AssetDeliveryProtocol
 
-La valeur d’énumération suivante décrit les valeurs que vous pouvez définir pour le protocole de remise de ressources.
+Hello enum suivant décrit les valeurs que vous pouvez définir pour le protocole de remise hello actif.
 
     [Flags]
     public enum AssetDeliveryProtocol
@@ -313,7 +313,7 @@ La valeur d’énumération suivante décrit les valeurs que vous pouvez défini
 
 ### <a name="assetdeliverypolicytype"></a>AssetDeliveryPolicyType
 
-La valeur d’énumération suivante décrit les valeurs que vous pouvez définir pour le type de protocole de remise de ressources.  
+Hello enum suivant décrit les valeurs que vous pouvez définir pour le type de stratégie de remise hello asset.  
 
     public enum AssetDeliveryPolicyType
     {
@@ -323,12 +323,12 @@ La valeur d’énumération suivante décrit les valeurs que vous pouvez défini
         None,
 
         /// <summary>
-        /// The Asset should not be delivered via this AssetDeliveryProtocol. 
+        /// hello Asset should not be delivered via this AssetDeliveryProtocol. 
         /// </summary>
         Blocked, 
 
         /// <summary>
-        /// Do not apply dynamic encryption to the asset.
+        /// Do not apply dynamic encryption toohello asset.
         /// </summary>
         /// 
         NoDynamicEncryption,  
@@ -346,7 +346,7 @@ La valeur d’énumération suivante décrit les valeurs que vous pouvez défini
 
 ### <a name="contentkeydeliverytype"></a>ContentKeyDeliveryType
 
-La valeur d’énumération suivante décrit les valeurs que vous pouvez utiliser pour configurer la méthode de remise de la clé de contenu au client.
+Hello enum suivant décrit les valeurs que vous pouvez utiliser la méthode de remise tooconfigure hello du client de contenu toohello clé hello.
     
     public enum ContentKeyDeliveryType
     {
@@ -379,7 +379,7 @@ La valeur d’énumération suivante décrit les valeurs que vous pouvez utilise
 
 ### <a name="assetdeliverypolicyconfigurationkey"></a>AssetDeliveryPolicyConfigurationKey
 
-La valeur d’énumération suivante décrit les valeurs que vous pouvez définir pour configurer les clés utilisées pour obtenir une configuration spécifique pour une stratégie de remise de ressources.
+Hello suivant enum décrit les valeurs que vous pouvez définir la configuration spécifique du tooget tooconfigure clés utilisées pour une stratégie de livraison des actifs.
 
     public enum AssetDeliveryPolicyConfigurationKey
     {
@@ -399,22 +399,22 @@ La valeur d’énumération suivante décrit les valeurs que vous pouvez défini
         EnvelopeBaseKeyAcquisitionUrl,
 
         /// <summary>
-        /// The initialization vector to use for envelope encryption in Base64 format.
+        /// hello initialization vector toouse for envelope encryption in Base64 format.
         /// </summary>
         EnvelopeEncryptionIVAsBase64,
 
         /// <summary>
-        /// The PlayReady License Acquisition Url to use for common encryption.
+        /// hello PlayReady License Acquisition Url toouse for common encryption.
         /// </summary>
         PlayReadyLicenseAcquisitionUrl,
 
         /// <summary>
-        /// The PlayReady Custom Attributes to add to the PlayReady Content Header
+        /// hello PlayReady Custom Attributes tooadd toohello PlayReady Content Header
         /// </summary>
         PlayReadyCustomAttributes,
 
         /// <summary>
-        /// The initialization vector to use for envelope encryption.
+        /// hello initialization vector toouse for envelope encryption.
         /// </summary>
         EnvelopeEncryptionIV,
 

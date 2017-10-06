@@ -1,6 +1,6 @@
 ---
-title: "Utilisation d’Azure Key Vault à partir d’une application web | Microsoft Docs"
-description: "Utilisez ce didacticiel pour vous aider à apprendre comment utiliser Azure Key Vault à partir d'une application web."
+title: "aaaUse à partir d’une Application Web d’Azure Key Vault | Documents Microsoft"
+description: "Utilisez ce didacticiel toohelp vous apprendre comment toouse Azure Key Vault à partir d’une application web."
 services: key-vault
 documentationcenter: 
 author: adhurwit
@@ -14,77 +14,77 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/07/2017
 ms.author: adhurwit
-ms.openlocfilehash: d095bcfe37baefa90cf79bb48bff3f703ce1dad7
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d5e2299e60b379c4e234d5cd6be03411c5a5c958
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-azure-key-vault-from-a-web-application"></a>Utilisation d'Azure Key Vault à partir d'une application web
 ## <a name="introduction"></a>Introduction
-Utilisez ce didacticiel pour vous aider à comprendre comment utiliser Azure Key Vault à partir d'une application web. Celui-ci vous guide dans le processus d'obtention d'une clé secrète à partir d'Azure Key Vault afin de pouvoir être utilisé dans votre application web.
+Utilisez ce didacticiel toohelp vous apprendre comment toouse Azure Key Vault à partir d’une application web dans Azure. Il vous guide tout au long des processus de hello d’accès à une clé secrète à partir d’un coffre de clés Azure afin qu’il peut être utilisé dans votre application web.
 
-**Durée estimée :** 15 minutes
+**Estimation du temps toocomplete :** 15 minutes
 
 Pour plus d’informations générales sur Azure Key Vault, consultez la page [Présentation d’Azure Key Vault](key-vault-whatis.md)
 
 ## <a name="prerequisites"></a>Composants requis
-Pour suivre ce didacticiel, vous avez besoin des éléments suivants :
+toocomplete ce didacticiel, vous devez avoir hello suivant :
 
-* un URI pour une clé secrète dans Azure Key Vault,
-* un ID client et une clé secrète client pour une application Web enregistrés avec Azure Active Directory qui a accès à votre Key Vault,
-* une application web. Nous afficherons les étapes d'une application ASP.NET MVC déployée dans Azure en tant qu'application web.
+* Un secret de tooa URI dans un coffre de clés Azure
+* Un ID Client et une clé secrète du Client pour une application web inscrit auprès d’Azure Active Directory qui a accès tooyour le coffre de clés
+* une application web. Nous vous exécutez les étapes hello pour une application ASP.NET MVC déployé dans Azure comme une application Web.
 
 > [!NOTE]
-> Il est essentiel que vous ayez effectué les étapes répertoriées dans [Prise en main d'Azure Key Vault](key-vault-get-started.md) pour ce didacticiel afin que vous ayez l'URI pour une clé secrète et un ID client ainsi qu'une clé secrète client pour une application web.
+> Il est essentiel que vous avez effectué les étapes de hello répertoriés dans [prise en main d’Azure Key Vault](key-vault-get-started.md) pour ce didacticiel afin que vous ayez hello hello ID Client et secret de tooa URI et une clé secrète pour une application web.
 > 
 > 
 
-L'application web qui accédera à Key Vault est celle qui est enregistrée dans Azure Active Directory et est autorisée à accéder à votre Key Vault. Si cela n'est pas le cas, revenez à Inscrire une Application dans le didacticiel de prise en main et répétez les étapes répertoriées.
+application web Hello qui accédera à hello coffre de clés est hello un qui est inscrit dans Azure Active Directory et a accès tooyour le coffre de clés. Si ce n’est pas le cas de hello, revenir en arrière tooRegister une Application dans le didacticiel de mise en route de hello et répétez les étapes de hello répertoriées.
 
-Ce didacticiel est conçu pour les développeurs web qui comprennent les principes fondamentaux de création d'applications web sur Azure. Pour plus d'informations sur Azure Web Apps, consultez [Vue d'ensemble de Web Apps](../app-service-web/app-service-web-overview.md).
+Ce didacticiel est conçu pour les développeurs web qui comprennent les principes fondamentaux de hello de création d’applications web sur Azure. Pour plus d'informations sur Azure Web Apps, consultez [Vue d'ensemble de Web Apps](../app-service-web/app-service-web-overview.md).
 
 ## <a id="packages"></a>Ajout de packages NuGet
-Deux packages doivent être installés pour votre application web.
+Il existe deux packages de votre application web doit toohave installé.
 
 * Bibliothèque d'authentification Active Directory : contient des méthodes pour interagir avec Azure Active Directory et gérer l'identité de l'utilisateur
 * Bibliothèque Azure Key Vault : contient des méthodes pour interagir avec Azure Key Vault
 
-Ces deux packages peuvent être installés à l’aide de la console du Gestionnaire de Package en utilisant la commande Install-Package.
+Les deux de ces packages peuvent être installés à l’aide de hello Console du Gestionnaire de Package à l’aide de la commande hello Install-Package.
 
-    // this is currently the latest stable version of ADAL
+    // this is currently hello latest stable version of ADAL
     Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory -Version 2.16.204221202
 
     Install-Package Microsoft.Azure.KeyVault
 
 
 ## <a id="webconfig"></a>Modification du fichier Web.Config
-Il existe trois paramètres d'application qui doivent être ajoutés au fichier web.config comme suit.
+Il existe trois paramètres d’application nécessitant un fichier web.config de toohello ajouté toobe comme suit.
 
-    <!-- ClientId and ClientSecret refer to the web application registration with Azure Active Directory -->
+    <!-- ClientId and ClientSecret refer toohello web application registration with Azure Active Directory -->
     <add key="ClientId" value="clientid" />
     <add key="ClientSecret" value="clientsecret" />
 
-    <!-- SecretUri is the URI for the secret in Azure Key Vault -->
+    <!-- SecretUri is hello URI for hello secret in Azure Key Vault -->
     <add key="SecretUri" value="secreturi" />
 
 
-Si vous ne souhaitez pas héberger votre application comme une application web d'Azure, vous devriez ajouter les valeurs réelles ID client, Clé secrète client et une clé secrèteURI au fichier Web.config. Sinon, laissez ces valeurs factices ; nous ajouterons les valeurs réelles dans le portail Azure pour un niveau de sécurité supplémentaire.
+Si vous ne souhaitez pas toohost votre application comme une application Web Azure, vous devez ajouter hello réel ClientId, une clé secrète Client et Secret URI valeurs toohello web.config. Sinon, laissez ces valeurs factices, car nous allons ajouter les valeurs réelles hello Bonjour portail Azure pour un niveau supplémentaire de sécurité.
 
-## <a id="gettoken"></a>Ajout d'une méthode pour obtenir un jeton d'accès
-Pour utiliser l'API Key Vault, vous avez besoin d'un jeton d'accès. Le client Key Vault gère les appels de l'API Key Vault, mais vous devez lui fournir une fonction qui lui fait obtenir le jeton d'accès.  
+## <a id="gettoken"></a>Ajouter tooGet méthode un jeton d’accès
+Bonjour toouse de commande API coffre de clés, vous avez besoin d’un jeton d’accès. Hello clé de coffre Client gère les appels toohello API coffre de clés, mais vous devez toosupply avec une fonction qui obtient le jeton d’accès hello.  
 
-Voici le code pour obtenir un jeton d'accès avec Azure Active Directory. Ce code peut être placé n'importe où dans votre application. Vous pouvez par exemple ajouter une classe Utils ou EncryptionHelper.  
+Tooget de code hello un jeton d’accès d’Azure Active Directory sont les suivants : Ce code peut être placé n'importe où dans votre application. J’aime tooadd un Utils ou EncryptionHelper classe.  
 
     //add these using statements
     using Microsoft.IdentityModel.Clients.ActiveDirectory;
     using System.Threading.Tasks;
     using System.Web.Configuration;
 
-    //this is an optional property to hold the secret after it is retrieved
+    //this is an optional property toohold hello secret after it is retrieved
     public static string EncryptSecret { get; set; }
 
-    //the method that will be provided to the KeyVaultClient
+    //hello method that will be provided toohello KeyVaultClient
     public static async Task<string> GetToken(string authority, string resource, string scope)
     {
         var authContext = new AuthenticationContext(authority);
@@ -93,18 +93,18 @@ Voici le code pour obtenir un jeton d'accès avec Azure Active Directory. Ce c
         AuthenticationResult result = await authContext.AcquireTokenAsync(resource, clientCred);
 
         if (result == null)
-            throw new InvalidOperationException("Failed to obtain the JWT token");
+            throw new InvalidOperationException("Failed tooobtain hello JWT token");
 
         return result.AccessToken;
     }
 
 > [!NOTE]
-> Le moyen le plus simple d’authentifier une application Azure AD est d’utiliser une clé secrète client et un ID client. L'utiliser dans votre application Web permet une séparation des tâches et davantage de contrôle sur la gestion de clés. Toutefois, vous devez placer la clé secrète client dans vos paramètres de configuration, ce qui, dans certains cas, peut s’avérer aussi dangereux que placer le secret que vous souhaitez protéger dans vos paramètres de configuration. Consultez la section ci-dessous pour plus d'informations sur l'utilisation d'un ID client et d’un certificat au lieu de l’ID client et de la clé secrète client pour authentifier l'application Azure AD.
+> À l’aide d’un ID Client et la clé secrète du Client est tooauthenticate de façon plus simple hello une application Azure AD. L'utiliser dans votre application Web permet une séparation des tâches et davantage de contrôle sur la gestion de clés. Mais il s’appuie sur le placement de hello question secrète du Client dans vos paramètres de configuration qui, pour certaines, comme présente des risques en plaçant secret hello que vous souhaitez tooprotect dans vos paramètres de configuration. Voir ci-dessous pour en savoir plus sur la façon dont toouse un ID Client et le certificat au lieu de l’ID Client et une clé secrète tooauthenticate hello application Azure AD.
 > 
 > 
 
-## <a id="appstart"></a>Récupération de la clé secrète dans Application Start
-Nous avons maintenant besoin du code pour appeler l'API Key Vault et récupérer la clé secrète. Le code suivant peut être placé n'importe où tant qu'il est appelé avant que vous ne deviez l'utiliser. Ce code a été créé dans l'événement Application Start dans Global.asax afin qu'il s'exécute au démarrage et rende la clé secrète disponible à l'application.
+## <a id="appstart"></a>Récupérez secret hello sur Démarrer l’Application
+Nous devons maintenant toocall hello API coffre de clés de code et récupérez hello secret. Hello de code suivant peut être placé n’importe où tant qu’il est appelé avant que vous avez besoin de toouse il. J’ai placer ce code dans l’événement de démarrer l’Application hello Bonjour Global.asax afin qu’elle s’exécute une seule fois au démarrage et rend hello secret disponible pour l’application hello.
 
     //add these using statements
     using Microsoft.Azure.KeyVault;
@@ -115,34 +115,34 @@ Nous avons maintenant besoin du code pour appeler l'API Key Vault et récupére
 
     var sec = await kv.GetSecretAsync(WebConfigurationManager.AppSettings["SecretUri"]);
 
-    //I put a variable in a Utils class to hold the secret for general  application use.
+    //I put a variable in a Utils class toohold hello secret for general  application use.
     Utils.EncryptSecret = sec.Value;
 
 
 
-## <a id="portalsettings"></a>Ajout de paramètres d'application dans le portail Azure (facultatif)
-Si vous avez une application web d'Azure, vous pouvez maintenant ajouter les valeurs réelles pour AppSettings dans le portail Azure. Ce faisant, les valeurs réelles ne seront pas dans le fichier Web.config, mais protégés via le portail où vous avez des fonctionnalités de contrôle d'accès distinctes. Ces valeurs seront remplacées par les valeurs que vous avez entrées dans votre fichier Web.config. Assurez-vous que les noms sont identiques.
+## <a id="portalsettings"></a>Ajouter des paramètres de l’application Bonjour portail Azure (facultatif)
+Si vous avez une application Web Azure vous pouvez maintenant ajouter des valeurs réelles de hello pour hello AppSettings Bonjour portail Azure. Ce faisant, les valeurs réelles hello ne seront pas dans le fichier web.config de hello mais protégé via hello portail où vous disposez des fonctionnalités de contrôle d’accès distincts. Ces valeurs seront remplacées pour les valeurs hello que vous avez entré dans votre fichier web.config. Assurez-vous que les noms de hello sont hello identiques.
 
 ![Paramètres de l'application affichés dans le portail Azure][1]
 
 ## <a name="authenticate-with-a-certificate-instead-of-a-client-secret"></a>Authentification avec un certificat et non une clé secrète client
-Il est également possible d'authentifier une application Azure AD à l'aide d'un ID client et d’un certificat, plutôt qu'un ID client et une clé secrète client. Voici les étapes pour utiliser un certificat dans une application Web Azure :
+Une autre façon tooauthenticate une application Azure AD est à l’aide d’un ID Client et un certificat au lieu d’un ID Client et la clé secrète du Client. Suivantes sont hello étapes toouse un certificat dans une application Web Azure :
 
 1. obtenir ou créer un certificat ;
-2. associer le certificat à une application Azure AD ;
-3. ajouter du code à votre application Web pour utiliser le certificat ;
-4. ajouter un certificat à votre application Web.
+2. Associer hello certificat avec une application Azure AD
+3. Ajouter hello de toouse code tooyour application Web certificat
+4. Ajouter un certificat de tooyour Web App
 
-**Obtenir ou créer un certificat** Dans notre cas, nous utiliserons un certificat de test. Voici quelques exemples de commandes que vous pouvez utiliser dans une invite de commandes de développeur pour créer un certificat. Accédez au répertoire dans lequel vous souhaitez créer les fichiers de certificat.  En outre, pour les dates de début et de fin du certificat, utilisez la date actuelle plus un an.
+**Obtenir ou créer un certificat** Dans notre cas, nous utiliserons un certificat de test. Voici quelques exemples de commandes que vous pouvez utiliser dans une invite de commandes développeur de toocreate un certificat. Modifiez toowhere directory que Hello cert fichiers est créé.  En outre, pour hello de début et de fin du certificat de hello, utilisez hello date actuelle plu 1 an.
 
     makecert -sv mykey.pvk -n "cn=KVWebApp" KVWebApp.cer -b 03/07/2017 -e 03/07/2018 -r
     pvk2pfx -pvk mykey.pvk -spc KVWebApp.cer -pfx KVWebApp.pfx -po test123
 
-Prenez note de la date de fin et du mot de passe pour le fichier .pfx (dans cet exemple : 31/07/2016 et test123). Vous en aurez besoin ultérieurement.
+Prenez note de la date de fin hello et le mot de passe hello hello .pfx (dans cet exemple : 31/07/2016 et test123). Vous en aurez besoin ultérieurement.
 
 Pour plus d’informations sur la création d’un certificat de test, consultez [How to: Create Your Own Test Certificate](https://msdn.microsoft.com/library/ff699202.aspx)
 
-**Associer le certificat à une application Azure AD** Maintenant que vous disposez d'un certificat, vous devez l'associer à une application Azure AD. Actuellement, le Portail Azure ne prend pas en charge ce worklfow ; en revanche, PowerShell, oui. Exécutez les commandes suivantes pour associer le certificat à l’application Azure AD :
+**Associer hello certificat avec une application Azure AD** maintenant que vous avez un certificat, vous devez tooassociate avec une application Azure AD. Actuellement, hello portail Azure ne prend pas en charge ce flux de travail ; Cette opération peut être effectuée via PowerShell. Exécutez hello suivant le certificat de hello tooassoicate de commandes avec l’application hello Azure AD :
 
     $x509 = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2
     $x509.Import("C:\data\KVWebApp.cer")
@@ -158,16 +158,16 @@ Pour plus d’informations sur la création d’un certificat de test, consultez
 
     Set-AzureRmKeyVaultAccessPolicy -VaultName 'contosokv' -ServicePrincipalName $sp.ServicePrincipalName -PermissionsToSecrets all -ResourceGroupName 'contosorg'
 
-    # get the thumbprint to use in your app settings
+    # get hello thumbprint toouse in your app settings
     $x509.Thumbprint
 
-Après avoir exécuté ces commandes, vous pouvez voir l'application dans Azure AD. Lors de votre recherche, veillez à bien sélectionner « Applications que ma société possède » au lieu de « Applications que ma société utilise » dans la boîte de dialogue de recherche.
+Après avoir exécuté ces commandes, vous pouvez voir l’application hello dans Azure AD. Lors de la recherche, veillez à que sélectionner « Ma société possède des Applications » au lieu de « Applications ma société utilise » dans la boîte de dialogue de recherche hello.
 
-Pour plus d'informations sur les objets d'application AD Azure et ServicePrincipal, consultez [Objets principal du service et application](../active-directory/active-directory-application-objects.md)
+toolearn en savoir plus sur les objets d’Application Azure AD et les objets de principal du service, consultez [objets de Principal du Service et Application](../active-directory/active-directory-application-objects.md)
 
-**Ajouter du code à votre application Web pour utiliser le certificat** Nous allons maintenant ajouter du code à votre application Web pour accéder au certificat et l'utiliser pour l'authentification.
+**Ajouter hello de toouse Web application code tooyour certificat** maintenant nous allons ajouter le code tooyour Web App tooaccess hello cert et l’utiliser pour l’authentification.
 
-Tout d'abord vient le code d'accès au certificat.
+Tout d’abord est cert de code tooaccess hello.
 
     public static class CertificateHelper
     {
@@ -178,7 +178,7 @@ Tout d'abord vient le code d'accès au certificat.
             {
                 store.Open(OpenFlags.ReadOnly);
                 X509Certificate2Collection col = store.Certificates.Find(X509FindType.FindByThumbprint,
-                    findValue, false); // Don't validate certs, since the test root isn't installed.
+                    findValue, false); // Don't validate certs, since hello test root isn't installed.
                 if (col == null || col.Count == 0)
                     return null;
                 return col[0];
@@ -191,9 +191,9 @@ Tout d'abord vient le code d'accès au certificat.
     }
 
 
-Notez que l'emplacement StoreLocation est CurrentUser, et non LocalMachine. Et que nous choisissons « false » pour la méthode Find, car nous utilisons un certificat de test.
+Notez que hello StoreLocation est CurrentUser au lieu de l’ordinateur local. Et que nous sommes en fournissant toohello 'false' Find (méthode), car nous utilisons un certificat de test.
 
-Vient ensuite le code qui utilise le CertificateHelper et crée un ClientAssertionCertificate, nécessaire pour l'authentification.
+L’élément suivant est le code qui utilise hello CertificateHelper et crée un ClientAssertionCertificate qui est nécessaire pour l’authentification.
 
     public static ClientAssertionCertificate AssertionCert { get; set; }
 
@@ -204,7 +204,7 @@ Vient ensuite le code qui utilise le CertificateHelper et crée un ClientAsserti
     }
 
 
-Voici le nouveau code pour obtenir le jeton d'accès. Cela remplace la méthode GetToken ci-dessus. Elle a un nom différent pour des raisons pratiques.
+Voici le jeton d’accès hello nouveau code tooget hello. Cette opération remplace hello GetToken, méthode ci-dessus. Elle a un nom différent pour des raisons pratiques.
 
     public static async Task<string> GetAccessToken(string authority, string resource, string scope)
     {
@@ -215,21 +215,21 @@ Voici le nouveau code pour obtenir le jeton d'accès. Cela remplace la méthode�
 
 J'ai inséré tout ce code dans la classe Utils de mon projet d’application Web pour plus de facilité d'utilisation.
 
-La dernière modification de code a lieu dans la méthode Application_Start. Nous devons tout d'abord appeler la méthode GetCert() pour charger le ClientAssertionCertificate. Nous modifions ensuite la méthode de rappel que nous transmettons lors de la création d'un nouveau KeyVaultClient. Notez que cela remplace le code que nous avions ci-dessus.
+dernière modification de code Hello est Bonjour méthode Application_Start. Tout d’abord, nous devons toocall hello hello tooload de méthode GetCert() ClientAssertionCertificate. Puis nous modifiez la méthode de rappel hello qui nous fournir lors de la création d’un nouveau KeyVaultClient. Notez que cette opération remplace code hello que nous avions ci-dessus.
 
     Utils.GetCert();
     var kv = new KeyVaultClient(new KeyVaultClient.AuthenticationCallback(Utils.GetAccessToken));
 
 
-**Ajouter un certificat à votre application web via le portail Azure** L’ajout d’un certificat à votre application web est un processus simple en deux étapes. Connectez-vous au portail Azure et accédez à votre application Web. Sur le volet Paramètres de votre application Web, cliquez sur l'entrée « Custom domains and SSL ». Sur le nouveau panneau, vous pourrez télécharger le certificat que vous avez créé plus tôt, KVWebApp.pfx. Assurez-vous de vous souvenir du mot de passe pour le pfx.
+**Ajouter une application Web de tooyour certificat via hello portail Azure** Ajout d’un certificat de tooyour application Web est un processus en deux étapes simples. Tout d’abord, accédez toohello portail Azure et accédez tooyour application Web. Dans le panneau des paramètres hello pour votre application Web, cliquez sur entrée hello pour « les domaines personnalisés et SSL ». Sur hello panneau qui s’ouvre vous seront hello de tooupload en mesure de certificat que vous avez créé précédemment, KVWebApp.pfx, assurez-vous que vous n’oubliez pas le mot de passe hello hello pfx.
 
-![Ajout d'un certificat à une application Web dans le portail Azure][2]
+![Ajout d’une application Web de tooa certificat Bonjour portail Azure][2]
 
-La dernière chose que vous devez faire consiste à ajouter un paramètre d’application à votre application web, nommé WEBSITE\_LOAD\_CERTIFICATES et avec la valeur *. Cela garantit que tous les certificats sont chargés. Si vous souhaitez charger uniquement les certificats que vous avez téléchargés, vous pouvez entrer une liste séparée par des virgules de leurs empreintes numériques.
+dernière chose que toodo Hello est tooadd un tooyour de paramètre d’Application Web application disposant du site Web de noms hello\_charge\_certificats et la valeur *. Cela garantit que tous les certificats sont chargés. Si vous souhaitiez hello uniquement de tooload certificats que vous avez téléchargé, puis vous pouvez entrer une liste séparée par des virgules de leurs empreintes numériques.
 
-Pour en savoir plus sur l'ajout d'un certificat à une application Web, consultez [Using Certificates in Azure Websites Applications](https://azure.microsoft.com/blog/2014/10/27/using-certificates-in-azure-websites-applications/)
+toolearn plus sur l’ajout d’un certificat de tooa Web App, consultez [à l’aide de certificats dans les Applications de sites Web Azure](https://azure.microsoft.com/blog/2014/10/27/using-certificates-in-azure-websites-applications/)
 
-**Ajouter un certificat à un coffre de clés en tant que clé secrète** Au lieu de télécharger votre certificat pour le service d’application web directement, vous pouvez le stocker dans le coffre de clés en tant que clé secrète et le déployer depuis cet emplacement. Il s’agit d’un processus en deux étapes décrit dans le billet de blog suivant [Deploying Azure Web App Certificate through Key Vault](https://blogs.msdn.microsoft.com/appserviceteam/2016/05/24/deploying-azure-web-app-certificate-through-key-vault/)
+**Ajouter un certificat de tooKey coffre en tant que secret** au lieu de charger votre certificat de toohello service d’application Web directement, vous pouvez stocker dans le coffre de clés en tant que secret et le déployer à partir de là. Il s’agit d’un processus en deux étapes est décrite dans hello suivant le billet de blog, [déploiement Azure certificat l’application Web via le coffre de clés](https://blogs.msdn.microsoft.com/appserviceteam/2016/05/24/deploying-azure-web-app-certificate-through-key-vault/)
 
 ## <a id="next"></a>Étapes suivantes
 Pour les références de programmation, consultez la page [Référence de l'API cliente C# du coffre de clés](https://msdn.microsoft.com/library/azure/dn903628.aspx).

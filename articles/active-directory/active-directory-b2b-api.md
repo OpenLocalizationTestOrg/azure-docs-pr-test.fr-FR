@@ -1,6 +1,6 @@
 ---
-title: "API et personnalisation d’Azure Active Directory B2B Collaboration | Microsoft Docs"
-description: "Azure Active Directory B2B Collaboration prend en charge les relations interentreprises en permettant aux partenaires commerciaux d’accéder de façon sélective à vos applications d’entreprise"
+title: aaaAzure Active Directory B2B collaboration API et la personnalisation | Documents Microsoft
+description: "Azure Active Directory B2B collaboration prend en charge les relations de votre société croisée en activant tooselectively partenaires commerciaux un accès à vos applications d’entreprise"
 services: active-directory
 documentationcenter: 
 author: sasubram
@@ -15,18 +15,18 @@ ms.tgt_pltfrm: NA
 ms.workload: identity
 ms.date: 04/11/2017
 ms.author: sasubram
-ms.openlocfilehash: c85e05b38b4a9525e13ec510a17b7ef4841198d7
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2609971ffa5d2ebc9466c61f4e4af11f5b045ecb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-b2b-collaboration-api-and-customization"></a>API et personnalisation d’Azure Active Directory B2B Collaboration
 
-De nombreux clients nous ont indiqué qu’ils souhaitent personnaliser le processus d’invitation d’une manière qui convient mieux à leurs organisations. Avec notre API, cela est possible. [https://developer.microsoft.com/graph/docs/api-reference/v1.0/resources/invitation](https://developer.microsoft.com/graph/docs/api-reference/v1.0/resources/invitation)
+Nous avons eu de nombreux clients nous dire qu’ils veulent des processus d’invitation hello toocustomize d’une manière qui convient le mieux à leur organisation. Avec notre API, cela est possible. [https://developer.microsoft.com/graph/docs/api-reference/v1.0/resources/invitation](https://developer.microsoft.com/graph/docs/api-reference/v1.0/resources/invitation)
 
-## <a name="capabilities-of-the-invitation-api"></a>Fonctionnalités de l’API d’invitation
-L’API offre les fonctionnalités suivantes :
+## <a name="capabilities-of-hello-invitation-api"></a>Fonctionnalités de l’invitation hello API
+Hello API offre hello suivant de fonctionnalités :
 
 1. Invitez un utilisateur externe avec *n’importe quelle* adresse e-mail.
 
@@ -35,35 +35,35 @@ L’API offre les fonctionnalités suivantes :
     "invitedUserEmailAddress": "gsamoogle@gmail.com"
     ```
 
-2. Personnalisez l’emplacement vers lequel vous souhaitez diriger vos utilisateurs une fois qu’ils ont accepté l’invitation.
+2. Personnaliser votre tooland utilisateurs où vous souhaitez une fois qu’ils acceptent leur invitation.
 
     ```
     "inviteRedirectUrl": "https://myapps.microsoft.com/"
     ```
 
-3. Choisissez d’envoyer l’e-mail d’invitation standard par notre intermédiaire
+3. Choisissez toosend hello invitation standard courrier par nous
 
     ```
     "sendInvitationMessage": true
     ```
 
-  accompagné d’un message au destinataire que vous pouvez personnaliser
+  avec un destinataire toohello message que vous pouvez personnaliser
 
     ```
     "customizedMessageBody": "Hello Sam, let's collaborate!"
     ```
 
-4. Et choisissez de mettre en copie des personnes que vous souhaitez informer de votre invitation de ce collaborateur.
+4. Choisissez toocc : personnes tookeep Bonjour boucle sur votre invitation ce collaborateur.
 
-5. Ou personnalisez entièrement votre flux de travail d’invitation et d’accueil en choisissant de ne pas envoyer des notifications via Azure AD.
+5. Ou de personnaliser entièrement votre invitation et l’intégration de flux de travail en choisissant pas toosend notifications via Azure AD.
 
     ```
     "sendInvitationMessage": false
     ```
 
-  Dans ce cas, vous obtenez une URL d’échange de la part de l’API que vous pouvez incorporer dans un modèle d’e-mail, un message instantané ou toute autre méthode de distribution de votre choix.
+  Dans ce cas, vous récupérez une URL de remboursement des hello API que vous pouvez incorporer dans un modèle de courrier électronique, messagerie instantanée ou autre méthode de distribution de votre choix.
 
-6. Enfin, si vous êtes un administrateur, vous pouvez choisir d’inviter l’utilisateur en tant que membre.
+6. Enfin, si vous êtes un administrateur, vous pouvez choisir utilisateur de hello tooinvite en tant que membre.
 
     ```
     "invitedUserType": "Member"
@@ -71,32 +71,32 @@ L’API offre les fonctionnalités suivantes :
 
 
 ## <a name="authorization-model"></a>Modèle d’autorisation
-L’API peut être exécutée dans les modes d’autorisation suivants :
+Hello API peut être exécuté dans hello suivant les modes d’autorisation :
 
 ### <a name="app--user-mode"></a>Mode Application + Utilisateur
-Dans ce mode, toute personne utilisant l’API doit disposer des autorisations permettant de créer des invitations B2B.
+Dans ce mode, la personne qui utilise les besoins de hello API toohave hello autorisations toobe créer des invitations à participer à B2B.
 
 ### <a name="app-only-mode"></a>Mode Application uniquement
-Dans le contexte Application uniquement, l’application a besoin des étendues User.ReadWrite.All ou Directory.ReadWrite.All pour que l’invitation réussisse.
+Dans le contexte uniquement d’application, application hello doit hello User.ReadWrite.All ou Directory.ReadWrite.All étendues pour hello invitation toosucceed.
 
 Pour plus d’informations, consultez : https://graph.microsoft.io/docs/authorization/permission_scopes
 
 
 ## <a name="powershell"></a>PowerShell
-Il est désormais possible d’utiliser PowerShell pour ajouter et inviter facilement des utilisateurs externes au sein d’une organisation. Créez une invitation à l’aide de l’applet de commande suivante :
+Il est maintenant possible toouse PowerShell tooadd et inviter des utilisateurs externes tooan organisation facilement. Créer une invitation à l’aide d’applet de commande hello :
 
 ```
 New-AzureADMSInvitation
 ```
 
-Vous pouvez utiliser les options suivantes :
+Vous pouvez utiliser hello options suivantes :
 
 * -InvitedUserDisplayName
 * -InvitedUserEmailAddress
 * -SendInvitationMessage
 * -InvitedUserMessageInfo
 
-Vous pouvez également extraire la référence d’API d’invitation dans [https://developer.microsoft.com/graph/docs/api-reference/v1.0/resources/invitation](https://developer.microsoft.com/graph/docs/api-reference/v1.0/resources/invitation)
+Vous pouvez également extraire référence des API d’invitation hello dans [https://developer.microsoft.com/graph/docs/api-reference/v1.0/resources/invitation](https://developer.microsoft.com/graph/docs/api-reference/v1.0/resources/invitation)
 
 ## <a name="next-steps"></a>Étapes suivantes
 
@@ -104,8 +104,8 @@ Consultez les autres articles sur la collaboration B2B d'Azure AD :
 
 * [Qu’est-ce qu’Azure AD B2B Collaboration ?](active-directory-b2b-what-is-azure-ad-b2b.md)
 * [Comment les administrateurs Azure Active Directory ajoutent-ils des utilisateurs B2B Collaboration ?](active-directory-b2b-admin-add-users.md)
-* [Comment les professionnels de l’information ajoutent-ils des utilisateurs B2B Collaboration ?](active-directory-b2b-iw-add-users.md)
-* [Éléments de l’e-mail d’invitation de B2B Collaboration](active-directory-b2b-invitation-email.md)
+* [Comment les professionnels de l’information ajoutent-ils des utilisateurs B2B Collaboration ?](active-directory-b2b-iw-add-users.md)
+* [éléments Hello Hello e-mail d’invitation B2B collaboration](active-directory-b2b-invitation-email.md)
 * [Utilisation d’une invitation B2B Collaboration](active-directory-b2b-redemption-experience.md)
 * [Attribution de licences Azure AD B2B Collaboration](active-directory-b2b-licensing.md)
 * [Résolution des problèmes d’Azure Active Directory B2B Collaboration](active-directory-b2b-troubleshooting.md)

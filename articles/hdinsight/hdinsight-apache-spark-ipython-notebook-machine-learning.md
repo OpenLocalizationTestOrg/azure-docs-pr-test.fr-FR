@@ -1,6 +1,6 @@
 ---
-title: Utiliser des applications de Machine Learning Apache Spark sur HDInsight | Documents Microsoft
-description: "Instructions détaillées sur la manière de créer des applications de Machine Learning Apache Spark sur des clusters Spark HDInsight à l’aide d’un bloc-notes Jupyter"
+title: applications sur Azure HDInsight apprentissage Apache Spark automatique aaaBuild | Documents Microsoft
+description: "Instructions détaillées sur la façon dont les clusters toobuild Apache Spark d’apprentissage application sur HDInsight Spark à l’aide du bloc-notes jupyter"
 services: hdinsight
 documentationcenter: 
 author: nitinme
@@ -16,41 +16,41 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/25/2017
 ms.author: nitinme
-ms.openlocfilehash: 158ade4612104020e0231794e7123ea5cad6c459
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 332bd89876f7ebf178f7573d6018d064edfe9a8f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="build-apache-spark-machine-learning-applications-on-azure-hdinsight"></a>Créer des applications de Machine Learning Apache Spark sur Azure HDInsight
 
-Découvrez comment créer une application de Machine Learning Apache Spark à l’aide d’un cluster Spark sur HDInsight. Cet article montre comment utiliser le bloc-notes Jupyter disponible avec le cluster pour créer et tester l’application. L’application utilise l’exemple de données HVAC.csv, qui est disponible par défaut sur tous les clusters.
+Découvrez comment toobuild une application d’apprentissage machine Apache Spark à l’aide d’un Spark de cluster sur HDInsight. Cet article explique comment toouse hello bloc-notes jupyter disponible avec hello cluster toobuild et tester cette application. application Hello utilise hello HVAC.csv d’un échantillon de données disponibles sur tous les clusters par défaut.
 
 **Configuration requise :**
 
-Vous devez disposer des éléments suivants :
+Vous devez disposer de hello :
 
 * Un cluster Apache Spark sur HDInsight. Pour obtenir des instructions, consultez [Création de clusters Apache Spark dans Azure HDInsight](hdinsight-apache-spark-jupyter-spark-sql.md). 
 
-## <a name="data"></a>Comprendre le jeu de données
-Avant de créer l’application, nous devons comprendre la structure des données pour lesquelles nous la créons, et le type d’analyse que nous allons effectuer sur ces données. 
+## <a name="data"></a>Comprendre le jeu de données hello
+Avant de commencer à générer l’application hello, faites-nous comprendre hello structure de données hello pour lequel nous générer application hello et type hello d’analyse, que nous ferons sur les données de salutation. 
 
-Dans cet article, nous utilisons l’exemple de fichier de données **HVAC.csv** qui est disponible dans le compte de stockage Azure que vous avez associé au cluster HDInsight. Dans le compte de stockage, le fichier se trouve sous **\HdiSamples\HdiSamples\SensorSampleData\hvac**. Téléchargez et ouvrez le fichier CSV pour obtenir un instantané des données.  
+Dans cet article, nous utilisons l’exemple hello **HVAC.csv** fichier de données qui est disponible dans hello compte de stockage Azure que vous avez associé le cluster HDInsight de hello. Dans le compte de stockage hello, fichier de hello est à **\HdiSamples\HdiSamples\SensorSampleData\hvac**. Téléchargez et ouvrez tooget de fichier CSV hello un instantané des données de hello.  
 
 ![Capture instantanée des données utilisées pour l’exemple de Machine Learning Spark](./media/hdinsight-apache-spark-ipython-notebook-machine-learning/spark-machine-learning-understand-data.png "Capture instantanée des données utilisées pour l’exemple de Machine Learning Spark")
 
-Les données indiquent la température cible et la température réelle d’un bâtiment dans lequel un système HVAC est installé. Supposons que la colonne **System** représente l’ID système et que la colonne **SystemAge** représente le nombre d’années écoulées depuis la mise en place du système HVAC dans le bâtiment.
+les données de salutation montrent la température de cible de hello et hello de température réelle d’une construction qui HVAC système est installé. Supposons que hello **système** colonne représente l’ID de système hello et hello **SystemAge** colonne représente le nombre de hello d’années système de climatisation hello a été mises en place au niveau de la construction de hello.
 
-Nous utilisons ces données pour prédire si un bâtiment sera plus chaud ou plus froid en fonction de la température cible, étant donné un ID système et une ancienneté du système.
+Si une génération sera chaudes ou surgelé basé sur la température de cible hello, étant donné un ID système et l’âge du système, nous utilisons cette toopredict de données.
 
 ## <a name="app"></a>Écrire une application de Machine Learning Spark à l’aide de Spark MLlib
-Dans cette application, nous utilisons un pipeline Spark ML pour effectuer une classification de documents. Dans le pipeline, nous fractionnons le document en mots, que nous convertissons en vecteur de fonctionnalité numérique avant de créer un modèle de prédiction utilisant les vecteurs et étiquettes de fonctionnalité. Procédez comme suit pour créer l’application.
+Dans cette application, nous utilisons un tooperform de pipeline Spark ML une classification de document. Dans le pipeline de hello, nous fractionner les documents de hello en mots, convertir les mots hello dans un vecteur de fonctionnalité numériques et enfin créer un modèle de prévision à l’aide d’étiquettes et les vecteurs de caractéristiques hello. Effectuer hello après application de hello toocreate étapes.
 
-1. Dans le tableau d’accueil du [portail Azure](https://portal.azure.com/), cliquez sur la vignette de votre cluster Spark (si vous l’avez épinglé au tableau d’accueil). Vous pouvez également accéder à votre cluster sous **Parcourir tout** > **Clusters HDInsight**.   
-2. Dans le panneau du cluster Spark, cliquez sur **Tableau de bord du cluster**, puis sur **Bloc-notes Jupyter**. Si vous y êtes invité, entrez les informations d’identification d’administrateur pour le cluster.
+1. À partir de hello [Azure Portal](https://portal.azure.com/), à partir du tableau d’accueil hello, cliquez sur la vignette hello pour votre cluster Spark (si vous avez épinglé il toohello tableau d’accueil). Vous pouvez également naviguer cluster tooyour sous **parcourir tous les** > **Clusters HDInsight**.   
+2. Dans le panneau de cluster Spark hello, cliquez sur **tableau de bord de Cluster**, puis cliquez sur **bloc-notes Jupyter**. Si vous y êtes invité, entrez les informations d’identification du admin de hello pour le cluster de hello.
    
    > [!NOTE]
-   > Vous pouvez également atteindre le bloc-notes Jupyter pour votre cluster en ouvrant l'URL suivante dans votre navigateur. Remplacez **CLUSTERNAME** par le nom de votre cluster.
+   > Vous pouvez également atteindre hello bloc-notes Jupyter pour votre cluster en hello ouverture suivante d’URL dans votre navigateur. Remplacez **CLUSTERNAME** avec nom hello de votre cluster :
    > 
    > `https://CLUSTERNAME.azurehdinsight.net/jupyter`
    > 
@@ -58,10 +58,10 @@ Dans cette application, nous utilisons un pipeline Spark ML pour effectuer une 
 3. Créer un nouveau bloc-notes. Cliquez sur **Nouveau**, puis sur **PySpark**.
    
     ![Créer un bloc-notes Jupyter pour l’exemple de Machine Learning Spark](./media/hdinsight-apache-spark-ipython-notebook-machine-learning/spark-machine-learning-create-notebook.png "Créer un bloc-notes Jupyter pour l’exemple de Machine Learning Spark")
-4. Un nouveau bloc-notes est créé et ouvert sous le nom Untitled.pynb. Cliquez sur le nom du bloc-notes en haut, puis entrez un nom convivial.
+4. Un nouvel ordinateur portable est créé et ouvert avec le nom hello Untitled.pynb. Cliquez sur le nom du bloc-notes hello haut hello et entrez un nom convivial.
    
     ![Fournir un nom de bloc-notes pour l’exemple de Machine Learning Spark](./media/hdinsight-apache-spark-ipython-notebook-machine-learning/spark-machine-learning-notebook-name.png "Fournir un nom de bloc-notes pour l’exemple de Machine Learning Spark")
-5. Comme vous avez créé un bloc-notes à l’aide du noyau PySpark, il est inutile de créer des contextes explicitement. Les contextes Spark et Hive sont automatiquement créés pour vous lorsque vous exécutez la première cellule de code. Vous pouvez commencer par importer les types requis pour ce scénario. Collez l’extrait de code suivant dans une cellule vide, puis appuyez sur **MAJ + ENTRÉE**. 
+5. Étant donné que vous avez créé un ordinateur portable à l’aide de noyau de PySpark hello, il est inutile toocreate les contextes explicitement. contextes de Spark et Hive Hello seront automatiquement créés pour vous lors de l’exécution de la première cellule de code hello. Vous pouvez commencer par importer les types hello qui sont requis pour ce scénario. Collez hello suivant extrait dans une cellule vide, puis appuyez sur **MAJ + ENTRÉE**. 
    
         from pyspark.ml import Pipeline
         from pyspark.ml.classification import LogisticRegression
@@ -75,13 +75,13 @@ Dans cette application, nous utilisons un pipeline Spark ML pour effectuer une 
         from pyspark.mllib.classification import LogisticRegressionWithSGD
         from pyspark.mllib.regression import LabeledPoint
         from numpy import array
-6. À présent, vous devez charger les données (hvac.csv), les analyser et les utiliser pour effectuer l’apprentissage du modèle. Pour ce faire, vous devez définir une fonction qui vérifie si la température réelle du bâtiment est supérieure à la température cible. Si la température actuelle est supérieure, le bâtiment est chaud, ce qui est indiqué par la valeur **1,0**. Si la température actuelle est inférieure, le bâtiment est froid, ce qui est indiqué par la valeur **0,0**. 
+6. Maintenant, vous devez charger les données de salutation (hvac.csv), analyser et utiliser le modèle de hello tootrain. Pour ce faire, vous définissez une fonction qui vérifie si la température réelle de hello de construction de hello est supérieure à la température de cible hello. Si la température réelle de hello est supérieure, génération de hello est à chaud, représentée par la valeur de hello **1.0**. Si la température réelle de hello est moindre, génération de hello est à froid, représentée par la valeur de hello **0.0**. 
    
-    Collez l’extrait de code suivant dans une cellule vide, puis appuyez sur **Maj+Entrée**.
+    Hello coller suivant extrait dans une cellule vide appuyez sur **MAJ + ENTRÉE**.
 
-        # List the structure of data for better understanding. Because the data will be
-        # loaded as an array, this structure makes it easy to understand what each element
-        # in the array corresponds to
+        # List hello structure of data for better understanding. Because hello data will be
+        # loaded as an array, this structure makes it easy toounderstand what each element
+        # in hello array corresponds to
 
         # 0 Date
         # 1 Time
@@ -93,7 +93,7 @@ Dans cette application, nous utilisons un pipeline Spark ML pour effectuer une 
 
         LabeledDocument = Row("BuildingID", "SystemInfo", "label")
 
-        # Define a function that parses the raw CSV file and returns an object of type LabeledDocument
+        # Define a function that parses hello raw CSV file and returns an object of type LabeledDocument
 
         def parseDocument(line):
             values = [str(x) for x in line.split(',')]
@@ -106,29 +106,29 @@ Dans cette application, nous utilisons un pipeline Spark ML pour effectuer une 
 
             return LabeledDocument((values[6]), textValue, hot)
 
-        # Load the raw HVAC.csv file, parse it using the function
+        # Load hello raw HVAC.csv file, parse it using hello function
         data = sc.textFile("wasb:///HdiSamples/HdiSamples/SensorSampleData/hvac/HVAC.csv")
 
         documents = data.filter(lambda s: "Date" not in s).map(parseDocument)
         training = documents.toDF()
 
 
-1. Configurez le pipeline Spark ML qui est composé de trois étapes : Tokenizer, HashingTF et LogisticRegression. Pour plus d’informations sur ce qu’est un pipeline et sur son fonctionnement, consultez <a href="http://spark.apache.org/docs/latest/ml-guide.html#how-it-works" target="_blank">Spark machine learning pipeline</a>.
+1. Configurer le pipeline d’apprentissage automatique Spark hello qui se compose de trois étapes : Générateur de jetons, hashingTF et lr. Pour plus d’informations sur ce qu’est un pipeline et sur son fonctionnement, consultez <a href="http://spark.apache.org/docs/latest/ml-guide.html#how-it-works" target="_blank">Spark machine learning pipeline</a>.
    
-    Collez l’extrait de code suivant dans une cellule vide, puis appuyez sur **Maj+Entrée**.
+    Hello coller suivant extrait dans une cellule vide appuyez sur **MAJ + ENTRÉE**.
    
         tokenizer = Tokenizer(inputCol="SystemInfo", outputCol="words")
         hashingTF = HashingTF(inputCol=tokenizer.getOutputCol(), outputCol="features")
         lr = LogisticRegression(maxIter=10, regParam=0.01)
         pipeline = Pipeline(stages=[tokenizer, hashingTF, lr])
-2. Ajustez le pipeline au document d’apprentissage. Collez l’extrait de code suivant dans une cellule vide, puis appuyez sur **Maj+Entrée**.
+2. Document de formation pipeline toohello hello adaptée. Hello coller suivant extrait dans une cellule vide appuyez sur **MAJ + ENTRÉE**.
    
         model = pipeline.fit(training)
-3. Vérifiez le document d’apprentissage pour contrôler votre progression dans l’application. Collez l’extrait de code suivant dans une cellule vide, puis appuyez sur **Maj+Entrée**.
+3. Vérifiez que hello formation document toocheckpoint votre progression avec l’application hello. Hello coller suivant extrait dans une cellule vide appuyez sur **MAJ + ENTRÉE**.
    
         training.show()
    
-    Le résultat doit ressembler à ce qui suit :
+    Suit toohello similaire de hello sortie doit s’afficher :
    
         +----------+----------+-----+
         |BuildingID|SystemInfo|label|
@@ -155,15 +155,15 @@ Dans cette application, nous utilisons un pipeline Spark ML pour effectuer une 
         |         7|      17 5|  0.0|
         +----------+----------+-----+
 
-    Revenez en arrière et vérifiez le résultat par rapport au fichier CSV brut. Par exemple, la première ligne du fichier CSV contient les données suivantes :
+    Revenir en arrière et vérifier la sortie hello par rapport à un fichier CSV brut hello. Par exemple, hello premier ligne hello fichier CSV comporte les données :
 
     ![Capture instantanée des données de sortie pour l’exemple de Machine Learning Spark](./media/hdinsight-apache-spark-ipython-notebook-machine-learning/spark-machine-learning-output-data.png "Capture instantanée des données de sortie pour l’exemple de Machine Learning Spark")
 
-    Notez que la température réelle est inférieure à la température cible, suggérant que le bâtiment est froid. De ce fait, dans le résultat, l’**étiquette** de la première ligne a pour valeur **0,0**,, ce qui signifie que le bâtiment n’est pas chaud.
+    Notez que la température réelle de hello est inférieure à la température de cible hello suggérant la construction de hello est à froid. Par conséquent, dans la sortie de formation hello, hello valeur pour **étiquette** Bonjour la première ligne est **0.0**, ce qui signifie bâtiment de hello n’est pas actif.
 
-1. Préparez un jeu de données sur lequel exécuter le modèle d’apprentissage. Pour ce faire, nous allons passer un ID système et une ancienneté du système (indiqués par **SystemInfo** dans le résultat de l’apprentissage). Le modèle prédira si le bâtiment ayant cet ID système et cette ancienneté de système sera plus chaud (indiqué par la valeur 1,0) ou plus froid (indiqué par la valeur 0,0).
+1. Préparez un jeu de données toorun hello formé par rapport. toodo par conséquent, il peut passer sur un ID système et l’âge du système (notée **SystemInfo** dans la sortie de formation hello), et le modèle de hello serait prédire hello indique si la génération avec cet âge de système et des ID système seraient être chaudes (signalées par 1.0) ou refroidissement ( signalés par 0.0).
    
-   Collez l’extrait de code suivant dans une cellule vide, puis appuyez sur **Maj+Entrée**.
+   Hello coller suivant extrait dans une cellule vide appuyez sur **MAJ + ENTRÉE**.
    
        # SystemInfo here is a combination of system ID followed by system age
        Document = Row("id", "SystemInfo")
@@ -174,14 +174,14 @@ Dans cette application, nous utilisons un pipeline Spark ML pour effectuer une 
                      (5L, "17 10"),
                      (6L, "7 22")]) \
            .map(lambda x: Document(*x)).toDF() 
-2. Pour finir, effectuez des prédictions sur les données de test. Collez l’extrait de code suivant dans une cellule vide, puis appuyez sur **Maj+Entrée**.
+2. Enfin, élaborer des prédictions sur les données de test hello. Hello coller suivant extrait dans une cellule vide appuyez sur **MAJ + ENTRÉE**.
    
         # Make predictions on test documents and print columns of interest
         prediction = model.transform(test)
         selected = prediction.select("SystemInfo", "prediction", "probability")
         for row in selected.collect():
             print row
-3. Le résultat doit ressembler à ce qui suit :
+3. Vous devez voir s’afficher une sortie similaire toohello :
    
        Row(SystemInfo=u'20 25', prediction=1.0, probability=DenseVector([0.4999, 0.5001]))
        Row(SystemInfo=u'4 15', prediction=0.0, probability=DenseVector([0.5016, 0.4984]))
@@ -190,18 +190,18 @@ Dans cette application, nous utilisons un pipeline Spark ML pour effectuer une 
        Row(SystemInfo=u'17 10', prediction=1.0, probability=DenseVector([0.4925, 0.5075]))
        Row(SystemInfo=u'7 22', prediction=0.0, probability=DenseVector([0.5015, 0.4985]))
    
-   Dans la première ligne de la prédiction, vous pouvez voir que pour un système HVAC avec l’ID 20 et une ancienneté du système de 25 ans, le bâtiment sera chaud (**prediction=1,0**). La première valeur de DenseVector (0,49999) correspond à la prédiction 0.0, et la seconde valeur (0,5001) correspond à la prédiction 1.0. Dans le résultat, même si la seconde valeur n’est que légèrement supérieure, le modèle indique **prediction=1,0**.
-4. Une fois l’exécution de l’application terminée, arrêtez le bloc-notes pour libérer les ressources. Pour ce faire, dans le menu **Fichier** du bloc-notes, cliquez sur **Fermer et arrêter**. Cette opération permet d’arrêter et de fermer le bloc-notes.
+   À partir de hello première ligne dans une prédiction de hello, vous pouvez voir que pour un système de climatisation avec l’ID 20 et l’âge de système de 25 ans, génération de hello sera à chaud (**prédiction = 1.0**). Hello première valeur de DenseVector (0.49999) correspond toohello prédiction 0,0 et la valeur de seconde hello (0.5001) correspond toohello prédiction 1.0. Dans la sortie de hello, même si la valeur de seconde hello n’est légèrement plus élevé, hello modèle montre **prédiction = 1.0**.
+4. Une fois que vous avez terminé d’exécuter l’application hello, vous devez le ressources hello toorelease arrêt hello bloc-notes. toodo donc de hello **fichier** cliquez sur le menu d’un ordinateur portable hello, **fermer et s’arrêter**. Cette s’arrête et le bloc-notes de fermer hello.
 
 ## <a name="anaconda"></a>Utiliser une bibliothèque scikit-learn Anaconda pour le Machine Learning Spark
-Les clusters Apache Spark sur HDInsight incluent des bibliothèques Anaconda, notamment la bibliothèque **scikit-learn** pour l’apprentissage automatique. Cette bibliothèque contient également différents jeux de données qui vous permettent de créer des exemples d’application directement à partir d’un bloc-notes Jupyter. Pour obtenir des exemples d’utilisation de la bibliothèque scikit-learn, reportez-vous à [http://scikit-learn.org/stable/auto_examples/index.html](http://scikit-learn.org/stable/auto_examples/index.html).
+Les clusters Apache Spark sur HDInsight incluent des bibliothèques Anaconda, Cela inclut également hello **scikit-en savoir plus** bibliothèque pour l’apprentissage. bibliothèque de Hello inclut également différents jeux de données que vous pouvez utiliser les exemples d’applications toobuild directement à partir d’un bloc-notes jupyter. Pour obtenir des exemples sur l’utilisation de hello scikit-bibliothèque de plus, consultez [http://scikit-learn.org/stable/auto_examples/index.html](http://scikit-learn.org/stable/auto_examples/index.html).
 
 ## <a name="seealso"></a>Voir aussi
 * [Vue d’ensemble : Apache Spark sur Azure HDInsight](hdinsight-apache-spark-overview.md)
 
 ### <a name="scenarios"></a>Scénarios
 * [Spark avec BI : effectuez une analyse interactive des données à l’aide de Spark dans HDInsight avec des outils BI](hdinsight-apache-spark-use-bi-tools.md)
-* [Spark avec Machine Learning : utilisez Spark dans HDInsight pour prédire les résultats de l’inspection des aliments](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
+* [Spark avec Machine Learning : Spark utilisation dans résultats de l’inspection alimentaires toopredict HDInsight](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
 * [Streaming Spark : Utiliser Spark dans HDInsight pour créer des applications de diffusion en continu en temps réel](hdinsight-apache-spark-eventhub-streaming.md)
 * [Analyse des journaux de site web à l’aide de Spark dans HDInsight](hdinsight-apache-spark-custom-library-website-log-analysis.md)
 
@@ -210,16 +210,16 @@ Les clusters Apache Spark sur HDInsight incluent des bibliothèques Anaconda, 
 * [Exécuter des tâches à distance avec Livy sur un cluster Spark](hdinsight-apache-spark-livy-rest-interface.md)
 
 ### <a name="tools-and-extensions"></a>Outils et extensions
-* [Utilisez le plugin d’outils HDInsight pour IntelliJ IDEA pour créer et soumettre des applications Spark Scala](hdinsight-apache-spark-intellij-tool-plugin.md)
-* [Use HDInsight Tools Plugin for IntelliJ IDEA to debug Spark applications remotely) (Utiliser le plug-in Outils HDInsight pour IntelliJ IDEA pour déboguer des applications Spark à distance)](hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely.md)
+* [Utiliser le plug-in des outils HDInsight pour IntelliJ idée toocreate et soumettre des applications les plus importantes Spark Scala](hdinsight-apache-spark-intellij-tool-plugin.md)
+* [Utiliser des plug-in des outils HDInsight pour les applications de Spark toodebug IntelliJ idée à distance](hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely.md)
 * [Utiliser des bloc-notes Zeppelin avec un cluster Spark sur HDInsight](hdinsight-apache-spark-zeppelin-notebook.md)
 * [Noyaux disponibles pour le bloc-notes Jupyter dans un cluster Spark pour HDInsight](hdinsight-apache-spark-jupyter-notebook-kernels.md)
 * [Utiliser des packages externes avec les blocs-notes Jupyter](hdinsight-apache-spark-jupyter-notebook-use-external-packages.md)
-* [Install Jupyter on your computer and connect to an HDInsight Spark cluster (Installer Jupyter sur un ordinateur et se connecter au cluster Spark sur HDInsight)](hdinsight-apache-spark-jupyter-notebook-install-locally.md)
+* [Installer Notebook sur votre ordinateur et vous connecter tooan cluster HDInsight Spark](hdinsight-apache-spark-jupyter-notebook-install-locally.md)
 
 ### <a name="manage-resources"></a>Gestion des ressources
-* [Gérer les ressources du cluster Apache Spark dans Azure HDInsight](hdinsight-apache-spark-resource-manager.md)
-* [Suivi et débogage des tâches en cours d’exécution sur un cluster Apache Spark dans HDInsight](hdinsight-apache-spark-job-debugging.md)
+* [Gérer les ressources de cluster d’Apache Spark hello dans Azure HDInsight](hdinsight-apache-spark-resource-manager.md)
+* [Track and debug jobs running on an Apache Spark cluster in HDInsight (Suivi et débogage des tâches en cours d’exécution sur un cluster Apache Spark dans HDInsight)](hdinsight-apache-spark-job-debugging.md)
 
 [hdinsight-versions]: hdinsight-component-versioning.md
 [hdinsight-upload-data]: hdinsight-upload-data.md

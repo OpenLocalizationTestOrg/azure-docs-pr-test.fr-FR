@@ -16,23 +16,23 @@ ms.topic: article
 ms.date: 07/17/2017
 ms.author: joflore
 ms.custom: it-pro
-ms.openlocfilehash: 4b35c5d126375735f070a7fe2331896c524b5a61
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: af7cb13794bf3a9fee91d355f788aa5c2246e57c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="password-policies-and-restrictions-in-azure-active-directory"></a>Stratégies et restrictions de mot de passe dans Azure Active Directory
 
-Cet article décrit les stratégies de mot de passe et les exigences en matière de complexité associées aux comptes d’utilisateur stockés sur votre client Azure AD.
+Cet article décrit les stratégies de mot de passe hello et des exigences de complexité associées aux comptes d’utilisateur stockés dans votre locataire Azure AD.
 
 ## <a name="administrator-password-policy-differences"></a>Différences en matière de stratégie de mot de passe administrateur
 
 Microsoft met en œuvre une stratégie de réinitialisation des mots de passe **à deux entrées** par défaut pour n’importe quel rôle d’administrateur Azure (exemple : administrateur général, administrateur de support technique, administrateur de mots de passe, etc.)
 
-Cela empêche les administrateurs d’utiliser les questions de sécurité et applique ce qui suit.
+Cela désactive les administrateurs à partir de l’aide de questions de sécurité et applique des éléments suivants de hello.
 
-Une stratégie à deux portes, nécessitant deux parties de données d’authentification (adresse e-mail **et** numéro de téléphone), s’applique dans les cas suivants
+Deux stratégie, nécessitant deux éléments de données de l’authentification de la grille (adresse de messagerie **et** numéro de téléphone), s’applique dans hello suivant circonstances
 
 * Tous les rôles administrateur Azure
   * Administrateur du support technique
@@ -60,84 +60,84 @@ Une stratégie à deux portes, nécessitant deux parties de données d’authent
 * Azure AD Connect synchronise les identités à partir de votre répertoire local
 
 ### <a name="exceptions"></a>Exceptions
-Une stratégie de porte, nécessitant une partie de données d’authentification (adresse e-mail **et** numéro de téléphone), s’applique dans les cas suivants
+Stratégie un porte, nécessitant une portion de données d’authentification (adresse de messagerie **ou** numéro de téléphone), s’applique dans hello suivant circonstances
 
 * 30 premiers jours d’un essai **OU**
 * Le domaine personnel n’est pas présent (*.onmicrosoft.com) **ET** Azure AD Connect ne synchronise pas les identités
 
 
-## <a name="userprincipalname-policies-that-apply-to-all-user-accounts"></a>Stratégies UserPrincipalName s'appliquant à tous les comptes d'utilisateur
+## <a name="userprincipalname-policies-that-apply-tooall-user-accounts"></a>Stratégies UserPrincipalName qui s’appliquent à des comptes d’utilisateur tooall
 
-Chaque compte d’utilisateur devant se connecter à Azure AD doit être doté d’une valeur d’attribut unique de nom d’utilisateur principal (UPN) associée à son compte. Le tableau ci-dessous décrit les stratégies qui s’appliquent à la fois aux comptes d’utilisateurs Active Directory locaux synchronisés sur le cloud et aux comptes d’utilisateurs uniquement dans le cloud.
+Chaque compte d’utilisateur qui doit toosign dans tooAzure AD doit avoir une valeur d’attribut de nom principal (UPN) unique utilisateur associée à leur compte. table Hello ci-dessous décrivent hello les stratégies qui s’appliquent tooboth local synchronisé de comptes d’utilisateur Active Directory toohello cloud et les comptes d’utilisateurs toocloud uniquement.
 
 | Propriété | Conditions requises pour UserPrincipalName |
 | --- | --- |
 | Caractères autorisés |<ul> <li>A – Z</li> <li>a - z</li><li>0 – 9</li> <li> . - \_ ! \# ^ \~</li></ul> |
-| Caractères non autorisés |<ul> <li>Tout caractère « @ » qui ne sépare pas le nom d’utilisateur du domaine.</li> <li>Ne peut pas contenir un point « . » précédant immédiatement le symbole « @ »</li></ul> |
-| Contraintes de longueur |<ul> <li>La longueur totale ne doit pas dépasser 113 caractères</li><li>64 caractères avant le symbole « @ »</li><li>48 caractères après le symbole « @ »</li></ul> |
+| Caractères non autorisés |<ul> <li>N’importe quel ' @' caractère qui n’est pas séparation nom d’utilisateur hello du domaine de hello.</li> <li>Ne peut pas contenir un caractère point '.' hello précédent ' @' symbole</li></ul> |
+| Contraintes de longueur |<ul> <li>La longueur totale ne doit pas dépasser 113 caractères</li><li>64 caractères avant hello ' @' symbole</li><li>48 caractères après hello ' @' symbole</li></ul> |
 
-## <a name="password-policies-that-apply-only-to-cloud-user-accounts"></a>Stratégies de mot de passe s'appliquant uniquement aux comptes d'utilisateur dans le cloud
+## <a name="password-policies-that-apply-only-toocloud-user-accounts"></a>Stratégies de mot de passe qui s’appliquent uniquement les comptes d’utilisateurs toocloud
 
-La table suivante décrit les paramètres de stratégie de mot de passe disponibles pouvant être appliqués aux comptes d'utilisateurs créés et gérés dans Azure AD.
+Hello tableau suivant décrit les paramètres de stratégie de mot de passe disponibles hello qui peuvent être appliqués toouser les comptes qui sont créés et gérés dans Azure AD.
 
 | Propriété | Configuration requise |
 | --- | --- |
 | Caractères autorisés |<ul><li>A – Z</li><li>a - z</li><li>0 – 9</li> <li>@ # $ % ^ & * - _ ! + = [ ] { } &#124; \ : ‘ , . ? / ` ~ “ ( ) ;</li></ul> |
-| Caractères non autorisés |<ul><li>Caractères Unicode</li><li>Espaces</li><li> **Mots de passe forts uniquement** : ne peut pas contenir de point « . » précédant immédiatement le symbole « @ »</li></ul> |
-| Restrictions de mot de passe |<ul><li>8 caractères au minimum et 16 caractères au maximum</li><li>**Mots de passe forts uniquement** : 3 des 4 éléments suivants sont requis :<ul><li>Caractères minuscules</li><li>Caractères majuscules</li><li>Chiffres (0-9)</li><li>Symboles (voir les restrictions de mot de passe ci-dessus)</li></ul></li></ul> |
-| Délai d'expiration du mot de passe |<ul><li>Valeur par défaut : **90** jours </li><li>La valeur est configurable à l’aide de l’applet de commande Set-MsolPasswordPolicy à partir du Module Azure Active Directory pour Windows PowerShell.</li></ul> |
-| Notification d'expiration du mot de passe |<ul><li>Valeur par défaut : **14** jours (avant l’expiration du mot de passe)</li><li>La valeur est configurable à l’aide de l’applet de commande Set-MsolPasswordPolicy.</li></ul> |
-| Expiration du mot de passe |<ul><li>Valeur par défaut : **false** jours (indique que l’expiration du mot de passe est activée) </li><li>La valeur peut être configurée pour des comptes d'utilisateur individuels à l'aide de l'applet de commande Set-MsolUser. </li></ul> |
+| Caractères non autorisés |<ul><li>Caractères Unicode</li><li>Espaces</li><li> **Mots de passe forts uniquement**: ne peut pas contenir de point '.' hello précédent ' @' symbole</li></ul> |
+| Restrictions de mot de passe |<ul><li>8 caractères au minimum et 16 caractères au maximum</li><li>**Mots de passe forts uniquement**: nécessite de 3 des 4 suivants de hello :<ul><li>Caractères minuscules</li><li>Caractères majuscules</li><li>Chiffres (0-9)</li><li>Symboles (voir les restrictions de mot de passe ci-dessus)</li></ul></li></ul> |
+| Délai d'expiration du mot de passe |<ul><li>Valeur par défaut : **90** jours </li><li>Valeur est configurable à l’aide d’applet de commande Set-MsolPasswordPolicy de hello hello Azure Module Active Directory pour Windows PowerShell.</li></ul> |
+| Notification d'expiration du mot de passe |<ul><li>Valeur par défaut : **14** jours (avant l’expiration du mot de passe)</li><li>Valeur est configurable à l’aide d’applet de commande Set-MsolPasswordPolicy de hello.</li></ul> |
+| Expiration du mot de passe |<ul><li>Valeur par défaut : **false** jours (indique que l’expiration du mot de passe est activée) </li><li>Valeur peut être configurée pour les comptes d’utilisateur individuels à l’aide d’applet de commande Set-MsolUser hello. </li></ul> |
 | Historique de **modification** du mot de passe |L’ancien mot de passe **ne peut pas** être réutilisé lors de la **modification** du mot de passe. |
 | Historique de **réinitialisation** du mot de passe | L’ancien mot de passe **peut** être réutilisé lors de la **réinitialisation** d’un mot de passe oublié. |
-| Verrouillage de compte |Au bout de 10 tentatives de connexion infructueuses (mot de passe incorrect), l’utilisateur est bloqué pendant une minute. La durée de blocage de l’utilisateur augmente au fil des nouvelles tentatives de connexion incorrectes. |
+| Verrouillage de compte |Après 10 tentatives de connexion autorisées (mot de passe incorrect), utilisateur de hello sera verrouillé pendant une minute. Autres incorrect tentatives de connexion utilisateur de hello de verrouillage permettant d’accroître la durée. |
 
 ## <a name="set-password-expiration-policies-in-azure-active-directory"></a>Définir des stratégies d’expiration de mot de passe dans Azure Active Directory
 
-Un administrateur global d’un service cloud Microsoft, peut utiliser le Module Microsoft Azure Active Directory pour Windows PowerShell afin de configurer des mots de passe utilisateur qui n’expirent pas. Vous pouvez également utiliser des applets de commande Windows PowerShell pour supprimer la configuration de non-expiration, ou voir quels mots de passe utilisateur sont configurés pour ne pas expirer. Ces conseils s’appliquent à d’autres fournisseurs tels que Microsoft Intune et Office 365, qui s’appuient également sur Microsoft Azure Active Directory pour les services d’annuaire et d’identité.
+Un administrateur global pour un service cloud Microsoft peut utiliser tooset de Microsoft Azure Module Active Directory pour Windows PowerShell hello des mots de passe utilisateur tooexpire pas. Vous pouvez également utiliser les applets de commande tooremove hello-n’expire jamais configuration ou toosee tooexpire pas les mots de passe utilisateur sont définies de Windows PowerShell. Ce guide s’applique à des fournisseurs de tooother tels que Microsoft Intune et Office 365, qui utilisent également sur Microsoft Azure Active Directory pour les services d’annuaire et identité.
 
 > [!NOTE]
-> Seuls les mots de passe de comptes d’utilisateurs non synchronisés via une synchronisation d’annuaires peuvent être configurés pour ne pas expirer. Pour plus d’informations sur la synchronisation d’annuaires, consultez [Connecter Active Directory à Azure AD](https://docs.microsoft.com/azure/active-directory/connect/active-directory-aadconnect).
+> Les mots de passe uniquement pour les comptes d’utilisateur qui ne sont pas synchronisés via la synchronisation d’annuaire peuvent être configurés toonot expirer. Pour plus d’informations sur la synchronisation d’annuaires, consultez [Connecter Active Directory à Azure AD](https://docs.microsoft.com/azure/active-directory/connect/active-directory-aadconnect).
 >
 >
 
 ## <a name="set-or-check-password-policies-using-powershell"></a>Définir ou vérifier les stratégies de mot de passe à l’aide de PowerShell
 
-Pour commencer, vous devez [télécharger et installer le module Azure AD PowerShell](https://docs.microsoft.com/powershell/module/Azuread/?view=azureadps-2.0). Une fois installé, vous pouvez suivre les étapes ci-dessous pour configurer chaque champ.
+tooget démarré, vous devez trop[télécharger et installer le module PowerShell Azure AD de hello](https://docs.microsoft.com/powershell/module/Azuread/?view=azureadps-2.0). Une fois que vous avez déjà installé, vous pouvez suivre les étapes de hello ci-dessous tooconfigure à chaque champ.
 
-### <a name="how-to-check-expiration-policy-for-a-password"></a>Vérifier la stratégie d’expiration d’un mot de passe
-1. Connectez-vous à Windows PowerShell à l’aide de vos informations d’identification d’administrateur de la société.
-2. Exécutez l’une des commandes suivantes :
+### <a name="how-toocheck-expiration-policy-for-a-password"></a>La stratégie d’expiration des toocheck un mot de passe
+1. Se connecter tooWindows PowerShell à l’aide de vos informations d’identification d’administrateur d’entreprise.
+2. Exécutez une des hello suivant de commandes :
 
-   * Pour voir si le mot de passe d’un utilisateur donné est défini pour ne jamais expirer, exécutez l’applet de commande suivante en utilisant le nom d’utilisateur principal (UPN) (par exemple, aprilr@contoso.onmicrosoft.com) ou l’identifiant utilisateur de l’utilisateur à vérifier : `Get-MSOLUser -UserPrincipalName <user ID> | Select PasswordNeverExpires`
-   * Pour afficher le paramètre « Le mot de passe n’expire jamais » pour tous les utilisateurs, exécutez l’applet de commande suivante : `Get-MSOLUser | Select UserPrincipalName, PasswordNeverExpires`
+   * toosee indique si un seul mot de passe est défini toonever expirent, vous exécutez hello suivant l’applet de commande à l’aide du nom d’hello utilisateur principal (UPN) (par exemple, aprilr@contoso.onmicrosoft.com) ou hello ID d’utilisateur de l’utilisateur de hello souhaité toocheck :`Get-MSOLUser -UserPrincipalName <user ID> | Select PasswordNeverExpires`
+   * toosee hello « Le mot de passe n’expire jamais » de paramètre pour tous les utilisateurs, exécutez hello suivant l’applet de commande :`Get-MSOLUser | Select UserPrincipalName, PasswordNeverExpires`
 
-### <a name="set-a-password-to-expire"></a>Définir un mot de passe pour qu’il expire
+### <a name="set-a-password-tooexpire"></a>Définir un mot de passe tooexpire
 
-1. Connectez-vous à Windows PowerShell à l’aide de vos informations d’identification d’administrateur de la société.
-2. Exécutez l’une des commandes suivantes :
+1. Se connecter tooWindows PowerShell à l’aide de vos informations d’identification d’administrateur d’entreprise.
+2. Exécutez une des hello suivant de commandes :
 
-   * Pour définir le mot de passe d’un utilisateur afin qu’il expire, exécutez l’applet de commande suivante en utilisant le nom d’utilisateur principal (UPN) ou l’identifiant utilisateur de l’utilisateur : `Set-MsolUser -UserPrincipalName <user ID> -PasswordNeverExpires $false`
-   * Pour définir les mots de passe de tous les utilisateurs de l’organisation afin qu’ils expirent, utilisez l’applet de commande suivante : `Get-MSOLUser | Set-MsolUser -PasswordNeverExpires $false`
+   * mot de passe tooset hello d’un utilisateur afin que hello mot de passe expire, exécutez hello suivant l’applet de commande à l’aide du nom d’hello utilisateur principal (UPN) ou hello ID de hello utilisateur :`Set-MsolUser -UserPrincipalName <user ID> -PasswordNeverExpires $false`
+   * les mots de passe hello tooset de tous les utilisateurs dans l’organisation de hello afin qu’ils expirent, utilisent hello suivant l’applet de commande :`Get-MSOLUser | Set-MsolUser -PasswordNeverExpires $false`
 
-### <a name="set-a-password-to-never-expire"></a>Définir un mot de passe pour qu’il n’expire jamais
+### <a name="set-a-password-toonever-expire"></a>Expiration du jeu une toonever de mot de passe
 
-1. Connectez-vous à Windows PowerShell à l’aide de vos informations d’identification d’administrateur de la société.
-2. Exécutez l’une des commandes suivantes :
+1. Se connecter tooWindows PowerShell à l’aide de vos informations d’identification d’administrateur d’entreprise.
+2. Exécutez une des hello suivant de commandes :
 
-   * Pour définir le mot de passe d’un utilisateur afin qu’il n’expire jamais, exécutez l’applet de commande suivante en utilisant le nom d’utilisateur principal (UPN) ou l’identifiant d’utilisateur de l’utilisateur : `Set-MsolUser -UserPrincipalName <user ID> -PasswordNeverExpires $true`
-   * Pour définir les mots de passe de tous les utilisateurs de l’organisation afin qu’ils n’expirent jamais, utilisez l’applet de commande suivante : `Get-MSOLUser | Set-MsolUser -PasswordNeverExpires $true`
+   * mot de passe tooset hello d’un utilisateur toonever expirer, exécutez hello suivant l’applet de commande à l’aide du nom d’hello utilisateur principal (UPN) ou hello ID de hello utilisateur :`Set-MsolUser -UserPrincipalName <user ID> -PasswordNeverExpires $true`
+   * les mots de passe hello tooset de tous les utilisateurs de hello dans une organisation de toonever expirer, exécutez hello suivant l’applet de commande :`Get-MSOLUser | Set-MsolUser -PasswordNeverExpires $true`
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Les liens suivants fournissent des informations supplémentaires sur la réinitialisation de mot de passe à l’aide d’Azure AD.
+Hello suivant liens fournit des informations supplémentaires concernant le mot de passe réinitialisé à l’aide d’Azure AD
 
-* [**Démarrage rapide**](active-directory-passwords-getting-started.md) : soyez rapidement opérationnel avec la gestion des mots de passe en libre-service Azure AD. 
+* [**Démarrage rapide**](active-directory-passwords-getting-started.md) : soyez rapidement opérationnel avec la gestion des mots de passe en libre-service d’Azure AD. 
 * [**Licences**](active-directory-passwords-licensing.md) : configurez vos licences Azure AD.
-* [**Données**](active-directory-passwords-data.md) : comprenez mieux les données requises et leur utilisation dans la gestion des mots de passe.
-* [**Déploiement**](active-directory-passwords-best-practices.md) : planifiez et déployez la réinitialisation de mot de passe en libre-service pour vos utilisateurs grâce aux conseils figurant ici.
-* [**Personnalisation**](active-directory-passwords-customize.md) : personnalisez l’apparence de l’interface de réinitialisation de mot de passe en libre-service de votre société.
-* [**Rapports**](active-directory-passwords-reporting.md) : découvrez si, quand et où vos utilisateurs accèdent aux fonctionnalités de réinitialisation de mot de passe en libre-service.
-* [**Présentation technique approfondie**](active-directory-passwords-how-it-works.md) : découvrez ce qui se passe sous le capot pour mieux comprendre le fonctionnement.
-* [**Forum Aux Questions (FAQ)**](active-directory-passwords-faq.md) : Comment ? Pourquoi ? Quoi ? Où ? Qui ? Quand ? - Les réponses aux questions que vous vouliez poser depuis toujours.
-* [**Résolution des problèmes**](active-directory-passwords-troubleshoot.md) : découvrez comment résoudre les problèmes courants susceptibles de survenir avec la réinitialisation de mot de passe en libre-service.
+* [**Données** ](active-directory-passwords-data.md) : comprendre les données de hello est nécessaire et comment il est utilisé pour la gestion de mot de passe
+* [**Déploiement** ](active-directory-passwords-best-practices.md) -planifier et déployer des utilisateurs de tooyour SSPR hello d’aide est disponible ici
+* [**Personnaliser** ](active-directory-passwords-customize.md) -personnaliser hello apparence Hello SSPR expérience pour votre entreprise.
+* [**Rapports**](active-directory-passwords-reporting.md) : découvrez si, quand et où vos utilisateurs accèdent aux fonctionnalités de réinitialisation de mot de passe en libre-service
+* [**Présentation approfondie technique** ](active-directory-passwords-how-it-works.md) -accédez derrière hello RIDEAU toounderstand son fonctionnement
+* [**Forum Aux Questions (FAQ)**](active-directory-passwords-faq.md) : Comment ? Pourquoi ? Quoi ? Où ? Qui ? Quand ? -Réponses tooquestions vous souhaitiez toujours tooask
+* [**Résoudre les problèmes** ](active-directory-passwords-troubleshoot.md) -en savoir comment tooresolve commun problèmes que nous pouvons voir avec SSPR

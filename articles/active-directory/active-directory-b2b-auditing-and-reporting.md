@@ -1,5 +1,5 @@
 ---
-title: "Audit et création de rapports relatifs à un utilisateur Azure Active Directory B2B Collaboration | Microsoft Docs"
+title: "aaaAuditing et les rapports d’un utilisateur d’Azure Active Directory B2B collaboration | Documents Microsoft"
 description: "Les propriétés de l’utilisateur invité sont configurables dans Azure Active Directory B2B Collaboration"
 services: active-directory
 documentationcenter: 
@@ -15,22 +15,22 @@ ms.tgt_pltfrm: NA
 ms.workload: identity
 ms.date: 04/12/2017
 ms.author: sasubram
-ms.openlocfilehash: ba782270f3280e52235bc13148d232284b55762a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 24ee5f7a2e9585a5edcdd795ec0ffc7124756c11
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="auditing-and-reporting-a-b2b-collaboration-user"></a>Audit et création de rapports relatifs à un utilisateur B2B Collaboration
-Avec les utilisateurs invités, vous disposez de fonctionnalités d’audit identiques à celles des utilisateurs membres. Voici un exemple de l’historique d’invitation et d’échange pour l’invité Sam Oogle :
+Avec les utilisateurs invités, vous disposez de l’audit des fonctionnalités similaires toowith membre aux utilisateurs. Voici un exemple de hello invitation et son historique de l’invité Sam Oogle :
 
 ![journal d’audit](./media/active-directory-b2b-auditing-and-reporting/audit-log.png)
 
-Vous pouvez explorer chacun de ces événements pour en obtenir les détails. Examinons, par exemple, les détails de l’acceptation.
+Vous pouvez approfondir chacun de ces événements tooget hello plus d’informations. Par exemple, nous allons examiner les détails d’acceptation hello.
 
 ![détails de l’activité](./media/active-directory-b2b-auditing-and-reporting/activity-details.png)
 
-Vous pouvez également exporter ces journaux à partir d’Azure AD et utiliser l’outil de création de rapports de votre choix afin d’obtenir des rapports personnalisés.
+Vous pouvez également exporter ces journaux à partir d’Azure AD et utiliser un outil hello création de rapports de votre choix tooget des rapports personnalisés.
 
 ### <a name="next-steps"></a>Étapes suivantes
 
@@ -38,7 +38,7 @@ Consultez les autres articles sur la collaboration B2B d'Azure AD :
 
 * [Qu’est-ce qu’Azure AD B2B Collaboration ?](active-directory-b2b-what-is-azure-ad-b2b.md)
 * [Propriétés de l’utilisateur B2B Collaboration](active-directory-b2b-user-properties.md)
-* [Ajout d’un utilisateur B2B Collaboration à un rôle](active-directory-b2b-add-guest-to-role.md)
+* [Ajout d’un rôle tooa B2B collaboration](active-directory-b2b-add-guest-to-role.md)
 * [Déléguer des invitations B2B Collaboration](active-directory-b2b-delegate-invitations.md)
 * [Groupes dynamiques et B2B Collaboration](active-directory-b2b-dynamic-groups.md)
 * [Code B2B Collaboration et exemples PowerShell](active-directory-b2b-code-samples.md)

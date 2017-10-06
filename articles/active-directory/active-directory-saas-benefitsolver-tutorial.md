@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory à Benefitsolver | Microsoft Docs"
-description: "Apprenez à utiliser Benefitsolver avec Azure Active Directory pour activer l’authentification unique, l’approvisionnement automatique et bien plus encore."
+description: "Découvrez comment toouse Benefitsolver avec Azure Active Directory tooenable single sign-on, l’approvisionnement automatisé et bien plus encore !"
 services: active-directory
 author: jeevansd
 documentationcenter: na
@@ -13,132 +13,132 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 02/17/2017
 ms.author: jeedes
-ms.openlocfilehash: 8a13dd5ebd872f86247158379b28bc291a9c9d83
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5bb8511ef9be1e386956188a93e899d6ebe56ed5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-benefitsolver"></a>Didacticiel : Intégration d’Azure Active Directory à Benefitsolver
-L’objectif de ce didacticiel est de montrer comment intégrer Azure et Benefitsolver.  
+objectif Hello de ce didacticiel est l’intégration hello tooshow d’Azure et Benefitsolver.  
 
-Le scénario décrit dans ce didacticiel part du principe que vous disposez des éléments suivants :
+scénario de Hello décrite dans ce didacticiel part du principe que vous avez déjà hello éléments suivants :
 
 * Un abonnement Azure valide
 * Un abonnement Benefitsolver pour lequel l’authentification unique est activée
 
-À l’issue de ce didacticiel, les utilisateurs Azure AD que vous avez affectés à Benefitsolver pourront s’authentifier de manière unique dans l’application à l’aide de la [Présentation du volet d’accès](active-directory-saas-access-panel-introduction.md)
+À l’issue de ce didacticiel, hello Azure AD utilisateurs tooBenefitsolver sera toosingle en mesure de l’authentification sur application hello utilisant hello [Introduction toohello volet d’accès](active-directory-saas-access-panel-introduction.md).
 
-Le scénario décrit dans ce didacticiel se compose des blocs de construction suivants :
+scénario Hello décrite dans ce didacticiel se compose de hello suivant des blocs de construction :
 
-1. Activation de l’intégration d’applications pour Benefitsolver
-2. Configuration de l’authentification unique
+1. Activation de l’intégration d’application hello pour Benefitsolver
+2. Configuration de l’authentification unique (SSO)
 3. Configuration de l'approvisionnement des utilisateurs
 4. Affectation d’utilisateurs
 
 ![Scénario](./media/active-directory-saas-benefitsolver-tutorial/IC804820.png "Scénario")
 
-## <a name="enabling-the-application-integration-for-benefitsolver"></a>Activation de l’intégration d’applications pour Benefitsolver
-Cette section décrit l’activation de l’intégration d’applications pour Benefitsolver.
+## <a name="enabling-hello-application-integration-for-benefitsolver"></a>Activation de l’intégration d’application hello pour Benefitsolver
+objectif Hello de cette section est toooutline comment intégration d’application hello tooenable pour Benefitsolver.
 
-### <a name="to-enable-the-application-integration-for-benefitsolver-perform-the-following-steps"></a>Pour activer l’intégration d’applications pour Benefitsolver, procédez comme suit :
-1. Dans le volet de navigation gauche du portail Azure Classic, cliquez sur **Active Directory**.
+### <a name="tooenable-hello-application-integration-for-benefitsolver-perform-hello-following-steps"></a>intégration d’application hello tooenable pour Benefitsolver, effectuez hello comme suit :
+1. Bonjour portail Azure classic, dans le volet de navigation gauche hello, cliquez sur **Active Directory**.
    
    ![Active Directory](./media/active-directory-saas-benefitsolver-tutorial/IC700993.png "Active Directory")
-2. Dans la liste **Annuaire** , sélectionnez l'annuaire pour lequel vous voulez activer l'intégration d'annuaire.
-3. Pour ouvrir la vue des applications, dans la vue d'annuaire, cliquez sur **Applications** dans le menu du haut.
+2. À partir de hello **répertoire** liste, répertoire sélectionnez hello pour lequel vous souhaitez tooenable intégration d’annuaire.
+3. vue d’applications de hello tooopen, dans la vue active de hello, cliquez sur **Applications** dans le menu du haut hello.
    
    ![Applications](./media/active-directory-saas-benefitsolver-tutorial/IC700994.png "Applications")
-4. Cliquez sur **Ajouter** en bas de la page.
+4. Cliquez sur **ajouter** bas hello de page de hello.
    
    ![Ajouter une application](./media/active-directory-saas-benefitsolver-tutorial/IC749321.png "Ajouter une application")
-5. Dans la boîte de dialogue **Que voulez-vous faire ?**, cliquez sur **Ajouter une application à partir de la galerie**.
+5. Sur hello **comment vous souhaitez toodo** boîte de dialogue, cliquez sur **ajouter une application à partir de la galerie de hello**.
    
    ![Ajouter une application à partir de la galerie](./media/active-directory-saas-benefitsolver-tutorial/IC749322.png "Ajouter une application à partir de la galerie")
-6. Dans la **zone de recherche**, entrez **Benefitsolver**.
+6. Bonjour **zone de recherche**, type **Benefitsolver**.
    
    ![Galerie d’applications](./media/active-directory-saas-benefitsolver-tutorial/IC804821.png "Galerie d’applications")
-7. Dans le volet de résultats, sélectionnez **Benefitsolver**, puis cliquez sur **Terminer** pour ajouter l’application.
+7. Dans le volet de résultats hello, sélectionnez **Benefitsolver**, puis cliquez sur **Complete** application hello de tooadd.
    
    ![Benefitssolver](./media/active-directory-saas-benefitsolver-tutorial/IC804822.png "Benefitssolver")
    
 ## <a name="configure-single-sign-on"></a>Configurer l’authentification unique
 
-Cette section explique comment permettre aux utilisateurs de s’authentifier sur Benefitsolver avec leur compte Azure AD en utilisant la fédération basée sur le protocole SAML.  
+objectif Hello de cette section est toooutline comment tooenable utilisateurs tooauthenticate tooBenefitsolver avec leur compte dans Azure AD en utilisant la fédération basée sur le protocole SAML de hello.  
 
-Votre application Benefitsolver s’attend à recevoir les assertions SAML dans un format spécifique, ce qui vous oblige à ajouter des mappages d’attributs personnalisés à votre configuration des **attributs du jeton SAML** . 
+Votre application Benefitsolver attend les assertions SAML hello dans un format spécifique, ce qui vous oblige à tooyour de mappages d’attributs personnalisés tooadd **attributs du jeton saml** configuration. 
 
-La capture d’écran suivante montre un exemple :
+Hello suivant capture d’écran montre un exemple de cela.
 
 ![Attributs](./media/active-directory-saas-benefitsolver-tutorial/IC804823.png "Attributs")
 
-**Pour configurer l’authentification unique, procédez comme suit :**
+**tooconfigure sur l’authentification unique, effectuer hello comme suit :**
 
-1. Dans le portail Azure Classic, sur la page d’intégration d’application **Benefitsolver**, cliquez sur **Configurer l’authentification unique** pour ouvrir la boîte de dialogue **Configurer l’authentification unique**.
+1. Bonjour portail Azure classic sur hello **Benefitsolver** page d’intégration d’application, cliquez sur **configurer l’authentification unique sur** tooopen hello **configurer Single Sign On** boîte de dialogue.
    
    ![Configurer l’authentification unique](./media/active-directory-saas-benefitsolver-tutorial/IC804824.png "Configurer l’authentification unique")
-2. Dans la page **Comment voulez-vous que les utilisateurs se connectent à Benefitsolver**, sélectionnez **Authentification unique Microsoft Azure AD**, puis cliquez sur **Suivant**.
+2. Sur hello **Comment souhaitez-vous toosign utilisateurs sur tooBenefitsolver** page, sélectionnez **Microsoft Azure AD Single Sign-On**, puis cliquez sur **suivant**.
    
    ![Configurer l’authentification unique](./media/active-directory-saas-benefitsolver-tutorial/IC804825.png "Configurer l’authentification unique")
-3. Dans la page **Configurer les paramètres de l’application** , procédez comme suit :
+3. Sur hello **configurer les paramètres de l’application** page, effectuer hello comme suit :
    
    ![Configurer les paramètres d’application](./media/active-directory-saas-benefitsolver-tutorial/IC804826.png "Configurer les paramètres d’application")
    
-   1. Dans la zone de texte **URL de connexion**, saisissez **http://azure.benefitsolver.com**.
-   2. Dans la zone de texte **URL de réponse**, saisissez **https://www.benefitsolver.com/benefits/BenefitSolverView?page_name=single_signon_saml**.  
+   1. Bonjour **URL de connexion** zone de texte, type **http://azure.benefitsolver.com**.
+   2. Bonjour **URL de réponse** zone de texte, type **https://www.benefitsolver.com/benefits/BenefitSolverView?page_name=single_signon_saml**.  
    3. Cliquez sur **Suivant**.
-4. Dans la page **Configurer l’authentification unique sur Benefitsolver**, pour télécharger vos métadonnées, cliquez sur **Télécharger les métadonnées**, puis enregistrez le fichier de métadonnées en local sur votre ordinateur.
+4. Sur hello **configurer l’authentification unique sur Benefitsolver** page, toodownload vos métadonnées, cliquez sur **télécharger des métadonnées**, puis enregistrez le fichier de métadonnées hello localement sur votre ordinateur.
    
    ![Configurer l’authentification unique](./media/active-directory-saas-benefitsolver-tutorial/IC804827.png "Configurer l’authentification unique")
-5. Envoyez le fichier de métadonnées téléchargé à l’équipe de support technique Benefitsolver.
+5. Envoyer l’équipe de support technique du fichier tooyour Benefitsolver hello téléchargé métadonnées.
    
    >[!NOTE]
-   >L’équipe de support technique Benefitsolver doit se charger de la configuration de l’authentification unique. Vous recevrez une notification dès que l’authentification unique aura été activée pour votre abonnement.
+   >Votre équipe de support Benefitsolver a configuration de SSO réelle toodo hello. Vous recevrez une notification dès que l’authentification unique aura été activée pour votre abonnement.
    >
 
-6. Dans le portail Azure Classic, sélectionnez la confirmation de la configuration de l’authentification unique, puis cliquez sur **Terminer** pour fermer la boîte de dialogue **Configurer l’authentification unique**.
+6. Sur le portail Azure classic de hello, sélectionnez la confirmation de la configuration de l’authentification unique hello, puis cliquez sur **Complete** tooclose hello **configurer Single Sign On** boîte de dialogue.
    
    ![Configurer l’authentification unique](./media/active-directory-saas-benefitsolver-tutorial/IC804828.png "Configurer l’authentification unique")
-7. Dans le menu situé en haut, cliquez sur **Attributs** to open the **SAML Token Attributs** .
+7. Dans le menu hello haut de hello, cliquez sur **attributs** tooopen hello **attributs du jeton SAML** boîte de dialogue.
    
    ![Attributs](./media/active-directory-saas-benefitsolver-tutorial/IC795920.png "Attributs")
-8. Pour ajouter les mappages d’attribut requis, procédez comme suit :
+8. mappages d’attributs tooadd hello requis, effectuez hello comme suit :
    
    ![Attributs](./media/active-directory-saas-benefitsolver-tutorial/IC804823.png "Attributs")
    
    | Nom de l'attribut | Valeur de l’attribut |
    | --- | --- |
-   | ClientID |L’équipe de support technique Benefitsolver doit vous fournir cette valeur. |
-   | ClientKey |L’équipe de support technique Benefitsolver doit vous fournir cette valeur. |
-   | LogoutURL |L’équipe de support technique Benefitsolver doit vous fournir cette valeur. |
-   | EmployeeID |L’équipe de support technique Benefitsolver doit vous fournir cette valeur. |
+   | ClientID |Vous devez tooget de cette valeur à partir de votre équipe de support Benefitsolver. |
+   | ClientKey |Vous devez tooget de cette valeur à partir de votre équipe de support Benefitsolver. |
+   | LogoutURL |Vous devez tooget de cette valeur à partir de votre équipe de support Benefitsolver. |
+   | EmployeeID |Vous devez tooget de cette valeur à partir de votre équipe de support Benefitsolver. |
    
-   1. Pour chaque ligne de données dans le tableau ci-dessus, cliquez sur **Ajouter un attribut utilisateur**.
-   2. Dans la zone de texte **Nom de l’attribut** , tapez le nom d’attribut indiqué pour cette ligne.
-   3. Dans la zone de texte **Valeur de l’attribut** , sélectionnez la valeur d’attribut indiquée pour cette ligne.
+   1. Pour chaque ligne de données dans la table hello ci-dessus, cliquez sur **ajouter un attribut utilisateur**.
+   2. Bonjour **nom de l’attribut** zone de texte, nom d’attribut type hello indiqué pour cette ligne.
+   3. Bonjour **valeur d’attribut** zone de texte, valeur de l’attribut select hello indiqué pour cette ligne.
    4. Cliquez sur **Terminé**.
 9. Cliquez sur **Appliquer les modifications**.
 
 ## <a name="configure-user-provisioning"></a>Configurer l'approvisionnement de l'utilisateur
-Pour permettre aux utilisateurs Azure AD de se connecter à Benefitsolver, vous devez les approvisionner dans Benefitsolver.  
+Dans l’ordre tooenable Azure AD les utilisateurs toolog dans Benefitsolver, ils doivent être configurés dans Benefitsolver.  
 
-Dans le cas de Benefitsolver, les données des employés se trouvent dans votre application, remplies grâce à un fichier de recensement issu de votre système de ressources humaines (généralement de nuit).  
+Dans les cas de hello de Benefitsolver, les données sur les employés sont dans votre application remplie via un fichier de recensement, à partir de votre système de ressources humaines (généralement nuit).  
 
 >[!NOTE]
->Vous pouvez utiliser tout autre outil ou n’importe quelle API de création de compte d’utilisateur fournis par Benefitsolver pour approvisionner des comptes d’utilisateur Azure Active Directory. 
+>Vous pouvez utiliser n’importe quel autre Benefitsolver utilisateur compte outil de création ou API fournie par Benefitsolver tooprovision des comptes d’utilisateur AAD. 
 > 
 
 ## <a name="assigning-users"></a>Affectation d’utilisateurs
-Pour tester votre configuration, vous devez autoriser les utilisateurs d’Azure AD concernés à accéder à votre application.
+tootest votre configuration, vous devez toogrant hello Azure AD les utilisateurs à l’aide de votre tooit d’accès aux applications en leur attribuant des tooallow.
 
-### <a name="to-assign-users-to-benefitsolver-perform-the-following-steps"></a>Pour affecter des utilisateurs à Benefitsolver, procédez comme suit :
-1. Dans le portail Azure Classic, créez un compte de test.
-2. Sur la ** Benefitsolver ** page d’intégration d’application, cliquez sur **affecter des utilisateurs**.
+### <a name="tooassign-users-toobenefitsolver-perform-hello-following-steps"></a>tooassign utilisateurs tooBenefitsolver, effectuer hello comme suit :
+1. Bonjour portail Azure classic, créez un compte de test.
+2. Sur hello ** Benefitsolver ** page d’intégration d’application, cliquez sur **affecter des utilisateurs**.
    
    ![Affecter des utilisateurs](./media/active-directory-saas-benefitsolver-tutorial/IC804829.png "Affecter des utilisateurs")
-3. Sélectionnez votre utilisateur de test, cliquez sur **Affecter**, puis sur **Oui** pour confirmer votre affectation.
+3. Sélectionnez votre utilisateur de test, cliquez sur **affecter**, puis cliquez sur **Oui** tooconfirm votre affectation.
    
    ![Oui](./media/active-directory-saas-benefitsolver-tutorial/IC767830.png "Oui")
 
-Si vous souhaitez tester vos paramètres d’authentification unique, ouvrez le volet d’accès. Pour plus d'informations sur le panneau d'accès, consultez [Présentation du panneau d’accès](active-directory-saas-access-panel-introduction.md).
+Si vous souhaitez tootest vos paramètres d’authentification unique, ouvrez hello panneau d’accès. Pour plus d’informations sur hello volet d’accès, consultez [Introduction toohello volet d’accès](active-directory-saas-access-panel-introduction.md).
 

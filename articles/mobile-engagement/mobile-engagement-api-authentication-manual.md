@@ -1,6 +1,6 @@
 ---
-title: "Azure Mobile Engagement - Configuration manuelle de l’utilisation des API pour l’authentification"
-description: "Décrit comment configurer manuellement l’authentification pour les API REST Mobile Engagement"
+title: "aaaAuthenticate avec l’API REST de Mobile Engagement - le programme d’installation manuelle"
+description: "Décrit comment toomanually configurer l’authentification pour l’API REST de Mobile Engagement"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,33 +14,33 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 9d6132e1a01be489b8e8e28a0219cf8a0b50b318
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3884f94afcd6b9a62bfcf498fb6ee84bb6e837b7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="authenticate-with-mobile-engagement-rest-apis---manual-setup"></a>Azure Mobile Engagement - Configuration manuelle de l’utilisation des API pour l’authentification
-Ce document est une annexe de l’article [Azure Mobile Engagement - Utilisation des API pour l’authentification](mobile-engagement-api-authentication.md). Veillez à le lire en premier pour comprendre le contexte. Cette annexe décrit une autre méthode d’installation unique afin de configurer l’authentification pour les API REST Mobile Engagement à l’aide du portail Azure. 
+Il s’agit d’une documentation annexe trop[authentifier avec les API REST Mobile Engagement](mobile-engagement-api-authentication.md). Assurez-vous que vous les ayez lues premier contexte de hello tooget. Cette section décrit une autre façon toodo hello d’installation unique pour le paramétrage de l’authentification pour à l’aide des API de REST Mobile Engagement hello hello portail Azure. 
 
 > [!NOTE]
-> Les instructions ci-dessous sont fondées sur ce [guide Active Directory](../azure-resource-manager/resource-group-create-service-principal-portal.md) et personnalisées en fonction des besoins propres à l’authentification pour les API Mobile Engagement. Par conséquent, consultez ce guide pour bien comprendre les étapes décrites en détail ci-dessous. 
+> instructions Hello ci-dessous sont basées sur ce [guide Active Directory](../azure-resource-manager/resource-group-create-service-principal-portal.md) et personnalisée pour ce qui est requis pour l’authentification pour les API d’Engagement Mobile. Par conséquent, consultez tooit si vous souhaitez que les étapes de hello toounderstand ci-dessous en détail. 
 > 
 > 
 
-1. Connectez-vous à votre compte Azure via le [portail classique](https://manage.windowsazure.com/).
-2. Sélectionnez **Active Directory** dans le volet gauche.
+1. Connexion tooyour compte Azure via hello [portail classic](https://manage.windowsazure.com/).
+2. Sélectionnez **Active Directory** hello volet de gauche.
    
      ![sélectionner Active Directory][1]
-3. Choisissez le **répertoire actif par défaut** dans le portail Azure. 
+3. Choisissez hello **par défaut Active Directory** dans votre portail Azure. 
    
      ![choisir l’annuaire][2]
    
    > [!IMPORTANT]
-   > Cette approche fonctionne uniquement quand vous travaillez dans le répertoire actif par défaut de votre compte et pas si vous l’utilisez dans un répertoire actif que vous avez créé pour votre compte. 
+   > Cette approche fonctionne uniquement lorsque vous travaillez dans la valeur par défaut de hello Active Directory de votre compte et ne fonctionnera pas si vous effectuez cette opération dans Active Directory que vous avez créés dans votre compte. 
    > 
    > 
-4. Pour afficher les applications dans votre annuaire, cliquez sur **Applications**.
+4. applications de hello tooview dans votre annuaire, cliquez sur **Applications**.
    
      ![afficher les applications][3]
 5. Cliquez sur **AJOUTER**. 
@@ -49,49 +49,49 @@ Ce document est une annexe de l’article [Azure Mobile Engagement - Utilisation
 6. Cliquez sur **Ajouter une application développée par mon organisation**
    
      ![nouvelle application][5]
-7. Renseignez le nom de l’application et sélectionnez le type d’application **APPLICATION WEB ET/OU API WEB** , puis cliquez sur le bouton Suivant.
+7. Entrez le nom de l’application hello et de type hello select de l’application en tant que **WEB APPLICATION et/ou API WEB** et cliquez sur le bouton suivant de hello.
    
      ![nommer l’application][6]
-8. Vous pouvez fournir des URL factices pour **l’URL DE CONNEXION** et **l’URI ID D’APPLICATION**. Ces URL ne sont pas utilisées pour notre scénario et les URL elles-mêmes ne sont pas validées.  
+8. Vous pouvez fournir des URL factices pour **l’URL DE CONNEXION** et **l’URI ID D’APPLICATION**. Ils ne sont pas utilisés dans notre scénario et URL hello eux-mêmes ne sont pas validées.  
    
      ![propriétés de l’application][7]
-9. À la fin de cette opération, vous disposerez d’une application AAD portant le nom que vous avez indiqué précédemment, comme suit. Il s’agit de votre **AD\_APP\_NAME**. Prenez-en note.  
+9. Extrémité hello de cela, vous aurez une application AAD avec nom hello fourni précédemment hello suivante. Il s’agit de votre **AD\_APP\_NAME**. Prenez-en note.  
    
      ![nom de l’application][8]
-10. Cliquez sur le nom de l’application, puis sur **Configurer**.
+10. Cliquez sur le nom de l’application hello et cliquez sur **configurer**.
     
       ![configurer l’application][9]
-11. Prenez note de l’ID CLIENT qui sera utilisé comme **CLIENT\_ID** pour les appels d’API. 
+11. Prenez note de hello ID de CLIENT qui sera utilisé comme **CLIENT\_ID** pour votre API appelle. 
     
      ![configurer l’application][10]
-12. Faites défiler l’écran jusqu’à la section **Clés** et ajoutez une clé avec de préférence un délai d’expiration de deux ans, puis cliquez sur **Enregistrer**. 
+12. Faites défiler vers le bas toohello **clés** section et ajouter une clé avec une durée de 2 ans (expiration), de préférence, puis cliquez sur **enregistrer**. 
     
      ![configurer l’application][11]
-13. Copiez immédiatement la valeur affichée pour la clé, car elle est affichée uniquement maintenant et n’est pas stockée, ce qui signifie qu’elle ne s’affichera plus ultérieurement. Si vous la perdez, vous devrez générer une nouvelle clé. Il s’agit de la **CLIENT_SECRET** pour les appels d’API. 
+13. Copier immédiatement la valeur hello qui est affichée pour la clé de hello lorsqu’il ne s’affiche désormais et n’est pas stockée afin de s’afficheront pas jamais. Si vous le perdez puis avoir toogenerate une nouvelle clé. Il s’agit de hello **CLIENT_SECRET** pour votre API appelle. 
     
      ![configurer l’application][12]
     
     > [!IMPORTANT]
-    > Cette clé expire à la fin de la durée que vous avez spécifiée. Vous devrez donc veiller à la renouveler le moment venu, sans quoi l’authentification de votre API ne fonctionnera plus. Vous pouvez également supprimer et recréer cette clé si vous pensez qu’elle a été compromise.
+    > Cette clé expire à fin hello de durée de hello que vous avez spécifié dans ce toorenew vraiment rendre il hello moment venu sinon l’authentification d’API ne fonctionnera plus. Vous pouvez également supprimer et recréer cette clé si vous pensez qu’elle a été compromise.
     > 
     > 
-14. Cliquez maintenant sur le bouton **VOIR LES POINTS DE TERMINAISON** pour ouvrir la boîte de dialogue **Ajouter des points de terminaison**. 
+14. Cliquez sur **points de terminaison** bouton maintenant qui s’ouvre hello **points de terminaison** boîte de dialogue. 
     
     ![][13]
-15. Dans la boîte de dialogue Points de terminaison d’app, copiez le **POINT DE TERMINAISON DE JETON OAUTH 2.0**. 
+15. À partir de la boîte de dialogue points de terminaison hello, copiez hello **OAUTH 2.0 TOKEN ENDPOINT**. 
     
     ![][14]
-16. Ce point de terminaison se présente comme indiqué ci-dessous, le GUID de l’URL étant votre **TENANT_ID**. Prenez-en note : 
+16. Ce point de terminaison sera Bonjour suivant formulaire où hello GUID dans l’URL de hello est votre **TENANT_ID** par conséquent, prenez note de celui-ci : 
     
         https://login.microsoftonline.com/<GUID>/oauth2/token
-17. Nous allons maintenant configurer les autorisations pour cette application. Pour cela, vous devez ouvrir le [portail Azure](https://portal.azure.com). 
-18. Cliquez sur **Groupes de ressources** et recherchez le groupe de ressources **Mobile Engagement**.  
+17. Maintenant, nous continuerons tooconfigure les autorisations de hello sur cette application. Pour cela, vous aurez tooopen des hello [portail Azure](https://portal.azure.com). 
+18. Cliquez sur **groupes de ressources** et recherche hello **Mobile Engagement** groupe de ressources.  
     
     ![][15]
-19. Cliquez sur le groupe de ressources **Mobile Engagement** et accédez au panneau **Paramètres** ici. 
+19. Cliquez sur hello **Mobile Engagement** ressource de groupe et accédez toohello **paramètres** panneau ici. 
     
     ![][16]
-20. Cliquez sur **Utilisateurs** dans le panneau Paramètres, puis cliquez sur **Ajouter** pour ajouter un utilisateur. 
+20. Cliquez sur **utilisateurs** dans hello panneau des paramètres, puis cliquez sur **ajouter** tooadd un utilisateur. 
     
     ![][17]
 21. Cliquez sur **Sélectionner un rôle**
@@ -100,14 +100,14 @@ Ce document est une annexe de l’article [Azure Mobile Engagement - Utilisation
 22. Cliquez sur **Propriétaire**
     
     ![][19]
-23. Recherchez le nom de votre application **AD\_APP\_NAME** dans la zone de recherche. Il n’est pas affiché par défaut ici. Une fois que vous l’avez trouvé, sélectionnez-le, puis cliquez sur **Sélectionner** en bas du panneau. 
+23. Recherchez le nom hello de votre application **AD\_application\_nom** dans la zone de recherche hello. Il n’est pas affiché par défaut ici. Une fois que vous trouvez, sélectionnez-la, puis cliquez sur **sélectionnez** bas hello du Panneau de hello. 
     
     ![][20]
-24. Dans le panneau **Ajouter un accès**, il s’affiche sous la forme **1 utilisateur, 0 groupe**. Cliquez sur **OK** dans ce panneau pour confirmer la modification. 
+24. Sur hello **ajouter un accès à** panneau, il apparaît comme **1 utilisateur, les groupes 0**. Cliquez sur **OK** sur cette modification de hello tooconfirm panneau. 
     
     ![][21]
 
-Vous avez maintenant terminé la configuration AAD requise et êtes prêt à appeler les API. 
+Vous avez maintenant terminé la configuration de AAD hello requis et que vous êtes hello de toocall ensemble toutes les API. 
 
 <!-- Images -->
 [1]: ./media/mobile-engagement-api-authentication-manual/active-directory.png

@@ -1,5 +1,5 @@
 ---
-title: "Sources de données prises en charge par Azure Analysis Services | Microsoft Docs"
+title: "sources d’aaaData prises en charge dans Azure Analysis Services | Documents Microsoft"
 description: "Décrit les sources de données prises en charge pour les modèles de données dans Azure Analysis Services."
 services: analysis-services
 documentationcenter: 
@@ -15,16 +15,16 @@ ms.tgt_pltfrm: NA
 ms.workload: na
 ms.date: 08/15/2017
 ms.author: owend
-ms.openlocfilehash: 8bd6c3b5a923ce2f3cd0f60af82e59c5cc27cbb4
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 2902d7d3c3bcf086419822fa826193bd247bde61
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="data-sources-supported-in-azure-analysis-services"></a>Sources de données prises en charge dans Azure Analysis Services
-Les serveurs Azure Analysis Services prennent en charge la connexion aux données sources dans le cloud et en local au sein de votre organisation. Des sources de données supplémentaires prises en charge sont ajoutées en permanence. Vérifiez ces données régulièrement. 
+Serveurs Analysis Services Windows Azure prend en charge la connexion toodata sources dans le cloud de hello et localement dans votre organisation. Sources de données prises en charge supplémentaires sont ajoutées en tout temps hello. Vérifiez ces données régulièrement. 
 
-Les sources de données actuellement prises en charge sont les suivantes :
+Hello les sources de données suivantes est actuellement prises en charge :
 
 | Cloud  |
 |---|
@@ -46,15 +46,15 @@ Les sources de données actuellement prises en charge sont les suivantes :
 \* Modèles Tabular 1400 uniquement. 
 
 > [!IMPORTANT]
-> La connexion aux sources de données sur site nécessite une [passerelle de données locale](analysis-services-gateway.md) installée sur un ordinateur dans votre environnement.
+> Connexion de données local tooon sources requièrent un [passerelle de données locale](analysis-services-gateway.md) installé sur un ordinateur dans votre environnement.
 
 ## <a name="data-providers"></a>Fournisseurs de données
 
-Les modèles de données dans Azure Analysis Services peuvent nécessiter différents fournisseurs de données lors de la connexion à certaines sources de données. Dans certains cas, les modèles tabulaires de connexion aux sources de données à l’aide de fournisseurs natifs tels que SQL Server Native Client (SQLNCLI11) peuvent renvoyer une erreur.
+Modèles de données dans Azure Analysis Services peuvent nécessiter des différents fournisseurs de données lors de la connexion des sources de données toocertain. Dans certains cas, les modèles tabulaires connexion toodata à l’aide des fournisseurs natifs tels que SQL Server Native Client (SQLNCLI11) peuvent retourner une erreur.
 
-Pour les modèles de données qui se connectent à une source de données cloud comme Azure SQL Database, si vous utilisez des fournisseurs natifs autres que SQLOLEDB, vous pouvez voir le message d’erreur : **« Le fournisseur 'SQLNCLI11.1' n’est pas inscrit »**. Ou bien, si vous disposez d’un modèle de requête directe (DirectQuery) de connexion à des sources de données locales et que vous utilisez des fournisseurs natifs, vous pouvez voir le message d’erreur : **« Erreur lors de la création du jeu de lignes OLE DB. Syntaxe incorrecte à proximité de 'LIMITE' »**.
+Pour les modèles de données qui connectent des données de cloud tooa source comme base de données SQL Azure, si vous utilisez des fournisseurs natifs que SQLOLEDB, vous pouvez voir le message d’erreur : **« fournisseur hello 'SQLNCLI11.1' n’est pas inscrit ».** Ou, si vous avez un DirectQuery modèle de connexion des sources de données tooon local, si vous utilisez des fournisseurs natifs vous pouvez voir le message d’erreur : **« erreur de création du jeu de lignes OLE DB. Syntaxe incorrecte à proximité de 'LIMITE' »**.
 
-Les fournisseurs de source de données suivants sont pris en charge pour les modèles de données en mémoire ou DirectQuery lors de la connexion à des sources de données locales ou dans le cloud :
+Hello suivant des fournisseurs de source de données est pris en charge en mémoire ou DirectQuery des modèles de données lors de la connexion toodata sources dans le cloud de hello ou locale :
 
 ### <a name="cloud"></a>Cloud
 | **Source de données** | **En mémoire** | **DirectQuery** |
@@ -79,16 +79,16 @@ Les fournisseurs de source de données suivants sont pris en charge pour les mod
 > 
 > 
 
-Lorsque vous migrez un modèle tabulaire SQL Server Analysis Services local vers Azure Analysis Services, il peut être nécessaire de modifier le fournisseur.
+Lorsque vous migrez une tooAzure de modèle tabulaire SQL Server Analysis Services locaux Analysis Services, il peut être fournisseur de hello toochange nécessaire.
 
-**Pour spécifier un fournisseur de source de données**
+**toospecify un fournisseur de source de données**
 
 1. Dans SSDT > **Explorateur de modèles tabulaires** > **Sources de données**, cliquez sur une connexion de source de données, puis cliquez sur **Modifier la source de données**.
-2. Dans **Modifier la connexion**, cliquez sur **Avancé** pour ouvrir la fenêtre de propriétés avancées.
-3. Dans **Définir les propriétés avancées** > **Fournisseurs**, sélectionnez le fournisseur approprié.
+2. Dans **modifier la connexion**, cliquez sur **avancé** fenêtre de propriétés tooopen hello avance.
+3. Dans **Set avancé Properties** > **fournisseurs**, puis sélectionnez hello fournisseur approprié.
 
 ## <a name="impersonation"></a>Emprunt d’identité
-Dans certains cas, il peut être nécessaire de spécifier un autre compte d’emprunt d’identité. Le compte d’emprunt d’identité peut être spécifié dans SSDT ou SSMS.
+Dans certains cas, il peut être nécessaire toospecify un compte d’emprunt d’identité différent. Le compte d’emprunt d’identité peut être spécifié dans SSDT ou SSMS.
 
 Pour les sources de données locales :
 
@@ -100,6 +100,6 @@ Pour les sources de données cloud :
 * Si vous utilisez l’authentification SQL, l’emprunt d’identité doit être le compte de service.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Si vous disposez de sources de données locales, veillez à installer la [Passerelle locale](analysis-services-gateway.md).   
-Pour en savoir plus sur la gestion de votre serveur dans SSDT ou SSMS, consultez [Gérer votre serveur](analysis-services-manage.md).
+Si vous avez des sources de données locales, être vraiment tooinstall hello [passerelle locale](analysis-services-gateway.md).   
+toolearn savoir plus sur la gestion de votre serveur dans SSDT ou SSMS, consultez [gérer votre serveur](analysis-services-manage.md).
 

@@ -1,6 +1,6 @@
 ---
-title: "Communication pour les rôles dans les services cloud | Microsoft Docs"
-description: "Dans Cloud Services, des points de terminaison (http, https, tcp, udp) peuvent être associés aux instances de rôle pour faciliter la communication avec l’extérieur ou entre instances de rôle."
+title: "aaaCommunication pour les rôles dans les Services de cloud computing | Documents Microsoft"
+description: "Instances de rôle dans les Services de cloud computing peuvent avoir des points de terminaison (http, https, tcp et udp) définis pour eux qui communiquent avec hello à l’extérieur ou entre les autres instances de rôle."
 services: cloud-services
 documentationcenter: 
 author: Thraka
@@ -14,21 +14,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/14/2016
 ms.author: adegeo
-ms.openlocfilehash: 8e171d56bb67c971337fa383014988074ec828b1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1fb39215ceb8a3f0381ef5e108c1149de115ff8e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="enable-communication-for-role-instances-in-azure"></a>Activer la communication pour les instances de rôle dans Azure
-Les rôles de service cloud communiquent via des connexions internes et externes. Les connexions externes sont appelées **points de terminaison d’entrée** tandis que les connexions internes sont appelées **points de terminaison internes**. Cette rubrique explique comment modifier la [définition de service](cloud-services-model-and-package.md#csdef) pour créer des points de terminaison.
+Les rôles de service cloud communiquent via des connexions internes et externes. Les connexions externes sont appelées **points de terminaison d’entrée** tandis que les connexions internes sont appelées **points de terminaison internes**. Cette rubrique décrit comment toomodify hello [définition de service](cloud-services-model-and-package.md#csdef) toocreate de points de terminaison.
 
 ## <a name="input-endpoint"></a>Point de terminaison d’entrée
-Le point de terminaison d’entrée est utilisé lorsque vous souhaitez exposer un port à l’extérieur. Vous spécifiez le type de protocole et le port du point de terminaison qui s’applique ensuite aux ports internes et externes du point de terminaison. Si vous le souhaitez, vous pouvez spécifier un autre port interne pour le point de terminaison avec l’attribut [localPort](https://msdn.microsoft.com/library/azure/gg557552.aspx#InputEndpoint) .
+point de terminaison d’entrée Hello est utilisé lorsque vous souhaitez tooexpose un toohello de port à l’extérieur. Vous spécifiez le type de protocole hello et port hello du point de terminaison hello qui s’applique ensuite pour les deux ports de hello internes et externes pour le point de terminaison hello. Si vous le souhaitez, vous pouvez spécifier un autre port interne pour le point de terminaison hello avec hello [localPort](https://msdn.microsoft.com/library/azure/gg557552.aspx#InputEndpoint) attribut.
 
-Le point de terminaison d’entrée peut utiliser les protocoles suivants : **http, https, tcp, udp**.
+point de terminaison d’entrée Hello peut utiliser hello suivant protocoles : **http, https, tcp, udp**.
 
-Pour créer un point de terminaison d’entrée, ajoutez l’élément enfant **InputEndpoint** à l’élément **Endpoints** d’un rôle web ou de travail.
+toocreate un point de terminaison d’entrée, ajoutez hello **InputEndpoint** toohello d’élément enfant **points de terminaison** élément du rôle d’un site ou un processus de travail.
 
 ```xml
 <Endpoints>
@@ -37,11 +37,11 @@ Pour créer un point de terminaison d’entrée, ajoutez l’élément enfant **
 ```
 
 ## <a name="instance-input-endpoint"></a>Point de terminaison d’entrée d’instance
-Les points de terminaison d’entrée d’instance sont similaires aux points de terminaison d’entrées. Cependant, ils vous permettent de mapper des ports publics spécifiques pour chaque instance de rôle individuelle en utilisant le réacheminement de port sur l’équilibreur de charge. Vous pouvez spécifier un seul port public ou une plage de ports.
+Instance de points de terminaison d’entrée sont des points de terminaison tooinput similaires mais vous permet de mapper les ports publics spécifiques pour chaque instance de rôle individuel à l’aide de réacheminement de port sur l’équilibrage de charge hello. Vous pouvez spécifier un seul port public ou une plage de ports.
 
-Le point de terminaison d’entrée d’instance peut utiliser uniquement le protocole **tcp** ou **udp**.
+point de terminaison d’entrée Hello instance peut uniquement utiliser **tcp** ou **udp** en tant que protocole de hello.
 
-Pour créer un point de terminaison d’entrée d’instance, ajoutez l’élément enfant **InstanceInputEndpoint** à l’élément **Endpoints** d’un rôle web ou de travail.
+toocreate une instance point de terminaison, ajouter hello **InstanceInputEndpoint** toohello d’élément enfant **points de terminaison** élément du rôle d’un site ou un processus de travail.
 
 ```xml
 <Endpoints>
@@ -54,11 +54,11 @@ Pour créer un point de terminaison d’entrée d’instance, ajoutez l’élém
 ```
 
 ## <a name="internal-endpoint"></a>Point de terminaison interne
-Les points de terminaison internes sont disponibles pour la communication d’instance à instance. Le port est facultatif et, en cas d’omission, un port dynamique est affecté au point de terminaison. Une plage de ports peut être utilisée. Le nombre de points de terminaison internes est limité à cinq par rôle.
+Les points de terminaison internes sont disponibles pour la communication d’instance à instance. Hello port est facultatif et cas d’omission, un port dynamique est affecté toohello le point de terminaison. Une plage de ports peut être utilisée. Le nombre de points de terminaison internes est limité à cinq par rôle.
 
-Le point de terminaison interne peut utiliser les protocoles suivants : **http, tcp, udp, any**.
+point de terminaison interne Hello peut utiliser hello suivant protocoles : **http, tcp, udp, n’importe quel**.
 
-Pour créer un point de terminaison d’entrée interne, ajoutez l’élément enfant **InternalEndpoint** à l’élément **Endpoints** d’un rôle web ou de travail.
+toocreate un point de terminaison d’entrée interne, ajouter hello **InternalEndpoint** toohello d’élément enfant **points de terminaison** élément du rôle d’un site ou un processus de travail.
 
 ```xml
 <Endpoints>
@@ -78,39 +78,39 @@ Vous pouvez également utiliser une plage de ports.
 
 
 ## <a name="worker-roles-vs-web-roles"></a>Rôles de travail et Rôles web
-Les points de terminaison présentent une légère différence lorsque vous travaillez avec des rôles de travail et des rôles Web. Avec le rôle Web, au moins un point de terminaison d’entrée doit utiliser le protocole **HTTP** .
+Les points de terminaison présentent une légère différence lorsque vous travaillez avec des rôles de travail et des rôles Web. Hello rôle web doit disposer au minimum un seul point de terminaison d’entrée à l’aide de hello **HTTP** protocole.
 
 ```xml
 <Endpoints>
   <InputEndpoint name="StandardWeb" protocol="http" port="80" localPort="80" />
-  <!-- more endpoints may be declared after the first InputEndPoint -->
+  <!-- more endpoints may be declared after hello first InputEndPoint -->
 </Endpoints>
 ```
 
-## <a name="using-the-net-sdk-to-access-an-endpoint"></a>Utilisation du Kit de développement logiciel (SDK) .NET pour accéder à un point de terminaison
-La bibliothèque managée Azure fournit des méthodes permettant aux instances de rôle de communiquer au moment de l’exécution. À partir du code s’exécutant dans une instance de rôle, vous pouvez récupérer des informations sur l’existence d’autres instances de rôle et leurs points de terminaison, ainsi que des informations sur l’instance de rôle actuelle.
+## <a name="using-hello-net-sdk-tooaccess-an-endpoint"></a>À l’aide de hello .NET SDK tooaccess un point de terminaison
+Hello bibliothèque managée Azure fournit des méthodes pour toocommunicate d’instances de rôle lors de l’exécution. À partir du code en cours d’exécution au sein d’une instance de rôle, vous pouvez récupérer plus d’informations sur l’existence de hello d’autres instances de rôle et de leurs points de terminaison, ainsi que des informations sur l’instance de rôle actuelle hello.
 
 > [!NOTE]
 > Vous pouvez uniquement récupérer des informations sur les instances de rôle s’exécutant dans votre service cloud et qui définissent au moins un point de terminaison interne. Vous ne pouvez pas obtenir de données sur les instances de rôle s’exécutant dans un autre service.
 > 
 > 
 
-Vous pouvez utiliser la propriété [Instances](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.role.instances.aspx) pour récupérer les instances d’un rôle. Utilisez d’abord la propriété [CurrentRoleInstance](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleenvironment.currentroleinstance.aspx) pour renvoyer une référence à l’instance de rôle actuelle, puis la propriété [Role](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleinstance.role.aspx) pour retourner une référence au rôle lui-même.
+Vous pouvez utiliser hello [Instances](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.role.instances.aspx) instances tooretrieve de propriété d’un rôle. Tout d’abord utiliser hello [CurrentRoleInstance](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleenvironment.currentroleinstance.aspx) tooreturn un rôle en cours de toohello de référence d’instance et ensuite utiliser hello [rôle](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleinstance.role.aspx) propriété tooreturn un rôle de toohello référence lui-même.
 
-Lorsque vous vous connectez à une instance de rôle par programme via le Kit de développement logiciel (SDK) .NET, il est relativement facile d’accéder aux informations de point de terminaison. Par exemple, une fois que vous êtes connecté à un environnement de rôle spécifique, vous pouvez obtenir le port d’un point de terminaison spécifique avec ce code :
+Lorsque vous vous connectez instance de rôle tooa par programmation via hello .NET SDK, il est relativement facile de tooaccess des informations de point de terminaison hello. Par exemple, une fois que vous vous êtes déjà connecté environnement de rôle spécifique tooa, vous pouvez obtenir le port hello d’un point de terminaison spécifique avec ce code :
 
 ```csharp
 int port = RoleEnvironment.CurrentRoleInstance.InstanceEndpoints["StandardWeb"].IPEndpoint.Port;
 ```
 
-La propriété **Instances** renvoie une collection d’objets **RoleInstance**. Cette collection contient toujours l’instance actuelle. Si le rôle ne définit pas de point de terminaison interne, la collection contient l’instance actuelle mais aucune autre instance. Lorsqu’aucun point de terminaison interne n’est défini pour le rôle, la collection contient toujours une seule instance de rôle. Si le rôle définit un point de terminaison interne, ses instances sont détectables lors de l’exécution et le nombre d’instances dans la collection correspond au nombre d’instances spécifiées pour le rôle dans le fichier de configuration de service.
+Hello **Instances** propriété retourne une collection de **RoleInstance** objets. Cette collection contient toujours instance actuelle de hello. Si le rôle de hello ne définit pas de point de terminaison interne, collection de hello inclut instance actuelle de hello, mais aucune autre instance. Hello nombre d’instances de rôle dans la collection de hello sera toujours 1 dans les cas de hello où aucun point de terminaison interne n’est défini pour le rôle de hello. Si le rôle de hello définit un point de terminaison interne, ses instances sont détectables au moment de l’exécution et nombre de hello d’instances dans la collection de hello correspondront nombre toohello d’instances spécifié pour le rôle hello dans le fichier de configuration de service hello.
 
 > [!NOTE]
-> La bibliothèque managée Azure ne fournit aucun moyen de déterminer l’intégrité des autres instances de rôle. Cependant, vous pouvez implémenter ces évaluations d’intégrité vous-même si votre service a besoin de cette fonctionnalité. Vous pouvez utiliser les [diagnostics Azure](cloud-services-dotnet-diagnostics.md) pour obtenir des informations sur l’exécution des instances de rôle.
+> Hello bibliothèque managée Azure ne fournit pas un moyen permettant de déterminer l’intégrité de hello d’autres instances de rôle, mais vous pouvez implémenter ces évaluations d’intégrité vous-même si votre service a besoin de cette fonctionnalité. Vous pouvez utiliser [Azure Diagnostics](cloud-services-dotnet-diagnostics.md) tooobtain plus d’informations sur l’exécution des instances de rôle.
 > 
 > 
 
-Pour déterminer le numéro de port d’un point de terminaison interne sur une instance de rôle, vous pouvez utiliser la propriété [InstanceEndpoints](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleinstance.instanceendpoints.aspx) pour renvoyer un objet Dictionnaire qui contient les noms des points de terminaison et les adresses IP et ports correspondants. La propriété [IPEndpoint](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleinstanceendpoint.ipendpoint.aspx) renvoie l’adresse IP et le port pour un point de terminaison spécifié. La propriété **PublicIPEndpoint** renvoie le port pour un point de terminaison à charge équilibrée. La partie de la propriété **PublicIPEndpoint** relative à l’adresse IP n’est pas utilisée.
+le numéro de port toodetermine hello pour un point de terminaison interne sur une instance de rôle, vous pouvez utiliser hello [InstanceEndpoints](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleinstance.instanceendpoints.aspx) tooreturn propriété un objet dictionnaire qui contient les noms de point de terminaison et de son adresse IP correspondante des adresses et ports. Hello [IPEndpoint](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleinstanceendpoint.ipendpoint.aspx) propriété retourne l’adresse IP de hello et port pour un point de terminaison spécifié. Hello **PublicIPEndpoint** propriété retourne port hello pour un point de terminaison à charge équilibrée. partie d’adresse IP Hello Hello **PublicIPEndpoint** propriété n’est pas utilisée.
 
 Voici un exemple d’itération d’instances de rôle.
 
@@ -125,10 +125,10 @@ foreach (RoleInstance roleInst in RoleEnvironment.CurrentRoleInstance.Role.Insta
 }
 ```
 
-Voici un exemple de rôle de travail avec lequel le point de terminaison est exposé via la définition de service et commence à écouter les connexions.
+Voici un exemple d’un rôle de travail qui obtient le point de terminaison hello exposé via la définition de service hello et commence à écouter les connexions.
 
 > [!WARNING]
-> Ce code ne fonctionne que pour un service déployé. Lorsqu’ils sont exécutés dans l’émulateur de calcul Azure, les éléments de configuration de service qui créent des points de terminaison de port directs (éléments**InstanceInputEndpoint** ) sont ignorés.
+> Ce code ne fonctionne que pour un service déployé. Lors de l’exécution dans l’émulateur de calcul Azure de hello, qui créent des points de terminaison de port direct des éléments de configuration de service (**InstanceInputEndpoint** éléments) sont ignorés.
 > 
 > 
 
@@ -167,7 +167,7 @@ namespace WorkerRole1
         var listener = new Socket(
           myInternalEp.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
 
-        // Bind socket listener to internal endpoint and listen
+        // Bind socket listener toointernal endpoint and listen
         listener.Bind(myInternalEp);
         listener.Listen(10);
         Trace.TraceInformation("Listening on IP:{0},Port: {1}",
@@ -175,7 +175,7 @@ namespace WorkerRole1
 
         while (true)
         {
-          // Block the thread and wait for a client request
+          // Block hello thread and wait for a client request
           Socket handler = listener.Accept();
           Trace.TraceInformation("Client request received.");
 
@@ -205,23 +205,23 @@ namespace WorkerRole1
 
     public override bool OnStart()
     {
-      // Set the maximum number of concurrent connections 
+      // Set hello maximum number of concurrent connections 
       ServicePointManager.DefaultConnectionLimit = 12;
 
       // For information on handling configuration changes
-      // see the MSDN topic at http://go.microsoft.com/fwlink/?LinkId=166357.
+      // see hello MSDN topic at http://go.microsoft.com/fwlink/?LinkId=166357.
       return base.OnStart();
     }
   }
 }
 ```
 
-## <a name="network-traffic-rules-to-control-role-communication"></a>Règles de trafic réseau pour contrôler la communication entre les rôles
-Après avoir défini les points de terminaison internes, vous pouvez ajouter des règles de trafic réseau (basées sur les points de terminaison que vous avez créés) pour contrôler la façon dont les instances de rôle peuvent communiquer entre elles. Le diagramme suivant montre quelques scénarios courants relatifs au contrôle de la communication entre les rôles :
+## <a name="network-traffic-rules-toocontrol-role-communication"></a>Le trafic règles toocontrol rôle entre le réseau
+Après avoir défini les points de terminaison internes, vous pouvez ajouter toocontrol de règles (basés sur les points de terminaison hello que vous avez créé) le trafic réseau comment les instances de rôle peuvent communiquer avec eux. Hello diagramme suivant montre quelques scénarios courants pour contrôler la communication du rôle :
 
 ![Scénarios et règles de trafic du réseau](./media/cloud-services-enable-communication-role-instances/scenarios.png "Scénarios et règles de trafic du réseau")
 
-L’exemple de code suivant montre des définitions de rôles pour les rôles illustrés dans le diagramme précédent. Chaque définition de rôle inclut au moins un point de terminaison interne défini :
+Hello exemple de code suivant montre des définitions de rôles pour les rôles hello indiqués dans le diagramme précédent de hello. Chaque définition de rôle inclut au moins un point de terminaison interne défini :
 
 ```xml
 <ServiceDefinition name="MyService" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition">
@@ -257,10 +257,10 @@ L’exemple de code suivant montre des définitions de rôles pour les rôles il
 > 
 > 
 
-Par défaut, une fois un point de terminaison interne défini, la communication peut s’effectuer à partir de n’importe quel rôle vers le point de terminaison interne d’un rôle sans restriction. Pour restreindre la communication, vous devez ajouter un élément **NetworkTrafficRules** à l’élément **ServiceDefinition** dans le fichier de définition de service.
+Par défaut, après avoir défini un point de terminaison interne, communication peut s’effectuer à partir de n’importe quel rôle toohello point de terminaison interne d’un rôle sans aucune restriction. une communication toorestrict, vous devez ajouter un **NetworkTrafficRules** élément toohello **ServiceDefinition** élément dans le fichier de définition de service hello.
 
 ### <a name="scenario-1"></a>Scénario 1
-Autoriser uniquement le trafic réseau de **WebRole1** à **WorkerRole1**.
+Autoriser uniquement le trafic réseau de **WebRole1** trop**WorkerRole1**.
 
 ```xml
 <ServiceDefinition name="MyService" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition">
@@ -279,7 +279,7 @@ Autoriser uniquement le trafic réseau de **WebRole1** à **WorkerRole1**.
 ```
 
 ### <a name="scenario-2"></a>Scénario 2
-Autoriser uniquement le trafic réseau de **WebRole1** à **WorkerRole1** et **WorkerRole2**.
+Autorise uniquement le trafic réseau de **WebRole1** trop**WorkerRole1** et **WorkerRole2**.
 
 ```xml
 <ServiceDefinition name="MyService" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition">
@@ -298,7 +298,7 @@ Autoriser uniquement le trafic réseau de **WebRole1** à **WorkerRole1** et **W
 ```
 
 ### <a name="scenario-3"></a>Scénario 3
-Autoriser uniquement le trafic réseau de **WebRole1** à **WorkerRole1** et de **WorkerRole1** à **WorkerRole2**.
+Autorise uniquement le trafic réseau de **WebRole1** trop**WorkerRole1**, et **WorkerRole1** trop**WorkerRole2**.
 
 ```xml
 <ServiceDefinition name="MyService" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition">
@@ -327,7 +327,7 @@ Autoriser uniquement le trafic réseau de **WebRole1** à **WorkerRole1** et de 
 ```
 
 ### <a name="scenario-4"></a>Scénario 4
-Autoriser uniquement le trafic réseau de **WebRole1** à **WorkerRole1**, de **WebRole1** à **WorkerRole2** et de **WorkerRole1** à **WorkerRole2**.
+Autorise uniquement le trafic réseau de **WebRole1** trop**WorkerRole1**, **WebRole1** trop**WorkerRole2**, et  **WorkerRole1** trop**WorkerRole2**.
 
 ```xml
 <ServiceDefinition name="MyService" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition">
@@ -367,8 +367,8 @@ Autoriser uniquement le trafic réseau de **WebRole1** à **WorkerRole1**, de **
 </ServiceDefinition>
 ```
 
-Vous trouverez une référence de schéma XML pour les éléments ci-dessus [ici](https://msdn.microsoft.com/library/azure/gg557551.aspx).
+Une référence de schéma XML pour les éléments hello ci-dessus, vous pouvez trouver [ici](https://msdn.microsoft.com/library/azure/gg557551.aspx).
 
 ## <a name="next-steps"></a>Étapes suivantes
-En savoir plus sur le [modèle](cloud-services-model-and-package.md)de service cloud.
+En savoir plus sur hello Service Cloud [modèle](cloud-services-model-and-package.md).
 

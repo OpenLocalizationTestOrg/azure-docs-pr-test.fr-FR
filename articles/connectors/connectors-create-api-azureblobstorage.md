@@ -1,6 +1,6 @@
 ---
-title: "Ajouter le connecteur Stockage Blob Azure à vos applications logiques | Microsoft Docs"
-description: Prise en main et configuration du connecteur Stockage Blob Azure dans une application logique
+title: "aaaAdd hello stockage d’objets blob Azure dans vos applications de la logique d’un connecteur | Documents Microsoft"
+description: "Prise en main et de configurer le connecteur de stockage d’objets blob Azure hello dans une application de logique"
 services: 
 documentationcenter: 
 author: MandiOhlinger
@@ -15,64 +15,64 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 05/02/2017
 ms.author: mandia; ladocs
-ms.openlocfilehash: bc7908868828bd1628633cf9e57f8c44f8000827
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: add61287ef1b2228ef9d3f54ce082807bad6858b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-the-azure-blob-storage-connector-in-a-logic-app"></a>Utilisation du connecteur Stockage Blob Azure dans une application logique
-Le connecteur Stockage Blob Azure permet de télécharger, de mettre à jour, d’obtenir et de supprimer des objets blob dans votre compte de stockage, le tout au sein d’une application logique.  
+# <a name="use-hello-azure-blob-storage-connector-in-a-logic-app"></a>Utiliser le connecteur de stockage d’objets blob Azure hello dans une application de logique
+Tooupload de connecteur utilisez hello Azure Blob storage, mettre à jour, obtenir et supprimer des objets BLOB dans votre compte de stockage, toutes les tâches dans une application logique.  
 
 Avec Azure Blob Storage, vous pouvez effectuer les opérations suivantes :
 
 * Créez votre workflow en téléchargeant les nouveaux projets ou en extrayant les fichiers récemment mis à jour.
-* Utilisez des actions pour obtenir les métadonnées d’un fichier, supprimer un fichier, copier des fichiers, etc. Par exemple, lorsqu’un outil est mis à jour dans un site web Azure (déclencheur), vous pouvez mettre à jour un fichier dans le stockage blob (action). 
+* Utilisez les métadonnées du fichier actions tooget, supprimer un fichier, copier les fichiers et bien plus encore. Par exemple, lorsqu’un outil est mis à jour dans un site web Azure (déclencheur), vous pouvez mettre à jour un fichier dans le stockage blob (action). 
 
-Cette rubrique décrit comment utiliser le connecteur de stockage blob dans une application logique.
+Cette rubrique vous montre comment toouse hello blob connecteur dans une application de la logique de stockage.
 
-Pour plus d’informations sur Logic Apps, voir [Qu’est-ce qu’une application logique ?](../logic-apps/logic-apps-what-are-logic-apps.md) et [Créer une application logique](../logic-apps/logic-apps-create-a-logic-app.md).
+toolearn en savoir plus sur les applications de la logique, consultez [quelles sont les applications logique](../logic-apps/logic-apps-what-are-logic-apps.md) et [créer une application logique](../logic-apps/logic-apps-create-a-logic-app.md).
 
-Pour plus d’informations sur Logic Apps, voir [Qu’est-ce qu’une application logique ?](../logic-apps/logic-apps-what-are-logic-apps.md) et [Créer une application logique](../logic-apps/logic-apps-create-a-logic-app.md).
+toolearn en savoir plus sur les applications de la logique, consultez [quelles sont les applications logique](../logic-apps/logic-apps-what-are-logic-apps.md) et [créer une application logique](../logic-apps/logic-apps-create-a-logic-app.md).
 
-## <a name="connect-to-azure-blob-storage"></a>Connexion au stockage d’objets blob Azure
-Pour que votre application logique puisse accéder à un service, vous devez d’abord créer une *connexion* à celui-ci. Une connexion permet d’assurer la connectivité entre une application logique et un autre service. Par exemple, pour vous connecter à un compte de stockage, commencez par créer une *connexion* de stockage des objets blob. Pour créer une connexion, entrez les informations d’identification que vous utilisez généralement pour accéder au service auquel vous souhaitez vous connecter. Ainsi, dans le cas d’Azure Storage, entrez les informations d’identification de votre compte de stockage pour créer la connexion. 
+## <a name="connect-tooazure-blob-storage"></a>Connecter le stockage d’objets blob tooAzure
+Avant que votre application logique peut accéder à n’importe quel service, vous créez tout d’abord un *connexion* toohello service. Une connexion permet d’assurer la connectivité entre une application logique et un autre service. Par exemple, le compte de stockage tooconnect tooa vous tout d’abord créez un stockage d’objets blob *connexion*. toocreate une connexion, entrez des informations d’identification de hello que vous utilisez normalement le service de hello tooaccess vous êtes connecté. Par conséquent, avec le stockage Azure, entrez connexion hello de hello informations d’identification tooyour stockage compte toocreate. 
 
-#### <a name="create-the-connection"></a>Créer la connexion
-> [!INCLUDE [Create a connection to Azure blob storage](../../includes/connectors-create-api-azureblobstorage.md)]
+#### <a name="create-hello-connection"></a>Créer la connexion de hello
+> [!INCLUDE [Create a connection tooAzure blob storage](../../includes/connectors-create-api-azureblobstorage.md)]
 
 ## <a name="use-a-trigger"></a>Utilisation d’un déclencheur
-Ce connecteur ne possède aucun déclencheur. Utilisez d’autres déclencheurs pour démarrer l’application logique, notamment un déclencheur de périodicité, un déclencheur Webhook HTTP, des déclencheurs disponibles avec d’autres connecteurs, etc. [Créer une application logique](../logic-apps/logic-apps-create-a-logic-app.md) vous fournit un exemple.
+Ce connecteur ne possède aucun déclencheur. Utilisez l’autre application logique de déclencheurs toostart hello, comme un déclencheur de périodicité, un déclencheur HTTP Webhook, déclencheurs disponibles avec tous les autres connecteurs et bien plus encore. [Créer une application logique](../logic-apps/logic-apps-create-a-logic-app.md) vous fournit un exemple.
 
 ## <a name="use-an-action"></a>Utilisation d’une action
-Une action est une opération effectuée par le flux de travail défini dans une application logique.
+Une action est une opération effectuée par flux de travail hello défini dans une application logique.
 
-1. Sélectionnez le signe plus. Vous disposez de plusieurs options : **Ajouter une action**, **Ajouter une condition** ou l’une des options **Plus**.
+1. Sélectionnez le signe plus hello. Vous voyez plusieurs choix : **ajouter une action**, **ajouter une condition**, ou l’un des hello **plus** options.
    
     ![](./media/connectors-create-api-azureblobstorage/add-action.png)
 2. Choisissez **Ajouter une action**.
-3. Dans la zone de texte, saisissez « blob » pour obtenir la liste de toutes les actions disponibles.
+3. Dans la zone de texte hello, tapez « blob » tooget une liste de toutes les actions disponibles hello.
    
     ![](./media/connectors-create-api-azureblobstorage/actions.png) 
-4. Dans notre exemple, choisissez **AzureBlob - Obtenir les métadonnées d’un fichier à l’aide du chemin**. Si une connexion existe déjà, sélectionnez le bouton **...** (Afficher le sélecteur) pour sélectionner un fichier.
+4. Dans notre exemple, choisissez **AzureBlob - Obtenir les métadonnées d’un fichier à l’aide du chemin**. Si une connexion existe déjà, puis sélectionnez hello **...** Tooselect de bouton (Afficher sélecteur) un fichier.
    
     ![](./media/connectors-create-api-azureblobstorage/sample-file.png)
    
-    Si vous êtes invité à saisir les informations de connexion, entrez les informations requises pour créer la connexion. La section [Créer la connexion](connectors-create-api-azureblobstorage.md#create-the-connection) dans cette rubrique décrit ces propriétés. 
+    Si vous êtes invité hello informations de connexion, puis entrez connexion de hello toocreate hello détails. [Créer la connexion de hello](connectors-create-api-azureblobstorage.md#create-the-connection) dans cette rubrique décrit ces propriétés. 
    
    > [!NOTE]
-   > Dans cet exemple, nous obtiendrons les métadonnées d’un fichier. Pour consulter les métadonnées, ajoutez une autre action qui crée un nouveau fichier à l’aide d’un autre connecteur. Par exemple, ajoutez une action OneDrive qui crée un nouveau fichier « test » basé sur les métadonnées. 
+   > Dans cet exemple, nous obtenons hello les métadonnées d’un fichier. toosee hello des métadonnées, ajoutez une autre action qui crée un nouveau fichier à l’aide d’un autre connecteur. Par exemple, ajouter une action OneDrive qui crée un nouveau fichier de « test » en fonction de métadonnées de hello. 
 
 
-5. **Enregistrez** vos modifications (dans le coin supérieur gauche de la barre d’outils). Votre application logique est enregistrée et peut être activée automatiquement.
+5. **Enregistrer** vos modifications (situé dans l’angle supérieur gauche de la barre d’outils hello). Votre application logique est enregistrée et peut être activée automatiquement.
 
 > [!TIP]
-> L’[Explorateur de stockage](http://storageexplorer.com/) est un excellent outil pour gérer plusieurs comptes de stockage.
+> [Explorateur de stockage](http://storageexplorer.com/) est un excellent outil gérer trop de plusieurs comptes de stockage.
 
-## <a name="connector-specific-details"></a>Détails spécifiques aux connecteurs
+## <a name="connector-specific-details"></a>Détails spécifiques du connecteur
 
-Consultez tous les déclencheurs et les actions définies dans le swagger, ainsi que les éventuelles limites dans les [détails des connecteurs](/connectors/azureblobconnector/). 
+Afficher les déclencheurs et les actions définies dans les swagger hello et également voir les limites Bonjour [détails du connecteur](/connectors/azureblobconnector/). 
 
 ## <a name="next-steps"></a>Étapes suivantes
-[Créez une application logique](../logic-apps/logic-apps-create-a-logic-app.md). Explorez les autres connecteurs disponibles dans les applications logiques en consultant notre [liste d’API](apis-list.md).
+[Créer une application logique](../logic-apps/logic-apps-create-a-logic-app.md). Explorer hello tous les autres connecteurs disponibles dans les applications logique à notre [liste des API](apis-list.md).
 

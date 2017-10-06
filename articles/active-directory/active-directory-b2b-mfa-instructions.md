@@ -1,6 +1,6 @@
 ---
-title: "Accès conditionnel pour utilisateurs Azure Active Directory B2B Collaboration | Microsoft Docs"
-description: "Azure Active Directory B2B Collaboration prend en charge l’authentification multifacteur (MFA) pour un accès sélectif à vos applications d’entreprise"
+title: "l’accès pour les utilisateurs Azure Active Directory B2B collaboration aaaConditional | Documents Microsoft"
+description: "Azure Active Directory B2B collaboration prend en charge l’authentification multifacteur (MFA) pour les applications d’entreprise un accès sélectif tooyour"
 services: active-directory
 documentationcenter: 
 author: sasubram
@@ -15,41 +15,41 @@ ms.tgt_pltfrm: NA
 ms.workload: identity
 ms.date: 05/24/2017
 ms.author: sasubram
-ms.openlocfilehash: d85f711d6551a68d1248ae8ec61e2ecc1ddc8ecd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3a05be4393f74ff8e87f32432a222a5fbac9af62
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="conditional-access-for-b2b-collaboration-users"></a>Accès conditionnel pour les utilisateurs de B2B Collaboration
 
 ## <a name="multi-factor-authentication-for-b2b-users"></a>Authentification MFA pour utilisateurs B2B
-Avec Azure AD B2B Collaboration, les organisations peuvent appliquer des stratégies d’authentification multifacteur (MFA) pour les utilisateurs B2B. Ces stratégies peuvent être appliquées au niveau locataire, application ou utilisateur individuel, de la même façon qu’elles peuvent être activées pour les employés à plein temps et les membres de l’organisation. Les stratégies MFA sont appliquées à l’organisation de ressources.
+Avec Azure AD B2B Collaboration, les organisations peuvent appliquer des stratégies d’authentification multifacteur (MFA) pour les utilisateurs B2B. Ces stratégies peuvent être appliquées au client de hello, application ou au niveau utilisateur individuel, hello même façon qu’ils sont activés pour les employés à plein temps et les membres de l’organisation de hello. Stratégies d’authentification Multifacteur sont appliquées au niveau de l’organisation de ressource hello.
 
 Exemple :
-1. L’administrateur ou le professionnel de l’information de la société A invite des utilisateurs de la société B pour l’application *Foo* dans la société A.
-2. L'application *Foo* dans la société A est configurée de manière à exiger l’authentification MFA lors de l’accès.
-3. Lorsque des utilisateurs de la société B tentent d’accéder à l’application *Foo* à partir d’un locataire de la société A, ils sont invités à effectuer une authentification MFA.
-4. Les utilisateurs peuvent configurer leur authentification MFA avec la société A et choisir leur option d’authentification MFA.
+1. Travail d’administrateur ou des informations dans la société A invite l’utilisateur à partir de l’application de la société B tooan *Foo* dans la société A.
+2. Application *Foo* dans la société A est toorequire configuré l’authentification Multifacteur sur l’accès.
+3. Lorsque les utilisateur hello à partir de la société B tente de tooaccess application *Foo* entreprise hello un client, ils sont demandé toocomplete une stimulation d’authentification Multifacteur.
+4. Hello utilisateur permettre définir leur MFA avec la société A et choisit l’option de l’authentification Multifacteur.
 5. Ce scénario fonctionne pour n’importe quelle identité (Azure AD ou MSA, par exemple, si les utilisateurs dans la société B s’authentifient à l’aide de leur ID social)
-6. La société A doit avoir suffisamment de licences Azure AD Premium qui prennent en charge l’authentification multifacteur. L’utilisateur de la société B utilise cette licence à partir de la société A.
+6. La société A doit avoir suffisamment de licences Azure AD Premium qui prennent en charge l’authentification multifacteur. utilisateur Hello à partir de la société B utilise cette licence à partir de la société A.
 
-La location d’invitation est toujours responsable de l’authentification MFA pour les utilisateurs de l’organisation partenaire, même si l’organisation partenaire a des fonctionnalités d’authentification MFA.
+architecture mutualisée invitant à Hello est toujours chargée pour l’authentification Multifacteur pour les utilisateurs à partir de l’organisation partenaire de hello, même si l’organisation partenaire de hello possède des fonctionnalités d’authentification Multifacteur.
 
 ### <a name="setting-up-mfa-for-b2b-collaboration-users"></a>Configuration de MFA pour les utilisateurs de B2B Collaboration
-Pour découvrir combien il est facile de configurer l’authentification MFA pour les utilisateurs de B2B Collaboration, consultez la vidéo suivante :
+toodiscover facilement se tooset de l’authentification Multifacteur pour les utilisateurs de collaboration B2B, consultez Comment procéder hello suite vidéo :
 
 >[!VIDEO https://channel9.msdn.com/Blogs/Azure/b2b-conditional-access-setup/Player]
 
 ### <a name="b2b-users-mfa-experience-for-offer-redemption"></a>Expérience MFA d'utilisation de l'invitation par des utilisateurs B2B
-Regardez l’animation suivante pour découvrir comment utiliser l’invitation :
+Passez en revue hello suivant l’expérience de remboursement animation toosee hello :
 
 >[!VIDEO https://channel9.msdn.com/Blogs/Azure/MFA-redemption/Player]
 
 ### <a name="mfa-reset-for-b2b-collaboration-users"></a>Réinitialisation de l'authentification MFA pour les utilisateurs de B2B de Collaboration
-Actuellement, l’administrateur peut exiger que les utilisateurs B2B Collaboration s’authentifient à nouveau uniquement par le biais des applets de commande PowerShell suivantes :
+Actuellement, hello admin peut requérir B2B collaboration utilisateurs tooproof place à nouveau uniquement à l’aide de hello suivant d’applets de commande PowerShell :
 
-1. Se connecter à Azure AD
+1. Se connecter tooAzure AD
 
   ```
   $cred = Get-Credential
@@ -66,43 +66,43 @@ Actuellement, l’administrateur peut exiger que les utilisateurs B2B Collaborat
   PS C:\Users\tjwasserGet-MsolUser | where { $_.StrongAuthenticationMethods} | select UserPrincipalName, @{n="Methods";e={($_.StrongAuthenticationMethods).MethodType}}
   ```
 
-3. Réinitialisez la méthode d’authentification multifacteur pour qu’un utilisateur spécifique oblige l’utilisateur B2B Collaboration à définir de nouveau des méthodes d’authentification. Exemple :
+3. Redéfinir la méthode d’authentification Multifacteur hello pour un utilisateur spécifique toorequire hello B2B collaboration utilisateur tooset preuve méthodes. Exemple :
 
   ```
   Reset-MsolStrongAuthenticationMethodByUpn -UserPrincipalName gsamoogle_gmail.com#EXT#@ WoodGroveAzureAD.onmicrosoft.com
   ```
 
-### <a name="why-do-we-perform-mfa-at-the-resource-tenancy"></a>Pourquoi effectuer l’authentification MFA au niveau de la location de la ressource ?
+### <a name="why-do-we-perform-mfa-at-hello-resource-tenancy"></a>Pourquoi effectuer l’authentification Multifacteur à l’architecture mutualisée de ressource hello ?
 
-Dans la version actuelle, l’authentification MFA s’effectue toujours dans la location de la ressource, pour des raisons de prévisibilité. Par exemple, un utilisateur de Contoso (Catherine) est invité à Fabrikam, et Fabrikam a activé l’authentification MFA pour les utilisateurs B2B.
+Dans la version actuelle de hello, l’authentification Multifacteur est toujours dans l’architecture mutualisée de ressource hello, pour des raisons de prévisibilité. Par exemple, un utilisateur de Contoso (Sarah) est tooFabrikam invité et Fabrikam a activé l’authentification Multifacteur pour les utilisateurs de B2B.
 
-Si Contoso utilise la stratégie d’authentification multifacteur sur App1 mais pas sur App2, et si nous examinons la revendication MFA Contoso dans le jeton, nous pourrions constater le problème suivant :
+Si Contoso utilise la stratégie d’authentification Multifacteur activée pour App1 mais pas App2, puis si nous examinons hello revendication Contoso MFA dans le jeton de hello, nous pouvons voir hello suivant le problème :
 
 * Jour 1 : un utilisateur dispose de l’authentification multifacteur dans Contoso et accède à App1, mais aucune invite MFA supplémentaire ne s’affiche dans Fabrikam.
 
-* Jour 2 : l’utilisateur a accédé à App2 dans Contoso, et à présent, lorsqu’il accède à Fabrikam, il doit s’inscrire pour l’authentification multifacteur ici.
+* Le jour 2 : hello accès utilisateur 2 application chez Contoso, maintenant lorsque vous accédez à Fabrikam, ils doivent s’inscrire pour l’authentification Multifacteur il.
 
-Ce processus peut prêter à confusion et entraîner l’abandon de connexion.
+Ce processus peut prêter à confusion et risque de toodrop de connexion réussies.
 
-En outre, même si Contoso dispose de la fonctionnalité MFA, il n’est pas toujours certain que Fabrikam approuve la stratégie MFA de Contoso.
+En outre, même si Contoso possède la capacité de l’authentification Multifacteur, il n'est pas toujours Bonjour cas Bonjour Fabrikam serait confiance hello stratégie Contoso MFA.
 
 Enfin, l’authentification MFA du locataire de la ressource fonctionne également pour les MSA et les ID sociaux ainsi que pour les organisations partenaires au sein desquelles l’authentification MFA n’est pas configurée.
 
-Par conséquent, la recommandation d’authentification MFA pour les utilisateurs B2B consiste à toujours demander l’authentification MFA dans le locataire à l’origine de l’invitation. Dans certains cas, cette condition requise peut entraîner une authentification MFA double, mais pour chaque accès au locataire à l’origine de l’invitation, l’expérience des utilisateurs est prévisible : Catherine doit réaliser l’authentification MFA avec le locataire à l’origine de l’invitation.
+Par conséquent, la recommandation hello pour l’authentification Multifacteur pour les utilisateurs de B2B est tooalways exiger l’authentification Multifacteur Bonjour inviter les clients. Cette exigence peut entraîner des toodouble l’authentification Multifacteur dans certains cas, mais chaque fois que l’accès aux locataires d’invitation hello, l’expérience des utilisateurs finaux hello est prévisible : Catherine doit inscrire pour l’authentification Multifacteur avec le client d’invitation hello.
 
 ### <a name="device-based-location-based-and-risk-based-conditional-access-for-b2b-users"></a>Accès conditionnel en fonction des appareils, des emplacements et des risques pour les utilisateurs B2B
 
-Lorsque Contoso active les stratégies d’accès conditionnel en fonction des appareils pour ses données d’entreprise, l’accès est protégé contre les appareils non gérés par Contoso et non conformes aux stratégies d’appareils de Contoso.
+Lorsque Contoso Active des stratégies d’accès conditionnel basés sur un appareil pour leurs données d’entreprise, l’accès est bloqué dans les appareils qui ne sont pas gérés par Contoso et non conformes avec les stratégies d’appareil Contoso hello.
 
-Si l’appareil de l’utilisateur B2B n’est pas géré par Contoso, l’accès des utilisateurs B2B des organisations partenaires est bloqué quel que soit le contexte d’application de ces stratégies. Cependant, Contoso peut créer des listes d’exclusion contenant des utilisateurs spécifiques du partenaire afin d’exclure ces derniers de la stratégie d’accès conditionnel en fonction des appareils.
+Si l’appareil de l’utilisateur hello B2B n’est pas géré par Contoso, l’accès des utilisateurs B2B des organisations partenaires de hello est bloquée dans le contexte de ces stratégies sont appliquées. Toutefois, Contoso peut créer d’exclusion listes contenant partenaire utilisateurs tooexclude de hello stratégie d’accès conditionnel basés sur l’appareil.
 
 #### <a name="location-based-conditional-access-for-b2b"></a>Accès conditionnel en fonction des emplacements pour B2B
 
-Les stratégies d’accès conditionnel en fonction des emplacements peuvent être appliquées pour les utilisateurs B2B si l’organisation à l’origine de l’invitation est en mesure de créer une plage d’adresses IP approuvée qui définit leurs organisations partenaires.
+Stratégies d’accès conditionnel emplacement peuvent être appliquées pour les utilisateurs de B2B si l’organisation d’invitation hello est en mesure de toocreate une plage d’adresses IP approuvée qui définit leurs organisations partenaires.
 
 #### <a name="risk-based-conditional-access-for-b2b"></a>Accès conditionnel en fonction des risques pour B2B
 
-Actuellement, les stratégies de connexion en fonction des risques ne peuvent pas être appliquées aux utilisateurs B2B, car l’évaluation des risques s’effectue au niveau de l’organisation d’origine de l’utilisateur B2B.
+Actuellement, des risques connectez-vous stratégies ne peut pas être appliqué tooB2B utilisateurs, car l’évaluation des risques hello est effectuée au niveau de l’organisation d’origine de l’utilisateur hello B2B.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
@@ -110,8 +110,8 @@ Consultez les autres articles sur la collaboration B2B d'Azure AD :
 
 * [Qu’est-ce qu’Azure AD B2B Collaboration ?](active-directory-b2b-what-is-azure-ad-b2b.md)
 * [Comment les administrateurs Azure Active Directory ajoutent-ils des utilisateurs B2B Collaboration ?](active-directory-b2b-admin-add-users.md)
-* [Comment les professionnels de l’information ajoutent-ils des utilisateurs B2B Collaboration ?](active-directory-b2b-iw-add-users.md)
-* [Éléments de l’e-mail d’invitation de B2B Collaboration](active-directory-b2b-invitation-email.md)
+* [Comment les professionnels de l’information ajoutent-ils des utilisateurs B2B Collaboration ?](active-directory-b2b-iw-add-users.md)
+* [éléments Hello Hello e-mail d’invitation B2B collaboration](active-directory-b2b-invitation-email.md)
 * [Utilisation d’une invitation B2B Collaboration](active-directory-b2b-redemption-experience.md)
 * [Attribution de licences Azure AD B2B Collaboration](active-directory-b2b-licensing.md)
 * [Résolution des problèmes d’Azure Active Directory B2B Collaboration](active-directory-b2b-troubleshooting.md)

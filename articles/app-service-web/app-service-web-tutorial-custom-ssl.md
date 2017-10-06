@@ -1,6 +1,6 @@
 ---
-title: "Lier un certificat SSL existant à des applications web Azure | Microsoft Docs"
-description: "Découvrez comment lier un certificat SSL personnalisé à votre application web, un backend d’application mobile ou une application API dans Azure App Service."
+title: "aaaBind un SSL personnalisé existant de certificats des applications Web tooAzure | Documents Microsoft"
+description: "En savoir plus tootoobind une application de web tooyour de certificat SSL personnalisée, principal de l’application mobile ou API app dans Azure App Service."
 services: app-service\web
 documentationcenter: nodejs
 author: cephalin
@@ -15,15 +15,15 @@ ms.topic: tutorial
 ms.date: 06/23/2017
 ms.author: cephalin
 ms.custom: mvc
-ms.openlocfilehash: 15c31ae5451a31dff2df08047ee43e75edacc127
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 3503ba9f96c8ea8d18451e8bf9a9b441797ef44d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="bind-an-existing-custom-ssl-certificate-to-azure-web-apps"></a>Lier un certificat SSL existant à des applications web Azure
+# <a name="bind-an-existing-custom-ssl-certificate-tooazure-web-apps"></a>Lier un tooAzure de certificat SSL personnalisé existant Web Apps
 
-Azure Web Apps fournit un service d’hébergement hautement évolutif et appliquant des mises à jour correctives automatiquement. Ce didacticiel vous montre comment lier un certificat SSL personnalisé acheté auprès d’une autorité de certification approuvée pour [Azure Web Apps](app-service-web-overview.md). Lorsque vous aurez terminé, vous serez en mesure d’accéder à votre application web au niveau du point de terminaison HTTPS de votre domaine DNS personnalisé.
+Azure Web Apps fournit un service d’hébergement hautement évolutif et appliquant des mises à jour correctives automatiquement. Ce didacticiel vous montre comment toobind une SSL personnalisée de certificats que vous avez acheté auprès d’une autorité de certification approuvée trop[Azure Web Apps](app-service-web-overview.md). Lorsque vous avez terminé, vous serez en mesure de tooaccess votre application web au point de terminaison HTTPS hello de votre domaine DNS personnalisé.
 
 ![Application Web avec certificat SSL personnalisé](./media/app-service-web-tutorial-custom-ssl/app-with-custom-ssl.png)
 
@@ -31,72 +31,72 @@ Ce didacticiel vous montre comment effectuer les opérations suivantes :
 
 > [!div class="checklist"]
 > * Mettre à jour le niveau de tarification de votre application
-> * Lier votre certificat SSL personnalisé à App Service
+> * Lier votre tooApp de certificat SSL Service personnalisé
 > * Appliquer le protocole HTTPS à votre application
 > * Automatiser la liaison de certificat SSL avec des scripts
 
 > [!NOTE]
-> Si vous avez besoin d’un certificat SSL personnalisé, vous pouvez en obtenir un directement dans le portail Azure et le lier à votre application web. Suivez le [didacticiel Certificats App Service](web-sites-purchase-ssl-web-site.md).
+> Si vous avez besoin de tooget un certificat SSL personnalisé, vous pouvez en obtenir un Bonjour Azure portal directement et liez-le à l’application web tooyour. Suivez hello [didacticiel de certificats de Service d’application](web-sites-purchase-ssl-web-site.md).
 
 ## <a name="prerequisites"></a>Composants requis
 
-Pour suivre ce didacticiel :
+toocomplete ce didacticiel :
 
 - [Création d’une application App Service](/azure/app-service/)
-- [Mappage d’un nom DNS personnalisé à une application web](app-service-web-tutorial-custom-domain.md)
+- [Mapper une application personnalisée DNS nom tooyour web](app-service-web-tutorial-custom-domain.md)
 - Acquisition d’un certificat SSL auprès d’une autorité de certification approuvée
 
 <a name="requirements"></a>
 
 ### <a name="requirements-for-your-ssl-certificate"></a>Conditions requises pour le certificat SSL
 
-Pour l’utiliser dans App Service, un certificat doit remplir toutes les conditions suivantes :
+toouse un certificat dans le Service d’applications, les certificats hello doivent respecter toutes les hello suivant les exigences :
 
 * Être signé par une autorité de certification approuvée
 * Être exporté sous la forme d’un fichier PFX protégé par mot de passe
 * Contenir une clé privée d’au moins 2048 bits de long
-* Contenir tous les certificats intermédiaires dans la chaîne de certificats
+* Contient tous les certificats intermédiaires dans la chaîne de certificats hello
 
 > [!NOTE]
-> Les **certificats de chiffrement à courbe elliptique (ECC)** sont compatibles avec App Service, mais ce sujet sort du cadre de cet article. Consultez votre autorité de certification sur les étapes à suivre pour créer des certificats ECC.
+> Les **certificats de chiffrement à courbe elliptique (ECC)** sont compatibles avec App Service, mais ce sujet sort du cadre de cet article. Travailler avec votre autorité de certification sur les certificats ECC de hello étapes exactes toocreate.
 
 ## <a name="prepare-your-web-app"></a>Préparation de votre application web
 
-Pour lier un certificat SSL personnalisé à votre application web, votre [plan App Service](https://azure.microsoft.com/pricing/details/app-service/) doit se trouver dans le niveau **De base**, **Standard** ou **Premium**. Au cours de cette étape, vous allez vous assurer que votre application web se trouve dans le niveau de tarification pris en charge.
+toobind une SSL personnalisée de certificats tooyour web app, votre [plan App Service](https://azure.microsoft.com/pricing/details/app-service/) doit être Bonjour **base**, **Standard**, ou **Premium** couche. Dans cette étape, vous vous assurer que votre application web est Bonjour pris en charge niveau tarifaire.
 
-### <a name="log-in-to-azure"></a>Connexion à Azure
+### <a name="log-in-tooazure"></a>Connectez-vous à tooAzure
 
-Ouvrez le [portail Azure](https://portal.azure.com).
+Ouvrez hello [portail Azure](https://portal.azure.com).
 
-### <a name="navigate-to-your-web-app"></a>Accès à votre application web
+### <a name="navigate-tooyour-web-app"></a>Accédez tooyour l’application web
 
-Dans le menu de gauche, cliquez sur **App Services** puis sur le nom de votre application web.
+Dans le menu de gauche hello, cliquez sur **des Services d’application**, puis cliquez sur nom hello de votre application web.
 
 ![Sélectionner de l’application web](./media/app-service-web-tutorial-custom-ssl/select-app.png)
 
-Vous accédez à la page de gestion de votre application web.  
+Vous n’êtes pas pas dans la page de gestion hello de votre application web.  
 
-### <a name="check-the-pricing-tier"></a>Vérification du niveau tarifaire
+### <a name="check-hello-pricing-tier"></a>Vérifier le niveau tarifaire de hello
 
-Dans la navigation de gauche de la page de votre application web, accédez à la section **Paramètres** et sélectionnez **Monter en puissance (plan App Service)**.
+Navigation de gauche hello de page de votre application web, faites défiler toohello **paramètres** section et sélectionnez **montée en puissance (plan App Service)**.
 
 ![Menu Monter en puissance](./media/app-service-web-tutorial-custom-ssl/scale-up-menu.png)
 
-Vérifiez que votre application ne se trouve pas dans le niveau **Gratuit** ou **Partagé**. Le niveau actuel de votre application web est encadré d’un rectangle bleu foncé.
+Vérifiez toomake sûr que votre application web n’est pas hello **libre** ou **Shared** couche. Le niveau actuel de votre application web est encadré d’un rectangle bleu foncé.
 
 ![Vérification du niveau de tarification](./media/app-service-web-tutorial-custom-ssl/check-pricing-tier.png)
 
-Le SSL personnalisé n’est pas pris en charge aux niveaux **Gratuit** et **Partagé**. Si vous avez besoin de monter en puissance, consultez la section ci-après. Sinon, fermez la page **Choisir votre niveau de tarification** et passez à [Charger et lier votre certificat SSL](#upload).
+SSL personnalisé n’est pas pris en charge dans hello **libre** ou **Shared** couche. Si vous avez besoin tooscale, suivez les étapes de hello dans la section suivante de hello. Sinon, fermez hello **choisir votre niveau tarifaire** page et ignorer trop[télécharger et de lier votre certificat SSL](#upload).
 
 ### <a name="scale-up-your-app-service-plan"></a>Évolution de votre plan App Service
 
-Sélectionnez l’un des niveaux **De base**, **Standard** ou **Premium**.
+Sélectionnez une des hello **base**, **Standard**, ou **Premium** niveaux.
 
 Cliquez sur **Sélectionner**.
 
 ![Sélection du niveau tarifaire](./media/app-service-web-tutorial-custom-ssl/choose-pricing-tier.png)
 
-Lorsque la notification suivante s’affiche, cela signifie que la montée en charge est terminée.
+Lorsque vous voyez hello suivant la notification, l’opération de mise à l’échelle de hello est terminée.
 
 ![Notification de montée en puissance](./media/app-service-web-tutorial-custom-ssl/scale-notification.png)
 
@@ -104,15 +104,15 @@ Lorsque la notification suivante s’affiche, cela signifie que la montée en ch
 
 ## <a name="bind-your-ssl-certificate"></a>Liaison de votre certificat SSL
 
-Vous êtes prêt à charger votre certificat SSL dans votre application web.
+Vous est prêt tooupload votre certificat SSL tooyour l’application web.
 
 ### <a name="merge-intermediate-certificates"></a>Fusionner les certificats intermédiaires
 
-Si votre autorité de certification vous donne plusieurs certificats dans la chaîne, vous devez les fusionner dans l’ordre. 
+Si votre autorité de certification vous donne plusieurs certificats dans la chaîne de certificats hello, vous devez les certificats hello toomerge dans l’ordre. 
 
-Pour ce faire, ouvrez chaque certificat reçu dans un éditeur de texte. 
+toodo cela, ouvrez chaque certificat que vous avez reçu dans un éditeur de texte. 
 
-Créez un fichier pour le certificat fusionné, appelé _mergedcertificate.crt_. Dans un éditeur de texte, copiez le contenu de chaque certificat dans ce fichier. L’ordre de vos certificats doit être conforme au modèle suivant :
+Créer un fichier de certificat fusionné hello, appelé _mergedcertificate.crt_. Dans un éditeur de texte, copiez le contenu de chaque certificat hello dans ce fichier. commande Hello vos certificats doit ressembler à hello suivant le modèle :
 
 ```
 -----BEGIN CERTIFICATE-----
@@ -132,99 +132,99 @@ Créez un fichier pour le certificat fusionné, appelé _mergedcertificate.crt_.
 -----END CERTIFICATE-----
 ```
 
-### <a name="export-certificate-to-pfx"></a>Exportation du certificat vers PFX
+### <a name="export-certificate-toopfx"></a>Exporter le certificat tooPFX
 
-Exportez votre certificat SSL fusionné avec la clé privée ayant servi à générer votre demande de certificat.
+Exporter votre certificat SSL fusionnée avec la clé privée hello votre demande de certificat a été généré avec.
 
-Si vous avez généré votre demande de certificat à l’aide d’OpenSSL, vous avez créé un fichier de clé privée. Pour exporter votre certificat au format PFX, exécutez la commande suivante : Remplacez les espaces réservés _&lt;private-key-file>_ et  _&lt;merged-certificate-file>_.
+Si vous avez généré votre demande de certificat à l’aide d’OpenSSL, vous avez créé un fichier de clé privée. tooexport tooPFX votre certificat, exécutez hello commande suivante. Remplacez les espaces réservés de hello  _&lt;fichier de clé privée >_ et  _&lt;fusionnée de fichier de certificat >_.
 
 ```
 openssl pkcs12 -export -out myserver.pfx -inkey <private-key-file> -in <merged-certificate-file>  
 ```
 
-Lorsque vous y êtes invité, définissez un mot de passe d’exportation. Vous allez utiliser ce mot de passe lors du chargement de votre certificat SSL dans App Service.
+Lorsque vous y êtes invité, définissez un mot de passe d’exportation. Vous allez utiliser ce mot de passe lors du téléchargement de votre tooApp de certificat SSL Service ultérieurement.
 
-Si vous avez utilisé IIS ou _Certreq.exe_ pour générer votre demande de certificat, installez le certificat sur votre ordinateur local, puis [exportez le certificat au format PFX](https://technet.microsoft.com/library/cc754329(v=ws.11).aspx).
+Si vous avez utilisé IIS ou _Certreq.exe_ toogenerate votre demande de certificat, l’installation hello certificat tooyour ordinateur local, puis [exporter hello certificat tooPFX](https://technet.microsoft.com/library/cc754329(v=ws.11).aspx).
 
 ### <a name="upload-your-ssl-certificate"></a>Chargement de votre certificat SSL
 
-Pour charger votre certificat SSL, cliquez sur **Certificats SSL** dans le volet de navigation gauche de votre application web.
+tooupload votre certificat SSL, cliquez sur **certificats SSL** Bonjour gauche de navigation de votre application web.
 
 Cliquez sur **Charger le certificat**.
 
-Dans **Fichier de certificat PFX**, sélectionnez votre fichier PFX. Dans **Mot de passe du certificat**, tapez le mot de passe que vous avez créé lors de l’exportation du fichier PFX.
+Dans **Fichier de certificat PFX**, sélectionnez votre fichier PFX. Dans **mot de passe de certificat**, type hello mot de passe que vous avez créé lorsque vous avez exporté le fichier PFX hello.
 
 Cliquez sur **Télécharger**.
 
 ![Téléchargement d’un certificat](./media/app-service-web-tutorial-custom-ssl/upload-certificate.png)
 
-Lorsque App Service finit de charger votre certificat, celui-ci apparaît dans la page **Certificats SSL**.
+Lorsque le Service de l’application a terminé de télécharger votre certificat, il apparaît dans hello **certificats SSL** page.
 
 ![Certificat chargé](./media/app-service-web-tutorial-custom-ssl/certificate-uploaded.png)
 
 ### <a name="bind-your-ssl-certificate"></a>Liaison de votre certificat SSL
 
-Dans la section **Liaisons SSL**, cliquez sur **Ajouter une liaison**.
+Bonjour **liaisons SSL** , cliquez sur **ajouter la liaison**.
 
-Dans la page **Ajouter une liaison SSL**, utilisez les listes déroulantes pour sélectionner le nom de domaine à sécuriser et le certificat à utiliser.
+Bonjour **ajouter la liaison SSL** page, utilisez hello menus déroulants tooselect hello domaine nom toosecure et toouse de certificat hello.
 
 > [!NOTE]
-> Si vous avez chargé votre certificat mais que vous ne voyez pas le ou les noms de domaine dans la liste déroulante **Nom d’hôte**, essayez d’actualiser la page du navigateur.
+> Si vous avez téléchargé votre certificat, mais ne pas afficher ou les noms de domaine hello Bonjour **nom d’hôte** liste déroulante, essayez d’actualiser la page du navigateur hello.
 >
 >
 
-Dans **Type SSL**, choisissez d’utiliser **[l’indication du nom du serveur (SNI)](http://en.wikipedia.org/wiki/Server_Name_Indication)** ou le protocole SSL basé sur IP.
+Dans **SSL Type**, sélectionnez si toouse  **[Indication de nom de serveur (SNI)](http://en.wikipedia.org/wiki/Server_Name_Indication)**  ou SSL basé sur IP.
 
-- **SSL basé sur SNI** : plusieurs liaisons SSL basées sur SNI peuvent être ajoutées. Cette option permet de sécuriser plusieurs domaines sur la même adresse IP avec plusieurs certificats SSL. La plupart des navigateurs actuels (y compris Internet Explorer, Chrome, Firefox et Opera) prennent en charge SNI (plus d’informations sur la prise en charge des navigateurs dans [Indication du nom du serveur](http://wikipedia.org/wiki/Server_Name_Indication)).
-- **SSL basé sur IP** : une seule liaison SSL basée sur IP peut être ajoutée. Cette option permet de sécuriser une adresse IP publique dédiée avec un seul certificat SSL. Pour sécuriser plusieurs domaines, vous devez tous les sécuriser en utilisant le même certificat SSL. Cette option est sélectionnée par défaut pour la liaison SSL.
+- **SSL basé sur SNI** : plusieurs liaisons SSL basées sur SNI peuvent être ajoutées. Cette option permet à plusieurs toosecure de certificats SSL plusieurs domaines sur hello même adresse IP. La plupart des navigateurs actuels (y compris Internet Explorer, Chrome, Firefox et Opera) prennent en charge SNI (plus d’informations sur la prise en charge des navigateurs dans [Indication du nom du serveur](http://wikipedia.org/wiki/Server_Name_Indication)).
+- **SSL basé sur IP** : une seule liaison SSL basée sur IP peut être ajoutée. Cette option ne permet qu’un seul toosecure de certificat SSL à une adresse IP publique dédiée. toosecure plusieurs domaines, vous devez les sécuriser à l’aide de tous les hello même certificat SSL. Il s’agit d’option traditionnelles de hello pour la liaison SSL.
 
 Cliquez sur **Ajouter une liaison**.
 
 ![Liaison d’un certificat SSL](./media/app-service-web-tutorial-custom-ssl/bind-certificate.png)
 
-Lorsque App Service finit de charger votre certificat, celui-ci apparaît dans les sections **Liaisons SSL**.
+Lorsque le Service de l’application a terminé de télécharger votre certificat, il apparaît dans hello **liaisons SSL** sections.
 
-![Certificat lié à une application web](./media/app-service-web-tutorial-custom-ssl/certificate-bound.png)
+![Certificat lié tooweb application](./media/app-service-web-tutorial-custom-ssl/certificate-bound.png)
 
 ## <a name="remap-a-record-for-ip-ssl"></a>Nouveau mappage d’un enregistrement pour SSL IP
 
-Si vous n’utilisez pas un SSL basé sur IP dans votre application web, passez à [Tester HTTPS pour votre domaine personnalisé](#test).
+Si vous n’utilisez pas SSL basé sur IP dans votre application web, passez trop[HTTPS de Test pour votre domaine personnalisé](#test).
 
 Par défaut, votre application web utilise une adresse IP publique partagée. Dès que vous liez un certificat avec SSL basé sur IP, App Service crée une adresse IP dédiée pour votre application web.
 
-Si vous avez mappé un enregistrement A à votre application web, mettez à jour le registre de domaine avec cette nouvelle adresse IP dédiée.
+Si vous avez mappé une application web de tooyour enregistrement A, mettre à jour le Registre de votre domaine avec cette nouvelle adresse IP dédiée.
 
-La page **Domaine personnalisé** de votre application web est mise à jour avec la nouvelle adresse IP dédiée. [Copiez cette adresse IP](app-service-web-tutorial-custom-domain.md#info), puis [mappez à nouveau l’enregistrement A](app-service-web-tutorial-custom-domain.md#map-an-a-record) à cette nouvelle adresse IP.
+De votre application web **un domaine personnalisé** page est mise à jour avec hello dédié, nouvelle adresse. [Copiez cette adresse IP](app-service-web-tutorial-custom-domain.md#info), puis [remappage hello un enregistrement](app-service-web-tutorial-custom-domain.md#map-an-a-record) toothis nouvelle adresse.
 
 <a name="test"></a>
 
 ## <a name="test-https"></a>Test du protocole HTTPS
 
-Il ne reste plus maintenant qu’à vous assurer que HTTPS fonctionne pour votre domaine personnalisé. Dans différents navigateurs, accédez à `https://<your.custom.domain>` pour vérifier qu’il fournit votre application web.
+Tout ce qui a quitté toodo maintenant est toomake sûr que HTTPS fonctionne pour votre domaine personnalisé. Dans différents navigateurs, recherchez trop`https://<your.custom.domain>` toosee qu’il sert de votre application web.
 
-![Navigation au sein du portail pour accéder à l’application Azure](./media/app-service-web-tutorial-custom-ssl/app-with-custom-ssl.png)
+![Application tooAzure de navigation du portail](./media/app-service-web-tutorial-custom-ssl/app-with-custom-ssl.png)
 
 > [!NOTE]
 > Si votre application web permet de voir les erreurs de validation de certificat, vous utilisez probablement un certificat auto-signé.
 >
-> Si ce n’est pas le cas, vous pouvez avoir oublié des certificats intermédiaires lorsque vous avez exporté votre certificat vers le fichier PFX.
+> Si tel n’est pas le cas de hello, vous pouvez avoir laissé des certificats intermédiaires lorsque vous exportez votre fichier PFX du certificat toohello.
 
 <a name="bkmk_enforce"></a>
 
 ## <a name="enforce-https"></a>Appliquer le protocole HTTPS
 
-App Service n’appliquant *pas* le protocole HTTPS, tout le monde peut accéder à votre application à l’aide de HTTP. Pour appliquer HTTPS à votre application web, définissez une règle de réécriture dans le fichier _web.config_ de votre application web. App Service utilise ce fichier, quelle que soit l’infrastructure de langage de votre application web.
+App Service n’appliquant *pas* le protocole HTTPS, tout le monde peut accéder à votre application à l’aide de HTTP. tooenforce HTTPS pour votre application web, définissez une règle de réécriture Bonjour _web.config_ fichier de votre application web. Service de l’application utilise ce fichier, quel que soit l’infrastructure de langage hello de votre application web.
 
 > [!NOTE]
-> Certaines redirections de requête sont propres au langage. ASP.NET MVC peut utiliser le filtre [RequireHttps](http://msdn.microsoft.com/library/system.web.mvc.requirehttpsattribute.aspx) au lieu de la règle de réécriture dans le fichier _web.config_.
+> Certaines redirections de requête sont propres au langage. ASP.NET MVC peuvent utiliser hello [RequireHttps](http://msdn.microsoft.com/library/system.web.mvc.requirehttpsattribute.aspx) filtre au lieu de la règle de réécriture hello dans _web.config_.
 
-Si vous êtes un développeur .NET, vous connaissez probablement ce fichier. Il se trouve à la racine de votre solution.
+Si vous êtes un développeur .NET, vous connaissez probablement ce fichier. Il est dans la racine de hello de votre solution.
 
 Ou, si vous développez avec PHP, Node.js, Python ou Java, il est possible que ce fichier ait été généré en votre nom dans App Service.
 
-Connectez-vous au point de terminaison FTP de votre application web en suivant les instructions fournies dans [Déployer votre application dans Azure App Service avec FTP/S](app-service-deploy-ftp.md).
+Connecter le point de terminaison de l’application tooyour web FTP en suivant les instructions de hello sur [déployer votre tooAzure d’application du Service d’applications à l’aide de FTP/S](app-service-deploy-ftp.md).
 
-Ce fichier doit se trouver dans _/home/site/wwwroot_. Dans le cas contraire, créez un fichier _web.config_ dans ce dossier avec le code XML suivant :
+Ce fichier doit se trouver dans _/home/site/wwwroot_. Dans le cas contraire, créez un _web.config_ fichier dans ce dossier par hello XML suivant :
 
 ```xml   
 <?xml version="1.0" encoding="UTF-8"?>
@@ -247,19 +247,19 @@ Ce fichier doit se trouver dans _/home/site/wwwroot_. Dans le cas contraire, cr�
 </configuration>
 ```
 
-Pour un fichier _web.config_ existant, copiez l’intégralité de l’élément `<rule>` dans l’élément `configuration/system.webServer/rewrite/rules` de votre fichier _web.config_. Si d’autres éléments `<rule>` sont présents dans votre fichier _web.config`<rule>`, placez_  avant les autres éléments `<rule>`.
+Pour un existant _web.config_ de fichiers, copiez hello ensemble `<rule>` élément dans votre _web.config_de `configuration/system.webServer/rewrite/rules` élément. S’il existe d’autres `<rule>` éléments dans votre _web.config_, hello place copié `<rule>` élément avant hello autres `<rule>` éléments.
 
-Cette règle renvoie un HTTP 301 (redirection permanente) vers le protocole HTTPS chaque fois que l’utilisateur envoie une requête HTTP à votre application web. Par exemple, elle redirige de `http://contoso.com` vers `https://contoso.com`.
+Cette règle retourne un HTTP 301 (redirection permanente) le protocole HTTPS toohello chaque fois que l’utilisateur de hello effectue une demande HTTP tooyour l’application web. Par exemple, il est redirigé à partir de `http://contoso.com` trop`https://contoso.com`.
 
-Pour plus d'informations sur le module Réécriture d'URL d'IIS, consultez la documentation sur la [Réécriture d'URL](http://www.iis.net/downloads/microsoft/url-rewrite) .
+Pour plus d’informations sur le module de réécriture d’URL IIS hello, consultez hello [réécriture d’URL](http://www.iis.net/downloads/microsoft/url-rewrite) documentation.
 
 ## <a name="enforce-https-for-web-apps-on-linux"></a>Mettre en œuvre HTTPS pour Web Apps sous Linux
 
-App Service sous Linux n’appliquant *pas* le protocole HTTPS, tout le monde peut accéder à votre application web à l’aide de HTTP. Pour appliquer HTTPS à votre application web, définissez une règle de réécriture dans le fichier _.htaccess_ de votre application web. 
+App Service sous Linux n’appliquant *pas* le protocole HTTPS, tout le monde peut accéder à votre application web à l’aide de HTTP. tooenforce HTTPS pour votre application web, définissez une règle de réécriture Bonjour _.htaccess_ fichier de votre application web. 
 
-Connectez-vous au point de terminaison FTP de votre application web en suivant les instructions fournies dans [Déployer votre application dans Azure App Service avec FTP/S](app-service-deploy-ftp.md).
+Connecter le point de terminaison de l’application tooyour web FTP en suivant les instructions de hello sur [déployer votre tooAzure d’application du Service d’applications à l’aide de FTP/S](app-service-deploy-ftp.md).
 
-Dans _/home/site/wwwroot_, créez un fichier _.htaccess_ avec le code suivant :
+Dans _/home/site/wwwroot_, créez un _.htaccess_ fichier avec hello suivant de code :
 
 ```
 RewriteEngine On
@@ -267,15 +267,15 @@ RewriteCond %{HTTP:X-ARR-SSL} ^$
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 ```
 
-Cette règle renvoie un HTTP 301 (redirection permanente) vers le protocole HTTPS chaque fois que l’utilisateur envoie une requête HTTP à votre application web. Par exemple, elle redirige de `http://contoso.com` vers `https://contoso.com`.
+Cette règle retourne un HTTP 301 (redirection permanente) le protocole HTTPS toohello chaque fois que l’utilisateur de hello effectue une demande HTTP tooyour l’application web. Par exemple, il est redirigé à partir de `http://contoso.com` trop`https://contoso.com`.
 
-## <a name="automate-with-scripts"></a>Automatisation à l’aide de scripts
+## <a name="automate-with-scripts"></a>Automatiser des tâches à l’aide de scripts
 
-Vous pouvez automatiser les liaisons SSL de votre application web à l’aide de scripts, en utilisant [Azure CLI](/cli/azure/install-azure-cli) ou [Azure PowerShell](/powershell/azure/overview).
+Vous pouvez automatiser des liaisons SSL pour votre application web avec des scripts, à l’aide de hello [CLI d’Azure](/cli/azure/install-azure-cli) ou [Azure PowerShell](/powershell/azure/overview).
 
 ### <a name="azure-cli"></a>Interface de ligne de commande Azure
 
-La commande suivante charge un fichier PFX exporté et obtient l’empreinte.
+Hello commande suivante télécharge un fichier PFX exporté et obtient l’empreinte numérique hello.
 
 ```bash
 thumbprint=$(az appservice web config ssl upload \
@@ -287,7 +287,7 @@ thumbprint=$(az appservice web config ssl upload \
     --output tsv)
 ```
 
-La commande suivante ajoute une liaison SSL basée sur SNI à l’aide de l’empreinte de la commande précédente.
+Hello commande suivante ajoute une liaison SSL SNI, à l’aide de l’empreinte numérique hello à partir de la commande précédente hello.
 
 ```bash
 az appservice web config ssl bind \
@@ -299,7 +299,7 @@ az appservice web config ssl bind \
 
 ### <a name="azure-powershell"></a>Azure PowerShell
 
-La commande suivante charge un fichier PFX exporté et ajoute une liaison SSL basée sur SNI.
+Bonjour commande suivante télécharge un fichier PFX exporté et ajoute une liaison SSL SNI.
 
 ```PowerShell
 New-AzureRmWebAppSSLBinding `
@@ -317,11 +317,11 @@ Dans ce didacticiel, vous avez appris à :
 
 > [!div class="checklist"]
 > * Mettre à jour le niveau de tarification de votre application
-> * Lier votre certificat SSL personnalisé à App Service
+> * Lier votre tooApp de certificat SSL Service personnalisé
 > * Appliquer le protocole HTTPS à votre application
 > * Automatiser la liaison de certificat SSL avec des scripts
 
-Passez au didacticiel suivant pour découvrir comment utiliser un réseau de distribution de contenu Azure.
+Avancer toolearn de didacticiel suivant toohello comment toouse Azure Content Delivery Network.
 
 > [!div class="nextstepaction"]
-> [Ajouter un réseau de distribution de contenu (CDN) à un Azure App Service](app-service-web-tutorial-content-delivery-network.md)
+> [Ajouter un tooan de réseau de distribution de contenu (CDN) Azure App Service](app-service-web-tutorial-content-delivery-network.md)

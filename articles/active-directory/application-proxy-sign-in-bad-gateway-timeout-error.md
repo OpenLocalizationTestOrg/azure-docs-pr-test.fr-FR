@@ -1,6 +1,6 @@
 ---
-title: "Erreur « Impossible d’accéder à cette application d’entreprise » lors de l’utilisation d’une application Proxy d’application | Microsoft Docs"
-description: "Comment résoudre les problèmes d’accès courants avec les applications Proxy d’application Azure AD."
+title: "AAA » ne peut pas accéder à cette erreur de l’Application d’entreprise lorsque vous utilisez une application de Proxy d’Application | Documents Microsoft »"
+description: "Comment les accès commun tooresolve problèmes avec les applications du Proxy d’Application Azure AD."
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,101 +13,101 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 78ff8763a461162cbcfa04c6a86123973271928a
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 490b106b7d774ee43fc076cc5d082997a1df85e9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="cant-access-this-corporate-application-error-when-using-an-application-proxy-application"></a>Erreur « Impossible d’accéder à cette application d’entreprise » lors de l’utilisation d’une application Proxy d’application
 
-Cet article vous aide à résoudre les problèmes couramment associés à l’erreur « Impossible d’accéder à cette application d’entreprise » sur une application Proxy d’application Azure AD.
+Cet article vous a-t-il tootroubleshoot des problèmes courants rencontrés lorsque vous voyez une erreur « cette application d’entreprise n’est pas accessible » sur une application de Proxy d’Application Azure AD.
 
 ## <a name="overview"></a>Vue d'ensemble
-Quand cette erreur se produit, la page indique un code d’état. Ce code est généralement l’un des suivants :
+Lorsque vous voyez cette erreur, page de hello partagent également un code d’état. Ce code est probablement de l’une des manières suivantes les hello :
 
--   **Dépassement du délai de la passerelle** : le service Proxy d’application ne peut pas atteindre le connecteur. Cela indique généralement un problème lié à l’attribution du connecteur, au connecteur proprement dit ou aux règles de mise en réseau régissant le connecteur.
+-   **Délai d’attente de la passerelle**: hello service Proxy d’Application est le connecteur de hello tooreach impossible. En règle générale, cela indique un problème avec affectation de connecteur hello, connecteur proprement dit ou hello autour de connecteur de hello, les règles de mise en réseau.
 
--   **Passerelle incorrecte** : le connecteur ne peut pas atteindre l’application back-end. Cela peut indiquer une configuration incorrecte de l’application.
+-   **Passerelle incorrecte**: connecteur de hello est l’application principale ne peut pas tooreach hello. Cela peut indiquer une configuration incorrecte de l’application hello.
 
--   **Interdit** : l’utilisateur n’est pas autorisé à accéder à l’application. Cela peut se produire si l’utilisateur n’est pas affecté à l’application dans Azure Active Directory ou s’il n’est pas autorisé à accéder à l’application sur le back-end.
+-   **Il est interdit**: utilisateur de hello n’est pas autorisé tooaccess hello application. Cela peut se produire lorsque l’utilisateur de hello ne possède pas d’application toohello dans Azure Active Directory, ou si sur hello principal utilisateur de hello n’a pas d’application de hello tooaccess autorisation.
 
-Pour trouver le code, examinez le champ « Code d’état » situé en bas à gauche du message d’erreur. Recherchez également la présence de conseils supplémentaires dans les notes situées en bas de la page.
+code de hello toofind, examinez le texte hello en hello en bas à gauche de message d’erreur hello pour le champ de « Code d’état » hello. Recherchez également les notes à hello tout en bas du page hello avec des conseils supplémentaires.
 
    ![Erreur liée au dépassement du délai de la passerelle](./media/application-proxy/connection-problem.png)
 
-Pour plus d’informations sur la résolution de la cause racine de ces erreurs et sur les suggestions de correction, consultez la section appropriée ci-dessous.
+Pour plus d’informations sur comment tootroubleshoot hello cause première de ces erreurs et plus de détails sur les suggestions de correction, voir hello correspondants ci-dessous.
 
 ## <a name="gateway-timeout-errors"></a>Erreurs liées au dépassement du délai de la passerelle
 
-Un dépassement du délai de la passerelle se produit quand le service ne peut pas atteindre le connecteur dans le délai imparti. Ceci est généralement le cas quand une application est affectée à un groupe de connecteurs qui ne compte aucun connecteur opérationnel, ou quand certains ports nécessaires par le connecteur ne sont pas ouverts.
+Un délai d’attente de la passerelle se produit lorsque le service de hello essaie de connecteur de hello tooreach et est la fenêtre de délai d’attente hello toowithin impossible. Cela est généralement dû à une application affectée tooa groupe de connecteurs avec aucun connecteur de travail, ou certains ports requis par hello connecteur ne sont pas ouverts.
 
 
 ## <a name="bad-gateway-errors"></a>Erreurs liées à une passerelle incorrecte
 
-Une passerelle incorrecte indique que le connecteur ne peut pas atteindre l’application back-end. Vérifiez que vous avez publié la bonne l’application. Erreurs courantes à l’origine de ce problème :
+Une erreur de passerelle incorrecte indique que le connecteur hello est l’application principale ne peut pas tooreach hello. Assurez-vous que vous avez publié d’application correct hello. Erreurs courantes à l’origine de ce problème :
 
--   Faute de frappe ou erreur dans l’URL interne
+-   Une faute de frappe ou d’une erreur dans une URL interne hello
 
--   Non-publication de la racine de l’application (par exemple, tentative d’accès à <http://expenses>, alors que <http://expenses/reimbursement> a été publié)
+-   Ne pas de publication racine hello application hello. Par exemple, la publication <http://expenses/reimbursement> , mais la tentative de tooaccess <http://expenses>
 
--   Problèmes liés à la configuration de la délégation Kerberos contrainte
+-   Problèmes liés à la configuration de la délégation Kerberos (KCD) hello
 
--   Problèmes liés à l’application back-end
+-   Problèmes liés à l’application hello principale
 
 ## <a name="forbidden-errors"></a>Erreurs liées à une interdiction
 
-Si vous constatez une erreur liée à une interdiction, l’utilisateur n’a pas été affecté à l’application (soit dans Azure Active Directory, soit ou sur l’application back-end).
+Si vous voyez une erreur interdit, hello utilisateur n'a pas reçu toohello application. Cela peut être dans Azure Active Directory ou sur l’application hello principale.
 
-Pour savoir comment affecter des utilisateurs à l’application dans Azure, consultez la [documentation sur la configuration](https://docs.microsoft.com/azure/active-directory/application-proxy-publish-azure-portal#add-a-test-user).
+toolearn tooassign utilisateurs toohello application dans Azure, voir hello [documentation de configuration](https://docs.microsoft.com/azure/active-directory/application-proxy-publish-azure-portal#add-a-test-user).
 
-Si vous confirmez que l’utilisateur est affecté à l’application dans Azure, vérifiez la configuration de l’utilisateur dans l’application back-end. Si vous utilisez la délégation Kerberos contrainte ou l’authentification Windows intégrée, consultez notre page de dépannage consacrée à la délégation Kerberos contrainte pour obtenir des instructions.
+Si vous confirmez les utilisateur hello sont attribué application toohello dans Azure, vérifiez la configuration de l’utilisateur dans l’application principale hello hello. Si vous utilisez la délégation Kerberos contrainte ou l’authentification Windows intégrée, consultez notre page de dépannage consacrée à la délégation Kerberos contrainte pour obtenir des instructions.
 
-## <a name="check-the-applications-internal-url"></a>Vérifier l’URL interne de l’application
+## <a name="check-hello-applications-internal-url"></a>Vérifier l’URL interne de l’application hello
 
-La première chose à faire consiste à vérifier l’URL interne et à la corriger si nécessaire. Pour cela, ouvrez l’application par le biais d’**Applications d’entreprise**, puis sélectionnez le menu **Proxy d’application**. Vérifiez qu’il s’agit bien de l’URL interne utilisée sur votre réseau local pour accéder à l’application.
+Une première étape rapide, vérifiez vérifier et corriger les URL interne de hello en ouvrant l’application hello via **des Applications d’entreprise**, puis en sélectionnant hello **le Proxy d’Application** menu. Vérifiez qu’est bonne URL interne hello hello celui utilisé à partir de l’application hello tooaccess de votre réseau local.
 
-## <a name="check-the-application-is-assigned-to-a-working-connector-group"></a>Vérifier que l’application est affectée à un groupe de connecteurs opérationnel
+## <a name="check-hello-application-is-assigned-tooa-working-connector-group"></a>Vérifier l’application hello est attribuée tooa connecteur de groupe de travail
 
-Pour vérifier que l’application est affectée à un groupe de connecteurs opérationnel :
+application de hello tooverify est attribuée tooa connecteur de groupe de travail :
 
-1.  Ouvrez l’application dans le portail. Pour cela, accédez à **Azure Active Directory**, cliquez sur **Applications d’entreprise**, puis sur **Toutes les applications**. Ouvrez l’application, puis sélectionnez **Proxy d’application** dans le menu gauche.
+1.  Ouvrez l’application hello dans le portail de hello en accédant trop**Azure Active Directory**, en cliquant sur **des Applications d’entreprise**, puis **toutes les Applications.** Ouvrez l’application hello, puis sélectionnez **le Proxy d’Application** à partir du menu de gauche hello.
 
-2.  Examinez le champ Groupe de connecteurs. Si le groupe ne comprend aucun connecteur actif, un avertissement s’affiche. Si vous ne voyez aucun avertissement, passez à « Vérifier que tous les ports nécessaires figurent dans la liste verte ».
+2.  Examinez le champ de groupe de connecteurs hello. S’il n’y a aucun connecteur active dans le groupe de hello, vous voyez un avertissement. Si vous ne voyez pas tous les avertissements, passez trop « vérifier tous les ports requis sont dans la liste approuvée ».
 
-3.  S’il s’agit du mauvais groupe de connecteurs, utilisez la liste déroulante pour sélectionner le bon groupe et vérifiez l’absence d’avertissements. S’il s’agit du groupe de connecteurs souhaité, cliquez sur le message de l’avertissement pour ouvrir la page dans l’outil de gestion des connecteurs.
+3.  S’il s’agit hello mauvais groupe de connecteur, hello déroulante groupe approprié de tooselect hello et Confirmez vous ne voyez plus les avertissements. S’il s’agit hello destinée groupe de connecteurs, cliquez sur la page hello avertissement message tooopen hello avec la gestion du connecteur.
 
-4.  À partir de là, plusieurs options s’offrent à vous :
+4.  À ce stade, il existe quelques toodrill manières dans supplémentaire :
 
-  * Déplacer un connecteur actif dans le groupe : si vous avez un connecteur actif qui doit appartenir à ce groupe et qui a une visibilité directe sur l’application back-end cible, vous pouvez déplacer le connecteur dans le groupe affecté. Pour cela, cliquez sur le connecteur. Dans le champ « Groupe de connecteurs », utilisez la liste déroulante pour sélectionner le groupe approprié, puis cliquez sur Enregistrer.
+  * Déplacez un connecteur actif dans hello : Si vous avez un connecteur actif qui doit appartenir toothis groupe et qui possède l’application de ligne de vue toohello cible principale, vous pouvez déplacer hello connecteur dans le groupe de hello attribué. toodo, cliquez sur hello connecteur. Dans le champ de « Groupe de connecteurs » hello, utilisez groupe approprié du hello hello tooselect de liste déroulante, cliquez sur Enregistrer.
 
-  * Télécharger un nouveau connecteur pour ce groupe : cette page contient un lien pour [télécharger un nouveau connecteur](https://download.msappproxy.net/Subscription/d3c8b69d-6bf7-42be-a529-3fe9c2e70c90/Connector/Download). Le connecteur doit être installé sur un ordinateur avec une visibilité directe sur l’application back-end. Il est généralement placé sur le même serveur que l’application. Utilisez le lien Télécharger le connecteur pour télécharger un connecteur sur l’ordinateur cible. Cliquez ensuite sur le connecteur, puis utilisez la liste déroulante « Groupe de connecteurs » pour vérifier qu’il appartient au bon groupe.
+  * Télécharger un nouveau connecteur pour ce groupe : à partir de cette page, vous pouvez obtenir le lien de hello trop[télécharger un nouveau connecteur](https://download.msappproxy.net/Subscription/d3c8b69d-6bf7-42be-a529-3fe9c2e70c90/Connector/Download). besoins du connecteur Hello toobe installé sur un ordinateur avec l’application de ligne de vue directe toohello principale et se trouve généralement sur hello même serveur que l’application hello. Hello d’utilisation télécharger toodownload de lien de connecteur un connecteur sur l’ordinateur cible hello. Ensuite, cliquez sur hello connecteur et utiliser hello « Groupe de connecteurs » liste déroulante toomake qu’il appartient toohello des groupes appropriés.
 
-  * Examiner un connecteur inactif : si un connecteur est répertorié comme étant inactif, il ne peut pas atteindre le service. Cela vient généralement du fait que certains ports nécessaires sont bloqués. Pour résoudre ce problème, passez à « Vérifier que tous les ports nécessaires figurent dans la liste verte ».
+  * Examiner un connecteur inactif : si un connecteur apparaît comme étant inactif, elle est service de hello tooreach impossible. C’est généralement en raison de ports toosome requis bloqués. toosolve ce problème, le déplacement de trop « vérifier tous les ports requis sont dans la liste approuvée ».
 
-Après avoir suivi ces étapes pour vérifier que l’application est affectée à un groupe comprenant des connecteurs opérationnels, retestez l’application. Si elle ne fonctionne toujours pas, passez à la section suivante.
+Une fois ces étapes application hello de tooensure est groupe tooa attribué avec l’utilisation de connecteurs, application hello test. Si elle ne fonctionne toujours pas, continuer toohello la prochaine section.
 
 ## <a name="check-all-required-ports-are-whitelisted"></a>Vérifier que tous les ports nécessaires figurent dans la liste verte
 
-Pour vérifier que tous les ports nécessaires sont ouverts, consultez notre documentation sur l’ouverture des ports. Si tous les ports nécessaires sont ouverts, passez à la section suivante.
+tooverify que tous les requis ports sont ouverts, consultez notre documentation sur l’ouverture des ports. Si tous les ports hello nécessaires sont ouverts, déplacez toohello la prochaine section.
 
 ## <a name="check-for-other-connector-errors"></a>Rechercher d’autres erreurs liées aux connecteurs
 
-Si aucune des procédures précédentes ne résout le problème, l’étape suivante consiste à rechercher des problèmes ou des erreurs liés au connecteur proprement dit. Certaines erreurs courantes sont répertoriées dans le [document de dépannage](https://docs.microsoft.com/azure/active-directory/active-directory-application-proxy-troubleshoot#connector-errors). 
+Si aucun des hello ci-dessus résoudre hello, hello prochaine étape consiste toolook des problèmes ou des erreurs avec hello connecteur proprement dit. Vous pouvez voir des erreurs courantes Bonjour [dépannage document](https://docs.microsoft.com/azure/active-directory/active-directory-application-proxy-troubleshoot#connector-errors). 
 
-Vous pouvez également consulter directement les journaux du connecteur pour identifier d’éventuelles erreurs. La plupart des messages d’erreur indiquent des recommandations plus spécifiques sur les corrections à apporter. Pour savoir comment afficher les journaux, consultez [notre documentation sur les connecteurs](https://docs.microsoft.com/azure/active-directory/application-proxy-understand-connectors#under-the-hood).
+Vous pouvez également consulter directement hello connecteur journaux tooidentify toutes les erreurs. Un grand nombre des messages d’erreur être en mesure de tooshare recommandations plus spécifiques pour les correctifs. toolearn Voir journaux hello tooview [notre documentation connecteurs](https://docs.microsoft.com/azure/active-directory/application-proxy-understand-connectors#under-the-hood).
 
 ## <a name="additional-resolutions"></a>Résolutions supplémentaires
 
-Si les procédures précédentes ne vous ont pas permis de résoudre le problème, il existe d’autres causes possibles. Pour identifier le problème :
+Si hello ci-dessus n’a pas de résoudre hello, il existe quelques différentes causes possibles. problème de hello tooidentify :
 
-Si votre application est configurée pour utiliser l’authentification Windows intégrée, testez l’application sans l’authentification unique. Dans le cas contraire, passez au paragraphe suivant. Pour tester l’application sans l’authentification unique, ouvrez votre application par le biais d’**Applications d’entreprise** et accédez au menu **Authentification unique**. Changez la liste déroulante « Authentification Windows intégrée » en « Authentification unique Azure AD désactivée ». 
+Si votre application est configurée toouse Windows authentification intégrée, application hello de test sans l’authentification unique. Si ce n’est pas le cas, déplacez le paragraphe suivant toohello. application de hello toocheck sans l’authentification unique, ouvrez votre application via **des Applications d’entreprise,** et toohello **Single Sign-On** menu. Hello de modification liste déroulante à partir de le « authentification Windows intégrée » trop « Azure AD single sign-on disabled ». 
 
-À présent, ouvrez un navigateur et réessayez d’accéder à l’application. Une fois authentifié, vous devriez pouvoir accéder à l’application. Si cela fonctionne, le problème provient de la délégation Kerberos contrainte qui prend en charge l’authentification unique. Consultez la page consacrée au dépannage de la délégation Kerberos contrainte.
+Ouvrez un navigateur et essayez l’application hello tooaccess. Vous devez être invité à s’authentifier et accéder à l’application hello. Si cela fonctionne, problème de hello est avec la configuration de la délégation Kerberos (KCD) hello permettant hello l’authentification unique. Voir page de résoudre les problèmes de KCD hello.
 
-Si l’erreur persiste, accédez à l’ordinateur sur lequel le connecteur est installé, ouvrez un navigateur et essayez d’atteindre l’URL interne utilisée pour l’application. Le connecteur agit comme un autre client à partir du même ordinateur. Si vous ne pouvez pas atteindre l’application, cherchez à savoir pourquoi cet ordinateur vous en empêche ou utilisez un connecteur sur un serveur capable d’accéder à l’application.
+Si vous continuez d’erreur de hello toosee, accédez à toohello machine où hello connecteur est installé, ouvrez un navigateur et la tentative de tooreach hello URL interne utilisée pour l’application hello. Hello connecteur agit comme un autre client de hello même ordinateur. Si vous ne pouvez atteindre l’application hello, cherchez à savoir pourquoi cet ordinateur est application hello de tooreach impossible, ou utiliser un connecteur sur un serveur qui est en mesure de tooaccess hello application.
 
-Si vous pouvez atteindre l’application à partir de cet ordinateur, recherchez des problèmes ou des erreurs liés au connecteur proprement dit. Certaines erreurs courantes sont listées dans le [document de dépannage](https://docs.microsoft.com/azure/active-directory/active-directory-application-proxy-troubleshoot#connector-errors). Vous pouvez également consulter directement les journaux du connecteur pour identifier d’éventuelles erreurs. La plupart des messages d’erreur indiquent des recommandations plus spécifiques sur les corrections à apporter. Pour savoir comment afficher les journaux, consultez [notre documentation sur les connecteurs](https://docs.microsoft.com/azure/active-directory/application-proxy-understand-connectors#under-the-hood).
+Si vous pouvez accéder à application hello sur cet ordinateur, toolook des problèmes ou des erreurs avec hello connecteur proprement dit. Vous pouvez voir des erreurs courantes Bonjour [dépannage document](https://docs.microsoft.com/azure/active-directory/active-directory-application-proxy-troubleshoot#connector-errors). Vous pouvez également consulter directement hello connecteur journaux tooidentify toutes les erreurs. Un grand nombre des messages d’erreur être en mesure de tooshare recommandations plus spécifiques pour les correctifs. toolearn Voir journaux hello tooview [notre documentation connecteurs](https://docs.microsoft.com/azure/active-directory/application-proxy-understand-connectors#under-the-hood).
 
 ## <a name="next-steps"></a>Étapes suivantes
 [Présentation des connecteurs de proxy d’application Azure AD](application-proxy-understand-connectors.md)

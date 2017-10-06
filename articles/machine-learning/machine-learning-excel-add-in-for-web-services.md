@@ -1,6 +1,6 @@
 ---
-title: "Complément Excel pour les services web Machine Learning | Microsoft Docs"
-description: "Comment utiliser les services web Azure Machine Learning directement dans Excel sans écrire de code."
+title: "complément aaaExcel pour les services Web d’apprentissage Machine | Documents Microsoft"
+description: "Comment toouse Azure Machine Learning Web services directement dans Excel sans écrire de code."
 services: machine-learning
 documentationcenter: 
 author: tedway
@@ -15,74 +15,74 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 03/14/2017
 ms.author: tedway;garye
-ms.openlocfilehash: 0d60dd87bbdd4d3eafac0f8876cc9e41412a53ea
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c52f40d33c9907f284e4750afe47181dc3365fe5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="excel-add-in-for-azure-machine-learning-web-services"></a>Complément Excel de services web Azure Machine Learning
-Excel permet d'appeler facilement des services web directement sans qu'il soit nécessaire d'écrire du code.
+Excel rend toocall facilement des services web directement sans hello besoin toowrite n’importe quel code.
 
-## <a name="steps-to-use-an-existing-web-service-in-the-workbook"></a>Procédure d’utilisation d’un service web existant dans le classeur
+## <a name="steps-toouse-an-existing-web-service-in-hello-workbook"></a>Étapes tooUse un service web existant hello classeur
 
-1. Ouvrez l’ [exemple de fichier Excel](http://aka.ms/amlexcel-sample-2), qui contient le complément Excel et les données concernant les passagers sur le Titanic.
-2. Choisissez le service web en cliquant dessus : « Titanic Survivor Predictor (exemple de complément Excel) [Score] » dans cet exemple.
+1. Ouvrez hello [exemple de fichier Excel](http://aka.ms/amlexcel-sample-2), qui contient du complément Excel hello et données concernant les passagers sur hello TITANE.
+2. Choisissez le service web de hello en cliquant dessus-« Titanic survivant PRÉDICTEUR (exemple de complément Excel) [Score] » dans cet exemple.
    
     ![Sélectionner un service web][01]
-3. Vous accédez alors à la section **Prédire**.  Ce classeur contient déjà des exemples de données mais, pour un classeur vide, vous pouvez également sélectionner une cellule dans Excel et cliquer sur **Utiliser les exemples de données**.
-4. Sélectionnez les données avec les en-têtes et cliquez sur l'icône de plage de données d'entrée.  Assurez-vous que la case « Mes données ont des en-têtes » est activée.
-5. Sous **Sortie**, entrez le numéro de la cellule dans laquelle vous souhaitez insérer le résultat, en l’occurrence, « H1 ».
+3. Vous accéderez toohello **Predict** section.  Ce classeur contient déjà des exemples de données mais, pour un classeur vide, vous pouvez également sélectionner une cellule dans Excel et cliquer sur **Utiliser les exemples de données**.
+4. Sélectionnez les données hello avec les en-têtes, puis cliquez sur icône des tranches de données d’entrée hello.  Vérifiez que hello « mes données comportent des en-têtes » est activée.
+5. Sous **sortie**, entrez le nombre de cellules hello hello toobe de sortie, par exemple « H1 » ici.
 6. Cliquez sur **Prédire**.
    
     ![Section Prédire][02]
 
-Déployez un service web ou utilisez un service web existant. Pour plus d’informations sur le déploiement d’un service web, consultez la rubrique [Étape 5 du didacticiel pas à pas : Déploiement du service web Azure Machine Learning](machine-learning-walkthrough-5-publish-web-service.md).
+Déployez un service web ou utilisez un service web existant. Pour plus d’informations sur le déploiement d’un service web, consultez [procédure pas à pas étape 5 : déployer le service d’Azure Machine Learning Web hello](machine-learning-walkthrough-5-publish-web-service.md).
 
-Obtenez la clé API de votre service web. L’emplacement à partir duquel exécutez cette action diffère selon que vous avez publié un service web Machine Learning classique ou un nouveau service web Machine Learning.
+Obtenir la clé d’API hello pour votre service web. L’emplacement à partir duquel exécutez cette action diffère selon que vous avez publié un service web Machine Learning classique ou un nouveau service web Machine Learning.
 
 **Utiliser un service web classique** 
 
-1. Dans Machine Learning Studio, cliquez sur la section **WEB SERVICES** située sur le volet de gauche, puis sélectionnez le service web.
+1. Dans Machine Learning Studio, cliquez sur hello **SERVICES WEB** section dans le volet gauche de hello, puis sélectionnez le service web de hello.
    
     ![Studio - Sélectionner un service web][04]
-2. Copiez la clé API du service web.
+2. Copiez la clé d’API hello pour le service web de hello.
    
     ![Studio clé API][05]
-3. Sous l’onglet **TABLEAU DE BORD** pour le service web, cliquez sur le lien **REQUÊTE/RÉPONSE**.
-4. Recherchez la section **URI de requête** .  Copiez et enregistrez l’URL.
+3. Sur hello **tableau de bord** pour le service web de hello, cliquez sur hello **demande/réponse** lien.
+4. Recherchez hello **URI de requête** section.  Copiez et enregistrez l’URL de hello.
 
 > [!NOTE]
-> Il est désormais possible de se connecter au portail [Azure Machine Learning Web Services](https://services.azureml.net) pour obtenir la clé API d’un service web Machine Learning classique.
+> Il est désormais possible toosign dans hello [Azure Machine Learning Web Services](https://services.azureml.net) clé de hello API tooobtain portail pour un service web d’apprentissage classique.
 > 
 > 
 
 **Utiliser un nouveau service web**
 
-1. Dans le portail [Services web Azure Machine Learning](https://services.azureml.net), cliquez sur **Services web**, puis sélectionnez votre service web. 
+1. Bonjour [Azure Machine Learning Web Services](https://services.azureml.net) portail, cliquez sur **Services Web**, puis sélectionnez votre service web. 
 2. Cliquez sur **Consommer**.
-3. Recherchez la section **des informations de base sur la consommation** . Copiez et enregistrez la **Clé primaire** et l’URL de **Demande-réponse**.
+3. Recherchez hello **les informations de base de la consommation** section. Copiez et enregistrez hello **clé primaire** et hello **demande-réponse** URL.
 
-## <a name="steps-to-add-a-new-web-service"></a>Procédure d’ajout d’un nouveau service web
+## <a name="steps-tooadd-a-new-web-service"></a>Étapes tooAdd un nouveau service web
 
-1. Déployez un service web ou utilisez un service web existant. Pour plus d’informations sur le déploiement d’un service web, consultez la rubrique [Étape 5 du didacticiel pas à pas : Déploiement du service web Azure Machine Learning](machine-learning-walkthrough-5-publish-web-service.md).
+1. Déployez un service web ou utilisez un service web existant. Pour plus d’informations sur le déploiement d’un service web, consultez [procédure pas à pas étape 5 : déployer le service d’Azure Machine Learning Web hello](machine-learning-walkthrough-5-publish-web-service.md).
 2. Cliquez sur **Consommer**.
-3. Recherchez la section **des informations de base sur la consommation** . Copiez et enregistrez la **Clé primaire** et l’URL de **Demande-réponse**.
-4. Dans Excel, accédez à la section **Services web** (si vous vous trouvez dans la section **Prédire**, cliquez sur la flèche de retour pour accéder à la liste des services web).
+3. Recherchez hello **les informations de base de la consommation** section. Copiez et enregistrez hello **clé primaire** et hello **demande-réponse** URL.
+4. Dans Excel, accédez à toohello **Services Web** section (si vous êtes dans hello **Predict** , cliquez sur la liste de toohello toogo hello flèche précédent de services web).
    
-    ![Accéder à la sélection du service web][03]
+    ![Atteindre la sélection du service tooWeb][03]
 5. Cliquez sur **Ajouter un service web**.
-6. Collez l’URL dans la zone de texte du complément Excel intitulée **URL**.
-7. Collez l’API/Clé primaire dans la zone de texte intitulée **Clé API**.
+6. Collez les URL hello hello Excel intitulé de la zone de texte du complément **URL**.
+7. Clé d’API/primaire de hello coller dans la zone de texte hello **clé API**.
 8. Cliquez sur **Add**.
    
     ![URL et clé API pour un service web classique.][06]
-9. Pour utiliser le service web, suivez les instructions de la section « Procédure d’utilisation d’un service web existant » ci-dessus.
+9. service web de hello toouse, suivez hello précédant directions, « Étapes tooUse un Service de serveur web existant ».
 
 ## <a name="sharing-your-workbook"></a>Partage de votre classeur
-Si vous enregistrez votre classeur, l'API/la clé primaire pour les services web que vous avez ajoutés seront également enregistrés. Cela signifie que vous devez uniquement partager le classeur avec des personnes de confiance.
+Si vous enregistrez votre classeur, puis clé d’API/primaire hello pour les services web hello que vous avez ajouté est également enregistré. Cela signifie que vous devez uniquement partager les classeur hello avec des personnes de que confiance.
 
-Posez les questions que vous voulez dans la section de commentaire suivante ou dans notre [forum](http://go.microsoft.com/fwlink/?LinkID=403669&clcid=0x409).
+Poser des questions dans hello suivant la section commentaires ou sur notre [forum](http://go.microsoft.com/fwlink/?LinkID=403669&clcid=0x409).
 
 [01]: ./media/machine-learning-excel-add-in-for-web-services/image1.png
 [02]: ./media/machine-learning-excel-add-in-for-web-services/image2.png

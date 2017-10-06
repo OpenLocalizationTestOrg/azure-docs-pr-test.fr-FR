@@ -1,5 +1,5 @@
 ---
-title: "Analyse de l’utilisation des applications web avec Azure Application Insights | Microsoft Docs"
+title: "analyse d’aaaUsage pour les applications web avec Azure Application Insights | Documents Microsoft"
 description: "Comprenez vos utilisateurs et ce qu’ils font avec votre application web."
 services: application-insights
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 05/03/2017
 ms.author: bwren
-ms.openlocfilehash: 63b74399790b718e14a5b6e09bc009a336caf928
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: f7f9173cf411fa0d2dfb3b5ba99134a02bbc0e89
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="usage-analysis-for-web-applications-with-application-insights"></a>Analyse de l’utilisation des applications web avec Application Insights
 
@@ -24,90 +24,90 @@ Quelles sont les fonctionnalités de votre application web les plus populaires 
 
 ## <a name="send-telemetry-from-your-app"></a>Envoyer des données de télémétrie à partir de votre application
 
-La meilleure expérience est obtenue en installant Application Insights à la fois dans votre code serveur d’applications et dans vos pages web. Les composants client et serveur de votre application envoient la télémétrie au portail Azure pour analyse.
+meilleure expérience de Hello est obtenu en installant l’Application Insights à la fois dans le code de votre serveur d’application et vos pages web. Hello composants client et serveur de votre application d’envoi toohello arrière de télémétrie portail Azure pour l’analyse.
 
-1. **Code serveur :** installez le module approprié pour votre [ASP.NET](app-insights-asp-net.md), [Azure](app-insights-azure.md), [Java](app-insights-java-get-started.md), [Node.js](app-insights-nodejs.md) ou une [autre](app-insights-platforms.md) application.
+1. **Code de serveur :** module approprié hello d’installation pour votre [ASP.NET](app-insights-asp-net.md), [Azure](app-insights-azure.md), [Java](app-insights-java-get-started.md), [Node.js](app-insights-nodejs.md), ou [autres](app-insights-platforms.md) application.
 
-    * *Vous ne voulez pas installer de code serveur ? Vous pouvez simplement [créer une ressource Azure Application Insights](app-insights-create-new-resource.md).*
+    * *Code de serveur tooinstall ne voulez pas ? Vous pouvez simplement [créer une ressource Azure Application Insights](app-insights-create-new-resource.md).*
 
-2. **Code de page Web :** ouvrez le [portail Azure](https://portal.azure.com), ouvrez la ressource Application Insights pour votre application, puis ouvrez **Mise en route > Monitor and Diagnose Client-Side (Surveiller et diagnostiquer côté client)**. 
+2. **Code de page Web :** hello ouvrir [portail Azure](https://portal.azure.com), ouvrez la ressource d’Application Insights hello pour votre application, puis ouvrez **prise en main > analyse et diagnostiquer côté Client**. 
 
-    ![Copiez le script dans l’en-tête de votre page web maître.](./media/app-insights-usage-overview/02-monitor-web-page.png)
+    ![Copiez les script hello head hello de votre page web master.](./media/app-insights-usage-overview/02-monitor-web-page.png)
 
 
-3. **Obtenir la télémétrie :** exécutez votre projet en mode débogage pendant quelques minutes, puis examinez les résultats dans le panneau Vue d’ensemble dans Application Insights.
+3. **Obtenez la télémétrie :** exécuter votre projet en mode débogage pendant quelques minutes, puis examinez les résultats dans le panneau de vue d’ensemble de hello dans Application Insights.
 
-    Publiez votre application pour surveiller les performances de votre application et découvrir ce que vos utilisateurs font avec votre application.
+    Publier votre application toomonitor les performances de votre application et de savoir ce que font vos utilisateurs avec votre application.
 
 ## <a name="include-user-and-session-id-in-your-telemetry"></a>Inclure l’ID d’utilisateur et l’ID de session dans votre télémétrie
-Pour effectuer le suivi des utilisateurs au fil du temps, Application Insights nécessite un moyen de les identifier. L’outil Événements est le seul outil d’utilisation qui ne nécessite pas d’ID d’utilisateur ni d’ID de session.
+utilisateurs tootrack au fil du temps, Application Insights requiert un tooidentify de façon les. Événements de Hello est de l’outil hello seul outil d’utilisation qui ne nécessite pas un ID d’utilisateur ou un ID de session.
 
 Commencez à envoyer ces ID [ici](https://docs.microsoft.com/azure/application-insights/app-insights-usage-send-user-context).
 
 ## <a name="explore-usage-demographics-and-statistics"></a>Explorer des données démographiques et des statistiques de l’utilisation
 Découvrez quand des personnes utilisent votre application, les pages qui les intéressent le plus, où vos utilisateurs se trouvent, les navigateurs et les systèmes d’exploitation qu’ils utilisent. 
 
-Les rapports Utilisateurs et sessions filtrent vos données par pages ou événements personnalisés, et les segmentent par propriétés telles que l’emplacement, l’environnement et la page. Vous pouvez également ajouter vos propres filtres.
+rapports d’utilisateurs et des Sessions Hello filtrer vos données par les pages ou des événements personnalisés et les segment par propriétés, telles que l’emplacement, l’environnement et page. Vous pouvez également ajouter vos propres filtres.
 
 ![Utilisateurs](./media/app-insights-usage-overview/users.png)  
 
-Aperçu des modèles intéressants appropriés dans le jeu de données.  
+Des informations sur la droite de hello souligner des motifs intéressants dans le jeu de hello de données.  
 
-* Le rapport **Utilisateurs** compte le nombre d’utilisateurs uniques qui accèdent à vos pages dans les délais que vous avez choisis. (Les utilisateurs sont comptés avec les cookies. Si un utilisateur accède à votre site avec différents navigateurs ou ordinateurs clients, ou efface ses cookies, il sera compté plusieurs fois.)
-* Le rapport **Sessions** compte le nombre de sessions utilisateur qui accèdent à votre site. Une session est une période d’activité d’un utilisateur, qui se termine par une période d’inactivité de plus d’une demi-heure.
+* Hello **utilisateurs** rapport nombres hello d’utilisateurs uniques qui accèdent à vos pages au sein de vos périodes de temps choisie. (Les utilisateurs sont comptés avec les cookies. Si un utilisateur accède à votre site avec différents navigateurs ou ordinateurs clients, ou efface ses cookies, il sera compté plusieurs fois.)
+* Hello **Sessions** rapport nombre hello de sessions utilisateur qui accèdent à votre site. Une session est une période d’activité d’un utilisateur, qui se termine par une période d’inactivité de plus d’une demi-heure.
 
-[En savoir plus sur les outils Utilisateurs, Sessions et Événements](app-insights-usage-segmentation.md)  
+[En savoir plus sur les outils d’utilisateurs, les Sessions et les événements hello](app-insights-usage-segmentation.md)  
 
 ## <a name="page-views"></a>Affichages de page
 
-Dans le panneau Utilisation, cliquez sur la mosaïque Pages consultées pour découvrir une répartition de vos pages les plus populaires :
+À partir du Panneau de l’utilisation de hello, parcourez tooget de vignette de vues de Page hello une répartition de vos pages les plus populaires :
 
-![Dans le panneau Vue d'ensemble, cliquez sur le graphique des pages vues.](./media/app-insights-usage-overview/05-games.png)
+![À partir du Panneau de vue d’ensemble de hello, cliquez sur hello graphique de vues de Page](./media/app-insights-usage-overview/05-games.png)
 
-L'exemple ci-dessus vient d’un site web de jeux. Dans les graphiques, nous pouvons voir instantanément :
+exemple Hello ci-dessus est d’un site web de jeux. À partir de graphiques de hello, nous pouvons voir instantanément :
 
-* L'utilisation ne s'est pas améliorée au cours de la semaine écoulée. Peut-être que nous devrions envisager une optimisation pour les moteurs de recherche ?
-* Tennis est la page de jeu la plus populaire. Concentrons-nous sur d’autres améliorations de cette page.
-* En moyenne, les utilisateurs visitent la page Tennis environ trois fois par semaine. (Il y a près de trois fois plus de sessions que d’utilisateurs.)
-* La plupart des utilisateurs visitent le site au cours de la semaine de travail aux États-Unis, et pendant les heures de travail. Il serait peut-être envisageable de fournir un bouton de masquage rapide sur la page web.
-* Les [annotations](app-insights-annotations.md) sur le graphique montrent à quel moment les nouvelles versions du site web ont été déployées. Aucun des déploiements récents n’a eu d’effet notable sur l’utilisation.
+* L’utilisation n’a pas encore améliorées dans hello semaine dernière. Peut-être que nous devrions envisager une optimisation pour les moteurs de recherche ?
+* Raquettes est la page de jeu les plus populaires hello. Concentrons-nous sur la page de toothis d’améliorations supplémentaires.
+* En moyenne, les utilisateurs, visitez hello Tennis page environ trois fois par semaine. (Il y a près de trois fois plus de sessions que d’utilisateurs.)
+* La plupart des utilisateurs le site hello au cours de la semaine de travail hello des États-Unis et les heures de travail. Par exemple, nous devons fournir un bouton « Masquer rapide » sur la page web de hello.
+* Hello [annotations](app-insights-annotations.md) sur le graphique de hello s’affichent lorsque les nouvelles versions du site Web de hello ont été déployées. Aucun des déploiements récents de hello a un effet notable sur l’utilisation.
 
-Qu’en est-il si vous souhaitez examiner plus en détails le trafic vers votre site, comme le fractionnement par une propriété personnalisée que votre site envoie dans sa télémétrie d’affichage de page ?
+Que se passe-t-il si vous souhaitez des sites à tooyour tooinvestigate hello trafic plus en détail, telles que le fractionnement d’une propriété personnalisée, que votre site expédie dans son télémétrie des consultations de page ?
 
-1. Ouvrez l’outil **Événements** dans le menu de la ressource Application Insights. Cet outil vous permet d’analyser combien de pages consultées et d’événements personnalisés ont été envoyés à partir de votre application, sur la base des différentes options de filtrage, cohorte et segmentation.
-2. Dans la liste déroulante « Qui a utilisé », sélectionnez « N’importe quelle page consultée ».
-3. Dans la liste déroulante « Fractionner par », sélectionnez une propriété selon laquelle fractionner votre télémétrie d’affichage de page.
+1. Ouvrez hello **événements** outil dans le menu de ressource Application Insights hello. Cet outil vous permet d’analyser combien de pages consultées et d’événements personnalisés ont été envoyés à partir de votre application, sur la base des différentes options de filtrage, cohorte et segmentation.
+2. Bonjour « Qui a utilisé » la liste déroulante, sélectionnez « N’importe quelle Page de vue ».
+3. Dans la liste déroulante de « Fractionnement par » hello, sélectionnez une propriété qui toosplit votre page Afficher télémétrie.
 
 ## <a name="retention---how-many-users-come-back"></a>Rétention - Combien d’utilisateurs reviennent ?
 
-La rétention vous permet de comprendre la fréquence à laquelle vos utilisateurs reviennent utiliser leur application, en fonction des cohortes d’utilisateurs qui ont effectué une action pendant une période donnée. 
+Rétention vous permet de comprendre la fréquence à laquelle vos utilisateurs retournent toouse leur application basée sur les cohortes d’utilisateurs qui a exécuté une action entreprise pendant un certain intervalle de planification. 
 
-- Comprendre quelles fonctionnalités spécifiques font revenir les utilisateurs plus que d’autres 
+- Comprendre les fonctionnalités spécifiques entraînent l’arrière toocome plus que d’autres utilisateurs 
 - Formuler des hypothèses en fonction des données utilisateur réel 
 - Déterminer si la rétention est un problème dans votre produit 
 
 ![Rétention](./media/app-insights-usage-overview/retention.png) 
 
-Les commandes de rétention en haut vous permettent de définir des événements spécifiques et un intervalle de temps pour calculer la rétention. Le graphique au centre fournit une représentation visuelle du pourcentage de rétention globale sur l’intervalle de temps spécifié. Le graphique en bas représente la rétention sur une période de temps donnée. Ce niveau de détail vous permet de comprendre de manière plus approfondie ce que font vos utilisateurs et ce qui les peut amener à revenir.  
+contrôles de rétention de Hello haut permettent de vous toodefine des événements spécifiques et rétention de toocalculate de plage de temps. graphique de milieu de hello Hello donne une représentation visuelle de hello du pourcentage de rétention globale par hello plage de temps spécifié. graphique de Hello sous hello représente rétention individuel dans une période donnée. Ce niveau de détail vous permet de toounderstand votre quels utilisateurs et ce qui peut affecter les utilisateurs le retour à une granularité plus détaillée.  
 
-[En savoir plus sur l’outil de rétention](app-insights-usage-retention.md)
+[Plus d’informations sur l’outil de conservation hello](app-insights-usage-retention.md)
 
 ## <a name="custom-business-events"></a>Événements personnalisés
 
-Pour bien comprendre ce que font les utilisateurs avec votre application web, il est utile d’insérer des lignes de code pour enregistrer des événements personnalisés. Ces événements permettent de suivre toute activité, des actions détaillées des utilisateurs comme un clic sur un bouton, aux événements plus significatifs comme un de faire un achat ou de gagner à un jeu. 
+tooget conscience de ce que les utilisateurs à votre application web, il s’agit des lignes tooinsert utile des événements personnalisés toolog de code. Ces événements peuvent suivre quoi que ce soit à partir d’actions utilisateur détaillé en cliquant sur les boutons, événements d’importants de l’activité de toomore tels que d’un achat ou gagnante d’un jeu. 
 
-Bien que les pages consultées puissent représenter des événements utiles, cela n’est en général pas le cas. Un utilisateur peut ouvrir une page produit sans acheter le produit. 
+Bien que les pages consultées puissent représenter des événements utiles, cela n’est en général pas le cas. Un utilisateur peut ouvrir une page de produit sans acheter le produit de hello. 
 
-Grâce aux événements spécifiques, vous pouvez représenter la progression de vos utilisateurs sur votre site. Vous pouvez connaître leurs préférences sur les différentes options et où ils abandonnent ou rencontrent des difficultés. Grâce à ces informations, vous pouvez prendre des décisions avisées sur les priorités de vos travaux de développement en souffrance.
+Grâce aux événements spécifiques, vous pouvez représenter la progression de vos utilisateurs sur votre site. Vous pouvez connaître leurs préférences sur les différentes options et où ils abandonnent ou rencontrent des difficultés. Avec cette base de connaissances, vous prendre des décisions sur les priorités de hello dans votre backlog de développement.
 
-Les événements peuvent être enregistrés dans la page web :
+Événements peuvent être enregistrés dans la page web de hello :
 
 ```JavaScript
 
     appInsights.trackEvent("ExpandDetailTab", {DetailTab: tabName});
 ```
 
-Ou sur le côté serveur de l’application web :
+Ou côté serveur hello hello web app :
 
 ```C#
     var tc = new Microsoft.ApplicationInsights.TelemetryClient();
@@ -118,27 +118,27 @@ Ou sur le côté serveur de l’application web :
     tc.TrackEvent("CompletedPurchase");
 ```
 
-Vous pouvez joindre des valeurs de propriété à ces événements, afin de pouvoir filtrer ou fractionner les événements lorsque vous les étudiez dans le portail. Un ensemble standard de propriétés est également associé à chaque événement, comme des ID d’utilisateur anonymes, vous permettant ainsi de suivre la séquence d’activités d’un utilisateur.
+Vous pouvez joindre des événements de toothese de valeurs de propriété, afin que vous pouvez filtrer ou fractionner des événements hello lorsque vous examinez les dans le portail de hello. En outre, un ensemble standard de propriétés est attaché tooeach événement, telles que des ID d’utilisateur anonyme, ce qui vous permet de séquence de hello tootrace des activités d’un utilisateur individuel.
 
 En savoir plus sur les [événements personnalisés](app-insights-api-custom-events-metrics.md#trackevent) et les [propriétés](app-insights-api-custom-events-metrics.md#properties).
 
 ### <a name="slice-and-dice-events"></a>Segmenter et traiter les événements
 
-Dans les outils Utilisateurs, Sessions et Événements, vous pouvez segmenter et traiter des événements personnalisés par utilisateur, nom d’événement et propriétés.
+Dans les outils d’utilisateurs, les Sessions et les événements de hello, vous pouvez découper et manipulent des événements personnalisés par utilisateur, nom de l’événement et propriétés.
 ![Utilisateurs](./media/app-insights-usage-overview/users.png)  
   
-## <a name="design-the-telemetry-with-the-app"></a>Concevoir la télémétrie avec l’application
+## <a name="design-hello-telemetry-with-hello-app"></a>Télémétrie hello de conception avec l’application hello
 
-Lorsque vous concevez chaque fonctionnalité de votre application, prenez en compte comment vous allez mesurer son succès auprès de vos utilisateurs. Choisissez les événements à enregistrer et coder les appels de suivi de ces événements dans votre application dès le début.
+Lorsque vous concevez chaque fonctionnalité de votre application, pensez comment vous allez toomeasure son succès avec vos utilisateurs. Décider ce que vous devez toorecord et le code hello de suivi des appels pour les événements dans votre application à partir de hello des événements commerciaux Démarrer.
 
 ## <a name="a--b-testing"></a>Test A | B
-Si vous ne savez pas quelle variante de la fonctionnalité sera la plus efficace, publiez les deux versions et mettez-les à disposition de différents utilisateurs. Mesurer le taux de réussite de chaque version et créez-en une version unifiée.
+Si vous ne connaissez pas variante d’une fonctionnalité sera plus efficace, relâchez les deux, rendre chaque toodifferent accessible. Mesurer la réussite de hello de chacun, puis déplacez les version unifiée tooa.
 
-Pour cette technique, vous joignez des valeurs de propriétés distinctes à toute la télémétrie envoyée par chaque version de votre application. Pour cela, vous définissez des propriétés dans le contexte TelemetryContext actif. Ces propriétés par défaut sont ajoutées à chaque message de télémétrie que l'application envoie, non seulement vos messages personnalisés, mais aussi la télémétrie standard.
+Cette technique, vous attacher propriété distinctes valeurs tooall hello données de télémétrie envoyé par chaque version de votre application. C’est également en définissant des propriétés Bonjour TelemetryContext active. Ces propriétés par défaut sont ajoutées au message de télémétrie tooevery hello application envoie - non seulement vos messages personnalisés, mais également les télémétrie standard hello.
 
-Dans le portail Application Insights, filtrez et segmentez vos données sur les valeurs de propriétés, afin de comparer les différentes versions.
+Dans le portail Application Insights hello, filtrer et diviser vos données sur des valeurs de propriété hello, ainsi que les différentes versions de toocompare hello.
 
-Pour ce faire, [configurez un initialiseur de télémétrie](app-insights-api-filtering-sampling.md##add-properties-itelemetryinitializer) :
+toodo, [configurer un initialiseur de télémétrie](app-insights-api-filtering-sampling.md##add-properties-itelemetryinitializer):
 
 ```C#
 
@@ -153,7 +153,7 @@ Pour ce faire, [configurez un initialiseur de télémétrie](app-insights-api-fi
     }
 ```
 
-Dans l’initialiseur de l’application web, par exemple Global.asax.cs :
+Dans l’initialiseur d’application hello web tels que Global.asax.cs :
 
 ```C#
 
@@ -165,7 +165,7 @@ Dans l’initialiseur de l’application web, par exemple Global.asax.cs :
     }
 ```
 
-Tous les nouveaux TelemetryClients ajoutent automatiquement la valeur de propriété que vous spécifiez. Les événements de télémétrie individuels peuvent remplacer les valeurs par défaut.
+TelemetryClients de nouveau tous les ajoute automatiquement la valeur de propriété hello que vous spécifiez. Événements de télémétrie individuels peuvent remplacer les valeurs par défaut hello.
 
 ## <a name="next-steps"></a>Étapes suivantes
    - [Utilisateurs, sessions, événements](app-insights-usage-segmentation.md)

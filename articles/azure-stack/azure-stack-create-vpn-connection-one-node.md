@@ -1,6 +1,6 @@
 ---
-title: "Créer une connexion VPN de site à site entre deux réseaux virtuels dans des environnements différents du Kit de développement Azure Stack | Microsoft Docs"
-description: "Procédure pas à pas à suivre par un administrateur de cloud souhaitant créer une connexion VPN de site à site entre deux environnements du Kit de développement Azure Stack à nœud unique."
+title: "aaaCreate une connexion VPN de site à site entre deux réseaux virtuels dans différents environnements du Kit de développement de pile Azure | Documents Microsoft"
+description: "Procédure pas à pas qu’un administrateur de cloud utilise le réseau toocreate un site à site VPN entre les deux environnements de Kit de développement Azure pile à nœud unique."
 services: azure-stack
 documentationcenter: 
 author: ScottNapolitan
@@ -14,38 +14,38 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 7/10/2017
 ms.author: scottnap
-ms.openlocfilehash: fa2a940620e06521fa110fa13dcbc3050635a502
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 74225a82efae7d9ca6dc08b45ff04c578fae785c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-site-to-site-vpn-connection-between-two-virtual-networks-in-different-azure-stack-development-kit-environments"></a>Créer une connexion VPN de site à site entre deux réseaux virtuels dans des environnements différents du Kit de développement Azure Stack
 ## <a name="overview"></a>Vue d'ensemble
-Cet article vous explique comment créer une connexion VPN de site à site entre deux réseaux virtuels dans deux environnements distincts du Kit de développement Azure Stack. Pendant la configuration des connexions, vous allez découvrir le fonctionnement des passerelles VPN dans Azure Stack.
+Cet article vous montre comment toocreate une connexion VPN de site à site entre deux réseaux virtuels dans deux environnements de Kit de développement de pile Azure distincts. Lorsque vous configurez des connexions de hello, vous allez apprendre comment fonctionnent les passerelles VPN dans la pile de Azure.
 
 ### <a name="connection-diagram"></a>Diagramme de connexions
-Le diagramme ci-après illustre à quoi la configuration d’une connexion devra ressembler lorsque vous aurez terminé.
+diagramme qui suit de Hello montre quelle configuration de connexion hello doit ressembler à la fois.
 
 ![Configuration d’une connexion VPN de site à site](media/azure-stack-create-vpn-connection-one-node-tp2/OneNodeS2SVPN.png)
 
 ### <a name="before-you-begin"></a>Avant de commencer
-Avant de commencer la configuration de la connexion, vérifiez que vous disposez des éléments suivants :
+configuration de la connexion toocomplete hello, assurez-vous d’avoir hello suivant d’éléments avant de commencer :
 
-* Deux serveurs conformes aux exigences matérielles du Kit de développement Azure Stack définies dans [Prérequis pour le déploiement Azure Stack](azure-stack-deploy.md). Vérifiez également qu’ils remplissent tous les autres prérequis indiqués dans cet [article](azure-stack-deploy.md).
-* Le package de déploiement du [Kit de développement Azure Stack](https://azure.microsoft.com/en-us/overview/azure-stack/try/).
+* Deux serveurs qui répondent aux exigences de matériel Kit de développement de pile Azure hello, qui sont définis par hello [conditions préalables au déploiement de Azure pile](azure-stack-deploy.md). Vérifiez que hello autres conditions préalables qui s’affichent dans hello [article](azure-stack-deploy.md) sont remplies en trop.
+* Hello [Kit de développement Azure pile](https://azure.microsoft.com/en-us/overview/azure-stack/try/) package de déploiement.
 
-## <a name="deploy-the-azure-stack-development-kit-environments"></a>Déployer les environnements du Kit de développement Azure Stack
-Pour configurer la connexion, vous devez déployer deux environnements du Kit de développement Azure Stack.
+## <a name="deploy-hello-azure-stack-development-kit-environments"></a>Déployer des environnements de Kit de développement de pile Azure hello
+configuration de la connexion toocomplete hello, vous devez déployer les deux environnements de Kit de développement de pile Azure.
 > [!NOTE] 
-> Suivez les [instructions de déploiement](azure-stack-run-powershell-script.md) pour chaque environnement du Kit de développement Azure Stack à déployer. Dans cet article, les deux environnements du Kit de développement Azure Stack sont appelés *POC1* et *POC2*.
+> Pour chaque Kit de développement de pile Azure que vous déployez, suivez hello [des instructions de déploiement](azure-stack-run-powershell-script.md). Dans cet article, les environnements de Kit de développement de pile Azure hello sont appelés *POC1* et *POC2*.
 
 
 ## <a name="prepare-an-offer-on-poc1-and-poc2"></a>Préparer une offre sur POC1 et POC2
-Sur POC1 et POC2, préparez une offre à laquelle les utilisateurs peuvent s’abonner pour déployer les machines virtuelles. Pour plus d’informations sur la création d’une offre, consultez [Mettre des machines virtuelles à la disposition de vos utilisateurs Azure Stack](azure-stack-tutorial-tenant-vm.md).
+Sur POC1 et POC2, préparez une offre afin qu’un utilisateur peut s’abonner toohello offre et déployer des ordinateurs virtuels de hello. Pour plus d’informations sur la façon de toocreate une offre, consultez [rendre tooyour disponible des ordinateurs virtuels aux utilisateurs d’Azure pile](azure-stack-tutorial-tenant-vm.md).
 
-## <a name="review-and-complete-the-network-configuration-table"></a>Vérifier et compléter la table de configuration réseau
-La table ci-dessous récapitule la configuration réseau des deux environnements du Kit de développement Azure Stack. Suivez la procédure décrite sous la table pour ajouter l’adresse BGPNAT externe qui est propre à votre réseau.
+## <a name="review-and-complete-hello-network-configuration-table"></a>Révision et la table de configuration de réseau hello terminée
+Hello tableau suivant récapitule la configuration du réseau pour les deux environnements de Kit de développement de pile Azure hello. Utilisez la procédure hello apparaît après hello tooadd de table hello adresse BGPNAT externe qui est spécifique à votre réseau.
 
 **Table de configuration réseau**
 |   |POC1|POC2|
@@ -58,12 +58,12 @@ La table ci-dessous récapitule la configuration réseau des deux environnements
 |Adresse BGPNAT externe     |         |         |
 
 > [!NOTE]
-> Les adresses IP BGPNAT externes de ces exemples d’environnements sont 10.16.167.195 pour POC1 et 10.16.169.131 pour POC2. Utilisez la procédure ci-après pour obtenir les adresses IP BGPNAT externes des hôtes du Kit de développement Azure Stack, puis ajoutez-les à la table de configuration réseau ci-dessus.
+> Hello BGPNAT des adresses IP externes dans l’environnement de l’exemple hello sont 10.16.167.195 pour POC1 et 10.16.169.131 pour POC2. Utilisez hello suivant la procédure toodetermine hello BGPNAT les adresses IP externes pour vos hôtes de Kit de développement de pile Azure et les ajouter la table de configuration réseau toohello précédente.
 
 
-### <a name="get-the-ip-address-of-the-external-adapter-of-the-nat-vm"></a>Obtenir l’adresse IP de la carte externe de la machine virtuelle NAT
-1. Connectez-vous à la machine physique Azure Stack pour POC1.
-2. Modifiez le code PowerShell ci-dessous pour remplacer votre mot de passe d’administrateur, puis exécutez le code sur l’hôte POC :
+### <a name="get-hello-ip-address-of-hello-external-adapter-of-hello-nat-vm"></a>Obtenir l’adresse IP de hello de hello de carte externe hello NAT VM
+1. Ouvrez une session toohello machine physique de pile de Azure pour POC1.
+2. Modifiez hello suivant tooreplace de code Powershell votre mot de passe administrateur et puis exécutez le code de hello sur l’ordinateur hôte de preuve de concept hello :
 
    ```powershell
    cd \AzureStack-Tools-master\connect
@@ -75,202 +75,202 @@ La table ci-dessous récapitule la configuration réseau des deux environnements
     -HostComputer "AzS-bgpnat01" `
     -Password $Password
    ```
-3. Ajoutez l’adresse IP à la table de configuration réseau figurant à la section précédente.
+3. Ajoutez hello toohello réseau configuration table d’adresses IP qui s’affiche dans la section précédente de hello.
 
 4. Répétez cette procédure pour POC2.
 
-## <a name="create-the-network-resources-in-poc1"></a>Créer les ressources réseau dans POC1
-Vous allez maintenant créer les ressources réseau POC1 dont vous avez besoin pour configurer vos passerelles. Les instructions ci-après vous indiquent comment créer les ressources à partir du portail utilisateur. Vous pouvez également créer les ressources à l’aide de code PowerShell.
+## <a name="create-hello-network-resources-in-poc1"></a>Créer des ressources réseau hello dans POC1
+Vous créez maintenant hello POC1 ressources de réseau que vous avez besoin tooset vos passerelles. Hello, suivant les instructions vous indiquent comment les ressources de hello toocreate à l’aide de hello portail de l’utilisateur. Vous pouvez également utiliser les ressources de PowerShell code toocreate hello.
 
-![Workflow utilisé pour créer des ressources](media/azure-stack-create-vpn-connection-one-node-tp2/image2.png)
+![Flux de travail utilisés toocreate ressources](media/azure-stack-create-vpn-connection-one-node-tp2/image2.png)
 
 ### <a name="sign-in-as-a-tenant"></a>Se connecter en tant que locataire
-Un administrateur de services fédérés peut se connecter en tant que locataire pour tester les plans, les offres et les abonnements mis à la disposition des locataires. Si vous ne l’avez pas encore fait, [créez un compte de locataire](azure-stack-add-new-user-aad.md) avant de vous connecter.
+Un administrateur de service peut se connecter en tant qu’un tootest client hello des plans, des offres et des abonnements susceptibles d’utiliser leurs clients. Si vous ne l’avez pas encore fait, [créez un compte de locataire](azure-stack-add-new-user-aad.md) avant de vous connecter.
 
-### <a name="create-the-virtual-network-and-vm-subnet"></a>Créer le réseau virtuel et le sous-réseau de machine virtuelle
-1. Utilisez un compte de locataire pour vous connecter au portail utilisateur.
-2. Dans le portail utilisateur, sélectionnez **Nouveau**.
+### <a name="create-hello-virtual-network-and-vm-subnet"></a>Créer le réseau virtuel de hello et le sous-réseau d’ordinateurs virtuels
+1. Utilisez un toosign de compte du client dans le portail de l’utilisateur toohello.
+2. Dans le portail de l’utilisateur hello, sélectionnez **nouveau**.
 
     ![Créer un réseau virtuel](media/azure-stack-create-vpn-connection-one-node-tp2/image3.png)
 
-3. Accédez à la **Place de marché**, puis sélectionnez **Mise en réseau**.
+3. Accédez trop**Marketplace**, puis sélectionnez **réseau**.
 4. Sélectionnez **Réseau virtuel**.
-5. Renseignez les champs **Nom**, **Espace d’adressage**, **Nom de sous-réseau** et **Plage d’adresses de sous-réseau** avec les valeurs qui figurent dans la table de configuration réseau au début de cet article.
-6. Le champ **Abonnement** affiche l’abonnement que vous avez créé précédemment.
+5. Pour **nom**, **l’espace d’adressage**, **nom du sous-réseau**, et **plage d’adresses de sous-réseau**, utiliser des valeurs hello qui apparaissent plus tôt dans hello réseau table de configuration.
+6. Dans **abonnement**, abonnement hello que vous avez créé précédemment s’affiche.
 7. Pour le champ **Groupe de ressources**, créez un groupe de ressources ou, si vous en avez déjà un, sélectionnez **Utiliser l’existant**.
-8. Vérifiez l’emplacement par défaut.
-9. Sélectionnez **Épingler au tableau de bord**.
+8. Vérifiez l’emplacement par défaut de hello.
+9. Sélectionnez **toodashboard du code confidentiel**.
 10. Sélectionnez **Créer**.
 
-### <a name="create-the-gateway-subnet"></a>Créer le sous-réseau de passerelle
-1. Dans le tableau de bord, ouvrez la ressource de réseau virtuel VNET-01 que vous avez déjà créée.
-2. Dans le panneau **Paramètres**, sélectionnez **Sous-réseaux**.
-3. Pour ajouter un sous-réseau de passerelle au réseau virtuel, sélectionnez **Sous-réseau de passerelle**.
+### <a name="create-hello-gateway-subnet"></a>Créez le sous-réseau de passerelle hello
+1. Sur le tableau de bord hello, ouvrez les ressources réseau virtuel hello-01 du réseau virtuel que vous avez créé précédemment.
+2. Sur hello **paramètres** panneau, sélectionnez **sous-réseaux**.
+3. tooadd un sous-réseau de passerelle pour réseau virtuel de hello, sélectionnez **sous-réseau de passerelle**.
    
     ![Ajouter un sous-réseau de passerelle](media/azure-stack-create-vpn-connection-one-node-tp2/image4.png)
 
-4. Par défaut, le nom du sous-réseau est **GatewaySubnet**.
-   Les sous-réseaux de passerelle ont une particularité. Pour fonctionner correctement, ils doivent avoir le nom *GatewaySubnet*.
-5. Dans **Plage d’adresses**, vérifiez que l’adresse est **10.0.11.0/24**.
-6. Sélectionnez **OK** pour créer le sous-réseau de passerelle.
+4. Par défaut, le nom du sous-réseau hello est défini trop**GatewaySubnet**.
+   Les sous-réseaux de passerelle ont une particularité. toofunction correctement, ils doivent utiliser hello *GatewaySubnet* nom.
+5. Dans **plage d’adresses**, vérifiez l’adresse hello **10.0.11.0/24**.
+6. Sélectionnez **OK** sous-réseau de passerelle toocreate hello.
 
-### <a name="create-the-virtual-network-gateway"></a>Créer la passerelle de réseau virtuel
-1. Dans le Portail Azure, sélectionnez **Nouveau**. 
-2. Accédez à la **Place de marché**, puis sélectionnez **Mise en réseau**.
-3. Dans la liste des ressources réseau, sélectionnez **Passerelle de réseau virtuel**.
+### <a name="create-hello-virtual-network-gateway"></a>Créer une passerelle de réseau virtuel hello
+1. Bonjour portail Azure, sélectionnez **nouveau**. 
+2. Accédez trop**Marketplace**, puis sélectionnez **réseau**.
+3. Dans la liste hello des ressources réseau, sélectionnez **passerelle de réseau virtuel**.
 4. Dans le champ **Nom**, entrez **GW1**.
-5. Sélectionnez l’élément **Réseau virtuel** pour choisir un réseau virtuel.
-   Sélectionnez **VNET-01** dans la liste.
-6. Sélectionnez l’élément de menu **Adresse IP publique**. Quand le panneau **Choisir une adresse IP publique** s’affiche, sélectionnez **Créer**.
+5. Sélectionnez hello **réseau virtuel** élément toochoose un réseau virtuel.
+   Sélectionnez **réseau virtuel-01** à partir de la liste de hello.
+6. Sélectionnez hello **adresse IP publique** élément de menu. Hello lorsque **choisir une adresse IP publique** panneau s’ouvre, sélectionnez **nouvel**.
 7. Dans le champ **Nom**, entrez **GW1-PiP**, puis sélectionnez **OK**.
 8.  Dans le champ **Type de VPN**, l’élément **Basé sur itinéraires** est sélectionné par défaut.
-    Conservez le type de VPN **Basé sur itinéraires**.
-9. Vérifiez que l’**abonnement** et l’**emplacement** sont corrects. Vous pouvez épingler la ressource au tableau de bord. Sélectionnez **Créer**.
+    Conserver hello **basée sur un itinéraire** type de VPN.
+9. Vérifiez que l’**abonnement** et l’**emplacement** sont corrects. Vous pouvez épingler le tableau de bord toohello de ressources hello. Sélectionnez **Créer**.
 
-### <a name="create-the-local-network-gateway"></a>Créer la passerelle de réseau local
-L’implémentation d’une *passerelle de réseau local* dans ce déploiement d’évaluation d’Azure Stack est un peu différente dans un déploiement Azure réel.
+### <a name="create-hello-local-network-gateway"></a>Créer une passerelle de réseau local hello
+Hello d’implémentation d’un *passerelle de réseau local* dans cette pile Azure déploiement d’évaluation est un peu différente de celle dans un déploiement d’Azure réel.
 
-Dans un déploiement Azure, une passerelle de réseau local représente un appareil physique local (sur le locataire), que vous utilisez pour vous connecter à une passerelle de réseau virtuel dans Azure. Dans ce déploiement d’évaluation d’Azure Stack, les deux extrémités de la connexion sont des passerelles de réseau virtuel.
+Dans un déploiement d’Azure, une passerelle de réseau local représente une unité physique local (au locataire de hello), que vous utilisez passerelle de réseau virtuel tooconnect tooa dans Azure. Dans ce déploiement d’évaluation de la pile d’Azure, les deux extrémités de la connexion de hello sont des passerelles de réseau virtuel !
 
-De façon plus générale, la ressource de passerelle de réseau local représente toujours la passerelle distante située à l’autre extrémité de la connexion. Du fait de la conception même du Kit de développement Azure Stack, vous devez spécifier l’adresse IP de la carte réseau externe sur la machine virtuelle NAT de l’autre Kit de développement Azure Stack comme adresse IP publique de la passerelle de réseau local. Vous devez ensuite créer les mappages NAT appropriés sur la machine virtuelle NAT pour connecter correctement les deux extrémités.
+Un toothink de façon à ce sujet est plus générique que ressources de passerelle de réseau local hello indique toujours passerelle à distance de hello en hello à autre extrémité de la connexion de hello. En raison de hello de façon hello que Kit de développement de pile Azure a été conçu, vous avez besoin tooprovide hello adresse IP de carte réseau externe hello traduction d’adresses réseau hello (NAT) VM de hello autres Azure pile Kit de développement comme hello adresse IP publique de hello passerelle de réseau local. Vous créez ensuite des mappages NAT sur hello toomake NAT VM assurer que les deux extrémités sont correctement connectées.
 
 
-### <a name="create-the-local-network-gateway-resource"></a>Créer la ressource de passerelle de réseau local
-1. Connectez-vous à la machine physique Azure Stack pour POC1.
-2. Dans le portail utilisateur, sélectionnez **Nouveau**.
-3. Accédez à la **Place de marché**, puis sélectionnez **Mise en réseau**.
-4. Dans la liste des ressources, sélectionnez **Passerelle de réseau local**.
+### <a name="create-hello-local-network-gateway-resource"></a>Créer des ressources de passerelle de réseau local hello
+1. Ouvrez une session toohello machine physique de pile de Azure pour POC1.
+2. Dans le portail de l’utilisateur hello, sélectionnez **nouveau**.
+3. Accédez trop**Marketplace**, puis sélectionnez **réseau**.
+4. Dans la liste hello des ressources, sélectionnez **passerelle de réseau local**.
 5. Dans le champ **Nom**, entrez **POC2-GW**.
-6. Dans le champ **Adresse IP**, entrez l’adresse BGPNAT externe pour POC2. Cette adresse figure dans la table de configuration réseau, plus haut dans cet article.
-7. Dans le champ **Espace d’adressage**, entrez **10.0.20.0/23** comme espace d’adressage du réseau virtuel POC2 que vous allez créer par la suite.
+6. Dans **adresse IP**, entrez hello externe BGPNAT adresse POC2. Cette adresse s’affiche plus haut dans la table de configuration de réseau hello.
+7. Dans **espace d’adressage**, pour l’espace d’adressage hello Hello réseau virtuel POC2 que vous créerez ultérieurement, entrez **10.0.20.0/23**.
 8. Vérifiez l’exactitude des valeurs des champs **Abonnement**, **Groupe de ressources** et **Emplacement**, puis sélectionnez **Créer**.
 
-### <a name="create-the-connection"></a>Créer la connexion
-1. Dans le portail utilisateur, sélectionnez **Nouveau**.
-2. Accédez à la **Place de marché**, puis sélectionnez **Mise en réseau**.
-3. Dans la liste des ressources, sélectionnez **Connexion**.
-4. Dans le panneau de paramètres **De base**, pour le champ **Type de connexion**, sélectionnez **Site à site (IPSec)**.
-5. Renseignez les champs **Abonnement**, **Groupe de ressources** et **Emplacement**, puis sélectionnez **OK**.
-6. Dans le panneau **Paramètres**, sélectionnez **Passerelle de réseau virtuel**, puis **GW1**.
+### <a name="create-hello-connection"></a>Créer la connexion de hello
+1. Dans le portail de l’utilisateur hello, sélectionnez **nouveau**.
+2. Accédez trop**Marketplace**, puis sélectionnez **réseau**.
+3. Dans la liste hello des ressources, sélectionnez **connexion**.
+4. Sur hello **notions de base** Panneau de paramètres, pourquoi **type de connexion**, sélectionnez **Site à site (IPSec)**.
+5. Sélectionnez hello **abonnement**, **groupe de ressources**, et **emplacement**, puis sélectionnez **OK**.
+6. Sur hello **paramètres** panneau, sélectionnez **passerelle de réseau virtuel**, puis sélectionnez **GW1**.
 7. Sélectionnez **Passerelle de réseau local**, puis **POC2-GW**.
 8. Dans **Nom de la connexion**, entrez **POC1-POC2**.
 9. Dans **Clé partagée (PSK)**, entrez **12345**, puis sélectionnez **OK**.
-10. Dans le panneau **Résumé**, sélectionnez **OK**.
+10. Sur hello **Résumé** panneau, sélectionnez **OK**.
 
 ### <a name="create-a-vm"></a>Créer une machine virtuelle
-Pour vous assurer que les données transitent bien par la connexion VPN, vous devez vérifier que les machines virtuelles envoient et reçoivent les données dans chaque Kit de développement Azure Stack. Créez d’abord une machine virtuelle dans POC1, puis ajoutez-la au sous-réseau de machine virtuelle dans votre réseau virtuel.
+données hello toovalidate qui passent à travers hello connexion VPN, vous devez hello toosend de machines virtuelles et de recevoir des données dans le Kit de développement de chaque pile de Azure. Créez d’abord une machine virtuelle dans POC1, puis ajoutez-la au sous-réseau de machine virtuelle dans votre réseau virtuel.
 
-1. Dans le Portail Azure, sélectionnez **Nouveau**.
-2. Accédez à la **Place de marché**, puis sélectionnez **Compute**.
-3. Dans la liste des images de machine virtuelle, sélectionnez l’image **Windows Server 2016 Datacenter Evals**.
-4. Dans le panneau **Bases**, dans **Nom**, entrez **VM01**.
-5. Entrez un nom d’utilisateur et un mot de passe valides. Vous utiliserez ce compte plus tard pour vous connecter à la machine virtuelle que vous créez actuellement.
+1. Bonjour portail Azure, sélectionnez **nouveau**.
+2. Accédez trop**Marketplace**, puis sélectionnez **de calcul**.
+3. Dans la liste de hello des images de machine virtuelle, sélectionnez hello **Eval de centre de données de Windows Server 2016** image.
+4. Sur hello **notions de base** panneau, dans **nom**, entrez **VM01**.
+5. Entrez un nom d’utilisateur et un mot de passe valides. Vous utilisez cette toosign de compte dans toohello machine virtuelle après sa création.
 6. Renseignez les champs **Abonnement**, **Groupe de ressources** et **Emplacement**, puis sélectionnez **OK**.
-7. Dans le panneau **Taille**, sélectionnez une taille de machine virtuelle pour cette instance, puis sélectionnez **Sélectionner**.
-8. Dans le panneau **Paramètres**, acceptez les valeurs par défaut. Vérifiez que le réseau virtuel **VNET-01** est sélectionné. Vérifiez que le sous-réseau est défini sur **10.0.10.0/24**. Sélectionnez ensuite **OK**.
-9. Dans le panneau **Résumé**, vérifiez les paramètres, puis sélectionnez **OK**.
+7. Sur hello **taille** panneau, pour cette instance, sélectionnez une taille de machine virtuelle, puis **sélectionnez**.
+8. Sur hello **paramètres** panneau, acceptez les valeurs par défaut hello. Vérifiez que hello **réseau virtuel-01** réseau virtuel est sélectionné. Vérifiez que le sous-réseau hello est défini trop**10.0.10.0/24**. Sélectionnez ensuite **OK**.
+9. Sur hello **Résumé** panneau, passez en revue les paramètres de hello, puis sélectionnez **OK**.
 
 
 
-## <a name="create-the-network-resources-in-poc2"></a>Créer les ressources réseau dans POC2
+## <a name="create-hello-network-resources-in-poc2"></a>Créer des ressources réseau hello dans POC2
 
-L’étape suivante consiste à créer les ressources réseau pour POC2. Les instructions ci-après vous indiquent comment créer les ressources à partir du portail utilisateur.
+étape suivante de Hello est ressources du réseau toocreate hello pour POC2. Hello suivant instructions indiquent comment les ressources de hello toocreate à l’aide de hello portail de l’utilisateur.
 
 ### <a name="sign-in-as-a-tenant"></a>Se connecter en tant que locataire
-Un administrateur de services fédérés peut se connecter en tant que locataire pour tester les plans, les offres et les abonnements mis à la disposition des locataires. Si vous ne l’avez pas encore fait, [créez un compte de locataire](azure-stack-add-new-user-aad.md) avant de vous connecter.
+Un administrateur de service peut se connecter en tant qu’un tootest client hello des plans, des offres et des abonnements susceptibles d’utiliser leurs clients. Si vous ne l’avez pas encore fait, [créez un compte de locataire](azure-stack-add-new-user-aad.md) avant de vous connecter.
 
-### <a name="create-the-virtual-network-and-vm-subnet"></a>Créer le réseau virtuel et le sous-réseau de machine virtuelle
+### <a name="create-hello-virtual-network-and-vm-subnet"></a>Créer le réseau virtuel de hello et le sous-réseau d’ordinateurs virtuels
 
 1. Connectez-vous en utilisant un compte de locataire.
-2. Dans le portail utilisateur, sélectionnez **Nouveau**.
-3. Accédez à la **Place de marché**, puis sélectionnez **Mise en réseau**.
+2. Dans le portail de l’utilisateur hello, sélectionnez **nouveau**.
+3. Accédez trop**Marketplace**, puis sélectionnez **réseau**.
 4. Sélectionnez **Réseau virtuel**.
-5. À l’aide des informations données dans la table de configuration réseau, plus haut dans cet article, renseignez les champs **Nom**, **Espace d’adressage**, **Nom de sous-réseau** et **Plage d’adresses de sous-réseau** de manière appropriée pour POC2.
-6. Le champ **Abonnement** affiche l’abonnement que vous avez créé précédemment.
+5. Utilisez les informations de hello plus haut dans les valeurs hello hello réseau configuration table tooidentify pour hello POC2 **nom**, **l’espace d’adressage**, **nom du sous-réseau**et  **Plage d’adresses de sous-réseau**.
+6. Dans **abonnement**, abonnement hello que vous avez créé précédemment s’affiche.
 7. Pour le champ **Groupe de ressources**, créez un groupe de ressources ou, si vous en avez déjà un, sélectionnez **Utiliser l’existant**.
-8. Vérifiez l’**emplacement** par défaut.
-9. Sélectionnez **Épingler au tableau de bord**.
+8. Vérifiez la valeur par défaut hello **emplacement**.
+9. Sélectionnez **toodashboard du code confidentiel**.
 10. Sélectionnez **Créer**.
 
-### <a name="create-the-gateway-subnet"></a>Créer le sous-réseau de passerelle
-1. Ouvrez la ressource de réseau virtuel que vous avez créée (**VNET-02**) à partir du tableau de bord.
-2. Dans le panneau **Paramètres**, sélectionnez **Sous-réseaux**.
-3. Sélectionnez **Sous-réseau de passerelle** pour ajouter un sous-réseau de passerelle au réseau virtuel.
-4. Par défaut, le nom du sous-réseau est défini sur **GatewaySubnet**.
-   Les sous-réseaux de passerelle sont des éléments spéciaux et doivent porter ce nom pour fonctionner correctement.
-5. Dans le champ **Plage d’adresses**, vérifiez que l’adresse est **10.0.21.0/24**.
-6. Sélectionnez **OK** pour créer le sous-réseau de passerelle.
+### <a name="create-hello-gateway-subnet"></a>Créer hello sous-réseau de passerelle
+1. Ouvrir la ressource de réseau virtuel hello vous avez créé (**réseau virtuel-02**) à partir du tableau de bord hello.
+2. Sur hello **paramètres** panneau, sélectionnez **sous-réseaux**.
+3. Sélectionnez **sous-réseau de passerelle** tooadd un sous-réseau de passerelle pour réseau virtuel de hello.
+4. nom Hello du sous-réseau de hello est défini trop**GatewaySubnet** par défaut.
+   Les sous-réseaux de passerelle sont spéciales et doivent avoir cette toofunction nom spécifique correctement.
+5. Bonjour **plage d’adresses** champ, vérifiez l’adresse hello **10.0.21.0/24**.
+6. Sélectionnez **OK** sous-réseau de passerelle toocreate hello.
 
-### <a name="create-the-virtual-network-gateway"></a>Créer la passerelle de réseau virtuel
-1. Dans le Portail Azure, sélectionnez **Nouveau**.  
-2. Accédez à la **Place de marché**, puis sélectionnez **Mise en réseau**.
-3. Dans la liste des ressources réseau, sélectionnez **Passerelle de réseau virtuel**.
+### <a name="create-hello-virtual-network-gateway"></a>Créer une passerelle de réseau virtuel hello
+1. Bonjour portail Azure, sélectionnez **nouveau**.  
+2. Accédez trop**Marketplace**, puis sélectionnez **réseau**.
+3. Dans la liste hello des ressources réseau, sélectionnez **passerelle de réseau virtuel**.
 4. Dans le champ **Nom**, entrez **GW2**.
-5. Pour choisir un réseau virtuel, sélectionnez **Réseau virtuel**. Sélectionnez ensuite **VNET-02** dans la liste.
-6. Sélectionnez **Adresse IP publique**. Quand le panneau **Choisir une adresse IP publique** s’affiche, sélectionnez **Créer**.
+5. toochoose un réseau virtuel, sélectionnez **réseau virtuel**. Puis sélectionnez **réseau virtuel-02** à partir de la liste de hello.
+6. Sélectionnez **Adresse IP publique**. Hello lorsque **choisir une adresse IP publique** panneau s’ouvre, sélectionnez **nouvel**.
 7. Dans le champ **Nom**, entrez **GW2-PiP**, puis sélectionnez **OK**.
 8. Dans le champ **Type de VPN**, l’élément **Basé sur itinéraires** est sélectionné par défaut.
-    Conservez le type de VPN **Basé sur itinéraires**.
-9. Vérifiez que l’**abonnement** et l’**emplacement** sont corrects. Vous pouvez épingler la ressource au tableau de bord. Sélectionnez **Créer**.
+    Conserver hello **basée sur un itinéraire** type de VPN.
+9. Vérifiez que l’**abonnement** et l’**emplacement** sont corrects. Vous pouvez épingler le tableau de bord toohello de ressources hello. Sélectionnez **Créer**.
 
-### <a name="create-the-local-network-gateway-resource"></a>Créer la ressource de passerelle de réseau local
+### <a name="create-hello-local-network-gateway-resource"></a>Créer des ressources de passerelle de réseau local hello
 
-1. Dans le portail utilisateur POC2, sélectionnez **Nouveau**. 
-4. Accédez à la **Place de marché**, puis sélectionnez **Mise en réseau**.
-5. Dans la liste des ressources, sélectionnez **Passerelle de réseau local**.
+1. Dans le portail de l’utilisateur hello POC2, sélectionnez **nouveau**. 
+4. Accédez trop**Marketplace**, puis sélectionnez **réseau**.
+5. Dans la liste hello des ressources, sélectionnez **passerelle de réseau Local**.
 6. Dans le champ **Nom**, entrez **POC1-GW**.
-7. Dans **Adresse IP**, entrez l’adresse BGPNAT externe pour POC1, qui est indiquée plus haut dans la table de configuration réseau.
-8. Dans **Espace d’adressage**, à partir de POC1, entrez l’espace d’adressage **10.0.10.0/23** du réseau virtuel **VNET-01**.
+7. Dans **adresse IP**, entrez hello externe BGPNAT adresse POC1 répertorié plus haut dans la table de configuration de réseau hello.
+8. Dans **espace d’adressage**, à partir de POC1, entrez hello **10.0.10.0/23** espace d’adressage de **-01 du réseau virtuel**.
 9. Vérifiez l’exactitude des valeurs des champs **Abonnement**, **Groupe de ressources** et **Emplacement**, puis sélectionnez **Créer**.
 
-## <a name="create-the-connection"></a>Créer la connexion
-1. Dans le portail utilisateur, sélectionnez **Nouveau**. 
-2. Accédez à la **Place de marché**, puis sélectionnez **Mise en réseau**.
-3. Dans la liste des ressources, sélectionnez **Connexion**.
-4. Dans le panneau de paramètres **De base**, pour le champ **Type de connexion**, choisissez **Site à site (IPSec)**.
-5. Renseignez les champs **Abonnement**, **Groupe de ressources** et **Emplacement**, puis sélectionnez **OK**.
-6. Dans le panneau **Paramètres**, sélectionnez **Passerelle de réseau virtuel**, puis **GW2**.
+## <a name="create-hello-connection"></a>Créer la connexion de hello
+1. Dans le portail de l’utilisateur hello, sélectionnez **nouveau**. 
+2. Accédez trop**Marketplace**, puis sélectionnez **réseau**.
+3. Dans la liste hello des ressources, sélectionnez **connexion**.
+4. Sur hello **base** Panneau de paramètres, pourquoi **type de connexion**, choisissez **Site à site (IPSec)**.
+5. Sélectionnez hello **abonnement**, **groupe de ressources**, et **emplacement**, puis sélectionnez **OK**.
+6. Sur hello **paramètres** panneau, sélectionnez **passerelle de réseau virtuel**, puis sélectionnez **cassettes numériques GW2**.
 7. Sélectionnez **Passerelle de réseau local**, puis **POC1-GW**.
 8. Dans **Nom de la connexion**, entrez **POC2-POC1**.
-9. Dans **Clé partagée (PSK)**, entrez **12345**. Si vous choisissez une autre valeur, n’oubliez pas qu’elle *doit* correspondre à la valeur de la clé partagée que vous avez créée dans POC1. Sélectionnez **OK**.
-10. Dans le panneau **Résumé**, vérifiez les paramètres, puis sélectionnez **OK**.
+9. Dans **Clé partagée (PSK)**, entrez **12345**. Si vous choisissez une autre valeur, n’oubliez pas qu’il *doit* correspond à la valeur hello pour la clé partagée hello que vous avez créé sur POC1. Sélectionnez **OK**.
+10. Hello de révision **Résumé** panneau, puis sélectionnez **OK**.
 
 ## <a name="create-a-virtual-machine"></a>Création d'une machine virtuelle
 Créez d’abord une machine virtuelle dans POC2, puis ajoutez-la au sous-réseau de machine virtuelle dans votre réseau virtuel.
 
-1. Dans le Portail Azure, sélectionnez **Nouveau**.
-2. Accédez à la **Place de marché**, puis sélectionnez **Compute**.
-3. Dans la liste des images de machine virtuelle, sélectionnez l’image **Windows Server 2016 Datacenter Evals**.
-4. Dans le panneau **De base**, dans **Nom**, entrez **VM02**.
-5. Entrez un nom d’utilisateur et un mot de passe valides. Vous utiliserez ce compte plus tard pour vous connecter à la machine virtuelle que vous créez actuellement.
+1. Bonjour portail Azure, sélectionnez **nouveau**.
+2. Accédez trop**Marketplace**, puis sélectionnez **de calcul**.
+3. Dans la liste de hello des images de machine virtuelle, sélectionnez hello **Eval de centre de données de Windows Server 2016** image.
+4. Sur hello **notions de base** panneau, pour **nom**, entrez **VM02**.
+5. Entrez un nom d’utilisateur et un mot de passe valides. Vous utilisez cette toosign de compte dans la machine virtuelle de toohello après sa création.
 6. Renseignez les champs **Abonnement**, **Groupe de ressources** et **Emplacement**, puis sélectionnez **OK**.
-7. Dans le panneau **Taille**, sélectionnez une taille de machine virtuelle pour cette instance, puis sélectionnez **Sélectionner**.
-8. Dans le panneau **Paramètres**, acceptez les valeurs par défaut. Vérifiez que le réseau virtuel **VNET-02** est sélectionné et que le sous-réseau est défini sur **10.0.20.0/24**. Sélectionnez **OK**.
-9. Dans le panneau **Résumé**, vérifiez les paramètres, puis sélectionnez **OK**.
+7. Sur hello **taille** panneau, sélectionnez un ordinateur virtuel de taille pour cette instance, puis **sélectionnez**.
+8. Sur hello **paramètres** panneau, vous pouvez accepter les valeurs par défaut hello. Vérifiez que hello **réseau virtuel-02** réseau virtuel est sélectionné et vérifiez que le sous-réseau hello est défini trop**10.0.20.0/24**. Sélectionnez **OK**.
+9. Passez en revue les paramètres hello sur hello **Résumé** panneau, puis sélectionnez **OK**.
 
-## <a name="configure-the-nat-virtual-machine-on-each-azure-stack-development-kit-for-gateway-traversal"></a>Configurer la machine virtuelle NAT sur chaque Kit de développement Azure Stack pour la traversée de passerelle
-Étant donné que le Kit de développement Azure Stack a été conçu pour être autonome et isolé du réseau sur lequel l’hôte physique est déployé, le réseau VIP *externe* auquel les passerelles sont connectées n’est pas réellement externe. En fait, le réseau VIP est masqué derrière un routeur qui effectue la traduction d’adresses réseau (NAT). 
+## <a name="configure-hello-nat-virtual-machine-on-each-azure-stack-development-kit-for-gateway-traversal"></a>Configurer un ordinateur virtuel hello NAT sur chaque Kit de développement de pile Azure pour le parcours de la passerelle
+Hello Kit de développement Azure pile étant autonome et isolé du réseau sur le hello hôte physique est déployé, hello *externe* réseau adresse IP virtuelle que les passerelles de hello sont connectés toois pas réellement externe. Au lieu de cela, le réseau d’adresses IP virtuelles hello est masquée derrière un routeur qui effectue la traduction d’adresses réseau. 
 
-Le routeur est une machine virtuelle Windows Server, appelée *AzS-bgpnat01*, qui a le rôle RRAS (Routing and Remote Access Services) dans l’infrastructure du Kit de développement Azure Stack. Vous devez configurer NAT sur la machine virtuelle AzS-bgpnat01 pour permettre à la connexion VPN de site à site de se connecter aux deux extrémités. 
+Le routeur est un ordinateur virtuel Windows Server, appelé *AzS-bgpnat01*, qui exécute le service de routage et le rôle Services d’accès distant (RRAS) dans hello infrastructure du Kit de développement Azure pile. Vous devez configurer NAT sur hello AzS-bgpnat01 machine virtuelle tooallow hello site-à-site VPN connexion tooconnect aux deux extrémités. 
 
-Pour configurer la connexion VPN, créez un routage de mappage NAT statique qui mappe l’interface externe sur la machine virtuelle BGPNAT à l’adresse IP virtuelle du pool de passerelles Edge. Un routage de mappage NAT statique est nécessaire pour chaque port utilisé dans une connexion VPN.
+connexion VPN de hello tooconfigure, vous devez créer un itinéraire de mappage NAT statique qui mappe l’interface externe hello hello BGPNAT machine virtuelle toohello VIP de hello Pool de passerelle de périphérie. Un routage de mappage NAT statique est nécessaire pour chaque port utilisé dans une connexion VPN.
 
 > [!NOTE]
 > Cette configuration est requise uniquement pour les environnements du Kit de développement Azure Stack.
 > 
 > 
 
-### <a name="configure-the-nat"></a>Configurer NAT
+### <a name="configure-hello-nat"></a>Configurer hello NAT
 > [!IMPORTANT]
 > Vous devez effectuer cette procédure pour *les deux* environnements du Kit de développement Azure Stack.
 
-1. Déterminez quelle **adresse IP interne** utiliser dans le script PowerShell suivant. Ouvrez la passerelle de réseau virtuel (GW1 et GW2) et, dans le panneau **Vue d’ensemble**, enregistrez la valeur du champ **Adresse IP publique** pour l’utiliser plus tard.
+1. Déterminer hello **adresse IP interne** toouse Bonjour suite du script PowerShell. Passerelle de réseau virtuel hello Open (GW1 et cassettes numériques GW2), puis sous hello **vue d’ensemble** panneau, enregistrez la valeur hello pour hello **adresse IP publique** pour une utilisation ultérieure.
 ![Adresse IP interne](media/azure-stack-create-vpn-connection-one-node-tp2/InternalIP.PNG)
-2. Connectez-vous à la machine physique Azure Stack pour POC1.
-3. Copiez et modifiez le script PowerShell suivant. Pour configurer NAT sur chaque Kit de développement Azure Stack, exécutez le script dans une fenêtre Windows PowerShell ISE avec des privilèges élevés. Dans le script, entrez les valeurs appropriées dans les espaces réservés *Adresse BGPNAT externe* et *Adresse IP interne* :
+2. Ouvrez une session toohello machine physique de pile de Azure pour POC1.
+3. Copiez et modifiez hello suite du script PowerShell. tooconfigure hello NAT sur chaque Kit de développement de la pile de Azure, exécuter un script de hello dans un Windows PowerShell ISE avec élévation de privilèges. Dans le script de hello, ajouter des valeurs toohello *les adresses externes BGPNAT* et *adresse IP interne* des espaces réservés :
 
    ```powershell
-   # Designate the external NAT address for the ports that use the IKE authentication.
+   # Designate hello external NAT address for hello ports that use hello IKE authentication.
    Invoke-Command `
     -ComputerName AzS-bgpnat01 `
      {Add-NetNatExternalAddress `
@@ -285,8 +285,8 @@ Pour configurer la connexion VPN, créez un routage de mappage NAT statique qui 
       -IPAddress <External BGPNAT address> `
       -PortStart 4499 `
       -PortEnd 4501}
-   # create a static NAT mapping to map the external address to the Gateway
-   # Public IP Address to map the ISAKMP port 500 for PHASE 1 of the IPSEC tunnel
+   # create a static NAT mapping toomap hello external address toohello Gateway
+   # Public IP Address toomap hello ISAKMP port 500 for PHASE 1 of hello IPSEC tunnel
    Invoke-Command `
     -ComputerName AzS-bgpnat01 `
      {Add-NetNatStaticMapping `
@@ -297,7 +297,7 @@ Pour configurer la connexion VPN, créez un routage de mappage NAT statique qui 
       -ExternalPort 500 `
       -InternalPort 500}
    # Finally, configure NAT traversal which uses port 4500 to
-   # successfully establish the complete IPSEC tunnel over NAT devices
+   # successfully establish hello complete IPSEC tunnel over NAT devices
    Invoke-Command `
     -ComputerName AzS-bgpnat01 `
      {Add-NetNatStaticMapping `
@@ -311,23 +311,23 @@ Pour configurer la connexion VPN, créez un routage de mappage NAT statique qui 
 
 4. Répétez cette procédure pour POC2.
 
-## <a name="test-the-connection"></a>Tester la connexion
-Vous avez établi la connexion de site à site. Vous devez maintenant vérifier que le trafic transite bien par cette connexion. Pour cela, connectez-vous à l’une des machines virtuelles que vous avez créées dans l’un des environnements du Kit de développement Azure Stack. Ensuite, effectuez un test ping sur la machine virtuelle que vous avez créée dans l’autre environnement. 
+## <a name="test-hello-connection"></a>Tester la connexion hello
+Maintenant que la connexion de site à site hello est établie, vous devez valider que vous pouvez obtenir le trafic passant par son biais. toovalidate, tooone d’ordinateurs virtuels hello que vous avez créé dans un environnement du Kit de développement Azure pile de connexion. Ensuite, la machine virtuelle ping hello que vous avez créé dans hello autre environnement. 
 
-Pour vérifier que le trafic envoyé passe par la connexion de site à site, vous devez effectuer le test ping sur l’adresse IP directe (DIP) de la machine virtuelle du sous-réseau distant, et non sur l’adresse IP virtuelle. Pour cela, recherchez l’adresse DIP à l’autre extrémité de la connexion. Enregistrez l’adresse pour l’utiliser plus tard.
+tooensure qui permet d’envoyer le trafic de hello via la connexion de site à site hello, assurez-vous que vous ping adresse IP directe (DIP) de hello de machine virtuelle de hello sur un sous-réseau distant hello, pas les adresses IP virtuelles hello. toodo cela, rechercher hello DIP adresse sur hello l’autre extrémité de la connexion de hello. Enregistrez l’adresse hello pour une utilisation ultérieure.
 
-### <a name="sign-in-to-the-tenant-vm-in-poc1"></a>Se connecter à la machine virtuelle locataire dans POC1
-1. Connectez-vous à la machine physique Azure Stack pour POC1, puis connectez-vous au portail utilisateur à l’aide d’un compte de locataire.
-2. Dans la barre de navigation de gauche, sélectionnez **Compute**.
-3. Dans la liste des machines virtuelles, recherchez la machine virtuelle **VM01** que vous avez créée précédemment et sélectionnez-la.
-4. Dans le panneau de la machine virtuelle, cliquez sur **Se connecter**, puis ouvrez le fichier VM01.rdp.
+### <a name="sign-in-toohello-tenant-vm-in-poc1"></a>Connectez-vous à toohello locataire machine virtuelle dans POC1
+1. Connectez-vous à l’ordinateur physique toohello Azure pile pour POC1 et ensuite utiliser un toosign de compte du client dans le portail de l’utilisateur toohello.
+2. Dans la barre de navigation gauche hello, sélectionnez **de calcul**.
+3. Dans la liste hello des machines virtuelles, recherchez **VM01** créé précédemment, puis sélectionnez-le.
+4. Dans le panneau hello pour la machine virtuelle de hello, cliquez sur **connexion**, puis ouvrez le fichier de VM01.rdp hello.
    
      ![Bouton Se connecter](media/azure-stack-create-vpn-connection-one-node-tp2/image17.png)
-5. Connectez-vous avec le compte que vous avez configuré pendant la création de la machine virtuelle.
+5. Connectez-vous avec hello compte que vous avez configuré lors de la création de la machine virtuelle de hello.
 6. Ouvrez une fenêtre **Windows PowerShell** avec des privilèges élevés.
 7. Entrez **ipconfig /all**.
-8. Dans la sortie, recherchez la valeur **Adresse IPv4**, puis enregistrez l’adresse pour l’utiliser plus tard. Il s’agit de l’adresse sur laquelle vous allez effectuer un test ping à partir de POC2. Dans l’exemple d’environnement, l’adresse est **10.0.10.4**, mais peut être différente dans votre environnement. Elle doit faire partie du sous-réseau **10.0.10.0/24** que vous avez créé précédemment.
-9. Pour créer une règle de pare-feu qui autorise la machine virtuelle à répondre aux tests ping, exécutez la commande PowerShell suivante :
+8. Dans la sortie de hello, recherchez hello **adresse IPv4**, puis enregistrez adresse hello pour une utilisation ultérieure. Il s’agit d’adresse de hello vous test ping sera exécuté à partir de POC2. Dans l’environnement de l’exemple hello, l’adresse est **10.0.10.4**, mais dans votre environnement, il peut être différent. Il doit être inférieure à hello **10.0.10.0/24** sous-réseau que vous avez créé précédemment.
+9. toocreate une règle de pare-feu qui autorise les toopings de toorespond de machine virtuelle hello, exécutez hello suivant de commande PowerShell :
 
    ```powershell
    New-NetFirewallRule `
@@ -335,16 +335,16 @@ Pour vérifier que le trafic envoyé passe par la connexion de site à site, vou
     –Protocol ICMPv4
    ```
 
-### <a name="sign-in-to-the-tenant-vm-in-poc2"></a>Se connecter à la machine virtuelle locataire dans POC2
-1. Connectez-vous à la machine physique Azure Stack pour POC2, puis connectez-vous au portail utilisateur à l’aide d’un compte de locataire.
-2. Dans la barre de navigation de gauche, cliquez sur **Compute**.
-3. Dans la liste des machines virtuelles, recherchez la machine virtuelle **VM02** que vous avez créée précédemment et sélectionnez-la.
-4. Dans le panneau de la machine virtuelle, cliquez sur **Se connecter**.
-5. Connectez-vous avec le compte que vous avez configuré pendant la création de la machine virtuelle.
+### <a name="sign-in-toohello-tenant-vm-in-poc2"></a>Connectez-vous à toohello locataire machine virtuelle dans POC2
+1. Connectez-vous à l’ordinateur physique toohello Azure pile pour POC2 et ensuite utiliser un toosign de compte du client dans le portail de l’utilisateur toohello.
+2. Dans la barre de navigation gauche hello, cliquez sur **de calcul**.
+3. À partir de la liste de hello des machines virtuelles, trouver **VM02** créé précédemment, puis sélectionnez-le.
+4. Dans le panneau hello pour la machine virtuelle de hello, cliquez sur **connexion**.
+5. Connectez-vous avec hello compte que vous avez configuré lors de la création de la machine virtuelle de hello.
 6. Ouvrez une fenêtre **Windows PowerShell** avec des privilèges élevés.
 7. Entrez **ipconfig /all**.
-8. Vous devez normalement voir une adresse IPv4 qui fait partie du sous-réseau **10.0.20.0/24**. Dans l’exemple d’environnement, l’adresse est **10.0.20.4**, mais votre adresse peut être différente.
-9. Pour créer une règle de pare-feu qui autorise la machine virtuelle à répondre aux tests ping, exécutez la commande PowerShell suivante :
+8. Vous devez normalement voir une adresse IPv4 qui fait partie du sous-réseau **10.0.20.0/24**. Dans l’environnement de l’exemple hello, l’adresse hello est **10.0.20.4**, mais votre adresse peut être différente.
+9. toocreate une règle de pare-feu qui autorise les toopings de toorespond de machine virtuelle hello, exécutez hello suivant de commande PowerShell :
 
    ```powershell
    New-NetFirewallRule `
@@ -352,17 +352,17 @@ Pour vérifier que le trafic envoyé passe par la connexion de site à site, vou
     –Protocol ICMPv4
    ```
 
-10. À partir de la machine virtuelle dans POC2, effectuez un test ping sur la machine virtuelle dans POC1, par le biais du tunneling. Pour cela, effectuez un test ping sur l’adresse IP directe (DIP) que vous avez enregistrée à partir de VM01.
-   Dans l’exemple d’environnement, l’adresse est **10.0.10.4**, mais vous devez effectuer le test ping sur l’adresse que vous avez notée dans votre lab. Vous devez obtenir un résultat similaire à la sortie suivante :
+10. À partir de la machine virtuelle de hello sur POC2, interrogez la machine virtuelle de hello sur POC1, via un tunnel de hello. toodo, ping de hello DIP que vous avez enregistrée à partir de VM01.
+   Dans l’environnement de l’exemple hello, il s’agit **10.0.10.4**, mais sera adresse de hello tooping que vous avez noté dans votre laboratoire. Vous devez voir un résultat qui ressemble à hello suivant :
    
     ![Test ping réussi](media/azure-stack-create-vpn-connection-one-node-tp2/image19b.png)
-11. La réception d’une réponse de la machine virtuelle distante indique que le test a réussi ! Vous pouvez fermer la fenêtre de la machine virtuelle. Pour tester votre connexion, vous pouvez essayer d’autres types de transferts de données, par exemple, une copie de fichier.
+11. Une réponse à partir de la machine virtuelle à distance de hello indique un test réussi ! Vous pouvez fermer la fenêtre d’ordinateur virtuel hello. tootest votre connexion, vous pouvez essayer d’autres types de transferts de données comme une copie du fichier.
 
-### <a name="viewing-data-transfer-statistics-through-the-gateway-connection"></a>Affichage des statistiques de transfert de données via la connexion de passerelle
-Si vous souhaitez connaître la quantité de données qui transite par votre connexion de site à site, consultez cette information dans le panneau **Connexion**. Ce test est également un autre moyen de vérifier que la commande ping que vous venez d’envoyer est bien passée par la connexion VPN.
+### <a name="viewing-data-transfer-statistics-through-hello-gateway-connection"></a>Affichage des données de transfert de statistiques au moyen de la connexion à la passerelle hello
+Si vous souhaitez tooknow la quantité de données passe via une connexion site à site, ces informations sont disponibles sur hello **connexion** panneau. Ce test est également une autre méthode alliez tooverify qui hello ping que vous venez d’envoyer via la connexion VPN de hello.
 
-1. Quand vous êtes connecté à la machine virtuelle locataire dans POC2, utilisez votre compte de locataire pour vous connecter au portail utilisateur.
-2. Accédez à **Toutes les ressources**, puis sélectionnez la connexion **POC2-POC1**. Le panneau **Connexion** s’affiche.
-4. Le panneau **Connexion** affiche les statistiques **Données entrantes** et **Données sortantes**. Dans la capture d’écran suivante, les valeurs élevées sont dues au transfert de fichiers supplémentaires. Normalement, vous ne devez pas voir de valeurs nulles ici.
+1. Lorsque vous vous connectez dans machine virtuelle POC2 toohello client, utilisez votre toosign de compte du client dans le portail de l’utilisateur toothe.
+2. Accédez trop**toutes les ressources**, puis sélectionnez hello **POC2-POC1** connexion. Le panneau **Connexion** s’affiche.
+4. Sur hello **connexion** panneau, les statistiques de hello pour **données** et **données** s’affichent. Bonjour suivant capture d’écran, hello grands nombres sont attribuées tooadditional le transfert de fichiers. Normalement, vous ne devez pas voir de valeurs nulles ici.
    
     ![Données entrantes et sortantes](media/azure-stack-create-vpn-connection-one-node-tp2/image20.png)

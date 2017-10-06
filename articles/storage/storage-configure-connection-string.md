@@ -1,6 +1,6 @@
 ---
-title: "Configuration d’une chaîne de connexion pour le stockage Azure | Microsoft Docs"
-description: "Configurez une chaîne de connexion pour un compte de stockage Azure. Une chaîne de connexion inclut les informations nécessaires pour authentifier l’accès à un compte de stockage à partir de votre application, pendant l’exécution."
+title: "aaaConfigure une chaîne de connexion pour le stockage Azure | Documents Microsoft"
+description: "Configurez une chaîne de connexion pour un compte de stockage Azure. Une chaîne de connexion contient des informations de hello nécessaire tooauthenticate accéder au compte de stockage tooa à partir de votre application lors de l’exécution."
 services: storage
 documentationcenter: 
 author: mmacy
@@ -14,40 +14,40 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/12/2017
 ms.author: marsma
-ms.openlocfilehash: 01aa506e2b47fc29a70592e670a206a2b74248a4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 80c38a6f8f0d4f06b99e7c487647b984e01d1772
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-azure-storage-connection-strings"></a>Configuration des chaînes de connexion Stockage Azure
 
-Une chaîne de connexion inclut les informations d’authentification nécessaires pour que votre application accède aux données dans un compte de stockage Azure pendant l’exécution. Vous pouvez configurer les chaînes de connexion pour effectuer les opérations suivantes :
+Une chaîne de connexion inclut les informations d’authentification hello requises pour vos données d’application tooaccess dans un compte de stockage Azure lors de l’exécution. Vous pouvez configurer les chaînes de connexion pour effectuer les opérations suivantes :
 
-* Connexion à l’émulateur de stockage Azure
+* Se connecter toohello émulateur de stockage Azure.
 * Accès à un compte de stockage dans Azure
 * Accès aux ressources spécifiées dans Azure via une signature d’accès partagé (SAS).
 
 [!INCLUDE [storage-account-key-note-include](../../includes/storage-account-key-note-include.md)]
 
 ## <a name="storing-your-connection-string"></a>Récupération de votre chaîne de connexion
-Votre application doit accéder à la chaîne de connexion pendant l’exécution pour authentifier les requêtes transmises au stockage Azure. Plusieurs options vous permettant de stocker votre chaîne de connexion s’offrent à vous :
+Votre application doit la chaîne de connexion tooaccess hello au runtime tooauthenticate demandes formulées tooAzure stockage. Plusieurs options vous permettant de stocker votre chaîne de connexion s’offrent à vous :
 
-* Une application s’exécutant sur le bureau ou sur un appareil peut stocker la chaîne de connexion dans un fichier **app.config** ou **web.config**. Ajoutez la chaîne de connexion dans la section **AppSettings** de ces fichiers.
-* Une application s’exécutant dans un service cloud Azure peut stocker la chaîne de connexion dans le [schéma de configuration du service Azure (fichier .cscfg)](https://msdn.microsoft.com/library/ee758710.aspx). Ajoutez la chaîne de connexion à la section **ConfigurationSettings** du fichier de configuration du service.
+* Une application en cours d’exécution sur le bureau de hello ou sur un appareil peut stocker la chaîne de connexion hello dans un **app.config** ou **web.config** fichier. Ajouter toohello de chaîne de connexion hello **AppSettings** section dans ces fichiers.
+* Une application en cours d’exécution dans un service cloud Azure peut stocker la chaîne de connexion de hello Bonjour [fichier de schéma (.cscfg) de configuration de service Azure](https://msdn.microsoft.com/library/ee758710.aspx). Ajouter toohello de chaîne de connexion hello **ConfigurationSettings** section du fichier de configuration de service hello.
 * Vous pouvez utiliser votre chaîne de connexion directement dans votre code. Cependant, le plus souvent, nous vous recommandons de stocker votre chaîne de connexion dans un fichier de configuration.
 
-Le stockage de votre chaîne de connexion dans un fichier de configuration facilite la mise à jour de la chaîne de connexion qui vous permet de basculer entre l’émulateur de stockage et un compte de stockage Azure dans le cloud. Il vous suffit de modifier la chaîne de connexion pour la faire pointer vers votre environnement cible.
+Le stockage de votre chaîne de connexion dans un fichier de configuration rend tooswitch de chaîne de connexion de hello tooupdate facile entre l’émulateur de stockage hello et un compte de stockage Azure dans le cloud de hello. Il vous suffit d’environnement cible de tooedit hello connexion chaîne toopoint tooyour.
 
-Vous pouvez utiliser [Microsoft Azure Configuration Manager](https://www.nuget.org/packages/Microsoft.WindowsAzure.ConfigurationManager/) pour accéder à votre chaîne de connexion lors de l’exécution, quel que soit l’environnement d’exécution de votre application.
+Vous pouvez utiliser hello [Microsoft Azure Configuration Manager](https://www.nuget.org/packages/Microsoft.WindowsAzure.ConfigurationManager/) tooaccess votre connexion de chaîne lors de l’exécution, quelle que soit l’où votre application est en cours d’exécution.
 
-## <a name="create-a-connection-string-for-the-storage-emulator"></a>Création d’une chaîne de connexion pour l’émulateur de stockage
+## <a name="create-a-connection-string-for-hello-storage-emulator"></a>Créer une chaîne de connexion pour l’émulateur de stockage hello
 [!INCLUDE [storage-emulator-connection-string-include](../../includes/storage-emulator-connection-string-include.md)]
 
-Pour plus d’informations sur l’émulateur de stockage, consultez [Utilisation de l'émulateur de stockage Azure pour le développement et le test](storage-use-emulator.md).
+Pour plus d’informations sur l’émulateur de stockage hello, consultez [utiliser l’émulateur de stockage Azure hello pour le développement et test](storage-use-emulator.md).
 
 ## <a name="create-a-connection-string-for-an-azure-storage-account"></a>Création d’une chaîne de connexion pour un compte de stockage Azure
-Pour créer une chaîne de connexion pour votre compte de stockage Azure, utilisez le format suivant. Indiquez si vous souhaitez vous connecter au compte de stockage via HTTPS (recommandé) ou HTTP, remplacez `myAccountName` par le nom de votre compte de stockage et remplacez `myAccountKey` par la touche d’accès rapide à votre compte :
+mettre en forme toocreate une chaîne de connexion pour votre compte de stockage Azure, suivant de hello d’utilisation. Indiquer si vous souhaitez que le compte de stockage tooconnect toohello via HTTPS (recommandé) ou HTTP, remplacez `myAccountName` avec nom hello de votre compte de stockage, puis remplacez `myAccountKey` avec votre clé d’accès de compte :
 
 `DefaultEndpointsProtocol=[http|https];AccountName=myAccountName;AccountKey=myAccountKey`
 
@@ -58,14 +58,14 @@ Par exemple, votre chaîne de connexion peut ressembler à ceci :
 Même si le stockage Azure prend en charge HTTP et HTTPS au sein d’une chaîne de connexion, nous vous *conseillons vivement d’utiliser HTTPS*.
 
 > [!TIP]
-> Vous trouverez les chaînes de connexion de votre compte de stockage dans le [portail Azure](https://portal.azure.com). Accédez à **PARAMÈTRES** > **Clés d’accès** dans le panneau de menu de votre compte de stockage pour afficher les chaînes de connexion pour les clés d’accès primaire et secondaire.
+> Vous pouvez trouver des chaînes de connexion de votre compte de stockage Bonjour [portail Azure](https://portal.azure.com). Accédez trop**paramètres** > **clés d’accès** dans les chaînes de connexion de votre compte de stockage menu Panneau toosee pour les deux clés d’accès primaire et secondaire.
 >
 
 ## <a name="create-a-connection-string-using-a-shared-access-signature"></a>Création d’une chaîne de connexion à l’aide d’une signature d’accès partagé
 [!INCLUDE [storage-use-sas-in-connection-string-include](../../includes/storage-use-sas-in-connection-string-include.md)]
 
 ## <a name="create-a-connection-string-for-an-explicit-storage-endpoint"></a>Création d’une chaîne de connexion pour un point de terminaison de stockage explicite
-Vous pouvez spécifier les points de terminaison de service explicites dans votre chaîne de connexion au lieu d’utiliser les points de terminaison par défaut. Pour créer une chaîne de connexion spécifiant un point de terminaison explicite, indiquez le point de terminaison complet de chaque service, ainsi que le protocole (HTTPS (recommandé) ou HTTP) au format suivant :
+Vous pouvez spécifier des points de terminaison de service explicite dans votre chaîne de connexion au lieu d’utiliser des points de terminaison par défaut hello. toocreate une chaîne de connexion qui spécifie un point de terminaison explicite, spécifiez hello point de terminaison complet pour chaque service, y compris la spécification de protocole hello (HTTPS (recommandé) ou HTTP), Bonjour suivant le format :
 
 ```
 DefaultEndpointsProtocol=[http|https];
@@ -77,9 +77,9 @@ AccountName=myAccountName;
 AccountKey=myAccountKey
 ```
 
-Si vous avez mappé votre point de terminaison Stockage Blob à un [domaine personnalisé](storage-custom-domain-name.md), il vaut mieux spécifier un point de terminaison explicite. Dans ce cas, vous pouvez spécifier votre point de terminaison personnalisé pour le stockage Blob dans votre chaîne de connexion. Vous pouvez éventuellement spécifier les points de terminaison par défaut pour les autres services si votre application les utilise.
+Un scénario dans lequel vous souhaitez toospecify un point de terminaison explicite est lorsque vous avez mappé votre tooa de point de terminaison de stockage Blob [domaine personnalisé](storage-custom-domain-name.md). Dans ce cas, vous pouvez spécifier votre point de terminaison personnalisé pour le stockage Blob dans votre chaîne de connexion. Vous pouvez éventuellement spécifier de points de terminaison par défaut de hello pour hello autres services si votre application les utilise.
 
-Voici un exemple de chaîne de connexion qui spécifie un point de terminaison explicite pour le service Blob :
+Voici un exemple de chaîne de connexion qui spécifie un point de terminaison explicite pour hello service Blob :
 
 ```
 # Blob endpoint only
@@ -89,7 +89,7 @@ AccountName=storagesample;
 AccountKey=<account-key>
 ```
 
-Cet exemple spécifie des points de terminaison explicites pour tous les services, notamment un domaine personnalisé pour le service Blob :
+Cet exemple spécifie les points de terminaison explicites pour tous les services, y compris un domaine personnalisé pour hello service Blob :
 
 ```
 # All service endpoints
@@ -102,16 +102,16 @@ AccountName=storagesample;
 AccountKey=<account-key>
 ```
 
-Les valeurs des points de terminaison dans une chaîne de connexion sont utilisées pour construire les URI de demande aux services de stockage. Elles indiquent la forme des URI renvoyés à votre code.
+les valeurs de point de terminaison Hello dans une chaîne de connexion sont des services de stockage toohello URI demande de hello tooconstruct utilisés et dictent écran hello de n’importe quel URI renvoyés tooyour code.
 
-Si vous avez mappé un point de terminaison de stockage à un domaine personnalisé et omettez ce point de terminaison d’une chaîne de connexion, vous ne pourrez pas accéder aux données de ce service avec votre code à l’aide de cette chaîne de connexion.
+Si vous avez mappé un domaine personnalisé de tooa de point de terminaison de stockage et que vous omettez ce point de terminaison à partir d’une chaîne de connexion, puis vous ne serez pas en mesure de toouse cette connexion données de type string tooaccess dans ce service à partir de votre code.
 
 > [!IMPORTANT]
-> Les valeurs des points de terminaison de service dans vos chaînes de connexion doivent être des URI correctement formés, notamment `https://` (recommandé) ou `http://`. Étant donné que le stockage Azure ne prend pas encore en charge HTTPS pour les domaines personnalisés, vous *devez* spécifier `http://` pour n’importe quel URI de point de terminaison qui pointe vers un domaine personnalisé.
+> Les valeurs des points de terminaison de service dans vos chaînes de connexion doivent être des URI correctement formés, notamment `https://` (recommandé) ou `http://`. Étant donné que le stockage Azure ne prend pas en charge HTTPS pour les domaines personnalisés, vous *doit* spécifier `http://` pour n’importe quel point de terminaison URI qui pointe de domaine personnalisé de tooa.
 >
 
 ### <a name="create-a-connection-string-with-an-endpoint-suffix"></a>Création d’une chaîne de connexion avec un suffixe de point de terminaison
-Pour créer une chaîne de connexion pour un service de stockage dans les régions ou les instances avec des suffixes de point de terminaison différents, comme pour Azure China ou Azure Government, utilisez le format de chaîne de connexion suivant. Indiquez si vous souhaitez vous connecter au compte de stockage via HTTPS (recommandé) ou HTTP, remplacez `myAccountName` par le nom de votre compte de stockage, remplacez `myAccountKey` par votre clé d’accès au compte et remplacez `mySuffix` par le suffixe d’URI :
+toocreate une chaîne de connexion pour un service de stockage dans des régions ou des instances avec des suffixes de point de terminaison différent, comme pour la Chine de Azure ou Azure Government, hello utilisation suivant le format de chaîne de connexion. Indiquer si vous souhaitez que le compte de stockage tooconnect toohello via HTTPS (recommandé) ou HTTP, remplacez `myAccountName` avec nom hello de votre compte de stockage, remplacez `myAccountKey` avec votre clé d’accès de compte, puis remplacez `mySuffix` par hello URI suffixe :
 
 ```
 DefaultEndpointsProtocol=[http|https];
@@ -133,7 +133,7 @@ EndpointSuffix=core.chinacloudapi.cn;
 [!INCLUDE [storage-cloud-configuration-manager-include](../../includes/storage-cloud-configuration-manager-include.md)]
 
 ## <a name="next-steps"></a>Étapes suivantes
-* [Utilisation de l’émulateur de stockage Azure pour le développement et le test](storage-use-emulator.md)
+* [Utiliser l’émulateur de stockage Azure hello pour le développement et test](storage-use-emulator.md)
 * [Explorateurs du stockage Azure](storage-explorers.md)
 * [Utilisation des signatures d’accès partagé (SAP)](storage-dotnet-shared-access-signature-part-1.md)
 

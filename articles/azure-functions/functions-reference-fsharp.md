@@ -1,13 +1,13 @@
 ---
-title: "Information de référence pour les développeurs F# sur Azure Functions | Microsoft Docs"
-description: "Découvrez comment développer sur Azure Functions à l’aide de F#."
+title: "référence du développeur fonctions F # d’aaaAzure | Documents Microsoft"
+description: "Comprendre comment toodevelop fonctions Azure à l’aide de F #."
 services: functions
 documentationcenter: fsharp
 author: sylvanc
 manager: jbronsk
 editor: 
 tags: 
-keywords: "Azure fonctions, les fonctions, les événements de traitement, de webhooks, calcul dynamique, architecture sans F #"
+keywords: "azure functions, fonctions Azure, fonctions, traitement des événements, webhooks, calcul dynamique, architecture sans serveur, F#"
 ms.assetid: e60226e5-2630-41d7-9e5b-9f9e5acc8e50
 ms.service: functions
 ms.devlang: fsharp
@@ -16,11 +16,11 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 09/09/2016
 ms.author: syclebsc
-ms.openlocfilehash: 1691d378263f6b4ce5072f5c621d8db02f774b5f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1ac366ba6f73d191c582dcd9214b688ef719617a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-functions-f-developer-reference"></a>Informations de référence pour les développeurs F# sur Azure Functions
 > [!div class="op_single_selector"]
@@ -30,17 +30,17 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-F# for Azure Functions est une solution conçue pour exécuter facilement de petits morceaux de code, ou « fonctions », dans le cloud. Les données circulent dans votre fonction F# par le biais d’arguments de fonction. Les noms d’argument sont spécifiés dans `function.json`, et il existe des noms prédéfinis pour accéder à des éléments tels que l’enregistreur de fonctions et les jetons d’annulation.
+F # pour les fonctions de Azure est une solution pour exécuter facilement des petits éléments de code, ou « fonctions » dans le cloud de hello. Les données circulent dans votre fonction F# par le biais d’arguments de fonction. Les noms d’arguments sont spécifiés dans `function.json`, et qu’il existe des noms prédéfinis pour accéder à diverses tâches telles que hello des jetons d’enregistreur d’événements et l’annulation de fonction.
 
-Cet article repose sur l’hypothèse que vous avez déjà lu l’article [Informations de référence pour les développeurs sur Azure Functions](functions-reference.md).
+Cet article suppose que vous avez déjà lu hello [référence du développeur Azure fonctions](functions-reference.md).
 
 ## <a name="how-fsx-works"></a>Fonctionnement de .fsx
-Un fichier `.fsx` est un script F#. Il peut être considéré comme un projet F# contenu dans un seul fichier. Ce fichier contient à la fois le code de votre programme (dans ce cas précis, votre fonction Azure) et des directives concernant la gestion des dépendances.
+Un fichier `.fsx` est un script F#. Il peut être considéré comme un projet F# contenu dans un seul fichier. fichier Hello contient à la fois code hello pour votre programme (dans ce cas, votre fonction Azure) et des directives pour la gestion des dépendances.
 
-Lorsque vous utilisez un fichier `.fsx` pour une fonction Azure, les assemblys généralement requis sont automatiquement inclus à votre intention, ce qui vous permet de vous concentrer sur la fonction plutôt que sur le code « réutilisable ».
+Lorsque vous utilisez un `.fsx` pour une fonction d’Azure, généralement requis les assemblys sont automatiquement inclus pour vous, ce qui vous toofocus sur le code de fonction au lieu de « standard » hello.
 
-## <a name="binding-to-arguments"></a>Liaison aux arguments
-Chaque liaison prend en charge un ensemble spécifique d’arguments, comme décrit en détail dans [Informations de référence pour les développeurs sur les déclencheurs et liaisons Azure Functions](functions-triggers-bindings.md). Par exemple, l’une des liaisons d’argument prises en charge par un déclencheur d’objet blob est un objet CLR traditionnel (POCO), qui peut être exprimé à l’aide d’un enregistrement F#. Par exemple :
+## <a name="binding-tooarguments"></a>Liaison tooarguments
+Chaque liaison prend en charge un ensemble d’arguments, comme détaillé dans hello [référence du développeur Azure fonctions déclencheurs et des liaisons](functions-triggers-bindings.md). Par exemple, une des liaisons d’arguments hello qu'un déclencheur blob prend en charge est POCO, ce qui peut être exprimé à l’aide d’un enregistrement F #. Par exemple :
 
 ```fsharp
 type Item = { Id: string }
@@ -50,11 +50,11 @@ let Run(blob: string, output: byref<Item>) =
     output <- item
 ```
 
-Votre fonction Azure F# utilisera un ou plusieurs arguments. Quand nous parlons d’arguments Azure Functions, nous faisons référence à des arguments *d’entrée* et à des arguments de *sortie*. Un argument d’entrée est exactement ce que son nom laisse entendre : une entrée pour votre fonction Azure F#. Un argument de *sortie* correspond à des données mutables ou à un argument `byref<>` permettant de retransmettre des données *hors* de votre fonction.
+Votre fonction Azure F# utilisera un ou plusieurs arguments. Lorsque nous parlons arguments des fonctions d’Azure, nous nous référons trop*d’entrée* arguments et *sortie* arguments. Un argument d’entrée est exactement il ressemble : entrée tooyour fonction d’Azure F #. Un *sortie* argument est données mutables ou un `byref<>` argument qui sert d’une manière toopass stockage des données *hors* de votre fonction.
 
-Dans l’exemple ci-dessus, `blob` est un argument d’entrée, tandis que `output` est un argument de sortie. Notez que nous avons utilisé le type `byref<>` pour l’argument `output` (il n’est pas nécessaire d’ajouter l’annotation `[<Out>]`). L’utilisation d’un type `byref<>` permet à votre fonction de modifier l’enregistrement ou l’objet auxquels l’argument fait référence.
+Dans l’exemple hello ci-dessus, `blob` est un argument d’entrée, et `output` est un argument de sortie. Notez que nous avons utilisé `byref<>` pour `output` (il n’existe aucun hello de tooadd besoin `[<Out>]` annotation). À l’aide un `byref<>` type autorise votre toochange fonction quel argument hello enregistrement ou un objet fait référence à.
 
-Lorsqu’un enregistrement F# est utilisé comme type d’entrée, la définition d’enregistrement doit être indiquée par `[<CLIMutable>]` pour permettre à l’infrastructure Azure Functions de définir les champs de manière appropriée avant de transmettre l’enregistrement à votre fonction. En arrière-plan, `[<CLIMutable>]` génère des méthodes setter pour les propriétés d’enregistrement. Par exemple :
+Lorsqu’un enregistrement F # est utilisé comme un type d’entrée, la définition d’enregistrement hello doit être marquée avec `[<CLIMutable>]` dans des champs hello correctement avant de passer hello enregistrement tooyour fonction tooallow hello Azure fonctions framework tooset ordre. Dans les coulisses hello, `[<CLIMutable>]` génère des méthodes setter de propriétés de l’enregistrement hello. Par exemple :
 
 ```fsharp
 [<CLIMutable>]
@@ -79,7 +79,7 @@ let Run(input: string, item: byref<Item>) =
 ```
 
 ## <a name="logging"></a>Journalisation
-Pour consigner la sortie dans vos [journaux de diffusion en continu](../app-service-web/web-sites-streaming-logs-and-console.md) dans F#, votre fonction doit utiliser un argument de type `TraceWriter`. Par souci de cohérence, nous vous recommandons de nommer cet argument `log`. Par exemple :
+toolog sortie tooyour [journaux de diffusion en continu](../app-service-web/web-sites-streaming-logs-and-console.md) en F #, votre fonction doit prendre un argument de type `TraceWriter`. Par souci de cohérence, nous vous recommandons de nommer cet argument `log`. Par exemple :
 
 ```fsharp
 let Run(blob: string, output: byref<string>, log: TraceWriter) =
@@ -88,7 +88,7 @@ let Run(blob: string, output: byref<string>, log: TraceWriter) =
 ```
 
 ## <a name="async"></a>Async
-Il est possible d’utiliser le workflow `async`, mais le résultat doit renvoyer un élément `Task`. Pour ce faire, utilisez `Async.StartAsTask`. Par exemple :
+Hello `async` workflow peut être utilisé, mais le résultat de hello doit tooreturn un `Task`. Pour ce faire, utilisez `Async.StartAsTask`. Par exemple :
 
 ```fsharp
 let Run(req: HttpRequestMessage) =
@@ -98,7 +98,7 @@ let Run(req: HttpRequestMessage) =
 ```
 
 ## <a name="cancellation-token"></a>Jeton d’annulation
-Si votre fonction doit gérer les arrêts de manière appropriée, vous pouvez lui fournir un argument [`CancellationToken`](https://msdn.microsoft.com/library/system.threading.cancellationtoken.aspx) . conjointement utilisable avec `async`. Par exemple :
+Si votre fonction doit toohandle arrêt en douceur, vous pouvez lui attribuer un [ `CancellationToken` ](https://msdn.microsoft.com/library/system.threading.cancellationtoken.aspx) argument. conjointement utilisable avec `async`. Par exemple :
 
 ```fsharp
 let Run(req: HttpRequestMessage, token: CancellationToken)
@@ -110,7 +110,7 @@ let Run(req: HttpRequestMessage, token: CancellationToken)
 ```
 
 ## <a name="importing-namespaces"></a>Importation des espaces de noms
-Les espaces de noms peuvent être ouverts de la manière habituelle :
+Espaces de noms peuvent être ouverts dans hello normalement :
 
 ```fsharp
 open System.Net
@@ -120,7 +120,7 @@ let Run(req: HttpRequestMessage, log: TraceWriter) =
     ...
 ```
 
-Les espaces de noms ci-après sont ouverts automatiquement :
+Hello suivant des espaces de noms est automatiquement ouvertes :
 
 * `System`
 * `System.Collections.Generic`
@@ -132,7 +132,7 @@ Les espaces de noms ci-après sont ouverts automatiquement :
 * `Microsoft.Azure.WebJobs.Host`.
 
 ## <a name="referencing-external-assemblies"></a>Référencement des assemblys externes
-De même, les références d’assembly d’infrastructure sont ajoutées avec la directive `#r "AssemblyName"` .
+De même, l’assembly framework références ajoutées par hello `#r "AssemblyName"` directive.
 
 ```fsharp
 #r "System.Web.Http"
@@ -145,7 +145,7 @@ let Run(req: HttpRequestMessage, log: TraceWriter) =
     ...
 ```
 
-Les assemblys suivants sont ajoutés automatiquement par l’environnement hébergeant Azure Functions :
+Hello assemblys suivants sont automatiquement ajoutés par les fonctions d’Azure hello environnement d’hébergement :
 
 * `mscorlib`
 * `System`
@@ -158,7 +158,7 @@ Les assemblys suivants sont ajoutés automatiquement par l’environnement hébe
 * `System.Web.Http`
 * `System.Net.Http.Formatting`.
 
-En outre, les assemblys ci-après ont une casse spécifique et peuvent être référencés par leur nom simple (par exemple, `#r "AssemblyName"`) :
+En outre, hello suivant des assemblys est spécial casse et peuvent être référencées par simplename (par exemple, `#r "AssemblyName"`) :
 
 * `Newtonsoft.Json`
 * `Microsoft.WindowsAzure.Storage`
@@ -166,10 +166,10 @@ En outre, les assemblys ci-après ont une casse spécifique et peuvent être ré
 * `Microsoft.AspNet.WebHooks.Receivers`
 * `Microsoft.AspNEt.WebHooks.Common`.
 
-Si vous avez besoin de référencer un assembly privé, vous pouvez charger le fichier d’assembly dans un dossier `bin` relatif à votre fonction et le référencer à l’aide du nom de fichier (par exemple, `#r "MyAssembly.dll"`). Pour plus d’informations sur le téléchargement de fichiers vers votre conteneur de fonctions, consultez la section suivante sur la gestion des packages.
+Si vous avez besoin de tooreference un assembly privé, vous pouvez télécharger le fichier d’assembly hello dans un `bin` fonction tooyour relatif de dossier et de la référence à l’aide de hello nom de fichier (par exemple)  `#r "MyAssembly.dll"`). Pour plus d’informations sur le fonctionnement des fichiers de dossier de fonction tooyour tooupload, consultez hello suivant la section sur la gestion des packages.
 
 ## <a name="editor-prelude"></a>Préambule destiné à l’éditeur
-Un éditeur prenant en charge F# Compiler Services ne reconnaît pas les espaces de noms et les assemblys automatiquement inclus par Azure Functions. Il peut donc être utile d’insérer un préambule conçu pour permettre à l’éditeur de localiser les assemblys que vous utilisez et d’ouvrir explicitement les espaces de noms. Par exemple :
+Un éditeur qui prend en charge les Services du compilateur F # ne seront pas prenant en charge des espaces de noms hello et des assemblys qui inclut automatiquement les fonctions de Azure. Par conséquent, il peut être utile tooinclude une étape préliminaire qui permet de rechercher les assemblys hello que vous utilisez l’éditeur de hello et tooexplicitly ouvrir les espaces de noms. Par exemple :
 
 ```fsharp
 #if !COMPILED
@@ -184,12 +184,12 @@ let Run(blob: string, output: byref<string>, log: TraceWriter) =
     ...
 ```
 
-Lorsque la solution Azure Functions exécute votre code, elle traite la source avec l’élément `COMPILED` défini, de sorte que le préambule destiné à l’éditeur sera ignoré.
+Lorsque les fonctions Azure s’exécute votre code, il traite source hello avec `COMPILED` défini prélude d’éditeur hello sera ignoré.
 
 <a name="package"></a>
 
 ## <a name="package-management"></a>Gestion des packages
-Pour utiliser des packages NuGet dans une fonction F#, ajoutez un fichier `project.json` au dossier de la fonction dans le système de fichiers de l’application de fonctions. Voici un exemple de fichier `project.json` ajoutant une référence de package NuGet à `Microsoft.ProjectOxford.Face` version 1.1.0 :
+les packages NuGet toouse dans une fonction) (F #, ajoutez un `project.json` dossier de la fonction toohello hello du fichier dans le système de fichiers de l’application hello (fonction). Voici un exemple `project.json` fichier qui ajoute une référence de package NuGet trop`Microsoft.ProjectOxford.Face` version 1.1.0. :
 
 ```json
 {
@@ -203,16 +203,16 @@ Pour utiliser des packages NuGet dans une fonction F#, ajoutez un fichier `proje
 }
 ```
 
-Seul .NET Framework 4.6 est pris en charge. Par conséquent, assurez-vous que votre fichier `project.json` spécifie `net46` comme indiqué ici.
+Hello .NET Framework 4.6 est prise en charge uniquement, donc vous assurer que votre `project.json` fichier spécifie `net46` comme indiqué ici.
 
-Lorsque vous chargez un fichier `project.json` , le runtime obtient les packages et ajoute automatiquement des références aux assemblys de packages. Vous n’avez pas besoin d’ajouter de directives `#r "AssemblyName"` . Il vous suffit d’ajouter les instructions `open` requises à votre fichier `.fsx`.
+Lorsque vous téléchargez un `project.json` fichier, hello runtime Obtient les packages de hello et ajoute automatiquement les assemblys de package toohello de références. Vous n’avez pas besoin de tooadd `#r "AssemblyName"` directives. Ajoutez simplement hello requis `open` instructions tooyour `.fsx` fichier.
 
-Si vous le souhaitez, vous pouvez placer automatiquement les assemblys de référence dans votre préambule destiné à l’éditeur, afin d’améliorer l’interaction de votre éditeur avec F# Compile Services.
+Vous souhaiterez peut-être tooput référence automatiquement les assemblys dans votre prélude éditeur, tooimprove interaction de votre éditeur avec les Services de compilation F #.
 
-### <a name="how-to-add-a-projectjson-file-to-your-azure-function"></a>Ajout d’un fichier `project.json` à votre fonction Azure
-1. Commencez par vous assurer que votre conteneur de fonctions est en cours d’exécution. Ce que vous pouvez faire en ouvrant votre fonction dans le portail Azure. Il donne également accès aux journaux de diffusion en continu où le résultat de l’installation du package s’affiche.
-2. Pour charger un fichier `project.json` , utilisez l’une des méthodes décrites dans l’article [Comment mettre à jour les fichiers du conteneur de fonctions](functions-reference.md#fileupdate). Si vous utilisez l’article [Déploiement continu pour Azure Functions](functions-continuous-deployment.md), vous pouvez ajouter un fichier `project.json` à votre branche intermédiaire afin de le tester avant de l’ajouter à votre branche de déploiement.
-3. Une fois le fichier `project.json` ajouté, une sortie semblable à l’exemple ci-après apparaîtra dans le journal de diffusion en continu de votre fonction :
+### <a name="how-tooadd-a-projectjson-file-tooyour-azure-function"></a>Comment tooadd un `project.json` fichier tooyour Azure (fonction)
+1. BEGIN en vous assurant que votre application de la fonction est en cours d’exécution, ce que vous pouvez faire en ouvrant votre fonction Bonjour portail Azure. Cela donne également accès des journaux de diffusion en continu toohello où la sortie d’installation de package s’affichera.
+2. tooupload un `project.json` de fichiers, utilisez une des méthodes hello décrites dans [fonctionnement des fichiers de l’application tooupdate](functions-reference.md#fileupdate). Si vous utilisez [déploiement continu pour les fonctions Azure](functions-continuous-deployment.md), vous pouvez ajouter un `project.json` tooyour branche dans tooexperiment d’ordre avec celui-ci avant de l’ajouter branche de déploiement tooyour de mise en lots de fichiers.
+3. Après avoir hello `project.json` fichier est ajouté, vous verrez toohello similaire de sortie dans votre fonction de l’exemple suivant de diffusion en continu de journal :
 
 ```
 2016-04-04T19:02:48.745 Restoring packages.
@@ -232,7 +232,7 @@ Si vous le souhaitez, vous pouvez placer automatiquement les assemblys de réfé
 ```
 
 ## <a name="environment-variables"></a>Variables d’environnement
-Pour obtenir une variable d’environnement ou une valeur de paramètre d’application, utilisez `System.Environment.GetEnvironmentVariable`. Par exemple :
+tooget une variable d’environnement ou une valeur de paramètre d’application, utilisez `System.Environment.GetEnvironmentVariable`, par exemple :
 
 ```fsharp
 open System.Environment
@@ -261,16 +261,16 @@ let mylog(log: TraceWriter, text: string) =
     log.Verbose(text);
 ```
 
-Les chemins d’accès fournis à la directive `#load` sont relatifs à l’emplacement de votre fichier `.fsx`.
+Fournit des chemins d’accès toohello `#load` directive sont emplacement relatif toohello de votre `.fsx` fichier.
 
-* `#load "logger.fsx"` charge un fichier situé dans le dossier de la fonction.
-* `#load "package\logger.fsx"` charge un fichier situé dans le dossier `package` du dossier de la fonction.
-* `#load "..\shared\mylogger.fsx"` charge un fichier situé dans le dossier `shared` au même niveau que le dossier de la fonction, c’est-à-dire, directement sous `wwwroot`.
+* `#load "logger.fsx"`charge un fichier situé dans le dossier de fonction hello.
+* `#load "package\logger.fsx"`charge un fichier situé dans hello `package` hello fonction dossier.
+* `#load "..\shared\mylogger.fsx"`charge un fichier situé dans hello `shared` dossier hello même niveau en tant que dossier de fonction hello, autrement dit, directement sous `wwwroot`.
 
-La directive `#load` ne fonctionne qu’avec des fichiers `.fsx` (script F#), et non avec des fichiers `.fs`.
+Hello `#load` directive ne fonctionne qu’avec `.fsx` les fichiers (script) (F #) et non avec `.fs` fichiers.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Pour plus d’informations, consultez les ressources suivantes :
+Pour plus d’informations, consultez hello suivant des ressources :
 
 * [F# Guide](/dotnet/articles/fsharp/index) (Guide F#)
 * [Meilleures pratiques pour Azure Functions](functions-best-practices.md)

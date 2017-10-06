@@ -1,6 +1,6 @@
 ---
-title: "Démonstration de la solution Carte de service à votre rythme | Microsoft Docs"
-description: "Carte de service est une solution comprise dans OMS (Operations Management Suite) qui détecte automatiquement les composants d’application sur les systèmes Windows et Linux et mappe la communication entre les services.  Il s’agit d’une démonstration qui vous permet de découvrir à votre rythme l’utilisation de Carte de service pour identifier et diagnostiquer un problème simulé dans une application web."
+title: "aaaService solution de mappage au rythme de démonstration | Documents Microsoft"
+description: "Carte de service est une solution dans Operations Management Suite (OMS) qui découvre automatiquement les composants de l’application sur Windows et les mappages et les systèmes Linux hello la communication entre les services.  Il s’agit d’une démonstration à ses personnel qui vous guide à l’aide de la carte de Service tooidentify et diagnostiquer un problème simulé dans une application web."
 services: operations-management-suite
 documentationcenter: 
 author: bwren
@@ -14,18 +14,18 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/12/2017
 ms.author: bwren
-ms.openlocfilehash: c3548d24c74f8ad865b22d6af3490d0b5cc77a84
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 13f26241cd55a9b35c07d6ca52760a968abffc64
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="operations-management-suite-oms-self-paced-demo---service-map"></a>Démonstration à votre rythme d’Operations Management Suite (OMS) - Carte de service
-Il s’agit d’une démonstration qui vous permet de découvrir à votre rythme l’utilisation de la [solution Carte de service](operations-management-suite-service-map.md) dans Operations Management Suite (OMS) pour identifier et diagnostiquer un problème simulé dans une application web.  Carte de service détecte automatiquement les composants d’application sur les systèmes Windows et Linux et mappe la communication entre les services.  Il regroupe également les données collectées par les autres services OMS pour vous aider à analyser les performances et identifier les problèmes.  Vous utiliserez également [Recherches de journal dans Log Analytics](../log-analytics/log-analytics-log-searches.md) pour détailler les données collectées afin d’identifier l’origine du problème.
+Il s’agit d’une démonstration à ses personnel pour vous aider à l’aide de hello [solutions de carte de Service](operations-management-suite-service-map.md) dans tooidentify d’Operations Management Suite (OMS) et de diagnostiquer un problème simulé dans une application web.  Carte de service découvre automatiquement les composants de l’application sur les systèmes Windows et Linux et mappages hello la communication entre les services.  Il regroupe également les données collectées par les autres tooassist de services OMS dans l’analyse des performances et d’identifier les problèmes.  Vous utiliserez également [connecter recherche Analytique de journal](../log-analytics/log-analytics-log-searches.md) toodrill vers le bas sur les données collectées dans l’origine du problème ordre tooidentify hello.
 
 
 ## <a name="scenario-description"></a>Description du scénario
-Vous venez de recevoir une notification vous indiquant que l’application ACME Customer Portal rencontre des problèmes de performances.  La seule information dont vous disposez est que ces problèmes ont démarré vers 4 h 00 PST aujourd’hui.  Vous n’êtes pas tout à fait certain de tous les composants dont dépend le portail à part un ensemble de serveurs web.  
+Vous venez de recevoir une notification qu’application de portail du client ACME hello rencontre des problèmes de performances.  Hello seules les informations dont vous disposez sont que ces problèmes a démarré sur 4:00 am PST aujourd'hui.  Vous n’êtes pas sûre de tous les composants hello ce portail hello dépend autre qu’un ensemble de serveurs web.  
 
 ## <a name="components-and-features-used"></a>Composants et fonctionnalités utilisés
 - [Solution Carte de service](operations-management-suite-service-map.md)
@@ -34,82 +34,82 @@ Vous venez de recevoir une notification vous indiquant que l’application ACME 
 
 ## <a name="walk-through"></a>Procédure
 
-### <a name="1-connect-to-the-oms-experience-center"></a>1. Connexion à l’OMS Experience Center (centre d’expérience OMS)
-Ce guide utilise [l’Operations Management Suite Experience Center (centre d’expérience Operations Management Suite)](https://experience.mms.microsoft.com/) qui fournit un environnement OMS complet avec des exemples de données. Commencez par cliquer sur ce lien, fournissez vos informations, puis sélectionnez le scénario **Insight and Analytics**.
+### <a name="1-connect-toohello-oms-experience-center"></a>1. Connexion toohello OMS expérience Center
+Cette procédure pas à pas utilise hello [Operations Management Suite expérience Center](https://experience.mms.microsoft.com/) qui fournit un environnement OMS complet avec des exemples de données. Démarrez en suivant ce lien, fournissez vos informations et sélectionnez hello **Insight & Analytique** scénario.
 
 
 ### <a name="2-start-service-map"></a>2. Lancement de Carte de service
-Démarrez la solution Carte de Service en cliquant sur la vignette **Carte de Service**.
+Démarrer la solution de carte de Service hello en cliquant sur hello **carte de Service** vignette.
 
 ![Vignette Carte de service](media/operations-management-suite-walkthrough-servicemap/tile.png)
 
-La console Carte de service s’affiche.  Le volet gauche présente la liste des ordinateurs de votre environnement ayant l’agent Carte de service installé.  Sélectionnez l’ordinateur que vous souhaitez afficher depuis cette liste.
+console de Service Map Hello s’affiche.  Bonjour volet de gauche est une liste d’ordinateurs dans votre environnement avec l’agent de carte de Service hello installé.  Vous devez sélectionner l’ordinateur hello que vous souhaitez tooview dans cette liste.
 
 ![Liste des ordinateurs](media/operations-management-suite-walkthrough-servicemap/computer-list.png)
 
 
 ### <a name="3-view-computer"></a>3. Affichage de l’ordinateur
-Nous savons que les serveurs web sont appelés AcmeWFE001 et AcmeWFE002, ce qui représente un bon point de départ.  Cliquez sur **AcmeWFE001**.  La carte de AcmeWFE001 et de toutes ses dépendances s’affiche.  Vous pouvez voir quels processus sont en cours d’exécution sur l’ordinateur sélectionné et avec quels services externes ils communiquent.
+Nous savons que les serveurs web hello sont appelées AcmeWFE001 et AcmeWFE002, cela semble être une toostart raisonnable sur place.  Cliquez sur **AcmeWFE001**.  Cela affiche la carte hello pour AcmeWFE001 et toutes ses dépendances.  Vous pouvez voir les processus qui sont en cours d’exécution sur l’ordinateur sélectionné de hello et qui ils communiquent avec des services externes.
 
 ![Serveur web](media/operations-management-suite-walkthrough-servicemap/web-server.png)
 
-Nous nous attachons aux performances de notre application web, donc cliquez sur le processus **AcmeAppPool (pool d’applications IIS)**.  Les détails de ce processus s’affichent et mettent en évidence ses dépendances.  
+Nous sommes favoriser les performances hello de notre site web application cliquez donc sur hello **AcmeAppPool (Pool d’applications IIS)** processus.  Cela affiche les détails de hello pour ce processus et met en évidence ses dépendances.  
 
 ![Pool d’applications](media/operations-management-suite-walkthrough-servicemap/app-pool.png)
 
 
 ### <a name="4-change-time-window"></a>4. Modification de la fenêtre de temps
 
-Nous savons que le problème a démarré à 4 h 00, par conséquent, nous allons donc chercher ce qui était en cours d’exécution à ce moment-là. Cliquez sur **Période** et modifiez l’heure à 4 h 00 PST (conservez la date actuelle et ajustez-la à votre fuseau horaire local) avec une durée de 20 minutes.
+Nous avons reçu ce problème hello démarré à 4 h 00, nous allons donc examiner que s’est-il passé à ce moment-là. Cliquez sur **période** et modifiez hello temps too4 : 00 AM PST (conserver hello date actuelle et l’ajuster pour votre fuseau horaire local) avec une durée de 20 minutes.
 
 ![Sélecteur d’heure](./media/operations-management-suite-walkthrough-servicemap/time-picker.png)
 
 
 ### <a name="5-view-alert"></a>5. Affichage de l’alerte
 
-Nous voyons à présent que la dépendance **acmetomcat** a une alerte affichée ; il s’agit de notre problème potentiel.  Cliquez sur l’icône d’alerte dans **acmetomcat** pour afficher les détails de l’alerte.  Nous pouvons constater une utilisation critique du processeur et nous pouvons développer pour obtenir plus de détails.  C’est probablement la cause de notre ralentissement des performances. 
+Vous pouvez désormais voir ce hello **acmetomcat** dépendance est associée à une alerte s’affichera, c’est notre problème potentiel.  Cliquez sur l’icône d’alerte hello dans **acmetomcat** tooshow hello détails de l’hello alerte.  Nous pouvons constater une utilisation critique du processeur et nous pouvons développer pour obtenir plus de détails.  C’est probablement la cause de notre ralentissement des performances. 
 
 ![Alerte](./media/operations-management-suite-walkthrough-servicemap/alert.png)
 
 
 ### <a name="6-view-performance"></a>6. Affichage des performances
 
-Regardons **acmetomcat** de plus près.  Cliquez en haut à droite de **acmetomcat** et sélectionnez **Charger la carte du serveur** pour afficher les détails et les dépendances de cet ordinateur. Nous pouvons ensuite examiner davantage les compteurs de performances pour vérifier notre suspicion.  Sélectionnez l’onglet **Performances** pour afficher les [compteurs de performances collectés par Log Analytics](../log-analytics/log-analytics-data-sources-performance-counters.md) dans la plage de temps.  Nous constatons des pics périodiques au niveau du processeur et de la mémoire.
+Regardons **acmetomcat** de plus près.  Cliquez sur Bonjour haut à droite de **acmetomcat** et sélectionnez **charge serveur carte** tooshow hello détail et les dépendances de cet ordinateur. Nous pouvons ensuite étudier un peu plus ces tooverify de compteurs de performances notre suspicion.  Sélectionnez hello **performances** hello de toodisplay onglet [les compteurs de performances collectées par le journal Analytique](../log-analytics/log-analytics-data-sources-performance-counters.md) sur la plage temporelle de hello.  Nous constatons que nous préparons pointes périodiques dans la mémoire et du processeur de hello.
 
 ![Performances](./media/operations-management-suite-walkthrough-servicemap/performance.png)
 
 
 ### <a name="7-view-change-tracking"></a>7. Affichage du suivi des modifications
-Voyons si nous pouvons trouver les causes possibles de cette utilisation intensive.  Cliquez sur l’onglet **Résumé**.  Cela fournit des informations qu’OMS a collectées à partir de l’ordinateur, telles que les échecs de connexion, les alertes critiques et les modifications logicielles.  Les sections contenant des informations récentes intéressantes devraient déjà être développées, et vous pouvez développer les sections suivantes pour examiner les informations qu’elles contiennent.
+Voyons si nous pouvons trouver les causes possibles de cette utilisation intensive.  Cliquez sur hello **Résumé** onglet.  Cela fournit des informations OMS a recueilli hello comme Échec de connexions, les alertes critiques et les modifications apportées au logiciel.  Sections avec des informations récentes intéressantes doivent déjà être développées, et vous pouvez développer d’autres informations sur les sections tooinspect qu’ils contiennent.
 
 
-Si **Suivi des modifications** n’est pas déjà ouvert, développez-le.  Cela permet d’afficher les informations collectées par la [solution Suivi des modifications](../log-analytics/log-analytics-change-tracking.md).  Il semblerait qu’une modification logicielle ait été effectuée dans cette fenêtre de temps.  Cliquez sur **Logiciel** pour obtenir des détails.  Un processus de sauvegarde a été ajouté à l’ordinateur juste après 4 h 00 du matin, ce qui semblerait être la cause de l’utilisation des ressources excessives.
+Si **Suivi des modifications** n’est pas déjà ouvert, développez-le.  Affiche les informations collectées par hello [suivi des modifications de la solution](../log-analytics/log-analytics-change-tracking.md).  Il semblerait qu’une modification logicielle ait été effectuée dans cette fenêtre de temps.  Cliquez sur **logiciel** tooget détails.  Un processus de sauvegarde a été ajouté toohello ordinateur juste après 4:00 AM, donc cela semble coupable de hello toobe pour l’utilisation des ressources excessive hello.
 
 ![Suivi des modifications](./media/operations-management-suite-walkthrough-servicemap/change-tracking.png)
 
 
 
 ### <a name="8-view-details-in-log-search"></a>8. Affichage des détails dans Recherche dans les journaux
-Nous pouvons poursuivre la vérification en examinant les informations détaillées sur les performances collectées dans le référentiel Log Analytics.  Cliquez à nouveau sur l’onglet **Alertes**, puis sur l’une des alertes **High CPU** (utilisation élevée du processeur).  Cliquez sur **Show in Log Search (Afficher dans Recherche dans les journaux)**.  Cela ouvre la fenêtre Recherche dans les journaux dans laquelle vous pouvez effectuer des [recherches dans les journaux](../log-analytics/log-analytics-log-searches.md) sur toutes les données stockées dans le référentiel.  Carte de service a déjà rempli une requête pour nous permettre de récupérer l’alerte qui nous intéresse.  
+Nous pouvons davantage le vérifier en examinant hello des informations de performances collectées dans le référentiel d’Analytique de journal hello détaillées.  Cliquez sur hello **alertes** onglet Nouveau puis, dans un des hello **élevée du processeur** alertes.  Cliquez sur **Show in Log Search (Afficher dans Recherche dans les journaux)**.  Cela ouvre la fenêtre de recherche de journal hello où vous pouvez effectuer [recherche de journal](../log-analytics/log-analytics-log-searches.md) par rapport à toutes les données stockées dans le référentiel de hello.  Carte de service déjà renseigné un queriy pour nous alerte de hello tooretrieve nous intéresse.  
 
-![Recherche de journaux](./media/operations-management-suite-walkthrough-servicemap/log-search.png)
+![Recherche dans les journaux](./media/operations-management-suite-walkthrough-servicemap/log-search.png)
 
 
 ### <a name="9-open-saved-search"></a>9. Ouverture d’une recherche enregistrée
-Voyons si nous pouvons obtenir d’autres détails sur la collecte des performances qui a généré cette alerte et vérifier notre suspicion selon laquelle les problèmes ont été provoqués par ce processus de sauvegarde.  Modifiez la période à **6 heures**.  Cliquez ensuite sur **Favoris** et faites défiler jusqu’aux recherches enregistrées pour **Carte de service**.  Il s’agit des requêtes que vous avez créées spécifiquement pour cette analyse.  Cliquez sur **Top 5 Processes by CPU for acmetomcat (5 premiers processus par processeur pour acmetomcat)**.
+Voyons si nous pouvons obtenir certaines plus de détails sur la collecte des performances hello qui a généré cette alerte et vérifier notre suspecte que des problèmes de hello sont provoquées par ce processus de sauvegarde.  Modifier trop de plage de temps hello**6 heures**.  Cliquez ensuite sur **favoris** et faites défiler vers le bas recherche toohello enregistré **carte de Service**.  Il s’agit des requêtes que vous avez créées spécifiquement pour cette analyse.  Cliquez sur **Top 5 Processes by CPU for acmetomcat (5 premiers processus par processeur pour acmetomcat)**.
 
 ![Recherche enregistrée](./media/operations-management-suite-walkthrough-servicemap/saved-search.png)
 
 
-Cette requête retourne la liste des 5 premiers processus utilisant le processeur sur **acmetomcat**.  Vous pouvez inspecter la requête pour obtenir une présentation du langage de requête utilisé pour les recherches dans les journaux.  Si vous êtes intéressé par les processus sur d’autres ordinateurs, vous pouvez modifier la requête pour récupérer ces informations.
+Cette requête retourne une liste de hello principaux 5 processus consomme du processeur sur **acmetomcat**.  Vous pouvez inspecter hello requête tooget un langage de requête introduction toohello utilisé pour les recherches de journal.  Si vous êtes intéressé par les processus hello sur d’autres ordinateurs, vous pouvez modifier ces informations hello requête tooretrieve.
 
-Dans ce cas, nous pouvons voir que le processus de sauvegarde consomme de façon cohérente environ 60 % de l’UC du serveur de l’application.  Il apparaît clairement que ce nouveau processus est responsable de notre problème de performances.  Notre solution serait évidemment de supprimer ce nouveau logiciel de sauvegarde du serveur d’applications.  Nous pouvons en fait tirer parti de la configuration d’état souhaité (DSC) gérée par Azure Automation pour définir des stratégies qui garantissent que ce processus ne s’exécute jamais sur ces systèmes critiques.
+Dans ce cas, nous pouvons voir que les processus de sauvegarde hello constamment consomme environ 60 % de l’UC du serveur d’application hello.  Il apparaît clairement que ce nouveau processus est responsable de notre problème de performances.  Notre solution évidemment serait tooremove ce nouveau logiciel serveur d’application hello de sauvegarde.  Nous avons réellement tirer parti de Configuration d’état souhaité (DSC) géré par Azure Automation toodefine stratégies qui garantissent que ce processus ne s’exécute jamais sur ces systèmes critiques.
 
 
 ## <a name="summary-points"></a>Résumé
 - [Carte de service](operations-management-suite-service-map.md) vous fournit une vue de l’intégralité de votre application même si vous ne connaissez pas tous ses serveurs et dépendances.
-- Carte de service expose les données collectées par les autres solutions OMS pour vous aider à identifier les problèmes avec votre application et son infrastructure sous-jacente.
-- [Recherches dans les journaux](../log-analytics/log-analytics-log-searches.md) vous permet de consulter des données spécifiques recueillies dans le référentiel Log Analytics.    
+- Carte de service met en évidence des données collectées par les autres toohelp de solutions OMS vous identifiez des problèmes avec votre application et son infrastructure sous-jacente.
+- [Recherche de journal](../log-analytics/log-analytics-log-searches.md) permettent de toodrill vers le bas dans des données spécifiques recueillies dans le référentiel d’Analytique de journal hello.    
 
 ## <a name="next-steps"></a>Étapes suivantes
 - En savoir plus sur [Carte de service](operations-management-suite-service-map.md).

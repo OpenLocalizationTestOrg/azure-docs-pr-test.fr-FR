@@ -1,6 +1,6 @@
 ---
-title: "Ajout de l’authentification à Android à l’aide de Mobile Apps | Microsoft Docs"
-description: "Découvrez comment utiliser la fonctionnalité Mobile Apps d’Azure App Service pour authentifier les utilisateurs de votre application Android via divers fournisseurs d’identité, notamment Google, Facebook, Twitter et Microsoft."
+title: authentification aaaAdd sur Android avec des applications mobiles | Documents Microsoft
+description: "Découvrez comment toouse hello fonctionnalité des applications mobiles des utilisateurs de tooauthenticate Azure App Service de votre application Android via une variété de fournisseurs d’identité, y compris de Google, Facebook, Twitter et Microsoft."
 services: app-service\mobile
 documentationcenter: android
 author: ggailey777
@@ -14,68 +14,68 @@ ms.devlang: java
 ms.topic: article
 ms.date: 10/01/2016
 ms.author: glenga
-ms.openlocfilehash: 81331142aa6110d4e29e6fb30a90ce6e3a853439
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 01f608f996c931c643790ed2778df11cf590c903
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-authentication-to-your-android-app"></a>Ajout de l’authentification à votre application Android
+# <a name="add-authentication-tooyour-android-app"></a>Ajouter une application Android de l’authentification tooyour
 [!INCLUDE [app-service-mobile-selector-get-started-users](../../includes/app-service-mobile-selector-get-started-users.md)]
 
 ## <a name="summary"></a>Résumé
-Dans ce didacticiel, vous allez ajouter l’authentification au projet de démarrage rapide todolist sur Android en faisant appel à un fournisseur d’identité pris en charge. Ce didacticiel est basé sur le didacticiel [Prise en main de Mobile Apps] , que vous devez effectuer en premier.
+Dans ce didacticiel, vous ajoutez le projet de démarrage rapide de l’authentification toohello todolist sur Android à l’aide d’un fournisseur d’identité pris en charge. Ce didacticiel est basé sur hello [prise en main les applications mobiles] didacticiel, vous devez effectuer en premier.
 
 ## <a name="register"></a>Inscription de votre application pour l’authentification et configuration d’Azure App Service
 [!INCLUDE [app-service-mobile-register-authentication](../../includes/app-service-mobile-register-authentication.md)]
 
-## <a name="redirecturl"></a>Ajouter votre application aux URL de redirection externes autorisées
+## <a name="redirecturl"></a>Ajouter votre URL de redirection externe d’autorisé toohello application
 
-L’authentification sécurisée nécessite de définir un nouveau schéma d’URL pour votre application. Cela permet au système d’authentification de vous rediriger vers votre application une fois le processus d’authentification terminé. Dans ce didacticiel, nous utilisons le schéma d’URL _appname_. Toutefois, vous pouvez utiliser le schéma d’URL de votre choix. Il doit être propre à votre application mobile. Pour activer la redirection côté serveur, procédez comme suit :
+L’authentification sécurisée nécessite de définir un nouveau schéma d’URL pour votre application. Cela permet de hello authentification système tooredirect tooyour arrière application une fois le processus d’authentification hello est terminée. Dans ce didacticiel, nous utilisons le modèle d’URL hello _appname_ dans l’ensemble. Toutefois, vous pouvez utiliser le schéma d’URL de votre choix. Il doit être unique tooyour des applications mobiles. redirection de hello tooenable côté serveur de hello :
 
-1. Dans le [portail Azure], sélectionnez votre instance App Service.
+1. Bonjour [Azure portal], sélectionnez votre application de Service.
 
-2. Cliquez sur l’option de menu **Authentication/Authorisation**.
+2. Cliquez sur hello **l’authentification / autorisation** option de menu.
 
-3. Dans **URL de redirection externes autorisées**, saisissez `appname://easyauth.callback`.  La chaîne _appname_ de cette chaîne est le schéma d’URL de votre application mobile.  Elle doit être conforme à la spécification d’URL normale pour un protocole (utiliser des lettres et des chiffres uniquement et commencer par une lettre).  Vous devez noter la chaîne que vous choisissez, dans la mesure où vous devez ajuster votre code d’application mobile avec le schéma d’URL à plusieurs endroits.
+3. Bonjour **autorisé des URL de redirection externe**, entrez `appname://easyauth.callback`.  Hello _appname_ dans cette chaîne est hello le modèle d’URL pour votre application mobile.  Elle doit être conforme à la spécification d’URL normale pour un protocole (utiliser des lettres et des chiffres uniquement et commencer par une lettre).  Vous devez vous note de la chaîne hello que vous choisissez car vous en aurez besoin tooadjust votre code d’application mobile avec hello modèle d’URL à plusieurs endroits.
 
 4. Cliquez sur **OK**.
 
 5. Cliquez sur **Enregistrer**.
 
-## <a name="permissions"></a>Restriction des autorisations pour les utilisateurs authentifiés
+## <a name="permissions"></a>Restreindre les autorisations des utilisateurs tooauthenticated
 [!INCLUDE [app-service-mobile-restrict-permissions-dotnet-backend](../../includes/app-service-mobile-restrict-permissions-dotnet-backend.md)]
 
-* Dans Android Studio, ouvrez le projet que vous avez terminé avec le didacticiel [Prise en main de Mobile Apps]. Dans le menu **Exécuter**, cliquez sur **Exécuter l’application** et vérifiez qu’une exception non prise en charge avec le code d’état 401 (Non autorisé) est générée après le démarrage de l’application.
+* Dans Android Studio, ouvrez le projet hello avec le didacticiel de hello [prise en main les applications mobiles]. À partir de hello **exécuter** menu, cliquez sur **exécuter application**et vérifiez qu’une exception non gérée avec un code d’état de 401 (non autorisé) est déclenchée après le démarrage de l’application hello.
 
-     Cela se produit car l’application essaie d’accéder au serveur principal en tant qu’utilisateur non authentifié, mais la table *TodoItem* requiert désormais l’authentification.
+     Cette exception se produit, car les tentatives d’application hello tooaccess hello retour comme un utilisateur non authentifié, mais hello *TodoItem* table requiert l’authentification.
 
-Ensuite, mettez à jour l’application pour authentifier les utilisateurs avant de demander des ressources à partir du serveur principal Mobile Apps. 
+Ensuite, vous mettre à jour les utilisateurs de hello application tooauthenticate avant de demander des ressources à partir de hello de fin dans les applications mobiles. 
 
-## <a name="add-authentication-to-the-app"></a>Ajout de l'authentification à l'application
+## <a name="add-authentication-toohello-app"></a>Ajouter une application de toohello d’authentification
 [!INCLUDE [mobile-android-authenticate-app](../../includes/mobile-android-authenticate-app.md)]
 
 
 
-## <a name="cache-tokens"></a>Mise en cache de jetons d'authentification sur le client
+## <a name="cache-tokens"></a>Mettre en cache des jetons d’authentification sur le client de hello
 [!INCLUDE [mobile-android-authenticate-app-with-token](../../includes/mobile-android-authenticate-app-with-token.md)]
 
 ## <a name="next-steps"></a>Étapes suivantes
-Maintenant que vous avez terminé ce didacticiel sur l'authentification de base, vous pouvez passer à l'un des didacticiels suivants :
+Maintenant que vous terminé ce didacticiel de l’authentification de base, pensez à poursuivre sur tooone Hello suivant didacticiels :
 
-* [Ajout de notifications Push à votre application Android](app-service-mobile-android-get-started-push.md).
-  Découvrez comment configurer votre serveur principal Mobile Apps pour utiliser Azure Notification Hubs afin d’envoyer des notifications Push.
+* [Ajouter une application Android de push notifications tooyour](app-service-mobile-android-get-started-push.md).
+  Découvrez comment tooconfigure vos applications mobiles sauvegarder terminer les notifications push toosend toouse Azure notification hubs.
 * [Activation de la synchronisation hors connexion pour votre application Android](app-service-mobile-android-get-started-offline-data.md).
-  Découvrez comment ajouter une prise en charge hors connexion à votre application à l’aide d’un serveur principal Mobile Apps. La synchronisation hors connexion permet aux utilisateurs d’interagir avec une application mobile &mdash;pour afficher, ajouter ou modifier des données&mdash;, même lorsqu’il n’existe aucune connexion réseau.
+  Découvrez comment tooadd hors connexion prennent en charge tooyour application à l’aide d’un principal des applications mobiles. La synchronisation hors connexion permet aux utilisateurs d’interagir avec une application mobile &mdash;pour afficher, ajouter ou modifier des données&mdash;, même lorsqu’il n’existe aucune connexion réseau.
 
 <!-- Anchors. -->
 [Register your app for authentication and configure Mobile Services]: #register
-[Restrict table permissions to authenticated users]: #permissions
-[Add authentication to the app]: #add-authentication
-[Store authentication tokens on the client]: #cache-tokens
+[Restrict table permissions tooauthenticated users]: #permissions
+[Add authentication toohello app]: #add-authentication
+[Store authentication tokens on hello client]: #cache-tokens
 [Refresh expired tokens]: #refresh-tokens
 [Next Steps]:#next-steps
 
 
 <!-- URLs. -->
-[Prise en main de Mobile Apps]: app-service-mobile-android-get-started.md
+[prise en main les applications mobiles]: app-service-mobile-android-get-started.md

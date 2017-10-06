@@ -1,6 +1,6 @@
 ---
-title: "Déplacer des données à partir de sources OData | Microsoft Docs"
-description: "Apprenez à déplacer des données à partir de sources OData à l’aide d’Azure Data Factory."
+title: "aaaMove des données à partir de sources d’OData | Documents Microsoft"
+description: "Découvrez comment les sources de données toomove OData à l’aide d’Azure Data Factory."
 services: data-factory
 documentationcenter: 
 author: linda33wj
@@ -14,54 +14,54 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/04/2017
 ms.author: jingwang
-ms.openlocfilehash: 624b6c8f317477d83539392c6c2f15c2dc69d401
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 328efe4fd274fb3e54c1d2f209e4614c77c1ff37
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="move-data-from-a-odata-source-using-azure-data-factory"></a>Déplacer des données depuis une source OData à l’aide d’Azure Data Factory
-Cet article explique comment utiliser l’activité de copie dans Azure Data Factory pour déplacer des données à partir d’une source OData locale. Il s’appuie sur l’article [Activités de déplacement des données](data-factory-data-movement-activities.md), qui présente une vue d’ensemble du déplacement de données avec l’activité de copie.
+Cet article explique comment toouse hello activité de copie de données de toomove Azure Data Factory à partir d’une source OData. Il repose sur hello [les activités de déplacement des données](data-factory-data-movement-activities.md) article, qui présente une vue d’ensemble du déplacement des données avec l’activité de copie hello.
 
-Vous pouvez copier les données d’une source OData dans tout magasin de données récepteur pris en charge. Consultez la table [Magasins de données pris en charge](data-factory-data-movement-activities.md#supported-data-stores-and-formats) pour obtenir la liste des magasins de données pris en charge en tant que récepteurs par l’activité de copie. Actuellement, Data Factory prend uniquement en charge le déplacement de données d’une source OData vers d’autres magasins de données, mais pas l’inverse. 
+Vous pouvez copier des données à partir d’une banque de données de récepteur OData source tooany pris en charge. Pour une liste de données pris en charge des magasins récepteurs par l’activité de copie hello, consultez hello [prise en charge des magasins de données](data-factory-data-movement-activities.md#supported-data-stores-and-formats) table. Fabrique de données prend actuellement en charge uniquement le déplacement de données à partir de données OData source tooother stocke, mais pas pour déplacer des données d’autres données de magasins tooan OData source. 
 
 ## <a name="supported-versions-and-authentication-types"></a>Versions et types d’authentification pris en charge
-Ce connecteur OData prend en charge OData versions 3.0 et 4.0, et vous pouvez copier des données à partir de sources OData cloud et locales. Dans le second cas, vous devez installer la passerelle de gestion des données. Pour plus d’informations sur la passerelle de gestion de données, consultez l’article [Déplacement de données entre des sources locales et le cloud à l’aide de la passerelle de gestion des données](data-factory-move-data-between-onprem-and-cloud.md) .
+Ce connecteur OData prend en charge OData versions 3.0 et 4.0, et vous pouvez copier des données à partir de sources OData cloud et locales. Pourquoi ce dernier, vous devez tooinstall hello passerelle de gestion des données. Pour plus d’informations sur la passerelle de gestion de données, consultez l’article [Déplacement de données entre des sources locales et le cloud à l’aide de la passerelle de gestion des données](data-factory-move-data-between-onprem-and-cloud.md) .
 
 Les types d’authentification suivants sont pris en charge :
 
-* Pour accéder au flux OData **cloud**, vous pouvez utiliser l’authentification OAuth basée sur Azure Active Directory, anonyme ou de base (nom d’utilisateur et mot de passe).
-* Pour accéder au flux OData **local**, vous pouvez utiliser l’authentification anonyme, de base (nom d’utilisateur et mot de passe) ou Windows.
+* tooaccess **cloud** flux OData, vous pouvez utiliser anonyme, basic (nom d’utilisateur et mot de passe) ou Azure Active Directory en fonction d’authentification OAuth.
+* tooaccess **local** flux OData, vous pouvez utiliser anonyme, de base (nom d’utilisateur et mot de passe), ou l’authentification Windows.
 
 ## <a name="getting-started"></a>Prise en main
 Vous pouvez créer un pipeline avec une activité de copie qui déplace les données d’une source OData à l’aide de différents outils/API.
 
-Le moyen le plus simple de créer un pipeline consiste à utiliser **l’Assistant de copie**. Consultez la page [Didacticiel : Créer un pipeline avec l’activité de copie à l’aide de l’Assistant Data Factory Copy](data-factory-copy-data-wizard-tutorial.md) pour une procédure pas à pas rapide sur la création d’un pipeline à l’aide de l’Assistant Copier des données.
+toocreate de façon plus simple Hello un pipeline est toouse hello **Assistant copie de**. Consultez [didacticiel : créer un pipeline à l’aide d’Assistant copie de](data-factory-copy-data-wizard-tutorial.md) pour une procédure pas à pas rapides sur la création d’un pipeline à l’aide d’Assistant de données de copie hello.
 
-Vous pouvez également utiliser les outils suivants pour créer un pipeline : le **portail Azure**, **Visual Studio**, **Azure PowerShell**, le **modèle Azure Resource Manager**, l’**API .NET** et l’**API REST**. Consultez le [Didacticiel de l’activité de copie](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) pour obtenir des instructions détaillées sur la création d’un pipeline avec une activité de copie. 
+Vous pouvez également utiliser hello suivant outils toocreate un pipeline : **portail Azure**, **Visual Studio**, **Azure PowerShell**, **modèle Azure Resource Manager** , **API .NET**, et **API REST**. Consultez [didacticiel d’activité de copie](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) pour obtenir des instructions toocreate un pipeline avec une activité de copie. 
 
-Que vous utilisiez des outils ou des API, la création d’un pipeline qui déplace les données d’un magasin de données source vers un magasin de données récepteur implique les étapes suivantes : 
+Si vous utilisez hello ou une API, vous effectuez hello suivant les étapes toocreate un pipeline qui déplace la banque de données récepteur tooa du magasin de données à partir des données d’une source : 
 
-1. Création de **services liés** pour lier les magasins de données d’entrée et de sortie à votre fabrique de données.
-2. Création de **jeux de données** pour représenter les données d’entrée et de sortie de l’opération de copie. 
+1. Créer **services liés** fabrique de données tooyour toolink les données d’entrée et de sortie magasins.
+2. Créer **datasets** toorepresent d’entrée et sortie l’opération de copie des données pour hello. 
 3. Création d’un **pipeline** avec une activité de copie qui utilise un jeu de données en tant qu’entrée et un jeu de données en tant que sortie. 
 
-Lorsque vous utilisez l’Assistant, les définitions JSON de ces entités Data Factory (services liés, jeux de données et pipeline) sont automatiquement créées pour vous. Lorsque vous utilisez des outils/API (à l’exception de l’API .NET), vous devez définir ces entités Data Factory au format JSON.  Pour consulter un exemple contenant des définitions JSON pour les entités Data Factory utilisées pour copier des données d’une source OData, consultez la section [Exemple JSON : copier des données depuis une source OData vers Azure Blob](#json-example-copy-data-from-odata-source-to-azure-blob) de cet article. 
+Lorsque vous utilisez hello Assistant, les définitions de JSON pour ces entités de fabrique de données (services liés, des datasets et pipeline de hello) sont créées automatiquement pour vous. Lorsque vous utilisez/API des outils (à l’exception des API .NET), vous définissez ces entités de fabrique de données à l’aide du format JSON de hello.  Pour voir un exemple avec des définitions de JSON pour les entités de fabrique de données qui sont utilisées toocopy des données à partir d’une source OData, [exemple de JSON : copier des données d’OData source tooAzure Blob](#json-example-copy-data-from-odata-source-to-azure-blob) section de cet article. 
 
-Les sections suivantes contiennent des informations détaillées sur les propriétés JSON utilisées pour définir les entités Data Factory propres à la source OData :
+Hello les sections suivantes fournit des détails sur les propriétés JSON qui sont utilisés toodefine Data Factory entités spécifiques tooOData source :
 
 ## <a name="linked-service-properties"></a>Propriétés du service lié
-Le tableau suivant fournit la description des éléments JSON spécifiques au service lié OData.
+Hello tableau suivant fournit la description du service de tooOData spécifique lié éléments JSON.
 
 | Propriété | Description | Requis |
 | --- | --- | --- |
-| type |La propriété de type doit être définie sur **OData** |Oui |
-| URL |URL du service OData. |Oui |
-| authenticationType |Type d’authentification utilisé pour se connecter à la source OData. <br/><br/> Pour OData dans le cloud, les valeurs possibles sont Anonyme, De base et OAuth (notez qu’à l’heure actuelle, Azure Data Factory prend en charge uniquement l’authentification OAuth basée sur Azure Active Directory). <br/><br/> Pour OData en local, les valeurs possibles sont Anonyme, De base et Windows. |Oui |
+| type |propriété de type Hello doit indiquer : **OData** |Oui |
+| url |URL de hello service OData. |Oui |
+| authenticationType |Type d’authentification utilisé tooconnect toohello OData source. <br/><br/> Pour OData dans le cloud, les valeurs possibles sont Anonyme, De base et OAuth (notez qu’à l’heure actuelle, Azure Data Factory prend en charge uniquement l’authentification OAuth basée sur Azure Active Directory). <br/><br/> Pour OData en local, les valeurs possibles sont Anonyme, De base et Windows. |Oui |
 | username |Spécifiez le nom d’utilisateur si vous utilisez l’authentification de base. |Oui (uniquement si vous utilisez l’authentification de base) |
-| password |Spécifiez le mot de passe du compte d’utilisateur que vous avez spécifié pour le nom d’utilisateur. |Oui (uniquement si vous utilisez l’authentification de base) |
-| authorizedCredential |Si vous utilisez OAuth, cliquez sur le bouton **Autoriser** de l’Assistant de copie Data Factory ou de l’éditeur et entrez vos informations d’identification. La valeur de cette propriété sera alors générée automatiquement. |Oui (uniquement si vous utilisez l’authentification OAuth) |
-| gatewayName |Nom de la passerelle que le service Data Factory doit utiliser pour se connecter au service OData local. Indiquez uniquement si vous copiez des données à partir de la source OData locale. |Non |
+| password |Spécifiez le mot de passe de compte d’utilisateur hello que vous avez spécifié pour le nom d’utilisateur hello. |Oui (uniquement si vous utilisez l’authentification de base) |
+| authorizedCredential |Si vous utilisez OAuth, cliquez sur **Authorize** bouton de hello Assistant copie de fabrique de données ou de l’éditeur et entrez vos informations d’identification, puis de la valeur hello de cette propriété sera généré automatiquement. |Oui (uniquement si vous utilisez l’authentification OAuth) |
+| gatewayName |Nom de passerelle hello hello service Data Factory doit utiliser le service OData de tooconnect toohello local. Indiquez uniquement si vous copiez des données à partir de la source OData locale. |Non |
 
 ### <a name="using-basic-authentication"></a>Utilisation de l’authentification de base
 ```json
@@ -127,39 +127,39 @@ Le tableau suivant fournit la description des éléments JSON spécifiques au se
         {
             "url": "<endpoint of cloud OData source e.g. https://<tenant>.crm.dynamics.com/XRMServices/2011/OrganizationData.svc>",
             "authenticationType": "OAuth",
-            "authorizedCredential": "<auto generated by clicking the Authorize button on UI>"
+            "authorizedCredential": "<auto generated by clicking hello Authorize button on UI>"
         }
     }
 }
 ```
 
 ## <a name="dataset-properties"></a>Propriétés du jeu de données
-Pour obtenir une liste complète des sections et propriétés disponibles pour la définition de jeux de données, consultez l’article [Création de jeux de données](data-factory-create-datasets.md). Les sections comme la structure, la disponibilité et la stratégie d'un jeu de données JSON sont similaires pour tous les types de jeux de données (SQL Azure, Azure Blob, Azure Table, etc.).
+Pour obtenir une liste complète des sections et les propriétés disponibles pour définir des jeux de données, consultez hello [création de datasets](data-factory-create-datasets.md) l’article. Les sections comme la structure, la disponibilité et la stratégie d'un jeu de données JSON sont similaires pour tous les types de jeux de données (SQL Azure, Azure Blob, Azure Table, etc.).
 
-La section **typeProperties** est différente pour chaque type de jeu de données et fournit des informations sur l’emplacement des données dans le magasin de données. La section typeProperties du jeu de données de type **ODataResource** (qui inclut le jeu de données OData) présente les propriétés suivantes
+Hello **typeProperties** section est différente pour chaque type de jeu de données et fournit des informations sur l’emplacement de hello de données hello dans le magasin de données hello. jeu de données de type Hello typeProperties section **ODataResource** (qui comprend de jeu de données OData) a hello propriétés suivantes
 
 | Propriété | Description | Requis |
 | --- | --- | --- |
-| chemin d’accès |Chemin d'accès à la ressource OData |Non |
+| path |Chemin d’accès toohello ressource OData |Non |
 
 ## <a name="copy-activity-properties"></a>Propriétés de l’activité de copie
-Pour obtenir la liste complète des sections et des propriétés disponibles pour la définition des activités, consultez l’article [Création de pipelines](data-factory-create-pipelines.md). Les propriétés comme le nom, la description, les tables d’entrée et de sortie et la stratégie sont disponibles pour tous les types d’activités.
+Pour obtenir une liste complète des sections et les propriétés disponibles pour la définition d’activités, consultez hello [création de Pipelines](data-factory-create-pipelines.md) l’article. Les propriétés comme le nom, la description, les tables d’entrée et de sortie et la stratégie sont disponibles pour tous les types d’activités.
 
-En revanche, les propriétés disponibles dans la section typeProperties de l'activité varient pour chaque type d'activité. Pour l’activité de copie, elles dépendent des types de sources et récepteurs.
+Propriétés disponibles dans la section de typeProperties hello d’activité hello sur hello autre part varient selon chaque type d’activité. Pour l’activité de copie, ils varient selon les types de sources et récepteurs hello.
 
-Lorsque la source est de type **RelationalSource** (qui inclut OData), les propriétés suivantes sont disponibles dans la section typeProperties :
+Lorsque la source est de type **RelationalSource** (qui inclut OData) hello propriétés suivantes est disponible dans la section de typeProperties :
 
 | Propriété | Description | Exemple | Requis |
 | --- | --- | --- | --- |
-| query |Utilise la requête personnalisée pour lire des données. |"?$select=Name, Description&$top=5" |Non |
+| query |Utiliser des données tooread hello requête personnalisée. |"?$select=Name, Description&$top=5" |Non |
 
 ## <a name="type-mapping-for-odata"></a>Mappage de type pour OData
-Comme mentionné dans l’article consacré aux [activités de déplacement de données](data-factory-data-movement-activities.md) , l’activité de copie convertit automatiquement les types source en types récepteur à l’aide de l’approche en deux étapes suivante.
+Comme mentionné dans hello [les activités de déplacement des données](data-factory-data-movement-activities.md) article, l’activité de copie effectue les conversions de type automatique à partir de types de sources de toosink types avec hello suivant l’approche en deux étapes.
 
-1. Conversion de types natifs source en types .NET
-2. Conversion de types .NET en types récepteur natifs
+1. Convertir à partir de la source native types too.NET type
+2. Conversion de type de récepteur de toonative de type .NET
 
-Lors du déplacement de données à partir d’OData, les mappages suivants sont utilisés entre les types OData et le type .NET.
+Lors du déplacement de données OData, hello mappages suivants sont utilisés à partir du type de too.NET types OData.
 
 | Type de données OData | Type .NET |
 | --- | --- |
@@ -182,8 +182,8 @@ Lors du déplacement de données à partir d’OData, les mappages suivants sont
 > [!Note]
 > Les types de données complexes OData, comme Object, ne sont pas pris en charge.
 
-## <a name="json-example-copy-data-from-odata-source-to-azure-blob"></a>Exemple JSON : copie de données d’une source OData vers Azure Blob
-Cet exemple présente des exemples de définition JSON que vous pouvez utiliser pour créer un pipeline à l’aide du [portail Azure](data-factory-copy-activity-tutorial-using-azure-portal.md), de [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) ou [d’Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md). Ils indiquent comment copier des données depuis une source OData vers un système Blob Storage Microsoft Azure. Toutefois, les données peuvent être copiées vers l’un des récepteurs indiqués [ici](data-factory-data-movement-activities.md#supported-data-stores-and-formats) , via l’activité de copie d’Azure Data Factory. L’exemple contient les entités Data Factory suivantes :
+## <a name="json-example-copy-data-from-odata-source-tooazure-blob"></a>Exemple de JSON : copier des données d’OData source tooAzure Blob
+Cet exemple fournit des exemples de définitions de JSON que vous pouvez utiliser toocreate un pipeline à l’aide de [portail Azure](data-factory-copy-activity-tutorial-using-azure-portal.md) ou [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) ou [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md). Elles montrent comment la source de données de toocopy d’un OData tooan stockage d’objets Blob Azure. Toutefois, les données peuvent être copié tooany de récepteurs hello indiqué [ici](data-factory-data-movement-activities.md#supported-data-stores-and-formats) à l’aide de hello activité de copie dans Azure Data Factory. exemple Hello a hello suivant des entités de fabrique de données :
 
 1. Un service lié de type [OData](#linked-service-properties).
 2. Un service lié de type [AzureStorage](data-factory-azure-blob-connector.md#linked-service-properties).
@@ -191,9 +191,9 @@ Cet exemple présente des exemples de définition JSON que vous pouvez utiliser
 4. Un [jeu de données](data-factory-create-datasets.md) de sortie de type [AzureBlob](data-factory-azure-blob-connector.md#dataset-properties).
 5. Un [pipeline](data-factory-create-pipelines.md) avec une activité de copie qui utilise [RelationalSource](#copy-activity-properties) et [BlobSink](data-factory-azure-blob-connector.md#copy-activity-properties).
 
-L'exemple copie toutes les heures les données provenant de l’interrogation d'une source OData vers un objet blob Azure. Les propriétés JSON utilisées dans ces exemples sont décrites dans les sections suivant les exemples.
+exemple Hello copie des données à partir d’un tooan de source OData interroger des objets blob Azure toutes les heures. propriétés JSON Hello utilisées dans ces exemples sont décrits dans les sections suivantes des exemples de hello.
 
-**Service lié OData :** cet exemple utilise l’authentification anonyme. Consultez la section [Service lié OData](#linked-service-properties) pour connaître les différents types d’authentification que vous pouvez utiliser.
+**Service lié de OData :** cet exemple utilise hello l’authentification anonyme. Consultez la section [Service lié OData](#linked-service-properties) pour connaître les différents types d’authentification que vous pouvez utiliser.
 
 ```json
 {
@@ -226,7 +226,7 @@ L'exemple copie toutes les heures les données provenant de l’interrogation d'
 
 **Jeu de données d’entrée OData :**
 
-La définition de « external » : « true» informe le service Data Factory qu’il s’agit d’un jeu de données qui est externe à Data Factory et non produit par une activité dans Data Factory.
+Paramètre « external » : « true » informe service Data Factory de hello ce jeu de données hello est la fabrique de données externe toohello et n’est pas généré par une activité dans la fabrique de données hello.
 
 ```json
 {
@@ -254,11 +254,11 @@ La définition de « external » : « true» informe le service Data Factory qu
 }
 ```
 
-La spécification d’un **chemin d’accès** dans la définition du jeu de données est facultative.
+Spécification de **chemin d’accès** dans le jeu de données hello définition est facultative.
 
 **Jeu de données de sortie Azure Blob :**
 
-Les données sont écrites dans un nouvel objet blob toutes les heures (fréquence : heure, intervalle : 1). Le chemin d’accès du dossier pour l’objet blob est évalué dynamiquement en fonction de l’heure de début du segment en cours de traitement. Le chemin d'accès du dossier utilise l'année, le mois, le jour et l'heure de l'heure de début.
+Les données sont écrites tooa nouvel objet blob toutes les heures (fréquence : heure, intervalle : 1). chemin d’accès du dossier Hello pour l’objet blob de hello est évaluée dynamiquement en fonction de l’heure de début hello de tranche hello qui est en cours de traitement. chemin d’accès du dossier Hello utilise l’année, mois, jours et heures des parties de l’heure de début hello.
 
 ```json
 {
@@ -319,7 +319,7 @@ Les données sont écrites dans un nouvel objet blob toutes les heures (fréquen
 
 **Activité de copie dans un pipeline avec une source OData et un récepteur d’objets blob :**
 
-Le pipeline contient une activité de copie qui est configurée pour utiliser les jeux de données d'entrée et de sortie, et qui est planifiée pour s'exécuter toutes les heures. Dans la définition du pipeline JSON, le type **source** est défini sur **RelationalSource** et le type **sink** est défini sur **BlobSink**. La requête SQL spécifiée pour la propriété **query** sélectionne les dernières (nouvelles) données de la source OData.
+Hello pipeline contient une activité de copie qui est configuré toouse hello des jeux de données d’entrée et de sortie et est toorun planifiée toutes les heures. Dans la définition JSON du pipeline hello, hello **source** type est défini trop**RelationalSource** et **récepteur** type est défini trop**BlobSink**. la requête SQL Hello spécifiée pour hello **requête** propriété sélectionne des données de (la plus récente) dernières hello à partir de la source de hello OData.
 
 ```json
 {
@@ -367,22 +367,22 @@ Le pipeline contient une activité de copie qui est configurée pour utiliser le
 }
 ```
 
-La spécification de la **requête** dans la définition du pipeline est facultative. L’ **URL** que le service Data Factory utilise pour récupérer les données est : URL spécifiée dans le service lié (obligatoire) + chemin d'accès spécifié dans le jeu de données (facultatif) + requête dans le pipeline (facultatif).
+Spécification de **requête** dans le pipeline de hello définition est facultative. Hello **URL** que le service de fabrique de données hello utilise tooretrieve données est : URL spécifiée dans hello service lié (obligatoire) + chemin d’accès spécifié dans le jeu de données hello (facultatif) + de requête dans le pipeline hello (facultatif).
 
 
 ### <a name="type-mapping-for-odata"></a>Mappage de type pour OData
-Comme mentionné dans l’article consacré aux [activités de déplacement des données](data-factory-data-movement-activities.md) , l’activité de copie convertit automatiquement les types source en types récepteur à l’aide de l’approche en 2 étapes suivante :
+Comme mentionné dans hello [les activités de déplacement des données](data-factory-data-movement-activities.md) article, l’activité de copie effectue les conversions de type automatique à partir des types de sources de toosink types avec hello approche de l’étape 2 :
 
-1. Conversion de types natifs source en types .NET
-2. Conversion à partir du type .NET en type de récepteur natif
+1. Convertir à partir de la source native types too.NET type
+2. Conversion de type de récepteur de toonative de type .NET
 
-Lorsque que déplacez des données à partir de magasins de données OData, les types de données OData sont mappés aux types .NET.
+Lors du déplacement des données à partir de magasins de données OData, les types de données OData sont les types too.NET mappé.
 
-## <a name="map-source-to-sink-columns"></a>Mapper les colonnes source aux colonnes du récepteur
-Pour en savoir plus sur le mappage de colonnes du jeu de données source à des colonnes du jeu de données récepteur, voir [Mappage des colonnes d’un jeu de données dans Azure Data Factory](data-factory-map-columns.md).
+## <a name="map-source-toosink-columns"></a>Mapper les colonnes de source toosink
+toolearn sur le mappage des colonnes dans toocolumns du jeu de données source dans le jeu de données récepteur, consultez [mappage des colonnes de jeu de données dans Azure Data Factory](data-factory-map-columns.md).
 
 ## <a name="repeatable-read-from-relational-sources"></a>Lecture renouvelée de sources relationnelles
-Lorsque vous copiez des données à partir de magasins de données relationnels, gardez à l’esprit la répétabilité de l’opération, afin d’éviter des résultats imprévus. Dans Azure Data Factory, vous pouvez réexécuter une tranche manuellement. Vous pouvez également configurer une stratégie de nouvelles tentatives pour un jeu de données, afin qu’une tranche soit réexécutée en cas de défaillance. Lorsqu’une tranche est réexécutée d’une manière ou d’une autre, vous devez vous assurer que les mêmes données sont lues et ce, quel que soit le nombre d’exécutions de la tranche. Voir [Lecture renouvelée de sources relationnelles](data-factory-repeatable-copy.md#repeatable-read-from-relational-sources).
+Lors de la copie des données à partir de banques de données relationnelles, conserver la répétabilité dans l’esprit tooavoid des résultats inattendus. Dans Azure Data Factory, vous pouvez réexécuter une tranche manuellement. Vous pouvez également configurer une stratégie de nouvelles tentatives pour un jeu de données, afin qu’une tranche soit réexécutée en cas de défaillance. Lorsqu’une tranche est exécuté à nouveau dans les deux cas, vous devez toomake vraiment qui hello des mêmes données n’est en lecture aucune question comment plusieurs fois une tranche est exécutée. Voir [Lecture renouvelée de sources relationnelles](data-factory-repeatable-copy.md#repeatable-read-from-relational-sources).
 
 ## <a name="performance-and-tuning"></a>Performances et réglage
-Consultez l’article [Guide sur les performances et le réglage de l’activité de copie](data-factory-copy-activity-performance.md) pour en savoir plus sur les facteurs clés affectant les performances de déplacement des données (activité de copie) dans Azure Data Factory et les différentes manières de les optimiser.
+Consultez [copie activité optimiser les performances et Guide d’optimisation](data-factory-copy-activity-performance.md) toolearn sur la clé de facteurs d’affecter les performances de transfert de données (activité de copie) dans Azure Data Factory et de différentes façons toooptimize il.

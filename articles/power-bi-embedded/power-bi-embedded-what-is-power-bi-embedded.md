@@ -1,6 +1,6 @@
 ---
-title: "Pouvez-vous nous présenter le service Microsoft Power BI Embedded ?"
-description: "Power BI Embedded vous permet d’intégrer des rapports Power BI dans vos applications web ou mobiles. Vous n’avez donc pas besoin de créer des solutions personnalisées."
+title: "aaaWhat est Microsoft Power BI Embedded ?"
+description: "Power BI Embedded vous permet des rapports Power BI toointegrate dans vos applications web ou mobiles vous n’avez pas besoin de toobuild des solutions personnalisées."
 services: power-bi-embedded
 documentationcenter: 
 author: guyinacube
@@ -15,60 +15,60 @@ ms.tgt_pltfrm: NA
 ms.workload: powerbi
 ms.date: 03/20/2017
 ms.author: asaxton
-ms.openlocfilehash: 0b5f7a2c3fd16ac32b0bc382616ca6600d378bb8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0353938b6cdd9bb58b123b250f45f76b8cc7abe6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="what-is-microsoft-power-bi-embedded"></a>Pouvez-vous nous présenter le service Microsoft Power BI Embedded ?
 Avec **Power BI Embedded**, vous pouvez intégrer des rapports Power BI dans vos applications web ou mobiles.
 
 ![](media/powerbi-embedded-whats-is/what-is.png)
 
-**Power BI Embedded** est un service Azure qui permet aux éditeurs de logiciels indépendants (ISV) et aux développeurs d’applications de proposer des expériences de données Power BI au sein de leurs applications. En tant que développeur, vous avez créé des applications, et ces applications disposent de leurs propres utilisateurs et d’un ensemble distinct de fonctionnalités. Ces applications peuvent également contenir des éléments de données intégrés, tels que des graphiques et des rapports, qui peuvent désormais être fournis par Microsoft Power BI Embedded. Vous n'avez pas besoin de compte Power BI pour utiliser votre application. Vous pouvez continuer à vous connecter à votre application comme avant, et afficher et interagir avec la création de rapports de Power BI sans nécessiter de licence supplémentaire.
+Power BI Embedded est une **service Azure** qui permet des éditeurs de logiciels indépendants et les expériences d’application aux développeurs toosurface données Power BI dans leurs applications. En tant que développeur, vous avez créé des applications, et ces applications disposent de leurs propres utilisateurs et d’un ensemble distinct de fonctionnalités. Ces applications peuvent également arriver toohave certains éléments de données intégrés comme des graphiques et rapports peuvent maintenant être éteints par Microsoft Power BI Embedded. Vous n’avez pas besoin une toouse de compte Power BI votre application. Vous pouvez continuer toosign dans l’application, tooyour exactement comme avant et afficher et interagir avec hello expérience de création de rapports Power BI sans nécessiter des licences supplémentaires.
 
 ## <a name="licensing-for-microsoft-power-bi-embedded"></a>Gestion des licences pour Microsoft Power BI Embedded
-Dans le modèle d’utilisation **Microsoft Power BI Embedded** , la gestion des licences Power BI n’est pas la responsabilité de l’utilisateur final.  Au lieu de cela, les **sessions** sont achetées par le développeur de l’application qui consomme les effets visuels et ils sont facturés à l’abonnement propriétaire de ces ressources. Pour plus d’informations, consultez la page [Tarification](https://azure.microsoft.com/en-us/pricing/details/power-bi-embedded/).
+Bonjour **Microsoft Power BI Embedded** modèle d’utilisation, le Gestionnaire de licences pour Power BI n’est pas responsable de hello de l’utilisateur final hello.  Au lieu de cela, **sessions** achetés par le développeur de hello d’application hello qui consomme des éléments visuels hello et sont facturés toohello abonnement qui possède ces ressources. Vous trouverez des informations supplémentaires sur hello [page de tarification](https://azure.microsoft.com/en-us/pricing/details/power-bi-embedded/).
 
 ## <a name="microsoft-power-bi-embedded-conceptual-model"></a>Modèle conceptuel de Microsoft Power BI Embedded
 
 ![](media/powerbi-embedded-whats-is/model.png)
 
-Comme pour tout autre service dans Azure, les ressources de Power BI Embedded sont approvisionnées via les [API Azure Resource Manager](https://msdn.microsoft.com/library/mt712306.aspx). Dans ce cas, la ressource approvisionnée constitue une **collection d’espaces de travail Power BI**.
+Comme tout autre service dans Azure, les ressources pour Power BI Embedded sont approvisionnés via hello [API du Gestionnaire de ressources Azure](https://msdn.microsoft.com/library/mt712306.aspx). Dans ce cas, les ressources hello que vous préparez est un **collecte d’espace de travail Power BI**.
 
 ## <a name="workspace-collection"></a>Collection d’espaces de travail
-Une **collection d’espaces de travail** est le conteneur Azure de plus haut niveau pour les ressources contenant 0 **espaces de travail**.  Une **collection** **d’espaces de travail** dispose de toutes les propriétés Azure standard, ainsi que des éléments suivants:
+A **Collection de l’espace de travail** est hello Azure conteneur de niveau supérieur pour les ressources qui contient 0 ou plus **espaces de travail**.  A **espace de travail** **Collection** dispose de toutes les propriétés Azure de hello standard, ainsi que les suivantes de hello :
 
-* **Clés d’accès** : clés utilisées lors de l’appel sécurisé aux API de Power BI (fonction décrite dans une section ultérieure).
-* **Utilisateurs** : les utilisateurs Azure Active Directory (AAD) qui ont des droits d’administrateur pour gérer la collection d’espaces de travail Power BI via le portail Azure ou l’API Azure Resource Manager.
-* **Région** : dans le cadre de l’approvisionnement d’une **collection d’espaces de travail**, vous pouvez sélectionner une région pour l’approvisionnement. Pour plus d’informations, consultez l’article [Régions Azure](https://azure.microsoft.com/regions/).
+* **Clés d’accès** – utilisés lors de l’appel de manière sécurisée les clés hello API de Power BI (décrite dans une section ultérieure).
+* **Les utilisateurs** – les utilisateurs Azure Active Directory (AAD) qui ont toomanage de droits d’administrateur hello collecte d’espace de travail Power BI via hello portail Azure ou des API Azure Resource Manager.
+* **Région** et dans le cadre de la mise en service un **Collection de l’espace de travail**, vous pouvez sélectionner un toobe région configuré dans. Pour plus d’informations, consultez l’article [Régions Azure](https://azure.microsoft.com/regions/).
 
 ## <a name="workspace"></a>Espace de travail
-Un **espace de travail** est un conteneur de contenu Power BI, qui peut inclure des jeux de données et des rapports. Lors de sa création initiale, un **espace de travail** est vide. Vous allez créer du contenu avec Power BI Desktop et déployer par programmation le PBIX sur votre espace de travail avec les [API Power BI Import](https://msdn.microsoft.com/library/mt711504.aspx). Vous pouvez également créer votre jeu de données par programme, puis créer des rapports au sein de votre application au lieu d’utiliser Power BI Desktop.
+Un **espace de travail** est un conteneur de contenu Power BI, qui peut inclure des jeux de données et des rapports. Lors de sa création initiale, un **espace de travail** est vide. Vous allez créer du contenu à l’aide de Power BI Desktop et que vous déploierez par programme hello PBIX dans votre espace de travail à l’aide de hello [API de Power BI importation](https://msdn.microsoft.com/library/mt711504.aspx). Vous pouvez également créer votre jeu de données par programme, puis créer des rapports au sein de votre application au lieu d’utiliser Power BI Desktop.
 
 ## <a name="using-workspace-collections-and-workspaces"></a>Utiliser des collections d’espaces de travail et des espaces de travail
-Les **collections d’espaces de travail** et les **espaces de travail** sont des conteneurs de contenu qui sont utilisés et organisés de la façon la plus adaptée à la conception de l’application que vous créez. Vous pouvez en organiser le contenu de plusieurs façons. Vous pouvez choisir de placer tout le contenu dans un seul espace de travail, puis d’utiliser des jetons d’application pour subdiviser le contenu entre vos clients. Vous pouvez également choisir de placer tous vos clients dans des espaces de travail distincts afin de les séparer. Ou, vous pouvez choisir d’organiser les utilisateurs par région, et non par client. Cette conception flexible vous permet de choisir la meilleure façon d’organiser le contenu.
+**Collections de l’espace de travail** et **espaces de travail** sont des conteneurs de contenu qui sont utilisées et organisées dans conception hello d’application hello vous générez le mieux à quelle que soit la façon la plus adaptée. Il y a différentes manières que vous pourriez organiser le contenu hello. Vous pouvez choisir tooput tout contenu dans un espace de travail, et ensuite ultérieure utilisez application jetons toofurther subdiviser contenu hello dans la liste de vos clients. Vous pouvez également choisir tooput tous vos clients dans les espaces de travail distincts afin qu’il existe une séparation entre eux. Ou bien, vous pouvez choisir les utilisateurs tooorganize par région plutôt que par le client. Cette conception flexible vous permet de toochoose hello meilleure manière tooorganize contenu.
 
 ## <a name="cached-datasets"></a>Jeux de données mis en cache
-Il est possible d’utiliser des jeux de données mis en cache.  Cependant, vous ne pouvez pas actualiser les données mises en cache une fois qu’elles ont été chargées dans **Microsoft Power BI Embedded**. Un jeu de données mis en cache signifie que vous avez importé les données dans Power BI Desktop au lieu d’utiliser DirectQuery.
+Il est possible d’utiliser des jeux de données mis en cache.  Cependant, vous ne pouvez pas actualiser les données mises en cache une fois qu’elles ont été chargées dans **Microsoft Power BI Embedded**. Un dataset mis en cache signifie que vous avez importé des données de hello dans Power BI Desktop au lieu d’utiliser DirectQuery.
 
 ## <a name="authentication-and-authorization-with-app-tokens"></a>Authentification et autorisation avec des jetons d’application
-**Microsoft Power BI Embedded** s’appuie sur votre application pour l’autorisation et l’authentification requises des utilisateurs. Vos utilisateurs finaux ne doivent pas nécessairement être des clients Azure Active Directory (Azure AD).  Au lieu de cela, votre application donne à **Microsoft Power BI Embedded** l’autorisation d’afficher un rapport Power BI en utilisant des **jetons d’authentification d’application (jetons d’application)**.  Ces **jetons d’application** sont créés en fonction des besoins lorsque votre application veut afficher un rapport.
+**Microsoft Power BI Embedded** diffère tooyour application tooperform tous l’authentification utilisateur nécessaires hello et autorisation. Vos utilisateurs finaux ne doivent pas nécessairement être des clients Azure Active Directory (Azure AD).  Au lieu de cela, votre application exprime trop**Microsoft Power BI Embedded** d’autorisation toorender un rapport Power BI à l’aide de **jetons d’authentification Application (application jetons)**.  Ces **application jetons** sont créés en fonction des besoins lorsque votre application veut toorender un rapport.
 
 ![](media/powerbi-embedded-whats-is/app-tokens.png)
 
-Les **jetons d’authentification d’application (jetons d’application)** sont utilisés pour l’authentification auprès de **Microsoft Power BI Embedded**.  Il existe trois types de **jetons d’application**:
+**Les jetons d’authentification application (application jetons)** sont utilisé tooauthenticate contre **Microsoft Power BI Embedded**.  Il existe trois types de **jetons d’application**:
 
 1. Jetons d’approvisionnement : utilisés lors de l’approvisionnement d’un nouvel **espace de travail** dans une **collection d’espaces de travail**
-2. Jetons de développement : utilisés lors des appels directs aux **API REST de Power BI**
-3. Jetons d’incorporation : utilisés lors d’appels servant à afficher un rapport dans l’iframe incorporé
+2. Les jetons de développement - utilisés pour appeler directement toohello **API REST de Power BI**
+3. Incorporation des jetons - utilisés lors d’appels toorender un rapport Bonjour incorporé iframe
 
-Ces jetons sont utilisés pour les différentes phases de vos interactions avec **Microsoft Power BI Embedded**.  Les jetons sont conçus de sorte que vous pouvez déléguer des autorisations de votre application à Power BI. Pour plus d’informations, consultez [Flux de jetons d’application](power-bi-embedded-app-token-flow.md).
+Ces jetons sont utilisés pour hello différentes phases de vos interactions avec **Microsoft Power BI Embedded**.  les jetons de Hello sont conçus afin que vous pouvez déléguer des autorisations à partir de votre application de tooPower BI. Pour plus d’informations, consultez [Flux de jetons d’application](power-bi-embedded-app-token-flow.md).
 
 ## <a name="create-or-edit-reports-within-your-application"></a>Créer ou modifier des rapports dans l’application
 
-Vous pouvez maintenant modifier des rapports existants ou créer des rapports directement dans votre application sans avoir à utiliser Power BI Desktop. Cela requiert l’existence d’un jeu de données au sein de votre espace de travail.
+Vous pouvez maintenant modifier existe rapports ou créer des rapports directement dans votre application sans avoir toouse Power BI Desktop. Cela requiert l’existence d’un jeu de données au sein de votre espace de travail.
 
 ## <a name="see-also"></a>Voir aussi
 
@@ -80,4 +80,4 @@ Vous pouvez maintenant modifier des rapports existants ou créer des rapports di
 [Exemple d’incorporation JavaScript](https://microsoft.github.io/PowerBI-JavaScript/demo/)  
 [Référentiel Git PowerBI-CSharp](https://github.com/Microsoft/PowerBI-CSharp)  
 [Référentiel Git PowerBI-Node](https://github.com/Microsoft/PowerBI-Node)  
-Des questions ? [Essayer la communauté Power BI](http://community.powerbi.com/)
+Des questions ? [Essayez de hello Communauté Power BI](http://community.powerbi.com/)

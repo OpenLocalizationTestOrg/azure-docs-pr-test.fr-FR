@@ -1,6 +1,6 @@
 ---
-title: "Azure IoT device SDK pour C - IoTHubClient | Microsoft Docs"
-description: "Guide d’utilisation de la bibliothèque IoTHubClient dans Azure IoT device SDK pour C et de création d’applications d’appareil qui communiquent avec un IoT Hub."
+title: aaaAzure, appareils IoT SDK pour C - IoTHubClient | Documents Microsoft
+description: "La bibliothèque de IoTHubClient toouse hello dans le dispositif hello Azure IoT SDK des applications d’appareil toocreate C qui communiquent avec un hub IoT."
 services: iot-hub
 documentationcenter: 
 author: olivierbloch
@@ -14,70 +14,70 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 09/06/2016
 ms.author: obloch
-ms.openlocfilehash: 422d89014511f0d08ba57a893570ff7b253b7bc4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d1ece79e9ba6d1e5fd45cabb8fca393b24052e07
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-iot-device-sdk-for-c--more-about-iothubclient"></a>Kit de développement logiciel d’appareil Azure IoT pour C : en savoir plus sur IoTHubClient
-Le [premier article](iot-hub-device-sdk-c-intro.md) de cette série a présenté le **Kit de développement logiciel (SDK) d’appareil Azure IoT (Azure IoT device SDK) pour C**. Cet article explique qu’il existe deux couches architecturales dans le Kit de développement logiciel (SDK). À la base se trouve la bibliothèque **IoTHubClient** qui gère directement la communication avec IoT Hub. Il existe également la bibliothèque **sérialiseur** , qui s’ajoute à cette dernière pour fournir des services de sérialisation. Dans cet article, vous trouverez des informations supplémentaires sur la bibliothèque **IoTHubClient** .
+Hello [tout d’abord l’article](iot-hub-device-sdk-c-intro.md) cette Bonjour série introduites **appareil Azure IoT SDK pour C**. Cet article explique qu’il existe deux couches architecturales dans le Kit de développement logiciel (SDK). À la base de hello est hello **IoTHubClient** bibliothèque qui gère la communication avec IoT Hub directement. Il est également hello **sérialiseur** bibliothèque qui génère tooprovide de services de sérialisation. Dans cet article, nous fournissons des détails supplémentaires sur hello **IoTHubClient** bibliothèque.
 
-L’article précédent explique comment utiliser la bibliothèque **IoTHubClient** pour envoyer des événements à IoT Hub et recevoir des messages. Cet article approfondit le sujet en expliquant comment gérer de manière plus précise le *moment* de l’envoi ou de la réception des données, en vous présentant les **API de niveau inférieur**. Nous expliquerons également comment associer des propriétés à des événements (et les récupérer à partir de messages) en utilisant des fonctions de gestion de propriété de la bibliothèque **IoTHubClient** . Enfin, nous fournirons des explications supplémentaires sur les différentes façons de gérer les messages reçus d’IoT Hub.
+Hello précédent article décrit comment toouse hello **IoTHubClient** bibliothèque toosend événements tooIoT Hub et recevoir des messages. Cet article étend cette discussion et explique comment gérer précisément toomore *lorsque* vous envoyer et recevoir des données, elle vous initiant toohello **API de niveau inférieur**. Nous allons également expliquer comment tooattach propriétés tooevents (et les récupérer à partir de messages) à l’aide de la propriété hello la gestion des fonctionnalités de hello **IoTHubClient** bibliothèque. Enfin, nous fournissons une explication supplémentaire de différentes façons toohandle messages reçus à partir de IoT Hub.
 
-Cet article conclut en abordant des sujets divers, notamment les informations d’identification des appareils et la manière de modifier le comportement **d’IoTHubClient** par le biais des options de configuration.
+Hello article se termine en couvrant plusieurs rubriques divers, y compris les plus sur les informations d’identification de l’appareil et comment toochange hello comportement Hello **IoTHubClient** les options de configuration.
 
-Nous allons utiliser les exemples du Kit de développement logiciel (SDK) **IoTHubClient** pour illustrer ces rubriques. Si vous souhaitez assurer le suivi, consultez les applications **iothub\_client\_sample\_http** et **iothub\_client\_sample\_amqp** incluses dans le Kit de développement logiciel (SDK) d’appareil Azure IoT (Azure IoT device SDK) pour C. Les détails décrits dans les sections suivantes sont illustrés dans ces exemples.
+Nous allons utiliser hello **IoTHubClient** SDK exemples tooexplain ces rubriques. Si vous souhaitez toofollow le long, consultez hello **iothub\_client\_exemple\_http** et **iothub\_client\_exemple\_amqp** les applications qui sont incluses dans le dispositif de Azure IoT hello SDK pour C. tous les éléments décrits dans les sections suivantes de hello est illustré dans ces exemples.
 
-Vous trouverez [**Azure IoT device SDK pour C**](https://github.com/Azure/azure-iot-sdk-c) dans le référentiel GitHub. Vous pouvez consulter les détails de l’[API dans Référence de l’API C](https://azure.github.io/azure-iot-sdk-c/index.html).
+Vous pouvez trouver hello [ **appareil Azure IoT SDK pour C** ](https://github.com/Azure/azure-iot-sdk-c) GitHub référentiel et consulter les détails de hello API Bonjour [référence d’API C](https://azure.github.io/azure-iot-sdk-c/index.html).
 
-## <a name="the-lower-level-apis"></a>API de niveau inférieur
-L’article précédent traitait du fonctionnement de base **d’IotHubClient** dans le contexte de l’application **iothub\_client\_sample\_amqp**. Par exemple, il expliquait comment initialiser la bibliothèque à l’aide de ce code.
+## <a name="hello-lower-level-apis"></a>Hello API de niveau inférieur
+article précédent de Hello décrit les opérations de base hello Hello **IotHubClient** au sein du contexte hello Hello **iothub\_client\_exemple\_amqp** application. Par exemple, il explique comment tooinitialize hello bibliothèque à l’aide de ce code.
 
 ```
 IOTHUB_CLIENT_HANDLE iotHubClientHandle;
 iotHubClientHandle = IoTHubClient_CreateFromConnectionString(connectionString, AMQP_Protocol);
 ```
 
-Il décrivait également la façon d’envoyer des événements à l’aide de cet appel de fonction.
+Il décrit également comment les événements de toosend à l’aide de cette appel de fonction.
 
 ```
 IoTHubClient_SendEventAsync(iotHubClientHandle, message.messageHandle, SendConfirmationCallback, &message);
 ```
 
-Cet article expliquait également comment recevoir des messages en enregistrant une fonction de rappel.
+article de Hello décrit également comment les messages tooreceive en inscrivant une fonction de rappel.
 
 ```
 int receiveContext = 0;
 IoTHubClient_SetMessageCallback(iotHubClientHandle, ReceiveMessageCallback, &receiveContext);
 ```
 
-L’article a également montré comment libérer les ressources à l’aide du code suivant.
+article de Hello a également montré comment toofree les ressources à l’aide de code tels que les suivants hello.
 
 ```
 IoTHubClient_Destroy(iotHubClientHandle);
 ```
 
-Toutefois il existe des fonctions d’accompagnement pour chacune de ces API :
+Il existe toutefois des tooeach de fonctions d’accompagnement de ces API :
 
 * IoTHubClient\_LL\_CreateFromConnectionString
 * IoTHubClient\_LL\_SendEventAsync
 * IoTHubClient\_LL\_SetMessageCallback
 * IoTHubClient\_LL\_Destroy
 
-Ces fonctions incluent toutes « LL » dans le nom d’API. De plus, les paramètres de chacune de ces fonctions sont identiques aux éléments non-LL équivalents. Toutefois, le comportement de ces fonctions diffère sur un point important.
+Ces fonctions tous incluent « LL » dans le nom de l’API hello. Reste, paramètres hello de chacune de ces fonctions sont équivalents et de non-LL tootheir identiques. Toutefois, le comportement hello de ces fonctions est différent sur un point important.
 
-Lorsque vous appelez **IoTHubClient\_CreateFromConnectionString**, les bibliothèques sous-jacentes créent un thread qui s’exécute en arrière-plan. Ce thread envoie les événements vers IoT Hub et reçoit les messages émanant d’IoT Hub. Aucun thread de ce type n’est créé lorsque vous travaillez avec des API « LL ». La création du thread d’arrière-plan est pratique pour le développeur. Vous n’avez pas à vous soucier d’envoyer des événements et de recevoir des messages d’IoT Hub. Ces opérations s’exécutent automatiquement en arrière-plan. En revanche, l’API « LL » vous offre un contrôle explicite sur la communication avec IoT Hub, si nécessaire.
+Lorsque vous appelez **IoTHubClient\_CreateFromConnectionString**, les bibliothèques sous-jacentes hello créent un nouveau thread qui s’exécute en arrière-plan de hello. Ce thread envoie les événements vers IoT Hub et reçoit les messages émanant d’IoT Hub. Aucun thread n’est créé lorsque vous travaillez avec hello « LL » API. la création du thread d’arrière-plan hello Hello est développeur toohello plus de commodité. Vous n’avez pas tooworry sur l’envoi d’événements et la réception de messages à partir de IoT Hub--il se produit automatiquement en arrière-plan de hello explicitement. En revanche, hello « LL » API vous donner un contrôle explicite sur la communication avec IoT Hub, si vous en avez besoin.
 
-Pour mieux comprendre, examinons un exemple :
+toounderstand cette favorable, examinons un exemple :
 
-Lorsque vous appelez **IoTHubClient\_SendEventAsync**, vous mettez en fait un événement en mémoire tampon. Le thread d’arrière-plan créé lorsque vous appelez **IoTHubClient\_CreateFromConnectionString** surveille en continu ce tampon et envoie toutes les données qu’il contient à IoT Hub. Cela se produit en arrière-plan, pendant que le thread principal exécute une autre tâche.
+Lorsque vous appelez **IoTHubClient\_SendEventAsync**, ce que vous faites réellement pour placer des événements de hello dans une mémoire tampon. Hello thread d’arrière-plan créé quand vous appelez **IoTHubClient\_CreateFromConnectionString** continuellement surveille cette mémoire tampon et envoie des données qu’il contient tooIoT Hub. Dans ce cas en arrière-plan hello en hello en même temps que hello thread principal exécute un autre travail.
 
-De même, quand vous enregistrez une fonction de rappel pour les messages à l’aide **d’IoTHubClient\_SetMessageCallback**, vous indiquez au Kit de développement logiciel (SDK) que le thread d’arrière-plan doit appeler la fonction de rappel quand un message est reçu, indépendamment du thread principal.
+De même, lorsque vous enregistrez une fonction de rappel pour les messages à l’aide de **IoTHubClient\_SetMessageCallback**, vous êtes demandant d’arrière-plan de hello SDK toohave hello thread appeler la fonction de rappel hello lorsqu’un message reçu, indépendamment du thread principal de hello.
 
-Les API « LL » ne créent pas un thread d’arrière-plan. Au lieu de cela, une nouvelle API doit être appelée explicitement pour envoyer et recevoir des données de la part d’IoT Hub. Cette opération est illustrée dans l’exemple suivant.
+Hello « LL » API ne créez pas un thread d’arrière-plan. Au lieu de cela, une nouvelle API doit être appelée tooexplicitly envoyer et recevoir des données à partir de IoT Hub. Cela est illustré dans hello l’exemple suivant.
 
-L’application **iothub\_client\_sample\_http** incluse dans le Kit de développement logiciel (SDK) présente les API de niveau inférieur. Dans cet exemple, nous envoyons des événements à IoT Hub avec un code similaire à celui qui suit :
+Hello **iothub\_client\_exemple\_http** application qui est incluse dans hello SDK montre hello API de niveau inférieur. Dans cet exemple, nous envoyer des événements tooIoT concentrateur avec le code suivant de hello :
 
 ```
 EVENT_INSTANCE message;
@@ -87,7 +87,7 @@ message.messageHandle = IoTHubMessage_CreateFromByteArray((const unsigned char*)
 IoTHubClient_LL_SendEventAsync(iotHubClientHandle, message.messageHandle, SendConfirmationCallback, &message)
 ```
 
-Les trois premières lignes créent le message et la dernière ligne envoie l’événement. Cependant, comme indiqué précédemment l’« envoi » de l’événement indique simplement que les données sont placées dans une mémoire tampon. Lorsque nous appelons **IoTHubClient\_LL\_SendEventAsync**, rien n’est transmis sur le réseau. Pour entrer réellement les données sur IoT Hub, vous devez appeler **IoTHubClient\_LL\_DoWork**, comme dans cet exemple :
+message de type hello créent Hello trois premières lignes et dernière ligne de hello envoie les événements hello. Toutefois, comme mentionné précédemment, « envoi » les événements hello signifie que les données de salutation sont simplement placées dans une mémoire tampon. Rien n’est transmis sur le réseau de hello lorsque nous appelons **IoTHubClient\_LL\_SendEventAsync**. Dans l’ordre tooactually entrée hello données tooIoT Hub, vous devez appeler **IoTHubClient\_LL\_DoWork**, comme dans cet exemple :
 
 ```
 while (1)
@@ -97,13 +97,13 @@ while (1)
 }
 ```
 
-Ce code (tiré de l’application **iothub\_client\_sample\_http**) appelle à plusieurs reprises **IoTHubClient\_LL\_DoWork**. Chaque fois que la fonction **IoTHubClient\_LL\_DoWork** est appelée, elle envoie des événements de la mémoire tampon vers IoT Hub et récupère ensuite un message en file d’attente envoyé à l’appareil. Dans ce dernier cas, si nous avons inscrit une fonction de rappel pour les messages, le rappel est invoqué (en supposant que des messages sont en file d’attente). Cette fonction de rappel a été enregistrée avec le code qui suit :
+Ce code (à partir de hello **iothub\_client\_exemple\_http** application) appelle à plusieurs reprises **IoTHubClient\_LL\_DoWork** . Chaque fois que **IoTHubClient\_LL\_DoWork** est appelé, il envoie certains événements de tooIoT de mémoire tampon hello Hub et il récupère un message en file d’attente envoyé toohello appareil. ce dernier cas de Hello signifie que si nous inscrit une fonction de rappel pour les messages, puis hello de rappel est appelée (en supposant que tous les messages sont la file d’attente). Nous serait inscrit une telle fonction de rappel avec le code suivant de hello :
 
 ```
 IoTHubClient_LL_SetMessageCallback(iotHubClientHandle, ReceiveMessageCallback, &receiveContext)
 ```
 
-La raison pour laquelle la fonction **IoTHubClient\_LL\_DoWork** est souvent appelée dans une boucle est qu’à chaque appel, elle envoie *certains* événements mis en mémoire tampon à IoT Hub et récupère le message en file d’attente *suivant* destiné à l’appareil. Chaque appel ne garantit pas que tous les événements en mémoire tampon sont envoyés ou que tous les messages en file d’attente sont récupérés. Si vous souhaitez envoyer tous les événements en mémoire tampon, puis continuer avec un autre traitement, vous pouvez remplacer cette boucle par un code similaire à celui qui suit :
+Hello raison pour laquelle **IoTHubClient\_LL\_DoWork** est souvent appelée dans une boucle est que chaque fois qu’elle est appelée, elle envoie *certains* mis en mémoire tampon des événements tooIoT Hub et récupère *hello ensuite* message de la file d’attente pour le périphérique de hello. Chaque appel n’est pas garanti que les toosend toutes les mises en mémoire tamponné les événements ou en file d’attente tooretrieve tous les messages. Si vous souhaitez toosend tous les événements de hello de la mémoire tampon et poursuivez avec un autre traitement, vous pouvez remplacer cette boucle avec le code suivant de hello :
 
 ```
 IOTHUB_CLIENT_STATUS status;
@@ -115,29 +115,29 @@ while ((IoTHubClient_LL_GetSendStatus(iotHubClientHandle, &status) == IOTHUB_CLI
 }
 ```
 
-Ce code appelle **IoTHubClient\_LL\_DoWork** jusqu’à ce que tous les événements placés en mémoire tampon aient été envoyés à IoT Hub. Notez que cela ne signifie pas non plus que tous les messages en file d’attente ont été reçus. Cela est en partie dû au fait que le contrôle de « tous » les messages n’est pas une action déterminante. Que se passe-t-il si vous récupérez « tous » les messages, mais qu’un autre est envoyé à l’appareil immédiatement après ? Une bonne façon de traiter cette possibilité consiste à programmer un délai d’attente. Par exemple, la fonction de rappel de message peut réinitialiser une minuterie à chaque fois qu’elle est appelée. Vous pouvez ensuite rédiger un programme permettant de poursuivre le traitement si, par exemple, aucun message n’a été reçu au cours des *X* dernières secondes.
+Ce code appelle **IoTHubClient\_LL\_DoWork** jusqu'à ce que tous les événements dans la mémoire tampon de hello ont été envoyés tooIoT Hub. Notez que cela ne signifie pas non plus que tous les messages en file d’attente ont été reçus. Partie de raison hello est que la vérification des messages « tous » n’est pas déterministe comme une action. Que se passe-t-il si vous récupérez « all » de messages hello, mais ensuite un autre est envoyé toohello appareil immédiatement après ? Une meilleure toodeal de façon avec qui est un délai d’attente programmée. Par exemple, fonction de rappel de message hello pourrait réinitialiser un minuteur chaque fois qu’elle est appelée. Vous pouvez ensuite écrire le traitement de logique toocontinue si, par exemple, aucun message n’ont été reçus dans hello dernière *X* secondes.
 
-Lorsque vous avez terminé de réceptionner les événements et les messages, assurez-vous d’appeler la fonction correspondante pour nettoyer les ressources.
+Lorsque vous les événements de la pénétration de molécules terminé et recevoir des messages, être toocall vraiment hello correspondant fonction tooclean des ressources.
 
 ```
 IoTHubClient_LL_Destroy(iotHubClientHandle);
 ```
 
-En fait, il existe un seul ensemble d’API pour envoyer et recevoir des données avec un thread d’arrière-plan et un autre ensemble d’API qui fait la même chose sans thread d’arrière-plan. Un grand nombre de développeurs préfèrent les API non LL, mais les API de niveau inférieur sont utiles lorsque le développeur souhaite obtenir un contrôle explicite sur les transmissions réseau. Par exemple, certains appareils recueillent des données au fil du temps et n’enregistrent que les événements à des intervalles spécifiés (par exemple, une fois par heure ou une fois par jour). Les API de niveau inférieur vous donnent la possibilité de contrôler explicitement l’envoi et la réception depuis IoT Hub. D’autres préfèrent la simplicité qu’offrent les API de niveau inférieur. Tout se produit sur le thread principal plutôt que sur les travaux qui s’exécutent en arrière-plan.
+En fait, il n'est qu’un ensemble d’API toosend et recevoir des données avec un thread d’arrière-plan et un autre ensemble d’API qui hello même chose sans thread d’arrière-plan hello. De nombreux développeurs préfèrent hello non - LL API, mais hello API de niveau inférieur est utiles lorsque le développeur de hello veut contrôle explicite sur les transmissions réseau. Par exemple, certains appareils recueillent des données au fil du temps et n’enregistrent que les événements à des intervalles spécifiés (par exemple, une fois par heure ou une fois par jour). Bonjour donnez aux API de niveau inférieur vous hello contrôle tooexplicitly de capacité lorsque vous envoyez et recevez des données à partir de IoT Hub. D’autres préfèreront à plus de simplicité hello simplement que hello que fournit des API de niveau inférieur. Tout se produit sur le thread principal de hello plutôt que certains se produise de travail en arrière-plan de hello.
 
-Quel que soit le modèle que vous choisissez, assurez-vous d’être cohérent avec les API que vous utilisez. Si vous commencez par appeler **IoTHubClient\_LL\_CreateFromConnectionString**, veillez à utiliser uniquement les API de niveau inférieur correspondantes pour les travaux ultérieurs :
+Le modèle que vous choisissez, être vraiment toobe cohérente dans lesquelles API que vous utilisez. Si vous démarrez en appelant **IoTHubClient\_LL\_CreateFromConnectionString**, veillez à utiliser uniquement hello correspondant API de niveau inférieur pour tout travail de suivi :
 
 * IoTHubClient\_LL\_SendEventAsync
 * IoTHubClient\_LL\_SetMessageCallback
 * IoTHubClient\_LL\_Destroy
 * IoTHubClient\_LL\_DoWork
 
-L’inverse est également vrai. Si vous démarrez avec **IoTHubClient\_CreateFromConnectionString**, utilisez les API non LL pour tout traitement supplémentaire.
+Hello inverse est vrai également. Si vous démarrez avec **IoTHubClient\_CreateFromConnectionString**, puis utilisez hello non - LL interfaces API pour un traitement supplémentaire.
 
-Dans le Kit de développement logiciel (SDK) d’appareil Azure IoT (Azure IoT device SDK) pour C, consultez l’application **iothub\_client\_sample\_http** pour obtenir un exemple complet des API de niveau inférieur. L’application **iothub\_client\_sample\_amqp** peut être référencée pour un exemple complet des API non LL.
+Dans l’appareil Azure IoT hello SDK pour C, consultez hello **iothub\_client\_exemple\_http** inférieur de niveau application pour obtenir un exemple complet de hello API. Hello **iothub\_client\_exemple\_amqp** application peut être référencée pour obtenir un exemple complet de hello non - LL API.
 
 ## <a name="property-handling"></a>Gestion des propriétés
-Jusqu’à présent, lorsque nous avons décrit l’envoi de données, nous avons fait référence au corps du message. Considérez par exemple le code suivant :
+Jusqu'à présent lorsque nous avons décrit l’envoi de données, nous avons été référence toohello des corps de message de type hello. Considérez par exemple le code suivant :
 
 ```
 EVENT_INSTANCE message;
@@ -146,7 +146,7 @@ message.messageHandle = IoTHubMessage_CreateFromByteArray((const unsigned char*)
 IoTHubClient_LL_SendEventAsync(iotHubClientHandle, message.messageHandle, SendConfirmationCallback, &message)
 ```
 
-Cet exemple envoie un message à IoT Hub avec le texte « Hello World ». Cependant, IoT Hub permet également de joindre des propriétés à chaque message. Les propriétés sont des paires nom/valeur pouvant être jointes au message. Par exemple, nous pouvons modifier le code précédent pour attacher une propriété au message :
+Cet exemple envoie un message de tooIoT concentrateur avec le texte hello « Hello World ». Toutefois, IoT Hub permet également de message de propriétés toobe tooeach attaché. Les propriétés sont des paires nom/valeur qui peuvent être attaché toohello message. Par exemple, nous pouvons modifier hello précédent code tooattach une propriété de message toohello :
 
 ```
 MAP_HANDLE propMap = IoTHubMessage_Properties(message.messageHandle);
@@ -154,18 +154,18 @@ sprintf_s(propText, sizeof(propText), "%d", i);
 Map_AddOrUpdate(propMap, "SequenceNumber", propText);
 ```
 
-Nous allons commencer en appelant **IoTHubMessage\_Properties** et en lui transmettant le pointeur de notre message. Nous obtenons une référence **MAP\_HANDLE** qui nous permet de commencer à ajouter des propriétés. Cette opération s’effectue en appelant **Map\_AddOrUpdate** qui accepte une référence MAP\_HANDLE, le nom de propriété et la valeur de propriété. Avec cette API, nous pouvons ajouter autant de propriétés que nous le souhaitons.
+Nous allons commencer par appeler **IoTHubMessage\_propriétés** et en lui passant hello handle de notre message. Ce que nous obtenons est un **carte\_gérer** référence qui nous permet de toostart Ajout de propriétés. Hello ce dernier s’effectue en appelant **carte\_AddOrUpdate**, qui accepte une référence de tooa carte\_HANDLE, nom de la propriété hello et valeur de la propriété hello. Avec cette API, nous pouvons ajouter autant de propriétés que nous le souhaitons.
 
-Lorsque l’événement est lu à partir **d’Event Hubs**, le récepteur peut énumérer les propriétés et récupérer les valeurs correspondantes. Par exemple, dans .NET, cette opération s’effectue grâce à un accès à la [collection de propriétés sur l’objet EventData](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.eventdata.properties.aspx).
+Lorsque les événements hello sont lu à partir de **concentrateurs d’événements**, récepteur de hello peut énumérer les propriétés hello et récupérer leurs valeurs correspondantes. Par exemple, dans .NET cela interviendrait en accédant à hello [collection de propriétés de l’objet de EventData hello](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.eventdata.properties.aspx).
 
-Dans l’exemple précédent, nous allons rattacher des propriétés à un événement que nous envoyons à IoT Hub. Les propriétés peuvent également être jointes à des messages provenant d’IoT Hub. Si vous souhaitez récupérer les propriétés d’un message, nous pouvons utiliser un code du type qui suit dans notre fonction de rappel de message :
+Dans l’exemple précédent de hello, nous allons attacher des événements de tooan de propriétés que nous envoyer tooIoT Hub. Propriétés peuvent également être attachés toomessages provenant du IoT Hub. Si nous voulons tooretrieve des propriétés d’un message, nous pouvons utiliser le code tel que hello suivant dans votre fonction de rappel de message :
 
 ```
 static IOTHUBMESSAGE_DISPOSITION_RESULT ReceiveMessageCallback(IOTHUB_MESSAGE_HANDLE message, void* userContextCallback)
 {
     . . .
 
-    // Retrieve properties from the message
+    // Retrieve properties from hello message
     MAP_HANDLE mapProperties = IoTHubMessage_Properties(message);
     if (mapProperties != NULL)
     {
@@ -190,12 +190,12 @@ static IOTHUBMESSAGE_DISPOSITION_RESULT ReceiveMessageCallback(IOTHUB_MESSAGE_HA
 }
 ```
 
-L’appel à **IoTHubMessage\_Properties** renvoie la référence **MAP\_HANDLE**. Cette référence est ensuite transmise à **Map\_GetInternals** pour obtenir une référence à un tableau de paires nom/valeur (ainsi que le nombre des propriétés). À ce stade, il est très simple d’énumérer les propriétés pour obtenir les valeurs souhaitées.
+Hello appel trop**IoTHubMessage\_propriétés** renvoie hello **carte\_gérer** référence. Nous avons ensuite passer cette référence trop**carte\_GetInternals** tooobtain un tableau de tooan de référence de nom/valeur de hello paires (ainsi que le nombre de propriétés de hello). À ce stade, il est très simple de l’énumération hello propriétés tooget toohello valeurs.
 
-Vous n’êtes pas obligé d’utiliser des propriétés dans votre application. Mais si vous devez les définir sur les événements ou les récupérer à partir de messages, la bibliothèque **IoTHubClient** facilite cette opération.
+Vous n’avez toouse propriétés dans votre application. Toutefois, si vous avez besoin de tooset à des événements ou en extraire les messages, hello **IoTHubClient** bibliothèque facilite la tâche.
 
 ## <a name="message-handling"></a>Gestion des messages
-Comme expliqué précédemment, lorsque les messages arrivent d’IoT Hub, la bibliothèque **IoTHubClient** répond en appelant une fonction de rappel enregistrée. Un des paramètres de retour de cette fonction mérite cependant quelques explications supplémentaires. Voici un extrait de la fonction de rappel de l’exemple d’application **iothub\_client\_sample\_http** :
+Comme indiqué précédemment, lorsque les messages arrivent de hello de IoT Hub **IoTHubClient** bibliothèque répond en appelant une fonction de rappel enregistré. Un des paramètres de retour de cette fonction mérite cependant quelques explications supplémentaires. Voici un extrait de la fonction de rappel hello Bonjour **iothub\_client\_exemple\_http** exemple d’application :
 
 ```
 static IOTHUBMESSAGE_DISPOSITION_RESULT ReceiveMessageCallback(IOTHUB_MESSAGE_HANDLE message, void* userContextCallback)
@@ -205,35 +205,35 @@ static IOTHUBMESSAGE_DISPOSITION_RESULT ReceiveMessageCallback(IOTHUB_MESSAGE_HA
 }
 ```
 
-Notez que le type de retour est **IOTHUBMESSAGE\_DISPOSITION\_RESULT** et, dans ce cas particulier, c’est le message **IOTHUBMESSAGE\_ACCEPTED** qui est renvoyé. Il existe d’autres valeurs que nous pouvons renvoyer à partir de cette fonction afin de modifier la réaction de la bibliothèque **IoTHubClient** au rappel de message. Les options proposées sont les suivantes.
+Notez que le type de retour hello est **IOTHUBMESSAGE\_DISPOSITION\_résultat** et dans ce cas particulier, nous renvoyons **IOTHUBMESSAGE\_accepté**. Il existe d’autres valeurs que nous pouvons retourner à partir de cette fonction que modification hello comment **IoTHubClient** bibliothèque réagit toohello rappel du message. Voici les options hello.
 
-* **IOTHUBMESSAGE\_ACCEPTED** : le message a été traité avec succès. La bibliothèque **IoTHubClient** ne rappellera pas la fonction de rappel avec le même message.
-* **IOTHUBMESSAGE\_REJECTED** : le message n’a pas été traité, et ne devrait pas l’être à l’avenir. La bibliothèque **IoTHubClient** n’appellera pas la fonction de rappel avec le même message.
-* **IOTHUBMESSAGE\_ABANDONED** : le message n’a pas été traité correctement, mais la bibliothèque **IoTHubClient** doit de nouveau invoquer la fonction de rappel, en utilisant le même message.
+* **IOTHUBMESSAGE\_accepté** – message de salutation a été correctement traité. Hello **IoTHubClient** bibliothèque n’appelle pas la fonction de rappel hello avec hello même message.
+* **IOTHUBMESSAGE\_rejeté** : message d’appel n’a pas été traité et existe dans aucun toodo désir ne hello futures. Hello **IoTHubClient** bibliothèque ne doit pas appeler de fonction de rappel hello avec hello même message.
+* **IOTHUBMESSAGE\_abandonné** : message d’appel n’a pas été traité avec succès, mais hello **IoTHubClient** bibliothèque doit appeler la fonction de rappel hello avec hello même message.
 
-Pour les deux premiers codes de retour, la bibliothèque **IoTHubClient** envoie à IoT Hub un message indiquant que le message doit être supprimé de la file d’attente de l’appareil et non remis à nouveau. La conséquence est identique (le message est supprimé de la file d’attente de l’appareil), mais le fait que le message ait été accepté ou rejeté reste dans les enregistrements.  L’enregistrement de cette différence est utile aux expéditeurs du message qui peuvent écouter le retour et découvrir si un appareil a accepté ou rejeté un message particulier.
+Pourquoi tout d’abord deux codes de retour, hello **IoTHubClient** bibliothèque envoie un tooIoT message Hub indiquant ce message de type hello doit être supprimé de la file d’attente de hello et n’a pas remis à nouveau. effet net de Hello est hello même (message de type hello est supprimé à partir de la file d’attente de hello), mais si le message de salutation a été accepté ou rejeté est toujours enregistré.  L’enregistrement de cette distinction est utile toosenders de message de type hello qui peut écouter des commentaires et déterminer si un périphérique a accepté ou rejeté un message particulier.
 
-Dans ce dernier cas, un message est également envoyé à IoT Hub, mais il indique que le message doit être à nouveau remis. En général, si vous rencontrez une erreur mais que vous souhaitez essayer de traiter de nouveau le message, vous devez abandonner le message. En revanche, le rejet d’un message se justifie lorsque vous rencontrez une erreur irrécupérable (ou si vous décidez simplement que vous ne voulez pas traiter le message).
+Dans le dernier cas de hello, un message est envoyé également tooIoT concentrateur, mais indique que message de type hello doit être de nouveau remis. En général, vous devez abandonner un message si vous rencontrez une erreur mais tootry tooprocess hello message à nouveau. En revanche, la rejeter un message est appropriée lorsque vous rencontrez une erreur irrécupérable (ou si vous décidez simplement vous ne souhaitez pas que message de type hello tooprocess).
 
-Dans tous les cas, vous devez connaître les différents codes de retour de façon à choisir le comportement que vous souhaitez obtenir de la bibliothèque **IoTHubClient** .
+Dans tous les cas, tenez compte des codes de retour différents hello afin que vous pouvez provoquer le comportement de hello que vous souhaitez à partir de hello **IoTHubClient** bibliothèque.
 
 ## <a name="alternate-device-credentials"></a>Autres informations d’identification d’appareil
-Comme nous l’avons expliqué plus haut, la première chose à faire lorsqu’on travaille avec la bibliothèque **IoTHubClient** consiste à obtenir une référence **IOTHUB\_CLIENT\_HANDLE** avec un appel tel que le suivant :
+Comme expliqué précédemment, hello première toodo lorsque vous travaillez avec hello **IoTHubClient** bibliothèque est tooobtain un **IOTHUB\_CLIENT\_gérer** avec un appel de hello suivant :
 
 ```
 IOTHUB_CLIENT_HANDLE iotHubClientHandle;
 iotHubClientHandle = IoTHubClient_CreateFromConnectionString(connectionString, AMQP_Protocol);
 ```
 
-Les arguments de **IoTHubClient\_CreateFromConnectionString** correspondent à la chaîne de connexion de l’appareil et un paramètre indique le protocole que nous allons utiliser pour communiquer avec IoT Hub. Le format de la chaîne de connexion de l’appareil se présente comme suit :
+Hello arguments trop**IoTHubClient\_CreateFromConnectionString** sont une chaîne de connexion de périphérique hello et un paramètre qui indique le protocole hello nous utilisons toocommunicate avec IoT Hub. chaîne de connexion de périphérique Hello a un format qui s’affiche comme suit :
 
 ```
 HostName=IOTHUBNAME.IOTHUBSUFFIX;DeviceId=DEVICEID;SharedAccessKey=SHAREDACCESSKEY
 ```
 
-Il existe ici quatre éléments d’information : le nom IoT Hub, le suffixe IoT Hub, l’ID d’appareil et la clé d’accès partagé. Vous obtenez le nom de domaine complet (FQDN) d’un IoT Hub lorsque vous créez une instance d’IoT Hub dans le portail Azure. Vous obtenez ainsi le nom d’IoT Hub (la première partie du nom de domaine complet) et le suffixe d’IoT Hub (le reste du nom de domaine complet). L’ID d’appareil et la clé d’accès partagé vous sont fournis lorsque vous inscrivez votre appareil avec IoT Hub (comme le décrit [l’article précédent](iot-hub-device-sdk-c-intro.md)).
+Il existe ici quatre éléments d’information : le nom IoT Hub, le suffixe IoT Hub, l’ID d’appareil et la clé d’accès partagé. Vous obtenez le nom de domaine complet (FQDN) hello d’un hub IoT lorsque vous créez votre instance de hub IoT Bonjour portail Azure, cela vous donne nom de hub IoT hello (hello première partie du nom de domaine complet de hello) et le suffixe de hub IoT hello (hello rest nom de domaine complet de Hello). Vous obtenez les ID de périphérique hello et clé d’accès partagé hello lorsque vous inscrivez votre appareil avec IoT Hub (comme décrit dans hello [article précédent](iot-hub-device-sdk-c-intro.md)).
 
-**IoTHubClient\_CreateFromConnectionString** vous propose une façon d’initialiser la bibliothèque. Vous pouvez également créer un élément **IOTHUB\_CLIENT\_HANDLE** à l’aide de ces paramètres individuels plutôt que de la chaîne de connexion de l’appareil. Vous pouvez y parvenir avec le code suivant :
+**IoTHubClient\_CreateFromConnectionString** vous donne la bibliothèque de hello tooinitialize unidirectionnel. Si vous préférez, vous pouvez créer un nouveau **IOTHUB\_CLIENT\_gérer** à l’aide de ces paramètres individuels plutôt que de chaîne de connexion de périphérique hello. Cela est possible avec hello suivant de code :
 
 ```
 IOTHUB_CLIENT_CONFIG iotHubClientConfig;
@@ -245,12 +245,12 @@ iotHubClientConfig.protocol = HTTP_Protocol;
 IOTHUB_CLIENT_HANDLE iotHubClientHandle = IoTHubClient_LL_Create(&iotHubClientConfig);
 ```
 
-Il effectue la même opération que **IoTHubClient\_CreateFromConnectionString**.
+Ceci fait hello même chose que **IoTHubClient\_CreateFromConnectionString**.
 
-Il semble évident que vous préférerez utiliser **IoTHubClient\_CreateFromConnectionString** plutôt que la méthode d’initialisation plus détaillée. Cependant, gardez à l’esprit que lorsque vous enregistrez un appareil dans IoT Hub, vous obtenez un ID d’appareil et une clé d’appareil (pas une chaîne de connexion). L’outil du Kit de développement logiciel (SDK) *Explorateur d’appareils* présenté dans [l’article précédent](iot-hub-device-sdk-c-intro.md) utilise des bibliothèques du **Kit de développement logiciel (SDK) de service Azure IoT** pour créer la chaîne de connexion à l’appareil à partir de l’ID d’appareil, de la clé d’appareil et du nom d’hôte IoT Hub. Ainsi, il peut être préférable d’appeler **IoTHubClient\_LL\_Create**, car cela vous évite de générer une chaîne de connexion. Utilisez la méthode adéquate.
+Cela peut paraître évident que vous souhaitiez toouse **IoTHubClient\_CreateFromConnectionString** au lieu de cette méthode plus détaillée de l’initialisation. Cependant, gardez à l’esprit que lorsque vous enregistrez un appareil dans IoT Hub, vous obtenez un ID d’appareil et une clé d’appareil (pas une chaîne de connexion). Hello *Explorateur de périphérique* outil du Kit de développement logiciel introduite dans hello [article précédent](iot-hub-device-sdk-c-intro.md) utilise les bibliothèques Bonjour **Azure IoT service SDK** toocreate hello appareil chaîne de connexion ID de périphérique Hello, la clé de périphérique et le nom d’hôte de IoT Hub. Ainsi, l’appel **IoTHubClient\_LL\_créer** peut être préférable, car elle permet d’étape hello de la génération d’une chaîne de connexion. Utilisez la méthode adéquate.
 
 ## <a name="configuration-options"></a>Options de configuration
-Jusqu’ici, tout ce qui est décrit dans la façon dont la bibliothèque **IoTHubClient** fonctionne reflète son comportement par défaut. Cependant, vous pouvez définir quelques options que vous pouvez définir pour modifier le fonctionnement de la bibliothèque. Vous pouvez procéder en exploitant l’API **IoTHubClient\_LL\_SetOption**. Examinez cet exemple :
+Jusqu'à présent tous les éléments décrits sur hello de façon hello **IoTHubClient** bibliothèque works reflète son comportement par défaut. Toutefois, il existe quelques options que vous pouvez définir toochange fonctionne de la bibliothèque de hello. Cela est effectué en tirant parti de hello **IoTHubClient\_LL\_SetOption** API. Examinez cet exemple :
 
 ```
 unsigned int timeout = 30000;
@@ -259,17 +259,17 @@ IoTHubClient_LL_SetOption(iotHubClientHandle, "timeout", &timeout);
 
 Quelques options sont couramment utilisées :
 
-* **SetBatching** (bool) : si cette option a la valeur **true**, les données transmises à IoT Hub sont envoyées par lots. Si elle a la valeur **false**, les messages sont envoyés individuellement. La valeur par défaut est **false**. Notez que l’option **SetBatching** s’applique uniquement au protocole HTTP et non aux protocoles MQTT et AMQP.
-* **Timeout** (unsigned int) : cette valeur est exprimée en millisecondes. Si l’envoi d’une demande HTTP ou la réception d’une réponse prend davantage de temps, la connexion expire.
+* **SetBatching** (bool) – si **true**, alors les données envoyées tooIoT Hub est envoyé par lots. Si elle a la valeur **false**, les messages sont envoyés individuellement. valeur par défaut Hello est **false**. Notez que hello **SetBatching** option s’applique uniquement au protocole de toohello HTTP pas aux protocoles de toohello MQTT ou AMQP.
+* **Timeout** (unsigned int) : cette valeur est exprimée en millisecondes. Si vous envoyez une demande HTTP ou recevoir une réponse dure plus longtemps que cette fois, puis hello connexion expire.
 
-L’option de traitement par lot est importante. Par défaut, la bibliothèque intègre des événements individuellement (un événement unique correspond à ce que vous transmettez à **IoTHubClient\_LL\_SendEventAsync**). Mais si l’option de traitement par lot est définie sur **true**, la bibliothèque collecte autant d’événements que possible (jusqu’à atteindre la taille de message maximale acceptée par IoT Hub).  Le lot d’événements est envoyé à IoT hub par le biais d’un seul appel HTTP (les événements individuels sont regroupés dans un tableau JSON). L’activation de l’option de traitement par lot permet d’obtenir des gains de performance, car vous réduisez le nombre d’allers-retours sur le réseau. Elle réduit également considérablement la bande passante, car vous envoyez un seul ensemble d’en-têtes HTTP avec un lot d’événements plutôt qu’un ensemble d’en-têtes pour chaque événement individuel. À moins d’avoir une raison particulière de faire autrement, vous devrez activer le traitement par lot.
+option de traitement par lot de Hello est important. Par défaut, hello les événements d’une bibliothèque ingresses individuellement (un seul événement est tout ce que vous passez trop**IoTHubClient\_LL\_SendEventAsync**). Si l’option de traitement par lot de hello est **true**, bibliothèque de hello collecte les événements autant que possible à partir du tampon hello (haut toohello taille maximale du message qui accepte les IoT Hub).  Hello lot d’événements est envoyé tooIoT concentrateur dans un seul appel HTTP (les événements individuels de hello sont regroupés dans un tableau JSON). L’activation de l’option de traitement par lot permet d’obtenir des gains de performance, car vous réduisez le nombre d’allers-retours sur le réseau. Elle réduit également considérablement la bande passante, car vous envoyez un seul ensemble d’en-têtes HTTP avec un lot d’événements plutôt qu’un ensemble d’en-têtes pour chaque événement individuel. En général, sauf si vous avez une raison spécifique de toodo dans le cas contraire, vous pouvez répondre tooenable de traitement par lot.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Cet article décrit en détail le comportement de la bibliothèque **IoTHubClient** se trouvant dans le **Kit de développement logiciel (SDK) d’appareil Azure IoT (Azure IoT device SDK) pour C**. Ces informations doivent vous permettre de bien comprendre les fonctionnalités de la bibliothèque **IoTHubClient**. Le [prochain article](iot-hub-device-sdk-c-serializer.md) fournit des détails similaires sur la bibliothèque **sérialiseur** .
+Cet article décrit un comportement hello détail de hello **IoTHubClient** bibliothèque trouvé dans hello **appareil Azure IoT SDK pour C**. Avec cette information, doit avoir une bonne compréhension des fonctionnalités de hello Hello **IoTHubClient** bibliothèque. Hello [l’article suivant](iot-hub-device-sdk-c-serializer.md) fournit des détails similaires sur hello **sérialiseur** bibliothèque.
 
-Pour en savoir plus sur le développement pour IoT Hub, consultez les [SDK Azure IoT][lnk-sdks].
+toolearn plus sur le développement pour IoT Hub, consultez hello [kits de développement logiciel Azure IoT][lnk-sdks].
 
-Pour explorer davantage les capacités de IoT Hub, consultez :
+toofurther Explorez les fonctionnalités de hello d’IoT Hub, consultez :
 
 * [Simulation d’un appareil avec Azure IoT Edge][lnk-iotedge]
 

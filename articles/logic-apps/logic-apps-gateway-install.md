@@ -1,6 +1,6 @@
 ---
-title: "Installation d’une passerelle de données locale - Azure Logic Apps | Microsoft Docs"
-description: "Avant d’accéder à des sources de données locales, installez la passerelle de données locale pour accélérer le transfert et le chiffrement de données entre les sources de données locales et les applications logiques."
+title: "passerelle de données locale aaaInstall - Azure Logic Apps | Documents Microsoft"
+description: "Accéder aux sources de données sur site, installer la passerelle de données locale hello pour le transfert de données rapide et le chiffrement entre les sources de données sur site et les applications de la logique"
 keywords: "accéder aux données, localement, transfert de données, chiffrement, sources de données"
 services: logic-apps
 documentationcenter: 
@@ -15,17 +15,17 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 07/13/2017
 ms.author: LADocs; dimazaid; estfan
-ms.openlocfilehash: 34e68ae7d35019848b35c785a2715ec458dc6e73
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 01386a904d856ff545f2eca8eb1b008dcdc08574
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="install-the-on-premises-data-gateway-for-azure-logic-apps"></a>Installer la passerelle de données locale pour Azure Logic Apps
+# <a name="install-hello-on-premises-data-gateway-for-azure-logic-apps"></a>Installer la passerelle de données locale hello pour Azure Logic Apps
 
-Pour que vos applications logiques puissent accéder à des sources de données locales, vous devez installer et configurer la passerelle de données locale. La passerelle agit comme un pont permettant un transfert et un chiffrement de données rapides entre les systèmes locaux et vos applications logiques. La passerelle relaie les données des sources locales sur des canaux chiffrés via Azure Service Bus. Tout le trafic est initialisé en tant que trafic sortant de l’agent de passerelle sécurisé. Pour en savoir plus, voir [Fonctionnement de la passerelle de données](#gateway-cloud-service).
+Avant que vos applications logiques peuvent accéder à des sources de données sur site, vous devez installer et configurer la passerelle de données locale hello. Hello passerelle fait Office de pont qui fournit le transfert de données rapide et le chiffrement entre systèmes sur site et vos applications logiques. passerelle de Hello transmet des données à partir de sources locales sur des canaux chiffrés via hello Azure Service Bus. Tout le trafic provient sécurisé trafic sortant à partir de l’agent de passerelle hello. En savoir plus sur [le fonctionnement de la passerelle de données hello](#gateway-cloud-service).
 
-La passerelle prend en charge les connexions aux sources de données locales suivantes :
+passerelle de Hello prend en charge les sources de données de connexions toothese sur site :
 
 *   BizTalk Server 2016
 *   DB2  
@@ -41,9 +41,9 @@ La passerelle prend en charge les connexions aux sources de données locales sui
 *   SQL Server
 *   Teradata
 
-Ces étapes montrent comment installer la passerelle de données locale avant de [configurer une connexion entre la passerelle et vos applications logiques](./logic-apps-gateway-connection.md). Pour plus d’informations sur les connecteurs pris en charge, voir [Connecteurs pour Azure Logic Apps](https://docs.microsoft.com/azure/connectors/apis-list). 
+Ces étapes indiquent comment toofirst installation hello local passerelle de données avant de vous [configurer une connexion entre la passerelle de hello et vos applications logiques](./logic-apps-gateway-connection.md). Pour plus d’informations sur les connecteurs pris en charge, voir [Connecteurs pour Azure Logic Apps](https://docs.microsoft.com/azure/connectors/apis-list). 
 
-Pour plus d’informations sur l’utilisation de la passerelle avec d’autres services, consultez les articles suivants :
+Pour plus d’informations sur la façon dont toouse hello passerelle avec d’autres services, consultez les articles suivants :
 
 *   [Passerelle de données locale Microsoft Power BI](https://powerbi.microsoft.com/documentation/powerbi-gateway-onprem/)
 *   [Passerelle de données locale Azure Analysis Services](../analysis-services/analysis-services-gateway.md)
@@ -66,118 +66,118 @@ Pour plus d’informations sur l’utilisation de la passerelle avec d’autres 
 
 **Points importants à prendre en considération** :
 
-* Installez la passerelle de données locale sur un seul ordinateur local.
-Vous ne pouvez pas installer la passerelle sur un contrôleur de domaine.
+* Installez la passerelle de données locale hello uniquement sur un ordinateur local.
+Vous ne pouvez pas installer la passerelle de hello sur un contrôleur de domaine.
 
    > [!TIP]
-   > Vous ne devez pas nécessairement installer la passerelle sur le même ordinateur que votre source de données. Pour réduire la latence, vous pouvez installer la passerelle le plus près possible de votre source de données, ou sur le même ordinateur, en supposant que vous disposiez des autorisations nécessaires.
+   > Vous n’avez pas passerelle de hello tooinstall sur hello même ordinateur que votre source de données. latence de toominimize, vous pouvez installer passerelle hello aussi proche en tant que source de données tooyour possibles, ou sur hello même ordinateur, en supposant que vous disposez des autorisations.
 
-* N’installez pas la passerelle sur un ordinateur qui s’éteint, passe en mode veille ou ne se connecte pas à Internet, car la passerelle ne peut pas s’exécuter dans de telles circonstances. De même, les performances de la passerelle peuvent être moindres sur un réseau sans fil.
+* N’installez pas les passerelle hello sur un ordinateur qui désactive, passe toosleep ou ne connecte pas toohello Internet, car la passerelle de hello ne peut pas s’exécuter dans ces circonstances. De même, les performances de la passerelle peuvent être moindres sur un réseau sans fil.
 
 * Pendant l’installation, vous devez vous connecter avec un [compte professionnel ou scolaire](https://docs.microsoft.com/azure/active-directory/sign-up-organization) géré par Azure Active Directory (Azure AD), et non un compte Microsoft. 
 
-  Vous devez utiliser le même compte professionnel ou scolaire par la suite dans le portail Azure lorsque vous créez et associez une ressource de passerelle à votre installation de passerelle. Vous sélectionnerez ensuite cette ressource de passerelle lors de la création de la connexion entre votre application logique et la source de données locale. [Pourquoi dois-je utiliser un compte professionnel ou scolaire Azure AD ?](#why-azure-work-school-account)
+  Vous avez toouse hello même travail ou d’établissement scolaire compte plus tard en hello Azure portal lorsque vous créez et associez une ressource de passerelle à votre installation de la passerelle. Puis, vous sélectionnez cette ressource passerelle lorsque vous créez la connexion de hello entre votre source de données de local application et hello logique. [Pourquoi dois-je utiliser un compte professionnel ou scolaire Azure AD ?](#why-azure-work-school-account)
 
   > [!TIP]
   > Si vous avez souscrit une offre Office 365 sans fournir votre adresse de messagerie professionnelle réelle, votre adresse de connexion peut ressembler à ceci : jeff@contoso.onmicrosoft.com. 
 
-* Si vous disposez d’une passerelle existante que vous configurez avec un programme d’installation antérieur à la version 14.16.6317.4, vous ne pouvez pas modifier l’emplacement de votre passerelle en exécutant le programme d’installation le plus récent. Toutefois, vous pouvez utiliser le programme d’installation le plus récent pour configurer une nouvelle passerelle avec l’emplacement que vous souhaitez à la place.
+* Si vous disposez d’une passerelle existante que vous configurez avec un programme d’installation est antérieure à la version 14.16.6317.4, vous ne pouvez pas modifier l’emplacement de votre passerelle par installer de dernière hello en cours d’exécution. Toutefois, vous pouvez utiliser hello dernière tooset de programme d’installation d’une nouvelle passerelle avec emplacement hello souhaitées à la place.
   
-  Si vous avez un programme d’installation de passerelle antérieur à la version 14.16.6317.4, mais n’avez pas encore installé votre passerelle, vous pouvez télécharger et utiliser le programme d’installation le plus récent.
+  Si vous disposez d’un programme d’installation de passerelle est antérieure à la version 14.16.6317.4, mais vous n’avez pas installé votre passerelle encore, vous pouvez télécharger et utiliser le programme d’installation de la dernière hello.
 
 <a name="install-gateway"></a>
 
-## <a name="install-the-data-gateway"></a>Installer la passerelle de données
+## <a name="install-hello-data-gateway"></a>Installer la passerelle de données hello
 
-1.  [Téléchargez et exécutez le programme d’installation de passerelle sur un ordinateur local](http://go.microsoft.com/fwlink/?LinkID=820931&clcid=0x409).
+1.  [Téléchargez et exécutez le programme d’installation de la passerelle hello sur un ordinateur local](http://go.microsoft.com/fwlink/?LinkID=820931&clcid=0x409).
 
-2. Lisez et acceptez les conditions d’utilisation et la déclaration de confidentialité.
+2. Lisez et acceptez les termes du contrat de hello d’utilisation et déclaration de confidentialité.
 
-3. Spécifiez le chemin d’accès sur votre ordinateur local où vous souhaitez installer la passerelle.
+3. Spécifier le chemin d’accès hello sur votre ordinateur local où vous souhaitez la passerelle de hello tooinstall.
 
 4. Lorsque vous y êtes invité, connectez-vous à votre compte Azure professionnel ou scolaire, pas à un compte Microsoft.
 
    ![Connexion avec le compte professionnel ou scolaire Azure](./media/logic-apps-gateway-install/sign-in-gateway-install.png)
 
-5. Inscrivez maintenant la passerelle installée auprès du [service cloud de passerelle](#gateway-cloud-service). Choisissez **Inscrivez une nouvelle passerelle sur cet ordinateur**.
+5. Maintenant inscrire votre passerelle installée avec hello [service cloud de passerelle](#gateway-cloud-service). Choisissez **Inscrivez une nouvelle passerelle sur cet ordinateur**.
 
-   Le service cloud de passerelle chiffre et stocke les informations d’identification de votre source de données et les détails de la passerelle. 
-   Le service achemine également les requêtes et leurs résultats entre votre application logique, la passerelle de données locale et votre source de données locale.
+   service de cloud de passerelle Hello chiffre et stocke vos informations d’identification de source de données et les détails de la passerelle. 
+   service de Hello achemine les requêtes et leurs résultats entre votre application logique, la passerelle de données locale hello et votre source de données sur site.
 
 6. Entrez un nom pour votre installation de passerelle. Créez une clé de récupération, puis confirmez votre clé de récupération. 
 
    > [!IMPORTANT] 
-   > Votre clé de récupération doit contenir au moins huit caractères. Veillez à enregistrer et à conserver la clé en lieu sûr. Vous avez également besoin de cette clé pour migrer, restaurer ou contrôler une passerelle existante.
+   > Votre clé de récupération doit contenir au moins huit caractères. Assurez-vous que vous enregistrez et clé de hello de conserver en lieu sûr. Vous avez besoin de cette clé lorsque vous souhaitez toomigrate, restaurer ou reprendre une passerelle existante.
 
-   1. Pour modifier la région par défaut pour le service cloud de passerelle et l’Azure Service Bus utilisé par votre installation de passerelle, choisissez **Changer la région**.
+   1. Cliquez sur la région par défaut pour le service de cloud de passerelle hello et utilisés par votre installation de la passerelle, Azure Service Bus toochange hello **modification région**.
 
       ![Modification de la région](./media/logic-apps-gateway-install/change-region-gateway-install.png)
 
-      La région par défaut est la région associée à votre client Azure AD.
+      région de Hello par défaut est région hello associée à votre client Azure AD.
 
-   2. Dans le volet suivant, cliquez sur la liste déroulante **Sélectionnez une région** pour choisir une autre région.
+   2. Dans le volet suivant de hello, ouvrez hello **sélectionner une région** trop choisir une autre région.
 
       ![Sélection d’une autre région](./media/logic-apps-gateway-install/select-region-gateway-install.png)
 
-      Par exemple, vous pouvez sélectionner la même région que celle de votre application logique, ou sélectionner la région la plus proche de votre source de données locale afin de réduire la latence. Votre ressource de passerelle et votre application logique se trouvent dans des emplacements différents.
+      Par exemple, vous peut sélectionner hello même région que votre application logique, ou sélectionnez hello région le plus proche tooyour des données locales source afin de réduire la latence. Votre ressource de passerelle et votre application logique se trouvent dans des emplacements différents.
 
       > [!IMPORTANT]
-      > Vous ne pouvez pas modifier cette région après l’installation. Cette région détermine et restreint également l’emplacement où vous pouvez créer la ressource Azure pour votre passerelle. Par conséquent, lorsque vous créez votre ressource de passerelle dans Azure, assurez-vous que l’emplacement de la ressource correspond à la région que vous avez sélectionnée lors de l’installation de la passerelle.
+      > Vous ne pouvez pas modifier cette région après l’installation. Cette zone détermine également et restreint l’emplacement hello où vous pouvez créer des ressources Azure de hello pour votre passerelle. Par conséquent, lorsque vous créez votre ressource de passerelle dans Azure, assurez-vous qu’emplacement de la ressource hello correspond à la région de hello que vous avez sélectionné lors de l’installation de la passerelle.
       > 
-      > Si vous souhaitez utiliser une autre région pour votre passerelle ultérieurement, vous devrez configurer une nouvelle passerelle.
+      > Si vous souhaitez toouse une autre région pour votre passerelle ultérieurement, vous devez configurer une passerelle.
 
    3. Une fois ces opérations effectuées, sélectionnez **Terminé**.
 
-7. Suivez à présent ces étapes dans le portail Azure pour [créer une ressource Azure pour votre passerelle](../logic-apps/logic-apps-gateway-connection.md). 
+7. Maintenant, suivez ces étapes dans hello portail Azure afin de pouvoir [créer une ressource Azure pour votre passerelle](../logic-apps/logic-apps-gateway-connection.md). 
 
-Pour en savoir plus, voir [Fonctionnement de la passerelle de données](#gateway-cloud-service).
+En savoir plus sur [le fonctionnement de la passerelle de données hello](#gateway-cloud-service).
 
 ## <a name="migrate-restore-or-take-over-an-existing-gateway"></a>Migrer, restaurer ou contrôler une passerelle existante
 
-Pour effectuer ces tâches, vous devez disposer de la clé de récupération spécifiée lors de l’installation de la passerelle.
+tooperform ces tâches, vous devez disposer de clé de récupération hello qui a été spécifié lors de la passerelle de hello a été installée.
 
 1. Dans le menu Démarrer de votre ordinateur, choisissez **Passerelle de données locale**.
 
-2. Une fois le programme d’installation ouvert, connectez-vous avec le compte professionnel ou scolaire utilisé précédemment pour installer la passerelle.
+2. Une fois que hello s’ouvre le programme d’installation et connectez-vous avec hello même Azure fonctionne ou compte scolaire qui était précédemment utilisé la passerelle de hello tooinstall.
 
 3. Choisissez **Migrer, restaurer ou contrôler une passerelle existante**.
 
-4. Fournissez le nom et la clé de récupération de la passerelle que vous souhaitez migrer, restaurer ou contrôler.
+4. Fournir la clé de nom et de récupération hello pour la passerelle hello que vous souhaitez toomigrate, restaurez ou remplacez par.
 
 <a name="restart-gateway"></a>
-## <a name="restart-the-gateway"></a>Redémarrez la passerelle
+## <a name="restart-hello-gateway"></a>Redémarrez la passerelle de hello
 
-La passerelle s’exécute en tant que service Windows. Comme tout autre service Windows, vous pouvez démarrer et arrêter ce service de plusieurs façons. Par exemple, vous pouvez ouvrir une invite de commandes avec des autorisations élevées sur l’ordinateur sur lequel la passerelle s’exécute, puis exécuter l’une des commandes suivantes :
+passerelle de Hello s’exécute comme un service Windows. Comme tout autre service Windows, vous pouvez démarrer et arrêter le service hello de plusieurs façons. Par exemple, vous pouvez ouvrir une invite de commandes avec des autorisations élevées sur ordinateur hello où passerelle de hello est en cours d’exécution et exécuter ces deux commandes :
 
-* Pour arrêter le service, exécutez cette commande :
+* service de hello toostop, exécutez la commande suivante :
   
     `net stop PBIEgwService`
 
-* Pour démarrer le service, exécutez cette commande :
+* service de hello toostart, exécutez la commande suivante :
   
     `net start PBIEgwService`
 
 ### <a name="windows-service-account"></a>Compte de service Windows
 
-La passerelle de données locale est configurée pour utiliser `NT SERVICE\PBIEgwService` pour les informations d’identification de connexion au service Windows. Par défaut, la passerelle dispose du droit « Ouvrir une session en tant que service » sur l’ordinateur sur lequel vous installez la passerelle.
+passerelle de données locale Hello est configurée toouse `NT SERVICE\PBIEgwService` pour hello Windows service informations d’identification d’ouverture de session. Par défaut, passerelle de hello a le droit de « Une session en tant que service » hello pour l’ordinateur de hello sur lequel vous installez la passerelle de hello.
 
 > [!NOTE]
-> Le compte de service Windows diffère du compte utilisé pour la connexion à des sources de données locales, et du compte professionnel ou scolaire Azure utilisé pour se connecter aux services cloud.
+> Hello compte de service Windows diffère compte hello utilisés pour la connexion des sources de données tooon local et de hello travail Azure ou compte scolaire utilisé toosign dans les services toocloud.
 
 ## <a name="configure-a-firewall-or-proxy"></a>Configuration d’un pare-feu ou d’un proxy
 
-La passerelle crée une connexion sortante vers [Azure Service Bus](https://azure.microsoft.com/services/service-bus/). Pour spécifier les informations proxy pour votre passerelle, consultez [Configurer les paramètres proxy](https://powerbi.microsoft.com/documentation/powerbi-gateway-proxy/).
+passerelle de Hello crée une connexion sortante trop [Azure Service Bus](https://azure.microsoft.com/services/service-bus/). tooprovide les informations de proxy pour votre passerelle, consultez [configurer les paramètres de proxy](https://powerbi.microsoft.com/documentation/powerbi-gateway-proxy/).
 
-Pour vérifier si votre pare-feu ou proxy risque de bloquer des connexions, vérifiez que votre ordinateur peut réellement se connecter à Internet et à [Azure Service Bus](https://azure.microsoft.com/services/service-bus/). À partir d’une invite PowerShell, exécutez la commande suivante :
+toocheck si votre pare-feu ou proxy, peut bloquer les connexions, vérifiez si votre ordinateur peut connecter réellement toohello internet et hello [Azure Service Bus](https://azure.microsoft.com/services/service-bus/). À partir d’une invite PowerShell, exécutez la commande suivante :
 
 `Test-NetConnection -ComputerName watchdog.servicebus.windows.net -Port 9350`
 
 > [!NOTE]
-> Cette commande teste uniquement la connectivité réseau et la connectivité à Azure Service Bus. Par conséquent, la commande n’a rien à voir avec la passerelle ou le service cloud de passerelle qui chiffre et stocke vos informations d’identification et les détails de la passerelle. 
+> Cette commande teste uniquement la connectivité réseau et connectivité toohello Azure Service Bus. Afin de la commande hello ne concerne pas toodo avec la passerelle de hello ou un service de cloud de passerelle hello qui chiffre et stocke vos informations d’identification et les détails de la passerelle. 
 >
-> Par ailleurs, cette commande est disponible uniquement sur Windows Server 2012 R2 ou version ultérieure, et sur Windows 8.1 ou version ultérieure. Dans les versions de système d’exploitation antérieures, vous pouvez utiliser Telnet pour tester la connectivité. Pour en savoir plus, voir [Solutions Azure Service Bus et hybrides](../service-bus-messaging/service-bus-fundamentals-hybrid-solutions.md).
+> Par ailleurs, cette commande est disponible uniquement sur Windows Server 2012 R2 ou version ultérieure, et sur Windows 8.1 ou version ultérieure. Dans les versions antérieures du système d’exploitation, vous pouvez utiliser Telnet trop tester la connectivité. Pour en savoir plus, voir [Solutions Azure Service Bus et hybrides](../service-bus-messaging/service-bus-fundamentals-hybrid-solutions.md).
 
-Les résultats devraient être similaires à cet exemple :
+Vos résultats doivent être similaires toothis exemple :
 
 ```text
 ComputerName           : watchdog.servicebus.windows.net
@@ -190,13 +190,13 @@ PingReplyDetails (RTT) : 0 ms
 TcpTestSucceeded       : True
 ```
 
-Si **TcpTestSucceeded** n’est pas défini sur **true**, il se peut que vous soyez bloqué par un pare-feu. Pour être exhaustif, remplacez les valeurs **ComputerName** et **Port** par celles répertoriées dans la section [Configurer les ports](#configure-ports) de cette rubrique.
+Si **TcpTestSucceeded** n’est pas défini trop**True**, vous pouvez être bloqué par un pare-feu. Si vous souhaitez toobe complète, substituer hello **Nom_Ordinateur** et **Port** valeurs avec les valeurs hello répertoriés sous [configurer des ports](#configure-ports) dans cette rubrique.
 
-Le pare-feu peut également bloquer des connexions qu’Azure Service Bus tente d’établir avec des centres de données Microsoft Azure. Si ce scénario se produit, approuvez (débloquez) toutes les adresses IP de ces centres de données dans votre région. Pour ces adresses IP, vous pouvez [obtenir la liste des adresses IP Azure ici](https://www.microsoft.com/download/details.aspx?id=41653).
+les pare-feu Hello peuvent également bloquer les connexions que hello Qu'azure Service Bus rend toohello centres de données Azure. Si ce scénario se produit, approuver (débloquer) toutes hello des adresses IP pour les centres de données dans votre région. Pour les adresses IP, [get hello Azure liste d’adresses IP ici](https://www.microsoft.com/download/details.aspx?id=41653).
 
 ## <a name="configure-ports"></a>Configuration des ports
 
-La passerelle crée une connexion sortante vers [Azure Service Bus](https://azure.microsoft.com/services/service-bus/) et communique sur les ports de sortie suivants : TCP 443 (par défaut), 5671, 5672 et 9350 à 9354. La passerelle ne nécessite pas de ports entrants. Pour en savoir plus, voir [Solutions Azure Service Bus et hybrides](../service-bus-messaging/service-bus-fundamentals-hybrid-solutions.md).
+passerelle de Hello crée une connexion sortante trop[Azure Service Bus](https://azure.microsoft.com/services/service-bus/) et communique sur des ports sortants : TCP 443 (valeur par défaut), 5671, 5672, 9350 à 9354. passerelle de Hello ne requiert pas les ports entrants. Pour en savoir plus, voir [Solutions Azure Service Bus et hybrides](../service-bus-messaging/service-bus-fundamentals-hybrid-solutions.md).
 
 | NOMS DE DOMAINE | PORTS SORTANTS | DESCRIPTION |
 | --- | --- | --- |
@@ -207,108 +207,108 @@ La passerelle crée une connexion sortante vers [Azure Service Bus](https://azur
 | *.frontend.clouddatahub.net | 443 | HTTPS | 
 | *.core.windows.net | 443 | HTTPS | 
 | login.microsoftonline.com | 443 | HTTPS | 
-| *.msftncsi.com | 443 | Permet de tester la connectivité Internet lorsque la passerelle est inaccessible par le service Power BI. | 
+| *.msftncsi.com | 443 | Utilisé une connectivité internet tootest lors de la passerelle de hello est inaccessible par hello service Power BI. | 
 
-Si vous devez mettre sur liste approuvée des adresses IP au lieu des domaines, vous pouvez télécharger et utiliser la [liste des plages d’adresses IP du centre de données Microsoft Azure](https://www.microsoft.com/download/details.aspx?id=41653). Dans certains cas, les connexions Azure Service Bus s’effectuent avec l’adresse IP plutôt qu’avec le nom de domaine complet.
+Si vous avez des adresses IP tooapprove plutôt que des domaines de hello, vous pouvez télécharger et utiliser hello [liste les plages IP de centre de données Microsoft Azure](https://www.microsoft.com/download/details.aspx?id=41653). Dans certains cas, les connexions Azure Service Bus hello sont effectuées avec l’adresse IP plutôt que des noms de domaine qualifié complet.
 
 <a name="gateway-cloud-service"></a>
-## <a name="how-does-the-data-gateway-work"></a>Fonctionnement de la passerelle de données
+## <a name="how-does-hello-data-gateway-work"></a>Comment fonctionne la passerelle de données hello ?
 
-La passerelle de données assure une communication rapide et sécurisée entre votre application logique, le service cloud de passerelle et votre source de données locale. 
+passerelle de données Hello facilite la communication rapide et sécurisée entre votre application logique, service de cloud de passerelle hello et votre source de données locale. 
 
 ![diagramme de flux de passerelle de données locale](./media/logic-apps-gateway-install/how-on-premises-data-gateway-works-flow-diagram.png)
 
-Ainsi, quand l’utilisateur dans le cloud interagit avec un élément connecté à votre source de données locale :
+Par conséquent, lorsque les utilisateur hello dans le cloud de hello interagit avec un élément qui s’est connecté tooyour local source de données :
 
-1. Le service cloud de passerelle crée une requête, ainsi que les informations d’identification chiffrées pour la source de données, puis envoie la requête vers la file d’attente afin que la passerelle la traite.
+1. service de cloud de passerelle Hello crée une requête avec informations d’identification hello chiffré de source de données hello et envoie la file d’attente de toohello de requêtes hello pour hello passerelle tooprocess.
 
-2. Le service cloud de passerelle analyse la requête et envoie les demandes à Azure Service Bus.
+2. service de cloud de passerelle Hello analyse hello requête et exécute un push de hello demande toohello Azure Service Bus.
 
-3. La passerelle de données locale interroge Azure Service Bus pour connaître les requêtes en attente.
+3. passerelle de données locale Hello interroge hello Azure Service Bus pour les demandes en attente.
 
-4. La passerelle reçoit la requête, déchiffre les informations d’identification et se connecte à la source de données avec ces informations d’identification.
+4. passerelle de Hello obtient hello requête, déchiffre les informations d’identification hello et connecte la source de données toohello avec ces informations d’identification.
 
-5. La passerelle envoie la requête à la source de données pour exécution.
+5. passerelle de Hello envoie hello toohello récupérer les données pour l’exécution.
 
-6. Les résultats sont renvoyés de la source de données vers la passerelle, puis au service cloud de passerelle. Le service cloud de passerelle utilise ensuite les résultats.
+6. résultats de Hello sont envoyés à partir de la source de données hello, arrière toohello passerelle, puis toohello service de cloud de passerelle. Hello service cloud de passerelle utilise ensuite les résultats hello.
 
 <a name="faq"></a>
 ## <a name="frequently-asked-questions"></a>Forum Aux Questions
 
 ### <a name="general"></a>Généralités
 
-**Q**: Ai-je besoin d’une passerelle pour des sources de données dans le cloud telles que SQL Azure ? <br/>
-**R** : Non. Une passerelle se connecte uniquement aux sources de données locales.
+**Q**: ai-je besoin d’une passerelle pour les sources de données dans le cloud hello, telles que SQL Azure ? <br/>
+**R** : Non. Une passerelle connecte à des sources de données tooon local uniquement.
 
-**Q** : La passerelle doit-elle être installée sur le même ordinateur que la source de données ? <br/>
-**R** : Non. La passerelle se connecte à la source de données en utilisant les informations de connexion fournies. En ce sens, considérez la passerelle comme une application cliente. La passerelle doit juste être en mesure de se connecter au nom du serveur qui a été fourni.
+**Q**: passerelle de hello a-t-elle toobe installé sur hello même ordinateur en tant que source de données hello ? <br/>
+**R** : Non. passerelle de Hello connecte toohello source de données à l’aide des informations de connexion hello qui a été fournies. Envisagez de passerelle de hello comme une application cliente en ce sens. passerelle de Hello doit simplement hello capacité tooconnect toohello nom du serveur qui a été fourni.
 
 <a name="why-azure-work-school-account"></a>
 
-**Q** : Pourquoi dois-je utiliser un compte professionnel ou scolaire Azure pour me connecter ? <br/>
-**R** : lorsque vous installez la passerelle de données locale, vous pouvez uniquement utiliser un compte professionnel ou scolaire Azure. Votre compte de connexion est stocké dans un client géré par Azure Active Directory (Azure AD). En règle générale, le nom d’utilisateur principal (UPN) de votre compte Azure AD correspond à l’adresse de messagerie.
+**Q**: Pourquoi dois-je utiliser un travail Azure ou établissement scolaire toosign compte dans ? <br/>
+**Un**: vous pouvez uniquement utiliser un travail Azure ou scolaire compte lorsque vous installez la passerelle de données locale hello. Votre compte de connexion est stocké dans un client géré par Azure Active Directory (Azure AD). En règle générale, le nom de principal d’utilisateur (UPN) de votre compte Azure AD correspond à adresse de messagerie hello.
 
 **Q** : où mes informations d’identification sont-elles stockées ? <br/>
-**R** : Les informations d’identification que vous entrez pour une source de données sont chiffrées et stockées dans le service cloud de passerelle. Les informations d’identification sont déchiffrées au niveau de la passerelle de données locale.
+**A**: informations d’identification hello que vous entrez pour une source de données sont chiffrées et stockées dans le service de cloud de passerelle hello. informations d’identification Hello sont déchiffrées au niveau de la passerelle de données locale hello.
 
 **Q** : Existe-t-il des exigences concernant la bande passante réseau ? <br/>
-**R** : Nous vous recommandons d’utiliser une connexion réseau offrant un bon débit. Chaque environnement est différent et la quantité de données envoyées affecte les résultats. ExpressRoute peut vous aider à garantir un niveau de débit approprié entre les centres de données locaux et les centres de données Azure.
-Vous pouvez utiliser l’application tierce Azure Speed Test pour mesurer votre débit.
+**R** : Nous vous recommandons d’utiliser une connexion réseau offrant un bon débit. Chaque environnement est différent, et quantité hello des données envoyées affecte les résultats hello. À l’aide d’ExpressRoute peut aider à tooguarantee un niveau de débit entre hello centres de données Azure et locaux.
+Vous pouvez utiliser hello un outil tiers Azure Speed Test application toohelp jauge votre débit.
 
-**Q** : Quelle est la latence d’exécution des requêtes adressées à une source de données à partir de la passerelle ? Quelle est la meilleure architecture ? <br/>
-**R** : Pour réduire la latence du réseau, installez la passerelle le plus près possible de la source de données. Si vous pouvez installer la passerelle sur la source de données réelle, cette proximité réduit le temps de latence. Songez également aux centres de données. Par exemple, si votre service utilise le centre de données États-Unis de l’Ouest et que SQL Server est hébergé sur une machine virtuelle Azure, votre machine virtuelle Azure doit également se situer dans les États-Unis de l’Ouest. Cette proximité réduit la latence et évite des frais d’acheminement sur la machine virtuelle Azure.
+**Q**: quelle est la latence hello pour la source de données en cours d’exécution des requêtes tooa à partir de la passerelle de hello ? Quelle est la meilleure architecture de hello ? <br/>
+**A**: tooreduce latence du réseau, passerelle de hello installer en tant que source de données toohello fermer que possible. Si vous pouvez installer la passerelle de hello sur la source de données réelle hello, cette proximité réduit la latence de hello introduite. Envisagez de centres de données hello trop. Par exemple, si votre service utilise hello ouest des États-Unis centre de données, et que SQL Server est hébergé dans une machine virtuelle Azure, votre machine virtuelle Azure doit être trop Bonjour ouest des États-Unis. Cette proximité réduit la latence et évite les frais de sortie sur hello machine virtuelle Azure.
 
-**Q** : Comment les résultats sont-ils renvoyés vers le cloud ? <br/>
-**R** : Les résultats sont envoyés via Azure Service Bus.
+**Q**: comment sont envoyées toohello arrière cloud ? <br/>
+**A**: les résultats sont envoyés via hello Azure Service Bus.
 
-**Q** : existe-t-il des connexions entrantes vers la passerelle à partir du cloud ? <br/>
-**R** : Non. La passerelle utilise des connexions sortantes vers Azure Service Bus.
+**Q**: existe-t-il toute passerelle toohello de connexions entrantes à partir du cloud de hello ? <br/>
+**R** : Non. passerelle de Hello utilise des connexions sortantes tooAzure Service Bus.
 
-**Q** : Que se passe-t-il si je bloque les connexions sortantes ? Que dois-je ouvrir ? <br/>
-**R** : Vérifiez les ports et les hôtes que la passerelle utilise.
+**Q** : Que se passe-t-il si je bloque les connexions sortantes ? Comment dois-je tooopen ? <br/>
+**A**: consultez les ports hello et les hôtes qui hello passerelle utilise.
 
-**Q** : Comment s’appelle le service Windows réel ?<br/>
-**R** : Dans Services, la passerelle est appelée Service Enterprise Gateway Power BI.
+**Q**: ce que le service de Windows hello réel est appelé ?<br/>
+**A**: dans les Services, passerelle de hello est appelé le Service Power BI Enterprise Gateway.
 
-**Q** : Le service Windows de passerelle peut-il s’exécuter avec un compte Azure Active Directory ? <br/>
-**R** : Non. Le service Windows doit avoir un compte Windows valide. Par défaut, le service sera exécuté avec le SID du service, NT SERVICE\PBIEgwService.
+**Q**: pouvez hello service Windows de passerelle s’exécuter avec un compte Azure Active Directory ? <br/>
+**R** : Non. Hello service Windows doit avoir un compte Windows valide. Par défaut, le service de hello s’exécute avec hello SID de Service, NT SERVICE\PBIEgwService.
 
 ### <a name="high-availability-and-disaster-recovery"></a>Haute disponibilité et récupération d’urgence
 
 **Q** : Quelles sont les options de récupération d’urgence disponibles ? <br/>
-**R**: Vous pouvez utiliser la clé de récupération pour restaurer ou déplacer une passerelle. Lorsque vous installez la passerelle, spécifiez la clé de récupération.
+**Un**: vous pouvez utiliser toorestore de clé de récupération hello ou déplacer une passerelle. Lorsque vous installez la passerelle de hello, spécifiez la clé de récupération hello.
 
-**Q** : Quel avantage la clé de récupération offre-t-elle ? <br/>
-**R** : La clé de récupération permet de migrer ou de récupérer les paramètres de votre passerelle en cas de récupération d’urgence.
+**Q**: quels sont les avantages de hello de clé de récupération hello ? <br/>
+**A**: clé de récupération hello fournit un moyen toomigrate ou récupérer vos paramètres de passerelle après un sinistre.
 
-**Q** : Existe-t-il des plans pour activer des scénarios de haute disponibilité avec la passerelle ? <br/>
-**R** : ces scénarios figurent sur notre feuille de route, mais leur chronologie n’est pas encore établie.
+**Q**: existe-t-il des plans pour activer les scénarios de haute disponibilité avec la passerelle de hello ? <br/>
+**A**: ces scénarios sont sur la feuille de route hello, mais nous n’avons pas encore une chronologie.
 
-## <a name="troubleshooting"></a>Résolution de problèmes
+## <a name="troubleshooting"></a>Résolution des problèmes
 
 [!INCLUDE [existing-gateway-location-changed](../../includes/logic-apps-existing-gateway-location-changed.md)]
 
-**Q** : Comment puis-je voir les requêtes qui sont envoyées à la source de données locale ? <br/>
-**R** : Vous pouvez activer le traçage de requête qui inclut les requêtes envoyées. N’oubliez pas de rétablir la valeur d’origine du traçage des requêtes une fois les problèmes résolus. Le fait de laisser activé le traçage des requêtes contribue à augmenter la taille des journaux.
+**Q**: Comment puis-je savoir quelles requêtes sont envoyées source de données locale toohello ? <br/>
+**Un**: vous pouvez activer le traçage de requête, qui inclut les requêtes hello qui sont envoyées. N’oubliez pas de requête toochange en remontant la valeur d’origine de toohello faite le problème résolu. Le fait de laisser activé le traçage des requêtes contribue à augmenter la taille des journaux.
 
 Vous pouvez également utiliser les outils de suivi des requêtes proposés par votre source de données. Par exemple, vous pouvez utiliser Extended Events ou SQL Profiler for SQL Server et Analysis Services.
 
-**Q** : Où se situent les journaux de la passerelle ? <br/>
+**Q**: où se trouvent les journaux de passerelle hello ? <br/>
 **R**: Voir la section Outils plus loin dans cette rubrique.
 
-### <a name="update-to-the-latest-version"></a>Mise à jour avec la version la plus récente
+### <a name="update-toohello-latest-version"></a>Mettre à jour la version la plus récente toohello
 
-Beaucoup de problèmes peuvent survenir si la version de la passerelle est obsolète. En règle générale, veillez toujours à utiliser la version la plus récente. Si vous n’avez pas mis à jour la passerelle depuis un mois ou plus, vous pouvez installer la dernière version de la passerelle pour vérifier si le problème se reproduit.
+Nombreux problèmes peuvent apparaître lors de la version de la passerelle hello devient obsolète. Comme recommandé, assurez-vous d’utiliser la version la plus récente hello. Si vous n’avez pas mis à jour de passerelle de hello pendant un mois ou plus, vous pouvez envisager d’installer la version la plus récente de la passerelle de hello hello et voir si vous pouvez reproduire le problème de hello.
 
-### <a name="error-failed-to-add-user-to-group--2147463168-pbiegwservice-performance-log-users"></a>Erreur : Impossible d’ajouter l’utilisateur au groupe. (-2147463168 PBIEgwService Performance Log Users)
+### <a name="error-failed-tooadd-user-toogroup--2147463168-pbiegwservice-performance-log-users"></a>Erreur : Échec de tooadd utilisateur toogroup. (-2147463168 PBIEgwService Performance Log Users)
 
-Cette erreur peut apparaître si vous essayez d’installer la passerelle sur un contrôleur de domaine qui n’est pas pris en charge. Veillez à déployer la passerelle sur un ordinateur qui n’est pas un contrôleur de domaine.
+Vous pouvez obtenir cette erreur si vous essayez de passerelle de hello tooinstall sur un contrôleur de domaine, ce qui n’est pas pris en charge. Assurez-vous que vous déployez la passerelle de hello sur un ordinateur qui n’est pas un contrôleur de domaine.
 
 ## <a name="tools"></a>Outils
 
-### <a name="collect-logs-from-the-gateway-configurer"></a>Collecter des journaux à partir de l’outil de configuration de passerelle
+### <a name="collect-logs-from-hello-gateway-configurer"></a>Collecter les journaux à partir de la configurer de passerelle hello
 
-Vous pouvez recueillir plusieurs journaux pour la passerelle. Commencez toujours par consulter les journaux !
+Vous pouvez collecter plusieurs journaux pour la passerelle de hello. Commencez toujours par les journaux de hello !
 
 #### <a name="installer-logs"></a>Journaux du programme d’installation
 
@@ -324,14 +324,14 @@ Vous pouvez recueillir plusieurs journaux pour la passerelle. Commencez toujours
 
 #### <a name="event-logs"></a>Journaux d’événements
 
-Les journaux de passerelle de gestion des données et PowerBIGateway figurent sous **Journaux des applications et services**.
+Vous trouverez hello les journaux de passerelle de gestion des données et PowerBIGateway sous **journaux des applications et Services**.
 
 ### <a name="fiddler-trace"></a>Trace Fiddler
 
-[Fiddler](http://www.telerik.com/fiddler) est un outil gratuit développé par Telerik, qui surveille le trafic HTTP. Il permet de visualiser le trafic entre le service Power BI et l’ordinateur client. Ce service peut également indiquer les éventuelles erreurs et autres informations connexes.
+[Fiddler](http://www.telerik.com/fiddler) est un outil gratuit développé par Telerik, qui surveille le trafic HTTP. Vous pouvez voir le trafic par le service Power BI à partir de l’ordinateur client de hello de hello. Ce service peut également indiquer les éventuelles erreurs et autres informations connexes.
 
 ## <a name="next-steps"></a>Étapes suivantes
     
-* [Connexion à des données locales à partir d’applications logiques](../logic-apps/logic-apps-gateway-connection.md)
+* [Se connecter tooon locale, les données à partir d’applications de logique](../logic-apps/logic-apps-gateway-connection.md)
 * [Fonctionnalités d’intégration d'entreprise](../logic-apps/logic-apps-enterprise-integration-overview.md)
 * [Connecteurs pour Azure Logic Apps](../connectors/apis-list.md)

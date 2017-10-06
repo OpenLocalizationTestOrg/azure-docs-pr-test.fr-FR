@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory à EasyTerritory | Microsoft Docs"
-description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et EasyTerritory."
+description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et EasyTerritory."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -14,187 +14,187 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/26/2017
 ms.author: jeedes
-ms.openlocfilehash: 46f99496397e2ed39b1d9410453dac7983ced612
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 4f1e9fb4d615325f0d57bebaed955529d5dcd9b1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-easyterritory"></a>Didacticiel : Intégration d’Azure Active Directory à EasyTerritory
 
-Dans ce didacticiel, vous découvrez comment intégrer EasyTerritory à Azure Active Directory (Azure AD).
+Dans ce didacticiel, vous apprendrez comment toointegrate EasyTerritory avec Azure Active Directory (Azure AD).
 
-L’intégration d’EasyTerritory à Azure AD vous procure les avantages suivants :
+Intégration EasyTerritory à Azure AD offre hello avantages suivants :
 
-- Dans Azure AD, vous pouvez contrôler qui a accès à EasyTerritory
-- Vous pouvez autoriser les utilisateurs à se connecter automatiquement à EasyTerritory (via l’authentification unique) avec leur compte Azure AD
-- Vous pouvez gérer vos comptes dans un emplacement central : le portail Azure
+- Vous pouvez contrôler dans Azure AD qui a accès tooEasyTerritory.
+- Vous pouvez activer vos utilisateurs tooautomatically get connecté tooEasyTerritory (Single Sign-On) avec leurs comptes Azure AD.
+- Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure.
 
-Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).
+Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Composants requis
 
-Pour configurer l’intégration d’Azure AD à EasyTerritory, vous avez besoin des éléments suivants :
+tooconfigure intégration d’Azure AD avec EasyTerritory, vous devez hello éléments suivants :
 
 - Un abonnement Azure AD
 - Un abonnement EasyTerritory pour lequel l’authentification unique est activée
 
 > [!NOTE]
-> Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.
+> tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.
 
-Vous devez en outre suivre les recommandations ci-dessous :
+tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :
 
 - N’utilisez pas votre environnement de production, sauf si cela est nécessaire.
 - Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez [obtenir un essai d’un mois](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Description du scénario
-Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :
+Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :
 
-1. Ajout d’EasyTerritory à partir de la galerie
+1. Ajout de EasyTerritory à partir de la galerie de hello
 2. Configuration et test de l’authentification unique Azure AD
 
-## <a name="adding-easyterritory-from-the-gallery"></a>Ajout d’EasyTerritory à partir de la galerie
-Pour configurer l’intégration d’EasyTerritory dans Azure AD, vous devez ajouter EasyTerritory à partir de la galerie à votre liste d’applications SaaS gérées.
+## <a name="adding-easyterritory-from-hello-gallery"></a>Ajout de EasyTerritory à partir de la galerie de hello
+intégration de hello tooconfigure de EasyTerritory dans Azure AD, vous devez tooadd EasyTerritory à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.
 
-**Pour ajouter EasyTerritory à partir de la galerie, procédez comme suit :**
+**tooadd EasyTerritory à partir de la galerie hello, procédez hello comme suit :**
 
-1. Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**. 
+1. Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône. 
 
-    ![Bouton Azure Active Directory][1]
+    ![bouton d’Azure Active Directory Hello][1]
 
-2. Accédez à **Applications d’entreprise**. Accédez ensuite à **Toutes les applications**.
+2. Accédez trop**des applications d’entreprise**. Passez trop**toutes les applications**.
 
-    ![Panneau Applications d’entreprise][2]
+    ![panneau des applications Enterprise Hello][2]
     
-3. Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.
+3. tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.
 
-    ![Bouton Nouvelle application][3]
+    ![Nouveau bouton d’application Hello][3]
 
-4. Dans la zone de recherche, tapez **EasyTerritory**, sélectionnez **EasyTerritory** dans le volet de résultats, puis cliquez sur le bouton **Ajouter** pour ajouter l’application.
+4. Dans la zone de recherche de hello, tapez **EasyTerritory**, sélectionnez **EasyTerritory** à partir du volet de résultats, puis sur **ajouter** bouton application hello de tooadd.
 
-    ![EasyTerritory dans la liste des résultats](./media/active-directory-saas-easyterritory-tutorial/tutorial_easyterritory_addfromgallery.png)
+    ![EasyTerritory dans la liste des résultats hello](./media/active-directory-saas-easyterritory-tutorial/tutorial_easyterritory_addfromgallery.png)
 
 ## <a name="configure-and-test-azure-ad-single-sign-on"></a>Configurer et tester l’authentification unique Azure AD
 
 Dans cette section, vous configurez et vous testez l’authentification unique Azure AD avec EasyTerritory, avec un utilisateur de test appelé « Britta Simon ».
 
-Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur EasyTerritory équivalent dans Azure AD. En d’autres termes, une relation de liaison entre un utilisateur Azure AD et un utilisateur EasyTerritory associé doit être établie.
+Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans EasyTerritory est tooa utilisateur dans Azure AD. En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans EasyTerritory doit toobe établie.
 
-Dans EasyTerritory, assignez la valeur de **nom d’utilisateur** dans Azure AD comme valeur de **Username** pour établir la relation.
+Dans EasyTerritory, affecter la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** relation de lien tooestablish hello.
 
-Pour configurer et tester l’authentification unique Azure AD avec EasyTerritory, vous devez suivre les indications des sections suivantes :
+tooconfigure et test Azure AD l’authentification unique avec EasyTerritory, vous devez hello toocomplete suivant des blocs de construction :
 
-1. **[Configurer l’authentification unique Azure AD](#configure-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.
-2. **[Créer un utilisateur de test Azure AD](#create-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.
-3. **[Créer un utilisateur de test EasyTerritory](#create-a-easyterritory-test-user)** pour avoir un équivalent de Britta Simon dans EasyTerritory lié à la représentation Azure AD associée.
-4. **[Affecter l’utilisateur de test Azure AD](#assign-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.
-5. **[Tester l’authentification unique](#test-single-sign-on)** : pour vérifier si la configuration fonctionne.
+1. **[Configurer Azure AD Single Sign-On](#configure-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.
+2. **[Créer un utilisateur de test Azure AD](#create-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.
+3. **[Créer un utilisateur de test EasyTerritory](#create-a-easyterritory-test-user)**  -toohave un équivalent de Britta Simon dans EasyTerritory est la représentation sous forme de toohello lié Azure AD de l’utilisateur.
+4. **[Affecter l’utilisateur de test hello Azure AD](#assign-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.
+5. **[Tester l’authentification unique sur](#test-single-sign-on)**  -tooverify hello indique si les tâches de configuration.
 
 ### <a name="configure-azure-ad-single-sign-on"></a>Configurer l’authentification unique Azure AD
 
-Dans cette section, vous activez l’authentification unique Azure AD dans le portail Azure et vous configurez l’authentification unique dans votre application EasyTerritory.
+Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application EasyTerritory.
 
-**Pour configurer l’authentification unique Azure AD avec EasyTerritory, procédez comme suit :**
+**tooconfigure Azure AD single sign-on avec EasyTerritory, effectuez hello comme suit :**
 
-1. Dans le portail Azure, dans la page d’intégration de l’application **EasyTerritory**, cliquez sur **Authentification unique**.
+1. Bonjour portail Azure, sur hello **EasyTerritory** page d’intégration d’application, cliquez sur **l’authentification unique**.
 
     ![Lien Configurer l’authentification unique][4]
 
-2. Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.
+2. Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.
  
     ![Boîte de dialogue Authentification unique](./media/active-directory-saas-easyterritory-tutorial/tutorial_easyterritory_samlbase.png)
 
-3. Dans la section **Domaines et URL EasyTerritory**, si vous voulez configurer l’application en Mode initié par IDP, effectuez les étapes suivantes :
+3. Sur hello **EasyTerritory domaine et les URL** section, effectuer hello comme suit si vous le souhaitez en mode initié par l’application hello tooconfigure IDP :
 
     ![Informations d’authentification unique dans Domaine et URL EasyTerritory](./media/active-directory-saas-easyterritory-tutorial/tutorial_easyterritory_url.png)
 
-    a. Dans la zone de texte **Identificateur**, tapez une URL au format suivant : `https://apps.easyterritory.com/<tenant id>/dev/`
+    a. Bonjour **identificateur** zone de texte, tapez une URL à l’aide de hello modèle :`https://apps.easyterritory.com/<tenant id>/dev/`
 
-    b. Dans la zone de texte **URL de réponse** , tapez une URL au format suivant : `https://apps.easyterritory.com/<tenant id>/dev/authservices/acs`
+    b. Bonjour **URL de réponse** zone de texte, tapez une URL à l’aide de hello modèle :`https://apps.easyterritory.com/<tenant id>/dev/authservices/acs`
 
-4. Si vous souhaitez configurer l’application en **mode démarré par le fournisseur de service**, cochez **Afficher les paramètres d’URL avancés**, puis effectuez les étapes suivantes :
+4. Vérifiez **afficher les paramètres d’URL avancés** et effectuer hello suivant l’étape si vous le souhaitez application hello tooconfigure **SP** en mode initié par :
 
     ![Informations d’authentification unique dans Domaine et URL EasyTerritory](./media/active-directory-saas-easyterritory-tutorial/tutorial_easyterritory_url1.png)
 
-    Dans la zone de texte **URL de connexion**, tapez une URL au format suivant : `https://<company name>.easyterritory.com/`
+    Bonjour **URL de connexion** zone de texte, tapez une URL à l’aide de hello modèle :`https://<company name>.easyterritory.com/`
      
     > [!NOTE] 
-    > Il ne s’agit pas de valeurs réelles. Mettez à jour ces valeurs avec l’identificateur, l’URL de réponse et l’URL de connexion réels. Pour obtenir ces valeurs, contactez [l’équipe de support technique EasyTerritory](mailto:sales@easyterritory.com). 
+    > Il ne s’agit pas de valeurs réelles. Mettre à jour ces valeurs avec hello réel identificateur, URL de réponse et URL de connexion. Contact [équipe de support Client de EasyTerritory](mailto:sales@easyterritory.com) tooget ces valeurs. 
 
-5. Dans la section **Certificat de signature SAML**, cliquez sur **Métadonnées XML** puis enregistrez le fichier de métadonnées sur votre ordinateur.
+5. Sur hello **le certificat de signature SAML** , cliquez sur **Metadata XML** , puis enregistrez le fichier de métadonnées hello sur votre ordinateur.
 
-    ![Lien Téléchargement de certificat](./media/active-directory-saas-easyterritory-tutorial/tutorial_easyterritory_certificate.png) 
+    ![lien de téléchargement du certificat Hello](./media/active-directory-saas-easyterritory-tutorial/tutorial_easyterritory_certificate.png) 
 
 6. Cliquez sur le bouton **Enregistrer** .
 
     ![Bouton Enregistrer de la page Configurer l’authentification unique](./media/active-directory-saas-easyterritory-tutorial/tutorial_general_400.png)
 
-7. Pour configurer l’authentification unique du côté **EasyTerritory**, vous devez envoyer le fichier **XML de métadonnées** téléchargé à l’[équipe de support technique d’EasyTerritory](mailto:sales@easyterritory.com). Celle-ci configure ensuite ce paramètre pour que la connexion SSO SAML soit définie correctement des deux côtés.
+7. tooconfigure l’authentification unique sur **EasyTerritory** côté, vous devez hello toosend téléchargé **Metadata XML** trop[équipe de support EasyTerritory](mailto:sales@easyterritory.com). Ils définir ce hello toohave de paramètre connexion SSO SAML correctement des deux côtés.
 
 > [!TIP]
-> Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.  Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas. Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !  Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello. Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)
 
 ### <a name="create-an-azure-ad-test-user"></a>Créer un utilisateur de test Azure AD
 
-L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.
+objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.
 
    ![Créer un utilisateur de test Azure AD][100]
 
-**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**
+**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**
 
-1. Dans le volet gauche du Portail Azure, cliquez sur le bouton **Azure Active Directory**.
+1. Bonjour portail Azure, dans le volet gauche de hello, cliquez sur hello **Azure Active Directory** bouton.
 
-    ![Bouton Azure Active Directory](./media/active-directory-saas-easyterritory-tutorial/create_aaduser_01.png)
+    ![bouton d’Azure Active Directory Hello](./media/active-directory-saas-easyterritory-tutorial/create_aaduser_01.png)
 
-2. Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.
+2. liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes**, puis cliquez sur **tous les utilisateurs**.
 
-    ![Liens « Utilisateurs et groupes » et « Tous les utilisateurs »](./media/active-directory-saas-easyterritory-tutorial/create_aaduser_02.png)
+    ![Hello « Utilisateurs et groupes » et « Tous les utilisateurs » liens](./media/active-directory-saas-easyterritory-tutorial/create_aaduser_02.png)
 
-3. Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue **Tous les utilisateurs**.
+3. tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello hello **tous les utilisateurs** boîte de dialogue.
 
-    ![Bouton Ajouter](./media/active-directory-saas-easyterritory-tutorial/create_aaduser_03.png)
+    ![bouton Ajouter de Hello](./media/active-directory-saas-easyterritory-tutorial/create_aaduser_03.png)
 
-4. Dans la boîte de dialogue **Utilisateur**, procédez comme suit :
+4. Bonjour **utilisateur** boîte de dialogue, exécutez hello comme suit :
 
-    ![Boîte de dialogue Utilisateur](./media/active-directory-saas-easyterritory-tutorial/create_aaduser_04.png)
+    ![boîte de dialogue utilisateur Hello](./media/active-directory-saas-easyterritory-tutorial/create_aaduser_04.png)
 
-    a. Dans la zone **Nom**, tapez **BrittaSimon**.
+    a. Bonjour **nom** , tapez **BrittaSimon**.
 
-    b. Dans la zone **Nom d’utilisateur** , tapez l’adresse e-mail de l’utilisateur Britta Simon.
+    b. Bonjour **nom d’utilisateur** zone, tapez Bonjour adresse de messagerie de l’utilisateur Britta Simon.
 
-    c. Cochez la case **Afficher le mot de passe**, puis notez la valeur affichée dans le champ **Mot de passe**.
+    c. Sélectionnez hello **afficher le mot de passe** case à cocher, puis écrire la valeur hello qui s’affiche dans hello **mot de passe** boîte.
 
     d. Cliquez sur **Create**.
  
 ### <a name="create-a-easyterritory-test-user"></a>Créer un utilisateur de test EasyTerritory
 
-Dans cette section, vous créez un utilisateur appelé Britta Simon dans EasyTerritory. Collaborez avec [l’équipe du support technique EasyTerritory](mailto:sales@easyterritory.com) pour ajouter les utilisateurs à la plateforme EasyTerritory.
+Dans cette section, vous créez un utilisateur appelé Britta Simon dans EasyTerritory. Collaborez avec [équipe de support EasyTerritory](mailto:sales@easyterritory.com) tooadd les utilisateurs de hello dans la plateforme de EasyTerritory hello.
 
-### <a name="assign-the-azure-ad-test-user"></a>Affecter l’utilisateur de test Azure AD
+### <a name="assign-hello-azure-ad-test-user"></a>Affecter l’utilisateur de test hello Azure AD
 
-Dans cette section, vous autorisez Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à EasyTerritory.
+Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooEasyTerritory.
 
-![Attribuer le rôle d’utilisateur][200] 
+![Attribuer le rôle d’utilisateur hello][200] 
 
-**Pour affecter Britta Simon à EasyTerritory, procédez comme suit :**
+**tooassign Britta Simon tooEasyTerritory, effectuez hello comme suit :**
 
-1. Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.
+1. Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.
 
     ![Affecter des utilisateurs][201] 
 
-2. Dans la liste des applications, sélectionnez **EasyTerritory**.
+2. Dans la liste des applications hello, sélectionnez **EasyTerritory**.
 
-    ![Lien EasyTerritory dans la liste des applications](./media/active-directory-saas-easyterritory-tutorial/tutorial_easyterritory_app.png)  
+    ![lien de EasyTerritory Hello dans la liste des Applications hello](./media/active-directory-saas-easyterritory-tutorial/tutorial_easyterritory_app.png)  
 
-3. Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.
+3. Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.
 
-    ![Lien « Utilisateurs et groupes »][202]
+    ![lien de « Utilisateurs et groupes » Hello][202]
 
 4. Cliquez sur le bouton **Ajouter**. Ensuite, sélectionnez **Utilisateurs et groupes** dans la boîte de dialogue **Ajouter une affectation**.
 
-    ![Volet Ajouter une attribution][203]
+    ![volet d’ajouter l’affectation de Hello][203]
 
-5. Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.
+5. Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.
 
 6. Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.
 
@@ -202,14 +202,14 @@ Dans cette section, vous autorisez Britta Simon à utiliser l’authentification
     
 ### <a name="test-single-sign-on"></a>Tester l’authentification unique
 
-Dans cette section, vous allez tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.
+Dans cette section, vous tester votre configuration Azure AD unique de session à l’aide de hello panneau d’accès.
 
-Quand vous cliquez sur la vignette EasyTerritory dans le panneau d’accès, vous devez être connecté automatiquement à votre application EasyTerritory.
-Pour plus d’informations sur le panneau d’accès, consultez [Présentation du panneau d’accès](active-directory-saas-access-panel-introduction.md). 
+Lorsque vous cliquez sur mosaïque EasyTerritory hello hello volet d’accès, vous devez obtenir automatiquement signé sur tooyour EasyTerritory application.
+Pour plus d’informations sur le volet d’accès, consultez [Introduction toohello volet d’accès](active-directory-saas-access-panel-introduction.md). 
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-* [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md)
 
 

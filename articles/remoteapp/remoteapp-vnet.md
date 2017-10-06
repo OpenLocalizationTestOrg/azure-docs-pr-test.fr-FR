@@ -1,6 +1,6 @@
 ---
-title: "Valider le réseau virtuel Azure à utiliser avec Azure RemoteApp | Microsoft Docs"
-description: "Découvrez comment vous assurer que votre réseau virtuel Azure est prêt à être utilisé avec Azure RemoteApp"
+title: "toouse de réseau virtuel Azure hello aaaValidate avec Azure RemoteApp | Documents Microsoft"
+description: "Découvrez comment toomake que votre réseau virtuel Azure est prêt toouse avec Azure RemoteApp"
 services: remoteapp
 documentationcenter: 
 author: msmbaldwin
@@ -13,31 +13,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/23/2016
 ms.author: mbaldwin
-ms.openlocfilehash: 05c8a0ff04293947cec391b6467cc4adddb6a7b0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5587556c264356e6ab6039b983a38cb2b95ed268
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="validate-the-azure-vnet-to-use-with-azure-remoteapp"></a>Validation du réseau virtuel Azure à utiliser avec Azure RemoteApp
+# <a name="validate-hello-azure-vnet-toouse-with-azure-remoteapp"></a>Valider toouse de réseau virtuel Azure hello avec Azure RemoteApp
 > [!IMPORTANT]
-> Azure RemoteApp ne sera plus disponible à partir du 31 août 2017. Pour plus d’informations, lisez [l’annonce](https://go.microsoft.com/fwlink/?linkid=821148) .
+> Azure RemoteApp ne sera plus disponible à partir du 31 août 2017. Hello de lecture [annonce](https://go.microsoft.com/fwlink/?linkid=821148) pour plus d’informations.
 > 
 > 
 
-Avant d'utiliser un réseau virtuel Azure avec Azure RemoteApp, vous pouvez valider le réseau virtuel. Cette action permet d'éviter les problèmes de connectivité.
+Avant d’utiliser un réseau virtuel Azure avec Azure RemoteApp, vous pourriez toovalidate hello réseau virtuel. Cette action permet d'éviter les problèmes de connectivité.
 
-Pour valider votre réseau virtuel Azure, procédez comme suit :
+toovalidate votre réseau virtuel Azure, procédez comme hello suivant :
 
-1. Créez une machine virtuelle Azure dans le sous-réseau du réseau virtuel Azure que vous souhaitez utiliser avec Azure RemoteApp.
-2. Connectez-vous à la machine virtuelle à l'aide de l’option **Connexion** sur le portail de gestion.
-3. Associez la machine virtuelle au domaine que vous souhaitez utiliser avec Azure RemoteApp. Si vous créez une collection hybride qui se connecte à votre réseau local, associez la machine virtuelle à votre domaine local.
+1. Créer une machine virtuelle Azure à l’intérieur du sous-réseau hello Hello réseau virtuel de Azure vous souhaitez toouse avec Azure RemoteApp.
+2. Se connecter toothat machine virtuelle à l’aide de hello **Connect** option hello portail de gestion.
+3. Jointure toohello de machine virtuelle hello même domaine que vous souhaitez toouse avec Azure RemoteApp. Si vous créez une collection hybride qui connecte le réseau local de tooyour, joignez hello machine virtuelle tooyour dans le domaine local.
 
-Si l'opération réussit, le réseau virtuel Azure est prêt à être utilisé avec RemoteApp.
+Si l’opération réussit, hello réseau virtuel Azure est prêt toouse avec RemoteApp.
 
-Pour plus d'informations sur le flux de travail de bout en bout des collections hybrides, consultez les articles suivants :
+Pour plus d’informations sur les flux de travail de collection hello hybride de bout en bout, consultez hello suivant des articles :
 
-* [Comment planifier votre réseau virtuel pour Azure RemoteApp](remoteapp-planvnet.md)
+* [Comment tooplan votre réseau virtuel pour Azure RemoteApp](remoteapp-planvnet.md)
 * [Création d'une collection hybride](remoteapp-create-hybrid-deployment.md)
-* [Déployer une collection Azure RemoteApp sur votre Azure Virtual Network (avec prise en charge d’ExpressRoute)](http://blogs.msdn.com/b/rds/archive/2015/04/23/deploy-azure-remoteapp-collection-to-your-azure-virtual-network-with-support-for-expressroute.aspx)
+* [Déployer Azure RemoteApp collection tooyour réseau virtuel Azure (avec prise en charge pour ExpressRoute)](http://blogs.msdn.com/b/rds/archive/2015/04/23/deploy-azure-remoteapp-collection-to-your-azure-virtual-network-with-support-for-expressroute.aspx)
 

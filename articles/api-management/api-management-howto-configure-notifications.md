@@ -1,6 +1,6 @@
 ---
-title: "Configurer des notifications et des modèles d’e-mails dans Gestion des API Azure | Microsoft Docs"
-description: "Apprenez à configurer des notifications et des modèles de messages électroniques dans Gestion des API Azure."
+title: "les notifications aaaConfigure et envoyer par courrier électronique des modèles de gestion des API Azure | Documents Microsoft"
+description: "Découvrez comment tooconfigure notifications et modèles dans Azure API Management de courrier électronique."
 services: api-management
 documentationcenter: 
 author: steved0x
@@ -14,63 +14,63 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: apimpm
-ms.openlocfilehash: 3d8b74e32059cfc1a4c3a8fc7d3bd04676ee80c8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: dc23289c25a1641992b73cb955099b3f207b6968
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-configure-notifications-and-email-templates-in-azure-api-management"></a>Configuration des notifications et des modèles de messages électroniques dans Gestion des API Azure
-Gestion des API Azure permet de configurer les notifications pour des événements spécifiques et de configurer les modèles de courrier électronique utilisés pour communiquer avec les administrateurs et les développeurs de l’instance Gestion des API. Cette rubrique vous présente comment configurer les notifications pour les événements disponibles. Elle offre également un aperçu de la configuration des modèles de messages électroniques utilisés pour ces événements.
+# <a name="how-tooconfigure-notifications-and-email-templates-in-azure-api-management"></a>Comment les notifications tooconfigure et envoyer par courrier électronique des modèles de gestion des API Azure
+Gestion des API permet hello tooconfigure des notifications d’événements spécifiques ou des modèles de messages électroniques hello tooconfigure sont toocommunicate utilisé avec les administrateurs de hello et aux développeurs d’une instance de la gestion des API. Cette rubrique montre comment les notifications tooconfigure pour hello événements disponibles et fournit une vue d’ensemble de la configuration de modèles de messages électroniques hello utilisés pour ces événements.
 
-## <a name="publisher-notifications"> </a>Configuration des notifications de l’éditeur
-Pour configurer les notifications, cliquez sur **Portail de publication** dans le portail Azure pour accéder à votre service Gestion des API. Vous accédez au portail des éditeurs Gestion des API.
+## <a name="publisher-notifications"></a>Configuration des notifications de l’éditeur
+notifications de tooconfigure, cliquez sur **portail de publication** Bonjour portail Azure pour votre service de gestion des API. Cela vous prend un portail de publication de gestion des API toohello.
 
 ![Portail des éditeurs][api-management-management-console]
 
 > [!NOTE] 
-> Si vous n’avez pas encore créé une instance de service Gestion des API, consultez la page de [création d’une instance de service Gestion des API][Create an API Management service instance] dans le didacticiel de [prise en main de Gestion des API Azure][Get started with Azure API Management].
+> Si vous n’avez pas encore créé une instance de service de gestion des API, consultez [de créer une instance de service de gestion des API] [ Create an API Management service instance] Bonjour [prise en main Azure API Management] [ Get started with Azure API Management] didacticiel.
 
-Cliquez sur **Notifications** dans le menu **Gestion des API** à gauche pour voir les notifications disponibles.
+Cliquez sur **Notifications** de hello **gestion des API** hello menu gauche tooview notification hello est disponible.
 
 ![Notifications de l’éditeur][api-management-publisher-notifications]
 
-La liste suivante répertorie les événements pour lesquels il est possible de configurer des notifications.
+Hello la liste suivante d’événements peut être configurée pour les notifications.
 
-* **Demandes d'abonnement (approbation nécessaire)** : les destinataires du message et les utilisateurs spécifiés reçoivent une notification pour les demandes d'abonnement aux produits API nécessitant une approbation.
-* **Nouveaux abonnements** : les destinataires du message et les utilisateurs spécifiés reçoivent une notification concernant les nouveaux abonnements aux produits API.
-* **Demandes de la galerie d'applications** : les destinataires du message et les utilisateurs spécifiés reçoivent une notification lorsque de nouvelles applications sont proposées dans la galerie d'applications.
-* **CCI** : les destinataires du message et les utilisateurs spécifiés reçoivent une copie cachée de tous les messages envoyés aux développeurs.
-* **Nouveau problème ou commentaire** : les destinataires du message et les utilisateurs spécifiés reçoivent une notification lorsqu'un problème ou un commentaire est envoyé sur le portail des développeurs.
-* **Message de fermeture de compte** : les destinataires du message et les utilisateurs spécifiés reçoivent une notification lorsqu'un compte est fermé.
-* **Limite du quota d'abonnements bientôt atteint** : les destinataires du message et les utilisateurs spécifiés reçoivent une notification lorsque l'utilisation de l'abonnement approche le quota.
+* **Demandes d’abonnement (nécessitant l’approbation)** : hello destinataires spécifiés et les utilisateurs reçoivent des notifications par courrier électronique à propos des demandes d’abonnement pour les produits d’API nécessitant une approbation.
+* **Les nouveaux abonnements** : hello destinataires spécifiés et les utilisateurs reçoivent des notifications par courrier électronique relatives à des abonnements de produit d’API.
+* **Les demandes d’application de la galerie** : hello destinataires spécifiés et les utilisateurs reçoivent des notifications par courrier électronique lorsque les nouvelles applications sont soumis toohello Galerie d’applications.
+* **Cci** : hello destinataires spécifiés et les utilisateurs reçoivent par courrier électronique invisible copie de tous les messages électroniques envoyés toodevelopers.
+* **Nouveau problème ou un commentaire** - hello destinataires spécifiés et les utilisateurs reçoivent des notifications par courrier électronique lorsqu’un nouveau problème ou commentaire est envoyé sur le portail des développeurs hello.
+* **Message de fermer le compte** : hello destinataires spécifiés et les utilisateurs reçoivent des notifications par courrier électronique quand un compte est fermé.
+* **Limite de quota approchant abonnement** : hello suivant des destinataires de courrier électronique et les utilisateurs reçoivent des notifications par courrier électronique lors de l’utilisation d’abonnement obtient toousage fermer quota.
 
-Pour chaque événement, vous pouvez spécifier les destinataires du message via la zone de texte d'adresse. Vous pouvez également sélectionner les utilisateurs dans une liste.
+Pour chaque événement, vous pouvez spécifier des destinataires de courrier électronique à l’aide de la zone de texte adresse e-mail hello ou vous pouvez sélectionner des utilisateurs à partir d’une liste.
 
-Pour spécifier les adresses à notifier, entrez-les dans la zone de texte d'adresse. Si vous devez entrer plusieurs adresses, séparez-les par des virgules.
+toospecify hello messagerie adresses toobe averti, entrez-les dans la zone de texte adresse e-mail hello. Si vous devez entrer plusieurs adresses, séparez-les par des virgules.
 
 ![Notification recipients][api-management-email-addresses]
 
-Pour spécifier les utilisateurs à notifier, cliquez sur **Ajouter un destinataire**, activez la case à cocher à côté de l’utilisateur à notifier, puis cliquez sur **OK**.
+toospecify hello utilisateurs toobe la notification, cliquez sur **Ajouter destinataire**, hello la case en regard de hello utilisateurs toobe est notifiée, puis cliquez sur **OK**.
 
 > [!NOTE] 
-> Seuls les administrateurs sont affichés dans la liste.
+> Seuls les administrateurs sont affichés dans la liste de hello.
 
 
-Une fois les destinataires de la notification configurés, cliquez sur **Enregistrer** pour appliquer les modifications des destinataires.
+Après avoir configuré les destinataires des notifications hello, cliquez sur **enregistrer** tooapply hello mis à jour les destinataires des notifications.
 
 > [!NOTE] 
-> Si vous quittez l’onglet **Notifications de l’éditeur** , le portail de publication vous avertit si des modifications n’ont pas été enregistrées.
+> Si vous quittez hello **Notifications du serveur de publication** portail de publication onglet hello vous avertit qu’il y a des modifications non enregistrées.
 
 
-## <a name="email-templates"> </a>Configuration des modèles de courrier électronique
-L'outil Gestion des API contient des modèles de messages électroniques pour les messages envoyés dans le cadre de l'administration et de l'utilisation du service. Les modèles suivants sont fournis.
+## <a name="email-templates"></a>Configuration des modèles de courrier électronique
+Gestion des API fournit des modèles de messagerie pourquoi les messages électroniques qui sont envoyés en cours hello d’administration et à l’aide du service de hello. Hello suivant des modèles de messages électroniques est fournie.
 
 * Demande d'ajout à la galerie d'applications approuvée
 * Lettre d'adieu au développeur
 * Notification de la limite du quota d'abonnement bientôt atteinte
 * Invitation de l'utilisateur
-* Nouveau commentaire ajouté à un problème
+* Nouveau commentaire ajouté tooan problème
 * Nouveau problème reçu
 * Nouvel abonnement activé
 * Confirmation du renouvellement de l'abonnement
@@ -79,11 +79,11 @@ L'outil Gestion des API contient des modèles de messages électroniques pour le
 
 Ces modèles peuvent être modifiés comme vous le souhaitez.
 
-Pour voir et configurer les modèles de messages électroniques de votre instance Gestion des API, cliquez sur **Notifications** dans le menu **Gestion des API** à gauche, puis sélectionnez l’onglet **Modèles de messages électroniques**.
+tooview et configurer les modèles de messagerie hello pour votre instance de la gestion des API, cliquez sur **Notifications** de hello **gestion des API** menu hello gauche et sélectionnez hello **modèles de messages électroniques**  onglet.
 
 ![Email templates][api-management-email-templates]
 
-Pour consulter ou modifier un modèle en particulier, sélectionnez-le dans la liste déroulante **Modèles** .
+tooview ou modifier un modèle spécifique, sélectionnez-le dans hello **modèles** liste déroulante.
 
 ![Email templates list][api-management-email-templates-list]
 
@@ -91,14 +91,14 @@ Pour chaque modèle de message, l'objet est au format texte et le corps au forma
 
 ![Email template editor][api-management-email-template]
 
-La liste **Paramètres** contient une liste de paramètres qui, lorsqu'ils sont insérés dans l'objet ou dans le corps du message, sont remplacés par une valeur définie lorsque le message est envoyé. Pour insérer un paramètre, placez le curseur là où vous voulez insérer le paramètre, puis cliquez sur la flèche à gauche du nom du paramètre.
+Hello **paramètres** liste contient une liste de paramètres, où insérées dans hello objet ou le corps, sera remplacé hello désigné lorsque hello e-mail est envoyé. tooinsert un paramètre, placez le curseur à hello où vous le souhaitez toogo de paramètre hello et cliquez sur hello flèche toohello à gauche du nom de paramètre hello.
 
-Cliquez sur **Aperçu** ou **Envoyer un test** pour voir à quoi ressemble le message ou bien pour envoyer un message test.
+Cliquez sur **aperçu** ou **envoyer un test** toosee comment par courrier électronique hello sera rechercher ou envoyer un courrier électronique de test.
 
 > [!NOTE] 
-> Les paramètres ne sont pas remplacés par les valeurs réelles lors de l’aperçu ou du test.
+> paramètres de Hello ne sont pas remplacées par des valeurs réelles lors de l’aperçu ou l’envoi d’un test.
 
-Pour enregistrer les modifications apportées au modèle de message, cliquez sur **Enregistrer**. Pour annuler les modifications, cliquez sur **Annuler**.
+modèle d’e-mail toohello toosave hello modifications, cliquez sur **enregistrer**, ou cliquez sur les modifications de hello toocancel **Annuler**.
  
 
 [api-management-management-console]: ./media/api-management-howto-configure-notifications/api-management-management-console.png
@@ -114,8 +114,8 @@ Pour enregistrer les modifications apportées au modèle de message, cliquez sur
 [Configure publisher notifications]: #publisher-notifications
 [Configure email templates]: #email-templates
 
-[How to create and use groups]: api-management-howto-create-groups.md
-[How to associate groups with developers]: api-management-howto-create-groups.md#associate-group-developer
+[How toocreate and use groups]: api-management-howto-create-groups.md
+[How tooassociate groups with developers]: api-management-howto-create-groups.md#associate-group-developer
 
 [Get started with Azure API Management]: api-management-get-started.md
 [Create an API Management service instance]: api-management-get-started.md#create-service-instance

@@ -1,6 +1,6 @@
 ---
-title: "Création de ContentKeys avec .NET"
-description: "Apprenez à créer des clés de contenu qui fournissent un accès sécurisé aux ressources."
+title: aaaCreate ContentKeys avec .NET
+description: "Découvrez comment accéder à tooAssets toocreate clés de contenu qui fournissent sécurisé."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/20/2017
 ms.author: juliako
-ms.openlocfilehash: 3280a6fcde59bae360da7cb9fea4bb649f984e43
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 35909c64e8393e228be75c464a034ffc40122952
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-contentkeys-with-net"></a>Création de ContentKeys avec .NET
 > [!div class="op_single_selector"]
@@ -27,28 +27,28 @@ ms.lasthandoff: 08/29/2017
 > 
 > 
 
-Media Services vous permet de créer et de fournir des ressources chiffrées. **ContentKey** fournit un accès sécurisé à vos **éléments multimédias**. 
+Media Services vous permet de toocreate et fournir les éléments multimédias chiffrés. A **ContentKey** fournit un accès sécurisé tooyour **Asset**s. 
 
-Quand vous créez un élément multimédia (par exemple, avant de [charger des fichiers](media-services-dotnet-upload-files.md)), vous pouvez spécifier les options de chiffrement suivantes : **StorageEncrypted**, **CommonEncryptionProtected** ou **EnvelopeEncryptionProtected**. 
+Lorsque vous créez un nouvel élément multimédia (par exemple, avant de vous [télécharger des fichiers](media-services-dotnet-upload-files.md)), vous pouvez spécifier hello options de chiffrement suivantes : **StorageEncrypted**, **CommonEncryptionProtected**, ou **EnvelopeEncryptionProtected**. 
 
-Quand vous fournissez des éléments multimédias à vos clients, vous pouvez [configurer les éléments multimédias devant être chiffrés dynamiquement](media-services-dotnet-configure-asset-delivery-policy.md) avec un des deux chiffrements suivants : **DynamicEnvelopeEncryption** ou **DynamicCommonEncryption**.
+Lorsque vous fournissez des ressources tooyour clients, vous pouvez [configurer pour toobe actifs dynamiquement chiffré](media-services-dotnet-configure-asset-delivery-policy.md) avec l’un des hello suivant deux chiffrements : **DynamicEnvelopeEncryption** ou  **DynamicCommonEncryption**.
 
-Les ressources chiffrées doivent être associées à des **ContentKey**. Cet article décrit comment créer une clé de contenu.
+Les éléments multimédias chiffrés ont toobe associé **ContentKey**s. Cet article décrit comment toocreate une clé de contenu.
 
 > [!NOTE]
-> Quand vous créez un élément multimédia **StorageEncrypted** à l’aide du SDK Media Services .NET, **ContentKey** est automatiquement créé et lié à l’élément multimédia.
+> Lorsque vous créez un nouveau **StorageEncrypted** à l’aide de l’élément multimédia hello Media Services .NET SDK, hello **ContentKey** est automatiquement créé et lié à l’élément multimédia de hello.
 > 
 > 
 
 ## <a name="contentkeytype"></a>ContentKeyType
-Une des valeurs que vous devez définir lors de la création d’une clé de contenu est le type de clé de contenu. Choisissez une des valeurs suivantes. 
+Une des valeurs hello que vous devez définir quand créer un contenu clé est de type de clé de contenu hello. Choisissez une des valeurs suivantes de hello. 
 
     public enum ContentKeyType
     {
         /// <summary>
         /// Specifies a content key for common encryption.
         /// </summary>
-        /// <remarks>This is the default value.</remarks>
+        /// <remarks>This is hello default value.</remarks>
         CommonEncryption = 0,
 
         /// <summary>
@@ -68,7 +68,7 @@ Une des valeurs que vous devez définir lors de la création d’une clé de con
     }
 
 ## <a id="envelope_contentkey"></a>Créer une ContentKey de type enveloppe
-L’extrait de code suivant crée une clé de contenu du type de chiffrement d’enveloppe. Il associe ensuite la clé à l’élément multimédia spécifié.
+Hello extrait de code suivant crée une clé de contenu du type de chiffrement d’enveloppe hello. Il associe ensuite la clé de hello avec l’élément multimédia spécifié de hello.
 
     static public IContentKey CreateEnvelopeTypeContentKey(IAsset asset)
     {
@@ -105,7 +105,7 @@ appel
 
 
 ## <a id="common_contentkey"></a>Créer une ContentKey de type commun
-L’extrait de code suivant crée une clé de contenu du type de chiffrement commun. Il associe ensuite la clé à l’élément multimédia spécifié.
+Hello extrait de code suivant crée une clé de contenu du type de chiffrement commun hello. Il associe ensuite la clé de hello avec l’élément multimédia spécifié de hello.
 
     static public IContentKey CreateCommonTypeContentKey(IAsset asset)
     {
@@ -119,7 +119,7 @@ L’extrait de code suivant crée une clé de contenu du type de chiffrement com
                                 "ContentKey",
                                 ContentKeyType.CommonEncryption);
 
-        // Associate the key with the asset.
+        // Associate hello key with hello asset.
         asset.ContentKeys.Add(key);
 
         return key;

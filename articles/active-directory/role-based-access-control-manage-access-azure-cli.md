@@ -1,6 +1,6 @@
 ---
-title: "Gestion du Contrôle d’accès en fonction du rôle avec l’interface de ligne de commande Azure | Microsoft Docs"
-description: "Découvrez comment gérer le contrôle d'accès en fonction du rôle avec l'interface de ligne de commande Azure en répertoriant les rôles et les actions de rôle, et en affectant des rôles pour l'abonnement et l'application."
+title: "aaaManage Role-Based contrôle d’accès (RBAC) avec CLI d’Azure | Documents Microsoft"
+description: "Découvrez comment toomanage Role-Based contrôle d’accès (RBAC) avec hello Azure de ligne de commande de l’interface à la liste de rôles et de rôle actions et en attribuant des rôles toohello des étendues d’abonnement et d’application."
 services: active-directory
 documentationcenter: 
 author: andredm7
@@ -14,33 +14,33 @@ ms.workload: identity
 ms.date: 07/12/2017
 ms.author: andredm
 ms.reviewer: rqureshi
-ms.openlocfilehash: ad644de6d23950e699d99042d27381336626caab
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 438418e5f6ee9b98908c9c264d516eb722a4e26d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-role-based-access-control-with-the-azure-command-line-interface"></a>Gestion du contrôle d’accès en fonction du rôle avec l’interface de ligne de commande Azure
+# <a name="manage-role-based-access-control-with-hello-azure-command-line-interface"></a>Gérer le contrôle d’accès basée sur les rôles avec hello interface de ligne de commande Azure
 > [!div class="op_single_selector"]
 > * [PowerShell](role-based-access-control-manage-access-powershell.md)
 > * [Interface de ligne de commande Azure](role-based-access-control-manage-access-azure-cli.md)
 > * [API REST](role-based-access-control-manage-access-rest.md)
 
 
-Le contrôle d’accès en fonction du rôle (RBAC) disponible dans le portail Azure et l’API Azure Resource Manager permet une gestion très fine de l’accès à votre abonnement et à vos ressources. Cette fonctionnalité vous permet d’accorder l’accès aux utilisateurs, groupes et principaux du service Active Directory en leur affectant certains rôles avec une étendue spécifique.
+Vous pouvez utiliser le contrôle d’accès en fonction du rôle (RBAC) dans hello portail Azure et abonnement de tooyour accès API Azure Resource Manager toomanage et ressources à un niveau de granularité fin. Avec cette fonctionnalité, vous pouvez accorder l’accès pour les utilisateurs, groupes ou principaux du service Active Directory en attribuant certains toothem de rôles à une portée particulière.
 
-Pour pouvoir utiliser l’interface de ligne de commande (CLI) Azure afin de gérer le contrôle d’accès en fonction du rôle, vous devez disposer des composants suivants :
+Avant de pouvoir utiliser hello Azure interface de ligne de commande (CLI) toomanage RBAC, vous devez disposer de hello suivant des conditions préalables :
 
-* Azure CLI version 0.8.8 ou ultérieure. Pour installer la dernière version et l’associer à votre abonnement Azure, consultez [Installer et configurer Azure CLI](../cli-install-nodejs.md).
-* Azure Resource Manager dans l’interface de ligne de commande Azure. Pour plus d’informations, consultez [Utilisation de l’interface de ligne de commande Azure avec Azure Resource Manager](../xplat-cli-azure-resource-manager.md) .
+* Azure CLI version 0.8.8 ou ultérieure. version la plus récente tooinstall hello et à associer à votre abonnement Azure, consultez [installer et configurer hello CLI d’Azure](../cli-install-nodejs.md).
+* Azure Resource Manager dans l’interface de ligne de commande Azure. Accédez trop[Using hello CLI d’Azure avec hello Gestionnaire de ressources](../xplat-cli-azure-resource-manager.md) pour plus d’informations.
 
 ## <a name="list-roles"></a>Répertorier les rôles
 ### <a name="list-all-available-roles"></a>Répertorier tous les rôles disponibles
-Pour répertorier tous les rôles, utilisez :
+toolist tous les rôles disponibles, utilisez :
 
         azure role list
 
-L'exemple suivant affiche la liste de *tous les rôles disponibles*.
+Hello suivant montre la liste des hello *tous les rôles disponibles*.
 
 ```
 azure role list --json | jq '.[] | {"roleName":.properties.roleName, "description":.properties.description}'
@@ -49,11 +49,11 @@ azure role list --json | jq '.[] | {"roleName":.properties.roleName, "descriptio
 ![Ligne de commande Azure RBAC - liste des rôles azure - capture d’écran](./media/role-based-access-control-manage-access-azure-cli/1-azure-role-list.png)
 
 ### <a name="list-actions-of-a-role"></a>Répertorier les actions d'un rôle
-Pour répertorier les actions d'un rôle, utilisez :
+actions de hello toolist d’un rôle, utilisez :
 
     azure role show "<role name>"
 
-L’exemple suivant montre les actions des rôles *Collaborateur* et *Collaborateur de machine virtuelle*.
+Hello suivant montre les actions hello Hello *collaborateur* et *contributeur de l’ordinateur virtuel* rôles.
 
 ```
 azure role show "contributor" --json | jq '.[] | {"Actions":.properties.permissions[0].actions,"NotActions":properties.permissions[0].notActions}'
@@ -65,11 +65,11 @@ azure role show "virtual machine contributor" --json | jq '.[] | .properties.per
 
 ## <a name="list-access"></a>Répertorier les accès
 ### <a name="list-role-assignments-effective-on-a-resource-group"></a>Répertorier les affectations de rôles valables dans un groupe de ressources
-Pour répertorier les attributions de rôles qui existent dans un groupe de ressources, utilisez :
+toolist hello attributions de rôles qui existent dans un groupe de ressources, utilisez :
 
     azure role assignment list --resource-group <resource group name>
 
-L’exemple suivant illustre les attributions de rôle dans le groupe *pharma-sales-projecforcast* .
+Hello suivant montre les attributions de rôles hello Bonjour *PHARMACEUTIQUE-ventes-projecforcast* groupe.
 
 ```
 azure role assignment list --resource-group pharma-sales-projecforcast --json | jq '.[] | {"DisplayName":.properties.aADObject.displayName,"RoleDefinitionName":.properties.roleName,"Scope":.properties.scope}'
@@ -78,15 +78,15 @@ azure role assignment list --resource-group pharma-sales-projecforcast --json | 
 ![Ligne de commande Azure RBAC - liste des affectations de rôle azure par groupe - capture d’écran](./media/role-based-access-control-manage-access-azure-cli/4-azure-role-assignment-list-1.png)
 
 ### <a name="list-role-assignments-for-a-user"></a>Répertorier les attributions de rôles pour un utilisateur
-Pour répertorier les attributions de rôle pour un utilisateur spécifique et les attributions affectées aux groupes d’un utilisateur, utilisez :
+affectations de rôle toolist hello pour un utilisateur spécifique et hello assignés tooa groupes de l’utilisateur, utilisez :
 
     azure role assignment list --signInName <user email>
 
-Vous pouvez également afficher les affectations de rôles héritées de groupes en modifiant la commande :
+Vous pouvez également afficher les attributions de rôles qui sont héritées de groupes en modifiant la commande hello :
 
     azure role assignment list --expandPrincipalGroups --signInName <user email>
 
-L’exemple suivant montre les attributions de rôles octroyées à l’utilisateur *sameert@aaddemo.com* . Cela inclut les rôles attribués directement à l’utilisateur et ceux hérités des groupes.
+Hello suivant montre les attributions de rôles hello accordées toohello  *sameert@aaddemo.com*  utilisateur. Cela inclut les rôles qui sont attribués directement toohello utilisateur et les rôles qui sont héritées de groupes.
 
 ```
 azure role assignment list --signInName sameert@aaddemo.com --json | jq '.[] | {"DisplayName":.properties.aADObject.DisplayName,"RoleDefinitionName":.properties.roleName,"Scope":.properties.scope}'
@@ -97,89 +97,89 @@ azure role assignment list --expandPrincipalGroups --signInName sameert@aaddemo.
 ![Ligne de commande Azure RBAC - liste des affectations de rôle azure par utilisateur - capture d’écran](./media/role-based-access-control-manage-access-azure-cli/4-azure-role-assignment-list-2.png)
 
 ## <a name="grant-access"></a>Accorder l'accès
-Pour accorder l'accès après avoir identifié le rôle que vous souhaitez affecter, utilisez :
+toogrant accès une fois que vous avez identifié le rôle hello que vous souhaitez tooassign, utilisez :
 
     azure role assignment create
 
-### <a name="assign-a-role-to-group-at-the-subscription-scope"></a>Affecter un rôle à un groupe pour l'abonnement
-Pour affecter un rôle à un groupe pour l'abonnement, utilisez :
+### <a name="assign-a-role-toogroup-at-hello-subscription-scope"></a>Affecter un toogroup de rôle au niveau de l’étendue de l’abonnement hello
+tooassign un groupe de tooa des rôles au niveau de l’étendue de l’abonnement hello, utilisez :
 
     azure role assignment create --objectId  <group object id> --roleName <name of role> --subscription <subscription> --scope <subscription/subscription id>
 
-L’exemple suivant affecte le rôle *Lecteur* à *l’équipe de Christine Koch* pour *l’abonnement*.
+exemple Hello affecte hello *lecteur* rôle trop*équipe de Christine Koch* à hello *abonnement* étendue.
 
 ![Ligne de commande Azure RBAC - création des affectations de rôle azure par groupe - capture d’écran](./media/role-based-access-control-manage-access-azure-cli/2-azure-role-assignment-create-1.png)
 
-### <a name="assign-a-role-to-an-application-at-the-subscription-scope"></a>Affectation d'un rôle à une application pour l'abonnement
-Pour affecter un rôle à une application pour l'abonnement, utilisez :
+### <a name="assign-a-role-tooan-application-at-hello-subscription-scope"></a>Affecter une application tooan de rôle au niveau de l’étendue de l’abonnement hello
+tooassign une application tooan de rôle au niveau de l’étendue de l’abonnement hello, utilisez :
 
     azure role assignment create --objectId  <applications object id> --roleName <name of role> --subscription <subscription> --scope <subscription/subscription id>
 
-L’exemple suivant affecte le rôle *Collaborateur* à une application *Azure AD* pour l’abonnement sélectionné.
+Hello exemple suivant accorde hello *collaborateur* rôle tooan *AD Azure* application hello sélectionné l’abonnement.
 
  ![Ligne de commande Azure RBAC - création de liste des affectations de rôle azure par utilisateur](./media/role-based-access-control-manage-access-azure-cli/2-azure-role-assignment-create-2.png)
 
-### <a name="assign-a-role-to-a-user-at-the-resource-group-scope"></a>Affectation d'un rôle à un utilisateur pour le groupe de ressources
-Pour affecter un rôle à un utilisateur pour le groupe de ressources, utilisez :
+### <a name="assign-a-role-tooa-user-at-hello-resource-group-scope"></a>Affecter un utilisateur tooa de rôle au niveau de l’étendue de groupe de ressources hello
+tooassign un utilisateur tooa de rôle au niveau de l’étendue de groupe de ressources hello, utilisez :
 
     azure role assignment create --signInName  <user email address> --roleName "<name of role>" --resourceGroup <resource group name>
 
-L’exemple suivant affecte le rôle *Collaborateur de machine virtuelle* à l’utilisateur *samert@aaddemo.com* au groupe de ressources *Pharma-Sales-ProjectForcast*.
+Hello exemple suivant accorde hello *contributeur de l’ordinateur virtuel* rôle trop *samert@aaddemo.com*  utilisateur hello *PHARMACEUTIQUE-ventes-ProjectForcast* étendue de groupe de ressources.
 
 ![Ligne de commande Azure RBAC - création des affectations de rôle azure par utilisateur - capture d’écran](./media/role-based-access-control-manage-access-azure-cli/2-azure-role-assignment-create-3.png)
 
-### <a name="assign-a-role-to-a-group-at-the-resource-scope"></a>Affectation d'un rôle à un utilisateur pour des ressources
-Pour affecter un rôle à un groupe au niveau des ressources, utilisez :
+### <a name="assign-a-role-tooa-group-at-hello-resource-scope"></a>Affecter un groupe de tooa de rôle au niveau de la portée de la ressource hello
+tooassign un groupe de tooa des rôles au niveau de la portée de la ressource hello, utilisez :
 
     azure role assignment create --objectId <group id> --role "<name of role>" --resource-name <resource group name> --resource-type <resource group type> --parent <resource group parent> --resource-group <resource group>
 
-L’exemple suivant affecte le rôle *Collaborateur de machine virtuelle* à un groupe *Azure AD* dans un *sous-réseau*.
+Hello exemple suivant accorde hello *contributeur de l’ordinateur virtuel* rôle tooan *Azure AD* groupe sur un *sous-réseau*.
 
 ![Ligne de commande Azure RBAC - création des affectations de rôle azure par groupe - capture d’écran](./media/role-based-access-control-manage-access-azure-cli/2-azure-role-assignment-create-4.png)
 
 ## <a name="remove-access"></a>Suppression d'accès
-Pour supprimer une affectation de rôle
+tooremove une attribution de rôle, utilisez :
 
-    azure role assignment delete --objectId <object id to from which to remove role> --roleName "<role name>"
+    azure role assignment delete --objectId <object id toofrom which tooremove role> --roleName "<role name>"
 
-L’exemple suivant supprime l’affectation du rôle *Collaborateur de machine virtuelle* de l’utilisateur *sammert@aaddemo.com* pour le groupe de ressources *Pharma-Sales-ProjectForcast*.
-L'exemple supprime ensuite l'affectation de rôle du groupe pour l'abonnement.
+exemple Hello supprime hello *contributeur de l’ordinateur virtuel* attribution de rôle à partir de hello  *sammert@aaddemo.com*  utilisateur sur hello *PHARMACEUTIQUE-ventes-ProjectForcast* groupe de ressources.
+exemple de Hello supprime puis attribution de rôle hello d’un groupe sur l’abonnement de hello.
 
 ![Ligne de commande Azure RBAC - suppression d’affectation de rôle - capture d’écran](./media/role-based-access-control-manage-access-azure-cli/3-azure-role-assignment-delete.png)
 
 ## <a name="create-a-custom-role"></a>Créer un rôle personnalisé
-Pour créer un rôle personnalisé, utilisez :
+toocreate un rôle personnalisé, utilisez :
 
     azure role create --inputfile <file path>
 
-L’exemple suivant crée un rôle personnalisé appelé *Opérateur de machine virtuelle*. Ce rôle personnalisé accorde l’accès à toutes les opérations des fournisseurs de ressources *Microsoft.Compute*, *Microsoft.Storage* et *Microsoft.Network* ainsi que l’accès nécessaire pour démarrer, redémarrer et surveiller des machines virtuelles. Ce rôle personnalisé peut être utilisé dans deux abonnements. Cet exemple utilise un fichier JSON en tant qu’entrée.
+Hello exemple suivant crée un rôle personnalisé appelé *opérateur de l’ordinateur virtuel*. Ce rôle personnalisé accorde l’accès tooall lire des opérations de *Microsoft.Compute*, *Microsoft.Storage*, et *Microsoft.Network* fournisseurs et accorde l’accès aux ressources de toostart, redémarrer et analyser des ordinateurs virtuels. Ce rôle personnalisé peut être utilisé dans deux abonnements. Cet exemple utilise un fichier JSON en tant qu’entrée.
 
 ![JSON - définition de rôle personnalisé - capture d’écran](./media/role-based-access-control-manage-access-azure-cli/2-azure-role-create-1.png)
 
 ![Ligne de commande Azure RBAC - création d’un rôle azure - capture d’écran](./media/role-based-access-control-manage-access-azure-cli/2-azure-role-create-2.png)
 
 ## <a name="modify-a-custom-role"></a>Modifier un rôle personnalisé
-Pour modifier un rôle personnalisé, utilisez d’abord la commande `azure role show` pour récupérer la définition de rôle. Apportez ensuite les modifications souhaitées au fichier de définition de rôle. Enfin, utilisez `azure role set` pour enregistrer la définition de rôle modifiée.
+toomodify un rôle personnalisé, utilisez d’abord hello `azure role show` définition de rôle tooretrieve des commandes. En second lieu, assurez-vous de fichier de définition de rôle toohello hello modifications souhaitées. Enfin, utilisez `azure role set` toosave hello modifié la définition de rôle.
 
     azure role set --inputfile <file path>
 
-L’exemple suivant ajoute l’opération *Microsoft.Insights/diagnosticSettings/* à **Actions** et un abonnement Azure à **AssignableScopes** du rôle personnalisé Opérateur de machine virtuelle.
+exemple Hello ajoute hello *Microsoft.Insights/diagnosticSettings/* opération toohello **Actions**et un abonnement Azure de toohello **AssignableScopes**du rôle de hello opérateur de Machine virtuelle personnalisée.
 
 ![JSON - modifier la définition de rôle personnalisé - capture d’écran](./media/role-based-access-control-manage-access-azure-cli/3-azure-role-set-1.png)
 
 ![Ligne de commande Azure RBAC - définition d’un rôle azure - capture d’écran](./media/role-based-access-control-manage-access-azure-cli/3-azure-role-set2.png)
 
 ## <a name="delete-a-custom-role"></a>Supprimer un rôle personnalisé
-Pour supprimer un rôle personnalisé, utilisez tout d’abord la commande `azure role show` afin de déterminer la propriété **ID** du rôle. Ensuite, utilisez la commande `azure role delete` pour supprimer le rôle en spécifiant la propriété **ID**.
+toodelete un rôle personnalisé, utilisez d’abord hello `azure role show` commande toodetermine hello **ID** du rôle de hello. Ensuite, utilisez hello `azure role delete` rôle de hello toodelete de commande en spécifiant hello **ID**.
 
-L’exemple suivant supprime le rôle personnalisé *Opérateur de machine virtuelle* .
+exemple Hello supprime hello *opérateur de Machine virtuelle* rôle personnalisé.
 
 ![Ligne de commande Azure RBAC - suppression d’un rôle azure - capture d’écran](./media/role-based-access-control-manage-access-azure-cli/4-azure-role-delete.png)
 
 ## <a name="list-custom-roles"></a>Répertorier les rôles personnalisés
-Pour répertorier les rôles pouvant être affectés dans une étendue, utilisez la commande `azure role list` .
+rôles hello toolist qui sont disponibles pour l’assignation dans une étendue, utilisez hello `azure role list` commande.
 
-La commande suivante répertorie tous les rôles pouvant être affectés à l’abonnement sélectionné.
+Hello commande suivante répertorie tous les rôles qui sont disponibles pour l’assignation dans l’abonnement de hello sélectionné.
 
 ```
 azure role list --json | jq '.[] | {"name":.properties.roleName, type:.properties.type}'
@@ -187,7 +187,7 @@ azure role list --json | jq '.[] | {"name":.properties.roleName, type:.propertie
 
 ![Ligne de commande Azure RBAC - liste des rôles azure - capture d’écran](./media/role-based-access-control-manage-access-azure-cli/5-azure-role-list1.png)
 
-Dans l’exemple suivant, le rôle personnalisé *Opérateur de machine virtuelle* n’est pas disponible dans l’abonnement *Production4*, car cet abonnement ne figure pas dans l’élément **AssignableScopes** du rôle.
+Dans l’exemple suivant de hello, hello *opérateur de Machine virtuelle* rôle personnalisé n’est pas disponible dans hello *Production4* abonnement, car cet abonnement n’est pas Bonjour  **AssignableScopes** du rôle de hello.
 
 ```
 azure role list --json | jq '.[] | if .properties.type == "CustomRole" then .properties.roleName else empty end'

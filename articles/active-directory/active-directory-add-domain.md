@@ -1,6 +1,6 @@
 ---
-title: "Ajout de votre nom de domaine personnalisé à Azure Active Directory | Microsoft Docs"
-description: "Comment ajouter les noms de domaine de votre société à Azure Active Directory et comment vérifier le nom de domaine."
+title: "aaaAdd tooAzure Active Directory de nom de votre domaine personnalisé | Documents Microsoft"
+description: "Comment tooadd des votre société noms de domaine tooAzure Active Directory, et comment tooverify hello nom de domaine."
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -16,75 +16,75 @@ ms.date: 07/24/2017
 ms.author: curtand
 ms.custom: oldportal;it-pro;
 robots: NOINDEX
-ms.openlocfilehash: 0228bf7ce261cfccdec9431d3c9fb67f461eefbd
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: eb208138f2633aaecc54f68dc947caf80d856d23
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-a-custom-domain-name-to-azure-active-directory"></a>Ajouter un nom de domaine personnalisé à Azure Active Directory
+# <a name="add-a-custom-domain-name-tooazure-active-directory"></a>Ajouter un tooAzure de nom de domaine personnalisé Active Directory
 > [!div class="op_single_selector"]
-> * [portail Azure](active-directory-domains-add-azure-portal.md)
-> * [Portail Azure Classic](active-directory-add-domain.md)
+> * [Portail Azure](active-directory-domains-add-azure-portal.md)
+> * [portail Azure Classic](active-directory-add-domain.md)
 > 
 > 
 
-Votre organisation utilise un ou plusieurs noms de domaine pour mener ses activités, et vos utilisateurs se connectent au réseau d’entreprise en utilisant votre nom de domaine d’entreprise. Maintenant que vous utilisez le logiciel Azure Active Directory (Azure AD), vous pouvez également ajouter votre nom de domaine d’entreprise à ce dernier. Cette tâche vous permet d’affecter des noms de répertoire avec lesquels vos utilisateurs sont familiarisés, comme « alice@contoso.com ». Le processus est simple :
+Vous avez un ou plusieurs noms de domaine que votre organisation utilise toodo business, et que vos utilisateurs se connectent tooyour de réseau d’entreprise à l’aide de votre nom de domaine d’entreprise. Maintenant que vous utilisez Azure Active Directory (Azure AD), vous pouvez ajouter votre tooAzure de nom du domaine d’entreprise Active Directory ainsi. Cela vous permet de noms d’utilisateur tooassign dans le répertoire de hello qui sont les utilisateurs tooyour familiers, tels que «alice@contoso.com. » processus de Hello est simple :
 
-1. Ajoutez le nom de domaine personnalisé à votre annuaire.
-2. Ajoutez une entrée DNS pour le nom de domaine au niveau du bureau d’enregistrement de noms de domaine.
-3. Vérifiez le nom de domaine personnalisé dans Azure AD.
+1. Ajouter un répertoire de tooyour de nom de domaine personnalisé hello
+2. Ajouter une entrée DNS pour le nom de domaine hello au bureau d’enregistrement de nom de domaine hello
+3. Vérifiez le nom de domaine personnalisé hello dans Azure AD
 
 > [!IMPORTANT]
-> Microsoft recommande de gérer Azure AD à l’aide du [Centre d’administration Azure AD](https://aad.portal.azure.com) dans le portail Azure au lieu d’utiliser le portail Azure classique référencé dans cet article. Pour savoir comment ajouter le nom de domaine de votre société dans le centre d’administration Azure AD, consultez la section [Attribution de rôles d’administrateur dans Azure Active Directory](active-directory-domains-add-azure-portal.md).
+> Microsoft recommande de gérer Azure AD en utilisant hello [centre d’administration Azure AD](https://aad.portal.azure.com) Bonjour portail Azure au lieu d’utiliser hello portail Azure classic référencée dans cet article. Pour tooadd votre nom de domaine de société dans le centre d’administration hello Azure AD, voir [attribution de rôles d’administrateur dans Azure Active Directory](active-directory-domains-add-azure-portal.md).
 
-Si vous envisagez de configurer votre nom de domaine personnalisé à utiliser avec les services de fédération Active Directory (AD FS) ou avec un service d’émission de jeton de sécurité (STS) différent sur votre réseau d’entreprise, suivez les instructions fournies dans [Add and configure a domain for federation with Azure Active Directory](active-directory-add-domain-federated.md)(Ajouter et configurer un domaine pour la fédération avec Azure Active Directory). Cette opération est utile si vous prévoyez de synchroniser les utilisateurs de votre annuaire d’entreprise avec Azure AD, et que la [synchronisation du hachage de mot de passe](active-directory-aadconnectsync-implement-password-synchronization.md) ne répond pas à vos besoins.
+Si vous envisagez de tooconfigure votre toobe de nom de domaine personnalisé utilisé avec les Services de fédération Active Directory (AD FS) ou un service de jeton de sécurité (STS) sur votre réseau d’entreprise, suivez les instructions de hello dans [ajouter et configurer un domaine pour fédération avec Azure Active Directory](active-directory-add-domain-federated.md). Cela est utile si vous envisagez de toosynchronize utilisateurs à partir de votre annuaire d’entreprise de tooAzure AD, et [synchronisation du hachage de mot de passe](active-directory-aadconnectsync-implement-password-synchronization.md) ne répondent pas à vos besoins.
 
-## <a name="add-a-custom-domain-name-to-your-directory"></a>Ajouter un nom de domaine personnalisé à votre annuaire
-1. Connectez-vous au [Portail Azure Classic](https://manage.windowsazure.com/) en utilisant le compte d’un administrateur général de votre annuaire Azure AD.
-2. Dans **Active Directory**, ouvrez votre annuaire et sélectionnez l’onglet **Domaines**.
-3. Dans la barre de commandes, sélectionnez **Ajouter**. Entrez le nom de votre domaine personnalisé, par exemple « contoso.com ». Veillez à inclure .com, .net ou une autre extension de premier niveau, et ne cochez pas la case de l’option « Authentification unique » (fédération).
+## <a name="add-a-custom-domain-name-tooyour-directory"></a>Ajouter un répertoire de tooyour de nom de domaine personnalisé
+1. Connectez-vous à toohello [portail Azure classic](https://manage.windowsazure.com/) avec un compte d’utilisateur qui est un administrateur global de votre annuaire Azure AD.
+2. Dans **Active Directory**, ouvrez votre répertoire et sélectionnez hello **domaines** onglet.
+3. Dans la barre de commandes hello, sélectionnez **ajouter**. Entrez le nom hello de votre domaine personnalisé, par exemple, « contoso.com ». Assurez-vous que tooinclude hello .com, .net ou une autre extension de niveau supérieur et laissez la case à cocher hello pour « single sign-on » (fédération) est désactivée.
 4. Sélectionnez **Ajouter**.
-5. Sur la deuxième page de l’Assistant Ajouter un domaine, obtenez l’entrée DNS qu’Azure AD doit utiliser pour vérifier que votre organisation possède le nom de domaine personnalisé.
+5. Hello deuxième page de l’Assistant Ajouter un domaine de hello, obtenir hello entrée DNS que Azure AD utilise tooverify que votre organisation possède le nom de domaine personnalisé hello.
 
-Maintenant que vous avez ajouté le nom de domaine, Azure AD doit vérifier que votre organisation possède le nom de domaine. Pour qu’Azure AD puisse effectuer cette vérification, vous devez ajouter une entrée DNS dans le fichier de zone DNS pour le nom de domaine. Cette tâche peut être effectuée sur le site web pour le bureau d’enregistrement de noms de domaine associé au nom de domaine.
+Maintenant que vous avez ajouté le nom de domaine hello, Azure AD doit vérifier que votre organisation possède le nom de domaine hello. Avant d’Azure AD peut effectuer cette vérification, vous devez ajouter une entrée DNS dans le fichier de zone DNS hello pour le nom de domaine hello. Cette tâche est effectuée sur le site Web de hello pour le bureau d’enregistrement du nom de domaine pour le nom de domaine hello.
 
-## <a name="add-the-dns-entry-at-the-domain-name-registrar-for-the-domain"></a>Ajouter l’entrée DNS pour le domaine au niveau du bureau d’enregistrement de noms de domaine
-L’étape suivante pour utiliser votre nom de domaine personnalisé avec Azure AD consiste à mettre à jour le fichier de zone DNS pour le domaine. Cette opération permet à Azure AD de vérifier que votre organisation possède le nom de domaine personnalisé.
+## <a name="add-hello-dns-entry-at-hello-domain-name-registrar-for-hello-domain"></a>Ajouter l’entrée DNS de hello au bureau d’enregistrement du nom de domaine hello pour le domaine de hello
+toouse étape suivante de Hello, nom de votre domaine personnalisé avec Azure AD est un fichier de zone DNS tooupdate hello pour le domaine de hello. Cela permet de tooverify Azure AD que votre organisation possède le nom de domaine personnalisé hello.
 
-1. Connectez-vous au Bureau d’enregistrement des noms de domaine pour le domaine. Si vous n’avez pas accès à ce bureau pour mettre à jour l’entrée DNS, demandez à la personne ou à l’équipe disposant de cet accès d’exécuter l’étape 2 et de vous avertir une fois l’opération effectuée.
-2. Mettez à jour le fichier de zone DNS pour le domaine en ajoutant l’entrée DNS fournie par Azure AD. Cette entrée DNS permet à Azure AD de vérifier que vous êtes le propriétaire du domaine. Elle ne modifiera aucun comportement comme le routage du courrier ou l’hébergement web.
+1. Se connecter dans le Registre des noms de domaine pour le domaine de hello toohello. Si vous n’avez pas hello de tooupdate accès entrée DNS, demandez à personne de hello ou équipe disposant de cette étape de toocomplete accès 2 et toolet que vous savez lorsqu’elle est effectuée.
+2. Fichier de zone de mise à jour hello DNS pour le domaine hello en ajoutant l’entrée DNS de hello fourni tooyou par Azure AD. Cette entrée DNS permet à Azure AD tooverify votre propriétaire du domaine de hello. Hello entrée DNS ne change pas tout comportement de routage du courrier électronique ou d’hébergement web.
 
-Pour plus d’informations sur cette procédure d’ajout de l’entrée DNS, voir [Instructions pour ajouter une entrée DNS à des Bureaux d’enregistrement DNS courants](https://support.office.com/article/Create-DNS-records-for-Office-365-when-you-manage-your-DNS-records-b0f3fdca-8a80-4e8e-9ef3-61e8a2a9ab23/)
+Pour plus d’informations cet ajout de l’entrée DNS hello, lire [Instructions pour l’ajout d’une entrée DNS à des bureaux d’enregistrement DNS populaires](https://support.office.com/article/Create-DNS-records-for-Office-365-when-you-manage-your-DNS-records-b0f3fdca-8a80-4e8e-9ef3-61e8a2a9ab23/)
 
-## <a name="verify-the-domain-name-with-azure-ad"></a>Vérifier le nom de domaine avec Azure AD.
-Une fois que vous avez ajouté l’entrée DNS, vous êtes prêt à vérifier le nom de domaine avec Azure AD.
+## <a name="verify-hello-domain-name-with-azure-ad"></a>Vérifiez le nom de domaine hello avec Azure AD
+Une fois que vous avez ajouté l’entrée DNS de hello, vous êtes prêt tooverify nom de domaine hello avec Azure AD.
 
-Si l’Assistant **Ajouter un domaine** est toujours ouvert, sélectionnez **Vérifier** dans sa troisième page. Lorsque vous sélectionnez **Vérifier**, Azure AD recherche l’entrée DNS dans le fichier de zone DNS pour le domaine. Azure AD ne peut vérifier le nom de domaine qu’une fois les enregistrements DNS propagés. Cette propagation ne prend généralement que quelques secondes, mais peut parfois nécessiter une heure ou davantage. Si la vérification ne fonctionne pas la première fois, réessayez ultérieurement.
+Si vous avez toujours hello **ajouter un domaine** Assistant, sélectionnez Ouvrir, **Vérifiez** sur hello troisième page de hello Assistant. Lorsque vous sélectionnez **Vérifiez**, Azure AD recherchera l’entrée DNS hello dans fichier de zone DNS hello pour le domaine de hello. Azure AD peut vérifier les nom de domaine hello uniquement après la propagation des enregistrements DNS de hello. Cette propagation ne prend généralement que quelques secondes, mais peut parfois nécessiter une heure ou davantage. Si la vérification ne fonctionne pas hello première fois, réessayez plus tard.
 
-Si l’Assistant **Ajouter un domaine** n’est plus ouvert, vous pouvez vérifier le domaine dans le [Portail Azure Classic](https://manage.windowsazure.com/):
+Si hello **ajouter un domaine** Assistant n’est pas encore ouvert, vous pouvez vérifier le domaine hello Bonjour [portail Azure classic](https://manage.windowsazure.com/):
 
 1. Connectez-vous à l’aide d’un compte d’administrateur général de votre annuaire Azure AD.
-2. Ouvrez votre annuaire, puis sélectionnez l’onglet **Domaines** .
-3. Sélectionnez le nom de domaine que vous souhaitez vérifier, puis choisissez **Vérifier** dans la barre de commandes.
-4. Sélectionnez **Vérifier** dans la boîte de dialogue pour effectuer la vérification.
+2. Ouvrez votre hello directory et sélectionnez **domaines** onglet.
+3. Nom de domaine Sélectionnez hello que vous souhaitez tooverify, sélectionnez **Vérifiez** sur la barre de commandes hello.
+4. Sélectionnez **Vérifiez** dans la vérification hello toocomplete hello boîte de dialogue zone.
 
 Vous pouvez désormais [affecter des noms d’utilisateur incluant votre nom de domaine personnalisé](active-directory-add-domain-add-users.md).
 
-## <a name="troubleshooting"></a>Résolution de problèmes
-Si vous ne parvenez pas à vérifier un nom de domaine personnalisé, essayez d’effectuer les opérations ci-après. Nous irons de la plus courante à la moins courante.
+## <a name="troubleshooting"></a>Résolution des problèmes
+Si vous ne pouvez pas vérifier un nom de domaine personnalisé, essayez suivante de hello. Nous allons commencer par hello plus courants et travail vers le bas toohello moins courants.
 
-1. **Attendez une heure**. Les enregistrements DNS doivent être propagés avant qu’Azure AD puisse vérifier le domaine. Cette opération peut prendre une heure ou davantage.
-2. **Vérifiez que l’enregistrement DNS a été entré et qu’il est correct**. Exécutez cette tâche sur le site web du bureau d’enregistrement de noms de domaine correspondant au domaine. Azure AD ne peut pas vérifier le nom de domaine si l’entrée DNS est absente du fichier de zone DNS ou qu’elle ne correspond pas exactement à l’entrée DNS qu’Azure AD vous a fournie. Si vous ne disposez pas d’un accès pour mettre à jour les enregistrements DNS du domaine au niveau du bureau d’enregistrement de noms de domaine, partagez l’entrée DNS avec la personne ou l’équipe de votre organisation qui possède cet accès et demandez-lui d’ajouter cette entrée.
-3. **Supprimez le nom de domaine d’un autre annuaire dans Azure AD**. Un nom de domaine ne peut être vérifié que dans un seul annuaire. Si un nom de domaine a été précédemment vérifié dans un autre annuaire, vous devez le supprimer avant de pouvoir le vérifier dans votre nouvel annuaire. Pour plus d’informations sur la suppression des noms de domaine, voir [Gérer les noms de domaine personnalisé](active-directory-add-manage-domain-names.md).
+1. **Attendez une heure**. Enregistrements DNS doivent toopropagate Azure AD peut vérifier le domaine de hello. Cette opération peut prendre une heure ou davantage.
+2. **Vérifiez hello enregistrement DNS a été entré, et qu’il est correct**. Effectuez cette étape sur le site Web de hello pour le Registre des noms de domaine pour le domaine de hello hello. Azure AD ne peut pas vérifier les nom de domaine hello si hello entrée DNS n’est pas présent Bonjour le fichier de zone DNS, ou si elle n’est pas une correspondance exacte avec l’entrée DNS de hello qu’Azure AD vous fourni. Si vous n’avez pas les enregistrements DNS de tooupdate d’accès pour le domaine hello au bureau d’enregistrement de nom de domaine hello, partager l’entrée DNS de hello avec hello personne ou une équipe de votre organisation qui possède cet accès et lui demander d’entrée DNS tooadd hello.
+3. **Supprimer le nom de domaine hello à partir d’un autre annuaire dans Azure AD**. Un nom de domaine ne peut être vérifié que dans un seul annuaire. Si un nom de domaine a été précédemment vérifié dans un autre annuaire, vous devez le supprimer avant de pouvoir le vérifier dans votre nouvel annuaire. toolearn sur la suppression des noms de domaine, lire [gérer les noms de domaine personnalisé](active-directory-add-manage-domain-names.md).
 
 ## <a name="add-more-custom-domain-names"></a>Ajouter des noms de domaines personnalisés
-Si votre organisation utilise plusieurs noms de domaine personnalisés, tels que « contoso.com » et « contosobank.com », vous pouvez les ajouter (le nombre maximal autorisé de noms de domaine est de 900). Suivez la procédure décrite dans cet article pour ajouter chacun de ces noms de domaine.
+Si votre organisation utilise plusieurs noms de domaines personnalisés, tels que « contoso.com » et « contosobank.com », vous pouvez les ajouter des tooa jusqu'à 900 noms de domaine. Utilisez hello même les étapes dans cette tooadd article chaque de vos noms de domaine.
 
 ## <a name="next-steps"></a>Étapes suivantes
 * [Affecter des noms d’utilisateur qui incluent votre nom de domaine personnalisé](active-directory-add-domain-add-users.md)
 * [Gérer les noms de domaine personnalisés](active-directory-add-manage-domain-names.md)
 * [En savoir plus sur les concepts de gestion de domaine dans Azure AD](active-directory-add-domain-concepts.md)
 * [Afficher la marque de votre société lorsque vos utilisateurs se connectent](active-directory-add-company-branding.md)
-* [Utiliser PowerShell pour gérer les noms de domaine dans Azure AD](https://msdn.microsoft.com/library/azure/e1ef403f-3347-4409-8f46-d72dafa116e0#BKMK_ManageDomains)
+* [Utiliser des noms de domaine toomanage PowerShell dans Azure AD](https://msdn.microsoft.com/library/azure/e1ef403f-3347-4409-8f46-d72dafa116e0#BKMK_ManageDomains)
 

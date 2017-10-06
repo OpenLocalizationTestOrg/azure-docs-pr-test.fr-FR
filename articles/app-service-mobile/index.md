@@ -1,6 +1,6 @@
 ---
-title: "Documentation Azure Mobile Apps - Didacticiels, informations de référence sur les API | Microsoft Docs"
-description: "Découvrez comment utiliser Mobile Apps dans Azure App Service pour développer et héberger des applications iOS, Android ou Windows natives ou des applications multiplateformes à l’aide de Xamarin ou de Cordova."
+title: "aaaAzure Documentation des applications mobiles - didacticiels, référence de l’API | Documents Microsoft"
+description: "Découvrez comment toouse Mobile Apps dans Azure App Service toobuild et hôte natives iOS, Android ou Windows applications ou des applications multiplateformes à l’aide de Xamarin ou Cordova."
 services: app-service\mobile
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: f660922fa2f7d5d21b4e6678233792ad6cb84041
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 09b103b274c66f515d9a34bbdcb54cf0ff3a035a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="mobile-apps-documentation"></a>Documentation Mobile Apps
 
-Découvrez comment utiliser Mobile Apps dans Azure App Service pour développer des applications iOS, Android ou Windows natives ou des applications multiplateformes à l’aide de Xamarin ou de Cordova. Des didacticiels, des vidéos, des documents SDK client et d’autres ressources vous montrent comment créer et héberger le serveur principal pour n’importe quelle application mobile.
+Découvrez comment toouse Mobile Apps dans Azure App Service toobuild natives iOS, Android ou Windows applications ou des applications multiplateformes à l’aide de Xamarin ou Cordova. Didacticiels, vidéos, documentation du Kit de développement logiciel client et bien plus encore vous montrent comment toobuild et hôte hello principal pour n’importe quelle application mobile.
 
 <ul class="panelContent cardsFTitle">
     <li>

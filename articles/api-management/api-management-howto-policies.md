@@ -1,6 +1,6 @@
 ---
-title: "Stratégies dans Gestion des API Azure | Microsoft Docs"
-description: "Apprenez à créer, à modifier et à configurer des stratégies dans Gestion des API."
+title: aaaPolicies dans Gestion des API Azure | Documents Microsoft
+description: "Découvrez comment toocreate, modifier et configurer des stratégies de gestion des API."
 services: api-management
 documentationcenter: 
 author: steved0x
@@ -14,58 +14,58 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/15/2016
 ms.author: apimpm
-ms.openlocfilehash: 7c1f235343074ec11c635097f2b094a10f3fe781
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9ab0f884a655004cb10c05085034df1795f512e6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="policies-in-azure-api-management"></a>Stratégies dans Gestion des API Azure
-Dans Gestion des API Azure, les stratégies sont une fonctionnalité puissante du système qui permet à l’éditeur de modifier le comportement de l’API grâce à la configuration. Les stratégies sont un ensemble d'instructions qui sont exécutées dans l'ordre sur demande ou sur réponse d'une API. Les instructions les plus utilisées comprennent la conversion du format XML au format JSON et la limitation du débit d'appels pour restreindre la quantité d'appels entrants d'un développeur. De nombreuses autres stratégies sont disponibles.
+Gestion des API Azure, les stratégies sont une fonctionnalité puissante du système hello autoriser la publication de hello toochange hello du comportement de hello API via la configuration. Les stratégies sont une collection d’instructions qui sont exécutées séquentiellement sur la demande de hello ou de réponse d’une API. Les instructions populaires incluent une conversion de format à partir de XML tooJSON et limiter ainsi toorestrict hello d’appels entrants à partir d’un développeur de taux d’appels. De nombreuses stratégies supplémentaires sont disponibles en dehors de la zone de hello.
 
-Pour obtenir la liste complète des instructions et des paramètres de stratégie, consultez la section [Référence de stratégie][Policy Reference].
+Consultez hello [référence de stratégie] [ Policy Reference] pour obtenir la liste complète des instructions de stratégie et leurs paramètres.
 
-Les stratégies sont appliquées au niveau de la passerelle qui se trouve entre le consommateur de l’API et l’API managée. La passerelle reçoit toutes les demandes et les transfère normalement sans les modifier à l’API sous-jacente. Cependant, une stratégie peut appliquer des modifications à la demande entrante et à la réponse sortante.
+Stratégies sont appliquées à l’intérieur de passerelle hello qui se situe entre les consommateurs d’API hello et hello géré API. Hello passerelle reçoit toutes les requêtes et les non modifiée transfère généralement toohello sous-jacent API. Cependant une stratégie peut s’appliquer demande entrante de modifications tooboth hello et la réponse sortante.
 
-Les expressions de stratégie peuvent être utilisées comme valeurs d’attribut ou valeurs de texte dans l’une des stratégies de Gestion des API, sauf si la stratégie le spécifie autrement. Certaines stratégies, telles que les stratégies [Contrôler le flux][Control flow] et [Définir la variable][Set variable], sont basées sur des expressions de stratégie. Pour plus d’informations, consultez les rubriques [Stratégies avancées][Advanced policies] et [Expressions de stratégie][Policy expressions].
+Expressions de stratégie peuvent être utilisées en tant que valeurs d’attribut ou valeurs de texte dans une des stratégies de gestion des API hello, sauf indication contraire de la stratégie de hello. Certaines stratégies telles que hello [flux de contrôle] [ Control flow] et [Set variable] [ Set variable] stratégies basées sur des expressions de stratégie. Pour plus d’informations, consultez les rubriques [Stratégies avancées][Advanced policies] et [Expressions de stratégie][Policy expressions].
 
-## <a name="scopes"> </a>Configuration des stratégies
-Les stratégies peuvent être configurées de façon globale, ou bien au niveau d’un [produit][Product], d’une [API][API] ou d’une [opération][Operation]. Pour configurer une stratégie, accédez à l'éditeur Stratégies dans le portail des éditeurs.
+## <a name="scopes"></a>Comment tooconfigure stratégies
+Stratégies peuvent être configurées globalement ou au niveau de portée hello d’un [produit][Product], [API] [ API] ou [opération] [Operation]. tooconfigure une stratégie, accédez toohello éditeur de stratégies dans le portail de publication hello.
 
 ![Policies menu][policies-menu]
 
-L’éditeur de stratégies se compose de trois sections principales : la portée de la stratégie (en haut), la définition de la stratégie, là où les stratégies sont modifiées (à gauche) et la liste des instructions (à droite) :
+éditeur de stratégies Hello se compose de trois sections principales : hello stratégie étendue (du haut), hello définition de stratégie dans lequel les stratégies sont modifiés (à gauche) et les instructions hello liste (à droite) :
 
 ![Policies editor][policies-editor]
 
-Pour configurer une stratégie, vous devez d'abord sélectionner la portée à laquelle elle doit s'appliquer. Dans la capture d'écran ci-dessous, le produit **Starter** est sélectionné. Notez que le symbole carré à côté du nom de la stratégie indique qu'une stratégie est déjà appliquée à ce niveau.
+toobegin configuration d’une stratégie, que vous devez d’abord sélectionner étendue hello à quels hello stratégie doit s’appliquer. Capture d’écran hello ci-dessous hello **Starter** produit est sélectionné. Notez que ce nom de la stratégie de toohello suivant hello symbole carré indique qu’une stratégie est déjà appliquée à ce niveau.
 
 ![Scope][policies-scope]
 
-Comme une stratégie est déjà appliquée, la configuration est présentée dans l'affichage de la définition.
+Dans la mesure où une stratégie a déjà été appliquée, configuration de hello est présentée dans l’affichage de la définition hello.
 
 ![Configuration][policies-configure]
 
-Initialement, la stratégie est affichée uniquement en lecture seule. Pour pouvoir modifier la définition, cliquez sur l’action **Configurer la stratégie** .
+stratégie de Hello est affichée en lecture seule dans un premier temps. Dans l’ordre tooedit définition de hello, cliquez sur hello **configurer la stratégie** action.
 
 ![Modifier][policies-edit]
 
-La définition de la stratégie est un simple document XML qui décrit une séquence d'instructions entrantes et sortantes. Le code XML peut être modifié directement dans la fenêtre de définition. Une liste d’instructions est fournie à droite. Les instructions applicables à la portée actuelle sont activées et mises en surbrillance, comme l’instruction **Limit Call Rate** dans la capture d’écran ci-dessus.
+définition de stratégie Hello est un document XML simple qui décrit une séquence d’instructions entrantes et sortantes. Hello XML peut être modifiée directement dans la fenêtre de définition de hello. Une liste d’instructions est fournie toohello à droite et l’étendue actuelle d’instructions toohello applicables sont activés et mis en surbrillance ; comme indiqué par hello **le taux d’appels limite** instruction dans la capture d’écran hello ci-dessus.
 
-Lorsque vous cliquez sur une instruction active, le code XML correspondant est inséré à l'emplacement du curseur dans la fenêtre de définition. 
+En cliquant sur une instruction activée ajoutera hello XML approprié à l’emplacement de hello de curseur hello dans l’affichage de la définition hello. 
 
 > [!NOTE]
-> Si la stratégie que vous souhaitez ajouter n’est pas activée, vérifiez que vous êtes dans l’étendue correcte pour cette stratégie. Chaque instruction de stratégie est conçue pour une utilisation dans certaines étendues et sections de la stratégie. Pour consulter les sections de la stratégie et les étendues pour une stratégie, consultez la section **Utilisation** de cette stratégie dans la [Référence de la stratégie][Policy Reference].
+> Si la stratégie de hello que vous souhaitez tooadd n’est pas activée, assurez-vous que vous êtes dans la portée appropriée de hello pour cette stratégie. Chaque instruction de stratégie est conçue pour une utilisation dans certaines étendues et sections de la stratégie. sections de stratégie tooreview hello et étendues pour une stratégie, vérifiez hello **utilisation** section pour cette stratégie Bonjour [référence de stratégie][Policy Reference].
 > 
 > 
 
-La liste complète des instructions et des paramètres des stratégies se trouve dans la section [Référence de stratégie][Policy Reference].
+Une liste complète des instructions de stratégie et leurs paramètres sont disponibles dans hello [référence de stratégie][Policy Reference].
 
-Par exemple, pour ajouter une nouvelle instruction pour limiter les demandes entrantes à certaines adresses IP, placez le curseur juste à l'intérieur du contenu de l'élément `inbound` XML, puis cliquez sur l'instruction **Restrict caller IP** .
+Par exemple, tooadd un nouveau toorestrict d’instruction entrant demande toospecified des adresses IP, placez le curseur hello à l’intérieur de contenu hello Hello `inbound` hello d’élément et cliquez sur XML **Restrict appelant IPs** instruction.
 
 ![Restriction policies][policies-restrict]
 
-Ceci ajoute un code XML à l'élément `inbound` , indiquant comment configurer l'instruction.
+Cette opération ajoute une toohello d’extrait de code XML `inbound` élément qui fournit des conseils sur la façon dont tooconfigure hello instruction.
 
 ```xml
 <ip-filter action="allow | forbid">
@@ -74,7 +74,7 @@ Ceci ajoute un code XML à l'élément `inbound` , indiquant comment configurer 
 </ip-filter>
 ```
 
-Pour limiter les demandes entrantes et n'accepter que celles venant de l'adresse IP 1.2.3.4, modifiez le code XML comme suit :
+toolimit les demandes entrantes et acceptez uniquement les à partir d’une adresse IP 1.2.3.4 modifier hello XML comme suit :
 
 ```xml
 <ip-filter action="allow">
@@ -84,43 +84,43 @@ Pour limiter les demandes entrantes et n'accepter que celles venant de l'adresse
 
 ![Enregistrer][policies-save]
 
-Lorsque vous avez terminé la configuration des instructions de la stratégie, cliquez sur **Enregistrer**. Les modifications sont ajoutées immédiatement à la passerelle Gestion des API.
+Configuration des instructions hello pour la stratégie de hello terminé, cliquez sur **enregistrer** et modifications de hello seront passerelle de gestion des API toohello propagées immédiatement.
 
-## <a name="sections"> </a>Configuration de la stratégie
-Une stratégie est une série d'instructions qui s'exécutent dans l'ordre pour une demande et une réponse. La configuration se compose des sections `inbound`, `backend`, `outbound` et `on-error`, comme présenté dans la configuration suivante.
+## <a name="sections"></a>Configuration de la stratégie
+Une stratégie est une série d'instructions qui s'exécutent dans l'ordre pour une demande et une réponse. configuration de Hello est divisée en conséquence `inbound`, `backend`, `outbound`, et `on-error` sections comme indiqué dans la configuration suivante de hello.
 
 ```xml
 <policies>
   <inbound>
-    <!-- statements to be applied to the request go here -->
+    <!-- statements toobe applied toohello request go here -->
   </inbound>
   <backend>
-    <!-- statements to be applied before the request is forwarded to 
-         the backend service go here -->
+    <!-- statements toobe applied before hello request is forwarded too
+         hello backend service go here -->
   </backend>
   <outbound>
-    <!-- statements to be applied to the response go here -->
+    <!-- statements toobe applied toohello response go here -->
   </outbound>
   <on-error>
-    <!-- statements to be applied if there is an error condition go here -->
+    <!-- statements toobe applied if there is an error condition go here -->
   </on-error>
 </policies> 
 ```
 
-S'il existe une erreur lors du traitement d'une demande, les autres étapes des sections `inbound`, `backend` ou `outbound` sont ignorées et l'exécution passe aux instructions de la section `on-error`. En plaçant des instructions de stratégie dans la section `on-error`, vous pouvez consulter l'erreur à l'aide de la propriété `context.LastError`, inspecter et personnaliser la réponse à l'erreur à l'aide de la stratégie `set-body`, puis configurer ce qui se passe si une erreur se produit. Il existe des codes d'erreur pour les étapes intégrées et pour les erreurs qui peuvent se produire pendant le traitement d'instructions de stratégie. Pour plus d'informations, consultez [Gestion des erreurs dans les stratégies de gestion des API](https://msdn.microsoft.com/library/azure/mt629506.aspx).
+S’il existe une erreur lors du traitement de hello d’une demande, les autres étapes Bonjour `inbound`, `backend`, ou `outbound` sections sont ignorées et l’exécution passe instructions toohello Bonjour `on-error` section. En plaçant des instructions de stratégie Bonjour `on-error` section, vous pouvez consulter les erreurs hello à l’aide de hello `context.LastError` propriété, examiner et personnaliser la réponse d’erreur hello à l’aide de hello `set-body` stratégie et configurer que se passe-t-il si une erreur se produit. Il existe des codes d’erreur pour obtenir des instructions intégrées et les erreurs qui peuvent se produire pendant le traitement de hello des instructions de stratégie. Pour plus d'informations, consultez [Gestion des erreurs dans les stratégies de gestion des API](https://msdn.microsoft.com/library/azure/mt629506.aspx).
 
-Comme les stratégies peuvent être spécifiées à différents niveaux (globale, produits, API et opérations), la configuration vous permet de spécifier l'ordre dans lequel les instructions de la définition de la stratégie sont exécutées par rapport à la stratégie parente. 
+Étant donné que les stratégies peuvent être spécifiés à différents niveaux (globale, produit, api et operation) hello configuration offre un moyen vous ordre de hello toospecify dans laquelle les instructions de définition de stratégie hello s’exécutent avec la stratégie de respect toohello parent. 
 
-Les étendues de stratégie sont évaluées dans l'ordre suivant.
+Étendues de stratégie sont évalués dans hello suivant l’ordre.
 
 1. Étendue globale
 2. Étendue produit
 3. Étendue API
 4. Étendue opération
 
-Les instructions qu'elles contiennent sont évaluées en fonction de l'emplacement de l'élément `base` , s'il est présent. Une stratégie globale n’a aucune stratégie parente et l’utilisation de l’élément `<base>` n’a aucun effet.
+Hello instructions au sein de celles-ci sont évaluées en fonction de la sélection élective toohello Hello `base` élément, s’il est présent. La stratégie globale a aucune stratégie parent et à l’aide de hello `<base>` élément qu’il n’a aucun effet.
 
-Par exemple, si vous avez une stratégie configurée au niveau global et une stratégie configurée pour une API, dès que cette API est utilisée, les deux stratégies sont appliquées. Le service Gestion des API permet de trier de façon déterminée les instructions de stratégie combinées via l'élément de base. 
+Par exemple, si vous avez une stratégie au niveau global de hello et une stratégie configurée pour une API, puis chaque fois que cette API particulière est utilisée les deux stratégies sont appliquées. Gestion des API permettant d’ordre déterministe des instructions de stratégie combinée via l’élément de base hello. 
 
 ```xml
 <policies>
@@ -132,9 +132,9 @@ Par exemple, si vous avez une stratégie configurée au niveau global et une str
 </policies>
 ```
 
-Dans l'exemple de définition de stratégie ci-dessus, l'instruction `cross-domain` s'exécute avant toutes les autres stratégies de niveau supérieur, qui sont à leur tour suivies de la stratégie `find-and-replace`. 
+Dans la définition de stratégie exemple hello ci-dessus, hello `cross-domain` instruction exécuterait avant les stratégies plus élevées, qui à leur tour, être suivie hello `find-and-replace` stratégie. 
 
-Pour afficher les stratégies dans l'étendue actuelle dans l'éditeur de stratégie, cliquez sur **Recalculer la stratégie en vigueur pour l'étendue sélectionnée**.
+stratégies de hello toosee dans l’étendue actuelle de hello dans l’éditeur de stratégie de hello, cliquez sur **recalculer la stratégie effective pour l’étendue sélectionnée**.
 
 ## <a name="next-steps"></a>Étapes suivantes
 Découvrez la vidéo suivante sur les expressions de stratégie.

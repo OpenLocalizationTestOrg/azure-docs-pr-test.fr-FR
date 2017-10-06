@@ -1,6 +1,6 @@
 ---
-title: "Modèles de page dans Gestion des API Azure | Microsoft Docs"
-description: "Découvrez comment personnaliser le contenu des pages du portail des développeurs à l’aide d’un ensemble de modèles dans Gestion des API Azure."
+title: "modèles d’aaaPage dans Gestion des API Azure | Documents Microsoft"
+description: "Découvrez comment toocustomize hello le contenu des pages de portail de développement à l’aide d’un ensemble de modèles dans la gestion des API Azure."
 services: api-management
 documentationcenter: 
 author: miaojiang
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-ms.openlocfilehash: 7f9ef37a694bce786b6acaa428df83f0cb23c2dc
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 84bd971ad4bcacfdd36c2ebbe05b16063f2a547b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="page-templates-in-azure-api-management"></a>Modèles de page dans Gestion des API Azure
-Gestion des API Azure vous offre la possibilité de personnaliser le contenu des pages du portail des développeurs à l’aide d’un ensemble de modèles qui configurent leur contenu. En utilisant la syntaxe [DotLiquid](http://dotliquidmarkup.org/) et l’éditeur de votre choix, comme [DotLiquid for Designers](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers), ainsi qu’un ensemble de [ressources de chaîne](api-management-template-resources.md#strings), de [ressources de glyphe](api-management-template-resources.md#glyphs) et de [contrôles de page](api-management-page-controls.md) localisés, vous disposez d’un large choix pour configurer le contenu des pages selon vos besoins à l’aide de ces modèles.  
+Gestion des API Azure fournit que Hello de contenu de hello toocustomize possibilité de pages du portail développeur à l’aide d’un ensemble de modèles que configurer leur contenu. À l’aide de [DotLiquid](http://dotliquidmarkup.org/) syntaxe et hello l’éditeur de votre choix, tel que [DotLiquid pour les concepteurs](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers), et un ensemble fourni de localisée [ressources de type chaîne](api-management-template-resources.md#strings), [ Ressources de glyphe](api-management-template-resources.md#glyphs), et [Page les contrôles](api-management-page-controls.md), vous avez une grande souplesse tooconfigure hello contenu hello pages comme vous le souhaitez à l’aide de ces modèles.  
   
- Les modèles de cette section vous permettent de personnaliser le contenu des pages de connexion, des pages d’authentification et des pages introuvables dans le portail des développeurs.  
+ modèles de Hello dans cette section permettent de contenu de hello toocustomize de hello connexion, l’authentification des et page pages introuvable dans le portail des développeurs hello.  
   
 -   [Connexion](#SignIn)  
   
@@ -32,10 +32,10 @@ Gestion des API Azure vous offre la possibilité de personnaliser le contenu des
 -   [Page introuvable](#PageNotFound)  
   
 > [!NOTE]
->  Les exemples de modèles par défaut inclus dans la documentation suivante sont susceptibles d’être modifiés et améliorés de façon régulière. Vous pouvez afficher les modèles dynamiques par défaut dans le portail des développeurs en accédant aux modèles individuels souhaités. Pour plus d’informations sur l’utilisation de modèles, consultez [Comment personnaliser le portail des développeurs Gestion des API Azure à l’aide de modèles](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/).  
+>  Exemples de modèles par défaut sont inclus dans hello suivant la documentation, mais sont toochange sujet en raison des améliorations de toocontinuous. Vous pouvez afficher les modèles par défaut dynamique hello dans le portail des développeurs hello en naviguant toohello souhaitée des modèles individuels. Pour plus d’informations sur l’utilisation des modèles, consultez [comment toocustomize hello portail des développeurs gestion des API à l’aide de modèles](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/).  
   
 ##  <a name="SignIn"></a> Connexion  
- Le modèle de **connexion** vous permet de personnaliser la page de connexion dans le portail des développeurs.  
+ Hello **connectez-vous** modèle vous permet de toocustomize hello signe dans la page dans le portail des développeurs hello.  
   
  ![Page de connexion](./media/api-management-page-templates/APIM-Sign-In-Page-Developer-Portal-Templates.png "Modèles du portail des développeurs de la page de connexion APIM")  
   
@@ -96,7 +96,7 @@ Gestion des API Azure vous offre la possibilité de personnaliser le contenu des
 ```  
   
 ### <a name="controls"></a>Commandes  
- Ce modèle peut utiliser les [contrôles de page](api-management-page-controls.md) suivants.  
+ Ce modèle peut utiliser des éléments suivants de hello [page les contrôles](api-management-page-controls.md).  
   
 -   [basic-signin](api-management-page-controls.md#basic-signin)  
   
@@ -134,7 +134,7 @@ Gestion des API Azure vous offre la possibilité de personnaliser le contenu des
 ```  
   
 ##  <a name="SignUp"></a> Inscription  
- Le modèle d’**inscription** vous permet de personnaliser la page d’inscription dans le portail des développeurs.  
+ Hello **inscrire** modèle vous permet de page d’inscription hello toocustomize dans le portail des développeurs hello.  
   
  ![Page d’inscription](./media/api-management-page-templates/APIM-Sign-Up-Page-Developer-Portal-Templates.png "Modèles du portail des développeurs de la page d’inscription APIM")  
   
@@ -155,7 +155,7 @@ Gestion des API Azure vous offre la possibilité de personnaliser le contenu des
 ```  
   
 ### <a name="controls"></a>Commandes  
- Ce modèle peut utiliser les [contrôles de page](api-management-page-controls.md) suivants.  
+ Ce modèle peut utiliser des éléments suivants de hello [page les contrôles](api-management-page-controls.md).  
   
 -   [sign-up](api-management-page-controls.md#sign-up)  
   
@@ -182,7 +182,7 @@ Gestion des API Azure vous offre la possibilité de personnaliser le contenu des
 ```  
   
 ##  <a name="PageNotFound"></a> Page introuvable  
- Le modèle **Page introuvable** vous permet de personnaliser la page « Page introuvable » dans le portail des développeurs.  
+ Hello **page non trouvée** modèle permet de vous toocustomize hello page non trouvée page dans le portail des développeurs hello.  
   
  ![Page introuvable](./media/api-management-page-templates/APIM-Not-Found-Page-Developer-Portal-Templates.png "Modèles du portail des développeurs de la page Page introuvable APIM")  
   
@@ -225,11 +225,11 @@ Gestion des API Azure vous offre la possibilité de personnaliser le contenu des
   
 |Propriété|Type|Description|  
 |--------------|----------|-----------------|  
-|referenceCode|string|Code généré si cette page s’est affichée à la suite d’une erreur interne.|  
-|errorCode|string|Code généré si cette page s’est affichée à la suite d’une erreur interne.|  
-|emailBody|string|Corps d’e-mail généré si cette page s’est affichée à la suite d’une erreur interne.|  
-|requestedUrl|string|URL demandée quand la page est introuvable.|  
-|referrerUrl|string|URL de point d’accès pointant vers l’URL demandée.|  
+|referenceCode|string|Code généré si cette page s’est affichée en tant que résultat de hello d’une erreur interne.|  
+|errorCode|string|Code généré si cette page s’est affichée en tant que résultat de hello d’une erreur interne.|  
+|emailBody|string|Envoyer par courrier électronique corps généré si cette page s’est affichée en tant que résultat de hello d’une erreur interne.|  
+|requestedUrl|string|URL de Hello demandé lors de la page de hello est introuvable.|  
+|referrerUrl|string|Hello référent URL toohello des URL demandée.|  
   
 ### <a name="sample-template-data"></a>Données d’un exemple de modèle  
   
@@ -244,4 +244,4 @@ Gestion des API Azure vous offre la possibilité de personnaliser le contenu des
 ```
 
 ## <a name="next-steps"></a>Étapes suivantes
-Pour plus d’informations sur l’utilisation de modèles, consultez [Comment personnaliser le portail des développeurs Gestion des API Azure à l’aide de modèles](api-management-developer-portal-templates.md).
+Pour plus d’informations sur l’utilisation des modèles, consultez [comment toocustomize hello portail des développeurs gestion des API à l’aide de modèles](api-management-developer-portal-templates.md).

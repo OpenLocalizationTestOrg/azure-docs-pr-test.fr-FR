@@ -1,6 +1,6 @@
 ---
-title: "Surveiller et gérer les pipelines de données - Azure | Microsoft Docs"
-description: "Découvrez comment utiliser l’application de surveillance et gestion pour surveiller et gérer les fabriques de données et les pipelines Azure."
+title: "aaaMonitor et gérer des pipelines de données - Azure | Documents Microsoft"
+description: "Découvrez comment toouse hello toomonitor d’application de gestion et de surveillance et de gérer les pipelines et les fabriques de données Azure."
 services: data-factory
 documentationcenter: 
 author: spelluru
@@ -14,309 +14,309 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/18/2017
 ms.author: spelluru
-ms.openlocfilehash: d5a2d1f3d85b8a2212326cfcfd0ba5d80356b769
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5e4ef6ec5fb8ebc9bda0be7899a39a51d58403d1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="monitor-and-manage-azure-data-factory-pipelines-by-using-the-monitoring-and-management-app"></a>Surveiller et gérer les pipelines Azure Data Factory à l’aide de l’application de surveillance et gestion
+# <a name="monitor-and-manage-azure-data-factory-pipelines-by-using-hello-monitoring-and-management-app"></a>Surveiller et gérer les pipelines Azure Data Factory à l’aide d’application de gestion et de surveillance hello
 > [!div class="op_single_selector"]
 > * [Utilisation du portail Azure/d’Azure PowerShell](data-factory-monitor-manage-pipelines.md)
 > * [Utilisation de l’application de surveillance et gestion](data-factory-monitor-manage-app.md)
 >
 >
 
-Cet article explique comment utiliser l’application de surveillance et gestion pour surveiller, gérer et déboguer vos pipelines Azure Data Factory. Vous obtiendrez également des informations sur la façon de créer des alertes pour être averti en cas d’échec. Vous pouvez commencer à utiliser l’application en regardant la vidéo suivante :
+Cet article décrit comment toouse hello toomonitor d’application de surveillance et de gestion, gérer et déboguer vos pipelines de fabrique de données. Il fournit également des informations sur comment toocreate tooget informé sur les échecs des alertes. Vous pouvez commencer à utiliser à l’aide d’application hello en hello regarder suivant vidéo :
 
 > [!NOTE]
-> L’interface utilisateur présentée dans la vidéo ne correspondra peut-être pas exactement à ce que vous voyez dans le portail. Elle est un peu plus ancienne, mais les concepts restent les mêmes. 
+> interface utilisateur de Hello illustré hello vidéo peut correspondre pas exactement à ce que vous voyez dans le portail de hello. Il est légèrement plus anciens, mais les concepts restent hello même. 
 
 > [!VIDEO https://channel9.msdn.com/Shows/Azure-Friday/Azure-Data-Factory-Monitoring-and-Managing-Big-Data-Piplines/player]
 >
 
-## <a name="launch-the-monitoring-and-management-app"></a>Lancement de l’application de surveillance et gestion
-Pour lancer l’application de surveillance et gestion, cliquez sur la vignette **Surveiller et gérer** dans le panneau **Data Factory** de votre fabrique de données.
+## <a name="launch-hello-monitoring-and-management-app"></a>Lancer l’application de gestion et de surveillance hello
+toolaunch hello moniteur et l’application de gestion, cliquez sur hello **analyse et gestion** vignette sur hello **Data Factory** Panneau de votre fabrique de données.
 
-![Mosaïque Surveillance sur la page d’accueil de Data Factory](./media/data-factory-monitor-manage-app/MonitoringAppTile.png)
+![Analyse de la vignette sur la page d’accueil de Data Factory hello](./media/data-factory-monitor-manage-app/MonitoringAppTile.png)
 
-L’application de surveillance et gestion devrait s’ouvrir dans une nouvelle fenêtre.  
+Vous devez voir hello surveillance et gestion d’application à ouvrir dans une fenêtre distincte.  
 
 ![Application de surveillance et gestion](./media/data-factory-monitor-manage-app/AppLaunched.png)
 
 > [!NOTE]
-> Si vous voyez que le navigateur web est bloqué au niveau « Autorisation ... », désactivez la case à cocher **Bloquer les cookies et les données de site tiers** ou laissez cette option sélectionnée, créez une exception pour **login.microsoftonline.com**, puis réessayez d’ouvrir l’application.
+> Si vous voyez ce navigateur hello est bloqué au niveau de « Autorisation... », désactivez hello **bloquer les cookies tiers et les données de site** --ou les conserver ce fait, créez une exception pour **login.microsoftonline.com** , puis essayez à nouveau tooopen hello application.
 
 
-Dans la liste Activity Windows (Fenêtres d’activité), dans le volet central, vous pouvez voir une fenêtre d’activité pour chaque exécution d’une activité. Par exemple, si l’activité est planifiée pour s’exécuter toutes les heures pendant cinq heures, vous voyez cinq fenêtres d’activité associées à cinq tranches de données. Si vous ne voyez pas de fenêtre d’activité dans la liste du bas, procédez comme suit :
+Dans la liste des activités Windows hello dans le volet du milieu hello, vous consultez une fenêtre d’activité pour chaque exécution d’une activité. Par exemple, si vous disposez de toutes les heures hello activité planifiée toorun de cinq heures, vous consultez cinq windows d’activité associés à des tranches de données de cinq. Si vous ne voyez pas windows d’activité dans la liste hello bas hello, procédez comme hello suivant :
  
-- Mettez à jour les filtres **Heure de départ** et **Heure de fin** en haut de la fenêtre pour adapter les heures de départ et de fin de votre pipeline, puis cliquez sur le bouton **Appliquer**.  
-- La liste Activity Windows (Fenêtres d’activité) n’est pas actualisée automatiquement. Cliquez sur le bouton **Actualiser** dans la barre d’outils de la liste **Activity Windows** (Fenêtres d’activité).  
+- Hello de mise à jour **l’heure de début** et **heure de fin** filtres à Bonjour toomatch supérieur Bonjour début et fin de votre pipeline, puis cliquez sur hello **appliquer** bouton.  
+- liste des activités Windows Hello n’est pas actualisée automatiquement. Cliquez sur hello **Actualiser** bouton de barre d’outils hello hello **Windows de l’activité** liste.  
 
-Si vous ne disposez pas d’une application de fabrique de données pour tester ces étapes, suivez ce didacticiel : [Copie de données de Stockage Blob vers SQL Database à l’aide de Data Factory](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md).
+Si vous n’avez un tootest d’application Data Factory ces étapes avec, hello didacticiel : [copier les données de stockage d’objets Blob tooSQL de base de données à l’aide de la fabrique de données](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md).
 
-## <a name="understand-the-monitoring-and-management-app"></a>Présentation de l’application de surveillance et gestion
-Trois onglets sont disponibles sur le côté gauche : **Explorateur de ressources**, **Vues de surveillance** et **Alertes**. Le premier onglet (**Explorateur de ressources**) est sélectionné par défaut.
+## <a name="understand-hello-monitoring-and-management-app"></a>Comprendre hello analyse et la gestion d’application
+Il existe trois onglets sur hello gauche : **l’Explorateur de ressources**, **affichages analyse**, et **alertes**. premier onglet de Hello (**l’Explorateur de ressources**) est sélectionnée par défaut.
 
 ### <a name="resource-explorer"></a>Explorateur de ressources
-Vous voyez l'affichage suivant :
+Il affiche hello qui suit :
 
-* L’**arborescence** de l’Explorateur de ressources dans le volet gauche.
-* Le **vue schématique** en haut du volet central.
-* La liste d’**activités Windows** en bas du volet central.
-* Les onglets **Propriétés**, **Explorateur de fenêtres d’activités** et **Script** dans le volet de droite.
+* l’Explorateur de ressources de Hello **arborescence** dans le volet gauche de hello.
+* Hello **vue de diagramme** haut hello, dans le volet du milieu hello.
+* Hello **Windows de l’activité** liste à la fin de hello dans le volet du milieu hello.
+* Hello **propriétés**, **activité fenêtre Explorateur**, et **Script** onglets dans le volet de droite hello.
 
-Dans l’explorateur de ressources, vous pouvez voir toutes les ressources (pipelines, groupes de données, services liés) organisées en arborescence dans la fabrique de données. Lorsque vous sélectionnez un objet dans l’Explorateur de ressources :
+Dans l’Explorateur de ressources, vous consultez toutes les ressources (pipelines, des groupes de données, les services liés) dans la fabrique de données hello dans une arborescence. Lorsque vous sélectionnez un objet dans l’Explorateur de ressources :
 
-* L’entité Data Factory associée est mise en surbrillance dans la vue schématique.
-* Les [fenêtres d’activité associées](data-factory-scheduling-and-execution.md) sont mises en évidence dans la liste des fenêtres d’activité en bas de la page.  
-* Les propriétés de l’objet sélectionné s’affichent dans la fenêtre Propriétés du volet droit.
-* La définition JSON de l’objet sélectionné apparaît, le cas échéant. Par exemple : un service lié, un jeu de données ou un pipeline.
+* Hello associé à l’entité est mis en surbrillance dans la vue de diagramme de hello de fabrique de données.
+* [Associés windows de l’activité](data-factory-scheduling-and-execution.md) sont mises en surbrillance dans la liste des activités Windows hello bas hello.  
+* propriétés Hello de l’objet sélectionné de hello sont affichées dans la fenêtre de propriétés hello dans le volet de droite hello.
+* Hello définition JSON de l’objet sélectionné de hello est indiqué, le cas échéant. Par exemple : un service lié, un jeu de données ou un pipeline.
 
 ![Explorateur de ressources](./media/data-factory-monitor-manage-app/ResourceExplorer.png)
 
-Consultez l’article [Planification et exécution](data-factory-scheduling-and-execution.md) pour obtenir des informations conceptuelles détaillées sur les fenêtres d’activité.
+Consultez hello [de planification et de l’exécution](data-factory-scheduling-and-execution.md) article pour plus d’informations sur les fenêtres de l’activité.
 
-### <a name="diagram-view"></a>Vue schématique
-La vue schématique d'une fabrique de données est un point unique de surveillance et de gestion d’une fabrique de données et de ses ressources. Lorsque vous sélectionnez une entité Data Factory (jeu de données/pipeline) dans la vue schématique :
+### <a name="diagram-view"></a>Vue du diagramme
+Hello, vue de diagramme d’une fabrique de données fournit un volet de verre toomonitor et gérer une fabrique de données et ses composants. Lorsque vous sélectionnez une entité de la fabrique de données (jeu de données/pipeline) dans la vue de diagramme de hello :
 
-* L’entité Data Factory est sélectionnée dans l’arborescence.
-* Les fenêtres d’activité associées sont mises en surbrillance dans la liste des fenêtres d’activité.
-* Les propriétés de l’objet sélectionné s’affichent dans la fenêtre Propriétés.
+* entité de fabrique de données Hello est sélectionnée dans la vue de l’arborescence hello.
+* Hello associé à l’activité windows sont mises en surbrillance dans la liste des activités Windows hello.
+* propriétés Hello de l’objet sélectionné de hello sont affichées dans la fenêtre de propriétés hello.
 
-Lorsque le pipeline est activé (il n’est alors pas en pause), la barre de sa mosaïque est verte :
+Lorsque le pipeline de hello est activé (pas dans un état suspendu), il est indiqué par une ligne verte :
 
 ![Pipeline en cours d’exécution](./media/data-factory-monitor-manage-app/PipelineRunning.png)
 
-Vous pouvez suspendre, reprendre ou arrêter un pipeline en le sélectionnant dans la vue schématique et en utilisant les boutons de la barre de commandes.
+Vous pouvez suspendre, reprendre ou terminer un pipeline en la sélectionnant dans la vue de diagramme hello et à l’aide des boutons de hello sur la barre de commandes hello.
 
-![Mettre en pause/relancer depuis la barre de commandes](./media/data-factory-monitor-manage-app/SuspendResumeOnCommandBar.png)
+![Pause/reprise sur la barre de commandes hello](./media/data-factory-monitor-manage-app/SuspendResumeOnCommandBar.png)
  
-La vue schématique comporte trois boutons de barre de commandes dédiés au pipeline. Vous pouvez utiliser le deuxième bouton pour mettre en pause le pipeline. La mise en pause n’interrompt pas les activités en cours et les laisse se terminer. Le troisième bouton permet de mettre en pause le pipeline et d’interrompre ses activités en cours. Le premier bouton permet de relancer le pipeline. Lorsque votre pipeline est suspendu, il change de couleur. Par exemple, un pipeline suspendu se présente comme illustré ci-après : 
+Il existe trois boutons de barre de commandes pour le pipeline hello Bonjour vue de diagramme. Vous pouvez utiliser le pipeline de hello deuxième bouton toopause hello. Suspension ne terminer hello activités en cours d’exécution et leur permet de continuer toocompletion. troisième bouton de Hello suspend pipeline de hello et s’arrête ses activités existantes. bouton de première Hello reprend le pipeline de hello. Lorsque votre pipeline est suspendu, hello du pipeline de hello devient. Par exemple, un pipeline suspendu ressemble dans hello suivant image : 
 
 ![Pipeline suspendu](./media/data-factory-monitor-manage-app/PipelinePaused.png)
 
-Vous pouvez sélectionner deux pipelines ou plus en maintenant la touche Ctrl enfoncée. Pour mettre en pause/relancer plusieurs pipelines simultanément, utilisez les boutons de la barre de commandes.
+Vous pouvez sélections plusieurs pipelines de deux ou plusieurs en utilisant la touche Ctrl de hello. Vous pouvez utiliser des boutons de barre pour hello commande toopause/reprise plusieurs pipelines à la fois.
 
-Vous pouvez également cliquer sur un pipeline avec le bouton droit et sélectionner les options appropriées pour le suspendre, le reprendre ou l’arrêter. 
+Vous pouvez également cliquer sur un pipeline toosuspend de sélectionner des options, reprendre et arrêter un pipeline. 
 
 ![Menu contextuel pour un pipeline](./media/data-factory-monitor-manage-app/right-click-menu-for-pipeline.png)
 
-Cliquez sur l’option **Ouvrir le pipeline** pour afficher toutes les activités dans le pipeline. 
+Cliquez sur hello **ouvrir pipeline** option toosee toutes les activités de hello dans le pipeline de hello. 
 
 ![Menu Ouvrir un pipeline](./media/data-factory-monitor-manage-app/OpenPipelineMenu.png)
 
-Dans la vue du pipeline ouvert, vous voyez toutes les activités dans le pipeline. Dans cet exemple, le pipeline ne contient qu’une seule activité : une activité de copie. 
+Dans la vue du pipeline hello ouvert, vous voyez toutes les activités dans le pipeline de hello. Dans cet exemple, le pipeline ne contient qu’une seule activité : une activité de copie. 
 
 ![Pipeline ouvert](./media/data-factory-monitor-manage-app/OpenedPipeline.png)
 
-Pour revenir à la vue précédente, cliquez sur le nom de la fabrique de données dans le menu de navigation en haut de la page.
+toogo sauvegarder toohello de vue précédente, cliquez sur le nom de fabrique de données hello dans le menu de navigation hello haut hello.
 
-Dans la vue du pipeline, lorsque vous sélectionnez un jeu de données de sortie ou que vous le survolez avec la souris, la fenêtre contextuelle d’activité correspondante s’affiche.
+Dans la vue du pipeline hello, lorsque vous sélectionnez un jeu de données de sortie ou lorsque vous déplacez votre souris sur le dataset de sortie hello, vous consultez fenêtre contextuelle d’activité Windows hello pour ce jeu de données.
 
 ![Fenêtre contextuelle d’activité Windows](./media/data-factory-monitor-manage-app/ActivityWindowsPopup.png)
 
-Vous pouvez cliquer sur une fenêtre d’activité pour afficher ses détails dans la fenêtre **Propriétés** du volet droit.
+Vous pouvez également cliquer sur Détails de toosee fenêtre de l’activité pour qu’il Bonjour **propriétés** fenêtre dans le volet de droite hello.
 
 ![Propriétés des fenêtres d’activité](./media/data-factory-monitor-manage-app/ActivityWindowProperties.png)
 
-Dans le volet droit, affichez l’onglet **Explorateur de fenêtres d’activité** pour afficher plus de détails.
+Dans le volet droit de hello, basculez toohello **activité fenêtre Explorateur** onglet toosee plus de détails.
 
 ![Explorateur de fenêtres d’activité](./media/data-factory-monitor-manage-app/ActivityWindowExplorer.png)
 
-Vous voyez également les **variables résolues** pour chaque tentative d’exécution d’une activité dans la section **Tentatives**.
+Vous voyez également **résolu variables** à chaque tentative d’exécution d’une activité dans hello **tentatives** section.
 
 ![Variables résolues](./media/data-factory-monitor-manage-app/ResolvedVariables.PNG)
 
-Affichez l’onglet **Script** pour afficher la définition du script JSON pour l’objet sélectionné.   
+Commutateur toohello **Script** onglet Définition de script toosee hello JSON pour l’objet sélectionné de hello.   
 
 ![Onglet Script](./media/data-factory-monitor-manage-app/ScriptTab.png)
 
 Les fenêtres d’activité s’affichent à trois emplacements différents :
 
-* La fenêtre contextuelle d’activité dans la vue schématique (volet central).
-* L’Explorateur de fenêtres d’activité dans le volet droit.
-* La liste des fenêtres d’activité dans le volet inférieur.
+* Hello Windows activité contextuel Bonjour vue de diagramme (volet central).
+* Hello Explorer de fenêtre d’activité dans le volet de droite hello.
+* liste d’activités Windows Hello dans le volet du bas hello.
 
-Dans la fenêtre contextuelle et l’Explorateur de fenêtres d’activité, vous pouvez passer à la semaine précédente ou suivante à l’aide des flèches gauche et droite.
+Dans fenêtre contextuelle d’activité Windows hello et Explorer de fenêtre d’activité, vous pouvez faire défiler toohello semaine précédente et hello semaine suivante à l’aide de hello flèches droite et gauche.
 
 ![Flèches gauche/droite de l’Explorateur de fenêtres d’activité](./media/data-factory-monitor-manage-app/ActivityWindowExplorerLeftRightArrows.png)
 
-En bas de la vue schématique, vous trouverez des boutons pour effectuer un zoom avant ou arrière, zoomer pour ajuster, effectuer un Zoom à 100 % et verrouiller la disposition. Le bouton **Verrouiller la disposition** vous empêche de déplacer accidentellement des tables et des pipelines dans la vue schématique. L’option est activée par défaut. Vous pouvez la désactiver et déplacer des entités dans la vue schématique. Lorsque vous la désactivez, vous pouvez utiliser le dernier bouton pour positionner automatiquement les tables et les pipelines. Vous pouvez également effectuer des zooms avant et arrière à l’aide de la roulette de la souris.
+Bas hello hello vue de diagramme, vous voyez ces boutons : zoom avant, Zoom arrière, Zoom tooFit, effectuer un Zoom de 100 %, la mise en forme de verrou. Hello **mise en forme de verrou** bouton vous empêche de déplacer accidentellement des tables et des pipelines Bonjour vue de diagramme. L’option est activée par défaut. Vous pouvez désactiver cette option et déplacer des entités dans le diagramme de hello. Lorsque vous le désactivez, vous pouvez utiliser des pipelines et les tables de position hello derniers bouton tooautomatically. Vous pouvez également effectuer un zoom ou de sortie à l’aide de la roulette de souris hello.
 
 ![Commandes de zoom de la vue schématique](./media/data-factory-monitor-manage-app/DiagramViewZoomCommands.png)
 
 ### <a name="activity-windows-list"></a>Liste des fenêtres d’activité
-La liste des fenêtres d’activité dans la partie inférieure du volet central affiche toutes les fenêtres d’activité du jeu de données que vous avez sélectionné dans l’Explorateur de ressources ou la vue schématique. Par défaut, la liste est en ordre décroissant, ce qui signifie que la fenêtre d’activité la plus récente s’affiche en premier.
+liste des activités Windows Hello bas hello du volet du milieu hello affiche toutes les fenêtres d’activité pour hello dataset que vous avez sélectionné dans hello l’Explorateur de ressources ou hello vue de diagramme. Par défaut, la liste de hello est dans l’ordre décroissant, ce qui signifie que vous voyez dernière fenêtre d’activité hello haut hello.
 
 ![Liste des fenêtres d’activité](./media/data-factory-monitor-manage-app/ActivityWindowsList.png)
 
-Cette liste ne s’actualise pas automatiquement. Pour l’actualiser manuellement, utilisez le bouton d’actualisation de la barre d’outils.  
+Cette liste n’actualise pas automatiquement, afin d’utiliser hello sur bouton Actualiser de hello barre d’outils toomanually Actualiser.  
 
-Les fenêtres d’activité peuvent avoir l’un des statuts suivants :
+Windows de l’activité peuvent être dans un des hello suivant des États :
 
 <table>
 <tr>
     <th align="left">État</th><th align="left">État secondaire</th><th align="left">Description</th>
 </tr>
 <tr>
-    <td rowspan="8">En attente</td><td>ScheduleTime</td><td>L’heure d’exécution de la fenêtre d’activité n’est pas encore venue.</td>
+    <td rowspan="8">En attente</td><td>ScheduleTime</td><td>temps de Hello n’a pas encore être motivée par de toorun de fenêtre d’activité hello.</td>
 </tr>
 <tr>
-<td>DatasetDependencies</td><td>Les dépendances en amont ne sont pas prêtes.</td>
+<td>DatasetDependencies</td><td>les dépendances en amont Hello ne sont pas prêts.</td>
 </tr>
 <tr>
-<td>ComputeResources</td><td>Les ressources de calcul ne sont pas disponibles.</td>
+<td>ComputeResources</td><td>ressources de calcul Hello ne sont pas disponibles.</td>
 </tr>
 <tr>
-<td>ConcurrencyLimit</td> <td>Toutes les instances d’activité sont occupées par l’exécution d’autres fenêtres d’activité.</td>
+<td>ConcurrencyLimit</td> <td>Toutes les instances d’activité hello sont occupés autres fenêtres de l’activité en cours d’exécution.</td>
 </tr>
 <tr>
-<td>ActivityResume</td><td>L’activité est mise en pause et ne peut pas exécuter les fenêtres d’activité jusqu’à sa reprise.</td>
+<td>ActivityResume</td><td>activité Hello est suspendue et ne peut pas exécuter windows d’activité hello jusqu'à sa reprise.</td>
 </tr>
 <tr>
-<td>Retry</td><td>L’exécution de l’activité est retentée.</td>
+<td>Retry</td><td>exécution de l’activité Hello est renouvelée.</td>
 </tr>
 <tr>
 <td>Validation</td><td>La validation n’a pas encore démarré.</td>
 </tr>
 <tr>
-<td>ValidationRetry</td><td>Une nouvelle tentative de validation va avoir lieu.</td>
+<td>ValidationRetry</td><td>La validation est toobe en attente une nouvelle tentée.</td>
 </tr>
 <tr>
 <tr>
 <td rowspan="2">InProgress</td><td>Validation</td><td>La validation est en cours.</td>
 </tr>
 <td>-</td>
-<td>La fenêtre d’activité est en cours de traitement.</td>
+<td>fenêtre d’activité Hello est en cours de traitement.</td>
 </tr>
 <tr>
-<td rowspan="4">Échec</td><td>TimedOut</td><td>L'exécution de l’activité a pris plus de temps que l’activité ne l’autorise.</td>
+<td rowspan="4">Échec</td><td>TimedOut</td><td>exécution de l’activité Hello a pris plus de temps que ce qui est autorisé par activité hello.</td>
 </tr>
 <tr>
-<td>Canceled</td><td>La fenêtre d’activité a été annulée par l’utilisateur.</td>
+<td>Canceled</td><td>fenêtre d’activité Hello a été annulée par l’utilisateur.</td>
 </tr>
 <tr>
 <td>Validation</td><td>La validation a échoué.</td>
 </tr>
 <tr>
-<td>-</td><td>La génération ou la validation de la fenêtre d’activité ont échoué.</td>
+<td>-</td><td>fenêtre d’activité Hello échec toobe généré ou validé.</td>
 </tr>
-<td>Ready</td><td>-</td><td>La fenêtre d’activité est prête à être consommée.</td>
-</tr>
-<tr>
-<td>Ignoré</td><td>-</td><td>La fenêtre d’activité n’a pas été traitée.</td>
+<td>Ready</td><td>-</td><td>fenêtre d’activité Hello est prêt à être utilisé.</td>
 </tr>
 <tr>
-<td>Aucun</td><td>-</td><td>Fenêtre d’activité qui a été réinitialisée alors qu’elle existait avec un statut différent.</td>
+<td>Ignoré</td><td>-</td><td>fenêtre d’activité Hello n’a pas été traitée.</td>
+</tr>
+<tr>
+<td>Aucun</td><td>-</td><td>Une fenêtre d’activité tooexist avec un état différent, mais a été réinitialisée.</td>
 </tr>
 </table>
 
 
-Quand vous cliquez sur une fenêtre d’activité dans la liste, les détails la concernant s’affichent dans **l’Explorateur de fenêtres d’activité** ou dans la fenêtre **Propriétés** sur la droite.
+Lorsque vous cliquez sur une fenêtre d’activité dans la liste de hello, vous consultez des informations à son Bonjour **l’Explorateur Windows activité** ou hello **propriétés** fenêtre sur hello droite.
 
 ![Explorateur de fenêtres d’activité](./media/data-factory-monitor-manage-app/ActivityWindowExplorer-2.png)
 
 ### <a name="refresh-activity-windows"></a>Actualiser les fenêtres d’activité
-Les détails ne sont pas automatiquement actualisés. Pour actualiser manuellement la liste des fenêtres d’activité, utilisez le bouton Actualiser (le deuxième) dans la barre de commandes.  
+Détails de Hello ne sont pas automatiquement actualisées, alors utilisez le bouton d’actualisation hello (hello deuxième bouton) sur la liste de windows toomanually actualisation hello activité de la barre de commandes hello.  
 
 ### <a name="properties-window"></a>Fenêtre Propriétés
-La fenêtre Propriétés se trouve dans le volet situé tout à droite de l’application de surveillance et gestion.
+fenêtre de propriétés Hello est volet le plus à droite de hello d’application de gestion et de surveillance hello.
 
 ![Fenêtre Propriétés](./media/data-factory-monitor-manage-app/PropertiesWindow.png)
 
-Elle affiche les propriétés de l’élément que vous avez sélectionné dans l’Explorateur de ressources (arborescence), la vue schématique ou la liste des fenêtres d’activité.
+Il affiche les propriétés de l’élément hello que vous avez sélectionné dans hello l’Explorateur de ressources (arborescence), vue de diagramme ou la liste des activités Windows.
 
 ### <a name="activity-window-explorer"></a>Explorateur de fenêtres d’activité
-L**’Explorateur de fenêtres d’activité** se trouve dans le volet situé tout à droite de l’application de surveillance et gestion. Il affiche des détails sur la fenêtre d’activité que vous avez sélectionnée dans la fenêtre contextuelle ou la liste des fenêtres d’activité.
+Hello **activité fenêtre Explorateur** fenêtre est en volet le plus à droite de hello d’application de gestion et de surveillance hello. Il affiche les détails de la fenêtre d’activité hello que vous avez sélectionné dans la fenêtre contextuelle d’activité Windows hello ou une liste d’activités Windows hello.
 
 ![Explorateur de fenêtres d’activité](./media/data-factory-monitor-manage-app/ActivityWindowExplorer-3.png)
 
-Vous pouvez passer à une autre fenêtre d’activité en cliquant dessus dans la vue calendaire en haut de l’écran. Vous pouvez également utiliser les boutons flèche gauche/flèche droite en haut de l’écran pour afficher les fenêtres d’activité de la semaine précédente ou suivante.
+Vous pouvez basculer la fenêtre d’activité tooanother en cliquant dessus dans l’affichage du calendrier hello haut hello. Vous pouvez également utiliser les boutons flèche gauche/droite hello à fenêtres activité hello toosee supérieur hello semaine précédente ou hello semaine suivante.
 
-Vous pouvez utiliser les boutons de la barre d’outils dans le volet inférieur pour réexécuter la fenêtre d’activité ou actualiser les détails affichés dans le volet.
+Vous pouvez utiliser les boutons de barre d’outils hello dans la fenêtre d’activité hello bas volet toorerun hello ou actualiser les détails de hello dans le volet de hello.
 
 ### <a name="script"></a>Script
-Vous pouvez utiliser l’onglet **Script** pour afficher la définition JSON de l’entité Data Factory sélectionnée (service lié, jeu de données et pipeline).
+Vous pouvez utiliser hello **Script** hello de tooview onglet Définition JSON de hello sélectionné entity Data Factory (service lié, dataset ou pipeline).
 
 ![Onglet Script](./media/data-factory-monitor-manage-app/ScriptTab.png)
 
 ## <a name="use-system-views"></a>Utiliser les vues système
-L’application de surveillance et gestion inclut des vues système intégrées (**Fenêtres d’activité récentes**, **Fenêtres d’activité ayant échoué**, **Fenêtres d’activité en cours**), qui vous permettent d’afficher les fenêtres d’activité (récentes, ayant échoué et en cours) de votre fabrique de données.
+Surveillance et gestion de l’application Hello inclut les vues système intégrées (**windows d’activité récente**, **Échec de windows de l’activité**, **windows de l’activité en cours**) qui permettent de windows les activités récentes/échec/en cours de tooview de votre fabrique de données.
 
-Affichez l’onglet **Vues de surveillance** sur la gauche en cliquant dessus.
+Commutateur toohello **affichages analyse** onglet sur la gauche hello en cliquant dessus.
 
 ![Onglet Vues de surveillance](./media/data-factory-monitor-manage-app/MonitoringViewsTab.png)
 
-Actuellement, trois vues système sont prises en charge. Sélectionnez une option pour afficher les fenêtres d’activité récentes, ayant échoué, ou en cours dans la liste des fenêtres d’activité (en bas du volet central).
+Actuellement, trois vues système sont prises en charge. Sélectionnez une option toosee récente activité windows, windows de l’activité qui a échoué ou les activités en cours d’exécution windows dans la liste des activités Windows hello (bas hello du volet du milieu hello).
 
-Quand vous sélectionnez l’option **Fenêtres d’activité récentes**, toutes les fenêtres d’activité récentes s’affichent dans l’ordre décroissant en fonction de **l’heure de la dernière tentative**.
+Lorsque vous sélectionnez hello **windows d’activité récente** option, vous voyez toutes les fenêtres d’activité récente dans l’ordre décroissant de hello **heure de la dernière tentative**.
 
-Vous pouvez utiliser la vue **Fenêtres d’activité ayant échoué** pour afficher toutes les fenêtres d’activité de la liste qui ont échoué. Dans la liste, sélectionnez une fenêtre d’activité ayant échoué pour afficher les détails la concernant dans la fenêtre **Propriétés** ou dans **l’Explorateur de fenêtres d’activité**. Vous pouvez également télécharger tous les journaux d’une fenêtre d’activité ayant échoué.
+Vous pouvez utiliser hello **Échec de windows de l’activité** afficher toosee tout échoué de l’activité windows dans la liste de hello. Sélectionnez une fenêtre d’activité ayant échoué dans hello liste toosee plus d’informations sur elle Bonjour **propriétés** fenêtre ou hello **activité fenêtre Explorateur**. Vous pouvez également télécharger tous les journaux d’une fenêtre d’activité ayant échoué.
 
 ## <a name="sort-and-filter-activity-windows"></a>Trier et filtrer les fenêtres d’activité
-Pour filtrer les fenêtres d’activité, modifiez les paramètres **d’heure de début** et **d’heure de fin** dans la barre de commandes. Après avoir modifié les heures de début et de fin, cliquez sur le bouton en regard de l’heure de fin pour actualiser la liste des fenêtres d’activité.
+Hello de modification **l’heure de début** et **heure de fin** paramètres dans windows d’activité toofilter de barre de commandes hello. Après avoir modifié l’heure de début hello et l’heure de fin, cliquez sur hello bouton suivant toohello fin heure toorefresh hello Windows de l’activité de la liste.
 
 ![Heures de début et de fin](./media/data-factory-monitor-manage-app/StartAndEndTimes.png)
 
 > [!NOTE]
-> Pour l’instant, toutes les heures de l’application de surveillance et gestion sont au format UTC.
+> Actuellement, toutes les heures sont au format UTC dans l’application de gestion et de surveillance hello.
 >
 >
 
-Dans la **liste des fenêtres d’activité**, cliquez sur le nom d’une colonne (par exemple, Statut).
+Bonjour **liste activité Windows**, cliquez sur le nom hello d’une colonne (par exemple : état).
 
 ![Menu déroulant de la liste des fenêtres d’activité](./media/data-factory-monitor-manage-app/ActivityWindowsListColumnMenu.png)
 
-Vous pouvez effectuer les opérations suivantes :
+Vous pouvez effectuer les suivant hello :
 
 * Trier dans l’ordre croissant.
 * Trier dans l’ordre décroissant.
 * Filtrer selon une ou plusieurs valeurs (Prêt, En attente, etc.).
 
-Lorsque vous spécifiez un filtre sur une colonne, vous voyez que le bouton de filtrage est activé pour cette colonne afin d’indiquer que les valeurs filtrées sont celles de cette colonne.
+Lorsque vous spécifiez un filtre sur une colonne, vous voyez le bouton Filtrer hello activé pour cette colonne, ce qui indique que les valeurs hello dans la colonne de hello sont les valeurs filtrées.
 
-![Filtrer sur une colonne de la liste des fenêtres d’activité](./media/data-factory-monitor-manage-app/ActivityWindowsListFilterInColumn.png)
+![Filtrer sur une colonne de la liste des activités Windows hello](./media/data-factory-monitor-manage-app/ActivityWindowsListFilterInColumn.png)
 
-Vous pouvez utiliser la même fenêtre contextuelle pour effacer les filtres. Pour effacer tous les filtres de la liste des fenêtres d’activité, cliquez sur le bouton Effacer le filtre dans la barre de commandes.
+Vous pouvez utiliser hello mêmes filtres tooclear de fenêtre indépendante. tooclear tous les filtres pour la liste activité Windows hello, cliquez sur bouton Effacer le filtre de hello sur la barre de commandes hello.
 
-![Effacer tous les filtres de la liste des fenêtres d’activité](./media/data-factory-monitor-manage-app/ClearAllFiltersActivityWindowsList.png)
+![Effacer tous les filtres de la liste des activités Windows hello](./media/data-factory-monitor-manage-app/ClearAllFiltersActivityWindowsList.png)
 
 ## <a name="perform-batch-actions"></a>Exécuter des opérations de traitement par lot
 ### <a name="rerun-selected-activity-windows"></a>Réexécuter les fenêtres d’activité sélectionnées
-Sélectionnez une fenêtre d’activité, cliquez sur la flèche vers le bas du premier bouton de la barre de commandes et sélectionnez **Réexécuter** / **Réexécuter avec les fenêtres en amont dans le pipeline**. L’option **Réexécuter avec les fenêtres en amont dans le pipeline** permet de réexécuter également toutes les fenêtres d’activité en amont.
+Sélectionnez une fenêtre d’activité et cliquez sur hello flèche bas pour le premier bouton de barre de commande hello, sélectionnez **réexécuter** / **réexécuter avec situés en amont dans le pipeline**. Lorsque vous sélectionnez hello **réexécuter avec situés en amont dans le pipeline** option, elle exécute à nouveau toutes les fenêtres d’activité en amont ainsi.
     ![Réexécuter une fenêtre d’activité](./media/data-factory-monitor-manage-app/ReRunSlice.png)
 
-Vous pouvez également sélectionner plusieurs fenêtres d’activité dans la liste et les réexécuter simultanément. Vous pouvez filtrer les fenêtres d’activité en fonction de leur statut (par exemple, **Échec**), puis réexécuter celles qui ont échoué après avoir corrigé le problème à l’origine de cet échec. Pour en savoir plus sur le filtrage des fenêtres d’activité dans la liste, consultez la section suivante.  
+Vous pouvez également sélectionner plusieurs fenêtres d’activité dans la liste de hello et réexécuter à hello même temps. Vous pourriez windows d’activité toofilter basés sur l’état de hello (par exemple : **n’a pas pu**)--hello échoué de l’activité windows puis exécutez à nouveau après avoir corrigé le problème hello hello activité windows toofail. Consultez hello section suivante pour plus d’informations sur le filtrage windows d’activité dans la liste de hello.  
 
 ### <a name="pauseresume-multiple-pipelines"></a>Mettre en pause/relancer plusieurs pipelines
-Vous pouvez sélectionner 2 pipelines ou plus en maintenant la touche Ctrl enfoncée. Pour les mettre en pause/les relancer, utilisez les boutons de la barre de commandes (mis en évidence dans le rectangle rouge de l’image suivante).
+Vous pouvez sélectionner plusieurs pipelines de deux ou plusieurs en utilisant la touche Ctrl de hello. Vous pouvez utiliser les boutons de barre de commandes hello (qui sont mises en surbrillance dans le rectangle de hello rouge de hello suivant image) toopause/reprise les.
 
-![Mettre en pause/relancer depuis la barre de commandes](./media/data-factory-monitor-manage-app/SuspendResumeOnCommandBar.png)
+![Pause/reprise sur la barre de commandes hello](./media/data-factory-monitor-manage-app/SuspendResumeOnCommandBar.png)
 
 ## <a name="create-alerts"></a>Créez des alertes
-La page **Alertes** vous permet de créer une alerte et d’afficher, de modifier ou de supprimer des alertes existantes. Vous pouvez également désactiver ou activer une alerte. Cliquez sur l’onglet **Alertes** pour afficher la page du même nom.
+Hello **alertes** page vous permet de créer une alerte et afficher/modifier/supprimer des alertes existantes. Vous pouvez également désactiver ou activer une alerte. toosee hello page alertes, cliquez sur hello **alertes** onglet.
 
 ![Onglet Alertes](./media/data-factory-monitor-manage-app/AlertsTab.png)
 
-### <a name="to-create-an-alert"></a>Pour créer une alerte
-1. Pour ajouter une alerte, cliquez sur **Ajouter une alerte** . La page **Détails** s’affiche.
+### <a name="toocreate-an-alert"></a>toocreate une alerte
+1. Cliquez sur **ajouter une alerte** tooadd une alerte. Vous consultez hello **détails** page.
 
     ![Créer des alertes - page Détails](./media/data-factory-monitor-manage-app/CreateAlertDetailsPage.png)
-2. Spécifiez le **nom** et la **description** de l’alerte, puis cliquez sur **Suivant**. La page **Filtres** doit s’afficher.
+2. Spécifiez hello **nom** et **Description** alerte de hello, puis cliquez sur **suivant**. Vous devez voir hello **filtres** page.
 
     ![Créer des alertes - page Filtres](./media/data-factory-monitor-manage-app/CreateAlertFiltersPage.png)
-3. Sélectionnez **l’événement**, l’**état** et l**’état secondaire** (facultatif) dont vous souhaitez que le service Data Factory vous informe, puis cliquez sur **Suivant**. La page **Destinataires** doit s’afficher.
+3. Sélectionnez hello **événement**, **état**, et **sous-état** (facultatif) que vous souhaitez toocreate un service de fabrique de données pour des alertes, puis cliquez sur **suivant**. Vous devez voir hello **destinataires** page.
 
     ![Créer des alertes - page Destinataires](./media/data-factory-monitor-manage-app/CreateAlertRecipientsPage.png)
-4. Sélectionnez l’option **Administrateurs d’abonnement par courrier électronique** et/ou entrez une **adresse de messagerie électronique d’administrateur supplémentaire**, puis cliquez sur **Terminer**. L’alerte doit apparaître dans la liste.
+4. Sélectionnez hello **envoyer par courrier électronique les administrateurs d’abonnements** option et/ou entrez un **par courrier électronique des administrateurs supplémentaires**, puis cliquez sur **Terminer**. Vous devez voir l’alerte hello dans la liste de hello.
 
     ![Liste des alertes](./media/data-factory-monitor-manage-app/AlertsList.png)
 
-Dans la liste des alertes, utilisez les boutons associés à l’alerte pour modifier, supprimer, désactiver ou activer une alerte.
+Dans la liste des alertes hello, utilisez les boutons de hello associés hello alerte tooedit/delete/désactiver/activer une alerte.
 
 ### <a name="eventstatussubstatus"></a>Événement/statut/état secondaire
-Le tableau suivant dresse la liste des événements et des statuts (et états secondaires) disponibles.
+Hello tableau suivant fournit hello liste des événements disponibles et les États (sous-états).
 
 | Nom de l'événement | État | État secondaire |
 | --- | --- | --- |
@@ -327,8 +327,8 @@ Le tableau suivant dresse la liste des événements et des statuts (et états se
 | Cluster HDI à la demande créé correctement |Réussi |-|
 | Cluster HDI à la demande supprimé |Réussi |-|
 
-### <a name="to-edit-delete-or-disable-an-alert"></a>Pour modifier, supprimer ou désactiver une alerte
+### <a name="tooedit-delete-or-disable-an-alert"></a>tooedit, supprimer ou désactiver une alerte
 
-Utilisez les boutons suivants (en rouge) pour modifier, supprimer ou désactiver une alerte.
+Utilisez hello suivant tooedit de boutons (mis en surbrillance en rouge), supprimer ou désactiver une alerte.
 
 ![Boutons d’alertes](./media/data-factory-monitor-manage-app/AlertButtons.png)

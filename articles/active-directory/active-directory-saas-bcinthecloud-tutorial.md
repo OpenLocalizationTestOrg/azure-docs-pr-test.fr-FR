@@ -1,6 +1,6 @@
 ---
-title: "Didacticiel : Intégration d’Azure Active Directory à BC in the Cloud | Microsoft Docs"
-description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et BC in the Cloud."
+title: "Didacticiel : Intégration d’Azure Active Directory avec BC Bonjour Cloud | Documents Microsoft"
+description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et BC dans hello Cloud."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,111 +13,111 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/1/2017
 ms.author: jeedes
-ms.openlocfilehash: ebc95d600eca1027331cd92cfe481d0c3ee833a5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e81ffb522b2c96c7e9b2919abd8d3b199c295eb1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-azure-active-directory-integration-with-bc-in-the-cloud"></a>Didacticiel : Intégration d’Azure Active Directory à BC in the Cloud
+# <a name="tutorial-azure-active-directory-integration-with-bc-in-hello-cloud"></a>Didacticiel : Intégration d’Azure Active Directory avec BC Bonjour Cloud
 
-Dans ce didacticiel, vous allez apprendre à intégrer BC in the Cloud à Azure Active Directory (Azure AD).
+Dans ce didacticiel, vous découvrez comment toointegrate BC dans hello Cloud avec Azure Active Directory (Azure AD).
 
-L’intégration de BC in the Cloud à Azure AD vous offre les avantages suivants :
+Intégration BC Bonjour Cloud avec Azure AD offre hello avantages suivants :
 
-- Dans Azure AD, vous pouvez contrôler qui a accès à BC in the Cloud.
-- Vous pouvez autoriser les utilisateurs à se connecter automatiquement à BC in the Cloud (via l’authentification unique) avec leur compte Azure AD.
-- Vous pouvez gérer vos comptes à partir d’un emplacement central : le portail Azure
+- Vous pouvez contrôler dans Azure AD qui a accès tooBC Bonjour Cloud
+- Vous pouvez activer vos utilisateurs tooautomatically get connecté tooBC Bonjour Cloud (Single Sign-On) avec leurs comptes Azure AD
+- Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure
 
-Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).
+Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Composants requis
 
-Pour configurer l’intégration d’Azure AD à BC in the Cloud, vous avez besoin des éléments suivants :
+tooconfigure intégration d’Azure AD avec BC Bonjour Cloud, vous devez hello éléments suivants :
 
 - Un abonnement Azure AD
-- Un abonnement BC in the Cloud pour lequel l’authentification unique est activée
+- Un BC Bonjour Cloud l’authentification unique sur abonnement activé
 
 > [!NOTE]
-> Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.
+> tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.
 
-Vous devez en outre suivre les recommandations ci-dessous :
+tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :
 
 - N’utilisez pas votre environnement de production, sauf si cela est nécessaire.
 - Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Description du scénario
-Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :
+Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :
 
-1. Ajout de BC in the Cloud à partir de la galerie
+1. Ajout de BC Bonjour Cloud à partir de la galerie de hello
 2. Configuration et test de l’authentification unique Azure AD
 
-## <a name="adding-bc-in-the-cloud-from-the-gallery"></a>Ajout de BC in the Cloud à partir de la galerie
-Pour configurer l’intégration de BC in the Cloud à Azure AD, vous devez ajouter BC in the Cloud de la galerie à votre liste d’applications SaaS gérées.
+## <a name="adding-bc-in-hello-cloud-from-hello-gallery"></a>Ajout de BC Bonjour Cloud à partir de la galerie de hello
+intégration de hello tooconfigure de BC Bonjour Cloud dans Azure AD, vous devez tooadd BC Bonjour Cloud à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.
 
-**Pour ajouter BC in the Cloud à partir de la galerie, effectuez les étapes suivantes :**
+**tooadd BC Bonjour Cloud à partir de la galerie hello, procédez hello comme suit :**
 
-1. Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**. 
+1. Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône. 
 
     ![Active Directory][1]
 
-2. Accédez à **Applications d’entreprise**. Accédez ensuite à **Toutes les applications**.
+2. Accédez trop**des applications d’entreprise**. Passez trop**toutes les applications**.
 
     ![Applications][2]
     
-3. Pour ajouter l’application, cliquez sur le bouton **Ajouter** en haut de la boîte de dialogue.
+3. tooadd nouvelle application, cliquez sur **ajouter** bouton en haut de hello de boîte de dialogue.
 
     ![Applications][3]
 
-4. Dans la zone de recherche, tapez **BC in the Cloud**.
+4. Dans la zone de recherche de hello, tapez **BC Bonjour Cloud**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-bcinthecloud-tutorial/tutorial_bcinthecloud_search.png)
 
-5. Dans le volet de résultats, sélectionnez **BC in the Cloud**, puis cliquez sur **Ajouter** pour ajouter l’application.
+5. Dans le volet de résultats hello, sélectionnez **BC Bonjour Cloud**, puis cliquez sur **ajouter** bouton application hello de tooadd.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-bcinthecloud-tutorial/tutorial_bcinthecloud_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configuration et test de l’authentification unique Azure AD
-Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec BC in the Cloud, avec un utilisateur de test appelé « Britta Simon ».
+Cette section, vous allez configurer et tester Azure AD single sign-on avec BC Bonjour que cloud basé sur un utilisateur de test appelé « Britta Simon ».
 
-Pour que l’authentification unique fonctionne, Azure AD doit connaître l’utilisateur BC in the Cloud correspondant à l’utilisateur Azure AD. En d’autres termes, une relation doit être établie entre l’utilisateur Azure AD et l’utilisateur BC in the Cloud associé.
+Pour toowork de l’authentification unique, Azure AD doit tooknow quel hello utilisateur équivalent dans BC Bonjour Cloud est tooa utilisateur dans Azure AD. En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans BC Bonjour Cloud doit toobe établie.
 
-Dans BC in the Cloud, affectez la valeur du **nom d’utilisateur** dans Azure AD comme valeur du **nom d’utilisateur** pour établir la relation.
+Imaginons Bonjour Cloud, affecter la valeur de hello de hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** relation de lien tooestablish hello.
 
-Pour configurer et tester l’authentification unique avec Azure AD avec BC in the Cloud, vous devez suivre les indications des sections suivantes :
+tooconfigure et test Azure AD l’authentification unique avec BC Bonjour Cloud, vous devez hello toocomplete suivant des blocs de construction :
 
-1. **[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.
-2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.
-3. **[Création d’un utilisateur de test BC in the Cloud](#creating-a-bc-in-the-cloud-test-user)** pour avoir un équivalent de Britta Simon dans BC in the Cloud lié à la représentation Azure AD associée.
-4. **[Affectation de l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.
-5. **[Testing Single Sign-On](#testing-single-sign-on)** pour vérifier si la configuration fonctionne.
+1. **[Configuration d’Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.
+2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.
+3. **[Création d’un BC dans utilisateur de test Cloud hello](#creating-a-bc-in-the-cloud-test-user)**  -toohave un équivalent de Britta Simon dans BC Bonjour Cloud qui est la représentation sous forme de toohello lié Azure AD de l’utilisateur.
+4. **[Utilisateur de test affectation hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.
+5. **[Test de l’authentification unique sur](#testing-single-sign-on)**  -tooverify hello indique si les tâches de configuration.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Configuration de l’authentification unique Azure AD
 
-Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure et configurer l’authentification unique dans votre application BC in the Cloud.
+Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre BC dans l’application hello dans le Cloud.
 
-**Pour configurer l’authentification unique Azure AD avec BC in the Cloud, effectuez les étapes suivantes :**
+**tooconfigure Azure AD single sign-on avec BC Bonjour Cloud, effectuez hello comme suit :**
 
-1. Dans le portail Azure, dans la page d’intégration de l’application **BC in the Cloud**, cliquez sur **Authentification unique**.
+1. Bonjour portail Azure, sur hello **BC Bonjour Cloud** page d’intégration d’application, cliquez sur **l’authentification unique**.
 
     ![Configurer l’authentification unique][4]
 
-2. Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.
+2. Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.
  
     ![Configurer l’authentification unique](./media/active-directory-saas-bcinthecloud-tutorial/tutorial_bcinthecloud_samlbase.png)
 
-3. Dans la section **Domaine et URL BC in the Cloud**, effectuez les étapes suivantes :
+3. Sur hello **BC hello domaine Cloud et URL** section, effectuer hello comme suit :
 
     ![Configurer l’authentification unique](./media/active-directory-saas-bcinthecloud-tutorial/tutorial_bcinthecloud_url.png)
 
-    a. Dans la zone de texte **URL de connexion**, tapez une URL au format suivant : `https://app.bcinthecloud.com/router/loginSaml/<customerid>`
+    a. Bonjour **URL de connexion** zone de texte, tapez une URL à l’aide de hello modèle :`https://app.bcinthecloud.com/router/loginSaml/<customerid>`
 
-    b. Dans la zone de texte **Identificateur**, entrez une URL telle que celle-ci : `https://app.bcinthecloud.com`
+    b. Bonjour **identificateur** zone de texte, tapez une URL en tant que :`https://app.bcinthecloud.com`
 
     > [!NOTE] 
-    > Cette valeur n’est pas la valeur réelle. Mettez à jour cette valeur avec l’URL de connexion réelle. Pour obtenir cette valeur, contactez [l’équipe du support BC in the Cloud](https://www.bcinthecloud.com/supportcenter/). 
+    > Cette valeur n’est pas la valeur réelle. Mettre à jour de cette valeur avec hello URL de connexion réel. Contact [BC dans l’équipe de support Client de Cloud hello](https://www.bcinthecloud.com/supportcenter/) tooget cette valeur. 
  
-4. Dans la section **Certificat de signature SAML**, cliquez sur **Métadonnées XML** puis enregistrez le fichier de métadonnées sur votre ordinateur.
+4. Sur hello **le certificat de signature SAML** , cliquez sur **Metadata XML** , puis enregistrez le fichier de métadonnées hello sur votre ordinateur.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-bcinthecloud-tutorial/tutorial_bcinthecloud_certificate.png) 
 
@@ -125,64 +125,64 @@ Dans cette section, vous allez activer l’authentification unique Azure AD dans
 
     ![Configurer l’authentification unique](./media/active-directory-saas-bcinthecloud-tutorial/tutorial_general_400.png)
 
-6. Pour configurer l’authentification unique côté **BC in the Cloud**, vous devez envoyer le fichier **XML de métadonnées** téléchargé à [l’équipe du support BC in the Cloud](https://www.bcinthecloud.com/supportcenter/).
+6. tooconfigure l’authentification unique sur **BC Bonjour Cloud** côté, vous devez hello toosend téléchargé **Metadata XML** trop[BC dans l’équipe de support technique du Cloud hello](https://www.bcinthecloud.com/supportcenter/).
 
 > [!TIP]
-> Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.  Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas. Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !  Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello. Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Création d’un utilisateur de test Azure AD
-L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.
+objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.
 
 ![Créer un utilisateur Azure AD][100]
 
-**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**
+**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**
 
-1. Dans le panneau de navigation gauche du **portail Azure**, cliquez sur l’icône **Azure Active Directory**.
+1. Bonjour **portail Azure**, on hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-bcinthecloud-tutorial/create_aaduser_01.png) 
 
-2. Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.
+2. liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes** et cliquez sur **tous les utilisateurs**.
     
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-bcinthecloud-tutorial/create_aaduser_02.png) 
 
-3. Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue.
+3. tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello de boîte de dialogue hello.
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-bcinthecloud-tutorial/create_aaduser_03.png) 
 
-4. Dans la boîte de dialogue **Utilisateur**, procédez comme suit :
+4. Sur hello **utilisateur** boîte de dialogue de page, effectuer hello comme suit :
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-bcinthecloud-tutorial/create_aaduser_04.png) 
 
-    a. Dans la zone de texte **Nom**, entrez **BrittaSimon**.
+    a. Bonjour **nom** zone de texte, type **BrittaSimon**.
 
-    b. Dans la zone de texte **Nom d’utilisateur**, tapez **l’adresse e-mail** de Britta Simon.
+    b. Bonjour **nom d’utilisateur** hello de type zone de texte **adresse de messagerie** de BrittaSimon.
 
-    c. Sélectionnez **Afficher le mot de passe** et notez la valeur du **mot de passe**.
+    c. Sélectionnez **afficher le mot de passe** et notez la valeur hello hello **mot de passe**.
 
-    d. Cliquez sur **Create**.
+    d. Cliquez sur **Créer**.
  
-### <a name="creating-a-bc-in-the-cloud-test-user"></a>Création d’un utilisateur de test BC in the Cloud
+### <a name="creating-a-bc-in-hello-cloud-test-user"></a>Création d’un BC dans utilisateur de test hello Cloud
 
-Dans cette section, vous allez créer un utilisateur appelé Britta Simon dans BC in the Cloud. Pour ajouter les utilisateurs dans l’application BC in the Cloud, contactez [l’équipe du support BC in the Cloud](https://www.bcinthecloud.com/supportcenter/). Les utilisateurs doivent être créés et activés avant que vous utilisiez l’authentification unique. 
+Dans cette section, vous créez un utilisateur appelé Britta Simon dans BC Bonjour Cloud. Travailler avec [BC dans l’équipe de support Client de Cloud hello](https://www.bcinthecloud.com/supportcenter/) pour ajouter des utilisateurs de hello Bonjour BC Bonjour application Cloud. Les utilisateurs doivent être créés et activés avant que vous utilisiez l’authentification unique. 
 
-### <a name="assigning-the-azure-ad-test-user"></a>Affectation de l’utilisateur de test Azure AD
+### <a name="assigning-hello-azure-ad-test-user"></a>Affectation d’utilisateur de test hello Azure AD
 
-Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à BC in the Cloud.
+Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant tooBC accès Bonjour Cloud.
 
 ![Affecter des utilisateurs][200] 
 
-**Pour attribuer Britta Simon à BC in the Cloud, effectuez les étapes suivantes :**
+**tooassign tooBC Britta Simon Bonjour nuage, effectuez hello comme suit :**
 
-1. Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.
+1. Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.
 
     ![Affecter des utilisateurs][201] 
 
-2. Dans la liste des applications, sélectionnez **BC in the Cloud**.
+2. Dans la liste des applications hello, sélectionnez **BC Bonjour Cloud**.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-bcinthecloud-tutorial/tutorial_bcinthecloud_app.png) 
 
-3. Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.
+3. Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.
 
     ![Affecter des utilisateurs][202] 
 
@@ -190,7 +190,7 @@ Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentifi
 
     ![Affecter des utilisateurs][203]
 
-5. Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.
+5. Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.
 
 6. Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.
 
@@ -198,13 +198,13 @@ Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentifi
     
 ### <a name="testing-single-sign-on"></a>Test de l’authentification unique
 
-Dans cette section, vous allez tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.
+Dans cette section, vous tester votre configuration Azure AD unique de session à l’aide de hello panneau d’accès.
 
- Lorsque vous cliquez sur la vignette BC in the Cloud dans le volet d’accès, vous devez être connecté automatiquement à votre application BC in the Cloud. Pour plus d’informations sur le panneau d’accès, consultez [Présentation du panneau d’accès](active-directory-saas-access-panel-introduction.md).
+ Lorsque vous cliquez sur hello BC dans la vignette de Cloud hello Bonjour volet d’accès, vous devez obtenir automatiquement signé sur tooyour BC Bonjour application Cloud. Pour plus d’informations sur le panneau d’accès, consultez [Présentation du panneau d’accès](active-directory-saas-access-panel-introduction.md).
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-* [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md)
 
 

@@ -1,5 +1,5 @@
 ---
-title: "Ajouter un dépôt Git à un laboratoire dans Azure DevTest Labs | Microsoft Docs"
+title: "aaaAdd un laboratoire de tooa du référentiel Git dans Azure DevTest Labs | Documents Microsoft"
 description: "Ajouter un dépôt GitHub ou Visual Studio Team Services Git pour vos sources d’artefacts personnalisés dans Azure DevTest Labs"
 services: devtest-lab,virtual-machines,visual-studio-online
 documentationcenter: na
@@ -14,92 +14,92 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/11/2017
 ms.author: tarcher
-ms.openlocfilehash: 053f92a65f9ae29154d471fd22ee842620b4f273
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: e590559ffb2d497e39823e35c3f66974f42f13c2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-a-git-repository-to-store-custom-artifacts-and-azure-resource-manager-templates"></a>Ajouter un référentiel Git pour stocker des artefacts personnalisés et des modèles Azure Resource Manager
+# <a name="add-a-git-repository-toostore-custom-artifacts-and-azure-resource-manager-templates"></a>Ajouter un artefacts de personnalisée toostore de référentiel Git et les modèles Azure Resource Manager
 
-Si vous souhaitez [créer des artefacts personnalisés](devtest-lab-artifact-author.md) pour les machines virtuelles dans votre laboratoire, ou [utiliser des modèles Azure Resource Manager pour créer un environnement de test personnalisé](devtest-lab-create-environment-from-arm.md), vous devez également ajouter un référentiel Git privé afin d’inclure les artefacts ou modèles Azure Resource Manager que votre équipe crée. Le dépôt peut être hébergé sur [GitHub](https://github.com) ou sur [Visual Studio Team Services (VSTS)](https://visualstudio.com).
+Si vous souhaitez trop[créer des artefacts personnalisés](devtest-lab-artifact-author.md) pour hello machines virtuelles dans votre laboratoire, ou [utiliser Azure Resource Manager modèles toocreate un environnement de test personnalisée](devtest-lab-create-environment-from-arm.md), vous devez également ajouter un tooinclude de référentiel Git privé les artefacts Hello ou modèles Azure Resource Manager créés par votre équipe. référentiel de Hello peut être hébergé sur [GitHub](https://github.com) ou sur [Visual Studio Team Services (VSTS)](https://visualstudio.com).
 
-Nous avons fourni un [référentiel Github d’artefacts](https://github.com/Azure/azure-devtestlab/tree/master/Artifacts) que vous pouvez déployer tel quel ou personnaliser pour vos laboratoires. Lorsque vous personnalisez ou créez un artefact, vous ne pouvez pas le stocker dans le référentiel public. Vous devez créer votre propre référentiel privé. 
+Nous avons fourni un [référentiel Github d’artefacts](https://github.com/Azure/azure-devtestlab/tree/master/Artifacts) que vous pouvez déployer tel quel ou personnaliser pour vos laboratoires. Lorsque vous personnalisez ou créez un artefact, vous pouvez les stocker dans un référentiel public de hello : vous devez créer votre propre référentiel privé. 
 
-Lorsque vous créez une machine virtuelle, vous pouvez enregistrer le modèle Azure Resource Manager, le personnaliser éventuellement, puis l’utiliser pour créer facilement des machines virtuelles supplémentaires. Vous devez créer votre propre référentiel privé afin de stocker vos modèles Azure Resource Manager personnalisés.  
+Lorsque vous créez une machine virtuelle, vous pouvez enregistrer le modèle de gestionnaire de ressources Azure hello, personnalisez-le si vous le souhaitez et réutilisez-la ultérieure tooeasily créer davantage d’ordinateurs virtuels. Vous devez créer votre propre toostore dépôt privé vos modèles Azure Resource Manager.  
 
-* Pour découvrir comment créer un dépôt GitHub, consultez [GitHub Bootcamp](https://help.github.com/categories/bootcamp/).
-* Pour découvrir comment créer un projet Team Services avec un dépôt Git, consultez [Se connecter à Visual Studio Services](https://www.visualstudio.com/get-started/setup/connect-to-visual-studio-online).
+* toolearn toocreate un référentiel GitHub, voir [GitHub Bootcamp](https://help.github.com/categories/bootcamp/).
+* toolearn toocreate un projet Team Services avec un référentiel Git, voir [connecter tooVisual Studio Team Services](https://www.visualstudio.com/get-started/setup/connect-to-visual-studio-online).
 
-La capture d’écran suivante montre un exemple de dépôt contenant des artefacts dans GitHub :   
+Hello capture d’écran suivante montre un exemple de la façon dont un référentiel contenant des artefacts peut se présenter dans GitHub :  
 ![Exemple de dépôt d’artefacts GitHub](./media/devtest-lab-add-repo/devtestlab-github-artifact-repo-home.png)
 
-## <a name="get-the-repository-information-and-credentials"></a>Obtention des informations de référentiel et des informations d’identification
-Pour ajouter un référentiel à votre laboratoire, vous devez d’abord obtenir certaines informations de votre référentiel. Les sections suivantes vous guident tout au long de l’obtention de ces informations pour les référentiels hébergés sur GitHub et Visual Studio Team Services.
+## <a name="get-hello-repository-information-and-credentials"></a>Obtenir des informations d’identification et les informations de référentiel hello
+tooadd un laboratoire tooyour de référentiel, vous devez d’abord obtenir certaines informations de votre référentiel. Hello les sections suivantes vous guide tout au long de l’obtention de ces informations pour les référentiels hébergé sur GitHub et Visual Studio Team Services.
 
-### <a name="get-the-github-repository-clone-url-and-personal-access-token"></a>Obtenir l’URL de clonage du dépôt GitHub et le jeton d’accès personnel
-Pour obtenir l’URL de clonage du dépôt GitHub et le jeton d’accès personnel, suivez ces étapes :
+### <a name="get-hello-github-repository-clone-url-and-personal-access-token"></a>Obtenir un jeton URL de clonage du référentiel GitHub hello et d’accès personnel
+URL du clone de référentiel tooget hello GitHub et le jeton d’accès personnel, procédez comme suit :
 
-1. Accédez à la page d’accueil du référentiel GitHub contenant l’artefact ou les définitions de modèle Azure Resource Manager.
+1. Parcourez la page d’accueil toohello du référentiel GitHub hello qui contient l’artefact de hello ou des définitions de modèle Azure Resource Manager.
 2. Sélectionnez **Cloner ou télécharger**.
-3. Cliquez sur le bouton pour copier **l’URL de clonage HTTPS** dans le presse-papiers, puis enregistrez l’URL pour une utilisation ultérieure.
-4. Sélectionnez l’image de profil dans le coin supérieur droit de GitHub, puis sélectionnez **Paramètres**.
-5. Dans le menu **Paramètres personnels** situé à gauche, sélectionnez **Jetons d’accès personnels**.
+3. Hello de hello sélectionnez bouton toocopy **url de clone HTTPS** toohello Presse-papiers et enregistrez l’URL de hello pour une utilisation ultérieure.
+4. Sélectionnez l’image du profil hello dans le coin supérieur droit de hello de GitHub, puis sélectionnez **paramètres**.
+5. Bonjour **paramètres personnels** menu hello à gauche, sélectionnez **jetons d’accès personnels**.
 6. Sélectionnez **Générer un nouveau jeton**.
-7. Dans la page **Nouveau jeton d’accès personnel** entrez une **Description du jeton**, acceptez les éléments par défaut dans le **Choix des étendues**, puis sélectionnez **Générer le jeton**.
-8. Enregistrez le jeton généré, car vous en aurez besoin ultérieurement.
+7. Sur hello **nouveau jeton d’accès personnel** , entrez un **jeton description**, accepter les éléments par défaut de hello Bonjour **sélectionnez étendues**, puis choisissez **générer Jeton**.
+8. Enregistrer le jeton de hello généré que vous en avez besoin plus tard.
 9. Vous pouvez à présent fermer GitHub.   
-10. Passez à la section [Connecter votre laboratoire au référentiel](#connect-your-lab-to-the-repository).
+10. Continuer toohello [se connecter à votre référentiel de toohello lab](#connect-your-lab-to-the-repository) section.
 
-### <a name="get-the-visual-studio-team-services-repository-clone-url-and-personal-access-token"></a>Obtenir l’URL de clonage du dépôt Visual Studio Team Services et le jeton d’accès personnel
-Pour obtenir l’URL de clonage du dépôt Visual Studio Team Services et le jeton d’accès personnel, suivez ces étapes :
+### <a name="get-hello-visual-studio-team-services-repository-clone-url-and-personal-access-token"></a>Obtenir un jeton URL de clonage du référentiel hello Visual Studio Team Services et d’accès personnel
+URL du clone de référentiel tooget hello Visual Studio Team Services et le jeton d’accès personnel, procédez comme suit :
 
-1. Ouvrez la page d’accueil de votre collection d’équipe (par exemple, `https://contoso-web-team.visualstudio.com`), puis sélectionnez votre projet.
-2. Sur la page d’accueil du projet, sélectionnez **Code**.
-3. Pour afficher l’URL de clonage, sélectionnez dans la page **Code** du projet l’option **Cloner**.
-4. Enregistrez l’URL, car vous en aurez besoin ultérieurement dans ce didacticiel.
-5. Pour créer un jeton d’accès personnel, sélectionnez **Mon profil** dans le menu déroulant du compte d’utilisateur.
-6. Sur la page d’informations du profil, sélectionnez **Sécurité**.
-7. Sous l’onglet **Sécurité**, sélectionnez **Ajouter**.
-8. Sur la page **Créer un jeton d’accès personnel** :
+1. Ouvrez hello page d’accueil de votre collection d’équipe (par exemple, `https://contoso-web-team.visualstudio.com`), puis sélectionnez votre projet.
+2. Sur la page d’accueil hello projet, sélectionnez **Code**.
+3. URL du clone hello tooview, sur le projet de hello **Code** page, sélectionnez **Clone**.
+4. Enregistrez hello URL que vous avez besoin plus tard dans ce didacticiel.
+5. toocreate un jeton d’accès personnel, sélectionnez **mon profil** à partir du menu déroulant de hello utilisateur compte.
+6. Sur la page d’informations de profil hello, sélectionnez **sécurité**.
+7. Sur hello **sécurité** onglet, sélectionnez **ajouter**.
+8. Bonjour **créer un jeton d’accès personnel** page :
 
-   * Entrez une **Description** pour le jeton.
-   * Dans la liste **Expire dans**, sélectionnez **180 jours**.
-   * Dans la liste **Comptes**, sélectionnez **Tous les comptes accessibles**.
-   * Sélectionnez l’option **Toutes les étendues** .
+   * Entrez un **Description** pour le jeton de hello.
+   * Sélectionnez **180 jours** de hello **expire dans** liste.
+   * Choisissez **tous les comptes accessibles** de hello **comptes** liste.
+   * Choisissez hello **toutes les étendues** option.
    * Sélectionnez **Créer le jeton**.
-9. Lorsque vous avez terminé, le nouveau jeton apparaît dans la liste **Jetons d’accès personnels** . Sélectionnez **Copier le jeton**puis enregistrez la valeur du jeton pour utilisation ultérieure.
-10. Passez à la section [Connecter votre laboratoire au référentiel](#connect-your-lab-to-the-repository).
+9. Lorsque vous avez terminé, le nouveau jeton d’hello s’affiche dans hello **des jetons d’accès personnel** liste. Sélectionnez **copier le jeton**, puis enregistrez la valeur de jeton hello pour une utilisation ultérieure.
+10. Continuer toohello [se connecter à votre référentiel de toohello lab](#connect-your-lab-to-the-repository) section.
 
-## <a name="connect-your-lab-to-the-repository"></a>Connecter votre laboratoire au référentiel
-1. Connectez-vous au [portail Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040).
-2. Sélectionnez **Autres services**, puis **DevTest Labs** dans la liste.
-3. Sélectionnez le laboratoire souhaité dans la liste des laboratoires.   
-4. Sur le panneau de gauche, sélectionnez **Configuration et stratégies**.
-5. Dans la zone **Configuration et stratégies** du labo, sélectionnez **Référentiels**.
-6. Dans la zone **Référentiels**, sélectionnez **+ Ajouter**.
+## <a name="connect-your-lab-toohello-repository"></a>Se connecter à votre référentiel de toohello lab
+1. Connectez-vous à toohello [portail Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040).
+2. Sélectionnez **plus Services**, puis sélectionnez **DevTest Labs** à partir de la liste de hello.
+3. Dans liste hello labs, sélectionnez lab souhaité de hello.   
+4. Dans le volet gauche de hello, sélectionnez **stratégies de Configuration et**.
+5. Sur du laboratoire hello **stratégies de Configuration et** zone, sélectionnez **référentiels**.
+6. Sur hello **référentiels** zone, sélectionnez **+ ajouter**.
 
     ![Bouton Ajouter un référentiel](./media/devtest-lab-add-repo/devtestlab-add-repo.png)
-7. Sur la seconde page **Référentiels**, spécifiez les informations suivantes :
+7. Sur hello deuxième **référentiels** , spécifiez hello informations suivantes :
 
-   * **Nom** - Entrez un nom pour le dépôt.
-   * **Url de clonage Git** : entrez l’URL de clonage Git HTTPS que vous avez précédemment copiée à partir de GitHub ou Visual Studio Team Services.
-   * **Branche** : entrez la branche pour obtenir vos définitions.
-   * **Jeton d’accès personnel**: entrez le jeton d’accès personnel obtenu précédemment à partir de GitHub ou Visual Studio Team Services.
-   * **Chemins de dossiers** : entrez au moins un chemin d’accès de dossier relatif à l’URL du clone contenant votre artefact ou vos définitions de modèle Azure Resource Manager. Lorsque vous spécifiez un sous-répertoire, veillez à inclure la barre oblique dans le chemin d’accès du dossier.
+   * **Nom** -Entrez un nom pour le référentiel de hello.
+   * **Url de Clone GIT** -Entrez l’URL du clone hello Git HTTPS que vous avez copiée précédemment à partir de GitHub ou Visual Studio Team Services.
+   * **Branche** -entrez hello branche tooget vos définitions.
+   * **Jeton d’accès personnel** -Entrez le jeton d’accès personnel hello obtenu précédemment à partir de GitHub ou Visual Studio Team Services.
+   * **Chemins d’accès du dossier** -Entrez au moins un dossier chemin d’accès relatif toohello clone URL qui contient votre objet ou des définitions de modèle Azure Resource Manager. Lorsque vous spécifiez un sous-répertoire, assurez-vous que tooinclude hello barre oblique dans un chemin d’accès du dossier hello.
 
      ![Zone Référentiels](./media/devtest-lab-add-repo/devtestlab-repo-blade.png)
 8. Sélectionnez **Enregistrer**.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Après avoir créé votre référentiel Git privé, vous pouvez effectuer au moins l’une des opérations suivantes, selon vos besoins :
-* Stocker vos [artefacts personnalisés](devtest-lab-artifact-author.md) que vous pouvez utiliser ultérieurement pour créer des machines virtuelles.
-* [Créer des environnements de plusieurs machines virtuelles et des ressources PaaS avec les modèles Azure Resource Manager](devtest-lab-create-environment-from-arm.md), puis stocker les modèles dans votre référentiel privé.
+Après avoir créé votre référentiel Git privé, faire une ou les deux éléments suivants de hello, selon vos besoins :
+* Magasin de votre [artefacts personnalisés](devtest-lab-artifact-author.md), qui vous permet de toocreate ultérieur nouvelles machines virtuelles.
+* [Créer des environnements de multi-VM et PaaS ressources avec des modèles Azure Resource Manager](devtest-lab-create-environment-from-arm.md) puis à stocker les modèles hello dans votre référentiel privé.
 
-Lorsque vous créez une machine virtuelle, vous pouvez vérifier que les artefacts ou les modèles sont ajoutés à votre référentiel Git. Ils sont immédiatement disponibles dans la liste des artefacts ou des modèles ; le nom de votre référentiel privé s’affiche dans la colonne spécifiant la source. 
+Lorsque vous créez une machine virtuelle, vous pouvez vérifier que les artefacts hello ou les modèles sont ajoutés référentiel Git de tooyour. Elles sont disponibles immédiatement dans la liste de hello des artefacts ou des modèles, avec le nom hello de votre référentiel privé illustré dans la colonne hello qui spécifie la source de hello. 
 
 [!INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
 
 ### <a name="related-blog-posts"></a>Billets de blog connexes
-* [Guide pratique pour résoudre les échecs des artefacts dans Azure DevTest Labs](devtest-lab-troubleshoot-artifact-failure.md)
-* [Joindre une machine virtuelle à un domaine AD existant à l’aide d’un modèle Resource Manager dans Azure DevTest Labs](http://www.visualstudiogeeks.com/blog/DevOps/Join-a-VM-to-existing-AD-domain-using-ARM-template-AzureDevTestLabs)
+* [Comment tootroubleshoot échec des artefacts dans Azure DevTest Labs](devtest-lab-troubleshoot-artifact-failure.md)
+* [Joindre un domaine Active Directory à l’aide d’un modèle de gestionnaire de ressources dans Azure DevTest Labs de tooexisting machine virtuelle](http://www.visualstudiogeeks.com/blog/DevOps/Join-a-VM-to-existing-AD-domain-using-ARM-template-AzureDevTestLabs)

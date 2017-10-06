@@ -1,6 +1,6 @@
 ---
-title: "Connexions à partir de sources inconnues"
-description: "Un rapport indiquant les utilisateurs qui se sont connectés à votre annuaire à partir d’une adresse IP anonyme."
+title: aaaSign ins provenant de sources inconnues
+description: "Un rapport qui indique les utilisateurs qui se sont connectés dans le répertoire tooyour à partir d’un proxy anonyme adresse IP."
 services: active-directory
 documentationcenter: 
 author: SSalahAhmed
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/04/2016
 ms.author: saah;kenhoff
-ms.openlocfilehash: 90006121e4b3392f6e3ecffb4a56aca330feb02f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b9d16274c0f8d21fc3bdf1ad8b564532d3b02be2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sign-ins-from-unknown-sources"></a>Connexions à partir de sources inconnues
-Ce rapport indique les utilisateurs qui sont parvenus à se connecter à votre répertoire avec affectation d’une adresse IP client qui a été reconnue par Microsoft en tant qu’adresse IP proxy anonyme (par exemple, une adresse IP Tor). Ces proxys sont souvent utilisés par les utilisateurs qui souhaitent masquer l'adresse IP de leur ordinateur, et peuvent également être utilisés dans un but malveillant.
+Ce rapport indique les utilisateurs qui se sont connectés dans le répertoire tooyour tandis que l’adresse IP qui a été reconnue par Microsoft en tant qu’adresse IP proxy anonyme (par exemple, une adresse Tor IP) attribuée à un client. Ces proxies sont souvent utilisés par les utilisateurs que vous souhaitez toohide adresse IP de l’ordinateur et peut être utilisé dans un but malveillant.
 
-Les résultats de ce rapport indiquent le nombre de fois où un utilisateur est parvenu à se connecter à votre répertoire à partir de cette adresse et de l’adresse IP du proxy.
+Les résultats de ce rapport indiquent hello les nombre de fois où un utilisateur s’est connecté dans le répertoire tooyour à partir de cette adresse et l’adresse IP du proxy hello.
 
 ![Connexions à partir de sources inconnues](./media/active-directory-reporting-sign-ins-from-unknown-sources/signInsFromUnknownSources.PNG)
 

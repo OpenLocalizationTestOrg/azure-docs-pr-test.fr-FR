@@ -1,5 +1,5 @@
 ---
-title: "Bibliothèques de gestion Azure Service Bus | Microsoft Docs"
+title: "bibliothèques de gestion Service Bus aaaAzure | Documents Microsoft"
 description: "Gérez les espaces de noms et les entités de messagerie Service Bus à partir de .NET."
 services: service-bus-messaging
 documentationcenter: na
@@ -14,15 +14,15 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 07/05/2017
 ms.author: sethm
-ms.openlocfilehash: 1db00dc1f91e8976b622030450445babbe547ad8
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 9e4ad91f22815ca0838e6e4647a3606109b2b441
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="service-bus-management-libraries"></a>Bibliothèques de gestion Service Bus
 
-Les bibliothèques de gestion Azure Service Bus peuvent approvisionner dynamiquement des entités et des espaces de noms Service Bus. Cela permet des déploiements et des scénarios de messagerie complexes, et rend possible la définition des entités à approvisionner par programmation. Ces bibliothèques sont actuellement disponibles pour .NET.
+bibliothèques de gestion Azure Service Bus Hello peuvent configurer dynamiquement des entités et espaces de noms Service Bus. Cela permet des scénarios de messagerie et de déploiements complexes et rend possible tooprogrammatically déterminer quel tooprovision d’entités. Ces bibliothèques sont actuellement disponibles pour .NET.
 
 ## <a name="supported-functionality"></a>Fonctionnalités prises en charge
 
@@ -33,26 +33,26 @@ Les bibliothèques de gestion Azure Service Bus peuvent approvisionner dynamique
 
 ## <a name="prerequisites"></a>Composants requis
 
-Pour commencer à utiliser les bibliothèques de gestion Service Bus, vous devez vous authentifier auprès du service Azure Active Directory (AAD). AAD vous oblige à vous authentifier en tant que principal du service pour pouvoir accéder à vos ressources Azure. Pour plus d’informations sur la création d’un principal du service, consultez ces articles :  
+tooget démarré à l’aide des bibliothèques de gestion Service Bus hello, vous devez vous authentifier avec hello service Azure Active Directory (AAD). AAD nécessite que vous authentifier en tant que service principal, qui fournit l’accès tooyour ressources Azure. Pour plus d’informations sur la création d’un principal du service, consultez ces articles :  
 
-* [Utiliser le portail Azure pour créer une application et un principal du service Active Directory pouvant accéder aux ressources](/azure/azure-resource-manager/resource-group-create-service-principal-portal)
-* [Créer un principal du service pour accéder aux ressources à l’aide d’Azure PowerShell](/azure/azure-resource-manager/resource-group-authenticate-service-principal)
-* [Créer un principal du service pour accéder aux ressources à l’aide de l’interface de ligne de commande (CLI) Azure](/azure/azure-resource-manager/resource-group-authenticate-service-principal-cli)
+* [Utiliser l’application de hello toocreate portail Azure Active Directory et de principal du service qui peut accéder aux ressources](/azure/azure-resource-manager/resource-group-create-service-principal-portal)
+* [Utiliser Azure PowerShell toocreate une ressources tooaccess principal du service](/azure/azure-resource-manager/resource-group-authenticate-service-principal)
+* [Utilisez Azure CLI toocreate une ressources tooaccess principal du service](/azure/azure-resource-manager/resource-group-authenticate-service-principal-cli)
 
-Ces didacticiels vous fournissent un `AppId` (ID de client), un `TenantId` et un `ClientSecret` (clé d’authentification), tous étant utilisés pour l’authentification par les bibliothèques de gestion. Vous devez disposer des autorisations **Propriétaire** pour le groupe de ressources à utiliser pour l’exécution.
+Ces didacticiels vous donnent une `AppId` (ID Client), `TenantId`, et `ClientSecret` (clé d’authentification), qui sont utilisés pour l’authentification par des bibliothèques de gestion hello. Vous devez avoir **propriétaire** autorisations pour le groupe de ressources hello sur laquelle vous souhaitez toorun.
 
 ## <a name="programming-pattern"></a>Modèle de programmation
 
-Le modèle pour manipuler une ressource Service Bus quelconque suit un protocole commun :
+Hello modèle toomanipulate n’importe quelle ressource de Service Bus suit un protocole commun :
 
-1. Obtenez un jeton d’Azure Active Directory à l’aide de la bibliothèque **Microsoft.IdentityModel.Clients.ActiveDirectory**.
+1. Obtenir un jeton d’Azure Active Directory à l’aide de hello **Microsoft.IdentityModel.Clients.ActiveDirectory** bibliothèque.
    ```csharp
    var context = new AuthenticationContext($"https://login.microsoftonline.com/{tenantId}");
 
    var result = await context.AcquireTokenAsync("https://management.core.windows.net/", new ClientCredential(clientId, clientSecret));
    ```
 
-1. Créer l’objet `ServiceBusManagementClient`.
+1. Créer hello `ServiceBusManagementClient` objet.
 
    ```csharp
    var creds = new TokenCredentials(token);
@@ -62,7 +62,7 @@ Le modèle pour manipuler une ressource Service Bus quelconque suit un protocole
    };
    ```
 
-1. Définissez les paramètres `CreateOrUpdate` sur vos propres valeurs.
+1. Ensemble hello `CreateOrUpdate` tooyour de paramètres des valeurs spécifiées.
 
    ```csharp
    var queueParams = new QueueCreateOrUpdateParameters()
@@ -72,7 +72,7 @@ Le modèle pour manipuler une ressource Service Bus quelconque suit un protocole
    };
    ```
 
-1. Exécuter l’appel.
+1. Hello appel d’exécution.
 
    ```csharp
    await sbClient.Queues.CreateOrUpdateAsync(resourceGroupName, namespaceName, QueueName, queueParams);

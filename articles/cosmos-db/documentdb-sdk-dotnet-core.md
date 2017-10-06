@@ -1,6 +1,6 @@
 ---
-title: "API .NET Core Azure Cosmos DB, kit de développement logiciel (SDK) et Ressources | Microsoft Docs"
-description: "Tout savoir sur l’API .NET Core et le kit de développement logiciel (SDK), y compris les dates de sortie, les dates de déclassement et les modifications effectuées entre chaque version du kit de développement logiciel (SDK) .NET Core Azure Cosmos DB."
+title: "aaaAzure Cosmos DB .NET Core API, Kit de développement logiciel et les ressources | Documents Microsoft"
+description: "Découvrez les hello .NET Core API et Kit de développement logiciel, y compris les dates de publication, les dates de retrait et les modifications apportées entre chaque version de hello Kit de développement logiciel Azure Cosmos DB .NET Core."
 services: cosmos-db
 documentationcenter: .net
 author: rnagpal
@@ -15,11 +15,11 @@ ms.topic: article
 ms.date: 08/11/2017
 ms.author: rnagpal
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: a7ce4d771e9c655687f72f4b46c7405cf64aeb74
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 1269cafe0ea1caaa871404d507b12632dbb3ed82
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-cosmos-db-net-core-sdk-release-notes-and-resources"></a>Kit de développement logiciel (SDK) .NET Core Azure Cosmos DB : notes de publication et ressources
 > [!div class="op_single_selector"]
@@ -43,7 +43,7 @@ ms.lasthandoff: 08/18/2017
 
 <tr><td>**Exemples**</td><td>[Exemples de code .NET](documentdb-dotnet-samples.md)</td></tr>
 
-<tr><td>**Prise en main**</td><td>[Prise en main du kit de développement logiciel (SDK) .NET Core Azure Cosmos DB](documentdb-dotnetcore-get-started.md)</td></tr>
+<tr><td>**Prise en main**</td><td>[Prise en main hello Kit de développement logiciel Azure Cosmos DB .NET Core](documentdb-dotnetcore-get-started.md)</td></tr>
 
 <tr><td>**Didacticiel d’application web**</td><td>[Développement d’applications web avec Azure Cosmos DB](documentdb-dotnet-application.md)</td></tr>
 
@@ -52,19 +52,19 @@ ms.lasthandoff: 08/18/2017
 
 ## <a name="release-notes"></a>Notes de publication
 
-Le kit de développement logiciel (SDK) .NET Core Azure Cosmos DB assure la parité des fonctions avec la dernière version du [kit de développement logiciel (SDK) .NET Azure Cosmos DB](documentdb-sdk-dotnet.md).
+Hello Kit de développement logiciel Azure Cosmos DB .NET Core a parité de fonctionnalités avec la version la plus récente de hello hello [Azure Cosmos DB .NET SDK](documentdb-sdk-dotnet.md).
 
 > [!NOTE] 
-> Le kit de développement logiciel (SDK) .NET Core Azure Cosmos DB n’est pas encore compatible avec les applications de plateforme Windows universelle (UWP). Si un Kit de développement logiciel (SDK) .NET Core qui prend en charge les applications UWP vous intéresse, envoyez un e-mail à l’adresse [askcosmosdb@microsoft.com](mailto:askcosmosdb@microsoft.com).
+> Bonjour Azure Cosmos DB .NET Core SDK n’est pas encore compatible avec les applications de plateforme Windows universelle (UWP). Si vous êtes intéressé par hello Kit de développement .NET Core qui ne prend pas en charge les applications UWP, envoyer un courrier électronique trop[askcosmosdb@microsoft.com](mailto:askcosmosdb@microsoft.com).
 
 ### <a name="a-name150150"></a><a name="1.5.0"/>1.5.0 
 
-* Ajout de la prise en charge du paramètre PartitionKeyRangeId en tant qu’option FeedOption pour la définition de l’étendue des résultats des requêtes sur une valeur de plage de clés de partition spécifique. 
-* Ajout de la prise en charge du paramètre StartTime en tant qu’option ChangeFeedOption pour le démarrage de la recherche de modifications après cette heure. 
+* Prise en charge supplémentaire pour PartitionKeyRangeId comme une FeedOption pour étendre la valeur de plage de clés de requête résultats tooa partition spécifique. 
+* Prise en charge supplémentaire pour StartTime comme un toostart ChangeFeedOption recherche de modifications de hello après cette heure. 
 
 ### <a name="a-name141141"></a><a name="1.4.1"/>1.4.1
 
-*   Correction d’un problème dans la classe JsonSerializable qui peut provoquer une exception de dépassement de la capacité de la pile.
+*   Correction d’un problème dans hello classe JsonSerializable qui peut provoquer une exception de dépassement de capacité de pile.
 
 ### <a name="a-name140140"></a><a name="1.4.0"/>1.4.0
 
@@ -72,7 +72,7 @@ Le kit de développement logiciel (SDK) .NET Core Azure Cosmos DB assure la pari
 
 ### <a name="a-name132132"></a><a name="1.3.2"/>1.3.2
 
-*   Prise en charge de .NET Standard 1.5 en tant que version cible de .NET Framework.
+*   Prise en charge 1,5 Standard de .NET en tant qu’une des infrastructures de cible hello.
 
 ### <a name="a-name131131"></a><a name="1.3.1"/>1.3.1
 
@@ -82,55 +82,55 @@ Le kit de développement logiciel (SDK) .NET Core Azure Cosmos DB assure la pari
 
 *   Prise en charge ajoutée pour un nouveau niveau de cohérence nommé ConsistentPrefix.
 *   Prise en charge ajoutée pour les mesures de requête liées aux partitions individuelles.
-*   Prise en charge ajoutée pour la limitation de la taille du jeton de continuation concernant les requêtes.
+*   Prise en charge supplémentaire pour limiter la taille de hello hello du jeton de continuation pour les requêtes.
 *   Prise en charge ajoutée pour un suivi plus détaillé des demandes ayant échoué.
-*   Améliorations de certaines performances du Kit de développement logiciel (SDK).
+*   Apporté des améliorations de performances dans le Kit de développement logiciel de hello.
 
 ### <a name="a-name122122"></a><a name="1.2.2"/>1.2.2
 
-* Résolution du problème qui ignorait la valeur PartitionKey fournie dans FeedOptions pour les requêtes d’agrégation.
+* Correction d’un problème qui a ignoré la valeur de PartitionKey hello fournie dans FeedOptions pour les requêtes d’agrégation.
 * Résolution du problème de gestion transparente des partitions pendant l’exécution d’une requête Order By (Trier par) entre partitions intermédiaire.
 
 ### <a name="a-name121121"></a><a name="1.2.1"/>1.2.1
 
-* Résolution du problème qui provoquait des blocages parmi certaines API asynchrones lorsqu’elles sont utilisées dans le contexte ASP.NET.
+* Correction d’un problème qui a provoqué des blocages dans certains hello async API lorsqu’il est utilisé à l’intérieur du contexte ASP.NET.
 
 ### <a name="a-name120120"></a><a name="1.2.0"/>1.2.0
 
-* Correctifs pour augmenter la résistance du Kit de développement logiciel (SDK) au basculement automatique dans certaines conditions.
+* Résout toomake SDK plus basculement tooautomatic résilient sous certaines conditions.
 
 ### <a name="a-name112112"></a><a name="1.1.2"/>1.1.2
 
-* Résolution du problème qui provoque parfois une exception WebException : Le nom distant n’a pas pu être résolu.
-* Ajout de la prise en charge permettant de lire directement un document tapé en ajoutant de nouvelles surcharges à l’API ReadDocumentAsync.
+* Corriger un problème qui provoque parfois une WebException : nom de hello distant n’a pas pu être résolu.
+* Hello ajouté prend en charge pour la lecture directe d’un document typé en ajoutant la nouvelle API tooReadDocumentAsync de surcharges.
 
 ### <a name="a-name111111"></a><a name="1.1.1"/>1.1.1
 
 * Ajout de la prise en charge LINQ des requêtes d’agrégation (COUNT, MIN, MAX, SUM et AVG).
-* Correction d’un problème de fuite de mémoire pour l’objet ConnectionPolicy dû à l’utilisation du Gestionnaire d’événements.
+* Correctif pour un problème de fuite de mémoire pour l’objet de ConnectionPolicy hello dû à l’aide de hello de gestionnaire d’événements.
 * Correction d’un problème de fonctionnement d’UpsertAttachmentAsync avec l’utilisation d’ETag.
 * Correction d’un problème de fonctionnement de la liaison des requêtes ORDER BY entre les partitions lors d’un tri sur un champ de chaîne.
 
 ### <a name="a-name110110"></a><a name="1.1.0"/>1.1.0
 
 * Ajout de la prise en charge des requêtes d’agrégation (COUNT, MIN, MAX, SUM et AVG). Consultez l’article [Aggregation support (Prise en charge de l’agrégation)](documentdb-sql-query.md#Aggregates).
-* Débit minimal réduit sur les collections partitionnées de 10 100 unités de demande/s à 2 500 unités de demande/s.
+* Réduisez le débit minimal sur les collections partitionnées de 10,100 ur/s too2500 ur/s.
 
 ### <a name="a-name100100"></a><a name="1.0.0"/>1.0.0
 
-Le kit de développement logiciel (SDK) .NET Core Azure Cosmos DB permet de générer des applications [ASP.NET Core](https://www.asp.net/core) et [.NET Core](https://www.microsoft.com/net/core#windows) rapides et multiplateformes à exécuter sous Windows, Mac et Linux. La dernière version du kit de développement logiciel (SDK) .NET Core Azure Cosmos DB est entièrement compatible avec [Xamarin](https://www.xamarin.com) et est utilisée pour générer des applications qui ciblent iOS, Android et Mono (Linux).  
+Hello Kit de développement logiciel Azure Cosmos DB .NET Core vous permet de toobuild rapide, inter-plateformes [ASP.NET Core](https://www.asp.net/core) et [.NET Core](https://www.microsoft.com/net/core#windows) toorun d’applications sur Windows, Mac et Linux. Bonjour dernière version de hello Kit de développement logiciel Azure Cosmos DB .NET Core est entièrement [Xamarin](https://www.xamarin.com) compatible et être utilisés toobuild les applications qui ciblent iOS, Android et Mono (Linux).  
 
 ### <a name="a-name010-preview010-preview"></a><a name="0.1.0-preview"/>0.1.0-preview
 
-La version préliminaire du kit de développement logiciel (SDK) .NET Core Azure Cosmos DB permet de générer des applications [ASP.NET Core](https://www.asp.net/core) et [.NET Core](https://www.microsoft.com/net/core#windows) rapides et multiplateformes à exécuter sous Windows, Mac et Linux.
+Bonjour Azure Cosmos DB .NET Core aperçu SDK vous permet de toobuild rapide, inter-plateformes [ASP.NET Core](https://www.asp.net/core) et [.NET Core](https://www.microsoft.com/net/core#windows) toorun d’applications sur Windows, Mac et Linux.
 
-La version préliminaire du kit de développement logiciel (SDK) .NET Core Azure Cosmos DB assure la parité des fonctions avec la dernière version du [kit de développement logiciel (SDK) .NET Azure Cosmos DB](documentdb-sdk-dotnet.md) et prend en charge les éléments suivants :
+Bonjour Azure Cosmos DB .NET Core aperçu SDK a parité de fonctionnalités avec la version la plus récente de hello hello [Azure Cosmos DB .NET SDK](documentdb-sdk-dotnet.md) et prend en charge hello suivantes :
 * Tous les [modes de connexion](performance-tips.md#networking) : mode passerelle, TCP Direct et HTTPs Direct. 
 * Tous les [niveaux de cohérence](consistency-levels.md): Forte, Session, Obsolescence limitée et Éventuelle.
 * [Collections partitionnées](partition-data.md). 
 * [Comptes de base de données multirégions et géoréplication](distribute-data-globally.md).
 
-Si vous avez des questions liées à ce SDK, publiez sur [StackOverflow](http://stackoverflow.com/questions/tagged/azure-documentdb) ou envoyez une demande sur le [référentiel GitHub](https://github.com/Azure/azure-documentdb-dotnet/issues). 
+Si vous avez des questions, toothis connexes SDK, validez trop[StackOverflow](http://stackoverflow.com/questions/tagged/azure-documentdb), fichier ou un problème dans hello [référentiel github](https://github.com/Azure/azure-documentdb-dotnet/issues). 
 
 ## <a name="release--retirement-dates"></a>Dates de lancement et de suppression
 
@@ -152,5 +152,5 @@ Si vous avez des questions liées à ce SDK, publiez sur [StackOverflow](http://
 | [0.1.0-preview](#0.1.0-preview) |15 novembre 2016 |31 décembre 2016 |
 
 ## <a name="see-also"></a>Voir aussi
-Pour en savoir plus sur Cosmos DB, consultez la page du service [Microsoft Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/). 
+toolearn savoir plus sur Cosmos DB, consultez [base de données Microsoft Azure Cosmos](https://azure.microsoft.com/services/cosmos-db/) page du service. 
 

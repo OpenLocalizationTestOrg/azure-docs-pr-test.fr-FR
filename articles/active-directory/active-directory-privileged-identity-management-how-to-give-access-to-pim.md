@@ -1,6 +1,6 @@
 ---
-title: "Guide pratique pour donner accès à Privileged Identity Management - Azure | Microsoft Docs"
-description: "Découvrez comment ajouter des rôles à des utilisateurs avec l’extension Azure Active Directory Privileged Identity Management pour qu’ils puissent gérer PIM."
+title: "aaaHow toogive accès tooPrivileged Identity Management - Azure | Documents Microsoft"
+description: "Découvrez comment toousers de rôles tooadd avec hello extension d’Azure Active Directory Privileged Identity Management afin de pouvoir gérer PIM."
 services: active-directory
 documentationcenter: 
 author: billmath
@@ -15,14 +15,14 @@ ms.workload: identity
 ms.date: 06/06/2017
 ms.author: billmath
 ms.custom: pim
-ms.openlocfilehash: aeaefb484b29da6e89c2c3c650a79a881b3fa5b6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5d99589af4af766e430d7cecd743ace752f63768
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="giving-access-to-manage-azure-ad-privileged-identity-management"></a>Donner accès à la gestion d’Azure AD Privileged Identity Management
-L’administrateur global qui active Azure AD Privileged Identity Management (PIM) pour une organisation obtient automatiquement les affectations de rôles et l’accès à PIM. Aucune autre personne ne dispose d’un accès en écriture par défaut, y compris les autres administrateurs généraux. Les autres administrateurs généraux, administrateurs de sécurité et les lecteurs de sécurité ont un accès en lecture seule à Azure AD PIM. Pour donner accès à PIM, le premier utilisateur peut affecter les autres au rôle **Administrateur de rôle privilégié** . Cette affectation doit être effectuée depuis PIM proprement dit et ne peut pas être modifiée via PowerShell ou d’autres portails.
+# <a name="giving-access-toomanage-azure-ad-privileged-identity-management"></a>En donnant accès toomanage Azure AD Privileged Identity Management
+administrateur général de Hello qui permet à Azure AD Privileged Identity Management (PIM) pour une organisation automatiquement les attributions de rôle et accédez aux tooPIM. Aucune autre personne ne dispose d’un accès en écriture par défaut, y compris les autres administrateurs généraux. Autres administrateurs globaux, les administrateurs de sécurité et les lecteurs de sécurité ont accès en lecture seule tooAzure AD PIM. toogive accès tooPIM, hello premier utilisateur peut assigner à d’autres toohello **administrateur du rôle privilégié** rôle. Cette affectation doit être effectuée depuis PIM proprement dit et ne peut pas être modifiée via PowerShell ou d’autres portails.
 
 > [!NOTE]
 > La gestion d’Azure AD PIM requiert l’authentification Azure MFA. Les comptes Microsoft ne pouvant pas s’inscrire pour l’authentification Azure MFA, un utilisateur qui se connecte avec un compte Microsoft ne peut pas accéder à Azure AD PIM.
@@ -31,29 +31,29 @@ L’administrateur global qui active Azure AD Privileged Identity Management (PI
 
 Vérifiez qu’il y a toujours au moins deux utilisateurs dans un rôle d’administrateur de rôle privilégié, au cas où un utilisateur serait verrouillé ou son compte supprimé.
 
-## <a name="give-another-user-access-to-manage-pim"></a>Donner accès à un autre utilisateur pour gérer PIM
-1. Connectez-vous au [portail Azure](https://portal.azure.com/) et sélectionnez l’application **Azure AD Privileged Identity Management** sur le tableau de bord.
+## <a name="give-another-user-access-toomanage-pim"></a>Permettre à un autre utilisateur de l’accès toomanage PIM
+1. Connectez-vous à toohello [portail Azure](https://portal.azure.com/) et sélectionnez hello **Azure AD Privileged Identity Management** application sur le tableau de bord hello.
 2. Sélectionnez **Gérer les rôles privilégiés** > **Administrateur de rôle privilégié** > **Ajouter**.
    
     ![Ajout d’administrateur de rôle privilégié - capture d’écran][1]
-3. Sur le panneau Ajouter les utilisateurs gérés, l’étape 1 est déjà terminée. Sélectionnez l’étape 2, **Sélectionner les utilisateurs** et recherchez l’utilisateur que vous souhaitez ajouter.
+3. Sur le panneau de hello ajouter les utilisateurs gérés, l’étape 1 est déjà terminée. L’étape 2, sélectionnez **sélectionnez utilisateurs** et de recherche pour l’utilisateur de hello souhaité tooadd.
    
     ![Sélection des utilisateurs - capture d’écran][2]
-4. Sélectionnez l’utilisateur dans les résultats de la recherche, puis cliquez sur **OK**.
-5. Cliquez sur **OK** pour enregistrer votre sélection. L’utilisateur que vous avez sélectionné s’affiche dans la liste des administrateurs de rôle privilégié.
+4. Sélectionnez un utilisateur de hello hello résultats de recherche, puis cliquez sur **fait**.
+5. Cliquez sur **OK** toosave votre sélection. utilisateur Hello que vous avez sélectionné s’affiche dans la liste hello des administrateurs de rôle privilégié.
    
-   * Chaque fois que vous affectez un nouveau rôle à un utilisateur, celui-ci devient automatiquement éligible pour activer le rôle. Si vous souhaitez qu’il conserve le rôle, cliquez sur cet utilisateur dans la liste. Sélectionnez **Rendre permanent** dans le menu des informations utilisateur.
-6. Envoyez à l'utilisateur un lien vers la ressource [Prise en main d'Azure AD Privileged Identity Management](active-directory-privileged-identity-management-getting-started.md).
+   * Chaque fois que vous affectez une nouvelle toosomeone de rôle, ils sont automatiquement configurés en tant que rôle de hello tooactivate éligible. Si vous souhaitez toomake permanentes dans le rôle de hello, cliquez sur utilisateur hello dans la liste de hello. Sélectionnez **rendre l’autorisation** dans le menu d’informations utilisateur hello.
+6. Envoyer à un lien utilisateur de hello trop[prise en main d’Azure AD Privileged Identity Management](active-directory-privileged-identity-management-getting-started.md).
 
 ## <a name="remove-another-users-access-rights-for-managing-pim"></a>Supprimez les droits d'accès d'un autre utilisateur pour la gestion de PIM
-Avant de supprimer le rôle d’administrateur de rôle privilégié d’un utilisateur, vérifiez toujours que deux utilisateurs y sont toujours affectés.
+Avant de supprimer un utilisateur du rôle d’administrateur hello rôle privilégié, assurez-vous toujours qu’il y aura toujours deux utilisateurs affectés tooit.
 
-1. Dans le tableau de bord PIM, cliquez sur le rôle **Administrateur de rôle privilégié**.  La liste des utilisateurs actuels de ce rôle s'affiche.
-2. Cliquez sur l’utilisateur dans la liste des utilisateurs.
+1. Dans le tableau de bord PIM hello, cliquez sur le rôle de hello **administrateur du rôle privilégié**.  liste Hello d’utilisateurs actuellement dans ce rôle s’affiche.
+2. Cliquez sur l’utilisateur hello dans la liste des utilisateurs hello.
 3. Cliquez sur **Supprimer**.  Un message de confirmation s’affiche.
-4. Cliquez sur **Oui** pour supprimer l’utilisateur du rôle.
+4. Cliquez sur **Oui** utilisateur de hello tooremove du rôle de hello.
 
-<!--Every topic should have next steps and links to the next logical set of content to keep the customer engaged-->
+<!--Every topic should have next steps and links toohello next logical set of content tookeep hello customer engaged-->
 ## <a name="next-steps"></a>Étapes suivantes
 [!INCLUDE [active-directory-privileged-identity-management-toc](../../includes/active-directory-privileged-identity-management-toc.md)]
 

@@ -1,6 +1,6 @@
 ---
 title: "API Machine Learning : analyses de texte | Microsoft Docs"
-description: "Les API Machine Learning Text Analytics de Microsoft peuvent être utilisées pour analyser le texte non structuré dans le cadre de l’analyse de sentiments, l’extraction d’expressions clés, la détection de la langue et la détection de la rubrique."
+description: "Machine Learning texte Analytique API Microsoft peut être utilisé tooanalyze texte non structuré pour l’analyse des sentiments, extraction d’expressions clés, détection de la langue et détection de la rubrique."
 services: machine-learning
 documentationcenter: 
 author: onewth
@@ -16,50 +16,50 @@ ms.date: 04/04/2017
 ms.author: onewth
 ROBOTS: NOINDEX
 redirect_url: ../cognitive-services/cognitive-services-text-analytics-quick-start
-redirect_document_id: TRUE
-ms.openlocfilehash: 10eae2ff5624dcb57de1cf72b326147f35bc2a0b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+redirect_document_id: True
+ms.openlocfilehash: 49380c83849c5d5fdd8dce4f3899ebcb3d6870f7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="machine-learning-apis-text-analytics-for-sentiment-key-phrase-extraction-language-detection-and-topic-detection"></a>API Machine Learning : analyse de texte pour déterminer les sentiments, l’extraction d’expressions clés, la détection de la langue et la détection de la rubrique
 > [!NOTE]
-> Ce guide concerne la version 1 de l’API. Pour la version 2, [**consultez ce document**](../cognitive-services/cognitive-services-text-analytics-quick-start.md). La version 2 est désormais la version par défaut de cette API.
+> Ce guide est pour la version 1 de hello API. Pour la version 2, [ **toothis document de référence**](../cognitive-services/cognitive-services-text-analytics-quick-start.md). Version 2 correspond désormais hello par défaut de cette API.
 > 
 > 
 
 ## <a name="overview"></a>Vue d'ensemble
-L’API Text Analytics est une suite de [services web](https://datamarket.azure.com/dataset/amla/text-analytics) d’analyse de texte intégrée dans Azure Machine Learning. Cette API peut être utilisée pour analyser le texte non structuré dans le cadre de différentes tâches, comme l’analyse de sentiments, l’extraction d’expressions clés, la détection de la langue et la détection de la rubrique. L’utilisation de cette API ne requiert aucune formation. Il vous suffit d’importer vos données de texte. Cette API utilise des techniques avancées de traitement du langage naturel pour effectuer des prédictions de pointe.
+Hello texte Analytique API est une suite d’analytique de texte [services web](https://datamarket.azure.com/dataset/amla/text-analytics) intègrent Azure Machine Learning. Hello API peut être utilisé tooanalyze texte non structuré pour des tâches telles que l’analyse des sentiments, extraction d’expressions clés, détection de la langue et détection de la rubrique. Aucune données de formation ne nécessaire toouse cette API : simplement mettre vos données de texte. Cette API utilise un langage naturel avancé traitement toodeliver de techniques dans les prédictions de classe.
 
-Vous pouvez voir une démonstration de l’analyse de texte sur notre [site de démo](https://text-analytics-demo.azurewebsites.net/), où vous trouverez également des [exemples](https://text-analytics-demo.azurewebsites.net/Home/SampleCode) d’implémentation de l’analyse de texte dans C# et Python.
+Vous pouvez voir analytique de texte dans une action sur notre [site de démonstration](https://text-analytics-demo.azurewebsites.net/), où vous trouverez également [exemples](https://text-analytics-demo.azurewebsites.net/Home/SampleCode) sur l’analytique de texte tooimplement en c# et Python.
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 - - -
 ## <a name="sentiment-analysis"></a>analyse de sentiments
-Cette API renvoie une valeur numérique de notation située entre 0 et 1. Les valeurs de notation proches de 1 indiquent un sentiment positif, tandis que les valeurs proches de 0 signalent un sentiment négatif. La valeur de notation du sentiment est générée via des techniques de classification. Les fonctionnalités d’entrée du classifieur incluent des services n-grams, des fonctionnalités générées à partir de balises morphosyntaxiques et des incorporations de mot. Actuellement, l’anglais est la seule langue prise en charge.
+Hello API retourne un score entre 0 et 1. Too1 fermer des scores indiquent sentiment positif, alors que too0 fermer des scores négatifs sentiments. La valeur de notation du sentiment est générée via des techniques de classification. Hello des fonctionnalités d’entrée toohello classifieur incluent n-grammes, fonctionnalités générées à partir de morphosyntaxique balises et incorporations de word. Actuellement, l’anglais est hello uniquement prise en charge de langue.
 
 ## <a name="key-phrase-extraction"></a>Extraction d’expressions clés
-L’API renvoie une liste de chaînes indiquant les principaux propos suggérés dans le texte en entrée. Nous utilisons des techniques fournies par la boîte à outils de traitement du langage naturel sophistiquée de Microsoft Office. Actuellement, l’anglais est la seule langue prise en charge.
+Hello API retourne une liste de chaînes qui désigne les points de discussion clé hello dans le texte d’entrée hello. Nous utilisons des techniques fournies par la boîte à outils de traitement du langage naturel sophistiquée de Microsoft Office. Actuellement, l’anglais est hello uniquement prise en charge de langue.
 
 ## <a name="language-detection"></a>Détection de la langue
-L’API indique la langue détectée et un score entre 0 et 1. Un score proche de 1 indique une certitude à 100 % que la langue identifiée est la bonne. Au total, 120 langues sont prises en charge.
+Hello API renvoie hello a détecté la langue et un score entre 0 et 1. Too1 fermer des scores indiquent la certitude de 100 % language de hello identifié a la valeur true. Au total, 120 langues sont prises en charge.
 
 ## <a name="topic-detection"></a>Détection de la rubrique
-Il s’agit d’une API lancée récemment, qui renvoie les premières rubriques détectées pour une liste d’enregistrements texte soumis. Une rubrique est identifiée par une expression clé, représentée par un ou plusieurs mots associés. Cette API nécessite l’envoi d’au moins 100 enregistrements texte, mais elle est conçu pour détecter des rubriques parmi des centaines de milliers d'enregistrements. Notez que cette API facture 1 transaction par enregistrement texte soumis. L'API est conçue pour fonctionner correctement avec un texte court écrit par un humain, par exemple des évaluations et des commentaires d’utilisateurs.
+Il s’agit d’une API qui vient d’être publiée qui retourne les rubriques de détectés supérieur hello pour une liste des enregistrements texte envoyé. Une rubrique est identifiée par une expression clé, représentée par un ou plusieurs mots associés. Cette API requiert un minimum de 100 texte enregistre toobe soumis, mais est conçue toodetect rubriques sur des centaines toothousands d’enregistrements. Notez que cette API facture 1 transaction par enregistrement texte soumis. Hello API est toowork conçue pour humaines court, écrit du texte tels que les révisions et les commentaires des utilisateurs.
 
 - - -
 ## <a name="api-definition"></a>Définition de l’API
-### <a name="headers"></a>En-têtes
-Veillez à inclure les bons en-têtes dans votre requête, qui doit se présenter comme suit :
+### <a name="headers"></a>headers
+Veillez à inclure les en-têtes correct hello dans votre demande, qui doit se présenter comme suit :
 
     Authorization: Basic <creds>
     Accept: application/json
 
     Where <creds> = ConvertToBase64(“AccountKey:” + yourActualAccountKey);  
 
-Vous trouverez votre clé de compte dans votre compte sur [Azure Data Market](https://datamarket.azure.com/account/keys). Actuellement, seul JSON est accepté pour les formats d’entrée et de sortie. XML n’est pas pris en charge.
+Vous pouvez trouver votre clé de compte dans votre compte Bonjour [Azure Data Market](https://datamarket.azure.com/account/keys). Actuellement, seul JSON est accepté pour les formats d’entrée et de sortie. XML n’est pas pris en charge.
 
 - - -
 ## <a name="single-response-apis"></a>API à réponse unique
@@ -70,7 +70,7 @@ Vous trouverez votre clé de compte dans votre compte sur [Azure Data Market](ht
 
 **Exemple de demande**
 
-Dans l’appel ci-dessous, nous demandons l’analyse du sentiment de l’expression « Hello World » :
+Dans l’appel hello ci-dessous, nous invitons analyse des sentiments pour la phrase de hello « Hello World » :
 
     GET https://api.datamarket.azure.com/data.ashx/amla/text-analytics/v1/GetSentiment?Text=hello+world
 
@@ -89,7 +89,7 @@ Cette requête renverra une réponse du type :
 
 **Exemple de demande**
 
-Dans l’appel ci-dessous, nous demandons les expressions clés dans le texte « Nous avons passé un formidable séjour dans cet hôtel, la décoration est exceptionnelle et le personnel très accueillant » :
+Dans l’appel hello ci-dessous, nous invitons les expressions clés hello trouvée dans le texte hello « Il était un toostay hôtel merveilleux au, avec décor unique et convivial » :
 
     GET https://api.datamarket.azure.com/data.ashx/amla/text-analytics/v1/GetKeyPhrases?
     Text=It+was+a+wonderful+hotel+to+stay+at,+with+unique+decor+and+friendly+staff
@@ -113,7 +113,7 @@ Cette requête renverra une réponse du type :
 
 **Exemple de demande**
 
-Dans l’appel GET ci-dessous, nous demandons le sentiment des expressions clés dans le texte *Hello World*
+Dans l’appel GET hello ci-dessous, nous invitons pour sentiment hello pour les expressions clés de hello dans le texte hello *Hello World*
 
     GET https://api.datamarket.azure.com/data.ashx/amla/text-analytics/v1/GetLanguages?
     Text=Hello+World
@@ -131,13 +131,13 @@ Cette requête renverra une réponse du type :
 
 **Paramètres facultatifs**
 
-`NumberOfLanguagesToDetect` est un paramètre facultatif. La valeur par défaut est 1.
+`NumberOfLanguagesToDetect` est un paramètre facultatif. valeur par défaut Hello est 1.
 
 - - -
 ## <a name="batch-apis"></a>API Batch
-Le service d’analyse de texte vous permet d’effectuer des extractions de sentiments et d’expressions clés en mode Batch. Notez que chacun des enregistrements notés compte comme une transaction unique. Par exemple, si vous demandez le sentiment pour 1 000 enregistrements en un seul appel, 1 000 transactions sont déduites.
+Hello service de texte Analytique permet de vous sentiment de toodo et les extractions de phrase clé en mode batch. Notez que chacun des enregistrements de hello transformée nombres comme une transaction. Par exemple, si vous demandez le sentiment pour 1 000 enregistrements en un seul appel, 1 000 transactions sont déduites.
 
-Remarque : les ID saisis dans le système sont les ID retournés par le système. Le service web ne vérifie pas que ces ID sont uniques. Il incombe à l’appelant d’en vérifier l’unicité. 
+Notez que les identificateurs hello entrés dans le système de hello sont ID hello retournés par le système de hello. service web de Hello ne vérifie pas que ces ID est uniques. Il incombe hello d’unicité de tooverify hello appelant. 
 
 ### <a name="getsentimentbatch"></a>GetSentimentBatch
 **URL**    
@@ -146,7 +146,7 @@ Remarque : les ID saisis dans le système sont les ID retournés par le systèm
 
 **Exemple de demande**
 
-Dans l’appel POST ci-dessous, nous demandons les sentiments des expressions « Hello World », « Hello Foo World » et « Hello My World » dans le corps de la requête :
+Bonjour POST appeler ci-dessous, nous invitons pour les éléments hello d’expressions hello « Hello World », « Hello World de Foo » et « Mes Bonjour » dans le corps hello de demande de hello :
 
     POST https://api.datamarket.azure.com/data.ashx/amla/text-analytics/v1/GetSentimentBatch 
 
@@ -159,7 +159,7 @@ Corps de la requête :
         {"Id":"3","Text":"hello my world"},
     ]}
 
-Dans la réponse ci-dessous, vous obtenez la liste de résultats associée à vos ID de texte :
+Dans la réponse de hello ci-dessous, vous obtenez la liste hello des scores associé à votre ID de texte :
 
     {
       "odata.metadata":"<url>", 
@@ -181,13 +181,13 @@ Dans la réponse ci-dessous, vous obtenez la liste de résultats associée à vo
 
 **Exemple de demande**
 
-Dans cet exemple, nous demandons la liste de sentiments des expressions clés dans les textes suivants : 
+Dans cet exemple, nous invitons pour la liste d’éléments pour des expressions clés hello Bonjour suivant textes hello : 
 
-* « Nous avons passé un formidable séjour dans cet hôtel, la décoration est exceptionnelle et le personnel très accueillant »
+* « Il était un toostay hôtel merveilleux au, avec décor unique et convivial »
 * « La conférence était exceptionnelle, avec des discussions très intéressantes »
-* « La circulation était horrible, le trajet vers l’aéroport a duré trois heures »
+* « le trafic de hello a été horribles, j’ai passé à trois heures va toohello aéroport »
 
-Cette requête est effectuée comme un appel POST au point de terminaison :
+Cette demande est effectuée en tant qu’un point de terminaison du toohello appel POST :
 
     POST https://api.datamarket.azure.com/data.ashx/amla/text-analytics/v1/GetKeyPhrasesBatch
 
@@ -195,12 +195,12 @@ Corps de la requête :
 
     {"Inputs":
     [
-        {"Id":"1","Text":"It was a wonderful hotel to stay at, with unique decor and friendly staff"},
+        {"Id":"1","Text":"It was a wonderful hotel toostay at, with unique decor and friendly staff"},
         {"Id":"2","Text":"It was an amazing build conference, with very interesting talks"},
-        {"Id":"3","Text":"The traffic was terrible, I spent three hours going to the airport"}
+        {"Id":"3","Text":"hello traffic was terrible, I spent three hours going toohello airport"}
     ]}
 
-Dans la réponse ci-dessous, vous obtenez la liste des expressions clés associées à vos ID de texte :
+Dans la réponse de hello ci-dessous, vous obtenez la liste hello des expressions clés associées à votre ID de texte :
 
     { "odata.metadata":"<url>",
          "KeyPhrasesBatch":
@@ -215,7 +215,7 @@ Dans la réponse ci-dessous, vous obtenez la liste des expressions clés associ�
 - - -
 ### <a name="getlanguagebatch"></a>GetLanguageBatch
 
-Dans l’appel POST ci-dessous, nous demandons à détecter la langue pour deux entrées de texte :
+Dans l’appel POST hello ci-dessous, nous invitons détection de la langue pour les deux entrées de texte :
 
     POST https://api.datamarket.azure.com/data.ashx/amla/text-analytics/v1/GetLanguageBatch
 
@@ -228,7 +228,7 @@ Corps de la requête :
       ]
     }
 
-Cet exemple renvoie la réponse suivante, où l’anglais est détecté dans la première entrée et le français dans la seconde entrée :
+Cet exemple renvoie hello suivant réponse, où anglais est détectée dans la première entrée de hello et Français dans la deuxième entrée du hello :
 
     {
        "LanguageBatch": [{
@@ -254,9 +254,9 @@ Cet exemple renvoie la réponse suivante, où l’anglais est détecté dans la 
 
 - - -
 ## <a name="topic-detection-apis"></a>API de détection de la rubrique
-Il s’agit d’une API lancée récemment, qui renvoie les premières rubriques détectées pour une liste d’enregistrements texte soumis. Une rubrique est identifiée par une expression clé, représentée par un ou plusieurs mots associés. Notez que cette API facture 1 transaction par enregistrement texte soumis.
+Il s’agit d’une API qui vient d’être publiée qui retourne les rubriques de détectés supérieur hello pour une liste des enregistrements texte envoyé. Une rubrique est identifiée par une expression clé, représentée par un ou plusieurs mots associés. Notez que cette API facture 1 transaction par enregistrement texte soumis.
 
-Cette API nécessite l’envoi d’au moins 100 enregistrements texte, mais elle est conçu pour détecter des rubriques parmi des centaines de milliers d'enregistrements.
+Cette API requiert un minimum de 100 texte enregistre toobe soumis, mais est conçue toodetect rubriques sur des centaines toothousands d’enregistrements.
 
 ### <a name="topics--submit-job"></a>Rubriques – Envoyer le travail
 **URL**
@@ -265,29 +265,29 @@ Cette API nécessite l’envoi d’au moins 100 enregistrements texte, mais elle
 
 **Exemple de demande**
 
-Dans l’appel POST ci-dessous, nous demandons des rubriques pour un ensemble de 100 articles, où les premier et dernier articles d’entrée sont affichés, et deux StopPhrases sont inclus.
+Dans l’appel POST hello ci-dessous, nous invitons les rubriques pour un ensemble de 100 articles, où hello et prénom d’entrée articles sont affichés, et deux StopPhrases sont inclus.
 
     POST https://api.datamarket.azure.com/data.ashx/amla/text-analytics/v1/StartTopicDetection HTTP/1.1
 
 Corps de la requête :
 
     {"Inputs":[
-        {"Id":"1","Text":"I loved the food at this restaurant"},
+        {"Id":"1","Text":"I loved hello food at this restaurant"},
         ...,
-        {"Id":"100","Text":"I hated the decor"}
+        {"Id":"100","Text":"I hated hello decor"}
     ],
     "StopPhrases":[
         "restaurant", “visitor"
     ]}
 
-Dans la réponse ci-dessous, vous obtenez le JobId du travail soumis :
+Dans la réponse de hello ci-dessous, vous obtenez hello JobId pour les travaux soumis hello :
 
     {
         "odata.metadata":"<url>",
         "JobId":"<JobId>"
     }
 
-Une liste de mots uniques ou de phrases qui ne doivent pas être renvoyés comme des rubriques. Permet de filtrer des rubriques très génériques. Par exemple, dans un jeu de données sur les évaluations d’un hôtel, « hotel » et « hostel » peuvent être des StopPhrases.  
+Une liste de mots uniques ou de phrases qui ne doivent pas être renvoyés comme des rubriques. Peut être utilisé toofilter rubriques très générique. Par exemple, dans un jeu de données sur les évaluations d’un hôtel, « hotel » et « hostel » peuvent être des StopPhrases.  
 
 ### <a name="topics--poll-for-job-results"></a>Rubriques – Recherche des résultats d’un travail
 **URL**
@@ -296,12 +296,12 @@ Une liste de mots uniques ou de phrases qui ne doivent pas être renvoyés comme
 
 **Exemple de demande**
 
-Passez le JobId renvoyé à partir de l'étape « Envoyer le travail » pour extraire les résultats. Nous vous recommandons d'appeler ce point de terminaison toutes les minutes jusqu'à ce que la réponse affiche Status=’Complete’. Le travail prendra environ 10 minutes, ou plus pour les travaux impliquant des milliers d'enregistrements.
+Passez hello que JobID retourné à partir des résultats de hello 'job Submit' étape toofetch hello. Nous vous recommandons d’appeler ce point de terminaison toutes les minutes jusqu'à ce que l’état = 'Terminé' dans la réponse de hello. Elle prendra environ 10 minutes pour un travail toocomplete, ou plus pour les travaux avec des milliers d’enregistrements.
 
     GET https://api.datamarket.azure.com/data.ashx/amla/text-analytics/v1/GetTopicDetectionResult?JobId=<JobId>
 
 
-Pendant le traitement, la réponse se présente comme suit :
+Pendant son traitement, réponse de hello seront comme suit :
 
     {
         "odata.metadata":"<url>",
@@ -312,7 +312,7 @@ Pendant le traitement, la réponse se présente comme suit :
     }
 
 
-L'API renvoie un résultat au format JSON suivant :
+Hello API retourne la sortie au format JSON Bonjour suivant le format :
 
     {
         "odata.metadata":"<url>",
@@ -346,21 +346,21 @@ L'API renvoie un résultat au format JSON suivant :
         "Errors":[]
 
 
-Les propriétés de chaque partie de la réponse sont les suivantes :
+propriétés Hello pour chaque partie de la réponse de hello sont les suivantes :
 
 **Propriétés de TopicInfo**
 
 | Clé | Description |
 |:--- |:--- |
 | TopicId |Identificateur unique de chaque rubrique. |
-| Score |Nombre d’enregistrements affectés à une rubrique. |
-| KeyPhrase |Mot ou phrase résumant la rubrique. Peut contenir un ou plusieurs mots. |
+| Score |Nombre d’enregistrements assigné tootopic. |
+| KeyPhrase |Un mot ou une expression pour une rubrique de hello résumer. Peut contenir un ou plusieurs mots. |
 
 **Propriétés de TopicAssignment**
 
 | Clé | Description |
 |:--- |:--- |
-| ID |Identificateur de l'enregistrement. Équivaut à l'ID inclus dans l'entrée. |
-| TopicId |ID de rubrique auquel l’enregistrement a été affecté. |
-| Distance |Niveau de confiance que l’enregistrement appartient à la rubrique. Plus la distance est proche de zéro, plus le niveau de confiance est élevé. |
+| Id |Identificateur de l’enregistrement de hello. Attribue un ID toohello inclus dans l’entrée de hello. |
+| TopicId |ID de rubrique Hello enregistrement hello a été affectée. |
+| Distance |Confiance hello enregistrement appartient toohello rubrique. Toozero de plus près de distance indique toute confiance. |
 
