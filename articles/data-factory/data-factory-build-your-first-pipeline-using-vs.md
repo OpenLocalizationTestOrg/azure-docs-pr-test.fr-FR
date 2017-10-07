@@ -1,5 +1,5 @@
 ---
-title: "Créer votre première fabrique de données Azure (Visual Studio) | Microsoft Docs"
+title: "aaaBuild votre première fabrique de données (Visual Studio) | Documents Microsoft"
 description: "Dans ce didacticiel, vous allez créer un exemple de pipeline Azure Data Factory avec Visual Studio."
 services: data-factory
 documentationcenter: 
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 07/10/2017
 ms.author: spelluru
-ms.openlocfilehash: 77042219cbe698a33ab9447aa952586772897241
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 0c5eb01b685d978d80916da0293cc2d3701b2d57
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-create-a-data-factory-by-using-visual-studio"></a>Didacticiel : Créer une fabrique de données à l’aide de Visual Studio
 > [!div class="op_single_selector" title="Tools/SDKs"]
@@ -29,72 +29,72 @@ ms.lasthandoff: 08/29/2017
 > * [Modèle Resource Manager](data-factory-build-your-first-pipeline-using-arm.md)
 > * [API REST](data-factory-build-your-first-pipeline-using-rest-api.md)
 
-Ce didacticiel vous explique comment créer une fabrique de données Azure à l’aide de Visual Studio. Vous allez créer un projet Visual Studio à l’aide du modèle de projet Data Factory, puis définir des entités Data Factory (services liés, jeux de données et pipeline) au format JSON et vous allez terminer en publiant/déployant ces entités dans le cloud. 
+Ce didacticiel vous montre comment toocreate une fabrique de données Azure à l’aide de Visual Studio. Vous créez un projet Visual Studio à l’aide du modèle de projet de Data Factory hello définissez des entités de fabrique de données (services liés, des datasets et pipeline) au format JSON et ensuite publierez/déployez ces cloud de toohello d’entités. 
 
-Le pipeline dans ce didacticiel a une activité : **Activité HDInsight Hive**. Cette activité exécute un script Hive sur un cluster HDInsight qui transforme des données d’entrée pour produire des données de sortie. Le pipeline est programmé pour s’exécuter une fois par mois entre les heures de début et de fin spécifiées. 
+pipeline Hello dans ce didacticiel a une activité : **activité HDInsight Hive**. Cette activité s’exécute un script hive sur un cluster Azure HDInsight et les transformations d’entrée de données de sortie tooproduce. pipeline de Hello est planifiée toorun une fois qu’un mois entre hello spécifié d’heures de début et de fin. 
 
 > [!NOTE]
-> Ce didacticiel n’explique pas comment copier des données à l’aide d’Azure Data Factory. Pour un didacticiel sur la copie de données à l’aide d’Azure Data Factory, consultez [Copie de données Blob Storage vers une base de données SQL à l’aide de Data Factory](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md).
+> Ce didacticiel n’explique pas comment copier des données à l’aide d’Azure Data Factory. Pour obtenir un didacticiel sur la façon de toocopy les données à l’aide d’Azure Data Factory, consultez [didacticiel : copier des données à partir du stockage d’objets Blob tooSQL de base de données](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md).
 > 
-> Un pipeline peut contenir plusieurs activités. En outre, vous pouvez chaîner deux activités (une après l’autre) en configurant le jeu de données de sortie d’une activité en tant que jeu de données d’entrée de l’autre activité. Pour plus d’informations, consultez [Planification et exécution dans Data Factory](data-factory-scheduling-and-execution.md#multiple-activities-in-a-pipeline).
+> Un pipeline peut contenir plusieurs activités. De plus, vous pouvez concaténer les deux activités (exécutée une activité après l’autre) en définissant le dataset de sortie hello d’une activité hello d’entrée dataset Hello autre activité. Pour plus d’informations, consultez [Planification et exécution dans Data Factory](data-factory-scheduling-and-execution.md#multiple-activities-in-a-pipeline).
 
 
 ## <a name="walkthrough-create-and-publish-data-factory-entities"></a>Procédure pas à pas : Création et publication d’entités Data Factory
-Voici les étapes à effectuer dans le cadre de cette procédure pas à pas :
+Voici les étapes hello que vous effectuez dans le cadre de cette procédure pas à pas :
 
 1. Créez deux services liés : **AzureStorageLinkedService1** et **HDInsightOnDemandLinkedService1**. 
    
-    Dans ce didacticiel, les données d’entrée et de sortie de l’activité Hive se trouvent dans le même Stockage Blob Azure. Vous utilisez un cluster HDInsight à la demande pour traiter les données d’entrée existantes afin de produire les données de sortie. Le cluster HDInsight à la demande est automatiquement créé pour vous par Azure Data Factory au moment de l’exécution, lorsque les données d’entrée sont prêtes à être traitées. Vous devez lier vos magasins de données ou vos services de calcul à votre fabrique de données, de façon que le service Data Factory puisse s’y connecter au moment de l’exécution. Par conséquent, vous liez votre compte de stockage Azure à la fabrique de données à l’aide d’AzureStorageLinkedService1 et vous liez un cluster HDInsight à la demande à l’aide de HDInsightOnDemandLinkedService1. Lors de la publication, vous spécifiez le nom de la fabrique de données à créer ou une fabrique de données existante.  
-2. Créez deux jeux de données : **InputDataset** et **OutputDataset**, qui représentent les données d’entrée/de sortie stockées dans le Stockage Blob Azure. 
+    Dans ce didacticiel, les données d’entrée et de sortie pour l’activité de ruche hello sont dans hello même stockage d’objets Blob Azure. Vous utilisez une à la demande HDInsight cluster tooprocess des données d’entrée tooproduce sortie données existantes. cluster de HDInsight Hello à la demande est automatiquement créé pour vous par Azure Data Factory en cours d’exécution lorsque les données d’entrée hello sont prêt toobe traité. Vous devez toolink vos données stockent et calcule la fabrique de données tooyour afin que le service de fabrique de données hello peut se connecter à toothem lors de l’exécution. Par conséquent, vous liez votre fabrique de données toohello compte de stockage Azure à l’aide de hello AzureStorageLinkedService1 et liez un cluster de HDInsight à la demande à l’aide de hello HDInsightOnDemandLinkedService1. Lors de la publication, vous spécifiez le nom hello toobe de fabrique de données hello créé ou une fabrique de données.  
+2. Créez deux jeux de données : **InputDataset** et **OutputDataset**, qui représentent les données d’entrée/sortie hello stockées Bonjour stockage d’objets blob Azure. 
    
-    Ces définitions de jeu de données font référence au service lié Azure Storage que vous avez créé à l’étape précédente. Pour InputDataset, vous spécifiez le conteneur de blobs (adfgetstarted) et le dossier (inputdata) qui contient un blob avec les données d’entrée. Pour OutputDataset, vous spécifiez le conteneur de blobs (adfgetstarted) et le dossier (partitioneddata) qui contient les données de sortie. Vous spécifiez également d’autres propriétés telles que la structure, la disponibilité et la stratégie.
+    Ces définitions de jeu de données font référence toohello lié Azure Storage service est créé à l’étape précédente de hello. Pourquoi InputDataset, vous spécifiez le conteneur d’objets blob hello (adfgetstarted) et hello dossier (inptutdata) qui contient un objet blob avec les données d’entrée hello. Pourquoi OutputDataset, vous spécifiez le conteneur d’objets blob hello (adfgetstarted) et le dossier hello (partitioneddata) qui contient les données de sortie hello. Vous spécifiez également d’autres propriétés telles que la structure, la disponibilité et la stratégie.
 3. Créez un pipeline nommé **MyFirstPipeline**. 
   
-    Dans cette procédure pas à pas, le pipeline a une seule activité : **Activité HDInsight Hive**. Cette activité transforme des données d’entrée pour produire des données de sortie en exécutant un script Hive sur un cluster HDInsight à la demande. Pour en savoir plus sur l’activité Hive, consultez [Transformer des données à l’aide d’une activité Hive dans Azure Data Factory](data-factory-hive-activity.md). 
-4. Créez une fabrique de données nommée **DataFactoryUsingVS**. Déployez la fabrique de données et toutes les entités Data Factory (services liés, tables et pipeline).
-5. Après la publication, utilisez les panneaux du portail Azure et l’application de surveillance et gestion pour surveiller le pipeline. 
+    Dans cette procédure pas à pas, le pipeline de hello n'a qu’une seule activité : **activité de la ruche HDInsight**. Cette transformation de l’activité d’entrée de données de sortie de données tooproduce en exécutant un script hive sur un cluster de HDInsight à la demande. toolearn en savoir plus sur l’activité hive, consultez [activité Hive](data-factory-hive-activity.md) 
+4. Créez une fabrique de données nommée **DataFactoryUsingVS**. Déployer la fabrique de données hello et toutes les entités de fabrique de données (services liés, les tables et les pipeline hello).
+5. Après la publication, vous utilisez panneaux portail Azure et pipeline de hello toomonitor analyse & application de gestion. 
   
 ### <a name="prerequisites"></a>Composants requis
-1. Lisez l’article [Vue d’ensemble du didacticiel](data-factory-build-your-first-pipeline.md) et effectuez les étapes **préalables** . Vous pouvez également sélectionner l’option **Vue d’ensemble et étapes préalables requises** de la liste déroulante figurant en haut de la page pour basculer vers l’article correspondant. Une fois les étapes préalables suivies, revenez à cet article en sélectionnant l’option **Visual Studio** dans la liste déroulante.
-2. Pour créer des instances Data Factory, vous devez avoir un rôle de [collaborateur de fabrique de données](../active-directory/role-based-access-built-in-roles.md#data-factory-contributor) au niveau de l’abonnement/du groupe de ressources.  
-3. Les composants suivants doivent être installés sur votre ordinateur :
+1. Lisez [vue d’ensemble du didacticiel](data-factory-build-your-first-pipeline.md) article et hello complète **condition préalable** étapes. Vous pouvez également sélectionner hello **vue d’ensemble et conditions préalables** option dans la liste déroulante de hello à l’article de toohello hello tooswitch supérieur. Après avoir terminé la configuration requise de hello, passer toothis précédent article en sélectionnant **Visual Studio** option dans la liste déroulante de hello.
+2. instances de fabrique de données toocreate, vous devez être membre du hello [collaborateur de fabrique de données](../active-directory/role-based-access-built-in-roles.md#data-factory-contributor) rôle au niveau de groupe de ressource d’abonnement hello.  
+3. Vous devez disposer de hello installé sur votre ordinateur :
    * Visual Studio 2013 ou Visual Studio 2015
-   * Téléchargez le Kit de développement logiciel (SDK) Azure pour Visual Studio 2013 ou Visual Studio 2015. Accédez à la [page de téléchargement d’Azure](https://azure.microsoft.com/downloads/), puis cliquez sur **VS 2013** ou **VS 2015** dans la section **.NET**.
-   * Téléchargez le dernier plug-in Azure Data Factory pour Visual Studio : [VS 2013](https://visualstudiogallery.msdn.microsoft.com/754d998c-8f92-4aa7-835b-e89c8c954aa5) ou [VS 2015](https://visualstudiogallery.msdn.microsoft.com/371a4cf9-0093-40fa-b7dd-be3c74f49005). Vous pouvez également mettre à jour le plug-in en procédant comme suit : dans le menu, cliquez sur **Outils** -> **Extensions et mises à jour** -> **En ligne** -> **Galerie Visual Studio** -> **Outils Microsoft Azure Data Factory pour Visual Studio** -> **Mettre à jour**.
+   * Téléchargez le Kit de développement logiciel (SDK) Azure pour Visual Studio 2013 ou Visual Studio 2015. Accédez trop[Page de téléchargement Azure](https://azure.microsoft.com/downloads/) et cliquez sur **VS 2013** ou **VS 2015** Bonjour **.NET** section.
+   * Téléchargement du plug-in Azure Data Factory dernière hello pour Visual Studio : [VS 2013](https://visualstudiogallery.msdn.microsoft.com/754d998c-8f92-4aa7-835b-e89c8c954aa5) ou [VS 2015](https://visualstudiogallery.msdn.microsoft.com/371a4cf9-0093-40fa-b7dd-be3c74f49005). Vous pouvez également actualiser les plug-in hello en procédant comme hello comme suit : cliquez sur hello, **outils** -> **Extensions et mises à jour** -> **Online**  ->  **Galerie visual Studio** -> **Microsoft Azure Data Factory Tools pour Visual Studio** -> **mise à jour**.
 
-À présent, utilisons Visual Studio pour créer une fabrique de données Azure.
+Maintenant, nous allons utiliser Visual Studio toocreate une fabrique de données Azure.
 
 ### <a name="create-visual-studio-project"></a>Création d’un projet Visual Studio
-1. Lancez **Visual Studio 2013** ou **Visual Studio 2015**. Cliquez sur **Fichier**, pointez le curseur de la souris sur **Nouveau**, puis cliquez sur **Projet**. La boîte de dialogue **Nouveau projet** doit s’afficher.  
-2. Dans la boîte de dialogue **Nouveau projet**, sélectionnez le modèle **DataFactory**, puis cliquez sur **Projet Data Factory vide**.   
+1. Lancez **Visual Studio 2013** ou **Visual Studio 2015**. Cliquez sur **fichier**, pointez trop**nouveau**, puis cliquez sur **projet**. Vous devez voir hello **nouveau projet** boîte de dialogue.  
+2. Bonjour **nouveau projet** boîte de dialogue, sélectionnez hello **DataFactory** modèle, puis cliquez sur **projet de la fabrique de données vide**.   
 
     ![Boîte de dialogue Nouveau projet](./media/data-factory-build-your-first-pipeline-using-vs/new-project-dialog.png)
-3. Entrez le **nom** du projet, son **emplacement** et le nom de la **solution**, puis cliquez sur **OK**.
+3. Entrez un **nom** pour le projet de hello, **emplacement**et un nom pour hello **solution**, puis cliquez sur **OK**.
 
     ![Explorateur de solutions](./media/data-factory-build-your-first-pipeline-using-vs/solution-explorer.png)
 
 ### <a name="create-linked-services"></a>Créer des services liés
 Au cours de cette étape, vous allez créer deux services liés : **Stockage Azure** et **HDInsight à la demande**. 
 
-Le service lié Stockage Azure lie votre compte de stockage Azure à la fabrique de données en fournissant les informations de connexion. Le service Data Factory utilise la chaîne de connexion à partir du paramètre de service lié pour se connecter au stockage Azure lors de l’exécution. Ce stockage contient les données d’entrée et de sortie pour le pipeline et le fichier de script Hive utilisé par l’activité Hive. 
+Hello Azure Storage liés aux liaisons de service votre fabrique de données de stockage Azure compte toohello en fournissant des informations de connexion hello. Service de fabrique de données utilise la chaîne de connexion de hello à partir du paramètre de service hello lié tooconnect toohello stockage Azure lors de l’exécution. Ce système de stockage conserve d’entrée et les données de sortie pour le pipeline de hello et hello hive le fichier de script utilisé par l’activité de ruche hello. 
 
-Avec le service lié HDInsight à la demande, le cluster HDInsight à la demande est automatiquement créé au moment de l’exécution, lorsque les données d’entrée sont prêtes à être traitées. Le cluster est supprimé une fois le traitement terminé et au terme du délai d’inactivité spécifié. 
+Service lié HDInsight à la demande hello cluster HDInsight est créé automatiquement lors de l’exécution lorsque les données d’entrée hello tooprocessed prêt. cluster de Hello est supprimée une fois ceci effectué inactifs et le traitement de la durée spécifiée hello. 
 
 > [!NOTE]
-> Vous créez une fabrique de données en spécifiant son nom et ses paramètres au moment de la publication de votre solution Data Factory.
+> Vous créez une fabrique de données en spécifiant son nom et les paramètres au moment de hello de votre solution de fabrique de données de publication.
 
-#### <a name="create-azure-storage-linked-service"></a>Créer le service lié Azure Storage
-1. Dans l’Explorateur de solutions, cliquez avec le bouton droit sur **Services liés**, pointez sur **Ajouter**, puis cliquez sur **Nouvel élément**.      
-2. Dans la boîte de dialogue **Ajouter un nouvel élément**, sélectionnez **Service lié Azure Storage** dans la liste, puis cliquez sur **Ajouter**.
+#### <a name="create-azure-storage-linked-service"></a>Créer le service lié Stockage Azure
+1. Avec le bouton droit **Services liés** hello l’Explorateur de solutions, pointez trop**ajouter**, puis cliquez sur **un nouvel élément**.      
+2. Bonjour **ajouter un nouvel élément** boîte de dialogue, sélectionnez **Service lié Azure Storage** à partir de la liste de hello, puis cliquez sur **ajouter**.
     ![Service lié Azure Storage](./media/data-factory-build-your-first-pipeline-using-vs/new-azure-storage-linked-service.png)
-3. Remplacez `<accountname>` et `<accountkey>` par le nom de votre compte de stockage Azure et par sa clé. Pour savoir comment obtenir votre clé d’accès de stockage, reportez-vous aux informations sur l’affichage, la copie et la régénération de clés d’accès de stockage dans [Gérer votre compte de stockage](../storage/common/storage-create-storage-account.md#manage-your-storage-account).
+3. Remplacez `<accountname>` et `<accountkey>` avec nom hello de votre compte de stockage Azure et sa clé. toolearn comment accéder à votre espace de stockage tooget de clé, consultez hello plus d’informations sur comment tooview, copier et régénérer stockage touches d’accès [gérer votre compte de stockage](../storage/common/storage-create-storage-account.md#manage-your-storage-account).
     ![Service lié Azure Storage](./media/data-factory-build-your-first-pipeline-using-vs/azure-storage-linked-service.png)
-4. Enregistrez le fichier **AzureStorageLinkedService1.json** .
+4. Enregistrer hello **AzureStorageLinkedService1.json** fichier.
 
 #### <a name="create-azure-hdinsight-linked-service"></a>Créer le service lié Azure HDInsight
-1. Dans l’**Explorateur de solutions**, cliquez avec le bouton droit sur **Services liés**, pointez sur **Ajouter** puis cliquez sur **Nouvel élément**.
+1. Bonjour **l’Explorateur de solutions**, avec le bouton droit **Services liés**, pointez trop**ajouter**, puis cliquez sur **un nouvel élément**.
 2. Sélectionnez **Service lié à la demande HDInsight** puis cliquez sur **Ajouter**.
-3. Remplacez le code **JSON** par le code JSON suivant :
+3. Remplacez hello **JSON** avec hello suivant JSON :
 
      ```json
     {
@@ -112,29 +112,29 @@ Avec le service lié HDInsight à la demande, le cluster HDInsight à la demande
     }
     ```
 
-    Le tableau suivant décrit les propriétés JSON utilisées dans l'extrait de code :
+    Hello tableau suivant fournit des descriptions pour les propriétés JSON hello utilisées dans l’extrait de code hello :
 
     Propriété | Description
     -------- | ----------- 
-    ClusterSize | Spécifie la taille du cluster HDInsight Hadoop.
-    TimeToLive | Spécifie la durée d’inactivité du cluster HDInsight avant sa suppression.
-    linkedServiceName | Spécifie le compte de stockage utilisé pour stocker les journaux générés par le cluster HDInsight Hadoop. 
+    ClusterSize | Spécifie la taille de hello Hello cluster HDInsight Hadoop.
+    TimeToLive | Spécifie la durée d’inactivité de ce hello pour le cluster HDInsight de hello, avant d’être supprimé.
+    linkedServiceName | Spécifie le compte de stockage hello toostore utilisé hello journaux générés par le cluster HDInsight Hadoop. 
 
     > [!IMPORTANT]
-    > Le cluster HDInsight crée un **conteneur par défaut** dans le Stockage Blob que vous avez spécifié dans le code JSON (linkedServiceName). HDInsight ne supprime pas ce conteneur lorsque le cluster est supprimé. Ce comportement est normal. Avec le service lié HDInsight à la demande, un cluster HDInsight est créé dès qu’une tranche est traitée, à moins qu’il n’existe un cluster actif (timeToLive). Ce cluster est supprimé, une fois le traitement terminé.
+    > Hello HDInsight cluster crée un **conteneur par défaut** dans le stockage blob hello spécifié dans hello JSON (linkedServiceName). HDInsight ne supprime pas ce conteneur lorsque le cluster de hello est supprimé. Ce comportement est normal. Avec le service lié HDInsight à la demande, un cluster HDInsight est créé dès qu’une tranche est traitée, à moins qu’il n’existe un cluster actif (timeToLive). Hello cluster est automatiquement supprimé lorsque le traitement de hello est effectué.
     > 
-    > Comme un nombre croissant de tranches sont traitées, vous voyez un grand nombre de conteneurs dans votre stockage d’objets blob Azure. Si vous n’en avez pas besoin pour dépanner les travaux, il se peut que vous deviez les supprimer pour réduire les frais de stockage. Les noms de ces conteneurs sont conformes au modèle suivant : `adf<yourdatafactoryname>-<linkedservicename>-datetimestamp`. Utilisez des outils tels que [Microsoft Storage Explorer](http://storageexplorer.com/) pour supprimer des conteneurs dans votre stockage d’objets blob Azure.
+    > Comme un nombre croissant de tranches sont traitées, vous voyez un grand nombre de conteneurs dans votre stockage d’objets blob Azure. Si vous ne devez pas les pour la résolution des problèmes de travaux de hello, vous souhaiterez peut-être toodelete les coûts de stockage tooreduce hello. les noms de ces conteneurs Hello suivent un modèle : `adf<yourdatafactoryname>-<linkedservicename>-datetimestamp`. Utiliser des outils tels que [Explorateur de stockage Microsoft](http://storageexplorer.com/) stockage d’objets blob des conteneurs de toodelete dans votre Azure.
 
     Pour plus d’informations sur les propriétés JSON, consultez [Service lié à la demande Azure HDInsight](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service). 
-4. Enregistrez le fichier **HDInsightOnDemandLinkedService1.json** .
+4. Enregistrer hello **HDInsightOnDemandLinkedService1.json** fichier.
 
-### <a name="create-datasets"></a>Créer des jeux de données
-Dans cette étape, vous créez des jeux de données afin de représenter les données d’entrée et de sortie pour le traitement Hive. Ces jeux de données font référence au service **AzureStorageLinkedService1** que vous avez créé précédemment dans ce didacticiel. Le service lié pointe vers un compte de stockage Azure, et les jeux de données spécifient le conteneur, le dossier et le nom de fichier dans le stockage qui contient les données d’entrée et de sortie.   
+### <a name="create-datasets"></a>Créez les jeux de données
+Dans cette étape, vous créez des groupes de données toorepresent hello d’entrée et sortie des données pour le traitement de la ruche. Ces jeux de données font référence toohello **AzureStorageLinkedService1** que vous avez créé précédemment dans ce didacticiel. Hello tooan de points de service lié compte de stockage Azure et de jeux de données spécifiez conteneur, dossier, le nom de fichier dans le stockage hello qui contient l’entrée et les données de sortie.   
 
 #### <a name="create-input-dataset"></a>Créer le jeu de données d’entrée
-1. Dans l’**Explorateur de solutions**, cliquez avec le bouton droit sur **Tables**, pointez sur **Ajouter**, puis cliquez sur **Nouvel élément**.
-2. Sélectionnez **Objet blob Azure** dans la liste, changez le nom du fichier en **InputDataSet.json**, puis cliquez sur **Ajouter**.
-3. Remplacez le code **JSON** dans l’éditeur par l’extrait de code JSON suivant :
+1. Bonjour **l’Explorateur de solutions**, avec le bouton droit **Tables**, pointez trop**ajouter**, puis cliquez sur **un nouvel élément**.
+2. Sélectionnez **objets Blob Azure** à partir de la liste de hello, renommez hello du fichier de hello trop**InputDataSet.json**, puis cliquez sur **ajouter**.
+3. Remplacez hello **JSON** dans l’éditeur de hello avec hello suivant extrait de code JSON :
 
     ```json
     {
@@ -159,27 +159,27 @@ Dans cette étape, vous créez des jeux de données afin de représenter les don
         }
     }
     ```
-    Cet extrait de code JSON définit un jeu de données appelé **AzureBlobInput** qui représente les données d’entrée de l’activité Hive dans le pipeline. Vous indiquez que les données d’entrée se trouvent dans le conteneur de blobs nommé `adfgetstarted` et dans le dossier nommé `inputdata`.
+    Cet extrait de code JSON définit un jeu de données appelée **AzureBlobInput** qui représente les données d’entrée pour l’activité de ruche hello dans le pipeline de hello. Vous spécifiez que les données d’entrée hello se trouve dans le conteneur d’objets blob hello appelé `adfgetstarted` et dossier hello appelé `inputdata`.
 
-    Le tableau suivant décrit les propriétés JSON utilisées dans l'extrait de code :
+    Hello tableau suivant fournit des descriptions pour les propriétés JSON hello utilisées dans l’extrait de code hello :
 
     Propriété | Description |
     -------- | ----------- |
-    type |La propriété de type est définie sur **AzureBlob**, car les données se trouvent dans le Stockage Blob Azure.
-    linkedServiceName | Fait référence au service AzureStorageLinkedService1 que vous avez créé précédemment.
-    fileName |Cette propriété est facultative. Si vous omettez cette propriété, tous les fichiers spécifiés dans le paramètre folderPath sont récupérés. Dans le cas présent, seul le fichier input.log est traité.
-    type | Les fichiers journaux sont au format texte : nous utilisons donc TextFormat. |
-    columnDelimiter | Les colonnes des fichiers journaux sont délimitées par une virgule (`,`)
-    frequency/interval | La fréquence est définie sur Mois et l’intervalle est 1, ce qui signifie que les segments d’entrée sont disponibles mensuellement.
-    external | Cette propriété a la valeur true si les données d’entrée de l’activité ne sont pas générées par le pipeline. Cette propriété est uniquement spécifiée sur les jeux de données d’entrée. Pour le jeu de données d’entrée de la première activité, choisissez toujours la valeur true.
-4. Enregistrez le fichier **InputDataset.json** .
+    type |propriété de type Hello est définie trop**AzureBlob** , car les données résident dans le stockage d’objets Blob Azure.
+    linkedServiceName | Fait référence toohello AzureStorageLinkedService1 que vous avez créé précédemment.
+    fileName |Cette propriété est facultative. Si vous omettez cette propriété, tous les fichiers hello hello folderPath sont récupérées. Dans ce cas, uniquement les input.log hello est traitée.
+    type | les fichiers journaux Hello étant au format texte, nous utilisons TextFormat. |
+    columnDelimiter | colonnes dans les fichiers journaux de hello sont délimitées par virgule hello (`,`)
+    frequency/interval | fréquence égale tooMonth et l’intervalle est 1, ce qui signifie que les tranches d’entrée hello sont disponibles chaque mois.
+    external | Cette propriété a la valeur tootrue si les données d’entrée pour l’activité de hello de salutation ne sont pas générées par le pipeline de hello. Cette propriété est uniquement spécifiée sur les jeux de données d’entrée. Pour hello dataset d’entrée de la première activité hello, toujours définir tootrue.
+4. Enregistrer hello **InputDataset.json** fichier.
 
 #### <a name="create-output-dataset"></a>Créer un jeu de données de sortie
-Vous allez maintenant créer le jeu de données de sortie pour représenter les données de sortie stockées dans le Stockage Blob Azure.
+Maintenant, vous créez hello sortie dataset toorepresent sortie les données stockées dans hello le stockage Blob Azure.
 
-1. Dans l’**Explorateur de solutions**, cliquez avec le bouton droit sur **Tables**, pointez sur **Ajouter**, puis cliquez sur **Nouvel élément**.
-2. Sélectionnez **Objet blob Azure** dans la liste, changez le nom du fichier en **OutputDataset.json**, puis cliquez sur **Ajouter**.
-3. Remplacez le code **JSON** dans l’éditeur par le code JSON suivant :
+1. Bonjour **l’Explorateur de solutions**, avec le bouton droit **tables**, pointez trop**ajouter**, puis cliquez sur **un nouvel élément**.
+2. Sélectionnez **objets Blob Azure** à partir de la liste de hello, renommez hello du fichier de hello trop**OutputDataset.json**, puis cliquez sur **ajouter**.
+3. Remplacez hello **JSON** dans l’éditeur de hello avec hello suivant JSON :
     
     ```json
     {
@@ -201,22 +201,22 @@ Vous allez maintenant créer le jeu de données de sortie pour représenter les 
         }
     }
     ```
-    L’extrait de code JSON définit un jeu de données appelé **AzureBlobOuput** qui représente les données de sortie produites par l’activité Hive dans le pipeline. Vous indiquez que les données de sortie sont produites par l’activité Hive et placées dans le conteneur de blobs nommé `adfgetstarted` et dans le dossier nommé `partitioneddata`. 
+    extrait de code Hello JSON définit un jeu de données appelée **AzureBlobOutput** qui représente les données produites par hello ruche activité hello pipeline de sortie. Vous spécifiez que la sortie hello données sont générées par l’activité de ruche hello est placé dans le conteneur d’objets blob hello appelé `adfgetstarted` et dossier hello appelé `partitioneddata`. 
     
-    La section **availability** spécifie que le jeu de données de sortie est produit tous les mois. Le jeu de données de sortie détermine la programmation du pipeline. Le pipeline s’exécute tous les mois entre ses heures de début et de fin. 
+    Hello **disponibilité** section spécifie ce jeu de données de sortie hello est généré sur une base mensuelle. planification de hello lecteurs Hello sortie dataset du pipeline de hello. pipeline de Hello s’exécute chaque mois entre les heures de début et de fin. 
 
-    Consultez la section **Créer le jeu de données d’entrée** pour obtenir une description de ces propriétés. Vous ne définissez pas la propriété externe sur un jeu de données de sortie, car le jeu de données est produit par le pipeline.
-4. Enregistrez le fichier **OutputDataset.json** .
+    Consultez **créer le jeu de données d’entrée hello** section pour obtenir une description de ces propriétés. Vous ne définissez pas la propriété d’externe de hello sur un jeu de données de sortie comme jeu de données hello est généré par le pipeline de hello.
+4. Enregistrer hello **OutputDataset.json** fichier.
 
 ### <a name="create-pipeline"></a>Création d’un pipeline
-Jusqu’à présent, vous avez créé le service lié Stockage Azure et les jeux de données d’entrée et de sortie. Vous allez maintenant créer un pipeline avec une activité **HDInsightHive**. **L’entrée** de l’activité Hive a la valeur **AzureBlobInput** et la **sortie** a la valeur **AzureBlobOutput**. Une tranche d’un jeu de données d’entrée est disponible chaque mois (fréquence : mois, intervalle : 1), et la tranche de sortie est générée chaque mois également. 
+Vous avez créé jusqu'à présent service lié Azure Storage de hello et jeux de données d’entrée et de sortie. Vous allez maintenant créer un pipeline avec une activité **HDInsightHive**. Hello **d’entrée** pour la ruche de hello activité est définie trop**AzureBlobInput** et **sortie** est défini trop**AzureBlobOutput**. Un secteur d’un jeu de données d’entrée est disponible mensuellement (fréquence : mois, intervalle : 1), hello sortie tranche est générée chaque mois trop. 
 
-1. Dans l’**Explorateur de solutions**, cliquez avec le bouton droit sur **Pipelines**, pointez sur **Ajouter**, puis cliquez sur **Nouvel élément.**
-2. Sélectionnez **Pipeline de transformation Hive** dans la liste, puis cliquez sur **Ajouter**.
-3. Remplacez le code **JSON** par l’extrait de code suivant :
+1. Bonjour **l’Explorateur de solutions**, avec le bouton droit **Pipelines**, pointez trop**ajouter**, puis cliquez sur **un nouvel élément.**
+2. Sélectionnez **Pipeline de Transformation Hive** à partir de la liste de hello, puis cliquez sur **ajouter**.
+3. Remplacez hello **JSON** avec hello suivant extrait de code :
 
     > [!IMPORTANT]
-    > Remplacez `<storageaccountname>` par le nom de votre compte de stockage.
+    > Remplacez `<storageaccountname>` par nom de hello de votre compte de stockage.
 
     ```json
     {
@@ -264,174 +264,174 @@ Jusqu’à présent, vous avez créé le service lié Stockage Azure et les jeux
     ```
 
     > [!IMPORTANT]
-    > Remplacez `<storageaccountname>` par le nom de votre compte de stockage.
+    > Remplacez `<storageaccountname>` par nom de hello de votre compte de stockage.
 
-    L’extrait de code JSON définit un pipeline qui se compose d’une seule activité (activité Hive). Cette activité exécute un script Hive pour traiter les données d’entrée sur un cluster HDInsight à la demande afin de produire des données de sortie. Dans la section des activités du pipeline JSON, vous ne voyez qu’une seule activité dans le tableau avec la valeur de type définie sur **HDInsightHive**. 
+    extrait de code Hello JSON définit un pipeline qui se compose d’une seule activité (activité Hive). Cette activité exécute un ruche script tooprocess d’entrée de données sur un données de sortie à la demande HDInsight cluster tooproduce. Dans la section d’activités hello hello JSON du pipeline, vous ne voyez qu’une seule activité dans le tableau de hello avec le type de trop**HDInsightHive**. 
 
-    Dans les propriétés de type qui sont spécifiques à l’activité HDInsight Hive, vous indiquez le service lié Stockage Azure disposant du fichier de script Hive, le chemin d’accès au fichier de script et les paramètres au fichier de script. 
+    Dans les propriétés de type hello qui sont des activités de ruche tooHDInsight spécifique, vous spécifiez le service lié Azure Storage a le fichier de script hive hello, fichier de script toohello hello chemin d’accès et fichier de script de toohello de paramètres. 
 
-    Le fichier de script Hive, **partitionweblogs.hql**, est stocké dans le compte de stockage Azure (spécifié par scriptLinkedService) et dans le dossier `script` du conteneur `adfgetstarted`.
+    fichier de script Hive Hello, **partitionweblogs.hql**, est stocké dans le compte de stockage Azure hello (spécifié par hello scriptLinkedService) et hello `script` dossier dans le conteneur de hello `adfgetstarted`.
 
-    La section `defines` est utilisée pour spécifier les paramètres d’exécution transmis au script Hive comme valeurs de configuration Hive (p. ex. `${hiveconf:inputtable}`, `${hiveconf:partitionedtable})`.
+    Hello `defines` section est de paramètres d’exécution utilisés toospecify hello script hive de toohello passés en tant que valeurs de configuration Hive (par exemple `${hiveconf:inputtable}`, `${hiveconf:partitionedtable})`.
 
-    Les propriétés **start** et **end** du pipeline spécifient la période active du pipeline. Vous avez configuré le jeu de données à produire tous les mois, par conséquent, la tranche est produite une fois par le pipeline (car le mois est identique dans les dates de début et de fin).
+    Hello **Démarrer** et **fin** propriétés de pipeline de hello spécifie la période active de hello du pipeline de hello. Vous avez configuré hello toobe de dataset généré tous les mois, par conséquent, une seule fois la tranche est produite par le pipeline de hello (étant donné que les mois hello sont identique sur les dates de début et de fin).
 
-    Dans l’activité JSON, vous spécifiez que le script Hive s’exécute sur le calcul spécifié par le service **linkedServiceName** – **HDInsightOnDemandLinkedService**.
-4. Enregistrez le fichier **HiveActivity1.json** .
+    Dans l’activité hello JSON, vous spécifiez ce script Hive hello s’exécute sur le calcul hello spécifié par hello **linkedServiceName** – **HDInsightOnDemandLinkedService**.
+4. Enregistrer hello **HiveActivity1.json** fichier.
 
 ### <a name="add-partitionweblogshql-and-inputlog-as-a-dependency"></a>Ajouter partitionweblogs.hql et input.log comme dépendance
-1. Cliquez avec le bouton droit sur **Dépendances** dans la fenêtre **Explorateur de solutions**, pointez sur **Ajouter**, puis cliquez sur **Élément existant**.  
-2. Accédez au dossier **C:\ADFGettingStarted**, sélectionnez les fichiers **partitionweblogs.hql** et **input.log**, puis cliquez sur **Ajouter**. Vous avez créé ces deux fichiers dans le cadre des étapes préalables indiquées dans la [Vue d’ensemble du didacticiel](data-factory-build-your-first-pipeline.md).
+1. Avec le bouton droit **dépendances** Bonjour **l’Explorateur de solutions** fenêtre, pointez trop**ajouter**, puis cliquez sur **élément existant**.  
+2. Accédez toohello **C:\ADFGettingStarted** et sélectionnez **partitionweblogs.hql**, **input.log** fichiers, puis cliquez sur **ajouter**. Vous avez créé ces deux fichiers dans le cadre de la configuration requise à partir de hello [vue d’ensemble du didacticiel](data-factory-build-your-first-pipeline.md).
 
-Quand vous publiez la solution à l’étape suivante, le fichier **partitionweblogs.hql** est chargé dans le dossier **script** du conteneur de blobs `adfgetstarted`.   
+Lorsque vous publiez la solution de hello dans l’étape suivante de hello, hello **partitionweblogs.hql** fichier est téléchargé toohello **script** dossier Bonjour `adfgetstarted` conteneur d’objets blob.   
 
 ### <a name="publishdeploy-data-factory-entities"></a>Publier/déployer des entités Data Factory
-Dans cette étape, vous allez publier les entités Data Factory (services liés, jeux de données et pipeline) dans votre projet pour le service Azure Data Factory. Lors du processus de publication, vous spécifiez le nom de votre fabrique de données. 
+Dans cette étape, vous publiez des entités de fabrique de données hello (services liés, des datasets et pipeline) dans votre projet de toohello service Azure Data Factory. Dans le processus de hello de publication, vous spécifiez nom hello pour votre fabrique de données. 
 
-1. Dans l’Explorateur de solutions, cliquez avec le bouton droit sur le projet, puis cliquez sur **Publier**.
-2. Si la boîte de dialogue **Connectez-vous à votre compte Microsoft** s’affiche, saisissez vos informations d’identification pour le compte associé à l’abonnement Azure, puis cliquez sur **Se connecter**.
-3. La boîte de dialogue suivante doit s’afficher :
+1. Cliquez sur le projet dans l’Explorateur de solutions de hello, puis cliquez sur **publier**.
+2. Si vous voyez **connecter tooyour compte Microsoft** boîte de dialogue, entrez vos informations d’identification de compte hello qui dispose d’abonnement Azure, puis cliquez sur **connectez-vous**.
+3. Vous devez voir hello suivant la boîte de dialogue :
 
    ![Boîte de dialogue Publier](./media/data-factory-build-your-first-pipeline-using-vs/publish.png)
-4. Dans la page **Configurer une fabrique de données**, procédez comme suit :
+4. Bonjour **fabrique de données de configuration** page, procédez comme hello comme suit :
 
     ![Publier - Nouveau paramètres de fabrique de données](media/data-factory-build-your-first-pipeline-using-vs/publish-new-data-factory.png)
 
    1. Sélectionnez l’option **Créer une fabrique de données** .
-   2. Entrez un **nom** unique pour la fabrique de données. Par exemple : **DataFactoryUsingVS09152016**. Le nom doit être globalement unique.
-   3. Sélectionnez l’abonnement approprié pour le champ **Abonnement** . 
+   2. Entrez une valeur unique **nom** de fabrique de données hello. Par exemple : **DataFactoryUsingVS09152016**. nom de Hello doit être globalement unique.
+   3. Sélectionnez l’abonnement pour hello hello **abonnement** champ. 
         > [!IMPORTANT]
-        > Si vous ne voyez pas les abonnements, vérifiez que vous êtes connecté à l’aide d’un compte administrateur ou coadministrateur de l’abonnement.
-   4. Sélectionnez le **groupe de ressources** pour la fabrique de données à créer.
-   5. Sélectionnez la **région** pour la fabrique de données.
-   6. Cliquez sur **Suivant** pour basculer vers la page **Publier des éléments**. (Utilisez la touche **TABULATION** pour passer au champ Nom si le bouton **Suivant** est désactivé.)
+        > Si vous ne voyez pas d’un abonnement, assurez-vous que vous connecté en utilisant un compte qui est administrateur ou coadministrateur de l’abonnement de hello.
+   4. Sélectionnez hello **groupe de ressources** pour toobe de fabrique de données hello créé.
+   5. Sélectionnez hello **région** de fabrique de données hello.
+   6. Cliquez sur **suivant** tooswitch toohello **publier des éléments** page. (Appuyez sur **onglet** toomove hors Bonjour nom champ tooif Bonjour **suivant** bouton est désactivé.)
 
     > [!IMPORTANT]
-    > Si vous recevez l’erreur **Le nom de la fabrique de données « DataFactoryUsingVS » n’est pas disponible** au moment de la publication, changez le nom (par exemple en votrenomDataFactoryUsingVS). Consultez la rubrique [Data Factory - Règles d'affectation des noms](data-factory-naming-rules.md) pour savoir comment nommer les artefacts Data Factory.   
-1. Dans la page **Publier des éléments**, vérifiez que toutes les entités de fabriques de données sont sélectionnées, puis cliquez sur **Suivant** pour basculer vers la page **Résumé**.
+    > Si vous recevez une erreur de hello **nom de fabrique de données « DataFactoryUsingVS » n’est pas disponible** lors de la publication, modifiez le nom de hello (par exemple, yournameDataFactoryUsingVS). Consultez la rubrique [Data Factory - Règles d'affectation des noms](data-factory-naming-rules.md) pour savoir comment nommer les artefacts Data Factory.   
+1. Bonjour **publier des éléments** , vérifiez que tous les hello fabriques de données entités sont sélectionnées, puis cliquez sur **suivant** tooswitch toohello **Résumé** page.
 
     ![Page Publier des éléments](media/data-factory-build-your-first-pipeline-using-vs/publish-items-page.png)     
-2. Passez en revue le résumé, puis cliquez sur **Suivant** pour démarrer le processus de déploiement et afficher l’**état du déploiement**.
+2. Passez en revue la synthèse de hello et cliquez sur **suivant** toostart Bonjour déploiement processus et vue Bonjour **état du déploiement**.
 
     ![Page de résumé](media/data-factory-build-your-first-pipeline-using-vs/summary-page.png)
-3. Dans la page **État du déploiement** , vous devez voir l’état du processus de déploiement. Une fois le déploiement terminé, cliquez sur Terminer.
+3. Bonjour **état du déploiement** page, vous devez voir État hello hello du processus de déploiement. Après le déploiement de hello, cliquez sur Terminer.
 
-Quelques points importants à prendre en compte :
+Toonote des points importants suivants :
 
-- Si vous recevez le message d’erreur : « **L’abonnement n’est pas inscrit pour utiliser l’espace de noms Microsoft.DataFactory** », effectuez l’une des opérations suivantes et essayez de relancer la publication :
-    - Dans Azure PowerShell, exécutez la commande suivante pour enregistrer le fournisseur Data Factory.
+- Si vous recevez une erreur de hello : **cet abonnement n’est pas un espace de noms inscrit toouse Microsoft.DataFactory**, effectuez l’une des manières suivantes les hello et essayez de publier à nouveau :
+    - Dans Azure PowerShell, exécutez hello suivant le fournisseur de commandes tooregister hello Data Factory.
         ```PowerShell   
         Register-AzureRmResourceProvider -ProviderNamespace Microsoft.DataFactory
         ```
-        Vous pouvez exécuter la commande suivante pour confirmer que le fournisseur Data Factory est bien enregistré.
+        Vous pouvez exécuter hello suivant commande tooconfirm ce fournisseur est inscrit de fabrique de données hello.
 
         ```PowerShell
         Get-AzureRmResourceProvider
         ```
-    - Connectez-vous au [portail Azure](https://portal.azure.com) à l’aide de l’abonnement Azure et accédez à un panneau Data Factory (ou) créez une fabrique de données dans le portail Azure. Cette action enregistre automatiquement le fournisseur.
-- Le nom de la fabrique de données pourra être enregistré en tant que nom DNS et devenir ainsi visible publiquement.
-- Pour créer des instances Data Factory, vous devez être administrateur ou co-administrateur de l’abonnement Azure
+    - Connexion à l’aide de hello abonnement Azure dans toohello [portail Azure](https://portal.azure.com) et accédez Panneau de Data Factory tooa (ou) créer une fabrique de données Bonjour portail Azure. Cette action enregistre automatiquement le fournisseur hello pour vous.
+- nom Hello hello fabrique de données peut être enregistré comme un nom DNS dans hello futures et donc devenir visible publiquement.
+- instances de fabrique de données toocreate, vous devez toobe un administrateur ou coadministrateur de hello abonnement Azure
 
 ### <a name="monitor-pipeline"></a>Surveillance d’un pipeline
-Au cours de cette étape, vous allez surveiller le pipeline à l’aide de la Vue de diagramme de la fabrique de données. 
+Dans cette étape, vous surveillez pipeline hello à l’aide de la vue de diagramme de la fabrique de données hello. 
 
 #### <a name="monitor-pipeline-using-diagram-view"></a>Surveillance d’un pipeline à l’aide de la Vue de diagramme
-1. Connectez-vous au [portail Azure](https://portal.azure.com/) et procédez comme suit :
+1. Connectez-vous à toohello [portail Azure](https://portal.azure.com/), hello comme suit :
    1. Cliquez sur **Plus de services**, puis sur **Fabriques de données**.
        
         ![Parcourir les fabriques de données](./media/data-factory-build-your-first-pipeline-using-vs/browse-datafactories.png)
-   2. Sélectionnez le nom de votre fabrique de données (par exemple : **DataFactoryUsingVS09152016**) dans la liste des fabriques de données.
+   2. Nom hello Sélectionnez votre fabrique de données (par exemple : **DataFactoryUsingVS09152016**) à partir de la liste de hello des fabriques de données.
    
        ![Sélectionner votre fabrique de données](./media/data-factory-build-your-first-pipeline-using-vs/select-first-data-factory.png)
-2. Dans la page d’accueil de votre fabrique de données, cliquez sur **Diagramme**.
+2. Dans la page d’accueil hello pour votre fabrique de données, cliquez sur **diagramme**.
 
-    ![Vignette de diagramme](./media/data-factory-build-your-first-pipeline-using-vs/diagram-tile.png)
-3. Dans la Vue de diagramme, une vue d’ensemble des pipelines et des jeux de données utilisés dans ce didacticiel s’affiche.
+    ![Vignette schématique](./media/data-factory-build-your-first-pipeline-using-vs/diagram-tile.png)
+3. Dans la vue de diagramme de hello, vous consultez une vue d’ensemble des pipelines de hello et jeux de données utilisés dans ce didacticiel.
 
     ![Vue du diagramme](./media/data-factory-build-your-first-pipeline-using-vs/diagram-view-2.png)
-4. Pour afficher toutes les activités du pipeline, cliquez avec le bouton droit sur le pipeline dans le diagramme, puis cliquez sur Ouvrir un pipeline.
+4. tooview diagramme de toutes les activités dans le pipeline de hello, pipeline avec le bouton droit dans hello et cliquez sur Ouvrir Pipeline.
 
     ![Menu Ouvrir un pipeline](./media/data-factory-build-your-first-pipeline-using-vs/open-pipeline-menu.png)
-5. Vérifiez que l’activité HDInsightHive est bien dans le pipeline.
+5. Vérifiez que vous voyez hello HDInsightHive activité hello pipeline.
 
     ![Vue Ouvrir un pipeline](./media/data-factory-build-your-first-pipeline-using-vs/open-pipeline-view.png)
 
-    Pour revenir à la vue précédente, cliquez sur **Fabrique de données** dans le menu de navigation du haut.
-6. Dans la **Vue de diagramme**, double-cliquez sur le jeu de données **AzureBlobInput**. Vérifiez que l’état du segment est **Prêt** . Plusieurs minutes peuvent être nécessaires avant que le segment n’apparaisse avec l’état Prêt. Si rien ne se produit au bout d’un moment, vérifiez que le fichier d’entrée (input.log) est bien placé dans le conteneur (`adfgetstarted`) et le dossier (`inputdata`) appropriés. Et assurez-vous que la propriété **externe** du jeu de données d’entrée a la valeur **true**. 
+    toonavigate sauvegarder toohello de vue précédente, cliquez sur **Data factory** dans le menu de navigation hello haut hello.
+6. Bonjour **vue de diagramme**, double-cliquez sur le jeu de données hello **AzureBlobInput**. Confirmer que la tranche hello est **prêt** état. Il peut prendre quelques minutes pour hello tranche tooshow dans l’état Ready. Si elle ne se produit pas une fois que vous patientez un moment, consultez si vous avez des fichiers d’entrée hello (input.log) placé dans le conteneur de droite hello (`adfgetstarted`) et le dossier (`inputdata`). Et vous assurer que hello **externe** propriété hello de jeu de données d’entrée est définie trop**true**. 
 
    ![Segment d’entrée dans l’état Prêt](./media/data-factory-build-your-first-pipeline-using-vs/input-slice-ready.png)
-7. Cliquez sur **X** pour fermer le panneau **AzureBlobInput**.
-8. Dans la **Vue de diagramme**, double-cliquez sur le jeu de données **AzureBlobOutput**. La tranche est en cours de traitement.
+7. Cliquez sur **X** tooclose **AzureBlobInput** panneau.
+8. Bonjour **vue de diagramme**, double-cliquez sur le jeu de données hello **AzureBlobOutput**. Vous voyez ce secteur hello qui est en cours de traitement.
 
    ![Jeu de données](./media/data-factory-build-your-first-pipeline-using-vs/dataset-blade.png)
-9. Quand le traitement est terminé, l’état de la tranche est **Prêt** .
+9. Lorsque le traitement est terminé, vous consultez la section hello dans **prêt** état.
 
    > [!IMPORTANT]
-   > La création d’un cluster HDInsight à la demande prend généralement un certain temps (environ 20 minutes). Le pipeline devrait donc traiter la tranche en **30 minutes environ** .  
+   > La création d’un cluster HDInsight à la demande prend généralement un certain temps (environ 20 minutes). Par conséquent, s’attendent hello pipeline tootake **environ 30 minutes** tooprocess hello tranche.  
    
     ![Jeu de données](./media/data-factory-build-your-first-pipeline-using-vs/dataset-slice-ready.png)    
-10. Lorsque la tranche indique l’état **Prêt**, vérifiez le dossier `partitioneddata` dans le conteneur `adfgetstarted` de votre stockage d’objets blob pour les données de sortie.  
+10. Lorsque la tranche de hello est à **prêt** d’état, vérifiez hello `partitioneddata` dossier Bonjour `adfgetstarted` conteneur dans votre stockage d’objets blob pour hello les données de sortie.  
 
     ![données de sortie](./media/data-factory-build-your-first-pipeline-using-vs/three-ouptut-files.png)
-11. Cliquez sur la tranche pour en afficher les détails dans le panneau **Tranche de données** .
+11. Cliquez sur Détails de toosee hello tranche sur celui-ci dans un **tranche de données** panneau.
 
     ![Détails de la tranche](./media/data-factory-build-your-first-pipeline-using-vs/data-slice-details.png)  
-12. Cliquez sur une exécution d’activité (activité Hive dans notre scénario) dans la **liste Exécutions d’activité** pour en afficher les détails dans la fenêtre **Détails de l’exécution d’activité**. 
+12. Cliquez sur une activité à exécuter dans hello **liste s’exécute l’activité** toosee des détails sur une activité exécuter (activité Hive dans notre scénario) dans un **détails de la série activité** fenêtre. 
   
     ![Détails de l'exécution d'activité](./media/data-factory-build-your-first-pipeline-using-vs/activity-window-blade.png)    
 
-    Dans les fichiers journaux, vous pouvez voir la requête Hive qui a été exécutée et son état. Ces journaux sont utiles pour résoudre les problèmes.  
+    À partir de fichiers de journal hello, vous pouvez voir la requête Hive hello qui a été exécutée et les informations d’état. Ces journaux sont utiles pour résoudre les problèmes.  
 
-Consultez [Surveiller les jeux de données et le pipeline](data-factory-monitor-manage-pipelines.md) pour obtenir des instructions sur l’utilisation du portail Azure afin de surveiller le pipeline et les jeux de données que vous avez créés dans ce didacticiel.
+Consultez [analyser des jeux de données et le pipeline](data-factory-monitor-manage-pipelines.md) pour obtenir des instructions sur la façon dont pipeline de hello toouse hello toomonitor portail Azure et les jeux de données vous avez créé dans ce didacticiel.
 
 #### <a name="monitor-pipeline-using-monitor--manage-app"></a>Surveiller le pipeline à l’aide de l’application de surveillance et de gestion
-Vous pouvez également utiliser l’application de surveillance et de gestion pour surveiller vos pipelines. Pour en savoir plus sur l’utilisation de cette application, consultez l’article [Surveiller et gérer les pipelines Azure Data Factory à l’aide de l’application de surveillance et gestion](data-factory-monitor-manage-app.md).
+Vous pouvez également utiliser le moniteur et gérer les applications toomonitor vos pipelines. Pour en savoir plus sur l’utilisation de cette application, consultez l’article [Surveiller et gérer les pipelines Azure Data Factory à l’aide de l’application de surveillance et gestion](data-factory-monitor-manage-app.md).
 
 1. Cliquez sur la vignette Surveiller et gérer.
 
     ![Vignette Surveiller et gérer](./media/data-factory-build-your-first-pipeline-using-vs/monitor-and-manage-tile.png)
-2. L’application de surveillance et de gestion devrait s’afficher. Modifiez l’**heure de début** et l’**heure de fin** pour qu’elles correspondent aux heures de début (04-01-2016 12:00 AM) et de fin (04-02-2016 12:00 AM) de votre pipeline, puis cliquez sur **Appliquer**.
+2. L’application de surveillance et de gestion devrait s’afficher. Hello de modification **l’heure de début** et **heure de fin** toomatch début (04-01-2016 12:00 AM) et l’heure de fin (04-02-2016 12:00 AM) de votre pipeline, puis cliquez sur **appliquer**.
 
     ![Application de surveillance et gestion](./media/data-factory-build-your-first-pipeline-using-vs/monitor-and-manage-app.png)
-3. Pour afficher des informations sur une fenêtre d’activité, sélectionnez-la dans la **liste des fenêtres d’activité**.
+3. toosee plus d’informations sur une fenêtre d’activité, sélectionnez-la dans hello **liste activité Windows** toosee des informations à son.
     ![Détails de la fenêtre d’activité](./media/data-factory-build-your-first-pipeline-using-vs/activity-window-details.png)
 
 > [!IMPORTANT]
-> Le fichier d’entrée sera supprimé lorsque la tranche est traitée avec succès. Par conséquent, si vous souhaitez réexécuter la tranche ou refaire le didacticiel, chargez le fichier d’entrée (input.log) dans le dossier `inputdata` du conteneur `adfgetstarted`.
+> fichier d’entrée de Hello est supprimé lors de la tranche de hello est traitée avec succès. Par conséquent, si vous souhaitez tranche de hello toorerun ou que vous hello didacticiel à nouveau, télécharger hello fichier d’entrée (input.log) toohello `inputdata` dossier Hello `adfgetstarted` conteneur.
 
 ### <a name="additional-notes"></a>Remarques supplémentaires
-- Une fabrique de données peut avoir un ou plusieurs pipelines. Un pipeline peut contenir une ou plusieurs activités. Par exemple, une activité de copie censée copier des données d’un magasin de données source vers un magasin de données de destination, et une activité Hive HDInsight pour exécuter un script Hive pour transformer des données d’entrée. Pour connaître l’ensemble des sources et des récepteurs pris en charge par l’activité de copie, consultez [Banques de données et formats pris en charge](data-factory-data-movement-activities.md#supported-data-stores-and-formats) . Pour obtenir la liste des services de calcul pris en charge par Data Factory, consultez [Services liés de calcul](data-factory-compute-linked-services.md) .
-- Les services liés se chargent de lier des magasins de données ou des services de calcul à une fabrique de données Azure. Pour connaître l’ensemble des sources et des récepteurs pris en charge par l’activité de copie, consultez [Banques de données et formats pris en charge](data-factory-data-movement-activities.md#supported-data-stores-and-formats) . Pour obtenir la liste des services de calcul pris en charge par Data Factory et les [activités de transformation](data-factory-data-transformation-activities.md) qui peuvent s’exécuter sur ceux-ci, consultez [Services liés de calcul](data-factory-compute-linked-services.md).
-- Consultez [Déplacer des données depuis et vers le Stockage Blob Azure à l’aide d’Azure Data Factory](data-factory-azure-blob-connector.md#azure-storage-linked-service) pour plus d’informations sur les propriétés JSON utilisées dans la définition de service lié Stockage Azure.
+- Une fabrique de données peut avoir un ou plusieurs pipelines. Un pipeline peut contenir une ou plusieurs activités. Par exemple, un activité de copie toocopy des données d’un magasin de données de destination tooa source et un toorun d’activité HDInsight Hive un tootransform de script Hive les données d’entrée. Consultez [prise en charge des magasins de données](data-factory-data-movement-activities.md#supported-data-stores-and-formats) pour tous les hello sources et récepteurs pris en charge par l’activité de copie de hello. Consultez [services liés de calcul](data-factory-compute-linked-services.md) pour la liste des services de calcul pris en charge par la fabrique de données hello.
+- Services liés lier des magasins de données ou la fabrique de données Azure tooan de services de calcul. Consultez [prise en charge des magasins de données](data-factory-data-movement-activities.md#supported-data-stores-and-formats) pour tous les hello sources et récepteurs pris en charge par l’activité de copie de hello. Consultez [services liés de calcul](data-factory-compute-linked-services.md) pour la liste des services de calcul pris en charge par la fabrique de données hello et [des activités de transformation](data-factory-data-transformation-activities.md) qui peut s’exécuter sur ces derniers.
+- Consultez [déplacer des données à partir de / tooAzure d’objets Blob](data-factory-azure-blob-connector.md#azure-storage-linked-service) pour plus d’informations sur les propriétés JSON utilisées Bonjour Azure Storage lié définition de service.
 - Vous pouvez utiliser votre propre cluster HDInsight au lieu d’utiliser un cluster HDInsight à la demande. Pour plus d’informations, consultez [Services de calcul liés](data-factory-compute-linked-services.md) .
--  La fabrique de données crée pour vous un cluster HDInsight **Linux** avec le code JSON précédent. Pour plus d’informations, voir [Service lié à la demande Azure HDInsight](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service) .
-- Le cluster HDInsight crée un **conteneur par défaut** dans le Stockage Blob que vous avez spécifié dans le code JSON (linkedServiceName). HDInsight ne supprime pas ce conteneur lorsque le cluster est supprimé. Ce comportement est normal. Avec le service lié HDInsight à la demande, un cluster HDInsight est créé dès qu’une tranche est traitée, à moins qu’il n’existe un cluster actif (timeToLive). Ce cluster est supprimé, une fois le traitement terminé.
+-  Hello Data Factory crée un **basés sur Linux** cluster HDInsight pour vous par hello précédant JSON. Pour plus d’informations, voir [Service lié à la demande Azure HDInsight](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service) .
+- Hello HDInsight cluster crée un **conteneur par défaut** dans le stockage blob hello spécifié dans hello JSON (linkedServiceName). HDInsight ne supprime pas ce conteneur lorsque le cluster de hello est supprimé. Ce comportement est normal. Avec le service lié HDInsight à la demande, un cluster HDInsight est créé dès qu’une tranche est traitée, à moins qu’il n’existe un cluster actif (timeToLive). Hello cluster est automatiquement supprimé lorsque le traitement de hello est effectué.
     
-    Comme un nombre croissant de tranches sont traitées, vous voyez un grand nombre de conteneurs dans votre stockage d’objets blob Azure. Si vous n’en avez pas besoin pour dépanner les travaux, il se peut que vous deviez les supprimer pour réduire les frais de stockage. Les noms de ces conteneurs sont conformes au modèle suivant : `adf**yourdatafactoryname**-**linkedservicename**-datetimestamp`. Utilisez des outils tels que [Microsoft Storage Explorer](http://storageexplorer.com/) pour supprimer des conteneurs dans votre stockage d’objets blob Azure.
-- À ce stade, c'est le jeu de données de sortie qui pilote la planification : vous devez donc créer un jeu de données de sortie même si l’activité ne génère aucune sortie. Si l’activité ne prend aucune entrée, vous pouvez ignorer la création du jeu de données d’entrée. 
-- Ce didacticiel n’explique pas comment copier des données à l’aide d’Azure Data Factory. Pour un didacticiel sur la copie de données à l’aide d’Azure Data Factory, consultez [Copie de données Blob Storage vers une base de données SQL à l’aide de Data Factory](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md).
+    Comme un nombre croissant de tranches sont traitées, vous voyez un grand nombre de conteneurs dans votre stockage d’objets blob Azure. Si vous ne devez pas les pour la résolution des problèmes de travaux de hello, vous souhaiterez peut-être toodelete les coûts de stockage tooreduce hello. les noms de ces conteneurs Hello suivent un modèle : `adf**yourdatafactoryname**-**linkedservicename**-datetimestamp`. Utiliser des outils tels que [Explorateur de stockage Microsoft](http://storageexplorer.com/) stockage d’objets blob des conteneurs de toodelete dans votre Azure.
+- Actuellement, le dataset de sortie est les lecteurs hello planification, vous devez donc créer un dataset de sortie même si l’activité hello ne produit pas de sortie. Si l’activité hello n’accepte aucune entrée, vous pouvez ignorer le jeu de données d’entrée création hello. 
+- Ce didacticiel n’explique pas comment copier des données à l’aide d’Azure Data Factory. Pour obtenir un didacticiel sur la façon de toocopy les données à l’aide d’Azure Data Factory, consultez [didacticiel : copier des données à partir du stockage d’objets Blob tooSQL de base de données](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md).
 
 
-## <a name="use-server-explorer-to-view-data-factories"></a>Utiliser l’Explorateur de serveurs pour passer en revue la fabrique des données
-1. Dans **Visual Studio**, cliquez sur **Affichage** dans le menu, puis sur **Explorateur de serveurs**.
-2. Dans la fenêtre Explorateur de serveurs, développez **Azure**, puis **Data Factory**. Si la boîte de dialogue **Connectez-vous à Visual Studio** s’affiche, saisissez le **compte** associé à votre abonnement Azure, puis cliquez sur **Continuer**. Saisissez le **mot de passe**, puis cliquez sur **Se connecter**. Visual Studio essaie d’obtenir des informations sur toutes les fabriques de données Azure contenues dans votre abonnement. L’état de cette opération s’affiche dans la fenêtre **Liste des tâches de Data Factory** .
+## <a name="use-server-explorer-tooview-data-factories"></a>Utiliser des fabriques de données de l’Explorateur de serveurs tooview
+1. Dans **Visual Studio**, cliquez sur **vue** hello menu et cliquez sur **l’Explorateur de serveurs**.
+2. Dans la fenêtre de l’Explorateur de serveurs hello, développez **Azure** et développez **Data Factory**. Si vous voyez **connecter tooVisual Studio**, entrez hello **compte** associé à votre abonnement Azure et d’un clic **continuer**. Saisissez le **mot de passe**, puis cliquez sur **Se connecter**. Visual Studio essaie de tooget d’informations sur toutes les fabriques de données Azure dans votre abonnement. Vous voyez l’état hello de cette opération Bonjour **liste des tâches données fabrique** fenêtre.
 
     ![Explorateur de serveurs](./media/data-factory-build-your-first-pipeline-using-vs/server-explorer.png)
-3. Vous pouvez cliquer avec le bouton droit sur une fabrique de données et sélectionner **Exporter la fabrique de données vers le nouveau projet** pour créer un projet Visual Studio basé sur une fabrique de données existante.
+3. Vous pouvez cliquez sur une fabrique de données, puis sélectionnez **tooNew d’exporter la fabrique de données projet** toocreate un projet Visual Studio basé sur une fabrique de données.
 
     ![Exporter la fabrique de données](./media/data-factory-build-your-first-pipeline-using-vs/export-data-factory-menu.png)
 
 ## <a name="update-data-factory-tools-for-visual-studio"></a>Mettre à jour des outils Data Factory pour Visual Studio
-Pour mettre à jour des outils Azure Data Factory pour Visual Studio, procédez comme suit :
+outils d’Azure Data Factory tooupdate pour Visual Studio, procédez comme hello comme suit :
 
-1. Dans le menu, cliquez sur **Outils**, puis sélectionnez **Extensions et mises à jour**.
-2. Dans le volet de gauche, sélectionnez **Mises à jour**, puis **Galerie Visual Studio**.
-3. Sélectionnez **Outils Azure Data Factory pour Visual Studio**, puis cliquez sur **Mettre à jour**. Si cette entrée n’est pas affichée, c’est que vous possédez déjà la dernière version de ces outils.
+1. Cliquez sur **outils** sur hello menu et sélectionnez **Extensions et mises à jour**.
+2. Sélectionnez **mises à jour** dans hello du volet gauche, puis sélectionnez **galerie Visual Studio**.
+3. Sélectionnez **Outils Azure Data Factory pour Visual Studio**, puis cliquez sur **Mettre à jour**. Si vous ne voyez pas cette entrée, vous avez déjà la version la plus récente des outils de hello hello.
 
 ## <a name="use-configuration-files"></a>Utiliser des fichiers de configuration
-Vous pouvez utiliser des fichiers de configuration dans Visual Studio pour configurer les propriétés des services/tableaux/pipelines liés différemment pour chaque environnement.
+Vous pouvez utiliser des fichiers de configuration dans les propriétés de tooconfigure Visual Studio pour les services/tables/pipelines liés différemment pour chaque environnement.
 
-Examinez la définition JSON suivante pour un service lié Azure Storage. Spécifiez **connectionString** avec différentes valeurs pour accountname et accountkey, en fonction de l’environnement (dév./test/production) sur lequel vous déployez des entités Data Factory. Vous pouvez parvenir à ce comportement en utilisant un fichier de configuration distinct pour chaque environnement.
+Envisagez de hello définition JSON pour un service lié Azure Storage. toospecify **connectionString** avec des valeurs différentes pour accountname et accountkey selon hello environnement (développement/Test/Production) toowhich vous déployez des entités de fabrique de données. Vous pouvez parvenir à ce comportement en utilisant un fichier de configuration distinct pour chaque environnement.
 
 ```json
 {
@@ -447,13 +447,13 @@ Examinez la définition JSON suivante pour un service lié Azure Storage. Spéc
 ```
 
 ### <a name="add-a-configuration-file"></a>Ajouter un fichier de configuration
-Ajoutez un fichier de configuration pour chaque environnement en effectuant les opérations suivantes :   
+Ajoutez un fichier de configuration pour chaque environnement en effectuant hello comme suit :   
 
-1. Cliquez avec le bouton droit de la souris sur le projet Data Factory dans votre solution Visual Studio, pointez sur **Ajouter**, puis cliquez sur **Nouvel élément**.
-2. Sélectionnez **Config** dans la liste des modèles installés sur la gauche, choisissez **Fichier de configuration**, entrez un **nom** pour ce fichier, puis cliquez sur **Ajouter**.
+1. Cliquez sur le projet de Data Factory hello dans votre solution Visual Studio, pointez trop**ajouter**, puis cliquez sur **un nouvel élément**.
+2. Sélectionnez **Config** à partir de la liste hello de modèles installés sur hello gauche, sélectionnez **fichier de Configuration**, entrez un **nom** pour la configuration de hello fichier, puis cliquez sur **Ajouter**.
 
     ![Ajouter un fichier de configuration](./media/data-factory-build-your-first-pipeline-using-vs/add-config-file.png)
-3. Ajoutez les paramètres de configuration et leurs valeurs au format suivant :
+3. Ajouter des paramètres de configuration et leurs valeurs Bonjour suivant le format :
 
     ```json
     {
@@ -473,9 +473,9 @@ Ajoutez un fichier de configuration pour chaque environnement en effectuant les 
     }
     ```
 
-    Cet exemple configure la propriété connectionString d’un service lié Azure Storage et d’un service lié SQL Azure. Notez que la syntaxe de spécification du nom est [JsonPath](http://goessner.net/articles/JsonPath/).   
+    Cet exemple configure la propriété connectionString d’un service lié Azure Storage et d’un service lié SQL Azure. Notez que la syntaxe de hello pour spécifier un nom est [JsonPath](http://goessner.net/articles/JsonPath/).   
 
-    Si JSON est doté d’une propriété ayant un tableau de valeurs comme indiqué dans le code suivant :  
+    Si JSON possède une propriété qui a un tableau de valeurs comme indiqué dans hello suivant de code :  
 
     ```json
     "structure": [
@@ -490,7 +490,7 @@ Ajoutez un fichier de configuration pour chaque environnement en effectuant les 
     ],
     ```
 
-    Configurez les propriétés comme indiqué dans le fichier de configuration suivant (utilisez indexation de base zéro) :
+    Configurez les propriétés comme indiqué dans hello suivant du fichier de configuration (Utilisez zéro) :
 
     ```json
     {
@@ -512,7 +512,7 @@ Ajoutez un fichier de configuration pour chaque environnement en effectuant les 
     ```
 
 ### <a name="property-names-with-spaces"></a>Noms de propriétés avec des espaces
-Si un nom de propriété comporte des espaces, utilisez des crochets comme indiqué dans l’exemple suivant (nom de serveur de base de données) :
+Si un nom de propriété comporte des espaces, utilisez des crochets comme indiqué dans hello (nom du serveur de base de données) de l’exemple suivant :
 
 ```json
  {
@@ -522,45 +522,45 @@ Si un nom de propriété comporte des espaces, utilisez des crochets comme indiq
 ```
 
 ### <a name="deploy-solution-using-a-configuration"></a>Déployer une solution à l’aide d’une configuration
-Lorsque vous publiez des entités Azure Data Factory dans Visual Studio, vous pouvez spécifier la configuration que vous souhaitez utiliser pour cette opération de publication.
+Lorsque vous publiez des entités d’Azure Data Factory dans Visual Studio, vous pouvez spécifier la configuration hello que vous souhaitez toouse pour cette opération de publication.
 
-Pour publier des entités dans un projet Azure Data Factory à l’aide d’un fichier de configuration :   
+entités toopublish dans un projet Azure Data Factory à l’aide du fichier de configuration :   
 
-1. Cliquez avec le bouton droit sur le projet Data Factory, puis cliquez sur **Publier** pour afficher la boîte de dialogue **Publier des éléments**.
-2. Dans la page **Configurer une fabrique de données**, sélectionnez une fabrique de données existante ou spécifiez les valeurs pour en créer une, puis cliquez sur **Suivant**.   
-3. La page **Publier des éléments** contient une liste déroulante avec les configurations disponibles pour le champ **Sélectionner une configuration de déploiement**.
+1. Cliquez sur le projet de la fabrique de données, sur **publier** toosee hello **publier des éléments** boîte de dialogue.
+2. Sélectionnez une fabrique de données existante ou de spécifier des valeurs pour la création d’une fabrique de données sur hello **fabrique de données de configuration** page, puis cliquez sur **suivant**.   
+3. Sur hello **publier des éléments** page : une liste déroulante avec les configurations disponibles pour hello **sélectionner une configuration de déploiement** champ.
 
     ![Sélectionner un fichier de config](./media/data-factory-build-your-first-pipeline-using-vs/select-config-file.png)
-4. Sélectionnez le **fichier de configuration** que vous souhaitez utiliser, puis cliquez sur **Suivant**.
-5. Vérifiez que vous voyez bien le nom du fichier JSON dans la page **Résumé**, puis cliquez sur **Suivant**.
-6. Une fois l’opération de déploiement terminée, cliquez sur **Terminer** .
+4. Sélectionnez hello **fichier de configuration** que vous souhaitez toouse et cliquez sur **suivant**.
+5. Vérifiez que vous voyez le nom hello du fichier JSON Bonjour **Résumé** page, puis cliquez sur **suivant**.
+6. Cliquez sur **Terminer** une fois l’opération de déploiement hello est terminée.
 
-Au cours du déploiement, les valeurs du fichier de configuration sont utilisées pour définir celles des propriétés des fichiers JSON avant que les entités ne soient déployées sur le service Azure Data Factory.   
+Lorsque vous déployez, hello valeurs hello fichier de configuration sont tooset utilisé les valeurs des propriétés dans les fichiers au format JSON hello avant que les entités hello soient déployé tooAzure service Data Factory.   
 
 ## <a name="use-azure-key-vault"></a>Utiliser Azure Key Vault
-Il n’est pas recommandé et souvent déconseillé vis-à-vis de la stratégie de sécurité pour valider des données sensibles telles que des chaînes de connexion au référentiel de code. Consultez l’exemple [ADF Secure Publish](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/ADFSecurePublish) sur GitHub pour en savoir plus sur le stockage d’informations sensibles dans Azure Key Vault et son utilisation lors de la publication des entités Data Factory. L’extension Secure Publish pour Visual Studio permet de stocker les secrets dans Key Vault, et seules les références à ceux-ci sont spécifiés dans des services / configurations de déploiement liés. Ces références sont résolues lorsque vous publiez des entités Data Factory dans Azure. Ces fichiers peuvent ensuite être validés sur le référentiel source sans exposer les secrets.
+Il n’est pas recommandé et souvent sur des données sensibles de sécurité stratégie toocommit comme référentiel de code de connexion chaînes toohello. Consultez [ADF Secure publier](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/ADFSecurePublish) sample sur toolearn GitHub sur le stockage des informations sensibles dans Azure Key Vault et son utilisation lors de la publication des entités de fabrique de données. Hello Secure publier l’extension pour Visual Studio permet hello toobe de clés secrètes stockée dans le coffre de clés et uniquement les références toothem sont spécifiés dans les services liés / configurations de déploiement. Ces références sont résolues lors de la publication tooAzure des entités de fabrique de données. Ces fichiers peuvent ensuite être référentiel toosource validée sans exposer les clés secrètes.
 
 ## <a name="summary"></a>Résumé
-Dans ce didacticiel, vous avez créé une fabrique de données Azure pour traiter des données en exécutant le script Hive sur un cluster Hadoop HDInsight. Vous avez effectué les étapes suivantes dans le portail Azure à l’aide de Data Factory Editor :  
+Dans ce didacticiel, vous avez créé un Azure data factory tooprocess de données en exécutant le script Hive sur un cluster de hadoop HDInsight. Vous avez utilisé hello éditeur Data Factory dans Bonjour Azure toodo portail Bonjour comme suit :  
 
 1. Création d’une **fabrique de données**Azure.
 2. Création de deux **services liés**:
-   1. **Azure Storage** pour lier à la fabrique de données votre stockage d’objets blob Azure contenant les fichiers d’entrée/sortie.
-   2. **Azure HDInsight** à la demande pour lier à la fabrique de données un cluster Hadoop HDInsight à la demande. Azure Data Factory crée un cluster Hadoop HDInsight juste-à-temps pour traiter les données d’entrée et produire des données de sortie.
-3. Création de deux **jeux de données**qui décrivent les données d’entrée et de sortie pour l’activité HDInsight Hive dans le pipeline.
+   1. **Le stockage Azure** lié service toolink votre stockage d’objets blob Azure qui contient la fabrique de données toohello les fichiers d’entrée/sortie.
+   2. **Azure HDInsight** à la demande liée service toolink une fabrique de données à la demande HDInsight Hadoop cluster toohello. Azure Data Factory crée un HDInsight Hadoop données d’entrée de cluster juste-à-temps tooprocess et générer les données de sortie.
+3. Créé deux **jeux de données**, qui décrivent les données d’entrée et de sortie pour l’activité HDInsight Hive dans le pipeline de hello.
 4. Création d’un **pipeline** avec une activité **Hive HDInsight**.  
 
 ## <a name="next-steps"></a>Étapes suivantes
-Dans cet article, vous avez créé un pipeline avec une activité de transformation (Activité HDInsight) qui exécute un script Hive sur un cluster HDInsight à la demande. Pour voir comment utiliser une activité de copie pour copier des données depuis un objet blob Azure vers Azure SQL, consultez le [Didacticiel : copie de données depuis un objet blob Azure vers Azure SQL](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md).
+Dans cet article, vous avez créé un pipeline avec une activité de transformation (Activité HDInsight) qui exécute un script Hive sur un cluster HDInsight à la demande. toosee toouse un activité de copie toocopy des données d’une tooAzure d’objets Blob Azure SQL, voir [didacticiel : copier des données à partir d’un tooAzure d’objets blob Azure SQL](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md).
 
-Vous pouvez chaîner deux activités (une après l’autre) en configurant le jeu de données de sortie d’une activité en tant que jeu de données d’entrée de l’autre activité. Pour plus d’informations, voir [Planification et exécution dans Data Factory](data-factory-scheduling-and-execution.md). 
+Vous pouvez chaîner les deux activités (exécutée une activité après l’autre) en définissant le dataset de sortie hello d’une activité hello d’entrée dataset Hello autre activité. Pour plus d’informations, voir [Planification et exécution dans Data Factory](data-factory-scheduling-and-execution.md). 
 
 
 ## <a name="see-also"></a>Voir aussi
 | Rubrique | Description |
 |:--- |:--- |
-| [Pipelines](data-factory-create-pipelines.md) |Cet article vous aide à comprendre les pipelines et les activités dans Azure Data Factory, et à les utiliser dans l’optique de créer des workflows pilotés par les données pour votre scénario ou votre entreprise. |
+| [Pipelines](data-factory-create-pipelines.md) |Cet article vous aidera à comprendre les pipelines et les activités dans Azure Data Factory et comment toouse les tooconstruct flux de travail pilotés par les données pour votre entreprise ou votre scénario. |
 | [Groupes de données](data-factory-create-datasets.md) |Cet article vous aide à comprendre les jeux de données dans Azure Data Factory. |
 | [Activités de transformation des données](data-factory-data-transformation-activities.md) |Cet article fournit une liste des activités de transformation de données (par exemple, la transformation Hive HDInsight que vous avez utilisée dans ce didacticiel) prises en charge par Azure Data Factory. |
-| [Planification et exécution](data-factory-scheduling-and-execution.md) |Cet article explique les aspects de la planification et de l’exécution du modèle d’application Azure Data Factory. |
-| [Surveiller et gérer les pipelines Azure Data Factory à l’aide de la nouvelle application de surveillance et gestion.](data-factory-monitor-manage-app.md) |Cet article décrit comment surveiller, gérer et déboguer les pipelines à l’aide de l’application de surveillance et gestion. |
+| [Planification et exécution](data-factory-scheduling-and-execution.md) |Cet article explique les aspects de planification et l’exécution de hello du modèle d’application Azure Data Factory. |
+| [Surveiller et gérer les pipelines Azure Data Factory à l’aide de la nouvelle application de surveillance et gestion.](data-factory-monitor-manage-app.md) |Cet article décrit comment toomonitor, gérer et déboguer des pipelines à l’aide de hello analyse & application de gestion. |

@@ -1,6 +1,6 @@
 ---
-title: "Vue d’ensemble du test d’évaluation de la base de données SQL Azure"
-description: "Cette rubrique décrit le test d’évaluation de la base de données SQL Azure utilisé pour mesurer les performances de la base de données SQL Azure."
+title: "vue d’ensemble du test d’évaluation de base de données SQL aaaAzure"
+description: "Cette rubrique décrit hello référence de base de données SQL Azure utilisé pour mesurer les performances de hello de base de données SQL Azure."
 services: sql-database
 documentationcenter: na
 author: jan-eng
@@ -15,41 +15,41 @@ ms.tgt_pltfrm: na
 ms.workload: data-management
 ms.date: 06/21/2016
 ms.author: janeng
-ms.openlocfilehash: 57178352e0a402f3559c94ce25f125dcbefd1374
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1024e9ada511935f911cb1345b4dc5508997c702
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-sql-database-benchmark-overview"></a>Vue d’ensemble du test d’évaluation de la base de données SQL Azure
 ## <a name="overview"></a>Vue d'ensemble
-La base de données SQL Microsoft Azure propose trois [niveaux de service](sql-database-service-tiers.md) associés à plusieurs niveaux de performance. Chaque niveau de performance permet de gagner en ressources, c’est-à-dire en puissance, pour générer à chaque fois un meilleur débit.
+La base de données SQL Microsoft Azure propose trois [niveaux de service](sql-database-service-tiers.md) associés à plusieurs niveaux de performance. Chaque niveau de performance fournit un augmentation ensemble de ressources, ou d’alimentation, conçu toodeliver plus en plus un débit plus élevé.
 
-Il est important de pouvoir évaluer dans quelle mesure le gain de puissance de chaque niveau de performance se répercute sur les performances de la base de données. C’est pourquoi Microsoft a développé le test d’évaluation de la base de données Azure (ASDB, Azure SQL Database Benchmark). Le test d’évaluation combine plusieurs opérations de base disponibles dans toutes les charges de travail OLTP. Nous évaluons le débit atteint avec les bases de données exécutées à chaque niveau de performance.
+Il est important toobe tooquantify en mesure de la puissance croissante de hello de chaque niveau de performance se traduit par des performances de base de données améliorées. Microsoft a développé des toodo hello test d’évaluation de base de données SQL Azure (évaluation). test d’évaluation Hello effectue une combinaison d’opérations de base disponible dans toutes les charges de travail OLTP. Nous évaluons le débit hello obtenu de bases de données en cours d’exécution dans chaque niveau de performance.
 
-Les ressources et la puissance de chaque niveau de service et de performances sont exprimées en termes [d’unités de transaction de base de données (DTU)](sql-database-what-is-a-dtu.md). Ces unités permettent de décrire la capacité relative d’un niveau de performance à partir du processeur, de la mémoire et des taux de lecture et d’écriture associés à chaque niveau de performance. Le fait de doubler la notation en DTU d’une base de données revient à multiplier par deux la puissance de la base de données. Le test d’évaluation nous permet de déterminer dans quelle mesure la puissance croissante offerte par chaque niveau de performance affecte les performances de la base de données. Il consiste à mesurer les opérations réelles de la base de données, en adaptant sa taille, le nombre d’utilisateurs et les taux de transaction compte tenu des ressources disponibles.
+Hello ressources et la puissance de chaque couche et les performances du niveau de service sont exprimés en termes de [unités de Transaction de base de données (Udbd)](sql-database-what-is-a-dtu.md). Les dtu permettent de capacité de relative hello toodescribe d’un niveau de performance en fonction de la mesure du processeur, mémoire, lire et écrire les taux offerts par chaque niveau de performance. Doubler la notation en DTU hello d’une base de données équivaut à puissance toodoubling hello. test d’évaluation Hello nous permet d’impact de hello tooassess sur les performances de base de données de la puissance offerte par chaque niveau de performances en exerçant les opérations de base de données, lors de la mise à l’échelle de taille de base de données, le nombre d’utilisateurs et de taux de transaction dans une proportion croissante de hello base de données de toohello toohello ressources fournies.
 
-En exprimant le débit de la couche de service De base en termes de transactions par heure, le niveau de service Standard en transactions par minute et la couche de service Premium en transactions par seconde, ce test permet de corréler rapidement les performances potentielles de chaque niveau de service aux besoins d’une application.
+En exprimant le débit hello de niveau de service Basic de hello à l’aide de transactions par heure, niveau de service Standard hello à l’aide de transactions par minute et niveau de service Premium hello à l’aide de transactions par seconde, il rend plus facile tooquickly concernent hello chaque couche toohello d’exigences de service d’une application potentiel.
 
-## <a name="correlating-benchmark-results-to-real-world-database-performance"></a>Mise en corrélation des résultats du test d’évaluation avec les performances réelles de la base de données
-Il est important de comprendre que le test ASDB, comme tous les tests d’évaluation, fournit uniquement des résultats représentatifs et indicatifs. Les taux de transaction obtenus avec l’application d’évaluation ne seront pas les mêmes que ceux qui peuvent être atteints avec d’autres applications. Le test d’évaluation comprend un ensemble de différents types de transactions qui s’exécutent sur un schéma contenant une plage de tables et de types de données. Si le test d’évaluation exécute les mêmes opérations de base communes à toutes les charges de travail OLTP, il n’a pas vocation à représenter une classe de base de données ou d’application spécifique. L’objectif de ce test est de fournir des indications quant aux performances relatives d’une base de données que l’on peut escompter lors d’un changement de niveau de performance. En réalité, les bases de données varient en termes de taille et de complexité. Elles supportent diverses charges de travail et réagissent de différentes façons. Par exemple, une application gourmande en E/S peut atteindre rapidement les seuils d’E/S, de la même manière qu’une application gourmande en ressources processeur peut atteindre rapidement les limites processeur. Rien ne peut garantir qu’une base de données particulière évoluera de la même façon que le test d’évaluation sous une charge plus importante.
+## <a name="correlating-benchmark-results-tooreal-world-database-performance"></a>Corrélation des performances de base de données de test d’évaluation des résultats tooreal world
+Il est important toounderstand cette évaluation, comme tous les tests d’évaluation et d’indication n’est. Bonjour transaction taux atteints avec l’application de test d’évaluation hello ne sera pas hello mêmes que ceux qui peuvent être réalisées avec d’autres applications. test d’évaluation Hello comprend un ensemble de types s’exécutent sur un schéma contenant une plage de types de données et les tables de transaction différentes. Pendant les exercices de banc d’essai hello hello mêmes opérations de base qui sont des charges de travail courantes tooall OLTP, il ne représente pas une classe spécifique de la base de données ou d’une application. Hello banc d’essai hello vise tooprovide un performances relatives de toohello guide raisonnable d’une base de données attendue lors de la mise à l’échelle vers le haut ou vers le bas entre les niveaux de performance. En réalité, les bases de données varient en termes de taille et de complexité. Elles supportent diverses charges de travail et réagissent de différentes façons. Par exemple, une application gourmande en E/S peut atteindre rapidement les seuils d’E/S, de la même manière qu’une application gourmande en ressources processeur peut atteindre rapidement les limites processeur. Il n’existe aucune garantie qu’une base de données particulière évoluera de hello que même charger comme test d’évaluation hello constamment.
 
-Le test d’évaluation et sa méthodologie sont décrits plus en détail ci-dessous.
+Hello banc d’essai et sa méthodologie sont décrits plus en détail ci-dessous.
 
 ## <a name="benchmark-summary"></a>Résumé du test d’évaluation
-Le test ASDB mesure les performances d’une série d’opérations de base de données basiques que l’on rencontre le plus fréquemment dans les charges de travail de traitement transactionnel en ligne (OLTP). Bien qu’il ait été conçu pour les environnements cloud, le schéma de base de données, le remplissage des données et les transactions ont été formulés pour représenter les éléments de base couramment utilisés dans les charges de travail OLTP.
+Évaluation mesure les performances de hello une combinaison d’opérations de base de données qui se produisent plus fréquemment dans les charges de travail (OLTP) de traitement transactionnel en ligne. Bien que le test d’évaluation hello est conçu pour le cloud computing à l’esprit, schéma de base de données hello, remplissage des données et les transactions ont été conçu toobe largement représentative des éléments de base hello plus couramment utilisés dans les charges de travail OLTP.
 
 ## <a name="schema"></a>Schéma
-Le schéma a été conçu de façon suffisamment variée et complexe pour prendre en charge un large éventail d’opérations. Le test d’évaluation s’exécute sur une base de données composée de six tables. Les tables se répartissent en trois catégories : taille fixe, extensibles et évolutives. Il existe deux tables de taille fixe, trois tables extensibles et une table évolutive. Les tables de taille fixe comportent un nombre constant de lignes. Les tables extensibles ont une cardinalité proportionnelle aux performances de la base de données, mais qui ne varie pas pendant le test d’évaluation. La table évolutive est dimensionnée à la manière d’une table extensible sur la charge initiale, mais la cardinalité change pendant l’exécution du test d’évaluation à mesure que des lignes sont insérées et supprimées.
+schéma de Hello est conçue toohave suffisamment toosupport de variété et de complexité un large éventail d’opérations. test d’évaluation Hello s’exécute sur une base de données composé six tables. les tables Hello se répartissent en trois catégories : taille fixe, évolutives et croissante. Il existe deux tables de taille fixe, trois tables extensibles et une table évolutive. Les tables de taille fixe comportent un nombre constant de lignes. Les tables évolutives présentent une cardinalité proportionnelle toodatabase performances, mais ne change pas pendant le test d’évaluation hello. Hello augmente la table est dimensionnée comme une table de mise à l’échelle lors du chargement initial, mais passe cardinalité de hello cours hello banc d’essai hello en cours d’exécution que les lignes sont insérées et supprimées.
 
-Le schéma inclut divers types de données, notamment des entiers, des valeurs numériques, des caractères et des valeurs date/heure. Le schéma inclut des clés primaires et secondaires, mais aucune clé étrangère ; autrement dit, il n’y a pas de contraintes d’intégrité référentielle entre les tables.
+schéma Hello inclut une combinaison de types de données entier, numériques, de caractère et date/heure. schéma de Hello inclut des clés primaires et secondaires, mais pas de clés étrangères -, il n’existe pas de contraintes d’intégrité référentielle entre les tables.
 
-Un programme de génération de données génère les données pour la base de données initiale. Les entiers et les données numériques sont générés à l’aide de différentes stratégies. Dans certains cas, les valeurs sont distribuées de façon aléatoire sur une plage. Dans d’autres cas, un ensemble de valeurs est permuté de façon aléatoire pour garantir une distribution spécifique. Les champs de texte sont générés à partir d’une liste pondérée de mots permettant de produire des données réalistes.
+Un programme de génération de données génère des données hello hello de base de données initiale. Les entiers et les données numériques sont générés à l’aide de différentes stratégies. Dans certains cas, les valeurs sont distribuées de façon aléatoire sur une plage. Dans d’autres cas, un ensemble de valeurs est permuté de façon aléatoire tooensure qu’une distribution spécifique est conservée. Champs de texte sont générés à partir d’une liste pondérée de mots tooproduce des données réalistes.
 
-La base de données est dimensionnée selon un « facteur d’échelle ». Le facteur d’échelle (« SF ») détermine la cardinalité des tables extensibles et évolutives. Comme décrit dans la section « Utilisateurs et rythme » ci-dessous, la taille de la base de données, le nombre d’utilisateurs et les performances maximales s’adaptent tous au prorata des uns des autres.
+base de données Hello est dimensionnée en fonction d’un « facteur d’échelle ». facteur d’échelle Hello (abrégé en SF) détermine la cardinalité hello Hello tables évolutives et croissante. Comme décrit ci-dessous dans hello section utilisateurs et rythme, hello de base de données, le nombre d’utilisateurs et des performances maximales tous l’échelle en proportion tooeach autres.
 
 ## <a name="transactions"></a>Transactions
-La charge de travail se compose de neuf types de transactions, comme indiqué dans le tableau ci-dessous. Chaque transaction est conçue pour mettre en évidence un ensemble particulier de caractéristiques système dans le moteur de base de données et le matériel système, en les distinguant clairement des autres transactions. Cette approche permet d’évaluer plus facilement l’impact des différents composants sur les performances globales. Par exemple, la transaction « Read Heavy » génère un nombre important d’opérations de lecture à partir du disque.
+charge de travail Hello se compose de types de transactions neuf, comme indiqué dans le tableau hello ci-dessous. Chaque transaction est conçue toohighlight un ensemble particulier de caractéristiques dans le matériel de système et le moteur de base de données hello, avec un contraste élevé de hello autres transactions. Cette approche rend plus facile impact de hello tooassess des performances de toooverall différents composants. Par exemple, les transactions hello « Read Heavy » génère un nombre important d’opérations de lecture à partir du disque.
 
 | Type de transaction | Description |
 | --- | --- |
@@ -64,7 +64,7 @@ La charge de travail se compose de neuf types de transactions, comme indiqué da
 | CPU Heavy |SÉLECTION ; dans la mémoire ; charge UC relativement importante ; lecture seule |
 
 ## <a name="workload-mix"></a>Combinaison de charges de travail
-Les transactions sont sélectionnées de manière aléatoire à partir d’une distribution pondérée avec la combinaison générale suivante. La combinaison générale présente un ratio lecture/écriture d’environ 2:1.
+Les transactions sont sélectionnées de manière aléatoire à partir d’une distribution pondérée avec hello suivant combinaison générale. Hello combinaison générale présente un ratio de lecture/écriture d’environ 2:1.
 
 | Type de transaction | % de la combinaison |
 | --- | --- |
@@ -79,24 +79,24 @@ Les transactions sont sélectionnées de manière aléatoire à partir d’une d
 | CPU Heavy |10 |
 
 ## <a name="users-and-pacing"></a>Utilisateurs et rythme
-La charge de travail d’évaluation est pilotée par un outil qui envoie des transactions sur un ensemble de connexions afin de simuler le comportement d’un nombre d’utilisateurs simultanés. Bien que l’ensemble des connexions et transactions soient générées de façon automatique, nous appellerons ici ces connexions « utilisateurs » par souci de commodité. Bien que chaque utilisateur fonctionne indépendamment de tous les autres, tous exécutent le même cycle d’étapes, comme indiqué ci-dessous :
+charge de travail de test d’évaluation Hello est pilotée par un outil qui envoie des transactions sur un ensemble de comportement hello toosimulate des connexions d’un nombre d’utilisateurs simultanés. Bien que toutes les transactions et les connexions de hello sont machine généré, par souci de simplicité constitue les connexions toothese comme « utilisateurs ». Bien que chaque utilisateur fonctionne indépendamment de tous les autres utilisateurs, tous les utilisateurs effectuent hello même cycle d’étapes ci-dessous :
 
 1. Établir une connexion à la base de données.
-2. Répéter jusqu’à obtention du signal de sortie :
+2. Répéter jusqu'à tooexit signalé :
    * Sélection d’une transaction de façon aléatoire (à partir d’une distribution pondérée)
-   * Exécution de la transaction sélectionnée et évaluation du temps de réponse
+   * Effectuer une transaction de hello sélectionné et du temps de réponse de mesure hello.
    * Délai d’attente
-3. Fermer la connexion à la base de données.
+3. Fermez la connexion de base de données hello.
 4. Quitter.
 
-Le délai (à l’étape 2c) est sélectionné au hasard, mais avec une distribution de 1 seconde en moyenne. Chaque utilisateur peut donc, en moyenne, générer au maximum une transaction par seconde.
+Hello rythme (à l’étape 2c) est sélectionné au hasard, mais avec une distribution qui possède une moyenne de 1 seconde. Chaque utilisateur peut donc, en moyenne, générer au maximum une transaction par seconde.
 
 ## <a name="scaling-rules"></a>Règles de mise à l’échelle
-Le nombre d’utilisateurs est déterminé par la taille de la base de données (en unités de facteur d’échelle). On compte un seul utilisateur pour cinq unités de facteur d’échelle. En raison du délai, un même utilisateur peut générer, en moyenne, au maximum une transaction par seconde.
+nombre de Hello d’utilisateurs est déterminé par la taille de base de données hello (en unités de facteur d’échelle). On compte un seul utilisateur pour cinq unités de facteur d’échelle. En raison de hello rythme, un utilisateur peut générer au maximum une transaction par seconde, en moyenne.
 
-Par exemple, une base de données utilisant un facteur d’échelle de 500 (SF = 500) comportera 100 utilisateurs et pourra atteindre un taux maximum de 100 TPS. Pour augmenter le taux de TPS, la base de données doit être plus volumineuse et comporter un plus grand nombre d’utilisateurs.
+Par exemple, une base de données utilisant un facteur d’échelle de 500 (SF = 500) comportera 100 utilisateurs et pourra atteindre un taux maximum de 100 TPS. toodrive un taux TPS supérieur requiert davantage d’utilisateurs et une plus grande base de données.
 
-Le tableau ci-dessous indique le nombre d’utilisateurs effectivement pris en charge pour chaque niveau de service et de performance.
+tableau Hello ci-dessous montre nombre hello d’utilisateurs soutenus en fait pour chaque niveau de performances et de la couche de service.
 
 | Niveau de service (niveau de performance) | Utilisateurs | Taille de la base de données |
 | --- | --- | --- |
@@ -112,10 +112,10 @@ Le tableau ci-dessous indique le nombre d’utilisateurs effectivement pris en c
 Pour être reconnu valide, un test d’évaluation doit s’effectuer sur une durée de mesure constante d’au moins une heure.
 
 ## <a name="metrics"></a>Mesures
-Le débit et le temps de réponse constituent les principaux indicateurs du test d’évaluation.
+mesures clés de Hello banc d’essai hello sont débit et temps de réponse.
 
-* Le débit est la mesure de performance la plus importante dans ce test d’évaluation. Il est exprimé en transactions par unité de temps et tient compte de tous les types de transactions.
-* Le temps de réponse permet de mesurer la prévisibilité des performances. La limite de temps de réponse varie en fonction de la classe de service, les classes de service plus élevées devant satisfaire à des exigences de temps de réponse plus serrées, comme indiqué ci-dessous.
+* Le débit est la mesure essentielle des performances de hello banc d’essai hello. Il est exprimé en transactions par unité de temps et tient compte de tous les types de transactions.
+* Le temps de réponse permet de mesurer la prévisibilité des performances. contrainte de temps de réponse Hello varie en fonction de la classe de service, les classes de service ayant un temps de réponse plus strictes requis, comme indiqué ci-dessous.
 
 | Classe de service | Mesure du débit | Temps de réponse requis |
 | --- | --- | --- |
@@ -124,10 +124,10 @@ Le débit et le temps de réponse constituent les principaux indicateurs du test
 | De base |Transactions par heure |80e centile à 2 secondes |
 
 ## <a name="conclusion"></a>Conclusion
-Le test d’évaluation de la base de données SQL Azure mesure les performances relatives de la base de données SQL Azure lorsqu’elle est exécutée sur l’un des différents niveaux de service et de performance disponibles. Ce test simule une série d’opérations de base de données basiques que l’on rencontre le plus fréquemment dans les charges de travail de traitement transactionnel en ligne (OLTP). En mesurant les performances réelles, il évalue l’impact d’un changement de niveau de performance sur le débit de manière plus significative qu’un simple listage des ressources fournies par chaque niveau, telles que la vitesse du processeur, la taille de la mémoire ou le taux d’E/S par seconde. Nous projetons à terme de continuer à faire évoluer le test d’évaluation afin d’en élargir la portée et d’étendre les données obtenues.
+Hello référence de base de données SQL Azure mesure les performances de relatif hello de base de données SQL Azure s’exécutant sur ensemble hello de niveaux de service disponibles et les niveaux de performance. banc d’essai Hello effectue une combinaison d’opérations de base de données qui se produisent plus fréquemment dans les charges de travail (OLTP) de traitement transactionnel en ligne. En mesurant les performances réelles, banc d’essai hello fournit un bilan plus significatif de l’impact de hello sur le débit du changement de niveau de performance hello qu’il est possible en indiquant seulement les ressources hello offertes par chaque niveau tels que la vitesse du processeur, la taille de la mémoire et e/s . Bonjour future, nous continuer tooevolve hello banc d’essai toobroaden son étendue et développez données hello fournies.
 
 ## <a name="resources"></a>Ressources
-[Présentation de la base de données SQL](sql-database-technical-overview.md)
+[Introduction tooSQL de base de données](sql-database-technical-overview.md)
 
 [Niveaux de service et niveaux de performances](sql-database-service-tiers.md)
 

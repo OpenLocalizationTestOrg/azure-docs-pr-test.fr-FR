@@ -1,6 +1,6 @@
 ---
-title: "Créer une règle Azure Load Balancer pour un cluster"
-description: Configurez Azure Load Balancer pour ouvrir les ports pour votre cluster Azure Service Fabric.
+title: "aaaCreate une règle d’équilibrage de charge Azure pour un cluster"
+description: "Configurer un équilibrage de charge Azure tooopen des ports pour votre cluster Azure Service Fabric."
 services: service-fabric
 documentationcenter: na
 author: thraka
@@ -14,93 +14,93 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 08/22/2017
 ms.author: adegeo
-ms.openlocfilehash: c99c4d9f343ca97fd3cd363fb54feaf5507bb77c
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 4a40f62422bd895d782be8cbaace5f4e1af81db3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="open-ports-for-a-service-fabric-cluster"></a>Ouvrir des ports pour un cluster Service Fabric
 
-L’équilibreur de charge déployé avec votre cluster Azure Service Fabric dirige le trafic vers votre application en cours d’exécution sur un nœud. Si vous modifiez votre application pour utiliser un autre port, vous devez exposer ce port (ou acheminer un port différent) dans Azure Load Balancer.
+équilibrage de charge Hello déployé avec votre cluster Azure Service Fabric dirige le trafic tooyour application est en cours d’exécution sur un nœud. Si vous modifiez votre application de toouse un autre port, vous devez exposer ce port (ou acheminer un autre port) Bonjour équilibrage de charge Azure.
 
-Une fois votre cluster Service Fabric déployé vers Azure, un équilibreur de charge est créé automatiquement pour vous. Si vous ne disposez pas d’un équilibrage de charge, consultez [Configurer un équilibreur de charge connecté à Internet](..\load-balancer\load-balancer-get-started-internet-portal.md).
+Lorsque vous avez déployé votre tooAzure de cluster service fabric, un équilibreur de charge a été créé automatiquement pour vous. Si vous ne disposez pas d’un équilibrage de charge, consultez [Configurer un équilibreur de charge connecté à Internet](..\load-balancer\load-balancer-get-started-internet-portal.md).
 
 ## <a name="configure-service-fabric"></a>Configurer Service Fabric
 
-Le fichier de configuration de votre application Service Fabric **ServiceManifest.xml** définit les points de terminaison que votre application s’attend à utiliser. Une fois le fichier de configuration mis à jour pour définir un point de terminaison, l’équilibreur de charge doit être mis à jour pour exposer ce port (ou un autre). Pour plus d’informations sur la façon de créer le point de terminaison Service Fabric, consultez [Configurer un point de terminaison](service-fabric-service-manifest-resources.md).
+Votre application de Service Fabric **ServiceManifest.xml** le fichier de configuration définit les points de terminaison hello toouse que votre application attend. Une fois que le fichier de configuration hello a été mis à jour toodefine un point de terminaison, équilibrage de charge hello doit être mis à jour tooexpose que (ou une autre) port. Pour plus d’informations sur la façon dont toocreate hello point de terminaison de service fabric, consultez [le programme d’installation d’un point de terminaison](service-fabric-service-manifest-resources.md).
 
 ## <a name="create-a-load-balancer-rule"></a>Créer une règle d’équilibreur de charge
 
-Une règle d’équilibreur de charge ouvre un port connecté à internet et transfère le trafic vers le port du nœud interne utilisé par votre application. Si vous ne disposez pas d’un équilibrage de charge, consultez [Configurer un équilibreur de charge connecté à Internet](..\load-balancer\load-balancer-get-started-internet-portal.md).
+Une règle d’équilibreur de charge s’ouvre un port connecté à internet et transmet le port du nœud de l’intérieur du trafic toohello utilisé par votre application. Si vous ne disposez pas d’un équilibrage de charge, consultez [Configurer un équilibreur de charge connecté à Internet](..\load-balancer\load-balancer-get-started-internet-portal.md).
 
-Pour créer une règle d’équilibreur de charge, vous devez collecter les informations suivantes :
+règle de toocreate un équilibreur de charge, vous devez hello toocollect informations suivantes :
 
 - Nom de l’équilibreur de charge.
-- Groupe de ressources de l’équilibreur de charge et du cluster Service Fabric.
+- Groupe de ressources de hello équilibreur de charge et cluster service fabric.
 - Port externe.
 - Port interne.
 
 ## <a name="azure-cli"></a>Interface de ligne de commande Azure
 >[!NOTE]
->Si vous avez besoin déterminer le nom de l’équilibreur de charge, utilisez cette commande pour obtenir rapidement une liste de tous les équilibreurs de charge et des groupes de ressources associés.
+>Si vous avez besoin de nom de hello toodetermine d’équilibrage de charge hello, vous pouvez utiliser cette get tooquickly de commande une liste de tous les équilibreurs de charge et les groupes de ressources hello associé.
 >
 >`az network lb list --query "[].{ResourceGroup: resourceGroup, Name: name}"`
 >
 
-Il suffit d’une seule commande pour créer une règle d’équilibreur de charge avec l’interface **Azure CLI**. Vous devez simplement connaître le nom de l’équilibreur de charge et du groupe de ressources pour créer une nouvelle règle.
+Il n’accepte qu’une commande unique de toocreate une règle d’équilibreur de charge avec hello **CLI d’Azure**. Vous devez simplement tooknow à la fois nom hello de hello charge équilibrage et ressource groupe toocreate une nouvelle règle.
 
 ```azurecli
 az network lb rule create --backend-port 40000 --frontend-port 39999 --protocol Tcp --lb-name LB-svcfab3 -g svcfab_cli -n my-app-rule
 ```
 
-La commande Azure CLI dispose de quelques paramètres décrits dans le tableau suivant :
+Hello commande CLI d’Azure a quelques paramètres décrits dans hello tableau suivant :
 
 | Paramètre | Description |
 | --------- | ----------- |
-| `--backend-port`  | Le port que l’application Service Fabric écoute. |
-| `--frontend-port` | Le port que l’équilibreur de charge expose aux connexions externes. |
-| `-lb-name` | Le nom de l’équilibreur de charge à modifier. |
-| `-g`       | Le groupe de ressources qui dispose de l’équilibreur de charge et du cluster Service Fabric. |
-| `-n`       | Le nom de la règle choisi. |
+| `--backend-port`  | application de l’ensemble fibre optique Hello port hello service écoute. |
+| `--frontend-port` | Bonjour Bonjour de port de charge expose équilibrage pour les connexions externes. |
+| `-lb-name` | toochange d’équilibrage de charge nom Hello Hello. |
+| `-g`       | groupe de ressources Hello qui a l’équilibrage de charge hello et cluster service fabric. |
+| `-n`       | Hello choisi le nom de règle de hello. |
 
 
 >[!NOTE]
->Pour plus d’informations sur la création d’un équilibreur de charge avec l’interface Azure CLI, consultez [Créer un équilibreur de charge avec l’interface Azure CLI](..\load-balancer\load-balancer-get-started-internet-arm-cli.md).
+>Pour plus d’informations sur comment toocreate un équilibreur de charge avec hello CLI d’Azure, consultez [créer un équilibreur de charge avec hello CLI d’Azure](..\load-balancer\load-balancer-get-started-internet-arm-cli.md).
 
 ## <a name="powershell"></a>PowerShell
 
 >[!NOTE]
->Si vous devez déterminer le nom de l’équilibreur de charge, utilisez cette commande pour obtenir rapidement une liste de tous les équilibreurs de charge et des groupes de ressources associés.
+>Si vous avez besoin de nom de hello toodetermine d’équilibrage de charge hello, utilisez cette get tooquickly de commandes une liste de tous les équilibrages de charge et les groupes de ressources associé.
 >
 >`Get-AzureRmLoadBalancer | Select Name, ResourceGroupName`
 
-PowerShell est un peu plus compliqué que l’interface Azure CLI. Sur le plan conceptuel, procédez comme suit pour créer une règle.
+PowerShell est un peu plus compliqué que hello CLI d’Azure. Point de vue conceptuel, faire hello suivant les étapes toocreate une règle.
 
-1. Récupérez l’équilibreur de charge d’Azure.
+1. Obtenir l’équilibrage de charge hello à partir d’Azure.
 2. Créez une règle.
-3. Ajoutez la règle pour l'équilibreur de charge.
-4. Mettez à jour l’équilibreur de charge.
+3. Ajouter un équilibrage de charge hello règle toohello.
+4. Mettre à jour d’équilibrage de charge hello.
 
 ```powershell
-# Get the load balancer
+# Get hello load balancer
 $lb = Get-AzureRmLoadBalancer -Name LB-svcfab3 -ResourceGroupName svcfab_cli
 
-# Create the rule based on information from the load balancer.
+# Create hello rule based on information from hello load balancer.
 $lbrule = New-AzureRmLoadBalancerRuleConfig -Name my-app-rule7 -Protocol Tcp -FrontendPort 39990 -BackendPort 40009 `
                                             -FrontendIpConfiguration $lb.FrontendIpConfigurations[0] `
                                             -BackendAddressPool  $lb.BackendAddressPools[0] `
                                             -Probe $lb.Probes[0]
 
-# Add the rule to the load balancer
+# Add hello rule toohello load balancer
 $lb.LoadBalancingRules.Add($lbrule)
 
-# Update the load balancer on Azure
+# Update hello load balancer on Azure
 $lb | Set-AzureRmLoadBalancer
 ```
 
-En ce qui concerne la commande `New-AzureRmLoadBalancerRuleConfig`, le `-FrontendPort` représente le port que l’équilibrage de charge expose aux connexions externes, et le `-BackendPort` représente le port d’écoute de l’application Service Fabric.
+En ce qui concerne les hello `New-AzureRmLoadBalancerRuleConfig` commande hello `-FrontendPort` équilibrage de charge représente hello port hello expose pour les connexions externes et hello `-BackendPort` représente hello port hello service fabric application écoute.
 
 >[!NOTE]
->Pour plus d’informations sur la création d’un équilibreur de charge avec l’interface PowerShellI, consultez [Créer un équilibreur de charge avec PowerShell](..\load-balancer\load-balancer-get-started-internet-arm-ps.md).
+>Pour plus d’informations sur comment toocreate un équilibreur de charge avec PowerShell, consultez [créer un équilibreur de charge avec PowerShell](..\load-balancer\load-balancer-get-started-internet-arm-ps.md).
 

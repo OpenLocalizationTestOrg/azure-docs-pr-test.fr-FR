@@ -1,6 +1,6 @@
 ---
-title: "Guide pratique de la Gestion des API Azure avec un réseau virtuel interne | Microsoft Docs"
-description: "Découvrez comment installer et configurer la Gestion des API Azure dans un réseau virtuel interne."
+title: "aaaHow toouse gestion des API Azure avec un réseau virtuel interne | Documents Microsoft"
+description: "Découvrez comment toosetup et configurer la gestion des API Azure dans un réseau virtuel interne."
 services: api-management
 documentationcenter: 
 author: solankisamir
@@ -14,52 +14,52 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-ms.openlocfilehash: 55248387c7e78d05c1cf1afd615b7b921e9669d5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8d25de14e0c0bebe7ba7b47ca432ea4e45dde312
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="using-azure-api-management-service-with-internal-virtual-network"></a>Utiliser le service Gestion des API Azure avec un réseau virtuel interne
-Avec les réseaux virtuels Azure (VNET), la Gestion des API peut gérer des API inaccessibles sur Internet. Un certain nombre de technologies VPN sont disponibles pour établir la connexion et la Gestion des API peut être déployée selon deux modes principaux à l’intérieur du réseau virtuel :
+Réseaux virtuels Azure (réseaux virtuels), gestion des API permet de gérer les API non accessibles sur Internet de hello. Un nombre de technologies VPN est des connexions de hello toomake disponibles et gestion des API peut être déployée dans deux modes principales à l’intérieur de hello réseau virtuel :
 * Externe
 * Interne
 
-## <a name="overview"> </a>Vue d’ensemble
-Lorsque la Gestion des API est déployée en mode réseau virtuel interne, tous les points de terminaison de service (passerelle, portail des développeurs, portail des éditeurs, gestion directe et git) ne sont visibles que dans un réseau virtuel auquel vous contrôlez l’accès. Aucun point de terminaison de service n’est inscrit sur le serveur DNS Public.
+## <a name="overview"></a>Vue d’ensemble
+Lors de la gestion des API est déployée dans un mode de réseau virtuel interne, tous les hello service points de terminaison (passerelle, portail des développeurs, portail de publication, la gestion directe et Git) sont uniquement visibles à l’intérieur d’un réseau virtuel que vous contrôlez l’accès à. Aucun des points de terminaison de service hello sont inscrits sur le serveur DNS Public de hello.
 
-Avec la Gestion des API en mode interne, vous pouvez effectuer les scénarios suivants :
+À l’aide de gestion des API en mode interne, vous pouvez obtenir hello les scénarios suivants
 * Rendre les API hébergées dans votre centre de données privé accessibles de l’extérieur en toute sécurité à des tiers à l’aide de connexions VPN ExpressRoute ou de site à site.
 * Activer les scénarios de cloud hybride en exposant vos API cloud et locales par le biais d’une passerelle commune.
 * Gérer vos API hébergées dans plusieurs emplacements géographiques à l’aide d’un seul point de terminaison de passerelle. 
 
-## <a name="enable-vpn"> </a>Créer une Gestion des API dans un réseau virtuel interne
-Le service Gestion des API dans un réseau virtuel interne est hébergé derrière un équilibreur de charge interne. L’adresse IP de l’équilibreur se trouve dans la plage [RFC1918](http://www.faqs.org/rfcs/rfc1918.html).  
+## <a name="enable-vpn"></a>Créer une Gestion des API dans un réseau virtuel interne
+Hello service de gestion des API dans le réseau virtuel interne est hébergé derrière un Balancer(ILB) de charge interne. Hello, adresse IP de hello équilibrage de charge interne est Bonjour [RFC1918](http://www.faqs.org/rfcs/rfc1918.html) plage.  
 
 ### <a name="enable-vnet-connection-using-azure-portal"></a>Activer la connexion au réseau virtuel à l’aide du Portail Azure
-Tout d’abord, créez le service Gestion des API en suivant les étapes de la section [Créer un service Gestion des API][Create API Management service]. Ensuite, configurez la Gestion des API de façon à la déployer à l’intérieur d’un réseau virtuel.
+Tout d’abord créer le service de gestion des API de hello en suivant les étapes de hello [service de gestion des API créer][Create API Management service]. Puis les toobe de gestion des API configuration déployé à l’intérieur d’un réseau virtuel.
 
 ![Menu de configuration de la Gestion des API dans un réseau virtuel interne][api-management-using-internal-vnet-menu]
 
-Une fois le déploiement réussi, l’adresse IP virtuelle interne de votre service apparaît sur le tableau de bord.
+Après la réussite du déploiement de hello, vous devez voir hello une adresse IP virtuelle interne de votre service sur le tableau de bord hello.
 
 ![Tableau de bord Gestion des API avec réseau virtuel interne configuré][api-management-internal-vnet-dashboard]
 
 ### <a name="enable-vnet-connection-using-powershell-cmdlets"></a>Activer la connexion au réseau virtuel à l’aide d’applets de commande PowerShell
-Vous pouvez également activer la connectivité de réseau virtuel à l’aide d’applets de commande PowerShell.
+Vous pouvez également activer la connectivité de réseau virtuel à l’aide des applets de commande PowerShell hello.
 
-* **Créer un service Gestion des API au sein d’un réseau virtuel** : utilisez l’applet de commande [New-AzureRmApiManagement](/powershell/module/azurerm.apimanagement/new-azurermapimanagement) pour créer un service Gestion des API Azure au sein d’un réseau virtuel et le configurer de sorte qu’il utilise le type réseau virtuel interne.
+* **Créer un service de gestion des API à l’intérieur d’un réseau virtuel**: utiliser l’applet de commande hello [New-AzureRmApiManagement](/powershell/module/azurerm.apimanagement/new-azurermapimanagement) toocreate une gestion des API Azure à l’intérieur d’un réseau virtuel de service et configurez le type de réseau virtuel interne toouse hello.
 
-* **Déployer un service Gestion des API existant au sein d’un réseau virtuel** : utilisez l’applet de commande [Update-AzureRmApiManagementDeployment](/powershell/module/azurerm.apimanagement/update-azurermapimanagementdeployment) pour déplacer un service Gestion des API Azure existant au sein d’un réseau virtuel et le configurer de sorte qu’il utilise le type réseau virtuel interne.
+* **Déployer un service de gestion des API existant à l’intérieur d’un réseau virtuel**: utiliser l’applet de commande hello [AzureRmApiManagementDeployment de mise à jour](/powershell/module/azurerm.apimanagement/update-azurermapimanagementdeployment) toomove une gestion des API Azure existante de service à l’intérieur d’un réseau virtuel et le configurer toouse Type de réseau virtuel interne.
 
 ## <a name="apim-dns-configuration"></a>Configuration DNS
-Lorsque vous utilisez la Gestion des API en mode réseau virtuel externe, DNS est géré par Azure. En mode réseau virtuel interne, vous devez gérer votre propre serveur DNS.
+Lorsque vous utilisez la Gestion des API en mode réseau virtuel externe, DNS est géré par Azure. Pour le mode réseau virtuel interne, vous avez toomanage votre propre serveur DNS.
 
 > [!NOTE]
-> Le service Gestion des API n’écoute pas les demandes entrantes sur les adresses IP. Il répond uniquement aux demandes envoyées au nom d’hôte configuré sur ses points de terminaison de service (à savoir la passerelle, le portail des développeurs, le portail des éditeurs, le point de terminaison de gestion directe et git).
+> Service de gestion des API n’écoute pas toorequests provenant des adresses IP. Il ne répond que toorequests toohello nom d’hôte configuré sur ses points de terminaison de service (qui inclut la passerelle, portail des développeurs, l’éditeur Portal, point de terminaison de la gestion directe et git).
 
 ### <a name="access-on-default-host-names"></a>Accès sur les noms d’hôtes par défaut :
-Lorsque vous créez un service Gestion des API dans le cloud public Azure, nommé « contoso » par exemple, les points de terminaison de service suivants sont configurés par défaut.
+Lorsque vous créez un service de gestion des API dans le cloud public Azure, nommé « contoso » par exemple, hello points de terminaison de service suivants sont configurés par défaut.
 
 >   Passerelle / Proxy : contoso.azure-api.net
 
@@ -69,7 +69,7 @@ Lorsque vous créez un service Gestion des API dans le cloud public Azure, nomm�
 
 >   Git : contoso.scm.azure-api.net
 
-Pour accéder à ces points de terminaison de service Gestion des API, vous pouvez créer une machine virtuelle dans un sous-réseau connecté au réseau virtuel dans lequel la Gestion des API est déployée. En supposant que l’adresse IP virtuelle interne de votre service est 10.0.0.5, vous pouvez effectuer le mappage des fichiers hôtes (%SystemDrive%\drivers\etc\hosts) de la façon suivante :
+tooaccess ces points de terminaison du service de gestion des API, vous pouvez créer un ordinateur virtuel dans un réseau virtuel de toohello sous-réseau connecté dans lequel la gestion des API est déployée. En supposant que hello interne adresse IP virtuelle pour votre service est 10.0.0.5, vous pouvez effectuer hello le mappage de fichier hôtes (% SystemDrive%\drivers\etc\hosts) comme suit :
 
 > 10.0.0.5    contoso.azure-api.net
 
@@ -79,16 +79,16 @@ Pour accéder à ces points de terminaison de service Gestion des API, vous pouv
 
 > 10.0.0.5    contoso.scm.azure-api.net
 
-Vous pouvez alors accéder à tous les points de terminaison de service à partir de la machine virtuelle que vous avez créée. Si vous utilisez un serveur DNS personnalisé dans un réseau virtuel, vous pouvez également créer des enregistrements DNS A et accéder à ces points de terminaison à partir de l’endroit de votre choix dans votre réseau virtuel. 
+Vous pouvez ensuite accéder à tous les points de terminaison de service hello de hello Machine virtuelle que vous avez créé. Si vous utilisez un serveur DNS personnalisé dans un réseau virtuel, vous pouvez également créer des enregistrements DNS A et accéder à ces points de terminaison à partir de l’endroit de votre choix dans votre réseau virtuel. 
 
 ### <a name="access-on-custom-domain-names"></a>Accès sur des noms de domaines personnalisés :
-Si vous ne souhaitez pas accéder au service Gestion des API avec les noms d’hôtes par défaut, vous pouvez configurer des noms de domaines personnalisés pour tous vos points de terminaison de service, comme ci-dessous :
+Si vous ne souhaitez pas tooaccess hello service Gestion des noms d’hôte par défaut hello API, vous pouvez configurer des noms de domaine personnalisé pour tous vos points de terminaison service comme ci-dessous
 
 ![Configuration d’un domaine personnalisé pour la Gestion des API][api-management-custom-domain-name]
 
-Vous pouvez ensuite créer des enregistrements A dans votre serveur DNS de façon à accéder à ces points de terminaison, qui ne sont accessibles qu’à partir de votre réseau virtuel.
+Puis vous pouvez créer un enregistrements dans votre serveur DNS de tooaccess ces points de terminaison qui sont uniquement accessibles à partir de votre réseau virtuel.
 
-## <a name="related-content"> </a>Contenu connexe
+## <a name="related-content"></a>Contenu connexe
 * [Problèmes courants de configuration réseau lors de l’installation de la Gestion des API dans un réseau virtuel][Common Network Configuration Issues]
 * [FAQ des réseaux virtuels](../virtual-network/virtual-networks-faq.md)
 * [Création d’un enregistrement A dans DNS](https://msdn.microsoft.com/en-us/library/bb727018.aspx)

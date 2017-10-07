@@ -1,6 +1,6 @@
 ---
-title: "Vue d’ensemble des notions de base d’Azure Service Bus | Microsoft Docs"
-description: "Présentation de l’utilisation de Service Bus pour connecter les applications Azure à d’autres logiciels."
+title: aaaOverview des notions de base Azure Service Bus | Documents Microsoft
+description: "Une présentation toousing Service Bus tooconnect logiciel de tooother applications Azure."
 services: service-bus-messaging
 documentationcenter: .net
 author: sethmanheim
@@ -14,109 +14,109 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 06/15/2017
 ms.author: sethm
-ms.openlocfilehash: af8b10f0a460e695a39879718174e81f78934ef8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1abd5cf310ef06ba35e1e2489a7c0a07e1797736
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-service-bus"></a>Azure Service Bus
 
-Que l’application ou le service s’exécute dans le cloud ou localement, il est souvent en interaction avec d’autres applications ou services. Afin de répondre à ce besoin de façon globale, Microsoft Azure contient Service Bus. Cet article aborde la technologie Service Bus, décrit ce qu’elle fait et présente des exemples d’utilisation.
+Si une application ou un service s’exécute dans le cloud de hello ou local, il doit souvent toointeract avec d’autres applications ou services. tooprovide un toodo largement utile, offres Microsoft Azure Service Bus. Cet article examine cette technologie, qui décrit ce qu’il est et vous pouvez souhaiter toouse il.
 
 ## <a name="service-bus-fundamentals"></a>Concepts de base de Service Bus
 
-À chaque situation correspond un style de communication. Parfois, laisser les applications envoyer et recevoir des messages via une simple file d’attente suffit. Dans d’autres situations, une file d’attente ordinaire n’est pas suffisante et une file avec mécanisme de publication et d’abonnement est une meilleure solution. Dans certains cas, vous avez simplement besoin d’une connexion entre les applications, sans file d’attente. Service Bus offre ces trois options, ce qui permet à vos applications d’interagir de différentes manières.
+À chaque situation correspond un style de communication. Parfois, laissant les applications envoyer et recevoir des messages via une file d’attente simple est mieux hello. Dans d’autres situations, une file d’attente ordinaire n’est pas suffisante et une file avec mécanisme de publication et d’abonnement est une meilleure solution. Dans certains cas, vous avez simplement besoin d’une connexion entre les applications, sans file d’attente. Service Bus fournit les trois options, l’activation de votre toointeract d’applications de plusieurs façons différentes.
 
-Service Bus est un service cloud mutualisé, ce qui signifie que le service est partagé par plusieurs utilisateurs. Chaque utilisateur, par exemple un développeur d’applications, crée un *espace de noms*, puis définit les mécanismes de communication nécessaires au sein de ce dernier. La figure 1 montre à quoi ressemble cette architecture.
+Service Bus est un service cloud mutualisée, ce qui signifie que le service de hello est partagé par plusieurs utilisateurs. Chaque utilisateur, telles que développeur d’applications, crée un *espace de noms*, puis définit les mécanismes de communication hello nécessaires au sein de cet espace de noms. La figure 1 montre à quoi ressemble cette architecture.
 
 ![][1]
 
-**Figure 1 : Service Bus est un service mutualisé permettant la connexion d’applications via le cloud.**
+**Figure 1 : Service Bus fournit un service de plusieurs locataire pour connecter des applications via le cloud de hello.**
 
-Dans un espace de noms, vous pouvez utiliser une ou plusieurs instances de trois mécanismes de communication distincts, chacun se connectant de manière différente à l’application. Les choix sont les suivants :
+Dans un espace de noms, vous pouvez utiliser une ou plusieurs instances de trois mécanismes de communication distincts, chacun se connectant de manière différente à l’application. choix de Hello sont :
 
 * Les *files d’attente* permettent la communication unidirectionnelle. Chacune agit comme un intermédiaire (ou *broker*) qui stocke les messages envoyés jusqu’à leur réception. Chaque message est reçu par un destinataire unique.
-* Les *rubriques* fournissent une communication unidirectionnelle à l’aide *d’abonnements* : une seule rubrique peut avoir plusieurs abonnements. À l’instar d’une file d’attente, une rubrique agit comme un intermédiaire, mais chaque abonnement peut utiliser un filtre pour recevoir uniquement les messages correspondant à un critère spécifique.
-* Les *relais* permettent la communication bidirectionnelle. À l’inverse des files d’attente et des rubriques, le relais ne stocke pas les messages en transit ; il ne s’agit pas d’un intermédiaire. Il ne fait que les transférer vers l’application de destination.
+* Les *rubriques* fournissent une communication unidirectionnelle à l’aide *d’abonnements* : une seule rubrique peut avoir plusieurs abonnements. Comme une file d’attente, une rubrique agit comme un service broker, mais chaque abonnement peut éventuellement utiliser un filtre tooreceive uniquement les messages qui correspondent aux critères spécifiques.
+* Les *relais* permettent la communication bidirectionnelle. À l’inverse des files d’attente et des rubriques, le relais ne stocke pas les messages en transit ; il ne s’agit pas d’un intermédiaire. Au lieu de cela, il les transmet simplement sur l’application de destination toohello.
 
-Lorsque vous créez une file d'attente, une rubrique ou un relais, vous lui donnez un nom. Ce nom, combiné à celui de votre espace de noms, donne un identificateur unique à l’objet. Les applications peuvent fournir ce nom à Service Bus, puis utiliser cette file d’attente, cette rubrique ou ce relais pour communiquer entre elles. 
+Lorsque vous créez une file d'attente, une rubrique ou un relais, vous lui donnez un nom. Associé à votre votre espace de noms, ce nom crée un identificateur unique pour l’objet de hello. Applications, vous peuvent fournir cette tooService nom Bus, puis utiliser cette file d’attente, rubrique ou relais toocommunicate avec l’autre. 
 
-Pour utiliser ces objets dans le scénario de relais, les applications Windows peuvent utiliser Windows Communication Foundation (WCF). Ce service est appelé [Relais WCF](../service-bus-relay/relay-what-is-it.md). Pour les files d’attente et les rubriques, les applications Windows peuvent utiliser des API de messagerie définie par Service Bus. Pour faciliter l’utilisation de ces objets à partir d’applications non-Windows, Microsoft fournit des Kits de développement logiciel (SDK) pour Java, Node.js et d’autres langages. Vous pouvez également accéder aux files d’attente et aux rubriques à l’aide des [API REST](/rest/api/servicebus/) sur HTTP(s). 
+toouse un de ces objets dans le scénario de relais hello, Windows permet aux applications Windows Communication Foundation (WCF). Ce service est appelé [Relais WCF](../service-bus-relay/relay-what-is-it.md). Pour les files d’attente et les rubriques, les applications Windows peuvent utiliser des API de messagerie définie par Service Bus. toomake ces objets toouse plus facile à partir d’applications autres que Windows, Microsoft fournit des kits de développement logiciel pour Java, Node.js et d’autres langages. Vous pouvez également accéder aux files d’attente et aux rubriques à l’aide des [API REST](/rest/api/servicebus/) sur HTTP(s). 
 
-Il est important de comprendre que même si Service Bus fonctionne dans le cloud (c'est-à-dire dans les centres de données Microsoft Azure), les applications qui y ont recours peuvent s'exécuter n'importe où. Vous pouvez utiliser Service Bus pour connecter des applications qui s’exécutent sous Azure, par exemple, ou des applications qui s’exécutent dans votre centre de données. Vous pouvez également l’utiliser pour connecter une application qui s’exécute sous Azure ou une autre plateforme cloud avec une application locale ou avec des tablettes et des téléphones. Il est également possible de connecter des appareils électroménagers, des capteurs ou d’autres appareils à une application centrale ou bien de les connecter entre eux. Service Bus est un mécanisme de communication générique dans le cloud, accessible quasiment partout. La façon dont vous l’utilisez dépend des besoins de vos applications.
+Il est important de toounderstand que même si Service Bus lui-même s’exécute dans le cloud de hello (autrement dit, dans les centres de données de Microsoft Azure), les applications qui l’utilisent peuvent exécuter n’importe quel endroit. Vous pouvez utiliser des applications de tooconnect de Bus des services s’exécutant sur Azure, par exemple, ou les applications qui s’exécutent à l’intérieur de votre centre de données. Vous pouvez également l’utiliser tooconnect une application exécutée sur Azure ou une autre plateforme de cloud avec une application sur site ou avec des tablettes et téléphones. Il est même possible tooconnect appareils ménagers, capteurs et autres application centrale tooa de périphériques ou les tooone autres. Service Bus est un mécanisme de communication dans le cloud hello qui est accessible à partir de presque n’importe quel endroit. Comment vous utilisez cela dépend de quelles vos applications ont besoin toodo.
 
-## <a name="queues"></a>files d’attente
+## <a name="queues"></a>Files d’attente
 
-Supposons que vous décidiez de connecter deux applications à l'aide d'une file d'attente Service Bus. La figure 2 illustre cette situation.
+Supposons que vous décidez de tooconnect deux applications à l’aide d’une file d’attente Service Bus. La figure 2 illustre cette situation.
 
 ![][2]
 
 **Figure 2 : les files d’attente Service Bus offrent un système de files d’attente unidirectionnelles asynchrones.**
 
-La procédure est simple : l’expéditeur envoie un message à une file d’attente Service Bus et le destinataire le récupère plus tard. Une file d’attente peut avoir un seul destinataire, comme l’indique la Figure 2, ou plusieurs applications peuvent lire à partir de la même file d’attente. Dans ce dernier cas, chaque message est lu par un seul destinataire. Dans le cas d’un service de multidiffusion, utilisez plutôt une rubrique.
+processus de Hello est simple : un expéditeur envoie une file d’attente Service Bus de messages tooa et un récepteur récupère ce message à un moment ultérieur. Une file d’attente peut avoir un seul destinataire, comme l’indique la Figure 2, Ou, plusieurs applications peuvent lire à partir de hello même file d’attente. Dans ce dernier cas de hello, chaque message est lu par un seul récepteur. Dans le cas d’un service de multidiffusion, utilisez plutôt une rubrique.
 
-Chaque message se compose de deux parties : un jeu de propriétés (chacun de type paire clé/valeur) et une charge utile de message. La charge utile peut être de type binaire, texte, voire XML. La façon dont les messages sont utilisés dépend de ce que tente de faire l’application. Par exemple, une application qui envoie un message à propos d’une vente récente peut mentionner les propriétés **Seller="Ava"** et **Amount=10000**. Le corps du message peut contenir une image numérisée du contrat signé ou rester vide s’il n’y en a pas.
+Chaque message se compose de deux parties : un jeu de propriétés (chacun de type paire clé/valeur) et une charge utile de message. charge utile de Hello peut être binaire, texte ou même du XML. Leur utilisation dépend une application tente de toodo. Par exemple, une application qui envoie un message concernant une vente récente peut inclure des propriétés de hello **vendeur = « Ava »** et **quantité = 10000**. corps du message de salutation contient une image numérisée hello contrat de vente signé ou, s’il n’existe pas, reste vide.
 
-Le destinataire peut lire le message de file d’attente Service Bus de deux façons. La première option, appelée *[ReceiveAndDelete](/dotnet/api/microsoft.servicebus.messaging.receivemode)*, retire un message de la file d’attente et le supprime immédiatement. C’est simple, mais si le destinataire rencontre un problème avant d’avoir fini de traiter le message, ce dernier est perdu. Comme il est retiré de la file d’attente, aucun autre destinataire ne peut y accéder. 
+Le destinataire peut lire le message de file d’attente Service Bus de deux façons. Hello première option, appelée  *[ReceiveAndDelete](/dotnet/api/microsoft.servicebus.messaging.receivemode)*, supprime un message de la file d’attente hello et le supprime immédiatement. Cette option est simple, mais si le récepteur de hello se bloque avant la fin du traitement du message de type hello, le message de type hello est perdu. Car il est supprimé de la file d’attente hello, aucune autre récepteur ne peut y accéder. 
 
-La deuxième option, *[PeekLock](/dotnet/api/microsoft.servicebus.messaging.receivemode)*, a pour but de résoudre ce problème. Comme dans le cas de **ReceiveAndDelete**, la lecture **PeekLock** retire le message de la file d’attente. Par contre, le message n’est pas supprimé. Il est verrouillé, et donc désormais invisible par les autres destinataires. Il attend ensuite un des trois événements suivants :
+Hello deuxième option  *[PeekLock](/dotnet/api/microsoft.servicebus.messaging.receivemode)*, est destiné à toohelp avec ce problème. Comme **ReceiveAndDelete**, un **PeekLock** lecture supprime un message de file d’attente hello. Elle ne supprime pas le message de salutation, toutefois. Au lieu de cela, il verrouille le message de type hello, rendant les récepteurs tooother invisible, puis attend qu’un des trois événements :
 
-* Si le destinataire traite correctement le message, il appelle la méthode [Complete()](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_Complete), et la file d’attente supprime le message. 
-* Si le destinataire décide qu’il ne peut pas traiter correctement le message, il appelle la méthode [Abandon()](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_Abandon). La file d’attente déverrouille le message et le remet à disposition des autres destinataires.
-* Si le destinataire n’appelle aucune de ces méthodes pendant une période réglable (60 secondes par défaut), la file d’attente part du principe que le destinataire a échoué. Dans ce cas, elle se comporte comme si le destinataire avait passé l’appel **Abandon**, rendant le message accessible aux autres destinataires.
+* Si le processus de récepteur hello hello message avec succès, elle appelle [Complete()](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_Complete), et de la file d’attente hello supprime le message de type hello. 
+* Si le récepteur de hello décide qu’il ne peut pas traiter un message de type hello avec succès, elle appelle [Abandon()](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_Abandon). file d’attente Hello supprime les verrous hello de message de type hello et rend disponible tooother récepteurs.
+* Si le récepteur de hello appelle aucune de ces méthodes dans un délai configurable (par défaut, 60 secondes), file d’attente hello suppose de récepteur de hello a échoué. Dans ce cas, il se comporte comme si le récepteur de hello avait appelé **abandonner**, rendre hello tooother disponibles les récepteurs de messages.
 
-Notez ce qui peut se produire ici : le même message risque d’être remis deux fois, peut-être à deux destinataires différents. Les applications qui utilisent des files d’attente Service Bus doivent pouvoir faire face à cet événement. Afin de faciliter la détection des doublons, chaque message comporte une propriété [MessageID](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_MessageId) unique, qui reste la même par défaut quel que soit le nombre de lectures du message dans la file d’attente. 
+Notez ce qui peut se produire : hello même message peut être remis à deux reprises, peut-être tootwo différents destinataires. Les applications qui utilisent des files d’attente Service Bus doivent pouvoir faire face à cet événement. toomake détection des doublons plus facile, chaque message possède un [MessageID](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_MessageId) propriété par défaut reste hello identiques, quel que soit le nombre de fois message de type hello sont lu à partir d’une file d’attente. 
 
-Les files d’attente sont utiles dans de nombreuses situations. Elles permettent aux applications de communiquer, même si elles ne s’exécutent pas toutes les deux en même temps, ce qui peut s’avérer utile avec les applications mobiles et les applications de traitement par lots. Une file d'attente avec plusieurs destinataires assure aussi un équilibrage automatique de la charge, car les messages sont répartis vers ces différents destinataires.
+Les files d’attente sont utiles dans de nombreuses situations. Ils permettent des applications toocommunicate même lorsque les deux ne sont pas en cours d’exécution à hello même moment, ce qui s’avère particulièrement utile avec des applications mobiles et de lot. Une file d'attente avec plusieurs destinataires assure aussi un équilibrage automatique de la charge, car les messages sont répartis vers ces différents destinataires.
 
 ## <a name="topics"></a>Rubriques
 
-Même si elles sont utiles, les files d'attente ne sont pas toujours la bonne solution. Parfois, les rubriques Service Bus sont plus utiles. La figure 3 illustre cette idée.
+Utile lorsqu’ils sont, les files d’attente ne sont pas toujours une solution adaptée hello. Parfois, les rubriques Service Bus sont plus utiles. La figure 3 illustre cette idée.
 
 ![][3]
 
-**Figure 3 : en fonction du filtre spécifié par l’application, celle-ci peut recevoir certains messages ou tous les messages envoyés à une rubrique Service Bus.**
+**Figure 3 : En fonction de filtre hello spécifie d’une application abonnée, il peut recevoir certains ou tous les messages hello envoyé tooa la rubrique Service Bus.**
 
-Les *rubriques* sont assez similaires aux files d’attente. Les expéditeurs envoient les messages à la rubrique de la même façon qu’ils envoient des messages dans la file d’attente. Ces messages ont le même aspect que dans la file d’attente. La différence est que les rubriques permettent à chaque application réceptrice de créer son propre *abonnement* en définissant un *filtre*. L’abonné ne voit alors que les messages correspondant à ce filtre. Par exemple, la figure 3 présente un expéditeur et une rubrique avec trois abonnés, chacun disposant de son propre filtre :
+A *rubrique* est similaire dans la file d’attente de nombreuses façons tooa. Envoyer des expéditeurs rubrique tooa de messages Bonjour même manière qu’ils envoient la file d’attente de messages tooa et détaillée de ces messages hello même chose avec les files d’attente. Bonjour différence est que les rubriques activent chaque toocreate application réceptrice son propre *abonnement* en définissant un *filtre*. Un abonné puis voit uniquement les messages hello qui correspondent au filtre. Par exemple, la figure 3 présente un expéditeur et une rubrique avec trois abonnés, chacun disposant de son propre filtre :
 
-* L’abonné 1 ne reçoit que les messages contenant la propriété *Seller="Ava"*.
-* L’abonné 2 reçoit les messages qui contiennent la propriété *Seller="Ruby"* et/ou la propriété *Amount* avec une valeur de 100 000 ou plus. Si Ruby est la directrice des ventes, elle souhaite peut-être pouvoir afficher ses propres ventes, ainsi que toutes les ventes importantes, quel que soit le vendeur.
-* L’abonné 3 a défini son filtre sur *True*, ce qui veut dire qu’il reçoit tous les messages. Par exemple, cette application peut être chargée de maintenir une piste d’audit et doit donc voir tous les messages.
+* Abonné 1 reçoit uniquement les messages qui contiennent la propriété de hello *vendeur = « Ava »*.
+* Abonné 2 reçoit les messages qui contiennent la propriété de hello *vendeur = « Ruby »* et/ou contiennent une *quantité* propriété dont la valeur est supérieure à 100 000. Peut-être Ruby est responsable des ventes hello, afin qu’elle veut toosee propres sales et toutes les ventes de grande taille, quelle que soit la qui les rend.
+* Abonné 3 a défini son filtre trop*True*, ce qui signifie qu’il reçoit tous les messages. Par exemple, cette application peut être chargée pour la gestion d’une piste d’audit et il doit donc toosee tous les messages de type hello.
 
-Comme pour les files d’attente, les abonnés d’une rubrique peuvent lire les messages à l’aide de l’option [ReceiveAndDelete ou PeekLock](/dotnet/api/microsoft.servicebus.messaging.receivemode). À l’inverse des files d’attente cependant, un message unique envoyé à une rubrique peut être reçu par plusieurs abonnements. Cette approche, communément appelée *publication et abonnement* (ou *pub/sub*), est utile quand plusieurs applications sont intéressées par les mêmes messages. En définissant le filtre approprié, chaque abonné peut récupérer la partie du flux de messages qu’il souhaite voir.
+Comme avec les files d’attente, rubrique tooa d’abonnés peut lire les messages à l’aide [ReceiveAndDelete ou PeekLock](/dotnet/api/microsoft.servicebus.messaging.receivemode). Contrairement aux files d’attente, toutefois, un seul message envoyé à tooa rubrique peut être reçu par plusieurs abonnements. Cette approche, souvent appelée *publier et s’abonner* (ou *pub/sub*), est utile lorsque plusieurs applications intéressent hello messages mêmes. En définissant un filtre de droite hello, chaque abonné peut exploiter simplement les partie hello du flux de messages hello qu’il doit toosee.
 
 ## <a name="relays"></a>relais
 
-Les files d’attente et les rubriques permettent la communication asynchrone unidirectionnelle via un intermédiaire. Le trafic circule dans une seule direction, et il n’y a pas de connexion directe entre expéditeur et destinataire. Mais que faire si vous ne voulez pas de cette connexion ? Supposons que vos applications doivent aussi bien envoyer que recevoir des messages, ou bien que vous souhaitiez disposer d’une liaison directe entre elles et que vous n’avez pas besoin d’un intermédiaire pour stocker les messages. Pour ce genre de scénarios, Service Bus fournit des *relais*, comme illustré dans la figure 4.
+Les files d’attente et les rubriques permettent la communication asynchrone unidirectionnelle via un intermédiaire. Le trafic circule dans une seule direction, et il n’y a pas de connexion directe entre expéditeur et destinataire. Mais que faire si vous ne voulez pas de cette connexion ? Supposons que vos applications doivent tooboth envoyer et recevoir des messages peut-être vous souhaitez un lien direct entre eux et vous n’avez pas besoin d’un toostore de messages service broker. l’offre de Service Bus tooaddress des scénarios comme celui-ci, *relaie*, comme le montre la Figure 4.
 
 ![][4]
 
 **Figure 4 : le relais Service Bus permet la communication bidirectionnelle synchrone entre applications.**
 
-La question évidente à poser à propos des relais est la suivante : pourquoi y recourir ? Même si je n’ai pas besoin de files d’attente, pourquoi faire communiquer les applications via un service cloud au lieu de les faire interagir directement ? La réponse est que de les faire communiquer directement peut s’avérer plus compliqué qu’il n’y paraît.
+Hello tooask question évidente à propos des relais s’agit-il : Pourquoi dois-je l’utiliser ? Même si vous ne devez pas les files d’attente, pourquoi créer des applications communiquent via un service cloud au lieu de simplement interagir directement ? les réponses Hello sont qu’ils s’adressent directement peut être difficile que vous ne le pensez.
 
-Supposons que vous souhaitiez connecter deux applications locales s’exécutant dans les centres de données de l’entreprise. Chaque application se trouve derrière un pare-feu et chaque centre de données utilise probablement la traduction d’adresses réseau. Le pare-feu bloque les données entrantes sur presque tous les ports, et la traduction d’adresses réseau indique que les ordinateurs sur lesquels s’exécutent les applications ne disposent pas d’une adresse IP fixe que vous pouvez joindre directement depuis l’extérieur du centre de données. Sans aide supplémentaire, la connexion de ces applications via Internet public pose problème.
+Supposons que vous souhaitez tooconnect deux applications locales, les deux en cours d’exécution à l’intérieur des centres de données d’entreprise. Chaque application se trouve derrière un pare-feu et chaque centre de données utilise probablement la traduction d’adresses réseau. Hello pare-feu bloque les données entrantes sur tous les ports quelques et NAT implique que chaque application s’exécute sur l’ordinateur hello ne dispose d’une adresse IP fixe, vous pouvez également accéder directement à partir de centre de données externe hello. Sans une aide supplémentaire, la connexion de ces applications sur hello internet public peut être problématique.
 
-Un Service Bus Relay peut être utile. Afin d’établir une communication bidirectionnelle via un relais, chaque application établit une connexion TCP sortante avec Service Bus, et la maintient ouverte. Toutes les communications entre les deux applications transitent par ces connexions. Comme chaque connexion a été établie depuis le centre de données, le pare-feu autorise le trafic entrant vers chaque application sans ouvrir de nouveaux ports. Cette approche contourne également le problème de la traduction d’adresses réseau, car chaque application dispose d’un point de terminaison constant dans le cloud pendant toute la durée de la communication. En échangeant des données via le relais, les applications peuvent éviter les problèmes qui pourraient rendre la communication difficile. 
+Un Service Bus Relay peut être utile. toocommunicate bidirectionnelle via un relais, chaque application établit une connexion TCP sortante avec Service Bus, puis conserve ouverte. Toutes les communications entre deux applications de hello transitent par ces connexions. Étant donné que chaque connexion a été établie à partir d’à l’intérieur du centre de données hello, hello pare-feu autorise application tooeach au trafic entrant sans ouvrir de nouveaux ports. Cette approche obtient également contourner problème NAT hello, étant donné que chaque application possède un point de terminaison cohérent dans le cloud hello tout au long de communication de hello. En échangeant des données via le relais de hello, les applications hello peuvent éviter les problèmes de hello qui seraient autrement difficile communication. 
 
-Pour utiliser les relais Service Bus, les applications s’appuient sur Windows Communication Foundation (WCF) Service Bus comporte des liaisons WCF qui simplifient l’interaction des applications Windows via les relais. Les applications qui utilisent déjà WCF peuvent normalement ne spécifier qu’une seule de ces liaisons, puis ensuite communiquer via un relais. Cependant, à l’inverse des files d’attente et des rubriques, et même si elle reste possible, l’utilisation de relais à partir d’applications non-Windows demande un effort de programmation certain. En effet, aucune bibliothèque standard n’est fournie.
+toouse des relais Service Bus, les applications reposent sur hello Windows Communication Foundation (WCF). Service Bus fournit des liaisons WCF qui la rendent simple pour toointeract des applications Windows via le relais. Applications qui utilisent déjà WCF peuvent généralement spécifier l’une de ces liaisons, puis contactez tooeach autres via un relais. En effet, aucune bibliothèque standard n’est fournie.
 
-Contrairement aux files d’attente et aux rubriques, les applications ne créent pas de relais de façon explicite. Lorsqu’une application qui souhaite recevoir des messages établit une connexion TCP avec Service Bus, un relais est automatiquement créé. Ce dernier est supprimé une fois la connexion abandonnée. Pour qu’une application trouve le relais créé par un écouteur spécifique, Service Bus fournit un registre qui permet aux applications de retrouver un relais grâce à son nom.
+Contrairement aux files d’attente et aux rubriques, les applications ne créent pas de relais de façon explicite. En revanche, lorsqu’une application qui souhaite tooreceive messages établit une connexion TCP avec Service Bus, un relais est créé automatiquement. Lors de la connexion de hello est supprimée, les relais hello sont supprimé. tooenable un relais de hello toofind application créé par un récepteur spécifique, Service Bus fournit un Registre permettant aux applications toolocate un relais spécifique par nom.
 
-Lorsque vous avez besoin d’une communication directe entre les applications, les relais constituent la meilleure solution. Prenons par exemple le système de réservation d’une compagnie aérienne qui s’exécute sur un centre de données local qui peut être accessible à partir de bornes d’enregistrement, d’appareils mobiles et d’ordinateurs. Les applications qui s’exécutent sur tous ces systèmes peuvent s’appuyer sur les relais Service Bus dans le cloud pour communiquer, quel que soit l’endroit où elles s’exécutent.
+Les relais sont une solution adaptée hello lorsque vous avez besoin d’une communication directe entre les applications. Prenons par exemple le système de réservation d’une compagnie aérienne qui s’exécute sur un centre de données local qui peut être accessible à partir de bornes d’enregistrement, d’appareils mobiles et d’ordinateurs. Applications en cours d’exécution sur tous ces systèmes pourraient reposent sur les relais Service Bus dans hello cloud toocommunicate, partout où elles peuvent être en cours d’exécution.
 
 ## <a name="summary"></a>Résumé
 
-La connexion d’applications a toujours fait partie de l’assemblage de solutions complètes, et l’éventail de scénarios qui requièrent des services et des applications pour communiquer entre eux augmentera, étant donné que de plus en plus d’applications et de périphériques sont connectés à Internet. En fournissant pour cela des technologies cloud comme les files d’attente, les rubriques et les relais, Service Bus vise à rendre cette fonction essentielle encore plus simple à implémenter et plus largement accessible.
+Connexion d’applications a été toujours partie de la création de solutions complètes et plage hello de scénarios qui requièrent des applications et toocommunicate services avec l’autre a la valeur tooincrease étant plus d’applications et les périphériques connecté toohello internet. Grâce aux technologies informatiques pour atteindre une communication via les files d’attente, rubriques et relais, Service Bus vise toomake cette tooimplement plus facilement des fonctions essentielles et plus largement disponibles.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Maintenant que vous avez appris les principes de base d’Azure Service Bus, consultez ces liens pour en savoir plus :
+Maintenant que vous avez appris les notions de base de hello du Bus des services Azure, suivez ces liens de toolearn plus.
 
-* Utilisation des [files d’attente Service Bus](service-bus-dotnet-get-started-with-queues.md)
-* Utilisation des [rubriques Service Bus](service-bus-dotnet-how-to-use-topics-subscriptions.md)
-* Utilisation des [relais Service Bus](../service-bus-relay/service-bus-dotnet-how-to-use-relay.md)
+* Comment toouse [files d’attente Service Bus](service-bus-dotnet-get-started-with-queues.md)
+* Comment toouse [rubriques Service Bus](service-bus-dotnet-how-to-use-topics-subscriptions.md)
+* Comment toouse [relais Service Bus](../service-bus-relay/service-bus-dotnet-how-to-use-relay.md)
 * [Exemples Service Bus](service-bus-samples.md)
 
 [1]: ./media/service-bus-fundamentals-hybrid-solutions/SvcBus_01_architecture.png

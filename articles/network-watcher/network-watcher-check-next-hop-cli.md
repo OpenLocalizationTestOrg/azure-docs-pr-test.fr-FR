@@ -1,6 +1,6 @@
 ---
-title: "Rechercher le tronçon suivant avec la fonction Tronçon suivant Azure Network Watcher - Azure CLI 2.0 | Microsoft Docs"
-description: "Cet article explique comment rechercher le type de tronçon suivant et l’adresse IP avec la fonction Tronçon suivant dans l’interface de ligne de commande Azure."
+title: "aaaFind de tronçon suivant avec Azure réseau observateur du prochain saut - Azure CLI 2.0 | Documents Microsoft"
+description: "Cet article décrit comment vous pouvez trouver quel hello de type de tronçon suivant est et à l’aide des adresses ip de tronçon suivant à l’aide de CLI d’Azure."
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,13 +14,13 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: d1ee6870ba0188ff2c473e4cca12a5bdc1f97d3d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 77c2bde51274bd5c64e7a2467f95139af620ca30
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="find-out-what-the-next-hop-type-is-using-the-next-hop-capability-in-azure-network-watcher-using-azure-cli-20"></a>Découvrez le type de tronçon suivant grâce à la fonction Tronçon suivant Azure Network Watcher dans l’interface de ligne de commande Azure 2.0
+# <a name="find-out-what-hello-next-hop-type-is-using-hello-next-hop-capability-in-azure-network-watcher-using-azure-cli-20"></a>Savoir quel type de tronçon suivant hello est à l’aide de capacité de tronçon suivant hello dans l’Observateur réseau de Azure à l’aide d’Azure CLI 2.0
 
 > [!div class="op_single_selector"]
 > - [Portail Azure](network-watcher-check-next-hop-portal.md)
@@ -29,28 +29,28 @@ ms.lasthandoff: 07/11/2017
 > - [CLI 2.0](network-watcher-check-next-hop-cli.md)
 > - [API REST Azure](network-watcher-check-next-hop-rest.md)
 
-Tronçon suivant est une fonctionnalité de Network Watcher qui permet d’obtenir le type de tronçon suivant et l’adresse IP à partir d’une machine virtuelle spécifiée. Cette fonctionnalité est utile pour déterminer si le trafic sortant d’une machine virtuelle passe par une passerelle, Internet ou des réseaux virtuels pour atteindre sa destination.
+Tronçon suivant est une fonctionnalité de l’Observateur réseau qui offre la possibilité de hello obtenir le type de tronçon suivant hello et l’adresse IP basée sur une machine virtuelle spécifiée. Cette fonctionnalité est utile pour déterminer si le trafic en laissant une machine virtuelle traverse une passerelle, internet ou des réseaux virtuels tooget tooits destination.
 
-Dans cet article, notre CLI nouvelle génération, Azure CLI 2.0, est utilisée pour le modèle de déploiement de gestion des ressources. Celle-ci est disponible pour Windows, Mac et Linux.
+Cet article utilise notre prochaine génération CLI pour le modèle de déploiement de la gestion des ressources d’hello, Azure CLI 2.0, qui est disponible pour Windows, Mac et Linux.
 
-Pour exécuter la procédure indiquée dans cet article, vous devez [installer l’interface de ligne de commande Azure pour Mac, Linux et Windows (Azure CLI)](https://docs.microsoft.com/en-us/cli/azure/install-az-cli2).
+les étapes tooperform hello dans cet article, vous devez trop[installer hello Interface de ligne de commande Azure pour Mac, Linux et Windows (Azure CLI)](https://docs.microsoft.com/en-us/cli/azure/install-az-cli2).
 
 ## <a name="before-you-begin"></a>Avant de commencer
 
-Dans ce scénario, vous allez utiliser l’interface de ligne de commande Azure pour rechercher le type de tronçon suivant et l’adresse IP.
+Dans ce scénario, vous allez utiliser hello le type de tronçon suivant CLI d’Azure toofind hello et l’adresse IP.
 
-Ce scénario suppose que vous ayez déjà suivi la procédure décrite dans [Create a Network Watcher (Créer une instance Network Watcher)](network-watcher-create.md) pour créer une instance Network Watcher. Ce scénario suppose également qu’un groupe de ressources avec une machine virtuelle valide existe et peut être utilisé.
+Ce scénario suppose que vous avez déjà suivi les étapes hello dans [créer un observateur réseau](network-watcher-create.md) toocreate un observateur réseau. scénario de Hello suppose également qu’un groupe de ressources avec un ordinateur virtuel valide existe toobe utilisé.
 
 ## <a name="scenario"></a>Scénario
 
-Le scénario décrit dans cet article utilise Tronçon suivant, une fonctionnalité de Network Watcher qui détecte le type de tronçon suivant et l’adresse IP d’une ressource. Pour en savoir plus sur Tronçon suivant, consultez [Next Hop Overview (Vue d’ensemble de la fonctionnalité Tronçon suivant)](network-watcher-next-hop-overview.md).
+scénario de Hello abordée dans cet article utilise le saut suivant, une fonctionnalité de l’Observateur réseau qui recherche le type de tronçon suivant hello et une adresse IP pour une ressource. toolearn en savoir plus sur le tronçon suivant, visitez [vue d’ensemble du tronçon suivant](network-watcher-next-hop-overview.md).
 
 
 ## <a name="get-next-hop"></a>Obtenir le tronçon suivant
 
-Pour obtenir le tronçon suivant, appelez l’applet de commande `az network watcher show-next-hop`. Nous transférons à l’applet de commande le groupe de ressources Network Watcher, Network Watcher, l’identifiant de la machine virtuelle, l’adresse IP source et l’adresse IP de destination. Dans cet exemple, l’adresse IP de destination désigne une machine virtuelle sur un autre réseau virtuel. Les deux réseaux virtuels sont séparés par une passerelle réseau virtuelle.
+Nous appelons hello du tronçon suivant hello tooget `az network watcher show-next-hop` applet de commande. Nous transmettons le groupe de ressources de l’Observateur réseau hello applet de commande hello hello NetworkWatcher, l’ordinateur virtuel Id, adresse IP source et adresse IP de destination. Dans cet exemple, adresse IP de destination hello est tooa machine virtuelle dans un autre réseau virtuel. Il existe une passerelle de réseau virtuel entre des réseaux virtuels deux hello.
 
-Si vous ne l’avez pas encore fait, installez et configurez la dernière version d’[Azure CLI 2.0](/cli/azure/install-az-cli2) et connectez-vous à un compte Azure par le biais de la commande [az login](/cli/azure/#login). Exécutez ensuite la commande suivante :
+Si vous n’avez pas encore, installer et configurer hello dernières [Azure CLI 2.0](/cli/azure/install-az-cli2) et connectez-vous à l’aide du compte Azure tooan [ouverture de session az](/cli/azure/#login). Ensuite, exécutez hello de commande suivante :
 
 ```azurecli
 az network watcher show-next-hop --resource-group <resourcegroupName> --vm <vmNameorID> --source-ip <source-ip> --dest-ip <destination-ip>
@@ -58,11 +58,11 @@ az network watcher show-next-hop --resource-group <resourcegroupName> --vm <vmNa
 ```
 
 > [!NOTE]
-Si la machine virtuelle possède plusieurs cartes réseau et si le transfert IP est activé sur l’une des cartes réseau, le paramètre de la carte réseau (-i nic-id) doit être spécifié. Sinon, il est facultatif.
+Si hello machine virtuelle possède plusieurs cartes réseau et le transfert IP est activé sur aucun des hello cartes réseau, puis hello paramètre de carte réseau (-i-l’id de la carte réseau) doit être spécifié. Sinon, il est facultatif.
 
 ## <a name="review-results"></a>Passer en revue les résultats
 
-Une fois que vous avez terminé, les résultats sont présentés. L’adresse IP du tronçon suivant est renvoyée, ainsi que le type de ressource.
+Lorsque vous avez terminé, les résultats de hello sont fournies. adresse IP du tronçon suivant Hello est retournée, ainsi que de type hello de ressource, qu'il s’agit.
 
 ```azurecli
 {
@@ -72,7 +72,7 @@ Une fois que vous avez terminé, les résultats sont présentés. L’adresse IP
 }
 ```
 
-La liste suivante indique les valeurs de NextHopType actuellement disponibles :
+Hello liste suivante présente les valeurs de tronçon suivant actuellement disponibles hello :
 
 **Type de tronçon suivant**
 
@@ -86,4 +86,4 @@ La liste suivante indique les valeurs de NextHopType actuellement disponibles :
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Découvrez comment programmer la révision des paramètres de votre groupe de sécurité réseau sur la page [NSG Auditing with Network Watcher (Audit du Groupe de sécurité réseau avec Network Watcher)](network-watcher-nsg-auditing-powershell.md)
+Découvrez comment tooreview vos paramètres de groupe de sécurité réseau par programme en vous rendant sur [NSG audit avec l’Observateur réseau](network-watcher-nsg-auditing-powershell.md)

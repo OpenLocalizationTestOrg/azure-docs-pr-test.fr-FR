@@ -1,6 +1,6 @@
 ---
 title: "Continuité des activités et récupération d’urgence (BCDR) : régions jumelées d’Azure | Microsoft Docs"
-description: "Apprenez-en plus sur les paires régionales d’Azure, afin d’assurer la résilience des applications en cas de défaillance des centres de données."
+description: "En savoir plus sur Azure régional tooensure de jumelage, que les applications sont résilientes lors de pannes de centre de données."
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,19 +14,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/23/2017
 ms.author: raynew
-ms.openlocfilehash: 2984daa3b99fa9c858d43c3dcfb930add2040e2e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 68a3a33a8e768c72fa296d42c9ab97049232d169
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="business-continuity-and-disaster-recovery-bcdr-azure-paired-regions"></a>Continuité des activités et récupération d’urgence (BCDR) : régions jumelées d’Azure
 
 ## <a name="what-are-paired-regions"></a>Régions jumelées : définition
 
-Azure fonctionne dans plusieurs zones géographiques à travers le monde. Une zone géographique Azure est une zone définie du monde contenant au moins une région Azure. Une région Azure est une zone géographique contenant un ou plusieurs centres de données.
+Azure fonctionne dans différents emplacements géographiques monde hello. Un emplacement géographique Azure est une zone de hello world qui contient au moins une région Azure. Une région Azure est une zone géographique contenant un ou plusieurs centres de données.
 
-Chaque région Azure est associée à une autre région au sein de la même région géographique, constituant ainsi des paires régionales. La seule exception est le sud du Brésil qui est associé à une zone en dehors de sa zone géographique.
+Chaque région Azure est associée à une autre région de hello même geography, créant ainsi une paire régionale. exception de Hello est sud du Brésil, qui est associé à une région à l’extérieur de son geography.
 
 ![AzureGeography](./media/best-practices-availability-paired-regions/GeoRegionDataCenter.png)
 
@@ -60,40 +60,40 @@ Tableau 1 - Mise en correspondance des paires régionales Azure
 > (1) La région Sud du Brésil est unique, car elle est jumelée avec une région située en dehors de sa propre zone géographique. La région secondaire de la région Sud du Brésil est Sud-Centre des États-Unis mais la région secondaire de la région Sud-Centre des États-Unis n’est pas Sud du Brésil.
 
 
-Nous vous recommandons de répliquer les charges de travail sur les paires régionales pour tirer parti des stratégies d’isolation et de disponibilité d’Azure. Par exemple, les mises à jour planifiées du système Azure sont déployées séquentiellement (pas en même temps) entre les régions jumelées. Cela signifie que même dans les rares cas de mise à jour défectueuse, les deux régions ne sont pas affectées simultanément. En outre, dans l’éventualité d’une défaillance générale, la récupération d’au moins une région de chaque paire est prioritaire.
+Nous vous recommandons de répliquer les charges de travail entre toobenefit paires régionaux à partir de stratégies d’isolation et la disponibilité de Azure. Par exemple, les mises à jour système Azure planifié sont déployés séquentiellement (pas à hello simultanément) entre les régions associées. Cela signifie que même dans hello rares cas d’une mise à jour est défectueux, les deux régions ne sont pas affectées simultanément. En outre, dans le cas improbable hello d’une panne de large, récupération d’au moins une région en dehors de chaque paire est prioritaire.
 
 ## <a name="an-example-of-paired-regions"></a>Exemple de régions jumelées
-La Figure 2 ci-dessous montre une application hypothétique qui utilise les régions jumelées pour la récupération d’urgence. Les numéros verts mettent en surbrillance les activités entre les régions de trois services Azure (de stockage, de calcul et de base de données) et comment ils sont configurés pour répliquer les régions. Les avantages uniques du déploiement entre les régions jumelées sont mis en surbrillance par les nombres en orange.
+Figure 2 ci-dessous illustre une application hypothétique qui utilise la paire de régionaux hello pour la récupération d’urgence. nombres de Hello vert mettre en surbrillance les activités entre régions hello trois services Azure (Azure de calcul, stockage et la base de données) et comment ils sont configurés tooreplicate entre les régions. avantages uniques de Hello de déploiement dans les régions associées sont mises en surbrillance par des nombres hello orange.
 
 ![Vue d’ensemble des avantages des région jumelées](./media/best-practices-availability-paired-regions/PairedRegionsOverview2.png)
 
 Figure 2 – Paire régionale Azure hypothétique
 
 ## <a name="cross-region-activities"></a>Activités entre régions
-Conformément à la figure 2.
+En tant que tooin visé figure 2.
 
-![PaaS](./media/best-practices-availability-paired-regions/1Green.png) **Azure Compute (PaaS)** – Vous devez approvisionner des ressources de calcul supplémentaires à l’avance pour garantir la disponibilité des ressources dans d’autres régions au cours d’un incident. Pour plus d’informations, consultez le [Guide technique de la résilience Azure](resiliency/resiliency-technical-guidance.md).
+![PaaS](./media/best-practices-availability-paired-regions/1Green.png) **de calcul Azure (PaaS)** – vous devez configurer les ressources de calcul supplémentaires à l’avance tooensure ressources sont disponibles dans une autre région lors d’un incident. Pour plus d’informations, consultez le [Guide technique de la résilience Azure](resiliency/resiliency-technical-guidance.md).
 
-![Storage](./media/best-practices-availability-paired-regions/2Green.png) **Azure Storage** - Le stockage géo-redondant (GRS, Geo-Redundant Storage) est configuré par défaut quand vous créez un compte de stockage Azure. Avec GRS, vos données sont répliquées trois fois dans la région principale et trois fois dans la région jumelée. Pour plus d'informations, consultez [Options de redondance du stockage Azure](storage/common/storage-redundancy.md).
+![Storage](./media/best-practices-availability-paired-regions/2Green.png)**Azure Storage** - Le stockage géo-redondant (GRS, Geo-Redundant Storage) est configuré par défaut quand vous créez un compte de stockage Azure. Avec GRS, vos données sont répliquées automatiquement trois fois au sein de la région principale de hello et trois fois dans la région associée de hello. Pour plus d'informations, consultez [Options de redondance du stockage Azure](storage/common/storage-redundancy.md).
 
-![Azure SQL](./media/best-practices-availability-paired-regions/3Green.png) **Bases de données SQL** – avec Azure SQL géo-réplication Standard, vous pouvez configurer la réplication asynchrone des transactions vers une région jumelée. Avec la géo-réplication Premium, vous pouvez configurer la réplication pour n’importe quelle région du monde ; toutefois, nous vous recommandons de déployer ces ressources dans une région jumelée pour la récupération d’urgence. Pour plus d’informations, consultez la rubrique concernant la [géoréplication dans la base de données SQL Azure](sql-database/sql-database-geo-replication-overview.md).
+![SQL Azure](./media/best-practices-availability-paired-regions/3Green.png) **bases de données SQL Azure** – avec Azure SQL géo-réplication Standard, vous pouvez configurer la réplication asynchrone de la région associée tooa de transactions. Avec la géo-réplication premium, vous pouvez configurer région tooany de réplication dans Bonjour ; Toutefois, nous vous recommandons de que déployer ces ressources dans une région associée pour la plupart des scénarios de récupération d’urgence. Pour plus d’informations, consultez la rubrique concernant la [géoréplication dans la base de données SQL Azure](sql-database/sql-database-geo-replication-overview.md).
 
-![Resource Manager](./media/best-practices-availability-paired-regions/4Green.png) **Azure Resource Manager** - Resource Manager offre par nature une isolation logique des composants de gestion de service entre les régions. Cela signifie que des échecs logiques dans une région sont moins susceptibles d’avoir un impact sur une autre.
+![Resource Manager](./media/best-practices-availability-paired-regions/4Green.png)**Azure Resource Manager** - Resource Manager offre par nature une isolation logique des composants de gestion de service entre les régions. Cela signifie que les erreurs logiques dans une région sont moins susceptibles de tooimpact un autre.
 
 ## <a name="benefits-of-paired-regions"></a>Avantages des régions jumelées
-Conformément à la figure 2.  
+En tant que tooin visé figure 2.  
 
 ![Isolation](./media/best-practices-availability-paired-regions/5Orange.png)
-**Isolation physique** – Quand cela est possible, Azure préfère une séparation de 483 kilomètres (300 miles) au moins entre les centres de données d’une paire régionale, même si ce n’est pas pratique, voire impossible dans toutes les régions géographiques. La séparation physique du centre de données réduit la probabilité de catastrophes naturelles, de troubles civils, de coupures de courant ou de pannes de réseau physique affectant les deux régions en même temps. L’isolation est soumise aux contraintes géographiques (étendue, disponibilité de l’infrastructure réseau et de l’alimentation, réglementations, etc.).  
+**Isolation physique** – Quand cela est possible, Azure préfère une séparation de 483 kilomètres (300 miles) au moins entre les centres de données d’une paire régionale, même si ce n’est pas pratique, voire impossible dans toutes les régions géographiques. Séparation du centre de données physique réduit la probabilité de hello de catastrophes naturelles, troubles civils, pannes de courant ou les pannes de réseau physique qui affectent les deux régions à la fois. L’isolation est contraintes toohello sujet geography hello (taille de la géographie, disponibilité de l’infrastructure réseau et l’alimentation, réglementations, etc.).  
 
 ![Réplication](./media/best-practices-availability-paired-regions/6Orange.png)
-**Réplication fournie par plate-forme** - Certains services de stockage géo-redondant fournissent la réplication automatique à la région jumelée.
+**réplication fournie par la plateforme** -certains services tels que le stockage géo-redondant fournissent la région associée toohello de réplication automatique.
 
 ![Récupération](./media/best-practices-availability-paired-regions/7Orange.png)
-**Ordre de récupération de la région** – En cas de panne étendue, la récupération d’une région est hiérarchisée pour chaque paire. Les applications déployées dans des régions jumelées ont la garantie que l’une des régions est récupérée en priorité. Si une application est déployée dans des régions qui ne sont pas jumelées, la récupération peut être retardée. Dans le pire des cas, les régions choisies peuvent être les deux dernières à être récupérées.
+**commande de récupération de la région** : événement hello d’une panne de large, la récupération d’une région est prioritée hors de chaque paire. Les applications qui sont déployées sur les régions associées sont garanties toohave une des régions de hello récupérée avec une priorité. Si une application est déployée sur des régions qui ne sont pas combinées, récupération peut être retardée – Bonjour pire des régions choisi hello cas peut être hello toobe deux derniers récupérée.
 
-![Mises à jour](./media/best-practices-availability-paired-regions/8Orange.png)
-**Mises à jour séquentielles** – Les mises à jour planifiées du système Azure sont déployées vers les régions jumelées séquentiellement (pas en même temps) pour limiter les interruptions de service, l’effet des bogues et les échecs logiques dans les rares cas d’échec de mise à jour.
+![Les mises à jour](./media/best-practices-availability-paired-regions/8Orange.png)
+**mises à jour séquentielles** – planifié système mise à jour est transférées toopaired régions séquentiellement (pas à hello simultanément) toominimize effet hello des bogues et des erreurs logiques dans rarement hello, temps d’arrêt une mise à jour incorrecte.
 
 ![Données](./media/best-practices-availability-paired-regions/9Orange.png)
-**Résidence de données** – Une région se trouve dans la même zone géographique que la région avec laquelle elle est jumelée (à l’exception du Sud du Brésil) pour répondre aux exigences de la résidence de données en termes d’impôts et d’application de la loi.
+**délégation de données** – une région trouve dans hello même geography en tant que sa paire (à l’exception de hello du sud du Brésil) ordre toomeet délégation besoins à des fins de taxes et de la loi mise en œuvre juridiction.

@@ -1,6 +1,6 @@
 ---
-title: "Résoudre les problèmes liés à Azure RemoteApp : échecs de lancement et de connexion d’applications | Microsoft Docs"
-description: "Apprenez à résoudre les problèmes liés au démarrage et à la connexion d’applications dans Azure RemoteApp."
+title: "aaaAzure RemoteApp dépannage - échecs d’exécution et connexion d’Application | Documents Microsoft"
+description: "Découvrez comment tootroubleshoot problèmes avec le démarrage et la connexion tooapplications dans Azure RemoteApp."
 services: remoteapp
 documentationcenter: 
 author: ericorman
@@ -13,41 +13,41 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/26/2017
 ms.author: mbaldwin
-ms.openlocfilehash: fc9d538991adce7fc13e9654b9a7c6d113d03fde
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e51d480c9d3fa1f2076f95b63c7a8cd2f6956a4a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshoot-azure-remoteapp---application-launch-and-connection-failures"></a>Résoudre les problèmes liés à Azure RemoteApp : échecs de lancement et de connexion d’applications
 > [!IMPORTANT]
-> Azure RemoteApp ne sera plus disponible à partir du 31 août 2017. Pour plus d’informations, lisez [l’annonce](https://go.microsoft.com/fwlink/?linkid=821148) .
+> Azure RemoteApp ne sera plus disponible à partir du 31 août 2017. Hello de lecture [annonce](https://go.microsoft.com/fwlink/?linkid=821148) pour plus d’informations.
 > 
 > 
 
-Le lancement des applications hébergées dans Azure RemoteApp peut échouer pour différentes raisons. Cet article décrit ces diverses raisons et les messages d’erreur que les utilisateurs peuvent recevoir quand ils essaient de lancer des applications. Il traite également des échecs de connexion. (Mais cet article ne décrit pas les problèmes de connexion au client Azure RemoteApp.)  
+Les applications hébergées dans Azure RemoteApp peuvent échouer toolaunch pour différentes raisons. Cet article décrit les diverses raisons, les utilisateurs peuvent recevoir lorsque les messages d’erreur que vous essayez toolaunch applications. Il traite également des échecs de connexion. (Mais cet article ne décrit pas de problèmes lors de la signature dans le client d’Azure RemoteApp hello.)  
 
-Lisez la suite pour plus d’informations sur les messages d’erreur courants dus à des échecs de lancement et de connexion d’applications.
+Lisez la suite pour plus d’informations sur les messages d’erreur courants en raison d’échecs de connexion et de lancement tooapp.
 
 ## <a name="were-getting-you-set-up-try-again-in-10-minutes"></a>Nous vous configurons... Réessayez dans 10 minutes.
-Cette erreur signifie qu’Azure RemoteApp est monté en puissance pour répondre aux besoins en capacité de vos utilisateurs. En arrière-plan, d’autres instances de machines virtuelles Azure RemoteApp sont créées pour gérer les besoins en capacité de vos utilisateurs. En général, cette opération prend entre cinq et 10 minutes. Parfois, elle n’est pas assez rapide alors que vous avez besoin des ressources tout de suite. Exemple : un scénario dans lequel de nombreux utilisateurs ont besoin d’utiliser votre application dans Azure RemoteApp en même temps à 9h00. Si cette situation se produit, nous pouvons activer le **mode capacité** sur le serveur principal. Pour cela, ouvrez un ticket de support Azure. Veillez à inclure votre ID d’abonnement dans la demande.  
+Cette erreur signifie Qu'azure RemoteApp est l’évolution des besoins de capacité toomeet hello de vos utilisateurs. Dans l’arrière-plan de hello plusieurs instances de machine virtuelle de Azure RemoteApp sont créées besoins en capacité hello toohandle de vos utilisateurs. En général, cela prend environ cinq minutes mais peut prendre jusqu'à too10 minutes. Parfois, elle n’est pas assez rapide alors que vous avez besoin des ressources tout de suite. Par exemple un scénario de 9 : 00 où de nombreux utilisateurs doivent toouse votre application dans Azure RemoteAppn à hello même temps. Si cela produit tooyou nous pouvons activer **en mode de capacité** sur hello back-end. toodo ce ouvrir un ticket de Support de Azure. Être certain tooinclude votre ID d’abonnement dans la demande hello.  
 
 ![Nous vous configurons](./media/remoteapp-apptrouble/ra-apptrouble1.png)
 
-## <a name="could-not-auto-reconnect-to-your-applications-please-re-launch-your-application"></a>Impossible de vous reconnecter automatiquement, relancez vos applications
-Ce message d’erreur apparaît souvent si vous utilisez Azure RemoteApp, puis mettez votre ordinateur en veille pendant plus de 4 heures. Quand vous sortez votre ordinateur de veille, le client Azure RemoteApp tente de se reconnecter automatiquement alors que le délai d’expiration a été dépassé.  Demandez aux utilisateurs de revenir à l’application et d’essayer de l’ouvrir à partir du client Azure RemoteApp.
+## <a name="could-not-auto-reconnect-tooyour-applications-please-re-launch-your-application"></a>Pu pas la reconnexion automatique tooyour applications. Veuillez relancer votre application
+Ce message d’erreur est souvent si vous utilisez Azure RemoteApp et ensuite placez votre toosleep PC plu de 4 heures puis éveillé votre PC et hello Azure RemoteApp client tentative tooauto se reconnecter et délai d’attente a été dépassé.  Indiquer les utilisateurs toonavigate toohello arrière application et tenter de tooopen à partir de clients d’Azure RemoteApp hello.
 
-![Impossible de vous reconnecter automatiquement](./media/remoteapp-apptrouble/ra-apptrouble2.png) 
+![Pu pas la reconnexion automatique tooyour applications](./media/remoteapp-apptrouble/ra-apptrouble2.png) 
 
-## <a name="problems-with-the-temp-profile"></a>Problèmes avec le profil temporaire
-Cette erreur se produit quand le montage de votre profil utilisateur (disque de profil utilisateur) a échoué et que l’utilisateur a reçu un profil temporaire.  Les administrateurs doivent accéder à la collection dans le portail Azure, puis à l’onglet **Sessions** pour essayer de **déconnecter** l’utilisateur. Cette intervention force la session utilisateur à se fermer totalement. L’utilisateur est ensuite invité à essayer de relancer une application. En cas d’échec, contactez le support Azure.
+## <a name="problems-with-hello-temp-profile"></a>Problèmes avec un profil temporaire de hello
+Cette erreur se produit lorsque votre profil utilisateur (disque de profil utilisateur) a échoué toomount et d’utilisateur de hello a reçu un profil temporaire.  Les administrateurs doivent parcourir collection toohello Bonjour portail Azure et rendez-vous toohello **Sessions** onglet et essayez de trop**déconnexion** utilisateur de hello. Cela va forcer un journal complet de déconnecter la session d’utilisateur hello - puis disposez d’une application hello utilisateur tentative toolaunch à nouveau. En cas d’échec, contactez le support Azure.
 
 ## <a name="azure-remoteapp-has-stopped-working"></a>Azure RemoteApp a cessé de fonctionner
-Ce message d’erreur signifie que le client Azure RemoteApp rencontre un problème et doit être redémarré. Demandez aux utilisateurs de fermer le programme : sélectionnez **Fermer le programme** , puis relancez le client Azure RemoteApp.  Si le problème persiste, ouvrez un ticket de support Azure.
+Ce message d’erreur signifie que les clients d’Azure RemoteApp hello rencontre un problème et doit toobe redémarré. Demander aux utilisateurs tooclose : sélectionnez **fermer le programme** , puis lancez à nouveau client d’Azure RemoteApp hello.  Si le problème de hello continue d’ouvrir et ticket de Support technique Azure.
 
 ![Azure RemoteApp a cessé de fonctionner](./media/remoteapp-apptrouble/ra-apptrouble3.png)  
 
-## <a name="an-error-occurred-while-remote-desktop-connection-was-accessing-this-resource-retry-the-connection-or-contact-your-system-administrator"></a>Une erreur s’est produite pendant que la connexion Bureau à distance accédait à la ressource. Essayez de vous reconnecter ou contactez votre administrateur système.
+## <a name="an-error-occurred-while-remote-desktop-connection-was-accessing-this-resource-retry-hello-connection-or-contact-your-system-administrator"></a>Une erreur s’est produite pendant que la connexion Bureau à distance accédait à la ressource. Tentatives de connexion de hello ou contactez votre administrateur système
 Il s’agit d’un message d’erreur générique : contactez le support Azure pour que nous puissions examiner le problème. 
 
 ![Message Azure RemoteApp générique](./media/remoteapp-apptrouble/ra-apptrouble4.png) 

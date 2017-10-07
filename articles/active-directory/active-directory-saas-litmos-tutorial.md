@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory avec Litmos | Microsoft Docs"
-description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et Litmos."
+description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et Litmos."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -14,112 +14,112 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/19/2017
 ms.author: jeedes
-ms.openlocfilehash: ef1b5860ba0a406022bbd11afb366d14bee2c57d
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 026fd10058760f2d63d185ef4aa9d7de3b82525e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-litmos"></a>Didacticiel : Intégration d’Azure Active Directory avec Litmos
 
-Dans ce didacticiel, vous allez apprendre à intégrer Litmos avec Azure Active Directory (Azure AD).
+Dans ce didacticiel, vous apprendrez comment toointegrate Litmos avec Azure Active Directory (Azure AD).
 
-L’intégration de Litmos dans Azure AD vous offre les avantages suivants :
+Intégration Litmos à Azure AD offre hello avantages suivants :
 
-- Vous pouvez contrôler dans Azure AD qui a accès à Litmos.
-- Vous pouvez permettre à vos utilisateurs d’être automatiquement connectés à Litmos (via l’authentification unique) avec leur compte Azure AD.
-- Vous pouvez gérer vos comptes dans un emplacement central : le portail Azure.
+- Vous pouvez contrôler dans Azure AD qui a accès tooLitmos.
+- Vous pouvez activer vos utilisateurs tooautomatically get connecté tooLitmos (Single Sign-On) avec leurs comptes Azure AD.
+- Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure.
 
-Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).
+Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
-## <a name="prerequisites"></a>Conditions préalables
+## <a name="prerequisites"></a>Composants requis
 
-Pour configurer l’intégration d’Azure AD avec Litmos, vous avez besoin des éléments suivants :
+tooconfigure intégration d’Azure AD avec Litmos, vous devez hello éléments suivants :
 
 - Un abonnement Azure AD
 - Un abonnement Litmos pour lequel l’authentification unique est activée
 
 > [!NOTE]
-> Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.
+> tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.
 
-Vous devez en outre suivre les recommandations ci-dessous :
+tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :
 
 - N’utilisez pas votre environnement de production, sauf si cela est nécessaire.
 - Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez [obtenir un essai d’un mois](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Description du scénario
-Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :
+Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :
 
-1. Ajout de Litmos à partir de la galerie
+1. Ajout de Litmos à partir de la galerie de hello
 2. Configuration et test de l’authentification unique Azure AD
 
-## <a name="adding-litmos-from-the-gallery"></a>Ajout de Litmos à partir de la galerie
-Pour configurer l’intégration de Litmos avec Azure AD, vous devez ajouter Litmos à partir de la galerie à votre liste d’applications SaaS gérées.
+## <a name="adding-litmos-from-hello-gallery"></a>Ajout de Litmos à partir de la galerie de hello
+intégration de hello tooconfigure de Litmos dans Azure AD, vous devez tooadd Litmos à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.
 
-**Pour ajouter Litmos à partir de la galerie, procédez comme suit :**
+**tooadd Litmos à partir de la galerie hello, procédez hello comme suit :**
 
-1. Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**. 
+1. Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône. 
 
-    ![Bouton Azure Active Directory][1]
+    ![bouton d’Azure Active Directory Hello][1]
 
-2. Accédez à **Applications d’entreprise**. Accédez ensuite à **Toutes les applications**.
+2. Accédez trop**des applications d’entreprise**. Passez trop**toutes les applications**.
 
-    ![Panneau Applications d’entreprise][2]
+    ![panneau des applications Enterprise Hello][2]
     
-3. Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.
+3. tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.
 
-    ![Bouton Nouvelle application][3]
+    ![Nouveau bouton d’application Hello][3]
 
-4. Dans la zone de recherche, tapez **Litmos**, sélectionnez **Litmos** dans le volet de résultats, puis cliquez sur le bouton **Ajouter** pour ajouter l’application.
+4. Dans la zone de recherche de hello, tapez **Litmos**, sélectionnez **Litmos** à partir du volet de résultats, puis sur **ajouter** bouton application hello de tooadd.
 
-    ![Litmos dans la liste des résultats](./media/active-directory-saas-litmos-tutorial/tutorial_litmos_addfromgallery.png)
+    ![Litmos dans la liste des résultats hello](./media/active-directory-saas-litmos-tutorial/tutorial_litmos_addfromgallery.png)
 
 ## <a name="configure-and-test-azure-ad-single-sign-on"></a>Configurer et tester l’authentification unique Azure AD
 
 Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec Litmos sur un utilisateur de test nommé « Britta Simon ».
 
-Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur Litmos équivalent à l’utilisateur dans Azure AD. En d’autres termes, une relation entre l’utilisateur Azure AD et l’utilisateur Litmos associé doit être établie.
+Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans Litmos est tooa utilisateur dans Azure AD. En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans Litmos doit toobe établie.
 
-Dans Litmos, assignez la valeur de **nom d’utilisateur** dans Azure AD comme valeur de **Username** pour établir la relation de lien.
+Dans Litmos, affecter la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** relation de lien tooestablish hello.
 
-Pour configurer et tester l’authentification unique Azure AD avec Litmos, vous devez suivre les indications des sections suivantes :
+tooconfigure et test Azure AD l’authentification unique avec Litmos, vous devez hello toocomplete suivant des blocs de construction :
 
-1. **[Configurer l’authentification unique Azure AD](#configure-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.
-2. **[Créer un utilisateur de test Azure AD](#create-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.
-3. **[Créer utilisateur de test Litmos](#create-a-litmos-test-user)** pour avoir un équivalent de Britta Simon dans Litmos lié à la représentation Azure AD associée.
-4. **[Affecter l’utilisateur de test Azure AD](#assign-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.
-5. **[Tester l’authentification unique](#test-single-sign-on)** : pour vérifier si la configuration fonctionne.
+1. **[Configurer Azure AD Single Sign-On](#configure-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.
+2. **[Créer un utilisateur de test Azure AD](#create-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.
+3. **[Créer un utilisateur de test Litmos](#create-a-litmos-test-user)**  -toohave un équivalent de Britta Simon dans Litmos est la représentation sous forme de toohello lié Azure AD de l’utilisateur.
+4. **[Affecter l’utilisateur de test hello Azure AD](#assign-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.
+5. **[Tester l’authentification unique sur](#test-single-sign-on)**  -tooverify hello indique si les tâches de configuration.
 
 ### <a name="configure-azure-ad-single-sign-on"></a>Configurer l’authentification unique Azure AD
 
-Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure et configurer l’authentification unique dans votre application Litmos.
+Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application Litmos.
 
-**Pour configurer l’authentification unique Azure AD avec Litmos, procédez comme suit :**
+**tooconfigure Azure AD single sign-on avec Litmos, effectuez hello comme suit :**
 
-1. Dans le portail Azure, sur la page d’intégration de l’application **Litmos**, cliquez sur **Authentification unique**.
+1. Bonjour portail Azure, sur hello **Litmos** page d’intégration d’application, cliquez sur **l’authentification unique**.
 
     ![Lien Configurer l’authentification unique][4]
 
-2. Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.
+2. Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.
  
     ![Boîte de dialogue Authentification unique](./media/active-directory-saas-litmos-tutorial/tutorial_litmos_samlbase.png)
 
-3. Dans la section **Domaine et URL Litmos**, procédez comme suit :
+3. Sur hello **Litmos domaine et les URL** section, effectuer hello comme suit :
 
     ![Informations d’authentification unique dans Domaine et URL Litmos](./media/active-directory-saas-litmos-tutorial/tutorial_litmos_url.png)
 
-    a. Dans la zone de texte **Identificateur**, tapez une URL au format suivant : `https://<companyname>.litmos.com/account/Login`
+    a. Bonjour **identificateur** zone de texte, tapez une URL à l’aide de hello modèle :`https://<companyname>.litmos.com/account/Login`
 
-    b. Dans la zone de texte **URL de réponse** , tapez une URL au format suivant : `https://<companyname>.litmos.com/integration/samllogin`
+    b. Bonjour **URL de réponse** zone de texte, tapez une URL à l’aide de hello modèle :`https://<companyname>.litmos.com/integration/samllogin`
 
     > [!NOTE] 
-    > Il ne s’agit pas de valeurs réelles. Mettez à jour ces valeurs avec l’identificateur et l’URL de réponse réelles qui sont décrits plus loin dans le didacticiel, ou contactez l’[équipe de support technique Litmos](https://www.litmos.com/contact-us/) pour obtenir ces valeurs.
+    > Il ne s’agit pas de valeurs réelles. Mettre à jour ces valeurs avec hello identificateur et réponse URL réelle, qui vous seront expliquées plus loin dans le didacticiel ou contactez [Litmos l’équipe de support](https://www.litmos.com/contact-us/) tooget ces valeurs.
 
-4. Dans la section **Certificat de signature SAML**, cliquez sur **Téléchargez le certificat (Base64)** puis enregistrez le fichier du certificat sur votre ordinateur.
+4. Sur hello **le certificat de signature SAML** , cliquez sur **Certificate(Base64)** , puis enregistrez le fichier de certificat hello sur votre ordinateur.
 
-    ![Lien de téléchargement du certificat](./media/active-directory-saas-litmos-tutorial/tutorial_litmos_certificate.png)
+    ![lien de téléchargement du certificat Hello](./media/active-directory-saas-litmos-tutorial/tutorial_litmos_certificate.png)
 
-5. Dans le cadre de la configuration, vous devez personnaliser les **Attributs du jeton SAML** pour votre application Litmos.
+5. Dans le cadre de la configuration de hello, vous devez toocustomize hello **attributs du jeton SAML** pour votre application Litmos.
 
     ![Section de l’attribut](./media/active-directory-saas-litmos-tutorial/tutorial_attribute.png)
            
@@ -129,103 +129,103 @@ Dans cette section, vous allez activer l’authentification unique Azure AD dans
     | LastName  |user.surname |
     | Email |user.mail |
 
-    a. Cliquez sur **Ajouter un attribut** pour ouvrir la boîte de dialogue **Ajouter un attribut**.
+    a. Cliquez sur **ajouter un attribut** tooopen hello **ajouter un attribut** boîte de dialogue.
 
     ![Ajouter un attribut](./media/active-directory-saas-litmos-tutorial/tutorial_attribute_04.png)
 
     ![Boîte de dialogue Ajouter un attribut](./media/active-directory-saas-litmos-tutorial/tutorial_attribute_05.png)
 
-    b. Dans la zone de texte **Attribut**, indiquez le nom d’attribut pour cette ligne.
+    b. Bonjour **nom** zone de texte, nom d’attribut type hello indiqué pour cette ligne.
 
-    c. Dans la liste **Valeur** , saisissez la valeur d’attribut affichée pour cette ligne.
+    c. À partir de hello **valeur** liste, la valeur d’attribut type hello indiqué pour cette ligne.
     
     d. Cliquez sur **OK**.     
 
 6. Cliquez sur le bouton **Enregistrer** .
 
-    ![Bouton Enregistrer de Configurer l’authentification unique](./media/active-directory-saas-litmos-tutorial/tutorial_general_400.png)
+    ![Bouton Enregistrer de la page Configurer l’authentification unique](./media/active-directory-saas-litmos-tutorial/tutorial_general_400.png)
 
-7. Dans une autre fenêtre de navigateur, connectez-vous à votre site d’entreprise Litmos en tant qu’administrateur.
+7. Dans une autre fenêtre de navigateur, site d’entreprise Litmos tooyour ouverture de session en tant qu’administrateur.
 
-8. Dans la barre de navigation située à gauche, cliquez sur **Accounts**.
+8. Dans la barre de navigation hello sur le côté gauche de hello, cliquez sur **comptes**.
    
     ![Section Comptes côté application][22] 
 
-9. Cliquez sur l’onglet **Integrations** .
+9. Cliquez sur hello **intégrations** onglet.
    
     ![Onglet Intégration][23] 
 
-10. Sur l’onglet **Integrations**, accédez à **3rd Party Integrations**, puis cliquez sur l’onglet **SAML 2.0**.
+10. Sur hello **intégrations** onglet, faites défiler la liste trop**3e partie intégrations**, puis cliquez sur **SAML 2.0** onglet.
    
     ![Section SAML 2.0][24] 
 
-11. Copiez la valeur sous **The SAML endpoint for litmos is** (Le point de terminaison SAML pour litmos est), puis collez-la dans la zone de texte **URL de réponse** de la section **Domaine et URL Litmos** du portail Azure. 
+11. Copier la valeur hello sous **hello de point de terminaison SAML pour litmos est :** et collez-le dans hello **URL de réponse** textbox Bonjour **Litmos domaine et les URL** section dans le portail Azure. 
    
     ![Point de terminaison SAML][26] 
 
-12. Dans votre application **Litmos** , procédez comme suit :
+12. Dans votre **Litmos** application, effectuez hello comme suit :
     
      ![Application Litmos][25] 
      
      a. Cliquez sur **Enable SAML**.
     
-     b. Ouvrez votre certificat codé en base 64 dans le Bloc-notes, copiez son contenu dans le Presse-papiers et collez-le dans la zone de texte **SAML X.509 Certificate** .
+     b. Ouvrez votre certificat codé en base 64 dans le bloc-notes, hello copie contenu de celui-ci dans le Presse-papiers et le coller ensuite toohello **certificat X.509 de SAML** zone de texte.
      
      c. Cliquez sur **Enregistrer les modifications**.
 
 > [!TIP]
-> Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.  Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas. Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !  Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello. Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)
 
 ### <a name="create-an-azure-ad-test-user"></a>Créer un utilisateur de test Azure AD
 
-L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.
+objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.
 
    ![Créer un utilisateur de test Azure AD][100]
 
-**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**
+**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**
 
-1. Dans le volet gauche du Portail Azure, cliquez sur le bouton **Azure Active Directory**.
+1. Bonjour portail Azure, dans le volet gauche de hello, cliquez sur hello **Azure Active Directory** bouton.
 
-    ![Bouton Azure Active Directory](./media/active-directory-saas-litmos-tutorial/create_aaduser_01.png)
+    ![bouton d’Azure Active Directory Hello](./media/active-directory-saas-litmos-tutorial/create_aaduser_01.png)
 
-2. Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.
+2. liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes**, puis cliquez sur **tous les utilisateurs**.
 
-    ![Liens « Utilisateurs et groupes » et « Tous les utilisateurs »](./media/active-directory-saas-litmos-tutorial/create_aaduser_02.png)
+    ![Hello « Utilisateurs et groupes » et « Tous les utilisateurs » liens](./media/active-directory-saas-litmos-tutorial/create_aaduser_02.png)
 
-3. Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue **Tous les utilisateurs**.
+3. tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello hello **tous les utilisateurs** boîte de dialogue.
 
-    ![Bouton Ajouter](./media/active-directory-saas-litmos-tutorial/create_aaduser_03.png)
+    ![bouton Ajouter de Hello](./media/active-directory-saas-litmos-tutorial/create_aaduser_03.png)
 
-4. Dans la boîte de dialogue **Utilisateur**, procédez comme suit :
+4. Bonjour **utilisateur** boîte de dialogue, exécutez hello comme suit :
 
-    ![Boîte de dialogue Utilisateur](./media/active-directory-saas-litmos-tutorial/create_aaduser_04.png)
+    ![boîte de dialogue utilisateur Hello](./media/active-directory-saas-litmos-tutorial/create_aaduser_04.png)
 
-    a. Dans la zone **Nom**, tapez **BrittaSimon**.
+    a. Bonjour **nom** , tapez **BrittaSimon**.
 
-    b. Dans la zone **Nom d’utilisateur** , tapez l’adresse e-mail de l’utilisateur Britta Simon.
+    b. Bonjour **nom d’utilisateur** zone, tapez Bonjour adresse de messagerie de l’utilisateur Britta Simon.
 
-    c. Cochez la case **Afficher le mot de passe**, puis notez la valeur affichée dans le champ **Mot de passe**.
+    c. Sélectionnez hello **afficher le mot de passe** case à cocher, puis écrire la valeur hello qui s’affiche dans hello **mot de passe** boîte.
 
     d. Cliquez sur **Create**.
   
 ### <a name="create-a-litmos-test-user"></a>Créer un utilisateur de test Litmos
 
-L’objectif de cette section est de créer un utilisateur appelé Britta Simon dans Litmos.  
-L’application Litmos prend en charge l’approvisionnement juste-à-temps. Cela signifie qu’un compte d’utilisateur est automatiquement créé si nécessaire pendant la tentative d’accès à l’application à l’aide du volet d’accès.
+objectif Hello de cette section est toocreate un utilisateur appelé Britta Simon dans Litmos.  
+Hello Litmos application prend en charge juste-à-temps de configuration. Cela signifie que, un compte d’utilisateur est automatiquement créé les si nécessaire au cours d’une application de hello tooaccess tentative à l’aide de hello panneau d’accès.
 
-**Pour créer un utilisateur appelé Britta Simon dans Litmos, procédez comme suit :**
+**toocreate un utilisateur appelé Britta Simon dans Litmos, effectuez hello comme suit :**
 
-1. Dans une autre fenêtre de navigateur, connectez-vous à votre site d’entreprise Litmos en tant qu’administrateur.
+1. Dans une autre fenêtre de navigateur, site d’entreprise Litmos tooyour ouverture de session en tant qu’administrateur.
 
-2. Dans la barre de navigation située à gauche, cliquez sur **Accounts**.
+2. Dans la barre de navigation hello sur le côté gauche de hello, cliquez sur **comptes**.
    
     ![Section Comptes côté application][22] 
 
-3. Cliquez sur l’onglet **Integrations** .
+3. Cliquez sur hello **intégrations** onglet.
    
     ![Onglet Intégrations][23] 
 
-4. Sur l’onglet **Integrations**, accédez à **3rd Party Integrations**, puis cliquez sur l’onglet **SAML 2.0**.
+4. Sur hello **intégrations** onglet, faites défiler la liste trop**3e partie intégrations**, puis cliquez sur **SAML 2.0** onglet.
    
     ![SAML 2.0][24] 
     
@@ -233,31 +233,31 @@ L’application Litmos prend en charge l’approvisionnement juste-à-temps. Cel
    
     ![Générer automatiquement les utilisateurs][27] 
 
-### <a name="assign-the-azure-ad-test-user"></a>Affecter l’utilisateur de test Azure AD
+### <a name="assign-hello-azure-ad-test-user"></a>Affecter l’utilisateur de test hello Azure AD
 
-Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à Litmos.
+Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooLitmos.
 
-![Attribuer le rôle d’utilisateur][200] 
+![Attribuer le rôle d’utilisateur hello][200] 
 
-**Pour affecter Britta Simon à Litmos, procédez comme suit :**
+**tooassign Britta Simon tooLitmos, effectuez hello comme suit :**
 
-1. Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.
+1. Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.
 
     ![Affecter des utilisateurs][201] 
 
-2. Dans la liste des applications, sélectionnez **Litmos**.
+2. Dans la liste des applications hello, sélectionnez **Litmos**.
 
-    ![Lien Litmos dans la liste des applications](./media/active-directory-saas-litmos-tutorial/tutorial_litmos_app.png)  
+    ![lien de Litmos Hello dans la liste des Applications hello](./media/active-directory-saas-litmos-tutorial/tutorial_litmos_app.png)  
 
-3. Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.
+3. Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.
 
-    ![Lien « Utilisateurs et groupes »][202]
+    ![lien de « Utilisateurs et groupes » Hello][202]
 
 4. Cliquez sur le bouton **Ajouter**. Ensuite, sélectionnez **Utilisateurs et groupes** dans la boîte de dialogue **Ajouter une affectation**.
 
-    ![Volet Ajouter une attribution][203]
+    ![volet d’ajouter l’affectation de Hello][203]
 
-5. Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.
+5. Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.
 
 6. Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.
 
@@ -265,13 +265,13 @@ Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentifi
     
 ### <a name="test-single-sign-on"></a>Tester l’authentification unique
 
-L’objectif de cette section est de tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.  
+objectif Hello de cette section est tootest votre configuration de l’authentification unique Azure AD à l’aide de hello panneau d’accès.  
 
-Lorsque vous cliquez sur la vignette Litmos dans le volet d’accès, vous devez être connecté automatiquement à votre application Litmos. 
+Lorsque vous cliquez sur hello Litmos vignette Bonjour volet d’accès, vous devez obtenir automatiquement signé sur tooyour Litmos application. 
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-* [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->

@@ -1,6 +1,6 @@
 ---
-title: "Élément d’interface utilisateur UserNameTextBox des applications gérées Azure | Microsoft Docs"
-description: "Décrit l’élément d’interface utilisateur Microsoft.Compute.UserNameTextBox pour les applications gérées Azure"
+title: "élément de l’interface utilisateur de UserNameTextBox pour les applications gérées aaaAzure | Documents Microsoft"
+description: "Décrit les hello élément d’interface utilisateur de Microsoft.Compute.UserNameTextBox pour des Applications managées Azure"
 services: azure-resource-manager
 documentationcenter: na
 author: tabrezm
@@ -13,11 +13,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/12/2017
 ms.author: tabrezm;tomfitz
-ms.openlocfilehash: c90be5a0ed3aadda81d7ec9b5388a96472f69af0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 33092014e804c4aabd56ba49144d9cd4d6a5fd1e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="microsoftcomputeusernametextbox-ui-element"></a>Élément d’interface utilisateur Microsoft.Compute.UserNameTextBox
 Contrôle de zone de texte avec validation intégrée des noms d’utilisateur Windows et Linux. Vous utilisez cet élément lors de la [création d’une application gérée Azure](managed-application-publishing.md).
@@ -36,7 +36,7 @@ Contrôle de zone de texte avec validation intégrée des noms d’utilisateur W
   "constraints": {
     "required": true,
     "regex": "^[a-z0-9A-Z]{1,30}$",
-    "validationMessage": "Only alphanumeric characters are allowed, and the value must be 1-30 characters long."
+    "validationMessage": "Only alphanumeric characters are allowed, and hello value must be 1-30 characters long."
   },
   "osPlatform": "Windows",
   "visible": true
@@ -44,12 +44,12 @@ Contrôle de zone de texte avec validation intégrée des noms d’utilisateur W
 ```
 
 ## <a name="remarks"></a>Remarques
-- Si `constraints.required` est défini sur **true**, la zone de texte doit contenir une valeur permettant de réussir la validation. La valeur par défaut est **true**.
+- Si `constraints.required` est défini trop**true**, puis de la zone de texte hello doit contenir une valeur toovalidate avec succès. la valeur par défaut Hello est **true**.
 - `osPlatform` doit être spécifié. Il peut s’agir de **Windows** ou de **Linux**.
-- `constraints.regex` est un modèle d’expression régulière JavaScript. S’il est spécifié, la valeur de la zone de texte doit correspondre au modèle pour permettre la réussite de la validation. La valeur par défaut est **null**.
-- `constraints.validationMessage` est une chaîne à afficher en cas d’échec de la validation de la valeur de la zone de texte spécifiée par `constraints.regex`. Si elle n’est pas spécifiée, les messages de validation intégrés de la zone de texte sont utilisés. La valeur par défaut est **null**.
-- Cet élément dispose d’une validation intégrée basée sur la valeur spécifiée pour `osPlatform`. La validation intégrée est utilisable avec une expression régulière personnalisée.
-Si une valeur est spécifiée pour `constraints.regex`, les validations intégrées et personnalisées sont déclenchées.
+- `constraints.regex` est un modèle d’expression régulière JavaScript. Si spécifié, puis la valeur de la zone de texte hello doit correspondre hello modèle toovalidate avec succès. La valeur par défaut est **null**.
+- `constraints.validationMessage`est une chaîne de toodisplay lors de l’échec de la valeur de la zone de texte hello validation hello spécifiée par `constraints.regex`. Si ce n’est pas spécifié, puis hello de validation intégrées de la zone de texte les messages sont utilisés. la valeur par défaut Hello est **null**.
+- Cet élément a une validation intégrées qui repose sur la valeur hello spécifiée pour `osPlatform`. validation intégrées de Hello peut être utilisée avec une expression régulière personnalisée.
+Si une valeur pour `constraints.regex` est spécifié, les deux hello intégrées et validations personnalisées sont déclenchées.
 
 ## <a name="sample-output"></a>Exemple de sortie
 ```json
@@ -57,6 +57,6 @@ Si une valeur est spécifiée pour `constraints.regex`, les validations intégr�
 ```
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Pour voir une présentation des applications gérées, consultez [Vue d’ensemble des applications gérées Azure](managed-application-overview.md).
-* Pour voir une présentation de la création de définitions d’interface utilisateur, consultez la page [Prise en main de CreateUiDefinition](managed-application-createuidefinition-overview.md).
+* Pour une introduction toomanaged les applications, voir [vue d’ensemble de l’Application Azure géré](managed-application-overview.md).
+* Pour les définitions d’interface utilisateur toocreating une présentation, consultez [prise en main de CreateUiDefinition](managed-application-createuidefinition-overview.md).
 * Pour obtenir une description des propriétés communes des éléments d’interface utilisateur, consultez la page [Éléments de CreateUiDefinition](managed-application-createuidefinition-elements.md).

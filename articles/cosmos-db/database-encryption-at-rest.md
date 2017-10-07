@@ -14,57 +14,57 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/23/2017
 ms.author: voellm
-ms.openlocfilehash: d8967d4504a8ccabb444c7f3d5635e2d00f287c5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d52d55fe45fdd18394166ec7ccd6e46e8f8f434b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-cosmos-db-database-encryption-at-rest"></a>Chiffrement de base de données Azure Cosmos DB au repos
 
-Le chiffrement au repos est une expression qui se réfère en général au chiffrement des données situées sur des appareils de stockage non volatile, comme des disques SSD et des lecteurs de disques durs. Cosmos DB stocke ses bases de données primaires sur des SSD. Ses pièces jointes multimédias et ses sauvegardes sont stockées dans le Stockage Blob Azure, qui est généralement sauvegardé sur des disques durs. Avec l’apparition du chiffrement au repos pour Cosmos DB, toutes vos bases de données, pièces jointes multimédias et sauvegardes sont maintenant chiffrées. Vos données sont désormais chiffrées pendant le transit (sur le réseau) et au repos (stockage non volatile), ce qui vous donne un chiffrement de bout en bout.
+Le chiffrement au repos est une expression qui fait généralement référence toohello le chiffrement des données sur les périphériques de stockage non volatile, telles que les lecteurs de solid state Drive (SSD) et les lecteurs de disque dur (HDD). Cosmos DB stocke ses bases de données primaires sur des SSD. Ses pièces jointes multimédias et ses sauvegardes sont stockées dans le Stockage Blob Azure, qui est généralement sauvegardé sur des disques durs. Avec la version hello du chiffrement au repos pour Cosmos DB, toutes les bases de données, les pièces jointes de support et les sauvegardes sont chiffrées. Vos données sont désormais chiffrées en transit (sur le réseau de hello) et au repos (stockage non volatile), ce qui vous donne le chiffrement de bout en bout.
 
-Cosmos DB, en tant que service PaaS, est très facile à utiliser. Comme toutes les données utilisateur stockées dans Cosmos DB sont chiffrées au repos et lors du transport, vous n’avez aucune action à effectuer. En d’autres termes, le chiffrement au repos est « activé » par défaut. Il n’existe aucun contrôle à activer ou à désactiver. Nous fournissons cette fonctionnalité dans le cadre de nos efforts pour respecter notre [contrat SLA de disponibilité et de performances](https://azure.microsoft.com/support/legal/sla/cosmos-db).
+Comme un service PaaS, Cosmos DB est très facile toouse. Étant donné que toutes les données utilisateur stockées dans la base de données Cosmos est chiffré au repos et de transport, vous n’avez tootake toute action. Une autre façon tooput, c’est que le chiffrement au repos est « sur » par défaut. Il n’y aucun tooturn contrôles il ou désactiver. Nous fournir cette fonctionnalité, alors que nous continuons toomeet notre [SLA de disponibilité et les performances](https://azure.microsoft.com/support/legal/sla/cosmos-db).
 
 ## <a name="implement-encryption-at-rest"></a>Implémenter le chiffrement au repos
 
-Le chiffrement au repos est implémenté à l’aide d’un certain nombre de technologies de sécurité, notamment des systèmes de stockage de clés sécurisés, des réseaux chiffrés et des API de chiffrement. Les systèmes qui déchiffrent et traitent les données doivent communiquer avec les systèmes de gestion de clés. Le schéma montre la façon dont le stockage des données chiffrées et la gestion des clés sont séparés. 
+Le chiffrement au repos est implémenté à l’aide d’un certain nombre de technologies de sécurité, notamment des systèmes de stockage de clés sécurisés, des réseaux chiffrés et des API de chiffrement. Les systèmes déchiffrement et traitent les données sont toocommunicate avec les systèmes de gestion des clés. diagramme de Hello montre comment le stockage de gestion des données et de hello chiffrée des clés est séparé. 
 
 ![Schéma montrant la conception](./media/database-encryption-at-rest/design-diagram.png)
 
-Le flux de base d’une demande d’un utilisateur est le suivant :
-- Le compte de base de données de l’utilisateur est préparé et les clés de stockage sont récupérées via une demande au fournisseur de ressources du service de gestion.
-- Un utilisateur crée une connexion à Cosmos DB via le transport HTTPS/sécurisé. (Les SDK permettent de s’abstraire des détails.)
-- L’utilisateur envoie un document JSON à stocker sur la connexion sécurisée créée précédemment.
-- Le document JSON est indexé, à moins que l’utilisateur ait désactivé l’indexation.
-- Le document JSON et les données d’index sont écrits dans le stockage sécurisé.
-- Périodiquement, les données sont lues à partir du stockage sécurisé et sauvegardées dans le magasin d’objets blob chiffré d’Azure.
+flux de base Hello d’une demande de l’utilisateur est la suivante :
+- compte d’utilisateur de base de données Hello est prête, et les clés de stockage sont récupérées via un fournisseur de ressources de Service de gestion de toohello demande.
+- Un utilisateur crée une base de données de tooCosmos connexion via le transport HTTPS sécurisé. (détails de hello abstraite hello kits de développement logiciel).
+- utilisateur de Hello envoie un toobe de document JSON stocké sur hello précédemment créé une connexion sécurisée.
+- document JSON Hello est indexée, sauf si l’utilisateur de hello a désactivé l’indexation.
+- Hello document JSON et les données d’index sont écrites toosecure stockage.
+- Périodiquement, les données sont lues à partir du stockage sécurisé de hello et sauvegardées toohello magasin d’objets Blob Azure chiffré.
 
 ## <a name="frequently-asked-questions"></a>Forum Aux Questions
 
 ### <a name="q-how-much-more-does-azure-storage-cost-if-storage-service-encryption-is-enabled"></a>Q : Quel est le coût supplémentaire de Stockage Azure si le chiffrement du service de stockage est activé ?
 R : Aucun coût supplémentaire n’est facturé.
 
-### <a name="q-who-manages-the-encryption-keys"></a>Q : Qui gère les clés de chiffrement ?
-R : Les clés sont gérées par Microsoft.
+### <a name="q-who-manages-hello-encryption-keys"></a>Q : qui gère les clés de chiffrement hello ?
+R : les clés de hello sont gérées par Microsoft.
 
 ### <a name="q-how-often-are-encryption-keys-rotated"></a>Q : À quelle fréquence les clés de chiffrement tournent-elles ?
-R : Microsoft a un ensemble de règles internes pour la rotation des clés de chiffrement, qui sont suivies par Cosmos DB. Les règles spécifiques ne sont pas publiées. Microsoft publie le [Security Development Lifecycle (SDL)](https://www.microsoft.com/sdl/default.aspx), qui est vu comme un sous-ensemble de règles internes et qui contient des bonnes pratiques utiles pour les développeurs.
+R : Microsoft a un ensemble de règles internes pour la rotation des clés de chiffrement, qui sont suivies par Cosmos DB. des recommandations spécifiques Hello ne sont pas publiées. Microsoft ne publie pas hello [du cycle de vie de développement de sécurité (SDL)](https://www.microsoft.com/sdl/default.aspx), qui est considéré comme un sous-ensemble de conseil interne et a utiles meilleures pratiques pour les développeurs.
 
 ### <a name="q-can-i-use-my-own-encryption-keys"></a>Q : Puis-je utiliser mes propres clés de chiffrement ?
-R : Cosmos DB est un service PaaS et nous avons beaucoup travaillé pour le rendre facile à utiliser. Nous avons constaté que cette question est souvent posée en rapport avec la conformité à des normes comme PCI-DSS. Dans le cadre du développement de cette fonctionnalité, nous avons collaboré avec des auditeurs de conformité pour garantir que les clients utilisant Cosmos DB répondent à leurs exigences sans devoir gérer les clés eux-mêmes.
-C’est pourquoi nous n’offrons actuellement pas aux utilisateurs la possibilité de s’occuper eux-mêmes de la gestion des clés.
+R : cosmos DB est un service PaaS, et nous avons travaillé dur tookeep hello service simple toouse. Nous avons constaté que cette question est souvent posée en rapport avec la conformité à des normes comme PCI-DSS. Dans le cadre de la création de cette fonctionnalité, nous avons collaboré avec tooensure auditeurs de conformité que les clients qui utilisent la base de données Cosmos répondre aux exigences sans les clés toomanage hello besoin eux-mêmes.
+Par conséquent, nous actuellement n’offrent pas les utilisateurs hello option tooburden eux-mêmes avec la gestion de clés.
 
 ### <a name="q-what-regions-have-encryption-turned-on"></a>Q : Dans quelles régions le chiffrement est-il activé ?
 R : Le chiffrement est activé dans toutes les régions Azure Cosmos DB pour l’ensemble des données utilisateur.
 
-### <a name="q-does-encryption-affect-the-performance-latency-and-throughput-slas"></a>Q : Le chiffrement modifie-t-il les SLA en termes de débit et de latence des performances ?
-R : L’activation du chiffrement au repos sur tous les comptes (existants et nouveaux) ne modifie en rien les SLA en termes de performance. Pour en savoir plus sur les dernières garanties, consultez la page [SLA pour Azure Cosmos DB](https://azure.microsoft.com/support/legal/sla/cosmos-db).
+### <a name="q-does-encryption-affect-hello-performance-latency-and-throughput-slas"></a>Q : chiffrement affecte-t-elle la latence de performances hello et débit SLA ?
+R : il n’existe aucun impact ou modifications toohello de performances SLA maintenant que le chiffrement au repos est activé pour tous les comptes existants et nouveaux. Vous pouvez en savoir plus sur hello [SLA pour la base de données Cosmos](https://azure.microsoft.com/support/legal/sla/cosmos-db) page garanties de dernière toosee hello.
 
-### <a name="q-does-the-local-emulator-support-encryption-at-rest"></a>Q : L’émulateur local prend-il en charge le chiffrement au repos ?
-R : L’émulateur est un outil de développement/test autonome, qui n’exploite pas les services de gestion de clés que le service Cosmos DB géré utilise. Nous vous conseillons d’activer BitLocker sur les lecteurs où vous stockez des données de test d’émulateur sensibles. [L’émulateur prend en charge la modification du répertoire de données par défaut](local-emulator.md) ainsi que l’utilisation d’un emplacement connu.
+### <a name="q-does-hello-local-emulator-support-encryption-at-rest"></a>Q : émulateur local de hello prend-il en charge le chiffrement au repos ?
+R : émulateur de hello est un outil de développement/test autonome et n’utilise pas les services de gestion de clés hello qui hello managé Cosmos DB service utilise. Notre recommandation est tooenable BitLocker sur les lecteurs où vous stockez les données de test émulateur sensibles. Hello [émulateur prend en charge le répertoire de données par défaut hello modification](local-emulator.md) ainsi qu’à l’aide d’un emplacement connu.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Pour une vue d’ensemble de la sécurité de Cosmos DB et des dernières améliorations, consultez [Sécurité de la base de données Azure Cosmos DB](database-security.md).
-Pour plus d’informations sur les certifications Microsoft, consultez le [Centre de confidentialité Azure](https://azure.microsoft.com/en-us/support/trust-center/).
+Pour une vue d’ensemble de sécurité de la base de données Cosmos et les dernières améliorations du hello, consultez [sécurité de base de données de base de données Azure Cosmos](database-security.md).
+Pour plus d’informations sur les certifications Microsoft, consultez hello [Azure Trust Center](https://azure.microsoft.com/en-us/support/trust-center/).

@@ -1,6 +1,6 @@
 ---
-title: "Déploiement Git local vers Azure App Service"
-description: "Découvrez comment activer le déploiement Git local vers Azure App Service"
+title: "aaaLocal déploiement Git tooAzure du Service d’applications"
+description: "Découvrez comment tooAzure tooenable local Git déploiement du Service d’applications."
 services: app-service
 documentationcenter: 
 author: dariagrigoriu
@@ -14,34 +14,34 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/13/2016
 ms.author: dariagrigoriu
-ms.openlocfilehash: f1c4911670d3aa32e74b3dfebd83cf3dc3830805
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1905e0b7acd58d8dd6496a14f6e4f38f9f8c0212
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="local-git-deployment-to-azure-app-service"></a>Déploiement Git local vers Azure App Service
-Ce didacticiel vous montre comment déployer votre application vers [Azure App Service] depuis un référentiel Git sur votre ordinateur local. App Service prend en charge cette approche avec l'option de déploiement **Git local** dans le [portail Azure].  
-La plupart des commandes Git décrites dans cet article sont exécutées automatiquement pendant la création d’une application App Service avec l’[interface de ligne de commande Azure] comme décrit [ici](app-service-web-get-started.md).
+# <a name="local-git-deployment-tooazure-app-service"></a>TooAzure déploiement Git local du Service d’applications
+Ce didacticiel vous montre comment toodeploy votre application trop[Azure App Service] à partir d’un référentiel Git sur votre ordinateur local. Service d’applications prend en charge cette approche avec hello **Git Local** option de déploiement dans hello [Azure Portal].  
+Nombre de commandes Git de hello décrits dans cet article sont exécutées automatiquement lors de la création d’une application de Service d’applications à l’aide de hello [Interface de ligne de commande Azure] comme décrit [ici](app-service-web-get-started.md).
 
 ## <a name="prerequisites"></a>Composants requis
-Pour suivre ce didacticiel, vous avez besoin des éléments suivants :
+toocomplete ce didacticiel, vous devez :
 
-* Git. Vous pouvez télécharger le fichier binaire d’installation [ici](http://www.git-scm.com/downloads).  
+* Git. Vous pouvez télécharger le fichier binaire d’installation hello [ici](http://www.git-scm.com/downloads).  
 * Connaissances élémentaires de Git.
-* Un compte Microsoft Azure Si vous n’avez pas de compte, vous pouvez [demander un essai gratuit](https://azure.microsoft.com/pricing/free-trial) ou [activer les avantages de votre abonnement Visual Studio](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details).
+* Un compte Microsoft Azure Si vous n’avez pas de compte, vous pouvez [vous inscrire pour un essai gratuit](https://azure.microsoft.com/pricing/free-trial) ou [activer les avantages de votre abonnement Visual Studio](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details).
 
 > [!NOTE]
-> Si vous voulez vous familiariser avec Azure App Service avant d’ouvrir un compte Azure, accédez à la page [Essayer App Service](https://azure.microsoft.com/try/app-service/), où vous pourrez créer immédiatement une application temporaire dans App Service. Aucune carte de crédit n’est requise ; vous ne prenez aucun engagement.  
+> Si vous souhaitez tooget démarré avec le Service d’application Azure avant de s’inscrire pour un compte Azure, accédez trop[essayez du Service d’applications](https://azure.microsoft.com/try/app-service/), où vous pouvez créer une application de courte durée de démarrage immédiatement dans le Service d’applications. Aucune carte de crédit n’est requise ; vous ne prenez aucun engagement.  
 > 
 > 
 
 ## <a name="Step1"></a>Étape 1 : création d’un référentiel local
-Effectuez les tâches suivantes pour créer un nouveau référentiel Git.
+Effectuer hello suivant de tâches toocreate un référentiel Git.
 
-1. Lancez un outil de ligne de commande, comme **GitBash** (Windows) ou **Bash** (Unix Shell). Sur les systèmes OS X, la ligne de commande est accessible depuis l'application **Terminal** .
-2. Accédez au répertoire où figure le contenu à déployer.
-3. Utilisez la commande suivante pour initialiser un nouveau référentiel Git :
+1. Lancez un outil de ligne de commande, comme **GitBash** (Windows) ou **Bash** (Unix Shell). Sur les systèmes OS X, vous pouvez accéder hello de ligne de commande via hello **Terminal** application.
+2. Accédez répertoire toohello où toodeploy de contenu hello serait localisé.
+3. Hello suivant commande tooinitialize un référentiel Git, utilisez :
 
 ```bash  
 git init
@@ -50,82 +50,82 @@ git init
 ## <a name="Step2"></a>Étape 2 : validation de votre contenu
 App Service prend en charge des applications créées dans différents langages de programmation. 
 
-1. Si votre référentiel inclut déjà du contenu, ignorez ce point et passez au point 2 ci-dessous. Si votre référentiel n'inclut pas encore de contenu, remplissez-le simplement avec un fichier .html statique comme suit : 
+1. Si votre référentiel contient déjà le contenu ignorer ce point et déplacer toopoint 2 ci-dessous. Si votre référentiel n'inclut pas encore de contenu, remplissez-le simplement avec un fichier .html statique comme suit : 
    
-   * À l'aide d'un éditeur de texte, créez un fichier nommé **index.html** à la racine du référentiel Git
-   * Ajoutez le texte suivant dans le fichier index.html et enregistrez ce dernier : *Hello Git!*
-2. Dans la ligne de commande, vérifiez que vous êtes bien à la racine de votre référentiel Git. Puis utilisez la commande suivante pour ajouter des fichiers à votre référentiel :
+   * À l’aide d’un éditeur de texte, créez un nouveau fichier nommé **index.html** à racine hello du référentiel Git de hello
+   * Ajouter hello après le texte comme contenu hello pour hello index.html fichier et enregistrez-le : *Hello Git !*
+2. À partir de hello de ligne de commande, vérifiez que vous êtes sous racine hello de votre référentiel Git. Utilisez ensuite hello suivant du référentiel de commande tooadd fichiers tooyour :
 
 ```bash  
 git add -A
 ```
-3. Ensuite, validez les modifications apportées au référentiel au moyen de la commande suivante :
+3. Ensuite, la validation hello modifications toohello référentiel à l’aide de hello de commande suivante :
 
 ```bash  
 git commit -m "Hello Azure App Service"
 ```  
 
-## <a name="Step3"></a>Étape 3 : activation du référentiel de l’application App Service
-Pour activer un référentiel Git pour votre application App Service, procédez comme suit.
+## <a name="Step3"></a>Étape 3 : Activer hello référentiel d’application de Service d’applications
+Effectuer hello suivant les étapes tooenable un référentiel Git pour votre application de Service d’applications.
 
-1. Connectez-vous au [portail Azure].
+1. Connectez-vous à toohello [Azure Portal].
 2. Dans le panneau de votre application App Service, cliquez sur **Paramètres > Source du déploiement**. Cliquez successivement sur **Choisir une source**, **Référentiel Git local** et **OK**.  
    
     ![Référentiel Git local](./media/app-service-deploy-local-git/local_git_selection.png)
-3. Si vous configurez un référentiel pour la première fois dans Azure, vous devez créer des informations d’identification de connexion pour ce référentiel. Vous les utiliserez pour vous connecter au référentiel Azure et pour envoyer les modifications depuis votre référentiel Git local. Dans le panneau de votre application, cliquez sur **Paramètres > Informations d’identification du déploiement**, puis configurez le nom d’utilisateur et le mot de passe de votre déploiement. Quand vous avez terminé, cliquez sur **Enregistrer**.
+3. S’il s’agit de votre premier paramètre de temps un référentiel dans Azure, vous devez toocreate informations d’identification pour celle-ci. Vous allez utiliser les toolog dans hello référentiel Azure et publier des modifications à partir de votre référentiel Git local. Dans le panneau de votre application, cliquez sur **Paramètres > Informations d’identification du déploiement**, puis configurez le nom d’utilisateur et le mot de passe de votre déploiement. Quand vous avez terminé, cliquez sur **Enregistrer**.
    
     ![](./media/app-service-deploy-local-git/deployment_credentials.png)
 
 ## <a name="Step4"></a>Étape 4 : déploiement de votre projet
-Pour publier votre application vers App Service à l’aide de Git local, procédez comme suit :
+Utilisez hello suivant les étapes toopublish votre tooApp app Service à l’aide de Git Local.
 
-1. Dans le portail Azure, dans le panneau de votre application, cliquez sur **Paramètres > Propriétés** pour l’**URL Git**.
+1. Dans le panneau de votre application Bonjour portail Azure, cliquez sur **Paramètres > Propriétés** pour hello **URL Git**.
    
     ![](./media/app-service-deploy-local-git/git_url.png)
    
-    **URL Git** est la référence hors programme vers laquelle vous effectuez le déploiement à partir de votre référentiel local. Vous utiliserez cette URL dans la procédure suivante.
-2. À l'aide de la ligne de commande, vérifiez que vous êtes bien à la racine de votre référentiel Git local.
-3. Utilisez `git remote` pour ajouter la référence hors programme répertoriée dans **URL Git** à l’étape 1. Votre commande ressemble à ce qui suit :
+    **URL GIT** est hello référence distante toodeploy toofrom votre référentiel local. Vous utiliserez cette URL de hello comme suit.
+2. Hello de ligne de commande, vérifiez que vous êtes dans la racine de hello de votre référentiel Git local.
+3. Utilisez `git remote` tooadd hello informations référence à distance répertorié dans **URL Git** à l’étape 1. Votre commande doit ressembler similaire toohello suivantes :
    
         git remote add azure https://<username>@localgitdeployment.scm.azurewebsites.net:443/localgitdeployment.git         
    > [!NOTE]
-   > La commande **remote** ajoute une référence nommée dans un référentiel distant. Dans cet exemple, une référence nommée « azure » est créée pour le référentiel de votre application web.
+   > Hello **distant** commande ajoute un référentiel distant tooa de référence nommée. Dans cet exemple, une référence nommée « azure » est créée pour le référentiel de votre application web.
    > 
    > 
-4. Diffusez votre contenu vers App Service à l'aide de la nouvelle référence **azure** distante que vous venez de créer.
+4. Push de votre contenu tooApp Service à l’aide de nouveau hello **azure** distant vous venez de créer.
 
 ```bash  
 git push azure master
 ```
-    You will be prompted for the password you created earlier when you reset your deployment credentials in the Azure Portal. Enter the password (note that Gitbash does not echo asterisks to the console as you type your password). 
-5. Revenez à votre application dans le portail Azure. Une entrée de journal de votre dernière diffusion push doit apparaître dans le panneau **Déploiements** . 
+    You will be prompted for hello password you created earlier when you reset your deployment credentials in hello Azure Portal. Enter hello password (note that Gitbash does not echo asterisks toohello console as you type your password). 
+5. Revenir en arrière application tooyour Bonjour portail Azure. Une entrée de journal de votre publication la plus récente doit être affichée dans hello **déploiements** panneau. 
    
     ![](./media/app-service-deploy-local-git/deployment_history.png)
-6. Cliquez sur le bouton **Parcourir** en haut du panneau de l'application pour vérifier que le contenu a été déployé. 
+6. Cliquez sur hello **Parcourir** bouton haut hello hello tooverify à panneau de l’application hello contenu a été déployé. 
 
 ## <a name="Step5"></a>Résolution des problèmes
-Voici les erreurs ou les problèmes rencontrés couramment lors de l’utilisation de Git pour publier vers une application App Service dans Azure :
+Hello Voici les erreurs ou des problèmes couramment rencontrés lors de l’utilisation de Git toopublish tooan application de Service de l’application dans Azure :
 
 - - -
-**Symptôme**: Impossible d'accéder à '[URL_du_site]' : Impossible de se connecter à [Adresse_scm]
+**Symptôme**: Impossible de tooaccess '[siteURL]' : Échec de tooconnect trop [scmAddress]
 
-**Cause**: Cette erreur peut se produire si l'application n'est pas opérationnelle.
+**Cause**: cette erreur peut se produire si l’application hello n’est pas en cours d’exécution.
 
-**Résolution**: démarrez l’application dans le portail Azure. Le déploiement Git ne fonctionne pas tant que l’application n’est pas en cours d’exécution. 
+**Résolution**: application hello de démarrage Bonjour portail Azure. Déploiement GIT ne fonctionne pas, sauf si l’application hello est en cours d’exécution. 
 
 - - -
 **Symptôme**: Impossible de résoudre l'hôte « nom_hôte »
 
-**Cause**: Cette erreur peut se produire si les informations d'adresse entrées au moment de la création du référentiel distant « azure » sont incorrectes.
+**Cause**: cette erreur peut se produire si les informations d’adresse hello entré lors de la création hello 'azure' distant était incorrect.
 
-**Résolution** : utilisez la commande `git remote -v` pour répertorier tous les référentiels distants avec l’URL associée. Vérifiez que l'URL du référentiel distant « azure » est correcte. Si nécessaire, supprimez et recréez ce référentiel distant au moyen de l’URL correcte.
+**Résolution**: hello d’utilisation `git remote -v` commande toolist toutes les bases de données distantes, ainsi que les URL hello associé. Vérifiez que les URL hello hello 'azure' distant est correct. Si nécessaire, supprimez et recréez ce distant à l’aide de l’URL appropriée hello.
 
 - - -
 **Symptôme**: aucune référence en commun, ni spécifiée ; aucune action effectuée. Perhaps you should specify a branch such as 'master'.
 
-**Cause**: Cette erreur peut se produire si vous ne spécifiez pas de branche au moment de l'exécution d'une opération git push et que vous n'avez pas défini la valeur push.default utilisée par Git.
+**Cause**: cette erreur peut se produire si vous ne pas spécifier une branche lors de l’exécution d’une opération de diffusion de git et ont la valeur not set hello push.default utilisé par Git.
 
-**Résolution**: Exécutez de nouveau l'opération Push, en spécifiant la branche principale. Par exemple :
+**Résolution**: effectuer l’opération hello push configuration de la branche maître hello. Par exemple :
 
 ```bash  
 git push azure master
@@ -133,9 +133,9 @@ git push azure master
 - - -
 **Symptôme**: src refspec [nom_branche] ne correspond à aucun élément.
 
-**Cause**: Cette erreur peut se produire si vous tentez d'effectuer une opération Push sur une autre branche que la branche principale sur le référentiel distant « azure ».
+**Cause**: cette erreur peut se produire si vous essayez de branche de tooa toopush autres que master sur hello 'azure' à distance.
 
-**Résolution**: Exécutez de nouveau l'opération Push, en spécifiant la branche principale. Par exemple :
+**Résolution**: effectuer l’opération hello push configuration de la branche maître hello. Par exemple :
 
 ```bash  
 git push azure master
@@ -143,22 +143,22 @@ git push azure master
 - - -
 **Symptôme** : échec RPC ; résultat=22, Code HTTP = 502.
 
-**Cause** : cette erreur peut se produire si vous essayez de transmettre un dépôt Git volumineux via HTTPS.
+**Cause**: cette erreur peut se produire si vous essayez de toopush un référentiel git volumineux sur HTTPS.
 
-**Résolution** : modifiez la configuration git sur l’ordinateur local pour agrandir le postBuffer.
+**Résolution**: modifier la configuration git hello sur hello ordinateur local toomake hello post-mémoire tampon plus grande
 
 ```bash  
 git config --global http.postBuffer 524288000
 ```
 - - -
-**Symptôme**: erreur : des modifications ont été validées dans le référentiel distant, mais votre application web n’a pas été mise à jour.
+**Symptôme**: erreur - référentiel tooremote validée de modifications, mais votre application web ne pas mis à jour.
 
 **Cause**: Cette erreur peut se produire si vous déployez une application Node.js contenant un fichier package.json spécifiant des modules obligatoires supplémentaires.
 
-**Résolution**: Des messages supplémentaires contenant « npm ERR! » doivent être consignés avant cette erreur et peuvent fournir davantage de contexte sur la défaillance. Voici les causes connues de cette erreur et le message « npm ERR! » correspondant :
+**Résolution**: Des messages supplémentaires contenant « npm ERR! doit être connecté toothis préalable erreur et peut fournir un contexte supplémentaire en cas d’échec hello. suivant de Hello est connues des causes de cette erreur et hello correspondant 'npm ERR !' » correspondant :
 
 * **Fichier package.json incorrect**: npm ERR! Couldn’t read dependencies.
-* **Un module natif qui n’a pas de distribution binaire pour Windows**:
+* **Native module that does not have a binary distribution for Windows**:
   
   * npm ERR! \`cmd "/c" "node-gyp rebuild"\` failed with 1
     
@@ -168,16 +168,16 @@ git config --global http.postBuffer 524288000
 ## <a name="additional-resources"></a>Ressources supplémentaires
 * [Documentation Git](http://git-scm.com/documentation)
 * [Documentation du projet Kudu](https://github.com/projectkudu/kudu/wiki)
-* [Déploiement continu vers Azure App Service](app-service-continuous-deployment.md)
-* [Comment utiliser PowerShell pour Azure](/powershell/azure/overview)
-* [Utilisation des outils en ligne de commande Azure](../cli-install-nodejs.md)
+* [TooAzure de déploiement d’un Service d’applications](app-service-continuous-deployment.md)
+* [Comment toouse PowerShell pour Azure](/powershell/azure/overview)
+* [Comment toouse hello Interface de ligne de commande de Azure](../cli-install-nodejs.md)
 
 [Azure App Service]: https://azure.microsoft.com/documentation/articles/app-service-changes-existing-services/
 [Azure Developer Center]: http://www.windowsazure.com/en-us/develop/overview/
-[portail Azure]: https://portal.azure.com
+[Azure Portal]: https://portal.azure.com
 [Git website]: http://git-scm.com
 [Installing Git]: http://git-scm.com/book/en/Getting-Started-Installing-Git
-[interface de ligne de commande Azure]: https://azure.microsoft.com/en-us/documentation/articles/xplat-cli-azure-resource-manager/
+[Interface de ligne de commande Azure]: https://azure.microsoft.com/en-us/documentation/articles/xplat-cli-azure-resource-manager/
 
 [Using Git with CodePlex]: http://codeplex.codeplex.com/wikipage?title=Using%20Git%20with%20CodePlex&referringTitle=Source%20control%20clients&ProjectName=codeplex
 [Quick Start - Mercurial]: http://mercurial.selenic.com/wiki/QuickStart

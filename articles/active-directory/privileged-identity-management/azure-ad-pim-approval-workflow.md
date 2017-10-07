@@ -1,5 +1,5 @@
 ---
-title: "Flux de travail d’approbation Azure Privileged Identity Management (PIM) | Microsoft Docs"
+title: "workflows d’approbation de la gestion Privileged Identity aaaAzure | Documents Microsoft"
 description: "En savoir plus sur les flux de travail d’approbation dans Privileged Identity Management (PIM)"
 services: active-directory
 documentationcenter: 
@@ -14,37 +14,37 @@ ms.workload: identity
 ms.date: 04/28/2017
 ms.author: barclayn
 ms.custom: pim
-ms.openlocfilehash: cf6a9213fa0a1cba8725aabb42abe51b805ece7a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4afaf5c138798a803eb3d3b7905b9361d65792cd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="approvals-preview"></a>Approbations (version préliminaire)
 
-## <a name="overview"></a>Vue d’ensemble
+## <a name="overview"></a>Vue d'ensemble
 
-Grâce aux approbations Privileged Identity Management, vous pouvez configurer des rôles afin de demander une approbation d’activation, et choisir un ou plusieurs utilisateurs ou groupes comme approbateurs délégués. Poursuivez pour découvrir comment configurer des rôles et sélectionner des approbateurs.
+Avec des approbations pour Privileged Identity Management, vous pouvez configurer l’approbation toorequire rôles pour l’activation et choisissez un ou plusieurs utilisateurs ou groupes approbateurs comme délégués. Poursuivez votre lecture toolearn comment tooconfigure rôles et de sélectionner les approbateurs.
 
 >[!NOTE]
-N’oubliez pas que cette fonctionnalité est en cours de développement et que vous pouvez rencontrer des bugs. La fonctionnalité, y compris le texte et les conventions d’affectation de noms, peut être modifiée et ne doit pas être considérée comme finale.
+N’oubliez pas que cette fonctionnalité est en cours de développement et que vous pouvez rencontrer des bugs. fonctionnalité de Hello, y compris le texte et les conventions d’affectation de noms sont susceptibles de changer et ne doivent pas être considérés finales.
 
 
 ## <a name="key-terminology"></a>Terminologie clé
 
-*Utilisateur de rôle éligible* : un utilisateur de rôle éligible est un utilisateur au sein de votre organisation affecté à un rôle Azure AD comme éligible (le rôle requiert une activation).
+*Utilisateur rôle éligible* – un utilisateur éligible rôle est un utilisateur au sein de votre organisation qui a été attribué rôle tooan Azure AD comme éligibles (rôle nécessite l’activation).
 
 *Approbateur délégué* : un approbateur délégué est une ou plusieurs personnes ou groupes au sein de votre Azure AD responsables de l’approbation des demandes d’activation de rôle.
 
 ## <a name="scenarios"></a>Scénarios
 
-La version préliminaire privée prend en charge les scénarios suivants :
+version préliminaire limitée de Hello prend en charge hello les scénarios suivants :
 
 **En tant qu’Administrateur de rôle privilégié (PRA), vous pouvez :**
 
 -   [activer l’approbation pour des rôles spécifiques](#enable-approval-for-specific-roles)
 
--   [spécifier les utilisateurs et/ou groupes approbateurs pour approuver des demandes](#specify-approver-users-and/or-groups-to-approve-requests)
+-   [spécifier les demandes de tooapprove les utilisateurs et/ou groupes approbateur](#specify-approver-users-and/or-groups-to-approve-requests)
 
 -   [afficher l’historique des demandes et approbations pour tous les rôles privilégiés](#view-request-and-approval-history-for-all-privileged-roles)
 
@@ -60,31 +60,31 @@ La version préliminaire privée prend en charge les scénarios suivants :
 
 -   [demander l’activation d’un rôle qui nécessite une approbation](#request-activation-of-a-role-that-requires-approval)
 
--   [afficher l’état de votre demande d’activation](#view-the-status-of-your-request-to-activate)
+-   [afficher l’état de votre demande de tooactivate hello](#view-the-status-of-your-request-to-activate)
 
 -   [exécuter la tâche dans Azure AD si l’activation a été approuvée](#complete-your-task-in-azure-ad-if-activation-was-approved)
 
 ### <a name="navigation"></a>Navigation
 
-Nous avons mis à jour la navigation pour prendre en charge les approbations
+Nous avons mis à jour les approbations de hello navigation toosupport
 
 ![](media/azure-ad-pim-approval-workflow/image001.png)
 
-La page d’accueil par défaut permet d’accéder facilement aux informations sur PIM et à la documentation des nouvelles approbations.
+page d’accueil par défaut Hello fournit tooinformation un accès aisé à propos de PIM et hello nouvelle documentation approbations.
 
 ![](media/azure-ad-pim-approval-workflow/image002.png)
 
-Nous avons également ajouté une nouvelle section pour tous les utilisateurs de PIM, « Mon historique d’audit ». Vous y trouverez toutes les informations relatives à votre identité. Celles-ci regroupent dans un emplacement pratique toutes vos demandes en attente et terminées, les décisions que vous avez prises sur les demandes que vous résolvez, et toutes vos activations de rôle passées.
+Nous avons également ajouté une nouvelle section pour tous les utilisateurs de PIM, « Mon historique d’audit ». Vous trouverez ici identité de tooyour applique toutes les hello plus d’informations. Cela inclut toutes les demandes en attente et terminées, les décisions sur les demandes hello vous résolvez et toutes vos activations rôle passées dans un emplacement pratique.
 
 ![](media/azure-ad-pim-approval-workflow/image003.png)
 
 ### <a name="enable-approval-for-specific-roles"></a>Activer l’approbation pour des rôles spécifiques
 
-Pour activer l’approbation pour un rôle spécifique, sélectionnez tout d’abord des rôles d’annuaire dans la navigation de gauche.
+approbation tooenable pour un rôle spécifique, sélectionnez tout d’abord les rôles d’annuaire à partir du volet de navigation gauche hello.
 
 ![](media/azure-ad-pim-approval-workflow/image004.png)
 
-Rechercher et sélectionner des paramètres dans la navigation de gauche des rôles d’annuaire
+Recherchez et sélectionnez Paramètres Bonjour de navigation gauche des rôles d’annuaire
 
 ![](media/azure-ad-pim-approval-workflow/image006.png)
 
@@ -92,49 +92,49 @@ Sélectionner des rôles privilégiés :
 
 ![](media/azure-ad-pim-approval-workflow/image009.png)
 
-Sélectionnez « Activer » dans la section d’approbation Exiger :
+Sélectionnez « Activer » Bonjour nécessitent la section sur l’approbation :
 
 ![](media/azure-ad-pim-approval-workflow/image011.png)
 
-Une fois activé, le panneau est développé pour afficher les détails suivants :
+Une fois activé, panneau de hello développera hello tooshow les détails suivants :
 
 ![](media/azure-ad-pim-approval-workflow/image013.png)
 
 >[!NOTE]
-Si vous ne spécifiez PAS d’approbateurs, les PRA deviennent les approbateurs par défaut. Les PRA doivent approuver TOUTES les demandes d’activation pour ce rôle.
+Si vous n’effectuez pas spécifiez des approbateurs, hello PRA(s) devenir l’ou les approbateurs hello par défaut. PRA(s) serait requise tooapprove d’activation de toutes les demandes de ce rôle.
 
-### <a name="specify-approver-users-andor-groups-to-approve-requests"></a>Spécifier les utilisateurs et/ou groupes approbateurs pour approuver des demandes
+### <a name="specify-approver-users-andor-groups-tooapprove-requests"></a>Spécifier les demandes de tooapprove les utilisateurs et/ou groupes approbateur
 
-Pour déléguer l’approbation, cliquez sur l’option « Sélectionner des approbateurs » :
+toodelegate approbation, cliquez sur hello option trop « sélectionner les approbateurs » :
 
 ![](media/azure-ad-pim-approval-workflow/image015.png)
 
-Dans le panneau Sélectionner des approbateurs qui s’ouvre, vous pouvez rechercher un utilisateur ou groupe spécifique à l’aide de la barre de recherche située en haut, ou en sélectionnant dans la liste préremplie, puis cliquer sur « Sélectionner » lorsque vous avez terminé :
+Lors du chargement de panneau d’approbateurs sélectionnez hello, vous pouvez rechercher un utilisateur spécifique ou un groupe à l’aide de la barre de recherche hello en haut de hello ou en sélectionnant dans la liste prédéfinie de hello, puis cliquez sur « Select » une fois :
 
 ![](media/azure-ad-pim-approval-workflow/image017.png)
 
 Remarque : vous pouvez sélectionner plusieurs utilisateurs ou groupes à la fois.
 
-Votre sélection apparaît dans la liste des approbateurs sélectionnés comme indiqué ci-dessous :
+La sélection apparaît dans la liste hello des approbateurs sélectionnés comme indiqué ci-dessous :
 
 ![](media/azure-ad-pim-approval-workflow/image019.png)
 
-Pour supprimer un approbateur, cliquez simplement sur le bouton Supprimer en regard de son nom.
+tooremove un approbateur, cliquez simplement sur le nom de tootheir suivant hello Remove bouton.
 
-Pour ajouter des approbateurs supplémentaires, répétez le processus.
+approbateurs supplémentaires tooadd, processus de répétition hello.
 
 ## <a name="view-request-and-approval-history-for-all-privileged-roles"></a>Afficher l’historique des demandes et approbations pour tous les rôles privilégiés
 
-Pour afficher l’historique des demandes et approbations pour tous les rôles privilégiés, sélectionnez Historique d’audit dans le tableau de bord :
+l’historique de demande et d’approbation tooview pour tous les rôles privilégiés, sélectionnez l’historique d’Audit à partir du tableau de bord hello :
 
 ![](media/azure-ad-pim-approval-workflow/image021.png)
 
 >[!NOTE]
-Vous pouvez trier les données par Action, puis recherchez « Activation approuvée »
+Vous pouvez trier les données de salutation par Action et recherchez « Activation approuvé »
 
 ### <a name="view-pending-approvals-requests"></a>Afficher les approbations (demandes) en attente
 
-En tant qu’approbateur délégué, vous recevez une notification par courrier électronique lorsqu’une demande est en attente d’approbation. Pour afficher ces requêtes dans le portail PIM, dans le tableau de bord (dans la nouvelle navigation), sélectionnez l’onglet « Demandes d’approbation en attente » dans la barre de navigation de gauche.
+En tant qu’approbateur délégué, vous recevez une notification par courrier électronique lorsqu’une demande est en attente d’approbation. tooview ces demandes dans le portail PIM hello, depuis l’onglet tableau de bord (dans une nouvelle navigation hello) sélectionnez hello » en attente demandes d’approbation » hello la barre de navigation gauche.
 
 ![](media/azure-ad-pim-approval-workflow/image023.png)
 
@@ -144,23 +144,23 @@ Une liste des demandes d’approbation en attente s’affiche ici :
 
 ### <a name="approve-or-reject-requests-for-role-elevation-single-andor-bulk"></a>Approuver ou rejeter des demandes d’élévation de rôle (unique et/ou en bloc)
 
-Sélectionnez les demandes que vous souhaitez approuver ou refuser, puis cliquez sur le bouton dans la barre d’action qui correspond à votre décision :
+Vous souhaitez tooapprove ou refusez les demandes de hello, puis cliquez sur le bouton hello dans la barre d’action qui correspond à votre décision :
 
 ![](media/azure-ad-pim-approval-workflow/image025.png)
 
 ### <a name="provide-justification-for-my-approvalrejection"></a>Justifier mon approbation/rejet
 
-Un nouveau panneau s’ouvre, dans lequel vous pouvez approuver ou refuser plusieurs demandes simultanément. Entrez une justification de votre choix, puis cliquez sur Approuver (ou Refuser) au bas du panneau :
+Cela ouvre une nouvelle tooapprove de panneau ou refuser plusieurs demandes à la fois. Entrer une justification de votre choix et cliquez sur Approuver (ou refuser) au bas de hello ou panneau de hello :
 
 ![](media/azure-ad-pim-approval-workflow/image029.png)
 
-Une fois le processus de demande terminé, le symbole d’état reflète la décision que vous avez prise (dans cet exemple, Approuver) :
+Lorsque le processus de demande de hello est terminée, symbole d’état hello reflète la décision (dans cet exemple, la décision de hello est approuver) :
 
 ![](media/azure-ad-pim-approval-workflow/image031.png)
 
 ### <a name="request-activation-of-a-role-that-requires-approval"></a>Demander l’activation d’un rôle qui nécessite une approbation
 
-La demande d’activation d’un rôle qui nécessite une approbation peut être effectuée dans l’ancienne navigation de PIM ou dans la nouvelle, car le processus d’activation d’un rôle est identique. Sélectionnez simplement un rôle dans la liste des rôles à activer :
+Demander l’activation d’un rôle qui nécessite l’approbation peut être lancée à partir de la navigation de PIM ancien hello, ou d’une nouvelle navigation hello, en tant que processus hello pour le reste de l’activation de rôle hello identiques. Il suffit de sélectionner un rôle à partir de la liste de hello des rôles pour activer :
 
 ![](media/azure-ad-pim-approval-workflow/image033.png)
 
@@ -172,24 +172,24 @@ Lorsque vous avez terminé, cliquez sur Activer et entrez une justification (si 
 
 ![](media/azure-ad-pim-approval-workflow/image037.png)
 
-Une notification indiquant que la demande est en attente d’approbation est envoyée au demandeur :
+demandeur de Hello s’affiche une notification indiquant que hello demande en attente d’approbation :
 
 ![](media/azure-ad-pim-approval-workflow/image039.png)
 
-### <a name="view-the-status-of-your-request-to-activate"></a>Afficher l’état de votre demande d’activation
+### <a name="view-hello-status-of-your-request-tooactivate"></a>Afficher l’état de votre demande de tooactivate hello
 
-L’état d’une demande d’activation en attente doit être consulté à partir de la nouvelle navigation. Dans la barre de navigation de gauche, sélectionnez l’onglet « My Requests » (Mes demandes) :
+Affichage de l’état de hello d’une demande en attente de tooactivate doit être accessible à partir de la nouvelle navigation. À partir de la barre de navigation gauche hello, sélectionnez l’onglet de « Mes demandes » hello :
 
 ![](media/azure-ad-pim-approval-workflow/image041.png)
 
-L’état de la demande par défaut est « En attente », mais vous pouvez basculer pour afficher toutes les demandes ou les demandes refusées.
+état de la demande Hello par défaut est trop « « en attente », mais vous pouvez basculer toosee tous les ou refuser les demandes.
 
 ### <a name="complete-your-task-in-azure-ad-if-activation-was-approved"></a>Exécuter la tâche dans Azure AD si l’activation a été approuvée
 
-Une fois la demande approuvée, le rôle est actif et vous pouvez effectuer les tâches qui requièrent ce rôle.
+Une fois que hello demande est approuvée, rôle de hello est actif et vous pouvez continuer avec n’importe quel travail qui requiert ce rôle.
 
 ![](media/azure-ad-pim-approval-workflow/image043.png)
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Vos commentaires sont précieux pour nous. N’hésitez pas à nous faire part ici de vos commentaires !
+Vos commentaires nous sont précieux toous. Vous pouvez tooshare libre commentaires ou des commentaires nous ici !

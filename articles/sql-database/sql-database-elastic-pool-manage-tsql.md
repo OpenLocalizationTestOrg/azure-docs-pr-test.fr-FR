@@ -1,6 +1,6 @@
 ---
 title: "T-SQL : Gérer un pool élastique Azure SQL Database | Microsoft Docs"
-description: "Utilisez T-SQL pour gérer un pool élastique Azure SQL Database."
+description: "Utilisez T-SQL toomanage un pool élastique de base de données SQL Azure."
 services: sql-database
 documentationcenter: 
 author: srinia
@@ -15,46 +15,46 @@ ms.tgt_pltfrm: NA
 ms.workload: data-management
 ms.date: 05/27/2016
 ms.author: srinia
-ms.openlocfilehash: c6b64e4a7fd91283a37a792b294965064d653003
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 666f131b2c88849a1a9ea83381bbc27548e93599
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="monitor-and-manage-an-elastic-pool-with-transact-sql"></a>Surveiller et gérer un pool élastique avec Transact-SQL
-Cette rubrique vous montre comment créer des [pools élastiques](sql-database-elastic-pool.md) évolutifs avec Transact-SQL.  Vous pouvez également créer et gérer un pool élastique Azure avec le [Portail Azure](https://portal.azure.com/), [PowerShell](sql-database-elastic-pool-manage-powershell.md), l’API REST ou [C#](sql-database-elastic-pool-manage-csharp.md). Vous pouvez également créer et déplacer des bases de données vers et depuis des pools élastiques à l’aide de [Transact-SQL](sql-database-elastic-pool-manage-tsql.md).
+Cette rubrique vous montre comment toomanage évolutive [pools élastiques](sql-database-elastic-pool.md) avec Transact-SQL.  Vous pouvez également créer et gérer un hello Azure pool élastique [portail Azure](https://portal.azure.com/), [PowerShell](sql-database-elastic-pool-manage-powershell.md), hello API REST, ou [c#](sql-database-elastic-pool-manage-csharp.md). Vous pouvez également créer et déplacer des bases de données vers et depuis des pools élastiques à l’aide de [Transact-SQL](sql-database-elastic-pool-manage-tsql.md).
 
 
-Utilisez les commandes [Create Database (Azure SQL Database)](https://msdn.microsoft.com/library/dn268335.aspx) et [Alter Database(Azure SQL Database)](https://msdn.microsoft.com/library/mt574871.aspx) pour créer et déplacer les bases de données dans et en dehors des pools élastiques. Le pool élastique doit exister avant de pouvoir utiliser ces commandes. Ces commandes affectent uniquement les bases de données. La création de nouveaux pools et le paramétrage des propriétés du pool (telles qu’eDTU min. et max.) ne peuvent pas être modifiés avec les commandes T-SQL.
+Hello d’utilisation [Create Database (base de données de SQL Azure)](https://msdn.microsoft.com/library/dn268335.aspx) et [Alter de Database(Azure SQL Database)](https://msdn.microsoft.com/library/mt574871.aspx) commandes toocreate et déplacement des bases de données vers et depuis les pools élastiques. pool élastique de Hello doit exister avant de pouvoir utiliser ces commandes. Ces commandes affectent uniquement les bases de données. La création de nouveaux pools hello paramètre et des propriétés du pool (par exemple, Edtu min et max) ne peut pas être modifié avec les commandes T-SQL.
 
 ## <a name="create-a-pooled-database-in-an-elastic-pool"></a>Créer une base de données regroupée dans un pool élastique
-Utilisez la commande CREATE DATABASE avec l’option SERVICE_OBJECTIVE.   
+Utilisez la commande de créer la base de données de hello avec l’option de SERVICE_OBJECTIVE de hello.   
 
     CREATE DATABASE db1 ( SERVICE_OBJECTIVE = ELASTIC_POOL (name = [S3M100] ));
     -- Create a database named db1 in an elastic named S3M100.
 
-Toutes les bases de données d’un pool élastique héritent du niveau de service du pool élastique (De base, Standard, Premium). 
+Toutes les bases de données dans un pool élastique héritent de niveau de service hello du pool élastique de hello (Basic, Standard, Premium). 
 
 ## <a name="move-a-database-between-elastic-pools"></a>Déplacer une base de données entre les pools élastiques
-Utilisez la commande ALTER DATABASE avec l’option MODIFY puis définissez l’option SERVICE\_OBJECTIVE sur ELASTIC\_POOL. Définissez le nom sur le nom du pool cible.
+Utilisez la commande ALTER DATABASE hello avec hello modifier et configurer SERVICE\_option OBJECTIVE élastique\_POOL. Définir le hello nom toohello nom de pool de cible hello.
 
     ALTER DATABASE db1 MODIFY ( SERVICE_OBJECTIVE = ELASTIC_POOL (name = [PM125] ));
-    -- Move the database named db1 to an elastic named P1M125  
+    -- Move hello database named db1 tooan elastic named P1M125  
 
 ## <a name="move-a-database-into-an-elastic-pool"></a>Déplacer une base de données dans un pool élastique
-Utilisez la commande ALTER DATABASE avec l’option MODIFY puis définissez l’option SERVICE\_OBJECTIVE sur ELASTIC_POOL. Définissez le nom sur le nom du pool cible.
+Utilisez la commande ALTER DATABASE hello avec hello modifier et configurer SERVICE\_option OBJECTIVE comme ELASTIC_POOL. Définir le hello nom toohello nom de pool de cible hello.
 
     ALTER DATABASE db1 MODIFY ( SERVICE_OBJECTIVE = ELASTIC_POOL (name = [S3100] ));
-    -- Move the database named db1 to an elastic named S3100.
+    -- Move hello database named db1 tooan elastic named S3100.
 
 ## <a name="move-a-database-out-of-an-elastic-pool"></a>Déplacer une base de données hors d’un pool élastique
-Utilisez la commande ALTER DATABASE et définir l’option SERVICE_OBJECTIVE sur l’un des niveaux de performances (par exemple S0 ou S1).
+Utilisez la commande ALTER DATABASE hello et tooone SERVICE_OBJECTIVE hello hello des niveaux de performances (par exemple, S0 ou S1).
 
     ALTER DATABASE db1 MODIFY ( SERVICE_OBJECTIVE = 'S1');
-    -- Changes the database into a stand-alone database with the service objective S1.
+    -- Changes hello database into a stand-alone database with hello service objective S1.
 
 ## <a name="list-databases-in-an-elastic-pool"></a>Répertorier les bases de données dans un pool élastique
-Utilisez la vue [sys.database\_service \_objectives](https://msdn.microsoft.com/library/mt712619) pour répertorier toutes les bases de données dans un pool élastique. Connectez-vous à la base de données MASTER pour interroger la vue.
+Hello d’utilisation [sys.database\_service \_objectifs vue](https://msdn.microsoft.com/library/mt712619) toolist tous hello des bases de données dans un pool élastique. Ouvrez une session dans toohello master vue de base de données tooquery hello.
 
     SELECT d.name, slo.*  
     FROM sys.databases d 
@@ -63,17 +63,17 @@ Utilisez la vue [sys.database\_service \_objectives](https://msdn.microsoft.com/
     WHERE elastic_pool_name = 'MyElasticPool'; 
 
 ## <a name="get-resource-usage-data-for-an-elastic-pool"></a>Obtenir les données d’utilisation des ressources d’un pool élastique
-Utilisez la vue [sys.elastic\_pool \_resource \_stats](https://msdn.microsoft.com/library/mt280062.aspx) pour examiner les statistiques d’utilisation des ressources d’un pool élastique sur un serveur logique. Connectez-vous à la base de données MASTER pour interroger la vue.
+Hello d’utilisation [sys.elastic\_pool \_ressource \_affichage de statistiques](https://msdn.microsoft.com/library/mt280062.aspx) tooexamine hello ressource les statistiques d’un pool élastique sur un serveur logique. Ouvrez une session dans toohello master vue de base de données tooquery hello.
 
     SELECT * FROM sys.elastic_pool_resource_stats 
     WHERE elastic_pool_name = 'MyElasticPool'
     ORDER BY end_time DESC;
 
 ## <a name="get-resource-usage-for-a-pooled-database"></a>Obtenir les données d’utilisation des ressources d’une base de données mise en pool
-Utilisez la vue [sys.dm\_ db\_ resource\_stats](https://msdn.microsoft.com/library/dn800981.aspx) ou [sys.resource \_stats](https://msdn.microsoft.com/library/dn269979.aspx) pour examiner les statistiques d’utilisation des ressources d’une base de données dans un pool élastique. Ce processus revient à interroger l’utilisation des ressources pour une base de données unique.
+Hello d’utilisation [sys.dm\_ db\_ ressource\_affichage de statistiques](https://msdn.microsoft.com/library/dn800981.aspx) ou [sys.resource \_affichage de statistiques](https://msdn.microsoft.com/library/dn269979.aspx) tooexamine hello ressource les statistiques d’une base de données dans un pool élastique. Ce processus est l’utilisation des ressources tooquerying similaires pour une base de données.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Après avoir créé un pool élastique, vous pouvez gérer des bases de données élastiques du pool en créant des tâches élastiques. Les tâches élastiques facilitent l'exécution de scripts T-SQL, quel que soit le nombre de bases de données dans le pool. Pour en savoir plus, consultez [Vue d'ensemble des tâches de base de données élastiques](sql-database-elastic-jobs-overview.md). 
+Après avoir créé un pool élastique, vous pouvez gérer des bases de données élastiques dans le pool de hello en créant des travaux élastique. Travaux élastique facilite les scripts T-SQL en cours d’exécution par rapport à n’importe quel nombre de bases de données dans le pool de hello. Pour en savoir plus, consultez [Vue d'ensemble des tâches de base de données élastiques](sql-database-elastic-jobs-overview.md). 
 
-Consultez [Montée en charge avec la base de données SQL Azure](sql-database-elastic-scale-introduction.md): utilisez les outils de base de données élastique pour monter en charge, déplacer des données, exécuter des requêtes ou créer des transactions.
+Consultez [montée en puissance parallèle avec la base de données SQL Azure](sql-database-elastic-scale-introduction.md): utiliser tooscale d’outils de base de données élastique out, de déplacer des données, la requête ou la création des transactions.
 

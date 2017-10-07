@@ -1,6 +1,6 @@
 ---
-title: "Notes de publication du Kit de développement logiciel (SDK) web Azure Mobile Engagement | Microsoft Docs"
-description: "Les dernières mises à jour et procédures du Kit de développement logiciel (SDK) web pour Azure Mobile Engagement"
+title: "notes de version de kit de développement logiciel de Mobile Engagement Web aaaAzure | Documents Microsoft"
+description: "Hello les dernières mises à jour et les procédures pour le Kit de développement Web pour Azure Mobile Engagement"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,11 +14,11 @@ ms.devlang: js
 ms.topic: article
 ms.date: 10/18/2016
 ms.author: piyushjo
-ms.openlocfilehash: dc90620d284bdcae888b990f55191be18b29d6f5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a082f1fec07341b5cc06efe50512c2dcf01ec1df
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-mobile-engagement-web-sdk-release-notes"></a>Notes de publication du Kit de développement logiciel (SDK) web Azure Mobile Engagement
 ## <a name="202-10182016"></a>2.0.2 (10/18/2016)
@@ -26,16 +26,16 @@ ms.lasthandoff: 07/11/2017
 * Résolution d’un incident sur les navigateurs avec cookies désactivés.
 
 ## <a name="201-6102016"></a>2.0.1 (10/06/2016)
-* Désactivation du Kit de développement logiciel (SDK) dans Internet Explorer 8 et Internet Explorer 9.
+* Hello désactivé SDK dans Internet Explorer 8 et Internet Explorer 9.
 * Réparation de la détection du navigateur web Opera.
 
 ## <a name="200-672016"></a>2.0.0 (6/7/2016)
 * Publication d’Azure Mobile Engagement.
-* Mise à jour afin que la configuration de `appId` soit remplacée par une configuration de chaîne de connexion.
-* Ajout d’API pour activer et désactiver l’agent.
+* Mise à jour afin que hello `appId` configuration est remplacée par une configuration de chaîne de connexion.
+* Ajouté API tooenable et désactiver hello agent.
 * Apport d’améliorations de sécurité.
-* Mise à jour pour utiliser des API JSON natives à partir des navigateurs.
-* Suppression de l’API qui envoie et reçoit des messages entre appareils.
-* Suppression des rappels liés à la connexion XMPP déconseillée.
-* Suppression de la prise en charge de la fonctionnalité Reach.
+* Toouse mis à jour des API natives JSON à partir de navigateurs.
+* Supprimé API hello qui envoie et reçoit des messages entre les appareils.
+* Toohello connexes de rappels supprimé déconseillée connexion de XMPP.
+* Supprimé de la prise en charge pour la fonctionnalité de couverture hello.
 

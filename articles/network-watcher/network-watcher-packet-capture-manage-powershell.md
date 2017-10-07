@@ -1,6 +1,6 @@
 ---
-title: "Gérer les captures de paquets avec Azure Network Watcher - PowerShell | Microsoft Docs"
-description: "Cette page explique comment gérer la fonctionnalité de capture de paquets de Network Watcher à l’aide de PowerShell"
+title: "captures de paquets d’aaaManage d’observateur de réseau Azure - PowerShell | Documents Microsoft"
+description: "Cette page explique comment les paquets hello de toomanage capturer la fonctionnalité de l’Observateur réseau à l’aide de PowerShell"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: abd3b3641da80ee835fac85b4bde68594449e451
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 77a522a1b05e020a73ba7140c1410615eb8761da
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-packet-captures-with-azure-network-watcher-using-powershell"></a>Gérer les captures de paquets avec Azure Network Watcher à l’aide de PowerShell
 
@@ -29,9 +29,9 @@ ms.lasthandoff: 07/11/2017
 > - [CLI 2.0](network-watcher-packet-capture-manage-cli.md)
 > - [API REST Azure](network-watcher-packet-capture-manage-rest.md)
 
-La fonctionnalité de capture des paquets Network Watcher vous permet de créer des sessions de capture afin d’effectuer le suivi du trafic en direction et en provenance d’une machine virtuelle. Les filtres sont fournis pour la session de capture afin de vous garantir que vous capturez uniquement le trafic souhaité. La capture des paquets permet de diagnostiquer les anomalies réseau de manière proactive et réactive. Elle permet aussi de collecter des statistiques réseau, d’obtenir des informations sur les intrusions, de déboguer des communications client-serveur, etc. En déclenchant à distance des captures de paquets, cette fonctionnalité simplifie l’exécution manuelle de la capture de paquets sur l’ordinateur souhaité, ce qui permet d’économiser un temps précieux.
+Capture de paquets de l’Observateur réseau vous permet de toocreate capture sessions tootrack trafic tooand à partir d’un ordinateur virtuel. Les filtres sont fournies pour tooensure de session de capture hello que vous capturer le trafic hello seulement que vous le souhaitez. Capture des paquets permet des anomalies de réseau toodiagnose proactive et réactive. Autres utilisations incluent la collecte des statistiques de réseau, obtenir des informations sur les intrusions, toodebug client-serveur de communications et bien plus encore. En étant en mesure de tooremotely déclencheur paquet captures, cette fonctionnalité facilite hello de l’exécution d’une capture de paquets sur l’ordinateur souhaité hello, qui permet d’économiser un temps précieux et manuellement.
 
-Cet article passe en revue les différentes tâches de gestion actuellement disponibles pour la capture de paquets.
+Cet article passe en revue hello différentes tâches de gestion qui sont actuellement disponibles pour la capture des paquets.
 
 - [**Démarrer une capture de paquets**](#start-a-packet-capture)
 - [**Arrêter une capture de paquets**](#stop-a-packet-capture)
@@ -40,14 +40,14 @@ Cet article passe en revue les différentes tâches de gestion actuellement disp
 
 ## <a name="before-you-begin"></a>Avant de commencer
 
-Cet article part du principe que vous disposez des ressources suivantes :
+Cet article suppose que vous avez hello suivant des ressources :
 
-* Une instance de Network Watcher dans la région où vous souhaitez créer une capture de paquets
+* Une instance de l’Observateur réseau dans la région de hello souhaité toocreate une capture de paquets
 
-* Une machine virtuelle avec l’extension de capture de paquets activée.
+* Une machine virtuelle avec les paquets hello capturer extension activée.
 
 > [!IMPORTANT]
-> La capture de paquets requiert une extension de machine virtuelle `AzureNetworkWatcherExtension`. Pour installer l’extension sur une machine virtuelle Windows, consultez la page [Azure Network Watcher Agent virtual machine extension for Windows](../virtual-machines/windows/extensions-nwa.md) (Extension de machine virtuelle Azure Network Watcher Agent pour Windows). Pour une machine virtuelle Linux, consultez la page [Azure Network Watcher Agent virtual machine extension for Linux](../virtual-machines/linux/extensions-nwa.md) (Extension de machine virtuelle Azure Network Watcher Agent pour Linux).
+> La capture de paquets requiert une extension de machine virtuelle `AzureNetworkWatcherExtension`. Pour installer l’extension de hello sur une machine virtuelle Windows, visitez [extension de machine virtuelle d’Agent de l’Observateur réseau Azure pour Windows](../virtual-machines/windows/extensions-nwa.md) et de, visitez Linux VM [extension de machine virtuelle Azure réseau Observateur Agent pour Linux](../virtual-machines/linux/extensions-nwa.md).
 
 ## <a name="install-vm-extension"></a>Installer une extension de machine virtuelle
 
@@ -59,10 +59,10 @@ $VM = Get-AzureRmVM -ResourceGroupName testrg -Name VM1
 
 ### <a name="step-2"></a>Étape 2
 
-L’exemple suivant récupère les informations d’extension nécessaires pour exécuter l’applet de commande `Set-AzureRmVMExtension`. Cette applet de commande installe l’agent de capture de paquets sur la machine virtuelle invitée.
+exemple suivant récupère hello informations d’extension Hello nécessaire toorun hello `Set-AzureRmVMExtension` applet de commande. Cette applet de commande installe l’agent de capture de paquets hello sur ordinateur virtuel hello.
 
 > [!NOTE]
-> L’applet de commande `Set-AzureRmVMExtension` peut prendre plusieurs minutes.
+> Hello `Set-AzureRmVMExtension` applet de commande peut prendre plusieurs minutes toocomplete.
 
 Pour les machines virtuelles Windows :
 
@@ -80,7 +80,7 @@ $ExtensionName = "AzureNetworkWatcherExtension"
 Set-AzureRmVMExtension -ResourceGroupName $VM.ResourceGroupName  -Location $VM.Location -VMName $VM.Name -Name $ExtensionName -Publisher $AzureNetworkWatcherExtension.PublisherName -ExtensionType $AzureNetworkWatcherExtension.Type -TypeHandlerVersion $AzureNetworkWatcherExtension.Version.Substring(0,3)
 ````
 
-L’exemple suivant est une réponse correcte après l’exécution d’applet de commande `Set-AzureRmVMExtension`.
+Bonjour exemple suivant est une réponse correcte après l’exécution de hello `Set-AzureRmVMExtension` applet de commande.
 
 ```
 RequestId IsSuccessStatusCode StatusCode ReasonPhrase
@@ -88,15 +88,15 @@ RequestId IsSuccessStatusCode StatusCode ReasonPhrase
                          True         OK OK   
 ```
 
-### <a name="step-3"></a>Étape 3
+### <a name="step-3"></a>Étape 3 :
 
-Pour vous assurer que l’agent est installé, exécutez l’applet de commande `Get-AzureRmVMExtension` et transmettez-lui le nom de la machine virtuelle et le nom de l’extension.
+tooensure qui hello agent est installé, exécutez hello `Get-AzureRmVMExtension` applet de commande et passer le nom d’ordinateur virtuel hello hello nom et extension.
 
 ```powershell
 Get-AzureRmVMExtension -ResourceGroupName $VM.ResourceGroupName  -VMName $VM.Name -Name $ExtensionName
 ```
 
-L’exemple suivant montre la réponse à l’exécution de `Get-AzureRmVMExtension`
+Hello suivant l’exemple est un exemple de réponse hello en cours d’exécution`Get-AzureRmVMExtension`
 
 ```
 ResourceGroupName       : testrg
@@ -120,11 +120,11 @@ ForceUpdateTag          :
 
 ## <a name="start-a-packet-capture"></a>Démarrer une capture de paquets
 
-Une fois les étapes précédentes terminées, l’agent de capture de paquets est installé sur la machine virtuelle.
+Une fois hello étapes précédentes terminées, l’agent de capture de paquets hello est installé sur l’ordinateur virtuel de hello.
 
-### <a name="step-1"></a>Étape 1 :
+### <a name="step-1"></a>Étape 1
 
-L’étape suivante consiste à récupérer l’instance Network Watcher. Cette variable est transmise à l’applet de commande `New-AzureRmNetworkWatcherPacketCapture` lors de l’étape 4.
+étape suivante de Hello est instance de l’Observateur réseau tooretrieve hello. Cette variable est passée toohello `New-AzureRmNetworkWatcherPacketCapture` applet de commande à l’étape 4.
 
 ```powershell
 $nw = Get-AzurermResource | Where {$_.ResourceType -eq "Microsoft.Network/networkWatchers" -and $_.Location -eq "WestCentralUS" }
@@ -133,15 +133,15 @@ $networkWatcher = Get-AzureRmNetworkWatcher -Name $nw.Name -ResourceGroupName $n
 
 ### <a name="step-2"></a>Étape 2
 
-Récupérez un compte de stockage. Ce compte de stockage permet de stocker le fichier de capture de paquets.
+Récupérez un compte de stockage. Ce compte de stockage est un fichier de capture de paquets hello toostore utilisé.
 
 ```powershell
 $storageAccount = Get-AzureRmStorageAccount -ResourceGroupName testrg -Name testrgsa123
 ```
 
-### <a name="step-3"></a>Étape 3
+### <a name="step-3"></a>Étape 3 :
 
-Des filtres peuvent être utilisés pour limiter les données stockées par la capture des paquets. L’exemple suivant définit deux filtres.  Un filtre collecte le trafic TCP sortant uniquement à partir de l’adresse IP locale 10.0.0.3 vers les ports de destination 20, 80 et 443.  Le second filtre collecte uniquement le trafic UDP.
+Filtres peuvent être des données hello toolimit utilisé qui sont stockées par la capture des paquets hello. Hello exemple suivant définit deux filtres.  Collecte d’un filtre sortant TCP le trafic uniquement à partir de l’adresse IP locale 10.0.0.3 toodestination ports 20, 80 et 443.  deuxième filtre de Hello collecte uniquement le trafic UDP.
 
 ```powershell
 $filter1 = New-AzureRmPacketCaptureFilterConfig -Protocol TCP -RemoteIPAddress "1.1.1.1-255.255.255" -LocalIPAddress "10.0.0.3" -LocalPort "1-65535" -RemotePort "20;80;443"
@@ -153,13 +153,13 @@ $filter2 = New-AzureRmPacketCaptureFilterConfig -Protocol UDP
 
 ### <a name="step-4"></a>Étape 4
 
-Exécutez l’applet de commande `New-AzureRmNetworkWatcherPacketCapture` pour démarrer le processus de capture de paquets, en transmettant les valeurs requises récupérées dans les étapes précédentes.
+Exécutez hello `New-AzureRmNetworkWatcherPacketCapture` applet de commande toostart hello paquet processus de capture, passer les valeurs hello requis récupérées Bonjour étapes précédentes.
 ```powershell
 
 New-AzureRmNetworkWatcherPacketCapture -NetworkWatcher $networkWatcher -TargetVirtualMachineId $vm.Id -PacketCaptureName "PacketCaptureTest" -StorageAccountId $storageAccount.id -TimeLimitInSeconds 60 -Filters $filter1, $filter2
 ```
 
-L’exemple suivant est la sortie attendue de l’exécution de l’applet de commande `New-AzureRmNetworkWatcherPacketCapture`.
+exemple suivant Hello est sortie de hello attendu de l’exécution de hello `New-AzureRmNetworkWatcherPacketCapture` applet de commande.
 
 ```
 Name                    : PacketCaptureTest
@@ -199,13 +199,13 @@ Filters                 : [
 
 ## <a name="get-a-packet-capture"></a>Obtenir une capture de paquets
 
-L’exécution de l’applet de commande `Get-AzureRmNetworkWatcherPacketCapture` extrait le statut d’une capture de paquets en cours d’exécution ou terminée.
+En cours d’exécution hello `Get-AzureRmNetworkWatcherPacketCapture` applet de commande récupère l’état hello d’une capture de paquets en cours d’exécution ou terminé.
 
 ```powershell
 Get-AzureRmNetworkWatcherPacketCapture -NetworkWatcher $networkWatcher -PacketCaptureName "PacketCaptureTest"
 ```
 
-L’exemple suivant présente la sortie de l’applet de commande `Get-AzureRmNetworkWatcherPacketCapture`. L’exemple suivant est postérieur à la capture. La valeur PacketCaptureStatus est Stopped, et la valeur StopReason est TimeExceeded. Cela indique que la capture de paquets a réussi et s’est correctement exécutée.
+exemple Hello est sortie hello hello `Get-AzureRmNetworkWatcherPacketCapture` applet de commande. Hello exemple suivant est une fois la capture de hello est terminée. Hello PacketCaptureStatus valeur avec un StopReason de TimeExceeded est arrêté. Cette valeur indique que la capture des paquets hello a réussi et son exécution.
 ```
 Name                    : PacketCaptureTest
 Id                      : /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/NetworkWatcherRG/providers/Microsoft.Network/networkWatcher
@@ -246,14 +246,14 @@ PacketCaptureError      : []
 
 ## <a name="stop-a-packet-capture"></a>Arrêter une capture de paquets
 
-Lors de l’exécution de l’applet de commande `Stop-AzureRmNetworkWatcherPacketCapture`, toute session de capture en cours est arrêtée.
+En exécutant hello `Stop-AzureRmNetworkWatcherPacketCapture` applet de commande, si une session de capture est en cours d’exécution, il est arrêté.
 
 ```powershell
 Stop-AzureRmNetworkWatcherPacketCapture -NetworkWatcher $networkWatcher -PacketCaptureName "PacketCaptureTest"
 ```
 
 > [!NOTE]
-> L’applet de commande ne retourne aucune réponse lorsqu’elle est exécutée dans une session de capture en cours d’exécution ou dans une session existante déjà arrêtée.
+> applet de commande Hello ne retourne pas de réponse lorsque s’exécutait sur une session de capture en cours d’exécution ou une session existante qui a déjà été arrêté.
 
 ## <a name="delete-a-packet-capture"></a>Supprimer une capture de paquets
 
@@ -262,13 +262,13 @@ Remove-AzureRmNetworkWatcherPacketCapture -NetworkWatcher $networkWatcher -Packe
 ```
 
 > [!NOTE]
-> La suppression d’une capture de paquets ne supprime pas le fichier dans le compte de stockage.
+> Suppression d’une capture de paquets ne supprime pas le fichier hello hello compte de stockage.
 
 ## <a name="download-a-packet-capture"></a>Télécharger une capture de paquets
 
-Une fois votre session de capture de paquets terminée, le fichier de capture peut être téléchargé vers le stockage d’objets blob ou dans un fichier local sur la machine virtuelle. L’emplacement de stockage de la capture de paquets est défini lors de la création de la session. L’explorateur de stockage Microsoft Azure est un outil très pratique pour accéder à ces fichiers de capture enregistrés dans un compte de stockage. Vous pouvez le télécharger ici : http://storageexplorer.com/
+Une fois terminé, votre session de capture de paquets hello capture fichier peut être téléchargé tooblob tooa ou stockage local sur hello machine virtuelle. emplacement de stockage Hello de capture de paquets hello est définie lors de la création de la session de hello. Un outil pratique de tooaccess ces fichiers de capture de compte de stockage tooa enregistré est Microsoft Azure Storage Explorer, qui peut être téléchargée ici : http://storageexplorer.com/
 
-Si un compte de stockage est spécifié, les fichiers de capture de paquets sont enregistrés dans un compte de stockage à l’emplacement suivant :
+Si un compte de stockage est spécifié, les fichiers de capture de paquet sont enregistrés compte de stockage tooa hello l’emplacement suivant :
 
 ```
 https://{storageAccountName}.blob.core.windows.net/network-watcher-logs/subscriptions/{subscriptionId}/resourcegroups/{storageAccountResourceGroup}/providers/microsoft.compute/virtualmachines/{VMName}/{year}/{month}/{day}/packetCapture_{creationTime}.cap
@@ -276,7 +276,7 @@ https://{storageAccountName}.blob.core.windows.net/network-watcher-logs/subscrip
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Découvrez comment automatiser les captures de paquets avec des alertes de machine virtuelle en consultant [Create an alert triggered packet capture (Créer une capture de paquets déclenchée par alerte)](network-watcher-alert-triggered-packet-capture.md)
+Découvrez comment de captures de paquets de tooautomate d’alertes de l’ordinateur virtuel en consultant [créer une capture de paquets déclenchées alerte](network-watcher-alert-triggered-packet-capture.md)
 
 Recherchez si certains types de trafic sont autorisés au sein ou en dehors de votre machine virtuelle en consultant [Check IP flow verify (Vérifier les flux IP)](network-watcher-check-ip-flow-verify-portal.md)
 

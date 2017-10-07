@@ -1,5 +1,5 @@
 ---
-title: "Gérer les paramètres de la vérification en deux étapes | Microsoft Docs"
+title: "aaaManage vos paramètres de vérification en deux étapes | Documents Microsoft"
 description: "Gérez l’utilisation d’Azure Multi-Factor Authentication, notamment la modification des informations de contact ou la configuration des appareils."
 services: multi-factor-authentication
 keywords: "client de l'authentification multifacteur, problème d'authentification, ID de corrélation"
@@ -16,56 +16,56 @@ ms.topic: article
 ms.date: 05/23/2017
 ms.author: kgremban
 ms.custom: end-user
-ms.openlocfilehash: f752fb19e4ff2f831d50104e9c7d5f42cc3486d9
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2c974b08c584943f3c5a6b9bf16497d1706e8329
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-your-settings-for-two-step-verification"></a>Gérer les paramètres de la vérification en deux étapes
-Cet article répond aux questions en rapport avec la mise à jour des paramètres de Multi-Factor Authentication ou de la vérification en deux étapes. Si vous rencontrez des problèmes de connexion à votre compte, consultez [Problèmes avec la vérification en deux étapes](multi-factor-authentication-end-user-troubleshoot.md) pour obtenir de l’aide.
+Cet article répond aux questions concernant les paramètres de tooupdate pour l’authentification multifacteur ou de vérification en deux étapes. Si vous rencontrez des problèmes de connexion tooyour compte, consultez trop[rencontre des problèmes avec la vérification en deux étapes](multi-factor-authentication-end-user-troubleshoot.md) pour la résolution des problèmes.
 
-## <a name="where-to-find-the-settings-page"></a>Où trouver la page des paramètres
+## <a name="where-toofind-hello-settings-page"></a>Où toofind hello page Paramètres
 Selon la façon dont vous utilisez Azure Multi-Factor Authentication, vous pouvez modifier vos paramètres (comme votre numéro de téléphone) de différentes manières.
 
-Si votre administrateur informatique vous a envoyé une URL spécifique ou des étapes pour gérer la vérification en deux étapes, suivez ces instructions. Dans le cas contraire, suivez celles indiquées ci-dessous. Si vous effectuez ces étapes et que vous ne voyez pas les mêmes options, cela signifie que votre entreprise ou établissement scolaire a personnalisé le portail. Demandez à l’administrateur de vous donner le lien à votre portail Azure Multi-Factor Authentication.
+Si votre administrateur informatique envoyé une URL spécifique ou de la vérification en deux étapes de toomanage étapes, suivez ces instructions. Dans le cas contraire, suivant les instructions de hello doit fonctionner pour les autres. Si vous suivez ces étapes, mais ne pas afficher hello les mêmes options, ce qui signifie que votre entreprise ou école portail personnalisé de leur propres. Demandez à votre administrateur pour le portail de l’authentification multifacteur Azure hello lien tooyour.
 
-1. Connectez-vous à [https://myapps.microsoft.com](https://myapps.microsoft.com).  
-2. Sélectionnez votre nom de compte dans la partie supérieure droite, puis sélectionnez **profil**.  
+1. Connectez-vous trop[https://myapps.microsoft.com](https://myapps.microsoft.com)  
+2. Sélectionnez le nom de votre compte dans hello en haut à droite, puis sélectionnez **profil**.  
 3. Sélectionnez **Vérification de sécurité supplémentaire**.  
 
     ![MyApps](./media/multi-factor-authentication-end-user-manage/myapps1.png)
-4. La page Vérification de sécurité supplémentaire se charge avec vos paramètres.
+4. charge de la page de vérification de sécurité supplémentaires de Hello avec vos paramètres.
 
     ![Vérification](./media/multi-factor-authentication-end-user-manage/proofup.png)
 
-## <a name="i-want-to-change-my-phone-number-or-add-a-secondary-number"></a>Je souhaite modifier mon numéro de téléphone ou ajouter un numéro secondaire
-Il est important de configurer un numéro de téléphone d’authentification secondaire.  Étant donné que vous utilisez probablement le même téléphone pour votre numéro de téléphone principal et votre application mobile, le numéro de téléphone secondaire est le seul moyen dont vous disposez pour revenir à votre compte en cas de perte ou de vol de votre téléphone.
+## <a name="i-want-toochange-my-phone-number-or-add-a-secondary-number"></a>Souhaitée toochange mon numéro de téléphone, ou ajouter un numéro secondaire
+Il est important tooconfigure un numéro de téléphone d’authentification secondaire.  Étant donné que le nombre et votre application mobile de téléphone de votre serveur principal sont probablement sur hello même de téléphone, numéro de téléphone secondaire de hello est le seul moyen de la hello vous serez en mesure de tooget dans votre compte si votre téléphone est perdu ou volé.
 
 > [!NOTE]
-> Si vous n’avez pas accès à votre numéro de téléphone principal et que vous avez besoin d’aide pour accéder à votre compte, consultez nos rubriques d’aide dans [Problèmes avec la vérification en deux étapes](multi-factor-authentication-end-user-troubleshoot.md).  
+> Si vous n’ont le numéro de téléphone principal accès tooyour et avez besoin d’aide dans tooyour compte, consultez notre rubriques d’aide dans [rencontre des problèmes avec la vérification en deux étapes](multi-factor-authentication-end-user-troubleshoot.md).  
 
-**Pour modifier votre numéro de téléphone principal :**  
+**toochange numéro de téléphone de votre serveur principal :**  
 
-1. Dans la page Vérification de sécurité supplémentaire, sélectionnez la zone de texte contenant votre numéro de téléphone et tapez votre nouveau numéro.  
+1. Sur la page de vérification de sécurité supplémentaires de hello, sélectionnez la zone de texte hello avec votre numéro de téléphone et le modifier avec votre nouveau numéro de téléphone.  
 2. Sélectionnez **Enregistrer**.  
-3. Si ce numéro constitue votre option de vérification préférée, vous devez vérifier le nouveau numéro avant de pouvoir l’enregistrer.  
+3. Numéro de hello que vous utilisez pour votre option préférée de vérification, vous avez nouveau numéro de tooverify hello avant que vous pouvez l’enregistrer.  
 
-**Pour ajouter un numéro de téléphone secondaire :**  
+**tooadd un numéro de téléphone secondaire :**  
 
-1. Dans la page Vérification de sécurité supplémentaire, cochez la case **Autre téléphone d’authentification**.  
-2. Entrez votre numéro de téléphone secondaire dans la zone de texte.  
+1. Sur la page de vérification de sécurité supplémentaires de hello, hello case à cocher ensuite trop**autre téléphone d’authentification.**  
+2. Entrez votre numéro de téléphone secondaire dans la zone de texte hello.  
 3. Sélectionnez **Enregistrer**. Vos modifications sont apportées.  
 
 ## <a name="require-two-step-verification-again-on-a-device-youve-marked-as-trusted"></a>Exiger une nouvelle vérification en deux étapes sur un appareil marqué comme approuvé
 
-Selon les paramètres de votre organisation, vous pouvez disposer d’une case à cocher libellée « Ne plus me le demander pendant **X** jours » lorsque vous effectuez une vérification en deux étapes sur votre navigateur. Si vous cochez cette case, puis que vous perdez votre appareil ou que vous pensez que l’intégrité de votre compte est compromise, vous devez restaurer la vérification en deux étapes pour tous vos appareils. 
+Selon les paramètres de votre organisation, vous pouvez disposer d’une case à cocher libellée « Ne plus me le demander pendant **X** jours » lorsque vous effectuez une vérification en deux étapes sur votre navigateur. Si vous activez cette case à cocher et perdez votre appareil ou pensez que votre compte est compromis, vous devez restaurer vos appareils tooall de vérification en deux étapes. 
 
-1. Sur la page de vérification de sécurité supplémentaire, sélectionnez l’option **Restaurer Multi-Factor Authentication sur des appareils précédemment définis comme étant de confiance**.
-2. La prochaine fois que vous vous connecterez sur l’un des appareils, vous serez invité à effectuer une vérification en deux étapes. 
+1. Sur la page de vérification de sécurité supplémentaires de hello, sélectionnez **l’authentification multifacteur de restauration sur les appareils déjà de confiance**.
+2. Hello prochaine que connexion sur n’importe quel appareil, vous serez invité à tooperform en deux étapes vérification. 
 
-## <a name="how-do-i-clean-up-microsoft-authenticator-from-my-old-device-and-move-to-a-new-one"></a>Comment nettoyer Microsoft Authenticator sur mon ancien appareil et le transférer vers un autre ?
-Quand vous désinstallez l’application de votre appareil ou que vous réinitialisez ce dernier, l’application n’est pas désactivée sur le serveur principal. Pour plus d’informations, consultez [Microsoft Authenticator](microsoft-authenticator-app-how-to.md).
+## <a name="how-do-i-clean-up-microsoft-authenticator-from-my-old-device-and-move-tooa-new-one"></a>Comment nettoyer Microsoft Authenticator à partir de mon appareil ancien et déplacer tooa nouveau ?
+Lorsque vous désinstallez l’application hello à partir de votre appareil ou un périphérique hello de réinitialisation, elle ne supprime pas l’activation de hello principal hello. Pour plus d’informations, consultez [Microsoft Authenticator](microsoft-authenticator-app-how-to.md).
 
 ## <a name="next-steps"></a>Étapes suivantes
 * Obtenir des conseils de dépannage et de l’aide dans [Problèmes avec la vérification en deux étapes](multi-factor-authentication-end-user-troubleshoot.md)

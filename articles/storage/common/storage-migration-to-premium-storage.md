@@ -1,6 +1,6 @@
 ---
-title: Migration de machines virtuelles vers le stockage Azure Premium | Microsoft Docs
-description: "Migrez vos machines virtuelles existantes vers le stockage Azure Premium. Premium Storage offre une prise en charge très performante et à faible latence des disques pour les charges de travail utilisant beaucoup d'E/S exécutées sur les machines virtuelles Azure."
+title: "machines virtuelles d’aaaMigrating tooAzure stockage Premium | Documents Microsoft"
+description: "Migrez votre tooAzure de machines virtuelles existante stockage Premium. Premium Storage offre une prise en charge très performante et à faible latence des disques pour les charges de travail utilisant beaucoup d'E/S exécutées sur les machines virtuelles Azure."
 services: storage
 documentationcenter: na
 author: yuemlu
@@ -14,50 +14,50 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/27/2017
 ms.author: yuemlu
-ms.openlocfilehash: ca893f87b155a92c457e3bf6d9d39aaf86bf5fb3
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 19aaf2b7594e570f5a964baa00958a7a8eaae97b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="migrating-to-azure-premium-storage-unmanaged-disks"></a>Migration vers le stockage Azure Premium (disques non gérés)
+# <a name="migrating-tooazure-premium-storage-unmanaged-disks"></a>Migration tooAzure Premium stockage (disques non managées)
 
 > [!NOTE]
-> Cet article explique comment migrer une machine virtuelle qui utilise des disques standard non gérés vers une machine virtuelle qui utilise des disques premium non gérés. Nous vous recommandons d’utiliser Azure Managed Disks pour les nouvelles machines virtuelles et de convertir vos anciens disques non gérés en disques gérés. Azure Managed Disks gère les comptes de stockage sous-jacents à votre place. Pour plus d’informations, consultez [Vue d’ensemble d’Azure Managed Disks](../../virtual-machines/windows/managed-disks-overview.md).
+> Cet article explique comment toomigrate une machine virtuelle qui utilise des disques standard non managé tooa ordinateur virtuel qui utilise non managée disques premium. Nous vous recommandons d’utiliser des disques de Azure géré pour les nouvelles machines virtuelles, et que vous convertissez vos disques toomanaged de disques non managé précédente. Géré les comptes de stockage sous-jacent de disques handle hello afin que vous n’êtes pas obligé. Pour plus d’informations, consultez [Vue d’ensemble d’Azure Managed Disks](../../virtual-machines/windows/managed-disks-overview.md).
 >
 
-Azure Premium Storage offre une prise en charge très performante et à faible latence des disques pour les machines virtuelles exécutant des charges de travail qui utilisent beaucoup d'E/S. Vous pouvez migrer les disques de machine virtuelle de votre application dans Azure Premium Storage pour tirer parti de la vitesse et des performances de ces disques.
+Azure Premium Storage offre une prise en charge très performante et à faible latence des disques pour les machines virtuelles exécutant des charges de travail qui utilisent beaucoup d'E/S. Vous pouvez tirer parti de la vitesse de hello et les performances de ces disques en effectuant une migration tooAzure de disques de machine virtuelle de votre application stockage Premium.
 
-L’objectif de ce guide est d’aider les nouveaux utilisateurs d’Azure Premium Storage à mieux se préparer pour effectuer une transition en douceur de leur système actuel vers Premium Storage. Le guide traite des trois composants clés inclus dans ce processus :
+Hello de ce guide vise toohelp nouveaux utilisateurs de stockage Azure Premium mieux préparer toomake une transition en douceur de leur tooPremium système actuel stockage. guide de Hello traite des trois composants clés de hello dans ce processus :
 
-* [Planification de la migration vers Premium Storage](#plan-the-migration-to-premium-storage)
-* [Préparation et copie de disques durs virtuels (VHD) vers le stockage Premium](#prepare-and-copy-virtual-hard-disks-VHDs-to-premium-storage)
+* [Planifier la Migration de hello tooPremium stockage](#plan-the-migration-to-premium-storage)
+* [Préparer et copier les disques durs virtuels (VHD) tooPremium stockage](#prepare-and-copy-virtual-hard-disks-VHDs-to-premium-storage)
 * [Création d’une machine virtuelle Azure utilisant Premium Storage](#create-azure-virtual-machine-using-premium-storage)
 
-Vous pouvez migrer des machines virtuelles d’autres plateformes vers Azure Premium Storage ou migrer des machines virtuelles Azure existantes du stockage Standard vers le stockage Premium. Ce guide décrit les étapes pour les deux scénarios. Suivez les étapes spécifiées dans la section appropriée selon votre scénario.
+Vous pouvez migrer des machines virtuelles à partir d’autres plateformes de tooAzure stockage Premium ou migrer des machines virtuelles Azure existantes à partir du stockage Standard tooPremium stockage. Ce guide décrit les étapes pour les deux scénarios. Suivez les étapes de hello spécifiés dans la section pertinentes de hello en fonction de votre scénario.
 
 > [!NOTE]
-> Vous pouvez consulter un aperçu des fonctionnalités et de la tarification dans [Premium Storage : stockage hautes performances pour les charges de travail des machines virtuelles Azure](storage-premium-storage.md). Nous vous recommandons de migrer les disques de machine virtuelle nécessitant un nombre élevé d’IOPS dans Azure Premium Storage pour que votre application bénéficie de performances optimales. Si votre disque ne nécessite pas un nombre élevé d'IOPS, vous pouvez limiter les coûts en le conservant dans le stockage Standard qui stocke les données de disque de machine virtuelle sur des disques durs et non des disques SSD.
+> Vous pouvez consulter un aperçu des fonctionnalités et de la tarification dans [Premium Storage : stockage hautes performances pour les charges de travail des machines virtuelles Azure](storage-premium-storage.md). Nous vous recommandons de migrer n’importe quel disque de machine virtuelle nécessitant une haute IOPS tooAzure stockage Premium pour optimiser les performances hello pour votre application. Si votre disque ne nécessite pas un nombre élevé d'IOPS, vous pouvez limiter les coûts en le conservant dans le stockage Standard qui stocke les données de disque de machine virtuelle sur des disques durs et non des disques SSD.
 >
 
-L’exécution du processus de migration dans son intégralité peut nécessiter des actions supplémentaires précédant et suivant les étapes fournies dans ce guide. Par exemple, la configuration de réseaux virtuels ou de points de terminaison ou l’intégration de modifications de code dans l’application elle-même, ce qui peut nécessiter un certain temps d’indisponibilité dans votre application. Ces actions sont propres à chaque application, et vous devez les exécuter en plus des étapes indiquées dans ce guide pour effectuer la transition complète vers Premium Storage de manière aussi transparente que possible.
+Fin du processus de migration hello dans son intégralité peut nécessiter des actions supplémentaires avant et après les étapes hello fournies dans ce guide. Configuration des réseaux virtuels ou des points de terminaison ou l’apport de modifications du code au sein de l’application hello elle-même et ce qui peut nécessiter un temps d’arrêt dans votre application sont des exemples. Ces actions sont tooeach unique à l’application, et elles doivent être exécutées en même temps que les étapes de hello fournies dans cette tooPremium de transition complète guide toomake hello plus transparent possible du stockage.
 
-## <a name="plan-the-migration-to-premium-storage"></a>Planification de la migration vers Premium Storage
-Cette section vous permet de vous assurer que vous êtes prêt à suivre les étapes de migration de cet article et vous permet de prendre la bonne décision sur les types de machines virtuelles et de disques.
+## <a name="plan-the-migration-to-premium-storage"></a>Planifier la migration de hello tooPremium stockage
+Cette section permet de s’assurer que vous êtes prêt toofollow étapes de migration hello dans cet article et vous aide à toomake hello meilleure décision sur les types de machine virtuelle et le disque.
 
 ### <a name="prerequisites"></a>Composants requis
 * Vous aurez besoin d’un abonnement Azure. Si vous n’en avez pas, vous pouvez souscrire un abonnement pour un [essai gratuit](https://azure.microsoft.com/pricing/free-trial/) d’un mois ou visiter [Tarification Azure](https://azure.microsoft.com/pricing/) pour plus d’options.
-* Pour exécuter les applets de commande PowerShell, vous avez besoin du module Microsoft Azure PowerShell. Consultez la rubrique [Installation et configuration d’Azure PowerShell](/powershell/azure/overview) pour des instructions sur l’installation et le point d’installation.
-* Lorsque vous prévoyez d’utiliser des machines virtuelles Azure exécutées sur Premium Storage, vous devez utiliser les machines virtuelles compatibles Premium Storage. Vous pouvez utiliser des disques de Stockage Standard et Premium avec les machines virtuelles compatibles avec Premium Storage. Les disques de stockage Premium seront bientôt disponibles avec plusieurs types de machines virtuelles. Pour plus d’informations sur les tailles et les types de disque de machine virtuelle Azure disponibles, consultez [Tailles des machines virtuelles](../../virtual-machines/windows/sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) et [Tailles des services cloud](../../cloud-services/cloud-services-sizes-specs.md).
+* tooexecute applets de commande PowerShell, vous aurez besoin de module de Microsoft Azure PowerShell hello. Consultez [comment tooinstall et configurer Azure PowerShell](/powershell/azure/overview) Pourquoi installer instructions d’installation et de point.
+* Lorsque vous planifiez des machines virtuelles Azure de toouse en cours d’exécution sur le stockage Premium, vous devez toouse hello machines virtuelles capables de stockage Premium. Vous pouvez utiliser des disques de Stockage Standard et Premium avec les machines virtuelles compatibles avec Premium Storage. Les disques de stockage Premium sera disponibles avec plusieurs types de machine virtuelle Bonjour futures. Pour plus d’informations sur les tailles et les types de disque de machine virtuelle Azure disponibles, consultez [Tailles des machines virtuelles](../../virtual-machines/windows/sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) et [Tailles des services cloud](../../cloud-services/cloud-services-sizes-specs.md).
 
 ### <a name="considerations"></a>Considérations
-Une machine virtuelle Azure prend en charge l’association de plusieurs disques Premium Storage afin que vos applications puissent avoir jusqu'à 256 To de stockage par machine virtuelle. Avec Premium Storage, vos applications peuvent atteindre jusqu'à 80 000 IOPS (opérations d'E/S par seconde) par machine virtuelle et un débit de disque de 2 000 Mo par seconde, avec une latence extrêmement faible pour les opérations de lecture. Vous disposez de diverses options de machines virtuelles et disques. Cette section est là pour vous aider à trouver l’option qui correspond le mieux à votre charge de travail.
+Une machine virtuelle Azure prend en charge l’attachement de plusieurs disques de stockage Premium afin que vos applications peuvent avoir jusqu'à to too256 de stockage par la machine virtuelle. Avec Premium Storage, vos applications peuvent atteindre jusqu'à 80 000 IOPS (opérations d'E/S par seconde) par machine virtuelle et un débit de disque de 2 000 Mo par seconde, avec une latence extrêmement faible pour les opérations de lecture. Vous disposez de diverses options de machines virtuelles et disques. Cette section est toohelp toofind une option qui convient le mieux à votre charge de travail.
 
 #### <a name="vm-sizes"></a>Tailles de machine virtuelle
-Les spécifications des tailles des machines virtuelles Azure sont répertoriées dans la section [Tailles des machines virtuelles](../../virtual-machines/windows/sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). Passez en revue les caractéristiques de performances des machines virtuelles fonctionnant avec Premium Storage et choisissez la taille de machine virtuelle la mieux adaptée à votre charge de travail. Assurez-vous que la bande passante disponible est suffisante sur votre machine virtuelle pour gérer le trafic du disque.
+spécifications de taille de machine virtuelle Azure Hello sont répertoriées dans [tailles des machines virtuelles](../../virtual-machines/windows/sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). Passez en revue les caractéristiques de performances hello d’ordinateurs virtuels qui fonctionnent avec un stockage Premium et choisissez hello plus approprié taille de machine virtuelle qui convient le mieux à votre charge de travail. Assurez-vous qu’il y suffisamment de bande passante disponible sur votre trafic de disque de machine virtuelle toodrive hello.
 
 #### <a name="disk-sizes"></a>Tailles du disque
-Il existe cinq types de disque qui peuvent être utilisés avec votre machine virtuelle et chacun d’eux présentant des limites d’E/S par seconde et de débits spécifiques. Prenez en compte ces limites lors de la sélection du type de disque pour votre machine virtuelle en fonction des besoins de votre application en termes de capacité, de performances, d’extensibilité et de charges maximales.
+Il existe cinq types de disque qui peuvent être utilisés avec votre machine virtuelle et chacun d’eux présentant des limites d’E/S par seconde et de débits spécifiques. Prenez en compte ces limites lorsqu’en choisissant le type de disque hello pour votre machine virtuelle en fonction des besoins de hello de votre application en termes de capacité, les performances, l’évolutivité, et des pics.
 
 | Type de disque Premium  | P10   | P20   | P30            | P40            | P50            | 
 |:-------------------:|:-----:|:-----:|:--------------:|:--------------:|:--------------:|
@@ -65,58 +65,58 @@ Il existe cinq types de disque qui peuvent être utilisés avec votre machine vi
 | IOPS par disque       | 500   | 2 300  | 5 000           | 7500           | 7500           | 
 | Débit par disque | 100 Mo par seconde | 150 Mo par seconde | 200 Mo par seconde | 250 Mo par seconde | 250 Mo par seconde |
 
-En fonction de votre charge de travail, déterminez si les disques de données supplémentaires sont nécessaires pour votre machine virtuelle. Vous pouvez joindre plusieurs disques de données persistantes à votre machine virtuelle. Si nécessaire, vous pouvez répartir les données sur les disques pour augmenter la capacité et les performances du volume. (Découvrez ce qu’est l’entrelacement de disques [ici](storage-premium-storage-performance.md#disk-striping).) Si vous équilibrez les disques de données Stockage Premium à l’aide des [espaces de stockage][4], vous devez les configurer avec une colonne pour chaque disque utilisé. Dans le cas contraire, les performances globales du volume agrégé par bandes peuvent être limitées, en raison d'une distribution inégale du trafic sur les disques. Pour les machines virtuelles Linux, vous pouvez utiliser l’utilitaire *mdadm* pour obtenir le même résultat. Consultez l’article [Configuration d’un RAID logiciel sur Linux](../../virtual-machines/linux/configure-raid.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) pour plus d’informations.
+En fonction de votre charge de travail, déterminez si les disques de données supplémentaires sont nécessaires pour votre machine virtuelle. Vous pouvez attacher plusieurs tooyour de disques de données persistantes machine virtuelle. Si nécessaire, vous pouvez répartir sur la capacité de hello disques tooincrease hello et les performances du volume de hello. (Découvrez ce qu’est l’entrelacement de disques [ici](storage-premium-storage-performance.md#disk-striping).) Si vous équilibrez les disques de données Stockage Premium à l’aide des [espaces de stockage][4], vous devez les configurer avec une colonne pour chaque disque utilisé. Dans le cas contraire, hello globalement les performances du volume de hello agrégés par bande peuvent être inférieure que prévu en raison de la distribution toouneven du trafic sur les disques hello. Pour les machines virtuelles Linux, vous pouvez utiliser hello *mdadm* utilitaire tooachieve hello identiques. Consultez l’article [Configuration d’un RAID logiciel sur Linux](../../virtual-machines/linux/configure-raid.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) pour plus d’informations.
 
 #### <a name="storage-account-scalability-targets"></a>Objectifs d’évolutivité de compte de stockage
-Les comptes de stockage Premium ont les objectifs d’évolutivité suivants en plus des [Objectifs d’évolutivité et de performances de stockage Azure](storage-scalability-targets.md). Si les besoins de votre application dépassent les objectifs d’évolutivité d’un compte de stockage unique, générez votre application pour qu’elle utilise plusieurs comptes de stockage et partitionnez vos données sur ces comptes.
+Comptes de stockage Premium ont hello suivant les objectifs d’évolutivité dans Ajout toohello [évolutivité du stockage Azure et les objectifs de performances](storage-scalability-targets.md). Si les exigences de votre application dépassent les objectifs d’évolutivité hello d’un compte de stockage unique, générez votre toouse application plusieurs comptes de stockage et partitionner vos données sur ces comptes de stockage.
 
 | Capacité totale des comptes | Bande passante totale pour un compte de stockage localement redondant |
 |:--- |:--- |
-| Capacité du disque : 35 To<br />Capacité d’instantané : 10 To |Jusqu'à 50 Go par seconde pour les données entrantes/sortantes |
+| Capacité du disque : 35 To<br />Capacité d’instantané : 10 To |Les too50 les gigabits par seconde pour entrante + sortante |
 
-Pour plus d’informations sur les spécifications de Premium Storage, consultez la page [Objectifs d’évolutivité et de performances lors de l’utilisation de Premium Storage](storage-premium-storage.md#scalability-and-performance-targets).
+Pour hello plus d’informations sur les spécifications de stockage Premium, consultez [objectifs d’évolutivité et performances lors de l’utilisation du stockage Premium](storage-premium-storage.md#scalability-and-performance-targets).
 
 #### <a name="disk-caching-policy"></a>Stratégie de mise en cache du disque
-Par défaut, la stratégie de mise en cache est *Lecture seule* pour tous les disques de données Premium et *Lecture-écriture* pour le disque du système d’exploitation Premium attaché à la machine virtuelle. Ce paramètre de configuration est recommandé pour optimiser les performances des E/S de votre application. Pour les disques de données en écriture seule ou avec d'importantes opérations d'écriture (par ex., les fichiers journaux de SQL Server), désactivez la mise en cache du disque pour de meilleures performances de l'application. Les paramètres du cache pour les disques de données existants peuvent être mis à jour à l’aide du [portail Azure Portal](https://portal.azure.com) ou du paramètre *-HostCaching* de l’applet de commande *Set-AzureDataDisk*.
+Par défaut, la mise en cache de stratégie est *en lecture seule* pour tous les hello disques de données Premium, et *en lecture-écriture* hello Premium système d’exploitation attaché toohello machine virtuelle. Ce paramètre de configuration est recommandé tooachieve hello des performances optimales IOs de votre application. Pour les disques de données en écriture seule ou avec d'importantes opérations d'écriture (par ex., les fichiers journaux de SQL Server), désactivez la mise en cache du disque pour de meilleures performances de l'application. paramètres de cache de Hello pour les disques de données existants peuvent être mis à jour à l’aide de [Azure Portal](https://portal.azure.com) ou hello *- HostCaching* paramètre Hello *Set-AzureDataDisk* applet de commande.
 
 #### <a name="location"></a>Lieu
-Choisissez un emplacement où le stockage Azure Premium est disponible. Pour obtenir des informations à jour sur les emplacements disponibles, consultez [Services Azure par région](https://azure.microsoft.com/regions/#services) . Les machines virtuelles situées dans la même région que le compte de stockage qui stocke les disques de la machine virtuelle offrent des performances bien meilleures que si elles se trouvent dans des régions distinctes.
+Choisissez un emplacement où le stockage Azure Premium est disponible. Pour obtenir des informations à jour sur les emplacements disponibles, consultez [Services Azure par région](https://azure.microsoft.com/regions/#services) . Machines virtuelles situées dans hello même région de hello compte de stockage que les magasins hello disques pour hello VM donnera de meilleures performances que si elles figurent dans les régions séparées.
 
 #### <a name="other-azure-vm-configuration-settings"></a>Autres paramètres de configuration de machine virtuelle Azure
-Lorsque vous créez une machine virtuelle Azure, vous devez en configurer certains paramètres. N’oubliez pas : certains paramètres sont fixes pour la durée de vie de la machine virtuelle, tandis que d’autres peuvent être modifiés ou ajoutés ultérieurement. Passez en revue les paramètres de configuration des machines virtuelles Azure et assurez-vous qu’ils sont correctement configurés pour répondre aux besoins de votre charge de travail.
+Lorsque vous créez une machine virtuelle Azure, vous serez invité tooconfigure certains paramètres. N’oubliez pas, certains paramètres sont fixes pour la durée de vie hello Hello machine virtuelle, tandis que vous pouvez modifier ou ajouter d’autres plus tard. Passez en revue ces paramètres de configuration de machine virtuelle Azure et vous assurer qu’ils sont configurés correctement toomatch vos charges de travail.
 
 ### <a name="optimization"></a>Optimisation
-[Azure Premium Storage : conception sous le signe de la haute performance](storage-premium-storage-performance.md) fournit des instructions pour la création d’applications hautes performances avec Azure Premium Storage. Vous pouvez suivre les instructions parallèlement aux bonnes pratiques de performances applicables aux technologies utilisées par votre application.
+[Azure Premium Storage : conception sous le signe de la haute performance](storage-premium-storage-performance.md) fournit des instructions pour la création d’applications hautes performances avec Azure Premium Storage. Vous pouvez suivre les instructions hello combinées avec des performances tootechnologies d’applicable meilleures de pratiques intégré utilisé par votre application.
 
-## <a name="prepare-and-copy-virtual-hard-disks-VHDs-to-premium-storage"></a>Préparation et copie de disques durs virtuels (VHD) vers le stockage Premium
-La section suivante fournit des instructions pour la préparation des disques durs virtuels à partir de votre machine virtuelle et la copie des disques durs virtuels vers le stockage Azure.
+## <a name="prepare-and-copy-virtual-hard-disks-VHDs-to-premium-storage"></a>Préparer et copier les disques durs virtuels (VHD) tooPremium stockage
+Hello suivant la section fournit des instructions pour la préparation des disques durs virtuels à partir de votre machine virtuelle et la copie des disques durs virtuels tooAzure stockage.
 
-* [Scénario 1 : « Migration des machines virtuelles Azure existantes vers Azure Premium Storage. »](#scenario1)
-* [Scénario 2 : « Migration de machines virtuelles depuis d’autres plateformes vers Azure Premium Storage ».](#scenario2)
+* [Scénario 1 : « je migre existant tooAzure de machines virtuelles Azure Premium Storage. »](#scenario1)
+* [Scénario 2 : « je suis migration d’ordinateurs virtuels à partir d’autres plateformes de tooAzure stockage Premium. »](#scenario2)
 
 ### <a name="prerequisites"></a>Composants requis
-Pour préparer les disques durs virtuels pour la migration, vous devez :
+tooprepare hello disques durs virtuels pour la migration, vous devez :
 
-* Un abonnement Azure, un compte de stockage et un conteneur dans ce compte de stockage sur lequel vous pouvez copier votre disque dur virtuel. Notez que le compte de stockage de destination peut être un compte de stockage Standard ou Premium selon vos besoins.
-* Un outil pour généraliser le disque dur virtuel si vous envisagez de créer plusieurs instances de machine virtuelle à partir de celui-ci. Par exemple, sysprep pour Windows ou virt-sysprep pour Ubuntu.
-* Un outil pour télécharger le fichier de disque dur virtuel sur le compte de stockage. Consultez [Transfert de données avec l’utilitaire de ligne de commande AzCopy](storage-use-azcopy.md) ou utilisez [l’explorateur Azure Storage](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/03/11/windows-azure-storage-explorers-2014.aspx). Ce guide décrit la copie de votre disque dur virtuel à l’aide de l’outil AzCopy.
+* Un abonnement Azure, un compte de stockage et un conteneur de stockage du compte toowhich, vous pouvez copier votre disque dur virtuel. Notez que le compte de stockage de destination hello peut être un compte Standard ou Premium Storage, selon vos besoins.
+* Un Bonjour de toogeneralize outil disque dur virtuel si vous envisagez de toocreate plusieurs instances de machine virtuelle à partir de celui-ci. Par exemple, sysprep pour Windows ou virt-sysprep pour Ubuntu.
+* Un outil tooupload hello VHD fichier toohello compte de stockage. Consultez [transférer des données avec l’utilitaire de ligne de commande AzCopy de hello](storage-use-azcopy.md) ou utilisez un [Explorateur de stockage Azure](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/03/11/windows-azure-storage-explorers-2014.aspx). Ce guide décrit la copie de votre disque dur virtuel à l’aide d’outil de AzCopy hello.
 
 > [!NOTE]
-> Si vous choisissez l’option de copie asynchrone pour AzCopy, pour des performances optimales, copiez votre disque dur virtuel en exécutant l’un de ces outils à partir d’une machine virtuelle Azure se trouvant dans la même région que le compte de stockage de destination. Si vous copiez un disque dur virtuel à partir d’une machine virtuelle Azure se trouvant dans une autre région, les performances risquent d’être ralenties.
+> Si vous choisissez l’option de copie synchrone avec AzCopy, pour des performances optimales, copiez votre disque dur virtuel en exécutant un de ces outils à partir d’une machine virtuelle Azure qui se trouve dans hello même région que le compte de stockage de destination hello. Si vous copiez un disque dur virtuel à partir d’une machine virtuelle Azure se trouvant dans une autre région, les performances risquent d’être ralenties.
 >
-> Pour copier une grande quantité de données avec une bande passante limitée, envisagez d’utiliser le [service Azure Import/Export pour transférer les données vers Blob Storage](../storage-import-export-service.md). Cela permet de transférer les données par expédition des disques durs à un centre de données Azure. Vous pouvez utiliser le service Azure Import/Export pour copier les données vers un compte de stockage Standard uniquement. Une fois les données dans votre compte de stockage Standard, utilisez [l’API copie d’objet blob](https://msdn.microsoft.com/library/azure/dd894037.aspx) ou AzCopy pour transférer les données vers votre compte de stockage Premium.
+> Pour copier une grande quantité de données sur une bande passante limitée, envisagez de [à l’aide du service d’importation/exportation Azure hello données tootransfer tooBlob stockage](../storage-import-export-service.md); ainsi, vous tootransfer vos données en disque dur de livraison lecteurs tooan Azure Centre de données. Vous pouvez utiliser hello Azure Import/Export service toocopy données tooa compte de stockage standard uniquement. Une fois les données de salutation dans votre compte de stockage standard, vous pouvez utiliser soit hello [API de copie d’objet Blob](https://msdn.microsoft.com/library/azure/dd894037.aspx) ou compte de stockage AzCopy tootransfer hello données tooyour premium.
 >
-> Notez que Microsoft Azure prend uniquement en charge les fichiers de disque dur virtuel de taille fixe. Les fichiers VHDX ou les disques durs virtuels dynamiques ne sont pas pris en charge. Si vous avez un disque dur virtuel dynamique, vous pouvez le convertir à taille fixe à l’aide de l’applet de commande [Convert-VHD](http://technet.microsoft.com/library/hh848454.aspx) .
+> Notez que Microsoft Azure prend uniquement en charge les fichiers de disque dur virtuel de taille fixe. Les fichiers VHDX ou les disques durs virtuels dynamiques ne sont pas pris en charge. Si vous avez un disque dur virtuel dynamique, vous pouvez le convertir taille toofixed à l’aide de hello [Convert-VHD](http://technet.microsoft.com/library/hh848454.aspx) applet de commande.
 >
 >
 
-### <a name="scenario1"></a>Scénario 1 : « Migration des machines virtuelles Azure existantes vers Azure Premium Storage. »
-Si vous faites migrer des machines virtuelles Azure existantes, arrêtez la machine virtuelle, préparez les disques durs virtuels pour le type de disque dur virtuel souhaité, puis copiez le disque dur virtuel avec AzCopy ou PowerShell.
+### <a name="scenario1"></a>Scénario 1 : « je migre existant tooAzure de machines virtuelles Azure Premium Storage. »
+Si vous migrez existant de machines virtuelles Azure, stop hello machine virtuelle, préparer les disques durs virtuels par type hello du disque dur virtuel que vous souhaitez et copiez hello VHD avec AzCopy ou PowerShell.
 
-La machine virtuelle doit être complètement arrêtée pour migrer un état propre. L’interruption de service se poursuivra jusqu’à la fin de la migration.
+Hello machine virtuelle doit toobe complètement vers le bas toomigrate un état propre. Il y aura un temps d’arrêt jusqu'à la fin de la migration hello.
 
 #### <a name="step-1-prepare-vhds-for-migration"></a>Étape 1. Préparer des disques durs virtuels pour la migration
-Si vous faites migrer des machines virtuelles Azure existantes vers le stockage Premium, votre disque dur Virtuel peut être :
+Si vous migrez existant tooPremium de machines virtuelles Azure Storage, votre disque dur virtuel peut être :
 
 * Une image du système d'exploitation généralisée
 * Un disque de système d’exploitation unique
@@ -124,53 +124,53 @@ Si vous faites migrer des machines virtuelles Azure existantes vers le stockage 
 
 Nous vous présentons ci-dessous 3 scénarios pour la préparation de vos disques durs virtuels.
 
-##### <a name="use-a-generalized-operating-system-vhd-to-create-multiple-vm-instances"></a>Utilisez un disque dur virtuel de système d’exploitation généralisé pour créer plusieurs instances de machine virtuelle
-Si vous téléchargez un disque dur virtuel qui permet de créer plusieurs instances de machine virtuelle Azure génériques, vous devez tout d’abord généraliser un disque dur virtuel à l’aide d’un utilitaire sysprep. Cette procédure s’applique à un disque dur virtuel local ou dans le cloud. Sysprep supprime des informations spécifiques sur une machine à partir du disque dur virtuel.
+##### <a name="use-a-generalized-operating-system-vhd-toocreate-multiple-vm-instances"></a>Utiliser un toocreate de disque dur virtuel du système d’exploitation généralisé plusieurs instances de machine virtuelle
+Si vous téléchargez un disque dur virtuel qui sera utilisé toocreate plusieurs instances de machine virtuelle Azure génériques, vous devez tout d’abord généraliser disque dur virtuel à l’aide d’un utilitaire sysprep. Cela s’applique tooa disque dur virtuel qui est local ou dans le cloud de hello. Sysprep supprime toutes les informations spécifiques à l’ordinateur de hello disque dur virtuel.
 
 > [!IMPORTANT]
-> Réalisez un instantané ou une sauvegarde de votre machine virtuelle avant la généralisation. L’exécution de sysprep arrêtera et désallouera l’instance de machine virtuelle. Suivez les étapes ci-dessous pour exécuter sysprep sur un disque dur virtuel de système d’exploitation Windows. Notez que vous devez arrêter la machine virtuelle pour pouvoir exécuter la commande Sysprep. Pour plus d’informations sur Sysprep, consultez [Présentation de Sysprep](http://technet.microsoft.com/library/hh825209.aspx) ou le [Manuel de référence technique Sysprep](http://technet.microsoft.com/library/cc766049.aspx).
+> Réalisez un instantané ou une sauvegarde de votre machine virtuelle avant la généralisation. Arrête et désallouer l’instance de machine virtuelle hello en cours d’exécution de sysprep. Suivez les étapes ci-dessous toosysprep un disque dur virtuel du système d’exploitation Windows. Notez qu’exécutant la commande Sysprep de hello nécessitera que vous tooshut la machine virtuelle de hello. Pour plus d’informations sur Sysprep, consultez [Présentation de Sysprep](http://technet.microsoft.com/library/hh825209.aspx) ou le [Manuel de référence technique Sysprep](http://technet.microsoft.com/library/cc766049.aspx).
 >
 >
 
 1. Ouvrez une fenêtre d’invite de commandes en tant qu’administrateur.
-2. Entrez la commande suivante pour ouvrir Sypsrep :
+2. Entrez hello suivant tooopen de commande Sysprep :
 
     ```
     %windir%\system32\sysprep\sysprep.exe
     ```
 
-3. Dans l’outil de préparation du système, choisissez Entrer en mode OOBE (Out-of-Box Experience), activez la case à cocher Généraliser, sélectionnez **Arrêter**, puis cliquez sur **OK**, comme illustré dans l’image ci-dessous. Le système d’exploitation sera généralisé et le système arrêté par sysprep.
+3. Bonjour outil de préparation système, sélectionnez entrer le système Out-of-Box expérience OOBE (), sélectionnez hello Generalize case à cocher, sélectionnez **arrêt**, puis cliquez sur **OK**, comme illustré dans l’image hello ci-dessous. Sysprep est généraliser le système d’exploitation de hello et arrêter le système hello.
 
     ![][1]
 
-Pour une machine virtuelle Ubuntu, utilisez virt-sysprep pour obtenir le même résultat. Pour plus d’informations, consultez la page [virt-sysprep](http://manpages.ubuntu.com/manpages/precise/man1/virt-sysprep.1.html) . Consultez également les informations relatives à certains des [logiciels de configuration du serveur Linux](http://www.cyberciti.biz/tips/server-provisioning-software.html) open source pour d’autres systèmes d’exploitation Linux.
+Pour une VM Ubuntu, utiliser sysprep de pointeurs tooachieve hello identiques. Pour plus d’informations, consultez la page [virt-sysprep](http://manpages.ubuntu.com/manpages/precise/man1/virt-sysprep.1.html) . Voir également certains d’ouvrir la source de hello [logiciel de configuration du serveur Linux](http://www.cyberciti.biz/tips/server-provisioning-software.html) pour d’autres systèmes d’exploitation Linux.
 
-##### <a name="use-a-unique-operating-system-vhd-to-create-a-single-vm-instance"></a>Utilisation d’un disque dur virtuel de système d’exploitation unique pour créer une seule instance de machine virtuelle
-Si une application exécutée sur la machine virtuelle requiert les données spécifiques de la machine, ne généralisez pas le disque dur virtuel. Un disque dur virtuel non généralisé peut servir à créer une instance de machine virtuelle Azure unique. Par exemple, si vous avez un contrôleur de domaine sur votre disque dur virtuel, l’exécution de sysprep le rend inefficace comme contrôleur de domaine. Passez en revue les applications s’exécutant sur votre machine virtuelle et l’impact de sysprep s’exécutant sur ces dernières avant la généralisation du disque dur virtuel.
+##### <a name="use-a-unique-operating-system-vhd-toocreate-a-single-vm-instance"></a>Utilisez un toocreate de disque dur virtuel du système d’exploitation unique une seule instance de machine virtuelle
+Si vous avez une application en cours d’exécution sur hello machine virtuelle qui requiert des données spécifiques de l’ordinateur hello, ne généralisez pas hello disque dur virtuel. Un disque dur virtuel non généralisé peut être utilisé toocreate une instance unique de la machine virtuelle Azure. Par exemple, si vous avez un contrôleur de domaine sur votre disque dur virtuel, l’exécution de sysprep le rend inefficace comme contrôleur de domaine. Passez en revue les applications hello exécutant votre machine virtuelle et hello l’impact de l’exécution de sysprep sur ces derniers avant la généralisation hello disque dur virtuel.
 
 ##### <a name="register-data-disk-vhd"></a>Enregistrement du disque dur virtuel de données
-Si vous avez des disques de données dans Azure à migrer, vous devez vous assurer que les machines virtuelles qui utilisent ces disques de données sont arrêtées.
+Si vous avez migré des disques de données dans Azure toobe, vous devez effectuer que machines virtuelles hello qui utilisent ces disques sont en cours d’arrêt des données.
 
-Suivez les étapes décrites ci-dessous pour copier un disque dur virtuel vers Azure Premium Storage et l’enregistrer en tant que disque de données configuré.
+Hello les étapes décrites ci-dessous tooAzure de disque dur virtuel toocopy stockage Premium et l’enregistrer comme un disque de données mis en service.
 
-#### <a name="step-2-create-the-destination-for-your-vhd"></a>Étape 2. Création de la destination de votre disque dur virtuel
-Créez un compte de stockage pour gérer vos disques durs virtuels. Prenez en compte les points suivants lors de la planification de l’emplacement où stocker vos disques durs virtuels :
+#### <a name="step-2-create-hello-destination-for-your-vhd"></a>Étape 2. Créer destination hello pour votre disque dur virtuel
+Créez un compte de stockage pour gérer vos disques durs virtuels. Prendre en compte les points suivants lors de la planification de l’emplacement de hello toostore vos disques durs virtuels :
 
-* Le compte de stockage Premium cible.
-* L’emplacement du compte de stockage doit être identique dans les machines virtuelles Azure compatibles Premium Storage que vous allez créer lors de l’étape finale. Vous pouvez copier vers un nouveau compte de stockage, ou envisager d’utiliser le même compte de stockage selon vos besoins.
-* Copiez et enregistrez la clé de compte de stockage du compte de stockage de destination pour l’étape suivante.
+* cible de Hello compte de stockage Premium.
+* emplacement du compte de stockage Hello doit être identique en tant que machines virtuelles Azure capable de stockage Premium vous allez créer dans la phase finale de hello. Vous pouvez copier le nouveau compte de stockage tooa ou hello toouse de plan même compte de stockage selon vos besoins.
+* Copiez et enregistrez la clé de compte de stockage hello hello destination du compte de stockage pour l’étape suivante de hello.
 
-Pour les disques de données, vous pouvez choisir d’en conserver certains dans un compte de stockage Standard (par exemple, les disques qui ont un stockage de refroidissement), mais nous vous conseillons fortement de déplacer toutes vos données de charge de travail de production pour utiliser le compte de stockage Premium.
+Pour les disques de données, vous pouvez choisir tookeep des disques de données dans un compte de stockage standard (par exemple, les disques qui ont refroidissement stockage), mais nous vous recommandons vivement déplacement de toutes les données pour le stockage de production la charge de travail toouse premium.
 
 #### <a name="copy-vhd-with-azcopy-or-powershell"></a>Étape 3. Copie du disque dur virtuel avec AzCopy ou PowerShell
-Vous devez rechercher le chemin d’accès de votre conteneur et la clé du compte de stockage pour traiter une de ces deux options. Vous trouverez le chemin d’accès au conteneur et le compte de stockage dans le **Portail Azure** > **Stockage**. L’URL du conteneur sera au format « https://moncompte.blob.core.windows.net/monconteneur/ ».
+Vous devez toofind votre chemin d’accès du conteneur et le stockage tooprocess clé de compte de ces deux options. Vous trouverez le chemin d’accès au conteneur et le compte de stockage dans le **Portail Azure** > **Stockage**. URL du conteneur Hello seront comme « https://myaccount.blob.core.windows.net/mycontainer/ ».
 
 ##### <a name="option-1-copy-a-vhd-with-azcopy-asynchronous-copy"></a>Option 1 : Copie d’un disque dur virtuel avec AzCopy (copie asynchrone)
-À l’aide d’AzCopy, vous pouvez facilement télécharger le disque dur virtuel sur Internet. Selon la taille des disques durs virtuels, cela peut prendre du temps. N’oubliez pas de vérifier les limites d’entrées/sorties de compte de stockage lors de l’utilisation de cette option. Pour plus d’informations, consultez [Objectifs de performance et d’évolutivité d’Azure Storage](storage-scalability-targets.md) .
+À l’aide de AzCopy, vous pouvez charger facilement hello VHD sur hello Internet. Selon la taille de hello Hello disques durs virtuels, cela peut prendre le temps. N’oubliez pas les limites des entrées/sorties comptes de stockage toocheck hello lors de l’utilisation de cette option. Pour plus d’informations, consultez [Objectifs de performance et d’évolutivité d’Azure Storage](storage-scalability-targets.md) .
 
 1. Téléchargez et installez AzCopy à partir d’ici : [version la plus récente d’AzCopy](http://aka.ms/downloadazcopy)
-2. Ouvrez Azure PowerShell et accédez au dossier où AzCopy est installé.
-3. Utilisez la commande suivante pour copier le fichier de disque dur virtuel à partir de « Source » vers « Destination ».
+2. Ouvrez Azure PowerShell et accédez toohello où AzCopy est installé.
+3. Fichier de disque dur virtuel hello toocopy à partir de « Source » de la commande suivante de hello d’utilisation trop « Destination ».
 
     ```azcopy
     AzCopy /Source: <source> /SourceKey: <source-account-key> /Dest: <destination> /DestKey: <dest-account-key> /BlobType:page /Pattern: <file-name>
@@ -182,18 +182,18 @@ Vous devez rechercher le chemin d’accès de votre conteneur et la clé du comp
     AzCopy /Source:https://sourceaccount.blob.core.windows.net/mycontainer1 /SourceKey:key1 /Dest:https://destaccount.blob.core.windows.net/mycontainer2 /DestKey:key2 /Pattern:abc.vhd
     ```
 
-    Les paramètres utilisés dans la commande AzCopy sont décrits ci-dessous :
+    Voici les descriptions des paramètres hello utilisés Bonjour AzCopy commande :
 
-   * **/Source: *&lt;&gt;source :*** emplacement du dossier ou URL du conteneur de stockage qui contient le disque dur virtuel.
-   * **/SourceKey : *&lt;source-account-key&gt; :*** clé de compte de stockage du compte de stockage source.
-   * **/Dest : *&lt;destination&gt; :*** URL du conteneur de stockage où copier le disque dur virtuel.
-   * **/DestKey : *&lt;dest-account-key&gt; :*** clé de compte de stockage du compte de stockage de destination.
-   * **/Pattern : *&lt;file-name&gt; :*** spécifie le nom du fichier du disque dur virtuel à copier.
+   * **/ Source :  *&lt;source&gt;:***  emplacement du dossier de hello ou URL de conteneur de stockage qui contient le disque dur virtuel de hello.
+   * **/ SourceKey :  *&lt;clé de compte source&gt;:***  clé de compte de stockage hello source du compte de stockage.
+   * **/ Dest :  *&lt;destination&gt;:***  toocopy de URL de conteneur de stockage hello disque dur virtuel.
+   * **/ DestKey :  *&lt;clé de compte dest&gt;:***  clé de compte de stockage du compte de stockage de destination hello.
+   * **/ Modèle :  *&lt;nom de fichier&gt;:***  spécifier le nom fichier hello de toocopy de disque dur virtuel hello.
 
-Pour plus d’informations sur l’utilisation d’AzCopy, consultez [Transfert de données avec l’utilitaire de ligne de commande AzCopy](storage-use-azcopy.md).
+Pour plus d’informations sur l’utilisation de AzCopy outil, consultez [transférer des données avec l’utilitaire de ligne de commande AzCopy de hello](storage-use-azcopy.md).
 
 ##### <a name="option-2-copy-a-vhd-with-powershell-synchronized-copy"></a>Option 2 : Copie d’un disque dur virtuel avec PowerShell (copie synchronisée)
-Vous pouvez également copier le fichier de disque dur virtuel à l’aide de l’applet de commande Start-AzureStorageBlobCopy. Utilisez la commande suivante sur Azure PowerShell pour copier le disque dur virtuel. Remplacez les valeurs entre <> par les valeurs correspondantes de votre compte de stockage source et de destination. Pour utiliser cette commande, vous devez disposer d’un conteneur appelé vhds (disques durs virtuels) dans votre compte de stockage de destination. Si le conteneur n’existe pas, créez-le avant d’exécuter la commande.
+Vous pouvez également copier le fichier de disque dur virtuel de hello à l’aide d’applet de commande PowerShell hello AzureStorageBlobCopy de début. Utilisez hello suivant de commande de Azure PowerShell toocopy disque dur virtuel. Remplacer les valeurs hello dans <> avec les valeurs correspondantes à partir de votre compte de stockage source et de destination. toouse cette commande, vous devez disposer d’un conteneur appelé des disques durs virtuels dans votre compte de stockage de destination. Si le conteneur de hello n’existe pas, créez-le avant d’exécuter la commande hello.
 
 ```powershell
 $sourceBlobUri = <source-vhd-uri>
@@ -217,41 +217,41 @@ C:\PS> $destinationContext = New-AzureStorageContext  –StorageAccountName "des
 C:\PS> Start-AzureStorageBlobCopy -srcUri $sourceBlobUri -SrcContext $sourceContext -DestContainer "vhds" -DestBlob "myvhd.vhd" -DestContext $destinationContext
 ```
 
-### <a name="scenario2"></a>Scénario 2 : « Migration de machines virtuelles depuis d’autres plateformes vers Azure Premium Storage ».
-Si vous migrez un disque dur virtuel d’un stockage cloud non Azure vers Azure, vous devez d’abord exporter le disque dur virtuel vers un répertoire local. Ayez à disposition le chemin d’accès source complet du répertoire local sur lequel le disque dur virtuel est stocké, et utilisez AzCopy pour le télécharger vers le stockage Azure.
+### <a name="scenario2"></a>Scénario 2 : « je suis migration d’ordinateurs virtuels à partir d’autres plateformes de tooAzure stockage Premium. »
+Si vous effectuez une migration à partir d’Azure Cloud Storage tooAzure disque dur virtuel, vous devez d’abord exporter répertoire local de tooa de disque dur virtuel hello. Chemin d’accès de hello source complet du répertoire local de hello où le disque dur virtuel est stocké pratique et utiliser ensuite AzCopy tooupload il tooAzure stockage.
 
-#### <a name="step-1-export-vhd-to-a-local-directory"></a>Étape 1. Exportation d’un disque dur virtuel vers un répertoire local
+#### <a name="step-1-export-vhd-tooa-local-directory"></a>Étape 1. Exporter le répertoire local de tooa de disque dur virtuel
 ##### <a name="copy-a-vhd-from-aws"></a>Copie d’un disque dur virtuel depuis AWS
-1. Si vous utilisez AWS, exportez l’instance EC2 vers un disque dur virtuel dans un compartiment S3 Amazon. Suivez les étapes décrites dans la section Exportation des instances Amazon EC2 de la documentation Amazon pour installer l’outil d’interface de ligne de commande (CLI) Amazon EC2 et exécutez la commande create-instance-export-task pour exporter l’instance EC2 vers un fichier de disque dur virtuel. Veillez à utiliser **VHD** pour la variable DISK&#95;IMAGE&#95;FORMAT lors de l’exécution de la commande **create-instance-export-task**. Le fichier de disque dur virtuel exporté est enregistré dans le compartiment Amazon S3 que vous désignez au cours de ce processus.
+1. Si vous utilisez AWS, exportez hello EC2 instance tooa disque dur virtuel dans un compartiment Amazon S3. Suivez les étapes de hello décrites dans la documentation Amazon pour outil de l’interface de ligne de commande (CLI) d’exportation les Instances d’Amazon EC2 tooinstall hello Amazon EC2 de hello et exécuter le fichier VHD de hello-instance-export-commande Créer une tâche tooexport hello EC2 instance tooa. Être vraiment toouse **VHD** hello disque &#95; IMAGE &#95; Variable FORMAT lors de l’exécution hello **créer-instance-export-tâche** commande. Hello fichier de disque dur virtuel exporté est enregistré dans le compartiment hello Amazon S3 que vous désignez pendant le processus.
 
     ```
     aws ec2 create-instance-export-task --instance-id ID --target-environment TARGET_ENVIRONMENT \
       --export-to-s3-task DiskImageFormat=DISK_IMAGE_FORMAT,ContainerFormat=ova,S3Bucket=BUCKET,S3Prefix=PREFIX
     ```
 
-2. Téléchargez le fichier de disque dur virtuel depuis le compartiment S3. Sélectionnez le fichier de disque dur virtuel, puis **Actions** > **Télécharger**.
+2. Téléchargez le fichier de disque dur virtuel de hello de compartiment de S3 hello. Fichier de disque dur virtuel hello sélectionnez, puis **Actions** > **télécharger**.
 
     ![][3]
 
 ##### <a name="copy-a-vhd-from-other-non-azure-cloud"></a>Copie d’un disque dur virtuel à partir d’autres cloud hors Azure
-Si vous migrez un disque dur virtuel d’un stockage cloud non Azure vers Azure, vous devez d’abord exporter le disque dur virtuel vers un répertoire local. Copiez le chemin source complet du répertoire local où le disque dur virtuel est stocké.
+Si vous effectuez une migration à partir d’Azure Cloud Storage tooAzure disque dur virtuel, vous devez d’abord exporter répertoire local de tooa de disque dur virtuel hello. Copiez le chemin d’accès de hello source complet du répertoire local de hello où le disque dur virtuel est stocké.
 
 ##### <a name="copy-a-vhd-from-on-premises"></a>Copie d’un disque dur virtuel en local
-Si vous migrez un disque dur virtuel à partir d’un environnement local, vous avez besoin du chemin source complet où le disque dur virtuel est stocké. Le chemin d’accès source peut être un partage de fichiers ou un emplacement de serveur.
+Si vous migrez un disque dur virtuel à partir d’un environnement sur site, vous devez le chemin d’accès de la source complet hello où le disque dur virtuel est stocké. le chemin d’accès de Hello source peut être un partage de fichier ou emplacement de serveur.
 
-#### <a name="step-2-create-the-destination-for-your-vhd"></a>Étape 2. Création de la destination de votre disque dur virtuel
-Créez un compte de stockage pour gérer vos disques durs virtuels. Prenez en compte les points suivants lors de la planification de l’emplacement où stocker vos disques durs virtuels :
+#### <a name="step-2-create-hello-destination-for-your-vhd"></a>Étape 2. Créer destination hello pour votre disque dur virtuel
+Créez un compte de stockage pour gérer vos disques durs virtuels. Prendre en compte les points suivants lors de la planification de l’emplacement de hello toostore vos disques durs virtuels :
 
-* Le compte de stockage cible peut être Standard ou Premium selon les besoins de votre application.
-* La région du compte de stockage doit être identique dans les machines virtuelles Azure de série DS que vous allez créer lors de l’étape finale. Vous pouvez copier vers un nouveau compte de stockage, ou envisager d’utiliser le même compte de stockage selon vos besoins.
-* Copiez et enregistrez la clé de compte de stockage du compte de stockage de destination pour l’étape suivante.
+* compte de stockage Hello cible peut être un stockage standard ou premium, selon vos besoins de l’application.
+* région du compte de stockage Hello doit être identique en tant que machines virtuelles Azure capable de stockage Premium vous allez créer dans la phase finale de hello. Vous pouvez copier le nouveau compte de stockage tooa ou hello toouse de plan même compte de stockage selon vos besoins.
+* Copiez et enregistrez la clé de compte de stockage hello hello destination du compte de stockage pour l’étape suivante de hello.
 
-Nous vous recommandons fortement de déplacer toutes les données de charge de production pour utiliser le stockage premium.
+Nous recommandons de vous déplacer toutes les données pour le stockage de production la charge de travail toouse premium.
 
-#### <a name="step-3-upload-the-vhd-to-azure-storage"></a>Étape 3. Téléchargement du disque dur virtuel vers le stockage Azure
-Maintenant que vous avez votre disque dur virtuel dans le répertoire local, vous pouvez utiliser AzCopy ou AzurePowerShell pour télécharger le fichier .vhd vers le stockage Azure. Les deux options sont fournies ici :
+#### <a name="step-3-upload-hello-vhd-tooazure-storage"></a>Étape 3. Télécharger le disque dur virtuel de hello tooAzure stockage
+Maintenant que vous avez votre disque dur virtuel dans un répertoire local de hello, vous pouvez utiliser AzCopy ou AzurePowerShell tooupload hello .vhd fichier tooAzure stockage. Les deux options sont fournies ici :
 
-##### <a name="option-1-using-azure-powershell-add-azurevhd-to-upload-the-vhd-file"></a>Option 1 : Utilisation d’Add-AzureVhd d’Azure PowerShell pour télécharger le fichier .vhd
+##### <a name="option-1-using-azure-powershell-add-azurevhd-tooupload-hello-vhd-file"></a>Option 1 : À l’aide de fichier .vhd de Azure PowerShell Add-AzureVhd tooupload hello
 
 ```powershell
 Add-AzureVhd [-Destination] <Uri> [-LocalFilePath] <FileInfo>
@@ -259,12 +259,12 @@ Add-AzureVhd [-Destination] <Uri> [-LocalFilePath] <FileInfo>
 
 Un exemple <Uri>peut être ***« https://storagesample.blob.core.windows.net/mycontainer/blob1.vhd »***. Un exemple <FileInfo>peut être ***« C:\path\to\upload.vhd »***.
 
-##### <a name="option-2-using-azcopy-to-upload-the-vhd-file"></a>Option 2 : Utilisation d’AzCopy pour télécharger le fichier .vhd
-À l’aide d’AzCopy, vous pouvez facilement télécharger le disque dur virtuel sur Internet. Selon la taille des disques durs virtuels, cela peut prendre du temps. N’oubliez pas de vérifier les limites d’entrées/sorties de compte de stockage lors de l’utilisation de cette option. Pour plus d’informations, consultez [Objectifs de performance et d’évolutivité d’Azure Storage](storage-scalability-targets.md) .
+##### <a name="option-2-using-azcopy-tooupload-hello-vhd-file"></a>Option 2 : À l’aide de fichier .vhd de AzCopy tooupload hello
+À l’aide de AzCopy, vous pouvez charger facilement hello VHD sur hello Internet. Selon la taille de hello Hello disques durs virtuels, cela peut prendre le temps. N’oubliez pas les limites des entrées/sorties comptes de stockage toocheck hello lors de l’utilisation de cette option. Pour plus d’informations, consultez [Objectifs de performance et d’évolutivité d’Azure Storage](storage-scalability-targets.md) .
 
 1. Téléchargez et installez AzCopy à partir d’ici : [version la plus récente d’AzCopy](http://aka.ms/downloadazcopy)
-2. Ouvrez Azure PowerShell et accédez au dossier où AzCopy est installé.
-3. Utilisez la commande suivante pour copier le fichier de disque dur virtuel à partir de « Source » vers « Destination ».
+2. Ouvrez Azure PowerShell et accédez toohello où AzCopy est installé.
+3. Fichier de disque dur virtuel hello toocopy à partir de « Source » de la commande suivante de hello d’utilisation trop « Destination ».
 
     ```azcopy
     AzCopy /Source: <source> /SourceKey: <source-account-key> /Dest: <destination> /DestKey: <dest-account-key> /BlobType:page /Pattern: <file-name>
@@ -276,91 +276,91 @@ Un exemple <Uri>peut être ***« https://storagesample.blob.core.windows.net/myc
     AzCopy /Source:https://sourceaccount.blob.core.windows.net/mycontainer1 /SourceKey:key1 /Dest:https://destaccount.blob.core.windows.net/mycontainer2 /DestKey:key2 /BlobType:page /Pattern:abc.vhd
     ```
 
-    Les paramètres utilisés dans la commande AzCopy sont décrits ci-dessous :
+    Voici les descriptions des paramètres hello utilisés Bonjour AzCopy commande :
 
-   * **/Source: *&lt;&gt;source :*** emplacement du dossier ou URL du conteneur de stockage qui contient le disque dur virtuel.
-   * **/SourceKey : *&lt;source-account-key&gt; :*** clé de compte de stockage du compte de stockage source.
-   * **/Dest : *&lt;destination&gt; :*** URL du conteneur de stockage où copier le disque dur virtuel.
-   * **/DestKey : *&lt;dest-account-key&gt; :*** clé de compte de stockage du compte de stockage de destination.
-   * **/BlobType: page :** spécifie si la destination est un objet blob de pages.
-   * **/Pattern : *&lt;file-name&gt; :*** spécifie le nom du fichier du disque dur virtuel à copier.
+   * **/ Source :  *&lt;source&gt;:***  emplacement du dossier de hello ou URL de conteneur de stockage qui contient le disque dur virtuel de hello.
+   * **/ SourceKey :  *&lt;clé de compte source&gt;:***  clé de compte de stockage hello source du compte de stockage.
+   * **/ Dest :  *&lt;destination&gt;:***  toocopy de URL de conteneur de stockage hello disque dur virtuel.
+   * **/ DestKey :  *&lt;clé de compte dest&gt;:***  clé de compte de stockage du compte de stockage de destination hello.
+   * **/ BlobType : page :** spécifie cette destination hello est un objet blob de pages.
+   * **/ Modèle :  *&lt;nom de fichier&gt;:***  spécifier le nom fichier hello de toocopy de disque dur virtuel hello.
 
-Pour plus d’informations sur l’utilisation d’AzCopy, consultez [Transfert de données avec l’utilitaire de ligne de commande AzCopy](storage-use-azcopy.md).
+Pour plus d’informations sur l’utilisation de AzCopy outil, consultez [transférer des données avec l’utilitaire de ligne de commande AzCopy de hello](storage-use-azcopy.md).
 
 ##### <a name="other-options-for-uploading-a-vhd"></a>Autres options de téléchargement d’un disque dur virtuel
-Vous pouvez également télécharger un disque dur virtuel sur votre compte de stockage en utilisant l’un des moyens suivants :
+Vous pouvez également télécharger un compte de stockage de tooyour de disque dur virtuel à l’aide de hello suivant signifie :
 
 * [API de copie d’un objet blob de stockage Azure](https://msdn.microsoft.com/library/azure/dd894037.aspx)
 * [Téléchargement d’objets blob dans Storage Explorer](https://azurestorageexplorer.codeplex.com/)
 * [Référence sur l’API REST du service Import/Export Storage](https://msdn.microsoft.com/library/dn529096.aspx)
 
 > [!NOTE]
-> Nous recommandons l’utilisation de du service d’importation/exportation si l’estimation du temps de téléchargement est de plus de 7 jours. Vous pouvez utiliser [DataTransferSpeedCalculator](https://github.com/Azure-Samples/storage-dotnet-import-export-job-management/blob/master/DataTransferSpeedCalculator.html) pour estimer le temps à partir de la taille des données et de l’unité de transfert.
+> Nous recommandons l’utilisation de du service d’importation/exportation si l’estimation du temps de téléchargement est de plus de 7 jours. Vous pouvez utiliser [DataTransferSpeedCalculator](https://github.com/Azure-Samples/storage-dotnet-import-export-job-management/blob/master/DataTransferSpeedCalculator.html) tooestimate les temps de hello à partir de l’unité de taille et de transfert de données.
 >
-> Le service Import/Export permet de copier sur un compte de stockage Standard. Vous devez effectuer une copie d’un compte de stockage Standard vers un compte de stockage Premium à l’aide d’un outil tel qu’AzCopy.
+> Importation/exportation peut être utilisé le compte de stockage standard toocopy tooa. Vous devez toocopy de compte de stockage toopremium de stockage standard à l’aide d’un outil tel que AzCopy.
 >
 >
 
 ## <a name="create-azure-virtual-machine-using-premium-storage"></a>Créer des machines virtuelles Azure à l’aide du stockage Premium
-Une fois le disque dur virtuel téléchargé ou copié vers le compte de stockage souhaité, suivez les instructions de cette section pour inscrire le disque dur virtuel en tant qu’image de système d’exploitation ou disque de système d’exploitation en fonction de votre scénario et créez ensuite une instance de machine virtuelle à partir de celui-ci. Le disque dur virtuel de disque de données peut être joint à la machine virtuelle qui a été créée.
-Un exemple de script de migration est fourni à la fin de cette section. Ce script simple ne correspond pas à tous les scénarios. Vous devrez peut-être le mettre à jour pour qu’il corresponde à votre scénario spécifique. Pour voir si ce script s’applique à votre scénario, consultez la section [Un exemple de script de migration](#a-sample-migration-script) ci-dessous.
+Une fois hello disque dur virtuel est un compte de stockage toohello téléchargé ou copié souhaitée, suivez les instructions de hello dans cette hello tooregister de section disque dur virtuel en tant qu’image de système d’exploitation, ou disque de système d’exploitation en fonction de votre scénario et puis créer une instance de la machine virtuelle à partir de celui-ci. disque de données Hello disque dur virtuel peut être attaché toohello machine virtuelle qui a été créé.
+Un exemple de script de migration est fournie à la fin de hello de cette section. Ce script simple ne correspond pas à tous les scénarios. Vous devrez peut-être tooupdate hello script toomatch avec votre scénario spécifique. toosee si ce script s’applique tooyour scénario, consultez la section ci-dessous [un exemple de Script de Migration](#a-sample-migration-script).
 
 ### <a name="checklist"></a>Liste de contrôle
-1. Patientez jusqu'à ce que la copie de tous disques durs virtuels soit terminée.
-2. Vérifiez que Premium Storage est disponible dans la région vers laquelle vous effectuez la migration.
-3. Choisissez la nouvelle série de machines virtuelles que vous allez utiliser. La compatibilité avec Premium Storage est indispensable et la taille dépend de la disponibilité dans la région et de vos besoins.
-4. Choisissez la taille exacte de machine virtuelle que vous allez utiliser. La taille de machine virtuelle doit être suffisante pour prendre en charge le nombre de disques de données dont vous disposez. Par exemple, Si vous disposez de 4 disques de données, la machine virtuelle doit disposer d’au moins 2 cœurs. Prenez également en considération les besoins en puissance, mémoire et bande passante réseau.
-5. Créez un compte Premium Storage dans la région cible. C’est le compte que vous utiliserez pour la nouvelle machine virtuelle.
-6. Gardez à portée de main les informations détaillées sur les machines virtuelles, notamment la liste des disques et des blobs de disques durs virtuels correspondants.
+1. Attendez que tous les disques de disque dur virtuel hello copie est terminée.
+2. Assurez-vous que le stockage Premium est disponible dans la région de hello que vous effectuez la migration.
+3. Décidez nouvelle série VM hello, que vous allez utiliser. Il doit être un stockage Premium compatibles, et taille de hello doit être en fonction de la disponibilité de hello dans la région de hello et selon vos besoins.
+4. Décidez de taille virtuelle exacte de hello, que vous allez utiliser. Taille de machine virtuelle doit toobe toosupport suffisamment grand hello différents disques de données que vous avez. Par exemple, Si vous avez 4 disques de données, hello machine virtuelle doit avoir au moins 2 cœurs. Prenez également en considération les besoins en puissance, mémoire et bande passante réseau.
+5. Créer un compte Premium Storage dans la région cible hello. C’est le compte à utiliser pour hello hello nouvelle machine virtuelle.
+6. Des informations VM hello en cours pratiques, y compris les listes de hello des disques et des objets BLOB de disque dur virtuel correspondant.
 
-Préparez votre application pour les interruptions de service. Pour effectuer une migration sans erreur, vous devez arrêter tous les processus en cours d’exécution dans le système actuel. Ce n’est qu’à cette condition que le système présentera un état cohérent, permettant sa migration vers la nouvelle plateforme. La durée de l’interruption de service dépend de la quantité de données dans les disques à migrer.
+Préparez votre application pour les interruptions de service. toodo une nouvelle migration, vous avez toostop tout traitement hello dans le système actuel de hello. Alors seulement vous pouvez l’obtenir état tooconsistent dont vous pouvez migrer toohello nouvelle plateforme. Temps d’arrêt dépend de la quantité hello d’hello disques toomigrate.
 
 > [!NOTE]
-> Si vous créez une machine virtuelle Azure Resource Manager à partir d’un disque dur virtuel spécialisé, reportez-vous à [ce modèle](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-specialized-vhd) pour le déploiement d’une machine virtuelle Resource Manager à l’aide du disque existant.
+> Si vous créez un gestionnaire de ressources Azure VM à partir d’un disque spécialisé de disque dur virtuel, consultez trop[ce modèle](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-specialized-vhd) pour le déploiement de VM Gestionnaire de ressources à l’aide du disque existant.
 >
 >
 
 ### <a name="register-your-vhd"></a>Enregistrez votre disque dur virtuel.
-Pour créer une machine virtuelle à partir du disque dur virtuel de système d’exploitation ou joindre un disque de données à une nouvelle machine virtuelle, vous devez tout d’abord les inscrire. Suivez les étapes ci-dessous en fonction de votre scénario de disque dur virtuel.
+toocreate une machine virtuelle à partir de disque dur virtuel du système d’exploitation ou tooattach un tooa de disque de données nouvelle machine virtuelle, vous devez tout d’abord les enregistrer. Suivez les étapes ci-dessous en fonction de votre scénario de disque dur virtuel.
 
-#### <a name="generalized-operating-system-vhd-to-create-multiple-azure-vm-instances"></a>Disque dur virtuel de système d’exploitation généralisé pour créer plusieurs instances de machine virtuelle Azure
-Une fois le disque dur virtuel d’image du système d’exploitation généralisé téléchargé vers le compte de stockage, inscrivez-le comme une **Image de machine virtuelle Azure** afin de pouvoir créer une ou plusieurs instances de machine virtuelle à partir de celui-ci. Utilisez les applets de commande PowerShell suivantes pour inscrire votre disque dur virtuel comme image de système d’exploitation de la machine virtuelle Azure. Fournissez l’URL de conteneur complet où le disque dur virtuel a été copié.
+#### <a name="generalized-operating-system-vhd-toocreate-multiple-azure-vm-instances"></a>Généralisé toocreate de disque dur virtuel du système d’exploitation de plusieurs instances de machine virtuelle Azure
+Après avoir généralisé image du système d’exploitation du disque dur virtuel est chargé de compte de stockage toohello, inscrire comme une **Image de machine virtuelle Azure** afin que vous pouvez créer une ou plusieurs instances de machine virtuelle à partir de celui-ci. Utilisez hello suivant tooregister d’applets de commande PowerShell de votre disque dur virtuel comme une image de système d’exploitation de la machine virtuelle Azure. Fournir l’URL du conteneur terminée hello où le disque dur virtuel a été copié dans.
 
 ```powershell
 Add-AzureVMImage -ImageName "OSImageName" -MediaLocation "https://storageaccount.blob.core.windows.net/vhdcontainer/osimage.vhd" -OS Windows
 ```
 
-Copiez et enregistrez le nom de cette nouvelle image de machine virtuelle Azure. Dans l’exemple ci-dessus, il s’agit de *OSImageName*.
+Copiez et enregistrez le nom hello de cette nouvelle Image de machine virtuelle Azure. Dans l’exemple hello ci-dessus, il est *OSImageName*.
 
-#### <a name="unique-operating-system-vhd-to-create-a-single-azure-vm-instance"></a>Disque dur virtuel de système d’exploitation unique pour créer une seule instance de machine virtuelle Azure
-Une fois le disque dur virtuel de système d’exploitation unique téléchargé vers le compte de stockage, inscrivez-le comme **disque de système d’exploitation Azure** afin de pouvoir créer une instance de machine virtuelle à partir de celui-ci. Utilisez les applets de commande PowerShell suivantes pour inscrire votre disque dur virtuel comme disque de système d’exploitation Azure. Fournissez l’URL de conteneur complet où le disque dur virtuel a été copié.
+#### <a name="unique-operating-system-vhd-toocreate-a-single-azure-vm-instance"></a>Toocreate de disque dur virtuel du système d’exploitation unique une seule instance de machine virtuelle Azure
+Après hello unique disque dur virtuel de système d’exploitation est téléchargés toohello stockage compte, inscrivez-vous en tant qu’un **disque de système d’exploitation Azure** afin que vous pouvez créer une instance de machine virtuelle à partir de celui-ci. Utilisez ces tooregister d’applets de commande PowerShell de votre disque dur virtuel comme un disque de système d’exploitation Azure. Fournir l’URL du conteneur terminée hello où le disque dur virtuel a été copié dans.
 
 ```powershell
 Add-AzureDisk -DiskName "OSDisk" -MediaLocation "https://storageaccount.blob.core.windows.net/vhdcontainer/osdisk.vhd" -Label "My OS Disk" -OS "Windows"
 ```
 
-Copiez et enregistrez le nom de ce nouveau disque de système d’exploitation Azure. Dans l’exemple ci-dessus, il s’agit de *OSDisk*.
+Copiez et enregistrez le nom hello de ce nouveau disque de système d’exploitation Azure. Dans l’exemple hello ci-dessus, il est *OSDisk*.
 
-#### <a name="data-disk-vhd-to-be-attached-to-new-azure-vm-instances"></a>Disque dur virtuel de disque de données à joindre aux nouvelles instances de machine virtuelle Azure
-Une fois le disque dur virtuel de disque de données téléchargé vers le compte de stockage, inscrivez-le comme disque de données Azure afin qu’il puisse être joint à votre nouvelle instance de machine virtuelle Azure de série DS, DSv2 ou GS.
+#### <a name="data-disk-vhd-toobe-attached-toonew-azure-vm-instances"></a>Toobe de disque dur virtuel de disque de données attaché à une ou plusieurs instances de toonew machine virtuelle Azure
+Une fois hello disque de données est de disque dur virtuel téléchargé toostorage compte, enregistrer en tant qu’un disque de données Azure afin qu’il puisse être attachée tooyour nouvelle série DS, DSv2 série ou une instance de la machine virtuelle Azure de série GS.
 
-Utilisez les applets de commande PowerShell suivantes pour inscrire votre disque dur virtuel comme disque de données Azure. Fournissez l’URL de conteneur complet où le disque dur virtuel a été copié.
+Utilisez ces tooregister d’applets de commande PowerShell de votre disque dur virtuel en tant qu’un disque de données Azure. Fournir l’URL du conteneur terminée hello où le disque dur virtuel a été copié dans.
 
 ```powershell
 Add-AzureDisk -DiskName "DataDisk" -MediaLocation "https://storageaccount.blob.core.windows.net/vhdcontainer/datadisk.vhd" -Label "My Data Disk"
 ```
 
-Copiez et enregistrez le nom de ce nouveau disque de données Azure. Dans l’exemple ci-dessus, il s’agit de *DataDisk*.
+Copiez et enregistrez le nom hello de ce nouveau disque de données Azure. Dans l’exemple hello ci-dessus, il est *DataDisk*.
 
 ### <a name="create-a-premium-storage-capable-vm"></a>Création d’un compte compatible Premium Storage
-Une fois l’image du système d’exploitation ou le disque du système d’exploitation inscrit, créez une nouvelle machine virtuelle série DS, DSv2 ou GS. Vous utiliserez l’image du système d’exploitation ou le nom de disque de système d’exploitation que vous avez inscrit. Sélectionnez le type de machine virtuelle à partir du niveau de stockage Premium. Dans l’exemple ci-dessous, nous utilisons la taille de machine virtuelle *Standard_DS2*.
+Une fois hello image de système d’exploitation ou disque de système d’exploitation sont inscrits, créez une nouvelle série DS, le dsv2 ou la machine virtuelle de série GS. Vous utiliserez image de système d’exploitation hello ou nom de disque de système d’exploitation que vous avez enregistré. Sélectionnez le type de machine virtuelle hello à partir de la couche de stockage Premium hello. Dans l’exemple ci-dessous, nous utilisons hello *Standard_DS2* taille de machine virtuelle.
 
 > [!NOTE]
-> Mettez à jour la taille du disque pour vous assurer qu’il correspond à votre capacité, à l’exigence de performance et aux tailles de disque Azure disponibles.
+> Mettre à jour toomake de taille de disque hello qu’elle correspond à votre capacité et les exigences de performances et les tailles de disque Azure hello.
 >
 >
 
-Suivez les applets de commande PowerShell étape par étape ci-dessous pour créer la machine virtuelle. Tout d’abord, définissez les paramètres communs :
+Applets de commande PowerShell suivante pour hello étape par étape ci-dessous toocreate hello nouvelle machine virtuelle. Tout d’abord, définissez les paramètres communs hello :
 
 ```powershell
 $serviceName = "yourVM"
@@ -378,10 +378,10 @@ Commencez par créer un service cloud dans lequel vous hébergerez vos nouvelles
 New-AzureService -ServiceName $serviceName -Location $location
 ```
 
-Ensuite, selon votre scénario, créez l’instance de machine virtuelle Azure à partir de l’image de système d’exploitation ou du disque de système d’exploitation que vous avez inscrit.
+Ensuite, selon votre scénario, créez instance de machine virtuelle Azure hello de hello Image de système d’exploitation ou disque de système d’exploitation que vous avez enregistré.
 
-#### <a name="generalized-operating-system-vhd-to-create-multiple-azure-vm-instances"></a>Disque dur virtuel de système d’exploitation généralisé pour créer plusieurs instances de machine virtuelle Azure
-Créez la ou les nouvelles instances de machine virtuelle Azure de série DS à l’aide de l’ **Image de système d’exploitation Azure** que vous avez inscrite. Spécifiez ce nom d’image de système d’exploitation dans la configuration de la machine virtuelle lors de la création de nouvelles machines virtuelles comme indiqué ci-dessous.
+#### <a name="generalized-operating-system-vhd-toocreate-multiple-azure-vm-instances"></a>Généralisé toocreate de disque dur virtuel du système d’exploitation de plusieurs instances de machine virtuelle Azure
+Créer hello un ou plusieurs des instances pour l’ordinateur virtuel Azure de série DS à l’aide de hello **Image du système d’exploitation Azure** que vous avez enregistré. Spécifiez ce nom de l’Image de système d’exploitation dans la configuration d’ordinateur virtuel hello lorsque vous créez la nouvelle machine virtuelle comme indiqué ci-dessous.
 
 ```powershell
 $OSImage = Get-AzureVMImage –ImageName "OSImageName"
@@ -393,8 +393,8 @@ Add-AzureProvisioningConfig -Windows –AdminUserName $adminUser -Password $admi
 New-AzureVM -ServiceName $serviceName -VM $vm
 ```
 
-#### <a name="unique-operating-system-vhd-to-create-a-single-azure-vm-instance"></a>Disque dur virtuel de système d’exploitation unique pour créer une seule instance de machine virtuelle Azure
-Créez une nouvelle instance de machine virtuelle Azure de série DS à l’aide du **disque de système d’exploitation Azure** que vous avez inscrit. Spécifiez ce nom de disque du système d’exploitation dans la configuration de la machine virtuelle lors de la création de la nouvelle machine virtuelle comme indiqué ci-dessous.
+#### <a name="unique-operating-system-vhd-toocreate-a-single-azure-vm-instance"></a>Toocreate de disque dur virtuel du système d’exploitation unique une seule instance de machine virtuelle Azure
+Créer une nouvelle instance de machine virtuelle Azure de série DS à l’aide de hello **disque de système d’exploitation Azure** que vous avez enregistré. Spécifiez ce nom de disque de système d’exploitation dans la configuration d’ordinateur virtuel hello lors de la création de hello nouvelle machine virtuelle comme indiqué ci-dessous.
 
 ```powershell
 $OSDisk = Get-AzureDisk –DiskName "OSDisk"
@@ -404,12 +404,12 @@ $vm = New-AzureVMConfig -Name $vmName -InstanceSize $vmSize -DiskName $OSDisk.Di
 New-AzureVM -ServiceName $serviceName –VM $vm
 ```
 
-Spécifiez d’autres informations de machine virtuelle Azure, comme un service cloud, une région, un compte de stockage, un groupe à haute disponibilité et une stratégie de mise en cache. Notez que l’instance de machine virtuelle doit se trouver avec le système d’exploitation ou les disques de données associés ; le service cloud, la région et le compte de stockage sélectionnés doivent donc tous se trouver au même emplacement que les disques durs virtuels sous-jacents de ces disques.
+Spécifiez d’autres informations de machine virtuelle Azure, comme un service cloud, une région, un compte de stockage, un groupe à haute disponibilité et une stratégie de mise en cache. Notez qu’instance de machine virtuelle hello doit être colocalisé avec le système d’exploitation associé ou les disques de données, le compte de service, région et le stockage cloud hello sélectionné doit être dans hello même emplacement que hello sous-jacent de disques durs virtuels de ces disques.
 
 ### <a name="attach-data-disk"></a>Attacher un disque de données
-Enfin, si vous avez inscrit les disques durs virtuels des disques de données, joignez-les à la nouvelle machine virtuelle Azure compatible Premium Storage.
+Enfin, si vous avez enregistré données disque VHD, définissez-les toohello nouveau stockage Premium compatibles avec Azure VM.
 
-Utilisez l’applet de commande PowerShell suivante pour joindre un disque de données à la nouvelle machine virtuelle et spécifiez la stratégie de mise en cache. Dans l’exemple ci-dessous, la stratégie de mise en cache est définie sur *Lecture seule*.
+Utiliser la suite PowerShell applet de commande tooattach données disque toohello nouvel ordinateur virtuel et spécifiez hello mise en cache de la stratégie. Dans l’exemple ci-dessous hello mise en cache de la stratégie est défini trop*ReadOnly*.
 
 ```powershell
 $vm = Get-AzureVM -ServiceName $serviceName -Name $vmName
@@ -420,55 +420,55 @@ Update-AzureVM  -VM $vm
 ```
 
 > [!NOTE]
-> Des étapes supplémentaires susceptibles de ne pas être exposées dans ce guide peuvent être nécessaires pour prendre en charge vos applications.
+> Il peut y avoir toosupport nécessaire des étapes supplémentaires votre application est ne pas couvert par ce guide.
 >
 >
 
 ### <a name="checking-and-plan-backup"></a>Vérification et planification de sauvegarde
-Une fois la nouvelle machine virtuelle opérationnelle, accédez-y en utilisant les mêmes ID de connexion et mot de passe que sur la machine virtuelle d’origine et vérifiez que tout fonctionne comme prévu. Tous les paramètres, y compris les volumes agrégés par bandes doivent être présents dans la nouvelle machine virtuelle.
+Une fois les hello nouvel ordinateur virtuel est en cours d’exécution, l’accès à l’aide de hello même id de connexion et mot de passe est hello d’ordinateur virtuel d’origine et vérifier que tout fonctionne comme prévu. Tous les paramètres de hello, y compris les volumes de hello répartie, est présents en hello nouvelle machine virtuelle.
 
-La dernière étape consiste à planifier la sauvegarde et la maintenance de la nouvelle machine virtuelle en fonction des besoins de l’application.
+dernière étape de Hello est la planification de sauvegarde et de maintenance tooplan pour hello que nouvelle machine virtuelle en fonction des besoins de l’application hello.
 
 ### <a name="a-sample-migration-script"></a>Un exemple de script de migration
-Si vous avez plusieurs machines virtuelles à migrer, il peut s’avérer utile d’automatiser ces tâches via des scripts PowerShell. Voici un exemple de script qui automatise la migration d’une machine virtuelle. Notez que le script ci-dessous n’est qu’un exemple, reposant sur des hypothèses concernant la configuration des disques de la machine virtuelle actuelle. Vous devrez peut-être le mettre à jour pour qu’il corresponde à votre scénario spécifique.
+Si vous avez plusieurs machines virtuelles toomigrate, automation via des scripts PowerShell s’avérera utile. Voici un exemple de script qui automatise la migration hello d’une machine virtuelle. Notez que script ci-dessous n'est qu’un exemple et il existe quelques hypothèses sur les disques de machine virtuelle en cours hello. Vous devrez peut-être tooupdate hello script toomatch avec votre scénario spécifique.
 
-Nous supposons que :
+les hypothèses Hello sont :
 
 * Vous créez des machines virtuelles Azure classiques.
-* Vos disques de système d’exploitation source et disques de données source sont sur le même compte de stockage et le même conteneur. Si vos disques de système d’exploitation et disques de données ne sont pas au même emplacement, vous pouvez utiliser AzCopy ou Azure PowerShell pour copier les disques durs virtuels sur des conteneurs et comptes de stockage. Reportez-vous à l’étape précédente : [Copie du disque dur virtuel avec AzCopy ou PowerShell](#copy-vhd-with-azcopy-or-powershell). La modification de ce script pour répondre à votre scénario est une autre possibilité, mais nous recommandons l’utilisation d’AzCopy ou de PowerShell, car cela est plus facile et plus rapide.
+* Vos disques de système d’exploitation source et disques de données source sont sur le même compte de stockage et le même conteneur. Si vos disques de système d’exploitation et les disques de données ne sont pas dans hello même placer, vous pouvez utiliser AzCopy ou Azure PowerShell toocopy disques durs virtuels sur les comptes de stockage et les conteneurs. Consultez l’étape précédente de toohello : [disque dur virtuel de la copie avec AzCopy ou PowerShell](#copy-vhd-with-azcopy-or-powershell). Modification de cette toomeet script votre scénario est un autre choix, mais nous recommandons d’utiliser AzCopy ou PowerShell, car il est plus facile et plus rapide.
 
-Le script d’automatisation est fourni ci-dessous. Remplacez le texte par vos informations et mettez à jour le script pour correspondre à votre scénario spécifique.
+script d’automatisation Hello est fourni ci-dessous. Remplacer du texte avec vos informations et mettre à jour de hello script toomatch avec votre scénario spécifique.
 
 > [!NOTE]
-> L’utilisation du script existant ne conserve pas la configuration réseau de votre machine virtuelle source. Vous devrez reconfigurer les paramètres réseau sur vos machines virtuelles migrées.
+> À l’aide de script existant de hello ne conserve pas la configuration du réseau de votre ordinateur virtuel source hello. Vous aurez besoin des paramètres de mise en réseau toore-config hello sur vos ordinateurs virtuels migrés.
 >
 >
 
 ```
     <#
     .Synopsis
-    This script is provided as an EXAMPLE to show how to migrate a VM from a standard storage account to a premium storage account. You can customize it according to your specific requirements.
+    This script is provided as an EXAMPLE tooshow how toomigrate a VM from a standard storage account tooa premium storage account. You can customize it according tooyour specific requirements.
 
     .Description
-    The script will copy the vhds (page blobs) of the source VM to the new storage account.
-    And then it will create a new VM from these copied vhds based on the inputs that you specified for the new VM.
-    You can modify the script to satisfy your specific requirement, but please be aware of the items specified
-    in the Terms of Use section.
+    hello script will copy hello vhds (page blobs) of hello source VM toohello new storage account.
+    And then it will create a new VM from these copied vhds based on hello inputs that you specified for hello new VM.
+    You can modify hello script toosatisfy your specific requirement, but please be aware of hello items specified
+    in hello Terms of Use section.
 
     .Terms of Use
     Copyright © 2015 Microsoft Corporation.  All rights reserved.
 
     THIS CODE AND ANY ASSOCIATED INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND,
-    EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY
-    AND/OR FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK OF USE, INABILITY TO USE, OR
-    RESULTS FROM THE USE OF THIS CODE REMAINS WITH THE USER.
+    EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED toohello IMPLIED WARRANTIES OF MERCHANTABILITY
+    AND/OR FITNESS FOR A PARTICULAR PURPOSE. hello ENTIRE RISK OF USE, INABILITY tooUSE, OR
+    RESULTS FROM hello USE OF THIS CODE REMAINS WITH hello USER.
 
     .Example (Save this script as Migrate-AzureVM.ps1)
 
     .\Migrate-AzureVM.ps1 -SourceServiceName CurrentServiceName -SourceVMName CurrentVMName –DestStorageAccount newpremiumstorageaccount -DestServiceName NewServiceName -DestVMName NewDSVMName -DestVMSize "Standard_DS2" –Location "Southeast Asia"
 
     .Link
-    To find more information about how to set up Azure PowerShell, refer to the following links.
+    toofind more information about how tooset up Azure PowerShell, refer toohello following links.
     http://azure.microsoft.com/documentation/articles/powershell-install-configure/
     http://azure.microsoft.com/documentation/articles/storage-powershell-guide-full/
     http://azure.microsoft.com/blog/2014/10/22/migrate-azure-virtual-machines-between-storage-accounts/
@@ -476,43 +476,43 @@ Le script d’automatisation est fourni ci-dessous. Remplacez le texte par vos i
     #>
 
     Param(
-    # the cloud service name of the VM.
+    # hello cloud service name of hello VM.
     [Parameter(Mandatory = $true)]
     [string] $SourceServiceName,
 
-    # The VM name to copy.
+    # hello VM name toocopy.
     [Parameter(Mandatory = $true)]
     [String] $SourceVMName,
 
-    # The destination storage account name.
+    # hello destination storage account name.
     [Parameter(Mandatory = $true)]
     [String] $DestStorageAccount,
 
-    # The destination cloud service name
+    # hello destination cloud service name
     [Parameter(Mandatory = $true)]
     [String] $DestServiceName,
 
-    # the destination vm name
+    # hello destination vm name
     [Parameter(Mandatory = $true)]
     [String] $DestVMName,
 
-    # the destination vm size
+    # hello destination vm size
     [Parameter(Mandatory = $true)]
     [String] $DestVMSize,
 
-    # the location of destination VM.
+    # hello location of destination VM.
     [Parameter(Mandatory = $true)]
     [string] $Location,
 
-    # whether or not to copy the os disk, the default is only copy data disks
+    # whether or not toocopy hello os disk, hello default is only copy data disks
     [Parameter(Mandatory = $false)]
     [Bool] $DataDiskOnly = $true,
 
-    # how frequently to report the copy status in sceconds
+    # how frequently tooreport hello copy status in sceconds
     [Parameter(Mandatory = $false)]
     [Int32] $CopyStatusReportInterval = 15,
 
-    # the name suffix to add to new created disks to avoid conflict with source disk names
+    # hello name suffix tooadd toonew created disks tooavoid conflict with source disk names
     [Parameter(Mandatory = $false)]
     [String]$DiskNameSuffix = "-prem"
 
@@ -522,7 +522,7 @@ Le script d’automatisation est fourni ci-dessous. Remplacez le texte par vos i
     #  Verify Azure PowerShell module and version
     #######################################################################
 
-    #import the Azure PowerShell module
+    #import hello Azure PowerShell module
     Write-Host "`n[WORKITEM] - Importing Azure PowerShell module" -ForegroundColor Yellow
     $azureModule = Import-Module Azure -PassThru
 
@@ -538,7 +538,7 @@ Le script d’automatisation est fourni ci-dessous. Remplacez le texte par vos i
     }
 
 
-    #Check the Azure PowerShell module version
+    #Check hello Azure PowerShell module version
     Write-Host "`n[WORKITEM] - Checking Azure PowerShell module verion" -ForegroundColor Yellow
     If ($azureModule.Version -ge (New-Object System.Version -ArgumentList "0.8.14"))
     {
@@ -560,60 +560,60 @@ Le script d’automatisation est fourni ci-dessous. Remplacez le texte par vos i
     }
     else
     {
-        Write-Host "[ERROR] - There is no valid Azure subscription found in PowerShell. Please refer to this article http://azure.microsoft.com/documentation/articles/powershell-install-configure/ to connect an Azure subscription. Exiting." -ForegroundColor Red
+        Write-Host "[ERROR] - There is no valid Azure subscription found in PowerShell. Please refer toothis article http://azure.microsoft.com/documentation/articles/powershell-install-configure/ tooconnect an Azure subscription. Exiting." -ForegroundColor Red
         Exit
     }
 
 
     #######################################################################
-    #  Check if the VM is shut down
-    #  Stopping the VM is a required step so that the file system is consistent when you do the copy operation.
+    #  Check if hello VM is shut down
+    #  Stopping hello VM is a required step so that hello file system is consistent when you do hello copy operation.
     #  Azure does not support live migration at this time..
     #######################################################################
 
     if (($sourceVM = Get-AzureVM –ServiceName $SourceServiceName –Name $SourceVMName) -eq $null)
     {
-        Write-Host "[ERROR] - The source VM doesn't exist in the current subscription. Exiting." -ForegroundColor Red
+        Write-Host "[ERROR] - hello source VM doesn't exist in hello current subscription. Exiting." -ForegroundColor Red
         Exit
     }
 
     # check if VM is shut down
     if ( $sourceVM.Status -notmatch "Stopped" )
     {
-        Write-Host "[Warning] - Stopping the VM is a required step so that the file system is consistent when you do the copy operation. Azure does not support live migration at this time. If you'd like to create a VM from a generalized image, sys-prep the Virtual Machine before stopping it." -ForegroundColor Yellow
-        $ContinueAnswer = Read-Host "`n`tDo you wish to stop $SourceVMName now? Input 'N' if you want to shut down the VM manually and come back later.(Y/N)"
+        Write-Host "[Warning] - Stopping hello VM is a required step so that hello file system is consistent when you do hello copy operation. Azure does not support live migration at this time. If you'd like toocreate a VM from a generalized image, sys-prep hello Virtual Machine before stopping it." -ForegroundColor Yellow
+        $ContinueAnswer = Read-Host "`n`tDo you wish toostop $SourceVMName now? Input 'N' if you want tooshut down hello VM manually and come back later.(Y/N)"
         If ($ContinueAnswer -ne "Y") { Write-Host "`n Exiting." -ForegroundColor Red;Exit }
         $sourceVM | Stop-AzureVM
 
-        # wait until the VM is shut down
+        # wait until hello VM is shut down
         $VMStatus = (Get-AzureVM –ServiceName $SourceServiceName –Name $vmName).Status
         while ($VMStatus -notmatch "Stopped")
         {
-            Write-Host "`n[Status] - Waiting VM $vmName to shut down" -ForegroundColor Green
+            Write-Host "`n[Status] - Waiting VM $vmName tooshut down" -ForegroundColor Green
             Sleep -Seconds 5
             $VMStatus = (Get-AzureVM –ServiceName $SourceServiceName –Name $vmName).Status
         }
     }
 
-    # exporting the sourve vm to a configuration file, you can restore the original VM by importing this config file
+    # exporting hello sourve vm tooa configuration file, you can restore hello original VM by importing this config file
     # see more information for Import-AzureVM
     $workingDir = (Get-Location).Path
     $vmConfigurationPath = $env:HOMEPATH + "\VM-" + $SourceVMName + ".xml"
-    Write-Host "`n[WORKITEM] - Exporting VM configuration to $vmConfigurationPath" -ForegroundColor Yellow
+    Write-Host "`n[WORKITEM] - Exporting VM configuration too$vmConfigurationPath" -ForegroundColor Yellow
     $exportRe = $sourceVM | Export-AzureVM -Path $vmConfigurationPath
 
 
     #######################################################################
-    #  Copy the vhds of the source vm
-    #  You can choose to copy all disks including os and data disks by specifying the
-    #  parameter -DataDiskOnly to be $false. The default is to copy only data disk vhds
-    #  and the new VM will boot from the original os disk.
+    #  Copy hello vhds of hello source vm
+    #  You can choose toocopy all disks including os and data disks by specifying the
+    #  parameter -DataDiskOnly toobe $false. hello default is toocopy only data disk vhds
+    #  and hello new VM will boot from hello original os disk.
     #######################################################################
 
     $sourceOSDisk = $sourceVM.VM.OSVirtualHardDisk
     $sourceDataDisks = $sourceVM.VM.DataVirtualHardDisks
 
-    # Get source storage account information, not considering the data disks and os disks are in different accounts
+    # Get source storage account information, not considering hello data disks and os disks are in different accounts
     $sourceStorageAccountName = $sourceOSDisk.MediaLink.Host -split "\." | select -First 1
     $sourceStorageKey = (Get-AzureStorageKey -StorageAccountName $sourceStorageAccountName).Primary
     $sourceContext = New-AzureStorageContext –StorageAccountName $sourceStorageAccountName -StorageAccountKey $sourceStorageKey
@@ -625,25 +625,25 @@ Le script d’automatisation est fourni ci-dessous. Remplacez le texte par vos i
     # Create a container of vhds if it doesn't exist
     if ((Get-AzureStorageContainer -Context $destContext -Name vhds -ErrorAction SilentlyContinue) -eq $null)
     {
-        Write-Host "`n[WORKITEM] - Creating a container vhds in the destination storage account." -ForegroundColor Yellow
+        Write-Host "`n[WORKITEM] - Creating a container vhds in hello destination storage account." -ForegroundColor Yellow
         New-AzureStorageContainer -Context $destContext -Name vhds
     }
 
 
     $allDisksToCopy = $sourceDataDisks
-    # check if need to copy os disk
+    # check if need toocopy os disk
     $sourceOSVHD = $sourceOSDisk.MediaLink.Segments[2]
     if ($DataDiskOnly)
     {
-        # copy data disks only, this option requires deleting the source VM so that dest VM can boot
-        # from the same vhd blob.
-        $ContinueAnswer = Read-Host "`n`t[Warning] You chose to copy data disks only. Moving VM requires removing the original VM (the disks and backing vhd files will NOT be deleted) so that the new VM can boot from the same vhd. This is an irreversible action. Do you wish to proceed right now? (Y/N)"
+        # copy data disks only, this option requires deleting hello source VM so that dest VM can boot
+        # from hello same vhd blob.
+        $ContinueAnswer = Read-Host "`n`t[Warning] You chose toocopy data disks only. Moving VM requires removing hello original VM (hello disks and backing vhd files will NOT be deleted) so that hello new VM can boot from hello same vhd. This is an irreversible action. Do you wish tooproceed right now? (Y/N)"
         If ($ContinueAnswer -ne "Y") { Write-Host "`n Exiting." -ForegroundColor Red;Exit }
         $destOSVHD = Get-AzureStorageBlob -Blob $sourceOSVHD -Container vhds -Context $sourceContext
-        Write-Host "`n[WORKITEM] - Removing the original VM (the vhd files are NOT deleted)." -ForegroundColor Yellow
+        Write-Host "`n[WORKITEM] - Removing hello original VM (hello vhd files are NOT deleted)." -ForegroundColor Yellow
         Remove-AzureVM -Name $SourceVMName -ServiceName $SourceServiceName
 
-        Write-Host "`n[WORKITEM] - Waiting utill the OS disk is released by source VM. This may take up to several minutes."
+        Write-Host "`n[WORKITEM] - Waiting utill hello OS disk is released by source VM. This may take up tooseveral minutes."
         $diskAttachedTo = (Get-AzureDisk -DiskName $sourceOSDisk.DiskName).AttachedTo
         while ($diskAttachedTo -ne $null)
         {
@@ -654,7 +654,7 @@ Le script d’automatisation est fourni ci-dessous. Remplacez le texte par vos i
     }
     else
     {
-        # copy the os disk vhd
+        # copy hello os disk vhd
         Write-Host "`n[WORKITEM] - Starting copying os disk $($disk.DiskName) at $(get-date)." -ForegroundColor Yellow
         $allDisksToCopy += @($sourceOSDisk)
         $targetBlob = Start-AzureStorageBlobCopy -SrcContainer vhds -SrcBlob $sourceOSVHD -DestContainer vhds -DestBlob $sourceOSVHD -Context $sourceContext -DestContext $destContext -Force
@@ -670,7 +670,7 @@ Le script d’automatisation est fourni ci-dessous. Remplacez le texte par vos i
         # copy all data disks
         Write-Host "`n[WORKITEM] - Starting copying data disk $($disk.DiskName) at $(get-date)." -ForegroundColor Yellow
         $targetBlob = Start-AzureStorageBlobCopy -SrcContainer vhds -SrcBlob $blobName -DestContainer vhds -DestBlob $blobName -Context $sourceContext -DestContext $destContext -Force
-        # update the media link to point to the target blob link
+        # update hello media link toopoint toohello target blob link
         $disk.MediaLink = $targetBlob.ICloudBlob.Uri.AbsoluteUri
     }
 
@@ -678,7 +678,7 @@ Le script d’automatisation est fourni ci-dessous. Remplacez le texte par vos i
     $diskComplete = @()
     do
     {
-        Write-Host "`n[WORKITEM] - Waiting for all disk copy to complete. Checking status every $CopyStatusReportInterval seconds." -ForegroundColor Yellow
+        Write-Host "`n[WORKITEM] - Waiting for all disk copy toocomplete. Checking status every $CopyStatusReportInterval seconds." -ForegroundColor Yellow
         # check status every 30 seconds
         Sleep -Seconds $CopyStatusReportInterval
         foreach ( $disk in $allDisksToCopy)
@@ -708,11 +708,11 @@ Le script d’automatisation est fourni ci-dessous. Remplacez le texte par vos i
 
     #######################################################################
     #  Create a new vm
-    #  the new VM can be created from the copied disks or the original os disk.
-    #  You can ddd your own logic here to satisfy your specific requirements of the vm.
+    #  hello new VM can be created from hello copied disks or hello original os disk.
+    #  You can ddd your own logic here toosatisfy your specific requirements of hello vm.
     #######################################################################
 
-    # Create a VM from the existing os disk
+    # Create a VM from hello existing os disk
     if ($DataDiskOnly)
     {
         $vm = New-AzureVMConfig -Name $DestVMName -InstanceSize $DestVMSize -DiskName $sourceOSDisk.DiskName
@@ -722,15 +722,15 @@ Le script d’automatisation est fourni ci-dessous. Remplacez le texte par vos i
         $newOSDisk = Add-AzureDisk -OS $sourceOSDisk.OS -DiskName ($sourceOSDisk.DiskName + $DiskNameSuffix) -MediaLocation $destOSVHD.ICloudBlob.Uri.AbsoluteUri
         $vm = New-AzureVMConfig -Name $DestVMName -InstanceSize $DestVMSize -DiskName $newOSDisk.DiskName
     }
-    # Attached the copied data disks to the new VM
+    # Attached hello copied data disks toohello new VM
     foreach ($dataDisk in $sourceDataDisks)
     {
-        # add -DiskLabel $dataDisk.DiskLabel if there are labels for disks of the source vm
+        # add -DiskLabel $dataDisk.DiskLabel if there are labels for disks of hello source vm
         $diskLabel = "drive" + $dataDisk.Lun
         $vm | Add-AzureDataDisk -ImportFrom -DiskLabel $diskLabel -LUN $dataDisk.Lun -MediaLocation $dataDisk.MediaLink
     }
 
-    # Edit this if you want to add more custimization to the new VM
+    # Edit this if you want tooadd more custimization toohello new VM
     # $vm | Add-AzureEndpoint -Protocol tcp -LocalPort 443 -PublicPort 443 -Name 'HTTPs'
     # $vm | Set-AzureSubnet "PubSubnet","PrivSubnet"
 
@@ -738,34 +738,34 @@ Le script d’automatisation est fourni ci-dessous. Remplacez le texte par vos i
 ```
 
 #### <a name="optimization"></a>Optimisation
-La configuration de votre machine virtuelle actuelle peut être personnalisée spécifiquement pour fonctionner correctement avec des disques Standard. Par exemple, vous pouvez augmenter les performances en utilisant de nombreux disques dans un volume agrégé par bandes. Par exemple, au lieu d’utiliser 4 disques séparément sur Premium Storage, vous pourrez optimiser le coût en n’utilisant qu’un seul disque. Des optimisations comme celles-ci doivent être étudiées au cas par cas et requièrent l’exécution d’étapes personnalisées après la migration. Notez également que ce processus est susceptible de ne pas bien fonctionner pour les bases de données et les applications qui dépendent de la disposition du disque définie dans la configuration.
+Votre configuration actuelle de la machine virtuelle peut être personnalisée en particulier les toowork correctement avec les disques Standard. Par exemple, tooincrease hello des performances à l’aide de disques dans un volume agrégé par bandes. Par exemple, au lieu d’utiliser les 4 disques séparément sur un stockage Premium, vous pouvez être en mesure de toooptimize hello en ayant un seul disque. Optimisations, comme cette toobe besoin géré sur un cas par cas et nécessitent des étapes personnalisées après la migration de hello. En outre, notez que ce processus ne fonctionne pas bien pour les bases de données et les applications qui dépendent de disposition du disque hello définie dans le programme d’installation hello.
 
 ##### <a name="preparation"></a>Préparation
-1. Terminez la migration simple comme décrit dans la section précédente. Les optimisations seront effectuées sur la nouvelle machine virtuelle après la migration.
-2. Définissez les tailles requises pour les nouveaux disques pour une configuration optimisée.
-3. Déterminez les spécifications du mappage des volumes/disques actuels aux nouveaux disques.
+1. Hello complète Migration Simple, comme décrit dans hello à la section précédente. Les optimisations se fera sur hello nouvel ordinateur virtuel après la migration de hello.
+2. Définir les nouvelles tailles de disque hello nécessaires à la configuration de hello optimisé.
+3. Déterminer le mappage de hello spécifications en cours/volumes de disques toohello nouveau disque.
 
 ##### <a name="execution-steps"></a>Étapes d'exécution
-1. Créez les nouveaux disques avec les tailles appropriées sur la machine virtuelle Premium Storage.
-2. Connectez-vous à la machine virtuelle et copiez les données du volume actuel vers le nouveau disque mappé à ce volume. Utilisez cette même procédure pour tous les volumes actuels devant être mappés à un nouveau disque.
-3. Ensuite, modifiez les paramètres d’application pour basculer vers les nouveaux disques et détachez les anciens volumes.
+1. Créer des nouveaux disques hello avec des tailles appropriées de hello sur hello VM de stockage Premium.
+2. Connexion toohello machine virtuelle et copie hello données de hello actuel toohello nouveau disque du volume qui mappe le volume de toothat. Cela pour tous les volumes en cours hello nécessitant toomap tooa nouveau disque.
+3. Ensuite, modifiez hello application paramètres tooswitch toohello nouveaux disques et détacher des anciens volumes de hello.
 
-Pour optimiser l’application pour de meilleures performances de disque, reportez-vous à [Optimisation des performances applicatives](storage-premium-storage-performance.md#optimizing-application-performance).
+Pour le paramétrage d’application hello pour de meilleures performances de disque, consultez trop[optimisation des performances des applications](storage-premium-storage-performance.md#optimizing-application-performance).
 
 ### <a name="application-migrations"></a>Migrations des applications
-Les bases de données et autres applications complexes peuvent nécessiter des étapes spéciales, telles que définies par le fournisseur de l’application pour la migration. Reportez-vous à la documentation correspondante de l’application. Par exemple, la migration des bases de données se fait généralement via des étapes de sauvegarde et de restauration.
+Bases de données et d’autres applications complexes peuvent nécessiter des étapes spéciales, comme défini par le fournisseur d’application hello pour la migration de hello. Consultez la documentation de l’application toorespective. Par exemple, la migration des bases de données se fait généralement via des étapes de sauvegarde et de restauration.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Consultez les ressources suivantes pour des scénarios spécifiques de migration des machines virtuelles :
+Consultez hello suivant des ressources pour des scénarios spécifiques pour la migration des ordinateurs virtuels :
 
 * [Migrer des machines virtuelles Azure entre les comptes de stockage](https://azure.microsoft.com/blog/2014/10/22/migrate-azure-virtual-machines-between-storage-accounts/)
-* [Création et téléchargement d’un disque dur virtuel Windows Server dans Azure.](../../virtual-machines/windows/classic/createupload-vhd.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
-* [Création et téléchargement d’un disque dur virtuel contenant le système d’exploitation Linux](../../virtual-machines/linux/classic/create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
-* [Migration de machines virtuelles à partir d’Amazon AWS vers Microsoft Azure](http://channel9.msdn.com/Series/Migrating-Virtual-Machines-from-Amazon-AWS-to-Microsoft-Azure)
+* [Créez et téléchargez un tooAzure le disque dur virtuel de Windows Server.](../../virtual-machines/windows/classic/createupload-vhd.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
+* [Création et téléchargement d’un disque dur virtuel qui contient hello système d’exploitation Linux](../../virtual-machines/linux/classic/create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
+* [Migration d’ordinateurs virtuels à partir d’Amazon AWS tooMicrosoft Azure](http://channel9.msdn.com/Series/Migrating-Virtual-Machines-from-Amazon-AWS-to-Microsoft-Azure)
 
-Consultez également les ressources suivantes pour en savoir plus sur Azure Storage et les machines virtuelles Azure :
+Consultez également hello suivant toolearn ressources plus d’informations sur le stockage Azure et les Machines virtuelles Azure :
 
-* [Stockage Azure](https://azure.microsoft.com/documentation/services/storage/)
+* [Azure Storage](https://azure.microsoft.com/documentation/services/storage/)
 * [Azure Virtual Machines](https://azure.microsoft.com/documentation/services/virtual-machines/)
 * [Stockage Premium : stockage hautes performances pour les charges de travail des machines virtuelles Azure](storage-premium-storage.md)
 

@@ -1,6 +1,6 @@
 ---
-title: "Azure Site Recovery deployment planner pour le déploiement de VMware vers Azure| Microsoft Docs"
-description: "Il s’agit du guide de l’utilisateur d’Azure Site Recovery deployment planner."
+title: "planification de déploiement de Site Recovery aaaAzure pour VMware pour Azure | Documents Microsoft"
+description: "Il s’agit de guide de l’utilisateur planner déploiement Azure Site Recovery hello."
 services: site-recovery
 documentationcenter: 
 author: nsoneji
@@ -14,157 +14,157 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 08/28/2017
 ms.author: nisoneji
-ms.openlocfilehash: 60b0641076c2fa8ed2feb5c64e7b119519f46cf4
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a8c13cd47850575769e0186528807bc525bdeec7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-site-recovery-deployment-planner"></a>Azure Site Recovery deployment planner
-Cet article est le guide de l’utilisateur d’Azure Site Recovery Deployment Planner portant sur les déploiements de production de VMware vers Azure.
+Cet article est un guide d’utilisateur de planification de déploiement Azure Site Recovery hello pour les déploiements de production de VMware à Azure.
 
 ## <a name="overview"></a>Vue d'ensemble
 
-Avant de commencer à protéger les machines virtuelles VMware à l’aide de Site Recovery, allouez suffisamment de bande passante en fonction de votre taux de modifications des données par jour pour atteindre votre objectif de point de récupération (RPO) souhaité. Assurez-vous de déployer le nombre approprié de serveurs de configuration et de serveurs de processus en local.
+Avant de commencer la protection des machines virtuelles de VMware (VM) à l’aide de Site Recovery, allouer suffisamment de bande passante, en fonction de votre taux de modification de données quotidienne, toomeet de votre objectif de point de récupération souhaité (RPO). Être toodeploy vraiment hello bon nombre de serveurs de configuration et les processus serveurs locaux.
 
-Vous devez également créer le type approprié et le nombre de comptes de stockage Azure cibles. Vous créez des comptes de stockage standard ou premium, en tenant compte de la croissance de vos serveurs de production sources en raison d’une utilisation accrue au fil du temps. Vous choisissez le type de stockage par machine virtuelle, en fonction des caractéristiques de charge de travail (par exemple, les opérations de lecture/écriture d’E/S par seconde, ou l’activité des données) et des limites Site Recovery.
+Vous devez également le type approprié de toocreate hello et le nombre de comptes de stockage Azure cible. Vous créez des comptes de stockage standard ou premium, en tenant compte de la croissance de vos serveurs de production sources en raison d’une utilisation accrue au fil du temps. Vous choisissez le type de stockage hello par machine virtuelle, en fonction des caractéristiques de charge de travail (par exemple, des opérations de lecture/écriture d’e/s par s ou évolution des données) et limite de la récupération de Site.
 
-La préversion publique d’Azure Site Recovery deployment planner est un outil de ligne de commande qui est actuellement disponible uniquement pour le scénario de déploiement VMware vers Azure. Vous pouvez profiler à distance vos machines virtuelles VMware à l’aide de cet outil (sans conséquences sur la production) pour comprendre les besoins de stockage Azure et de bande passante afin d’assurer la réussite de la réplication et du test de basculement. Vous pouvez exécuter l’outil sans installer les composants Site Recovery locaux. Cependant, pour obtenir des résultats de débit précis, nous vous recommandons d’exécuter l’outil sur un serveur Windows Server répondant à la configuration requise minimale du serveur de configuration Site Recovery que vous devrez finalement déployer dans les premières étapes du déploiement de production.
+Aperçu public du module de déploiement Hello Site Recovery est un outil de ligne de commande qui est actuellement disponible uniquement pour le scénario de VMware à Azure hello. Vous pouvez à distance à l’aide de cet outil (avec aucun impact sur la production quelque) toounderstand hello de bande passante en matière de stockage Azure pour la réussite de la réplication de profil vos machines virtuelles VMware et test de basculement. Vous pouvez exécuter l’outil de hello sans installer n’importe quel Site Recovery composants locaux. Toutefois, tooget précis obtenu des résultats de débit, nous vous conseillons d’exécuter le Planificateur de hello sur un serveur Windows qui répond aux exigences minimales hello hello récupération de Site du serveur de configuration que vous devez éventuellement toodeploy comme l’une des premières étapes de hello dans le déploiement de production.
 
-L’outil fournit les informations suivantes :
+outil de Hello fournit hello les détails suivants :
 
 **Évaluation de la compatibilité**
 
 * Une évaluation de l’éligibilité de la machine virtuelle en fonction du nombre de disques, de la taille du disque, des E/S par seconde, de l’activité et du type de démarrage (EFI/BIOS)
-* La bande passante réseau estimée requise pour la réplication différentielle
+* bande passante réseau Hello estimé qui est requis pour la réplication delta
 
 **Besoin de bande passante réseau et évaluation de RPO**
 
-* La bande passante réseau estimée requise pour la réplication différentielle
-* Le débit pouvant être obtenu par Site Recovery dans le scénario « local vers Azure »
-* Le nombre de machines virtuelles à traiter par lot en fonction de la bande passante estimée pour effectuer une réplication initiale pendant une durée donnée
+* bande passante réseau Hello estimé qui est requis pour la réplication delta
+* débit Hello qu’obtiennent à partir de récupération de Site local tooAzure
+* nombre de Hello de machines virtuelles toobatch, en fonction de hello estimé réplication initiale de la bande passante toocomplete dans un délai donné
 
 **Exigences de l’infrastructure Azure**
 
-* Le type de stockage (compte de stockage standard ou premium) pour chaque machine virtuelle
-* Le nombre total de comptes de stockage standard et premium à configurer pour la réplication
+* spécification de type (compte de stockage standard ou premium) de stockage de Hello pour chaque machine virtuelle
+* Nombre total de Hello de toobe de comptes de stockage standard et premium définie pour la réplication
 * Suggestions d’affectation de noms pour les comptes de stockage en fonction des conseils liés au Stockage Azure
-* L’emplacement du compte de stockage pour toutes les machines virtuelles
-* Le nombre de cœurs Azure à configurer avant le test de basculement ou le basculement sur l’abonnement
-* La taille recommandée de machine virtuelle Azure pour chaque machine virtuelle sur site
+* sélection élective de compte de stockage Hello pour toutes les machines virtuelles
+* nombre de Hello de cœurs Azure toobe configurer avant le basculement de test ou sur l’abonnement de hello
+* Hello recommandée de machine virtuelle Azure de taille pour chaque machine virtuelle sur site
 
 **Exigences de l’infrastructure locale**
-* Le nombre requis de serveurs de configuration et de serveurs de processus à déployer en local
+* Hello nombre requis de serveurs de configuration et toobe de serveurs de processus déployé localement
 
 >[!IMPORTANT]
 >
->Étant donné que l’utilisation est susceptible d’augmenter au fil du temps, tous les calculs de l’outil précédent sont effectués en supposant un facteur de croissance de 30 pour cent de caractéristiques de charge de travail et à l’aide d’une valeur de 95e centile de toutes les mesures profilage (E/S par seconde en lecture/écriture, activité, etc.). Ces deux éléments (facteur de croissance et calcul de centile), sont configurables. Pour en savoir plus sur le facteur de croissance, consultez la section « Considérations relatives au facteur de croissance ». Pour en savoir plus sur la valeur de centile, consultez la section « Valeur de centile utilisée pour le calcul ».
+>Étant donné que l’utilisation est probablement tooincrease au fil du temps, toutes les hello outil précédent, les calculs sont effectués en supposant que d’un facteur de croissance de 30 pour cent de caractéristiques de charge de travail et à l’aide d’une valeur du 95ème centile de hello toutes les métriques de profilage (évolution d’IOPS, de lecture/écriture et donc les deux sens). Ces deux éléments (facteur de croissance et calcul de centile), sont configurables. toolearn en savoir plus sur le facteur de croissance, consultez la section, « considérations de facteur de croissance » hello. toolearn savoir plus sur la valeur de centile, consultez la section de « Valeur de centile utilisé pour le calcul de hello » de hello.
 >
 
 ## <a name="requirements"></a>Configuration requise
-L’outil comporte deux phases principales : le profilage et la génération de rapport. En outre, une troisième option permet de calculer le débit uniquement. La configuration requise pour le serveur à partir de laquelle le profilage et la mesure du débit sont initiés est présentée dans le tableau suivant :
+outil de Hello comprend deux phases principales : la génération de profils et de rapport. Il existe également une troisième option toocalculate de débit uniquement. exigences Hello pour serveur hello à partir de quels hello profilage et le débit mesure est initiée sont présentés dans hello tableau suivant :
 
 | Configuration requise du serveur | Description|
 |---|---|
-|Profilage et mesure du débit| <ul><li>Système d’exploitation : Microsoft Windows Server 2012 R2<br>(dans l’idéal, correspondant au moins aux [recommandations de taille pour le serveur de configuration](https://aka.ms/asr-v2a-on-prem-components))</li><li>Configuration de la machine : 8 processeurs virtuels, 16 Go de RAM, disque dur de 300 Go</li><li>[Microsoft .NET Framework 4.5](https://aka.ms/dotnet-framework-45)</li><li>[VMware vSphere PowerCLI 6.0 R3](https://aka.ms/download_powercli)</li><li>[Microsoft Visual C++ Redistributable pour Visual Studio 2012](https://aka.ms/vcplusplus-redistributable)</li><li>Accès Internet à Azure à partir de ce serveur</li><li>Compte Azure Storage</li><li>Accès administrateur sur le serveur</li><li>Au minimum 100 Go d’espace disque disponible (en supposant que 1 000 machines virtuelles avec une moyenne de trois disques chacune, profilage pour 30 jours)</li><li>Les paramètres de niveau de statistiques de VMware vCenter doivent être définis sur le niveau 2 ou un niveau supérieur</li><li>Autoriser le port 443 : le planificateur de déploiement ASR se sert de ce port pour se connecter au serveur vCenter/à l’hôte ESXi</ul></ul>|
+|Profilage et mesure du débit| <ul><li>Système d’exploitation : Microsoft Windows Server 2012 R2<br>(dans l’idéal, correspondant au moins hello [dimensionner des recommandations pour le serveur de configuration hello](https://aka.ms/asr-v2a-on-prem-components))</li><li>Configuration de la machine : 8 processeurs virtuels, 16 Go de RAM, disque dur de 300 Go</li><li>[Microsoft .NET Framework 4.5](https://aka.ms/dotnet-framework-45)</li><li>[VMware vSphere PowerCLI 6.0 R3](https://aka.ms/download_powercli)</li><li>[Microsoft Visual C++ Redistributable pour Visual Studio 2012](https://aka.ms/vcplusplus-redistributable)</li><li>TooAzure d’accès Internet à partir de ce serveur</li><li>Compte Azure Storage</li><li>Accès d’administrateur sur le serveur de hello</li><li>Au minimum 100 Go d’espace disque disponible (en supposant que 1 000 machines virtuelles avec une moyenne de trois disques chacune, profilage pour 30 jours)</li><li>Paramètres de niveau de VMware vCenter statistiques doivent être définis too2 ou niveau élevé</li><li>Autoriser le port 443 : planification du déploiement du système utilise ce port tooconnect toovCenter serveur/ESXi hôte</ul></ul>|
 | Génération de rapport | Un PC Windows ou serveur Windows Server doté de Microsoft Excel 2013 ou version ultérieure |
-| Autorisations utilisateur | Autorisation de lecture seule pour le compte d’utilisateur utilisé pour accéder au serveur VMware vCenter/à l’hôte VMware vSphere ESXi lors du profilage |
+| Autorisations utilisateur | Autorisation en lecture seule hello compte d’utilisateur qui a utilisé hôte tooaccess hello VMware vCenter server/VMware vSphere ESXi lors du profilage |
 
 > [!NOTE]
 >
->L’outil peut profiler uniquement des machines virtuelles avec des disques de machines virtuelles et des disques RDM. Il ne peut pas profiler les machines virtuelles équipées de disques iSCSI ou NFS. Site Recovery prend en charge les disques iSCSI et NFS pour les serveurs VMware, mais comme l’outil Deployment Planner ne se trouve pas dans l’invité et n’effectue le profilage qu’à l’aide des compteurs de performance vCenter, il n’a pas de visibilité sur ces types de disque.
+>outil de Hello peut profiler uniquement des machines virtuelles avec des disques VMDK et RDM. Il ne peut pas profiler les machines virtuelles équipées de disques iSCSI ou NFS. Récupération de site prend en charge iSCSI et les disques NFS des serveurs VMware, mais planification du déploiement hello n’étant pas invité hello et il profils uniquement à l’aide des compteurs de performance vCenter, outil de hello n’a pas de visibilité de ces types de disques.
 >
 
-## <a name="download-and-extract-the-public-preview"></a>Télécharger et extraire la préversion publique
-1. Téléchargez la dernière version de la [préversion publique de Site Recovery deployment planner](https://aka.ms/asr-deployment-planner).  
-L’outil se présente dans un dossier .zip. Sa version actuelle ne prend en charge que le scénario VMware vers Azure.
+## <a name="download-and-extract-hello-public-preview"></a>Téléchargez et installez la version préliminaire publique de hello
+1. Télécharger la version la plus récente de hello hello [version préliminaire publique de récupération de Site déploiement planner](https://aka.ms/asr-deployment-planner).  
+outil de Hello est empaqueté dans un dossier .zip. version actuelle de Hello de l’outil de hello prend en charge uniquement le scénario de VMware à Azure hello.
 
-2. Copiez le dossier .zip sur le serveur Windows à partir duquel vous voulez exécuter l’outil.  
-Vous pouvez exécuter l’outil à partir de Windows Server 2012 R2 si le serveur a accès au réseau pour se connecter au serveur vCenter/à l’hôte vSphere ESXi qui contient les machines virtuelles à profiler. Toutefois, nous vous recommandons d’exécuter l’outil sur un serveur dont la configuration matérielle répond aux [indications de dimensionnement pour les serveurs de configuration](https://aka.ms/asr-v2a-on-prem-components). Si vous avez déjà déployé les composants Site Recovery en local, exécutez l’outil à partir du serveur de configuration.
+2. Copiez hello .zip dossier toohello Windows server à partir de laquelle vous voulez que toorun hello outil.  
+Vous pouvez exécuter les outil hello à partir de Windows Server 2012 R2 si les serveur hello réseau accès tooconnect toohello vCenter server/ESXi hôte vSphere contenant toobe de machines virtuelles Bonjour profilée. Toutefois, nous vous recommandons d’exécuter hello outil sur un serveur dont la configuration matérielle répond aux hello [indications de dimensionnement de serveur de configuration](https://aka.ms/asr-v2a-on-prem-components). Si vous avez déjà déployé le Site Recovery composants locaux, exécuter l’outil de hello hello serveur de configuration.
 
- Nous vous recommandons d’adopter la même configuration matérielle que le serveur de configuration (qui dispose d’un serveur de processus intégré) sur le serveur sur lequel vous exécutez l’outil. Cette configuration garantit que le débit atteint rapporté par l’outil corresponde au débit que Site Recovery peut atteindre lors de la réplication. Le calcul du débit dépend de la bande passante réseau disponible sur le serveur et de la configuration matérielle (processeur, stockage, etc.) du serveur. Si vous exécutez l’outil à partir de n’importe quel autre serveur, le débit est calculé à partir de ce serveur vers Microsoft Azure. En outre, étant donné que la configuration matérielle du serveur peut différer de celle du serveur de configuration, le débit atteint rapporté par l’outil peut être inexact.
+ Nous vous recommandons d’avoir hello même configuration matérielle en tant que serveur de configuration hello (qui dispose d’un serveur intégré dans le processus) sur le serveur hello sur lequel vous exécutez l’outil de hello. Une telle configuration garantit que le débit hello obtenue que hello outil rapports correspondances hello débit réel qui permettent d’obtenir de la récupération de Site lors de la réplication. calcul du débit Hello dépend de la bande passante réseau disponible sur le serveur de hello et la configuration matérielle (UC, stockage et ainsi de suite) du serveur de hello. Si vous exécutez l’outil de hello à partir de n’importe quel autre serveur, débit de hello est calculé à partir de cette tooMicrosoft serveur Azure. En outre, étant donné que la configuration matérielle de hello du serveur de hello peut différer de celle du serveur de configuration hello, débit hello obtenue hello outil rapports risquent d’être erronée.
 
-3. Extrayez le dossier .zip.  
-Le dossier contient plusieurs fichiers et sous-dossiers. Le fichier exécutable s’appelle ASRDeploymentPlanner.exe dans le dossier parent.
+3. Extraire le dossier de .zip hello.  
+dossier de Hello contient plusieurs fichiers et sous-dossiers. le fichier exécutable Hello est ASRDeploymentPlanner.exe dans le dossier parent de hello.
 
     Exemple :  
-    Copiez le fichier .zip sur le lecteur E:\ et extrayez-le.
+    Copiez tooE de fichier .zip hello : \ de lecteur et l’extraire.
    E:\ASR Deployment Planner-Preview_v1.2.zip
 
     E:\ASR Deployment Planner-Preview_v1.2\ ASR Deployment Planner-Preview_v1.2\ ASRDeploymentPlanner.exe
 
 ## <a name="capabilities"></a>Fonctionnalités
-Vous pouvez exécuter l’outil de ligne de commande (ASRDeploymentPlanner.exe) dans l’un des trois modes suivants :
+Vous pouvez exécuter l’outil de ligne de commande hello (ASRDeploymentPlanner.exe) dans un des hello suivant trois modes :
 
 1. Profilage  
 2. Génération de rapport
 3. GetThroughput
 
-Tout d’abord, exécutez l’outil en mode profilage pour rassembler l’activité des données de machine virtuelle et les E/S par seconde. Ensuite, exécutez l’outil pour générer le rapport afin de déterminer les besoins en bande passante réseau et en stockage.
+Exécutez d’abord, outil de hello dans l’évolution des données de mode toogather machine virtuelle et des IOPS de profilage. Ensuite, exécutez rapport hello toogenerate hello toofind hello configuration réseau de bande passante et de stockage requise.
 
 ## <a name="profiling"></a>Profilage
-En mode profilage, l’outil Deployment Planner se connecte au serveur vCenter ou à l’hôte vSphere ESXi pour collecter les données de performance sur la machine virtuelle.
+Dans le mode de profilage, outil de planification du déploiement hello connecte toohello vCenter server/vSphere données de performances ESXi hôte toocollect sur hello machine virtuelle.
 
-* Le profilage n’affecte pas les performances des machines virtuelles de production, car aucune connexion directe n’est établie. Toutes les données de performance sont collectées à partir du serveur vCenter/de l’hôte vSphere ESXi.
-* Pour s’assurer que les effets du profilage sur le serveur sont négligeables, l’outil interroge l’hôte du serveur vCenter/de l’hôte vSphere ESXi toutes les 15 minutes. Cet intervalle de requête ne compromet pas la précision du profilage, car l’outil stocke les données du compteur de performances toutes les minutes.
+* Le profilage n’affecte pas les performances de hello de production de hello machines virtuelles, car aucune connexion directe n’est établie toothem. Toutes les données de performances sont collectées à partir de hello vCenter server/ESXi hôte vSphere.
+* tooensure qu’est un impact négligeable sur les serveur hello en raison de profilage, hello outil requêtes hello vCenter server/ESXi hôte vSphere toutes les 15 minutes. Cet intervalle de requête ne pas compromettre les précision profilage, car l’outil de hello stocke les données de compteur de performance de toutes les minutes.
 
-### <a name="create-a-list-of-vms-to-profile"></a>Créer une liste de machines virtuelles à profiler
-Tout d’abord, vous avez besoin d’une liste des machines virtuelles à profiler. Vous pouvez obtenir tous les noms des machines virtuelles sur un serveur vCenter/hôte vSphere ESXi à l’aide des commandes VMware vSphere PowerCLI indiquées dans la procédure suivante. Vous pouvez également répertorier dans un fichier les noms conviviaux ou adresses IP des machines virtuelles que vous souhaitez profiler manuellement.
+### <a name="create-a-list-of-vms-tooprofile"></a>Créer une liste des ordinateurs virtuels tooprofile
+Tout d’abord, vous devez obtenir la liste des toobe de machines virtuelles Bonjour profilée. Vous pouvez obtenir tous les noms de hello de machines virtuelles sur un hôte ESXi du serveur/vSphere vCenter à l’aide des commandes de PowerCLI hello VMware vSphere Bonjour suivant la procédure. Ou bien, vous pouvez répertorier un nom convivial hello ou les adresses IP de hello machines virtuelles que vous souhaitez tooprofile manuellement.
 
-1. Connectez-vous à la machine virtuelle sur laquelle VMware vSphere PowerCLI est installé.
-2. Ouvrez la console VMware vSphere PowerCLI.
-3. Assurez-vous que la stratégie d’exécution est activée pour le script. Si elle est désactivée, lancez la console VMware vSphere PowerCLI en mode administrateur, puis activez-la en exécutant la commande suivante :
+1. Connectez-vous toohello VM que VMware vSphere PowerCLI est installé dans.
+2. Ouvrez la console de PowerCLI hello VMware vSphere.
+3. Vérifiez que la stratégie d’exécution hello est activé pour le script de hello. Si elle est désactivée, lancez hello VMware vSphere PowerCLI console en mode administrateur, puis l’activer en exécutant hello commande suivante :
 
             Set-ExecutionPolicy –ExecutionPolicy AllSigned
 
-4. Vous pourriez avoir besoin d’exécuter la commande suivante, dans le cas où Connect-VIServer ne serait pas reconnu comme nom de cmdlet.
+4. Vous pouvez hello de toorun option besoin de commande suivante si VIServer de se connecter n’est pas reconnu en tant que nom hello d’applet de commande.
  
             Add-PSSnapin VMware.VimAutomation.Core 
 
-5. Pour obtenir tous les noms des machines virtuelles sur un serveur vCenter/hôte vSphere ESXi et enregistrer la liste dans un fichier .txt, exécutez les deux commandes répertoriées ici.
+5. tooget tous les noms des ordinateurs virtuels sur un serveur vCenter/vSphere ESXi hello d’hébergeront et enregistrer hello liste dans un fichier .txt, exécution hello deux commandes répertoriées ici.
 Remplacez &lsaquo;server name&rsaquo;, &lsaquo;user name&rsaquo;, &lsaquo;password&rsaquo; et &lsaquo;outputfile.txt&rsaquo; par vos entrées.
 
             Connect-VIServer -Server <server name> -User <user name> -Password <password>
 
             Get-VM |  Select Name | Sort-Object -Property Name >  <outputfile.txt>
 
-6. Ouvrez le fichier de sortie dans le bloc-notes et copiez les noms de toutes les machines virtuelles que vous souhaitez profiler dans un autre fichier (par exemple, ProfileVMList.txt), en indiquant un nom de machine virtuelle par ligne. Ce fichier est utilisé comme entrée pour le paramètre *-VMListFile* de l’outil de ligne de commande.
+6. Ouvrez le fichier de sortie hello dans le bloc-notes et copiez les noms de tous les ordinateurs virtuels que vous souhaitez tooprofile tooanother fichier (par exemple, ProfileVMList.txt), un nom de machine virtuelle par ligne hello. Ce fichier est utilisé en tant qu’entrée toohello *- VMListFile* paramètre de l’outil de ligne de commande hello.
 
-    ![Liste des noms de machines virtuelles dans Deployment planner](./media/site-recovery-deployment-planner/profile-vm-list.png)
+    ![Liste des noms de machine virtuelle dans la planification du déploiement hello](./media/site-recovery-deployment-planner/profile-vm-list.png)
 
 ### <a name="start-profiling"></a>Démarrer le profilage
-Après avoir établi la liste des machines virtuelles à profiler, vous pouvez exécuter l’outil en mode profilage. Voici la liste des paramètres obligatoires et facultatifs de l’outil à exécuter en mode profilage.
+Après avoir configuré la liste hello des toobe de machines virtuelles de profilage, vous pouvez exécuter l’outil de hello dans le mode de profilage. Ici est hello liste de paramètres obligatoires et facultatives de hello outil toorun dans le mode de profilage.
 
 ASRDeploymentPlanner.exe -Operation StartProfiling /?
 
 | Nom du paramètre | Description |
 |---|---|
 | -Operation | StartProfiling |
-| -Server | Le nom de domaine complet ou l’adresse IP du serveur vCenter/de l’hôte vSphere ESXi dont les machines virtuelles doivent être profilées.|
-| -User | Le nom d’utilisateur pour se connecter au serveur vCenter/à l’hôte vSphere ESXi. L’utilisateur doit disposer au moins d’un accès en lecture seule.|
-| -VMListFile | Le fichier qui contient la liste des machines virtuelles à profiler. Le chemin d’accès du fichier peut être absolu ou relatif. Le fichier doit contenir un nom/une adresse IP de machine virtuelle par ligne. Le nom de la machine virtuelle spécifié dans le fichier doit être identique au nom de la machine virtuelle sur le serveur vCenter/l’hôte vSphere ESXi.<br>Par exemple, le fichier VMList.txt contient les machines virtuelles suivantes :<ul><li>virtual_machine_A</li><li>10.150.29.110</li><li>virtual_machine_B</li><ul> |
-| -NoOfDaysToProfile | Le nombre de jours pendant lesquels le profilage doit être exécuté. Nous vous recommandons d’exécuter le profilage pendant plus de 15 jours pour vous assurer que le modèle de charge de travail de votre environnement sur la période spécifiée est observé et utilisé pour fournir une recommandation précise. |
-| -Répertoire | (Facultatif) La convention d’appellation universelle (UNC) ou le chemin d’accès du répertoire local pour stocker les données de profilage générées pendant le profilage. Si aucun nom de répertoire n’est spécifié, le répertoire ProfiledData figurant dans le chemin d’accès actuel est utilisé comme répertoire par défaut. |
-| -Mot de passe | (Facultatif) Le mot de passe utilisé pour se connecter au serveur vCenter/à l’hôte vSphere ESXi. Si vous spécifiez aucun mot de passe maintenant, vous êtes invité à l’indiquer à l’exécution de la commande.|
-| -StorageAccountName | (Facultatif) Le nom du compte de stockage utilisé pour rechercher le débit réalisable pour la réplication des données locales vers Azure. L’outil charge les données de test sur ce compte de stockage pour calculer le débit.|
-| -StorageAccountKey | (Facultatif) La clé du compte de stockage utilisée pour accéder au compte de stockage. Accédez au portail Azure > Comptes de stockage > <*Nom du compte de stockage*> > Paramètres > Clés d’accès > Key1 (ou clé d’accès principale pour le compte de stockage classique). |
-| -Environment | (Facultatif) Votre environnement de compte Stockage Azure cible. Ce paramètre peut être défini sur l’une des trois valeurs suivantes : AzureCloud, AzureUSGovernment, AzureChinaCloud. La valeur par défaut est AzureCloud. Utilisez ce paramètre lorsque votre région Azure cible correspond à des clouds Azure - Gouvernement des États-Unis ou Azure - Chine. |
+| -Server | nom de domaine complet de Hello ou adresse IP de hello vCenter server/ESXi hôte vSphere dont machines virtuelles sont toobe profilé.|
+| -User | Hello utilisateur nom tooconnect toohello vCenter server/ESXi hôte vSphere. utilisateur de Hello doit toohave accès en lecture seule, au minimum.|
+| -VMListFile | fichier Hello qui contient la liste hello de toobe de machines virtuelles de profilage. chemin d’accès du fichier Hello peut être absolu ou relatif. fichier de Hello doit contenir une seule machine virtuelle nom/adresse IP par ligne. Nom d’ordinateur virtuel spécifié dans le fichier de hello doit être hello identique au nom d’ordinateur virtuel hello sur hello vCenter server/ESXi hôte vSphere.<br>Par exemple, le fichier hello VMList.txt contient hello suivant des machines virtuelles :<ul><li>virtual_machine_A</li><li>10.150.29.110</li><li>virtual_machine_B</li><ul> |
+| -NoOfDaysToProfile | nombre de Hello de jours pendant laquelle le profilage est toobe exécution. Nous vous recommandons de profilage depuis plus de 15 jours tooensure qui hello du modèle de charge de travail dans votre environnement sur hello spécifié période est prise en charge et utilisé tooprovide une recommandation précise. |
+| -Répertoire | (Facultatif) hello UNC universal naming convention () ou toostore de chemin d’accès au répertoire local générées pendant le profilage des données de profilage. Si un nom de répertoire n’est pas accordée, répertoire hello nommé 'ProfiledData' sous le chemin d’accès actuel de hello sera utilisé comme répertoire par défaut de hello. |
+| -Mot de passe | (Facultatif) hello mot de passe toouse tooconnect toohello vCenter server/ESXi hôte vSphere. Si vous ne spécifiez pas un maintenant, vous demandera il lors de l’exécution de commande hello.|
+| -StorageAccountName | Nom de compte de stockage de hello (facultatif) est le débit de hello toofind utilisé réalisable pour la réplication de données à partir des locaux tooAzure. Hello outil téléchargements test toothis stockage compte toocalculate le débit des données.|
+| -StorageAccountKey | Clé de compte de stockage hello (facultatif) qui utilise le compte de stockage tooaccess hello. Accédez toohello portail Azure > comptes de stockage ><*nom de compte de stockage*>> Paramètres > clés d’accès > Key1 (ou clé d’accès primaire pour le compte de stockage classique). |
+| -Environment | (Facultatif) Votre environnement de compte Stockage Azure cible. Ce paramètre peut être défini sur l’une des trois valeurs suivantes : AzureCloud, AzureUSGovernment, AzureChinaCloud. La valeur par défaut est AzureCloud. Utilisez le paramètre hello lorsque votre région Azure cible est clouds Azure du gouvernement ou Azure Chine. |
 
 
-Nous recommandons que vous profiliez vos machines virtuelles pendant au moins 15 à 30 jours. Pendant la période de profilage, ASRDeploymentPlanner.exe continue de s’exécuter. Les entrées du temps de profilage de l’outil sont indiquées en jours. Si vous souhaitez procéder au profilage pendant quelques heures ou quelques minutes dans le cadre d’un test rapide de l’outil, dans la préversion publique, vous devez convertir le temps en nombre de jours équivalent. Par exemple, pour un profilage de 30 minutes, l’entrée doit être égale à 30/(60*24) = 0,021 jours. Le temps de profilage minimum autorisé est de 30 minutes.
+Il est recommandé que vous profilez vos machines virtuelles pendant au moins 15 too30 jours. Au cours de profilage période de hello, ASRDeploymentPlanner.exe continue à fonctionner. l’outil Hello prend entrée au moment du profilage en jours. Si vous souhaitez tooprofile pendant quelques heures ou minutes pour un test rapide de l’outil de hello, dans la version préliminaire publique de hello, vous devez temps de hello tooconvert dans la mesure équivalent hello en jours. Par exemple, tooprofile pendant 30 minutes, hello entrée doit être 30/(60*24) = 0,021 jours. Hello minimale autorisée de profilage de temps est de 30 minutes.
 
-Pendant le profilage, vous pouvez éventuellement transmettre un nom et une clé du compte de stockage pour déterminer le débit que Site Recovery peut atteindre au moment de la réplication du serveur de configuration ou du serveur de processus vers Azure. Si la clé et le nom du compte de stockage ne sont pas transmis au cours du profilage, l’outil ne calcule pas le débit réalisable.
+Pendant le profilage, vous pouvez éventuellement aussi passer un nom de compte de stockage et le débit hello toofind clés qui permettent d’obtenir de la récupération de Site au moment de hello de réplication du serveur de configuration hello ou tooAzure de serveur de processus. Si la clé et le nom de compte de stockage hello ne sont pas transmis pendant le profilage, outil de hello ne calcule pas le débit réalisable.
 
-Vous pouvez exécuter plusieurs instances de l’outil pour différents ensembles de machines virtuelles. Veillez à ce que les noms des machines virtuelles ne soient pas répétés dans les ensembles de profilage. Exemple : si vous avez profilé dix machines virtuelles (VM1 à VM10) et que, après quelques jours, vous voulez profiler cinq autres machines virtuelles (VM11 à VM15) ; vous pouvez exécuter l’outil à partir d’une autre console de ligne de commande pour le second ensemble de machines virtuelles (VM11 à VM15). Assurez-vous que le second ensemble de machines virtuelles ne comporte pas de noms de machine virtuelle de la première instance de profilage ou utilisez un autre répertoire de sortie pour la seconde exécution. Si deux instances de l’outil sont utilisées pour profiler les mêmes machines virtuelles et que vous utilisez le même répertoire de sortie, le rapport généré sera incorrect.
+Vous pouvez exécuter plusieurs instances d’outil hello pour différents jeux de machines virtuelles. Assurez-vous que les noms de machine virtuelle hello ne sont pas répétées dans des hello jeux de profilage. Par exemple, si vous avez profilé dix ordinateurs virtuels (VM1 via VM10) et après quelques jours que vous souhaitez tooprofile un autre cinq machines virtuelles (VM11 via VM15), vous pouvez exécuter l’outil de hello à partir d’une autre console de ligne de commande pour hello deuxième ensemble de machines virtuelles (VM11 via VM15). Vérifiez que hello deuxième ensemble d’ordinateurs virtuels n’ont pas tous les noms de machine virtuelle à partir de la première instance de profilage hello ou que vous utilisez un répertoire de sortie différent pour la deuxième exécution de hello. Si deux instances de l’outil de hello sont utilisées pour le profilage hello même des machines virtuelles et utilisez Bonjour même répertoire de sortie, les rapports hello généré seront incorrectes.
 
-Les configurations de machines virtuelles sont capturées une fois au début de l’opération de profilage et stockées dans un fichier appelé VMDetailList.xml. Ces informations sont utilisées lorsque le rapport est généré. Toute modification de configuration de machine virtuelle (par exemple, un nombre accru de cœurs, de disques ou de cartes réseau) du début à la fin du profilage n’est pas capturée. Si une configuration de machines virtuelles profilées est modifiée en cours de profilage, la solution de contournement dans la préversion publique consiste à obtenir les toutes dernières informations des machines virtuelles lorsque vous générez le rapport :
+Configurations de machine virtuelle sont capturées une fois au début de hello de profilage de l’opération de hello et stockées dans un fichier appelé VMDetailList.xml. Ces informations sont utilisées lors de la génération de rapports de hello. Toute modification de la configuration d’ordinateur virtuel (par exemple, un nombre accru de cœurs, les disques ou les cartes réseau) à partir de la fin de toohello hello début du profilage n’est pas capturée. Si une configuration de machine virtuelle profilée a changé au cours de hello de profilage en version préliminaire publique de hello, voici informations les plus récentes VM hello solution de contournement tooget lors de la génération de rapports de hello :
 
-* Sauvegardez VMdetailList.xml et supprimez le fichier de son emplacement actuel.
-* Transmettez les arguments -User et -Password au moment de la génération du rapport.
+* Sauvegarder VMdetailList.xml et supprimez-le hello son emplacement actuel.
+* Passez - et - mot de passe des arguments lors de la génération de rapports hello.
 
-La commande de profilage génère plusieurs fichiers dans le répertoire de profilage. Ne supprimez pas les fichiers, car cela affecterait la génération de rapports.
+Hello profilage commande génère plusieurs fichiers Bonjour Active le profilage. Ne supprimez pas les fichiers de hello, car cela affecte donc la génération de rapports.
 
-#### <a name="example-1-profile-vms-for-30-days-and-find-the-throughput-from-on-premises-to-azure"></a>Exemple 1 : profiler des machines virtuelles pendant 30 jours et déterminer le débit pour le scénario « local vers Azure »
+#### <a name="example-1-profile-vms-for-30-days-and-find-hello-throughput-from-on-premises-tooazure"></a>Exemple 1 : Machines virtuelles de profil pour 30 jours et un débit de hello rechercher à partir de local tooAzure
 ```
 ASRDeploymentPlanner.exe -Operation StartProfiling -Directory “E:\vCenter1_ProfiledData” -Server vCenter1.contoso.com -VMListFile “E:\vCenter1_ProfiledData\ProfileVMList1.txt”  -NoOfDaysToProfile  30  -User vCenterUser1 -StorageAccountName  asrspfarm1 -StorageAccountKey Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==
 ```
@@ -175,63 +175,63 @@ ASRDeploymentPlanner.exe -Operation StartProfiling -Directory “E:\vCenter1_Pro
 ASRDeploymentPlanner.exe -Operation StartProfiling -Directory “E:\vCenter1_ProfiledData” -Server vCenter1.contoso.com -VMListFile “E:\vCenter1_ProfiledData\ProfileVMList1.txt”  -NoOfDaysToProfile  15  -User vCenterUser1
 ```
 
-#### <a name="example-3-profile-vms-for-1-hour-for-a-quick-test-of-the-tool"></a>Exemple 3 : profiler des machines virtuelles pendant 1 heure pour tester rapidement l’outil
+#### <a name="example-3-profile-vms-for-1-hour-for-a-quick-test-of-hello-tool"></a>Exemple 3 : Machines virtuelles de profil une heure pour un test rapide de l’outil de hello
 ```
 ASRDeploymentPlanner.exe -Operation StartProfiling -Directory “E:\vCenter1_ProfiledData” -Server vCenter1.contoso.com -VMListFile “E:\vCenter1_ProfiledData\ProfileVMList1.txt”  -NoOfDaysToProfile  0.04  -User vCenterUser1
 ```
 
 >[!NOTE]
 >
->* Si le serveur sur lequel s’exécute l’outil est redémarré ou est tombé en panne, ou si vous fermez l’outil à l’aide de Ctrl + C, les données profilées sont conservées. Cependant, il existe un risque de manquer les 15 dernières minutes de données profilées. Dans ce cas, réexécutez l’outil en mode profilage après le redémarrage du serveur.
->* Lorsque le nom et la clé du compte de stockage sont transmis, l’outil mesure le débit au cours de la dernière étape du profilage. Si l’outil est fermé avant la fin du profilage, le débit n’est pas calculé. Pour trouver le débit avant de générer le rapport, vous pouvez exécuter l’opération GetThroughput à partir de la console de ligne de commande. Autrement, le rapport généré ne contient pas les informations de débit.
+>* Si cet outil hello de serveur de hello est en cours d’exécution a été redémarré ou est en panne, ou si vous fermez hello outil à l’aide de Ctrl + C, les données de profilage de hello est conservé. Toutefois, il existe un risque d’hello manquant des 15 dernières minutes de données profilées. Dans ce cas, réexécutez l’outil hello du mode de profilage après redémarrage du serveur de hello.
+>* Lorsque nom de compte de stockage hello et la clé sont passés, hello outil mesures hello de débit en hello dernière étape de profilage. Si l’outil de hello est fermée avant la fin de profilage, le débit de hello n’est pas calculé. débit de hello toofind avant de générer hello rapport, vous pouvez exécuter l’opération de GetThroughput hello à partir de la console de ligne de commande de hello. Sinon, les rapports hello généré ne contient pas d’informations sur le débit hello.
 
 
 ## <a name="generate-a-report"></a>Générer un rapport
-L’outil génère un fichier Microsoft Excel avec les macros activées (fichier XLSM) en tant que sortie du rapport, qui résume toutes les recommandations de déploiement. Le rapport est intitulé DeploymentPlannerReport_<*identificateur numérique unique*>.xlsm et placé dans le répertoire spécifié.
+outil de Hello génère un en charge les macros Microsoft Excel (fichier XLSM) en tant que sortie de rapport hello, qui résume toutes les recommandations de déploiement hello. rapport de Hello est nommé DeploymentPlannerReport_ <*identificateur numérique unique*> .xlsm et placé dans hello spécifié le répertoire.
 
-À l’issue du profilage, vous pouvez exécuter l’outil en mode génération de rapport. Le tableau suivant contient une liste des paramètres obligatoires et facultatifs de l’outil à exécuter en mode génération de rapport.
+Une fois le profilage terminé, vous pouvez exécuter l’outil de hello en mode de génération de rapports. Hello tableau suivant contient une liste de toorun de paramètres obligatoires et facultatives outil en mode de génération de rapports.
 
 `ASRDeploymentPlanner.exe -Operation GenerateReport /?`
 
 |Nom du paramètre | Description |
 |-|-|
 | -Operation | GenerateReport |
-| -Server |  Le nom de domaine complet ou l’adresse IP du serveur vCenter/vSphere (utilisez le même nom ou la même adresse IP que ceux utilisés lors du profilage) sur lequel se trouvent les machines virtuelles profilées dont le rapport doit être généré. Notez que si vous avez utilisé un serveur vCenter au moment du profilage, vous ne pouvez pas utiliser un serveur vSphere pour la génération de rapport, et inversement.|
-| -VMListFile | Le fichier qui contient la liste des machines virtuelles profilées pour lesquels le rapport va être généré. Le chemin d’accès du fichier peut être absolu ou relatif. Le fichier doit contenir un nom ou une adresse IP de machine virtuelle par ligne. Les noms de machines virtuelles spécifiés dans le fichier doivent être identiques à ceux des machines virtuelles sur le serveur vCenter/l’hôte vSphere ESXi, et ils correspondent à ce qui a été utilisé au moment du profilage.|
-| -Répertoire | (Facultatif) UNC ou chemin d’accès du répertoire local où les données profilées (fichiers générés lors du profilage) sont stockées. Ces données sont requises pour générer le rapport. Si aucun nom n’est spécifié, le répertoire ProfiledData est utilisé. |
-| -GoalToCompleteIR | (Facultatif) Le nombre d’heures pendant lesquelles la réplication initiale des machines virtuelles profilées doit être effectuée. Le rapport généré indique le nombre de machines virtuelles pour lesquelles la réplication initiale peut être effectuée dans le délai spécifié. La valeur par défaut est 72 heures. |
-| -User | (Facultatif) Le nom d’utilisateur permettant de se connecter au serveur vCenter/vSphere. Le nom est utilisé pour extraire les dernières informations de configuration des machines virtuelles, comme le nombre de disques, le nombre de cœurs, le nombre de cartes réseau, etc. à utiliser dans le rapport. Si aucun nom n’est fourni, les informations de configuration collectées au début du profilage sont utilisées. |
-| -Mot de passe | (Facultatif) Le mot de passe utilisé pour se connecter au serveur vCenter/à l’hôte vSphere ESXi. Si le mot de passe n’est pas spécifié en tant que paramètre, vous êtes invité à l’indiquer ultérieurement à l’exécution de la commande. |
-| -DesiredRPO | (Facultatif) L’objectif de point de récupération souhaité, en minutes. La valeur par défaut est 15 minutes.|
-| -Bandwidth | Bande passante en Mbits/s. Le paramètre permet de calculer le RPO qui peut être atteint pour la bande passante spécifiée. |
-| -StartDate | (Facultatif) La date et l’heure de début au format MM-JJ-AAAA:HH:MM (24 heures). Le paramètre *StartDate* doit être spécifié avec le paramètre *EndDate*. Si le paramètre StartDate est spécifié, le rapport est généré pour les données profilées collectées entre les dates StartDate et EndDate. |
-| -EndDate | (Facultatif) La date et l’heure de fin au format MM-JJ-AAAA:HH:MM (24 heures). Le paramètre *EndDate* doit être spécifié avec le paramètre *StartDate*. Si le paramètre EndDate est spécifié, le rapport est généré pour les données profilées collectées entre les dates StartDate et EndDate. |
-| -GrowthFactor | (Facultatif) Le facteur de croissance, exprimé en pourcentage. La valeur par défaut est 30 pour cent. |
-| -UseManagedDisks | (Facultatif) UseManagedDisks - Oui/Non. La valeur par défaut est Oui. Le nombre de machines qu’il est possible de placer dans un compte de stockage unique est calculé en fonction de si le basculement/test de basculement des machines virtuelles est effectué sur un disque managé au lieu d’un disque non managé. |
+| -Server |  Hello vCenter/vSphere complet serveur nom de domaine ou l’adresse IP (utilisez hello même nom ou adresse IP que vous avez utilisé au moment de hello de profilage) où Bonjour profilée machines virtuelles dont la déclaration est toobe généré sont situés. Notez que si vous avez utilisé un serveur vCenter au moment de hello de profilage, vous ne pouvez pas utiliser un serveur vSphere pour la génération de rapports et vice versa.|
+| -VMListFile | fichier Hello qui contient la liste hello de machines virtuelles profilées qui hello du rapport est toobe généré pour. chemin d’accès du fichier Hello peut être absolu ou relatif. fichier de Hello doit contenir un nom de machine virtuelle ou une adresse IP par ligne. les noms de machine virtuelle Hello qui sont spécifiés dans le fichier de hello doit être hello identique à celui des noms de machine virtuelle hello sur hello vCenter server/ESXi hôte vSphere et de correspondance, ce qui a été utilisé pendant le profilage.|
+| -Répertoire | (Facultatif) hello UNC ou chemin d’accès du répertoire local où hello profilage des données (fichiers générés pendant le profilage) est stocké. Ces données sont requises pour la génération d’un rapport de hello. Si aucun nom n’est spécifié, le répertoire ProfiledData est utilisé. |
+| -GoalToCompleteIR | Hello (facultatif) le nombre d’heures dans le hello la réplication initiale de hello profilé machines virtuelles doit toobe s’est terminée. rapport de Hello généré fournit hello plusieurs ordinateurs virtuels pour lesquels la réplication initiale peut être effectuée en hello spécifié temps. valeur par défaut Hello est de 72 heures. |
+| -User | (Facultatif) hello utilisateur nom toouse tooconnect toohello vCenter/serveur vSphere. nom du Hello est utilisé toofetch hello dernières informations de configuration de machines virtuelles, telles que nombre hello de disques, nombre de cœurs et nombre de cartes réseau, toouse dans les rapports hello de hello. Si le nom de hello n’est pas fourni, les informations de configuration hello collectées au début de hello Hello réunion de lancement de profilage sont utilisées. |
+| -Mot de passe | (Facultatif) hello mot de passe toouse tooconnect toohello vCenter server/ESXi hôte vSphere. Si le mot de passe hello n’est pas spécifié en tant que paramètre, vous demandera il ultérieurement lors de l’exécution de commande hello. |
+| -DesiredRPO | Hello (facultatif) souhaitée point de récupération, en minutes. valeur par défaut Hello est de 15 minutes.|
+| -Bandwidth | Bande passante en Mbits/s. Bonjour paramètre toouse toocalculate Bonjour RPO qui peut être obtenue pour hello spécifié de la bande passante. |
+| -StartDate | Date et heure de début (facultatif) hello dans MM-JJ-YYYY:HH:MM (format 24 heures). Le paramètre *StartDate* doit être spécifié avec le paramètre *EndDate*. Lors de la date de début est spécifié, les rapports de hello sont générées pour les données de Bonjour profilée collectées entre StartDate et EndDate. |
+| -EndDate | Date de fin hello (facultatif) et d’heure dans MM-JJ-YYYY:HH:MM (format 24 heures). Le paramètre *EndDate* doit être spécifié avec le paramètre *StartDate*. Lors de la date de fin est spécifié, les rapports de hello sont générées pour les données de Bonjour profilée collectées entre StartDate et EndDate. |
+| -GrowthFactor | Facteur de croissance hello (facultatif), exprimée en pourcentage. valeur par défaut Hello est de 30 pour cent. |
+| -UseManagedDisks | (Facultatif) UseManagedDisks - Oui/Non. La valeur par défaut est Oui. nombre de Hello d’ordinateurs virtuels qui peut être placé dans un seul compte de stockage est calculé en tenant compte de si le basculement/Test de basculement des machines virtuelles est effectuée sur le disque managé au lieu de disk non managé. |
 
-#### <a name="example-1-generate-a-report-with-default-values-when-the-profiled-data-is-on-the-local-drive"></a>Exemple 1 :générer un rapport contenant des valeurs par défaut lorsque les données profilées sont situées sur le lecteur local
+#### <a name="example-1-generate-a-report-with-default-values-when-hello-profiled-data-is-on-hello-local-drive"></a>Exemple 1 : Générer un rapport avec les valeurs par défaut lorsque les données de profilage de hello sont sur le disque local hello
 ```
 ASRDeploymentPlanner.exe -Operation GenerateReport -Server vCenter1.contoso.com -Directory “\\PS1-W2K12R2\vCenter1_ProfiledData” -VMListFile “\\PS1-W2K12R2\vCenter1_ProfiledData\ProfileVMList1.txt”
 ```
 
-#### <a name="example-2-generate-a-report-when-the-profiled-data-is-on-a-remote-server"></a>Exemple 2 : générer un rapport lorsque les données profilées sont situées sur un serveur distant
-Vous devez disposer d’un accès en lecture/écriture sur le répertoire distant.
+#### <a name="example-2-generate-a-report-when-hello-profiled-data-is-on-a-remote-server"></a>Exemple 2 : Générer un rapport lorsque les données Bonjour profilée se trouvent sur un serveur distant
+Doit avoir accès en lecture/écriture sur le répertoire distant de hello.
 ```
 ASRDeploymentPlanner.exe -Operation GenerateReport -Server vCenter1.contoso.com -Directory “\\PS1-W2K12R2\vCenter1_ProfiledData” -VMListFile “\\PS1-W2K12R2\vCenter1_ProfiledData\ProfileVMList1.txt”
 ```
 
-#### <a name="example-3-generate-a-report-with-a-specific-bandwidth-and-goal-to-complete-ir-within-specified-time"></a>Exemple 3 : générer un rapport contenant la bande passante spécifique et les objectifs pour terminer le RI dans le temps indiqué
+#### <a name="example-3-generate-a-report-with-a-specific-bandwidth-and-goal-toocomplete-ir-within-specified-time"></a>Exemple 3 : Générer un rapport avec un toocomplete spécifique de la bande passante et objectif infrarouge dans le temps spécifié
 ```
 ASRDeploymentPlanner.exe -Operation GenerateReport -Server vCenter1.contoso.com -Directory “E:\vCenter1_ProfiledData” -VMListFile “E:\vCenter1_ProfiledData\ProfileVMList1.txt” -Bandwidth 100 -GoalToCompleteIR 24
 ```
 
-#### <a name="example-4-generate-a-report-with-a-5-percent-growth-factor-instead-of-the-default-30-percent"></a>Exemple 4 : générer un rapport avec un facteur de croissance de 5 pour cent au lieu des 30 pour cent par défaut
+#### <a name="example-4-generate-a-report-with-a-5-percent-growth-factor-instead-of-hello-default-30-percent"></a>Exemple 4 : Générer un rapport avec un facteur de croissance de 5 pour cent au lieu de 30 pour cent de la valeur par défaut hello
 ```
 ASRDeploymentPlanner.exe -Operation GenerateReport -Server vCenter1.contoso.com -Directory “E:\vCenter1_ProfiledData” -VMListFile “E:\vCenter1_ProfiledData\ProfileVMList1.txt” -GrowthFactor 5
 ```
 
 #### <a name="example-5-generate-a-report-with-a-subset-of-profiled-data"></a>Exemple 5 : générer un rapport contenant un sous-ensemble de données profilées
-Par exemple, vous disposez de 30 jours de données profilées et vous souhaitez générer un rapport pour une période de 20 jours seulement.
+Par exemple, vous disposez de 30 jours de données profilées et que vous souhaitez toogenerate un rapport d’uniquement 20 jours.
 ```
 ASRDeploymentPlanner.exe -Operation GenerateReport -Server vCenter1.contoso.com -Directory “E:\vCenter1_ProfiledData” -VMListFile “E:\vCenter1_ProfiledData\ProfileVMList1.txt” -StartDate  01-10-2017:12:30 -EndDate 01-19-2017:12:30
 ```
@@ -241,12 +241,12 @@ ASRDeploymentPlanner.exe -Operation GenerateReport -Server vCenter1.contoso.com 
 ASRDeploymentPlanner.exe -Operation GenerateReport -Server vCenter1.contoso.com -Directory “E:\vCenter1_ProfiledData” -VMListFile “E:\vCenter1_ProfiledData\ProfileVMList1.txt”  -DesiredRPO 5
 ```
 
-## <a name="percentile-value-used-for-the-calculation"></a>Valeur de centile utilisée pour le calcul
-**Quelle valeur de centile par défaut des indicateurs de performance collectés pendant le profilage l’outil va-t-il utiliser au moment de la génération de rapport ?**
+## <a name="percentile-value-used-for-hello-calculation"></a>Valeur de centile utilisé pour le calcul de hello
+**Quelle valeur de centile par défaut hello de mesures de performances collectées pendant le profilage est hello outil à utiliser lorsqu’il génère un rapport ?**
 
-L’outil est configuré par défaut sur les valeurs du 95e centile des E/S par seconde de lecture/écriture, des E/S par seconde d’écriture et de l’activité des données collectées pendant le profilage de toutes les machines virtuelles. Cette mesure garantit que le pic du 100e centile que vos machines virtuelles peuvent voir en raison d’événements temporaires n’est pas utilisé pour déterminer vos besoins de compte de stockage cible et de bande passante source. Par exemple, un événement temporaire peut être une tâche de sauvegarde exécutée une fois par jour, une indexation de base de données périodique ou une activité de génération de rapport d’analyse ou d’autres événements similaires ponctuels et de courte durée.
+Hello outil par défaut toohello 95e centile des valeurs de lecture/écriture e/s, d’écriture e/s et évolution des données qui sont collectées pendant le profilage de tous les ordinateurs virtuels de hello. Cette mesure permet de s’assurer que pic centile 100ième hello vos machines virtuelles peuvent présenter des événements temporaires est toodetermine non utilisé votre configuration requise du compte de stockage et de bande passante de la source cible. Par exemple, un événement temporaire peut être une tâche de sauvegarde exécutée une fois par jour, une indexation de base de données périodique ou une activité de génération de rapport d’analyse ou d’autres événements similaires ponctuels et de courte durée.
 
-L’utilisation des valeurs du 95e centile permet de donner une image exacte des caractéristiques des charges de travail réelles et vous offre les meilleures performances lorsque les charges de travail s’exécutent sur Azure. Nous ne prévoyons pas que vous modifiiez ce numéro. Si vous modifiez la valeur (au 90e centile par exemple), vous pouvez mettre à jour le fichier de configuration *ASRDeploymentPlanner.exe.config* dans le dossier par défaut et l’enregistrer pour générer un nouveau rapport sur les données profilées existantes.
+Donne qu'une image exacte des caractéristiques de la charge de travail réelle et il vous donne à l’aide des valeurs de 95e centile hello de meilleures performances lorsque les charges de travail hello sont exécutent sur Azure. Nous ne prévoyez pas que vous devez toochange ce nombre. Si vous modifiez la valeur de hello (toohello 90e centile, par exemple), vous pouvez mettre à jour le fichier de configuration hello *ASRDeploymentPlanner.exe.config* dans hello dossier par défaut et l’enregistrer toogenerate un nouveau rapport hello existant de profilage données.
 ```
 <add key="WriteIOPSPercentile" value="95" />      
 <add key="ReadWriteIOPSPercentile" value="95" />      
@@ -256,22 +256,22 @@ L’utilisation des valeurs du 95e centile permet de donner une image exacte de
 ## <a name="growth-factor-considerations"></a>Considérations relatives au facteur de croissance
 **Pourquoi devrais-je tenir compte du facteur de croissance lors de la planification de déploiement ?**
 
-Il est essentiel de tenir compte de la croissance dans vos caractéristiques de charge de travail en supposant une augmentation potentielle de l’utilisation au fil du temps. Une fois la protection en place, si les caractéristiques de votre charge de travail changent, vous ne pouvez pas basculer vers un compte de stockage différent pour la protection sans désactiver et réactiver la protection.
+Il est critique tooaccount croissance dans les caractéristiques de charge de travail, en supposant une possible augmentation d’utilisation au fil du temps. Une fois la protection est en place, si vous modifiez des caractéristiques de votre charge de travail, vous ne pouvez pas changer tooa autre compte de stockage pour la protection sans désactivation et réactivation de protection de hello.
 
-Par exemple, supposons que, aujourd’hui, votre machine virtuelle s’intègre dans un compte de réplication de stockage standard. Au cours des trois derniers mois, plusieurs modifications sont susceptibles de se produire :
+Par exemple, supposons que, aujourd’hui, votre machine virtuelle s’intègre dans un compte de réplication de stockage standard. Hello trois prochains mois, plusieurs modifications qui sont susceptibles de toooccur :
 
-* Le nombre d’utilisateurs de l’application qui s’exécute sur la machine virtuelle va augmenter.
-* L’activité accrue en résultant sur la machine virtuelle va nécessiter que la machine virtuelle devienne un stockage premium de sorte que la réplication Site Recovery puisse suivre le rythme.
-* Par conséquent, vous devez désactiver et réactiver la protection de compte de stockage premium.
+* nombre de Hello d’utilisateurs de l’application hello qui s’exécute sur la machine virtuelle de hello augmente.
+* évolution accrue résultant de Hello sur hello machine virtuelle requiert un stockage hello VM toogo toopremium afin que la réplication de la récupération de Site peut suivre le rythme.
+* Par conséquent, vous avez toodisable et réactiver le compte de stockage premium protection tooa.
 
-Nous vous recommandons de planifier la croissance pendant la planification du déploiement et pendant que la valeur par défaut est 30 pour cent. Vous êtes expert du modèle d’utilisation de vos applications et des projections de croissance et vous pouvez modifier ce nombre en conséquence lors de la génération d’un rapport. En outre, vous pouvez générer plusieurs rapports avec différents facteurs de croissance avec les mêmes données profilées et déterminer les recommandations de stockage cible et de bande passante source fonctionnent le mieux pour vous.
+Nous recommandons vivement que vous planifiez la croissance lors de la planification du déploiement et lors de la valeur par défaut de hello est de 30 pour cent. Vous êtes hello expert sur des projections de croissance et le modèle de votre utilisation application, et vous pouvez modifier ce nombre en conséquence lors de la génération d’un rapport. En outre, vous pouvez générer plusieurs rapports avec différents facteurs de croissance par hello même profilage des données et déterminer les recommandations de la bande passante de source et de stockage cible convient le mieux.
 
-Le rapport Microsoft Excel généré contient les informations suivantes :
+rapport Microsoft Excel de Hello généré contient hello informations suivantes :
 
 * [Input](site-recovery-deployment-planner.md#input)
 * [Recommandations](site-recovery-deployment-planner.md#recommendations-with-desired-rpo-as-input)
 * [Recommandations : entrée de bande passante](site-recovery-deployment-planner.md#recommendations-with-available-bandwidth-as-input)
-* [VM<->Storage Placement](site-recovery-deployment-planner.md#vm-storage-placement)
+* [VM&lt;-&gt;Storage Placement](site-recovery-deployment-planner.md#vm-storage-placement)
 * [Compatible VMs](site-recovery-deployment-planner.md#compatible-vms)
 * [Incompatible VMs](site-recovery-deployment-planner.md#incompatible-vms)
 
@@ -279,24 +279,24 @@ Le rapport Microsoft Excel généré contient les informations suivantes :
 
 ## <a name="get-throughput"></a>GetThroughput
 
-Pour estimer le débit que Site Recovery peut atteindre pendant la réplication de données locales vers Azure, exécutez l’outil en mode GetThroughput. L’outil calcule le débit à partir du serveur sur lequel l’outil est exécuté. Idéalement, ce serveur est basé sur le guide de dimensionnement des serveurs de configuration. Si vous avez déjà déployé les composants d’infrastructure Site Recovery en local, exécutez l’outil sur le serveur de configuration.
+débit hello tooestimate qui permettent d’obtenir de la récupération de Site à partir des locaux tooAzure lors de la réplication, exécuter l’outil de hello en mode de GetThroughput. outil de Hello calcule débit hello à partir du serveur hello hello outil est en cours d’exécution. Dans l’idéal, ce serveur est basé sur le guide de dimensionnement hello configuration serveur. Si vous avez déjà déployé le Site Recovery infrastructure composants locaux, exécutez outil de hello sur le serveur de configuration hello.
 
-Ouvrez une console de ligne de commande et accédez au dossier de l’outil de planification du déploiement Site Recovery. Exécutez ASRDeploymentPlanner.exe avec les paramètres ci-dessous.
+Ouvrez une console de ligne de commande et accédez toohello dossier de l’outil de planification du déploiement de Site Recovery. Exécutez ASRDeploymentPlanner.exe avec les paramètres ci-dessous.
 
 `ASRDeploymentPlanner.exe -Operation GetThroughput /?`
 
 |Nom du paramètre | Description |
 |-|-|
 | -Operation | GetThroughput |
-| -Répertoire | (Facultatif) UNC ou chemin d’accès du répertoire local où les données profilées (fichiers générés lors du profilage) sont stockées. Ces données sont requises pour générer le rapport. Si aucun nom de répertoire n’est spécifié, le répertoire ProfiledData est utilisé. |
-| -StorageAccountName | Le nom du compte de stockage Azure permettant de déterminer la bande passante utilisée pour la réplication des données locales vers Azure. L’outil charge les données de test sur ce compte de stockage pour trouver la bande passante consommée. |
-| -StorageAccountKey | La clé du compte de stockage utilisée pour accéder au compte de stockage. Accédez au portail Azure > Comptes de stockage > <*Nom du compte de stockage*> > Paramètres > Clés d’accès > Key1 (ou clé d’accès principale pour un compte de stockage classique). |
-| -VMListFile | Le fichier qui contient la liste des machines virtuelles à profiler pour calculer la bande passante consommée. Le chemin d’accès du fichier peut être absolu ou relatif. Le fichier doit contenir un nom/une adresse IP de machine virtuelle par ligne. Les noms de machine virtuelle spécifiés dans le fichier doivent être identiques au nom des machines virtuelles sur le serveur vCenter/l’hôte vSphere ESXi.<br>Par exemple, le fichier VMList.txt contient les machines virtuelles suivantes :<ul><li>VM_A</li><li>10.150.29.110</li><li>VM_B</li></ul>|
-| -Environment | (Facultatif) Votre environnement de compte Stockage Azure cible. Ce paramètre peut être défini sur l’une des trois valeurs suivantes : AzureCloud, AzureUSGovernment, AzureChinaCloud. La valeur par défaut est AzureCloud. Utilisez ce paramètre lorsque votre région Azure cible correspond à des clouds Azure - Gouvernement des États-Unis ou Azure - Chine. |
+| -Répertoire | (Facultatif) hello UNC ou chemin d’accès du répertoire local où hello profilage des données (fichiers générés pendant le profilage) est stocké. Ces données sont requises pour la génération d’un rapport de hello. Si aucun nom de répertoire n’est spécifié, le répertoire ProfiledData est utilisé. |
+| -StorageAccountName | nom de compte de stockage Hello qui a utilisé la bande passante de hello toofind consommée pour la réplication de données à partir de local tooAzure. Hello outil téléchargements test données toothis stockage compte toofind hello la bande passante consommée. |
+| -StorageAccountKey | clé de compte de stockage Hello qui utilise le compte de stockage tooaccess hello. Accédez toohello portail Azure > comptes de stockage ><*nom de compte de stockage*>> Paramètres > clés d’accès > Key1 (ou une clé d’accès primaire pour un compte de stockage classique). |
+| -VMListFile | fichier Hello qui contient la liste hello de toobe de machines virtuelles de profilage pour le calcul de la bande passante de hello consommée. chemin d’accès du fichier Hello peut être absolu ou relatif. fichier de Hello doit contenir une seule machine virtuelle nom/adresse IP par ligne. les noms de machine virtuelle Hello spécifiés dans le fichier de hello doit être hello identique à celui des noms de machine virtuelle hello sur hello vCenter server/ESXi hôte vSphere.<br>Par exemple, le fichier hello VMList.txt contient hello suivant des machines virtuelles :<ul><li>VM_A</li><li>10.150.29.110</li><li>VM_B</li></ul>|
+| -Environment | (Facultatif) Votre environnement de compte Stockage Azure cible. Ce paramètre peut être défini sur l’une des trois valeurs suivantes : AzureCloud, AzureUSGovernment, AzureChinaCloud. La valeur par défaut est AzureCloud. Utilisez le paramètre hello lorsque votre région Azure cible est clouds Azure du gouvernement ou Azure Chine. |
 
-L’outil crée plusieurs fichiers asrvhdfile<#>.vhd de 64 Mo (où # représente le nombre de fichiers) dans le répertoire spécifié. L’outil charge ces fichiers sur le compte de stockage pour déterminer le débit. Une fois le débit mesuré, l’outil supprime tous les fichiers du compte de stockage et du serveur local. Si l’outil est interrompu pour une raison quelconque alors qu’il calcule le débit, cela ne supprime pas les fichiers du stockage ou du serveur local. Vous devrez les supprimer manuellement.
+outil de Hello crée plusieurs fichiers de 64 Mo asrvhdfile <> # .vhd (où « # » est le nombre de hello de fichiers) sur le répertoire spécifié de hello. outil de Hello télécharge hello fichiers toohello compte toofind hello du débit de stockage. Une fois que le débit hello est mesuré, outil de hello supprime tous les fichiers de hello du compte de stockage hello et du serveur local de hello. Si l’outil de hello est arrêté pour une raison quelconque pendant qu’il est de calculer le débit, elle ne supprime pas les fichiers hello du stockage de hello ou serveur local de hello. Vous devez toodelete les manuellement.
 
-Le débit est mesuré à un moment donné et il s’agit du débit maximal que Site Recovery peut atteindre lors d’une réplication, sous réserve que tous les autres facteurs restent identiques. Par exemple, si une application commence à consommer davantage de bande passante sur le même réseau, le débit réel varie pendant la réplication. Si vous exécutez la commande GetThroughput à partir d’un serveur de configuration, l’outil ne reconnaît pas les machines virtuelles protégées ni la réplication en cours. Le résultat du débit mesuré est différent si l’opération GetThroughput est exécutée lorsque les machines virtuelles protégées présentent des taux d’activité élevés. Nous vous recommandons d’exécuter l’outil à différents moments dans le temps pendant le profilage pour comprendre les niveaux de débit pouvant être atteints à des moments différents. Dans le rapport, l’outil affiche le dernier débit mesuré.
+Hello le débit est mesuré à un point spécifié dans le temps, et il est le débit maximal hello qui permettent d’obtenir de la récupération de Site lors de la réplication, sous réserve que tous les autres facteurs demeurent hello même. Par exemple, si n’importe quelle application commence à consommer davantage de bande passante sur hello varie en fonction du même réseau, le débit réel hello lors de la réplication. Si vous exécutez hello GetThroughput commande à partir d’un serveur de configuration, outil de hello est sans se préoccuper de toutes les machines virtuelles protégées et la réplication en cours. Hello résultat du débit mesuré de hello est différent si hello GetThroughput opération est exécutée lorsque hello protégée des machines virtuelles ont importante des données d’évolution du. Nous vous recommandons d’exécuter hello outil à différents points dans le temps pendant le profilage toounderstand quelles débit niveaux peuvent être atteints à différents moments. Dans le rapport de hello, outil de hello montre débit mesuré dernière de hello.
 
 ### <a name="example"></a>Exemple
 ```
@@ -305,98 +305,98 @@ ASRDeploymentPlanner.exe -Operation GetThroughput -Directory  E:\vCenter1_Profil
 
 >[!NOTE]
 >
-> Exécutez l’outil sur un serveur doté des mêmes caractéristiques de stockage et de processeur que le serveur de configuration.
+> Exécuter l’outil de hello sur un serveur qui a hello même stockage et les caractéristiques de l’UC en tant que serveur de configuration hello.
 >
-> Pour la réplication, définissez la bande passante recommandée pour atteindre le RPO souhaité en permanence. Après avoir défini la bande passante appropriée, si vous ne constatez pas d’augmentation du débit atteint signalé par l’outil, vérifiez les points suivants :
+> Pour la réplication, définissez Bonjour la bande passante recommandée toomeet Bonjour RPO 100 % du temps de hello. Après avoir défini la bande passante droite hello, si vous ne voyez pas augmenter le débit hello obtenue signalé par l’outil de hello, procédez comme hello suivant :
 >
->  1. Vérifiez si un réseau Qualité de Service (QoS) limite le débit Site Recovery.
+>  1. Vérifiez toodetermine s’il y a aucun réseau de qualité de Service (QoS) qui limitent le débit de la récupération de Site.
 >
->  2. Vérifiez si votre coffre Site Recovery se trouve dans la région Microsoft Azure physique prise en charge la plus proche pour réduire la latence du réseau.
+>  2. Vérifiez toodetermine si votre archivage Site Recovery est Bonjour plus proche de la latence du réseau toominimize de région Microsoft Azure physiquement pris en charge.
 >
->  3. Vérifiez les caractéristiques de stockage local pour déterminer si vous pouvez améliorer le matériel (par exemple, passer d’un disque dur à un disque SSD).
+>  3. Vérifiez votre toodetermine de caractéristiques de stockage local si vous pouvez améliorer le matériel hello (par exemple, disque dur tooSSD).
 >
->  4. Modifiez les paramètres Site Recovery sur le serveur de processus pour [augmenter la quantité de bande passante réseau utilisée pour la réplication](./site-recovery-plan-capacity-vmware.md#control-network-bandwidth).
+>  4. Modifier les paramètres de récupération de Site de hello dans le serveur de processus hello trop[augmenter la bande passante réseau utilisée pour la réplication hello](./site-recovery-plan-capacity-vmware.md#control-network-bandwidth).
 
 ## <a name="recommendations-with-desired-rpo-as-input"></a>Recommandations liées au RPO souhaité en tant qu’entrée
 
 ### <a name="profiled-data"></a>Données profilées
 
-![La vue des données profilées dans le Deployment planner](./media/site-recovery-deployment-planner/profiled-data-period.png)
+![affichage des données de profilage Hello dans la planification du déploiement hello](./media/site-recovery-deployment-planner/profiled-data-period.png)
 
-**Profiled data period**: la période pendant laquelle le profilage a été exécuté. Par défaut, l’outil inclut toutes les données profilées pour le calcul, sauf s’il génère le rapport pour une période spécifique à l’aide des options StartDate et EndDate pendant la génération du rapport.
+**La période de données profilées**: période hello pendant le hello le profilage a été exécuté. Par défaut, outil de hello inclut toutes les données de profil dans le calcul de hello, sauf si elle génère des rapports de hello pour une période spécifique à l’aide d’options StartDate et EndDate pendant la génération du rapport.
 
-**Server Name** : le nom ou l’adresse IP de VMware vCenter ou de l’hôte ESXi dont le rapport des machines virtuelles est généré.
+**Nom du serveur**: nom de hello ou adresse IP de hello VMware vCenter ou l’hôte ESXi les rapports dont ordinateurs virtuels sont généré.
 
-**Desired RPO** :l’objectif de point de récupération (RPO) de votre déploiement. Par défaut, la bande passante réseau requise est calculée pour les valeurs RPO de 15, 30 et 60 minutes. En fonction de la sélection, les valeurs concernées sont mises à jour sur la feuille. Si vous avez utilisé le paramètre *DesiredRPOinMin* lors de la génération du rapport, cette valeur est affichée dans le résultat Desired RPO.
+**Vous le souhaitez RPO**: objectif de point de récupération hello pour votre déploiement. Par défaut, hello requis de la bande passante réseau est calculée pour les valeurs RPO de 15, 30 et 60 minutes. En fonction de sélection de hello, hello affecté sont mis à jour sur la feuille de hello. Si vous avez utilisé hello *DesiredRPOinMin* paramètre lors de la génération de rapports hello, que la valeur est affichée dans le résultat souhaité de RPO de hello.
 
 ### <a name="profiling-overview"></a>Vue d’ensemble du profilage
 
-![Résultats de profilage dans le Deployment planner](./media/site-recovery-deployment-planner/profiling-overview.png)
+![Résultats de profilage dans la planification du déploiement hello](./media/site-recovery-deployment-planner/profiling-overview.png)
 
-**Total Profiled Virtual Machines** : le nombre total de machines virtuelles dont les données profilées sont disponibles. Si le fichier VMListFile contient des noms de machines virtuelles qui n’ont pas été profilées, celles-ci ne sont pas prises en compte dans la génération de rapport et sont exclues du nombre total de machines virtuelles profilées.
+**Nombre total de profilage des Machines virtuelles**: hello nombre total d’ordinateurs virtuels dont les données profilées sont disponibles. Si hello VMListFile possède des noms de toutes les machines virtuelles qui ont été profilées pas, ces machines virtuelles ne sont pas considérés comme dans la génération de rapports hello et sont exclus de nombre de machines virtuelles profilée total hello.
 
-**Compatible Virtual Machines** : le nombre de machines virtuelles pouvant être protégées dans Azure à l’aide de Site Recovery. Il s’agit du nombre total de machines virtuelles compatibles pour lesquelles la bande passante réseau requise, le nombre de comptes de stockage, le nombre de cœurs Azure et le nombre de serveurs de configuration et de serveurs de processus supplémentaires sont calculés. Les détails de chaque machine virtuelle compatible sont disponibles dans la section « Machines virtuelles compatibles ».
+**Les ordinateurs virtuels compatibles**: hello du nombre d’ordinateurs virtuels qui peuvent être tooAzure protégé à l’aide de récupération de Site. Il est hello le nombre total de compatibles machines virtuelles pour le hello les besoins en bande passante, nombre de comptes de stockage, le nombre de cœurs Azure et nombre de serveurs de configuration et les serveurs de traitement supplémentaires sont calculées. Détails de Hello de chaque machine virtuelle compatible sont disponibles dans hello « Machines virtuelles compatibles » section.
 
-**Incompatible Virtual Machines** : le nombre de machines virtuelles qui sont incompatibles pour la protection assurée avec Site Recovery. Les raisons de l’incompatibilité sont indiquées dans la section Machines virtuelles incompatibles. Si VMListFile contient des noms de machines virtuelles qui n’ont pas été profilées, ces machines virtuelles sont exclues du nombre de machines virtuelles incompatibles. Ces machines virtuelles sont répertoriées comme « Data not found » à la fin de la section Machines virtuelles incompatibles.
+**Les Machines virtuelles incompatible**: hello du nombre d’ordinateurs virtuels profilées qui ne sont pas compatibles pour la protection avec la récupération de Site. raisons Hello incompatibilité sont notées dans hello « Machines virtuelles Incompatible » section. Si hello VMListFile possède des noms de toutes les machines virtuelles qui ont été profilées pas, ces machines virtuelles sont exclus de nombre de machines virtuelles hello incompatible. Ces machines virtuelles sont répertoriés comme « Données introuvable » à fin hello de section de hello » Incompatible machines virtuelles ».
 
-**Desired RPO** : votre objectif de point de récupération souhaité, en minutes. Le rapport est généré pour les trois valeurs RPO : 15 (valeur par défaut), 30 et 60 minutes. La recommandation de la bande passante dans le rapport est modifiée en fonction de votre sélection dans la liste déroulante « Desired RPO » dans l’angle supérieur droit de la feuille. Si vous avez généré le rapport à l’aide du paramètre *-DesiredRPO* avec une valeur personnalisée, cette valeur personnalisée s’affiche par défaut dans la liste déroulante « Desired RPO ».
+**Desired RPO** : votre objectif de point de récupération souhaité, en minutes. rapport de Hello est généré pour les trois valeurs RPO : 15 (valeur par défaut), 30 et 60 minutes. recommandation de la bande passante Hello dans les rapports hello est modifiée en fonction de votre sélection dans la liste de hello déroulante souhaité le RPO en hello en haut à droite de la feuille de hello. Si vous avez généré le rapport de hello à l’aide de hello *- DesiredRPO* paramètre avec une valeur personnalisée, cette valeur personnalisée affiche par défaut de hello dans la liste de hello souhaité le RPO de liste déroulante.
 
 ### <a name="required-network-bandwidth-mbps"></a>Bande passante réseau requise (Mbits/s)
 
-![Bande passante réseau requise dans le Deployment planner](./media/site-recovery-deployment-planner/required-network-bandwidth.png)
+![Besoins en bande passante dans la planification du déploiement hello](./media/site-recovery-deployment-planner/required-network-bandwidth.png)
 
-**To meet RPO 100 percent of the time :** la bande passante recommandée en Mbits/s à allouer pour atteindre votre RPO souhaité 100 pour cent du temps. Cette quantité de bande passante doit être dédiée à la réplication différentielle à l’état stable de toutes vos machines virtuelles compatibles afin d’éviter toute violation de RPO.
+**toomeet RPO 100 % du temps de hello :** hello recommandé de bande passante en Mbits/s toobe allouée toomeet votre RPO souhaitée 100 % du temps de hello. Cette quantité de bande passante doit être dédié pour la réplication delta de l’état stable de tous vos tooavoid de machines virtuelles compatible des violations de RPO.
 
-**To meet RPO 90 percent of the time :** en raison de la tarification haut débit ou pour toute autre raison, si vous ne pouvez pas configurer la bande passante nécessaire pour atteindre votre RPO souhaité 100 pour cent du temps, vous pouvez choisir un paramètre de bande passante inférieure pouvant satisfaire votre RPO souhaité 90 pour cent du temps. Pour comprendre les implications de la configuration de cette bande passante réduite, le rapport fournit une analyse par simulation du nombre et de la durée de violations de RPO à attendre.
+**toomeet RPO 90 pour cent de temps de hello**: en raison de la tarification haut débit ou pour toute autre raison, si vous ne pouvez pas définir toomeet de bande passante nécessaire hello votre RPO souhaitée 100 % du temps de hello, vous pouvez choisir toogo avec une faible bande passante qui peut répondre à votre RPO souhaitée 90 pour cent de temps de hello. implications en matière de toounderstand hello de la définition de cette bande passante réduite, les rapports hello fournit une analyse de simulation sur le nombre de hello et la durée de RPO violations tooexpect.
 
-**Achieved Throughput :** le débit du serveur sur lequel vous avez exécuté la commande GetThroughput pour la région Microsoft Azure où se trouve le compte de stockage. Cette valeur de débit indique le niveau estimé que vous pouvez obtenir lorsque vous protégez les machines virtuelles compatibles à l’aide de Site Recovery, sous réserve que les caractéristiques de réseau et de stockage du serveur de configuration/serveur de processus demeurent identiques à celles du serveur à partir duquel vous avez exécuté l’outil.
+**Débit réalisé :** débit hello du serveur hello sur lequel vous avez exécuté la région Microsoft Azure hello GetThroughput commande toohello où se trouve le compte de stockage hello. Ce nombre de débit indique niveau hello estimé que vous pouvez obtenir lorsque vous protégez hello compatibles machines virtuelles à l’aide de récupération de Site, sous réserve que votre serveur de configuration ou les caractéristiques de réseau et de stockage de serveur de processus restent hello même que celui de serveur Hello à partir de laquelle vous avez exécuté les outil hello.
 
-Pour la réplication, vous devez définir la bande passante recommandée pour atteindre le RPO souhaité en permanence. Après avoir défini la bande passante, si vous ne constatez pas d’augmentation du débit atteint signalé par l’outil, vérifiez les points suivants :
+Pour la réplication, vous devez définir Bonjour la bande passante recommandée toomeet Bonjour RPO 100 % du temps de hello. Après avoir défini la bande passante de hello, si vous ne voyez pas toute augmentation du débit hello obtenue, comme indiqué par l’outil de hello, procédez comme hello suivant :
 
-1. Vérifiez si un réseau Qualité de Service (QoS) limite le débit Site Recovery.
+1. Vérifiez toosee s’il y a aucun réseau de qualité de Service (QoS) qui limitent le débit de la récupération de Site.
 
-2. Vérifiez si votre coffre Site Recovery se trouve dans la région Microsoft Azure physique prise en charge la plus proche pour réduire la latence du réseau.
+2. Vérifiez toosee si votre archivage Site Recovery est Bonjour plus proche de la latence du réseau toominimize de région Microsoft Azure physiquement pris en charge.
 
-3. Vérifiez les caractéristiques de stockage local pour déterminer si vous pouvez améliorer le matériel (par exemple, passer d’un disque dur à un disque SSD).
+3. Vérifiez votre toodetermine de caractéristiques de stockage local si vous pouvez améliorer le matériel hello (par exemple, disque dur tooSSD).
 
-4. Modifiez les paramètres Site Recovery sur le serveur de processus pour [augmenter la quantité de bande passante réseau utilisée pour la réplication](./site-recovery-plan-capacity-vmware.md#control-network-bandwidth).
+4. Modifier les paramètres de récupération de Site de hello dans le serveur de processus hello trop[augmenter la bande passante du réseau hello quantité utilisée pour la réplication](./site-recovery-plan-capacity-vmware.md#control-network-bandwidth).
 
-Si vous exécutez l’outil sur un serveur de configuration ou un serveur de processus qui a déjà protégé les machines virtuelles, exécutez l’outil plusieurs fois. La valeur de débit atteint change selon la quantité des données d’activité en cours de traitement à ce moment précis.
+Si vous exécutez hello outil sur un serveur de configuration ou un serveur de processus qui a déjà protégé des machines virtuelles, exécuter hello plusieurs fois l’outil. Hello obtenue débit nombre change en fonction de la quantité de hello d’évolution du code en cours de traitement à ce stade dans le temps.
 
 Pour tous les déploiements Site Recovery d’entreprise, nous vous recommandons d’utiliser [ExpressRoute](https://aka.ms/expressroute).
 
 ### <a name="required-storage-accounts"></a>Comptes de stockage requis
-Le graphique suivant indique le nombre total de comptes de stockage (standard et premium) nécessaires pour protéger toutes les machines virtuelles compatibles. Pour savoir quel compte de stockage utiliser pour chaque machine virtuelle, consultez la section « VM-storage placement ».
+Hello ci-dessous illustre graphique nombre total de hello de stockage des comptes (standard et premium) qui sont requis tooprotect tous les hello compatibles machines virtuelles. toolearn toouse de compte de stockage pour chaque machine virtuelle, consultez la section de « placement de stockage de l’ordinateur virtuel » de hello.
 
-![Comptes de stockage requis dans Deployment planner](./media/site-recovery-deployment-planner/required-azure-storage-accounts.png)
+![Comptes de stockage requise de planification du déploiement hello](./media/site-recovery-deployment-planner/required-azure-storage-accounts.png)
 
 ### <a name="required-number-of-azure-cores"></a>Required number of Azure cores
-Il s’agit du nombre total de cœurs à configurer avant le basculement ou le test de basculement de l’ensemble des machines virtuelles compatibles. Si un nombre insuffisant de cœurs est disponible dans l’abonnement, Site Recovery ne peut pas créer de machines virtuelles au moment du basculement ou du test de basculement.
+Ce résultat est le nombre total de hello de toobe cœurs configurer avant le basculement ou test de basculement de tous les hello compatibles machines virtuelles. Si trop peu de cœurs sont disponibles dans l’abonnement de hello, récupération de Site échoue toocreate VMs au moment de hello de basculement ou test.
 
-![Nombre de cœurs Azure dans Deployment planner](./media/site-recovery-deployment-planner/required-number-of-azure-cores.png)
+![Nombre de cœurs Azure dans la planification du déploiement hello requis](./media/site-recovery-deployment-planner/required-number-of-azure-cores.png)
 
 ### <a name="required-on-premises-infrastructure"></a>Required on-premises infrastructure
-Il s’agit du nombre total de serveurs de processus supplémentaires et de serveurs de configuration à configurer qui suffirait pour protéger toutes les machines virtuelles compatibles. En fonction des [recommandations de taille pour le serveur de configuration](https://aka.ms/asr-v2a-on-prem-components) prises en charge, l’outil peut recommander des serveurs supplémentaires. La recommandation est basée sur la valeur la plus élevée entre l’activité quotidienne et le nombre maximal de machines virtuelles protégées (en partant d’une moyenne de trois disques par machine virtuelle), peu importe que le serveur de configuration ou le serveur de processus supplémentaire soit atteint en premier. Vous trouverez tous les détails de l’activité totale quotidienne et du nombre total de disques protégés se trouvent dans la section Input.
+Cette figure est le nombre total de hello de serveurs de configuration et serveurs supplémentaires processus toobe configuré que suffirait tooprotect tous hello compatibles machines virtuelles. En fonction de la prise en charge de hello [dimensionner des recommandations pour le serveur de configuration hello](https://aka.ms/asr-v2a-on-prem-components), outil de hello peut recommander des serveurs supplémentaires. recommandation de Hello est basée sur hello plus grand de l’évolution du code de hello par jour ou de nombre maximal de hello d’ordinateurs virtuels protégés (en supposant une moyenne de trois disques par machine virtuelle), la plus élevée étant atteint premier sur le serveur de configuration de hello ou un serveur de processus supplémentaire hello. Vous trouverez des détails hello d’évolution totale du code par jour et le nombre total de disques protégés Bonjour section de « Entrée ».
 
-![Infrastructure locale requise dans Deployment planner](./media/site-recovery-deployment-planner/required-on-premises-infrastructure.png)
+![Obligatoire-l’infrastructure locale dans la planification du déploiement hello](./media/site-recovery-deployment-planner/required-on-premises-infrastructure.png)
 
 ### <a name="what-if-analysis"></a>Analyse de scénarios
-Cette analyse indique le nombre de violations susceptibles de se produire pendant la période de profilage lorsque vous configurez une bande passante plus faible pour que le RPO souhaité ne soit rempli que 90 pour cent du temps. Une ou plusieurs violations de RPO peuvent se produire sur un jour donné. Le graphique affiche le pic RPO de la journée.
-En vous appuyant sur cette analyse, vous pouvez décider si le nombre de violations de RPO tous les jours et d’accès RPO maximal par jour est acceptable avec la bande passante inférieure spécifiée. S’il est acceptable, vous pouvez allouer la bande passante inférieure pour la réplication. Sinon, allouez la bande passante supérieure, comme suggéré pour atteindre le RPO souhaité 100 pour cent du temps.
+Cette analyse présente le nombre de violations peut se produire au cours de hello profilage période lorsque vous définissez qu'une faible bande passante pour hello souhaité RPO toobe remplie uniquement 90 pour cent de temps de hello. Une ou plusieurs violations de RPO peuvent se produire sur un jour donné. graphique de Hello affiche la pointe de hello RPO de la journée de hello.
+Cette analyse, vous pouvez décider si nombre hello de violations de RPO sur tous les jours et PIC atteint par jour RPO est acceptable avec hello spécifié à faible bande passante. S’il est acceptable, vous pouvez allouer une bande passante inférieure hello pour la réplication, sinon allouer hello beaucoup de bande passante convenance toomeet suggérée hello RPO 100 % du temps de hello.
 
-![Analyse de scénarios dans Deployment planner](./media/site-recovery-deployment-planner/what-if-analysis.png)
+![Analyse de simulation dans la planification du déploiement hello](./media/site-recovery-deployment-planner/what-if-analysis.png)
 
 ### <a name="recommended-vm-batch-size-for-initial-replication"></a>Recommended VM batch size for initial replication
-Dans cette section, nous recommandons le nombre de machines virtuelles qui peuvent être protégées en parallèle pour effectuer la réplication initiale dans les 72 heures avec la bande passante suggérée pour respecter le RPO souhaité en permanence. Cette valeur est configurable. Pour modifier cette valeur au moment de la génération de rapports, utilisez le paramètre *GoalToCompleteIR*.
+Dans cette section, nous vous recommandons de nombre hello de machines virtuelles pouvant être protégées dans la réplication initiale de hello toocomplete parallèles dans les 72 heures par hello suggéré souhaité de la bande passante toomeet RPO 100 % du temps hello définie. Cette valeur est configurable. toochange il au moment de la génération de rapports, utilisez hello *GoalToCompleteIR* paramètre.
 
-Ce graphique affiche une plage de valeurs de bande passante et un nombre de tailles de lot de machines virtuelles pour effectuer une réplication initiale en 72 heures en fonction de la taille moyenne de machine virtuelle détectée sur toutes les machines virtuelles compatibles.
+graphique ici Hello affiche une plage de valeurs de la bande passante et d’une calculée VM lot taille nombre toocomplete la réplication initiale dans 72 heures, en fonction de la moyenne de hello détecté VM taille ensemble hello compatibles machines virtuelles.
 
-Dans la préversion publique, le rapport ne spécifie pas les machines virtuelles à inclure dans un lot. Vous pouvez utiliser la taille de disque indiquée dans la section « Machines virtuelles compatibles » pour déterminer la taille de chaque machine virtuelle, et sélectionner des machines virtuelles pour un lot, ou les sélectionner en fonction des caractéristiques de charge de travail connues. La durée d’exécution de la réplication initiale change proportionnellement en fonction de la taille de disque réelle des machines virtuelles, de l’espace disque utilisé et du débit réseau disponible.
+Dans la version préliminaire publique de hello, rapport de hello ne spécifie pas les machines virtuelles doivent être inclus dans un lot. Vous pouvez utiliser la taille du disque hello hello « Compatible machines virtuelles » section toofind illustré de taille de la machine virtuelle et les sélectionner pour un lot, ou vous pouvez sélectionner des machines virtuelles de hello en fonction des caractéristiques de charge de travail connus. heure d’achèvement Hello des modifications de la réplication initiale hello proportionnellement, selon la taille de disque de machine virtuelle réel hello, utilisé l’espace disque et du débit du réseau disponible.
 
 ![Taille de lot recommandée de machines virtuelles](./media/site-recovery-deployment-planner/recommended-vm-batch-size.png)
 
 ### <a name="growth-factor-and-percentile-values-used"></a>Growth factor and percentile values used
-Cette section figurant en bas de la feuille indique la valeur de centile utilisé pour tous les compteurs de performances des machines virtuelles profilées (par défaut : 95e centile) et le facteur de croissance (par défaut : 30 %) qui est utilisé dans tous les calculs.
+Cette section bas hello hello centile affiche hello utilisé pour tous les compteurs de performances hello de machines virtuelles de Bonjour profilée (valeur par défaut est 95e centile) de la feuille et hello facteur de croissance (valeur par défaut est 30 pour cent) qui est utilisée dans tous les calculs hello.
 
 ![Growth factor and percentile values used](./media/site-recovery-deployment-planner/max-iops-and-data-churn-setting.png)
 
@@ -404,129 +404,129 @@ Cette section figurant en bas de la feuille indique la valeur de centile utilis�
 
 ![Recommandations relatives à la bande passante disponible comme entrée](./media/site-recovery-deployment-planner/profiling-overview-bandwidth-input.png)
 
-Vous pouvez vous trouver dans une situation dans laquelle vous ne pouvez pas configurer une bande passante supérieure à x Mbits/s pour la réplication Site Recovery. L’outil vous permet d’entrer la bande passante disponible (à l’aide du paramètre -Bandwidth lors de la génération de rapport) et d’obtenir le RPO réalisable en minutes. Avec cette valeur de RPO réalisable, vous pouvez choisir de configurer une bande passante supplémentaire ou vous contenter d’une solution de récupération d’urgence avec ce RPO.
+Vous pouvez vous trouver dans une situation dans laquelle vous ne pouvez pas configurer une bande passante supérieure à x Mbits/s pour la réplication Site Recovery. outil de Hello vous permet de la bande passante disponible de tooinput (à l’aide de hello - paramètre de bande passante pendant la génération de rapports) et get hello RPO réalisable en minutes. Avec cette valeur RPO réalisable, vous pouvez décider si vous avez besoin de tooset supplémentaires de bande passante ou si vous êtes OK avec disposer d’une solution de récupération d’urgence avec ce RPO.
 
 ![RPO possible pour une bande passante de 500 Mbits/s](./media/site-recovery-deployment-planner/achievable-rpos.png)
 
 ## <a name="input"></a>Entrée
-La feuille de calcul Input fournit une vue d’ensemble de l’environnement VMware profilé.
+feuille de calcul entrée Hello fournit qu'une vue d’ensemble de Bonjour profilée environnement VMware.
 
-![Vue d’ensemble de l’environnement VMware profilé](./media/site-recovery-deployment-planner/Input.png)
+![Vue d’ensemble de Bonjour profilée environnement VMware](./media/site-recovery-deployment-planner/Input.png)
 
-**Start Date** et **End Date** : les dates de début et de fin du profilage des données prises en compte pour la génération de rapport. Par défaut, la date de début est la date à laquelle le profilage démarre, et la date de fin est la date à laquelle le profilage s’arrête. Il peut s’agir des valeurs StartDate et EndDate si le rapport est généré avec ces paramètres.
+**Date de début** et **Date de fin**: hello les dates de début et de fin de hello pris en compte pour la génération de rapports de données de profilage. Par défaut, date de début hello est date hello profilage au démarrage, et la date de fin hello est hello lorsque le profilage s’arrête. Cela peut être hello « StartDate » et « EndDate » valeurs si le rapport de hello est généré avec ces paramètres.
 
-**Total number of profiling days** : le nombre total de jours de profilage compris entre les dates de début et de fin pendant lesquelles le rapport est généré.
+**Nombre total de jours de profilage**: nombre total de hello de jours de profilage entre hello commencer et se terminer de dates pour le hello rapport est généré.
 
-**Number of compatible virtual machines** : le nombre total de machines virtuelles compatibles pour lesquelles la bande passante réseau requise, ainsi que le nombre requis de comptes de stockage, de cœurs Microsoft Azure et de serveurs de processus supplémentaires et de serveurs de configuration sont calculés.
+**Nombre d’ordinateurs virtuels compatibles**: nombre total de hello de machines virtuelles de compatibles quelle bande passante du réseau hello requise, nombre requis de stockage des comptes, les cœurs Microsoft Azure, les serveurs de configuration et sont des serveurs de traitement supplémentaires calculée.
 
-**Total number of disks across all compatible virtual machines** : ce nombre est utilisé comme nombre d’entrées pour déterminer le nombre de serveurs de processus supplémentaires et de serveurs de configuration à utiliser dans le déploiement.
+**Nombre total de disques sur tous les ordinateurs virtuels compatibles**: nombre de hello est utilisé comme l’un des hello entrées toodecide hello différents serveurs de configuration et toobe de serveurs de processus supplémentaires utilisés dans le déploiement de hello.
 
-**Average number of disks per compatible virtual machine** : le nombre moyen de disques calculé sur toutes les machines virtuelles compatibles.
+**Nombre moyen de disques par machine virtuelle compatibles**: nombre moyen de hello de disques calculée sur tous les ordinateurs virtuels compatibles.
 
-**Average disk size (GB)** : la taille de disque moyenne calculée sur toutes les machines virtuelles compatibles.
+**Taille du disque (Go) moyenne**: taille de disque moyenne hello calculée sur tous les ordinateurs virtuels compatibles.
 
-**Desired RPO (minutes)** : l’objectif de point de récupération par défaut ou la valeur transmise pour le paramètre DesiredRPO au moment de la génération de rapport pour estimer la bande passante requise.
+**Souhaitée (en minutes) de RPO**: soit hello par défaut valeur point de récupération objectif ou hello passé pour le paramètre de 'DesiredRPO' hello au moment de hello de tooestimate de génération de rapport requis la bande passante.
 
-**Desired bandwidth (Mbps)** : la valeur que vous avez transmise pour le paramètre Bandwidth au moment de la génération de rapport pour estimer le RPO réalisable.
+**Souhaité de la bande passante (Mbps)**: hello valeur que vous avez passé pour le paramètre de 'La bande passante' hello lors de tooestimate de génération de rapports hello RPO réalisable.
 
-**Observed typical data churn per day (GB)** : l’activité moyenne des données observée tous les jours de profilage. Ce nombre est utilisé comme nombre d’entrées pour déterminer le nombre de serveurs de processus supplémentaires et de serveurs de configuration à utiliser dans le déploiement.
+**Évolution du code de données classiques observée par jour (Go)**: hello moyenne des données évolution observés dans le profilage de tous les jours. Ce numéro est utilisé comme un nombre hello entrées toodecide hello de serveurs de configuration et toobe de serveurs de processus supplémentaires utilisés dans le déploiement de hello.
 
 
 ## <a name="vm-storage-placement"></a>VM-storage placement
 
 ![VM-storage placement](./media/site-recovery-deployment-planner/vm-storage-placement.png)
 
-**Disk Storage Type** : le compte de stockage standard ou premium utilisé pour répliquer toutes les machines virtuelles correspondantes, mentionnées dans la colonne **VMs to Place**.
+**Type de stockage de disque**: soit un compte standard ou premium, qui est utilisé tooreplicate tous hello correspondant de machines virtuelles mentionnés dans hello **tooPlace de machines virtuelles** colonne.
 
-**Suggested Prefix** : le préfixe suggéré à trois caractères qui permet de nommer le compte de stockage. Vous pouvez utiliser votre propre préfixe, mais la suggestion de l’outil suit la [convention d’affectation de noms aux partitions pour les comptes de stockage](https://aka.ms/storage-performance-checklist).
+**Suggéré préfixe**: hello suggérée préfixe à trois caractères qui peut être utilisé pour le compte de stockage hello d’affectation de noms. Vous pouvez utiliser votre propre préfixe, mais les suggestions de l’outil hello suivant hello [une convention d’affectation de noms pour les comptes de stockage de partition](https://aka.ms/storage-performance-checklist).
 
-**Suggested Account Name** : le nom du compte de stockage après lequel vous incluez le préfixe suggéré. Remplacez le nom entre crochets pointus(< and >) avec votre entrée personnalisée.
+**Compte nom suggéré**: nom de compte de stockage hello après avoir inclus les préfixe suggéré hello. Remplacez hello nom entre crochets hello (< et >) avec vos entrées personnalisées.
 
-**Log Storage Account :** tous les journaux de réplication sont stockés dans un compte de stockage standard. Pour les machines virtuelles qui répliquent vers un compte de stockage premium, configurez un compte de stockage standard supplémentaire pour le stockage des journaux. Un seul et même compte de stockage standard des journaux peut être utilisé par plusieurs comptes de stockage de réplication premium. Les machines virtuelles qui sont répliquées vers les comptes de stockage standard utilisent le même compte de stockage pour les journaux.
+**Compte de stockage de journal**: tous les journaux de réplication hello sont stockés dans un compte de stockage standard. Pour les machines virtuelles qui répliquent tooa compte de stockage premium, configurer un compte de stockage standard supplémentaire pour le stockage du journal. Un seul et même compte de stockage standard des journaux peut être utilisé par plusieurs comptes de stockage de réplication premium. Machines virtuelles qui correspondent à un stockage répliqué toostandard comptes utilisent hello même compte de stockage pour les journaux.
 
-**Suggested Log Account Name** : le nom de votre compte de stockage des journaux après lequel vous incluez le préfixe suggéré. Remplacez le nom entre crochets pointus(< and >) avec votre entrée personnalisée.
+**Journal compte nom suggéré**: votre compte de stockage journal nom après avoir inclus les préfixe suggéré hello. Remplacez hello nom entre crochets hello (< et >) avec vos entrées personnalisées.
 
-**Placement Summary** : un résumé de la charge totale des machines virtuelles sur le compte de stockage au moment de la réplication et du test de basculement/basculement. Il inclut le nombre total de machines virtuelles mappées au compte de stockage, le total des E/S par seconde de lecture/écriture sur toutes les machines virtuelles placées dans ce compte de stockage, le total des E/S par seconde d’écriture (réplication), la taille totale configurée sur tous les disques ainsi que le nombre total de disques.
+**Résumé de la sélection élective**: un résumé des hello total charge des machines virtuelles sur le compte de stockage hello lors de la réplication hello et test de basculement ou basculement. Il inclut le nombre total de hello de machines virtuelles mappés toohello compte de stockage total en lecture/écriture e/s sur tous les ordinateurs virtuels placés dans ce compte de stockage, le nombre total d’écriture (réplication) IOPS, taille totale d’installation pour tous les disques et nombre total de disques.
 
-**Virtual Machines to Place** : une liste de toutes les machines virtuelles qui doivent être placées dans le compte de stockage donné pour optimiser les performances et l’utilisation.
+**Machines virtuelles tooPlace**: une liste de tous les hello des machines virtuelles qui doivent être placés sur hello donné du compte de stockage pour optimiser les performances et l’utilisation.
 
 ## <a name="compatible-vms"></a>Machines virtuelles compatibles
 ![Feuille de calcul Excel des machines virtuelles compatibles](./media/site-recovery-deployment-planner/compatible-vms.png)
 
-**VM Name** : nom de la machine virtuelle ou adresse IP utilisés dans VMListFile lorsqu’un rapport est généré. Cette colonne répertorie également les disques (VMDK) qui sont attachés aux machines virtuelles. Pour distinguer les machines virtuelles vCenter avec des noms ou des adresses IP en double, les noms incluent le nom de l’hôte ESXi. L’hôte ESXi répertorié est celui dans lequel la machine virtuelle a été placée lors de la détection de l’outil pendant le profilage.
+**Nom de machine virtuelle**: hello nom d’ordinateur virtuel ou d’adresse IP qui est utilisé dans hello VMListFile lorsqu’un rapport est généré. Cette colonne répertorie également les disques hello (VMDK) qui sont des machines virtuelles de toohello attaché. vCenter toodistinguish machines virtuelles avec des noms en double ou les adresses IP, les noms de hello incluent les nom d’hôte ESXi hello. Hello hôtes ESXi répertoriés est hello une où hello machine virtuelle a été placé lors de l’outil de hello découverts pendant hello période de profilage.
 
-**VM Compatibility** : les valeurs sont **Oui** et **Oui**\*. **Oui**\* : pour les instances dans lesquelles la machine virtuelle est adaptée pour [le stockage Premium Azure](https://aka.ms/premium-storage-workload). Ici l’activité élevée profilée ou le disque d’E/S par seconde se classe dans la catégorie P20 ou P30, mais la taille du disque entraîne classification inférieure à P10 ou P20. Le compte de stockage décide du type de disque de stockage Premium sur lequel mapper un disque, en fonction de sa taille. Par exemple :
+**VM Compatibility** : les valeurs sont **Oui** et **Oui**\*. **Oui** \* concerne les instances dans le hello machine virtuelle est un ajustement pour [stockage Azure Premium](https://aka.ms/premium-storage-workload). Ici, Bonjour profilée évolution de haute ou IOPS convenant à hello P20 ou une catégorie de P30, mais la taille de hello du disque de hello, il toobe mappée vers le bas tooa P10 ou P20. compte de stockage Hello décide quel disque de stockage premium tapez toomap un disque, en fonction de sa taille. Par exemple :
 * < 128 Go : disque P10.
-* 128 Go à 512 Go : disque P20.
-* 512 Go à 1024 Go : disque P30.
-* 1025 Go à 2048 Go : disque P40.
-* 2049 Go à 4095 Go : disque P50.
+* 128 Go too512 Go est un P20.
+* 512 Go too1024 Go est un P30.
+* 1025 too2048 Go est un P40.
+* 2049 too4095 Go est un P50.
 
-Si les caractéristiques de charge de travail d’un disque le placent dans la catégorie P20 ou P30, mais que la taille le mappe à un niveau ou à un type de disque de stockage premium inférieur, l’outil marque cette machine virtuelle comme **Oui**\*. L’outil recommande également que vous modifiiez la taille du disque source pour que celui s’adapte au type de disque de stockage premium recommandé, ou que vous modifiiez le type de disque cible après le basculement.
+Si les caractéristiques d’un disque hello placer dans hello P20 ou P30 catégorie, mais la taille de hello est mappé vers le bas du type de disque de stockage tooa inférieure premium, outil de hello marque cette machine virtuelle en tant que **Oui**\*. outil de Hello recommande également transformer hello source disque taille toofit hello recommandé de type de disque de stockage premium ou de les modifier après le type basculement hello cible disque.
 
 **Storage Type** : standard ou premium.
 
-**Suggested Prefix** : le préfixe de compte de stockage à trois caractères.
+**Suggéré préfixe**: préfixe de compte de stockage de trois caractères hello.
 
-**Storage Account** : le nom utilisé par le préfixe du compte de stockage suggéré.
+**Compte de stockage**: nom hello qui utilise le préfixe de compte de stockage suggérée hello.
 
-**R/W IOPS (with Growth Factor)** : les opérations d’E/S par seconde de lecture/écriture de la charge de travail de pointe sur le disque (95e centile par défaut), y compris le facteur de croissance futur (30 pour cent par défaut). Notez que les E/S par seconde en lecture/écriture d’une machine virtuelle ne sont pas toujours la somme des E/S par seconde en lecture/écriture des disques individuels de la machine virtuelle, car les E/S par seconde en lecture/écriture de pointe de la machine virtuelle représentent le pic de la somme des E/S par seconde de ses disques individuels pendant chaque minute de la période de profilage.
+**E/s de lecture/écriture (avec le facteur de croissance)**: hello pointe la charge de travail en lecture/écriture e/s sur disque de hello (valeur par défaut est 95e centile), y compris le facteur de croissance future hello (valeur par défaut est 30 pour cent). Notez que hello total en lecture/écriture e/s d’une machine virtuelle n’est pas toujours somme hello d’en lecture/écriture disques de machine virtuelle hello individuels e/s, hello pointe en lecture/écriture e/s de hello VM étant pointe hello de somme de hello de ses différents disques en lecture/écriture e/s lors de chaque minute de hello période de profilage.
 
-**Data Churn in Mbps (with Growth Factor)** : le taux d’activité de pointe sur le disque (95e centile par défaut), y compris le facteur de croissance futur (30 % par défaut). Notez que le taux total d’activité des données de la machine virtuelle n’est pas toujours la somme des taux d’activité des données des disques individuels de la machine virtuelle, car le taux d’activité de pointe de la machine virtuelle représente le pic de la somme du taux d’activité de ses disques individuels pendant chaque minute de la période de profilage.
+**Évolution de données en Mbits/s (avec le facteur de croissance)**: taux d’évolution hello pointe sur le disque de hello (valeur par défaut est 95e centile), y compris le facteur de croissance future hello (valeur par défaut est 30 pour cent). Notez que hello évolution totale des données de hello VM n’est pas toujours somme hello d’évolution de données des disques de machine virtuelle hello individuels, car évolution de données pointe hello Hello machine virtuelle est pointe hello de somme hello d’évolution de ses différents disques pendant chaque minute de hello période de profilage.
 
-**Azure VM Size** : la taille de machine virtuelle d’Azure Cloud Services mappée idéale pour cette machine virtuelle locale. Le mappage est basé sur la mémoire, le nombre de disques/cœurs/cartes réseau de la machine virtuelle locale, et les E/S par seconde en lecture/écriture. La recommandation est toujours la plus petite taille de machine virtuelle Azure qui correspond à toutes les caractéristiques des machines virtuelles locales.
+**Taille de machine virtuelle Azure**: hello idéale mappés taille de machine virtuelle Azure Cloud Services pour ce local machine virtuelle. mappage de Hello est basé sur mémoire hello local VM, nombre de disques/cœurs/cartes réseau et les e/s de lecture/écriture. recommandation de Hello est toujours hello plus bas Azure VM taille qui correspond à l’ensemble des caractéristiques de machine virtuelle locale hello.
 
-**Number of Disks** : le nombre total de disques de machines virtuelles (VMDK) sur la machine virtuelle.
+**Nombre de disques**: hello nombre total de disques de machine virtuelle (VMDK) sur la machine virtuelle de hello.
 
-**Disk size (GB)** : la taille totale d’installation de tous les disques de la machine virtuelle. L’outil affiche également la taille des disques individuels de la machine virtuelle.
+**Taille (Go) du disque**: hello taille totale de programme d’installation de tous les disques de machine virtuelle de hello. outil de Hello montre également la taille du disque hello pour chacun des disques hello Bonjour machine virtuelle.
 
-**Cores** : le nombre de cœurs de processeur de la machine virtuelle.
+**Cœurs**: nombre hello du processeur cœurs sur hello machine virtuelle.
 
-**Memory (MB)** : la mémoire RAM de la machine virtuelle.
+**Mémoire (Mo)**: hello RAM sur hello machine virtuelle.
 
-**NICs** : le nombre de cartes réseau de la machine virtuelle.
+**Cartes réseau**: hello du nombre de cartes réseau sur la machine virtuelle de hello.
 
-**Boot Type** : type de démarrage de la machine virtuelle. Le type de démarrage peut prendre la valeur BIOS ou EFI. Pour l’instant, Azure Site Recovery ne prend en charge que le type de démarrage BIOS. Toutes les machines virtuelles présentant le type de démarrage EFI sont répertoriées dans la feuille de calcul des machines virtuelles incompatibles.
+**Type de démarrage**: il est de type de démarrage de hello machine virtuelle. Le type de démarrage peut prendre la valeur BIOS ou EFI. Pour l’instant, Azure Site Recovery ne prend en charge que le type de démarrage BIOS. Tous les ordinateurs virtuels hello du type de démarrage EFI sont répertoriées dans la feuille de calcul de machines virtuelles Incompatible.
 
-**OS Type** : type de système d’exploitation de la machine virtuelle. Ce type peut prendre la valeur Windows ou Linux.
+**Type de système d’exploitation**: hello est le type de système d’exploitation de hello machine virtuelle. Ce type peut prendre la valeur Windows ou Linux.
 
 ## <a name="incompatible-vms"></a>Machines virtuelles incompatibles
 
 ![Feuille de calcul Excel des machines virtuelles incompatibles](./media/site-recovery-deployment-planner/incompatible-vms.png)
 
-**VM Name** : nom de la machine virtuelle ou adresse IP utilisés dans VMListFile lorsqu’un rapport est généré. Cette colonne répertorie également les disques de machines virtuelles qui sont attachés aux machines virtuelles. Pour distinguer les machines virtuelles vCenter avec des noms ou des adresses IP en double, les noms incluent le nom de l’hôte ESXi. L’hôte ESXi répertorié est celui dans lequel la machine virtuelle a été placée lors de la détection de l’outil pendant le profilage.
+**Nom de machine virtuelle**: hello nom d’ordinateur virtuel ou d’adresse IP qui est utilisé dans hello VMListFile lorsqu’un rapport est généré. Cette colonne répertorie également hello VMDK qui sont attachés toohello VMs. vCenter toodistinguish machines virtuelles avec des noms en double ou les adresses IP, les noms de hello incluent les nom d’hôte ESXi hello. Hello hôtes ESXi répertoriés est hello une où hello machine virtuelle a été placé lors de l’outil de hello découverts pendant hello période de profilage.
 
-**VM Compatibility** : indique pourquoi la machine virtuelle spécifiée est incompatible avec une utilisation avec Site Recovery. Les raisons sont décrites pour chaque disque incompatible de la machine virtuelle et, en fonction des [limites de stockage](https://aka.ms/azure-storage-scalbility-performance), peuvent figurer parmi les suivantes :
+**Compatibilité de la machine virtuelle**: indique pourquoi hello donné de machine virtuelle est incompatible avec la récupération de Site. Hello les raisons sont décrites pour chaque disque incompatible de hello machine virtuelle et, en fonction publié sur [limites de stockage](https://aka.ms/azure-storage-scalbility-performance), peut être hello suivants :
 
 * La taille du disque est > 4095 Go. Actuellement, le stockage Azure ne prend pas en charge les tailles de disques de données supérieures à 4095 Go.
 * Le disque du système d’exploitation est  > 2048 Go. Actuellement, le stockage Azure ne prend pas en charge les tailles de disques de systèmes d’exploitation supérieures à 2048 Go.
 * Le type de démarrage est EFI. Pour l’instant, Azure Site Recovery ne prend en charge que les machines virtuelles qui présentent le type de démarrage BIOS.
 
-* La taille totale de machine virtuelle (réplication + TFO) dépasse la limite de taille du compte de stockage prise en charge (35 To). Cette incompatibilité se produit généralement lorsqu’un seul disque de la machine virtuelle présente une caractéristique de performances dépassant les limites maximales prises en charge Azure ou Site Recovery pour le stockage standard. Une telle instance envoie la machine virtuelle dans la zone de stockage premium en mode Push. Néanmoins, la taille maximale prise en charge d’un compte de stockage premium est de 35 To, et une seule et même machine virtuelle protégée ne peut pas être protégée sur plusieurs comptes de stockage. Notez également que, lorsqu’un test de basculement est exécuté sur une machine virtuelle protégée, elle s’exécute dans le compte de stockage où la réplication est en cours. Dans ce cas, configurez 2 fois la taille du disque pour que la progression de la réplication et le test de basculement réussissent en parallèle.
+* Taille de machine virtuelle (réplication + TFO) dépasse la limite de taille de compte de stockage hello pris en charge (35 To). Cette incompatibilité se produit généralement lorsqu’un seul disque Bonjour machine virtuelle a une caractéristique de performances qui dépasse hello maximales limites prises en charge Azure ou de récupération de Site pour le stockage standard. Une telle instance exécute un push hello machine virtuelle dans la zone de stockage premium hello. Toutefois, hello maximale taille prise en charge d’un compte de stockage premium est 35 To et une seule protégé la machine virtuelle ne peut pas être protégé sur plusieurs comptes de stockage. Notez également que, lorsqu’un test de basculement est exécutée sur une machine virtuelle protégée, elle s’exécute dans hello même compte de stockage où de progression de la réplication. Dans ce cas, 2 x taille hello du disque hello pour tooprogress de réplication et test de basculement toosucceed en parallèle.
 * Les E/S par seconde source excèdent la limite des E/S par seconde prise en charge par le stockage qui est de 5 000 par disque.
 * Les E/S par seconde source excèdent la limite des E/S par seconde prise en charge par le stockage qui est de 80 000 par machine virtuelle.
-* L’activité moyenne des données dépasse la limite d’activité des données prise en charge par Site Recovery, qui est de 10 Mbits/s pour la taille d’E/S moyenne de disque.
-* L’activité totale des données sur tous les disques de la machine virtuelle dépasse la limite d’activité des données maximale prise en charge par Site Recovery, qui est de 54 Mbits/s par machine virtuelle.
-* Les E/S par seconde d’écriture moyennes effectives dépassent la limite des E/S par seconde prise en charge par Site Recovery, qui est de 840 par disque.
-* Le stockage calculé des captures instantanées dépasse la limite de stockage des captures instantanées prise en charge, qui est de 10 To.
+* Évolution moyenne de données dépasse pris en charge Site Recovery évolution la limite de 10 Mbits/s pour la taille moyenne des e/s de disque de hello.
+* L’évolution du total des données sur tous les disques sur la machine virtuelle de hello dépasse hello maximale prise en charge Site Recovery évolution la limite de 54 Mbits/s par machine virtuelle.
+* Écriture effective moyenne par seconde dépasse la limite de Site Recovery IOPS de hello pris en charge de 840 pour le disque.
+* Stockage de cliché instantané calculée dépasse la limite de stockage de capture instantanée de hello pris en charge de 10 To.
 
-**R/W IOPS (with Growth Factor)** : les opérations d’E/S par seconde de la charge de travail de pointe sur le disque (95e centile par défaut), y compris le facteur de croissance futur (30 pour cent par défaut). Notez que les E/S par seconde en lecture/écriture de la machine virtuelle ne sont pas toujours la somme des E/S par seconde en lecture/écriture des disques individuels de la machine virtuelle, car les E/S par seconde en lecture/écriture de pointe de la machine virtuelle représentent le pic de la somme des E/S par seconde de ses disques individuels pendant chaque minute de la période de profilage.
+**E/s de lecture/écriture (avec le facteur de croissance)**: hello pics de charge e/s sur disque de hello (valeur par défaut est 95e centile), y compris le facteur de croissance future hello (valeur par défaut est 30 pour cent). Notez que hello total en lecture/écriture e/s de hello VM n’est pas toujours somme hello d’en lecture/écriture disques de machine virtuelle hello individuels e/s, hello pointe en lecture/écriture e/s de hello VM étant pointe hello de somme de hello de ses différents disques en lecture/écriture e/s lors de chaque minute de hello période de profilage.
 
-**Data Churn in Mbps (with Growth Factor)** : le taux d’activité de pointe sur le disque (95e centile par défaut), y compris le facteur de croissance futur (par défaut : 30 pour cent). Notez que le taux total d’activité des données de la machine virtuelle n’est pas toujours la somme des taux d’activité des données des disques individuels de la machine virtuelle, car le taux d’activité de pointe de la machine virtuelle représente le pic de la somme du taux d’activité de ses disques individuels pendant chaque minute de la période de profilage.
+**Évolution de données en Mbits/s (avec le facteur de croissance)**: taux d’évolution hello pointe sur le disque de hello (valeur par défaut 95e centile), y compris le facteur de croissance future hello (valeur par défaut 30 pour cent). Notez que hello évolution totale des données de hello VM n’est pas toujours somme hello d’évolution de données des disques de machine virtuelle hello individuels, car évolution de données pointe hello Hello machine virtuelle est pointe hello de somme hello d’évolution de ses différents disques pendant chaque minute de hello période de profilage.
 
-**Number of Disks** : le nombre total de disques de machines virtuelles (VMDK) sur la machine virtuelle.
+**Nombre de disques**: hello nombre total de VMDK sur hello machine virtuelle.
 
-**Disk size (GB)** : la taille totale d’installation de tous les disques de la machine virtuelle. L’outil affiche également la taille des disques individuels de la machine virtuelle.
+**Taille (Go) du disque**: hello taille totale de programme d’installation de tous les disques de machine virtuelle de hello. outil de Hello montre également la taille du disque hello pour chacun des disques hello Bonjour machine virtuelle.
 
-**Cores** : le nombre de cœurs de processeur de la machine virtuelle.
+**Cœurs**: nombre hello du processeur cœurs sur hello machine virtuelle.
 
-**Memory (MB)** : la quantité de RAM sur la machine virtuelle.
+**Mémoire (Mo)**: quantité hello de mémoire vive sur hello machine virtuelle.
 
-**NICs** : le nombre de cartes réseau de la machine virtuelle.
+**Cartes réseau**: hello du nombre de cartes réseau sur la machine virtuelle de hello.
 
-**Boot Type** : type de démarrage de la machine virtuelle. Le type de démarrage peut prendre la valeur BIOS ou EFI. Pour l’instant, Azure Site Recovery ne prend en charge que le type de démarrage BIOS. Toutes les machines virtuelles présentant le type de démarrage EFI sont répertoriées dans la feuille de calcul des machines virtuelles incompatibles.
+**Type de démarrage**: il est de type de démarrage de hello machine virtuelle. Le type de démarrage peut prendre la valeur BIOS ou EFI. Pour l’instant, Azure Site Recovery ne prend en charge que le type de démarrage BIOS. Tous les ordinateurs virtuels hello du type de démarrage EFI sont répertoriées dans la feuille de calcul de machines virtuelles Incompatible.
 
-**OS Type** : type de système d’exploitation de la machine virtuelle. Ce type peut prendre la valeur Windows ou Linux.
+**Type de système d’exploitation**: hello est le type de système d’exploitation de hello machine virtuelle. Ce type peut prendre la valeur Windows ou Linux.
 
 
 ## <a name="site-recovery-limits"></a>Limites Azure Site Recovery
@@ -540,28 +540,28 @@ Disque P10 Premium | 32 Ko ou plus | 8 Mbits/s | 672 Go par disque
 Disque Premium P20 ou P30 | 8 Ko  | 5 Mbits/s | 421 Go par disque
 Disque Premium P20 ou P30 | 16 Ko ou plus |10 Mbits/s | 842 Go par disque
 
-Il s’agit de moyennes en partant sur un chevauchement d’E/S de 30 pour cent. Site Recovery est capable de gérer un débit plus élevé en fonction du ratio de chevauchement, de tailles d’écriture plus grandes et du comportement d’E/S des charges de travail réelles. Les valeurs précédentes supposent un retard de traitement typique de cinq minutes. Autrement dit, une fois que les données sont chargées, elles sont traitées, et un point de récupération est créé dans un délai de cinq minutes.
+Il s’agit de moyennes en partant sur un chevauchement d’E/S de 30 pour cent. Site Recovery est capable de gérer un débit plus élevé en fonction du ratio de chevauchement, de tailles d’écriture plus grandes et du comportement d’E/S des charges de travail réelles. Hello nombres précédents supposent un retard de traitement par défaut de cinq minutes. Autrement dit, une fois que les données sont chargées, elles sont traitées, et un point de récupération est créé dans un délai de cinq minutes.
 
-Les limites sont basées sur nos tests, mais ne peuvent pas couvrir toutes les combinaisons d’E/S d’application possibles. Les résultats réels varient en fonction de la combinaison d’E/S de votre application. Pour de meilleurs résultats, même après la planification du déploiement, nous recommandons toujours que vous effectuiez des tests d’application approfondis à l’aide d’un test de basculement pour obtenir une image réelle des performances.
+Les limites sont basées sur nos tests, mais ne peuvent pas couvrir toutes les combinaisons d’E/S d’application possibles. Les résultats réels varient en fonction de la combinaison d’E/S de votre application. Pour de meilleurs résultats, même après la planification du déploiement, nous conseillons d’effectuer des tests à l’aide d’une image de test de basculement tooget hello performances réelles de très nombreuses applications.
 
-## <a name="updating-the-deployment-planner"></a>Mise à jour de Deployment planner
-Pour mettre à jour Deployment planner, procédez comme suit :
+## <a name="updating-hello-deployment-planner"></a>Mise à jour de la planification du déploiement hello
+projets de déploiement tooupdate hello, procédez comme hello suivant :
 
-1. Téléchargez la dernière version [d’Azure Site Recovery deployment planner](https://aka.ms/asr-deployment-planner).
+1. Télécharger la version la plus récente de hello hello [planification de déploiement Azure Site Recovery](https://aka.ms/asr-deployment-planner).
 
-2. Copiez le dossier .zip sur le serveur sur lequel vous souhaitez l’exécuter.
+2. Copie hello .zip dossier tooa le serveur que vous souhaitez toorun sur.
 
-3. Extrayez le dossier .zip.
+3. Extraire le dossier de .zip hello.
 
-4. Effectuez l’une des actions suivantes :
- * Si la dernière version ne contient pas de correctif de profilage, et que le profilage est déjà en cours sur votre version actuelle de la planification, passez au profilage.
- * Si la dernière version contient un correctif de profilage, nous vous recommandons d’arrêter le profilage sur votre version actuelle et de redémarrer le profilage avec la nouvelle version.
+4. Effectuez une des manières suivantes les hello :
+ * Si la version la plus récente hello ne contient pas un correctif de profilage et le profilage est déjà en cours d’exécution sur votre version actuelle du module de hello, continuer le profilage hello.
+ * Si la version la plus récente hello ne contient pas un correctif de profilage, nous vous recommandons d’arrêter le profilage dans votre version actuelle et de redémarrer hello profilage avec la nouvelle version de hello.
 
   >[!NOTE]
   >
-  >Lorsque vous démarrez le profilage avec la nouvelle version, transmettez le même chemin de répertoire de sortie de sorte que l’outil ajoute les données de profil sur les fichiers existants. Un ensemble complet de données profilées est utilisé pour générer le rapport. Si vous transmettez un répertoire de sortie différent, des fichiers sont créés et les anciennes données profilées ne sont pas utilisées pour générer les rapports.
+  >Quand vous démarrez le profilage avec hello nouvelle version, passe hello que même chemin d’accès du répertoire de sortie afin que hello outil ajoute les données de profil sur hello des fichiers existants. Un ensemble complet de données profilées sera toogenerate hello état utilisé. Si vous passez d’un répertoire de sortie différent, de nouveaux fichiers sont créés et anciennes données de profilage n’est pas utilisé rapport de hello toogenerate.
   >
-  >Chaque nouveau deployment planner est une mise à jour cumulative du fichier .zip. Vous n’avez pas besoin de copier les fichiers les plus récents dans le dossier précédent. Vous pouvez créer un dossier et l’utiliser.
+  >Chaque nouvelle planification de déploiement est une mise à jour cumulative du fichier .zip de hello. Vous n’avez pas besoin toocopy hello les plus récents fichiers toohello dossier précédent. Vous pouvez créer un dossier et l’utiliser.
 
 
 ## <a name="version-history"></a>Historique des versions
@@ -571,7 +571,7 @@ Dernière mise à jour : 19 juillet, 2017
 
 La nouvelle fonctionnalité suivante est ajoutée :
 
-* La prise en charge des disques volumineux (> 1To) a été ajoutée à la génération de rapport. Maintenant, vous pouvez utiliser le planificateur de déploiement pour planifier la réplication pour les ordinateurs virtuels dont les tailles de disque sont supérieures à 1 To (jusqu'à 4095 Go).
+* La prise en charge des disques volumineux (> 1To) a été ajoutée à la génération de rapport. Maintenant, vous pouvez utiliser la réplication tooplan déploiement planner pour les ordinateurs virtuels qui ont des tailles de disque supérieurs à 1 To (4095 en Go au maximum).
 En savoir plus sur la [Prise en charge des disques volumineux sur Azure Site Recovery](https://azure.microsoft.com/en-us/blog/azure-site-recovery-large-disks/)
 
 
@@ -580,7 +580,7 @@ Mise à jour : 9 mai 2017
 
 La nouvelle fonctionnalité suivante est ajoutée :
 
-* Ajout de la prise en charge des disques gérés dans la génération de rapport. Le nombre de machines virtuelles pouvant être placé sur un compte de stockage unique est calculé selon que le disque géré est sélectionné pour le basculement/test de basculement.        
+* Ajout de la prise en charge des disques gérés dans la génération de rapport. Hello nombre d’ordinateurs virtuels peut être placé stockage tooa compte est calculée selon si géré disque est sélectionnée pour le basculement de basculement et de Test.        
 
 
 ### <a name="12"></a>1.2
@@ -588,26 +588,26 @@ Mise à jour : 7 avril 2017
 
 Ajout des correctifs suivants :
 
-* Ajout de la vérification du type de démarrage (BIOS ou EFI) pour chaque machine virtuelle afin de déterminer si la machine virtuelle est compatible ou incompatible pour la protection.
-* Ajout des informations du type de système d’exploitation pour chaque machine virtuelle dans les feuilles de calcul des machines virtuelles compatibles et incompatibles.
-* L’opération GetThroughput est désormais prise en charge dans les régions Microsoft Azure Gouvernement des États-Unis et Chine.
+* Démarrage ajouté tapez check (BIOS ou EFI) pour chaque ordinateur virtuel de toodetermine si l’ordinateur virtuel de hello est compatible ou non pour la protection de hello.
+* Ajout du système d’exploitation de type d’informations pour chaque ordinateur virtuel dans hello Compatible de machines virtuelles et les feuilles de calcul de machines virtuelles Incompatible.
+* Hello GetThroughput opération est maintenant pris en charge dans les régions du gouvernement et de la Chine Microsoft Azure hello.
 * Ajout de quelques autres vérifications préalables pour les serveurs vCenter et ESXi.
-* Génération d’un rapport incorrect lorsque les paramètres régionaux sont définis sur une valeur autre que l’anglais.
+* État incorrect a été mise en route généré quand les paramètres régionaux a toonon-anglais.
 
 
 ### <a name="11"></a>1.1
 Mise à jour : 9 mars 2017
 
-Les problèmes suivants ont été résolus :
+Hello fixe suivants :
 
-* L’outil ne peut pas profiler de machines virtuelles si vCenter possède au moins deux machines virtuelles ayant le même nom ou la même adresse IP sur plusieurs hôtes ESXi.
-* La copie et la recherche ont été désactivées pour les feuilles de travail « Compatible VMs » et « Incompatible VMs ».
+* outil de Hello ne peut pas profiler des machines virtuelles si hello vCenter a deux ou plusieurs ordinateurs virtuels avec hello même nom ou l’adresse IP entre différents hôtes ESXi.
+* Copie et recherche est désactivée pour hello Compatible de machines virtuelles et les machines virtuelles Incompatible des feuilles de calcul.
 
 ### <a name="10"></a>1.0
 Mise à jour : 23 février 2017
 
-La préversion publique d’Azure Site Recovery Deployment Planner 1.0 rencontre les problèmes connus suivants (à traiter dans les prochaines mises à jour) :
+Azure Site Recovery déploiement Planner version préliminaire publique 1.0 a hello problèmes connus suivants (toobe traité dans les mises à jour à venir) :
 
-* L’outil fonctionne uniquement pour les scénarios VMware vers Azure, mais pas pour les déploiements Hyper-V vers Azure. Pour ces scénarios Hyper-V vers Azure, utilisez [l’outil de planification de la capacité Hyper-V](./site-recovery-capacity-planning-for-hyper-v-replication.md).
-* L’opération GetThroughput n’est pas prise en charge dans les régions Microsoft Azure US Government et Chine.
-* L’outil ne peut pas profiler de machines virtuelles si le serveur vCenter possède au moins deux machines virtuelles ayant le même nom ou la même adresse IP sur plusieurs hôtes ESXi. Dans cette version, l’outil ignore le profilage des noms ou adresses IP des machines virtuelles en double dans le fichier VMListFile. La solution de contournement consiste à profiler des machines virtuelles à l’aide d’un hôte ESXi au lieu du serveur vCenter. Vous devez exécuter une instance par hôte ESXi.
+* outil de Hello fonctionne uniquement pour les scénarios de VMware à Azure, pas pour les déploiements de Hyper-V vers Azure. Pour les scénarios de Hyper-V vers Azure, utilisez hello [outil de planification de capacité Hyper-V](./site-recovery-capacity-planning-for-hyper-v-replication.md).
+* Hello GetThroughput opération n’est pas pris en charge dans les régions du gouvernement et de la Chine Microsoft Azure hello.
+* outil de Hello ne peut pas profiler des machines virtuelles si le serveur vCenter hello a deux ou plusieurs ordinateurs virtuels avec hello même nom ou l’adresse IP entre différents hôtes ESXi. Dans cette version, outil de hello ignore le profilage pour les noms de machine virtuelle en double ou les adresses IP dans hello VMListFile. solution de contournement Hello est tooprofile hello machines virtuelles à l’aide d’un ordinateur hôte ESXi plutôt que le serveur vCenter hello. Vous devez exécuter une instance par hôte ESXi.

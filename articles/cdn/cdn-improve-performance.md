@@ -1,6 +1,6 @@
 ---
-title: "Compression des fichiers dans Azure CDN pour améliorer les performances | Microsoft Docs"
-description: "Découvrez comment améliorer la vitesse de transfert de fichiers et les performances de chargement de page en compressant vos fichiers dans Azure CDN."
+title: performances aaaImprove en compressant les fichiers dans le CDN Azure | Documents Microsoft
+description: "Découvrez comment tooimprove fichier transférer les performances de chargement de page vitesse et augmentent par la compression des fichiers dans le CDN Azure."
 services: cdn
 documentationcenter: 
 author: zhangmanling
@@ -14,89 +14,89 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: mazha
-ms.openlocfilehash: 7546650e6096a880f4fb4d0c94dd4ecc00b70160
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 9a1698b6c29233c2e2e6fb17cdd8e919ae8bfa1c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="improve-performance-by-compressing-files-in-azure-cdn"></a>Compression des fichiers dans Azure CDN pour améliorer les performances
-La compression est une méthode simple et efficace qui vise à améliorer la vitesse de transfert des fichiers et à accroître les performances de chargement des pages en réduisant la taille des fichiers avant leur envoi à partir du serveur. Elle permet de réduire les coûts de bande passante et offre à vos utilisateurs davantage de réactivité.
+La compression est une vitesse de transfert de fichier tooimprove méthode simple et efficace et performances de chargement de page augmentation en réduisant la taille du fichier avant qu’il sont envoyé à partir du serveur de hello. Elle permet de réduire les coûts de bande passante et offre à vos utilisateurs davantage de réactivité.
 
-Il existe deux façons d’activer la compression :
+Il existe deux façons de tooenable compression :
 
-* Vous pouvez activer la compression sur votre serveur d’origine. Dans ce cas, le CDN transmet les fichiers compressés et les remet aux clients qui les demandent.
-* Vous pouvez activer la compression directement sur les serveurs de périmètre CDN. Dans ce cas, le CDN compresse les fichiers et les envoie aux utilisateurs finals, même s’ils ne sont pas compressés par le serveur d’origine.
+* Vous pouvez activer la compression sur votre serveur d’origine, auquel cas hello CDN traverse hello des fichiers compressés et remettre les fichiers compressés tooclients qui les demandent.
+* Vous pouvez activer la compression directement sur les serveurs de bord CDN, dans lequel cas hello CDN compresse hello des fichiers et servir les utilisateurs tooend, même si elles ne sont pas compressées par le serveur d’origine hello.
 
 > [!IMPORTANT]
-> Les changements de configuration CDN prennent un certain temps avant de se propager sur le réseau.  Pour les profils du <b>CDN Azure fourni par Akamai</b> , la propagation s’effectue généralement en moins d’une minute.  Pour les profils du <b>CDN Azure fourni par Verizon</b> , vous verrez généralement vos changements s’appliquer dans un délai de 90 minutes.  Si c’est la première fois que vous configurez la compression de votre point de terminaison CDN, patientez 1 à 2 heures pour être certain que les paramètres de compression ont été propagés aux POP avant de chercher à résoudre un problème.
+> Modifications de configuration CDN prendront certaines toopropagate de temps via le réseau de hello.  Pour les profils du <b>CDN Azure fourni par Akamai</b> , la propagation s’effectue généralement en moins d’une minute.  Pour les profils du <b>CDN Azure fourni par Verizon</b> , vous verrez généralement vos changements s’appliquer dans un délai de 90 minutes.  S’il s’agit hello première fois que vous avez configuré la compression pour votre point de terminaison CDN, vous devez envisager d’attente toobe 1 et 2 heures que la propagation des paramètres de compression de hello POP toohello avant la résolution des problèmes
 > 
 > 
 
 ## <a name="enabling-compression"></a>Activation de la compression
 > [!NOTE]
-> Les niveaux Standard et Premium de CDN fournissent les mêmes fonctionnalités, mais l’interface utilisateur est différente.  Pour plus d’informations sur les différences entre les niveaux Standard et Premium de CDN, consultez [Vue d’ensemble du réseau de distribution de contenu (CDN) Azure](cdn-overview.md).
+> fournissent Hello niveaux Standard et Premium CDN hello les mêmes fonctionnalités de compression, mais diffère hello interface utilisateur.  Pour plus d’informations sur les différences de hello entre les niveaux Standard et Premium CDN, consultez [vue d’ensemble du CDN Azure](cdn-overview.md).
 > 
 > 
 
 ### <a name="standard-tier"></a>Niveau standard
 > [!NOTE]
-> Cette section s’applique au profil **Azure CDN Standard fourni par Verizon** et au profil **Azure CDN Standard fourni par Akamai**.
+> Cette section s’applique également**Azure CDN Standard de Verizon** et **Azure CDN Standard à partir d’Akamai** profils.
 > 
 > 
 
-1. Dans la page du profil CDN, cliquez sur le point de terminaison CDN que vous souhaitez gérer.
+1. À partir de la page de profil CDN hello, cliquez sur le point de terminaison CDN hello toomanage vous le souhaitez.
    
     ![Points de terminaison de la page de profil CDN](./media/cdn-file-compression/cdn-endpoints.png)
    
-    La page du point de terminaison CDN s’ouvre.
-2. Cliquez sur le bouton **Configurer** .
+    page de point de terminaison CDN Hello s’ouvre.
+2. Cliquez sur hello **configurer** bouton.
    
     ![Bouton de gestion de la page de profil CDN](./media/cdn-file-compression/cdn-config-btn.png)
    
-    La page de configuration CDN s’ouvre.
+    page de Configuration CDN Hello s’ouvre.
 3. Activez **Compression**.
    
     ![Options de compression CDN](./media/cdn-file-compression/cdn-compress-standard.png)
-4. Utilisez les types par défaut ou modifiez la liste en supprimant ou en ajoutant des types de fichier.
+4. Utiliser des types de valeur par défaut de hello, ou modifier la liste de hello en supprimant ou en ajoutant des types de fichiers.
    
    > [!TIP]
-   > Bien que cela soit possible, il n’est pas recommandé d’appliquer la compression aux formats compressés, tels que ZIP, MP3, MP4, JPG, etc.
+   > Tant que possible, il n’est pas recommandé tooapply compression toocompressed formats, tels que ZIP, MP3, MP4, JPG, etc..
    > 
    > 
-5. Une fois vos modifications effectuées, cliquez sur le bouton **Enregistrer** .
+5. Après avoir apporté vos modifications, cliquez sur hello **enregistrer** bouton.
 
 ### <a name="premium-tier"></a>Niveau Premium
 > [!NOTE]
-> Cette section s’applique aux profils du **CDN Azure CDN Premium fourni par Verizon** .
+> Cette section s’applique également**Azure CDN Premium de Verizon** profils.
 > 
 > 
 
-1. Dans la page de profil CDN, cliquez sur le bouton **Gérer**.
+1. À partir de la page de profil hello CDN, cliquez sur hello **gérer** bouton.
    
     ![Bouton de gestion de la page de profil CDN](./media/cdn-file-compression/cdn-manage-btn.png)
    
-    Le portail de gestion CDN s'ouvre.
-2. Pointez sur l’onglet **HTTP volumineux**, puis pointez sur le menu volant **Paramètres de cache**.  Cliquez sur **Compression**.
+    portail de gestion CDN Hello s’ouvre.
+2. Pointage hello **grand HTTP** tab, puis pointez sur hello **paramètres de Cache** menu volant.  Cliquez sur **Compression**.
 
     ![Sélection de la compression de fichiers](./media/cdn-file-compression/cdn-compress-select.png)
    
     Les options de compression sont affichées.
    
     ![Compression de fichiers](./media/cdn-file-compression/cdn-compress-files.png)
-3. Activez la compression en cliquant sur la case d’option **Compression activée** .  Entrez les types MIME que vous souhaitez compresser sous forme de liste délimitée par des virgules (sans espace) dans la zone de texte **Types de fichiers** .
+3. Activer la compression en cliquant sur hello **Compression activée** case d’option.  Entrez les types MIME hello vous souhaitez toocompress sous la forme d’une liste délimitée par des virgules (sans espaces) Bonjour **Types de fichiers** zone de texte.
    
    > [!TIP]
-   > Bien que cela soit possible, il n’est pas recommandé d’appliquer la compression aux formats compressés, tels que ZIP, MP3, MP4, JPG, etc. 
+   > Tant que possible, il n’est pas recommandé tooapply compression toocompressed formats, tels que ZIP, MP3, MP4, JPG, etc.. 
    > 
    > 
-4. Après avoir apporté vos modifications, cliquez sur le bouton **Mettre à jour** .
+4. Après avoir apporté vos modifications, cliquez sur hello **mise à jour** bouton.
 
 ## <a name="compression-rules"></a>Règles de compression
 Ces tableaux décrivent le comportement de compression du CDN Azure pour chaque scénario.
 
 > [!IMPORTANT]
-> Pour le **CDN Azure fourni par Verizon** (Standard et Premium), seuls les fichiers éligibles sont compressés.  Pour être éligible pour la compression, un fichier doit :
+> Pour le **CDN Azure fourni par Verizon** (Standard et Premium), seuls les fichiers éligibles sont compressés.  un fichier de toobe éligible pour la compression, procédez comme suit :
 > 
 > * Être supérieur à 128 octets.
 > * Être inférieur à 1 Mo.
@@ -105,14 +105,14 @@ Ces tableaux décrivent le comportement de compression du CDN Azure pour chaque 
 > 
 > Pour tous les produits Azure CDN, un fichier doit être de type MIME qui a été [configuré pour la compression](#enabling-compression).
 > 
-> Les profils **Azure CDN fourni par Verizon** (Standard et Premium) prennent en charge l’encodage **gzip** (zip GNU), **deflate**, **bzip2** ou **br** (Brotli). Pour l’encodage Brotli, la compression est effectuée uniquement en périphérie. Le client/navigateur doit envoyer la demande d’encodage Brotli et la ressource compressée doit d’abord avoir été compressée au niveau de l’origine. 
+> Les profils **Azure CDN fourni par Verizon** (Standard et Premium) prennent en charge l’encodage **gzip** (zip GNU), **deflate**, **bzip2** ou **br** (Brotli). Pour l’encodage de Brotli, la compression de hello est effectuée uniquement sur le bord de hello. Hello client/navigateur doit envoyer la demande hello pour l’encodage de Brotli et asset compressé de hello doit avoir été compressé côté hello d’origine tout d’abord. 
 >
 >Les profils du **CDN Azure fourni par Akamai** prennent uniquement en charge l’encodage **gzip**.
 > 
-> Les points de terminaison **Azure CDN fourni par Akamai** demandent toujours des fichiers encodés **gzip** en provenance de l’origine, quelle que soit la demande du client. 
+> **CDN Azure à partir d’Akamai** demande toujours des points de terminaison **gzip** de fichiers à partir de l’origine de hello, quelle que soit la demande du client hello codés. 
 
 ### <a name="compression-disabled-or-file-is-ineligible-for-compression"></a>Compression désactivée ou le fichier n’est pas éligible pour la compression
-| Format demandé par le client (via l’en-tête Accept-Encoding) | Format de fichier mis en cache | Réponse du CDN au client | Remarques |
+| Format demandé par le client (via l’en-tête Accept-Encoding) | Format de fichier mis en cache | Client de toohello réponse CDN | Remarques |
 | --- | --- | --- | --- |
 | Compressé |Compressé |Compressé | |
 | Compressé |Non compressé |Non compressé | |
@@ -122,17 +122,17 @@ Ces tableaux décrivent le comportement de compression du CDN Azure pour chaque 
 | Non compressé |Non mis en cache |Non compressé | |
 
 ### <a name="compression-enabled-and-file-is-eligible-for-compression"></a>La compression est activée et le fichier est éligible pour la compression
-| Format demandé par le client (via l’en-tête Accept-Encoding) | Format de fichier mis en cache | Réponse du CDN au client | Remarques |
+| Format demandé par le client (via l’en-tête Accept-Encoding) | Format de fichier mis en cache | Client de toohello réponse CDN | Remarques |
 | --- | --- | --- | --- |
 | Compressé |Compressé |Compressé |Transcode CDN entre les formats pris en charge |
 | Compressé |Non compressé |Compressé |CDN effectue la compression |
-| Compressé |Non mis en cache |Compressé |CDN effectue la compression si l’origine renvoie le format non compressé.  **Azure CDN fourni par Verizon** transmet le fichier non compressé à la première demande, puis compresse et met en cache le fichier pour les demandes suivantes.  Les fichiers avec l’en-tête `Cache-Control: no-cache` ne seront jamais compressés. |
+| Compressé |Non mis en cache |Compressé |CDN effectue la compression si l’origine renvoie le format non compressé.  **Azure CDN de Verizon** passe hello fichier non compressé sur la première demande de hello et puis compresse et caches hello fichier pour les demandes suivantes.  Les fichiers avec l’en-tête `Cache-Control: no-cache` ne seront jamais compressés. |
 | Non compressé |Compressé |Non compressé |CDN effectue la décompression |
 | Non compressé |Non compressé |Non compressé | |
 | Non compressé |Non mis en cache |Non compressé | |
 
 ## <a name="media-services-cdn-compression"></a>Compression CDN Media Services
-Pour les points de terminaison de diffusion en continu CDN de Media Services, la compression est activée par défaut pour les types de contenu suivants : application/vnd.ms-sstr+xml, application/dash+xml,application/vnd.apple.mpegurl, application/f4m+xml. Vous ne pouvez pas activer ou désactiver la compression pour les types mentionnés à l'aide du portail Azure.  
+Media Services CDN activé des points de terminaison de diffusion en continu, la compression est activée par défaut pour les types de contenu suivants de hello : application/vnd.ms-sstr + xml, application/dash+xml,application/vnd.apple.mpegurl, application/f4m + xml. Vous ne pouvez pas activer/désactiver la compression pour hello mentionné types à l’aide de hello portail Azure.  
 
 ## <a name="see-also"></a>Voir aussi
 * [Résolution des problèmes de compression des fichiers CDN](cdn-troubleshoot-compression.md)    

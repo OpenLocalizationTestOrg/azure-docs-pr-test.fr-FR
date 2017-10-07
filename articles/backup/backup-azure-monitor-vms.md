@@ -1,5 +1,5 @@
 ---
-title: "Surveillance des sauvegardes de machines virtuelles déployées via Resource Manager | Microsoft Docs"
+title: "les sauvegardes déployées par le Gestionnaire de ressources des machines virtuelles aaaMonitor | Documents Microsoft"
 description: "Suivre les événements et les alertes des sauvegardes d’une machine virtuelle déployée via Resource Manager. Envoyer un e-mail en fonction des alertes."
 services: backup
 documentationcenter: dev-center-name
@@ -14,58 +14,58 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/21/2016
 ms.author: markgal;trinadhk;giridham;
-ms.openlocfilehash: b9dc3f52e5fc275bc56b9964f2115833f2dde42e
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: bf45cbaa05621b2365c26bafa1bd8223a444c1fb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="monitor-alerts-for-azure-virtual-machine-backups"></a>Suivez les alertes des sauvegardes de machines virtuelles Azure
-Les alertes sont des indications du service indiquant qu’un seuil d’événement a été atteint ou dépassé. Le fait de prendre connaissance d’un problème dès qu’il se produit peut être indispensable pour limiter les dépenses. Les alertes ne sont généralement pas planifiées. Il est donc utile de savoir aussi tôt possible lorsque des alertes sont générées. Par exemple, lorsqu’un travail de sauvegarde ou de restauration échoue, une alerte se produit dans les cinq minutes suivant l’échec. Dans le tableau de bord du coffre, la vignette Alertes de sauvegarde affiche des événements de niveaux Critique et Avertissement. Dans les paramètres des alertes de sauvegarde, vous pouvez afficher tous les événements. Mais que faire si une alerte se produit lorsque vous travaillez sur un autre problème ? Si vous ne savez pas quand l’alerte se produit, il peut s’agir d’un désagrément mineur, ou d’un problème entraînant des pertes de données. Pour vous assurer que les bonnes personnes sont prévenues en cas d’alerte, configurez le service de manière à envoyer des notifications d’alerte par e-mail. Pour plus d’informations sur la configuration des notifications par e-mail, consultez [Configurer les notifications](backup-azure-monitor-vms.md#configure-notifications).
+Les alertes sont des réponses du service hello qu’un seuil d’événement a été atteint ou dépassé. Si vous savez lorsque des problèmes de début peuvent être tookeeping critiques des frais de gestion vers le bas. Les alertes ne se produisent généralement pas selon une planification, et il est donc utile tooknow dès que possible après que des alertes se produisent. Par exemple, lorsqu’une tâche de sauvegarde ou de restauration échoue, une alerte se produit dans les cinq minutes de défaillance de hello. Dans le tableau de bord du coffre hello, hello vignette alertes de sauvegarde affiche les événements critiques et de niveau d’avertissement. Dans les paramètres des alertes de sauvegarde hello, vous pouvez afficher tous les événements. Mais que faire si une alerte se produit lorsque vous travaillez sur un autre problème ? Si vous ne connaissez pas lors de l’alerte de hello se produit, elle peut être un inconvénient secondaire, ou il pourrait compromettre les données. Lorsqu’il se produit, toomake que hello personnes autorisées sont prenant en charge d’une alerte - configurer hello service toosend des notifications d’alerte par courrier électronique. Pour plus d’informations sur la configuration des notifications par e-mail, consultez [Configurer les notifications](backup-azure-monitor-vms.md#configure-notifications).
 
-## <a name="how-do-i-find-information-about-the-alerts"></a>Comment puis-je trouver des informations sur les alertes ?
-Pour afficher des informations sur l’événement qui a généré l’alerte, vous devez ouvrir le panneau Alertes de sauvegarde. Il existe deux manières d’ouvrir le panneau Alertes de sauvegarde : soit à partir de la vignette Alertes de sauvegarde dans le tableau de bord du coffre, soit à partir du panneau Alertes et événements.
+## <a name="how-do-i-find-information-about-hello-alerts"></a>Comment trouver des informations sur les alertes de hello ?
+tooview plus d’informations sur l’événement hello qui a généré une alerte, vous devez ouvrir le panneau des alertes de sauvegarde hello. Il existe panneau alertes de sauvegarde de deux façons tooopen hello : hello vignette d’alertes de sauvegarde dans le tableau de bord coffre hello ou à partir du panneau des alertes et événements hello.
 
-Pour ouvrir le panneau Alertes de sauvegarde à partir de la vignette Alertes de sauvegarde :
+vignette du panneau des alertes de sauvegarde tooopen hello à partir d’alertes de sauvegarde :
 
-* Sur la vignette **Alertes de sauvegarde** dans le tableau de bord du coffre, cliquez sur **Critique** ou **Avertissement** pour afficher les événements opérationnels pour ce niveau de gravité.
+* Sur hello **les alertes de sauvegarde** vignette sur le tableau de bord coffre hello, cliquez sur **critique** ou **avertissement** tooview hello les événements opérationnels pour ce niveau de gravité.
 
     ![Vignette Alertes de sauvegarde](./media/backup-azure-monitor-vms/backup-alerts-tile.png)
 
-Pour ouvrir le panneau Alertes de sauvegarde à partir du panneau Alertes et événements :
+panneau des alertes de sauvegarde hello tooopen à partir du panneau des alertes et événements hello :
 
-1. À partir du tableau de bord du coffre, cliquez sur **Tous les paramètres**. ![Bouton Tous les paramètres](./media/backup-azure-monitor-vms/all-settings-button.png)
-2. Dans le panneau **Paramètres**, cliquez sur **Alertes et événements**. ![Bouton Alertes et événements](./media/backup-azure-monitor-vms/alerts-and-events-button.png)
-3. Dans le panneau **Alertes et événements**, cliquez sur **Alertes de sauvegarde**. ![Bouton Alertes de sauvegarde](./media/backup-azure-monitor-vms/backup-alerts.png)
+1. À partir du tableau de bord du coffre hello, cliquez sur **tous les paramètres**. ![Bouton Tous les paramètres](./media/backup-azure-monitor-vms/all-settings-button.png)
+2. Sur hello **paramètres** panneau, cliquez sur **alertes et événements**. ![Bouton Alertes et événements](./media/backup-azure-monitor-vms/alerts-and-events-button.png)
+3. Sur hello **alertes et événements** panneau, cliquez sur **les alertes de sauvegarde**. ![Bouton Alertes de sauvegarde](./media/backup-azure-monitor-vms/backup-alerts.png)
 
-    Le panneau **Alertes de sauvegarde** s’ouvre et affiche les alertes filtrées.
+    Hello **les alertes de sauvegarde** panneau s’ouvre et affiche hello alertes filtrés.
 
     ![Vignette Alertes de sauvegarde](./media/backup-azure-monitor-vms/backup-alerts-critical.png)
-4. Pour afficher des informations détaillées sur une alerte spécifique, cliquez sur l’alerte de votre choix dans la liste des événements pour ouvrir son panneau **Détails** .
+4. tooview des informations détaillées sur une alerte donnée, à partir de la liste de hello des événements, cliquez sur tooopen d’alerte hello son **détails** panneau.
 
     ![Détail sur l’événement](./media/backup-azure-monitor-vms/audit-logs-event-detail.png)
 
-    Pour personnaliser les attributs affichés dans la liste, consultez [Afficher les attributs d’événement supplémentaires](backup-azure-monitor-vms.md#view-additional-event-attributes)
+    les attributs de hello toocustomize affichés dans la liste hello, consultez [afficher les attributs d’événement supplémentaires](backup-azure-monitor-vms.md#view-additional-event-attributes)
 
 ## <a name="configure-notifications"></a>Configurer les notifications
- Vous pouvez configurer le service de manière à envoyer des notifications par e-mail pour les alertes qui se sont produites au cours de la dernière heure, ou lorsque des événements particuliers se produisent.
+ Vous pouvez configurer hello service toosend par courrier électronique des alertes hello qui se sont produites sur hello après les heures, ou lorsque des types particuliers d’événements se produisent.
 
-Pour configurer des notifications par e-mail pour les alertes
+tooset des notifications par courrier électronique pour les alertes
 
-1. Dans le menu Alertes de sauvegarde, cliquez sur **Configurer les notifications**
+1. Cliquez sur alertes de sauvegarde hello, **configurer des notifications**
 
     ![Menu Alertes de sauvegarde](./media/backup-azure-monitor-vms/backup-alerts-menu.png)
 
-    Le panneau Configurer les notifications s’ouvre.
+    Panneau de Hello configurer des notifications s’ouvre.
 
     ![Panneau Configurer les notifications](./media/backup-azure-monitor-vms/configure-notifications.png)
-2. Dans le panneau Configurer les notifications, pour les notifications par e-mail, cliquez sur **Activé**.
+2. Dans le panneau de notifications configurer hello, notifications par courrier électronique, cliquez sur **sur**.
 
-    Les boîtes de dialogue Destinataires et Gravité comportent une étoile, car ces informations sont requises. Fournissez au moins une adresse e-mail et sélectionnez au moins un niveau de gravité.
-3. Dans la boîte de dialogue **Destinataires (e-mail)** , saisissez les adresses e-mail des personnes devant recevoir les notifications. Utilisez le format : username@domainname.com. Séparez les adresses e-mail par des point-virgule (;).
-4. Dans la zone **Notification**, choisissez **Par alerte** pour envoyer une notification lorsque l’alerte indiquée se produit ou **Synthèse horaire** pour envoyer un résumé de la dernière heure.
-5. Dans la boîte de dialogue **Gravité** , sélectionnez un ou plusieurs niveaux pour lesquels vous voulez envoyer des notifications par e-mail.
-6. Cliquez sur **Save**.
+    Hello destinataires et les boîtes de dialogue de gravité ont une étoile toothem suivant, car ces informations sont requises. Fournissez au moins une adresse e-mail et sélectionnez au moins un niveau de gravité.
+3. Bonjour **destinataires (courrier électronique)** boîte de dialogue, tapez les adresses de messagerie hello pour qui reçoivent des notifications de hello. Utilisez le format hello : username@domainname.com. Séparez les adresses e-mail par des point-virgule (;).
+4. Bonjour **notifier** zone, choisissez **par alerte** toosend notification quand hello spécifié alerte se produit, ou **horaire Digest** toosend un résumé de la dernière heure de hello.
+5. Bonjour **gravité** boîte de dialogue, sélectionnez un ou plusieurs niveaux que vous souhaitez tootrigger les notifications par courrier électronique.
+6. Cliquez sur **Enregistrer**.
 
    ### <a name="what-alert-types-are-available-for-azure-iaas-vm-backup"></a>Quels sont les types d’alertes disponibles pour la sauvegarde des machines virtuelles Azure IaaS ?
    | Niveau d’alerte | Alertes envoyées |
@@ -75,98 +75,98 @@ Pour configurer des notifications par e-mail pour les alertes
    | Informations |Aucun |
 
 ### <a name="are-there-situations-where-email-isnt-sent-even-if-notifications-are-configured"></a>Existe-t-il des situations lors desquelles un e-mail n’est pas envoyé même si les notifications sont configurées ?
-Il existe des situations lors desquelles une alerte n’est pas envoyée, même si les notifications ont été correctement configurées, afin de réduire le nombre d’alertes. Ces situations sont les suivantes :
+Il existe des situations où une alerte n’est envoyée, même si les notifications hello ont été correctement configurées. Bonjour les notifications de messagerie situations suivantes ne sont pas envoyées tooavoid bruit des alertes :
 
-* Si les notifications sont configurées sur une base horaire et qu’une alerte est déclenchée et résolue dans l’heure.
-* Si le travail est annulé.
+* Si les notifications sont configurée tooHourly Digest, et une alerte est déclenchée et résolue au sein de l’heure de hello.
+* travail de Hello est annulé.
 * Si un travail de sauvegarde est déclenché et échoue, et si un autre travail de sauvegarde est en cours.
-* Si un travail de sauvegarde planifiée pour une machine virtuelle Resource Manager démarre, mais que celle-ci n’existe plus.
+* Une tâche de sauvegarde planifiée pour un ordinateur virtuel activée de gestionnaire de ressources démarre, mais hello machine virtuelle n’existe plus.
 
 ## <a name="customize-your-view-of-events"></a>Personnaliser l’affichage des événements
-Le paramètre **Journaux d’audit** est fourni avec un ensemble prédéfini de filtres et de colonnes affichant des informations sur les événements opérationnels. Vous pouvez personnaliser l’affichage, afin que lorsque le panneau **Événements** s’ouvre, il affiche les informations souhaitées.
+Hello **journaux d’Audit** paramètre est fourni avec un ensemble prédéfini de filtres et de colonnes affichant des informations d’événement opérationnel. Vous pouvez personnaliser hello affichage afin que lorsque hello **événements** panneau s’ouvre, il affiche hello les informations souhaitées.
 
-1. Dans le [tableau de bord du coffre](backup-azure-manage-vms.md#open-a-recovery-services-vault-in-the-dashboard), recherchez **Journaux d’audit** et cliquez dessus pour ouvrir le panneau **Événements**.
+1. Bonjour [tableau de bord coffre](backup-azure-manage-vms.md#open-a-recovery-services-vault-in-the-dashboard), cliquez sur le tooand Parcourir **les journaux d’Audit** tooopen hello **événements** panneau.
 
     ![Journaux d’audit](./media/backup-azure-monitor-vms/audit-logs-1606-1.png)
 
-    Le panneau **Événements** s’ouvre sur les événements opérationnels filtrés pour le coffre actif.
+    Hello **événements** panneau s’ouvre les événements opérationnels toohello filtrés pour le coffre hello actuel.
 
     ![Filtre des journaux d’audit](./media/backup-azure-monitor-vms/audit-logs-filter.png)
 
-    Le panneau affiche la liste des événements critiques, erreurs, avertissements et informations qui se sont produits au cours de la semaine passée. L’intervalle de temps est une valeur par défaut définie dans **Filtre**. Le panneau **Événements** affiche également un graphique à barres qui retrace le déroulement des événements. Si vous ne souhaitez pas voir ce graphique, accédez au menu **Événements** et cliquez sur **Masquer le graphique** pour désactiver le graphique. L’affichage par défaut des événements affiche les informations opération, niveau, état, ressources et heure. Pour plus d’informations sur l’affichage d’attributs d’événement supplémentaires, consultez la section [Développer les informations sur les événements](backup-azure-monitor-vms.md#view-additional-event-attributes).
-2. Pour obtenir plus d’informations sur un événement opérationnel, dans la colonne **Opération** , cliquez sur un événement opérationnel pour ouvrir son panneau. Le panneau contient des informations détaillées sur les événements. Les événements sont regroupés par leur identifiant de corrélation et une liste des événements qui se sont produits dans l’intervalle de temps.
+    Panneau de Hello répertorie hello critique, erreur, avertissement et les événements d’information qui s’est produite dans hello semaine dernière. intervalle de temps Hello est une valeur par défaut définie dans hello **filtre**. Hello **événements** panneau affiche également un graphique à barres de suivi lorsque les événements hello s’est produite. Si vous ne souhaitez pas toosee hello graphique à barres, hello **événements** menu, cliquez sur **masquer graphique** tootoggle hors graphique de hello. affichage par défaut de Hello d’événements affiche des informations d’opération, niveau, état, ressources et l’heure. Pour plus d’informations sur l’exposition des attributs d’événement supplémentaires, consultez la section de hello [développant des informations sur les événements](backup-azure-monitor-vms.md#view-additional-event-attributes).
+2. Pour plus d’informations sur un événement opérationnel, Bonjour **opération** colonne, cliquez sur un événement opérationnel de tooopen son panneau. Panneau de Hello contient des informations détaillées sur les événements de hello. Les événements sont regroupés par leur ID de corrélation et une liste d’événements hello qui s’est produite dans l’intervalle de temps hello.
 
     ![Détails de l'opération](./media/backup-azure-monitor-vms/audit-logs-details-window.png)
-3. Pour afficher des informations détaillées sur un événement particulier, cliquez sur l’événement de votre choix dans la liste des événements pour ouvrir le panneau **Détails** correspondant.
+3. tooview des informations détaillées sur un événement particulier, à partir de la liste de hello des événements, cliquez sur hello événement tooopen son **détails** panneau.
 
     ![Détail sur l’événement](./media/backup-azure-monitor-vms/audit-logs-details-window-deep.png)
 
-    Les informations au niveau de l’événement sont répertoriées au fur et à mesure de leur disponibilité. Si vous préférez afficher autant d’informations sur chaque événement et que vous voulez ajouter ce niveau de détail au panneau **Événements** , consultez la section [Développer les informations sur les événements](backup-azure-monitor-vms.md#view-additional-event-attributes).
+    informations de niveau de l’événement Hello soient de détail hello Obtient des informations. Si vous préférez afficher autant d’informations sur chaque événement et que vous aimeriez tooadd cela beaucoup de détail toohello **événements** panneau, consultez la section de hello [développant des informations sur les événements](backup-azure-monitor-vms.md#view-additional-event-attributes).
 
-## <a name="customize-the-event-filter"></a>Personnaliser le filtre d’événements
-Utilisez **Filtre** pour ajuster ou choisir les informations qui apparaissent dans un panneau spécifique. Pour filtrer les informations sur l’événement :
+## <a name="customize-hello-event-filter"></a>Personnaliser le filtre d’événement hello
+Hello d’utilisation **filtre** tooadjust ou choisissez les informations de hello qui s’affiche dans un panneau spécifique. informations sur les événements toofilter hello :
 
-1. Dans le [tableau de bord du coffre](backup-azure-manage-vms.md#open-a-recovery-services-vault-in-the-dashboard), recherchez **Journaux d’audit** et cliquez dessus pour ouvrir le panneau **Événements**.
+1. Bonjour [tableau de bord coffre](backup-azure-manage-vms.md#open-a-recovery-services-vault-in-the-dashboard), cliquez sur le tooand Parcourir **les journaux d’Audit** tooopen hello **événements** panneau.
 
     ![Journaux d’audit](./media/backup-azure-monitor-vms/audit-logs-1606-1.png)
 
-    Le panneau **Événements** s’ouvre sur les événements opérationnels filtrés pour le coffre actif.
+    Hello **événements** panneau s’ouvre les événements opérationnels toohello filtrés pour le coffre hello actuel.
 
     ![Filtre des journaux d’audit](./media/backup-azure-monitor-vms/audit-logs-filter.png)
-2. Dans le menu **Événements**, cliquez sur **Filtre** pour ouvrir ce panneau.
+2. Sur hello **événements** menu, cliquez sur **filtre** tooopen ce panneau.
 
     ![ouvrir le panneau Filtre](./media/backup-azure-monitor-vms/audit-logs-filter-button.png)
-3. Dans le panneau **Filtre**, ajustez les filtres **Niveau**, **Intervalle de temps** et **Appelant**. Les autres filtres ne sont pas disponibles dans la mesure où ils ont été définis pour fournir des informations actuelles concernant le coffre Recovery Services.
+3. Sur hello **filtre** panneau, ajuster hello **niveau**, **intervalle de temps**, et **appelant** filtres. Hello autres filtres ne sont pas disponibles dans la mesure où ils ont été définies plus d’informations en cours tooprovide hello pour les Services de récupération hello coffre.
 
     ![Détails de la requête de journaux d’audit](./media/backup-azure-monitor-vms/filter-blade.png)
 
-    Vous pouvez spécifier le **Niveau** de l’événement : critique, erreur, avertissement ou information. Vous pouvez combiner plusieurs niveaux d’événements, mais vous devez sélectionner au moins un niveau. Activez ou désactivez le niveau. Le filtre **Intervalle de temps** vous permet de spécifier la durée de collecte des événements. Si vous utilisez un intervalle de temps personnalisé, vous pouvez définir les heures de début et de fin.
-4. Une fois que vous êtes prêt à interroger les journaux d’opérations à l’aide de votre filtre, cliquez sur **Mettre à jour**. Les résultats s’affichent dans le panneau **Événements** .
+    Vous pouvez spécifier hello **niveau** d’événement : critique, erreur, avertissement ou information. Vous pouvez combiner plusieurs niveaux d’événements, mais vous devez sélectionner au moins un niveau. Activer ou désactiver l’hello niveau. Hello **intervalle de temps** filtre vous permet de durée hello toospecify pour capturer des événements. Si vous utilisez un intervalle de temps personnalisé, vous pouvez définir hello démarrage et l’heure de fin.
+4. Une fois que vous êtes prêt tooquery hello journaux des opérations à l’aide de votre filtre, cliquez sur **mise à jour**. les résultats de Hello affichent de hello **événements** panneau.
 
     ![Détails de l'opération](./media/backup-azure-monitor-vms/edited-list-of-events.png)
 
 ### <a name="view-additional-event-attributes"></a>Afficher les attributs d’événement supplémentaires
-À l’aide du bouton **Colonnes**, vous pouvez activer des attributs d’événement supplémentaires à afficher dans la liste sur le panneau **Événements**. La liste par défaut des événements affiche les informations opération, niveau, état, ressources et heure. Pour activer des attributs supplémentaires :
+À l’aide de hello **colonnes** bouton, vous pouvez activer tooappear d’attributs supplémentaires d’événement dans la liste hello sur hello **événements** panneau. liste des événements par défaut de Hello affiche des informations pour l’opération, niveau, état, ressources et l’heure. tooenable des attributs supplémentaires :
 
-1. Dans le panneau **Événements**, cliquez sur **Colonnes**.
+1. Sur hello **événements** panneau, cliquez sur **colonnes**.
 
     ![Colonnes ouvertes](./media/backup-azure-monitor-vms/audi-logs-column-button.png)
 
-    Le panneau **Choisir les colonnes** s’ouvre.
+    Hello **choisir les colonnes** panneau s’ouvre.
 
     ![Panneau Colonnes](./media/backup-azure-monitor-vms/columns-blade.png)
-2. Pour sélectionner l’attribut, cliquez sur sa case à cocher. La case à cocher se coche et se décoche.
-3. Cliquez sur **Réinitialiser** pour réinitialiser la liste des attributs dans le panneau **Événements**. Après avoir ajouté ou supprimé des attributs de la liste, utilisez **Réinitialiser** pour afficher la nouvelle liste des attributs de l’événement.
-4. Cliquez sur **Mettre à jour** pour mettre à jour les données des attributs de l’événement. Le tableau suivant fournit des informations sur chaque attribut.
+2. tooselect hello d’attribut, cliquez sur la case à cocher hello. case à cocher de Hello attribut Active et se désactive.
+3. Cliquez sur **réinitialiser** liste de hello tooreset d’attributs Bonjour **événements** panneau. Après l’ajout ou suppression d’attributs à partir de la liste de hello, utilisez **réinitialiser** tooview hello nouvelle liste des attributs d’événement.
+4. Cliquez sur **mise à jour** tooupdate les données de hello dans les attributs d’événement hello. Hello tableau suivant fournit des informations sur chaque attribut.
 
 | Nom de la colonne | Description |
 | --- | --- |
-| Opération |Nom de l’opération |
-| Niveau |Le niveau de l’opération, dont les valeurs peuvent être : information, avertissement, erreur ou critique |
-| État |État descriptif de l’opération |
-| Ressource |URL qui identifie la ressource ; également connu sous le nom d’identifiant de ressource |
-| Time |Heure, mesurée à partir de l’heure actuelle, à laquelle l’événement s’est produit |
-| Appelant |Élément ou personne ayant déclenché l’événement ; il peut s’agir du système ou d’un utilisateur |
-| Timestamp |L’heure à laquelle l’événement a été déclenché |
-| Groupe de ressources |Le groupe de ressources associé |
-| Type de ressource |Le type de ressource interne utilisé par Resource Manager |
-| Identifiant d’abonnement |L’identifiant d’abonnement associé |
-| Catégorie |Catégorie de l’événement |
+| Opération |nom Hello d’opération de hello |
+| Level |Hello au niveau de l’opération de hello, les valeurs peuvent être : information, avertissement, erreur ou critique |
+| État |État descriptif de l’opération de hello |
+| Ressource |URL qui identifie la ressource de hello ; également connu sous les ID de ressource hello |
+| Temps |Durée, mesurée à partir de hello heure actuelle, lorsque l’événement de hello s’est produite |
+| Appelant |Qui ou ce qu’appelée ou a déclenché l’événement de hello ; peut être hello système ou un utilisateur |
+| Timestamp |temps de Hello lorsque hello a été déclenché |
+| Groupe de ressources |groupe de ressources Hello |
+| Type de ressource |type de ressource interne Hello utilisée par le Gestionnaire de ressources |
+| Identifiant d’abonnement |Hello associé ID d’abonnement |
+| Catégorie |Catégorie d’événement de hello |
 | ID de corrélation : |Identifiant courant des événements connexes |
 
-## <a name="use-powershell-to-customize-alerts"></a>Utiliser PowerShell pour personnaliser les alertes
-Vous pouvez obtenir des notifications d’alerte personnalisées pour les travaux du portail. Pour cela, définissez des règles d’alerte basées sur PowerShell sur les événements de journaux des opérations. Utilisez *PowerShell version 1.3.0 ou ultérieure*.
+## <a name="use-powershell-toocustomize-alerts"></a>Utiliser les alertes de toocustomize PowerShell
+Vous pouvez obtenir des notifications d’alerte personnalisées pour les travaux de hello dans le portail de hello. tooget ces tâches, définir alerte basée sur PowerShell règles sur hello opérationnel journalise les événements. Utilisez *PowerShell version 1.3.0 ou ultérieure*.
 
-Pour définir des notifications personnalisées pour signaler les échecs de sauvegarde, utilisez une commande ressemblant au script suivant :
+toodefine un tooalert de notification personnalisée pour les échecs de sauvegarde, utilisez une commande telle que hello script suivant :
 
 ```
 PS C:\> $actionEmail = New-AzureRmAlertRuleEmail -CustomEmail contoso@microsoft.com
 PS C:\> Add-AzureRmLogAlertRule -Name backupFailedAlert -Location "East US" -ResourceGroup RecoveryServices-DP2RCXUGWS3MLJF4LKPI3A3OMJ2DI4SRJK6HIJH22HFIHZVVELRQ-East-US -OperationName Microsoft.RecoveryServices/recoveryServicesVault/Backup -Status Failed -TargetResourceId /subscriptions/86eeac34-eth9a-4de3-84db-7a27d121967e/resourceGroups/RecoveryServices-DP2RCXUGWS3MLJF4LKPI3A3OMJ2DI4SRJK6HIJH22HFIHZVVELRQ-East-US/providers/Microsoft.RecoveryServices/vaults/trinadhVault -Actions $actionEmail
 ```
 
-**ResourceId** : vous pouvez obtenir le ResourceId à partir des journaux d’audit. L’élément ResourceId est une URL fournie dans la colonne Ressource des journaux d’opérations.
+**ID de ressource** : vous pouvez obtenir les ID de ressource de hello journaux d’Audit. Hello ResourceId est une URL fournie dans la colonne de ressource hello de journaux des opérations de hello.
 
-**OperationName** : OperationName est au format « Microsoft.RecoveryServices/recoveryServicesVault/*EventName* » où *EventName* peut être :<br/>
+**NomOpération** : NomOpération est au format de hello » Microsoft.RecoveryServices/recoveryServicesVault/*EventName*» où *EventName* peut être :<br/>
 
 * S’inscrire <br/>
 * Unregister  <br/>
@@ -181,25 +181,25 @@ PS C:\> Add-AzureRmLogAlertRule -Name backupFailedAlert -Location "East US" -Res
 
 **État** : les valeurs prises en charge sont Démarré, Réussi ou Échec.
 
-**ResourceGroup** : groupe de ressources auquel appartient la ressource. Vous pouvez ajouter la colonne Groupe de ressources aux journaux générés. Le groupe de ressources représente l’un des types d’informations disponibles sur les événements.
+**Le groupe de ressources** : il s’agit de hello groupe de ressources toowhich hello ressource appartient. Vous pouvez ajouter des journaux de toohello généré colonne hello groupe de ressources. Groupe de ressources est un des types disponibles de hello d’informations sur les événements.
 
-**Nom** : nom de la règle d’alerte.
+**Nom** : nom de la règle d’alerte de hello.
 
-**CustomEmail** : spécifiez l’adresse e-mail personnalisée à laquelle vous voulez envoyer une notification d’alerte
+**CustomEmail** : spécifiez toowhich d’adresse de messagerie personnalisés hello souhaité toosend une notification d’alerte
 
-**SendToServiceOwners** : cette option envoie des notifications d’alerte à tous les administrateurs et coadministrateurs de l’abonnement. Elle peut être utilisée dans l’applet de commande **New-AzureRmAlertRuleEmail** .
+**SendToServiceOwners** : cette option envoie des notifications d’alerte tooall administrateurs et coadministrateurs d’abonnement de hello. Elle peut être utilisée dans l’applet de commande **New-AzureRmAlertRuleEmail** .
 
 ### <a name="limitations-on-alerts"></a>Limitations sur les alertes
-Les alertes basées sur des événements sont soumises aux limitations suivantes :
+Alertes basées sur les événements sont toohello sujet limites suivantes :
 
-1. Des alertes sont déclenchées sur toutes les machines virtuelles du coffre Recovery Services. Vous ne pouvez pas personnaliser l’alerte pour un sous-ensemble de machines virtuelles à l’intérieur d’un coffre Recovery Services.
+1. Des alertes sont déclenchées sur tous les ordinateurs virtuels hello de coffre Recovery Services. Vous ne pouvez pas personnaliser alerte hello pour un sous-ensemble d’ordinateurs virtuels dans un coffre Recovery Services.
 2. Cette fonctionnalité est en version préliminaire. [En savoir plus](../monitoring-and-diagnostics/insights-powershell-samples.md#create-metric-alerts)
-3. Les alertes sont envoyées par « alerts-noreply@mail.windowsazure.com ». Actuellement, vous ne pouvez pas modifier l’expéditeur de courrier électronique.
+3. Les alertes sont envoyées par « alerts-noreply@mail.windowsazure.com ». Actuellement, vous ne pouvez pas modifier expéditeur du courrier électronique hello.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Les journaux d’événements activent l’assistance post mortem et d’audit des opérations de sauvegarde. Les opérations suivantes sont consignées :
+Journaux des événements d’audit prise en charge des opérations de sauvegarde hello et activer excellent post-mortem. Hello opérations suivantes est enregistré :
 
-* Register 
+* S’inscrire
 * Unregister 
 * Configurer la protection
 * Sauvegarde (sauvegarde planifiée et à la demande)
@@ -211,6 +211,6 @@ Les journaux d’événements activent l’assistance post mortem et d’audit d
 * Mettre à jour la stratégie
 * Annuler le travail
 
-Pour une explication générale des événements, des opérations et des journaux d’audit dans les services Azure, consultez l’article [Afficher les événements et les journaux d’audit](../monitoring-and-diagnostics/insights-debugging-with-events.md).
+Pour obtenir une explication générale des événements, les opérations et les journaux d’audit sur hello services Azure, consultez l’article hello, [afficher les événements et journaux d’audit](../monitoring-and-diagnostics/insights-debugging-with-events.md).
 
-Pour plus d’informations sur la manière de recréer une machine virtuelle à partir d’un point de récupération, consultez [Restauration de machines virtuelles dans Azure](backup-azure-restore-vms.md). Pour plus d’informations sur la protection de vos machines virtuelles, consultez [Premier aperçu : sauvegarder les machines virtuelles ARM dans un archivage de Recovery Services](backup-azure-vms-first-look-arm.md). Apprenez-en plus sur les tâches de gestion pour les sauvegardes de machines virtuelles dans l’article [Gérer les sauvegardes des machines virtuelles Azure](backup-azure-manage-vms.md).
+Pour plus d’informations sur la manière de recréer une machine virtuelle à partir d’un point de récupération, consultez [Restauration de machines virtuelles Azure](backup-azure-restore-vms.md). Si vous avez besoin d’informations sur la protection de vos machines virtuelles, consultez [tout d’abord rechercher : sauvegardez tooa de machines virtuelles de coffre Recovery Services](backup-azure-vms-first-look-arm.md). En savoir plus sur les tâches de gestion hello pour les sauvegardes de machine virtuelle dans l’article hello, [les sauvegardes de machines virtuelles Azure de gérer](backup-azure-manage-vms.md).

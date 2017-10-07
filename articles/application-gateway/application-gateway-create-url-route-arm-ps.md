@@ -1,6 +1,6 @@
 ---
-title: "Créer une passerelle Application Gateway avec des règles de routage d’URL | Microsoft Docs"
-description: "Cette page fournit des instructions pour créer et configurer une passerelle Application Gateway Azure avec les règles de routage d’URL"
+title: "aaaCreate une passerelle d’application à l’aide de routage d’URL règles | Documents Microsoft"
+description: "Cette page fournit des instructions toocreate, configurez une passerelle d’application Windows Azure à l’aide des règles de routage d’URL"
 documentationcenter: na
 services: application-gateway
 author: georgewallace
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/03/2017
 ms.author: gwallace
-ms.openlocfilehash: ba756d3262b9780c5701e69faad860ba32bba08b
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 54fcccc39e48a933576968ce3d8160518c0d0b7e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-application-gateway-using-path-based-routing"></a>Créer une passerelle Application Gateway à l’aide du routage basé sur le chemin
 
@@ -27,70 +27,70 @@ ms.lasthandoff: 08/18/2017
 > * [Commandes PowerShell pour Azure Resource Manager](application-gateway-create-url-route-arm-ps.md)
 > * [Azure CLI 2.0](application-gateway-create-url-route-cli.md)
 
-Le routage basé sur le chemin d’URL vous permet d’associer des routes basées sur le chemin d’URL de la requête HTTP. Il vérifie s’il existe une route vers un pool principal configuré pour les listes d’URL dans la passerelle Application Gateway. Il envoie ensuite le trafic réseau vers le pool principal défini. Une utilisation courante du routage basé sur l’URL consiste à équilibrer la charge des demandes pour différents types de contenu entre différents pools de serveurs principaux.
+Le routage basé sur le chemin d’accès URL permet d’itinéraires tooassociate vous selon le chemin d’URL de hello d’une requête Http. Il vérifie s’il existe un pool de back-end tooa itinéraire configuré pour hello les URL présentée dans hello passerelle d’Application. Il envoie ensuite toohello de trafic réseau hello défini par pool de back-end. Une utilisation courante pour le routage basé sur l’URL est équilibrer les demandes de tooload pour les pools de serveur principal toodifferent différents types de contenu.
 
-Le routage basé sur l’URL introduit un nouveau type de règle pour la passerelle Application Gateway. La passerelle Application Gateway comporte deux types de règles : une règle de base et PathBasedRouting. Le type de règle de base fournit le service de tourniquet (round robin) pour les pools principaux alors que PathBasedRouting, en plus de la distribution de tourniquet, prend également en compte le modèle de chemin de l’URL de demande lors du choix du pool principal.
+Le routage basé sur des URL introduit une nouvelle passerelle de tooapplication de type de règle. La passerelle Application Gateway comporte deux types de règles : une règle de base et PathBasedRouting. Type de règle de base fournit des service tourniquet pour les principaux hello pools lors PathBasedRouting en outre distribution Round robin de tooround, prend également le modèle de chemin d’accès de l’URL de demande hello en compte lors du choix du pool principal d’hello.
 
 ## <a name="scenario"></a>Scénario
 
-Dans l’exemple suivant, la passerelle Application Gateway gère le trafic pour contoso.com avec deux pools de serveurs principaux : un pool de serveurs vidéo et un pool de serveurs d’images.
+Dans l’exemple suivant de hello, passerelle d’Application sert le trafic pour contoso.com avec deux pools de serveur principal : pool de serveurs vidéo et pool de serveurs d’image.
 
-Les demandes pour http://contoso.com/image* sont routées vers le pool de serveurs d’images (pool1) et celles pour http://contoso.com/video* sont routées vers le pool de serveurs vidéo (pool2). Si aucun des modèles de chemin ne correspond, un pool de serveurs par défaut (pool1) est sélectionné.
+Les demandes d’http://contoso.com/image * sont acheminés pool de serveurs tooimage (pool1) et http://contoso.com/video * sont acheminés pool de serveurs toovideo (pool2). Si aucun des modèles de chemin d’accès hello correspondent, un pool de serveurs par défaut (pool1) est sélectionné.
 
 ![itinéraire d’URL](./media/application-gateway-create-url-route-arm-ps/figure1.png)
 
 ## <a name="before-you-begin"></a>Avant de commencer
 
-1. Installez la dernière version des applets de commande Azure PowerShell à l’aide de Web Platform Installer. Vous pouvez télécharger et installer la dernière version à partir de la section **Windows PowerShell** de la [page Téléchargements](https://azure.microsoft.com/downloads/).
-2. Vous créez un réseau virtuel et un sous-réseau pour la passerelle Application Gateway. Assurez-vous qu’aucun ordinateur virtuel ou déploiement cloud n’utilise le sous-réseau. La passerelle Application Gateway doit être seule sur un sous-réseau virtuel.
-3. Les serveurs ajoutés au pool principal pour utiliser la passerelle Application Gateway doivent exister, ou vous devez créer leurs points de terminaison sur le réseau virtuel ou avec une adresse IP/VIP publique affectée.
+1. Installer version la plus récente des applets de commande PowerShell Azure hello hello à l’aide de hello Web Platform Installer. Vous pouvez télécharger et installer la version la plus récente hello de hello **Windows PowerShell** section Hello [page Téléchargements](https://azure.microsoft.com/downloads/).
+2. Vous créez un réseau virtuel et un sous-réseau pour la passerelle Application Gateway. Assurez-vous qu’aucun ordinateur virtuel ou les déploiements de cloud ne sont à l’aide de sous-réseau de hello. passerelle d’application Hello doit être par lui-même dans un sous-réseau de réseau virtuel.
+3. les serveurs Hello ajouté passerelle d’application hello toohello principal pool toouse doit exister ou ont créé leurs points de terminaison dans le réseau virtuel de hello ou avec une adresse IP publique/VIP attribué.
 
-## <a name="what-is-required-to-create-an-application-gateway"></a>Quels sont les éléments nécessaires pour créer une passerelle Application Gateway ?
+## <a name="what-is-required-toocreate-an-application-gateway"></a>Qu’est requis toocreate une passerelle d’application ?
 
-* **Pool de serveurs principaux :** liste des adresses IP des serveurs principaux. Les adresses IP répertoriées doivent appartenir au sous-réseau de réseau virtuel ou doivent correspondre à une adresse IP/VIP publique.
-* **Paramètres du pool de serveurs principaux :** chaque pool comporte des paramètres tels que le port, le protocole et une affinité basée sur des cookies. Ces paramètres sont liés à un pool et sont appliqués à tous les serveurs du pool.
-* **Port frontal :** il s’agit du port public ouvert sur la passerelle Application Gateway. Le trafic atteint ce port, puis il est redirigé vers l’un des serveurs principaux.
-* **Écouteur :** l’écouteur a un port frontal, un protocole (Http ou Https, avec respect de la casse) et le nom du certificat SSL (en cas de configuration du déchargement SSL).
-* **Règle :** la règle lie l’écouteur et le pool de serveurs principaux, et définit vers quel pool de serveurs principaux le trafic doit être dirigé quand il atteint un écouteur spécifique.
+* **Pool de serveur principal :** liste hello des adresses IP des serveurs principaux de hello. adresses IP de Hello répertoriés doivent appartenir soit de sous-réseau de réseau virtuel toohello ou doivent être une adresse IP/VIP publique.
+* **Paramètres du pool de serveurs principaux :** chaque pool comporte des paramètres tels que le port, le protocole et une affinité basée sur des cookies. Ces paramètres sont lié tooa pool et sont des serveurs tooall appliqué dans le pool de hello.
+* **Port frontal :** ce port est le port public hello qui est ouvert sur la passerelle d’application hello. Le trafic atteint ce port et obtient redirigés tooone de hello sur les serveurs principaux.
+* **Écouteur :** hello port d’écoute utilise un port frontal, un protocole (Http ou Https, ces valeurs respectent la casse) et le nom du certificat SSL hello (si le déchargement de la configuration de SSL).
+* **La règle :** règle de hello lie écouteur hello, pool de serveur principal hello et définit le trafic de hello de pool de serveur principal doit être dirigée toowhen il atteint un écouteur particulier.
 
 ## <a name="create-an-application-gateway"></a>Créer une passerelle Application Gateway
 
-La différence entre l’utilisation d’Azure Classic et celle d’Azure Resource Manager réside dans l’ordre de création de la passerelle Application Gateway et des éléments à configurer.
+Hello diffère entre l’utilisation classique Azure et Azure Resource Manager commande hello dans lequel vous créez passerelle d’application hello et articles hello toobe configuré.
 
-Avec Resource Manager, tous les éléments constitutifs d’une passerelle Application Gateway sont configurés individuellement, puis regroupés pour créer la ressource Application Gateway.
+Avec le Gestionnaire de ressources, tous les éléments qui rendent une passerelle d’application sont configurées individuellement et rassembler puis toocreate ressource de passerelle d’application hello.
 
-Procédure de création d’une passerelle Application Gateway :
+Voici les étapes hello qui sont nécessaire toocreate une passerelle d’application :
 
 1. Créer un groupe de ressources pour Resource Manager
-2. Créer un réseau virtuel, un sous-réseau et une adresse IP publique pour la passerelle Application Gateway
+2. Créer un réseau virtuel, un sous-réseau et une adresse IP publique pour la passerelle d’application hello.
 3. Créer un objet de configuration de passerelle Application Gateway
 4. Créez une ressource Application Gateway.
 
 ## <a name="create-a-resource-group-for-resource-manager"></a>Créer un groupe de ressources pour Resource Manager
 
-Assurez-vous que vous disposez de la version la plus récente d’Azure PowerShell. Pour plus d’informations, voir [Utilisation de Windows PowerShell avec Azure Resource Manager](../powershell-azure-resource-manager.md).
+Assurez-vous que vous utilisez la version la plus récente d’Azure PowerShell hello. Pour plus d’informations, voir [Utilisation de Windows PowerShell avec Azure Resource Manager](../powershell-azure-resource-manager.md).
 
-### <a name="step-1"></a>Étape 1 :
+### <a name="step-1"></a>Étape 1
 
-Connexion à Azure
+Connectez-vous à tooAzure
 
 ```powershell
 Login-AzureRmAccount
 ```
 
-Vous êtes invité à vous authentifier à l’aide de vos informations d’identification.<BR>
+Vous êtes invité à tooauthenticate avec vos informations d’identification.<BR>
 
-### <a name="step-2"></a>Étape 2 :
+### <a name="step-2"></a>Étape 2
 
-Vérifiez les abonnements associés au compte.
+Vérifiez les abonnements hello pour le compte de hello.
 
 ```powershell
 Get-AzureRmSubscription
 ```
 
-### <a name="step-3"></a>Étape 3
+### <a name="step-3"></a>Étape 3 :
 
-Parmi vos abonnements Azure, choisissez celui que vous souhaitez utiliser. <BR>
+Choisissez parmi vos toouse abonnements Azure. <BR>
 
 ```powershell
 Select-AzureRmSubscription -Subscriptionid "GUID of subscription"
@@ -110,22 +110,22 @@ Vous pouvez également créer des balises pour un groupe de ressources pour la p
 $resourceGroup = New-AzureRmResourceGroup -Name appgw-RG -Location "West US" -Tags @{Name = "testtag"; Value = "Application Gateway URL routing"} 
 ```
 
-Azure Resource Manager requiert que tous les groupes de ressources spécifient un emplacement. Ce groupe de ressources est utilisé comme emplacement par défaut pour les ressources de ce groupe. Assurez-vous que toutes les commandes pour la création d'une passerelle Application Gateway utiliseront le même groupe de ressources.
+Azure Resource Manager requiert que tous les groupes de ressources spécifient un emplacement. Ce groupe de ressources est utilisé comme emplacement par défaut de hello pour les ressources dans ce groupe de ressources. Assurez-vous que toutes les commandes toocreate un hello d’utilisation de passerelle application même groupe de ressources.
 
-Dans l’exemple ci-dessus, nous avons créé un groupe de ressources appelé « appgw-RG », ainsi que l’emplacement « West US ».
+Dans l’exemple hello ci-dessus, nous avons créé un groupe de ressources appelé « appgw-RG » et l’emplacement « Ouest des États-Unis ».
 
 > [!NOTE]
-> Si vous devez configurer une sonde personnalisée pour votre passerelle Application Gateway, consultez [Création d’une passerelle Application Gateway avec des sondes personnalisées à l’aide de PowerShell](application-gateway-create-probe-ps.md). Pour plus d’informations, découvrez les [sondes personnalisées et l’analyse du fonctionnement](application-gateway-probe-overview.md) .
+> Si vous devez tooconfigure une sonde personnalisée pour votre passerelle d’application, consultez [créer une passerelle d’application en testant personnalisé à l’aide de PowerShell](application-gateway-create-probe-ps.md). Pour plus d’informations, découvrez les [sondes personnalisées et l’analyse du fonctionnement](application-gateway-probe-overview.md) .
 > 
 > 
 
-## <a name="create-a-virtual-network-and-a-subnet-for-the-application-gateway"></a>Créer un réseau virtuel et un sous-réseau pour la passerelle Application Gateway
+## <a name="create-a-virtual-network-and-a-subnet-for-hello-application-gateway"></a>Créer un réseau virtuel et un sous-réseau pour la passerelle d’application hello
 
-L’exemple ci-après indique comment créer un réseau virtuel à l’aide de Resource Manager. Cet exemple crée un réseau virtuel pour Application Gateway. Application Gateway requiert son propre sous-réseau. C’est la raison pour laquelle le sous-réseau créé pour Application Gateway est plus petit que l’espace d’adressage du réseau virtuel. Ainsi, d’autres ressources, y compris sans s’y limiter les serveurs web, sont configurées dans le même réseau virtuel.
+Hello suivant montre l’exemple de comment toocreate un réseau virtuel à l’aide du Gestionnaire de ressources. Cet exemple crée un réseau virtuel pour hello passerelle d’Application. Passerelle d’application nécessite son propre sous-réseau, c’est pourquoi sous-réseau hello créé pour hello passerelle d’Application est plus petit que hello espace d’adressage de réseau virtuel. Ainsi, pour les autres ressources, y compris mais non limité tooweb serveurs toobe dans hello même réseau virtuel.
 
 ### <a name="step-1"></a>Étape 1
 
-Attribuez la plage d’adresses 10.0.0.0/24 à la variable subnet à utiliser pour créer un réseau virtuel.  Cette étape crée l’objet de configuration du sous-réseau pour Application Gateway, qui est utilisé dans l’exemple suivant.
+Affecter hello adresse plage 10.0.0.0/24 toohello sous-réseau toobe variable utilisée toocreate un réseau virtuel.  Cela crée d’objet de configuration de sous-réseau hello pour hello passerelle d’Application, qui est utilisé dans l’exemple suivant de hello.
 
 ```powershell
 $subnet = New-AzureRmVirtualNetworkSubnetConfig -Name subnet01 -AddressPrefix 10.0.0.0/24
@@ -133,7 +133,7 @@ $subnet = New-AzureRmVirtualNetworkSubnetConfig -Name subnet01 -AddressPrefix 10
 
 ### <a name="step-2"></a>Étape 2
 
-Créez un réseau virtuel nommé **appgwvnet** dans le groupe de ressources **appgw-rg** pour la région « West US » à l’aide du préfixe 10.0.0.0/16 avec le sous-réseau 10.0.0.0/24. Cette étape termine la configuration du réseau virtuel avec un seul sous-réseau de résidence d’Application Gateway.
+Créer un réseau virtuel nommé **appgwvnet** dans le groupe de ressources **appgw-rg** pour la région ouest des États-Unis hello à l’aide de hello préfixe 10.0.0.0/16 avec le sous-réseau 10.0.0.0/24. Configuration de hello Hello réseau virtuel avec un sous-réseau unique pour tooreside de passerelle d’Application hello est terminée.
 
 ```powershell
 $vnet = New-AzureRmVirtualNetwork -Name appgwvnet -ResourceGroupName appgw-RG -Location "West US" -AddressPrefix 10.0.0.0/16 -Subnet $subnet
@@ -141,29 +141,29 @@ $vnet = New-AzureRmVirtualNetwork -Name appgwvnet -ResourceGroupName appgw-RG -L
 
 ### <a name="step-3"></a>Étape 3 :
 
-Affectez la variable de sous-réseau pour les étapes suivantes, transmise à l’applet de commande `New-AzureRMApplicationGateway` dans une étape ultérieure.
+Attribuer variable de sous-réseau de hello hello pour les étapes suivantes, il est passé toohello `New-AzureRMApplicationGateway` applet de commande dans une étape ultérieure.
 
 ```powershell
 $subnet=$vnet.Subnets[0]
 ```
 
-## <a name="create-a-public-ip-address-for-the-front-end-configuration"></a>Création d'une adresse IP publique pour la configuration frontale
+## <a name="create-a-public-ip-address-for-hello-front-end-configuration"></a>Créer une adresse IP publique pour la configuration frontale de hello
 
-Créez une ressource IP publique **publicIP01** dans le groupe de ressources **appgw-rg** pour la région « West US ». Application Gateway peut utiliser une adresse IP publique, l’adresse IP ou les deux pour recevoir les demandes d’équilibrage de charge.  Cet exemple utilise uniquement une adresse IP publique. Dans l’exemple suivant, aucun nom DNS n’est configuré pour la création de l’adresse IP publique.  Application Gateway ne prend pas en charge de noms DNS personnalisés sur des adresses IP publiques.  Si un nom personnalisé est requis pour le point de terminaison public, un enregistrement CNAME doit être créé pour pointer vers le nom DNS généré automatiquement pour l’adresse IP publique.
+Créer une ressource IP publique **publicIP01** dans le groupe de ressources **appgw-rg** pour la région ouest des États-Unis hello. Passerelle d’application peut utiliser une adresse IP publique, adresse IP interne ou les deux requêtes tooreceive pour l’équilibrage de charge.  Cet exemple utilise uniquement une adresse IP publique. Dans l’exemple suivant de hello, aucun nom DNS n’est configuré pour la création d’adresse IP publique de hello.  Application Gateway ne prend pas en charge de noms DNS personnalisés sur des adresses IP publiques.  Si un nom personnalisé est requis pour le point de terminaison public hello, un enregistrement CNAME doit être créé nom_DNS toopoint toohello généré automatiquement pour l’adresse IP publique de hello.
 
 ```powershell
 $publicip = New-AzureRmPublicIpAddress -ResourceGroupName appgw-RG -name publicIP01 -location "West US" -AllocationMethod Dynamic
 ```
 
-Une adresse IP est affectée à la passerelle Application Gateway au démarrage du service.
+Une adresse IP est attribuée toohello passerelle d’application au démarrage du service de hello.
 
 ## <a name="create-application-gateway-configuration"></a>Créer une configuration de passerelle Application Gateway
 
-Tous les éléments de configuration doivent être installés avant de créer la passerelle Application Gateway. Les étapes suivantes permettent de créer les éléments de configuration nécessaires à une ressource Application Gateway.
+Tous les éléments de configuration doivent être configurés avant de créer la passerelle d’application hello. Hello étapes suivantes créent hello des éléments de configuration qui sont nécessaires pour une ressource de passerelle d’application.
 
 ### <a name="step-1"></a>Étape 1
 
-Créez une configuration IP de passerelle Application Gateway nommée **gatewayIP01**. Lorsque la passerelle Application Gateway démarre, elle sélectionne une adresse IP à partir du sous-réseau configuré et achemine le trafic réseau vers les adresses IP du pool IP principal. Gardez à l’esprit que chaque instance utilise une adresse IP unique.
+Créez une configuration IP de passerelle Application Gateway nommée **gatewayIP01**. Au démarrage de la passerelle d’Application, il récupère une adresse IP du sous-réseau hello configuré et acheminer les adresses IP de réseau du trafic toohello dans le pool d’adresses IP hello back-end. Gardez à l’esprit que chaque instance utilise une adresse IP unique.
 
 ```powershell
 $gipconfig = New-AzureRmApplicationGatewayIPConfiguration -Name gatewayIP01 -Subnet $subnet
@@ -171,7 +171,7 @@ $gipconfig = New-AzureRmApplicationGatewayIPConfiguration -Name gatewayIP01 -Sub
 
 ### <a name="step-2"></a>Étape 2
 
-Configurez les pools d’adresses IP principaux nommés **pool01** et **pool2** avec les adresses IP pour **pool1** et **pool2**. Ces adresses IP sont les adresses IP des ressources qui hébergent l’application web devant être protégée par Application Gateway. L’intégrité des membres du pool principal est validée par des sondes de base ou personnalisées.  Le trafic est alors acheminé vers ces membres lorsque les demandes arrivent dans Application Gateway. Les pools principaux peuvent être utilisés par plusieurs règles au sein d’Application Gateway, ce qui signifie qu’un pool principal peut être utilisé pour plusieurs applications web résidant sur le même hôte.
+Configurer le pool d’adresses IP principal hello nommé **pool01** et **pool2** avec des adresses IP pour **pool1** et **pool2**. Ces adresses IP sont des adresses IP de hello des ressources hello qui hébergent hello web application toobe protégé par la passerelle d’application hello. Ces membres du pool principal sont tous les toobe validé intègre par les sondes qu’ils soient sondes de base ou des sondes personnalisé.  Le trafic est alors acheminé toothem lorsque des demandes parviennent à la passerelle d’application hello. Pools principaux peuvent être utilisées par plusieurs règles au sein de la passerelle d’application hello, ce qui signifie un pool principal peut être utilisé pour plusieurs applications web qui résident sur hello même hôte.
 
 ```powershell
 $pool1 = New-AzureRmApplicationGatewayBackendAddressPool -Name pool01 -BackendIPAddresses 134.170.185.46, 134.170.188.221, 134.170.185.50
@@ -179,11 +179,11 @@ $pool1 = New-AzureRmApplicationGatewayBackendAddressPool -Name pool01 -BackendIP
 $pool2 = New-AzureRmApplicationGatewayBackendAddressPool -Name pool02 -BackendIPAddresses 134.170.186.47, 134.170.189.222, 134.170.186.51
 ```
 
-Dans cet exemple, il existe deux pools principaux pour acheminer le trafic réseau selon le chemin d’URL. Un pool reçoit le trafic du chemin d’URL « /video » et l’autre pool reçoit le trafic du chemin « /image ». Remplacez les adresses IP précédentes pour ajouter vos propres points de terminaison d’adresse IP d’application. 
+Dans cet exemple, il existe deux principaux pools tooroute le trafic réseau selon le chemin d’URL de hello. Un pool reçoit le trafic du chemin d’URL « /video » et l’autre pool reçoit le trafic du chemin « /image ». Remplacez hello précédant tooadd d’adresses IP de vos propres points de terminaison application IP adresse. 
 
-### <a name="step-3"></a>Étape 3
+### <a name="step-3"></a>Étape 3 :
 
-Configurez les paramètres de passerelle Application Gateway **poolsetting01** et **poolsetting02** pour le trafic réseau à charge équilibrée dans le pool principal. Dans cet exemple, vous configurez différents paramètres pour les pools principaux. Chaque pool principal peut avoir son propre paramètre de pool principal.  Les paramètres HTTP du serveur principal sont utilisés par des règles pour router le trafic vers les membres appropriés du pool principal. Ils déterminent le protocole et le port utilisés lors de l’envoi du trafic vers les membres du pool principal. Les sessions basées sur les cookies sont également déterminées par les paramètres HTTP du serveur principal.  Si elle est activée, l’affinité de session basée sur les cookies envoie le trafic vers le même serveur principal que les requêtes précédentes pour chaque paquet.
+Configurer le paramètre de passerelle d’application **poolsetting01** et **poolsetting02** hello équilibrés en charge le trafic réseau dans le pool principal d’hello. Dans cet exemple, vous configurez les paramètres de pool principal différent pour les pools principaux hello. Chaque pool principal peut avoir son propre paramètre de pool principal.  Paramètres HTTP du serveur principal sont utilisées par les règles tooroute trafic toohello les membres du pool principal approprié. Ce paramètre détermine le protocole de hello et port qui est utilisé lors de l’envoi de trafic toohello les membres du pool principal. Sessions basées sur un cookie sont également déterminées par les paramètres HTTP hello principal.  S’il est activé, l’affinité de basé sur cookie de session envoie le trafic toohello même principal en tant que requêtes précédentes pour chaque paquet.
 
 ```powershell
 $poolSetting01 = New-AzureRmApplicationGatewayBackendHttpSettings -Name "besetting01" -Port 80 -Protocol Http -CookieBasedAffinity Disabled -RequestTimeout 120
@@ -193,7 +193,7 @@ $poolSetting02 = New-AzureRmApplicationGatewayBackendHttpSettings -Name "besetti
 
 ### <a name="step-4"></a>Étape 4
 
-Configurez l’adresse IP frontale avec un point de terminaison IP public. L’objet de configuration de l’adresse IP frontale est utilisé par un écouteur pour associer l’adresse IP vers l’extérieur avec l’écouteur.
+Configuration IP frontale de hello avec le point de terminaison IP public. objet de configuration IP frontale Hello est utilisé par un Bonjour de toorelate écouteur vers l’adresse IP qu’un écouteur hello extérieur.
 
 ```powershell
 $fipconfig01 = New-AzureRmApplicationGatewayFrontendIPConfig -Name "frontend1" -PublicIPAddress $publicip
@@ -201,7 +201,7 @@ $fipconfig01 = New-AzureRmApplicationGatewayFrontendIPConfig -Name "frontend1" -
 
 ### <a name="step-5"></a>Étape 5
 
-Configurez le port frontal pour une passerelle Application Gateway. L’objet de configuration du port frontal est utilisé par un écouteur pour définir le port écouté par Application Gateway pour connaître le trafic sur l’écouteur.
+Configurer le port frontal de hello pour une passerelle d’application. objet de configuration du port frontal Hello est utilisé par un toodefine écoute le port d’écoute de passerelle d’Application hello pour le trafic sur le port d’écoute hello.
 
 ```powershell
 $fp01 = New-AzureRmApplicationGatewayFrontendPort -Name "fep01" -Port 80
@@ -209,7 +209,7 @@ $fp01 = New-AzureRmApplicationGatewayFrontendPort -Name "fep01" -Port 80
 
 ### <a name="step-6"></a>Étape 6
 
-Configurez l’écouteur. Cette étape configure l’écouteur pour l’adresse IP publique et le port utilisé pour recevoir le trafic réseau entrant. L’exemple suivant utilise la configuration de l’adresse IP frontale configurée précédemment, la configuration de port frontal et un protocole (http ou https), et il configure l’écouteur. Dans cet exemple, l’écouteur écoute le trafic HTTP sur le port 80 sur l’adresse IP publique créée précédemment.
+Configurer un écouteur de hello. Cette étape configure l’écouteur hello pour l’adresse IP publique de hello et le port utilisé tooreceive du trafic réseau entrant. Hello, l’exemple suivant prend une configuration IP frontale de hello précédemment configuré, la configuration de port frontal et un protocole (http ou https) et configure l’écouteur de hello. Dans cet exemple, port d’écoute hello écoute tooHTTP du trafic sur le port 80 sur l’adresse IP publique hello qui a été créé précédemment.
 
 ```powershell
 $listener = New-AzureRmApplicationGatewayHttpListener -Name "listener01" -Protocol Http -FrontendIPConfiguration $fipconfig01 -FrontendPort $fp01
@@ -217,12 +217,12 @@ $listener = New-AzureRmApplicationGatewayHttpListener -Name "listener01" -Protoc
 
 ### <a name="step-7"></a>Étape 7
 
-Configurez les chemins de règles d’URL pour les pools principaux. Cette étape configure le chemin d’accès relatif utilisé par la passerelle d’application et définit le mappage entre le chemin d’URL et le pool principal qui est assigné pour gérer le trafic entrant.
+Configurer les chemins d’accès de la règle URL pour les pools principaux hello. Cette étape configure le chemin d’accès relatif hello utilisé par la passerelle d’application et définit le mappage hello entre le chemin d’accès des URL hello et pool principal hello qui reçoit le trafic entrant de toohandle hello.
 
 > [!IMPORTANT]
-> Chaque chemin d’accès doit commencer par le signe / et le seul endroit où un astérisque (\*) est autorisé est à la fin. /xyz, /xyz ou /xyz/ sont des exemples valides. La chaîne transmise à l’outil de correspondance de chemin n’inclut pas de texte après le premier signe ? ou #. De plus, ces caractères ne sont pas autorisés. 
+> Chaque chemin d’accès doit commencer par / et hello uniquement une «\*» est autorisé, à la fin de hello. /xyz, /xyz* ou /xyz/* sont des exemples valides. Hello chaîne fed détecteur de chemin d’accès toohello n’inclut pas de texte après hello tout d’abord « ? » ou « # » et ces caractères ne sont pas autorisés. 
 
-L’exemple suivant crée deux règles : une pour le chemin « /image/ » qui achemine le trafic vers le pool principal « pool1 » et une autre pour le chemin « /video/ » qui achemine le trafic vers le pool principal « pool2 ». Ces règles garantissent que le trafic de chaque jeu d’URL est routé vers le serveur principal. Par exemple, http://contoso.com/image/figure1.jpg accède à pool1 et http://contoso.com/video/example.mp4 à pool2.
+Hello exemple suivant crée deux règles : une pour le chemin d’accès « image / » routage du trafic tooback-end « pool1 » et une autre pour « video / » chemin d’accès de routage du trafic tooback-end « pool2 ». Ces règles vous assurer que le trafic pour chaque jeu d’URL est routé toohello principal. Par exemple, http://contoso.com/image/figure1.jpg devient toopool1 et http://contoso.com/video/example.mp4 devient toopool2.
 
 ```powershell
 $imagePathRule = New-AzureRmApplicationGatewayPathRuleConfig -Name "pathrule1" -Paths "/image/*" -BackendAddressPool $pool1 -BackendHttpSettings $poolSetting01
@@ -230,7 +230,7 @@ $imagePathRule = New-AzureRmApplicationGatewayPathRuleConfig -Name "pathrule1" -
 $videoPathRule = New-AzureRmApplicationGatewayPathRuleConfig -Name "pathrule2" -Paths "/video/*" -BackendAddressPool $pool2 -BackendHttpSettings $poolSetting02
 ```
 
-Si le chemin ne correspond à aucune des règles de chemins prédéfinies, la configuration de mappage des chemins de règles configure également un pool d’adresses principal par défaut. Par exemple, http://contoso.com/shoppingcart/test.html accède à pool1, car il est défini en tant que pool par défaut pour le trafic sans correspondance.
+Si le chemin d’accès hello ne correspond pas à une des règles de chemin d’accès prédéterminé hello, configuration de mappage de chemin d’accès de règle hello configure également un pool d’adresses principal par défaut. Par exemple, http://contoso.com/shoppingcart/test.html devient toopool1 telle qu’elle est définie en tant que pool par défaut de hello pour le trafic non apparié.
 
 ```powershell
 $urlPathMap = New-AzureRmApplicationGatewayUrlPathMapConfig -Name "urlpathmap" -PathRules $videoPathRule, $imagePathRule -DefaultBackendAddressPool $pool1 -DefaultBackendHttpSettings $poolSetting02
@@ -238,7 +238,7 @@ $urlPathMap = New-AzureRmApplicationGatewayUrlPathMapConfig -Name "urlpathmap" -
 
 ### <a name="step-8"></a>Étape 8
 
-Créez un paramètre de règle. Cette étape configure la passerelle Application Gateway pour utiliser le routage basé sur le chemin d’URL. La variable `$urlPathMap` définie à l’étape précédente est maintenant utilisée pour créer la règle de chemin d’accès. Dans cette étape, nous associons la règle avec un écouteur et le mappage de chemin d’accès d’URL créé précédemment.
+Créez un paramètre de règle. Cette étape configure hello application passerelle toouse basée sur le chemin d’accès au routage d’URL. Hello `$urlPathMap` variable définie dans hello étape antérieure est maintenant utilisé toocreate hello chemin d’accès règle. Dans cette étape, nous associons règle de hello avec un écouteur et le mappage de chemin d’accès d’url hello créé précédemment.
 
 ```powershell
 $rule01 = New-AzureRmApplicationGatewayRequestRoutingRule -Name "rule1" -RuleType PathBasedRouting -HttpListener $listener -UrlPathMap $urlPathMap
@@ -246,7 +246,7 @@ $rule01 = New-AzureRmApplicationGatewayRequestRoutingRule -Name "rule1" -RuleTyp
 
 ### <a name="step-9"></a>Étape 9
 
-Configurez le nombre d’instances et taille de la passerelle Application Gateway.
+Configurer le nombre de hello d’instances et de taille pour la passerelle d’application hello.
 
 ```powershell
 $sku = New-AzureRmApplicationGatewaySku -Name "Standard_Small" -Tier Standard -Capacity 2
@@ -254,7 +254,7 @@ $sku = New-AzureRmApplicationGatewaySku -Name "Standard_Small" -Tier Standard -C
 
 ## <a name="create-application-gateway"></a>Créer une passerelle Application Gateway
 
-Créez une passerelle Application Gateway avec tous les objets de configuration à partir de la procédure précédente.
+Créer une passerelle d’application avec tous les objets de configuration à partir de hello étapes précédentes.
 
 ```powershell
 $appgw = New-AzureRmApplicationGateway -Name appgwtest -ResourceGroupName appgw-RG -Location "West US" -BackendAddressPools $pool1,$pool2 -BackendHttpSettingsCollection $poolSetting01, $poolSetting02 -FrontendIpConfigurations $fipconfig01 -GatewayIpConfigurations $gipconfig -FrontendPorts $fp01 -HttpListeners $listener -UrlPathMaps $urlPathMap -RequestRoutingRules $rule01 -Sku $sku
@@ -262,7 +262,7 @@ $appgw = New-AzureRmApplicationGateway -Name appgwtest -ResourceGroupName appgw-
 
 ## <a name="get-application-gateway-dns-name"></a>Obtenir le nom DNS d’une passerelle Application Gateway
 
-Une fois la passerelle créée, l’étape suivante consiste à configurer le serveur frontal pour la communication. Lorsque vous utilisez une adresse IP publique, la passerelle Application Gateway requiert un nom DNS attribué dynamiquement, ce qui n’est pas convivial. Pour s’assurer que les utilisateurs finaux peuvent atteindre la passerelle d’application, un enregistrement CNAME peut être utilisé pour pointer vers le point de terminaison public de la passerelle d’application. [Configuration d’un nom de domaine personnalisé pour Azure](../cloud-services/cloud-services-custom-domain-name-portal.md). Pour configurer l’enregistrement CNAME d’adresses IP frontales, récupérez les détails de la passerelle Application Gateway et de son nom IP/DNS associé à l’aide de l’élément PublicIPAddress attaché à la passerelle Application Gateway. Le nom DNS de la passerelle d’application doit être utilisé pour créer un enregistrement CNAME. L’utilisation de A-records n’est pas recommandée étant donné que l’adresse IP virtuelle peut changer lors du redémarrage de la passerelle Application Gateway.
+Après la création de la passerelle de hello, hello prochaine étape consiste tooconfigure hello frontal pour la communication. Lorsque vous utilisez une adresse IP publique, la passerelle Application Gateway requiert un nom DNS attribué dynamiquement, ce qui n’est pas convivial. les utilisateurs finaux de tooensure pouvez atteindre la passerelle d’application hello, un enregistrement CNAME peut être le point de terminaison utilisé toopoint toohello public de la passerelle d’application hello. [Configuration d’un nom de domaine personnalisé pour Azure](../cloud-services/cloud-services-custom-domain-name-portal.md). tooconfigure hello frontal enregistrement CNAME d’IP, de récupérer les détails de la passerelle d’application hello et son nom IP/DNS associé à l’aide de la passerelle d’application hello PublicIPAddress élément attaché toohello. nom DNS de la passerelle d’application Hello doit être utilisé toocreate un enregistrement CNAME. les utilisation de Hello d’enregistrements d’un n’est pas recommandée étant donné que l’adresse IP virtuelle hello peut changer lors du redémarrage de la passerelle d’application.
 
 ```powershell
 Get-AzureRmPublicIpAddress -ResourceGroupName appgw-RG -Name publicIP01
@@ -292,5 +292,5 @@ DnsSettings              : {
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Pour en savoir plus sur le déchargement SSL (Secure Sockets Layer), consultez [Configuration d’une passerelle Application Gateway pour le déchargement SSL](application-gateway-ssl-arm.md).
+Si vous souhaitez toolearn décharger de Secure Sockets Layer (SSL), consultez [configurer une passerelle d’application pour le déchargement SSL](application-gateway-ssl-arm.md).
 

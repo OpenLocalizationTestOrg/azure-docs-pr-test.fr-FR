@@ -1,6 +1,6 @@
 ---
-title: "Quelles charges de travail pouvez-vous protéger avec Azure Site Recovery ?"
-description: "Azure Site Recovery protège vos charges de travail et applications en coordonnant la réplication, le basculement et la récupération des machines virtuelles et serveurs physiques locaux sur Azure, ou sur un site local secondaire."
+title: "les charges de travail aaaWhat peuvent vous protéger avec Azure Site Recovery ?"
+description: "Azure Site Recovery protège les charges de travail et les applications en coordonnant la réplication hello, le basculement et récupération des ordinateurs virtuels locaux et serveurs physiques tooAzure ou tooa secondaire sur-site local"
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,45 +14,45 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 05/08/2017
 ms.author: raynew
-ms.openlocfilehash: 88f20287e2a6935b9694a25a21b607d658b8eb68
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: cab2e1ce3c2b7b2c5f899d957219f5c12eb5965c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="what-workloads-can-you-protect-with-azure-site-recovery"></a>Quelles charges de travail pouvez-vous protéger avec Azure Site Recovery ?
-Cet article décrit les charges de travail et les applications que vous pouvez répliquer avec le service Azure Site Recovery.
+Cet article décrit les charges de travail et applications que vous pouvez répliquer avec hello service Azure Site Recovery.
 
-Publier des commentaires ou des questions au bas de cet article, ou sur le [Forum Azure Recovery Services](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
+Valider des commentaires ou des questions au bas de hello de cet article, ou sur hello [Forum sur Azure Recovery Services](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
 
 ## <a name="overview"></a>Vue d'ensemble
-Les organisations ont besoin d’une stratégie de continuité des activités et de récupération d’urgence pour que les charges de travail et les données demeurent en sécurité et disponibles pendant les temps d’arrêt prévus et imprévus, et pour rétablir au plus vite des conditions de travail normales.
+Les organisations doivent une continuité des activités et les charges de travail d’urgence (BCDR) de récupération stratégie tookeep et données sécurisées et disponibles pendant les temps morts planifiés et non planifiés et récupérer les conditions de travail tooregular dès que possible.
 
-Site Recovery est un service Azure qui participe à votre stratégie de continuité des activités et de récupération d’urgence. À l’aide de Site Recovery, vous pouvez déployer une réplication compatible avec les applications vers le cloud ou un site secondaire. Qu’il s’agisse d’applications Windows ou Linux s’exécutant sur des serveurs physiques ou des machines virtuelles VMware ou Hyper-V, vous pouvez utiliser Site Recovery pour orchestrer la réplication, effectuer un test de récupération d’urgence et exécuter des opérations de basculement et de restauration automatique.
+Récupération de site est un service Azure qui contribue de stratégie BCDR tooyour. À l’aide de la récupération de Site, vous pouvez déployer la réplication en fonction des applications toohello cloud ou site secondaire de tooa. Si vos applications sont Windows ou basés sur Linux, en cours d’exécution sur des serveurs physiques, VMware ou Hyper-V, vous pouvez utiliser la réplication tooorchestrate Site Recovery, effectuez un test de récupération d’urgence et exécuter des basculements et la restauration.
 
 Site Recovery s’intègre avec les applications Microsoft, y compris SharePoint, Exchange, Dynamics, SQL Server et Active Directory. Par ailleurs, Microsoft travaille en étroite collaboration avec les principaux fournisseurs, notamment Oracle, SAP, IBM et Red Hat. Vous pouvez personnaliser les solutions de réplication application par application.
 
 ## <a name="why-use-site-recovery-for-application-replication"></a>Pourquoi utiliser Site Recovery pour la réplication des applications ?
-Site Recovery contribue à la protection des applications et à la récupération comme suit :
+Récupération de site contribue tooapplication au niveau de protection et récupération comme suit :
 
 * Service indépendant de l’application qui assure la réplication de n’importe quelle charge de travail exécutée sur une machine prise en charge.
-* Réplication presque synchrone avec des RPO de 30 secondes pour répondre aux besoins des applications professionnelles les plus critiques.
+* Près de-de réplication synchrone, RPO aussi faible que les besoins de hello toomeet 30 secondes des applications métier critiques.
 * Captures instantanées cohérentes de l’application pour les applications uniques ou multiniveau.
 * Intégration avec SQL Server AlwaysOn et partenariat avec d’autres technologies de réplication au niveau des applications, y compris la réplication AD, SQL AlwaysOn, les groupes de disponibilité de base de données (DAG) Exchange et Oracle Data Guard.
-* Plans de récupération flexibles qui vous permettent de récupérer une pile de l’application entière en un seul clic, et incluent les scripts externes et des actions manuelles.
-* Gestion réseau avancée dans Site Recovery et Azure simplifiant la configuration réseau requise pour une application, notamment la réservation d’adresses IP, la configuration de l’équilibrage de charge et l’intégration avec Azure Traffic Manager pour les commutations réseau à RTO faible.
+* Plans de récupération flexible, qui toorecover une pile de l’ensemble de l’application d’un simple clic et d’incluent des scripts externes tooinclude et des actions manuelles dans le plan de hello.
+* Gestion de réseau dans le Site Recovery et Azure toosimplify avancée spécifications de réseau des applications, notamment hello capacité tooreserve des adresses IP, configurer l’équilibrage de charge et l’intégration avec Azure Traffic Manager, pour basculements de réseau faibles RTO.
 * Une bibliothèque d’automatisation avancée qui fournit des scripts spécifiques d’application prêts pour la production, qui peuvent être téléchargés et intégrés avec des plans de récupération.
 
 ## <a name="workload-summary"></a>Synthèse relative aux charges de travail
-Site Recovery permet de répliquer n’importe quelle application exécutée sur une machine prise en charge. En outre, nous collaborons avec les équipes produit pour effectuer des tests supplémentaires spécifiques à l’application.
+Site Recovery permet de répliquer n’importe quelle application exécutée sur une machine prise en charge. En outre, nous avons collaboré avec toocarry les équipes de produit des essais supplémentaires spécifiques de l’application.
 
-| **Charge de travail** | **Réplication de machines virtuelles Hyper-V vers un site secondaire** | **Réplication de machines virtuelles Hyper-V dans Azure** | **Réplication de machines virtuelles VMware vers un site secondaire** | **Réplication de machines virtuelles VMware dans Azure** |
+| **Charge de travail** | **Site secondaire de répliquer des ordinateurs virtuels Hyper-V tooa** | **Répliquer des ordinateurs virtuels Hyper-V tooAzure** | **Répliquer le site secondaire de tooa les ordinateurs virtuels VMware** | **Répliquer des ordinateurs virtuels VMware tooAzure** |
 | --- | --- | --- | --- | --- |
 | Active Directory, DNS |O |O |O |O |
 | Applications web (IIS, SQL) |O |O |O |O |
 | System Center Operations Manager |O |O |O |O |
 | SharePoint |O |O |O |O |
-| SAP<br/><br/>Réplication d’un site SAP vers Microsoft Azure (aucun cluster) |O (opération testée par Microsoft) |O (opération testée par Microsoft) |O (opération testée par Microsoft) |O (opération testée par Microsoft) |
+| SAP<br/><br/>Répliquer tooAzure de site SAP pour non cluster |O (opération testée par Microsoft) |O (opération testée par Microsoft) |O (opération testée par Microsoft) |O (opération testée par Microsoft) |
 | Microsoft Exchange (aucun DAG) |O |O |O |O |
 | Bureau à distance/VDI |O |O |O |N/A |
 | Linux (système d’exploitation et applications) |O (opération testée par Microsoft) |O (opération testée par Microsoft) |O (opération testée par Microsoft) |O (opération testée par Microsoft) |
@@ -63,49 +63,49 @@ Site Recovery permet de répliquer n’importe quelle application exécutée sur
 | Citrix XenApp et XenDesktop |N/A |O |N/A |O |
 
 ## <a name="replicate-active-directory-and-dns"></a>Répliquer Active Directory et DNS
-Une infrastructure DNS et Active Directory sont essentiels pour la plupart des applications d’entreprise. Dans le cadre d’une récupération d’urgence, vous devez protéger et récupérer ces composants d’infrastructure avant de récupérer vos charges de travail et applications.
+Une infrastructure Active Directory et DNS sont essentielles toomost les applications d’entreprise. Lors de la récupération d’urgence, vous devez tooprotect et restaurer ces composants d’infrastructure, avant la restauration de vos applications et charges de travail.
 
-À l’aide de Site Recovery, vous pouvez créer un plan de récupération d’urgence automatisé complet pour Active Directory et DNS. Par exemple, si vous souhaitez basculer SharePoint et SAP d’un site principal vers un site secondaire, vous pouvez configurer un plan de récupération qui bascule Active Directory dans un premier temps, puis un plan de récupération spécifique à l’application supplémentaire pour le basculement des autres applications reposant sur Active Directory.
+Vous pouvez utiliser la récupération de Site toocreate un plan de récupération après sinistre automatisée complète pour Active Directory et DNS. Par exemple, si vous souhaitez toofail par SharePoint et SAP à partir d’un site secondaire tooa principal, vous pouvez configurer un plan de récupération qui bascule de Active Directory tout d’abord, puis une supplémentaire spécifique à l’application un plan de récupération toofail sur hello toutes les applications qui s’appuient sur Active Répertoire.
 
 [En savoir plus](site-recovery-active-directory.md) sur la protection d’Active Directory et DNS
 
 ## <a name="protect-sql-server"></a>Protéger SQL Server
-SQL Server fournit une base pour les services de données pour de nombreuses applications professionnelles dans un centre de données local.  Site Recovery peut être utilisé avec les technologies SQL Server HA/DR pour protéger les applications d’entreprise multiniveau faisant appel à SQL Server. Site Recovery présente les caractéristiques suivantes :
+SQL Server fournit une base pour les services de données pour de nombreuses applications professionnelles dans un centre de données local.  Récupération de site peut être utilisée avec les technologies SQL Server à haute disponibilité/récupération d’urgence, des applications d’entreprise de plusieurs niveaux tooprotect qui utilisent SQL Server. Site Recovery présente les caractéristiques suivantes :
 
-* Solution de récupération d’urgence simple et économique pour SQL Server. Réplication de plusieurs versions et éditions de serveurs et clusters autonomes SQL Server vers Azure ou un site secondaire.  
-* Intégration avec les groupes de disponibilité SQL AlwaysOn pour gérer le basculement et la restauration automatique avec les plans de récupération Azure Site Recovery.
-* Plans de récupération de bout en bout pour tous les niveaux d’une application, y compris les bases de données SQL Server.
+* Solution de récupération d’urgence simple et économique pour SQL Server. Répliquer plusieurs versions et éditions de serveurs autonomes de SQL Server et les clusters, tooAzure ou tooa site secondaire.  
+* Intégration avec les groupes de disponibilité AlwaysOn SQL, toomanage basculement et la restauration automatique avec les plans de récupération Azure Site Recovery.
+* Plans de récupération de bout en bout pour hello tous les niveaux dans une application, y compris les bases de données SQL Server hello.
 * Mise à l’échelle de SQL Server pour les charges maximales à l’aide de Site Recovery par « éclatement » en tailles de machines virtuelles IaaS plus volumineuses dans Azure.
-* Test facile de récupération d’urgence de SQL Server. Vous pouvez effectuer des basculements tests pour l’analyse et les vérifications de conformité des données, sans impact sur votre environnement de production.
+* Test facile de récupération d’urgence de SQL Server. Vous pouvez exécuter des tests de basculement tooanalyze données et exécuter des vérifications de conformité, sans affecter votre environnement de production.
 
 [En savoir plus](site-recovery-sql.md) sur la protection de SQL server.
 
 ## <a name="protect-sharepoint"></a>Protéger SharePoint
 Azure Site Recovery vous aide à protéger vos déploiements SharePoint comme suit :
 
-* Élimine le besoin et les coûts de l’infrastructure associée à une batterie de secours pour la récupération d’urgence. Utilisez Site Recovery, pour répliquer la protection de la batterie entière (niveaux web, application et base de données) sur Azure ou sur un site secondaire.
-* Simplifie la gestion et le déploiement de l’application. Les mises à jour déployées sur le site principal sont automatiquement répliquées et disponibles après le basculement et la récupération d’une batterie de serveurs sur un site secondaire. Cela réduit également la complexité de gestion et les coûts associés au maintien d’une batterie de secours à jour.
+* Élimine le besoin de hello et les coûts d’infrastructure associés pour une batterie de secours pour la récupération d’urgence. Utilisez le Site Recovery tooreplicate un site de la batterie entière (niveaux Web et application de base de données) tooAzure ou tooa secondaire.
+* Simplifie la gestion et le déploiement de l’application. Site de mises à jour déployées toohello principal sont automatiquement répliquées et sont donc disponible après le basculement et la récupération d’une batterie de serveurs dans un site secondaire. Réduit également la complexité de la gestion hello et les coûts associés à jour une batterie de secours.
 * Simplifie le développement et le test d’applications SharePoint en créant un environnement de réplica de copie à la demande de type production pour le test et le débogage.
-* Simplifie la transition vers le cloud en utilisant Site Recovery pour migrer les déploiements SharePoint vers Azure.
+* Simplifie le cloud toohello de transition à l’aide de récupération de Site toomigrate SharePoint déploiements tooAzure.
 
 [En savoir plus](site-recovery-sharepoint.md) sur la protection de SharePoint.
 
 ## <a name="protect-dynamics-ax"></a>Protéger Dynamics AX
 Azure Site Recovery vous permet de protéger votre solution Dynamics AX ERP à travers :
 
-* L’orchestration de la réplication de l’ensemble de votre environnement Dynamics AX (niveaux web et AOS, niveaux bases de données, SharePoint) sur Azure ou sur un site secondaire.
-* La simplification de la migration des déploiements de Dynamics AX dans le cloud (Azure).
+* Coordonnant la réplication de votre environnement Dynamics AX (niveaux Web et AOS, niveaux de base de données, SharePoint) tooAzure, ou tooa un site secondaire.
+* Ce qui simplifie la migration du cloud de toohello déploiements Dynamics AX (Azure).
 * La simplification du développement et du test d’applications Dynamics AX en créant une copie de type production à la demande pour le test et le débogage.
 
 [En savoir plus](site-recovery-dynamicsax.md) sur la protection de Dynamic AX.
 
 ## <a name="protect-rds"></a>Protéger les services Bureau à distance
-RDS active l’infrastructure de bureau virtuel (VDI), les bureaux basés sur session et les applications, permettant aux utilisateurs de travailler n’importe où. Avec Azure Site Recovery, vous pouvez :
+Services Bureau à distance (RDS) permet infrastructure de bureau virtuel (VDI), les bureaux basés sur session et les applications, toowork les utilisateurs n’importe où. Avec Azure Site Recovery, vous pouvez :
 
-* Répliquer des bureaux virtuels en pool gérés ou non gérés sur un site secondaire, ainsi que des applications et des sessions à distance sur un site secondaire ou sur Azure.
+* Répliquer des bureaux virtuels mis en pool gérés ou non gérés tooa du site secondaire et les applications et les sessions tooa site secondaire distant ou Azure.
 * Voici ce que vous pouvez répliquer :
 
-| **RDS** | **Réplication de machines virtuelles Hyper-V vers un site secondaire** | **Réplication de machines virtuelles Hyper-V dans Azure** | **Réplication de machines virtuelles VMware vers un site secondaire** | **Réplication de machines virtuelles VMware dans Azure** | **Réplication de serveurs physiques vers un site secondaire** | **Répliquer des serveurs physiques dans Azure** |
+| **RDS** | **Site secondaire de répliquer des ordinateurs virtuels Hyper-V tooa** | **Répliquer des ordinateurs virtuels Hyper-V tooAzure** | **Répliquer le site secondaire de tooa les ordinateurs virtuels VMware** | **Répliquer des ordinateurs virtuels VMware tooAzure** | **Répliquer le site secondaire de serveurs physiques tooa** | **Répliquer les serveurs physiques tooAzure** |
 | --- | --- | --- | --- | --- | --- | --- |
 | **Bureau virtuel en pool (non géré)** |Oui |Non |Oui |Non |Oui |Non |
 | **Bureau virtuel en pool (géré et sans UPD)** |Oui |Non |Oui |Non |Oui |Non |
@@ -116,45 +116,45 @@ RDS active l’infrastructure de bureau virtuel (VDI), les bureaux basés sur se
 ## <a name="protect-exchange"></a>Protéger Exchange
 Site Recovery vous permet de protéger Exchange comme suit :
 
-* Site Recovery peut répliquer et basculer les déploiements Exchange de petite taille, par exemple des serveurs uniques ou autonomes, vers Azure ou un site secondaire.
+* Pour les petits déploiements Exchange, comme un serveur unique ou autonome, Site Recovery peut répliquer et basculer tooAzure ou tooa site secondaire.
 * Pour les déploiements plus importants, Site Recovery s’intègre avec les groupes de disponibilité de base de données (DAG) Exchange.
-* Les groupes de disponibilité de base de données (DAG) Exchange sont la solution recommandée pour la récupération d’urgence Exchange dans une entreprise.  Les plans de récupération Site Recovery peuvent inclure des groupes de disponibilité de base de données (DAG) pour orchestrer le basculement de ceux-ci entre les sites.
+* Exchange DAG sont hello recommandé de solution pour la récupération d’urgence Exchange dans une entreprise.  Plans de récupération de site peuvent inclure décisionnels, basculement tooorchestrate DAG entre sites.
 
 [En savoir plus](https://gallery.technet.microsoft.com/Exchange-DR-Solution-using-11a7dcb6) sur la protection d’Exchange.
 
 ## <a name="protect-sap"></a>Protéger SAP
-Utilisez Site Recovery pour protéger votre déploiement SAP comme suit :
+Utilisez Site Recovery tooprotect votre déploiement de SAP, comme suit :
 
-* Activez la protection des applications de production SAP NetWeaver et non-NetWeaver exécutées localement, par la réplication des composants sur Azure.
-* Activez la protection des applications de production SAP NetWeaver et non-NetWeaver exécutant Azure, par la réplication des composants sur un autre centre de données Azure.
-* Simplifiez la migration vers le cloud en utilisant Site Recovery pour migrer votre déploiement SAP vers Azure.
+* Activez la protection des applications SAP NetWeaver et NetWeaver non-production exécuté localement, en répliquant tooAzure de composants.
+* Activez la protection des applications SAP NetWeaver et NetWeaver non-production Azure, en cours d’exécution en répliquant les composants tooanother centre de données Azure.
+* Simplifier la migration de cloud, à l’aide de récupération de Site toomigrate votre tooAzure de déploiement de SAP.
 * Simplifiez les mises à niveau, les tests et la création de prototypes du projet SAP, par la création d’un clone de production à la demande pour tester les applications SAP.
 
 [En savoir plus](site-recovery-sap.md) sur la protection de SAP.
 
 ## <a name="protect-iis"></a>Protection IIS
-Utilisez Site Recovery pour protéger votre déploiement IIS comme suit :
+Utilisez tooprotect de récupération de Site IIS est déployé, comme suit :
 
-Azure Site Recovery assure la récupération d’urgence en répliquant les composants critiques de votre environnement vers un site distant à froid ou un cloud public comme Microsoft Azure. Étant donné que la machine virtuelle avec le serveur web et la base de données sont répliquées vers le site de récupération, il n’est pas obligatoire de sauvegarder séparément les fichiers de configuration ou les certificats. Les mappages et les liaisons d’application dépendant des variables d’environnement modifiées post-basculement peuvent être mis à jour via des scripts intégrés dans les plans de récupération d’urgence. Les machines virtuelles sont montées sur le site de récupération uniquement en cas de basculement. Azure Site Recovery vous aide également à orchestrer le basculement de bout en bout en mettant à disposition les fonctionnalités suivantes :
+Azure Site Recovery assure la récupération d’urgence en répliquant les composants essentiels de hello dans votre site distant à froid environnement tooa ou un cloud public comme Microsoft Azure. Étant donné que la machine virtuelle hello hello web server et de la base de données hello soient répliquées toohello le site de récupération, il est sans les fichiers de configuration toobackup exigence ou des certificats séparément. Hello des mappages d’application et les liaisons en fonction de variables d’environnement qui sont modifiées après basculement peut être mis à jour à partir de scripts intégrés dans les plans de récupération d’urgence hello. Machines virtuelles sont appelés sur le site de récupération hello uniquement dans l’événement hello d’un basculement. Non seulement cette opération, Azure Site Recovery vous aide également à orchestrer hello fin tooend basculement en fournissant que vous hello suivant de fonctionnalités :
 
--   Séquencement de l’arrêt et du démarrage des machines virtuelles dans les différents niveaux.
--   Ajout de scripts pour autoriser la mise à jour des liaisons et des dépendances d’applications sur les machines virtuelles après le démarrage. Les scripts peuvent également être utilisés pour mettre à jour le serveur DNS pour pointer vers le site de récupération.
--   Allouez des adresses IP aux machines virtuelles pré-basculement en mappant les réseaux principaux et de récupération et, par conséquent, utilisez des scripts qui ne nécessitent pas de mise à jour post-basculement.
--   Possibilité de basculement en un clic pour plusieurs applications web sur les serveurs web, limitant ainsi la confusion en cas de sinistre.
--   Possibilité de tester les plans de récupération dans un environnement isolé pour les exercices de récupération d’urgence.
+-   Séquencement hello l’arrêt et démarrage des machines virtuelles dans hello divers niveaux.
+-   Ajout de mise à jour de scripts tooallow des liaisons et les dépendances des applications sur des machines virtuelles de hello après le démarrage. les scripts Hello peuvent également être site de récupération utilisé tooupdate hello DNS server toopoint toohello.
+-   Allouer des adresses toovirtual machines pre-basculement IP en mappant les réseaux principaux et de restauration hello et utilisent donc les scripts qui ne doivent pas toobe mis à jour après basculement.
+-   Possibilité pour un basculement d’un clic pour plusieurs applications web sur des serveurs web hello, éliminant ainsi étendue hello confusions dans les événements hello d’un incident.
+-   Capacité tootest hello plans de récupération dans un environnement isolé pour les exercices de récupération d’urgence.
 
 [En savoir plus](https://aka.ms/asr-iis) sur la protection de la batterie de serveurs web IIS.
 
 ## <a name="protect-citrix-xenapp-and-xendesktop"></a>Protéger Citrix XenApp et XenDesktop
-Site Recovery permet de protéger vos déploiements Citrix XenApp XenDesktop, comme suit :
+Utilisez Site Recovery tooprotect vos déploiements Citrix XenApp et XenDesktop, comme suit :
 
-* Protégez votre déploiement Citrix XenApp et XenDesktop en répliquant différentes couches de déploiement (serveur DNS Active Directory, serveur de base de données SQL, Citrix Delivery Controller, serveur StoreFront, XenApp Master (VDA), serveur de licences de Citrix XenApp) sur Azure.
-* Simplifiez la migration vers le cloud en utilisant Site Recovery pour migrer votre déploiement Citrix XenApp et XenDesktop sur Azure.
+* Activer la protection de hello déploiement Citrix XenApp et XenDesktop, en répliquant de déploiement différentes couches notamment (serveur DNS Active Directory, SQL base de données serveur, le contrôleur de Citrix, StoreFront server, XenApp Master (VDA), serveur de licences Citrix XenApp) tooAzure.
+* Simplifier la migration de cloud, à l’aide de récupération de Site toomigrate votre tooAzure déploiement Citrix XenApp et XenDesktop.
 * Simplifiez le test de Citrix XenApp/XenDesktop en créant une copie de type production à la demande pour le test et le débogage.
 * Cette solution est uniquement applicable pour les bureaux virtuels du système d’exploitation Windows Server, et non pour les bureaux virtuels client. En effet, ces derniers ne sont pas encore pris en charge pour la gestion des licences dans Azure.
 [Apprenez-en plus](https://azure.microsoft.com/pricing/licensing-faq/) sur les licences pour les bureaux client/serveur dans Azure.
 
-[Apprenez-en plus](site-recovery-citrix-xenapp-and-xendesktop.md) sur la protection des déploiements de Citrix XenApp et XenDesktop. Vous pouvez également consulter le [livre blanc de Citrix](https://aka.ms/citrix-xenapp-xendesktop-with-asr) détaillant les mêmes informations.
+[Apprenez-en plus](site-recovery-citrix-xenapp-and-xendesktop.md) sur la protection des déploiements de Citrix XenApp et XenDesktop. Ou bien, vous pouvez faire référence hello [livre blanc de Citrix](https://aka.ms/citrix-xenapp-xendesktop-with-asr) détaillant hello identiques.
 
 ## <a name="next-steps"></a>Étapes suivantes
 [Vérifiez les composants requis](site-recovery-prereq.md)

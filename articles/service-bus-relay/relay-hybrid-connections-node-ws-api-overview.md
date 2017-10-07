@@ -1,5 +1,5 @@
 ---
-title: "Vue d’ensemble des API de nœud Azure Relay | Microsoft Docs"
+title: "aaaOverview Hello API de nœud Azure relais | Documents Microsoft"
 description: "Vue d’ensemble des API de nœud Relay"
 services: service-bus-relay
 documentationcenter: na
@@ -14,29 +14,29 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/05/2017
 ms.author: sethm
-ms.openlocfilehash: 28526c05c7f364f0fcaaa362fc97857f850040ee
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d231acc854be0eaa965dec0229cf63b08ff27067
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="relay-hybrid-connections-node-api-overview"></a>Vue d’ensemble des API de nœud pour les connexions hybrides Relay
 
 ## <a name="overview"></a>Vue d'ensemble
 
-Le package de nœud [ `hyco-ws` ](https://www.npmjs.com/package/hyco-ws) pour les connexions hybrides Azure Relay repose sur le package NPM [« ws »](https://www.npmjs.com/package/ws) ainsi qu’il l’étend. Ce package réexporte toutes les exportations du package de base et ajoute de nouvelles exportations qui permettent l’intégration avec la fonctionnalité de connexions hybrides du service Azure Relay. 
+Hello [ `hyco-ws` ](https://www.npmjs.com/package/hyco-ws) package de nœud pour les connexions hybrides de relais Azure repose sur et étend hello ['ws'](https://www.npmjs.com/package/ws) package NPM. Ce package nouveau exporte toutes les exportations de ce package de base et ajoute de nouvelles exportations qui permettent l’intégration avec la fonctionnalité de connexions hybrides de service de relais d’Azure hello. 
 
-Les applications existantes de type `require('ws')` peuvent également utiliser ce package avec `require('hyco-ws')`. Cela permet des scénarios hybrides dans lesquels une application écoute les connexions WebSocket en local depuis « l’intérieur du pare-feu » en même temps que via des connexions hybrides.
+Les applications existantes qui `require('ws')` pouvez utiliser ce package avec `require('hyco-ws')` au lieu de cela, ce qui permet également des scénarios hybrides dans lesquels une application peut écouter les connexions de WebSocket localement à partir de « à l’intérieur du pare-feu de hello » et via des connexions hybrides, tout à Hello même temps.
   
 ## <a name="documentation"></a>Documentation
 
-Les API sont [documentées dans le package principal « ws »](https://github.com/websockets/ws/blob/master/doc/ws.md). Cet article décrit en quoi ce package diffère du package de base. 
+Hello API sont [documentés dans le package du principal 'ws' hello](https://github.com/websockets/ws/blob/master/doc/ws.md). Cet article décrit en quoi ce package diffère du package de base. 
 
-Les principales différences entre le package de base et le package « hyco-ws » sont qu’il ajoute quelques méthodes d’assistance et une nouvelle classe de serveur laquelle est exportée via `require('hyco-ws').RelayedServer`.
+Bonjour principales différences entre le package de base hello et cette 'ws-hyco' est qu’il ajoute une nouvelle classe de serveur, exportée `require('hyco-ws').RelayedServer`et quelques méthodes d’assistance.
 
 ### <a name="package-helper-methods"></a>Méthodes d’assistance du package
 
-Plusieurs méthodes utilitaires sont disponibles dans l’exportation du package. Vous pouvez les référencer comme suit :
+Plusieurs méthodes d’utilitaire sont disponibles lors de l’exportation de package hello que vous pouvez le référencer comme suit :
 
 ```JavaScript
 const WebSocket = require('hyco-ws');
@@ -47,7 +47,7 @@ listenUri = WebSocket.appendRelayToken(listenUri, 'ruleName', '...key...')
 
 ```
 
-Ces méthodes d’assistance doivent être utilisées avec ce package. Toutefois, elles peuvent également être utilisées par un serveur de nœud pour l’activation de clients web ou de périphérique et la création d’écouteurs ou d’expéditeurs. Le serveur utilise ces méthodes en leur transférant des URI qui intègrent des jetons de durée de vie limitée. Ces URI peuvent également être utilisés avec des piles WebSocket courantes qui ne prennent pas en charge la définition d’en-têtes HTTP pour le protocole de transfert WebSocket. L’intégration de jetons d’autorisation dans l’URI est principalement prise en charge pour les scénarios d’utilisation externes à la bibliothèque. 
+méthodes d’assistance de Hello sont utilisées avec ce package, mais peuvent également servir à un serveur de nœud pour l’activation des écouteurs de toocreate les clients web ou un appareil ou des expéditeurs. serveur de Hello utilise ces méthodes en les passant l’URI qui incorporent des jetons de courte durée de vie. Ces URI peut également être utilisé avec les piles de WebSocket communs qui ne prennent pas en charge les définir les en-têtes HTTP pour le protocole de transfert WebSocket hello. Incorporation des jetons d’autorisation dans hello QU'URI est pris en charge principalement pour ces scénarios d’utilisation de la bibliothèque externe. 
 
 #### <a name="createrelaylistenuri"></a>createRelayListenUri
 
@@ -55,14 +55,14 @@ Ces méthodes d’assistance doivent être utilisées avec ce package. Toutefois
 var uri = createRelayListenUri([namespaceName], [path], [[token]], [[id]])
 ```
 
-Crée un URI d’écouteur de connexion hybride Azure Relay valide pour l’espace de noms et le chemin d’accès indiqués. Cet URI peut ensuite être utilisé avec la version Relay de la classe WebSocketServer.
+Crée un écouteur de la connexion hybride Azure relais URI valid pour hello donné l’espace de noms et le chemin d’accès. Cet URI peut ensuite être utilisé avec la version de relais hello Hello WebSocketServer classe.
 
-- `namespaceName` (obligatoire) : nom de domaine qualifié de l’espace de noms Azure Relay à utiliser.
-- `path` (obligatoire) : nom d’une connexion hybride Azure Relay existante dans cet espace de noms.
-- `token` (facultatif) : jeton d’accès Azure Relay précédemment publié et intégré à l’URI d’écouteur (voir l’exemple suivant).
+- `namespaceName`(obligatoire) - hello nom qualifié de domaine de toouse d’espace de noms hello Azure relais.
+- `path`(obligatoire) - hello nom d’une connexion hybride de relais Azure existante dans cet espace de noms.
+- `token`(facultatif) : un accès de relais précédemment émis de jeton qui est incorporé dans l’écouteur hello URI (voir hello exemple suivant).
 - `id` (facultatif) : identificateur de suivi qui permet un suivi des diagnostics de bout en bout des demandes.
 
-La valeur `token` est facultative et doit être utilisée uniquement quand il est impossible d’envoyer des en-têtes HTTP avec le protocole de transfert WebSocket, comme c’est le cas avec la pile W3C WebSocket.                  
+Hello `token` valeur est facultative et ne doit être utilisée quand il n’est pas possible toosend HTTP des en-têtes, ainsi que le protocole de transfert WebSocket hello, comme dans les cas de hello avec la pile de W3C WebSocket hello.                  
 
 
 #### <a name="createrelaysenduri"></a>createRelaySendUri
@@ -71,14 +71,14 @@ La valeur `token` est facultative et doit être utilisée uniquement quand il es
 var uri = createRelaySendUri([namespaceName], [path], [[token]], [[id]])
 ```
 
-Crée un URI d’envoi de connexion hybride Azure Relay valide pour l’espace de noms et le chemin d’accès indiqués. Cet URI peut être utilisé avec un client WebSocket quel qu’il soit.
+Crée un envoi de la connexion hybride Azure relais URI valid pour hello donné l’espace de noms et le chemin d’accès. Cet URI peut être utilisé avec un client WebSocket quel qu’il soit.
 
-- `namespaceName` (obligatoire) : nom de domaine qualifié de l’espace de noms Azure Relay à utiliser.
-- `path` (obligatoire) : nom d’une connexion hybride Azure Relay existante dans cet espace de noms.
-- `token` (facultatif) : jeton d’accès Azure Relay précédemment publié et intégré à l’URI d’envoi (voir l’exemple suivant).
+- `namespaceName`(obligatoire) - hello nom qualifié de domaine de toouse d’espace de noms hello Azure relais.
+- `path`(obligatoire) - hello nom d’une connexion hybride de relais Azure existante dans cet espace de noms.
+- `token`(facultatif) : un jeton d’accès précédemment émis relais qui est incorporé dans hello envoyer URI (voir hello exemple suivant).
 - `id` (facultatif) : identificateur de suivi qui permet un suivi des diagnostics de bout en bout des demandes.
 
-La valeur `token` est facultative et doit être utilisée uniquement quand il est impossible d’envoyer des en-têtes HTTP avec le protocole de transfert WebSocket, comme c’est le cas avec la pile W3C WebSocket.                   
+Hello `token` valeur est facultative et ne doit être utilisée quand il n’est pas possible toosend HTTP des en-têtes, ainsi que le protocole de transfert WebSocket hello, comme dans les cas de hello avec la pile de W3C WebSocket hello.                   
 
 
 #### <a name="createrelaytoken"></a>createRelayToken 
@@ -87,14 +87,14 @@ La valeur `token` est facultative et doit être utilisée uniquement quand il es
 var token = createRelayToken([uri], [ruleName], [key], [[expirationSeconds]])
 ```
 
-Crée un jeton de signature d’accès partagé Azure Relay pour l’URI cible, la règle de signature d’accès partagé et la clé de règle de signature d’accès partagé indiqués. Ce jeton est valide pendant le nombre de secondes mentionné ou pendant une heure à partir de l’instant présent si l’argument d’expiration est omis.
+Crée un jeton d’Azure relais partagé Signature d’accès (SAP) pour URI cible de hello donné, SAP et clé de la règle SAS valide pour hello étant donné un nombre de secondes ou pendant une heure à partir de hello actuel instantanée si hello expiration argument est omis.
 
-- `uri` (obligatoire) : URI pour lequel le jeton doit être émis. L’URI est normalisé et utilise le schéma HTTP. Les informations de chaîne de requête sont supprimées.
-- `ruleName` (obligatoire) : nom de règle SAS pour l’entité représentée par l’URI indiqué ou pour l’espace de noms représenté par la portion d’hôte URI.
-- `key` (obligatoire) : clé valide pour la règle de signature d’accès partagé. 
-- `expirationSeconds` (facultatif) : nombre de secondes avant expiration du jeton généré. Si aucune valeur n’est indiquée, la valeur par défaut est 1 heure (3600).
+- `uri`(obligatoire) - hello URI pour le hello jeton est toobe émis. Hello URI est le schéma HTTP toouse normalisée hello et informations de chaîne de requête sont supprimées.
+- `ruleName`(obligatoire) - nom de l’entité hello représentée par hello donné d’URI de règles SAS, ou pour hello espace de noms représenté par hello partie hôte de l’URI.
+- `key`(obligatoire) - clé valide pour la règle SAS hello. 
+- `expirationSeconds`(facultatif) : nombre hello de secondes jusqu'à ce que hello générée jeton doit expirer. Si non spécifié, par défaut de hello est 1 heure (3 600).
 
-Le jeton émis confère les droits associés à la règle SAS indiquée pour la durée définie.
+jeton de Hello émis confère des droits hello associés hello spécifié règle SAS pour hello étant donné la durée.
 
 #### <a name="appendrelaytoken"></a>appendRelayToken
 
@@ -102,13 +102,13 @@ Le jeton émis confère les droits associés à la règle SAS indiquée pour la 
 var uri = appendRelayToken([uri], [ruleName], [key], [[expirationSeconds]])
 ```
 
-Fonctionnellement parlant, cette méthode équivaut à la méthode `createRelayToken` décrite précédemment, à ceci près qu’elle renvoie le jeton après l’avoir ajouté à l’URI d’entrée.
+Cette méthode est fonctionnellement équivalent toohello `createRelayToken` méthode décrites précédemment, mais retourne hello URI d’entrée correctement ajouté toohello jeton.
 
 ### <a name="class-wsrelayedserver"></a>Class ws.RelayedServer
 
-La classe `hycows.RelayedServer` constitue une alternative à la classe `ws.Server` qui n’écoute pas sur le réseau local, mais délègue l’écoute au service Azure Relay.
+Hello `hycows.RelayedServer` classe est une autre toohello `ws.Server` classe qui n’écoute pas sur le réseau local de hello, mais délègue écoute toohello service de relais d’Azure.
 
-Ces deux classes sont en grande partie compatibles, en ce sens qu’une application existante qui utilise la classe `ws.Server` peut facilement être modifiée pour utiliser la version relayée. Les principales différences résident dans le constructeur et dans les options disponibles.
+classes de Hello deux sont principalement les contrat compatible, ce qui signifie qu’une application existante à l’aide de hello `ws.Server` classe peut être facilement la version de hello relayée toouse modifiées. Hello principales différences résident dans le constructeur de hello et dans les options disponibles hello.
 
 #### <a name="constructor"></a>Constructeur  
 
@@ -123,16 +123,16 @@ var wss = new server(
     });
 ```
 
-Le constructeur `RelayedServer` ne prend pas en charge les mêmes arguments que le constructeur `Server`, car il n’est ni un écouteur autonome ni intégrable dans une infrastructure d’écouteur HTTP existante. Il existe également moins d’options disponibles dans la mesure où la gestion WebSocket est en grande partie déléguée au service Relay.
+Hello `RelayedServer` constructeur prend en charge un ensemble différent d’arguments que hello `Server`, car il n’est pas un écouteur d’autonome ou en mesure de toobe incorporée dans une infrastructure d’écouteur HTTP existante. Il existe également moins d’options disponibles dans la mesure où hello gestion du WebSocket est en grande partie déléguée toohello service de relais.
 
 Arguments du constructeur :
 
-- `server` (obligatoire) : URI complet d’un nom de connexion hybride sur lequel écouter et habituellement construit avec la méthode d’assistance WebSocket.createRelayListenUri().
-- `token` (obligatoire) : cet argument conserve une chaîne de jeton précédemment émise ou une fonction de rappel qui peut être appelée pour obtenir une telle chaîne de jeton. L’option de rappel est recommandée, car elle permet un renouvellement des jetons.
+- `server`(obligatoire) - hello complet URI pour un nom de connexion hybride sur le toolisten, généralement construite avec la méthode d’assistance de WebSocket.createRelayListenUri() de hello.
+- `token`(obligatoire) - cet argument conserve une chaîne de jeton émise précédemment ou une fonction de rappel qui peut être appelée tooobtain telle une chaîne de jeton. option de rappel Hello est recommandée, car elle permet de renouvellement de jeton.
 
 #### <a name="events"></a>Événements
 
-Les instances `RelayedServer` émettent trois événements qui vous permettent de gérer les demandes entrantes, d’établir des connexions et de détecter les conditions d’erreur. Vous devez vous abonner à l’événement `connect` pour traiter les messages. 
+`RelayedServer`instances émettent trois événements qui permettent de vous toohandle les demandes entrantes, établissent des connexions et détectent des conditions d’erreur. Vous devez vous abonner toohello `connect` toohandle messages d’événement. 
 
 ##### <a name="headers"></a>headers
 
@@ -140,7 +140,7 @@ Les instances `RelayedServer` émettent trois événements qui vous permettent d
 function(headers)
 ```
 
-L’événement `headers` est déclenché juste avant l’acceptation d’une connexion entrante, ce qui permet de modifier les en-têtes à envoyer au client. 
+Hello `headers` événement est déclenché juste avant qu’une connexion entrante est acceptée, l’activation de la modification du client de toohello toosend hello en-têtes. 
 
 ##### <a name="connection"></a>connection
 
@@ -148,7 +148,7 @@ L’événement `headers` est déclenché juste avant l’acceptation d’une co
 function(socket)
 ```
 
-Émis lorsqu’une nouvelle connexion WebSocket est acceptée. L’objet est de type `ws.WebSocket`, tout comme avec le package de base.
+Émis lorsqu’une nouvelle connexion WebSocket est acceptée. objet de Hello est de type `ws.WebSocket`, le même qu’avec le package de base hello.
 
 
 ##### <a name="error"></a>error
@@ -157,11 +157,11 @@ function(socket)
 function(error)
 ```
 
-Si le serveur sous-jacent émet une erreur, il est transféré ici.  
+Si le serveur sous-jacent de hello émet une erreur, il est transféré ici.  
 
 #### <a name="helpers"></a>Programmes d’assistance
 
-Pour simplifier le démarrage d’un serveur relayé et l’abonnement aux connexions entrantes, le package expose une fonction d’assistance simple, qui est également utilisée dans les exemples suivants :
+toosimplify à partir d’un serveur relayé et immédiatement abonnement tooincoming connexions, hello package expose une fonction d’assistance simple, qui est également utilisée dans les exemples hello, comme suit :
 
 ##### <a name="createrelayedlistener"></a>createRelayedListener
 
@@ -190,11 +190,11 @@ var wss = WebSocket.createRelayedServer(
 var server = createRelayedServer([options], [connectCallback] )
 ```
 
-Cette méthode appelle le constructeur pour créer une nouvelle instance RelayedServer, puis abonne le rappel fourni à l’événement de « connexion ».
+Cette méthode appelle hello constructeur toocreate une nouvelle instance de hello RelayedServer et puis s’abonne événement de hello fourni rappel toohello « connexion ».
  
 ##### <a name="relayedconnect"></a>relayedConnect
 
-Par une mise en miroir du programme d’assistance `createRelayedServer` en fonction, `relayedConnect` crée une connexion client, puis s’abonne à l’événement d’« ouverture » sur le socket correspondant.
+Simplement la mise en miroir hello `createRelayedServer` helper dans la fonction, `relayedConnect` crée une connexion de client et s’abonne toohello les événements « ouvert » sur le socket résultant de hello.
 
 ```JavaScript
 var uri = WebSocket.createRelaySendUri(ns, path);
@@ -208,6 +208,6 @@ WebSocket.relayedConnect(
 ```
 
 ## <a name="next-steps"></a>Étapes suivantes
-Pour en savoir plus sur Azure Relay, consultez les liens suivants :
+toolearn en savoir plus sur Azure relais, consultez ces liens :
 * [Qu’est-ce qu’Azure Relay ?](relay-what-is-it.md)
 * [API Relay disponibles](relay-api-overview.md)

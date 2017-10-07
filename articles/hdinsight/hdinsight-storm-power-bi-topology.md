@@ -1,5 +1,5 @@
 ---
-title: Utiliser Apache Storm avec Power BI - Azure HDInsight | Documents Microsoft
+title: aaaUse Apache Storm avec Power BI - Azure HDInsight | Documents Microsoft
 description: "Créez un rapport Power BI en utilisant les données d’une topologie C# s’exécutant sur un cluster Apache Storm dans HDInsight."
 services: hdinsight
 documentationcenter: 
@@ -16,22 +16,22 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 05/31/2017
 ms.author: larryfr
-ms.openlocfilehash: 36487c0c34e5a4bb955bbc15c8c96b9e838aeb44
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 194cd8220bd60475af1d64a110e4b23ef92e1bc8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-power-bi-to-visualize-data-from-an-apache-storm-topology"></a>Utilisation de Power BI pour visualiser les données d'une topologie Apache Storm
+# <a name="use-power-bi-toovisualize-data-from-an-apache-storm-topology"></a>Utiliser les données de toovisualize Power BI à partir d’une topologie d’Apache Storm
 
-Power BI vous permet d’afficher visuellement des données sous forme de rapports. Ce document fournit un exemple d’utilisation d’Apache Storm sur HDInsight pour générer des données pour Power BI.
+Power BI vous permet d’afficher les données toovisually sous forme de rapports. Ce document fournit un exemple de procédure toouse Apache Storm sur les données de toogenerate HDInsight pour Power BI.
 
 > [!NOTE]
-> Les étapes décrites dans ce document reposent sur un environnement de développement Windows avec Visual Studio. Le projet compilé peut être soumis à un cluster HDInsight Linux. Seuls les clusters basés sur Linux créés après le 28/10/2016 prennent en charge les topologies SCP.NET.
+> Hello étapes décrites dans ce document reposent sur un environnement de développement Windows avec Visual Studio. projet compilé de Hello peut être soumis tooa HDInsight de basés sur Linux cluster. Seuls les clusters basés sur Linux créés après le 28/10/2016 prennent en charge les topologies SCP.NET.
 >
-> Pour utiliser une topologie C# avec un cluster basé sur Linux, mettez à jour le package NuGet Microsoft.SCP.Net.SDK utilisé par votre projet vers la version 0.10.0.6 ou une version supérieure. La version du package doit également correspondre à la version principale de Storm installée sur HDInsight. Par exemple, Storm sur les versions 3.3 et 3.4 de HDInsight utilise Storm 0.10.x, tandis que HDInsight 3.5 utilise Storm 1.0.x.
+> toouse une topologie c# avec un cluster basé sur Linux, hello de mise à jour de package NuGet de Microsoft.SCP.Net.SDK utilisé par votre projet de tooversion 0.10.0.6 ou une version ultérieure. version Hello du package de hello doit également correspondre version majeure de hello de Storm installé sur HDInsight. Par exemple, Storm sur les versions 3.3 et 3.4 de HDInsight utilise Storm 0.10.x, tandis que HDInsight 3.5 utilise Storm 1.0.x.
 >
-> Les topologies C# sur les clusters basés sur Linux doivent utiliser .NET 4.5, et utiliser Mono pour s’exécuter sur le cluster HDInsight. La plupart des éléments fonctionnent. Toutefois, vous devez consulter le document [Compatibilité Mono](http://www.mono-project.com/docs/about-mono/compatibility/) pour identifier les éventuelles incompatibilités.
+> Topologies c# sur des clusters basés sur Linux doivent utiliser .NET 4.5 et utiliser toorun Mono sur le cluster HDInsight de hello. La plupart des éléments fonctionnent. Toutefois, vous devez vérifier hello [Mono compatibilité](http://www.mono-project.com/docs/about-mono/compatibility/) document pour identifier les éventuelles incompatibilités.
 >
 > Pour obtenir une version Java de ce projet, qui fonctionne avec HDInsight Linux ou Windows, consultez [Traitement des événements Azure Event Hubs avec Storm sur HDInsight (Java)](hdinsight-storm-develop-java-event-hub-topology.md).
 
@@ -41,73 +41,73 @@ Power BI vous permet d’afficher visuellement des données sous forme de rappor
 * Un cluster HDInsight. Pour plus d’informations, consultez [Prise en main de Storm sur HDInsight](hdinsight-apache-storm-tutorial-get-started-linux.md).
 
   > [!IMPORTANT]
-  > Linux est le seul système d’exploitation utilisé sur HDInsight version 3.4 ou supérieure. Pour plus d’informations, consultez [Suppression de HDInsight sous Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+  > Linux est hello seul système d’exploitation utilisé sur HDInsight version 3.4 ou supérieure. Pour plus d’informations, consultez [Suppression de HDInsight sous Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 
-* Visual Studio (l'une des versions suivantes)
+* (L’une des versions suivantes de hello) de Visual Studio
 
   * Visual Studio 2012 avec [Update 4](http://www.microsoft.com/download/details.aspx?id=39305)
   * Visual Studio 2013 avec [Update 4](http://www.microsoft.com/download/details.aspx?id=44921) ou [Visual Studio 2013 Community](http://go.microsoft.com/fwlink/?linkid=517284&clcid=0x409)
   * [Visual Studio 2015](https://www.visualstudio.com/downloads/download-visual-studio-vs.aspx)
   * Visual Studio 2017 (toute édition)
 
-* Les outils HDInsight pour Visual Studio : consultez [Prise en main des outils HDInsight pour Visual Studio](hdinsight-hadoop-visual-studio-tools-get-started.md) pour plus d'informations sur l'installation.
+* Hello outils HDInsight pour Visual Studio : consultez [prise en main à l’aide des outils de hello HDInsight pour Visual Studio](hdinsight-hadoop-visual-studio-tools-get-started.md) pour plus d’informations sur les informations d’installation.
 
 ## <a name="how-it-works"></a>Fonctionnement
 
-Cet exemple contient une topologie Storm en C# qui génère de façon aléatoire les données du journal Internet Information Services (IIS). Ces données sont ensuite écrites dans une base de données SQL à partir de laquelle elles sont utilisées pour générer des rapports dans Power BI.
+Cet exemple contient une topologie Storm en C# qui génère de façon aléatoire les données du journal Internet Information Services (IIS). Ces données sont ensuite écrites tooa base de données SQL, et à partir de là, il est utilisé toogenerate des rapports dans Power BI.
 
-Les fichiers suivants implémentent la fonctionnalité principale de cet exemple :
+Hello suivant fichiers implémentent hello principales fonctionnalités de cet exemple :
 
-* **SqlAzureBolt.cs**: écrit les informations produites au sein de la topologie Storm dans la base de données SQL.
-* **IISLogsTable.sql**: instructions Transact-SQL utilisées pour générer la base de données dans laquelle les données sont stockées.
+* **SqlAzureBolt.cs**: écrit les informations de produit dans hello Storm topologie tooSQL de base de données.
+* **IISLogsTable.sql**: hello Transact-SQL instructions utilisées toogenerate hello base de données stockées dans les données de salutation.
 
 > [!WARNING]
-> Créez la table dans la base de données SQL avant de démarrer la topologie sur votre cluster HDInsight.
+> Créer la table de hello dans la base de données SQL avant le début de la topologie de hello sur votre cluster HDInsight.
 
-## <a name="download-the-example"></a>Télécharger l'exemple
+## <a name="download-hello-example"></a>Télécharger l’exemple de hello
 
-Téléchargez l’ [exemple HDInsight C# Storm Power BI](https://github.com/Azure-Samples/hdinsight-dotnet-storm-powerbi). Pour le télécharger, clonez-le/répliquez-le à l'aide de [git](http://git-scm.com/)ou utilisez le lien **Télécharger** pour télécharger un fichier zip de l'archive.
+Télécharger hello [exemple de HDInsight c# Storm Power BI](https://github.com/Azure-Samples/hdinsight-dotnet-storm-powerbi). toodownload, une branche/clonage à l’aide de [git](http://git-scm.com/), ou utilisez hello **télécharger** toodownload de lier un fichier ZIP d’archive de hello.
 
 ## <a name="create-a-database"></a>Créer une base de données
 
-1. Pour créer une base de données, suivez les étapes du document [Didacticiel sur la base de données SQL](../sql-database/sql-database-get-started.md).
+1. toocreate une base de données, utilisez les étapes de hello Bonjour [didacticiel de base de données SQL](../sql-database/sql-database-get-started.md) document.
 
-2. Connectez-vous à la base de données en suivant les étapes décrites dans le document [Se connecter à la base de données SQL avec Visual Studio](../sql-database/sql-database-connect-query.md).
+2. Base de données toohello de se connecter par hello suivant les étapes dans hello [connecter tooa base de données SQL avec Visual Studio](../sql-database/sql-database-connect-query.md) document.
 
-3. Dans l’Explorateur d’objets, cliquez avec le bouton droit sur la base de données et sélectionnez **Nouvelle requête**. Collez le contenu du fichier **IISLogsTable.sql** inclus dans le projet téléchargé dans la fenêtre de requête, puis utilisez Ctrl + Maj + E pour exécuter la requête. Vous devez recevoir un message indiquant que l’exécution des commandes s’est terminée correctement.
+3. Dans l’Explorateur d’objets, avec le bouton droit de la base de données hello et sélectionnez **nouvelle requête**. Coller le contenu de hello hello **IISLogsTable.sql** fichier inclus dans hello téléchargé le projet dans la fenêtre de requête hello, puis utilisez Ctrl + Maj + E tooexecute hello requête. Vous devez recevoir un message qui hello commandes s’est terminées correctement.
 
-## <a name="configure-the-sample"></a>Configurer l'exemple
+## <a name="configure-hello-sample"></a>Configurer l’exemple hello
 
-1. Dans le [Portail Azure](https://portal.azure.com), sélectionnez votre base de données SQL. À partir de la section **Essentials** du panneau Base de données SQL, sélectionnez **Afficher les chaînes de connexion de la base de données**. Dans la liste qui s’affiche, copiez les informations **ADO.NET (Authentification SQL)** .
+1. À partir de hello [portail Azure](https://portal.azure.com), sélectionnez votre base de données SQL. À partir de hello **Essentials** section hello de base de données du Panneau de SQL, sélectionnez **afficher les chaînes de connexion de base de données**. À partir de la liste hello qui s’affiche, copiez hello **ADO.NET (authentification SQL)** plus d’informations.
 
-2. Ouvrez l'exemple dans Visual Studio. Dans **l’Explorateur de solutions**, ouvrez le fichier **App.config**, puis recherchez l’entrée suivante :
+2. Ouvrez l’exemple hello dans Visual Studio. À partir de **l’Explorateur de solutions**, ouvrez hello **App.config** de fichiers et recherchez hello entrée suivante :
 
         <add key="SqlAzureConnectionString" value="##TOBEFILLED##" />
 
-    Remplacez la valeur **TOBEFILLED ## ##** par la chaîne de connexion de base de données copiée à l’étape précédente. Remplacez **{your\_username}** et **{your\_password}** par le nom d’utilisateur et le mot de passe d’accès à la base de données.
+    Remplacez hello **TOBEFILLED ## ##** valeur avec la chaîne de connexion de base de données hello copiée à l’étape précédente de hello. Remplacez **{votre\_nom d’utilisateur}** et **{votre\_mot de passe}** avec le nom d’utilisateur hello et le mot de passe pour la base de données hello.
 
-3. Enregistrez et fermez les fichiers.
+3. Enregistrez et fermez les fichiers hello.
 
-## <a name="deploy-the-sample"></a>Déployer l'exemple
+## <a name="deploy-hello-sample"></a>Déployer l’exemple hello
 
-1. Dans **l’Explorateur de solutions**, cliquez avec le bouton droit sur le projet **StormToSQL** et sélectionnez **Envoyer à Storm sur HDInsight**. Sélectionnez le cluster HDInsight dans la liste déroulante **Cluster Storm** de la boîte de dialogue.
+1. À partir de **l’Explorateur de solutions**, avec le bouton hello **StormToSQL** de projet et sélectionnez **envoyer tooStorm sur HDInsight**. Cluster HDInsight de hello SELECT à partir de hello **Cluster Storm** boîte de dialogue de liste déroulante.
 
    > [!NOTE]
-   > L'affichage des noms de serveur dans la liste déroulante **Cluster Storm** peut prendre plusieurs secondes.
+   > Il peut prendre quelques secondes que hello **Cluster Storm** toopopulate de liste déroulante des noms de serveur.
    >
-   > Si vous y êtes invité, entrez les informations d’identification de connexion pour votre abonnement Azure. Si vous disposez de plusieurs abonnements, connectez-vous à celui qui contient votre cluster Storm dans HDInsight.
+   > Si vous y êtes invité, entrez les informations d’identification de connexion hello pour votre abonnement Azure. Si vous avez plusieurs abonnements, connectez-vous toohello qui contient votre Storm sur le cluster HDInsight.
 
-2. Une fois la topologie envoyée, la __Visionneuse de topologies__ apparaît. Pour afficher cette topologie, sélectionnez l’entrée SqlAzureWriterTopology dans la liste.
+2. Lors de la topologie de hello a été envoyée, hello __visionneuse de topologie__ s’affiche. tooview cette topologie, l’entrée de SqlAzureWriterTopology hello select à partir de la liste de hello.
 
-    ![Les topologies, avec la topologie sélectionnée](./media/hdinsight-storm-power-bi-topology/topologyview.png)
+    ![topologies de Hello, avec la topologie hello sélectionné](./media/hdinsight-storm-power-bi-topology/topologyview.png)
 
-    Vous pouvez utiliser cette vue pour afficher des informations sur la topologie. Sinon, double-cliquez sur une entrée (telle que SqlAzureBolt) pour afficher des informations spécifiques à un composant dans la topologie.
+    Vous pouvez utiliser cette toosee afficher des informations sur la topologie de hello ou double-cliquez sur un composant entrée (par exemple hello SqlAzureBolt) toosee informations tooa spécifique dans une topologie de hello.
 
-3. Après quelques minutes d’exécution de la topologie, revenez à la fenêtre de requête SQL utilisée pour créer la base de données. Remplacez les instructions existantes par la requête suivante :
+3. Après avoir hello topologie a exécuté pendant quelques minutes, fenêtre de requête SQL toohello retour vous avez utilisé la base de données toocreate hello. Remplacez les instructions existantes hello hello suivant la requête :
 
         select * from iislogs;
 
-    Utilisez Ctrl+Maj+E pour exécuter la requête. Vous devriez recevoir des résultats similaires aux données suivantes :
+    Utilisez Ctrl + Maj + requête de hello tooexecute E et vous devez réception toohello similaire de résultats données suivantes :
 
         1    2016-05-27 17:57:14.797    255.255.255.255    /bar    GET    200
         2    2016-05-27 17:57:14.843    127.0.0.1    /spam/eggs    POST    500
@@ -116,56 +116,56 @@ Téléchargez l’ [exemple HDInsight C# Storm Power BI](https://github.com/Azur
         5    2016-05-27 17:57:14.853    10.9.8.7    /bar    GET    200
         6    2016-05-27 17:57:14.857    192.168.1.1    /spam    DELETE    200
 
-    Ces données ont été écrites à partir de la topologie Storm.
+    Ces données ont été écrites à partir de la topologie de Storm hello.
 
 ## <a name="create-a-report"></a>Créer un rapport
 
-1. Connectez-vous au [connecteur de base de données SQL Azure](https://app.powerbi.com/getdata/bigdata/azure-sql-database-with-live-connect) pour Power BI. 
+1. Se connecter toohello [connecteur de base de données SQL Azure](https://app.powerbi.com/getdata/bigdata/azure-sql-database-with-live-connect) pour Power BI. 
 
 2. Dans **Databases** (Bases de données), sélectionnez **Get** (Obtenir).
 
 3. Sélectionnez **Azure SQL Database** (Base de données SQL Microsoft Azure), puis sélectionnez **Connect** (Se connecter).
 
     > [!NOTE]
-    > Vous pouvez être invité à télécharger Power BI Desktop pour continuer. Pour ce faire, procédez comme suit pour vous connecter :
+    > Vous pouvez être invité à toodownload hello Power BI Desktop toocontinue. Dans ce cas, utilisez hello suivant les étapes tooconnect :
     >
     > 1. Ouvrez Power BI Desktop et sélectionnez __obtenir les données__.
     > 2 - Sélectionnez __Azure__, puis sélectionnez __Base de données Azure SQL__.
 
-4. Entrez les informations pour vous connecter à votre base de données SQL Microsoft Azure. Vous trouverez ces informations en accédant au [portail Azure](https://portal.azure.com) et en sélectionnant votre base de données SQL.
+4. Entrez hello informations tooconnect tooyour base de données SQL Azure. Vous pouvez trouver ces informations en visitant hello [portail Azure](https://portal.azure.com) et en sélectionnant votre base de données SQL.
 
    > [!NOTE]
-   > Vous pouvez également définir l’intervalle d’actualisation et les filtres personnalisés à l’aide de l’option **Activer les options avancées** de la boîte de dialogue de connexion.
+   > Vous pouvez également définir un intervalle d’actualisation hello et des filtres personnalisés à l’aide de **activer les Options avancées** hello à partir de la boîte de dialogue connexion.
 
-5. Une fois connecté, vous verrez un nouveau jeu de données portant le même nom que la base de données à laquelle vous êtes connecté. Sélectionnez ce jeu de données pour commencer à concevoir un rapport.
+5. Une fois que vous vous êtes connecté, vous verrez un nouveau dataset avec hello que même nom en tant que base de données hello, vous êtes connecté. Sélectionnez toobegin de jeu de données hello conception d’un rapport.
 
-6. Dans **Champs**, développez l’entrée **IISLOGS**. Pour créer un rapport qui répertorie les racines URI, sélectionnez la case à cocher **URISTEM**.
+6. À partir de **champs**, développez hello **IISLOGS** entrée. toocreate provient d’un rapport que listes hello URI, cochez la case hello **URISTEM**.
 
     ![Création d’un rapport](./media/hdinsight-storm-power-bi-topology/createreport.png)
 
-7. Ensuite, faites glisser **METHOD** vers le rapport. Le rapport se met à jour pour répertorier les ressources et la méthode HTTP correspondante utilisée pour la requête HTTP.
+7. Ensuite, faites glisser **méthode** toohello rapport. Bonjour rapport mises à jour toolist Bonjour découle et méthode HTTP correspondante de hello utilisé pour hello requête HTTP.
 
-    ![ajout des données de la méthode](./media/hdinsight-storm-power-bi-topology/uristemandmethod.png)
+    ![Ajout de données de la méthode hello](./media/hdinsight-storm-power-bi-topology/uristemandmethod.png)
 
-8. À partir de la colonne **Visualisations**, sélectionnez l’icône **Champs**, puis sélectionnez la flèche vers le bas en regard de **METHOD** dans la section **Valeurs**. Pour afficher un compteur pour le nombre d’accès à un URI, sélectionnez **Compteur**
+8. À partir de hello **visualisations** colonne, sélectionnez hello **champs** icône, puis sélectionnez hello bas ensuite trop**méthode** Bonjour **valeurs**section. toodisplay a accédé au nombre de combien de fois un URI, sélectionnez **nombre**.
 
-    ![Modification d’un nombre de méthodes](./media/hdinsight-storm-power-bi-topology/count.png)
+    ![Nombre de tooa des méthodes de modification](./media/hdinsight-storm-power-bi-topology/count.png)
 
-9. Ensuite, sélectionnez **Histogramme empilé** pour modifier l’affichage des informations.
+9. Ensuite, sélectionnez hello **empilé** toochange affichage des informations de hello.
 
-    ![Transformation en graphique empilé](./media/hdinsight-storm-power-bi-topology/stackedcolumn.png)
+    ![Modification tooa empilé](./media/hdinsight-storm-power-bi-topology/stackedcolumn.png)
 
-10. Pour enregistrer le rapport, sélectionnez **Enregistrer** et entrez un nom pour le rapport.
+10. rapport de hello toosave, sélectionnez **enregistrer** et entrez un nom pour le rapport de hello.
 
-## <a name="stop-the-topology"></a>Arrêt de la topologie
+## <a name="stop-hello-topology"></a>Arrêter la topologie de hello
 
-La topologie continue de s’exécuter jusqu’à ce qu’elle soit arrêtée ou supprimée du cluster Storm dans HDInsight. Pour arrêter la topologie, procédez comme suit :
+topologie de Hello continue toorun jusqu'à ce que vous l’arrêtez ou supprimez hello Storm sur le cluster HDInsight. toostop hello topologie, effectuer hello comme suit :
 
-1. Dans Visual Studio, retournez dans la Visionneuse de topologies et sélectionnez la topologie.
+1. Dans Visual Studio, renvoyer la visionneuse de topologie toohello et sélectionnez hello topologie.
 
-2. Sélectionnez le bouton **Arrêter** pour arrêter la topologie.
+2. Sélectionnez hello **Kill** topologie de bouton toostop hello.
 
-    ![Bouton Arrêter dans le résumé de la topologie](./media/hdinsight-storm-power-bi-topology/killtopology.png)
+    ![Kill sur la topologie hello résumé bouton](./media/hdinsight-storm-power-bi-topology/killtopology.png)
 
 ## <a name="delete-your-cluster"></a>Supprimer votre cluster
 
@@ -173,6 +173,6 @@ La topologie continue de s’exécuter jusqu’à ce qu’elle soit arrêtée ou
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Dans ce document, vous avez appris à envoyer des données d’une topologie Storm vers une base de données SQL, puis à visualiser les données à l’aide de Power BI. Pour plus d’informations sur l’utilisation des autres technologies Azure à l’aide de Storm dans HDInsight, consultez le document suivant :
+Dans ce document, vous avez appris comment le toosend des données à partir d’un tooSQL de topologie tempête de base de données, puis pour visualiser les données hello à l’aide de Power BI. Pour plus d’informations sur la façon de toowork avec d’autres technologies Azure à l’aide de Storm sur HDInsight, consultez hello suivant du document :
 
 * [Exemples de topologies pour Storm dans HDInsight](hdinsight-storm-example-topology.md)

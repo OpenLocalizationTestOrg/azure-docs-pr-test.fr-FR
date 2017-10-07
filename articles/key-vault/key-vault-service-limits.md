@@ -1,6 +1,6 @@
 ---
-title: Limites du service pour Azure Key Vault | Microsoft Docs
-description: "En savoir plus sur les limites du service pour le coffre de clés Azure"
+title: "Limites de Service de coffre de clé d’aaaAzure | Documents Microsoft"
+description: En savoir plus sur les limites de service hello pour Azure Key Vault.
 documentationcenter: dev-center-name
 services: key-vault
 author: cabailey
@@ -14,14 +14,14 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 07/05/2017
 ms.author: ambapat
-ms.openlocfilehash: b34c67ecc1bd50157ded790948ac7b88a5807ddb
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ebd78281f2428790486c928e5a6415cf479a6439
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-key-vault-service-limits"></a>Limites du service Azure Key Vault
-Ce sont les limites du service pour Azure Key Vault.
+Voici les limites de service hello pour Azure Key Vault.
 
 [!INCLUDE [key-vault-limits](../../includes/key-vault-limits.md)]
 

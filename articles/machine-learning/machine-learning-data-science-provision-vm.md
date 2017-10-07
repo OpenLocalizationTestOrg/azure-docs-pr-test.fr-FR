@@ -1,5 +1,5 @@
 ---
-title: "Approvisionnement d’une machine virtuelle pour la science des données Microsoft | Microsoft Docs"
+title: "aaaProvision hello Machine virtuelle de science des données Microsoft | Documents Microsoft"
 description: "Configurez et créez une machine virtuelle pour la science des données sur Microsoft Azure pour vos besoins d’analyse et d’apprentissage automatique."
 services: machine-learning
 documentationcenter: 
@@ -13,14 +13,14 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/21/2017
 ms.author: bradsev
-ms.openlocfilehash: 76cd54cd234dfe43e8f0d61f0b66f0ed0c09e8b7
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 907a3bdc7e480d05e8e245f5e50d632900fcf471
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="provision-the-microsoft-data-science-virtual-machine"></a>Approvisionnement d’une machine virtuelle pour la science des données
-La machine virtuelle pour la science des données Microsoft est une image de machine virtuelle Windows Azure préalablement installée et configurée avec plusieurs outils populaires couramment utilisés dans le cadre de l’analyse de données et de l’apprentissage automatique. Elle intègre les outils suivants :
+# <a name="provision-hello-microsoft-data-science-virtual-machine"></a>Hello d’approvisionner la Machine virtuelle pour la science des données Microsoft
+Hello Machine virtuelle de science des données Microsoft est une image de machine virtuelle (VM) de Windows Azure préalablement installé et configuré avec plusieurs outils courants qui sont couramment utilisées pour l’analytique des données et l’apprentissage. outils Hello inclus sont :
 
 * Microsoft R Server Developer Edition
 * Distribution Anaconda Python
@@ -32,154 +32,154 @@ La machine virtuelle pour la science des données Microsoft est une image de mac
   * [Computational Network Toolkit (CNTK)](https://github.com/Microsoft/CNTK): kit de ressources logicielles d’apprentissage approfondi de Microsoft Research.
   * [Vowpal Wabbit](https://github.com/JohnLangford/vowpal_wabbit): système de Machine Learning rapide prenant en charge des techniques (apprentissage en ligne, hachage, allreduce, réductions, learning2search, actif et interactif).
   * [XGBoost](https://xgboost.readthedocs.org/en/latest/): outil offrant une implémentation rapide et précise des arborescences optimisées.
-  * [Rattle (R Analytical Tool To Learn Easily)](http://rattle.togaware.com/) : outil qui facilite la prise en main de l’analyse des données et du Machine Learning dans R avec une exploration des données basée sur une interface graphique utilisateur et une modélisation utilisant la génération automatique de code R.
+  * [Vibrer](http://rattle.togaware.com/) (hello facilement l’outil d’analyse R tooLearn) : un outil qui facilite la prise en main de l’analytique des données et de la machine learning dans R facile, avec l’exploration de données basées sur une interface graphique utilisateur et de modélisation avec la génération de code automatique R.
   * [mxnet](https://github.com/dmlc/mxnet): infrastructure de formation approfondie conçue pour offrir efficacité et flexibilité.
   * [Weka](http://www.cs.waikato.ac.nz/ml/weka/) : logiciel Machine Learning et d’exploration des données visuelle dans Java.
-  * [Apache Drill](https://drill.apache.org/) : moteur de requêtes SQL sans schéma pour Hadoop, NoSQL et le stockage cloud.  Prend en charge les interfaces ODBC et JDBC pour activer l’interrogation de NoSQL et des fichiers à partir d’outils décisionnels standard tels que Power BI, Excel, Tableau.
+  * [Apache Drill](https://drill.apache.org/) : moteur de requêtes SQL sans schéma pour Hadoop, NoSQL et le stockage cloud.  Prend en charge d’ODBC et JDBC tooenable interfaces interrogation NoSQL et fichiers à partir des Outils BI standard tels que Power BI, Excel, Tableau.
 * Bibliothèques dans les langages R et Python à utiliser dans Azure Machine Learning et d’autres services Azure
-* Git incluant Git Bash pour travailler avec les référentiels de code source, notamment GitHub, Visual Studio Team Services
+* GIT, notamment l’interpréteur de commandes Git toowork avec les référentiels de code source, notamment GitHub, Visual Studio Team Services
 * Ports Windows de plusieurs utilitaires de ligne de commande Linux populaires (notamment awk, sed, perl, grep, find, wget, curl, etc.) accessibles via l’invite de commandes. 
 
 La science des données consiste à itérer sur une séquence de tâches :
 
 1. Recherche, chargement et traitement des données
 2. Création et test des modèles
-3. Déploiement des modèles à des fins d’utilisation dans des applications intelligentes
+3. Déploiement de modèles hello pour l’utilisation dans des applications intelligentes
 
-Les scientifiques de données utilisent différents outils pour effectuer ces tâches. La recherche des versions adéquates des logiciels, puis leur téléchargement et leur installation peuvent prendre un certain temps. La machine virtuelle pour la science des données Microsoft peut faciliter cette tâche en fournissant une image prête à l’emploi qui peut être approvisionnée sur Azure avec tous les outils populaires préalablement installés et configurés. 
+Les chercheurs de données utilisent divers outils toocomplete ces tâches. Il peut s’agir de toofind beaucoup de temps hello des versions appropriées des logiciels de hello, puis téléchargez et les installer. Hello Machine virtuelle de science des données Microsoft peut faciliter ce fardeau en fournissant une image prêt à l’emploi qui peut être configurée sur Azure avec tous les outils courants plusieurs préalablement installé et configuré. 
 
-Le renvoi de la machine virtuelle pour la science des données démarre votre projet d’analyse. Elle vous permet de travailler sur des tâches basées sur différents langages, notamment R, Python, SQL et C#. Visual Studio propose un IDE qui vous permet de développer et tester très simplement votre code. Le SDK Azure inclus dans la machine virtuelle vous permet de créer des applications à l’aide de divers services disponibles sur la plateforme cloud de Microsoft. 
+Hello Machine virtuelle de science des données Microsoft élan à votre projet analytique. Il vous permet de toowork sur des tâches dans plusieurs langues, y compris R, Python, SQL et c#. Visual Studio fournit un toodevelop IDE et tester votre code est toouse facile. Bonjour Azure SDK inclus dans hello machine virtuelle vous permet de toobuild vos applications à l’aide de divers services de plateforme cloud de Microsoft. 
 
-Cette image de machine virtuelle de science des données ne génère pas de frais. Vous payez uniquement les frais d’utilisation Azure en fonction de la taille de la machine virtuelle approvisionnée. Vous trouverez plus d’informations sur les frais de calcul dans la section sur les détails de tarification de la page [Data Science Virtual Machine](https://azure.microsoft.com/marketplace/partners/microsoft-ads/standard-data-science-vm/) (Machine virtuelle pour la science des données). 
+Cette image de machine virtuelle de science des données ne génère pas de frais. Vous ne payez que pour les frais d’utilisation d’Azure hello qui dépendent de la taille hello de machine virtuelle de hello que vous configurez. Plus de détails sur hello calcul frais sont accessibles dans la section de détails de tarification sur hello de hello [Machine virtuelle de science des données](https://azure.microsoft.com/marketplace/partners/microsoft-ads/standard-data-science-vm/) page. 
 
-## <a name="other-versions-of-the-data-science-virtual-machine"></a>Autres versions de la machine virtuelle pour la science des données
-Une image [CentOS](machine-learning-data-science-linux-dsvm-intro.md) est également disponible avec la plupart des même outils que l’image Windows. Une image [Ubuntu](machine-learning-data-science-dsvm-ubuntu-intro.md) est également disponible, avec de nombreux outils similaires et des cadres de formation approfondis.
+## <a name="other-versions-of-hello-data-science-virtual-machine"></a>Autres Versions de hello Machine virtuelle de science des données
+A [CentOS](machine-learning-data-science-linux-dsvm-intro.md) image est également disponible, avec la plupart des hello des mêmes outils que hello image système Windows. Une image [Ubuntu](machine-learning-data-science-dsvm-ubuntu-intro.md) est également disponible, avec de nombreux outils similaires et des cadres de formation approfondis.
 
 ## <a name="prerequisites"></a>Composants requis
-Avant de pouvoir créer une machine virtuelle de science des données Microsoft, vous devez disposer des éléments suivants :
+Avant de pouvoir créer une Machine virtuelle de science des données Microsoft, vous devez disposer de hello :
 
-* **Un abonnement Azure**: pour obtenir un abonnement, consultez la page [Obtenir une version d’évaluation gratuite d’Azure](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/).
-* **Un compte de stockage Azure**: pour en créer un, consultez la page [Créer un compte de stockage Azure](../storage/common/storage-create-storage-account.md#create-a-storage-account). Le compte de stockage peut également être créé dans le cadre du processus de création de la machine virtuelle si vous ne souhaitez pas utiliser de compte existant.
+* **Un abonnement Azure**: voir d’un seul, tooobtain [version d’évaluation gratuite de Azure d’obtenir](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/).
+* **Un compte de stockage Azure**: voir d’un seul, toocreate [créer un compte de stockage Azure](../storage/common/storage-create-storage-account.md#create-a-storage-account). Vous pouvez également compte de stockage hello peut être créé dans le cadre du processus de hello de création hello machine virtuelle si vous ne souhaitez pas toouse un compte existant.
 
 ## <a name="create-your-microsoft-data-science-virtual-machine"></a>Création d’une machine virtuelle pour la science des données
-Voici les étapes de création d’une instance de la machine virtuelle de sciences des données :
+Voici une instance de Machine virtuelle de science des données Microsoft de hello hello étapes toocreate :
 
-1. Accédez à la liste des machines virtuelles présentes sur le [portail Azure](https://portal.azure.com/#create/microsoft-ads.standard-data-science-vmstandard-data-science-vm).
-2. Sélectionnez le bouton **Créer** au bas de l’écran pour accéder à un Assistant.![configure-data-science-vm](./media/machine-learning-data-science-provision-vm/configure-data-science-virtual-machine.png)
-3. L’Assistant utilisé pour créer la machine virtuelle pour la science des données Microsoft nécessite les **entrées** de chacune des **cinq étapes** énumérées à droite de cette figure. Voici les entrées nécessaires à la configuration de chacune de ces étapes :
+1. Accédez de machine virtuelle de toohello liste sur [portail Azure](https://portal.azure.com/#create/microsoft-ads.standard-data-science-vmstandard-data-science-vm).
+2. Sélectionnez hello **créer** bouton en hello bas toobe est effectuée dans un Assistant.![ configurer les données-science-machine virtuelle](./media/machine-learning-data-science-provision-vm/configure-data-science-virtual-machine.png)
+3. Hello Assistant utilisé toocreate hello requiert de la Machine virtuelle de science des données Microsoft **entrées** pour chacun des hello **cinq étapes** énuméré sur hello à droite de cette illustration. Voici hello entrées nécessitées tooconfigure chaque de ces étapes :
    
    1. **Concepts de base**
       
       1. **Name**(Nom) : nom du serveur Data Science que vous créez.
       2. **Nom d’utilisateur**: identifiant de connexion du compte administrateur.
       3. **Mot de passe**: mot de passe du compte administrateur.
-      4. **Subscription**(Abonnement) : si vous disposez de plusieurs abonnements, sélectionnez celui qui sera associé à la création et à la facturation de la machine.
+      4. **Abonnement**: Si vous avez plusieurs abonnements, sélectionnez hello sur quel hello machine est toobe créées et facturées.
       5. **Resource Group**(Groupe de ressources) : vous pouvez créer un nouveau groupe ou utiliser un groupe existant.
-      6. **Location**(Emplacement) : sélectionnez le centre de données qui convient le mieux. Généralement, il s’agit du centre de données qui héberge la plupart de vos données ou du centre de données le plus proche de votre emplacement physique afin d’accélérer l’accès au réseau
-   2. **Taille**: sélectionnez l’un des types de serveur qui répond à vos exigences fonctionnelles et à vos contraintes de coût. Sélectionnez « Afficher tout » pour obtenir d’autres choix de tailles de machines virtuelles
+      6. **Emplacement**: centre de données Sélectionnez hello qui convient le mieux. Il est généralement de centre de données hello qui comporte une grande partie de vos données ou qui est le plus proche emplacement physique tooyour pour l’accès réseau plus rapide.
+   2. **Taille**: sélectionnez un des types de serveur hello qui répond à vos exigences fonctionnelles et les contraintes liées au coût. Sélectionnez « Afficher tout » pour obtenir d’autres choix de tailles de machines virtuelles
    3. **Paramètres**:
       
       1. **Type de disque** : choisissez Premium si vous préférez un disque SSD. Sinon, choisissez « Standard ».
-      2. **Compte de stockage** : vous pouvez créer un compte de stockage Azure associé à votre abonnement ou utiliser un compte existant au même *emplacement* que celui que vous avez sélectionné à l’étape de définition des **Paramètres de base** de l’Assistant.
-      3. **Autres paramètres**: généralement, vous utilisez simplement la valeur par défaut. Si vous ne souhaitez pas utiliser les valeurs par défaut, vous pouvez survoler le lien d'informations pour obtenir de l'aide sur des champs spécifiques.
+      2. **Compte de stockage**: vous pouvez créer un nouveau compte de stockage Azure dans votre abonnement ou utilisez-en un existant Bonjour même *emplacement* qui a été choisie sur hello **notions de base** étape de l’Assistant de hello.
+      3. **Autres paramètres**: vous utilisez généralement simplement des valeurs par défaut de hello. Vous pouvez pointer sur le lien informatif a hello pour une aide sur les champs spécifiques hello au cas où vous souhaiteriez utiliser hello tooconsider les valeurs par défaut.
    4. **Résumé**: vérifiez que toutes les informations que vous avez saisies sont correctes.
-   5. **Acheter** : cliquez sur **Acheter** pour démarrer l’approvisionnement. Les conditions de la transaction vous sont communiquées via un lien. La machine virtuelle n'est pas assortie de frais supplémentaires au-delà du calcul de la taille de serveur que vous avez choisie à l'étape **Taille** . 
+   5. **Acheter**: cliquez sur **acheter** toostart l’approvisionnement hello. Un lien est fourni toohello les termes du contrat de transaction de hello. Hello machine virtuelle n’a pas de tous les frais supplémentaires au-delà de calcul hello pour la taille du serveur hello choisis Bonjour **taille** étape. 
 
 > [!NOTE]
-> L’approvisionnement prend environ 10 à 20 minutes. L’état de l’approvisionnement est affiché sur le portail Azure.
+> l’approvisionnement Hello doit prendre environ 10 à 20 minutes. état de Hello hello provisionnement est affiché sur hello portail Azure.
 > 
 > 
 
-## <a name="how-to-access-the-microsoft-data-science-virtual-machine"></a>Accès à une machine virtuelle pour la science des données
-Une fois la machine virtuelle créée, vous pouvez vous y connecter à l’aide du bureau distant en utilisant les informations d’identification du compte administrateur que vous avez configurées dans la section **Paramètres de base** précédente. 
+## <a name="how-tooaccess-hello-microsoft-data-science-virtual-machine"></a>Comment tooaccess hello Machine virtuelle de science des données Microsoft
+Une fois hello machine virtuelle est créée, vous pouvez Bureau à distance à l’aide de hello Admin informations d’identification que vous avez configuré dans hello précédent **notions de base** section. 
 
-Une fois votre machine virtuelle créée et approvisionnée, vous pouvez commencer à utiliser les outils qui y sont installés et configurés. Pour la plupart des outils, vous disposez d'icônes de bureau et de vignettes dans le menu de démarrage. 
+Une fois que votre machine virtuelle est créée et configurée, vous êtes prêt toostart à l’aide des outils hello qui sont installés et configurés sur celui-ci. Il existe des icônes pour un grand nombre des outils de hello et mosaïques du menu Démarrer. 
 
-## <a name="how-to-create-a-strong-password-for-jupyter-and-start-the-notebook-server"></a>Création d’un mot de passe fort pour Jupyter et démarrage du serveur Notebook
-Par défaut, le serveur Jupyter Notebook est préconfiguré mais désactivé sur la machine virtuelle jusqu’à ce que vous définissiez un mot de passe Jupyter. Pour créer un mot de passe fort pour le serveur Jupyter Notebook installé sur l’ordinateur, exécutez la commande suivante à partir d’une invite de commandes sur la machine virtuelle pour la science des données OU double-cliquez sur le raccourci du bureau que nous vous avons fourni appelé **Jupyter Set Password & Start** (Définir le mot de passe Jupyter et démarrer) à partir d’un compte d’administrateur de machine virtuelle local.
+## <a name="how-toocreate-a-strong-password-for-jupyter-and-start-hello-notebook-server"></a>Comment toocreate un mot de passe fort pour le bloc-notes et démarrer hello server de l’ordinateur portable
+Par défaut, serveur de jupyter Notebook hello est préconfiguré mais désactivé sur hello machine virtuelle jusqu'à ce que vous définissez un mot de passe disponible. exécution hello suivant de commande à partir d’une invite de commandes sur hello données Science Machine virtuelle ou double-cliquez sur raccourci du bureau hello que nous vous avons fourni de toocreate un mot de passe fort pour serveur de jupyter Notebook hello installé sur l’ordinateur de hello, appelé  **Notebook définir le mot de passe & début** à partir d’un compte d’administrateur local de machine virtuelle.
 
     C:\dsvm\tools\setup\JupyterSetPasswordAndStart.cmd
 
-Suivez les messages et à l’invite, choisissez un mot de passe fort.
+Suivez les messages de type hello et choisissez un mot de passe lorsque vous y êtes invité.
 
-Le script qui précède crée un hachage de mot de passe et le stocke dans le fichier de configuration Jupyter situé dans : **C:\ProgramData\jupyter\jupyter_notebook_config.py** sous le nom de paramètre ***c.NotebookApp.password***.
+Hello script précédent crée un hachage de mot de passe et le magasin dans le fichier de configuration hello Notebook situé à : **C:\ProgramData\jupyter\jupyter_notebook_config.py** sous le nom du paramètre hello ***c. NotebookApp.password***.
 
-En outre, le script active et exécute le serveur Jupyter en arrière-plan. Le serveur Jupyter est créé en tant que tâche Windows dans le Planificateur de tâches Windows appelé **Start_IPython_Notebook**.  Après la définition du mot de passe, vous devrez peut-être attendre quelques secondes avant d’ouvrir le notebook dans votre navigateur. Consultez la section ci-dessous intitulée **Jupyter Notebook** sur la façon d’accéder au serveur Jupyter Notebook. 
+script de Hello permet également et s’exécutent de serveur de Notebook hello en arrière-plan de hello. Notebook serveur est créée comme une tâche windows Bonjour Planificateur de tâches WIndows appelé **Start_IPython_Notebook**.  Vous avez peut-être toowait pendant quelques secondes après avoir défini un mot de passe hello avant d’ouvrir le bloc-notes hello sur votre navigateur. Consultez la section hello ci-dessous intitulée **bloc-notes Jupyter** sur la façon dont tooaccess hello serveur jupyter Notebook. 
 
 
-## <a name="tools-installed-on-the-microsoft-data-science-virtual-machine"></a>Outils installés sur la machine virtuelle de science des données
+## <a name="tools-installed-on-hello-microsoft-data-science-virtual-machine"></a>Outils installés sur hello Machine virtuelle de science des données Microsoft
 
 ### <a name="microsoft-r-server-developer-edition"></a>Microsoft R Server Developer Edition
-Si vous souhaitez utiliser R pour votre analyse, Microsoft R Server Developer Edition est installé sur la machine virtuelle. Microsoft R Server est une plateforme d’analyse d’entreprise basée sur R, prise en charge, extensible et sécurisée, que vous pouvez largement déployer. Prenant en charge les statistiques Big Data, la modélisation prédictive et des fonctionnalités Machine Learning, R Server prend en charge la totalité de l’analyse : exploration, analyse, visualisation et modélisation. En utilisant et en étendant R Open Source, Microsoft R Server est entièrement compatible avec les scripts, les fonctions et les packages CRAN R pour analyser les données à l'échelle de l'entreprise. Il traite également les limitations en mémoire de R Open Source en ajoutant le traitement des données en parallèle et mémorisé en bloc. Cela vous permet d’exécuter des analyses de données plus volumineuses que ce que peut contenir la mémoire principale.  Visual Studio Community Edition inclus sur la machine virtuelle contient les outils R pour l’extension Visual Studio qui fournit un IDE complet pour travailler avec R. Vous pouvez également télécharger et utiliser d’autres IDE, comme par exemple [RStudio](http://www.rstudio.com). 
+Si vous le souhaitez toouse R pour vos analytique, hello machine virtuelle a édition développeur Microsoft R Server installée. Microsoft R Server est une plateforme d’analyse d’entreprise basée sur R, prise en charge, extensible et sécurisée, que vous pouvez largement déployer. Prise en charge des statistiques des données volumineuses, modélisation prédictive et capacités d’apprentissage, R Server prend en charge hello complète d’analytique – exploration, analyse, visualisation et modélisation. En utilisant et en étendant R open source, Microsoft R Server est entièrement compatible avec les scripts R, des fonctions et des packages CRAN, tooanalyze des données à l’échelle de l’entreprise. Il traite également les limitations de mémoire de hello Open Source r en ajoutant des parallèles et segmenté de traitement des données. Cela vous permet d’analytique toorun sur des données plus volumineuses que tout ce qui tient dans la mémoire principale.  Visual Studio Community Edition est inclus sur hello que machine virtuelle contient hello R Tools pour extension Visual Studio qui fournit un IDE complète pour l’utilisation de R. Vous pouvez également télécharger et utiliser ainsi comme les autres environnements IDE [RStudio](http://www.rstudio.com). 
 
 ### <a name="python"></a>Python
-Pour un développement basé sur Python, les versions 2.7 et 3.5 de la distribution Anaconda Python ont été installées. Cette distribution contient le langage Python de base avec environ 300 packages de mathématiques, d’ingénierie et d’analyse de données figurant parmi les plus populaires. Vous pouvez utiliser les outils Python pour Visual Studio (PTVS) installés dans l’édition Visual Studio 2015 Community ou l’un des IDE fournis avec Anaconda comme IDLE ou Spyder. Pour lancer l’un de ces IDE, vous pouvez effectuer une recherche dans la barre de recherche (**Win** + **S**).
+Pour un développement basé sur Python, les versions 2.7 et 3.5 de la distribution Anaconda Python ont été installées. Cette distribution contient hello Python avec environ 300 de hello packages plus populaires mathématiques, engineering et données analytique de base. Vous pouvez utiliser les outils Python pour les commandes Visual les Studio (PTVS) qui est installée dans l’édition de Visual Studio Community 2015 hello ou l’un des hello Qu'ide fourni avec Anaconda comme inactif ou Spyder. Vous pouvez lancer une recherche sur la barre de recherche hello (**Win** + **S** clé).
 
 > [!NOTE]
-> Pour pointer les Python Tools pour Visual Studio sur Anaconda Python 2.7 et 3.5, vous devez créer des environnements personnalisés pour chaque version. Pour définir les chemins d’accès à ces environnements dans Visual Studio 2015 Community Edition, accédez à **Outils** -> **Outils Python** -> **Environnements Python**, puis cliquez sur **+ personnalisé**. 
+> toopoint hello outils Python pour Visual Studio au Anaconda Python 2.7 et 3.5, vous devez toocreate des environnements personnalisés pour chaque version. tooset ces chemins d’accès de l’environnement Bonjour Visual Studio 2015 Community Edition, accédez trop**outils** -> **outils Python** -> **desenvironnementsPython** puis cliquez sur **+ personnalisé**. 
 > 
 > 
 
 Anaconda Python 2.7 est installé sous C:\Anaconda et Anaconda Python 3.5 est installé sous c:\Anaconda\envs\py35. Pour obtenir des instructions détaillées, consultez la [documentation de PTVS](https://github.com/Microsoft/PTVS/wiki/Selecting-and-Installing-Python-Interpreters#hey-i-already-have-an-interpreter-on-my-machine-but-ptvs-doesnt-seem-to-know-about-it) . 
 
 ### <a name="jupyter-notebook"></a>Jupyter Notebook
-La distribution Anaconda est également fournie avec un serveur Jupyter Notebook, un environnement conçu pour le partage de code et d’analyses. Un serveur Jupyter Notebook a été préconfiguré avec Python 2.7, Python 3.4, Python 3.5 et les noyaux R. Une icône de bureau nommée « Jupyter Notebook » permet de lancer le navigateur pour accéder au serveur. Si vous accédez à la machine virtuelle par le biais du bureau à distance, vous pouvez également utiliser l’URL [https://localhost:9999/](https://localhost:9999/) pour accéder au serveur Jupyter Notebook lorsque vous êtes connecté à la machine virtuelle.
+Distribution anaconda est également fourni avec un bloc-notes jupyter, un environnement de code tooshare et l’analyse. Un serveur Jupyter Notebook a été préconfiguré avec Python 2.7, Python 3.4, Python 3.5 et les noyaux R. Une icône de bureau nommé « bloc-notes Jupyter toolaunch hello navigateur tooaccess hello server de l’ordinateur portable. Si vous êtes sur hello machine virtuelle via le Bureau à distance, vous pouvez également consulter [https://localhost:9999 /](https://localhost:9999/) tooaccess hello serveur de jupyter Notebook lorsque connecté toohello machine virtuelle.
 
 > [!NOTE]
 > Si vous recevez des avertissements relatifs au certificat, vous pouvez les ignorer. 
 > 
 > 
 
-Nous avons inclus plusieurs exemples de notebooks dans Python et R. Les exemples Jupyter Notebook vous montrent comment travailler avec Microsoft R Server, SQL Server 2016 R Services (analyse dans la base de données), Python, Microsoft Cognitive ToolKit (CNTK) pour un apprentissage approfondi et d’autres technologies Azure, lorsque vous vous connectez à Jupyter. Après vous être authentifié auprès du serveur Jupyter Notebook avec le mot de passe créé à l’étape précédente, vous pouvez voir le lien vers les exemples sur la page d’accueil du notebook. 
+Nous avons inclus dans le package plusieurs exemples d’agendas dans Python et dans R. hello comment afficher des ordinateurs portables Notebook toowork Microsoft R Server, SQL Server 2016 R Services (analytique dans base de données), Python, Microsoft cognitifs ToolKit (CNTK) pour en savoir plus approfondie et autres Azure une fois que vous vous connectez tooJupyter les technologies. Vous pouvez voir des exemples de toohello hello lien sur la page d’accueil hello bloc-notes après que vous être authentifié à l’aide du mot de passe hello créé dans une étape antérieure de toohello bloc-notes jupyter. 
 
 ### <a name="visual-studio-2015-community-edition"></a>Visual Studio 2015 Community Edition
-Visual Studio Community Edition est installé sur la machine virtuelle. Vous pouvez utiliser cette version gratuite de l’IDE populaire de Microsoft à des fins d’évaluation et dans le cadre de projets en petites équipes. Vous pouvez consulter les termes du contrat de licence [ici](https://www.visualstudio.com/support/legal/mt171547).  Ouvrez Visual Studio en double-cliquant sur l’icône du bureau ou via le menu **Démarrer** . Vous pouvez également lancer une recherche de programmes avec **Win** + **S** et en entrant « Visual Studio ». Là, vous pouvez créer des projets dans des langages tels que C#, Python, R, node.js. Des plug-ins sont également installés pour faciliter l’utilisation des services Azure tels que Azure Data Catalog, Azure HDInsight (Hadoop, Spark) et Azure Data Lake. 
+Visual Studio Community edition doit être installée sur la machine virtuelle de hello. Il s’agit d’une version gratuite de hello populaires IDE de Microsoft, vous pouvez utiliser à des fins d’évaluation et des petites équipes. Vous pouvez extraire des termes du contrat de licence de hello [ici](https://www.visualstudio.com/support/legal/mt171547).  Ouvrez Visual Studio en double-cliquant sur l’icône du bureau hello ou hello **Démarrer** menu. Vous pouvez également lancer une recherche de programmes avec **Win** + **S** et en entrant « Visual Studio ». Là, vous pouvez créer des projets dans des langages tels que C#, Python, R, node.js. Plug-ins sont également installés qui la rendent toowork pratique avec les services Azure, Azure Data Catalog, Azure HDInsight (Hadoop, Spark) et Azure Data Lake. 
 
 > [!NOTE]
-> Il est possible que vous receviez un message indiquant que votre période d’évaluation a expiré. Saisissez vos informations d’identification de compte Microsoft ou créez un compte gratuit pour accéder à Visual Studio Community Edition. 
+> Il est possible que vous receviez un message indiquant que votre période d’évaluation a expiré. Entrez vos informations d’identification de compte Microsoft ou créer un nouveau compte gratuit tooget accès toohello Visual Studio Community Edition. 
 > 
 > 
 
 ### <a name="sql-server-2016-developer-edition"></a>SQL Server 2016 Developer Edition
-Une version de développement de SQL Server 2016 avec R Services pour exécuter l’analyse dans la base de données est fournie sur la machine virtuelle. R Services fournit une plateforme pour développer et déployer des applications intelligentes. Pour créer des modèles et générer des prédictions à l’aide de vos données SQL Server, vous pouvez utiliser le langage R riche et puissant, et les nombreux packages issus de la Communauté. Vous pouvez conserver les analyses à proximité des données, car R Services (dans la base de données) intègre le langage R à SQL Server. Cela élimine les coûts et les risques de sécurité liés au déplacement des données.
+Une version développeur de SQL Server 2016 avec analytique de R Services toorun dans base de données est fournie sur hello machine virtuelle. R Services fournit une plateforme pour développer et déployer des applications intelligentes. Vous pouvez utiliser hello riche et puissant langage R et hello de nombreux packages à partir de modèles de toocreate Communauté hello et générer des prédictions pour vos données de SQL Server. Vous pouvez conserver des données de fermer toohello analytique car R Services (de-de base de données) intégrer le langage de hello R avec SQL Server. Cela élimine les coûts de hello et les risques de sécurité liés au déplacement des données.
 
 > [!NOTE]
-> L’édition développeur de SQL Server 2016 peut uniquement être utilisée à des fins de test et de développement. Vous devez posséder une licence pour l’exécuter en production. 
+> Hello SQL Server 2016 developer edition peut uniquement être utilisé pour le développement et à des fins de test. Vous avez besoin d’une licence toorun dans la production. 
 > 
 > 
 
-Vous pouvez accéder à SQL Server en lançant **SQL Server Management Studio**. Le nom de votre machine virtuelle est celui du serveur. Utilisez l’authentification Windows une fois connecté à Windows en tant qu’administrateur. Dans SQL Server Management Studio, vous pouvez créer d’autres utilisateurs, créer des bases de données, importer des données et exécuter des requêtes SQL. 
+Vous pouvez accéder à SQL server de hello en lançant **SQL Server Management Studio**. Le nom de votre machine virtuelle est rempli comme hello nom du serveur. Utilisez l’authentification Windows lorsque connecté tant qu’hello admin sur Windows. Dans SQL Server Management Studio, vous pouvez créer d’autres utilisateurs, créer des bases de données, importer des données et exécuter des requêtes SQL. 
 
-Pour activer l’analyse dans la base de données à l’aide de Microsoft R, exécutez la commande suivante en tant qu’action unique dans SQL Server Management Studio après vous être connecté en tant qu’administrateur du serveur. 
+analytique tooenable dans base de données à l’aide de Microsoft R, exécutez hello suivant de commande en tant qu’une fois l’action dans SQL Server management studio une fois connecté en tant qu’administrateur de serveur hello. 
 
         CREATE LOGIN [%COMPUTERNAME%\SQLRUserGroup] FROM WINDOWS 
 
-        (Please replace the %COMPUTERNAME% with your VM name)
+        (Please replace hello %COMPUTERNAME% with your VM name)
 
 
 ### <a name="azure"></a>Microsoft Azure
-Plusieurs outils Azure sont installés sur la machine virtuelle :
+Plusieurs outils Azure sont installés sur hello machine virtuelle :
 
-* Il existe un raccourci bureau pour accéder à la documentation du Kit de développement logiciel (SDK) Azure. 
-* **AzCopy**: permet de déplacer des données vers et à partir de votre compte de stockage Microsoft Azure. Il suffit de taper **Azcopy** dans une invite de commandes pour afficher l’utilisation. 
-* **Explorateur de stockage Microsoft Azure**: permet de parcourir les objets que vous avez stockés dans votre compte de stockage Azure et de transférer des données vers et à partir du stockage Azure. Vous pouvez taper **Explorateur de stockage** dans la recherche ou utiliser le menu Démarrer de Windows pour accéder à cet outil. 
-* **Adlcopy**: permet de déplacer des données vers Azure Data Lake. Il suffit de taper **adlcopy** dans une invite de commandes pour afficher l’utilisation. 
-* **dtui** : permet de déplacer des données en direction et en provenance d’Azure Cosmos DB, une base de données NoSQL sur le cloud. Il suffit de taper **dtui** dans une invite de commandes. 
+* Il existe un raccourci sur le bureau de tooaccess documentation du Kit de développement logiciel Azure hello. 
+* **AzCopy**: utilisé toomove des données vers et depuis votre compte de stockage Microsoft Azure. utilisation de toosee, type **Azcopy** à une utilisation de l’invite de commandes toosee hello. 
+* **Microsoft Azure Storage Explorer**: utilisé toobrowse par le biais des objets hello que vous avez stocké dans votre tooand des données de compte de stockage Azure et de transfert à partir du stockage Azure. Vous pouvez taper **Explorateur de stockage** dans la recherche ou de recherche sur hello tooaccess de menu Windows Démarrer cet outil. 
+* **Adlcopy**: utilisé toomove données tooAzure Data Lake. utilisation de toosee, type **adlcopy** dans une invite de commandes. 
+* **dtui**: utilisé tooand de données toomove à partir d’Azure Cosmos DB, une base de données NoSQL sur le cloud de hello. Il suffit de taper **dtui** dans une invite de commandes. 
 * **Passerelle de gestion des données de Microsoft** : permet le déplacement des données entre des sources de données locales et le cloud. Elle est utilisée dans les outils tels que Azure Data Factory. 
-* **Microsoft Azure PowerShell** : un outil qui permet de gérer vos ressources Azure dans le langage de script PowerShell est également installé sur votre machine virtuelle. 
+* **Microsoft Azure Powershell**: utiliser un outil tooadminister vos ressources Azure Bonjour Powershell langage de script est également installé sur votre machine virtuelle. 
 
 ### <a name="power-bi"></a>Power BI
-**Power BI Desktop** a été installé pour vous aider à créer des tableaux de bord et des visualisations attrayantes. Utilisez cet outil pour extraire des données de différentes sources, créer vos tableaux de bord et vos rapports, puis les publier sur le cloud. Pour plus d'informations, consultez le site de [Power BI](http://powerbi.microsoft.com) . Vous pouvez trouver le bureau Power BI dans le menu Démarrer. 
+toohelp vous générez des tableaux de bord et visualisations excellentes, hello **Power BI Desktop** a été installé. Utilisez ces données de toopull outil à partir de différentes sources, tooauthor vos tableaux de bord, rapports et toopublish les toohello cloud. Pour plus d’informations, consultez hello [Power BI](http://powerbi.microsoft.com) site. Vous pouvez trouver Power BI desktop sur le menu Démarrer de hello. 
 
 > [!NOTE]
-> Vous devez disposer d’un compte Office 365 pour accéder à Power BI. 
+> Vous avez besoin d’un tooaccess de compte Office 365 Power BI. 
 > 
 > 
 
 ## <a name="additional-microsoft-development-tools"></a>Autres outils de développement Microsoft
-Le programme [**Microsoft Web Platform Installer**](https://www.microsoft.com/web/downloads/platform.aspx) vous permet de découvrir et de télécharger d’autres outils de développement Microsoft. Il existe également un raccourci vers l’outil fourni sur le bureau de la machine virtuelle pour la science des données.  
+Hello [ **Microsoft Web Platform Installer** ](https://www.microsoft.com/web/downloads/platform.aspx) peuvent être utilisé toodiscover et télécharger d’autres outils de développement Microsoft. Il existe également un outil de toohello raccourci fourni sur le bureau de Machine virtuelle de science des données Microsoft hello.  
 
-## <a name="important-directories-on-the-vm"></a>Répertoires importants sur la machine virtuelle
+## <a name="important-directories-on-hello-vm"></a>Répertoires importants sur hello machine virtuelle
 | Item | Répertoire |
 | --- | --- |
 | Configurations de serveur de Jupyter Notebook |C:\ProgramData\jupyter |
@@ -193,16 +193,16 @@ Le programme [**Microsoft Web Platform Installer**](https://www.microsoft.com/we
 | Outils divers |c:\dsvm\tools |
 
 > [!NOTE]
-> Les instances de la machine virtuelle pour la science des données Microsoft créées avant 1.5.0 (avant le 3 septembre 2016) utilisaient une structure de répertoire légèrement différente à celle spécifiée dans la table précédente. 
+> Les instances de hello que machine virtuelle de science des données Microsoft créé avant 1.5.0 (avant le 3 septembre 2016) utilisées une structure de répertoire légèrement différent que le nombre spécifié dans le tableau précédent de hello. 
 > 
 > 
 
 ## <a name="next-steps"></a>Étapes suivantes
-Voici quelques étapes supplémentaires pour poursuivre votre travail d'apprentissage et d'exploration. 
+Voici certains toocontinue étapes suivant votre apprentissage et l’exploration. 
 
-* Explorez les différents outils de science des données sur la machine virtuelle pour la science des données en cliquant sur le menu Démarrer et en consultant les outils répertoriés dans le menu.
-* Accédez à **C:\Program Files\Microsoft SQL Server\130\R_SERVER\library\RevoScaleR\demoScripts** pour obtenir des exemples utilisant la bibliothèque RevoScaleR dans R qui prend en charge l’analyse des données à l’échelle de l’entreprise.  
-* Lisez l’article intitulé [Dix choses que vous pouvez effectuer sur la machine virtuelle pour la science des données](http://aka.ms/dsvmtenthings)
-* Découvrez comment créer des solutions analytiques de bout en bout systématiquement à l’aide du [processus TDSP (Team Data Science Process)](https://azure.microsoft.com/documentation/learning-paths/data-science-process/).
-* Visitez la [galerie Cortana Intelligence](http://gallery.cortanaintelligence.com) pour obtenir des exemples Machine Learning et d’analyse des données utilisant Cortana Intelligence Suite. Nous avons également inclus une icône dans le menu **Démarrer** et sur le bureau de la machine virtuelle pour accéder à cette galerie.
+* Explorer hello divers outils de science des données sur la recherche de données hello machine virtuelle en cliquant sur hello menu démarrent et la récupération des outils de hello répertoriés dans le menu de hello.
+* Accédez trop**C:\Program Files\Microsoft SQL Server\130\R_SERVER\library\RevoScaleR\demoScripts** pour obtenir des exemples à l’aide de la bibliothèque de RevoScaleR hello dans R qui prend en charge d’analytique des données à l’échelle de l’entreprise.  
+* Lire l’article de hello : [10 opérations pouvant être exécutées sur hello pour la science des données Machine virtuelle](http://aka.ms/dsvmtenthings)
+* Découvrez comment les solutions analytiques toobuild fin tooend systématiquement à l’aide de hello [processus de science des données équipe](https://azure.microsoft.com/documentation/learning-paths/data-science-process/).
+* Visitez hello [Cortana Intelligence galerie](http://gallery.cortanaintelligence.com) pour ce hello utilisez Cortana Intelligence Suite d’exemples analytique d’apprentissage et de données machine. Nous fournissons également une icône sur hello **Démarrer** menu et sur le bureau hello de galerie de toothis hello machine virtuelle.
 

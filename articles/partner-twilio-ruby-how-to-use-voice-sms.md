@@ -1,6 +1,6 @@
 ---
-title: "Utilisation de Twilio pour les fonctionnalités vocales et de SMS (Ruby) | Microsoft Docs"
-description: "Découvrez comment passer un appel téléphonique et envoyer un message texte avec le service d'API Twilio sur Azure. Exemples de code écrits en Ruby."
+title: aaaHow tooUse Twilio pour la voix et SMS (Ruby) | Documents Microsoft
+description: "Découvrez comment toomake un appel téléphonique et envoyer un SMS de message avec le service de l’API de Twilio hello sur Azure. Exemples de code écrits en Ruby."
 services: 
 documentationcenter: ruby
 author: devinrader
@@ -14,80 +14,80 @@ ms.devlang: ruby
 ms.topic: article
 ms.date: 11/25/2014
 ms.author: MicrosoftHelp@twilio.com
-ms.openlocfilehash: 69e50e7fe0e1f302e96c309878b8dea6869dff4a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: aca5ccb4663ff03c9c1f39c848469415f06dfb45
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-twilio-for-voice-and-sms-capabilities-in-ruby"></a>Utilisation de Twilio pour les fonctionnalités vocales et de SMS dans Ruby
-Ce guide présente l'exécution de tâches de programmation courantes avec le service API Twilio sur Azure. Les scénarios abordés comprennent notamment les appels téléphoniques et l'envoi de SMS. Pour plus d'informations sur Twilio et sur l'utilisation des fonctionnalités vocales et de SMS de vos applications, consultez la section [Étapes suivantes](#NextSteps) .
+# <a name="how-toouse-twilio-for-voice-and-sms-capabilities-in-ruby"></a>Comment tooUse Twilio pour la voix et les fonctionnalités de SMS dans Ruby
+Ce guide montre comment tooperform des tâches de programmation courantes avec hello Twilio API de service sur Azure. scénarios de Hello couvertes incluent un appel téléphonique et envoi d’un message de Service SMS (Short Message). Pour plus d’informations sur Twilio et à l’aide de la voix et SMS dans vos applications, consultez hello [étapes](#NextSteps) section.
 
 ## <a id="WhatIs"></a>Présentation de Twilio
-Twilio est une API de service Web de téléphonie vous permettant d'utiliser vos aptitudes et langages Web existants pour générer des applications vocales et de SMS. Twilio est un service tiers, et non une fonctionnalité Azure ni un produit Microsoft.
+Twilio est une API de service web de téléphonie qui vous permet d’utiliser votre langages web existants et les voix toobuild de compétences et les applications de SMS. Twilio est un service tiers, et non une fonctionnalité Azure ni un produit Microsoft.
 
-**Twilio Voice** permet à vos applications de passer et de recevoir des appels téléphoniques. **Twilio SMS** permet à vos applications de créer et de recevoir des SMS. **Twilio Client** permet à vos applications d'activer les communications vocales au moyen de connexions Internet existantes, y compris des connexions mobiles.
+**Twilio vocal** permet à votre toomake d’applications et de recevoir des appels téléphoniques. **Twilio SMS** permet à votre toomake d’applications et de recevoir des messages SMS. **Client twilio sur** tooenable la communication vocale via les connexions Internet, y compris les connexions mobiles permet à vos applications.
 
 ## <a id="Pricing"></a>Tarification de Twilio et offres spéciales
-Des informations sur les prix de Twilio sont disponibles dans la page [Tarification de Twilio][twilio_pricing]. Les clients Azure reçoivent une [offre spéciale][special_offer] : un crédit gratuit de 1 000 SMS ou de 1 000 minutes d’appel en entrée. Pour bénéficier de cette offre ou pour obtenir des informations supplémentaires, visitez la page [http://ahoy.twilio.com/azure][special_offer].  
+Des informations sur les prix de Twilio sont disponibles dans la page [Tarification de Twilio][twilio_pricing]. Les clients Azure reçoivent une [offre spéciale][special_offer] : un crédit gratuit de 1 000 SMS ou de 1 000 minutes d’appel en entrée. toosign pour cette offre ou obtenir plus d’informations, visitez [http://ahoy.twilio.com/azure][special_offer].  
 
 ## <a id="Concepts"></a>Concepts
-L'API Twilio est une API RESTful qui offre des fonctionnalités vocales et de SMS aux applications. Les bibliothèques clientes sont disponibles dans plusieurs langues : pour en obtenir la liste, consultez la page [Bibliothèques de l’API Twilio][twilio_libraries].
+Hello Twilio API est une API RESTful qui fournit la voix et fonctionnalités SMS pour les applications. Les bibliothèques clientes sont disponibles dans plusieurs langues : pour en obtenir la liste, consultez la page [Bibliothèques de l’API Twilio][twilio_libraries].
 
 ### <a id="TwiML"></a>TwiML
-TwiML est un jeu d'instructions XML qui informent Twilio sur la façon de traiter un appel ou un SMS.
+TwiML est un ensemble d’instructions basé sur XML qui informent Twilio de façon tooprocess un appel ou un SMS.
 
-À titre d'exemple, le code TwiML suivant convertit le texte **Hello World** en parole.
+Par exemple, hello suivant TwiML permet de convertir le texte hello **Hello World** toospeech.
 
     <?xml version="1.0" encoding="UTF-8" ?>
     <Response>
        <Say>Hello World</Say>
     </Response>
 
-Tous les documents TwiML ont un élément racine `<Response>` . Vous pouvez donc utiliser des verbes Twilio pour définir le comportement de votre application.
+Tous les documents TwiML ont un élément racine `<Response>` . À partir de là, vous utilisez comportement de hello toodefine Twilio verbes de votre application.
 
 ### <a id="Verbs"></a>Verbes TwiML
-Les verbes Twilio sont des balises XML qui indiquent à Twilio les **actions**à effectuer. Par exemple, le verbe **&lt;Say&gt;** indique à Twilio de délivrer un message audible lors d'un appel. 
+Les verbes de Twilio sont des balises XML qui indiquent à Twilio que trop**faire**. Par exemple, hello  **&lt;prononcer&gt;**  verbe fait en sorte que Twilio tooaudibly remettre un message sur un appel. 
 
-La liste suivante présente les verbes Twilio.
+Hello Voici une liste de verbes de Twilio.
 
-* **&lt;Dial&gt;** : connecte l'appelant à un autre téléphone.
-* **&lt;Gather&gt;** : rassemble les chiffres numériques entrés sur le clavier du téléphone.
+* **&lt;Accès à distance&gt;**: se connecte phone de tooanother hello appelant.
+* **&lt;Collecter des&gt;**: collecte les chiffres entrés sur le clavier de téléphone hello.
 * **&lt;Hangup&gt;** : met fin à un appel.
 * **&lt;Play&gt;** : lit un fichier audio.
 * **&lt;Pause&gt;** : patiente silencieusement pendant un nombre déterminé de secondes.
-* **&lt;Record&gt;** : enregistre la voix de l'appelant et renvoie une URL permettant d'accéder à un fichier contenant l'enregistrement.
-* **&lt;Redirect&gt;** : transfère le contrôle d'un appel ou d'un SMS au TwiML à une autre URL.
-* **&lt;Reject&gt;** : refuse un appel entrant sur votre numéro Twilio sans vous facturer
-* **&lt;Say&gt;** : convertit le texte d'un appel en parole.
+* **&lt;Enregistrement&gt;**: enregistre la voix de l’appelant hello et retourne une URL d’un fichier contenant un enregistrement de hello.
+* **&lt;Rediriger&gt;**: transfère le contrôle d’un appel ou un SMS toohello TwiML à une autre URL.
+* **&lt;Rejeter&gt;**: rejette un entrant appeler tooyour Twilio nombre sans vous de facturation
+* **&lt;Par exemple&gt;**: toospeech texte convertit effectuée sur un appel.
 * **&lt;Sms&gt;** : envoie un SMS.
 
-Pour plus d’informations sur les verbes Twilio, leurs attributs et le langage TwiML, consultez la page [TwiML][twiml]. Pour plus d’informations sur l’API Twilio, consultez la page [API Twilio][twilio_api].
+Pour plus d’informations sur les verbes Twilio, leurs attributs et le langage TwiML, consultez la page [TwiML][twiml]. Pour plus d’informations sur hello Twilio API, consultez [Twilio API][twilio_api].
 
 ## <a id="CreateAccount"></a>Créer un compte Twilio
-Lorsque vous êtes prêt à créer votre compte Twilio, inscrivez-vous sur la page [Essayer Twilio][try_twilio]. Vous pouvez commencer avec un compte gratuit, avant de le mettre à niveau ultérieurement.
+Lorsque vous êtes prêt tooget un compte de Twilio, inscrivez-vous dans [essayez de Twilio][try_twilio]. Vous pouvez commencer avec un compte gratuit, avant de le mettre à niveau ultérieurement.
 
-Lors de la création d'un compte Twilio, vous obtenez un numéro de téléphone gratuit pour votre application. Vous recevez également un SID de compte et un jeton d'authentification. Les deux sont nécessaires pour passer des appels d'API Twilio. Pour éviter qu'une personne non autorisée n'accède à votre compte, conservez votre jeton d'authentification en lieu sûr. Vous pouvez consulter vos ID de compte et jeton d’authentification sur la [page du compte Twilio][twilio_account], dans les champs intitulés **ACCOUNT SID** et **AUTH TOKEN**, respectivement.
+Lors de la création d'un compte Twilio, vous obtenez un numéro de téléphone gratuit pour votre application. Vous recevez également un SID de compte et un jeton d'authentification. Les deux seront les appels d’API de Twilio toomake nécessaires. tooprevent non autorisé à accéder à tooyour compte, de sécuriser votre jeton d’authentification. Votre compte SID et le jeton d’authentification peuvent être consultés à hello [page de compte Twilio][twilio_account], dans hello champs **SID de compte** et **le jeton d’authentification** , respectivement.
 
 ### <a id="VerifyPhoneNumbers"></a>Vérifier les numéros de téléphone
-Outre le numéro donné par Twilio, vous pouvez également vérifier les numéros que vous contrôlez (votre numéro de portable ou de téléphone fixe) pour les utiliser dans vos applications. 
+Nombre de toohello plus que vous donne Twilio, vous pouvez également vérifier les nombres que vous contrôlez (autrement dit, votre téléphone portable ou accueil numéro de téléphone) pour une utilisation dans vos applications. 
 
-Pour en savoir plus sur la vérification d'un numéro de téléphone, consultez la page [Gestion des numéros][verify_phone].
+Pour plus d’informations sur la façon de tooverify un numéro de téléphone, consultez [gérer les nombres][verify_phone].
 
 ## <a id="create_app"></a>Créer une application Ruby
-Une application Ruby qui utilise le service Twilio et qui s'exécute dans Azure est identique aux autres applications Ruby qui utilisent le service Twilio. Bien que les services Twilio soient basés sur RESTful et puissent être appelés de différentes manières depuis Ruby, cet article met l’accent sur l’utilisation des services Twilio avec la [bibliothèque d’aide Twilio pour Ruby][twilio_ruby].
+Une application Ruby qui utilise le service de Twilio hello et s’exécute dans Azure n’est pas différente de toute autre application Ruby qui utilise le service de Twilio hello. Tandis que Twilio services sont RESTful qui peuvent être appelés depuis Ruby de plusieurs façons, cet article se concentrera sur le fonctionnement des services avec toouse Twilio [bibliothèque d’assistance de Twilio pour Ruby][twilio_ruby].
 
-Tout d’abord, [configurez une nouvelle machine virtuelle Linux Azure][azure_vm_setup] afin qu’elle joue le rôle d’hôte pour votre nouvelle application web Ruby. Ignorez les étapes concernant la création de l'application Rails. Il vous suffit de configurer la machine virtuelle. Veillez à créer un point de terminaison avec un port externe défini sur 80 et un port interne défini sur 5000.
+Tout d’abord, [configurer un nouvel ordinateur virtuel Azure Linux] [ azure_vm_setup] tooact en tant qu’hôte pour votre nouvelle application web Ruby. Ignorez les étapes hello impliquant la création d’une application de quadrillage, simplement hello de configuration VM hello. Veillez à créer un point de terminaison avec un port externe défini sur 80 et un port interne défini sur 5000.
 
-Dans les exemples ci-dessous, nous utilisons [Sinatra][sinatra], une infrastructure web très simple pour Ruby. Vous pouvez certainement utiliser la bibliothèque d'aide Twilio pour Ruby avec une autre infrastructure Web, dont Ruby on Rails.
+Dans les exemples de hello ci-dessous, nous allons utiliser [Sinatra][sinatra], une infrastructure web très simple pour Ruby. Mais vous pouvez certainement utiliser bibliothèque d’assistance de Twilio hello pour Ruby avec n’importe quel autre infrastructure web, y compris Ruby on Rails.
 
-Utilisez SSH dans votre nouvelle machine virtuelle et créez un répertoire pour votre nouvelle application. Dans ce répertoire, créez un fichier nommé Gemfile et copiez-y le code suivant :
+Utilisez SSH dans votre nouvelle machine virtuelle et créez un répertoire pour votre nouvelle application. À l’intérieur de ce répertoire, créez un fichier appelé Gemfile et copie hello après le code dans celui-ci :
 
     source 'https://rubygems.org'
     gem 'sinatra'
     gem 'thin'
 
-Sur la ligne de commande, exécutez `bundle install`. Ceci permet d'installer les dépendances ci-dessus. Ensuite, créez un fichier appelé `web.rb`. C'est là que va résider le code de votre application Web. Collez-y le code suivant :
+Sur la ligne de commande hello exécuter `bundle install`. Dépendances de hello ci-dessus seront installés. Ensuite, créez un fichier appelé `web.rb`. Il s’agit de résidence de code hello pour votre application web. Collez hello après le code dans celui-ci :
 
     require 'sinatra'
 
@@ -95,43 +95,43 @@ Sur la ligne de commande, exécutez `bundle install`. Ceci permet d'installer le
         "Hello Monkey!"
     end
 
-À ce stade, vous devez pouvoir exécuter la commande `ruby web.rb -p 5000`. Ceci met en place un petit serveur web sur le port 5000. Vous devez pouvoir accéder à cette application dans votre navigateur en vous rendant à l'URL définie pour la création de votre machine virtuelle Azure. Lorsque vous accédez à votre application Web dans le navigateur, vous êtes prêt à créer une application Twilio.
+À ce stade, vous devez être commande hello de hello en mesure de s’exécuter `ruby web.rb -p 5000`. Ceci met en place un petit serveur web sur le port 5000. Vous devez être en mesure de toobrowse toothis application dans votre navigateur en visitant l’URL de hello vous configuration pour votre machine virtuelle Azure. Une fois que vous pouvez atteindre votre application web dans le navigateur de hello, vous êtes prêt toostart création d’une application Twilio.
 
-## <a id="configure_app"></a>Configurer l’application pour utiliser Twilio
-Vous pouvez configurer votre application web afin qu’elle utilise la bibliothèque Twilio en mettant à jour votre fichier `Gemfile` pour y inclure la ligne suivante :
+## <a id="configure_app"></a>Configurer votre Application tooUse Twilio
+Vous pouvez configurer votre bibliothèque de Twilio web application toouse hello en mettant à jour votre `Gemfile` tooinclude cette ligne :
 
     gem 'twilio-ruby'
 
-Sur la ligne de commande, exécutez `bundle install`. Ensuite, ouvrez `web.rb` et ajoutez cette ligne au début du code :
+Sur la ligne de commande hello, exécutez `bundle install`. Ouvrez maintenant `web.rb` et incluant cette ligne en haut de hello :
 
     require 'twilio-ruby'
 
-Vous pouvez maintenant utiliser la bibliothèque d'aide Twilio dans votre application web.
+Vous êtes maintenant toutes définies bibliothèque d’assistance de toouse hello Twilio pour Ruby dans votre application web.
 
 ## <a id="howto_make_call"></a>Procédure : passer un appel sortant
-Le code suivant permet d'exécuter un appel sortant. Les concepts principaux incluent l'utilisation de la bibliothèque d'aide Twilio pour Ruby afin de passer des appels d'API REST et d'assurer le rendu TwiML. Remplacez vos valeurs pour les numéros de téléphone **From** (De) et **To** (À), puis assurez-vous de vérifier le numéro de téléphone **From** de votre compte Twilio avant d'exécuter le code.
+Hello suivant montre comment appeler le toomake sortante. Concepts clés incluent à l’aide de la bibliothèque d’assistance de Twilio hello pour Ruby toomake qu'appelle des API REST et TwiML de rendu. Remplacez par vos valeurs hello **de** et **à** les numéros de téléphone et assurez-vous que vous vérifiez hello **à partir de** numéro de téléphone de votre code hello de Twilio compte toorunning préalable.
 
-Ajoutez cette fonction à `web.md`:
+Ajouter cette fonction trop`web.md`:
 
     # Set your account ID and authentication token.
     sid = "your_twilio_account_sid";
     token = "your_twilio_authentication_token";
 
-    # The number of the phone initiating the the call.
+    # hello number of hello phone initiating hello hello call.
     # This should either be a Twilio number or a number that you've verified
     from = "NNNNNNNNNNN";
 
-    # The number of the phone receiving call.
-    to = "NNNNNNNNNNN";
+    # hello number of hello phone receiving call.
+    too= "NNNNNNNNNNN";
 
-    # Use the Twilio-provided site for the TwiML response.
+    # Use hello Twilio-provided site for hello TwiML response.
     url = "http://yourdomain.cloudapp.net/voice_url";
 
     get '/make_call' do
-      # Create the call client.
+      # Create hello call client.
       client = Twilio::REST::Client.new(sid, token);
 
-      # Make the call
+      # Make hello call
       client.account.calls.create(to: to, from: from, url: url)
     end
 
@@ -141,36 +141,36 @@ Ajoutez cette fonction à `web.md`:
        </Response>"
     end
 
-Si vous ouvrez l’adresse `http://yourdomain.cloudapp.net/make_call` dans un navigateur, cela déclenche l’appel de l’API Twilio qui passe alors l’appel téléphonique. Les deux premiers paramètres dans `client.account.calls.create` sont relativement explicites : le numéro d’où provient l’appel (`from`) et le numéro appelé (`to`). 
+Si l’ouverture des `http://yourdomain.cloudapp.net/make_call` dans un navigateur, qui déclenchera un appel téléphonique de hello appel toohello Twilio API toomake hello. Hello des deux premiers paramètres dans `client.account.calls.create` sont suffisamment explicites : hello numéro hello appel est `from` et appel de hello numéro hello est `to`. 
 
-Le troisième paramètre (`url`) est l’URL demandée par Twilio pour obtenir les instructions à suivre une fois l’appel connecté. Dans notre exemple, nous avons défini une URL (`http://yourdomain.cloudapp.net`) qui renvoie un document TwiML simple utilisant le verbe `<Say>` pour convertir du texte en parole et dire « Hello Monkey » à la personne qui reçoit l’appel.
+Hello troisième paramètre (`url`) est l’URL de hello que Twilio demande tooget des instructions sur le toodo une fois que l’appel hello est connecté. Dans ce cas nous configurer une URL (`http://yourdomain.cloudapp.net`) qui retourne un document TwiML simple et utilise hello `<Say>` toodo verbe certains synthèse vocale, puis prononcez « Hello le » toohello destinataire hello appeler.
 
 ## <a id="howto_recieve_sms"></a>Réception d’un SMS
-Dans l'exemple précédent, nous avons émis un appel **sortant** . Cette fois, nous allons utiliser le numéro de téléphone fourni par Twilio lors de l'inscription pour traiter un SMS **entrant** .
+Dans l’exemple précédent de hello, nous avons lancé une **sortants** appel téléphonique. Cette fois, nous allons utiliser le numéro de téléphone hello Twilio nous a donné au cours de l’inscription tooprocess un **entrant** message SMS.
 
-Commencez par vous connecter à votre [tableau de bord Twilio][twilio_account]. Cliquez sur « Numbers » dans la zone de navigation supérieure, puis sur le numéro fourni par Twilio. Deux URL sont disponibles pour configuration : une URL de requête vocale et une URL de requête SMS. Il s'agit des URL que Twilio appelle lors de toute émission d'appel ou toute réception de SMS. On parle de « raccordements Web » pour désigner ces URL.
+Tout d’abord, ouverture de session de tooyour [tableau de bord Twilio][twilio_account]. Cliquez sur « Numéros » de navigation supérieure de hello, puis cliquez sur hello le nombre de Twilio que vous ont été fournis. Deux URL sont disponibles pour configuration : une URL de requête vocale et une URL de requête SMS. Il s’agit des URL de hello Twilio appelle chaque fois qu’un appel téléphonique est effectuée ou un SMS envoyé tooyour nombre. URL de Hello sont également définis en tant que « web hooks ».
 
-Nous voulons traiter les messages SMS entrants ; nous allons donc mettre à jour l’URL avec l’adresse `http://yourdomain.cloudapp.net/sms_url`. Cliquez sur Save Changes en bas de la page pour poursuivre. Revenons maintenant dans `web.rb` pour programmer notre application afin qu’elle exécute l’action suivante :
+Nous aimerions tooprocess les messages SMS entrants, par conséquent, nous allons mettre à jour des URL de hello trop`http://yourdomain.cloudapp.net/sms_url`. Pour commencer, cliquez sur Enregistrer les changements au bas de hello de page de hello. Maintenant, de retour dans `web.rb` programme nous allons notre toohandle application cela :
 
     post '/sms_url' do
       "<Response>
-         <Message>Hey, thanks for the ping! Twilio and Azure rock!</Message>
+         <Message>Hey, thanks for hello ping! Twilio and Azure rock!</Message>
        </Response>"
     end
 
-Veillez à redémarrer l'application Web après avoir effectué cette modification. Maintenant, à l'aide de votre téléphone, envoyez un SMS à votre numéro Twilio. Vous devriez rapidement recevoir une réponse par SMS avec le message « Hey, merci pour le ping ! Twilio et Azure sont les meilleurs ! »
+Après avoir apporté la modification de hello, assurez-vous que toore-démarrer votre application web. Ensuite, retirez votre téléphone et envoyer un SMS de tooyour Twilio nombre. Vous devez obtenir rapidement une réponse SMS indiquant que « Hey, Merci de ping de hello ! Twilio et Azure sont les meilleurs ! »
 
 ## <a id="additional_services"></a>Utilisation de services Twilio supplémentaires
-En plus des exemples présentés ici, Twilio offre des API Web que vous pouvez utiliser pour tirer profit d'autres fonctionnalités de Twilio à partir de votre application Azure. Pour plus d’informations, consultez la [documentation de l’API Twilio][twilio_api_documentation].
+En outre toohello les exemples indiqués ici, que twilio propose des API basées sur le web qui vous pouvez utiliser des fonctionnalités Twilio tooleverage supplémentaires à partir de votre application Windows Azure. Pour plus d’informations, consultez hello [documentation de l’API de Twilio][twilio_api_documentation].
 
 ### <a id="NextSteps"></a>Étapes suivantes
-Maintenant que vous avez appris les bases du service Twilio, consultez ces liens pour en savoir plus :
+Maintenant que vous avez appris les notions de base de hello Hello Twilio service, suivez ces liens de toolearn plus :
 
 * [Conseils de sécurité Twilio][twilio_security_guidelines]
 * [Procédures et exemples de code Twilio][twilio_howtos]
 * [Didacticiels de démarrage rapide Twilio][twilio_quickstarts] 
 * [Twilio sur GitHub][twilio_on_github]
-* [Support Twilio][twilio_support]
+* [Communiquer avec tooTwilio prise en charge][twilio_support]
 
 [twilio_ruby]: https://www.twilio.com/docs/ruby/install
 

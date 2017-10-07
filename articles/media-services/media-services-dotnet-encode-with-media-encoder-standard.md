@@ -1,6 +1,6 @@
 ---
-title: "Encoder un élément multimédia avec Media Encoder Standard à l’aide de .NET | Microsoft Docs"
-description: "Cette rubrique montre comment utiliser .NET pour encoder vos éléments multimédias avec Media Encoder Standard."
+title: "aaaEncode un élément multimédia avec Media Encoder Standard à l’aide de .NET | Documents Microsoft"
+description: "Cette rubrique montre comment toouse .NET tooencode un élément multimédia à l’aide de Media Encoder standard."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,23 +14,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/31/2017
 ms.author: juliako;anilmur
-ms.openlocfilehash: 929592368501c54277748bf46b2160c9058db3fb
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 25e274c3b67168f4afc8b8ab04af2d654c9dd6e4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="encode-an-asset-with-media-encoder-standard-using-net"></a>Encoder un élément multimédia avec Media Encoder Standard à l’aide de .NET
-Les tâches d’encodage sont une des opérations de traitement les plus courantes dans Media Services. Vous créez des tâches d’encodage pour convertir des fichiers multimédias d’un encodage à un autre. Lorsque vous les encodez, vous pouvez utiliser l’encodeur multimédia intégré de Media Services. Vous pouvez aussi utiliser un encodeur fourni par un partenaire Media Services. Ces encodeurs tiers sont disponibles sur Azure Marketplace. 
+Travaux d’encodage est une des opérations les plus courantes traitement hello dans Media Services. Vous créez des fichiers multimédias tooconvert travaux encodage à partir d’un tooanother de codage. Lorsque vous codez, vous pouvez utiliser hello encodeur multimédia intégré de Media Services. Vous pouvez également utiliser un encodeur fourni par un partenaire de Media Services ; encodeurs tiers sont disponibles via hello Azure Marketplace. 
 
-Cette rubrique montre comment utiliser .NET pour encoder vos éléments multimédias avec Media Encoder Standard (MES). Media Encoder Standard se configure à l’aide d’une des présélections d’encodeur décrites [ici](http://go.microsoft.com/fwlink/?linkid=618336&clcid=0x409).
+Cette rubrique montre comment toouse .NET tooencode vos éléments multimédias avec Media Encoder Standard (MES). Encodeur de support Standard est configuré d’à l’aide d’une des présélections d’encodeur hello décrites [ici](http://go.microsoft.com/fwlink/?linkid=618336&clcid=0x409).
 
-Nous vous recommandons de toujours encoder vos fichiers sources sous forme de jeu de fichiers MP4 à débit adaptatif, puis de convertir ce jeu au format souhaité au moyen de l’ [empaquetage dynamique](media-services-dynamic-packaging-overview.md). 
+Il est recommandé de tooalways Encoder vos fichiers sources dans un ensemble de fichiers MP4 de débit adaptatif, puis la convertir hello ensemble toohello format souhaité à l’aide de hello [empaquetage dynamique](media-services-dynamic-packaging-overview.md). 
 
 Si votre ressource de sortie est stockée sous forme chiffrée, vous devez configurer une stratégie de remise de ressources. Pour plus d'informations, consultez [Configuration de la stratégie de remise de ressources](media-services-dotnet-configure-asset-delivery-policy.md).
 
 > [!NOTE]
-> MES génère un fichier de sortie avec un nom qui contient les 32 premiers caractères du nom du fichier d'entrée. Le nom est basé sur ce qui est spécifié dans le fichier prédéfini. Par exemple, "FileName": "{NomBase}_{Index}{Extension}". {NomBase} est remplacé par les 32 premiers caractères du nom du fichier d'entrée.
+> Produit MES avec un nom qui contient un fichier de sortie hello les 32 premiers caractères de hello nom de fichier d’entrée. nom de Hello est basé sur ce qui est spécifié dans le fichier de présélection hello. Par exemple, "FileName": "{NomBase}_{Index}{Extension}". {Basename} est remplacé par hello 32 premiers caractères du nom de fichier d’entrée hello.
 > 
 > 
 
@@ -38,36 +38,36 @@ Si votre ressource de sortie est stockée sous forme chiffrée, vous devez confi
 [Formats et codecs](media-services-media-encoder-standard-formats.md)
 
 ### <a name="mes-presets"></a>Présélections MES
-Media Encoder Standard se configure à l’aide d’une des présélections d’encodeur décrites [ici](http://go.microsoft.com/fwlink/?linkid=618336&clcid=0x409).
+Encodeur de support Standard est configuré d’à l’aide d’une des présélections d’encodeur hello décrites [ici](http://go.microsoft.com/fwlink/?linkid=618336&clcid=0x409).
 
 ### <a name="input-and-output-metadata"></a>Métadonnées d’entrée et de sortie
-Quand vous encodez un ou plusieurs éléments multimédias d’entrée à l’aide de MES, vous obtenez un élément multimédia de sortie une fois cette tâche d’encodage terminée. L’élément multimédia de sortie contient la vidéo, l’audio, les miniatures, le manifeste, et ainsi de suite, en fonction des paramètres d’encodage prédéfinis.
+Lorsque vous encodez un élément multimédia d’entrée (ou plusieurs éléments multimédias à l’aide de MES), vous obtenez une ressource en sortie à hello achèvement réussi de qui encoder la tâche. ressource en sortie Hello contient vidéo, audio, miniatures, manifeste, etc. selon hello valeur prédéfinie d’encodage que vous utilisez.
 
-Il contient également un fichier avec des métadonnées relatives à l’élément multimédia d’entrée. Le nom du fichier XML de métadonnées a le format suivant : <asset_id>_metadata.xml (par exemple, 41114ad3-eb5e-4c57-8d92-5354e2b7d4a4_metadata.xml), où <asset_id> est la valeur AssetId de l’élément multimédia d’entrée. Le schéma de ce XML de métadonnées d’entrée est décrit [ici](media-services-input-metadata-schema.md).
+la ressource en sortie Hello contient également un fichier contenant des métadonnées sur l’élément multimédia d’entrée de hello. nom du fichier XML de métadonnées hello Hello a hello suivant le format : < id_ressource > _metadata.xml (par exemple, 41114ad3-eb5e - 4c 57-8d92-5354e2b7d4a4_metadata), où < id_ressource > est la valeur AssetId de hello de ressource en entrée hello. Hello schéma de ces métadonnées d’entrée XML décrit [ici](media-services-input-metadata-schema.md).
 
-L’élément multimédia de sortie contient également un fichier avec des métadonnées relatives à l’élément multimédia de sortie. Le nom du fichier XML de métadonnées a le format suivant : <nom_fichier_source>_manifest.xml (par exemple, BigBuckBunny_manifest.xml). Le schéma de ce XML de métadonnées de sortie est décrit [ici](media-services-output-metadata-schema.md).
+la ressource en sortie Hello contient également un fichier contenant des métadonnées sur l’élément multimédia de sortie hello. nom du fichier XML de métadonnées hello Hello a hello suivant le format : < nom_fichier_source > _manifest.xml (par exemple, BigBuckBunny_manifest.xml). schéma Hello de ces métadonnées de sortie XML est décrite [ici](media-services-output-metadata-schema.md).
 
-Si vous souhaitez examiner l’un des deux fichiers de métadonnées, vous pouvez créer un localisateur SAS et télécharger le fichier sur votre ordinateur local. Vous trouverez un exemple illustrant comment créer un localisateur SAS et télécharger un fichier dans la rubrique Utilisation des extensions du SDK Media Services .NET.
+Si vous souhaitez un des fichiers de métadonnées hello deux tooexamine, vous pouvez créer un localisateur SAS et télécharger l’ordinateur local de hello fichier tooyour. Vous trouverez un exemple montrant comment toocreate un localisateur SAS et télécharger un fichier à l’aide hello de Media Services .NET SDK Extensions.
 
 ## <a name="download-sample"></a>Charger l’exemple
-Vous pouvez obtenir et exécuter un exemple qui montre comment encoder avec MES [ici](https://azure.microsoft.com/documentation/samples/media-services-dotnet-on-demand-encoding-with-media-encoder-standard/).
+Vous pouvez obtenir et exécuter un exemple qui montre comment tooencode avec MES de [ici](https://azure.microsoft.com/documentation/samples/media-services-dotnet-on-demand-encoding-with-media-encoder-standard/).
 
 ## <a name="net-sample-code"></a>Exemple de code .NET
 
-Le code suivant utilise le Kit de développement logiciel (SDK) .NET de Media Services pour effectuer les tâches suivantes :
+Hello, exemple de code suivant utilise hello tooperform de Media Services .NET SDK tâches suivantes :
 
 * Création d’une tâche d’encodage.
-* Obtention d’une référence à l’encodeur Media Encoder Standard.
-* Spécifiez l’utilisation de la présélection [Diffusion en continu adaptative](media-services-autogen-bitrate-ladder-with-mes.md). 
-* Ajout d’une tâche d’encodage unique. 
-* Spécification de l’élément multimédia d’entrée à encoder.
-* Création d’un élément multimédia de sortie qui contiendra l’élément multimédia encodé.
-* Ajout d’un gestionnaire d’événements pour vérifier la progression de la tâche.
-* Envoyez le travail.
+* Obtient un encodeur Media Encoder Standard toohello de référence.
+* Spécifiez toouse hello [diffusion adaptative en continu](media-services-autogen-bitrate-ladder-with-mes.md) prédéfini. 
+* Ajouter une tâche de toohello tâche encodage unique. 
+* Spécifier une entrée de hello toobe asset encodé.
+* Créer un élément multimédia de sortie qui contiendra les actifs de hello encodé.
+* Ajouter une événement Gestionnaire toocheck hello progression de la tâche.
+* Envoi de la tâche de hello.
 
 #### <a name="create-and-configure-a-visual-studio-project"></a>Créer et configurer un projet Visual Studio
 
-Configurez votre environnement de développement et ajoutez des informations de connexion au fichier app.config selon la procédure décrite dans l’article [Développement Media Services avec .NET](media-services-dotnet-how-to-use.md). 
+Configurer votre environnement de développement et de remplir le fichier app.config de hello avec les informations de connexion, comme décrit dans [développement Media Services avec .NET](media-services-dotnet-how-to-use.md). 
 
 #### <a name="example"></a>Exemple 
 
@@ -103,7 +103,7 @@ Configurez votre environnement de développement et ajoutez des informations de 
                     // Get an uploaded asset.
                     var asset = _context.Assets.FirstOrDefault();
 
-                    // Encode and generate the output using the "Adaptive Streaming" preset.
+                    // Encode and generate hello output using hello "Adaptive Streaming" preset.
                     EncodeToAdaptiveBitrateMP4Set(asset);
 
                     Console.ReadLine();
@@ -113,22 +113,22 @@ Configurez votre environnement de développement et ajoutez des informations de 
                 {
                     // Declare a new job.
                     IJob job = _context.Jobs.Create("Media Encoder Standard Job");
-                    // Get a media processor reference, and pass to it the name of the 
-                    // processor to use for the specific task.
+                    // Get a media processor reference, and pass tooit hello name of hello 
+                    // processor toouse for hello specific task.
                     IMediaProcessor processor = GetLatestMediaProcessorByName("Media Encoder Standard");
 
-                    // Create a task with the encoding details, using a string preset.
+                    // Create a task with hello encoding details, using a string preset.
                     // In this case "Adaptive Streaming" preset is used.
                     ITask task = job.Tasks.AddNew("My encoding task",
                         processor,
                         "Adaptive Streaming",
                         TaskOptions.None);
 
-                    // Specify the input asset to be encoded.
+                    // Specify hello input asset toobe encoded.
                     task.InputAssets.Add(asset);
-                    // Add an output asset to contain the results of the job. 
+                    // Add an output asset toocontain hello results of hello job. 
                     // This output is specified as AssetCreationOptions.None, which 
-                    // means the output asset is not encrypted. 
+                    // means hello output asset is not encrypted. 
                     task.OutputAssets.AddNew("Output asset",
                         AssetCreationOptions.None);
 
@@ -189,6 +189,6 @@ Configurez votre environnement de développement et ajoutez des informations de 
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
 ## <a name="next-steps"></a>Étapes suivantes
-[Comment générer une miniature à l’aide de Media Encoder Standard avec .NET](media-services-dotnet-generate-thumbnail-with-mes.md)
-[Vue d’ensemble du codage Media Services](media-services-encode-asset.md)
+[La miniature toogenerate à l’aide de Media Encoder Standard avec .NET](media-services-dotnet-generate-thumbnail-with-mes.md)
+[vue d’ensemble de Media Services d’encodage](media-services-encode-asset.md)
 

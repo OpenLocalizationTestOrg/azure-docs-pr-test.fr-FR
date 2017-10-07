@@ -1,5 +1,5 @@
 ---
-title: Quotas et limites Microsoft Azure Event Hubs | Microsoft Docs
+title: aaaMicrosoft Azure Event Hubs quotas et limites | Documents Microsoft
 description: Limites et quotas pour Azure Event Hubs
 services: event-hubs
 documentationcenter: na
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/12/2017
 ms.author: sethm
-ms.openlocfilehash: c1c9217cf51cef450837bdd255f8c44c14a74ac0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3d57d813f112eacf0f4981743dec42ba99221cf9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="event-hubs-quotas"></a>Quotas Event Hubs
 Cette section répertorie les quotas et les limites de base de Azure Event Hubs.
@@ -26,7 +26,7 @@ Cette section répertorie les quotas et les limites de base de Azure Event Hubs.
 [!INCLUDE [event-hubs-limits](../../includes/event-hubs-limits.md)]
 
 ## <a name="next-steps"></a>Étapes suivantes
-Vous pouvez en apprendre plus sur Event Hubs en consultant les liens suivants :
+Vous pouvez plus d’informations sur les concentrateurs d’événements en visitant hello suivant liens :
 
 * [Vue d’ensemble des hubs d’événements](event-hubs-what-is-event-hubs.md)
 * [Majoration automatique Event Hubs](event-hubs-auto-inflate.md)

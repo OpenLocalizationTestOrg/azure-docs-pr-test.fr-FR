@@ -1,6 +1,6 @@
 ---
-title: "Connecter Raspberry Pi (Node) à Azure IoT - Leçon 2 : Obtenir des outils (Ubuntu) | Microsoft Docs"
-description: "Sur Ubuntu, installez Python et l’interface de ligne de commande Azure (Azure CLI)."
+title: "Se connecter framboises Pi (nœud) tooAzure IoT - leçon 2 : obtenir les outils (Ubuntu) | Documents Microsoft"
+description: "Installer Python et hello Azure interface de ligne de commande (CLI d’Azure) sur Ubuntu."
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -17,11 +17,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: 3933ccea992c62da1dd402f651d5b5b4ad43713d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0adf91bef41f502e1333fdcc75cfb2fe912364c9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-azure-tools-ubuntu-1604"></a>Obtenir les outils Azure (Ubuntu 16.04)
 > [!div class="op_single_selector"]
@@ -30,23 +30,23 @@ ms.lasthandoff: 07/11/2017
 > * [macOS 10.10](iot-hub-raspberry-pi-kit-node-lesson2-get-azure-tools-mac.md)
 
 ## <a name="what-you-will-do"></a>Procédure à suivre
-Installez l’interface de ligne de commande Azure (Azure CLI). Si vous rencontrez des problèmes, recherchez des solutions dans la [page de résolution des problèmes](iot-hub-raspberry-pi-kit-node-troubleshooting.md).
+Installez hello Azure interface de ligne de commande (CLI d’Azure). Si vous rencontrez des problèmes, recherchez des solutions sur hello [page Résolution des problèmes](iot-hub-raspberry-pi-kit-node-troubleshooting.md).
 
 ## <a name="what-you-will-learn"></a>Contenu
 Cet article portera sur les éléments suivants :
-* Installation de l’interface de ligne de commande Azure.
-* Ajout d’un sous-groupe IoT de l’interface de ligne de commande Azure.
+* Comment tooinstall hello CLI d’Azure.
+* Comment tooadd un sous-groupe IoT Hello CLI d’Azure.
 
 ## <a name="what-you-need"></a>Ce dont vous avez besoin
 * Un ordinateur Ubuntu connecté à Internet.
 * Un abonnement Azure actif. Si vous ne possédez pas de compte, vous pouvez créer un [compte d’évaluation gratuit](http://azure.microsoft.com/pricing/free-trial/) en quelques minutes.
 
-## <a name="install-the-azure-cli"></a>Installer l’interface de ligne de commande Microsoft Azure
-L’interface de ligne de commande Azure fournit une expérience de ligne de commande multiplateforme pour Azure, permettant de travailler directement à partir de la ligne de commande pour configurer et gérer des ressources.
+## <a name="install-hello-azure-cli"></a>Installer hello CLI d’Azure
+Hello CLI d’Azure fournit une expérience en ligne de commande multiplateforme pour Azure, ce qui vous toowork directement à partir de votre tooprovision de ligne de commande et gérer les ressources.
 
-Pour installer la dernière version d’Azure CLI, procédez comme suit :
+tooinstall hello dernière CLI d’Azure, procédez comme suit :
 
-1. Exécutez les commandes suivantes dans une fenêtre de Terminal. L’installation de l’interface de ligne de commande Azure peut prendre cinq minutes.
+1. Exécutez hello suivant les commandes dans une fenêtre de terminal. Il peut prendre cinq minutes tooinstall hello CLI d’Azure.
 
    ```bash
    sudo apt-get update
@@ -57,18 +57,18 @@ Pour installer la dernière version d’Azure CLI, procédez comme suit :
    sudo pip install --upgrade azure-cli
    sudo pip install --upgrade azure-cli-iot
    ```
-2. Vérifiez l’installation en exécutant la commande suivante :
+2. Hello Vérifiez-la en exécutant hello de commande suivante :
 
    ```bash
    az iot -h
    ```
 
-Si l’installation a réussi, vous devez voir la sortie suivante.
+Vous devez voir suivant de hello de sortie si l’installation de hello a réussi.
 
-![Sortie indiquant la réussite](media/iot-hub-raspberry-pi-lessons/lesson2/az_iot_help_ubuntu.png)
+![Sortie qui indique la réussite](media/iot-hub-raspberry-pi-lessons/lesson2/az_iot_help_ubuntu.png)
 
 ## <a name="summary"></a>Résumé
-Vous avez installé l’interface de ligne de commande Azure. La tâche suivante consiste à créer votre Azure IoT Hub et votre identité d’appareil à l’aide de l’interface de ligne de commande Azure.
+Vous avez installé hello CLI d’Azure. La tâche suivante est toocreate votre Azure IoT hub et l’identité de l’appareil à l’aide hello CLI d’Azure.
 
 ## <a name="next-steps"></a>Étapes suivantes
 [Créer votre IoT Hub et inscrire Raspberry Pi 3](iot-hub-raspberry-pi-kit-node-lesson2-prepare-azure-iot-hub.md)

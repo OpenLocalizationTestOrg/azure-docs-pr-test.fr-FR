@@ -1,5 +1,5 @@
 ---
-title: "Sécurisation des applications PaaS à l’aide du stockage Azure | Microsoft Docs"
+title: "les applications PaaS aaaSecuring à l’aide du stockage Azure | Documents Microsoft"
 description: " Découvrez les bonnes pratiques de sécurité du stockage Azure pour protéger vos applications mobiles et web PaaS. "
 services: security
 documentationcenter: na
@@ -14,24 +14,24 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/25/2017
 ms.author: TomShinder
-ms.openlocfilehash: 62c7b6706268e3c6e329f90651125fe299f61d67
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 3fed75cb121e7f32eb8b948ee12ca35fb25eca7f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="securing-paas-web-and-mobile-applications-using-azure-storage"></a>Sécurisation des applications mobiles et web PaaS à l’aide du stockage Azure
-Dans cet article, nous abordons un ensemble de bonnes pratiques de sécurité du stockage Azure pour protéger vos applications mobiles et web PaaS. Ces bonnes pratiques sont issues de notre expérience d’Azure, mais également de celle des clients, comme vous.
+Dans cet article, nous abordons un ensemble de bonnes pratiques de sécurité du stockage Azure pour protéger vos applications mobiles et web PaaS. Ces recommandations sont dérivées de notre expérience avec Azure et les expériences hello de clients comme vous-même.
 
-Le [Guide de sécurité du Stockage Azure](../storage/common/storage-security-guide.md) constitue une source précieuse pour obtenir plus d’informations sur la sécurité et le Stockage Azure.  Cet article traite de façon générale certains concepts abordés dans le guide de sécurité et propose des liens vers ce dernier, ainsi que vers d’autres sources.
+Hello [guide de sécurité de stockage Azure](../storage/common/storage-security-guide.md) constitue une source précieuse pour plus d’informations sur le stockage Azure et la sécurité.  Cet article traite à un niveau élevé des concepts hello trouvés dans le guide de sécurité hello et guide de sécurité toohello de liens, ainsi que d’autres sources, pour plus d’informations.
 
 ## <a name="azure-storage"></a>Azure Storage
-Azure permet de déployer et d’utiliser le stockage plus aisément que dans le cadre d’une configuration locale. Grâce au stockage Azure, vous pouvez atteindre des niveaux élevés de scalabilité et de disponibilité avec relativement peu d’effort. En plus de constituer la base des machines virtuelles Microsoft Azure et Linux, le stockage Azure peut prendre en charge de grandes applications distribuées.
+Azure rend possible toodeploy et utilisez le stockage de façons pas facilement réalisable sur site. Grâce au stockage Azure, vous pouvez atteindre des niveaux élevés de scalabilité et de disponibilité avec relativement peu d’effort. Non seulement est foundation hello de stockage Azure pour Windows et Linux des Machines virtuelles Azure, il peut également gérer les grandes applications distribuées.
 
-Les services Azure Storage assurent le stockage d’objets blob (Blob Storage), de tables (Table Storage), de files d’attente (Queue Storage) et de fichiers (File Storage). Pour en savoir plus, consultez [Présentation du stockage Microsoft Azure](../storage/storage-introduction.md).
+Le stockage Azure fournit hello suivant quatre services : stockage, le stockage de Table, stockage de file d’attente et le stockage de fichiers d’objets Blob. toolearn, voir [Introduction tooMicrosoft Azure Storage](../storage/storage-introduction.md).
 
 ## <a name="best-practices"></a>Meilleures pratiques
-Cet article traite les bonnes pratiques suivantes :
+Cet article traite hello suivant les meilleures pratiques :
 
 - Protection de l’accès :
    - Signatures d’accès partagé (SAP)
@@ -48,64 +48,64 @@ Cet article traite les bonnes pratiques suivantes :
 
 Dans une solution IaaS, qui exécute généralement des machines virtuelles Windows Server ou Linux, les fichiers sont protégés contre la divulgation d’informations et les menaces de falsification à l’aide de mécanismes de contrôle d’accès. Sur Windows, vous utiliseriez des [listes de contrôle d’accès (ACL)](../virtual-network/virtual-networks-acl.md), tandis que sur Linux, vous utiliseriez sans doute [chmod](https://en.wikipedia.org/wiki/Chmod). Pour l’essentiel, c’est exactement ce que vous feriez pour protéger des fichiers sur un serveur dans votre propre centre de données aujourd’hui.
 
-PaaS est différent. Une des méthodes les plus courantes pour stocker des fichiers dans Microsoft Azure consiste à utiliser le [stockage Blob Azure](../storage/storage-dotnet-how-to-use-blobs.md). Une différence entre le stockage Blob et d’autres systèmes de stockage de fichier est l’E/S de fichier et les méthodes de protection qui l’accompagnent.
+PaaS est différent. Un des fichiers de toostore de façons courantes hello dans Microsoft Azure est toouse [le stockage Blob Azure](../storage/storage-dotnet-how-to-use-blobs.md). Une différence entre le stockage d’objets Blob et d’autres systèmes de stockage de fichier est e/s de fichier hello et les méthodes de protection hello qui accompagnent d’e/s de fichier.
 
-Le contrôle d’accès est critique. Pour vous aider à contrôler l’accès au stockage Azure, le système génère deux clés de compte de stockage de 512 bits quand vous [créez un compte de stockage](../storage/common/storage-create-storage-account.md). Le niveau de redondance des clés vous permet d’éviter l’interruption de services pendant une rotation des clés de routine.
+Le contrôle d’accès est critique. toohelp vous contrôlez l’accès tooAzure stockage, hello système génère deux clés de compte de stockage de 512 bits (SAKs) lorsque vous [créer un compte de stockage](../storage/common/storage-create-storage-account.md). niveau Hello de redondance de clé rend possible pour l’interruption service tooavoid lors de la rotation des clés routine.
 
-Les clés d’accès de stockage sont des secrets de priorité élevée et ne doivent être accessibles qu’aux personnes responsables du contrôle d’accès de stockage. Si des personnes non autorisées accèdent à ces clés, elles ont un contrôle complet du stockage et peuvent remplacer, supprimer ou ajouter des fichiers au stockage. Cela inclut les logiciels malveillants et autres types de contenu qui peuvent nuire à vos clients ou à votre organisation.
+Clés d’accès de stockage sont des secrets de priorité élevée et ne doivent être accessible toothose responsable de contrôle d’accès de stockage. Si les personnes non autorisées hello obtenir l’accès des clés de toothese, ils seront ont un contrôle total de stockage et pourrait remplacer, supprimez ou ajoutez toostorage de fichiers. Cela inclut les logiciels malveillants et autres types de contenu qui peuvent nuire à vos clients ou à votre organisation.
 
-Vous devez toujours avoir un moyen de fournir l’accès aux objets dans le stockage. Pour fournir un accès plus précis, vous pouvez tirer parti de la [signature d’accès partagé](../storage/common/storage-dotnet-shared-access-signature-part-1.md) (SAP). Vous pouvez utiliser la SAP pour partager des objets spécifiques dans le stockage pendant un intervalle de temps prédéfini et avec des autorisations spécifiques. Une signature d’accès partagé vous permet de définir :
+Vous devez toujours un tooobjects d’accès tooprovide moyen dans le stockage. accès tooprovide plus précis que vous pouvez tirer parti de [Signature d’accès partagé](../storage/common/storage-dotnet-shared-access-signature-part-1.md) (SAS). Hello SAS rend possible pour vous tooshare des objets spécifiques dans le stockage pour un intervalle de temps prédéfini et avec des autorisations spécifiques. Une Signature d’accès partagé vous permet de toodefine :
 
-- L’intervalle pendant lequel la SAP est valide, y compris l’heure de début et l’heure d’expiration.
-- Les autorisations accordées par la SAP. Par exemple, une SAP sur un objet blob peut accorder à un utilisateur des autorisations en lecture et en écriture sur cet objet blob, mais pas d’autorisations de suppression.
-- Une adresse IP ou plage d’adresses IP facultative à partir de laquelle le stockage Azure accepte la signature d’accès partagé. Par exemple, vous pouvez spécifier une plage d’adresses IP appartenant à votre organisation. Cela fournit une autre mesure de sécurité à votre SAP.
-- Le protocole sur lequel le stockage Azure accepte la SAP. Vous pouvez utiliser ce paramètre facultatif pour restreindre l’accès aux clients à l’aide de HTTPS.
+- intervalle de salutation sur quel hello SAS est valide, y compris l’heure de début hello et l’heure d’expiration de hello.
+- autorisations de Hello accordées par hello SAS. Par exemple, une SAP sur un objet blob peut accorder une lecture de l’utilisateur et écrire des objets blob de toothat autorisations, mais pas supprimer des autorisations.
+- Une adresse IP facultative ou plage d’adresses IP à partir de laquelle le stockage Azure accepte hello SAS. Par exemple, vous pouvez spécifier une plage d’adresses IP appartenant tooyour organisation. Cela fournit une autre mesure de sécurité à votre SAP.
+- protocole Hello sur lequel le stockage Azure accepte hello SAS. Vous pouvez utiliser cette tooclients d’accès toorestrict paramètre facultatif à l’aide de HTTPS.
 
-La SAP vous permet de partager du contenu comme bon vous semble sans communiquer vos clés de compte de stockage. Utiliser systématiquement la SAP dans vos applications est un moyen sécurisé de partager vos ressources de stockage sans compromettre vos clés de compte de stockage.
+Associations de sécurité vous permet de tooshare contenu hello librement tooshare sans donner vos clés de compte de stockage. Toujours à l’aide de SAP dans votre application est un tooshare de manière sécurisée à vos ressources de stockage sans compromettre vos clés de compte de stockage.
 
-Pour plus d’informations, consultez [Présentation des signatures d’accès partagé](../storage/common/storage-dotnet-shared-access-signature-part-1.md). Pour plus d’informations sur les risques potentiels et sur les recommandations visant à réduire ces derniers, consultez [Bonnes pratiques lors de l’utilisation de SAP](../storage/common/storage-dotnet-shared-access-signature-part-1.md).
+toolearn, voir [à l’aide de Signatures d’accès partagé](../storage/common/storage-dotnet-shared-access-signature-part-1.md) (SAS). reportez-vous à ces risques, toolearn plus toomitigate potentielle de risques et les recommandations [meilleures pratiques lors de l’utilisation de SAP](../storage/common/storage-dotnet-shared-access-signature-part-1.md).
 
 ### <a name="use-managed-disks-for-vms"></a>Utiliser des disques managés pour les machines virtuelles
 
-Lorsque vous choisissez [Azure Managed Disks](../storage/storage-managed-disks-overview.md), Azure gère les comptes de stockage que vous utilisez pour vos disques de machine virtuelle. Choisissez simplement le type de disque (Premium ou Standard) et la taille du disque, le stockage Azure s’occupe du reste. Vous n’avez pas à vous soucier des limites de scalabilité qui vous auraient obligé à utiliser plusieurs comptes de stockage.
+Lorsque vous choisissez [disques gérés d’Azure](../storage/storage-managed-disks-overview.md), Azure gère les comptes de stockage hello que vous utilisez pour vos disques de machine virtuelle. Vous devez toodo est choisissez type hello de disque (Premium ou Standard) et la taille du disque hello ; Le stockage Azure effectuera hello rest. Vous n’avez pas tooworry sur les limites d’extensibilité qui auraient sinon nécessité des comptes de stockage tooyou toomultiple.
 
-Pour plus d’informations, consultez [Forum aux questions sur les disques Premium managés et non managés](../storage/storage-faq-for-disks.md).
+toolearn, voir [Forum aux Questions sur managées et les disques premium](../storage/storage-faq-for-disks.md).
 
 ### <a name="use-role-based-access-control"></a>Utiliser le contrôle d’accès en fonction du rôle
 
-Nous avons vu plus haut la possibilité d’utiliser une signature d’accès partagé (SAP) pour octroyer aux autres clients un accès limité aux objets dans votre compte de stockage, sans exposer votre clé de compte de stockage. Parfois, les risques associés à une opération particulière sur votre compte de stockage l'emportent sur les avantages offerts par la signature d'accès partagé. Parfois, il est plus simple de gérer l’accès par d’autres moyens.
+Précédemment, nous avons abordé à l’aide de Signature d’accès partagé (SAS) toogrant limitée accès tooobjects dans vos clients tooother de compte de stockage, sans exposer votre clé de compte de stockage de compte. Parfois, les risques de hello associés à une opération particulière par rapport à votre compte de stockage dépassent les avantages de hello de SAP. Il est parfois plus simple accès toomanage par d’autres moyens.
 
-Une autre façon de gérer l’accès consiste à utiliser le [contrôle d’accès en fonction du rôle dans Azure](../active-directory/role-based-access-control-what-is.md) (RBAC). Avec RBAC, vous vous concentrez sur l’octroi aux employés des autorisations exactes dont ils ont besoin, selon les principes de sécurité de la séparation des privilèges et du besoin de connaître. Un trop grand nombre d’autorisations peut exposer un compte aux attaquants. Si le nombre d’autorisations est trop faible, les employés ne peuvent pas effectuer leur travail efficacement. RBAC permet de résoudre ce problème en offrant une gestion précise de l’accès pour Azure. Ces principes sont impératifs pour les organisations qui veulent appliquer des stratégies de sécurité portant sur l’accès aux données.
+Une autre façon toomanage l’accès est toouse [du contrôle d’accès](../active-directory/role-based-access-control-what-is.md) (RBAC). RBAC, vous vous concentrez sur fournir aux employés les autorisations exactes hello que dont ils ont besoin, basée sur hello besoin tooknow et les principes de sécurité de privilège minimum. Trop d’autorisations peuvent exposer un tooattackers de compte. Si le nombre d’autorisations est trop faible, les employés ne peuvent pas effectuer leur travail efficacement. RBAC permet de résoudre ce problème en offrant une gestion précise de l’accès pour Azure. Il est impératif pour les organisations qui souhaitent utiliser les stratégies de sécurité tooenforce pour accéder aux données.
 
-Vous pouvez tirer parti des rôles RBAC intégrés dans Azure pour assigner des privilèges aux utilisateurs. Envisagez l’utilisation du rôle Contributeur de comptes de stockage pour les opérateurs de cloud qui ont besoin de gérer des comptes de stockage, et du rôle Contributeur de comptes de stockage classiques pour ceux qui gèrent des comptes de stockage classiques. Concernant les opérateurs de cloud qui ont besoin de gérer des machines virtuelles, mais pas le réseau virtuel ou le compte de stockage auquel elles sont connectées, envisagez de les ajouter au rôle Collaborateur de machine virtuelle.
+Vous pouvez tirer parti des rôles RBAC intégrés dans Azure tooassign privilèges toousers. Envisagez d’utiliser un collaborateur de compte de stockage pour les opérateurs cloud qui doivent toomanage les comptes de stockage et les comptes de stockage classiques de toomanage rôle Collaborateur de compte de stockage classique. Pour les opérateurs cloud qui doivent toomanage machines virtuelles, mais pas hello virtual network ou toowhich de compte de stockage qu’ils sont connectés, envisagez de les ajouter toohello collaborateur d’ordinateur virtuel.
 
-Les organisations qui n’appliquent aucun contrôle d’accès aux données via des fonctionnalités telles que RBAC risquent d’octroyer plus de privilèges que nécessaire à leurs utilisateurs. Cela risque d’entraîner la compromission des données en accordant à certains utilisateurs un accès non justifié à certaines données.
+Les organisations qui n’appliquent aucun contrôle d’accès aux données via des fonctionnalités telles que RBAC risquent d’octroyer plus de privilèges que nécessaire à leurs utilisateurs. Cela peut entraîner la compromission de toodata en autorisant certaines toodata d’accès aux utilisateurs qu’ils ne devraient pas avoir en place de première hello.
 
-Pour en savoir plus sur le contrôle d’accès en fonction du rôle, consultez :
+toolearn d’informations sur RBAC, consultez :
 
 - [Contrôle d’accès en fonction du rôle Azure](../active-directory/role-based-access-control-configure.md)
 - [Rôles intégrés pour le contrôle d’accès en fonction du rôle Azure](../active-directory/role-based-access-built-in-roles.md)
-- [Guide de sécurité du Stockage Azure](../storage/common/storage-security-guide.md) pour plus de détails sur la sécurisation de votre compte de stockage avec RBAC
+- [Guide de sécurité de stockage Azure](../storage/common/storage-security-guide.md) pour plus de détails sur la façon dont toosecure votre compte de stockage avec RBAC
 
 ## <a name="storage-encryption"></a>Chiffrement du stockage
 ### <a name="use-client-side-encryption-for-high-value-data"></a>Utiliser le chiffrement côté client pour les données de valeur élevée
 
-Avec le chiffrement côté client, vous pouvez chiffrer par programmation des données en transit avant leur chargement sur le stockage Azure et déchiffrer des données par programmation quand vous les récupérez du stockage.  Ce dispositif fournit le chiffrement des données en transit, mais également le chiffrement des données au repos.  Le chiffrement côté client est la méthode de chiffrement des données la plus sûre, mais il vous oblige à effectuer des modifications par programmation dans votre application et à mettre en place des processus de gestion des clés.
+Permet de chiffrement côté client vous tooprogrammatically chiffrer les données en transit avant de le télécharger tooAzure stockage et déchiffrer les données par programme lors de leur récupération à partir du stockage.  Ce dispositif fournit le chiffrement des données en transit, mais également le chiffrement des données au repos.  Le chiffrement côté client est la méthode la plus sûre de hello du chiffrement de vos données, mais il vous nécessitent l’application de tooyour toomake les modifications par programme et mettre le processus de gestion de clés en place.
 
-Le chiffrement côté client vous permet également d’avoir un contrôle exclusif de vos clés de chiffrement.  Vous pouvez créer et gérer vos propres clés de chiffrement.  Le chiffrement côté client utilise une technique d’enveloppe où la bibliothèque cliente de stockage Azure génère une clé de chiffrement de contenu qui est ensuite incluse dans un wrapper (chiffrée) à l’aide de la clé de chiffrement de clés. La clé de chiffrement de clés est identifiée par un identificateur de clé et peut être une paire de clés asymétriques ou une clé symétrique pouvant être gérée localement ou stockée dans [Azure Key Vault](../key-vault/key-vault-whatis.md).
+Le chiffrement côté client vous permet également contrôle seul toohave vos clés de chiffrement.  Vous pouvez créer et gérer vos propres clés de chiffrement.  Le chiffrement côté client utilise une technique d’enveloppe où hello bibliothèque cliente de stockage Azure génère une contenu clé de chiffrement (CEK) qui est ensuite encapsulée (chiffrée) à l’aide de la clé de chiffrement à clé hello (KEK). Hello veillent est identifié par un identificateur de clé et peut être une paire de clés asymétriques ou une clé symétrique et peut être géré localement ou de [Azure Key Vault](../key-vault/key-vault-whatis.md).
 
-Le chiffrement côté client est intégré aux bibliothèques clientes de stockage Java et .NET.  Pour plus d’informations sur le chiffrement de données dans les applications clientes et sur la génération et la gestion de vos propres clés de chiffrement, consultez [Chiffrement côté client et Azure Key Vault pour Stockage Microsoft Azure](../storage/storage-client-side-encryption.md).
+Le chiffrement côté client est intégré à hello Java et les bibliothèques clientes de stockage de .NET hello.  Pour plus d’informations sur le chiffrement de données dans les applications clientes et sur la génération et la gestion de vos propres clés de chiffrement, consultez [Chiffrement côté client et Azure Key Vault pour Stockage Microsoft Azure](../storage/storage-client-side-encryption.md).
 
 ### <a name="azure-disk-encryption-for-vms"></a>Azure Disk Encryption pour les machines virtuelles
-Azure Disk Encryption est une fonctionnalité qui vous permet de chiffrer vos disques de machine virtuelle IaaS Windows et Linux. Azure Disk Encryption s’appuie sur la fonctionnalité standard BitLocker Windows et la fonctionnalité DM-Crypt de Linux pour assurer le chiffrement de volume du système d’exploitation et des disques de données. La solution est intégrée à Azure Key Vault, ce qui vous permet de contrôler et de gérer les clés et les secrets de chiffrement de disque dans votre abonnement Key Vault. Elle garantit également que toutes les données sur les disques de vos machines virtuelles sont chiffrées au repos dans votre stockage Azure.
+Azure Disk Encryption est une fonctionnalité qui vous permet de chiffrer vos disques de machine virtuelle IaaS Windows et Linux. Le chiffrement des disques Azure s’appuie sur la fonctionnalité standard BitLocker hello industrie de Windows et fonctionnalité d’exploration de données-Crypt hello du chiffrement de volume tooprovide Linux pour hello du système d’exploitation et des disques de données hello. solution de Hello est intégrée à Azure Key Vault toohelp contrôler et de gérer les clés de chiffrement de disque hello et les secrets dans votre abonnement de coffre de clés. solution de Hello garantit également que toutes les données sur les disques de machine virtuelle hello sont chiffrées au repos dans votre stockage Azure.
 
 Consultez [Azure Disk Encryption pour des machines virtuelles Windows et Linux IaaS](azure-security-disk-encryption.md).
 
 ### <a name="storage-service-encryption"></a>Storage Service Encryption
-Quand le [chiffrement du service de stockage](../storage/storage-service-encryption.md) pour le stockage de fichiers est activé, les données sont chiffrées automatiquement à l’aide du chiffrement AES-256. Microsoft gère en totalité le chiffrement, le déchiffrement et la gestion des clés. Cette fonctionnalité est disponible pour les types de redondance LRS et GRS.
+Lorsque [chiffrement de Service de stockage](../storage/storage-service-encryption.md) de stockage de fichiers est activé, les données de salutation sont chiffrées automatiquement à l’aide du chiffrement AES-256. Microsoft gère tous les hello chiffrement, le déchiffrement et la gestion de clés. Cette fonctionnalité est disponible pour les types de redondance LRS et GRS.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Cet article vous a présenté un ensemble de bonnes pratiques de sécurité du stockage Azure pour protéger vos applications mobiles et web PaaS. Pour en savoir plus sur la sécurisation de vos déploiements PaaS, consultez :
+Cet article introduit collection tooa de stockage Azure meilleures pratiques de sécurité pour sécuriser votre PaaS applications web et mobiles. toolearn savoir plus sur la sécurisation de vos déploiements PaaS, consultez :
 
 - [Sécurisation des déploiements PaaS](security-paas-deployments.md)
 - [Sécurisation des applications mobiles et web PaaS à l’aide d’Azure App Services](security-paas-applications-using-app-services.md)

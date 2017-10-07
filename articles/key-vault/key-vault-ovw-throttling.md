@@ -1,39 +1,39 @@
 ---
 ms.assetid: 
-title: "Aide sur la limitation de requêtes Azure Key Vault | Microsoft Docs"
+title: "aaaAzure des conseils de la limitation de coffre de clés | Documents Microsoft"
 ms.service: key-vault
 author: BrucePerlerMS
 ms.author: bruceper
 manager: mbaldwin
 ms.date: 06/21/2017
-ms.openlocfilehash: fe700e22c5323c2a0bdc315e349cd119798bcf40
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a75cf96bc6503e51f14378bee598bad57e85be82
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-key-vault-throttling-guidance"></a>Aide sur la limitation de requêtes Azure Key Vault
 
-La limitation de requêtes est le processus permettant de réduire le nombre d’appels simultanés au service Azure afin d’empêcher toute surexploitation des ressources. Azure Key Vault (AKV) est conçu pour gérer un volume élevé de requêtes. En cas d’affluence, la limitation des requêtes du client permet de maintenir des performances et une fiabilité optimales pour le service AKV.
+La limitation est un processus que vous lancez qui limite le nombre de hello d’appels simultanés toohello service Azure tooprevent utilisation excessive de ressources. Azure Key Vault (AKV) est conçue toohandle un volume élevé de demandes. Si un grand nombre de demandes se produit, la limitation de requêtes de votre client vous permet d’assurer des performances optimales et la fiabilité du service AKV de hello.
 
-Les limites varient selon les scénarios. Par exemple, si vous réalisez un volume important d’écritures, la possibilité de limitation est plus élevée que si vous effectuez uniquement des lectures.
+Limites limitation dépend du scénario de hello. Par exemple, si vous effectuez un volume important d’écritures, possibilité hello pour la limitation est supérieure à si vous effectuez uniquement des lectures.
 
 ## <a name="how-does-key-vault-handle-its-limits"></a>Comment Key Vault gère-t-il ses limites ?
 
-Les limites de service de Key Vault sont là pour empêcher tout usage abusif des ressources et garantir la qualité du service pour tous les clients de Key Vault. En cas de dépassement d’un seuil de service, Key Vault limite toutes les autres requêtes de ce client sur une période donnée. Dans ce cas, Key Vault retourne le code d’état HTTP 429 (Trop de requêtes), et les requêtes échouent. Par ailleurs, les requêtes qui ont échoué et retournent une erreur 429 sont comptabilisées dans les limites suivies par Key Vault. 
+Limites de service dans le coffre de clés sont les abus tooprevent des ressources et garantir la qualité de service pour tous les clients du coffre de clés. En cas de dépassement d’un seuil de service, Key Vault limite toutes les autres requêtes de ce client sur une période donnée. Dans ce cas, le coffre de clés retourne le code d’état HTTP 429 (trop grand nombre de demandes), et les requêtes hello échouent. En outre, les demandes qui retournent un 429 comptabilisés dans les limites de limitation de bande passante hello suivies par le coffre de clés ayant échoué. 
 
 Si vous avez un scénario valide justifiant une limitation supérieure, contactez-nous.
 
 
-## <a name="how-to-throttle-your-app-in-response-to-service-limits"></a>Guide pratique pour limiter une application en réponse à des limites de service
+## <a name="how-toothrottle-your-app-in-response-tooservice-limits"></a>Comment toothrottle votre application dans la réponse tooservice limite
 
-Voici les **meilleures pratiques** pour limiter une application :
-- Réduisez le nombre d’opérations par requête.
-- Réduisez la fréquence des requêtes.
+Hello Voici **meilleures pratiques** pour la limitation de votre application :
+- Réduire le nombre hello d’opérations par demande.
+- Réduisez la fréquence hello des requêtes.
 - Évitez les nouvelles tentatives immédiates. 
     - Toutes les requêtes sont comptabilisées dans le cadre de vos limites d’utilisation.
 
-Lorsque vous implémentez la gestion des erreurs de votre application, utilisez le code d’erreur HTTP 429 pour détecter si une limitation côté client est nécessaire. Si la requête échoue à nouveau avec un code d’erreur HTTP 429, cela signifie que vous rencontrez toujours une limite de service Azure. Continuez à utiliser la méthode de limitation côté client recommandée, en réessayant la requête jusqu’à ce qu’elle aboutisse.
+Lorsque vous implémentez la gestion des erreurs de votre application, utilisez hello HTTP Erreur code 429 toodetect hello besoin pour la limitation au niveau du client. Si la demande de hello échoue à nouveau avec un code d’erreur HTTP 429, vous rencontrez toujours une limite de service Azure. Continuer toouse hello recommandé de méthode de limitation côté client, une nouvelle tentative de demande de hello jusqu'à ce qu’il réussisse.
 
 ### <a name="recommended-client-side-throttling-method"></a>Méthode de limitation côté client recommandée
 
@@ -49,5 +49,5 @@ En cas de code d’erreur HTTP 429, commencez à limiter votre client suivant un
 
 ## <a name="see-also"></a>Voir aussi
 
-Pour orienter la limitation de façon plus approfondie sur Microsoft Cloud, consultez la page [Modèle de limitation](https://docs.microsoft.com/azure/architecture/patterns/throttling).
+Pour une orientation plus approfondie de la limitation sur hello Cloud Microsoft, consultez [de limitation de modèle](https://docs.microsoft.com/azure/architecture/patterns/throttling).
 

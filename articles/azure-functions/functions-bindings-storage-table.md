@@ -1,6 +1,6 @@
 ---
-title: Liaisons de table Azure Functions Storage | Microsoft Docs
-description: "Découvrez comment utiliser des liaisons de Stockage Azure dans Azure Functions."
+title: liaisons de Table de stockage des fonctions aaaAzure | Documents Microsoft
+description: "Comprendre comment les liaisons de stockage Azure toouse dans les fonctions d’Azure."
 services: functions
 documentationcenter: na
 author: christopheranderson
@@ -16,32 +16,32 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 10/28/2016
 ms.author: chrande
-ms.openlocfilehash: bb01be3ee044f60376e0c9c2de7b3dd34f3b7aca
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 90c2a73329139d4ab3504bc0e2c90370133158bf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-functions-storage-table-bindings"></a>Liaisons de table Azure Functions Storage
 [!INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-Cet article explique comment configurer et coder des liaisons de table de Stockage Azure dans Azure Functions. Azure Functions prend en charge les liaisons d’entrée et de sortie pour les tables Azure Storage.
+Cet article explique comment tooconfigure et code le stockage Azure table liaisons dans les fonctions d’Azure. Azure Functions prend en charge les liaisons d’entrée et de sortie pour les tables Azure Storage.
 
-La liaison de table Storage prend en charge les scénarios suivants :
+liaison de table de stockage Hello prend en charge hello les scénarios suivants :
 
-* **Lecture d’une seule ligne dans une fonction C# ou Node.js** - Définition de `partitionKey` et `rowKey`. Les propriétés `filter` et `take` ne sont pas utilisées dans ce scénario.
-* **Lecture de plusieurs lignes dans une fonction C#** - Le runtime Functions fournit un objet `IQueryable<T>` lié à la table. Le type `T` doit dériver de `TableEntity` ou implémenter `ITableEntity`. Les propriétés `partitionKey`, `rowKey`, `filter` et `take` ne sont pas utilisées dans ce scénario ; s’il y a lieu, vous pouvez utiliser l’objet `IQueryable` pour effectuer le filtrage éventuellement requis. 
-* **Lecture de plusieurs lignes dans une fonction Node** - Définition des propriétés `filter` et `take`. Ne définissez pas `partitionKey` ni `rowKey`.
-* **Écriture d'une ou plusieurs lignes dans une fonction C#** Le runtime Functions fournit un objet `ICollector<T>` ou `IAsyncCollector<T>` lié à la table, où `T` spécifie le schéma des entités à ajouter. En général, le type `T` dérive de `TableEntity` ou implémente `ITableEntity`, mais ce n’est pas obligatoire. Les propriétés `partitionKey`, `rowKey`, `filter` et `take` ne sont pas utilisées dans ce scénario.
+* **Lecture d’une seule ligne dans une fonction C# ou Node.js** - Définition de `partitionKey` et `rowKey`. Hello `filter` et `take` propriétés ne sont pas utilisées dans ce scénario.
+* **Lecture de plusieurs lignes dans une fonction c#** -hello fonctions runtime fournit un `IQueryable<T>` objet lié toohello table. Le type `T` doit dériver de `TableEntity` ou implémenter `ITableEntity`. Hello `partitionKey`, `rowKey`, `filter`, et `take` propriétés ne sont pas utilisées dans ce scénario, vous pouvez utiliser hello `IQueryable` toodo l’objet de filtrage requis. 
+* **Lecture de plusieurs lignes dans une fonction de nœud** - hello définissez `filter` et `take` propriétés. Ne définissez pas `partitionKey` ni `rowKey`.
+* **Écrivez une ou plusieurs lignes dans une fonction c#** -hello fonctions runtime fournit un `ICollector<T>` ou `IAsyncCollector<T>` toohello liée, table, où `T` Spécifie le schéma de hello d’entités de hello souhaité tooadd. En général, le type `T` dérive de `TableEntity` ou implémente `ITableEntity`, mais ce n’est pas obligatoire. Hello `partitionKey`, `rowKey`, `filter`, et `take` propriétés ne sont pas utilisées dans ce scénario.
 
 [!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
 <a name="input"></a>
 
 ## <a name="storage-table-input-binding"></a>Liaison d’entrée d'une table Storage
-La liaison d’entrée d'une table Azure Storage vous permet d’utiliser une table Storage dans votre fonction. 
+Hello liaison d’entrée de table de stockage Azure vous permet de toouse une table de stockage dans votre fonction. 
 
-L’entrée de table Storage d’une fonction utilise les objets JSON suivants dans le tableau `bindings` de function.json :
+Hello, fonction de tooa d’entrée de table de stockage utilise hello objets JSON Bonjour suivants `bindings` tableau de function.json :
 
 ```json
 {
@@ -49,28 +49,28 @@ L’entrée de table Storage d’une fonction utilise les objets JSON suivants d
     "type": "table",
     "direction": "in",
     "tableName": "<Name of Storage table>",
-    "partitionKey": "<PartitionKey of table entity to read - see below>",
-    "rowKey": "<RowKey of table entity to read - see below>",
-    "take": "<Maximum number of entities to read in Node.js - optional>",
+    "partitionKey": "<PartitionKey of table entity tooread - see below>",
+    "rowKey": "<RowKey of table entity tooread - see below>",
+    "take": "<Maximum number of entities tooread in Node.js - optional>",
     "filter": "<OData filter expression for table input in Node.js - optional>",
     "connection": "<Name of app setting - see below>",
 }
 ```
 
-Notez les points suivants : 
+Notez hello suivantes : 
 
-* Utilisez `partitionKey` et `rowKey` pour lire une seule entité. Ces propriétés sont facultatives. 
-* `connection` doit contenir le nom d’un paramètre d’application comportant une chaîne de connexion de stockage. Dans le portail Azure, l’éditeur standard sous l’onglet **Intégrer** configure ce paramètre d’application pour vous quand vous créez un compte Stockage ou en sélectionne un. Vous pouvez également [configurer ce paramètre d’application manuellement](functions-how-to-use-azure-function-app-settings.md#settings).  
+* Utilisez `partitionKey` et `rowKey` tooread ensemble une entité unique. Ces propriétés sont facultatives. 
+* `connection`doit contenir nom hello d’un paramètre d’application qui contient une chaîne de connexion de stockage. Bonjour portail Azure, hello éditeur standard Bonjour **intégrer** onglet configure ce paramètre d’application pour vous lorsque vous créez un stockage de compte ou sélectionne un existant. Vous pouvez également [configurer ce paramètre d’application manuellement](functions-how-to-use-azure-function-app-settings.md#settings).  
 
 <a name="inputusage"></a>
 
 ## <a name="input-usage"></a>Utilisation en entrée
-Dans les fonctions C#, vous liez l'entité (ou les entités) de table d’entrée à l’aide d’un paramètre nommé dans la signature de la fonction, comme `<T> <name>`.
-Où `T` est le type de données dans lequel vous souhaitez désérialiser les données, et `paramName` le nom que vous avez spécifié dans la [liaison d’entrée](#input). Dans les fonctions Node.js, vous accédez à l'entité (ou les entités) de table d’entrée à l’aide de `context.bindings.<name>`.
+Dans les fonctions C#, vous liez toohello d’entrée table entité (ou les entités) à l’aide d’un paramètre nommé dans votre signature de fonction, comme `<T> <name>`.
+Où `T` est que les données de hello toodeserialize, de type de données de hello et `paramName` est le nom hello spécifié Bonjour [liaison d’entrée](#input). Dans les fonctions de Node.js, vous accéder hello d’entrée table entité (ou les entités) à l’aide de `context.bindings.<name>`.
 
-Les données d’entrée peuvent être désérialisées dans les fonctions Node.js ou C#. Les objets désérialisés ont des propriétés `RowKey` et `PartitionKey`.
+les données d’entrée Hello pouvant être désérialisées dans les fonctions Node.js ou c#. les objets Hello désérialisé ont `RowKey` et `PartitionKey` propriétés.
 
-Dans les fonctions C#, vous pouvez également effectuer une liaison vers un des types suivants (le runtime Functions tente de désérialiser les données de la table à l’aide de ce type) :
+Dans les fonctions de c#, vous pouvez également lier tooany Hello les types suivants, et les fonctions hello runtime va tenter de désérialiser trop à l’aide de ce type de données de la table hello :
 
 * Tout type qui implémente `ITableEntity`
 * `IQueryable<T>`
@@ -78,8 +78,8 @@ Dans les fonctions C#, vous pouvez également effectuer une liaison vers un des 
 <a name="inputsample"></a>
 
 ## <a name="input-sample"></a>Exemple d’entrée
-Supposons que vous avez le fichier function.json suivant, qui utilise un déclencheur de file d’attente pour lire une seule ligne du tableau. Le JSON spécifie `PartitionKey` 
-`RowKey`. `"rowKey": "{queueTrigger}"` indique que la clé de ligne provient de la chaîne de message de file d’attente.
+Supposé qu'avoir hello suivant function.json, qui utilise un tooread de déclencheur de file d’attente une seule ligne du tableau. Spécifie Hello JSON `PartitionKey`  
+ `RowKey`. `"rowKey": "{queueTrigger}"`Indique que cette clé de ligne hello provient de la chaîne de message de file d’attente hello.
 
 ```json
 {
@@ -105,7 +105,7 @@ Supposons que vous avez le fichier function.json suivant, qui utilise un déclen
 }
 ```
 
-Consultez l’exemple spécifique au langage, qui lit une entité de table unique.
+Voir exemple hello spécifiques au langage qui lit une entité de table unique.
 
 * [C#](#inputcsharp)
 * [F#](#inputfsharp)
@@ -159,9 +159,9 @@ module.exports = function (context, myQueueItem) {
 <a name="output"></a>
 
 ## <a name="storage-table-output-binding"></a>Liaison de sortie d'une table Storage
-La liaison de sortie de table Azure Storage vous permet d’écrire des entités dans une table Storage de votre fonction. 
+liaison vous permet de table de stockage toowrite entités tooa dans votre fonction de sortie Hello table de stockage Azure. 
 
-La sortie de table Storage pour une fonction utilise les objets JSON suivants dans le tableau `bindings` de function.json :
+Hello sortie de table de stockage pour une fonction utilise hello objets JSON Bonjour suivants `bindings` tableau de function.json :
 
 ```json
 {
@@ -169,33 +169,33 @@ La sortie de table Storage pour une fonction utilise les objets JSON suivants da
     "type": "table",
     "direction": "out",
     "tableName": "<Name of Storage table>",
-    "partitionKey": "<PartitionKey of table entity to write - see below>",
-    "rowKey": "<RowKey of table entity to write - see below>",
+    "partitionKey": "<PartitionKey of table entity toowrite - see below>",
+    "rowKey": "<RowKey of table entity toowrite - see below>",
     "connection": "<Name of app setting - see below>",
 }
 ```
 
-Notez les points suivants : 
+Notez hello suivantes : 
 
-* Utilisez `partitionKey` et `rowKey` pour écire une seule entité. Ces propriétés sont facultatives. Vous pouvez également spécifier `PartitionKey` et `RowKey` lorsque vous créez les objets d’entité dans votre code de fonction.
-* `connection` doit contenir le nom d’un paramètre d’application comportant une chaîne de connexion de stockage. Dans le portail Azure, l’éditeur standard sous l’onglet **Intégrer** configure ce paramètre d’application pour vous quand vous créez un compte Stockage ou en sélectionne un. Vous pouvez également [configurer ce paramètre d’application manuellement](functions-how-to-use-azure-function-app-settings.md#settings). 
+* Utilisez `partitionKey` et `rowKey` toowrite ensemble une entité unique. Ces propriétés sont facultatives. Vous pouvez également spécifier `PartitionKey` et `RowKey` lorsque vous créez hello objets d’entité dans votre code de fonction.
+* `connection`doit contenir nom hello d’un paramètre d’application qui contient une chaîne de connexion de stockage. Bonjour portail Azure, hello éditeur standard Bonjour **intégrer** onglet configure ce paramètre d’application pour vous lorsque vous créez un stockage de compte ou sélectionne un existant. Vous pouvez également [configurer ce paramètre d’application manuellement](functions-how-to-use-azure-function-app-settings.md#settings). 
 
 <a name="outputusage"></a>
 
 ## <a name="output-usage"></a>Utilisation en sortie
-Dans les fonctions C#, vous liez la sortie de table à l’aide du paramètre `out` nommé dans la signature de la fonction, par exemple, `out <T> <name>`, où `T` est le type de données dans lequel vous souhaitez sérialiser les données, et `paramName` le nom que vous avez spécifié dans la [liaison de sortie](#output). Dans les fonctions Node.js, vous accédez à la sortie de table en utilisant `context.bindings.<name>`.
+Dans les fonctions C#, vous liez sortie de table toohello à l’aide de hello nommé `out` paramètre dans votre signature de fonction, comme `out <T> <name>`, où `T` est que les données de hello tooserialize, de type de données de hello et `paramName` est hello nom que vous avez spécifié dans hello [liaison de sortie](#output). Dans les fonctions Node.js, vous accédez à table hello de sortie à l’aide de `context.bindings.<name>`.
 
-Vous pouvez sérialiser les objets dans les fonctions Node.js ou C#. Dans les fonctions C#, vous pouvez également lier les types suivants :
+Vous pouvez sérialiser les objets dans les fonctions Node.js ou C#. Dans les fonctions de c#, vous pouvez également lier toohello les types suivants :
 
 * Tout type qui implémente `ITableEntity`
-* `ICollector<T>` (pour la sortie de plusieurs entités. Voir l'[exemple](#outcsharp).)
+* `ICollector<T>`(toooutput plusieurs entités. Voir l'[exemple](#outcsharp).)
 * `IAsyncCollector<T>` (version asynchrone de `ICollector<T>`)
-* `CloudTable` (utilisation du Kit de développement logiciel (SDK) de stockage Azure. Voir l'[exemple](#readmulti).)
+* `CloudTable`(à l’aide de hello SDK Azure Storage. Voir l'[exemple](#readmulti).)
 
 <a name="outputsample"></a>
 
 ## <a name="output-sample"></a>Exemple de sortie
-Les exemples de fichiers *function.json* et *run.csx* ci-après indiquent comment écrire plusieurs entités de table.
+suivant de Hello *function.json* et *run.csx* exemple illustre comment toowrite plusieurs entités de table.
 
 ```json
 {
@@ -217,7 +217,7 @@ Les exemples de fichiers *function.json* et *run.csx* ci-après indiquent commen
 }
 ```
 
-Consultez l’exemple spécifique au langage, qui crée plusieurs entités de table.
+Voir exemple hello spécifiques au langage qui crée plusieurs entités de table.
 
 * [C#](#outcsharp)
 * [F#](#outfsharp)
@@ -262,7 +262,7 @@ type Person = {
 }
 
 let Run(input: string, tableBinding: ICollector<Person>, log: TraceWriter) =
-    for i = 1 to 10 do
+    for i = 1 too10 do
         log.Info(sprintf "Adding Person entity %d" i)
         tableBinding.Add(
             { PartitionKey = "Test"
@@ -293,7 +293,7 @@ module.exports = function (context) {
 <a name="readmulti"></a>
 
 ## <a name="sample-read-multiple-table-entities-in-c"></a>Exemple : lire plusieurs entités de table en C#  #
-L’exemple de fichier *function.json* et de code C# ci-après lit les entités relatives à une clé de partition spécifiée dans le message de file d’attente.
+suivant de Hello *function.json* et exemple de code c# lit les entités d’une clé de partition qui est spécifié dans le message de file d’attente hello.
 
 ```json
 {
@@ -317,7 +317,7 @@ L’exemple de fichier *function.json* et de code C# ci-après lit les entités 
 }
 ```
 
-Le code C# ajoute une référence au SDK Azure Storage afin que le type d’entité puisse dériver de `TableEntity`.
+Hello code c# ajoute un toohello référence SDK de stockage Azure afin que le type d’entité hello peut dériver de `TableEntity`.
 
 ```csharp
 #r "Microsoft.WindowsAzure.Storage"

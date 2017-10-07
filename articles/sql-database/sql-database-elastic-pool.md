@@ -1,5 +1,5 @@
 ---
-title: "Qu’est-ce qu’un pool élastique ? Gérer plusieurs bases de données SQL - Azure | Microsoft Docs"
+title: "aaaWhat sont les pools élastiques ? Gérer plusieurs bases de données SQL - Azure | Microsoft Docs"
 description: "Gérez et mettez à l’échelle plusieurs bases de données SQL (des centaines et des milliers) avec des pools élastiques. Un prix unique pour des ressources que vous pouvez distribuer là où vous en avez besoin."
 keywords: "plusieurs bases de données, ressources des bases de données, performances des bases de données"
 services: sql-database
@@ -16,15 +16,15 @@ ms.author: carlrab
 ms.workload: data-management
 ms.topic: article
 ms.tgt_pltfrm: NA
-ms.openlocfilehash: 89e014a073dc555c927e872d75edfc014740c8ca
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 2098d7817ebe1277b5c131421f23c00803ec78f8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="elastic-pools-help-you-manage-and-scale-multiple-sql-databases"></a>Les pools élastiques vous aident à gérer et à mettre à l’échelle plusieurs bases de données SQL
 
-Les pools élastiques SQL Database représentent une solution simple et rentable de gestion et de mise à l’échelle de plusieurs bases de données qui ont des demandes d’utilisation variables et imprévisibles. Les bases de données d’un pool élastique se trouvent sur un seul serveur Azure SQL Database et partagent un nombre défini de ressources ([DTU élastiques](sql-database-what-is-a-dtu.md) (eDTU)) à prix fixe. Les pools élastiques dans Azure SQL Database permettent aux développeurs SaaS d’optimiser le rapport performance/prix pour un groupe de bases de données dans un budget prescrit tout en offrant une élasticité des performances pour chaque base de données.   
+Les pools élastiques SQL Database représentent une solution simple et rentable de gestion et de mise à l’échelle de plusieurs bases de données qui ont des demandes d’utilisation variables et imprévisibles. Hello et bases de données dans un pool élastique sur un seul serveur de base de données SQL Azure partagent un nombre défini de ressources ([unités de Transaction de base de données élastique](sql-database-what-is-a-dtu.md) (Edtu)) à un prix fixe. Les pools élastiques dans la base de données SQL Azure activer SaaS développeurs toooptimize hello prix des performances pour un groupe de bases de données dans un budget prescrit tout en offrant l’élasticité de performances pour chaque base de données.   
 
 > [!NOTE]
 > Les pools élastiques sont mis à la disposition générale dans toutes les régions Azure, à l’exception de l’Inde de l’Ouest, où ils sont actuellement en version préliminaire.  Les pools élastiques seront en disposition générale dès que possible dans cette région.
@@ -32,277 +32,277 @@ Les pools élastiques SQL Database représentent une solution simple et rentable
 
 ## <a name="what-are-sql-elastic-pools"></a>Que sont les pools élastiques SQL ? 
 
-Les développeurs SaaS créent des applications qui reposent sur des couches de données à grande échelle composées de plusieurs bases de données. Un modèle d’application courant consiste à approvisionner une base de données pour chaque client. Toutefois, les modèles d’utilisation sont souvent imprévisibles et varient d’un client à l’autre, et il est difficile de prévoir les besoins en ressources de chaque utilisateur de base de données spécifique. Vous disposez généralement de deux options : 
+Les développeurs SaaS créent des applications qui reposent sur des couches de données à grande échelle composées de plusieurs bases de données. Un modèle d’application commun est tooprovision une base de données pour chaque client. Mais différents clients ont souvent des modèles d’utilisation imprévisibles et variables, et il est difficile de toopredict besoins en ressources hello de chaque utilisateur de base de données individuels. Vous disposez généralement de deux options : 
 
 - Sur-approvisionner les ressources en fonction de l’utilisation maximale et payer trop, ou
-- Sous-approvisionner pour réduire les coûts, au détriment des performances et de la satisfaction des clients au moment des pics d’utilisation. 
+- Toosave disposition incomplète de coût, à des frais de hello de performances et la satisfaction client pendant les heures de pointe. 
 
-Les pools élastiques résolvent ce problème en vous assurant que les bases de données disposent des ressources de performances nécessaires au moment où elles en ont besoin. Ils représentent un mécanisme simple d’allocation de ressources avec un budget prévisible. Pour en savoir plus sur les modèles de conception pour les applications SaaS avec des pools élastiques, voir [Design Patterns for Multi-tenant SaaS Applications with Azure SQL Database](sql-database-design-patterns-multi-tenancy-saas-applications.md)(Modèles de conception pour les applications SaaS mutualisées avec la base de données SQL Azure).
+Pools élastiques résolvent ce problème en vous assurant que les bases de données d’obtenir les ressources de performances hello que dont ils ont besoin lorsqu’ils en ont besoin. Ils représentent un mécanisme simple d’allocation de ressources avec un budget prévisible. toolearn savoir plus sur les modèles de conception pour les applications SaaS à l’aide de pools élastiques, consultez [des modèles de conception pour les Applications SaaS mutualisée avec la base de données SQL Azure](sql-database-design-patterns-multi-tenancy-saas-applications.md).
 
 > [!VIDEO https://channel9.msdn.com/Blogs/Azure/Elastic-databases-helps-SaaS-developers-tame-explosive-growth/player]
 >
 
-Les pools élastiques permettent au développeur d’acheter des [unités de transaction de base de données élastiques](sql-database-what-is-a-dtu.md) (eDTU) pour un pool partagé par plusieurs bases de données afin de s’adapter aux périodes imprévisibles d’utilisation par les bases de données. Le besoin en eDTU d’un pool est déterminé par l'utilisation globale de ses bases de données. Le nombre d’eDTU disponible pour le pool est contrôlé par le budget du développeur. Le développeur ajoute simplement des bases de données au pool, définit le nombre minimal et maximal d’eDTU pour les bases de données, puis définit l’eDTU du pool en fonction de son budget. Un développeur peut utiliser des pools pour faire évoluer en toute transparence son service en passant d’une lean startup à une entreprise mature à une vitesse sans cesse croissante.
+Pools élastiques activer hello développeur toopurchase [unités de Transaction de base de données élastique](sql-database-what-is-a-dtu.md) (Edtu) pour un pool partagé par plusieurs bases de données tooaccommodate imprévisible des périodes d’utilisation par les bases de données individuelles. spécification d’eDTU Hello pour un pool est déterminée par l’utilisation d’agrégation hello de ses bases de données. nombre de Hello d’Edtu toohello disponible pool est contrôlé par budget de développeur hello. développeur de Hello ajoute simplement pool toohello de bases de données, définit le minimum de hello et Edtu maximale pour les bases de données hello et définit ensuite eDTU hello du pool hello en fonction de leur budget. Un développeur peut utiliser des pools de leur service à partir d’une entreprise bien établie tooa de démarrage adaptée à la croissance tooseamlessly mise à l’échelle croissante.
 
-Au sein du pool, les différentes bases de données peuvent en toute souplesse s’adapter automatiquement en fonction des paramètres définis. Si la charge est élevée, une base de données peut consommer plus d’eDTU pour répondre à la demande. Les bases de données soumises à des charges légères en consomment moins, tandis que celles qui ne sont soumises à aucune charge n’en consomment pas du tout. L’approvisionnement des ressources pour l’ensemble du pool plutôt que pour des bases de données uniques simplifie vos tâches de gestion. En outre, vous disposez d’un budget prévisible pour le pool. Des eDTU peuvent être ajoutées à un pool existant sans temps d’arrêt de la base de données, à ceci près que les bases de données peuvent être déplacées pour fournir les ressources de calcul supplémentaires à la nouvelle réservation d’eDTU. De même, si les eDTU supplémentaires ne sont plus nécessaires, ils peuvent être supprimés à partir d’un pool existant à tout moment. De plus, vous pouvez ajouter des bases de données au pool ou en retirer. Si une base de données finit par sous-utiliser les ressources, retirez-la.
+Dans un pool de hello, bases de données individuelles sont fournies hello flexibilité tooauto à l’échelle dans le jeu de paramètres. Sous une charge importante, une base de données peut consommer plus à la demande de toomeet Edtu. Les bases de données soumises à des charges légères en consomment moins, tandis que celles qui ne sont soumises à aucune charge n’en consomment pas du tout. Configuration des ressources pour le pool entier de hello plutôt que pour les bases de données uniques simplifie vos tâches de gestion. Ainsi, vous avez un budget prévisible pour le pool de hello. Edtu supplémentaires peut être ajoutées tooan pool existant sans interruption de la base de données, sauf que les bases de données hello doivent toobe déplacé hello tooprovide supplémentaire des ressources pour la réservation eDTU hello de calcul. De même, si les eDTU supplémentaires ne sont plus nécessaires, ils peuvent être supprimés à partir d’un pool existant à tout moment. Et vous pouvez ajouter ou soustraire pool toohello de bases de données. Si une base de données finit par sous-utiliser les ressources, retirez-la.
 
-Vous pouvez créer et gérer un pool élastique en utilisant le [portail Azure](sql-database-elastic-pool-manage-portal.md), [PowerShell](sql-database-elastic-pool-manage-powershell.md), [Transact-SQL](sql-database-elastic-pool-manage-tsql.md), [C#](sql-database-elastic-pool-manage-csharp.md) et l’API REST. 
+Vous pouvez créer et gérer un pool élastique, à l’aide de hello [portail Azure](sql-database-elastic-pool-manage-portal.md), [PowerShell](sql-database-elastic-pool-manage-powershell.md), [Transact-SQL](sql-database-elastic-pool-manage-tsql.md), [c#](sql-database-elastic-pool-manage-csharp.md), et l’API REST de hello. 
 
 ## <a name="when-should-you-consider-a-sql-database-elastic-pool"></a>Quand devez-vous envisager d’utiliser un pool élastique SQL Database ?
 
 Les pools sont idéaux dans le cas de nombreuses bases de données avec des modèles d’utilisation spécifiques. Pour une base de données indiquée, ce modèle se caractérise par une faible utilisation moyenne avec des pics d'utilisation relativement rares.
 
-Plus vous ajoutez de bases de données à un pool, plus vous faites d'économies. En fonction de votre modèle d’utilisation de l’application, il est possible de faire des économies avec seulement deux bases de données S3.  
+Hello plusieurs bases de données vous pouvez ajouter hello de pool tooa supérieur que deviennent d’épargne. Selon votre modèle d’utilisation de l’application, il est économies toosee possibles avec un minimum de deux bases de données S3.  
 
-Les sections suivantes vous aident à comprendre comment évaluer si votre collection de bases de données spécifique peut tirer profit de l’utilisation d’un pool. Les exemples utilisent les pools Standard, mais ces principes s’appliquent également aux pools De base et Premium.
+vous aident à comprendre les sections suivantes de Hello comment tooassess si votre regroupement spécifique des bases de données peut tirer parti dans un pool. Hello exemples utilisent les pools Standard mais hello mêmes principes s’appliquent également tooBasic et pools de Premium.
 
 ### <a name="assessing-database-utilization-patterns"></a>Évaluation des modèles d'utilisation de base de données
 
-La figure suivante montre l’exemple d'une base de données qui est très souvent inactive, mais qui connaît de temps en temps des pics d’activité. Il s’agit d’un modèle d’utilisation particulièrement adapté à un pool :
+Hello figure suivante montre un exemple de base de données qui prend beaucoup de temps pour inactif, mais également régulièrement des pics se produisent avec l’activité. Il s’agit d’un modèle d’utilisation particulièrement adapté à un pool :
 
    ![une base de données unique adaptée à un pool](./media/sql-database-elastic-pool/one-database.png)
 
-Pour la période de cinq minutes illustrée, DB1 culmine à 90 DTU, mais son utilisation moyenne totale est inférieure à cinq DTU. Un niveau de performance S3 est requis pour exécuter cette charge de travail dans une base de données unique. Cependant, cela laisse la plupart des ressources inutilisées pendant les périodes de faible activité.
+Pourquoi illustré délai de cinq minutes, pics DB1 des too90 Udbd, mais son utilisation moyenne totale est inférieure à cinq dtu. Un niveau de performance est de S3 requis toorun cette charge de travail dans une base de données, mais cela laisse la plupart des ressources de hello inutilisé pendant les périodes de faible activité.
 
-Un pool permet de partager ces DTU inutilisées entre plusieurs bases de données, ce qui réduit la quantité totale de DTU nécessaires et le coût global.
+Un pool autorise ces toobe dtu inutilisés partagés entre plusieurs bases de données et réduit ainsi le coût de nécessaires et global de la dtu hello.
 
-En s'appuyant sur l'exemple précédent, supposons qu'il y ait des bases de données supplémentaires avec des modèles d'utilisation similaires comme DB1. Dans les deux figures ci-dessous, l’utilisation de quatre bases de données et celle de 20 bases de données sont représentées sur le même graphique pour montrer que leur utilisation ne se chevauche pas dans le temps :
+S’appuyant sur l’exemple précédent de hello, supposons qu’il existe des bases de données supplémentaires avec des modèles d’utilisation similaires en tant que DB1. Hello deux figures ci-dessous hello l’utilisation des quatre bases de données et 20 bases de données sont organisées en couches sur hello même graphique nature de non-chevauchement tooillustrate hello de leur utilisation dans le temps :
 
    ![quatre bases de données avec un modèle d’utilisation adapté à un pool](./media/sql-database-elastic-pool/four-databases.png)
 
   ![vingt bases de données avec un modèle d’utilisation adapté à un pool](./media/sql-database-elastic-pool/twenty-databases.png)
 
-L’utilisation globale des DTU pour les 20 bases de données est illustrée par la ligne noire dans la figure ci-dessus. Cela montre que l'utilisation globale des DTU ne dépasse jamais 100 DTU et que les 20 bases de données peuvent partager 100 eDTU sur cette période. Le nombre de DTU est diminué par 20 et le prix par 13 par rapport au placement de chacune des bases de données dans des niveaux de performances S3 pour les bases de données uniques.
+utilisation de DTU d’agrégation Hello sur toutes les bases de données de 20 est illustrée par la ligne hello noir Bonjour précédant figure. Cela montre que l’utilisation de DTU d’agrégation hello jamais dépasse 100 dtu et indique que 20 bases de données hello peuvent partager des 100 Edtu pendant cette période. Cela entraîne une réduction de 20 x en dtu et un 13 x prix baisse tooplacing chaque des bases de données hello en S3 des niveaux de performances pour les bases de données uniques.
 
-Cet exemple est idéal pour les raisons suivantes :
+Cet exemple est idéal pour hello suivant raisons :
 
 * Il existe de grandes différences entre les pics d’utilisation et l'utilisation moyenne par base de données.  
-* Les pics d’utilisation de chaque base de données se produisent à différents moments dans le temps.
+* pics d’utilisation Hello pour chaque base de données se produit à différents moments dans le temps.
 * Les eDTU sont partagées entre plusieurs bases de données.
 
-Le prix d’un pool dépend des eDTU du pool. Alors que le prix unitaire d’une eDTU pour un pool est 1,5 fois supérieur au prix unitaire d’une DTU pour une base de données unique, les **eDTU de pool peuvent être partagées avec de nombreuses bases de données ; un nombre moins important d’eDTU est donc requis au total**. Ces différences en matière de prix et de partage des eDTU constituent la base du potentiel d'économies que les pools peuvent présenter.  
+prix Hello d’un pool est une fonction d’Edtu de pool hello. Alors que le prix unitaire hello eDTU pour un pool est 1,5 fois supérieure à UnitPrice hello DTU pour une base de données, **Edtu de pool peut être partagé par plusieurs bases de données et moins Edtu total est nécessaires**. Ces différences de tarification et de partage eDTU constituent hello de potentiel d’économies de prix hello qui peuvent fournir des pools.  
 
-Les règles élémentaires suivantes relatives au nombre de bases de données et à l’utilisation des bases de données permettent de s’assurer qu’un pool coûte moins cher que l’utilisation de niveaux de performances pour des bases de données uniques.
+Hello suivants règles générales liées toodatabase nombre et la base de données utilisation de l’aide tooensure offrant un pool réduit le coût par rapport toousing les niveaux de performance pour les bases de données uniques.
 
 ### <a name="minimum-number-of-databases"></a>Nombre minimal de bases de données
 
-Si la somme des DTU des niveaux de performances pour une base de données unique est égale à plus de 1,5 x les eDTU nécessaires pour le pool, un pool élastique est plus rentable. Pour plus d’informations sur les tailles disponibles, consultez l’article [Limites relatives aux eDTU et au stockage pour les pools et bases de données élastiques](sql-database-elastic-pool.md#edtu-and-storage-limits-for-elastic-pools).
+Si somme hello Hello dtu des niveaux de performance pour les bases de données uniques est plus de 1,5 x Edtu hello nécessaire pour le pool de hello, un pool élastique est plus rentable. Pour plus d’informations sur les tailles disponibles, consultez l’article [Limites relatives aux eDTU et au stockage pour les pools et bases de données élastiques](sql-database-elastic-pool.md#edtu-and-storage-limits-for-elastic-pools).
 
 ***Exemple***<br>
-Au moins deux bases de données S3 ou au moins 15 bases de données S0 sont nécessaires pour qu’un pool de 100 eDTU soit plus rentable que l’utilisation de niveaux de performances pour des bases de données uniques.
+Au moins deux bases de données S3 ou des bases de données S0 au moins 15 sont nécessaires pour un toobe de pool 100 eDTU plus économiques que l’utilisation des niveaux de performances pour les bases de données uniques.
 
 ### <a name="maximum-number-of-concurrently-peaking-databases"></a>Nombre maximal de bases de données connaissant un pic simultané
 
-En partageant les eDTU, toutes les bases de données d’un pool ne peuvent pas utiliser simultanément les eDTU jusqu'à la limite disponible lors de l'utilisation de niveaux de performances pour les bases de données uniques. Plus le nombre de bases de données connaissant un pic simultané est faible, plus le nombre d’eDTU du pool peut être revu à la baisse et plus le pool devient rentable. En général, pas plus de 2/3 (ou 67 %) des bases de données du pool doivent connaître un pic simultané à leur limite d’eDTU.
+En partageant des Edtu, pas toutes les bases de données dans un pool peuvent utiliser simultanément les Edtu de limite toohello disponible lors de l’utilisation des niveaux de performances pour les bases de données uniques. Hello des bases de données moins pic simultanément, hello eDTU du pool hello inférieur peut être ensemble et hello que plus économique hello pool devient. En général, pas plus que 2/3 (ou 67 %) des bases de données hello dans le pool de hello doivent monter simultanément tootheir eDTU limitent.
 
 ***Exemple***<br>
-Pour réduire les coûts pour trois bases de données S3 dans un pool de 200 eDTU, au moins deux de ces bases de données peuvent connaître un pic simultané au niveau de leur utilisation. Sinon, si plus de deux de ces quatre bases de données S3 connaissent un pic simultané, le pool devra être redimensionné à plus de 200 eDTU. Si le pool est redimensionné à plus de 200 eDTU, vous devez ajouter plusieurs bases de données S3 au pool pour maintenir des coûts inférieurs aux niveaux de performances pour les bases de données uniques.
+coûts tooreduce pour trois bases de données S3 dans un pool eDTU 200, au plus deux de ces bases de données simultanément pics peuvent dans leur utilisation. Sinon, si plus de deux de ces quatre bases de données S3 monter simultanément, pool de hello aurait toomore toobe taille de 200 Edtu. Si le pool de hello est redimensionné toomore à 200 Edtu, plusieurs bases de données S3 devez toobe ajouté coûts de tookeep toohello pool inférieurs à des niveaux de performance des bases de données uniques.
 
-Notez que cet exemple ne tient pas compte de l'utilisation des autres bases de données dans le pool. Si toutes les bases de données connaissent une utilisation à un moment donné, moins de 2/3 (ou 67 %) des bases de données peuvent connaître un pic simultané.
+Notez que cet exemple ne tient pas compte de l’utilisation des autres bases de données dans le pool de hello. Si toutes les bases de données ont une utilisation à un moment donné dans le temps, puis inférieure à 2/3 (ou 67 %) des bases de données hello pics peuvent simultanément.
 
 ### <a name="dtu-utilization-per-database"></a>Utilisation de DTU par base de données
-Une différence importante entre le pic d’utilisation et l'utilisation moyenne d’une base de données indique de longues périodes de faible utilisation et de courtes périodes d'utilisation intensive. Ce modèle d'utilisation est idéal pour partager des ressources entre les bases de données. Une base de données doit être envisagée pour un pool quand son pic d’utilisation est environ 1,5 fois supérieur à son utilisation moyenne.
+Une grande différence entre les heures de pointe de hello et utilisation moyenne d’une base de données indique de longues périodes de faible utilisation et de courtes périodes d’utilisation intensive. Ce modèle d'utilisation est idéal pour partager des ressources entre les bases de données. Une base de données doit être envisagée pour un pool quand son pic d’utilisation est environ 1,5 fois supérieur à son utilisation moyenne.
 
 ***Exemple***<br>
-Une base de données S3 qui culmine à 100 DTU et qui utilise en moyenne 67 DTU ou moins est un bon candidat pour le partage des eDTU dans un pool. Sinon, une base de données S1 qui culmine à 20 DTU et qui utilise en moyenne 13 DTU ou moins est un bon candidat à un pool.
+Une base de données S3 pics too100 dtu et utilise en moyenne de 67 dtu ou inférieure est un bon candidat pour le partage des Edtu dans un pool. Vous pouvez également une base de données S1 pics too20 dtu et utilise en moyenne de 13 dtu ou inférieure est un bon candidat pour un pool.
 
-## <a name="how-do-i-choose-the-correct-pool-size"></a>Comment choisir la bonne taille de pool ?
+## <a name="how-do-i-choose-hello-correct-pool-size"></a>Comment choisir la taille du pool approprié hello ?
 
-La taille optimale pour un pool dépend du nombre global d’eDTU et des ressources de stockage nécessaires pour toutes les bases de données du pool. Cela implique de déterminer la plus grande des deux quantités suivantes :
+taille de meilleures de Hello pour un pool varie selon les Edtu d’agrégation hello et ressources de stockage nécessaires pour toutes les bases de données dans le pool de hello. Cela implique de déterminer hello plus grand des éléments suivants de hello :
 
-* Nombre maximal de DTU que se partagent toutes les bases de données du pool.
-* Nombre maximal d’octets de stockage que se partagent toutes les bases de données du pool.
+* Dtu maximales utilisées par toutes les bases de données dans le pool de hello.
+* Octets de stockage maximale utilisées par toutes les bases de données dans le pool de hello.
 
 Pour plus d’informations sur les tailles disponibles, consultez l’article [Limites relatives aux eDTU et au stockage pour les pools et bases de données élastiques](#what-are-the-resource-limits-for-elastic-pools).
 
-La base de données SQL évalue automatiquement l’historique d’utilisation en ressources des bases de données dans un serveur de base de données SQL existant et recommande la configuration de pool appropriée dans le portail Azure. En plus des recommandations, une expérience intégrée estime l’utilisation d’eDTU pour un groupe personnalisé de bases de données sur le serveur. Cela vous permet de faire une analyse de scénarios en ajoutant de façon interactive des bases de données au pool et en les supprimant pour obtenir l’analyse de l’utilisation des ressources et des conseils de dimensionnement avant de valider vos modifications. Pour afficher une procédure, consultez [Surveiller, gérer et dimensionner un pool élastique](sql-database-elastic-pool-manage-portal.md).
+Base de données SQL prend la valeur hello historiques l’utilisation des ressources de bases de données dans un serveur de base de données SQL existant automatiquement et recommande la configuration du pool approprié hello Bonjour portail Azure. Dans les recommandations toohello addition, une expérience intégrée estime l’utilisation des eDTU hello pour un groupe de bases de données sur le serveur de hello personnalisé. Ainsi, vous toodo une analyse « what-if » par l’ajout du pool toohello de bases de données et suppression d’analyse de l’utilisation des ressources tooget et dimensionnement des conseils avant de valider vos modifications de manière interactive. Pour afficher une procédure, consultez [Surveiller, gérer et dimensionner un pool élastique](sql-database-elastic-pool-manage-portal.md).
 
-Dans les cas où vous ne pouvez pas utiliser les outils, la procédure pas à pas suivante peut vous aider à estimer si un pool est plus économique que les bases de données uniques :
+Dans les cas où vous ne pouvez pas utiliser les outils, suivant hello pas à pas peut vous aider à estimer si un pool est plus économique que les bases de données uniques :
 
-1. Estimez les eDTU nécessaires pour le pool comme suit :
+1. Estimer Edtu hello nécessaire pour le pool de hello comme suit :
 
    MAX(<*nombre total de bases de données* X *utilisation DTU moyenne par base de données*>,<br>
    <*Nombre de bases de données connaissant un pic simultané* X *utilisation DTU maximale par base de données*)
-2. Estimez l’espace de stockage nécessaire pour le pool en ajoutant le nombre d’octets nécessaires pour toutes les bases de données du pool. Déterminez ensuite la taille du pool d’eDTU qui fournit cette quantité de stockage. Pour connaître les limites de stockage du pool en fonction de la taille du pool d’eDTU, consultez l’article [Limites relatives aux eDTU et au stockage pour les pools et bases de données élastiques](sql-database-elastic-pool.md#edtu-and-storage-limits-for-elastic-pools).
-3. Prenez la plus grande des estimations d’eDTU de l’étape 1 et de l’étape 2.
-4. Consultez la [page de tarification de la base de données SQL](https://azure.microsoft.com/pricing/details/sql-database/) et recherchez la plus petite taille du pool d’eDTU qui est supérieure à l’estimation de l’étape 3.
-5. Comparez le prix du pool trouvé à l’étape 5 à celui de l’utilisation des niveaux de performances appropriés pour les bases de données uniques.
+2. Estimez l’espace de stockage hello nécessaire pour le pool de hello en ajoutant le nombre de hello d’octets nécessaires pour toutes les bases de données hello dans le pool de hello. Déterminent ensuite la taille du pool eDTU hello qui fournit cette quantité de stockage. Pour connaître les limites de stockage du pool en fonction de la taille du pool d’eDTU, consultez l’article [Limites relatives aux eDTU et au stockage pour les pools et bases de données élastiques](sql-database-elastic-pool.md#edtu-and-storage-limits-for-elastic-pools).
+3. Prendre hello plus grand de hello eDTU estimations de l’étape 1 et l’étape 2.
+4. Consultez hello [page de tarification de la base de données SQL](https://azure.microsoft.com/pricing/details/sql-database/) et rechercher de pool d’eDTU hello plus petite taille est supérieure à estimation hello depuis l’étape 3.
+5. Comparer les prix de pool de hello du prix de toohello étape 5 de l’utilisation des niveaux de performance appropriés hello pour les bases de données uniques.
 
 ### <a name="changing-elastic-pool-resources"></a>Modification des ressources de pool élastique
 
-Vous pouvez augmenter ou diminuer les ressources disponibles pour un pool élastique en fonction des besoins en ressources.
+Vous pouvez augmenter ou diminuer le pool élastique hello ressources tooan disponibles selon les besoins en ressources.
 
-* En général, le processus de modification du nombre minimal d’eDTU par base de données ou du nombre maximal d’eDTU par base de données prend 5 minutes au maximum.
-* Le processus de modification du nombre d’eDTU par pool dépend quant à lui de la quantité totale d’espace utilisé par toutes les bases de données du pool. Ce processus prend en moyenne 90 minutes au maximum, pour chaque tranche de 100 Go. Par exemple, si l’espace total utilisé par toutes les bases de données du pool est égal à 200 Go, une opération de modification du nombre d’eDTU par pool prend 3 heures au maximum.
+* La modification d’Edtu de min hello par base de données ou max Edtu par base de données généralement se termine dans 5 minutes ou moins.
+* Modification des Edtu hello par pool dépend hello total de l’espace utilisé par toutes les bases de données dans le pool de hello. Ce processus prend en moyenne 90 minutes au maximum, pour chaque tranche de 100 Go. Par exemple, si hello l’espace total utilisé par toutes les bases de données dans le pool de hello est 200 Go, puis hello attendu de latence de modification hello eDTU du pool par pool est de 3 heures au maximum.
 
-## <a name="what-are-the-resource-limits-for-elastic-pools"></a>Quelles sont les limites de ressources pour les pools élastiques ?
+## <a name="what-are-hello-resource-limits-for-elastic-pools"></a>Quelles sont les limites des ressources hello pour les pools élastiques ?
 
-Les tableaux suivants décrivent les limites de ressources imposées aux pools élastiques.  Notez que les limites de ressources des bases de données individuelles dans les pools élastiques sont généralement identiques à celles des bases de données uniques situées hors des pools. Elles dépendent du nombre de DTU et du niveau de service.  Par exemple, le nombre maximal d’ouvriers simultanés dans une base de données S2 est de 120.  Par conséquent, le nombre maximal d’ouvriers simultanés d’une base de données dans un pool Standard est également de 120 si le nombre maximal de DTU par base de données dans le pool est de 50 (soit l’équivalent de S2).
+Hello les tableaux suivants décrire les limites des ressources hello de pools élastiques.  Notez que les limites des ressources hello de bases de données individuelles dans les pools élastiques ne sont généralement hello même que pour les bases de données uniques en dehors des pools en fonction de dtu et le niveau de service hello.  Par exemple, travailleurs simultanées max de hello pour une base de données S2 est 120 threads de travail.  Par conséquent, hello max simultanées traitements pour une base de données dans un pool Standard est également une 120 workers si hello max DTU par base de données dans le pool de hello est 50 dtu (qui est équivalent tooS2).
 
 [!INCLUDE [SQL DB service tiers table for elastic pools](../../includes/sql-database-service-tiers-table-elastic-pools.md)]
 
-Si toutes les DTU d’un pool élastique sont utilisées, chaque base de données du pool reçoit une quantité égale de ressources pour traiter les requêtes.  Le service de base de données SQL offre un partage équitable des ressources entre les bases de données, garantissant des tranches de temps de calcul égales. Le partage équitable des ressources du pool élastique s’ajoute à n’importe quelle quantité de ressources garantie pour chaque base de données lorsque le nombre minimal de DTU par base de données est défini sur une valeur différente de zéro.
+Si tous les dtu d’un pool élastique sont utilisés, chaque base de données dans le pool de hello reçoit une quantité égale de requêtes tooprocess de ressources.  Hello service de base de données SQL fournit équité entre bases de données en s’assurant qu’égales tranches de temps de calcul du partage des ressources. Respect de partage des ressources de pool élastique sont en outre tooany quantité de ressources garanties tooeach de base de données lorsque hello nombre minimal de DTU par base de données a une valeur non nulle de tooa.
 
 ### <a name="database-properties-for-pooled-databases"></a>Propriétés de base de données pour les bases de données mises en pool
 
-Le tableau suivant décrit les propriétés des bases de données mises en pool.
+Hello tableau suivant décrit les propriétés de hello pour les bases de données mis en pool.
 
 | Propriété | Description |
 |:--- |:--- |
-| Nombre maximal d’eDTU par base de données |Nombre maximal d’eDTU pouvant être utilisées par une des bases de données du pool en fonction du nombre d’eDTU utilisées par les autres bases de données du pool.  Le nombre maximal d’eDTU par base de données n’est pas une garantie concernant l’octroi des ressources pour une base de données.  Il s’agit d’un paramètre global qui s’applique à toutes les bases de données du pool. Définissez un nombre maximal d’eDTU par base de données suffisamment élevé pour gérer les pics d’utilisation des bases de données. Une certaine allocation excessive est attendue dans la mesure où le pool prend généralement en compte des modèles de creux et de pics d’utilisation des bases de données dans lesquels toutes les bases de données ne connaissent pas simultanément des pics d’utilisation. Par exemple, supposons que le pic d’utilisation par base de données est de 20 eDTU et que seules 20 % des 100 bases de données du pool connaissent simultanément un pic d’utilisation.  Si le nombre maximal d’eDTU par base de données est défini sur 20 eDTU, vous pouvez envisager une allocation 5 fois plus élevée du pool et définir le nombre d’eDTU par pool sur 400. |
-| Nombre minimal d’eDTU par base de données |Nombre minimal d’eDTU garanti pour chaque base de données du pool.  Il s’agit d’un paramètre global qui s’applique à toutes les bases de données du pool. Le nombre minimal d’eDTU par base de données peut être défini sur 0, qui est également la valeur par défaut. Cette propriété est définie sur une valeur comprise entre 0 et le nombre moyen d’eDTU utilisées par base de données. Le produit du nombre de bases de données du pool et du nombre minimal d’eDTU par base de données ne peut pas dépasser le nombre d’eDTU par pool.  Par exemple, si un pool comporte 20 bases de données et que le nombre minimal d’eDTU par base de données est défini sur 10 eDTU, le nombre d’eDTU par pool doit être d’au moins 200 eDTU. |
-| Espace de stockage de données maximal par base de données |Espace de stockage maximal pour une base de données du pool. Les bases de données regroupées se partagent l’espace de stockage du pool. Par conséquent, le stockage de base de données est limité au stockage de pool minimal restant, dans la limite du stockage maximal par base de données. Le stockage maximal par base de données fait référence à la taille maximale des fichiers de données et n’inclut pas l’espace utilisé par les fichiers journaux. |
+| Nombre maximal d’eDTU par base de données |nombre maximal de Hello des Edtu qui utilisent une base de données dans le pool de hello, si disponibles basées sur l’utilisation par d’autres bases de données dans le pool de hello.  Le nombre maximal d’eDTU par base de données n’est pas une garantie concernant l’octroi des ressources pour une base de données.  Ce paramètre est un paramètre global qui s’applique tooall des bases de données dans le pool de hello. Définir max Edtu par base de données toohandle suffisamment élevée des pics d’utilisation de base de données. Une certaine de sollicitation excessive est attendue, car le pool de hello suppose généralement des modèles d’utilisation de sauvegardes à chaud et à froid pour bases de données où toutes les bases de données ne sont pas commencé simultanément. Par exemple, supposons que hello utilisation maximale par base de données est 20 Edtu et seulement 20 % de hello 100 bases de données hello pool sont utilisation maximale de hello même temps.  Si eDTU hello max par base de données too20 Edtu, il est pool de hello tooovercommit raisonnable par 5 fois et d’Edtu de hello ensemble par pool too400. |
+| Nombre minimal d’eDTU par base de données |nombre minimal de Hello d’edtu qu’une base de données dans le pool de hello est assuré.  Ce paramètre est un paramètre global qui s’applique tooall des bases de données dans le pool de hello. Hello des eDTU minimale par base de données peut être définie too0 et il est également hello valeur par défaut. Cette propriété a la valeur tooanywhere entre 0 et hello utilisation moyenne eDTU par base de données. produit Hello du nombre de hello de bases de données dans le pool de hello et d’Edtu de min hello par base de données ne peut pas dépasser Edtu hello par pool.  Par exemple, si un pool a 20 bases de données et hello nombre minimal d’eDTU par base de données définie too10 Edtu, Edtu hello par pool doit être au moins aussi grande que 200 Edtu. |
+| Espace de stockage de données maximal par base de données |Hello maximale de stockage pour une base de données dans un pool. Mis en pool de bases de données partagent du stockage du pool, stockage de base de données est limitée toohello plus petit de stockage du pool restant et de stockage maximale par base de données. Espace de stockage max. par base de données fait référence toohello la taille maximale des fichiers de données hello et n’inclut pas d’espace de hello utilisé par les fichiers journaux. |
 |||
 
 ## <a name="using-other-sql-database-features-with-elastic-pools"></a>Utilisation d’autres fonctionnalités SQL Database avec des pools élastiques
 
 ### <a name="elastic-jobs-and-elastic-pools"></a>Travaux élastiques et pools élastiques
 
-Un pool simplifie les tâches de gestion grâce à l’exécution des scripts dans des **[tâches élastiques](sql-database-elastic-jobs-overview.md)**. Un travail élastique élimine pratiquement le caractère fastidieux d’un nombre élevé de bases de données. Pour commencer, consultez l’article [Prise en main de Tâches de bases de données élastiques](sql-database-elastic-jobs-getting-started.md).
+Un pool simplifie les tâches de gestion grâce à l’exécution des scripts dans des **[tâches élastiques](sql-database-elastic-jobs-overview.md)**. Un travail élastique élimine pratiquement le caractère fastidieux d’un nombre élevé de bases de données. toobegin, consultez [prise en main de travaux élastique](sql-database-elastic-jobs-getting-started.md).
 
 Pour en savoir plus sur les autres outils de base de données permettant d’utiliser plusieurs bases de données, consultez l’article [Montée en charge avec la base de données SQL Azure](sql-database-elastic-scale-introduction.md).
 
 ### <a name="business-continuity-options-for-databases-in-an-elastic-pool"></a>Options de continuité de l’activité pour les bases de données d’un pool élastique
-Les bases de données regroupées prennent généralement en charge les mêmes [fonctionnalités de continuité d’activité](sql-database-business-continuity.md) que celles disponibles pour les bases de données uniques.
+Mis en pool de bases de données généralement prise en charge hello même [les fonctionnalités de continuité d’activité](sql-database-business-continuity.md) qui sont des bases de données toosingle disponibles.
 
-- **Limite de restauration dans le temps** : la limite de restauration dans le temps utilise les sauvegardes automatiques de base de données pour récupérer une base de données d’un pool à un moment précis dans le temps. Voir [Limite de restauration dans le temps](sql-database-recovery-using-backups.md#point-in-time-restore)
+- **Point de restauration dans le temps**: Point de restauration de temps utilise les sauvegardes de base de données automatique toorecover une base de données dans un point spécifique de pool tooa dans le temps. Voir [Limite de restauration dans le temps](sql-database-recovery-using-backups.md#point-in-time-restore)
 
-- **Géorestauration** : la géorestauration constitue l’option de récupération par défaut lorsqu’une base de données est indisponible en raison d’un incident survenu dans la région où elle est hébergée. Voir [Restaurer une base de données SQL Azure ou basculer vers une base de données secondaire](sql-database-disaster-recovery.md)
+- **Géo-restauration**: géo-restauration fournit l’option de récupération par défaut hello lorsqu’une base de données n’est pas disponible en raison d’un incident dans la région de hello où la base de données hello est hébergé. Consultez [restaurer une base de données SQL Azure ou le basculement de tooa secondaire](sql-database-disaster-recovery.md)
 
 - [Géoréplication active](sql-database-geo-replication-overview.md) : pour les applications qui ont des exigences de récupération plus agressives que ce qu’offre la géorestauration, configurez la **géoréplication active**.
 
-## <a name="manage-sql-database-elastic-pools-using-the-azure-portal"></a>Gérer des pools élastiques SQL Database à l’aide du portail Azure
+## <a name="manage-sql-database-elastic-pools-using-hello-azure-portal"></a>Gérer les pools élastiques de base de données SQL à l’aide de hello portail Azure
 
-### <a name="creating-a-new-sql-database-elastic-pool-using-the-azure-portal"></a>Création d’un pool élastique SQL Database à l’aide du portail Azure
+### <a name="creating-a-new-sql-database-elastic-pool-using-hello-azure-portal"></a>Créer un nouveau pool élastique de base de données SQL à l’aide de hello portail Azure
 
-Vous pouvez créer un pool élastique dans le portail Azure de deux façons. Vous pouvez le faire à partir de zéro si vous connaissez la configuration de pool souhaitée ou si vous commencez par une recommandation issue du service. La base de données SQL est dotée d’une intelligence intégrée qui recommande une configuration de pool élastique si cela semble plus économique pour vous en fonction de la dernière télémétrie d’utilisation de vos bases de données. 
+Il existe deux façons de que créer un pool élastique Bonjour portail Azure. Vous pouvez le faire à partir de zéro si vous savez que le programme d’installation de hello pool que vous voulez, ou commencer par la recommandation du service de hello. Base de données SQL a une intelligence intégrée qui recommande une configuration de pool élastique, s’il est plus économique en fonction de hello au-delà de télémétrie d’utilisation pour vos bases de données. 
 
-Créer un pool élastique à partir d’un panneau **serveur** existant dans le portail est le moyen le plus simple pour déplacer des bases de données existantes dans un pool élastique. Vous pouvez également créer un pool élastique en recherchant **pool élastique SQL** sur le **Marketplace** ou en cliquant sur **+Ajouter** dans le panneau de recherche **Pools élastiques SQL**. Ce workflow d’approvisionnement de pool vous permet d’indiquer un nouveau serveur ou un serveur existant.
+Création d’un pool élastique d’un existant **server** panneau dans le portail de hello est hello plus simple façon toomove bases de données existantes dans un pool élastique. Vous pouvez également créer un pool élastique en recherchant **pool élastique SQL** Bonjour **Marketplace** ou en cliquant sur **+ ajouter** Bonjour **pools élastiques de SQL**parcourir le panneau. Vous êtes en mesure de toospecify un serveur nouveau ou existant à ce pool de mise en service de flux de travail.
 
 > [!NOTE]
-> Vous pouvez créer plusieurs pools sur un serveur, mais il est impossible d’ajouter des bases de données de différents serveurs dans le même pool.
+> Vous pouvez créer plusieurs pools sur un serveur, mais vous ne pouvez ajouter des bases de données à partir de différents serveurs dans hello même pool.
 >  
 
-Le niveau de tarification du pool détermine les fonctionnalités disponibles pour les bases de données élastiques dans le pool, ainsi que le nombre maximal d'eDTU (eDTU MAX) et le stockage (Go) disponibles pour chaque base de données. Pour plus d’informations, voir [Niveaux de service](#edtu-and-storage-limits-for-elastic-pools).
+Hello niveau de tarification du pool détermine hello fonctionnalités ELASTIQUES toohello disponibles dans le pool de hello et hello le nombre maximal d’Edtu (eDTU MAX) et de base de données de stockage (Go) disponible tooeach. Pour plus d’informations, voir [Niveaux de service](#edtu-and-storage-limits-for-elastic-pools).
 
-Pour modifier le niveau tarifaire du pool, cliquez sur **Niveau tarifaire**, sur le niveau tarifaire de votre choix, puis sur **Sélectionner**.
+Cliquez sur le niveau de tarification hello toochange de pool de hello **niveau tarifaire**, cliquez sur hello tarification de votre choix, puis cliquez sur **sélectionnez**.
 
 > [!IMPORTANT]
-> Une fois que vous avez choisi le niveau tarifaire et validé vos modifications en cliquant sur **OK** à la dernière étape, vous ne pouvez plus modifier le niveau tarifaire du pool. Pour modifier le niveau de tarification d’un pool élastique existant, créez un pool élastique dans le niveau de tarification souhaité et migrez les bases de données vers ce nouveau pool.
+> Une fois que vous choisissez hello tarification et valider vos modifications en cliquant sur **OK** dans la dernière étape de hello, vous ne serez pas hello toochange en mesure de tarification du pool de hello. toochange hello niveau tarifaire pour un pool élastique existant, créez un pool élastique dans le niveau de tarification souhaité hello et migrez hello bases de données toothis nouveau pool.
 >
 
-Si les bases de données que vous utilisez contiennent suffisamment de données de télémétrie d’historique d’utilisation, le graphique **Utilisation estimée des eDTU et des Go** et le graphique à barres **Utilisation effective des eDTU** sont mis à jour pour vous aider à prendre des décisions en termes de configuration. Le service peut également vous envoyer un message de recommandation pour vous aider à rectifier la taille du pool.
+Si les bases de données hello avec lequel vous travaillez ont suffisamment de télémétrie d’utilisation historiques, hello **estimée des eDTU et l’utilisation de Go** graphique et hello **réel eDTU utilisation** toohelp de mise à jour de graphique à barres vous vérifiez la configuration décisions. En outre, les service hello peut donner un toohelp de message de recommandation vous redimensionner hello pool.
 
-Le service SQL Database évalue l’historique d’utilisation et recommande un ou plusieurs pools lorsque cela est plus rentable que d’utiliser des bases de données uniques. Chaque recommandation est configurée avec un sous-ensemble unique de bases de données du serveur qui correspond le mieux au pool.
+Hello service de base de données SQL évalue l’historique d’utilisation et recommande un ou plusieurs pools lorsqu’il est plus économique que l’utilisation de bases de données uniques. Chaque recommandation est configurée avec un sous-ensemble unique de bases de données du serveur hello ajuster le pool de hello.
 
 ![pool recommandé](./media/sql-database-elastic-pool-create-portal/recommended-pool.png)  
 
-La recommandation relative au pool comprend les éléments suivants :
+recommandation de pool Hello comprend :
 
-- Niveau tarifaire du pool (De base, Standard, Premium ou Premium RS)
+- Un niveau de tarification pour le pool hello (Basic, Standard, Premium ou Premium RS)
 - Valeur **eDTU du pool** appropriée (également appelée eDTU max par pool)
-- Paramètres **eDTU max** et **eDTU min** par base de données
-- Liste des bases de données recommandées pour le pool
+- Hello **eDTU MAX** et **eDTU Min** par base de données
+- liste Hello des bases de données recommandés pour le pool de hello
 
 > [!IMPORTANT]
-> Le service prend en compte les 30 derniers jours de télémétrie lors de la recommandation de pools. Pour qu’une base de données soit considérée comme candidate à un pool élastique, elle doit exister depuis au moins 7 jours. Les bases de données qui figurent déjà dans un pool élastique ne sont pas considérées comme candidates pour les recommandations de pool élastique.
+> service de Hello prend hello 30 derniers jours de données de télémétrie en compte lorsque vous recommander des pools. Pour une base de données toobe considéré comme un candidat pour un pool élastique, il doit exister au moins 7 jours. Les bases de données qui figurent déjà dans un pool élastique ne sont pas considérées comme candidates pour les recommandations de pool élastique.
 >
 
-Le service évalue les besoins en ressources et la rentabilité du déplacement des bases de données uniques dans chaque niveau de service vers des pools du même niveau. Par exemple, toutes les bases de données Standard d’un serveur sont évaluées pour leur compatibilité avec un pool élastique Standard. Cela signifie que le service n'effectue aucune recommandation multiniveau telle que le déplacement d'une base de données Standard dans un pool Premium.
+Hello évalue les besoins en ressources et rentabilité de déplacement hello unique bases de données dans chaque niveau de service dans des pools de hello même couche. Par exemple, toutes les bases de données Standard d’un serveur sont évaluées pour leur compatibilité avec un pool élastique Standard. Cela signifie que le service de hello ne fait pas de recommandations entre les couches tels que le déplacement d’une base de données Standard dans un pool Premium.
 
-Après avoir ajouté des bases de données au pool, des recommandations sont générées de façon dynamique en fonction de l’historique d’utilisation des bases de données que vous avez sélectionnées. Ces recommandations sont affichées dans le graphique d’utilisation d’eDTU et de Go ainsi que dans la bannière de recommandation en haut du panneau **Configurer le pool**. Ces recommandations sont destinées à vous aider à créer un pool élastique optimisé pour vos bases de données spécifiques.
+Après avoir ajouté un pool toohello de bases de données, les recommandations sont générées dynamiquement selon hello historique de l’utilisation des bases de données hello que vous avez sélectionné. Ces recommandations sont affichées dans hello eDTU et graphique d’utilisation Go et une bannière de recommandation haut hello hello **configurer pool** panneau. Ces recommandations sont tooassist prévue dans la création d’un pool élastique optimisé pour vos bases de données spécifiques.
 
 ![Recommandations dynamiques](./media/sql-database-elastic-pool-create-portal/dynamic-recommendation.png)
 
 ### <a name="manage-and-monitor-an-elastic-pool"></a>Gérer et surveiller un pool élastique
 
-Dans le portail Azure, vous pouvez surveiller l’utilisation d’un pool élastique et des bases de données que contient ce pool. Vous pouvez également apporter un ensemble de modifications à votre pool élastique et soumettre toutes les modifications en même temps. Ces modifications incluent l’ajout ou la suppression de bases de données, ainsi que le changement des paramètres du pool élastique ou des bases de données.
+Bonjour portail Azure, vous pouvez surveiller l’utilisation de hello un pool élastique et bases de données hello dans ce pool. Vous pouvez également effectuer un ensemble de modifications pool élastique de tooyour et envoyer toutes les modifications apportées à hello même temps. Ces modifications incluent l’ajout ou la suppression de bases de données, ainsi que le changement des paramètres du pool élastique ou des bases de données.
 
-Le graphique suivant montre un exemple de pool élastique. L’affichage inclut :
+Hello graphique suivant montre un pool élastique exemple. affichage de Hello inclut :
 
-*  Des graphiques pour la surveillance de l’utilisation des ressources du pool élastique et des bases de données que contient ce pool.
-*  Le bouton **Configurer le pool** pour apporter des modifications au pool élastique.
-*  Le bouton **Créer une base de données**, qui crée une base de données et l’ajoute au pool élastique actuel.
+*  Graphiques de surveillance de l’utilisation des ressources de pool élastique de hello et bases de données hello contenus dans le pool de hello.
+*  Hello **configurer** pool bouton toomake modifie le pool élastique de toohello.
+*  Hello **créer la base de données** bouton qui crée une base de données et l’ajoute toohello pool élastique en cours.
 *  Des tâches élastiques, qui vous aident à gérer un grand nombre de bases de données en exécutant des scripts Transact SQL sur toutes les bases de données d’une liste.
 
 ![Affichage du pool](./media/sql-database-elastic-pool-manage-portal/basic.png)
 
-Vous pouvez accéder à un pool particulier pour consulter l’utilisation des ressources de ce dernier. Par défaut, le pool est configuré pour afficher l’utilisation du stockage et des eDTU au cours de la dernière heure. Le graphique peut être configuré pour afficher d’autres métriques sur différentes plages de temps. Cliquez sur le graphique **Utilisation des ressources** sous **Surveillance du pool élastique** pour afficher une vue détaillée des métriques spécifiées par rapport à la fenêtre de temps indiquée.
+Vous pouvez accéder tooa pool particulier toosee son utilisation des ressources. Par défaut, le pool de hello est l’utilisation de stockage et d’eDTU tooshow configuré pour hello dernière heure. graphique de Hello peut être configuré tooshow différentes métriques sur différentes périodes. Cliquez sur hello **l’utilisation des ressources** graphique sous **analyse du pool élastique** tooshow une vue détaillée de hello spécifié métriques sur la fenêtre de temps spécifié hello.
 
 ![Surveillance du pool élastique](./media/sql-database-elastic-pool-manage-portal/basic-2.png)
 
 ![Volet Metric](./media/sql-database-elastic-pool-manage-portal/metric.png)
 
-### <a name="to-customize-the-chart-display"></a>Pour personnaliser l’affichage du graphique
+### <a name="toocustomize-hello-chart-display"></a>affichage du graphique hello toocustomize
 
-Vous pouvez modifier le graphique et le panneau Métrique pour afficher d’autres métriques, telles que le pourcentage d’UC, le pourcentage d’E/S des données et le pourcentage d’E/S des fichiers journaux utilisés.
+Vous pouvez modifier les graphique hello et hello métriques toodisplay autres métriques telles que le pourcentage du processeur, pourcentage de données e/s et pourcentage d’e/s de journal utilisé.
 
 ![Cliquez sur Modifier](./media/sql-database-elastic-pool-manage-portal/edit-metric.png)
 
-Sur le formulaire **Modifier le graphique**, vous pouvez sélectionner une plage de temps (dernière heure, aujourd’hui ou semaine dernière) ou cliquer sur **Personnalisé** pour sélectionner la plage de temps de votre choix au cours des deux dernières semaines. Vous pouvez choisir entre un graphique en courbes ou un graphique à barres, puis sélectionner les ressources à surveiller.
+Sur hello **modifier le graphique** formulaire, vous pouvez sélectionner une plage de temps (heure, l’heure actuelle, ou semaine), ou cliquez sur **personnalisé** tooselect toute plage de dates hello deux dernières semaines. Vous pouvez choisir entre une barre ou un graphique en courbes, puis sélectionnez hello ressources toomonitor.
 
 > [!Note]
-> Seules les mesures présentant la même unité peuvent figurer simultanément dans le graphique. Par exemple, si vous sélectionnez « Pourcentage eDTU », vous pouvez sélectionner d’autres mesures de pourcentage.
+> Seul graphique des métriques avec hello même unité de mesure peut être affichée dans hello en hello même temps. Par exemple, si vous sélectionnez « pourcentage d’eDTU » puis vous pouvez uniquement sélectionner d’autres mesures avec pourcentage en tant qu’unité hello.
 >
 
 [Cliquez sur Modifier](./media/sql-database-elastic-pool-manage-portal/edit-chart.png)
 
 ### <a name="manage-and-monitor-databases-in-an-elastic-pool"></a>Gérer et surveiller des bases de données dans un pool élastique
 
-Il est également possible de surveiller des bases de données individuelles pour identifier des problèmes potentiels. Sous **Surveillance de la base de données élastique**, vous trouverez un graphique qui affiche les métriques de cinq bases de données. Par défaut, le graphique affiche les 5 premières bases de données du pool en termes d’utilisation moyenne des eDTU au cours de la dernière heure. 
+Il est également possible de surveiller des bases de données individuelles pour identifier des problèmes potentiels. Sous **Surveillance de la base de données élastique**, vous trouverez un graphique qui affiche les métriques de cinq bases de données. Par défaut, hello graphique affiche hello 5 bases de données dans le pool de hello par utilisation moyenne eDTU Bonjour dernière heure. 
 
 ![Surveillance du pool élastique](./media/sql-database-elastic-pool-manage-portal/basic-3.png)
 
-Cliquez sur **l’utilisation des eDTU pour les bases de données au cours de la dernière heure** sous **Surveillance de la base de données élastique**. Cette opération ouvre **Utilisation des ressources de base de données** et fournit une vue détaillée de l’utilisation de la base de données dans le pool. À l’aide de la grille dans la partie inférieure du panneau, vous pouvez sélectionner les bases de données du pool de votre choix (jusqu’à 5 bases de données) pour afficher leur utilisation dans le graphique. Vous pouvez également personnaliser les métriques et la plage de temps affichées dans le graphique en cliquant sur **Modifier le graphique**.
+Cliquez sur hello **utilisation des eDTU pour les bases de données pour la dernière heure de hello** sous **analyse de la base de données élastique**. Cette opération ouvre **l’utilisation des ressources de base de données** et fournit une vue détaillée de l’utilisation de base de données hello dans le pool de hello. À l’aide de la grille hello dans la partie inférieure de hello du Panneau de hello, vous pouvez sélectionner des bases de données dans hello pool toodisplay son utilisation dans le graphique de hello (des bases de données too5). Vous pouvez également personnaliser la fenêtre hello métriques et l’heure affichée dans le graphique de hello en cliquant sur **modifier le graphique**.
 
 ![Panneau Database Resource Utilization (Utilisation des ressources des bases de données)](./media/sql-database-elastic-pool-manage-portal/db-utilization.png)
 
-### <a name="to-customize-the-view"></a>Pour personnaliser l’affichage
+### <a name="toocustomize-hello-view"></a>affichage de hello toocustomize
 
-Vous pouvez modifier le graphique pour sélectionner une plage de temps (dernière heure ou dernières 24 heures) ou cliquer sur **Personnalisé** pour sélectionner un autre jour au cours des 2 dernières semaines.
+Vous pouvez modifier le graphique de hello tooselect une plage de temps (après les heures ou dernières 24 heures), ou cliquez sur **personnalisé** tooselect un autre jour Bonjour au-delà de 2 semaines toodisplay.
 
 ![Cliquez sur Modifier le graphique](./media/sql-database-elastic-pool-manage-portal/db-utilization-blade.png)
 
 ![Cliquez sur Personnalisé](./media/sql-database-elastic-pool-manage-portal/editchart-date-time.png)
 
-Vous pouvez également cliquer sur la liste déroulante **Comparer les bases de données par** pour modifier la métrique à utiliser lors de la comparaison des bases de données.
+Vous pouvez également cliquer sur hello **comparer les bases de données par** tooselect de liste déroulante un toouse métrique différents lors de la comparaison des bases de données.
 
-![Modifiez le graphique](./media/sql-database-elastic-pool-manage-portal/edit-comparison-metric.png)
+![Modifier le graphique de hello](./media/sql-database-elastic-pool-manage-portal/edit-comparison-metric.png)
 
-### <a name="to-select-databases-to-monitor"></a>Pour sélectionner les bases de données à surveiller
+### <a name="tooselect-databases-toomonitor"></a>toomonitor de bases de données tooselect
 
-Dans la liste de base de données du panneau **Database Resource Utilization** (Utilisation des ressources des bases de données), vous pouvez rechercher des bases de données spécifiques en parcourant les différentes pages ou en tapant leur nom. Activez la case à cocher pour sélectionner la base de données.
+Dans la liste base de données hello hello **l’utilisation des ressources de base de données** panneau, vous pouvez trouver des bases de données particulières en consultant les pages hello dans la liste de hello ou en tapant dans nom hello d’une base de données. Utilisez hello case à cocher tooselect hello base de données.
 
-![Recherchez les bases de données à surveiller](./media/sql-database-elastic-pool-manage-portal/select-dbs.png)
+![Recherchez des bases de données toomonitor](./media/sql-database-elastic-pool-manage-portal/select-dbs.png)
 
 
-### <a name="add-an-alert-to-an-elastic-pool-resource"></a>Ajouter une alerte à une ressource de pool élastique
+### <a name="add-an-alert-tooan-elastic-pool-resource"></a>Ajouter une ressource de pool élastique tooan alerte
 
-Vous pouvez ajouter des règles à un pool élastique qui envoient des messages électroniques à des personnes ou des chaînes d’alertes à des points de terminaison d’URL quand le pool élastique atteint un seuil d’utilisation que vous configurez.
+Vous pouvez ajouter des règles tooan élastique pool d’envoyer un courrier électronique toopeople alerte chaînes tooURL points de terminaison ou lorsque le pool élastique de hello atteint un seuil d’utilisation que vous avez configurée.
 
-**Pour ajouter une alerte à une ressource :**
+**tooadd une ressource tooany alerte :**
 
-1. Cliquez sur le graphique **Utilisation des ressources** pour ouvrir le panneau **Métrique**. Cliquez sur **Ajouter une alerte**, puis renseignez les informations dans le panneau **Ajouter une règle d’alerte** (la valeur **Ressource** est automatiquement définie comme étant le pool que vous utilisez).
-2. Saisissez un **nom** et une **description** qui identifient l’alerte pour vous et les destinataires.
-3. Choisissez une **métrique** pour l’alerte dans la liste.
+1. Cliquez sur hello **l’utilisation des ressources** hello de tooopen graphique **métrique** panneau, cliquez sur **ajouter une alerte**, puis remplissez les informations de hello Bonjour **ajouter une alerte règle** blade (**ressource** est configuré automatiquement de pool de hello toobe avec lequel vous travaillez).
+2. Tapez un **nom** et **Description** qui identifie les tooyou alerte hello et les destinataires de hello.
+3. Choisissez un **métrique** que vous souhaitez tooalert à partir de la liste de hello.
 
-    Le graphique affiche dynamiquement l’utilisation des ressources pour cette métrique pour vous aider à choisir un seuil.
+    graphique de Hello affiche dynamiquement l’utilisation des ressources pour cette métrique toohelp que vous choisissez un seuil.
 
 4. Choisissez une **condition** (supérieur à, inférieur à, etc.) et un **seuil**.
-5. Choisissez une **Période** de temps pendant laquelle la règle de métrique doit être satisfaite pour que l’alerte se déclenche.
+5. Choisissez un **période** de temps qui hello métrique règle doit être satisfaite avant de déclencheurs d’alerte hello.
 6. Cliquez sur **OK**.
 
 Pour plus d'informations, voir [Créer des alertes SQL Database dans le portail Azure](sql-database-insights-alerts-portal.md).
 
 ### <a name="move-a-database-into-an-elastic-pool"></a>Déplacer une base de données dans un pool élastique
 
-Vous pouvez ajouter ou supprimer des bases de données dans un pool existant. Les bases de données peuvent se trouver dans d’autres pools. Toutefois, vous pouvez uniquement ajouter des bases de données qui se trouvent sur le même serveur logique.
+Vous pouvez ajouter ou supprimer des bases de données dans un pool existant. bases de données Hello peuvent être dans d’autres pools. Toutefois, vous pouvez uniquement ajouter des bases de données qui sont sur hello même serveur logique.
 
  ![Cliquez sur Configurer le pool](./media/sql-database-elastic-pool-manage-portal/configure-pool.png)
 
-![Cliquez sur Ajouter au pool](./media/sql-database-elastic-pool-manage-portal/add-to-pool.png)
+![Cliquez sur Ajouter toopool](./media/sql-database-elastic-pool-manage-portal/add-to-pool.png)
 
-![Sélectionnez les bases de données à ajouter](./media/sql-database-elastic-pool-manage-portal/add-databases-pool.png)
+![Sélectionnez les bases de données tooadd](./media/sql-database-elastic-pool-manage-portal/add-databases-pool.png)
 
 ![Ajouts de pool en attente](./media/sql-database-elastic-pool-manage-portal/pending-additions.png)
 
@@ -320,9 +320,9 @@ Vous pouvez ajouter ou supprimer des bases de données dans un pool existant. Le
 
 ### <a name="change-performance-settings-of-an-elastic-pool"></a>Modifier les paramètres de performances d'un pool élastique
 
-Lorsque vous surveillez l’utilisation des ressources d’un pool élastique, vous pouvez constater que certains ajustements sont nécessaires. Les limites de performances ou de stockage du pool ont peut-être besoin d’être modifiées. Vous pouvez aussi vouloir modifier les paramètres des bases de données du pool. Vous pouvez modifier la configuration du pool à tout moment pour obtenir le meilleur compromis entre les performances et le coût. Pour plus d’informations, consultez l’article [Quand utiliser un pool élastique ?](sql-database-elastic-pool.md).
+Lorsque vous analysez l’utilisation des ressources d’un pool élastique hello, vous pouvez constater que quelques ajustements sont nécessaires. Peut-être pool de hello doit être modifiée dans les limites de performances ou le stockage hello. Éventuellement, vous souhaitez que les paramètres de base de données toochange hello dans le pool de hello. Vous pouvez modifier le programme d’installation de hello du pool hello à n’importe quel moment tooget hello meilleur compromis entre les performances et le coût. Pour plus d’informations, consultez l’article [Quand utiliser un pool élastique ?](sql-database-elastic-pool.md).
 
-Pour modifier les eDTU ou les limites par pool et les eDTU par base de données :
+toochange hello Edtu limites ou de stockage par pool et Edtu par base de données :
 
 ![Utilisation des ressources du pool élastique](./media/sql-database-elastic-pool-manage-portal/resize-pool.png)
 
@@ -330,10 +330,10 @@ Pour modifier les eDTU ou les limites par pool et les eDTU par base de données�
 
 ## <a name="manage-sql-database-elastic-pools-using-powershell"></a>Gérer des pools élastiques SQL Database à l’aide de PowerShell
 
-Pour créer et gérer les pools élastiques SQL Database avec Azure PowerShell, utilisez les cmdlets PowerShell suivants. Si vous devez installer ou mettre à niveau PowerShell, consultez la section relative à [l’installation du module Azure PowerShell](/powershell/azure/install-azurerm-ps). Pour créer et gérer des bases de données, des serveurs et des règles de pare-feu, consultez [Gérer les serveurs, les bases de données et les pare-feu SQL Azure à l’aide de PowerShell](sql-database-servers-databases.md#manage-azure-sql-servers-databases-and-firewalls-using-powershell). 
+toocreate et de gérer les pools élastiques de base de données SQL Azure PowerShell, utilisez hello suivant d’applets de commande PowerShell. Si vous avez besoin de tooinstall ou mise à niveau de PowerShell, consultez [installez Azure PowerShell module](/powershell/azure/install-azurerm-ps). toocreate et gérer des bases de données, les serveurs et les règles de pare-feu, consultez [créer et gérer les serveurs de base de données SQL Azure et les bases de données à l’aide de PowerShell](sql-database-servers-databases.md#manage-azure-sql-servers-databases-and-firewalls-using-powershell). 
 
 > [!TIP]
-> Pour obtenir des exemples de scripts PowerShell, consultez [Créer des pools élastiques et déplacer les bases de données entre les pools et en dehors d’un pool à l’aide de PowerShell](scripts/sql-database-move-database-between-pools-powershell.md) et [Utiliser PowerShell pour surveiller et mettre à l’échelle un pool élastique SQL dans Azure SQL Database](scripts/sql-database-monitor-and-scale-pool-powershell.md).
+> Pour plus d’exemples de scripts PowerShell, consultez [créer des pools élastiques et déplacer les bases de données entre les pools et hors d’un pool à l’aide de PowerShell](scripts/sql-database-move-database-between-pools-powershell.md) et [toomonitor d’utiliser PowerShell et l’échelle un élastique SQL pool dans la base de données SQL Azure](scripts/sql-database-monitor-and-scale-pool-powershell.md).
 >
 
 | Applet de commande | Description |
@@ -342,22 +342,22 @@ Pour créer et gérer les pools élastiques SQL Database avec Azure PowerShell,
 |[Get-AzureRmSqlElasticPool](/powershell/module/azurerm.sql/get-azurermsqlelasticpool)|Obtient les pools élastiques et leurs valeurs de propriété sur un serveur SQL logique.|
 |[Set-AzureRmSqlElasticPool](/powershell/module/azurerm.sql/set-azurermsqlelasticpool)|Modifie les propriétés d’un pool de bases de données élastique sur un serveur SQL logique.|
 |[Remove-AzureRmSqlElasticPool](/powershell/module/azurerm.sql/remove-azurermsqlelasticpool)|Supprime un pool de bases de données élastique sur un serveur SQL logique.|
-|[Get-AzureRmSqlElasticPoolActivity](/powershell/module/azurerm.sql/get-azurermsqlelasticpoolactivity)|Obtient l’état des opérations sur un pool élastique sur un serveur SQL logique.|
+|[Get-AzureRmSqlElasticPoolActivity](/powershell/module/azurerm.sql/get-azurermsqlelasticpoolactivity)|Obtient l’état hello d’opérations sur un pool élastique sur un serveur SQL logique.|
 |[New-AzureRmSqlDatabase](/powershell/module/azurerm.sql/new-azurermsqldatabase)|Crée une base de données dans un pool existant ou en tant que base de données seule. |
 |[Get-AzureRmSqlDatabase](/powershell/module/azurerm.sql/get-azurermsqldatabase)|Obtient une ou plusieurs bases de données.|
 |[Set-AzureRmSqlDatabase](/powershell/module/azurerm.sql/set-azurermsqldatabase)|Définit les propriétés d’une base de données, ou déplace une base de données existante dans un pool élastique, en dehors de celui-ci ou entre des pools élastiques.|
 |[Remove-AzureRmSqlDatabase](/powershell/module/azurerm.sql/remove-azurermsqldatabase)|Supprime une base de données.|
 
 > [!TIP]
-> La création d’un grand nombre de bases de données dans un pool élastique peut prendre du temps si elle se fait par le biais du portail ou d’applets de commande PowerShell qui créent une seule base de données à la fois. Pour automatiser la création dans un pool élastique, consultez [CreateOrUpdateElasticPoolAndPopulate](https://gist.github.com/billgib/d80c7687b17355d3c2ec8042323819ae).
+> La création de plusieurs bases de données dans un pool élastique peut prendre un temps quand terminé à l’aide du portail de hello ou des applets de commande PowerShell créer uniquement une seule base de données à la fois. Création de tooautomate dans un pool élastique, consultez [CreateOrUpdateElasticPoolAndPopulate](https://gist.github.com/billgib/d80c7687b17355d3c2ec8042323819ae).
 >
 
-## <a name="manage-sql-database-elastic-pools-using-the-azure-cli"></a>Gérer des pools élastiques SQL Database à l’aide d’Azure CLI
+## <a name="manage-sql-database-elastic-pools-using-hello-azure-cli"></a>Gérer les pools élastiques de base de données SQL à l’aide de hello CLI d’Azure
 
-Pour créer et gérer un serveur des pools élastiques avec [Azure CLI](/cli/azure/overview), utilisez les commandes [Azure CLI SQL Database](/cli/azure/sql/db) suivantes. Utilisez [Cloud Shell](/azure/cloud-shell/overview) pour exécuter l’interface CLI dans votre navigateur ou [l’installer](/cli/azure/install-azure-cli) sur macOS, Linux ou Windows. 
+toocreate et gérer les pools élastiques de base de données SQL avec hello [CLI d’Azure](/cli/azure/overview), utilisez hello suivante [base de données SQL Azure CLI](/cli/azure/sql/db) commandes. Hello d’utilisation [Cloud Shell](/azure/cloud-shell/overview) toorun hello CLI dans votre navigateur, ou [installer](/cli/azure/install-azure-cli) sur Windows, Linux ou macOS. 
 
 > [!TIP]
-> Pour obtenir des exemples de scripts Azure CLI , consultez [Utiliser l’interface CLI afin de déplacer une base de données SQL Azure dans un pool élastique SQL](scripts/sql-database-move-database-between-pools-cli.md) et [Utiliser Azure CLI pour mettre un pool élastique SQL à l’échelle dans Azure SQL Database](scripts/sql-database-scale-pool-cli.md).
+> Pour plus d’exemples de scripts CLI d’Azure, consultez [toomove de CLI d’utiliser une base de données SQL Azure dans un pool élastique SQL](scripts/sql-database-move-database-between-pools-cli.md) et [CLI d’Azure utilisation tooscale un pool élastique SQL dans la base de données SQL Azure](scripts/sql-database-scale-pool-cli.md).
 >
 
 | Applet de commande | Description |
@@ -365,32 +365,32 @@ Pour créer et gérer un serveur des pools élastiques avec [Azure CLI](/cli/az
 |[az sql elastic-pool create](/cli/azure/sql/elastic-pool#create)|Crée un pool élastique.|
 |[az sql elastic-pool list](/cli/azure/sql/elastic-pool#list)|Renvoie une liste de pools élastiques dans un serveur.|
 |[az sql elastic-pool list-dbs](/cli/azure/sql/elastic-pool#list-dbs)|Renvoie une liste des bases de données dans un pool élastique.|
-|[az sql elastic-pool list-editions](/cli/azure/sql/elastic-pool#list-editions)|Inclut également les paramètres DTU de pool, les limites de stockage et les paramètres par base de données disponibles. Pour réduire les détails, les limites de stockage supplémentaires et les paramètres par base de données sont masqués par défaut.|
+|[az sql elastic-pool list-editions](/cli/azure/sql/elastic-pool#list-editions)|Inclut également les paramètres DTU de pool, les limites de stockage et les paramètres par base de données disponibles. Dans les commentaires de tooreduce de commande, les limites de stockage supplémentaire et par base de données des paramètres sont masqués par défaut.|
 |[az sql elastic-pool update](/cli/azure/sql/elastic-pool#update)|Met à jour un pool élastique.|
-|[az sql elastic-pool delete](/cli/azure/sql/elastic-pool#delete)|Supprime le pool élastique.|
+|[az sql elastic-pool delete](/cli/azure/sql/elastic-pool#delete)|Supprime le pool élastique de hello.|
 
 ## <a name="manage-sql-database-elastic-pools-using-transact-sql"></a>Gérer des pools élastiques SQL Database à l’aide de Transact-SQL
 
-Pour créer et déplacer des bases de données dans les pools élastiques existants ou pour renvoyer des informations sur un pool élastique SQL Database avec Transact-SQL, utilisez les commandes T-SQL suivantes. Vous pouvez entrer ces commandes à l’aide du portail Azure, de [SQL Server Management Studio](/sql/ssms/use-sql-server-management-studio), de [Visual Studio Code](https://code.visualstudio.com/docs), ou de tout autre programme pouvant se connecter à un serveur Azure SQL Database et transmettre des commandes Transact-SQL. Pour créer et gérer des bases de données, des serveurs et des règles de pare-feu, consultez [Gérer les serveurs, les bases de données et les pare-feu SQL Azure à l’aide de Transact-SQL](sql-database-servers-databases.md#manage-azure-sql-servers-databases-and-firewalls-using-transact-sql).
+toocreate et déplacement des bases de données dans les pools élastiques existants ou tooreturn d’informations sur un pool élastique de base de données SQL avec Transact-SQL, utilisez hello suivant de commandes T-SQL. Vous pouvez émettre ces commandes à l’aide du portail Azure, de hello [SQL Server Management Studio](/sql/ssms/use-sql-server-management-studio), [Visual Studio Code](https://code.visualstudio.com/docs), ou tout autre programme qui peut se connecter le serveur de base de données SQL Azure tooan et passer Transact-SQL commandes. toocreate et gérer des bases de données, les serveurs et les règles de pare-feu, consultez [créer et gérer les serveurs de base de données SQL Azure et les bases de données à l’aide de Transact-SQL](sql-database-servers-databases.md#manage-azure-sql-servers-databases-and-firewalls-using-transact-sql).
 
 > [!IMPORTANT]
-> Vous ne pouvez pas créer, mettre à jour ou supprimer un pool élastique SQL Database à l’aide de Transact-SQL. Vous pouvez ajouter ou supprimer des bases de données à partir d’un pool élastique, et vous pouvez utiliser des vues de gestion dynamiques pour renvoyer des informations sur les pools élastiques existants.
+> Vous ne pouvez pas créer, mettre à jour ou supprimer un pool élastique SQL Database à l’aide de Transact-SQL. Vous pouvez ajouter ou supprimer des bases de données à partir d’un pool élastique, et vous pouvez utiliser des vues de gestion dynamique tooreturn informations sur les pools élastiques existants.
 >
 
 | Commande | Description |
 | --- | --- |
-|[CREATE DATABASE (Azure SQL Database)](/sql/t-sql/statements/create-database-azure-sql-database)|Crée une base de données dans un pool existant ou en tant que base de données seule. Vous devez être connecté à la base de données MASTER pour créer une base de données.|
+|[CREATE DATABASE (Azure SQL Database)](/sql/t-sql/statements/create-database-azure-sql-database)|Crée une base de données dans un pool existant ou en tant que base de données seule. Vous devez être connecté toohello base de données master toocreate une base de données.|
 | [ALTER DATABASE (Azure SQL Database)](/sql/t-sql/statements/alter-database-azure-sql-database) |Déplace une base de données dans un pool élastique, en dehors de celui-ci ou entre des pools élastiques.|
 |[DROP DATABASE (Transact-SQL)](/sql/t-sql/statements/drop-database-transact-sql)|Supprime une base de données.|
-|[sys.elastic_pool_resource_stats (Azure SQL Database)](/sql/relational-databases/system-catalog-views/sys-elastic-pool-resource-stats-azure-sql-database)|Renvoie les statistiques d’utilisation de ressources pour tous les pools de bases de données élastiques dans un serveur logique. Pour chaque pool de bases de données élastique, il existe une ligne pour chaque fenêtre de création de rapports de 15 secondes (quatre lignes par minute). Cela inclut la consommation de stockage, le journal, les E/S, l’UC et l’utilisation de session/requête simultanée par toutes les bases de données du pool.|
-|[sys.database_service_objectives (Azure SQL Database)](/sql/relational-databases/system-catalog-views/sys-database-service-objectives-azure-sql-database)|Renvoie l’édition (niveau de service), l’objectif de service (niveau tarifaire) et, le cas échéant, le nom du pool élastique Azure SQL Database ou d’un entrepôt de données Azure SQL Data Warehouse. Si vous êtes connecté à la base de données MASTER d’un serveur Azure SQL Database, renvoie les informations au sujet de toutes les bases de données. Pour Azure SQL Data Warehouse, vous devez être connecté à la base de données MASTER.|
+|[sys.elastic_pool_resource_stats (Azure SQL Database)](/sql/relational-databases/system-catalog-views/sys-elastic-pool-resource-stats-azure-sql-database)|Retourne les statistiques d’utilisation de ressources pour tous les pools de bases de données élastiques hello dans un serveur logique. Pour chaque pool de bases de données élastique, il existe une ligne pour chaque fenêtre de création de rapports de 15 secondes (quatre lignes par minute). Cela inclut l’utilisation du processeur, e/s, journal, la consommation du stockage et demande/sessions simultanées par toutes les bases de données dans le pool de hello.|
+|[sys.database_service_objectives (Azure SQL Database)](/sql/relational-databases/system-catalog-views/sys-database-service-objectives-azure-sql-database)|Retourne hello edition (niveau de service), objectif de service (niveau de tarification) et nom du pool élastique, le cas échéant, pour une base de données SQL Azure ou d’un entrepôt de données SQL Azure. Si une session toohello la base de données master sur un serveur de base de données SQL Azure, retourne des informations sur toutes les bases de données. Pour l’entrepôt de données SQL Azure, vous devez être connecté toohello de base de données master.|
 
-## <a name="manage-sql-database-elastic-pools-using-the-rest-api"></a>Gérer des pools élastiques SQL Database à l’aide de l’API REST
+## <a name="manage-sql-database-elastic-pools-using-hello-rest-api"></a>Gérer les pools élastiques de base de données SQL à l’aide des API REST de hello
 
-Pour créer et gérer des pools élastiques SQL Database à l’aide de l’API REST, consultez la page [Azure SQL Database REST API](/rest/api/sql/) (API REST d’Azure SQL Database).
+toocreate et gérer les pools élastiques de base de données SQL à l’aide de hello API REST, consultez [API REST de Azure SQL Database](/rest/api/sql/).
 
 ## <a name="next-steps"></a>Étapes suivantes
 
 * Vous pouvez aussi regarder la vidéo [Formation vidéo Microsoft Virtual Academy sur les fonctions de bases de données élastiques dans Azure SQL Database](https://mva.microsoft.com/training-courses/elastic-database-capabilities-with-azure-sql-db-16554)
-* Pour en savoir plus sur les modèles de conception pour les applications SaaS avec des pools élastiques, voir [Design Patterns for Multi-tenant SaaS Applications with Azure SQL Database](sql-database-design-patterns-multi-tenancy-saas-applications.md)(Modèles de conception pour les applications SaaS mutualisées avec la base de données SQL Azure).
-* Pour obtenir un didacticiel SaaS utilisant des pools élastiques, consultez [Présentation de l’application SaaS Wingtip](sql-database-wtp-overview.md).
+* toolearn savoir plus sur les modèles de conception pour les applications SaaS à l’aide de pools élastiques, consultez [des modèles de conception pour les Applications SaaS mutualisée avec la base de données SQL Azure](sql-database-design-patterns-multi-tenancy-saas-applications.md).
+* Pour obtenir un didacticiel SaaS à l’aide de pools élastiques, consultez [Introduction toohello application Wingtip SaaS](sql-database-wtp-overview.md).

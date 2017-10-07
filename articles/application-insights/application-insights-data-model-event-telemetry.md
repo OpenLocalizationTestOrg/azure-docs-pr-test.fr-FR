@@ -1,5 +1,5 @@
 ---
-title: "Modèle de données de télémétrie d’Azure Application Insights : télémétrie des événements | Microsoft Docs"
+title: "aaaAzure modèle de données d’Application Insights télémétrie - événement de télémétrie | Documents Microsoft"
 description: "Modèle de données Application Insights pour la télémétrie des événements"
 services: application-insights
 documentationcenter: .net
@@ -12,21 +12,21 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 04/25/2017
 ms.author: bwren
-ms.openlocfilehash: 422e193ae10938954602a6ef8c49fd47f473bc01
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: cd7dc3c5f4f3df22b7a52ee79fcad566a27a9f4e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="event-telemetry-application-insights-data-model"></a>Télémétrie des événements : modèle de données Application Insights
 
-Vous pouvez créer des éléments de télémétrie (dans [Application Insights](app-insights-overview.md)) pour représenter un événement qui s’est produit dans votre application. En général, il s’agit d’une interaction utilisateur comme un clic sur un bouton ou une validation de commande. Il peut aussi s’agir d’un événement lié au cycle de vie de l’application, comme une initialisation ou une mise à jour de configuration. 
+Vous pouvez créer des éléments de télémétrie (dans [Application Insights](app-insights-overview.md)) toorepresent un événement qui s’est produite dans votre application. En général, il s’agit d’une interaction utilisateur comme un clic sur un bouton ou une validation de commande. Il peut aussi s’agir d’un événement lié au cycle de vie de l’application, comme une initialisation ou une mise à jour de configuration. 
 
-Sur le plan sémantique, les événements ne sont pas forcément corrélés aux requêtes. Toutefois, si la télémétrie des événements est utilisée correctement, elle est plus importante que les requêtes ou les traces. Les événements représentent la télémétrie métier et doivent faire l’objet d’un [échantillonnage](app-insights-api-filtering-sampling.md) distinct, moins agressif.
+Sémantiquement, les événements peuvent ou ne peuvent pas être corrélés toorequests. Toutefois, si la télémétrie des événements est utilisée correctement, elle est plus importante que les requêtes ou les traces. Événements représentent la télémétrie d’entreprise et doit être un objet tooseparate, moins agressive [échantillonnage](app-insights-api-filtering-sampling.md).
 
 ## <a name="name"></a>Nom
 
-Nom de l’événement. Pour permettre le regroupement approprié et des mesures utiles, limitez votre application afin qu’elle génère un petit nombre de noms d’événements distincts. Par exemple, n’utilisez pas un nom distinct pour chaque instance générée d’un événement.
+Nom de l’événement. regroupement approprié de tooallow et mesures utiles, limiter votre application afin qu’il génère un petit nombre de noms d’événements distincts. Par exemple, n’utilisez pas un nom distinct pour chaque instance générée d’un événement.
 
 Longueur maximale : 512 caractères
 

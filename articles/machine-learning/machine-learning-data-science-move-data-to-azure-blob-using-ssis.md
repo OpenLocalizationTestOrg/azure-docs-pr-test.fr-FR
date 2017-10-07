@@ -1,6 +1,6 @@
 ---
-title: "Déplacer des données vers ou depuis le stockage d’objets blobs Azure à l’aide de connecteurs SSIS | Microsoft Docs"
-description: "Déplacer des données vers ou depuis le stockage d’objets blobs Azure à l’aide de connecteurs SSIS"
+title: "tooor de données aaaMove à partir du stockage d’objets Blob Azure à l’aide de connecteurs SSIS | Documents Microsoft"
+description: "Déplacer les données tooor à partir du stockage d’objets Blob Azure à l’aide de connecteurs SSIS."
 services: machine-learning,storage
 documentationcenter: 
 author: bradsev
@@ -14,78 +14,78 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/24/2017
 ms.author: bradsev
-ms.openlocfilehash: 575beaea5443919bd9728016bf100b43de8e4aab
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 15068af1c69f11e74e109ee5ae2b9f1a674ea388
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="move-data-to-or-from-azure-blob-storage-using-ssis-connectors"></a>Déplacer des données vers ou depuis Stockage Blob Azure à l’aide de connecteurs SSIS
-Le [Feature Pack SQL Server Integration Services pour Azure](https://msdn.microsoft.com/library/mt146770.aspx) fournit des composants permettant de se connecter à Azure, de transférer des données entre des sources de données Azure et des sources de données sur site et de traiter les données stockées dans Azure.
+# <a name="move-data-tooor-from-azure-blob-storage-using-ssis-connectors"></a>Déplacer les données tooor de stockage d’objets Blob Azure à l’aide de connecteurs SSIS
+Hello [SQL Server Integration Services Feature Pack pour Azure](https://msdn.microsoft.com/library/mt146770.aspx) fournit des composants tooconnect tooAzure, transférer des données entre des sources de données Azure et locales et traiter les données stockées dans Azure.
 
 [!INCLUDE [blob-storage-tool-selector](../../includes/machine-learning-blob-storage-tool-selector.md)]
 
-Une fois que les clients ont déplacé les données locales dans le cloud, ils peuvent y accéder à partir de n’importe quel service Azure pour mettre à profit la totalité des performances de la suite de technologies Azure. Il peut être utilisé, par exemple, dans Machine Learning ou sur un cluster HDInsight.
+Une fois que les clients ont déplacé des données locales dans le cloud de hello, ils peuvent y accéder à partir de n’importe quel service Azure tooleverage hello toute la puissance de la suite de hello de technologies Azure. Il peut être utilisé, par exemple, dans Machine Learning ou sur un cluster HDInsight.
 
-Il s’agit généralement de la première étape pour les procédures pas à pas [SQL](machine-learning-data-science-process-sql-walkthrough.md) et [HDInsight](machine-learning-data-science-process-hive-walkthrough.md).
+Il s’agit généralement être la première étape de hello pour hello [SQL](machine-learning-data-science-process-sql-walkthrough.md) et [HDInsight](machine-learning-data-science-process-hive-walkthrough.md) procédures pas à pas.
 
-Pour une présentation de scénarios canoniques utilisant SSIS pour répondre aux besoins de l’entreprise communs dans les scénarios d’intégration hybrides, reportez-vous à la section [En faire plus avec le Feature Pack SQL Server Integration Services pour Azure](http://blogs.msdn.com/b/ssis/archive/2015/06/25/doing-more-with-sql-server-integration-services-feature-pack-for-azure.aspx) .
+Pour en savoir plus sur les scénarios canoniques qui utiliser SSIS tooaccomplish entreprise doit communes dans les scénarios d’intégration hybride données, consultez [faire plus avec SQL Server Integration Services Feature Pack pour Azure](http://blogs.msdn.com/b/ssis/archive/2015/06/25/doing-more-with-sql-server-integration-services-feature-pack-for-azure.aspx) blog.
 
 > [!NOTE]
-> Pour une présentation complète du stockage d’objets blob Azure, consultez les articles [Fonctionnalités de base des objets blob Azure](../storage/blobs/storage-dotnet-how-to-use-blobs.md) et [Service Blob Azure](https://msdn.microsoft.com/library/azure/dd179376.aspx).
+> Pour un stockage d’objets blob tooAzure présentation complète, consultez trop[principes de base Azure Blob](../storage/blobs/storage-dotnet-how-to-use-blobs.md) et trop[Service d’objets Blob Azure](https://msdn.microsoft.com/library/azure/dd179376.aspx).
 > 
 > 
 
 ## <a name="prerequisites"></a>Composants requis
-Pour exécuter les tâches décrites dans cet article, vous devez disposer d’un abonnement Azure et configurer un compte de stockage Azure. Pour charger ou télécharger des données, vous devez connaître le nom et la clé de votre compte Azure Storage.
+tâches de hello tooperform décrit dans cet article, vous devez disposer un abonnement Azure et configurer un compte de stockage Azure. Vous devez connaître votre stockage Azure compte compte et le nom de clé tooupload ou télécharger des données.
 
-* Pour configurer un **abonnement Azure**, consultez la section [Essai gratuit pendant un mois](https://azure.microsoft.com/pricing/free-trial/).
+* tooset d’un **abonnement Azure**, consultez [version d’évaluation d’un mois gratuite](https://azure.microsoft.com/pricing/free-trial/).
 * Pour obtenir des instructions sur la création d’ **un compte de stockage** et obtenir des informations sur le compte et la clé, consultez la section [À propos des comptes de stockage Azure](../storage/common/storage-create-storage-account.md).
 
-Pour utiliser les **connecteurs SSIS**vous devez télécharger :
+toouse hello **connecteurs SSIS**, vous devez télécharger :
 
 * **SQL Server 2014 ou 2016 Standard (ou version ultérieure)**: l’installation inclut SQL Server Integration Services.
-* **Microsoft SQL Server 2014 ou 2016 Integration Services Feature Pack for Azure** peuvent être téléchargés respectivement depuis les pages [SQL Server 2014 Integration Services](http://www.microsoft.com/download/details.aspx?id=47366) et [SQL Server 2016 Integration Services](https://www.microsoft.com/download/details.aspx?id=49492).
+* **Microsoft SQL Server 2014 ou 2016 Integration Services Feature Pack pour Azure**: ils peuvent être téléchargés, respectivement, à partir de hello [SQL Server 2014 Integration Services](http://www.microsoft.com/download/details.aspx?id=47366) et [intégration de SQL Server 2016 Services](https://www.microsoft.com/download/details.aspx?id=49492) pages.
 
 > [!NOTE]
-> SSIS est installé avec SQL Server, mais n’est pas inclus dans la version Express. Pour plus d'informations sur les applications incluses dans les différentes éditions de SQL Server, consultez [Éditions de SQL Server](http://www.microsoft.com/en-us/server-cloud/products/sql-server-editions/)
+> SSIS est installé avec SQL Server, mais n’est pas inclus dans la version Express hello. Pour plus d'informations sur les applications incluses dans les différentes éditions de SQL Server, consultez [Éditions de SQL Server](http://www.microsoft.com/en-us/server-cloud/products/sql-server-editions/)
 > 
 > 
 
 Pour les supports de formation sur SSIS, consultez la [formation pratique SSIS](http://www.microsoft.com/download/details.aspx?id=20766)
 
-Pour plus d'informations sur la mise en service à l'aide de SISS pour la création des packages d'extraction, de transformation et de chargement (ETL), consultez [Didacticiel SSIS : création d'un Package ETL Simple](https://msdn.microsoft.com/library/ms169917.aspx).
+Pour plus d’informations sur la façon de tooget à distance à l’exécution à l’aide de SISS toobuild simple extraction, transformation et les packages de chargement (ETL), consultez [didacticiel SSIS : création d’un Package ETL Simple](https://msdn.microsoft.com/library/ms169917.aspx).
 
 ## <a name="download-nyc-taxi-dataset"></a>Télécharger l’ensemble de données Taxi NYC
-L'exemple décrit ici utilise un groupe de données disponible au public (l'ensemble de données [Courses taxi NYC](http://www.andresmh.com/nyctaxitrips/) ). Le groupe de données se compose d’environ 173 millions de courses en taxi à New York dans l’année 2013. Il existe deux types de données : les données détaillées relatives aux voyages et celles relatives aux tarifs des courses. Comme il existe un fichier par élément pour chaque mois, nous avons 24 fichiers, chacun d’eux d’un volume de 2 Go avant compression.
+Hello exemple décrit ici utiliser un jeu de données disponible publiquement--hello [NYC Taxi allers-retours](http://www.andresmh.com/nyctaxitrips/) jeu de données. Hello dataset se compose des trajets de taxi environ 173 millions dans NYC dans l’année hello 2013. Il existe deux types de données : les données détaillées relatives aux voyages et celles relatives aux tarifs des courses. Comme il existe un fichier par élément pour chaque mois, nous avons 24 fichiers, chacun d’eux d’un volume de 2 Go avant compression.
 
-## <a name="upload-data-to-azure-blob-storage"></a>Téléchargement de données vers le stockage d’objets blob Azure
-Pour déplacer des données à l’aide du pack de fonctionnalités du site local pour le stockage d’objets blobs Azure, nous utilisons une instance de la [**tâche de téléchargement d’objets blobs Azure**](https://msdn.microsoft.com/library/mt146776.aspx), comme illustré ici :
+## <a name="upload-data-tooazure-blob-storage"></a>Télécharger le stockage d’objets blob de données tooAzure
+données toomove à l’aide de hello SSIS du feature pack à partir du stockage d’objets blob tooAzure local, nous utilisons une instance de hello [ **tâche de chargement d’objets Blob Azure**](https://msdn.microsoft.com/library/mt146776.aspx), illustrée ici :
 
 ![configure-data-science-vm](./media/machine-learning-data-science-move-data-to-azure-blob-using-ssis/ssis-azure-blob-upload-task.png)
 
-Les paramètres que la tâche utilise sont décrits ici :
+paramètres Hello hello utilise des tâches sont décrites ici :
 
 | Champ | Description |
 | --- | --- |
-| **AzureStorageConnection** |Spécifie un gestionnaire de connexions de stockage Azure existant ou en crée un nouveau faisant référence à un compte de stockage Azure qui pointe vers l’endroit où les fichiers de l’objet blob sont hébergés. |
-| **BlobContainer** |Spécifie le nom du conteneur d’objets blobs qui contient les fichiers téléchargés en tant qu’objets blobs. |
-| **BlobDirectory** |Spécifie le répertoire blob où le fichier téléchargé est stocké en tant qu’objet blob de bloc. Le répertoire d’objet blob est une structure hiérarchique virtuelle. Si l’objet blob existe déjà, il est remplacé. |
-| **LocalDirectory** |Spécifie le répertoire local qui contient les fichiers à télécharger. |
-| **FileName** |Spécifie un filtre de nom pour sélectionner des fichiers obéissant à un schéma de nom spécifié. Par exemple, MySheet\*.xls\* inclut des fichiers tels que MySheet001.xls et MySheetABC.xlsx |
+| **AzureStorageConnection** |Spécifie un gestionnaire de connexions de stockage Azure existant ou crée un nouveau qui fait référence le compte de stockage Azure tooan qui pointe de fichiers d’objets blob toowhere hello sont hébergés. |
+| **BlobContainer** |Spécifie le nom hello du conteneur d’objets blob hello qui contiennent les fichiers hello téléchargé comme objet BLOB. |
+| **BlobDirectory** |Spécifie le répertoire d’objets blob hello où hello du fichier téléchargé est stocké en tant qu’objet blob de blocs. répertoire d’objets blob Hello est une structure hiérarchique virtuelle. Si l’objet blob de hello existe déjà, il a ia remplacé. |
+| **LocalDirectory** |Spécifie le répertoire local hello contenant hello toobe de fichiers téléchargé. |
+| **FileName** |Spécifie un nom filtrer tooselect les fichiers avec le modèle de nom spécifié hello. Par exemple, MySheet\*.xls\* inclut des fichiers tels que MySheet001.xls et MySheetABC.xlsx |
 | **TimeRangeFrom/TimeRangeTo** |Spécifie une plage de temps pour appliquer un filtre. Les fichiers modifiés après *TimeRangeFrom* et avant *TimeRangeTo* sont inclus. |
 
 > [!NOTE]
-> Les informations d’identification **AzureStorageConnection** doivent être correctes et **BlobContainer** doit exister avant que le transfert soit tenté.
+> Hello **AzureStorageConnection** informations d’identification doivent toobe correct et hello **BlobContainer** doit exister avant la tentative de transfert de hello.
 > 
 > 
 
 ## <a name="download-data-from-azure-blob-storage"></a>Télécharger les données depuis le stockage d’objets blobs Azure
-Pour télécharger des données depuis le stockage d’objets blobs Azure vers le stockage sur site avec SSIS, utilisez une instance de la [tâche de téléchargement d’objets blobs Azure](https://msdn.microsoft.com/library/mt146779.aspx).
+données toodownload à partir d’objets blob Azure tooon local de stockage avec SSIS, utilisez une instance de hello [tâche de chargement d’objets Blob Azure](https://msdn.microsoft.com/library/mt146779.aspx).
 
 ## <a name="more-advanced-ssis-azure-scenarios"></a>Scénarios SSIS-Azure plus élaborés
-Le pack de fonctionnalités SSIS permet de gérer des flux de données plus complexes en regroupant plusieurs tâches. Par exemple, les données d’objets blobs peuvent alimenter directement un cluster HDInsight dont le résultat peut être de nouveau téléchargé vers un objet blob, puis dans un espace de stockage local. SSIS peut exécuter des tâches Hive et Pig sur un cluster HDInsight à l’aide de connecteurs SSIS supplémentaires :
+pack de fonctionnalités Hello SSIS permet plus complexe toobe flux géré par les tâches d’empaquetage ensemble. Par exemple, hello blob pourraient de flux de données directement dans un cluster HDInsight, dont la sortie peut être téléchargée tooa arrière blob et stockage local tooon. SSIS peut exécuter des tâches Hive et Pig sur un cluster HDInsight à l’aide de connecteurs SSIS supplémentaires :
 
-* Pour exécuter un script Hive sur un cluster Azure HDInsight avec SSIS, utilisez la [tâche Azure HDInsight Hive](https://msdn.microsoft.com/library/mt146771.aspx).
-* Pour exécuter un script Pig sur un cluster Azure HDInsight avec SSIS, utilisez la [tâche Azure HDInsight Pig](https://msdn.microsoft.com/library/mt146781.aspx).
+* toorun du cluster avec SSIS, utilisez un script Hive sur un Azure HDInsight [tâche Hive](https://msdn.microsoft.com/library/mt146771.aspx).
+* toorun du cluster avec SSIS, utilisez un script Pig sur un Azure HDInsight [tâche Pig Azure HDInsight](https://msdn.microsoft.com/library/mt146781.aspx).
 

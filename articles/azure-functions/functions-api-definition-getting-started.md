@@ -1,5 +1,5 @@
 ---
-title: "Prise en main des métadonnées OpenAPI dans Azure Functions | Microsoft Docs"
+title: "aaaGetting démarré avec OpenAPI Metadata dans les fonctions Azure | Documents Microsoft"
 description: "Prise en main de la prise en charge d’OpenAPI dans Azure Functions"
 services: functions
 documentationcenter: 
@@ -14,47 +14,47 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 03/23/2017
 ms.author: alkarche
-ms.openlocfilehash: 9b861aacf31e17866293732dc2323f56014c1877
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: fee3464c9a0a11b6d3891ccd0e9c5343d6bedcad
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="creating-openapi-20-swagger-metadata-for-a-function-app-preview"></a>Création de métadonnées OpenAPI 2.0 (Swagger) pour une Function App (version préliminaire)
 
-Ce document vous guide pas à pas dans la création d’une définition OpenAPI pour une API simple hébergée sur Azure Functions.
+Ce document vous guide tout au long des processus d’étape par étape de hello de création d’une définition de OpenAPI pour une API simple hébergée sur les fonctions d’Azure.
 
 [!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
 ### <a name="what-is-openapi-swagger"></a>Qu’est-ce qu’OpenAPI (Swagger) ?
-[Métadonnées Swagger](http://swagger.io/) est un fichier qui définit les fonctionnalités et les modes de fonctionnement de votre API et permet à une fonction qui héberge une API REST d’être utilisée par une grande variété d’autres logiciels. Les offres Microsoft telles que PowerApps et [API Apps](https://docs.microsoft.com/azure/app-service-api/app-service-api-dotnet-get-started#a-idcodegena-generate-client-code-for-the-data-tier), ainsi que des outils de développeurs tiers tels que [Postman](https://www.getpostman.com/docs/importing_swagger) et [de nombreux autres packages](http://swagger.io/tools/) permettent à votre API d’être utilisée avec une définition Swagger.
+[Métadonnées de swagger](http://swagger.io/) est un fichier qui définit les fonctionnalités de hello et modes de votre API de fonctionnement et permet à une fonction qui héberge un toobe de l’API REST utilisée par un grand nombre d’autres logiciels. Offres Microsoft telles que PowerApps et [applications API](https://docs.microsoft.com/azure/app-service-api/app-service-api-dotnet-get-started#a-idcodegena-generate-client-code-for-the-data-tier), ainsi que de 3 développeur tiers tels que des outils [Postman](https://www.getpostman.com/docs/importing_swagger) et [de nombreux packages plus](http://swagger.io/tools/) tous les autoriser votre toobe API consommée avec un Définition swagger.
 
 ## <a name="prepare-function"></a>Création d’une fonction avec une API simple
-  Pour créer une définition OpenAPI, nous devons tout d’abord créer une fonction avec une API simple. Si vous disposez déjà d’une API hébergée sur une Function App, vous pouvez passer directement à la section suivante
+  toocreate une définition OpenAPI, nous devons tout d’abord toocreate une fonction avec une API simple. Si vous avez déjà une API hébergée sur une application de la fonction, vous pouvez ignorer la section suivante de droite toohello
 1. Créez une nouvelle Function App.
-    1. [Portail Azure](https://portal.azure.com) > `+ New` > Recherchez « Function App »
+    1. [Portail Azure](https://portal.azure.com) > `+ New` &gt; Recherchez « Function App »
 1. Créer une nouvelle fonction de déclencheur HTTP à l’intérieur de votre nouvelle Function App
     1. Votre fonction est préremplie avec du code définissant une API REST très simple.
-    1. N’importe quelle chaîne transmise à la fonction en tant que paramètre de requête ou dans le corps est retournée en tant que « Bonjour {entrée} »
-1. Accédez à l’onglet `Integrate` de votre nouvelle fonction de déclencheur HTTP
-    1. Basculer `Allowed HTTP methods` sur `Selected methods`
+    1. N’importe quelle chaîne passée toohello fonction comme paramètre de requête ou dans le corps de hello est retourné en tant que « Hello {entrée} »
+1. Accédez toohello `Integrate` onglet de votre nouvelle fonction de déclencheur de HTTP
+    1. Activer/désactiver `Allowed HTTP methods` trop`Selected methods`
     1. Dans `Selected HTTP methods`, désactivez chaque verbe sauf POST.
     ![Méthodes HTTP sélectionnées](./media/functions-api-definition-getting-started/selectedHTTPmethods.png)
     1. Cette étape simplifiera votre définition d’API.
 
 ## <a name="enable"></a>Activation de la prise en charge de la définition d’API
-1. Accédez à `your function name`  >  `Platform Features`  >  `API Definition` 
- ![onglet Définition](./media/functions-api-definition-getting-started/definitiontab.png)
-1. Paramétrez `API Definition Source` sur `Function (preview)`
-    1. Cette étape active une suite d’options OpenAPI pour votre Function App, notamment un point de terminaison pour héberger un fichier OpenAPI à partir du domaine de votre Function App, une copie en ligne de l’[éditeur OpenAPI](http://editor.swagger.io) et un générateur de définition de démarrage rapide.
+1. Accédez trop`your function name` > `Platform Features` > `API Definition`
+![onglet Définition](./media/functions-api-definition-getting-started/definitiontab.png)
+1. Définissez `API Definition Source` trop`Function (preview)`
+    1. Cette étape permet à une suite d’options OpenAPI pour votre application de la fonction, y compris un point de terminaison de toohost un fichier OpenAPI à partir du domaine de votre application de fonction, une copie de la ligne de hello [OpenAPI éditeur](http://editor.swagger.io)et un générateur de définition de démarrage rapide.
 ![Définition activée](./media/functions-api-definition-getting-started/enabledefinition.png)
 
 ## <a name="create-definition"></a>Création de votre définition d’API à partir d’un modèle
 1. Cliquez sur `Generate API Definition template`
-    1. Cette étape analyse votre Function App pour trouver des fonctions de déclencheur HTTP et utilise les informations contenues dans functions.json pour générer un document OpenAPI.
-1. Ajouter un objet d’opération à `paths: /api/yourfunctionroute post:`
-    1. Le document OpenAPI de démarrage rapide est un plan d’un document OpenAPI complet. Elle nécessite davantage de métadonnées pour être une définition OpenAPI complète, telles que des objets d’opération et des modèles de réponse.
-    1. L’exemple d’objet d’opération ci-dessous dispose d’une section production/consommation remplie, d’un objet de paramètre et d’un objet de réponse.
+    1. Cette étape analyse votre application de la fonction pour les fonctions de déclencheur de HTTP et utilise les informations de hello dans functions.json toogenerate un document OpenAPI.
+1. Ajouter un objet de l’opération trop`paths: /api/yourfunctionroute post:`
+    1. document de OpenAPI de démarrage rapide de Hello est un plan d’un document OpenAPI complète. Il requiert plusieurs métadonnées toobe une définition complète de OpenAPI, tels que les objets d’opération et les modèles de réponse.
+    1. objet d’opération exemple Hello ci-dessous est remplie produit/consomme une section, un objet de paramètre et un objet de réponse.
     
     ```yaml
       post:
@@ -88,36 +88,36 @@ Ce document vous guide pas à pas dans la création d’une définition OpenAPI 
     > [!NOTE]
     >  x-ms-summary fournit un nom d’affichage dans Logic Apps, Flow et PowerApps.
     >
-    > Consultez la section [Personnaliser votre définition Swagger pour PowerApps](https://powerapps.microsoft.com/tutorials/customapi-how-to-swagger/) pour en savoir plus.
+    > Extraire [personnaliser votre définition Swagger pour PowerApps](https://powerapps.microsoft.com/tutorials/customapi-how-to-swagger/) toolearn plus.
 
-1. Cliquez sur `save` pour enregistrer vos modifications ![Ajout d’une définition de modèle](./media/functions-api-definition-getting-started/addingtemplate.png)
+1. Cliquez sur `save` toosave vos modifications ![Ajout d’une définition de modèle](./media/functions-api-definition-getting-started/addingtemplate.png)
 
 ## <a name="use-definition"></a>Utilisation de votre définition d’API
-1. Copiez-collez votre `API definition URL` dans un nouvel onglet de navigateur pour afficher votre document OpenAPI brut.
-1. Vous pouvez importer votre document OpenAPI dans un nombre illimité d’outils de test et l’intégration via cette URL.
-    1. De nombreuses ressources Azure peuvent importer automatiquement votre document OpenAPI à l’aide de l’URL de définition d’API qui est enregistrée dans vos paramètres d’application de fonction. Dans le cadre de la source de définition d’API `Function`, nous mettons à jour cette URL pour vous.
+1. Copiez votre `API definition URL` et collez-le dans un nouveau tooview d’onglet navigateur votre document OpenAPI brut.
+1. Vous pouvez importer votre numéro tooany OpenAPI des outils de test et l’intégration à l’aide de cette URL.
+    1. Nombre de ressources Azure est tooautomatically en mesure des importer à l’aide de votre document OpenAPI hello URL de définition d’API qui est enregistré dans les paramètres de votre application (fonction). Dans le cadre de hello `Function` source de définition d’API, nous mettre à jour cette url pour vous.
 
 
-## <a name="test-definition"></a>Utilisation de l’interface utilisateur Swagger pour tester votre définition d’API
-Des outils de test sont intégrés à l’affichage interface utilisateur de l’éditeur de définition d’API intégré. Ajoutez votre clé d’API, puis utilisez le bouton `Try this operation` sous chaque méthode. L’outil utilisera votre définition d’API pour mettre en forme les demandes et les réponses de réussite indiqueront que la définition est correcte.
+## <a name="test-definition"></a>À l’aide de tootest de l’interface utilisateur de Swagger hello votre définition de l’API
+Testez outils intégrés dans la vue de l’interface utilisateur toohello de l’éditeur de définition d’API hello incorporé. Ajoutez votre clé API et l’utiliser hello `Try this operation` sous chaque méthode. Hello outil utilise vos demandes de hello tooformat définition d’API et des réponses réussies indique que votre définition est correcte.
 
 ### <a name="steps"></a>Étapes :
 
 1. Copier votre clé d’API de fonction
-    1. Vous trouverez la clé d’API dans votre fonction de déclenchement HTTP sous `function name` > `Keys` > `Function Keys` 
+    1. Hello API clé se trouve dans votre fonction de déclenchement HTTP sous `function name` > `Keys` > `Function Keys` 
    ![touche de fonction](./media/functions-api-definition-getting-started/functionkey.png)
-1. Accédez à la page `API Definition`.
-    1. Cliquez sur `Authenticate` et ajoutez votre clé d’API de fonction à l’objet de sécurité en haut.
+1. Accédez toohello `API Definition` page.
+    1. Cliquez sur `Authenticate` et ajoutez votre objet de sécurité clé toohello fonction API haut hello.
   ![Clé OpenAPI](./media/functions-api-definition-getting-started/definitionTest auth.png)
 1. sélectionnez `/api/yourfunctionroute` > `POST`
-1. Cliquez sur `Try it out` et entrez un nom pour le test
+1. Cliquez sur `Try it out` et entrez un nom tootest
 1. Vous devriez voir un résultat RÉUSSITE sous `Pretty`
 ![Test de définition d’API](./media/functions-api-definition-getting-started/definitionTest.png)
 
 ## <a name="next-steps"></a>Étapes suivantes
 * [Définition OpenAPI dans Vue d’ensemble de Functions](functions-api-definition.md)
-  * Lisez la documentation complète pour plus d’informations sur la prise en charge d’OpenAPI.
-* [Informations de référence pour les développeurs sur Azure Functions](functions-reference.md)  
+  * Lire la documentation complète de hello pour plus d’informations sur la prise en charge OpenAPI.
+* [Référence du développeur Azure Functions](functions-reference.md)  
   * Référence du programmeur pour le codage de fonctions et la définition de déclencheurs et de liaisons.
 * [Référentiel GitHub Azure Functions](https://github.com/Azure/Azure-Functions/)
-  * Consultez le GitHub Functions pour nous donner votre avis sur la version préliminaire du support de définition d’API ! Créez un ticket GitHub pour les mises à jour que vous souhaitez.
+  * Découvrez hello fonctions GitHub toogive nous des commentaires sur la version préliminaire de hello API définition prise en charge. Créer un problème GitHub pour ce que vous voulez toosee mis à jour.

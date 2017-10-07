@@ -1,6 +1,6 @@
 ---
-title: "Déclencheurs et liaisons Service Bus Azure Functions | Microsoft Docs"
-description: "Découvrez comment utiliser des déclencheurs et des liaisons Azure Service Bus dans Azure Functions."
+title: "aaaAzure fonctions Service Bus déclencheurs et les liaisons | Documents Microsoft"
+description: "Comprendre comment toouse Azure Service Bus déclenche et les liaisons dans les fonctions d’Azure."
 services: functions
 documentationcenter: na
 author: christopheranderson
@@ -16,16 +16,16 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 04/01/2017
 ms.author: glenga
-ms.openlocfilehash: b3ee306cd37ebf88dc9369ccc2dc6c670557fd5a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: dff9e89bd3840b8c11f91cae41e13502afc7aa60
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-functions-service-bus-bindings"></a>Liaisons Service Bus Azure Functions
 [!INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-Cet article explique comment configurer et utiliser des liaisons Azure Service Bus dans Azure Functions. 
+Cet article explique comment tooconfigure et de travailler avec des liaisons de Service Bus de Azure dans les fonctions d’Azure. 
 
 Azure Functions prend en charge les liaisons de déclencheur et de sortie pour les files d’attente et les rubriques Service Bus.
 
@@ -34,18 +34,18 @@ Azure Functions prend en charge les liaisons de déclencheur et de sortie pour l
 <a name="trigger"></a>
 
 ## <a name="service-bus-trigger"></a>Déclencheur Service Bus
-Utilisez le déclencheur Service Bus pour répondre aux messages provenant d'une file d’attente ou d'une rubrique Service Bus. 
+Utilisez hello Service Bus déclencheur toorespond toomessages à partir d’une file d’attente du Bus de Service ou une rubrique. 
 
-Les déclencheurs de file d’attente et de rubrique Service Bus sont définis par les objets JSON suivants dans le tableau `bindings` de function.json :
+déclencheurs de file d’attente et rubrique Service Bus Hello sont définis par hello objets JSON Bonjour suivants `bindings` tableau de function.json :
 
 * Déclencheur de *file d’attente* :
 
     ```json
     {
         "name" : "<Name of input parameter in function signature>",
-        "queueName" : "<Name of the queue>",
+        "queueName" : "<Name of hello queue>",
         "connection" : "<Name of app setting that has your queue's connection string - see below>",
-        "accessRights" : "<Access rights for the connection string - see below>",
+        "accessRights" : "<Access rights for hello connection string - see below>",
         "type" : "serviceBusTrigger",
         "direction" : "in"
     }
@@ -56,48 +56,48 @@ Les déclencheurs de file d’attente et de rubrique Service Bus sont définis p
     ```json
     {
         "name" : "<Name of input parameter in function signature>",
-        "topicName" : "<Name of the topic>",
-        "subscriptionName" : "<Name of the subscription>",
+        "topicName" : "<Name of hello topic>",
+        "subscriptionName" : "<Name of hello subscription>",
         "connection" : "<Name of app setting that has your topic's connection string - see below>",
-        "accessRights" : "<Access rights for the connection string - see below>",
+        "accessRights" : "<Access rights for hello connection string - see below>",
         "type" : "serviceBusTrigger",
         "direction" : "in"
     }
     ```
 
-Notez les points suivants :
+Notez hello suivantes :
 
-* Pour `connection`, [créez un paramètre d’application dans votre application de fonction](functions-how-to-use-azure-function-app-settings.md) qui contient la chaîne de connexion à votre espace de noms Service Bus, puis spécifiez le nom du paramètre d’application dans la propriété `connection` de votre déclencheur. Vous obtenez la chaîne de connexion en suivant les étapes indiquées à la section [Obtenir les informations d’identification de gestion](../service-bus-messaging/service-bus-dotnet-get-started-with-queues.md#obtain-the-management-credentials).
-  La chaîne de connexion doit être destinée à un espace de noms Service Bus, et non limitée à une file d’attente ou une rubrique spécifique.
-  Si vous laissez `connection` vide, le déclencheur suppose qu’une chaîne de connexion Service Bus par défaut est spécifiée dans le paramètre d’application nommé `AzureWebJobsServiceBus`.
-* Pour `accessRights`, les valeurs disponibles sont `manage` et `listen`. La valeur par défaut est `manage`, ce qui indique que `connection` a l'autorisation **Gérer**. Si vous utilisez une chaîne de connexion qui n’a pas l'autorisation **Gérer**, définissez `accessRights` sur `listen`. Sinon, le runtime Functions pourrait échouer à effectuer des opérations qui nécessitent des droits de gestion.
+* Pour `connection`, [créer un paramètre d’application dans votre application de la fonction](functions-how-to-use-azure-function-app-settings.md) qui contient l’espace de noms de Service Bus hello connexion chaîne tooyour, puis spécifiez le nom de hello du paramètre d’application hello Bonjour `connection` propriété dans votre déclencheur. Obtenir de chaîne de connexion hello en suivant les étapes de hello présentés au [obtenir des informations d’identification de gestion hello](../service-bus-messaging/service-bus-dotnet-get-started-with-queues.md#obtain-the-management-credentials).
+  chaîne de connexion Hello doit être d’un espace de noms Service Bus, tooa non limité, la file d’attente spécifique ou une rubrique.
+  Si vous laissez `connection` vide, le déclencheur de hello part du principe qu’une chaîne de connexion de Service Bus par défaut est spécifiée dans une application de paramètre nommé `AzureWebJobsServiceBus`.
+* Pour `accessRights`, les valeurs disponibles sont `manage` et `listen`. valeur par défaut Hello est `manage`, ce qui signifie que hello `connection` a hello **gérer** autorisation. Si vous utilisez une chaîne de connexion qui n’a pas de hello **gérer** de jeu d’autorisations, `accessRights` trop`listen`. Dans le cas contraire, les fonctions hello runtime risque d’échouer lors de la tentative toodo les opérations qui nécessitent les droits de gestion.
 
 ## <a name="trigger-behavior"></a>Comportement du déclencheur
-* **Thread unique** - Par défaut, le runtime Functions traite plusieurs messages simultanément. Pour que le runtime ne traite qu’un message de file d’attente ou de rubrique à la fois, définissez `serviceBus.maxConcurrentCalls` sur 1 dans *host.json*. 
+* **Modèle de thread unique** - par défaut, le processus d’exécution de fonctions hello plusieurs messages simultanément. toodirect hello runtime tooprocess uniquement une file d’attente ou rubrique message unique à la fois, définissez `serviceBus.maxConcurrentCalls` too1 dans *host.json*. 
   Pour plus d’informations sur *host.json*, consultez [Structure de dossiers](functions-reference.md#folder-structure) et [host.json](https://github .com/Azure/azure-webjobs-sdk-script/wiki/host.json).
 * **Gestion des messages incohérents** - Service Bus assure sa propre gestion des messages incohérents. Il est impossible de la contrôler ou de la configurer dans la configuration ou le code d’Azure Functions. 
-* **Comportement de PeekLock** - Le runtime Functions reçoit un message en mode [`PeekLock`](../service-bus-messaging/service-bus-performance-improvements.md#receive-mode) et appelle `Complete` sur le message si la fonction se termine correctement. Si la fonction échoue, il appelle `Abandon`. 
-  Si la fonction s’exécute au-delà du délai imparti à `PeekLock`, le verrou est automatiquement renouvelé.
+* **Comportement de PeekLock** -hello fonctions runtime reçoit un message dans [ `PeekLock` mode](../service-bus-messaging/service-bus-performance-improvements.md#receive-mode) et appelle `Complete` sur le message de type hello si hello est terminée avec succès, ou des appels `Abandon` si hello Échec de la fonction. 
+  Si la fonction hello s’exécute plus longtemps que hello `PeekLock` délai d’attente, les verrous hello est automatiquement renouvelée.
 
 <a name="triggerusage"></a>
 
 ## <a name="trigger-usage"></a>Utilisation du déclencheur
-Cette section vous montre comment utiliser votre déclencheur Service Bus dans le code de votre fonction. 
+Cette section vous montre comment toouse votre Service Bus déclencher dans votre code de fonction. 
 
-Dans C# and F#, le message du déclencheur Service Bus peut être désérialisé vers l’un des types d'entrée suivants :
+En c# et F #, message d’appel du déclencheur Service Bus peut être désérialisé tooany Hello les types d’entrée suivants :
 
 * `string` - utile pour les messages de type chaîne
 * `byte[]` - utile pour les données binaires
 * N’importe quel [objet](https://msdn.microsoft.com/library/system.object.aspx) : utile pour les données JSON sérialisées.
-  Si vous déclarez un type d’entrée personnalisé, comme `CustomType`, Azure Functions essaye de désérialiser les données JSON dans le type spécifié.
-* `BrokeredMessage` - vous donne le message désérialisé avec la méthode [BrokeredMessage.GetBody<T>()](https://msdn.microsoft.com/library/hh144211.aspx).
+  Si vous déclarez un type d’entrée personnalisé, tel que `CustomType`, les fonctions Azure essaie de données JSON de hello toodeserialize vers le type spécifié.
+* `BrokeredMessage`-permet de vous hello désérialisé message avec hello [BrokeredMessage.GetBody<T>()](https://msdn.microsoft.com/library/hh144211.aspx) (méthode).
 
-Dans Node.js, le message du déclencheur Service Bus est passé à la fonction en tant que chaîne ou en tant qu’objet JSON.
+Dans Node.js, message d’appel du déclencheur Service Bus est passé dans la fonction hello comme une chaîne ou un objet JSON.
 
 <a name="triggersample"></a>
 
 ## <a name="trigger-sample"></a>Exemple de déclencheur
-Supposons que vous avez le code function.json suivant :
+Supposons que vous avez hello suivant function.json :
 
 ```json
 {
@@ -114,7 +114,7 @@ Supposons que vous avez le code function.json suivant :
 }
 ```
 
-Consultez l'exemple de code spécifique au langage qui traite un message de file d’attente Service Bus.
+Voir exemple hello spécifiques au langage qui traite un message de la file d’attente Service Bus.
 
 * [C#](#triggercsharp)
 * [F#](#triggerfsharp)
@@ -154,16 +154,16 @@ module.exports = function(context, myQueueItem) {
 <a name="output"></a>
 
 ## <a name="service-bus-output-binding"></a>Liaison de sortie Service Bus
-La sortie de file d’attente et de rubrique Service Bus utilise les objets JSON suivants dans le tableau `bindings` de function.json :
+Hello sortie de file d’attente et rubrique Service Bus pour une fonction utiliser hello objets JSON Bonjour suivants `bindings` tableau de function.json :
 
 * Sortie de *file d’attente* :
 
     ```json
     {
         "name" : "<Name of output parameter in function signature>",
-        "queueName" : "<Name of the queue>",
+        "queueName" : "<Name of hello queue>",
         "connection" : "<Name of app setting that has your queue's connection string - see below>",
-        "accessRights" : "<Access rights for the connection string - see below>",
+        "accessRights" : "<Access rights for hello connection string - see below>",
         "type" : "serviceBus",
         "direction" : "out"
     }
@@ -173,41 +173,41 @@ La sortie de file d’attente et de rubrique Service Bus utilise les objets JSON
     ```json
     {
         "name" : "<Name of output parameter in function signature>",
-        "topicName" : "<Name of the topic>",
-        "subscriptionName" : "<Name of the subscription>",
+        "topicName" : "<Name of hello topic>",
+        "subscriptionName" : "<Name of hello subscription>",
         "connection" : "<Name of app setting that has your topic's connection string - see below>",
-        "accessRights" : "<Access rights for the connection string - see below>",
+        "accessRights" : "<Access rights for hello connection string - see below>",
         "type" : "serviceBus",
         "direction" : "out"
     }
     ```
 
-Notez les points suivants :
+Notez hello suivantes :
 
-* Pour `connection`, [créez un paramètre d’application dans votre application de fonction](functions-how-to-use-azure-function-app-settings.md) qui contient la chaîne de connexion à votre espace de noms Service Bus, puis spécifiez le nom du paramètre d’application dans la propriété `connection` de votre liaison de sortie. Vous obtenez la chaîne de connexion en suivant les étapes indiquées à la section [Obtenir les informations d’identification de gestion](../service-bus-messaging/service-bus-dotnet-get-started-with-queues.md#obtain-the-management-credentials).
-  La chaîne de connexion doit être destinée à un espace de noms Service Bus, et non limitée à une file d’attente ou une rubrique spécifique.
-  Si vous laissez `connection` vide, la liaison de sortie suppose qu’une chaîne de connexion Service Bus par défaut est spécifiée dans le paramètre d’application nommé `AzureWebJobsServiceBus`.
-* Pour `accessRights`, les valeurs disponibles sont `manage` et `listen`. La valeur par défaut est `manage`, ce qui indique que `connection` a l'autorisation **Gérer**. Si vous utilisez une chaîne de connexion qui n’a pas l'autorisation **Gérer**, définissez `accessRights` sur `listen`. Sinon, le runtime Functions pourrait échouer à effectuer des opérations qui nécessitent des droits de gestion.
+* Pour `connection`, [créer un paramètre d’application dans votre application de la fonction](functions-how-to-use-azure-function-app-settings.md) qui contient l’espace de noms de Service Bus hello connexion chaîne tooyour, puis spécifiez le nom de hello du paramètre d’application hello Bonjour `connection` propriété dans votre sortie. liaison. Obtenir de chaîne de connexion hello en suivant les étapes de hello présentés au [obtenir des informations d’identification de gestion hello](../service-bus-messaging/service-bus-dotnet-get-started-with-queues.md#obtain-the-management-credentials).
+  chaîne de connexion Hello doit être d’un espace de noms Service Bus, tooa non limité, la file d’attente spécifique ou une rubrique.
+  Si vous laissez `connection` vide, hello liaison de sortie suppose qu’une chaîne de connexion de Service Bus par défaut est spécifiée dans une application de paramètre nommé `AzureWebJobsServiceBus`.
+* Pour `accessRights`, les valeurs disponibles sont `manage` et `listen`. valeur par défaut Hello est `manage`, ce qui signifie que hello `connection` a hello **gérer** autorisation. Si vous utilisez une chaîne de connexion qui n’a pas de hello **gérer** de jeu d’autorisations, `accessRights` trop`listen`. Dans le cas contraire, les fonctions hello runtime risque d’échouer lors de la tentative toodo les opérations qui nécessitent les droits de gestion.
 
 <a name="outputusage"></a>
 
 ## <a name="output-usage"></a>Utilisation en sortie
-Dans C# et F#, Azure Functions peut créer un message de file d’attente Service Bus à partir d’un des types suivants :
+En c# et F #, les fonctions Azure peut créer un message de la file d’attente Service Bus à partir d’un des types suivants de hello :
 
 * N’importe quel [objet](https://msdn.microsoft.com/library/system.object.aspx) - la définition du paramètre ressemble à `out T paramName` (C#).
-  Functions désérialise l’objet dans un message JSON. Si la valeur de sortie est null lorsque la fonction se termine, Functions crée le message avec un objet null.
-* `string` - La définition du paramètre ressemble à `out string paraName` (C#). Si la valeur du paramètre n'est pas null lorsque la fonction se termine, Functions crée un message.
-* `byte[]` - La définition du paramètre ressemble à `out byte[] paraName` (C#). Si la valeur du paramètre n'est pas null lorsque la fonction se termine, Functions crée un message.
-* `BrokeredMessage` - La définition du paramètre ressemble à `out BrokeredMessage paraName` (C#). Si la valeur du paramètre n'est pas null lorsque la fonction se termine, Functions crée un message.
+  Fonctions désérialise un objet de hello dans un message JSON. Si la valeur de sortie hello est null lorsque hello fonction s’arrête, fonctions crée le message de salutation avec un objet null.
+* `string` - La définition du paramètre ressemble à `out string paraName` (C#). Si la valeur du paramètre hello est non null lorsque hello fonction s’arrête, fonctions crée un message.
+* `byte[]` - La définition du paramètre ressemble à `out byte[] paraName` (C#). Si la valeur du paramètre hello est non null lorsque hello fonction s’arrête, fonctions crée un message.
+* `BrokeredMessage` - La définition du paramètre ressemble à `out BrokeredMessage paraName` (C#). Si la valeur du paramètre hello est non null lorsque hello fonction s’arrête, fonctions crée un message.
 
-Pour créer plusieurs messages dans une fonction C#, vous pouvez utiliser `ICollector<T>` ou `IAsyncCollector<T>`. Un message est créé quand vous appelez la méthode `Add` .
+Pour créer plusieurs messages dans une fonction C#, vous pouvez utiliser `ICollector<T>` ou `IAsyncCollector<T>`. Un message est créé lorsque vous appelez hello `Add` (méthode).
 
-Dans Node.js, vous pouvez affecter une chaîne, un tableau d’octets ou un objet Javascript (désérialisé dans JSON) à `context.binding.<paramName>`.
+Dans Node.js, vous pouvez affecter une chaîne, un tableau d’octets ou un objet de Javascript (désérialisé dans JSON) trop`context.binding.<paramName>`.
 
 <a name="outputsample"></a>
 
 ## <a name="output-sample"></a>Exemple de sortie
-Supposons le code function.json suivant, qui définit une sortie de file d'attente Service Bus :
+Supposons que vous avez hello suivant function.json, qui définit une sortie de la file d’attente Service Bus :
 
 ```json
 {
@@ -231,7 +231,7 @@ Supposons le code function.json suivant, qui définit une sortie de file d'atten
 }
 ```
 
-Consultez l'exemple spécifique au langage qui envoie un message à la file d’attente Service Bus.
+Voir exemple hello spécifiques au langage qui envoie une file d’attente service bus de messages toohello.
 
 * [C#](#outcsharp)
 * [F#](#outfsharp)
@@ -250,7 +250,7 @@ public static void Run(TimerInfo myTimer, TraceWriter log, out string outputSbQu
 }
 ```
 
-Ou, pour créer plusieurs messages :
+Ou, toocreate plusieurs messages :
 
 ```cs
 public static void Run(TimerInfo myTimer, TraceWriter log, ICollector<string> outputSbQueue)
@@ -286,7 +286,7 @@ module.exports = function (context, myTimer) {
 };
 ```
 
-Ou, pour créer plusieurs messages :
+Ou, toocreate plusieurs messages :
 
 ```javascript
 module.exports = function (context, myTimer) {

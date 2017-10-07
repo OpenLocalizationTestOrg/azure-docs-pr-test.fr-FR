@@ -1,6 +1,6 @@
 ---
-title: "Création et gestion d’un serveur Azure Database pour MySQL à l’aide du portail Azure | Microsoft Docs"
-description: "Cet article explique comment créer rapidement un nouveau serveur Azure Database pour MySQL et gérer le serveur à l’aide du portail Azure."
+title: "aaaCreate et gérer la base de données Azure pour MySQL server à l’aide du portail Azure | Documents Microsoft"
+description: "Cet article décrit comment vous pouvez rapidement créer une nouvelle base de données Azure pour le serveur MySQL et gérer le serveur hello à l’aide de hello portail Azure."
 services: mysql
 author: v-chenyh
 ms.author: nolanwu
@@ -9,30 +9,30 @@ manager: jhubbard
 ms.service: mysql-database
 ms.topic: article
 ms.date: 05/10/2017
-ms.openlocfilehash: 4605518b6955d9943e76c25df2d4105a6a94433d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c532df43b3d2124d7bd34875b32d52357f162af8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-and-manage-azure-database-for-mysql-server-using-azure-portal"></a>Création et gestion d’un serveur Azure Database pour MySQL à l’aide du portail Azure
-Cet article explique comment créer rapidement un nouveau serveur Azure Database pour MySQL et gérer le serveur à l’aide du portail Azure. La gestion du serveur inclut l’affichage des détails de ce serveur et les bases de données, la réinitialisation de mot de passe et la suppression du serveur.
+Cet article décrit comment vous pouvez rapidement créer une nouvelle base de données Azure pour le serveur MySQL et gérer le serveur hello à l’aide de hello portail Azure. Gestion des serveurs inclut l’affichage des détails du serveur et les bases de données, de la réinitialisation de mot de passe et de suppression du serveur de hello.
 
-## <a name="log-in-to-the-azure-portal"></a>Connectez-vous au portail Azure.
-Connectez-vous au [portail Azure](https://portal.azure.com).
+## <a name="log-in-toohello-azure-portal"></a>Ouvrez une session dans toohello portail Azure
+Connectez-vous à toohello [portail Azure](https://portal.azure.com).
 
-## <a name="create-an-azure-database-for-mysql-server"></a>Création d’un serveur Azure Database pour MySQL
-Suivez ces étapes pour créer un serveur Azure Database pour MySQL nommé « mysqlserver4demo »
+## <a name="create-an-azure-database-for-mysql-server"></a>Créer un serveur de base de données Azure pour MySQL
+Suivez ces étapes de toocreate serveur MySQL nommé « mysqlserver4demo » dans une base de données Azure
 
-1 - Cliquez sur le bouton **Nouveau** dans le coin supérieur gauche du portail Azure.
+1-click **nouveau** bouton se trouve sur le coin supérieur gauche hello Hello portail Azure.
 
-2- Sélectionnez **Bases de données** dans la page Nouveau, puis **Base de données Azure pour MySQL** dans la page Bases de données.
+2-Sélectionnez **bases de données** à partir de la nouvelle page de hello, puis sélectionnez **base de données Azure pour MySQL** à partir de la page de bases de données hello.
 
-> Un serveur Azure Database pour MySQL est créé avec un ensemble défini de [ressources de calcul et de stockage](./concepts-compute-unit-and-storage.md). La base de données est créée dans un groupe de ressources Azure et dans un serveur Azure Database pour MySQL.
+> Un serveur Azure Database pour MySQL est créé avec un ensemble défini de [ressources de calcul et de stockage](./concepts-compute-unit-and-storage.md). base de données Hello est créé dans un groupe de ressources Azure et dans une base de données Azure pour le serveur MySQL.
 
 ![create-new-server](./media/howto-create-manage-server-portal/create-new-server.png)
 
-3 - remplissez le formulaire de la base de données Azure pour MySQL avec les informations suivantes :
+3 - remplir hello Azure de base de données MySQL formulaire avec hello informations suivantes :
 
 | **Champ de formulaire** | **Description du champ** |
 |----------------|-----------------------|
@@ -45,47 +45,47 @@ Suivez ces étapes pour créer un serveur Azure Database pour MySQL nommé « m
 | *Emplacement* | Europe du Nord (sélection Europe du Nord ou États-Unis de l'Ouest) |
 | *Version* | 5.6 (choisissez la version du serveur Azure Database pour MySQL) |
 
-4 - Cliquez sur **Niveau tarifaire** pour spécifier le niveau de service et le niveau de performances pour votre nouveau serveur. L’unité de calcul peut être configurée entre 50 et 100 dans le niveau de base, entre 100 et 200 dans le niveau standard, et vous pouvez augmenter le stockage en fonction du montant inclus. Pour ce guide pratique, choisissons 50 unités de calcul et 50 Go. Cliquez sur **OK** pour enregistrer votre sélection.
+4-Cliquez **niveau tarifaire** toospecify hello performances et la couche de niveau de service pour votre nouveau serveur. L’unité de calcul peut être configurée entre 50 et 100 dans le niveau de base, entre 100 et 200 dans le niveau standard, et vous pouvez augmenter le stockage en fonction du montant inclus. Pour ce guide pratique, choisissons 50 unités de calcul et 50 Go. Cliquez sur **OK** toosave votre sélection.
 ![create-server-pricing-tier](./media/howto-create-manage-server-portal/create-server-pricing-tier.png)
 
-5 - Cliquez sur **Créer** pour approvisionner le serveur. L’approvisionnement prend quelques minutes.
+Cliquez sur 5 **créer** serveur hello de tooprovision. L’approvisionnement prend quelques minutes.
 
-> Cochez l’option **Épingler au tableau de bord** pour faciliter le suivi de vos déploiements.
+> Vérifiez hello **toodashboard du code confidentiel** option tooallow simplifier le suivi de vos déploiements.
 > [!NOTE]
-> Bien que les niveaux de base et standard prennent en charge jusqu'à 1 000 Go et 10 000 Go de stockage respectivement, le stockage maximum pour la version préliminaire publique reste temporairement limité à 1 000 Go. 
+> Bien que les too1000GB dans le niveau de base et 10000 Go dans la norme couche est prises en charge pour le stockage, version préliminaire publique, maximale de stockage hello est toujours limitée too1000GB temporairement. 
 </Include>
 
 ## <a name="update-an-azure-database-for-mysql-server"></a>Mise à jour d’un serveur Azure Database pour MySQL
-Une fois le nouveau serveur approvisionné, l’utilisateur dispose de 2 options pour modifier un serveur existant : réinitialiser un mot de passe administrateur ou effectuer une montée/descente en puissance du serveur en modifiant les unités de calcul.
+Une fois le nouveau serveur est configuré, utilisateur dispose d’un serveur existant 2 options tooedit : réinitialiser le mot de passe administrateur ou d’échelle haut/bas server de hello en modifiant les unités de calcul hello.
 
-### <a name="change-the-administrator-user-password"></a>Modification du mot de passe administrateur
-1 - Dans le panneau **Vue d’ensemble** du serveur, cliquez sur **Réinitialiser le mot de passe** pour afficher une fenêtre de saisie puis de confirmation du mot de passe.
+### <a name="change-hello-administrator-user-password"></a>Mot de passe de l’utilisateur d’administrateur modification hello
+1 - sur le serveur de hello **vue d’ensemble** panneau, cliquez sur **réinitialisation de mot de passe** toopopulate une fenêtre d’entrée et la confirmation de mot de passe.
 
-2 - Saisissez puis confirmez le nouveau mot de passe dans la fenêtre, comme indiqué ci-dessous : ![reset-password](./media/howto-create-manage-server-portal/reset-password.png)
+2 - Entrez le nouveau mot de passe et confirmer le mot de passe hello dans la fenêtre hello comme indiqué ci-dessous : ![réinitialisation de mot de passe](./media/howto-create-manage-server-portal/reset-password.png)
 
-3 - Cliquez sur **OK** pour enregistrer le nouveau mot de passe.
+3-Cliquez **OK** toosave hello nouveau mot de passe.
 
 ### <a name="scale-updown-by-changing-compute-units"></a>Montée/descente en puissance en modifiant les unités de calcul
 
-1 - Dans le panneau du serveur, sous **Paramètres**, cliquez sur **Niveau de tarification** pour ouvrir le panneau Niveau de tarification du serveur Azure Database pour MySQL.
+1 - sur le panneau de serveur hello, sous **paramètres**, cliquez sur **niveau tarifaire** Panneau de niveau de tarification de hello tooopen pour hello Azure de base de données du serveur MySQL.
 
-2 - Suivez l’étape 4 de la rubrique **Création d’un serveur Azure Database pour MySQL** pour modifier les unités de calcul dans le même niveau de tarification.
+Étape 2-Suivez 4 dans **créer une base de données Azure pour le serveur MySQL** toochange les unités de calcul en hello même niveau de tarification.
 
 ## <a name="delete-an-azure-database-for-mysql-server"></a>Suppression d’un serveur Azure Database pour MySQL
 
-1 - Dans le panneau **Vue d’ensemble** du serveur, cliquez sur le bouton de commande **Supprimer** pour ouvrir le panneau de confirmation de suppression.
+1 - sur le serveur de hello **vue d’ensemble** panneau, cliquez sur **supprimer** Panneau de confirmation de commande bouton tooopen hello suppression.
 
-2 - Tapez le nom du serveur dans la zone d’entrée du panneau de double confirmation.
+Nom de serveur correct 2-type hello dans la zone d’entrée du panneau hello confirmation double.
 
-3 - Cliquez de nouveau sur le bouton **Supprimer** pour confirmer l’action de suppression, puis attendez l’affichage du message « Deleting success » (suppression réussie) dans la barre de notification.
+3-Cliquez **supprimer** bouton Nouveau tooconfirm suppression d’action et attendez que « Suppression de réussite » le menu contextuel sur la barre de notification hello.
 
-## <a name="list-the-azure-database-for-mysql-databases"></a>Liste des bases de données Azure pour MySQL
-Dans le panneau **Vue d’ensemble** du serveur, faites défiler vers le bas jusqu'à atteindre la mosaïque des bases de données. Toutes les bases de données apparaissent dans le tableau. Cliquez sur le bouton de commande **Supprimer** pour ouvrir le panneau de confirmation de suppression.
+## <a name="list-hello-azure-database-for-mysql-databases"></a>Liste hello Azure de base de données pour les bases de données MySQL
+Sur le serveur de hello **vue d’ensemble** panneau, faites défiler vers le bas jusqu'à ce que vous voyiez de la base de données hello vignette sous hello. Toutes les bases de données hello seront afficheront dans la table de hello. Cliquez sur **supprimer** Panneau de confirmation de commande bouton tooopen hello suppression.
 
 ![show-databases](./media/howto-create-manage-server-portal/show-databases.png)
 
 ## <a name="show-details-of-an-azure-database-for-mysql-server"></a>Affichage des détails d’un serveur Azure Database pour MySQL
-Cliquez sur **Propriétés** sous **Paramètres** dans le panneau du serveur pour ouvrir le panneau **Propriétés**. Toutes les informations détaillées sur le serveur y sont indiquées.
+Cliquez sur **propriétés** sous **paramètres** sur le serveur de hello panneau hello **propriétés** panneau. Vous pouvez afficher toutes les informations détaillées sur les serveur hello.
 
 ## <a name="next-steps"></a>Étapes suivantes
 

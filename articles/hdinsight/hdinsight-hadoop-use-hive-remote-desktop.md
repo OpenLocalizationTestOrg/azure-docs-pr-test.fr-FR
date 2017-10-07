@@ -1,6 +1,6 @@
 ---
-title: "Utiliser Hadoop Hive et le Bureau à distance dans HDInsight - Azure | Documents Microsoft"
-description: "Découvrez comment vous connecter à un cluster Hadoop à l'aide du Bureau à distance, et exécuter ensuite des requêtes Hive à l'aide de l'interface de ligne de commande (CLI) Hive."
+title: "aaaUse Hadoop Hive et Bureau à distance dans HDInsight - Azure | Documents Microsoft"
+description: "Découvrez comment tooconnect tooHadoop cluster HDInsight à l’aide du Bureau à distance, puis exécuter des requêtes Hive à l’aide de hello Hive une Interface de ligne."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,41 +16,41 @@ ms.workload: big-data
 ms.date: 01/12/2017
 ms.author: larryfr
 ROBOTS: NOINDEX
-ms.openlocfilehash: 187c7cb413b3707e58eea387857375053d267189
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: f86ffc1be33a8b0b2346d1a1388e5dfa6d0f8777
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-hive-with-hadoop-on-hdinsight-with-remote-desktop"></a>Utilisation de Hive avec Hadoop sur HDInsight via le Bureau à distance
 [!INCLUDE [hive-selector](../../includes/hdinsight-selector-use-hive.md)]
 
-Dans cet article, vous découvrirez comment vous connecter à un cluster HDInsight à l'aide du Bureau à distance, et exécuter ensuite des requêtes Hive à l'aide de l'interface de ligne de commande (CLI) Hive.
+Dans cet article, vous allez apprendre comment tooconnect tooan HDInsight cluster à l’aide du Bureau à distance, puis exécutez la ruche de requêtes à l’aide de hello Hive d’Interface de ligne de commande (CLI).
 
 > [!IMPORTANT]
-> Le Bureau à distance n’est disponible que sur les clusters HDInsight qui utilisent Windows comme système d’exploitation. Linux est le seul système d’exploitation utilisé sur HDInsight version 3.4 ou supérieure. Pour plus d’informations, consultez [Suppression de HDInsight sous Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+> Bureau à distance n’est disponible sur les clusters HDInsight utilisent Windows comme système d’exploitation de hello. Linux est hello seul système d’exploitation utilisé sur HDInsight version 3.4 ou supérieure. Pour plus d’informations, consultez [Suppression de HDInsight sous Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 >
-> Pour HDInsight 3.4 ou les versions supérieures, consultez l’article [Utilisation de Hive avec Hadoop dans HDInsight via Beeline](hdinsight-hadoop-use-hive-beeline.md) pour plus d’informations sur l’exécution de requêtes Hive directement sur le cluster à partir d’une ligne de commande.
+> Pour HDInsight 3.4 ou supérieure, consultez [utilisez Hive avec HDInsight et Beeline](hdinsight-hadoop-use-hive-beeline.md) pour plus d’informations sur l’exécution des requêtes Hive directement sur le cluster de hello à partir d’une ligne de commande.
 
 ## <a id="prereq"></a>Configuration requise
-Pour effectuer les étapes présentées dans cet article, vous avez besoin des éléments suivants :
+toocomplete hello étapes décrites dans cet article, vous devez suivant de hello :
 
 * un cluster HDInsight basé sur Windows (Hadoop sur HDInsight)
 * Un ordinateur client avec Windows 10, Windows 8 ou Windows 7
 
 ## <a id="connect"></a>Connexion avec le Bureau à distance
-Activez le Bureau à distance pour le cluster HDInsight, puis connectez-vous à lui en suivant les instructions fournies dans [Connexion à des clusters HDInsight avec RDP](hdinsight-administer-use-management-portal.md#connect-to-clusters-using-rdp).
+Activer le Bureau à distance pour le cluster HDInsight de hello, puis connecter tooit en suivant les instructions de hello sur [connecter clusters tooHDInsight à l’aide du protocole RDP](hdinsight-administer-use-management-portal.md#connect-to-clusters-using-rdp).
 
-## <a id="hive"></a>Utilisation de la commande Hive
-Une fois connecté au bureau pour le cluster HDInsight, effectuez les étapes suivantes pour utiliser Hive.
+## <a id="hive"></a>Utilisez la commande de ruche hello
+Lorsque vous avez connecté bureau toohello pour le cluster HDInsight de hello, utilisez hello suivant toowork étapes avec Hive :
 
-1. À partir du bureau HDInsight, démarrez la **ligne de commande Hadoop**.
-2. Exécutez la commande suivante pour démarrer l'interface de ligne de commande (CLI) Hive :
+1. À partir du bureau de HDInsight hello, démarrer hello **ligne de commande Hadoop**.
+2. Entrez hello suivant commande toostart hello la ruche de CLI :
 
         %hive_home%\bin\hive
 
-    Une fois l'interface de ligne de commande lancée, vous verrez apparaître l'invite CLI : `hive>`.
-3. En utilisant l'interface de ligne de commande, saisissez les instructions suivantes pour créer une table nommée **log4jLogs** à l'aide d'exemples de données :
+    Lorsque hello CLI a démarré, vous verrez invite CLI de la ruche de hello : `hive>`.
+3. À l’aide de hello CLI, entrez hello suivant les instructions toocreate une nouvelle table nommée **log4jLogs** à l’aide des exemples de données :
 
         set hive.execution.engine=tez;
         DROP TABLE log4jLogs;
@@ -59,45 +59,45 @@ Une fois connecté au bureau pour le cluster HDInsight, effectuez les étapes su
         STORED AS TEXTFILE LOCATION 'wasb:///example/data/';
         SELECT t4 AS sev, COUNT(*) AS count FROM log4jLogs WHERE t4 = '[ERROR]' AND INPUT__FILE__NAME LIKE '%.log' GROUP BY t4;
 
-    Ces instructions effectuent les opérations suivantes :
+    Ces instructions effectuent hello suivant des actions :
 
-   * **DROP TABLE**: supprime la table et le fichier de données, si la table existe déjà.
-   * **CREATE EXTERNAL TABLE**: crée une table externe dans Hive. Les tables externes stockent uniquement la définition de table dans Hive (les données restent à leur emplacement d’origine).
+   * **DROP TABLE**: supprime la table de hello et le fichier de données hello si hello table existe déjà.
+   * **CREATE EXTERNAL TABLE**: crée une table « externe » dans Hive. Tables externes stockent uniquement la définition de table hello dans la ruche (hello données restent dans l’emplacement d’origine de hello).
 
      > [!NOTE]
-     > Les tables externes doivent être utilisées lorsque vous vous attendez à ce que les données sous-jacentes soient mises à jour par une source externe (comme un processus de téléchargement de données automatisé) ou par une autre opération MapReduce, mais souhaitez toujours que les requêtes Hive utilisent les données les plus récentes.
+     > Tables externes doivent être utilisés lorsque vous attendez hello sous-jacent toobe de données mis à jour par une source externe (par exemple, un processus de téléchargement automatique des données) ou par une autre opération MapReduce, mais souhaitez toujours que ruche interroge les données les plus récentes toouse hello.
      >
-     > La suppression d'une table externe ne supprime **pas** les données, mais seulement la définition de la table.
+     > Suppression d’une table externe est **pas** supprimer les données de hello, uniquement la définition de table hello.
      >
      >
-   * **ROW FORMAT**: indique à Hive le mode de formatage des données. Dans ce cas, les champs de chaque journal sont séparés par un espace.
-   * **STORED AS TEXTFILE LOCATION**: indique à Hive l'emplacement des données (le répertoire exemple/données) et précise qu'elles sont stockées sous la forme de texte.
-   * **SELECT** : sélectionne toutes les lignes dont la colonne **t4** contient la valeur **[ERROR]**. Cette commande renvoie la valeur **3** , car trois lignes contiennent cette valeur.
-   * **INPUT__FILE__NAME LIKE '%.log'** : indique à Hive de retourner uniquement des données provenant de fichiers se terminant par .log. Cela limite la recherche au fichier sample.log qui contient les données et l'empêche de renvoyer des données provenant d'autres fichiers d'exemple qui ne correspondent pas au schéma que nous avons défini.
-4. Utilisez les instructions suivantes pour créer une table « interne » nommée **errorLogs**:
+   * **FORMAT de ligne**: indique la mise en forme les données de salutation ruche. Dans ce cas, les champs de hello dans chaque journal sont séparés par un espace.
+   * **EMPLACEMENT du fichier texte comme stockées**: indique la ruche où les données de salutation sont stocké (répertoire de données d’exemple hello) et qu’il est stockée sous forme de texte.
+   * **Sélectionnez**: sélectionne un nombre de toutes les lignes où colonne **t4** contient la valeur de hello **[erreur]**. Cette commande renvoie la valeur **3** , car trois lignes contiennent cette valeur.
+   * **INPUT__FILE__NAME LIKE '%.log'** : indique à Hive de retourner uniquement des données provenant de fichiers se terminant par .log. Cela limite hello recherche toohello exemple.log fichier qui contient les données de salutation et empêche de renvoi de données à partir de l’autre exemple de fichiers de données qui ne correspondent pas aux schéma hello que nous avons défini.
+4. Hello utilisation suivant les instructions toocreate une nouvelle table « interne » nommée **journaux d’erreurs de**:
 
         CREATE TABLE IF NOT EXISTS errorLogs (t1 string, t2 string, t3 string, t4 string, t5 string, t6 string, t7 string) STORED AS ORC;
         INSERT OVERWRITE TABLE errorLogs SELECT t1, t2, t3, t4, t5, t6, t7 FROM log4jLogs WHERE t4 = '[ERROR]' AND INPUT__FILE__NAME LIKE '%.log';
 
-    Ces instructions effectuent les opérations suivantes :
+    Ces instructions effectuent hello suivant des actions :
 
-   * **CREATE TABLE IF NOT EXISTS**: crée une table, le cas échéant. Le mot-clé **EXTERNAL** n’étant pas utilisé, il s’agit d’une table interne, stockée dans l’entrepôt de données Hive et gérée intégralement par Hive.
+   * **CREATE TABLE IF NOT EXISTS**: crée une table, le cas échéant. Étant donné que hello **externe** mot clé n’est pas utilisé, il s’agit d’une table interne, qui est stockée dans l’entrepôt de données Hive hello et entièrement gérée par ruche.
 
      > [!NOTE]
-     > Contrairement aux tables **EXTERNES** , la suppression d’une table interne entraîne également la suppression des données sous-jacentes.
+     > Contrairement aux **externe** supprime les tables, suppression d’une table interne également hello les données sous-jacentes.
      >
      >
-   * **STORED AS ORC**: stocke les données au format ORC (Optimized Row Columnar). Il s'agit d'un format particulièrement efficace et optimisé pour le stockage de données Hive.
-   * **INSERT OVERWRITE ... SELECT** : sélectionne des lignes de la table **log4jLogs** qui contiennent **[ERROR]**, puis insère les données dans la table **errorLogs**.
+   * **STOCKÉES des ORC AS**: stocke les données de hello ligne optimisé (ORC) sous forme de colonnes. Il s'agit d'un format particulièrement efficace et optimisé pour le stockage de données Hive.
+   * **INSERT OVERWRITE ... Sélectionnez**: sélectionne des lignes à partir de hello **log4jLogs** table qui contiennent des **[erreur]**, puis insère hello des données dans hello **journaux d’erreurs de** table.
 
-     Pour vérifier que seules les lignes contenant **[ERROR]** dans la colonne t4 ont été stockées dans la table **errorLogs**, utilisez l’instruction suivante afin de renvoyer toutes les lignes à partir de **errorLogs** :
+     tooverify que seules les lignes qui contiennent **[erreur]** dans la colonne t4 étaient stockée toohello **journaux d’erreurs** table, utilisez hello suivant tooreturn instruction tous hello des lignes à partir de **journaux d’erreurs de**:
 
        SELECT * from errorLogs;
 
      Trois lignes de données doivent normalement être renvoyées. Elles contiennent toutes **[ERROR]** dans la colonne t4.
 
 ## <a id="summary"></a>Résumé
-Comme vous pouvez le constater, la commande Hive permet d'exécuter facilement, et de façon interactive, des requêtes Hive sur un cluster HDInsight, de surveiller l'état de la tâche et de récupérer le résultat.
+Comme vous pouvez le voir, Bonjour Bonjour ruche commande fournit une toointeractively facilement exécuter des requêtes Hive sur un cluster HDInsight, hello d’analyse état du travail et d’extraire la sortie de hello.
 
 ## <a id="nextsteps"></a>Étapes suivantes
 Pour obtenir des informations générales sur Hive dans HDInsight :
@@ -109,10 +109,10 @@ Pour plus d’informations sur d’autres méthodes de travail avec Hadoop sur H
 * [Utilisation de Pig avec Hadoop sur HDInsight](hdinsight-use-pig.md)
 * [Utilisation de MapReduce avec Hadoop sur HDInsight](hdinsight-use-mapreduce.md)
 
-Si vous utilisez Tez avec Hive, consultez les documents suivants pour les informations de débogage :
+Si vous utilisez Tez avec Hive, consultez hello suivant des documents pour les informations de débogage :
 
-* [Utiliser l'interface utilisateur Tez sur HDInsight Windows](hdinsight-debug-tez-ui.md)
-* [Utilisez la vue Tez Ambari sur HDInsight Linux](hdinsight-debug-ambari-tez-view.md)
+* [Utilisez hello Tez UI sur HDInsight de basés sur Windows](hdinsight-debug-tez-ui.md)
+* [Utilisez hello vue Ambari Tez sur HDInsight de basés sur Linux](hdinsight-debug-ambari-tez-view.md)
 
 [1]: ../HDInsight/hdinsight-hadoop-visual-studio-tools-get-started.md
 

@@ -1,6 +1,6 @@
 ---
-title: "Paramètres du Runbook | Microsoft Docs"
-description: "Décrit les paramètres de configuration d'un Runbook dans Azure Automation et explique comment les modifier à l'aide du portail de gestion Azure et de Windows PowerShell."
+title: "les paramètres aaaRunbook | Documents Microsoft"
+description: "Décrit les paramètres de configuration hello pour un runbook dans Azure Automation et comment toochange à l’aide des deux hello portail de gestion Azure et Windows PowerShell."
 services: automation
 documentationcenter: 
 author: mgoedtel
@@ -14,38 +14,38 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 11/11/2016
 ms.author: bwren
-ms.openlocfilehash: 20ecbc270e61d234e026e6ba2634c7aad63b3355
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6f0ef09c148355a351464424c22c33df9300f0dd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="runbook-settings"></a>Paramètres du Runbook
-Chaque Runbook dans Azure Automation a plusieurs paramètres qui lui permettent d'être identifié et de modifier son comportement de journalisation. Chacun de ces paramètres est décrit ci-dessous, suivi des procédures sur la façon de les modifier.
+Chaque runbook dans Azure Automation a plusieurs paramètres que vous toobe identifié et toochange son comportement de journalisation. Chacun de ces paramètres est décrite ci-dessous, suivie des procédures sur la façon de toomodify les.
 
 ## <a name="settings"></a>Paramètres
 ### <a name="name-and-description"></a>Nom et description
-Vous ne pouvez pas modifier le nom d'un Runbook une fois qu'il a été créé. La description est facultative et peut comporter jusqu'à 512 caractères.
+Vous ne pouvez pas modifier le nom hello d’un runbook une fois qu’elle a été créée. Hello Description est facultative et peut être des caractères de too512.
 
-### <a name="tags"></a>Balises
-Les balises permettent d'attribuer des mots et des expressions distincts pour permettre d'identifier un Runbook. Par exemple, quand vous envoyez un Runbook à [PowerShell Gallery](https://www.powershellgallery.com/), vous spécifiez certaines balises pour identifier les catégories dans lesquelles le Runbook doit être répertorié. Vous pouvez spécifier plusieurs balises pour un Runbook en les séparant par des virgules.
+### <a name="tags"></a>Tags
+Autoriser les balises que vous tooassign des mots distincts et expressions toohelp identifient un runbook. Par exemple, lorsque vous envoyez un toohello runbook [PowerShell Gallery](https://www.powershellgallery.com/), vous spécifiez tooidentify certaines balises les catégories hello runbook doit être indiquée dans. Vous pouvez spécifier plusieurs balises pour un Runbook en les séparant par des virgules.
 
 ### <a name="logging"></a>Journalisation
-Par défaut, les informations de commentaires et de progression ne sont pas écrites dans l'historique des tâches. Vous pouvez modifier les paramètres d'un Runbook donné pour enregistrer ces informations. Pour en savoir plus sur ces informations, consultez [Sortie et messages de runbook](automation-runbook-output-and-messages.md).
+Par défaut, les enregistrements détaillés et de progression ne sont pas écrites toojob historique. Vous pouvez modifier les paramètres de hello pour un runbook donné de toolog de ces enregistrements. Pour en savoir plus sur ces informations, consultez [Sortie et messages de runbook](automation-runbook-output-and-messages.md).
 
 ## <a name="changing-runbook-settings"></a>Modification des paramètres du Runbook
 
-### <a name="changing-runbook-settings-with-the-azure-portal"></a>Modification des paramètres du Runbook avec le portail Azure
-Vous pouvez modifier les paramètres d’un Runbook dans le portail Azure à partir du panneau **Paramètres** du Runbook.
+### <a name="changing-runbook-settings-with-hello-azure-portal"></a>Modification des paramètres de runbook avec hello portail Azure
+Vous pouvez modifier les paramètres d’un runbook Bonjour portail Azure à partir de hello **paramètres** panneau hello runbook.
 
-1. Dans le portail Azure, sélectionnez **Automation** , puis cliquez sur le nom d'un compte Automation.
-2. Sélectionnez l'onglet **Runbooks** .
-3. Cliquez sur le nom d’un Runbook pour accéder à son panneau Paramètres. De là, vous pouvez spécifier ou modifier des balises, la description du Runbook, configurer la journalisation et les paramètres de traçage, et accéder aux outils de prise en charge pour vous aider à résoudre les problèmes.     
+1. Bonjour portail Azure, sélectionnez **Automation** , puis cliquez sur nom hello d’un compte automation.
+2. Sélectionnez hello **Runbooks** onglet.
+3. Cliquez sur le nom hello d’un runbook et que vous êtes dirigé toohello panneau des paramètres pour hello runbook. À partir d’ici vous pouvez spécifier ou modifier des balises, hello description de runbook, configurer la journalisation et le suivi des paramètres et toohelp d’outils de prise en charge de résoudre les problèmes d’accès.     
 
 ### <a name="changing-runbook-settings-with-windows-powershell"></a>Modification des paramètres du Runbook avec Windows PowerShell
-Vous pouvez utiliser l’applet de commande [Set-AzureRmAutomationRunbook](https://msdn.microsoft.com/library/mt603786.aspx) pour modifier les paramètres d’un Runbook. Si vous souhaitez spécifier plusieurs balises, vous pouvez fournir au paramètre Balises un tableau ou une chaîne unique avec les valeurs délimitées par des virgules. Vous pouvez obtenir les balises actives avec [Get-AzureRmAutomationRunbook](https://msdn.microsoft.com/library/mt603728.aspx).
+Vous pouvez utiliser hello [Set-AzureRmAutomationRunbook](https://msdn.microsoft.com/library/mt603786.aspx) paramètres de hello toochange applet de commande d’un runbook. Si vous souhaitez toospecify plusieurs balises, vous pouvez fournir un tableau ou une chaîne unique avec le paramètre délimité par des virgules valeurs toohello balises. Vous pouvez obtenir des balises actives de hello avec hello [Get-AzureRmAutomationRunbook](https://msdn.microsoft.com/library/mt603728.aspx).
 
-Les exemples de commandes suivants montrent comment définir les propriétés d'un Runbook. Cet exemple ajoute trois balises aux balises existantes et spécifie que les informations de commentaires doivent être enregistrées.
+Hello suivant des exemples de commandes montrent comment tooset hello les propriétés d’un runbook. Cet exemple ajoute trois balises toohello les balises et spécifie que les enregistrements détaillés doivent être enregistrés.
 
     $automationAccountName = "MyAutomationAccount"
     $runbookName = "Sample-TestRunbook"
@@ -56,6 +56,6 @@ Les exemples de commandes suivants montrent comment définir les propriétés d'
     –AutomationAccountName $automationAccountName –Name $runbookName –LogVerbose $true –Tags $tags
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Pour découvrir comment créer et récupérer la sortie et les messages d’erreur à partir des Runbooks, consultez [Sortie et messages de Runbook dans Azure Automation](automation-runbook-output-and-messages.md) 
-* Pour découvrir comment ajouter un Runbook qui a déjà été développé par la Communauté ou une autre source, ou pour créer votre propre Runbook, consultez [Création ou importation d’un runbook](automation-creating-importing-runbook.md) 
+* toolearn comment les messages de sortie et d’erreur toocreate et récupérer à partir de procédures opérationnelles, consultez [Runbook Output and Messages](automation-runbook-output-and-messages.md) 
+* toounderstand tooadd un runbook a été développée par la Communauté de hello ou d’autres sources ou toocreate vos propres runbook voir [création ou importation d’un Runbook](automation-creating-importing-runbook.md) 
 

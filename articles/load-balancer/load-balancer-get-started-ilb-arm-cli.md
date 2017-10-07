@@ -1,6 +1,6 @@
 ---
-title: "Créer un équilibrage de charge interne à l’aide de la CLI Azure | Microsoft Docs"
-description: "Découvrez comment créer un équilibrage de charge interne dans Resource Manager à l’aide de l’interface de ligne de commande Azure"
+title: "aaaCreate un interne l’équilibrage de charge - CLI d’Azure | Documents Microsoft"
+description: "Découvrez comment toocreate un équilibreur de charge interne à l’aide de hello CLI d’Azure dans le Gestionnaire de ressources"
 services: load-balancer
 documentationcenter: na
 author: kumudd
@@ -14,16 +14,16 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/23/2017
 ms.author: kumud
-ms.openlocfilehash: 128b91c685b5f7e494a69ca5b04165a0ee7cbb78
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3aea6fdb07600f0d661ec6b8ffc784b03380a127
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-an-internal-load-balancer-by-using-the-azure-cli"></a>Créer un équilibreur de charge interne à l’aide de l’interface de ligne de commande Azure
+# <a name="create-an-internal-load-balancer-by-using-hello-azure-cli"></a>Créer un équilibreur de charge interne à l’aide de hello CLI d’Azure
 
 > [!div class="op_single_selector"]
-> * [Portail Azure](../load-balancer/load-balancer-get-started-ilb-arm-portal.md)
+> * [portail Azure](../load-balancer/load-balancer-get-started-ilb-arm-portal.md)
 > * [PowerShell](../load-balancer/load-balancer-get-started-ilb-arm-ps.md)
 > * [Interface de ligne de commande Azure](../load-balancer/load-balancer-get-started-ilb-arm-cli.md)
 > * [Modèle](../load-balancer/load-balancer-get-started-ilb-arm-template.md)
@@ -31,28 +31,28 @@ ms.lasthandoff: 07/11/2017
 [!INCLUDE [load-balancer-get-started-ilb-intro-include.md](../../includes/load-balancer-get-started-ilb-intro-include.md)]
 
 > [!NOTE]
-> Azure dispose de deux modèles de déploiement différents pour créer et utiliser des ressources : [Resource Manager et classique](../azure-resource-manager/resource-manager-deployment-model.md).  Cet article traite de l’utilisation du modèle de déploiement Resource Manager que Microsoft recommande pour la plupart des nouveaux déploiements à la place du [modèle de déploiement classique](load-balancer-get-started-ilb-classic-cli.md).
+> Azure dispose de deux modèles de déploiement différents pour créer et utiliser des ressources : [Resource Manager et classique](../azure-resource-manager/resource-manager-deployment-model.md).  Cet article couvre l’utilisation de modèle de déploiement Resource Manager hello, qui recommandées par Microsoft pour la plupart des déploiements de nouveau au lieu de hello [modèle de déploiement classique](load-balancer-get-started-ilb-classic-cli.md).
 
 [!INCLUDE [load-balancer-get-started-ilb-scenario-include.md](../../includes/load-balancer-get-started-ilb-scenario-include.md)]
 
-## <a name="deploy-the-solution-by-using-the-azure-cli"></a>Déployer la solution à l’aide de l’interface de ligne de commande Azure
+## <a name="deploy-hello-solution-by-using-hello-azure-cli"></a>Déployer des solutions de hello à l’aide de hello CLI d’Azure
 
-Les étapes suivantes expliquent comment créer un équilibrage de charge accessible sur Internet à l’aide d’Azure Resource Manager avec l’interface de ligne de commande. Avec Azure Resource Manager, toutes les ressources sont créées et configurées individuellement, puis rassemblées pour en créer une unique.
+Hello suit montrent comment toocreate une côté Internet l’équilibrage de charge à l’aide du Gestionnaire de ressources Azure avec l’interface CLI. Avec Azure Resource Manager, chaque ressource est créé et configuré individuellement et puis rassembler toocreate une ressource.
 
-Vous devez créer et configurer les objets suivants pour déployer un équilibreur de charge :
+Vous devez toocreate et que vous configurez hello suivant objets toodeploy un équilibreur de charge :
 
 * **Configuration d’adresses IP frontales**: contient les adresses IP publiques pour le trafic réseau entrant.
-* **Pool d’adresses principales**: contient des cartes réseau (NIC) pour que les machines virtuelles puissent recevoir le trafic réseau de l’équilibrage de charge
-* **Règles d’équilibrage de charge**: contient des règles qui mappent un port public situé sur l’équilibrage de charge à un port du pool d’adresses principales.
-* **Règles NAT entrantes**: contient des règles qui mappent un port public situé sur l’équilibrage de charge vers le port d’une machine virtuelle spécifique située dans le pool d’adresses principales.
-* **Sondes**: contient les sondes d’intégrité utilisées pour vérifier la disponibilité des instances de machines virtuelles du pool d’adresses principales.
+* **Pool d’adresses de serveur principal**: contient des interfaces réseau (NIC) qui autorisent le trafic réseau tooreceive du hello machines virtuelles à partir de l’équilibrage de charge hello
+* **Règles d’équilibrage de charge**: contient des règles pour mappent un port public sur tooport d’équilibrage de charge hello dans un pool d’adresses de serveur principal hello
+* **Les règles NAT de trafic entrant**: contient des règles pour mappent un port public sur le port de tooa d’équilibrage de charge de hello pour un ordinateur virtuel spécifique dans le pool d’adresses principal hello
+* **Sondes**: contient les sondes d’intégrité qui sont la disponibilité de hello toocheck utilisé d’instances de machines virtuelles dans un pool d’adresses de serveur principal hello
 
 Pour plus d’informations, consultez [Prise en charge d’un équilibreur de charge par Azure Resource Manager](load-balancer-arm.md).
 
-## <a name="set-up-cli-to-use-resource-manager"></a>Configurer l’interface de ligne de commande pour utiliser le gestionnaire de ressources
+## <a name="set-up-cli-toouse-resource-manager"></a>Configurer CLI toouse Gestionnaire de ressources
 
-1. Si vous n’avez jamais utilisé l’interface de ligne de commande Azure, consultez la section [Installer l’interface de ligne de commande Microsoft Azure](../cli-install-nodejs.md). Suivez les instructions jusqu’à l’étape de sélection du compte et de l’abonnement Azure.
-2. Exécutez la commande **azure config mode** afin de passer au mode Resource Manager, comme suit :
+1. Si vous n’avez jamais utilisé CLI d’Azure, consultez [installer et configurer hello CLI d’Azure](../cli-install-nodejs.md). Suivez les instructions de hello point toohello où vous sélectionnez votre compte Azure et votre abonnement.
+2. Exécutez hello **mode config azure** commande tooswitch tooResource Manager mode, comme suit :
 
     ```azurecli
     azure config mode arm
@@ -64,7 +64,7 @@ Pour plus d’informations, consultez [Prise en charge d’un équilibreur de ch
 
 ## <a name="create-an-internal-load-balancer-step-by-step"></a>Créer un équilibrage de charge interne, étape par étape
 
-1. Connectez-vous à Azure.
+1. Connectez-vous tooAzure.
 
     ```azurecli
     azure login
@@ -72,7 +72,7 @@ Pour plus d’informations, consultez [Prise en charge d’un équilibreur de ch
 
     À l’invite, entrez vos informations d’identification Azure.
 
-2. Remplacez les outils de commande par le mode Azure Resource Manager.
+2. Modifier le mode Gestionnaire de ressources tooAzure hello commande Outils.
 
     ```azurecli
     azure config mode arm
@@ -90,24 +90,24 @@ azure group create <resource group name> <location>
 
 1. Créer un équilibrage de charge interne
 
-    Dans le scénario suivant, un groupe de ressources nommé nrprg est créé dans la région Est des États-Unis.
+    Bonjour scénario, un groupe de ressources nommé nrprg est créé dans la région est des États-Unis.
 
     ```azurecli
     azure network lb create --name nrprg --location eastus
     ```
 
    > [!NOTE]
-   > Toutes les ressources d’un équilibrage de charge interne, telles que les réseaux virtuels et les sous-réseaux du réseau virtuel doivent figurer dans le même groupe de ressources et dans la même région.
+   > Toutes les ressources pour un équilibrage de charge interne, tels que les réseaux virtuels et des sous-réseaux du réseau virtuel, doivent être dans hello du même groupe de ressources et de hello même région.
 
-2. Créez une adresse IP frontale pour l’équilibrage de charge interne.
+2. Créer une adresse IP frontale pour l’équilibrage de charge interne hello.
 
-    L’adresse IP utilisée doit se trouver dans la plage de sous-réseau de votre réseau virtuel.
+    adresse IP Hello que vous utilisez doit être dans la plage de sous-réseau hello de votre réseau virtuel.
 
     ```azurecli
     azure network lb frontend-ip create --resource-group nrprg --lb-name ilbset --name feilb --private-ip-address 10.0.0.7 --subnet-name nrpvnetsubnet --subnet-vnet-name nrpvnet
     ```
 
-3. Créer le pool d’adresses principal.
+3. Créer un pool d’adresses de serveur principal hello.
 
     ```azurecli
     azure network lb address-pool create --resource-group nrprg --lb-name ilbset --name beilb
@@ -115,9 +115,9 @@ azure group create <resource group name> <location>
 
     Après avoir défini une adresse IP frontale et un pool d’adresses principales, vous pouvez créer des règles d’équilibrage de charge, des règles NAT entrantes et des sondes d’intégrité personnalisées.
 
-4. Créez une règle d’équilibrage de charge pour l’équilibrage de charge interne.
+4. Créer une règle d’équilibreur de charge pour l’équilibrage de charge interne hello.
 
-    Suivant le scénario ci-dessus, la commande crée une règle d’équilibrage de charge écoutant sur le port 1433 du pool frontal et envoyant le trafic de réseau à charge équilibrée au pool d’adresses principales en utilisant également le port 1433.
+    Lorsque vous suivez les étapes précédentes hello, commande hello crée une règle d’équilibrage de charge pour l’écoute tooport 1433 dans le pool frontal de hello et envoi équilibrage de la charge du trafic toohello principal pool d’adresses réseau, via le port 1433.
 
     ```azurecli
     azure network lb rule create --resource-group nrprg --lb-name ilbset --name ilbrule --protocol tcp --frontend-port 1433 --backend-port 1433 --frontend-ip-name feilb --backend-address-pool-name beilb
@@ -125,7 +125,7 @@ azure group create <resource group name> <location>
 
 5. Créez des règles NAT entrantes.
 
-    Les règles NAT entrantes sont utilisées pour créer des points de terminaison dans un équilibrage de charge qui pointera vers une instance d’ordinateur virtuel spécifique. Les étapes précédentes ont permis de créer deux règles NAT pour le Bureau à distance.
+    Les règles NAT entrantes sont les extrémités de toocreate utilisé dans un équilibreur de charge qui vont l’instance de machine virtuelle spécifique tooa. les étapes précédentes Hello créé deux règles NAT pour le Bureau à distance.
 
     ```azurecli
     azure network lb inbound-nat-rule create --resource-group nrprg --lb-name ilbset --name NATrule1 --protocol TCP --frontend-port 5432 --backend-port 3389
@@ -133,23 +133,23 @@ azure group create <resource group name> <location>
     azure network lb inbound-nat-rule create --resource-group nrprg --lb-name ilbset --name NATrule2 --protocol TCP --frontend-port 5433 --backend-port 3389
     ```
 
-6. Créez des sondes d'intégrité pour l'équilibreur de charge.
+6. Créer des sondes d’intégrité pour l’équilibrage de charge hello.
 
-    Une sonde d’intégrité vérifie toutes les instances de machine virtuelle pour s’assurer qu’elles peuvent transmettre le trafic réseau. L’instance de machine virtuelle présentant des contrôles de sonde défaillants est supprimée de l’équilibrage de charge jusqu’à ce qu’elle revienne en ligne et que la sonde valide son intégrité.
+    Une sonde d’intégrité vérifie tous les toomake des instances de machine virtuelle qu’ils peuvent envoyer le trafic réseau. instance de machine virtuelle Hello avec les vérifications de sonde ayant échoué est supprimé à partir de l’équilibrage de charge hello jusqu'à ce qu’il est en ligne et une vérification de la sonde détermine qu’elle est saine.
 
     ```azurecli
     azure network lb probe create --resource-group nrprg --lb-name ilbset --name ilbprobe --protocol tcp --interval 300 --count 4
     ```
 
     > [!NOTE]
-    > La plateforme Microsoft Azure utilise une adresse IPv4 statique routable publiquement pour divers scénarios d’administration. L’adresse IP est 168.63.129.16. Cette adresse IP ne doit pas être bloquée par les pare-feu, car cela peut entraîner un comportement inattendu.
-    > En ce qui concerne l’équilibrage de charge interne Azure, cette adresse IP est utilisée par les sondes de l’équilibreur de charge, pour déterminer l’état de santé pour les machines virtuelles dans un jeu d’équilibrage de charge. Si un groupe de sécurité réseau est utilisé pour limiter le trafic vers les machines virtuelles Azure dans un jeu d’équilibrage de charge interne, ou est appliqué à un sous-réseau de réseau virtuel, vérifiez qu’une règle de sécurité de réseau n’est ajoutée pour autoriser le trafic à partir de 168.63.129.16.
+    > plateforme de Microsoft Azure Hello utilise une adresse IPv4 statique routable publiquement pour un éventail de scénarios d’administration. adresse IP de Hello est 168.63.129.16. Cette adresse IP ne doit pas être bloquée par les pare-feu, car cela peut entraîner un comportement inattendu.
+    > En ce qui concerne tooAzure équilibrage de charge interne, cette adresse IP est utilisée par l’analyse des sondes de l’état d’intégrité de hello charge équilibrage toodetermine hello pour les ordinateurs virtuels dans un jeu d’équilibrage de charge. Si un groupe de sécurité réseau est utilisé toorestrict virtuels trafic tooAzure dans un jeu d’équilibrage de charge en interne ou sous-réseau de réseau virtuel tooa appliqués, vérifiez qu’une règle de sécurité réseau est ajoutée tooallow trafic à partir de 168.63.129.16.
 
 ## <a name="create-nics"></a>Créer des cartes réseau
 
-Vous devez créer des cartes réseau (ou modifier des cartes existantes) et les associer à des règles NAT, des règles d’équilibreur de charge et des sondes.
+Vous devez toocreate NIC (ou modifier des modèles existants) et les associer à des règles de tooNAT, des règles d’équilibrage de charge et des sondes.
 
-1. Créez une carte réseau nommée *lb-nic1-be*, puis associez-la à la règle NAT *rdp1* et au pool d’adresses principales *beilb*.
+1. Créez une carte réseau nommée *être lb-nic1*et l’associer à hello *rdp1* NAT règle et hello *beilb* pool d’adresses du serveur principal.
 
     ```azurecli
     azure network nic create --resource-group nrprg --name lb-nic1-be --subnet-name nrpvnetsubnet --subnet-vnet-name nrpvnet --lb-address-pool-ids "/subscriptions/####################################/resourceGroups/nrprg/providers/Microsoft.Network/loadBalancers/nrplb/backendAddressPools/beilb" --lb-inbound-nat-rule-ids "/subscriptions/####################################/resourceGroups/nrprg/providers/Microsoft.Network/loadBalancers/nrplb/inboundNatRules/rdp1" --location eastus
@@ -158,10 +158,10 @@ Vous devez créer des cartes réseau (ou modifier des cartes existantes) et les 
     Sortie attendue :
 
         info:    Executing command network nic create
-        + Looking up the network interface "lb-nic1-be"
-        + Looking up the subnet "nrpvnetsubnet"
+        + Looking up hello network interface "lb-nic1-be"
+        + Looking up hello subnet "nrpvnetsubnet"
         + Creating network interface "lb-nic1-be"
-        + Looking up the network interface "lb-nic1-be"
+        + Looking up hello network interface "lb-nic1-be"
         data:    Id                              : /subscriptions/####################################/resourceGroups/nrprg/providers/Microsoft.Network/networkInterfaces/lb-nic1-be
         data:    Name                            : lb-nic1-be
         data:    Type                            : Microsoft.Network/networkInterfaces
@@ -181,21 +181,21 @@ Vous devez créer des cartes réseau (ou modifier des cartes existantes) et les 
         data:
         info:    network nic create command OK
 
-2. Créez une carte réseau nommée *lb-nic2-be*, puis associez-la à la règle NAT *rdp2* et au pool d’adresses principales *beilb*.
+2. Créez une carte réseau nommée *être lb-nic2*et l’associer à hello *rdp2* NAT règle et hello *beilb* pool d’adresses du serveur principal.
 
     ```azurecli
     azure network nic create --resource-group nrprg --name lb-nic2-be --subnet-name nrpvnetsubnet --subnet-vnet-name nrpvnet --lb-address-pool-ids "/subscriptions/####################################/resourceGroups/nrprg/providers/Microsoft.Network/loadBalancers/nrplb/backendAddressPools/beilb" --lb-inbound-nat-rule-ids "/subscriptions/####################################/resourceGroups/nrprg/providers/Microsoft.Network/loadBalancers/nrplb/inboundNatRules/rdp2" --location eastus
     ```
 
-3. Créez une machine virtuelle nommée *DB1*, puis associez-la à la carte réseau nommée *lb-nic1-be*. Un compte de stockage appelé *web1nrp* est créé avant d’exécuter la commande ci-dessous :
+3. Créer un ordinateur virtuel nommé *DB1*et associez-le ensuite hello carte réseau nommée *être lb-nic1*. Un compte de stockage appelée *web1nrp* est créé avant hello après l’exécution de la commande :
 
     ```azurecli
     azure vm create --resource--resource-grouproup nrprg --name DB1 --location eastus --vnet-name nrpvnet --vnet-subnet-name nrpvnetsubnet --nic-name lb-nic1-be --availset-name nrp-avset --storage-account-name web1nrp --os-type Windows --image-urn MicrosoftWindowsServer:WindowsServer:2012-R2-Datacenter:4.0.20150825
     ```
     > [!IMPORTANT]
-    > Les machines virtuelles d’un équilibreur de charge doivent se trouver dans le même groupe à haute disponibilité. Utilisez `azure availset create` pour créer un groupe à haute disponibilité.
+    > Machines virtuelles dans un toobe de nécessité d’équilibrage de charge dans hello même groupe à haute disponibilité. Utilisez `azure availset create` toocreate un ensemble de disponibilité.
 
-4. Créez une machine virtuelle nommée *DB2*, puis associez-la à la carte réseau nommée *lb-nic2-be*. Un compte de stockage appelé *web1nrp* a été créé avant d’exécuter la commande ci-dessous.
+4. Créer un ordinateur virtuel (VM) nommé *DB2*et associez-le ensuite hello carte réseau nommée *être lb-nic2*. Un compte de stockage appelée *web1nrp* a été créé avant d’exécuter hello commande suivante.
 
     ```azurecli
     azure vm create --resource--resource-grouproup nrprg --name DB2 --location eastus --vnet-name nrpvnet --vnet-subnet-name nrpvnetsubnet --nic-name lb-nic2-be --availset-name nrp-avset --storage-account-name web2nrp --os-type Windows --image-urn MicrosoftWindowsServer:WindowsServer:2012-R2-Datacenter:4.0.20150825
@@ -203,7 +203,7 @@ Vous devez créer des cartes réseau (ou modifier des cartes existantes) et les 
 
 ## <a name="delete-a-load-balancer"></a>Suppression d’un équilibreur de charge
 
-Pour supprimer un équilibrage de charge, utilisez la commande suivante :
+tooremove un équilibreur de charge, utilisez hello de commande suivante :
 
 ```azurecli
 azure network lb delete --resource-group nrprg --name ilbset

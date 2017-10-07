@@ -1,6 +1,6 @@
 ---
-title: "Prise en main d’Azure Notification Hubs pour les applications de plateforme Windows universelle | Microsoft Docs"
-description: "Dans ce didacticiel, vous découvrirez comment utiliser Azure Notification Hubs pour envoyer des notifications Push à une application de plateforme Windows universelle."
+title: "aaaGet main d’Azure Notification Hubs pour les applications Windows universelles plateforme | Documents Microsoft"
+description: Dans ce didacticiel, vous apprendrez comment toouse Azure Notification Hubs toopush notifications tooa application de plateforme universelle Windows.
 services: notification-hubs
 documentationcenter: windows
 author: ysxu
@@ -14,27 +14,27 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.date: 10/03/2016
 ms.author: yuaxu
-ms.openlocfilehash: 9b50f1cca81348b69f7ff2d702c6c72871afe0a0
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 11056842d205522ed493dc61c76ecf78ebb5a363
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="getting-started-with-notification-hubs-for-windows-universal-platform-apps"></a>Prise en main de Notification Hubs pour les applications de plateforme Windows universelle
 [!INCLUDE [notification-hubs-selector-get-started](../../includes/notification-hubs-selector-get-started.md)]
 
 ## <a name="overview"></a>Vue d'ensemble
-Ce didacticiel vous indique comment utiliser Azure Notification Hubs pour envoyer des notifications Push à une application de plateforme Windows universelle (UWP).
+Ce didacticiel vous montre comment toouse Azure Notification Hubs toosend push application de plateforme Windows universelle (UWP) tooa des notifications.
 
-Le didacticiel vous apprend à créer une application Windows Store vide qui reçoit des notifications Push au moyen du Service de notifications Windows Push (WNS). Une fois l’opération terminée, vous pouvez utiliser votre hub de notification pour diffuser des notifications Push sur tous les appareils exécutant votre application.
+Dans ce didacticiel, vous créez une application du Windows Store vide qui reçoit des notifications push à l’aide de hello services de notifications Push Windows (WNS). Lorsque vous avez terminé, vous serez en mesure de toouse votre toobroadcast de concentrateur de notification push des appareils de hello notifications tooall votre application en cours d’exécution.
 
 ## <a name="before-you-begin"></a>Avant de commencer
 [!INCLUDE [notification-hubs-hero-slug](../../includes/notification-hubs-hero-slug.md)]
 
-Le code complet de ce didacticiel est disponible sur GitHub [ici](https://github.com/Azure/azure-notificationhubs-samples/tree/master/dotnet/GetStartedWindowsUniversal).
+code Hello terminée pour ce didacticiel se trouve sur GitHub [ici](https://github.com/Azure/azure-notificationhubs-samples/tree/master/dotnet/GetStartedWindowsUniversal).
 
 ## <a name="prerequisites"></a>Composants requis
-Ce didacticiel requiert les éléments suivants :
+Ce didacticiel requiert hello qui suit :
 
 * [Microsoft Visual Studio Community 2015](https://www.visualstudio.com/products/visual-studio-community-vs) ou version ultérieure
 * [Outils de développement d’applications Windows universelles installés](https://msdn.microsoft.com/windows/uwp/get-started/get-set-up)
@@ -43,24 +43,24 @@ Ce didacticiel requiert les éléments suivants :
 
 Vous devez suivre ce didacticiel avant de pouvoir suivre tous les autres didacticiels Notification Hubs pour les applications de plateforme Windows universelle.
 
-## <a name="register-your-app-for-the-windows-store"></a>Inscription de votre application pour le Windows Store
-Pour envoyer des notifications Push à des applications UWP, vous devez associer votre application au Windows Store. Vous devez ensuite configurer votre Notification Hub pour l'intégrer à WNS.
+## <a name="register-your-app-for-hello-windows-store"></a>Inscrire votre application pour hello du Windows Store
+applications de tooUWP toosend push notifications, vous devez associer votre toohello d’application du Windows Store. Vous devez ensuite configurer votre toointegrate de concentrateur de notification avec WNS.
 
-1. Si vous n’avez pas déjà inscrit votre application, accédez à la page [Centre de développement Windows](https://dev.windows.com/overview), connectez-vous avec votre compte Microsoft, puis cliquez sur **Créer une application**.
+1. Si vous n’avez pas encore inscrit votre application, accédez à toohello [centre de développement Windows](https://dev.windows.com/overview), connectez-vous avec votre compte Microsoft, puis cliquez sur **créer une application**.
 
 2. Saisissez un nom pour votre application et cliquez sur **Réserver le nom d’application**. La nouvelle inscription au Windows Store pour votre application est créée.
 
-3. Dans Visual Studio, créez un projet d’application du Windows Store Visual C# en utilisant le modèle **Application vide** Windows Universal, puis cliquez sur **OK**.
+3. Dans Visual Studio, créez un projet de Visual C# applications du Windows Store à l’aide de hello Windows universel **application vide** modèle et cliquez sur **OK**.
 
-4. Acceptez les valeurs par défaut pour les versions de plateforme cible et minimale.
+4. Acceptez les valeurs par défaut de hello pour cible de hello et les versions de plateforme minimales.
 
-5. Dans l'Explorateur de solutions, cliquez avec le bouton droit sur le projet d'application Windows Store, cliquez sur **Store**, puis sur **Associer l'application au Windows Store...**. L'Assistant **Associer votre application au Windows Store** s'affiche.
+5. Dans l’Explorateur de solutions, projet d’application hello du Windows Store avec le bouton droit, cliquez sur **magasin**, puis cliquez sur **associer application hello Store...** . hello **associer votre application du Windows Store de hello** Assistant s’affiche.
 
-6. Dans l’Assistant, connectez-vous avec votre compte Microsoft.
+6. Dans l’Assistant de hello, connectez-vous avec votre compte Microsoft.
 
-7. Cliquez sur l'application inscrite à l'étape 2, puis sur **Suivant** et sur **Associer**. Cela ajoute les informations d'inscription Windows Store requises au manifeste de l'application.
+7. Cliquez sur l’application hello que vous avez enregistré à l’étape 2, cliquez sur **suivant**, puis cliquez sur **associer**. Cela ajoute le manifeste d’application d’enregistrement d’informations toohello hello requis du Windows Store.
 
-8. De nouveau sur la page [Centre de développement Windows](http://dev.windows.com/overview) pour votre nouvelle application, cliquez sur **Services**, puis sur **Notifications Push** et enfin sur **WNS/MPNS**.
+8. Retour sur hello [centre de développement Windows](http://dev.windows.com/overview) pour votre nouvelle application, cliquez sur **Services**, cliquez sur **des notifications Push**, puis cliquez sur **WNS/MPNS**.
 
 9. Cliquez sur **Nouvelle notification**.
 
@@ -68,40 +68,40 @@ Pour envoyer des notifications Push à des applications UWP, vous devez associer
 
 11. Saisissez un **nom** et un message de **contexte** Visual pour la notification. Cliquez ensuite sur **Enregistrer en tant que brouillon**.
 
-12. Accédez au [portail d’inscription des applications](http://apps.dev.microsoft.com) et connectez-vous.
+12. Accédez toohello [portail de l’enregistrement d’Application](http://apps.dev.microsoft.com) et connectez-vous.
 
-13. Cliquez sur le nom de votre application. Notez le mot de passe **Clé secrète d’application** et la valeur **Identificateur de sécurité (SID) du package** figurant dans les paramètres de la plateforme **Windows Store**.
+13. Cliquez sur le nom de votre application. Prenez note de hello **Secret d’Application** hello et le mot de passe **Package SID (security identifier)** situé dans hello **du Windows Store** paramètres de plateforme.
 
      > [AZURE.WARNING]
-    Le secret d’application et le SID du package sont des informations d'identification de sécurité importantes. Ne partagez pas ces valeurs avec quiconque et ne les distribuez pas avec votre application.
+    secret d’application Hello et le SID du package sont des informations d’identification de sécurité importantes. Ne partagez pas ces valeurs avec quiconque et ne les distribuez pas avec votre application.
 
 ## <a name="configure-your-notification-hub"></a>Configuration de votre hub de notification
 [!INCLUDE [notification-hubs-portal-create-new-hub](../../includes/notification-hubs-portal-create-new-hub.md)]
 
 <ol start="6">
-<li><p>Sélectionnez les options <b>Services de notification</b> et <b>Windows (WNS)</b>. Puis entrez le mot de passe <b>Clé secrète d’application</b> dans le champ <b>Clé de sécurité</b>. Entrez la valeur <b>SID du package</b> que vous avez obtenue auprès de WNS à la section précédente, puis cliquez sur <b>Enregistrer</b>.</p>
+<li><p>Sélectionnez hello <b>Notification Services</b> option et hello <b>Windows (WNS)</b> option. Puis entrez hello <b>secret d’Application</b> mot de passe dans hello <b>clé de sécurité</b> champ. Entrez votre <b>SID du Package</b> valeur obtenue à partir de WNS dans la section précédente de hello, puis cliquez sur <b>enregistrer</b>.</p>
 </li>
 </ol>
 
 &emsp;&emsp;![](./media/notification-hubs-windows-store-dotnet-get-started/notification-hub-configure-wns.png)
 
-Votre Notification Hub est désormais configuré pour WNS, et vous disposez des chaînes de connexion pour inscrire votre application et envoyer des notifications.
+Votre concentrateur de notification est maintenant configuré toowork avec WNS, et vous avez tooregister de chaînes de connexion hello votre application et envoyez des notifications.
 
-## <a name="connect-your-app-to-the-notification-hub"></a>Connexion de votre application au hub de notification
-1. Dans Visual Studio, cliquez avec le bouton droit sur la solution, puis cliquez sur **Gérer les packages NuGet**.
+## <a name="connect-your-app-toohello-notification-hub"></a>Se connecter à votre hub de notification d’application toohello
+1. Dans Visual Studio, cliquez sur la solution de hello, puis cliquez sur **gérer les Packages NuGet**.
    
-    La boîte de dialogue **Gérer les packages NuGet** s’affiche.
-2. Recherchez `WindowsAzure.Messaging.Managed` , puis cliquez sur **Installer**et acceptez les conditions d’utilisation.
+    Cela affiche hello **gérer les Packages NuGet** boîte de dialogue.
+2. Recherchez `WindowsAzure.Messaging.Managed` et cliquez sur **installer**et acceptez les conditions d’utilisation de hello.
    
     ![][20]
    
-    Une référence à la bibliothèque Azure Messaging pour Windows est alors téléchargée, installée et ajoutée à l’aide du <a href="http://nuget.org/packages/WindowsAzure.Messaging.Managed/">package NuGet WindowsAzure.Messaging.Managed</a>.
-3. Ouvrez le fichier projet App.xaml.cs et ajoutez les instructions `using` qui suivent. 
+    Il télécharge, installe et ajoute une bibliothèque de messagerie Azure référence toohello pour Windows à l’aide de hello <a href="http://nuget.org/packages/WindowsAzure.Messaging.Managed/">package NuGet de WindowsAzure.Messaging.Managed</a>.
+3. Ouvrez le fichier de projet App.xaml.cs hello et ajoutez hello suit `using` instructions. 
    
         using Windows.Networking.PushNotifications;
         using Microsoft.WindowsAzure.Messaging;
         using Windows.UI.Popups;
-4. Toujours dans le fichier App.xaml.cs, ajoutez la définition de méthode **InitNotificationsAsync** suivante à la classe **App** :
+4. Également, dans App.xaml.cs, ajoutez le code suivant de hello **InitNotificationsAsync** toohello de définition de méthode **application** classe :
    
         private async void InitNotificationsAsync()
         {
@@ -110,7 +110,7 @@ Votre Notification Hub est désormais configuré pour WNS, et vous disposez des 
             var hub = new NotificationHub("< your hub name>", "<Your DefaultListenSharedAccessSignature connection string>");
             var result = await hub.RegisterNativeAsync(channel.Uri);
    
-            // Displays the registration ID so you know it was successful
+            // Displays hello registration ID so you know it was successful
             if (result.RegistrationId != null)
             {
                 var dialog = new MessageDialog("Registration successful: " + result.RegistrationId);
@@ -120,57 +120,57 @@ Votre Notification Hub est désormais configuré pour WNS, et vous disposez des 
    
         }
    
-    Ce code récupère l’URI de canal pour l’application dans WNS et l’inscrit avec votre Notification Hub.
+    Ce code récupère les URI de canal hello pour une application hello WNS et inscrit ce canal URI avec votre concentrateur de notification.
    
    > [!NOTE]
-   > Remplacez l’espace réservé pour votre nom de hub par le nom du hub de notification affiché sur le Portail Azure. Remplacez également l’espace réservé de la chaîne de connexion par la chaîne de connexion **DefaultListenSharedAccessSignature** que vous avez obtenue sur la page **Stratégies d’accès** de votre hub de notification dans une section précédente.
+   > Assurez-vous que tooreplace hello espace réservé de « nom de votre concentrateur » avec le nom hello du concentrateur de notification hello qui s’affiche dans hello portail Azure. Remplacez également espace réservé chaîne de connexion hello hello **DefaultListenSharedAccessSignature** chaîne de connexion que vous avez obtenue à partir de hello **stratégies d’accès** page de votre concentrateur de Notification dans un section précédente.
    > 
    > 
-5. En haut du gestionnaire d'événements **OnLaunched** dans App.xaml.cs, ajoutez l'appel suivant à la nouvelle méthode **InitNotificationsAsync** :
+5. En haut de hello Hello **OnLaunched** Gestionnaire d’événements dans App.xaml.cs, ajouter hello suivant toohello appel nouvelle **InitNotificationsAsync** méthode :
    
         InitNotificationsAsync();
    
-    Cela garantit que l’inscription de l’URI de canal dans votre Notification Hub chaque fois que l’application est lancée.
-6. Appuyez sur **F5** pour lancer l'application. Une boîte de dialogue s’affiche avec la clé d’inscription.
+    Cela garantit ce canal hello QU'URI est enregistré dans votre concentrateur de notification que chaque application hello de temps est lancée.
+6. Hello de presse **F5** toorun clé hello application. Une boîte de dialogue contextuelle qui contient la clé d’inscription de hello s’affiche.
 
-Votre application est maintenant prête à recevoir des notifications toast.
+Votre application est maintenant prêt tooreceive des notifications de toast.
 
 ## <a name="send-notifications"></a>Envoi de notifications
-Vous pouvez tester rapidement la réception de notifications dans votre application en envoyant des notifications dans le [Portail Azure](https://portal.azure.com/) à l’aide du bouton **Test d’envoi** sur le hub de notification, comme illustré ci-dessous.
+Vous pouvez tester rapidement la réception de notifications dans votre application en envoyant des notifications Bonjour [Azure Portal](https://portal.azure.com/) à l’aide de hello **envoi Test** bouton sur le concentrateur de notification hello, comme indiqué dans l’écran hello ci-dessous.
 
 ![](./media/notification-hubs-windows-store-dotnet-get-started/notification-hub-test-send-wns.png)
 
-Les notifications Push sont normalement envoyées dans un service principal tel que Mobile Services ou ASP.NET à l’aide d’une bibliothèque compatible. Vous pouvez également utiliser l’API REST directement pour envoyer des messages de notification si aucune bibliothèque n’est disponible pour votre serveur principal. 
+Les notifications Push sont normalement envoyées dans un service principal tel que Mobile Services ou ASP.NET à l’aide d’une bibliothèque compatible. Vous pouvez également utiliser les API REST de hello directement les messages de notification de toosend si une bibliothèque n’est pas disponible pour votre serveur principal. 
 
-Dans ce didacticiel, nous nous contenterons pour plus de simplicité de tester votre application cliente en envoyant des notifications à l'aide du Kit de développement logiciel (SDK) .NET pour Notification Hubs dans une application de console au lieu d'un service principal. Nous vous recommandons de consulter le didacticiel [Utiliser Notification Hubs pour envoyer des notifications Push aux utilisateurs] comme prochaine étape pour envoyer des notifications à partir d’un serveur principal ASP.NET. Toutefois, les approches suivantes peuvent servir à envoyer des notifications :
+Dans ce didacticiel, nous plus de simplicité et simplement montrent le test de votre application cliente en envoyant des notifications à l’aide de hello SDK .NET pour les concentrateurs de notification dans une application console à la place d’un service principal. Nous vous recommandons de hello [utiliser Notification Hubs toopush notifications toousers] didacticiel en tant qu’étape suivante de hello pour envoyer des notifications à partir d’un serveur principal d’ASP.NET. Toutefois, hello méthodes suivantes peut servir pour envoyer des notifications :
 
-* **Interface REST** : vous pouvez prendre en charge les notifications sur n’importe quel serveur principal à l’aide de [l’interface REST](http://msdn.microsoft.com/library/windowsazure/dn223264.aspx).
-* **SDK .NET Microsoft Azure Notification Hubs**: dans le Gestionnaire de package Nuget pour Visual Studio, exécutez [Install-Package Microsoft.Azure.NotificationHubs](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/).
-* **Node.js** : [Utilisation de Notification Hubs à partir de Node.js](notification-hubs-nodejs-push-notification-tutorial.md).
-* **Applications mobiles Azure**: pour découvrir un exemple de la procédure d’envoi de notifications à partir d’une application mobile Azure intégrée à Notification Hubs, consultez l’article [Add push notifications for Mobile Apps](../app-service-mobile/app-service-mobile-windows-store-dotnet-get-started-push.md)(Ajouter des notifications Push pour Mobile Apps).
-* **Java/PHP** : pour voir un exemple d’envoi de notifications au moyen des API REST, consultez « Utilisation de Notification Hubs depuis Java/PHP » ([Java](notification-hubs-java-push-notification-tutorial.md) | [PHP](notification-hubs-php-push-notification-tutorial.md)).
+* **Interface REST**: peut prendre en charge notification sur toute plateforme principale à l’aide de hello [interface REST](http://msdn.microsoft.com/library/windowsazure/dn223264.aspx).
+* **Kit de développement logiciel Microsoft Azure Notification Hubs .NET**: Bonjour Gestionnaire de Package Nuget pour Visual Studio, exécutez [Install-Package Microsoft.Azure.NotificationHubs](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/).
+* **Node.js** : [comment toouse concentrateurs de Notification à partir de Node.js](notification-hubs-nodejs-push-notification-tutorial.md).
+* **Azure Mobile Apps**: pour obtenir un exemple de notifications toosend à partir d’une application Mobile Azure qui est intégré avec Notification Hubs, consultez [ajouter des notifications de push pour les applications mobiles](../app-service-mobile/app-service-mobile-windows-store-dotnet-get-started-push.md).
+* **Java / PHP**: pour obtenir un exemple de comment toosend des notifications à l’aide de hello API REST, consultez « Comment toouse concentrateurs de Notification à partir de Java/PHP » ([Java](notification-hubs-java-push-notification-tutorial.md) | [PHP](notification-hubs-php-push-notification-tutorial.md)).
 
 ## <a name="optional-send-notifications-from-a-console-app"></a>(Facultatif) Envoi de notifications à partir d’une application de console
-Procédez comme suit pour envoyer des notifications à l’aide d’une application de console .NET. 
+toosend des notifications à l’aide d’une application console .NET procédez comme suit. 
 
-1. Cliquez avec le bouton droit sur la solution, sélectionnez **Ajouter** et **Nouveau projet**, puis sous **Visual C#**, cliquez sur **Windows** et **Application Console**. Enfin, cliquez sur **OK**.
+1. Solution de hello avec le bouton droit, sélectionnez **ajouter** et **nouveau projet...** , puis sous **Visual C#**, cliquez sur **Windows** et **Application Console**, puis cliquez sur **OK**.
    
-    Une nouvelle application console Visual C# est ajoutée à la solution. Vous pouvez également réaliser cette opération dans une solution distincte.
+    Cette opération ajoute une nouvelle Visual C# toohello solution d’application console. Vous pouvez également réaliser cette opération dans une solution distincte.
 
 2. Dans Visual Studio, cliquez successivement sur **Outils**, **Gestionnaire de package NuGet** et **Console du gestionnaire de package**.
    
-    La console du gestionnaire de package s’affiche dans Visual Studio.
-3. Dans la fenêtre Console du gestionnaire de package, choisissez **Projet par défaut** comme nouveau projet d’application console, puis exécutez la commande suivante dans la fenêtre de console :
+    Cela affiche hello Package Manager Console dans Visual Studio.
+3. Dans la fenêtre de Console du Gestionnaire de Package de hello, définissez hello **projet par défaut** tooyour nouveau projet d’application console et puis, dans la fenêtre de console hello, exécutez hello de commande suivante :
    
         Install-Package Microsoft.Azure.NotificationHubs
    
-    Cette opération ajoute une référence au Kit de développement logiciel (SDK) Azure Notification Hubs à l’aide du <a href="http://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/">package NuGet Microsoft.Azure.Notification Hubs</a>.
+    Cette opération ajoute une référence de toohello Azure Notification Hubs SDK à l’aide de hello <a href="http://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/">package NuGet de concentrateurs Microsoft.Azure.Notification</a>.
    
     ![](./media/notification-hubs-windows-store-dotnet-get-started/notification-hub-package-manager.png)
-4. Ouvrez le fichier Program.cs et ajoutez l’instruction `using` suivante :
+4. Ouvrez le fichier Program.cs de hello et ajoutez hello suit `using` instruction :
    
         using Microsoft.Azure.NotificationHubs;
-5. Dans la classe **Program** , ajoutez la méthode suivante :
+5. Bonjour **programme** de classe, ajoutez hello suivant de méthode :
    
         private static async void SendNotificationAsync()
         {
@@ -180,28 +180,28 @@ Procédez comme suit pour envoyer des notifications à l’aide d’une applicat
             await hub.SendWindowsNativeNotificationAsync(toast);
         }
    
-       Make sure to replace the "hub name" placeholder with the name of the notification hub that as it appears in the Azure Portal. Also, replace the connection string placeholder with the **DefaultFullSharedAccessSignature** connection string that you obtained from the **Access Policies** page of your Notification Hub in the section called "Configure your notification hub."
+       Make sure tooreplace hello "hub name" placeholder with hello name of hello notification hub that as it appears in hello Azure Portal. Also, replace hello connection string placeholder with hello **DefaultFullSharedAccessSignature** connection string that you obtained from hello **Access Policies** page of your Notification Hub in hello section called "Configure your notification hub."
    
    > [!NOTE]
-   > Veillez à utiliser la chaîne de connexion avec un accès **Total**, et non un accès **Écouter**. La chaîne d’accès en écoute seule ne dispose pas des autorisations pour envoyer des notifications.
+   > Assurez-vous que vous utilisez chaîne de connexion hello a **complète** accéder, pas **écouter** accès. chaîne d’accès à l’écoute de Hello n’a pas de notifications de toosend d’autorisations.
    > 
    > 
-6. Ajoutez les lignes suivantes à la méthode **Main** :
+6. Ajouter des lignes Bonjour suivantes de hello **Main** méthode :
    
          SendNotificationAsync();
          Console.ReadLine();
-7. Cliquez avec le bouton droit sur le projet d’application de console dans Visual Studio, puis cliquez sur **Définir comme projet de démarrage** . Appuyez ensuite sur la touche **F5** pour exécuter l’application.
+7. Cliquez sur le projet d’application console hello dans Visual Studio, puis cliquez sur **définir comme projet de démarrage** tooset en tant que projet de démarrage hello. Appuyez sur hello **F5** application hello de toorun de clé.
    
-    Vous recevrez une notification toast sur tous les appareils enregistrés. Cliquez sur la bannière toast ou appuyez dessus pour charger l’application.
+    Vous recevrez une notification toast sur tous les appareils enregistrés. Bannière de toast hello cliquant ou appuyant sur charge application hello.
 
-Vous trouverez toutes les charges utiles prises en charge dans les rubriques [Catalogue de modèles de toast], [Catalogue de modèles de vignette] et [Vue d’ensemble des badges] sur MSDN.
+Vous pouvez trouver toutes les charges utiles de hello pris en charge dans hello [catalogue de toast], [vignette catalogue], et [vue d’ensemble de badge] rubriques sur MSDN.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Dans cet exemple simple, vous avez envoyé des notifications à tous vos appareils Windows en utilisant le portail ou une application de console. Nous vous recommandons de consulter le didacticiel [Utiliser Notification Hubs pour envoyer des notifications Push aux utilisateurs] comme prochaine étape. Il vous expliquera comment envoyer des notifications à partir d’un serveur principal ASP.NET en utilisant des balises pour cibler des utilisateurs spécifiques.
+Dans cet exemple simple, vous avez envoyé notifications diffusion tooall vos appareils Windows à l’aide du portail de hello ou une application console. Nous vous recommandons de hello [utiliser Notification Hubs toopush notifications toousers] didacticiel en tant qu’étape suivante de hello. Il va vous montrer comment les notifications toosend à partir d’un serveur principal ASP.NET à l’aide de balises tootarget des utilisateurs spécifiques.
 
-Pour segmenter vos utilisateurs par groupes d'intérêt, consultez la page [Utilisation des Notification Hubs pour diffuser les dernières nouvelles]. 
+Si vous souhaitez toosegment vos utilisateurs en groupes d’intérêt, consultez [toosend utiliser Notification Hubs actualités]. 
 
-Pour obtenir des informations générales sur Notification Hubs, consultez la section [Recommandations relatives à Notification Hubs](notification-hubs-push-notification-overview.md).
+toolearn plus d’informations sur les concentrateurs de Notification, consultez [des conseils de concentrateurs de Notification](notification-hubs-push-notification-overview.md).
 
 <!-- Images. -->
 [13]: ./media/notification-hubs-windows-store-dotnet-get-started/notification-hub-create-console-app.png
@@ -211,9 +211,9 @@ Pour obtenir des informations générales sur Notification Hubs, consultez la se
 
 <!-- URLs. -->
 
-[Utiliser Notification Hubs pour envoyer des notifications Push aux utilisateurs]: notification-hubs-aspnet-backend-windows-dotnet-wns-notification.md
-[Utilisation des Notification Hubs pour diffuser les dernières nouvelles]: notification-hubs-windows-notification-dotnet-push-xplat-segmented-wns.md
+[utiliser Notification Hubs toopush notifications toousers]: notification-hubs-aspnet-backend-windows-dotnet-wns-notification.md
+[toosend utiliser Notification Hubs actualités]: notification-hubs-windows-notification-dotnet-push-xplat-segmented-wns.md
 
-[Catalogue de modèles de toast]: http://msdn.microsoft.com/library/windows/apps/hh761494.aspx
-[Catalogue de modèles de vignette]: http://msdn.microsoft.com/library/windows/apps/hh761491.aspx
-[Vue d’ensemble des badges]: http://msdn.microsoft.com/library/windows/apps/hh779719.aspx
+[catalogue de toast]: http://msdn.microsoft.com/library/windows/apps/hh761494.aspx
+[vignette catalogue]: http://msdn.microsoft.com/library/windows/apps/hh761491.aspx
+[vue d’ensemble de badge]: http://msdn.microsoft.com/library/windows/apps/hh779719.aspx

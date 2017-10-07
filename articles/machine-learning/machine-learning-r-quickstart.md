@@ -1,6 +1,6 @@
 ---
-title: "Didacticiel de démarrage rapide sur le langage R pour Machine Learning | Microsoft Docs"
-description: "Utilisez ce didacticiel sur la programmation R pour prendre en main rapidement l'utilisation du langage R avec Azure Machine Learning Studio afin de créer une solution de prévision."
+title: "didacticiel aaaQuickstart langage R pour l’apprentissage | Documents Microsoft"
+description: "Utiliser ce didacticiel tooget démarré rapidement à l’aide d’un langage de hello R avec Azure Machine Learning Studio toocreate une solution de prévision de programmation de R."
 keywords: "démarrage rapide,langage r,langage de programmation r,didacticiel de programmation en r"
 services: machine-learning
 documentationcenter: 
@@ -15,92 +15,92 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/06/2017
 ms.author: garye
-ms.openlocfilehash: 598f5ce445e520b6cdc347c80f7f3dcbc9c2c9e5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9995f8728f4d7bf9a5c15412015e4cf769cdac96
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="quickstart-tutorial-for-the-r-programming-language-for-azure-machine-learning"></a>Didacticiel de démarrage rapide pour le langage de programmation R pour Azure Machine Learning
+# <a name="quickstart-tutorial-for-hello-r-programming-language-for-azure-machine-learning"></a>Didacticiel de démarrage rapide pour le langage de programmation hello R pour Azure Machine Learning
 
 <!-- Stephen F Elston, Ph.D. -->
 
 ## <a name="introduction"></a>Introduction
-Ce didacticiel de démarrage rapide vous aide à vous lancer rapidement dans l'extension d'Azure Machine Learning à l'aide du langage de programmation R. Suivez ce didacticiel sur la programmation R pour créer, tester et exécuter du code R dans Azure Machine Learning. Au cours de ce didacticiel de démarrage rapide, vous allez créer une solution de prévision complète à l'aide du langage R dans Azure Machine Learning.  
+Ce didacticiel de démarrage rapide vous permet de commencer rapidement l’extension Azure Machine Learning à l’aide du langage de programmation hello R. Suivez ce didacticiel toocreate de programmation de R, tester et exécuter le code R dans Azure Machine Learning. Lorsque vous travaillez dans le didacticiel, vous allez créer une solution complète de prévision à l’aide du langage de hello R dans Azure Machine Learning.  
 
-Si Microsoft Azure Machine Learning intègre divers modules d’apprentissage automatique et de manipulation de données très efficaces, le puissant langage R a été décrit comme la lingua franca de l'analyse. Fort heureusement, l’analyse et la manipulation de données dans Azure Machine Learning peuvent être étendues grâce au langage R, qui conjugue à la fois la grande facilité de déploiement d’Azure Machine Learning avec la souplesse et la capacité d’analyse approfondie du langage R.
+Si Microsoft Azure Machine Learning intègre divers modules d’apprentissage automatique et de manipulation de données très efficaces, puissant langage R de Hello a été décrite comme hello langue véhiculaire d’analytique. Heureusement, la manipulation des données et d’analytique dans Azure Machine Learning peut être étendue à l’aide de R. Cette combinaison offre l’évolutivité de hello et faciliter le déploiement d’Azure Machine Learning avec une grande souplesse hello et analytique approfondie de R.
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-### <a name="forecasting-and-the-dataset"></a>Prévision et jeu de données
-La prévision est une méthode analytique largement répandue et très utile. Elle peut servir à établir des prévisions de ventes d'articles saisonniers, à déterminer les niveaux de stock optimaux ou encore à établir des prévisions sur des variables macroéconomiques. La prévision s'appuie généralement sur des modèles chronologiques.
+### <a name="forecasting-and-hello-dataset"></a>Jeu de données de prévision et hello
+La prévision est une méthode analytique largement répandue et très utile. Plage de prédire les ventes saisonnières d’éléments de, déterminer les niveaux de stock optimaux, les variables macroéconomiques toopredicting d’utilisations courantes. La prévision s'appuie généralement sur des modèles chronologiques.
 
-Les données chronologiques sont des données dont les valeurs ont un index chronologique. L'index chronologique peut être régulier, c'est-à-dire tous les mois ou toutes les minutes, ou irrégulier. Un modèle chronologique repose sur des données chronologiques. Le langage de programmation R offre une infrastructure souple et des analyses étendues pour les données de série chronologique.
+Données de série chronologique sont données dans laquelle les valeurs hello ont un index de temps. index de temps Hello peut être normal, par exemple, tous les mois ou chaque minute, ou irréguliers. Un modèle chronologique repose sur des données chronologiques. langage de programmation Hello R contient un cadre souple et l’analytique très bien pour les données de série chronologique.
 
-Dans ce guide de démarrage rapide, nous allons utiliser les données de production et de tarification des produits laitiers en Californie. Ces données comportent des informations mensuelles sur la production de plusieurs produits laitiers, ainsi que le prix de la matière grasse du lait, produit de base de référence.
+Dans ce guide de démarrage rapide, nous allons utiliser les données de production et de tarification des produits laitiers en Californie. Ces données incluent tous les mois d’informations sur la production hello de plusieurs produits laitiers et prix hello des matières grasses, un produit d’évaluation.
 
-Les données utilisées dans cet article et les scripts R peuvent être [téléchargés ici][download]. À l'origine, ces données ont été synthétisées à partir des informations disponibles sur le site de l'Université du Wisconsin à l'adresse http://future.aae.wisc.edu/tab/production.html.
+Hello les données utilisées dans cet article, ainsi que des scripts R, peuvent être [téléchargé ici][download]. Ces données a été initialement synthétisées à partir des informations disponibles à partir de hello Université de Wisconsin à http://future.aae.wisc.edu/tab/production.html.
 
 ### <a name="organization"></a>Organisation
-À travers plusieurs étapes successives, vous allez apprendrez à créer, tester et exécuter du code R d’analyse et de manipulation de données dans l’environnement Azure Machine Learning.  
+Nous traiterons à travers plusieurs étapes comme vous apprendre comment toocreate, tester et exécuter du code de manipulation R analytique et les données dans un environnement d’Azure Machine Learning hello.  
 
-* Dans un premier temps, nous explorerons les bases de l’utilisation du langage R dans l’environnement Azure Machine Learning Studio.
-* Après quoi, nous examinerons différents aspects de l’E/S de données, du code R et des graphiques dans l’environnement Azure Machine Learning.
-* Nous œuvrerons ensuite à l'élaboration de la première partie de notre solution de prévision en créant du code destiné à nettoyer et transformer les données.
-* Après avoir préparé nos données, nous procéderons à l’analyse des corrélations entre plusieurs variables figurant dans notre jeu de données.
+* Tout d’abord, nous allons examiner les bases de hello de l’utilisation de la langue de hello R dans l’environnement d’Azure Machine Learning Studio hello.
+* Puis nous avançons toodiscussing divers aspects d’e/s de données, de code R et de graphiques dans l’environnement d’Azure Machine Learning hello.
+* Nous allons ensuite construire hello première partie de notre solution prévision en créant le code de nettoyage des données et la transformation.
+* Avec nos données préparées, nous allons effectuer une analyse de corrélations hello entre plusieurs variables hello dans notre jeu de données.
 * Enfin, nous créerons un modèle de prévision chronologique saisonnier pour la production de lait.
 
 ## <a id="mlstudio"></a>Interaction avec le langage R dans Machine Learning Studio
-Cette section vous fait découvrir certains concepts de base de l'interaction avec le langage de programmation R dans l'environnement Machine Learning Studio. Le langage R offre un outil efficace pour créer des modules d’analyse et de manipulation de données personnalisés au sein de l’environnement Azure Machine Learning.
+Cette section présente les notions de base de l’interaction avec le langage de programmation hello R dans un environnement de Machine Learning Studio hello. langue de Hello R fournit un outil puissant toocreate personnalisé analytique et les données manipulation modules au sein de l’environnement d’Azure Machine Learning hello.
 
-Nous utiliserons RStudio pour développer, tester et déboguer du code R à petite échelle. Ce code sera ensuite coupé et collé dans un module d’exécution de script R (ou [Execute R script][execute-r-script]) dans Studio Machine Learning, prêt à être exécuté.  
+Je vais utiliser RStudio toodevelop, tester et déboguer du code R à petite échelle. Ce code est puis couper et coller dans un [Execute R Script] [ execute-r-script] module toorun prêt de Machine Learning Studio.  
 
-### <a name="the-execute-r-script-module"></a>Module d’exécution de script R
-Dans Machine Learning Studio, les scripts R sont exécutés dans le module [d’exécution de script R][execute-r-script]. Un exemple du module [d’exécution de script R][execute-r-script] dans Machine Learning Studio est illustré dans la figure 1.
+### <a name="hello-execute-r-script-module"></a>module Execute R Script de Hello
+Au sein de la Machine Learning Studio, les scripts R sont exécutés au sein de hello [Execute R Script] [ execute-r-script] module. Un exemple de hello [Execute R Script] [ execute-r-script] module dans Machine Learning Studio est indiqué dans la Figure 1.
 
- ![Langage de programmation R : module Execute R Script sélectionné dans Machine Learning Studio][1]
+ ![Langage de programmation de R : module Execute R Script hello dans Machine Learning Studio][1]
 
-*Figure 1 : environnement Machine Learning Studio avec le module d’exécution de script R sélectionné.*
+*Figure 1. environnement de Machine Learning Studio Hello montrant le module Execute R Script de hello sélectionné.*
 
-Dans la figure 1, examinons les principaux éléments de l’environnement Machine Learning Studio permettant de travailler avec le module [d’exécution de script R][execute-r-script].
+Référence tooFigure 1, examinons certains des éléments clés de hello d’environnement de Machine Learning Studio hello pour travailler avec hello [Execute R Script] [ execute-r-script] module.
 
-* Les modules utilisés dans l'expérimentation se trouvent dans le volet central.
-* La partie supérieure du volet droit contient une fenêtre permettant d'afficher et de modifier les scripts R.  
-* La partie inférieure du volet droit présente certaines propriétés du module [d’exécution de script R][execute-r-script]. Vous pouvez afficher les journaux d'erreurs et de sortie en cliquant aux endroits appropriés de ce volet.
+* modules Hello dans expérience de hello sont affichés dans le volet central de hello.
+* Hello partie supérieure droite hello contient une fenêtre tooview et modifier vos scripts R.  
+* partie inférieure de Hello du volet de droite montre certaines propriétés de hello [Execute R Script][execute-r-script]. Vous pouvez afficher les journaux d’erreur et de sortie de hello en cliquant sur l’endroit approprié de hello de ce volet.
 
-Bien entendu, nous reviendrons plus en détail sur le module [d’exécution de script R][execute-r-script] au fil du présent document.
+Nous, bien entendu, aborderons hello [Execute R Script] [ execute-r-script] plus en détail dans le reste de hello de ce document.
 
-Lorsqu'il s'agit d'utiliser des fonctions R complexes, je vous recommande de modifier, tester et déboguer dans RStudio. Comme pour tout projet de développement logiciel, développez votre code graduellement et testez-le dans un petit cas de test simple. Ensuite, coupez vos fonctions et collez-les dans la fenêtre de script R du module [d’exécution de script R][execute-r-script]. Cette approche vous permet d’exploiter l’environnement de développement intégré (IDE) de RStudio et la puissance d’Azure Machine Learning.  
+Lorsqu'il s'agit d'utiliser des fonctions R complexes, je vous recommande de modifier, tester et déboguer dans RStudio. Comme pour tout projet de développement logiciel, développez votre code graduellement et testez-le dans un petit cas de test simple. Coupez et collez vos fonctions dans la fenêtre de script hello R Hello [Execute R Script] [ execute-r-script] module. Cette approche permet de vous tooharness hello RStudio, environnement de développement intégré (IDE) et hello puissance d’Azure Machine Learning.  
 
 #### <a name="execute-r-code"></a>Exécution du code R
-Pour exécuter du code R dans le module [d’exécution de script R][execute-r-script], il suffit d’exécuter l’expérimentation en cliquant sur le bouton **Run** (Exécuter). Une fois l’exécution terminée, une coche apparaît sur l’icône du module [d’exécution de script R][execute-r-script].
+Tout code hello R [Execute R Script] [ execute-r-script] module s’exécute lorsque vous exécutez hello expérience en cliquant sur hello **exécuter** bouton. Une fois l’exécution terminée, une coche s’affiche sur hello [Execute R Script] [ execute-r-script] icône.
 
 #### <a name="defensive-r-coding-for-azure-machine-learning"></a>Codage R défensif pour Azure Machine Learning
-Si vous développez du code R pour, par exemple, un service Web à l’aide d’Azure Machine Learning, vous devez absolument prévoir la façon dont votre code traitera une entrée de données inattendue et les exceptions. Dans un souci de clarté, j'ai évité de surcharger les exemples présentés dans ce document de code relevant de la vérification et de la gestion des exceptions. Cependant, je vous montrerai par la suite plusieurs exemples de fonctions qui font appel à la fonctionnalité de gestion des exceptions du langage R.  
+Si vous développez du code R pour, par exemple, un service Web à l’aide d’Azure Machine Learning, vous devez absolument prévoir la façon dont votre code traitera une entrée de données inattendue et les exceptions. toomaintain plus de clarté, je n'ai pas inclus une grande partie de façon hello de la vérification ou la gestion des exceptions dans la plupart des exemples de code hello indiqués. Cependant, je vous montrerai par la suite plusieurs exemples de fonctions qui font appel à la fonctionnalité de gestion des exceptions du langage R.  
 
-Si vous avez besoin d’un exposé plus complet sur la gestion des exceptions R, je vous recommande de lire les sections appropriées du livre de Hadley Wickham cité en référence dans l’ [Annexe B – Informations supplémentaires](#appendixb).
+Si vous avez besoin d’un traitement plus complète de gestion des exceptions de R, je vous conseillons de lire sections appropriées hello livre hello Wickham répertorié dans [annexe B : obtenir des informations supplémentaires](#appendixb).
 
 #### <a name="debug-and-test-r-in-machine-learning-studio"></a>Débogage et test du langage R dans Machine Learning Studio
-Encore une fois, je vous recommande de tester et de déboguer votre code R à petite échelle dans RStudio. Cependant, dans certains cas, vous devrez analyser les problèmes de code R dans le module [d’exécution de script R][execute-r-script] lui-même. De plus, vous aurez tout intérêt à vérifier les résultats dans Machine Learning Studio.
+tooreiterate, je vous recommande de tester et de déboguer votre code R à petite échelle dans RStudio. Toutefois, il existe des cas où vous devez tootrack les problèmes de code R Bonjour [Execute R Script] [ execute-r-script] lui-même. En outre, il est conseillé toocheck vos résultats dans Machine Learning Studio.
 
-La sortie résultant de l’exécution de votre code R sur la plateforme Azure Machine Learning se trouve principalement dans le fichier output.log. Vous pourrez trouver des informations complémentaires dans le fichier error.log.  
+Sortie de l’exécution de hello de votre code R et sur la plateforme Azure Machine Learning de hello se trouve principalement dans le fichier sortie.log. Vous pourrez trouver des informations complémentaires dans le fichier error.log.  
 
-Si une erreur se produit dans Machine Learning Studio pendant l’exécution de votre code R, vous devez dans un premier temps examiner le fichier error.log. Ce fichier peut contenir des messages d’erreur utiles susceptibles de vous aider à cerner l’erreur et à la corriger. Pour afficher le fichier error.log, cliquez sur **View error log** (Afficher le journal d’erreurs) dans le **volet de propriétés** du module [d’exécution de script R][execute-r-script] contenant l’erreur.
+Si une erreur se produit dans Machine Learning Studio lors de l’exécution de votre code R, votre premier plan d’action doit être toolook à error.log. Ce fichier peut contenir toohelp de messages d’erreur utiles comprendre et de corriger votre erreur. tooview error.log, cliquez sur **afficher le journal d’erreur** sur hello **volet Propriétés** pour hello [Execute R Script] [ execute-r-script] contenant hello erreur.
 
-Par exemple, j’ai exécuté le code R ci-dessous, avec une variable y non définie, dans un module [d’exécution de script R][execute-r-script] :
+Par exemple, j’ai exécuté hello suit le code R, avec une variable non définie y dans une [Execute R Script] [ execute-r-script] module :
 
     x <- 1.0
     z <- x + y
 
-L'exécution de ce code échoue, ce qui se traduit par une condition d'erreur. En cliquant sur **Afficher le journal des erreurs** dans le **volet des propriétés**, nous obtenons l’affichage présenté à la figure 2.
+Ce code échoue tooexecute, ce qui entraîne une condition d’erreur. En cliquant sur **afficher le journal d’erreur** sur hello **volet Propriétés** produit hello affichage indiqué dans la Figure 2.
 
   ![fenêtre contextuelle de message d’erreur][2]
 
 *Figure 2 : fenêtre contextuelle de message d’erreur.*
 
-Il apparaît ici nécessaire de regarder dans le fichier output.log pour consulter le message d’erreur R. Il convient pour cela de cliquer sur le module [d’exécution de script R][execute-r-script] et sur l’élément **View output.log** (Afficher output.log) dans le **volet de propriétés** à droite. Dans la nouvelle fenêtre de navigateur qui s’ouvre, voici les informations qui s’affichent :
+Il semble que nous devons toolook dans le message d’erreur de fichier sortie.log toosee hello R. Cliquez sur hello [Execute R Script] [ execute-r-script] , puis cliquez sur hello **afficher le fichier sortie.log** élément sur hello **volet Propriétés** toohello droite. Une nouvelle fenêtre de navigateur s’ouvre, et je voir hello.
 
-    [Critical]     Error: Error 0063: The following error occurred during evaluation of R script:
+    [Critical]     Error: Error 0063: hello following error occurred during evaluation of R script:
     ---------- Start of error message from R ----------
     object 'y' not found
 
@@ -108,139 +108,139 @@ Il apparaît ici nécessaire de regarder dans le fichier output.log pour consult
     object 'y' not found
     ----------- End of error message from R -----------
 
-Ce message d'erreur ne réserve aucune surprise et identifie clairement le problème.
+Ce message d’erreur ne contient aucuns surprises et identifie clairement le problème de hello.
 
-Pour inspecter la valeur d’un objet dans le code R, vous pouvez imprimer les valeurs dans le fichier output.log. Les règles pour examiner les valeurs d'objets sont, pour l'essentiel, identiques à celles d'une session R interactive. Par exemple, si vous tapez un nom de variable sur une ligne, la valeur de l'objet s'imprime dans le fichier output.log.  
+valeur de hello tooinspect de n’importe quel objet dans R, vous pouvez imprimer le fichier fichier sortie.log toohello de ces valeurs. règles Hello pour examiner l’objet les valeurs sont essentiellement même hello comme dans une session interactive de R. Par exemple, si vous tapez un nom de variable sur une ligne, valeur hello d’objet de hello sera imprimé toohello fichier sortie.log fichier.  
 
 #### <a name="packages-in-machine-learning-studio"></a>Packages dans Azure Machine Learning Studio
-Azure Machine Learning est fourni avec plus de 350 packages de langage R préinstallés. Vous pouvez utiliser le code ci-dessous dans le module [d’exécution de script R][execute-r-script] pour extraire la liste des packages préinstallés.
+Azure Machine Learning est fourni avec plus de 350 packages de langage R préinstallés. Vous pouvez utiliser hello suivant code Bonjour [Execute R Script] [ execute-r-script] module tooretrieve une liste de hello préinstallé packages.
 
     data.set <- data.frame(installed.packages())
     maml.mapOutputPort("data.set")
 
-Si, pour l’heure, vous ne comprenez pas la dernière ligne de ce code, poursuivez la lecture de ce document. Vous trouverez, dans le reste du présent document, un exposé complet sur l’utilisation du langage R dans l’environnement Azure Machine Learning.
+Si vous ne comprenez pas hello dernière ligne de ce code au moment de hello, lisez la suite. Dans le reste de hello de ce document, nous aborderons largement à l’aide de R dans l’environnement d’Azure Machine Learning hello.
 
-### <a name="introduction-to-rstudio"></a>Présentation de RStudio
-RStudio est un environnement de développement intégré (IDE) pour R couramment utilisé. C’est l’outil que j’utiliserai pour modifier, tester et déboguer une partie du code R utilisé dans ce guide de démarrage rapide. Une fois le code R testé et prêt, il suffit de le couper dans l’éditeur RStudio et de le coller dans un module [d’exécution de script R][execute-r-script] de Machine Learning Studio.  
+### <a name="introduction-toorstudio"></a>Introduction tooRStudio
+RStudio est un IDE largement utilisée pour R. Je vais utiliser RStudio pour modification, de test et de débogage de code hello R utilisés dans ce guide de démarrage rapide. Une fois que le code R est testé et prêt, vous simplement couper et coller à partir de l’éditeur RStudio hello dans une Machine Learning Studio [Execute R Script] [ execute-r-script] module.  
 
-Si vous n'avez pas encore installé le langage de programmation R sur votre ordinateur de bureau, je vous conseille de le faire dès maintenant. Des versions open source du langage R sont disponibles en téléchargement gratuit dans la section CRAN (Comprehensive R Archive Network) du site [http://www.r-project.org/](http://www.r-project.org/). Il existe des versions Windows, Mac OS et Linux/UNIX. Choisissez un site miroir voisin et suivez les instructions de téléchargement. Par ailleurs, le section CRAN contient de nombreux packages d'analyse et de manipulation de données fort utiles.
+Si vous n’avez pas de langage de programmation hello R installé sur votre ordinateur de bureau, je vous recommande de le que faire maintenant. Téléchargements gratuits de langage R open source sont disponibles à hello réseau de Archive complète R (CRAN) à [http://www.r-project.org/](http://www.r-project.org/). Il existe des versions Windows, Mac OS et Linux/UNIX. Choisissez un miroir à proximité et suivez les instructions de téléchargement hello. Par ailleurs, le section CRAN contient de nombreux packages d'analyse et de manipulation de données fort utiles.
 
-Si vous débutez avec RStudio, téléchargez et installez la version pour ordinateur de bureau. Les versions Windows, Mac OS et Linux/UNIX de RStudio sont disponibles en téléchargement à l’adresse http://www.rstudio.com/products/RStudio/. Suivez les instructions qui vous sont fournies pour installer RStudio sur votre ordinateur de bureau.  
+Si vous êtes tooRStudio nouveau, vous téléchargez et installez la version de bureau hello. Vous pouvez trouver hello que rstudio télécharge pour Windows, Mac OS et Linux/UNIX à http://www.rstudio.com/products/RStudio/. Suivez les instructions hello tooinstall RStudio sur votre ordinateur de bureau.  
 
-Un didacticiel de présentation de RStudio est disponible à l’adresse https://support.rstudio.com/hc/sections/200107586-Using-RStudio.
+Un tooRStudio introduction au didacticiel est disponible à l’adresse https://support.rstudio.com/hc/sections/200107586-Using-RStudio.
 
 Vous trouverez des informations complémentaires sur l’utilisation de RStudio dans [l’Annexe A][appendixa].  
 
-## <a id="scriptmodule"></a>Obtention de données dans et hors du module d'exécution de script R
-Dans cette section, nous allons voir comment obtenir des données dans et hors du module [d’exécution de script R][execute-r-script]. Nous examinerons les façons de gérer les différents types de données lus dans et hors du module [d’exécution de script R][execute-r-script].
+## <a id="scriptmodule"></a>Obtenir des données vers et depuis le module Execute R Script de hello
+Dans cette section, nous aborderons comment d’obtenir des données dans et hors hello [Execute R Script] [ execute-r-script] module. Nous allons examiner comment toohandle différents types de données lues dans et hors hello [Execute R Script] [ execute-r-script] module.
 
-Le code complet de cette section se trouve dans le fichier zip téléchargé précédemment.
+code complet de Hello pour cette section est dans un fichier zip de hello téléchargé précédemment.
 
 ### <a name="load-and-check-data-in-machine-learning-studio"></a>Chargement et vérification des données dans Machine Learning Studio
-#### <a id="loading"></a>Chargement du jeu de données
-Nous allons commencer par charger le fichier **csdairydata.csv** dans Azure Machine Learning Studio.
+#### <a id="loading"></a>Jeu de données charge hello
+Nous allons commencer en chargeant hello **csdairydata.csv** fichier dans Azure Machine Learning Studio.
 
 * Démarrez votre environnement Azure Machine Learning Studio.
-* Cliquez sur **+ NEW** en bas à gauche de votre écran, puis sélectionnez **Jeu de données**.
-* Sélectionnez **From Local File** (Depuis un fichier local), puis **Browse** (Parcourir) pour sélectionner le fichier.
-* Veillez à sélectionner **Generic CSV file with header (.csv)** (Fichier CSV générique avec en-tête) comme type de jeu de données.
-* Cliquez sur la coche.
-* Une fois le jeu de données téléchargé, vous devez voir le nouveau jeu de données en cliquant sur l’onglet **Datasets** (Jeux de données).  
+* Cliquez sur **+ nouveau** à hello bas à gauche de votre écran, puis sélectionnez **Dataset**.
+* Sélectionnez **à partir d’un fichier Local**, puis **Parcourir** fichier hello de tooselect.
+* Vérifiez que vous avez sélectionné **fichier CSV générique avec l’en-tête (.csv)** en tant que type hello pour hello le jeu de données.
+* Cliquez sur case à cocher hello.
+* Après hello dataset a été téléchargé, vous devez voir hello le nouveau jeu de données en cliquant sur hello **Datasets** onglet.  
 
 #### <a name="create-an-experiment"></a>Création d'une expérience
-Maintenant que Machine Learning Studio contient des données, nous devons créer une expérimentation pour faire l’analyse.  
+Maintenant que nous avons des données dans Machine Learning Studio, nous devons toocreate une analyse de hello toodo expérience.  
 
-* Cliquez sur **+ NEW** en bas à gauche, sélectionnez **Experiment** (Expérimentation), puis **Blank Experiment** (Expérimentation à blanc).
-* Vous pouvez nommer votre expérimentation en sélectionnant et en modifiant le titre **Experiment created on...** (Expérimentation créée sur) en haut de la page. Vous pouvez par exemple le modifier en **CA Dairy Analysis**.
-* Sur la gauche de la page d’expérimentation, développez **Saved Datasets** (Jeux de données enregistrés), puis **My Datasets** (Mes jeux de données). Vous devez voir le fichier **cadairydata.csv** que vous avez téléchargé précédemment.
-* Glissez-déplacez le **jeu de données csdairydata.csv** vers l’expérimentation.
-* Dans la zone **Search experiment items** (Rechercher dans les éléments de l’expérimentation) en haut du volet gauche, tapez [Execute R Script][execute-r-script] (Exécution de script R). Le module s'affiche alors dans la liste de recherche.
-* Glissez-déplacez le module [d’exécution de script R][execute-r-script] vers votre palette.  
-* Reliez la sortie du **jeu de données csdairydata.csv** à la première entrée (**Jeu de données 1**) du module [d’exécution de script R][execute-r-script] en partant de la gauche.
-* **N’oubliez pas de cliquer sur « Save » (Enregistrer) !**  
+* Cliquez sur **+ nouveau** à hello coin inférieur gauche et sélectionnez **expérience**, puis **expérience vide**.
+* Vous pouvez nommer votre expérience en sélectionnant et en modification, hello **expérience créé sur...**  titre en hello haut hello. Par exemple, la modification trop**autorité de certification laiterie analyse**.
+* Sur la gauche hello de page d’expérience hello, développez **jeux de données enregistrés**, puis **mes Datasets**. Vous devez voir hello **cadairydata.csv** que vous avez téléchargé précédemment.
+* Glisser- déposer hello **csdairydata.csv dataset** sur l’expérience de hello.
+* Bonjour **recherche expérimenter éléments** zone en haut de hello du volet gauche hello, type [Execute R Script][execute-r-script]. Module de hello s’affiche dans la liste de recherche hello.
+* Glisser- déposer hello [Execute R Script] [ execute-r-script] module sur votre palette.  
+* Connectez la sortie hello Hello **csdairydata.csv dataset** entrée à l’extrême gauche de toohello (**Dataset1**) de hello [Execute R Script][execute-r-script].
+* **N’oubliez pas tooclick sur « Enregistrer ».**  
 
 À ce stade, votre expérimentation doit être similaire à la figure 3.
 
-![l’expérimentation CA Dairy Analysis avec le jeu de données et le module d’exécution de script R][3]
+![Hello autorité de certification laiterie analyse faire des essais avec le jeu de données et le module Execute R Script][3]
 
-*Figure 3 : l’expérimentation CA Dairy Analysis avec le jeu de données et le module d’exécution de script R.*
+*La figure 3. Hello autorité de certification laiterie analyse faire des essais avec le jeu de données et le module Execute R Script.*
 
-#### <a name="check-on-the-data"></a>Vérification des données
-Examinons les données que nous avons chargées dans l'expérimentation. Dans l’expérimentation, cliquez sur la sortie du **jeu de données cadairydata.csv**, puis sélectionnez **Visualize** (Visualiser). Vous obtenez un résultat analogue à la figure 4.  
+#### <a name="check-on-hello-data"></a>Vérifier les données de salutation
+Nous allons avoir un aspect des données hello que nous avons chargé dans notre expérience. Dans l’expérience hello, cliquez sur sortie hello Hello **cadairydata.csv dataset** et sélectionnez **visualiser**. Vous obtenez un résultat analogue à la figure 4.  
 
-![aperçu du jeu de données cadairydata.csv][4]
+![Résumé du jeu de données hello cadairydata.csv][4]
 
-*Figure 4 : aperçu du jeu de données cadairydata.csv.*
+*Figure 4 : Résumé du jeu de données cadairydata.csv hello.*
 
-Cette vue contient de nombreuses informations utiles. Les premières lignes de ce jeu de données apparaissent également. Si nous sélectionnons une colonne, la section des statistiques affiche plus d'informations sur cette colonne. Par exemple, la ligne Feature Type indique les types de données qui sont affectés à la colonne par Azure Machine Learning Studio. Il est judicieux d'effectuer un contrôle rapide de ce type avant de se lancer dans un travail sérieux.
+Cette vue contient de nombreuses informations utiles. Nous pouvons voir hello première plusieurs lignes du jeu de données. Si vous sélectionnez une colonne, hello section des statistiques s’affiche plus d’informations sur la colonne de hello. Par exemple, ligne du Type de fonctionnalité hello montre quels types de données Azure Machine Learning Studio affecté toohello colonne. Un coup de œil rapide à ceci est un contrôle de validité correct avant de commencer à n’importe quel travail grave toodo.
 
 ### <a name="first-r-script"></a>Premier script R
-Créons un premier script R simple pour l’expérimenter dans Azure Machine Learning Studio. J’ai créé et testé le script suivant dans RStudio :  
+Nous allons créer une simple tooexperiment de script R première avec dans Azure Machine Learning Studio. J’ai créé et testé hello script dans RStudio suivant.  
 
-    ## Only one of the following two lines should be used
-    ## If running in Machine Learning Studio, use the first line with maml.mapInputPort()
-    ## If in RStudio, use the second line with read.csv()
+    ## Only one of hello following two lines should be used
+    ## If running in Machine Learning Studio, use hello first line with maml.mapInputPort()
+    ## If in RStudio, use hello second line with read.csv()
     cadairydata <- maml.mapInputPort(1)
     # cadairydata  <- read.csv("cadairydata.csv", header = TRUE, stringsAsFactors = FALSE)
     str(cadairydata)
     pairs(~ Cotagecheese.Prod + Icecream.Prod + Milk.Prod + N.CA.Fat.Price, data = cadairydata)
-    ## The following line should be executed only when running in
+    ## hello following line should be executed only when running in
     ## Azure Machine Learning Studio
     maml.mapOutputPort('cadairydata')
 
-Je dois maintenant transférer ce script dans Azure Machine Learning Studio. Je pourrais simplement effectuer un couper-coller. Mais je vais ici transférer le script R via un fichier zip.
+J’ai besoin maintenant tootransfer cette tooAzure script Machine Learning Studio. Je pourrais simplement effectuer un couper-coller. Mais je vais ici transférer le script R via un fichier zip.
 
-### <a name="data-input-to-the-execute-r-script-module"></a>Entrée de données dans le module d'exécution de script R
-Penchons-nous sur les entrées du module [d’exécution de script R][execute-r-script]. En l’occurrence, nous allons examiner les données du secteur laitier californien dans le module [d’exécution de script R][execute-r-script].  
+### <a name="data-input-toohello-execute-r-script-module"></a>Module de données d’entrée toohello Execute R Script
+Nous allons avez hello entrées toohello [Execute R Script] [ execute-r-script] module. Dans cet exemple, nous lira des données laitières de Californie hello en hello [Execute R Script] [ execute-r-script] module.  
 
-Il existe trois types d’entrée possibles pour le module [d’exécution de script R][execute-r-script]. Selon votre application, vous pouvez utiliser une ou toutes ces entrées. Il est aussi tout à fait envisageable d’utiliser un script R qui ne prenne aucune entrée.  
+Il existe trois entrées possibles pour hello [Execute R Script] [ execute-r-script] module. Selon votre application, vous pouvez utiliser une ou toutes ces entrées. Il est également parfaitement raisonnable toouse R qui n’accepte aucune entrée du tout.  
 
-Passons en revue chacune de ces entrées, de gauche à droite. Pour afficher le nom d’une entrée, il suffit de placer le curseur sur l’entrée en question et de lire l’infobulle.  
+Examinons chacune de ces entrées, allant de gauche tooright. Vous pouvez voir les noms de hello de chacune des entrées de hello en positionnant le curseur à l’entrée de hello et en lisant les info-bulle hello.  
 
 #### <a name="script-bundle"></a>Script groupé
-L’entrée de script groupé permet de transmettre le contenu d’un fichier zip au module [d’exécution de script R][execute-r-script]. Vous pouvez utiliser l’une des commandes suivantes pour lire le contenu du fichier zip dans votre code R :
+Hello entrée de regroupement de Script vous permet de contenu de hello toopass d’un fichier zip dans [Execute R Script] [ execute-r-script] module. Vous pouvez utiliser une des hello suivant le contenu de hello tooread commandes du fichier zip de hello dans votre code R.
 
     source("src/yourfile.R") # Reads a zipped R script
     load("src/yourData.rdata") # Reads a zipped R data file
 
 > [!NOTE]
-> Azure Machine Learning traite les fichiers contenus dans le zip comme s’ils se trouvaient dans le répertoire src/. Il est donc nécessaire de faire précéder les noms des fichiers du nom de ce répertoire. Par exemple, si le fichier zip contient les fichiers `yourfile.R` et `yourData.rdata` à sa racine, vous devez les traiter en tant que `src/yourfile.R` et `src/yourData.rdata` quand vous utilisez `source` et `load`.
+> Azure Machine Learning traite les fichiers zip de hello comme s’ils étaient hello src / directory, vous devez tooprefix les noms de votre fichier avec ce nom de répertoire. Par exemple, si hello zip contient des fichiers de hello `yourfile.R` et `yourData.rdata` dans racine hello zip de hello, vous devez vous occuper en tant que `src/yourfile.R` et `src/yourData.rdata` lors de l’utilisation `source` et `load`.
 > 
 > 
 
-Nous avons déjà abordé la question du chargement des jeux de données dans la section [Chargement du jeu de données](#loading). Dès que vous avez créé et testé le script R présenté dans la section précédente, procédez comme suit :
+Nous avons déjà mentionné lors du chargement de jeux de données dans [chargement hello dataset](#loading). Une fois que vous avez créé et testé le script hello R indiqué dans la section précédente de hello, procédez comme hello suivant :
 
-1. Enregistrez le script R dans un fichier .R. J'appelle mon fichier de script « simpleplot.R ». Voici le contenu.
+1. Enregistrer le script hello R dans un. Fichier de R. J'appelle mon fichier de script « simpleplot.R ». Voici le contenu de hello.
    
-        ## Only one of the following two lines should be used
-        ## If running in Machine Learning Studio, use the first line with maml.mapInputPort()
-        ## If in RStudio, use the second line with read.csv()
+        ## Only one of hello following two lines should be used
+        ## If running in Machine Learning Studio, use hello first line with maml.mapInputPort()
+        ## If in RStudio, use hello second line with read.csv()
         cadairydata <- maml.mapInputPort(1)
         # cadairydata  <- read.csv("cadairydata.csv", header = TRUE, stringsAsFactors = FALSE)
         str(cadairydata)
         pairs(~ Cotagecheese.Prod + Icecream.Prod + Milk.Prod + N.CA.Fat.Price, data = cadairydata)
-        ## The following line should be executed only when running in
+        ## hello following line should be executed only when running in
         ## Azure Machine Learning Studio
         maml.mapOutputPort('cadairydata')
-2. Créez un fichier zip et copiez votre script dans ce fichier. Dans Windows, vous pouvez cliquer avec le bouton droit sur le fichier, sélectionner **Envoyer vers**, puis **Dossier compressé**. Vous créez ainsi un fichier zip contenant le fichier « simpleplot.R ».
-3. Ajoutez ce dernier aux **jeux de données** dans Machine Learning Studio, en spécifiant le type **zip**. Le fichier zip doit dès lors figurer dans vos jeux de données.
-4. Glissez-déplacez le fichier zip des **jeux de données** vers le **canevas ML Studio**.
-5. Reliez la sortie de l’icône des **données zip** à l’entrée de **script groupé** du module [d’exécution de script R][execute-r-script].
-6. Tapez la fonction `source()` avec le nom de votre fichier zip dans la fenêtre de code du module [d’exécution de script R][execute-r-script]. Dans mon cas, j’ai saisi `source("src/simpleplot.R")`.  
+2. Créez un fichier zip et copiez votre script dans ce fichier. Sous Windows, vous pouvez avec le bouton droit sur le fichier de hello et sélectionnez **envoyer à**, puis **dossier compressé**. Cela crée un nouveau fichier zip contenant hello « simpleplot. Fichier de R ».
+3. Ajouter votre fichier toohello **datasets** dans Machine Learning Studio, la spécification de type hello en tant que **zip**. Vous devez maintenant voir le fichier zip de hello dans vos jeux de données.
+4. Fichier zip de hello du glisser -déplacer à partir de **datasets** sur hello **canevas de ML Studio**.
+5. Connectez la sortie hello Hello **zip données** icône toohello **regroupement de Script** d’entrée de hello [Execute R Script] [ execute-r-script] module.
+6. Hello de type `source()` fonction avec le nom du fichier zip dans la fenêtre de code hello pour hello [Execute R Script] [ execute-r-script] module. Dans mon cas, j’ai saisi `source("src/simpleplot.R")`.  
 7. Pensez à cliquer sur **Save**(Enregistrer).
 
-Une fois ces étapes effectuées, le module [d’exécution de script R][execute-r-script] exécute le script R du fichier zip quand l’expérimentation est exécutée. À ce stade, votre expérimentation doit être similaire à la figure 5.
+Une fois ces étapes terminées, hello [Execute R Script] [ execute-r-script] module entraîne l’exécution hello R script dans le fichier zip de hello lors de l’expérience de hello est exécuté. À ce stade, votre expérimentation doit être similaire à la figure 5.
 
 ![expérimentation utilisant le script R compressé][6]
 
 *Figure 5 : expérimentation utilisant le script R compressé.*
 
 #### <a name="dataset1"></a>Jeu de données 1
-Vous pouvez transmettre une table de données rectangulaire à votre code R utilisant l’entrée Jeu de données 1. Dans notre script simple, la fonction `maml.mapInputPort(1)` lit les données du port 1. Ces données sont ensuite affectées à un nom de variable de tableau de données (« dataframe ») dans votre code. Dans notre script simple, la première ligne de code mène à bien l'affectation.
+Vous pouvez passer un tableau rectangulaire de code tooyour R de données à l’aide d’entrée de hello Dataset1. Dans notre hello script simple `maml.mapInputPort(1)` fonction lit les données de hello dans le port 1. Ces données sont ensuite assignées tooa trame de données nom de la variable dans votre code. Dans notre script simple hello première ligne de code effectue des assignations de hello.
 
     cadairydata <- maml.mapInputPort(1)
 
-Exécutez votre expérimentation en cliquant sur le bouton **Run** (Exécuter). À la fin de l’exécution, cliquez sur le module [d’exécution de script R][execute-r-script], puis sur **View output log** (Afficher le journal de sortie) dans le volet de propriétés. Une nouvelle page doit s’ouvrir dans votre navigateur en affichant le contenu du fichier output.log. Si vous faites défiler l’écran vers le bas, vous devez voir quelque chose de similaire à ceci :
+Exécuter votre expérience en cliquant sur hello **exécuter** bouton. Lors de l’exécution de hello est terminée, cliquez sur hello [Execute R Script] [ execute-r-script] module, puis cliquez sur **afficher le journal de sortie** sur le volet de propriétés hello. Une nouvelle page doit apparaître dans votre navigateur, affichage du contenu du fichier du fichier sortie.log hello hello. Lorsque vous faites défiler vers le bas, vous devez voir quelque chose comme hello suivant.
 
     [ModuleOutput] InputDataStructure
     [ModuleOutput]
@@ -251,7 +251,7 @@ Exécutez votre expérimentation en cliquant sur le bouton **Run** (Exécuter). 
     [ModuleOutput]  "ColumnTypes":System.Int32,3,System.Double,5,System.String,1
     [ModuleOutput] }
 
-Plus bas dans la page, vous trouverez des informations détaillées sur les colonnes, qui ressemblent à ce qui suit.
+Plus loin vers le bas hello page est plus d’informations sur les colonnes hello, qui ressemble à hello suivant.
 
     [ModuleOutput] [1] "Loading variable port1..."
     [ModuleOutput]
@@ -275,85 +275,85 @@ Plus bas dans la page, vous trouverez des informations détaillées sur les colo
     [ModuleOutput]
     [ModuleOutput]  $ N.CA.Fat.Price   : num  0.98 0.892 0.892 0.897 0.897 ...
 
-Pour l'essentiel, ces résultats sont conformes aux attentes, avec 228 observations et 9 colonnes dans le tableau de données. Nous pouvons voir les noms de colonnes, le type de données R et un exemple de chaque colonne.
+Ces résultats sont principalement comme prévu, des 228 observations 9 colonnes et dans hello trame de données. Nous pouvons voir les noms de colonne hello, type de données hello R et un exemple de chaque colonne.
 
 > [!NOTE]
-> Pratique, cette même sortie imprimée est disponible depuis la sortie de l’appareil R du module [d’exécution de script R][execute-r-script]. Nous évoquerons les sorties du module [d’exécution de script R][execute-r-script] dans la section suivante.  
+> Cette sortie imprimée même est facilement disponible à partir de hello sortie appareil R Hello [Execute R Script] [ execute-r-script] module. Nous allons décrire les sorties hello Hello [Execute R Script] [ execute-r-script] module dans la section suivante de hello.  
 > 
 > 
 
 #### <a name="dataset2"></a>Jeu de données 2
-Le comportement de l'entrée Jeu de données 2 est identique à Jeu de données 1. Avec cette entrée, vous pouvez transmettre une deuxième table de données rectangulaire à votre code R. Pour transmettre ces données, la fonction `maml.mapInputPort(2)`est utilisée avec l’argument 2.  
+Bonjour le comportement de l’entrée de hello Dataset2 est toothat identiques de Dataset1. Avec cette entrée, vous pouvez transmettre une deuxième table de données rectangulaire à votre code R. Hello fonction `maml.mapInputPort(2)`, avec l’argument hello 2, est utilisé toopass ces données.  
 
 ### <a name="execute-r-script-outputs"></a>Sorties du module d'exécution de script R
 #### <a name="output-a-dataframe"></a>Sortie d'un tableau de données
-Vous pouvez sortir le contenu d’un tableau de données R sous forme de table rectangulaire via le port du Jeu de données 1 de résultat en utilisant la fonction `maml.mapOutputPort()` . Dans notre script R simple, cette opération est exécutée par la ligne suivante :
+Vous pouvez sortie contenu hello d’une trame de données R comme un tableau rectangulaire via le port de hello Dataset1 de résultat à l’aide de hello `maml.mapOutputPort()` (fonction). Dans notre script R simple cette opération est effectuée par hello ligne suivante.
 
     maml.mapOutputPort('cadairydata')
 
-Après avoir exécuté l’expérimentation, cliquez sur le port de sortie du Jeu de données 1 de résultat, puis sur **Visualize**(Visualiser). Vous obtenez un résultat analogue à la figure 6.
+Après l’expérience hello en cours d’exécution, cliquez sur hello port de sortie des résultats Dataset1, puis cliquez sur **visualiser**. Vous obtenez un résultat analogue à la figure 6.
 
-![visualisation de la sortie des données du secteur laitier californien][7]
+![visualisation de Hello de sortie hello Hello données laitières de Californie][7]
 
-*Figure 6 : visualisation de la sortie des données du secteur laitier californien.*
+*La figure 6. visualisation de Hello de sortie hello Hello données laitières de Californie.*
 
-Cette sortie est identique à l'entrée, exactement comme nous l'attendions.  
+Cette sortie ressemble toohello identiques entrée, exactement comme nous attendions.  
 
 ### <a name="r-device-output"></a>Sortie de l’appareil R
-La sortie de l’appareil du module [d’exécution de script R][execute-r-script] contient des messages et une sortie graphique. La sortie et les messages d'erreur standard de R sont envoyés au port de sortie de l’appareil R.  
+Hello sorties sur des périphériques de hello [Execute R Script] [ execute-r-script] module contient la sortie des messages et des graphiques. Les deux messages de sortie et l’erreur standard standards à partir de R sont envoyés toohello port de sortie de périphérique R.  
 
-Pour afficher la sortie de l’appareil R, cliquez sur le port, puis sur **Visualize**(Visualiser). La sortie et l'erreur standard du script R sont présentées dans la figure 7.
+tooview hello R périphérique de sortie, cliquez sur le port hello puis sur **visualiser**. Nous voyons sortie standard de hello et d’erreur standard à partir du script hello R dans la Figure 7.
 
-![sortie et erreur standard du port de l’appareil R][8]
+![Sortie standard et l’erreur standard de hello port du périphérique R][8]
 
-*Figure 7 : sortie et erreur standard du port de l’appareil R.*
+*Figure 7 : Sortie standard et l’erreur standard de hello port du périphérique R.*
 
-En faisant défiler l'écran vers le bas, nous voyons la sortie graphique de notre script R, qui est présentée dans la figure 8.  
+Le défilement vers le bas nous, consultez la sortie de graphiques hello à partir de notre script R dans la Figure 8.  
 
-![sortie graphique du port de l’appareil R][9]
+![Sortie graphique à partir de hello port du périphérique R][9]
 
-*Figure 8 : sortie graphique du port d’appareil R.*  
+*Figure 8 : Graphique de sortie de hello port du périphérique R.*  
 
 ## <a id="filtering"></a>Filtrage et transformation des données
-Dans cette section, nous allons effectuer certaines opérations de filtrage et de transformation de données de base sur les données du secteur laitier californien. À la fin de cette section, les données seront dans un format idoine pour générer un modèle d'analyse.  
+Dans cette section, nous allons effectuer certains le filtrage de données de base et les opérations de transformation sur hello données laitières de Californie. En fin de hello de cette section, nous auront des données dans un format approprié pour la création d’un modèle d’analyse.  
 
-Plus particulièrement, nous allons effectuer dans cette section plusieurs tâches courantes de nettoyage et de transformation de données ; de transformation de types, de filtrage sur des tableaux de données, d’ajout de nouvelles colonnes calculées et de transformation de valeurs. Cette expérience vous aidera à faire face aux diverses cas de figure rencontrés dans les problèmes réels.
+Plus particulièrement, nous allons effectuer dans cette section plusieurs tâches courantes de nettoyage et de transformation de données ; de transformation de types, de filtrage sur des tableaux de données, d’ajout de nouvelles colonnes calculées et de transformation de valeurs. Cet arrière-plan doit vous permettre de traiter de nombreuses variations a rencontré des problèmes réels hello.
 
-Le code R complet de cette section est disponible dans le fichier zip que vous avez téléchargé précédemment.
+Hello R code complet pour cette section est disponible dans le fichier zip de hello téléchargé précédemment.
 
 ### <a name="type-transformations"></a>Transformations de types
-Maintenant que nous pouvons lire les données du secteur laitier californien dans le code R du module [d’exécution de script R][execute-r-script], nous devons nous assurer que les données contenues dans les colonnes ont un type et un format appropriés.  
+Maintenant que nous pouvons lire les données de laitier de Californie hello dans code hello R hello [Execute R Script] [ execute-r-script] module, nous devons tooensure que les données hello dans les colonnes hello ont hello destiné type et le format.  
 
-Le langage R est dynamiquement typé, ce qui signifie que les types de données sont convertis de force d'un type vers un autre, selon les besoins. Le langage R compte les types de données atomiques suivants : numérique, logique et caractère. Le type facteur est utilisé pour stocker de manière compacte les données relatives aux catégories. Vous trouverez des informations bien plus complètes sur les types de données dans les références fournies dans l’ [Annexe B - Informations supplémentaires](#appendixb).
+R est un langage typé dynamiquement, ce qui signifie que les types de données sont convertis à partir d’un tooanother en fonction des besoins. types de données atomiques Hello dans R incluent numérique, logique et de caractères. type de facteur de Hello est toocompactly utilisés stocker des données catégorielles. Vous trouverez plus d’informations sur les types de données dans les références de hello dans [annexe B - informations supplémentaires](#appendixb).
 
-Quand des données tabulaires sont lues dans du code R à partir d'une source externe, il est toujours judicieux de vérifier les types résultants dans les colonnes. Vous pouvez espérer obtenir une colonne de type caractère, mais dans de nombreux cas, elle se présentera sous forme de facteur ou inversement. Dans d’autres cas, une colonne qui selon vous devrait être de type numérique pourra être représentée par des données caractères, par exemple, « 1,23 » au lieu du nombre à virgule flottante 1,23.  
+Lors de la lecture des données tabulaires dans R à partir d’une source externe, il est toujours une bonne idée toocheck hello résultant des types dans les colonnes hello. Vous pouvez espérer obtenir une colonne de type caractère, mais dans de nombreux cas, elle se présentera sous forme de facteur ou inversement. Dans d’autres cas, une colonne qui selon vous devrait être de type numérique pourra être représentée par des données caractères, par exemple, « 1,23 » au lieu du nombre à virgule flottante 1,23.  
 
-Heureusement, il est facile de convertir un type dans un autre, dans la mesure où le mappage est possible. Par exemple, vous ne pouvez pas convertir « Nevada » en valeur numérique, mais vous pouvez la convertir en facteur (variable catégorique). De même, vous pouvez convertir la valeur numérique 1 en caractère « 1 » ou en facteur.  
+Heureusement, il est facile tooconvert un tooanother de type, tant que mappage est possible. Par exemple, vous ne peut pas convertir 'Nevada' en valeur numérique, mais vous pouvez le convertir tooa facteur (variable catégorielle). De même, vous pouvez convertir la valeur numérique 1 en caractère « 1 » ou en facteur.  
 
-La syntaxe utilisée pour ces conversions est simple : `as.datatype()`. Ces fonctions de conversion de type sont les suivantes :
+syntaxe Hello pour une de ces conversions est simple : `as.datatype()`. Ces fonctions de conversion de type hello suivants.
 
 * `as.numeric()`
 * `as.character()`
 * `as.logical()`
 * `as.factor()`
 
-En examinant les types des données affichées dans les colonnes que nous avons entrées à la section précédente, nous constatons que toutes les colonnes sont de type numérique, à l’exception de la colonne intitulée « Month », qui est de type caractère. Convertissons-la en facteur et vérifions les résultats.  
+Examinez les types de données hello des colonnes de hello nous entrées dans la section précédente de hello : toutes les colonnes sont de type numérique, à l’exception de hello intitulé « Mois », qui est de caractère de type. Nous allons convertir ce facteur tooa et hello résultats des tests.  
 
-J’ai supprimé la ligne qui a créé la matrice de nuage de points et ajouté une ligne convertissant la colonne « Month » en facteur. Dans mon expérimentation, je vais simplement couper et coller le code R dans la fenêtre de code du module [d’exécution de script R][execute-r-script]. Une autre possibilité aurait été de mettre à jour le fichier zip et de le télécharger dans Azure Machine Learning Studio, mais cette opération nécessite plusieurs étapes.  
+J’ai supprimé ligne hello créé hello scatterplot matrice et ajouté une ligne conversion facteur de hello 'Month' colonne tooa. Dans mon expérience je sera simplement couper et coller le code de hello R dans la fenêtre de code hello Hello [Execute R Script] [ execute-r-script] Module. Vous pouvez également mettre à jour le fichier zip de hello et téléchargez-le tooAzure Machine Learning Studio, mais cette opération prend plusieurs étapes.  
 
-    ## Only one of the following two lines should be used
-    ## If running in Machine Learning Studio, use the first line with maml.mapInputPort()
-    ## If in RStudio, use the second line with read.csv()
+    ## Only one of hello following two lines should be used
+    ## If running in Machine Learning Studio, use hello first line with maml.mapInputPort()
+    ## If in RStudio, use hello second line with read.csv()
     cadairydata <- maml.mapInputPort(1)
     # cadairydata  <- read.csv("cadairydata.csv", header = TRUE, stringsAsFactors = FALSE)
-    ## Ensure the coding is consistent and convert column to a factor
+    ## Ensure hello coding is consistent and convert column tooa factor
     cadairydata$Month <- as.factor(cadairydata$Month)
-    str(cadairydata) # Check the result
-    ## The following line should be executed only when running in
+    str(cadairydata) # Check hello result
+    ## hello following line should be executed only when running in
     ## Azure Machine Learning Studio
     maml.mapOutputPort('cadairydata')
 
-Exécutons ce code et examinons le journal de sortie pour le script R. Les données pertinentes du journal sont affichées dans la figure 9.
+Nous allons exécuter ce code et examinez le journal de sortie hello pour hello script R. Hello les données pertinentes à partir du journal de hello sont indiquées dans la Figure 9.
 
     [ModuleOutput] [1] "Loading variable port1..."
     [ModuleOutput] 
@@ -379,18 +379,18 @@ Exécutons ce code et examinons le journal de sortie pour le script R. Les donn�
     [ModuleOutput] 
     [ModuleOutput] [1] "Saving variable  cadairydata  ..."
     [ModuleOutput] 
-    [ModuleOutput] [1] "Saving the following item(s):  .maml.oport1"
+    [ModuleOutput] [1] "Saving hello following item(s):  .maml.oport1"
 
-*Figure 9 : aperçu du tableau de données avec une variable facteur.*
+*Figure 9 : Résumé de la trame de données hello avec une variable de facteur.*
 
-Le type de la colonne Month doit à présent indiquer «**Factor w/ 14 levels**» (Facteur à 14 niveaux). C'est un problème, car une année ne compte que 12 mois. Vous pouvez aussi vérifier que le type qui apparaît dans la **visualisation** du port du jeu de données de résultat est **Categorical** (Catégorique).
+type Hello pour le mois doit maintenant indiquer «**facteur avec 14 niveaux**'. Il s’agit d’un problème étant donné que les 12 mois dans l’année de hello. Vous pouvez également vérifier toosee qui hello type dans **visualiser** de jeu de données de résultat de hello port est '**catégorie**'.
 
-Le problème, c'est que la colonne « Month » n'a pas été codée de façon systématique. Le nom du mois sera dans certains cas affiché en toutes lettres (avril) et dans d’autres, il sera abrégé (avr.). Ce problème peut être résolu en limitant la chaîne à 3 caractères. La ligne de code se présente désormais comme suit :
+problème de Hello est que hello 'Month', colonne n’a pas été codée systématiquement. Le nom du mois sera dans certains cas affiché en toutes lettres (avril) et dans d’autres, il sera abrégé (avr.). Nous pouvons résoudre ce problème par la suppression des caractères de too3 chaîne hello. ligne Hello de code ressemble maintenant à hello suivantes :
 
-    ## Ensure the coding is consistent and convert column to a factor
+    ## Ensure hello coding is consistent and convert column tooa factor
     cadairydata$Month <- as.factor(substr(cadairydata$Month, 1, 3))
 
-Relancez l'expérimentation et affichez le journal de sortie. Les résultats attendus sont présentés dans la figure 10.  
+Réexécutez l’expérience de hello et afficher le journal de sortie hello. Hello attendu les résultats s’affichent dans la Figure 10.  
 
     [ModuleOutput] [1] "Loading variable port1..."
     [ModuleOutput] 
@@ -416,28 +416,28 @@ Relancez l'expérimentation et affichez le journal de sortie. Les résultats att
     [ModuleOutput] 
     [ModuleOutput] [1] "Saving variable  cadairydata  ..."
     [ModuleOutput] 
-    [ModuleOutput] [1] "Saving the following item(s):  .maml.oport1"
+    [ModuleOutput] [1] "Saving hello following item(s):  .maml.oport1"
 
-*Figure 10 : aperçu du tableau de données avec le nombre correct de niveaux de facteur.*
+*Figure 10 : Résumé de la trame de données hello avec le nombre correct de niveaux de facteur.*
 
-Notre variable facteur possède désormais les 12 niveaux souhaités.
+Notre variable facteur a maintenant hello souhaité 12 niveaux.
 
 ### <a name="basic-data-frame-filtering"></a>Filtrage de base des tableaux de données
-Les tableaux de données R prennent en charge des fonctionnalités de filtrage efficaces. Il est possible de créer des sous-ensembles de jeux de données en appliquant des filtres logiques aux lignes ou colonnes. Dans de nombreux cas, des critères de filtre complexes sont nécessaires. Parmi les références indiquées dans l’ [annexe B - informations supplémentaires](#appendixb) figurent des exemples détaillés de filtrage de tableaux de données.  
+Les tableaux de données R prennent en charge des fonctionnalités de filtrage efficaces. Il est possible de créer des sous-ensembles de jeux de données en appliquant des filtres logiques aux lignes ou colonnes. Dans de nombreux cas, des critères de filtre complexes sont nécessaires. références de Hello dans [annexe B - informations supplémentaires](#appendixb) contiennent des exemples détaillés de filtrage des trames de données.  
 
-Notre jeu de données a besoin d'être filtré. En effet, si l’on examine les colonnes du tableau de données cadiarydata, on constate qu’il y a deux colonnes inutiles. La première colonne contient seulement un numéro de ligne, ce qui n'est pas très utile. La deuxième colonne, Year.Month, contient des informations redondantes. Nous pouvons facilement exclure ces colonnes à l’aide du code R suivant.
+Notre jeu de données a besoin d'être filtré. Si vous examinez les colonnes hello dans hello cadairydata trame de données, vous verrez deux colonnes inutiles. première colonne de Hello conserve uniquement un numéro de ligne, ce qui n’est pas très utile. deuxième colonne Hello, Year.Month, contienne des informations redondantes. Nous pouvons facilement exclure ces colonnes à l’aide de hello suivant le code R.
 
 > [!NOTE]
-> À partir de maintenant, dans cette section, je ne vous montrerai que le code supplémentaire que j’ajoute dans le module [d’exécution de script R][execute-r-script]. Chaque nouvelle ligne sera ajoutée **avant** la fonction `str()`. J’utilise cette fonction pour vérifier les résultats dans Azure Machine Learning Studio.
+> À partir de maintenant sur dans cette section, vous montrera simplement vous hello code supplémentaire ajoute Bonjour [Execute R Script] [ execute-r-script] module. Je vais ajouter chaque nouvelle ligne **avant** hello `str()` (fonction). Utiliser cette fonction tooverify mes résultats dans Azure Machine Learning Studio.
 > 
 > 
 
-J’ajoute la ligne suivante à mon code R dans le module [d’exécution de script R][execute-r-script].
+Ajouter hello après ligne de code toomy R Bonjour [Execute R Script] [ execute-r-script] module.
 
     # Remove two columns we do not need
     cadairydata <- cadairydata[, c(-1, -2)]
 
-Exécutez ce code dans votre expérimentation et vérifiez le résultat dans le journal de sortie. Ces résultats sont présentés dans la figure 11.
+Exécutez ce code dans votre expérience et vérifier les résultats hello à partir du journal de sortie hello. Ces résultats sont présentés dans la figure 11.
 
     [ModuleOutput] [1] "Loading variable port1..."
     [ModuleOutput] 
@@ -459,32 +459,32 @@ Exécutez ce code dans votre expérimentation et vérifiez le résultat dans le 
     [ModuleOutput] 
     [ModuleOutput] [1] "Saving variable  cadairydata  ..."
     [ModuleOutput] 
-    [ModuleOutput] [1] "Saving the following item(s):  .maml.oport1"
+    [ModuleOutput] [1] "Saving hello following item(s):  .maml.oport1"
 
-*Figure 11 : aperçu du tableau de données après la suppression des deux colonnes.*
+*Figure 11 : Résumé de la trame de données hello avec deux colonnes supprimées.*
 
-Bonne nouvelle ! Les résultats obtenus sont conformes aux attentes.
+Bonne nouvelle ! Nous obtenons les résultats hello attendu.
 
 ### <a name="add-a-new-column"></a>Ajout d'une nouvelle colonne
-Pour créer des modèles chronologiques, il va nous être utile de disposer d'une colonne contenant les mois depuis le début de la série chronologique. À cet effet, nous allons créer la colonne « Month.Count ».
+modèles de série chronologique toocreate, il sera toohave pratique, une colonne contenant hello mois depuis le démarrage de hello de MTS hello. À cet effet, nous allons créer la colonne « Month.Count ».
 
-Pour une meilleure organisation du code, nous allons créer notre première fonction simple : `num.month()`. Nous appliquerons ensuite cette fonction de façon à créer une colonne dans le tableau de données. Le nouveau code se présente comme suit :
+toohelp organiser le code hello nous allons créer notre première fonction simple, `num.month()`. Nous allons ensuite appliquer cette fonction de toocreate une nouvelle colonne dans la trame de données hello. nouveau code de Hello est comme suit.
 
-    ## Create a new column with the month count
-    ## Function to find the number of months from the first
-    ## month of the time series
+    ## Create a new column with hello month count
+    ## Function toofind hello number of months from hello first
+    ## month of hello time series
     num.month <- function(Year, Month) {
-      ## Find the starting year
+      ## Find hello starting year
       min.year  <- min(Year)
 
-      ## Compute the number of months from the start of the time series
+      ## Compute hello number of months from hello start of hello time series
       12 * (Year - min.year) + Month - 1
     }
 
-    ## Compute the new column for the dataframe
+    ## Compute hello new column for hello dataframe
     cadairydata$Month.Count <- num.month(cadairydata$Year, cadairydata$Month.Number)
 
-À présent, exécutez l'expérimentation mise à jour et utilisez le journal de sortie pour afficher les résultats. Ces résultats sont présentés dans la figure 12.
+Maintenant, exécutez l’expérience de mise à jour de hello et utiliser hello journal tooview hello un résultat. Ces résultats sont présentés dans la figure 12.
 
     [ModuleOutput] [1] "Loading variable port1..."
     [ModuleOutput] 
@@ -508,64 +508,64 @@ Pour une meilleure organisation du code, nous allons créer notre première fonc
     [ModuleOutput] 
     [ModuleOutput] [1] "Saving variable  cadairydata  ..."
     [ModuleOutput] 
-    [ModuleOutput] [1] "Saving the following item(s):  .maml.oport1"
+    [ModuleOutput] [1] "Saving hello following item(s):  .maml.oport1"
 
-*Figure 12 : aperçu du tableau de données avec la colonne supplémentaire.*
+*Figure 12 : Résumé de la trame de données hello avec une colonne supplémentaire de hello.*
 
-Tout semble fonctionner. Nous disposons de la nouvelle colonne et le tableau de données contient les valeurs attendues.
+Tout semble fonctionner. Nous avons hello nouvelle colonne avec les valeurs attendues hello dans notre trame de données.
 
 ### <a name="value-transformations"></a>Transformations de valeurs
-Dans cette section, nous allons effectuer quelques transformations simples sur les valeurs de certaines colonnes du tableau de données. Le langage R prend en charge les transformations de valeurs presque arbitraires. Parmi les références indiquées dans l’ [annexe B - informations supplémentaires](#appendixb) figurent des exemples détaillés.
+Dans cette section, nous allons effectuer certaines transformations simples sur les valeurs hello dans certaines colonnes hello de notre trame de données. langage de Hello R prend en charge les transformations de valeur presque arbitraire. références de Hello dans [annexe B : obtenir des informations supplémentaires](#appendixb) contiennent des exemples détaillés.
 
-Si on examine les valeurs contenues dans les aperçus du tableau de données, on note certaines incohérences. Par exemple, produit-on vraiment plus de crème glacée que de lait en Californie ? Bien sûr que non, au grand dam peut-être des amateurs de glaces. Les unités sont différentes. Le prix est exprimé en unités de livres américaines, le lait en unités de 1 M de livres américaines, la crème glacée en unités de 1 000 gallons américains et le fromage blanc en unités de 1 000 livres américaines. En supposant que le poids de la crème glacée est d’environ 6,5 livres par gallon, nous pouvons facilement effectuer la conversion en multipliant les valeurs pour qu’elles soient toutes exprimées dans les mêmes unités de 1 000 livres.
+Si vous examinez les valeurs hello dans des résumés de hello de notre trame de données que vous devez voir quelque chose impair ici. Par exemple, produit-on vraiment plus de crème glacée que de lait en Californie ? Non, bien entendu pas, comme cela n’est pas justifiée, sad comme cela peut être toosome nous amoureux de glace. unités de Hello sont différentes. les prix Hello sont nous exprimée en livres, lait est en unités de 1 million US livres, glace est en unités de 1 000 nous gallons et blanc cheese est exprimé en unités de 1 000 US kg. En supposant que glace pèse environ 6,5 livres par gallon, nous pouvons facilement hello tooconvert multiplication ces valeurs afin qu’ils soient dans des unités égales de 1 000 euros.
 
-Pour notre modèle de prévision, nous utilisons un modèle multiplicatif de façon à ajuster ces données en fonction des variations saisonnières et tendancielles. Une transformation logarithmique nous permet d'utiliser un modèle linéaire, ce qui simplifie ce processus. Nous pouvons appliquer la transformation logarithmique dans la fonction où le multiplicateur est appliqué.
+Pour notre modèle de prévision, nous utilisons un modèle multiplicatif de façon à ajuster ces données en fonction des variations saisonnières et tendancielles. Une transformation de journal permet de toouse un modèle linéaire, ce qui simplifie ce processus. Nous pouvons appliquer une transformation de journal hello dans hello même fonction où un multiplicateur de hello est appliqué.
 
-Dans le code suivant, je définis une nouvelle fonction, `log.transform()`, et l’applique aux lignes contenant les valeurs numériques. La fonction R `Map()` est utilisée pour appliquer la fonction `log.transform()` aux colonnes sélectionnées du tableau de données. Si `Map()` s’apparente à `apply()`, cette fonction accepte cependant plusieurs listes d’arguments. À noter qu’une liste de multiplicateurs fournit le deuxième argument à la fonction `log.transform()` . La fonction `na.omit()` est ici utilisée à des fins de nettoyage pour s’assurer qu’il n’y a pas de valeurs manquantes ou non définies dans le tableau de données.
+Bonjour suivant de code, définir une nouvelle fonction, `log.transform()`et l’appliquer toohello les lignes contenant des valeurs numériques hello. Hello R `Map()` fonction est utilisée tooapply hello `log.transform()` fonction toohello sélectionné des colonnes de la trame de données hello. `Map()`est semblable trop`apply()` mais permet plus d’une liste de la fonction de toohello d’arguments. Notez qu’une liste des multiplicateurs fournit hello deuxième argument toohello `log.transform()` (fonction). Hello `na.omit()` fonction est utilisée, un peu de nettoyage tooensure nous n’avons manquant ou des valeurs non définies dans hello trame de données.
 
     log.transform <- function(invec, multiplier = 1) {
-      ## Function for the transformation, which is the log
-      ## of the input value times a multiplier
+      ## Function for hello transformation, which is hello log
+      ## of hello input value times a multiplier
 
       warningmessages <- c("ERROR: Non-numeric argument encountered in function log.transform",
-                           "ERROR: Arguments to function log.transform must be greate than zero",
-                           "ERROR: Aggurment multiplier to funcition log.transform must be a scaler",
+                           "ERROR: Arguments toofunction log.transform must be greate than zero",
+                           "ERROR: Aggurment multiplier toofuncition log.transform must be a scaler",
                            "ERROR: Invalid time seies value encountered in function log.transform"
                            )
 
-      ## Check the input arguments
+      ## Check hello input arguments
       if(!is.numeric(invec) | !is.numeric(multiplier)) {warning(warningmessages[1]); return(NA)}  
       if(any(invec < 0.0) | any(multiplier < 0.0)) {warning(warningmessages[2]); return(NA)}
       if(length(multiplier) != 1) {{warning(warningmessages[3]); return(NA)}}
 
-      ## Wrap the multiplication in tryCatch
-      ## If there is an exception, print the warningmessage to
+      ## Wrap hello multiplication in tryCatch
+      ## If there is an exception, print hello warningmessage to
       ## standard error and return NA
       tryCatch(log(multiplier * invec),
                error = function(e){warning(warningmessages[4]); NA})
     }
 
 
-    ## Apply the transformation function to the 4 columns
-    ## of the dataframe with production data
+    ## Apply hello transformation function toohello 4 columns
+    ## of hello dataframe with production data
     multipliers  <- list(1.0, 6.5, 1000.0, 1000.0)
     cadairydata[, 4:7] <- Map(log.transform, cadairydata[, 4:7], multipliers)
 
     ## Get rid of any rows with NA values
     cadairydata <- na.omit(cadairydata)  
 
-Il se passe pas mal de choses dans la fonction `log.transform()` . La majeure partie de ce code recherche des problèmes potentiels au niveau des arguments ou gère les exceptions qui peuvent toujours survenir pendant les calculs. En fait, seules quelques lignes de ce code effectuent les calculs.
+Il existe un problème de bit Bonjour `log.transform()` (fonction). La majeure partie de ce code est la vérification des problèmes potentiels avec des arguments de hello ou traiter les exceptions qui peuvent toujours se produire au cours des calculs de hello. Uniquement quelques lignes de ce code réellement hello des calculs.
 
-La programmation défensive vise à éviter l’échec d’une seule fonction, ce qui empêcherait la poursuite du traitement. L’échec soudain d’une analyse au long cours peut s’avérer très contrariant pour les utilisateurs. Pour éviter cette situation, il convient de choisir des valeurs de retour par défaut qui limiteront les nuisances à un traitement en aval. Un message est également généré pour avertir les utilisateurs qu'un problème s'est produit.
+objectif de Hello de la programmation de défense hello est Échec de hello tooprevent d’une fonction unique qui empêche le traitement de continuer. L’échec soudain d’une analyse au long cours peut s’avérer très contrariant pour les utilisateurs. tooavoid cette situation, par défaut les valeurs de retour doivent être choisis limitera gravement toodownstream traitement. Un message est également aux utilisateurs de produits tooalert qui est passé quelque chose incorrect.
 
-Si vous n’êtes pas rompu à la programmation défensive en langage R, tout ce code peut vous paraître insurmontable. Je vous accompagnerai tout au long des étapes principales :
+Si vous n’êtes pas programmation toodefensive utilisés dans R, ce code peut sembler un peu trop importante. Je vous guidera à travers les étapes majeures hello :
 
-1. Un vecteur de quatre messages est défini. Ces messages servent à communiquer des informations sur certaines erreurs et exceptions qui peuvent se produire avec ce code.
-2. Dans chaque cas, la valeur NA est renvoyée. Il existe de nombreuses autres possibilités susceptibles de produire moins d’effets secondaires. Je pourrais renvoyer un vecteur de zéros ou le vecteur d'entrée d'origine, par exemple.
-3. Les arguments de la fonction font l'objet de vérifications. Dans chaque cas, si une erreur est détectée, une valeur par défaut est renvoyée et un message est généré par la fonction `warning()`. La fonction `warning()` est ici préférée à la fonction `stop()`, car celle-ci met fin à l’exécution, exactement ce que nous voulons éviter. À noter que j'ai écrit ce code dans un style procédural, car dans ce cas, une approche fonctionnelle paraissait complexe et obscure.
-4. Les calculs logarithmiques sont circonscrits à `tryCatch()` pour éviter que les exceptions n’entraînent un arrêt soudain du traitement. Sans `tryCatch()` , la plupart des erreurs déclenchées par les fonctions R engendrent un signal d’arrêt, qui est suivi d’un arrêt.
+1. Un vecteur de quatre messages est défini. Ces messages sont toocommunicate utilisé plus d’informations sur certaines des erreurs possibles de hello et des exceptions qui peuvent se produire avec ce code.
+2. Dans chaque cas, la valeur NA est renvoyée. Il existe de nombreuses autres possibilités susceptibles de produire moins d’effets secondaires. Je pourrais retourne un vecteur de zéros ou d’un vecteur d’entrée d’origine de hello, par exemple.
+3. Vérifications sont exécutées sur hello arguments toohello (fonction). Dans chaque cas, si une erreur est détectée, une valeur par défaut est retournée et un message est généré par hello `warning()` (fonction). J’utilise `warning()` plutôt que `stop()` comme hello ce dernier mettra fin à l’exécution, exactement ce que j’essaie de tooavoid. À noter que j'ai écrit ce code dans un style procédural, car dans ce cas, une approche fonctionnelle paraissait complexe et obscure.
+4. calculs de journal Hello sont encapsulées dans `tryCatch()` afin que les exceptions n’entraîne pas un arrêt brutal de tooprocessing. Sans `tryCatch()` , la plupart des erreurs déclenchées par les fonctions R engendrent un signal d’arrêt, qui est suivi d’un arrêt.
 
-Exécutez ce code R dans votre expérimentation et examinez la sortie imprimée dans le fichier output.log. Les valeurs transformées des quatre colonnes sont visibles apparaissent dans le journal, comme l’illustre la figure 13.
+Exécutez ce code R dans votre expérience et examiner hello imprimer la sortie dans le fichier du fichier sortie.log hello. Vous voyez maintenant les valeurs hello transformé de hello quatre colonnes hello ouvrir une session, comme indiqué dans la Figure 13.
 
     [ModuleOutput] [1] "Loading variable port1..."
     [ModuleOutput] 
@@ -589,38 +589,38 @@ Exécutez ce code R dans votre expérimentation et examinez la sortie imprimée 
     [ModuleOutput] 
     [ModuleOutput] [1] "Saving variable  cadairydata  ..."
     [ModuleOutput] 
-    [ModuleOutput] [1] "Saving the following item(s):  .maml.oport1"
+    [ModuleOutput] [1] "Saving hello following item(s):  .maml.oport1"
 
-*Figure 13 : aperçu des valeurs transformées dans le tableau de données.*
+*Figure 13 : Résumé de hello transformés les valeurs dans une trame de données hello.*
 
-Comme nous pouvons le constater, les valeurs ont été transformées. À présent, la production de lait dépasse nettement la production de tous les autres produits laitiers, ce qui nous rappelle que nous avons maintenant sous nos yeux une échelle logarithmique.
+Nous constatons que les valeurs hello ont été transformées. À présent, la production de lait dépasse nettement la production de tous les autres produits laitiers, ce qui nous rappelle que nous avons maintenant sous nos yeux une échelle logarithmique.
 
-À ce stade, nos données sont nettoyées et nous sommes prêts à procéder à une modélisation. Au vu de l’aperçu de visualisation de la sortie du jeu de données de résultat du module [d’exécution de script R][execute-r-script], vous pouvez constater que la colonne « Month » est de type « catégorique » et qu’elle contient 12 valeurs uniques, là encore comme prévu.
+À ce stade, nos données sont nettoyées et nous sommes prêts à procéder à une modélisation. Examinez la visualisation hello pour hello Dataset des résultats de sortie de notre [Execute R Script] [ execute-r-script] module, vous verrez hello 'Month' colonne est « Catégorie » avec des 12 valeurs uniques, à nouveau, tout comme nous le souhaitions .
 
 ## <a id="timeseries"></a>Objets de série chronologique et analyse des corrélations
-Dans cette section, nous allons explorer quelques objets de série chronologique R de base et analyser les corrélations entre certaines variables. Notre objectif est ici de sortir un tableau de données contenant les informations de corrélation par paire à plusieurs décalages.
+Dans cette section, nous Explorer quelques R temps série d’objets de base et analyser les corrélations hello entre des variables de hello. Notre objectif est toooutput une trame de données contenant hello par paire de corrélation des informations sur les retards de plusieurs.
 
-Le code complet de cette section se trouve dans le fichier zip que vous avez téléchargé précédemment.
+Hello R code complet pour cette section est dans un fichier zip de hello téléchargé précédemment.
 
 ### <a name="time-series-objects-in-r"></a>Objets de série chronologique en langage R
-Comme nous l'avons déjà vu, une série chronologique est une série de valeurs de données indexées par le temps. Les objets de série chronologique R servent à créer et gérer l'index chronologique. Il y a plusieurs avantages à utiliser des objets de série chronologique. Les objets de série chronologique vous affranchissent de nombreuses tâches de gestion qu’imposent les valeurs d’index chronologique qui sont encapsulées dans les objets. De plus, ils vous permettent d'utiliser les diverses méthodes associées aux séries chronologiques, comme le traçage, l'impression, la modélisation, etc.
+Comme nous l'avons déjà vu, une série chronologique est une série de valeurs de données indexées par le temps. Objets série au moment de R sont utilisé toocreate et gérer des index de temps hello. Il existe plusieurs avantages toousing temps série objets. Objets au moment de série libre à partir de hello nombreux détails de la gestion des valeurs d’index hello temps série qui sont encapsulées dans un objet de hello. En outre, les objets de série heure permettent hello de toouse vous nombreuses méthodes de série de temps pour le traçage, l’impression, de modélisation, etc..
 
-La classe de série chronologique POSIXct est couramment utilisée et relativement simple. Cette classe de série chronologique mesure le temps à partir du début de l'époque, soit le 1er janvier 1970. Nous utiliserons dans cet exemple des objets de série chronologique POSIXct. Parmi les autres classes d'objet de série chronologique R souvent utilisées, citons zoo et xts, qui concernent les séries chronologiques extensibles.
-<!-- Additional information on R time series objects is provided in the references in Section 5.7. [commenting because this section doesn't exist, even in the original] -->
+Hello classe série au moment de POSIXct est couramment utilisé et est relativement simple. Cette classe série au moment de mesure le temps de démarrer hello d’époque hello, le 1er janvier 1970. Nous utiliserons dans cet exemple des objets de série chronologique POSIXct. Parmi les autres classes d'objet de série chronologique R souvent utilisées, citons zoo et xts, qui concernent les séries chronologiques extensibles.
+<!-- Additional information on R time series objects is provided in hello references in Section 5.7. [commenting because this section doesn't exist, even in hello original] -->
 
 ### <a name="time-series-object-example"></a>Exemple d’objet de série chronologique
-Commençons notre exemple. Glissez-déplacez un **nouveau** module [d’exécution de script R][execute-r-script] dans votre expérimentation. Reliez le port de sortie du jeu de données 1 de résultat du module [d’exécution de script R][execute-r-script] existant au port d’entrée du jeu de données 1 du nouveau module [d’exécution de script R][execute-r-script].
+Commençons notre exemple. Glissez-déplacez un **nouveau** module [d’exécution de script R][execute-r-script] dans votre expérimentation. Connectez le port de sortie de hello Dataset1 du résultat de hello existant [Execute R Script] [ execute-r-script] module toohello Dataset1 d’entrée de port de hello nouvelle [Execute R Script] [ execute-r-script] module.
 
-Comme dans les premiers exemples, à mesure que nous avancerons dans l’exemple, je ne vous montrerai que les lignes de code R supplémentaires ajoutées à certains points de chaque étape.  
+Comme pour les exemples de première hello, que nous avons sa progression via l’exemple hello, à certains moments, je vais montrer uniquement hello incrémentielle lignes supplémentaires de code R à chaque étape.  
 
-#### <a name="reading-the-dataframe"></a>Lecture du tableau de données
-Pour commencer, lisons un tableau de données et vérifions que nous obtenons les résultats attendus. Le code suivant devrait le permettre :
+#### <a name="reading-hello-dataframe"></a>Lors de la lecture hello trame de données
+Dans un premier temps, nous allons lire dans une trame de données et assurez-vous que nous obtenons les résultats hello attendu. Hello suivant doit effectuer le travail de hello.
 
-    # Comment the following if using RStudio
+    # Comment hello following if using RStudio
     cadairydata <- maml.mapInputPort(1)
-    str(cadairydata) # Check the results
+    str(cadairydata) # Check hello results
 
-À présent, exécutez l'expérimentation. Le journal de la nouvelle forme d'exécution du script R devrait ressembler à la figure 14.
+Exécutez maintenant l’expérience de hello. journal Hello de forme Execute R Script hello doit ressembler à la Figure 14.
 
     [ModuleOutput] [1] "Loading variable port1..."
     [ModuleOutput] 
@@ -642,23 +642,23 @@ Pour commencer, lisons un tableau de données et vérifions que nous obtenons le
     [ModuleOutput] 
     [ModuleOutput]  $ Month.Count      : num  0 1 2 3 4 5 6 7 8 9 ...
 
-*Figure 14 : aperçu du tableau de données dans le module d’exécution de script R.*
+*Figure 14 : Résumé de la trame de données hello dans le module Execute R Script de hello.*
 
-Ces données présentent le type et le format prévus. Notez que la colonne « Month » est de type facteur et qu'elle affiche le nombre de niveaux attendu.
+Ces données sont de format et des types de hello attendu. Notez que hello 'Month' colonne est le facteur de type hello devrait nombre de niveaux.
 
 #### <a name="creating-a-time-series-object"></a>Création d’un objet de série chronologique
-Nous devons ajouter un objet de série chronologique au tableau de données. Remplacez le code actuel par le suivant, qui ajoute une nouvelle colonne de classe POSIXct.
+Nous devons tooadd une trame de données de temps série objet tooour. Remplacez le code d’en cours de hello avec suivants de hello, qui ajoute une nouvelle colonne de la classe POSIXct.
 
-    # Comment the following if using RStudio
+    # Comment hello following if using RStudio
     cadairydata <- maml.mapInputPort(1)
 
     ## Create a new column as a POSIXct object
     Sys.setenv(TZ = "PST8PDT")
     cadairydata$Time <- as.POSIXct(strptime(paste(as.character(cadairydata$Year), "-", as.character(cadairydata$Month.Number), "-01 00:00:00", sep = ""), "%Y-%m-%d %H:%M:%S"))
 
-    str(cadairydata) # Check the results
+    str(cadairydata) # Check hello results
 
-Maintenant, consultez le journal. Elle doit être similaire à la figure 15.
+À présent, vérifiez les journaux hello. Elle doit être similaire à la figure 15.
 
     [ModuleOutput] [1] "Loading variable port1..."
     [ModuleOutput] 
@@ -682,55 +682,55 @@ Maintenant, consultez le journal. Elle doit être similaire à la figure 15.
     [ModuleOutput] 
     [ModuleOutput]  $ Time             : POSIXct, format: "1995-01-01" "1995-02-01" ...
 
-*Figure 15 : aperçu du tableau de données avec un objet de série chronologique.*
+*Figure 15 : Résumé de la trame de données hello avec un objet de série de temps.*
 
-Comme le montre l'aperçu, la nouvelle colonne appartient en réalité à la classe POSIXct.
+À partir de hello résumé, nous pouvons voir que hello nouvelle colonne est en fait de la classe POSIXct.
 
-### <a name="exploring-and-transforming-the-data"></a>Exploration et transformation des données
-Examinons certaines variables de ce jeu de données. Une matrice de nuage de points offre un bon moyen d'obtenir un aperçu rapide. Je remplace la fonction `str()` du code R précédent par la ligne suivante :
+### <a name="exploring-and-transforming-hello-data"></a>Exploration et la transformation des données de hello
+Examinons quelques-unes des variables hello dans ce jeu de données. Une matrice scatterplot est un bon moyen de tooproduce un coup de œil rapide. Je suis en remplaçant hello `str()` fonction dans du code R précédente hello avec hello ligne suivante.
 
     pairs(~ Cotagecheese.Prod + Icecream.Prod + Milk.Prod + N.CA.Fat.Price, data = cadairydata, main = "Pairwise Scatterplots of dairy time series")
 
-Exécutez ce code et regardez ce qu'il se passe. Le graphique généré au niveau du port de l’appareil R doit être similaire à la figure 16.
+Exécutez ce code et regardez ce qu'il se passe. traçage Hello produit en hello port du périphérique R doit ressembler à la Figure 16.
 
 ![matrice de nuage de points des variables sélectionnées][17]
 
 *Figure 16 : matrice de nuage de points des variables sélectionnées.*
 
-Les relations entre ces variables sont structurées de manière inhabituelle. Peut-être est-ce lié aux tendances des données et au fait que nous n'avons pas standardisé les variables.
+Il est une structure odd-looking dans les relations hello entre ces variables. Cela se produit peut-être des tendances dans les données de salutation et fait hello que nous n’avons pas normalisés variables de hello.
 
 ### <a name="correlation-analysis"></a>Analyse des corrélations
-Pour procéder à l'analyse des corrélations, nous devons éliminer la tendance et standardiser les variables. Nous aurions pu nous contenter d’utiliser la fonction R `scale()` , qui centre et dimensionne les variables. D'autant que son exécution peut même s'avérer plus rapide. Or, mon intention est de vous montrer un exemple de programmation défensive en langage R.
+analyse de corrélation tooperform nous devons tooboth des tendances et normaliser les variables de hello. Nous avons simplement utiliser hello R `scale()` (fonction), les centres et ajuste les variables. D'autant que son exécution peut même s'avérer plus rapide. Toutefois, je veux tooshow vous un exemple de la programmation dans R.
 
-La fonction `ts.detrend()` présentée ci-dessous effectue ces deux opérations. Les deux lignes de code suivantes permettent d'éliminer la tendance des données et de standardiser les valeurs.
+Hello `ts.detrend()` fonction ci-dessous effectue ces deux opérations. Hello deux lignes de code suivantes de tendance déduplication des données de hello et puis normaliser les valeurs hello.
 
     ts.detrend <- function(ts, Time, min.length = 3){
-      ## Function to de-trend and standardize a time series
+      ## Function toode-trend and standardize a time series
 
       ## Define some messages if they are NULL  
-      messages <- c('ERROR: ts.detrend requires arguments ts and Time to have the same length',
-                    'ERROR: ts.detrend requires argument ts to be of type numeric',
+      messages <- c('ERROR: ts.detrend requires arguments ts and Time toohave hello same length',
+                    'ERROR: ts.detrend requires argument ts toobe of type numeric',
                     paste('WARNING: ts.detrend has encountered a time series with length less than', as.character(min.length)),
                     'ERROR: ts.detrend has encountered a Time argument not of class POSIXct',
                     'ERROR: Detrend regression has failed in ts.detrend',
                     'ERROR: Exception occurred in ts.detrend while standardizing time series in function ts.detrend'
       )
-      # Create a vector of zeros to return as a default in some cases
+      # Create a vector of zeros tooreturn as a default in some cases
       zerovec  <- rep(length(ts), 0.0)
 
-      # The input arguments are not of the same length, return ts and quit
+      # hello input arguments are not of hello same length, return ts and quit
       if(length(Time) != length(ts)) {warning(messages[1]); return(ts)}
 
-      # If the ts is not numeric, just return a zero vector and quit
+      # If hello ts is not numeric, just return a zero vector and quit
       if(!is.numeric(ts)) {warning(messages[2]); return(zerovec)}
 
-      # If the ts is too short, just return it and quit
+      # If hello ts is too short, just return it and quit
       if((ts.length <- length(ts)) < min.length) {warning(messages[3]); return(ts)}
 
-      ## Check that the Time variable is of class POSIXct
+      ## Check that hello Time variable is of class POSIXct
       if(class(cadairydata$Time)[[1]] != "POSIXct") {warning(messages[4]); return(ts)}
 
-      ## De-trend the time series by using a linear model
+      ## De-trend hello time series by using a linear model
       ts.frame  <- data.frame(ts = ts, Time = Time)
       tryCatch({ts <- ts - fitted(lm(ts ~ Time, data = ts.frame))},
                error = function(e){warning(messages[5]); zerovec})
@@ -741,45 +741,45 @@ La fonction `ts.detrend()` présentée ci-dessous effectue ces deux opérations.
 
       ts
     }  
-    ## Apply the detrend.ts function to the variables of interest
+    ## Apply hello detrend.ts function toohello variables of interest
     df.detrend <- data.frame(lapply(cadairydata[, 4:7], ts.detrend, cadairydata$Time))
 
-    ## Plot the results to look at the relationships
+    ## Plot hello results toolook at hello relationships
     pairs(~ Cotagecheese.Prod + Icecream.Prod + Milk.Prod + N.CA.Fat.Price, data = df.detrend, main = "Pairwise Scatterplots of detrended standardized time series")
 
-Il se passe pas mal de choses dans la fonction `ts.detrend()` . La majeure partie de ce code recherche des problèmes potentiels au niveau des arguments ou gère les exceptions qui peuvent toujours survenir pendant les calculs. En fait, seules quelques lignes de ce code effectuent les calculs.
+Il existe un problème de bit Bonjour `ts.detrend()` (fonction). La majeure partie de ce code est la vérification des problèmes potentiels avec des arguments de hello ou traiter les exceptions qui peuvent toujours se produire au cours des calculs de hello. Uniquement quelques lignes de ce code réellement hello des calculs.
 
-Nous avons déjà vu un exemple de programmation défensive dans la section [Transformations de valeurs](#valuetransformations). Les deux blocs de calcul sont circonscrits à `tryCatch()`. Pour certaines erreurs, il est judicieux de renvoyer le vecteur d'entrée d'origine. Dans d'autres cas, je renvoie un vecteur de zéros.  
+Nous avons déjà vu un exemple de programmation défensive dans la section [Transformations de valeurs](#valuetransformations). Les deux blocs de calcul sont circonscrits à `tryCatch()`. Pour certaines erreurs rend vecteur d’entrée d’origine tooreturn hello sens et dans d’autres cas, retourner un vecteur de zéros.  
 
-Notez que la régression linéaire utilisée pour éliminer la tendance est une régression chronologique. La variable explicative est un objet de série chronologique.  
+Notez que la régression linéaire hello utilisée pour annuler l’analyse de tendances est une régression de série de temps. variable de PRÉDICTEUR Hello est un objet de série de temps.  
 
-Une fois que la fonction `ts.detrend()` est définie, nous l’appliquons aux variables appropriées du tableau de données. Nous devons convertir de force la liste obtenue créée par `lapply()` en tableau de données à l’aide de `as.data.frame()`. Compte tenu des aspects défensifs de `ts.detrend()`, l’échec du traitement de l’une des variables n’empêchera pas le traitement correct des autres.  
+Une fois `ts.detrend()` est défini nous s’appliquent variables toohello d’intérêt dans notre trame de données. Nous devons forcer la liste résultante de hello créé par `lapply()` toodata de trame de données à l’aide de `as.data.frame()`. En raison des aspects défensives de `ts.detrend()`, tooprocess échec une des variables de hello n’empêchera pas corriger le traitement de hello d’autres.  
 
-La dernière ligne de code crée un nuage de points par paire. Les résultats du nuage de points obtenu après l’exécution du code R sont illustrés dans la figure 17.
+Hello dernière ligne de code crée un scatterplot par paire. Après l’exécution de code de hello R, les résultats de hello de hello scatterplot sont affichés dans la Figure 17.
 
 ![nuage de points par paire de la série chronologique après élimination de la tendance et standardisation][18]
 
 *Figure 17 : nuage de points par paire de la série chronologique après élimination de la tendance et standardisation.*
 
-Vous pouvez comparer ces résultats à ceux présentés à la figure 16. L'élimination de la tendance et la standardisation des variables ont nettement déstructuré les relations entre ces variables.
+Vous pouvez comparer ces toothose résultats indiqué dans la Figure 16. Avec hello tendance supprimé et hello variables normalisés, nous constatons beaucoup moins de structure dans les relations entre ces variables hello.
 
-Le code permettant de calculer les corrélations en tant qu’objets ccf R est le suivant :
+Hello code toocompute hello des corrélations en tant qu’objets de R ccf est comme suit.
 
-    ## A function to compute pairwise correlations from a
+    ## A function toocompute pairwise correlations from a
     ## list of time series value vectors
     pair.cor <- function(pair.ind, ts.list, lag.max = 1, plot = FALSE){
       ccf(ts.list[[pair.ind[1]]], ts.list[[pair.ind[2]]], lag.max = lag.max, plot = plot)
     }
 
-    ## A list of the pairwise indices
+    ## A list of hello pairwise indices
     corpairs <- list(c(1,2), c(1,3), c(1,4), c(2,3), c(2,4), c(3,4))
 
-    ## Compute the list of ccf objects
+    ## Compute hello list of ccf objects
     cadairycorrelations <- lapply(corpairs, pair.cor, df.detrend)  
 
     cadairycorrelations
 
-L'exécution de ce code génère le journal présenté dans la figure 18.
+Exécution de ce code produit journal hello indiqué dans la Figure 18.
 
     [ModuleOutput] Loading objects:
     [ModuleOutput]   port1
@@ -833,14 +833,14 @@ L'exécution de ce code génère le journal présenté dans la figure 18.
     [ModuleOutput]     -1      0      1 
     [ModuleOutput] -0.002 -0.074 -0.124 
 
-*Figure 18 : liste des objets ccf résultant de l’analyse des corrélations par paire.*
+*Figure 18 : Liste de ccf objets d’analyse de corrélation par paire hello.*
 
-À chaque décalage correspond une valeur de corrélation. Aucune de ces valeurs de corrélation n'est suffisamment grande pour être significative. Nous pouvons donc en conclure qu'il est possible de modéliser chaque variable de façon indépendante.
+À chaque décalage correspond une valeur de corrélation. Aucune de ces valeurs de corrélation est suffisamment grande toobe significatifs. Nous pouvons donc en conclure qu'il est possible de modéliser chaque variable de façon indépendante.
 
 ### <a name="output-a-dataframe"></a>Sortie d'un tableau de données
-Nous avons calculé les corrélations par paire en tant que liste d'objets ccf R. Cela pose un léger problème dans le sens où le port de sortie du jeu de données de résultat a vraiment besoin d'un tableau de données. En outre, l’objet ccf est lui-même une liste et nous voulons uniquement les valeurs contenues dans le premier élément de cette liste, c’est-à-dire les corrélations aux différents décalages.
+Nous avons calculé les corrélations par paire hello sous forme de liste d’objets de R ccf. Cela pose un bit d’un problème comme port de sortie de jeu de données de résultat de hello nécessite une trame de données. En outre, objet de ccf hello est lui-même une liste, et nous voulons uniquement les valeurs hello hello premier élément de cette liste, des corrélations hello en hello retards différents.
 
-Le code suivant permet d’extraire les valeurs de décalage de la liste d’objets ccf, qui sont eux-mêmes des listes :
+Hello suivant liste hello d’objets ccf, qui sont eux-mêmes des listes de valeurs de décalage de code extraits hello.
 
     df.correlations <- data.frame(do.call(rbind, lapply(cadairycorrelations, '[[', 1)))
 
@@ -852,49 +852,49 @@ Le code suivant permet d’extraire les valeurs de décalage de la liste d’obj
                   "Corr Ice Cream - Fat Price",
                   "Corr Milk Prod - Fat Price")
 
-    ## Build a dataframe with the row names column and the
-    ## correlation data frame and assign the column names
+    ## Build a dataframe with hello row names column and the
+    ## correlation data frame and assign hello column names
     outframe <- cbind(r.names, df.correlations)
     colnames(outframe) <- c.names
     outframe
 
 
     ## WARNING!
-    ## The following line works only in Azure Machine Learning
+    ## hello following line works only in Azure Machine Learning
     ## When running in RStudio, this code will result in an error
     #maml.mapOutputPort('outframe')
 
-La première ligne de code est un peu compliquée et vous pourriez avoir besoin d’une explication vous aider à la comprendre. Voici ce que l'on a :
+Hello première ligne de code est un peu difficile, et une explication peut vous aider à comprendre. Utilisation de hello intérieur/extérieur nous disposer de hello :
 
-1. L’opérateur « **[[** » associé à l’argument « **1** » sélectionne le vecteur de corrélations au niveau des décalages dans le premier élément de la liste d’objets ccf.
-2. La fonction `do.call()` applique la fonction `rbind()` aux éléments de la liste renvoyée par `lapply()`.
-3. La fonction `data.frame()` convertit de force le résultat généré par `do.call()` en tableau de données.
+1. Hello '**[[**'opérateur avec un argument de hello'**1**' sélectionne hello vecteur de corrélations à des retards de hello de hello premier élément de liste d’objets ccf hello.
+2. Hello `do.call()` fonction applique hello `rbind()` fonction sur les éléments hello de liste de hello retourne en `lapply()`.
+3. Hello `data.frame()` fonction convertit le résultat hello produit par `do.call()` tooa la trame de données.
 
-Notez que les noms de lignes se trouvent dans une colonne du tableau de données. Cela préserve les noms de lignes quand ils sont générés à partir du module [d’exécution de script R][execute-r-script].
+Notez que les noms de lignes hello se trouvent dans une colonne de la trame de données hello. Cela permet de conserver les noms de lignes hello lorsqu’ils sont générés à partir de hello [Execute R Script][execute-r-script].
 
-L’exécution du code génère la sortie présentée dans la figure 19 après avoir actionné la commande **Visualize** (Visualiser) au niveau du port du jeu de données de résultat. Les noms de lignes se trouvent dans la première colonne, comme prévu.
+Exécution du code de hello produit une sortie hello indiqué dans la Figure 19 lorsque je **visualiser** hello sortie hello port de jeu de données de résultat. les noms de lignes Hello sont dans la première colonne de hello, comme prévu.
 
-![résultats générés par l’analyse des corrélations][20]
+![Sortie des résultats d’analyse de corrélation hello][20]
 
-*Figure 19 : résultats générés par l’analyse des corrélations.*
+*Figure 19 : Résultats de sortie de l’analyse de corrélation hello.*
 
 ## <a id="seasonalforecasting"></a>Exemple de série chronologique : prévision saisonnière
-Les données se trouvent maintenant dans un format adapté à l’analyse et nous avons déterminé qu’il n’y avait pas de corrélations significatives entre les variables. Continuons et créons un modèle de prévision chronologique. Nous nous servirons de ce modèle pour établir des prévisions concernant la production de lait californienne au cours des 12 mois de 2013.
+Nos données sont maintenant sous une forme appropriée pour l’analyse, et nous avons déterminé qu'il n’y a aucune corrélation significative entre les variables hello. Continuons et créons un modèle de prévision chronologique. À l’aide de ce modèle nous sera prévision de production de lait Californie pour hello 12 mois de 2013.
 
-Notre modèle de prévision aura deux composantes : une tendancielle et une saisonnière. La prévision complète est le fruit de ces deux composantes. Ce type de modèle est connu sous le nom de modèle multiplicatif. Le modèle alternatif est appelé modèle additif. Nous avons déjà appliqué une transformation logarithmique aux variables qui nous intéressent, ce qui rend cette analyse malléable.
+Notre modèle de prévision aura deux composantes : une tendancielle et une saisonnière. prévision de terminée Hello est produit hello de ces deux composants. Ce type de modèle est connu sous le nom de modèle multiplicatif. alternative de Hello est un modèle additif. Nous avons déjà appliqué un journal transformation toohello les variables d’intérêt, ce qui rend cette analyse souple.
 
-Le code complet de cette section se trouve dans le fichier zip que vous avez téléchargé précédemment.
+Hello R code complet pour cette section est dans un fichier zip de hello téléchargé précédemment.
 
-### <a name="creating-the-dataframe-for-analysis"></a>Création du tableau de données pour l’analyse
-Commencez par ajouter un **nouveau** module [d’exécution de script R][execute-r-script] à votre expérimentation. Reliez la sortie de **jeu de données de résultat** du module [d’exécution de script R][execute-r-script] existant à l’entrée **Jeu de données 1** du nouveau module. Le résultat doit être similaire à la figure 20.
+### <a name="creating-hello-dataframe-for-analysis"></a>Création de hello trame de données pour l’analyse
+Commencez par ajouter un **nouveau** [Execute R Script] [ execute-r-script] expérience tooyour de module. Se connecter hello **Dataset des résultats** sortie hello existants [Execute R Script] [ execute-r-script] module toohello **Dataset1** d’entrée du nouveau module de hello. résultat de Hello ressemble à la Figure 20.
 
-![l’expérimentation après l’ajout du nouveau module d’exécution de script R][21]
+![Hello faire des essais avec le nouveau module Execute R Script hello d’ajouté][21]
 
-*Figure 20 : l’expérimentation après l’ajout du nouveau module d’exécution de script R.*
+*Figure 20. Hello faire des essais avec le nouveau module Execute R Script hello d’ajouté.*
 
-Comme pour l'analyse des corrélations que nous venons d'effectuer, nous devons ajouter une colonne avec un objet de série chronologique POSIXct. C’est exactement ce que fait le code suivant :
+Comme avec l’analyse de corrélation hello que nous vient de se terminer, nous devons tooadd une colonne avec un objet de série heure POSIXct. Hello suivant code simplement cette opération.
 
-    # If running in Machine Learning Studio, uncomment the first line with maml.mapInputPort()
+    # If running in Machine Learning Studio, uncomment hello first line with maml.mapInputPort()
     cadairydata <- maml.mapInputPort(1)
 
     ## Create a new column as a POSIXct object
@@ -903,7 +903,7 @@ Comme pour l'analyse des corrélations que nous venons d'effectuer, nous devons 
 
     str(cadairydata)
 
-Exécutez ce code et consultez le journal. Le résultat doit être similaire à la figure 21.
+Exécutez ce code et examinez le journal de hello. résultat de Hello doit ressembler à la Figure 21.
 
     [ModuleOutput] [1] "Loading variable port1..."
     [ModuleOutput] 
@@ -927,12 +927,12 @@ Exécutez ce code et consultez le journal. Le résultat doit être similaire à 
     [ModuleOutput] 
     [ModuleOutput]  $ Time             : POSIXct, format: "1995-01-01" "1995-02-01" ...
 
-*Figure 21 : aperçu du tableau de données.*
+*Figure 21 : Un résumé de la trame de données hello.*
 
-Avec ce résultat, nous sommes en mesure de lancer l'analyse.
+Ce résultat, nous sommes prêt toostart notre analyse.
 
 ### <a name="create-a-training-dataset"></a>Création d’un jeu de données d’apprentissage
-Après avoir construit le tableau de données, nous devons maintenant créer un jeu de données d'apprentissage. Ces données engloberont toutes les observations à l'exception des 12 dernières de l'année 2013, ce qui correspond à notre jeu de données de test. Le code suivant scinde le tableau de données en sous-ensembles et crée des graphiques des variables de production et de prix des produits laitiers. Je crée ensuite des graphiques des quatre variables de production et de prix. Une fonction anonyme est utilisée pour définir des arguments pour le graphique, puis pour itérer sur la liste des deux autres arguments à l’aide de `Map()`. Vous vous dites peut-être qu'une boucle for aurait ici fait l'affaire. Vous avez raison, mais comme le langage R est un langage fonctionnel, je vous montre une approche fonctionnelle.
+Avec la trame de données hello construit, nous devons toocreate un jeu de données d’apprentissage. Ces données incluent tous les observations hello sauf hello 12 dernières, de l’année hello 2013, qui est notre jeu de données de test. suivante de Hello trame de données hello des sous-ensembles de code et crée des graphiques, des variables de production et le prix laitières hello. Puis créer les graphiques de hello quatre variables de production et le prix. Une fonction anonyme est utilisé toodefine certains renforce pour le traçage et ensuite parcourir liste hello Hello deux autres arguments avec `Map()`. Vous vous dites peut-être qu'une boucle for aurait ici fait l'affaire. Vous avez raison, mais comme le langage R est un langage fonctionnel, je vous montre une approche fonctionnelle.
 
     cadairytrain <- cadairydata[1:216, ]
 
@@ -943,7 +943,7 @@ Après avoir construit le tableau de données, nous devons maintenant créer un 
 
     Map(function(y, Ylabs){plot(cadairytrain$Time, y, xlab = "Time", ylab = Ylabs, type = "l")}, cadairytrain[, 4:7], Ylabs)
 
-L'exécution du code génère la série de graphiques chronologiques à partir de la sortie de l’appareil R présentée dans la figure 22. Notez que l'axe du temps est exprimé en unités de dates, avantage appréciable de la méthode de graphique chronologique.
+Exécution du code de hello produit hello trace les séries de série chronologique de sortie de périphérique R hello indiqué dans la Figure 22. Notez qu’axe du temps hello est exprimé en unités de dates, des avantages de temps hello série tracer la méthode.
 
 ![premier graphique chronologique des données de production et de prix des produits laitiers californiens](./media/machine-learning-r-quickstart/unnamed-chunk-161.png)
 
@@ -956,16 +956,16 @@ L'exécution du code génère la série de graphiques chronologiques à partir d
 *Figure 22 : graphiques chronologiques des données de production et de prix des produits laitiers californiens.*
 
 ### <a name="a-trend-model"></a>Modèle de tendance
-Après avoir créé un objet de série chronologique et examiné les données, lançons-nous dans l'élaboration d'un modèle de tendance pour les données de production de produits laitiers californiens. Pour cela, nous pouvons utiliser une régression chronologique. Toutefois, il apparaît évident au vu du graphique que nous aurons besoin de plusieurs pentes et intercepts pour modéliser avec précision la tendance observée dans les données d’apprentissage.
+Après avoir créé un objet de série de temps et avoir examiné les données de salutation, nous pouvons commencer tooconstruct un modèle de tendance pour hello données de production de lait California. Pour cela, nous pouvons utiliser une régression chronologique. Toutefois, il est clair à partir de traçage de hello que nous allons peut-être plus d’un tooaccurately pente et l’ordonnée à l’origine modéliser hello observé les tendances dans les données d’apprentissage hello.
 
-Compte tenu de la petite échelle des données, je vais générer le modèle de tendance dans RStudio, puis couper et coller le modèle obtenu dans Azure Machine Learning. RStudio offre un environnement interactif pour ce type d'analyse interactive.
+Donné à petite échelle de hello de données de hello, je générera modèle hello pour tendance dans RStudio et puis couper et coller le modèle résultant de hello dans Azure Machine Learning. RStudio offre un environnement interactif pour ce type d'analyse interactive.
 
-Dans un premier temps, je vais tenter une régression polynomiale avec des puissances maximales de 3. Il existe un risque réel de surapprentissage de ces types de modèles. Par conséquent, il est préférable d'éviter les termes d'ordre élevé. La fonction `I()` empêche l’interprétation des contenus (elle les interprète « tels quels ») et vous permet d’écrire une fonction interprétée littéralement dans une équation de régression.
+Comme une première tentative, je vais essayer une régression polynomiale avec too3 sous tension. Il existe un risque réel de surapprentissage de ces types de modèles. Par conséquent, il est de meilleures conditions d’ordre haut tooavoid. Hello `I()` fonction empêche l’interprétation du contenu de hello (interprète contenu hello « en l’état ») et vous permet de toowrite une fonction interprétée littéralement dans une équation de régression.
 
     milk.lm <- lm(Milk.Prod ~ Time + I(Month.Count^2) + I(Month.Count^3), data = cadairytrain)
     summary(milk.lm)
 
-Voici ce que cela génère :
+Cette opération génère suivant de hello.
 
     ##
     ## Call:
@@ -989,12 +989,12 @@ Voici ce que cela génère :
     ## Multiple R-squared:  0.941,    Adjusted R-squared:  0.94
     ## F-statistic: 1.12e+03 on 3 and 212 DF,  p-value: <2e-16
 
-Si l'on considère les valeurs P (Pr(>|t|)) de cette sortie, nous pouvons constater que le terme au carré n'est peut-être pas significatif. Je vais utiliser la fonction `update()` pour modifier ce modèle en éliminant le terme au carré.
+À partir des valeurs de P (Pr (> | t |)) dans cette sortie, nous pouvons voir que hello terme quadratique peut ne pas être significative. Vous allez utiliser hello `update()` toomodify ce modèle en supprimant hello carré terme de fonction.
 
     milk.lm <- update(milk.lm, . ~ . - I(Month.Count^2))
     summary(milk.lm)
 
-Voici ce que cela génère :
+Cette opération génère suivant de hello.
 
     ##
     ## Call:
@@ -1016,9 +1016,9 @@ Voici ce que cela génère :
     ## Multiple R-squared:  0.941,  Adjusted R-squared:  0.94
     ## F-statistic: 1.69e+03 on 2 and 213 DF,  p-value: <2e-16
 
-Cela semble mieux. Tous les termes sont significatifs. Cependant, la valeur 2e-16 est une valeur par défaut à laquelle il ne faut pas trop prêter attention.  
+Cela semble mieux. Tous les termes du contrat de hello sont significatifs. Toutefois, hello 2e-16 valeur est la valeur par défaut et ne doit pas être prise trop gravement.  
 
-En guise de test, créons un graphique chronologique à partir des données de production de produits laitiers californiens en affichant la courbe de tendance. J’ai ajouté le code suivant dans le module [d’exécution de script R][execute-r-script] Azure Machine Learning (pas RStudio) pour créer le modèle et tracer un graphique. Ce schéma est illustré dans la Figure 23.
+Qu’un test de validité, nous allons en créer un tracé de série heure de données de production laitière Californie de hello avec courbe de tendance hello indiqué. J’ai ajouté hello suivant code Bonjour Azure Machine Learning [Execute R Script] [ execute-r-script] toocreate de modèle (pas RStudio) hello modèle et effectuer un traçage. résultat de Hello est illustré dans la Figure 23.
 
     milk.lm <- lm(Milk.Prod ~ Time + I(Month.Count^3), data = cadairytrain)
 
@@ -1029,17 +1029,17 @@ En guise de test, créons un graphique chronologique à partir des données de p
 
 *Figure 23 : données de production laitière californienne avec affichage du modèle de tendance.*
 
-Il apparaît que le modèle de tendance est assez bien adapté aux données. En outre, il n'y a visiblement pas de surapprentissage avec, par exemple, des fluctuations incongrues dans la courbe du modèle.  
+Il semble que le modèle de tendance hello le mieux aux données de hello assez bien. En outre, il ne semble pas preuve toobe de surapprentissage, telles qu’impair tremble dans la courbe du modèle hello.  
 
 ### <a name="seasonal-model"></a>Modèle saisonnier
-Maintenant que nous disposons d’un modèle de tendance, nous devons passer à l’étape supérieure et inclure les effets saisonniers. Nous allons utiliser le mois de l’année comme variable factice dans le modèle linéaire pour capturer l’effet mois par mois. Notez que lorsque des variables facteur sont introduites dans un modèle, l'intercept ne doit pas être calculé. Dans le cas contraire, la formule est surspécifiée et le code R supprime l'un des facteurs souhaités, mais conserve le terme intercept.
+Avec un modèle de tendance dans main, nous devez toopush sur et inclure des effets saisonniers hello. Nous allons utiliser mois hello d’année de hello comme une variable factice en vigueur de hello modèle linéaire toocapture hello mois par mois. Notez que lorsque vous introduisez des variables de facteur dans un modèle, intercept de hello ne doit pas être calculée. Si vous ne le faites pas, formule de hello est spécifié de manière excessive et R entraînera l’abandon d’un des hello souhaité facteurs en conservant terme d’interception hello.
 
-Comme notre modèle de tendance est satisfaisant, nous pouvons utiliser la fonction `update()` pour ajouter les nouveaux termes au modèle existant. La valeur -1 dans la formule de mise à jour supprime le terme intercept. Poursuivons dans RStudio pour le moment :
+Étant donné que nous disposons d’un modèle de tendance satisfaisante, nous pouvons utiliser hello `update()` hello de tooadd fonction nouveau modèle existant de toohello des termes du contrat. Hello -1 dans la formule de mise à jour hello supprime le terme d’interception hello. Pour le moment de hello pour poursuivre dans RStudio :
 
     milk.lm2 <- update(milk.lm, . ~ . + Month - 1)
     summary(milk.lm2)
 
-Voici ce que cela génère :
+Cette opération génère suivant de hello.
 
     ##
     ## Call:
@@ -1073,77 +1073,77 @@ Voici ce que cela génère :
     ## Multiple R-squared:     1,    Adjusted R-squared:     1
     ## F-statistic: 1.42e+06 on 14 and 202 DF,  p-value: <2e-16
 
-Nous constatons que le modèle n'a plus de terme intercept et qu'il comporte 12 facteurs mois significatifs. C'est exactement ce que nous voulions.
+Nous voyons ce modèle hello a un terme d’interception ne sont plus et présente des facteurs significatifs mois 12. C’est exactement ce que nous voulions toosee.
 
-Créons un autre graphique chronologique à partir des données de production laitière californienne pour voir si le modèle saisonnier fonctionne correctement. J’ai ajouté le code suivant dans le module [d’exécution de script R][execute-r-script] Azure Machine Learning pour créer le modèle et tracer un graphique.
+Nous allons en créer un autre tracé de série de temps de hello Californie production laitière données toosee degré modèle saisonnières de hello fonctionne. J’ai ajouté hello suivant code Bonjour Azure Machine Learning [Execute R Script] [ execute-r-script] toocreate hello modèle et effectuer un traçage.
 
     milk.lm2 <- lm(Milk.Prod ~ Time + I(Month.Count^3) + Month - 1, data = cadairytrain)
 
     plot(cadairytrain$Time, cadairytrain$Milk.Prod, xlab = "Time", ylab = "Log CA Milk Production 1000s lb", type = "l")
     lines(cadairytrain$Time, predict(milk.lm2, cadairytrain), lty = 2, col = 2)
 
-L’exécution de ce code dans Azure Machine Learning génère le graphique présenté dans la figure 24.
+Ce code en cours d’exécution dans Azure Machine Learning produit traçage hello illustré Figure 24.
 
 ![production laitière californienne avec le modèle incluant les effets saisonniers](./media/machine-learning-r-quickstart/unnamed-chunk-20.png)
 
 *Figure 24 : production laitière californienne avec le modèle incluant les effets saisonniers.*
 
-L'adéquation par rapport aux données présentées dans la figure 24 est plutôt encourageante. Les effets tendanciel et saisonnier (variation mensuelle) semblent raisonnables.
+Hello données adaptée toohello illustrées Figure 24 sont plutôt encourageants. Tendance de hello et effet saisonnières de hello (variation mensuelle) semblent correctes.
 
-Intéressons-nous à présent aux résidus, autre point de vérification de notre modèle. Le code suivant calcule les valeurs prévisionnelles de nos deux modèles, calcule les résidus du modèle saisonnier et élabore ensuite le graphique de ces résidus pour les données d’apprentissage.
+En tant qu’une autre vérification de notre modèle, nous allons avez résiduels de hello. Hello expression suivante calcule le code hello valeurs prédites entre nos deux modèles, calcule la moyenne des résiduels hello pour les modèles saisonnières hello et puis trace ces résiduels pour les données d’apprentissage hello.
 
     ## Compute predictions from our models
     predict1  <- predict(milk.lm, cadairydata)
     predict2  <- predict(milk.lm2, cadairydata)
 
-    ## Compute and plot the residuals
+    ## Compute and plot hello residuals
     residuals <- cadairydata$Milk.Prod - predict2
     plot(cadairytrain$Time, residuals[1:216], xlab = "Time", ylab ="Residuals of Seasonal Model")
 
-Le graphique des résidus est illustré dans la figure 25.
+traçage de résiduelles Hello est illustrée dans la Figure 25.
 
-![résidus du modèle saisonnier pour les données d’apprentissage](./media/machine-learning-r-quickstart/unnamed-chunk-21.png)
+![Moyenne des résiduels du modèle de saisonnières hello pour les données d’apprentissage hello](./media/machine-learning-r-quickstart/unnamed-chunk-21.png)
 
-*Figure 25 : résidus du modèle saisonnier pour les données d’apprentissage.*
+*Figure 25 : Résiduels du modèle de saisonnières hello pour les données d’apprentissage hello.*
 
-Ces résidus semblent corrects. Il n'y a pas de structure particulière si l'on excepte l'effet de la récession de 2008-2009, dont notre modèle ne rend pas très bien compte.
+Ces résidus semblent corrects. Il n’existe aucune structure particulière, à l’exception d’effet hello de crise hello 2008-2009, qui ne compte pas notre modèle particulièrement bien.
 
-Le graphique représenté dans la figure 25 s’avère utile pour détecter les phénomènes temporels dans les résidus. L'approche explicite du calcul et de la représentation des résidus que j'ai utilisée place les résidus dans un ordre chronologique sur le graphique. Si, en revanche, j’avais représenté `milk.lm$residuals`sur le graphique, celui-ci n’aurait pas été établi dans un ordre chronologique.
+traçage Hello indiqué dans la Figure 25 est utile pour détecter des modèles dépendant du temps dans la moyenne des résiduels hello. approche explicite de Hello de calcul et le traçage des résiduels hello que j’ai utilisé place résiduels de hello dans un ordre chronologique sur de traçage hello. Si, sur hello autre part, j’avais tracées `milk.lm$residuals`, traçage de hello n’aurait pas été dans un ordre chronologique.
 
-Vous pouvez aussi utiliser `plot.lm()` pour générer une série de graphiques de diagnostic :
+Vous pouvez également utiliser `plot.lm()` tooproduce une série de graphiques de diagnostic.
 
-    ## Show the diagnostic plots for the model
+    ## Show hello diagnostic plots for hello model
     plot(milk.lm2, ask = FALSE)
 
 Ce code génère une série de graphiques de diagnostic représentés dans la figure 26.
 
-![premier graphique de diagnostic pour le modèle saisonnier](./media/machine-learning-r-quickstart/unnamed-chunk-221.png)
+![Premier des graphiques de diagnostic pour le modèle saisonnières de hello](./media/machine-learning-r-quickstart/unnamed-chunk-221.png)
 
-![deuxième graphique de diagnostic pour le modèle saisonnier](./media/machine-learning-r-quickstart/unnamed-chunk-222.png)
+![Seconde de graphiques de diagnostic pour le modèle de saisonnières de hello](./media/machine-learning-r-quickstart/unnamed-chunk-222.png)
 
-![troisième graphique de diagnostic pour le modèle saisonnier](./media/machine-learning-r-quickstart/unnamed-chunk-223.png)
+![Troisième des graphiques de diagnostic pour le modèle saisonnières de hello](./media/machine-learning-r-quickstart/unnamed-chunk-223.png)
 
-![quatrième graphique de diagnostic pour le modèle saisonnier](./media/machine-learning-r-quickstart/unnamed-chunk-224.png)
+![Quatrième des graphiques de diagnostic pour le modèle saisonnières de hello](./media/machine-learning-r-quickstart/unnamed-chunk-224.png)
 
-*Figure 26 : graphiques de diagnostic pour le modèle saisonnier.*
+*Figure 26 : Trace de diagnostic pour le modèle saisonnières de hello.*
 
-Même si nous parvenons à identifier quelques points saillants dans ces graphiques, il n'en ressort rien d'extraordinaire. De plus, nous pouvons constater dans le graphique Normal Q-Q que les résidus sont répartis assez normalement, postulat important pour les modèles linéaires.
+Il existe quelques points hautement influents identifiées dans ces graphiques, mais aucune toocause une préoccupation importante. En outre, nous constatons à partir de traçage Normal Q-Q hello que moyenne des résiduels hello sont toonormally fermer distribuée, une hypothèse importante pour les modèles linéaires.
 
 ### <a name="forecasting-and-model-evaluation"></a>Prévision et évaluation des modèles
-Il ne nous reste plus qu'une étape à effectuer pour terminer notre exemple. Nous devons calculer les prévisions et mesurer les erreurs par rapport aux données réelles. Notre prévision concernera les 12 mois de l'année 2013. Nous pouvons calculer une mesure d’erreur pour cette prévision par rapport aux données réelles qui ne font pas partie de notre jeu de données d’apprentissage. De plus, nous pouvons comparer les performances réalisées sur les 18 années des données d'apprentissage à celles enregistrées au cours des 12 mois des données de test.  
+Il existe qu’un seul toocomplete de toodo chose plus notre exemple. Nous devez toocompute prévisions et mesurer l’erreur de hello par rapport aux données réelles de hello. Nos prévisions seront pour hello 12 mois de 2013. Nous pouvons calculer une mesure de l’erreur pour cette prévision toohello les données qui ne fait pas partie de notre jeu de données d’apprentissage. En outre, nous pouvons comparer les performances sur hello toohello des données d’apprentissage de 18 ans 12 mois de données de test.  
 
-Un certain nombre de mesures permettent de mesurer les performances des modèles chronologiques. En l’occurrence, nous utiliserons l’erreur quadratique moyenne (ou RMS). La fonction suivante calcule l’erreur RMS entre deux séries :  
+Servent d’un nombre de mesures de performances de hello toomeasure de modèles de série chronologique. Dans le cas présent, nous allons utiliser erreur du carré moyen de racine (RMS) hello. Hello fonction suivante calcule erreur hello RMS entre deux séries.  
 
     RMS.error <- function(series1, series2, is.log = TRUE, min.length = 2){
-      ## Function to compute the RMS error or difference between two
+      ## Function toocompute hello RMS error or difference between two
       ## series or vectors
 
-      messages <- c("ERROR: Input arguments to function RMS.error of wrong type encountered",
-                    "ERROR: Input vector to function RMS.error is too short",
-                    "ERROR: Input vectors to function RMS.error must be of same length",
+      messages <- c("ERROR: Input arguments toofunction RMS.error of wrong type encountered",
+                    "ERROR: Input vector toofunction RMS.error is too short",
+                    "ERROR: Input vectors toofunction RMS.error must be of same length",
                     "WARNING: Funtion rms.error has received invald input time series.")
 
-      ## Check the arguments
+      ## Check hello arguments
       if(!is.numeric(series1) | !is.numeric(series2) | !is.logical(is.log) | !is.numeric(min.length)) {
         warning(messages[1])
         return(NA)}
@@ -1156,7 +1156,7 @@ Un certain nombre de mesures permettent de mesurer les performances des modèles
            warning(messages[3])
         return(NA)}
 
-      ## If is.log is TRUE exponentiate the values, else just copy
+      ## If is.log is TRUE exponentiate hello values, else just copy
       if(is.log) {
         tryCatch( {
           temp1 <- exp(series1)
@@ -1172,19 +1172,19 @@ Un certain nombre de mesures permettent de mesurer les performances des modèles
     predict1  <- predict(milk.lm, cadairydata)
     predict2  <- predict(milk.lm2, cadairydata)
 
-    ## Compute the RMS error in a dataframe
+    ## Compute hello RMS error in a dataframe
       tryCatch( {
         sqrt(sum((temp1 - temp2)^2) / length(temp1))},
         error = function(e){warning(messages[4]); NA})
     }
 
-À l’instar de la fonction `log.transform()` , dont nous avons parlé dans la section « Transformations de valeurs », cette fonction contient beaucoup de code de recherche d’erreurs et de récupération d’exceptions. Les principes utilisés sont les mêmes. Le travail est accompli à deux endroits circonscrits à `tryCatch()`. Dans un premier temps, les séries chronologiques sont élevées à une puissance, car nous travaillons avec les logarithmes des valeurs. Dans un deuxième temps, l'erreur RMS réelle est calculée.  
+Comme avec hello `log.transform()` fonction évoqué dans hello « Valeur transformations » de section, il y a beaucoup de code erreur exception et de la vérification de la récupération dans cette fonction. principes de Hello employés sont hello même. travail Hello est effectué dans deux emplacements encapsulés dans `tryCatch()`. Tout d’abord, MTS hello sont exponentiated, étant donné que nous avons travaillé avec des journaux de hello des valeurs de hello. En second lieu, l’erreur RMS hello est calculée.  
 
-Étant dotés d'une fonction de mesure de l'erreur RMS, nous allons générer et sortir un tableau de données contenant les erreurs RMS. Nous inclurons des termes pour le modèle de tendance seul et le modèle complet avec des facteurs saisonniers. Le code suivant accomplit la tâche en utilisant les deux modèles linéaires que nous avons construits :
+Équipé d’un Bonjour toomeasure de fonction erreur RMS, nous allons générer et de sortie une trame de données contenant des erreurs de hello RMS. Nous inclut les termes du contrat pour le modèle de tendance hello seul et le modèle complet de hello avec facteurs saisonniers. Hello de code suivant hello travail à l’aide de modèles linéaires deux hello que nous avons construit.
 
-    ## Compute the RMS error in a dataframe
-    ## Include the row names in the first column so they will
-    ## appear in the output of the Execute R Script
+    ## Compute hello RMS error in a dataframe
+    ## Include hello row names in hello first column so they will
+    ## appear in hello output of hello Execute R Script
     RMS.df  <-  data.frame(
     rowNames = c("Trend Model", "Seasonal Model"),
       Traing = c(
@@ -1196,26 +1196,26 @@ Un certain nombre de mesures permettent de mesurer les performances des modèles
     )
     RMS.df
 
-    ## The following line should be executed only when running in
+    ## hello following line should be executed only when running in
     ## Azure Machine Learning Studio
     maml.mapOutputPort('RMS.df')
 
-L'exécution de ce code génère la sortie présentée dans la figure 27 au niveau du port de sortie du jeu de données de résultat.
+Exécution de ce code de produit la sortie de hello indiqué dans la Figure 27 au port de sortie de jeu de données de résultat de hello.
 
-![comparaison de l’erreur RMS pour les modèles][26]
+![Comparaison des erreurs de RMS pour les modèles de hello][26]
 
-*Figure 27 : comparaison de l’erreur RMS pour les modèles.*
+*Figure 27 : Comparaison des erreurs de RMS pour les modèles hello.*
 
-Ces résultats nous montrent que l’ajout des facteurs saisonniers au modèle a pour effet de réduire sensiblement l’erreur RMS. Fort logiquement, l'erreur RMS au niveau des données d'apprentissage est plus limitée qu'au niveau de la prévision.
+À partir de ces résultats, nous constatons que l’ajout hello facteurs saisonniers toohello modèle réduit erreur de RMS hello considérablement. Pas trop étonnamment, erreur hello RMS pour les données d’apprentissage de hello est un bit inférieur à pour hello prévisions.
 
-## <a id="appendixa"></a>ANNEXE A : guide de RStudio
-RStudio étant très bien documenté, vous trouverez dans cette annexe des liens vers les principales sections de la documentation RStudio, qui vous aideront dans la prise en main du produit.
+## <a id="appendixa"></a>ANNEXE a : Guide tooRStudio
+RStudio est très bien documenté, dans cette annexe je fournirai certaines toohello de liens des sections spécifiques de hello RStudio documentation tooget que vous avez démarré.
 
 1. Création de projets
    
-   Vous pouvez organiser et gérer votre code R dans les projets à l’aide de RStudio. Vous trouverez la documentation utilisant des projets à l’adresse https://support.rstudio.com/hc/articles/200526207-Using-Projects.
+   Vous pouvez organiser et gérer votre code R dans les projets à l’aide de RStudio. Vous trouverez la documentation Hello qui utilise des projets à https://support.rstudio.com/hc/articles/200526207-Using-Projects.
    
-   Je vous recommande de suivre ces instructions et de créer un projet pour les exemples de code R présentés dans ce document.  
+   Je vous recommande de suivre ces instructions et de créer un projet pour des exemples de code hello R dans ce document.  
 2. Modification et exécution de code R
    
    RStudio offre un environnement intégré qui permet de modifier et d'exécuter du code R. Vous trouverez la documentation à l’adresse https://support.rstudio.com/hc/articles/200484448-Editing-and-Executing-Code.
@@ -1223,29 +1223,29 @@ RStudio étant très bien documenté, vous trouverez dans cette annexe des liens
    
    RStudio intègre de puissantes fonctionnalités de débogage. Vous trouverez la documentation relative à ces fonctionnalités à l’adresse https://support.rstudio.com/hc/articles/200713843-Debugging-with-RStudio.
    
-   Les fonctionnalités de résolution des problèmes de point d’arrêt sont documentées à l’adresse https://support.rstudio.com/hc/articles/200534337-Breakpoint-Troubleshooting.
+   les fonctionnalités de dépannage de point d’arrêt Hello sont documentées dans https://support.rstudio.com/hc/articles/200534337-Breakpoint-Troubleshooting.
 
 ## <a id="appendixb"></a>ANNEXE B : informations supplémentaires
-Ce didacticiel sur la programmation R couvre les concepts de base de ce qu'il vous faut pour utiliser le langage R avec Azure Machine Learning Studio. Si vous ne connaissez pas le langage R, deux présentations sont disponibles sur le site CRAN :
+Cette R programmation didacticiel couvre hello de ce que vous avez besoin de toouse hello langage R avec Azure Machine Learning Studio. Si vous ne connaissez pas le langage R, deux présentations sont disponibles sur le site CRAN :
 
-* « R pour les débutants » d'Emmanuel Paradis constitue un bon point de départ, à l'adresse http://cran.r-project.org/doc/contrib/Paradis-rdebuts_fr.pdf.  
-* Une introduction à R par W. N. Venables, et al. approfondit un peu le sujet : http://cran.r-project.org/doc/manuals/R-intro.html.
+* R pour les débutants par Emmanuel Paradis est un toostart parfait à http://cran.r-project.org/doc/contrib/Paradis-rdebuts_en.pdf.  
+* Un tooR Introduction par W. N. Venables, et al. approfondit un peu le sujet : http://cran.r-project.org/doc/manuals/R-intro.html.
 
 Il existe de nombreux livres sur le langage R qui peuvent vous aider à vous lancer. En voici quelques-uns que j'ai trouvés utiles :
 
-* « The Art of R Programming: A Tour of Statistical Software Design » de Norman Matloff est une excellente introduction à la programmation en langage R.  
-* L’ouvrage « R Cookbook » de Paul Teetor propose des solutions aux problèmes rencontrés lors de l’utilisation du langage R.  
-* « R in Action » de Robert Kabacoff est un autre ouvrage introductif utile. Le site web d’accompagnement Quick R est une ressource utile à l’adresse http://www.statmethods.net/.
-* R Inferno de Patrick Burns est un ouvrage qui aborde sur un ton étonnamment humoristique plusieurs thèmes complexes liés à la programmation en R. L’ouvrage est disponible gratuitement à l’adresse http://www.burns-stat.com/documents/books/the-r-inferno/.
-* Si vous souhaitez examiner plus en profondeur les aspects avancés du langage R, jetez un œil au livre « Advanced R » de Hadley Wickham. La version en ligne de ce livre est disponible gratuitement à l'adresse http://adv-r.had.co.nz/.
+* Hello Art de programmation de R : une visite guidée de statistique conception de logiciels par Norman Matloff est un tooprogramming excellente introduction dans R.  
+* Livre de recettes R par Paul Teetor fournit une approche problème et solution toousing R.  
+* « R in Action » de Robert Kabacoff est un autre ouvrage introductif utile. site Web de Hello accompagnement R rapide est une ressource utile à http://www.statmethods.net/.
+* Inferno R par Patrick Burns est un livre étonnamment humoristique qui négocie avec un nombre de rubriques complexe et difficiles qui peuvent être rencontrés lors de la programmation dans le livre de r. hello est disponible gratuitement sur http://www.burns-stat.com/documents/books/the-r-inferno/.
+* Si vous souhaitez une présentation approfondie de rubriques avancées dans R, jetez un œil au livre de hello avancé R par Hadley Wickham. version en ligne de Hello de cette documentation est disponible gratuitement à http://adv-r.had.co.nz/.
 
-Vous trouverez dans la section Task Views du site CRAN un catalogue de packages R pour l’analyse des séries chronologiques : http://cran.r-project.org/web/views/TimeSeries.html. Pour plus d’informations sur les packages d’objets chronologiques spécifiques, reportez-vous à la documentation de ce package.
+Un catalogue de packages de série de temps R se trouvent dans hello CRAN affichage de la tâche d’analyse de série chronologique : http://cran.r-project.org/web/views/TimeSeries.html. Pour plus d’informations sur les packages d’objet série de temps spécifique, vous devez consultez la documentation de toohello pour ce package.
 
-L’ouvrage « Introductory Time Series with R » de Paul Cowpertwait et Andrew Metcalfe propose une introduction à l’utilisation de R pour l’analyse des séries chronologiques. Divers textes théoriques proposent des exemples R.
+Hello carnet d’introduction de série chronologique avec R par Paul Cowpertwait et Andrew Metcalfe fournit une introduction de toousing R pour l’analyse de série chronologique. Divers textes théoriques proposent des exemples R.
 
 Quelques ressources Internet particulièrement utiles :
 
-* DataCamp : apprenez le langage R tout en restant confortablement installé devant votre navigateur, grâce à des leçons vidéo et des exercices de codage. Il existe des didacticiels interactifs sur les dernières techniques et de langage R. Suivez le didacticiel R interactif gratuit à l’adresse https://www.datacamp.com/courses/introduction-to-r
+* DataCamp : DataCamp enseigne R dans le confort de hello de votre navigateur avec des leçons vidéos et des exercices de codage. Il existe des didacticiels interactifs sur les techniques de R hello plus récentes et les packages. Suivez hello libre interactive R didacticiel consacré à https://www.datacamp.com/courses/introduction-to-r
 * Guide de prise en main de R à partir de Programiz https://www.programiz.com/r-programming
 * Un bref didacticiel sur le langage R par Kelly Black de l’Université de Clarkson : http://www.cyclismo.org/tutorial/R/
 * Plus de 60 ressources sur le langage R : http://www.computerworld.com/article/2497464/business-intelligence-60-r-resources-to-improve-your-data-skills.html

@@ -1,6 +1,6 @@
 ---
-title: "Déployer des ressources Azure sur plusieurs groupes de ressources | Microsoft Docs"
-description: "Montre comment cibler plusieurs groupes de ressources Azure pendant le déploiement."
+title: groupes de ressources aaaDeploy ressources Azure toomultiple | Documents Microsoft
+description: "Montre comment tootarget plus de ressources Azure un groupe pendant le déploiement."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -13,21 +13,21 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/15/2017
 ms.author: tomfitz
-ms.openlocfilehash: d8b041213b269775175a810e585103d3c538557f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 93a39a26e0ca18dfcb5c6e8de95c38a64186d6de
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deploy-azure-resources-to-more-than-one-resource-group"></a>Déployer des ressources Azure sur plusieurs groupes de ressources
+# <a name="deploy-azure-resources-toomore-than-one-resource-group"></a>Déployer toomore de ressources Azure à un groupe de ressources
 
-En général, vous déployez toutes les ressources dans votre modèle sur un seul groupe de ressources. Toutefois, il existe des scénarios dans lesquels vous souhaitez déployer simultanément un ensemble de ressources à placer dans différents groupes de ressources. Par exemple, vous voudrez peut-être déployer la machine virtuelle de sauvegarde destinée à Azure Site Recovery sur un groupe de ressources et un emplacement distincts. Resource Manager vous permet d’utiliser des modèles imbriqués pour cibler des groupes de ressources différents de celui utilisé pour le modèle parent.
+En général, vous déployez toutes les ressources hello dans votre modèle tooa seul groupe de ressources. Toutefois, il existe des scénarios où vous souhaitez toodeploy un ensemble de ressources ensemble, mais les placez dans différents groupes de ressources. Par exemple, vous souhaiterez toodeploy hello sauvegarde virtual machine pour l’emplacement et le groupe de ressources distinct tooa Azure Site Recovery. Le Gestionnaire de ressources vous permet de toouse imbriquée modèles tootarget différents groupes de ressources à un groupe de ressources hello utilisé pour le modèle de hello parent.
 
-Le groupe de ressources est le conteneur de cycle de vie de l’application et sa collection de ressources. Vous créez le groupe de ressources en dehors du modèle et spécifiez le groupe de ressources à cibler lors du déploiement. Pour voir une présentation des groupes de ressources, consultez la page [Présentation d’Azure Resource Manager](resource-group-overview.md).
+groupe de ressources Hello est le conteneur de cycle de vie hello pour une application hello et sa collection de ressources. Vous créez le groupe de ressources hello en dehors du modèle de hello et que vous spécifiez tootarget de groupe de ressources hello lors du déploiement. Pour un tooresource les groupes de présentation, consultez [vue d’ensemble du Gestionnaire de ressources Azure](resource-group-overview.md).
 
 ## <a name="example-template"></a>Exemple de modèle
 
-Pour cibler une autre ressource, vous devez utiliser un modèle imbriqué ou lié au cours du déploiement. Le type de ressource `Microsoft.Resources/deployments` fournit un paramètre `resourceGroup` qui vous permet de spécifier un autre groupe de ressources pour le déploiement imbriqué. Tous les groupes de ressources doivent exister avant l’exécution du déploiement. L’exemple suivant déploie deux comptes de stockage, un dans le groupe de ressources spécifié pendant le déploiement et l’autre dans un groupe de ressources nommé `crossResourceGroupDeployment` :
+tootarget une autre ressource, vous devez utiliser un modèle imbriqué ou lié au cours du déploiement. Hello `Microsoft.Resources/deployments` type de ressource offre un `resourceGroup` paramètre qui permet de vous toospecify un autre groupe de ressources pour hello imbriqués de déploiement. Tous les groupes de ressources hello doivent exister avant d’exécuter le déploiement de hello. exemple Hello déploie deux comptes de stockage - un dans le groupe de ressources hello spécifié pendant le déploiement et l’autre dans un groupe de ressources nommé `crossResourceGroupDeployment`:
 
 ```json
 {
@@ -83,11 +83,11 @@ Pour cibler une autre ressource, vous devez utiliser un modèle imbriqué ou li�
 }
 ```
 
-Si vous définissez `resourceGroup`sur le nom d’un groupe de ressources qui n’existe pas, le déploiement échoue. Si vous n’indiquez pas de valeur pour `resourceGroup`, Resource Manager utilise le groupe de ressources parent.  
+Si vous définissez `resourceGroup` toohello le nom d’un groupe de ressources qui n’existe pas, le déploiement du hello échoue. Si vous ne fournissez pas de valeur pour `resourceGroup`, Gestionnaire de ressources utilise le groupe de ressources parent hello.  
 
-## <a name="deploy-the-template"></a>Déployer le modèle
+## <a name="deploy-hello-template"></a>Déployer le modèle de hello
 
-Pour déployer l’exemple de modèle, vous pouvez utiliser le portail, Azure PowerShell ou Azure CLI. Pour Azure PowerShell ou d’Azure CLI, vous devez utiliser une version postérieure au mois d’avril 2017. Les exemples supposent que vous avez enregistré le modèle localement dans un fichier nommé **crossrgdeployment.json**.
+toodeploy hello exemple de modèle que vous pouvez utiliser le portail de hello, Azure PowerShell ou CLI d’Azure. Pour Azure PowerShell ou d’Azure CLI, vous devez utiliser une version postérieure au mois d’avril 2017. les exemples Hello supposent que vous avez enregistré le modèle de hello localement en tant qu’un fichier nommé **crossrgdeployment.json**.
 
 Pour PowerShell :
 
@@ -117,9 +117,9 @@ Une fois le déploiement terminé, deux groupes de ressources s’affichent. Cha
 
 ## <a name="use-resourcegroup-function"></a>Utiliser la fonction resourceGroup()
 
-Pour des déploiements entre groupes de ressources, la [fonction resouceGroup()](resource-group-template-functions-resource.md#resourcegroup) produit un résultat différent selon la façon dont vous spécifiez le modèle imbriqué. 
+Pour franchir les déploiements de groupe de ressources, hello [resouceGroup() fonction](resource-group-template-functions-resource.md#resourcegroup) résout différemment selon la façon dont vous spécifiez les modèles imbriqués hello. 
 
-Si vous incorporez un modèle dans un autre, la résolution de resouceGroup() dans le modèle imbriqué est le groupe de ressources parent. Un modèle incorporé utilise le format suivant :
+Si vous incorporez un modèle dans un autre modèle, resouceGroup() dans les modèles imbriqués hello résout groupe de ressources toohello parent. Un modèle incorporé utilise hello suivant le format :
 
 ```json
 "apiVersion": "2017-05-10",
@@ -130,12 +130,12 @@ Si vous incorporez un modèle dans un autre, la résolution de resouceGroup() da
     "mode": "Incremental",
     "template": {
         ...
-        resourceGroup() refers to parent resource group
+        resourceGroup() refers tooparent resource group
     }
 }
 ```
 
-Si vous liez à un modèle séparé, la résolution de resouceGroup() dans le modèle lié est le groupe de ressources imbriqué. Un modèle lié utilise le format suivant :
+Si vous liez le modèle séparé de tooa, resouceGroup() dans le modèle lié de hello résout groupe de ressources imbriquées toohello. Un modèle lié utilise hello suivant le format :
 
 ```json
 "apiVersion": "2017-05-10",
@@ -146,13 +146,13 @@ Si vous liez à un modèle séparé, la résolution de resouceGroup() dans le mo
     "mode": "Incremental",
     "templateLink": {
         ...
-        resourceGroup() in linked template refers to linked resource group
+        resourceGroup() in linked template refers toolinked resource group
     }
 }
 ```
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* Pour comprendre comment définir des paramètres dans votre modèle, consultez [Comprendre la structure et la syntaxe des modèles Azure Resource Manager](resource-group-authoring-templates.md).
+* toounderstand toodefine des paramètres dans votre modèle, voir [comprendre la structure de hello et syntaxe des modèles Azure Resource Manager](resource-group-authoring-templates.md).
 * Pour obtenir des conseils sur la résolution des erreurs courantes de déploiement, consultez la page [Résolution des erreurs courantes de déploiement Azure avec Azure Resource Manager](resource-manager-common-deployment-errors.md).
 * Pour plus d’informations sur le déploiement d’un modèle qui nécessite un jeton SAP, consultez [Déploiement d’un modèle privé avec un jeton SAP](resource-manager-powershell-sas-token.md).

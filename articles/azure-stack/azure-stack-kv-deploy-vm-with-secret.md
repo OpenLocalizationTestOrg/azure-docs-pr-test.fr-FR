@@ -1,6 +1,6 @@
 ---
-title: "Déployer une machine virtuelle avec un mot de passe stocké de façon sécurisée sur Azure Stack | Microsoft Docs"
-description: "Découvrez comment déployer une machine virtuelle en utilisant un mot de passe stocké dans Azure Stack Key Vault"
+title: "aaaDeploy une machine virtuelle avec un mot de passe stockée en toute sécurité sur la pile de Azure | Documents Microsoft"
+description: "Découvrez comment toodeploy une machine virtuelle à l’aide d’un mot de passe stockés dans la pile d’Azure Key Vault"
 services: azure-stack
 documentationcenter: 
 author: SnehaGunda
@@ -14,34 +14,34 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 08/08/2017
 ms.author: sngun
-ms.openlocfilehash: a1137ffefbc3fafbd7e9492819058f6a72537e22
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 368addc1dfc5b7adadd2151fbd6d354f7892eea5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-virtual-machine-by-retrieving-the-password-stored-in-a-key-vault"></a>Créer une machine virtuelle en récupérant le mot de passe stocké dans un coffre de clés
+# <a name="create-a-virtual-machine-by-retrieving-hello-password-stored-in-a-key-vault"></a>Créer un ordinateur virtuel par la récupération de mot de passe hello stocké dans un coffre de clés
 
-Quand vous devez passer une valeur sécurisée lors d’un déploiement, comme un mot de passe, vous pouvez stocker cette valeur en tant que secret dans un coffre de clés Azure Stack et la référencer dans les modèles Azure Resource Manager. Ainsi, vous ne devez pas entrer manuellement le secret chaque fois que vous déployez les ressources ; vous pouvez aussi spécifier quels utilisateurs ou principaux du service peuvent accéder au secret. 
+Lorsque vous avez besoin d’une valeur sûre comme un mot de passe de toopass durant le déploiement, vous pouvez stocker cette valeur en tant que secret dans un coffre de clés Azure pile et référencez-la dans les modèles Azure Resource Manager hello. Vous n’avez pas besoin de toomanually Entrez code secret hello chaque fois que vous déployez des ressources de hello, vous pouvez également spécifier les utilisateurs ou les principaux du service accès hello secret. 
 
-Dans cet article, nous vous guidons à travers les étapes nécessaires pour déployer une machine virtuelle Windows dans Azure Stack en récupérant le mot de passe qui est stocké dans un coffre de clés. Ainsi, le mot de passe n’est jamais placé en texte brut dans le fichier des paramètres du modèle. Vous pouvez utiliser les étapes à partir du Kit de développement Azure Stack, ou à partir d’un client externe si vous êtes connecté via un VPN.
+Dans cet article, nous vous guident toodeploy requis de hello suit une machine virtuelle de Windows dans la pile de Azure par la récupération de mot de passe hello est stocké dans un coffre de clés. Par conséquent, un mot de passe hello n’est jamais placée en texte brut dans le fichier de paramètres de modèle hello. Vous pouvez utiliser ces étapes hello Kit de développement Azure pile ou d’un client externe si vous êtes connecté via VPN.
 
 ## <a name="prerequisites"></a>Composants requis
 
-* Les administrateurs cloud d’Azure Stack doivent avoir [créé une offre](azure-stack-create-offer.md) qui inclut le service Azure Key Vault.  
-* Les utilisateurs doivent [s’abonner à une offre](azure-stack-subscribe-plan-provision-vm.md) qui inclut le service Key Vault.  
-* [Installez PowerShell pour Azure Stack.](azure-stack-powershell-install.md)  
-* [Configurez l’environnement PowerShell de l’utilisateur Azure Stack.](azure-stack-powershell-configure-user.md)
+* Les administrateurs de cloud Azure pile doivent avoir [créé une offre](azure-stack-create-offer.md) qui inclut le service de coffre de clés Azure hello.  
+* Les utilisateurs doivent [s’abonner tooan offre](azure-stack-subscribe-plan-provision-vm.md) qui inclut le service de coffre de clés hello.  
+* [Installer PowerShell pour Azure Stack.](azure-stack-powershell-install.md)  
+* [Configurer hello pile d’Azure PowerShell environnement utilisateur.](azure-stack-powershell-configure-user.md)
 
-Les étapes suivantes décrivent le processus nécessaire pour créer une machine virtuelle en récupérant le mot de passe stocké dans un coffre de clés :
+Hello étapes suivantes décrivent hello processus requis toocreate un ordinateur virtuel par la récupération de mot de passe hello stocké dans un coffre de clés :
 
-1. Créez un secret de coffre de clés.
-2. Mettre à jour le fichier azuredeploy.parameters.json.
-3. Déployez le modèle.
+1. Créer un secret Key Vault.
+2. Fichier de mise à jour hello azuredeploy.parameters.json.
+3. Déployer le modèle de hello.
 
 ## <a name="create-a-key-vault-secret"></a>Créer un secret Key Vault
 
-Le script suivant crée un coffre de clés et stocke un mot de passe dans le coffre de clés en tant que secret. Utilisez le paramètre `-EnabledForDeployment` quand vous créez le coffre de clés. Ce paramètre garantit que le coffre de clés peut être référencé à partir des modèles Azure Resource Manager.
+Hello script suivant crée un coffre de clés et stocke un mot de passe dans le coffre de clés hello en tant que secret. Hello d’utilisation `-EnabledForDeployment` paramètre quand vous créez un coffre de clés hello. Ce paramètre permet de s’assurer de que ce coffre de clés hello peut être référencé à partir de modèles Azure Resource Manager.
 
 ```powershell
 
@@ -69,13 +69,13 @@ Set-AzureKeyVaultSecret `
 
 ```
 
-À l’exécution du script précédent, la sortie inclut l’URI du secret. Notez cet URI. Vous devez le référencer dans le modèle utilisé dans [Déployer une machine virtuelle Windows avec un mot de passe dans un coffre de clés](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-secure-password). Téléchargez le dossier [101-vm-secure-password](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-secure-password) sur votre ordinateur de développement. Ce dossier contient les fichiers `azuredeploy.json` et `azuredeploy.parameters.json` dont vous avez besoin dans les étapes suivantes.
+Lorsque vous exécutez le script précédent de hello, sortie de hello inclut le secret hello URI. Notez cet URI. Vous avez tooreference dans hello [machine virtuelle Windows de déployer avec mot de passe dans le modèle de coffre de clés](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-secure-password). Télécharger hello [101-vm--mot de passe sécurisé](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-secure-password) dossier sur votre ordinateur de développement. Ce dossier contient hello `azuredeploy.json` et `azuredeploy.parameters.json` fichiers dont vous aurez besoin dans les étapes suivantes hello.
 
-Modifiez le fichier `azuredeploy.parameters.json` en fonction des valeurs de votre environnement. Les paramètres les plus intéressants sont le nom du coffre, le groupe de ressources du coffre et l’URI du secret (généré par le script précédent). Le fichier suivant est un exemple de fichier de paramètres :
+Modifier hello `azuredeploy.parameters.json` fichier selon des valeurs d’environnement tooyour. paramètres de Hello un intérêt particulier sont le nom de coffre hello, groupe de ressources de coffre hello et le secret de hello URI (tel que généré par le script précédent de hello). Hello, le fichier suivant est un exemple d’un fichier de paramètres :
 
-## <a name="update-the-azuredeployparametersjson-file"></a>Mettre à jour le fichier azuredeploy.parameters.json
+## <a name="update-hello-azuredeployparametersjson-file"></a>Fichier de mise à jour hello azuredeploy.parameters.json
 
-Mettez à jour le fichier azuredeploy.parameters.json avec les valeurs de la machine virtuelle KeyVaultURI, secretName, adminUsername correspondant à votre environnement. Le fichier JSON suivant est un exemple de fichier de paramètres du modèle : 
+Mettre à jour les fichiers de azuredeploy.parameters.json hello avec hello KeyVault URI, secretName, adminUsername de valeurs de machine virtuelle hello conformément à votre environnement. Hello fichier JSON suivant illustre un exemple de fichier de paramètres de modèle hello : 
 
 ```json
 {
@@ -106,16 +106,16 @@ Mettez à jour le fichier azuredeploy.parameters.json avec les valeurs de la mac
 
 ## <a name="template-deployment"></a>Déploiement de modèle
 
-Déployez maintenant le modèle avec le script PowerShell suivant :
+Maintenant déployer le modèle de hello en utilisant hello PowerShell script suivant :
 
 ```powershell
 New-AzureRmResourceGroupDeployment `
   -Name KVPwdDeployment `
   -ResourceGroupName $resourceGroup `
-  -TemplateFile "<Fully qualified path to the azuredeploy.json file>" `
-  -TemplateParameterFile "<Fully qualified path to the azuredeploy.parameters.json file>"
+  -TemplateFile "<Fully qualified path toohello azuredeploy.json file>" `
+  -TemplateParameterFile "<Fully qualified path toohello azuredeploy.parameters.json file>"
 ```
-Une fois le modèle déployé, la sortie suivante est générée :
+Lorsque le modèle de hello est déployée avec succès, il en résulte hello suivant de sortie :
 
 ![Sortie du déploiement](media\azure-stack-kv-deploy-vm-with-secret/deployment-output.png)
 

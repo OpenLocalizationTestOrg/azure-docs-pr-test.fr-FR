@@ -1,6 +1,6 @@
 ---
-title: "Surveiller les opérations, les événements et les compteurs pour l’équilibrage de charge | Microsoft Docs"
-description: "Découvrez comment activer la journalisation des événements d'alerte et de l'état des sondes d'intégrité pour l'équilibreur de charge Azure"
+title: "aaaMonitor opérations, les événements et les compteurs pour l’équilibrage de charge | Documents Microsoft"
+description: "Découvrez comment tooenable les événements d’alerte et sonde d’enregistrement de l’état d’intégrité pour l’équilibrage de charge Azure"
 services: load-balancer
 documentationcenter: na
 author: kumudd
@@ -14,56 +14,56 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/24/2016
 ms.author: kumud
-ms.openlocfilehash: 638ecd5e02889bd8cb6e7429dfcec335feaac4a3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ac53c2254e06cad780ad6144c5c30f0085d12576
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="log-analytics-for-azure-load-balancer"></a>Analyse des journaux de l'équilibreur de charge Azure
 
-Vous pouvez utiliser différents types de journaux dans Azure pour gérer les équilibreurs de charge et résoudre les problèmes associés. Certains de ces journaux sont accessibles via le portail. Tous les journaux peuvent être extraits à partir d’un stockage Blob Azure et affichés dans différents outils, comme Excel et PowerBI. Pour en savoir plus sur les différents types de journaux, consultez la liste ci-dessous.
+Vous pouvez utiliser différents types de journaux dans Azure toomanage et résoudre les problèmes d’équilibreurs de charge. Certaines de ces journaux sont accessibles via le portail de hello. Tous les journaux peuvent être extraits à partir d’un stockage Blob Azure et affichés dans différents outils, comme Excel et PowerBI. Pour plus d’informations sur hello différents types de journaux à partir de la liste de hello ci-dessous.
 
-* **Journaux d’audit :** vous pouvez utiliser les [journaux d’audit Azure](../monitoring-and-diagnostics/insights-debugging-with-events.md) (anciennement journaux des opérations) pour afficher toutes les opérations soumises à votre ou vos abonnements Azure, ainsi que leur état. Les journaux d’audit sont activés par défaut et peuvent être affichés dans le portail Azure.
-* **Journaux des événements d’alerte :** vous pouvez utiliser ce journal pour afficher les alertes générées par l’équilibreur de charge. L'état de l'équilibreur de charge est collecté toutes les cinq minutes. Ce journal est écrit uniquement si un événement d'alerte d’équilibreur de charge est généré.
-* **Journaux de sondes d’intégrité :** vous pouvez utiliser ce journal pour afficher les problèmes détectés par votre sonde d’intégrité, tels que le nombre d’instances dans votre pool principal qui ne reçoivent pas les demandes de l’équilibreur de charge en raison d’échecs de sonde d’intégrité. Toute modification de l’état de la sonde d’intégrité est indiquée dans ce journal.
+* **Journaux d’audit :** que vous pouvez utiliser [les journaux d’Audit Azure](../monitoring-and-diagnostics/insights-debugging-with-events.md) (anciennement journaux opérationnels) tooview toutes les opérations en cours tooyour soumis un ou plusieurs abonnements Azure, ainsi que leur état. Journaux d’audit sont activées par défaut et peuvent être consultées dans hello portail Azure.
+* **Journaux des événements d’alerte :** vous pouvez utiliser cette rasied d’alertes de tooview journal par l’équilibrage de charge hello. état Hello pour l’équilibrage de charge hello est collecté toutes les cinq minutes. Ce journal est écrit uniquement si un événement d'alerte d’équilibreur de charge est généré.
+* **Journaux de sonde d’intégrité :** vous pouvez utiliser cette tooview des journaux des problèmes détectés par votre sonde d’intégrité, telles que nombre hello d’instances dans votre pool principal ne reçoivent pas les demandes d’équilibrage de charge hello en raison d’échecs de sonde d’intégrité. Ce fichier journal est écrit toowhen un changement dans l’état d’intégrité sonde hello.
 
 > [!IMPORTANT]
-> L'analyse des journaux s’applique uniquement aux équilibreurs de charge accessibles sur Internet. Les journaux ne sont disponibles que pour les ressources déployées avec le modèle de déploiement de Resource Manager. Vous ne pouvez pas les utiliser pour les ressources utilisant le modèle de déploiement classique. Pour plus d’informations sur les modèles de déploiement, consultez [Présentation du déploiement Resource Manager et du déploiement classique](../azure-resource-manager/resource-manager-deployment-model.md).
+> L'analyse des journaux s’applique uniquement aux équilibreurs de charge accessibles sur Internet. Les journaux sont uniquement disponibles pour les ressources déployées dans le modèle de déploiement du Gestionnaire de ressources hello. Vous ne pouvez pas utiliser les journaux pour les ressources dans le modèle de déploiement classique hello. Pour plus d’informations sur les modèles de déploiement hello, consultez [déploiement du Gestionnaire de ressources de présentation et déploiement classique](../azure-resource-manager/resource-manager-deployment-model.md).
 
 ## <a name="enable-logging"></a>Activation de la journalisation
 
-La journalisation d’audit est automatiquement activée pour chaque ressource Resource Manager. Vous devez activer la journalisation des événements et des sondes d’intégrité pour commencer à collecter les données disponibles dans ces journaux. Utilisez les étapes suivantes pour activer la journalisation.
+La journalisation d’audit est automatiquement activée pour chaque ressource Resource Manager. Vous devez les événements tooenable et toostart de journalisation de sonde d’intégrité collecte des données hello ces journaux. Utilisez hello après la journalisation tooenable étapes.
 
-Connectez-vous au [portail Azure](http://portal.azure.com). Si vous ne disposez pas déjà d'un équilibreur de charge, [créez un équilibreur de charge](load-balancer-get-started-internet-arm-ps.md) avant de continuer.
+Connectez-vous toohello [portail Azure](http://portal.azure.com). Si vous ne disposez pas déjà d'un équilibreur de charge, [créez un équilibreur de charge](load-balancer-get-started-internet-arm-ps.md) avant de continuer.
 
-1. Dans le portail, cliquez sur **Parcourir**.
+1. Dans le portail de hello, cliquez sur **Parcourir**.
 2. Sélectionnez **Équilibreurs de charge**.
 
     ![portail - équilibreur-charge](./media/load-balancer-monitor-log/load-balancer-browse.png)
 
 3. Sélectionnez un équilibreur de charge existant >> **Tous les paramètres**.
-4. Sur le côté droit de la boîte de dialogue, sous le nom de l’équilibrage de charge, accédez à **Surveillance**, puis cliquez sur **Diagnostics**.
+4. Hello droite de la boîte de dialogue hello sous nom hello d’équilibrage de charge hello, faites défiler trop**analyse**, cliquez sur **Diagnostics**.
 
     ![portail - paramètres-équilibreur-charge](./media/load-balancer-monitor-log/load-balancer-settings.png)
 
-5. Dans le volet **Diagnostics**, sous **État**, sélectionnez **Activé**.
+5. Bonjour **Diagnostics** volet, sous **état**, sélectionnez **sur**.
 6. Cliquez sur **Compte de stockage**.
-7. Sous **LOGS**, sélectionnez un compte de stockage existant ou créez-en un nouveau. Utilisez le curseur pour déterminer la durée en jours pendant laquelle les données d’événement sont stockées dans les journaux d’événements. 
-8. Cliquez sur **Save**.
+7. Sous **LOGS**, sélectionnez un compte de stockage existant ou créez-en un nouveau. Utilisez hello curseur toodetermine le nombre de jours des données d’événement sont stockés dans les journaux des événements hello. 
+8. Cliquez sur **Enregistrer**.
 
     ![Portail - Journaux de diagnostics](./media/load-balancer-monitor-log/load-balancer-diagnostics.png)
 
 > [!NOTE]
-> Les journaux d’audit ne nécessitent pas de compte de stockage distinct. L’utilisation du stockage pour la journalisation des événements et des sondes d’intégrité occasionnera des frais de service.
+> Les journaux d’audit ne nécessitent pas de compte de stockage distinct. Hello d’utilisation du stockage pour les événements et d’intégrité sonde journalisation occasionnent des frais de service.
 
 ## <a name="audit-log"></a>Journal d’audit
 
-Le journal d’audit est généré par défaut. Les journaux sont conservés pendant 90 jours dans la banque de Journaux d’événements d’Azure. Pour en savoir plus sur ces journaux, lisez l’article [Affichage des événements et des journaux d’audit](../monitoring-and-diagnostics/insights-debugging-with-events.md) .
+journal d’audit de Hello est généré par défaut. Hello journaux sont conservées pendant 90 jours dans le magasin de journaux des événements d’Azure. En savoir plus sur ces journaux en lisant hello [afficher les événements et journaux d’audit](../monitoring-and-diagnostics/insights-debugging-with-events.md) l’article.
 
 ## <a name="alert-event-log"></a>Journal des événements d'alerte
 
-Ce journal n’est généré que si vous l’avez activé au niveau de chaque équilibreur de charge. Les événements sont journalisés au format JSON et stockés dans le compte de stockage spécifié lors de l’activation de la journalisation. Vous trouverez ci-dessous un exemple d’événement.
+Ce journal n’est généré que si vous l’avez activé au niveau de chaque équilibreur de charge. événements de Hello sont enregistrés au format JSON et stockées dans le compte de stockage hello que vous avez spécifié lorsque vous avez activé la journalisation hello. Hello Voici un exemple d’événement.
 
 ```json
 {
@@ -82,11 +82,11 @@ Ce journal n’est généré que si vous l’avez activé au niveau de chaque é
 }
 ```
 
-La sortie JSON affiche la propriété *eventname* qui décrit la raison pour laquelle l'équilibreur de charge a créé une alerte. Dans ce cas, l'alerte a été générée en raison de l'épuisement du port TCP à cause des limites de l’IP NAT source (SNAT).
+Hello JSON de sortie montre hello *eventname* propriété qui décrit la raison hello pour l’équilibrage de charge hello créé une alerte. Dans ce cas, alerte hello générée était due tooTCP épuisement du port fait source QU'IP NAT limite (SNAT).
 
 ## <a name="health-probe-log"></a>Journal des sondes d’intégrité
 
-Ce journal n’est généré que si vous l’avez activé au niveau de chaque équilibreur de charge, comme détaillé ci-dessous. Les données sont stockées dans le compte de stockage spécifié lors de l’activation de la journalisation. Un conteneur nommé « insights-logs-loadbalancerprobehealthstatus » est créé et les données suivantes sont enregistrées :
+Ce journal n’est généré que si vous l’avez activé au niveau de chaque équilibreur de charge, comme détaillé ci-dessous. les données de salutation sont stockées dans le compte de stockage hello que vous avez spécifié lorsque vous avez activé la journalisation hello. Un conteneur nommé « insights-journaux-loadbalancerprobehealthstatus » est créé et hello suivant des données est enregistré :
 
 ```json
 {
@@ -122,21 +122,21 @@ Ce journal n’est généré que si vous l’avez activé au niveau de chaque é
 }
 ```
 
-La sortie JSON apparaît dans le champ des propriétés des informations de base pour l'état des sondes d’intégrité. La propriété *dipDownCount* indique le nombre total d'instances sur le serveur principal qui ne reçoivent pas le trafic réseau en raison d’une absence de réponse de la part de la sonde.
+montre la sortie JSON Hello hello propriétés champ hello informations de base pour l’état d’intégrité de sonde hello. Hello *dipDownCount* propriété indique le nombre total de hello d’instances sur hello principaux qui ne reçoivent pas de trafic réseau en raison de réponses de sonde toofailed.
 
-## <a name="view-and-analyze-the-audit-log"></a>Afficher et analyser le journal d’audit
+## <a name="view-and-analyze-hello-audit-log"></a>Afficher et analyser le journal d’audit de hello
 
-Vous pouvez afficher et analyser les données du journal d’audit en utilisant l’une des méthodes suivantes :
+Vous pouvez afficher et analyser les données du journal d’audit à l’aide d’une des méthodes suivantes de hello :
 
-* **Outils Azure :** récupérez les informations à partir des journaux via Azure PowerShell, l’interface de ligne de commande Azure, l’API REST Azure ou le portail Azure en version préliminaire. Des instructions détaillées pour chaque méthode sont détaillées dans l’article [Opérations d’audit avec Resource Manager](../azure-resource-manager/resource-group-audit.md) .
-* **Power BI :** si vous n’avez pas encore de compte [Power BI](https://powerbi.microsoft.com/pricing) , vous pouvez l’essayer gratuitement. À l’aide du [pack de contenus des journaux d’audit Azure pour Power BI](https://powerbi.microsoft.com/documentation/powerbi-content-pack-azure-audit-logs), vous pouvez analyser vos données avec des tableaux de bord préconfigurés ou personnaliser les vues selon vos besoins.
+* **Windows Azure tools :** récupère des informations à partir des journaux d’audit hello Azure PowerShell, hello Azure Interface de ligne de commande (CLI), hello API REST de Azure, ou hello portail Azure preview. Des instructions détaillées pour chaque méthode sont détaillées dans hello [opérations avec le Gestionnaire de ressources de l’Audit](../azure-resource-manager/resource-group-audit.md) l’article.
+* **Power BI :** si vous n’avez pas encore de compte [Power BI](https://powerbi.microsoft.com/pricing) , vous pouvez l’essayer gratuitement. À l’aide de hello [les journaux d’Audit Azure pack de contenu pour Power BI](https://powerbi.microsoft.com/documentation/powerbi-content-pack-azure-audit-logs), vous pouvez analyser vos données avec des tableaux de bord préconfigurés, ou vous pouvez personnaliser les vues toosuit vos besoins.
 
-## <a name="view-and-analyze-the-health-probe-and-event-log"></a>Afficher et analyser les journaux des sondes d’intégrité et des événements
+## <a name="view-and-analyze-hello-health-probe-and-event-log"></a>Afficher et analyser le journal des événements et la sonde d’intégrité de hello
 
-Vous devez vous connecter à votre compte de stockage et récupérer les entrées de journal JSON pour les journaux des événements et des sondes d’intégrité. Une fois que vous avez téléchargé les fichiers JSON, vous pouvez les convertir en CSV et les afficher dans Excel, PowerBI ou tout autre outil de visualisation de données.
+Vous devez tooconnect tooyour stockage compte et récupérer les entrées de journal hello JSON pour les journaux de sonde d’intégrité et les événements. Une fois que vous téléchargez des fichiers au format JSON hello, vous pouvez les convertir tooCSV et view dans Excel, Power BI ou tout autre outil de visualisation de données.
 
 > [!TIP]
-> Si vous connaissez bien Visual Studio et les concepts de base de la modification des valeurs de constantes et variables en C#, vous pouvez utiliser les [outils de convertisseur de journaux](https://github.com/Azure-Samples/networking-dotnet-log-converter) disponibles dans GitHub.
+> Si vous êtes familiarisé avec Visual Studio et les concepts de base de la modification des valeurs de constantes et variables dans c#, vous pouvez utiliser hello [ouvrir une session outils de convertisseur](https://github.com/Azure-Samples/networking-dotnet-log-converter) disponible à partir de GitHub.
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 

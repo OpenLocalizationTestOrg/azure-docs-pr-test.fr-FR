@@ -1,6 +1,6 @@
 ---
-title: "Équilibrer un cluster Azure Service Fabric | Microsoft Docs"
-description: "Présentation de l’équilibrage de votre cluster avec Service Fabric Cluster Resource Manager."
+title: aaaBalance votre cluster Azure Service Fabric | Documents Microsoft
+description: "Une présentation toobalancing votre cluster avec hello Gestionnaire de ressources du Cluster Service Fabric."
 services: service-fabric
 documentationcenter: .net
 author: masnider
@@ -14,32 +14,32 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 08/18/2017
 ms.author: masnider
-ms.openlocfilehash: 34eacb29f324025c1d2803c9690600227d3ec457
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 5f7ad2f5cf4cfb3751a860f5293b03d2d5266d99
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="balancing-your-service-fabric-cluster"></a>Équilibrage de votre cluster Service Fabric
-Service Fabric Cluster Resource Manager permet de modifier la charge dynamique, de réagir aux ajouts ou aux suppressions de nœuds ou de services. Il corrige également automatiquement les violations de contrainte et rééquilibre de façon proactive le cluster. Mais à quelle fréquence ces actions sont-elles effectuées, et quel en est l’élément déclencheur ?
+Hello, Gestionnaire de ressources du Cluster Service Fabric prend en charge les modifications de la charge dynamique, réaction tooadditions ou les suppressions de nœuds ou des services. Elle corrige également automatiquement les violations de contrainte et rééquilibrage de façon proactive les cluster hello. Mais à quelle fréquence ces actions sont-elles effectuées, et quel en est l’élément déclencheur ?
 
-Il existe trois différentes catégories de tâches exécutées par Cluster Resource Manager. Il s'agit de :
+Il existe trois différentes catégories de travail que hello effectue de gestionnaire de ressources du Cluster. Il s'agit de :
 
 1. Positionnement : cette étape a trait au placement des réplicas avec état ou des instances sans état manquants. Le positionnement inclut non seulement les nouveaux services, mais aussi les réplicas avec état ou les instances sans état qui ont échoué. La suppression et l’annulation des réplicas ou des instances sont gérées ici.
-2. Vérifications de contrainte : cette étape recherche les violations des différentes contraintes (règles) de placement au sein du système et apporte les corrections nécessaires. Le non-dépassement de la capacité des nœuds et le respect des contraintes de positionnement d’un service sont des exemples de règles.
-3. Équilibrage : cette étape vérifie si un rééquilibrage est nécessaire en fonction du niveau d’équilibrage désiré qui a été configuré pour différentes mesures. Si c’est le cas, elle tente de trouver une disposition plus équilibrée dans le cluster.
+2. Contrainte vérifie – cette étape vérifie et corrige les violations de contraintes de positionnement différents hello (règles) dans le système de hello. Le non-dépassement de la capacité des nœuds et le respect des contraintes de positionnement d’un service sont des exemples de règles.
+3. Équilibrage – cette étape vérifie toosee si rééquilibrage est nécessaire en fonction de hello configuré souhaité au niveau du solde pour les mesures de différents. Cas dans ce, il tente toofind AGENCEMENT Bonjour de cluster qui est plus équilibrée.
 
 ## <a name="configuring-cluster-resource-manager-timers"></a>Configuration des minuteurs Cluster Resource Manager
-Le premier ensemble de contrôles autour d’équilibrage sont un ensemble de minuteurs. Ces minuteurs déterminent la fréquence à laquelle Cluster Resource Manager examine le cluster et mène des actions correctives.
+Hello premier ensemble de contrôles autour de l’équilibrage sont un ensemble d’événements d’horloge. Ces minuteries régissent la fréquence à laquelle hello Gestionnaire de ressources du Cluster examine le cluster de hello et effectue des actions correctives.
 
-Chacun de ces différents types de corrections offerts par Cluster Resource Manager est contrôlé par un minuteur différent qui détermine sa fréquence. Lorsque chaque minuteur se déclenche, la tâche est planifiée. Par défaut, Resource Manager :
+Chacune de ces différents types de hello corrections Gestionnaire de ressources de Cluster peuvent rendre est contrôlé par un minuteur différent qui détermine sa fréquence. Lorsque chaque se déclenche, la tâche hello est planifiée. Par défaut hello Gestionnaire de ressources :
 
 * analyse son état et applique des mises à jour (comme l’enregistrement de l’arrêt d’un nœud) tous les dixièmes de seconde ;
-* définit l’indicateur de contrôle du placement 
-* définit l’indicateur de contrôle de la contrainte chaque seconde
-* définit l’indicateur d’équilibrage toutes les cinq secondes.
+* définit l’indicateur de vérification de la sélection élective hello 
+* définit d’indicateur de vérification de contrainte hello par seconde
+* définit hello équilibrage indicateur toutes les cinq secondes.
 
-Voici des exemples de configuration qui définit ces minuteurs :
+Exemples de configuration hello régissant ces minuteries sont les suivants :
 
 ClusterManifest.xml :
 
@@ -80,16 +80,16 @@ via ClusterConfig.json pour les déploiements autonomes ou Template.json pour le
 ]
 ```
 
-À l’heure actuelle, Cluster Resource Manager effectue uniquement l’une de ces actions à la fois, séquentiellement. C’est pourquoi nous faisons référence à ces minuteurs en tant qu’« intervalles minimaux » et les actions effectuées lorsque les minuteurs sont déclenchés représentent des « indicateurs de paramètre ». Par exemple, Cluster Resource Manager traite les demandes de création de services en attente avant d’équilibrer le cluster. Comme en témoignent les intervalles de temps par défaut spécifiés, Cluster Resource Manager analyse fréquemment ce qu’il a à faire. Par conséquent, les modifications apportées à la fin de chaque étape sont généralement mineures. L’apport fréquent de modifications mineures rend Cluster Resource Manager réactif aux événements qui se produisent dans le cluster. Les compteurs par défaut assurent en partie un traitement par lot, car un grand nombre d’événements du même type ont tendance à se produire simultanément. 
+Aujourd'hui hello Gestionnaire de ressources de Cluster effectue uniquement une de ces actions à la fois, séquentiellement. C’est pourquoi nous font référence les minuteurs toothese en tant que « intervalles minimaux » et hello actions obtient effectuées lorsque les minuteurs hello se déclencher en tant que « définition des indicateurs ». Par exemple, Gestionnaire de ressources de Cluster prend en charge en attente de hello demande des services de toocreate avant hello cluster d’équilibrage. Comme vous pouvez le voir par intervalles de temps par défaut hello spécifiés, hello Gestionnaire de ressources du Cluster de l’analyse pour tout élément besoins toodo fréquemment. Normalement, cela signifie que le jeu hello des modifications apportées à chaque étape est petite. Apporter de petites modifications fréquemment permet hello toobe du Gestionnaire de ressources du Cluster réactif lorsque les événements se produisent dans le cluster de hello. Hello minuteries de valeur par défaut fournissent certains le traitement par lot, car de nombreux hello même les types d’événements ont tendance toooccur simultanément. 
 
-Par exemple, lorsque des nœuds échouent, ils se produisent simultanément dans des domaines d’erreur entiers. Tous ces échecs sont capturés à la prochaine mise à jour de l’état après *PLBRefreshGap*. Les corrections sont déterminées lorsque les prochaines opérations de placement, de contrôle des contraintes et d’équilibrage sont exécutées. Par défaut, Cluster Resource Manager n’analyse pas les modifications qui ont eu lieu sur plusieurs heures dans le cluster et n’essaie pas de les traiter toutes en même temps. En effet, cela entraînerait des pics d’activité momentanés.
+Par exemple, lorsque des nœuds échouent, ils se produisent simultanément dans des domaines d’erreur entiers. Ces échecs sont capturées au cours de l’état suivant de hello de mise à jour après hello *PLBRefreshGap*. corrections de Hello sont déterminées pendant hello après la sélection élective, vérification de contrainte et équilibrage s’exécute. Par hello de valeur par défaut Gestionnaire de ressources du Cluster n’est pas analysant les heures des modifications dans un cluster de hello et la tentative de tooaddress toutes les modifications apportées à la fois. Cela entraînerait toobursts d’évolution.
 
-Cluster Resource Manager a également besoin d’informations supplémentaires pour déterminer si le cluster est déséquilibré. Nous disposons pour cela de deux autres éléments de configuration : *BalancingThresholds* et *ActivityThresholds*.
+Hello, Gestionnaire de ressources du Cluster doit également certaines toodetermine des informations supplémentaires si hello cluster déséquilibré. Nous disposons pour cela de deux autres éléments de configuration : *BalancingThresholds* et *ActivityThresholds*.
 
 ## <a name="balancing-thresholds"></a>Seuils d’équilibrage
-Un seuil d’équilibrage est le principal contrôle utilisé pour déclencher le rééquilibrage. Le seuil d’équilibrage pour une métrique est un _ratio_. Si la charge d’une mesure sur le nœud le plus chargé, divisée par la quantité de charge sur le nœud le moins chargé, dépasse la valeur *BalancingThreshold* de cette mesure, le cluster est considéré comme déséquilibré. L’équilibrage est alors déclenché lorsque Cluster Resource Manager effectue sa vérification suivante. Le minuteur *MinLoadBalancingInterval* détermine la fréquence à laquelle Cluster Resource Manager doit vérifier si un rééquilibrage est nécessaire. Cette vérification ne signifie pas que quelque chose se produit. 
+Un seuil d’équilibrage est contrôle principal de hello pour déclencher le rééquilibrage. Bonjour équilibrage de seuil pour une métrique est un _ratio_. Si charge hello pour une métrique de hello chargé plus divisé par quantité hello hello moins chargé de la charge de nœud nœud dépasse cette métrique *BalancingThreshold*, puis le cluster de hello est déséquilibré. Équilibrage de charge ainsi est suivant hello de temps hello déclenchées vérifie du Gestionnaire de ressources du Cluster. Hello *MinLoadBalancingInterval* minuteur définit la fréquence à laquelle hello Gestionnaire de ressources du Cluster doit vérifier s’il est nécessaire de rééquilibrage. Cette vérification ne signifie pas que quelque chose se produit. 
 
-Les seuils d’équilibrage sont définis par métrique dans le cadre de la définition du cluster. Pour plus d’informations sur les mesures, consultez [cet article](service-fabric-cluster-resource-manager-metrics.md).
+Équilibrage des seuils sont définis sur une base par métrique dans le cadre de la définition de cluster hello. Pour plus d’informations sur les mesures, consultez [cet article](service-fabric-cluster-resource-manager-metrics.md).
 
 ClusterManifest.xml
 
@@ -124,30 +124,30 @@ via ClusterConfig.json pour les déploiements autonomes ou Template.json pour le
 Exemple de seuil d’équilibrage![][Image1]
 </center>
 
-Dans cet exemple, chaque service utilise une unité d’une mesure donnée. Dans l’exemple du haut, la charge maximale sur un nœud est égale à 5 et la valeur minimale à 2. Supposons que le seuil d’équilibrage pour cette mesure soit égal à 3. Étant donné que le ratio dans le cluster est de 5/2 = 2,5, soit une valeur inférieure au seuil d’équilibrage de 3, le cluster est équilibré. Aucun équilibrage n’est déclenché lorsque Cluster Resource Manager effectue sa vérification.
+Dans cet exemple, chaque service utilise une unité d’une mesure donnée. Dans hello exemple supérieur, hello maximale de la charge sur un nœud est de cinq et minimum de hello est deux. Supposons que hello équilibrage seuil pour cette métrique est de trois. Étant donné que le ratio hello dans un cluster de hello est 5/2 = 2.5 et qu’il est inférieure à celle spécifiée de hello équilibrage du seuil de trois, cluster de hello est équilibrée. Aucun équilibrage n’est déclenchée lorsque hello Gestionnaire de ressources du Cluster vérifie.
 
-Dans l’exemple du bas, la charge maximale sur un nœud est égale à 10 et la valeur minimale à 2, ce qui donne un ratio de 5. Cette valeur étant supérieure au seuil d’équilibrage de 3 spécifié pour cette mesure, l’exécution d’un rééquilibrage sera planifiée lors du prochain déclenchement du minuteur d’équilibrage. Dans une telle situation, une partie de la charge est généralement répartie sur le nœud Node3. Comme Service Fabric Cluster Resource Manager utilise une approche prudente, une partie de la charge peut également être répartie sur le nœud Node2. 
+Dans l’exemple hello du bas, charge maximale de hello sur un nœud est 10, alors que le minimum de hello est de deux, ce qui entraîne un ratio de cinq. Cinq est supérieure au seuil de contrepartie désigné hello de trois pour cette métrique. Par conséquent, une série de rééquilibrage sera planifiée hello temps suivant, l’équilibrage de minuteur se déclenche. Dans une telle situation, une charge est généralement distribuées tooNode3. Étant donné que hello Gestionnaire de ressources du Cluster Service Fabric n’utilise pas une approche gourmande, une charge peut également être tooNode2 distribuée. 
 
 <center>
 Actions de l’exemple de seuil d’équilibrage![][Image2]
 </center>
 
 > [!NOTE]
-> « L’équilibrage » adopte deux stratégies différentes pour gérer la charge de votre cluster. La stratégie par défaut utilisée par Cluster Resource Manager consiste à répartir la charge sur les nœuds du cluster. L’autre stratégie est la [défragmentation](service-fabric-cluster-resource-manager-defragmentation-metrics.md). La défragmentation se produit en même temps que l’équilibrage. Les stratégies d’équilibrage et de défragmentation peuvent être utilisées pour différentes mesures au sein du même cluster. Un service peut avoir à la fois des mesures d’équilibrage et de défragmentation. Pour les mesures de défragmentation, le ratio des charges dans le cluster déclenche un rééquilibrage lorsqu’il se situe _sous_ le seuil d’équilibrage. 
+> « L’équilibrage » adopte deux stratégies différentes pour gérer la charge de votre cluster. stratégie par défaut Hello hello utilisations du Gestionnaire de ressources du Cluster est toodistribute charge sur les nœuds hello dans un cluster de hello. Hello autre stratégie est [défragmentation](service-fabric-cluster-resource-manager-defragmentation-metrics.md). La défragmentation s’effectue pendant hello équilibrage de la même exécution. Hello défragmentation et équilibrage des stratégies peuvent être utilisés pour des mesures différentes dans hello même cluster. Un service peut avoir à la fois des mesures d’équilibrage et de défragmentation. Pour les métriques de défragmentation, rapport hello hello charge dans les déclencheurs de cluster hello rééquilibrage lorsqu’il est _ci-dessous_ hello équilibrage du seuil. 
 >
 
-L’obtention d’une valeur inférieure au seuil d’équilibrage ne constitue pas un objectif explicite. Les seuils d’équilibrage ne sont qu’un *déclencheur*. Lors de l’équilibrage, Cluster Resource Manager détermine les améliorations possibles, le cas échéant. Une analyse d’équilibrage ne signifie pas que des données sont déplacées. Parfois, le cluster est déséquilibré mais comporte trop de contraintes pour être corrigé. Les améliorations peuvent également nécessiter des mouvements trop [coûteux](service-fabric-cluster-resource-manager-movement-cost.md).
+Mise en route ci-dessous hello équilibrage seuil n’est pas un objectif explicit. Les seuils d’équilibrage ne sont qu’un *déclencheur*. Lors de l’équilibrage de charge s’exécute hello Gestionnaire de ressources de Cluster détermine quelles améliorations possibles, le cas échéant. Une analyse d’équilibrage ne signifie pas que des données sont déplacées. Hello cluster est parfois toocorrect déséquilibré mais trop limitée. Vous pouvez également les améliorations de hello requièrent les mouvements sont trop [coûteux](service-fabric-cluster-resource-manager-movement-cost.md)).
 
 ## <a name="activity-thresholds"></a>seuils d’activité
-Parfois, même si les nœuds sont relativement déséquilibrés, la quantité *totale* de charge dans le cluster est faible. La charge insuffisante peut correspondre à une baisse temporaire ou être due au fait qu’il s’agit d’un nouveau cluster qui vient juste d’être amorcé. Dans les deux cas, il n’est pas forcément judicieux de passer du temps à équilibrer le cluster, car les gains seront minimes. Si le cluster a fait l’objet d’un équilibrage, vous consommerez des ressources réseau et de calcul pour déplacer des éléments sans que cela ait un impact *réel*. Pour éviter ces mouvements inutiles, il existe un autre contrôle appelé « seuil d’activité ». Les seuils d’activité vous permettent de spécifier une limite inférieure absolue pour l’activité. Lorsqu’aucun nœud ne dépasse ce seuil, l’équilibrage n’est pas déclenché, même si le seuil d’équilibrage est atteint.
+Dans certains cas, bien que les nœuds sont relativement déséquilibrés, hello *total* de charge dans le cluster de hello est faible. manque de Hello de charge peut être une adresse dip temporaire ou parce que le cluster de hello est nouveau et uniquement lors de l’obtention amorcé. Dans les deux cas, vous souhaiterez pas temps toospend équilibrage de cluster de hello, car il est peu toobe acquise. Si le cluster de hello avoir subi l’équilibrage de vous consacrer réseau et éléments toomove ressources de calcul sans apporter tout grand *absolu* différence. tooavoid inutile se déplace, il existe un autre contrôle appelé seuils d’activité. Seuils d’activité vous permet de toospecify limite de certaines inférieure absolue pour l’activité. Si aucun nœud ne se trouve sur ce seuil, l’équilibrage n’est pas déclenché même si hello équilibrage seuil est atteint.
 
-Supposons que nous conservons notre seuil d’équilibrage de 3 pour cette mesure. Supposons également que nous avons un seuil d’activité de 1 536. Dans le premier cas, bien que le cluster soit déséquilibré selon le seuil d’équilibrage, comme aucun nœud n’atteint le seuil d’activité, il ne se passe rien. Dans l’exemple du bas, le nœud Node1 dépasse le seuil d’activité. Comme le seuil d’équilibrage et le seuil d’activité pour la mesure sont tous deux dépassés, un équilibrage est planifié. Prenons pour exemple le schéma suivant : 
+Supposons que nous conservons notre seuil d’équilibrage de 3 pour cette mesure. Supposons également que nous avons un seuil d’activité de 1 536. Dans le premier cas de hello, alors que le cluster de hello est déséquilibré par hello il seuil d’équilibrage n’est aucun répond aux nœuds de ce seuil d’activité, donc rien se produit. Dans l’exemple hello du bas, Node1 se sur hello seuil de l’activité. Étant donné que deux hello seuil d’équilibrage et hello seuil de l’activité de mesure de hello sont atteints, l’équilibrage est planifié. Par exemple, examinons hello suivant schéma : 
 
 <center>
 Exemple de seuil d’activité![][Image3]
 </center>
 
-Au même titre que les seuils d’équilibrage, les seuils d’activité sont définis par métrique par l’intermédiaire de la définition du cluster :
+Tout comme l’équilibrage des seuils, des seuils d’activité sont définies par le système métrique via la définition de cluster hello :
 
 ClusterManifest.xml
 
@@ -157,7 +157,7 @@ ClusterManifest.xml
     </Section>
 ```
 
-via ClusterConfig.json pour les déploiements autonomes ou Template.json pour les clusters hébergés sur Azure :
+via ClusterConfig.json pour les déploiements autonomes ou Template.json pour les clusters hébergés sur Azure :
 
 ```json
 "fabricSettings": [
@@ -173,12 +173,12 @@ via ClusterConfig.json pour les déploiements autonomes ou Template.json pour le
 ]
 ```
 
-Les seuils d’équilibrage et d’activité sont tous deux liés à une mesure spécifique : l’équilibrage n’est déclenché que si le seuil d’équilibrage et le seuil d’activité sont dépassés pour la même mesure.
+Seuils d’équilibrage et activité sont tous deux métrique spécifique de tooa liée - équilibrage est déclenchée uniquement si les deux hello seuil d’équilibrage et activité seuil est dépassée pour hello même mesure.
 
 ## <a name="balancing-services-together"></a>Équilibrage de plusieurs services en même temps
-La détermination de l’état de déséquilibre du cluster est une décision qui porte sur l’ensemble du cluster. Cependant, la procédure suivie pour corriger un déséquilibre consiste à déplacer des instances et des réplicas de service individuels. Logique, n’est-ce pas ? Si la mémoire est empilée sur un nœud, plusieurs réplicas ou instances peuvent être impliqués. Pour corriger le déséquilibre, il peut donc être nécessaire de déplacer les réplicas avec état ou les instances sans état qui utilisent la mesure déséquilibrée.
+Si le cluster de hello est déséquilibré ou non est une décision à l’échelle du cluster. Toutefois, moyen hello nous allez résoudre est le déplacement des réplicas de service individuels et les instances autour. Logique, n’est-ce pas ? Si la mémoire est empilée sur un nœud, plusieurs réplicas ou les instances pourraient être cause tooit. Déséquilibre de la correction hello peut nécessiter de déplacer les réplicas avec état de hello ou des instances sans état qui utilisent la métrique de déséquilibré hello.
 
-Occasionnellement pourtant, un service qui n’était pas déséquilibré lui-même est déplacé (voir la discussion sur les poids locaux et globaux plus haut). Pourquoi un service serait-il déplacé si toutes les mesures de ce service ont été équilibrées ? Examinons un exemple :
+À l’occasion Cependant, un service qui n’a pas été déséquilibré lui-même est déplacé (n’oubliez pas de discussion hello local et global des poids plus haut). Pourquoi un service serait-il déplacé si toutes les mesures de ce service ont été équilibrées ? Examinons un exemple :
 
 - Prenons par exemple quatre services : Service1, Service2, Service3 et Service4. 
 - Service1 signale les mesures Metric1 et Metric2. 
@@ -189,21 +189,21 @@ Occasionnellement pourtant, un service qui n’était pas déséquilibré lui-m�
 Vous voyez certainement où je veux en venir : il s’agit d’une chaîne ! Nous n’avons pas vraiment quatre services indépendants, mais plutôt trois services qui sont liés et un qui est indépendant.
 
 <center>
-Équilibrage de plusieurs services en même temps![][Image4]
+![Équilibrage de plusieurs services en même temps][Image4]
 </center>
 
-En raison de cette chaîne, il est donc possible qu’un déséquilibre dans les mesures 1 à 4 provoque le déplacement de réplicas ou d’instances appartenant aux services 1 à 3. Nous savons également qu’un déséquilibre de la mesure Metric1, Metric2 ou Metric3 ne peut pas provoquer de déplacements pour le service Service4. Cela n’aurait aucun intérêt, puisque le déplacement de réplicas ou d’instances appartenant au service Service4 n’a pas la moindre incidence sur l’équilibre de la mesure Metric1, Metric2 ou Metric3.
+En raison de cette chaîne, il est possible qu’un déséquilibre de métriques de 1 à 4 peut provoquer des réplicas ou instances appartenant tooservices toomove 1-3 autour. Nous savons également qu’un déséquilibre de la mesure Metric1, Metric2 ou Metric3 ne peut pas provoquer de déplacements pour le service Service4. Il serait absurde depuis le déplacement de réplicas de hello ou instances appartenant tooService4 autour peut faire rien tooimpact hello équilibre entre les mesures de 1 à 3.
 
-Cluster Resource Manager identifie automatiquement les services associés. Ajouter, supprimer ou modifier les mesures des services peut avoir un impact sur leurs relations. Par exemple, entre deux équilibrages, la mesure Metric2 peut avoir été mise à jour pour être supprimée de la configuration du service Service2. La chaîne entre Service1 et Service2 est alors rompue. Au lieu de deux groupes de services liés, vous en avez à présent trois :
+Hello, Gestionnaire de ressources de Cluster effectue automatiquement les services associés. Ajout, suppression ou modification de métriques hello pour les services peuvent avoir un impact sur leurs relations. Par exemple, entre deux exécutions de l’équilibrage de Service2 a peut-être été mis à jour tooremove Metric2. Cela arrête la chaîne hello entre Service1 et Service2. Au lieu de deux groupes de services liés, vous en avez à présent trois :
 
 <center>
-Équilibrage de plusieurs services en même temps![][Image5]
+![Équilibrage de plusieurs services en même temps][Image5]
 </center>
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Les mesures représentent la façon dont Service Fabric Cluster Resource Manager gère la consommation et la capacité du cluster. Pour en savoir plus sur ces mesures et la façon de les configurer, consultez [cet article](service-fabric-cluster-resource-manager-metrics.md)
-* Le coût du mouvement est une façon de signaler à Cluster Resource Manager que certains services sont plus coûteux à déplacer que d’autres. Pour plus d’informations sur le coût lié aux déplacements, reportez-vous à [cet article](service-fabric-cluster-resource-manager-movement-cost.md).
-* Cluster Resource Manager a plusieurs limitations que vous pouvez configurer pour ralentir l’évolution dans le cluster. Elles ne sont normalement pas nécessaires mais, si vous en avez besoin, vous pouvez en savoir plus sur ces limitations [ici](service-fabric-cluster-resource-manager-advanced-throttling.md)
+* Les métriques sont comment hello Gestionnaire de ressources du Cluster Service Fabric gère la consommation et la capacité en cluster de hello. toolearn plus d’informations sur les métriques et comment tooconfigure, extraire [cet article](service-fabric-cluster-resource-manager-metrics.md)
+* Le coût du mouvement constitue une méthode de signalisation toohello Gestionnaire de ressources de Cluster que certains services sont toomove plus coûteuse que d’autres. Pour plus d’informations sur le coût du mouvement, consultez trop[cet article](service-fabric-cluster-resource-manager-movement-cost.md)
+* Hello, Gestionnaire de ressources du Cluster a plusieurs limitations que vous pouvez configurer tooslow vers le bas de l’évolution du cluster de hello. Elles ne sont normalement pas nécessaires mais, si vous en avez besoin, vous pouvez en savoir plus sur ces limitations [ici](service-fabric-cluster-resource-manager-advanced-throttling.md)
 
 [Image1]:./media/service-fabric-cluster-resource-manager-balancing/cluster-resrouce-manager-balancing-thresholds.png
 [Image2]:./media/service-fabric-cluster-resource-manager-balancing/cluster-resource-manager-balancing-threshold-triggered-results.png

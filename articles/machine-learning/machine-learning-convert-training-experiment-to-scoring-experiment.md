@@ -1,6 +1,6 @@
 ---
-title: "Guide pratique : préparer un modèle au déploiement dans Azure Machine Learning Studio | Microsoft Docs"
-description: "Comment préparer votre modèle entraîné au déploiement sous forme de service web en convertissant votre expérience de formation Machine Learning Studio en une expérience prédictive."
+title: "aaaHow tooprepare votre modèle pour le déploiement dans Azure Machine Learning Studio | Documents Microsoft"
+description: "Comment tooprepare votre modèle formé pour le déploiement sous la forme d’un site web de service en convertissant votre apprentissage Machine Learning Studio expérimenter expérience prédictive de tooa."
 services: machine-learning
 documentationcenter: 
 author: garyericson
@@ -14,88 +14,88 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/28/2017
 ms.author: garye
-ms.openlocfilehash: 716a9a9b723df7ff6eb111fa40f2b5941d57d67a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d25bc68be63679a803bfc24a9e29e009a9263f5f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-prepare-your-model-for-deployment-in-azure-machine-learning-studio"></a>Guide pratique : préparer un modèle au déploiement dans Azure Machine Learning Studio
+# <a name="how-tooprepare-your-model-for-deployment-in-azure-machine-learning-studio"></a>Comment tooprepare votre modèle pour le déploiement dans Azure Machine Learning Studio
 
-Azure Machine Learning Studio vous donne les outils nécessaires pour développer un modèle d’analyse prédictive, puis le faire fonctionner en le déployant sous forme de service web Azure.
+Azure propose de Machine Learning Studio que vous hello outils dont vous devez toodevelop un modèle prédictif analytique et puis de le mettre en la déployant en tant que service web Azure.
 
-Pour cela, vous utiliserez Studio afin de créer une expérience, appelée *expérience de formation*, dans laquelle vous entraînerez, évaluerez et modifierez votre modèle. Une fois satisfait, vous préparerez votre modèle au déploiement en convertissant votre expérience de formation en une *expérience prédictive* configurée pour évaluer les données utilisateur.
+toodo, vous utilisez Studio toocreate une expérience - appelée un *expérience de formation* - où vous l’apprentissage, évaluer et modifier votre modèle. Une fois que vous êtes satisfait, vous obtenez votre toodeploy prêt de modèle en convertissant votre tooa d’expérience de formation *expérience prédictive* qui a configuré les données de l’utilisateur tooscore.
 
 Vous trouverez un exemple de ce processus à la page [Procédure pas à pas : développer une solution d’analyse prédictive pour l’évaluation des risques de crédit dans Azure Machine Learning](machine-learning-walkthrough-develop-predictive-solution.md).
 
-Cet article étudie en détail la façon dont une expérience de formation est convertie en une expérience prédictive et dont cette expérimentation prédictive est déployée. Ces informations vous permettront d’apprendre à configurer votre modèle déployé de façon à le rendre plus efficace.
+Cet article est une présentation approfondie les détails de hello de la façon dont une expérience d’apprentissage est convertie en une expérience prédictive et comment cette expérience prédictive est déployé. En comprenant les détails suivants, vous allez apprendre comment tooconfigure votre toomake modèle déployé il est plus efficace.
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 ## <a name="overview"></a>Vue d'ensemble 
 
-Le processus de conversion d’une expérience d’apprentissage en expérience prédictive comprend trois étapes :
+processus de Hello de conversion d’une expérience prédictive de formation expérience tooa implique trois étapes :
 
-1. Remplacez les modules d’algorithmes de Machine Learning par votre modèle entraîné.
-2. Découpez l’expérience pour ne garder que les modules nécessaires au calcul des notations. Une expérience de formation inclut un certain nombre de modules nécessaires pour la formation, mais qui ne sont plus requis une fois le modèle entraîné.
-3. Définissez dans quelle mesure votre modèle acceptera les données de l’utilisateur du service web et choisissez le type des données qui seront renvoyées.
+1. Remplacez les modules de l’algorithme avec votre modèle formé d’apprentissage hello.
+2. Trim hello expérience tooonly les modules qui sont nécessaires pour calculer les scores. Une expérience de formation inclut un nombre de modules qui sont nécessaires pour l’apprentissage, mais ne sont pas nécessaires une fois que l’apprentissage du modèle hello.
+3. Définir comment votre modèle accepte les données à partir de l’utilisateur du service web hello et quelles données seront retournées.
 
 > [!TIP]
-> Dans votre expérience de formation, vous vous êtes concentré sur la formation et la notation de votre modèle avec vos propres données. Mais, une fois qu’il sera déployé, les utilisateurs enverront de nouvelles données à votre modèle, et il renverra des résultats de prédiction. Par conséquent, lorsque vous convertirez l’expérience de formation en une expérience prédictive pour la préparer au déploiement, n’oubliez pas la façon dont le modèle sera utilisé par d’autres personnes.
+> Dans votre expérience de formation, vous vous êtes concentré sur la formation et la notation de votre modèle avec vos propres données. Mais une fois déployé, les utilisateurs peuvent envoyer le nouveau modèle de données tooyour et il retourne les résultats de prédiction. Par conséquent, lorsque vous convertissez votre expérience de formation tooa tooget prédictive expérience qu’il est prêt pour le déploiement, gardez à l’esprit comment hello modèle sera utilisé par d’autres.
 > 
 > 
 
 ## <a name="set-up-web-service-button"></a>Définir le bouton de service web
-Après avoir exécuté votre expérience (cliquez sur **EXÉCUTER** en bas du canevas de l’expérience), cliquez sur **Configurer le service web** (sélectionnez l’option **Service web prédictif**). **Configurer le service web** effectue les trois étapes de conversion de votre expérience de formation en une expérience prédictive :
+Après avoir exécuté votre expérience (cliquez sur **exécuter** bas hello du canevas de l’expérience hello), cliquez sur hello **configurer le Service Web** bouton (sélectionnez hello **prédictive Service Web** option). **Configurer le Service Web** effectue pour hello de trois étapes de conversion de votre expérience de prédictive de tooa expérience d’apprentissage :
 
-1. Il enregistre votre modèle entraîné dans la section **Modèles entraînés** de la palette du module (à gauche du canevas de l’expérience). Il remplace ensuite l’algorithme de Machine Learning et les modules [Train Model][train-model] par le modèle entraîné enregistré.
+1. Elle enregistre votre modèle formé dans hello **modèles formés** section de la palette de module hello (toohello à gauche du canevas de l’expérience hello). Il remplace ensuite l’algorithme d’apprentissage automatique hello et [Train Model] [ train-model] modèle de modules avec hello enregistré formés.
 2. Il analyse votre expérience et supprime les modules qui ont clairement été utilisés exclusivement pour la formation et ne sont plus nécessaires.
 3. Il insère les modules _Web service input_ et de _Web service output_ aux emplacements par défaut de votre expérience (ces modules acceptent et renvoient des données utilisateur).
 
-Par exemple, l’expérience suivante effectue l’apprentissage d’un modèle d’arborescence de décision augmenté incluant deux classes, au moyen des données de recensement :
+Par exemple, suivant de hello expérimenter trains un modèle d’arbre de décision augmentés de deux classes à l’aide des exemples de données de recensement :
 
 ![expérience de formation][figure1]
 
-Les modules de cette expérience effectuent quatre fonctions de base :
+modules Hello dans cette expérience des fonctions en fait quatre différentes :
 
 ![Fonctions du module][figure2]
 
-Lorsque vous convertissez cette expérience de formation en une expérience prédictive, certains de ces modules ne sont plus nécessaires ou sont à présent utilisés à une autre fin :
+Lorsque vous convertissez cette expérience prédictive de formation expérience tooa, certaines de ces modules ne sont plus nécessaires ou qu’elles servent maintenant un objectif différent :
 
-* **Data** : les données de cet exemple de jeu de données ne sont pas utilisées pour le calcul de la notation ; l’utilisateur du service web fournit les données à noter. Toutefois, les métadonnées de ce jeu de données, comme les types de données, sont utilisées par le modèle formé. Vous devez donc conserver le jeu de données dans l’expérience prédictive, afin qu’il puisse fournir ces métadonnées.
+* **Données** -données hello dans cet exemple de dataset ne sont pas utilisées lors de la notation - utilisateur hello du service web de hello fournira hello toobe de données au score calculé. Toutefois, hello des métadonnées à partir de ce jeu de données, tels que des types de données, sont utilisée par le modèle formé de hello. Vous avez besoin de jeu de données tookeep hello dans expérience prédictive de hello afin qu’il puisse fournir ces métadonnées.
 
-* **Prep** : selon les données utilisateur qui seront soumises pour la notation, ces modules ne seront pas forcément nécessaires pour le traitement des données entrantes. Le bouton **Configurer le service web** ne les affecte pas : il vous faut décider comment vous souhaitez les gérer.
+* **Préparation du** - en fonction des données utilisateur hello qui seront soumises pour calculer les scores, ces modules peuvent être ou non nécessaires tooprocess les données entrantes hello. Hello **configurer le Service Web** bouton ne touche pas ces - vous devez toodecide comment vous souhaitez que toohandle les.
   
-    Notamment, cet exemple de jeu de données peut avoir des valeurs manquantes : un module [Clean Missing Data][clean-missing-data] a donc été inclus pour les gérer. En outre, l’exemple de jeu de données comprend des colonnes qui ne sont pas nécessaires pour effectuer l’apprentissage du modèle. Par conséquent, un module [Select Columns in Dataset][select-columns] a été inclus afin d’exclure ces colonnes supplémentaires du flux de données. Si vous savez qu’aucune donnée ne manque parmi les données qui seront soumises à des fins de calcul de la notation via le service web, vous pouvez retirer le module [Clean Missing Data][clean-missing-data]. Toutefois, étant donné qu’il permet de définir les colonnes de données attendues par le modèle entraîné, le module [Select Columns in Dataset][select-columns] doit être conservé.
+    Par exemple, dans cet exemple hello échantillon de dataset peut avoir des valeurs manquantes, par conséquent, un [Clean Missing Data] [ clean-missing-data] module a été inclus toodeal avec eux. En outre, jeu de données exemple hello inclut des colonnes qui ne sont pas de modèle de hello tootrain nécessaires. Par conséquent, un [sélectionner les colonnes dans le jeu de données] [ select-columns] module a été inclus tooexclude ces colonnes supplémentaires de hello du flux de données. Si vous connaissez ces données hello qui seront soumises pour calculer les scores via hello service web n’aura pas les valeurs manquantes, puis vous pouvez supprimer hello [Clean Missing Data] [ clean-missing-data] module. Toutefois, puisque hello [sélectionner les colonnes dans le jeu de données] [ select-columns] module permet de définir des colonnes de hello de données attend ce modèle formé hello, tooremain a besoin de ce module.
 
-* **Train** : ces modules sont utilisés pour former le modèle. Lorsque vous cliquez sur **Configurer le service web**, ces modules sont remplacés par un module unique qui contient le modèle entraîné. Ce nouveau module est enregistré dans la section **Modèles formés** de la palette des modules.
+* **Train** -ces modules sont le modèle de hello tootrain utilisé. Lorsque vous cliquez sur **configurer le Service Web**, ces modules sont remplacés par un seul module qui contient le modèle hello vous avez formé. Ce nouveau module est enregistré dans hello **modèles formés** section de la palette de module hello.
 
-* **Score** : dans cet exemple, le module [Split Data][split] est utilisé pour diviser le flux de données en données de test, d’une part, et données d’apprentissage, d’autre part. Dans l’expérience prédictive, nous n’effectuons plus l’apprentissage ; nous pouvons donc supprimer [Split Data][split]. De même, le deuxième module [Score Model][score-model] et le module [Evaluate Model][evaluate-model] sont utilisés pour comparer les résultats à partir des données de test. Ils ne sont donc pas nécessaires à l’expérience prédictive. Le module [Score Model][score-model] restant est cependant requis pour renvoyer le résultat de la notation par le biais du service web.
+* **Score** : dans cet exemple, hello [données fractionnées] [ split] module est le flux de données hello toodivide utilisés dans les données de test et les données d’apprentissage. Dans l’expérience prédictive hello, nous ne mettons pas formation, donc [données fractionnées] [ split] peuvent être supprimés. De même, hello deuxième [Score Model] [ score-model] module et hello [modèle Evaluate] [ evaluate-model] module sont toocompare utilisé les résultats du test de hello données, ces modules ne sont pas nécessitent dans hello prédictive faire des essais. Hello restant [Score Model] [ score-model] module, toutefois, est nécessaire tooreturn un score de résultats via le service web de hello.
 
 Voici comment notre exemple apparaît une fois que vous avez cliqué sur **Définir un service Web**:
 
 ![Expérience prédictive convertie][figure3]
 
-Le travail effectué par **Configurer le service web** peut être suffisant pour préparer votre expérience à être déployée en tant que service web. Toutefois, certaines tâches supplémentaires, spécifiques à votre expérience, seront peut-être à prévoir.
+Hello du travail effectué par **configurer le Service Web** peut être suffisamment tooprepare votre toobe expérience déployé comme un service web. Toutefois, vous souhaiterez peut-être toodo certains expérience tooyour spécifique de travail supplémentaires.
 
 ### <a name="adjust-input-and-output-modules"></a>Ajuster des modules d’entrée et de sortie
-Dans votre expérience d’apprentissage, vous avez utilisé un ensemble de données d’apprentissage, puis effectué un certain traitement pour obtenir les données au format requis par l’algorithme ML. S’il n’est pas nécessaire de soumettre à ce traitement les données que vous vous attendez à recevoir via le service web, vous pouvez le contourner : connectez la sortie du **module Web service input** à un autre module de votre expérience. Les données de l’utilisateur arrivent à présent à cet emplacement du modèle.
+Dans votre expérience d’apprentissage, vous avez utilisé un jeu de données d’apprentissage et puis certaines tooget de traitement a hello les données dans un formulaire qui hello algorithme d’apprentissage automatique si nécessaire. Si les données hello attendues tooreceive via le service web de hello ne seront pas besoin de ce traitement, vous pouvez l’ignorer : connectez sortie hello Hello **module d’entrée du service Web** tooa autre module de votre expérience. données de l’utilisateur Hello arriveront maintenant dans le modèle hello à cet emplacement.
 
-Par exemple, le bouton **Définir un service web** place par défaut le module **Web service input** en haut de votre flux de données, comme l’indique la figure ci-dessus. Mais nous pouvons positionner manuellement le module **Web service input** au-delà des modules de traitement des données :
+Par exemple, par défaut **configurer le Service Web** met hello **Web service entrée** module haut hello de votre flux de données, comme indiqué dans la figure hello ci-dessus. Mais nous pouvons positionner manuellement hello **Web service entrée** au-delà de modules de traitement des données hello :
 
-![Déplacement de l’entrée du service web][figure4]
+![Entrée du service web mobile hello][figure4]
 
-Les données d’entrée fournies via le service web accéderont directement au module Score Model, sans être soumises à un traitement préalable.
+Hello les données d’entrée fournies par le biais hello service web passera désormais directement dans le module du modèle de Score hello sans prétraitement.
 
-De même, par défaut, **Définir un service Web** place le module Web service output en bas de votre flux de données. Dans cet exemple, le service web renvoie à l’utilisateur la sortie du module [Score Model][score-model], qui inclut la totalité du vecteur de données d’entrée, ainsi que les résultats de la notation.
-Toutefois, si vous préférez renvoyer quelque chose de différent, vous pouvez ajouter des modules supplémentaires avant le modules **Web service output**. 
+De même, par défaut **configurer le Service Web** met hello module de sortie de service Web bas hello de votre flux de données. Dans cet exemple, service web de hello retournera le résultat de hello utilisateur toohello de hello [Score Model] [ score-model] module, qui comprend le vecteur de données d’entrée complète hello plus hello score des résultats.
+Toutefois, si vous préférez tooreturn quelque chose de différent, vous pouvez ajouter des modules supplémentaires avant hello **Web de sortie du service** module. 
 
-Par exemple, pour renvoyer uniquement les résultats de la notation et non la totalité du vecteur de données d’entrée, ajoutez un module [Select Columns in Dataset][select-columns] pour exclure toutes les colonnes, sauf les résultats de la notation. Ensuite, déplacez le module **Web service output** vers la sortie du module [Select Columns in Dataset][select-columns]. L’expérience se présente ainsi :
+Par exemple, n’entraîne la notation hello tooreturn et pas hello entière vecteur de données d’entrée, ajoutez un [sélectionner les colonnes dans le jeu de données] [ select-columns] tooexclude module toutes les colonnes sauf hello score des résultats. Puis déplacez hello **Web de sortie du service** sortie toohello de module de hello [sélectionner les colonnes dans le jeu de données] [ select-columns] module. expérience de Hello ressemble à ceci :
 
-![Déplacement de la sortie du service web][figure5]
+![Déplacement de sortie du service web hello][figure5]
 
 ### <a name="add-or-remove-additional-data-processing-modules"></a>Ajouter ou supprimer des modules de traitement des données supplémentaires
-Si votre expérience inclut un plus grand nombre de modules que nécessaire pour le calcul de la notation, vous pouvez en supprimer. Par exemple, étant donné que nous avons déplacé le module **Web service input** vers un point situé après les modules de traitement des données, nous pouvons supprimer le module [Clean Missing Data][clean-missing-data] de l’expérience prédictive.
+Si votre expérience inclut un plus grand nombre de modules que nécessaire pour le calcul de la notation, vous pouvez en supprimer. Par exemple, étant donné que nous avons déplacé hello **Web service entrée** tooa de module pointe après hello modules de traitement des données, nous pouvons supprimer hello [Clean Missing Data] [ clean-missing-data] module à partir de expérience de prédictive Hello.
 
 Notre expérience de notation ressemble à présent à ce qui suit :
 
@@ -103,21 +103,21 @@ Notre expérience de notation ressemble à présent à ce qui suit :
 
 
 ### <a name="add-optional-web-service-parameters"></a>Ajouter des paramètres de service web facultatifs
-Dans certains cas, vous voudrez permettre à l’utilisateur de votre service web de modifier le comportement des modules en cas d’accès au service. *paramètres de service Web* .
+Dans certains cas, vous souhaiterez utilisateur hello tooallow votre comportement hello toochange du service web de modules lors de l’accès au service de hello. *Paramètres de Service Web* permettent de toodo cela.
 
-Un exemple courant consiste à configurer un module [Import Data][import-data], afin que l’utilisateur du service web publié puisse spécifier une autre source de données lors de l’accès au service web. Il est également possible de configurer un module [Exporter les données][export-data] de façon à spécifier une destination différente.
+Un exemple courant consiste à configurer un [importer des données] [ import-data] module donc utilisateur hello Hello déployé le service web peut spécifier une autre source de données lors de l’accès au service web de hello. Il est également possible de configurer un module [Exporter les données][export-data] de façon à spécifier une destination différente.
 
-Vous pouvez définir des paramètres de service web et les associer à un ou plusieurs paramètres de module, en spécifiant s’ils sont obligatoires ou facultatifs. L’utilisateur du service web fournit ensuite des valeurs pour ces paramètres lors de l’accès au service ; les actions de module sont modifiées en conséquence.
+Vous pouvez définir des paramètres de service web et les associer à un ou plusieurs paramètres de module, en spécifiant s’ils sont obligatoires ou facultatifs. utilisateur Hello du service web de hello fournit des valeurs pour ces paramètres lors de l’accès au service de hello et actions du module hello sont modifiées en conséquence.
 
-Pour en savoir plus sur les paramètres de service web et leur utilisation, consultez la page [Utilisation des paramètres de service web Azure Machine Learning][webserviceparameters].
+Pour plus d’informations sur les paramètres de Service Web sont et toouse, voir [utilisant les paramètres du Service Web Azure Machine Learning][webserviceparameters].
 
 [webserviceparameters]: machine-learning-web-service-parameters.md
 
 
-## <a name="deploy-the-predictive-experiment-as-a-web-service"></a>Déploiement de l’expérience prédictive sous la forme d’un service web
-Maintenant que l’expérience prédictive est correctement préparée, vous pouvez la publier en tant que service web Azure. En accédant au service web, les utilisateurs peuvent envoyer des données à votre modèle, qui renvoie alors ses prédictions.
+## <a name="deploy-hello-predictive-experiment-as-a-web-service"></a>Déployer l’expérience de prédictive hello comme un service web
+Maintenant que l’expérience de prédictive hello suffisamment préparé, vous pouvez le déployer en tant que service web Azure. À l’aide du service web de hello, les utilisateurs peuvent envoyer le modèle de données tooyour et modèle de hello retourne ses prédictions.
 
-Pour en savoir plus sur le processus de déploiement complet, consultez la page [Déploiement d’un service web Machine Learning Azure][deploy]
+Pour plus d’informations sur le processus de déploiement complet hello, consultez [déployer un service web Azure Machine Learning][deploy]
 
 [deploy]: machine-learning-publish-a-machine-learning-web-service.md
 

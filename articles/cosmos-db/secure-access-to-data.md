@@ -1,5 +1,5 @@
 ---
-title: "Sécurisation de l’accès aux données Azure Cosmos DB | Microsoft Docs"
+title: "aaaLearn comment toosecure aux toodata dans la base de données Azure Cosmos | Documents Microsoft"
 description: "Découvrez les concepts du contrôle d’accès dans Azure Cosmos DB, notamment les clés principales, les clés en lecture seule, les utilisateurs et les autorisations."
 services: cosmos-db
 author: mimig1
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/24/2017
 ms.author: mimig
-ms.openlocfilehash: 383e04f91eec2f465b381ce30f2d6d24c488b731
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: fef7f8e14b488f6ceab0f2aa279a1e99d4416f08
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="securing-access-to-azure-cosmos-db-data"></a>Sécurisation de l’accès aux données d’Azure Cosmos DB
-Cet article fournit une vue d’ensemble de la sécurisation de l’accès aux données stockées dans [Microsoft Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/).
+# <a name="securing-access-tooazure-cosmos-db-data"></a>Sécurisation des données de base de données Cosmos accès tooAzure
+Cet article fournit une vue d’ensemble de la sécurisation de toodata d’accès stocké dans [base de données Microsoft Azure Cosmos](https://azure.microsoft.com/services/cosmos-db/).
 
-Azure Cosmos DB utilise deux types de clés pour authentifier les utilisateurs et permettre d’accéder à ses données et à ses ressources. 
+Base de données Azure Cosmos utilise deux types d’utilisateurs tooauthenticate de clés et fournissent l’accès tooits données et des ressources. 
 
 |Type de clé|Ressources|
 |---|---|
@@ -34,32 +34,32 @@ Azure Cosmos DB utilise deux types de clés pour authentifier les utilisateurs e
 
 ## <a name="master-keys"></a>Clés principales 
 
-Les clés principales fournissent un accès à toutes les ressources d’administration du compte de base de données. Clés principales :  
-- Fournissent un accès aux comptes, aux bases de données, aux utilisateurs et aux autorisations. 
-- Ne peuvent pas être utilisées pour fournir un accès précis aux collections et aux documents.
-- Sont créées lors de la création d’un compte.
+Les clés principales fournissent accès toohello toutes les ressources d’administration hello pour le compte de base de données hello. Clés principales :  
+- Fournir l’accès tooaccounts, les bases de données, les utilisateurs et les autorisations. 
+- Ne peut pas être tooprovide utilisé un accès granulaire toocollections et des documents.
+- Sont créés lors de la création de hello d’un compte.
 - Peuvent être régénérées à tout moment.
 
-Chaque compte comporte deux clés principales : une clé primaire et une clé secondaire. L’objectif de ces paires de clés est de pouvoir régénérer ou restaurer des clés tout en fournissant un accès permanent à votre compte et à vos données. 
+Chaque compte comporte deux clés principales : une clé primaire et une clé secondaire. Hello clés vise afin que vous pouvez régénérer ou substituer les clés, fournissant des données et le compte d’accès continu tooyour. 
 
-Outre les deux clés principales du compte Azure Cosmos DB, il existe deux clés en lecture seule. Ces clés en lecture seule autorisent uniquement les opérations de lecture sur le compte. Les clés en lecture seule ne permettent pas de lire les ressources d’autorisation.
+En outre toohello deux des clés principales pour le compte de base de données Cosmos hello, il existe deux clés en lecture seule. Ces clés en lecture seule autoriser uniquement les opérations de lecture sur le compte de hello. Clés en lecture seule ne fournissent pas d’accès aux ressources d’autorisations tooread.
 
-Les clés principales primaire, secondaire, en lecture seule et en lecture-écriture peuvent être récupérées et régénérées à l’aide du portail Azure. Pour connaître la procédure, consultez [Affichage, copie et régénération des clés d’accès](manage-account.md#keys).
+Principal, secondaire en lecture seule et en lecture-écriture des clés principales peuvent être récupérées et régénérées à l’aide de hello portail Azure. Pour connaître la procédure, consultez [Affichage, copie et régénération des clés d’accès](manage-account.md#keys).
 
-![Contrôle d’accès (IAM) dans le portail Azure - Démonstration de la sécurité de la base de données NoSQL](./media/secure-access-to-data/nosql-database-security-master-key-portal.png)
+![Contrôle d’accès (IAM) Bonjour Azure portal - démonstration de sécurité de base de données NoSQL](./media/secure-access-to-data/nosql-database-security-master-key-portal.png)
 
-Le processus de rotation de votre clé principale est simple. Accédez au portail Azure pour récupérer votre clé secondaire, puis remplacez votre clé primaire par votre clé secondaire dans votre application. Enfin, faites pivoter la clé primaire dans le portail Azure.
+processus de Hello de rotation de votre clé principale est simple. Accédez toohello tooretrieve portail Azure votre clé secondaire, remplacez votre clé primaire avec votre clé secondaire dans votre application, puis faire pivoter la clé primaire de hello Bonjour portail Azure.
 
-![Rotation de clé principale dans le portail Azure - Démonstration de la sécurité de la base de données NoSQL](./media/secure-access-to-data/nosql-database-security-master-key-rotate-workflow.png)
+![Permutation des clés principales Bonjour Azure portal - démonstration de sécurité de base de données NoSQL](./media/secure-access-to-data/nosql-database-security-master-key-rotate-workflow.png)
 
-### <a name="code-sample-to-use-a-master-key"></a>Exemple de code pour utiliser une clé principale
+### <a name="code-sample-toouse-a-master-key"></a>Le code exemple toouse une clé principale
 
-L’exemple de code suivant montre comment utiliser une clé principale et un point de terminaison de compte Azure Cosmos DB pour instancier un DocumentClient et créer une base de données. 
+Hello exemple de code suivant illustre comment toouse une base de données Cosmos tooinstantiate de point de terminaison et la clé principale du compte un DocumentClient et créer une base de données. 
 
 ```csharp
-//Read the Azure Cosmos DB endpointUrl and authorization keys from config.
-//These values are available from the Azure portal on the Azure Cosmos DB account blade under "Keys".
-//NB > Keep these values in a safe and secure location. Together they provide Administrative access to your DocDB account.
+//Read hello Azure Cosmos DB endpointUrl and authorization keys from config.
+//These values are available from hello Azure portal on hello Azure Cosmos DB account blade under "Keys".
+//NB > Keep these values in a safe and secure location. Together they provide Administrative access tooyour DocDB account.
 
 private static readonly string endpointUrl = ConfigurationManager.AppSettings["EndPointUrl"];
 private static readonly SecureString authorizationKey = ToSecureString(ConfigurationManager.AppSettings["AuthorizationKey"]);
@@ -78,40 +78,40 @@ Database database = await client.CreateDatabaseAsync(
 
 ## <a name="resource-tokens"></a>Jetons de ressource
 
-Les jetons de ressource fournissent un accès aux ressources d’application au sein d’une base de données. Jetons de ressource :
-- Fournissent un accès à des collections, clés de partition, documents, pièces jointes, procédures stockées, déclencheurs et fonctions définies par l’utilisateur spécifiques.
-- Sont créés lorsqu’un [utilisateur](#users) dispose des [autorisations](#permissions) sur une ressource spécifique.
+Jetons de ressource fournissent un accès à des ressources d’application toohello au sein d’une base de données. Jetons de ressource :
+- Fournir l’accès toospecific collections, les clés de partition, documents, pièces jointes, procédures stockées, déclencheurs et UDF.
+- Sont créés quand un [utilisateur](#users) est accordé [autorisations](#permissions) tooa des ressources spécifiques.
 - Sont recréés lorsqu’une ressource d’autorisation est exécutée par un appel POST, GET ou PUT.
-- Utilisent un jeton de ressource de hachage créé spécifiquement pour l’utilisateur, la ressource et les autorisations.
-- Sont liés à une période de validité personnalisable. La durée de validité par défaut est d’une heure. La durée de vie du jeton peut cependant être définie de manière explicite (cinq heures maximum).
-- Offrent une alternative sûre pour céder la clé principale. 
-- Permettent aux clients de lire, d’écrire et de supprimer des ressources dans le compte Azure Cosmos DB en fonction des autorisations qui leur ont été accordées.
+- Utiliser un jeton de ressource de hachage spécifiquement construit utilisateur de hello, les ressources et les autorisations.
+- Sont liés à une période de validité personnalisable. intervalle de temps valide Hello par défaut est d’une heure. Durée de vie de jeton, toutefois, peut-être être spécifiée explicitement, les tooa maximum de cinq heures.
+- Fournir un toogiving sécurisé autre clé principale de hello. 
+- Activer les clients tooread, écriture et suppression des ressources dans le compte de base de données Cosmos hello selon qu’ils ont été attribuées des autorisations toohello.
 
-Vous pouvez utiliser un jeton de ressource (en créant des utilisateurs et des autorisations Azure Cosmos DB) lorsque vous voulez fournir un accès aux ressources dans votre compte Azure Cosmos DB à un client qui ne peut pas être approuvé avec la clé principale.  
+Vous pouvez utiliser un jeton de ressource (en créant des autorisations et les utilisateurs de base de données Cosmos) lorsque vous souhaitez tooresources d’accès tooprovide dans votre base de données Cosmos compte tooa client qui ne peut pas être fiable avec la clé principale de hello.  
 
-Les jetons de ressource Azure Cosmos DB offrent une alternative sûre qui permet aux clients de lire, d’écrire et de supprimer des ressources dans votre compte Azure Cosmos DB en fonction des autorisations que vous avez octroyées, sans avoir besoin d’une clé principale ou en lecture seule.
+Les jetons de ressource COSMOS DB fournissent une alternative sécurisée qui permet les clients tooread, écriture et suppression des ressources dans votre compte de base de données Cosmos selon que vous avez accordé des autorisations toohello et sans nécessité d’une forme de base ou en lecture seule clé.
 
-Voici un modèle de conception standard dans le cadre duquel des jetons de ressource peuvent être demandés, générés et fournis aux clients :
+Voici un modèle de conception classique par laquelle les jetons de ressource peuvent être demandés, générés et remis tooclients :
 
-1. Un service de niveau intermédiaire est configuré pour servir une application mobile pour partager les photos de l'utilisateur. 
-2. Le service de niveau intermédiaire détient la clé principale du compte Azure Cosmos DB.
-3. L’application photo est installée sur les appareils mobiles des utilisateurs finaux. 
-4. Lors de la connexion, l'application photo établit l'identité de l'utilisateur avec le service de niveau intermédiaire. Ce mécanisme d'identification dépend totalement de l'application.
-5. Une fois l'identité établie, le service de niveau intermédiaire demande des autorisations en fonction de l'identité.
-6. Le service de niveau intermédiaire renvoie un jeton de ressource à l'application du téléphone.
-7. Cette dernière peut continuer à utiliser le jeton de ressource pour accéder directement aux ressources Azure Cosmos DB avec les autorisations définies et pendant l’intervalle autorisé. 
-8. À expiration du jeton de ressource, les demandes suivantes reçoivent une exception non autorisée 401.  L'application du téléphone établit alors de nouveau l'identité de l'utilisateur et demande un nouveau jeton de ressource.
+1. Un service de niveau intermédiaire est configuré tooserve un photos de l’utilisateur tooshare application mobile. 
+2. service de couche intermédiaire Hello possède la clé principale de hello Hello Cosmos DB compte.
+3. application de photos Hello est installée sur les périphériques mobiles de l’utilisateur final. 
+4. Sur la connexion, application de photos hello établit identité hello d’utilisateur hello avec le service de couche intermédiaire hello. Ce mécanisme d’établissement d’identité est purement toohello application.
+5. Une fois que l’identité de hello est établie, les demandes de service de couche intermédiaire hello autorisations selon l’identité de hello.
+6. service de couche intermédiaire Hello envoie une application de téléphone ressource jeton toohello précédent.
+7. application de téléphone Hello poursuivre toouse hello toodirectly jeton accès Cosmos DB ressources autorisations hello définies par le jeton de ressource hello et intervalle de salutation autorisée par le jeton de ressource hello. 
+8. Expiration du jeton de ressource hello, les demandes suivantes reçoivent une exception non autorisé 401.  À ce stade, application de téléphone hello rétablit les identités hello et demande un nouveau jeton de ressource.
 
     ![Workflow de jetons de ressource Azure Cosmos DB](./media/secure-access-to-data/resourcekeyworkflow.png)
 
-La gestion et la génération des jetons de ressource sont prises en charge par les bibliothèques clientes natives Azure Cosmos DB. Toutefois, si vous utilisez REST, vous devez créer les en-têtes de demande/d’authentification. Pour plus d’informations sur la création d’en-têtes d’authentification pour REST, consultez [Access Control on DocumentDB Resources](https://docs.microsoft.com/rest/api/documentdb/access-control-on-documentdb-resources) (Contrôle d’accès aux ressources Azure Cosmos DB) ou le [code source de nos Kits de développement logiciel (SDK)](https://github.com/Azure/azure-documentdb-node/blob/master/source/lib/auth.js).
+Gestion et génération de jetons de ressources sont gérées par hello Cosmos DB bibliothèques native client ; Toutefois, si vous utilisez REST vous devez construire des en-têtes de demande / d’authentification hello. Pour plus d’informations sur la création d’en-têtes d’authentification pour REST, consultez [contrôle d’accès aux ressources de base de données Cosmos](https://docs.microsoft.com/rest/api/documentdb/access-control-on-documentdb-resources) ou hello [code source pour nos kits de développement logiciel](https://github.com/Azure/azure-documentdb-node/blob/master/source/lib/auth.js).
 
-Pour obtenir un exemple de service de niveau intermédiaire utilisé pour générer ou répartir les jetons de ressource, consultez [l’application ResourceTokenBroker](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/xamarin/UserItems/ResourceTokenBroker/ResourceTokenBroker/Controllers).
+Pour obtenir un exemple d’un service de couche intermédiaire toogenerate ou service Broker pour les jetons de ressource, consultez hello [ResourceTokenBroker application](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/xamarin/UserItems/ResourceTokenBroker/ResourceTokenBroker/Controllers).
 
 <a id="users"></a>
 
 ## <a name="users"></a>Utilisateurs
-Les utilisateurs d’Azure Cosmos DB sont associés à une base de données Cosmos DB.  Chaque base de données peut contenir zéro, un ou plusieurs utilisateurs Azure Cosmos DB.  L’exemple de code suivant indique comment créer une ressource utilisateur DocumentDB.
+Les utilisateurs d’Azure Cosmos DB sont associés à une base de données Cosmos DB.  Chaque base de données peut contenir zéro, un ou plusieurs utilisateurs Azure Cosmos DB.  Hello suivant exemple de code montre comment toocreate une ressource d’utilisateur de base de données Cosmos.
 
 ```csharp
 //Create a user.
@@ -124,27 +124,27 @@ docUser = await client.CreateUserAsync(UriFactory.CreateDatabaseUri("db"), docUs
 ```
 
 > [!NOTE]
-> Chaque utilisateur Azure Cosmos DB dispose d’une propriété PermissionsLink qui permet de récupérer la liste des [autorisations](#permissions) qui lui sont associées.
+> Chaque utilisateur de base de données Cosmos a une propriété PermissionsLink qui peut être utilisé tooretrieve la liste hello des [autorisations](#permissions) associé hello utilisateur.
 > 
 > 
 
 <a id="permissions"></a>
 
 ## <a name="permissions"></a>Autorisations
-Une ressource d’autorisation Azure Cosmos DB est associée à un utilisateur Azure Cosmos DB.  Chaque utilisateur peut contenir zéro, une ou plusieurs autorisations Azure Cosmos DB.  Une ressource d'autorisation donne accès à un jeton de sécurité dont l'utilisateur a besoin lorsqu'il tente d'accéder à une ressource d'application spécifique.
+Une ressource d’autorisation Azure Cosmos DB est associée à un utilisateur Azure Cosmos DB.  Chaque utilisateur peut contenir zéro, une ou plusieurs autorisations Azure Cosmos DB.  Une ressource d’autorisation fournit un jeton de sécurité accès tooa hello des besoins de l’utilisateur lors de la tentative de tooaccess une ressource d’application spécifique.
 Il existe deux niveaux d’accès disponibles qui peuvent être fournis par une ressource d’autorisation :
 
-* Tout : L’utilisateur dispose de toutes les autorisations sur la ressource.
-* Lecture : L’utilisateur peut uniquement lire le contenu de la ressource, mais il ne peut pas procéder à des opérations d’écriture, de mise à jour ou de suppression au niveau de la ressource.
+* All : utilisateur de hello dispose des autorisations complètes sur la ressource de hello.
+* Lecture : utilisateur de hello peut lire uniquement le contenu hello de ressource de hello, mais ne peut pas effectuer les opérations de suppression sur la ressource de hello, mise à jour ou écriture.
 
 > [!NOTE]
-> Pour exécuter les procédures stockées Azure Cosmos DB, l’utilisateur doit disposer de toutes les autorisations sur la collection dans laquelle la procédure stockée sera exécutée.
+> Dans l’ordre toorun Cosmos DB des procédures stockées hello utilisateur doit disposer hello toutes les autorisations sur la collection hello dans le hello procédure stockée sera exécutée.
 > 
 > 
 
-### <a name="code-sample-to-create-permission"></a>Exemple de code pour créer une autorisation
+### <a name="code-sample-toocreate-permission"></a>Autorisation du code exemple toocreate
 
-L’exemple de code suivant indique comment créer une ressource d’autorisation, lire le jeton de ressource de la ressource d’autorisation et associer les autorisations à [l’utilisateur](#users) créé ci-dessus.
+Hello exemple de code suivant montre comment toocreate une ressource d’autorisation de lecture hello du jeton de ressource de la ressource d’autorisation hello et associer les autorisations hello hello [utilisateur](#users) créé ci-dessus.
 
 ```csharp
 // Create a permission.
@@ -159,11 +159,11 @@ docPermission = await client.CreatePermissionAsync(UriFactory.CreateUserUri("db"
 Console.WriteLine(docPermission.Id + " has token of: " + docPermission.Token);
 ```
 
-Si vous avez spécifié une clé de partition pour votre collection, l’autorisation pour les ressources de collection, de document et de pièce jointe doit inclure l’élément ResourcePartitionKey en plus de l’élément ResourceLink.
+Si vous avez spécifié qu'une clé de partition pour votre collection, puis autorisation hello pour les ressources de collection, des documents et des pièces jointes doit également inclure hello ResourcePartitionKey dans Ajout toohello ResourceLink.
 
-### <a name="code-sample-to-read-permissions-for-user"></a>Exemple de code pour les autorisations de lecture de l’utilisateur
+### <a name="code-sample-tooread-permissions-for-user"></a>Autorisations de tooread exemple de code pour l’utilisateur
 
-Pour obtenir facilement toutes les ressources d’autorisation associées à un utilisateur, Azure Cosmos DB met à disposition un flux d’autorisations pour chaque objet utilisateur.  L'extrait de code suivant indique comment récupérer l'autorisation associée à l'utilisateur créé ci-dessus, créer une liste d'autorisations et instancier un nouveau DocumentClient pour l'utilisateur.
+tooeasily obtenir toutes les ressources d’autorisation associées à un utilisateur particulier, Cosmos DB met à disposition une autorisation de flux pour chaque objet utilisateur.  Hello extrait de code suivant montre comment construire une liste d’autorisation autorisation de hello tooretrieve associée utilisateur hello créé ci-dessus, et instancier une nouvelle DocumentClient pour le compte d’utilisateur de hello.
 
 ```csharp
 //Read a permission feed.
@@ -180,6 +180,6 @@ DocumentClient userClient = new DocumentClient(new Uri(endpointUrl), permList);
 ```
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Pour en savoir plus sur la sécurité de la base de données Azure Cosmos DB, consultez [Sécurité de la base de données Azure Cosmos DB](database-security.md).
-* Pour en savoir plus sur la gestion des clés principales et en lecture seule, consultez [Gestion d’un compte Azure Cosmos DB](manage-account.md#keys).
-* Pour savoir comment créer des jetons d’autorisation Azure Cosmos DB, consultez [Access Control on Azure Cosmos DB Resources](https://docs.microsoft.com/rest/api/documentdb/access-control-on-documentdb-resources) (Contrôle d’accès aux ressources Azure Cosmos DB).
+* toolearn en savoir plus sur la sécurité de base de données de base de données Cosmos, consultez [Cosmos DB : sécurité de base de données](database-security.md).
+* toolearn sur la gestion des clés principales et en lecture seule, consultez [comment toomanage un compte de base de données Azure Cosmos](manage-account.md#keys).
+* toolearn jetons d’autorisation de base de données Azure Cosmos tooconstruct, voir [contrôle d’accès aux ressources de base de données Azure Cosmos](https://docs.microsoft.com/rest/api/documentdb/access-control-on-documentdb-resources).

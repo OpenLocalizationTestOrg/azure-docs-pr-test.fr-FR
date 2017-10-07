@@ -1,6 +1,6 @@
 ---
-title: "Configurer VMM et Hyper-V pour la réplication sur un site secondaire avec Azure Site Recovery | Microsoft Docs"
-description: "Explique comment configurer des serveurs System Center VMM et des hôtes Hyper-V pour la réplication sur un site VMM secondaire."
+title: "aaaSet VMM et Hyper-V pour le site secondaire de réplication tooa avec Azure Site Recovery | Documents Microsoft"
+description: "Décrit comment tooset les serveurs VMM System Center et les hôtes Hyper-V pour le site de réplication tooa secondaire VMM."
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,87 +14,87 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/30/2017
 ms.author: raynew
-ms.openlocfilehash: 73bd1790c56ac52166f638de2e80c2a2cfb87e53
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 677bf6d38328ccc425e3b0f056d03159a52da428
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="step-4-set-up-vmm-and-hyper-v-for-hyper-v-vm-replication-to-a-secondary-site"></a>Étape 4 : Configurer VMM et Hyper-V pour la réplication d’une machine virtuelle Hyper-V sur un site secondaire 
+# <a name="step-4-set-up-vmm-and-hyper-v-for-hyper-v-vm-replication-tooa-secondary-site"></a>Étape 4 : Configurer VMM et Hyper-V pour le site secondaire de machine virtuelle Hyper-V réplication tooa 
 
-Après avoir préparé la mise en réseau, configurez les serveurs System Center VMM et les hôtes Hyper-V pour la réplication d’une machine virtuelle Hyper-V sur un site secondaire à l’aide de [Azure Site Recovery](site-recovery-overview.md) dans le portail Azure. 
+Une fois que vous avez préparé pour la mise en réseau, configurez les serveurs System Center Virtual Machine Manager (VMM) et les hôtes Hyper-V pour Hyper-V virtual machine (VM) réplication tooa site secondaire, à l’aide de [Azure Site Recovery](site-recovery-overview.md) Bonjour portail Azure. 
 
-Après avoir lu cet article, publiez des commentaires au bas de ce dernier ou sur le [Forum Azure Recovery Services](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
+Après avoir lu cet article, validez les commentaires au bas de hello, ou sur hello [Forum sur Azure Recovery Services](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
 
 
 
 ## <a name="prepare-vmm-servers"></a>Préparer les serveurs VMM 
 
-Pour préparer le déploiement :
+tooprepare pour le déploiement :
 
 
-1. Veillez à ce que les serveurs VMM respectent les [exigences de support](site-recovery-support-matrix-to-sec-site.md#on-premises-servers) et les [conditions préalables de déploiement](vmm-to-vmm-walkthrough-prerequisites.md).
-2. Veillez à ce que les serveurs VMM soient connectés à Internet et puissent accéder à ces URL.
+1. Assurez-vous que les serveurs VMM conformes hello [prennent en charge les exigences](site-recovery-support-matrix-to-sec-site.md#on-premises-servers), et [conditions préalables au déploiement](vmm-to-vmm-walkthrough-prerequisites.md).
+2. Assurez-vous que les serveurs VMM sont connecté toohello internet et avoir accès toothese URL.
     
     [!INCLUDE [site-recovery-URLS](../../includes/site-recovery-URLS.md)]
     
-    - Si vous avez des règles de pare-feu fondées sur l’adresse IP, vérifiez qu’elles autorisent la communication vers Azure.
-    - Autorisez les [plages d’adresses IP de centres de données Azure](https://www.microsoft.com/download/confirmation.aspx?id=41653) et le port HTTPS (443).
-    - Autorisez les plages d’adresses IP relatives à la région de votre abonnement Azure et à la région des États-Unis de l’Ouest (utilisées pour la gestion du contrôle d’accès et des identités).
-3. Veillez à ce que le serveur VMM soit [préparé pour le mappage réseau](vmm-to-vmm-walkthrough-network.md#prepare-for-network-mapping).
+    - Si vous avez des règles de pare-feu basé sur l’adresse IP, assurez-vous qu’ils autorisent un tooAzure de communication.
+    - Autoriser hello [plages d’adresses IP Azure Datacenter](https://www.microsoft.com/download/confirmation.aspx?id=41653)et hello port HTTPS (443).
+    - Autoriser les plages d’adresses IP pour hello région Azure de votre abonnement et ouest des États-Unis (utilisé pour la gestion d’identité et contrôle d’accès).
+3. Assurez-vous que le serveur VMM hello est [préparés pour le mappage réseau](vmm-to-vmm-walkthrough-network.md#prepare-for-network-mapping)
 
 
 ## <a name="prepare-hyper-v-hostsclusters"></a>Préparer les hôtes et clusters Hyper-V
 
-1. Veillez à ce que ce que les hôtes et clusters Hyper-V respectent les [exigences de support](site-recovery-support-matrix-to-sec-site.md#on-premises-servers) et les [conditions préalables de déploiement](vmm-to-vmm-walkthrough-prerequisites.md).
-2. Vérifiez les exigences des [machines virtuelles Hyper-V](site-recovery-support-matrix-to-sec-site.md#support-for-replicated-machine-os-versions).
+1. Assurez-vous que les ordinateurs hôtes Hyper-V/clusters conformes hello [prennent en charge les exigences](site-recovery-support-matrix-to-sec-site.md#on-premises-servers), et [conditions préalables au déploiement](vmm-to-vmm-walkthrough-prerequisites.md).
+2. Vérifiez la configuration requise de hello pour [des ordinateurs virtuels Hyper-V](site-recovery-support-matrix-to-sec-site.md#support-for-replicated-machine-os-versions)
 3. Vérifiez les exigences du [réseau](site-recovery-support-matrix-to-sec-site.md#network-configuration) et du [stockage](site-recovery-support-matrix-to-sec-site.md#storage).
-4. Veillez à ce que les hôtes Hyper-V soient connectés à Internet et aient accès à ces URL.
+4. Assurez-vous que les ordinateurs hôtes Hyper-V sont connecté toohello internet et avoir accès toothese URL.
     
     [!INCLUDE [site-recovery-URLS](../../includes/site-recovery-URLS.md)]
     
-    - Si vous avez des règles de pare-feu fondées sur l’adresse IP, vérifiez qu’elles autorisent la communication vers Azure.
-    - Autorisez les [plages d’adresses IP de centres de données Azure](https://www.microsoft.com/download/confirmation.aspx?id=41653) et le port HTTPS (443).
-    - Autorisez les plages d’adresses IP relatives à la région de votre abonnement Azure et à la région des États-Unis de l’Ouest (utilisées pour la gestion du contrôle d’accès et des identités).
+    - Si vous avez des règles de pare-feu basé sur l’adresse IP, assurez-vous qu’ils autorisent un tooAzure de communication.
+    - Autoriser hello [plages d’adresses IP Azure Datacenter](https://www.microsoft.com/download/confirmation.aspx?id=41653)et hello port HTTPS (443).
+    - Autoriser les plages d’adresses IP pour hello région Azure de votre abonnement et ouest des États-Unis (utilisé pour la gestion d’identité et contrôle d’accès).
 
 ## <a name="prepare-for-single-server-deployment"></a>Préparation du déploiement d’un serveur unique
 
 
-Si vous n’avez qu’un seul serveur VMM, vous pouvez répliquer des machines virtuelles dans des hôtes Hyper-V du cloud VMM vers [Azure](hyper-v-site-walkthrough-overview.md) ou vers un cloud VMM secondaire, comme expliqué dans ce document. Nous vous recommandons la première option, dans la mesure où la réplication entre les clouds n’est pas transparente.
+Si vous avez uniquement un seul serveur VMM, vous pouvez répliquer machines virtuelles dans les hôtes Hyper-V dans hello cloud VMM trop[Azure](hyper-v-site-walkthrough-overview.md) ou tooa secondaire cloud VMM, comme décrit dans ce document. Option de première hello est recommandée, car la réplication entre des clouds n’est pas transparente.
 
-Si vous ne souhaitez pas répliquer entre les clouds, vous pouvez le faire avec un seul serveur VMM autonome ou avec un seul serveur VMM déployé dans un cluster Windows étendu.
+Si vous ne souhaitez pas tooreplicate entre des clouds, vous pouvez répliquer le serveur VMM autonome unique ou avec un seul serveur VMM déployé dans un cluster Windows étendu
 
 ### <a name="replicate-with-a-standalone-vmm-server"></a>Réplication avec un serveur VMM autonome
 
-Dans ce scénario, vous déployez le serveur VMM unique comme machine virtuelle sur le site principal et répliquez cette machine virtuelle sur un site secondaire avec Site Recovery et le réplica Hyper-V.
+Dans ce scénario, vous déployez un seul serveur VMM de hello comme une machine virtuelle dans le site principal de hello et répliquez ce site secondaire de tooa de machine virtuelle à l’aide de la récupération de Site et le réplica Hyper-V.
 
-1. **Configurez VMM sur une machine virtuelle Hyper-V**. Nous vous conseillons de stocker l’instance SQL Server utilisée par VMM sur la même machine virtuelle. De cette manière, vous pouvez gagner du temps, car une seule machine virtuelle doit être créée. Si vous souhaitez utiliser une instance distante de SQL Server, vous devez récupérer cette instance pour pouvoir récupérer VMM en cas de défaillance.
-2. **Vérifiez que le serveur VMM a au moins deux clouds configurés**. Un cloud contient les machines virtuelles à répliquer et l’autre cloud sert d’emplacement secondaire. Le cloud qui contient les machines virtuelles que vous souhaitez protéger doit remplir les [conditions préalables](#prerequisites).
-3. Configurez Site Recovery comme le décrit cet article. Créez et inscrivez le serveur VMM dans un coffre, configurez une stratégie de réplication et activez la réplication. Les noms source et cible VMM sont alors identiques. Spécifiez que la réplication initiale s’effectue via le réseau.
-4. Lorsque vous configurez le mappage réseau, vous mappez le réseau de machines virtuelles du cloud principal au réseau de machines virtuelles du cloud secondaire.
-5. Dans la console Gestionnaire Hyper-V, activez la réplication Hyper-V sur l’hôte Hyper-V qui contient la machine virtuelle VMM et activez la réplication sur la machine virtuelle. Assurez-vous que vous n’ajoutez pas la machine virtuelle VMM à des clouds protégés par Site Recovery afin de garantir que les paramètres de réplication Hyper-V ne sont pas remplacés par Site Recovery.
-6. Si vous créez des plans de récupération pour le basculement, vous utilisez le même serveur VMM source et cible.
+1. **Configurez VMM sur une machine virtuelle Hyper-V**. Nous vous suggérons de que vous colocalisation d’instance de SQL Server hello utilisé par VMM sur hello même machine virtuelle. Ce gain de temps qu’une seule machine virtuelle a toobe créé. Si vous voulez toouse instance distante de SQL Server et si une panne se produit, vous devez toorecover cette instance avant de pouvoir récupérer VMM.
+2. **Vérifiez le serveur VMM de hello a au moins deux clouds configurés**. Un cloud contiendra hello machines virtuelles vous le souhaitez tooreplicate et hello autres cloud servira d’emplacement secondaire de hello. Hello cloud qui contient hello machines virtuelles doivent satisfaire tooprotect [conditions préalables](#prerequisites).
+3. Configurez Site Recovery comme le décrit cet article. Créer et inscrire le serveur VMM de hello dans un coffre, définir une stratégie de réplication et activer la réplication. noms VMM source et cible Hello sera hello à la même. Spécifiez que la réplication initiale a lieu sur le réseau de hello.
+4. Lorsque vous configurez le mappage réseau vous mappez le réseau d’ordinateurs virtuels hello hello cloud principal toohello réseau de machines virtuelles pour le cloud secondaire de hello.
+5. Dans la console Gestionnaire Hyper-V hello, activer la réplication Hyper-V sur l’ordinateur hôte Hyper-V hello contenant hello VMM VM et activer la réplication sur hello machine virtuelle. Assurez-vous que vous n’ajoutez pas tooclouds d’ordinateur virtuel VMM hello qui sont protégées par la récupération de Site, tooensure que les paramètres de réplication Hyper-V ne sont pas remplacés par la récupération de Site.
+6. Si vous créez des plans de récupération pour le basculement, que vous utilisez hello même serveur VMM pour la source et cible.
 7. Lors d’une panne complète, vous effectuez le basculement et la récupération comme suit :
 
-   1. Dans la console Hyper-V Manager sur le site secondaire, exécutez un basculement non planifié pour basculer la machine virtuelle VMM du site principal vers le site secondaire.
-   2. Vérifiez que la machine virtuelle VMM est opérationnelle et dans le coffre, puis exécutez un basculement non planifié des machines virtuelles du cloud principal vers le cloud secondaire. Validez le basculement, puis sélectionnez un autre point de récupération si nécessaire.
-   3. Une fois que le basculement non planifié est terminé, l’utilisateur peut à nouveau accéder à toutes les ressources sur le site principal.
-   4. Lorsque le site principal est de nouveau disponible, dans la console du gestionnaire Hyper-V du site secondaire, activez la réplication inverse de la machine virtuelle VMM. La réplication de la machine virtuelle du site secondaire au site principal démarre.
-   5. Exécutez un basculement planifié dans la console du gestionnaire Hyper-V du site secondaire, afin de basculer la machine virtuelle VMM vers le site principal. Validez le basculement. Activez ensuite la réplication inverse, de manière à ce que la machine virtuelle VMM soit de nouveau répliquée du site principal vers le site secondaire.
-   6. Dans le coffre Recovery Services, activez la réplication inverse pour les machines virtuelles de charge de travail pour démarrer la réplication du site secondaire vers le site principal.
-   7. Dans le coffre Recovery Services, exécutez un basculement planifié pour restaurer les machines virtuelles de charge de travail vers le site principal. Validez le basculement pour le terminer. Ensuite, activez la réplication inverse pour commencer la réplication des machines virtuelles de charge de travail du site principal vers le site secondaire.
+   1. Dans la console du Gestionnaire Hyper-V hello dans un site secondaire hello, toofail sur le site secondaire hello principal VMM VM toohello, exécutez un basculement non planifié.
+   2. Vérifiez que hello que VMM VM est activé et en cours d’exécution et dans le coffre de hello, exécuter un toofail basculement non planifié sur des machines virtuelles de hello de clouds spécifiques toosecondary principal. Valider le basculement de hello, puis sélectionnez un autre point de récupération si nécessaire.
+   3. Une fois hello basculement non planifié est terminé, toutes les ressources accessibles à partir du site principal de hello à nouveau.
+   4. Lorsque le site principal de hello est disponible, dans la console du Gestionnaire Hyper-V hello dans le site secondaire de hello, activez la réplication inverse pour hello VMM VM. Démarre la réplication pour hello machine virtuelle à partir de tooprimary secondaire.
+   5. Dans la console du Gestionnaire Hyper-V hello dans un site secondaire hello, toofail sur le site principal de VMM VM toohello de hello, exécutez un basculement planifié. Valider le basculement de hello. Activez la réplication inverse, pour hello VMM VM est à nouveau réplication à partir de toosecondary principal.
+   6. Dans le coffre Recovery Services hello, activez la réplication inverse pour les machines virtuelles, toostart répliquant tooprimary secondaire à partir de la charge de travail hello.
+   7. Dans le coffre Recovery Services hello, exécuter un basculement planifié toofail hello précédent la charge de travail ordinateurs virtuels toohello site principal. Valider hello basculement toocomplete il. Ensuite, activez la réplication inverse toostart réplication hello charges de travail ordinateurs virtuels de toosecondary principal.
 
 ### <a name="replicate-with-a-stretched-vmm-cluster"></a>Réplication avec un cluster VMM étiré
 
-Au lieu de déployer un serveur VMM autonome en tant que machine virtuelle répliquée vers un site secondaire, vous pouvez rendre VMM hautement disponible en le déployant comme machine virtuelle dans un cluster de basculement Windows. pour fournir une résilience de la charge de travail et une protection contre les défaillances matérielles. Pour effectuer un déploiement avec Site Recovery, la machine virtuelle VMM doit être déployée dans un cluster étendu sur des sites géographiquement distincts. Pour ce faire :
+Au lieu de déployer un serveur VMM autonome en tant qu’une machine virtuelle qui réplique le site secondaire de tooa, vous pouvez rendre VMM hautement disponible en la déployant comme une machine virtuelle dans un cluster de basculement Windows. pour fournir une résilience de la charge de travail et une protection contre les défaillances matérielles. toodeploy avec hello de récupération de Site VMM VM doit être déployé dans un cluster de stretch sur des sites géographiquement distincts. toodo cela :
 
-1. Installez VMM sur des machines virtuelles dans un cluster de basculement Windows et sélectionnez l’option permettant d’exécuter le serveur comme étant hautement disponible lors de configuration.
-2. L’instance SQL Server utilisée par VMM doit être répliquée avec des groupes de disponibilité SQL Server AlwaysOn pour qu’un réplica de la base de données se trouve sur le site secondaire.
-3. Suivez les instructions de cet article pour créer un coffre, inscrire le serveur et configurer la protection. Vous devez inscrire chaque serveur VMM dans le cluster du coffre Recovery Services. Pour ce faire, vous installez le fournisseur sur un nœud actif et inscrivez le serveur VMM. Vous installez ensuite le fournisseur sur les autres nœuds.
-4. En cas de défaillance, le serveur VMM et la base de données SQL Server correspondante sont basculés et accessibles sur le site secondaire.
+1. Installez VMM sur un ordinateur virtuel dans un cluster de basculement Windows et sélectionnez hello option toorun hello serveur comme étant hautement disponible pendant l’installation.
+2. instance de SQL Server Hello qui est utilisé par VMM doit être répliquée avec SQL Server AlwaysOn, afin qu’il existe un réplica de base de données hello dans le site secondaire de hello.
+3. Suivez les instructions de hello dans cette toocreate article un coffre, inscrire hello serveur et configurer la protection. Vous devez tooregister chaque serveur VMM Bonjour cluster Bonjour de coffre Recovery Services. toodo, vous installez hello fournisseur sur un nœud actif et inscrire le serveur VMM de hello. Puis, vous installez hello fournisseur sur d’autres nœuds.
+4. En cas de panne, hello VMM serveur et sa base de données SQL Server correspondante sont basculés et accessibles à partir du site secondaire de hello.
 
 
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Accédez à la section [Étape 5 : Configurer un coffre](vmm-to-vmm-walkthrough-create-vault.md).
+Accédez trop[étape 5 : configurer un coffre](vmm-to-vmm-walkthrough-create-vault.md).

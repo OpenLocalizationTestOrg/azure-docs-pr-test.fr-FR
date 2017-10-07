@@ -1,6 +1,6 @@
 ---
-title: "Création d'une tâche web .NET dans Azure App Service | Microsoft Docs"
-description: "Créez une application multiniveau avec ASP.NET MVC et Azure. Le serveur frontal s’exécute dans une application web d’Azure App Service, tandis que le serveur principal s’exécute en tant que tâche web. L’application utilise Entity Framework, la base de données SQL, ainsi que les files d’attente et objets blobs du stockage Azure."
+title: "aaaCreate une tâche Web de .NET dans Azure App Service | Documents Microsoft"
+description: "Créez une application multiniveau avec ASP.NET MVC et Azure. Hello frontal s’exécute dans une application web dans Azure App Service et hello précédent s’exécute en tant qu’une tâche Web. application Hello utilise Entity Framework, base de données SQL, les files d’attente de stockage Azure et des objets BLOB."
 services: app-service
 documentationcenter: .net
 author: tdykstra
@@ -14,111 +14,111 @@ ms.devlang: na
 ms.topic: article
 ms.date: 6/14/2017
 ms.author: glenga
-ms.openlocfilehash: a20b13058caecff75af14957468f20e63a3325c9
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: d92fc4b81cc0d58f8e900f257e747af56d32b911
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-net-webjob-in-azure-app-service"></a>Créer une tâche web .NET dans Azure App Service
-Ce didacticiel montre comment écrire du code pour une simple application ASP.NET MVC 5 à plusieurs niveaux utilisant le [kit de développement logiciel (SDK) WebJobs](websites-dotnet-webjobs-sdk.md).
+Ce didacticiel montre comment le code pour une application ASP.NET MVC 5 à plusieurs niveaux simple qui utilise hello toowrite [WebJobs SDK](websites-dotnet-webjobs-sdk.md).
 
 [!INCLUDE [app-service-web-webjobs-corenote](../../includes/app-service-web-webjobs-corenote.md)]
 
-L’objectif du [kit de développement logiciel (SDK) WebJobs](websites-webjobs-resources.md) consiste à simplifier le code que vous écrivez pour les tâches web courantes, telles que le traitement d’image, le traitement de la file d’attente, l’agrégation RSS, la maintenance des fichiers et l’envoi des messages électroniques. Le kit de développement logiciel (SDK) WebJobs dispose de fonctionnalités intégrées fonctionnant avec le stockage Azure et Service Bus et servant à planifier des tâches, à gérer des erreurs et à nombreux autres scénarios courants. En outre, il est évolutif et il existe un [référentiel open source contenant les extensions](https://github.com/Azure/azure-webjobs-sdk-extensions/wiki/Binding-Extensions-Overview).
+Hello d’objectif de hello [WebJobs SDK](websites-webjobs-resources.md) est toosimplify hello code que vous écrivez pour les tâches courantes qu’une tâche Web peut effectuer, telles que le traitement d’image, traitement de la file d’attente, agrégation RSS, maintenance des fichiers et de l’envoi des messages électroniques. Hello WebJobs SDK inclut des fonctionnalités intégrées pour de nombreux autres scénarios courants pour travailler avec le stockage Azure et Service Bus et pour la planification des tâches et la gestion des erreurs. En outre, il a conçu toobe extensible et il existe un [référentiel open source pour les extensions](https://github.com/Azure/azure-webjobs-sdk-extensions/wiki/Binding-Extensions-Overview).
 
-L'exemple d'application concerne un panneau d'affichage publicitaire. Les utilisateurs peuvent télécharger des images pour les annonces ; un processus principal convertit les images en miniatures. La page de liste des annonces affiche des miniatures et la page de détails des annonces affiche les images en taille réelle. Voici une capture d'écran :
+exemple d’application Hello est un forum de publicité. Les utilisateurs peuvent télécharger des images pour les annonces, et un processus principal convertit hello images toothumbnails. page de liste ad Hello affiche des miniatures de hello et hello ad page des détails affiche les image plein écran hello. Voici une capture d'écran :
 
 ![Ad list](./media/websites-dotnet-webjobs-sdk-get-started/list.png)
 
-Cet exemple d’application fonctionne avec des [files d’attente Azure](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/queue-centric-work-pattern) et [objets blob Azure](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/unstructured-blob-storage). Ce didacticiel montre comment déployer l’application sur [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) et sur la [base de données SQL Azure](http://msdn.microsoft.com/library/azure/ee336279).
+Cet exemple d’application fonctionne avec des [files d’attente Azure](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/queue-centric-work-pattern) et [objets blob Azure](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/unstructured-blob-storage). Hello didacticiel montre comment toodeploy hello application trop[Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) et [base de données SQL Azure](http://msdn.microsoft.com/library/azure/ee336279).
 
 ## <a id="prerequisites"></a>Configuration requise
-Ce didacticiel suppose que vous savez utiliser les projets [ASP.NET MVC 5](http://www.asp.net/mvc/tutorials/mvc-5/introduction/getting-started) dans Visual Studio.
+Hello didacticiel suppose que vous savez comment toowork avec [ASP.NET MVC 5](http://www.asp.net/mvc/tutorials/mvc-5/introduction/getting-started) projets dans Visual Studio.
 
-Ce didacticiel a été rédigé à l’origine pour Visual Studio 2013, mais peut être utilisé avec des versions ultérieures de Visual Studio. Si vous utilisez Visual Studio 2015 ou 2017, notez qu’avant d’exécuter l’application localement, vous devez modifier la partie `Data Source` de la chaîne de connexion SQL Server LocalDB dans les fichiers Web.config et App.config de `Data Source=(localdb)\v11.0` à `Data Source=(LocalDb)\MSSQLLocalDB`.
+didacticiel de Hello a été écrit à l’origine pour Visual Studio 2013, mais il peut être utilisé avec les versions ultérieures de Visual Studio. Si vous utilisez Visual Studio 2015 ou 2017, notez qu’avant d’exécuter application hello localement, vous devez modifier hello `Data Source` dans le cadre de la chaîne de connexion de base de données SQL Server locale hello dans les fichiers Web.config et App.config de hello de `Data Source=(localdb)\v11.0` trop`Data Source=(LocalDb)\MSSQLLocalDB`.
 
 > [!NOTE]
-> <a name="note"></a>Pour suivre ce didacticiel, vous avez besoin d’un compte Azure :
+> <a name="note"></a>Ce didacticiel, vous devez avoir un toocomplete compte Azure :
 >
-> * Vous pouvez [ouvrir un compte Azure gratuitement](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F) : vous obtenez alors des crédits dont vous pouvez vous servir pour tester les services Azure payants et, même lorsqu’ils sont épuisés, vous pouvez conserver le compte et utiliser les services Azure gratuits, notamment Sites Web. Votre carte de crédit ne sera pas débitée tant que vous n'aurez pas explicitement modifié vos paramètres pour demander à l'être.
+> * Vous pouvez [ouvrir un compte Azure gratuitement](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F): vous obtenez des crédits que vous pouvez utiliser tootry à payer des services Azure, et même une fois qu’ils sont utilisés, vous pouvez conserver le compte de hello et utiliser des services Azure gratuits, comme les sites Web. Votre carte de crédit ne sera jamais facturé, sauf si vous explicitement modifiez vos paramètres et demandez toobe facturé.
 > * Vous pouvez [activer le crédit Azure mensuel pour Visual Studio](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F) : votre abonnement vous donne droit chaque mois à des crédits dont vous pouvez vous servir pour les services Azure payants.
 >
-> Si vous voulez vous familiariser avec Azure App Service avant d’ouvrir un compte Azure, accédez à la page [Essayer App Service](https://azure.microsoft.com/try/app-service/), où vous pourrez créer immédiatement une application web temporaire dans App Service. Aucune carte de crédit n’est requise ; vous ne prenez aucun engagement.
+> Si vous souhaitez tooget démarré avec le Service d’application Azure avant de s’inscrire pour un compte Azure, accédez trop[essayez du Service d’applications](https://azure.microsoft.com/try/app-service/), où vous pouvez créer une application web de courte durée de démarrage immédiatement dans le Service d’applications. Aucune carte de crédit n’est requise ; vous ne prenez aucun engagement.
 >
 >
 
 ## <a id="learn"></a>Contenu
-Ce didacticiel explique comment effectuer les tâches suivantes :
+didacticiel de Hello illustre des tâches de hello toodo suivant :
 
-* Activer votre ordinateur pour le développement Azure en installant le Kit de développement logiciel (SDK) Azure (uniquement pour les utilisateurs de Visual Studio 2013 et 2015).
-* création du projet d'application console qui se déploie automatiquement comme une tâche web Azure lorsque vous déployez le projet web associé ;
-* test d'un serveur principal de Kit de développement logiciel (SDK) WebJobs localement sur l'ordinateur de développement ;
-* publication d’une application avec un serveur principal de tâches web dans une application web d’App Service ;
-* téléchargement et enregistrement de fichiers dans le service Blob Azure ;
-* utilisation du Kit de développement logiciel (SDK) Azure WebJobs avec des files d'attente et des objets blob Azure Storage.
+* Activer votre ordinateur pour le développement Azure en installant hello Azure SDK (uniquement pour Visual Studio 2013 et 2015 utilisateurs).
+* Créez un projet d’Application Console qui déploie automatiquement comme une tâche Web Azure lorsque vous déployez le projet web associé de hello.
+* Tester un service principal de WebJobs SDK localement sur l’ordinateur de développement hello.
+* Publier une application avec une application web de tâches Web principal tooa dans le Service d’applications.
+* Télécharger des fichiers et stockez-les dans hello service Blob Azure.
+* Utilisez toowork du Kit de développement logiciel Azure WebJobs hello avec les objets BLOB et files d’attente de stockage Azure.
 
 ## <a id="contosoads"></a>Architecture de l’application
-L'exemple d'application utilise le [modèle de travail centré sur les files d'attente](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/queue-centric-work-pattern) pour décharger le travail de création de vignettes exigeant en ressources vers un processus principal.
+exemple d’application Hello utilise hello [centré sur la file d’attente de travail modèle](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/queue-centric-work-pattern) travail hello gourmande en ressources processeur de toooff en charge de la création du processus de miniatures tooa principal.
 
-L'application stocke les publicités dans une base de données SQL et utilise Entity Framework Code First pour créer les tables et accéder aux données. Pour chaque publicité, la base de données stocke deux URL, une pour l’image à taille réelle et l’autre pour la miniature.
+application Hello stocke des publicités dans une base de données SQL, à l’aide des tables de hello toocreate Entity Framework Code First et accéder aux données de hello. Pour chaque publicité, base de données hello stocke deux URL : un pour les image plein écran hello et un pour l’image de hello.
 
 ![Ad table](./media/websites-dotnet-webjobs-sdk-get-started/adtable.png)
 
-Lorsqu’un utilisateur charge une image, l’application web la stocke dans un [objet blob Azure](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/unstructured-blob-storage)et stocke les informations publicitaires dans la base de données avec une URL pointant vers l’objet blob. En même temps, il écrit un message dans une file d'attente Azure. Dans un processus principal s’exécutant en tant qu’Azure WebJob, le Kit de développement logiciel (SDK) WebJobs interroge la file d’attente sur la présence de nouveaux messages. Lorsqu'un nouveau message arrive, la tâche web crée une vignette pour cette image et met à jour le champ de la base de données des URL des vignettes pour cette publicité. Le schéma suivant montre l'interaction des parties de l'application :
+Lorsqu’un utilisateur télécharge une image, une application web de hello stocke image hello dans un [objets blob Azure](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/unstructured-blob-storage), et stocke des informations d’Active Directory hello dans base de données hello avec une URL qui pointe toohello blob. AT hello même temps, il écrit un message de tooan file d’attente Azure. Dans un processus principal en cours d’exécution en tant qu’une tâche Web Azure, hello WebJobs SDK interroge la file d’attente hello pour les nouveaux messages. Quand un nouveau message s’affiche, hello la tâche Web crée une miniature pour cette image et les mises à jour hello miniature champ de base de données d’URL pour qu’ad. Voici un diagramme qui illustre l’interagissent entre les parties hello de l’application hello :
 
 ![Contoso Ads architecture](./media/websites-dotnet-webjobs-sdk-get-started/apparchitecture.png)
 
 [!INCLUDE [install-sdk](../../includes/install-sdk-2017-2015-2013.md)]  
-Les instructions du didacticiel s’appliquent au Kit de développement logiciel (SDK) Azure pour .NET 2.7.1 ou pour une version ultérieure.
+instructions des didacticiels de Hello appliquent tooAzure SDK pour .NET 2.7.1 ou version ultérieure.
 
 ## <a id="storage"></a>Création d'un compte de stockage Azure
-Un compte de stockage Azure fournit des ressources pour stocker les données de file d'attente et d'objet blob dans le cloud. Le Kit de développement logiciel (SDK) WebJobs l'utilise également pour enregistrer les données de journalisation du tableau de bord.
+Un compte de stockage Azure fournit des ressources pour le stockage de la file d’attente et les données blob dans le cloud de hello. Il est également utilisé par hello WebJobs SDK toostore enregistrement des données de tableau de bord hello.
 
 Dans une application réelle, vous créez généralement des comptes distincts pour les données d’application et de journalisation, et des comptes distincts pour les données de test et de production. Pour ce didacticiel, vous allez utiliser un seul compte.
 
-1. Ouvrez la fenêtre **Explorateur de serveurs** dans Visual Studio.
-2. Cliquez avec le bouton droit sur le nœud **Azure**, puis cliquez sur **Se connecter à un abonnement Microsoft Azure...**.
+1. Ouvrez hello **l’Explorateur de serveurs** fenêtre dans Visual Studio.
+2. Avec le bouton hello **Azure** nœud, puis cliquez sur **connecter tooMicrosoft abonnement Azure...** .
    
-   ![Connexion à Azure](./media/websites-dotnet-webjobs-sdk-get-started/connaz.png)
+   ![Se connecter tooAzure](./media/websites-dotnet-webjobs-sdk-get-started/connaz.png)
 
 3. Connectez-vous à l'aide de vos informations d'identification Azure.
-4. Cliquez avec le bouton droit sur **Stockage** sous le nœud Azure, puis cliquez sur **Créer un compte de stockage**.
+4. Avec le bouton droit **stockage** sous hello nœud Azure, puis cliquez sur **créer un compte de stockage**.
    
    ![Créer un compte de stockage](./media/websites-dotnet-webjobs-sdk-get-started/createstor.png)
    
-5. Dans la boîte de dialogue **Créer un compte de stockage** , entrez un nom correspondant au compte de stockage.
+5. Bonjour **créer un compte de stockage** boîte de dialogue, entrez un nom pour le compte de stockage hello.
 
-    Le nom doit être unique (aucun autre compte de stockage Azure ne doit avoir le même nom). Si le nom que vous entrez est déjà utilisé, vous aurez la possibilité de le modifier.
+    nom de Hello doit être unique (aucun autre compte de stockage Azure ne peut avoir hello même nom). Si le nom hello que vous entrez est déjà en cours d’utilisation, vous obtiendrez une chance toochange il.
 
-    L’URL permettant d’accéder à votre compte de stockage est *{nom}*.core.windows.net.
-6. Choisissez la région la proche de vous dans la liste déroulante **Région ou groupe d’affinités** .
+    Hello tooaccess URL votre compte de stockage sera *{nom}*. core.windows.net.
+6. Ensemble hello **région ou groupe d’affinités** tooyou le plus proche de liste déroulante toohello région.
 
-    Ce paramètre spécifie le centre de données Azure qui hébergera votre compte de stockage. Pour ce didacticiel, votre choix ne fera pas une grande différence. Toutefois, dans le cas d’une application web de production, vous souhaitez que votre serveur web et votre compte de stockage soient situés dans la même région afin de minimiser la latence et les frais d’acheminement des données. Le centre de données de l’application web (que vous créerez par la suite) doit être aussi proche que possible des navigateurs qui accèdent à l’application afin de réduire la latence.
-7. Dans la liste déroulante **Réplication**, sélectionnez **Redondant en local**.
+    Ce paramètre spécifie le centre de données Azure qui hébergera votre compte de stockage. Pour ce didacticiel, votre choix ne fera pas une grande différence. Toutefois, pour une application web de production, vous souhaitez que votre serveur web et votre toobe de compte de stockage Bonjour même latence toominimize de région et les données des frais de sortie. Hello web application (vous allez créer ultérieurement) centre de données doit être aussi proche que possible des navigateurs toohello l’accès à hello web application latence toominimize de commande.
+7. Ensemble hello **réplication** déroulante liste trop**localement redondant**.
 
-    Lorsque la géo-réplication est activée pour un compte de stockage, le contenu stocké est répliqué dans un centre de données secondaire pour activer le basculement vers cet emplacement en cas de sinistre majeur à l'emplacement principal. La géo-réplication peut engendrer des coûts supplémentaires. Dans le cas des comptes test et de développement, vous êtes en général peu enclin à payer pour la géo-réplication. Pour plus d’informations, consultez [Création, gestion ou suppression d’un compte de stockage](../storage/common/storage-create-storage-account.md).
+    Lors de la géo-réplication est activée pour un compte de stockage, contenu de hello stocké est répliqué tooa centre de données secondaire tooenable basculement toothat emplacement en cas de sinistre majeur dans l’emplacement principal de hello. La géo-réplication peut engendrer des coûts supplémentaires. Pour les comptes de test et de développement, généralement non désirés toopay pour la géo-réplication. Pour plus d’informations, consultez [Création, gestion ou suppression d’un compte de stockage](../storage/common/storage-create-storage-account.md).
 8. Cliquez sur **Create**.
 
     ![New storage account](./media/websites-dotnet-webjobs-sdk-get-started/newstorage.png)
 
-## <a id="download"></a>Télécharger l’application
-1. Téléchargez et décompressez la [solution terminée](http://code.msdn.microsoft.com/Simple-Azure-Website-with-b4391eeb).
+## <a id="download"></a>Télécharger l’application hello
+1. Téléchargez et décompressez hello [complété solution](http://code.msdn.microsoft.com/Simple-Azure-Website-with-b4391eeb).
 2. Démarrez Visual Studio.
-3. Dans le menu **Fichier**, sélectionnez **Ouvrir > Projet/Solution**, accédez à l’emplacement où vous avez téléchargé la solution, puis ouvrez le fichier de la solution.
-4. Appuyez sur Ctrl+Maj+B pour générer la solution.
+3. À partir de hello **fichier** menu Choisissez **Ouvrir > Projet/Solution**, accédez toowhere que vous avez téléchargé les solutions hello et puis ouvrez le fichier de solution hello.
+4. Appuyez sur solution de hello toobuild CTRL + MAJ + B.
 
-    Par défaut, Visual Studio restaure automatiquement le contenu du package NuGet, qui n'était pas inclus dans le fichier *.zip* . Si les packages ne sont pas restaurés, installez-les manuellement en ouvrant la boîte de dialogue **Gérer les packages NuGet pour la solution** et en cliquant sur le bouton **Restaurer** en haut à droite.
-5. Dans l'**Explorateur de solutions**, vérifiez que **ContosoAdsWeb** est sélectionné comme projet de démarrage.
+    Par défaut, Visual Studio restaure automatiquement le contenu du package NuGet hello, qui n’est pas compris dans hello *.zip* fichier. Si les packages hello ne sont pas restaurées, installez-les manuellement en accédant de toohello **gérer les Packages NuGet pour la Solution** boîte de dialogue et en cliquant sur hello **restaurer** bouton à droite en haut hello.
+5. Dans **l’Explorateur de solutions**, assurez-vous que **ContosoAdsWeb** est sélectionné comme projet de démarrage hello.
 
-## <a id="configurestorage"></a>Configurer l’application pour utiliser votre compte de stockage
-1. Ouvrez le fichier d'application *Web.config* dans le projet ContosoAdsWeb.
+## <a id="configurestorage"></a>Configurer hello application toouse votre compte de stockage
+1. Ouvrez l’application hello *Web.config* fichier hello ContosoAdsWeb projet.
 
-    Ce fichier contient des chaînes de connexion SQL et de stockage Azure pour utiliser des objets blob et des files d'attente.
+    Hello contient une chaîne de connexion SQL et une chaîne de connexion de stockage Azure pour l’utilisation des objets BLOB et files d’attente.
 
-    La chaîne de connexion SQL pointe vers une base de données [SQL Server Express LocalDB](http://msdn.microsoft.com/library/hh510202.aspx) .
+    Hello chaîne de connexion SQL pointe tooa [SQL Server Express LocalDB](http://msdn.microsoft.com/library/hh510202.aspx) base de données.
 
-    La chaîne de connexion de stockage est un exemple qui comporte des espaces réservés pour la clé d’accès et le nom du compte stockage. Vous allez le remplacer par une chaîne de connexion qui a le nom et la clé de votre compte de stockage.  
+    chaîne de connexion de stockage Hello est un exemple qui a des espaces réservés pour hello clé compte de stockage accès et le nom. Vous devez le remplacer par une chaîne de connexion qui a le nom de hello et la clé de votre compte de stockage.  
 
     ```
     <connectionStrings>
@@ -126,20 +126,20 @@ Dans une application réelle, vous créez généralement des comptes distincts p
         <add name="AzureWebJobsStorage" connectionString="DefaultEndpointsProtocol=https;AccountName=[accountname];AccountKey=[accesskey]"/>
     </connectionStrings>
     ```
-    La chaîne de connexion de stockage est nommée AzureWebJobsStorage, car il s'agit du nom que le Kit de développement logiciel (SDK) WebJobs utilise par défaut. Nous utilisons ce nom ici pour qu’il ne vous reste plus qu’à définir une seule valeur de chaîne de connexion dans l’environnement Azure.
-2. Dans l’**Explorateur de serveurs**, cliquez avec le bouton droit sur votre compte de stockage sous le nœud **Stockage**, puis cliquez sur **Propriétés**.
+    chaîne de connexion de stockage Hello AzureWebJobsStorage car il s’agit de hello de nom hello que webjobs SDK utilise par défaut est appelé. Hello même nom est utilisé ici pour avoir une valeur de chaîne de connexion qu’un seul tooset Bonjour environnement Azure.
+2. Dans **l’Explorateur de serveurs**, avec le bouton droit de votre compte de stockage sous hello **stockage** nœud, puis cliquez sur **propriétés**.
 
     ![Click Storage Account Properties](./media/websites-dotnet-webjobs-sdk-get-started/storppty.png)
-3. Dans la fenêtre **Propriétés**, cliquez sur **Clés de compte de stockage**, puis cliquez sur le bouton de sélection.
+3. Bonjour **propriétés** fenêtre, cliquez sur **clés de compte de stockage**, puis cliquez sur les points de suspension hello.
 
     ![Clés de compte de stockage](./media/websites-dotnet-webjobs-sdk-get-started/stor-account-keys.png)
-4. Copiez la **chaîne de connexion**.
+4. Hello de copie **chaîne de connexion**.
 
     ![Storage Account Keys dialog](./media/websites-dotnet-webjobs-sdk-get-started/cpak.png)
-5. Remplacez la chaîne de connexion de stockage dans le fichier *Web.config* par celle que vous venez de copier. Veillez à sélectionner tout ce qui se trouve entre les guillemets, mais sans inclure les guillemets, avant le collage.
-6. Ouvrez le fichier *App.config* dans le projet ContosoAdsWebJob.
+5. Remplacez la chaîne de connexion de stockage hello Bonjour *Web.config* fichier avec la chaîne de connexion hello vous venez de copier. Veillez à que sélectionner tous les éléments à l’intérieur des guillemets hello mais sans inclure les guillemets hello avant le collage.
+6. Ouvrez hello *App.config* fichier hello ContosoAdsWebJob projet.
 
-    Ce fichier comporte deux chaînes de connexion : une pour les données de l'application et une pour la journalisation. Vous pouvez utiliser des comptes de stockage distincts pour les données et la journalisation de l’application, ainsi qu’utiliser [plusieurs comptes de stockage pour les données](https://github.com/Azure/azure-webjobs-sdk/blob/master/test/Microsoft.Azure.WebJobs.Host.EndToEndTests/MultipleStorageAccountsEndToEndTests.cs). Pour ce didacticiel, vous allez utiliser un seul compte de stockage. Les chaînes de connexion comportent des espaces réservés pour les clés de compte de stockage.
+    Ce fichier comporte deux chaînes de connexion : une pour les données de l'application et une pour la journalisation. Vous pouvez utiliser des comptes de stockage distincts pour les données et la journalisation de l’application, ainsi qu’utiliser [plusieurs comptes de stockage pour les données](https://github.com/Azure/azure-webjobs-sdk/blob/master/test/Microsoft.Azure.WebJobs.Host.EndToEndTests/MultipleStorageAccountsEndToEndTests.cs). Pour ce didacticiel, vous allez utiliser un seul compte de stockage. chaînes de connexion Hello possèdent des espaces réservés pour les clés de compte de stockage hello.
 
     ```
     <configuration>
@@ -155,221 +155,221 @@ Dans une application réelle, vous créez généralement des comptes distincts p
 
     ```
 
-    Par défaut, le Kit de développement logiciel (SDK) WebJobs recherche les chaînes de connexion AzureWebJobsStorage et AzureWebJobsDashboard. Vous pouvez également [stocker la chaîne de connexion comme vous le souhaitez et la transmettre explicitement à l’objet `JobHost`](websites-dotnet-webjobs-sdk-storage-queues-how-to.md#config).
-7. Remplacez les chaînes de connexion de stockage par la chaîne de connexion que vous avez copiée précédemment.
+    Par défaut, hello WebJobs SDK recherche les chaînes de connexion nommées AzureWebJobsStorage et AzureWebJobsDashboard. En guise d’alternative, vous pouvez [stocker la chaîne de connexion hello toutefois vous souhaitez et le passez dans explicitement toohello `JobHost` objet](websites-dotnet-webjobs-sdk-storage-queues-how-to.md#config).
+7. Remplacez les deux chaînes de connexion de stockage avec la chaîne de connexion hello que vous avez copiée précédemment.
 8. Enregistrez vos modifications.
 
-## <a id="run"></a>Exécuter l’application localement
-1. Pour démarrer le programme web frontal de l'application, appuyez sur Ctrl+F5.
+## <a id="run"></a>Exécutez hello application localement
+1. toostart hello web frontal de l’application hello, appuyez sur CTRL + F5.
 
-    Le navigateur par défaut ouvre la page d'accueil. Le projet web s'exécute, car vous l'avez défini comme projet de démarrage.
+    navigateur par défaut de Hello ouvre la page d’accueil toohello. (projet de hello web s’exécute, car vous l’avez apportées projet de démarrage hello.)
 
     ![Contoso Ads home page](./media/websites-dotnet-webjobs-sdk-get-started/home.png)
-2. Pour démarrer la tâche web principale de l'application, cliquez avec le bouton droit sur le projet ContosoAdsWebJob dans l'**Explorateur de solutions**, puis sur **Débogage** > **Démarrer une nouvelle instance**.
+2. toostart hello la tâche Web principal de l’application hello, avec le bouton droit de projet hello ContosoAdsWebJob **l’Explorateur de solutions**, puis cliquez sur **déboguer** > **démarrer une nouvelle instance** .
 
-    Une fenêtre d'application console s'ouvre et affiche des messages de journalisation indiquant que l'objet JobHost du Kit de développement logiciel (SDK) WebJobs a commencé à s'exécuter.
+    Une fenêtre d’application console s’ouvre et affiche des messages de journalisation indiquant l’objet de tâche Web SDK JobHost hello a démarré toorun.
 
-    ![Console application window showing that the backend is running](./media/websites-dotnet-webjobs-sdk-get-started/backendrunning.png)
+    ![Fenêtre de l’application console montrant ce principal hello est en cours d’exécution.](./media/websites-dotnet-webjobs-sdk-get-started/backendrunning.png)
 3. Dans votre navigateur, cliquez sur **Créer une publicité**.
-4. Entrez des données de test, sélectionnez une image à télécharger, puis cliquez sur **Créer**.
+4. Entrez des données de test, sélectionnez une tooupload d’image, puis cliquez sur **créer**.
 
     ![Create page](./media/websites-dotnet-webjobs-sdk-get-started/create.png)
 
-    L'application ouvre la page Index, mais n'affiche pas de vignette pour la nouvelle publicité, car le processus n'a pas encore eu lieu.
+    application Hello passe toohello page d’Index, mais elle n’affiche une miniature de publicité hello parce que ce traitement n’a pas encore s’est produite.
 
-    Entre-temps, après une brève attente, un message dans la fenêtre d'application console indique qu'un message en file d'attente a été reçu et traité.
+    Pendant ce temps, après un court délai d’attente un message de journalisation dans la fenêtre de l’application console hello indique qu’un message de la file d’attente a été reçu et qu’il a été traité.
 
     ![Console application window showing that a queue message has been processed](./media/websites-dotnet-webjobs-sdk-get-started/backendlogs.png)
-5. Lorsque ces messages s'affichent dans la fenêtre d'application console, actualisez la page Index pour afficher la vignette.
+5. Une fois que vous voyez hello consignant les messages dans la fenêtre de l’application console hello, actualiser hello Index toosee hello vignette.
 
     ![Page d'index](./media/websites-dotnet-webjobs-sdk-get-started/list.png)
-6. Cliquez sur l'option **Détails** de votre publicité pour afficher l'image intégrale.
+6. Cliquez sur **détails** pour votre image en taille réelle d’ad toosee hello.
 
     ![Details page](./media/websites-dotnet-webjobs-sdk-get-started/details.png)
 
-Vous avez exécuté l'application sur votre ordinateur local. Elle utilise une base de données SQL Server sur votre ordinateur, mais travaille sur des files d'attente et des objets blob dans le cloud. Dans la section suivante, vous allez exécuter l'application dans le cloud en utilisant une base de données du cloud ainsi que des objets blob et des files d'attente du cloud.  
+Vous avez déjà exécuté application hello sur votre ordinateur local, et qu’il utilise un serveur SQL de base de données située sur votre ordinateur, mais il fonctionne avec les files d’attente et des objets BLOB dans hello cloud. Bonjour, suivant la section vous allez exécuter application hello dans le cloud de hello, à l’aide d’une base de données de cloud ainsi que les objets BLOB du cloud et les files d’attente.  
 
-## <a id="runincloud"></a>Exécuter l’application dans le cloud
-Pour exécuter l'application dans le cloud, procédez comme suit :
+## <a id="runincloud"></a>Exécutez l’application hello dans le cloud de hello
+Vous effectuerez hello après application de hello toorun étapes dans le cloud de hello :
 
-* Procédez au déploiement dans Web Apps. Visual Studio crée automatiquement une application web dans App Service et une instance Base de données SQL.
-* Configurez l’application pour l’utilisation de votre base de données SQL et de votre compte de stockage Azure.
+* Déployer des applications tooWeb. Visual Studio crée automatiquement une application web dans App Service et une instance Base de données SQL.
+* Configurer hello web application toouse votre compte de stockage et de la base de données SQL Azure.
 
-Après avoir créé quelques publicités dans le cloud, vous afficherez le tableau de bord du Kit de développement logiciel (SDK) WebJobs pour voir les fonctions de surveillance enrichies qu'il offre.
+Une fois que vous avez créé des publicités lors de l’exécution dans le cloud de hello, vous allez afficher hello hello de toosee du tableau de bord WebJobs SDK enrichi de fonctionnalités qu’il a toooffer d’analyse.
 
-### <a name="deploy-to-web-apps"></a>Déployer dans Web Apps
+### <a name="deploy-tooweb-apps"></a>Déployer des applications de tooWeb
 
-1. Fermez le navigateur et la fenêtre d'application console.
-2. Suivez les étapes de la section [Publier sur Azure avec SQL Database](https://docs.microsoft.com/azure/app-service-web/app-service-web-tutorial-dotnet-sqldatabase#publish-to-azure-with-sql-database).
-3. Une fois les étapes de déploiement accomplies, effectuez les tâches restantes décrites dans cet article.
+1. Fermez le navigateur de hello et la fenêtre de l’application console hello.
+2. Suivez les étapes de hello Bonjour [tooAzure avec la base de données de publication](https://docs.microsoft.com/azure/app-service-web/app-service-web-tutorial-dotnet-sqldatabase#publish-to-azure-with-sql-database) section.
+3. Après avoir terminé les étapes de hello pour le déploiement, continuer hello tâches restantes décrites dans cet article.
 
-### <a name="configure-the-web-app-to-use-your-azure-sql-database-and-storage-account"></a>Configurer l’application pour l’utilisation de votre base de données SQL et de votre compte de stockage Azure
-Par sécurité, il est conseillé [d'éviter de placer des informations sensibles (par exemple, des chaînes de connexion) dans des fichiers stockés dans des référentiels de code source](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/source-control#secrets). Vous pouvez définir une chaîne de connexion et d’autres paramètres dans l’environnement Azure. Les API de configuration ASP.NET sélectionnent automatiquement ces valeurs quand l’application s’exécute dans Azure. Vous pouvez définir ces valeurs dans Azure à l’aide de l’**Explorateur de serveurs**, du portail Azure, de Windows PowerShell ou de l’interface de ligne de commande interplateforme. Pour plus d’informations, consultez [Fonctionnement des chaînes d’application et des chaînes de connexion](https://azure.microsoft.com/blog/2013/07/17/windows-azure-web-sites-how-application-strings-and-connection-strings-work/).
+### <a name="configure-hello-web-app-toouse-your-azure-sql-database-and-storage-account"></a>Configurer hello web application toouse votre compte de stockage et de la base de données SQL Azure
+Il est une meilleure pratique de sécurité trop[Évitez de placer des informations sensibles telles que des chaînes de connexion dans des fichiers qui sont stockés dans des référentiels de code source](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/source-control#secrets). Azure fournit un moyen toodo que : vous pouvez définir la chaîne de connexion et d’autres valeurs de paramètre Bonjour environnement Azure, et les API de configuration ASP.NET récupère automatiquement ces valeurs lors de l’application hello s’exécute dans Azure. Vous pouvez définir ces valeurs dans Azure à l’aide de **l’Explorateur de serveurs**, hello portail Azure, Windows PowerShell, ou hello interface de ligne de commande multiplateforme. Pour plus d’informations, consultez [Fonctionnement des chaînes d’application et des chaînes de connexion](https://azure.microsoft.com/blog/2013/07/17/windows-azure-web-sites-how-application-strings-and-connection-strings-work/).
 
-Dans cette section, vous utilisez l’ **Explorateur de serveurs** pour définir des valeurs de chaînes de connexion dans Azure.
+Dans cette section, vous utilisez **l’Explorateur de serveurs** tooset les valeurs de chaîne de connexion dans Azure.
 
 1. Dans l’**Explorateur de serveurs**, cliquez avec le bouton droit sur votre application web sous **Azure > App Service {votre groupe de ressources}**, puis cliquez sur **Afficher les paramètres**.
 
-    La fenêtre **Application web Azure** s’ouvre dans l’onglet **Configuration**.
-2. Modifiez le nom de la chaîne de connexion par défaut en le remplaçant par le nom que vous avez choisi lors de la configuration de la base de données SQL dans le cadre de l’article [Publier sur Azure avec SQL Database](https://docs.microsoft.com/azure/app-service-web/app-service-web-tutorial-dotnet-sqldatabase#publish-to-azure-with-sql-database).
+    Hello **application Web Azure** s’ouvre sur hello **Configuration** onglet.
+2. Modifier le nom de nom toohello de chaîne de connexion hello DefaultConnection hello choisis lors de la configuration de base de données SQL de hello Bonjour [tooAzure avec la base de données de publication](https://docs.microsoft.com/azure/app-service-web/app-service-web-tutorial-dotnet-sqldatabase#publish-to-azure-with-sql-database) l’article.
 
-    Azure a automatiquement créé cette chaîne de connexion lorsque vous avez créé l’application web avec une base de données associée ; il présente donc déjà la valeur de chaîne de connexion adéquate. Vous remplacez simplement le nom par celui que votre code recherche.
-3. Ajoutez deux chaînes de connexion nommées AzureWebJobsStorage et AzureWebJobsDashboard. Définissez le type de base de données sur **Personnalisé** et définissez la valeur de la chaîne de connexion sur la valeur que vous avez utilisée auparavant pour les fichiers *Web.config* et *App.config*. Veillez à inclure la chaîne de connexion complète, pas uniquement la clé d’accès, ainsi qu’à ne pas inclure les guillemets.
+    Azure créé automatiquement cette chaîne de connexion lorsque vous avez créé l’application hello web avec une base de données associé, afin qu’il a déjà la valeur de chaîne de connexion adéquate hello. Vous modifiez simplement hello nom toowhat que recherche de votre code.
+3. Ajoutez deux chaînes de connexion nommées AzureWebJobsStorage et AzureWebJobsDashboard. Définir le type de base de données hello trop**personnalisé**et la même valeur que vous avez utilisé précédemment pour hello ensemble hello connexion chaîne valeur toohello *Web.config* et *App.config* fichiers. (Veillez incluent la chaîne de connexion entière hello, pas seulement hello touche d’accès rapide et de ne pas inclure les guillemets hello.)
 
-    Le Kit de développement logiciel (SDK) WebJobs utilise ces chaînes de connexion : une pour les données de l'application et une pour la journalisation. Comme nous l’avons vu précédemment, le code du programme web frontal utilise aussi la chaîne pour les données de l’application.
-4. Cliquez sur **Save**.
+    Ces chaînes de connexion sont utilisées par hello WebJobs SDK, l’autre pour les données d’application et un pour la journalisation. Comme vous l’avez vu précédemment, une hello pour les données d’application est également utilisé par le code hello web frontal.
+4. Cliquez sur **Enregistrer**.
 
     ![Chaînes de connexion dans le portail Azure](./media/websites-dotnet-webjobs-sdk-get-started/azconnstr.png)
-5. Dans l’**Explorateur de serveurs**, cliquez avec le bouton droit sur l’application web, puis cliquez sur **Arrêter**.
-6. Une fois l’application web arrêtée, cliquez de nouveau sur cette dernière avec le bouton droit, puis cliquez sur **Démarrer**.
+5. Dans **l’Explorateur de serveurs**, avec le bouton droit de l’application hello web, puis cliquez sur **arrêter**.
+6. Après l’arrêt de l’application hello web, l’application hello web avec le bouton droit à nouveau, puis cliquez sur **Démarrer**.
 
-   La tâche web démarre automatiquement lorsque vous publiez, mais elle s'arrête lorsque vous modifiez la configuration. Pour la redémarrer, vous pouvez soit redémarrer l’application web, soit redémarrer la tâche web dans le [portail Azure](http://go.microsoft.com/fwlink/?LinkId=529715). Il est généralement recommandé de redémarrer l’application web après une modification de la configuration.
-7. Actualisez la fenêtre du navigateur contenant l’URL de l’application web dans sa barre d’adresse.
+   Hello la tâche Web démarre automatiquement lorsque vous publiez, mais il s’arrête lorsque vous modifiez la configuration. toorestart, vous pouvez redémarrer l’application web hello ou redémarrez hello la tâche Web Bonjour [Azure Portal](http://go.microsoft.com/fwlink/?LinkId=529715). Il est généralement recommandée toorestart hello web application après une modification de configuration.
+7. Actualisez la fenêtre de navigateur hello qui a des URL de l’application hello web dans la barre d’adresse.
 
-    La page d'accueil s'affiche.
-8. Créez une publicité comme vous l’avez fait lorsque vous avez [exécuté l’application localement](https://docs.microsoft.com/azure/app-service-web/websites-dotnet-webjobs-sdk-get-started#a-idrunarun-the-application-locally).
+    page d’accueil Hello s’affiche.
+8. Créer une annonce, comme vous le faisiez quand vous [s’exécutait localement des application hello](https://docs.microsoft.com/azure/app-service-web/websites-dotnet-webjobs-sdk-get-started#a-idrunarun-the-application-locally).
 
-   La page Index s'affiche d'abord sans vignette.
-9. Actualisez la page après quelques secondes. La miniature s’affiche.
+   page d’Index Hello affiche sans une vignette dans un premier temps.
+9. Actualiser la page de hello après quelques secondes et hello miniature s’affiche.
 
-   Si elle n’apparaît pas, il se peut que vous deviez patienter environ une minute pour que la tâche web redémarre. Si, après un certain temps, vous ne voyez toujours pas la miniature lorsque vous actualisez la page, il se peut que la tâche web n’ait pas démarré automatiquement. Dans ce cas, accédez au panneau **App Services** dans le [portail Azure](https://portal.azure.com/), localisez votre application web, puis cliquez sur **Démarrer**.
+   Si la miniature de hello n’apparaît pas, vous peut-être toowait environ une minute pour toorestart de la tâche Web hello. Si, après un certain temps, vous ne voyez toujours miniature hello lorsque vous actualisez la page hello, hello la tâche Web a ne peut-être pas démarré automatiquement. Dans ce cas, accédez toohello **des Services d’application** panneau Bonjour [portail Azure](https://portal.azure.com/), localisez votre application web, puis cliquez sur **Démarrer**.
 
-### <a name="view-the-webjobs-sdk-dashboard"></a>Affichage du tableau de bord du Kit de développement logiciel (SDK) WebJobs
-1. Dans le [portail Azure](https://portal.azure.com/), sélectionnez le panneau **App Services**, localisez votre application web, puis sélectionnez **Tâches web**.
-3. Sélectionnez l’onglet **Journaux**.
+### <a name="view-hello-webjobs-sdk-dashboard"></a>Hello d’affichage du tableau de bord WebJobs SDK
+1. Bonjour [portail Azure](https://portal.azure.com/), sélectionnez hello **panneau des Services d’application**, localisez votre application web, puis sélectionnez **WebJobs**.
+3. Sélectionnez hello **journaux** onglet.
 
     ![Onglet journaux](./media/websites-dotnet-webjobs-sdk-get-started/log-tab.png)
 
-    Un nouvel onglet ouvre le tableau de bord du Kit de développement logiciel (SDK) WebJobs dans le navigateur. Le tableau de bord indique que la tâche web est en cours d'exécution et affiche la liste des fonctions de votre code que le SDK a déclenchées.
-4. Cliquez sur une des fonctions pour afficher des informations sur son exécution.
+    Un nouvel onglet de navigateur s’ouvre toohello du tableau de bord WebJobs SDK. tableau de bord Hello montre que hello la tâche Web est en cours d’exécution et affiche la liste des fonctions dans votre code que hello que webjobs SDK est déclenchée.
+4. Cliquez sur un des détails de toosee fonctions hello concernant son exécution.
 
     ![WebJobs SDK dashboard](./media/websites-dotnet-webjobs-sdk-get-started/wjdashboardhome.png)
 
     ![WebJobs SDK dashboard](./media/websites-dotnet-webjobs-sdk-get-started/wjfunctiondetails.png)
 
-    Le bouton **Rappeler la fonction** de cette page commande à l'infrastructure du SDK de rappeler la fonction et vous permet de modifier les données déjà transmises à la fonction.
+    Hello **relecture fonction** bouton sur cette page provoque la hello WebJobs SDK framework toocall hello fonction à nouveau, et elle vous offre une fonction de probabilité toochange hello données passées toohello tout d’abord.
 
 > [!NOTE]
-> Lorsque vous avez fini de tester, songez à supprimer l’application web, le compte de stockage et votre instance SQL Database. L’application web est gratuite, mais le compte de stockage et l’instance de base de données SQL augmentent les frais (quoique minimaux du fait de la petite taille). De même, si vous laissez l’application web s’exécuter, toute personne trouvant votre URL peut créer et afficher des publicités. 
+> Lorsque vous avez terminé de test, envisagez de supprimer hello web app, le compte de stockage et votre instance de base de données SQL. l’application web Hello est libre, mais hello compte de stockage SQL et instance de base de données accumulent les coûts (et ce, minimal dû toohello de petite taille). En outre, si vous laissez hello web application est en cours d’exécution, toute personne qui recherche l’URL peut créer et d’afficher des publicités. 
 >
 >
 
 ### <a name="delete-your-web-app"></a>Supprimer votre application web
-Dans le portail, accédez au panneau **App Services**, recherchez et sélectionnez votre application web, puis cliquez sur **Supprimer**. Si vous souhaitez empêcher temporairement l’accès à l’application web, cliquez plutôt sur **Arrêter** . Dans ce cas, les frais continuent à s'accumuler pour la base de données SQL et le compte de stockage.
+Dans le portail de hello, accédez toohello **des Services d’application** panneau, recherchez et sélectionnez votre application web, puis cliquez sur **supprimer**. Si vous souhaitez simplement tootemporarily empêcher d’autres utilisateurs d’accéder à l’application hello web, cliquez sur **arrêter** à la place. Dans ce cas, interrompt tooaccrue pour hello compte de stockage et de la base de données SQL.
 
 ### <a name="delete-your-storage-account"></a>Supprimer votre compte de stockage
-Pour supprimer votre compte de stockage, voir [Supprimer un compte de stockage](https://docs.microsoft.com/azure/storage/storage-create-storage-account#delete-a-storage-account). 
+toodelete votre compte de stockage, consultez [supprimer un compte de stockage](https://docs.microsoft.com/azure/storage/storage-create-storage-account#delete-a-storage-account). 
 
 ### <a name="delete-your-database"></a>Supprimer de votre base de données
-Pour supprimer votre base de données SQL, voir la documentation de l’[API REST Azure SQL Database](https://docs.microsoft.com/rest/api/sql/).
+toodelete SQL de base de données, consultez hello [API REST de Azure SQL Database](https://docs.microsoft.com/rest/api/sql/) documentation.
 
-## <a id="create"></a>Créer l’application intégralement
-Dans cette section, vous effectuerez les tâches suivantes :
+## <a id="create"></a>Créer l’application hello à partir de zéro
+Dans cette section, vous effectuerez hello tâche suivantes :
 
 * création d'une solution Visual Studio avec un projet web ;
-* ajout d’un projet de bibliothèque de classes pour la couche d’accès aux données partagée par le programme frontal et le programme principal ;
-* ajout d'un projet d'application console pour le programme principal, le déploiement de tâches web étant activé ;
+* Ajouter un projet de bibliothèque de classes pour les données de salutation couche d’accès qui est partagée entre le serveur frontal hello et back end.
+* Ajouter un projet d’Application Console pour hello principal, avec les tâches Web déploiement est activé.
 * ajout de packages NuGet ;
 * définition des références d'un projet ;
-* copie des fichiers de code et de configuration de l'application téléchargée que vous avez utilisée dans la section précédente de ce didacticiel ;
-* examen des parties du code qui fonctionnent avec les objets blob, les files d'attente et le Kit de développement logiciel (SDK) WebJobs Azure.
+* Copiez les fichiers de configuration et le code d’application à partir de l’application hello téléchargé que vous avez travaillé avec dans la section précédente de hello du didacticiel de hello.
+* Passez en revue les parties hello du code de hello qui fonctionnent avec les objets BLOB Windows Azure et files d’attente et hello WebJobs SDK.
 
 ### <a name="create-a-visual-studio-solution-with-a-web-project-and-class-library-project"></a>Création d'une solution Visual Studio avec un projet web et un projet de bibliothèque de classes
 1. Dans Visual Studio, choisissez **Fichier** > **Nouveau** > **Projet**.
-2. Dans la boîte de dialogue **Nouveau projet**, choisissez **Visual C#** > **Web** > **Application web ASP.NET (.NET Framework)**.
-3. Nommez le projet ContosoAdsWeb, la solution ContosoAdsWebJobsSDK (modifiez le nom de la solution si vous la placez dans le même dossier que la solution téléchargée) et cliquez sur **OK**.
+2. Bonjour **nouveau projet** boîte de dialogue, choisissez **Visual C#** > **Web** > **ASP.NET Web Application(.NETFramework)**.
+3. Nommez le projet hello ContosoAdsWeb, nommez hello solution ContosoAdsWebJobsSDK (modifier le nom de la solution hello si placez Bonjour même dossier que hello téléchargé solution), puis cliquez sur **OK**.
 
     ![Nouveau projet](./media/websites-dotnet-webjobs-sdk-get-started/newproject.png)
-4. Dans la boîte de dialogue **Nouvelle application web ASP.NET**, choisissez le modèle MVC, puis sélectionnez **Modifier l’authentification**.
+4. Bonjour **nouvelle Application Web ASP.NET** boîte de dialogue, choisissez le modèle MVC de hello, puis sélectionnez **modifier l’authentification**.
 
     ![Modifier l'authentification](./media/websites-dotnet-webjobs-sdk-get-started/chgauth.png)
-5. Dans la boîte de dialogue **Modifier l'authentification**, choisissez **Aucune authentification** et cliquez sur **OK**.
+5. Bonjour **modifier l’authentification** boîte de dialogue, choisissez **aucune authentification**, puis cliquez sur **OK**.
 
     ![Aucune authentification](./media/websites-dotnet-webjobs-sdk-get-started/noauth.png)
-6. Dans la boîte de dialogue **Nouvelle application web ASP.NET**, cliquez sur **OK**.
+6. Bonjour **nouvelle Application Web ASP.NET** boîte de dialogue, cliquez sur **OK**.
 
-    Visual Studio crée la solution et le projet web.
-7. Dans l'**Explorateur de solutions**, cliquez avec le bouton droit sur la solution (et non sur le projet) et choisissez **Ajouter** > **Nouveau projet**.
-8. Dans la boîte de dialogue **Ajouter un nouveau projet**, choisissez le modèle **Visual C#** > **Bureau classique Windows** > **Bibliothèque de classes (.NET Framework)**.  
-9. Nommez le projet *ContosoAdsCommon*, puis cliquez sur **OK**.
+    Visual Studio crée la solution de hello et de projet web de hello.
+7. Dans **l’Explorateur de solutions**, avec le bouton droit de la solution de hello (pas le projet hello), puis choisissez **ajouter** > **nouveau projet**.
+8. Bonjour **ajouter un nouveau projet** boîte de dialogue, choisissez **Visual C#** > **de bureau Windows classique** > **bibliothèque de classes (.NET Infrastructure)** modèle.  
+9. Projet de hello nom *ContosoAdsCommon*, puis cliquez sur **OK**.
 
-    Ce projet contient le contexte Entity Framework et le modèle de données que le programme frontal et le programme principal vont utiliser. Vous pouvez également définir les classes associées à Entity Framework dans le projet web et faire référence à ce projet de tâche web. Mais dans ce cas, ce dernier aura une référence inutile aux assemblys web.
+    Ce projet contiendra au contexte d’Entity Framework hello hello modèle de données et qui les deux hello front-end et back-end utilisera. En guise d’alternative, vous pouvez définir des classes liées EF de hello dans le projet web de hello et faire référence à ce projet à partir du projet de tâche Web hello. Toutefois, puis votre projet de tâche Web aurait un assemblys de tooweb de référence, elle n’a pas besoin.
 
 ### <a name="add-a-console-application-project-that-has-webjobs-deployment-enabled"></a>Ajout d'un projet d'application console dont le déploiement de tâches web est activé
-1. Cliquez avec le bouton droit sur le projet web (et non sur la solution ou le projet de bibliothèque de classes), puis cliquez sur **Ajouter** > **Nouveau projet de tâche web Azure**.
+1. Projet de web hello (et non hello solution ou projet de bibliothèque de classes hello) d’avec le bouton droit, puis cliquez sur **ajouter** > **nouveau projet de la tâche Web Azure**.
 
     ![New Azure WebJob Project menu selection](./media/websites-dotnet-webjobs-sdk-get-started/newawjp.png)
-2. Dans la boîte de dialogue **Ajouter une tâche web Azure**, entrez ContosoAdsWebJob pour le **Nom du projet** et le **Nom de la tâche web**. Laissez **Mode d'exécution de la tâche web** sur **Exécuter en continu**.
+2. Bonjour **ajouter de la tâche Web Azure** boîte de dialogue, entrez les deux hello ContosoAdsWebJob **nom du projet** et hello **nom de la tâche Web**. Laissez **mode d’exécution de tâche Web** défini trop**exécuter en permanence**.
 3. Cliquez sur **OK**.
 
-   Visual Studio crée une application console configurée pour se déployer comme une tâche web lorsque vous déployez le projet web. Pour cela, il a effectué les tâches suivantes après la création du projet :
+   Visual Studio crée une application Console qui est toodeploy configuré comme une tâche Web chaque fois que vous déployez le projet web de hello. toodo, elle effectuée hello tâches suivantes après avoir créé le projet de hello :
 
-   * ajout d'un fichier *webjob-publish-settings.json* dans le dossier des propriétés du projet de tâche web ;
-   * ajout d'un fichier *webjobs-list.json* dans le dossier des propriétés du projet web ;
-   * installation du package NuGet Microsoft.Web.WebJobs.Publish dans le projet de tâche web.
+   * Ajouter un *settings.json publier la tâche Web* fichier dans le dossier de propriétés de projet de la tâche Web hello.
+   * Ajouter un *webjobs-list.json* fichier dans le dossier de propriétés du projet web hello.
+   * Installé hello package NuGet de Microsoft.Web.WebJobs.Publish dans le projet de tâche Web hello.
 
-   Pour plus d’informations sur ces modifications, consultez la rubrique [Déployer des tâches web à l’aide de Visual Studio](websites-dotnet-deploy-webjobs.md).
+   Pour plus d’informations sur ces modifications, consultez [comment toodeploy tâches Web à l’aide de Visual Studio](websites-dotnet-deploy-webjobs.md).
 
 ### <a name="add-nuget-packages"></a>Ajout de packages NuGet
-Le nouveau modèle de projet pour un projet de tâche web installe automatiquement le package NuGet [Microsoft.Azure.WebJobs](http://www.nuget.org/packages/Microsoft.Azure.WebJobs) du Kit de développement logiciel (SDK) WebJobs et ses dépendances.
+modèle de nouveau projet Hello pour un projet de la tâche Web installe automatiquement le package WebJobs NuGet de kit de développement logiciel de hello [Microsoft.Azure.WebJobs](http://www.nuget.org/packages/Microsoft.Azure.WebJobs) et ses dépendances.
 
-L’une des dépendances du Kit de développement logiciel WebJobs installée automatiquement dans le projet WebJob est la bibliothèque cliente de stockage Azure (SCL, Storage Client Library). Toutefois, vous devez l’ajouter au projet web pour qu’elle fonctionne avec les objets blob et les files d’attente.
+Un des hello dépendances de WebJobs SDK est installé automatiquement dans le projet de tâche Web hello est Bonjour Azure Storage Client Library (SCL). Toutefois, vous devez tooadd il toohello toowork de projet web avec les objets BLOB et files d’attente.
 
-1. Ouvrez la boîte de dialogue **Gérer les packages NuGet** pour la solution.
-2. Dans le volet de gauche, sélectionnez **Packages installés**.
-3. Recherchez le package *Azure Storage* et cliquez sur **Gérer**.
-4. Dans la boîte de dialogue **Sélectionner les projets**, activez la case à cocher **ContosoAdsWeb**, puis cliquez sur **OK**.
+1. Ouvrez hello **gérer les Packages NuGet** boîte de dialogue pour les solutions hello.
+2. Dans le volet gauche de hello, sélectionnez **les packages installés**.
+3. Recherche hello *Azure Storage* du package, puis cliquez sur **gérer**.
+4. Bonjour **sélectionner les projets** boîte, sélectionnez hello **ContosoAdsWeb** case à cocher, puis cliquez sur **OK**.
 
-    Ces trois projets ont recours à Entity Framework pour utiliser les données de la base de données SQL.
-5. Dans le volet gauche, sélectionnez **En ligne**.
-6. Recherchez le package NuGet *EntityFramework* et installez-le dans les trois projets.
+    Les trois projets utilisent hello Entity Framework toowork avec des données dans la base de données SQL.
+5. Dans le volet gauche de hello, sélectionnez **Online**.
+6. Recherche hello *EntityFramework* NuGet package et l’installer dans les trois projets.
 
 ### <a name="set-project-references"></a>Définition des références de projet
-Les projets web et de tâches web utilisent la base de données SQL ; les deux nécessitent une référence au projet ContosoAdsCommon.
+Web et projets de la tâche Web fonctionnent avec la base de données SQL hello, donc les deux doivent être une référence de projet de ContosoAdsCommon toohello.
 
-1. Dans le projet ContosoAdsWeb, définissez une référence au projet ContosoAdsCommon. Cliquez avec le bouton droit sur le projet ContosoAdsWeb, puis cliquez sur **Ajouter** > **Référence**. 
-2. Dans la boîte de dialogue **Gestionnaire de références**, sélectionnez **Projets** > **Solution** > **ContosoAdsCommon**, puis cliquez sur **OK**.
+1. Dans le projet de ContosoAdsWeb hello, définissez une référence de projet de ContosoAdsCommon toohello. (Projet de ContosoAdsWeb hello d’avec le bouton droit, puis cliquez sur **ajouter** > **référence**. 
+2. Bonjour **Gestionnaire de références** boîte de dialogue, sélectionnez **projets** > **Solution** > **ContosoAdsCommon**, puis cliquez sur **OK**.)
    
-    Le projet web nécessite des références pour utiliser des images et accéder aux chaînes de connexion.
+    projet de tâche Web Hello nécessite des références pour utiliser des images et pour accéder aux chaînes de connexion.
 
-4. Dans le projet ContosoAdsWebJob, définissez une référence à `System.Drawing` et `System.Configuration`.
+4. Dans le projet de ContosoAdsWebJob hello, définissez une référence trop`System.Drawing` et `System.Configuration`.
 
 ### <a name="add-code-and-configuration-files"></a>Ajout de fichiers de code et de configuration
-Ce didacticiel n'explique pas comment [créer des contrôleurs et des vues MVC à l'aide de la structure](http://www.asp.net/mvc/tutorials/mvc-5/introduction/getting-started), comment [écrire du code Entity Framework qui fonctionne avec les bases de données SQL Server](http://www.asp.net/mvc/tutorials/getting-started-with-ef-using-mvc), [ni les bases de la programmation asynchrone dans ASP.NET 4.5](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/web-development-best-practices#async). Il ne reste donc qu’à copier les fichiers de code et de configuration de la solution téléchargée dans la nouvelle solution. Ensuite, les sections suivantes montrent et expliquent les éléments essentiels de ce code.
+Ce didacticiel n’illustre pas comment trop[créer des vues à l’aide de la structure et les contrôleurs MVC](http://www.asp.net/mvc/tutorials/mvc-5/introduction/getting-started), comment trop[écrire du code d’Entity Framework qui fonctionne avec les bases de données SQL Server](http://www.asp.net/mvc/tutorials/getting-started-with-ef-using-mvc), ou [hello notions de base de programmation asynchrone dans ASP.NET 4.5](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/web-development-best-practices#async). Par conséquent, tout ce qui reste toodo est la copie des fichiers de code et la configuration de solution hello téléchargé dans une nouvelle solution hello. Après quoi, hello sections suivantes montrent et expliquent les éléments clés du code de hello.
 
-Pour ajouter des fichiers à un projet ou à un dossier, cliquez avec le bouton droit sur le projet ou le dossier, puis cliquez sur **Ajouter** > **Élément existant**. Sélectionnez les fichiers et cliquez sur **Ajouter**. Si un message vous demande si vous souhaitez remplacer les fichiers existants, cliquez sur **Oui**.
+tooa projet ou un dossier, projet de hello avec le bouton droit ou un dossier et cliquez sur les fichiers tooadd **ajouter** > **élément existant**. Sélectionnez hello fichiers que vous cliquez sur **ajouter**. Si vous êtes invité tooreplace des fichiers existants, cliquez sur **Oui**.
 
-1. Dans le projet ContosoAdsCommon, supprimez le fichier *Class1.cs* et ajoutez à la place les fichiers suivants du projet téléchargé.
+1. Dans le projet de ContosoAdsCommon hello, supprimez hello *Class1.cs* et ajoutez son Bonjour place fichiers suivants à partir de projet de hello téléchargé.
 
    * *Ad.cs*
    * *ContosoAdscontext.cs*
    * *BlobInformation.cs*
-2. Dans le projet ContosoAdsWeb, ajoutez les fichiers suivants du projet téléchargé.
+2. Dans le projet de ContosoAdsWeb hello, ajoutez hello fichiers suivants à partir de projet de hello téléchargé.
 
    * *Web.config*
    * *Global.asax.cs*  
-   * Dans le dossier *Controllers* : *AdController.cs*
-   * Dans le dossier *Views\Shared* : fichier *_Layout.cshtml*.
-   * Dans le dossier *Views\Home* : *Index.cshtml*
-   * Dans le dossier *Views\Ad* (à créer) : cinq fichiers *.cshtml*
-3. Dans le projet ContosoAdsWebJob, ajoutez les fichiers suivants du projet téléchargé.
+   * Bonjour *contrôleurs* dossier : *AdController.cs*
+   * Bonjour *Views\Shared* dossier : *_Layout.cshtml* fichier
+   * Bonjour *Views\Home* dossier : *Index.cshtml*
+   * Bonjour *Views\Ad* dossier (créez d’abord le dossier de hello) : cinq *.cshtml* fichiers
+3. Dans le projet de ContosoAdsWebJob hello, ajoutez hello fichiers suivants à partir de projet de hello téléchargé.
 
-   * *App.config* (indiquez le type de fichier **Tous les fichiers**)
+   * *App.config* (modifier le filtre de type de fichier hello trop**tous les fichiers**)
    * *Program.cs*
    * *Functions.cs*
 
-Vous pouvez maintenant générer, exécuter et déployer l'application en suivant les instructions fournies précédemment dans ce didacticiel. Toutefois, avant cela, arrêtez la tâche web toujours en cours d’exécution dans la première application web dans laquelle vous l’avez déployée. Dans le cas contraire, cette tâche web traite les messages de file d’attente créés localement ou par l’application en cours d’exécution dans une nouvelle application web, car ils utilisent tous le même compte de stockage.
+Vous pouvez maintenant générer, exécuter et déployer l’application hello comme indiqué plus haut dans le didacticiel de hello. Avant cela, toutefois, l’arrêter hello la tâche Web qui s’exécute toujours dans la première application web hello, sur que vous avez déployé. Sinon, cette tâche Web sera traiter les messages de file d’attente créées localement ou par application hello en cours d’exécution dans une application web, étant donné que tous les utilisez hello même compte de stockage.
 
-## <a id="code"></a>Vérifier le code de l’application
-Les sections suivantes présentent le code utilisé avec le Kit de développement logiciel (SDK) WebJobs et des objets blob et des files d'attente Azure.
+## <a id="code"></a>Passez en revue le code de l’application hello
+Hello sections suivantes expliquent les code hello liées tooworking avec hello WebJobs SDK et les objets BLOB de stockage Azure et files d’attente.
 
 > [!NOTE]
-> Pour le code spécifique au kit de développement logiciel (SDK) WebJobs, accédez aux sections [Program.cs et Functions.cs](#programcs) .
+> Pour toohello spécifique hello code WebJobs SDK, consultez toohello [Program.cs et Functions.cs](#programcs) sections.
 >
 >
 
 ### <a name="contosoadscommon---adcs"></a>ContosoAdsCommon - Ad.cs
-Le fichier Ad.cs définit une énumération des catégories de publicité et une classe d'entité POCO pour les informations de publicité.
+fichier de Ad.cs Hello définit un enum pour les catégories d’Active Directory et une classe d’entité POCO pour les informations Active Directory.
 
         public enum Category
         {
@@ -411,7 +411,7 @@ Le fichier Ad.cs définit une énumération des catégories de publicité et une
         }
 
 ### <a name="contosoadscommon---contosoadscontextcs"></a>ContosoAdsCommon - ContosoAdsContext.cs
-La classe ContosoAdsContext spécifie que la classe Ad est utilisée dans une collection DbSet, qui est stockée par Entity Framework dans une base de données SQL.
+Hello ContosoAdsContext classe spécifie que la classe de publicité de hello est utilisée dans une collection DbSet, Entity Framework stocke dans une base de données SQL.
 
         public class ContosoAdsContext : DbContext
         {
@@ -425,10 +425,10 @@ La classe ContosoAdsContext spécifie que la classe Ad est utilisée dans une co
             public System.Data.Entity.DbSet<Ad> Ads { get; set; }
         }
 
-La classe a deux constructeurs. Le premier est utilisé par le projet web et spécifie le nom d'une chaîne de connexion stockée dans le fichier Web.config de l'environnement d'exécution Azure. Le second vous permet de passer la chaîne de connexion existante. Le projet de rôle de travail, qui ne comporte pas de fichier Web.config. nécessite cette opération. Vous avez vu précédemment où est stockée cette chaîne de connexion, et vous allez voir comme le code la récupère quand il instancie la classe DbContext.
+classe Hello possède deux constructeurs. tout d’abord Hello est utilisé par le projet de hello web et spécifie le nom de hello d’une chaîne de connexion qui est stockée dans le fichier Web.config de hello ou un environnement d’exécution Azure hello. constructeur de deuxième Hello vous permet de toopass dans la chaîne de connexion de hello. Qui est requis par le projet de tâche Web hello car celui-ci ne dispose d’un fichier Web.config. Vous savez où cette chaîne de connexion a été stockée, et vous verrez plus tard comment les code hello récupère la chaîne de connexion hello lorsqu’il instancie la classe DbContext de hello.
 
 ### <a name="contosoadscommon---blobinformationcs"></a>ContosoAdsCommon - BlobInformation.cs
-La classe `BlobInformation` permet de stocker les informations d’un objet blob d’image dans un message de file d’attente.
+Hello `BlobInformation` classe est utilisée toostore d’informations sur un objet blob d’image dans un message de la file d’attente.
 
         public class BlobInformation
         {
@@ -453,14 +453,14 @@ La classe `BlobInformation` permet de stocker les informations d’un objet blob
 
 
 ### <a name="contosoadsweb---globalasaxcs"></a>ContosoAdsWeb - Global.asax.cs
-Le code appelé par la méthode `Application_Start` crée un conteneur d’objets blob *images* et une file d’attente *images*, s’ils n’existent pas déjà. Cela garantit que, lorsque vous commencez à utiliser un nouveau compte de stockage, le conteneur d'objets blob et la file d'attente nécessaires sont créés automatiquement.
+Code qui est appelé à partir de hello `Application_Start` méthode crée un *images* conteneur d’objets blob et un *images* file d’attente si elles n’existent pas déjà. Cela garantit que chaque fois que vous démarrez à l’aide d’un compte de stockage, hello requis file d’attente et le conteneur d’objets blob sont créés automatiquement.
 
-Le code a accès au compte de stockage en utilisant la chaîne de connexion du fichier *Web.config* ou l'environnement d'exécution Azure.
+Hello compte de stockage toohello code obtient l’accès à l’aide de chaînes de connexion de stockage hello de hello *Web.config* fichier ou un environnement d’exécution Azure.
 
         var storageAccount = CloudStorageAccount.Parse
             (ConfigurationManager.ConnectionStrings["AzureWebJobsStorage"].ToString());
 
-Il obtient ensuite une référence au conteneur d’objets blob *images*, crée le conteneur s’il n’existe pas, et définit les autorisations d’accès au nouveau conteneur. Par défaut, les nouveaux conteneurs ne donnent accès aux objets blob qu’aux clients disposant d’informations d’identification de compte de stockage. L’application web a besoin que les objets blob soient publics pour afficher des images en utilisant des URL qui pointent vers les objets blob de ces images.
+Ensuite, il obtient une référence toohello *images* conteneur d’objets blob, crée le conteneur de hello si elle n’existe pas déjà, et définit les autorisations sur le conteneur hello d’accès. Par défaut, les nouveaux conteneurs autorisent uniquement les clients avec des objets BLOB de stockage compte informations d’identification tooaccess. l’application web Hello doit hello BLOB toobe public afin qu’il peut afficher des images à l’aide de l’URL que BLOB d’image toohello de point de.
 
         var blobClient = storageAccount.CreateCloudBlobClient();
         var imagesBlobContainer = blobClient.GetContainerReference("images");
@@ -473,17 +473,17 @@ Il obtient ensuite une référence au conteneur d’objets blob *images*, crée 
                 });
         }
 
-Du code similaire obtient une référence à la file d’attente *thumbnailrequest* et crée une nouvelle file d’attente. Dans ce cas, aucune modification des autorisations n'est nécessaire.
+Un code similaire Obtient une référence toohello *thumbnailrequest* de file d’attente et crée une nouvelle file d’attente. Dans ce cas, aucune modification des autorisations n'est nécessaire.
 
         CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
         var imagesQueue = queueClient.GetQueueReference("thumbnailrequest");
         imagesQueue.CreateIfNotExists();
 
 ### <a name="contosoadsweb---layoutcshtml"></a>ContosoAdsWeb - _Layout.cshtml
-Le fichier *_Layout.cshtml* définit le nom de l’application dans l’en-tête et le pied de page, puis crée une entrée de menu « Ads ».
+Hello *_Layout.cshtml* fichier définit le nom de l’application hello dans l’en-tête de hello et de pied de page et crée une entrée de menu « Annonces ».
 
 ### <a name="contosoadsweb---viewshomeindexcshtml"></a>ContosoAdsWeb - Views\Home\Index.cshtml
-Le fichier *Views\Home\Index.cshtml* affiche les liens de catégorie sur la page d'accueil. Les liens transmettent la valeur entière de l’énumération `Category` d’une variable querystring à la page Ads Index.
+Hello *Views\Home\Index.cshtml* fichier affiche les liens de catégorie sur la page d’accueil hello. les liens Hello passent entier hello hello `Category` enum dans une page d’Index de publicités toohello variable querystring.
 
         <li>@Html.ActionLink("Cars", "Index", "Ad", new { category = (int)Category.Cars }, null)</li>
         <li>@Html.ActionLink("Real estate", "Index", "Ad", new { category = (int)Category.RealEstate }, null)</li>
@@ -491,21 +491,21 @@ Le fichier *Views\Home\Index.cshtml* affiche les liens de catégorie sur la page
         <li>@Html.ActionLink("All", "Index", "Ad", null, null)</li>
 
 ### <a name="contosoadsweb---adcontrollercs"></a>ContosoAdsWeb - AdController.cs
-Dans le fichier *AdController.cs*, le constructeur appelle la méthode `InitializeStorage` pour créer les objets de la bibliothèque cliente Azure Storage, qui fournissent une API pour les objets blob et les files d’attente.
+Bonjour *AdController.cs* fichier, les appels de constructeur Bonjour Bonjour `InitializeStorage` méthode toocreate bibliothèque cliente de stockage Azure objets qui fournissent une API pour l’utilisation des objets BLOB et files d’attente.
 
-Le code obtient ensuite une référence au conteneur d’objets blob *images* comme vu précédemment dans *Global.asax.cs*. Ce faisant, il définit une [stratégie de nouvelles tentatives](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/transient-fault-handling) par défaut appropriée pour une application web. La stratégie de nouvelles tentatives d'interruption exponentielle par défaut peut suspendre l'application web pendant plus d'une minute en cas de tentatives répétées pour une erreur temporaire. La stratégie de nouvelle tentative spécifiée ici laisse trois secondes après chaque nouvelle tentative, jusqu’à trois.
+Code de hello extrait ensuite une référence toohello *images* conteneur d’objets blob comme vous l’avez vu précédemment dans *Global.asax.cs*. Ce faisant, il définit une [stratégie de nouvelles tentatives](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/transient-fault-handling) par défaut appropriée pour une application web. stratégie de nouvelle tentative interruption exponentielle Hello par défaut se bloque hello web app pour plus d’une minute sur les tentatives répétées d’une erreur transitoire. stratégie de nouvelle tentative Hello spécifié ici attend trois secondes après chacun pour des tentatives de toothree.
 
         var blobClient = storageAccount.CreateCloudBlobClient();
         blobClient.DefaultRequestOptions.RetryPolicy = new LinearRetry(TimeSpan.FromSeconds(3), 3);
         imagesBlobContainer = blobClient.GetContainerReference("images");
 
-Un code similaire obtient une référence à la file d'attente *images* .
+Un code similaire Obtient une référence toohello *images* file d’attente.
 
         CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
         queueClient.DefaultRequestOptions.RetryPolicy = new LinearRetry(TimeSpan.FromSeconds(3), 3);
         imagesQueue = queueClient.GetQueueReference("blobnamerequest");
 
-La plupart du code du contrôleur permet généralement d'utiliser un modèle de données Entity Framework en utilisant une classe DbContext. La méthode HttpPost `Create` est une exception, car elle télécharge un fichier et l’enregistre dans le stockage d’objets blob. Le classeur de modèles fournit un objet [HttpPostedFileBase](http://msdn.microsoft.com/library/system.web.httppostedfilebase.aspx) à la méthode.
+La plupart du code du contrôleur hello est typique pour travailler avec un modèle de données Entity Framework à l’aide d’une classe DbContext. Une exception est hello HttpPost `Create` (méthode), qui télécharge un fichier et l’enregistre dans le stockage blob. classeur de modèles Hello fournit un [HttpPostedFileBase](http://msdn.microsoft.com/library/system.web.httppostedfilebase.aspx) toohello méthode de l’objet.
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -513,7 +513,7 @@ La plupart du code du contrôleur permet généralement d'utiliser un modèle de
             [Bind(Include = "Title,Price,Description,Category,Phone")] Ad ad,
             HttpPostedFileBase imageFile)
 
-Si l'utilisateur a sélectionné un fichier à télécharger, le code met à jour le fichier, l'enregistre dans un objet blob et met à jour l'enregistrement de base de données AD avec une URL qui pointe vers l'objet blob.
+Si l’utilisateur hello sélectionné un tooupload de fichier, code de hello télécharge hello fichier enregistre dans un objet blob et met à jour d’enregistrement de base de données Ad hello avec une URL qui pointe toohello blob.
 
         if (imageFile != null && imageFile.ContentLength != 0)
         {
@@ -521,7 +521,7 @@ Si l'utilisateur a sélectionné un fichier à télécharger, le code met à jou
             ad.ImageURL = blob.Uri.ToString();
         }
 
-Le code qui procède au téléchargement se trouve dans la méthode `UploadAndSaveBlobAsync` . Il crée un nom GUID pour l'objet blob, télécharge et enregistre le fichier, et renvoie une référence vers l'objet blob enregistré.
+Hello code hello téléchargement est hello `UploadAndSaveBlobAsync` (méthode). Il crée un nom GUID pour les objets blob de hello, téléchargements et enregistre le fichier hello et retourne un objet blob de référence toohello enregistré.
 
         private async Task<CloudBlockBlob> UploadAndSaveBlobAsync(HttpPostedFileBase imageFile)
         {
@@ -534,13 +534,13 @@ Le code qui procède au téléchargement se trouve dans la méthode `UploadAndSa
             return imageBlob;
         }
 
-Une fois que la méthode HttpPost `Create` a téléchargé un objet blob et mis à jour la base de données, elle crée un message de file d’attente pour informer ce processus d’arrière-plan qu’une image est prête à être convertie en vignette.
+Après avoir hello HttpPost `Create` méthode télécharge un objet blob et les mises à jour hello de base de données, il crée un file d’attente message tooinform hello au processus principal qu’une image est prête pour la miniature tooa de conversion.
 
         BlobInformation blobInfo = new BlobInformation() { AdId = ad.AdId, BlobUri = new Uri(ad.ImageURL) };
         var queueMessage = new CloudQueueMessage(JsonConvert.SerializeObject(blobInfo));
         await thumbnailRequestQueue.AddMessageAsync(queueMessage);
 
-Le code de la méthode HttpPost `Edit` est similaire, mais si l’utilisateur sélectionne un nouveau fichier image, les objets blob qui existent pour cette publicité doivent être supprimés.
+Hello code hello HttpPost `Edit` méthode est similaire, mais si l’utilisateur de hello sélectionne un fichier image, tous les objets BLOB qui existent déjà pour cette ad doivent être supprimés.
 
         if (imageFile != null && imageFile.ContentLength != 0)
         {
@@ -549,7 +549,7 @@ Le code de la méthode HttpPost `Edit` est similaire, mais si l’utilisateur s�
             ad.ImageURL = imageBlob.Uri.ToString();
         }
 
-Voici le code qui supprime les objets blob lorsque vous supprimez une publicité :
+Voici le code hello qui supprime des objets BLOB lorsque vous supprimez une annonce :
 
         private async Task DeleteAdBlobsAsync(Ad ad)
         {
@@ -572,25 +572,25 @@ Voici le code qui supprime les objets blob lorsque vous supprimez une publicité
         }
 
 ### <a name="contosoadsweb---viewsadindexcshtml-and-detailscshtml"></a>ContosoAdsWeb - Views\Ad\Index.cshtml et Details.cshtml
-Le fichier *Index.cshtml* affiche des vignettes avec les autres données de publicité :
+Hello *Index.cshtml* fichier affiche les miniatures avec hello autres données d’Active Directory :
 
         <img  src="@Html.Raw(item.ThumbnailURL)" />
 
-Le fichier *Details.cshtml* affiche l'image intégrale :
+Hello *Details.cshtml* fichier image en taille réelle de hello s’affiche :
 
         <img src="@Html.Raw(Model.ImageURL)" />
 
 ### <a name="contosoadsweb---viewsadcreatecshtml-and-editcshtml"></a>ContosoAdsWeb - Views\Ad\Create.cshtml et Edit.cshtml
-Les fichiers *Create.cshtml* et *Edit.cshtml* spécifient l’encodage de formulaire qui permet au contrôleur d’obtenir l’objet `HttpPostedFileBase`.
+Hello *Create.cshtml* et *Edit.cshtml* fichiers spécifient qu’Active hello hello tooget de contrôleur d’encodage de formulaire `HttpPostedFileBase` objet.
 
         @using (Html.BeginForm("Create", "Ad", FormMethod.Post, new { enctype = "multipart/form-data" }))
 
-Un élément `<input>` indique au navigateur de fournir une boîte de dialogue de sélection de fichier.
+Un `<input>` élément indique hello navigateur tooprovide une boîte de dialogue de sélection de fichier.
 
         <input type="file" name="imageFile" accept="image/*" class="form-control fileupload" />
 
 ### <a id="programcs"></a>ContosoAdsWebJob - Program.cs
-Lorsque la tâche web démarre, la méthode `Main` appelle la méthode `JobHost.RunAndBlock` du Kit de développement logiciel (SDK) WebJobs pour commencer l’exécution des fonctions déclenchées sur le thread actuel.
+Lorsque hello démarre la tâche Web hello `Main` les appels de méthode hello WebJobs SDK `JobHost.RunAndBlock` toobegin exécution de la méthode de fonctions déclenchées sur le thread en cours de hello.
 
         static void Main(string[] args)
         {
@@ -599,7 +599,7 @@ Lorsque la tâche web démarre, la méthode `Main` appelle la méthode `JobHost.
         }
 
 ### <a id="generatethumbnail"></a>ContosoAdsWebJob - Functions.cs - Méthode GenerateThumbnail
-Le Kit de développement logiciel (SDK) WebJobs appelle cette méthode lorsqu'un message de file d'attente est reçu. Cette méthode crée une vignette et place son URL dans la base de données.
+Hello WebJobs SDK appelle cette méthode lorsqu’un message de la file d’attente est reçu. méthode Hello crée une miniature et met hello miniature URL dans la base de données hello.
 
         public static void GenerateThumbnail(
         [QueueTrigger("thumbnailrequest")] BlobInformation blobInfo,
@@ -613,7 +613,7 @@ Le Kit de développement logiciel (SDK) WebJobs appelle cette méthode lorsqu'un
             }
 
             // Entity Framework context class is not thread-safe, so it must
-            // be instantiated and disposed within the function.
+            // be instantiated and disposed within hello function.
             using (ContosoAdsContext db = new ContosoAdsContext())
             {
                 var id = blobInfo.AdId;
@@ -627,54 +627,54 @@ Le Kit de développement logiciel (SDK) WebJobs appelle cette méthode lorsqu'un
             }
         }
 
-* L’attribut `QueueTrigger` demande au Kit de développement logiciel (SDK) WebJobs d’appeler cette méthode lorsqu’un nouveau message est reçu dans la file d’attente thumbnailrequest.
+* Hello `QueueTrigger` attribut dirige hello WebJobs SDK toocall cette méthode lorsqu’un nouveau message est reçu dans la file d’attente de thumbnailrequest hello.
 
         [QueueTrigger("thumbnailrequest")] BlobInformation blobInfo,
 
-    L’objet `BlobInformation` dans le message de file d’attente est automatiquement désérialisé dans le paramètre `blobInfo`. Lorsque la méthode est terminée, le message de file d'attente est supprimé. Si la méthode échoue avant de se terminer, le message de file d'attente n'est pas supprimé ; après un bail de 10 minutes, il est libéré pour être à nouveau sélectionné et traité. Cette séquence ne se répète pas indéfiniment si un message provoque toujours une exception. Après 5 tentatives ayant échoué de traitement d'un message, celui-ci est déplacé dans la file d'attente nommée {queuename}-poison. Vous pouvez configurer le nombre maximal de tentatives.
-* Les deux attributs `Blob` fournissent des objets qui sont liés aux objets blob : un pour l’objet blob d’image existant et un pour le nouvel objet blob miniature créé par la méthode.
+    Hello `BlobInformation` objet dans le message de file d’attente hello est automatiquement désérialisée en hello `blobInfo` paramètre. Lors de la fin de la méthode hello, message de file d’attente hello est supprimé. Si la méthode hello échoue avant la fin, le message de file d’attente hello n’est pas supprimé ; après l’expiration d’un bail de 10 minutes, message de type hello est lancé toobe nouveau récupéré et traité. Cette séquence ne se répète pas indéfiniment si un message provoque toujours une exception. Après échec de 5 tentatives tooprocess un message, message de type hello est déplacé tooa file d’attente nommée {nom}-incohérents. Hello le nombre maximal de tentatives est configurable.
+* deux Hello `Blob` attributs fournissent des objets qui sont liées tooblobs : un toohello existant objet blob d’image et un tooa nouvelle miniature blob qui crée de la méthode hello.
 
         [Blob("images/{BlobName}", FileAccess.Read)] Stream input,
         [Blob("images/{BlobNameWithoutExtension}_thumbnail.jpg")] CloudBlockBlob outputBlob)
 
-    Les noms des objets blob proviennent des propriétés de l’objet `BlobInformation` reçu dans le message de file d’attente ((`BlobName` et `BlobNameWithoutExtension`). Pour profiter de toutes les fonctionnalités de la bibliothèque cliente de stockage, vous pouvez utiliser des objets blob à l’aide de la classe `CloudBlockBlob`. Si vous voulez réutiliser du code écrit pour des objets `Stream`, optez pour la classe `Stream`.
+    Noms d’objets BLOB proviennent des propriétés de hello `BlobInformation` objet reçu dans le message de file d’attente hello (`BlobName` et `BlobNameWithoutExtension`). tooget hello toutes les fonctionnalités de hello bibliothèque cliente de stockage, vous pouvez utiliser hello `CloudBlockBlob` toowork de classe avec des objets BLOB. Si vous souhaitez tooreuse le code qui a été écrite toowork avec `Stream` des objets, vous pouvez utiliser hello `Stream` classe.
 
-Pour plus d’informations sur l’écriture de fonctions utilisant des attributs du Kit de développement logiciel (SDK) WebJobs, voir les ressources suivantes :
+Pour plus d’informations sur le mode de fonctionnement toowrite qui utilisent des attributs WebJobs SDK, consultez hello suivant des ressources :
 
-* [Utilisation du stockage de file d’attente Microsoft Azure avec le Kit de développement logiciel (SDK) WebJobs](websites-dotnet-webjobs-sdk-storage-queues-how-to.md)
-* [Utilisation du stockage d’objets blob Azure avec le Kit de développement logiciel (SDK) WebJobs](websites-dotnet-webjobs-sdk-storage-blobs-how-to.md)
-* [Utilisation du stockage de tables Microsoft Azure avec le Kit de développement logiciel (SDK) WebJobs](websites-dotnet-webjobs-sdk-storage-tables-how-to.md)
-* [Utilisation de Microsoft Azure Service Bus avec le Kit de développement logiciel (SDK) WebJobs](websites-dotnet-webjobs-sdk-service-bus.md)
+* [Comment toouse Azure file d’attente de stockage avec hello WebJobs SDK](websites-dotnet-webjobs-sdk-storage-queues-how-to.md)
+* [Comment toouse Azure stockage d’objets blob par hello WebJobs SDK](websites-dotnet-webjobs-sdk-storage-blobs-how-to.md)
+* [Comment toouse Azure table storage avec hello WebJobs SDK](websites-dotnet-webjobs-sdk-storage-tables-how-to.md)
+* [Comment toouse Azure Service Bus avec hello WebJobs SDK](websites-dotnet-webjobs-sdk-service-bus.md)
 
 > [!NOTE]
-> * Si votre application web s'exécute sur plusieurs machines virtuelles, plusieurs WebJobs seront exécutés simultanément et, dans certains cas, cela peut entraîner le traitement multiple des mêmes données. Cela n'est pas un problème si vous utilisez la file d'attente, le blob et les déclencheurs Service Bus intégrés. Le Kit de développement logiciel (SDK) garantit que vos fonctions ne seront traitées qu'une seule fois pour chaque message ou objet blob.
-> * Pour plus d’informations sur la façon d’implémenter l’arrêt approprié, consultez la rubrique [Arrêt approprié](websites-dotnet-webjobs-sdk-storage-queues-how-to.md#graceful).
-> * Le code de la méthode `ConvertImageToThumbnailJPG` (non représenté) utilise des classes dans l’espace de noms `System.Drawing` pour plus de simplicité. Cependant, les classes de cet espace de noms ont été conçues pour être utilisées avec Windows Forms. Elles ne sont pas prises en charge dans un service Windows ou ASP.NET. Pour plus d’informations sur les options de traitement d’images, consultez les rubriques [Génération d’images dynamiques](http://www.hanselman.com/blog/BackToBasicsDynamicImageGenerationASPNETControllersRoutingIHttpHandlersAndRunAllManagedModulesForAllRequests.aspx) et [Redimensionnement d’images approfondi](http://www.hanselminutes.com/313/deep-inside-image-resizing-and-scaling-with-aspnet-and-iis-with-imageresizingnet-author-na).
+> * Si votre application web s’exécute sur plusieurs machines virtuelles, plusieurs tâches Web s’exécuteront simultanément et dans certains scénarios, cela peut entraîner de hello même les données traitées plusieurs fois. Cela n’est pas un problème si vous utilisez la file d’attente intégrées de hello, blob et les déclencheurs de Service Bus. Hello SDK garantit que vos fonctions seront traitées qu’une seule fois pour chaque message ou d’un objet blob.
+> * Pour plus d’informations sur l’arrêt correct de tooimplement, consultez [l’arrêt approprié](websites-dotnet-webjobs-sdk-storage-queues-how-to.md#graceful).
+> * Hello code Bonjour `ConvertImageToThumbnailJPG` (méthode) (non affiché) utilise des classes hello `System.Drawing` espace de noms par souci de simplicité. Toutefois, les classes de hello dans cet espace de noms ont été conçues pour une utilisation avec Windows Forms. Elles ne sont pas prises en charge dans un service Windows ou ASP.NET. Pour plus d’informations sur les options de traitement d’images, consultez les rubriques [Génération d’images dynamiques](http://www.hanselman.com/blog/BackToBasicsDynamicImageGenerationASPNETControllersRoutingIHttpHandlersAndRunAllManagedModulesForAllRequests.aspx) et [Redimensionnement d’images approfondi](http://www.hanselminutes.com/313/deep-inside-image-resizing-and-scaling-with-aspnet-and-iis-with-imageresizingnet-author-na).
 >
 >
 
 ## <a name="next-steps"></a>Étapes suivantes
-Dans ce didacticiel, nous avons vu une simple application multiniveau qui utilise le Kit de développement logiciel (SDK) WebJobs pour le traitement principal. Cette section propose des suggestions pour en savoir plus sur les applications à plusieurs niveaux ASP.NET et WebJobs.
+Dans ce didacticiel, vous avez vu d’une application à plusieurs niveaux simple qui utilise hello WebJobs SDK pour le traitement du serveur principal. Cette section propose des suggestions pour en savoir plus sur les applications à plusieurs niveaux ASP.NET et WebJobs.
 
 ### <a name="missing-features"></a>Fonctionnalités manquantes
-L'application est intentionnellement simple pour un didacticiel de prise en main. Dans une application réelle, vous implémenteriez l’[injection de dépendances](http://www.asp.net/mvc/tutorials/hands-on-labs/aspnet-mvc-4-dependency-injection) et les [modèles de référentiel et d’élément de travail](http://www.asp.net/mvc/tutorials/getting-started-with-ef-using-mvc/advanced-entity-framework-scenarios-for-an-mvc-web-application#repo), et vous utiliseriez [une interface pour la connexion](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/monitoring-and-telemetry#log), les [migrations Code First EF](http://www.asp.net/mvc/tutorials/getting-started-with-ef-using-mvc/migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application) pour gérer les changements de modèles de données et la [résilience des connexions EF](http://www.asp.net/mvc/tutorials/getting-started-with-ef-using-mvc/connection-resiliency-and-command-interception-with-the-entity-framework-in-an-asp-net-mvc-application) pour gérer les erreurs réseau temporaires.
+application Hello a été conservée simple pour obtenir un didacticiel de mise en route. Dans une application réelle, vous pouvez implémenter [injection de dépendance](http://www.asp.net/mvc/tutorials/hands-on-labs/aspnet-mvc-4-dependency-injection) et hello [référentiel et une unité de travaillent des modèles](http://www.asp.net/mvc/tutorials/getting-started-with-ef-using-mvc/advanced-entity-framework-scenarios-for-an-mvc-web-application#repo), utilisez [une interface pour la journalisation](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/monitoring-and-telemetry#log), utilisez [ Migrations EF Code First](http://www.asp.net/mvc/tutorials/getting-started-with-ef-using-mvc/migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application) toomanage données modifications sur le modèle et utiliser [résilience des connexions EF](http://www.asp.net/mvc/tutorials/getting-started-with-ef-using-mvc/connection-resiliency-and-command-interception-with-the-entity-framework-in-an-asp-net-mvc-application) toomanage les erreurs temporaires du réseau.
 
 ### <a name="scaling-webjobs"></a>Mise à l’échelle de WebJobs
-Les tâches web s’exécutent dans le contexte d’une application web et ne sont pas évolutives séparément. Par exemple, si vous disposez d’une instance d’application web Standard, vous n’avez qu’une seule instance en cours d’exécution du processus en arrière-plan. Cette dernière utilise certaines ressources du serveur (unité centrale, mémoire, etc.) qui seraient autrement disponibles pour distribuer du contenu web.
+Les tâches Web s’exécutent dans le contexte de hello d’une application web, ne sont pas évolutifs séparément. Par exemple, si vous avez une instance d’application web Standard, vous n'avez qu’une seule instance du processus d’arrière-plan en cours d’exécution et qu’il utilise certaines hello des ressources du serveur (processeur, mémoire, etc.) qui seraient sinon le contenu web tooserve disponibles.
 
-Si le trafic varie au cours de la journée ou de la semaine et si le traitement principal dont vous avez besoin peut attendre, vous pouvez planifier l'exécution de vos tâches web aux heures de faible trafic. Si la charge est encore trop élevée pour cette solution, vous pouvez exécuter le serveur principal comme un WebJob dans une application web distincte dédiée à cet effet. Vous pouvez ensuite faire évoluer votre application web principale indépendamment de votre application web frontale.
+Si le trafic varie selon le temps ou le jour de la semaine, et si principal hello traitement vous devez toodo peut attendre, vous pouvez planifier votre toorun tâches Web à des moments de faible trafic. Si la charge de hello est toujours trop élevé pour cette solution, vous pouvez exécuter hello principal en tant qu’une tâche Web dans une application web distinct dédiée à cet effet. Vous pouvez ensuite faire évoluer votre application web principale indépendamment de votre application web frontale.
 
 Pour plus d’informations, consultez [Mise à l’échelle WebJobs](websites-webjobs-resources.md#scale).
 
 ### <a name="avoiding-web-app-timeout-shut-downs"></a>Éviter les arrêts dus à l’expiration des applications web
-Pour vous assurer que vos WebJobs sont toujours en cours d’exécution sur toutes les instances de votre application web, vous devez activer la fonctionnalité [AlwaysOn](http://weblogs.asp.net/scottgu/archive/2014/01/16/windows-azure-staging-publishing-support-for-web-sites-monitoring-improvements-hyper-v-recovery-manager-ga-and-pci-compliance.aspx) .
+toomake que vos tâches Web sont toujours en cours d’exécution et en cours d’exécution sur toutes les instances de votre application web, vous avez tooenable hello [AlwaysOn](http://weblogs.asp.net/scottgu/archive/2014/01/16/windows-azure-staging-publishing-support-for-web-sites-monitoring-improvements-hyper-v-recovery-manager-ga-and-pci-compliance.aspx) fonctionnalité.
 
-### <a name="using-the-webjobs-sdk-outside-of-webjobs"></a>Utilisation du Kit de développement logiciel (SDK) WebJobs en dehors de WebJobs
-Un programme qui utilise le Kit SDK WebJobs ne doit pas obligatoirement s’exécuter dans Azure dans une tâche web. Il peut s'exécuter localement, ou dans d'autres environnements tels qu'un rôle de travail de service cloud ou un service Windows. Toutefois, vous ne pouvez accéder au tableau de bord du Kit de développement logiciel (SDK) WebJobs que par le biais d’une application web Azure. Pour utiliser le tableau de bord, vous devez connecter l’application web au compte de stockage que vous utilisez en définissant la chaîne de connexion AzureWebJobsDashboard sous l’onglet **Configurer** du portail Classic. Vous pouvez ensuite accéder au tableau de bord à l’aide de l’URL suivante :
+### <a name="using-hello-webjobs-sdk-outside-of-webjobs"></a>À l’aide de hello SDK WebJobs en dehors des tâches Web
+Un programme qui utilise hello WebJobs SDK ne toorun dans Azure dans une tâche Web. Il peut s'exécuter localement, ou dans d'autres environnements tels qu'un rôle de travail de service cloud ou un service Windows. Toutefois, vous pouvez uniquement accéder hello du tableau de bord WebJobs SDK via une application web Azure. tableau de bord hello toouse vous avez tooconnect hello web application toohello compte de stockage que vous utilisez des en définissant la chaîne de connexion AzureWebJobsDashboard hello sur hello **configurer** onglet du portail classique de hello. Ensuite, vous pouvez obtenir toohello du tableau de bord à l’aide de hello suivant l’URL :
 
 https://{nom_d’application_web}.scm.azurewebsites.net/azurejobs/#/functions
 
-Pour plus d'informations, consultez le billet de blog [Récupération d'un tableau de bord pour un développement local avec le Kit de développement logiciel (SDK) WebJobs](http://blogs.msdn.com/b/jmstall/archive/2014/01/27/getting-a-dashboard-for-local-development-with-the-webjobs-sdk.aspx)(notez cependant qu'il affiche un ancien nom de chaîne de connexion).
+Pour plus d’informations, consultez [mise en route d’un tableau de bord pour un développement local avec hello WebJobs SDK](http://blogs.msdn.com/b/jmstall/archive/2014/01/27/getting-a-dashboard-for-local-development-with-the-webjobs-sdk.aspx), mais notez qu’elle affiche un ancien nom de chaîne de connexion.
 
 ### <a name="more-webjobs-documentation"></a>Plus de documentation relative à WebJobs
 Pour plus d’informations, consultez [Ressources de documentation relatives à Azure WebJobs](http://go.microsoft.com/fwlink/?LinkId=390226).

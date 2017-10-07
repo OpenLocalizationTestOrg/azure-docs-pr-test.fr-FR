@@ -1,6 +1,6 @@
 ---
-title: "Créer un cluster Apache Spark dans Azure HDInsight | Microsoft Docs"
-description: "Démarrage rapide Spark HDInsight pour créer un cluster Apache Spark dans HDInsight."
+title: "cluster d’aaaCreate un Apache Spark dans Azure HDInsight | Documents Microsoft"
+description: "Démarrage rapide de HDInsight Spark sur comment toocreate un Apache Spark dans HDInsight de cluster."
 keywords: "démarrage rapide spark,spark interactif,requête interactive,hdinsight spark,azure spark"
 services: hdinsight
 documentationcenter: 
@@ -17,17 +17,17 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 07/21/2017
 ms.author: nitinme
-ms.openlocfilehash: ad4330a1fc7f8de154d9aaa8df3acc2ab59b9dc1
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 002f71b3cd4fb315d4a556cebc9263026515ec4a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-apache-spark-cluster-in-azure-hdinsight"></a>Créer un cluster Apache Spark dans Azure HDInsight
 
-Dans cet article, vous allez découvrir comment créer un cluster Apache Spark dans Azure HDInsight. Pour en savoir plus sur le service Spark sur HDInsight, consultez [Vue d’ensemble : Apache Spark sur Azure HDInsight](hdinsight-apache-spark-overview.md).
+Dans cet article, vous découvrez comment toocreate un Apache Spark cluster dans Azure HDInsight. Pour en savoir plus sur le service Spark sur HDInsight, consultez [Vue d’ensemble : Apache Spark sur Azure HDInsight](hdinsight-apache-spark-overview.md).
 
-   ![Schéma de démarrage rapide décrivant la procédure de création d’un cluster Apache Spark dans Azure HDInsight](./media/hdinsight-apache-spark-jupyter-spark-sql/hdinsight-spark-quickstart-interactive-spark-query-flow.png "Démarrage rapide Spark à l’aide d’Apache Spark dans HDInsight. Étapes illustrées : création d’un cluster ; exécution d’une requête interactive Spark")
+   ![Diagramme de démarrage rapide qui décrit les étapes toocreate un cluster Apache Spark sur Azure HDInsight](./media/hdinsight-apache-spark-jupyter-spark-sql/hdinsight-spark-quickstart-interactive-spark-query-flow.png "quickstart Spark à l’aide d’Apache Spark dans HDInsight. Étapes illustrées : création d’un cluster ; exécution d’une requête interactive Spark")
 
 ## <a name="prerequisites"></a>Composants requis
 
@@ -37,90 +37,90 @@ Dans cet article, vous allez découvrir comment créer un cluster Apache Spark d
 
 Dans cette section, vous créez un cluster HDInsight Spark à l’aide d’un [modèle Azure Resource Manager](https://azure.microsoft.com/resources/templates/101-hdinsight-spark-linux/). Pour obtenir d’autres méthodes de création de cluster, consultez [Création de clusters HDInsight](hdinsight-hadoop-provision-linux-clusters.md).
 
-1. Cliquez sur l’image suivante pour ouvrir le modèle dans le portail Azure.         
+1. Cliquez sur hello suit image tooopen hello template Bonjour portail Azure.         
 
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-hdinsight-spark-linux%2Fazuredeploy.json" target="_blank"><img src="./media/hdinsight-apache-spark-jupyter-spark-sql/deploy-to-azure.png" alt="Deploy to Azure"></a>
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-hdinsight-spark-linux%2Fazuredeploy.json" target="_blank"><img src="./media/hdinsight-apache-spark-jupyter-spark-sql/deploy-to-azure.png" alt="Deploy tooAzure"></a>
 
-2. Saisissez les valeurs suivantes :
+2. Entrez hello valeurs suivantes :
 
     ![Créer un cluster HDInsight Spark à l’aide d’un modèle Azure Resource Manager](./media/hdinsight-apache-spark-jupyter-spark-sql/create-spark-cluster-in-hdinsight-using-azure-resource-manager-template.png "Créer un cluster Spark dans HDInsight à l’aide d’un modèle Azure Resource Manager")
 
     * **Abonnement** : sélectionnez votre abonnement Azure pour ce cluster.
-    * **Groupe de ressources** : créez un groupe de ressources ou sélectionnez un groupe existant. Le groupe de ressources est utilisé pour gérer des ressources Azure pour vos projets.
-    * **Emplacement** : sélectionnez un emplacement pour le groupe de ressources. Le modèle utilise cet emplacement pour créer le cluster, ainsi que pour stocker le cluster par défaut.
-    * **ClusterName** : entrez un nom pour le cluster HDInsight que vous souhaitez créer.
-    * **Version de Spark** : sélectionnez **2.0** comme version que vous souhaitez installer sur le cluster.
-    * **Nom d’utilisateur et mot de passe de cluster**: le nom de connexion par défaut est admin.
+    * **Groupe de ressources** : créez un groupe de ressources ou sélectionnez un groupe existant. Groupe de ressources est utilisé toomanage ressources Azure pour vos projets.
+    * **Emplacement**: sélectionnez un emplacement pour le groupe de ressources hello. modèle de Hello utilise cet emplacement pour la création de cluster de hello ainsi que pour stockage de cluster par défaut hello.
+    * **ClusterName**: entrez un nom pour le cluster HDInsight de hello que vous souhaitez toocreate.
+    * **Version de Spark**: sélectionnez **2.0** en tant que version hello que vous souhaitez tooinstall sur le cluster de hello.
+    * **Nom de connexion et mot de passe de cluster**: nom de connexion hello par défaut est Admin.
     * **Nom d’utilisateur et mot de passe SSH**.
 
-   Notez ces valeurs.  Vous en aurez besoin plus loin dans le didacticiel.
+   Notez ces valeurs.  Vous avez besoin plus tard dans le didacticiel de hello.
 
-3. Sélectionnez **J’accepte les termes et conditions mentionnés ci-dessus** et **Épingler au tableau de bord**, puis cliquez sur **Acheter**. Vous pouvez voir une nouvelle vignette intitulée Envoi du déploiement pour Déploiement de modèle. La création du cluster prend environ 20 minutes.
+3. Sélectionnez **J’accepte les conditions susmentionnées générales toohello**, sélectionnez **code confidentiel toodashboard**, puis cliquez sur **bon**. Vous pouvez voir une nouvelle vignette intitulée Envoi du déploiement pour Déploiement de modèle. Il prend le cluster de hello toocreate environ 20 minutes.
 
-Si vous rencontrez un problème avec la création de clusters HDInsight, c’est que vous n’avez peut-être pas les autorisations requises pour le faire. Consultez la page [À propos des noms d’espaces de contrôle d’accès](hdinsight-administer-use-portal-linux.md#create-clusters) pour plus d’informations.
+Si vous rencontrez un problème avec la création de clusters HDInsight, il peut être que vous n’avez pas toodo des autorisations appropriées hello ainsi. Consultez la page [À propos des noms d’espaces de contrôle d’accès](hdinsight-administer-use-portal-linux.md#create-clusters) pour plus d’informations.
 
 > [!NOTE]
-> Cet article crée un cluster Spark qui utilise des [objets Blob Azure Storage en tant que cluster de stockage](hdinsight-hadoop-use-blob-storage.md). Vous pouvez également créer un cluster Spark qui utilise [Azure Data Lake Store](hdinsight-hadoop-use-data-lake-store.md) comme stockage par défaut. Pour plus d’informations, voir [Créer un cluster HDInsight avec Data Lake Store](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md).
+> Cet article crée un cluster Spark utilise [stockage en cluster objets BLOB de stockage Azure en tant que hello](hdinsight-hadoop-use-blob-storage.md). Vous pouvez également créer un cluster Spark qui utilise [Azure Data Lake Store](hdinsight-hadoop-use-data-lake-store.md) comme stockage par défaut de hello. Pour plus d’informations, voir [Créer un cluster HDInsight avec Data Lake Store](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md).
 >
 >
 
 ## <a name="run-a-hive-query-using-spark-sql"></a>Exécuter une requête Hive à l’aide de Spark SQL
 
-Lorsque vous utilisez un bloc-notes Jupyter configuré pour votre cluster HDInsight Spark, vous obtenez une présélection `sqlContext` que vous pouvez utiliser pour exécuter des requêtes Hive à l’aide de Spark SQL. Dans cette section, vous allez découvrir comment démarrer un bloc-notes Jupyter, puis vous allez exécuter une requête de base Hive.
+Lorsque vous utilisez un bloc-notes jupyter configuré pour votre cluster HDInsight Spark, vous obtenez une présélection `sqlContext` que vous pouvez utiliser les requêtes Hive toorun à l’aide de Spark SQL. Dans cette section, vous apprendrez comment toostart un bloc-notes jupyter, puis exécutez une requête Hive base.
 
-1. Ouvrez le [portail Azure](https://portal.azure.com/).
+1. Ouvrez hello [portail Azure](https://portal.azure.com/).
 
-2. Si vous avez choisi d’épingler le cluster au tableau de bord, cliquez sur la mosaïque du cluster dans le tableau de bord pour lancer le panneau du cluster.
+2. Si vous avez choisi de tableau de bord toohello toopin hello cluster, cliquez sur hello en mosaïque de cluster à partir du Panneau de cluster hello du tableau de bord toolaunch hello.
 
-    Si vous n’avez pas épinglé le cluster au tableau de bord, dans le volet gauche, cliquez sur **Clusters HDInsight**, puis cliquez sur le cluster que vous avez créé.
+    Si vous ne pas épinglez hello cluster toohello du tableau de bord, à partir du volet de gauche hello, cliquez sur **clusters HDInsight**, puis cliquez sur cluster hello vous avez créé.
 
-3. À partir de **Liens rapides**, cliquez sur **Tableaux de bord de Cluster**, puis sur **Bloc-notes Jupyter**. Si vous y êtes invité, entrez les informations d’identification d’administrateur pour le cluster.
+3. À partir de **Liens rapides**, cliquez sur **Tableaux de bord de Cluster**, puis sur **Bloc-notes Jupyter**. Si vous y êtes invité, entrez les informations d’identification du admin de hello pour le cluster de hello.
 
-   ![Ouvrir le bloc-notes Jupyter pour exécuter une requête interactive Spark SQL](./media/hdinsight-apache-spark-jupyter-spark-sql/hdinsight-spark-open-jupyter-interactive-spark-sql-query.png "Ouvrir un bloc-notes Jupyter pour exécuter une requête interactive Spark SQL")
+   ![Ouvrez Notebook bloc-notes toorun interactive Spark requête SQL](./media/hdinsight-apache-spark-jupyter-spark-sql/hdinsight-spark-open-jupyter-interactive-spark-sql-query.png "la requête interactive Spark SQL Notebook ouvrir Bloc-notes toorun")
 
    > [!NOTE]
-   > Vous pouvez également accéder au bloc-notes Jupyter pour votre cluster en ouvrant l'URL suivante dans votre navigateur. Remplacez **CLUSTERNAME** par le nom de votre cluster.
+   > Vous pouvez également accéder bloc-notes jupyter de hello pour votre cluster en hello ouverture suivante d’URL dans votre navigateur. Remplacez **CLUSTERNAME** avec nom hello de votre cluster :
    >
    > `https://CLUSTERNAME.azurehdinsight.net/jupyter`
    >
    >
 3. Créez un bloc-notes. Cliquez sur **Nouveau**, puis sur **PySpark**.
 
-   ![Créer un bloc-notes Jupyter pour exécuter une requête interactive Spark SQL](./media/hdinsight-apache-spark-jupyter-spark-sql/hdinsight-spark-create-jupyter-interactive-Spark-SQL-query.png "Créer un bloc-notes Jupyter pour exécuter une requête interactive Spark SQL")
+   ![Créer une requête de Spark SQL interactive Notebook bloc-notes toorun](./media/hdinsight-apache-spark-jupyter-spark-sql/hdinsight-spark-create-jupyter-interactive-Spark-SQL-query.png "créer une requête de Spark SQL Notebook bloc-notes toorun interactive")
 
-   Un nouveau bloc-notes est créé et ouvert sous le nom Untitled(Untitled.pynb).
+   Un nouvel ordinateur portable est créé et ouvert avec le nom hello Untitled(Untitled.pynb).
 
-4. Cliquez sur le nom du bloc-notes en haut, puis entrez un nom convivial si vous le souhaitez.
+4. Cliquez sur le nom du bloc-notes hello haut hello et entrez un nom convivial, si vous le souhaitez.
 
-    ![Fournir un nom pour le bloc-notes Jupyter à partir duquel exécuter une requête interactive Spark](./media/hdinsight-apache-spark-jupyter-spark-sql/hdinsight-spark-jupyter-notebook-name.png "Fournir un nom pour le bloc-notes Jupyter à partir duquel exécuter une requête interactive Spark")
+    ![Fournissez un nom pour hello Jupter bloc-notes toorun Spark requêtes interactif de](./media/hdinsight-apache-spark-jupyter-spark-sql/hdinsight-spark-jupyter-notebook-name.png "fournir un nom pour hello Jupter bloc-notes toorun interactive Spark requête à partir de")
 
-5.  Collez l’exemple de code suivant dans une cellule vide, puis appuyez sur **MAJ + ENTRÉE** pour exécuter le code. Dans le code ci-dessous, `%%sql` (appelé la commande magique sql) demande au bloc-notes Jupyter d’utiliser la présélection `sqlContext` pour exécuter la requête Hive. La requête extrait les 10 premières lignes d’une table Hive (**hivesampletable**) qui est disponible par défaut sur tous les clusters HDInsight.
+5.  Suit hello de coller le code dans une cellule vide, puis appuyez sur **MAJ + ENTRÉE** code hello de toorun. Dans le code hello ci-dessous `%%sql` (magique de sql appelée hello) indique hello de toouse bloc-notes Notebook présélection `sqlContext` requête Hive de hello toorun. requête de Hello récupère hello 10 premières lignes d’une table Hive (**hivesampletable**) qui est disponible par défaut sur tous les clusters HDInsight.
 
         %%sql
         SELECT * FROM hivesampletable LIMIT 10
 
     ![Requête Hive dans HDInsight Spark](./media/hdinsight-apache-spark-jupyter-spark-sql/hdinsight-spark-get-started-hive-query.png "Requête Hive dans HDInsight Spark")
 
-    Pour plus d’informations sur la commande magique `%%sql` et les contextes de présélection, consultez [Noyaux Jupyter disponibles pour un cluster HDInsight](hdinsight-apache-spark-jupyter-notebook-kernels.md).
+    Pour plus d’informations sur hello `%%sql` magique et hello présélection des contextes, consultez [noyaux Notebook disponibles pour un cluster HDInsight](hdinsight-apache-spark-jupyter-notebook-kernels.md).
 
     > [!NOTE]
-    > À chaque exécution d’une requête dans Jupyter, le titre de la fenêtre du navigateur web affiche l’état **(Occupé)** ainsi que le titre du bloc-notes. Un cercle plein s’affiche également en regard du texte **PySpark** dans le coin supérieur droit. Une fois le travail terminé, ce cercle est remplacé par un cercle vide.
+    > Chaque fois que vous exécutez une requête dans le bloc-notes, le titre de la fenêtre de navigateur web affiche un **(occupé)** état, ainsi que le titre du bloc-notes hello. Vous voyez également un toohello suivant cercle plein **PySpark** texte dans l’angle supérieur droit de hello. Une fois le travail de hello est terminé, il modifie tooa les cercle vide.
     >
     >
     
-6. L’écran devrait s’actualiser pour afficher la sortie de requête.
+6. écran Hello doit actualiser le résultat de la requête tooshow hello.
 
     ![Sortie de requête Hive dans HDInsight Spark](./media/hdinsight-apache-spark-jupyter-spark-sql/hdinsight-spark-get-started-hive-query-output.png "Sortie de requête Hive dans HDInsight Spark")
 
-7. Arrêtez le bloc-notes pour libérer les ressources du cluster une fois l’exécution de l’application terminée. Pour ce faire, dans le menu **Fichier** du bloc-notes, cliquez sur **Fermer et arrêter**.
+7. Arrêt des ressources de cluster hello hello bloc-notes toorelease une fois que vous avez terminé d’exécuter l’application hello. toodo donc de hello **fichier** cliquez sur le menu d’un ordinateur portable hello, **fermer et s’arrêter**.
 
-8. Si vous envisagez d’effectuer les étapes suivantes à une date ultérieure, assurez-vous de supprimer le cluster HDInsight que vous avez créé avec cet article. 
+8. Si vous envisagez d’étapes de hello toocomplete à une date ultérieure, assurez-vous que vous supprimez le cluster HDInsight de hello que vous avez créé dans cet article. 
 
     [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
 ## <a name="next-step"></a>Étape suivante 
 
-Dans cet article vous avez appris à créer un cluster HDInsight Spark et à exécuter une requête de base Spark SQL. Passer à l’article suivant pour apprendre à utiliser un cluster HDInsight Spark pour exécuter des requêtes interactives sur des données test.
+Dans cet article, vous avez appris comment toocreate un HDInsight Spark cluster et exécutez une base Spark SQL de requête. Avance toohello toolearn de l’article suivant comment toouse un HDInsight Spark cluster toorun des requêtes interactives sur les exemples de données.
 
 > [!div class="nextstepaction"]
 >[Exécuter des requêtes interactives sur un cluster HDInsight Spark](hdinsight-apache-spark-load-data-run-query.md)

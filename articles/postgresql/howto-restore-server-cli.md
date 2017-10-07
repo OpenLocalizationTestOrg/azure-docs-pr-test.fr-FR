@@ -1,6 +1,6 @@
 ---
-title: "Sauvegarde et restauration d’un serveur dans Base de données Azure pour PostgreSQL | Microsoft Docs"
-description: "Découvrez comment sauvegarder et restaurer un serveur dans Base de données Azure pour PostgreSQL à l’aide de l’interface Azure CLI."
+title: "Comment tooback et restaurer un serveur de base de données Azure pour PostgreSQL | Documents Microsoft"
+description: "Découvrez comment tooback haut et restaurer un serveur de base de données Azure pour PostgreSQL à l’aide de hello CLI d’Azure."
 services: postgresql
 author: jasonwhowell
 ms.author: jasonh
@@ -10,18 +10,18 @@ ms.service: postgresql
 ms.devlang: azure-cli
 ms.topic: article
 ms.date: 06/13/2017
-ms.openlocfilehash: 871887e67d686a965a0648d2c6f0c72b3008db05
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 0b9ed25e3e3a88dd5c7ffe2ae7c27f8eef9be710
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-back-up-and-restore-a-server-in-azure-database-for-postgresql-by-using-the-azure-cli"></a>Sauvegarde et restauration d’un serveur Base de données Azure pour PostgreSQL à l’aide de l’interface Azure CLI
+# <a name="how-tooback-up-and-restore-a-server-in-azure-database-for-postgresql-by-using-hello-azure-cli"></a>Comment tooback des et restaurer un serveur de base de données Azure pour PostgreSQL à l’aide de hello CLI d’Azure
 
-Utilisez Base de données Azure pour PostgreSQL afin de restaurer une base de données de serveur à une date antérieure couvrant une période de 7 à 35 jours.
+Utilisez base de données Azure pour PostgreSQL toorestore un tooan de base de données de serveur date antérieure qui s’étend du too35 des 7 derniers jours.
 
 ## <a name="prerequisites"></a>Composants requis
-Pour utiliser ce guide pratique, il vous faut :
+toocomplete cette procédure-tooguide, vous devez :
 - Un [serveur Azure Database pour PostgreSQL et une base de données](quickstart-create-server-database-azure-cli.md)
 
 [!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
@@ -29,43 +29,43 @@ Pour utiliser ce guide pratique, il vous faut :
  
 
 > [!IMPORTANT]
-> Si vous installez et utilisez l’interface Azure CLI localement, vous devez exécuter Azure CLI version 2.0 ou une version ultérieure pour mettre en œuvre la procédure décrite dans ce guide pratique. Pour vérifier la version, à l’invite de commande de l’interface Azure CLI, entrez `az --version`. Pour installer ou mettre à niveau l’interface Azure CLI, consultez [Installation d’Azure CLI 2.0]( /cli/azure/install-azure-cli).
+> Si vous installez et utilisez hello CLI d’Azure localement, cette procédure-tooguide nécessite que vous utilisez Azure CLI 2.0 ou version ultérieure. version de hello tooconfirm, à l’invite de commande CLI d’Azure hello, entrez `az --version`. tooinstall ou mise à niveau, consultez [installer Azure CLI 2.0]( /cli/azure/install-azure-cli).
 
 ## <a name="back-up-happens-automatically"></a>La sauvegarde s’effectue automatiquement
-Lorsque vous utilisez Base de données Azure pour PostgreSQL, le service de base de données crée automatiquement une sauvegarde du service toutes les 5 minutes. 
+Lorsque vous utilisez la base de données Azure pour PostgreSQL, service de base de données hello effectue automatiquement une sauvegarde du service de hello toutes les 5 minutes. 
 
-Pour le niveau De base, les sauvegardes sont disponibles pendant 7 jours. Pour le niveau Standard, les sauvegardes sont disponibles pendant 35 jours. Pour plus d’informations, consultez [Niveaux tarifaires dans Base de données Azure pour PostgreSQL](concepts-service-tiers.md).
+Pour le niveau de base, les sauvegardes de hello sont disponibles pendant 7 jours. Pour le niveau Standard, les sauvegardes de hello sont disponibles pour des 35 derniers jours. Pour plus d’informations, consultez [Niveaux tarifaires dans Base de données Azure pour PostgreSQL](concepts-service-tiers.md).
 
-À l’aide de cette fonctionnalité de sauvegarde automatique, vous pouvez restaurer le serveur et ses bases de données à une date ou un état antérieur.
+Avec cette fonctionnalité de sauvegarde automatique, vous pouvez restaurer les serveur hello et son tooan de bases de données de date antérieure, ou point dans le temps.
 
-## <a name="restore-a-database-to-a-previous-point-in-time-by-using-the-azure-cli"></a>Restaurer une base de données à un état antérieur à l’aide de l’interface Azure CLI
-Utilisez Base de données Azure pour PostgreSQL pour restaurer le serveur à un état antérieur. Les données restaurées sont copiées dans un nouveau serveur et le serveur existant est conservé tel quel. Par exemple, si une table est accidentellement supprimée à midi aujourd’hui, vous pouvez restaurer le serveur à l’état qu’il présentait juste avant midi. Vous pouvez ensuite récupérer la table et les données manquantes à partir de la copie restaurée du serveur. 
+## <a name="restore-a-database-tooa-previous-point-in-time-by-using-hello-azure-cli"></a>Restaurer un état antérieur de tooa de base de données dans le temps à l’aide de hello CLI d’Azure
+Utiliser la base de données Azure pour point précédent tooa de serveur hello PostgreSQL toorestore dans le temps. les données de salutation restaurée sont tooa copié un nouveau serveur, et serveur existant de hello demeure en l’état. Par exemple, si une table est supprimée par inadvertance à midi aujourd'hui, vous pouvez restaurer le temps toohello juste avant midi. Ensuite, vous pouvez récupérer hello manquant de table et les données à partir de la copie restaurée de hello du serveur de hello. 
 
-Pour restaurer le serveur, utilisez la commande [az postgres server restore](/cli/azure/postgres/server#restore) de l’interface Azure CLI.
+serveur de hello toorestore, utilisez hello CLI d’Azure [restauration du serveur az postgres](/cli/azure/postgres/server#restore) commande.
 
-### <a name="run-the-restore-command"></a>Exécuter la commande de restauration
+### <a name="run-hello-restore-command"></a>Exécutez la commande de restauration hello
 
-Pour restaurer le serveur, à l’invite de commande de l’interface Azure CLI, entrez la commande suivante :
+serveur de hello toorestore, à l’invite de commande CLI d’Azure hello, entrez hello de commande suivante :
 
 ```azurecli-interactive
 az postgres server restore --resource-group myResourceGroup --name mypgserver-restored --restore-point-in-time 2017-04-13T13:59:00Z --source-server mypgserver-20170401
 ```
 
-La commande `az postgres server restore` requiert les paramètres suivants :
+Hello `az postgres server restore` commande nécessite hello paramètres suivants :
 | Paramètre | Valeur suggérée | Description  |
 | --- | --- | --- |
-| resource-group |  myResourceGroup |  Groupe de ressources où se trouve le serveur source.  |
-| name | mypgserver-restored | Nom du serveur créé par la commande de restauration. |
-| restore-point-in-time | 2017-04-13T13:59:00Z | Sélectionnez un état antérieur auquel effectuer la restauration. La date et l’heure doivent être comprises dans la période de rétention de la sauvegarde du serveur source. Utilisez le format de date et d’heure ISO8601. Par exemple, vous pouvez utiliser votre fuseau horaire local, comme `2017-04-13T05:59:00-08:00`. Vous pouvez également utiliser le format UTC Zulu, par exemple, `2017-04-13T13:59:00Z`. |
-| source-server | mypgserver-20170401 | Nom ou identifiant du serveur source à partir duquel la restauration s’effectuera. |
+| resource-group |  myResourceGroup |  Le groupe de ressources dans lequel le serveur de source de hello existe.  |
+| name | mypgserver-restored | nom Hello hello nouveau serveur qui est créé par la commande de restauration hello. |
+| restore-point-in-time | 2017-04-13T13:59:00Z | Sélectionnez un point dans toorestore de temps à. Cette date / heure doivent être dans hello du serveur source dans une période de rétention. Utilisez le format de date et d’heure hello ISO8601. Par exemple, vous pouvez utiliser votre fuseau horaire local, comme `2017-04-13T05:59:00-08:00`. Vous pouvez également utiliser hello UTC Zoulou mettre en forme, par exemple, `2017-04-13T13:59:00Z`. |
+| source-server | mypgserver-20170401 | nom de Hello ou ID de hello toorestore de serveur source à partir de. |
 
-Lorsque vous restaurez un serveur à un état antérieur, un nouveau serveur est créé. Le serveur d’origine et ses bases de données à l’état spécifié sont copiés sur le nouveau serveur.
+Lorsque vous restaurez un serveur tooan point antérieur dans le temps, un nouveau serveur est créé. serveur d’origine de Hello et ses bases de données à partir de hello spécifié de point dans le temps sont copiés toohello nouveau serveur.
 
-Les valeurs d’emplacement et de niveau tarifaire du serveur restauré restent les mêmes que celles du serveur d’origine. 
+valeurs de niveau de Hello emplacement et la tarification pour le serveur hello restauré sont toujours hello même en tant que serveur d’origine de hello. 
 
-La commande `az postgres server restore` est synchrone. Une fois le serveur restauré, vous pouvez l’utiliser à nouveau afin de répéter la procédure pour un autre état. 
+Hello `az postgres server restore` commande est synchrone. Après que hello serveur est restauré, vous pouvez l’utiliser à nouveau processus de hello toorepeat pour un autre point dans le temps. 
 
-Une fois la restauration terminée, recherchez le nouveau serveur et vérifiez que les données ont été restaurées correctement.
+Après avoir hello se termine le processus de restauration, recherche hello nouveau serveur et vérifier que les données de salutation sont restaurées comme prévu.
 
 ## <a name="next-steps"></a>Étapes suivantes
 [Bibliothèques de connexions pour Azure Database pour PostgreSQL](concepts-connection-libraries.md)

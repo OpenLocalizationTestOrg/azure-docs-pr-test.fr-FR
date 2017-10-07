@@ -1,5 +1,5 @@
 ---
-title: "Notes de publication du Kit de développement logiciel (SDK) Azure pour .NET 2.5.1"
+title: "Notes de mise à jour d’aaaAzure SDK pour .NET 2.5.1"
 description: "Notes de publication du Kit de développement logiciel (SDK) Azure pour .NET 2.5.1"
 services: app-service
 documentationcenter: .net,nodejs,java
@@ -14,52 +14,52 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 10/10/2016
 ms.author: juliako
-ms.openlocfilehash: dc7b51cd0d015770b1100e895da633e8bde4b8da
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5ee7688617c966baa409045881c172bbbc55ff63
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-sdk-for-net-251-release-notes"></a>Notes de publication du Kit de développement logiciel (SDK) Azure pour .NET 2.5.1
-Ce document contient les notes de publication du Kit de développement logiciel (SDK) Azure pour .NET version 2.5.1. 
+Ce document contient les notes de publication hello pour hello Azure SDK pour .NET 2.5.1 version. 
 
 ## <a name="azure-sdk-for-net-251-release-notes"></a>Notes de publication du Kit de développement logiciel (SDK) Azure pour .NET 2.5.1
-Les nouvelles fonctionnalités et mises à jour intégrées dans le Kit de développement logiciel (SDK) Azure pour .NET 2.5.1 sont présentées ci-dessous.
+Hello Voici les nouvelles fonctionnalités et mises à jour Bonjour Azure SDK pour .NET 2.5.1.
 
-* Nouvelles fonctionnalités\nouveaux scénarios associés aux **Web Tools Extensions**. 
+* Nouveaux scénarios liés trop**Extensions des outils Web**. 
   
-  * Azure Web Sites a été renommé Azure App Service. Pour plus d’informations, consultez [Azure App Service et services Azure existants](../app-service-web/app-service-changes-existing-services.md).
-  * La prise en charge des applications API Azure (version préliminaire) a été ajoutée afin que les clients puissent publier des projets ASP.NET en tant qu'applications API, puis utiliser le mouvement Ajouter > Azure API App Client dans les projets C# pour générer du code basé sur la structure de l'application API déployée. 
-  * Le nœud Websites dans l'Explorateur de serveurs a été déconseillé en lieu et place du nœud Azure App Service, qui prend en charge le regroupement basé sur le groupe de ressources des applications API, mobiles et web d'Azure.
-  * La prise en charge des applications mobiles Azure (version préliminaire) a été ajoutée afin que les clients puissent créer des projets Mobile Apps, ajouter des contrôleurs Mobile Apps, publier les projets et déboguer à distance des applications.
-  * Le mouvement Ajouter > Azure API App Client prend désormais en charge les fichiers Swagger JSON locaux, afin que les développeurs d'API web puissent utiliser des packages NuGet tiers tels que Swashbuckle pour générer du code Swagger ou le créer manuellement. De cette façon, les développeurs d'applications clientes peuvent utiliser les fonctionnalités de génération de code pour utiliser n'importe quel point de terminaison Swagger dans des projets C#. 
-  * Les boîtes de dialogue de publication d'applications web et API ont été améliorées pour prendre en charge le concept du portail Azure de regroupement des ressources, et la sélection/création de groupes de ressources Azure et de plans App Service sont représentées dans la nouvelle boîte de dialogue d'approvisionnement d'applications web et API. 
-  * Les nœuds de l'Explorateur de serveurs des applications API Azure fournissent des liens vers le lien profond des applications API dans le portail Azure, ainsi que d'autres fonctionnalités telles que la diffusion en continu des journaux et le débogage à distance.
+  * Sites Web Azure a été renommé tooAzure du Service d’applications. Pour plus d’informations, consultez [Azure App Service et services Azure existants](../app-service-web/app-service-changes-existing-services.md).
+  * Prise en charge de Azure (aperçu) les applications API a été ajouté afin que les clients peuvent publier des projets ASP.NET en tant qu’applications de l’API et ensuite utiliser hello Ajouter > mouvement du Client Azure API App dans les projets toogenerate code c# basé sur la structure hello Hello déployé l’application API. 
+  * nœud de sites Web Hello dans l’Explorateur de serveurs a été déconseillée au lieu de nœud de Service d’applications Azure hello, qui prend en charge pour la ressource de groupe-en fonction de regroupement des applications API Azure, les applications mobiles et les applications Web.
+  * Prise en charge de Azure Mobile Apps (version préliminaire) a été ajouté afin que les clients peuvent créer des projets d’applications mobiles, ajouter des applications mobiles contrôleurs, publier des projets de hello et déboguer à distance.
+  * Ajouter > mouvement du Client Azure API App prend désormais en charge les fichiers JSON de Swagger locaux, permet aux développeurs des API Web NuGets tiers comme Swashbuckle toogenerate Swagger ou créez-la manuellement. De cette manière, client les développeurs peuvent utiliser tooconsume de fonctionnalités de génération de code hello n’importe quel point de terminaison Swagger dans les projets c#. 
+  * Application Web et application API de boîtes de dialogue de publication ont été améliorées toosupport concept de portail Azure hello de ressource de regroupement et sélection/création de groupes de ressources Azure et de Plans de Service d’application sont représentés dans hello nouvelle application Web et application API approvisionnement boîte de dialogue. 
+  * Nœuds d’Explorateur de serveurs d’application API Azure fournissent toohello liens qu'approfondie des applications API lier dans hello portail Azure, ainsi que d’autres fonctionnalités telles que les journaux de diffusion en continu et le débogage distant.
     
     Pour les problèmes connus et les limites actuelles dans le Kit de développement logiciel (SDK) Azure pour .NET 2.5.1, consultez la [section](app-service-release-notes.md#known_issues_2_5_1) ci-dessous.
-* De nouvelles fonctionnalités\nouveaux scénarios associés aux **outils HDInsight** dans Visual Studio sont activés dans cette version. 
+* Nouveaux scénarios liés trop**outils HDInsight** dans Visual Studio sont activés dans cette version. 
   
-  * Validation locale des scripts Hive. Cliquez sur le bouton Valider le script dans la barre d'outils pour voir si votre script contient des erreurs. 
+  * Validation locale des scripts Hive. Cliquez sur bouton de script de validation hello dans hello barre d’outils toosee s’il existe des erreurs dans votre script. 
   * Débogage amélioré des tâches Hive. Vous pouvez maintenant déboguer les tâches Hive en accédant aux journaux Yarn dans Visual Studio. Si votre application présente des problèmes de performances, l'examen des journaux Yarn fournit des informations utiles.
-  * (Version préliminaire publique) Prise en charge d'IntelliSense et de la saisie semi-automatique des mots clés pour Hive. Pour vous aider à créer des scripts Hive, HDInsight Tools pour Visual Studio a ajouté la prise en charge d'IntelliSense et de la saisie semi-automatique des mots clés pour Hive.
-  * Prise en charge de Storm. Vous pouvez désormais utiliser HDInsight Tools pour Visual Studio pour développer des topologies/spouts/bolts Storm en C#. Vous pouvez ensuite soumettre la topologie développée à un cluster Storm et voir l'état de la topologie/bolt/spout. Vous pouvez utiliser les journaux système et les journaux client pour dépanner vos topologies/bolts/spouts Storm. Vous pouvez également utiliser les ressources JAVA existantes dans Storm sur HDInsight.
+  * (Version préliminaire publique) Prise en charge d'IntelliSense et de la saisie semi-automatique des mots clés pour Hive. toohelp vous créez des scripts Hive, outils HDInsight pour Visual Studio ajouté la saisie semi-automatique (mot clé) et la prise en charge IntelliSense pour la ruche.
+  * Prise en charge de Storm. Vous pouvez désormais utiliser les outils HDInsight pour Visual Studio toodevelop Storm topologies/becs verseurs/boulons en c#. Vous pouvez ensuite envoyer hello développé cluster Storm de tooa topologie et consultez le statut de topologie/éclair/bec hello. Vous pouvez utiliser les journaux système et le client connecte tootroubleshoot votre Storm topologies/boulons/becs verseurs. Vous pouvez également utiliser les ressources JAVA existantes dans Storm sur HDInsight.
     
     Pour plus d’informations, consultez la page [Prise en main de HDInsight Hadoop Tools pour Visual Studio](../hdinsight/hdinsight-hadoop-visual-studio-tools-get-started.md).
 
 ## <a id="known_issues_2_5_1"></a>Limitations et problèmes connus du Kit de développement logiciel (SDK) Azure pour .NET 2.5.1
-* Azure API Apps apparaît sous la forme d'une cible de déploiement pour Mobile Apps. Web Apps devrait être la seule destination pour Mobile Apps jusqu'à une version suivante. 
-* La mise en service d'Azure API App peut se terminer avec succès mais échouer de façon intermittente lors de la mise à jour de la progression dans la fenêtre d'activité d'Azure App Service. Une solution de contournement consiste à vérifier l'état de la nouvelle application API Azure dans le portail Azure. 
-* La séquence Fichier > Nouveau projet > Application API > F5 provoque une erreur HTTP, car il n'existe aucun fichier default/index.html. Une solution de contournement consiste à accéder manuellement à l'URL /api/values. 
+* Azure API Apps apparaît sous la forme d'une cible de déploiement pour Mobile Apps. Applications Web doit être seule destination de hello pour les applications mobiles que dans une version ultérieure. 
+* Configuration de l’application API Azure peut entraîner la réussite, mais par intermittence échouent tooupdate hello progression dans la fenêtre de l’activité de Service d’application Azure hello. Solution de contournement est état toocheck de l’API Azure nouvelle application hello Bonjour portail Azure. 
+* La séquence Fichier > Nouveau projet > Application API > F5 provoque une erreur HTTP, car il n'existe aucun fichier default/index.html. Solution de contournement est toomanually Parcourir toohello/api/valeurs URL. 
 * Par intermittence, les icônes de l'Explorateur de serveurs apparaissent aplaties. Le redémarrage de Visual Studio résout ce problème. 
-* Si une exception est levée au cours de la mise en service de l'application web ou API (par exemple, des erreurs de dépassement de quota ou un nom de passerelle Azure API App en double), les erreurs affichent du texte JSON brut. 
+* Si une exception est levée pendant la mise en service de l’application Web ou application API (par exemple, les erreurs de quota dépassé ou nom de la passerelle application API Azure en double), erreurs de hello affichent du texte JSON brut. 
 * Problèmes intermittents de création de projet quand Application Insights est vérifié au moment de la création du projet.
-* Parfois, des espaces de noms manquent dans le code Azure API App Client généré. Il convient de les inclure manuellement (ou de les importer automatiquement via des signaux Visual Studio) pour compiler le code. 
-* Les projets d'application mobile doivent être publiés en applications web, mais vous devez choisir un site créé comme une application mobile dans le portail Azure, dans la mesure où les projets d'application mobile requièrent une base de données. 
-* La page de démarrage pour Mobile Apps utilise le terme « service mobile » au lieu du terme « applications mobiles » 
-* La création du projet d'application mobile peut prendre une minute. 
-* Pendant la mise en service de l'application API (dans certains cas), une erreur est renvoyée à partir de l'API Azure, indiquant que les autorisations n'ont pas pu être définies correctement, alors que l'application API a été correctement configurée et est prête à être utilisée. Vous pouvez définir manuellement les autorisations à l'aide du portail Azure.
+* Parfois, code de Client Azure API App hello généré manque des espaces de noms, ils doivent toobe inclus manuellement (ou importées automatiquement via les signaux de Visual Studio) pour le code toocompile. 
+* Projets d’application mobile doivent être publiée tooweb applications, mais vous devez sélectionner un site que vous avez créé en tant qu’une application Mobile Bonjour Azure Portal, étant donné que les projets de l’application Mobile nécessitent une base de données. 
+* page de démarrage Hello pour les applications mobiles utilise le terme hello « service mobile » au lieu de « applications mobiles » 
+* La création du projet de l’application mobile peut prendre jusqu'à toocreate minute de tooa. 
+* Au cours de l’application API de configuration, dans certains cas, une erreur est restauré à partir de refléter l’API Azure hello que hello Impossible de définir des autorisations correctement, hello application API a été correctement configurée et qu’il est prêt à être utilisé lors de la. Vous pouvez définir manuellement les autorisations à l’aide de hello portail Azure.
 * Application Insights n'est pas pris en charge sur les modèles d'application API et les modèles d'application mobile.
 * Les projets d'application API ne peuvent pas être utilisés conjointement avec des projets de service cloud.
 * Les modèles de projet d'application API sont disponibles uniquement en C#.
-* L'utilisation de l'application API via le menu contextuel « Ajouter Azure API App Client » est prise en charge uniquement en C#.
+* Consommation de l’application API via le menu contextuel de « Ajouter un Client Azure API App » hello est uniquement pris en charge en c#.
 

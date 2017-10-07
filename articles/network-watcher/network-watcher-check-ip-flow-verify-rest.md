@@ -1,6 +1,6 @@
 ---
-title: "Vérifier le trafic avec la vérification des flux IP d’Azure Network Watcher - REST | Microsoft Docs"
-description: "Cet article explique comment savoir si le trafic en direction ou en provenance d’une machine virtuelle est autorisé ou refusé"
+title: "vérification du trafic aaaVerify le transfert IP de l’Observateur réseau Azure - REST | Documents Microsoft"
+description: "Cet article décrit comment toocheck si tooor le trafic à partir d’un ordinateur virtuel est autorisé ou refusé"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: 6d3ce00a7d4f9c0cd57fa8815625a1065b03b5b5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 956db0d326db597c6c402a9e8d4a5522c47c02d6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="check-if-traffic-is-allowed-or-denied-with-ip-flow-verify-a-component-of-azure-network-watcher"></a>Vérifier si le trafic est autorisé ou refusé avec le composant de vérification des flux IP d’Azure Network Watcher
 
@@ -30,17 +30,17 @@ ms.lasthandoff: 07/11/2017
 > - [API REST Azure](network-watcher-check-ip-flow-verify-rest.md)
 
 
-La vérification des flux IP est une fonctionnalité de Network Watcher qui vous permet de vérifier si le trafic en direction ou en provenance d’une machine virtuelle est autorisé. La validation peut être exécutée pour le trafic entrant ou sortant. Cette fonctionnalité est très utile pour définir si une machine virtuelle peut actuellement communiquer avec une ressource externe ou un serveur back-end. La vérification des flux IP peut être utilisée pour vérifier si les règles de votre groupe de sécurité réseau sont correctement configurées et pour résoudre les problèmes de flux bloqués par les règles de groupe de sécurité réseau. La vérification des flux IP permet aussi de s’assurer que le trafic que vous souhaitez bloquer est correctement bloqué par le groupe de sécurité réseau.
+Vérifiez que les flux IP est une fonctionnalité de l’Observateur réseau qui vous permet de tooverify si le trafic est autorisé à tooor à partir d’un ordinateur virtuel. la validation de Hello peut être exécutée pour le trafic entrant ou sortant. Ce scénario est utile tooget un état actuel de si un ordinateur virtuel peut communiquer avec les ressources externes tooan ou principal. Les flux IP vérifier peut être utilisé tooverify si vos règles de groupe de sécurité réseau (NSG) sont correctement configurés et résoudre les problèmes de flux qui sont bloqués par les règles du groupe de sécurité réseau. Une autre raison de l’utilisation de IP flux Vérifiez à bloquer le trafic de tooensure est bloqué correctement par hello groupe de sécurité réseau.
 
 ## <a name="before-you-begin"></a>Avant de commencer
 
-ARMclient permet d’appeler l’API REST à l’aide de PowerShell. ARMClient est accessible sur le site chocolatey à partir de la page [ARMClient sur Chocolatey](https://chocolatey.org/packages/ARMClient).
+ARMclient est utilisé toocall hello REST API à l’aide de PowerShell. ARMClient est accessible sur le site chocolatey à partir de la page [ARMClient sur Chocolatey](https://chocolatey.org/packages/ARMClient).
 
-Ce scénario suppose que vous ayez déjà suivi la procédure décrite dans [Créer une instance d’Azure Network Watcher](network-watcher-create.md) pour créer un Network Watcher.
+Ce scénario suppose que vous avez déjà suivi les étapes hello dans [créer un observateur réseau](network-watcher-create.md) toocreate un observateur réseau.
 
 ## <a name="scenario"></a>Scénario
 
-Ce scénario utilise la vérification des flux IP pour vérifier si une machine virtuelle peut communiquer avec une autre machine par le biais du port 443. Si le trafic est refusé, la règle de sécurité refusant ce trafic est renvoyée. Pour en savoir plus sur la vérification des flux IP, consultez [Vue d’ensemble de la vérification des flux IP](network-watcher-ip-flow-verify-overview.md).
+Ce scénario utilise IP flux Vérifiez tooverify si une machine virtuelle peut communiquer avec l’ordinateur de tooanother sur le port 443. Si le trafic de hello est refusé, elle retourne la règle de sécurité hello refuse ce trafic. toolearn en savoir plus sur les flux d’IP Verify, visitez [les flux IP vérifier la vue d’ensemble](network-watcher-ip-flow-verify-overview.md)
 
 Dans ce scénario, vous allez :
 
@@ -56,10 +56,10 @@ armclient login
 
 ## <a name="retrieve-a-virtual-machine"></a>Récupérer une machine virtuelle
 
-Exécutez le script suivant pour renvoyer une machine virtuelle. Le code suivant a besoin de valeurs pour les variables :
+Exécutez hello suivant script tooreturn une machine virtuelle. Hello suivant code a besoin de valeurs pour les variables de hello :
 
-* **subscriptionId** - L’ID d’abonnement à utiliser.
-* **resourceGroupName** - Le nom d’un groupe de ressources qui contient les machines virtuelles.
+* **ID d’abonnement** -hello toouse de Id d’abonnement.
+* **resourceGroupName** hello - nom du groupe de ressources qui contient des machines virtuelles.
 
 ```powershell
 $subscriptionId = "<subscription id>"
@@ -68,7 +68,7 @@ $resourceGroupName = "<resource group name>"
 armclient get https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Compute/virtualMachines?api-version=2015-05-01-preview
 ```
 
-Les informations nécessaires sont l’ID sous le type de `Microsoft.Compute/virtualMachines`. Les résultats doivent ressembler à l’exemple de code suivant :
+informations nécessaires Hello sont id hello sous le type hello `Microsoft.Compute/virtualMachines`. les résultats de Hello doivent être similaires toohello suivant l’exemple de code :
 
 ```json
 ...,
@@ -100,15 +100,15 @@ pute/virtualMachines/ContosoVM/extensions/CustomScriptExtension"
 
 ## <a name="call-ip-flow-verify"></a>Appeler la vérification des flux IP
 
-L’exemple suivant crée une demande pour vérifier le trafic d’une machine virtuelle spécifiée. La réponse renvoyée indique si le trafic est autorisé ou si le trafic est refusé. Si le trafic est refusé, elle indique également quelle règle bloque le trafic.
+Hello exemple suivant crée un demande tooverify hello du trafic d’un ordinateur virtuel spécifié. réponse de Hello retourne si hello le trafic est autorisé ou si le trafic de hello est refusé. Si le trafic est refusé qu'il retourne également les blocs de règles hello du trafic.
 
 > [!NOTE]
-> La vérification des flux IP nécessite l’attribution de la ressource de machine virtuelle.
+> Les flux IP vérifier requiert que la ressource de machine virtuelle hello est allouée.
 
-Le script requiert l’ID de la ressource d’une machine virtuelle et d’une carte d’interface réseau sur la machine virtuelle. Ces valeurs sont fournies par le résultat précédent.
+script de Hello nécessite un Id d’un ordinateur virtuel et d’une carte d’interface réseau sur l’ordinateur virtuel de hello de la ressource hello. Ces valeurs sont fournies par hello précédant la sortie.
 
 > [!Important]
-> Pour tous les appels REST de Network Watcher, le nom du groupe de ressources dans l’URI de requête correspond à celui qui contient l’instance de Network Watcher, et non les ressources sur lesquelles vous exécutez les actions de diagnostic.
+> Pour le reste de l’Observateur réseau tous les appels hello nom de groupe de ressources dans l’URI est hello qui contient d’instance de l’Observateur réseau hello, pas les ressources hello vous effectuez des actions de diagnostic hello sur la demande hello.
 
 ```powershell
 $subscriptionId = "<subscription id>"
@@ -141,9 +141,9 @@ $requestBody = @"
 armclient post "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/ipFlowVerify?api-version=2016-12-01" $requestBody -verbose
 ```
 
-## <a name="understanding-the-results"></a>Compréhension des résultats
+## <a name="understanding-hello-results"></a>Présentation des résultats de hello
 
-La réponse que vous obtenez en retour vous indique si le trafic est autorisé ou refusé. La réponse ressemble à l’un des exemples suivants :
+Hello réponse renvoyée indique si le trafic de hello est autorisé ou refusé. réponse de Hello ressemble à un des hello exemple suivant :
 
 **Autorisé**
 
@@ -165,7 +165,7 @@ La réponse que vous obtenez en retour vous indique si le trafic est autorisé o
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Si le trafic est bloqué alors qu’il ne devrait pas l’être, consultez [Gérer les groupes de sécurité réseau à partir du portail](../virtual-network/virtual-network-manage-nsg-arm-portal.md) pour en savoir plus sur les groupes de sécurité réseau.
+Si le trafic est bloqué et ne doit pas être, consultez [gérer les groupes de sécurité réseau](../virtual-network/virtual-network-manage-nsg-arm-portal.md) toolearn plus d’informations sur les groupes de sécurité réseau.
 
 
 

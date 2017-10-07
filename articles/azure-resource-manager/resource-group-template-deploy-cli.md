@@ -1,6 +1,6 @@
 ---
-title: "Déployer des ressources avec Azure CLI et un modèle | Microsoft Docs"
-description: "Utilisez Azure Resource Manager et Azure CLI pour déployer des ressources sur Azure. Les ressources sont définies dans un modèle Resource Manager."
+title: "ressources aaaDeploy avec CLI d’Azure et modèle | Documents Microsoft"
+description: "Utilisez le Gestionnaire de ressources Azure et Azure CLI toodeploy un tooAzure de ressources. ressources de Hello sont définies dans un modèle de gestionnaire de ressources."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,33 +14,33 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/31/2017
 ms.author: tomfitz
-ms.openlocfilehash: 4f1d5f4cc48470f8906edb28628006dd1996bd3a
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 9f8bb9a8720399390a407030d2d32bcd97d32f13
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploy-resources-with-resource-manager-templates-and-azure-cli"></a>Déployer des ressources à l’aide de modèles Resource Manager et dAzure CLI
 
-Cette rubrique explique comment utiliser Azure CLI 2.0 avec les modèles Resource Manager pour déployer vos ressources dans Azure. Si vous n’avez pas une bonne connaissance des concepts de déploiement et de gestion de solutions Azure, consultez [Vue d’ensemble d’Azure Resource Manager](resource-group-overview.md).  
+Cette rubrique explique comment toouse Azure CLI 2.0 avec le Gestionnaire de ressources modèles toodeploy tooAzure de vos ressources. Si vous n’êtes pas familiarisé avec les concepts de hello du déploiement et la gestion de vos solutions Azure, consultez [vue d’ensemble du Gestionnaire de ressources Azure](resource-group-overview.md).  
 
-Le modèle Resource Manager que vous déployez peut être un fichier local sur votre ordinateur ou un fichier externe qui se trouve dans un dépôt comme GitHub. Le modèle que vous déployez dans le cadre de cet article est disponible dans la section [Exemple de modèle](#sample-template) ou en tant que [modèle de compte de stockage dans GitHub](https://github.com/Azure/azure-quickstart-templates/blob/master/101-storage-account-create/azuredeploy.json).
+modèle de gestionnaire de ressources Hello que vous déployez peut être un fichier local sur votre ordinateur, ou un fichier externe qui se trouve dans un référentiel comme GitHub. modèle Hello que vous déployez dans cet article est disponible dans hello [exemple de modèle](#sample-template) section, ou comme un [modèle de compte de stockage dans GitHub](https://github.com/Azure/azure-quickstart-templates/blob/master/101-storage-account-create/azuredeploy.json).
 
 [!INCLUDE [sample-cli-install](../../includes/sample-cli-install.md)]
 
-Si Azure CLI n’est pas installé, vous pouvez utiliser le [Cloud Shell](#deploy-template-from-cloud-shell).
+Si vous n’avez pas installé CLI d’Azure, vous pouvez utiliser hello [Cloud Shell](#deploy-template-from-cloud-shell).
 
 ## <a name="deploy-local-template"></a>Déployer un modèle local
 
-Au moment de déployer des ressources dans Azure, vous effectuez les opérations suivantes :
+Lors du déploiement de ressources tooAzure, vous :
 
-1. Connexion à votre compte Azure
-2. Créez un groupe de ressources qui sert de conteneur pour les ressources déployées. Le nom du groupe de ressources ne peut contenir que des caractères alphanumériques, des points, des traits de soulignement, des traits d'union et des parenthèses. Il peut comprendre jusqu’à 90 caractères. Il ne peut pas se terminer par un point.
-3. Déploiement dans le groupe de ressources du modèle qui définit les ressources à créer
+1. Ouvrez une session dans tooyour compte Azure
+2. Créer un groupe de ressources qui sert de conteneur hello pour les ressources de hello déployé. nom Hello hello du groupe de ressources peut inclure uniquement les parenthèses, des points, des traits de soulignement, des traits d’union et des caractères alphanumériques. Il peut être too90 caractères. Il ne peut pas se terminer par un point.
+3. Déployer toohello ressource groupe hello modèle qui définit hello ressources toocreate
 
-Un modèle peut inclure des paramètres qui permettent de personnaliser le déploiement. Par exemple, vous pouvez indiquer des valeurs qui sont adaptées à un environnement particulier (par exemple, de développement, de test ou de production). L’exemple de modèle définit un paramètre pour la référence (SKU) de compte de stockage. 
+Un modèle peut inclure des paramètres qui vous permettent de déploiement de hello toocustomize. Par exemple, vous pouvez indiquer des valeurs qui sont adaptées à un environnement particulier (par exemple, de développement, de test ou de production). exemple de modèle de Hello définit un paramètre pour le compte de stockage hello référence (SKU). 
 
-L’exemple suivant crée un groupe de ressources et déploie un modèle à partir de votre ordinateur local :
+Bonjour à l’exemple suivant crée un groupe de ressources et déploie un modèle à partir de votre ordinateur local :
 
 ```azurecli
 az login
@@ -53,7 +53,7 @@ az group deployment create \
     --parameters storageAccountType=Standard_GRS
 ```
 
-Le déploiement peut prendre plusieurs minutes. Au terme, vous voyez un message qui inclut le résultat :
+déploiement de Hello peut prendre quelques minutes toocomplete. Lorsqu’elle est terminée, vous voyez un message qui inclut le résultat de hello :
 
 ```azurecli
 "provisioningState": "Succeeded",
@@ -61,9 +61,9 @@ Le déploiement peut prendre plusieurs minutes. Au terme, vous voyez un message 
 
 ## <a name="deploy-external-template"></a>Déployer un modèle externe
 
-Au lieu de stocker les modèles Resource Manager sur votre ordinateur local, vous pouvez les stocker dans un emplacement externe. Vous pouvez stocker des modèles dans un dépôt de contrôle de code source (par exemple, GitHub). Vous pouvez aussi les stocker dans un compte de stockage Azure pour mettre en place un accès partagé dans votre organisation.
+Au lieu de stocker les modèles de gestionnaire de ressources sur votre ordinateur local, vous souhaiterez peut-être toostore dans un emplacement externe. Vous pouvez stocker des modèles dans un dépôt de contrôle de code source (par exemple, GitHub). Vous pouvez aussi les stocker dans un compte de stockage Azure pour mettre en place un accès partagé dans votre organisation.
 
-Pour déployer un modèle externe, utilisez le paramètre **template-uri**. Pour déployer l’exemple de modèle à partir de GitHub, utilisez l’URI figurant dans l’exemple.
+toodeploy un modèle externe, utilisez hello **-l’uri du modèle** paramètre. Utilisez hello URI dans hello exemple toodeploy hello exemple de modèle à partir de GitHub.
    
 ```azurecli
 az login
@@ -76,19 +76,19 @@ az group deployment create \
     --parameters storageAccountType=Standard_GRS
 ```
 
-L’exemple précédent nécessite un URI accessible publiquement pour le modèle, ce qui convient pour la plupart des scénarios, sachant que votre modèle ne doit pas inclure de données sensibles. Si vous avez besoin de spécifier des données sensibles (par exemple, un mot de passe d’administrateur), passez cette valeur en tant que paramètre sécurisé. Toutefois, si vous ne souhaitez pas que votre modèle soit accessible au public, vous pouvez le protéger en le stockant dans un conteneur de stockage privé. Pour plus d’informations sur le déploiement d’un modèle qui nécessite un jeton de signature d’accès partagé (SAS), consultez [Déployer un modèle privé avec un jeton SAS](resource-manager-cli-sas-token.md).
+Hello exemple précédent requiert un URI accessible publiquement pour modèle hello, qui fonctionne pour la plupart des scénarios, car votre modèle ne doit pas inclure les données sensibles. Si vous avez besoin de toospecify des données sensibles (par exemple, un mot de passe administrateur), passez cette valeur comme paramètre sécurisé. Toutefois, si vous ne souhaitez pas votre toobe modèle accessible publiquement, vous pouvez le protéger en les stockant dans un conteneur de stockage privé. Pour plus d’informations sur le déploiement d’un modèle qui nécessite un jeton de signature d’accès partagé (SAS), consultez [Déployer un modèle privé avec un jeton SAS](resource-manager-cli-sas-token.md).
 
 ## <a name="deploy-template-from-cloud-shell"></a>Déployer le modèle à partir de Cloud Shell
 
-Vous pouvez utiliser [Cloud Shell](../cloud-shell/overview.md) pour exécuter les commandes Azure CLI pour le déploiement de votre modèle. Toutefois, vous devez d’abord charger votre modèle dans le partage de fichiers de votre Cloud Shell. Si vous n’avez pas utilisé Cloud Shell, consultez [Vue d’ensemble d’Azure Cloud Shell](../cloud-shell/overview.md) pour obtenir plus d’informations sur sa configuration.
+Vous pouvez utiliser [Cloud Shell](../cloud-shell/overview.md) toorun hello CLI d’Azure des commandes pour le déploiement de votre modèle. Toutefois, vous devez d’abord charger votre modèle dans le partage de fichiers hello pour votre environnement Cloud. Si vous n’avez pas utilisé Cloud Shell, consultez [Vue d’ensemble d’Azure Cloud Shell](../cloud-shell/overview.md) pour obtenir plus d’informations sur sa configuration.
 
-1. Connectez-vous au [portail Azure](https://portal.azure.com).   
+1. Connectez-vous à toohello [portail Azure](https://portal.azure.com).   
 
-2. Sélectionnez votre groupe de ressources Cloud Shell. Le modèle de nom est `cloud-shell-storage-<region>`.
+2. Sélectionnez votre groupe de ressources Cloud Shell. modèle de nom Hello est `cloud-shell-storage-<region>`.
 
    ![Sélection du groupe de ressources](./media/resource-group-template-deploy-cli/select-cs-resource-group.png)
 
-3. Sélectionnez le compte de stockage de votre Cloud Shell.
+3. Sélectionnez le compte de stockage hello pour votre environnement Cloud.
 
    ![Sélectionner le compte de stockage](./media/resource-group-template-deploy-cli/select-storage.png)
 
@@ -96,7 +96,7 @@ Vous pouvez utiliser [Cloud Shell](../cloud-shell/overview.md) pour exécuter le
 
    ![Sélectionner des fichiers](./media/resource-group-template-deploy-cli/select-files.png)
 
-5. Sélectionnez le partage de fichiers pour Cloud Shell. Le modèle de nom est `cs-<user>-<domain>-com-<uniqueGuid>`.
+5. Sélectionnez le partage de fichiers de hello pour Cloud Shell. modèle de nom Hello est `cs-<user>-<domain>-com-<uniqueGuid>`.
 
    ![Sélectionner le partage de fichiers](./media/resource-group-template-deploy-cli/select-file-share.png)
 
@@ -120,11 +120,11 @@ Vous pouvez utiliser [Cloud Shell](../cloud-shell/overview.md) pour exécuter le
 
    ![Charger le fichier](./media/resource-group-template-deploy-cli/upload-files.png)
 
-11. Ouvrez l’invite de commandes.
+11. Invite de commandes ouverte hello.
 
    ![Ouvrir Cloud Shell](./media/resource-group-template-deploy-cli/start-cloud-shell.png)
 
-12. Entrez les commandes suivantes dans Cloud Shell :
+12. Entrez hello suivant les commandes Bonjour Cloud Shell :
 
    ```azurecli
    az group create --name examplegroup --location "South Central US"
@@ -133,7 +133,7 @@ Vous pouvez utiliser [Cloud Shell](../cloud-shell/overview.md) pour exécuter le
 
 ## <a name="parameter-files"></a>Fichiers de paramètres
 
-Au lieu de passer des paramètres en tant que valeurs inline dans votre script, il peut s’avérer plus facile d’utiliser un fichier JSON qui contient les valeurs des paramètres. Le fichier de paramètres doit être au format suivant :
+Au lieu de passer des paramètres en tant que valeurs inline dans votre script, il peut s’avérer plus facile toouse un fichier JSON qui contient des valeurs de paramètre hello. fichier de paramètres Hello doit être Bonjour suivant le format :
 
 ```json
 {
@@ -147,11 +147,11 @@ Au lieu de passer des paramètres en tant que valeurs inline dans votre script, 
 }
 ```
 
-Notez que la section des paramètres comprend un nom de paramètre qui correspond au paramètre défini dans votre modèle (storageAccountType). Le fichier de paramètres contient une valeur pour le paramètre. Cette valeur est transmise automatiquement au modèle pendant le déploiement. Vous pouvez créer plusieurs fichiers de paramètres pour différents scénarios de déploiement, puis transmettre le fichier de paramètres approprié. 
+Notez que hello paramètres comprend un nom de paramètre qui correspond au paramètre hello défini dans votre modèle (storageAccountType). fichier de paramètres Hello contient une valeur pour le paramètre hello. Cette valeur est automatiquement passée toohello modèle durant le déploiement. Vous pouvez créer plusieurs fichiers de paramètres pour différents scénarios de déploiement et passez dans un fichier de paramètres appropriés de hello. 
 
-Copiez l’exemple précédent et enregistrez-le dans un fichier nommé `storage.parameters.json`.
+Copier hello précédent exemple et l’enregistrer en tant qu’un fichier nommé `storage.parameters.json`.
 
-Pour transmettre un fichier de paramètres local, utilisez `@` pour spécifier un fichier local nommé storage.parameters.json.
+toopass un fichier local de paramètre, utilisez `@` toospecify un fichier local nommé storage.parameters.json.
 
 ```azurecli
 az group deployment create \
@@ -163,7 +163,7 @@ az group deployment create \
 
 ## <a name="test-a-template-deployment"></a>Tester le déploiement d’un modèle
 
-Pour tester votre modèle et vos valeurs de paramètres sans réellement déployer toutes les ressources, utilisez [az group deployment validate](/cli/azure/group/deployment#validate). 
+utilisation de vos valeurs de paramètres et de modèle sans réellement déployer des ressources, tootest [valider du déploiement d’un groupe az](/cli/azure/group/deployment#validate). 
 
 ```azurecli
 az group deployment validate \
@@ -172,7 +172,7 @@ az group deployment validate \
     --parameters @storage.parameters.json
 ```
 
-Si aucune erreur n’est détectée, la commande retourne des informations sur le déploiement de test. En particulier, notez que **error** a la valeur Null.
+Si aucune erreur n’est détectée, commande hello retourne des informations sur le déploiement de test hello. En particulier, notez que hello **erreur** la valeur est null.
 
 ```azurecli
 {
@@ -181,15 +181,15 @@ Si aucune erreur n’est détectée, la commande retourne des informations sur l
       ...
 ```
 
-Si une erreur est détectée, la commande retourne un message d’erreur. Par exemple, la tentative de transmission d’une valeur incorrecte pour la référence (SKU) du compte de stockage retourne l’erreur suivante :
+Si une erreur est détectée, la commande hello renvoie un message d’erreur. Par exemple, la tentative de toopass une valeur incorrecte pour le compte de stockage hello référence (SKU), retourne hello l’erreur suivante :
 
 ```azurecli
 {
   "error": {
     "code": "InvalidTemplate",
     "details": null,
-    "message": "Deployment template validation failed: 'The provided value 'badSKU' for the template parameter 
-      'storageAccountType' at line '13' and column '20' is not valid. The parameter value is not part of the allowed 
+    "message": "Deployment template validation failed: 'hello provided value 'badSKU' for hello template parameter 
+      'storageAccountType' at line '13' and column '20' is not valid. hello parameter value is not part of hello allowed 
       value(s): 'Standard_LRS,Standard_ZRS,Standard_GRS,Standard_RAGRS,Premium_LRS'.'.",
     "target": null
   },
@@ -197,7 +197,7 @@ Si une erreur est détectée, la commande retourne un message d’erreur. Par ex
 }
 ```
 
-Si votre modèle comporte une erreur de syntaxe, la commande retourne une erreur indiquant qu’il n’a pas pu analyser le modèle. Le message indique le numéro de ligne et la position de l’erreur d’analyse.
+Si votre modèle comporte une erreur de syntaxe, commande hello renvoie une erreur indiquant qu’il a pas pu analyser le modèle de hello. message de type Hello indique le numéro de ligne hello et la position de l’erreur d’analyse de hello.
 
 ```azurecli
 {
@@ -214,7 +214,7 @@ Si votre modèle comporte une erreur de syntaxe, la commande retourne une erreur
 
 [!INCLUDE [resource-manager-deployments](../../includes/resource-manager-deployments.md)]
 
-Pour utiliser le mode complet, utilisez le paramètre `mode` :
+en mode toouse terminée, utilisez hello `mode` paramètre :
 
 ```azurecli
 az group deployment create \
@@ -227,7 +227,7 @@ az group deployment create \
 
 ## <a name="sample-template"></a>Exemple de modèle
 
-Le modèle suivant est utilisé pour les exemples de cette rubrique. Copiez et enregistrez-le dans un fichier nommé storage.json. Pour comprendre comment ce modèle est créé, consultez [Créer votre premier modèle Azure Resource Manager](resource-manager-create-first-template.md).  
+Hello modèle suivant est utilisé pour obtenir des exemples hello dans cette rubrique. Copiez et enregistrez-le dans un fichier nommé storage.json. toounderstand comment toocreate ce modèle, consultez [créer votre premier modèle Azure Resource Manager](resource-manager-create-first-template.md).  
 
 ```json
 {
@@ -275,9 +275,9 @@ Le modèle suivant est utilisé pour les exemples de cette rubrique. Copiez et e
 ```
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Les exemples de cet article permettent de déployer des ressources dans un groupe de ressources pour votre abonnement par défaut. Pour utiliser un autre abonnement, consultez [Gérer plusieurs abonnements Azure](/cli/azure/manage-azure-subscriptions-azure-cli).
+* exemples de Hello dans cet article déploiement un groupe de ressources tooa ressources dans votre abonnement par défaut. toouse un autre abonnement, consultez [gérer plusieurs abonnements Azure](/cli/azure/manage-azure-subscriptions-azure-cli).
 * Pour accéder à un exemple de script complet qui déploie un modèle, consultez la page [Déploiement d’un modèle Azure Resource Manager](resource-manager-samples-cli-deploy.md).
-* Pour comprendre comment définir des paramètres dans votre modèle, consultez [Comprendre la structure et la syntaxe des modèles Azure Resource Manager](resource-group-authoring-templates.md).
+* toounderstand toodefine des paramètres dans votre modèle, voir [comprendre la structure de hello et syntaxe des modèles Azure Resource Manager](resource-group-authoring-templates.md).
 * Pour obtenir des conseils sur la résolution des erreurs courantes de déploiement, consultez la page [Résolution des erreurs courantes de déploiement Azure avec Azure Resource Manager](resource-manager-common-deployment-errors.md).
 * Pour plus d’informations sur le déploiement d’un modèle qui nécessite un jeton SAP, consultez [Déploiement d’un modèle privé avec un jeton SAP](resource-manager-cli-sas-token.md).
-* Pour obtenir des conseils sur l’utilisation de Resource Manager par les entreprises pour gérer efficacement les abonnements, voir [Structure d’Azure Enterprise - Gouvernance normative de l’abonnement](resource-manager-subscription-governance.md).
+* Pour obtenir des conseils comment les entreprises peuvent utiliser le Gestionnaire de ressources tooeffectively gérer les abonnements, consultez [une vue de structure Azure enterprise - gouvernance de l’abonnement normative](resource-manager-subscription-governance.md).

@@ -1,6 +1,6 @@
 ---
-title: "Génération de rapports d’emplacement pour le SDK Azure Mobile Engagement pour Android"
-description: "Décrit comment configurer la génération de rapports d’emplacement pour le SDK Azure Mobile Engagement pour Android"
+title: aaaLocation Reporting pour Azure Mobile Engagement Android SDK
+description: "Décrit comment emplacement tooconfigure reporting pour Azure Mobile Engagement Android SDK"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,11 +14,11 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 08/12/2016
 ms.author: piyushjo;ricksal
-ms.openlocfilehash: 777d5719cce505b55dfb61c91dcac7e713b077a9
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c2cb097df2a77bee2d56ffe9509dc116548db408
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="location-reporting-for-azure-mobile-engagement-android-sdk"></a>Génération de rapports d’emplacement pour le SDK Azure Mobile Engagement pour Android
 > [!div class="op_single_selector"]
@@ -26,52 +26,52 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-Cette rubrique explique comment générer des rapports d’emplacement pour votre application Android.
+Cette rubrique décrit comment emplacement toodo reporting pour votre application Android.
 
 ## <a name="prerequisites"></a>Composants requis
 [!INCLUDE [Prereqs](../../includes/mobile-engagement-android-prereqs.md)]
 
 ## <a name="location-reporting"></a>Rapports d'emplacement
-Si vous souhaitez créer des rapports concernant les emplacements, vous devez ajouter quelques lignes de configuration (entre les balises `<application>` et `</application>`).
+Si vous souhaitez toobe emplacements signalé, vous devez tooadd quelques lignes de configuration (entre hello `<application>` et `</application>` balises).
 
 ### <a name="lazy-area-location-reporting"></a>Rapports d'emplacement de zone différé
-Le rapport d'emplacement de zone différé permet d'indiquer le pays, la région et la localité associés aux appareils. Ce type de rapport d'emplacement utilise uniquement des emplacements réseau (basés sur l'ID cellulaire ou le Wi-Fi). La zone de l'appareil est signalée une fois maximum par session. Le GPS n'est jamais utilisé, ce type de rapport d'emplacement a donc peu d'impact sur la batterie.
+Signalisation différée de zone emplacement permet de pays hello déclarant, région et localité associées aux périphériques. Ce type de rapport d'emplacement utilise uniquement des emplacements réseau (basés sur l'ID cellulaire ou le Wi-Fi). zone de Hello est signalée au maximum une fois par session. Hello GPS n’est jamais utilisé, et par conséquent, ce type de rapport d’emplacement a un faible impact sur la batterie de hello.
 
-Les zones signalées sont utilisées pour calculer des statistiques géographiques relatives aux utilisateurs, aux sessions, aux événements et aux erreurs. Elles peuvent également servir de critère dans les couvertures campagne.
+Les zones signalées sont géographique de toocompute utilisé des statistiques sur les utilisateurs, les sessions, les événements et les erreurs. Elles peuvent également servir de critère dans les couvertures campagne.
 
-Vous activez le service de localisation de zone différé à l’aide de la configuration précédemment mentionnée dans cette procédure :
+Vous activez d’emplacement de la zone différée reporting à l’aide de configuration hello mentionnée précédemment dans cette procédure :
 
     EngagementConfiguration engagementConfiguration = new EngagementConfiguration();
     engagementConfiguration.setConnectionString("Endpoint={appCollection}.{domain};AppId={appId};SdkKey={sdkKey}");
     engagementConfiguration.setLazyAreaLocationReport(true);
     EngagementAgent.getInstance(this).init(engagementConfiguration);
 
-Vous devez également spécifier une autorisation d’emplacement. Ce code utilise l’autorisation ``COARSE`` :
+Vous devez également toospecify une autorisation de l’emplacement. Ce code utilise l’autorisation ``COARSE`` :
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
 Si votre application l’exige, vous pouvez utiliser ``ACCESS_FINE_LOCATION`` à la place.
 
 ### <a name="real-time-location-reporting"></a>Rapports d'emplacement en temps réel
-Le rapport d'emplacement en temps réel permet de signaler la latitude et la longitude associées aux appareils. Par défaut, ce type de rapport d'emplacement utilise uniquement des emplacements réseau, basés sur l'ID cellulaire ou le Wi-Fi. Le rapport est uniquement actif quand l'application s'exécute en premier plan (c'est-à-dire pendant une session).
+Signalisation de l’emplacement en temps réel permet de création de rapports latitude de hello et la longitude associées aux périphériques. Par défaut, ce type de rapport d'emplacement utilise uniquement des emplacements réseau, basés sur l'ID cellulaire ou le Wi-Fi. Hello reporting est uniquement active lorsque l’application hello s’exécute en premier plan (par exemple, pendant une session).
 
-Les emplacements en temps réel ne sont *PAS* utilisés pour calculer des statistiques. Leur seul but est de permettre l’utilisation d’un critère de géorepérage en temps réel \<portée-public-gardiennage virtuel\> dans les campagnes Reach.
+Emplacements en temps réel sont *pas* utilisé toocompute statistiques. Leur utilisation de hello tooallow de délimitation géographique en temps réel ne sert que \<portée-public-géorepérage\> critère dans les campagnes Reach.
 
-Pour activer les rapports d’emplacement en temps réel, ajoutez une ligne de code à l’endroit où vous définissez la chaîne de connexion Engagement dans l’activité du programme de lancement. Le résultat se présente comme suit :
+emplacement en temps réel de tooenable création de rapports, ajoutez une ligne de code toowhere permet de chaîne de connexion d’Engagement hello dans l’activité de lanceur hello. résultat de Hello ressemble à hello suivantes :
 
     EngagementConfiguration engagementConfiguration = new EngagementConfiguration();
     engagementConfiguration.setConnectionString("Endpoint={appCollection}.{domain};AppId={appId};SdkKey={sdkKey}");
     engagementConfiguration.setRealtimeLocationReport(true);
     EngagementAgent.getInstance(this).init(engagementConfiguration);
 
-        You also need to specify a location permission. This code uses ``COARSE`` permission:
+        You also need toospecify a location permission. This code uses ``COARSE`` permission:
 
             <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
         If your app requires it, you can use ``ACCESS_FINE_LOCATION`` instead.
 
 #### <a name="gps-based-reporting"></a>Rapports GPS
-Par défaut, le rapport d'emplacement en temps réel utilise uniquement des emplacements réseau. Pour activer l’utilisation des localisations GPS (beaucoup plus précises), utilisez l’objet de configuration suivant :
+Par défaut, le rapport d'emplacement en temps réel utilise uniquement des emplacements réseau. utiliser hello tooenable emplacements GPS, qui sont beaucoup plus précises, utiliser l’objet de configuration de hello :
 
     EngagementConfiguration engagementConfiguration = new EngagementConfiguration();
     engagementConfiguration.setConnectionString("Endpoint={appCollection}.{domain};AppId={appId};SdkKey={sdkKey}");
@@ -79,12 +79,12 @@ Par défaut, le rapport d'emplacement en temps réel utilise uniquement des empl
     engagementConfiguration.setFineRealtimeLocationReport(true);
     EngagementAgent.getInstance(this).init(engagementConfiguration);
 
-Vous devez également ajouter l'autorisation suivante si elle manque :
+Vous devez également hello tooadd suivant l’autorisation si manquant :
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
 #### <a name="background-reporting"></a>Rapports en arrière-plan
-Par défaut, le rapport d'emplacement en temps réel est uniquement actif quand l'application s'exécute en premier plan (pendant une session par exemple). Pour activer la génération de rapports également en arrière-plan, utilisez l’objet de configuration suivant :
+Par défaut, reporting sur l’emplacement en temps réel est uniquement active lorsque l’application hello s’exécute en premier plan (par exemple, pendant une session). hello tooenable reporting également en arrière-plan, utilisez cet objet de configuration :
 
     EngagementConfiguration engagementConfiguration = new EngagementConfiguration();
     engagementConfiguration.setConnectionString("Endpoint={appCollection}.{domain};AppId={appId};SdkKey={sdkKey}");
@@ -93,11 +93,11 @@ Par défaut, le rapport d'emplacement en temps réel est uniquement actif quand 
     EngagementAgent.getInstance(this).init(engagementConfiguration);
 
 > [!NOTE]
-> Quand l'application s'exécute en arrière-plan, seuls les emplacements réseau sont signalés, même si vous avez activé le GPS.
+> Lors de l’application hello s’exécute en arrière-plan, seuls les emplacements réseau sont signalées, même si vous avez activé hello GPS.
 > 
 > 
 
-Si l’utilisateur redémarre son appareil, le rapport d’emplacement en arrière-plan est arrêté. Pour qu’il redémarre automatiquement au démarrage, ajoutez ce code.
+Si l’utilisateur de hello a redémarré à leur appareil, le rapport d’emplacement hello en arrière-plan est arrêté. toomake il redémarre automatiquement au moment du démarrage, ajoutez ce code.
 
     <receiver android:name="com.microsoft.azure.engagement.EngagementLocationBootReceiver"
            android:exported="false">
@@ -106,25 +106,25 @@ Si l’utilisateur redémarre son appareil, le rapport d’emplacement en arriè
         </intent-filter>
     </receiver>
 
-Vous devez également ajouter l'autorisation suivante si elle manque :
+Vous devez également hello tooadd suivant l’autorisation si manquant :
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
 ## <a name="android-m-permissions"></a>Autorisations Android M
 À partir d’Android M, certaines autorisations sont gérées lors de l’exécution et nécessitent une approbation de l’utilisateur.
 
-Si vous ciblez le niveau d’API Android 23, les autorisations d’exécution sont désactivées par défaut pour les nouvelles installations d’application. Sinon, elles sont activées par défaut.
+Si vous ciblez Android API de niveau 23, les autorisations d’exécution hello sont désactivées par défaut pour les nouvelles installations de l’application. Sinon, elles sont activées par défaut.
 
-Vous pouvez activer/désactiver ces autorisations dans le menu des paramètres de l’appareil. La désactivation des autorisations à partir du menu système arrête les processus en arrière-plan de l’application. Il s’agit d’un comportement du système qui n’a aucune incidence sur la capacité à recevoir des notifications en arrière-plan.
+Vous pouvez activer ou désactiver ces autorisations à partir du menu Paramètres de périphérique hello. Désactivation des autorisations à partir du menu du système hello arrête les processus d’arrière-plan hello d’application hello, qui est un comportement du système et n’a aucun impact sur la capacité tooreceive par émission de données en arrière-plan.
 
-Dans le cadre de la génération de rapports d’emplacement Mobile Engagement, les autorisations qui requièrent une approbation au moment de l’exécution sont :
+Dans le contexte de hello d’emplacement de Mobile Engagement reporting, les autorisations hello qui requièrent une approbation lors de l’exécution sont :
 
 * `ACCESS_COARSE_LOCATION`
 * `ACCESS_FINE_LOCATION`
 
-Demandez les autorisations à l’utilisateur via une boîte de dialogue système standard. Si l’utilisateur approuve, indiquez à ``EngagementAgent`` de prendre en compte cette modification en temps réel. Sinon, la modification est traitée la prochaine fois que l’utilisateur lance l’application.
+Demander des autorisations d’utilisateur hello à l’aide d’une boîte de dialogue système standard. Si l’utilisateur de hello approuve, indiquer ``EngagementAgent`` tootake modifier en compte en temps réel. Dans le cas contraire les modifications hello sont traité hello suivant temps hello lance hello application d’utilisateur.
 
-Voici un exemple de code à utiliser dans une activité de votre application pour demander des autorisations et transmettre le résultat, si positif, à ``EngagementAgent``:
+Voici une toouse d’exemple de code dans une activité de vos autorisations toorequest d’application et le résultat de hello vers l’avant si positif trop``EngagementAgent``:
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -142,9 +142,9 @@ Voici un exemple de code à utiliser dans une activité de votre application pou
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
       {
         /*
-         * Request location permission, but this doesn't explain why it is needed to the user.
-         * The standard Android documentation explains with more details how to display a rationale activity to explain the user why the permission is needed in your application.
-         * Putting COARSE vs FINE has no impact here, they are part of the same group for runtime permission management.
+         * Request location permission, but this doesn't explain why it is needed toohello user.
+         * hello standard Android documentation explains with more details how toodisplay a rationale activity tooexplain hello user why hello permission is needed in your application.
+         * Putting COARSE vs FINE has no impact here, they are part of hello same group for runtime permission management.
          */
         if (checkSelfPermission(android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
           requestPermissions(new String[] { android.Manifest.permission.ACCESS_FINE_LOCATION }, 0);
@@ -155,7 +155,7 @@ Voici un exemple de code à utiliser dans une activité de votre application pou
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults)
     {
-      /* Only a positive location permission update requires engagement agent refresh, hence the request code matching from above function */
+      /* Only a positive location permission update requires engagement agent refresh, hence hello request code matching from above function */
       if (requestCode == 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
         getEngagementAgent().refreshPermissions();
     }

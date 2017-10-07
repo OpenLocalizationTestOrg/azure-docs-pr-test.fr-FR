@@ -1,6 +1,6 @@
 ---
-title: Projets de groupe de ressources Azure avec Visual Studio | Microsoft Docs
-description: "Utilisez Visual Studio pour créer un projet de groupe de ressources Azure et déployer les ressources dans Azure."
+title: les projets de groupe de ressources Windows Azure Studio aaaVisual | Documents Microsoft
+description: "Utilisez Visual Studio toocreate un projet de groupe de ressources Azure et déployer hello ressources tooAzure."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,20 +14,20 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/10/2017
 ms.author: tomfitz
-ms.openlocfilehash: f82f59f363507b69a729580302c2d11202e93a87
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 672c1e71fb809b3b547f0fad30240d45de1ba923
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="creating-and-deploying-azure-resource-groups-through-visual-studio"></a>Création et déploiement de groupes de ressources Azure à l’aide de Visual Studio
-Avec Visual Studio et les [Kits de développement logiciel (SDK) Azure](https://azure.microsoft.com/downloads/), vous pouvez créer un projet qui déploie votre infrastructure et votre code sur Azure. Par exemple, vous pouvez définir l’hôte web, le site web et la base de données de votre application, et déployer cette infrastructure parallèlement au code. Ou bien, vous pouvez définir une machine virtuelle, le réseau virtuel et le compte de stockage, puis déployer cette infrastructure parallèlement à un script exécuté sur la machine virtuelle. Le projet de déploiement du **Groupe de ressources Azure** vous permet de déployer toutes les ressources nécessaires en une seule opération reproductible. Pour plus d’informations sur le déploiement et la gestion des ressources, consultez [Présentation d’Azure Resource Manager](resource-group-overview.md).
+Avec Visual Studio et hello [Azure SDK](https://azure.microsoft.com/downloads/), vous pouvez créer un projet qui déploie tooAzure de votre infrastructure et de code. Par exemple, vous pouvez définir des hello web hôte, site web et base de données pour votre application et déployer cette infrastructure et du code hello. Ou bien, vous pouvez définir une machine virtuelle, le réseau virtuel et le compte de stockage, puis déployer cette infrastructure parallèlement à un script exécuté sur la machine virtuelle. Hello **groupe de ressources Azure** permet à un projet de déploiement vous toodeploy toutes les ressources hello nécessité dans une opération unique et reproductible. Pour plus d’informations sur le déploiement et la gestion des ressources, consultez [Présentation d’Azure Resource Manager](resource-group-overview.md).
 
-Les projets de groupe de ressources Azure contiennent des modèles JSON Azure Resource Manager, qui définissent les ressources que vous déployez sur Azure. Pour en savoir plus sur les éléments du modèle Resource Manager, consultez [Création de modèles Azure Resource Manager](resource-group-authoring-templates.md). Visual Studio vous permet de modifier ces modèles et fournit des outils qui simplifient l’utilisation des modèles.
+Les projets de groupe de ressources Azure contiennent des modèles Azure Resource Manager JSON, qui définissent les ressources hello que vous déployez tooAzure. toolearn sur les éléments de hello du modèle du Gestionnaire de ressources hello, consultez [les modèles de programmation Azure Resource Manager](resource-group-authoring-templates.md). Visual Studio permet de vous tooedit ces modèles et fournit des outils qui simplifient l’utilisation des modèles.
 
-Dans cet article, vous déployez une application web et SQL Database. Toutefois, les étapes sont presque identiques pour tous les types de ressources. Vous pouvez tout aussi facilement déployer une machine virtuelle et ses ressources associées. Visual Studio fournit de nombreux modèles de démarrage différents pour déployer des scénarios courants.
+Dans cet article, vous déployez une application web et SQL Database. Toutefois, les étapes de hello sont presque hello même pour n’importe quelle ressource de type. Vous pouvez tout aussi facilement déployer une machine virtuelle et ses ressources associées. Visual Studio fournit de nombreux modèles de démarrage différents pour déployer des scénarios courants.
 
-Cet article présente Visual Studio 2017. Si vous utilisez Visual Studio 2015 Update 2 et le kit de développement logiciel (SDK) Microsoft Azure pour .NET 2.9 ou Visual Studio 2013 avec Azure SDK 2.9, votre expérience sera sensiblement identique. Vous pouvez également utiliser la version 2.6 ou les versions ultérieures du Kit de développement logiciel (SDK) Azure, mais l’interface utilisateur que vous verrez peut différer de celle illustrée dans cet article. Nous vous recommandons fortement d’installer la dernière version du [Kit de développement logiciel (SDK) Azure](https://azure.microsoft.com/downloads/) avant de commencer à suivre les étapes. 
+Cet article présente Visual Studio 2017. Si vous utilisez Visual Studio 2015 Update 2 et Microsoft Azure SDK pour .NET 2.9, ou Visual Studio 2013 avec Azure SDK 2.9, votre expérience est en grande partie hello identiques. Vous pouvez utiliser les versions de hello Azure SDK de 2.6 ou version ultérieure ; Toutefois, votre expérience de l’interface utilisateur de hello peut être différent de celui de l’interface utilisateur hello illustré dans cet article. Nous recommandons fortement d’installer la version la plus récente de hello hello [Azure SDK](https://azure.microsoft.com/downloads/) avant de commencer les étapes hello. 
 
 ## <a name="create-azure-resource-group-project"></a>Créer un projet de groupe de ressources Azure
 Au cours de cette procédure, vous allez apprendre à créer un projet de groupe de ressources Azure avec un modèle **Application web + SQL** .
@@ -35,46 +35,46 @@ Au cours de cette procédure, vous allez apprendre à créer un projet de groupe
 1. Dans Visual Studio, sélectionnez **Fichier**, **Nouveau projet**, puis choisissez **C#** ou **Visual Basic**. Choisissez ensuite **Cloud** et le projet de **Groupe de ressources Azure**.
    
     ![Projet de déploiement cloud](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/create-project.png)
-2. Choisissez le modèle à déployer sur Azure Resource Manager. Notez qu’il existe de nombreuses options différentes selon le type de projet que vous voulez déployer. Pour cet article, sélectionnez le modèle **Application web + SQL** .
+2. Choisissez le modèle de hello que vous souhaitez toodeploy tooAzure le Gestionnaire de ressources. Notez, il existe de nombreuses options en fonction de hello type de projet que vous souhaitez toodeploy. Pour cet article, choisissez hello **Web application + SQL** modèle.
    
     ![Sélectionner un modèle](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/select-project.png)
    
-    Le modèle que vous choisissez est seulement un point de départ ; vous pouvez ajouter et supprimer des ressources en fonction des besoins de votre scénario.
+    Vous pouvez choisir de modèle de Hello est simplement un point de départ ; Vous pouvez ajouter et supprimer des ressources toofulfill votre scénario.
    
    > [!NOTE]
-   > Visual Studio extrait une liste des modèles disponibles en ligne. La liste peut évoluer.
+   > Visual Studio extrait une liste des modèles disponibles en ligne. liste de Hello peut changer.
    > 
    > 
    
-    Visual Studio crée un projet de déploiement de groupe de ressources Azure pour une application web et une base de données SQL.
-3. Pour voir les éléments créés, consultez les nœuds du projet de déploiement.
+    Visual Studio crée un projet de déploiement de groupe de ressources pour l’application web hello et base de données SQL.
+3. toosee ce que vous avez créé, regardez au nœud hello hello projet de déploiement.
    
     ![afficher les nœuds](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/show-items.png)
    
-    Puisque nous avons choisi le modèle Application web + SQL pour cet exemple, vous voyez les fichiers suivants : 
+    Étant donné que nous avons choisi hello Web application + modèle SQL pour cet exemple, vous consultez hello fichiers suivants : 
    
    | Nom de fichier | Description |
    | --- | --- |
-   | Deploy-AzureResourceGroup.ps1 |Script PowerShell qui appelle des commandes PowerShell à déployer sur Azure Resource Manager.<br />**Remarque** Visual Studio utilise ce script PowerShell pour déployer votre modèle. Les modifications apportées à ce script affectent également le déploiement dans Visual Studio. Par conséquent, modifiez ce script avec prudence. |
-   | WebSiteSQLDatabase.json |Le modèle Resource Manager qui définit l’infrastructure que vous voulez déployer sur Azure, et les paramètres que vous pouvez fournir au cours du déploiement. Il définit également les dépendances entre les ressources de manière à ce que Resource Manager les déploie dans le bon ordre. |
-   | WebSiteSQLDatabase.parameters.json |Un fichier de paramètres qui contient les valeurs requises par le modèle. Vous transmettez des valeurs de paramètres pour personnaliser chaque déploiement. |
+   | Deploy-AzureResourceGroup.ps1 |Un script PowerShell qui appelle tooAzure toodeploy de commandes PowerShell Gestionnaire de ressources.<br />**Remarque** Visual Studio utilise ce toodeploy de script PowerShell de votre modèle. Toutes les modifications que vous apportez toothis script affectent le déploiement dans Visual Studio, soyez donc prudent. |
+   | WebSiteSQLDatabase.json |modèle de gestionnaire de ressources Hello qui définit l’infrastructure hello à déployer tooAzure et paramètres hello que vous pouvez fournir au cours du déploiement. Il définit également les dépendances de hello entre les ressources de hello pour le Gestionnaire de ressources déploie des ressources hello dans l’ordre correct de hello. |
+   | WebSiteSQLDatabase.parameters.json |Un fichier de paramètres qui contient les valeurs requises par le modèle de hello. Vous passez toocustomize de valeurs de paramètre chaque déploiement. |
    
-    Tous les projets de déploiement de groupe de ressources Azure contiennent ces fichiers de base. D'autres projets peuvent contenir des fichiers supplémentaires pour prendre en charge d'autres fonctionnalités.
+    Tous les projets de déploiement de groupe de ressources Azure contiennent ces fichiers de base. Autres projets peuvent contenir des fichiers supplémentaires toosupport autres fonctionnalités.
 
-## <a name="customize-the-resource-manager-template"></a>Personnaliser le modèle de gestionnaire de ressources
-Vous pouvez personnaliser un projet de déploiement en modifiant les modèles JSON qui décrivent les ressources à déployer. JSON signifie JavaScript Object Notation. Il s'agit d'un format de données sérialisées facile à utiliser. Les fichiers JSON utilisent un schéma que vous référencez au début de chaque fichier. Si vous souhaitez comprendre le schéma, vous pouvez le télécharger et l’analyser. Le schéma définit les éléments valides, les types et les formats des champs, les valeurs énumérées possibles, etc. Pour en savoir plus sur les éléments du modèle Resource Manager, consultez [Création de modèles Azure Resource Manager](resource-group-authoring-templates.md).
+## <a name="customize-hello-resource-manager-template"></a>Personnaliser le modèle de gestionnaire de ressources hello
+Vous pouvez personnaliser un projet de déploiement en modifiant les modèles hello JSON qui décrivent les ressources hello toodeploy. JSON signifie JavaScript Object Notation et est un format des données sérialisées facile toowork avec. fichiers au format JSON Hello utilisent un schéma que vous référencez haut hello de chaque fichier. Si vous souhaitez que le schéma de hello toounderstand, vous pouvez télécharger et l’analyser. Hello schéma définit quels éléments sont valides, hello types et formats de champs, les valeurs possibles des valeurs énumérées de hello et ainsi de suite. toolearn sur les éléments de hello du modèle du Gestionnaire de ressources hello, consultez [les modèles de programmation Azure Resource Manager](resource-group-authoring-templates.md).
 
-Pour travailler sur votre modèle, ouvrez **WebSiteSQLDatabase.json**.
+toowork sur votre modèle, ouvrez **WebSiteSQLDatabase.json**.
 
-L’éditeur Visual Studio fournit des outils pour vous aider à modifier le modèle Resource Manager. La fenêtre **Structure JSON** permet de voir facilement les éléments définis dans votre modèle.
+les outils de Hello Visual Studio fournit de l’éditeur tooassist vous édition hello modèle du Gestionnaire de ressources. Hello **structure JSON** fenêtre rend les éléments de hello toosee facilement définis dans votre modèle.
 
 ![afficher la structure JSON](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/show-json-outline.png)
 
-Il vous suffit de sélectionner l’un des éléments de la structure pour accéder à cette partie du modèle et mettre en évidence le JSON correspondant.
+En sélectionnant un des éléments de hello dans le plan de hello participe vous toothat du modèle de hello et met en évidence hello correspondant JSON.
 
 ![explorer JSON](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/navigate-json.png)
 
-Vous pouvez ajouter une ressource en sélectionnant le bouton **Ajouter une ressource** en haut de la fenêtre Structure JSON, ou en double-cliquant sur **Ressources** et en sélectionnant **Ajouter une nouvelle ressource**.
+Vous pouvez ajouter une ressource en soit en sélectionnant hello **ajouter une ressource** dans hello la partie supérieure de la fenêtre de structure JSON hello ou en double-cliquant sur **ressources** et en sélectionnant **ajouter une nouvelle ressource**.
 
 ![ajouter une ressource](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/add-resource.png)
 
@@ -82,11 +82,11 @@ Pour ce didacticiel, sélectionnez **Compte de stockage** et donnez-lui un nom. 
 
 ![ajouter du stockage](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/add-storage.png)
 
-Notez qu’en plus de la ressource, un paramètre pour le compte de stockage de type et une variable pour le nom du compte de stockage ont été ajoutés.
+Notez que non seulement les ressources hello ajouté, mais également pourquoi un paramètre de type de compte de stockage et une variable pour le nom hello hello du compte de stockage.
 
 ![afficher la structure](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/show-new-items.png)
 
-Le paramètre **storageType** est prédéfini avec des types autorisés et un type par défaut. Vous pouvez laisser ces valeurs ou les modifier pour votre scénario. Si vous ne souhaitez autoriser personne à déployer un compte de stockage **Premium_LRS** via ce modèle, supprimez ce dernier des types autorisés. 
+Hello **storageType** paramètre est prédéfini avec les types autorisés et d’un type par défaut. Vous pouvez laisser ces valeurs ou les modifier pour votre scénario. Si vous ne souhaitez pas que tout le monde toodeploy un **Premium_LRS** compte de stockage via ce modèle, supprimez-le hello types autorisé. 
 
 ```json
 "storageType": {
@@ -101,11 +101,11 @@ Le paramètre **storageType** est prédéfini avec des types autorisés et un ty
 }
 ```
 
-Visual Studio fournit également des fonctionnalités intellisense pour vous aider à comprendre quelles propriétés sont disponibles lors de la modification du modèle. Par exemple, pour modifier les propriétés de votre plan App Service, accédez à la ressource **HostingPlan** et ajoutez une valeur pour les **propriétés**. Notez qu’intellisense affiche les valeurs disponibles et fournit une description de cette valeur.
+Visual Studio fournit également toohelp intellisense vous comprenez quelles propriétés sont disponibles lors de la modification du modèle de hello. Par exemple, les propriétés de hello tooedit pour votre plan de Service d’applications, accédez toohello **HostingPlan** ressource, ajoutez une valeur pour hello **propriétés**. Notez qu’intellisense affiche les valeurs disponibles hello et fournit une description de cette valeur.
 
 ![afficher intellisense](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/show-intellisense.png)
 
-Vous pouvez définir **numberOfWorkers** sur 1.
+Vous pouvez définir **numberOfWorkers** too1.
 
 ```json
 "properties": {
@@ -114,61 +114,61 @@ Vous pouvez définir **numberOfWorkers** sur 1.
 }
 ```
 
-## <a name="deploy-the-resource-group-project-to-azure"></a>Déployer le projet de groupe de ressources sur Azure
-Vous êtes maintenant prêt à déployer votre projet. Lorsque vous déployez un projet de groupe de ressources Azure, vous le déployez dans un groupe de ressources Azure. Un groupe de ressources est un regroupement logique de ressources qui partagent un cycle de vie commun.
+## <a name="deploy-hello-resource-group-project-tooazure"></a>Déployer tooAzure de projet de groupe de ressources hello
+Vous est toodeploy maintenant prêt à votre projet. Lorsque vous déployez un projet de groupe de ressources Azure, vous déployez groupe de ressources Azure tooan. groupe de ressources Hello est un regroupement logique des ressources qui partagent un cycle de vie courants.
 
-1. Dans le menu contextuel du nœud du projet de déploiement, choisissez **Déployer** > **Nouveau**.
+1. Dans le menu contextuel de hello du nœud de projet de déploiement hello, choisissez **déployer** > **nouveau**.
    
     ![Déployer, élément de menu Nouveau déploiement](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/deploy.png)
    
-    La boîte de dialogue **Déployer vers le groupe de ressources** s’affiche.
+    Hello **déployer tooResource groupe** boîte de dialogue s’affiche.
    
-    ![Boîte de dialogue Déployer vers le groupe de ressources](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/show-deployment.png)
-2. Dans la zone de liste déroulante **Groupe de ressources** , sélectionnez un groupe de ressources existant ou créez-en un. Pour créer un groupe de ressources, ouvrez la zone de liste déroulante **Groupe de ressources** et sélectionnez **Créer**.
+    ![TooResource boîte de dialogue groupe de déploiement](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/show-deployment.png)
+2. Bonjour **groupe de ressources** zone de liste déroulante, choisissez un groupe de ressources existant ou créez-en un. toocreate un groupe de ressources, ouvrez hello **groupe de ressources** liste déroulante et sélectionnez **créer un nouveau**.
    
-    ![Boîte de dialogue Déployer vers le groupe de ressources](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/create-new-group.png)
+    ![TooResource boîte de dialogue groupe de déploiement](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/create-new-group.png)
    
-    La boîte de dialogue **Créer un groupe de ressources** s’affiche. Donnez à votre groupe un nom et un emplacement, puis sélectionnez le bouton **Créer** .
+    Hello **créer un groupe de ressources** boîte de dialogue s’affiche. Donnez à votre groupe d’un nom et un emplacement, puis sélectionnez les hello **créer** bouton.
    
     ![Boîte de dialogue Créer un groupe de ressources](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/create-resource-group.png)
-3. Modifiez les paramètres du déploiement en sélectionnant le bouton **Modifier les paramètres** .
+3. Modifier les paramètres de hello pour le déploiement de hello en sélectionnant hello **modifier les paramètres** bouton.
    
     ![Bouton Modifier les paramètres](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/edit-parameters.png)
-4. Fournissez des valeurs pour les paramètres vides et sélectionnez le bouton **Enregistrer**. Les paramètres vides sont **hostingPlanName**, **administratorLogin**, **administratorLoginPassword** et **databaseName**.
+4. Fournir des valeurs pour les paramètres vides hello et sélectionnez hello **enregistrer** bouton. les paramètres vides Hello sont **hostingPlanName**, **administratorLogin**, **administratorLoginPassword**, et **databaseName**.
    
-    **hostingPlanName** spécifie le nom du [plan App Service](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md) à créer. 
+    **hostingPlanName** spécifie un nom pour hello [plan App Service](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md) toocreate. 
    
-    **administratorLogin** spécifie le nom d’utilisateur de l’administrateur SQL Server. N’utilisez pas de noms d’administrateur communs comme **sa** ou **admin**. 
+    **administratorLogin** Spécifie le nom d’utilisateur hello pour l’administrateur de SQL Server hello. N’utilisez pas de noms d’administrateur communs comme **sa** ou **admin**. 
    
-    **administratorLoginPassword** spécifie le mot de passe d’administrateur SQL Server. L’option **Enregistrer les mots de passe en texte brut dans le fichier de paramètres** n’est pas sécurisée. Ne sélectionnez pas cette option. Étant donné que le mot de passe n’est pas enregistré en texte brut, vous devez indiquer ce mot de passe à nouveau lors du déploiement. 
+    Hello **administratorLoginPassword** Spécifie le mot de passe d’administrateur SQL Server. Hello **enregistrer les mots de passe en texte brut dans le fichier de paramètres hello** option n’est pas sécurisée ; par conséquent, ne sélectionnez pas de cette option. Étant donné que le mot de passe hello n’est pas enregistrée en tant que texte brut, vous devez tooprovide ce mot de passe à nouveau lors du déploiement. 
    
-    **databaseName** spécifie le nom de la base de données à créer. 
+    **databaseName** spécifie un nom pour toocreate de base de données hello. 
    
     ![Boîte de dialogue Modifier les paramètres](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/provide-parameters.png)
-5. Sélectionnez le bouton **Déployer** pour déployer le projet dans Azure. Une console PowerShell s’ouvre en dehors de l’instance de Visual Studio. Entrez le mot de passe d’administrateur SQL Server dans la console PowerShell lorsque vous y êtes invité. **Votre console PowerShell peut être masquée par d’autres éléments ou réduite dans la barre des tâches.** Recherchez-la et sélectionnez-la pour indiquer le mot de passe.
+5. Choisissez hello **déployer** bouton toodeploy hello projet tooAzure. Il ouvre une console PowerShell en dehors de l’instance de Visual Studio hello. Entrez le mot de passe administrateur de SQL Server hello dans la console PowerShell hello lorsque vous y êtes invité. **Votre console PowerShell est masqué par d’autres éléments ou réduite dans la barre des tâches hello.** Recherchez cette console et le mot de passe tooprovide hello sélectionner.
    
    > [!NOTE]
-   > Il se peut que Visual Studio vous invite à installer les applets de commande Azure PowerShell. Vous devez disposer des applets de commande Azure PowerShell pour déployer des groupes de ressources. Si vous y êtes invité, installez-les.
+   > Visual Studio peut vous demander tooinstall hello applets de commande PowerShell de Azure. Vous devez hello Azure PowerShell toosuccessfully d’applets de commande déployer des groupes de ressources. Si vous y êtes invité, installez-les.
    > 
    > 
-6. Ce déploiement peut prendre quelques minutes. La fenêtre **Sortie** indique l’état du déploiement. Lorsque le déploiement est terminé, le dernier message indique que le déploiement a été réalisé avec succès :
+6. déploiement de Hello peut prendre quelques minutes. Bonjour **sortie** windows, vous voyez l’état hello du déploiement de hello. Déploiement de hello terminée, dernier message de type hello indique un déploiement réussi avec quelque chose de similaire à :
    
         ... 
-        18:00:58 - Successfully deployed template 'websitesqldatabase.json' to resource group 'DemoSiteGroup'.
-7. Dans un navigateur, ouvrez le [portail Azure](https://portal.azure.com/) et connectez-vous à votre compte. Pour afficher le groupe de ressources, sélectionnez **Groupes de ressources** et le groupe de ressources vers lequel vous avez effectué le déploiement.
+        18:00:58 - Successfully deployed template 'websitesqldatabase.json' tooresource group 'DemoSiteGroup'.
+7. Dans un navigateur, ouvrez hello [portail Azure](https://portal.azure.com/) et tooyour compte de connexion. toosee hello groupe de ressources, sélectionnez **groupes de ressources** et groupe de ressources hello vous avez déployé sur.
    
     ![sélectionner un groupe](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/select-group.png)
-8. Vous verrez toutes les ressources déployées. Notez que le nom du compte de stockage n’est pas exactement celui spécifié lors de l’ajout de cette ressource. Le compte de stockage doit être unique. Le modèle ajoute automatiquement une chaîne de caractères au nom que vous avez spécifié pour créer un nom unique. 
+8. Affiche toutes les ressources hello déployé. Notez que le nom du hello hello compte de stockage n’est pas exactement ce que vous spécifié lors de l’ajout de cette ressource. compte de stockage Hello doit être unique. Hello modèle ajoute automatiquement une chaîne de nom de toohello caractères vous avez fourni tooprovide un nom unique. 
    
     ![afficher des ressources](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/show-deployed-resources.png)
-9. Si vous modifiez et redéployez votre projet, choisissez le groupe de ressources existant dans le menu contextuel du projet de groupe de ressources Azure. Dans le menu contextuel, sélectionnez **Déployer**, puis le groupe de ressources que vous avez déployé.
+9. Si vous modifiez et que vous souhaitez tooredeploy votre projet, choisissez le groupe de ressources existant hello à partir du menu contextuel de hello du projet de groupe de ressources Azure. Dans le menu contextuel de hello, choisissez **déployer**, puis choisissez le groupe de ressources hello vous avez déployé.
    
     ![Groupe de ressources Azure déployé](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/redeploy.png)
 
 ## <a name="deploy-code-with-your-infrastructure"></a>Déployer le code avec votre infrastructure
-À ce stade, vous avez déployé l’infrastructure de votre application, mais aucun code réel n’est déployé avec le projet. Cet article montre comment déployer une application web et des tables SQL Database lors du déploiement. Si vous déployez une machine virtuelle au lieu d’une application web, vous devrez exécuter du code sur la machine dans le cadre du déploiement. Le processus de déploiement du code pour une application web ou pour la configuration d’une machine virtuelle est quasiment le même.
+À ce stade, vous avez déployé l’infrastructure de hello pour votre application, mais aucun code réel déployé avec hello projet. Cet article explique comment toodeploy une application web et la base de données SQL des tables au cours du déploiement. Si vous déployez un ordinateur virtuel au lieu d’une application web, vous souhaitez toorun du code sur l’ordinateur hello dans le cadre du déploiement. Hello du processus de déploiement de code pour une application web ou pour la configuration d’un ordinateur virtuel est presque hello identiques.
 
-1. Ajoutez un projet à votre solution Visual Studio. Cliquez avec le bouton droit sur la solution et sélectionnez **Ajouter** > **Nouveau projet**.
+1. Ajouter un projet de tooyour solution Visual Studio. Solution de hello d’avec le bouton droit, puis sélectionnez **ajouter** > **nouveau projet**.
    
     ![ajouter un projet](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/add-project.png)
 2. Ajoutez une **application web ASP.NET**. 
@@ -177,46 +177,46 @@ Vous êtes maintenant prêt à déployer votre projet. Lorsque vous déployez un
 3. Sélectionnez **MVC**.
    
     ![sélectionner MVC](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/select-mvc.png)
-4. Une fois votre application web créée par Visual Studio, vous voyez les deux projets dans la solution.
+4. Une fois que Visual Studio crée votre application web, vous voyez les deux projets dans la solution de hello.
    
     ![afficher les projets](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/show-projects.png)
-5. À présent, vous devez vous assurer que votre projet de groupe de ressources est informé du nouveau projet. Revenez à votre projet de groupe de ressources (AzureResourceGroup1). Cliquez avec le bouton droit sur **Références** et sélectionnez **Ajouter une référence**.
+5. Maintenant, vous devez toomake sûr que votre projet de groupe de ressources de projet hello. Retournez dans le projet de groupe de ressources tooyour (AzureResourceGroup1). Cliquez avec le bouton droit sur **Références** et sélectionnez **Ajouter une référence**.
    
     ![Ajouter une référence](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/add-new-reference.png)
-6. Sélectionnez le projet d’application web que vous avez créé.
+6. Sélectionnez le projet d’application web hello que vous avez créé.
    
     ![Ajouter une référence](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/add-reference.png)
    
-    En ajoutant une référence, vous liez le projet d’application web au projet de groupe de ressources et définissez automatiquement trois propriétés clés. Vous voyez ces propriétés dans la fenêtre **Propriétés** de la référence.
+    En ajoutant une référence, vous liez des hello projet toohello ressource groupe projet d’application web et définissez automatiquement les trois propriétés de clé. Vous voyez ces propriétés Bonjour **propriétés** fenêtre pour la référence de hello.
    
       ![voir une référence](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/see-reference.png)
    
-    Les propriétés sont les suivantes :
+    propriétés de Hello sont :
    
-   * **Propriétés supplémentaires** contient l’emplacement intermédiaire du package de déploiement web qui est envoyé vers Azure Storage. Notez le dossier (ExampleApp) et le fichier (package.zip). Vous devez connaître ces valeurs, car elles doivent être fournies en tant que paramètres lors du déploiement de l’application. 
-   * **Inclure le chemin d’accès au fichier** contient le chemin d’accès à l’emplacement de création du package. **Inclure les cibles** contient la commande que ce déploiement exécute. 
-   * La valeur par défaut **Build;Package** permet au déploiement de construire et créer un package de déploiement web (package.zip).  
+   * Hello **des propriétés supplémentaires** contient le package de déploiement web hello transit poussé toohello le stockage Azure. Notez le dossier hello (ExampleApp) et le fichier (package.zip). Vous devez tooknow ces valeurs, car vous fournissez comme paramètres lors du déploiement hello application. 
+   * Hello **incluent le chemin d’accès** contient le chemin d’accès hello dans lequel le package de hello est créé. Hello **incluent les cibles** contient la commande hello qui s’exécute de déploiement. 
+   * Hello la valeur par défaut de **générer ; Package** Active hello toobuild de déploiement et de créer un package de déploiement web (package.zip).  
      
-     Vous n’avez pas besoin de profil de publication, car le déploiement obtient les informations nécessaires à partir des propriétés pour créer le package.
-7. Revenez à WebSiteSQLDatabase.json et ajoutez une ressource au modèle.
+     Vous n’avez pas besoin d’un profil de publication que le déploiement de hello Obtient les informations nécessaires hello à partir du package de hello propriétés toocreate hello.
+7. TooWebSiteSQLDatabase.json revenir en arrière et ajouter un modèle de toohello de ressources.
    
     ![ajouter une ressource](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/add-resource-2.png)
 8. Cette fois-ci, sélectionnez **Web Deploy pour les applications Web**. 
    
     ![ajouter web deploy](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/add-web-deploy.png)
-9. Redéployez votre projet de groupe de ressources vers le groupe de ressources. Cette fois, il y a de nouveaux paramètres. Vous n’avez pas besoin de fournir des valeurs pour **_artifactsLocation** ou **_artifactsLocationSasToken** car Visual Studio les génère automatiquement. Toutefois, vous devez définir le dossier et le nom de fichier sur le chemin d’accès qui contient le package de déploiement (présenté comme **ExampleAppPackageFolder** et **ExampleAppPackageFileName** dans l’image suivante). Indiquez les valeurs que vous avez vues précédemment dans les propriétés de référence (**ExampleApp** et **package.zip**).
+9. Redéployez votre groupe projet toohello groupe de ressources. Cette fois, il y a de nouveaux paramètres. Vous n’avez pas besoin de valeurs tooprovide pour **_artifactsLocation** ou **_artifactsLocationSasToken** , car Visual Studio génère automatiquement ces valeurs. Toutefois, vous devez le dossier de hello tooset et nom toohello chemin d’accès qui contient le package de déploiement hello (indiqué en tant que **ExampleAppPackageFolder** et **ExampleAppPackageFileName** Bonjour suivant d’image ). Fournir les valeurs hello, vous avez vu précédemment dans hello des propriétés de la référence (**ExampleApp** et **package.zip**).
    
     ![ajouter web deploy](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/set-new-parameters.png)
    
-    Pour le **compte de stockage des artefacts**, sélectionnez celui déployé avec ce groupe de ressources.
-10. Une fois le déploiement terminé, sélectionnez votre application web dans le portail. Sélectionnez l’URL pour accéder au site.
+    Pourquoi **compte de stockage artefact**, sélectionnez hello une déployée avec ce groupe de ressources.
+10. Une fois le déploiement de hello est terminé, sélectionnez votre application web dans le portail de hello. Sélectionnez hello URL toobrowse toohello site.
     
      ![parcourir le site](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/browse-site.png)
-11. Notez que vous avez déployé avec succès l’application ASP.NET par défaut.
+11. Notez que vous avez correctement déployé hello d’application ASP.NET par défaut.
     
      ![afficher l’application déployée](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/show-deployed-app.png)
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Pour plus d’informations sur la gestion des ressources via le portail, voir [Utilisation du portail Azure pour gérer vos ressources Azure](resource-group-portal.md).
-* Pour en savoir plus sur les modèles, voir [Création de modèles Azure Resource Manager](resource-group-authoring-templates.md).
+* toolearn sur la gestion de vos ressources via le portail de hello, consultez [Using hello toomanage portail Azure vos ressources Azure](resource-group-portal.md).
+* toolearn savoir plus sur les modèles, consultez [les modèles de programmation Azure Resource Manager](resource-group-authoring-templates.md).
 

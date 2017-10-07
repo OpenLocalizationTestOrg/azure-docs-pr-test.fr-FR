@@ -1,6 +1,6 @@
 ---
-title: "Publier des applications pour des utilisateurs individuels dans une collection Azure RemoteApp (version préliminaire) | Microsoft Docs"
-description: "Apprenez à publier des applications dans Azure RemoteApp à l’attention d’utilisateurs spécifiques plutôt qu’à des groupes."
+title: "applications aaaPublish tooindividual les utilisateurs dans une collection Azure RemoteApp (version préliminaire) | Documents Microsoft"
+description: "Découvrez comment vous pouvez publier des utilisateurs de tooindividual d’applications, au lieu d’en fonction des groupes dans Azure RemoteApp."
 services: remoteapp-preview
 documentationcenter: 
 author: piotrci
@@ -14,92 +14,92 @@ ms.tgt_pltfrm: na
 ms.workload: compute
 ms.date: 11/23/2016
 ms.author: piotrci
-ms.openlocfilehash: c94ffffdec3e46ed08d941ee58dcf17b432e1dad
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 87b435552ddbfc2c6d03aeb01d95a44985e71f9f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="publish-applications-to-individual-users-in-an-azure-remoteapp-collection-preview"></a>Publier des applications pour des utilisateurs individuels dans une collection Azure RemoteApp (version préliminaire)
+# <a name="publish-applications-tooindividual-users-in-an-azure-remoteapp-collection-preview"></a>Publier des applications tooindividual les utilisateurs dans une collection Azure RemoteApp (version préliminaire)
 > [!IMPORTANT]
-> Azure RemoteApp ne sera plus disponible à partir du 31 août 2017. Pour plus d’informations, lisez [l’annonce](https://go.microsoft.com/fwlink/?linkid=821148) .
+> Azure RemoteApp ne sera plus disponible à partir du 31 août 2017. Hello de lecture [annonce](https://go.microsoft.com/fwlink/?linkid=821148) pour plus d’informations.
 > 
 > 
 
-Cet article explique comment publier des applications pour des utilisateurs individuels dans une collection Azure RemoteApp. Cette nouvelle fonctionnalité d’Azure RemoteApp, actuellement disponible en « version préliminaire privée », est réservée uniquement aux utilisateurs précoces à des fins d’évaluation.
+Cet article explique comment toopublish applications tooindividual les utilisateurs dans une collection Azure RemoteApp. Il s’agit de nouvelles fonctionnalités dans Azure RemoteApp, actuellement en aperçu privé et premiers tooselect uniquement disponible à des fins d’évaluation.
 
-À l’origine, Azure RemoteApp n’offrait qu’un seul moyen de « publier » des applications : l’administrateur devait publier les applications à partir de l’image pour les rendre visibles à tous les utilisateurs de la collection.
+À l’origine Azure RemoteApp n'activé qu’une seule manière de publier des applications : administrateur de hello serait de publier des applications à partir de l’image de hello et ils seraient utilisateurs tooall visible dans la collection de hello.
 
-Dans un souci de réduction des coûts de gestion, il n’est pas rare que les administrateurs intègrent de nombreuses applications dans une même image et déploient une seule collection. Mais toutes les applications ne sont pas toujours utiles à l’ensemble des utilisateurs ; aussi, les administrateurs préféreront publier des applications à l’attention de certains utilisateurs spécifiques afin de ne pas les encombrer d’applications inutiles.
+Un scénario courant consiste à tooinclude de nombreuses applications dans une seule image et déploiement une collection dans les coûts de gestion ordre tooreduce. Souvent pas toutes les applications sont pertinentes tooall utilisateurs – les administrateurs préfèrent les utilisateurs de tooindividual toopublish applications afin qu’ils ne voyez pas les applications inutiles dans leur application de flux.
 
-Azure RemoteApp offre désormais cette possibilité dans le cadre d’une fonctionnalité préliminaire limitée. Voici un bref résumé de cette nouvelle fonctionnalité :
+Azure RemoteApp offre désormais cette possibilité dans le cadre d’une fonctionnalité préliminaire limitée. Voici un bref résumé des nouvelles fonctionnalités de hello :
 
 1. Une collection peut être paramétrée dans deux modes différents :
    
-   * le « mode collection » d’origine, grâce auquel tous les utilisateurs d’une collection peuvent visualiser l’ensemble des applications publiées. Il s’agit du mode par défaut ;
-   * le nouveau « mode application », dans lequel les utilisateurs voient uniquement les applications qui leur ont été explicitement affectées
-2. Pour le moment, le mode application ne peut être activé qu’à l’aide des applets de commande PowerShell pour Azure RemoteApp.
+   * mode collection d’origine Hello, où tous les utilisateurs dans une collection peuvent voir toutes les applications publiées. Il s’agit de mode par défaut de hello.
+   * nouveau mode d’application Hello, où les utilisateurs voient uniquement les applications qui ont été explicitement affecté toothem
+2. Au moment de hello mode d’application hello ne peut être activé à l’aide des applets de commande PowerShell de Azure RemoteApp.
    
-   * En mode application, l’affectation des utilisateurs dans la collection ne peut pas être gérée via le portail Azure. Elle ne peut être gérée qu’au moyen des applets de commande PowerShell.
-3. Les utilisateurs ne voient que les applications qui ont été directement publiées à leur attention. Un utilisateur a toutefois la possibilité de lancer les autres applications disponibles sur l’image en y accédant directement depuis le système d’exploitation.
+   * Quand définir le mode de tooapplication, affectation d’utilisateurs dans la collection de hello ne peut pas être géré via hello portail Azure. L’affectation d’utilisateurs a toobe géré via les applets de commande PowerShell.
+3. Les utilisateurs voient seulement hello les applications publiées directement toothem. Toutefois, il peut être encore possible pour un utilisateur toolaunch hello autres applications disponibles sur l’image de hello en y accédant directement dans le système d’exploitation de hello.
    
-   * Cette fonctionnalité ne garantit pas un verrouillage sécurisé des applications ; elle ne fait que restreindre la visibilité dans le flux d’applications.
-   * Si vous souhaitez isoler les utilisateurs de certaines applications, vous devez utiliser des collections distinctes.
+   * Cette fonctionnalité ne fournit pas un verrouillage sécurisé d’applications. Il limite uniquement la visibilité dans l’application hello de flux.
+   * Si vous devez tooisolate des utilisateurs à partir d’applications, vous devez toouse des regroupements séparés pour cela.
 
-## <a name="how-to-get-azure-remoteapp-powershell-cmdlets"></a>Comment obtenir les applets de commande PowerShell pour Azure RemoteApp
-Pour tester la nouvelle fonctionnalité en version préliminaire, vous devez utiliser les applets de commande Azure PowerShell. Vous ne pouvez pas pour le moment utiliser le portail de gestion Azure pour activer le nouveau mode de publication d’applications.
+## <a name="how-tooget-azure-remoteapp-powershell-cmdlets"></a>Comment tooget applets de commande PowerShell de Azure RemoteApp
+nouvelle fonctionnalité d’aperçu des hello de tootry, vous devez applets de commande Azure PowerShell toouse. Il n’est pas possible toouse hello Azure Management tooenable portail hello nouvelle application mode de publication.
 
-Assurez-vous tout d’abord que vous disposez bien du [module Azure PowerShell](/powershell/azure/overview) .
+Tout d’abord, assurez-vous que vous disposez hello [module Azure PowerShell](/powershell/azure/overview) installé.
 
-Lancez ensuite la console PowerShell en mode administrateur, puis exécutez l’applet de commande suivante :
+Puis lancez console PowerShell de hello en mode administrateur et exécution hello suivant l’applet de commande :
 
         Add-AzureAccount
 
-Vous êtes invité à saisir vos nom d’utilisateur et mot de passe Azure. Une fois connecté, vous pouvez exécuter des applets de commande Azure RemoteApp sur vos abonnements Azure.
+Vous êtes invité à saisir vos nom d’utilisateur et mot de passe Azure. Une fois connecté, vous serez en mesure de toorun Azure RemoteApp applets de commande par rapport à vos abonnements Azure.
 
-## <a name="how-to-check-which-mode-a-collection-is-in"></a>Comment vérifier le mode d’une collection
-Exécutez l’applet de commande suivante :
+## <a name="how-toocheck-which-mode-a-collection-is-in"></a>Comment toocheck quel mode d’une collection est en
+Exécutez hello suivant l’applet de commande :
 
         Get-AzureRemoteAppCollection <collectionName>
 
-![Vérifier le mode de collecte](./media/remoteapp-perapp/araacllelvel.png)
+![Vérifier le mode de collecte hello](./media/remoteapp-perapp/araacllelvel.png)
 
-La propriété AclLevel peut avoir les valeurs suivantes :
+Hello AclLevel propriété peut avoir hello valeurs suivantes :
 
-* Collection : mode de publication d’origine. Tous les utilisateurs peuvent visualiser l’ensemble des applications publiées.
-* Application : nouveau mode de publication. Les utilisateurs voient uniquement les applications qui ont été directement publiées à leur attention.
+* Collection : hello d’origine mode de publication. Tous les utilisateurs peuvent visualiser l’ensemble des applications publiées.
+* Application : hello nouveau mode de publication. Les utilisateurs voient uniquement les applications hello publié directement toothem.
 
-## <a name="how-to-switch-to-application-publishing-mode"></a>Comment passer en mode de publication d’applications
-Exécutez l’applet de commande suivante :
+## <a name="how-tooswitch-tooapplication-publishing-mode"></a>Comment le mode de publication tooapplication tooswitch
+Exécutez hello suivant l’applet de commande :
 
         Set-AzureRemoteAppCollection -CollectionName -AclLevel Application
 
-L’état de publication des applications est conservé : tous les utilisateurs voient l’ensemble des applications initialement publiées.
+État de publication application est conservé : initialement tous les utilisateurs verront toutes les applications publiées de hello d’origine.
 
-## <a name="how-to-list-users-who-can-see-a-specific-application"></a>Comment répertorier les utilisateurs autorisés à visualiser une application spécifique
-Exécutez l’applet de commande suivante :
+## <a name="how-toolist-users-who-can-see-a-specific-application"></a>Comment les utilisateurs toolist qui peuvent voir une application spécifique
+Exécutez hello suivant l’applet de commande :
 
         Get-AzureRemoteAppUser -CollectionName <collectionName> -Alias <appAlias>
 
-Cette commande permet de répertorier tous les utilisateurs pouvant visualiser l’application.
+Celle-ci répertorie tous les utilisateurs peuvent voir l’application hello.
 
-Remarque : vous pouvez voir les alias de l’application (appelés « app alias » dans la syntaxe ci-dessus) en exécutant l’applet de commande Get-AzureRemoteAppProgram - CollectionName <collectionName>.
+Remarque : Vous pouvez voir des alias d’application hello (appelés « alias application » dans la syntaxe hello ci-dessus) en exécutant Get-AzureRemoteAppProgram - CollectionName <collectionName>.
 
-## <a name="how-to-assign-an-application-to-a-user"></a>Comment affecter une application à un utilisateur
-Exécutez l’applet de commande suivante :
+## <a name="how-tooassign-an-application-tooa-user"></a>Comment tooassign un utilisateur d’application tooa
+Exécutez hello suivant l’applet de commande :
 
         Add-AzureRemoteAppUser -CollectionName <collectionName> -UserUpn <user@domain.com> -Type <OrgId|MicrosoftAccount> -Alias <appAlias>
 
-L’utilisateur voit à présent l’application dans le client Azure RemoteApp et sera en mesure de s’y connecter.
+utilisateur de Hello bénéficient d’application hello dans le client d’Azure RemoteApp hello et sera en mesure de tooconnect tooit.
 
-## <a name="how-to-remove-an-application-from-a-user"></a>Comment supprimer une application d’un utilisateur
-Exécutez l’applet de commande suivante :
+## <a name="how-tooremove-an-application-from-a-user"></a>Comment tooremove une application à partir d’un utilisateur
+Exécutez hello suivant l’applet de commande :
 
         Remove-AzureRemoteAppUser -CollectionName <collectionName> -UserUpn <user@domain.com> -Type <OrgId|MicrosoftAccount> -Alias <appAlias>
 
 ## <a name="providing-feedback"></a>Appel à commentaires
-Nous vous remercions de nous faire part de vos commentaires et suggestions concernant cette fonctionnalité en version préliminaire. Veuillez répondre à cette [enquête](http://www.instant.ly/s/FDdrb) pour nous dire ce que vous en pensez.
+Nous vous remercions de nous faire part de vos commentaires et suggestions concernant cette fonctionnalité en version préliminaire. Veuillez remplir hello [enquête](http://www.instant.ly/s/FDdrb) toolet dites-nous ce que vous pensez.
 
-## <a name="havent-had-a-chance-to-try-the-preview-feature"></a>Vous n’avez pas eu l’occasion de tester la fonctionnalité en version préliminaire ?
-Si vous n’avez pas encore participé à l’évaluation, utilisez cette [enquête](http://www.instant.ly/s/AY83p) pour demander l’accès à la fonctionnalité.
+## <a name="havent-had-a-chance-tootry-hello-preview-feature"></a>N’ont pas eu une fonctionnalité d’aperçu chance tootry hello ?
+Si vous n’avez pas encore participé à la version préliminaire de hello, utilisez ce [enquête](http://www.instant.ly/s/AY83p) toorequest accès.
 

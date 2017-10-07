@@ -1,6 +1,6 @@
 ---
-title: "Créer une fonction dans Azure déclenchée par le stockage Blob | Microsoft Docs"
-description: "Utilisez Azure Functions pour créer une fonction sans serveur appelée par les éléments ajoutés au stockage Blob Azure."
+title: "une fonction dans Azure déclenchée par le stockage d’objets Blob d’aaaCreate | Documents Microsoft"
+description: "Utilisez les fonctions Azure toocreate une fonction sans serveur qui est appelée par les éléments ajoutés tooAzure stockage d’objets Blob."
 services: azure-functions
 documentationcenter: na
 author: ggailey777
@@ -16,21 +16,21 @@ ms.workload: na
 ms.date: 05/31/2017
 ms.author: glenga
 ms.custom: mvc
-ms.openlocfilehash: 1ddd056903b1a2f973a58bd7054ea2b8281607c3
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: acb7d29abb07a22da11d0e65d2ed54591f8e3f4f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-function-triggered-by-azure-blob-storage"></a>Créer une fonction déclenchée par un stockage Blob Azure
 
-Apprenez à créer une fonction déclenchée lorsque des fichiers sont chargés dans ou mis à jour dans le stockage Blob Azure.
+Découvrez comment toocreate une fonction déclenchée lorsque les fichiers sont téléchargés tooor mis à jour dans le stockage Blob Azure.
 
-![Affichez le message dans les journaux.](./media/functions-create-storage-blob-triggered-function/function-app-in-portal-editor.png)
+![Afficher le message dans les journaux hello.](./media/functions-create-storage-blob-triggered-function/function-app-in-portal-editor.png)
 
 ## <a name="prerequisites"></a>Composants requis
 
-+ Télécharger et installer l’[Explorateur de Stockage Microsoft Azure](http://storageexplorer.com/).
++ Téléchargez et installez hello [Microsoft Azure Storage Explorer](http://storageexplorer.com/).
 + Un abonnement Azure. Si vous n’en avez pas, créez un [compte gratuit](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) avant de commencer.
 
 [!INCLUDE [functions-portal-favorite-function-apps](../../includes/functions-portal-favorite-function-apps.md)]
@@ -41,66 +41,66 @@ Apprenez à créer une fonction déclenchée lorsque des fichiers sont chargés 
 
 ![Function App créée avec succès.](./media/functions-create-first-azure-function/function-app-create-success.png)
 
-Créez ensuite une fonction dans la nouvelle Function App.
+Ensuite, créez une fonction dans hello une nouvelle application de fonction.
 
 <a name="create-function"></a>
 
 ## <a name="create-a-blob-storage-triggered-function"></a>Créer une fonction déclenchée par le stockage Blob
 
-1. Développez votre Function App, puis cliquez sur le bouton **+** en regard de **Fonctions**. S’il s’agit de la première fonction de votre Function App, sélectionnez **Fonction personnalisée**. Cela affiche l’ensemble complet des modèles de fonction.
+1. Développez votre application de la fonction et cliquez sur hello  **+**  bouton ensuite trop**fonctions**. S’il s’agit de hello première fonction dans votre application de la fonction, sélectionnez **fonction personnalisée**. Cela affiche le jeu complet de hello des modèles de fonction.
 
-    ![Page de démarrage rapide des fonctions sur le portail Azure](./media/functions-create-storage-blob-triggered-function/add-first-function.png)
+    ![Page de démarrage rapide de fonctions Bonjour portail Azure](./media/functions-create-storage-blob-triggered-function/add-first-function.png)
 
-2. Sélectionnez le modèle **BlobTrigger** de la langue de votre choix, puis utilisez les paramètres comme indiqué dans le tableau.
+2. Sélectionnez hello **BlobTrigger** modèle pour votre langue de votre choix, puis utiliser les paramètres comme spécifié dans la table de hello hello.
 
-    ![Création de la fonction déclenchée par le stockage Blob.](./media/functions-create-storage-blob-triggered-function/functions-create-blob-storage-trigger-portal.png)
+    ![Créer la fonction de stockage déclenchée de Blob de hello.](./media/functions-create-storage-blob-triggered-function/functions-create-blob-storage-trigger-portal.png)
 
     | Paramètre | Valeur suggérée | Description |
     |---|---|---|
-    | **Chemin d’accès**   | mycontainer/{name}    | Emplacement du stockage Blob analysé. Le nom de fichier de l’objet Blob est transmis dans la liaison en tant que paramètre _name_.  |
-    | **Connexion au compte de stockage** | AzureWebJobStorage | Vous pouvez utiliser la connexion au compte de stockage qui est déjà utilisée par votre Function App ou en créer une.  |
+    | **Chemin d’accès**   | mycontainer/{name}    | Emplacement du stockage Blob analysé. nom du fichier d’objet blob de hello Hello est passé dans la liaison de hello en hello _nom_ paramètre.  |
+    | **Connexion au compte de stockage** | AzureWebJobStorage | Vous pouvez utiliser la connexion au compte de stockage hello est déjà utilisée par votre application de la fonction, ou créez-en un.  |
     | **Nommer votre fonction** | Unique dans votre Function App | Nom de cette fonction déclenchée par l’objet Blob. |
 
-3. Cliquez sur **Créer** pour créer votre fonction.
+3. Cliquez sur **créer** toocreate votre fonction.
 
-Ensuite, connectez-vous à votre compte de stockage Azure et créez le conteneur **mycontainer**.
+Ensuite, vous vous connectez compte de stockage Azure tooyour et que vous créez hello **mycontainer** conteneur.
 
-## <a name="create-the-container"></a>Créer le conteneur
+## <a name="create-hello-container"></a>Créer un conteneur de hello
 
-1. Dans votre fonction, cliquez sur **Intégrer**, développez **Documentation** et copiez le **Nom du compte** et la **Clé du compte**. Vous utilisez ces informations d’identification pour vous connecter au compte de stockage. Si vous avez déjà connecté votre compte de stockage, passez à l’étape 4.
+1. Dans votre fonction, cliquez sur **Intégrer**, développez **Documentation** et copiez le **Nom du compte** et la **Clé du compte**. Vous utilisez ces informations d’identification tooconnect toohello stockage compte. Si vous êtes déjà connecté votre compte de stockage, passez toostep 4.
 
-    ![Obtention des informations d’identification de connexion du compte de stockage.](./media/functions-create-storage-blob-triggered-function/functions-storage-account-connection.png)
+    ![Obtenir des informations d’identification de connexion de compte de stockage hello.](./media/functions-create-storage-blob-triggered-function/functions-storage-account-connection.png)
 
-1. Exécutez [l’Explorateur de stockage Microsoft Azure](http://storageexplorer.com/), cliquez sur l’icône de connexion situé sur la gauche, choisissez **Utiliser un nom et une clé de compte de stockage**, puis cliquez sur **Suivant**.
+1. Exécutez hello [Microsoft Azure Storage Explorer](http://storageexplorer.com/) outil, cliquez sur hello icône à gauche de hello de connexion, choisissez **utiliser un nom de compte de stockage et de la clé**, puis cliquez sur **suivant**.
 
-    ![Exécutez l’outil Explorateur de compte de stockage.](./media/functions-create-storage-blob-triggered-function/functions-storage-manager-connect-1.png)
+    ![Exécuter l’outil Explorateur de compte de stockage de hello.](./media/functions-create-storage-blob-triggered-function/functions-storage-manager-connect-1.png)
 
-1. Saisissez le **Nom du compte** et la **Clé du compte** récupérés à l’étape 1, puis cliquez sur **Suivant** et sur **Connexion**. 
+1. Entrez hello **nom de compte** et **clé de compte** à l’étape 1, cliquez sur **suivant** , puis **connexion**. 
 
-    ![Saisie des informations d’identification de stockage et connexion.](./media/functions-create-storage-blob-triggered-function/functions-storage-manager-connect-2.png)
+    ![Entrez les informations d’identification du stockage hello et se connecter.](./media/functions-create-storage-blob-triggered-function/functions-storage-manager-connect-2.png)
 
-1. Développez le compte de stockage attaché, cliquez avec le bouton droit sur **Conteneurs d’objets Blob**, puis sur **Créer un conteneur d’objets blob**, tapez `mycontainer` et appuyez sur Entrée.
+1. Développez le compte de stockage hello attaché, cliquez sur **conteneurs d’objets Blob**, cliquez sur **créer un conteneur blob**, type `mycontainer`, puis appuyez sur ENTRÉE.
 
-    ![Création d’une file d’attente de stockage.](./media/functions-create-storage-blob-triggered-function/functions-storage-manager-create-blob-container.png)
+    ![Créez une file d’attente de stockage.](./media/functions-create-storage-blob-triggered-function/functions-storage-manager-create-blob-container.png)
 
-Une fois que vous avez un conteneur d’objets blob, vous pouvez tester la fonction en chargeant un fichier dans le conteneur.
+Maintenant que vous avez un conteneur d’objets blob, vous pouvez tester la fonction hello en téléchargeant un conteneur toohello de fichier.
 
-## <a name="test-the-function"></a>Tester la fonction
+## <a name="test-hello-function"></a>Fonction hello de test
 
-1. Dans le portail Azure, accédez à votre fonction, développez les **Journaux** en bas de la page et vérifiez que la diffusion de journaux n’est pas suspendue.
+1. Dans hello portail Azure, parcourir tooyour fonction développez hello **journaux** bas hello page de hello et assurez-vous que ce journal de diffusion en continu n’est pas suspendue.
 
 1. Dans l’Explorateur de stockage, développez votre compte de stockage, **Conteneurs d’objets Blob** et **mycontainer**. Cliquez sur **Charger**, puis sur **Charger des fichiers...**.
 
-    ![Chargement d’un fichier dans le conteneur d’objets blob.](./media/functions-create-storage-blob-triggered-function/functions-storage-manager-upload-file-blob.png)
+    ![Télécharger un conteneur d’objets blob toohello fichier.](./media/functions-create-storage-blob-triggered-function/functions-storage-manager-upload-file-blob.png)
 
-1. Dans la boîte de dialogue **Charger des fichiers**, cliquez sur le champ **Fichiers**. Accédez à un fichier sur votre ordinateur local, par exemple un fichier image, sélectionnez-le, puis cliquez sur **Ouvrir** et sur **Charger**.
+1. Bonjour **télécharger des fichiers** boîte de dialogue, cliquez sur hello **fichiers** champ. Rechercher le fichier tooa sur votre ordinateur local, tel qu’un fichier image, sélectionnez-le, puis cliquez sur **ouvrir** , puis **télécharger**.
 
-1. Revenez à vos journaux de fonction et vérifiez que l’objet blob a été lu.
+1. Revenir en arrière tooyour fonction journaux et vérifiez que cet objet blob hello a été lu.
 
-   ![Affichage du message dans les journaux.](./media/functions-create-storage-blob-triggered-function/functions-blob-storage-trigger-view-logs.png)
+   ![Afficher le message dans les journaux hello.](./media/functions-create-storage-blob-triggered-function/functions-blob-storage-trigger-view-logs.png)
 
     >[!NOTE]
-    > Lorsque votre Function App s’exécute dans le plan de consommation par défaut, il peut s’écouler un délai de plusieurs minutes entre l’ajout ou la mise à jour de l’objet blob et le déclenchement de la fonction. Si vous exigez une faible latence pour vos fonctions déclenchées par des objets Blob, exécutez plutôt votre Function App dans un plan App Service.
+    > Lorsque votre application de la fonction s’exécute dans le plan de la consommation hello par défaut, il peut y avoir un délai de configuration tooseveral minutes entre hello blob qui est ajouté ou mis à jour et hello fonction soit déclenchée. Si vous exigez une faible latence pour vos fonctions déclenchées par des objets Blob, exécutez plutôt votre Function App dans un plan App Service.
 
 ## <a name="clean-up-resources"></a>Supprimer des ressources
 
@@ -108,7 +108,7 @@ Une fois que vous avez un conteneur d’objets blob, vous pouvez tester la fonct
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Vous avez créé une fonction qui s’exécute lorsqu’un objet blob est ajouté ou mis à jour dans le stockage Blob. 
+Vous avez créé une fonction qui s’exécute lorsqu’un objet blob est ajouté tooor mis à jour dans le stockage Blob. 
 
 [!INCLUDE [Next steps note](../../includes/functions-quickstart-next-steps.md)]
 

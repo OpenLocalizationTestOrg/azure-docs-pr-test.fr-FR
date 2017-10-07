@@ -1,6 +1,6 @@
 ---
-title: "Présentation de l’authentification dans Azure Automation | Microsoft Docs"
-description: "Cet article présente une vue d’ensemble de la sécurité de l’automatisation et des différentes méthodes d’authentification disponibles pour les comptes Automation dans Azure Automation."
+title: tooauthentication aaaIntro dans Azure Automation | Documents Microsoft
+description: "Cet article fournit une vue d’ensemble de la sécurité d’Automation et hello différentes méthodes d’authentification disponibles pour les comptes Automation dans Azure Automation."
 services: automation
 documentationcenter: 
 author: MGoedtel
@@ -16,39 +16,39 @@ ms.workload: infrastructure-services
 ms.date: 03/01/2017
 ms.author: magoedte
 ROBOTS: NOINDEX
-ms.openlocfilehash: 91c98f8dda6f24c2db2730a5e0df5ea43e151c61
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4b4409b5be010c16f7bf00a9a0f617e3617d4663
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="introduction-to-authentication-in-azure-automation"></a>Présentation de l’authentification dans Azure Automation  
-Azure Automation vous permet d’automatiser des tâches sur des ressources dans Azure, en local et avec d’autres fournisseurs de cloud comme Amazon Web Services (AWS).  Pour qu’un Runbook exécute les actions requises, il doit avoir les autorisations nécessaires pour accéder en toute sécurité aux ressources avec les droits minimaux requis dans l’abonnement.
+# <a name="introduction-tooauthentication-in-azure-automation"></a>Tooauthentication introduction dans Azure Automation  
+Azure Automation vous permet de tâches tooautomate par rapport aux ressources dans Azure, sur site et avec d’autres fournisseurs de cloud comme Amazon Web Services (AWS).  Dans l’ordre pour un tooperform runbook ses actions requises, il ressources doit être autorisations toosecurely accès hello doté d’autorisations minimales de hello nécessaires au sein de l’abonnement de hello.
 
-Cet article couvre les différents scénarios d’authentification pris en charge par Azure Automation et vous montre comment vous lancer en fonction de l’environnement ou des environnements que vous devez gérer.  
+Cet article couvre hello différents scénarios d’authentification pris en charge par Azure Automation et indiquent comment tooget démarrer basée sur les environnement hello ou les environnements vous devez toomanage.  
 
 ## <a name="automation-account-overview"></a>Présentation du compte Automation
-Lorsque vous démarrez Azure Automation pour la première fois, vous devez créer au moins un compte Automation. Les comptes Automation vous permettent d’isoler vos ressources Automation (Runbooks, ressources, configurations) des ressources contenues dans d’autres comptes Automation. Vous pouvez utiliser des comptes Automation pour séparer les ressources dans des environnements logiques distincts. Par exemple, vous pouvez utiliser un compte pour le développement, un autre pour la production et un autre pour l’environnement local.  Un compte Azure Automation est différent de votre compte Microsoft ou des comptes créés dans votre abonnement Azure.
+Lorsque vous démarrez Azure Automation pour hello première fois, vous devez créer au moins un compte Automation. Comptes Automation vous permettent de tooisolate vos ressources Automation (runbooks, éléments multimédias, configurations) à partir de hello ressources contenues dans d’autres comptes Automation. Vous pouvez utiliser les ressources de tooseparate comptes Automation dans des environnements logiques distincts. Par exemple, vous pouvez utiliser un compte pour le développement, un autre pour la production et un autre pour l’environnement local.  Un compte Azure Automation est différent de votre compte Microsoft ou des comptes créés dans votre abonnement Azure.
 
-Les ressources Automation de chaque compte Automation sont associées à une seule région Azure, mais les comptes Automation peuvent gérer toutes les ressources dans votre abonnement. L’existence de stratégies qui requièrent l’isolation des données et des ressources dans une région spécifique constitue la raison principale de création de comptes Automation dans différentes régions.
+ressources d’automatisation de Hello pour chaque compte Automation sont associées à une seule région Azure, mais les comptes Automation peuvent gérer toutes les ressources hello dans votre abonnement. Hello principalement toocreate des comptes Automation dans différentes régions serait si vous avez des stratégies qui requièrent des données et des ressources toobe tooa isolé une région spécifique.
 
 > [!NOTE]
-> Les comptes Automation et les ressources qu’ils contiennent, créés dans le portail Azure, ne sont pas accessibles dans le portail Azure Classic. Si vous souhaitez gérer ces comptes ou leurs ressources avec Windows PowerShell, vous devez utiliser les modules Azure Resource Manager.
+> Comptes Automation et les ressources de hello qu’ils contiennent qui sont créées dans hello portail Azure, ne sont pas accessibles dans hello portail Azure classic. Si vous souhaitez toomanage ces comptes ou leurs ressources avec Windows PowerShell, vous devez utiliser des modules du Gestionnaire de ressources Azure hello.
 >
 
-Toutes les tâches que vous effectuez sur les ressources à l’aide d’Azure Resource Manager et des applets de commande Azure dans Azure Automation doivent s’authentifier sur Azure à l’aide de l’authentification basée sur les informations d’identification d’organisation Azure Active Directory.  L’authentification basée sur les certificats était la méthode d’authentification d’origine avec le mode Azure Service Management, mais elle était compliquée à configurer.  L’authentification auprès d’Azure avec l’utilisateur Azure AD a été réintroduite en 2014 non seulement pour simplifier le processus de configuration d’un compte d’authentification, mais également pour prendre en charge la possibilité de s’authentifier de manière non interactive auprès d’Azure avec un seul compte d’utilisateur compatible avec les ressources Azure Resource Manager et les ressources classiques.   
+Toutes les tâches hello que vous effectuez sur les ressources à l’aide d’Azure Resource Manager et hello applets de commande Azure dans Azure Automation doivent s’authentifier tooAzure à l’aide de l’authentification Azure Active Directory d’organisation identité basée sur les informations d’identification.  L’authentification basée sur certificat méthode d’authentification d’origine hello avec le mode de gestion des services Azure, mais il toosetup complexe.  L’authentification tooAzure avec l’utilisateur Azure AD a été différée introduite dans 2014 toonot uniquement simplifier hello processus tooconfigure est un compte d’authentification, mais également prise en charge hello capacité toonon interactivement authentifier tooAzure avec un compte d’utilisateur qui a été exécutée avec Azure Resource Manager et les ressources classiques.   
 
-Actuellement, lorsque vous créez un compte Automation dans le portail Azure, il crée automatiquement :
+Actuellement, lorsque vous créez un nouveau compte Automation dans hello portail Azure, il crée automatiquement :
 
-* Un compte d’identification, qui crée un principal du service dans Azure Active Directory, un certificat, et attribue le contrôle d’accès en fonction du rôle (RBAC) Collaborateur, qui sera utilisé pour gérer les ressources Resource Manager à l’aide de Runbooks.
-* Un compte d’identification Classic en chargeant un certificat de gestion, qui sera utilisé pour gérer les ressources de gestion des services Azure ou les ressources classiques à l’aide de Runbooks.  
+* Compte d’identification qui crée une nouvelle entité de service dans Azure Active Directory, un certificat et assigne hello collaborateur basée sur le rôle de contrôle d’accès (RBAC), qui sera utilisé à l’aide de procédures opérationnelles de ressources toomanage Gestionnaire de ressources.
+* Exécuter en tant que compte classique en téléchargeant un certificat de gestion, s’utilisé toomanage gestion des services Azure ou des ressources classiques à l’aide de procédures opérationnelles.  
 
-Le contrôle d’accès en fonction du rôle est disponible avec Azure Resource Manager pour attribuer des actions autorisées à un compte d’utilisateur Azure AD et à un compte d’identification, et pour authentifier ce principal du service.  Pour obtenir plus d’informations susceptibles de vous aider à développer votre modèle de gestion des autorisations Automation, consultez l’article [Contrôle d’accès en fonction du rôle dans Azure Automation](automation-role-based-access-control.md) .  
+Contrôle d’accès basé sur les rôles est disponible avec toogrant Azure Resource Manager autorisé le compte d’utilisateur Azure AD actions tooan et exécuter en tant que compte et authentifier ce principal de service.  Veuillez lire [contrôle d’accès basé sur le rôle dans l’article d’Azure Automation](automation-role-based-access-control.md) pour plus d’informations toohelp développer votre modèle pour la gestion des autorisations d’Automation.  
 
-Les Runbooks exécutés sur un Runbook Worker hybride dans votre centre de données ou sur des services informatiques dans AWS ne peuvent pas utiliser la même méthode que celle généralement utilisée pour l’authentification des Runbooks auprès des ressources Azure.  Cela est dû au fait que ces ressources sont en cours d’exécution en dehors d’Azure et, par conséquent, elles nécessitent leurs propres informations d’identification de sécurité définies dans Automation pour s’authentifier auprès des ressources auxquelles elles accèdent localement.  
+Procédures opérationnelles en cours d’exécution sur un Runbook Worker hybride dans votre centre de données ou par rapport à des services dans AWS informatiques ne peuvent pas utiliser hello même méthode qui est généralement utilisé pour l’authentification des ressources de tooAzure de runbooks.  Il s’agit, car ces ressources sont en cours d’exécution en dehors d’Azure et nécessitent donc leurs propres informations d’identification de sécurité définies dans Automation tooauthenticate tooresources qui leur seront accessible localement.  
 
 ## <a name="authentication-methods"></a>Méthodes d’authentification
-Le tableau suivant résume les différentes méthodes d’authentification pour chaque environnement pris en charge par Azure Automation et l’article décrivant comment configurer l’authentification pour vos runbooks.
+Hello tableau suivant récapitule les hello différentes méthodes d’authentification pour chaque environnement pris en charge par Azure Automation et de l’article de hello décrivant comment toosetup l’authentification pour les procédures opérationnelles.
 
 | Méthode | Environnement | Article |
 | --- | --- | --- |

@@ -1,6 +1,6 @@
 ---
-title: "Transmettre des valeurs complexes entre les modèles Azure | Microsoft Docs"
-description: "Ce didacticiel présente des approches recommandées pour l’utilisation des objets complexes afin de partager des données d’état avec des modèles Azure Resource Manager et leurs modèles liés."
+title: "aaaPass de valeurs complexes entre les modèles Azure | Documents Microsoft"
+description: "Montre recommandé approches pour l’utilisation de données d’état des objets complexes tooshare avec les modèles liés et les modèles Azure Resource Manager."
 services: azure-resource-manager
 documentationcenter: 
 author: tfitzmac
@@ -14,23 +14,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/26/2016
 ms.author: tomfitz
-ms.openlocfilehash: 23cc4321159a87b61c177b11381646af8bd9eb35
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 72df1dee351446cea6ce15269e6db288b1f1db79
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="share-state-to-and-from-azure-resource-manager-templates"></a>Partage d’état vers et depuis les modèles Azure Resource Manager
-Cette rubrique présente les bonnes pratiques pour gérer et partager l’état dans les modèles. Les paramètres et les variables présentés dans cette rubrique sont des exemples du type d'objets que vous pouvez définir pour organiser aisément votre déploiement. À partir de ces exemples, vous pouvez implémenter vos propres objets avec les valeurs de propriété pertinentes pour votre environnement.
+# <a name="share-state-tooand-from-azure-resource-manager-templates"></a>Tooand d’état de partage à partir de modèles Azure Resource Manager
+Cette rubrique présente les bonnes pratiques pour gérer et partager l’état dans les modèles. Hello paramètres et des variables dans cette rubrique sont des exemples de type hello d’objets que vous pouvez définir tooconveniently organiser vos exigences de déploiement. À partir de ces exemples, vous pouvez implémenter vos propres objets avec les valeurs de propriété pertinentes pour votre environnement.
 
-Cette rubrique fait partie d’un livre blanc plus volumineux. Pour lire le livre blanc complet, téléchargez [World Class Resource Manager Templates Considerations and Proven Practices](http://download.microsoft.com/download/8/E/1/8E1DBEFA-CECE-4DC9-A813-93520A5D7CFE/World Class ARM Templates - Considerations and Proven Practices.pdf) (Considérations et pratiques éprouvées concernant les modèles Resource Manager de classe mondiale).
+Cette rubrique fait partie d’un livre blanc plus volumineux. hello tooread complète papier, téléchargez [World classe ressource Gestionnaire de modèles et éprouvée méthodes conseillées](http://download.microsoft.com/download/8/E/1/8E1DBEFA-CECE-4DC9-A813-93520A5D7CFE/World Class ARM Templates - Considerations and Proven Practices.pdf).
 
 ## <a name="provide-standard-configuration-settings"></a>Fournir les paramètres de configuration standard
-Au lieu de proposer un modèle qui fournit une flexibilité totale et des variations innombrables, il est courant de fournir une sélection de configurations connues. En effet, les utilisateurs peuvent sélectionner des tailles de t-shirt standard comme enfant, petite, moyenne et grande. Les autres exemples de taille standard sont des offres de produits, telles que l’édition Community ou Enterprise. Dans d’autres cas, il peut s’agir de configurations d’une technologie propres à une charge de travail, par exemple MapReduce ou sans SQL.
+Au lieu de proposer un modèle qui fournit une flexibilité totale et nombreuses variations, un modèle commun est tooprovide une sélection de configurations connues. En effet, les utilisateurs peuvent sélectionner des tailles de t-shirt standard comme enfant, petite, moyenne et grande. Les autres exemples de taille standard sont des offres de produits, telles que l’édition Community ou Enterprise. Dans d’autres cas, il peut s’agir de configurations d’une technologie propres à une charge de travail, par exemple MapReduce ou sans SQL.
 
-Avec des objets complexes, vous pouvez créer des variables qui contiennent des collections de données, parfois appelées « conteneurs de propriétés » et utiliser ces données pour effectuer la déclaration de ressources dans votre modèle. Cette approche fournit des configurations correctes, connues de différentes tailles qui sont préconfigurées pour les clients. Sans configurations connues, les utilisateurs du modèle doivent eux-mêmes déterminer la taille de cluster, tenir compte des contraintes des ressources de plateforme et effectuer des opérations mathématiques pour identifier le partitionnement résultant des comptes de stockage et des autres ressources (en raison des contraintes de taille de cluster et de ressource). Outre l’amélioration de l’expérience du client qu’il procure, un petit nombre de configurations connues est plus facile à prendre en charge et peut vous aider à fournir un haut niveau de densité.
+Avec les objets complexes, vous pouvez créer des variables qui contiennent des collections de données, parfois appelées « conteneurs de propriétés » et utiliser cette déclaration de ressource données toodrive hello dans votre modèle. Cette approche fournit des configurations correctes, connues de différentes tailles qui sont préconfigurées pour les clients. Sans des configurations connues, les utilisateurs du modèle de hello doivent déterminer la taille de cluster sur leur propre facteur de contraintes de ressources de plateforme et faire mathématiques tooidentify hello résultant partitionnement des comptes de stockage et d’autres ressources (en raison de la taille de toocluster et contraintes de ressources). En outre toomaking une meilleure expérience client de hello, quelques configurations connues toosupport plus facile et peuvent vous aider à assurer un haut niveau de densité.
 
-L’exemple suivant indique comment définir des variables qui contiennent des objets complexes pour représenter des collections de données. Les collections définissent des valeurs utilisées pour la taille de machine virtuelle, des paramètres réseau, des paramètres de système d’exploitation et des paramètres de disponibilité.
+Hello suivant montre l’exemple de comment toodefine les variables qui contiennent les objets complexes pour représenter des collections de données. collections de Hello définissent les valeurs qui sont utilisées pour la taille de machine virtuelle, les paramètres réseau, les paramètres de système d’exploitation et les paramètres de disponibilité.
 
     "variables": {
       "tshirtSize": "[variables(concat('tshirtSize', parameters('tshirtSize')))]",
@@ -109,9 +109,9 @@ L’exemple suivant indique comment définir des variables qui contiennent des o
       }
     }
 
-Notez que la variable **tshirtSize** concatène la taille de t-shirt que vous avez fournie via un paramètre (**Small**, **Medium**, **Large**) au texte **tshirtSize**. Cette variable permet de récupérer la variable objet complexe associée pour cette taille de t-shirt.
+Notez que hello **tshirtSize** variable concatène une taille de t-shirt hello fourni via un paramètre (**petit**, **support**, **grande**) toohello texte **tshirtSize**. Vous utilisez cette variable objet complexe associé de hello tooretrieve variable pour cette taille de t-shirt.
 
-Vous pouvez ensuite référencer ces variables plus loin dans le modèle. La possibilité de référencer des variables nommées et leurs propriétés simplifie la syntaxe du modèle et la compréhension du contexte. L’exemple suivant définit une ressource à déployer à l’aide d’objets indiqués précédemment pour définir des valeurs. Par exemple, la taille de la machine virtuelle est définie en récupérant la valeur de `variables('tshirtSize').vmSize` tandis que la valeur de la taille du disque est extraite de `variables('tshirtSize').diskSize`. En outre, l'URI d'un modèle lié est défini avec la valeur de `variables('tshirtSize').vmTemplate`.
+Vous pouvez ensuite référencer ces variables plus loin dans le modèle de hello. Hello tooreference possibilité nommé-variables et leurs propriétés simplifie la syntaxe de modèle hello et rend facile toounderstand contexte. Hello, l’exemple suivant définit un toodeploy de ressources à l’aide d’objets hello illustrés précédemment tooset valeurs. Par exemple, hello taille de machine virtuelle est définie en récupérant la valeur hello pour `variables('tshirtSize').vmSize` tandis que la valeur de hello pour la taille du disque hello est récupéré à partir de `variables('tshirtSize').diskSize`. En outre, hello URI pour un modèle lié est défini avec la valeur hello pour `variables('tshirtSize').vmTemplate`.
 
     "name": "master-node",
     "type": "Microsoft.Resources/deployments",
@@ -166,23 +166,23 @@ Vous pouvez ensuite référencer ces variables plus loin dans le modèle. La pos
       }
     }
 
-## <a name="pass-state-to-a-template"></a>Passer l’état à un modèle
+## <a name="pass-state-tooa-template"></a>Passez le modèle d’état tooa
 Vous pouvez partager l’état dans un modèle via les paramètres que vous fournissez directement pendant le déploiement.
 
-Le tableau suivant répertorie les paramètres couramment utilisés dans les modèles.
+Hello table des paramètres de listes couramment utilisées dans les modèles suivants.
 
 | Nom | Valeur | Description |
 | --- | --- | --- |
-| location |Chaîne obtenue à partir d’une liste contrainte des régions Azure |L’emplacement où les ressources sont déployées. |
-| storageAccountNamePrefix |String |Il s’agit du nom DNS unique du compte de stockage où sont placés les disques de la machine virtuelle. |
-| domainName |String |Il s’agit du nom de domaine de la machine virtuelle jumpbox publique, dont le format est : **{Nom_de_domaine}.{emplacement}.cloudapp.com**. Par exemple : **monnomdedomaine.westus.cloudapp.azure.com** |
-| adminUsername |Chaîne |Il s’agit du nom d’utilisateur des machines virtuelles |
-| adminPassword |Chaîne |Il s’agit du mot de passe des machines virtuelles |
-| tshirtSize |Chaîne obtenue à partir d’une liste contrainte des propositions de tailles de t-shirt |Il s’agit de la taille d’unité d’échelle nommée à approvisionner. Par exemple, « Petit », « Moyen », « Grand » |
-| virtualNetworkName |Chaîne |Il s’agit du nom du réseau virtuel que le consommateur souhaite utiliser. |
-| enableJumpbox |Chaîne obtenue à partir d’une liste contrainte (activée/désactivée) |Paramètre indiquant s’il faut activer une jumpbox pour l’environnement. Valeurs : « activée », « désactivée » |
+| location |Chaîne obtenue à partir d’une liste contrainte des régions Azure |emplacement Hello où vous déployez des ressources de hello. |
+| storageAccountNamePrefix |String |Nom DNS unique pour hello compte de stockage où sont placés les disques de l’ordinateur virtuel hello |
+| domainName |String |Nom de domaine de hello accessible publiquement jumpbox machine virtuelle dans un format de hello : **{domainName}. {} emplacement}.cloudapp.com** par exemple : **mydomainname.westus.cloudapp.azure.com** |
+| adminUsername |String |Nom d’utilisateur pour hello machines virtuelles |
+| adminPassword |String |Mot de passe pour hello machines virtuelles |
+| tshirtSize |Chaîne obtenue à partir d’une liste contrainte des propositions de tailles de t-shirt |Hello nommé tooprovision de taille d’unité mise à l’échelle. Par exemple, « Petit », « Moyen », « Grand » |
+| virtualNetworkName |String |Nom de réseau virtuel hello hello consommateur souhaite toouse. |
+| enableJumpbox |Chaîne obtenue à partir d’une liste contrainte (activée/désactivée) |Paramètre qui identifie si tooenable un jumpbox pour l’environnement de hello. Valeurs : « activée », « désactivée » |
 
-Le paramètre **tshirtSize** utilisé dans la section précédente est défini comme suit :
+Hello **tshirtSize** paramètre utilisé dans la section précédente de hello est défini en tant que :
 
     "parameters": {
       "tshirtSize": {
@@ -194,21 +194,21 @@ Le paramètre **tshirtSize** utilisé dans la section précédente est défini c
           "Large"
         ],
         "metadata": {
-          "Description": "T-shirt size of the MongoDB deployment"
+          "Description": "T-shirt size of hello MongoDB deployment"
         }
       }
     }
 
 
-## <a name="pass-state-to-linked-templates"></a>Passer l’état à des modèles liés
-Lors de la connexion aux modèles liés, vous utilisez généralement une combinaison de variables statiques et générées.
+## <a name="pass-state-toolinked-templates"></a>Passer des modèles de toolinked d’état
+Lors de la connexion toolinked modèles, vous souvent utilisez un mélange de static et généré des variables.
 
 ### <a name="static-variables"></a>Variables statiques
-Des variables statiques sont souvent utilisées pour fournir les valeurs de base, telles que des URL, qui sont utilisées au sein d’un modèle.
+Les variables statiques sont souvent des valeurs de base tooprovide utilisées, telles que les URL, qui sont utilisés dans un modèle.
 
-Dans l’extrait de modèle suivant, `templateBaseUrl` indique l’emplacement racine du modèle dans GitHub. La ligne suivante génère une nouvelle variable `sharedTemplateUrl` qui concatène l’URL de base avec le nom connu du modèle de ressources partagées. En dessous de cette ligne, une variable objet complexe est utilisée pour stocker une taille de t-shirt, dans laquelle l’URL de base est concaténée à l’emplacement du modèle de configuration connu et stockée dans la propriété `vmTemplate`.
+Bonjour suivant extrait du modèle, `templateBaseUrl` Spécifie l’emplacement racine du hello pour le modèle de hello dans GitHub. ligne suivante de Hello génère une nouvelle variable `sharedTemplateUrl` qui concatène hello les URL de base avec le nom connu de hello du modèle de ressources partagées hello. Sous cette ligne, une variable objet complexe toostore utilisé une taille de t-shirt, où est URL de base hello toohello concaténée connu d’emplacement de modèle de configuration et stockées dans hello `vmTemplate` propriété.
 
-L’avantage de cette approche est que si l’emplacement du modèle change, il vous suffit de modifier la variable statique à un endroit, d’où la modification est transmise à tous les modèles liés.
+avantage Hello de cette approche est que si l’emplacement du modèle hello change, vous devez uniquement variable statique de hello toochange dans un seul endroit, ce qui se passe dans l’ensemble de modèles de hello lié.
 
     "variables": {
       "templateBaseUrl": "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/postgresql-on-ubuntu/",
@@ -230,13 +230,13 @@ L’avantage de cette approche est que si l’emplacement du modèle change, il 
     }
 
 ### <a name="generated-variables"></a>Variables générées
-En plus des variables statiques, plusieurs variables sont générées dynamiquement. Cette section répertorie les types courants de variables générées.
+Dans les variables toostatic de plus, plusieurs variables sont générées dynamiquement. Cette section répertorie quelques-uns des types courants de hello de variables générés.
 
 #### <a name="tshirtsize"></a>tshirtSize
-Vous connaissez déjà cette variable générée de l’exemple précédent.
+Vous êtes familiarisé avec cette variable générée à partir d’exemples hello ci-dessus.
 
 #### <a name="networksettings"></a>networkSettings
-Dans une capacité, une fonctionnalité ou un modèle de solution étendue de bout en bout, les modèles liés créent généralement des ressources qui existent sur un réseau. Une approche simple consiste à utiliser un objet complexe pour stocker les paramètres de réseau et les transmettre aux modèles liés.
+Un Bonjour de capacité, fonctionnalité ou le modèle de solution avec étendue de bout en bout, modèles liés créent généralement des ressources qui existent sur un réseau. Une approche simple est toouse paramètres réseau toostore objet complexe et les passer toolinked modèles.
 
 Un exemple de paramètres de réseau de communication est affiché ci-dessous.
 
@@ -258,7 +258,7 @@ Un exemple de paramètres de réseau de communication est affiché ci-dessous.
     }
 
 #### <a name="availabilitysettings"></a>availabilitySettings
-Les ressources créées dans des modèles liés sont souvent placées dans un groupe à haute disponibilité. Dans l’exemple suivant, le nom du groupe à haute disponibilité est spécifié, ainsi que le nombre de domaines d’erreur et de domaines de mise à jour à utiliser.
+Les ressources créées dans des modèles liés sont souvent placées dans un groupe à haute disponibilité. Dans l’exemple suivant de hello, nom du jeu de disponibilité hello est spécifié et également hello domaine d’erreur et toouse de compte de domaine de mise à jour.
 
     "availabilitySetSettings": {
       "name": "pgsqlAvailabilitySet",
@@ -266,10 +266,10 @@ Les ressources créées dans des modèles liés sont souvent placées dans un gr
       "udCount": 5
     }
 
-Si vous avez besoin de plusieurs groupes à haute disponibilité (par exemple, un pour les nœuds principaux et un autre pour les nœuds de données), vous pouvez utiliser un nom en tant que préfixe, indiquer plusieurs groupes à haute disponibilité, ou suivre le modèle indiqué précédemment pour créer une variable pour une taille de t-shirt spécifique.
+Si vous avez besoin de plusieurs groupes à haute disponibilité (par exemple, un pour les nœuds principaux) et l’autre pour les nœuds de données, vous pouvez utiliser un nom en tant que préfixe, spécifiez plusieurs ensembles de disponibilité ou de suivre le modèle hello indiquée précédemment pour créer une variable pour une taille de t-shirt spécifique.
 
 #### <a name="storagesettings"></a>storageSettings
-Les détails du stockage sont souvent partagés avec les modèles liés. Dans l'exemple ci-dessous, un objet *storageSettings* fournit des détails sur les noms du compte de stockage et du conteneur de stockage.
+Les détails du stockage sont souvent partagés avec les modèles liés. Dans l’exemple hello ci-dessous, un *storageSettings* objet fournit des détails sur hello les noms de compte et conteneur de stockage.
 
     "storageSettings": {
         "vhdStorageAccountName": "[parameters('storageAccountName')]",
@@ -278,9 +278,9 @@ Les détails du stockage sont souvent partagés avec les modèles liés. Dans l'
     }
 
 #### <a name="ossettings"></a>osSettings
-Si vous utilisez des modèles liés, vous devrez peut-être transmettre des paramètres de système d’exploitation à différents types de nœuds entre les différents types de configurations connus. Un objet complexe est pratique pour stocker et partager facilement des informations de système d’exploitation et facilite également la prise en charge de plusieurs options de système d’exploitation pour le déploiement.
+Avec les modèles liés, vous devrez peut-être toopass les types de nœuds de toovarious paramètres de système d’exploitation sur les types de configuration connu différente. Un objet complexe est un moyen simple toostore et partage de système d’exploitation et le rend également toosupport plus facilement plusieurs choix de système d’exploitation pour le déploiement.
 
-L’exemple suivant montre un objet pour *osSettings*:
+Hello suivant montre un objet pour *osSettings*:
 
     "osSettings": {
       "imageReference": {
@@ -292,7 +292,7 @@ L’exemple suivant montre un objet pour *osSettings*:
     }
 
 #### <a name="machinesettings"></a>machineSettings
-Une variable générée, *machineSettings* est un objet complexe contenant un mélange de variables de base pour la création d’une machine virtuelle. Les variables incluent le nom et le mot de passe d’utilisateur administrateur, un préfixe pour les noms de machine virtuelle et une référence de l’image du système d’exploitation.
+Une variable générée, *machineSettings* est un objet complexe contenant un mélange de variables de base pour la création d’une machine virtuelle. les variables Hello incluent une référence d’image de système d’exploitation, nom d’utilisateur administrateur et un mot de passe et un préfixe pour les noms de machine virtuelle hello.
 
     "machineSettings": {
         "adminUsername": "[parameters('adminUsername')]",
@@ -306,17 +306,17 @@ Une variable générée, *machineSettings* est un objet complexe contenant un m�
         }
     },
 
-Notez que *osImageReference* récupère les valeurs à partir de la variable *osSettings* définie dans le modèle principal. Cela signifie que vous pouvez facilement modifier le système d’exploitation d’une machine virtuelle, soit entièrement, soit en fonction de la préférence d’un consommateur du modèle.
+Notez que *osImageReference* récupère hello des valeurs à partir de hello *osSettings* variable définie dans les modèles principal hello. Cela signifie que vous pouvez facilement modifier le système d’exploitation de hello pour une machine virtuelle — totalement ou selon la préférence hello d’un consommateur de modèle.
 
 #### <a name="vmscripts"></a>vmScripts
-L'objet *vmScripts* contient des détails sur les scripts à télécharger et exécuter sur une instance de machine virtuelle, notamment des références externes et internes. Les références extérieures incluent l’infrastructure.
-Les références intérieures incluent le logiciel installé et la configuration.
+Hello *vmScripts* de l’objet contient des détails sur toodownload de scripts hello et d’exécution sur une instance de machine virtuelle, y compris les références externes et internes. En dehors de références incluent les infrastructure hello.
+Les références à l’intérieur incluent la configuration et les logiciels installé de hello installé.
 
-La propriété *scriptsToDownload* permet de répertorier les scripts à télécharger vers la machine virtuelle. Cet objet contient également des références pointant vers des arguments de ligne de commande pour différents types d’actions. Ces actions incluent l’exécution de l’installation par défaut pour chaque nœud, une installation qui s’exécute après le déploiement de tous les nœuds et l’exécution de tous les scripts pouvant être spécifiques à un modèle donné.
+Vous utilisez hello *scriptsToDownload* hello toolist de propriété scripts toodownload toohello machine virtuelle. Cet objet contient également des références des arguments de ligne toocommand pour différents types d’actions. Ces actions incluent l’exécution d’installation par défaut de hello pour chaque nœud, une installation qui s’exécute après que tous les nœuds sont déployés et des scripts supplémentaires qui peuvent être spécifique tooa donné du modèle.
 
-Cet exemple est tiré d’un modèle utilisé pour déployer MongoDB, qui nécessite un arbitre pour garantir une haute disponibilité. La chaîne *arbiterNodeInstallCommand* a été ajoutée à *vmScripts* pour installer l’arbitre.
+Cet exemple fait à partir d’un modèle utilisé de toodeploy MongoDB, qui requiert une arbitre toodeliver une haute disponibilité. Hello *arbiterNodeInstallCommand* a été ajouté trop*vmScripts* tooinstall l’arbitre hello.
 
-Dans la section des variables, vous trouvez les variables qui définissent le texte spécifique pour exécuter le script avec les valeurs appropriées.
+section de variables Hello est où trouver des variables hello qui définissent le script de hello tooexecute hello un texte spécifique avec les valeurs appropriées de hello.
 
     "vmScripts": {
         "scriptsToDownload": [
@@ -330,9 +330,9 @@ Dans la section des variables, vous trouvez les variables qui définissent le te
 
 
 ## <a name="return-state-from-a-template"></a>Retourner l’état à partir d’un modèle
-Vous pouvez non seulement transmettre des données vers un modèle, mais également renvoyer des données partagées vers le modèle d’appel. Dans la section **sortie** d'un modèle lié, vous pouvez fournir des paires clé/valeur qui peuvent être utilisées par le modèle source.
+Non seulement peuvent passer des données dans un modèle, vous pouvez également un modèle de partage de données toohello précédent appel. Bonjour **génère** section d’un modèle lié, vous pouvez fournir des paires clé/valeur qui peuvent être consommés par le modèle de source de hello.
 
-L’exemple suivant montre comment transmettre l’adresse IP privée générée dans un modèle lié.
+Hello suivant montre comment toopass hello adresse IP privée générée dans un modèle lié.
 
     "outputs": {
         "masterip": {
@@ -341,11 +341,11 @@ L’exemple suivant montre comment transmettre l’adresse IP privée générée
          }
     }
 
-Dans le modèle principal, vous pouvez utiliser ces données avec la syntaxe suivante :
+Dans le modèle principal de hello, vous pouvez utiliser ces données avec la syntaxe de hello :
 
     "[reference('master-node').outputs.masterip.value]"
 
-Vous pouvez utiliser cette expression dans la section outputs ou la section resources du modèle principal. En revanche, vous ne pouvez pas l’utiliser dans la section variables, car elle dépend de l’état d’exécution. Pour retourner cette valeur à partir du modèle principal, utilisez :
+Vous pouvez utiliser cette expression dans hello sorties soit hello ressources de modèle principal de hello. Impossible d’utiliser expression de hello dans la section des variables hello, car il s’appuie sur l’état d’exécution hello. tooreturn cette valeur à partir du modèle principal hello, utilisez :
 
     "outputs": {
       "masterIpAddress": {
@@ -353,10 +353,10 @@ Vous pouvez utiliser cette expression dans la section outputs ou la section reso
         "type": "string"
       }
 
-Pour obtenir un exemple dans lequel la section outputs d’un modèle lié est utilisée pour retourner des disques de données pour une machine virtuelle, consultez [Création de plusieurs disques de données pour une machine virtuelle](resource-group-create-multiple.md).
+Pour obtenir un exemple d’utilisation de hello génère section un modèle lié tooreturn de disques de données pour un ordinateur virtuel, consultez [création de plusieurs disques de données pour un ordinateur virtuel](resource-group-create-multiple.md).
 
 ## <a name="define-authentication-settings-for-virtual-machine"></a>Définir les paramètres d’authentification d’une machine virtuelle
-Vous pouvez spécifier les paramètres d’authentification d’une machine virtuelle selon le modèle présenté précédemment pour les paramètres de configuration. Vous créez un paramètre pour passer le type d’authentification.
+Vous pouvez utiliser hello même modèle indiqué précédemment pour les paramètres d’authentification hello des toospecify de paramètres de configuration pour un ordinateur virtuel. Vous créez un paramètre pour passer de type hello d’authentification.
 
     "parameters": {
       "authenticationType": {
@@ -372,7 +372,7 @@ Vous pouvez spécifier les paramètres d’authentification d’une machine virt
       }
     }
 
-Vous ajoutez des variables pour les différents types d’authentification et une variable pour stocker le type utilisé pour ce déploiement en fonction de la valeur du paramètre.
+Vous ajoutez des variables pour hello différents types d’authentification et une variable toostore que le type est utilisé pour ce déploiement basé sur la valeur hello du paramètre hello.
 
     "variables": {
       "osProfile": "[variables(concat('osProfile', parameters('authenticationType')))]",
@@ -400,7 +400,7 @@ Vous ajoutez des variables pour les différents types d’authentification et un
       }
     }
 
-Au moment de définir la machine virtuelle, vous affectez à **osProfile** la variable que vous avez créée.
+Lorsque vous définissez l’ordinateur virtuel de hello, vous définissez hello **osProfile** variable toohello vous avez créée.
 
     {
       "type": "Microsoft.Compute/virtualMachines",
@@ -410,5 +410,5 @@ Au moment de définir la machine virtuelle, vous affectez à **osProfile** la va
 
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Pour en savoir plus sur les sections du modèle, consultez [Création de modèles Azure Resource Manager](resource-group-authoring-templates.md)
-* Pour consulter les fonctions disponibles dans un modèle, voir [Fonctions des modèles Azure Resource Manager](resource-group-template-functions.md)
+* toolearn sur les sections hello hello du modèle de, consultez [de création de modèles de gestionnaire de ressources Azure](resource-group-authoring-templates.md)
+* les fonctions hello toosee qui sont disponibles dans un modèle, consultez [fonctions de modèle de gestionnaire de ressources Azure](resource-group-template-functions.md)

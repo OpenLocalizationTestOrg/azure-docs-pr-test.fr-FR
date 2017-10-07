@@ -1,6 +1,6 @@
 ---
-title: "H264 - Vitesse de transmission multiple - 4 x 3 SD -Audio 5.1 | Microsoft Docs"
-description: "Cette rubrique offre une vue d’ensemble de la présélection de travaux **H264 -Vitesse de transmission multiple -4 x 3 SD - Audio 5.1**."
+title: "aaaH264 transmission Multiple 4 x 3 SD – Audio 5.1 | Documents Microsoft"
+description: "rubrique de Hello donne une vue d’ensemble de hello ** H264 plusieurs débits binaires 4 x 3 SD – Audio 5.1* * présélection de tâches."
 author: Juliako
 manager: cfowler
 editor: 
@@ -14,21 +14,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/20/2017
 ms.author: juliako
-ms.openlocfilehash: ff918754b224b0ee9158d73d57aa514dbec595ed
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 894c89067f387ae3823df77a7ae9c4e64047dd31
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="h264-multiple-bitrate-4x3-sd-audio-51"></a>H264 – Vitesse de transmission multiple – 4 x 3 SD – Audio 5.1
-`Media Encoder Standard` définit un ensemble de présélections d’encodage à utiliser lors de la création de travaux d’encodage. Vous pouvez utiliser un `preset name` afin de spécifier le format dans lequel vous souhaitez encoder votre fichier multimédia. Sinon, vous pouvez créer vos propres présélections basées sur JSON ou XML (à l’aide de l’encodage UTF-8 ou UTF-16). Vous pouvez ensuite transmettre la présélection personnalisée à l’encodeur. Pour obtenir la liste de tous les noms de présélections pris en charge par cet encodeur `Media Encoder Standard`, consultez [Présélections de tâches pour Media Encoder Standard](media-services-mes-presets-overview.md).  
+`Media Encoder Standard` définit un ensemble de présélections d’encodage à utiliser lors de la création de travaux d’encodage. Vous pouvez utiliser un `preset name` toospecify dans le format que tooencode votre fichier multimédia. Sinon, vous pouvez créer vos propres présélections basées sur JSON ou XML (à l’aide de l’encodage UTF-8 ou UTF-16). Vous pouvez ensuite transmettre encodeur personnalisé toohello prédéfini de hello. Pour la liste de tous les hello hello présélection noms pris en charge par ce `Media Encoder Standard` encodeur, consultez [Présélections de tâches pour Media Encoder Standard](media-services-mes-presets-overview.md).  
   
- Cette rubrique représente la présélection `H264 Multiple Bitrate 4x3 SD Audio 5.1` aux formats XML et JSON.  
+ Cette rubrique montre hello `H264 Multiple Bitrate 4x3 SD Audio 5.1` prédéfinie au format XML et JSON.  
   
- Cette présélection produit un ensemble de 5 fichiers MP4 alignés sur le groupe d’images, de 1 600 kbit/s à 400 kbit/s, et de l’audio AAC 5.1. Pour plus d’informations sur le profil, la vitesse de transmission, la fréquence d’échantillonnage, etc. de cette présélection, examinez le format XML ou JSON défini ci-dessous. Pour consulter une explication de la signification des éléments et les valeurs valides pour chaque élément, consultez la rubrique [Media Encoder Standard schema](media-services-mes-schema.md) (Schéma Media Encoder Standard).  
+ Cette valeur prédéfinie génère un ensemble de 5 fichiers MP4 alignés GOP, allant des Kbits/s de 1600 Kbits/s too400 et audio AAC 5.1. Pour obtenir des informations détaillées sur le profil, vitesse de transmission, d’échantillonnage, le taux, etc. cela prédéfinies, examiner hello XML ou JSON défini ci-dessous. Pour des explications signifie de chaque élément et les valeurs valides de hello pour chaque élément, consultez hello [schéma Media Encoder Standard](media-services-mes-schema.md)...  
   
 > [!NOTE]
->  Lorsque vous modifiez les valeurs `Width` et `Height` sur les couches, assurez-vous que les proportions demeurent constantes. Par exemple : 1 920 x 1 080, 1 280 x 720, 1 080 x 576, 640 x 360. Vous ne devez pas utiliser un mélange de proportions, comme : 1 280 x 720, 720 x 480, 640 x 360.  
+>  Lorsque vous modifiez hello `Width` et `Height` couches, les valeurs s’assurer que proportions hello reste cohérente. Par exemple : 1 920 x 1 080, 1 280 x 720, 1 080 x 576, 640 x 360. Vous ne devez pas utiliser un mélange de proportions, comme : 1 280 x 720, 720 x 480, 640 x 360.  
   
  XML  
   

@@ -1,6 +1,6 @@
 ---
-title: "Qu’est-il arrivé à mon projet service cloud ? | Microsoft Docs"
-description: "Décrit ce qui se produit dans un projet services cloud une fois que vous vous connectez à un compte de stockage Azure à l’aide des services connectés de Visual Studio"
+title: "aaaWhat est devenu toomy projet de service cloud ? | Microsoft Docs"
+description: "Décrit ce qui se passe dans un projet de services cloud après que connexion tooan compte de stockage Azure à l’aide de Visual Studio services connectés"
 services: storage
 documentationcenter: 
 author: TomArcher
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/02/2016
 ms.author: tarcher
-ms.openlocfilehash: 4e0d4864c2fad624fbde39080146dc62ebebff09
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 65662dde45dd75bca1b57022283f76305f95e94a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="what-happened-to-my-cloud-services-project-visual-studio-azure-storage-connected-service"></a>Qu’est-il arrivé à mon projet services cloud (service connecté Azure Storage de Visual Studio) ?
+# <a name="what-happened-toomy-cloud-services-project-visual-studio-azure-storage-connected-service"></a>Les services de cloud computing s’est produit toomy de projets (Visual Studio Azure Storage connecté service) ?
 ## <a name="references-added"></a>Références ajoutées
-Le package NuGet Azure Storage a été ajouté à votre projet Visual Studio.  
-Ce package ajoute les références .NET suivantes :
+package NuGet de stockage Azure de Hello a été ajouté le projet de Visual Studio tooyour.  
+Ce package ajoute hello suivant des références .NET :
 
 * **Microsoft.Data.Edm**
 * **Microsoft.Data.OData**
@@ -35,7 +35,7 @@ Ce package ajoute les références .NET suivantes :
 * **System.Spatial**
 
 ## <a name="connection-string-for-azure-storage-added"></a>Chaîne de connexion pour Azure Storage ajoutée
-Les éléments ont été créés avec la clé et la chaîne de connexion du compte de stockage sélectionné. Des modifications ont été apportées aux fichiers suivants :
+Éléments ont été créées avec la chaîne de connexion et la clé du compte de stockage hello sélectionné. Les modifications ont été apportées toohello fichiers suivants :
 
 * **ServiceDefinition.csdef**
 * **ServiceConfiguration.Cloud.cscfg**

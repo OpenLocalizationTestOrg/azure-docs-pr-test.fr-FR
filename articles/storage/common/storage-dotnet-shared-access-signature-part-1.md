@@ -1,6 +1,6 @@
 ---
-title: "Utilisation des signatures d’accès partagé (SAP) dans le stockage Azure | Microsoft Docs"
-description: "Apprenez à utiliser des signatures d’accès partagé (SAP) pour déléguer l’accès aux ressources de stockage Azure, notamment les objets blob, les files d’attente, les tables et les fichiers."
+title: "aaaUsing partagé (SAS) des signatures d’accès dans le stockage Azure | Documents Microsoft"
+description: "En savoir plus toouse partagé accès signatures (SAS) toodelegate accès tooAzure ressources de stockage, y compris les objets BLOB, les files d’attente, les tables et les fichiers."
 services: storage
 documentationcenter: 
 author: mmacy
@@ -14,80 +14,80 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 04/18/2017
 ms.author: marsma
-ms.openlocfilehash: a753fd481c9f91d94b6a2bd3633142e2dddedaec
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 5b75a3c25bcfb9f1ceb81f31dc2d42376bd105cb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="using-shared-access-signatures-sas"></a>Utilisation des signatures d’accès partagé (SAP)
 
-Une signature d’accès partagé (SAP) constitue un moyen d’octroyer aux autres clients un accès limité aux objets dans votre compte de stockage, sans exposer votre clé de compte. Dans cet article, nous vous présentons un aperçu du modèle SAP, passons en revue les bonnes pratiques concernant les signatures d’accès partagé et examinons quelques exemples.
+Une signature d’accès partagé (SAS) vous offre un tooobjects d’accès toogrant limitée moyen dans votre compte de stockage tooother clients, sans exposer votre clé de compte. Dans cet article, nous fournissent une vue d’ensemble du modèle SAS hello, consulter les meilleures pratiques SAS et consulter des exemples.
 
-Pour obtenir d’autres exemples de code utilisant la SAP, consultez la page [Azure Blob Storage Samples for .NET](https://azure.microsoft.com/documentation/samples/storage-blob-dotnet-getting-started/) (Exemples de stockage Blob Azure pour .NET). Pour d’autres exemples, consultez la bibliothèque [Exemples de code Azure](https://azure.microsoft.com/documentation/samples/?service=storage). Vous pouvez télécharger des exemples d’application et les exécuter ou parcourir le code sur GitHub.
+Pour obtenir des exemples de code supplémentaire à l’aide de SAP au-delà de celles présentées ici, consultez [prise en main de stockage d’objets Blob Azure dans .NET](https://azure.microsoft.com/documentation/samples/storage-blob-dotnet-getting-started/) et d’autres exemples disponibles dans hello [exemples de Code Azure](https://azure.microsoft.com/documentation/samples/?service=storage) bibliothèque. Vous pouvez télécharger des exemples d’applications hello et les exécuter ou parcourir le code hello sur GitHub.
 
 ## <a name="what-is-a-shared-access-signature"></a>Présentation de la signature d’accès partagé
-Une signature d'accès partagé fournit un accès délégué aux ressources de votre compte de stockage. Avec une signature d’accès partagé, vous pouvez accorder aux clients l’accès aux ressources dans votre compte de stockage sans partager les clés de votre compte. C’est tout l’intérêt d’utiliser des signatures d’accès partagé dans vos applications : une SAP est un moyen sécurisé de partager vos ressources de stockage sans compromettre vos clés de compte.
+Une signature d’accès partagé fournit tooresources accès délégué dans votre compte de stockage. Avec une SAP, vous pouvez accorder les clients d’accès tooresources dans votre compte de stockage sans partager vos clés de compte. Il s’agit hello le point clé de l’utilisation de signatures d’accès partagé dans vos applications--une SAP est un tooshare de manière sécurisée à vos ressources de stockage sans compromettre vos clés de compte.
 
 [!INCLUDE [storage-account-key-note-include](../../../includes/storage-account-key-note-include.md)]
 
-Une SAP vous donne un contrôle précis sur le type d’accès que vous accordez aux clients qui disposent de la SAP, notamment :
+Un SAS vous donne un contrôle précis sur le type de hello d’accès que vous accordez tooclients ayant hello SAP, y compris :
 
-* L’intervalle pendant lequel la SAP est valide, y compris l’heure de début et l’heure d’expiration.
-* Les autorisations accordées par la SAP. Par exemple, une SAP pour un objet blob peut accorder des autorisations en lecture et en écriture sur cet objet blob, mais pas d’autorisations de suppression.
-* Une adresse IP ou plage d’adresses IP facultative à partir de laquelle le stockage Azure acceptera la signature d’accès partagé. Par exemple, vous pouvez spécifier une plage d’adresses IP appartenant à votre organisation.
-* Le protocole sur lequel le stockage Azure acceptera la SAP. Vous pouvez utiliser ce paramètre facultatif pour restreindre l’accès aux clients à l’aide de HTTPS.
+* intervalle de salutation sur quel hello SAS est valide, y compris l’heure de début hello et l’heure d’expiration de hello.
+* autorisations de Hello accordées par hello SAS. Par exemple, un SAS pour un objet blob peut accorder en lecture et écriture autorisations toothat blob, mais pas supprimer des autorisations.
+* Une adresse IP facultatif ou la plage d’adresses IP à partir de laquelle le stockage Azure acceptera hello SAS. Par exemple, vous pouvez spécifier une plage d’adresses IP appartenant tooyour organisation.
+* protocole Hello sur lequel le stockage Azure acceptera hello SAS. Vous pouvez utiliser cette tooclients d’accès toorestrict paramètre facultatif à l’aide de HTTPS.
 
 ## <a name="when-should-you-use-a-shared-access-signature"></a>Quand devez-vous utiliser une signature d’accès partagé ?
-Vous pouvez utiliser une signature d’accès partagé quand vous voulez fournir un accès aux ressources dans votre compte de stockage à un client qui ne dispose pas des clés d’accès de votre compte de stockage. Votre compte de stockage inclut une clé d’accès primaire et une clé d’accès secondaire, qui octroient toutes deux un accès administratif à votre compte et à toutes les ressources qu’il contient. En exposant l’une ou l’autre de ces clés, vous courez le risque d’une utilisation malveillante ou négligente de votre compte. Les signatures d’accès partagé offrent une alternative sûre qui permet aux clients de lire, d’écrire et de supprimer des données dans votre compte de stockage en fonction des autorisations que vous avez explicitement octroyées, sans avoir besoin d’une clé du compte.
+Vous pouvez utiliser une SAP lorsque vous souhaitez tooprovide accès tooresources dans votre client de tooany de compte de stockage ne possédant ne pas de clés d’accès de votre compte de stockage. Votre compte de stockage inclut à la fois une clé d’accès primaire et secondaire, qui accorder le compte d’accès administratif tooyour et toutes les ressources qu’il contient. Exposition d’une de ces clés ouvre votre possibilité de toohello compte d’utilisation malveillante ou involontaire. Signatures d’accès partagé offrent une solution sécurisée qui permet aux clients tooread, écriture et suppression des données dans votre compte de stockage en fonction des autorisations toohello que vous avez accordé explicitement et sans besoin d’une clé de compte.
 
-Un service où les utilisateurs lisent et écrivent leurs propres données dans votre compte de stockage correspond à un scénario courant dans lequel une signature d'accès partagé peut s'avérer utile. Dans un scénario où un compte de stockage stocke les données utilisateur, il existe deux modèles de conception types :
+Un scénario courant où une SAP est utile est un service où les utilisateurs lire et écrire son propre compte de stockage de données tooyour. Dans un scénario où un compte de stockage stocke les données utilisateur, il existe deux modèles de conception types :
 
-1. Les clients chargent et téléchargent les données par le biais d’un service proxy frontal, qui se charge de l’authentification. Ce service présente l'avantage de permettre la validation des règles métier, mais pour de grosses quantités de données ou des transactions à haut volume, la création d'un service qui peut être mis à l'échelle en fonction de la demande peut se révéler coûteuse ou difficile.
+1. Les clients chargent et téléchargent les données par le biais d’un service proxy frontal, qui se charge de l’authentification. Ce service de proxy frontal a l’avantage hello de validation de règles d’entreprise, mais pour grandes quantités de données ou des transactions volumineuses, créez un service qui peut évoluer à la demande toomatch peut être difficile ou coûteuse.
 
   ![Schéma du scénario : service proxy frontal](./media/storage-dotnet-shared-access-signature-part-1/sas-storage-fe-proxy-service.png)   
 
-1. Un service léger authentifie le client en fonction des besoins, puis génère une signature d’accès partagé. Une fois que le client reçoit la signature, il peut accéder aux ressources du compte de stockage directement avec les autorisations définies par la signature d'accès partagé et pendant l'intervalle autorisé par cette dernière. La signature d'accès partagé atténue la nécessité du routage de toutes les données via le service proxy frontal.
+1. Un service léger authentifie le client de hello en fonction des besoins et génère ensuite un SAS. Une fois que le client de hello reçoit hello SAS, ils peuvent accéder les ressources de compte de stockage directement avec les autorisations hello définies par hello SAP et pour intervalle hello autorisée par hello SAS. Hello SAS atténue la nécessité de hello pour le routage de toutes les données via le service de proxy frontal hello.
 
   ![Schéma du scénario : service du fournisseur SAP](./media/storage-dotnet-shared-access-signature-part-1/sas-storage-provider-service.png)   
 
-De nombreux services réels peuvent utiliser un mélange de ces deux approches. Par exemple, certaines données peuvent être traitées et validées via le proxy frontal, tandis que les autres données sont enregistrées et/ou lues directement à l’aide de SAP.
+De nombreux services réels peuvent utiliser un mélange de ces deux approches. Par exemple, certaines données peuvent être traitées et validées via le proxy frontal hello, alors que les autres données sont enregistrées et/ou lire directement à l’aide de SAP.
 
-En outre, vous devez utiliser une SAP pour authentifier l’objet source d’une opération de copie, dans certains cas de figure :
+En outre, vous devez toouse un objet de source SAP tooauthenticate hello dans une opération de copie dans certains scénarios :
 
-* Lorsque vous copiez un objet blob dans un autre objet blob qui réside dans un autre compte de stockage, vous devez utiliser une SAP pour authentifier l’objet blob source. Vous pouvez éventuellement utiliser une SAP pour authentifier également l’objet blob de destination.
-* Lorsque vous copiez un objet blob dans un autre fichier qui réside dans un autre compte de stockage, vous devez utiliser une SAP pour authentifier le fichier source. Vous pouvez éventuellement utiliser une SAP pour authentifier également le fichier de destination.
-* Lorsque vous copiez un objet blob dans un fichier ou un fichier dans un objet blob, vous devez utiliser une SAP pour authentifier l’objet source, même si les objets source et de destination résident dans le même compte de stockage.
+* Lorsque vous copiez un objet blob tooanother blob qui réside dans un autre compte de stockage, vous devez utiliser un objet blob de la source SAS tooauthenticate hello. Vous pouvez éventuellement utiliser un SAS tooauthenticate hello objet blob de destination ainsi.
+* Lorsque vous copiez un fichier tooanother qui se trouve dans un autre compte de stockage, vous devez utiliser un fichier de source SAP tooauthenticate hello. Vous pouvez éventuellement utiliser un SAS tooauthenticate hello fichier de destination ainsi.
+* Lorsque vous copiez un fichier de tooa blob ou d’un objet blob tooa de fichier, vous devez utiliser un objet de source SAP tooauthenticate hello, même si les objets source et destination hello résident dans hello même compte de stockage.
 
 ## <a name="types-of-shared-access-signatures"></a>Types de signatures d’accès partagé
 Vous pouvez créer deux types de signatures d’accès partagé :
 
-* **SAP de service.** Une SAP de service délègue l’accès à une ressource d’un seul des services de stockage : le service blob, de file d’attente, de table ou de fichiers. Pour obtenir des informations détaillées sur la construction du jeton de SAP de service, consultez les pages [Construction d’une SAP de service](https://msdn.microsoft.com/library/dn140255.aspx) et [Exemples de SAP de service](https://msdn.microsoft.com/library/dn140256.aspx).
-* **SAP de compte.** La SAP de compte délègue l’accès aux ressources d’un ou plusieurs des services de stockage. Toutes les opérations disponibles via une SAP de service sont également disponibles via une SAP de compte. En outre, avec la SAP de compte, vous pouvez déléguer l’accès à des opérations qui s’appliquent à un service donné, telles que **Get/Set Service Properties** et **Get Service Stats**. Vous pouvez également déléguer l'accès aux opérations de lecture, d’écriture et de suppression sur les conteneurs d'objets blob, les tables, les files d'attente et les partages de fichiers qui ne sont pas autorisées avec une SAP de service. Pour obtenir des informations détaillées sur la construction du jeton SAP de compte, consultez la page [Construction d’une SAP de compte](https://msdn.microsoft.com/library/mt584140.aspx).
+* **SAP de service.** les délégués SAS Hello service d’accès tooa des ressources dans un seul des services de stockage hello : hello service Blob, file d’attente, Table ou de fichier. Consultez [construction d’un SAS Service](https://msdn.microsoft.com/library/dn140255.aspx) et [Service SAS exemples](https://msdn.microsoft.com/library/dn140256.aspx) pour des informations détaillées sur la construction du jeton SAS du service hello.
+* **SAP de compte.** les délégués SAS Hello compte d’accès tooresources dans un ou plusieurs des services de stockage hello. Toutes les opérations de hello disponibles via un service SAP sont également disponibles via un compte SAP. En outre, avec un compte hello SAS, vous pouvez déléguer toooperations access qui s’appliquent tooa donné de service, tel que **propriétés de Service Get/Set** et **obtenir des statistiques du Service**. Vous pouvez également déléguer l’accès tooread, écriture et les opérations de suppression sur les conteneurs d’objets blob, tables, files d’attente et les partages de fichiers qui ne sont pas autorisées avec un service SAS. Consultez [construction d’un SAS compte](https://msdn.microsoft.com/library/mt584140.aspx) pour des informations détaillées sur la construction d’un jeton SAS hello compte.
 
 ## <a name="how-a-shared-access-signature-works"></a>Fonctionnement d’une signature d’accès partagé
-Une signature d’accès partagé est un URI signé qui désigne une ou plusieurs ressources de stockage et inclut un jeton qui contient un ensemble spécial de paramètres de requête. Le jeton indique comment le client peut accéder aux ressources. L’un des paramètres de requête, la signature, est construit à partir des paramètres de signature d’accès partagé et signé avec la clé du compte. Cette signature est utilisée par Azure Storage pour authentifier la signature d'accès partagé.
+Une signature d’accès partagé est signé URI qui pointe tooone ou davantage de ressources de stockage et inclut un jeton qui contient un ensemble spécial de paramètres de requête. jeton de Hello indique comment les ressources hello est accessible par le client de hello. Un des paramètres de requête hello, hello signature est construite à partir des paramètres SAS hello et signé avec la clé de compte hello. Cette signature est utilisée par hello tooauthenticate de stockage Azure SAS.
 
-Voici un exemple d’URI de SAP, montrant l’URI de la ressource et le jeton de la SAP :
+Voici un exemple d’URI SAS, URI de ressource montrant hello et un jeton SAS hello :
 
 ![Composants d’un URI SAP](./media/storage-dotnet-shared-access-signature-part-1/sas-storage-uri.png)   
 
-Le jeton de la SAP est une chaîne que vous générez côté *client* (consultez la section [Exemples de SAP](#sas-examples) pour obtenir des exemples de code). Un jeton de la SAP que vous générez avec la bibliothèque cliente de stockage, par exemple, n’est pas suivi par le stockage Azure. Vous pouvez créer un nombre illimité de jetons de SAP côté client.
+jeton SAS Hello est une chaîne que vous générez sur hello *client* côté (consultez hello [exemples SAS](#sas-examples) section d’exemples de code). Un jeton SAP que vous générez avec la bibliothèque cliente de stockage hello, par exemple, n'est pas suivi par le stockage Azure en aucune façon. Vous pouvez créer un nombre illimité de jetons SAP côté client de hello.
 
-Lorsqu’un client fournit un URI de SAP au stockage Azure dans le cadre d’une demande, le service vérifie les paramètres et la signature de la SAP pour s’assurer que celle-ci est valide pour authentifier la demande. Si le service vérifie que la signature est valide, la demande est authentifiée. Dans le cas contraire, la demande est refusée avec le code d’erreur 403 (Interdit).
+Lorsqu’un client fournit un tooAzure URI SAS du stockage dans le cadre d’une demande, service de hello vérifie les paramètres SAS hello et tooverify signature qu’il est valide pour authentifier la demande de hello. Si le service de hello vérifie qu’une signature hello est valide, la demande de hello est authentifié. Dans le cas contraire, demande de hello est refusée avec le code d’erreur 403 (interdit).
 
 ## <a name="shared-access-signature-parameters"></a>Paramètres de la signature d’accès partagé (SAP)
-Les jetons de SAP de compte et de SAP de service incluent des paramètres communs et également quelques paramètres différents.
+le compte de Hello SAS et de jetons SAS du service incluent des paramètres courants et également prennent quelques paramètres qui sont différentes.
 
-### <a name="parameters-common-to-account-sas-and-service-sas-tokens"></a>Paramètres communs aux jetons de SAP de compte et de SAP de service
-* **Version de l’API.** Paramètre facultatif qui spécifie la version du service de stockage à utiliser pour exécuter la demande.
-* **Version du service.** Paramètre obligatoire qui spécifie la version du service de stockage à utiliser pour authentifier la demande.
-* **Heure de début.** Il s'agit de l'heure à laquelle la signature d'accès partagé devient valide. L’heure de début pour une signature d’accès partagé est facultative. Si elle est omise, la signature d’accès partagé prend effet immédiatement. L’heure de début doit être exprimée en temps universel coordonné (UTC), par un indicateur UTC spécial (« Z »), par exemple `1994-11-05T13:15:30Z`.
-* **Heure d’expiration.** Il s'agit de l'heure à laquelle la signature d'accès partagé cesse d'être valide. Les meilleures pratiques recommandent soit de spécifier une heure d’expiration pour une signature d’accès partagé, soit de l’associer à une stratégie d’accès stockée. L’heure d’expiration doit être exprimée en temps universel coordonné (UTC), par un indicateur UTC spécial (« Z »), par exemple `1994-11-05T13:15:30Z` (voir détails ci-dessous).
-* **Autorisations.** Les autorisations spécifiées sur la signature d'accès partagé indiquent quelles opérations le client peut exécuter avec cette dernière sur la ressource de stockage. Les autorisations disponibles ne sont pas les mêmes pour une SAP de compte et une SAP de service.
-* **IP.** Paramètre facultatif qui spécifie une adresse IP ou une plage d’adresses IP en dehors d’Azure en provenance de laquelle accepter les demandes (consultez la section [État de configuration d’une session de routage](../../expressroute/expressroute-workflows.md#routing-session-configuration-state) pour ExpressRoute).
-* **Protocole.** Paramètre facultatif qui spécifie le protocole autorisé pour une demande. Les valeurs possibles sont HTTPS et HTTP à la fois (`https,http`), qui est la valeur par défaut, ou HTTPS uniquement (`https`). Notez que HTTP uniquement n’est pas une valeur autorisée.
-* **Signature.** La signature est construite à partir des autres paramètres spécifiés pour le jeton, puis chiffrée. Elle est utilisée pour authentifier la SAP.
+### <a name="parameters-common-tooaccount-sas-and-service-sas-tokens"></a>Tooaccount commun de paramètres SAS et jetons SAS du service
+* **Version de l’API** un paramètre facultatif qui spécifie hello stockage service version toouse tooexecute hello demande.
+* **Version du service** un paramètre obligatoire qui spécifie hello stockage service version toouse tooauthenticate hello demande.
+* **Heure de début.** Il s’agit de heure hello à quels hello SAS devient valide. heure de début Hello pour une signature d’accès partagé est facultative. Si une heure de début est omise, hello SAS prend effet immédiatement. Hello heure de début doit être exprimée en heure UTC (Coordinated Universal Time), avec un indicateur UTC spéciaux (« Z »), par exemple `1994-11-05T13:15:30Z`.
+* **Heure d’expiration.** Il s’agit de hello heure après laquelle hello SAS n’est plus valide. Les meilleures pratiques recommandent soit de spécifier une heure d’expiration pour une signature d’accès partagé, soit de l’associer à une stratégie d’accès stockée. Hello délai d’expiration doit être exprimée en heure UTC (Coordinated Universal Time), avec un indicateur UTC spéciaux (« Z »), par exemple `1994-11-05T13:15:30Z` (voir ci-dessous).
+* **Autorisations.** autorisations de Hello spécifiées sur hello SAS indiquent les opérations client de hello peut effectuer par rapport à la ressource de stockage hello à l’aide de hello SAS. Les autorisations disponibles ne sont pas les mêmes pour une SAP de compte et une SAP de service.
+* **IP.** Un paramètre facultatif qui spécifie une adresse IP ou une plage d’adresses IP en dehors de Azure (consultez la section de hello [état de configuration de session de routage](../../expressroute/expressroute-workflows.md#routing-session-configuration-state) pour Express Route) à partir de quelles demandes tooaccept.
+* **Protocole.** Un paramètre facultatif qui spécifie le protocole de hello autorisée pour une demande. Les valeurs possibles sont à la fois HTTP et HTTPS (`https,http`), qui est la valeur par défaut de hello ou HTTPS uniquement (`https`). Notez que HTTP uniquement n’est pas une valeur autorisée.
+* **Signature.** signature de Hello est construit à partir de hello autres paramètres spécifié en tant que partie jeton, puis chiffrées. Il a utilisé tooauthenticate hello SAS.
 
 ### <a name="parameters-for-a-service-sas-token"></a>Paramètres d’un jeton de SAP de service
 * **Ressource de stockage.** Les ressources de stockage dont vous pouvez déléguer l’accès à l’aide d’une SAP de service incluent :
@@ -97,17 +97,17 @@ Les jetons de SAP de compte et de SAP de service incluent des paramètres commun
   * Tables et plages d’entités de table.
 
 ### <a name="parameters-for-an-account-sas-token"></a>Paramètres d’un jeton de compte SAP
-* **Service ou services.** Une SAP de compte peut déléguer l’accès à un ou plusieurs des services de stockage. Par exemple, vous pouvez créer une SAP de compte qui délègue l’accès au service BLOB et au service de fichiers. Vous pouvez également créer une SAP qui délègue l’accès à l’ensemble des quatre services (BLOB, File d’attente, Table et fichiers).
-* **Types de ressources de stockage.** Une SAP de compte s’applique à une ou plusieurs classes de ressources de stockage plutôt qu’à une ressource spécifique. Vous pouvez créer une SAP de compte pour déléguer l’accès à :
-  * Des API au niveau de service, qui sont appelées sur la ressource du compte de stockage. Exemples : **Get/Set Service Properties**, **Get Service Stats** et **List Containers/Queues/Tables/Shares**.
-  * Des API au niveau du conteneur, qui sont appelés sur les objets de conteneur pour chaque service : conteneurs d’objets blob, files d’attente, tables et partages de fichiers. Exemples : **Create/Delete Container**, **Create/Delete Queue**, **Create/Delete Table**, **Create/Delete Share** et **List Blobs/Files and Directories**.
+* **Service ou services.** Un compte SAP peut déléguer l’accès tooone ou plusieurs des services de stockage hello. Par exemple, vous pouvez créer un compte SAP que délégués accéder au service d’objet Blob et le fichier toohello. Ou vous pouvez créer une SAP de délégués d’accès tooall quatre services (Blob, file d’attente, Table et fichier).
+* **Types de ressources de stockage.** Un compte SAP s’applique tooone ou plusieurs classes de ressources de stockage, plutôt que d’une ressource spécifique. Vous pouvez créer un compte SAP toodelegate l’accès à :
+  * API au niveau du service, qui sont appelées par rapport à la ressource de compte de stockage hello. Exemples : **Get/Set Service Properties**, **Get Service Stats** et **List Containers/Queues/Tables/Shares**.
+  * API au niveau du conteneur, qui est appelées sur des objets conteneur hello pour chaque service : conteneurs, des files d’attente, des tableaux d’objets blob et les partages de fichiers. Exemples : **Create/Delete Container**, **Create/Delete Queue**, **Create/Delete Table**, **Create/Delete Share** et **List Blobs/Files and Directories**.
   * Des API au niveau de l’objet, qui sont appelées sur les objets blob, les messages de file d’attente, les entités de table et les fichiers. Exemples : **Put Blob**, **Query Entity**, **Get Messages** et **Create File**.
 
 ## <a name="examples-of-sas-uris"></a>Exemples d’URI de SAP
 
 ### <a name="service-sas-uri-example"></a>Exemple d’URI SAP de service
 
-Voici un exemple d’URI de SAP de service qui fournit des autorisations d’accès en lecture et en écriture sur un objet blob. La table décompose chaque partie de l’URI pour comprendre comment elle contribue à la signature d’accès partagé :
+Voici un exemple d’un service qui fournit l’URI SAS lire et écrire des blob de tooa d’autorisations. table de Hello décompose chaque partie de hello URI toounderstand comment il contribue toohello SAS :
 
 ```
 https://myaccount.blob.core.windows.net/sascontainer/sasblob.txt?sv=2015-04-05&st=2015-04-29T22%3A18%3A26Z&se=2015-04-30T02%3A23%3A26Z&sr=b&sp=rw&sip=168.1.5.60-168.1.5.70&spr=https&sig=Z%2FRHIX5Xcg0Mq2rqI3OlWTjEg2tYkboXr1P9ZUXDtkk%3D
@@ -115,19 +115,19 @@ https://myaccount.blob.core.windows.net/sascontainer/sasblob.txt?sv=2015-04-05&s
 
 | Nom | Partie de la SAP | Description |
 | --- | --- | --- |
-| URI de l’objet blob |`https://myaccount.blob.core.windows.net/sascontainer/sasblob.txt` |Adresse de l'objet blob. Notez que l'utilisation de HTTPS est fortement recommandée. |
-| Version des services de stockage |`sv=2015-04-05` |Pour la version 2012-02-12 des services de stockage et les versions ultérieures, ce paramètre indique la version à utiliser. |
-| Heure de début |`st=2015-04-29T22%3A18%3A26Z` |Spécifiée en heure UTC. Si vous voulez que la signature d'accès partagé soit valide immédiatement, omettez l'heure de début. |
+| URI de l’objet blob |`https://myaccount.blob.core.windows.net/sascontainer/sasblob.txt` |adresse Hello d’objet blob de hello. Notez que l'utilisation de HTTPS est fortement recommandée. |
+| Version des services de stockage |`sv=2015-04-05` |Pour les services de stockage de la version 2012-02-12 et versions ultérieures, ce paramètre indique hello version toouse. |
+| Heure de début |`st=2015-04-29T22%3A18%3A26Z` |Spécifiée en heure UTC. Si vous souhaitez hello SAS toobe valide immédiatement, omettez l’heure de début hello. |
 | Heure d’expiration |`se=2015-04-30T02%3A23%3A26Z` |Spécifiée en heure UTC. |
-| Ressource |`sr=b` |La ressource est un objet blob. |
-| Autorisations |`sp=rw` |Les autorisations octroyées par la signature d'accès partagé incluent les opérations de lecture (r) et d'écriture (w). |
-| Plage d’adresses IP |`sip=168.1.5.60-168.1.5.70` |Plage d’adresses IP dont les demandes seront acceptées. |
+| Ressource |`sr=b` |ressource de Hello est un objet blob. |
+| Autorisations |`sp=rw` |autorisations de Hello en hello SAS incluent Read (r) et écriture (w). |
+| Plage d’adresses IP |`sip=168.1.5.60-168.1.5.70` |Hello plage d’adresses IP à partir de laquelle une demande est acceptée. |
 | Protocole |`spr=https` |Seules les demandes utilisant HTTPS sont autorisées. |
-| Signature |`sig=Z%2FRHIX5Xcg0Mq2rqI3OlWTjEg2tYkboXr1P9ZUXDtkk%3D` |Utilisée pour authentifier l'accès à l'objet blob. La signature est un HMAC calculé sur une chaîne de signature et une clé à l'aide de l'algorithme SHA256, puis codé en Base64. |
+| Signature |`sig=Z%2FRHIX5Xcg0Mq2rqI3OlWTjEg2tYkboXr1P9ZUXDtkk%3D` |Utilisé blob de toohello tooauthenticate accès. signature de Hello est un HMAC calculé sur une chaîne de signature et la clé à l’aide d’algorithme de hello SHA256, puis codé en Base64. |
 
 ### <a name="account-sas-uri-example"></a>Exemple d’URI SAP de compte
 
-Voici un exemple de SAP de compte qui utilise les mêmes paramètres communs sur le jeton. Dans la mesure où ces paramètres sont décrits ci-dessus, ils ne sont pas décrits ici. Seuls les paramètres propres à la SAP de compte sont décrits dans le tableau ci-dessous.
+Voici un exemple d’un compte SAP qu’utilise hello les mêmes paramètres courants sur le jeton de hello. Dans la mesure où ces paramètres sont décrits ci-dessus, ils ne sont pas décrits ici. Seuls les paramètres hello qui sont spécifique tooaccount que SAP est décrits dans le tableau hello ci-dessous.
 
 ```
 https://myaccount.blob.core.windows.net/?restype=service&comp=properties&sv=2015-04-05&ss=bf&srt=s&st=2015-04-29T22%3A18%3A26Z&se=2015-04-30T02%3A23%3A26Z&sr=b&sp=rw&sip=168.1.5.60-168.1.5.70&spr=https&sig=F%6GRVAZ5Cdj2Pw4tgU7IlSTkWgn7bUkkAg8P6HESXwmf%4B
@@ -135,42 +135,42 @@ https://myaccount.blob.core.windows.net/?restype=service&comp=properties&sv=2015
 
 | Nom | Partie de la SAP | Description |
 | --- | --- | --- |
-| URI de ressource |`https://myaccount.blob.core.windows.net/?restype=service&comp=properties` |Point de terminaison du service BLOB, avec les paramètres d’obtention des propriétés du service (appel avec la méthode GET) ou de définition des propriétés du service (appel avec la méthode SET). |
-| Services |`ss=bf` |La SAP s’applique au service BLOB et au service de fichiers. |
-| Types de ressources |`srt=s` |La SAP s’applique aux opérations au niveau du service. |
-| Autorisations |`sp=rw` |Les autorisations accordent l’accès aux opérations de lecture et d’écriture. |
+| URI de ressource |`https://myaccount.blob.core.windows.net/?restype=service&comp=properties` |Hello Blob service point de terminaison, avec des paramètres pour l’obtention des propriétés du service (lorsqu’il est appelé avec GET) ou de la définition des propriétés du service (lorsqu’il est appelé avec SET). |
+| Services |`ss=bf` |Hello SAP s’applique toohello Blob et les services de fichiers |
+| Types de ressources |`srt=s` |Hello SAP s’applique au niveau tooservice operations. |
+| Autorisations |`sp=rw` |autorisations de Hello accorder l’accès tooread et les opérations d’écriture. |
 
-Étant donné que les autorisations sont limitées au niveau du service, les opérations accessibles avec cette SAP sont **Get Blob Service Properties** (lecture) et **Set Blob Service Properties** (écriture). Cependant, avec un autre URI de ressource, le même jeton de SAP peut également être utilisé pour déléguer l’accès à l’opération **Get Blob Service Stats** (lecture).
+Étant donné que les autorisations sont limitées au niveau du service toohello, opérations accessibles avec cette SAS sont **Get Blob Service Properties** (lecture) et **Set Blob Service Properties** (écriture). Toutefois, avec un URI de ressource différent, hello même jeton SAS peut également être utilisée de trop toodelegate accès**obtenir des statistiques du Service Blob** (lecture).
 
 ## <a name="controlling-a-sas-with-a-stored-access-policy"></a>Contrôle d’une SAP avec une stratégie d’accès stockée
 Une signature d’accès partagé peut prendre deux formes :
 
-* **Signature d’accès partagé ad hoc :** quand vous créez une signature d’accès partagé ad hoc, l’heure de début, l’heure d’expiration et les autorisations associées à cette signature sont spécifiées dans l’URI SAP (ou sont implicites, dans le cas où l’heure de début est omise). Ce type de SAP peut être créé en tant que SAP de compte ou SAP de service.
-* **Signature d’accès partagé avec stratégie d’accès stockée :** une stratégie d’accès stockée est définie sur un conteneur de ressources (conteneur d’objets blob, table, file d’attente ou partage de fichiers) et permet de gérer les contraintes d’une ou de plusieurs signatures d’accès partagé. Quand vous associez une signature d’accès partagé à une stratégie d’accès stockée, la signature hérite des contraintes (heure de début, heure d’expiration et autorisations) définies pour la stratégie.
+* **SAS ad hoc :** lorsque vous créez un SAS ad hoc, l’heure de début hello, la durée d’expiration, et toutes les autorisations pour hello SAS sont spécifiées dans hello URI SAS (ou implicite, dans le cas de hello où l’heure de début est omise). Ce type de SAP peut être créé en tant que SAP de compte ou SAP de service.
+* **Associations de sécurité avec la stratégie d’accès stockée :** une stratégie d’accès stockée est défini sur un conteneur de ressources--un conteneur d’objets blob, table, de file d’attente, ou partage--de fichiers et peut être utilisé toomanage les contraintes pour un ou plusieurs signatures d’accès partagé. Lorsque vous associez un SAS avec une stratégie d’accès stockée, hello SAS hérite des contraintes de hello--hello heure de début, heure d’expiration et autorisations--définies pour la stratégie d’accès stockée hello.
 
 > [!NOTE]
 > À l’heure actuelle, une SAP de compte doit être une SAP ad hoc. Les stratégies d’accès stockées ne sont pas encore prises en charge pour les SAP de compte.
 
-La différence entre les deux formes est importante pour un scénario clé : la révocation. Comme un URI SAP est une URL, toute personne qui obtient la signature d’accès partagé peut s’en servir, quel que soit celui qui l’a créée initialement. Si une SAP est publiée publiquement, elle peut être utilisée par n’importe qui. Une signature d’accès partagé accorde l’accès aux ressources à toute personne qui la possède jusqu’à ce que l’un des quatre événements suivants ait lieu :
+Hello différence entre les formes hello deux est importante pour un scénario clé : la révocation. Comme un URI SAS est une URL, toute personne qui obtient hello SAS pouvez l’utiliser, quelle que soit la qui l’a créé. Si une SAP est publiée publiquement, il peut être utilisé par tout le monde dans Bonjour. Une SAP accorde l’accès tooresources tooanyone il possédant jusqu'à ce qu’un des quatre éléments se produit :
 
-1. L'heure d'expiration spécifiée sur la signature d'accès partagé est atteinte.
-2. L'heure d'expiration spécifiée sur la stratégie d'accès stockée référencée par la signature d'accès partagé est atteinte (si une stratégie d'accès stockée est référencée et si elle spécifie une heure d'expiration). Cela peut arriver soit parce que l’intervalle s’est écoulé, soit parce que vous avez modifié la stratégie d’accès stockée pour définir une heure d’expiration dans le passé, ce qui est une manière de révoquer la signature d’accès partagé.
-3. La stratégie d'accès stockée référencée par la signature d'accès partagé est supprimée, ce qui est une autre manière de révoquer la signature d'accès partagé. Notez que si vous recréez la stratégie d'accès stockée avec exactement le même nom, tous les jetons de signature d'accès partagé existants seront de nouveau valides en fonction des autorisations associées à cette stratégie d'accès stockée (en partant du principe que l'heure d'expiration sur la signature d'accès partagé n'est pas passée). Si vous avez l'intention de révoquer la signature d'accès partagé, veillez à utiliser un nom différent si vous recréez la stratégie d'accès avec une heure d'expiration située dans le futur.
-4. La clé de compte qui a été utilisée pour créer la signature d'accès partagé est régénérée. La regénération d’une clé de compte provoquera l’échec de l’authentification de tous les composants de l’application qui utilisent cette clé jusqu’à ce qu’ils soient mis à jour afin d’utiliser l’autre clé de compte valide ou la clé de compte nouvellement regénérée.
+1. délai d’expiration Hello spécifié sur hello que SAS est atteinte.
+2. délai d’expiration Hello spécifié sur la stratégie d’accès stockée hello référencée par hello que SAS est atteinte (si une stratégie d’accès stockée est référencée, et si elle spécifie un délai d’expiration). Cela peut se produire car hello est écoulé, ou vous avez modifié la stratégie d’accès stockée hello avec un délai d’expiration Bonjour passées, qui est une façon toorevoke hello SAS.
+3. Hello stockés de la stratégie d’accès référencée par hello que SAS est supprimé, ce qui est hello de toorevoke une autre façon SAS. Notez que si vous recréez la stratégie d’accès stockée hello avec exactement de même nom, toutes les associations de sécurité existantes hello les jetons seront à nouveau des autorisations toohello conséquente valide associé cette stratégie d’accès stockée (en supposant que ce délai d’expiration hello sur hello SAP n’a pas été). Si vous prévoyez de toorevoke hello SAS, être vraiment toouse un nom différent si vous recréez la stratégie d’accès hello avec un délai d’expiration Bonjour futures.
+4. Hello compte qui a été utilisé toocreate hello SAS est régénérée. La régénération d’une clé de compte entraîne tous les composants d’application à l’aide de ce tooauthenticate toofail clé jusqu'à ce qu’ils sont mis à jour toouse hello soit autre clé de compte valide ou une clé de compte qui vient d’être régénérée hello.
 
 > [!IMPORTANT]
-> L’URI d’une signature d’accès partagé est associé à la clé du compte utilisée pour créer la signature et à la stratégie d’accès stockée correspondante (le cas échéant). Si aucune stratégie d’accès stockée n’est spécifiée, la seule façon de révoquer une signature d’accès partagé consiste à modifier la clé du compte.
+> Un URI de signature d’accès partagé est associé avec signature d’hello hello compte clé toocreate utilisés et hello stratégie d’accès stockée (le cas échéant). Si aucune stratégie d’accès stockée n’est spécifié, hello uniquement moyen toorevoke une signature d’accès partagé est clé de compte toochange hello.
 
 ## <a name="authenticating-from-a-client-application-with-a-sas"></a>Authentification à partir d’une application cliente avec la SAP
-Un client qui est en possession d’une SAP peut l’utiliser pour authentifier une demande sur un compte de stockage pour lequel il ne possède pas les clés de compte. Une SAP peut être incluse dans une chaîne de connexion ou utilisée directement à partir de la méthode ou du constructeur approprié(e).
+Un client qui est en possession d’une SAP peut utiliser hello SAS tooauthenticate une demande par rapport à un compte de stockage pour lesquels ils ne possèdent pas de clés de compte hello. Une SAP peut être incluse dans une chaîne de connexion, ou être utilisée directement à partir de méthode ou constructeur approprié de hello.
 
 ### <a name="using-a-sas-in-a-connection-string"></a>Utilisation d’une SAP dans une chaîne de connexion
 [!INCLUDE [storage-use-sas-in-connection-string-include](../../../includes/storage-use-sas-in-connection-string-include.md)]
 
 ### <a name="using-a-sas-in-a-constructor-or-method"></a>Utilisation d’une SAP dans un constructeur ou une méthode
-Plusieurs surcharges de méthodes et constructeurs de bibliothèques clientes du Stockage Azure offrent un paramètre SAP, afin de vous permettre d’authentifier une demande au service avec une SAP.
+Plusieurs constructeurs de bibliothèque de client de stockage Azure et les surcharges de méthode offrent un paramètre SAS, afin que vous pouvez vous authentifier un service de toohello de demande avec une SAP.
 
-Ici, par exemple, un URI de SAP est utilisé pour créer une référence à un objet blob de blocs. La SAP fournit uniquement les informations d’identification nécessaires à la demande. La référence à l’objet blob de bloc est ensuite utilisée pour une opération d’écriture :
+Par exemple, un URI SAS est utilisé toocreate objet blob de blocs tooa référence. Hello SAS fournit hello seules informations d’identification nécessaires pour la demande de hello. référence blob de bloc Hello est ensuite utilisé pour une opération d’écriture :
 
 ```csharp
 string sasUri = "https://storagesample.blob.core.windows.net/sample-container/" +
@@ -179,8 +179,8 @@ string sasUri = "https://storagesample.blob.core.windows.net/sample-container/" 
 
 CloudBlockBlob blob = new CloudBlockBlob(new Uri(sasUri));
 
-// Create operation: Upload a blob with the specified name to the container.
-// If the blob does not exist, it will be created. If it does exist, it will be overwritten.
+// Create operation: Upload a blob with hello specified name toohello container.
+// If hello blob does not exist, it will be created. If it does exist, it will be overwritten.
 try
 {
     MemoryStream msWrite = new MemoryStream(Encoding.UTF8.GetBytes(blobContent));
@@ -212,45 +212,45 @@ catch (StorageException e)
 ```
 
 ## <a name="best-practices-when-using-sas"></a>Bonnes pratiques lors de l’utilisation de SAP
-Lorsque vous utilisez des signatures d'accès partagé dans vos applications, vous devez être conscient de deux risques potentiels :
+Lorsque vous utilisez des signatures d’accès partagé dans vos applications, vous devez toobe conscient des risques potentiels deux :
 
 * Si une signature d'accès partagé est divulguée, toute personne qui se la procure peut s'en servir et votre compte de stockage court donc le risque d'être compromis.
-* Si une signature d'accès partagé fournie à une application cliente expire et que l'application est incapable d'en récupérer une nouvelle à partir de votre service, la fonctionnalité de votre application risque d'être entravée.
+* Si un SAS fourni tooa client application expire et l’application hello est impossible de tooretrieve une nouvelle SAP à partir de votre service, des fonctionnalités de l’application hello peuvent être entravée.
 
-Les recommandations suivantes relatives à l’utilisation des signatures d’accès partagé peuvent aider à limiter ces risques :
+Hello les recommandations suivantes pour l’utilisation de signatures d’accès partagé peuvent aider à réduire ces risques :
 
-1. **Utilisez toujours HTTPS** pour créer ou distribuer une signature d’accès partagé. Si une signature d’accès partagé est transmise sur HTTP et interceptée, un pirate qui lance une attaque de type « attaque de l’intercepteur » (man-in-the-middle) peut lire la signature et s’en servir exactement comme l’utilisateur concerné aurait pu le faire, d’où le risque que les données sensibles soient compromises ou que les données soient altérées par l’utilisateur malveillant.
-2. **Référencez si possible les stratégies d'accès stockées.** Celles-ci vous donnent la possibilité de révoquer les autorisations sans avoir à régénérer les clés de compte de stockage. Définissez une échéance très éloignée dans le temps (voire infinie) pour l’expiration de ces dernières et veillez à ce qu’elle soit régulièrement mise à jour et repoussée dans le futur.
-3. **Utilisez des heures d'expiration avec une échéance à court terme sur une signature d'accès partagé ad hoc.** De cette manière, même si une signature d’accès partagé est compromise, elle n’est valide que pendant une courte durée. Cette pratique est particulièrement importante si vous ne pouvez pas référencer une stratégie d'accès stockée. Des heures d’expiration avec une échéance à court terme permettent également de limiter la quantité de données pouvant être écrites dans un objet blob en limitant le temps disponible pour le chargement vers ce dernier.
-4. **Faites en sorte que les clients renouvellent automatiquement la signature d'accès partagé si nécessaire.** Les clients doivent renouveler la signature d’accès partagé bien avant l’heure d’expiration afin de laisser suffisamment de temps pour de nouvelles tentatives, si le service qui fournit la signature est indisponible. Si votre signature d’accès partagé doit être utilisée pour un petit nombre d’opérations immédiates de courte durée, censées être terminées avant l’heure d’expiration, cela ne sera peut-être pas nécessaire, car il n’est pas prévu que la signature d’accès partagé soit renouvelée. Toutefois, si vous avez un client qui effectue régulièrement des demandes par le biais de signatures d'accès partagé, le risque d'expiration est à prendre en compte. La principale considération consiste à trouver un équilibre entre la nécessité que la signature d’accès partagé ait une durée de vie limitée (comme indiqué plus haut) et la nécessité de veiller à ce que le client demande le renouvellement suffisamment tôt pour éviter une interruption due à une expiration de la signature avant le renouvellement effectif.
-5. **Faites attention à la date de début de la signature d’accès partagé.** Si vous définissez la date de début d’une signature d’accès partagé sur **maintenant**, en raison du décalage d’horloge (différences constatées dans l’heure actuelle sur des machines différentes), des défaillances peuvent être observées par intermittence pendant les premières minutes. En règle générale, définissez une heure de début située au moins 15 minutes avant l’heure courante ou ne la définissez pas du tout, et elle sera alors valide immédiatement dans tous les cas. Cela vaut également d’une manière générale pour l’heure d’expiration. Souvenez-vous que vous pouvez observer jusqu’à 15 minutes de décalage d’horloge (dans l’une ou l’autre direction) sur une demande. Pour les clients qui utilisent une version de REST antérieure à la version 2012-02-12, la durée maximale pour une signature d’accès partagé qui ne renvoie pas à une stratégie d’accès stockée est de 1 heure et toutes les stratégies spécifiant une période plus longue échouent.
-6. **Soyez précis quant à la ressource pour laquelle vous voulez configurer l'accès.** Une bonne pratique en matière de sécurité consiste à fournir à l’utilisateur les privilèges minimaux requis. Si un utilisateur a besoin d'un accès en lecture à une seule entité, accordez-lui un accès en lecture à cette seule entité, plutôt qu'un accès en lecture/écriture/suppression à toutes les entités. Cela permet également d’atténuer les dégâts si une signature d’accès partagé est compromise, car son pouvoir est moindre entre les mains d’une personne malveillante.
-7. **Sachez que toute utilisation de votre compte sera facturée, y compris pour les signatures d'accès partagé.** Si vous fournissez un accès en écriture à un objet blob, un utilisateur peut choisir de charger un objet blob de 200 Go. Si vous lui avez également accordé un accès en lecture, il peut choisir de le télécharger 10 fois, et vous devrez alors acquitter des frais de sortie pour l’équivalent de 2 To. Accordez des autorisations limitées pour atténuer les risques liés aux actions éventuelles d’utilisateurs malveillants. Utilisez des signatures d'accès partagé à durée de vie limitée pour atténuer cette menace (mais pensez au décalage d'horloge pour l'heure de fin).
-8. **Validez les données écrites avec une signature d'accès partagé.** Lorsqu'une application cliente écrit des données dans votre compte de stockage, n'oubliez pas que ces données peuvent être une source de problèmes. Si votre application exige que ces données soient validées ou autorisées avant de pouvoir être utilisées, vous devez effectuer cette validation après l'écriture des données et avant qu'elles ne soient utilisées par votre application. Cette pratique assure également une protection contre l'écriture de données endommagées ou malveillantes dans votre compte, soit par un utilisateur qui a acquis correctement la signature d'accès partagé, soit par un utilisateur qui exploite sa divulgation.
-9. **N'utilisez pas toujours une signature d'accès partagé.** Parfois, les risques associés à une opération particulière sur votre compte de stockage l'emportent sur les avantages offerts par la signature d'accès partagé. Pour ces opérations, créez un service de niveau intermédiaire qui écrit dans votre compte de stockage après avoir effectué la validation des règles métier, l'authentification et un audit. Parfois aussi, il est plus simple de gérer l'accès par d'autres moyens. Par exemple, si vous voulez que tous les objets blob dans un conteneur soient publiquement lisibles, vous pouvez rendre le conteneur public, au lieu de fournir une signature d'accès partagé à chaque client.
-10. **Utilisez Storage Analytics pour surveiller votre application.** Vous pouvez utiliser la journalisation et les mesures pour observer tout pic dans les échecs d’authentification dus à une interruption du service de votre fournisseur de signatures d’accès partagé ou à la suppression par inadvertance d’une stratégie d’accès stockée. Pour plus d'informations, consultez le [blog de l'équipe Azure Storage](http://blogs.msdn.com/b/windowsazurestorage/archive/2011/08/03/windows-azure-storage-logging-using-logs-to-track-storage-requests.aspx) .
+1. **Toujours utiliser HTTPS** toocreate ou distribuer un SAS. Si une SAP est transmise via HTTP et interceptée, un attaquant lors d’une attaque de man-in-the-middle est en mesure de tooread hello SAS et l’utiliser comme hello destiné utilisateur peut avoir compromettre des données sensibles ou permettant la corruption des données hello utilisateur malveillant.
+2. **Référencez si possible les stratégies d'accès stockées.** Stockées permettent de stratégies d’accès hello d’autorisations de toorevoke option sans avoir des clés de compte de stockage tooregenerate hello. Définir l’expiration de hello très bien dans hello future (ou infinie) et vérifiez qu’il est régulièrement mis à jour les toomove plus loin dans hello futures.
+3. **Utilisez des heures d'expiration avec une échéance à court terme sur une signature d'accès partagé ad hoc.** De cette manière, même si une signature d’accès partagé est compromise, elle n’est valide que pendant une courte durée. Cette pratique est particulièrement importante si vous ne pouvez pas référencer une stratégie d'accès stockée. Les délais d’expiration court terme également limitent hello de données qui peuvent être écrites tooa blob en limitant hello temps disponible tooupload tooit.
+4. **Disposer de clients renouveler automatiquement hello SAS si nécessaire.** Les clients doivent renouveler hello SAS bien avant l’expiration de hello, dans le temps de tooallow d’ordre des nouvelles tentatives si le service hello fournissant hello SAS n’est pas disponible. Si votre SAS doit toobe utilisé pour un petit nombre d’exécution, les opérations de courte durée de vie sont attendu toobe effectué dans la période d’expiration de hello, puis peut-être inutile hello que SAS n’est pas normalement toobe renouvelé. Toutefois, si vous avez client qui envoie régulièrement des requêtes via SAS, possibilité de hello d’expiration entre en jeu. Hello essentiel est toobalance hello nécessaire pour hello SAS toobe courte durée de vie (comme indiqué plus haut) avec tooensure besoin hello qui hello client demande le renouvellement tôt suffisamment (tooavoid interruption de service en raison de renouvellement de toosuccessful préalable toohello SAS qui arrive à expiration).
+5. **Faites attention à la date de début de la signature d’accès partagé.** Si vous définissez l’heure de début hello pour une SAP trop**maintenant**, puis en raison du décalage tooclock (différences dans le temps actuel en fonction de machines de toodifferent), échecs peuvent être observés par intermittence pour hello premières minutes. En général, définir toobe de temps de démarrage hello au moins 15 minutes Bonjour passées. ou ne la définissez pas du tout, et elle sera alors valide immédiatement dans tous les cas. Hello même tooexpiry temps--s’applique généralement, n’oubliez pas que vous pouvez observer des minutes too15 d’horloge décalage dans les deux sens sur demande. Pour les clients à l’aide de REST version antérieure too2012-02-12, hello de durée maximale pour un SAS qui ne fait pas référence à une stratégie d’accès stockée est de 1 heure et les stratégies de spécification à long terme que qui échoue.
+6. **Être spécifique hello ressource toobe est accédé.** Meilleure pratique de sécurité est tooprovide un utilisateur avec des privilèges requis minimaux hello. Si un utilisateur a seulement besoin d’un accès en lecture tooa seule entité, puis accordez-leur les toothat des accès en lecture seule entité et l’accès en lecture/écriture/suppression pas tooall entités. Cela vous permet également de réduire les dommages hello si une SAP est compromise, car hello SAS a moins de puissance entre les mains d’une personne malveillante hello.
+7. **Sachez que toute utilisation de votre compte sera facturée, y compris pour les signatures d'accès partagé.** Si vous fournissez un accès en écriture tooa blob, un utilisateur peut choisir un blob de 200 Go tooupload. Si vous leur avez donné accès en lecture ainsi, ils peuvent choisir toodownload 10 fois, souscrivant 2 To en sortie le coût pour vous. Là encore, fournir des autorisations limitées toohelp limiter les actions des utilisateurs malveillants d’hello. Utilisez éphémères SAS tooreduce cette menace (mais penser horloge inclinaison sur l’heure de fin hello).
+8. **Validez les données écrites avec une signature d'accès partagé.** Lorsqu’une application cliente écrit le compte de stockage de données tooyour, gardez à l’esprit qu’il peut y avoir des problèmes avec ces données. Si votre application nécessite que les données être validées ou autorisées avant qu’il soit prêt toouse, vous devez effectuer cette validation une fois les données de salutation sont écrit et avant d’être utilisée par votre application. Cette pratique protège également contre les données endommagées ou malveillantes écrites tooyour compte, soit par un utilisateur qui correctement acquis hello SAP, soit par un utilisateur d’exploiter une fuite SAP.
+9. **N'utilisez pas toujours une signature d'accès partagé.** Parfois, les risques de hello associés à une opération particulière par rapport à votre compte de stockage dépassent les avantages de hello de SAP. Pour ces opérations, créer un service de couche intermédiaire qui écrit le compte de stockage tooyour après avoir effectué l’entreprise la règle de validation, l’authentification et l’audit. En outre, il est parfois plus simple accès toomanage par d’autres moyens. Par exemple, si vous souhaitez toomake tous les objets BLOB dans un conteneur accessibles publiquement en lecture, vous pouvez apporter hello conteneur Public, habituellement, un client de tooevery SAS pour l’accès.
+10. **Utilisez stockage Analytique toomonitor votre application.** Vous pouvez utiliser la journalisation et tooobserve métriques une surutilisation échecs d’authentification en raison de la panne tooan votre SAS fournisseur service ou toohello par inadvertance la suppression d’une stratégie d’accès stockée. Consultez hello [Blog de l’équipe stockage Azure](http://blogs.msdn.com/b/windowsazurestorage/archive/2011/08/03/windows-azure-storage-logging-using-logs-to-track-storage-requests.aspx) pour plus d’informations.
 
 ## <a name="sas-examples"></a>Exemples de SAP
 Vous trouverez ci-dessous des exemples des deux types de signatures d’accès partagé, SAP de compte et SAP de service.
 
-Pour exécuter ces exemples C#, vous devez référencer les packages NuGet suivants dans votre projet :
+toorun ces exemples c#, vous devez hello tooreference suivant les packages NuGet dans votre projet :
 
-* [Bibliothèque cliente de stockage Azure pour .NET](http://www.nuget.org/packages/WindowsAzure.Storage), version 6.x ou ultérieure (pour utiliser une SAP de compte).
+* [Bibliothèque de Client de stockage Azure pour .NET](http://www.nuget.org/packages/WindowsAzure.Storage), version 6.x ou version ultérieure (compte toouse SAS).
 * [Gestionnaire de configuration Azure](http://www.nuget.org/packages/Microsoft.WindowsAzure.ConfigurationManager)
 
-Pour obtenir des exemples supplémentaires expliquant comment créer et tester une SAP, consultez les [Exemples de code Azure pour le stockage](https://azure.microsoft.com/documentation/samples/?service=storage).
+Pour obtenir des exemples supplémentaires qui montrent comment toocreate et test d’une SAS, consultez [Azure des exemples de Code pour le stockage](https://azure.microsoft.com/documentation/samples/?service=storage).
 
 ### <a name="example-create-and-use-an-account-sas"></a>Exemple : création et utilisation d’une SAP de compte
-L’exemple de code suivant crée une SAP de compte valide pour le service BLOB et le service de fichiers, et donne au client des autorisations d’accès en lecture, en écriture et en liste pour accéder aux API au niveau du service. Le SAP de compte limitant le protocole à HTTPS, la demande doit être effectuée avec ce protocole.
+Hello exemple de code suivant crée un compte d’associations de sécurité sont valides pour hello Blob et les services de fichiers, et donne hello client les autorisations de lecture, écriture et liste tooaccess au niveau du service API. le compte Hello SAS restreint hello protocole tooHTTPS, afin de la demande de hello doit être effectuée à l’aide de HTTPS.
 
 ```csharp
 static string GetAccountSASToken()
 {
-    // To create the account SAS, you need to use your shared key credentials. Modify for your account.
+    // toocreate hello account SAS, you need toouse your shared key credentials. Modify for your account.
     const string ConnectionString = "DefaultEndpointsProtocol=https;AccountName=account-name;AccountKey=account-key";
     CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConnectionString);
 
-    // Create a new access policy for the account.
+    // Create a new access policy for hello account.
     SharedAccessAccountPolicy policy = new SharedAccessAccountPolicy()
         {
             Permissions = SharedAccessAccountPermissions.Read | SharedAccessAccountPermissions.Write | SharedAccessAccountPermissions.List,
@@ -260,23 +260,23 @@ static string GetAccountSASToken()
             Protocols = SharedAccessProtocol.HttpsOnly
         };
 
-    // Return the SAS token.
+    // Return hello SAS token.
     return storageAccount.GetSharedAccessSignature(policy);
 }
 ```
 
-Afin utiliser la SAP de compte pour accéder aux API au niveau du service pour le service BLOB, construisez un client d’objet blob à l’aide de la SAP et du point de terminaison de stockage d’objets blob de votre compte de stockage.
+toouse hello compte SAP tooaccess niveau de service API pour le service d’objets Blob hello, construire un objet Blob client hello SAS et hello du point de terminaison de stockage Blob pour votre compte de stockage.
 
 ```csharp
 static void UseAccountSAS(string sasToken)
 {
-    // Create new storage credentials using the SAS token.
+    // Create new storage credentials using hello SAS token.
     StorageCredentials accountSAS = new StorageCredentials(sasToken);
-    // Use these credentials and the account name to create a Blob service client.
+    // Use these credentials and hello account name toocreate a Blob service client.
     CloudStorageAccount accountWithSAS = new CloudStorageAccount(accountSAS, "account-name", endpointSuffix: null, useHttps: true);
     CloudBlobClient blobClientWithSAS = accountWithSAS.CreateCloudBlobClient();
 
-    // Now set the service properties for the Blob client created with the SAS.
+    // Now set hello service properties for hello Blob client created with hello SAS.
     blobClientWithSAS.SetServiceProperties(new ServiceProperties()
     {
         HourMetrics = new MetricsProperties()
@@ -299,7 +299,7 @@ static void UseAccountSAS(string sasToken)
         }
     });
 
-    // The permissions granted by the account SAS also permit you to retrieve service properties.
+    // hello permissions granted by hello account SAS also permit you tooretrieve service properties.
     ServiceProperties serviceProperties = blobClientWithSAS.GetServiceProperties();
     Console.WriteLine(serviceProperties.HourMetrics.MetricsLevel);
     Console.WriteLine(serviceProperties.HourMetrics.RetentionDays);
@@ -308,33 +308,33 @@ static void UseAccountSAS(string sasToken)
 ```
 
 ### <a name="example-create-a-stored-access-policy"></a>Exemple : création d’une stratégie d’accès stockée
-Le code suivant crée une stratégie d’accès stockée sur un conteneur. Vous pouvez utiliser la stratégie d’accès pour spécifier des contraintes pour une SAP de service sur le conteneur ou sur ses objets blob.
+Hello de code suivant crée une stratégie d’accès stockée sur un conteneur. Vous pouvez utiliser des contraintes de toospecify hello accès stratégie pour un service SAS sur le conteneur de hello ou ses objets BLOB.
 
 ```csharp
 private static async Task CreateSharedAccessPolicyAsync(CloudBlobContainer container, string policyName)
 {
     // Create a new shared access policy and define its constraints.
-    // The access policy provides create, write, read, list, and delete permissions.
+    // hello access policy provides create, write, read, list, and delete permissions.
     SharedAccessBlobPolicy sharedPolicy = new SharedAccessBlobPolicy()
     {
-        // When the start time for the SAS is omitted, the start time is assumed to be the time when the storage service receives the request.
-        // Omitting the start time for a SAS that is effective immediately helps to avoid clock skew.
+        // When hello start time for hello SAS is omitted, hello start time is assumed toobe hello time when hello storage service receives hello request.
+        // Omitting hello start time for a SAS that is effective immediately helps tooavoid clock skew.
         SharedAccessExpiryTime = DateTime.UtcNow.AddHours(24),
         Permissions = SharedAccessBlobPermissions.Read | SharedAccessBlobPermissions.List |
             SharedAccessBlobPermissions.Write | SharedAccessBlobPermissions.Create | SharedAccessBlobPermissions.Delete
     };
 
-    // Get the container's existing permissions.
+    // Get hello container's existing permissions.
     BlobContainerPermissions permissions = await container.GetPermissionsAsync();
 
-    // Add the new policy to the container's permissions, and set the container's permissions.
+    // Add hello new policy toohello container's permissions, and set hello container's permissions.
     permissions.SharedAccessPolicies.Add(policyName, sharedPolicy);
     await container.SetPermissionsAsync(permissions);
 }
 ```
 
 ### <a name="example-create-a-service-sas-on-a-container"></a>Exemple : création d’une SAP de service sur un conteneur
-Le code suivant crée une SAP sur un conteneur. Si le nom d’une stratégie d’accès stockée existante est fourni, cette stratégie est associée à la SAP. Dans le cas contraire, le code crée une SAP ad hoc sur le conteneur.
+Hello suivante de code crée une SAP sur un conteneur. Si le nom hello d’une stratégie d’accès stockée existante est fourni, cette stratégie est associée à hello SAS. Si aucune stratégie d’accès stockée n’est fourni, code de hello crée ensuite un SAS ad hoc sur le conteneur de hello.
 
 ```csharp
 private static string GetContainerSasUri(CloudBlobContainer container, string storedPolicyName = null)
@@ -344,17 +344,17 @@ private static string GetContainerSasUri(CloudBlobContainer container, string st
     // If no stored policy is specified, create a new access policy and define its constraints.
     if (storedPolicyName == null)
     {
-        // Note that the SharedAccessBlobPolicy class is used both to define the parameters of an ad-hoc SAS, and
-        // to construct a shared access policy that is saved to the container's shared access policies.
+        // Note that hello SharedAccessBlobPolicy class is used both toodefine hello parameters of an ad-hoc SAS, and
+        // tooconstruct a shared access policy that is saved toohello container's shared access policies.
         SharedAccessBlobPolicy adHocPolicy = new SharedAccessBlobPolicy()
         {
-            // When the start time for the SAS is omitted, the start time is assumed to be the time when the storage service receives the request.
-            // Omitting the start time for a SAS that is effective immediately helps to avoid clock skew.
+            // When hello start time for hello SAS is omitted, hello start time is assumed toobe hello time when hello storage service receives hello request.
+            // Omitting hello start time for a SAS that is effective immediately helps tooavoid clock skew.
             SharedAccessExpiryTime = DateTime.UtcNow.AddHours(24),
             Permissions = SharedAccessBlobPermissions.Write | SharedAccessBlobPermissions.List
         };
 
-        // Generate the shared access signature on the container, setting the constraints directly on the signature.
+        // Generate hello shared access signature on hello container, setting hello constraints directly on hello signature.
         sasContainerToken = container.GetSharedAccessSignature(adHocPolicy, null);
 
         Console.WriteLine("SAS for blob container (ad hoc): {0}", sasContainerToken);
@@ -362,46 +362,46 @@ private static string GetContainerSasUri(CloudBlobContainer container, string st
     }
     else
     {
-        // Generate the shared access signature on the container. In this case, all of the constraints for the
-        // shared access signature are specified on the stored access policy, which is provided by name.
-        // It is also possible to specify some constraints on an ad-hoc SAS and others on the stored access policy.
+        // Generate hello shared access signature on hello container. In this case, all of hello constraints for the
+        // shared access signature are specified on hello stored access policy, which is provided by name.
+        // It is also possible toospecify some constraints on an ad-hoc SAS and others on hello stored access policy.
         sasContainerToken = container.GetSharedAccessSignature(null, storedPolicyName);
 
         Console.WriteLine("SAS for blob container (stored access policy): {0}", sasContainerToken);
         Console.WriteLine();
     }
 
-    // Return the URI string for the container, including the SAS token.
+    // Return hello URI string for hello container, including hello SAS token.
     return container.Uri + sasContainerToken;
 }
 ```
 
 ### <a name="example-create-a-service-sas-on-a-blob"></a>Exemple : création d’une SAP de service sur un objet blob
-Le code suivant crée une SAP sur un objet blob. Si le nom d’une stratégie d’accès stockée existante est fourni, cette stratégie est associée à la SAP. Dans le cas contraire, le code crée une SAP ad hoc sur l’objet blob.
+Hello suivante de code crée une SAP sur un objet blob. Si le nom hello d’une stratégie d’accès stockée existante est fourni, cette stratégie est associée à hello SAS. Si aucune stratégie d’accès stockée n’est fourni, code de hello crée ensuite un SAS ad hoc sur l’objet blob de hello.
 
 ```csharp
 private static string GetBlobSasUri(CloudBlobContainer container, string blobName, string policyName = null)
 {
     string sasBlobToken;
 
-    // Get a reference to a blob within the container.
-    // Note that the blob may not exist yet, but a SAS can still be created for it.
+    // Get a reference tooa blob within hello container.
+    // Note that hello blob may not exist yet, but a SAS can still be created for it.
     CloudBlockBlob blob = container.GetBlockBlobReference(blobName);
 
     if (policyName == null)
     {
         // Create a new access policy and define its constraints.
-        // Note that the SharedAccessBlobPolicy class is used both to define the parameters of an ad-hoc SAS, and
-        // to construct a shared access policy that is saved to the container's shared access policies.
+        // Note that hello SharedAccessBlobPolicy class is used both toodefine hello parameters of an ad-hoc SAS, and
+        // tooconstruct a shared access policy that is saved toohello container's shared access policies.
         SharedAccessBlobPolicy adHocSAS = new SharedAccessBlobPolicy()
         {
-            // When the start time for the SAS is omitted, the start time is assumed to be the time when the storage service receives the request.
-            // Omitting the start time for a SAS that is effective immediately helps to avoid clock skew.
+            // When hello start time for hello SAS is omitted, hello start time is assumed toobe hello time when hello storage service receives hello request.
+            // Omitting hello start time for a SAS that is effective immediately helps tooavoid clock skew.
             SharedAccessExpiryTime = DateTime.UtcNow.AddHours(24),
             Permissions = SharedAccessBlobPermissions.Read | SharedAccessBlobPermissions.Write | SharedAccessBlobPermissions.Create
         };
 
-        // Generate the shared access signature on the blob, setting the constraints directly on the signature.
+        // Generate hello shared access signature on hello blob, setting hello constraints directly on hello signature.
         sasBlobToken = blob.GetSharedAccessSignature(adHocSAS);
 
         Console.WriteLine("SAS for blob (ad hoc): {0}", sasBlobToken);
@@ -409,23 +409,23 @@ private static string GetBlobSasUri(CloudBlobContainer container, string blobNam
     }
     else
     {
-        // Generate the shared access signature on the blob. In this case, all of the constraints for the
-        // shared access signature are specified on the container's stored access policy.
+        // Generate hello shared access signature on hello blob. In this case, all of hello constraints for the
+        // shared access signature are specified on hello container's stored access policy.
         sasBlobToken = blob.GetSharedAccessSignature(null, policyName);
 
         Console.WriteLine("SAS for blob (stored access policy): {0}", sasBlobToken);
         Console.WriteLine();
     }
 
-    // Return the URI string for the container, including the SAS token.
+    // Return hello URI string for hello container, including hello SAS token.
     return blob.Uri + sasBlobToken;
 }
 ```
 
 ## <a name="conclusion"></a>Conclusion
-Les signatures d'accès partagé sont utiles pour fournir des autorisations d'accès limitées à votre compte de stockage aux clients qui ne doivent pas avoir la clé du compte. À ce titre, elles sont un élément crucial du modèle de sécurité pour toute application utilisant Azure Storage. Si vous suivez les meilleures pratiques énumérées ci-dessus, vous pouvez utiliser une signature d'accès partagé pour offrir une plus grande souplesse d'accès aux ressources de votre compte de stockage, sans compromettre la sécurité de votre application.
+Signatures d’accès partagé sont utiles pour fournir des autorisations limitées tooclients de compte de stockage tooyour qui ne devrait pas de clé de compte hello. Par conséquent, ils sont une partie essentielle hello du modèle de sécurité pour les applications qui utilisent le stockage Azure. Si vous suivez les recommandations hello répertoriées ici, vous pouvez utiliser SAS tooprovide une plus grande souplesse de tooresources d’accès dans votre compte de stockage, sans compromettre la sécurité hello de votre application.
 
 ## <a name="next-steps"></a>Étapes suivantes
-* [Gestion de l’accès en lecture anonyme aux conteneurs et aux objets blob](../blobs/storage-manage-access-to-resources.md)
+* [Gérer les objets BLOB et l’accès en lecture anonyme toocontainers](../blobs/storage-manage-access-to-resources.md)
 * [Délégation de l'accès avec une signature d'accès partagé](http://msdn.microsoft.com/library/azure/ee395415.aspx)
 * [Présentation des signatures d’accès partagé de table et de file d’attente](http://blogs.msdn.com/b/windowsazurestorage/archive/2012/06/12/introducing-table-sas-shared-access-signature-queue-sas-and-update-to-blob-sas.aspx)

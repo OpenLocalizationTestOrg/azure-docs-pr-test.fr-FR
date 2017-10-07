@@ -1,6 +1,6 @@
 ---
-title: "Exécuter un test de basculement pour la réplication VMware dans Azure | Microsoft Docs"
-description: "Résume les étapes requises pour exécuter un test de basculement pour la réplication des machines virtuelles VMware vers Azure à l’aide du service Azure Site Recovery."
+title: "aaaRun un test de basculement pour VMware réplication tooAzure | Documents Microsoft"
+description: "Résume les étapes hello que vous avez besoin pour l’exécution d’un test de basculement pour les ordinateurs virtuels VMware tooAzure à l’aide du service d’Azure Site Recovery hello de réplication."
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,73 +14,73 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/27/2017
 ms.author: raynew
-ms.openlocfilehash: f1a6df56a2bb0094d972d2e659057cc124156b88
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: bed934446f0c6940089bfae24a13de4fb1556a62
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="step-12-run-a-test-failover-to-azure-for-vmware-vms"></a>Étape 12 : Exécuter un test de basculement vers Azure pour les machines virtuelles VMware
+# <a name="step-12-run-a-test-failover-tooazure-for-vmware-vms"></a>Étape 12 : Exécuter un tooAzure de basculement de test pour les ordinateurs virtuels VMware
 
-Cet article explique comment exécuter un test de basculement à partir des machines virtuelles VMware locales sur Azure à l’aide du service [Azure Site Recovery](site-recovery-overview.md) dans le portail Azure.
+Cet article décrit comment toorun un basculement de test à partir de VMware local virtual machines tooAzure, à l’aide de hello [Azure Site Recovery](site-recovery-overview.md) service Bonjour portail Azure.
 
-Publiez des commentaires et des questions au bas de cet article, ou sur le [Forum Azure Recovery Services](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
+Ajouter des commentaires et questions bas hello de cet article, ou sur hello [Forum sur Azure Recovery Services](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
 
 
 ## <a name="before-you-start"></a>Avant de commencer
 
-Avant d’exécuter un test de basculement, nous vous recommandons de vérifier les propriétés de la machine virtuelle et d’apporter toutes les modifications requises. Vous pouvez accéder aux propriétés des machines virtuelles dans les **éléments répliqués**. Le panneau **Bases** affiche des informations sur les paramètres et l’état des machines.
+Avant d’exécuter un test de basculement que nous recommandons que vous vérifiez les propriétés de machine virtuelle hello et apportez les modifications vous devez. Vous pouvez accéder à des propriétés de machine virtuelle hello dans **éléments répliqués**. Hello **Essentials** panneau affiche des informations sur les paramètres des ordinateurs et l’état.
 
 ## <a name="managed-disk-considerations"></a>Remarques relatives au disque géré
 
-Les [disques gérés](../virtual-machines/windows/managed-disks-overview.md) simplifient la gestion des disques des machines virtuelles Azure, en gérant les comptes de stockage associés aux disques de machines virtuelles. 
+[Des disques gérés par](../virtual-machines/windows/managed-disks-overview.md) simplifier la gestion des disques pour les machines virtuelles Azure, la gestion des comptes de stockage hello associées aux disques de machine virtuelle hello. 
 
-- Lorsque vous activez la protection pour une machine virtuelle, les données des machines virtuelles sont répliquées vers un compte de stockage. Les disques gérés sont créés et attachés à la machine virtuelle uniquement en cas de basculement.
-- Des disques gérés ne peuvent être créés que pour des machines virtuelles déployées à l’aide du modèle du gestionnaire de ressources.  
-- Lorsque ce paramètre est activé, seuls les groupes à haute disponibilité des groupes de ressources dont le paramètre **Utiliser des disques gérés par** est activé peuvent être sélectionnés. Les machines virtuelles dotées de disques gérés doivent se trouver dans des groupes à haute disponibilité dont le paramètre **Utiliser des disques gérés** est défini sur **Oui**. Lorsque ce paramètre n’est pas activé pour les machines virtuelles, seuls les groupes à haute disponibilité des groupes de ressources dont le paramètre relatif aux disques gérés n’est pas activé peuvent être sélectionnés.
+- Lorsque vous activez la protection pour une machine virtuelle, compte de stockage tooa réplique les données des ordinateurs virtuels. Disques gérés sont créés et attaché toohello VM uniquement en cas de basculement.
+- Disques gérés peuvent être créés uniquement pour les ordinateurs virtuels déployés à l’aide du modèle de gestionnaire de ressources hello.  
+- Lorsque ce paramètre est activé, seuls des groupes à haute disponibilité dans les groupes de ressources pour lesquels l’option **Utiliser des disques gérés** est activée peuvent être sélectionnés. Machines virtuelles avec des disques gérés doivent se trouver dans les groupes à haute disponibilité avec **utilisation des disques gérés par** défini trop**Oui**. Si le paramètre de hello n’est pas activé pour les machines virtuelles, haute disponibilité uniquement dans les groupes de ressources sans disques gérés activées peut être sélectionné.
 - [En savoir plus](https://docs.microsoft.com/azure/virtual-machines/windows/manage-availability#use-managed-disks-for-vms-in-an-availability-set) sur les disques gérés et les groupes à haute disponibilité.
-- Si le compte de stockage que vous utilisez pour la réplication a été chiffré à l’aide du chiffrement du service de stockage, la création de disques gérés lors du basculement est impossible. Dans ce cas, n’activez pas l’utilisation des disques gérés, ni ne désactivez la protection de la machine virtuelle, et réactivez-la pour utiliser un compte de stockage pour lequel le chiffrement n’est pas activé. [En savoir plus](https://docs.microsoft.com/azure/storage/storage-managed-disks-overview#managed-disks-and-encryption).
+- Si vous utilisez pour la réplication de stockage Azure hello a été chiffrée avec le chiffrement de Service de stockage, disques gérés ne peut pas être créés pendant le basculement. Dans ce cas soit n’activer l’utilisation de disques gérés, ou désactivez la protection de machine virtuelle de hello et réactiver toouse un compte de stockage qui n’a pas le chiffrement activé. [En savoir plus](https://docs.microsoft.com/azure/storage/storage-managed-disks-overview#managed-disks-and-encryption).
 
 
 ## <a name="network-considerations"></a>Remarques relatives au réseau
 
-Vous pouvez définir l’adresse IP cible d’une machine virtuelle Azure créée après le basculement.
+Vous pouvez définir l’adresse IP de hello cible pour une machine virtuelle de Azure créé après le basculement.
 
-- Si vous ne fournissez pas d’adresse IP, la machine ayant basculé utilisera le service DHCP.
+- Si vous ne fournissez une adresse, hello a échoué sur l’ordinateur utilise DHCP.
 - Si vous définissez une adresse qui n’est pas disponible au moment du basculement, ce dernier échoue.
-- Vous pouvez utiliser la même adresse IP cible pour le test de basculement si cette adresse est disponible sur le réseau de test de basculement.
-- Le nombre de cartes réseau est déterminé par la taille spécifiée pour la machine virtuelle cible :
+- Hello même adresse IP peut servir pour le test de basculement, si l’adresse de hello est disponible dans le réseau de basculement de test hello.
+- nombre de Hello de cartes réseau est dicté par taille hello que vous spécifiez pour la machine virtuelle cible hello :
 
-     - Si le nombre de cartes réseau sur la machine source est inférieur ou égal au nombre de cartes autorisé pour la taille de la machine cible, la cible présente le même nombre de cartes que la source.
-     - Si le nombre de cartes de la machine virtuelle source dépasse la valeur de taille cible autorisée, la taille cible maximale est utilisée.
-     - Par exemple, si une machine source présente deux cartes réseau et que la taille de la machine cible en accepte quatre, la machine cible présentera deux cartes. Si la machine source inclut deux cartes, mais que la taille cible prise en charge accepte une seule carte, la machine cible présentera une seule carte.     
-   - Si la machine virtuelle possède plusieurs cartes réseau, elles se connectent toutes au même réseau.
-   - Si la machine virtuelle possède plusieurs cartes réseau, la première qui s’affiche dans la liste devient la carte réseau *par défaut* dans la machine virtuelle Azure.
+     - Si nombre hello de cartes réseau sur l’ordinateur source de hello est hello identique ou inférieur au nombre de hello de cartes autorisé pour la taille de la machine cible hello, cible de hello aura hello même nombre de cartes en tant que source de hello.
+     - Si nombre hello de cartes pour l’ordinateur virtuel de source hello dépasse le nombre hello autorisé pour la taille cible de hello, taille maximale de la cible hello sera utilisée.
+     - Par exemple, si un ordinateur source possède deux cartes réseau et la taille de la machine cible hello prend en charge quatre, l’ordinateur cible hello aura deux cartes. Si hello source ordinateur possède deux cartes, mais hello taille cible pris en charge uniquement en charge l’un de l’ordinateur cible hello aura qu’un seul adaptateur.     
+   - Si l’ordinateur virtuel de hello possède plusieurs cartes réseau qu’ils seront connectent tous toohello même réseau.
+   - Si l’ordinateur virtuel de hello possède plusieurs cartes réseau, hello celui affiché dans la liste de hello devient hello *par défaut* carte réseau Bonjour machine virtuelle Azure.
  - [En savoir plus](vmware-walkthrough-network.md) sur l’adressage IP.
 
 
 
 ## <a name="view-and-modify-vm-settings"></a>Afficher et modifier des paramètres de machine virtuelle
 
-Nous vous recommandons de vérifier les propriétés de la machine source avant d’effectuer un basculement.
+Nous vous conseillons de vérifier les propriétés de hello d’ordinateur de source de hello avant d’exécuter un basculement.
 
-1. Dans **Éléments protégés**, cliquez sur **Éléments répliqués** et sélectionnez la machine virtuelle.
-2. Dans le panneau **Élément répliqué**, vous pouvez voir un résumé des informations de machine virtuelle, l’état d’intégrité et les derniers points de récupération disponibles. Cliquez sur **Propriétés** pour obtenir plus de détails.
+1. Dans **éléments protégés**, cliquez sur **répliquées des éléments**, puis cliquez sur hello machine virtuelle.
+2. Bonjour **répliqué élément** volet, vous pouvez voir un résumé des informations, l’état d’intégrité et derniers points de récupération disponibles hello machine virtuelle. Cliquez sur **propriétés** tooview plus en détail.
 3. Dans **Calcul et réseau**, vous pouvez :
-    - Modifier le nom de la machine virtuelle Azure. Le nom doit répondre aux [exigences Azure](site-recovery-support-matrix-to-azure.md#failed-over-azure-vm-requirements).
+    - Modifier le nom de machine virtuelle Azure hello. nom de Hello doit respecter [conditions requises pour Azure](site-recovery-support-matrix-to-azure.md#failed-over-azure-vm-requirements).
     - Spécifier un [groupe de ressources] post-basculement.
-    - Spécifier une taille cible pour la machine virtuelle Azure.
+    - Spécifiez une taille cible pour hello machine virtuelle Azure
     - Sélectionner un [groupe à haute disponibilité](../virtual-machines/windows/tutorial-availability-sets.md).
-    - Indiquer s’il faut utiliser [des disques gérés](#managed-disk-considerations). Sélectionnez **Oui**, si vous souhaitez attacher des disques gérés à votre machine lors de la migration vers Azure.
-    - Affichez ou modifiez les paramètres réseau, y compris le réseau/sous-réseau dans lequel la machine virtuelle Azure se trouve après le basculement et l’adresse IP qui lui sera affectée.
-4. Des informations sur les disques de données et du système d’exploitation de la machine virtuelle s’affichent dans **Disques**.
+    - Spécifiez si toouse [des disques gérés par](#managed-disk-considerations). Sélectionnez **Oui**, si vous voulez tooattach disques gérés tooyour machine sur tooAzure de migration.
+    - Afficher ou modifier les paramètres de réseau, y compris hello/sous-réseau du réseau dans le hello machine virtuelle Azure se trouve après le basculement et adresse IP hello qui sera assigné tooit.
+4. Dans **disques**, vous pouvez voir des informations sur le système d’exploitation de hello et disques de données de hello machine virtuelle.
 
 ## <a name="run-a-test-failover"></a>Exécution d’un test de basculement
 
-Après avoir terminé la configuration, exécutez un test de basculement afin de vérifier que tout fonctionne bien.
+Une fois que vous avez configuré tous les éléments, exécutez un toomake de basculement de test que tout fonctionne comme prévu.
 
-- Si vous souhaitez vous connecter à des machines virtuelles Azure à l’aide du protocole RDP après le basculement, [préparez la connexion](site-recovery-test-failover-to-azure.md#prepare-to-connect-to-azure-vms-after-failover).
- - Pour effectuer un test complet, vous avez besoin d’une copie d’Active Directory et du DNS dans votre environnement de test. [En savoir plus](site-recovery-active-directory.md#test-failover-considerations).
+- Si vous souhaitez tooconnect tooAzure machines virtuelles à l’aide du protocole RDP après le basculement, [préparer tooconnect](site-recovery-test-failover-to-azure.md#prepare-to-connect-to-azure-vms-after-failover).
+ - test de toofully vous avez besoin de toocopy d’Active Directory et DNS dans votre environnement de test. [En savoir plus](site-recovery-active-directory.md#test-failover-considerations).
  - Pour obtenir des informations complètes sur le test de basculement, consultez [cet article](site-recovery-test-failover-to-azure.md).
 - Visionnez une courte vidéo de présentation avant de commencer :
 
@@ -90,26 +90,26 @@ Après avoir terminé la configuration, exécutez un test de basculement afin de
 
 Maintenant, exécutez un basculement :
 
-1. Pour effectuer le basculement d’une seule machine, dans **Paramètres** > **Éléments répliqués**, cliquez sur la machine virtuelle, puis sur l’icône **+Test de basculement**.
+1. toofail sur un seul ordinateur, dans **paramètres** > **répliquées des éléments**, cliquez sur la machine virtuelle de hello > **+ Test de basculement** icône.
 
     ![Test de basculement](./media/vmware-walkthrough-test-failover/test-failover.png)
 
-2. Pour effectuer le basculement d’un plan de récupération, dans **Paramètres** > **Plans de récupération**, cliquez avec le bouton droit sur le plan et sélectionnez **Test de basculement**. Pour créer un plan de récupération, suivez [ces instructions](site-recovery-create-recovery-plans.md).  
+2. toofail sur la récupération d’un plan, en **paramètres** > **les Plans de récupération**, plan de hello avec le bouton droit > **Test de basculement**. toocreate un plan de récupération, [suivez ces instructions](site-recovery-create-recovery-plans.md).  
 
-3. Dans **Test de basculement**, sélectionnez le réseau Azure auquel les machines virtuelles Azure seront connectées après le basculement.
+3. Dans **Test de basculement**, sélectionnez hello réseau Azure toowhich machines virtuelles Azure est connectée après le basculement se produit.
 
-4. Cliquez sur **OK** pour commencer le basculement. Vous pouvez suivre la progression du basculement en cliquant sur la machine virtuelle pour ouvrir ses propriétés, ou en sélectionnant le travail **Test de basculement** dans le nom de l’archivage > **Paramètres** > **Travaux** > **Travaux Site Recovery**.
+4. Cliquez sur **OK** toobegin hello basculement. Vous pouvez suivre la progression en cliquant sur hello VM tooopen ses propriétés, ou sur hello **Test de basculement** travail dans le nom du coffre > **paramètres** > **travaux**  >  **Les tâches de récupération de site**.
 
-5. Une fois le basculement terminé, vous devez également voir la machine Azure de réplication apparaître dans le Portail Azure > **Machines virtuelles**. Vous devrez peut-être vous assurer que la machine virtuelle présente la taille appropriée, qu’elle est bien connectée au réseau approprié et qu’elle s’exécute.
+5. Une fois hello basculement terminé, vous devez également être en mesure de réplica de hello toosee machine Azure s’affichent dans hello portail Azure > **virtuels**. Assurez-vous que VM hello est hello approprié, qui sa connexion réseau approprié de toohello, et qu’il s’exécute.
 
-6. Si vous avez préparé les connexions après le basculement, vous devez être à même de vous connecter à la machine virtuelle Azure.
+6. Si vous préparé pour les connexions après le basculement, vous devez être en mesure de tooconnect toohello machine virtuelle Azure.
 
-7. Une fois que vous avez terminé, cliquez sur **Nettoyer le test de basculement** sur le plan de récupération. Cliquez sur **Notes** pour consigner et enregistrer d’éventuelles observations sur le test de basculement. Cette opération supprimera les machines virtuelles qui ont été créées au cours du test de basculement.
+7. Une fois que vous avez terminé, cliquez sur **basculement de test de nettoyage** sur le plan de récupération hello. Dans **Notes**, enregistrer et enregistrer toutes les observations associées au basculement de test hello. Cette opération supprimera les machines virtuelles hello qui ont été créés pendant le test de basculement.
 
 
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-- [En savoir plus](site-recovery-failover.md) sur les différents types de basculement et leur exécution.
+- [En savoir plus](site-recovery-failover.md) sur différents types de basculement et comment toorun les.
 - Si vous migrez des ordinateurs au lieu de procéder à une réplication et une restauration automatique, [lisez cet article pour en savoir plus](site-recovery-migrate-to-azure.md#migrate-on-premises-vms-and-physical-servers).
-- [En savoir plus sur la restauration automatique](site-recovery-failback-azure-to-vmware.md) pour restaurer et répliquer des machines virtuelles Azure vers le site local principal.
+- [En savoir plus sur la restauration automatique](site-recovery-failback-azure-to-vmware.md), toofail et réplication de machines virtuelles Azure sauvegarder toohello principal sur-site local.

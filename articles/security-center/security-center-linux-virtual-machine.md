@@ -1,6 +1,6 @@
 ---
-title: Azure Security Center et machines virtuelles Azure avec Linux | Microsoft Docs
-description: "Ce document vous a permis de découvrir comment Azure Security Center peut protéger vos machines virtuelles Azure."
+title: "aaaAzure centre de sécurité et des Machines virtuelles Azure avec Linux | Documents Microsoft"
+description: "Ce document vous aide à toounderstand comment Azure Security Center peut protéger des Machines virtuelles Azure."
 services: security-center
 documentationcenter: na
 author: YuriDio
@@ -14,96 +14,96 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 01/03/2017
 ms.author: yurid
-ms.openlocfilehash: 0df4fca59575bd8e18e91fea2066a9e694ed320d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d7aa9e54032272839dabfefa30c4c614d5e5610a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-security-center-and-azure-virtual-machines-with-linux"></a>Azure Security Center et machines virtuelles Azure avec Linux
-[Azure Security Center](https://azure.microsoft.com/services/security-center/) vous aide à vous empêcher, détecter et répondre aux menaces. Il fournit une surveillance de la sécurité et une gestion des stratégies intégrées pour l’ensemble de vos abonnements Azure, vous aidant ainsi à détecter les menaces qui pourraient passer inaperçues. De plus, il est compatible avec un vaste écosystème de solutions de sécurité.
+[Centre de sécurité Azure](https://azure.microsoft.com/services/security-center/) vous aide à empêcher, détecter et répondre toothreats. Il fournit une surveillance de la sécurité et une gestion des stratégies intégrées pour l’ensemble de vos abonnements Azure, vous aidant ainsi à détecter les menaces qui pourraient passer inaperçues. De plus, il est compatible avec un vaste écosystème de solutions de sécurité.
 
 Cet article explique comment Security Center peut vous aider à sécuriser vos machines virtuelles Azure exécutant le système d’exploitation Linux.
 
 ## <a name="why-use-security-center"></a>Pourquoi utiliser Security Center ?
 Security Center vous aide à protéger les données de vos machines virtuelles dans Azure en vous offrant une visibilité sur les paramètres de sécurité de vos machines virtuelles et en surveillant les menaces. Security Center surveille les éléments suivants sur vos machines virtuelles : 
 
-* Paramètres de sécurité du système d’exploitation avec les règles de configuration recommandées
+* Paramètres de sécurité de système d’exploitation (OS) avec hello recommandé de règles de configuration
 * Sécurité du système et mises à jour critiques manquantes
 * Recommandations de protection du point de terminaison
 * Validation du chiffrement de disque
 * Attaques réseau (disponible uniquement en [version standard](https://azure.microsoft.com/en-us/pricing/details/security-center/))
 
-En plus de vous aider à protéger vos machines virtuelles Azure, Security Center fournit également l’analyse de la sécurité et la gestion des services cloud, App Services et réseaux virtuels, notamment. 
+En outre toohelping protéger vos machines virtuelles Azure, le centre de sécurité fournit également la surveillance de la sécurité et de gestion pour les Services de cloud computing, Services d’application, les réseaux virtuels et bien plus encore. 
 
 > [!NOTE]
-> Pour en savoir plus sur Azure Security Center, consultez l’article [Présentation d’Azure Security Center](security-center-intro.md).
+> Consultez [Introduction tooAzure centre de sécurité](security-center-intro.md) toolearn plus d’informations sur Azure Security Center.
 > 
 > 
 
 ## <a name="prerequisites"></a>Composants requis
-Pour commencer à utiliser Azure Security Center, vous devez connaître et prendre en compte les points suivants :
+tooget main Azure Security Center, vous devez tooknow et tenez compte hello qui suit :
 
-* Vous devez disposer d’un abonnement à Microsoft Azure. Pour plus d’informations sur les niveaux Gratuit et Standard de Security Center, consultez l’article [Tarification de Security Center](https://azure.microsoft.com/pricing/details/security-center/).
-* Planifiez votre adoption de Security Center. Consultez l’article [Guide des opérations et de planification d’Azure Security Center](security-center-planning-and-operations-guide.md) pour en savoir plus sur la planification et le fonctionnement.
+* Vous devez avoir un tooMicrosoft abonnement Azure. Pour plus d’informations sur les niveaux Gratuit et Standard de Security Center, consultez l’article [Tarification de Security Center](https://azure.microsoft.com/pricing/details/security-center/).
+* Planifier l’adoption de votre centre de sécurité, consultez [guide de planification et les opérations Azure Security Center](security-center-planning-and-operations-guide.md) toolearn plus d’informations sur les considérations de planification et les opérations.
 * Pour plus d’informations sur la prise en charge du système d’exploitation, consultez le [Forum au questions Azure Security Center](security-center-faq.md). 
 
 ## <a name="set-security-policy"></a>Définir une stratégie de sécurité
-La collecte de données doit être activée pour qu’Azure Security Center puisse rassembler les informations nécessaires pour fournir des recommandations et des alertes générées en fonction de la stratégie de sécurité que vous configurez. Dans la figure ci-dessous, vous pouvez voir que la **collecte des données** a été **activée**.
+Données collection besoins toobe activée afin que ce centre de sécurité Azure peut recueillir des informations hello nécessaires tooprovide recommandations et des alertes sont générées en fonction de la stratégie de sécurité hello que vous configurez. Dans la figure hello ci-dessous, vous pouvez voir que **collecte des données** a été activée **sur**.
 
-Une stratégie de sécurité définit l’ensemble des contrôles recommandés pour les ressources d’un abonnement ou groupe de ressources spécifique. Avant d’activer la stratégie de sécurité, vous devez activer la collecte de données : Security Center collecte les données de vos machines virtuelles afin d’évaluer l’état de leur sécurité, de fournir des recommandations en matière de sécurité et de vous avertir des menaces. Dans Security Center, vous devez définir des stratégies pour vos abonnements ou groupes de ressources Azure en fonction des exigences de sécurité de votre société et du type d’applications ou du niveau de confidentialité des données de chaque abonnement. 
+Une stratégie de sécurité définit un jeu hello des contrôles qui sont recommandés pour les ressources hello spécifié abonnement ou groupe de ressources. Avant d’activer la stratégie de sécurité, vous devez avoir activé la collecte de données, tooassess leur état de sécurité, fournir des recommandations de sécurité et vous alerter toothreats de commande du centre de sécurité recueille des données à partir de vos machines virtuelles dans. Dans le centre de sécurité, vous définissez des stratégies pour vos abonnements Azure ou les groupes de ressources en fonction de la société tooyour aux besoins de sécurité et de type hello d’applications ou de la sensibilité des données hello dans chaque abonnement. 
 
 ![Stratégie de sécurité](./media/security-center-linux-virtual-machine/security-center-linux-virtual-machine-fig1.png)
 
 > [!NOTE]
-> Pour en savoir plus sur chaque **stratégie de prévention** disponible, consultez l’article [Définir des stratégies de sécurité](security-center-policies.md).
+> toolearn plus en détail chacune **stratégie de prévention de** disponible, voir [définir des stratégies de sécurité](security-center-policies.md) l’article.
 > 
 
 ## <a name="manage-security-recommendations"></a>Gérer les recommandations de sécurité
-Le Centre de sécurité analyse l’état de sécurité de vos ressources Azure. Lorsqu’il identifie des failles de sécurité potentielles, il crée des recommandations. Ces recommandations vous guident tout au long du processus de configuration des contrôles nécessaires.
+Centre de sécurité analyse l’état de la sécurité de vos ressources Azure hello. Lorsqu’il identifie des failles de sécurité potentielles, il crée des recommandations. recommandations de Hello vous guident tout au long des processus de hello de configuration de contrôles de hello si nécessaire.
 
-Après la définition d’une stratégie de sécurité, le Centre de sécurité analyse l’état de sécurité de vos ressources pour identifier les vulnérabilités potentielles. Les recommandations sont affichées dans un tableau où chaque ligne correspond à une recommandation. Le tableau ci-dessous fournit des exemples de recommandations pour les machines virtuelles Azure exécutant le système d’exploitation Linux et l’action de chacune si vous les appliquez. Lorsque vous sélectionnez une recommandation, des informations vous montrent comment implémenter la recommandation dans Security Center.
+Après avoir défini une stratégie de sécurité, le centre de sécurité analyse état de sécurité hello des vulnérabilités potentielles tooidentify ressources. recommandations de Hello sont affichées sous forme de tableau, où chaque ligne représente une recommandation particulière. tableau Hello ci-dessous fournit des exemples de recommandations pour les machines virtuelles Azure exécutant le système d’exploitation Linux et que chacun d’eux faire si vous l’appliquez. Lorsque vous sélectionnez une recommandation, vous recevrez des informations qui vous montre comment tooimplement hello recommandation dans le centre de sécurité.
 
 | Recommandation | Description |
 | --- | --- |
-| [Activer la collecte des données pour des abonnements](security-center-enable-data-collection.md) |Recommande l’activation de la collecte des données dans la stratégie de sécurité pour chacun de vos abonnements et toutes les machines virtuelles de vos abonnements. |
-| [Corriger des vulnérabilités du système d’exploitation](security-center-remediate-os-vulnerabilities.md) |Recommande d’aligner les configurations de votre système d’exploitation sur les règles de configuration recommandées, comme le fait de ne pas permettre l’enregistrement des mots de passe. |
-| [Appliquer des mises à jour système](security-center-apply-system-updates.md) |Recommande le déploiement des mises à jour de sécurité du système et des mises à jour critiques manquantes sur les machines virtuelles. |
-| [Redémarrage après des mises à jour système](security-center-apply-system-updates.md#reboot-after-system-updates) |Recommande de redémarrer une machine virtuelle pour terminer le processus de mise à jour du système. |
-| [Activer l’agent de machine virtuelle](security-center-enable-vm-agent.md) |Vous permet de connaître les machines virtuelles qui nécessitent l’agent de machine virtuelle. L’agent de machine virtuelle doit être installé sur les machines virtuelles pour approvisionner l’analyse des correctifs, l’analyse des lignes de base et les logiciels anti-programme malveillant. L’agent de machine virtuelle est installé par défaut sur les machines virtuelles déployées depuis Azure Marketplace. L’article [Installer l’agent de machine virtuelle – Deuxième partie](http://azure.microsoft.com/blog/2014/04/15/vm-agent-and-extensions-part-2/) fournit des informations sur l’installation de l’agent de machine virtuelle. |
-| [Apply disk encryption (Appliquer le chiffrement de disque Azure Disk Encryption)](security-center-apply-disk-encryption.md) |Recommande le chiffrement des disques des machines virtuelles à l’aide d’Azure Disk Encryption (Windows et Linux). Le chiffrement est recommandé pour les systèmes d’exploitation et les volumes de données de votre machine virtuelle. |
+| [Activer la collecte des données pour des abonnements](security-center-enable-data-collection.md) |Vous recommande d’activer la collecte des données dans la stratégie de sécurité hello pour chacun de vos abonnements et toutes les machines virtuelles (VM) dans vos abonnements. |
+| [Corriger des vulnérabilités du système d’exploitation](security-center-remediate-os-vulnerabilities.md) |Recommande que vous s’alignent sur vos configurations de système d’exploitation hello recommandé de règles de configuration, par exemple, ne permettent pas de toobe des mots de passe enregistré. |
+| [Appliquer des mises à jour système](security-center-apply-system-updates.md) |Recommande de déployer la sécurité du système manquantes et tooVMs de mises à jour critiques. |
+| [Redémarrage après des mises à jour système](security-center-apply-system-updates.md#reboot-after-system-updates) |Recommande de redémarrer un processus de hello toocomplete machine virtuelle de l’application de mises à jour du système. |
+| [Activer l’agent de machine virtuelle](security-center-enable-vm-agent.md) |Permet de toosee qui nécessitent des machines virtuelles hello Agent de machine virtuelle. Hello Agent de machine virtuelle doit être installé sur des machines virtuelles dans le correctif de tooprovision d’ordre d’analyse, l’analyse de la ligne de base et des programmes de logiciels anti-programme malveillant. Hello Agent de machine virtuelle est installé par défaut pour les ordinateurs virtuels qui sont déployés à partir de hello Azure Marketplace. article de Hello [Agent de machine virtuelle et Extensions-partie 2](http://azure.microsoft.com/blog/2014/04/15/vm-agent-and-extensions-part-2/) fournit des informations sur la façon dont tooinstall hello Agent de machine virtuelle. |
+| [Apply disk encryption (Appliquer le chiffrement de disque Azure Disk Encryption)](security-center-apply-disk-encryption.md) |Recommande le chiffrement des disques des machines virtuelles à l’aide d’Azure Disk Encryption (Windows et Linux). Le chiffrement est recommandé pour hello du système d’exploitation et les volumes de données sur votre machine virtuelle. |
 
 
 > [!NOTE]
-> Pour en savoir plus sur les recommandations, consultez l’article [Gestion des recommandations de sécurité](security-center-recommendations.md).
+> toolearn en savoir plus sur les recommandations, consultez [gestion des recommandations de sécurité](security-center-recommendations.md) l’article.
 > 
 
 ## <a name="monitor-security-health"></a>Surveiller l’intégrité de la sécurité
-Une fois que vous avez activé les [stratégies de sécurité](security-center-policies.md) pour les ressources d’un abonnement, Azure Security Center analyse la sécurité de vos ressources afin d’identifier les vulnérabilités potentielles.  Vous pouvez visualiser l’état de sécurité de vos ressources, ainsi que les problèmes éventuels, dans le panneau **Intégrité de la sécurité des ressources** . Lorsque vous cliquez sur **Machines virtuelles** dans la vignette **Intégrité de la sécurité des ressources**, le panneau **Machines virtuelles** s’ouvre, et indique des recommandations pour vos machines virtuelles. 
+Après avoir activé [des stratégies de sécurité](security-center-policies.md) pour les ressources d’un abonnement, le centre de sécurité analysera sécurité hello des vulnérabilités potentielles tooidentify ressources.  Vous pouvez afficher d’état de la sécurité de vos ressources, ainsi que des problèmes dans hello hello **contrôle d’intégrité de sécurité** panneau. Lorsque vous cliquez sur **virtuels** Bonjour **sécurité des ressources** vignette de contrôle d’intégrité, hello **virtuels** panneau s’ouvre avec les recommandations pour vos machines virtuelles. 
 
 ![Intégrité de la sécurité](./media/security-center-virtual-machine/security-center-virtual-machine-fig2.png)
 
-## <a name="manage-and-respond-to-security-alerts"></a>Gérer et répondre aux alertes de sécurité
-Security Center collecte, analyse et intègre automatiquement les données de journaux provenant de vos ressources Azure, du réseau et des solutions partenaires connectées, telles que les solutions de protection des points de terminaison et des pare-feu, pour détecter les menaces réelles et réduire le nombre de faux positifs. En tirant parti d’une agrégation de [fonctionnalités de détection](security-center-detection-capabilities.md) diversifiées, Security Center est en mesure de générer des alertes de sécurité hiérarchisées pour vous aider à étudier rapidement le problème et de fournir des recommandations afin de corriger les attaques possibles.
+## <a name="manage-and-respond-toosecurity-alerts"></a>Gérer et répondre toosecurity alertes
+Centre de sécurité collecte, analyse automatiquement et intègre des données de journal à partir de vos ressources Azure, hello réseau et les solutions de partenaire connecté (tels que des pare-feu et endpoint protection solutions), les menaces réelles toodetect et réduire les faux positifs. En tirant parti d’une agrégation divers de [des fonctionnalités de détection](security-center-detection-capabilities.md), centre de sécurité est en mesure de toogenerate hiérarchisé toohelp des alertes de sécurité vous étudiez hello problème rapidement et que vous fournissez des recommandations sur la manière tooremediate attaques possibles.
 
 ![Alertes de sécurité](./media/security-center-virtual-machine/security-center-virtual-machine-fig3.png)
 
-Sélectionnez une alerte de sécurité pour en savoir plus sur les événements qui l’ont déclenchée et, le cas échéant, les étapes à suivre pour y remédier. Les alertes de sécurité sont regroupées par [type](security-center-alerts-type.md) et date d’apparition.
+Sélectionnez un toolearn d’alerte de sécurité plus sur les événements hello ayant déclenché l’alerte de hello et, si elle existe, les étapes doivent tootake tooremediate une attaque. Les alertes de sécurité sont regroupées par [type](security-center-alerts-type.md) et date d’apparition.
 
 ## <a name="monitor-security-health"></a>Surveiller l’intégrité de la sécurité
-Une fois que vous avez activé les [stratégies de sécurité](security-center-policies.md) pour les ressources d’un abonnement, Azure Security Center analyse la sécurité de vos ressources afin d’identifier les vulnérabilités potentielles.  Vous pouvez visualiser l’état de sécurité de vos ressources, ainsi que les problèmes éventuels, dans le panneau **Intégrité de la sécurité des ressources** . Lorsque vous cliquez sur **Machines virtuelles** dans la vignette **Intégrité de la sécurité des ressources**, le panneau **Machines virtuelles** s’ouvre, et indique des recommandations pour vos machines virtuelles. 
+Après avoir activé [des stratégies de sécurité](security-center-policies.md) pour les ressources d’un abonnement, le centre de sécurité analysera sécurité hello des vulnérabilités potentielles tooidentify ressources.  Vous pouvez afficher d’état de la sécurité de vos ressources, ainsi que des problèmes dans hello hello **contrôle d’intégrité de sécurité** panneau. Lorsque vous cliquez sur **virtuels** Bonjour **sécurité des ressources** vignette de contrôle d’intégrité, hello **virtuels** panneau s’ouvre avec les recommandations pour vos machines virtuelles. 
 
 ![Intégrité de la sécurité](./media/security-center-linux-virtual-machine/security-center-linux-virtual-machine-fig4.png)
 
-Si vous cliquez sur cette recommandation, vous en saurez plus sur les actions spécifiques à effectuer pour répondre à ces problèmes. Ces informations s’affichent dans la partie inférieure du volet, sous **Recommandations**. 
+Si vous cliquez sur cette recommandation, vous verrez plus de détails sur les actions spécifiques hello qui doivent être prises tooaddress ces problèmes. Hello détails apparaissent dans bas hello du Panneau de hello, sous **recommandations**. 
 
 ![Intégrité de la sécurité 2](./media/security-center-linux-virtual-machine/security-center-linux-virtual-machine-fig5.png)
 
 
 ## <a name="see-also"></a>Voir aussi
-Pour plus d’informations sur le Centre de sécurité, consultez les rubriques suivantes :
+toolearn en savoir plus sur le centre de sécurité, voir hello :
 
-* [Définition des stratégies de sécurité dans Azure Security Center](security-center-policies.md) : découvrez comment configurer des stratégies de sécurité pour vos groupes de ressources et abonnements Azure.
-* [Gestion et résolution des alertes de sécurité dans Azure Security Center](security-center-managing-and-responding-alerts.md) : découvrez comment gérer et résoudre les alertes de sécurité.
-* [FAQ Azure Security Center](security-center-faq.md) : forum aux questions concernant l’utilisation de ce service.
+* [Définition des stratégies de sécurité dans le centre de sécurité Azure](security-center-policies.md) --Découvrez comment tooconfigure des stratégies de sécurité pour vos abonnements Azure et les groupes de ressources.
+* [Toosecurity répond et de la gestion des alertes dans le centre de sécurité Azure](security-center-managing-and-responding-alerts.md) --Découvrez comment les alertes toosecurity toomanage et y répondre.
+* [Forum aux questions sur Azure Security Center](security-center-faq.md) --rechercher Forum aux questions sur l’utilisation du service de hello.
 

@@ -1,6 +1,6 @@
 ---
-title: "Application Microsoft Authenticator pour les téléphones mobiles | Microsoft Docs"
-description: "Découvrez comment effectuer une mise à niveau vers la dernière version d’Azure Authenticator."
+title: "application d’authentification aaaMicrosoft pour les téléphones mobiles | Documents Microsoft"
+description: "Découvrez comment tooupgrade toohello dernière version de Azure Authenticator."
 services: multi-factor-authentication
 documentationcenter: 
 author: kgremban
@@ -15,95 +15,95 @@ ms.date: 08/15/2017
 ms.author: kgremban
 ms.reviewer: librown
 ms.custom: H1Hack27Feb2017, end-user
-ms.openlocfilehash: 6bcb6d9f7a1e9b241fa70690016b03d6eb5887ab
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: d895d92d89613cbafd9fc09d4ff4810cbf25652e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-the-microsoft-authenticator-app"></a>Prise en main de l’application Microsoft Authenticator
-L’application Microsoft Authenticator fournit un niveau supplémentaire de sécurité dans votre compte professionnel ou scolaire (p. ex. bsimon@contoso.com) ou votre compte Microsoft (p. ex. bsimon@outlook.com).
+# <a name="get-started-with-hello-microsoft-authenticator-app"></a>Prise en main hello Microsoft Authenticator application
+application Microsoft Authenticator Hello fournit un niveau supplémentaire de sécurité de votre compte professionnel ou scolaire (par exemple, bsimon@contoso.com) ou votre compte Microsoft (par exemple, bsimon@outlook.com).
 
-L’application fonctionne de l’une des deux façons suivantes :
+application Hello fonctionne dans un des deux façons :
 
-* **Notification**. L’application peut aider à empêcher tout accès non autorisé aux comptes et à arrêter les transactions frauduleuses en envoyant une notification à votre smartphone ou tablette. Affichez simplement la notification et si elle est légitime, sélectionnez **Vérifier**. Sinon, vous pouvez sélectionner **Refuser**. 
-* **Code de vérification**. L’application peut être utilisée comme jeton logiciel pour générer un code de vérification OAuth. Après avoir entré votre nom d’utilisateur et votre mot de passe, vous entrez le code fourni par l’application dans l’écran de connexion. Le code de vérification fournit un deuxième formulaire d’authentification.
+* **Notification**. application Hello peut aider à empêcher tout accès non autorisé tooaccounts et arrêter les transactions frauduleuses en envoyant une notification tooyour smartphone ou une tablette. Afficher simplement la notification de hello et si elle est légitime, sélectionnez **Vérifiez**. Sinon, vous pouvez sélectionner **Refuser**. 
+* **Code de vérification**. application Hello peut être utilisée comme un logiciel de jeton toogenerate un code de vérification OAuth. Après avoir entré votre nom d’utilisateur et un mot de passe, vous entrez le code hello fourni par l’application hello dans l’écran de connexion hello. code de vérification Hello fournit un deuxième formulaire d’authentification.
 
-L’application Microsoft Authenticator remplace l’application Azure Authenticator. L’application Azure Authenticator continue de fonctionner, mais cet article peut vous aider si vous décidez d’adopter la nouvelle application Azure Authenticator.  
+application de Microsoft Authenticator Hello remplace l’application Azure Authenticator de hello. application Azure Authenticator de Hello fonctionne toujours, mais si vous décidez d’application Microsoft Authenticator toomove toohello, cet article peut vous aider.  
 
 ## <a name="opt-in-for-two-step-verification"></a>Abonnement à la vérification en deux étapes
 
-L’application Microsoft Authenticator ne fonctionne pas toute seule. Configurez chacun de vos comptes pour être invité à exécuter une deuxième méthode de vérification après vous être connecté avec votre nom d’utilisateur et votre mot de passe. 
+application de Microsoft Authenticator Hello ne fonctionne pas par lui-même. Configurer chacun de vos tooprompt de comptes d’une deuxième méthode de vérification après avoir connectez-vous avec votre nom d’utilisateur et un mot de passe. 
 
-En général, pour un compte professionnel ou scolaire, vous ne pouvez pas prendre cette décision vous-même. Un administrateur de sécurité s’abonne à votre place et vous avertit que vous devez inscrire les méthodes de vérification pour votre compte. Si ce scénario vous concerne, reportez-vous à [Présentation concrète de Multi-Factor Authentication Azure](multi-factor-authentication-end-user.md).
+Pour un compte professionnel ou scolaire, vous ne généralement obtenir toochoose cette fonctionnalité pour vous-même. Au lieu de cela, un administrateur de sécurité a donné son consentement à votre place et vous avertit tooregister les méthodes de vérification de votre compte. Si ce scénario s’applique tooyou, pour en savoir plus [que signifie l’authentification multifacteur Azure pour me](multi-factor-authentication-end-user.md).
 
-Pour un compte personnel, vous devez configurer la vérification en deux étapes vous-même. Si vous avez un compte Microsoft, ces étapes sont disponibles dans [À propos de la vérification en deux étapes](https://support.microsoft.com/help/12408/microsoft-account-about-two-step-verification). 
+Pour un compte personnel, vous devez tooset la vérification en deux étapes pour vous-même. Si vous avez un compte Microsoft, ces étapes sont disponibles dans [À propos de la vérification en deux étapes](https://support.microsoft.com/help/12408/microsoft-account-about-two-step-verification). 
 
-Vous pouvez également utiliser Microsoft Authenticator avec des comptes non-Microsoft. La fonction peut ne pas s’appeler « vérification en deux étapes », mais vous devez pouvoir la trouver dans les paramètres de sécurité ou de connexion. 
+Vous pouvez également utiliser hello Microsoft Authenticator avec les comptes non Microsoft. Ils peuvent faire appel fonctionnalité de hello chose qu’une vérification en deux étapes, mais vous devez être en mesure de toofind sous les paramètres de sécurité ou de connexion. 
 
-## <a name="install-the-app"></a>Installer l’application
-L’application Microsoft Authenticator est disponible pour [Windows Phone](http://go.microsoft.com/fwlink/?Linkid=825071), [Android](http://go.microsoft.com/fwlink/?Linkid=825072) et [iOS](http://go.microsoft.com/fwlink/?Linkid=825073).
+## <a name="install-hello-app"></a>Installer l’application hello
+application de Microsoft Authenticator Hello est disponible pour [Windows Phone](http://go.microsoft.com/fwlink/?Linkid=825071), [Android](http://go.microsoft.com/fwlink/?Linkid=825072), et [iOS](http://go.microsoft.com/fwlink/?Linkid=825073).
 
-## <a name="add-accounts-to-the-app"></a>Ajouter des comptes à l’application
-Pour chaque compte que vous souhaitez ajouter à l’application Microsoft Authenticator, utilisez l’une des procédures suivantes :
+## <a name="add-accounts-toohello-app"></a>Ajouter des comptes toohello application
+Pour chaque compte que vous souhaitez tooadd toohello Microsoft Authenticator application, utilisez une des hello procédures suivantes :
 
-### <a name="add-a-personal-microsoft-account-to-the-app"></a>Ajouter un compte Microsoft personnel à l’application
+### <a name="add-a-personal-microsoft-account-toohello-app"></a>Ajouter une application de toohello de compte Microsoft personnelle
 
-Pour un compte Microsoft personnel (celui qui vous permet de vous connecter à Outlook.com, Xbox, Skype, etc.), il vous suffit de vous connecter à votre compte dans l’application Microsoft Authenticator.
+Pour un compte Microsoft personnel (une que vous utilisez toosign dans tooOutlook.com, Xbox, Skype, etc.), tout ce que vous avez toodo est compte tooyour dans l’application de Microsoft Authenticator hello de connexion.
 
-### <a name="add-a-work-or-school-account-to-the-app-using-the-qr-code-scanner"></a>Ajouter un compte professionnel ou scolaire à l’application à l’aide du scanneur de code QR
-1. Accédez à l’écran des paramètres de vérification de la sécurité.  Pour savoir comment accéder à cet écran, consultez [Problèmes avec Azure Multi-Factor Authentication](multi-factor-authentication-end-user-manage-settings.md#where-to-find-the-settings-page).
-2. Cochez la case **Application Authenticator**, puis sélectionnez **Configurer**.
+### <a name="add-a-work-or-school-account-toohello-app-using-hello-qr-code-scanner"></a>Ajouter un travail ou d’établissement scolaire application toohello de compte à l’aide du scanner de code hello QR
+1. Passez l’écran de paramètres de vérification de sécurité toohello.  Pour plus d’informations sur l’écran de toothis tooget, consultez [modification des paramètres de sécurité](multi-factor-authentication-end-user-manage-settings.md#where-to-find-the-settings-page).
+2. Case à cocher hello ensuite trop**application Authenticator** puis sélectionnez **configurer**.
 
-    ![Le bouton Configurer sur l’écran des paramètres de vérification de la sécurité.](./media/authenticator-app-how-to/azureauthe.png)
+    ![bouton de configurer Hello sur l’écran de paramètres de vérification de sécurité hello](./media/authenticator-app-how-to/azureauthe.png)
 
     Cela fait apparaître un écran avec un code QR dessus.
 
-    ![Écran qui fournit le code QR](./media/authenticator-app-how-to/barcode2.png)
-3. Ouvrez l’application Microsoft Authenticator Sur l’écran des **comptes**, sélectionnez **+**, puis indiquez que vous souhaitez ajouter un compte professionnel ou scolaire.
-4. Utilisez l’appareil photo pour scanner le code QR, puis sélectionnez **Terminé** pour fermer l’écran de code QR.
+    ![Écran qui fournit du code de hello QR](./media/authenticator-app-how-to/barcode2.png)
+3. Application Microsoft Authenticator hello ouvert. Sur hello **comptes** écran, sélectionnez  **+** , puis indiquez que vous souhaitez tooadd un compte professionnel ou scolaire.
+4. Utilisez hello caméra tooscan hello QR code et sélectionnez **fait** écran de code hello QR tooclose.
 
-    Si votre appareil photo ne fonctionne pas correctement, vous pouvez [entrer manuellement le code QR et l’URL](#add-an-account-to-the-app-manually).
+    Si votre appareil photo ne fonctionne pas correctement, vous pouvez [entrer manuellement les hello QR code et l’URL](#add-an-account-to-the-app-manually).
 
-5. Lorsque l’application affiche le nom de votre compte souligné d’un code à six chiffres, c’est que vous avez terminé. 
+5. Lors de l’application hello affiche le nom de votre compte avec un code à six chiffres situés sous celui-ci, vous avez terminé. 
 
     ![Écran de comptes](./media/authenticator-app-how-to/accounts.png)
 
-### <a name="add-an-account-to-the-app-manually"></a>Ajouter manuellement un compte à l’application
-1. Accédez à l’écran des paramètres de vérification de la sécurité.  Pour savoir comment accéder à cet écran, consultez [Problèmes avec Azure Multi-Factor Authentication](multi-factor-authentication-end-user-manage-settings.md).
+### <a name="add-an-account-toohello-app-manually"></a>Ajouter une application de toohello compte manuellement
+1. Passez l’écran de paramètres de vérification de sécurité toohello.  Pour plus d’informations sur l’écran de toothis tooget, consultez [modification des paramètres de sécurité](multi-factor-authentication-end-user-manage-settings.md).
 2. Sélectionnez **Configurer**.
 
-    ![Le bouton Configurer sur l’écran des paramètres de vérification de la sécurité.](./media/authenticator-app-how-to/azureauthe.png)
+    ![bouton de configurer Hello sur l’écran de paramètres de vérification de sécurité hello](./media/authenticator-app-how-to/azureauthe.png)
 
-    Cela fait apparaître un écran avec un code QR dessus.  Notez le code et l’URL.
+    Cela fait apparaître un écran avec un code QR dessus.  Code de note de hello et l’URL.
 
-    ![Écran qui fournit le code QR et l’URL](./media/authenticator-app-how-to/barcode2.png)
-3. Ouvrez l’application Microsoft Authenticator Sur l’écran des **comptes**, sélectionnez **+**, puis indiquez que vous souhaitez ajouter un compte professionnel ou scolaire.
+    ![Écran qui fournit le code de hello QR et l’URL](./media/authenticator-app-how-to/barcode2.png)
+3. Application Microsoft Authenticator hello ouvert. Sur hello **comptes** écran, sélectionnez  **+** , puis indiquez que vous souhaitez tooadd un compte professionnel ou scolaire.
 
-4. Dans le scanner, sélectionnez **enter code manually**(entrer le code manuellement).
+4. Dans l’Analyseur de hello, sélectionnez **Entrez du code manuellement**.
 
     ![Écran pour scanner un code QR](./media/multi-factor-authentication-end-user-first-time/scan2.png)
-5. Entrez le code et l’URL dans les zones appropriées de l’application, puis sélectionnez **Terminer**.
+5. Entrez le code de hello et l’URL de hello dans les zones appropriées de hello dans l’application hello, puis sélectionnez **Terminer**.
 
     ![Écran pour saisir le code et de l’URL](./media/authenticator-app-how-to/manual.png)
 
-6. Lorsque l’application affiche le nom de votre compte souligné d’un code à six chiffres, c’est que vous avez terminé.
+6. Lors de l’application hello affiche le nom de votre compte avec un code à six chiffres situés sous celui-ci, vous avez terminé.
 
     ![Écran de comptes](./media/authenticator-app-how-to/accounts.png)
 
-### <a name="add-an-account-to-the-app-using-touch-id"></a>Ajouter un compte à l’application à l’aide de Touch ID
-L’application Microsoft Authenticator sur iOS prend en charge Touch ID.  Azure Multi-Factor Authentication permet aux organisations de demander un code confidentiel pour les appareils. Avec Touch ID, les utilisateurs iOS n’ont pas besoin d’entrer de code confidentiel. Au lieu de cela, ils peuvent analyser leur empreinte digitale et sélectionner **Approuver**.
+### <a name="add-an-account-toohello-app-using-touch-id"></a>Ajouter une application toohello de compte à l’aide de Touch ID
+application de Microsoft Authenticator Hello sur iOS prend en charge un ID tactile.  Azure multi-Factor Authentication permet aux organisations toorequire un code confidentiel pour les appareils. Avec Touch ID, les utilisateurs iOS n’avez pas besoin tooenter un code confidentiel. Au lieu de cela, ils peuvent analyser leur empreinte digitale et sélectionner **Approuver**.
 
 La configuration de Touch ID avec Microsoft Authenticator est simple. Vous effectuez une vérification normale avec un code confidentiel. Si votre appareil prend en charge Touch ID, Microsoft Authenticator le configure automatiquement pour ce compte.
 
 ![Vérification de la configuration de Touch ID](./media/authenticator-app-how-to/touchid1.png)
 
-À partir de là, lorsque vous êtes invité à vérifier votre connexion, vous sélectionnez la notification Push reçue et vous scannez votre empreinte digitale au lieu d’entrer votre code confidentiel.
+À partir de ce point vers l’avant, quand vous êtes requis tooverify vous connecter à, vous sélectionnez de notifications push hello reçu et analyser votre empreinte digitale au lieu d’entrer votre PIN.
 
 ![Notification Push](./media/authenticator-app-how-to/touchid2.png)
 
-## <a name="use-the-app-when-you-sign-in"></a>Utilisation de l’application lors de la connexion
+## <a name="use-hello-app-when-you-sign-in"></a>Utiliser l’application hello lors de la connexion
 
-Une fois que votre compte est ajouté à l’application, vous pouvez être invité à effectuer une vérification du test pour vous assurer que tout a été correctement configuré. Après cela, vous avez terminé ! Vous n’avez rien d’autre à faire avant la prochaine connexion.
+Une fois que votre compte est ajouté toohello application, vous pouvez être demandées par invite toodo un toomake de vérification de test que tout a été correctement configuré. Après cela, vous avez terminé ! Vous n’avez pas besoin toodo chose jusqu'à ce que hello prochaine fois que vous vous connectez.
 
-Si vous avez choisi d’utiliser des codes de vérification dans l’application, ils s’affichent sur la page d’accueil. Ils changent toutes les 30 secondes, de sorte que vous ayez toujours un nouveau code lorsque vous en avez besoin. Mais vous n’avez rien à faire tant que vous n’êtes pas connecté et invité à saisir un code de vérification.  
+Si vous choisissez des codes de vérification toouse dans l’application hello, vous démarrez toosee à la page d’accueil hello. Ils changent toutes les 30 secondes, de sorte que vous ayez toujours un nouveau code lorsque vous en avez besoin. Mais vous n’avez pas besoin toodo rien avec eux jusqu'à ce que vous vous connecter et sont invités à tooenter un code de vérification.  

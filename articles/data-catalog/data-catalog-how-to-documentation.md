@@ -1,6 +1,6 @@
 ---
-title: "Comment documenter des sources de données | Microsoft Docs"
-description: "Article de procédure expliquant comment documenter les ressources de données dans Azure Data Catalog."
+title: "sources de données aaaHow toodocument | Documents Microsoft"
+description: "Mise en surbrillance de la procédure-tooarticle comment toodocument les ressources de données dans Azure Data Catalog."
 services: data-catalog
 documentationcenter: 
 author: spelluru
@@ -15,26 +15,26 @@ ms.tgt_pltfrm: NA
 ms.workload: data-catalog
 ms.date: 08/03/2017
 ms.author: spelluru
-ms.openlocfilehash: ffe951f60afb57524568fe1ed3b3668d0088e124
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 4e46838d91ab4d0c0bc569ac526a0c729134bb10
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="document-data-sources"></a>Documentation de sources de données
 ## <a name="introduction"></a>Introduction
-**Microsoft Azure Data Catalog** est un service cloud entièrement géré qui sert de système d'inscription et de détection des sources de données d'entreprise. En d’autres termes, **Microsoft Azure Data Catalog** vise essentiellement à aider les utilisateurs à détecter, *comprendre*et utiliser des sources de données, et permet aux organisations de mieux exploiter leurs données.
+**Microsoft Azure Data Catalog** est un service cloud entièrement géré qui sert de système d'inscription et de détection des sources de données d'entreprise. En d’autres termes, **Azure Data Catalog** est d’aider les utilisateurs à découvrir, *comprendre*et utiliser des sources de données et de contribuer tooget organisations plus de valeur à partir de leurs données.
 
-Quand une source de données est inscrite dans **Azure Data Catalog**, ses métadonnées sont copiées et indexées par le service. Mais ce n’est pas tout. **Azure Data Catalog** permet également aux utilisateurs de fournir leur propre documentation complète pour décrire l’utilisation et les scénarios courants de la source de données.
+Quand une source de données est enregistrée avec **Azure Data Catalog**, ses métadonnées sont copiée et est indexée par le service de hello, mais un récit hello ne se termine pas il. **Azure Data Catalog** permet également aux utilisateurs tooprovide leur propre documentation complète décrivant l’utilisation de hello et des scénarios courants pour la source de données hello.
 
-L’article [Annotation de sources de données](data-catalog-how-to-annotate.md)explique comment des experts qui connaissent la source de données peuvent l’annoter avec des balises et une description. Le portail **Azure Data Catalog** inclut un éditeur de texte qui permet aux utilisateurs de documenter entièrement les ressources de données et les conteneurs. L’éditeur inclut une mise en forme des paragraphes, avec notamment des en-têtes, la mise en forme du texte, des listes à puces, des listes numérotées et des tableaux.
+Dans [comment tooannotate des sources de données](data-catalog-how-to-annotate.md), vous découvrez que les experts qui connaissent la source de données hello peuvent l’annoter avec balises et une description. Hello **Azure Data Catalog** portail inclut un éditeur de texte afin que les utilisateurs peuvent documenter entièrement les conteneurs et les ressources de données. éditeur de Hello comprend de mise en forme, telles que des titres, mise en forme, les listes à puces, les listes numérotées et les tables de texte de paragraphe.
 
-Les balises et descriptions sont idéales pour ajouter des annotations simples. Toutefois, pour aider les consommateurs de données à mieux comprendre l’utilisation d’une source de données et les scénarios commerciaux d’une source de données, un expert peut fournir une documentation complète et détaillée. Il est facile de documenter une source de données. Il suffit de sélectionner une ressource de données ou un conteneur et de choisir l’option **Documentation**.
+Les balises et descriptions sont idéales pour ajouter des annotations simples. Toutefois, les consommateurs de données toohelp mieux comprennent utilisez hello d’une source de données et les scénarios d’entreprise pour une source de données, un expert peuvent fournir la documentation complète et détaillée. Il est facile toodocument une source de données. Il suffit de sélectionner une ressource de données ou un conteneur et de choisir l’option **Documentation**.
 
 ![](media/data-catalog-documentation/data-catalog-documentation.png)
 
 ## <a name="documenting-data-assets"></a>Documentation de ressources de données
-La documentation **Azure Data Catalog** vous permet d’utiliser votre catalogue de données comme référentiel de contenu pour créer une narration complète de vos ressources de données. Vous pouvez explorer le contenu détaillé décrivant les conteneurs et tables. Si vous utilisez déjà un autre référentiel de contenu, tel que SharePoint ou un partage de fichiers, vous pouvez ajouter des liens de documentation à votre ressource pour référencer ce contenu existant. Vos documents existants seront ainsi mieux exposés.
+Hello avantage de **Azure Data Catalog** documentation vous permet de toouse vos données de catalogue comme un référentiel de contenu de toocreate une narration complète de vos ressources de données. Vous pouvez explorer le contenu détaillé décrivant les conteneurs et tables. Si vous avez déjà contenu dans un autre référentiel de contenu, tel que SharePoint ou un partage de fichiers, vous pouvez ajouter toohello asset documentation liens tooreference ce contenu existant. Vos documents existants seront ainsi mieux exposés.
 
 > [!NOTE]
 > La documentation n’est pas incluse dans l’index de recherche.
@@ -43,11 +43,11 @@ La documentation **Azure Data Catalog** vous permet d’utiliser votre catalogue
 
 ![](media/data-catalog-documentation/data-catalog-documentation2.png)
 
-Le niveau de documentation peut aller d’une simple description des caractéristiques et de la valeur d’un conteneur de ressources de données à une description détaillée du schéma de table dans un conteneur. Le niveau de documentation fourni doit être dicté par vos besoins métiers. De façon générale, voici cependant quelques avantages et inconvénients associés à la documentation de ressources de données :
+au niveau de la documentation Hello peut varier de décrire les caractéristiques de hello et la valeur de données asset conteneur tooa description détaillée du schéma de la table dans un conteneur. niveau Hello de documentation fournie doit être piloté par les besoins de votre entreprise. De façon générale, voici cependant quelques avantages et inconvénients associés à la documentation de ressources de données :
 
-* Documenter uniquement un conteneur : tout le contenu se trouve dans un même emplacement, mais ne comporte sans doute pas les informations nécessaires pour permettre aux utilisateurs de prendre une décision informée.
-* Documenter uniquement les tables : le contenu se rapporte à l’objet en question, mais les documents sont disséminés à plusieurs emplacements.
-* Documenter les conteneurs et les tables : l’approche la plus complète, qui peut toutefois impliquer un effort supplémentaire pour la gestion des documents.
+* Un simple conteneur de document : tout le contenu hello est dans un seul emplacement, mais peut nécessaire du manque d’informations pour les utilisateurs toomake une décision informée.
+* Que les tables hello de documents : contenu est l’objet de toothat spécifique, mais vos utilisateurs disposent de plusieurs emplacements pour les documents.
+* Les tables et les conteneurs de documents : une approche plus complète, mais risque de présenter plus de maintenance de documents de hello.
 
 ## <a name="summary"></a>Résumé
-La documentation des sources de données avec **Azure Data Catalog** peut créer une narration sur vos ressources de données avec le degré de détail dont vous avez besoin.  À l’aide de liens, vous pouvez référencer du contenu stocké dans un référentiel de contenu existant qui rassemble vos documents et vos ressources de données existants. Une fois que vos utilisateurs accèdent aux ressources de données appropriées, ils peuvent bénéficier d’un ensemble de documentation complet.
+La documentation des sources de données avec **Azure Data Catalog** peut créer une narration sur vos ressources de données avec le degré de détail dont vous avez besoin.  À l’aide de liens, vous pouvez lier toocontent stockée dans un référentiel de contenu existant, qui rassemble vos documents existants et les ressources de données. Une fois que vos utilisateurs accèdent aux ressources de données appropriées, ils peuvent bénéficier d’un ensemble de documentation complet.

@@ -1,5 +1,5 @@
 ---
-title: Utilisation du Cache Redis Azure avec Java | Microsoft Docs
+title: aaaHow toouse du Cache Redis Azure avec Java | Documents Microsoft
 description: Prise en main du Cache Redis Azure avec Java
 services: redis-cache
 documentationcenter: 
@@ -14,13 +14,13 @@ ms.tgt_pltfrm: cache-redis
 ms.workload: tbd
 ms.date: 04/13/2017
 ms.author: sdanie
-ms.openlocfilehash: 3cfad3a7279b5f9bbff1e6cd9794c492e3544752
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7768e879d71f61585b59cf4bd6634ba3f12e001d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-azure-redis-cache-with-java"></a>Utilisation du Cache Redis Azure avec Java
+# <a name="how-toouse-azure-redis-cache-with-java"></a>Comment toouse Azure Redis Cache avec Java
 > [!div class="op_single_selector"]
 > * [.NET](cache-dotnet-how-to-use-azure-redis-cache.md)
 > * [ASP.NET](cache-web-app-howto.md)
@@ -30,9 +30,9 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-Le Cache Redis Azure permet d’accéder à un cache Redis dédié géré par Microsoft. Votre cache est accessible à partir de n'importe quelle application dans Microsoft Azure.
+Azure Cache Redis vous donne accès tooa dédié Redis cache, géré par Microsoft. Votre cache est accessible à partir de n'importe quelle application dans Microsoft Azure.
 
-Cette rubrique montre comment utiliser le Cache Redis Azure avec Java.
+Cette rubrique vous indique comment tooget a démarré avec le Cache Redis Azure à l’aide de Java.
 
 ## <a name="prerequisites"></a>Composants requis
 [Jedis](https://github.com/xetorthio/jedis) : client Java pour Redis
@@ -42,11 +42,11 @@ Ce didacticiel utilise Jedis, mais vous pouvez utiliser n'importe quel client Ja
 ## <a name="create-a-redis-cache-on-azure"></a>Créer un Cache Redis sur Azure
 [!INCLUDE [redis-cache-create](../../includes/redis-cache-create.md)]
 
-## <a name="retrieve-the-host-name-and-access-keys"></a>Récupérer les clés d’accès et le nom hôte
+## <a name="retrieve-hello-host-name-and-access-keys"></a>Récupérer les clés d’accès et nom d’hôte hello
 [!INCLUDE [redis-cache-create](../../includes/redis-cache-access-keys.md)]
 
-## <a name="connect-to-the-cache-securely-using-ssl"></a>Connexion au cache en toute sécurité à l’aide de SSL
-Les dernières versions de [jedis](https://github.com/xetorthio/jedis) prennent en charge la connexion au Cache Redis Azure avec SSL. L’exemple suivant montre comment se connecter au Cache Redis Azure à l’aide du point de terminaison SSL 6380. Remplacez `<name>` par le nom de votre cache et `<key>` par votre clé primaire ou secondaire tel que décrit dans la section précédente [Récupérer les clés d’accès et le nom hôte](#retrieve-the-host-name-and-access-keys).
+## <a name="connect-toohello-cache-securely-using-ssl"></a>Se connecter cache toohello en toute sécurité à l’aide de SSL
+Hello dernières builds de [jedis](https://github.com/xetorthio/jedis) prennent en charge pour la connexion tooAzure Cache Redis à l’aide de SSL. Hello, l’exemple suivant montre comment la tooconnect tooAzure Redis Cache à l’aide hello point de terminaison SSL de 6380. Remplacez `<name>` avec nom hello de votre cache et `<key>` avec l’option votre clé primaire ou secondaire comme décrit dans hello précédente [récupérer les clés d’accès et nom d’hôte hello](#retrieve-the-host-name-and-access-keys) section.
 
     boolean useSsl = true;
     /* In this line, replace <name> with your cache name: */
@@ -54,11 +54,11 @@ Les dernières versions de [jedis](https://github.com/xetorthio/jedis) prennent 
     shardInfo.setPassword("<key>"); /* Use your access key. */
 
 > [!NOTE]
-> Le port non SSL est désactivé pour les nouvelles instances Cache Redis Azure. Si vous utilisez un autre client qui ne prend pas en charge SSL, la procédure d’activation du port non SSL est expliquée [ici](cache-configure.md#access-ports).
+> port non-SSL de Hello est désactivé pour les nouvelles instances de Cache Redis Azure. Si vous utilisez un autre client qui ne prennent pas en charge SSL, consultez [comment tooenable hello port non-SSL](cache-configure.md#access-ports).
 > 
 > 
 
-## <a name="add-something-to-the-cache-and-retrieve-it"></a>Ajouter un élément au cache et le récupérer
+## <a name="add-something-toohello-cache-and-retrieve-it"></a>Ajoutez un élément toohello mettre en cache et récupérer
     package com.mycompany.app;
     import redis.clients.jedis.Jedis;
     import redis.clients.jedis.JedisShardInfo;
@@ -79,5 +79,5 @@ Les dernières versions de [jedis](https://github.com/xetorthio/jedis) prennent 
 
 
 ## <a name="next-steps"></a>Étapes suivantes
-* [Activez les diagnostics du cache](https://msdn.microsoft.com/library/azure/dn763945.aspx#EnableDiagnostics) afin de pouvoir [surveiller](https://msdn.microsoft.com/library/azure/dn763945.aspx) l’intégrité de votre cache.
-* Lisez la [documentation Redis](http://redis.io/documentation)officielle.
+* [Activer les diagnostics de cache](https://msdn.microsoft.com/library/azure/dn763945.aspx#EnableDiagnostics) afin de pouvoir [moniteur](https://msdn.microsoft.com/library/azure/dn763945.aspx) hello d’intégrité de votre cache.
+* Lecture hello officielle [Redis documentation](http://redis.io/documentation).

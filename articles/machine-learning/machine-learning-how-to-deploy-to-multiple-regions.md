@@ -1,6 +1,6 @@
 ---
-title: "Déployer un service web dans plusieurs régions | Microsoft Docs"
-description: "Étapes pour déployer (copier) un nouveau service web dans d’autres régions."
+title: "aaaHow toodeploy un Service Web toomultiple régions | Documents Microsoft"
+description: "Étapes toodeploy (copier) un régions tooother de nouveau Service Web."
 services: machine-learning
 documentationcenter: 
 author: vDonGlover
@@ -14,38 +14,38 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/19/2017
 ms.author: v-donglo
-ms.openlocfilehash: 3895537bbca72e687838ff5013c291dfee3be707
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 21fcdb96f118c60ed98b60b1b2df833766c7c8bb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-deploy-a-web-service-to-multiple-regions"></a>Comment déployer un service web dans plusieurs régions
-Les nouveaux services web Azure vous permettent de déployer facilement un service web dans plusieurs régions, sans avoir besoin de plusieurs abonnements ou espaces de travail. 
+# <a name="how-toodeploy-a-web-service-toomultiple-regions"></a>Comment toodeploy un Service Web toomultiple régions
+Hello nouveaux Services Web de Azure permettent tooeasily déployer un régions toomultiple du service web sans avoir besoin de plusieurs abonnements ou les espaces de travail. 
 
-Le tarif est spécifique à chaque région et vous devez donc définir un profil de facturation pour chaque région dans laquelle vous allez déployer le service web.
+La tarification est région spécifique, que vous devez donc définir un plan de facturation pour chaque région dans laquelle vous allez déployer le service web de hello.
 
-## <a name="to-create-a-plan-in-another-region"></a>Pour créer un profil dans une autre région
+## <a name="toocreate-a-plan-in-another-region"></a>toocreate un plan dans une autre région
 1. Connectez-vous aux [services web Microsoft Azure Machine Learning](https://services.azureml.net/).
-2. Cliquez sur l’option de menu **Abonnements** .
-3. Sur la page de présentation des abonnements, cliquez sur **nouveau**.
-4. Dans la liste déroulante **Abonnement** , sélectionnez l’abonnement dans lequel résidera le nouveau plan.
-5. Dans la liste déroulante **Région** , sélectionnez une région pour le nouveau plan. Les options du plan de la région sélectionnée apparaissent dans la section **Plan Options** (Option du plan) de la page.
-6. Dans la liste déroulante **Groupe de ressources** , sélectionnez un groupe de ressources pour le plan. Pour plus d’informations sur les groupes de ressources, consultez [Vue d’ensemble d’Azure Resource Manager](../azure-resource-manager/resource-group-overview.md).
-7. Dans **Plan Name** (Nom du plan), tapez le nom du plan.
-8. Sous **Plan Options**(Options du plan), cliquez sur le niveau de facturation du nouveau plan.
-9. Cliquez sur **Create**.
+2. Cliquez sur hello **Plans** option de menu.
+3. Dans les Plans de hello sur la page de vue, cliquez sur **nouveau**.
+4. À partir de hello **abonnement** liste déroulante, abonnement hello sélectionnez réside dans le hello nouveau plan.
+5. À partir de hello **région** liste déroulante, sélectionnez une région pour le nouveau plan de hello. Hello Options du Plan pour la région sélectionnée hello affichera Bonjour **Options du Plan** section de la page de hello.
+6. À partir de hello **groupe de ressources** liste déroulante, sélectionnez une ressource de groupe pour le plan de hello. Pour plus d’informations sur les groupes de ressources, consultez [Vue d’ensemble d’Azure Resource Manager](../azure-resource-manager/resource-group-overview.md).
+7. Dans **le nom du Plan** nom hello du type de plan de hello.
+8. Sous **des Options Plan**, cliquez sur le niveau facturation hello pour le nouveau plan de hello.
+9. Cliquez sur **Créer**.
 
-## <a name="deploying-the-web-service-to-another-region"></a>Déploiement du service web dans une autre région
-1. Cliquez sur l’option de menu **Services web** .
-2. Sélectionnez le service web que vous déployez dans une nouvelle région.
+## <a name="deploying-hello-web-service-tooanother-region"></a>Déploiement de service tooanother région hello web
+1. Cliquez sur hello **Services Web** option de menu.
+2. Sélectionnez Service Web que vous déployez tooa nouvelle région de hello.
 3. Cliquez sur **Copy**.
-4. Dans **Nom du service web**, tapez le nouveau nom du service web.
-5. Dans **Description du service web**, tapez une description du service web.
-6. Dans la liste déroulante **Abonnement** , sélectionnez l’abonnement dans lequel résidera le nouveau service web.
-7. Dans la liste déroulante **Groupe de ressources** , sélectionnez un groupe de ressources pour le service web. Pour plus d’informations sur les groupes de ressources, consultez [Vue d’ensemble d’Azure Resource Manager](../azure-resource-manager/resource-group-overview.md).
-8. Dans la liste déroulante **Région** , sélectionnez la région dans laquelle vous voulez déployer le service web.
-9. Dans la liste déroulante **Compte de stockage** , sélectionnez un compte de stockage où stocker le service web.
-10. Dans la liste déroulante **Plan de tarification** , sélectionnez un plan dans la région que vous avez sélectionnée à l’étape 8.
+4. Dans **nom du Service Web**, tapez un nouveau nom pour le service web de hello.
+5. Dans **description du service Web**, tapez une description de service web de hello.
+6. À partir de hello **abonnement** liste déroulante, abonnement hello sélectionnez réside dans le hello nouveau service web.
+7. À partir de hello **groupe de ressources** liste déroulante, sélectionnez une ressource de groupe pour le service web de hello. Pour plus d’informations sur les groupes de ressources, consultez [Vue d’ensemble d’Azure Resource Manager](../azure-resource-manager/resource-group-overview.md).
+8. À partir de hello **région** liste déroulante, la région de hello select dans le service web qui toodeploy hello.
+9. À partir de hello **compte de stockage** liste déroulante, sélectionnez un compte de stockage dans le hello toostore de service web.
+10. À partir de hello **Plan tarifaire** liste déroulante, sélectionnez un plan dans la région de hello sélectionnée à l’étape 8.
 11. Cliquez sur **Copy**.
 

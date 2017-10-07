@@ -1,5 +1,5 @@
 ---
-title: "Défragmentation des métriques dans Azure Service Fabric | Microsoft Docs"
+title: "aaaDefragmentation de métriques dans Azure Service Fabric | Documents Microsoft"
 description: "Une présentation de l’utilisation de la défragmentation ou de la compression en tant que stratégie pour les métriques dans Service Fabric"
 services: service-fabric
 documentationcenter: .net
@@ -14,39 +14,39 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 08/18/2017
 ms.author: masnider
-ms.openlocfilehash: b253cc07066092aa82d218c9c82c8aac502245a8
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: d09045a6cf196d2771f1a0794637f4579d3eb96b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="defragmentation-of-metrics-and-load-in-service-fabric"></a>Défragmentation des mesures et de la charge dans Service Fabric
-La stratégie par défaut de Service Fabric Cluster Resource Manager pour la gestion des mesures de charge dans le cluster consiste à répartir la charge. S’assurer que les nœuds sont utilisés de façon uniforme évite les points chauds et les points froids qui entraînent des problèmes de contention et gaspillage des ressources. La distribution des charges de travail dans le cluster est également la configuration la plus sûre afin de surmonter les défaillances, car elle permet de s’assurer qu’une défaillance n’affecte pas un trop grand pourcentage d’une charge de travail donnée. 
+stratégie par défaut de Hello Service Fabric Cluster du Gestionnaire de ressources pour la gestion des mesures de charge dans le cluster de hello est la charge de hello toodistribute. S’assurer que les nœuds sont utilisés uniformément évite à chaud et à froids taches conduire tooboth contention et gaspillage des ressources. Distribuer les charges de travail dans un cluster de hello est également hello plus sûre en termes de survivant d’échecs, car elle garantit qu’une défaillance ne retirez un grand pourcentage de charge de travail donné. 
 
-Service Fabric Cluster Resource Manager prend en charge une stratégie différente pour gérer la charge : la défragmentation. La défragmentation signifie qu’au lieu d’essayer de répartir l’utilisation d’une mesure dans le cluster, nous la consolidons. La consolidation n’est qu’une inversion de la stratégie d’équilibrage par défaut. Au lieu de réduire l’écart type moyen de la charge de mesure, Cluster Resource Manager tente de l’augmenter.
+Hello, Gestionnaire de ressources du Cluster Service Fabric ne prend pas en charge une autre stratégie pour la gestion de charge, ce qui est la défragmentation. Défragmentation signifie qu’au lieu de la tentative d’utilisation de hello toodistribute d’une mesure sur le cluster de hello, il est consolidé. La consolidation est simplement une inversion de stratégie – au lieu de réduction hello moyenne écart type de charge de métrique d’équilibrage de la valeur par défaut hello, hello Gestionnaire de ressources de Cluster tente de tooincrease il.
 
-## <a name="when-to-use-defragmentation"></a>Quand utiliser la défragmentation
-La distribution de la charge dans le cluster consomme des ressources sur chaque nœud. Certaines charges de travail créent des services qui sont particulièrement volumineux et qui consomment la plus grande partie voire la totalité d’un nœud. Dans ces cas, lorsque des charges de travail importantes sont créées, l’espace disponible sur un nœud peut s’avérer insuffisant pour les exécuter. Les charges de travail volumineuses ne posent pas de problème dans Service Fabric. Dans ces cas, Cluster Resource Manager détermine ce dont il a besoin pour réorganiser le cluster afin de faire de la place pour cette charge de travail volumineuse. Toutefois, en attendant, cette charge de travail doit attendre d’être planifiée dans le cluster.
+## <a name="when-toouse-defragmentation"></a>Lors de la défragmentation de toouse
+Répartition de charge dans le cluster de hello consomme des ressources hello sur chaque nœud. Certaines charges de travail créent des services qui sont particulièrement volumineux et qui consomment la plus grande partie voire la totalité d’un nœud. Dans ces cas, il est possible que lorsqu’il existe de grandes charges de travail créés qu’il ne suffit pas de l’espace sur toorun de n’importe quel nœud les. Grandes charges de travail ne sont pas un problème dans l’infrastructure de Service ; dans ces hello cas Gestionnaire de ressources de Cluster détermine qu’il nécessite de salle de toomake cluster tooreorganize hello pour cette grande charge de travail. Toutefois, dans hello attendant cette charge de travail a toobe toowait planifié dans un cluster de hello.
 
-S’il y a de nombreux services et états à déplacer, le déplacement de cette charge de travail dans le cluster peut prendre beaucoup de temps. Cette situation survient davantage si d’autres charges de travail dans le cluster sont volumineuses et que leur réorganisation prend plus de temps. L’équipe Service Fabric a mesuré les temps de création dans des simulations de ce scénario. Nous avons constaté que la création de services volumineux prend beaucoup plus de temps dès que l’utilisation de clusters se situe entre 30 et 50 %. Pour gérer ce scénario, nous avons introduit la défragmentation comme stratégie d’équilibrage. Nous avons découvert que pour les charges de travail volumineuses, notamment celles pour lesquelles le temps de création était important, la défragmentation aide réellement à la planification de ces nouvelles charges de travail dans le cluster.
+S’il existe de nombreux services et toomove état autour, il peut prendre beaucoup de temps pour hello grande charge de travail toobe est placé dans un cluster de hello. Il est plus probable si les autres charges de travail dans un cluster de hello sont également volumineux et par conséquent, prennent tooreorganize plus de temps. équipe de Service Fabric Hello mesurée heures de création de simulations de ce scénario. Nous avons constaté que la création de services volumineux prend beaucoup plus de temps dès que l’utilisation de clusters se situe entre 30 et 50 %. toohandle ce scénario, nous avons présenté comme une stratégie d’équilibrage de la défragmentation. Nous avons trouvé que pour les charges de travail importantes, notamment ceux où l’heure de création était important, la défragmentation a vraiment aidé à ces nouvelles charges de travail obtient planifiées dans le cluster de hello.
 
-Vous pouvez configurer des mesures de défragmentation pour que Cluster Resource Manager essaie de manière proactive de condenser la charge des services sur un nombre de nœuds plus réduit. Cela permet de garantir qu’il y a presque toujours de la place pour les services volumineux, sans avoir à réorganiser le cluster. Ne pas avoir à réorganiser le cluster permet de créer rapidement de grandes charges de travail.
+Vous pouvez configurer la défragmentation métriques toohave hello charge de hello tooproactively du Gestionnaire de ressources du Cluster try toocondense des services de hello en moins de nœuds. Cela permet de s’assurer qu’il est presque toujours place pour les services volumineux sans réorganiser les cluster hello. N’ayant ne pas de cluster de hello tooreorganize permet de créer rapidement de grandes charges de travail.
 
-La plupart des utilisateurs n’ont pas besoin de la défragmentation. Les services sont en règle générale de petite taille et par conséquent, il n’est pas difficile de leur trouver de la place dans le cluster. Lorsqu’une réorganisation est possible, elle se déroule rapidement car la plupart des services sont petits et peuvent être déplacés rapidement et en parallèle. Mais si vos services sont volumineux et qu’ils doivent être créés rapidement, la stratégie de défragmentation est faite pour vous. Examinons maintenant les compromis qu’implique l’utilisation de la défragmentation. 
+La plupart des utilisateurs n’ont pas besoin de la défragmentation. Les services sont généralement être petite, donc il n’est pas salle toofind dur pour eux dans un cluster de hello. Lorsqu’une réorganisation est possible, elle se déroule rapidement car la plupart des services sont petits et peuvent être déplacés rapidement et en parallèle. Toutefois, si vous les services de grande taille et avez besoin de créer rapidement hello stratégie de défragmentation est pour vous. Nous aborderons compromis hello d’ensuite à l’aide de la défragmentation. 
 
 ## <a name="defragmentation-tradeoffs"></a>Compromis concernant la défragmentation
-La défragmentation peut augmenter la probabilité que les défaillances aient un impact car plus de services sont exécutés sur des nœuds défaillants. La défragmentation peut également augmenter les coûts, étant donné que les ressources du cluster doivent être gardées en réserve, en attendant la création de charges de travail volumineuses.
+La défragmentation peut augmenter la probabilité que les défaillances aient un impact car plus de services sont exécutés sur des nœuds défaillants. Défragmentation peut également augmenter les coûts, étant donné que les ressources de cluster de hello doivent être gardées en réserve, en attente pour la création de hello de grandes charges de travail.
 
-Le diagramme suivant offre une représentation visuelle de deux clusters, l’un défragmenté et l’autre non. 
+Hello diagramme suivant donne une représentation visuelle de deux clusters, qui est la défragmentation et qui n’est pas. 
 
 <center>
 ![Comparaison de clusters équilibré et défragmenté][Image1]
 </center>
 
-Dans le cas équilibré, tenez compte du nombre de mouvements qui seraient nécessaires pour placer un des plus grands objets de service. Dans le cluster défragmenté, la charge de travail volumineuse peut être placée sur les nœuds 4 ou 5 sans avoir à attendre le déplacement d’autres services.
+Dans les cas de hello équilibré, envisagez nombre hello mouvements qui seraient nécessaire tooplace un des objets de service de plus grande hello. Dans un cluster de défragmenté hello, grande charge de travail hello peut être placé sur des nœuds de quatre ou cinq sans avoir toowait pour n’importe quel autre toomove de services.
 
 ## <a name="defragmentation-pros-and-cons"></a>Avantages et inconvénients de la défragmentation
-Quelles sont donc ces autres compromis ? Voici un tableau succinct des éléments à considérer :
+Quelles sont donc ces autres compromis ? Voici un tableau rapide de choses toothink sur :
 
 | Avantages de la défragmentation | Inconvénients de la défragmentation |
 | --- | --- |
@@ -54,16 +54,16 @@ Quelles sont donc ces autres compromis ? Voici un tableau succinct des élémen
 | Permet de diminuer le déplacement des données lors de la création |Les défaillances peuvent avoir un impact sur d’autres services et provoquer une plus grande désinscription |
 | Permet de décrire en détail les exigences et la récupération d’espace |Configuration générale plus complexe de la gestion des ressources |
 
-Vous pouvez combiner des mesures défragmentés et normales dans le même cluster. Cluster Resource Manager tente de consolider autant que possible les mesures de défragmentation tout en répartissant les autres. Les résultats obtenus en combinant des stratégies de défragmentation et d’équilibrage dépendent de plusieurs facteurs, notamment :
-  - le nombre de mesures d’équilibrage par rapport au nombre de mesures de défragmentation
+Vous pouvez combiner défragmenté et de mesures normales hello même cluster. Hello Gestionnaire de ressources de Cluster essaie tooconsolidate hello défragmentation métriques autant que possible lors de la répartition des hello d’autres. résultats Hello de mélange de défragmentation et équilibrage des stratégies dépend de plusieurs facteurs, notamment :
+  - nombre de Hello d’équilibrage de la métrique contre le nombre de hello de métriques de défragmentation
   - si un service utilise ces deux types de mesures 
-  - les poids des mesures
+  - poids de métrique Hello
   - les charges actuelles des mesures
   
-L’expérimentation est nécessaire pour déterminer la configuration exacte nécessaire. Nous vous recommandons d’effectuer une mesure minutieuse de vos charges de travail avant d’activer les mesures de défragmentation en production. Cela est particulièrement vrai lorsque vous combinez des mesures de défragmentation et d’équilibrage dans le même service. 
+Expérimentation toodetermine requis hello exacte configuration est nécessaire. Nous vous recommandons d’effectuer une mesure minutieuse de vos charges de travail avant d’activer les mesures de défragmentation en production. Cela est particulièrement vrai lorsque vous mélangez défragmentation et équilibrage de charge de métriques dans hello même service. 
 
 ## <a name="configuring-defragmentation-metrics"></a>Configuration de mesures de défragmentation
-La configuration des mesures de défragmentation est une décision globale au niveau du cluster et des mesures individuelles peuvent être sélectionnées pour la défragmentation. Les extraits de configuration suivants montrent comment configurer des mesures pour la défragmentation. Dans ce cas, « Metric1 » est configuré comme une mesure de défragmentation, tandis que « Metric2 » continuera d’être équilibrée normalement. 
+Configuration des métriques de défragmentation est une décision globale dans un cluster de hello et mesures individuelles peuvent être sélectionnées pour la défragmentation. Hello, suivant la configuration des extraits de code montrent comment tooconfigure les métriques pour la défragmentation. Dans ce cas, « Metric1 » est configuré en tant que la défragmentation métrique, alors que « Metric2 » continue toobe équilibrée normalement. 
 
 ClusterManifest.xml :
 
@@ -96,7 +96,7 @@ via ClusterConfig.json pour les déploiements autonomes ou Template.json pour le
 
 
 ## <a name="next-steps"></a>Étapes suivantes
-- Cluster Resource Manager comporte de nombreuses options permettant de décrire le cluster. Pour en savoir plus sur celles-ci, consultez cet article sur la [description d’un cluster Service Fabric](service-fabric-cluster-resource-manager-cluster-description.md)
-- Les mesures représentent la façon dont Service Fabric Cluster Resource Manager gère la consommation et la capacité du cluster. Pour en savoir plus sur ces mesures et la façon de les configurer, consultez [cet article](service-fabric-cluster-resource-manager-metrics.md)
+- Hello Gestionnaire de ressources du Cluster a des options de man pour décrire le cluster de hello. toofind plus d’informations à leur sujet, consultez cet article sur [décrivant un cluster Service Fabric](service-fabric-cluster-resource-manager-cluster-description.md)
+- Les métriques sont comment hello Gestionnaire de ressources du Cluster Service Fabric gère la consommation et la capacité en cluster de hello. toolearn plus d’informations sur les métriques et comment tooconfigure, extraire [cet article](service-fabric-cluster-resource-manager-metrics.md)
 
 [Image1]:./media/service-fabric-cluster-resource-manager-defragmentation-metrics/balancing-defrag-compared.png

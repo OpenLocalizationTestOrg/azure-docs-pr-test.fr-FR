@@ -1,6 +1,6 @@
 ---
-title: "Recommandations relatives aux performances - Azure SQL Database | Microsoft Docs"
-description: "Azure SQL Database fournit des recommandations pour vos bases de données SQL afin d’améliorer le niveau de performance actuel des requêtes."
+title: "recommandations aaaPerformance - base de données SQL Azure | Documents Microsoft"
+description: "Hello, base de données SQL Azure fournit des recommandations pour vos bases de données SQL qui peut améliorer les performances des requêtes en cours."
 services: sql-database
 documentationcenter: 
 author: stevestein
@@ -15,54 +15,54 @@ ms.tgt_pltfrm: na
 ms.workload: data-management
 ms.date: 07/05/2017
 ms.author: sstein
-ms.openlocfilehash: 357a25a665894c86ddb0f93beeb4dd59d8837489
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 77db338a0a395aec78c9e02849ae5ba4f2d01680
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="performance-recommendations"></a>Recommandations en matière de performances
 
-Azure SQL Database apprend et s’adapte à votre application afin de vous fournir des recommandations personnalisées qui vous permettront d’optimiser les performances de vos bases de données SQL. Vos performances sont évaluées en permanence grâce à l’analyse de votre historique d’utilisation de SQL Database. Les recommandations fournies se fondent sur un modèle unique de charge de travail d’une base de données, et aident à améliorer les performances de la base de données.
+Base de données SQL Azure apprend et s’adapte à votre application et fournit des recommandations personnalisées, ce qui vous toomaximize hello vos bases de données SQL. Vos performances sont évaluées en permanence grâce à l’analyse de votre historique d’utilisation de SQL Database. recommandations Hello fournis sont basées sur un modèle de charge de travail unique de base de données et d’améliorer ses performances.
 
 > [!NOTE]
 > Il est conseillé d’utiliser les recommandations en activant l’option de réglage automatique sur votre base de données. Pour en savoir plus, consultez la page [Réglage automatique](sql-database-automatic-tuning.md).
 >
 
 ## <a name="create-index-recommendations"></a>Recommandations relatives à la création d’un index
-Azure SQL Database surveille de manière continue les requêtes exécutées et identifie les index capables d’améliorer le niveau de performance. Dès que la base de données estime qu’un index manque, une recommandation **Créer un index** est créée. Azure SQL Database renforce le climat de confiance en estimant le gain de performances que l’index pourrait apporter au fil du temps. Selon le gain de performances estimé, les recommandations sont réparties en trois catégories : Élevée, Moyenne ou Faible. 
+Base de données SQL Azure surveille les requêtes hello en cours d’exécution et identifie les index hello qui peut améliorer les performances de hello en continu. Dès que la base de données estime qu’un index manque, une recommandation **Créer un index** est créée. Confiance de builds de la base de données SQL Azure en estimant index hello du gain de performances se traduirait par heure. Selon le gain de performances hello estimé, les recommandations sont classées comme haute, moyenne ou faible. 
 
-Les index créés à l’aide de recommandations portent toujours l’indicateur auto_created. Vous pouvez voir quels index possèdent l’indicateur auto_created en examinant la vue sys.indexes. Les index créés automatiquement ne bloquent pas les commandes ALTER/RENAME. Si vous essayez de supprimer la colonne qui possède un index créé automatiquement, la commande est transmise et l’index supprimé en même temps que la commande. Les index normaux peuvent bloquer les commandes ALTER/RENAME sur les colonnes indexées.
+Les index créés à l’aide de recommandations portent toujours l’indicateur auto_created. Vous pouvez voir quels index possèdent l’indicateur auto_created en examinant la vue sys.indexes. Les index créés automatiquement ne bloquent pas les commandes ALTER/RENAME. Si vous essayez de colonne hello toodrop ayant une automatique créée des index sur celle-ci, commande hello passe et auto hello créé l’index est supprimé avec la commande hello ainsi. Index classiques sont sont de bloquer commande ALTER/changement de nom de hello sur les colonnes qui sont indexées.
 
-Une fois que la recommandation de création de l’index est appliquée, Azure SQL Database compare le niveau de performance des requêtes avec le référentiel de performances. Si le niveau de performance est amélioré grâce au nouvel index, la recommandation sera désignée comme réussie et un rapport d’impact sera généré. Si l’index n’apporte aucun avantage, il sera automatiquement restauré. De cette manière, Azure SQL Database garantit que l’utilisation des recommandations améliore uniquement le niveau de performance.
+Une fois la création de hello recommandation d’index est appliquée, base de données SQL Azure seront comparer les performances des requêtes de hello aux performances de ligne de base hello. Si le nouvel index de remise des améliorations des performances hello, recommandation est signalée comme réussie et impact sur le rapport sera disponible. En cas d’index de hello n’a pas été avantageux hello, il vont être annulée automatiquement. Cette base de données SQL Azure de façon garantit qu’à l’aide des recommandations uniquement améliorera les performances de base de données hello.
 
-N’importe quelle recommandation **Créer un index** possède une stratégie d’abstention. Cette stratégie n’autorise pas l’application d’une recommandation si la base de données ou l’utilisation du DTU de pool atteint 80 % dans les dernières 20 minutes, ou si le stockage atteint un taux d’utilisation de plus de 90 %. Dans ce cas, la recommandation est reportée.
+N’importe quel **Create index** a une stratégie qui empêche l’application de la recommandation de hello si l’usage de DTU de base de données ou un pool hello était supérieure à 80 % en derniers 20 minutes ou si le stockage de hello est supérieure à 90 % de l’utilisation d’interruption. Dans ce cas, la recommandation de hello sera suspendue.
 
 ## <a name="drop-index-recommendations"></a>Recommandations relatives à la suppression d’index
-En plus de détecter un index manquant, Azure SQL Database analyse continuellement le niveau de performance des index existants. Si l’index n’est pas utilisé, Azure SQL Database recommande sa suppression. Il est recommandé de supprimer un index dans deux cas :
+En outre toodetecting un index manquant, Azure SQL Database en permanence analyse des performances de hello des index existants. Si l’index n’est pas utilisé, Azure SQL Database recommande sa suppression. Il est recommandé de supprimer un index dans deux cas :
 * L’index est un doublon d’un autre index (même colonne, schéma de partition et filtres indexés et inclus)
 * L’index n’est pas utilisé pendant une période prolongée (93 jours)
 
-Les recommandations de suppression d’index passent également par la vérification, suite à l’implémentation. Si le niveau de performance est amélioré, le rapport d’impact est disponible. Si une dégradation du niveau de performance est détectée, la recommandation est restaurée.
+DROP index recommandations également passent par vérification hello après l’implémentation. Si les performances de hello impact hello améliorée rapport seront disponible. Si une dégradation du niveau de performance est détectée, la recommandation est restaurée.
 
 
 ## <a name="parameterize-queries-recommendations"></a>Recommandations de paramétrage de requêtes
-Les recommandations liées au **paramétrage des requêtes** s’affichent lorsque vous disposez d’une ou plusieurs requêtes qui sont constamment recompilées, mais ont en fin de compte le même plan d’exécution de requête. Cela ouvre la possibilité d’appliquer un paramétrage forcé, ce qui permet de mettre en cache les plans de requête et de les réutiliser pour améliorer les performances et réduire l’utilisation des ressources. 
+**Paramétrez des requêtes** recommandations s’affichent lorsque vous en avez un ou plusieurs requêtes qui sont recompilées en permanence, mais au finissent hello même plan d’exécution de requête. Cette condition ouvre une tooapply opportunité forcé de paramétrage, ce qui permettra de plans de requête toobe mis en cache et réutilisée Bonjour futures améliore les performances et réduire l’utilisation des ressources. 
 
-Chaque requête adressée initialement à SQL Server doit être compilée pour générer un plan d’exécution. Chaque plan généré est ajouté au cache du plan et les exécutions ultérieures de la même requête peuvent réutiliser ce plan à partir du cache, évitant ainsi toute compilation supplémentaire. 
+Chaque requête adressée à SQL Server initialement doit toobe compilé toogenerate un plan d’exécution. Chaque plan généré est ajouté toohello mémoire cache des plans et les exécutions ultérieures de hello même requête peut réutiliser ce plan à partir du cache de hello, hello évite une compilation supplémentaire. 
 
-Les applications qui envoient des requêtes incluant des valeurs non paramétrées peuvent entraîner une baisse des performances, car le plan d’exécution est recompilé pour chaque requête de ce type avec des valeurs de paramètres différentes. Dans de nombreux cas, les mêmes requêtes avec différentes valeurs de paramètres génèrent les mêmes plans d’exécution, mais ces plans sont toujours ajoutés séparément au cache du plan. La recompilation des plans d’exécution utilise des ressources de base de données, augmente la durée la requête et dépasse la capacité du cache du plan, entraînant la suppression des plans de ce cache. Ce comportement de SQL Server peut être modifié en définissant l’option de paramétrage forcé au niveau de la base de données. 
+Les applications qui envoient des requêtes, y compris les valeurs non paramétrée, peuvent entraîner des tooa surcharge de performances, où pour chaque requête de ce type avec différentes valeurs de paramètre hello l’exécution du plan est compilé à nouveau. Dans nombreux hello de cas mêmes requêtes avec des paramètres différents génèrent des valeurs hello même plans d’exécution, mais ces plans sont ajoutés toujours séparément le cache du plan de toohello. Recompilation des plans d’exécution utilisent des ressources de base de données, augmentez hello durée temps et dépassement de capacité hello plan de requête à l’origine de la mémoire cache des plans toobe supprimé du cache de hello. Ce comportement de SQL Server peut être modifié en définissant hello forcé option parameterization sur la base de données hello. 
 
-Pour vous aider à évaluer l’impact de cette recommandation, nous vous fournissons une comparaison entre l’utilisation réelle et l’utilisation projetée du processeur (comme si la recommandation avait été appliquée). Outre le fait que le processeur est moins sollicité, la durée de la requête dans la compilation diminue. La surcharge sur le cache du plan sera également beaucoup moins importante, permettant ainsi à la majorité des plans de rester dans le cache et d’être réutilisés. Vous pouvez appliquer cette recommandation rapidement et facilement en cliquant sur la commande **Appliquer**. 
+toohelp vous estimez impact hello de cette recommandation, vous sont fournies avec une comparaison entre les UC réel hello hello et l’utilisation projetée l’utilisation du processeur (comme si la recommandation de hello a été appliquée). En outre les économies tooCPU, votre durée de requête diminue pour hello temps de compilation. Il sera également beaucoup moins de surcharge sur le cache du plan, autorisant la majorité des hello toostay dans le cache des plans et être réutilisée. Vous pouvez appliquer cette recommandation rapidement et facilement en cliquant sur hello **appliquer** commande. 
 
-Une fois appliquée, cette recommandation active en quelques minutes le paramétrage forcé sur votre base de données et démarre le processus de surveillance qui dure environ 24 heures. Après cette période, vous pourrez consulter le rapport de validation qui indique l’utilisation du processeur de votre base de données 24 heures avant et après l’application de la recommandation. SQL Database Advisor intègre un mécanisme de sécurité qui annule automatiquement la recommandation appliquée si une baisse des performances est détectée.
+Une fois que vous appliquez cette recommandation, il active le paramétrage forcé dans les minutes sur votre base de données et démarre hello analyse des processus qui dure environ 24 heures. Après cette période, vous allez être en mesure de toosee hello validation rapport qui affiche l’utilisation du processeur de votre base de données des dernières 24 heures avant et après avoir appliqué la recommandation de hello. Assistant de base de données SQL utilise un mécanisme de sécurité qui revient automatiquement la recommandation de hello appliqué au cas où une régression des performances a été détectée.
 
 ## <a name="fix-schema-issues-recommendations"></a>Recommandations de résolution des problèmes de schéma
-Les recommandations liées à la **résolution des problèmes de schéma** s’affichent lorsque le service SQL Database détecte une anomalie dans le nombre d’erreurs SQL liées au schéma qui se produisent dans Azure SQL Database. Cette recommandation s’affiche généralement lorsque votre base de données rencontre plusieurs erreurs liées au schéma (nom de colonne non valide, nom d’objet non valide, etc.) dans la même heure.
+**Résoudre les problèmes de schéma** recommandations s’affichent lorsque hello notifications de service de base de données SQL d’anomalie dans nombre hello d’erreurs SQL liées au schéma qui se passe sur votre base de données SQL Azure. Cette recommandation s’affiche généralement lorsque votre base de données rencontre plusieurs erreurs liées au schéma (nom de colonne non valide, nom d’objet non valide, etc.) dans la même heure.
 
-Les « problèmes de schéma » représentent une catégorie d’erreurs de syntaxe dans SQL Server, qui se produisent lorsque la définition de la requête SQL et la définition du schéma de la base de données ne sont pas alignées. Par exemple, une des colonnes attendues par la requête est manquante dans la table cible, ou inversement. 
+« Problèmes de schéma » sont une classe d’erreurs de syntaxe dans SQL Server qui se produisent lors de la définition de hello de la requête SQL hello et la définition de hello du schéma de base de données hello ne sont pas alignées. Par exemple, une des colonnes hello attendus par la requête de hello est peut-être manquante dans la table cible de hello, ou vice versa. 
 
-Les recommandations « Résoudre les problèmes de schéma » s’affichent lorsque le service Azure SQL Database détecte une anomalie dans le nombre d’erreurs SQL liées au schéma qui se produisent dans Azure SQL Database. Le tableau suivant répertorie les erreurs liées à des problèmes de schéma :
+Recommandation de « Corriger le problème de schéma » s’affiche lorsque le service de base de données SQL Azure avis d’anomalie dans nombre hello d’erreurs SQL liées au schéma qui se passe sur votre base de données SQL Azure. Hello table affiche hello erreurs qui sont les problèmes connexes tooschema suivantes :
 
 | Code d'erreur SQL | Message |
 | --- | --- |
@@ -74,10 +74,10 @@ Les recommandations « Résoudre les problèmes de schéma » s’affichent lors
 | 8144 |La procédure ou la fonction * a trop d’arguments spécifiés. |
 
 ## <a name="next-steps"></a>Étapes suivantes
-Surveillez vos recommandations et continuez à les appliquer pour affiner les performances. Les charges de travail d’une base de données sont dynamiques et évoluent en permanence. SQL Database Advisor continue à surveiller et à fournir des recommandations pouvant potentiellement améliorer les performances de votre base de données. 
+Surveiller vos recommandations et continuer tooapply les performances de toorefine. Les charges de travail d’une base de données sont dynamiques et évoluent en permanence. Conseiller de la base de données SQL continue toomonitor et fournir des recommandations qui peuvent permettre d’améliorer les performances de votre base de données. 
 
-* Consultez la page [Performance recommendations in the Azure portal](sql-database-advisor-portal.md) (Recommandations en matière de performances dans le portail Azure) afin d’obtenir des instructions sur l’utilisation des recommandations relatives aux performances dans le portail Azure.
-* Pour connaître l’impact de vos principales requêtes sur les performances, consultez [Query Performance Insights](sql-database-query-performance.md) (Analyse des performances des requêtes).
+* Consultez [recommandations relatives aux performances Bonjour Azure portal](sql-database-advisor-portal.md) pour savoir comment les recommandations relatives aux performances de toouse dans hello portail Azure.
+* Consultez [analyse des performances des requêtes](sql-database-query-performance.md) toolearn sur et vue hello impact sur les performances de vos requêtes principales.
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 * [Magasin de requêtes](https://msdn.microsoft.com/library/dn817826.aspx)

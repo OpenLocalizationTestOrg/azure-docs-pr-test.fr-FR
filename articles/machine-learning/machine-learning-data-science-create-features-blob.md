@@ -1,6 +1,6 @@
 ---
-title: "Créer des fonctionnalités pour les données de stockage d’objets blob Azure à l’aide de Pandas | Microsoft Docs"
-description: "Comment créer des fonctionnalités pour les données stockées dans un conteneur d’objets blob Azure avec le package Python Pandas."
+title: "fonctionnalités aaaCreate pour Azure d’objets blob des données de stockage à l’aide de Panda | Documents Microsoft"
+description: "Comment toocreate fonctionnalités pour les données stockées dans le conteneur d’objets blob Azure avec le package de Panda Python hello."
 services: machine-learning,storage
 documentationcenter: 
 author: bradsev
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/24/2017
 ms.author: bradsev;garye
-ms.openlocfilehash: 2ef2acfea2372ac7fd52d099a2b4203ee2242d81
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 8594046c5d76a36ad87fc77e407752489d30afcc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-features-for-azure-blob-storage-data-using-panda"></a>Créer des fonctionnalités pour les données de stockage d’objets blob Azure à l’aide de Pandas
-Ce document montre comment créer des fonctionnalités pour les données stockées dans un conteneur d’objets blob Azure à l’aide du package Python [Pandas](http://pandas.pydata.org/) . Après avoir décrit le chargement des données dans une trame de données Pandas, il montre comment générer des fonctionnalités catégorielles à l’aide de scripts Python avec des valeurs d’indicateur et des caractéristiques de compartimentage.
+Ce document montre comment les fonctionnalités pour les données stockées dans le conteneur d’objets blob Azure à l’aide de hello toocreate [Pandas](http://pandas.pydata.org/) package Python. Après le mode plan comment tooload hello des données dans une trame de données Panda, il montre comment toogenerate les fonctionnalités par catégorie à l’aide de scripts Python avec les valeurs d’indicateur et placement des fonctionnalités.
 
 [!INCLUDE [cap-create-features-data-selector](../../includes/cap-create-features-selector.md)]
 
-Ce **menu** pointe vers des rubriques qui expliquent comment créer des fonctionnalités pour les données dans différents environnements. Cette tâche est une étape du [processus TDSP (Team Data Science Process)](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/).
+Cela **menu** lie tootopics qui décrivent comment toocreate pour les données dans différents environnements. Cette tâche est une étape Bonjour [processus de science des données équipe (TDSP)](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/).
 
 ## <a name="prerequisites"></a>Composants requis
-Cet article part du principe que vous avez créé un compte de stockage d’objets blob Azure et que vous y avez stocké vos données. Si vous avez besoin d’instructions pour configurer un compte, voir [Créer un compte Stockage Azure](../storage/common/storage-create-storage-account.md#create-a-storage-account).
+Cet article part du principe que vous avez créé un compte de stockage d’objets blob Azure et que vous y avez stocké vos données. Si vous avez besoin de tooset d’instructions d’un compte, consultez [créer un compte de stockage Azure](../storage/common/storage-create-storage-account.md#create-a-storage-account)
 
-## <a name="load-the-data-into-a-pandas-data-frame"></a>Chargement des données dans une trame de données Pandas
-Pour explorer et manipuler un jeu de données, celui-ci doit être téléchargé depuis la source Blob vers un fichier local qui peut ensuite être chargé dans une trame de données Pandas. Voici les étapes à suivre pour cette procédure :
+## <a name="load-hello-data-into-a-pandas-data-frame"></a>Charger des données dans une trame de données Pandas hello
+Dans l’ordre toodo examiner et manipuler un jeu de données, il doit être téléchargé à partir de hello blob source tooa fichier local qui peut ensuite être chargé dans une trame de données Pandas. Voici toofollow d’étapes hello pour cette procédure :
 
-1. Téléchargez les données à partir du blob Azure avec l’exemple de code Python à l’aide du service du blob. Remplacez la variable dans le code ci-dessous par vos propres valeurs :
+1. Télécharger les données de salutation à partir d’Azure blob avec hello suivant l’exemple de code Python à l’aide du service d’objets blob. Remplacez la variable hello dans le code hello ci-dessous avec les valeurs spécifiques :
    
         from azure.storage.blob import BlobService
         import tables
@@ -49,57 +49,57 @@ Pour explorer et manipuler un jeu de données, celui-ci doit être téléchargé
         blob_service=BlobService(account_name=STORAGEACCOUNTNAME,account_key=STORAGEACCOUNTKEY)
         blob_service.get_blob_to_path(CONTAINERNAME,BLOBNAME,LOCALFILENAME)
         t2=time.time()
-        print(("It takes %s seconds to download "+blobname) % (t2 - t1))
-2. Lisez les données du fichier téléchargé dans une table Pandas.
+        print(("It takes %s seconds toodownload "+blobname) % (t2 - t1))
+2. Lire les données dans une trame de données Pandas de hello hello téléchargement le fichier.
    
-        #LOCALFILE is the file path
+        #LOCALFILE is hello file path
         dataframe_blobdata = pd.read_csv(LOCALFILE)
 
-Vous êtes maintenant prêt à explorer les données et à générer des fonctionnalités sur cet ensemble de données.
+Maintenant vous tooexplore prêt hello données, générez des fonctionnalités sur ce jeu de données.
 
 ## <a name="blob-featuregen"></a>Génération de fonctionnalités
-Les deux sections suivantes indiquent comment générer des fonctionnalités catégorielles avec des valeurs d’indicateur et des caractéristiques de compartimentage à l’aide de scripts Python.
+Hello deux sections suivantes montrent comment toogenerate les fonctionnalités catégorielles avec les valeurs d’indicateur et placement des fonctionnalités à l’aide de scripts Python.
 
 ### <a name="blob-countfeature"></a>Génération de caractéristiques à partir de valeurs d’indicateur
 Pour créer des caractéristiques de catégorie, procédez comme suit :
 
-1. Examinez la distribution de la colonne de catégorie :
+1. Examiner la distribution hello de colonne catégorielle de hello :
    
         dataframe_blobdata['<categorical_column>'].value_counts()
-2. Générez les valeurs d’indicateur pour chacune des valeurs de colonne :
+2. Générer des valeurs d’indicateur pour chacune des valeurs de colonne hello
    
-        #generate the indicator column
+        #generate hello indicator column
         dataframe_blobdata_identity = pd.get_dummies(dataframe_blobdata['<categorical_column>'], prefix='<categorical_column>_identity')
-3. Créez une jointure entre la colonne d’indicateurs et le bloc de données d’origine :
+3. Joindre la colonne d’indicateur hello avec trame de données d’origine hello
    
-            #Join the dummy variables back to the original data frame
+            #Join hello dummy variables back toohello original data frame
             dataframe_blobdata_with_identity = dataframe_blobdata.join(dataframe_blobdata_identity)
-4. Supprimez la variable d’origine :
+4. Supprimer hello d’origine proprement dite :
    
-        #Remove the original column rate_code in df1_with_dummy
+        #Remove hello original column rate_code in df1_with_dummy
         dataframe_blobdata_with_identity.drop('<categorical_column>', axis=1, inplace=True)
 
 ### <a name="blob-binningfeature"></a>Génération de caractéristiques de compartimentage
 Pour générer des fonctionnalités compartimentées, procédez comme suit :
 
-1. Ajoutez une séquence de colonnes pour compartimenter une colonne numérique :
+1. Ajouter une séquence de colonnes toobin une colonne numérique
    
         bins = [0, 1, 2, 4, 10, 40]
         dataframe_blobdata_bin_id = pd.cut(dataframe_blobdata['<numeric_column>'], bins)
-2. Convertissez le compartimentage en une séquence de variables booléennes :
+2. Convertir une séquence de tooa placement dans un conteneur de variables booléennes
    
         dataframe_blobdata_bin_bool = pd.get_dummies(dataframe_blobdata_bin_id, prefix='<numeric_column>')
-3. Enfin, créez une jointure entre les variables factices et le bloc de données d’origine :
+3. Enfin, de variables de jointure hello factices retour toohello trame de données d’origine
    
         dataframe_blobdata_with_bin_bool = dataframe_blobdata.join(dataframe_blobdata_bin_bool)
 
-## <a name="sql-featuregen"></a>Réécriture de données dans l’objet blob Azure et exploitation dans Azure Machine Learning
-Après avoir exploré les données et créé les fonctionnalités nécessaires, vous pouvez charger les données (exemples ou caractéristiques) dans un objet blob Azure et les exploiter dans Azure Machine Learning en procédant comme suit : notez qu’il est également possible de créer d’autres fonctionnalités dans Azure Machine Learning Studio.
+## <a name="sql-featuregen"></a>Écriture de données sauvegarde tooAzure blob et consommé dans Azure Machine Learning
+Après avoir exploré les données hello et créé hello fonctionnalités nécessaires, vous pouvez télécharger les données de salutation (échantillonnées ou fonctionnalités) tooan Azure d’objets blob et le consommer dans Azure Machine Learning à l’aide de hello comme suit : Notez que les fonctionnalités supplémentaires peuvent être créées dans hello Azure Machine Learning Studio également.
 
-1. Écrivez le bloc de données dans le fichier local.
+1. Écrire le fichier de toolocal hello données frame
    
         dataframe.to_csv(os.path.join(os.getcwd(),LOCALFILENAME), sep='\t', encoding='utf-8', index=False)
-2. Chargez les données dans le blob Azure, en procédant comme suit :
+2. Charger les blob de tooAzure données hello comme suit :
    
         from azure.storage.blob import BlobService
         import tables
@@ -120,7 +120,7 @@ Après avoir exploré les données et créé les fonctionnalités nécessaires, 
    
         except:            
             print ("Something went wrong with uploading blob:"+BLOBNAME)
-3. À présent, les données sont lisibles à partir de l’objet blob à l’aide du module [Importer des données](https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/) d’Azure Machine Learning comme le montre l’écran ci-dessous :
+3. À présent les données de salutation peuvent être lu à l’aide des objets blob hello hello Azure Machine Learning [importer des données](https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/) module, comme indiqué dans l’écran hello ci-dessous :
 
 ![objet blob de lecteur](./media/machine-learning-data-science-process-data-blob/reader_blob.png)
 

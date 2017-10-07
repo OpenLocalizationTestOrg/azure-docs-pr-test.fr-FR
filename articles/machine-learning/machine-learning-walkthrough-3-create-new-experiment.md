@@ -1,6 +1,6 @@
 ---
 title: "Étape 3 : Création d’une expérience Machine Learning | Microsoft Docs"
-description: "Étape 3 du guide pas à pas du développement d'une solution prédictive : Création d'une expérience d'apprentissage dans Azure Machine Learning Studio."
+description: "Étape 3 de hello développer la procédure pas à pas une solution prédictive : créer une nouvelle expérience de formation dans Azure Machine Learning Studio."
 services: machine-learning
 documentationcenter: 
 author: garyericson
@@ -14,123 +14,123 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/23/2017
 ms.author: garye
-ms.openlocfilehash: cd410316910bce76f5c915c06e83b24c034481b7
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4697d461a205c50c8d2aa6a3bd56697840cb30f9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="walkthrough-step-3-create-a-new-azure-machine-learning-experiment"></a>Étape 3 de la procédure pas à pas : création d’une expérience Azure Machine Learning
-Voici la troisième étape de la procédure pas à pas [Développement d’une solution d’analyse prédictive avec Azure Machine Learning](machine-learning-walkthrough-develop-predictive-solution.md)
+Il s’agit hello troisième étape de hello procédure pas à pas, [développer une solution prédictive analytique dans Azure Machine Learning](machine-learning-walkthrough-develop-predictive-solution.md)
 
 1. [Créer un espace de travail Machine Learning](machine-learning-walkthrough-1-create-ml-workspace.md)
 2. [Télécharger des données existantes](machine-learning-walkthrough-2-upload-data.md)
 3. **Créer une expérience**
-4. [Former et évaluer les modèles](machine-learning-walkthrough-4-train-and-evaluate-models.md)
-5. [Déployer le service web](machine-learning-walkthrough-5-publish-web-service.md)
-6. [Accéder au service web](machine-learning-walkthrough-6-access-web-service.md)
+4. [L’apprentissage et évaluer des modèles de hello](machine-learning-walkthrough-4-train-and-evaluate-models.md)
+5. [Déployer le service Web de hello](machine-learning-walkthrough-5-publish-web-service.md)
+6. [Accéder au service Web de hello](machine-learning-walkthrough-6-access-web-service.md)
 
 - - -
-L’étape suivante de cette procédure pas à pas consiste à créer une expérience dans Machine Learning Studio, qui utilise le jeu de données que nous avons chargé.  
+étape suivante de Hello dans cette procédure pas à pas est toocreate une expérience dans Machine Learning Studio qui utilise le jeu de données hello que nous téléchargés.  
 
-1. Dans Studio, cliquez sur **+NOUVEAU** en bas de la fenêtre.
+1. Dans Studio, cliquez sur **+ nouveau** bas hello de fenêtre hello.
 2. Sélectionnez **EXPÉRIENCE**, puis sélectionnez « Expérience vide ». 
 
     ![Création d'une expérience][0]
 
-2. Sélectionnez le nom d’expérience par défaut, situé en haut du canevas, et remplacez-le par un nom significatif.
+2. Par défaut de SELECT hello expérimenter nom haut hello de zone de dessin hello et renommez-la toosomething explicite.
 
     ![Renommer l’expérience][5]
    
    > [!TIP]
-   > Il est conseillé de compléter les champs **Résumé** et **Description** relatifs à l’expérience dans le volet **Propriétés**. Ces propriétés vous donnent la possibilité de documenter l'expérience afin que toute personne la consultant ultérieurement comprenne vos objectifs et votre méthodologie.
+   > Il est une bonne approche en matière toofill **Résumé** et **Description** pour expérience hello Bonjour **propriétés** volet. Permettent de ces propriétés hello d’expérience de chance toodocument hello afin que toute personne qui consulte ultérieurement comprennent vos objectifs et la méthodologie.
    > 
    > ![Propriétés de l’expérience][6]
    > 
-3. Dans la palette des modules à gauche du canevas d'expérience, développez **Jeux de données enregistrés**.
-4. Recherchez le jeu de données que vous avez créé sous **My Datasets** (Mes jeux de données) et faites-le glisser sur la zone de dessin. Vous pouvez également le rechercher en entrant son nom dans la zone **Rechercher** au-dessus de la palette.  
+3. Dans hello module palette toohello gauche du canevas de l’expérience hello, développez **jeux de données enregistrés**.
+4. Rechercher hello dataset est créé sous **mes Datasets** et faites-le glisser sur le canevas de hello. Vous trouverez également hello dataset en entrant le nom de hello Bonjour **recherche** zone située au-dessus de la palette de hello.  
 
-    ![Ajouter le jeu de données à l’expérience][7]
+    ![Ajouter l’expérience de hello dataset toohello][7]
 
-## <a name="prepare-the-data"></a>Préparation des données
-Vous pouvez voir les 100 premières lignes de données et quelques informations statistiques concernant tout le jeu de données : pour ce faire, cliquez sur le port de sortie du jeu de données (le petit cercle en bas) et en sélectionnez **Visualiser**.  
+## <a name="prepare-hello-data"></a>Préparer les données de salutation
+Vous pouvez afficher hello les 100 premières lignes de données de hello et quelques informations statistiques pour l’ensemble du dataset hello : cliquez sur le port de sortie hello du jeu de données hello (hello petit cercle bas hello) et sélectionnez **visualiser**.  
 
-Le fichier de données étant dépourvu d’en-têtes de colonne, Studio a fourni des en-têtes génériques (Col1, Col2, *etc.*). Des en-têtes explicites ne sont pas essentiels pour créer un modèle, mais ils facilitent l’utilisation des données dans l’expérience. En outre, lors de la publication de ce modèle dans un service web, les en-têtes permettent à l’utilisateur du service d’identifier les colonnes.  
+Étant donné que le fichier de données hello n’était fourni avec des en-têtes de colonnes, Studio a fourni des en-têtes génériques (Col1, Col2, *etc.*). Bonne en-têtes ne sont pas essentiel toocreating un modèle, mais elles rendent toowork plus facile avec les données de salutation dans expérience de hello. En outre, lorsque nous publions finalement ce modèle dans un service web, des en-têtes de hello aider à identifier hello colonnes toohello utilisateur du service de hello.  
 
-Nous pouvons ajouter des en-têtes de colonne en utilisant le module [Modifier les métadonnées][edit-metadata].
-Vous utilisez le module [Modifier les métadonnées][edit-metadata] pour modifier des métadonnées associées à un jeu de données. Dans ce cas, nous l’utilisons pour fournir des noms plus conviviaux pour les en-têtes de colonne. 
+Nous pouvons ajouter des en-têtes de colonnes à l’aide de hello [modifier les métadonnées] [ edit-metadata] module.
+Vous utilisez hello [modifier les métadonnées] [ edit-metadata] métadonnées toochange module avec un jeu de données. Dans ce cas, nous utilisons il tooprovide des noms plus conviviaux pour les en-têtes de colonne. 
 
-Pour utiliser [Modifier les métadonnées][edit-metadata], vous devez commencer par spécifier les colonnes à modifier (en l’occurrence, toutes). Ensuite, vous spécifiez l’action à effectuer sur ces colonnes (en l’occurrence, la modification de leurs en-têtes).
+toouse [modifier les métadonnées][edit-metadata], vous spécifiez tout d’abord le toomodify de colonnes (dans ce cas, tous les.) Ensuite, vous spécifiez hello action toobe est effectuée sur les colonnes (dans ce cas, la modification des en-têtes de colonne.)
 
-1. Dans la palette des modules, tapez « métadonnées » dans la zone **Rechercher** . Le module [Modifier les métadonnées][edit-metadata] apparaît dans la liste des modules.
+1. Dans la palette de module hello, tapez « métadonnées » Bonjour **recherche** boîte. Hello [modifier les métadonnées] [ edit-metadata] apparaît dans la liste des modules de hello.
 
-2. Cliquez sur le module [Modifier les métadonnées][edit-metadata] et faites-le glisser sur le canevas avant de le déposer sous le jeu de données que nous avons ajouté précédemment.
+2. Cliquez et faites glisser hello [modifier les métadonnées] [ edit-metadata] module sur hello canevas et déposez-le sous le dataset hello ajouté précédemment.
 
-3. Connectez le jeu de données au module [Modifier les métadonnées][edit-metadata] : cliquez sur le port de sortie du jeu de données (le petit cercle en bas du jeu de données), faites glisser vers le port d’entrée de [Modifier les métadonnées][edit-metadata] (le petit cercle en haut du module), puis relâchez le bouton de la souris. Le jeu de données et le module restent connectés même si vous opérez des déplacements sur le canevas.
+3. Se connecter hello dataset toohello [modifier les métadonnées][edit-metadata]: cliquez sur le port de sortie hello du jeu de données hello (hello petit cercle bas hello du jeu de données hello), faites glisser le port d’entrée toohello [modifier les métadonnées ] [ edit-metadata] (hello petit cercle haut hello du module de hello), puis relâchez le bouton de la souris hello. module et le jeu de données hello restent connectés, même si vous soit déplacez sur la zone de dessin hello.
    
-   L'expérience doit ressembler à ceci :  
+   expérience de Hello doit maintenant ressembler à ceci :  
    
    ![Ajout de Modifier les métadonnées][1]
    
-   Le point d’exclamation rouge indique que nous n’avons pas encore défini les propriétés de ce module. Ce sera notre prochaine tâche.
+   point d’exclamation Hello rouge indique que nous n’avons pas encore défini les propriétés hello pour ce module. Ce sera notre prochaine tâche.
    
    > [!TIP]
-   > Vous pouvez ajouter un commentaire dans un module en double-cliquant sur ce module, puis en saisissant du texte. Ceci peut vous aider à voir d'un seul coup d'œil ce que fait chaque module dans votre expérience. Dans ce cas, double-cliquez sur le module [Modifier les métadonnées][edit-metadata] et tapez le commentaire « Ajouter des en-têtes de colonne ». Cliquez n’importe où sur le canevas pour fermer la zone de texte. Pour afficher le commentaire, cliquez sur la flèche vers le bas sur le module.
+   > Vous pouvez ajouter un module de tooa de commentaire par module de hello en double-cliquant sur et la saisie de texte. Vous pouvez ainsi voir en un coup de œil quel module hello effectue dans votre expérience. Dans ce cas, double-cliquez sur hello [modifier les métadonnées] [ edit-metadata] module et type hello commentaire « ajouter des en-têtes de colonnes ». Cliquez sur n’importe où sur la zone de texte hello canevas tooclose hello. toodisplay hello commentaire, cliquez sur la flèche hello sur le module de hello.
    > 
    > ![Module Modifier les métadonnées avec un commentaire ajouté][8]
    > 
-4. Sélectionnez [Modifier les métadonnées][edit-metadata], puis, dans le panneau **Propriétés** à droite du canevas, cliquez sur **Lancer le sélecteur de colonne**.
+4. Sélectionnez [modifier les métadonnées][edit-metadata]et Bonjour **propriétés** toohello volet à droite de la zone de dessin hello, cliquez sur **sélecteur de colonne lancement**.
 
-5. Dans la boîte de dialogue **Sélectionner les colonnes**, sélectionnez toutes les lignes des **Colonnes disponibles** puis cliquez sur > pour les déplacer vers les **Colonnes sélectionnées**.
-   La boîte de dialogue doit ressembler à ceci :
+5. Bonjour **sélectionner des colonnes** boîte de dialogue, sélectionnez tous les hello lignes dans **colonnes disponibles** et cliquez sur > toomove les trop**colonnes sélectionnées**.
+   boîte de dialogue Hello doit ressembler à ceci :
 
    ![Sélecteur de colonnes avec toutes les colonnes sélectionnées][2]
 
-6. Cliquez sur la coche **OK**.
+6. Cliquez sur hello **OK** case à cocher.
 
-7. Dans le panneau **Propriétés**, recherchez le paramètre **Nouveaux noms de colonne**. Dans ce champ, entrez une liste de noms pour les 21 colonnes du jeu de données, séparés par des virgules et dans l’ordre de la colonne. Vous pouvez obtenir le nom des colonnes dans la documentation du jeu de données sur le site web UCI ou, par commodité, vous pouvez copier et coller la liste suivante :  
+7. Dans hello **propriétés** volet, recherchez hello **nouveaux noms de colonnes** paramètre. Dans ce champ, entrez une liste de noms pour les colonnes de 21 hello dans dataset hello, séparés par des virgules et dans l’ordre des colonnes. Vous pouvez obtenir les noms de colonnes hello à partir de la documentation du jeu de données hello sur le site Web de hello UCI, ou pour des raisons pratiques, vous pouvez copier et coller hello suivant liste :  
    
        Status of checking account, Duration in months, Credit history, Purpose, Credit amount, Savings account/bond, Present employment since, Installment rate in percentage of disposable income, Personal status and sex, Other debtors, Present residence since, Property, Age in years, Other installment plans, Housing, Number of existing credits, Job, Number of people providing maintenance for, Telephone, Foreign worker, Credit risk  
    
-   Le volet Propriétés ressemble à ceci :
+   volet de propriétés Hello ressemble à ceci :
    
    ![Propriétés de Modifier les métadonnées][3]
 
 > [!TIP]
-> Si vous souhaitez vérifier les en-têtes de colonne, exécutez l’expérience (cliquez sur **EXÉCUTER** sous le canevas d’expérience). À la fin de l’exécution (une coche verte s’affiche sur [Modifier les métadonnées][edit-metadata]), cliquez sur le port de sortie du module [Modifier les métadonnées][edit-metadata] et sélectionnez **Visualiser**. Vous pouvez voir la sortie de tous les modules en procédant de même pour afficher la progression des données dans l'expérience.
+> Si vous souhaitez que les en-têtes de colonne tooverify hello, exécutez l’expérience de hello (cliquez sur **exécuter** ci-dessous canevas de l’expérience hello). Lorsqu’il a terminé son exécution (une coche verte s’affiche sur [modifier les métadonnées][edit-metadata]), cliquez sur le port de sortie hello Hello [modifier les métadonnées] [ edit-metadata] module, puis sélectionnez **visualiser**. Vous pouvez afficher la sortie de hello de n’importe quel module Bonjour même progression hello tooview de façon des données hello via une expérience de hello.
 > 
 > 
 
 ## <a name="create-training-and-test-datasets"></a>Création de jeux de données d'apprentissage et de test
-Nous avons besoin de certaines données pour former le modèle et d’autres pour le tester.
-Ainsi, lors de l’étape suivante de l’expérience, nous divisons le jeu de données en deux jeux de données distincts : un pour la formation de notre modèle et l’autre pour le tester.
+Nous avons besoin de certains modèles hello tootrain et certains tootest il.
+Afin de l’étape suivante de hello d’expérimentation de hello, nous fractionné hello le jeu de données en deux jeux de données distincts : un pour l’apprentissage de notre modèle et l’autre pour le tester.
 
-Pour ce faire, nous utilisons le module [Fractionner les données][split].  
+toodo, nous utilisons hello [données fractionnées] [ split] module.  
 
-1. Recherchez le module [Fractionner les données][split], faites-le glisser sur le canevas et connectez-le au module [Modifier les métadonnées][edit-metadata].
+1. Recherche hello [données fractionnées] [ split] module, faites glisser sur la zone de dessin hello et connectez-la toohello [modifier les métadonnées] [ edit-metadata] module.
 
-2. Par défaut, le rapport de division est 0,5 et le paramètre **Fractionnement aléatoire** est défini. Cela signifie qu’une moitié aléatoire des données sort par un port du module [Fractionner les données][split] et l’autre moitié par l’autre port. Vous pouvez ajuster ces paramètres, de même que le paramètre **Valeur de départ aléatoire**, pour changer la répartition entre les données d’apprentissage et de test. Pour cet exemple, nous ne changeons rien.
+2. Par défaut, les taux de fractionnement hello est 0,5 et hello **aléatoire fractionnement** paramètre est défini. Cela signifie qu’une moitié aléatoire de données de salutation est sortie via un port de hello [données fractionnées] [ split] module et demi hello et autres. Vous pouvez ajuster ces paramètres, mais aussi hello **valeur initiale aléatoire** paramètre hello toochange fractionnée entre les jeux d’apprentissage et de données de test. Pour cet exemple, nous ne changeons rien.
    
    > [!TIP]
-   > La propriété **Fraction de lignes dans le premier jeu de données de sortie** détermine la quantité de données qui est sortie par le port de sortie *gauche*. Par exemple, si vous définissez le rapport sur 0,7, 70 % des données sont sorties par le port gauche et 30 % par le port droit.  
+   > Hello propriété **Fraction de lignes Bonjour tout d’abord de sortie dataset** détermine la quantité de données de hello sortie via hello est *gauche* port de sortie. Par exemple, si vous définissez hello ratio too0.7, 70 % des données de salutation est sortie via hello gauche de port et 30 % via le port de droite hello.  
    > 
    > 
 
-3. Double-cliquez sur le module [Fractionner les données][split] et entrez le commentaire « Fractionnement des données de formation/test de 50 % ». 
+3. Double-cliquez sur hello [données fractionnées] [ split] module et entrez le commentaire hello, « fractionnement les données de test de formation/50 % ». 
 
-Nous pouvons utiliser les sorties du module [Fractionner les données][split] à notre gré, mais choisissons la sortie gauche pour les données d’apprentissage et la sortie droite pour les données de test.  
+Nous pouvons utiliser des sorties hello Hello [données fractionnées] [ split] comme test de données de sortie de module toutefois nous à, mais nous allons choisir toouse hello sortie gauche en tant que données d’apprentissage et hello à droite.  
 
-Comme indiqué lors de l’[étape précédente](machine-learning-walkthrough-2-upload-data.md), le coût d’une erreur consistant à classer un crédit à risque élevé comme étant à faible risque est cinq fois plus élevé que celui de l’erreur consistant à classer un crédit à faible risque comme étant à risque élevé. Pour tenir compte de cela, nous générons un nouveau jeu de données qui reflète cette fonction de coût. Dans le nouveau jeu de données, chaque exemple à haut risque est répliqué cinq fois, alors que les exemples à faible risque ne sont pas répliqués.   
+Comme mentionné dans hello [étape précédente](machine-learning-walkthrough-2-upload-data.md), coût hello de classer par erreur entrées un risque élevé comme faible est cinq fois supérieur à celui de hello classer par erreur entrées un risque de crédit basse aussi élevée. tooaccount pour cela, nous générons un nouveau jeu de données qui reflète cette fonction de coût. Hello le nouveau jeu de données, chaque exemple de risque élevé est répliquée cinq fois, tandis que chaque exemple de risque faible n’est pas répliquée.   
 
 Nous pouvons procéder à la réplication en utilisant le code R :  
 
-1. Recherchez le module [Exécuter un script R][execute-r-script] et faites-le glisser sur le canevas de l’expérience. 
+1. Rechercher et faites glisser hello [Execute R Script] [ execute-r-script] module sur le canevas de l’expérience hello. 
 
-2. Connectez le port de sortie gauche du module [Fractionner les données][split] au premier port d’entrée (« Dataset 1 ») du module [Exécuter un script R][execute-r-script].
+2. Se connecter hello gauche du port de sortie de hello [données fractionnées] [ split] module toohello premier port d’entrée (« Dataset1 ») de hello [Execute R Script] [ execute-r-script] module.
 
-3. Double-cliquez sur le module [Exécuter un script R][execute-r-script] et entrez le commentaire « Définir l’ajustement des coûts ».
+3. Double-cliquez sur hello [Execute R Script] [ execute-r-script] module et entrez le commentaire hello, « Ajustement des coûts de la plage ».
 
-4. Dans le volet **Propriétés**, supprimez le texte par défaut du paramètre **Script R**, puis entrez le script suivant :
+4. Bonjour **propriétés** volet, supprimer le texte par défaut hello Bonjour **Script R** paramètre et entrez ce script :
    
        dataset1 <- maml.mapInputPort(1)
        data.set<-dataset1[dataset1[,21]==1,]
@@ -138,20 +138,20 @@ Nous pouvons procéder à la réplication en utilisant le code R :
        for (i in 1:5) data.set<-rbind(data.set,pos)
        maml.mapOutputPort("data.set")
 
-    ![Script R dans le module Exécuter un script R][9]
+    ![Script R dans le module Execute R Script de hello][9]
 
-Nous devons répéter cette opération de réplication pour chaque sortie du module [Fractionner les données][split] pour que les données d’apprentissage et de test aient le même ajustement des coûts. Pour ce faire, la manière la plus simple consiste à dupliquer le module [Exécuter un script R][execute-r-script] que nous venons de créer et à le connecter à l’autre port de sortie du module [Fractionner les données][split].
+Nous avons besoin de cette même opération de réplication pour chaque sortie hello toodo [données fractionnées] [ split] module afin que hello d’apprentissage et de données de test ont hello même ajustement des coûts. Hello plus simple façon toodo, il s’agit en dupliquant hello [Execute R Script] [ execute-r-script] module nous vient et sa connexion toohello autre sortie de port de hello [données fractionnées] [ split] module.
 
-1. Cliquez avec le bouton droit sur le module [Exécuter un script R][execute-r-script] et sélectionnez **Copier**.
+1. Avec le bouton hello [Execute R Script] [ execute-r-script] module et sélectionnez **copie**.
 
-2. Cliquez avec le bouton droit sur le canevas d'expérience et sélectionnez **Coller**.
+2. Cliquez sur le canevas de l’expérience hello et sélectionnez **coller**.
 
-3. Faites glisser le nouveau module pour le mettre en place, puis connectez le port de sortie droit du module [Fractionner les données][split] au premier port d’entrée du module [Exécuter un script R][execute-r-script]. 
+3. Faites glisser nouveau module de hello en position et puis connectez le port de sortie de droite hello Hello [données fractionnées] [ split] module toohello premier port d’entrée de ce nouveau [Execute R Script] [ execute-r-script] module. 
 
-4. En bas du canevas, cliquez sur **Exécuter**. 
+4. Au bas de hello du canevas de hello, cliquez sur **exécuter**. 
 
 > [!TIP]
-> La copie du Module d’exécution de script R contient le même script que le module d’origine. Lorsque vous copiez-collez un module sur le canevas, la copie conserve toutes les propriétés de l'original.  
+> copie Hello du module Execute R Script de hello contienne hello même script en tant que module d’origine de hello. Lorsque vous copiez et collez un module dans la zone de dessin hello, copie de hello conserve toutes les propriétés de hello Hello d’origine.  
 > 
 > 
 
@@ -161,7 +161,7 @@ Nous devons répéter cette opération de réplication pour chaque sortie du mod
 
 Pour plus d’informations sur l'utilisation de scripts R dans vos expériences, consultez la page [Prolonger votre expérience avec R](machine-learning-extend-your-experiment-with-r.md).
 
-**Étape suivante : [Former et évaluer les modèles](machine-learning-walkthrough-4-train-and-evaluate-models.md)**
+**Ensuite : [Train et évaluer des modèles de hello](machine-learning-walkthrough-4-train-and-evaluate-models.md)**
 
 [0]: ./media/machine-learning-walkthrough-3-create-new-experiment/create-new-experiment.png
 [5]: ./media/machine-learning-walkthrough-3-create-new-experiment/rename-experiment.png

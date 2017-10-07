@@ -1,5 +1,5 @@
 ---
-title: Configuration de routage requise pour Azure ExpressRoute | Microsoft Docs
+title: "configuration requise d’aaaRouting pour Azure ExpressRoute | Documents Microsoft"
 description: "Cette page détaille les conditions nécessaires à la configuration et à la gestion du routage pour les circuits ExpressRoute."
 documentationcenter: na
 services: expressroute
@@ -14,16 +14,16 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 07/31/2017
 ms.author: osamam
-ms.openlocfilehash: e6e2009717430a692528cd3ec3a2c6e46a12fe03
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: dd50009974ae1a7156c52d4f714d8d97075f13ff
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="expressroute-routing-requirements"></a>Configuration requise pour le routage ExpressRoute
-Pour vous connecter aux services de cloud Microsoft à l’aide d’ExpressRoute, vous devez configurer et gérer le routage. Certains fournisseurs de connectivité proposent la configuration et la gestion du routage comme un service géré. Vérifiez auprès de votre fournisseur de connectivité s’il offre ce service. Si ce n’est pas le cas, vous devez respecter les conditions suivantes :
+services de cloud computing tooMicrosoft tooconnect à l’aide d’ExpressRoute, vous avez besoin tooset et gérer le routage. Certains fournisseurs de connectivité proposent la configuration et la gestion du routage comme un service géré. Vérifiez auprès de votre toosee de fournisseur de connectivité s’ils offrent de ce service. Si ce n’est pas le cas, vous devez respecter toohello suivant les exigences :
 
-Pour obtenir une description des sessions de routage qui doivent être configurées afin d’établir la connectivité, reportez-vous à l’article [Circuits et domaines de routage](expressroute-circuit-peerings.md).
+Consultez toohello [Circuits et domaines de routage](expressroute-circuit-peerings.md) article pour obtenir une description de routage de hello sessions nécessitant toobe défini dans toofacilitate connectivité.
 
 > [!NOTE]
 > Microsoft ne prend pas en charge les protocoles de redondance de routeur (HSRP, VRRP, par exemple) pour les configurations à haute disponibilité. Nous nous appuyons sur une paire de sessions BGP par homologation pour la haute disponibilité.
@@ -31,51 +31,51 @@ Pour obtenir une description des sessions de routage qui doivent être configur�
 > 
 
 ## <a name="ip-addresses-used-for-peerings"></a>Adresses IP utilisées pour les homologations
-Vous devez réserver quelques blocs d’adresses IP pour configurer le routage entre votre réseau et les routeurs Microsoft Enterprise Edge (MSEE). Cette section fournit une liste des conditions requises et décrit les règles relatives à la façon dont ces adresses IP doivent être acquises et utilisées.
+Vous devez tooreserve quelques blocs de l’adresse IP adresses tooconfigure routage entre votre réseau et les routeurs de bord (MSEEs) d’entreprise de Microsoft. Cette section fournit une liste d’exigences et décrit les règles de hello concernant la manière dont ces adresses IP doivent être acquis et utilisés.
 
 ### <a name="ip-addresses-used-for-azure-private-peering"></a>Adresses IP utilisées pour l’homologation privée Azure
-Pour configurer les homologations, vous pouvez utiliser des adresses IP privées ou publiques. La plage d’adresses utilisée pour configurer des routages ne doit pas chevaucher les plages d’adresses utilisées pour créer des réseaux virtuels dans Azure. 
+Vous pouvez utiliser des adresses IP privées ou homologations d’hello tooconfigure à des adresses IP publiques. plage d’adresses Hello utilisée pour configurer les itinéraires ne doit pas se chevaucher avec adresse plages utilisées toocreate réseaux virtuels dans Azure. 
 
 * Vous devez réserver un sous-réseau /29 ou deux sous-réseaux /30 pour les interfaces de routage.
-* Les sous-réseaux utilisés pour le routage peuvent être des adresses IP privées ou publiques.
-* Les sous-réseaux ne doivent pas entrer en conflit avec la plage réservée par le client pour une utilisation dans le cloud Microsoft.
+* utilisé pour le routage des sous-réseaux Hello peuvent être des adresses IP privées ou adresses IP publiques.
+* les sous-réseaux Hello n’a pas doivent en conflit avec la plage de hello réservée par le client hello pour une utilisation dans le cloud de Microsoft hello.
 * Si un sous-réseau /29 est utilisé, il est subdivisé en deux sous-réseaux /30. 
-  * Le premier sous-réseau /30 est utilisé pour le lien principal, et le second sous-réseau /30 est utilisé pour le lien secondaire.
-  * Pour chacun des sous-réseaux /30, vous devez utiliser la première adresse IP du sous-réseau /30 sur votre routeur. Microsoft utilise la deuxième adresse IP du sous-réseau /30 pour configurer une session BGP.
-  * Vous devez configurer les deux sessions BGP pour que notre [contrat SLA de disponibilité](https://azure.microsoft.com/support/legal/sla/) soit valide.  
+  * Hello tout d’abord/30 sous-réseau est utilisé pour le lien principal de hello et hello /30 deuxième sous-réseau est utilisé pour le lien secondaire de hello.
+  * Pour chacun des sous-réseaux de hello /30, vous devez utiliser hello première adresse IP du sous-réseau de hello /30 sur votre routeur. Microsoft utilise hello deuxième adresse IP de tooset de sous-réseau hello /30 une session BGP.
+  * Vous devez définir les deux sessions BGP pour notre [contrat SLA de disponibilité](https://azure.microsoft.com/support/legal/sla/) toobe valide.  
 
 #### <a name="example-for-private-peering"></a>Exemple pour l’homologation privée
-Si vous choisissez d’utiliser un sous-réseau a.b.c.d/29 pour configurer l’homologation, il sera scindé en deux sous-réseaux /30. Dans l’exemple ci-dessous, nous examinons l’utilisation du sous-réseau a.b.c.d/29. 
+Si vous choisissez tooset de a.b.c.d/29 toouse des hello d’homologation, il doit être fractionné en deux /30 sous-réseaux. Dans l’exemple hello ci-dessous, nous examiner comment hello a.b.c.d/29 sous-réseau utilisé. 
 
-a.b.c.d/29 sera scindé en a.b.c.d/30 et a.b.c.d+4/30 puis transmis à Microsoft via les API d’approvisionnement. Vous utiliserez a.b.c.d+1 comme l’IP VRF pour le PE principal et Microsoft utilisera a.b.c.d+2 comme IP VRF pour le MSEE principal. Vous allez utiliser a.b.c.d+5 comme l’IP VRF pour le PE secondaire et Microsoft utilisera a.b.c.d+6 IP VRF pour le MSEE secondaire.
+a.b.c.d/29 sera fractionné tooa.b.c.d/30 et a.b.c.d+4/30 et transmis en aval tooMicrosoft via hello API de configuration. Vous allez utiliser a.b.c.d+1 comme hello VRF IP pour hello PE principal et Microsoft consommera a.b.c.d+2 comme hello IP VRF pour hello MSEE principal. Vous allez utiliser a.b.c.d+5 comme hello VRF IP pour hello secondaire PE et Microsoft va utiliser a.b.c.d+6 comme hello IP VRF pour hello MSEE secondaire.
 
-Imaginons que vous sélectionnez 192.168.100.128/29 pour configurer l’homologation privée. 192.168.100.128/29 inclut les adresses de 192.168.100.128 à 192.168.100.135, parmi lesquelles :
+Considérez un cas où vous sélectionnez tooset 192.168.100.128/29 d’homologation privée. 192.168.100.128/29 inclut les adresses de 192.168.100.128 too192.168.100.135, parmi lesquelles :
 
-* 192.168.100.128/30 sera attribuée à link1, et le fournisseur utilisera 192.168.100.129 tandis que Microsoft utilisera 192.168.100.130.
-* 192.168.100.132/30 sera attribuée à link2, et le fournisseur utilisera 192.168.100.133 tandis que Microsoft utilisera 192.168.100.134.
+* 192.168.100.128/30 sera attribué toolink1, avec le fournisseur à l’aide de 192.168.100.129 et Microsoft à l’aide de 192.168.100.130.
+* 192.168.100.132/30 sera attribué toolink2, avec le fournisseur à l’aide de 192.168.100.133 et Microsoft à l’aide de 192.168.100.134.
 
 ### <a name="ip-addresses-used-for-azure-public-and-microsoft-peering"></a>Adresses IP utilisées pour les homologations publiques Azure et Microsoft
-Vous devez utiliser des adresses IP publiques que vous possédez pour configurer les sessions BGP. Microsoft doit être en mesure de vérifier la propriété des adresses IP via les Registres Internet de routage régional (RIR) et les Registres Internet de routage (IRR). 
+Vous devez utiliser des adresses IP publiques que vous possédez pour configurer des sessions BGP hello. Microsoft doit être la propriété de hello tooverify en mesure d’adresses IP de hello via Internet, les registres de routage et les registres de routage Internet. 
 
-* Vous devez utiliser un sous-réseau unique /29 ou deux sous-réseaux /30 afin de configurer l’homologation BGP pour chaque homologation par circuit ExpressRoute (si vous en avez plusieurs). 
+* Vous devez utiliser un unique/29 sous-réseau ou tooset deux /30 sous-réseaux des hello BGP d’homologation pour chaque homologation par circuit ExpressRoute (si vous avez plusieurs). 
 * Si un sous-réseau /29 est utilisé, il est subdivisé en deux sous-réseaux /30. 
-  * Le premier sous-réseau /30 sera utilisé pour le lien principal, et le second sous-réseau /30 est utilisé pour le lien secondaire.
-  * Pour chacun des sous-réseaux /30, vous devez utiliser la première adresse IP du sous-réseau /30 sur votre routeur. Microsoft utilise la deuxième adresse IP du sous-réseau /30 pour configurer une session BGP.
-  * Vous devez configurer les deux sessions BGP pour que notre [contrat SLA de disponibilité](https://azure.microsoft.com/support/legal/sla/) soit valide.
+  * tout d’abord de Hello/30 sous-réseau sera utilisé pour le lien principal de hello et hello /30 deuxième sous-réseau est utilisé pour le lien secondaire de hello.
+  * Pour chacun des sous-réseaux de hello /30, vous devez utiliser hello première adresse IP du sous-réseau de hello /30 sur votre routeur. Microsoft utilise hello deuxième adresse IP de tooset de sous-réseau hello /30 une session BGP.
+  * Vous devez définir les deux sessions BGP pour notre [contrat SLA de disponibilité](https://azure.microsoft.com/support/legal/sla/) toobe valide.
 
 ## <a name="public-ip-address-requirement"></a>Spécification d’adresse IP publique
 
 ### <a name="private-peering"></a>Homologation privée
-Vous pouvez choisir d’utiliser des adresses IPv4 publiques ou privées pour l’homologation privée. Nous fournissons une isolation de bout en bout du trafic. Ainsi, le chevauchement des adresses avec d’autres clients n’est pas possible dans le cas d’une homologation privée. Ces adresses ne sont pas publiées sur Internet. 
+Vous pouvez choisir toouse les adresses IPv4 publiques ou privées pour l’homologation privée. Nous fournissons une isolation de bout en bout du trafic. Ainsi, le chevauchement des adresses avec d’autres clients n’est pas possible dans le cas d’une homologation privée. Ces adresses ne sont pas publié tooInternet. 
 
 
 ### <a name="public-peering"></a>Homologation publique
-Le chemin d'homologation publique Azure vous permet de vous connecter à tous les services hébergés dans Azure en utilisant leurs adresses IP publiques. Cela inclut les services répertoriés dans le [FAQ sur ExpressRoute](expressroute-faqs.md) et tous les services hébergés par les éditeurs de logiciels sur Microsoft Azure. La connectivité aux services Microsoft Azure sur l’homologation publique est toujours lancée de votre réseau vers le réseau Microsoft. Vous devez utiliser des adresses IP publiques pour le trafic destiné au réseau Microsoft.
+Hello chemin d’accès d’homologation publique Azure permet de vous tooconnect tooall services hébergés dans Azure sur les adresses IP publiques. Notamment les services répertoriés dans hello [ExpessRoute FAQ](expressroute-faqs.md) et tous les services hébergés par les éditeurs de logiciels indépendants sur Microsoft Azure. Connectivité tooMicrosoft Azure services publics d’homologation est toujours lancée à partir de votre réseau dans le réseau de Microsoft hello. Vous devez utiliser des adresses IP publiques pour le réseau de destination tooMicrosoft hello du trafic.
 
 ### <a name="microsoft-peering"></a>Homologation Microsoft
-Le chemin d’homologation Microsoft vous permet de vous connecter aux services de cloud Microsoft non pris en charge via le chemin d'homologation publique Azure. La liste des services inclut les services Office 365, notamment Exchange Online, SharePoint Online, Skype Entreprise et Dynamics 365. Microsoft prend en charge la connectivité bidirectionnelle sur l’homologation Microsoft. Le trafic destiné aux services de cloud Microsoft doit utiliser des adresses IPv4 publiques valides avant leur entrée sur le réseau Microsoft.
+chemin d’accès d’homologation de Hello Microsoft vous permet de connecter des services de cloud computing tooMicrosoft qui ne sont pas pris en charge via hello chemin d’accès d’homologation publique Azure. liste Hello des services inclut les services Office 365, telles que Exchange Online, SharePoint Online, Skype entreprise et Dynamics 365. Microsoft prend en charge la connectivité bidirectionnelle sur l’homologation, Microsoft hello. Les services de cloud de tooMicrosoft le trafic destiné doivent utiliser des adresses IPv4 publiques valides avant leur entrée hello Microsoft réseau.
 
-Assurez-vous que votre adresse IP et votre numéro AS sont enregistrés à votre nom dans l’un des registres ci-dessous :
+Assurez-vous que votre adresse IP et en tant que numéro d’est les suivantes : tooyou inscrit dans un des hello registres :
 
 * [ARIN](https://www.arin.net/)
 * [APNIC](https://www.apnic.net/)
@@ -86,49 +86,49 @@ Assurez-vous que votre adresse IP et votre numéro AS sont enregistrés à votre
 * [ALTDB](http://altdb.net/)
 
 > [!IMPORTANT]
-> Les adresses IP publiques proposées à Microsoft via ExpressRoute ne doivent pas être publiées sur Internet. Cela pourrait interrompre la connectivité avec d’autres services Microsoft. Toutefois, les adresses IP publiques utilisées par les serveurs de votre réseau qui communiquent avec les points de terminaison O365 au sein de Microsoft peuvent être publiées via ExpressRoute. 
+> Adresse IP publique adresses publiés tooMicrosoft via ExpressRoute ne doit pas être publié toohello Internet. Cela peut interrompre les services de connectivité de Microsoft tooother. Toutefois, les adresses IP publiques utilisées par les serveurs de votre réseau qui communiquent avec les points de terminaison O365 au sein de Microsoft peuvent être publiées via ExpressRoute. 
 > 
 > 
 
 ## <a name="dynamic-route-exchange"></a>Échange de routage dynamique
-L’échange de routage s’effectuera via le protocole eBGP. Des sessions EBGP sont établies entre les MSEE et les routeurs. L’authentification des sessions BGP n’est pas obligatoire. Si nécessaire, un hachage MD5 peut être configuré. Pour plus d’informations sur la configuration des sessions BGP, consultez [Configuration du routage](expressroute-howto-routing-classic.md) et [Workflows d’approvisionnement du circuit et états du circuit](expressroute-workflows.md).
+L’échange de routage s’effectuera via le protocole eBGP. Les sessions EBGP sont établies entre vos routeurs et pare-feu hello MSEEs. L’authentification des sessions BGP n’est pas obligatoire. Si nécessaire, un hachage MD5 peut être configuré. Consultez hello [configurer le routage](expressroute-howto-routing-classic.md) et [Circuit de mise en service de flux de travail et les États de circuit](expressroute-workflows.md) pour plus d’informations sur la configuration de sessions BGP.
 
 ## <a name="autonomous-system-numbers"></a>Numéros système autonomes
-Microsoft utilisera le numéro AS 12076 pour les homologations publiques Azure, privées Azure et Microsoft. Nous avons réservé les numéros AS 65515 à 65520 pour un usage interne. Les numéros AS 16 bits et 32 bits sont pris en charge.
+Microsoft utilisera le numéro AS 12076 pour les homologations publiques Azure, privées Azure et Microsoft. Nous avons réservée homologations de 65515 too65520 à un usage interne. Les numéros AS 16 bits et 32 bits sont pris en charge.
 
-Il n’existe aucune exigence concernant une symétrie de transfert des données. Les chemins d’envoi et de réception peuvent transiter par différentes paires de routeurs. Les routages identiques doivent être publiés des deux côtés sur plusieurs paires de circuits vous appartenant. Les métriques de routage n’ont pas besoin d’être identiques.
+Il n’existe aucune exigence concernant une symétrie de transfert des données. chemins d’accès vers l’avant et retour Hello peuvent parcourir les paires de routeur différents. Les routages identiques doivent être publiés des deux côtés sur plusieurs paires de circuits vous appartenant. Métrique de routage n’est pas requis toobe identiques.
 
 ## <a name="route-aggregation-and-prefix-limits"></a>Agrégation de routages et limites de préfixes
-Nous prenons en charge jusqu’à 4 000 préfixes qui nous sont proposés via l’homologation privée Azure. Ce chiffre peut être augmenté jusqu’à 10 000 préfixes si le module complémentaire ExpressRoute premium est activé. Nous acceptons jusqu’à 200 préfixes par session BGP pour les homologations publiques Azure et Microsoft. 
+Nous prenons en charge des too4000 préfixes publiés toous via hello homologation privée Azure. Cela peut être augmenté des too10, 000 préfixes si le module complémentaire de hello ExpressRoute premium est activé. Nous acceptons les préfixes too200 par session BGP pour Azure public et homologation Microsoft. 
 
-La session BGP s’arrêtera si le nombre de préfixes dépasse la limite. Nous accepterons les routages par défaut uniquement sur le lien d’homologation privée. Le fournisseur doit filtrer les adresses IP de routage et privées par défaut (RFC 1918) des chemins d’homologation publique Azure et Microsoft. 
+session BGP Hello est supprimée si nombre hello de préfixes dépasse la limite de hello. Nous acceptons les itinéraires par défaut sur hello privés d’homologation lien uniquement. Fournisseur doit filtrer l’itinéraire par défaut et les adresses IP privées (RFC 1918) à partir de hello Azure publique et les chemins d’accès d’homologation de Microsoft. 
 
 ## <a name="transit-routing-and-cross-region-routing"></a>Routage de transit et routage entre régions
-ExpressRoute ne peut pas être configuré comme des routeurs de transit. Vous devez vous appuyer sur votre fournisseur de connectivité pour les services de routage de transit.
+ExpressRoute ne peut pas être configuré comme des routeurs de transit. Vous devez toorely sur votre fournisseur de connectivité pour les services de routage de transit.
 
 ## <a name="advertising-default-routes"></a>Publication des routages par défaut
-Les routages par défaut sont autorisés uniquement sur les sessions d’homologation privées Azure. Dans ce cas, nous acheminerons tout le trafic des réseaux virtuels associés vers votre réseau. La publication de routages par défaut dans l’homologation privée entraîne le blocage du chemin Internet à partir d’Azure. Vous devez compter sur votre matériel edge d’entreprise afin d’acheminer le trafic depuis et vers Internet pour les services hébergés dans Azure. 
+Les routages par défaut sont autorisés uniquement sur les sessions d’homologation privées Azure. Dans ce cas, nous achemine tout le trafic réseau de tooyour hello réseaux virtuels associés. Publication d’itinéraires par défaut dans l’homologation privée entraîne hello internet chemin d’accès Azure bloqué. Vous devez compter sur votre trafic tooroute de bord d’entreprise à partir d’et toohello internet pour les services hébergés dans Azure. 
 
- Pour activer la connectivité avec d’autres services Azure et services d’infrastructure, vous devez vous assurer qu’un des éléments suivants est en place :
+ tooenable connectivité tooother Azure services et les services d’infrastructure, vous devez vous assurer d’un des éléments suivants de hello est en place :
 
-* L’homologation publique Azure est activée pour acheminer le trafic vers les points de terminaison publics
-* Vous utilisez le routage défini par l’utilisateur pour permettre la connectivité Internet pour chaque sous-réseau nécessitant une connectivité Internet définie par l’utilisateur.
+* L’homologation publique Azure est activé tooroute trafic toopublic points de terminaison
+* Vous utilisez connecté à internet tooallow définie par l’utilisateur routage pour chaque connexion Internet nécessitant de sous-réseau.
 
 > [!NOTE]
-> La publication des routages par défaut arrête Windows et toute autre activation de licence de machine virtuelle. Suivez les instructions [ici](http://blogs.msdn.com/b/mast/archive/2015/05/20/use-azure-custom-routes-to-enable-kms-activation-with-forced-tunneling.aspx) pour contourner ce problème.
+> La publication des routages par défaut arrête Windows et toute autre activation de licence de machine virtuelle. Suivez les instructions [ici](http://blogs.msdn.com/b/mast/archive/2015/05/20/use-azure-custom-routes-to-enable-kms-activation-with-forced-tunneling.aspx) toowork contourner ce problème.
 > 
 > 
 
 ## <a name="bgp"></a>Prise en charge des communautés BGP
-Cette section fournit une vue d'ensemble de l'utilisation des communautés BGP avec ExpressRoute. Microsoft publiera des routages sur les chemins d’homologation publiques et Microsoft avec des routages marqués à l’aide des valeurs de communauté appropriées. La logique de cette procédure et les détails concernant les valeurs de la communauté sont décrits ci-dessous. Cependant, Microsoft ignorera toutes les valeurs de communauté marquées pour des itinéraires qui lui sont proposés.
+Cette section fournit une vue d'ensemble de l'utilisation des communautés BGP avec ExpressRoute. Microsoft se publier d’itinéraires dans hello public et les chemins d’accès d’homologation de Microsoft avec les itinéraires marqués avec des valeurs de la Communauté approprié. Hello raisonnement pour ce faire, et hello plus d’informations sur la Communauté, les valeurs sont décrites ci-dessous. Microsoft, toutefois, ne respecteront pas toute communauté tooroutes avec balises de valeurs publiés tooMicrosoft.
 
-Si vous vous connectez à Microsoft via ExpressRoute dans n’importe quel emplacement d’homologation d’une région géopolitique, vous aurez accès à tous les services de cloud Microsoft de toutes les régions situées dans les limites géopolitiques. 
+Si vous vous connectez tooMicrosoft via ExpressRoute à n’importe quel emplacement d’homologation une dans une région géopolitique, avoir accès tooall Microsoft cloud services toutes les régions dans les limites géopolitiques hello. 
 
-Par exemple, si vous êtes connecté à Microsoft à Amsterdam via ExpressRoute, vous aurez accès à tous les services de cloud Microsoft hébergés en Europe du Nord et en Europe occidentale. 
+Par exemple, si vous connecté tooMicrosoft à Amsterdam via ExpressRoute, avoir accès tooall Microsoft cloud services hébergés dans Europe du Nord et Europe de l’ouest. 
 
-Reportez-vous à la page [Partenaires ExpressRoute et emplacements d’homologation](expressroute-locations.md) pour obtenir une liste détaillée des régions géopolitiques, des régions Azure associées et des emplacements d’homologation ExpressRoute correspondants.
+Consultez toohello [ExpressRoute partenaires et les emplacements d’homologation](expressroute-locations.md) page pour une liste détaillée des régions géopolitiques, les régions Azure associées et correspondante ExpressRoute d’homologation emplacements.
 
-Vous pouvez acheter plusieurs circuits ExpressRoute par région géopolitique. Le fait de disposer de plusieurs connexions vous offre des avantages significatifs en termes de haute disponibilité en raison de la redondance géographique. Si vous avez plusieurs circuits ExpressRoute, vous recevrez le même jeu de préfixes publiés par Microsoft sur les chemins d'homologation publiques et Microsoft. Cela signifie que vous disposez de plusieurs chemins de votre réseau vers Microsoft. Vous risquez ainsi de prendre des décisions de routage non optimales au sein de votre réseau. Et par conséquent, vous risquez de rencontrer des problèmes de connectivité non optimale avec différents services. Vous pouvez compter sur les valeurs fournies par la communauté pour prendre les bonnes décisions en matière de routage et offrir un [routage optimal aux utilisateurs](expressroute-optimize-routing.md).
+Vous pouvez acheter plusieurs circuits ExpressRoute par région géopolitique. Connexions multiples vous offre des avantages significatifs sur la haute disponibilité toogeo-redondance échéance. Dans les cas où vous avez plusieurs circuits ExpressRoute, vous recevrez hello même ensemble de préfixes publié à partir de Microsoft sur l’homologation publique, hello et d’homologation de chemins d’accès. Cela signifie que vous disposez de plusieurs chemins de votre réseau vers Microsoft. Cela peut entraîner optimales toobe décisions de routage au sein de votre réseau. Par conséquent, vous pouvez rencontrer des services de connectivité non optimale des expériences toodifferent. Vous pouvez vous fier hello Communauté valeurs toomake approprié routage décisions toooffer [optimale toousers routage](expressroute-optimize-routing.md).
 
 | **Région Microsoft Azure** | **Valeur de communauté BGP** |
 | --- | --- |
@@ -167,14 +167,14 @@ Vous pouvez acheter plusieurs circuits ExpressRoute par région géopolitique. L
 | Corée du Sud |12076:51028 |
 | Centre de la Corée |12076:51029 |
 
-Tous les routages publiés par Microsoft seront marqués avec la valeur de communauté appropriée. 
+Tous les itinéraires annoncés par Microsoft seront marqués avec la valeur de communauté approprié hello. 
 
 > [!IMPORTANT]
 > Les préfixes globaux seront marqués avec une valeur de communauté appropriée et seront publiés uniquement lorsque le module complémentaire Premium ExpressRoute est activé.
 > 
 > 
 
-Par ailleurs, Microsoft marquera également des préfixes basés sur le service auquel ils appartiennent. Cela s'applique uniquement à l'homologation Microsoft. Le tableau ci-dessous fournit un mappage d’un service à la valeur de communauté BGP.
+En outre toohello ci-dessus, Microsoft sera également baliser des préfixes basés sur service hello qu'auquel ils appartiennent. Cela s’applique d’homologation Microsoft toohello uniquement. tableau Hello ci-dessous fournit un mappage de valeur de communauté tooBGP de service.
 
 | **Service** | **Valeur de communauté BGP** |
 | --- | --- |
@@ -185,7 +185,7 @@ Par ailleurs, Microsoft marquera également des préfixes basés sur le service 
 | Autres services Office 365 en ligne |12076:5100 |
 
 > [!NOTE]
-> Microsoft ignore les valeurs de communauté BGP définies sur les itinéraires proposés à Microsoft.
+> Microsoft ne respecte pas les valeurs de communauté BGP que vous définissez sur tooMicrosoft publié des itinéraires de hello.
 > 
 > 
 
@@ -214,7 +214,7 @@ Par ailleurs, Microsoft marquera également des préfixes basés sur le service 
 ## <a name="next-steps"></a>Étapes suivantes
 * Configurez votre connexion ExpressRoute.
   
-  * [Créer et modifier un circuit ExpressRoute à l’aide du modèle de déploiement classique](expressroute-howto-circuit-classic.md) ou [Créer et modifier un circuit ExpressRoute à l’aide d’Azure Resource Manager](expressroute-howto-circuit-arm.md)
-  * [Configurer le routage à l’aide du modèle de déploiement classique](expressroute-howto-routing-classic.md) ou [Configurer le routage à l’aide du modèle de déploiement Resource Manager](expressroute-howto-routing-arm.md)
-  * [Lier un réseau virtuel classique à un circuit ExpressRoute](expressroute-howto-linkvnet-classic.md) ou [Lier un réseau virtuel Resource Manager à un circuit ExpressRoute](expressroute-howto-linkvnet-arm.md)
+  * [Créer un circuit ExpressRoute pour le modèle de déploiement classique hello](expressroute-howto-circuit-classic.md) ou [créer et modifier un circuit ExpressRoute à l’aide du Gestionnaire de ressources Azure](expressroute-howto-circuit-arm.md)
+  * [Configurer le routage pour le modèle de déploiement classique hello](expressroute-howto-routing-classic.md) ou [configurer le routage pour le modèle de déploiement du Gestionnaire de ressources hello](expressroute-howto-routing-arm.md)
+  * [Lier un tooan de réseau virtuel classique circuit ExpressRoute](expressroute-howto-linkvnet-classic.md) ou [lier un circuit ExpressRoute de tooan le Gestionnaire de ressources VNet](expressroute-howto-linkvnet-arm.md)
 

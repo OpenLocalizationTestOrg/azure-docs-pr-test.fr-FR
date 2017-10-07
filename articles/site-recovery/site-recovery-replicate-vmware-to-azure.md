@@ -1,6 +1,6 @@
 ---
-title: "Répliquer des applications (VMware vers Azure) | Microsoft Docs"
-description: "Cet article décrit la procédure de configuration de la réplication de machines virtuelles exécutées sur VMware dans Azure."
+title: "Répliquer des applications (VMware tooAzure) | Documents Microsoft"
+description: "Cet article décrit comment tooset la réplication de virtual machines en cours d’exécution sur VMware dans Azure."
 services: site-recovery
 documentationcenter: 
 author: asgang
@@ -14,20 +14,20 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 06/05/2017
 ms.author: asgang
-ms.openlocfilehash: e0047a996c9bfd7d950b32f0871ddd7608924b42
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: b07aabdacec521c7bd89e50f6a1427a774ff0287
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="replicate-applications-running-on-vmware-vms-to-azure"></a>Répliquer des applications s’exécutant sur des machines virtuelles VMware vers Azure
+# <a name="replicate-applications-running-on-vmware-vms-tooazure"></a>Répliquer des applications en cours d’exécution sur les ordinateurs virtuels VMware tooAzure
 
 
 
-Cet article décrit la procédure de configuration de la réplication de machines virtuelles exécutées sur VMware dans Azure.
-## <a name="prerequisites"></a>Conditions préalables
+Cet article décrit comment tooset la réplication de virtual machines en cours d’exécution sur VMware dans Azure.
+## <a name="prerequisites"></a>Composants requis
 
-Cet article suppose que vous avez déjà effectué les opérations suivantes :
+Hello article suppose que vous avez déjà
 
 1.  [Configurer un environnement source local](site-recovery-set-up-vmware-to-azure.md)
 2.  [Configurer un environnement cible dans Azure](site-recovery-prepare-target-vmware-to-azure.md)
@@ -37,82 +37,82 @@ Cet article suppose que vous avez déjà effectué les opérations suivantes :
 #### <a name="before-you-start"></a>Avant de commencer
 Lors de la réplication de machines virtuelles VMware, prenez note des points suivants :
 
-* Votre compte d’utilisateur Azure doit disposer de certaines [autorisations](site-recovery-role-based-linked-access-control.md#permissions-required-to-enable-replication-for-new-virtual-machines) pour activer la réplication d’une machine virtuelle dans Azure.
-* Les machines virtuelles VMware sont découvertes toutes les 15 minutes, et il peut s’écouler 15 minutes ou plus entre leur découverte et leur affichage dans le portail. De même, la découverte peut prendre 15 minutes ou plus lorsque vous ajoutez un serveur vCenter ou un hôte vSphere.
-* La mise à jour avec les modifications de l’environnement sur la machine virtuelle (par exemple, l’installation d’outils VMware) peut aussi prendre plus de 15 minutes.
-* Vous pouvez vérifier l’heure de la dernière découverte de machines virtuelles VMware dans le champ **Dernier contact à** correspondant au serveur vCenter ou à l’hôte vSphere dans le panneau **Serveurs de configuration**.
-* Pour ajouter des machines à répliquer sans attendre la découverte planifiée, mettez en surbrillance le serveur de configuration (sans cliquer dessus) et cliquez sur le bouton **Actualiser**.
-* Lorsque vous activez la réplication, si la machine est prête, le serveur de processus installe automatiquement le service Mobilité sur ce dernier.
+* Votre compte d’utilisateur Azure doit toohave certaines [autorisations](site-recovery-role-based-linked-access-control.md#permissions-required-to-enable-replication-for-new-virtual-machines) tooenable la réplication d’un nouveau tooAzure d’ordinateur virtuel.
+* Les machines virtuelles VMware sont découvertes toutes les 15 minutes, Il peut prendre 15 minutes ou plus pour les tooappear dans portail hello après la découverte. De même, la découverte peut prendre 15 minutes ou plus lorsque vous ajoutez un serveur vCenter ou un hôte vSphere.
+* Modifications de l’environnement sur l’ordinateur virtuel de hello (par exemple, l’installation des outils VMware) peuvent prendre 15 minutes ou plus toobe mis à jour dans le portail de hello.
+* Vous pouvez vérifier hello découverts dernière heure pour les ordinateurs virtuels VMware Bonjour **dernier Contact à** champ hello vCenter serveur/hôte vSphere, sur hello **serveurs de Configuration** panneau.
+* ordinateurs tooadd pour la réplication sans attendre la détection planifiée de hello, mettez en surbrillance le serveur de configuration hello (ne cliquez pas dessus), puis cliquez sur hello **Actualiser** bouton.
+* Lorsque vous activez la réplication, si l’ordinateur de hello est préparée, serveur de processus hello installe automatiquement le service de mobilité hello sur celui-ci.
 
 
 **À présent, activez la réplication comme suit**:
 
-1. Cliquez sur **Étape 2 : Répliquer l’application** > **Source**. Après avoir activé la réplication pour la première fois, cliquez sur l’option **+Répliquer** dans le coffre pour activer la réplication des autres machines.
-2. Dans le panneau **Source** > **Source**, sélectionnez le serveur de configuration.
+1. Cliquez sur **Étape 2 : Répliquer l’application** > **Source**. Une fois que vous avez activé la réplication pour hello première fois, cliquez sur **+ répliquer** dans la réplication de tooenable hello coffre pour des ordinateurs supplémentaires.
+2. Bonjour **Source** panneau > **Source**, sélectionnez le serveur de configuration hello.
 3. Dans la zone **Type de machine**, sélectionnez **Machines virtuelles** ou **Machines physiques**.
-4. Dans la zone **Hyperviseur vCenter/vSphere**, sélectionnez le serveur vCenter qui gère l’hôte vSphere, ou sélectionnez l’hôte. Ce paramètre n’est pas utile si vous répliquez des machines physiques.
-5. Sélectionnez le serveur de processus. Si vous n’avez pas créé de serveur de processus supplémentaire, il s’agit du serveur de configuration. Cliquez ensuite sur **OK**.
+4. Dans **vCenter/vSphere hyperviseur**, sélectionnez le serveur vCenter hello qui gère l’ordinateur hôte de vSphere hello ou sélectionner l’ordinateur hôte hello. Ce paramètre n’est pas utile si vous répliquez des machines physiques.
+5. Sélectionnez le serveur de processus hello. Si vous n’avez pas créé de tous les serveurs de processus supplémentaire ce sera le nom hello hello du serveur de configuration. Cliquez ensuite sur **OK**.
 
     ![Activer la réplication](./media/site-recovery-vmware-to-azure/enable-replication2.png)
 
-6. Dans **Cible**, sélectionnez l’abonnement et le groupe de ressources dans lesquels vous voulez créer les machines virtuelles basculées. Choisissez le modèle de déploiement que vous souhaitez utiliser dans Azure (classique ou gestion des ressources) pour les machines virtuelles basculées.
-7. Sélectionnez le compte de stockage Azure que vous souhaitez utiliser pour les données de réplication. Notez les points suivants :
+6. Dans **cible** sélectionnez abonnement de hello et le groupe de ressources hello où vous souhaitez hello toocreate machines virtuelles ayant basculé. Choisir un modèle de déploiement hello souhaitées toouse dans Azure (classique ou une ressource de gestion) pour hello machines virtuelles ayant basculé.
+7. Sélectionnez le compte de stockage Azure hello que toouse souhaité pour répliquer les données. Notez les points suivants :
 
-   * Vous pouvez sélectionner un compte Standard Storage ou Premium Storage. Si vous sélectionnez un compte Premium, vous devez spécifier un compte de stockage standard supplémentaire pour les journaux de réplication en cours. Les comptes doivent se trouver dans la même région que le coffre Recovery Services.
-   * Si vous souhaitez utiliser un compte de stockage différent de ceux que vous possédez déjà, vous pouvez en créer un*Lien d’espace réservé pour la création d’un compte de stockage à l’aide de Resource Manager qui sera abordée dans la section de prise en main*. Pour créer un compte de stockage à l’aide de Resource Manager, cliquez sur **Créer**. Si vous souhaitez créer un compte de stockage en mode Classic, vous pouvez le faire dans le [portail Azure](../storage/common/storage-create-storage-account.md).
+   * Vous pouvez sélectionner un compte Standard Storage ou Premium Storage. Si vous sélectionnez un compte premium, vous devez toospecify un compte de stockage standard supplémentaire pour les journaux de réplication en cours. Comptes doivent être Bonjour Services de récupération de la même région que hello coffre.
+   * Si vous voulez toouse un compte de stockage différentes que celles que vous avez, vous pouvez créer un*lien d’espace réservé pour la création de compte de stockage à l’aide de la ressource gestionnaire qui est abordé dans la mise en route*. toocreate un compte de stockage à l’aide du Gestionnaire de ressources, cliquez sur **nouvel**. Si vous voulez toocreate un compte de stockage à l’aide du modèle classique de hello, c’est [Bonjour Azure portal](../storage/common/storage-create-storage-account.md).
 
-8. Sélectionnez le sous-réseau et le réseau Azure auxquels les machines virtuelles Azure se connectent lorsqu’elles sont démarrées après le basculement. Ce réseau doit se trouver dans la même région que le coffre Recovery Services. Sélectionnez **Effectuez maintenant la configuration pour les machines sélectionnées** pour appliquer le paramètre réseau à l’ensemble des machines que vous sélectionnez à des fins de protection. Sélectionnez **Configurer ultérieurement** pour sélectionner le réseau Azure pour chaque machine. Si vous n’avez pas de réseau, vous devez en [créer un](#set-up-an-azure-network). Pour créer un réseau à l’aide de Resource Manager, cliquez sur **Créer**. Si vous souhaitez créer un réseau en suivant le modèle classique, utilisez le [Portail Azure](../virtual-network/virtual-networks-create-vnet-classic-pportal.md). Sélectionnez un sous-réseau, le cas échéant. Cliquez ensuite sur **OK**.
+8. Sélectionnez hello toowhich réseau et le sous-réseau Azure machines virtuelles Azure se connecte lorsqu’ils êtes lancés après le basculement. réseau de Hello doit être Bonjour Services de récupération de la même région que hello coffre. Sélectionnez **configurer maintenant pour les machines sélectionnées**, tooapply hello réseau paramètre tooall machines que vous sélectionnez pour la protection. Sélectionnez **configurer ultérieurement** tooselect hello réseau Azure par ordinateur. Si vous n’avez pas un réseau, vous devez trop[créer un](#set-up-an-azure-network). toocreate un réseau à l’aide du Gestionnaire de ressources, cliquez sur **nouvel**. Si vous voulez toocreate un réseau en utilisant le modèle classique de hello, cela [Bonjour Azure portal](../virtual-network/virtual-networks-create-vnet-classic-pportal.md). Sélectionnez un sous-réseau, le cas échéant. Cliquez ensuite sur **OK**.
 
     ![Activer la réplication](./media/site-recovery-vmware-to-azure/enable-rep3.png)
-9. Dans **Machines virtuelles** > **Sélectionner les machines virtuelles**, cliquez sur chaque machine à répliquer. Vous pouvez uniquement sélectionner les machines pour lesquelles la réplication peut être activée. Cliquez ensuite sur **OK**.
+9. Dans **virtuels** > **sélectionner des machines virtuelles**, cliquez sur et sélectionnez chaque ordinateur que vous souhaitez tooreplicate. Vous pouvez uniquement sélectionner les machines pour lesquelles la réplication peut être activée. Cliquez ensuite sur **OK**.
 
     ![Activer la réplication](./media/site-recovery-vmware-to-azure/enable-replication5.png)
-10. Dans **Propriétés** > **Configurer les propriétés**, sélectionnez le compte utilisé par le serveur de processus pour installer automatiquement le service Mobilité sur la machine.  
-11. Par défaut, tous les disques sont répliqués. Pour exclure les disques de la réplication, cliquez sur **Tous les disques**, puis désélectionnez ceux qui ne doivent pas être répliqués.  Cliquez ensuite sur **OK**. Vous pouvez opter pour une définition ultérieure des propriétés. [Apprenez-en davantage](site-recovery-exclude-disk.md) sur l’exclusion de disques.
+10. Dans **propriétés** > **configurer les propriétés**, sélectionnez compte hello qui sera utilisé par hello processus serveur tooautomatically installer le service de mobilité hello sur l’ordinateur de hello.  
+11. Par défaut, tous les disques sont répliqués. disques tooexclude de la réplication, cliquez sur **tous les disques** et effacer tous les disques que vous ne souhaitez pas tooreplicate.  Cliquez ensuite sur **OK**. Vous pouvez opter pour une définition ultérieure des propriétés. [Apprenez-en davantage](site-recovery-exclude-disk.md) sur l’exclusion de disques.
 
     ![Activer la réplication](./media/site-recovery-vmware-to-azure/enable-replication6.png)
 
-12. Dans **Paramètres de réplication** > **Configurer les paramètres de réplication**, vérifiez que la stratégie de réplication correcte est sélectionnée. Vous pouvez modifier les paramètres de la stratégie de réplication dans **Paramètres** > **Stratégies de réplication** > Nom de la stratégie > **Modifier les paramètres**. Les modifications que vous appliquez à une stratégie seront appliquées à la réplication et aux nouvelles machines.
-13. Cochez la case **Cohérence multimachine virtuelle** pour regrouper les machines dans un groupe de réplication, et nommez le groupe. Cliquez ensuite sur **OK**. Notez les points suivants :
+12. Dans **les paramètres de réplication** > **configurer les paramètres de réplication**, vérifiez que hello correct de la stratégie de réplication est activée. Vous pouvez modifier les paramètres de la stratégie de réplication dans **Paramètres** > **Stratégies de réplication** > Nom de la stratégie > **Modifier les paramètres**. Les modifications vous appliquez la stratégie de tooa seront appliqué tooreplicating et nouveaux ordinateurs.
+13. Activer **la cohérence Multimachine virtuelle** si vous souhaitez toogather ordinateurs dans un groupe de réplication, spécifiez un nom pour le groupe de hello. Cliquez ensuite sur **OK**. Notez les points suivants :
 
     * Toutes les machines d’un groupe de réplication sont répliquées ensemble et elles ont des points de récupération cohérents après incident et avec les applications lorsqu’elles basculent.
-    * Nous vous recommandons de rassembler les machines virtuelles et les serveurs physiques afin qu’ils reflètent vos charges de travail. L’activation de la cohérence multimachine virtuelle peut affecter les performances de la charge de travail et elle ne doit être utilisée que si les machines exécutent la même charge de travail et si vous avez besoin de cohérence.
+    * Nous vous recommandons de rassembler les machines virtuelles et les serveurs physiques afin qu’ils reflètent vos charges de travail. L’activation de la cohérence multimachine virtuelle peuvent affecter les performances de la charge de travail et doit être utilisé uniquement si les ordinateurs hello même charge de travail et que vous avez besoin de cohérence.
 
     ![Activer la réplication](./media/site-recovery-vmware-to-azure/enable-replication7.png)
-14. Cliquez sur **Activer la réplication**. Vous pouvez suivre la progression du travail **Activer la protection** dans **Paramètres** > **Travaux** > **Travaux Site Recovery**. Une fois le travail **Finaliser la protection** exécuté, la machine est prête pour le basculement.
+14. Cliquez sur **Activer la réplication**. Vous pouvez suivre la progression de hello **activer la Protection** de la tâche dans **paramètres** > **travaux** > **tâches de récupération de Site**. Après avoir hello **finaliser la Protection** s’exécute la tâche machine de hello est prête pour le basculement.
 
 > [!NOTE]
-> Si la machine est prête pour l’installation Push, le composant du service Mobilité est installé dès que la protection est activée. Une fois le composant installé sur la machine, une tâche de protection démarre et échoue. Après cet échec, vous devez redémarrer manuellement chaque machine. Après le redémarrage, la tâche de protection recommence et la réplication initiale se produit.
+> Si l’ordinateur de hello est préparé pour hello d’installation push mobilité de composant de service sera installé à la protection est activée. Après avoir hello composant est installé sur échoue et l’ordinateur hello qu'une tâche de protection démarre. Après l’échec de hello, vous devez toomanually redémarrer chaque machine. Après la protection de hello hello redémarrage du travail commence à nouveau et la réplication initiale se produit.
 >
 >
 
 ## <a name="view-and-manage-vm-properties"></a>Afficher et gérer les propriétés des machines virtuelles
 
-Nous vous recommandons de vérifier les propriétés de la machine source. N’oubliez pas que le nom de la machine virtuelle Azure doit respecter la [configuration requise pour les machines virtuelles Azure](site-recovery-support-matrix-to-azure.md#failed-over-azure-vm-requirements).
+Nous vous conseillons de vérifier les propriétés de hello d’ordinateur de source de hello. N’oubliez pas de ce nom de machine virtuelle Azure hello doit respecter les [spécifications de la machine virtuelle Azure](site-recovery-support-matrix-to-azure.md#failed-over-azure-vm-requirements).
 
-1. Cliquez sur **Paramètres** > **Éléments répliqués** > et sélectionnez la machine. Le panneau **Bases** affiche des informations sur les paramètres et l’état des machines.
-2. Dans **Propriétés**, vous pouvez afficher les informations sur la réplication et le basculement de la machine virtuelle.
-3. Dans **Calcul et réseau** > **Propriétés de calcul**, vous pouvez spécifier la taille de la cible et le nom de la machine virtuelle Azure. Si besoin, modifiez ce nom afin de respecter les exigences d’Azure.
+1. Cliquez sur **paramètres** > **éléments répliqués** > et sélectionnez hello machine. Hello **Essentials** panneau affiche des informations sur les paramètres des ordinateurs et l’état.
+2. Dans **propriétés**, vous pouvez afficher la réplication et les informations de basculement pour hello machine virtuelle.
+3. Dans **de calcul et réseau** > **propriétés de calcul**, vous pouvez spécifier la taille de nom et la cible de la machine virtuelle Azure hello. Modifiez toocomply de nom hello aux exigences d’Azure si vous avez besoin.
     ![Activer la réplication](./media/site-recovery-vmware-to-azure/VMProperties_AVSET.png)
  
-4.  Vous pouvez sélectionner un [groupe de ressources](https://docs.microsoft.com/azure/virtual-machines/windows/infrastructure-resource-groups-guidelines) dont l’ordinateur fera partie lors du post-basculement. Vous pouvez modifier ce paramètre avant le basculement. Après le basculement, si vous migrez l’ordinateur vers un autre groupe de ressources, les paramètres de protection de l’ordinateur ne seront plus adaptés.
-5. Vous pouvez sélectionner un basculement de [groupe à haute disponibilité](https://docs.microsoft.com/azure/virtual-machines/windows/infrastructure-availability-sets-guidelines) si votre ordinateur doit faire partie d’un post-basculement. Lorsque vous sélectionnez le groupe à haute disponibilité, prenez note de ce qui suit :
+4.  Vous pouvez sélectionner un [groupe de ressources](https://docs.microsoft.com/azure/virtual-machines/windows/infrastructure-resource-groups-guidelines) dont l’ordinateur fera partie lors du post-basculement. Vous pouvez modifier ce paramètre avant le basculement. Après basculement, si vous migrez hello machine tooa autre groupe de ressources, puis les paramètres de protection d’un ordinateur seront arrête.
+5. Vous pouvez sélectionner un [à haute disponibilité](https://docs.microsoft.com/azure/virtual-machines/windows/infrastructure-availability-sets-guidelines) basculer si votre ordinateur nécessaire toobe faire partie d’une publication. Lorsque vous sélectionnez le groupe à haute disponibilité, prenez note de ce qui suit :
 
-    * Seuls les groupes à haute disponibilité appartenant au groupe de ressources spécifié sont répertoriés.  
+    * Groupe de ressources est répertorié uniquement toohello appartenant spécifié à haute disponibilité  
     * Les ordinateurs avec différents réseaux virtuels ne peuvent pas faire partie du même groupe à haute disponibilité.
     * Seules les machines virtuelles de même taille peuvent faire partie du même groupe à haute disponibilité.
-5. Vous pouvez également afficher et ajouter des informations sur le réseau cible, le sous-réseau et l’adresse IP qui seront affectés à la machine virtuelle Azure.
-6. Les disques de données et du système d’exploitation de la machine virtuelle qui seront répliqués s’affichent dans **Disques** .
+5. Vous pouvez également afficher et ajouter des informations sur le réseau cible de hello, du sous-réseau et adresse IP qui sera assigné toohello machine virtuelle Azure.
+6. Dans **disques**, vous pouvez voir le système d’exploitation de hello et disques de données de hello des ordinateurs virtuels qui seront répliqués.
 
 ### <a name="network-adapters-and-ip-addressing"></a>Cartes réseau et adressage IP 
 
-- Vous pouvez définir l’adresse IP cible. Si vous ne fournissez pas d’adresse IP, la machine ayant basculé utilisera le service DHCP. Si vous définissez une adresse qui n’est pas disponible au moment du basculement, ce dernier échoue. Vous pouvez utiliser la même adresse IP cible pour le test de basculement si cette adresse est disponible sur le réseau de test de basculement.
-- Le nombre de cartes réseau est déterminé par la taille spécifiée pour la machine virtuelle cible, comme suit :
-    - Si le nombre de cartes réseau sur la machine source est inférieur ou égal au nombre de cartes autorisé pour la taille de la machine cible, la cible présente le même nombre de cartes que la source.
-    - Si le nombre de cartes de la machine virtuelle source dépasse la valeur de taille cible autorisée, la taille cible maximale est utilisée.
-    - Par exemple, si une machine source présente deux cartes réseau et que la taille de la machine cible en accepte quatre, la machine cible présentera deux cartes. Si la machine source inclut deux cartes, mais que la taille cible prise en charge accepte une seule carte, la machine cible présentera une seule carte.
-    - Si la machine virtuelle possède plusieurs cartes réseau, elles se connectent toutes au même réseau.
-    - Si la machine virtuelle possède plusieurs cartes réseau, la première qui s’affiche dans la liste devient la carte réseau *par défaut* dans la machine virtuelle Azure.
+- Vous pouvez définir l’adresse IP de hello cible. Si vous ne fournissez une adresse, hello a échoué sur l’ordinateur utilise DHCP. Si vous définissez une adresse qui n’est pas disponible lors du basculement, hello basculement ne fonctionne pas. Hello même adresse IP peut servir pour le test de basculement si l’adresse de hello est disponible dans le réseau de basculement de test hello.
+- nombre de Hello de cartes réseau est dicté par taille hello que vous spécifiez pour la machine virtuelle de cible hello, comme suit :
+    - Si le nombre de hello de cartes réseau sur l’ordinateur source de hello est inférieur ou égal toohello le nombre de cartes autorisé pour la taille de la machine cible hello, puis cible de hello aura hello même nombre de cartes en tant que source de hello.
+    - Si nombre hello de cartes pour l’ordinateur virtuel de hello source dépasse nombre hello autorisé pour la taille cible hello puis la taille maximale de la cible hello est utilisé.
+    - Par exemple, si un ordinateur source possède deux cartes réseau et prend en charge la taille de la machine cible hello quatre, l’ordinateur cible hello aura deux cartes. Si hello source ordinateur possède deux cartes, mais hello taille cible pris en charge uniquement en charge l’un de l’ordinateur cible hello aura qu’un seul adaptateur.
+    - Si l’ordinateur virtuel de hello possède plusieurs cartes réseau qu’ils seront connectent tous toohello même réseau.
+    - Si l’ordinateur virtuel de hello possède plusieurs cartes réseau, hello celui affiché dans la liste de hello devient hello *par défaut* carte réseau Bonjour machine virtuelle Azure.
    
 
 
@@ -120,11 +120,11 @@ Nous vous recommandons de vérifier les propriétés de la machine source. N’o
 ## <a name="common-issues"></a>Problèmes courants
 
 * La taille de chaque disque doit être inférieure à 1 To.
-* Le disque du système d’exploitation doit être un disque de base, et non un disque dynamique.
-* Pour les machines virtuelles de génération 2/activées UEFI, le système d’exploitation doit être de la famille Windows, et la taille du disque de démarrage doit être inférieure à 300 Go.
+* disque de Hello du système d’exploitation doit être un disque de base et les disques dynamiques pas
+* Pour la génération 2/UEFI activé des machines virtuelles, famille de système d’exploitation hello doit être Windows et le disque de démarrage doit être inférieur à 300 Go
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Une fois la protection terminée, vous pouvez essayer le [basculement](site-recovery-failover.md) pour vérifier si votre application s’affiche dans Azure ou non.
+Une fois la protection de hello est terminée, vous pouvez essayer de [basculer](site-recovery-failover.md) toocheck si votre application s’affiche dans Azure ou non.
 
-Si vous souhaitez désactiver la protection, consultez [Nettoyer les paramètres d’inscription et de protection](site-recovery-manage-registration-and-protection.md).
+Au cas où vous souhaiteriez toodisable protection, vérifiez comment trop[nettoyer les paramètres d’inscription et de protection](site-recovery-manage-registration-and-protection.md)

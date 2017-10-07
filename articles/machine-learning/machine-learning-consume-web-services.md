@@ -1,6 +1,6 @@
 ---
-title: "Utilisation d’un service web Azure Machine Learning | Microsoft Docs"
-description: "Une fois qu’un service Machine Learning a été déployé, le service web RESTful mis à disposition peut être utilisé soit en tant que service de requête-réponse en temps réel, soit en tant que service d’exécution par lot."
+title: aaaHow tooconsume un service Web de Azure Machine Learning | Documents Microsoft
+description: "Une fois le déploiement d’un service d’apprentissage, hello service Web RESTFul qui est rendue disponible peut être utilisée en tant que service de requête-réponse en temps réel ou comme un service de l’exécution du lot."
 services: machine-learning
 documentationcenter: 
 author: garyericson
@@ -14,114 +14,114 @@ ms.tgt_pltfrm: na
 ms.workload: tbd
 ms.date: 06/02/2017
 ms.author: garye
-ms.openlocfilehash: eec9f637b4b2306ab4a888dbd5ef5b9a021bcac5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 19095604169e5af1daed12c17ba66258233178bb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-consume-an-azure-machine-learning-web-service"></a>Utilisation d’un service web Azure Machine Learning
+# <a name="how-tooconsume-an-azure-machine-learning-web-service"></a>Comment tooconsume un service Web de Azure Machine Learning
 
-Une fois que vous avez déployé un modèle prédictif Azure Machine Learning en tant que service Web, vous pouvez utiliser une API REST pour lui envoyer des données et obtenir des prédictions. Vous pouvez envoyer les données en temps réel ou par lot.
+Une fois que vous déployez un modèle de prévision d’Azure Machine Learning comme un service Web, vous pouvez utiliser une API REST de toosend il données et obtenir des prédictions. Vous pouvez envoyer les données de salutation en temps réel ou en mode batch.
 
-Vous trouverez des informations supplémentaires sur la création et le déploiement d’un service web Machine Learning à l’aide de Machine Learning Studio dans les pages suivantes :
+Vous trouverez plus d’informations sur la façon toocreate et déployer un service Web d’apprentissage Machine à l’aide de Machine Learning Studio ici :
 
-* Pour accéder à un didacticiel sur la création d'une expérience dans Machine Learning Studio, consultez [Créer votre première expérience](machine-learning-create-experiment.md).
-* Pour plus d’informations sur le déploiement d’un service web, consultez [Déployer un service web Machine Learning](machine-learning-publish-a-machine-learning-web-service.md).
-* Pour plus d’informations sur Machine Learning en général, consultez le [Centre de documentation Machine Learning](https://azure.microsoft.com/documentation/services/machine-learning/).
+* Pour un didacticiel sur toocreate une expérience dans Machine Learning Studio, voir [créer votre première expérience](machine-learning-create-experiment.md).
+* Pour plus d’informations sur la façon de toodeploy un service Web, consultez [déployer un service Web d’apprentissage Machine](machine-learning-publish-a-machine-learning-web-service.md).
+* Pour plus d’informations sur la Machine Learning en général, visitez hello [centre de Documentation Machine Learning](https://azure.microsoft.com/documentation/services/machine-learning/).
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 ## <a name="overview"></a>Vue d'ensemble
-Grâce au service web Microsoft Azure Machine Learning, une application externe peut communiquer avec le modèle de notation de workflow Machine Learning et ce, en temps réel. Un appel du service web Machine Learning renvoie les résultats d’une prédiction à une application externe. Pour créer cet appel, vous transmettez une clé API créée quand vous déployez une prédiction. Le service web Machine Learning est basé sur l’architecture REST, souvent choisie pour les projets de programmation web.
+Avec hello service Azure Machine Learning Web, une application externe communique avec un modèle de score de flux de travail Machine Learning en temps réel. Un appel de service Web d’apprentissage Machine retourne des résultats de prédiction tooan des applications externes. toomake un appel de service Web de la Machine Learning, vous passez une clé d’API qui est créée lorsque vous déployez une prédiction. Hello service Web d’apprentissage Machine est basée sur REST, un choix d’architecture courante pour les projets de programmation web.
 
 Microsoft Azure Machine Learning propose deux types de service :
 
-* Service de requête-réponse (Request-Response Service, RRS) : service hautement évolutif, à faible latence, qui constitue une interface pour les modèles sans état créés et déployés à partir de Machine Learning Studio.
+* Le Service de requête-réponse (RR) – une faible latence, un service hautement évolutif qui fournit une interface toohello des modèles sans état créés et déployés à partir de hello Machine Learning Studio.
 * Service d’exécution de lot (Batch Execution Service, BES) : service asynchrone qui effectue la notation d’un lot pour les enregistrements de données.
 
 Pour plus d’informations sur les services web Machine Learning, consultez [Déployer un service web Machine Learning](machine-learning-publish-a-machine-learning-web-service.md).
 
 ## <a name="get-an-azure-machine-learning-authorization-key"></a>Obtenir une clé d’autorisation Microsoft Azure Machine Learning
-Quand vous déployez votre expérimentation, les clés API sont générées pour le service web. Vous pouvez récupérer les clés de plusieurs emplacements.
+Lorsque vous déployez votre expérience, les clés API sont générées pour hello service Web. Vous pouvez récupérer les clés de hello depuis plusieurs emplacements.
 
-### <a name="from-the-microsoft-azure-machine-learning-web-services-portal"></a>À partir du portail des services web Microsoft Azure Machine Learning
-Connectez-vous au [portail des services web Microsoft Azure Machine Learning](https://services.azureml.net).
+### <a name="from-hello-microsoft-azure-machine-learning-web-services-portal"></a>À partir du portail de Services Web de Microsoft Azure Machine Learning hello
+Connectez-vous à toohello [les Services Web de Microsoft Azure Machine Learning](https://services.azureml.net) portal.
 
-Pour récupérer la clé API pour un nouveau service web Machine Learning :
+clé de hello API tooretrieve pour un service d’un site Web Machine Learning :
 
-1. Dans le portail Services web Microsoft Azure Machine Learning, cliquez sur **Services web** dans le menu du haut.
-2. Cliquez sur le service web pour lequel vous souhaitez récupérer la clé.
-3. Cliquez sur **Consommer**dans le menu du haut.
-4. Copiez et enregistrez la **clé primaire**.
+1. Dans le portail de Services Web de Azure Machine Learning hello, cliquez sur **Services Web** menu du haut hello.
+2. Cliquez sur le service Web de hello pour lequel vous voulez tooretrieve hello.
+3. Dans le menu supérieur de hello, cliquez sur **consommer**.
+4. Copiez et enregistrez hello **clé primaire**.
 
-Pour récupérer la clé API pour un service web Machine Learning classique :
+clé de hello API tooretrieve pour un service Web d’apprentissage Machine classique :
 
-1. Dans le portail Services web Microsoft Azure Machine Learning, cliquez sur **Services web classiques** dans le menu du haut.
-2. Cliquez sur le service web que vous utilisez.
-3. Cliquez sur le point de terminaison pour lequel vous souhaitez récupérer la clé.
-4. Cliquez sur **Consommer**dans le menu du haut.
-5. Copiez et enregistrez la **clé primaire**.
+1. Dans le portail de Services Web de Azure Machine Learning hello, cliquez sur **des Services Web classique** menu du haut hello.
+2. Cliquez sur le service Web de hello avec lequel vous travaillez.
+3. Cliquez sur le point de terminaison hello pour lequel vous voulez tooretrieve hello.
+4. Dans le menu supérieur de hello, cliquez sur **consommer**.
+5. Copiez et enregistrez hello **clé primaire**.
 
 ### <a name="classic-web-service"></a>Service web classique
- Vous pouvez également récupérer une clé pour un service web classique par le biais de Machine Learning Studio ou du portail Azure Classic.
+ Vous pouvez également récupérer une clé pour un service Web classique à partir de la Machine Learning Studio ou hello portail Azure classic.
 
 #### <a name="machine-learning-studio"></a>Machine Learning Studio
-1. Dans Machine Learning Studio, cliquez sur l’option **SERVICES WEB** figurant sur la gauche.
-2. Cliquez sur un service web. La **clé API** figure sur l’onglet **TABLEAU DE BORD**.
+1. Dans la Machine Learning Studio, cliquez sur **SERVICES WEB** sur hello gauche.
+2. Cliquez sur un service web. Hello **clé API** sur hello **tableau de bord** onglet.
 
 #### <a name="azure-classic-portal"></a>Portail Azure Classic
-1. Cliquez sur l’option **MACHINE LEARNING** figurant sur la gauche.
-2. Cliquez sur l’espace de travail dans lequel se trouve votre service web.
+1. Cliquez sur **MACHINE LEARNING** sur hello gauche.
+2. Cliquez sur espace hello dans lequel se trouve votre service Web.
 3. Cliquez sur **SERVICES WEB**.
 4. Cliquez sur un service web.
-5. Cliquez sur un point de terminaison. La « CLÉ API » se trouve sur la partie inférieure droite de la fenêtre.
+5. Cliquez sur un point de terminaison. Hello « Clé API » s’est arrêté à hello inférieur droit.
 
-## <a id="connect"></a>Se connecter à un service web Machine Learning
-Vous pouvez vous connecter à un service web Machine Learning à l’aide de n’importe quel langage de programmation qui prend en charge les requêtes et réponses HTTP. Vous pouvez consulter des exemples en C#, Python et R sur l’une des pages d’aide du service web Machine Learning.
+## <a id="connect"></a>Connecter tooa Machine Learning Web service
+Vous pouvez vous connecter tooa service Web d’apprentissage Machine à l’aide de n’importe quel langage de programmation qui prend en charge de la réponse et requête HTTP. Vous pouvez consulter des exemples en C#, Python et R sur l’une des pages d’aide du service web Machine Learning.
 
 **Aide de l’API Machine Learning** L’aide de l’API Machine Learning est créée quand vous déployez un service web. Consultez la page [Procédure pas à pas : déploiement du service web Azure Machine Learning](machine-learning-walkthrough-5-publish-web-service.md).
-L’aide sur l’API Machine Learning contient des détails sur un service web de prédiction.
+Hello aide des API d’apprentissage Machine contient des détails sur une service Web de prédiction.
 
-1. Cliquez sur le service web que vous utilisez.
-2. Cliquez sur le point de terminaison pour lequel vous souhaitez afficher la page d’aide de l’API.
-3. Cliquez sur **Consommer**dans le menu du haut.
-4. Cliquez sur la **page d’aide de l’API** sous le point de terminaison Requête-réponse ou Exécution par lot.
+1. Cliquez sur le service Web de hello avec lequel vous travaillez.
+2. Cliquez sur le point de terminaison hello pour lequel vous souhaitez tooview hello Page d’aide API.
+3. Dans le menu supérieur de hello, cliquez sur **consommer**.
+4. Cliquez sur **page d’aide API** sous hello demande-réponse ou de points de terminaison de l’exécution par lots.
 
-**Pour afficher l’aide de l’API Machine Learning pour un nouveau service web**
+**aide de Machine Learning API tooview pour un service d’un site Web**
 
-Dans le portail des services web Azure Machine Learning :
+Bonjour portail de Services Web Azure Machine Learning :
 
-1. Cliquez sur **SERVICES WEB** dans le menu du haut.
-2. Cliquez sur le service web pour lequel vous souhaitez récupérer la clé.
+1. Cliquez sur **SERVICES WEB** sur le menu du haut hello.
+2. Cliquez sur le service Web de hello pour lequel vous voulez tooretrieve hello.
 
-Cliquez sur **Consommer** pour obtenir l’URI des services requête-réponse et d’exécution par lots et des exemples de code en C#, R et Python.
+Cliquez sur **consommer** tooget hello URI pour hello Reposonse de demande et de Services d’exécution de lot exemple de code en c#, R et Python.
 
-Cliquez sur **API Swagger** pour obtenir une documentation basée sur Swagger pour les API appelées à partir de l’URI fourni.
+Cliquez sur **API de Swagger** tooget Swagger en fonction de documentation pour hello API appelée à partir de hello fourni URI.
 
 ### <a name="c-sample"></a>Exemple de code C#
-Pour vous connecter à un service web Machine Learning, utilisez un **HttpClient** qui transmet l’élément ScoreData. ScoreData contient un FeatureVector, un vecteur à n dimensions des fonctionnalités numériques qui représente le ScoreData. Vous vous authentifiez auprès du service Machine Learning au moyen d’une clé API.
+tooconnect tooa service Machine Learning Web, utilisez un **HttpClient** passage ScoreData. ScoreData contient un FeatureVector, un vecteur de fonctionnalités numériques à n dimensions représente hello ScoreData. Vous authentifier le service de Machine Learning toohello avec une clé d’API.
 
-Pour vous connecter à un service web Machine Learning, le package NuGet **Microsoft.AspNet.WebApi.Client** doit être installé.
+tooconnect tooa service Web d’apprentissage Machine, hello **Microsoft.AspNet.WebApi.Client** le package NuGet doit être installé.
 
 **Installer le package NuGet Microsoft.AspNet.WebApi.Client dans Microsoft Visual Studio**
 
-1. Publiez le service web « Téléchargement d’un jeu de données depuis l’UCI : jeu de données de classe Adult 2 ».
+1. Publier le dataset téléchargement hello UCI : 2 adulte classe dataset Service Web.
 2. Cliquez sur **Outils** > **Gestionnaire de package NuGet** > **Console du gestionnaire de package**.
 3. Choisissez l'élément **Install-Package Microsoft.AspNet.WebApi.Client**.
 
-**Pour exécuter l’exemple de code**
+**exemple de code hello toorun**
 
-1. Publiez l’expérience « Exemple 1 : Téléchargement d’un jeu de données depuis l’UCI : jeu de données de classe Adult 2 », inclus dans la collection d’exemples Machine Learning.
-2. Attribuez l’élément apiKey avec la clé à partir d’un service web. Consultez **Obtenir une clé d’autorisation Microsoft Azure Machine Learning** plus haut.
-3. Affectez l’élément serviceUri avec l’URI de requête.
+1. Publier « exemple 1 : télécharger le jeu de données à partir de UCI : adulte 2 classe dataset « expérience, de la part de hello, exemple de collection de Machine Learning.
+2. Affecter apiKey avec la clé de hello à partir d’un service Web. Consultez **Obtenir une clé d’autorisation Microsoft Azure Machine Learning** plus haut.
+3. Affecter serviceUri avec hello URI de requête.
 
 ### <a name="python-sample"></a>Exemple de code Python
-Pour vous connecter à un service web Machine Learning, utilisez la bibliothèque **urllib2** qui transmet l’élément ScoreData. ScoreData contient un FeatureVector, vecteur à n dimensions des fonctionnalités numériques qui représente le ScoreData. Vous vous authentifiez auprès du service Machine Learning au moyen d’une clé API.
+tooconnect tooa service Machine Learning Web, utilisez hello **urllib2** ScoreData de passage de bibliothèque. ScoreData contient un FeatureVector, un vecteur de fonctionnalités numériques à n dimensions représente hello ScoreData. Vous authentifier le service de Machine Learning toohello avec une clé d’API.
 
-**Pour exécuter l’exemple de code**
+**exemple de code hello toorun**
 
-1. Déployez l’expérience « Exemple 1 : Téléchargement d’un jeu de données depuis l’UCI : jeu de données de classe Adult 2 », inclus dans la collection d’exemples Machine Learning.
-2. Attribuez l’élément apiKey avec la clé à partir d’un service web. Consultez la section **Obtenir une clé d’autorisation Microsoft Azure Machine Learning** au début de cet article.
-3. Affectez l’élément serviceUri avec l’URI de requête.
+1. Déployer « exemple 1 : télécharger le jeu de données à partir de UCI : adulte 2 classe dataset « expérience, de la part de hello, exemple de collection de Machine Learning.
+2. Affecter apiKey avec la clé de hello à partir d’un service Web. Consultez hello **obtenir une clé d’autorisation d’Azure Machine Learning** section près de début de hello de cet article.
+3. Affecter serviceUri avec hello URI de requête.
 

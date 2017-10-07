@@ -1,6 +1,6 @@
 ---
-title: "Répliquer des machines virtuelles Hyper-V vers Azure à l’aide d’Azure Site Recovery | Microsoft Docs"
-description: "Explique comment orchestrer la réplication, le basculement et la récupération des machines virtuelles Hyper-V locales dans Azure"
+title: "tooAzure d’ordinateurs virtuels Hyper-V aaaReplicate avec Azure Site Recovery | Documents Microsoft"
+description: "Décrit comment la réplication tooorchestrate, le basculement et récupération de local Hyper-V VM tooAzure"
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,13 +14,13 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 06/21/2017
 ms.author: raynew
-ms.openlocfilehash: da10b213bc2543942b5ac77cf5c5d8547c00220c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ab9cd14149ef32a416428d0f4327aa18b042e9c3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="replicate-hyper-v-virtual-machines-without-vmm-to-azure"></a>Répliquer des machines virtuelles Hyper-V (sans VMM) vers Azure 
+# <a name="replicate-hyper-v-virtual-machines-without-vmm-tooazure"></a>Répliquer tooAzure d’ordinateurs virtuels (sans VMM) Hyper-V 
 
 > [!div class="op_single_selector"]
 > * [Portail Azure](site-recovery-hyper-v-site-to-azure.md)
@@ -29,81 +29,81 @@ ms.lasthandoff: 07/11/2017
 >
 >
 
-Cet article offre une vue d’ensemble des étapes à suivre pour répliquer des machines virtuelles Hyper-V locales vers Azure à l’aide du service [Azure Site Recovery](site-recovery-overview.md) dans le portail Azure. Dans ce déploiement, les machines virtuelles Hyper-V ne sont pas gérées par System Center Virtual Machine Manager (VMM).
+Cet article fournit une vue d’ensemble de hello étapes requises tooreplicate local Hyper-V virtual machines tooAzure, à l’aide de hello [Azure Site Recovery](site-recovery-overview.md) Bonjour portail Azure. Dans ce déploiement, les machines virtuelles Hyper-V ne sont pas gérées par System Center Virtual Machine Manager (VMM).
 
 
-Après avoir lu cet article, envoyez vos commentaires en bas ou posez vos questions techniques sur le [Forum Azure Recovery Services](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
+Après avoir lu cet article, validez les commentaires en bas de hello ou poser des questions techniques sur hello [Forum sur Azure Recovery Services](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
 
 
-## <a name="step-1-review-architecture-and-prerequisites"></a>Étape 1 : vérifier l’architecture et les conditions préalables
+## <a name="step-1-review-architecture-and-prerequisites"></a>Étape 1 : vérifier l’architecture et les conditions préalables.
 
-Avant de commencer le déploiement, vérifiez l’architecture du scénario et prenez connaissance de tous les composants que vous devez déployer.
+Avant de commencer le déploiement, consultez architecture du scénario hello et assurez-vous que vous comprenez tous les composants hello vous devez toodeploy
 
-Accédez à [Étape 1 : examen de l’architecture](hyper-v-site-walkthrough-architecture.md).
+Accédez trop[étape 1 : examen de l’architecture de hello](hyper-v-site-walkthrough-architecture.md)
 
 
 ## <a name="step-2-review-prerequisites"></a>Étape 2 : Vérifier les conditions préalables
 
-Assurez-vous que les conditions préalables sont remplies pour chaque composant du déploiement :
+Vérifiez que vous disposez des prérequis de hello en place pour chaque composant de déploiement :
 
-- **Conditions préalables Azure** : vous avez besoin d’un compte Microsoft Azure, de réseaux Azure et de comptes de stockage.
+- **Conditions préalables Azure** : vous avez besoin d’un compte Microsoft Azure, d’un réseau Azure et de comptes de stockage.
 - **Conditions préalables pour les machines virtuelles Hyper-V locales** : assurez-vous que les hôtes Hyper-V sont préparés pour le déploiement Site Recovery.
-- **Machines virtuelles répliquées** : les machines virtuelles à répliquer doivent se conformer aux conditions requises pour Azure.
+- **Répliquer les machines virtuelles**: machines virtuelles que vous souhaitez tooreplicate devez toocomply aux exigences d’Azure.
 
-Accédez à [Étape 2 : vérifier les conditions préalables et les limitations](hyper-v-site-walkthrough-prerequisites.md).
+Accédez trop[étape 2 : vérifier les conditions préalables et restrictions](hyper-v-site-walkthrough-prerequisites.md)
 
 ## <a name="step-3-plan-capacity"></a>Étape 3 : planifier la capacité
 
-Si vous effectuez un déploiement complet, vous devez déterminer les ressources de réplication dont vous avez besoin. Pour ce faire, vous disposez de plusieurs outils. Accédez à l’étape 2. Si vous souhaitez réaliser une configuration rapide pour tester l’environnement, vous pouvez passer cette étape.
+Si vous effectuez un déploiement complet, vous devez toofigure à quelles ressources de réplication que vous avez besoin. Il existe deux de toohelp disponibles des outils pour cela. Accédez tooStep 2. Si vous effectuez une rapide configurer tootest hello environnement, vous pouvez ignorer cette étape.
 
-Accédez à [Étape 3 : planifier la capacité](hyper-v-site-walkthrough-capacity.md).
+Accédez trop[étape 3 : planifier la capacité](hyper-v-site-walkthrough-capacity.md)
 
 ## <a name="step-4-plan-networking"></a>Étape 4 : Planifier la mise en réseau
 
-Vous devez établir un plan du réseau pour vous assurer que les machines virtuelles Azure sont connectées aux réseaux après le basculement et qu’elles disposent des bonnes adresses IP.
+Vous devez toodo certains planification tooensure que les machines virtuelles Azure sont toonetworks connectés après que le basculement se produit, et que qu’ils ont hello droite des adresses IP d’un réseau.
 
-Aller à [Étape 4 : Planifier la mise en réseau](hyper-v-site-walkthrough-network.md)
+Accédez trop[étape 4 : planifier la mise en réseau](hyper-v-site-walkthrough-network.md)
 
 ##  <a name="step-5-prepare-azure-resources"></a>Étape 5 : Préparer les ressources Azure
 
 Configurez les réseaux et le stockage Azure avant de commencer. Vous pouvez le faire pendant le déploiement, mais nous vous recommandons de vous en occuper avant de commencer.
 
-Accédez à [Étape 5 : préparer Azure](hyper-v-site-walkthrough-prepare-azure.md).
+Accédez trop[étape 5 : préparer le Azure](hyper-v-site-walkthrough-prepare-azure.md)
 
 
 ## <a name="step-6-prepare-hyper-v"></a>Étape 6 : préparer Hyper-V
 
 Assurez-vous que les serveurs Hyper-V remplissent les exigences liées au déploiement Site Recovery.
 
-Accédez à [Étape 6 : préparer Hyper-V](hyper-v-site-walkthrough-prepare-hyper-v.md).
+Accédez trop[étape 6 : préparation de Hyper-V](hyper-v-site-walkthrough-prepare-hyper-v.md)
 
 ## <a name="step-7-set-up-a-vault"></a>Étape 7 : configurer un coffre
 
-Vous devez configurer un coffre Recovery Services pour orchestrer et gérer la réplication. Lors de la configuration du coffre, vous spécifiez les éléments à répliquer et leur destination de réplication.
+Vous devez tooset d’un tooorchestrate du coffre Recovery Services et gérez la réplication. Lorsque vous configurez le coffre de hello, vous spécifiez ce que vous voulez tooreplicate, et où vous souhaitez que tooreplicate à.
 
-Accédez à [Étape 7 : créer un coffre](hyper-v-site-walkthrough-create-vault.md).
+Accédez trop[étape 7 : créer un coffre](hyper-v-site-walkthrough-create-vault.md)
 
 ## <a name="step-8-configure-source-and-target-settings"></a>Étape 8 : configurer les paramètres de source et de cible
 
-Configurez la source et la cible utilisées pour la réplication. La configuration des paramètres de source comprend l’ajout d’hôtes Hyper-V à un site Hyper-V, l’installation du fournisseur Site Recovery et de l’agent Recovery Services sur chaque hôte Hyper-V, et l’inscription du site dans le coffre Recovery Services.
+Configurer la source de hello et la cible qui est utilisée pour la réplication. Configuration des paramètres de la source comprend l’ajout d’Hyper-V héberge tooa Hyper-V site, l’installation hello fournisseur Site Recovery et l’agent Recovery Services sur chaque ordinateur hôte Hyper-V et l’enregistrement de site de hello Bonjour de coffre Recovery Services.
 
-Accédez à [Étape 8 : configurer la source et la cible](hyper-v-site-walkthrough-source-target.md).
+Accédez trop[étape 8 : configurer hello source et cible](hyper-v-site-walkthrough-source-target.md)
 
 ## <a name="step-9-set-up-a-replication-policy"></a>Étape 9 : configurer une stratégie de réplication
 
-Vous devez configurer une stratégie afin de spécifier les paramètres de réplication des machines virtuelles Hyper-V dans le coffre.
+Vous définissez des paramètres de réplication de stratégie toospecify pour les ordinateurs virtuels Hyper-V dans le coffre hello.
 
-Accédez à [Étape 9 : configurer une stratégie de réplication](hyper-v-site-walkthrough-replication.md).
+Accédez trop[étape 9 : configurer une stratégie de réplication](hyper-v-site-walkthrough-replication.md)
 
 
-## <a name="step-10-enable-replication"></a>Étape 10 : activer la réplication
+## <a name="step-10-enable-replication"></a>Étape 10 : Activer la réplication
 
-Une fois que vous avez une stratégie de réplication en place, la réplication initiale de la machine virtuelle se produira après l’activation.
+Après avoir configuré une stratégie de réplication en place, après l’activation, la réplication initiale de hello machine virtuelle se produit.
 
-Accédez à [Étape 10 : activer la réplication](hyper-v-site-walkthrough-enable-replication.md).
+Accédez trop[étape 10 : activer la réplication](hyper-v-site-walkthrough-enable-replication.md)
 
-## <a name="step-11-run-a-test-failover"></a>Étape 11 : exécuter un test de basculement
+## <a name="step-11-run-a-test-failover"></a>Étape 11 : Exécuter un test de basculement
 
-Lorsque la réplication initiale est terminée et la réplication delta est en cours d’exécution, vous pouvez exécuter un test de basculement pour vous assurer que tout fonctionne comme prévu.
+Une fois la réplication initiale se termine, et la réplication delta est en cours d’exécution, vous pouvez exécuter un toomake de basculement de test que tout fonctionne comme prévu.
 
-Accédez à [Étape 11 : exécuter un test de basculement](hyper-v-site-walkthrough-test-failover.md).
+Accédez trop[étape 11 : exécuter un test de basculement](hyper-v-site-walkthrough-test-failover.md)

@@ -1,6 +1,6 @@
 ---
-title: "Documentation Azure Data Lake Store - Didacticiels, informations de référence sur les API | Microsoft Docs"
-description: "Découvrez comment configurer, gérer et accéder à un référentiel Data Lake à très grande échelle compatible avec Hadoop pour analyser des données de toute taille, de tout type et de toute vitesse d’ingestion."
+title: "aaaAzure Documentation du magasin de données Lake - didacticiels, référence de l’API | Documents Microsoft"
+description: "Découvrez comment tooset, gérer et accéder à un référentiel de LAC échelle des données Hadoop compatibles pour l’analytique des données de n’importe quelle vitesse de taille, de type et de réception."
 services: data-lake-store
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 473cb9709421f853cb78853b54682adb3e48d372
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 8a4730472b7811f022991bffc6dde7bb1be6458e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="data-lake-store-documentation"></a>Documentation Data Lake Store
 
-Découvrez comment utiliser Data Lake Store pour créer un référentiel à très grande échelle compatible avec Hadoop pour analyser des données de toute taille, de tout type et de toute vitesse d’ingestion. Des didacticiels, des références d’API et d’autres documents vous montrent comment configurer, gérer et accéder à un référentiel Data Lake pour une analyse opérationnelle et exploratoire.
+Découvrez comment accélérer la toouse Data Lake Store toocreate une évolutivité, référentiel Hadoop compatibles pour l’analytique sur les données de toute taille, le type et la réception. Didacticiels, des références de l’API et toute autre documentation vous montrent comment tooset, gérer et accéder à un référentiel de LAC de données pour l’analytique opérationnelle et exploratoire.
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -70,7 +70,7 @@ Découvrez comment utiliser Data Lake Store pour créer un référentiel à trè
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Prise en main d’Azure Data Lake Store à l’aide du Portail Azure</h3>
+                        <h3>Prise en main Azure Data Lake Store à l’aide de hello portail Azure</h3>
                     </div>
                 </div>
             </div>
@@ -106,7 +106,7 @@ Découvrez comment utiliser Data Lake Store pour créer un référentiel à trè
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Prise en main d’Azure Data Lake Store à l’aide de l’interface de ligne de commande Azure</h3>
+                        <h3>Prise en main Azure Data Lake Store à l’aide de hello CLI d’Azure</h3>
                     </div>
                 </div>
             </div>

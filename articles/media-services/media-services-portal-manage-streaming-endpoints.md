@@ -1,6 +1,6 @@
 ---
-title: "Gérer les points de terminaison de streaming avec le Portail Azure | Microsoft Docs"
-description: "Cette rubrique montre comment gérer les points de terminaison de streaming avec le Portail Azure."
+title: aaaManage de diffusion en continu des points de terminaison avec hello portail Azure | Documents Microsoft
+description: Cette rubrique montre comment les points de terminaison de diffusion en continu toomanage avec hello portail Azure.
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -15,27 +15,27 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/09/2017
 ms.author: juliako
-ms.openlocfilehash: 797dced6c3e2525730afa29987259cb9b435ba66
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: dfa9352894d37edb317a6334d7f109419deb362b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-streaming-endpoints-with-the-azure-portal"></a>Gérer les points de terminaison de streaming avec le Portail Azure
+# <a name="manage-streaming-endpoints-with-hello-azure-portal"></a>Gérer les points de terminaison de diffusion en continu avec hello portail Azure
 
-Cette rubrique explique comment utiliser le portail Azure pour gérer les points de terminaison de streaming. 
+Cette rubrique montre comment toouse hello toomanage portail Azure les points de terminaison de diffusion en continu. 
 
 >[!NOTE]
->Consultez la rubrique de [présentation](media-services-streaming-endpoints-overview.md). 
+>Assurez-vous que tooreview hello [vue d’ensemble](media-services-streaming-endpoints-overview.md) rubrique. 
 
-Pour plus d’informations sur la mise à l’échelle du point de terminaison de streaming, consultez [cette](media-services-portal-scale-streaming-endpoints.md) rubrique.
+Pour plus d’informations sur la façon dont tooscale hello point de terminaison de diffusion en continu, consultez [cela](media-services-portal-scale-streaming-endpoints.md) rubrique.
 
 ## <a name="start-managing-streaming-endpoints"></a>Commencer à gérer des points de terminaison de streaming 
 
-Pour commencer à gérer les points de terminaison de streaming de votre compte, procédez comme suit.
+toostart la gestion des points de terminaison de diffusion en continu de votre compte, procédez comme hello suivant.
 
-1. Dans le [portail Azure](https://portal.azure.com/), sélectionnez votre compte Azure Media Services.
-2. Dans le panneau **Paramètres**, sélectionnez **Points de terminaison de streaming**.
+1. Bonjour [portail Azure](https://portal.azure.com/), sélectionnez votre compte Azure Media Services.
+2. Bonjour **paramètres** panneau, sélectionnez **points de terminaison de diffusion en continu**.
    
     ![point de terminaison de diffusion en continu](./media/media-services-portal-manage-streaming-endpoints/media-services-manage-streaming-endpoints1.png)
 
@@ -45,22 +45,22 @@ Pour commencer à gérer les points de terminaison de streaming de votre compte,
 ## <a name="adddelete-a-streaming-endpoint"></a>Ajouter/supprimer un point de terminaison de streaming
 
 >[!NOTE]
->Il n’est pas possible de supprimer le point de terminaison de streaming par défaut.
+>point de terminaison de diffusion en continu de la valeur par défaut Hello ne peut pas être supprimé.
 
-Pour ajouter/supprimer un point de terminaison de streaming à l’aide du Portail Azure, procédez comme suit :
+à l’aide du point de terminaison de diffusion en continu tooadd/delete hello portail Azure, procédez comme hello suivant :
 
-1. Pour ajouter un point de terminaison de streaming, cliquez sur le **+ Point de terminaison** en haut de la page. 
+1. tooadd un point de terminaison de diffusion en continu, cliquez sur hello **+ point de terminaison** en hello haut hello. 
 
-    Vous pouvez également disposer de plusieurs points de terminaison de streaming si vous prévoyez d’avoir différents CDN ou bien un CDN et un accès direct.
+    Vous pourriez plusieurs points de terminaison de diffusion en continu si vous envisagez de toohave CDN différents ou un CDN et un accès direct.
 
-2. Pour supprimer un point de terminaison de streaming, appuyez sur le bouton **Supprimer** .      
-3. Cliquez sur le bouton **Démarrer** pour démarrer le point de terminaison de streaming.
+2. toodelete un point de terminaison de diffusion en continu, appuyez sur **supprimer** bouton.      
+3. Cliquez sur hello **Démarrer** hello toostart de bouton point de terminaison de diffusion en continu.
    
     ![point de terminaison de diffusion en continu](./media/media-services-portal-manage-streaming-endpoints/media-services-manage-streaming-endpoints2.png)
 
 
-## <a id="configure_streaming_endpoints"></a>Configuration du point de terminaison de diffusion en continu
-Le point de terminaison de streaming vous permet de configurer les propriétés suivantes :
+## <a id="configure_streaming_endpoints"></a>Configuration de point de terminaison de diffusion en continu de hello
+Point de terminaison de diffusion en continu vous permet de hello tooconfigure propriétés suivantes :
 
 * Contrôle d’accès
 * Contrôle de cache
@@ -68,18 +68,18 @@ Le point de terminaison de streaming vous permet de configurer les propriétés 
 
 Pour plus d’informations sur ces propriétés, consultez la rubrique [StreamingEndpoint](https://docs.microsoft.com/rest/api/media/operations/streamingendpoint).
 
-Vous pouvez configurer le point de terminaison de streaming en procédant comme suit :
+Vous pouvez configurer le point de terminaison de diffusion en continu de manière hello suivante :
 
-1. Sélectionnez le point de terminaison de streaming que vous souhaitez configurer.
+1. Sélectionnez hello point de terminaison de tooconfigure de diffusion en continu.
 2. Cliquez sur **Settings**.
 
-Vous trouverez une brève description des champs ci-dessous.
+Une brève description des champs de hello suit.
 
 ![point de terminaison de diffusion en continu](./media/media-services-portal-manage-streaming-endpoints/media-services-manage-streaming-endpoints4.png)
 
-1. Stratégie de cache maximale : permet de configurer la durée de vie du cache pour les ressources traitées par le biais de ce point de terminaison de streaming. Si aucune valeur n’est définie, la valeur par défaut est utilisée. Les valeurs par défaut peuvent également être définies directement dans Azure Storage. Si Azure CDN est activé pour le point de terminaison de streaming, ne définissez pas une valeur de stratégie de cache inférieure à 600 secondes.  
-2. Adresses IP autorisées : permet de définir les adresses IP autorisées à se connecter au point de terminaison de streaming publié. Si aucune adresse IP n'est spécifiée, toutes les adresses IP peuvent se connecter. Les adresses IP peuvent être définies sous forme d’adresse IP unique (par exemple, « 10.0.0.1 »), de plage d’adresses IP constituée d’une adresse IP et d’un masque de sous-réseau CIDR (par exemple, « 10.0.0.1/22 ») ou de plage d’adresses IP constituée d’une adresse IP et d’un masque de sous-réseau au format décimal séparé par des points (par exemple, « 10.0.0.1(255.255.255.0) »).
-3. Configuration de l’authentification de l’en-tête de signature Akamai : permet de spécifier la configuration de la demande d’authentification de l’en-tête de signature à partir de serveurs Akamai. L’expiration est au format UTC.
+1. Stratégie de cache maximale : tooconfigure utilisés de vie du cache pour les ressources servies par ce point de terminaison de diffusion en continu. Si aucune valeur n’est définie, la valeur par défaut hello est utilisé. valeurs par défaut de Hello peuvent également être définies directement dans le stockage Azure. Si Azure CDN est activé pour le point de terminaison de diffusion en continu de hello, vous ne devez pas définir accessible sans hello cache stratégie valeur de 600 secondes.  
+2. Adresses IP autorisées : les adresses IP toospecify qui sont autorisées tooconnect toohello publié le point de terminaison de diffusion en continu utilisées. Si aucune adresse IP n’est spécifié, n’importe quelle adresse IP est tooconnect en mesure de. Les adresses IP peuvent être définies sous forme d’adresse IP unique (par exemple, « 10.0.0.1 »), de plage d’adresses IP constituée d’une adresse IP et d’un masque de sous-réseau CIDR (par exemple, « 10.0.0.1/22 ») ou de plage d’adresses IP constituée d’une adresse IP et d’un masque de sous-réseau au format décimal séparé par des points (par exemple, « 10.0.0.1(255.255.255.0) »).
+3. Configuration pour l’authentification d’en-tête de signature Akamai : utilisé toospecify configuration de la demande d’authentification de signature en-tête à partir de serveurs Akamai. L’expiration est au format UTC.
 
 ## <a name="scale-your-premium-streaming-endpoint"></a>Mise à l’échelle du point de terminaison de streaming Premium
 
@@ -89,25 +89,25 @@ Pour plus d’informations, consultez [cette rubrique](media-services-portal-sca
 
 Lorsque vous créez un compte, l’intégration CDN Azure du point de terminaison de streaming par défaut est activée par défaut.
 
-Si vous souhaitez activer/désactiver le CDN ultérieurement, votre point de terminaison de streaming doit avoir l’état **Arrêté**. Il peut s’écouler jusqu’à deux heures pour que l’intégration d’Azure CDN soit active et pour que les modifications soient actives sur tous les comptes POP CDN. Toutefois, vous pouvez démarrer votre point de terminaison de streaming et le flux sans interruptions à partir du point de terminaison de streaming. Une fois l’intégration terminée, le flux est émis à partir du CDN. Pendant la durée de l’approvisionnement, votre point de terminaison de streaming est en état de **démarrage** et vous pouvez observer une dégradation des performances.
+Si vous souhaitez ultérieurement toodisable/activer hello CDN, votre point de terminaison de diffusion en continu doit être Bonjour **arrêté** état. Peut prendre les heures too2 pour tooget de l’intégration d’Azure CDN hello activé et hello toobe de modifications actif sur tous les hello POP du CDN. Toutefois, vous pouvez démarrer votre point de terminaison et les flux sans interruptions de diffusion en continu à partir du point de terminaison de diffusion en continu de hello et une fois qu’integration de hello est terminée, les flux hello seront remis à partir de hello CDN. Au cours de hello période de mise en service votre point de terminaison de diffusion en continu sera dans **démarrage** état et que vous pouvez observer les performances de degredad.
 
-L’intégration du CDN est activée dans tous les centres de données Azure, sauf dans les régions Gouvernement fédéral et Chine.
+Intégration de CDN est activée dans tous les execpt de centres de données Azure hello en Chine et régions du gouvernement fédéral.
 
-Une fois qu’elle est activée, la configuration d’**Access Control**, du **nom d’hôte personnalisé** et de l’**authentification de signature Akamai** est désactivée.
+Une fois qu’elle est activée, hello **le contrôle d’accès**, **nom d’hôte personnalisé** et **l’authentification de Akamai Signature** configuration obtient désactivée.
  
 > [!IMPORTANT]
-> L’intégration d’Azure Media Services au CDN Azure est implémentée sur le **CDN Azure fourni par Verizon** pour les points de terminaison de streaming Standard. Les points de terminaison de streaming Premium peuvent être configurés à l’aide de l’ensemble des **fournisseurs et niveaux de tarification Azure CDN**. Pour plus d’informations sur les fonctionnalités du CDN Azure, consultez [Vue d’ensemble du réseau de distribution de contenu (CDN)](../cdn/cdn-overview.md).
+> L’intégration d’Azure Media Services au CDN Azure est implémentée sur le **CDN Azure fourni par Verizon** pour les points de terminaison de streaming Standard. Les points de terminaison de streaming Premium peuvent être configurés à l’aide de l’ensemble des **fournisseurs et niveaux de tarification Azure CDN**. Pour plus d’informations sur les fonctionnalités d’Azure CDN, consultez hello [vue d’ensemble CDN](../cdn/cdn-overview.md).
  
 ### <a name="additional-considerations"></a>Considérations supplémentaires
 
-* Lorsque le CDN est activé pour un point de terminaison de diffusion en continu, les clients ne peuvent pas demander directement le contenu à partir de l’origine. Si vous avez besoin de tester votre contenu avec ou sans CDN, vous pouvez créer un autre point de terminaison de streaming qui n’est pas activé pour le CDN.
-* Le nom d’hôte de votre point de terminaison reste le même une fois le CDN activé. Vous n’avez pas besoin d’apporter de modifications à votre flux de travail Media Services une fois le CDN activé. Par exemple, si le nom d’hôte de votre point de terminaison en continu est strasbourg.streaming.mediaservices.windows.net, après avoir activé le CDN, le même nom d’hôte est utilisé.
-* Pour les nouveaux points de terminaison de streaming, vous pouvez simplement activer le CDN en créant un point de terminaison. Pour les points de terminaison de streaming existants, vous devez d’abord arrêter le point de terminaison, puis activer/désactiver le CDN.
+* Si le CDN est activé pour un point de terminaison de diffusion en continu, les clients ne peuvent pas demandent du contenu directement à partir de l’origine de hello. Si vous devez hello capacité tootest votre contenu avec ou sans CDN, vous pouvez créer un autre point de terminaison diffusion en continu qui n’est pas de CDN activé.
+* Votre diffusion en continu reste de nom d’hôte de point de terminaison hello même après l’activation du CDN. Vous n’avez pas besoin toomake n’importe quel flux de travail de modifications tooyour media services une fois que le CDN est activé. Par exemple, si votre nom d’hôte du point de terminaison diffusion en continu est strasbourg.streaming.mediaservices.windows.net, après avoir activé le CDN, hello exacte même nom d’hôte est utilisé.
+* Pour les nouveaux points de terminaison de diffusion en continu, vous pouvez activer CDN simplement par la création d’un point de terminaison ; pour les points de terminaison de diffusion en continu existants, vous avez besoin de point de terminaison hello toofirst arrêter, puis sur Activer/désactiver hello CDN.
 * Le point de terminaison de streaming Standard ne peut être configuré qu’à l’aide du **fournisseur CDN Standard Verizon** par le biais du portail de gestion Azure. Toutefois, vous pouvez activer d’autres fournisseurs Azure CDN à l’aide d’API REST.
 
 ## <a name="configure-cdn-profile"></a>Configurer le profil CDN
 
-Vous pouvez configurer le profil CDN en sélectionnant le bouton **Gérer le CDN** en haut.
+Vous pouvez configurer le profil CDN hello en sélectionnant hello **gérer le CDN** bouton à partir du haut de hello.
 
 ![point de terminaison de diffusion en continu](./media/media-services-portal-manage-streaming-endpoints/media-services-manage-streaming-endpoints6.png)
 

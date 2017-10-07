@@ -1,6 +1,6 @@
 ---
-title: "Documentation Azure StorSimple - Didacticiels | Microsoft Docs"
-description: "Découvrez comment utiliser Azure StorSimple, une solution de stockage intégrée qui gère les tâches de stockage entre les appareils locaux et le stockage cloud Azure."
+title: aaaAzure Documentation de StorSimple - didacticiels | Documents Microsoft
+description: "Découvrez des toouse Azure StorSimple, une solution de stockage intégrée qui gère le stockage des tâches entre les appareils locaux et le stockage Azure cloud."
 services: storsimple
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 21f24f387e96ac763419c37eeb16c75eab0bc452
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c9768c17118e8d5eecbd6791ef1be42afb1286c9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 #<a name="storsimple-documentation"></a>Documentation StorSimple
 
-Découvrez comment utiliser Azure StorSimple, une solution de stockage intégrée qui gère les tâches de stockage entre les appareils locaux et le stockage cloud Azure. Les didacticiels et autres documents vous montrent comment configurer la gestion du stockage, les sauvegardes indépendamment de l’emplacement et la récupération d’urgence.
+Découvrez des toouse Azure StorSimple, une solution de stockage intégrée qui gère le stockage des tâches entre les appareils locaux et le stockage Azure cloud. Les didacticiels et autres documents vous montrent comment configurer la gestion du stockage, les sauvegardes indépendamment de l’emplacement et la récupération d’urgence.
 
 <ul class="panelContent cardsFTitle">
      <li>

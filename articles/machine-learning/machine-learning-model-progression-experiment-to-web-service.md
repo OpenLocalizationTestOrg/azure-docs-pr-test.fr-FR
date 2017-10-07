@@ -1,6 +1,6 @@
 ---
-title: "Comment un modèle Azure Machine Learning devient un service web | Microsoft Docs"
-description: "Vue d’ensemble de la façon dont votre modèle Azure Machine Learning peut passer du stade de l’expérience de développement à celui d’un service web opérationnel."
+title: "aaaHow un modèle Azure Machine Learning devient un service web | Documents Microsoft"
+description: "Une vue d’ensemble des mécanismes de hello de la façon dont votre progresse de modèle Azure Machine Learning à partir d’un développement expérimenter tooan mis service Web."
 services: machine-learning
 documentationcenter: 
 author: garyericson
@@ -14,107 +14,107 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/20/2017
 ms.author: garye
-ms.openlocfilehash: 008952b4fee6bffe1e20259dc86fd6d5122777ec
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2bbe09fa8fa22662cf8ec4a8b6249d23c87c8ddf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-a-machine-learning-model-progresses-from-an-experiment-to-an-operationalized-web-service"></a>Comment faire évoluer un modèle d’apprentissage automatique d’une simple expérience en service web opérationnel
-Azure Machine Learning Studio fournit un canevas interactif qui permet de développer, d’exécuter, de tester et d’itérer une ***expérience*** représentant un modèle d’analyse prédictive. Il existe un large éventail de modules capables d’effectuer les opérations suivantes :
+# <a name="how-a-machine-learning-model-progresses-from-an-experiment-tooan-operationalized-web-service"></a>Comment une passe de modèle d’apprentissage à partir d’une expérience de tooan mis service Web
+Azure Machine Learning Studio fournit une zone interactive qui vous permet de toodevelop, exécuter, tester et itérer un ***expérimenter*** représentant un modèle d’analyse prédictive. Il existe un large éventail de modules capables d’effectuer les opérations suivantes :
 
 * Entrer des données dans votre expérience
-* Manipuler les données
+* Manipuler des données de hello
 * Former un modèle à l’aide d’algorithmes d’apprentissage automatique
-* Noter le modèle
-* Évaluer les résultats
+* Modèle de score hello
+* Évaluer les résultats de hello
 * Sortir les valeurs finales
 
 Une fois que vous êtes satisfait de votre expérience, vous pouvez la déployer en tant que ***service web Azure Machine Learning classique*** ou ***nouveau service web Azure Machine Learning*** afin de permettre aux utilisateurs d’envoyer de nouvelles données et de recevoir les résultats en retour.
 
-Cet article donne une vue d’ensemble de la façon dont votre modèle d’apprentissage automatique peut passer du stade de l’expérience de développement à celui d’un service web opérationnel.
+Dans cet article, nous donnent une vue d’ensemble des mécanismes de hello de la façon dont votre change de modèle d’apprentissage d’un tooan d’expérience de développement mis service Web.
 
 > [!NOTE]
-> Il existe d’autres manières de développer et déployer des modèles d’apprentissage automatique, mais cet article se concentre uniquement sur l’utilisation de Machine Learning Studio. Par exemple, pour lire une description sur la création d’un service web prédictif classique avec R, consultez le billet de blog relatif au [développement et au déploiement d’applications web prédictives à l’aide de RStudio et d’Azure ML](http://blogs.technet.com/b/machinelearning/archive/2015/09/25/build-and-deploy-a-predictive-web-app-using-rstudio-and-azure-ml.aspx).
+> Il existe autres façons toodevelop et déployer des modèles d’apprentissage automatique, mais cet article se concentre sur l’utilisation de Machine Learning Studio. Par exemple, tooread une description de la façon dont toocreate un service Web de prédictive classique avec R, consultez hello billet de blog [Build & déployer prédictive Web applications à l’aide de RStudio et Azure ML](http://blogs.technet.com/b/machinelearning/archive/2015/09/25/build-and-deploy-a-predictive-web-app-using-rstudio-and-azure-ml.aspx).
 > 
 > 
 
-Bien qu’Azure Machine Learning Studio soit principalement conçu pour vous aider à développer et déployer un *modèle d’analyse prédictive*, il est possible de l’utiliser pour développer une expérience qui n’inclut pas de modèle d’analyse prédictive. Une expérience peut, par exemple, simplement injecter des données et les manipuler avant de générer les résultats. À l’instar d’une expérience d’analyse prédictive, vous pouvez déployer cette expérience non prédictive en tant que service web. Ce processus sera toutefois plus simple car l’expérience n’est pas apparentée à l’apprentissage ou à la notation d’un modèle d’apprentissage automatique. Si cela ne représente pas l’utilisation classique de Studio, nous allons l’inclure dans la discussion afin de pouvoir vous expliquer de manière exhaustive le mode de fonctionnement de Studio.
+Alors que Azure Machine Learning Studio est conçue toohelp vous développer et déployer un *modèle d’analyse prédictive*, il est possible de toouse Studio toodevelop une expérience qui n’inclut pas un modèle d’analyse prédictive. Par exemple, une expérience peut-être simplement d’entrée de données, manipuler, puis la sortie des résultats hello. Tout comme une expérience d’analyse prédictive, vous pouvez déployer cette expérience non prédictive comme un service Web, mais il est plus simple, car l’expérience de hello n’est pas de formation ou d’évaluation d’un modèle d’apprentissage. S’il n’est pas hello toouse Studio classiques de cette façon, nous allons l’inclure dans la discussion de hello afin que nous pouvons obtenir une explication complète du fonctionne de Studio.
 
 ## <a name="developing-and-deploying-a-predictive-web-service"></a>Développement et déploiement d’un service web prédictif
-Voici les étapes effectuées pour une solution classique lorsque vous développez et déployez à l’aide de Machine Learning Studio :
+Voici les étapes hello une solution classique suivant lors du développement et de déployer à l’aide de la Machine Learning Studio :
 
 ![Flux de déploiement](media/machine-learning-model-progression-experiment-to-web-service/model-stages-from-experiment-to-web-service.png)
 
 *Figure 1 : Étapes d’un modèle d’analyse prédictive classique*
 
-### <a name="the-training-experiment"></a>Expérience de formation
-L’***expérience d’apprentissage*** est la phase initiale de développement de votre service web dans Machine Learning Studio. L’expérience de formation vous permet de développer, tester, itérer et former un modèle d’apprentissage automatique. Vous pouvez même former plusieurs modèles simultanément en recherchant la meilleure solution possible ; mais une fois que vous aurez terminé votre expérience, vous devrez sélectionner un seul modèle formé et supprimer le reste de l’expérience. Pour obtenir un exemple de développement d’une expérience d’analyse prédictive, consultez [Guide pas à pas : développer une solution d’analyse prédictive pour l’évaluation des risques de crédit dans Azure Machine Learning](machine-learning-walkthrough-develop-predictive-solution.md).
+### <a name="hello-training-experiment"></a>expérience de formation Hello
+Hello ***expérience de formation*** est la phase initiale de hello du développement de votre service Web dans Machine Learning Studio. Hello expérience de formation hello vise toogive un toodevelop sur place, test, effectuer une itération et finalement l’apprentissage d’un modèle d’apprentissage. Vous pouvez même former plusieurs modèles simultanément que vous recherchez la solution la mieux adaptée hello, mais une fois que vous avez terminé l’expérimentation vous devez sélectionner un seul objet d’un apprentissage de modèle et éliminer reste hello à partir de l’expérience de hello. Pour obtenir un exemple de développement d’une expérience d’analyse prédictive, consultez [Guide pas à pas : développer une solution d’analyse prédictive pour l’évaluation des risques de crédit dans Azure Machine Learning](machine-learning-walkthrough-develop-predictive-solution.md).
 
-### <a name="the-predictive-experiment"></a>Expérience prédictive
-Après avoir formé un modèle dans votre expérience d’apprentissage, cliquez sur **Configurer le service web** puis sélectionnez **Service web prédictif** dans Machine Learning Studio pour commencer le processus de conversion de votre expérience d’apprentissage en ***expérience prédictive***. L’objectif de l’expérience prédictive consiste à utiliser votre modèle formé afin d’évaluer les nouvelles données, ce dans le but de devenir opérationnel sous la forme d’un service web Azure.
+### <a name="hello-predictive-experiment"></a>expérience de prédictive Hello
+Une fois que vous avez un modèle formé dans votre expérience d’apprentissage, cliquez sur **configurer le Service Web** et sélectionnez **prédictive Web Service** dans le processus de hello Machine Learning Studio tooinitiate de conversion de votre formation faire des essais tooa ***expérience prédictive***. Hello d’objectif de l’expérience de prédictive hello est toouse votre modèle formé tooscore nouvelles données, avec comme objectif hello de mis devenant finalement comme un service Web Azure.
 
-Cette conversion s’effectue automatiquement de la manière suivante :
+Cette conversion est effectuée automatiquement par le biais hello comme suit :
 
-* Conversion de l’ensemble des modules utilisés pour l’apprentissage en un seul module, enregistré comme modèle d’apprentissage
-* Suppression de tous les modules superflus non liés à la notation
-* Ajout des ports d’entrée et de sortie qui seront utilisés par le service web
+* Convertir le jeu hello de modules utilisés pour l’apprentissage dans un module unique et l’enregistrer comme un modèle formé
+* Éliminer tous les modules superflus ne liés pas tooscoring
+* Ajout de l’entrée et sortie hello éventuelle Web service va utiliser des ports
 
-Vous pouvez apporter des modifications supplémentaires pour accélérer le déploiement de votre expérience prédictive en tant que service web. Par exemple, si vous souhaitez que le service web génère uniquement un sous-ensemble de résultats, vous pouvez ajouter un module de filtrage avant le port de sortie.
+Il peut y avoir plusieurs modifications que vous souhaitez toomake tooget votre toodeploy prêt expérience prédictive comme un service Web. Par exemple, si vous souhaitez hello Web service toooutput uniquement un sous-ensemble des résultats, vous pouvez ajouter un module de filtrage avant de port de sortie hello.
 
-Dans ce processus de conversion, l’expérience de formation n’est pas supprimée. Une fois le processus terminé, deux onglets s’affichent dans Studio : le premier pour l’expérience de formation, le second pour l’expérience prédictive. Ainsi, avant de déployer votre service web, vous pouvez apporter des modifications à l’expérience de formation et reconstruire l’expérience prédictive. Vous pouvez également enregistrer une copie de l’expérience de formation pour démarrer une autre ligne de l’expérimentation.
+Dans ce processus de conversion, expérience de formation hello n’est pas supprimée. Lorsque hello est terminée, vous avez deux onglets dans Studio : un pour expérience de formation hello et un pour une expérience de prédictive hello. Cette façon, que vous pouvez apporter des modifications expérience de formation toohello avant de déployer votre service Web et de reconstruire l’expérience de prédictive hello. Ou vous pouvez enregistrer une copie de hello formation expérience toostart une autre ligne d’expérimentation.
 
 > [!NOTE]
-> Lorsque vous cliquez sur **Service web prédictif**, vous démarrez un processus automatique permettant de convertir votre expérience de formation en expérience prédictive. Ce processus fonctionne bien dans la plupart des cas. Si vous avez défini une expérience de formation complexe (par exemple, si vous avez plusieurs chemins d’accès pour des formations que vous souhaitez relier entre elles), vous préférerez peut-être effectuer cette conversion manuellement. Pour plus d’informations, consultez [Guide pratique pour préparer votre modèle pour le déploiement dans Azure Machine Learning Studio](machine-learning-convert-training-experiment-to-scoring-experiment.md).
+> Lorsque vous cliquez sur **prédictive Service Web** que vous démarrez un processus automatique de tooconvert votre expérience prédictive de formation expérience tooa et cela fonctionne bien dans la plupart des cas. Si votre expérience d’apprentissage est complexe (par exemple, si vous avez plusieurs chemins d’accès pour l’apprentissage vous joignez), vous préférerez peut-être toodo cette conversion manuellement. Pour plus d’informations, consultez [comment tooprepare votre modèle pour le déploiement dans Azure Machine Learning Studio](machine-learning-convert-training-experiment-to-scoring-experiment.md).
 > 
 > 
 
-### <a name="the-web-service"></a>Le service web
-Une fois que vous êtes satisfait et que votre expérience prédictive est prête, vous pouvez déployer votre service en tant que service web classique ou nouveau service web basé sur Azure Resource Manager. Pour rendre opérationnel votre modèle en le déployant en tant que *service web Machine Learning classique*, cliquez sur **Déployer le service web** puis sélectionnez **Déployer le service web [classique]**. Pour déployer en tant que *nouveau service web Machine Learning*, cliquez sur **Déployer le service web** puis sélectionnez **Déployer le service web [nouveau]**. Les utilisateurs peuvent maintenant envoyer des données à votre modèle à l’aide de l’API REST du service web, et recevoir les résultats en retour. Pour plus d’informations, consultez [Utilisation d’un service Web Microsoft Azure Machine Learning](machine-learning-consume-web-services.md).
+### <a name="hello-web-service"></a>Hello service Web
+Une fois que vous êtes satisfait et que votre expérience prédictive est prête, vous pouvez déployer votre service en tant que service web classique ou nouveau service web basé sur Azure Resource Manager. toooperationalize votre modèle en le déployant comme un *service Web d’apprentissage Machine classique*, cliquez sur **déployer le Service Web** et sélectionnez **déployer le Service Web [standard]**. toodeploy en tant que *service d’un site Web Machine Learning*, cliquez sur **déployer le Service Web** et sélectionnez **déployer le Service Web [nouveau]**. Les utilisateurs peuvent désormais envoyer le modèle de tooyour de données à l’aide des API REST du service Web hello et recevoir les résultats de retour hello. Pour plus d’informations, consultez [comment tooconsume un service Web de Azure Machine Learning](machine-learning-consume-web-services.md).
 
-## <a name="the-non-typical-case-creating-a-non-predictive-web-service"></a>Scénario non classique : création d’un service web non prédictif
-Si votre expérience ne forme pas un modèle d’analyse prédictive, vous n’avez pas besoin de créer une expérience de formation et une expérience d’évaluation ; vous ne disposez que d’une seule expérience, que vous pouvez déployer en tant que service web. Machine Learning Studio détecte si votre expérience contient ou non un modèle prédictif en analysant les modules que vous avez utilisés.
+## <a name="hello-non-typical-case-creating-a-non-predictive-web-service"></a>Hello cas non typique : création d’un service Web non prédictive
+Si votre expérience ne pas effectuer l’apprentissage d’un modèle d’analyse prédictive, puis que vous n’avez pas besoin toocreate une expérience d’apprentissage et une expérience de score - il est simplement une expérience, et vous pouvez le déployer comme un service Web. Machine Learning Studio détecte si votre expérience contient un modèle prédictif en analysant les modules hello que vous avez utilisé.
 
 Une fois que vous avez parcouru votre expérience et que vous la jugez satisfaisante :
 
 1. Cliquez sur **Configurer le service web**, puis sélectionnez **Reformation du service web** : les nœuds d’entrée et de sortie sont automatiquement ajoutés.
 2. Cliquez sur **Exécuter**.
-3. Cliquez sur **Déployer le service web** puis sélectionnez **Déployer le service web [classique]** ou **Déployer le service web [nouveau]** selon l’environnement dans lequel vous souhaitez déployer le service.
+3. Cliquez sur **déployer le Service Web** et sélectionnez **déployer le Service Web [standard]** ou **déployer le Service Web [nouveau]** selon hello environnement toowhich vous souhaitez toodeploy.
 
 Votre service web est désormais déployé, et vous pouvez y accéder et le gérer de la même manière qu’un service web prédictif.
 
 ## <a name="updating-your-web-service"></a>Mise à jour de votre service web
-Maintenant que vous avez déployé votre expérience en tant que service web, que se passe-t-il si vous avez une mise à jour à effectuer ?
+Maintenant que vous avez déployé votre expérience en tant qu’un service Web, que se passe-t-il si vous devez tooupdate il ?
 
-Tout dépend de ce que vous devez mettre à jour :
+Cela dépend de ce que vous devez tooupdate :
 
-**Vous souhaitez modifier l’entrée ou la sortie, ou vous souhaitez modifier la façon dont le service web manipule les données**
+**Toochange hello entrée ou sortie, ou de vous toomodify comment hello service Web manipule les données**
 
-Si vous ne modifiez pas le modèle, mais que vous changez simplement la façon dont le service web gère les données, vous pouvez modifier l’expérience prédictive puis cliquer de nouveau sur **Déployer le service web** et sélectionner **Déployer le service web [classique]** ou **Déployer le service web [nouveau]**. Le service web est arrêté, l’expérimentation prédictive mise à jour est déployée, puis le service web est redémarré.
+Si vous ne modifiez pas le modèle de hello, mais que vous modifiez simplement comment hello service Web gère les données, vous pouvez modifier l’expérience de prédictive hello et puis cliquez sur **déployer le Service Web** et sélectionnez **déployer le Service Web [standard]** ou **déployer le Service Web [nouveau]** à nouveau. Hello service Web est arrêté, hello expérience prédictive mis à jour est déployée et hello service Web est redémarré.
 
-Voici un exemple : supposons que votre expérience prédictive retourne toute la ligne de données d’entrée avec le résultat prédit. Vous pouvez décider que le service web se contente simplement de retourner le résultat. Vous pouvez donc ajouter un module **Colonnes de projet** dans l’expérience prédictive, juste avant le port de sortie, pour exclure les colonnes qui ne correspondent pas au résultat. Lorsque vous cliquez sur **Déployer le service web** et sélectionnez **Déployer le service web [classique]** ou **Déployer le service web [nouveau]**, le service web est mis à jour.
+Voici un exemple : supposons que votre expérience prédictive retourne hello toute ligne de données d’entrée avec hello prédit les résultats. Vous pouvez décider que vous souhaitez le résultat de retour hello toojust hello Web service. Vous pouvez donc ajouter un **Project Columns** module dans expérience prédictive de hello, juste avant que le port de sortie hello tooexclude des colonnes autres que hello entraîner. Lorsque vous cliquez sur **déployer le Service Web** et sélectionnez **déployer le Service Web [standard]** ou **déployer le Service Web [nouveau]** , hello service Web est mis à jour.
 
-**Vous souhaitez reformer le modèle avec de nouvelles données**
+**Vous souhaitez que le modèle de hello tooretrain avec de nouvelles données**
 
-Si vous souhaitez conserver votre modèle d’apprentissage automatique, mais en le reformant avec de nouvelles données, vous avez deux possibilités :
+Si vous le souhaitez tookeep votre modèle d’apprentissage, mais que vous aimeriez tooretrain il avec de nouvelles données, vous avez deux possibilités :
 
-1. **Reformer le modèle pendant l’exécution du service web** : si vous souhaitez reformer votre modèle pendant l’exécution du service web prédictif, vous pouvez procéder en apportant quelques modifications à l’expérience de formation pour en faire une ***expérience de reformation***, puis le déployer en tant que ***service web de reformation***. Pour connaître la procédure à suivre, consultez la page [Reformation des modèles Machine Learning par programme](machine-learning-retrain-models-programmatically.md).
-2. **Revenir à l’expérience de formation d’origine et utiliser d’autres données de formation pour développer votre modèle** : votre expérience prédictive est liée au service web, mais l’expérience de formation n’est pas directement liée de cette façon. Si vous modifiez l’expérience de formation d’origine, cliquez sur **Configurer le service web**. Vous obtiendrez alors une *nouvelle* expérience prédictive qui, une fois déployée, créera un *nouveau* service web. L’opération ne se résume pas à mettre simplement à jour le service web d’origine.
+1. **Recycler le modèle de hello pendant l’exécution de service Web de hello** -si vous souhaitez tooretrain votre modèle en cours service Web prédictif de hello, cela en apportant quelques modifications toohello formation expérience toomake il un *** expérience de recyclage***, puis vous pouvez le déployer en tant qu’un  ***web reconversion* service**. Pour obtenir des instructions sur la façon de toodo, consultez [recycler l’apprentissage des modèles par programme](machine-learning-retrain-models-programmatically.md).
+2. **Revenir en arrière expérience d’apprentissage d’origine toohello et utiliser d’apprentissage différentes données toodevelop votre modèle** - votre expérience prédictive est lié toohello service Web, mais expérience de formation hello n’est pas directement liée de cette façon. Si vous modifiez l’expérience d’apprentissage d’origine hello et cliquez sur **configurer le Service Web**, il créera un *nouveau* prédictive expérimenter qui, lors du déploiement, créera un *nouveau* Web service. Il ne simplement mettre le service Web d’origine de hello.
    
-   Si vous devez modifier l’expérience de formation, ouvrez-la et cliquez sur **Enregistrer sous** pour effectuer une copie. Cette précaution garantira l’intégrité de l’expérience d’apprentissage d’origine, de l’expérience prédictive et du service web. Vous pouvez désormais créer un service web avec vos modifications. Après avoir déployé le nouveau service web, vous pouvez alors décider d’arrêter le service web précédent ou de le maintenir en exécution simultanée.
+   Si vous avez besoin d’expérience de formation toomodify hello, ouvrez-le et cliquez sur **enregistrer en tant que** toomake une copie. Cela rend l’expérience d’apprentissage d’origine intact hello expérience prédictive et service Web. Vous pouvez désormais créer un service web avec vos modifications. Une fois que vous avez déployé un service Web hello, vous pouvez alors décider si toostop hello service Web précédent ou qu’il soit en cours d’exécution en même temps que hello nouveau.
 
-**Vous souhaitez former un modèle différent**
+**Vous voulez tootrain un modèle différent**
 
-Si vous souhaitez apporter des modifications à votre expérience prédictive d’origine (par exemple, sélection d’un autre algorithme d’apprentissage automatique, test d’une méthode de formation différente, etc.), vous devez suivre la deuxième procédure décrite ci-dessus pour la reformation de votre modèle : ouvrez l’expérience de formation, cliquez sur **Enregistrer sous** pour effectuer une copie, puis commencez à développer votre modèle, à créer l’expérience prédictive et à déployer le service web. Cela créera un nouveau service web non lié à l’original. Vous pouvez alors décider du ou des services qui continueront à fonctionner.
+Si vous souhaitez toomake modifie l’expérience de prédictive tooyour d’origine, telles que la sélection d’un algorithme d’apprentissage différentes lors de la tentative d’apprentissage différentes PROCÉDÉ, etc., vous devez toofollow hello deuxième décrite ci-dessus à instruire de nouveau votre modèle : Ouvrez l’expérience de formation hello, cliquez sur **enregistrer en tant que** toomake une copie et commencez à bas hello nouveau chemin de développer votre modèle, la création d’expérience de prédictive hello et le déploiement de service web hello. Cette opération crée un nouveau service Web non toohello d’origine, vous pouvez décider quels tookeep un, ou les deux, en cours d’exécution.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Pour plus d’informations sur le processus de développement et d’expérimentation, voir les articles suivants :
+Pour plus d’informations sur les processus de hello de développement et d’expérience, consultez hello suivant des articles :
 
-* conversion de l’expérience : [Guide pratique pour préparer votre modèle pour le déploiement dans Azure Machine Learning Studio](machine-learning-convert-training-experiment-to-scoring-experiment.md)
-* déploiement du service web : [Déploiement d’un service web Azure Machine Learning](machine-learning-publish-a-machine-learning-web-service.md)
-* reformation du modèle : [Reformation des modèles Machine Learning par programme](machine-learning-retrain-models-programmatically.md)
+* conversion d’expérience de hello - [comment tooprepare votre modèle pour le déploiement dans Azure Machine Learning Studio](machine-learning-convert-training-experiment-to-scoring-experiment.md)
+* déploiement de service hello - [déployer un service web Azure Machine Learning](machine-learning-publish-a-machine-learning-web-service.md)
+* modèle de la reconversion hello - [recycler l’apprentissage des modèles par programme](machine-learning-retrain-models-programmatically.md)
 
-Pour obtenir des exemples de l’ensemble du processus, consultez :
+Pour obtenir des exemples de l’ensemble du processus hello, consultez :
 
 * [Didacticiel sur l'apprentissage automatique : création de votre première expérience dans Azure Machine Learning Studio](machine-learning-create-experiment.md)
 * [Guide pas à pas : développer une solution d’analyse prédictive pour l’évaluation des risques de crédit dans Azure Machine Learning](machine-learning-walkthrough-develop-predictive-solution.md)

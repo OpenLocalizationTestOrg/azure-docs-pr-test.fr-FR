@@ -1,6 +1,6 @@
 ---
-title: "Étape 6 : Accéder au service web Machine Learning | Microsoft Docs"
-description: "Étape 6 du guide pas à pas du développement d’une solution prédictive : accès à un service web actif Azure Machine Learning."
+title: "Étape 6 : Accéder au service de Machine Learning Web hello | Documents Microsoft"
+description: "Étape 6 de hello développer la procédure pas à pas une solution prédictive : accéder à un service Web de Azure Machine Learning actif."
 services: machine-learning
 documentationcenter: 
 author: garyericson
@@ -14,38 +14,38 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/23/2017
 ms.author: garye
-ms.openlocfilehash: d309f6c4749a80c81859b693a2bd5927e8fe0e54
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 211de0294092c6a6b5e6eb608d5d3b88107674c6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="walkthrough-step-6-access-the-azure-machine-learning-web-service"></a>Étape de didacticiel pas à pas 6 : accéder au service web Azure Machine Learning
+# <a name="walkthrough-step-6-access-hello-azure-machine-learning-web-service"></a>Étape 6 de la procédure pas à pas : Service web de Azure Machine Learning hello accéder à
 
-Voici la dernière étape de la procédure pas à pas [Développement d'une solution d'analyse prédictive dans Azure Machine Learning](machine-learning-walkthrough-develop-predictive-solution.md)
+C’est hello dernière étape de la procédure pas à pas de hello, [développer une solution prédictive analytique dans Azure Machine Learning](machine-learning-walkthrough-develop-predictive-solution.md)
 
 1. [Créer un espace de travail Machine Learning](machine-learning-walkthrough-1-create-ml-workspace.md)
 2. [Télécharger des données existantes](machine-learning-walkthrough-2-upload-data.md)
 3. [Créer une expérience](machine-learning-walkthrough-3-create-new-experiment.md)
-4. [Former et évaluer les modèles](machine-learning-walkthrough-4-train-and-evaluate-models.md)
-5. [Déployer le service web](machine-learning-walkthrough-5-publish-web-service.md)
-6. **Accéder au service web**
+4. [L’apprentissage et évaluer des modèles de hello](machine-learning-walkthrough-4-train-and-evaluate-models.md)
+5. [Déployer le service Web de hello](machine-learning-walkthrough-5-publish-web-service.md)
+6. **Accéder au service Web de hello**
 
 - - -
-Dans l'étape précédente de cette procédure pas à pas, nous avons déployé un service web qui utilise notre modèle prédictif de risque de crédit. Désormais, les utilisateurs peuvent lui envoyer des données et recevoir des résultats. 
+À l’étape précédente de hello dans cette procédure pas à pas, nous avons déployé un service web qui utilise de notre modèle de prévision de risque de crédit. Désormais, les utilisateurs sont en mesure de toosend données tooit et recevoir les résultats. 
 
-Il s’agit d’un service web Azure qui peut recevoir et renvoyer des données de deux manières à l’aide d’API REST :  
+Hello service Web est un service web Azure qui peut recevoir et retourner des données à l’aide des API REST de deux manières :  
 
-* **Demande/Réponse** : l'utilisateur envoie une ou plusieurs lignes de crédit au service en utilisant le protocole HTTP et le service répond avec un ou plusieurs jeux de résultats.
-* **Exécution en lots** : l'utilisateur stocke une ou plusieurs lignes de données de crédit dans le stockage d'objets blob Azure, puis envoie l'emplacement du stockage d'objets blob au service. Le service évalue toutes les lignes de données dans l'objet blob d'entrée, enregistre les résultats dans un autre objet blob et renvoie l'URL de ce conteneur.  
+* **Demande/réponse** - utilisateur de hello envoie un ou plusieurs lignes de toohello de données de crédit de service à l’aide d’un protocole HTTP et hello répond de service avec un ou plusieurs jeux de résultats.
+* **L’exécution du lot** - utilisateur de hello stocke une ou plusieurs lignes de données de crédit dans Azure d’objets blob et envoie ensuite le service de toohello emplacement hello blob. les scores de service Hello dans que tous hello des lignes de données Bonjour blob d’entrée, magasins hello aboutit à un autre objet blob et retourne hello URL de ce conteneur.  
 
-Le moyen le plus rapide et le plus simple d’accéder à un service web classique est d’utiliser [Azure ML Request-Response Service Web App](https://azure.microsoft.com/marketplace/partners/microsoft/azuremlaspnettemplateforrrs/) ou [Modèle d’application Web Azure ML Batch Execution Service](https://azure.microsoft.com/marketplace/partners/microsoft/azuremlbeswebapptemplate/).
+Hello tooaccess moyen le plus rapide et plus simple est d’un service web de classique via hello [l’application Web Azure ML avec requête-réponse Service](https://azure.microsoft.com/marketplace/partners/microsoft/azuremlaspnettemplateforrrs/) ou [modèle d’application Azure ML lot l’exécution du Service Web](https://azure.microsoft.com/marketplace/partners/microsoft/azuremlbeswebapptemplate/).
 
-Ces modèles d'applications web peuvent générer une application Web personnalisée qui connaît les données d'entrée et les résultats attendus de votre service Web. Il vous suffit de donner à l'application Web l'accès à votre service Web et aux données associées, et le modèle fait le reste.
+Ces modèles d'applications web peuvent générer une application Web personnalisée qui connaît les données d'entrée et les résultats attendus de votre service Web. Vous toodo suffit de fournir des données et accès tooyour web service et le modèle de hello hello rest.
 
-Pour plus d’informations sur les modèles d’applications web, consultez [Utilisation d’un service Web Microsoft Azure Machine Learning à l’aide d’un modèle d’application Web](machine-learning-consume-web-service-with-web-app-template.md).
+Pour plus d’informations sur l’utilisation de modèles d’application web hello, consultez [consommer un service Web de Azure Machine Learning avec un modèle d’application web](machine-learning-consume-web-service-with-web-app-template.md).
 
-Vous pouvez également développer une application personnalisée pour accéder au service web à l'aide du code de démarrage fourni dans R, C# et les langages de programmation Python.
+Vous pouvez également développer tooaccess hello web service d’application personnalisé à l’aide de code de démarrage fourni pour vous dans R, c# et langages de programmation Python.
 
-Vous trouverez des détails complets dans [Utilisation d’un service web Azure Machine Learning](machine-learning-consume-web-services.md).
+Vous trouverez plus de détails dans [comment tooconsume un service Web de Azure Machine Learning](machine-learning-consume-web-services.md).
 

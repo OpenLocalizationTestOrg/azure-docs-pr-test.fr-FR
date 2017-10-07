@@ -1,6 +1,6 @@
 ---
-title: "Configurer le déchargement SSL - Passerelle Azure Application Gateway - Portail Azure | Microsoft Docs"
-description: "Cette page fournit des instructions pour la création d’une passerelle Application Gateway pour le déchargement SSL à l’aide du portail"
+title: "aaaConfigure SSL décharger - passerelle d’Application Azure - Azure Portal | Documents Microsoft"
+description: "Cette page fournit toocreate instructions déchargement d’une passerelle d’application avec SSL à l’aide du portail de hello"
 documentationcenter: na
 services: application-gateway
 author: georgewallace
@@ -14,13 +14,13 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/23/2017
 ms.author: gwallace
-ms.openlocfilehash: f61be0cc4c9274c9914f7c468ce48a2a3d0a4f4a
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: e87ac0bbe10ac45e307c18802741c7bc31764a20
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="configure-an-application-gateway-for-ssl-offload-by-using-the-portal"></a>Configurer une passerelle d’application pour le déchargement SSL en utilisant le portail
+# <a name="configure-an-application-gateway-for-ssl-offload-by-using-hello-portal"></a>Configurer une passerelle d’application pour le déchargement SSL à l’aide du portail de hello
 
 > [!div class="op_single_selector"]
 > * [Portail Azure](application-gateway-ssl-portal.md)
@@ -28,67 +28,67 @@ ms.lasthandoff: 08/18/2017
 > * [Azure Classic PowerShell](application-gateway-ssl.md)
 > * [Azure CLI 2.0](application-gateway-ssl-cli.md)
 
-Il est possible de configurer Azure Application Gateway de façon à mettre fin à la session SSL (Secure Sockets Layer) sur la passerelle pour éviter les tâches de déchiffrement SSL coûteuses au niveau de la batterie de serveurs web. Le déchargement SSL simplifie aussi la configuration de serveur principal et la gestion de l’application web.
+Passerelle d’Application Azure peut être configuré tooterminate hello Secure Sockets Layer (SSL) session à hello passerelle tooavoid coûteux SSL déchiffrement tâches toohappen au niveau de la batterie de serveurs web hello. Déchargement SSL simplifie également la configuration de serveur frontal de hello et la gestion d’application web de hello.
 
 ## <a name="scenario"></a>Scénario
 
-Le scénario suivant passe par la configuration du déchargement SSL sur une passerelle d’application existante. Le scénario suppose que vous avez déjà suivi la procédure de [Création d’une passerelle Application Gateway](application-gateway-create-gateway-portal.md).
+Hello scénario traverse configuration SSL décharger sur une passerelle d’application existant. Hello scénario part du principe que vous avez déjà suivi les étapes de hello trop[créer une passerelle d’Application](application-gateway-create-gateway-portal.md).
 
 ## <a name="before-you-begin"></a>Avant de commencer
 
-Pour configurer le déchargement SSL avec une passerelle Application Gateway, un certificat est requis. Ce certificat est chargé sur la passerelle d’application et utilisé pour chiffrer et déchiffrer le trafic envoyé via SSL. Le certificat doit être partagé au format Personal Information Exchange (.pfx). Ce format de fichier permet d’exporter la clé privée requise par la passerelle d’application pour effectuer le chiffrement et le déchiffrement du trafic.
+déchargement SSL tooconfigure avec une passerelle d’application, un certificat est requis. Ce certificat est chargé sur la passerelle d’application hello et utilisé tooencrypt et le décryptage du trafic hello envoyé via SSL. certificat de Hello doit toobe au format d’échange d’informations personnelles (pfx). Ce format de fichier permet hello privé toobe clé exporté requis par hello application passerelle tooperform hello chiffrement et de déchiffrement du trafic.
 
 ## <a name="add-an-https-listener"></a>Ajouter un écouteur HTTPS
 
-L’écouteur HTTPS recherche le trafic en fonction de sa configuration et aide à acheminer le trafic vers les pools principaux.
+port d’écoute HTTPS Hello recherche pour le trafic en fonction de sa configuration et vous aide au pools principaux toohello itinéraire hello du trafic.
 
 ### <a name="step-1"></a>Étape 1
 
-Accédez au portail Azure et sélectionnez une passerelle d’application existante.
+Accédez toohello portail Azure et sélectionnez une passerelle d’application existant
 
 ### <a name="step-2"></a>Étape 2
 
-Cliquez sur Écouteurs et cliquez sur le bouton Ajouter pour ajouter un écouteur.
+Cliquez sur les écouteurs et cliquez sur tooadd de bouton hello ajouter un écouteur.
 
 ![Panneau de vue d’ensemble de passerelle d’application][1]
 
 ### <a name="step-3"></a>Étape 3 :
 
-Remplissez les informations requises pour l’écouteur, et téléchargez le certificat .pfx. Lorsque vous avez terminé, cliquez sur OK.
+Remplissez les informations de hello requis pour hello écouteur et le téléchargement hello certificat .pfx, lorsque vous avez terminé cliquez sur OK.
 
-**Nom** - il s’agit d’un nom convivial pour l’écouteur.
+**Nom** -cette valeur est un nom convivial de l’écouteur de hello.
 
-**Configuration IP frontale** - il s’agit de la configuration d’IP frontale utilisée pour l’écouteur.
+**Configuration IP de Frontend** -cette valeur est la configuration IP de serveur frontal hello qui est utilisée pour le port d’écoute hello.
 
-**Port frontal (nom/port)** - un nom convivial pour le port utilisé sur le serveur frontal de la passerelle Application Gateway et le port utilisé.
+**Le port frontal (nom/Port)** -un nom convivial pour le port hello utilisé sur les serveurs frontaux hello de passerelle d’application hello et port réelle de hello utilisé.
 
-**Protocole** - un commutateur qui détermine si https ou http est utilisé pour le serveur frontal.
+**Protocole** -un toodetermine commutateur si https ou http est utilisé pour le serveur frontal hello.
 
 **Certificat (nom/mot de passe)** - si le déchargement SSL est utilisé, un certificat .pfx est requis pour ce paramètre, et un nom convivial et un mot de passe sont requis.
 
 ![ajouter panneau d’écouteur][2]
 
-## <a name="create-a-rule-and-associate-it-to-the-listener"></a>Créer une règle et l’associer à l’écouteur
+## <a name="create-a-rule-and-associate-it-toohello-listener"></a>Créer une règle et l’associer toohello écouteur
 
-L’écouteur a été créé. Il est temps de créer une règle pour gérer le trafic de l’écouteur. Les règles définissent la façon dont le trafic est acheminé vers les pools principaux en fonction de plusieurs paramètres de configuration, dont l’utilisation ou non de l’affinité de session basée sur les cookies, le protocole, le port et les sondes d’intégrité.
+écouteur de Hello a été créé. Il est temps toocreate un règle toohandle hello du trafic à partir de l’écouteur de hello. Les règles définissent comment le trafic est routé toohello pools de principaux en fonction de plusieurs paramètres de configuration, notamment si l’affinité de session basée sur le cookie est utilisée, protocole, port et sondes d’intégrité.
 
 ### <a name="step-1"></a>Étape 1
 
-Cliquez sur **Règles** dans la passerelle Application Gateway, puis cliquez sur Ajouter.
+Cliquez sur hello **règles** de passerelle d’application hello, puis cliquez sur Ajouter.
 
 ![Panneau de règles Application Gateway][3]
 
 ### <a name="step-2"></a>Étape 2
 
-Sur le panneau **Ajouter une règle de base** , tapez le nom convivial de la règle et choisissez l’écouteur créé à l’étape précédente. Choisissez le pool principal approprié et la configuration http souhaitée, puis cliquez sur **OK**
+Sur hello **ajouter une règle base** panneau, tapez Bonjour le nom convivial pour la règle de hello et choisissez écouteur hello créé à l’étape précédente de hello. Choisissez le pool principal approprié de hello et configuration de http et cliquez sur **OK**
 
 ![fenêtre de paramètres https][4]
 
-Les paramètres sont maintenant enregistrés pour la passerelle Application Gateway. Le processus d’enregistrement pour ces paramètres peut prendre un certain temps avant leur disponibilité sur le portail ou via PowerShell. Une fois enregistrée, la passerelle Application Gateway gère le chiffrement et le déchiffrement du trafic. Tout le trafic entre la passerelle Application Gateway et les serveurs web principaux est géré via http. Toute communication lancée vers le client via le protocole https sera renvoyée chiffrée au client.
+paramètres de Hello sont à présent enregistrées toohello passerelle d’application. Hello processus pour ces paramètres d’enregistrement peut prendre un certain temps avant qu’elles soient tooview disponible via le portail de hello ou PowerShell. Passerelle d’application après avoir sauvegardé hello gère le chiffrement hello et le déchiffrement du trafic. Tout le trafic entre la passerelle d’application hello et serveurs web de principaux hello est géré via http. Client toohello chiffrée, n’importe quel client de retour toohello communication si lancé via le protocole https est retournée.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Pour savoir comment configurer une sonde d’intégrité personnalisée avec Azure Application Gateway, consultez [Créer une sonde d’intégrité personnalisée](application-gateway-create-gateway-portal.md).
+toolearn tooconfigure un état personnalisé sonde avec la passerelle d’Application Azure, voir [créer une sonde d’intégrité personnalisé](application-gateway-create-gateway-portal.md).
 
 [1]: ./media/application-gateway-ssl-portal/figure1.png
 [2]: ./media/application-gateway-ssl-portal/figure2.png

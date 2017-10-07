@@ -1,6 +1,6 @@
 ---
-title: "Approvisionner de nouveaux locataires dans une application mutualisée utilisant Azure SQL Database | Microsoft Docs"
-description: "Découvrez comment approvisionner et cataloguer de nouveaux locataires dans l’application SaaS Wingtip"
+title: "aaaProvision de nouveaux clients dans une application mutualisée qui utilise la base de données SQL Azure | Documents Microsoft"
+description: "Découvrez comment tooprovision et catalogue nouveaux locataires dans hello application Wingtip SaaS"
 keywords: "didacticiel sur les bases de données SQL"
 services: sql-database
 documentationcenter: 
@@ -16,15 +16,15 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/11/2017
 ms.author: sstein
-ms.openlocfilehash: 8fa4c4f95386a92c8c818eef1a5b4de5a086fe07
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: eb26f523305650c2124e36707d187dfcdad06fcc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="provision-new-tenants-and-register-them-in-the-catalog"></a>Approvisionner de nouveaux locataires et les inscrire dans le catalogue
+# <a name="provision-new-tenants-and-register-them-in-hello-catalog"></a>Configurer les nouveaux clients et les enregistrer dans le catalogue de hello
 
-Ce didacticiel décrit les modèles SaaS d’approvisionnement et d’inscription au catalogue et comment ils sont implémentés dans l’application SaaS Wingtip. Vous allez créer et initialiser de nouvelles bases de données de clients et les enregistrer dans le catalogue de clients de l’application. Le catalogue est une base de données qui gère le mappage entre les nombreux clients des applications SaaS et les données associées. Le catalogue joue un rôle important, car il dirige les demandes de l’application vers la base de données appropriée.  
+Dans ce didacticiel, vous en savoir plus sur la fourniture de hello et catalogue SaaS modèles, et comment ils sont implémentés dans hello application Wingtip SaaS. Vous créez et initialisez les nouvelles bases de données client et les enregistrez dans le catalogue de client de l’application hello. catalogue de Hello est une base de données qui maintient le mappage hello entre nombreux clients de l’application hello SaaS et de leurs données. catalogue de Hello joue un rôle d’important dirigeant application demandes toohello bonne base de données.  
 
 Ce didacticiel vous montre comment effectuer les opérations suivantes :
 
@@ -34,115 +34,115 @@ Ce didacticiel vous montre comment effectuer les opérations suivantes :
 > * Approvisionner un lot de locataires supplémentaires
 
 
-Pour suivre ce tutoriel, vérifiez que les conditions préalables suivantes sont bien satisfaites :
+toocomplete ce didacticiel, assurez-vous que hello est suivant des conditions préalables requises sont effectuées :
 
-* L’application SaaS Wingtip est déployée. Pour procéder à un déploiement en moins de cinq minutes, consultez la page [Déployer et explorer une application SaaS Wingtip](sql-database-saas-tutorial.md)
+* Hello Wingtip SaaS application est déployée. toodeploy en moins de cinq minutes, consultez [déployer et Explorer hello Wingtip SaaS application](sql-database-saas-tutorial.md)
 * Azure PowerShell est installé. Pour plus d’informations, consultez [Bien démarrer avec Azure PowerShell](https://docs.microsoft.com/powershell/azure/get-started-azureps).
 
-## <a name="introduction-to-the-saas-catalog-pattern"></a>Présentation du modèle de catalogue SaaS
+## <a name="introduction-toohello-saas-catalog-pattern"></a>Introduction toohello modèle de catalogue de SaaS
 
-Dans une application SaaS mutualisée appuyée par une base de données, il est important de savoir où sont stockées les informations de chaque locataire. Dans le modèle de catalogue SaaS, une base de données de catalogue permet de conserver le mappage entre les clients et l’endroit où sont stockées les données. L’application SaaS Wingtip utilise une architecture à locataire unique par base de données. Toutefois, le modèle de base relatif au stockage du mappage locataire/base de données dans un catalogue s’applique, que la base de données soit mutualisée ou à locataire unique.
+Dans une application reposant sur la base de données de SaaS mutualisée, il est important tooknow où sont stockées les informations pour chaque client. Dans le modèle de catalogue hello SaaS, une base de données de catalogue est utilisé toohold hello et de mappage entre chaque client où leurs données sont stockées. Hello Wingtip SaaS application utilise un locataire unique par l’architecture de base de données, mais le modèle de base hello de stocker le mappage de locataire à base de données dans un catalogue s’applique si une base de données de l’architecture mutualisée ou locataire unique est utilisé.
 
-Une clé est attribuée à chaque client afin de l’identifier dans le catalogue. Cette est mappée sur l’emplacement de la base de données correspondante. Dans le cas de l’application SaaS Wingtip, la clé est générée à partir d’un code de hachage du nom du client. Cela permet d’utiliser le nom du client dans l’URL de l’application pour construire la clé. D’autres schémas de clé de client peuvent être utilisés.  
+Chaque client est attribué à une clé qui identifie les dans le catalogue de hello et qui est mappé à emplacement toohello de base de données appropriée hello. Dans l’application de Wingtip SaaS hello, clé de hello est formé à partir d’un hachage du nom du locataire hello. Cela permet de partie de nom de client hello de hello application URL toobe utilisés clé de hello tooconstruct. D’autres schémas de clé de client peuvent être utilisés.  
 
-Le catalogue permet de modifier le nom ou l’emplacement de la base de données avec un impact minimal sur l’application.  Dans un modèle de base de données multiclient, il facilite également le « déplacement » d’un client entre les différentes bases de données.  Le catalogue peut également être utilisé pour indiquer si un client ou une base de données est hors connexion pour maintenance ou dans le cadre d’autres opérations. Ce processus est décrit dans le [didacticiel sur la restauration d’un client unique](sql-database-saas-tutorial-restore-single-tenant.md).
+catalogue de Hello permet hello nom ou son emplacement hello toobe de base de données modifiée avec un impact minimal sur l’application hello.  Dans un modèle de base de données multiclient, il facilite également le « déplacement » d’un client entre les différentes bases de données.  catalogue de Hello peut également être utilisé tooindicate si un client ou la base de données est hors connexion pour maintenance ou d’autres actions. Cela est exploré Bonjour [restaurer le didacticiel d’un seul locataire](sql-database-saas-tutorial-restore-single-tenant.md).
 
-En outre, le catalogue, qui est en réalité une base de données de gestion pour une application SaaS, peut stocker des métadonnées supplémentaires relatives au client ou à la base de données, telles que le niveau ou la version d’une base de données, la version du schéma, le plan de service ou les SLA proposés aux clients, ainsi que d’autres informations associées à la gestion des applications, au support technique ou aux processus devops.  
+En outre, catalogue hello, qui est en vigueur une base de données de gestion pour une application SaaS, peut stocker des métadonnées supplémentaires de client ou de la base de données, par exemple hello couche Édition ou une base de données, la version du schéma, le plan de service ou SLA offert tootenants et autres informations qui permet la gestion des applications, le support technique ou des processus de devops.  
 
-Au-delà de l’application SaaS, le catalogue permet d’accéder à des outils de base de données.  Dans l’exemple de l’application SaaS Wingtip, le catalogue est utilisé pour activer des requêtes entre clients, tel que décrit dans le [didacticiel sur les analyses ad hoc](sql-database-saas-tutorial-adhoc-analytics.md). La gestion des travaux entre différentes bases de données est expliquée dans les didacticiels sur la [gestion des schémas](sql-database-saas-tutorial-schema-management.md) et les [analyses de clients](sql-database-saas-tutorial-tenant-analytics.md). 
+Au-delà de hello application SaaS, catalogue de hello peut activer les outils de base de données.  Dans l’exemple de Wingtip SaaS hello, catalogue de hello est tooenable utilisé entre locataires requête exploré Bonjour [didacticiel d’analytique ad hoc](sql-database-saas-tutorial-adhoc-analytics.md). Gestion des travaux de bases de données croisées est explorée Bonjour [gestion du schéma](sql-database-saas-tutorial-schema-management.md) et [locataire analytique](sql-database-saas-tutorial-tenant-analytics.md) didacticiels. 
 
-Dans l’application SaaS Wingtip, le catalogue est implémenté à l’aide des fonctionnalités de gestion des partitions de la [bibliothèque EDCL (Elastic Database Client Library, bibliothèque cliente de bases de données élastiques)](sql-database-elastic-database-client-library.md). La bibliothèque EDCL permet à une application de créer, gérer et utiliser une carte de partitions reposant sur des bases de données. Une carte de partitions contient une liste de partitions (bases de données) et le mappage entre les clés (clients) et les bases de données.  Les fonctions EDCL peuvent être utilisées à partir des applications ou des scripts PowerShell au cours de l’approvisionnement des clients pour créer les entrées dans la carte de partitions, et à partir des applications pour assurer une connexion fiable à la base de données correspondante. La bibliothèque EDCL met en cache les informations de connexion pour réduire le trafic vers la base de données de catalogue et booster les performances de l’application.  
+Dans l’application SaaS de Wingtip hello catalogue de hello est implémentée à l’aide des fonctionnalités de gestion de partition hello Hello [bibliothèque de Client élastique de base de données (EDCL)](sql-database-elastic-database-client-library.md). Hello EDCL permet à une application toocreate, gérer et utiliser une carte de partitions de base de données sauvegardée. Une carte de partitions contient une liste de partitions (bases de données) et de mappage hello entre les clés (clients) et les bases de données.  Les fonctions EDCL peuvent être utilisées par les applications ou scripts PowerShell pendant les entrées de hello toocreate dans la carte de partitions hello d’approvisionnement du client et à partir d’applications tooefficiently connecter toohello de base de données correct. EDCL met en cache connexion informations toominimize hello trafic toohello catalogue base de données et de la vitesse de l’application hello.  
 
 > [!IMPORTANT]
-> Bien que les données de mappage soient accessibles dans la base de données de catalogue, *ne les modifiez pas*. Modifiez les données de mappage des API Elastic Database Client Library uniquement. Manipuler directement les données de mappage risque d’endommager le catalogue et n’est pas pris en charge.
+> les données de mappage Hello sont accessibles dans la base de données du catalogue hello, mais *ne le modifiez pas*! Modifiez les données de mappage des API Elastic Database Client Library uniquement. Manipuler directement les données de mappage hello risques qui endommage hello catalogue et ne sont pas pris en charge.
 
 
-## <a name="introduction-to-the-saas-provisioning-pattern"></a>Présentation du modèle d’approvisionnement SaaS
+## <a name="introduction-toohello-saas-provisioning-pattern"></a>Modèle de configuration de SaaS toohello introduction
 
-Lors de l’intégration d’un nouveau client dans une application SaaS qui utilise un modèle de base de données à client unique, une nouvelle base de données client doit être approvisionnée.  Celle-ci doit être créée dans l’emplacement et le niveau de service appropriés, initialisée avec les données de référence et le schéma appropriés, puis enregistrée dans le catalogue sous la clé de client correspondante.  
+Lors de l’intégration d’un nouveau client dans une application SaaS qui utilise un modèle de base de données à client unique, une nouvelle base de données client doit être approvisionnée.  Il doit être créé dans l’emplacement approprié de hello et niveau de service, initialisée avec les données de référence et le schéma approprié et puis enregistrée dans le catalogue de hello sous la clé de locataire approprié hello.  
 
-Il existe différentes approches d’approvisionnement des bases de données, notamment l’exécution de scripts SQL, le déploiement d’un fichier bacpac ou la copie d’un modèle de base de données finale.  
+Différentes approches peuvent être utilisée toodatabase mise en service, qui peut inclure l’exécution de scripts SQL, le déploiement d’un fichier bacpac ou copier une base de données de modèle 'or'.  
 
-La méthode d’approvisionnement que vous utilisez doit être comprise dans votre stratégie globale de gestion des schémas, qui doit s’assurer que les nouvelles bases de données sont approvisionnées avec le schéma le plus récent.  Cela est explique dans le [didacticiel sur la gestion des schémas](sql-database-saas-tutorial-schema-management.md).  
+Hello approche que vous utilisez l’approvisionnement doit être comprise dans votre stratégie de gestion de schéma global, qui doit s’assurer que les nouvelles bases de données sont configurés avec le schéma le plus récent hello.  Cela est exploré Bonjour [didacticiel de gestion de schéma](sql-database-saas-tutorial-schema-management.md).  
 
-L’application SaaS Wingtip approvisionne les nouveaux clients en copiant une base de données finale nommée basetenantdb, déployée sur le serveur de catalogue.  L’approvisionnement peut être intégré au processus d’inscription de l’application et/ou pris en charge en mode hors connexion à l’aide de scripts. Ce didacticiel décrit le processus d’approvisionnement à l’aide des scripts PowerShell. Les scripts d’approvisionnement copient l’instance basetenantdb pour créer une nouvelle base de données client dans un pool élastique, avant de l’initialiser avec les informations spécifiques au client et de l’inscrire dans la carte de partitions du catalogue.  Dans l’exemple d’application, les bases de données sont nommées en fonction du nom du client, même s’il ne s’agit pas d’un élément essentiel du modèle. Le catalogue permet d’attribuer n’importe quel nom à la base de données.+ 
+Hello Wingtip SaaS application dispositions nouveaux clients en copiant une base de données finale nommé basetenantdb, déployé sur le serveur de catalogue hello.  L’approvisionnement peut être intégré dans l’application hello dans le cadre d’une expérience d’inscription, et/ou pris en charge en mode hors connexion à l’aide de scripts. Ce didacticiel décrit le processus d’approvisionnement à l’aide des scripts PowerShell. scripts de configuration Hello copier hello basetenantdb toocreate une base de données client dans un pool élastique, puis initialisent avec des informations spécifiques du client et l’inscrire dans la carte de partitions du catalogue hello.  Dans l’exemple d’application hello, bases de données reçoivent des noms basés sur le nom de client hello, mais cela n’est pas un élément essentiel du modèle de hello : hello catalogue de hello permet de toute base de données nom toobe affecté toohello. + 
 
 
-## <a name="get-the-wingtip-application-scripts"></a>Obtenir les scripts d’application Wingtip
+## <a name="get-hello-wingtip-application-scripts"></a>Obtenir les scripts d’application hello Wingtip
 
-Les scripts et le code source de l’application SaaS Wingtip sont disponibles dans le référentiel GitHub [WingtipSaaS](https://github.com/Microsoft/WingtipSaaS). [Étapes de téléchargement des scripts SaaS Wingtip](sql-database-wtp-overview.md#download-and-unblock-the-wingtip-saas-scripts).
+Hello Wingtip SaaS scripts et code source d’applications sont disponibles dans hello [WingtipSaaS](https://github.com/Microsoft/WingtipSaaS) référentiel github. [Étapes de scripts de Wingtip SaaS hello toodownload](sql-database-wtp-overview.md#download-and-unblock-the-wingtip-saas-scripts).
 
 
 ## <a name="provision-and-catalog-detailed-walkthrough"></a>Procédure pas à pas détaillée sur l’approvisionnement et l’inscription dans le catalogue
 
-Pour comprendre comment l’application Wingtip gère l’approvisionnement du nouveau client, ajoutez un point d’arrêt et suivez les étapes du flux de travail dans le cadre de l’approvisionnement d’un client :
+toounderstand comment hello Wingtip application met en œuvre d’approvisionnement du nouveau client, ajoutez un point d’arrêt et parcourir le flux de travail hello lors de la configuration d’un client :
 
-1. Ouvrez ...\\Learning Modules\\ProvisionAndCatalog\\_Demo-ProvisionAndCatalog.ps1_ et définissez les paramètres suivants :
-   * **$TenantName** = nom du nouveau lieu (par exemple *Bushwillow Blues*).
-   * **$VenueType** = un des types prédéfinis de décor : *blues*, classicalmusic, dance, jazz, judo, motorracing, multipurpose, opera, rockmusic, soccer.
-   * **$DemoScenario** = **1**. Définissez sur **1** pour *approvisionner un seul client*.
+1. Ouvrir... \\Modules d’apprentissage\\ProvisionAndCatalog\\_ProvisionAndCatalog.ps1 de démonstration_ et hello du jeu de paramètres suivants :
+   * **$TenantName** = nom hello soit de nouveau hello (par exemple, *Bushwillow bleus*).
+   * **$VenueType** = un des types de salle prédéfinis hello : *bleus*, classicalmusic, danse, jazz, judo, motorracing, polyvalent, opera, rockmusic, football.
+   * **$DemoScenario** = **1**, définissez trop**1** trop*configurer un seul client*.
 
-1. Ajoutez un point d’arrêt en plaçant votre curseur n’importe où sur la ligne 48, celle qui indique *New-Tenant `*, puis appuyez sur **F9**.
+1. Ajouter un point d’arrêt en plaçant votre curseur n’importe où sur la ligne hello 48, ligne indiquant : *nouveau locataire '*, puis appuyez sur **F9**.
 
    ![point d’arrêt](media/sql-database-saas-tutorial-provision-and-catalog/breakpoint.png)
 
-1. Pour exécuter le script, appuyez sur la touche **F5**.
+1. Appuyez sur la touche script hello toorun **F5**.
 
-1. Une fois que l’exécution du script s’arrête au point d’arrêt, appuyez sur **F11** pour effectuer un pas à pas détaillé du code.
+1. Une fois l’exécution du script hello s’arrête au point d’arrêt hello, appuyez sur **F11** toostep dans le code de hello.
 
    ![point d’arrêt](media/sql-database-saas-tutorial-provision-and-catalog/debug.png)
 
 
 
-Suivez l’exécution du script à l’aide des options du menu **Débogage** **F10** et **F11** pour parcourir les fonctions invoquées. Pour plus d’informations sur le débogage des scripts PowerShell, consultez [Conseils sur l’utilisation et le débogage de scripts PowerShell](https://msdn.microsoft.com/powershell/scripting/core-powershell/ise/how-to-debug-scripts-in-windows-powershell-ise).
+Tracer l’exécution du script hello en à l’aide de hello **déboguer** les options de menu - **F10** et **F11** toostep sur ou en hello appelées fonctions. Pour plus d’informations sur le débogage des scripts PowerShell, consultez [Conseils sur l’utilisation et le débogage de scripts PowerShell](https://msdn.microsoft.com/powershell/scripting/core-powershell/ise/how-to-debug-scripts-in-windows-powershell-ise).
 
 
-Les points suivants ne sont pas des étapes à suivre explicitement, mais constituent une explication du flux de travail parcouru pendant le débogage du script :
+Hello Voici pas tooexplicitly suivre des étapes, mais une explication du flux de travail hello que parcourir lors du débogage de script de hello :
 
-1. **Importe le module SubscriptionManagement.psm1** qui contient des fonctions pour la connexion à Azure et la sélection de l’abonnement Azure que vous utilisez.
-1. **Importe le module CatalogAndDatabaseManagement.psm1** qui fournit un catalogue et l’abstraction au niveau du locataire sur les fonctions de [gestion des partitions](sql-database-elastic-scale-shard-map-management.md). Il s’agit d’un module important qui encapsule une bonne partie du modèle de catalogue et que nous vous conseillons d’explorer.
-1. **Accédez aux détails de configuration**. Accédez à Get-Configuration (avec F11) et découvrez la façon dont la configuration de l’application est spécifiée. Les noms de ressources et d’autres valeurs propres à l’application sont définis ici, mais ne les modifiez pas tant que vous n’êtes pas familiarisé avec les scripts.
-1. **Obtenez l’objet catalogue**. Accédez à la fonction Get-Catalogue qui compose et retourne un objet de catalogue utilisé dans le script de niveau supérieur.  Cette fonction utilise les fonctions de gestion de partitions qui sont importées à partir de **AzureShardManagement.psm1**. L’objet de catalogue est composé des éléments suivants :
-   * $catalogServerFullyQualifiedName est construit à l’aide de la ressource standard et de votre nom d’utilisateur : _catalog-\<utilisateur\>.database.windows.net_.
-   * $catalogDatabaseName est extrait de la configuration : *tenantcatalog*.
-   * L’objet $shardMapManager est initialisé à partir de la base de données de catalogue.
-   * L’objet $shardMap est initialisé à partir de la carte de partitions *tenantcatalog* dans la base de données de catalogue.
-   Un objet catalogue est composé, retourné et utilisé dans le script de niveau supérieur.
-1. **Calculez la clé du nouveau locataire**. Une fonction de hachage est utilisée pour créer la clé de locataire à partir du nom du locataire.
-1. **Vérifiez si la clé de locataire existe déjà**. Le catalogue est passé en revue pour vérifier que la clé est disponible.
-1. **La base de données de locataire est approvisionnée avec New-TenantDatabase.** Utilisez **F11** pour parcourir les étapes du script et voir la façon dont la base de données est approvisionnée à l’aide d’un modèle [Azure Resource Manager](../azure-resource-manager/resource-manager-template-walkthrough.md).
+1. **Hello d’importation SubscriptionManagement.psm1** module qui contient les fonctions de signature dans tooAzure et en sélectionnant hello abonnement Azure que vous utilisez.
+1. **Hello d’importation CatalogAndDatabaseManagement.psm1** module qui fournit un catalogue et l’abstraction de niveau de client sur hello [gestion de partition](sql-database-elastic-scale-shard-map-management.md) fonctions. Il s’agit d’un module important qui encapsule la majeure partie du modèle de catalogue hello et est mérite d’être exploré.
+1. **Accédez aux détails de configuration**. Pas à pas détaillé Get-Configuration (F11) et voir comment la configuration de l’application hello est spécifiée. Noms de ressources et d’autres valeurs spécifiques à l’application sont définies ici, mais ne modifiez pas ces valeurs jusqu'à ce que vous êtes familiarisé avec les scripts hello.
+1. **Obtenir l’objet catalogue hello**. Pas à pas détaillé Get-catalogue qui compose et retourne un objet de catalogue qui est utilisé dans le script de niveau supérieur hello.  Cette fonction utilise les fonctions de gestion de partitions qui sont importées à partir de **AzureShardManagement.psm1**. l’objet catalogue Hello est composée de suivant de hello :
+   * $catalogServerFullyQualifiedName est construite à l’aide de stem standard de hello ainsi que votre nom d’utilisateur : _catalogue -\<utilisateur\>. database.windows.net_.
+   * $catalogDatabaseName sont récupérées à partir de la configuration de hello : *tenantcatalog*.
+   * $shardMapManager objet est initialisé à partir de la base de données de catalogue hello.
+   * $shardMap objet est initialisé à partir de hello *tenantcatalog* carte de partitions dans la base de données de catalogue hello.
+   Un objet de catalogue est composé retourné et utilisé dans le script de niveau supérieur hello.
+1. **Calculer la nouvelle clé de locataire hello**. Une fonction de hachage est la clé de locataire hello toocreate utilisé à partir du nom de client hello.
+1. **Vérifiez si clé de locataire hello existe déjà**. catalogue de Hello est vérifiée tooensure hello clé n’est disponible.
+1. **base de données client Hello est doté de New-TenantDatabase.** Utilisez **F11** toostep dans et voir comment la base de données hello est configuré à l’aide un [modèle Azure Resource Manager](../azure-resource-manager/resource-manager-template-walkthrough.md).
 
-Le nom de la base de données est construit à partir du nom de locataire, ce qui permet d’indiquer clairement quelle partition appartient à tel locataire. (D’autres stratégies relatives aux noms de base de données peuvent facilement être utilisées.)+ Un modèle Resource Manager permet de créer une base de données client en copiant une base de données finale (basetenantdb) sur le serveur de catalogue. Une autre approche consiste à créer une base de données vide et à l’initialiser en important un fichier bacpac. Il est également possible d’exécuter un script d’initialisation à partir d’un emplacement connu.  
+nom de base de données Hello est construit à partir de hello client nom toomake il effacer quelle partition appartient toowhich client. (Autres stratégies d’affectation de noms de base de données peuvent être facilement utilisés.) + Un modèle de gestionnaire de ressources est utilisé toocreate une base de données client en copiant une base de données finale (baseTenantDB) sur le serveur de catalogue hello. Une autre approche pourrait être toocreate une base de données vide, puis initialisez-le en important un fichier bacpac ou tooexecute un script d’initialisation à partir d’un emplacement connu.  
 
-Le modèle Resource Manager est situé dans le dossier ...\Learning Modules\Common\ : *tenantdatabasecopytemplate.json*
+modèle de gestionnaire de ressources Hello est dans le dossier de hello ...\Learning Modules\Common\ : *tenantdatabasecopytemplate.json*
 
-Une fois que la base de données client a été créée, elle continue à être **initialisée avec le nom du lieu (client) et le type de lieu**. Une autre initialisation peut également être accomplie ici.
+Après la création de la base de données client hello, il est alors plu **initialisé avec le nom de la salle (locataire) hello et le type de lieu de hello**. Une autre initialisation peut également être accomplie ici.
 
-La **base de données client est inscrite dans le catalogue** avec *Add-TenantDatabaseToCatalog* à l’aide de la clé de client. Utilisez **F11** pour parcourir le script en détail :
+Hello **base de données est inscrit dans le catalogue de hello** avec *Add-TenantDatabaseToCatalog* à l’aide de la clé de locataire hello. Utilisez **F11** toostep dans les détails de hello :
 
-* La base de données de catalogue est ajoutée à la carte de partitions (liste des bases de données connues).
-* Le mappage qui lie la valeur de clé à la partition est créé.
-* Des métadonnées supplémentaires (nom du lieu) sur le client sont ajoutées dans le tableau Clients du catalogue.  Le tableau Clients ne fait pas partie du schéma ShardManagement et n’est pas installé par la bibliothèque EDCL.  Le tableau suivant illustre comment la base de données de catalogue peut être étendue pour prendre en charge des données supplémentaires spécifiques à l’application.   
+* base de données de catalogue Hello est ajouté carte de partitions toohello (liste hello des bases de données connus).
+* Hello mappage de cette partition toohello de liens hello valeur de clé est créée.
+* Métadonnées supplémentaires (nom de salle hello) sur le client de hello sont ajoutées table de clients toohello dans le catalogue de hello.  table de clients Hello ne fait pas partie du schéma de ShardManagement hello et n’est pas installé par hello EDCL.  Le tableau suivant illustre comment hello catalogue peuvent être étendues toosupport des données supplémentaires spécifiques à l’application.   
 
 
-Une fois l’approvisionnement terminé, l’exécution retourne au script d’origine *Demo-ProvisionAndCatalog* qui ouvre la page **Events** (Événements) du nouveau client dans le navigateur :
+Après la configuration, l’exécution retourne toohello d’origine *ProvisionAndCatalog de démonstration* script, qui s’ouvre hello **événements** page pour le client dans le navigateur de hello hello :
 
    ![événements](media/sql-database-saas-tutorial-provision-and-catalog/new-tenant.png)
 
 
 ## <a name="provision-a-batch-of-tenants"></a>Approvisionner un lot de locataires
 
-Cet exercice permet d’approvisionner un lot de 17 clients. Il est recommandé d’approvisionner ce lot de clients avant de suivre d’autres didacticiels SaaS Wingtip afin de pouvoir utiliser plusieurs bases de données.
+Cet exercice permet d’approvisionner un lot de 17 clients. Il est recommandé de que configurer de ce lot de locataires avant de démarrer d’autres didacticiels Wingtip SaaS, par conséquent, il est plus de quelques toowork de bases de données avec.
 
-1. Ouvrez...\\Learning Modules\\ProvisionAndCatalog\\*Demo-ProvisionAndCatalog.ps1* dans *l’ISE PowerShell* et définissez le paramètre *$DemoScenario* sur 3 :
-   * **$DemoScenario** = **3**. Changez sur **3** pour *Approvisionner un lot de clients*.
-1. Appuyez sur **F5** pour exécuter le script.
+1. Ouvrir... \\Modules d’apprentissage\\ProvisionAndCatalog\\*ProvisionAndCatalog.ps1 de démonstration* Bonjour *PowerShell ISE* et modifiez hello *$ DemoScenario* too3 de paramètre :
+   * **$DemoScenario** = **3**, également modifier**3** trop*approvisionner un lot de locataires*.
+1. Appuyez sur **F5** et exécutez le script de hello.
 
-Le script déploie un lot de locataires supplémentaires. Il utilise un [modèle Azure Resource Manager](../azure-resource-manager/resource-manager-template-walkthrough.md) qui contrôle le lot et délègue ensuite la configuration de chaque base de données à un modèle lié. Utiliser des modèles de cette façon permet à Azure Resource Manager de répartir le processus d’approvisionnement pour votre script. Les modèles approvisionnent des bases de données en parallèle dans la mesure du possible, et gèrent les nouvelles tentatives au besoin, en optimisant le processus global. Comme le script est idempotent, en cas d’échec ou d’arrêt pour une raison quelconque, exécutez-le à nouveau.
+script de Hello déploie un lot de clients supplémentaires. Il utilise un [modèle Azure Resource Manager](../azure-resource-manager/resource-manager-template-walkthrough.md) qui contrôle le traitement par lots hello et délègue ensuite la configuration de chaque modèle lié tooa de base de données. À l’aide des modèles de cette façon permet à Azure Resource Manager toobroker hello est le processus de votre script de déploiement. Configurer des modèles de bases de données en parallèle, où il peut et gère les nouvelles tentatives si nécessaire, optimisation des processus global de hello. script de Hello est idempotente par conséquent, si elle échoue ou s’arrête pour une raison quelconque, exécutez-le à nouveau.
 
-### <a name="verify-the-batch-of-tenants-successfully-deployed"></a>Vérifier que le lot de locataires a été correctement déployé
+### <a name="verify-hello-batch-of-tenants-successfully-deployed"></a>Vérifiez que le lot hello de clients déployés avec succès
 
-* Ouvrez le serveur *tenants1* en accédant à votre liste de serveurs dans le [portail Azure](https://portal.azure.com), cliquez sur **bases de données SQL**et vérifiez que le lot de 17 bases de données supplémentaires est désormais dans la liste :
+* Ouvrez hello *tenants1* serveur en recherchant tooyour la liste des serveurs de hello [portail Azure](https://portal.azure.com), cliquez sur **bases de données SQL**et vérifiez que le lot de hello de 17 bases de données supplémentaires sont désormais dans la liste de hello :
 
    ![liste de base de données](media/sql-database-saas-tutorial-provision-and-catalog/database-list.png)
 
@@ -152,9 +152,9 @@ Le script déploie un lot de locataires supplémentaires. Il utilise un [modèle
 
 Voici les autres modèles d’approvisionnement non inclus dans ce tutoriel :
 
-**Pré-approvisionnement des bases de données.** Le modèle de pré-approvisionnement exploite le fait que les bases de données d’un pool élastique n’ajoutent pas de frais supplémentaires. La facturation concerne le pool élastique, pas les bases de données, et les bases de données inactives ne consomment aucune ressource. En pré-approvisionnant les bases de données d’un pool et en les allouant en cas de besoin, le délai d’intégration du client peut être considérablement réduit. Le nombre de bases de données pré-approvisionnées peut être ajusté en fonction des besoins pour conserver une mémoire tampon adaptée au taux d’approvisionnement prévu.
+**Pré-approvisionnement des bases de données.** Hello prédéployant le modèle exploite le fait de hello que bases de données dans un pool élastique n’ajoutent pas de frais supplémentaires. Est de facturation pour le pool élastique de hello, ne Hello pas les bases de données et ne consomment des bases de données inactives aucune ressource. En pré-approvisionnant les bases de données d’un pool et en les allouant en cas de besoin, le délai d’intégration du client peut être considérablement réduit. plusieurs Hello pré-configurés des bases de données peut être sont ajustées tookeep nécessaire une mémoire tampon appropriée pour hello anticipées de taux de configuration.
 
-**Approvisionnement automatique.** Dans le modèle d’approvisionnement automatique, un service d’approvisionnement dédié est utilisé pour approvisionner automatiquement les serveurs, pools et bases de données en fonction des besoins, notamment en pré-approvisionnant les bases de données dans des pools élastiques si besoin. Si les bases de données sont mises hors service et supprimées, les écarts dans les pools élastiques peuvent être remplis par le service d’approvisionnement, en fonction des besoins. Un tel service peut être simple ou complexe (par exemple, la gestion de l’approvisionnement sur plusieurs zones géographiques) et peut configurer la géoréplication automatiquement si cette stratégie est utilisée pour la récupération d’urgence. Avec le modèle d’approvisionnement automatique, une application cliente ou un script soumet une demande d’approvisionnement à une file d’attente pour traitement par le service d’approvisionnement et interroge ensuite le service pour déterminer l’achèvement de l’opération. Si le pré-approvisionnement est utilisé, les demandes sont gérées rapidement grâce au service gérant l’approvisionnement d’une base de données de remplacement exécutée en arrière-plan.
+**Approvisionnement automatique.** Dans le modèle de mise en service automatique hello, un service de mise en service dédié est utilisé tooprovision serveurs, les pools et les bases de données automatiquement en fonction des besoins, notamment les bases de données de configuration préalable dans les pools élastiques si vous le souhaitez. Et si la déduplication commandées et supprimés les bases de données, des écarts dans les pools élastiques peuvent être remplies par hello configuration service comme vous le souhaitez. Un tel service peut être simple ou complexe (par exemple, la gestion de l’approvisionnement sur plusieurs zones géographiques) et peut configurer la géoréplication automatiquement si cette stratégie est utilisée pour la récupération d’urgence. Avec le modèle de mise en service automatique hello, une application cliente ou un script soumet un approvisionnement toobe de file d’attente de tooa demande traité par hello service de configuration et interrogerait puis achèvement de toodetermine service hello. Si la configuration anticipée est utilisé, les demandes seraient gérés rapidement avec service hello la gestion de l’approvisionnement d’une base de données de remplacement en cours d’exécution en arrière-plan de hello.
 
 
 
@@ -166,12 +166,12 @@ Dans ce tutoriel, vous avez appris à effectuer les opérations suivantes :
 
 > * Approvisionner un nouveau locataire unique
 > * Approvisionner un lot de locataires supplémentaires
-> * Parcourir les étapes de l’approvisionnement des locataires et de leur inscription dans le catalogue
+> * Pas à pas détaillé détails hello de configuration des clients et de les inscrire dans le catalogue de hello
 
-Essayez le [didacticiel Surveillance des performances](sql-database-saas-tutorial-performance-monitoring.md).
+Essayez de hello [didacticiel analyse des performances](sql-database-saas-tutorial-performance-monitoring.md).
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-* Autres [didacticiels reposant sur l’application SaaS Wingtip](sql-database-wtp-overview.md#sql-database-wingtip-saas-tutorials)
+* Supplémentaires [didacticiels qui reposent sur hello application Wingtip SaaS](sql-database-wtp-overview.md#sql-database-wingtip-saas-tutorials)
 * [Bibliothèque cliente de base de données élastique](https://docs.microsoft.com/azure/sql-database/sql-database-elastic-database-client-library)
-* [Déboguer les scripts dans l’ISE Windows PowerShell](https://msdn.microsoft.com/powershell/scripting/core-powershell/ise/how-to-debug-scripts-in-windows-powershell-ise)
+* [Comment tooDebug des Scripts dans Windows PowerShell ISE](https://msdn.microsoft.com/powershell/scripting/core-powershell/ise/how-to-debug-scripts-in-windows-powershell-ise)

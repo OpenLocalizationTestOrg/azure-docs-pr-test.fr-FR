@@ -1,6 +1,6 @@
 ---
-title: "Mise à jour des modèles Machine Learning à l’aide d’Azure Data Factory | Microsoft Docs"
-description: "Décrit comment créer des pipelines prédictifs à l’aide d’Azure Data Factory et d’Azure Machine Learning."
+title: "les modèles de Machine Learning aaaUpdate à l’aide d’Azure Data Factory | Documents Microsoft"
+description: "Décrit comment toocreate créer des pipelines PRÉDICTIFS à l’aide d’Azure Data Factory et Azure Machine Learning"
 services: data-factory
 documentationcenter: 
 author: sharonlo101
@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/16/2017
 ms.author: shlo
-ms.openlocfilehash: e31a7a59d14de4382190b39bd70f3ddf6cf673ea
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6e5e4d2cfd245c7a9ed3bb9cdacca1f7f82b9620
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="updating-azure-machine-learning-models-using-update-resource-activity"></a>Mettre à jour les modèles Azure Machine Learning à l’aide de l’activité des ressources de mise à jour
 
@@ -33,36 +33,36 @@ ms.lasthandoff: 07/11/2017
 > * [Activité U-SQL Data Lake Analytics](data-factory-usql-activity.md)
 > * [Activité personnalisée .NET](data-factory-use-custom-activities.md)
 
-Cet article vient s’ajouter à l’article principal sur l’intégration Azure Data Factory - Azure Machine Learning : [Création de pipelines prédictifs à l'aide d'Azure Data Factory et Azure Machine Learning](data-factory-azure-ml-batch-execution-activity.md). Si vous ne l’avez pas encore fait, consultez l’article principal avant de lire cet article. 
+Cet article complète hello principal Azure Data Factory - article de l’intégration d’Azure Machine Learning : [créer des pipelines PRÉDICTIFS à l’aide d’Azure Machine Learning et Azure Data Factory](data-factory-azure-ml-batch-execution-activity.md). Si vous n’avez pas déjà fait, passez en revue l’article principal de hello avant la lecture de cet article. 
 
 ## <a name="overview"></a>Vue d'ensemble
-Au fil du temps, les modèles prédictifs dans les expériences de notation Azure ML doivent être reformés à l’aide de nouveaux jeux de données d’entrée. Une fois que vous avez fini la reformation, vous souhaitez mettre à jour le service web de notation avec le modèle ML reformé. Les étapes classiques pour activer la reformation et la mise à jour des modèles Azure ML via les services web sont les suivantes :
+Au fil du temps, utiliser des modèles prédictifs hello dans des expériences de score Azure ML hello doivent toobe reformé à l’aide de nouveaux jeux de données d’entrée. Une fois que vous avez terminé avec le réapprentissage, vous souhaitez hello tooupdate calcul du score du service web avec hello reformés modèle ML. Hello étapes classiques tooenable réapprentissage et mise à jour des modèles Azure ML via les services web sont :
 
 1. Créez une expérience dans [Azure ML Studio](https://studio.azureml.net).
-2. Lorsque vous êtes satisfait du modèle, utilisez Azure ML Studio pour publier des services web à la fois pour l’**expérience de formation** et l’expérience de notation/**prédictive**.
+2. Lorsque vous êtes satisfait de modèle de hello, utiliser des services web à la fois hello Azure ML Studio toopublish **expérience de formation** et le score /**expérience prédictive**.
 
-Le tableau suivant décrit les services web utilisés dans cet exemple.  Pour plus d’informations, consultez [Reformation des modèles Machine Learning par programme](../machine-learning/machine-learning-retrain-models-programmatically.md) .
+Hello tableau suivant décrit les services web hello utilisés dans cet exemple.  Pour plus d’informations, consultez [Reformation des modèles Machine Learning par programme](../machine-learning/machine-learning-retrain-models-programmatically.md) .
 
-- **Service Web de formation** - Reçoit les données d’apprentissage et produit les modèles formés. La sortie de la reformation est un fichier .ilearner dans un stockage d’objets blob Azure. Le **point de terminaison par défaut** est automatiquement créé pour vous lorsque vous publiez l’expérience de formation en tant que service web. Vous pouvez créer d’autres points de terminaison, mais l’exemple utilise uniquement le point de terminaison par défaut.
-- **Service Web de notation** - Reçoit des exemples de données sans étiquette et effectue des prédictions. La sortie de la prédiction peut prendre plusieurs formes, comme un fichier .csv ou des lignes dans une base de données SQL Azure, selon la configuration de l’expérience. Le point de terminaison par défaut est automatiquement créé pour vous lorsque vous publiez l’expérience prédictive comme un service web. 
+- **Service Web de formation** - Reçoit les données d’apprentissage et produit les modèles formés. sortie de Hello de recyclage de hello est un fichier .ilearner dans un stockage d’objets Blob Azure. Hello **par défaut du point de terminaison** est automatiquement créé pour vous lors de la publication de la formation de hello expérimenter comme un service web. Vous pouvez créer plusieurs points de terminaison, mais hello exemple utilise uniquement les point de terminaison de valeur par défaut hello.
+- **Service Web de notation** - Reçoit des exemples de données sans étiquette et effectue des prédictions. sortie Hello de prédiction peut avoir différentes formes, par exemple un fichier .csv ou des lignes dans une base de données SQL Azure, selon la configuration de hello d’expérimentation de hello. point de terminaison par défaut Hello est automatiquement créé lorsque vous publiez l’expérience de prédictive hello comme un service web. 
 
-Le schéma suivant illustre la relation entre points de terminaison de formation et de notation dans Azure ML.
+Hello image suivante illustre les relations de hello entre les jeux d’apprentissage et le score des points de terminaison dans Azure ML.
 
 ![SERVICES WEB](./media/data-factory-azure-ml-batch-execution-activity/web-services.png)
 
-Vous pouvez appeler le **training web service** à l’aide du **activité d’exécution par lot Azure ML**. L’appel d’un service web de formation est similaire à l’appel d’un service web Azure ML (service web de notation) pour les données de notation. Les sections précédentes expliquent de manière détaillée comment appeler un service web Azure ML à partir d’un pipeline Azure Data Factory. 
+Vous pouvez appeler hello **formation service web** à l’aide de hello **activité de l’exécution du lot Azure ML**. L’appel d’un service web de formation est similaire à l’appel d’un service web Azure ML (service web de notation) pour les données de notation. Bonjour précédent garde sections Comment tooinvoke un service web de Azure ML à partir d’une fabrique de données Azure de pipeline en détail. 
 
-Vous pouvez appeler le **scoring web service** à l’aide du **activité des ressources de mise à jour Azure ML** pour mettre à jour le service web avec le modèle qui vient d’être formé. Les exemples suivants fournissent les définitions de service associé : 
+Vous pouvez appeler hello **calcul du score du service web** à l’aide de hello **activité de ressource mise à jour Azure ML** service web qui vient d’être formé hello tooupdate hello. Hello exemple suivant fournit les définitions de service lié : 
 
 ## <a name="scoring-web-service-is-a-classic-web-service"></a>Service web de notation est un service web classique
-Si le service web de notation est un **service classique web**, créez le deuxième **point de terminaison (qui n’est pas le point de terminaison par défaut) pouvant être mis à jour** à l’aide du [portail Azure](https://manage.windowsazure.com). Pour connaître les étapes, consultez l’article [Créer des points de terminaison](../machine-learning/machine-learning-create-endpoint.md). Après avoir créé le point de terminaison non par défaut pouvant être mis à jour, procédez comme suit :
+Si hello calcul du score du service web est un **service web classique**, créer hello deuxième **point de terminaison par défaut et mettre à jour** à l’aide de hello [portail Azure](https://manage.windowsazure.com). Pour connaître les étapes, consultez l’article [Créer des points de terminaison](../machine-learning/machine-learning-create-endpoint.md). Après avoir créé le point de terminaison actualisable hello non définis par défaut, procédez comme hello comme suit :
 
-* Cliquez sur **EXÉCUTION PAR LOT** pour obtenir la valeur d’URI pour la propriété JSON **mlEndpoint**.
-* Cliquez sur le lien **RESSOURCE DE MISE À JOUR** pour obtenir la valeur d’URI pour la propriété JSON **updateResourceEndpoint**. La clé API est sur la page du point de terminaison même (dans le coin inférieur droit).
+* Cliquez sur **l’exécution par lots** tooget hello URI valeur hello **mlEndpoint** propriété JSON.
+* Cliquez sur **mise à jour de ressource** lier la valeur de l’URI tooget hello pour hello **updateResourceEndpoint** propriété JSON. clé d’API Hello est sur la page de point de terminaison hello lui-même (dans le coin inférieur droit de hello).
 
 ![point de terminaison pouvant être mis à jour](./media/data-factory-azure-ml-batch-execution-activity/updatable-endpoint.png)
 
-L’exemple suivant présente un exemple de définition JSON pour le service lié AzureML. Le service lié utilise apiKey pour l’authentification.  
+Hello, l’exemple suivant fournit un exemple de définition JSON pour hello service AzureML lié. Hello service lié utilise hello apiKey pour l’authentification.  
 
 ```json
 {
@@ -79,20 +79,20 @@ L’exemple suivant présente un exemple de définition JSON pour le service li�
 ```
 
 ## <a name="scoring-web-service-is-azure-resource-manager-web-service"></a>Le service web de notification est un service web Azure Resource Manager 
-Si le service web est un nouveau type de service web qui expose un point de terminaison Azure Resource Manager, vous n’avez pas besoin ajouter le second point de terminaison, **qui n’est pas celui par défaut** . Le **updateResourceEndpoint** du service lié est au format : 
+Si le service web de hello est hello nouveau type de service web qui expose un point de terminaison Azure Resource Manager, il est inutile tooadd hello deuxième **non définis par défaut** point de terminaison. Hello **updateResourceEndpoint** Bonjour service lié est hello format : 
 
 ```
 https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resource-group-name}/providers/Microsoft.MachineLearning/webServices/{web-service-name}?api-version=2016-05-01-preview. 
 ```
 
-Vous pouvez obtenir des valeurs pour les espaces réservés dans l’URL lors de l’interrogation du service web sur le [portail des services web Azure Machine Learning](https://services.azureml.net/). Le nouveau type de point de terminaison de ressource de mise à jour requiert un jeton AAD (Azure Active Directory). Spécifiez **servicePrincipalId** et **servicePrincipalKey**dans le service lié AzureML. Consultez [how to create service principal and assign permissions to manage Azure resource](../azure-resource-manager/resource-group-create-service-principal-portal.md) (comment créer le principal de service et affecter des autorisations de gestion de ressources Azure). Voici un exemple de définition de service lié AzureML : 
+Vous pouvez obtenir des valeurs pour les espaces réservés dans les URL hello lors de l’interrogation du service web hello hello [portail de Services Web Azure Machine Learning](https://services.azureml.net/). Hello nouveau type de point de terminaison de mise à jour de ressource requiert un jeton AAD (Azure Active Directory). Spécifiez **servicePrincipalId** et **servicePrincipalKey**dans le service lié AzureML. Consultez [comment toocreate principal de service et assigner des autorisations toomanage ressource Azure](../azure-resource-manager/resource-group-create-service-principal-portal.md). Voici un exemple de définition de service lié AzureML : 
 
 ```json
 {
     "name": "AzureMLLinkedService",
     "properties": {
         "type": "AzureML",
-        "description": "The linked service for AML web service.",
+        "description": "hello linked service for AML web service.",
         "typeProperties": {
             "mlEndpoint": "https://ussouthcentral.services.azureml.net/workspaces/0000000000000000000000000000000000000/services/0000000000000000000000000000000000000/jobs?api-version=2.0",
             "apiKey": "xxxxxxxxxxxx",
@@ -105,22 +105,22 @@ Vous pouvez obtenir des valeurs pour les espaces réservés dans l’URL lors de
 }
 ```
 
-Le scénario suivant fournit plus de détails. Il présente un exemple de reformation et de mise à jour de modèles Azure ML à partir d’un pipeline Azure Data Factory.
+Hello scénario suivant fournit plus de détails. Il présente un exemple de reformation et de mise à jour de modèles Azure ML à partir d’un pipeline Azure Data Factory.
 
 ## <a name="scenario-retraining-and-updating-an-azure-ml-model"></a>Scénario : reformation et mise à jour d’un modèle Azure ML
-Cette section fournit un exemple de pipeline qui utilise **l’activité d’exécution par lot Azure ML** pour reformer un modèle. Le pipeline utilise également **l’activité des ressources de mise à jour Azure ML** pour mettre à jour le modèle dans le service web de notation. La section fournit également des extraits de code JSON pour tous les services liés, jeux de données et éléments de pipeline dans l’exemple.
+Cette section fournit un exemple de pipeline qui utilise hello **l’activité d’exécution de lot Azure ML** tooretrain un modèle. pipeline de Hello utilise également hello **de ressources de mise à jour Azure ML activité** modèle hello tooupdate hello calcul du score du service web. Hello présente également des extraits de code JSON de tous les hello services liés, des datasets et pipeline dans l’exemple de hello.
 
-Voici la vue schématique de l’exemple de pipeline. Comme vous pouvez le voir, l’activité d’exécution par lot Azure ML prend l’entrée de formation et génère une sortie de formation (fichier iLearner). L’activité des ressources de mise à jour Azure ML prend cette sortie de formation et met à jour le modèle dans le point de terminaison de service web de notation. L’activité des ressources de mise à jour ne génère aucune sortie. placeholderBlob est simplement un jeu de données de sortie factice requis par le service Azure Data Factory pour exécuter le pipeline.
+Voici une vue de diagramme hello du pipeline d’exemple hello. Comme vous pouvez le voir, hello activité de l’exécution du lot Azure ML accepte l’entrée d’apprentissage hello et génère une sortie de formation (fichier iLearner). Hello activité de ressources Azure ML mise à jour prend cette sortie de formation et mises à jour hello modèle Bonjour calcul du score du point de terminaison de service web. Hello activité des ressources de mise à jour ne produit pas de sortie. Hello placeholderBlob est simplement un dataset de sortie factice est requis par le pipeline hello toorun hello Azure Data Factory service.
 
 ![schéma du pipeline](./media/data-factory-azure-ml-batch-execution-activity/update-activity-pipeline-diagram.png)
 
 ### <a name="azure-blob-storage-linked-service"></a>Service lié Azure Blob Storage :
-Azure Storage contient les données suivantes :
+Bonjour Azure Storage conserve hello données suivantes :
 
-* Données de formation. Les données d’entrée pour le service web de formation Azure ML.  
-* Fichier iLearner. La sortie du service web de formation Azure ML. Ce fichier est également l’entrée de l’activité des ressources de mise à jour.  
+* Données de formation. données d’entrée de salutation pour le service web de hello Azure ML d’apprentissage.  
+* Fichier iLearner. Hello la sortie à partir du service web de hello Azure ML d’apprentissage. Ce fichier est également hello, toohello d’entrée de ressources de mise à jour l’activité.  
 
-Voici la définition d’exemple JSON du service lié :
+Voici hello exemple JSON de définition de service de hello lié :
 
 ```JSON
 {
@@ -135,7 +135,7 @@ Voici la définition d’exemple JSON du service lié :
 ```
 
 ### <a name="training-input-dataset"></a>Jeu de données d’entrée de formation
-Le jeu de données suivant représente les données de formation d’entrée pour le service web de formation Azure ML. L’activité d’exécution par lots Azure ML prend ce jeu de données comme entrée.
+Hello dataset suivant représente hello les données de formation d’entrée pour le service web de hello Azure ML d’apprentissage. Hello activité d’exécution du lot Azure ML prend ce jeu de données comme entrée.
 
 ```JSON
 {
@@ -166,7 +166,7 @@ Le jeu de données suivant représente les données de formation d’entrée pou
 ```
 
 ### <a name="training-output-dataset"></a>Jeu de données de sortie de formation :
-Le jeu de données suivant représente le fichier iLearner de sortie issu du service web de formation Azure ML. L’activité d’exécution par lots Azure ML génère ce jeu de données. Ce jeu de données est également l’entrée de l’activité des ressources de mise à jour Azure ML.
+Hello dataset suivant représente hello iLearner fichier de sortie à partir du service web de hello Azure ML d’apprentissage. Hello d’activité de l’exécution du lot Azure ML génère ce jeu de données. Ce jeu de données est également hello, toohello d’entrée de ressources de mise à jour Azure ML l’activité.
 
 ```JSON
 {
@@ -190,7 +190,7 @@ Le jeu de données suivant représente le fichier iLearner de sortie issu du ser
 ```
 
 ### <a name="linked-service-for-azure-ml-training-endpoint"></a>Service lié pour le point de terminaison de formation Azure ML
-L’extrait de code JSON suivant définit un service lié Azure Machine Learning qui pointe vers le point de terminaison par défaut du service web de formation.
+Hello suivant extrait de code JSON définit un service lié Azure Machine Learning qui pointe toohello point de terminaison par défaut du service web de formation hello.
 
 ```JSON
 {    
@@ -205,16 +205,16 @@ L’extrait de code JSON suivant définit un service lié Azure Machine Learning
 }
 ```
 
-Dans **Azure ML Studio**, procédez comme suit pour obtenir les valeurs pour **mlEndpoint** et **apiKey** :
+Dans **Azure ML Studio**, hello tooget valeurs suivantes pour **mlEndpoint** et **apiKey**:
 
-1. Cliquez sur **SERVICES WEB** dans le menu de gauche.
-2. Cliquez sur le **service web de formation** dans la liste des services web.
-3. Cliquez sur Copier regard de la zone de texte **Clé API** . Collez la clé copiée dans l’éditeur JSON Data Factory.
-4. Dans le **studio Azure ML**, cliquez sur le lien **EXÉCUTION PAR LOT**.
-5. Copiez l’**URI de demande** à partir de la section **Demande**, et collez-le dans l’éditeur JSON Data Factory.   
+1. Cliquez sur **SERVICES WEB** sur le menu de gauche hello.
+2. Cliquez sur hello **formation service web** dans la liste hello de services web.
+3. Cliquez sur Copier ensuite trop**clé API** zone de texte. Collez la clé de hello dans le Presse-papiers de hello dans l’éditeur JSON de fabrique de données hello.
+4. Bonjour **Azure ML studio**, cliquez sur **l’exécution par lots** lien.
+5. Hello de copie **URI de requête** de hello **demande** section et collez-le dans l’éditeur JSON de fabrique de données hello.   
 
 ### <a name="linked-service-for-azure-ml-updatable-scoring-endpoint"></a>Service lié pour le point de terminaison de notation pouvant être mis à jour Azure ML :
-L’extrait de code JSON suivant définit un service lié Azure Machine Learning qui pointe vers le point de terminaison autre que par défaut pouvant être mis à jour du service web de notation.  
+Hello suivant extrait de code JSON définit un service lié Azure Machine Learning qui pointe de point de terminaison toohello non définis par défaut être mise à jour de hello calcul du score du service web.  
 
 ```JSON
 {
@@ -234,7 +234,7 @@ L’extrait de code JSON suivant définit un service lié Azure Machine Learning
 ```
 
 ### <a name="placeholder-output-dataset"></a>Jeu de données de sortie de l’espace réservé
-L’activité des ressources de mise à jour Azure ML ne génère aucune sortie. Toutefois, Azure Data Factory requiert un jeu de données de sortie pour que la planification d’un pipeline fonctionne. Par conséquent, nous utilisons dans cet exemple un jeu de données factice/paramètre fictif.  
+Hello activité des ressources de mise à jour Azure ML ne génère pas de sortie. Toutefois, Azure Data Factory nécessite une planification de hello sortie dataset toodrive d’un pipeline. Par conséquent, nous utilisons dans cet exemple un jeu de données factice/paramètre fictif.  
 
 ```JSON
 {
@@ -257,7 +257,7 @@ L’activité des ressources de mise à jour Azure ML ne génère aucune sortie.
 ```
 
 ### <a name="pipeline"></a>Pipeline
-Le pipeline a deux activités : **AzureMLBatchExecution** et **AzureMLUpdateResource**. L’activité d’exécution par lot Azure ML prend les données d’apprentissage comme entrée et génère un fichier .iLearner comme sortie. L’activité appelle le service web de formation (expérience de formation exposée comme un service web) avec les données de formation d’entrée et reçoit le fichier iLearner du service web. placeholderBlob est simplement un jeu de données de sortie factice requis par le service Azure Data Factory pour exécuter le pipeline.
+pipeline de Hello a deux activités : **AzureMLBatchExecution** et **AzureMLUpdateResource**. Hello activité d’exécution du lot Azure ML prend les données d’apprentissage hello comme entrée et produit un fichier iLearner comme sortie. activité Hello appelle le service web de formation hello (expérience d’apprentissage exposé comme service web) avec une entrée hello données d’apprentissage et reçoit de fichier ilearner de hello de hello webservice. Hello placeholderBlob est simplement un dataset de sortie factice est requis par le pipeline hello toorun hello Azure Data Factory service.
 
 ![schéma du pipeline](./media/data-factory-azure-ml-batch-execution-activity/update-activity-pipeline-diagram.png)
 

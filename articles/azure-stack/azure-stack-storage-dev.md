@@ -1,28 +1,28 @@
 ---
-title: "Bien démarrer avec les outils de développement du stockage Azure Stack"
-description: "Guide de démarrage pour l’utilisation des outils de développement du stockage Azure Stack"
+title: "aaaGet démarrer avec les outils de développement de pile le stockage Azure"
+description: "Tooget Guide main à l’aide des outils de développement Azure Storage de pile"
 services: azure-stack
 author: xiaofmao
 ms.author: xiaofmao
 ms.date: 7/21/2017
 ms.topic: get-started-article
 ms.service: azure-stack
-ms.openlocfilehash: a4c1c316022f992750fe60d28b9be61b17242a64
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 0756ed1b9fad4aed0cca4cfd719ef3334dec6700
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-azure-stack-storage-development-tools"></a>Bien démarrer avec les outils de développement du stockage Azure Stack 
 
 Microsoft Azure Stack fournit un ensemble de services de stockage, notamment le stockage Blob, Table et File d’attente Azure.
 
-Cet article fournit des conseils rapides sur l’utilisation des outils de développement du stockage Azure Stack. Des informations plus détaillées et des exemples de code sont disponibles dans les didacticiels correspondants du stockage Azure.
+Cet article fournit des conseils rapides sur la façon de toostart à l’aide des outils de développement de pile le stockage Azure. Vous trouverez des exemples de code et des informations plus détaillées dans les didacticiels de stockage Azure hello correspondants.
 
 Le stockage Azure et le stockage Azure Stack présentent quelques différences connues, y compris certaines exigences spécifiques pour chaque plateforme. Par exemple, Azure Stack a des bibliothèques clientes spécifiques, de même que des exigences spécifiques en matière de suffixe de point de terminaison. Pour plus d’informations, consultez [Stockage Azure Stack : Différences et considérations](azure-stack-acs-differences.md).
 
 ## <a name="azure-client-libraries"></a>Bibliothèques clientes Azure
-La version d’API REST prise en charge pour le stockage Azure Stack est 2015-04-05. Elle n’a pas de parité complète avec la dernière version de l’API REST du stockage Azure. Par conséquent, pour les bibliothèques clientes de stockage, vous devez connaître la version compatible avec l’API REST 2015-04-05.
+version d’API REST Hello pris en charge pour le stockage Azure pile est 2015-04-05. Il n’a pas une parité complète avec la version la plus récente hello Hello API REST de stockage Azure. Pour les bibliothèques clientes de stockage hello, vous devez donc toobe prenant en charge de la version de hello est compatible avec REST API 2015-04-05.
 
 
 |Bibliothèque cliente|Version prise en charge par Azure Stack|Lien|Spécification du point de terminaison|
@@ -37,8 +37,8 @@ La version d’API REST prise en charge pour le stockage Azure Stack est 2015-04
 
 > [!NOTE]
 > Détails PHP<br><br>
->Pour installer via Composer :
->1. Créez un fichier nommé `composer.json` à la racine du projet avec le code suivant :<br>
+>tooinstall via l’éditeur :
+>1. Créez un fichier nommé `composer.json` dans racine hello du projet hello avec le code suivant :<br>
 >
 >   ```
 >   {
@@ -48,14 +48,14 @@ La version d’API REST prise en charge pour le stockage Azure Stack est 2015-04
 >    }
 >   ```
 >
->2. Téléchargez [composer.phar](http://getcomposer.org/composer.phar) à la racine du projet.
+>2. Télécharger [composer.phar](http://getcomposer.org/composer.phar) dans la racine du projet hello.
 >3. Exécutez : `php composer.phar install`.
 >
 
 
 ## <a name="endpoint-declaration"></a>Déclaration de point de terminaison
-Un point de terminaison Azure Stack comprend deux parties : le nom d’une région et le domaine Azure Stack.
-Dans le Kit de développement Azure Stack, le point de terminaison par défaut est **local.azurestack.external**.
+Un point de terminaison Azure pile comprend deux parties : nom hello d’un domaine Azure pile région et hello.
+Dans le Kit de développement Azure pile de hello, point de terminaison par défaut hello est **local.azurestack.external**.
 Contactez votre administrateur cloud si vous n’êtes pas sûr de votre point de terminaison.
 
 ## <a name="examples"></a>Exemples
@@ -63,7 +63,7 @@ Contactez votre administrateur cloud si vous n’êtes pas sûr de votre point d
 
 ### <a name="net"></a>.NET
 
-Pour Azure Stack, le suffixe de point de terminaison est spécifié dans le fichier app.config :
+Pour la pile de Azure, suffixe de point de terminaison hello est spécifié dans le fichier app.config hello :
 
 ```
 <add key="StorageConnectionString" 
@@ -72,7 +72,7 @@ EndpointSuffix=local.azurestack.external;" />
 ```
 ### <a name="java"></a>Java
 
-Pour Azure Stack, le suffixe de point de terminaison est spécifié dans la configuration de la chaîne de connexion :
+Pour la pile de Azure, suffixe de point de terminaison hello est spécifié dans le programme d’installation de hello de chaîne de connexion :
 
 ```
 public static final String storageConnectionString =
@@ -84,7 +84,7 @@ public static final String storageConnectionString =
 
 ### <a name="nodejs"></a>Node.js
 
-Pour Azure Stack, le suffixe de point de terminaison est spécifié dans l’instance de déclaration :
+Pour la pile de Azure, suffixe de point de terminaison hello est spécifié dans l’instance de déclaration hello :
 
 ```
 var blobSvc = azure.createBlobService('myaccount', 'mykey',
@@ -92,7 +92,7 @@ var blobSvc = azure.createBlobService('myaccount', 'mykey',
 ```
 ### <a name="c"></a>C++
 
-Pour Azure Stack, le suffixe de point de terminaison est spécifié dans la configuration de la chaîne de connexion :
+Pour la pile de Azure, suffixe de point de terminaison hello est spécifié dans le programme d’installation de hello de chaîne de connexion :
 
 ```
 const utility::string_t storage_connection_string(U("DefaultEndpointsProtocol=https;
@@ -103,7 +103,7 @@ EndpointSuffix=local.azurestack.external"));
 
 ### <a name="php"></a>PHP
 
-Pour Azure Stack, le suffixe de point de terminaison est spécifié dans la configuration de la chaîne de connexion :
+Pour la pile de Azure, suffixe de point de terminaison hello est spécifié dans le programme d’installation de hello de chaîne de connexion :
 
 ```
 $connectionString = 'BlobEndpoint=http://<storage account name>.blob.local.azurestack.external/;
@@ -114,7 +114,7 @@ AccountName=<storage account name>;AccountKey=<storage account key>'
 
 ### <a name="python"></a>Python
 
-Pour Azure Stack, le suffixe de point de terminaison est spécifié dans l’instance de déclaration :
+Pour la pile de Azure, suffixe de point de terminaison hello est spécifié dans l’instance de déclaration hello :
 
 ```
 block_blob_service = BlockBlobService(account_name='myaccount',
@@ -123,7 +123,7 @@ endpoint_suffix='local.azurestack.external')
 ```
 ### <a name="ruby"></a>Ruby
 
-Pour Azure Stack, le suffixe de point de terminaison est spécifié dans la configuration de la chaîne de connexion :
+Pour la pile de Azure, suffixe de point de terminaison hello est spécifié dans le programme d’installation de hello de chaîne de connexion :
 
 ```
 set
@@ -135,41 +135,41 @@ EndpointSuffix=local.azurestack.external
 
 ## <a name="blob-storage"></a>Stockage d'objets blob
 
-Les didacticiels du stockage Blob Azure suivants sont applicables à Azure Stack. Notez l’exigence particulière d’un suffixe de point de terminaison pour Azure Stack, décrit dans la précédente section [Exemples](#examples).
+Hello didacticiels du stockage Blob Azure suivants sont applicable tooAzure pile. Spécification de suffixe Remarque hello point de terminaison spécifique pour la pile Azure décrit dans hello précédente [exemples](#examples) section.
 
 * [Prise en main d’Azure Blob Storage à l’aide de .NET](../storage/blobs/storage-dotnet-how-to-use-blobs.md)
-* [Utilisation du stockage d'objets blob à partir de Java](../storage/blobs/storage-java-how-to-use-blob-storage.md)
-* [Utilisation du stockage d'objets blob à partir de Node.js](../storage/blobs/storage-nodejs-how-to-use-blob-storage.md)
-* [Utilisation du stockage d’objets blob à partir de C++](../storage/blobs/storage-c-plus-plus-how-to-use-blobs.md)
-* [Utilisation du stockage d'objets blob à partir de PHP](../storage/blobs/storage-php-how-to-use-blobs.md)
-* [Utilisation du stockage Blob Azure à partir de Python](../storage/blobs/storage-python-how-to-use-blob-storage.md)
-* [Utilisation du stockage d'objets blob à partir de Ruby](../storage/blobs/storage-ruby-how-to-use-blob-storage.md)
+* [Comment toouse stockage d’objets Blob à partir de Java](../storage/blobs/storage-java-how-to-use-blob-storage.md)
+* [Comment toouse stockage d’objets Blob à partir de Node.js](../storage/blobs/storage-nodejs-how-to-use-blob-storage.md)
+* [Comment toouse stockage d’objets Blob à partir de C++](../storage/blobs/storage-c-plus-plus-how-to-use-blobs.md)
+* [Comment toouse stockage d’objets Blob à partir de PHP](../storage/blobs/storage-php-how-to-use-blobs.md)
+* [Comment toouse le stockage Blob Azure à partir de Python](../storage/blobs/storage-python-how-to-use-blob-storage.md)
+* [Comment toouse stockage d’objets Blob à partir de Ruby](../storage/blobs/storage-ruby-how-to-use-blob-storage.md)
 
 ## <a name="queue-storage"></a>Stockage de files d'attente
 
-Les didacticiels du stockage File d’attente Azure suivants sont applicables à Azure Stack. Notez l’exigence particulière d’un suffixe de point de terminaison pour Azure Stack, décrit dans la précédente section [Exemples](#examples).
+Hello didacticiels de stockage de file d’attente Azure suivants sont applicable tooAzure pile. Spécification de suffixe Remarque hello point de terminaison spécifique pour la pile Azure décrit dans hello précédente [exemples](#examples) section.
 
 * [Prise en main du stockage de files d’attente Azure à l’aide de .NET](../storage/queues/storage-dotnet-how-to-use-queues.md)
-* [Utilisation du stockage de files d'attente à partir de Java](../storage/queues/storage-java-how-to-use-queue-storage.md)
-* [Utilisation du stockage de files d'attente à partir de Node.js](../storage/queues/storage-nodejs-how-to-use-queues.md)
-* [Utilisation du service de stockage de files d’attente à partir de C++](../storage/queues/storage-c-plus-plus-how-to-use-queues.md)
-* [Utilisation du stockage de files d'attente à partir de PHP](../storage/queues/storage-php-how-to-use-queues.md)
-* [Utilisation du stockage de files d'attente à partir de Python](../storage/queues/storage-python-how-to-use-queue-storage.md)
-* [Utilisation du stockage de files d'attente à partir de Ruby](../storage/queues/storage-ruby-how-to-use-queue-storage.md)
+* [Comment toouse stockage de file d’attente à partir de Java](../storage/queues/storage-java-how-to-use-queue-storage.md)
+* [Comment toouse stockage de file d’attente à partir de Node.js](../storage/queues/storage-nodejs-how-to-use-queues.md)
+* [Comment toouse stockage de file d’attente à partir de C++](../storage/queues/storage-c-plus-plus-how-to-use-queues.md)
+* [Comment toouse stockage de file d’attente à partir de PHP](../storage/queues/storage-php-how-to-use-queues.md)
+* [Comment toouse stockage de file d’attente à partir de Python](../storage/queues/storage-python-how-to-use-queue-storage.md)
+* [Comment toouse stockage de file d’attente à partir de Ruby](../storage/queues/storage-ruby-how-to-use-queue-storage.md)
 
 
 ## <a name="table-storage"></a>Stockage de tables
 
-Les didacticiels du stockage Table Azure suivants sont applicables à Azure Stack. Notez l’exigence particulière d’un suffixe de point de terminaison pour Azure Stack, décrit dans la précédente section [Exemples](#examples).
+Hello didacticiels de stockage de Table Azure suivants sont applicable tooAzure pile. Spécification de suffixe Remarque hello point de terminaison spécifique pour la pile Azure décrit dans hello précédente [exemples](#examples) section.
 
 * [Prise en main d’Azure Table Storage à l’aide de .NET](../cosmos-db/table-storage-how-to-use-dotnet.md)
-* [Utilisation du stockage de tables à partir de Java](../cosmos-db/table-storage-how-to-use-java.md)
-* [Utilisation du stockage Table Azure à partir de Node.js](../cosmos-db/table-storage-how-to-use-nodejs.md)
-* [Utilisation du stockage Table à partir de C++](../cosmos-db/table-storage-how-to-use-c-plus.md)
-* [Utilisation du stockage de tables à partir de PHP](../cosmos-db/table-storage-how-to-use-php.md)
-* [Utilisation du stockage Table dans Python](../cosmos-db/table-storage-how-to-use-python.md)
-* [Utilisation du stockage de tables à partir de Ruby](../cosmos-db/table-storage-how-to-use-ruby.md)
+* [Comment toouse le stockage de Table à partir de Java](../cosmos-db/table-storage-how-to-use-java.md)
+* [Comment toouse stockage de Table Azure à partir de Node.js](../cosmos-db/table-storage-how-to-use-nodejs.md)
+* [Comment toouse le stockage de Table à partir de C++](../cosmos-db/table-storage-how-to-use-c-plus.md)
+* [Comment toouse le stockage de Table à partir de PHP](../cosmos-db/table-storage-how-to-use-php.md)
+* [Comment toouse le stockage de Table dans Python](../cosmos-db/table-storage-how-to-use-python.md)
+* [Comment toouse le stockage de Table à partir de Ruby](../cosmos-db/table-storage-how-to-use-ruby.md)
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* [Introduction à Microsoft Azure Storage](../storage/common/storage-introduction.md)
+* [Introduction tooMicrosoft stockage Azure](../storage/common/storage-introduction.md)

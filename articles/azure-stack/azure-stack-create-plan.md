@@ -1,5 +1,5 @@
 ---
-title: "Créer un plan dans Azure Stack | Microsoft Docs"
+title: aaaCreate un plan dans la pile de Azure | Documents Microsoft
 description: "En tant qu’administrateur cloud, créez un plan permettant aux abonnés d’approvisionner des machines virtuelles."
 services: azure-stack
 documentationcenter: 
@@ -14,51 +14,51 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 7/10/2017
 ms.author: erikje
-ms.openlocfilehash: ff34bcd6ba485806baf7963e11393633dd893fa7
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 3665bae5d212002da43316e62ce73686b4c66eea
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-plan-in-azure-stack"></a>Créer un plan dans Azure Stack
-Les [plans](azure-stack-key-features.md) regroupent un ou plusieurs services. En tant que fournisseur, vous pouvez créer des plans à proposer à vos locataires. En retour, les clients s’abonnent à vos offres pour utiliser les plans et les services inclus. Cet exemple montre comment créer un plan comprenant les fournisseurs de ressources de stockage, réseau et de calcul. Ce plan donne aux abonnés la possibilité d’approvisionner des machines virtuelles.
+Les [plans](azure-stack-key-features.md) regroupent un ou plusieurs services. En tant que fournisseur, vous pouvez créer des plans toooffer tooyour locataires. À son tour, vos clients de s’abonner tooyour offres toouse hello plans et services qu’ils comprennent. Cet exemple vous montre comment toocreate un plan qui inclut hello des fournisseurs de ressources de calcul, réseau et de stockage. Ce plan offre abonnés hello capacité tooprovision virtual machines.
 
-1. Connectez-vous au portail d’administration Azure Stack (https://adminportal.local.azurestack.external). Entrez les informations d’identification du compte que vous avez créé à l’étape 5 de la section [Exécuter le script PowerShell](azure-stack-run-powershell-script.md).
+1. Se connecter toohello portail d’administration Azure pile (https://adminportal.local.azurestack.external). Entrez des informations d’identification de hello compte hello que vous avez créé à l’étape 5 de hello [exécuter le script PowerShell de hello](azure-stack-run-powershell-script.md) section.
 
-2. Pour créer un plan et une offre auxquels les clients peuvent s’abonner, cliquez sur **Nouveau** > **Plans + offres clients** > **Plan**.
+2. toocreate un plan et offre que les clients peuvent s’abonner, cliquez sur **nouveau** > **client offre + Plans** > **Plan**.
 
    ![](media/azure-stack-create-plan/image01.png)
-3. Sur le panneau **Nouveau plan**, renseignez le **Nom d’affichage** et le **Nom de la ressource**. Le nom d’affichage correspond au nom convivial du plan, que les clients voient. Seul l’administrateur peut voir le nom de la ressource. Il s’agit du nom que les administrateurs utilisent pour gérer le plan en tant que ressource Azure Resource Manager.
+3. Bonjour **nouveau Plan** panneau, renseignez **nom d’affichage** et **nom de la ressource**. Hello nom complet est le nom convivial du plan hello clients plus. Seul l’administrateur hello peut voir hello nom de la ressource. Son nom hello qu’administrateurs utiliser toowork hello plan comme une ressource Azure Resource Manager.
 
    ![](media/azure-stack-create-plan/image02.png)
-4. Créez un **Groupe de ressources** ou sélectionnez-en un qui servira de conteneur pour le plan.
+4. Créer un nouveau **groupe de ressources**, ou sélectionnez-en un existant, comme un conteneur pour un plan de hello.
 
    ![](media/azure-stack-create-plan/image02a.png)
 5. Cliquez sur **Services**, sélectionnez **Microsoft.Compute**, **Microsoft.Network** et **Microsoft.Storage**, puis cliquez sur **Sélectionner**.
 
    ![](media/azure-stack-create-plan/image03.png)
-6. Cliquez sur **Quotas** et sur **Microsoft.Storage (local)**, puis sélectionnez le quota par défaut ou cliquez sur **Créer un quota** pour personnaliser le quota.
+6. Cliquez sur **Quotas**, cliquez sur **Microsoft.Storage (local)**et puis soit hello sélection par défaut de quota ou cliquez sur **créer nouveau quota** quota de hello toocustomize.
 
    ![](media/azure-stack-create-plan/image04.png)
-7. Si vous créez un quota, entrez un nom pour le quota > définissez ses valeurs > cliquez sur **OK** > cliquez sur le nom du nouveau quota.
+7. Si vous créez un nouveau quota, entrez un nom pour le quota de hello > définir des valeurs de quota hello > cliquez sur **OK** > cliquez sur le nom hello du quota de nouveau hello.
 
    ![](media/azure-stack-create-plan/image06.png)
-8. Cliquez sur **Microsoft.Network (local)**, puis sélectionnez le quota par défaut ou cliquez sur **Créer un quota** pour le personnaliser.
+8. Cliquez sur **Microsoft.Network (local)**et puis soit hello sélection par défaut de quota ou cliquez sur **créer nouveau quota** quota de hello toocustomize.
 
     ![](media/azure-stack-create-plan/image07.png)
-9. Si vous créez un quota, tapez un nom pour le quota > définissez ses valeurs > cliquez sur **OK** > cliquez sur le nom du nouveau quota.
+9. Si vous créez un nouveau quota, tapez un nom pour le quota de hello > définir des valeurs de quota hello > cliquez sur **OK** > cliquez sur le nom hello du quota de nouveau hello.
 
     ![](media/azure-stack-create-plan/image08.png)
-10. Cliquez sur **Microsoft.Compute (local)**, puis sélectionnez le quota par défaut ou cliquez sur **Créer un quota** pour le personnaliser.
+10. Cliquez sur **Microsoft.Compute (local)**et puis soit hello sélection par défaut de quota ou cliquez sur **créer nouveau quota** quota de hello toocustomize.
 
     ![](media/azure-stack-create-plan/image09.png)
-11. Si vous créez un quota, tapez un nom pour le quota > définissez ses valeurs > cliquez sur **OK** > cliquez sur le nom du nouveau quota.
+11. Si vous créez un nouveau quota, tapez un nom pour le quota de hello > définir des valeurs de quota hello > cliquez sur **OK** > cliquez sur le nom hello du quota de nouveau hello.
 
     ![](media/azure-stack-create-plan/image10.png)
-12. Sur le panneau **Quotas**, cliquez sur **OK**, puis, sur le panneau **Nouveau plan**, cliquez sur **Créer** pour créer le plan.
+12. Bonjour **Quotas** panneau, cliquez sur **OK**, puis dans hello **nouveau Plan** panneau, cliquez sur **créer** plan de hello toocreate.
 
     ![](media/azure-stack-create-plan/image11.png)
-13. Pour voir votre nouveau plan, cliquez sur **Toutes les ressources**, puis recherchez-le et cliquez sur son nom.
+13. toosee votre nouveau plan, cliquez sur **toutes les ressources**, puis recherchez le plan de hello et cliquez sur son nom.
 
     ![](media/azure-stack-create-plan/image12.png)
 

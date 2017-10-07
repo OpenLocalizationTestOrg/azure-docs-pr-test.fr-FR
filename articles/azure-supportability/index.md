@@ -1,6 +1,6 @@
 ---
-title: "À envoyer | Microsoft Azure"
-description: "À envoyer."
+title: Envoyer aaaTo | Microsoft Azure
+description: toobe soumis.
 services: 
 documentationcenter: 
 author: squillace
@@ -15,10 +15,10 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 10/21/2016
 ms.author: tysonn
-ms.openlocfilehash: 97e1cfc7d2bb7782f20b0635456194e1833f95ad
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 25cf8ec045e7831df359b427c633f66dd5382d1d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="to-be-submitted"></a>À envoyer.
+# <a name="toobe-submitted"></a>toobe soumis.

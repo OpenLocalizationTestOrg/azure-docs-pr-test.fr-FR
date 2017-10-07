@@ -1,6 +1,6 @@
 ---
-title: "Comment obtenir du support pour Azure Active Directory | Microsoft Docs"
-description: "Obtenir du support pour Azure Active Directory"
+title: Comment tooget prennent en charge pour Azure Active Directory | Documents Microsoft
+description: Comment tooget prennent en charge pour Azure Active Directory
 services: active-directory
 documentationcenter: na
 author: curtand
@@ -14,79 +14,79 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 06/07/2017
 ms.author: curtand
-ms.openlocfilehash: f55e6c009cfccce8434d3e13c337a9adb72a4f70
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 887a428a3e5df04798dcc901f8da8a88fd66e135
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-get-support-for-azure-active-directory"></a>Obtenir du support pour Azure Active Directory
+# <a name="how-tooget-support-for-azure-active-directory"></a>Comment tooget prennent en charge pour Azure Active Directory
 
 
 Microsoft propose des services de support pour les problèmes techniques, de prévente, de facturation et d’abonnements relatifs à Azure Active Directory (Azure AD). Le support est disponible en ligne et par téléphone pour les abonnements d’évaluation et payants Microsoft Azure. L’assistance téléphonique et le support de facturation en ligne sont disponibles dans plusieurs langues. 
 
 ## <a name="find-help-without-opening-a-support-ticket"></a>Trouver de l’aide sans ouvrir de ticket de support
 
-Avant de créer un ticket de support, consultez les réponses et les informations contenues dans les ressources suivantes. 
+Avant de créer un ticket de support, consultez hello suivant des ressources pour les réponses et d’informations. 
 
-* Pour obtenir du contenu tel que des procédures ou des exemples de code à destination des professionnels de l’informatique et des développeurs, consultez la [documentation technique sur docs.microsoft.com](https://docs.microsoft.com/azure/active-directory/).
+* Pour le contenu, tels que des exemples de tooinformation de la procédure ou du code pour les professionnels de l’informatique et aux développeurs, consultez hello [documentation technique sur docs.microsoft.com](https://docs.microsoft.com/azure/active-directory/).
 
-* [Microsoft Tech Community](https://techcommunity.microsoft.com/) est l’endroit idéal pour les informaticiens des entreprises partenaires et clientes qui souhaitent collaborer, partager et apprendre. Dans le [Centre d’information Microsoft Tech Community](https://techcommunity.microsoft.com/t5/Community-Info-Center/ct-p/Community-Info-Center), vous trouverez des annonces, des billets de blog, des espaces d’échanges avec des experts et bien plus encore. Vous pouvez aussi [rejoindre la communauté pour nous soumettre vos idées](https://techcommunity.microsoft.com/t5/Communities/ct-p/communities).
+* Hello [communauté technique de Microsoft](https://techcommunity.microsoft.com/) est le lieu de hello pour nos partenaires professionnels informatiques et les clients toocollaborate, partager et apprendre. Hello [Microsoft Tech Community Info Center](https://techcommunity.microsoft.com/t5/Community-Info-Center/ct-p/Community-Info-Center) est utilisé pour les annonces, billets de blog, demandez-me-n’est pas défini les interactions (ATA) avec des experts et bien plus encore. Vous pouvez également [joindre hello Communauté toosubmit vos idées](https://techcommunity.microsoft.com/t5/Communities/ct-p/communities).
 
 
 ## <a name="open-a-support-ticket"></a>Ouverture d’un ticket de support
 
-Si vous ne parvenez pas à trouver de réponses dans les ressources d’auto-assistance, vous pouvez ouvrir un ticket de support en ligne. Pour pouvoir vous diriger vers les ingénieurs de support les plus à même de résoudre votre problème, le ticket de support que vous ouvrez doit porter sur un seul problème. Par ailleurs, sachant que les équipes d’ingénierie Azure Active Directory priorisent leur travail en fonction des incidents qui se produisent, vous contribuez souvent à améliorer le service.
+Si vous êtes toofind Impossible de réponses à l’aide des ressources d’aide, vous pouvez ouvrir un ticket de support en ligne. Vous devez ouvrir chaque ticket de support pour un seul problème, afin que nous puissions vous connecter toohello ingénieurs du support technique qui est des experts du sujet pour votre problème. En outre, les équipes d’ingénierie Azure Active Directory hiérarchiser leur travail basée sur les incidents qui sont générés, vous êtes contribuant souvent tooservice améliorations.
 
-### <a name="how-to-open-a-support-ticket-for-azure-ad-in-the-azure-portal"></a>Comment ouvrir un ticket de support pour Azure AD dans le portail Azure
+### <a name="how-tooopen-a-support-ticket-for-azure-ad-in-hello-azure-portal"></a>Comment tooopen une prise en charge de ticket pour Azure AD Bonjour portail Azure
 
 > [!NOTE]
-> Pour les problèmes de facturation ou d’abonnement, vous devez utiliser le [centre d’administration Office 365](https://portal.office.com).
+> Pour les problèmes de facturation ou d’abonnement, vous devez utiliser [centre d’administration Office 365 de hello](https://portal.office.com).
 > 
 
-1. Connectez-vous au [portail Azure](https://portal.azure.com) et ouvrez **Azure Active Directory**.
+1. Connectez-vous trop[hello portail Azure](https://portal.azure.com) et ouvrez **Azure Active Directory**.
    
-2. Faites défiler l’écran jusqu’à **Dépannage + support**, puis sélectionnez **Nouvelle demande de support**.
+2. Faites défiler la liste trop**dépannage + prise en charge** et sélectionnez **nouveau prend en charge la demande**.
    
-3. Dans le panneau **De base**, pour **Type de problème**, sélectionnez **Technique**.
+3. Sur hello **notions de base** panneau, pour **émettre type**, sélectionnez **technique**.
    
 4. Pour **Service**, sélectionnez **Azure Active Directory**, puis **Suivant**.
 
-5. Dans le panneau **Problème**, sélectionnez un niveau de [Gravité](https://azure.microsoft.com/support/plans/response/).
+5. Sur hello **problème** panneau, sélectionnez un [gravité](https://azure.microsoft.com/support/plans/response/)).
   
 6. Sélectionnez un **Type de problème**, puis une **Catégorie** pour ce type. À ce stade, des informations d’auto-assistance vous sont aussi proposées en fonction de la catégorie de votre problème.
   
-7. Détaillez un peu plus votre problème, puis cliquez sur **Suivant**.
+7. Ajouter reste hello de votre problème, cliquez sur **suivant**.
   
 8. Indiquez vos coordonnées et sélectionnez **Créer**.
   ![capture d’écran d’auto-assistance en fonction de la catégorie du problème](./media/active-directory-troubleshooting-support-howto/open-support-ticket.png)
 
-### <a name="how-to-open-a-support-ticket-for-azure-ad-in-the-office-365-portal"></a>Comment ouvrir un ticket de support pour Azure AD dans le portail Office 365
+### <a name="how-tooopen-a-support-ticket-for-azure-ad-in-hello-office-365-portal"></a>Comment tooopen une prise en charge de ticket pour Azure AD dans le portail de hello Office 365
 
 > [!NOTE]
-> Dans le centre d’administration Office 365, seuls les administrateurs peuvent bénéficier d’un support pour Azure AD.
+> Il est pris en charge pour Azure AD dans le centre d’administration Office 365 hello pour les administrateurs uniquement.
 > 
 
-1. Connectez-vous au [centre d’administration Office 365](https://portal.office.com) avec un compte qui dispose d’une licence Enterprise Mobility + Security (EMS).
+1. Connectez-vous trop[centre d’administration Office 365 de hello](https://portal.office.com) avec un compte qui dispose d’une licence Security (EMS) à Enterprise Mobility +.
 
-2. Sur la vignette **Support**, sélectionnez **Nouvelle demande de service** : ![capture d’écran du portail Office 365](./media/active-directory-troubleshooting-support-howto/office-portal.png)
+2. Sur hello **prise en charge** vignette, sélectionnez **nouvelle demande de service**: ![capture d’écran de portail Office 365](./media/active-directory-troubleshooting-support-howto/office-portal.png)
 
-3. Dans la page **Vue d’ensemble du support**, sélectionnez **Gestion des identités** ou **Gestion des utilisateurs et du domaine** : ![capture d’écran des catégories de support Azure AD](./media/active-directory-troubleshooting-support-howto/select-identity.png)
+3. Sur hello **prennent en charge une vue d’ensemble** page, sélectionnez **gestion des identités** ou **gestion des utilisateurs et de domaine**: ![capture d’écran de catégories de prise en charge Azure AD](./media/active-directory-troubleshooting-support-howto/select-identity.png)
 
-4. Pour **Fonctionnalité**, sélectionnez la fonctionnalité Azure AD pour laquelle vous souhaitez obtenir du support.
+4. Pour **fonctionnalité**, sélectionnez fonctionnalité hello Azure AD pour lequel vous souhaitez la prise en charge.
 
 5. Pour **Symptôme**, sélectionnez le symptôme approprié, résumez votre problème en fournissant des détails pertinents, puis sélectionnez **Suivant**.
   ![capture d’écran d’auto-assistance pour une fonctionnalité et un symptôme](./media/active-directory-troubleshooting-support-howto/open-service-request.png)
 
-6. Sélectionnez l’une des ressources d’auto-assistance proposées ou sélectionnez **Oui, continuer** ou **Non, annuler la demande**.
+6. Sélectionnez un des hello proposé ressources autonomes ou **Oui, continuer** ou **non, annuler la demande**.
 
-7. Si vous continuez, vous êtes invité à fournir plus de détails. Vous pouvez joindre des fichiers pour illustrer le problème et sélectionner **Suivant**.
+7. Si vous continuez, vous êtes invité à fournir plus de détails. Vous pouvez joindre des fichiers que vous avez ce problème de hello représentent, puis sélectionnez **suivant**.
 
 8. Indiquez vos coordonnées et sélectionnez **Envoyer une demande**.
 
 ## <a name="get-phone-support"></a>Obtenir une assistance téléphonique
 
-Consultez la page [Contacter Microsoft pour obtenir du support](https://portal.office.com/Support/ContactUs.aspx) pour obtenir les numéros de téléphone de l’assistance.
+Consultez hello [contactez Microsoft pour la prise en charge](https://portal.office.com/Support/ContactUs.aspx) tooobtain prise en charge des numéros de page.
 
 ##  <a name="next-steps"></a>Étapes suivantes
 

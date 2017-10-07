@@ -1,6 +1,6 @@
 ---
-title: "Expérience simple dans Machine Learning Studio | Microsoft Docs"
-description: "Ce didacticiel sur l’apprentissage automatique vous guidera tout au long d’une expérience de science des données simple. Nous allons prédire le prix d’une voiture à l’aide d’un algorithme de régression."
+title: "expérience simple d’aaaA dans Machine Learning Studio | Documents Microsoft"
+description: "Ce didacticiel sur l’apprentissage automatique vous guidera tout au long d’une expérience de science des données simple. Nous allons prédire prix hello d’une voiture à l’aide d’un algorithme de régression."
 keywords: "expérience,régression linéaire,algorithmes d’apprentissage automatique,didacticiel d’apprentissage automatique,techniques de modélisation prédictive,expérience de science de données"
 services: machine-learning
 documentationcenter: 
@@ -15,30 +15,30 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 03/20/2017
 ms.author: garye
-ms.openlocfilehash: 0539e9d04c61d35de56a29d350c07654c095c576
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: fb215851d380acf7d0f4934a426283369f9c4ccb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="machine-learning-tutorial-create-your-first-data-science-experiment-in-azure-machine-learning-studio"></a>Didacticiel sur l’apprentissage automatique : Création de votre première expérience de science des données dans Azure Machine Learning Studio
 
 Si vous n’avez encore jamais utilisé **Azure Machine Learning Studio**, ce didacticiel est pour vous.
 
-Dans ce didacticiel, nous allons découvrir comment utiliser Studio afin de créer une expérience de machine learning. Cette expérience permettra de tester un modèle analytique qui prédira le prix d’un véhicule automobile en fonction de différentes variables, comme la marque et les caractéristiques techniques.
+Dans ce didacticiel, nous examinerons procédure toouse Studio pourquoi la première fois toocreate une expérience d’apprentissage. expérience de Hello allez tester un modèle d’analyse qui prédit le prix d’une voiture en fonction des différentes variables telles que les spécifications techniques et assurez-vous de hello.
 
 > [!NOTE]
-> Ce didacticiel vous montre les principes fondamentaux de glisser-déplacer des modules vers votre expérience, et il vous explique comment les connecter, réaliser votre expérience et étudier les résultats. Nous n’allons pas aborder le sujet général du machine learning ni expliquer comment sélectionner et utiliser la centaine de modules de manipulation des données et des algorithmes inclus dans Studio.
+> Ce didacticiel vous montre hello principes de base des modules comment toodrag glisser-déplacer sur votre expérience, connectez-les, exécutez hello expérience et examiner les résultats de hello. Nous n’allons pas toodiscuss hello rubrique générale de l’apprentissage ou comment tooselect et utilisez hello 100 + données et des algorithmes manipulation modules intégrés inclus dans Studio.
 >
->Si vous ne connaissez pas le machine learning, la série de vidéos [Science des données pour les débutants](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md) peut être un bon point de départ. Cette série de vidéos constitue une excellente introduction au machine learning, qui utilise le langage et les concepts courants.
+>Si vous êtes toomachine formation, hello série de vidéos [Science des données pour les débutants](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md) peut être un toostart parfait. Cette série de vidéos est une formation de toomachine bonne introduction à l’aide de concepts et le langage courant.
 >
->Si vous connaissez le Machine Learning et recherchez des informations plus générales sur Machine Learning Studio et sur les algorithmes de Machine Learning qu’il propose, voici quelques ressources utiles :
+>Si vous êtes familiarisé avec machine learning, mais que vous recherchez plus d’informations sur la Machine Learning Studio et il contient des algorithmes d’apprentissage hello, voici quelques bonnes ressources :
 >
 - [Qu'est-ce que Machine Learning Studio ?](machine-learning-what-is-ml-studio.md) : il s’agit d’une vue d’ensemble de Studio.
-- [Principes de base de l’apprentissage automatique avec exemples d’algorithmes](machine-learning-basics-infographic-with-algorithm-examples.md) : cette infographie vous permet de découvrir les différents types d’algorithmes de machine learning inclus dans Machine Learning Studio.
-- [Guide Machine Learning](https://gallery.cortanaintelligence.com/Tutorial/Machine-Learning-Guide-1) : ce guide offre des informations semblables à celles de l’infographie ci-avant, mais dans un format interactif.
-- [Aide-mémoire d’algorithme Machine Learning](machine-learning-algorithm-cheat-sheet.md) et [Comment choisir les algorithmes dans Microsoft Azure Machine Learning](machine-learning-algorithm-choice.md) : cette affiche téléchargeable et l’article qui l’accompagne traitent des algorithmes Studio en détail.
-- [Machine Learning Studio : aide sur les algorithmes et les modules](https://msdn.microsoft.com/library/azure/dn905974.aspx) : il s’agit du document de référence complet pour tous les modules Studio, y compris les algorithmes de machine learning
+- [Principes de base avec des exemples de l’algorithme d’apprentissage des ordinateurs](machine-learning-basics-infographic-with-algorithm-examples.md) -ce graphisme d’information est utile si vous souhaitez toolearn plus hello différents types d’algorithmes d’apprentissage automatique inclus avec Machine Learning Studio.
+- [Guide de formation de l’ordinateur](https://gallery.cortanaintelligence.com/Tutorial/Machine-Learning-Guide-1) -ce guide couvre des informations similaires hello graphisme d’information ci-dessus, mais dans un format interactif.
+- [Machine learning aide-mémoire algorithme](machine-learning-algorithm-cheat-sheet.md) et [comment toochoose des algorithmes pour Microsoft Azure Machine Learning](machine-learning-algorithm-choice.md) -ce poster téléchargeable et l’article connexe discutent des algorithmes de Studio hello en profondeur.
+- [Machine Learning Studio : Algorithme et aide du Module](https://msdn.microsoft.com/library/azure/dn905974.aspx) -il s’agit d’informations de référence complètes hello pour tous les modules de Studio, y compris les algorithmes d’apprentissage automatique,
 
 <!-- -->
 
@@ -46,299 +46,299 @@ Dans ce didacticiel, nous allons découvrir comment utiliser Studio afin de cré
 
 ## <a name="how-does-machine-learning-studio-help"></a>En quoi Machine Learning Studio est-il utile ?
 
-Machine Learning Studio facilite la configuration d’une expérience à l’aide de modules à glisser-déplacer préprogrammés avec des techniques de modélisation prédictive.
+Machine Learning Studio rend facile tooset d’une expérience à l’aide des modules de glisser-déposer préprogrammées avec les techniques de modélisation prédictive.
 
-Dans un espace de travail interactif visuel, vous effectuer un glisser-déplacer de ***jeux de données*** et de ***modules*** d’analyse vers un canevas interactif. Vous les associez afin de former une ***expérience*** que vous pouvez exécuter dans Machine Learning Studio.
-Vous ***créez un modèle***, ***le formez***, puis ***lui attribuez une note et le testez***.
+Dans un espace de travail interactif visuel, vous effectuer un glisser-déplacer de ***jeux de données*** et de ***modules*** d’analyse vers un canevas interactif. Vous les connectez ensemble tooform un ***expérimenter*** que vous exécutez dans Machine Learning Studio.
+Vous ***créer un modèle***, ***l’apprentissage du modèle de hello***, et ***score et test de modèle hello***.
 
-Vous pouvez affiner la conception de votre modèle en modifiant l’expérience et en l’exécutant jusqu’à ce que vous obteniez les résultats escomptés. Lorsque votre modèle est prêt, vous pouvez le publier en tant que ***service web*** afin que d’autres utilisateurs puissent envoyer de nouvelles données et recevoir des prédictions en retour.
+Vous pouvez itérer sur la conception du modèle, de modifier l’expérience de hello et son exécution jusqu'à ce qu’il donne vous hello résultats que vous recherchez. Lorsque votre modèle est prêt, vous pouvez le publier en tant que ***service web*** afin que d’autres utilisateurs puissent envoyer de nouvelles données et recevoir des prédictions en retour.
 
 ## <a name="open-machine-learning-studio"></a>Ouverture de Machine Learning Studio
 
-Pour commencer avec Studio, accédez à [https://studio.azureml.net](https://studio.azureml.net). Si vous vous êtes déjà connecté à Machine Learning Studio par le passé, cliquez sur **Sign In** (Se connecter). Sinon, cliquez sur **Sign up here** (S’inscrire) et faites votre choix parmi les options gratuites et payantes.
+tooget main Studio, accédez trop[https://studio.azureml.net](https://studio.azureml.net). Si vous vous êtes déjà connecté à Machine Learning Studio par le passé, cliquez sur **Sign In** (Se connecter). Sinon, cliquez sur **Sign up here** (S’inscrire) et faites votre choix parmi les options gratuites et payantes.
 
-![Connexion à Machine Learning Studio][sign-in-to-studio]
+![Connectez-vous à tooMachine Learning Studio][sign-in-to-studio]
 <br/>
-***Connexion à Machine Learning Studio***
+***Connectez-vous à tooMachine Learning Studio***
 
-## <a name="five-steps-to-create-an-experiment"></a>Cinq étapes pour créer une expérience
+## <a name="five-steps-toocreate-an-experiment"></a>Cinq étapes toocreate une expérience
 
-Dans ce didacticiel dédié au machine learning, vous allez suivre cinq étapes de base afin de concevoir une expérience dans Machine Learning Studio et ainsi créer, former et noter votre modèle :
+Dans ce didacticiel d’apprentissage machine, vous suivez les cinq étapes de base toobuild une expérience dans Machine Learning Studio toocreate, effectuer l’apprentissage et un score de votre modèle :
 
 - **Création d’un modèle**
     - [Étape 1 : obtention des données]
-    - [Étape 2 : préparation des données]
+    - [Étape 2 : Préparer les données de salutation]
     - [Étape 3 : définition des fonctionnalités]
-- **Formation du modèle**
+- **Modèle de hello train**
     - [Étape 4 : sélection et application d’un algorithme d’apprentissage]
-- **Notation et test du modèle**
+- **Score et test de modèle hello**
     - [Étape 5 : prédiction des nouveaux prix des voitures]
 
 [Étape 1 : obtention des données]: #step-1-get-data
-[Étape 2 : préparation des données]: #step-2-prepare-the-data
+[Étape 2 : Préparer les données de salutation]: #step-2-prepare-the-data
 [Étape 3 : définition des fonctionnalités]: #step-3-define-features
 [Étape 4 : sélection et application d’un algorithme d’apprentissage]: #step-4-choose-and-apply-a-learning-algorithm
 [Étape 5 : prédiction des nouveaux prix des voitures]: #step-5-predict-new-automobile-prices
 
 > [!TIP] 
-> Vous pouvez obtenir une copie de travail de l’expérience suivante dans la [galerie Cortana Intelligence](https://gallery.cortanaintelligence.com). Accédez à **[Your first data science experiment - Automobile price prediction](https://gallery.cortanaintelligence.com/Experiment/Your-first-data-science-experiment-Automobile-price-prediction-1)** (Votre première expérience de science des données : prédiction sur les prix automobiles) et cliquez sur **Ouvrir dans Studio** pour télécharger une copie de l’expérience dans votre espace de travail Machine Learning Studio.
+> Vous trouverez une copie de travail de hello suivants expérience Bonjour [Cortana Intelligence galerie](https://gallery.cortanaintelligence.com). Accédez trop**[essais de votre première pour la science des données - prévision de prix Automobile](https://gallery.cortanaintelligence.com/Experiment/Your-first-data-science-experiment-Automobile-price-prediction-1)**  et cliquez sur **ouvrir dans Studio** toodownload une copie de l’expérience hello dans votre Machine Learning Espace de travail Studio.
 
 
 ## <a name="step-1-get-data"></a>Étape 1 : obtention des données
 
-Tout d’abord, vous devez obtenir les données.
-Vous pouvez utiliser plusieurs exemples de jeux de données inclus dans Machine Learning Studio ou importer des données à partir de sources diverses. Pour les besoins de cet exemple, nous allons utiliser le jeu de données **Données sur le prix des véhicules automobiles (brutes)** inclus dans votre espace de travail.
+Hello première chose apprentissage tooperform donnée.
+Vous pouvez utiliser plusieurs exemples de jeux de données inclus dans Machine Learning Studio ou importer des données à partir de sources diverses. Pour cet exemple, nous allons utiliser le jeu de données exemple hello, **(Raw) les données de prix Automobile**, qui est inclus dans votre espace de travail.
 Ce jeu de données comprend des entrées relatives à plusieurs véhicules, notamment des informations sur la marque, le modèle, les caractéristiques techniques et le prix.
 
-Voici comment obtenir ce jeu de données dans le cadre de votre expérience.
+Voici comment tooget hello dataset dans votre expérience.
 
-1. Créez une expérience en cliquant sur l’option **+NOUVEAU** située en bas de la fenêtre Machine Learning Studio, sélectionnez **EXPÉRIENCE**, puis **Expérience vide**.
+1. Créer une nouvelle expérience en cliquant sur **+ nouveau** bas hello de fenêtre de Machine Learning Studio hello, sélectionnez **EXPÉRIMENTER**, puis sélectionnez **expérimenter vide**.
 
-2. Un nom par défaut est attribué à l’expérience : il apparaît en haut du canevas. Sélectionnez le texte et remplacez-le par un nom plus significatif, par exemple **Prédiction sur les prix automobiles**. Le nom n’a pas besoin d’être unique.
+2. expérience de Hello reçoit un nom par défaut que vous pouvez voir en haut hello de zone de dessin hello. Sélectionnez ce texte et renommez-la toosomething explicite, par exemple, **prédiction de prix Automobile**. nom de Hello n’a pas besoin toobe unique.
 
-    ![Renommer l’expérience][rename-experiment]
+    ![Renommer l’expérience de hello][rename-experiment]
 
-2. Sur la gauche de la zone de dessin de l’expérience se trouve une palette de jeux de données et de modules. Tapez la valeur **automobile** dans la zone de recherche se trouvant en haut de cette palette, afin de rechercher le jeu de données **Données sur le prix des véhicules automobiles (brutes)**. Faites glisser ce jeu de données vers le canevas de l’expérience.
+2. gauche toohello du canevas de l’expérience hello est une palette des jeux de données et des modules. Type **automobile** dans zone de recherche hello haut hello de ce jeu de données toofind palette hello étiqueté **(Raw) les données de prix Automobile**. Faites glisser ce canevas de l’expérience toohello jeu de données.
 
-    ![Recherchez le jeu de données d’automobile et faites-le glisser vers le canevas de l’expérience][type-automobile]
+    ![Rechercher le jeu de données automobile hello et faites glisser sur le canevas de l’expérience hello][type-automobile]
     <br/>
-    ***Rechercher le jeu de données automobile et faites-le glisser sur le canevas de l’expérience***
+    ***Rechercher le jeu de données automobile hello et faites glisser sur le canevas de l’expérience hello***
 
-Pour voir à quoi ressemblent ces données, cliquez sur le port de sortie situé en bas du jeu de données d’automobile, puis sélectionnez **Visualiser**.
+toosee quoi ces données ressemble, cliquez sur le port de sortie hello bas hello du jeu de données automobile hello et sélectionnez **visualiser**.
 
-![Cliquez sur le port de sortie et sélectionnez Visualiser][select-visualize]
+![Cliquez sur le port de sortie hello et sélectionnez « Visualiser »][select-visualize]
 <br/>
-***Cliquez sur le port de sortie et sélectionnez Visualiser***
+***Cliquez sur le port de sortie hello et sélectionnez « Visualiser »***
 
 > [!TIP]
-> Les jeux de données et les modules disposent de ports d’entrée et de sortie représentés par de petits cercles : les ports d’entrée se situent en haut, tandis que les ports de sortie se situent en bas.
-Pour créer un flux de données dans votre expérience, connectez le port de sortie d’un module au port d’entrée d’un autre module.
-À tout moment, vous pouvez cliquer sur le port de sortie d’un jeu de données ou d’un module afin de voir à quoi les données ressemblent à ce stade dans le flux de données.
+> Jeux de données et les modules ont d’entrée et les ports de sortie représentés par petits cercles - ports d’entrée en haut hello, sortie des ports bas hello.
+toocreate un flux de données dans votre expérience, vous vous connectez un port de sortie du port d’entrée d’un module tooan d’un autre.
+À tout moment, vous pouvez cliquer hello port de sortie d’un toosee de jeu de données ou un module à quelles données hello ressemble à ce stade dans le flux de données hello.
 
-Dans cet exemple de jeu de données, chaque instance de véhicule automobile apparaît sous la forme d’une ligne, et les variables associées à chaque véhicule automobile apparaissent dans des colonnes. Compte tenu des variables associées à un véhicule automobile spécifique, nous allons essayer de prédire le prix dans la colonne de droite (colonne 26, intitulée « price »).
+Dans ce jeu de données d’exemple, chaque instance d’une voiture apparaît sous la forme d’une ligne et variables hello associées à chaque automobile apparaissent en tant que colonnes. Étant donné les variables hello pour une automobile spécifique, nous allons prix hello tootry toopredict à droite, colonne (colonne 26, intitulée « price »).
 
-![Affichez les données automobiles dans la fenêtre de visualisation des données][visualize-auto-data]
+![Afficher les données automobiles hello dans la fenêtre de visualisation de données hello][visualize-auto-data]
 <br/>
-***Affichez les données automobiles dans la fenêtre de visualisation des données***
+***Afficher les données automobiles hello dans la fenêtre de visualisation de données hello***
 
-Fermez la fenêtre de visualisation en cliquant sur le symbole «**x**» dans le coin supérieur droit.
+Fenêtre de visualisation hello fermer en cliquant sur hello »**x**» dans le coin supérieur droit de hello.
 
-## <a name="step-2-prepare-the-data"></a>Étape 2 : préparation des données
+## <a name="step-2-prepare-hello-data"></a>Étape 2 : Préparer les données de salutation
 
-Pour pouvoir être analysé, un jeu de données nécessite généralement un traitement préalable. Vous avez peut-être remarqué l’absence de certaines valeurs dans les colonnes des différentes lignes. Pour que vous puissiez analyser les données correctement, ces valeurs manquantes doivent être nettoyées. Dans le cas qui nous occupe, nous allons supprimer toutes les lignes dans lesquelles des valeurs sont manquantes. De plus, la colonne **normalized-losses** contient une grande quantité de valeurs manquantes. Nous allons donc l’exclure du modèle.
+Pour pouvoir être analysé, un jeu de données nécessite généralement un traitement préalable. Par exemple, vous avez peut-être remarqué hello pas les valeurs présentes dans les colonnes hello de plusieurs lignes. Ces valeurs manquantes doivent toobe nettoyé afin de modèle de hello peut analyser les données de salutation correctement. Dans le cas qui nous occupe, nous allons supprimer toutes les lignes dans lesquelles des valeurs sont manquantes. En outre, hello **pertes normalisées** colonne possède une proportion importante de valeurs manquantes, donc nous allons l’exclure cette colonne à partir du modèle de hello complètement.
 
 > [!TIP]
-> Le nettoyage des valeurs manquantes des données d’entrée est un prérequis pour l’utilisation de la plupart des modules.
+> Nettoyage hello pas les valeurs à partir des données d’entrée est une condition préalable à l’aide de la plupart des modules de hello.
 
-Nous commençons par ajouter un module qui supprime la colonne **normalized-losses**, puis nous ajoutons un module qui supprime toute ligne dans laquelle des données manquent.
+Tout d’abord, nous ajoutons un module qui supprime hello **pertes normalisées** colonne complètement, et puis nous ajoutons un autre module qui supprime toute ligne qui a des données manquantes.
 
-1. Dans la zone de recherche située sur la partie supérieure de la palette de modules, saisissez la chaîne **sélectionner des colonnes** afin de rechercher le module [Sélectionner des colonnes dans le jeu de données][select-columns], puis faites glisser ce module vers le canevas de l’expérience. Ce module permet de sélectionner les colonnes de données à inclure ou exclure du modèle.
+1. Type **sélectionner des colonnes** dans la zone de recherche hello haut hello Bonjour module palette toofind Bonjour [sélectionner les colonnes dans le jeu de données] [ select-columns] module, puis faites-le glisser canevas de l’expérience toohello . Ce module permet de tooselect les colonnes de données, nous souhaitez tooinclude ou à exclure de hello modèle.
 
-2. Connectez le port de sortie du jeu de données **Données sur le prix des véhicules automobiles (brutes)** au port d’entrée du module [Sélectionner des colonnes dans le jeu de données][select-columns].
+2. Connectez le port de sortie de hello de hello **(Raw) les données de prix Automobile** toohello du jeu de données d’entrée de port de hello [sélectionner les colonnes dans le jeu de données] [ select-columns] module.
 
-    ![Ajoutez le module Sélectionner des colonnes dans le jeu de données dans le canevas de l’expérience et connectez-le][type-select-columns]
+    ![Ajoutez le canevas de l’expérience toohello module « Sélectionner les colonnes dans Dataset » hello et connectez-la][type-select-columns]
     <br/>
-    ***Ajouter le module « Sélectionner les colonnes de jeu de données » dans le canevas de l’expérience et le connecter***
+    ***Ajoutez le canevas de l’expérience toohello module « Sélectionner les colonnes dans Dataset » hello et connectez-la***
 
-3. Cliquez sur le module [Sélectionner des colonnes dans le jeu de données][select-columns], puis cliquez sur **Lancer le sélecteur de colonne** dans le volet **Propriétés**.
+3. Cliquez sur hello [sélectionner les colonnes dans le jeu de données] [ select-columns] module et cliquez sur **sélecteur de colonne lancement** Bonjour **propriétés** volet.
 
-    - Sur la gauche, cliquez sur **With rules**
-    - Sous **Commencer par**, cliquez sur **Toutes les colonnes**. Vous indiquez ainsi au module [Sélectionner des colonnes dans le jeu de données][select-columns] de transmettre toutes les colonnes, sauf celles que nous nous apprêtons à exclure.
-    - Dans les listes déroulantes, sélectionnez **Exclure** et **Noms des colonnes**, puis cliquez dans la zone de texte. Une liste de colonnes s’affiche. Sélectionnez la colonne **normalized-losses**, qui est alors ajoutée à la zone de texte.
-    - Cliquez sur le bouton en forme de coche (OK) pour fermer le sélecteur de colonne (en bas à droite).
+    - Sur hello gauche, cliquez sur **avec des règles**
+    - Sous **Commencer par**, cliquez sur **Toutes les colonnes**. Cette fonction [sélectionner les colonnes dans le jeu de données] [ select-columns] toopass à toutes les colonnes hello (à l’exception de ces colonnes, nous sommes tooexclude).
+    - À partir de hello listes déroulantes, sélectionnez **exclure** et **les noms de colonne**, puis cliquez dans la zone de texte hello. Une liste de colonnes s’affiche. Sélectionnez **pertes normalisées**, et il est la zone de texte toohello ajouté.
+    - Cliquez sur hello coche (OK) bouton tooclose hello colonne sélecteur (sur hello inférieur droit).
 
-    ![Lancez le sélecteur de colonne et excluez la colonne « normalized-losses »][launch-column-selector]
+    ![Lancer le sélecteur de colonne hello et exclure la colonne de hello « pertes normalisées »][launch-column-selector]
     <br/>
-    ***Lancer le sélecteur de colonne et d’exclure la colonne « pertes normalisées »***
+    ***Lancer le sélecteur de colonne hello et exclure la colonne de hello « pertes normalisées »***
 
-    À présent, le volet de propriétés du module **Sélectionner des colonnes dans le jeu de données** indique qu’il transmettra toutes les colonnes du jeu de données, à l’exception de **normalized-losses**.
+    Volet de propriétés maintenant hello pour **sélectionner les colonnes dans le jeu de données** indique que celui-ci passe toutes les colonnes à partir du dataset hello sauf **pertes normalisées**.
 
-    ![Le volet Propriétés indique que la colonne « normalized-losses » est exclue][showing-excluded-column]
+    ![volet de propriétés Hello montre que cette colonne hello « pertes normalisées » est exclue.][showing-excluded-column]
     <br/>
-    ***Le volet Propriétés affiche que la colonne « pertes normalisées » est exclue.***
+    ***volet de propriétés Hello montre que cette colonne hello « pertes normalisées » est exclue.***
 
     > [!TIP]
-    Vous pouvez ajouter un commentaire dans un module en double-cliquant sur ce module, puis en saisissant du texte. Ceci peut vous aider à voir d'un seul coup d'œil ce que fait chaque module dans votre expérience. Dans ce cas, double-cliquez sur le module [Sélectionner des colonnes dans le jeu de données][select-columns] et saisissez le commentaire suivant : « Exclure les pertes normalisées ».
+    Vous pouvez ajouter un module de tooa de commentaire par module de hello en double-cliquant sur et la saisie de texte. Vous pouvez ainsi voir en un coup de œil quel module hello effectue dans votre expérience. Dans ce cas double-cliquez sur hello [sélectionner les colonnes dans le jeu de données] [ select-columns] module et type hello commentaire « Exclure normalisées pertes. »
     >
     >
 
 
-    ![Double-cliquez sur un module pour ajouter un commentaire][add-comment]
+    ![Double-cliquez sur un module de tooadd un commentaire][add-comment]
     <br/>
-    ***Double-cliquez sur un module pour ajouter un commentaire***
+    ***Double-cliquez sur un module de tooadd un commentaire***
 
-3. Faites glisser le module [Nettoyer les données manquantes][clean-missing-data] vers la zone de dessin de l’expérience et connectez-le au module [Sélectionner des colonnes dans le jeu de données][select-columns]. Dans le volet **Propriétés**, sélectionnez **Supprimer toute la ligne** sous **Mode de nettoyage**. Cela amène le module [Nettoyage des données manquantes][clean-missing-data] à nettoyer les données en supprimant les lignes pour lesquelles des valeurs manquent. Double-cliquez sur le module et saisissez le commentaire suivant : « Supprimer les lignes de valeur manquantes ».
+3. Hello de glisser [Clean Missing Data] [ clean-missing-data] module toohello tester la zone de dessin et le connecter toohello [sélectionner les colonnes dans le jeu de données] [ select-columns] module. Bonjour **propriétés** volet, sélectionnez **supprimer toute ligne** sous **mode de nettoyage**. Cette fonction [Clean Missing Data] [ clean-missing-data] tooclean les données de salutation en supprimant les lignes qui ont des valeurs manquantes. Double-cliquez sur le module de hello et tapez le commentaire hello « Supprimer les lignes de valeur manquant ».
 
-    ![Définissez le mode de nettoyage du module « Nettoyage des données manquantes » sur « Supprimer toute la ligne »][set-remove-entire-row]
+    ![Définir le mode de nettoyage hello trop « supprimer la ligne entière » pour le module de « Nettoyage des données manquantes » hello][set-remove-entire-row]
     <br/>
-    ***Définir le mode de nettoyage sur « Supprimer la ligne entière » pour le module « Nettoyage des données manquantes »***
+    ***Définir le mode de nettoyage hello trop « supprimer la ligne entière » pour le module de « Nettoyage des données manquantes » hello***
 
-4. Exécutez l’expérience en cliquant sur **EXÉCUTER** au bas de la page.
+4. Exécutez hello expérience en cliquant sur **exécuter** bas hello de page de hello.
 
-    Une fois l’expérience terminée, une coche verte s’affiche en regard de chaque module pour indiquer la réussite de leurs opérations. Notez que le statut **Exécution terminée** s’affiche dans le coin supérieur droit de la fenêtre.
+    Lors de l’expérience de hello est terminée, tous les modules de hello ont tooindicate une coche verte qui ils se sont terminées avec succès. Notez également hello **en cours d’exécution terminé** état dans le coin supérieur droit de hello.
 
-![Une fois l’exécution terminée, l’expérience doit ressembler à ceci :][early-experiment-run]
+![Après l’avoir exécuté, expérience de hello doit ressembler à ceci][early-experiment-run]
 <br/>
-***Une fois l’exécution terminée, l’expérience doit ressembler à ceci :***
+***Après l’avoir exécuté, expérience de hello doit ressembler à ceci***
 
 > [!TIP]
-> Pourquoi exécutons-nous l’expérience maintenant ? Lors de l’exécution de l’expérience, les définitions de colonne de nos données sont transmises à partir du jeu de données, par le biais des modules [Sélectionner des colonnes dans le jeu de données][select-columns] et [Nettoyage des données manquantes][clean-missing-data]. Autrement dit, tous les modules que nous connectons à [Nettoyage des données manquantes][clean-missing-data] disposent de ces mêmes informations.
+> Pourquoi nous exécutez hello expérience maintenant ? Par l’expérience hello en cours d’exécution, les définitions de colonne hello pour nos données passent à partir du dataset hello, via hello [sélectionner les colonnes dans le jeu de données] [ select-columns] module et par le biais hello [Clean Missing Data] [ clean-missing-data] module. Cela signifie que tous les modules de nous connecter trop[Clean Missing Data] [ clean-missing-data] aura également ces mêmes informations.
 
-Pour l’instant, nous n’avons exécuté que l’action de nettoyage dans l’expérience. Si vous souhaitez afficher le jeu de données nettoyé, cliquez sur le port de sortie gauche du module [Nettoyage des données manquantes][clean-missing-data] et sélectionnez **Visualiser**. Vous pouvez constater que la colonne **normalized-losses** n’est plus là et qu’il ne manque plus de données.
+Nous avons effectué dans expérience hello toothis point hello nouvelle donnée. Si vous souhaitez tooview hello nettoyé dataset, cliquez sur hello gauche du port de sortie de hello [Clean Missing Data] [ clean-missing-data] module et sélectionnez **visualiser**. Notez que hello **pertes normalisées** colonne n’est plus incluse, et aucune valeur manquante.
 
-Maintenant que les données sont nettoyées, nous pouvons indiquer les fonctionnalités que nous allons utiliser dans le modèle de prévision.
+Maintenant que les données de salutation sont propre, nous sommes prêt toospecify les fonctionnalités que nous vous allez toouse dans le modèle de prévision hello.
 
 ## <a name="step-3-define-features"></a>Étape 3 : définition des fonctionnalités
 
 Dans Machine Learning, les *fonctionnalités* sont des propriétés individuelles mesurables d’un élément qui vous intéresse. Dans notre jeu de données, chaque ligne représente un véhicule et chaque colonne une fonctionnalité de ce véhicule.
 
-La recherche du jeu de fonctionnalités adéquat pour la création d’un modèle de prévision requiert certaines expériences et des connaissances sur le problème qui se pose. Certaines fonctionnalités sont mieux adaptées à la prévision que d’autres. En outre, certaines fonctionnalités ont une forte corrélation avec d’autres fonctionnalités et peuvent être supprimées. Par exemple, city-mpg et highway-mpg sont étroitement liées : nous pouvons donc conserver l’une et supprimer l’autre sans trop affecter la prédiction.
+Recherche d’un bon jeu de fonctionnalités pour la création d’un modèle de prévision requiert expérimentation et la base de connaissances sur le problème de hello souhaité toosolve. Certaines fonctionnalités sont mieux adaptées pour la prédiction cible hello que d’autres. En outre, certaines fonctionnalités ont une forte corrélation avec d’autres fonctionnalités et peuvent être supprimées. Par exemple, ville-mpg et mpg de bus sont étroitement liés afin que nous pouvons conserver l’un et supprimer hello autres sans trop affecter la prédiction de hello.
 
-Nous allons développer un modèle utilisant un sous-ensemble de ces fonctionnalités pour notre jeu de données. Vous pouvez revenir en arrière et sélectionner d’autres fonctionnalités, relancer l’expérience et voir si vous obtenez de meilleurs résultats. Mais pour commencer, nous allons essayer les fonctionnalités suivantes :
+Commençons par créer un modèle qui utilise un sous-ensemble de fonctionnalités de hello dans notre jeu de données. Vous pouvez revenir plus tard et sélectionner des fonctionnalités différentes, réexécutez l’expérience de hello et voir si vous obtenez les meilleurs résultats. Mais toostart, essayons hello suivant de fonctionnalités :
 
     make, body-style, wheel-base, engine-size, horsepower, peak-rpm, highway-mpg, price
 
 
-1. Faites glisser un autre module [Sélectionner des colonnes dans le jeu de données][select-columns] vers le canevas de l’expérience. Connectez le port de sortie de gauche du module [Nettoyage des données manquantes][clean-missing-data] à l’entrée du module [Sélectionner des colonnes dans le jeu de données][select-columns].
+1. Faites glisser une autre [sélectionner les colonnes dans le jeu de données] [ select-columns] module toohello expérimenter la zone de dessin. Se connecter hello gauche du port de sortie de hello [Clean Missing Data] [ clean-missing-data] entrée toohello de module de hello [sélectionner les colonnes dans le jeu de données] [ select-columns] module.
 
-    ![Connectez le module « Sélectionner des colonnes dans le jeu de données » au module « Nettoyage des données manquantes »][connect-clean-to-select]
+    ![Se connecter hello « Sélectionner les colonnes dans Dataset » toohello « Nettoyage des données manquantes » un module][connect-clean-to-select]
     <br/>
-    ***Connecter le module « Sélectionner les colonnes de jeu de données » dans le module « Nettoyage des données manquantes »***
+    ***Se connecter hello « Sélectionner les colonnes dans Dataset » toohello « Nettoyage des données manquantes » un module***
 
-2. Double-cliquez sur le module et saisissez le commentaire suivant : « Sélection des fonctionnalités pour la prévision ».
+2. Double-cliquez sur le module de hello et tapez « Sélectionner les fonctionnalités pour la prédiction. »
 
-2. Cliquez sur l’option **Lancer le sélecteur de colonne** figurant dans le volet **Propriétés**.
+2. Cliquez sur **sélecteur de colonne lancement** Bonjour **propriétés** volet.
 
 3. Cliquez sur **With rules**(À l’aide de règles).
 
-4. Sous **Commencer par**, cliquez sur **Aucune colonne**. Dans la ligne de filtre, sélectionnez **Inclure** et **Noms des colonnes**, puis sélectionnez notre liste de noms de colonnes dans la zone de texte. Cela amène le module à ne pas transmettre toutes les colonnes (fonctions), à l’exception de celles que nous spécifions.
+4. Sous **Commencer par**, cliquez sur **Aucune colonne**. Dans la ligne de filtre hello, sélectionnez **Include** et **les noms de colonnes** et sélectionnez la liste des noms de colonne dans la zone de texte hello. Cette fonction hello module toonot pass-through toutes les colonnes (fonctions), sauf ceux qui nous spécifions hello.
 
-5. Cliquez sur le bouton en forme de coche (OK) pour continuer.
+5. Cliquez sur le bouton de case à cocher (OK) hello.
 
-    ![Sélectionnez les colonnes (fonctions) à inclure dans la prédiction][select-columns-to-include]
+    ![Sélectionnez tooinclude de colonnes (fonctions) hello dans une prédiction de hello][select-columns-to-include]
     <br/>
-    ***Sélectionnez les colonnes (fonctions) à inclure dans la prédiction***
+    ***Sélectionnez tooinclude de colonnes (fonctions) hello dans une prédiction de hello***
 
-Cela produit un jeu de données filtré qui contient uniquement les fonctionnalités que nous souhaitons transmettre à l’algorithme d’apprentissage utilisé à l’étape suivante. Plus tard, vous pouvez reprendre la procédure en utilisant une autre sélection de fonctionnalités.
+Cela produit un jeu de données filtré contenant uniquement pour les fonctions hello que nous souhaitons toohello toopass algorithme, que nous allons utiliser à l’étape suivante de hello d’apprentissage. Plus tard, vous pouvez reprendre la procédure en utilisant une autre sélection de fonctionnalités.
 
 ## <a name="step-4-choose-and-apply-a-learning-algorithm"></a>Étape 4 : sélection et application d’un algorithme d’apprentissage
 
-À présent que les données sont prêtes, la construction d'un modèle de prévision passe par la formation et le test. Nous allons utiliser nos données pour former le modèle, puis tester le modèle pour voir dans quelle mesure il peut prédire les prix.
-<!-- For now, don't worry about *why* we need to train and then test a model.-->
+Maintenant que les données de salutation sont prêtes, la construction d’un modèle de prévision se compose de formation et de test. Nous allons utiliser notre modèle de hello tootrain données, puis nous testerons hello modèle toosee plus proche, il est en mesure de toopredict prix.
+<!-- For now, don't worry about *why* we need tootrain and then test a model.-->
 
-La *classification* et la *régression* sont deux types d’algorithmes de machine learning supervisé. La classification permet de prédire une réponse à partir d'un jeu de catégories défini, comme une couleur (rouge, bleu ou vert). La régression est utilisée pour prédire un nombre.
+La *classification* et la *régression* sont deux types d’algorithmes de machine learning supervisé. La classification permet de prédire une réponse à partir d'un jeu de catégories défini, comme une couleur (rouge, bleu ou vert). La régression est toopredict utilisé un nombre.
 
-Étant donné que nous voulons prédire un prix, correspondant à un nombre, nous allons utiliser un algorithme de régression. Dans cet exemple, nous allons utiliser un modèle simple de *régression linéaire*.
+Étant donné que nous souhaitons prix toopredict, qui est un nombre, nous allons utiliser un algorithme de régression. Dans cet exemple, nous allons utiliser un modèle simple de *régression linéaire*.
 
 > [!TIP]
-> Pour en savoir plus sur les différents types d’algorithmes de machine learning et pour savoir quand les utiliser, vous pouvez visionner la première vidéo de la série Science des données pour les débutants, intitulée [The five questions data science answers](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md) (Cinq questions auxquelles la science des données répond). Vous pouvez également consulter l’infographie [Principes de base du machine learning avec exemples d’algorithmes](machine-learning-basics-infographic-with-algorithm-examples.md), ou consulter l’[aide-mémoire d’algorithme Machine Learning](machine-learning-algorithm-cheat-sheet.md).
+> Si vous souhaitez toolearn plus d’informations sur les différents types d’algorithmes d’apprentissage automatique et lorsque toouse les, vous pourrez afficher la première vidéo de hello Bonjour science des données pour la série de débutants, [hello cinq questions réponses de science des données](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md). Vous pouvez également consulter graphisme d’information hello [Machine principes de base avec des exemples de l’algorithme d’apprentissage](machine-learning-basics-infographic-with-algorithm-examples.md), ou extrayez hello [Machine learning aide-mémoire algorithme](machine-learning-algorithm-cheat-sheet.md).
 
-Nous formons le modèle en lui fournissant un jeu de données qui inclut le prix. Le modèle analyse les données et recherche les corrélations entre les fonctionnalités d’un véhicule automobile et son prix. Puis nous testons le modèle : nous lui affectons un ensemble de fonctionnalités pour véhicules automobiles que nous connaissons et nous étudions la précision du modèle concernant la prédiction des prix.
+Nous former le modèle de hello en lui donnant un jeu de données qui inclut les prix hello. modèle de Hello analyse les données de salutation et recherchez des corrélations entre les fonctionnalités d’une voiture et son prix. Puis nous allons le tester le modèle de hello - nous allons lui donner un ensemble de fonctionnalités pour automobiles que nous connaissons et voir comment fermer modèle de hello proviennent des prix de toopredicting hello connus.
 
-Nous allons utiliser nos données pour la formation et le test en les divisant en jeux de données distincts de formation et de test.
+Nous allons utiliser nos données pour l’apprentissage du modèle de hello et tester en fractionnant les données de salutation en distinct d’apprentissage et jeux de données de test.
 
-1. Sélectionnez et faites glisser le module [Fractionner les données][split] sur le canevas d’expérience et connectez-le au dernier module [Sélectionner des colonnes dans le jeu de données][select-columns].
+1. Sélectionnez et faites glisser hello [données fractionnées] [ split] module toohello tester la zone de dessin et le connecter toohello dernière [sélectionner les colonnes dans le jeu de données] [ select-columns] module.
 
-2. Cliquez sur le module [Fractionner les données][split] pour le sélectionner. Rechercher **Fraction de lignes dans le premier jeu de données de sortie** (dans le volet **Propriétés** à droite du canevas) et attribuez-lui la valeur 0,75. Ainsi, nous allons utiliser 75 % des données pour former le modèle, et 25 % pour le tester. Par la suite, vous pourrez expérimenter d’autres pourcentages.
+2. Cliquez sur hello [données fractionnées] [ split] module tooselect il. Recherche hello **Fraction de lignes Bonjour tout d’abord de sortie dataset** (Bonjour **propriétés** toohello volet à droite de la zone de dessin hello) et la définir too0.75. Ainsi, nous allons utiliser 75 pour cent hello tootrain hello un modèle de données et maintenez la touche Retour 25 pour cent de test (une version ultérieure, vous pouvez expérimenter l’utilisation de différents pourcentages).
 
-    ![Attribuez à la part de fractionnement du module « Fractionner les données » la valeur 0,75][set-split-data-percentage]
+    ![Hello ensemble fractionner la fraction de hello « Données fractionnées » module too0.75][set-split-data-percentage]
     <br/>
-    ***La fraction de division du module « Données » la valeur 0,75***
+    ***Hello ensemble fractionner la fraction de hello « Données fractionnées » module too0.75***
 
     > [!TIP]
-    > En modifiant le paramètre **Valeur de départ aléatoire** , vous pouvez produire différents échantillons aléatoires pour la formation et le test. Ce paramètre contrôle la valeur de départ du générateur de nombres pseudo-aléatoire.
+    > En modifiant hello **valeur initiale aléatoire** paramètre, vous pouvez générer des échantillons aléatoires différents pour l’apprentissage et de test. Ce paramètre contrôle hello l’amorçage du Générateur de nombres pseudo-aléatoires hello.
 
-2. Exécutez l’expérience. Lors de l’expérience, les modules [Sélectionner des colonnes dans le jeu de données][select-columns] et [Fractionner les données][split] transmettent des définitions de colonne aux modules que nous allons ajouter par la suite.  
+2. Exécutez l’expérience de hello. Lors de l’expérience de hello est exécuté, hello [sélectionner les colonnes dans le jeu de données] [ select-columns] et [données fractionnées] [ split] modules passer toohello des définitions de colonne Nous allons ensuite ajouter les modules.  
 
-3. Pour sélectionner l’algorithme d’apprentissage, développez la catégorie **Machine Learning** dans la palette des modules, à gauche de la zone de dessin, puis développez **Initialiser le modèle**. Différentes catégories de modules s'affichent, permettant d'initialiser des algorithmes d'apprentissage automatique. Pour les besoins de cet exemple, sélectionnez le module [Régression linéaire][linear-regression] sous la catégorie **Régression**, puis faites-le glisser vers le canevas de l’expérience.
-Vous pouvez également rechercher le module en tapant « régression linéaire » dans la zone de recherche de la palette.
+3. hello tooselect algorithme d’apprentissage développez hello **Machine Learning** catégorie dans hello module toohello palette gauche de hello canevas, puis développez **initialiser le modèle**. Cela affiche plusieurs catégories de modules qui peuvent être des algorithmes d’apprentissage tooinitialize utilisé. Pour cette expérience, sélectionnez hello [régression linéaire] [ linear-regression] module sous hello **régression** catégorie et faites-le glisser toohello canevas de l’expérience.
+(Vous pouvez également trouver module de hello en tapant « régression linéaire » dans la zone de recherche de palette hello).
 
-4. Recherchez et faites glisser le module [Effectuer le traitement de données pour apprentissage du modèle][train-model] jusqu’à la zone de dessin de l’expérience. Connectez la sortie du module [Régression linéaire][linear-regression] à l’entrée de gauche du module [Former le modèle][train-model], puis connectez la sortie des données de formation (port gauche) du module [Fractionner les données][split] à l’entrée de droite du module [Former le modèle][train-model].
+4. Rechercher et faites glisser hello [Train Model] [ train-model] module toohello expérimenter la zone de dessin. Connectez la sortie hello Hello [régression linéaire] [ linear-regression] module toohello gauche entrée Hello [Train Model] [ train-model] module et connectez-vous hello apprentissage de sortie des données (port de gauche) de hello [données fractionnées] [ split] entrée droite de module toohello Hello [Train Model] [ train-model] module.
 
-    ![Connectez le module « Former le modèle » aux modules « Régression linéaire » et « Fractionner les données »][connect-train-model]
+    ![Connectez les hello « Train Model » module tooboth hello « Régression linéaire » et « Données fractionnées » modules][connect-train-model]
     <br/>
-    ***Connectez le module de « Train Model » aux modules de « Régression linéaire » et de « Données »***
+    ***Connectez les hello « Train Model » module tooboth hello « Régression linéaire » et « Données fractionnées » modules***
 
-5. Cliquez sur le module [Effectuer le traitement de données][train-model] pour apprentissage du modèle, cliquez sur l’option **Lancer le sélecteur de colonne** du volet **Propriétés** et sélectionnez la colonne **Price**. Il s’agit de la valeur que notre modèle va prévoir.
+5. Cliquez sur hello [Train Model] [ train-model] module, cliquez sur **sélecteur de colonne lancement** Bonjour **propriétés** volet, puis sélectionnez hello **prix** colonne. Il s’agit de valeur hello que notre modèle est continu toopredict.
 
-    Vous pouvez sélectionner la colonne **price** dans le sélecteur de colonne en la faisant passer de la liste **Colonnes disponibles** à la liste **Colonnes sélectionnées**.
+    Vous sélectionnez hello **prix** colonne dans le sélecteur de colonne hello en le déplaçant de hello **colonnes disponibles** liste toohello **colonnes sélectionnées** liste.
 
-    ![Sélectionnez la colonne price pour le module « Former le modèle »][select-price-column]
+    ![Sélectionnez la colonne du prix hello pour le module de « Train Model » hello][select-price-column]
     <br/>
-    ***Sélectionnez la colonne du prix pour le module « Train Model »***
+    ***Sélectionnez la colonne du prix hello pour le module de « Train Model » hello***
 
-6. Exécutez l’expérience.
+6. Exécutez l’expérience de hello.
 
-Nous disposons à présent d’un modèle de régression formé qui permet de noter de nouvelles données automobiles pour effectuer des prédictions de prix.
+Nous disposons désormais d’un modèle de régression formé qui peut être utilisé tooscore nouvelles données automobile toomake prix prédictions.
 
-![Une fois l’exécution terminée, l’expérience doit ressembler à ceci :][second-experiment-run]
+![Après l’exécution, expérience de hello doit maintenant ressembler à ceci][second-experiment-run]
 <br/>
-***Une fois l’exécution terminée, l’expérience doit ressembler à ceci :***
+***Après l’exécution, expérience de hello doit maintenant ressembler à ceci***
 
 ## <a name="step-5-predict-new-automobile-prices"></a>Étape 5 : prédiction des nouveaux prix des voitures
 
-À présent que nous avons formé le modèle à l'aide de 75 % de nos données, nous pouvons l'utiliser pour la notation du reste de nos données (25 %), afin de voir s'il fonctionne correctement.
+Maintenant que nous avons formé le modèle de hello à l’aide de 75 pour cent de nos données, nous pouvons utiliser tooscore hello autres 25 pour cent de toosee de données hello degré nos fonctions de modèle.
 
-1. Recherchez et faites glisser le module [Noter le modèle][score-model] vers le canevas de l’expérience. Connectez la sortie du module [Former le modèle][train-model] au port d’entrée de gauche [Noter le modèle][score-model]. Connectez la sortie de données de test (port de droite) du module [Split Data][split] au port d’entrée de droite de [Score Model][score-model].
+1. Rechercher et faites glisser hello [Score Model] [ score-model] module toohello expérimenter la zone de dessin. Connectez la sortie hello Hello [Train Model] [ train-model] toohello module gauche d’un port d’entrée de [Score Model][score-model]. Se connecter hello test sortie des données (port de droite) de hello [données fractionnées] [ split] toohello module droit d’entrée de port de [Score Model][score-model].
 
-    ![Connectez le module « Noter le modèle » aux modules « Former le modèle » et « Fractionner les données »][connect-score-model]
+    ![Se connecter hello « Modèle de Score » module tooboth hello « Train Model » et « Données fractionnées » modules][connect-score-model]
     <br/>
-    ***Connectez le module de « Modèle de Score » aux modules « Train Model » et de « Données »***
+    ***Se connecter hello « Modèle de Score » module tooboth hello « Train Model » et « Données fractionnées » modules***
 
-2. Pour exécuter l’expérience et afficher la sortie du module [Score Model][score-model] (cliquez sur le port de sortie de [Score Model][score-model] et sélectionnez **Visualiser**). La sortie affiche les valeurs de prévision associées au prix, ainsi que les valeurs connues des données de test.  
+2. Exécutez hello expérience et affichage de la sortie à partir de hello hello [Score Model] [ score-model] module (cliquez sur le port de sortie hello du [Score Model] [ score-model] et sélectionnez **Visualiser**). montre la sortie Hello hello valeurs prédites pour un prix et hello des valeurs connues à partir des données de test hello.  
 
-    ![Sortie du module « Noter le modèle »][score-model-output]
+    ![Sortie de module de « Modèle de Score » hello][score-model-output]
     <br/>
-    ***Sortie du module « Modèle de Score »***
+    ***Sortie de module de « Modèle de Score » hello***
 
-3. Enfin, nous testons la qualité des résultats. Sélectionnez et faites glisser le module [Évaluer le modèle][evaluate-model] vers le canevas de l’expérience, puis connectez la sortie du module [Noter le modèle][score-model] à l’entrée de gauche du module [Évaluer le modèle][evaluate-model].
+3. Enfin, nous testons la qualité des résultats de hello hello. Sélectionnez et faites glisser hello [modèle Evaluate] [ evaluate-model] toohello de module d’expérimenter canevas et connectez sortie hello Hello [Score Model] [ score-model] toohello module gauche de l’entrée de [modèle Evaluate][evaluate-model].
 
     > [!TIP]
-    > Il existe deux ports d’entrée sur le module [Évaluer le modèle][evaluate-model], car ce dernier peut être utilisé pour comparer deux modèles. Plus tard, vous pourrez ajouter un autre algorithme à l’expérience et utiliser [Évaluer le modèle][evaluate-model] pour déterminer quel module donne les meilleurs résultats.
+    > Il existe deux ports d’entrée sur hello [modèle Evaluate] [ evaluate-model] module, car il peut être utilisé toocompare deux modèles côte à côte. Une version ultérieure, vous pouvez ajouter une autre expérience de toohello algorithme et utiliser [modèle Evaluate] [ evaluate-model] toosee celui qui donne de meilleurs résultats.
 
-4. Exécutez l’expérience.
+4. Exécutez l’expérience de hello.
 
-Pour afficher la sortie du module [Evaluate Model][evaluate-model], cliquez sur le port de sortie, puis sélectionnez **Visualiser**.
+sortie hello tooview hello [modèle Evaluate] [ evaluate-model] module, cliquez sur le port de sortie hello et sélectionnez **visualiser**.
 
-![Résultats de l’évaluation de l’expérience][evaluation-results]
+![Résultats d’évaluation pour une expérience de hello][evaluation-results]
 <br/>
-***Résultats de l’évaluation de l’expérience***
+***Résultats d’évaluation pour une expérience de hello***
 
-Les statistiques suivantes s’affichent pour notre modèle :
+Hello suit les statistiques est affiché pour notre modèle :
 
-- **Erreur d’absolue moyenne** (EAM) : la moyenne des erreurs absolues (une *erreur* correspond à la différence entre la valeur prévue et la valeur réelle).
-- **Racine de l’erreur quadratique moyenne** (RMSE) : la racine carrée de la moyenne des erreurs carrées des prévisions effectuées sur le jeu de données de test.
-- **Erreur absolue relative**: la moyenne des erreurs absolues relative à la différence absolue entre les valeurs réelles et la moyenne de toutes les valeurs réelles.
-- **Erreur carrée relative**: la moyenne des erreurs carrées relative à la différence carrée entre les valeurs réelles et la moyenne de toutes les valeurs réelles.
-- **Coefficient de détermination** : aussi nommé **valeur R au carré**, il s’agit d’une mesure statistique indiquant à quel point un modèle correspond aux données.
+- **Erreur d’absolue moyenne** (MAE) : hello moyenne des erreurs absolus (un *erreur* est la différence de hello hello prédit la valeur et la valeur réelle de hello).
+- **Erreur quadratique moyenne de racine** (RMSE) : hello racine carrée moyenne hello d’erreurs au carré de prédictions effectués sur le jeu de données de test hello.
+- **Erreur absolue relative**: hello moyenne des erreurs absolu relatif toohello absolue de la différence entre les valeurs réelles et moyenne hello de toutes les valeurs réelles.
+- **Erreur quadratique relative**: toohello relatif d’erreur quadratique moyenne hello carré de la différence entre les valeurs réelles hello et moyenne hello de toutes les valeurs réelles.
+- **Coefficient de détermination**: hello également appelé **carré de la valeur R**, il s’agit d’une mesure statistique qui indique comment un modèle correspond à des données de hello.
 
-Pour chacune des statistiques liées aux erreurs, les valeurs les plus petites sont privilégiées. En effet, une valeur plus petite indique un degré de correspondance plus étroit avec la valeur réelle. Plus la valeur du **Coefficient de détermination**, est proche de un (1.0), plus la prévision est correcte.
+Pour chaque erreur de hello statistiques, la plus petite sont préférable. Une valeur inférieure indique que les prédictions hello plus proche les valeurs réelles hello. Pour **Coefficient de détermination**, hello proche sa valeur est tooone (1.0), meilleures prédictions de hello hello.
 
 ## <a name="final-experiment"></a>Expérience finale
 
-L’expérience finale doit ressembler à ceci :
+expérience finale de Hello doit ressembler à ceci :
 
-![Expérience finale][complete-linear-regression-experiment]
+![expérience de final Hello][complete-linear-regression-experiment]
 <br/>
-***Expérience finale***
+***expérience de final Hello***
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-À présent que vous avez terminé le premier didacticiel sur le machine learning et que vous avez configuré votre expérience, vous pouvez continuer à améliorer le modèle, puis le déployer en tant que service web prédictif.
+Maintenant que vous avez terminé hello première machine learning didacticiel et que vous avez votre expérience de configuration, vous pouvez continuer de modèle de hello tooimprove et ensuite le déployer en tant qu’un service web prédictif.
 
-- **Création d’une itération pour améliorer le modèle** : par exemple, vous pouvez modifier les fonctionnalités que vous utilisez dans votre prédiction. Ou vous pouvez modifier les propriétés de l'algorithme [Régression linéaire][linear-regression], ou essayer un autre algorithme. Vous pouvez même ajouter plusieurs algorithmes d'apprentissage automatique à la fois à votre expérience et comparer deux d’entre eux à l'aide du module [Evaluate Model][evaluate-model].
-Pour découvrir comment comparer plusieurs modèles dans le cadre d’une expérience unique, consultez [Compare Regressors](https://gallery.cortanaintelligence.com/Experiment/Compare-Regressors-5) (Comparer les régresseurs) dans la [galerie Cortana Intelligence](https://gallery.cortanaintelligence.com).
+- **Itérer au sein du modèle de hello tootry tooimprove** -par exemple, vous pouvez modifier les fonctionnalités de hello vous utilisez dans votre prédiction. Ou vous pouvez modifier les propriétés de hello Hello [régression linéaire] [ linear-regression] algorithme ou essayez un autre algorithme complètement. Vous pouvez même ajouter plusieurs expérience d’apprentissage algorithmes tooyour en même temps et comparer deux d'entre eux à l’aide de hello [modèle Evaluate] [ evaluate-model] module.
+Pour obtenir un exemple de toocompare plusieurs modèles dans une expérience unique, voir [Compare Regressors](https://gallery.cortanaintelligence.com/Experiment/Compare-Regressors-5) Bonjour [Cortana Intelligence galerie](https://gallery.cortanaintelligence.com).
 
     > [!TIP]
-    > Pour copier une itération de votre expérience, utilisez le bouton **ENREGISTRER SOUS** au bas de la page. Vous pouvez afficher toutes les itérations de votre expérience en cliquant sur **AFFICHER L’HISTORIQUE D’EXÉCUTION** au bas de la page. Pour en savoir plus, consultez la section [Gérer les itérations des expériences dans Microsoft Azure Machine Learning Studio][runhistory].
+    > toocopy une itération de votre expérience, utilisez hello **SAVE AS** bouton bas hello de page de hello. Vous pouvez voir toutes les itérations hello de votre expérience en cliquant sur **afficher l’historique d’exécution** bas hello de page de hello. Pour en savoir plus, consultez la section [Gérer les itérations des expériences dans Microsoft Azure Machine Learning Studio][runhistory].
 
 [runhistory]: machine-learning-manage-experiment-iterations.md
 
-- **Déploiement du modèle en tant que service web prédictif** : une fois satisfait de votre modèle, vous pouvez le déployer en tant que service web permettant de prédire l’évolution des prix dans le secteur automobile, au moyen de nouvelles données. Consultez la section [Déployer un service web Microsoft Azure Machine Learning][publish] pour en savoir plus.
+- **Déployer le modèle hello comme un service web prédictif** : quand vous êtes satisfait de votre modèle, vous pouvez le déployer comme un toobe de service web utilisé toopredict « prix automobile » à l’aide de nouvelles données. Consultez la section [Déployer un service web Microsoft Azure Machine Learning][publish] pour en savoir plus.
 
 [publish]: machine-learning-publish-a-machine-learning-web-service.md
 
-Vous souhaitez en savoir plus ? Pour obtenir un guide complet et détaillé du processus de création, formation, notation et déploiement d’un modèle, consultez [Développer une solution prédictive à l’aide d’Azure Machine Learning][walkthrough].
+Vous souhaitez toolearn plus ? Pour une présentation plus complète et détaillée du processus de création, la formation, calculer les scores et déploiement d’un modèle de hello, consultez [développer une solution prédictive à l’aide d’Azure Machine Learning][walkthrough].
 
 [walkthrough]: machine-learning-walkthrough-develop-predictive-solution.md
 
@@ -356,7 +356,7 @@ Vous souhaitez en savoir plus ? Pour obtenir un guide complet et détaillé du p
 [evaluation-results]:./media/machine-learning-create-experiment/evaluation-results.png
 [complete-linear-regression-experiment]:./media/machine-learning-create-experiment/complete-linear-regression-experiment.png
 
-<!-- temporarily switching GIFs to PNGs to remove animation --> 
+<!-- temporarily switching GIFs tooPNGs tooremove animation --> 
 [type-automobile]:./media/machine-learning-create-experiment/type-automobile.png
 [type-select-columns]:./media/machine-learning-create-experiment/type-select-columns.png
 [launch-column-selector]:./media/machine-learning-create-experiment/launch-column-selector.png
@@ -365,7 +365,7 @@ Vous souhaitez en savoir plus ? Pour obtenir un guide complet et détaillé du p
 
 [set-split-data-percentage]:./media/machine-learning-create-experiment/set-split-data-percentage.png
 
-<!-- temporarily switching GIFs to PNGs to remove animation --> 
+<!-- temporarily switching GIFs tooPNGs tooremove animation --> 
 [connect-train-model]:./media/machine-learning-create-experiment/connect-train-model.png
 [select-price-column]:./media/machine-learning-create-experiment/select-price-column.png
 

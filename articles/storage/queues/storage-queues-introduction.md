@@ -1,6 +1,6 @@
 ---
-title: "Présentation du Stockage File d’attente Azure | Microsoft Docs"
-description: "Présentation du Stockage File d’attente Azure"
+title: "aaaIntroduction tooAzure stockage de file d’attente | Documents Microsoft"
+description: "Introduction tooAzure stockage de file d’attente"
 services: storage
 documentationcenter: 
 author: robinsh
@@ -14,41 +14,41 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/07/2017
 ms.author: robinsh
-ms.openlocfilehash: 4db7552a1b76c89151405c55c8682abbb5326bb6
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 669effedff7beedde8a119c350a2a70edafedcf0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="introduction-to-queues"></a>Présentation des files d’attente
+# <a name="introduction-tooqueues"></a>Introduction tooQueues
 
-Les files d’attente de stockage Azure sont un service permettant de stocker un grand nombre de messages accessibles depuis n’importe où dans le monde via des appels authentifiés avec HTTP ou HTTPS. Un simple message de file d’attente peut avoir une taille de 64 Ko et une file d’attente peut contenir des millions de messages, jusqu’à la limite de capacité totale d’un compte de stockage.
+Stockage de file d’attente Azure est un service pour stocker un grand nombre de messages qui sont accessibles à partir de n’importe où dans le monde hello via des appels authentifiés à l’aide de HTTP ou HTTPS. Un message de la file d’attente unique peut être de taille too64 Ko, et une file d’attente peut contenir des millions de messages, des limites de capacité totale de toohello d’un compte de stockage.
 
 ## <a name="common-uses"></a>Utilisations courantes
 
 Voici quelques utilisations courantes des files d’attente de stockage :
 
-* Création d'un journal des travaux en souffrance de travail à traiter de manière asynchrone
-* Transmission de messages d’un rôle web Azure à un rôle de travail Azure
+* Création d’une file d’attente de travail tooprocess asynchrone
+* Transmission de messages à partir d’un rôle de travail Azure tooan rôle web Azure
 
 ## <a name="queue-service-concepts"></a>Concepts du service File d’attente
 
-Le service de file d’attente contient les composants suivants :
+Hello service file d’attente contient hello suivant des composants :
 
 ![Concepts de File d’attente](./media/storage-queues-introduction/queue1.png)
 
-* **Format d’URL :** les files d’attente sont adressables à l’aide du format d’URL suivant :   
+* **Format d’URL :** files d’attente sont adressables hello suivant le format d’URL :   
     http://`<storage account>`.queue.core.windows.net/`<queue>` 
   
-    L'URL suivante désigne une file d'attente du schéma :  
+    Hello suivant URL traite une file d’attente dans le diagramme de hello :  
   
     `http://myaccount.queue.core.windows.net/images-to-download`
 
-* **Compte de stockage :** tous les accès au Stockage Azure s’effectuent via un compte de stockage. Pour plus d’informations sur la capacité du compte de stockage, consultez la page [Objectifs de performance et évolutivité du stockage Azure](../common/storage-scalability-targets.md?toc=%2fazure%2fstorage%2fqueues%2ftoc.json) .
+* **Compte de stockage :** tous accéder tooAzure stockage s’effectue via un compte de stockage. Pour plus d’informations sur la capacité du compte de stockage, consultez la page [Objectifs de performance et évolutivité du stockage Azure](../common/storage-scalability-targets.md?toc=%2fazure%2fstorage%2fqueues%2ftoc.json) .
 
-* **File d’attente :** une file d’attente contient un ensemble de messages. Tous les messages doivent être dans une file d’attente. Notez que le nom de la file d’attente doit être en minuscules. Pour plus d'informations sur l’affectation de noms à des files d’attente, consultez [Affectation de noms pour les files d'attente et les métadonnées](https://msdn.microsoft.com/library/azure/dd179349.aspx).
+* **File d’attente :** une file d’attente contient un ensemble de messages. Tous les messages doivent être dans une file d’attente. Notez que ce nom de file d’attente hello doit être en minuscule. Pour plus d'informations sur l’affectation de noms à des files d’attente, consultez [Affectation de noms pour les files d'attente et les métadonnées](https://msdn.microsoft.com/library/azure/dd179349.aspx).
 
-* **Message :** message dans n’importe quel format d’une taille maximale de 64 Ko. La durée maximale pendant laquelle un message peut rester dans la file d’attente est de sept jours.
+* **Message :** un message, dans n’importe quel format, des too64 Ko. Hello durée maximale pendant laquelle un message peut rester dans la file d’attente hello est de sept jours.
 
 ## <a name="next-steps"></a>Étapes suivantes
 

@@ -1,5 +1,5 @@
 ---
-title: "Exploration des journaux de traçage Java dans Application Insights | Documents Microsoft"
+title: aaaExplore trace de Java consigne dans Azure Application Insights | Documents Microsoft
 description: Recherche de suivi Log4J ou Logback dans Application Insights
 services: application-insights
 documentationcenter: java
@@ -13,29 +13,29 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/12/2016
 ms.author: bwren
-ms.openlocfilehash: 5baba3deaf58a1a24995c60381592a9c2ffefd81
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: e5f8e8c67e57753ba7574b97aa96dbb41db00ce1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="explore-java-trace-logs-in-application-insights"></a>Exploration du suivi des journaux Java dans Application Insights
-Si vous utilisez Logback ou Log4J (v1.2 ou v2.0) pour le suivi, vous pouvez faire en sorte que vos journaux de suivi soient envoyés automatiquement à Application Insights, où vous pouvez les explorer et effectuer des recherches.
+Si vous utilisez Logback ou Log4J (version 1.2 ou version 2.0) pour le suivi, vous pouvez avoir vos journaux de trace envoyés automatiquement tooApplication Insights où vous pouvez Explorer et effectuer des recherches.
 
-## <a name="install-the-java-sdk"></a>Installer le Kit de développement logiciel (SDK) Java
+## <a name="install-hello-java-sdk"></a>Installer hello Kit de développement logiciel Java
 
 Installez le [kit de développement logiciel (SDK) Application Insights pour Java][java], si ce n’est pas déjà fait.
 
-(Si vous ne voulez pas suivre les demandes HTTP, vous pouvez omettre la majeure partie du fichier de configuration .xml, mais vous devez inclure au moins l’élément `InstrumentationKey`. Vous devez également appeler `new TelemetryClient()` pour initialiser le Kit de développement logiciel [SDK].)
+(Si vous ne souhaitez pas les demandes tootrack HTTP, vous pouvez omettre la majeure partie du fichier de configuration .xml hello, mais vous devez inclure au moins hello `InstrumentationKey` élément. Vous devez également appeler `new TelemetryClient()` tooinitialize hello SDK.)
 
 
-## <a name="add-logging-libraries-to-your-project"></a>Ajouter des bibliothèques de journalisation à votre projet
-*Choisissez la méthode adaptée à votre projet.*
+## <a name="add-logging-libraries-tooyour-project"></a>Ajouter un projet de tooyour de bibliothèques de journalisation
+*Choisissez hello approprié pour votre projet.*
 
 #### <a name="if-youre-using-maven"></a>Si vous utilisez Maven...
-Si votre projet est déjà configuré pour être assemblé avec Maven, fusionnez les extraits de code suivants dans votre fichier pom.xml.
+Si votre projet est déjà configuré toouse Maven pour la build, un des hello suivant des extraits de code dans votre fichier pom.xml de fusion.
 
-Actualisez ensuite les dépendances du projet pour télécharger les fichiers binaires.
+Puis actualiser les dépendances du projet hello, les binaires de hello tooget téléchargés.
 
 *Logback*
 
@@ -77,9 +77,9 @@ Actualisez ensuite les dépendances du projet pour télécharger les fichiers bi
 ```
 
 #### <a name="if-youre-using-gradle"></a>Si vous utilisez Gradle...
-Si votre projet est déjà configuré pour utiliser Gradle, ajoutez une des lignes suivantes au groupe `dependencies` dans votre fichier build.gradle :
+Si votre projet est déjà configuré toouse Gradle pour la build, ajoutez l’un des hello suivant lignes toohello `dependencies` groupe dans votre fichier build.gradle :
 
-Actualisez ensuite les dépendances du projet pour télécharger les fichiers binaires.
+Puis actualiser les dépendances du projet hello, les binaires de hello tooget téléchargés.
 
 **Logback**
 
@@ -101,7 +101,7 @@ Actualisez ensuite les dépendances du projet pour télécharger les fichiers bi
 ```
 
 #### <a name="otherwise-"></a>Sinon...
-Téléchargez et décompressez l’appender approprié, puis ajoutez la bibliothèque qui convient à votre projet :
+Télécharger et extraire appender approprié de hello, puis ajouter un projet de tooyour hello bibliothèque appropriée :
 
 | Enregistreur | Télécharger | Bibliothèque |
 | --- | --- | --- |
@@ -109,8 +109,8 @@ Téléchargez et décompressez l’appender approprié, puis ajoutez la biblioth
 | Log4J v2.0 |[Kit de développement logiciel (SDK) avec appender Log4J v2](https://aka.ms/qypznq) |applicationinsights-logging-log4j2 |
 | Log4J v1.2 |[Kit de développement logiciel (SDK) avec appender Log4J v1.2](https://aka.ms/ky9cbo) |applicationinsights-logging-log4j1_2 |
 
-## <a name="add-the-appender-to-your-logging-framework"></a>Ajouter l’appender à votre infrastructure de journalisation
-Pour recevoir le suivi, fusionnez l’extrait de code approprié dans le fichier de configuration Log4J ou Logback : 
+## <a name="add-hello-appender-tooyour-logging-framework"></a>Ajouter l’infrastructure de journalisation de tooyour appender hello
+toostart mise en route de traces, fusion hello extrait de code toohello Log4J ou Logback les fichier de configuration : 
 
 *Logback*
 
@@ -153,12 +153,12 @@ Pour recevoir le suivi, fusionnez l’extrait de code approprié dans le fichier
     </root>
 ```
 
-Les appenders Application Insights peuvent être référencés par n’importe quel enregistreur configuré et pas nécessairement par l’enregistreur racine (comme indiqué dans les exemples de code ci-dessus).
+appenders d’Application Insights Hello peuvent être référencées par n’importe quel journal configuré et pas nécessairement par l’enregistreur d’événements de hello racine (comme indiqué dans les exemples de code hello ci-dessus).
 
-## <a name="explore-your-traces-in-the-application-insights-portal"></a>Explorer le suivi dans le portail Application Insights
-Maintenant que vous avez configuré votre projet pour qu’il envoie le suivi à Application Insights, vous pouvez rechercher et consulter ce suivi dans le portail Application Insights, dans le panneau [Recherche][diagnostic].
+## <a name="explore-your-traces-in-hello-application-insights-portal"></a>Explorer vos traces dans le portail Application Insights de hello
+Maintenant que vous avez configuré votre toosend projet effectue le suivi tooApplication Insights, vous pouvez afficher et rechercher ces suivis dans hello du portail Application Insights hello [recherche] [ diagnostic] panneau.
 
-![Dans Application Insights, ouvrez Recherche](./media/app-insights-java-trace-logs/10-diagnostics.png)
+![Dans le portail Application Insights hello, ouvrir la recherche](./media/app-insights-java-trace-logs/10-diagnostics.png)
 
 ## <a name="next-steps"></a>Étapes suivantes
 [Recherche de diagnostic][diagnostic]

@@ -1,6 +1,6 @@
 ---
-title: "Déterminer à quel moment un utilisateur spécifique pourra accéder à une application | Microsoft Docs"
-description: "Comment déterminer à quel moment un utilisateur très important pourra accéder à une application que vous avez configurée pour l’approvisionnement des utilisateurs avec Azure AD"
+title: "aaaFind quand un utilisateur spécifique sont en mesure de tooaccess une application | Documents Microsoft"
+description: "Comment toofind out quand un utilisateur d’essentiel être en mesure de tooaccess une application que vous avez configuré pour l’approvisionnement des utilisateurs auprès d’Azure AD"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,37 +13,37 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: fcefb31904cfb77022db0358e9feee6a0479db81
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: bb9520499dcc8bbbe6fae05c5238c8852815ea0a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="find-out-when-a-specific-user-will-be-able-to-access-an-application"></a>Déterminer à quel moment un utilisateur spécifique pourra accéder à une application
+# <a name="find-out-when-a-specific-user-will-be-able-tooaccess-an-application"></a>Savoir quand un utilisateur spécifique sera en mesure de tooaccess une application
 Lorsque vous utilisez l’approvisionnement automatique des utilisateurs avec une application, Azure AD approvisionne et met à jour automatiquement les comptes d’utilisateur dans une application selon différents éléments comme [l’affectation d’utilisateurs et de groupes](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-assign-user-azure-portal) et selon un intervalle régulier planifié (généralement toutes les 10 minutes).
 
 ## <a name="how-long-does-it-take"></a>Combien de temps cela prend-il ?
 
-Le temps nécessaire à l’approvisionnement d’un utilisateur donné sera différent selon qu’une synchronisation initiale « complète » a déjà eu lieu ou non.
+Hello temps d’un toobe utilisateur donné configuré dépend principalement ou non une synchronisation initiale « complète » a déjà eu lieu.
 
-La première synchronisation entre Azure AD et une application peut prendre de 20 minutes à plusieurs heures, en fonction de la taille de l’annuaire Azure AD et du nombre d’utilisateurs dans l’étendue de l’approvisionnement. 
+Hello première synchronisation entre Azure AD et une application peut prendre entre 20 minutes tooseveral heures, en fonction de la taille de hello du répertoire de hello Azure AD et hello des utilisateurs dans la portée pour la configuration. 
 
-Les synchronisations qui suivent la synchronisation initiale sont plus rapides (10 minutes, par exemple) car le service d’approvisionnement stocke les filigranes qui représentent l’état des deux systèmes après la synchronisation initiale, ce qui améliore les performances des synchronisations suivantes.
+Les synchronisations suivantes après la synchronisation initiale hello être plus rapides (par exemple, dans les 10 minutes), comme hello configuration service stocke les filigranes qui représentent l’état hello des deux systèmes après la synchronisation initiale hello, améliorer les performances des synchronisations suivantes.
 
-## <a name="how-to-check-the-status-of-a-user"></a>Vérification de l’état d’un utilisateur
+## <a name="how-toocheck-hello-status-of-a-user"></a>Comment toocheck hello état d’un utilisateur
 
-Pour consulter l’état de l’approvisionnement d’un utilisateur spécifique, consultez les journaux d’audit dans Azure AD.
+état de configuration hello toosee pour un utilisateur sélectionné, consultez hello les journaux d’Audit dans Azure AD.
 
-Les journaux d’audit d’approvisionnement sont accessibles dans le Portail Azure, sous l’onglet **Azure Active Directory &gt; Applications d’entreprise &gt; \[Nom de l’application\] &gt; Journaux d’audit**. Filtrez les journaux sur la catégorie **Approvisionnement des comptes** pour afficher uniquement les événements d’approvisionnement de cette application. Vous pouvez rechercher des utilisateurs en fonction de l’ID de correspondance qui a été configuré pour eux dans les mappages d’attributs. 
+Hello, journaux d’audit de configuration sont accessibles dans hello portail Azure, Bonjour **Azure Active Directory &gt; applications d’entreprise &gt; \[nom de l’Application\] &gt; lesjournauxd’Audit**onglet. Hello du filtre de session hello **l’approvisionnement de comptes** catégorie tooonly voir hello événements pour cette application de configuration. Vous pouvez rechercher des utilisateurs en fonction de hello « correspondance ID » qui a été configuré pour eux dans les mappages d’attributs hello. 
 
-Par exemple, si vous avez configuré le nom d’utilisateur principal ou l’adresse e-mail en tant qu’attribut correspondant côté Azure AD, et si l’utilisateur qui n’est pas approvisionné a la valeur « audrey@contoso.com », recherchez les journaux d’audit correspondant à « audrey@contoso.com » et passez en revue les entrées renvoyées.
+Par exemple, si vous avez configuré hello « nom d’utilisateur principal » ou « adresse de messagerie » comme hello attribut côté hello Azure AD correspondant, et ne pas en cours de configuration de l’utilisateur hello a la valeur «audrey@contoso.com«, puis les journaux audit hello de recherche pour »audrey@contoso.com» et passez en revue puis entrées retournées.
 
-Les journaux d’audit d’approvisionnement enregistrent toutes les opérations effectuées par le service d’approvisionnement, y compris :
+Hello d’audit de configuration journaux enregistrent toutes hello opérations effectuées par hello mise en service du service, y compris :
 
 * Interrogation d’Azure AD concernant les utilisateurs assignés qui se trouvent dans l’étendue de l’approvisionnement
-* Interrogation de l’application cible concernant l’existence de ces utilisateurs
-* Comparaison des objets utilisateur du système
-* Ajout, mise à jour ou désactivation du compte d’utilisateur dans le système cible en fonction de la comparaison
+* Interrogation d’application cible de hello existence hello de ces utilisateurs
+* Comparaison d’objets utilisateur hello entre le système de hello
+* Ajout, mise à jour ou la désactivation du compte d’utilisateur hello dans le système cible de hello en fonction de comparaison de hello
 
 ## <a name="next-steps"></a>Étapes suivantes
-[Automatisation de l’approvisionnement et de l’annulation de l’approvisionnement des utilisateurs pour les applications SaaS avec Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-saas-app-provisioning)
+[Automatiser la configuration de l’utilisateur et Deprovisioning tooSaaS Applications avec Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-saas-app-provisioning)».

@@ -1,5 +1,5 @@
 ---
-title: "Présentation du Centre de sécurité Azure | Microsoft Docs"
+title: "aaaIntroduction tooAzure centre de sécurité | Documents Microsoft"
 description: "Découvrez le Centre de sécurité Azure, ses fonctionnalités principales et son fonctionnement."
 services: security-center
 documentationcenter: na
@@ -14,65 +14,65 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/16/2017
 ms.author: terrylan
-ms.openlocfilehash: 8951167213da6ab5341c1ca420353ec625ef5424
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 287dbaaa7e2004c522f103595bc316261daf05b4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="introduction-to-azure-security-center"></a>Présentation du Centre de sécurité Azure
+# <a name="introduction-tooazure-security-center"></a>Introduction tooAzure centre de sécurité
 Découvrez le Centre de sécurité Azure, ses fonctionnalités principales et son fonctionnement.
 
 > [!NOTE]
-> Depuis début juin 2017, Security Center utilise Microsoft Monitoring Agent pour collecter et stocker des données. Pour plus d’informations, consultez l’article [Migration de plateforme Azure Security Center](security-center-platform-migration.md). Les informations contenues dans cet article représentent les fonctionnalités de Security Center après la transition vers Microsoft Monitoring Agent.
+> À compter de début juin 2017, centre de sécurité utiliser hello Microsoft Monitoring Agent toocollect et stocker des données. Consultez [Migration de plateforme Azure Security Center](security-center-platform-migration.md) toolearn plus. informations Hello dans cet article représentent les fonctionnalités du centre de sécurité après la transition toohello Microsoft Monitoring Agent.
 >
 >
 
 ## <a name="what-is-azure-security-center"></a>Qu’est-ce que le Centre de sécurité Azure ?
- Le Centre de sécurité vous aide à prévenir, détecter et résoudre les menaces grâce à une visibilité et un contrôle accrus de la sécurité de vos ressources Azure. Il fournit une surveillance de la sécurité et une gestion des stratégies intégrées pour l’ensemble de vos abonnements Azure, vous aidant ainsi à détecter les menaces qui pourraient passer inaperçues. De plus, il est compatible avec un vaste écosystème de solutions de sécurité.
+ Centre de sécurité vous permet d’empêcher, détecter et répondre toothreats avec une meilleure visibilité et un contrôle accru de la sécurité hello de vos ressources Azure. Il fournit une surveillance de la sécurité et une gestion des stratégies intégrées pour l’ensemble de vos abonnements Azure, vous aidant ainsi à détecter les menaces qui pourraient passer inaperçues. De plus, il est compatible avec un vaste écosystème de solutions de sécurité.
 
 ## <a name="key-capabilities"></a>Fonctionnalités clés
- Le Centre de sécurité propose des fonctions de prévention, de détection et de réponse aux menaces conviviales et efficaces, intégrées dans Azure. Ses fonctionnalités principales sont les suivantes :
+ Centre de sécurité offre des fonctions de prévention, de détection et de réponse qui sont générées dans tooAzure de menace efficace et facile à utiliser. Ses fonctionnalités principales sont les suivantes :
 
 | Étape | Fonctionnalité |
 | --- | --- |
-| Prévention |Surveille l’état de sécurité de vos ressources Azure |
-| Prévention | Définit des stratégies pour vos abonnements Azure en fonction des exigences en matière de sécurité de votre entreprise, du type d’application que vous utilisez et de la confidentialité de vos données |
-| Prévention | Utilise des recommandations de sécurité basées sur des stratégies pour guider les propriétaires de services dans le processus d’implémentation de contrôles nécessaires. |
+| Prévention |Moniteurs hello état de sécurité de vos ressources Azure |
+| Prévention | Définit les stratégies pour vos abonnements Azure, selon les exigences de sécurité de votre entreprise, les types de hello d’applications que vous utilisez et hello sensibilité de vos données |
+| Prévention | Propriétaires de service utilise piloté par stratégie de sécurité recommandations tooguide via un processus hello d’implémentation nécessaires des contrôles |
 | Prévention | Déploie rapidement des services de sécurité et les appliances de Microsoft et de partenaires |
-| Détection |Collecte et analyse automatiquement des données de sécurité à partir de vos ressources Azure, du réseau et des solutions partenaires telles que les logiciels anti-programme malveillant et les pare-feu. |
-| Détection | Utilise des informations globales concernant des menaces provenant de produits et services Microsoft, de Microsoft Digital Crimes Unit (DCU), de Microsoft Security Response Center (MSRC) et de sources externes |
+| Détection |Collecte et analyse les données de sécurité de vos ressources Azure, hello réseau et les solutions de partenaire comme des programmes de logiciel anti-programme malveillant et les pare-feu automatiquement |
+| Détection | Utilise global de la menace intelligence à partir de Microsoft produits et services, hello Microsoft Digital Crimes unité (DCU), hello MSRC Microsoft Security Response Center () et les flux externes |
 | Détection | Applique des analyses avancées, notamment l’apprentissage automatique (Machine Learning) et des études du comportement |
 | Réponse |Fournit des notifications d’incidents/alertes de sécurité hiérarchisées |
-| Réponse | Donne des informations sur la source de l’attaque et les ressources affectés |
-| Réponse | Suggère des manières d’empêcher l’attaque en cours et d’empêcher des attaques futures |
+| Réponse | Offre un aperçu source hello d’attaque de hello et ressources concernés |
+| Réponse | Suggère des façons toostop hello attaque en cours et d’empêcher des attaques futures |
 
 ## <a name="introductory-walkthrough"></a>Introduction pas à pas
 
 > [!NOTE]
-> Ce document présente le service à l’aide d’un exemple de déploiement. Ce document n’est pas un guide pas à pas.
+> Ce document présente le service de hello à l’aide d’un exemple de déploiement. Ce document n'est pas un guide pas à pas.
 >
 >
 
- Le Centre de sécurité est accessible à partir du [portail Azure](https://azure.microsoft.com/features/azure-portal/). [Connectez-vous au portail](https://portal.azure.com). Sous le menu principal du portail, faites défiler la page jusqu’à l’option **Centre de sécurité** ou sélectionnez la vignette **Centre de sécurité** que vous avez préalablement épinglée au tableau de bord du portail.
+ Vous accéder au centre de sécurité à partir de hello [portail Azure](https://azure.microsoft.com/features/azure-portal/). [Connectez-vous au portail de toohello](https://portal.azure.com). Sous les menus du portail principal hello, faites défiler toohello **centre de sécurité** option ou sélectionnez hello **centre de sécurité** vignette épinglées toohello portail tableau de bord.
 
 ![Mosaïque de sécurité dans le portail Azure][1]
 
 Dans le Centre de sécurité, vous pouvez définir des stratégies de sécurité, surveiller des configurations de sécurité et afficher des alertes de sécurité.
 
 ### <a name="security-policies"></a>Stratégies de sécurité
-Vous pouvez définir des stratégies pour vos abonnements Azure en fonction des besoins de votre entreprise en termes de sécurité. Vous pouvez également les personnaliser selon les types d’applications que vous utilisez ou de la sensibilité des données dans chaque abonnement. Par exemple, les ressources utilisées pour le développement ou le test peuvent présenter des exigences de sécurité différentes de celles qui sont utilisées pour les applications de production. De même, les applications dont les données sont réglementées telles que les informations d’identification personnelle (PII)) peuvent nécessiter un niveau de sécurité plus élevé.
+Vous pouvez définir des stratégies pour vos abonnements Azure, selon les exigences de sécurité de la société tooyour. Vous pouvez également personnaliser les types toohello des applications que vous utilisez ou toohello de niveau de sensibilité des données de salutation dans chaque abonnement. Par exemple, les ressources utilisées pour le développement ou le test peuvent présenter des exigences de sécurité différentes de celles qui sont utilisées pour les applications de production. De même, les applications dont les données sont réglementées telles que les informations d’identification personnelle (PII)) peuvent nécessiter un niveau de sécurité plus élevé.
 
 > [!NOTE]
-> Pour modifier une stratégie de sécurité, vous devez avoir le rôle d’administrateur de la sécurité, de propriétaire ou de collaborateur pour l’abonnement concerné. Pour plus d’informations sur les rôles et les actions autorisées dans Security Center, consultez [Permissions in Azure Security Center (Autorisations dans Azure Security Center)](security-center-permissions.md).
+> toomodify une stratégie de sécurité, vous devez être propriétaire d’un abonnement administrateur de sécurité ou hello ou un collaborateur. toolearn en savoir plus sur les rôles et les actions autorisées dans le centre de sécurité, consultez [autorisations dans le centre de sécurité Azure](security-center-permissions.md).
 >
 >
 
-Dans le panneau **Centre de sécurité**, sélectionnez la vignette **Stratégie** pour obtenir la liste de vos abonnements et groupes de ressources.   
+Sur hello **centre de sécurité** panneau, sélectionnez hello **stratégie** vignette pour obtenir la liste de vos abonnements et les groupes de ressources.   
 
 ![Panneau Centre de sécurité][2]
 
-Dans le panneau **Stratégie de sécurité**, sélectionnez un abonnement pour afficher les détails de la stratégie.
+Sur hello **stratégie de sécurité** panneau, sélectionnez un abonnement tooview hello les détails de stratégie.
 
 La **collecte de données** active la collecte de données pour une stratégie de sécurité. L’activation autorise les opérations suivantes :
 
@@ -80,73 +80,73 @@ La **collecte de données** active la collecte de données pour une stratégie d
 * Collecte d’événements de sécurité à des fins d’analyse et de détection de menaces.
 
 > [!NOTE]
-> La collecte de données est configurée au niveau de l’abonnement.
+> Collecte de données est configurée au niveau d’abonnement hello.
 >
 >
 
-Sélectionnez **Stratégie de prévention** pour ouvrir le panneau **Stratégie de prévention**. **Afficher les recommandations pour** : vous permet de choisir les contrôles de sécurité que vous voulez surveiller et les recommandations que vous voulez voir en fonction des besoins en matière de sécurité des ressources au sein de l’abonnement.
+Sélectionnez **stratégie de prévention de** tooopen hello **stratégie de prévention de** panneau. **Afficher les recommandations pour** vous permet de choisir des contrôles de sécurité hello toomonitor et hello recommandations que vous souhaitez toosee en fonction des besoins de sécurité hello des ressources de hello au sein de l’abonnement de hello souhaitées.
 
 ### <a name="security-recommendations"></a>Recommandations de sécurité
- Le Centre de sécurité analyse l’état de sécurité de vos ressources Azure pour identifier les vulnérabilités potentielles. Une liste de recommandations vous guide tout au long du processus de configuration des contrôles nécessaires. Voici quelques exemples :
+ Centre de sécurité analyse l’état de sécurité hello de vos ressources Azure tooidentify éventuelles failles de sécurité. Une liste de recommandations vous guide tout au long des processus de hello de la configuration de contrôles nécessaires. Voici quelques exemples :
 
-* Approvisionnement d’un logiciel anti-programme malveillant pour identifier et supprimer les programmes malveillants
-* Configuration de groupes de sécurité réseau et de règles pour contrôler le trafic vers les machines virtuelles
-* Approvisionnement de pare-feu d’applications web pour protéger vos applications web contre les attaques ciblées
+* Configuration du logiciel anti-programme malveillant toohelp identifier et supprimer les logiciels malveillants
+* Configuration réseau sécurité et groupes de règles toocontrol trafic tooVMs
+* Configuration des pare-feu d’applications web toohelp vous défendre contre des attaques qui ciblent vos applications web
 * Déploiement de mises à jour système manquantes
-* Correction des configurations de système d’exploitation qui ne suivent pas les recommandations
+* Adressage des configurations de système d’exploitation qui ne correspondent pas hello recommandé de lignes de base
 
-Cliquez sur la mosaïque **Recommandations** pour obtenir une liste de recommandations. Cliquez sur chaque recommandation pour afficher plus d’informations ou prendre des mesures pour résoudre le problème.
+Cliquez sur hello **recommandations** vignette pour obtenir la liste des recommandations. Cliquez sur chaque des informations supplémentaires recommandation tooview ou un problème de hello tooresolve tootake action.
 
 ![Recommandations de sécurité dans le Centre de sécurité Azure][5]
 
 ### <a name="security-state-of-azure-resources"></a>État de sécurité des ressources Azure
-La section **Prévention** du tableau de bord affiche la posture de sécurité globale de votre environnement par type de ressource (machines virtuelles, applications web et autres ressources).   
+Hello **prévention** section du tableau de bord hello affiche hello posture de sécurité globale de l’environnement hello par type de ressource, y compris des machines virtuelles, les applications web et autres ressources.   
 
-Sélectionnez un type de ressource dans la section **Prévention** pour afficher plus d’informations, notamment une liste des vulnérabilités de sécurité potentielles qui ont été identifiées. (Dans l’exemple ci-dessous, **Calcul** est sélectionné.)
+Sélectionnez un type de ressource sous **prévention** tooview plus d’informations, notamment une liste de toutes les éventuelles failles de sécurité qui ont été identifiées. (**De calcul** est sélectionné dans l’exemple hello ci-dessous.)
 
 ![Mosaïque d’intégrité des ressources][6]
 
 ### <a name="security-alerts"></a>Alertes de sécurité
- Le Centre de sécurité collecte, analyse et intègre automatiquement les données du journal à partir de vos ressources Azure, du réseau et des solutions partenaires telles que les logiciels anti-programme malveillant et les pare-feu. Quand des menaces sont détectées, une alerte de sécurité est créée. Voici quelques exemples de détections :
+ Centre de sécurité automatiquement collecte, analyse et intègre des données de journal à partir de vos ressources Azure, hello réseau et les solutions de partenaire comme des programmes de logiciel anti-programme malveillant et les pare-feu. Quand des menaces sont détectées, une alerte de sécurité est créée. Voici quelques exemples de détections :
 
 * Des machines virtuelles compromises qui communiquent avec des adresses IP connues comme étant malveillantes
 * Des programmes malveillants avancés qui sont détectés à l’aide du rapport d’erreurs Windows
 * Des attaques par force brute contre des machines virtuelles
 * Des alertes de sécurité de logiciels anti-programme malveillant et de pare-feu intégrés
 
-Un clic sur la mosaïque **Alertes de sécurité** affiche une liste d’alertes prioritaires.
+En cliquant sur hello **alertes de sécurité** vignette affiche une liste des alertes de priorité.
 
 ![Alertes de sécurité][7]
 
-Si vous sélectionnez une alerte, des informations supplémentaires sur l’attaque et des suggestions sur la manière d’y remédier s’affichent.
+Sélectionnez une alerte pour afficher plus d’informations sur les attaques hello et des suggestions pour tooremediate il.
 
 ![Détails des alertes de sécurité][8]
 
 ### <a name="partner-solutions"></a>Solutions de partenaires
-La vignette **Solutions de partenaires** permet de surveiller en un coup d’œil l’état de la sécurité de vos solutions de partenaires intégrées à votre abonnement Azure. Le Centre de sécurité affiche les alertes provenant des solutions.
+Hello **solutions de partenaire** vignette vous permet de contrôler à un état de sécurité hello aperçu de vos solutions de partenaire intégré à votre abonnement Azure. Centre de sécurité affiche les alertes provenant des solutions hello.
 
-Sélectionnez la vignette **Solutions de partenaires** . Un panneau s'ouvre et affiche la liste de toutes les solutions de partenaires connectées.
+Sélectionnez hello **solutions de partenaire** vignette. Un panneau s'ouvre et affiche la liste de toutes les solutions de partenaires connectées.
 
 ![Solutions de partenaires][9]
 
 ## <a name="get-started"></a>Prise en main
-Pour utiliser le Centre de sécurité, vous devez disposer d’un abonnement à Microsoft Azure. Le Centre de sécurité est activé avec votre abonnement Azure. Si vous n’avez pas d’abonnement, vous pouvez vous inscrire à un [essai gratuit](https://azure.microsoft.com/pricing/free-trial/).
+tooget a démarré avec le centre de sécurité, vous devez un tooMicrosoft abonnement Azure. Le Centre de sécurité est activé avec votre abonnement Azure. Si vous n’avez pas d’abonnement, vous pouvez vous inscrire à un [essai gratuit](https://azure.microsoft.com/pricing/free-trial/).
 
- Le Centre de sécurité est accessible à partir du [portail Azure](https://azure.microsoft.com/features/azure-portal/). Pour plus d’informations, voir la [documentation sur le portail](https://azure.microsoft.com/documentation/services/azure-portal/) .
+ Vous accéder au centre de sécurité à partir de hello [portail Azure](https://azure.microsoft.com/features/azure-portal/). Consultez hello [documentation portail](https://azure.microsoft.com/documentation/services/azure-portal/) toolearn plus.
 
-[Prise en main du Centre de sécurité Azure](security-center-get-started.md) vous guide à travers les composants de surveillance de sécurité et de gestion des stratégies de sécurité du Centre de sécurité.
+[Prise en main d’Azure Security Center](security-center-get-started.md) vous guide rapidement dans les composants de contrôle de la sécurité et de gestion hello du centre de sécurité.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Ce document vous a donné un aperçu du Centre de sécurité, de ses fonctions clés et de sa mise en route. Pour en savoir plus, consultez les ressources suivantes :
+Dans ce document, vous ont été introduites tooSecurity centre, ses fonctionnalités clées, et comment tooget a démarré. toolearn, voir hello suivant des ressources :
 
-* [Définition des stratégies de sécurité dans Azure Security Center](security-center-policies.md) : découvrez comment configurer des stratégies de sécurité pour vos groupes de ressources et abonnements Azure.
+* [Définition des stratégies de sécurité dans le centre de sécurité Azure](security-center-policies.md) : Découvrez comment tooconfigure des stratégies de sécurité pour vos abonnements Azure et les groupes de ressources.
 * [Gestion des recommandations de sécurité dans Azure Security Center](security-center-recommendations.md) : découvrez la façon dont les recommandations peuvent vous aider à protéger vos ressources Azure.
-* [Surveillance de l’intégrité de la sécurité dans Azure Security Center](security-center-monitoring.md) : découvrez comment surveiller l’intégrité de vos ressources Azure.
-* [Gestion et résolution des alertes de sécurité dans Azure Security Center](security-center-managing-and-responding-alerts.md) : découvrez comment gérer et résoudre les alertes de sécurité.
-* [Surveillance des solutions de partenaire avec Azure Security Center](security-center-partner-solutions.md) : découvrez comment surveiller l’état d’intégrité de vos solutions de partenaire.
+* [Contrôle d’intégrité de la sécurité dans le centre de sécurité Azure](security-center-monitoring.md) — Découvrez comment toomonitor hello d’intégrité de vos ressources Azure.
+* [Toosecurity répond et de la gestion des alertes dans le centre de sécurité Azure](security-center-managing-and-responding-alerts.md) : en savoir comment les alertes toosecurity toomanage et y répondre.
+* [Surveillance des solutions de partenaire avec Azure Security Center](security-center-partner-solutions.md) — Découvrez comment toomonitor hello état d’intégrité de vos solutions de partenaire.
 - [Sécurité des données Azure Security Center](security-center-data-security.md) : découvrez comment les données sont gérées et protégées dans Security Center.
-* [FAQ d’Azure Security Center](security-center-faq.md) : découvrez les réponses aux questions les plus souvent posées à propos de l’utilisation de ce service.
-* [Blog sur la sécurité Azure](http://blogs.msdn.com/b/azuresecurity/) : découvrez les dernières nouvelles et informations sur la sécurité Azure.
+* [Forum aux questions sur Azure Security Center](security-center-faq.md) : Forum aux questions sur l’utilisation hello service de recherche.
+* [Blog de sécurité Azure](http://blogs.msdn.com/b/azuresecurity/) : obtenir les dernières informations de sécurité Azure hello et informations.
 
 <!--Image references-->
 [1]: ./media/security-center-intro/security-tile.png

@@ -1,6 +1,6 @@
 ---
-title: "Utilisation de Fiddler pour évaluer et tester les API REST du service Recherche Azure | Microsoft Docs"
-description: "Utilisation de Fiddler dans une approche sans code pour vérifier la disponibilité d'Azure Search et tester les API REST."
+title: "aaaHow toouse Fiddler tooevaluate et tester l’API REST de recherche Azure | Documents Microsoft"
+description: "Utilisez Fiddler pour une approche sans code tooverifying Azure rechercher la disponibilité et la tentative de hello API REST."
 services: search
 documentationcenter: 
 author: HeidiSteen
@@ -14,13 +14,13 @@ ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.date: 10/27/2016
 ms.author: heidist
-ms.openlocfilehash: c38b73fa69bee34ce2434c6274cb017c99ef3c35
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2912e1180717d7b40a1e4f7f7f00daf2cc254f0b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-fiddler-to-evaluate-and-test-azure-search-rest-apis"></a>Utilisation de Fiddler pour évaluer et tester les API REST Azure Search
+# <a name="use-fiddler-tooevaluate-and-test-azure-search-rest-apis"></a>Utilisez Fiddler tooevaluate et tester l’API REST de recherche Azure
 > [!div class="op_single_selector"]
 >
 > * [Vue d'ensemble](search-query-overview.md)
@@ -31,34 +31,34 @@ ms.lasthandoff: 07/11/2017
 >
 >
 
-Cet article explique comment utiliser Fiddler, disponible en [téléchargement gratuit auprès de Telerik](http://www.telerik.com/fiddler), pour émettre des requêtes HTTP et afficher les réponses à l’aide de l’API REST Azure Search, sans avoir à écrire de code. Azure Search est un service de recherche hébergé sur le cloud entièrement géré, disponible sur Microsoft Azure et facilement programmable via les API .NET et REST. Les API REST du service Azure Search sont documentées sur [MSDN](https://msdn.microsoft.com/library/azure/dn798935.aspx).
+Cet article explique comment toouse Fiddler, disponible en tant qu’un [téléchargement gratuit de Telerik](http://www.telerik.com/fiddler), tooissue HTTP demandes tooand afficher les réponses de l’aide de hello API REST de Azure Search, sans avoir à toowrite n’importe quel code. Azure Search est un service de recherche hébergé sur le cloud entièrement géré, disponible sur Microsoft Azure et facilement programmable via les API .NET et REST. Hello service Azure Search API REST sont documentées dans [MSDN](https://msdn.microsoft.com/library/azure/dn798935.aspx).
 
-Dans les opérations qui suivent, vous allez créer un index, télécharger des documents, interroger l’index, puis interroger le système pour obtenir des informations de service.
+Bonjour comme suit, vous allez créer un index, télécharger des documents, index de requête hello et interrogation du système hello pour les informations de service.
 
-Pour effectuer cette procédure, vous avez besoin d'un service Azure Search et `api-key`. Consultez [Création d'un service Azure Search dans le portail](search-create-service-portal.md) pour obtenir des instructions sur la procédure de mise en route.
+toocomplete ces étapes, vous devez un service Azure Search et `api-key`. Consultez [créer un service Azure Search dans le portail de hello](search-create-service-portal.md) pour obtenir des instructions sur le mode de démarrage tooget.
 
 ## <a name="create-an-index"></a>Création d'un index
-1. Démarrez Fiddler. Dans le menu **Fichier**, désactivez **Capturer le trafic** pour masquer les activités HTTP externes qui ne sont pas en rapport avec la tâche actuelle.
-2. Sous l’onglet **Compositeur** , formulez une demande comparable à la capture d’écran suivante.
+1. Démarrez Fiddler. Sur hello **fichier** menu, désactiver **capturer le trafic** toohide superflus HTTP activité de tâche en cours de toohello non liées.
+2. Sur hello **Composer** onglet, vous pouvez formuler une requête qui ressemble à hello suivant capture d’écran.
 
       ![][1]
 3. Sélectionnez **PUT**.
-4. Saisissez une URL qui spécifie l’URL de service, les attributs de la demande et la version de l’API. Voici quelques points à garder à l'esprit :
+4. Entrez une URL qui spécifie l’URL du service hello, des attributs de demande et hello api-version. Quelques tookeep de pointeurs à l’esprit :
 
-   * Utilisez le préfixe HTTPS.
-   * L'attribut de demande est « /indexes/hotels ». Cela indique à Search de créer un index intitulé « hotels ».
-   * La version d’API est en minuscules et elle est spécifiée comme suit : « ?api-version=2016-09-01 ». Les versions d'API sont importantes, car Azure Search déploie régulièrement des mises à jour. En de rares cas, une mise à jour de service peut introduire une modification avec rupture dans l'API. Pour cette raison, Azure Search requiert une version d’api à chaque demande, pour vous donner le contrôle total quant à celle qui est utilisée.
+   * Utiliser HTTPS en tant que préfixe de hello.
+   * L'attribut de demande est « /indexes/hotels ». Recherche toocreate indique à un index nommé « hôtels ».
+   * La version d’API est en minuscules et elle est spécifiée comme suit : « ?api-version=2016-09-01 ». Les versions d'API sont importantes, car Azure Search déploie régulièrement des mises à jour. Dans de rares occasions, un service de mise à jour peut introduire une toohello de modification avec rupture API. Pour cette raison, Azure Search requiert une version d’api à chaque demande, pour vous donner le contrôle total quant à celle qui est utilisée.
 
-     L’URL complète doit être semblable à celle figurant dans l’exemple suivant :
+     URL complète de Hello doit ressembler toohello similaire, l’exemple suivant.
 
              https://my-app.search.windows.net/indexes/hotels?api-version=2016-09-01
-5. Spécifiez l'en-tête de demande, en remplaçant l'hôte et la clé API par des valeurs qui sont valides pour votre service.
+5. Spécifiez l’en-tête de demande hello, en remplaçant les hôte hello et clé d’api avec des valeurs qui sont valides pour votre service.
 
          User-Agent: Fiddler
          host: my-app.search.windows.net
          content-type: application/json
          api-key: 1111222233334444
-6. Dans Corps de la demande, collez les champs qui composent la définition d'index.
+6. Dans le corps de la demande, collez dans les champs de hello qui composent la définition de l’index hello.
 
           {
          "name": "hotels",  
@@ -78,26 +78,26 @@ Pour effectuer cette procédure, vous avez besoin d'un service Azure Search et `
          }
 7. Cliquez sur **Exécuter**.
 
-Patientez quelques secondes pour voir s'afficher une réponse HTTP 201 dans la liste de sessions, ce qui indique que l'index a été créé correctement.
+En quelques secondes, vous devez voir une réponse HTTP 201 dans la liste des sessions hello, les index hello indiquant a été créé avec succès.
 
-Si vous obtenez HTTP 504, vérifiez que l'URL spécifie HTTPS. Si vous voyez HTTP 400 ou 404, contrôlez le corps de la demande pour vérifier l'absence d'erreurs de copier-coller. HTTP 403 indique normalement qu'il y a un problème avec la clé API (soit la clé n'est pas valide, soit il y a un problème de syntaxe avec la façon dont elle est spécifiée).
+Si vous obtenez HTTP 504, vérifiez que les URL hello Spécifie le protocole HTTPS. Si vous voyez HTTP 400 ou 404, vérifiez la demande hello tooverify corps il en existait pas copier-coller. Un HTTP 403 indique généralement un problème avec hello clé api (une clé non valide ou un problème de syntaxe au niveau de la clé d’api hello est spécifié).
 
 ## <a name="load-documents"></a>Chargement de documents
-Sous l’onglet **Compositeur** , votre demande de publication de documents se présente comme suit. Le corps de la demande contient les données de recherche pour 4 hôtels.
+Sur hello **Composer** onglet, vos documents de toopost demande ressemblera hello suivant. corps Hello de demande de hello contient des données de recherche de hello pour les 4 hôtels.
 
    ![][2]
 
 1. Sélectionnez **POST**.
-2. Entrez une URL qui commence par HTTPS, suivie de votre URL de service, suivie de « /indexes/<'indexname'>/docs/index?api-version=2016-09-01 ». L’URL complète doit être semblable à celle figurant dans l’exemple suivant :
+2. Entrez une URL qui commence par HTTPS, suivie de votre URL de service, suivie de « /indexes/<'indexname'>/docs/index?api-version=2016-09-01 ». URL complète de Hello doit ressembler toohello similaire, l’exemple suivant.
 
          https://my-app.search.windows.net/indexes/hotels/docs/index?api-version=2016-09-01
-3. L'en-tête de demande doit être le même qu'avant. Souvenez-vous que vous avez remplacé l'hôte et la clé API par des valeurs qui sont valides pour votre service.
+3. En-tête de demande doit être hello même qu’avant. N’oubliez pas que vous avez remplacé hôte de hello et clé d’api avec des valeurs qui sont valides pour votre service.
 
          User-Agent: Fiddler
          host: my-app.search.windows.net
          content-type: application/json
          api-key: 1111222233334444
-4. Le corps de la demande contient quatre documents à ajouter à l'index des hôtels.
+4. Hello corps de la demande contient quatre index hôtels de documents toobe toohello ajouté.
 
          {
          "value": [
@@ -147,7 +147,7 @@ Sous l’onglet **Compositeur** , votre demande de publication de documents se p
              "@search.action": "upload",
              "hotelId": "4",
              "baseRate": 220.00,
-             "description": "This could be the one",
+             "description": "This could be hello one",
              "hotelName": "A Hotel for Everyone",
              "category": "Basic hotel",
              "tags": ["pool", "wifi"],
@@ -161,31 +161,31 @@ Sous l’onglet **Compositeur** , votre demande de publication de documents se p
          }
 5. Cliquez sur **Exécuter**.
 
-Après quelques secondes, la réponse HTTP 200 apparaît dans la liste de sessions. Cela indique que les documents ont été correctement créés. Si vous obtenez HTTP 207, cela signifie qu'au moins un document n'a pas pu être chargé. Si HTTP 404 s'affiche, vous avez une erreur de syntaxe dans l'en-tête ou le corps de la demande.
+En quelques secondes, vous devez voir une réponse HTTP 200, dans la liste des sessions hello. Cela indique hello documents ont été créés avec succès. Si vous obtenez un 207, au moins un document échec tooupload. Si vous obtenez une erreur 404, vous disposez d’une erreur de syntaxe dans l’en-tête de hello ou de corps de demande de hello.
 
-## <a name="query-the-index"></a>Interrogation de l'index
-Maintenant qu'un index et des documents sont chargés, vous pouvez émettre des requêtes les concernant.  Sous l’onglet **Compositeur**, une commande **GET** qui interroge votre service se présentera comme dans la capture d’écran qui suit.
+## <a name="query-hello-index"></a>Index de requête hello
+Maintenant qu'un index et des documents sont chargés, vous pouvez émettre des requêtes les concernant.  Sur hello **Composer** onglet, une **obtenir** commande qui interroge le service recherche similaire toohello suivant capture d’écran.
 
    ![][3]
 
 1. Sélectionnez **GET**.
-2. Entrez une URL qui commence par HTTPS, suivie de votre URL de service, suivie de « /indexes/<'indexname'>/docs? », suivie de paramètres de requête. Par exemple, utilisez l'URL suivante et remplacez l'exemple de nom d'hôte par celui qui convient à votre service.
+2. Entrez une URL qui commence par HTTPS, suivie de votre URL de service, suivie de « /indexes/<'indexname'>/docs? », suivie de paramètres de requête. À titre d’exemple, utilisez hello suivant URL, en remplaçant le nom d’hôte exemple hello par un qui n’est valide pour votre service.
 
          https://my-app.search.windows.net/indexes/hotels/docs?search=motel&facet=category&facet=rating,values:1|2|3|4|5&api-version=2016-09-01
 
-   Cette requête effectue une recherche sur le terme « motel » et extrait les catégories de facette pour les évaluations.
-3. L'en-tête de demande doit être le même qu'avant. Souvenez-vous que vous avez remplacé l'hôte et la clé API par des valeurs qui sont valides pour votre service.
+   Cette requête effectue une recherche sur le terme hello « motel » et récupère les catégories de facette pour le classement.
+3. En-tête de demande doit être hello même qu’avant. N’oubliez pas que vous avez remplacé hôte de hello et clé d’api avec des valeurs qui sont valides pour votre service.
 
          User-Agent: Fiddler
          host: my-app.search.windows.net
          content-type: application/json
          api-key: 1111222233334444
 
-Le code de réponse doit correspondre à 200 et la sortie de réponse doit se présenter comme la capture d’écran qui suit.
+code de réponse Hello doit être de 200, et sortie de réponse hello doit ressembler toohello similaire après la capture d’écran.
 
    ![][4]
 
-L'exemple de requête suivant provient de la page [Opération d'index de recherche (API Azure Search)](http://msdn.microsoft.com/library/dn798927.aspx) sur MSDN. Plusieurs des exemples de requêtes dans cette rubrique comportent des espaces, qui ne sont pas autorisés dans Fiddler. Remplacez chaque espace par un caractère + avant de coller la chaîne de requête et d’essayer la requête dans Fiddler.
+Hello exemple de requête suivant provient de hello [opération d’Index de recherche (API Azure Search)](http://msdn.microsoft.com/library/dn798927.aspx) sur MSDN. Nombre de requêtes d’exemple hello dans cette rubrique incluent des espaces, ce qui ne sont pas autorisés dans Fiddler. Remplacez chaque espace avec caractère + avant de la chaîne de requête de collage dans hello avant de tenter de requête hello dans Fiddler.
 
 **Avant le remplacement des espaces :**
 
@@ -195,8 +195,8 @@ L'exemple de requête suivant provient de la page [Opération d'index de recherc
 
         GET /indexes/hotels/docs?search=*&$orderby=lastRenovationDate+desc&api-version=2016-09-01
 
-## <a name="query-the-system"></a>Interrogation du système
-Vous pouvez également interroger le système pour connaître le nombre de documents et l'espace de stockage utilisé. Sous l’onglet **Compositeur** , votre demande se présentera comme suit et la réponse renverra un comptage du nombre de documents et de l’espace utilisé.
+## <a name="query-hello-system"></a>Interrogation du système hello
+Vous pouvez également interroger hello système tooget stockage et les nombres de consommation de document. Sur hello **Composer** , votre demande de recherche similaire toohello suivantes, puis hello réponse renvoie un nombre pour le nombre de hello de documents et l’espace utilisé.
 
  ![][5]
 
@@ -204,18 +204,18 @@ Vous pouvez également interroger le système pour connaître le nombre de docum
 2. Entrez une URL qui inclut votre URL de service, suivie de « /indexes/hotels/stats?api-version=2016-09-01 » :
 
          https://my-app.search.windows.net/indexes/hotels/stats?api-version=2016-09-01
-3. Spécifiez l'en-tête de demande, en remplaçant l'hôte et la clé API par des valeurs qui sont valides pour votre service.
+3. Spécifiez l’en-tête de demande hello, en remplaçant les hôte hello et clé d’api avec des valeurs qui sont valides pour votre service.
 
          User-Agent: Fiddler
          host: my-app.search.windows.net
          content-type: application/json
          api-key: 1111222233334444
-4. Laissez le corps de la demande vide.
-5. Cliquez sur **Exécuter**. Le code d'état HTTP 200 doit s'afficher dans la liste de sessions. Sélectionnez l'entrée publiée pour votre commande.
-6. Cliquez sur l’onglet **Inspecteurs**, sur l’onglet **En-têtes**, puis sélectionnez le format JSON. Le nombre de documents et la taille de stockage (en Ko) doivent s'afficher.
+4. Laissez le corps de la demande hello vide.
+5. Cliquez sur **Exécuter**. Vous devez voir un code d’état HTTP 200 dans la liste des sessions hello. Sélectionnez entrée hello validée pour votre commande.
+6. Cliquez sur hello **inspecteurs** , cliquez sur hello **en-têtes** onglet et le format JSON hello puis sélectionnez. Vous devez voir hello document nombre et taille du stockage (en Ko).
 
 ## <a name="next-steps"></a>Étapes suivantes
-Consultez [Gérer votre service Search sur Azure](search-manage.md) pour une approche sans code de la gestion et de l’utilisation d’Azure Search.
+Consultez [gérer votre service de recherche sur Azure](search-manage.md) pour un toomanaging sans code approche et à l’aide d’Azure Search.
 
 <!--Image References-->
 [1]: ./media/search-fiddler/AzureSearch_Fiddler1_PutIndex.png

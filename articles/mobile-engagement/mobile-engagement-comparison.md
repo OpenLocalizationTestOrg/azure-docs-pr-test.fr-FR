@@ -1,5 +1,5 @@
 ---
-title: Comparaison entre Azure Mobile Engagement et des services Azure similaires
+title: "aaaComparing Azure Mobile Engagement avec d’autres services Azure similaires"
 description: Comparaison entre Azure Mobile Engagement et des services Azure similaires - HockeyApp, AppInsights, Notification Hubs
 services: mobile-engagement
 documentationcenter: mobile
@@ -14,52 +14,52 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 7df2eb9ecebe3313dad9c15171552a084787f6b8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0859ae9980d0fa96ffbc0edfbd795ccc58d2c843
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="comparing-azure-mobile-engagement-with-other-similar-azure-services"></a>Comparaison entre Azure Mobile Engagement et des services Azure similaires
-La liste des services proposés par Microsoft Azure s’étend en continu et vous pouvez parfois vous demander en quoi Azure Mobile Engagement est différent d’un autre service dont vous venez d’entendre parler. Cet article tente de dissiper toute confusion et vous indique comment choisir Azure Mobile Engagement en fonction de votre utilisation. 
+liste de Hello des services proposés par Microsoft Azure est jamais développant et dans certains cas, vous pouvez vous demander comment diffère Azure Mobile Engagement cette autre service que vous venez de lire ou Découvrez. Cet article tente de risques de confusion tooclear hello et vous dirige toochoose Azure Mobile Engagement lorsqu’il est plus approprié pour votre utilisation. 
 
-Azure Mobile Engagement est un service destiné spécifiquement **aux spécialistes du marketing numérique/directeurs marketing**, mais peut être utilisé par les **propriétaires d’applications mobiles ou les éditeurs** qui souhaitent augmenter l’utilisation, la rétention et la monétisation de leurs applications mobiles. 
+Azure Mobile Engagement est un service destiné spécifiquement **pour les spécialistes du marketing/CMOs numériques** mais peut être utilisé par les **propriétaire de l’application mobile ou le serveur de publication** qui veut tooincrease utilisation de hello, rétention et monétisation de leurs applications mobiles. 
 
 *Azure Mobile Engagement est une plateforme SaaS d'engagement des utilisateurs qui fournit des informations orientées données sur l'utilisation des applications, qui permet de segmenter les utilisateurs en temps réel et d'activer les notifications Push adaptées au contexte, ainsi que la messagerie au sein de l'application.* 
 
-Les principales caractéristiques suivantes mettent en évidence sa proposition de valeur unique :
+Décomposer cette définition, nous avons hello suivante des principales caractéristiques qui met également en surbrillance la proposition de valeur unique :
 
 1. **Notifications Push contextuelles et messagerie dans l’application**
    
-   Il s’agit de l’avantage principal du produit : effectuer des notifications Push ciblées et personnalisées. Pour ce faire, nous collectons des données d’analyse comportementale enrichies. 
+   Il s’agit principalement de produit de hello hello - effectuer des notifications push ciblés et personnalisés. Et, pour cette toohappen, nous collecter des données de l’analytique comportementale riche. 
 2. **Informations pilotées par les données sur l’utilisation des applications**
    
-   Nous fournissons des Kits de développement logiciel (SDK) multiplateformes pour collecter les analyses comportementales sur les utilisateurs de l’application. Notez le terme « analyse comportementale » (différent du terme « analyse des performances »), car nous nous concentrons sur la façon dont les utilisateurs utilisent l’application. Même si nous recueillons des données d’analyse sur les performances de base sur les erreurs, les incidents, etc., il ne s’agit pas de l’objectif principal du produit. 
+   Nous fournissons inter-plateformes kits de développement logiciel toocollect hello comportementales analytique sur les utilisateurs d’application hello. Notez l’analytique comportementale de terme hello (comme sur l’analytique des performances), car nous concentrer sur la manière dont les utilisateurs d’application hello utilisent application hello. Nous collectons données analytique de performances de base sur les erreurs, etc. de pannes, mais qui est pas hello traite principalement de produit de hello. 
 3. **Segmentation des utilisateurs en temps réel**
    
-   Une fois que vous avez collecté les données d’analyse comportementale sur les utilisateurs de l’application, nous vous permettons de segmenter votre public en fonction de divers paramètres et des données collectées pour que vous puissiez lancer des campagnes push ciblées. 
+   Une fois que vous avez collecté les données analytique comportementales des utilisateurs de l’application, nous permettent une toosegment votre audience en fonction des paramètres différents, tooenable les données collectées vous toorun ciblé campagnes de push. 
 4. **Logiciel en tant que service (SaaS) :**
    
-   Nous avons un portail distinct du portail de gestion Azure qui est optimisé pour interagir avec les analyses comportementales enrichies sur les utilisateurs des applications et réaliser des campagnes marketing push. Le produit permet d’être opérationnel immédiatement.   
+   Nous ont un portail distinct à partir du portail de gestion Azure hello qui est optimisé toointeract et afficher riche analytique comportementale sur les utilisateurs d’application hello et exécuter des campagnes de push. produit de Hello est adapté tooget allez-vous sans délai !   
 
-Cette différenciation étant établie, voici comment nous effectuons une comparaison par rapport à d’autres offres Azure semblables. Notez que l’article ne compare pas les niveaux de fonctionnalités, mais se base sur des scénarios permettant de définir le produit le plus adapté à vos besoins :
+Avec ce paramètre de différenciation dans main, voici comment nous comparer par rapport à d’autres offres Azure apparemment similaires - Notez cet article hello n’effectue une comparaison au niveau de fonctionnalité, mais prend une plus toodefine d’approche scénario basé le produit fonctionne mieux :
 
-1. [HockeyApp](https://azure.microsoft.com/services/hockeyapp/) est la solution DevOps mobile de Microsoft. Avec elle, vous pouvez distribuer des versions pour les testeurs de versions béta, collecter des données liées aux pannes et obtenir des retours utilisateur. La solution est également intégrée avec Visual Studio Team Services, ce qui permet d’activer des déploiements de versions simples et d’intégrer des éléments de travail. 
+1. [HockeyApp](https://azure.microsoft.com/services/hockeyapp/) est hello mobile DevOps solution Microsoft. Avec lui, vous pouvez distribuer les builds toobeta testeurs, collecter des données de panne et obtenir des commentaires des utilisateurs. La solution est également intégrée avec Visual Studio Team Services, ce qui permet d’activer des déploiements de versions simples et d’intégrer des éléments de travail. 
    
-   L’accent est mis sur les fonctionnalités DevOps et la collecte de données d’analyse sur les performances au sujet des applications mobiles. Vous pouvez intégrer à la fois HockeyApps et Mobile Engagement avec votre application. Ce cas de figure n’est pas inhabituel, même s’il existe un chevauchement dans les données collectées. Les produits ont des objectifs différents et vous aident à atteindre des objectifs différents.  
-2. [Application Insights](../application-insights/app-insights-overview.md) : si votre application mobile a un côté serveur, utilisez Application Insights pour surveiller le côté serveur web de votre application et HockeyApp pour les applications mobiles côté client. 
-3. [Notification Hubs](https://azure.microsoft.com/services/notification-hubs/) fournit un service léger : cela signifie que vous n’avez pas besoin d’un Kit de développement logiciel (SDK) intégré dans l’application mobile et que vous pouvez avoir un contrôle total de votre application mobile, ce qui vous permet d’envoyer des notifications Push avec les fonctionnalités d’identification de base. C’est la solution idéale pour les propriétaires d’applications qui s’intéressent moins au ciblage qu’à l’envoi et à la communication instantanés d’informations aux utilisateurs de leur application (diffusion à un large public). 
+   Hello est de DevOps et collecte des données analytique de performances sur les applications mobiles hello. Vous risquez avec intégration à la fois HockeyApps et Mobile Engagement dans votre application et qui ne sera pas inhabituelle, même s’il existe certains chevauchement des données de salutation collectée, principalement des produits de hello hello est différent et ils vous aident à atteindre différents objectifs pour vous.  
+2. [Application Insights](../application-insights/app-insights-overview.md) si votre application mobile a une côté serveur, puis vous utilisez Application Insights toomonitor hello web côté serveur de votre application, mais pour les applications mobiles hello client côté, vous devez utiliser HockeyApp. 
+3. [Concentrateurs de notification](https://azure.microsoft.com/services/notification-hubs/) fournit un service léger sens hello que vous n’avez pas besoin d’un kit de développement intégré dans l’application mobile hello et vous pouvez avoir un contrôle total de votre application mobile, et il autorise l’envoi de notifications push avec des fonctionnalités de balisage de base. C’est parfait pour n’importe quel propriétaire de l’application qui prend soin inférieur sur le ciblage et plus sur les informations d’envoi/de communiquer instantanément tootheir d’utilisateurs d’application (diffusion tooa grand remplissage). 
    
-   Nous mettons ici l’accent sur l’envoi de notifications très rapides avec des fonctionnalités de segmentation de base. 
+   Notez le focus hello ici lors de l’envoi des notifications rapides avec la fonctionnalité de segmentation de base. 
 
 Examinons quelques scénarios :
 
-1. Tim fait partie de l’équipe marketing numérique du magasin Adventure Works qui publie des applications mobiles pour les utilisateurs. L’objectif de Tim est de s’assurer que les utilisateurs qui téléchargent les applications de l’entreprise continuent à les utiliser fréquemment. Cela augmente l’attachement à la marque des utilisateurs de l’application. En outre, cela accroît la monétisation lorsque les utilisateurs de l’application effectuent un achat à l’aide de l’application mobile. Pour cela, Tim doit envoyer des notifications ciblées et utiles aux utilisateurs de l’application, qui les encouragent à ouvrir l’application et à y revenir souvent. Mobile Engagement correspond donc parfaitement à ses attentes. 
-2. Joann fait partie de l’équipe de développement des applications mobiles Adventure Works. Elle recherche un produit pour journaliser les informations sur les incidents, les exceptions et pour obtenir la télémétrie des performances à partir d’une application. HockeyApp correspond donc parfaitement à ses attentes. Joann peut intégrer HockeyApp pour les scénarios destinés aux développeurs et Azure Mobile Engagement pour Tim dans la même application, afin de tirer le meilleur parti des deux. 
-3. Robin fait partie de l’équipe de développement des applications mobiles du réseau Contoso News. Elle souhaite simplement envoyer des alertes sur les actualités récentes à tous les utilisateurs sans trop de segmentation dès que l’alerte concernant l’actualité est déclenchée. Notification Hubs correspond donc parfaitement à ses attentes. 
-   Dans ce scénario, à mesure que l’application mobile arrive à maturité, il est toutefois possible qu’une segmentation beaucoup plus poussée et l’obtention d’informations sur le comportement des utilisateurs de l’application soient nécessaires. À ce stade, Robin doit évaluer Azure Mobile Engagement. 
+1. TIM est la partie de l’équipe marketing de hello numérique dans le magasin de Adventure Works qui publie des applications mobiles pour les utilisateurs. Les objectifs de TIM sont tooensure que les utilisateurs de hello qui téléchargent leurs applications mobiles continuent toouse il et fréquemment. Cela augmente pas simplement une marque de joindre avec les utilisateurs d’application hello, mais également la monétisation augmente lorsque les utilisateurs d’application hello faire des achats à l’aide d’application mobile hello. Pour cet Tim devez toosend ciblé notifications toohello application aux utilisateurs, qui elles utiles, tooencourage les tooopen hello application et revenez tooit souvent. Mobile Engagement correspond donc parfaitement à ses attentes. 
+2. JoAnn fait partie de l’équipe de développement hello Hello des applications mobiles à Adventure Works et recherche les détails sur un toolog le produit sur les blocages, les exceptions et obtenir des données de télémétrie de performances à partir d’une application. HockeyApp correspond donc parfaitement à ses attentes. JoAnn peut intégrer les deux HockeyApp pour son développeur destiné aux scénarios et Azure Mobile Engagement dans Tim Bonjour même hello tooget application meilleur des deux. 
+3. (Round Robin) fait partie de l’équipe de développement hello de hello des applications mobiles au réseau de Contoso actualités et tous les souhaitées est toosend les dernières nouvelles alertes tooall les utilisateurs sans quantité segmentation hello news alerte est déclenchée dès que. Notification Hubs correspond donc parfaitement à ses attentes. 
+   Dans ce scénario, il est possible cependant que comme application mobile hello arrive à maturité, il y a une exigence toodo détails beaucoup plus riches de segmentation et get sur le comportement de l’utilisateur d’application hello. À ce stade, (Round Robin) aura tooevaluate Azure Mobile Engagement. 
 
-Pour résumer, l’objectif de Mobile Engagement n’est pas juste de collecter des analyses. Il ne s’agit pas uniquement d’un nouveau produit d’analyse de Microsoft. L’objectif est en effet d’envoyer des notifications Push ciblées et pour cela, nous collectons les données d’analyse comportementale ; mais le but principal est toujours d’envoyer des notifications Push qui ont un sens pour les utilisateurs de l’application et ne sont pas considérées comme du spam. 
+toorecap, hello Mobile Engagement ne vise pas simplement toocollect analytique - il n’est pas « encore un autre produit de l’Analytique de Microsoft ». Il s’agit de l’envoi de notifications push ciblé et pour le ciblage, nous collecter des données de l’analytique comportementale, mais le focus de hello reste sur l’envoi de notifications push qui hello la plupart des utilisateurs d’application de toohello sens afin qu’il n’est fourni en tant que courrier indésirable. 
 
 Pour plus d’informations, consultez cette [courte vidéo](mobile-engagement-overview.md) sur Mobile Engagement. 
 

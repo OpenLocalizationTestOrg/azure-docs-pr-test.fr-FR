@@ -1,6 +1,6 @@
 ---
-title: "Documentation d'aide de zones géographiques multiples | Microsoft Docs"
-description: "Apprenez à créer un espace de travail et à publier un service web dans une région Azure autre que South Central United States (SCUS)."
+title: "documentation d’aide géo-aaaMulti | Documents Microsoft"
+description: "Découvrez comment toocreate un espace de travail et publier un service web dans une région Azure différente de hello South centrale United States (SCUS) région Azure."
 services: machine-learning
 documentationcenter: 
 author: tedway
@@ -15,43 +15,43 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 4/6/2017
 ms.author: tedway; neerajkh
-ms.openlocfilehash: 32f80863308c00c32b1496bb92d39a7ae7d0cc6f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 77b055950ebfe329131b40e5f0a2f6be1e33c51e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="multi-geo-help-documentation"></a>Documentation d'aide de zones géographiques multiples
-Cet article explique comment vous pouvez créer un espace de travail et publier un service web dans différentes régions Azure.  La page [Produits Azure par région](https://azure.microsoft.com/en-us/regions/services/) répertorie les régions dans lesquelles Azure Machine Learning est disponible.
+Cet article explique comment vous pouvez créer un espace de travail et publier un service web dans différentes régions Azure.  Hello [produits Azure par page région](https://azure.microsoft.com/en-us/regions/services/) répertorie les zones où Azure Machine Learning n’est disponible.
 
 ## <a name="create-a-workspace"></a>Créer un espace de travail
-1. Connectez-vous au portail Azure Classic.
+1. Connectez-vous toohello portail classique Azure.
 2. Cliquez sur **+NOUVEAU** > **SERVICES DE DONNÉES** > **MACHINE LEARNING** > **CRÉATION RAPIDE**.  Sous **EMPLACEMENT**, sélectionner une autre région, par exemple, l'**Asie du Sud-est**.
    ![Aide zone géographique multiple image 1][1]
-3. Sélectionnez l'espace de travail, puis cliquez sur **Se connecter à ML Studio**.
+3. Sélectionnez l’espace de travail hello, puis cliquez sur **connexion tooML Studio**.
    ![Aide zone géographique multiple image 2][2]
-4. Vous disposez désormais d'un espace de travail dans une autre région que vous pouvez utiliser comme tout autre espace de travail. Pour basculer d'un espace de travail à l'autre, recherchez le coin supérieur droit de votre écran. Cliquez sur la liste déroulante, sélectionnez la région, puis sélectionnez l'espace de travail. Tout est lié à la région dans laquelle l’espace de travail se trouve.  Par exemple, tous les services web créés à partir d’un espace de travail seront dans la même région que l’espace de travail.
+4. Vous disposez désormais d'un espace de travail dans une autre région que vous pouvez utiliser comme tout autre espace de travail. tooswitch entre vos espaces de travail, consultez toohello coin supérieur droit votre écran. Cliquez sur hello déroulante, sélectionnez hello région et espace de travail puis sélectionnez hello. Tout est la région d’espace de travail local toohello.  Par exemple, de tous vos services web créés à partir d’un espace de travail sera Bonjour même espace de travail région hello se trouve dans.
    ![Aide zone géographique multiple image 3][3]
 
 ## <a name="open-an-experiment-from-gallery"></a>Ouvrir une expérience à partir de la galerie
-Si vous ouvrez une expérience à partir de la galerie, vous pouvez également sélectionner la région dans laquelle vous souhaitez copier l'expérience.
+Si vous ouvrez une expérience à partir de la galerie, vous pouvez également sélectionner la région que vous souhaitez toocopy hello expérimentation.
 
 ![Aide zone géographique multiple image 4][4a]
 
 ## <a name="web-service-management"></a>Gestion des services web
-Pour gérer par programmation les services web, par exemple pour la reformation, utilisez l’adresse propre à la région :
+tooprogrammatically gérer les services web, tels qu’à instruire de nouveau, utiliser une adresse spécifique à la région hello :
 
 * https://asiasoutheast.management.azureml.net
 * https://europewest.management.azureml.net
 
-### <a name="things-to-note"></a>Points à noter
-1. Vous pouvez uniquement copier des expériences entre espaces de travail appartenant à la même région de cette façon. Si vous devez copier l’expérience des espaces de travail dans différentes régions, vous pouvez utiliser l’applet de commande [PowerShell](http://aka.ms/amlps) [*Copy-AmlExperiment*](https://github.com/hning86/azuremlps/blob/master/README.md#copy-amlexperiment) pour le faire. Une autre solution de contournement consiste à publier l’expérience dans la galerie en mode non répertorié, puis à l’ouvrir dans l’espace de travail à partir de l’autre région.
-2. Le sélecteur de région affiche uniquement les espaces de travail d'une seule région à la fois.  
+### <a name="things-toonote"></a>Éléments toonote
+1. Vous pouvez copier uniquement les expériences entre les espaces de travail qui appartiennent toohello ainsi la même région. Si vous avez besoin d’expérience de toocopy entre les espaces de travail dans des régions différentes, vous pouvez utiliser hello [PowerShell](http://aka.ms/amlps) applet de commande [ *copie-AmlExperiment* ](https://github.com/hning86/azuremlps/blob/master/README.md#copy-amlexperiment) tooaccomplish qui. Une autre solution de contournement est expérience de hello toopublish dans la bibliothèque en mode non listé, ouvrez-le dans l’espace de travail hello de hello autre région.
+2. Sélecteur de région de Hello affichera uniquement les espaces de travail pour une région à la fois.  
 3. Un accès à espace libre ou invité (anonyme) est créé et hébergé dans la région South Central U.S.  
 4. Les services web déployés à partir d'un espace de travail en Asie du Sud-est sont également  hébergés en Asie du Sud-est.  
 
 ## <a name="more-information"></a>Plus d’informations
-Poser une question sur le [forum Azure Machine Learning](https://social.msdn.microsoft.com/Forums/azure/home?forum=MachineLearning).
+Posez une question sur hello [forum d’Azure Machine Learning](https://social.msdn.microsoft.com/Forums/azure/home?forum=MachineLearning).
 
 <!--Image references-->
 [1]: ./media/machine-learning-multi-geo/multi-geo_1.png

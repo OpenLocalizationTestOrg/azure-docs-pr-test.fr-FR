@@ -1,5 +1,5 @@
 ---
-title: "(obsolète) Suite de services web de distribution normale - Azure | Microsoft Docs"
+title: AAA(deprecated) Distribution normale Web Service Suite - Azure | Documents Microsoft
 description: "(obsolète) Suite de services web de distribution normale"
 services: machine-learning
 documentationcenter: 
@@ -16,69 +16,69 @@ ms.date: 01/06/2017
 ms.author: ireiter
 ROBOTS: NOINDEX
 redirect_url: https://gallery.cortanaintelligence.com/
-redirect_document_id: TRUE
-ms.openlocfilehash: 79d1621330ad56b0c62ca46cfac424c2306e371f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+redirect_document_id: True
+ms.openlocfilehash: 8bdb5afd9fee88587f548d7c5299480f64289bbe
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deprecated-normal-distribution-suite"></a>(obsolète) Suite de distribution normale
 
 > [!NOTE]
-> Microsoft DataMarket va être supprimé et cette API est désormais obsolète. 
+> Hello Microsoft DataMarket a été supprimée et que cette API est déconseillée. 
 > 
-> Vous trouverez de nombreux exemples d’expériences et d’API dans la [galerie Cortana Intelligence](http://gallery.cortanaintelligence.com). Pour plus d’informations sur la galerie, consultez [Partager et découvrir des solutions dans la galerie Cortana Intelligence](machine-learning-gallery-how-to-use-contribute-publish.md).
+> Vous trouverez plusieurs API et les expériences d’exemple utile Bonjour [Cortana Intelligence galerie](http://gallery.cortanaintelligence.com). Pour plus d’informations sur la galerie de hello, consultez [partager et découvrir des ressources Bonjour Cortana Intelligence galerie](machine-learning-gallery-how-to-use-contribute-publish.md).
 
-La suite de distribution normale correspond à un ensemble d’exemples de services web ([Générateur](https://datamarket.azure.com/dataset/aml_labs/ndg7), [Calculatrice de quantile](https://datamarket.azure.com/dataset/aml_labs/ndq5), [Calculatrice de probabilité](https://datamarket.azure.com/dataset/aml_labs/ndp5)) qui facilite la génération et la gestion des distributions normales. Les services permettent de générer une séquence de distribution normale de n’importe quelle longueur, de calculer les quantiles à partir d’une probabilité donnée et de calculer la probabilité à partir d’un quantile donné. Chacun des services émet des résultats différents selon le service sélectionné (voir la description ci-dessous). La suite de distribution normale repose sur les fonctions R qnorm, rnorm et pnorm qui sont incluses dans le package de statistiques R.
+Hello Distribution normale Suite est un ensemble d’exemples de services web ([Générateur](https://datamarket.azure.com/dataset/aml_labs/ndg7), [calculatrice de Quantile](https://datamarket.azure.com/dataset/aml_labs/ndq5), [probabilité calculatrice](https://datamarket.azure.com/dataset/aml_labs/ndp5)) qui aident dans la génération et la gestion distributions normales. les services de Hello permettent la génération d’une séquence de distribution normale d’une longueur quelconque, du calcul de l’étendue à partir d’une probabilité donnée et le calcul de probabilité à partir d’un quantile donné. Chacun des services de hello émet différentes sorties en fonction de service de hello sélectionné (voir la description ci-dessous). Hello Suite de la Distribution normale est basée sur hello R fonctions qnorm, rnorm et pnorm, qui sont inclus dans le package de statistiques de R.
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-> Les utilisateurs peuvent potentiellement accéder à ce service web par le biais d’une application mobile, d’un site web ou même d’un ordinateur local, par exemple. Mais l’objectif du service web est également de servir d’exemple d’utilisation d’Azure Machine Learning pour créer des services web avec le code R. Avec seulement quelques lignes de code R et quelques clics dans Azure Machine Learning Studio, vous pouvez créer une expérience avec le code R et la publier en tant que service web. Le service web peut ensuite être publié sur Azure Marketplace afin que les utilisateurs et les appareils du monde entier l’utilisent sans que l’auteur du service web n’ait à configurer l’infrastructure.  
+> Les utilisateurs peuvent potentiellement accéder à ce service web par le biais d’une application mobile, d’un site web ou même d’un ordinateur local, par exemple. Mais hello objectif du service web de hello est également tooserve comme exemple illustrant comment Azure Machine Learning peuvent être des services web toocreate utilisé sur le code R. Avec seulement quelques lignes de code R et quelques clics dans Azure Machine Learning Studio, vous pouvez créer une expérience avec le code R et la publier en tant que service web. service web de Hello peut ensuite être publié toohello Azure Marketplace et consommé par les utilisateurs et périphériques sur Bonjour sans configuration d’infrastructure par l’auteur de hello du service web de hello.  
 > 
 > 
 
 ## <a name="consumption-of-web-service"></a>Utilisation du service web
-La suite de distribution normale inclut les 3 services suivants.
+Hello Distribution normale Suite inclut hello suivant 3 services.
 
 ### <a name="normal-distribution-quantile-calculator"></a>Calculatrice de quantile pour la distribution normale
-Ce service accepte 4 arguments d'une distribution normale et calcule le quantile associé.
+Ce service accepte des arguments d’une distribution normale 4 et calcule hello associé quantile.
 
-Les arguments d'entrée sont les suivants :
+les arguments d’entrée Hello sont :
 
 * p : probabilité unique d’un événement avec distribution normale 
-* Mean : moyenne de la distribution normale
-* SD : écart type de la distribution normale 
-* Side : L pour la partie inférieure de la distribution et U pour la partie supérieure de la distribution
+* Moyenne - moyenne d’une distribution normale hello.
+* SD - distribution normale hello écart type. 
+* Côté - L pour la partie inférieure de hello de distribution de hello et U pour la partie supérieure de hello de distribution de hello.
 
-La sortie du service correspond au quantile calculé qui est associé à la probabilité donnée.
+sortie de Hello du service de hello est quantile hello calculée qui est associée à hello fonction de probabilité.
 
 ### <a name="normal-distribution-probability-calculator"></a>Calculatrice de probabilité de distribution normale
-Ce service accepte 4 arguments d'une distribution normale et calcule la probabilité associée.
+Ce service accepte des arguments d’une distribution normale 4 et calcule la probabilité de hello associé.
 
-Les arguments d'entrée sont les suivants :
+les arguments d’entrée Hello sont :
 
 * q : quantile unique d’un événement avec une distribution normale 
-* Mean : moyenne de la distribution normale
-* SD : écart type de la distribution normale 
-* Side : L pour la partie inférieure de la distribution et U pour la partie supérieure de la distribution
+* Moyenne - moyenne d’une distribution normale hello.
+* SD - distribution normale hello écart type. 
+* Côté - L pour la partie inférieure de hello de distribution de hello et U pour la partie supérieure de hello de distribution de hello.
 
-La sortie du service correspond à la probabilité calculée qui est associée au quantile donné.
+sortie Hello du service de hello représente la probabilité hello calculé hello donné quantile est associée.
 
 ### <a name="normal-distribution-generator"></a>Générateur de distribution normale
-Ce service accepte 3 arguments d'une distribution normale et génère une séquence aléatoire de nombres qui sont distribués normalement. Les arguments suivants doivent lui être fournis au sein de la demande :
+Ce service accepte 3 arguments d'une distribution normale et génère une séquence aléatoire de nombres qui sont distribués normalement. Hello arguments suivants doivent être fournis tooit au sein de la demande de hello :
 
-* n : nombre d’observations 
-* Mean : moyenne de la distribution normale
-* SD : écart type de la distribution normale 
+* n - nombre de hello d’observations. 
+* Moyenne - moyenne d’une distribution normale hello.
+* SD - distribution normale hello écart type. 
 
-La sortie du service est une séquence de longueur n avec une distribution normale basée sur les arguments mean et sd.
+sortie Hello du service de hello est une séquence de longueur n avec une distribution normale basée sur les arguments moyenne et sd hello.
 
-> Étant hébergé sur Azure Marketplace, ce service est un service OData. Il peut être appelé à l’aide des méthodes POST ou GET. 
+> Ce service, comme hébergé sur hello Azure Marketplace, est un service OData ; Il peuvent être appelées par le biais des méthodes POST ou GET. 
 > 
 > 
 
-Il existe plusieurs façons d’utiliser le service de manière automatique (exemple d’applications : [Générateur](http://microsoftazuremachinelearning.azurewebsites.net/NormalDistributionGenerator.aspx), [Calculatrice de probabilité](http://microsoftazuremachinelearning.azurewebsites.net/NormalDistributionProbabilityCalculator.aspx), [Calculatrice de quantile](http://microsoftazuremachinelearning.azurewebsites.net/NormalDistributionQuantileCalculator.aspx)).
+Il existe plusieurs manières de consommation de service hello de manière automatique (exemple applications sont ici : [Générateur](http://microsoftazuremachinelearning.azurewebsites.net/NormalDistributionGenerator.aspx), [probabilité calculatrice](http://microsoftazuremachinelearning.azurewebsites.net/NormalDistributionProbabilityCalculator.aspx), [Quantile calculatrice](http://microsoftazuremachinelearning.azurewebsites.net/NormalDistributionQuantileCalculator.aspx)).
 
 ### <a name="starting-c-code-for-web-service-consumption"></a>Début du code C# pour l'utilisation du service web :
 ### <a name="normal-distribution-quantile-calculator"></a>Calculatrice de quantile pour la distribution normale
@@ -177,7 +177,7 @@ Il existe plusieurs façons d’utiliser le service de manière automatique (exe
 > 
 > 
 
-Voici une capture d'écran de l'expérience qui a créé le service web et l'exemple de code pour chacun des modules dans l'expérience.
+Voici une capture d’écran d’expérience hello qui a créé un code de service et un exemple hello web pour chacun des modules hello au sein de l’expérience de hello.
 
 ### <a name="normal-distribution-quantile-calculator"></a>Calculatrice de quantile pour la distribution normale
 Flux de l’expérience :
@@ -186,9 +186,9 @@ Flux de l’expérience :
 
     #Data schema with example data (replaced with data from web service)
     data.set=data.frame(p=0.1,mean=0,sd=1,side='L');
-    maml.mapOutputPort("data.set"); #send data to output port
+    maml.mapOutputPort("data.set"); #send data toooutput port
 
-    # Map 1-based optional input ports to variables
+    # Map 1-based optional input ports toovariables
     dataset1 <- maml.mapInputPort(1) # class: data.frame
 
     param = dataset1
@@ -211,7 +211,7 @@ Flux de l’expérience :
 
     output = as.data.frame(q)
 
-    # Select data.frame to be sent to the output Dataset port
+    # Select data.frame toobe sent toohello output Dataset port
     maml.mapOutputPort("output");
 
 ### <a name="normal-distribution-probability-calculator"></a>Calculatrice de probabilité de distribution normale
@@ -221,9 +221,9 @@ Flux de l’expérience :
 
      #Data schema with example data (replaced with data from web service)
     data.set=data.frame(q=-1,mean=0,sd=1,side='L');
-    maml.mapOutputPort("data.set"); #send data to output port
+    maml.mapOutputPort("data.set"); #send data toooutput port
 
-    # Map 1-based optional input ports to variables
+    # Map 1-based optional input ports toovariables
     dataset1 <- maml.mapInputPort(1) # class: data.frame
 
     param = dataset1
@@ -241,7 +241,7 @@ Flux de l’expérience :
 
     output = as.data.frame(prob)
 
-    # Select data.frame to be sent to the output Dataset port
+    # Select data.frame toobe sent toohello output Dataset port
     maml.mapOutputPort("output");
 
 ### <a name="normal-distribution-generator"></a>Générateur de distribution normale
@@ -251,9 +251,9 @@ Flux de l’expérience :
 
     #Data schema with example data (replaced with data from web service)
     data.set=data.frame(n=50,mean=0,sd=1);
-    maml.mapOutputPort("data.set"); #send data to output port
+    maml.mapOutputPort("data.set"); #send data toooutput port
 
-    # Map 1-based optional input ports to variables
+    # Map 1-based optional input ports toovariables
     dataset1 <- maml.mapInputPort(1) # class: data.frame
 
     param = dataset1
@@ -261,14 +261,14 @@ Flux de l’expérience :
 
     output = as.data.frame(t(dist))
 
-    # Select data.frame to be sent to the output Dataset port
+    # Select data.frame toobe sent toohello output Dataset port
     maml.mapOutputPort("output");
 
-## <a name="limitations"></a>Limitations
-Il s’agit d’exemples très simples en rapport avec la distribution normale. Comme illustré dans l'exemple de code ci-dessus, l'interception des erreurs est mise œuvre de façon limitée.
+## <a name="limitations"></a>Limites
+Voici des exemples très simples qui entoure hello une distribution normale. Comme le montre hello exemple de code ci-dessus, peu interception des erreurs est implémentée.
 
 ## <a name="faq"></a>Forum Aux Questions
-Pour les questions fréquemment posées relatives à l’utilisation du service web ou à la publication sur Azure Marketplace, consultez [ce lien](machine-learning-marketplace-faq.md).
+Pour les questions fréquemment posées sur la consommation de service web de hello ou publication toohello Azure Marketplace, consultez [ici](machine-learning-marketplace-faq.md).
 
 [1]: ./media/machine-learning-r-csharp-normal-distribution/normal-img1.png
 [2]: ./media/machine-learning-r-csharp-normal-distribution/normal-img2.png

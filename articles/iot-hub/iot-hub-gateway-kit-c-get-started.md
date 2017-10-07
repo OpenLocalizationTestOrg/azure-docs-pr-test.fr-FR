@@ -1,12 +1,12 @@
 ---
 title: Appareil SensorTag et passerelle Azure IoT - Prise en main | Microsoft Docs
-description: "Prise en main du Kit de démarrage de passerelle IoT, créer votre Azure IoT hub et connecter SensorTag et la passerelle vers l’IoT hub"
+description: "Prise en main IoT passerelle Starter Kit, créez votre hub Azure IoT et connectez SensorTag et passerelle toohello IoT hub"
 services: iot-hub
 documentationcenter: 
 author: shizn
 manager: timtl
 tags: 
-keywords: "azure iot hub, passerelle iot, bien démarrer avec l’internet des objets, kit d’outils iot"
+keywords: Azure iot hub, passerelle iot, prise en main de hello internet des objets, iot toolkit
 ROBOTS: NOINDEX
 redirect_url: /azure/iot-hub/iot-hub-gateway-kit-c-lesson1-set-up-nuc
 ms.assetid: 56d05f4e-f2c1-4b22-8701-f01e14deead6
@@ -17,11 +17,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: 624bdc7877d5048da08897f868272fd8e8f3f7b6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d8e4057e7774e43c069dd3f2f2e03f098c1ac844
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-iot-gateway-starter-kit-with-a-sensortag"></a>Prise en main du Kit de démarrage de la passerelle IoT avec un SensorTag
 
@@ -29,82 +29,82 @@ ms.lasthandoff: 07/11/2017
 > * [SensorTag](iot-hub-gateway-kit-c-get-started.md)
 > * [Appareil simulé](iot-hub-gateway-kit-c-sim-get-started.md)
 
-Dans ce didacticiel, vous commencez par découvrir les principes fondamentaux du [Kit de démarrage de la passerelle IoT](https://aka.ms/gateway-kit). Vous allez travailler avec Intel NUC exécutant Wind River Linux et [TI SensorTag](http://www.ti.com/ww/en/wireless_connectivity/sensortag2015/index.html#main). Vous apprendrez ensuite à connecter en toute transparence vos appareils au cloud à l’aide d’Azure IoT Hub.
+Dans ce didacticiel, commencer par découvrir hello les bases de l’utilisation de [IoT passerelle Starter Kit](https://aka.ms/gateway-kit). Vous allez travailler avec NUC Intel qui exécute Linux de vent district et hello [TI SensorTag](http://www.ti.com/ww/en/wireless_connectivity/sensortag2015/index.html#main). Vous allez apprendre comment tooseamleesly connecter votre cloud toohello de périphériques à l’aide d’Azure IoT Hub.
 
 ***
-**Vous n’avez pas encore de kit ?** Cliquez [ici](https://aka.ms/gateway-kit). **Vous n’avez pas de SensorTag ?** [Commencez avec un appareil simulé](iot-hub-gateway-kit-c-sim-get-started.md) ou [achetez un SensorTag](http://www.ti.com/ww/en/wireless_connectivity/sensortag2015/?INTC=SensorTag&HQS=sensortag)
+**Vous n’avez pas encore de kit ?** Cliquez [ici](https://aka.ms/gateway-kit). **Vous n’avez pas de SensorTag ?**[Commencez avec un appareil simulé](iot-hub-gateway-kit-c-sim-get-started.md) ou [achetez un SensorTag](http://www.ti.com/ww/en/wireless_connectivity/sensortag2015/?INTC=SensorTag&HQS=sensortag)
 ***
 
 ## <a name="lesson-1-configure-your-nuc"></a>Leçon 1 : Configuration de votre NUC
 ![Diagramme de bout en bout pour la leçon 1](media/iot-hub-gateway-kit-lessons/e2e-lesson1.png)
 
-Dans cette leçon, vous allez configurer des NUC Intel (Next Unit of Computing) dans le Kit en tant que passerelle Azure IoT, installer le package Azure IoT Edge sur les NUC et exécuter un exemple d’application pour vérifier la fonctionnalité de passerelle.
+Dans cette leçon, vous pouvez paramétrer des NUC Intel (suivant unité de calcul) Bonjour Kit comme passerelle Azure IoT, hello Azure IoT bord installer sur NUC et exécuter une fonctionnalité de passerelle exemple application tooverify hello.
 
-*Durée estimée : 15 minutes*
+*Estimation du temps toocomplete : 15 minutes*
 
-Consultez [Configurer Intel NUC comme passerelle IoT](iot-hub-gateway-kit-c-lesson1-set-up-nuc.md)
+Accédez trop[configurer NUC Intel comme passerelle IoT](iot-hub-gateway-kit-c-lesson1-set-up-nuc.md)
 
 ## <a name="lesson-2-create-your-iot-hub"></a>Leçon 2 : Création de votre IoT Hub
 ![Diagramme de bout en bout pour la leçon 2](media/iot-hub-gateway-kit-lessons/e2e-lesson2.png)
 
-Dans cette leçon, vous installez les outils et logiciels sur votre ordinateur hôte. Vous créez ensuite votre compte Azure gratuit, vous approvisionnez votre Azure IoT Hub et vous créez votre premier appareil dans l’IoT Hub.
+Dans cette leçon, vous installez les outils de hello et des logiciels sur votre ordinateur hôte. Puis vous créez gratuitement un compte Azure, configurez votre concentrateur Azure IoT et créez votre premier appareil dans le hub IoT de hello.
 
 Avant de commencer cette leçon, terminez la Leçon 1.
 
-### <a name="get-the-tools"></a>Obtenir les outils
-Installez les outils et logiciels sur votre ordinateur hôte.
+### <a name="get-hello-tools"></a>Obtenir les outils de hello
+Installez les outils hello et logiciels sur votre ordinateur hôte.
 
-*Durée estimée : 20 minutes*
+*Estimation du temps toocomplete : 20 minutes*
 
-Accédez à [Obtenir les outils](iot-hub-gateway-kit-c-lesson2-get-the-tools-win32.md).
+Accédez trop[obtenir hello tools](iot-hub-gateway-kit-c-lesson2-get-the-tools-win32.md)
 
 ### <a name="create-an-iot-hub-and-register-your-device"></a>Créer un IoT hub et enregistrer votre appareil
-Créez votre groupe de ressources, approvisionnez votre premier Azure IoT Hub et ajoutez votre premier appareil à l’IoT Hub à l’aide de l’interface de ligne de commande Azure.
+Créer votre groupe de ressources et configurer votre concentrateur Azure IoT première ajouter votre premier appareil toohello IoT hub à l’aide de hello CLI d’Azure.
 
-*Durée estimée : 10 minutes*
+*Estimation du temps toocomplete : 10 minutes*
 
-Accédez à [Créer un IoT hub et enregistrer votre appareil](iot-hub-gateway-kit-c-lesson2-register-device.md)
+Accédez trop[créez un IoT hub et inscrire votre appareil](iot-hub-gateway-kit-c-lesson2-register-device.md)
 
 ## <a name="lesson-3-receive-messages-from-sensortag-and-read-messages-from-your-iot-hub"></a>Leçon 3 : Recevoir des messages à partir de SensorTag et lire des messages à partir de votre IoT Hub
-Dans cette leçon, vous utiliserez des scripts pour automatiser la configuration et l’exécution d’un exemple d’application BLE dans votre passerelle. De telles applications utilisent une collection de modules pour agréger et transformer des données, traiter des commandes ou effectuer des tâches associées. Les modules communiquent entre eux par le bais d’un courtier de messages. L’exemple d’application comprend un module BLE et un module IoT hub. Le module BLE reçoit des données du SensorTag BLE. Le module IoT Hub regroupe les données reçues et les envoie à votre IoT Hub via l’infrastructure de passerelle fournie dans Azure IoT Edge.
+Dans cette leçon, vous allez utiliser la configuration de scripts tooautomate hello et l’exécution d’un exemple d’application BLE dans votre passerelle. Ces applications utilisent une collection de modules tooaggregate et transformer des données, traitent les commandes ou effectuer des tâches associées. Les modules communiquent entre eux par le bais d’un courtier de messages. exemple d’application Hello a un module d’activer et d’un module de hub IoT. module BLE Hello reçoit les données BLE SensorTag. Bonjour les packages de module de hub IoT les données de salutation reçu et l’envoie tooyour IoT hub via l’infrastructure de passerelle hello fournie dans Azure IoT Edge.
 
 ![Diagramme de bout en bout pour la leçon 3](media/iot-hub-gateway-kit-lessons/e2e-lesson3.png)
 
-### <a name="configure-and-run-the-ble-sample-app"></a>Configurer et exécuter l’exemple d’application BLE
-Configurez la connectivité entre SensorTag et votre passerelle. Terminez la configuration, puis exécutez l’application d’exemple BLE.
+### <a name="configure-and-run-hello-ble-sample-app"></a>Configurer et exécuter l’application d’exemple hello BLE
+Configurer une connectivité hello entre SensorTag et votre passerelle. Terminer la configuration de hello, puis exécutez hello BLE exemple d’application.
 
-*Durée estimée : 15 minutes*
+*Estimation du temps toocomplete : 15 minutes*
 
-Accédez à [Configurer et exécuter l’exemple d’application BLE](iot-hub-gateway-kit-c-lesson3-configure-ble-app.md)
+Accédez trop[configurer et l’exécution hello BLE exemple d’application](iot-hub-gateway-kit-c-lesson3-configure-ble-app.md)
 
-### <a name="read-messages-from-your-iot-hub"></a>Lire des messages à partir de votre IoT hub
-Exécutez l’exemple de code sur votre ordinateur hôte pour lire les messages provenant de votre IoT hub.
+### <a name="read-messages-from-your-iot-hub"></a>Lire des messages à partir de votre IoT Hub
+Exécutez exemple de code sur votre hôte tooread ordinateur des messages à partir de votre hub IoT.
 
-*Durée estimée : 15 minutes*
+*Estimation du temps toocomplete : 15 minutes*
 
-Accédez à [Lire des messages à partir de votre IoT Hub](iot-hub-gateway-kit-c-lesson3-read-messages-from-hub.md)
+Accédez trop[lire les messages de votre hub IoT](iot-hub-gateway-kit-c-lesson3-read-messages-from-hub.md)
 
-## <a name="lesson-4-save-messages-to-azure-table-storage"></a>Leçon 4 : Enregistrer des messages sur le stockage Table Azure
-Créez une application de fonction Azure qui récupère les messages entrants à partir de votre IoT Hub et les écrit dans le stockage Table Azure.
+## <a name="lesson-4-save-messages-tooazure-table-storage"></a>Leçon 4 : Enregistrer des messages tooAzure le stockage de Table
+Créer une application Azure de fonction qui obtient les messages entrants à partir de votre IoT hub et les écrit tooAzure le stockage de Table.
 
 ![Diagramme de bout en bout pour la leçon 4](media/iot-hub-gateway-kit-lessons/e2e-lesson4.png)
 
 ### <a name="create-an-azure-function-app-and-azure-storage-account"></a>Création d’une application de fonction Azure et d’un compte de stockage Azure
-Utilisez un modèle Azure Resource Manager pour créer une application de fonction Azure et un compte de stockage Azure.
+Utilisez un toocreate de modèle Azure Resource Manager une application Azure (fonction) et un compte de stockage Azure.
 
-*Durée estimée : 10 minutes*
+*Estimation du temps toocomplete : 10 minutes*
 
-Accédez à [Création d’une application de fonction Azure et d’un compte de stockage Azure](iot-hub-gateway-kit-c-lesson4-deploy-resource-manager-template.md)
+Accédez trop[créer une application de la fonction Azure et d’un compte de stockage Azure](iot-hub-gateway-kit-c-lesson4-deploy-resource-manager-template.md)
 
 ### <a name="read-messages-persisted-in-azure-table-storage"></a>Lire des messages conservés dans le stockage Table Azure
-Surveillez les messages passerelle-à-cloud lorsqu’ils sont écrits dans le stockage Table Azure.
+Surveiller les messages de passerelle dans le cloud hello qu’ils sont écrits tooAzure le stockage de Table.
 
-*Durée estimée : 5 minutes*
+*Estimation du temps toocomplete : 5 minutes*
 
-Accédez à [Lire des messages conservés dans le stockage Table Azure](iot-hub-gateway-kit-c-lesson4-read-table-storage.md).
+Accédez trop[lire les messages conservés dans le stockage Azure Table](iot-hub-gateway-kit-c-lesson4-read-table-storage.md).
 
-## <a name="troubleshooting"></a>Résolution de problèmes
-Si vous rencontrez des problèmes au cours des leçons, recherchez des solutions dans l’article [Résolution des problèmes](iot-hub-gateway-kit-c-troubleshooting.md).
+## <a name="troubleshooting"></a>Résolution des problèmes
+Si vous rencontrez des problèmes au cours des leçons de hello, rechercher des solutions dans hello [dépannage](iot-hub-gateway-kit-c-troubleshooting.md) l’article.
 
 ## <a name="explore-more"></a>Aller plus loin
-Consultez la [zone pour développeurs Intel IoT Gateway Kit](http://software.intel.com/iot/microsoft-azure) pour en savoir plus.
+Visitez hello [zone pour développeurs Intel IoT passerelle Kit](http://software.intel.com/iot/microsoft-azure) toolearn plus.

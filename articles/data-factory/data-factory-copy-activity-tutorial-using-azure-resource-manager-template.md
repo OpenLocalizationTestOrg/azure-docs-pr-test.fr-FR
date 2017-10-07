@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Créer un pipeline à l’aide du modèle Azure Resource Manager | Microsoft Docs"
-description: "Dans ce didacticiel, vous créez un pipeline Azure Data Factory en utilisant un modèle Azure Resource Manager. Ce pipeline copie des données d’un stockage Blob Azure dans une base de données Azure SQL."
+description: "Dans ce didacticiel, vous créez un pipeline Azure Data Factory en utilisant un modèle Azure Resource Manager. Ce pipeline copie des données à partir d’une base de données SQL Azure de tooan stockage blob Azure."
 services: data-factory
 documentationcenter: 
 author: spelluru
@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 07/10/2017
 ms.author: spelluru
-ms.openlocfilehash: 8a155213ed17e516a5c46abbe3d8a2bcc52268ed
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 1c7567cb0423f7ce3e0cab2d77a4d861b70eb56b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-use-azure-resource-manager-template-to-create-a-data-factory-pipeline-to-copy-data"></a>Didacticiel : Utiliser le modèle Azure Resource Manager pour créer un pipeline Data Factory afin de copier des données 
+# <a name="tutorial-use-azure-resource-manager-template-toocreate-a-data-factory-pipeline-toocopy-data"></a>Didacticiel : Utiliser Azure Resource Manager modèle toocreate données toocopy de pipeline de fabrique de données 
 > [!div class="op_single_selector"]
 > * [Vue d’ensemble et étapes préalables requises](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)
 > * [Assistant de copie](data-factory-copy-data-wizard-tutorial.md)
@@ -33,39 +33,39 @@ ms.lasthandoff: 08/03/2017
 > 
 > 
 
-Ce didacticiel vous montre comment utiliser un modèle Azure Resource Manager pour créer une fabrique de données Azure. Dans ce didacticiel, le pipeline de données copie les données d’un magasin de données source vers un magasin de données de destination. Il ne transforme pas les données d’entrée pour produire des données de sortie. Pour un didacticiel sur la transformation des données à l’aide d’Azure Data Factory, consultez [Tutorial: Build your first pipeline to transform data using Hadoop cluster](data-factory-build-your-first-pipeline.md) (Didacticiel : Créer un pipeline pour transformer des données à l’aide d’un cluster Hadoop).
+Ce didacticiel vous montre comment toouse un toocreate de modèle Azure Resource Manager une fabrique de données Azure. le pipeline de données Hello dans ce didacticiel copie des données à partir d’un magasin de données de destination source données magasin tooa. Il ne transforme pas les données de sortie de données d’entrée tooproduce. Pour obtenir un didacticiel sur la façon de tootransform les données à l’aide d’Azure Data Factory, consultez [didacticiel : créer un pipeline de données tootransform à l’aide de cluster Hadoop](data-factory-build-your-first-pipeline.md).
 
-Dans ce didacticiel, vous créez un pipeline avec une activité : activité de copie. L’activité de copie copie les données d’un magasin de données pris en charge vers un magasin de données de récepteur pris en charge. Pour obtenir la liste des magasins de données pris en charge en tant que sources et récepteurs, consultez [Magasins de données pris en charge](data-factory-data-movement-activities.md#supported-data-stores-and-formats). Elle est mise en œuvre par un service disponible dans le monde entier, capable de copier des données entre différents magasins de données de façon sécurisée, fiable et évolutive. Pour plus d’informations sur l’activité de copie, consultez [Activités de déplacement des données](data-factory-data-movement-activities.md).
+Dans ce didacticiel, vous créez un pipeline avec une activité : activité de copie. activité de copie Hello copie des données à partir d’un magasin de données de données pris en charge magasin tooa récepteur pris en charge. Pour obtenir la liste des magasins de données pris en charge en tant que sources et récepteurs, consultez [Magasins de données pris en charge](data-factory-data-movement-activities.md#supported-data-stores-and-formats). activité Hello est rendue possible par un service globalement disponible qui permettre copier des données entre différentes banques de données de manière sécurisée, fiable et évolutive. Pour plus d’informations sur l’activité de copie de hello, consultez [les activités de déplacement des données](data-factory-data-movement-activities.md).
 
-Un pipeline peut contenir plusieurs activités. En outre, vous pouvez chaîner deux activités (une après l’autre) en configurant le jeu de données de sortie d’une activité en tant que jeu de données d’entrée de l’autre activité. Pour plus d’informations, consultez [Plusieurs activités dans un pipeline](data-factory-scheduling-and-execution.md#multiple-activities-in-a-pipeline). 
+Un pipeline peut contenir plusieurs activités. De plus, vous pouvez concaténer les deux activités (exécutée une activité après l’autre) en définissant le dataset de sortie hello d’une activité hello d’entrée dataset Hello autre activité. Pour plus d’informations, consultez [Plusieurs activités dans un pipeline](data-factory-scheduling-and-execution.md#multiple-activities-in-a-pipeline). 
 
 > [!NOTE] 
-> Dans ce didacticiel, le pipeline de données copie les données d’un magasin de données source vers un magasin de données de destination. Pour un didacticiel sur la transformation des données à l’aide d’Azure Data Factory, consultez [Tutorial: Build your first pipeline to transform data using Hadoop cluster](data-factory-build-your-first-pipeline.md) (Didacticiel : Créer un pipeline pour transformer des données à l’aide d’un cluster Hadoop). 
+> le pipeline de données Hello dans ce didacticiel copie des données à partir d’un magasin de données de destination source données magasin tooa. Pour obtenir un didacticiel sur la façon de tootransform les données à l’aide d’Azure Data Factory, consultez [didacticiel : créer un pipeline de données tootransform à l’aide de cluster Hadoop](data-factory-build-your-first-pipeline.md). 
 
 ## <a name="prerequisites"></a>Composants requis
-* Lisez l’article [Vue d’ensemble et étapes préalables requises](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) et effectuez les **étapes préalables requises**.
-* Suivez les instructions de l’article [Installation et configuration d’Azure PowerShell](/powershell/azure/overview) pour installer la dernière version d’Azure PowerShell sur votre ordinateur. Dans ce didacticiel, vous utilisez PowerShell pour déployer des entités Data Factory. 
-* (Facultatif) Consultez [Création de modèles Azure Resource Manager](../azure-resource-manager/resource-group-authoring-templates.md) pour en savoir plus sur les modèles Azure Resource Manager.
+* Passez en revue [vue d’ensemble et conditions préalables](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) et hello complète **condition préalable** étapes.
+* Suivez les instructions de [comment tooinstall et configurer Azure PowerShell](/powershell/azure/overview) article tooinstall version la plus récente d’Azure PowerShell sur votre ordinateur. Dans ce didacticiel, vous utilisez des entités de fabrique de données toodeploy PowerShell. 
+* (facultatif) Consultez [de création de modèles de gestionnaire de ressources Azure](../azure-resource-manager/resource-group-authoring-templates.md) toolearn sur les modèles Azure Resource Manager.
 
 ## <a name="in-this-tutorial"></a>Dans ce didacticiel
-Dans ce didacticiel, vous créez une fabrique de données avec les entités Data Factory suivantes :
+Dans ce didacticiel, vous créez une fabrique de données avec hello suivant des entités de fabrique de données :
 
 | Entité | Description |
 | --- | --- |
-| Service lié Azure Storage |Lie votre compte Stockage Azure à la fabrique de données. Stockage Azure est le magasin de données source et la base de données SQL Azure est le magasin de données récepteur de l’activité de copie dans le didacticiel. Il spécifie le compte de stockage contenant les données d’entrée pour l’activité de copie. |
-| Service lié pour base de données SQL Azure |Lie votre base de données SQL Azure à la fabrique de données. Il spécifie la base de données SQL Azure qui conserve les données de sortie de l’activité de copie. |
-| Jeu de données d'entrée d'objet Blob Azure |Fait référence au service Stockage Azure lié. Le service lié fait référence à un compte de stockage Azure, et les jeux de données d’objet Blob Azure spécifie le conteneur, le dossier et le nom de fichier dans le stockage contenant les données d’entrée. |
-| Jeu de données de sortie SQL Azure |Fait référence au service SQL Azure lié. Le service lié SQL Azure fait référence à un serveur SQL Azure et le jeu de données SQL Azure spécifie le nom de la table qui contient les données de sortie. |
-| Pipeline de données |Le pipeline a une activité de type copie qui sélectionne le jeu de données d’objets blob Azure comme entrée et le jeu de données SQL Azure comme sortie. L’activité de copie les données d’un objet blob Azure vers une table dans la base de données SQL Azure. |
+| Service lié Azure Storage |Lie votre fabrique de données toohello compte Azure Storage. Le stockage Azure est le magasin de données source hello et base de données SQL Azure est un magasin de données de récepteur de hello pour l’activité de copie hello dans le didacticiel de hello. Il spécifie le compte de stockage hello qui contient les données d’entrée pour l’activité de copie hello de salutation. |
+| Service lié pour base de données SQL Azure |Lie votre fabrique de données de toohello de base de données SQL Azure. Il spécifie hello SQL Azure de base de données qui conserve les données de sortie de hello pour l’activité de copie hello. |
+| Jeu de données d'entrée d'objet Blob Azure |Fait référence toohello lié Azure Storage service. Hello service lié fait référence compte de stockage Azure tooan et dataset d’objets Blob Azure hello spécifie hello conteneur, dossier et nom de fichier dans le stockage hello qui contient les données d’entrée hello. |
+| Jeu de données de sortie SQL Azure |Désigne le service lié SQL Azure de toohello. service lié SQL Azure de Hello fait référence serveur SQL Azure de tooan et jeu de données SQL Azure hello Spécifie le nom hello de table hello qui contient les données de sortie hello. |
+| Pipeline de données |pipeline de Hello a une activité de copie qui prend le dataset d’objets blob Azure hello en tant qu’entrée de type et hello du jeu de données SQL Azure comme sortie. activité de copie Hello copie des données à partir d’une table de tooa d’objets blob Azure dans la base de données SQL Azure hello. |
 
 Une fabrique de données peut avoir un ou plusieurs pipelines. Un pipeline peut contenir une ou plusieurs activités. Il existe deux types d’activités : les [activités de déplacement des données](data-factory-data-movement-activities.md) et les [activités de transformation des données](data-factory-data-transformation-activities.md). Dans ce didacticiel, vous créez un pipeline avec une activité (activité de copie).
 
-![Copie de données d’un objet blob Azure vers une base de données SQL Azure](media/data-factory-copy-activity-tutorial-using-azure-resource-manager-template/CopyBlob2SqlDiagram.png) 
+![Copier des objets Blob Azure tooAzure base de données SQL](media/data-factory-copy-activity-tutorial-using-azure-resource-manager-template/CopyBlob2SqlDiagram.png) 
 
-La section suivante fournit le modèle Resource Manager complet permettant de définir des entités Data Factory pour que vous puissiez rapidement parcourir le didacticiel et tester le modèle. Pour comprendre comment chaque entité Data Factory est définie, consultez la section [Entités Data Factory dans le modèle](#data-factory-entities-in-the-template).
+Hello section suivante fournit modèle de gestionnaire de ressources hello complète permettant de définir des entités de fabrique de données afin que vous puissiez exécuter rapidement via hello didacticiel et test hello du modèle. toounderstand chaque entité de la fabrique de données est définie, voir [des entités de fabrique de données dans le modèle de hello](#data-factory-entities-in-the-template) section.
 
 ## <a name="data-factory-json-template"></a>Modèle JSON Data Factory
-Le modèle Resource Manager de niveau supérieur pour la définition d’une fabrique de données est : 
+modèle de gestionnaire de ressources du niveau supérieur Hello pour la définition d’une fabrique de données est : 
 
 ```json
 {
@@ -91,22 +91,22 @@ Le modèle Resource Manager de niveau supérieur pour la définition d’une fab
     ]
 }
 ```
-Créez un fichier JSON nommé **ADFCopyTutorialARM.json** dans le dossier **C:\ADFGetStarted** avec le contenu suivant :
+Créez un fichier JSON nommé **ADFCopyTutorialARM.json** dans **C:\ADFGetStarted** dossier avec hello suivant le contenu :
 
 ```json
 {
     "contentVersion": "1.0.0.0",
     "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "parameters": {
-      "storageAccountName": { "type": "string", "metadata": { "description": "Name of the Azure storage account that contains the data to be copied." } },
-      "storageAccountKey": { "type": "securestring", "metadata": { "description": "Key for the Azure storage account." } },
-      "sourceBlobContainer": { "type": "string", "metadata": { "description": "Name of the blob container in the Azure Storage account." } },
-      "sourceBlobName": { "type": "string", "metadata": { "description": "Name of the blob in the container that has the data to be copied to Azure SQL Database table" } },
-      "sqlServerName": { "type": "string", "metadata": { "description": "Name of the Azure SQL Server that will hold the output/copied data." } },
-      "databaseName": { "type": "string", "metadata": { "description": "Name of the Azure SQL Database in the Azure SQL server." } },
-      "sqlServerUserName": { "type": "string", "metadata": { "description": "Name of the user that has access to the Azure SQL server." } },
-      "sqlServerPassword": { "type": "securestring", "metadata": { "description": "Password for the user." } },
-      "targetSQLTable": { "type": "string", "metadata": { "description": "Table in the Azure SQL Database that will hold the copied data." } 
+      "storageAccountName": { "type": "string", "metadata": { "description": "Name of hello Azure storage account that contains hello data toobe copied." } },
+      "storageAccountKey": { "type": "securestring", "metadata": { "description": "Key for hello Azure storage account." } },
+      "sourceBlobContainer": { "type": "string", "metadata": { "description": "Name of hello blob container in hello Azure Storage account." } },
+      "sourceBlobName": { "type": "string", "metadata": { "description": "Name of hello blob in hello container that has hello data toobe copied tooAzure SQL Database table" } },
+      "sqlServerName": { "type": "string", "metadata": { "description": "Name of hello Azure SQL Server that will hold hello output/copied data." } },
+      "databaseName": { "type": "string", "metadata": { "description": "Name of hello Azure SQL Database in hello Azure SQL server." } },
+      "sqlServerUserName": { "type": "string", "metadata": { "description": "Name of hello user that has access toohello Azure SQL server." } },
+      "sqlServerPassword": { "type": "securestring", "metadata": { "description": "Password for hello user." } },
+      "targetSQLTable": { "type": "string", "metadata": { "description": "Table in hello Azure SQL Database that will hold hello copied data." } 
       } 
     },
     "variables": {
@@ -235,7 +235,7 @@ Créez un fichier JSON nommé **ADFCopyTutorialARM.json** dans le dossier **C:\A
               "activities": [
                 {
                   "name": "CopyFromAzureBlobToAzureSQL",
-                  "description": "Copy data frm Azure blob to Azure SQL",
+                  "description": "Copy data frm Azure blob tooAzure SQL",
                   "type": "Copy",
                   "inputs": [
                     {
@@ -279,7 +279,7 @@ Créez un fichier JSON nommé **ADFCopyTutorialARM.json** dans le dossier **C:\A
 ```
 
 ## <a name="parameters-json"></a>Paramètres JSON
-Créez un fichier JSON nommé **ADFCopyTutorialARM-Parameters** contient les paramètres du modèle Azure Resource Manager. 
+Créez un fichier JSON nommé **ADFCopyTutorialARM-Parameters.json** qui contient les paramètres de modèle de gestionnaire de ressources Azure hello. 
 
 > [!IMPORTANT]
 > Spécifiez le nom et la clé de votre compte de stockage Azure pour les paramètres storageAccountName et storageAccountKey.  
@@ -291,44 +291,44 @@ Créez un fichier JSON nommé **ADFCopyTutorialARM-Parameters** contient les par
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": { 
-        "storageAccountName": { "value": "<Name of the Azure storage account>"    },
+        "storageAccountName": { "value": "<Name of hello Azure storage account>"    },
         "storageAccountKey": {
-            "value": "<Key for the Azure storage account>"
+            "value": "<Key for hello Azure storage account>"
         },
         "sourceBlobContainer": { "value": "adftutorial" },
         "sourceBlobName": { "value": "emp.txt" },
-        "sqlServerName": { "value": "<Name of the Azure SQL server>" },
-        "databaseName": { "value": "<Name of the Azure SQL database>" },
-        "sqlServerUserName": { "value": "<Name of the user who has access to the Azure SQL database>" },
-        "sqlServerPassword": { "value": "<password for the user>" },
+        "sqlServerName": { "value": "<Name of hello Azure SQL server>" },
+        "databaseName": { "value": "<Name of hello Azure SQL database>" },
+        "sqlServerUserName": { "value": "<Name of hello user who has access toohello Azure SQL database>" },
+        "sqlServerPassword": { "value": "<password for hello user>" },
         "targetSQLTable": { "value": "emp" }
     }
 }
 ```
 
 > [!IMPORTANT]
-> Vous pouvez utiliser des fichiers JSON de paramètres distincts pour les environnements de développement, de test et de production avec le même modèle JSON Data Factory. En utilisant un script PowerShell, vous pouvez automatiser le déploiement des entités Data Factory dans ces environnements.  
+> Vous avez peut-être fichiers JSON de paramètres distincts pour le développement, test et les environnements de production que vous pouvez utiliser avec hello même modèle JSON de fabrique de données. En utilisant un script PowerShell, vous pouvez automatiser le déploiement des entités Data Factory dans ces environnements.  
 > 
 > 
 
 ## <a name="create-data-factory"></a>Créer une fabrique de données
-1. Démarrez **Azure PowerShell** et exécutez la commande suivante :
-   * Exécutez la commande suivante, puis saisissez le nom d’utilisateur et le mot de passe que vous avez utilisés pour la connexion au portail Azure.
+1. Démarrer **Azure PowerShell** et hello exécution de commande suivante :
+   * Exécutez hello suivant de commande et entrez le nom d’utilisateur hello et le mot de passe que vous utilisez toosign dans toohello portail Azure.
    
     ```PowerShell
     Login-AzureRmAccount    
     ```  
-   * Exécutez la commande suivante pour afficher tous les abonnements de ce compte.
+   * Exécutez hello suivant commande tooview tous les abonnements hello pour ce compte.
    
     ```PowerShell
     Get-AzureRmSubscription
     ```   
-   * Exécutez la commande suivante pour sélectionner l’abonnement que vous souhaitez utiliser.
+   * Tooselect hello abonnement toowork avec la commande suivante d’exécution hello.
     
     ```PowerShell
     Get-AzureRmSubscription -SubscriptionName <SUBSCRIPTION NAME> | Set-AzureRmContext
     ```    
-2. Exécutez la commande suivante pour déployer des entités Data Factory à l’aide du modèle Resource Manager que vous avez créé à l’étape 1.
+2. Hello exécution suivant des entités de fabrique de données toodeploy de commande à l’aide du modèle de gestionnaire de ressources hello que vous avez créé à l’étape 1.
 
     ```PowerShell   
     New-AzureRmResourceGroupDeployment -Name MyARMDeployment -ResourceGroupName ADFTutorialResourceGroup -TemplateFile C:\ADFGetStarted\ADFCopyTutorialARM.json -TemplateParameterFile C:\ADFGetStarted\ADFCopyTutorialARM-Parameters.json
@@ -336,27 +336,27 @@ Créez un fichier JSON nommé **ADFCopyTutorialARM-Parameters** contient les par
 
 ## <a name="monitor-pipeline"></a>Surveillance d’un pipeline
 
-1. Connectez-vous au [portail Azure](https://portal.azure.com) avec votre compte Azure.
-2. Cliquez sur **Fabriques de données** dans le menu à gauche (ou) cliquez sur **Plus de services** puis sur **Fabriques de données** sous la catégorie **Intelligence et analyse**.
+1. Connectez-vous à toohello [portail Azure](https://portal.azure.com) à l’aide de votre compte Azure.
+2. Cliquez sur **fabriques de données** sur hello gauche menu (ou) cliquez sur **davantage de services** et cliquez sur **fabriques de données** sous **INTELLIGENCE + ANALYTICS** catégorie.
    
     ![Menu Fabriques de données](media/data-factory-copy-activity-tutorial-using-azure-resource-manager-template/data-factories-menu.png)
-3. Sur la page **Fabriques de données**, recherchez votre fabrique de données (AzureBlobToAzureSQLDatabaseDF). 
+3. Bonjour **fabriques de données** page, rechercher et trouver votre fabrique de données (AzureBlobToAzureSQLDatabaseDF). 
    
     ![Recherche d’une fabrique de données](media/data-factory-copy-activity-tutorial-using-azure-resource-manager-template/search-for-data-factory.png)  
-4. Cliquez sur votre fabrique de données Azure. La page d’accueil de la fabrique de données apparaît.
+4. Cliquez sur votre fabrique de données Azure. Vous consultez la page d’accueil hello de fabrique de données hello.
    
     ![Page d’accueil de la fabrique de données](media/data-factory-copy-activity-tutorial-using-azure-resource-manager-template/data-factory-home-page.png)  
-6. Suivez les instructions dans [Surveiller les jeux de données et le pipeline](data-factory-copy-activity-tutorial-using-azure-portal.md#monitor-pipeline) pour surveiller le pipeline et les jeux de données que vous avez créés dans ce didacticiel. Pour le moment, Visual Studio ne prend pas en charge la surveillance des pipelines Data Factory.
-7. Lorsqu’une tranche est à l’état **Prêt**, vérifiez que les données sont copiées vers la table **emp** dans la base de données Azure SQL.
+6. Suivez les instructions à partir de [analyser des jeux de données et le pipeline](data-factory-copy-activity-tutorial-using-azure-portal.md#monitor-pipeline) pipeline de hello toomonitor et jeux de données que vous avez créé dans ce didacticiel. Pour le moment, Visual Studio ne prend pas en charge la surveillance des pipelines Data Factory.
+7. Lorsqu’une tranche est Bonjour **prêt** d’état, vérifiez que les données de salutation soient copié toohello **emp** table dans la base de données SQL Azure hello.
 
 
-Pour plus d’informations sur l’utilisation des panneaux du portail Azure afin de surveiller le pipeline et les jeux de données que vous avez créés dans ce didacticiel, consultez [Surveiller les jeux de données et le pipeline](data-factory-monitor-manage-pipelines.md).
+Pour plus d’informations sur la façon dont pipeline de toomonitor toouse panneaux portail Azure et les jeux de données vous avez créé dans ce didacticiel, consultez [analyser des jeux de données et de pipeline](data-factory-monitor-manage-pipelines.md) .
 
-Pour plus d’informations sur l’utilisation de l’application Surveiller et gérer afin de surveiller vos pipelines de données, consultez [Surveillance et gestion des pipelines d’Azure Data Factory à l’aide d’application Surveiller](data-factory-monitor-manage-app.md).
+Pour plus d’informations sur comment toomonitor application toouse hello analyse et gestion de vos données pipelines, consultez [analyse et de gérer les pipelines Azure Data Factory à l’aide de la surveillance des applications](data-factory-monitor-manage-app.md).
 
-## <a name="data-factory-entities-in-the-template"></a>Entités Data Factory dans le modèle
+## <a name="data-factory-entities-in-hello-template"></a>Entités de fabrique de données dans le modèle de hello
 ### <a name="define-data-factory"></a>Définir une fabrique de données
-Vous définissez une fabrique de données dans le modèle Resource Manager, comme indiqué dans l’exemple suivant :  
+Vous définissez une fabrique de données dans le modèle de gestionnaire de ressources hello comme indiqué dans hello suivant l’exemple :  
 
 ```json
 "resources": [
@@ -368,16 +368,16 @@ Vous définissez une fabrique de données dans le modèle Resource Manager, comm
 }
 ```
 
-La propriété dataFactoryName est défini en tant que : 
+Hello dataFactoryName est défini comme : 
 
 ```json
 "dataFactoryName": "[concat('AzureBlobToAzureSQLDatabaseDF', uniqueString(resourceGroup().id))]"
 ```
 
-Il s’agit d’une chaîne unique basée sur l’ID du groupe de ressources.  
+Il s’agit d’une chaîne unique en fonction de l’ID de groupe de ressources hello.  
 
 ### <a name="defining-data-factory-entities"></a>Définition des entités Data Factory
-Les entités Data Factory suivantes sont définies dans le modèle JSON : 
+Hello des entités de fabrique de données suivantes sont définies dans le modèle JSON hello : 
 
 1. [Service lié Azure Storage](#azure-storage-linked-service)
 2. [Service lié SQL Azure](#azure-sql-database-linked-service)
@@ -386,7 +386,7 @@ Les entités Data Factory suivantes sont définies dans le modèle JSON :
 5. [Pipeline de données avec une activité de copie](#data-pipeline)
 
 #### <a name="azure-storage-linked-service"></a>Service lié Azure Storage
-AzureStorageLinkedService relie votre compte de stockage Azure à la fabrique de données. Vous avez créé un conteneur et chargé des données dans ce compte de stockage en remplissant les [conditions préalables](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md). Vous spécifiez le nom et la clé de votre compte Stockage Azure dans cette section. Consultez [Service lié Stockage Azure](data-factory-azure-blob-connector.md#azure-storage-linked-service) pour en savoir plus sur les propriétés JSON utilisées pour définir un service lié Stockage Azure. 
+Hello AzureStorageLinkedService lie votre fabrique de données toohello compte stockage Azure. Création d’un conteneur et de téléchargé de compte de stockage de données toothis dans le cadre de [conditions préalables](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md). Vous spécifiez le nom de hello et la clé de votre compte de stockage Azure dans cette section. Consultez [service lié Azure Storage](data-factory-azure-blob-connector.md#azure-storage-linked-service) pour plus d’informations sur JSON propriétés utilisées toodefine un stockage Azure le service lié. 
 
 ```json
 {
@@ -406,10 +406,10 @@ AzureStorageLinkedService relie votre compte de stockage Azure à la fabrique de
 }
 ```
 
-La propriété connectionString utilise les paramètres storageAccountName et storageAccountKey. Les valeurs de ces paramètres sont transmises à l’aide d’un fichier de configuration. La définition utilise également les variables azureStroageLinkedService et dataFactoryName, définies dans le modèle. 
+Hello connectionString utilise les paramètres storageAccountName et storageAccountKey hello. valeurs Hello pour ces paramètres passés à l’aide d’un fichier de configuration. définition de Hello utilise également des variables : azureStroageLinkedService et dataFactoryName définies dans le modèle de hello. 
 
 #### <a name="azure-sql-database-linked-service"></a>Service lié pour base de données SQL Azure
-AzureSqlLinkedService lie votre base de données SQL Azure à la fabrique de données. Les données copiées à partir du stockage Blob sont stockées dans cette base de données. Vous avez créé une table emp dans cette base de données en remplissant les [conditions préalables](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md). Vous spécifiez le nom du serveur SQL Azure, le nom de la base de données, le nom d’utilisateur et le mot de passe de l’utilisateur dans cette section. Consultez [Service lié SQL Azure](data-factory-azure-sql-connector.md#linked-service-properties) pour en savoir plus sur les propriétés JSON utilisées pour définir un service lié SQL Azure.  
+AzureSqlLinkedService lie votre fabrique de données de toohello de base de données SQL Azure. données Hello sont copiées à partir du stockage d’objets blob hello sont stockées dans cette base de données. Vous avez créé la table emp de hello dans cette base de données dans le cadre de [conditions préalables](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md). Vous spécifiez le nom du serveur SQL Azure hello, nom de la base de données, nom d’utilisateur et mot de passe utilisateur dans cette section. Consultez [service lié Azure SQL](data-factory-azure-sql-connector.md#linked-service-properties) pour plus d’informations sur JSON propriétés utilisées toodefine service lié de SQL Azure.  
 
 ```json
 {
@@ -429,10 +429,10 @@ AzureSqlLinkedService lie votre base de données SQL Azure à la fabrique de don
 }
 ```
 
-La propriété connectionString utilise les paramètres sqlServerName, databaseName, sqlServerUserName et sqlServerPassword, dont les valeurs sont transmises à l’aide d’un fichier de configuration. La définition utilise également les variables suivantes du modèle : azureSqlLinkedServiceName, dataFactoryName.
+Hello connectionString utilise sqlServerName, databaseName, sqlServerUserName et paramètres de sqlServerPassword dont les valeurs sont passées à l’aide d’un fichier de configuration. Hello définition utilise également hello suivant des variables de modèle de hello : azureSqlLinkedServiceName, dataFactoryName.
 
 #### <a name="azure-blob-dataset"></a>Jeu de données d’objet blob Azure
-Le service lié Stockage Azure spécifie la chaîne de connexion que le service Data Factory utilise au moment de l’exécution pour se connecter à votre compte de stockage Azure. Dans la définition du jeu de données d’objets blob Azure, vous spécifiez les noms du conteneur d’objets blob, du dossier et du fichier contenant les données d’entrée. Consultez [Propriétés du jeu de données d’objet blob Azure](data-factory-azure-blob-connector.md#dataset-properties) pour en savoir plus sur les propriétés JSON permettant de définir un jeu de données d’objets blob Azure. 
+service lié Azure storage de Hello spécifie la chaîne de connexion hello service Data Factory utilise au moment de l’exécution tooconnect tooyour compte de stockage Azure. Dans la définition de jeu de données d’objets blob Azure, vous spécifiez des noms de conteneur d’objets blob, de dossier et de fichier qui contient les données d’entrée hello. Consultez [propriétés de jeu de données d’objets Blob Azure](data-factory-azure-blob-connector.md#dataset-properties) pour plus d’informations sur les propriétés utilisées de JSON toodefine un jeu de données d’objets Blob Azure. 
 
 ```json
 {
@@ -474,7 +474,7 @@ Le service lié Stockage Azure spécifie la chaîne de connexion que le service 
 ```
 
 #### <a name="azure-sql-dataset"></a>Jeu de données SQL Azure
-Vous spécifiez le nom de la table dans Azure SQL Database contenant les données copiées à partir du Stockage Blob Azure. Consultez [Propriétés du jeu de données SQL Azure](data-factory-azure-sql-connector.md#dataset-properties) pour en savoir plus sur les propriétés JSON permettant de définir un jeu de données SQL Azure. 
+Vous spécifiez le nom hello de table de hello dans la base de données SQL Azure hello qui contient les données hello copié à partir de hello le stockage Blob Azure. Consultez [propriétés du jeu de données SQL Azure](data-factory-azure-sql-connector.md#dataset-properties) pour plus d’informations sur les propriétés utilisées de JSON toodefine un jeu de données SQL Azure. 
 
 ```json
 {
@@ -510,7 +510,7 @@ Vous spécifiez le nom de la table dans Azure SQL Database contenant les donnée
 ```
 
 #### <a name="data-pipeline"></a>Pipeline de données
-Vous définissez un pipeline qui copie les données du jeu de données d’objets blob Azure vers le jeu de données SQL Azure. Consultez [Pipeline JSON](data-factory-create-pipelines.md#pipeline-json) pour obtenir des descriptions des éléments JSON permettant de définir un pipeline dans cet exemple. 
+Vous définissez un pipeline qui copie les données de jeu de données de SQL Azure hello blob Azure dataset toohello. Consultez [JSON de Pipeline](data-factory-create-pipelines.md#pipeline-json) pour les descriptions des éléments utilisés de JSON toodefine un pipeline dans cet exemple. 
 
 ```json
 {
@@ -528,7 +528,7 @@ Vous définissez un pipeline qui copie les données du jeu de données d’objet
           "activities": [
         {
               "name": "CopyFromAzureBlobToAzureSQL",
-              "description": "Copy data frm Azure blob to Azure SQL",
+              "description": "Copy data frm Azure blob tooAzure SQL",
               "type": "Copy",
               "inputs": [
             {
@@ -567,8 +567,8 @@ Vous définissez un pipeline qui copie les données du jeu de données d’objet
 }
 ```
 
-## <a name="reuse-the-template"></a>Réutiliser le modèle
-Dans ce didacticiel, vous avez créé un modèle pour définir des entités Data Factory et un modèle pour transmettre les valeurs des paramètres. Le pipeline copie les données d’un compte Stockage Azure vers une base de données SQL Azure spécifiée via des paramètres. Pour utiliser le même modèle afin de déployer des entités Data Factory dans des environnements différents, vous créez un fichier de paramètres pour chaque environnement et l’utiliser lors du déploiement de cet environnement.     
+## <a name="reuse-hello-template"></a>Réutiliser le modèle de hello
+Dans le didacticiel de hello, vous avez créé un modèle permettant de définir des entités de fabrique de données et un modèle pour passer des valeurs pour les paramètres. pipeline de Hello copie les données d’un stockage Azure compte tooan SQL Azure de base de données spécifié via les paramètres définis. toouse hello même modèle toodeploy Data Factory entités toodifferent des environnements, vous créez un fichier de paramètres pour chaque environnement et l’utilisez lors de la toothat environnement de déploiement.     
 
 Exemple :  
 
@@ -582,13 +582,13 @@ New-AzureRmResourceGroupDeployment -Name MyARMDeployment -ResourceGroupName ADFT
 New-AzureRmResourceGroupDeployment -Name MyARMDeployment -ResourceGroupName ADFTutorialResourceGroup -TemplateFile ADFCopyTutorialARM.json -TemplateParameterFile ADFCopyTutorialARM-Parameters-Production.json
 ```
 
-Notez que la première commande utilise le fichier de paramètres pour l’environnement de développement, la deuxième pour l’environnement de test et la troisième pour l’environnement de production.  
+Notez que hello première commande utilise le fichier de paramètres pour l’environnement de développement hello, deuxième hello un environnement de test et hello un tiers pour l’environnement de production hello.  
 
-Vous pouvez également réutiliser le modèle pour effectuer des tâches répétitives. Par exemple, vous devez créer plusieurs fabriques de données avec un ou plusieurs pipelines qui implémentent la même logique, mais chaque fabrique de données utilise des comptes Stockage et SQL Database différents. Dans ce scénario, vous utilisez le même modèle dans le même environnement (développement, test ou production) avec différents fichiers de paramètres pour créer des fabriques de données.   
+Vous pouvez également réutiliser hello modèle tooperform tâches récurrentes. Par exemple, vous devez toocreate plusieurs fabriques de données avec l’un ou plusieurs pipelines qui implémentent hello même logique, mais chaque fabrique de données utilise différents comptes de stockage et de la base de données SQL. Dans ce scénario, vous utilisez hello même modèle Bonjour même environnement (développement, test ou production) avec des paramètres différents fichiers toocreate les fabriques de données.   
 
 ## <a name="next-steps"></a>Étapes suivantes
-Dans ce didacticiel, vous avez utilisé le stockage Blob Azure comme magasin de données source et une base de données SQL Azure comme banque de données de destination dans une opération de copie. Le tableau ci-dessous contient la liste des magasins de données pris en charge en tant que sources et destinations par l’activité de copie : 
+Dans ce didacticiel, vous avez utilisé le stockage Blob Azure comme magasin de données source et une base de données SQL Azure comme banque de données de destination dans une opération de copie. Hello tableau suivant fournit une liste de banques de données pris en charge en tant que sources et destinations par l’activité de copie hello : 
 
 [!INCLUDE [data-factory-supported-data-stores](../../includes/data-factory-supported-data-stores.md)]
 
-Pour découvrir comment copier des données vers/depuis un magasin de données, cliquez sur le lien du magasin de données dans le tableau.
+toolearn sur la banque de données de toocopy vers/à partir de données, cliquez sur lien hello hello magasin de données dans la table de hello.

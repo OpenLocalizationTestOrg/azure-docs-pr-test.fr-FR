@@ -1,6 +1,6 @@
 ---
-title: "Utilisation des rapports d’intégrité du système pour la résolution des problèmes | Microsoft Docs"
-description: "Décrit les rapports d’intégrité envoyés par les composants Azure Service Fabric et leur utilisation pour la résolution des problèmes de cluster ou d’application."
+title: "aaaTroubleshoot avec les rapports d’intégrité système | Documents Microsoft"
+description: "Décrit les rapports de contrôle d’intégrité hello envoyés par les composants d’infrastructure de Service Azure et leur utilisation pour la résolution des problèmes de cluster ou de problèmes liés aux applications."
 services: service-fabric
 documentationcenter: .net
 author: oanapl
@@ -14,58 +14,58 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/18/2017
 ms.author: oanapl
-ms.openlocfilehash: 54e20146b2f1e0ca6153b66319be70c6f7c2fb59
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: c77a6cdd0440ce5d354cd8760f40151f674a3529
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-system-health-reports-to-troubleshoot"></a>Utiliser les rapports d’intégrité du système pour la résolution des problèmes
-Les composants Azure Service Fabric signalent sans configuration l’intégrité de toutes les entités du cluster. Le [magasin d’intégrité](service-fabric-health-introduction.md#health-store) crée et supprime des entités en fonction des rapports du système. Il les organise au sein d’une hiérarchie qui tient compte des interactions entre les entités.
+# <a name="use-system-health-reports-tootroubleshoot"></a>Utilisez tootroubleshoot de rapports d’intégrité système
+Azure Service Fabric composants rapport prédéfinies hello sur toutes les entités dans un cluster de hello. Hello [magasin de contrôle d’intégrité](service-fabric-health-introduction.md#health-store) crée et supprime les entités en fonction des rapports sur le système hello. Il les organise au sein d’une hiérarchie qui tient compte des interactions entre les entités.
 
 > [!NOTE]
-> Pour mieux comprendre les concepts relatifs à l’intégrité, consultez la documentation relative au [modèle d’intégrité du Service Fabric](service-fabric-health-introduction.md).
+> concepts relatifs à l’état de toounderstand, en savoir plus sur [modèle de contrôle d’intégrité de l’infrastructure de Service](service-fabric-health-introduction.md).
 > 
 > 
 
-Les rapports d’intégrité du système procurent une visibilité sur les fonctionnalités du cluster et des applications, et signalent les problèmes d’intégrité. Pour les applications et services, les rapports d’intégrité du système vérifient que les entités sont implémentées et qu’elles se comportent correctement du point de vue de Service Fabric. Le rapport ne fournit aucune information sur l’intégrité de la logique métier du service ni sur la détection des processus bloqués. Les services utilisateur peuvent enrichir les données d’intégrité avec des informations spécifiques à leur logique.
-
-> [!NOTE]
-> Les rapports de surveillance d’intégrité sont visibles uniquement *après* que les composants système ont créé une entité. Lorsqu’une entité est supprimée, le magasin d’intégrité élimine automatiquement l’ensemble des rapports d’intégrité qui lui sont associés. Cela vaut également quand une nouvelle instance de l’entité est créée (par exemple une nouvelle instance de réplica de service avec état persistant est créée). Tous les rapports associés à l’ancienne instance sont supprimés et éliminés du magasin.
-> 
-> 
-
-Les rapports sur les composants système sont identifiés par la source, qui commence par le préfixe « **System.** » . Les pilotes de surveillance ne peuvent pas utiliser le même préfixe pour leurs sources, car les rapports dotés de paramètres non valides sont rejetés.
-Examinons certains rapports du système et tâchons d’identifier les éléments déclencheurs et d’imaginer des moyens de corriger les problèmes potentiels qu’ils représentent.
+Les rapports d’intégrité du système procurent une visibilité sur les fonctionnalités du cluster et des applications, et signalent les problèmes d’intégrité. Pour les applications et services, rapports d’intégrité système Vérifiez que les entités sont implémentées et sont comportent correctement à partir de hello perspective de l’infrastructure de Service. rapports de Hello ne fournissent pas de n’importe quel contrôle d’intégrité de la logique métier de hello du service de hello ou détection de processus bloqués. Services de l’utilisateur peuvent enrichir les données de contrôle d’intégrité de hello avec une logique spécifique tootheir plus d’informations.
 
 > [!NOTE]
-> Service Fabric continue d’ajouter des rapports sur les domaines d’intérêt qui améliorent la visibilité sur les événements associés au cluster et aux applications. Les rapports existants peuvent également être améliorés en offrant plus de détails pour vous aider à résoudre le problème plus rapidement.
+> Agents de surveillance des rapports d’intégrité sont visibles uniquement *après* composants du système hello créent une entité. Lorsqu’une entité est supprimée, magasin de contrôle d’intégrité hello supprime automatiquement tous les rapports d’intégrité associées. Hello même a la valeur true lors de la création d’une nouvelle instance de l’entité de hello (par exemple, une nouvelle instance de réplica de service rendues persistantes avec état est créée). Tous les rapports associés avec l’ancienne instance de hello sont supprimés et supprimés du magasin de hello.
+> 
+> 
+
+rapports sur les composants système Hello sont identifiés par source de hello, qui commence par hello »**système.**» . Agents de surveillance ne peut pas utiliser hello même préfixe de leurs sources, comme des rapports avec des paramètres non valides sont rejetées.
+Nous allons examiner certains rapports toounderstand ce qui déclenche les et comment toocorrect hello éventuels problèmes qu’ils représentent.
+
+> [!NOTE]
+> Service Fabric continue tooadd des rapports sur les conditions d’intérêt qui améliorent la visibilité de ce qui se passe dans l’application et du cluster de hello. Les rapports existants peuvent également être améliorées avec plus de détails toohelp dépannage hello plus rapidement.
 > 
 > 
 
 ## <a name="cluster-system-health-reports"></a>Rapports d’intégrité du système sur le cluster
-L’entité d’intégrité du cluster est créée automatiquement dans le magasin d’intégrité. Si tout fonctionne correctement, elle ne présente pas de rapport système.
+entité de contrôle d’intégrité de cluster Hello est créée automatiquement dans le magasin de contrôle d’intégrité hello. Si tout fonctionne correctement, elle ne présente pas de rapport système.
 
 ### <a name="neighborhood-loss"></a>Perte de voisinage
-**System.Federation** indique une erreur s’il détecte une perte de voisinage. Le rapport est issu de nœuds individuels ; l’ID de nœud est inclus dans le nom de propriété. Si un voisinage est perdu dans l’ensemble de l’anneau de Service Fabric, deux événements sont généralement signalés (les deux côtés de l’intervalle indiquent une erreur). Si plusieurs voisinages sont perdus, d’autres d’événements ont lieu.
+**System.Federation** indique une erreur s’il détecte une perte de voisinage. rapport de Hello est à partir des nœuds individuels, et ID de nœud hello est inclus dans le nom de la propriété hello. Si un cercle est perdue au cours de l’anneau de Service Fabric entière hello, vous verrez généralement deux événements (les deux côtés du rapport d’écart hello). Si plusieurs voisinages sont perdus, d’autres d’événements ont lieu.
 
-Le rapport spécifie le délai d’expiration du bail globale comme durée de vie. Il est renvoyé lorsque la moitié de la durée de vie est atteinte, tant que la condition reste active. L’événement arrivé à expiration est automatiquement supprimé. Le comportement de suppression à expiration garantit le nettoyage approprié du rapport dans le magasin d’intégrité, même si le nœud de création de rapports est arrêté.
+rapport de Hello Spécifie le délai d’attente de hello bail global comme heure hello toolive. rapport de Hello est renvoyée à chaque semestre de durée de vie hello pour tant que condition de hello demeure active. événement de Hello est automatiquement supprimé lorsqu’il arrive à expiration. Supprimer lorsque le comportement expirée permet de s’assurer que les rapports de hello sont nettoyées à partir du magasin de contrôle d’intégrité hello correctement, même si le nœud de création de rapports hello est arrêté.
 
 * **SourceId**: System.Federation.
 * **Property** : commence par **Neighborhood** et inclut des informations sur le nœud.
-* **Étapes suivantes**: recherchez ce qui a provoqué la perte de voisinage (par exemple, vérifiez la communication entre les nœuds du cluster).
+* **Étapes suivantes**: recherchez pourquoi le voisinage de hello est perdue (par exemple, la communication de hello cocher entre les nœuds de cluster).
 
 ## <a name="node-system-health-reports"></a>Rapports d’intégrité du système sur les nœuds
-**System.FM**, qui représente le service Failover Manager, est l’autorité qui gère les informations sur les nœuds de cluster. Un rapport System.FM indiquant son état doit être alloué à chaque nœud. Les entités de nœud sont supprimées lorsque l’état du nœud est supprimé (consultez [RemoveNodeStateAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.clustermanagementclient.removenodestateasync)).
+**System.FM**, qui représente le service de gestionnaire de basculement hello, est l’autorité hello qui gère des informations sur les nœuds de cluster. Un rapport System.FM indiquant son état doit être alloué à chaque nœud. entités de nœud de Hello sont supprimées lors de l’état du nœud hello est supprimé (consultez [RemoveNodeStateAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.clustermanagementclient.removenodestateasync)).
 
 ### <a name="node-updown"></a>Nœud activé/désactivé
-System.FM consigne la valeur OK lorsque le nœud rejoint l’anneau (il est opérationnel). Il indique une erreur lorsque le nœud quitte l’anneau (il est inactif, en raison d’une mise à niveau ou simplement d’une défaillance). La hiérarchie d’intégrité développée par le magasin d’intégrité agit sur les entités déployées en corrélation avec les rapports sur les nœuds de System.FM. Elle traite le nœud comme un parent virtuel de toutes les entités déployées. Les entités déployées sur ce nœud sont exposées via des requêtes si le nœud est indiqué comme actif par System/FM, avec la même instance comme instance associée aux entités. Lorsque System.FM fait état de l’inactivité ou du redémarrage du nœud (nouvelle instance), le magasin d’intégrité nettoie automatiquement les entités déployées qui peuvent exister uniquement sur le nœud inactif ou sur l’instance précédente du nœud.
+System.FM signale comme OK lorsque le nœud de hello joint anneau hello (il est en cours d’exécution). Il signale une erreur lors de l’anneau de hello de départ du nœud de hello (elle est activée, la mise à niveau ou simplement, car il a échoué). hiérarchie de contrôle d’intégrité Hello généré par le magasin de contrôle d’intégrité hello entreprend des actions sur les entités déployées en corrélation avec les rapports de nœuds System.FM. Il considère que le nœud de hello virtuel parent de toutes les entités déployés. entités Hello déployé sur ce nœud sont exposées via des requêtes si le nœud de hello est signalée comme par System.FM, avec hello même l’instance comme instance hello associée aux entités de hello. Lorsque System.FM signale ce nœud hello est arrêté ou redémarré (une nouvelle instance), magasin de contrôle d’intégrité hello nettoie automatiquement les entités hello déployé qui peuvent exister uniquement sur hello nœud vers le bas ou sur l’instance précédente de hello du nœud de hello.
 
 * **SourceId**: System.FM
 * **Property**: State
-* **Étapes suivantes**: si le nœud est inactif en raison d’une mise à niveau, il doit redevenir actif une fois l’opération terminée. Dans ce cas, l’état d’intégrité doit repasser sur OK. Si le nœud ne redevient pas actif ou s’il échoue, le problème requiert un examen plus approfondi.
+* **Étapes suivantes**: si le nœud de hello est arrêté pour une mise à niveau, il doit s’afficher dans une fois qu’il a été mis à niveau. Dans ce cas, l’état d’intégrité hello doit basculer tooOK précédent. Si le nœud de hello ne revenez ou il échoue, problème de hello doit investigations plus poussées.
 
-L’exemple suivant représente l’événement System.FM avec un état d’intégrité OK pour le nœud actif :
+Hello exemple suivant montre hello System.FM événement avec un état d’intégrité de OK pour le nœud :
 
 ```powershell
 PS C:\> Get-ServiceFabricNodeHealth  _Node_0
@@ -88,30 +88,30 @@ HealthEvents          :
 
 
 ### <a name="certificate-expiration"></a>Expiration du certificat
-**System.FabricNode** indique un avertissement lorsque les certificats utilisés par le nœud sont sur le point d’arriver à expiration. Chaque nœud comporte trois certificats associés : **Certificate_cluster**, **Certificate_server** et **Certificate_default_client**. Lorsque la date d’expiration est à au moins deux semaines, l’état d’intégrité du rapport est OK. Si elle a lieu dans les deux semaines qui suivent, le type de rapport est un avertissement. La durée de vie de ces événements est infinie, et ils sont supprimés lorsqu’un nœud quitte un cluster.
+**System.FabricNode** émet un avertissement quand les certificats utilisés par le nœud de hello sont arrivant à expiration. Chaque nœud comporte trois certificats associés : **Certificate_cluster**, **Certificate_server** et **Certificate_default_client**. Lorsque le délai d’expiration de la hello est au moins deux semaines, état d’intégrité de rapport hello est OK. Lorsque le délai d’expiration de hello est dans les deux semaines, le type de rapport hello est un avertissement. Durée de vie de ces événements est infinie, et ils sont supprimés quand un nœud quitte hello cluster.
 
 * **SourceId**: System.FabricNode
-* **Property** : commence par **Certificate** et contient des informations supplémentaires sur le type de certificat
-* **Étapes suivantes**: mettez à jour les certificats sur le point d’arriver à expiration.
+* **Propriété**: commence par **certificat** et contient plus d’informations sur le type de certificat hello
+* **Étapes suivantes**: mettre à jour les certificats hello s’ils sont arrivant à expiration.
 
 ### <a name="load-capacity-violation"></a>Violation de capacité de charge
-L’équilibrage de charge de Service Fabric indique un avertissement quand il détecte une violation de la capacité du nœud.
+Hello équilibrage de charge de l’infrastructure de Service émet un avertissement lorsqu’il détecte une violation de capacité de nœud.
 
 * **SourceId**: System.PLB
 * **Property** : commence par **Capacity**
-* **Étapes suivantes**: contrôlez les mesures fournies et examinez la capacité actuelle sur le nœud.
+* **Étapes suivantes**: vérification fournies capacité actuelle de métriques et vue hello sur le nœud de hello.
 
 ## <a name="application-system-health-reports"></a>Rapports d’intégrité du système sur les applications
-**System.CM**, qui représente le service Cluster Manager, est l’autorité qui gère les informations sur une application.
+**System.CM**, qui représente le service de gestionnaire du Cluster de hello, est l’autorité hello qui gère les informations relatives à une application.
 
 ### <a name="state"></a>State
-System.CM consigne la valeur OK lorsque l’application a été créée ou mise à jour. Il informe le magasin d’intégrité lorsque l’application a été supprimée afin qu’elle puisse en être retirée.
+System.CM signale comme OK lorsque l’application hello a été créée ou mis à jour. Il informe magasin de contrôle d’intégrité hello lors de l’application hello a été supprimée, afin qu’il peut être supprimé de la banque.
 
 * **SourceId**: System.CM
 * **Property**: State
-* **Étapes suivantes**: si l’application a été créée ou mise à jour, elle doit inclure le rapport d’intégrité du Gestionnaire du cluster. Dans le cas contraire, vérifiez l’état de l’application en émettant une requête (par exemple, l’applet de commande PowerShell **Get-ServiceFabricApplication -ApplicationName *nom_application***).
+* **Étapes suivantes**: si l’application hello a été créée ou mis à jour, elle doit inclure un rapport de contrôle d’intégrité hello Gestionnaire du Cluster. Vous pouvez aussi consulter état hello de l’application hello en émettant une requête (par exemple, hello applet de commande PowerShell **ServiceFabricApplication de Get - ApplicationName *applicationName***).
 
-L’exemple suivant représente l’événement d’état sur l’application **fabric:/WordCount** :
+Hello suivant montre l’événement d’état hello sur hello **fabric : / WordCount** application :
 
 ```powershell
 PS C:\> Get-ServiceFabricApplicationHealth fabric:/WordCount -ServicesFilter None -DeployedApplicationsFilter None -ExcludeHealthStatistics
@@ -135,15 +135,15 @@ HealthEvents                    :
 ```
 
 ## <a name="service-system-health-reports"></a>Rapports d’intégrité du système sur les services
-**System.FM**, qui représente le service Failover Manager, est l’autorité qui gère les informations sur les services.
+**System.FM**, qui représente le service de gestionnaire de basculement hello, est l’autorité hello qui gère les informations sur les services.
 
 ### <a name="state"></a>State
-System.FM consigne la valeur OK lorsque le service a été créé. Il supprime l’entité du magasin d’intégrité lorsque le service a été supprimé.
+System.FM signale comme OK lorsque hello service a été créé. Supprime les entités hello à partir du magasin de contrôle d’intégrité hello lorsque hello service a été supprimé.
 
 * **SourceId**: System.FM
 * **Property**: State
 
-L’exemple suivant représente l’événement d’état sur le service **fabric:/WordCount/WordCountWebService** :
+Hello suivant montre l’événement d’état hello sur le service de hello **fabric : / WordCount/WordCountWebService**:
 
 ```powershell
 PS C:\> Get-ServiceFabricServiceHealth fabric:/WordCount/WordCountWebService -ExcludeHealthStatistics
@@ -170,27 +170,27 @@ HealthEvents          :
 ```
 
 ### <a name="service-correlation-error"></a>Erreur de corrélation de services
-**System.PLB** signale une erreur lorsqu’il détecte que la mise à jour d’un service à mettre en corrélation avec un autre service crée une chaîne d’affinités. Le rapport est effacé lorsque la mise à jour est réussie.
+**System.PLB** signale une erreur lorsqu’il détecte que la mise à jour d’un toobe de service mis en corrélation avec un autre service crée une chaîne d’affinité. rapport de Hello est désactivée lors de la mise à jour réussie se produit.
 
-* **SourceId** : System.PLB
+* **SourceId**: System.PLB
 * **Property** : ServiceDescription
-* **Étapes suivantes** : vérifiez les descriptions de service en corrélation.
+* **Étapes suivantes**: hello de vérification mis en corrélation les descriptions de service.
 
 ## <a name="partition-system-health-reports"></a>Rapports d’intégrité du système sur les partitions
-**System.FM**, qui représente le service Failover Manager, est l’autorité qui gère les informations sur les partitions de service.
+**System.FM**, qui représente le service de gestionnaire de basculement hello, est l’autorité hello qui gère les informations sur les partitions de service.
 
 ### <a name="state"></a>State
-System.FM consigne la valeur OK lorsque la partition créée est intègre. Il élimine l’entité du magasin d’intégrité lorsque la partition est supprimée.
+System.FM signale comme OK lors de la partition de hello a été créée et est intègre. Supprime les entités hello à partir du magasin de contrôle d’intégrité hello lorsque hello partition est supprimée.
 
-Si la partition présente une valeur inférieure au nombre minimal de réplicas, une erreur est signalée. Si la partition présente une valeur non inférieure au nombre minimal de réplicas, mais inférieure au nombre cible de réplicas, un avertissement est signalé. Si la partition subit une perte de quorum, System.FM indique une erreur.
+Si la partition de hello est inférieur à nombre de réplicas minimale hello, il signale une erreur. Si la partition de hello n’est pas sous le nombre de réplicas minimale hello, mais il est sous le nombre de réplicas cible hello, il émet un avertissement. Si la partition de hello est une perte de quorum, System.FM signale une erreur.
 
-Les autres événements importants incluent un avertissement quand la reconfiguration et la génération prennent plus de temps que prévu. Les délais impartis pour la génération et la reconfiguration sont configurables en fonction des scénarios de service. Par exemple, si un service présente un état défini en téraoctet, par exemple une instance SQL Database, la génération prendra davantage de temps que celle d’un service affichant un état d’un volume moindre.
+Autres événements importants incluent un avertissement lors de la reconfiguration de hello prend plus de temps que prévu, et lors de la génération de hello prend plus longtemps que prévu. fois Hello attendu pour la génération de hello et la reconfiguration sont configurables selon les scénarios de service. Par exemple, si un service dispose d’un téraoctet d’état, telles que de la base de données SQL, génération de hello prend plue d’un service avec une petite quantité d’état.
 
 * **SourceId**: System.FM
 * **Property**: State
-* **Étapes suivantes**: si l’état d’intégrité n’est pas OK, il est possible que certains réplicas n’aient pas été créés, ouverts ou promus comme réplicas principaux ou secondaires de manière correcte. Dans de nombreux cas, la cause principale est un bogue de service dans l’implémentation du rôle d’ouverture ou de modification.
+* **Étapes suivantes**: si l’état d’intégrité hello n’est pas OK, il est possible que certains réplicas n’ont pas été promue, créé ou ouvert tooprimary ou base de données secondaire correctement. Dans de nombreux cas, la cause première hello est un bogue de service dans hello ouverte ou l’implémentation de la modification du rôle.
 
-L’exemple suivant représente une partition saine :
+Bonjour à l’exemple suivant montre une partition intègre :
 
 ```powershell
 PS C:\> Get-ServiceFabricPartition fabric:/WordCount/WordCountWebService | Get-ServiceFabricPartitionHealth -ExcludeHealthStatistics -ReplicasFilter None
@@ -212,7 +212,7 @@ HealthEvents          :
                         Transitions           : Error->Ok = 7/13/2017 5:57:18 PM, LastWarning = 1/1/0001 12:00:00 AM
 ```
 
-L’exemple suivant représente l’intégrité d’une partition qui présente un nombre de réplicas inférieur à la valeur cible. Ensuite, il faut récupérer la description de la partition, qui indique la façon dont elle est configurée : **MinReplicaSetSize** est défini sur trois et **TargetReplicaSetSize** sur sept. Obtenez ensuite le nombre de nœuds dans le cluster : 5. Par conséquent, dans ce cas, il n’est pas possible de placer deux réplicas, car le nombre cible de réplicas est supérieur au nombre de nœuds disponibles.
+Hello suivant montre la santé d’une partition qui est sous le nombre de réplicas cible hello. étape suivante de Hello est tooget hello description de la partition, ce qui indique la façon dont il est configuré : **MinReplicaSetSize** est trois et **TargetReplicaSetSize** est sept. Puis obtenir nombre hello de nœuds de cluster de hello : cinq. Par conséquent, dans ce cas, deux réplicas ne peut pas être placés, car le nombre de cibles hello de réplicas est supérieur au numéro de hello de nœuds disponibles.
 
 ```powershell
 PS C:\> Get-ServiceFabricPartition fabric:/WordCount/WordCountService | Get-ServiceFabricPartitionHealth -ReplicasFilter None -ExcludeHealthStatistics
@@ -252,8 +252,8 @@ HealthEvents          :
                         SentAt                : 7/14/2017 4:58:13 PM
                         ReceivedAt            : 7/14/2017 4:58:14 PM
                         TTL                   : 00:01:05
-                        Description           : The Load Balancer was unable to find a placement for one or more of the Service's Replicas:
-                        Secondary replica could not be placed due to the following constraints and properties:  
+                        Description           : hello Load Balancer was unable toofind a placement for one or more of hello Service's Replicas:
+                        Secondary replica could not be placed due toohello following constraints and properties:  
                         TargetReplicaSetSize: 7
                         Placement Constraint: N/A
                         Parent Service: N/A
@@ -291,21 +291,21 @@ PS C:\> @(Get-ServiceFabricNode).Count
 ```
 
 ### <a name="replica-constraint-violation"></a>Violation des contraintes de réplicas
-**System.PLB** indique un avertissement s’il détecte une violation des contraintes de réplicas et qu’il ne peut pas placer tous les réplicas de la partition. Les détails du rapport montrent quelles contraintes et quelles propriétés empêchent le placement des réplicas.
+**System.PLB** indique un avertissement s’il détecte une violation des contraintes de réplicas et qu’il ne peut pas placer tous les réplicas de la partition. affichent les détails du rapport Hello les contraintes et les propriétés empêchent le positionnement de réplica hello.
 
 * **SourceId**: System.PLB
 * **Property** : commence par **ReplicaConstraintViolation**
 
 ## <a name="replica-system-health-reports"></a>Rapports d’intégrité du système sur les réplicas
-**System.RA**, qui représente le composant Reconfiguration Agent, est l’autorité de l’état des réplicas.
+**System.RA**, qui représente le composant de l’agent de reconfiguration hello, est l’autorité hello pour l’état du réplica hello.
 
-### <a name="state"></a>État
-**System.RA** consigne la valeur OK lorsque le réplica a été créé.
+### <a name="state"></a>State
+**System.RA** indique OK lorsque hello réplica a été créé.
 
 * **SourceId**: System.RA
 * **Property**: State
 
-L’exemple suivant représente un réplica sain :
+Bonjour à l’exemple suivant montre un réplica intègre :
 
 ```powershell
 PS C:\> Get-ServiceFabricPartition fabric:/WordCount/WordCountService | Get-ServiceFabricReplica | where {$_.ReplicaRole -eq "Primary"} | Get-ServiceFabricReplicaHealth
@@ -328,22 +328,22 @@ HealthEvents          :
 ```
 
 ### <a name="replica-open-status"></a>État d’ouverture du réplica
-La description de ce rapport d’intégrité contient l’heure de début (temps universel coordonné) de l’appel d’API.
+description de Hello de ce rapport d’intégrité contient l’heure de début de hello (temps universel) lors de l’appel de hello API a été appelé.
 
-**System.RA** indique un avertissement si l’ouverture du réplica dure plus longtemps que la période configurée (valeur par défaut : 30 minutes). Si l’API a une incidence sur la disponibilité du service, le rapport est émis plus rapidement (intervalle configurable avec une valeur de 30 secondes par défaut). La durée inclut le temps nécessaire à l’ouverture du duplicateur et du service. Lorsque l’ouverture se termine, la propriété affiche la valeur OK.
+**System.RA** émet un avertissement si le réplica hello ouvrir dure plus longtemps que la période de hello configuré (par défaut : 30 minutes). Si hello API a un impact sur la disponibilité du service, les rapports hello sont émise beaucoup plus rapidement (un intervalle peut être configuré avec une valeur par défaut de 30 secondes). Durée Hello mesuré inclut temps hello réplicateur hello ouvert et service hello ouvert. tooOK de modifications de propriété Hello si hello ouvrez se termine.
 
 * **SourceId**: System.RA
 * **Property**: **ReplicaOpenStatus**
-* **Étapes suivantes**: si l’état d’intégrité ne présente pas la valeur OK, recherchez pourquoi l’ouverture du réplica prend plus de temps que prévu.
+* **Étapes suivantes**: si l’état d’intégrité hello n’est pas OK, recherchez pourquoi le réplica hello ouvrir prend plus longtemps que prévu.
 
 ### <a name="slow-service-api-call"></a>Appel lent d’API de service
-**System.RAP** et **System.Replicator** indiquent un avertissement si un appel de code de service utilisateur prend plus de temps que la durée configurée. L’avertissement est effacé à l’exécution de l’appel.
+**System.RAP** et **System.Replicator** signaler un avertissement si un code de service appel toohello utilisateur prend plu de temps de hello configuré. Avertissement de Hello est désactivée lors de la fin de l’appel hello.
 
 * **SourceId**: System.RAP ou System.Replicator
-* **Property**: nom de l’API lente. La description fournit plus de détails sur le délai de mise en attente de l’API.
-* **Étapes suivantes**: recherchez pourquoi l’appel prend plus de temps que prévu.
+* **Propriété**: nom hello de l’API de lentes hello. description de Hello fournit plus de détails sur hello de temps hello API a été en attente.
+* **Étapes suivantes**: recherchez pourquoi l’appel de hello prend plus de temps que prévu.
 
-L’exemple suivant représente une partition affichant une perte de quorum et la procédure d’investigation exécutée pour identifier la raison. L’un des réplicas présente un état d’intégrité d’avertissement ; vous êtes ainsi renseigné sur sa condition. Le code montre que le service prend plus de temps que prévu ; il s’agit d’un événement signalé par System.RAP. Une fois cette information reçue, il convient maintenant d’examiner le code de service et d’effectuer les recherches qui s’imposent. Dans ce cas, l’implémentation **RunAsync** du service avec état génère une exception non prise en charge. Notez que les réplicas sont en cours de recyclage. Il est donc possible qu’aucun d’entre eux n’affiche l’état d’avertissement. Vous pouvez réessayer d’obtenir l’état d’intégrité et rechercher les éventuelles différences d’ID de réplica. Dans certains cas, les nouvelles tentatives peuvent vous donner des indices.
+Hello, l’exemple suivant montre une partition de perte de quorum et hello enquête étapes faits toofigure pourquoi. Un des réplicas de hello a un état d’avertissement, vous obtenir son intégrité. Il indique qu’opération de service hello l'prend plus longtemps que prévu, un événement signalé par System.RAP. Une fois ces informations sont reçues, étape suivante de hello est toolook au code de service hello et examinez il. Dans ce cas, hello **RunAsync** implémentation d’un service avec état hello lève une exception non gérée. les réplicas Hello sont recyclage, donc vous ne pouvez pas voir tous les réplicas dans un état d’avertissement hello. Vous pouvez réessayer de l’état d’intégrité hello lors de l’obtention et voir les différences dans l’ID de réplica hello. Dans certains cas, les tentatives de hello peuvent vous donner des indices.
 
 ```powershell
 PS C:\> Get-ServiceFabricPartition fabric:/HelloWorldStatefulApplication/HelloWorldStateful | Get-ServiceFabricPartitionHealth -ExcludeHealthStatistics
@@ -437,7 +437,7 @@ HealthEvents          :
                         Transitions           : ->Warning = 4/24/2015 7:00:59 PM
 ```
 
-Lors du démarrage de l’application défaillante sous le débogueur, les fenêtres des événements de diagnostic affichent l’exception levée par RunAsync :
+Lorsque vous démarrez application défectueux hello sous le débogueur de hello, windows des événements de diagnostic hello affichent hello une exception à partir de RunAsync :
 
 ![Événements de diagnostic Visual Studio 2015 : Échec de RunAsync dans la structure : /HelloWorldStatefulApplication.][1]
 
@@ -447,26 +447,26 @@ Lors du démarrage de l’application défaillante sous le débogueur, les fenê
 
 
 ### <a name="replication-queue-full"></a>File d’attente de réplication complète
-**System.Replicator** indique un avertissement lorsque la file d’attente de réplication est pleine. Sur le rôle principal, la file d’attente de réplication se remplit généralement en raison de la lenteur d’un ou de plusieurs réplicas secondaires à accuser réception des opérations. Sur le rôle secondaire, cela se produit habituellement lorsque le service prend trop de temps pour appliquer les opérations. L’avertissement est effacé une fois que la file d’attente n’est plus pleine.
+**System.Replicator** émet un avertissement lors de la file d’attente de réplication hello est plein. Sur hello principal, file d’attente de réplication généralement est saturé, car un ou plusieurs réplicas secondaires sont des opérations de tooacknowledge lente. Sur hello secondaire, cela se produit généralement lorsque les service hello est tooapply lentes hello operations. Avertissement de Hello est désactivée lors de la file d’attente hello n’est plus complète.
 
 * **SourceId**: System.Replicator
-* **Property** : **PrimaryReplicationQueueStatus** ou **SecondaryReplicationQueueStatus**, en fonction du rôle de réplica
+* **Propriété**: **PrimaryReplicationQueueStatus** ou **SecondaryReplicationQueueStatus**, en fonction du rôle de réplica hello
 
 ### <a name="slow-naming-operations"></a>Opérations de nommage lentes
 **System.NamingService** signale l’intégrité sur son réplica principal quand une opération de nommage prend trop de temps. [CreateServiceAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.servicemanagementclient.createserviceasync) et [DeleteServiceAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.servicemanagementclient.deleteserviceasync) sont des exemples d’opérations de nommage. D’autres méthodes se trouvent sous FabricClient, par exemple dans les [méthodes de gestion de service](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.servicemanagementclient) ou les [méthodes de gestion de propriété](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.propertymanagementclient).
 
 > [!NOTE]
-> Le service d’affectation de noms résout les noms des services dans un emplacement du cluster et permet aux utilisateurs de gérer les propriétés et les noms des services. Il s’agit d’un service persistant partitionné Service Fabric. L’une des partitions représente le propriétaire de l’autorité, qui contient des métadonnées sur tous les noms et les services Service Fabric. Les noms Service Fabric sont mappés à des partitions différentes, appelées partitions Propriétaire du nom. Ainsi, le service est extensible. En savoir plus sur le [service de nommage](service-fabric-architecture.md).
+> Hello Naming service résout l’emplacement de tooa de noms de service dans un cluster de hello et permet les propriétés et les noms de service toomanage les utilisateurs. Il s’agit d’un service persistant partitionné Service Fabric. Une des partitions de hello représente hello Authority Owner, qui contient des métadonnées sur tous les services et les noms de Service Fabric. noms de Service Fabric Hello sont des partitions de toodifferent mappé, appelées partitions du nom du propriétaire, le service hello est extensible. En savoir plus sur le [service de nommage](service-fabric-architecture.md).
 > 
 > 
 
-Quand une opération de nommage prend plus longtemps que prévu, elle est marquée avec un Avertissement sur le *réplica principal de la partition de service d’affectation de noms qui effectue l’opération*. Si l’opération se termine avec succès, l’avertissement est effacé. Si l’opération se termine avec une erreur, le rapport d’intégrité inclut des détails sur l’erreur.
+Quand une opération d’affectation de noms prend plus longtemps que prévu, l’opération de hello est marquée avec un état d’avertissement sur hello *réplica principal de hello d’affectation de noms partition de service qui sert d’opération de hello*. Si l’opération de hello est correctement exécutée, hello avertissement est désactivé. Si l’opération de hello est terminée avec une erreur hello d’intégrité inclut des détails sur les erreurs hello.
 
 * **SourceId**: System.NamingService
-* **Property** : commence par le préfixe **Duration_** et identifie l’opération lente et le nom Service Fabric sur lequel l’opération est appliquée. Par exemple, si la création de service au nom fabric:/MyApp/MyService prend trop de temps, la propriété est Duration_AOCreateService.fabric:/MyApp/MyService. AO pointe vers le rôle de la partition de nommage pour ce nom et cette opération.
-* **Étapes suivantes**: vérifier pourquoi l’opération de nommage échoue. Chaque opération peut avoir différentes causes principales. Par exemple, une opération de suppression de service peut se bloquer sur un nœud car l’hôte d’application se bloque constamment sur un nœud à cause d’un bogue utilisateur dans le code de service.
+* **Propriété**: commence par le préfixe **Duration_** et identifie les opération lente hello et nom de Service Fabric hello sur quel hello opération est appliquée. Par exemple, si créer un service à l’ensemble fibre optique de nom : / MyApp/MyService prend trop de temps, la propriété de hello est Duration_AOCreateService.fabric:/MyApp/MyService. Rôle de toohello AO points Hello partition d’affectation de noms pour ce nom et l’opération.
+* **Étapes suivantes**: vérification pourquoi hello d’affectation de noms opération échoue. Chaque opération peut avoir différentes causes principales. Par exemple, supprimez service peut se bloquer sur un nœud, car l’hôte d’application hello conserve en panne sur un nœud en raison du bogue d’utilisateur tooa dans le code de service hello.
 
-L’exemple suivant illustre une opération de création de service. L’opération a duré plus longtemps que la durée configurée. AO réessaie et envoie le travail à NO. NO a terminé la dernière opération avec Timeout. Dans ce cas, le même réplica est principal pour les rôles AO et NO.
+Bonjour à l’exemple suivant montre une opération de service de création. opération de Hello a duré plus longtemps que durée de hello configuré. AO nouvelle tentative et envoie le travail tooNO. AUCUNE opération dernière hello terminé avec délai d’attente. Dans ce cas, hello même réplica est principal pour hello AO et aucun rôle.
 
 ```powershell
 PartitionId           : 00000000-0000-0000-0000-000000001000
@@ -495,7 +495,7 @@ HealthEvents          :
                         SentAt                : 4/29/2016 8:39:12 PM
                         ReceivedAt            : 4/29/2016 8:39:38 PM
                         TTL                   : 00:05:00
-                        Description           : The AOCreateService started at 2016-04-29 20:39:08.677 is taking longer than 30.000.
+                        Description           : hello AOCreateService started at 2016-04-29 20:39:08.677 is taking longer than 30.000.
                         RemoveWhenExpired     : True
                         IsExpired             : False
                         Transitions           : Error->Warning = 4/29/2016 8:39:38 PM, LastOk = 1/1/0001 12:00:00 AM
@@ -507,23 +507,23 @@ HealthEvents          :
                         SentAt                : 4/29/2016 8:41:05 PM
                         ReceivedAt            : 4/29/2016 8:41:08 PM
                         TTL                   : 00:00:15
-                        Description           : The NOCreateService started at 2016-04-29 20:39:08.689 completed with FABRIC_E_TIMEOUT in more than 30.000.
+                        Description           : hello NOCreateService started at 2016-04-29 20:39:08.689 completed with FABRIC_E_TIMEOUT in more than 30.000.
                         RemoveWhenExpired     : True
                         IsExpired             : False
                         Transitions           : Error->Warning = 4/29/2016 8:39:38 PM, LastOk = 1/1/0001 12:00:00 AM
 ```
 
 ## <a name="deployedapplication-system-health-reports"></a>Rapports d’intégrité du système sur les applications déployées
-**System.Hosting** est l’autorité régnant sur les entités déployées.
+**System.Hosting** est autorité hello sur les entités déployées.
 
 ### <a name="activation"></a>Activation
-System.Hosting consigne la valeur OK lorsqu’une application a été activée sur le nœud. Dans le cas contraire, il indique une erreur.
+System.Hosting signale comme OK quand une application a été activée avec succès sur le nœud de hello. Dans le cas contraire, il indique une erreur.
 
 * **SourceId**: System.Hosting
-* **Property**: Activation, inclut la version de déploiement
-* **Étapes suivantes**: si l’application est défectueuse, rechercher la raison de l’échec de l’activation.
+* **Propriété**: l’Activation, y compris la version de déploiement hello
+* **Étapes suivantes**: si l’application hello est défectueux, recherchez pourquoi l’activation hello a échoué.
 
-L’exemple suivant représente une activation réussie :
+Hello exemple suivant illustre l’activation réussie :
 
 ```powershell
 PS C:\> Get-ServiceFabricDeployedApplicationHealth -NodeName _Node_1 -ApplicationName fabric:/WordCount -ExcludeHealthStatistics
@@ -545,42 +545,42 @@ HealthEvents                       :
                                      SentAt                : 7/14/2017 4:55:08 PM
                                      ReceivedAt            : 7/14/2017 4:55:14 PM
                                      TTL                   : Infinite
-                                     Description           : The application was activated successfully.
+                                     Description           : hello application was activated successfully.
                                      RemoveWhenExpired     : False
                                      IsExpired             : False
                                      Transitions           : Error->Ok = 7/14/2017 4:55:14 PM, LastWarning = 1/1/0001 12:00:00 AM
 ```
 
 ### <a name="download"></a>Télécharger
-**System.Hosting** indique une erreur en cas d’échec du téléchargement du package d’application.
+**System.Hosting** signale une erreur si le téléchargement de package d’application hello échoue.
 
 * **SourceId**: System.Hosting
 * **Property** : **Download:*RolloutVersion***
-* **Étapes suivantes**: rechercher la raison de l’échec du téléchargement sur le nœud.
+* **Étapes suivantes**: recherchez pourquoi le téléchargement de hello a échoué sur le nœud de hello.
 
 ## <a name="deployedservicepackage-system-health-reports"></a>Rapports d’intégrité du système sur le package de service déployé
-**System.Hosting** est l’autorité régnant sur les entités déployées.
+**System.Hosting** est autorité hello sur les entités déployées.
 
 ### <a name="service-package-activation"></a>Activation du package de service
-System.Hosting consigne la valeur OK si l’activation du package de service sur le nœud est réussie. Dans le cas contraire, il indique une erreur.
+System.Hosting signale comme OK si l’activation du package service hello sur le nœud de hello a réussi. Dans le cas contraire, il indique une erreur.
 
 * **SourceId**: System.Hosting
 * **Property**: Activation
-* **Étapes suivantes**: examiner la raison de l’échec de l’activation.
+* **Étapes suivantes**: recherchez pourquoi l’activation hello a échoué.
 
 ### <a name="code-package-activation"></a>Activation du package de code
-**System.Hosting** consigne la valeur OK pour chaque package de code en cas de réussite de l’activation. En cas d’échec de l’activation, il indique un avertissement conformément à la configuration. Si l’activation de **CodePackage** échoue, ou s’il se termine avec une erreur supérieure à la valeur **CodePackageHealthErrorThreshold** configurée, System.Hosting indique une erreur. Si un package de service contient plusieurs packages de code, un rapport d’activation est généré pour chacun d’entre eux.
+**System.Hosting** signale comme OK pour chaque package de code si hello activation a réussi. Si l’activation de hello échoue, il émet un avertissement, tel que configuré. Si **CodePackage** tooactivate d’échoue ou se termine avec une erreur supérieure hello configuré **CodePackageHealthErrorThreshold**, hébergement signale une erreur. Si un package de service contient plusieurs packages de code, un rapport d’activation est généré pour chacun d’entre eux.
 
 * **SourceId**: System.Hosting
-* **Property** : utilise le préfixe **CodePackageActivation** et contient le nom du package de code et le point d’entrée **CodePackageActivation:*CodePackageName*:*SetupEntryPoint/EntryPoint*** (par exemple, **CodePackageActivation:Code:SetupEntryPoint**)
+* **Propriété**: préfixe de hello utilise **CodePackageActivation** et contient le nom hello de package de code hello et le point d’entrée hello en tant que  **CodePackageActivation :* CodePackageName*:*SetupEntryPoint/EntryPoint*** (par exemple, **CodePackageActivation:Code:SetupEntryPoint**)
 
 ### <a name="service-type-registration"></a>Inscription du type de service
-**System.Hosting** consigne la valeur OK si le type de service a été inscrit correctement. Il indique une erreur si l’inscription n’a pas été effectuée à temps (conformément à la configuration de **ServiceTypeRegistrationTimeout**). Si le runtime est fermé, le type de service n’est pas inscrit à partir du nœud et Hosting signale un avertissement.
+**System.Hosting** signale comme OK si le type de service hello a été correctement enregistré. Il signale une erreur si l’inscription de hello n’était pas terminée dans le temps (tel que configuré à l’aide de **ServiceTypeRegistrationTimeout**). Si l’exécution de hello est fermée, le type de service hello est plus inscrit dans le nœud de hello et hébergement émet un avertissement.
 
 * **SourceId**: System.Hosting
-* **Property** : utilise le préfixe **ServiceTypeRegistration** et contient le nom du type de service (par exemple, **ServiceTypeRegistration:FileStoreServiceType**)
+* **Propriété**: préfixe de hello utilise **ServiceTypeRegistration** et contient le nom de type hello service (par exemple, **ServiceTypeRegistration:FileStoreServiceType**)
 
-L’exemple suivant représente un package de service déployé sain :
+Bonjour à l’exemple suivant montre un package de service déployé intègre :
 
 ```powershell
 PS C:\> Get-ServiceFabricDeployedServicePackageHealth -NodeName _Node_1 -ApplicationName fabric:/WordCount -ServiceManifestName WordCountServicePkg
@@ -599,7 +599,7 @@ HealthEvents               :
                              SentAt                : 7/14/2017 4:55:08 PM
                              ReceivedAt            : 7/14/2017 4:55:14 PM
                              TTL                   : Infinite
-                             Description           : The ServicePackage was activated successfully.
+                             Description           : hello ServicePackage was activated successfully.
                              RemoveWhenExpired     : False
                              IsExpired             : False
                              Transitions           : Error->Ok = 7/14/2017 4:55:14 PM, LastWarning = 1/1/0001 12:00:00 AM
@@ -611,7 +611,7 @@ HealthEvents               :
                              SentAt                : 7/14/2017 4:55:08 PM
                              ReceivedAt            : 7/14/2017 4:55:14 PM
                              TTL                   : Infinite
-                             Description           : The CodePackage was activated successfully.
+                             Description           : hello CodePackage was activated successfully.
                              RemoveWhenExpired     : False
                              IsExpired             : False
                              Transitions           : Error->Ok = 7/14/2017 4:55:14 PM, LastWarning = 1/1/0001 12:00:00 AM
@@ -623,30 +623,30 @@ HealthEvents               :
                              SentAt                : 7/14/2017 4:55:08 PM
                              ReceivedAt            : 7/14/2017 4:55:14 PM
                              TTL                   : Infinite
-                             Description           : The ServiceType was registered successfully.
+                             Description           : hello ServiceType was registered successfully.
                              RemoveWhenExpired     : False
                              IsExpired             : False
                              Transitions           : Error->Ok = 7/14/2017 4:55:14 PM, LastWarning = 1/1/0001 12:00:00 AM
 ```
 
 ### <a name="download"></a>Télécharger
-**System.Hosting** indique une erreur en cas d’échec du téléchargement du package de service.
+**System.Hosting** signale une erreur si le téléchargement du package hello service échoue.
 
 * **SourceId**: System.Hosting
 * **Property** : **Download:*RolloutVersion***
-* **Étapes suivantes**: rechercher la raison de l’échec du téléchargement sur le nœud.
+* **Étapes suivantes**: recherchez pourquoi le téléchargement de hello a échoué sur le nœud de hello.
 
 ### <a name="upgrade-validation"></a>Validation de mise à niveau
-**System.Hosting** indique une erreur en cas d’échec de la validation lors la mise à niveau ou en cas d’échec de la mise à niveau sur le nœud.
+**System.Hosting** signale une erreur si la validation pendant la mise à niveau hello échoue ou si hello mise à niveau échoue sur le nœud de hello.
 
 * **SourceId**: System.Hosting
-* **Property** : utilise le préfixe **FabricUpgradeValidation** et contient la version de mise à niveau
-* **Description**: désigne l’erreur rencontrée
+* **Propriété**: préfixe de hello utilise **FabricUpgradeValidation** et contient la version de mise à niveau hello
+* **Description**: erreur toohello de pointe
 
-## <a name="next-steps"></a>Étapes suivantes 
+## <a name="next-steps"></a>Étapes suivantes
 [Affichage rapports d’intégrité de Service Fabric](service-fabric-view-entities-aggregated-health.md)
 
-[Comment signaler et contrôler l’intégrité du service](service-fabric-diagnostics-how-to-report-and-check-service-health.md)
+[Comment tooreport et vérification du service d’intégrité](service-fabric-diagnostics-how-to-report-and-check-service-health.md)
 
 [Surveiller et diagnostiquer les services localement](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md)
 

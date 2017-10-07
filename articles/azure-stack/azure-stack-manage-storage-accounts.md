@@ -1,6 +1,6 @@
 ---
-title: "Gérer les comptes de stockage Azure Stack | Microsoft Docs"
-description: "Découvrez comment rechercher, gérer, restaurer et récupérer des comptes de stockage Azure Stack"
+title: comptes de stockage Azure pile aaaManage | Documents Microsoft
+description: "Découvrez comment toofind, gérer, restaurer et récupérer des comptes de stockage Azure pile"
 services: azure-stack
 documentationcenter: 
 author: AniAnirudh
@@ -14,161 +14,161 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 4/6/2017
 ms.author: anirudha
-ms.openlocfilehash: 6e14bd6312135b45984a82099e68a934ec2a4a70
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 350c92d6b5ce9b1582ede0256c4d3d23bdd94901
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-storage-accounts-in-azure-stack"></a>Gérer les comptes de stockage dans Azure Stack
-Découvrez comment gérer les comptes de stockage dans Azure Stack pour rechercher, restaurer et récupérer de la capacité de stockage en fonction des besoins de l’entreprise.
+Découvrez comment toomanage les comptes de stockage dans Azure pile toofind, restaurer et récupérer de la capacité de stockage en fonction des besoins de l’entreprise.
 
 ## <a name="find"></a>Rechercher un compte de stockage
-La liste des comptes de stockage de la région peut être affichée dans Azure Stack comme suit :
+liste Hello de comptes de stockage dans la région de hello peut être affichée dans la pile Azure par :
 
 1. Dans un navigateur Internet, accédez à https://adminportal.local.azurestack.external.
-2. Connectez-vous au portail d’administration d’Azure Stack comme opérateur cloud (en utilisant les informations d’identification que vous avez fournies lors du déploiement)
-3. Dans le tableau de bord par défaut, recherchez la liste **Gestion des régions** et cliquez sur la région que vous voulez explorer. Par exemple **(local**).
+2. Se connecter toohello portail d’administration Azure pile comme un opérateur cloud (en utilisant les informations d’identification que vous avez fourni pendant le déploiement)
+3. Sur le tableau de bord par défaut hello – recherche hello **gestion de la région** liste et cliquez sur la zone hello tooexplore. Par exemple **(local**).
    
    ![](media/azure-stack-manage-storage-accounts/image1.png)
-4. Sélectionnez **Stockage** dans la liste **Fournisseurs de ressources**.
+4. Sélectionnez **stockage** de hello **fournisseurs de ressources** liste.
    
    ![](media/azure-stack-manage-storage-accounts/image2.png)
-5. Ensuite, dans le panneau de l’administrateur du fournisseur de ressources de stockage, faites défiler jusqu’à l’onglet **Comptes de stockage** et cliquez sur celui-ci.
+5. Désormais, dans Panneau d’administrateur de fournisseur de ressources de stockage de hello – défiler hello **comptes de stockage** onglet et cliquez dessus.
    
    ![](media/azure-stack-manage-storage-accounts/image3.png)
    
-   La page résultante est la liste des comptes de stockage dans cette région.
+   page résultante de Hello est liste hello de comptes de stockage dans cette région.
    
    ![](media/azure-stack-manage-storage-accounts/image4.png)
 
-Par défaut, les 10 premiers comptes sont affichés. Vous pouvez choisir d’en afficher plus en cliquant sur le lien **Charger plus** en bas de la liste.
+Par défaut, hello 10 premiers comptes sont affichés. Vous pouvez choisir toofetch plus en cliquant sur hello **davantage** lien en bas de hello de liste de hello.
 
 OU
 
-Si vous êtes intéressé par un compte de stockage particulier, vous pouvez **filtrer et extraire les comptes appropriés** uniquement.
+Si vous êtes intéressé par un compte de stockage spécifique – vous pouvez **filtre et fetch hello comptes appropriés** uniquement.
 
 
-**Pour filtrer les comptes :**
+**toofilter pour les comptes :**
 
-1. Cliquez sur **Filtrer** en haut du panneau.
-2. Dans le panneau Filtrer, vous pouvez spécifier un **nom de compte**, un **ID d’abonnement** ou un **état** pour affiner la liste des comptes de stockage à afficher. Utilisez-les pour filtrer selon vos besoins.
-3. Cliquez sur **Update**. La liste est normalement actualisée en conséquence.
+1. Cliquez sur **filtre** haut hello du Panneau de hello.
+2. Dans Panneau de filtre hello, il vous permet de toospecify **nom de compte**, **ID d’abonnement** ou **état** liste de hello ajuster les toofine de stockage comptes toobe affiché. Utilisez-les pour filtrer selon vos besoins.
+3. Cliquez sur **Update**. liste de Hello doit actualiser en conséquence.
    
     ![](media/azure-stack-manage-storage-accounts/image5.png)
-4. Pour réinitialiser le filtre : cliquez sur **Filtrer**, effacez les sélections et mettez à jour la liste.
+4. filtre de hello tooreset : cliquez sur **filtre**, effacer les sélections et mettre à jour.
 
-La zone de texte de recherche (en haut du panneau de la liste de comptes de stockage) vous permet de mettre en surbrillance le texte sélectionné dans la liste des comptes. Ceci est très pratique dans le cas où le nom complet ou l’ID n’est pas facilement disponible.
+zone de texte Rechercher Hello (en haut de hello du Panneau de liste de comptes de stockage hello) vous permet de mettre en surbrillance le texte hello sélectionné dans la liste hello de comptes. Cela est très pratique dans les cas de hello lors de l’id ou nom complet de hello n’est pas facilement disponible.
 
-Vous pouvez utiliser ici du texte libre pour rechercher le compte qui vous intéresse.
+Vous pouvez utiliser du texte libre ici, retrouvez toohelp compte hello vous intéressez.
 
 ![](media/azure-stack-manage-storage-accounts/image6.png)
 
 ## <a name="look-at-account-details"></a>Accéder aux détails du compte
-Une fois que vous avez trouvé les comptes qui vous intéressent, vous pouvez cliquer sur un compte particulier pour afficher certains détails. Un nouveau panneau s’ouvre avec les informations détaillées du compte, comme le type du compte, l’heure de création, l’emplacement, etc.
+Une fois que vous avez localisé comptes hello que vous intéressez, vous pouvez cliquer hello compte particulier tooview certains détails. Un nouveau panneau s’ouvre avec les détails du compte hello telles que : hello du type de compte de hello, heure de création, l’emplacement, etc..
 
 ![](media/azure-stack-manage-storage-accounts/image7.png)
 
 ## <a name="recover-a-deleted-account"></a>Récupérer un compte supprimé
-Il peut être parfois nécessaire de récupérer un compte supprimé.
+Vous pouvez être dans une situation où vous avez besoin de toorecover un compte supprimé.
 
-Dans Azure Stack, il existe un moyen très simple de le faire :
+Dans la pile d’Azure, il existe un moyen très simple de toodo qui :
 
-1. Accédez à la liste de comptes de stockage. Pour plus d’informations, consultez [Rechercher un compte de stockage](#find) dans cette rubrique.
-2. Localisez ce compte particulier dans la liste. Il peut être nécessaire de filtrer.
-3. Vérifiez l’*état* du compte. Il doit être **Supprimé**.
-4. Cliquez sur le compte pour ouvrir le panneau des détails du compte.
-5. En haut de ce panneau, recherchez le bouton **Récupérer** et cliquez sur celui-ci.
-6. Cliquez sur **Yes** (Oui) pour confirmer.
+1. Parcourir la liste de comptes de stockage toohello. Pour plus d’informations, consultez [Rechercher un compte de stockage](#find) dans cette rubrique.
+2. Recherchez ce compte dans la liste de hello. Vous devrez peut-être toofilter.
+3. Vérifiez hello *état* du compte de hello. Il doit être **Supprimé**.
+4. Cliquez sur le compte hello qui ouvre le panneau des détails du compte hello.
+5. Au-dessus de ce panneau, recherchez hello **récupérer** bouton et cliquez dessus.
+6. Cliquez sur **Oui** tooconfirm.
    
    ![](media/azure-stack-manage-storage-accounts/image8.png)
-7. La récupération est maintenant *en cours... Attendez* un message indiquant que la récupération est effective.
-   Vous pouvez aussi cliquer sur l’icône « cloche » en haut du portail pour voir des indications sur la progression.
+7. récupération de Hello est maintenant en *traiter... Patientez* pour obtenir une indication si elle a réussi.
+   Vous pouvez également cliquez sur hello « cloche » en haut hello du portail hello pour afficher des indications de progression.
    
    ![](media/azure-stack-manage-storage-accounts/image9.png)
    
-   Une fois que le compte récupéré est synchronisé, il peut à nouveau être utilisé.
+   Une fois hello récupérée compte est correctement synchronisé, il peut être utilisé à nouveau.
 
 ### <a name="some-gotchas"></a>Quelques astuces
 * Votre compte supprimé affiche un état **hors conservation**.
   
-  Cela signifie que le compte supprimé a dépassé la période de conservation et qu’il n’est peut-être pas récupérable.
-* Votre compte supprimé n’apparaît pas dans la liste des comptes.
+  Cela signifie que le compte de hello supprimé a dépassé la période de rétention hello et qu’il ne peut pas être récupérée.
+* Votre compte supprimé n’affiche pas dans la liste des comptes hello.
   
-  Cela peut signifier que le compte supprimé a été déjà fait l’objet d’un nettoyage de la mémoire. Dans ce cas, il ne peut pas être récupéré. Consultez [Récupérer de la capacité](#reclaim) dans cette rubrique.
+  Cela peut signifier que les comptes de hello supprimé a déjà été par le garbage collecté. Dans ce cas, il ne peut pas être récupéré. Consultez [Récupérer de la capacité](#reclaim) dans cette rubrique.
 
-## <a name="set-the-retention-period"></a>Définir la période de conservation
-Le paramètre de période de conservation permet à un opérateur cloud de spécifier une période de temps en jours (entre 0 et 9 999 jours) pendant laquelle un compte supprimé peut être récupéré. La période de conservation par défaut est définie sur 15 jours. La valeur « 0 » pour ce paramètre signifie qu’un compte supprimé est immédiatement hors conservation et est marqué pour faire l’objet d’un nettoyage périodique de la mémoire.
+## <a name="set-hello-retention-period"></a>Définir la période de rétention hello
+définition de période de rétention Hello permet un toospecify d’opérateur de nuage une période en jours (entre 0 et 9 999 jours) pendant le n’importe quel compte supprimé peut potentiellement être récupéré. Hello période de rétention par défaut a la valeur too15 jours. Hello valeur trop « 0 » signifie que n’importe quel compte supprimé est immédiatement en dehors de la rétention et marqué pour un garbage collection périodique.
 
-**Pour changer la période de conservation :**
+**période de rétention toochange hello :**
 
 1. Dans un navigateur Internet, accédez à https://adminportal.local.azurestack.external.
-2. Connectez-vous au portail d’administration d’Azure Stack comme opérateur cloud (en utilisant les informations d’identification que vous avez fournies lors du déploiement)
-3. Dans le tableau de bord par défaut, recherchez la liste **Gestion des régions** et cliquez sur la région que vous voulez explorer, par exemple **(local**).
-4. Sélectionnez **Stockage** dans la liste **Fournisseurs de ressources**.
-5. Cliquez sur **Paramètres** en haut pour ouvrir le panneau des paramètres.
-6. Cliquez sur **Configuration**, puis changez la valeur de la période de conservation.
+2. Se connecter toohello portail d’administration Azure pile comme un opérateur cloud (en utilisant les informations d’identification que vous avez fourni pendant le déploiement)
+3. Sur le tableau de bord par défaut hello – recherche hello **gestion de la région** liste et cliquez sur la région de hello souhaité tooexplore – par exemple **(local**).
+4. Sélectionnez **stockage** de hello **fournisseurs de ressources** liste.
+5. Cliquez sur **paramètres** au panneau de configuration hello hello tooopen supérieur.
+6. Cliquez sur **Configuration** puis modifiez la valeur de période de rétention hello.
 
-   Définissez le nombre de jours et enregistrez-le.
+   Définir hello nombre de jours et enregistrez-le.
    
    Cette valeur est prise en compte immédiatement et est appliquée à toute votre région.
 
    ![](media/azure-stack-manage-storage-accounts/image10.png)
 
 ## <a name="reclaim"></a>Récupérer de la capacité
-Un des effets secondaires de la période de conservation est qu’un compte supprimé continue à consommer de la capacité jusqu’à ce qu’il sorte de cette période de conservation. En tant qu’opérateur cloud, vous pouvez avoir besoin d’un moyen de récupérer l’espace du compte supprimé, même si la période de conservation n’a pas encore expiré.
+Un des effets secondaires hello d’avoir une période de rétention est qu’un compte supprimé continue tooconsume capacité jusqu'à ce qu’il s’agit de la période de rétention hello. Comme un cloud opérateur, vous devrez peut-être un Bonjour tooreclaim de façon supprimé espace du compte même si la période de rétention hello n’a pas encore expiré.
 
-Vous pouvez récupérer de la capacité en utilisant le portail ou PowerShell.
+Vous pouvez récupérer de la capacité à l’aide du portail de hello ou PowerShell.
 
-**Pour récupérer de la capacité en utilisant le portail :**
-1. Accédez au panneau des comptes de stockage. Consultez [Rechercher un compte de stockage](#find).
-2. Cliquez sur **Récupérer de l’espace** en haut du panneau.
-3. Lisez le message, puis cliquez sur **OK**.
+**capacité de tooreclaim à l’aide du portail de hello :**
+1. Accédez à panneau de comptes de stockage toohello. Consultez [Rechercher un compte de stockage](#find).
+2. Cliquez sur **récupérer de l’espace** haut hello du Panneau de hello.
+3. Lire le message de type hello et puis cliquez sur **OK**.
 
     ![](media/azure-stack-manage-storage-accounts/image11.png)
-4. Attendez la notification de la réussite de l’opération. Utilisez l’icône de cloche sur le portail.
+4. Attendez l’icône représentant une cloche de réussite notification voir hello sur le portail hello.
 
     ![](media/azure-stack-manage-storage-accounts/image12.png)
-5. Actualisez la page Comptes de stockage. Les comptes supprimés ne figurent plus dans la liste, car ils ont été supprimés définitivement.
+5. Actualisez la page comptes de stockage hello. les comptes Hello supprimé n’apparaissent plus dans la liste de hello, car ils ont été purgées.
 
-Vous pouvez aussi utiliser PowerShell pour remplacer explicitement la période de rétention et récupérer immédiatement de la capacité.
+Vous pouvez également utiliser la période de rétention PowerShell tooexplicitly remplacement hello et récupérer immédiatement de la capacité.
 
-**Pour récupérer de la capacité en utilisant PowerShell :**   
+**capacité de tooreclaim à l’aide de PowerShell :**   
 
-1. Vérifiez qu’Azure PowerShell est installé et configuré. Dans le cas contraire, suivez ces instructions : 
-   * Pour installer la dernière version d’Azure PowerShell et l’associer à votre abonnement Azure, consultez [Installer et configurer Azure PowerShell](http://azure.microsoft.com/documentation/articles/powershell-install-configure/).
+1. Vérifiez qu’Azure PowerShell est installé et configuré. Si ce n’est pas le cas, utilisez hello suivant les instructions : 
+   * tooinstall hello version la plus récente d’Azure PowerShell et associez-le à votre abonnement Azure, consultez [comment tooinstall et configurer Azure PowerShell](http://azure.microsoft.com/documentation/articles/powershell-install-configure/).
    Pour plus d’informations sur les applets de commande Azure Resource Manager, consultez [Utilisation d’Azure PowerShell avec Azure Resource Manager](http://go.microsoft.com/fwlink/?LinkId=394767).
-2. Exécutez l’applet de commande suivante :
+2. Exécutez hello suivant l’applet de commande :
 
 > [!NOTE]
-> Si vous exécutez cette applet de commande, vous supprimez définitivement le compte et son contenu. Il n’est pas récupérable. Utilisez cette option avec précaution.
+> Si vous exécutez cette applet de commande vous supprimez définitivement le compte de hello et son contenu. Il n’est pas récupérable. Utilisez cette option avec précaution.
 
 
         Clear-ACSStorageAccount -ResourceGroupName system.local -FarmName <farm ID>
 
 
-Pour plus d’informations, consultez la [documentation d’Azure Stack PowerShell.](https://msdn.microsoft.com/library/mt637964.aspx)
+Pour plus d’informations, consultez trop[documentation de pile d’Azure powershell.](https://msdn.microsoft.com/library/mt637964.aspx)
  
 
 ## <a name="migrate-a-container"></a>Migrer un conteneur
-En raison d’une utilisation inégale du stockage par les locataires, un opérateur cloud peut constater qu’un ou plusieurs partages de locataire sous-jacent utilisent plus d’espace que d’autres. Si cela se produit, l’opérateur cloud peut essayer de libérer de l’espace sur le partage trop sollicité en migrant manuellement des conteneurs d’objets blob vers un autre partage. 
+En raison de l’utilisation du stockage toouneven par les locataires, un opérateur cloud peut trouver une ou plus sous-jacent locataire partages à l’aide de davantage d’espace que d’autres. Si cela se produit, opérateur de cloud hello peut essayer de toofree l’espace sur le partage d’accentuée hello en effectuant une migration manuellement certains partage tooanother de conteneurs blob. 
 
-Vous devez utiliser PowerShell pour migrer des conteneurs.
+Vous devez utiliser PowerShell toomigrate conteneurs.
 > [!NOTE]
->La migration de conteneurs d’objets blob ne prend pas en charge la migration dynamique et est actuellement une opération hors connexion. Pendant la migration et jusqu’à ce qu’elle soit terminée, les objets blob sous-jacents de ce conteneur ne peuvent pas être utilisés et sont « hors connexion ». 
+>La migration de conteneurs d’objets blob ne prend pas en charge la migration dynamique et est actuellement une opération hors connexion. Pendant la migration et qu’elle soit terminée hello sous-jacente des objets BLOB que le conteneur ne peut pas être utilisés et sont « hors connexion ». 
 
-**Pour migrer des conteneurs en utilisant PowerShell :**
+**conteneurs de toomigrate à l’aide de PowerShell :**
 
-1. Vérifiez qu’Azure PowerShell est installé et configuré. Dans le cas contraire, suivez ces instructions :
-    * Pour installer la dernière version d’Azure PowerShell et l’associer à votre abonnement Azure, consultez [Installer et configurer Azure PowerShell](http://azure.microsoft.com/documentation/articles/powershell-install-configure/). Pour plus d’informations sur les applets de commande Azure Resource Manager, consultez [Utilisation d’Azure PowerShell avec Azure Resource Manager](http://go.microsoft.com/fwlink/?LinkId=394767).
-2. Obtenez le nom de la batterie de serveurs : 
+1. Vérifiez qu’Azure PowerShell est installé et configuré. Si ce n’est pas le cas, utilisez hello suivant les instructions :
+    * tooinstall hello version la plus récente d’Azure PowerShell et associez-le à votre abonnement Azure, consultez [comment tooinstall et configurer Azure PowerShell](http://azure.microsoft.com/documentation/articles/powershell-install-configure/). Pour plus d’informations sur les applets de commande Azure Resource Manager, consultez [Utilisation d’Azure PowerShell avec Azure Resource Manager](http://go.microsoft.com/fwlink/?LinkId=394767).
+2. Obtenir le nom de la batterie hello : 
       
       `$farm = Get-ACSFarm -ResourceGroupName system.local`
-3. Obtenez les partages : 
+3. Obtenir les partages hello : 
 
    `$shares = Get-ACSShare -ResourceGroupName system.local -FarmName $farm.FarmName`
 
-4. Obtenez les conteneurs d’un partage donné. Notez que les paramètres Count et Intent sont facultatifs :
+4. Obtenir les conteneurs hello pour un partage donné. Notez que les paramètres Count et Intent sont facultatifs :
             
    `$containers = Get-ACSContainer -ResourceGroupName system.local -FarmName $farm.FarmName -ShareName $shares[0].ShareName -Count 4 -Intent Migration`  
 
@@ -177,7 +177,7 @@ Vous devez utiliser PowerShell pour migrer des conteneurs.
    `$containers`
 
     ![](media/azure-stack-manage-storage-accounts/image13.png)
-5. Obtenez les meilleurs partages de destination pour la migration du conteneur :
+5. Obtenir les partages de destination meilleures hello pour la migration de conteneur hello :
 
     `$destinationshares= Get-ACSSharesForMigration  -ResourceGroupName system.local -FarmName $farm.farmname -SourceShareName $shares[0].ShareName`
 
@@ -186,7 +186,7 @@ Vous devez utiliser PowerShell pour migrer des conteneurs.
     `$destinationshares`
 
     ![](media/azure-stack-manage-storage-accounts/image14.png)
-6. Lancez la migration d’un conteneur. Notez qu’il s’agit d’une implémentation asynchrone : vous pouvez donc boucler dans tous les conteneurs d’un partage et en suivre l’état en utilisant l’ID de tâche retourné.
+6. Lancer la migration d’un conteneur, notez que ce étant une implémentation asynchrone, une boucle tous les conteneurs dans un état hello partage et du suivi à l’aide des id de tâche retournée de hello.
 
     `$jobId = Start-ACSContainerMigration -ResourceGroupName system.local -FarmName $farm.farmname -ContainerToMigrate $containers[1] -DestinationShareUncPath $destinationshares.UncPath`
 
@@ -196,7 +196,7 @@ Vous devez utiliser PowerShell pour migrer des conteneurs.
    $jobId
    d1d5277f-6b8d-4923-9db3-8bb00fa61b65
    ```
-7. Vérifiez l’état de la tâche de migration par son ID de tâche. Une fois la migration du conteneur terminée, MigrationStatus est défini sur « Terminé ».
+7. Vérifiez le statut de tâche de migration hello par son id de tâche. Après la migration de conteneur hello, MigrationStatus est défini trop « terminé ».
 
     `Get-ACSContainerMigrationStatus -ResourceGroupName system.local -FarmName $farm.farmname -JobId $jobId`
 
@@ -208,7 +208,7 @@ Vous devez utiliser PowerShell pour migrer des conteneurs.
 
     ![](media/azure-stack-manage-storage-accounts/image16.png)
 
-    Vous pouvez aussi vérifier l’état de l’annulation de la migration :
+    Vous pouvez réactiver état hello d’annulation de migration hello :
 
     `Get-ACSContainerMigrationStatus-ResourceGroupName system.local -FarmName $farm.farmname -JobId $jobId`
 

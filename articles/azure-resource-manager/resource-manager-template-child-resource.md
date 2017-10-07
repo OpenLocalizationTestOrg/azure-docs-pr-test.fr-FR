@@ -1,6 +1,6 @@
 ---
-title: "Définir des ressources enfant dans un modèle Azure | Microsoft Docs"
-description: "Explique comment définir le type et le nom d’une ressource enfant dans un modèle Azure Resource Manager"
+title: "ressource enfant d’aaaDefine dans le modèle Azure | Documents Microsoft"
+description: "Montre comment tooset hello type de ressource et le nom de ressource enfant dans un modèle Azure Resource Manager"
 services: azure-resource-manager
 documentationcenter: 
 author: tfitzmac
@@ -14,22 +14,22 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/01/2017
 ms.author: tomfitz
-ms.openlocfilehash: 5b6ce5526f354008eb4a697deec737876f22391f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c502c589100d7ae864d7fb01b5ba10ddfaf92592
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="set-name-and-type-for-child-resource-in-resource-manager-template"></a>Définir le nom et le type d’une ressource enfant dans un modèle Resource Manager
-Quand vous créez un modèle, vous devez souvent inclure une ressource enfant liée à une ressource parent. Par exemple, votre modèle peut inclure un serveur SQL et une base de données. Le serveur SQL est la ressource parent, tandis que la base de données est la ressource enfant. 
+Lorsque vous créez un modèle, vous devez fréquemment tooinclude une ressource enfant qui est la ressource parent de tooa connexes. Par exemple, votre modèle peut inclure un serveur SQL et une base de données. Hello SQL server est ressource parente de hello, et base de données hello ressource enfant de hello. 
 
-Le format du type de la ressource enfant est : `{resource-provider-namespace}/{parent-resource-type}/{child-resource-type}`
+format Hello hello enfant du type de ressource est :`{resource-provider-namespace}/{parent-resource-type}/{child-resource-type}`
 
-Le format du nom de la ressource enfant est : `{parent-resource-name}/{child-resource-name}`
+format Hello hello enfant du nom de ressource est :`{parent-resource-name}/{child-resource-name}`
 
-Toutefois, vous spécifiez le type et le nom d’un modèle différemment selon qu’il est imbriqué au sein de la ressource parent, ou indépendant au niveau supérieur. Cette rubrique explique comment gérer les deux approches.
+Toutefois, vous spécifiez type de hello et le nom d’un modèle différemment en fonction de si elle est imbriquée dans la ressource parent de hello, ou sur sa propre au niveau supérieur de hello. Cette rubrique montre comment toohandle les deux approches.
 
-Lors de la création d’une référence complète à une ressource, l’ordre utilisé pour combiner les segments de type et de nom n’est pas une simple concaténation des deux.  Au lieu de cela, utilisez après l’espace de noms une séquence de paires *type/nom* du moins spécifique au plus spécifique :
+Lors de la construction d’une ressource de tooa référence qualifiée complète, les segments de hello ordre toocombine du type de hello et nom n’est pas une simple concaténation de hello deux.  Au lieu de cela, utilisez une séquence d’après l’espace de noms hello, *type/nom* paires toomost moins spécifique spécifique :
 
 ```json
 {resource-provider-namespace}/{parent-resource-type}/{parent-resource-name}[/{child-resource-type}/{child-resource-name}]*
@@ -40,7 +40,7 @@ Par exemple :
 `Microsoft.Compute/virtualMachines/myVM/extensions/myExt` est correct `Microsoft.Compute/virtualMachines/extensions/myVM/myExt` n’est pas correct
 
 ## <a name="nested-child-resource"></a>Ressource enfant imbriquée
-Pour définir une ressource enfant, la méthode la plus simple consiste à l’imbriquer dans la ressource parent. L’exemple suivant montre une base de données SQL imbriquée dans un serveur SQL.
+toodefine de façon plus simple Hello une ressource enfant est toonest dans la ressource parent de hello. Hello suivant montre une base de données SQL imbriqué dans un serveur SQL Server.
 
 ```json
 {
@@ -59,10 +59,10 @@ Pour définir une ressource enfant, la méthode la plus simple consiste à l’i
 }
 ```
 
-Pour la ressource enfant, le type est défini sur `databases`, mais son type de ressource complet est `Microsoft.Sql/servers/databases`. Vous ne fournissez pas `Microsoft.Sql/servers/`, car il est déduit à partir du type de ressource parent. Le nom de la ressource enfant est défini sur `exampledatabase`, mais le nom complet inclut le nom parent. Vous ne fournissez pas `exampleserver`, car il est déduit à partir de la ressource parent.
+De la ressource enfant hello, hello type a la valeur trop`databases` mais son type de ressource complet est `Microsoft.Sql/servers/databases`. Vous ne fournissez pas `Microsoft.Sql/servers/` , car il est supposé hello parent type de ressource. nom de la ressource enfant Hello est défini trop`exampledatabase` , mais le nom complet de hello inclut hello parent. Vous ne fournissez pas `exampleserver` , car il est supposé à partir de la ressource parent de hello.
 
 ## <a name="top-level-child-resource"></a>Ressource enfant de niveau supérieur
-Vous pouvez définir la ressource enfant au niveau supérieur. Vous pouvez utiliser cette approche si la ressource parent n’est pas déployée dans le même modèle, ou si voulez utiliser `copy` pour créer plusieurs ressources enfant. Dans le cadre de cette approche, vous devez fournir le type de ressource complet et inclure le nom de la ressource parent dans le nom de la ressource enfant.
+Vous pouvez définir des ressources enfants de hello au niveau supérieur de hello. Vous pouvez utiliser cette approche si la ressource de hello parent n’est pas déployé de hello même modèle ou si voulez toouse `copy` toocreate plusieurs ressources enfants. Avec cette approche, vous devez fournir le type de ressource complet hello et inclure le nom de la ressource parent hello dans le nom de la ressource enfant hello.
 
 ```json
 {
@@ -81,8 +81,8 @@ Vous pouvez définir la ressource enfant au niveau supérieur. Vous pouvez utili
 }
 ```
 
-La base de données est une ressource enfant pour le serveur, même si elle est définie au même niveau dans le modèle.
+base de données de Hello est un serveur de toohello de ressources enfants, même si elles sont définies sur le même niveau dans le modèle de hello de hello.
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Pour des recommandations sur la création de modèles, consultez [Bonnes pratiques relatives à la création de modèles Azure Resource Manager](resource-manager-template-best-practices.md).
+* Pour obtenir des recommandations sur la façon toocreate modèles, consultez [meilleures pratiques pour la création de modèles Azure Resource Manager](resource-manager-template-best-practices.md).
 * Pour obtenir un exemple de création de plusieurs ressources enfant, consultez [Déployer plusieurs instances de ressources dans des modèles Azure Resource Manager](resource-group-create-multiple.md).

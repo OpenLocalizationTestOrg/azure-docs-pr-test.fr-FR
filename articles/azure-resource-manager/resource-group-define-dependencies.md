@@ -1,6 +1,6 @@
 ---
-title: "Définir l’ordre de déploiement des ressources Azure | Microsoft Docs"
-description: "Décrit la procédure permettant de définir une ressource comme dépendante d’une autre ressource au cours du déploiement afin de garantir le déploiement des ressources dans l'ordre adéquat."
+title: "ordre de déploiement aaaSet pour les ressources Azure | Documents Microsoft"
+description: "Décrit comment tooset une seule ressource comme dépend d’une autre ressource pendant tooensure des ressources de déploiement sont déployés dans l’ordre correct de hello."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,21 +14,21 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 01/03/2017
 ms.author: tomfitz
-ms.openlocfilehash: 3d6a46116ae9d7d940bc10dfa832540f42c0af7e
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 2f658f4c85236966c46b34a65aafb8426c92806c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="define-the-order-for-deploying-resources-in-azure-resource-manager-templates"></a>Définir l’ordre de déploiement des ressources dans les modèles Azure Resource Manager
-Une ressource donnée peut comporter d'autres ressources qui doivent exister avant son déploiement. Par exemple, un serveur SQL doit exister avant une tentative de déploiement d'une base de données SQL. Vous définissez cette relation en marquant une seule ressource comme dépendante de l'autre ressource. Pour définir une dépendance, vous devez utiliser l’élément **dependsOn** ou la fonction **reference**. 
+# <a name="define-hello-order-for-deploying-resources-in-azure-resource-manager-templates"></a>Définir l’ordre de hello pour le déploiement de ressources dans les modèles Azure Resource Manager
+Pour une ressource donnée, il peut y avoir des autres ressources qui doivent exister pour que la ressource de hello est déployée. Par exemple, un serveur SQL server doit exister avant de tenter de toodeploy une base de données SQL. Pour définir cette relation, le marquage d’une ressource en tant que dépendant de hello autre ressource. Vous définissez une dépendance avec hello **dependsOn** élément, ou à l’aide de hello **référence** (fonction). 
 
-Resource Manager évalue les dépendances entre les ressources et les déploie dans leur ordre dépendant. Quand les ressources ne dépendent pas les unes des autres, Resource Manager les déploie en parallèle. Vous devez uniquement définir des dépendances pour les ressources qui sont déployées dans le même modèle. 
+Le Gestionnaire de ressources évalue des dépendances hello entre les ressources et les déploie dans leur ordre dépendant. Quand les ressources ne dépendent pas les unes des autres, Resource Manager les déploie en parallèle. Vous devez uniquement toodefine dépendances pour les ressources qui sont déployés dans hello même modèle. 
 
 ## <a name="dependson"></a>dependsOn
-Dans votre modèle, l’élément dependsOn vous permet de définir une ressource comme une dépendance sur une ou plusieurs ressources. Sa valeur peut être une liste séparée par des virgules de noms de ressources. 
+Dans votre modèle, élément de dependsOn hello vous permet de toodefine une ressource en tant que dépendant sur une ou plusieurs ressources. Sa valeur peut être une liste séparée par des virgules de noms de ressources. 
 
-L’exemple suivant montre un groupe identique de machines virtuelles dépendant d’un équilibreur de charge, un réseau virtuel et une boucle qui crée plusieurs comptes de stockage. Ces autres ressources ne figurent pas dans l’exemple suivant, mais ont besoin d’exister ailleurs dans le modèle.
+Hello suivant montre un ensemble d’échelle de machine virtuelle qui dépend d’un équilibrage de charge, le réseau virtuel et une boucle qui crée plusieurs comptes de stockage. Ces autres ressources ne sont pas affichés dans hello l’exemple suivant, mais ils ont besoin tooexist ailleurs dans le modèle de hello.
 
 ```json
 {
@@ -48,9 +48,9 @@ L’exemple suivant montre un groupe identique de machines virtuelles dépendant
 }
 ```
 
-Dans l’exemple précédent, une dépendance est incluse sur les ressources créées par le biais d’une boucle de copie nommée **storageLoop**. Pour obtenir un exemple, consultez [Création de plusieurs instances de ressources dans Azure Resource Manager](resource-group-create-multiple.md).
+Bonjour précédent exemple, une dépendance est incluse dans les ressources hello qui sont créés dans une boucle de copie nommée **storageLoop**. Pour obtenir un exemple, consultez [Création de plusieurs instances de ressources dans Azure Resource Manager](resource-group-create-multiple.md).
 
-Lors de la définition des dépendances, vous pouvez inclure l’espace de noms du fournisseur de ressources et le type de ressource pour éviter toute ambiguïté. Par exemple, pour distinguer un équilibrage de charge et un réseau virtuel qui peuvent avoir les mêmes noms que d’autres ressources, utilisez le format suivant :
+Lors de la définition des dépendances, vous pouvez inclure hello ressource fournisseur espace de noms et de la ressource de type tooavoid toute ambiguïté. Par exemple, tooclarify mettre en forme un équilibreur de charge et le réseau virtuel qui peut avoir hello que mêmes noms que d’autres ressources, hello utilisation suivant :
 
 ```json
 "dependsOn": [
@@ -59,14 +59,14 @@ Lors de la définition des dépendances, vous pouvez inclure l’espace de noms 
 ]
 ``` 
 
-Vous pouvez être tenté d’utiliser dependsOn pour mapper les relations entre vos ressources. Il est toutefois important de comprendre pourquoi vous le faites. Par exemple, pour documenter la manière dont les ressources sont liées entre elles, dependsOn n’est pas la bonne approche. Vous ne pourrez pas lancer de requête pour savoir quelles ressources ont été définies dans l’élément dependsOn après le déploiement. En utilisant dependsOn, vous risquez d’avoir un impact sur le temps de déploiement, car Resource Manager ne déploie pas en parallèle deux ressources qui ont une dépendance. Pour documenter les relations entre les ressources, utilisez plutôt la [liaison de ressources](/rest/api/resources/resourcelinks).
+Vous pouvez être tenté toouse dependsOn toomap relations entre vos ressources, mais il est important toounderstand pourquoi votre travail. Par exemple, la façon dont les ressources sont interconnectés, de toodocument dependsOn n’est pas une approche hello. Vous ne peut pas interroger les ressources qui ont été définies dans l’élément dependsOn de hello après le déploiement. En utilisant dependsOn, vous risquez d’avoir un impact sur le temps de déploiement, car Resource Manager ne déploie pas en parallèle deux ressources qui ont une dépendance. toodocument les relations entre les ressources, utilisez à la place [liaison des ressources](/rest/api/resources/resourcelinks).
 
 ## <a name="child-resources"></a>Ressources enfants
-La propriété de ressources vous permet de vous permet de spécifier les ressources enfants associées à la ressource en cours de définition. Les ressources enfants peuvent uniquement être définies sur cinq niveaux. Il est important de noter qu’aucune dépendance implicite n’est créée entre une ressources enfant et la ressource parent. Si vous avez besoin de déployer la ressource enfant après la ressource parent, vous devez déclarer explicitement cette dépendance avec la propriété dependsOn. 
+propriété des ressources Hello vous permet de ressources enfants toospecify toohello connexes des ressources en cours de définition. Les ressources enfants peuvent uniquement être définies sur cinq niveaux. Il est important de toonote une dépendance implicite n’est pas créée entre une ressource enfant et la ressource parent de hello. Si vous avez besoin de hello toobe de ressource enfant déployé après la ressource parent de hello, vous devez déclarer explicitement cette dépendance avec la propriété : dependsOn hello. 
 
-Chaque ressource parente accepte uniquement certains types de ressources comme ressources enfants. Les types de ressource acceptés sont spécifiés dans le [schéma de modèle](https://github.com/Azure/azure-resource-manager-schemas) de la ressource parente. Le nom du type de ressource enfant inclut le nom du type de ressource parente. Par exemple, **Microsoft.Web/sites/config** et **Microsoft.Web/sites/extensions** sont deux ressources enfants de **Microsoft.Web/sites**.
+Chaque ressource parente accepte uniquement certains types de ressources comme ressources enfants. Hello accepté de types de ressources sont spécifiés dans hello [schéma de modèle](https://github.com/Azure/azure-resource-manager-schemas) de ressource du parent hello. nom Hello enfant du type de ressource inclut le nom hello hello parent du type de ressource, telles que **Microsoft.Web/sites/config** et **Microsoft.Web/sites/extensions** sont les deux ressources enfant de hello  **Microsoft.Web/sites**.
 
-L'exemple suivant montre un serveur SQL et une base de données SQL. Notez qu'une dépendance explicite est définie entre la base de données SQL et le serveur SQL, même si la base de données est un enfant du serveur.
+Bonjour à l’exemple suivant montre un SQL server et la base de données SQL. Notez qu’une dépendance explicite est définie entre la base de données SQL hello et SQL server, même si la base de données hello est un enfant du serveur de hello.
 
 ```json
 "resources": [
@@ -107,13 +107,13 @@ L'exemple suivant montre un serveur SQL et une base de données SQL. Notez qu'un
 ```
 
 ## <a name="reference-function"></a>fonction de référence
-La [fonction de référence](resource-group-template-functions-resource.md#reference) permet à une expression de tirer sa valeur d’un autre nom JSON et de paires de valeurs ou de ressources runtime. Les expressions de référence déclarent implicitement qu’une ressource dépend d’une autre. Le format général est le suivant :
+Hello [font référence à fonction](resource-group-template-functions-resource.md#reference) permet une tooderive expression sa valeur à partir d’autres paires nom / valeur JSON ou les ressources d’exécution. Les expressions de référence déclarent implicitement qu’une ressource dépend d’une autre. le format général Hello est :
 
 ```json
 reference('resourceName').propertyPath
 ```
 
-Dans l’exemple suivant, un point de terminaison CDN dépend explicitement du profil CDN et implicitement d’une application web.
+Bonjour l’exemple suivant, un point de terminaison CDN explicitement dépend hello profil CDN et implicitement dépend d’une application web.
 
 ```json
 {
@@ -130,32 +130,32 @@ Dans l’exemple suivant, un point de terminaison CDN dépend explicitement du p
     }
 ```
 
-Vous pouvez utiliser cet élément ou l’élément dependsOn pour spécifier les dépendances, mais il est inutile d’utiliser les deux pour la même ressource dépendante. Si possible, utilisez une référence implicite pour éviter d’ajouter une dépendance inutile.
+Vous pouvez utiliser cet élément ou hello dépendances de toospecify dependsOn élément, mais vous n’avez pas besoin de toouse à la fois pour hello même ressource dépendante. Si possible, utilisez un tooavoid de référence implicite Ajout d’une dépendance inutile.
 
-Pour plus d’informations, consultez la [fonction de référence](resource-group-template-functions-resource.md#reference).
+toolearn, voir [font référence à fonction](resource-group-template-functions-resource.md#reference).
 
 ## <a name="recommendations-for-setting-dependencies"></a>Recommandations pour la définition des dépendances
 
-Lorsque vous décidez des dépendances à définir, appliquez les recommandations suivantes :
+Lorsque vous décidez quelles tooset de dépendances, utilisez hello instructions :
 
 * Définissez le moins de dépendances possible.
 * Définissez une ressource enfant comme dépendante de sa ressource parent.
-* Utilisez la fonction **reference** pour définir les dépendances implicites entre les ressources qui doivent partager une propriété. N’ajoutez pas de dépendance explicite (**dependsOn**) lorsque vous avez déjà défini une dépendance implicite. Cette approche permet de réduire le risque d’avoir des dépendances inutiles. 
-* Définissez une dépendance lorsqu’une ressource ne peut pas être **créée** sans la fonctionnalité d’une autre ressource. Ne définissez pas de dépendance si les ressources interagissent uniquement après le déploiement.
-* Ajoutez les dépendances l’une après l’autre sans les définir explicitement. Par exemple, votre machine virtuelle dépend d’une interface de réseau virtuel, et l’interface de réseau virtuelle dépend d’un réseau virtuel et d’adresses IP publiques. Par conséquent, la machine virtuelle est déployée après les trois ressources. Cependant, ne définissez pas explicitement la machine virtuelle comme dépendante de ces trois ressources. Cette approche permet de clarifier l’ordre des dépendances et de simplifier les modifications ultérieures du modèle.
-* Si une valeur peut être déterminée avant le déploiement, essayez de déployer la ressource sans dépendance. Par exemple, si une valeur de configuration a besoin du nom d’une autre ressource, vous n’avez pas forcément besoin d’une dépendance. Cette recommandation n’est pas toujours applicable, car certaines ressources vérifient l’existence de l’autre ressource. Si vous recevez une erreur, ajoutez une dépendance. 
+* Hello d’utilisation **référence** tooset des dépendances implicite entre les ressources qui doivent tooshare une propriété de fonction. N’ajoutez pas de dépendance explicite (**dependsOn**) lorsque vous avez déjà défini une dépendance implicite. Cette approche réduit le risque de hello d’avoir des dépendances inutiles. 
+* Définissez une dépendance lorsqu’une ressource ne peut pas être **créée** sans la fonctionnalité d’une autre ressource. Ne définissez pas une dépendance si les ressources hello interagissent uniquement après le déploiement.
+* Ajoutez les dépendances l’une après l’autre sans les définir explicitement. Par exemple, votre machine virtuelle dépend d’une interface réseau virtuelle et interface de réseau virtuel hello dépend d’un réseau virtuel et les adresses IP publiques. Par conséquent, hello est ressources une fois toutes les trois déployées, mais ne définissez pas explicitement de machine virtuelle de hello comme dépend de toutes les ressources de trois. Cette approche précise l’ordre des dépendances hello et rend plus facile modèle de hello toochange plus tard.
+* Si une valeur peut être déterminée avant le déploiement, essayez de déployer des ressources hello sans une dépendance. Par exemple, si une valeur de configuration doit nom hello d’une autre ressource, vous devrez peut-être pas une dépendance. Ce guide ne fonctionne pas toujours, car certaines ressources vérifient l’existence de hello Hello autre ressource. Si vous recevez une erreur, ajoutez une dépendance. 
 
-Resource Manager identifie les dépendances circulaires lors de la validation du modèle. Si vous recevez une erreur indiquant qu’il existe une dépendance circulaire, évaluez votre modèle pour déterminer si certaines dépendances sont inutiles et peuvent être supprimées. Si la suppression de ces dépendances n’a aucun effet, vous pouvez éliminer les dépendances circulaires en déplaçant certaines opérations de déploiement dans les ressources enfants qui sont déployées après les ressources présentant la dépendance circulaire. Par exemple, supposons que vous déployiez deux machines virtuelles, mais que vous deviez définir sur chacune d’elles des propriétés faisant référence les unes aux autres. Vous pouvez les déployer dans l’ordre suivant :
+Resource Manager identifie les dépendances circulaires lors de la validation du modèle. Si vous recevez un message d’erreur indiquant qu’il existe une dépendance circulaire, évaluez vos toosee modèle si toutes les dépendances ne sont pas nécessaires et peuvent être supprimés. Si la suppression de dépendances ne fonctionne pas, vous pouvez éviter les dépendances circulaires en déplaçant certaines opérations de déploiement dans les ressources enfants qui sont déployés après ressources hello qui ont une dépendance circulaire hello. Par exemple, supposons que vous déployez deux machines virtuelles, mais vous devez définir des propriétés sur chacun d’eux qui font référence toohello autres. Vous pouvez les déployer dans hello suivant l’ordre :
 
 1. Machine virtuelle 1
 2. Machine virtuelle 2
-3. L’extension sur la machine virtuelle 1 dépend des machines virtuelles 1 et 2. L’extension définit sur la machine virtuelle 1 des valeurs qu’elle obtient de la machine virtuelle 2.
-4. L’extension sur la machine virtuelle 2 dépend des machines virtuelles 1 et 2. L’extension définit sur la machine virtuelle 2 des valeurs qu’elle obtient de la machine virtuelle 1.
+3. L’extension sur la machine virtuelle 1 dépend des machines virtuelles 1 et 2. extension de Hello définit des valeurs sur vm1 qu’il obtient à partir de l’ordinateur virtuel 2.
+4. L’extension sur la machine virtuelle 2 dépend des machines virtuelles 1 et 2. extension de Hello définit des valeurs sur vm2 qu’il obtient de vm1.
 
-Pour plus d’informations sur l’évaluation de l’ordre de déploiement et la résolution des erreurs de dépendance, consultez l’article [Résolution des erreurs courantes dans des déploiements Azure avec Azure Resource Manager](resource-manager-common-deployment-errors.md).
+Pour plus d’informations sur l’évaluation d’ordre de déploiement hello et la résolution des erreurs de dépendance, consultez [résoudre les erreurs courantes de déploiement Azure avec Azure Resource Manager](resource-manager-common-deployment-errors.md).
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Pour en savoir plus sur la résolution des problèmes liés aux dépendances lors du déploiement, consultez [Résolution des erreurs courantes dans des déploiements Azure avec Azure Resource Manager](resource-manager-common-deployment-errors.md).
-* Pour en savoir plus sur la création de modèles Azure Resource Manager, consultez [Création de modèles](resource-group-authoring-templates.md). 
-* Pour obtenir la liste des fonctions disponibles dans un modèle, consultez [Fonctions de modèle](resource-group-template-functions.md).
+* toolearn sur la résolution des dépendances au cours du déploiement, consultez [résoudre les erreurs courantes de déploiement Azure avec Azure Resource Manager](resource-manager-common-deployment-errors.md).
+* toolearn sur la création de modèles Azure Resource Manager, consultez [création de modèles](resource-group-authoring-templates.md). 
+* Pour obtenir la liste des fonctions disponibles de hello dans un modèle, consultez [fonctions de modèle](resource-group-template-functions.md).
 

@@ -1,6 +1,6 @@
 ---
-title: "Incorporation d’une vidéo de diffusion en continu adaptative MPEG-DASH dans une application HTML5 avec DASH.js | Microsoft Docs"
-description: "Cette rubrique montre comment incorporer une vidéo de diffusion en continu adaptative MPEG-DASH dans une application HTML5 avec DASH.js."
+title: "aaaEmbedding une vidéo de diffusion en continu adaptative MPEG-DASH dans une Application HTML5 avec DASH.js | Documents Microsoft"
+description: "Cette rubrique montre comment tooembed une vidéo de diffusion en continu adaptative MPEG-DASH dans une Application HTML5 avec DASH.js."
 author: Juliako
 manager: cfowler
 editor: 
@@ -14,32 +14,32 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/26/2016
 ms.author: juliako
-ms.openlocfilehash: 27ce6325773ba1f9fd9cd9ab9e07ea9f5e2488ac
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a73713d20f95262654532b94576ae9669d829354
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="embedding-a-mpeg-dash-adaptive-streaming-video-in-an-html5-application-with-dashjs"></a>Incorporation d'une vidéo de diffusion en continu adaptative MPEG-DASH dans une application HTML5 avec DASH.js
 ## <a name="overview"></a>Vue d'ensemble
-MPEG-DASH est une norme ISO pour la diffusion en continu adaptative de contenu vidéo, qui offre des avantages significatifs pour ceux qui souhaitent proposer un résultat de diffusion vidéo en continu adaptative de haute qualité. Avec MPEG-DASH, le flux vidéo est automatiquement ramené à une définition inférieure quand le réseau est encombré. Cela réduit le risque pour un utilisateur de voir une vidéo « interrompue » pendant que le lecteur télécharge les quelques secondes suivantes à lire (également appelée mise en mémoire tampon). À mesure que l'encombrement du réseau diminue, le lecteur vidéo renvoie à son tour un flux de qualité supérieure. Cette capacité d'adaptation de la bande passante requise entraîne également un temps de départ plus rapide pour la vidéo. Cela signifie que les premières secondes peuvent être lues dans un segment de moindre qualité rapide à télécharger, puis que la qualité s'améliore une fois le contenu suffisant mis en mémoire tampon.
+MPEG-DASH est une norme ISO pour hello adaptative de diffusion en continu de contenu vidéo, qui offre des avantages significatifs pour ceux qui souhaitent vidéo haute qualité, adaptive toodeliver sortie de diffusion en continu. Avec MPEG-DASH, les flux vidéo hello supprimera automatiquement définition inférieure de tooa lorsque le réseau de hello devienne encombré. Cela réduit la probabilité de hello de visionneuse hello voir une vidéo « suspendue » pendant que le lecteur hello télécharge hello ensuite quelques secondes tooplay (également appelé mise en mémoire tampon). Comme réduit la congestion du réseau, le lecteur vidéo hello retourne à son tour tooa supérieure qualité de flux. Cette possibilité tooadapt hello la bande passante requise entraîne également une heure de début plus rapide pour la vidéo. Que signifie que hello quelques secondes peut être lus dans un segment de qualité inférieure rapide au téléchargement et puis intensifier tooa une qualité supérieure, une fois que le contenu suffisamment a été mis en mémoire tampon.
 
-Dash.js est un lecteur de vidéo MPEG-DASH open source écrit en JavaScript. Son objectif est de fournir un lecteur robuste, inter-plateformes qui peut être réutilisé librement dans les applications qui requièrent une lecture vidéo. Il assure la lecture MPEG-DASH dans n’importe quel navigateur prenant en charge W3C Media Source Extensions (MSE) aujourd’hui, à savoir Chrome, Microsoft Edge et IE11 (d’autres navigateurs ont indiqué leur intention de prendre en charge MSE). Pour plus d'informations sur DASH.js, consultez le référentiel dash.js GitHub.
+Dash.js est un lecteur de vidéo MPEG-DASH open source écrit en JavaScript. Son objectif est tooprovide un lecteur robust, inter-plateformes qui peut être réutilisé librement dans les applications qui nécessitent la lecture vidéo. Il fournit la lecture MPEG-DASH dans n’importe quel navigateur prenant en charge hello W3C Media Source Extensions (MSE), c'est-à-dire aujourd'hui Chrome, Microsoft Edge et IE11 (d’autres navigateurs ont indiqué leur intention toosupport MSE). Pour plus d’informations sur DASH.js, js voir référentiel dash.js de GitHub hello.
 
 ## <a name="creating-a-browser-based-streaming-video-player"></a>Création d'un lecteur vidéo de diffusion en continu basé sur le navigateur
-Pour créer une page web simple qui affiche un lecteur vidéo avec les contrôles courants comme Lecture, Pause, Retour rapide, etc., vous devez effectuer les tâches suivantes :
+toocreate une page web simple qui affiche un lecteur vidéo avec hello attendu contrôle ces lecture, pause, rembobiner, etc., vous devez :
 
 1. Créer une page HTML
-2. Ajouter la balise vidéo
-3. Ajouter le lecteur dash.js
-4. Initialiser le lecteur
+2. Ajoutez la balise vidéo de hello
+3. Ajouter le lecteur hello dash.js
+4. Initialiser le lecteur hello
 5. Ajouter un style CSS
-6. Afficher les résultats dans un navigateur qui implémente MSE
+6. Afficher les résultats dans un navigateur qui implémente MSE hello
 
-L'initialisation du lecteur peut être effectuée en seulement quelques lignes de code JavaScript. À l'aide de dash.js, il est vraiment très simple d'incorporer une vidéo MPEG-DASH dans vos applications basées sur le navigateur.
+L’initialisation du lecteur de hello peut être effectué en quelques lignes de code JavaScript. À l’aide de dash.js, il est réellement que la vidéo simple tooembed MPEG-DASH dans vos applications basées sur un navigateur.
 
-## <a name="creating-the-html-page"></a>Création de la page HTML
-La première étape consiste à créer une page HTML standard qui contient l’élément **video**, à enregistrer ce fichier sous basicPlayer.html, comme l’illustre l’exemple suivant :
+## <a name="creating-hello-html-page"></a>Création de hello HTML Page
+première étape de Hello est page toocreate un code HTML standard contenant hello **vidéo** élément, enregistrez ce fichier sous basicPlayer.html, en tant que hello l’exemple suivant illustre :
 
     <!DOCTYPE html>
     <html>
@@ -50,19 +50,19 @@ La première étape consiste à créer une page HTML standard qui contient l’�
       </body>
     </html>
 
-## <a name="adding-the-dashjs-player"></a>Ajout du lecteur DASH.js
-Pour ajouter l'implémentation de référence dash.js à l'application, vous devez extraire le fichier dash.all.js de la version 1.0 du projet dash.js. Celui-ci doit être enregistré dans le dossier JavaScript de votre application. Ce fichier est un fichier de convenance qui rassemble tout le code dash.js requis dans un seul fichier. En examinant le contenu du référentiel dash.js, vous trouverez les fichiers individuels, le code de test, entre autres, mais si vous voulez seulement utiliser dash.js, alors c'est du fichier dash.all.js dont vous avez besoin.
+## <a name="adding-hello-dashjs-player"></a>Ajout de hello DASH.js lecteur
+tooadd hello dash.js implémentation toohello d’application de référence, vous aurez besoin de fichier de dash.all.js hello toograb à partir de la version 1.0 de hello du projet de dash.js. Il doit être enregistré dans le dossier de JavaScript hello de votre application. Ce fichier est un fichier pratique qui regroupe tout le code hello dash.js nécessaires dans un seul fichier. Si vous disposez d’un coup de œil autour de référentiel dash.js de hello, vous allez trouver hello des fichiers individuels, le code de test et bien plus encore, mais si vous souhaitez toodo est utiliser dash.js, fichier de dash.all.js hello est ce dont vous avez besoin.
 
-Pour ajouter le lecteur dash.js à vos applications, ajoutez une balise de script à la section d'en-tête de basicPlayer.html :
+tooadd hello dash.js tooyour des applications de lecteur, ajoutez une section script balise toohello head de basicPlayer.html :
 
     <!-- DASH-AVC/265 reference implementation -->
     < script src="js/dash.all.js"></script>
 
 
-Ensuite, créez une fonction pour initialiser le lecteur pendant le chargement de la page. Ajoutez le script suivant après la ligne dans laquelle vous chargez dash.all.js :
+Ensuite, créez un lecteur de hello tooinitialize fonction lorsque le chargement de la page hello. Ajoutez hello script suivant après la ligne hello dans lequel vous chargez dash.all.js :
 
     <script>
-    // setup the video element and attach it to the Dash player
+    // setup hello video element and attach it toohello Dash player
     function setupVideo() {
       var url = "http://wams.edgesuite.net/media/MPTExpressionData02/BigBuckBunny_1080p24_IYUV_2ch.ism/manifest(format=mpd-time-csf)";
       var context = new Dash.di.DashContext();
@@ -73,17 +73,17 @@ Ensuite, créez une fonction pour initialiser le lecteur pendant le chargement d
     }
     </script>
 
-Cette fonction crée d'abord un DashContext. Celui-ci permet de configurer l'application pour un environnement d'exécution spécifique. D'un point de vue technique, il définit les classes que l'infrastructure d'injection de dépendance doit utiliser pour construire l'application. Dans la plupart des cas, vous utiliserez Dash.di.DashContext.
+Cette fonction crée d'abord un DashContext. Il s’agit d’application de hello tooconfigure utilisés pour un environnement d’exécution spécifique. À partir d’un point de vue technique, il définit hello classes hello infrastructure d’injection de dépendance doivent utiliser lors de la construction d’application hello. Dans la plupart des cas, vous utiliserez Dash.di.DashContext.
 
-Ensuite, instanciez la classe principale de l'infrastructure dash.js, MediaPlayer. Cette classe contient les principales méthodes requises telles que la lecture et la mise en pause, gère la relation avec l'élément vidéo et gère également l'interprétation du fichier MPD (Media Presentation Description) qui décrit la vidéo à lire.
+Ensuite, instancier la classe principale de hello du framework dash.js de hello, MediaPlayer. Cette classe contient core hello méthodes nécessaires telles que lire et suspendre, gère les relation hello avec un élément de vidéo hello et gère également interprétation hello du fichier de Description de présentation multimédia (MPD) hello qui décrit hello vidéo toobe est lu.
 
-La fonction startup() de la classe MediaPlayer est appelée pour s'assurer que le lecteur est prêt à lire la vidéo. Entre autres choses, cette fonction garantit que toutes les classes nécessaires (comme défini par le contexte) ont été chargées. Une fois que le lecteur est prêt, vous pouvez y associer l'élément vidéo à l'aide de la fonction attachView(). Cela permet à MediaPlayer d'injecter le flux vidéo dans l'élément et également de contrôler la lecture si besoin.
+Hello startup() Hello MediaPlayer classe est appelée tooensure joueur hello est prêt tooplay vidéo. Entre autres, cette fonction permet de s’assurer que toutes les classes nécessaires hello (comme défini par le contexte de hello) ont été chargés. Une fois que le lecteur hello est prêt, vous pouvez attacher hello tooit d’élément vidéo à l’aide de la fonction de attachView() hello. Ainsi les flux vidéo de hello MediaPlayer tooinject hello en élément de hello et également contrôler la lecture en tant que nécessaire.
 
-Passez l'URL du fichier MPD à MediaPlayer pour l'informer sur la vidéo à lire. La fonction setupVideo() tout juste créée devra être exécutée une fois la page entièrement chargée. Pour cela, utilisez l'événement onload de l'élément body. Remplacez votre élément <body> par :
+Passer des URL hello de hello MPD fichier toohello MediaPlayer, afin qu’il connaît hello vidéo est censé venez de créer (fonction) setupVideo() tooplay.hello devez toobe exécuté une fois la page de hello a complètement chargé. Cela à l’aide d’événements d’onload hello de l’élément de corps hello. Remplacez votre élément <body> par :
 
     <body onload="setupVideo()">
 
-Enfin, définissez la taille de l'élément vidéo à l'aide de CSS. Dans un environnement de diffusion en continu adaptative, cela s'avère particulièrement important car la taille de la vidéo lue peut changer au gré de l'adaptation de la lecture aux conditions changeantes du réseau. Cette démonstration simple force l'élément vidéo à constituer 80 % de la fenêtre de navigateur disponible en ajoutant le fichier CSS suivant à la section head de la page :
+Enfin, définissez taille hello d’élément de vidéo hello à l’aide de CSS. Dans un environnement de diffusion en continu ADAPTATIF, cela est particulièrement important car taille hello Hello vidéo en cours de lecture peut changer que la lecture s’adapte toochanging les conditions de réseau. Dans cette démonstration simple simplement forcer hello élément vidéo toobe 80 % de la fenêtre du navigateur disponible hello en ajoutant hello suivant toohello principal la section CSS de la page de hello :
 
     <style>
     video {
@@ -93,7 +93,7 @@ Enfin, définissez la taille de l'élément vidéo à l'aide de CSS. Dans un env
     </style>
 
 ## <a name="playing-a-video"></a>Lecture d'une vidéo
-Pour lire une vidéo, pointez votre navigateur sur le fichier basicPlayback.html et cliquez sur Lire sur le lecteur vidéo affiché.
+tooplay une vidéo, pointez votre navigateur dans le fichier de basicPlayback.html hello et cliquez sur Lire sur le lecteur vidéo hello affiché.
 
 ## <a name="media-services-learning-paths"></a>Parcours d’apprentissage de Media Services
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]

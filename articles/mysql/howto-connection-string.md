@@ -1,6 +1,6 @@
 ---
-title: "Connexion d’applications à la base de données Azure pour MySQL | Microsoft Docs"
-description: "Ce document répertorie les chaînes de connexion actuellement prises en charge pour les applications qui se connectent à la base de données Azure pour MySQL, notamment ADO.NET (C#), JDBC, Node.js, ODBC, PHP, Python et Ruby."
+title: "applications d’aaaConnect tooAzure base de données MySQL | Documents Microsoft"
+description: "Ce document répertorie les chaînes de connexion hello actuellement pris en charge pour les applications tooconnect avec la base de données Azure pour MySQL, y compris ADO.NET (c#), JDBC, Node.js, ODBC, PHP, Python et Ruby."
 services: mysql
 author: mswutao
 ms.author: wuta
@@ -9,25 +9,25 @@ manager: jhubbard
 ms.service: mysql-database
 ms.topic: article
 ms.date: 06/12/2017
-ms.openlocfilehash: 2f40da41bcfda7e35f6fc63ead5d055246ab390c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: bbcb2c0ddb4f8e5c225ebef53781e073f5c7b1a8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-connect-applications-to-azure-database-for-mysql"></a>Connexion d’applications à Azure Database pour MySQL
-Ce document répertorie les types de chaînes de connexion pris en charge par la base de données Azure pour MySQL, ainsi que des modèles et des exemples. Vous pouvez avoir des paramètres et des réglages différents dans votre chaîne de connexion.
+# <a name="how-tooconnect-applications-tooazure-database-for-mysql"></a>Comment tooconnect applications tooAzure de base de données MySQL
+Ce document répertorie les types de chaîne de connexion de hello sont pris en charge par la base de données Azure pour MySQL, ainsi que des modèles et des exemples. Vous pouvez avoir des paramètres et des réglages différents dans votre chaîne de connexion.
 
-- Pour obtenir le certificat, consultez [Configuration de la connectivité SSL dans votre application pour se connecter en toute sécurité à la base de données Azure pour MySQL](./howto-configure-ssl.md).
+- certificat de hello tooobtain, consultez [comment tooconfigure SSL](./howto-configure-ssl.md).
 - {votre_hôte} = <servername>.mysql.database.azure.com
-- {votre_utilisateur}@{nomserveur} = format ID utilisateur pour une authentification correcte.  L’authentification échouera si vous utilisez uniquement l’ID utilisateur.
+- {votre_utilisateur}@{nomserveur} = format ID utilisateur pour une authentification correcte.  L’utilisation de simplement hello userID entraîne hello authentification toofail.
 
 ## <a name="adonet"></a>ADO.NET
 ```ado.net
 Server={your_host};Port={your_port};Database={your_database};Uid={username@servername};Pwd={your_password};[SslMode=Required;]
 ```
 
-Dans cet exemple, le nom du serveur est `myserver4demo`, le nom de la base de données est `wpdb`, le nom d’utilisateur est `WPAdmin` et le mot de passe est `mypassword!2`. La chaîne de connexion devrait être :
+Dans cet exemple, le nom du serveur hello est `myserver4demo`, nom de la base de données est `wpdb`, nom d’utilisateur est `WPAdmin`, et le mot de passe est `mypassword!2`. Ensuite, la chaîne de connexion hello doit être :
 
 ```ado.net
 Server= "myserver4demo.mysql.database.azure.com"; Port=3306; Database= "wpdb"; Uid= "WPAdmin@myserver4demo"; Pwd="mypassword!2"; SslMode=Required;
@@ -63,10 +63,10 @@ cnx = mysql.connector.connect(user={username@servername}, password={your_passwor
 client = Mysql2::Client.new(username: {username@servername}, password: {your_password}, database: {your_database}, host: {your_host}, port: {your_port}[, sslca:{ca-cert filename}, sslverify:false, sslcipher:'AES256-SHA'])
 ```
 
-## <a name="get-the-connection-string-details-from-the-azure-portal"></a>Obtenir les détails de la chaîne de connexion dans le portail Azure
-Dans le [portail Azure](https://portal.azure.com), accédez à la base de données Azure pour MySQL Server, puis cliquez sur **Chaînes de connexion** pour obtenir la liste des chaînes de votre instance : ![Le panneau Chaînes de connexion dans le portail Azure](./media/howto-connection-strings/connection-strings-on-portal.png)
+## <a name="get-hello-connection-string-details-from-hello-azure-portal"></a>Obtenir des détails de la chaîne de connexion de hello de hello portail Azure
+Bonjour [portail Azure](https://portal.azure.com), accédez tooyour base de données Azure pour le serveur MySQL, puis cliquez sur **les chaînes de connexion** tooget votre chaîne de liste de l’instance : ![volet de chaînes de connexion hello Bonjour Portail Azure](./media/howto-connection-strings/connection-strings-on-portal.png)
 
-La chaîne fournit des détails tels que le pilote, le serveur et d’autres paramètres de connexion de base de données. Modifiez ces exemples en utilisant vos propres paramètres, tels que le nom de la base de données, le mot de passe, etc. Vous pouvez ensuite utiliser cette chaîne pour vous connecter au serveur à partir de votre code et de vos applications.
+chaîne de Hello fournit des détails tels que les pilotes de hello, serveur et autres paramètres de connexion de base de données. Modifiez ces exemples en utilisant vos propres paramètres, tels que le nom de la base de données, le mot de passe, etc. Vous pouvez ensuite utiliser ce serveur de toohello tooconnect chaîne à partir de votre code et les applications.
 
 ## <a name="next-steps"></a>Étapes suivantes
 - Pour plus d’informations sur les bibliothèques de connexions, consultez [Concepts - Bibliothèques de connexions](./concepts-connection-libraries.md).

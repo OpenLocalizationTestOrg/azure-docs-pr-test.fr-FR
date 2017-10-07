@@ -1,6 +1,6 @@
 ---
-title: "Appel d’un runbook Azure Automation à partir d’une alerte Log Analytics | Microsoft Docs"
-description: "Cet article présente une vue d’ensemble de l’appel d’un runbook Automation à partir d’une alerte Microsoft OMS Log Analytics."
+title: "aaaCalling un Runbook Azure Automation à partir d’une alerte Analytique de journal | Documents Microsoft"
+description: "Cet article fournit une vue d’ensemble de la manière tooinvoke un runbook Automation à partir d’une alerte Microsoft OMS journal Analytique."
 services: automation
 documentationcenter: 
 author: mgoedtel
@@ -14,38 +14,38 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 01/31/2017
 ms.author: magoedte
-ms.openlocfilehash: 81cf490eae7f283c0180875cb3a2ed2ffe6333c8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8b745d6e6c2b0294d676e010f52855cd51741cf9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="calling-an-azure-automation-runbook-from-an-oms-log-analytics-alert"></a>Appel d’un runbook Azure Automation à partir d’une alerte OMS Log Analytics
 
-Lorsqu’une alerte est configurée dans Log Analytics pour créer un enregistrement d’alerte si les résultats correspondent aux critères spécifiés, par exemple un pic d’utilisation processeur prolongé ou l’échec d’un processus d’application particulier essentiel au fonctionnement d’une application métier et l’écriture d’un événement correspondant dans le journal des événements Windows, cette alerte peut exécuter automatiquement un runbook Automation dans une tentative de résolution automatique du problème.  
+Lorsqu’une alerte est configurée dans le journal Analytique toocreate un enregistrement d’alerte si les résultats correspondent aux critères particuliers, tels qu’un pic prolongé dans l’utilisation du processeur ou une application particulière processus toohello critiques des fonctionnalités d’une application métier échoue et écrit un événement correspondant dans le journal des événements Windows hello, cette alerte peut exécuter automatiquement un runbook Automation dans un tooauto tentative-corriger le problème de hello.  
 
-Deux méthodes permettent d’appeler un runbook lorsque vous configurez une alerte.  Plus précisément :
+Il y a deux options toocall un runbook pour la configuration d’alerte de hello.  Plus précisément :
 
 1. Utilisation d’un webhook.
-   * Il s’agit de la seule option disponible si votre espace de travail OMS n’est pas lié à un compte Automation.
-   * Si vous possédez déjà un compte Automation lié à un espace de travail OMS, cette option est toujours disponible.  
+   * Il s’agit de hello seule option si votre espace de travail OMS n’est pas lié tooan compte Automation.
+   * Si vous disposez déjà d’un espace de travail Automation compte lié tooan OMS, cette option est toujours disponible.  
 
 2. Sélection directe d’un runbook.
-   * Cette option est disponible uniquement si l’espace de travail OMS est lié à un compte Automation.  
+   * Cette option est disponible uniquement lorsque l’espace de travail OMS hello est lié tooan compte Automation.  
 
 ## <a name="calling-a-runbook-using-a-webhook"></a>Appel d’un runbook à l’aide d’un webhook
 
-Un webhook vous permet de démarrer un runbook particulier dans Azure Automation via une simple requête HTTP.  Avant de configurer l’[alerte Log Analytics](../log-analytics/log-analytics-alerts.md#alert-rules) pour appeler le runbook à l’aide d’un webhook en tant qu’action d’alerte, vous devez d’abord créer un webhook pour le runbook qui sera appelé à l’aide de cette méthode.  Passez en revue et suivez les étapes de l’article relatif à la [création d’un webhook](automation-webhooks.md#creating-a-webhook) et n’oubliez pas d’enregistrer l’URL du webhook afin de pouvoir la référencer lors de la configuration de la règle d’alerte.   
+Un webhook vous permet de toostart un runbook donné dans Azure Automation via une requête HTTP unique.  Avant de configurer hello [alerte d’Analytique de journal](../log-analytics/log-analytics-alerts.md#alert-rules) runbook de hello toocall à l’aide d’un webhook comme une action d’alerte, vous devez toofirst créer un webhook pour runbook hello qui sera appelée à l’aide de cette méthode.  Passez en revue et suivez les étapes de hello Bonjour [créer un webhook](automation-webhooks.md#creating-a-webhook) l’article et n’oubliez pas de l’URL du webhook toorecord hello afin que vous pouvez référencer lors de la configuration de règle d’alerte hello.   
 
 ## <a name="calling-a-runbook-directly"></a>Appel direct d’un runbook
 
-Si vous avez installé et configuré l’offre Automation & Control dans votre espace de travail OMS, lors de la configuration de l’option des actions de runbook pour l’alerte, vous pouvez afficher tous les runbooks de la liste déroulante **Sélectionner un runbook**, puis sélectionner celui que vous souhaitez exécuter en réponse à l’alerte.  Le runbook sélectionné peut être exécuté dans un espace de travail dans le cloud Azure ou sur un Runbook Worker hybride.  Si l’alerte est créée à l’aide de la méthode du runbook, un webhook est créé pour celui-ci.  Vous pouvez voir le webhook si vous accédez au compte Automation et accédez au panneau du webhook du runbook sélectionné.  Si vous supprimez l’alerte, le webhook n’est pas supprimé, mais l’utilisateur peut procéder manuellement à sa suppression.  Ce n’est pas un problème si le webhook n’est pas supprimé. Il s’agit simplement d’un élément orphelin qui devra finalement être supprimé afin de conserver un compte Automation organisé.  
+Si vous avez hello Automation & offre de contrôle installé et configuré dans votre espace de travail OMS, lorsque vous configurez l’option d’actions hello Runbook d’alerte de hello, vous pouvez afficher tous les runbooks à partir de hello **sélectionnez un runbook** liste déroulante et sélectionnez hello spécifique de runbook vous souhaitez toorun dans alerte toohello de réponse.  Hello sélectionné runbook peut s’exécuter dans un espace de travail dans hello cloud Azure ou sur un runbook worker hybride.  Lors de l’alerte de hello est créé à l’aide d’option de runbook hello, un webhook va être créé pour hello runbook.  Vous pouvez voir hello webhook si vous accédez compte Automation de toohello et accédez lame de webhook toohello de runbook de hello sélectionné.  Si vous supprimez hello alerte, hello webhook n’est pas supprimé, mais hello l’utilisateur peut supprimer des hello webhook manuellement.  Il n’est pas un problème si hello webhook n’est pas supprimé, il est simplement un élément orphelin qui devra finalement toobe supprimé dans l’ordre toomaintain un compte Automation sont organisé.  
 
 ## <a name="characteristics-of-a-runbook-for-both-options"></a>Caractéristiques d’un runbook (pour les deux méthodes)
 
-Les deux méthodes d’appel de runbook à partir de l’alerte Log Analytics présentent des caractéristiques de comportement différentes que vous devez comprendre avant de configurer vos règles d’alerte.  
+Les deux méthodes d’appel de hello runbook d’alerte d’Analytique de journal hello présentent les caractéristiques de comportement différent qui doivent toobe compris avant de configurer vos règles d’alerte.  
 
-* Vous devez disposer d’un paramètre d’entrée de runbook appelé **WebhookData** qui est de type **objet**.  Il peut être obligatoire ou facultatif.  L’alerte transmet les résultats de recherche au runbook à l’aide de ce paramètre d’entrée.
+* Vous devez disposer d’un paramètre d’entrée de runbook appelé **WebhookData** qui est de type **objet**.  Il peut être obligatoire ou facultatif.  alerte de Hello passe hello recherche résultats toohello runbook à l’aide de ce paramètre d’entrée.
 
         param  
          (  
@@ -53,40 +53,40 @@ Les deux méthodes d’appel de runbook à partir de l’alerte Log Analytics 
           [object] $WebhookData  
          )
 
-*  Vous devez disposer du code permettant de convertir le paramètre WebhookData en objet PowerShell.
+*  Vous devez avoir l’objet de code tooconvert hello WebhookData tooa PowerShell.
 
     `$SearchResults = (ConvertFrom-Json $WebhookData.RequestBody).SearchResults.value`
 
-    *$SearchResults* est un tableau des objets, qui contiennent chacun les champs et les valeurs d’un résultat de recherche.
+    *$SearchResults* est un tableau d’objets ; chaque objet contient des champs de hello avec des valeurs à partir d’un résultat de recherche
 
-### <a name="webhookdata-inconsistencies-between-the-webhook-option-and-runbook-option"></a>Incohérences du paramètre WebhookData entre la méthode utilisant un webhook et celle utilisant un runbook
+### <a name="webhookdata-inconsistencies-between-hello-webhook-option-and-runbook-option"></a>WebhookData les incohérences entre l’option de webhook hello et option de runbook
 
-* Lorsque vous configurez une alerte pour appeler un webhook, entrez l’URL du webhook que vous avez créé pour un runbook, puis cliquez sur le bouton **Test Webhook (Tester le webhook)**.  Le paramètre WebhookData obtenu envoyé au runbook ne contient ni *.SearchResult* ni *.SearchResults*.
+* Lorsque vous configurez une alerte toocall un Webhook, entrez une URL webhook que vous avez créé pour un runbook, cliquez sur hello **Test Webhook** bouton.  Hello WebhookData résultant envoyé toohello runbook ne contient pas *. Résultats de la recherche* ou *. SearchResults*.
 
-*  Si vous enregistrez cette alerte, lorsqu’elle se déclenche et appelle le webhook, le paramètre WebhookData envoyé au runbook contient *.SearchResult*.
-* Si vous créez une alerte et que vous la configurez pour appeler un runbook (ce qui crée également un webhook), lorsqu’elle se déclenche, elle envoie au runbook le paramètre WebhookData qui contient *.SearchResults*.
+*  Si vous enregistrez cette alerte, lors de l’alerte de hello déclenche et appelle hello webhook, hello WebhookData envoyé toohello runbook contient *. Résultats de la recherche*.
+* Si vous créez une alerte et le configurez toocall un runbook (qui crée également un webhook), lorsque hello il envoie WebhookData toohello runbook qui contient les déclencheurs alerte *. SearchResults*.
 
-Ainsi, dans l’exemple de code ci-dessus, vous devez obtenir *.SearchResult* si l’alerte appelle un webhook, et *SearchResults* si l’alerte appelle directement un runbook.
+Par conséquent, dans l’exemple de code hello ci-dessus, vous devez tooget *. Résultats de la recherche* si l’alerte de hello appelle un webhook et devez tooget *. SearchResults* si l’alerte de hello appelle un runbook directement.
 
 ## <a name="example-walkthrough"></a>Exemple de procédure pas à pas
 
-Nous allons illustrer ce fonctionnement à l’aide de l’exemple de runbook graphique suivant, qui démarre un service Windows.<br><br> ![Démarrer le runbook graphique d’un service Windows](media/automation-invoke-runbook-from-omsla-alert/automation-runbook-restartservice.png)<br>
+Nous allons vous montrer comment cela fonctionne à l’aide de hello suivant l’exemple de runbook graphique, ce qui démarre un service Windows.<br><br> ![Démarrer le runbook graphique d’un service Windows](media/automation-invoke-runbook-from-omsla-alert/automation-runbook-restartservice.png)<br>
 
-Le runbook contient un paramètre d’entrée de type **objet** appelé **WebhookData** et inclut les données du webhook transmises à partir de l’alerte contenant *.SearchResults*.<br><br> ![Paramètres d’entrée de runbook](media/automation-invoke-runbook-from-omsla-alert/automation-runbook-restartservice-inputparameter.png)<br>
+Hello runbook possède un paramètre d’entrée de type **objet** appelé **WebhookData** et inclut des données de webhook hello passées à partir de hello alerte contenant *. SearchResults*.<br><br> ![Paramètres d’entrée de runbook](media/automation-invoke-runbook-from-omsla-alert/automation-runbook-restartservice-inputparameter.png)<br>
 
-Pour cet exemple, dans Log Analytics, nous avons créé deux champs personnalisés, *SvcDisplayName_CF* et *SvcState_CF*, pour extraire le nom d’affichage et l’état du service (en cours d’exécution ou arrêté) à partir de l’événement écrit dans le journal des événements système.  Nous créons maintenant une règle d’alerte avec la requête de recherche suivante : `Type=Event SvcDisplayName_CF="Print Spooler" SvcState_CF="stopped"` afin de pouvoir détecter lorsque le service Spouleur d’impression est arrêté sur le système Windows.  Il peut s’agir de n’importe quel service, mais pour cet exemple, nous référençons l’un des services inclus dans le système d’exploitation Windows.  L’action d’alerte est configurée pour exécuter notre runbook utilisé dans cet exemple et s’exécuter sur le Runbook Worker hybride, lesquels sont activés sur les systèmes cibles.   
+Pour cet exemple, dans le journal Analytique nous avons créé deux champs personnalisés, *SvcDisplayName_CF* et *SvcState_CF*, tooextract hello service hello nom et l’état d’affichage du service de hello (autrement dit, en cours d’exécution ou arrêté) à partir de l’événement de hello écrites toohello journal des événements système.  Ensuite, nous créons une règle d’alerte avec hello suivant la requête de recherche : `Type=Event SvcDisplayName_CF="Print Spooler" SvcState_CF="stopped"` afin que nous pouvons détecter lorsque hello service Spouleur d’impression est arrêté sur hello système Windows.  Il peut être n’importe quel service qui vous intéresse, mais pour cet exemple nous référençons un des services préexistant hello qui sont incluses avec hello du système d’exploitation Windows.  action d’alerte Hello est configuré tooexecute notre runbook utilisé dans cet exemple et exécuter sur hello Runbook Worker hybride, qui sont activé sur les systèmes cibles de hello.   
 
-L’activité de code du runbook **Obtenir le nom du service à partir de LA** convertit la chaîne au format JSON en un type d’objet et la filtre sur l’élément *SvcDisplayName_CF* pour extraire le nom d’affichage du service Windows et le transmettre à l’activité suivante, qui vérifie que le service est arrêté avant de tenter de le redémarrer.  *SvcDisplayName_CF* est un [champ personnalisé](../log-analytics/log-analytics-custom-fields.md) créé dans Log Analytics pour illustrer cet exemple.
+Hello d’activité de code runbook **obtenir un nom de Service à partir de LA** convertira la chaîne JSON de hello dans un type d’objet et un filtre sur l’élément de hello *SvcDisplayName_CF* nom d’affichage tooextract hello Hello Windows service et passer cette activité suivante de hello qui vérifiera hello est arrêté avant d’essayer de toorestart il.  *SvcDisplayName_CF* est un [champ personnalisé](../log-analytics/log-analytics-custom-fields.md) créé dans le journal Analytique toodemonstrate cet exemple.
 
     $SearchResults = (ConvertFrom-Json $WebhookData.RequestBody).SearchResults.value
     $SearchResults.SvcDisplayName_CF  
 
-Lorsque le service s’arrête, la règle d’alerte dans Log Analytics détecte une correspondance, déclenche le runbook et envoie le contexte de l’alerte au runbook. Le runbook vérifie si le service est arrêté, et le cas échéant, tente de le redémarrer, de vérifier qu’il a démarré correctement, puis sort les résultats.     
+Lorsque hello service s’arrête, règle d’alerte dans le journal Analytique hello détecte une correspondance et déclencher hello runbook et envoyer hello contexte de l’alerte toohello runbook. Hello runbook effectuera une action tooverify hello service est arrêté, et si donc tentative toorestart hello service et vérifiez que l’opération a démarré correctement et hello de sortie des résultats.     
 
-Si vous ne possédez pas de compte Automation lié à votre espace de travail OMS, vous pouvez également configurer la règle d’alerte avec une action de webhook afin de déclencher le runbook et de le configurer pour convertir la chaîne au format JSON et la filtrer sur *.SearchResult* en suivant les instructions mentionnées plus haut.    
+Vous pouvez également si vous n’avez pas votre espace de travail Automation compte lié tooyour OMS, configurer la règle d’alerte hello avec un runbook de webhook action tootrigger hello et configurer une chaîne JSON hello runbook tooconvert hello et filtre sur *. Résultats de la recherche* suivant les instructions hello mentionnée précédemment.    
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* Pour en savoir plus sur les alertes de Log Analytics et sur leur création, consultez [Alertes dans Log Analytics](../log-analytics/log-analytics-alerts.md).
+* toolearn plus d’informations sur les alertes dans le journal Analytique et toocreate, voir [alertes dans le journal Analytique](../log-analytics/log-analytics-alerts.md).
 
-* Pour comprendre comment déclencher des runbooks à l’aide d’un webhook, consultez [Webhooks Azure Automation](automation-webhooks.md).
+* toounderstand runbooks tootrigger à l’aide d’un webhook, voir [Azure Automation webhooks](automation-webhooks.md).

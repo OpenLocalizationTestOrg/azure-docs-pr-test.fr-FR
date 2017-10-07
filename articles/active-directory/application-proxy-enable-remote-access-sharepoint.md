@@ -1,6 +1,6 @@
 ---
-title: "Activer l’accès distant à SharePoint avec le proxy d’application Azure AD | Microsoft Docs"
-description: "Aborde les notions de base relatives à l’intégration d’un serveur SharePoint local au proxy d’application Azure AD."
+title: "tooSharePoint d’accès à distance aaaEnable avec Proxy d’Application Azure AD | Documents Microsoft"
+description: "Traite des concepts de base hello sur la façon toointegrate un serveur de SharePoint sur site avec le Proxy d’Application Azure AD."
 services: active-directory
 documentationcenter: 
 author: kgremban
@@ -15,209 +15,209 @@ ms.date: 07/21/2017
 ms.author: kgremban
 ms.reviewer: harshja
 ms.custom: it-pro
-ms.openlocfilehash: 97eeec3b3936bcbef6ac3966b890332901bcb153
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 6ab413462fcaf387e150449df9c97505c4108bcf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="enable-remote-access-to-sharepoint-with-azure-ad-application-proxy"></a>Activer l’accès distant à SharePoint avec le proxy d’application Azure AD
+# <a name="enable-remote-access-toosharepoint-with-azure-ad-application-proxy"></a>Activer tooSharePoint l’accès à distance avec le Proxy d’Application Azure AD
 
-Cet article explique comment intégrer un serveur SharePoint local au proxy d’application Azure Active Directory (Azure AD).
+Cet article explique comment toointegrate un serveur de SharePoint sur site avec le Proxy d’Application Azure Active Directory (Azure AD).
 
-Pour activer l’accès à distance à SharePoint avec le proxy d’application Azure AD, suivez les sections de cet article étape par étape.
+tooSharePoint d’accès à distance tooenable avec Proxy d’Application Azure AD, suivez les sections hello dans cet article étape par étape.
 
 ## <a name="prerequisites"></a>Composants requis
 
-Cet article suppose que vous avez déjà SharePoint 2013 ou une version plus récente dans votre environnement. En outre, prenez en compte les conditions préalables suivantes :
+Cet article suppose que vous avez déjà SharePoint 2013 ou une version plus récente dans votre environnement. En outre, tenez compte des hello suivant des conditions préalables :
 
-* SharePoint comprend la prise en charge native de Kerberos. Ainsi, les utilisateurs qui accèdent à des sites internes à distance à l’aide du proxy d’application Azure AD peuvent s’attendre à une expérience d’authentification unique (SSO).
+* SharePoint comprend la prise en charge native de Kerberos. Par conséquent, les utilisateurs qui accèdent à des sites internes à distance via le Proxy d’Application Azure AD peuvent supposer toohave une-session unique (SSO de) l’expérience.
 
-* Vous devez apporter quelques modifications de configuration sur votre serveur SharePoint. Nous vous recommandons d’utiliser un environnement intermédiaire. Ainsi, vous pouvez d’abord mettre à jour votre serveur de test, puis faciliter un cycle de test avant de passer en production.
+* Vous avez besoin toomake quelques configuration modifications tooyour SharePoint serveur. Nous vous recommandons d’utiliser un environnement intermédiaire. De cette manière, vous pouvez rendre tooyour mises à jour tout d’abord de serveur de test et puis faciliter un cycle de test avant de passer en production.
 
-* Nous partons du principe que vous avez déjà configuré SSL pour SharePoint, car nous exigeons SSL sur l’URL publiée. SSL doit être activé sur votre site interne, afin de garantir que les liens sont envoyés/mappés correctement. Si vous n’avez pas configuré SSL, consultez le blog [Configure SSL for SharePoint 2013](https://blogs.msdn.microsoft.com/fabdulwahab/2013/01/20/configure-ssl-for-sharepoint-2013) pour obtenir des instructions. En outre, assurez-vous que l’ordinateur du connecteur approuve le certificat que vous émettez. (Ce certificat doit pas nécessairement être émis publiquement.)
+* Nous supposons que vous avez déjà configuré SSL pour SharePoint, car nous avons besoin de que SSL sur hello publié URL. Vous devez toohave que SSL est activé sur votre site interne, tooensure que des liens sont envoyés/correctement mappés. Si vous n’avez pas configuré SSL, consultez le blog [Configure SSL for SharePoint 2013](https://blogs.msdn.microsoft.com/fabdulwahab/2013/01/20/configure-ssl-for-sharepoint-2013) pour obtenir des instructions. En outre, assurez-vous que hello connecteur approbations hello certificat d’ordinateur que vous émettez. (les certificats hello n’est pas nécessaire à toobe publiquement émis.)
 
-## <a name="step-1-set-up-single-sign-on-to-sharepoint"></a>Étape 1 : Configurer l’authentification unique auprès de SharePoint
+## <a name="step-1-set-up-single-sign-on-toosharepoint"></a>Étape 1 : Configurer tooSharePoint de l’authentification unique
 
-Nos clients veulent bénéficier de la meilleure expérience SSO pour leurs applications principales, un serveur SharePoint dans le cas présent. Dans ce scénario Azure AD courant, l’utilisateur est authentifié une seule fois, car il ne sera pas invité à le faire à nouveau.
+Nos clients souhaitent hello expérience d’authentification meilleures pour leurs applications principales, SharePoint server dans ce cas. Dans ce scénario courant d’Azure AD, utilisateur de hello est authentifié qu’une seule fois, car ils ne seront pas demandées pour l’authentification à nouveau.
 
-Pour les applications locales qui exigent ou utilisent l’authentification Windows, vous pouvez obtenir l’authentification unique (SSO) à l’aide du protocole d’authentification Kerberos et d’une fonctionnalité appelée « délégation Kerberos contrainte (KCD) ». Quand elle est configurée, la délégation KCD permet au connecteur de proxy d’application d’obtenir un ticket/jeton Windows pour un utilisateur, même si ce dernier ne s’est pas connecté directement à Windows. Pour en savoir plus sur la KCD, consultez [Présentation de la délégation Kerberos contrainte](https://technet.microsoft.com/library/jj553400.aspx).
+Pour les applications sur site ou utilisent l’authentification Windows, vous pouvez obtenir l’authentification unique à l’aide de protocole d’authentification Kerberos hello et une fonctionnalité appelée la délégation Kerberos contrainte (KCD). KCD, lors de la configuration, permet à un windows tooobtain de connecteur de Proxy d’Application hello ticket et le jeton pour un utilisateur, même si l’utilisateur de hello n’est pas connecté directement tooWindows. toolearn en savoir plus sur KCD, consultez [présentation de délégation contrainte Kerberos](https://technet.microsoft.com/library/jj553400.aspx).
 
-Pour configurer la délégation KCD pour un serveur SharePoint, utilisez les procédures décrites dans les sections séquentielles suivantes :
+tooset de KCD pour un serveur SharePoint, et utiliser des procédures hello Bonjour les sections séquentielles suivantes :
 
 ### <a name="ensure-that-sharepoint-is-running-under-a-service-account"></a>Vérifier que SharePoint s’exécute sous un compte de service
 
-Tout d’abord, vérifiez que SharePoint s’exécute sous un compte de service défini, et non sous le système local, le service local ou le service réseau. Effectuez cette opération afin de pouvoir attacher les noms de principal de service (SPN) à un compte valide. Les SPN sont la façon dont le protocole Kerberos identifie les différents services. De plus, vous aurez besoin de ce compte plus tard pour configurer la délégation KCD.
+Tout d’abord, vérifiez que SharePoint s’exécute sous un compte de service défini, et non sous le système local, le service local ou le service réseau. Cela afin que vous pouvez attacher le compte de service (SPN) de noms principal tooa valide. Noms principaux de service sont comment hello protocole Kerberos identifie les différents services. Et vous devez serez hello compte ultérieure tooconfigure hello KCD.
 
-Pour vous assurer que vos sites sont en cours d’exécution sous un compte de service défini, effectuez les étapes suivantes :
+tooensure vos sites sont en cours d’exécution sous un compte de service définis, effectuez hello comme suit :
 
-1. Ouvrez le site **Administration centrale de SharePoint 2013**.
-2. Accédez à **Sécurité**, puis sélectionnez **Configurer les comptes de service**.
-3. Sélectionnez **Pool d’applications web - SharePoint - 80**. Les options peuvent être légèrement différentes en fonction du nom de votre pool web, ou si le pool web utilise SSL par défaut.
+1. Ouvrez hello **Administration centrale de SharePoint 2013** site.
+2. Accédez trop**sécurité** et sélectionnez **configurer des comptes de service**.
+3. Sélectionnez **Pool d’applications web - SharePoint - 80**. options de Hello peuvent être légèrement différentes selon le nom de hello de votre pool de web, ou si hello pool web utilise SSL par défaut.
 
   ![Choix disponibles pour configurer un compte de service](./media/application-proxy-remote-sharepoint/remote-sharepoint-service-web-application.png)
 
-4. Si **Sélectionnez un compte pour ce composant** a la valeur **Service local** ou **Service réseau**, vous devez créer un compte. Si ce n’est pas le cas, vous avez terminé et pouvez passer à la section suivante.
-5. Choisissez **Enregistrer le nouveau compte géré**. Une fois votre compte créé, vous devez définir l’option **Pool d’applications web** pour pouvoir utiliser le compte.
+4. Si **sélectionner un compte pour ce composant** est **Service Local** ou **Service réseau**, vous devez toocreate un compte. Si ce n’est pas le cas, vous avez terminé et que vous pouvez déplacer toohello la prochaine section.
+5. Choisissez **Enregistrer le nouveau compte géré**. Une fois votre compte est créé, vous devez définir **Pool d’applications Web** avant de pouvoir utiliser le compte de hello.
 
 > [!NOTE]
-Vous devez disposer d’un compte Azure AD précédemment créé pour le service. Nous vous suggérons d’autoriser une modification de mot de passe automatique. Pour plus d’informations sur l’ensemble des étapes et la résolution des problèmes, consultez [Configurer la modification automatique de mot de passe dans SharePoint 2013](https://technet.microsoft.com/library/ff724280.aspx).
+Vous devez toohave a déjà créé le compte Azure AD pour le service de hello. Nous vous suggérons d’autoriser une modification de mot de passe automatique. Pour plus d’informations sur l’ensemble complet de hello d’étapes et de résolution des problèmes, consultez [configurer des modifications de mot de passe automatique dans SharePoint 2013](https://technet.microsoft.com/library/ff724280.aspx).
 
 ### <a name="configure-sharepoint-for-kerberos"></a>Configurer SharePoint pour Kerberos
 
-Vous utilisez la délégation KCD pour effectuer l’authentification unique auprès du serveur SharePoint, et cela fonctionne uniquement avec le protocole Kerberos.
+Vous utilisez KCD tooperform unique authentification toohello SharePoint server, et cela fonctionne uniquement avec Kerberos.
 
-Pour configurer votre site SharePoint pour l’authentification Kerberos :
+tooconfigure de site SharePoint pour l’authentification Kerberos :
 
-1. Ouvrez le site **Administration centrale de SharePoint 2013**.
-2. Accédez à **Gestion des applications**, sélectionnez **Gérer les applications web**, puis sélectionnez votre site SharePoint. Dans cet exemple, il s’agit de **SharePoint - 80**.
+1. Ouvrez hello **Administration centrale de SharePoint 2013** site.
+2. Accédez trop**gestion des applications**, sélectionnez **gérer les applications web**et sélectionnez votre site SharePoint. Dans cet exemple, il s’agit de **SharePoint - 80**.
 
-  ![Sélection du site SharePoint](./media/application-proxy-remote-sharepoint/remote-sharepoint-manage-web-applications.png)
+  ![Sélection d’un site SharePoint hello](./media/application-proxy-remote-sharepoint/remote-sharepoint-manage-web-applications.png)
 
-3. Cliquez sur **Fournisseurs d’authentification** dans la barre d’outils.
-4. Dans la zone **Fournisseurs d’authentification**, cliquez sur **Zone par défaut** pour afficher les paramètres.
-5. Dans la boîte de dialogue **Modifier l’authentification**, faites défiler l’affichage vers le bas jusqu’à ce que vous voyiez **Types d’authentification basée sur les revendications**, puis vérifiez que les deux options **Activer l’authentification Windows** et **Authentification Windows intégrée** sont sélectionnées.
-6. Dans la zone de liste déroulante, vérifiez que l’option **Négocier (Kerberos)** est sélectionnée.
+3. Cliquez sur **fournisseurs d’authentification** sur la barre d’outils hello.
+4. Bonjour **fournisseurs d’authentification** , cliquez sur **Zone par défaut** tooview les paramètres hello.
+5. Bonjour **modifier l’authentification** boîte de dialogue zone, faites défiler vers le bas jusqu'à ce que vous voyiez **Types de revendications d’authentification** et vérifiez que les deux **activer l’authentification Windows** et  **L’authentification intégrée Windows** sont sélectionnés.
+6. Dans la zone de liste déroulante hello, assurez-vous que **négocier (Kerberos)** est sélectionnée.
 
   ![Boîte de dialogue Modifier l’authentification](./media/application-proxy-remote-sharepoint/remote-sharepoint-service-edit-authentication.png)
 
-7. En bas de la boîte de dialogue **Modifier l’authentification**, cliquez sur **Enregistrer**.
+7. En bas de hello Hello **modifier l’authentification** boîte de dialogue, cliquez sur **enregistrer**.
 
-### <a name="set-a-service-principal-name-for-the-sharepoint-service-account"></a>Définir un nom de principal de service pour le compte de service SharePoint
+### <a name="set-a-service-principal-name-for-hello-sharepoint-service-account"></a>Définir un nom principal de service pour le compte de service SharePoint de hello
 
-Avant de configurer la délégation KCD, vous devez identifier le service SharePoint en cours d’exécution comme compte de service que vous avez configuré. Pour cela, définissez un nom de principal de service. Pour plus d'informations, consultez la page [Noms de principal de service](https://technet.microsoft.com/library/cc961723.aspx).
+Avant de configurer hello KCD, vous devez le service SharePoint de tooidentify hello en cours d’exécution en tant que compte de service hello que vous avez configurée. Pour cela, définissez un nom de principal de service. Pour plus d'informations, consultez la page [Noms de principal de service](https://technet.microsoft.com/library/cc961723.aspx).
 
-Le format du nom de principal de service est :
+format des SPN Hello est la suivante :
 
 ```
 <service class>/<host>:<port>
 ```
 
-Dans le format du nom de principal de service :
+Dans le format des SPN hello :
 
-* _service class_ est un nom unique pour le service. Pour SharePoint, vous utilisez **HTTP**.
+* _classe de service_ est un nom unique pour le service de hello. Pour SharePoint, vous utilisez **HTTP**.
 
-* _host_ est le nom de domaine complet ou le nom NetBIOS de l’hôte sur lequel le service est en cours d’exécution. Pour un site SharePoint, ce texte peut devoir être l’URL du site, en fonction de la version d’IIS que vous utilisez.
+* _hôte_ est hello nom de domaine complet ou le nom NetBIOS de l’ordinateur hôte hello hello service est en cours d’exécution. Pour un site SharePoint, ce texte peut-être toobe des URL de hello du site hello, selon la version de hello d’IIS que vous utilisez.
 
 * _port_ est facultatif.
 
-Si le nom de domaine complet du serveur SharePoint est :
+Si hello FQDN du serveur SharePoint de hello est :
 
 ```
 sharepoint.demo.o365identity.us
 ```
 
-Le nom de principal de service est alors :
+Puis hello SPN est la suivante :
 
 ```
 HTTP/ sharepoint.demo.o365identity.us demo
 ```
 
-Vous devrez peut-être également définir des noms de principal de service pour des sites spécifiques sur votre serveur. Pour plus d’informations, consultez [Configurer l’authentification Kerberos](https://technet.microsoft.com/library/cc263449(v=office.12).aspx). Prêtez une attention particulière à la section « Créer des noms de principal de service pour vos applications web à l’aide de l’authentification Kerberos ».
+Vous devrez peut-être également tooset SPN pour des sites spécifiques sur votre serveur. Pour plus d’informations, consultez [Configurer l’authentification Kerberos](https://technet.microsoft.com/library/cc263449(v=office.12).aspx). Payer attentif toohello section « Créer des noms principaux de Service pour vos applications Web à l’aide de l’authentification Kerberos ».
 
-Le moyen le plus simple pour définir des noms de principal de service (SPN) consiste à suivre les formats de SPN qui peuvent déjà être présents pour votre site. Copiez ces SPN pour les inscrire dans le compte de service. Pour ce faire :
+Hello plus simple pour tooset SPN est toofollow les formats de SPN hello qui peuvent déjà être présents pour vos sites. Copiez ces tooregister SPN sur le compte de service hello. toodo cela :
 
-1. Accédez au site avec le SPN à partir d’un autre ordinateur.
- L’ensemble des tickets Kerberos pertinents sont alors mis en cache sur l’ordinateur. Ces tickets contiennent le SPN du site cible auquel vous avez accédé.
+1. Parcourir le site toohello avec hello SPN à partir d’un autre ordinateur.
+ Lorsque vous, hello ensemble approprié des tickets Kerberos est mis en cache sur l’ordinateur de hello. Ces tickets contiennent hello SPN du site hello cible que vous avez accédé à.
 
-2. Vous pouvons extraire le SPN pour ce site à l’aide d’un outil appelé [Klist](http://web.mit.edu/kerberos/krb5-devel/doc/user/user_commands/klist.html). Dans une fenêtre de commande en cours d’exécution dans le même contexte que l’utilisateur qui a accédé au site dans le navigateur, exécutez la commande suivante :
+2. Vous pouvez extraire hello SPN pour le site à l’aide d’un outil appelé [Klist](http://web.mit.edu/kerberos/krb5-devel/doc/user/user_commands/klist.html). Dans une fenêtre de commande qui s’exécute dans hello même contexte en tant qu’utilisateur hello qui exécutera le site d’accès hello dans le navigateur de hello, hello la commande suivante :
 ```
 Klist
 ```
-Klist renvoie alors l’ensemble des SPN cibles. Dans cet exemple, la valeur en surbrillance est le SPN nécessaire :
+Klist retourne ensuite un jeu hello de cible de noms principaux de service. Dans cet exemple, valeur de hello mis en surbrillance est hello SPN que nécessaire :
 
   ![Exemples de résultats de l’outil Klist](./media/application-proxy-remote-sharepoint/remote-sharepoint-target-service.png)
 
-4. Maintenant que vous avez le SPN, vous devez vérifier qu’il est correctement configuré sur le compte de service que vous avez précédemment défini pour l’application web. Exécutez la commande suivante à partir de l’invite de commandes en tant qu’administrateur du domaine :
+4. Maintenant que vous avez hello SPN, vous devez toomake Vérifiez qu’il est correctement configuré sur le compte de service hello que vous avez configurée pour l’application web de hello précédemment. Exécutez hello de commande suivante à partir de l’invite de commandes hello en tant qu’administrateur de domaine de hello :
 
  ```
  setspn -S http/sharepoint.demo.o365identity.us demo\sp_svc
  ```
 
- Cette commande définit le SPN pour le compte de service SharePoint en cours d’exécution en tant que _demo\sp_svc_.
+ Cette commande définit hello SPN pour le service SharePoint de hello compte en cours d’exécution en tant que _demo\sp_svc_.
 
- Remplacez _http/sharepoint.demo.o365identity.us_ par le nom de principal de service pour votre serveur et _demo\sp_svc_ par le compte de service dans votre environnement. La commande Setspn recherche le SPN avant de l’ajouter. Dans le cas présent, l’erreur **Valeur de SPN dupliquée** peut s’afficher. Si vous voyez cette erreur, assurez-vous que la valeur est associée au compte de service.
+ Remplacez _http/sharepoint.demo.o365identity.us_ avec hello nom principal de service pour votre serveur et _demo\sp_svc_ avec le compte de service hello dans votre environnement. commande de Setspn Hello recherche hello SPN avant qu’il l’ajoute. Dans le cas présent, l’erreur **Valeur de SPN dupliquée** peut s’afficher. Si vous voyez cette erreur, assurez-vous que la valeur de hello est associé au compte de service hello.
 
-Vous pouvez vérifier que le SPN a été ajouté en exécutant la commande Setspn avec l’option -l. Pour en savoir plus sur cette commande, consultez [Setspn](https://technet.microsoft.com/library/cc731241.aspx).
+Vous pouvez vérifier que hello que SPN a été ajouté en exécutant la commande de Setspn hello avec hello -l, option. toolearn en savoir plus sur cette commande, consultez [Setspn](https://technet.microsoft.com/library/cc731241.aspx).
 
-### <a name="ensure-that-the-connector-is-set-as-a-trusted-delegate-to-sharepoint"></a>Vérifier que le connecteur est défini comme délégué approuvé sur SharePoint
+### <a name="ensure-that-hello-connector-is-set-as-a-trusted-delegate-toosharepoint"></a>Vérifiez que le connecteur hello est défini comme un tooSharePoint délégué approuvé
 
-Configurez la délégation KCD afin que le service de proxy d’application Azure AD puisse déléguer des identités d’utilisateur au service SharePoint. Pour cela, vous activez le connecteur de proxy d’application pour récupérer les tickets Kerberos pour les utilisateurs qui ont été authentifiés dans Azure AD. Puis ce serveur transmet le contexte à l’application cible, ou SharePoint dans ce cas.
+Configurer hello KCD afin que le service de Proxy d’Application Azure AD hello peut déléguer le service de SharePoint toohello utilisateur identités. Cela en activant le connecteur de Proxy d’Application hello tooretrieve les tickets Kerberos pour les utilisateurs qui ont été authentifiés dans Azure AD. Ce serveur transmet ensuite hello contexte toohello cible application ou SharePoint dans ce cas.
 
-Pour configurer la délégation KCD, répétez les étapes suivantes pour chaque ordinateur connecteur :
+tooconfigure hello KCD, hello Répétez ces étapes pour chaque ordinateur de connecteur comme suit :
 
-1. Connectez-vous en tant qu’administrateur de domaine à un centre de données, puis ouvrez **Utilisateurs et ordinateurs Active Directory**.
-2. Trouvez l’ordinateur sur lequel le connecteur est en cours d’exécution. Dans cet exemple, il s’agit du même ordinateur que le serveur SharePoint.
-3. Double-cliquez sur l’ordinateur, puis cliquez sur l’onglet **Délégation**.
-4. Vérifiez que les paramètres des délégation sont définis sur **N’approuver cet ordinateur que pour la délégation aux services spécifiés**, puis sélectionnez **Utiliser tout protocole d’authentification**.
+1. Connectez-vous en tant qu’un tooa d’administrateur de domaine contrôleur de domaine, puis ouvrez **Active Directory Users and Computers**.
+2. Trouver l’ordinateur hello hello connecteur est en cours d’exécution. Dans cet exemple, il a hello même serveur SharePoint.
+3. Double-cliquez sur hello ordinateur, puis cliquez sur hello **délégation** onglet.
+4. Vérifiez que les paramètres de délégation hello sont définies trop**n’approuver cet ordinateur pour toohello délégation spécifié services uniquement**, puis sélectionnez **utiliser tout protocole d’authentification**.
 
   ![Paramètres de délégation](./media/application-proxy-remote-sharepoint/remote-sharepoint-delegation-box.png)
 
-5. Cliquez sur le bouton **Ajouter**, cliquez sur **Utilisateurs et ordinateurs**, puis recherchez le compte de service.
+5. Cliquez sur hello **ajouter** et sur **utilisateurs ou ordinateurs**et recherchez le compte de service hello.
 
-  ![Ajout du SPN pour le compte de service](./media/application-proxy-remote-sharepoint/remote-sharepoint-users-computers.png)
+  ![Ajout hello SPN pour le compte de service hello](./media/application-proxy-remote-sharepoint/remote-sharepoint-users-computers.png)
 
-6. Dans la liste des noms de principal de service, sélectionnez celui que vous avez créé précédemment pour le compte de service.
-7. Cliquez sur **OK**. Cliquez à nouveau sur **OK** pour enregistrer les modifications apportées.
+6. Dans liste hello de SPN, sélectionnez hello une que vous avez créé précédemment pour le compte de service hello.
+7. Cliquez sur **OK**. Cliquez sur **OK** à nouveau les modifications toosave hello.
 
-## <a name="step-2-enable-remote-access-to-sharepoint"></a>Étape 2 : Activer l’accès à distance à SharePoint
+## <a name="step-2-enable-remote-access-toosharepoint"></a>Étape 2 : Activer l’accès à distance tooSharePoint
 
-Maintenant que vous avez activé SharePoint pour Kerberos et configuré la délégation KCD, vous pouvez configurer l’authentification unique auprès de SharePoint. Ensuite, à partir du connecteur, vous pouvez publier la batterie de serveurs SharePoint pour l’accès à distance à l’aide du proxy d’application Azure AD.
+Maintenant que vous avez activée SharePoint pour Kerberos et configuré KCD, vous êtes prêt tooset des tooSharePoint de l’authentification unique. Connecteur de hello, vous pouvez ensuite publier batterie de serveurs SharePoint hello pour l’accès à distance via le Proxy d’Application Azure AD.
 
-Pour effectuer les étapes suivantes, vous devez être membre du rôle Administrateur global dans un compte Azure Active Directory de votre organisation.
+tooperform hello comme suit, vous devez toobe un membre du rôle Administrateur général de hello dans un compte Azure Active Directory de votre organisation.
 
-1. Connectez-vous au [portail Azure](https://manage.windowsazure.com), puis recherchez votre client Azure AD.
+1. Connectez-vous à toohello [portail Azure](https://manage.windowsazure.com) et recherchez votre locataire Azure AD.
 2. Cliquez sur **Applications**, puis sur **Ajouter**.
-3. Sélectionnez **Publier une application qui sera accessible depuis l’extérieur de votre réseau**. Si vous ne voyez pas cette option, assurez-vous qu’un compte Azure AD De base ou Premium est configuré dans le client.
-4. Renseignez chacune des options comme suit :
+3. Sélectionnez **Publier une application qui sera accessible depuis l’extérieur de votre réseau**. Si vous ne voyez pas cette option, assurez-vous que vous avez Azure AD Basic ou Premium configuré dans le locataire de hello.
+4. Chacune des options de hello procédez comme suit :
  * **Nom** : utilisez la valeur de votre choix, par exemple **SharePoint**.
- * **URL interne** : il s’agit de l’URL du site SharePoint en interne, par exemple **https://SharePoint/**. Dans cet exemple, veillez à utiliser le protocole **https**.
+ * **URL interne**: hello les URL du site SharePoint de hello en interne, telles que **https://SharePoint/**. Dans cet exemple, assurez-vous que toouse **https**.
  * **Méthode de préauthentification** : sélectionnez **Azure Active Directory**.
 
   ![Options d’ajout d’une application](./media/application-proxy-remote-sharepoint/remote-sharepoint-add-application.png)
 
-5. Une fois l’application publiée, cliquez sur l’onglet **Configurer**.
-6. Faites défiler jusqu'à l’option **Traduire l'URL dans les en-têtes**. La valeur par défaut est **OUI**. Remplacez-la par **NON**.
+5. Une fois l’application hello est publiée, cliquez sur hello **configurer** onglet.
+6. Faites défiler vers le bas toohello option **traduire les URL dans les en-têtes**. la valeur par défaut Hello est **Oui**. Modifier trop**non**.
 
- SharePoint utilise la valeur _En-tête d’hôte_ pour rechercher le site. Il génère également des liens en fonction de cette valeur. L’effet immédiat est de vérifier que tout lien généré par SharePoint est une URL publiée correctement définie pour utiliser l’URL externe. Définir la valeur sur **OUI** permet également au connecteur de transférer la demande à l’application principale. Toutefois, la valeur **NON** signifie que le connecteur n’envoie pas le nom d’hôte interne. Au lieu de cela, il envoie l’en-tête d’hôte comme URL publiée à l’application principale.
+ SharePoint utilise hello _en-tête d’hôte_ toolook valeur site de hello. Il génère également des liens en fonction de cette valeur. effet net de Hello est toomake assurer que les liens qui génère de SharePoint sont une URL publiée est correctement définie l’URL externe de toouse hello. Valeur hello trop**Oui** également Active hello connecteur tooforward hello demande toohello application d’arrière-plan. Toutefois, valeur hello trop**non** signifie que le connecteur de hello n’envoie pas de nom d’hôte interne hello. Au lieu de cela, connecteur de hello envoie des en-tête d’hôte hello hello publié l’application principale de toohello URL.
 
- En outre, pour vous assurer que SharePoint accepte cette URL, vous devez effectuer une configuration supplémentaire sur le serveur SharePoint. Vous le ferez dans la section suivante.
+ En outre, tooensure que SharePoint accepte cette URL, vous devez toocomplete davantage de configuration sur le serveur SharePoint de hello. Vous devez le faire dans la section suivante de hello.
 
-7. Définissez **Méthode d’authentification interne** sur **Authentification Windows intégrée**. Si votre client Azure AD utilise un nom d’utilisateur principal (UPN) dans le cloud différent de l’UPN local, n’oubliez pas de mettre également à jour **Identité de connexion déléguée**.
-8. Définissez l’option **SPN d’application interne** sur la valeur que vous avez définie précédemment. Par exemple, utilisez **http/sharepoint.demo.o365identity.us**.
-9. Affectez l’application à vos utilisateurs cibles.
+7. Modification **méthode d’authentification interne** trop**l’authentification Windows intégrée**. Si votre client Azure AD utilise un nom UPN dans le cloud de hello est différente de hello UPN local, n’oubliez pas tooupdate **identité déléguée** également.
+8. Définissez **SPN d’Application interne** toohello valeur que vous avez définis précédemment. Par exemple, utilisez **http/sharepoint.demo.o365identity.us**.
+9. Affecter des utilisateurs cibles hello application tooyour.
 
-Votre application doit ressembler à l’exemple suivant :
+Votre application doit se présenter comme toohello l’exemple suivant :
 
   ![Application achevée](./media/application-proxy-remote-sharepoint/remote-sharepoint-internal-application-spn.png)
 
-## <a name="step-3-ensure-that-sharepoint-knows-about-the-external-url"></a>Étape 3 : Garantir que SharePoint connaît l’URL externe
+## <a name="step-3-ensure-that-sharepoint-knows-about-hello-external-url"></a>Étape 3 : Vérifier que SharePoint connaît hello des URL externe
 
-La dernière étape à effectuer consiste à garantir que SharePoint peut trouver le site basé sur l’URL externe, afin qu’il génère des liens basés sur cette URL externe. Pour cela, configurez des mappages des accès de substitution pour le site SharePoint.
+Votre dernière tooensure étape que SharePoint peut trouver site hello basé sur l’URL externe de hello, afin qu’il doit rendre les liens en fonction de cette URL externe. Pour cela, en configurant des mappages des accès de substitution pour un site SharePoint hello.
 
-1. Ouvrez le site **Administration centrale de SharePoint 2013**.
+1. Ouvrez hello **Administration centrale de SharePoint 2013** site.
 2. Sous **Paramètres système**, sélectionnez **Configurer des mappages d’accès alternatifs**.
 
- Cela ouvre la zone **Mappages d’accès alternatif**.
+ Cette opération ouvre hello **mappages des accès de substitution** boîte.
 
   ![Zone Mappages des accès de substitution](./media/application-proxy-remote-sharepoint/remote-sharepoint-alternate-access1.png)
 
-3. Dans la liste déroulante à côté de **Collection de mappages des accès de substitution**, sélectionnez **Modifier la collection de mappages des accès de substitution**.
+3. Dans hello liste déroulante, en regard de **autre Collection de mappages des accès**, sélectionnez **modifier la Collection de mappages des accès de substitution**.
 4. Sélectionnez votre site, par exemple **SharePoint - 80**.
 
   ![Sélection d’un site](./media/application-proxy-remote-sharepoint/remote-sharepoint-alternate-access2.png)
 
-5. Vous pouvez choisir d’ajouter l’URL publiée comme URL interne ou URL publique. Cet exemple utilise une URL publique comme extranet.
-6. Cliquez sur **Modifier les URL publiques** dans le chemin **Extranet**, puis entrez le chemin de l’application publiée, comme dans l’étape précédente. Par exemple, entrez **https://sharepoint-iddemo.msappproxy.net**.
+5. Vous pouvez choisir de tooadd hello publié URL comme une URL interne ou une URL publique. Cet exemple utilise une URL publique comme hello extranet.
+6. Cliquez sur **modifier les URL publiques** Bonjour **Extranet** chemin d’accès, puis entrez chemin hello pour hello publié l’application, comme à l’étape précédente de hello. Par exemple, entrez **https://sharepoint-iddemo.msappproxy.net**.
 
-  ![Saisie du chemin](./media/application-proxy-remote-sharepoint/remote-sharepoint-alternate-access3.png)
+  ![Entrez le chemin d’accès de hello](./media/application-proxy-remote-sharepoint/remote-sharepoint-alternate-access3.png)
 
-7. Cliquez sur **Save**.
+7. Cliquez sur **Enregistrer**.
 
- Vous pouvez maintenant accéder au site SharePoint en externe par l’intermédiaire du proxy d’application Azure AD.
+ Vous pouvez désormais accéder à un site SharePoint hello en externe via le Proxy d’Application Azure AD.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-- [Offrir un accès à distance sécurisé aux applications locales](active-directory-application-proxy-get-started.md)
+- [Comment tooprovide sécuriser l’accès à distance des applications tooon-site](active-directory-application-proxy-get-started.md)
 - [Présentation des connecteurs de proxy d’application Azure AD](application-proxy-understand-connectors.md)
 - [Publication de SharePoint 2016 et d’Office Online Server avec le proxy d’application Azure AD](https://blogs.technet.microsoft.com/dawiese/2016/06/09/publishing-sharepoint-2016-and-office-online-server-with-azure-ad-application-proxy/)

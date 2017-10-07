@@ -1,6 +1,6 @@
 ---
-title: "Gestion des comptes de stockage avec l’Explorateur Azure pour Eclipse | Microsoft Docs"
-description: "Découvrez comment gérer vos comptes de stockage Azure à l’aide de l’Explorateur Azure pour Eclipse."
+title: "les comptes de stockage aaaManage à l’aide de hello Explorateur Azure pour Eclipse | Documents Microsoft"
+description: "Découvrez comment toomanage votre stockage Azure des comptes à l’aide de hello Explorateur Azure pour Eclipse."
 services: 
 documentationcenter: java
 author: rmcmurray
@@ -14,15 +14,15 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 04/14/2017
 ms.author: robmcm
-ms.openlocfilehash: 5b3014b5aca368be8ea46863c83665abde10fed5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b7ec53e77e3c96d87754b9a658d31e6182121b22
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-storage-accounts-by-using-the-azure-explorer-for-eclipse"></a>Gérer des comptes de stockage à l’aide de l’Explorateur Azure pour Eclipse
+# <a name="manage-storage-accounts-by-using-hello-azure-explorer-for-eclipse"></a>Gérer les comptes de stockage à l’aide de hello Explorateur Azure pour Eclipse
 
-L’Explorateur Azure, qui fait partie du kit de ressources Azure pour Eclipse, fournit aux développeurs Java une solution facile à utiliser pour gérer les comptes de stockage de leur compte Azure à partir de l’environnement de développement intégré (IDE) Eclipse.
+Hello Explorateur Azure, qui fait partie de hello boîte à outils Azure pour Eclipse, fournit aux développeurs Java une solution facile à utiliser pour la gestion des comptes de stockage de leur compte Azure à partir d’à l’intérieur de hello Eclipse environnement de développement intégré (IDE).
 
 [!INCLUDE [azure-toolkit-for-eclipse-prerequisites](../includes/azure-toolkit-for-eclipse-prerequisites.md)]
 
@@ -30,76 +30,76 @@ L’Explorateur Azure, qui fait partie du kit de ressources Azure pour Eclipse, 
 
 ## <a name="create-a-storage-account-in-eclipse"></a>Créer un compte de stockage dans Eclipse
 
-Pour créer un compte de stockage à l’aide de l’Explorateur Azure, procédez comme suit :
+toocreate un compte de stockage à l’aide de hello Explorateur Azure, procédez comme hello suivant :
 
-1. Connectez-vous à votre compte Azure en suivant les [Instructions de connexion pour le kit de ressources Azure pour Eclipse].
+1. Se connecter à l’aide de hello tooyour compte Azure [instructions connectez-vous pour hello boîte à outils Azure pour Eclipse].
 
-2. Dans la vue **Explorateur Azure**, développez le nœud **Azure**, cliquez avec le bouton droit sur **Comptes de stockage** puis cliquez sur **Créer un compte de stockage**.
+2. Bonjour **Explorateur Azure** afficher, développez hello **Azure** nœud, avec le bouton droit **comptes de stockage**, puis cliquez sur **créer un compte de stockage**.
 
    ![Commande Créer un compte de stockage][CS01]
 
-3. Dans la boîte de dialogue **Créer un compte de stockage**, spécifiez les options suivantes :
+3. Bonjour **créer un compte de stockage** boîte de dialogue, spécifiez hello options suivantes :
 
    ![Boîte de dialogue Créer un compte de stockage][CS02]
 
-   * **Nom** : spécifie le nom du nouveau compte de stockage.
+   * **Nom**: Spécifie le nom hello hello nouveau compte de stockage.
 
-   * **Abonnement** : spécifie l’abonnement Azure que vous voulez utiliser pour le nouveau compte de stockage.
+   * **Abonnement**: Spécifie hello abonnement Azure que vous souhaitez toouse hello nouveau compte de stockage.
 
-   * **Groupe de ressources** : spécifie le groupe de ressources pour votre machine virtuelle. Sélectionnez l’une des options suivantes :
-      * **Créer** : spécifie que vous souhaitez créer un groupe de ressources.
+   * **Groupe de ressources**: Spécifie le groupe de ressources hello pour votre machine virtuelle. Sélectionnez une des options suivantes de hello :
+      * **Créer nouveau**: Spécifie que vous souhaitez toocreate un groupe de ressources.
       * **Utiliser l’existant** : spécifie que vous allez opérer un choix dans une liste de groupes de ressources associés à votre compte Azure.
 
-   * **Région** : spécifie l’emplacement où votre compte de stockage sera créé, par exemple « États-Unis de l’Ouest ».
+   * **Région**: Spécifie l’emplacement de hello où votre compte de stockage sera créé (par exemple, « Ouest des États-Unis »).
 
-   * **Type de compte** : spécifie le type de compte de stockage à créer, par exemple « Stockage Blob ». Pour plus d’informations, consultez la rubrique [À propos des comptes de stockage Azure].
+   * **Type de compte**: Spécifie le type hello de toocreate de compte de stockage (par exemple, « stockage d’objets Blob »). Pour plus d’informations, consultez la rubrique [À propos des comptes de stockage Azure].
 
-   * **Performances** : spécifie l’offre de compte de stockage de l’éditeur sélectionné qu’il faut utiliser (par exemple « Premium »). Pour plus d’informations, voir [Objectifs de scalabilité et de performances de Stockage Azure].
+   * **Performances**: Spécifie le compte de stockage de l’offre toouse à partir du serveur de publication sélectionné hello (par exemple, « Premium »). Pour plus d’informations, voir [Objectifs de scalabilité et de performances de Stockage Azure].
 
-   * **Réplication** : spécifie la réplication pour le compte de stockage (par exemple, « Redondant dans une zone »). Pour plus d’informations, consultez [Réplication de Stockage Azure].
+   * **Réplication**: Spécifie la réplication hello hello compte de stockage (par exemple, « redondance de Zone »). Pour plus d’informations, consultez [Réplication de Stockage Azure].
 
-4. Après avoir spécifié toutes les options ci-dessus, cliquez sur **Créer**.
+4. Lorsque vous avez spécifié toutes hello précédant options, cliquez sur **créer**.
 
 ## <a name="create-a-storage-container-in-eclipse"></a>Créer un conteneur de stockage dans Eclipse
 
-Pour créer un conteneur de stockage à l’aide de l’Explorateur Azure, procédez comme suit :
+toocreate un conteneur de stockage à l’aide de hello Explorateur Azure, procédez comme hello suivant :
 
-1. Dans l’**Explorateur Azure**, cliquez avec le bouton droit sur le compte de stockage où vous voulez créer un conteneur puis cliquez sur **Créer un conteneur d’objets blob**.
+1. Bonjour **Explorateur Azure** afficher, cliquez sur le compte de stockage hello où vous souhaitez toocreate un conteneur, puis cliquez sur **créer un conteneur blob**.
 
    ![Commande Créer un conteneur d’objets blob][CC01]
 
-2. Dans la boîte de dialogue **Créer un conteneur d’objets blob**, spécifiez le nom de votre conteneur puis cliquez sur **OK**. Pour plus d’informations sur l’affectation de noms aux conteneurs de stockage, consultez [Affectation de noms et références aux conteneurs, objets blob et métadonnées].
+2. Bonjour **créer un conteneur blob** boîte de dialogue, spécifiez hello votre conteneur, puis cliquez sur **OK**. Pour plus d’informations sur l’affectation de noms aux conteneurs de stockage, consultez [Affectation de noms et références aux conteneurs, objets blob et métadonnées].
 
    ![Boîte de dialogue Créer un conteneur d’objets blob][CC02]
 
 ## <a name="delete-a-storage-container-in-eclipse"></a>Supprimer un conteneur de stockage dans Eclipse
 
-Pour supprimer un conteneur de stockage à l’aide de l’Explorateur Azure, procédez comme suit :
+toodelete un conteneur de stockage à l’aide de hello Explorateur Azure, procédez comme hello suivant :
 
-1. Dans l’**Explorateur Azure**, cliquez avec le bouton droit sur le conteneur de stockage puis cliquez sur **Supprimer**.
+1. Bonjour **Explorateur Azure** afficher, cliquez sur le conteneur de stockage hello, puis cliquez sur **supprimer**.
 
    ![Commande Supprimer un conteneur de stockage][DC01]
 
-2. Dans la fenêtre de confirmation, cliquez sur **OK**.
+2. Dans la fenêtre de confirmation hello, cliquez sur **OK**.
 
    ![Fenêtre de confirmation de la suppression d’un conteneur de stockage][DC02]
 
 ## <a name="delete-a-storage-account-in-eclipse"></a>Supprimer un compte de stockage dans Eclipse
 
-Pour supprimer un compte de stockage à l’aide de l’Explorateur Azure, procédez comme suit :
+toodelete un compte de stockage à l’aide de hello Explorateur Azure, procédez comme hello suivant :
 
-1. Dans l’**Explorateur Azure**, cliquez avec le bouton droit sur le compte de stockage puis cliquez sur **Supprimer**.
+1. Bonjour **Explorateur Azure** afficher, cliquez sur le compte de stockage hello, puis cliquez sur **supprimer**.
 
    ![Commande Supprimer un compte de stockage][DS01]
 
-2. Dans la fenêtre de confirmation, cliquez sur **OK**.
+2. Dans la fenêtre de confirmation hello, cliquez sur **OK**.
 
    ![Fenêtre de confirmation de la suppression d’un compte de stockage][DS02]
 
 ## <a name="next-steps"></a>Étapes suivantes
-Pour plus d’informations sur les comptes de stockage Azure, leurs tailles et leurs tarifications, consultez les liens suivants :
+Pour plus d’informations sur les comptes de stockage Azure, la taille et la tarification, consultez hello suivant des ressources :
 
-* [Introduction à Microsoft Azure Storage]
+* [Introduction tooMicrosoft stockage Azure]
 * [À propos des comptes de stockage Azure]
 * Tailles des comptes de stockage Azure
   * [Tailles des machines virtuelles Windows dans Azure]
@@ -108,38 +108,38 @@ Pour plus d’informations sur les comptes de stockage Azure, leurs tailles et l
   * [Tarification des comptes de stockage Windows]
   * [Tarification des comptes de stockage Linux]
 
-Pour plus d’informations sur les kits de ressources Azure pour les environnements de développement intégré Java, consultez les ressources suivantes :
+Pour plus d’informations sur les boîtes à outils Azure pour Java IDE, consultez hello suivant des ressources :
 
-* [Kit de ressources Azure pour Eclipse]
-  * [Nouveautés du Kit de ressources Azure pour Eclipse]
-  * [Installation du kit de ressources Azure pour Eclipse]
-  * [Instructions de connexion pour le kit de ressources Azure pour Eclipse]
+* [boîte à outils Azure pour Eclipse]
+  * [Nouveautés de hello boîte à outils Azure pour Eclipse]
+  * [Lors de l’installation hello boîte à outils Azure pour Eclipse]
+  * [instructions connectez-vous pour hello boîte à outils Azure pour Eclipse]
   * [Créer une application web Hello World pour Azure dans Eclipse]
 * [Kit de ressources Azure pour IntelliJ]
-  * [Nouveautés du Kit de ressources Azure pour IntelliJ]
-  * [Installation du kit de ressources Azure pour IntelliJ]
-  * [Instructions de connexion pour le Kit de ressources Azure pour IntelliJ]
+  * [Quelles sont les nouveautés Bonjour Azure Toolkit pour IntelliJ]
+  * [Lors de l’installation Bonjour Azure Toolkit pour IntelliJ]
+  * [Instructions d’authentification pour hello boîte à outils Azure pour IntelliJ]
   * [Créer une application web Hello World pour Azure dans IntelliJ]
 
 Pour plus d’informations sur l’utilisation d’Azure avec Java, consultez [Centre de développement Java pour Azure] et [Outils Java pour Visual Studio Team Services].
 
 <!-- URL List -->
 
-[Kit de ressources Azure pour Eclipse]: ./azure-toolkit-for-eclipse.md
+[boîte à outils Azure pour Eclipse]: ./azure-toolkit-for-eclipse.md
 [Kit de ressources Azure pour IntelliJ]: ./azure-toolkit-for-intellij.md
 [Créer une application web Hello World pour Azure dans Eclipse]: ./app-service-web/app-service-web-eclipse-create-hello-world-web-app.md
 [Créer une application web Hello World pour Azure dans IntelliJ]: ./app-service-web/app-service-web-intellij-create-hello-world-web-app.md
-[Installation du kit de ressources Azure pour Eclipse]: ./azure-toolkit-for-eclipse-installation.md
-[Installation du kit de ressources Azure pour IntelliJ]: ./azure-toolkit-for-intellij-installation.md
-[Instructions de connexion pour le kit de ressources Azure pour Eclipse]: ./azure-toolkit-for-eclipse-sign-in-instructions.md
-[Instructions de connexion pour le Kit de ressources Azure pour IntelliJ]: ./azure-toolkit-for-intellij-sign-in-instructions.md
-[Nouveautés du Kit de ressources Azure pour Eclipse]: ./azure-toolkit-for-eclipse-whats-new.md
-[Nouveautés du Kit de ressources Azure pour IntelliJ]: ./azure-toolkit-for-intellij-whats-new.md
+[Lors de l’installation hello boîte à outils Azure pour Eclipse]: ./azure-toolkit-for-eclipse-installation.md
+[Lors de l’installation Bonjour Azure Toolkit pour IntelliJ]: ./azure-toolkit-for-intellij-installation.md
+[instructions connectez-vous pour hello boîte à outils Azure pour Eclipse]: ./azure-toolkit-for-eclipse-sign-in-instructions.md
+[Instructions d’authentification pour hello boîte à outils Azure pour IntelliJ]: ./azure-toolkit-for-intellij-sign-in-instructions.md
+[Nouveautés de hello boîte à outils Azure pour Eclipse]: ./azure-toolkit-for-eclipse-whats-new.md
+[Quelles sont les nouveautés Bonjour Azure Toolkit pour IntelliJ]: ./azure-toolkit-for-intellij-whats-new.md
 
 [Centre de développement Java pour Azure]: https://azure.microsoft.com/develop/java/
 [Outils Java pour Visual Studio Team Services]: https://java.visualstudio.com/
 
-[Introduction à Microsoft Azure Storage]: /azure/storage/storage-introduction
+[Introduction tooMicrosoft stockage Azure]: /azure/storage/storage-introduction
 [À propos des comptes de stockage Azure]: /azure/storage/storage-create-storage-account
 [Réplication de Stockage Azure]: /azure/storage/storage-redundancy
 [Objectifs de scalabilité et de performances de Stockage Azure]: /azure/storage/storage-scalability-targets

@@ -1,6 +1,6 @@
 ---
-title: "Diagnostiquer les échecs d’artefacts dans une machine virtuelle Azure DevTest Labs | Microsoft Docs"
-description: "Découvrez comment résoudre les échecs des artefacts dans DevTest Labs."
+title: "échecs d’artefact aaaDiagnose dans une machine virtuelle de Azure DevTest Labs | Documents Microsoft"
+description: "Découvrez comment les échecs d’artefact tootroubleshoot dans DevTest Labs"
 services: devtest-lab,virtual-machines
 documentationcenter: na
 author: tomarcher
@@ -14,44 +14,44 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/18/2017
 ms.author: tarcher
-ms.openlocfilehash: e4f2946d0ba0756f36622aded0e8594acabb9527
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 40b3cea72cf071cc5d9a6d002d309d923c3d3084
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="diagnose-artifact-failures-in-the-lab"></a>Diagnostiquer les échecs d’artefacts dans le labo 
-Une fois que vous avez créé un artefact, vous pouvez vérifier si la procédure a réussi ou échoué. Les journaux d’artefact de DevTest Labs fournissent des informations qui permettent de diagnostiquer un échec d’artefact. Il existe plusieurs façons d’afficher les informations du journal de l’artefact pour une machine virtuelle Windows.
+# <a name="diagnose-artifact-failures-in-hello-lab"></a>Diagnostiquer les échecs d’artefact dans le laboratoire de hello 
+Après avoir créé un artefact, vous pouvez vérifier toosee si elle a réussi ou échoué. Journaux d’artefact dans DevTest Labs fournissent des informations vous pouvez utiliser toodiagnose un échec de l’artefact. Il existe plusieurs façons différentes, vous pouvez afficher les informations de journal d’artefact hello pour une machine virtuelle Windows.
 
 > [!NOTE]
-> Pour que les échecs sont correctement identifiés et expliqués, il est important que l’artefact soit correctement structuré. Pour plus d’informations sur la bonne façon de créer un artefact, consultez la page [Créer des artefacts personnalisés](devtest-lab-artifact-author.md). Par ailleurs, l’artefact [Types de paramètres de test](https://github.com/Azure/azure-devtestlab/tree/master/Artifacts/windows-test-paramtypes) est un exemple d’artefact structuré correctement.
+> tooensure que les échecs sont correctement identifiés et expliqués, il est important de cet artefact hello est correctement structuré. Pour plus d’informations sur comment toocorrectly construire un artefact, consultez [créer des artefacts personnalisés](devtest-lab-artifact-author.md). Et toosee, par exemple, d’un objet structuré correctement, consultez ce [les Types de paramètres de Test](https://github.com/Azure/azure-devtestlab/tree/master/Artifacts/windows-test-paramtypes) artefact.
 
-## <a name="troubleshoot-artifact-failures-using-the-azure-portal"></a>Résoudre les échecs des artefacts avec le Portail Azure
-Pour utiliser le Portail Azure afin de diagnostiquer les échecs à la création d’un artefact, suivez les étapes ci-dessous :
+## <a name="troubleshoot-artifact-failures-using-hello-azure-portal"></a>Résoudre les échecs d’artefact à l’aide de hello portail Azure
+échecs de toodiagnose portail Azure hello toouse lors de la création de l’artefact, procédez comme suit :
 
-1. Dans la liste de ressources, sélectionnez votre labo.
+1. Dans la liste hello des ressources, sélectionnez votre laboratoire.
 
-2. Choisissez la machine virtuelle Windows qui inclut l’artefact à analyser.
+2. Choisissez hello machine virtuelle Windows qui inclut l’artefact hello souhaité tooinvestigate.
 
-3. Dans le volet gauche sous **GÉNÉRAL**, choisissez **Artefacts**. La liste des artefacts associés à cette machine virtuelle s’affiche, indiquant le nom de l’artefact et son état.
+3. Dans le volet gauche, hello sous **général**, choisissez **artefacts**. Une liste des artefacts associés à cette machine virtuelle s’affiche, indique nom hello d’artefact de hello et son état.
 
    ![Exemple de dépôt git d'artefacts](./media/devtest-lab-troubleshoot-artifact-failure/devtest-lab-artifacts-failure.png)
 
-4. Choisissez un artefact qui présente l’état **Échec**. L’artefact s’ouvre et affiche un message d’extension comportant des détails sur son échec.
+4. Choisissez un artefact qui présente l’état **Échec**. artefact de Hello s’ouvre et affiche un message d’extension qui inclut des détails sur les échecs de hello d’artefact de hello.
 
    ![Exemple de dépôt git d'artefacts](./media/devtest-lab-troubleshoot-artifact-failure/devtest-lab-artifact-error.png)
 
 
-## <a name="troubleshoot-artifact-failures-from-within-the-vm"></a>Résoudre les échecs des artefacts au sein de la machine virtuelle
-Pour afficher les journaux d’artefacts au sein de la machine virtuelle, suivez les étapes ci-dessous :
+## <a name="troubleshoot-artifact-failures-from-within-hello-vm"></a>Résoudre les échecs d’artefact de hello machine virtuelle
+tooview des journaux à partir de l’artefact de hello dans la machine virtuelle de hello, procédez comme suit :
 
-1. Connectez-vous à la machine virtuelle qui contient l’artefact à diagnostiquer.
+1. Connectez-vous toohello machine virtuelle qui contient l’artefact hello souhaité toodiagnose.
 
-2. Accédez à C:\Packages\Plugins\Microsoft.Compute.CustomScriptExtension\1.9\Status, « 1.9 » étant le numéro de version CSE.
+2. Accédez tooC:\Packages\Plugins\Microsoft.Compute.CustomScriptExtension\1.9\Status où « 1.9 est le numéro de version d’extension côté client hello.
 
    ![Exemple de dépôt git d'artefacts](./media/devtest-lab-troubleshoot-artifact-failure/devtest-lab-artifact-error-vm-status.png)
 
-3. Ouvrez le fichier **état** pour afficher les informations qui vous aideront à diagnostiquer les échecs d’artefacts de cette machine virtuelle.
+3. Ouvrez hello **état** fichier tooview les informations que vous aide à diagnostiquer les échecs de l’artefact pour cette machine virtuelle.
 
 
 
@@ -59,8 +59,8 @@ Pour afficher les journaux d’artefacts au sein de la machine virtuelle, suivez
 [!INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
 
 ## <a name="related-blog-posts"></a>Billets de blog connexes
-* [Joindre une machine virtuelle à un domaine AD existant à l’aide d’un modèle Resource Manager dans Azure DevTest Labs](http://www.visualstudiogeeks.com/blog/DevOps/Join-a-VM-to-existing-AD-domain-using-ARM-template-AzureDevTestLabs)
+* [Joindre un domaine Active Directory à l’aide d’un modèle de gestionnaire de ressources dans Azure DevTest Labs de tooexisting machine virtuelle](http://www.visualstudiogeeks.com/blog/DevOps/Join-a-VM-to-existing-AD-domain-using-ARM-template-AzureDevTestLabs)
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Découvrez comment [ajouter un référentiel Git à un labo](devtest-lab-add-artifact-repo.md).
+* Découvrez comment trop[ajouter un laboratoire tooa du référentiel Git](devtest-lab-add-artifact-repo.md).
 

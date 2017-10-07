@@ -1,6 +1,6 @@
 ---
-title: Utilisation de Notification Hubs avec Python
-description: "Découvrez comment utiliser Azure Notification Hubs à partir d'un serveur principal Python."
+title: aaaHow toouse concentrateurs de Notification avec Python
+description: "Découvrez comment toouse Azure Notification Hubs à partir d’un Python back-end."
 services: notification-hubs
 documentationcenter: 
 author: ysxu
@@ -14,19 +14,19 @@ ms.devlang: php
 ms.topic: article
 ms.date: 06/29/2016
 ms.author: yuaxu
-ms.openlocfilehash: 9ceedb9940759427fc8cec74a1307e42472563a6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 21d5aaf7fc24c9936fac8e0a8de640c66c51ab0a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-notification-hubs-from-python"></a>Utilisation de Notification Hubs à partir de Python
+# <a name="how-toouse-notification-hubs-from-python"></a>Comment toouse concentrateurs de Notification à partir de Python
 [!INCLUDE [notification-hubs-backend-how-to-selector](../../includes/notification-hubs-backend-how-to-selector.md)]
 
-Vous pouvez accéder à toutes les fonctionnalités Notification Hubs à partir d'un serveur principal Java/PHP/Python/Ruby en utilisant l'interface REST Notification Hub, comme décrit dans la rubrique MSDN [API REST Notification Hubs](http://msdn.microsoft.com/library/dn223264.aspx).
+Vous pouvez accéder à toutes les fonctionnalités de concentrateurs de Notification à partir d’un Java/PHP/Python/Ruby back-end à l’aide d’interface REST de concentrateur de Notification de hello comme décrit dans la rubrique MSDN hello [API REST de concentrateurs de Notification](http://msdn.microsoft.com/library/dn223264.aspx).
 
 > [!NOTE]
-> Ceci est un exemple d’implémentation de référence pour l’implémentation des envois de notifications dans Python. Il ne s’agit pas du Kit de développement logiciel (SDK) de Notification Hub Python officiellement pris en charge.
+> Ceci est un exemple d’implémentation de référence pour l’implémentation de hello notification envoie dans Python et n’est pas hello officiellement pris en charge que le SDK de Python de Hub de Notifications.
 > 
 > Cet exemple a été écrit à l’aide de Python 3.4.
 > 
@@ -35,42 +35,42 @@ Vous pouvez accéder à toutes les fonctionnalités Notification Hubs à partir 
 Dans cette rubrique, nous vous montrons comment :
 
 * créer un client REST pour les fonctionnalités de Notification Hubs dans Python ;
-* envoyer des notifications à l’aide de l’interface de Python vers les API REST Notification Hub ; 
-* obtenir un vidage de la demande/réponse HTTP REST à des fins pédagogiques/de débogage. 
+* Envoyer des notifications à l’aide de hello Python interface toohello API REST de concentrateur de Notification. 
+* Obtenir un vidage de hello HTTP REST demande/réponse à des fins pédagogiques/débogage. 
 
-Vous pouvez suivre le [didacticiel de prise en main](notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md) pour la plateforme mobile de votre choix, en implémentant la partie concernant le serveur principal dans Python.
+Vous pouvez suivre hello [didacticiel Get](notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md) pour votre plateforme mobile de choix, l’implémentation de la partie des principaux de hello dans Python.
 
 > [!NOTE]
-> L’étendue de l’exemple est limitée uniquement à l’envoi de notifications et il n’effectue aucune gestion des inscriptions.
+> Hello la portée de l’exemple hello est uniquement les notifications toosend limitée et qu’il n’effectue pas une gestion de l’inscription.
 > 
 > 
 
 ## <a name="client-interface"></a>Interface client
-L'interface client principale peut fournir les mêmes méthodes que celles disponibles dans le [Kit de développement logiciel (SDK) .NET Notification Hubs](http://msdn.microsoft.com/library/jj933431.aspx). Cela vous permet de traduire directement les didacticiels et les exemples actuellement disponibles sur ce site et fournis par la communauté sur Internet.
+interface principale du client de Hello peut fournir hello mêmes méthodes que celles qui sont disponibles dans hello [concentrateurs de Notification .NET SDK](http://msdn.microsoft.com/library/jj933431.aspx). Cela vous permettra de toodirectly traduire tous les didacticiels de hello et exemples actuellement disponibles sur ce site et fournis par la Communauté hello sur hello internet.
 
-Tout le code est disponible dans l' [exemple de wrapper REST Python].
+Vous trouverez tout code hello disponible dans hello [exemple de wrapper Python reste].
 
-Par exemple, pour créer un client :
+Par exemple, toocreate un client :
 
     isDebug = True
     hub = NotificationHub("myConnectionString", "myNotificationHubName", isDebug)
 
-Pour envoyer une notification toast de Windows :
+notification de toast toosend Windows :
 
     wns_payload = """<toast><visual><binding template=\"ToastText01\"><text id=\"1\">Hello world!</text></binding></visual></toast>"""
     hub.send_windows_notification(wns_payload)
 
 ## <a name="implementation"></a>Implémentation
-Si ce n'est déjà fait, suivez notre [didacticiel de prise en main] jusqu'à la dernière section, dans laquelle vous devrez implémenter le serveur principal.
+Si vous n’avez pas déjà, suivez notre [didacticiel Get] toohello dernière section dans laquelle vous avez tooimplement hello principal vers le haut.
 
-Tous les détails de l'implémentation d'un wrapper REST complet se trouvent sur [MSDN](http://msdn.microsoft.com/library/dn530746.aspx). Dans cette section, nous allons décrire l’implémentation Python des principales étapes requises pour accéder aux point de terminaison REST de Notification Hubs et envoyer des notifications :
+Tous les hello tooimplement détails se trouvent sur un wrapper reste complète [MSDN](http://msdn.microsoft.com/library/dn530746.aspx). Dans cette section nous décrivent l’implémentation de Python hello de hello étapes principales tooaccess requis points de terminaison REST de concentrateurs de Notification et envoyer des notifications
 
-1. Analyse de la chaîne de connexion
-2. Génération du jeton d'autorisation
+1. Analyser la chaîne de connexion hello
+2. Générer le jeton d’autorisation hello
 3. Envoyer une notification à l’aide de l’API REST de HTTP
 
-### <a name="parse-the-connection-string"></a>Analyse de la chaîne de connexion
-Voici la classe principale implémentant le client, dont le constructeur analyse la chaîne de connexion :
+### <a name="parse-hello-connection-string"></a>Analyser la chaîne de connexion hello
+Voici la classe principale de hello implémentation hello client, dont le constructeur analyse la chaîne de connexion hello :
 
     class NotificationHub:
         API_VERSION = "?api-version=2013-10"
@@ -95,8 +95,8 @@ Voici la classe principale implémentant le client, dont le constructeur analyse
 
 
 ### <a name="create-security-token"></a>Création du jeton de sécurité
-Les détails concernant la création d'un jeton de sécurité sont disponibles [ici](http://msdn.microsoft.com/library/dn495627.aspx).
-Les méthodes suivantes doivent être ajoutées à la classe **NotificationHub** pour créer le jeton à partir de l'URI de la demande actuelle et des informations d'identification extraites de la chaîne de connexion.
+Détails de Hello de création de jetons de sécurité hello sont disponibles [ici](http://msdn.microsoft.com/library/dn495627.aspx).
+Hello méthodes suivantes ont ajouté de toobe toohello **NotificationHub** jeton de classe toocreate hello selon hello URI de demande en cours de hello et les informations d’identification hello extraites à partir de la chaîne de connexion hello.
 
     @staticmethod
     def get_expiry():
@@ -134,7 +134,7 @@ Commençons par définir une classe représentant une notification.
             if not any(x in notification_format for x in valid_formats):
                 raise Exception(
                     "Invalid Notification format. " +
-                    "Must be one of the following - 'template', 'apple', 'gcm', 'windows', 'windowsphone', 'adm', 'baidu'")
+                    "Must be one of hello following - 'template', 'apple', 'gcm', 'windows', 'windowsphone', 'adm', 'baidu'")
 
             self.format = notification_format
             self.payload = payload
@@ -147,9 +147,9 @@ Commençons par définir une classe représentant une notification.
 
 Cette classe est un conteneur pour un corps de notification natif ou un ensemble de propriétés dans le cas d’un modèle de notification, et un ensemble d’en-têtes contenant le format (plateforme native ou modèle) et des propriétés spécifiques de la plateforme (telles que la propriété d’expiration d’Apple et les en-têtes WNS).
 
-Pour connaître toutes les options disponibles, reportez-vous à la [documentation sur les API REST de Notification Hubs](http://msdn.microsoft.com/library/dn495827.aspx) et aux formats spécifiques des plateformes de notification.
+Reportez-vous toohello [documentation de l’API REST de concentrateurs Notification](http://msdn.microsoft.com/library/dn495827.aspx) et hello les formats des plateformes de notification spécifique pour tous les hello options disponibles.
 
-Avec cette classe, nous pouvons à présent écrire les méthodes d'envoi des notifications à l'intérieur de la classe **NotificationHub** .
+Maintenant avec cette classe, nous pouvons écrire vos méthodes de notification à l’intérieur de hello hello envoi **NotificationHub** classe.
 
     def make_http_request(self, url, payload, headers):
         parsed_url = urllib.parse.urlparse(url)
@@ -157,7 +157,7 @@ Avec cette classe, nous pouvons à présent écrire les méthodes d'envoi des no
 
         if self.Debug > 0:
             connection.set_debuglevel(self.Debug)
-            # adding this querystring parameter gets detailed information about the PNS send notification outcome
+            # adding this querystring parameter gets detailed information about hello PNS send notification outcome
             url += self.DEBUG_SEND
             print("--- REQUEST ---")
             print("URI: " + url)
@@ -205,11 +205,11 @@ Avec cette classe, nous pouvons à présent écrire les méthodes d'envoi des no
         else:
             tag_list = tag_or_tag_expression
 
-        # add the tags/tag expressions to the headers collection
+        # add hello tags/tag expressions toohello headers collection
         if tag_list != "":
             headers.update({'ServiceBusNotification-Tags': tag_list})
 
-        # add any custom headers to the headers collection that the user may have added
+        # add any custom headers toohello headers collection that hello user may have added
         if notification.headers is not None:
             headers.update(notification.headers)
 
@@ -257,23 +257,23 @@ Avec cette classe, nous pouvons à présent écrire les méthodes d'envoi des no
         nh = Notification("template", properties)
         self.send_notification(nh, tags)
 
-Les méthodes ci-dessus envoient une demande POST HTTP au point de terminaison /messages de votre hub de notification, avec le corps et les en-têtes corrects pour envoyer la notification.
+Hello au-dessus de méthodes d’envoyer une requête HTTP POST demande toohello /messages point de terminaison de votre concentrateur de notification avec corps correct de hello et notification de hello toosend en-têtes.
 
-### <a name="using-debug-property-to-enable-detailed-logging"></a>Utilisation de la propriété debug pour activer la journalisation détaillée
-L’activation de la propriété debug lors de l’initialisation du hub de notification permet de rédiger des informations de journalisation détaillées sur le vidage des requêtes et réponses HTTP, ainsi que le résultat détaillé de l’envoi des messages de notification. Nous avons récemment ajouté cette propriété appelée [propriété TestSend Notification Hubs](http://msdn.microsoft.com/library/microsoft.servicebus.notifications.notificationhubclient.enabletestsend.aspx) , qui retourne des informations détaillées sur le résultat de l'envoi de notification. Pour l’utiliser, réalisez une initialisation à l’aide de ce qui suit :
+### <a name="using-debug-property-tooenable-detailed-logging"></a>Tooenable de propriété de débogage à l’aide de la journalisation détaillée
+L’activation de la propriété de débogage lors de l’initialisation hello Hub de Notification écrira les informations de journalisation détaillées sur hello HTTP demande et vidage de réponse, ainsi que message de Notification détaillée envoyer le résultat. Nous avons récemment ajouté cette propriété appelée [TestSend de concentrateurs de Notification propriété](http://msdn.microsoft.com/library/microsoft.servicebus.notifications.notificationhubclient.enabletestsend.aspx) qui retourne des informations détaillées sur la sortie d’envoi de notification hello. toouse il - initialisation utilisation hello qui suit :
 
     hub = NotificationHub("myConnectionString", "myNotificationHubName", isDebug)
 
-L’URL HTTP de demande d’envoi de hub de notification est ajoutée avec une chaîne de requête « test ». 
+demande d’envoi de Notification Hub Hello URL HTTP obtient ainsi ajoutée avec une chaîne de requête « test ». 
 
-## <a name="complete-tutorial"></a>Suivi du didacticiel
-Vous pouvez à présent terminer le didacticiel de prise en main en envoyant la notification à partir d’un serveur principal Python.
+## <a name="complete-tutorial"></a>Didacticiel de hello terminée
+Maintenant, vous pouvez effectuer didacticiel de mise en route de hello en envoyant des notifications de hello depuis un Python back-end.
 
-Initialisez votre client Notification Hubs (remplacez la chaîne de connexion et le nom du hub comme indiqué dans le [didacticiel de prise en main]) :
+Initialiser vos concentrateurs de Notification de client (remplacez le nom de hub et la chaîne de connexion hello comme indiqué dans hello [didacticiel Get]) :
 
     hub = NotificationHub("myConnectionString", "myNotificationHubName")
 
-Ajoutez ensuite le code d'envoi en fonction de la plateforme mobile cible. Cet exemple ajoute également des méthodes de plus haut niveau pour activer l’envoi de notifications basées sur la plateforme, par exemple send_windows_notification pour Windows, send_apple_notification (pour Apple), etc. 
+Ajoutez ensuite du code d’envoi hello selon votre plateforme mobile cible. Cet exemple ajoute également la plus élevée tooenable méthodes au niveau envoi de notifications basées sur une plateforme de hello, par exemple send_windows_notification pour windows. send_apple_notification (pour apple) etc.. 
 
 ### <a name="windows-store-and-windows-phone-81-non-silverlight"></a>Windows Store et Windows Phone 8.1 (non-Silverlight)
     wns_payload = """<toast><visual><binding template=\"ToastText01\"><text id=\"1\">Test</text></binding></visual></toast>"""
@@ -322,33 +322,33 @@ L’exécution de votre code Python produit normalement une notification qui app
 
 ## <a name="examples"></a>Exemples :
 ### <a name="enabling-debug-property"></a>Activation de la propriété debug
-Quand vous activez l'indicateur de débogage pendant l'initialisation de la classe NotificationHub, vous voyez un vidage détaillé des requêtes et réponses HTTP, ainsi que NotificationOutcome, comme suit, où vous pouvez comprendre quels en-têtes HTTP sont transmis dans la demande et quelle réponse HTTP a été reçue à partir du hub de notification : ![][1]
+Lorsque vous activez le débogage indicateur lors de l’initialisation hello NotificationHub vous observez détaillées dump de demande et de réponse HTTP, ainsi que NotificationOutcome suivante hello où vous pouvez comprendre les en-têtes HTTP sont passés dans la demande hello et quelles HTTP réponse a été reçue à partir de hello Hub de Notification :![][1]
 
 Vous verrez un résultat détaillé de hub de notification, par exemple 
 
-* lorsque le message est envoyé au service de notification Push. 
+* Lorsque message de type hello est envoyé avec succès toohello services de notifications Push. 
   
-        <Outcome>The Notification was successfully sent to the Push Notification System</Outcome>
-* Si aucune cible n’a été trouvée pour les notifications Push, vous verrez probablement les éléments suivants dans la réponse (ce qui indique qu’il n’y a eu aucun enregistrement trouvé pour fournir la notification, probablement parce que certaines balises des inscriptions ne correspondaient pas)
+        <Outcome>hello Notification was successfully sent toohello Push Notification System</Outcome>
+* S’il y avait aucune cible n’est trouvé pour les notifications push, puis vous allez probablement toosee qui suit hello dans la réponse hello (ce qui indique qu’il n’existait aucun enregistrement trouvé notification de hello toodeliver probablement parce que les enregistrements de hello eu balises ne correspondent pas)
   
         '<NotificationOutcome xmlns="http://schemas.microsoft.com/netservices/2010/10/servicebus/connect" xmlns:i="http://www.w3.org/2001/XMLSchema-instance"><Success>0</Success><Failure>0</Failure><Results i:nil="true"/></NotificationOutcome>'
 
-### <a name="broadcast-toast-notification-to-windows"></a>Notification toast de diffusion à Windows
-Notez les en-têtes qui sont envoyés lorsque vous envoyez une notification toast de diffusion au client Windows. 
+### <a name="broadcast-toast-notification-toowindows"></a>Diffusion tooWindows de notification toast
+Notez que les en-têtes hello obtient envoyés lorsque vous envoyez un client de tooWindows notification toast diffusion. 
 
     hub.send_windows_notification(wns_payload)
 
 ![][2]
 
 ### <a name="send-notification-specifying-a-tag-or-tag-expression"></a>Envoyer une notification indiquant une balise (ou une expression de balise)
-Notez l'en-tête HTTP de balises qui est ajouté à la requête HTTP (dans l'exemple ci-dessous, vous envoyez la notification uniquement aux inscriptions avec la charge utile « sports »)
+En-tête HTTP de balises hello avis est ajouté à la demande de toohello HTTP (dans l’exemple hello ci-dessous, nous envoyons tooregistrations uniquement de notification hello avec sa charge utile 'sports')
 
     hub.send_windows_notification(wns_payload, "sports")
 
 ![][3]
 
 ### <a name="send-notification-specifying-multiple-tags"></a>Envoyer une notification spécifiant plusieurs balises
-Notez comment l’en-tête HTTP des balises change lorsque plusieurs balises sont envoyées. 
+Notez comment les en-tête de balises HTTP hello change lorsque plusieurs balises sont envoyés. 
 
     tags = {'sports', 'politics'}
     hub.send_windows_notification(wns_payload, tags)
@@ -356,14 +356,14 @@ Notez comment l’en-tête HTTP des balises change lorsque plusieurs balises son
 ![][4]
 
 ### <a name="templated-notification"></a>Notification avec modèle
-Notez que l’en-tête HTTP de format change et que le corps de charge utile est envoyé en tant que partie intégrante du corps de requête HTTP :
+Notez que hello les modifications d’en-tête HTTP de Format et corps de la charge utile de hello est envoyée en tant que partie du corps de la demande hello HTTP :
 
 **Côté client - modèle enregistré**
 
         var template =
                         @"<toast><visual><binding template=""ToastText01""><text id=""1"">$(greeting_en)</text></binding></visual></toast>";
 
-**Côté serveur - envoi de la charge utile**
+**Côté serveur - envoyer la charge utile de hello**
 
         template_payload = {'greeting_en': 'Hello', 'greeting_fr': 'Salut'}
         hub.send_template_notification(template_payload)
@@ -371,17 +371,17 @@ Notez que l’en-tête HTTP de format change et que le corps de charge utile est
 ![][5]
 
 ## <a name="next-steps"></a>Étapes suivantes
-Dans cette rubrique, nous vous avons montré comment créer un client REST Python simple pour Notification Hubs. À ce stade, vous pouvez :
+Dans cette rubrique, nous vous avons montré comment toocreate une simple Python REST client pour les concentrateurs de Notification. À ce stade, vous pouvez :
 
-* télécharger l'intégralité de l' [exemple de wrapper REST Python], qui contient tout le code ci-dessus ;
-* poursuivre l'apprentissage de la fonctionnalité de balisage de Notification Hubs dans le [didacticiel Nouvelles de dernière minute]
-* poursuivre l'apprentissage de la fonctionnalité des modèles de Notification Hubs dans le [didacticiel de localisation des dernières nouvelles]
+* Télécharger hello complète [exemple de wrapper Python reste], qui contient tout code hello ci-dessus.
+* Continuer à découvrir des concentrateurs de Notification marquage fonctionnalité Bonjour [didacticiel des dernières nouvelles]
+* Continuer à découvrir la fonctionnalité de Notification Hubs modèles Bonjour [didacticiel de localisation des actualités]
 
 <!-- URLs -->
-[exemple de wrapper REST Python]: https://github.com/Azure/azure-notificationhubs-samples/tree/master/notificationhubs-rest-python
-[didacticiel de prise en main]: http://azure.microsoft.com/documentation/articles/notification-hubs-windows-store-dotnet-get-started/
-[didacticiel Nouvelles de dernière minute]: http://azure.microsoft.com/documentation/articles/notification-hubs-windows-store-dotnet-send-breaking-news/
-[didacticiel de localisation des dernières nouvelles]: http://azure.microsoft.com/documentation/articles/notification-hubs-windows-store-dotnet-send-localized-breaking-news/
+[exemple de wrapper Python reste]: https://github.com/Azure/azure-notificationhubs-samples/tree/master/notificationhubs-rest-python
+[didacticiel Get]: http://azure.microsoft.com/documentation/articles/notification-hubs-windows-store-dotnet-get-started/
+[didacticiel des dernières nouvelles]: http://azure.microsoft.com/documentation/articles/notification-hubs-windows-store-dotnet-send-breaking-news/
+[didacticiel de localisation des actualités]: http://azure.microsoft.com/documentation/articles/notification-hubs-windows-store-dotnet-send-localized-breaking-news/
 
 <!-- Images. -->
 [1]: ./media/notification-hubs-python-backend-how-to/DetailedLoggingInfo.png

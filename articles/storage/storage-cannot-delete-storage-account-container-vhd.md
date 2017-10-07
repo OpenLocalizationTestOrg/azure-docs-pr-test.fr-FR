@@ -1,5 +1,5 @@
 ---
-title: "Résoudre les problèmes de suppression de comptes de stockage Azure, de conteneurs ou de disques durs virtuels dans un déploiement classique | Microsoft Docs"
+title: "suppression de comptes de stockage Azure, les conteneurs ou les disques durs virtuels dans un déploiement classique d’aaaTroubleshoot | Documents Microsoft"
 description: "Résoudre les problèmes de suppression de comptes de stockage Azure, de conteneurs ou de disques durs virtuels dans un déploiement classique"
 services: storage
 documentationcenter: 
@@ -15,114 +15,114 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/13/2017
 ms.author: genli
-ms.openlocfilehash: 9f3e824414ad6c1a0aba98a3d549ee63ddc7272f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6bbfa032e1968718c623227bb426d553e2951075
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshoot-deleting-azure-storage-accounts-containers-or-vhds-in-a-classic-deployment"></a>Résoudre les problèmes de suppression de comptes de stockage Azure, de conteneurs ou de disques durs virtuels dans un déploiement classique
 [!INCLUDE [storage-selector-cannot-delete-storage-account-container-vhd](../../includes/storage-selector-cannot-delete-storage-account-container-vhd.md)]
 
-Il est possible que vous receviez des erreurs quand vous essayez de supprimer le compte de stockage Azure, le conteneur ou le disque dur virtuel dans le [portail Azure](https://portal.azure.com/) ou le [portail Azure Classic](https://manage.windowsazure.com/). Ces problèmes peuvent être causés par les circonstances suivantes :
+Vous pouvez recevoir des erreurs lorsque vous essayez de disque dur virtuel, du conteneur ou compte de stockage Azure hello toodelete Bonjour [portail Azure](https://portal.azure.com/) ou hello [portail Azure classic](https://manage.windowsazure.com/). problèmes de Hello peuvent résulter de hello suivant circonstances :
 
-* Lorsque vous supprimez une machine virtuelle, le disque et le disque dur virtuel ne sont pas automatiquement supprimés. Cela peut être la cause de l'échec de la suppression du compte de stockage. Nous ne supprimons pas le disque pour que vous puissiez l’utiliser pour monter une autre machine virtuelle.
-* Il existe toujours un bail sur un disque ou sur l’objet blob associé au disque.
+* Lorsque vous supprimez une machine virtuelle, disque de hello et de disque dur virtuel ne sont pas automatiquement supprimés. Qui peut être la raison hello de défaillance sur la suppression de compte de stockage. Nous ne souhaite pas supprimer le disque de hello afin que vous puissiez utiliser hello disque toomount une autre machine virtuelle.
+* Il existe toujours un bail sur un objet blob de disque ou hello associé avec un disque de hello.
 * Il existe toujours une image de machine virtuelle qui utilise un compte de stockage, un conteneur ou un objet blob.
 
-Si le problème lié à Azure n’est pas traité dans cet article, parcourez les forums Azure sur [MSDN et Stack Overflow](https://azure.microsoft.com/support/forums/). Vous pouvez publier votre problème sur ces forums ou sur @AzureSupport sur Twitter. Vous pouvez également créer une demande de support Azure en sélectionnant **Obtenir de l’aide** sur le site du [support Azure](https://azure.microsoft.com/support/options/) .
+Si votre problème Azure n’est pas abordé dans cet article, visitez hello forums Azure sur [MSDN et hello Stack Overflow](https://azure.microsoft.com/support/forums/). Vous pouvez publier votre problème sur ces forums ou too@AzureSupport sur Twitter. En outre, vous pouvez entrer une demande de support Azure en sélectionnant **obtenir un support technique** sur hello [prise en charge Azure](https://azure.microsoft.com/support/options/) site.
 
 ## <a name="symptoms"></a>Symptômes
-La section suivante répertorie les erreurs courantes que vous pourriez recevoir quand vous tentez de supprimer les comptes de stockage Azure, les conteneurs ou les disques durs virtuels.
+Hello après section répertorie les erreurs courantes susceptibles d’apparaître lorsque vous essayez de comptes de stockage Azure hello toodelete, les conteneurs ou les disques durs virtuels.
 
-### <a name="scenario-1-unable-to-delete-a-storage-account"></a>Scénario 1 : Impossible de supprimer un compte de stockage
-Lorsque vous accédez au compte de stockage classique dans le [portail Azure](https://portal.azure.com/) et que vous sélectionnez **Supprimer**, une liste des objets qui empêchent la suppression du compte de stockage peut s’afficher :
+### <a name="scenario-1-unable-toodelete-a-storage-account"></a>Scénario 1 : Toodelete Impossible un compte de stockage
+Lorsque vous accédez compte de stockage classiques toohello Bonjour [portail Azure](https://portal.azure.com/) et sélectionnez **supprimer**, avec une liste d’objets qui empêchent la suppression du compte de stockage hello peuvent s’afficher :
 
-  ![Image de l’erreur qui se produit lors de la suppression du compte de stockage](./media/storage-cannot-delete-storage-account-container-vhd/newerror.png)
+  ![Image d’erreur lorsque supprimez le compte de stockage hello](./media/storage-cannot-delete-storage-account-container-vhd/newerror.png)
 
-Lorsque vous accédez au compte de stockage dans le [portail Azure Classic](https://manage.windowsazure.com/) et que vous sélectionnez **Supprimer**, l’une des erreurs suivantes peut s’afficher :
+Lorsque vous accédez compte de stockage toohello Bonjour [portail Azure classic](https://manage.windowsazure.com/) et sélectionnez **supprimer**, vous pouvez voir un des hello les erreurs suivantes :
 
 - *Le compte de stockage StorageAccountName contient des images de machine virtuelle. Supprimez ces images de machine virtuelle avant de supprimer ce compte de stockage.*
 
-- *Échec de suppression du compte de stockage <vm-storage-account-name>. Impossible de supprimer le compte de stockage <vm-storage-account-name> : Storage account <vm-storage-account-name> contient des images et/ou des disques actifs. Supprimez ces images et/ou disques avant de supprimer ce compte de stockage. ».*
+- *Échec de compte de stockage toodelete < vm-storage-account-name >. Compte de stockage ne peut pas toodelete < vm-storage-account-name > : « compte de stockage < vm-storage-account-name > a certaines images actives et/ou des disques. Supprimez ces images et/ou disques avant de supprimer ce compte de stockage. ».*
 
-- *Le compte de stockage <vm-storage-account-name> contient des images et/ou des disques actifs, par exemple, xxxxxxxxx- xxxxxxxxx-O-209490240936090599. Supprimez ces images et/ou disques avant de supprimer ce compte de stockage.*
+- *Le compte de stockage &lt;vm-storage-account-name&gt; contient des images et/ou des disques actifs, par exemple, xxxxxxxxx- xxxxxxxxx-O-209490240936090599. Supprimez ces images et/ou disques avant de supprimer ce compte de stockage.*
 
-- *Le compte de stockage <vm-storage-account-name> contient 1 ou plusieurs conteneurs avec une image active et/ou des artefacts de disque. Supprimez ces artefacts du dépôt d’images avant de supprimer ce compte de stockage*.
+- *Le compte de stockage &lt;vm-storage-account-name&gt; contient 1 ou plusieurs conteneurs avec une image active et/ou des artefacts de disque. Vérifiez ces artefacts sont supprimés à partir du référentiel d’images hello avant de supprimer ce compte de stockage*.
 
-- *Échec d’envoi : le compte de stockage <vm-storage-account-name> contient 1 ou plusieurs conteneurs avec une image active et/ou des artefacts de disque. Supprimez ces artefacts du dépôt d’images avant de supprimer ce compte de stockage. Quand vous essayez de supprimer un compte de stockage auquel sont associés des disques toujours actifs, un message vous informe que des disques actifs doivent être supprimés*.
+- *Échec d’envoi : le compte de stockage &lt;vm-storage-account-name&gt; contient 1 ou plusieurs conteneurs avec une image active et/ou des artefacts de disque. Assurez-vous que ces artefacts sont supprimés à partir du référentiel d’images hello avant de supprimer ce compte de stockage. Lorsque vous essayez de toodelete un compte de stockage et des disques toujours actives associées, vous verrez un message vous indiquant que des disques actifs doivent toobe supprimé*.
 
-### <a name="scenario-2-unable-to-delete-a-container"></a>Scénario 2 : Impossible de supprimer un conteneur
-Quand vous essayez de supprimer le conteneur de stockage, il est possible que vous rencontriez l’erreur suivante :
+### <a name="scenario-2-unable-toodelete-a-container"></a>Scénario 2 : Toodelete Impossible d’un conteneur
+Lorsque vous essayez de conteneur de stockage toodelete hello, vous pouvez voir hello l’erreur suivante :
 
-*Échec de la suppression du conteneur de stockage <container name>. Erreur : « Il existe actuellement un bail sur le conteneur et aucun ID de bail n’a été spécifié dans la demande »*.
-
-Ou
-
-*Les disques de machines virtuelles suivants utilisent actuellement des objets blob de ce conteneur. Par conséquent, le conteneur ne peut pas être supprimé : VirtualMachineDiskName1, VirtualMachineDiskName2, ...*
-
-### <a name="scenario-3-unable-to-delete-a-vhd"></a>Scénario 3 : Impossible de supprimer un disque dur virtuel
-Après avoir supprimé une machine virtuelle, puis tenté de supprimer les objets blob des disques durs virtuels associés, il est possible que vous receviez le message suivant :
-
-*Échec de la suppression de l’objet blob « path/XXXXXX-XXXXXX-os-1447379084699.vhd ». Erreur : « Il existe actuellement un bail sur l’objet blob et aucun ID de bail n’a été spécifié dans la demande »*.
+*Conteneur de stockage ayant échoué toodelete <container name>. Erreur : « il existe actuellement un bail sur le conteneur de hello et aucun ID de bail a été spécifié dans la demande hello*.
 
 Ou
 
-*L’objet blob « BlobName.vhd » est en cours d’utilisation en tant que disque de la machine virtuelle « VirtualMachineDiskName », donc il ne peut pas être supprimé.*
+*Hello disques de machine virtuelle suivants utilisent les objets BLOB dans ce conteneur, donc impossible de supprimer le conteneur de hello : VirtualMachineDiskName1, VirtualMachineDiskName2,...*
+
+### <a name="scenario-3-unable-toodelete-a-vhd"></a>Scénario 3 : Toodelete Impossible un disque dur virtuel
+Une fois que vous supprimez une machine virtuelle, et puis essayez toodelete hello objets BLOB pour hello associées des disques durs virtuels, vous pouvez recevoir hello message suivant :
+
+*Échec toodelete blob ' chemin d’accès/XXXXXX-XXXXXX-os-1447379084699.vhd'. Erreur : « il existe actuellement un bail sur l’objet blob de hello et aucun ID de bail a été spécifié dans la demande hello.*
+
+Ou
+
+*Objet blob 'BlobName.vhd' est en cours d’utilisation en tant que disque de machine virtuelle 'VirtualMachineDiskName', et hello ne peut pas être supprimé.*
 
 ## <a name="solution"></a>Solution
-Pour résoudre les problèmes les plus courants, essayez la méthode suivante :
+problèmes les plus courants tooresolve hello hello try suivant de méthode :
 
-### <a name="step-1-delete-any-disks-that-are-preventing-deletion-of-the-storage-account-container-or-vhd"></a>Étape 1 : Supprimer les disques qui empêchent la suppression du compte de stockage, du conteneur ou du disque dur virtuel
-1. Connectez-vous au [Portail Azure Classic](https://manage.windowsazure.com/).
+### <a name="step-1-delete-any-disks-that-are-preventing-deletion-of-hello-storage-account-container-or-vhd"></a>Étape 1 : Supprimer tous les disques qui empêchent la suppression du compte de stockage hello, conteneur ou de disque dur virtuel
+1. Commutateur toohello [portail Azure classic](https://manage.windowsazure.com/).
 2. Sélectionnez **MACHINES VIRTUELLES** > **DISQUES**.
 
     ![Image de disques sur des machines virtuelles sur le portail Azure Classic.](./media/storage-cannot-delete-storage-account-container-vhd/VMUI.png)
-3. Recherchez les disques associés au compte de stockage, au conteneur ou au disque dur virtuel à supprimer. En vérifiant l’emplacement du disque, vous trouverez le compte de stockage, le conteneur et le disque dur virtuel associés.
+3. Recherchez des disques hello associés hello compte de stockage, conteneur ou disque dur virtuel que vous souhaitez toodelete. Lorsque vous vérifiez emplacement hello du disque de hello, vous constaterez hello associée compte de stockage, conteneur ou disque dur virtuel.
 
     ![Image qui affiche des informations d'emplacement sur les disques sur le portail Azure Classic](./media/storage-cannot-delete-storage-account-container-vhd/DiskLocation.png)
-4. Supprimez les disques en utilisant l’une des méthodes suivantes :
+4. Supprimer les disques hello à l’aide d’une des méthodes suivantes de hello :
 
-  - Si aucune machine virtuelle n’est indiquée dans le champ **Attaché à** des disques, vous pouvez supprimer le disque directement.
+  - S’il existe aucune machine virtuelle ne répertoriés sur hello **attaché à** champ du disque de hello, vous pouvez supprimer les disques hello directement.
 
-  - Si le disque est un disque de données, procédez comme suit :
+  - Si hello est un disque de données, procédez comme suit :
 
-    1. Vérifiez le nom de la machine virtuelle à laquelle le disque est attaché.
-    2. Accédez à **Machines virtuelles** > **Instances**, puis recherchez la machine virtuelle.
-    3. Assurez-vous que le disque n’est pas activement utilisé.
-    4. Sélectionnez **Détacher le disque** au bas du portail pour détacher le disque.
-    5. Accédez à **Machines virtuelles** > **Disques** et attendez que le champ **Attaché à** soit vide. Cela indique que le disque a été correctement détaché de la machine virtuelle.
-    6. Sélectionnez **Supprimer** sous **Machines virtuelles** > **Disques** pour supprimer le disque.
+    1. Vérifiez le nom de machine virtuelle de ce disque hello de hello hello est attaché à.
+    2. Accédez trop**virtuels** > **Instances**, puis recherchez hello machine virtuelle.
+    3. Assurez-vous que rien n’est activement à l’aide hello disque.
+    4. Sélectionnez **détacher un disque** bas hello du disque de hello toodetach portail hello.
+    5. Accédez trop**virtuels** > **disques**et attendez hello **attaché à** tooturn champ vide. Cela indique le disque de hello a été détaché avec succès à partir de la machine virtuelle de hello.
+    6. Sélectionnez **supprimer** bas hello **virtuels** > **disques** disque de hello toodelete.
 
-  - Si le disque est un disque du système d’exploitation (le champ **Contient le système d’exploitation** a une valeur telle que Windows) et qu’il est attaché à une machine virtuelle, procédez comme suit pour supprimer la machine virtuelle. Le disque du système d’exploitation ne peut pas être détaché. Nous devons donc supprimer la machine virtuelle pour libérer l’attribution.
+  - Si le disque de hello est un disque de système d’exploitation (hello **contient le système d’exploitation** champ a une valeur comme fenêtres) attaché tooa machine virtuelle, procédez comme suit toodelete hello machine virtuelle. Impossible de détacher le disque du système d’exploitation Hello, afin que nous le bail hello toorelease toodelete hello machine virtuelle.
 
-    1. Vérifiez le nom de la machine virtuelle à laquelle le disque de données est attaché.  
-    2. Accédez à **Machines virtuelles** > **Instances**, puis sélectionnez la machine virtuelle à laquelle le disque est attaché.
-    3. Assurez-vous qu’aucun élément n’utilise activement la machine virtuelle, et que vous n’avez plus besoin de la machine virtuelle.
-    4. Sélectionnez la machine virtuelle à laquelle le disque est attaché, puis sélectionnez **Supprimer** > **Supprimer les disques attachés**.
-    5. Accédez à **Machines virtuelles** > **Disques** et attendez que le disque ne s’affiche plus.  Cela peut prendre plusieurs minutes. Vous devrez peut-être actualiser la page.
-    6. Si le disque ne disparaît pas, attendez que le champ **Attaché à** soit vide. Cela indique que le disque a été entièrement détaché de la machine virtuelle.  Ensuite, sélectionnez le disque et sélectionnez **Supprimer** en bas de la page pour supprimer le disque.
+    1. Vérifiez le nom du hello Hello de Machine virtuelle hello À que disque de données est attachée.  
+    2. Accédez trop**virtuels** > **Instances**, et puis sélectionnez hello machine virtuelle qui hello disque est attaché à.
+    3. Assurez-vous que rien n’est activement à l’aide de hello d’ordinateurs virtuels et que vous avez besoin n’est plus hello machine virtuelle.
+    4. Sélectionnez hello VM hello disque est attaché à, puis sélectionnez **supprimer** > **hello de suppression de disques attachés**.
+    5. Accédez trop**virtuels** > **disques**et attendez hello disque toodisappear.  Il peut prendre quelques minutes avant que cette toooccur, et vous devrez peut-être page hello de toorefresh.
+    6. Si le disque de hello ne disparaît pas, attendez hello **attaché à** tooturn champ vide. Cela indique que les disques hello a entièrement détaché de hello machine virtuelle.  Ensuite, sélectionnez le disque hello et sélectionnez **supprimer** bas hello hello pages toodelete hello disque.
 
 
    > [!NOTE]
-   > Si un disque est attaché à une machine virtuelle, vous ne pouvez pas le supprimer. Les disques sont détachés de façon asynchrone d’une machine virtuelle supprimée. L’effacement de ce champ peut prendre quelques minutes après la suppression de la machine virtuelle.
+   > Si un disque est attaché tooa machine virtuelle, vous ne serez pas en mesure de toodelete il. Les disques sont détachés de façon asynchrone d’une machine virtuelle supprimée. Il peut prendre quelques minutes après que hello machine virtuelle est supprimé pour cette tooclear de champ de.
    >
    >
 
 
-### <a name="step-2-delete-any-vm-images-that-are-preventing-deletion-of-the-storage-account-or-container"></a>Étape 2 : Supprimer les images de machine virtuelle qui empêchent la suppression du compte de stockage ou du conteneur
-1. Connectez-vous au [Portail Azure Classic](https://manage.windowsazure.com/).
-2. Sélectionnez **MACHINE VIRTUELLE** > **IMAGES**, puis supprimez les images associées au compte de stockage, au conteneur ou au disque dur virtuel.
+### <a name="step-2-delete-any-vm-images-that-are-preventing-deletion-of-hello-storage-account-or-container"></a>Étape 2 : Supprimer toutes les Images de machine virtuelle qui empêchent la suppression du compte de stockage hello ou du conteneur
+1. Commutateur toohello [portail Azure classic](https://manage.windowsazure.com/).
+2. Sélectionnez **virtuels** > **IMAGES**, puis supprimez les images hello associés hello compte de stockage, conteneur ou disque dur virtuel.
 
-    Ensuite, réessayez de supprimer le compte de stockage, le conteneur ou le disque dur virtuel.
+    Après cela, essayez à nouveau compte de stockage toodelete hello, du conteneur ou disque dur virtuel.
 
 > [!WARNING]
-> Veillez à sauvegarder tout ce que vous souhaitez conserver avant de supprimer le compte. Lorsque vous supprimez un VHD, un blob, une table, une file d’attente ou un fichier, il est définitivement supprimé. Vérifiez que la ressource n’est pas en cours d’utilisation.
+> Être tooback que rien souhaité toosave avant de supprimer le compte de hello. Lorsque vous supprimez un VHD, un blob, une table, une file d’attente ou un fichier, il est définitivement supprimé. Assurez-vous que les ressources hello ne sont pas en cours d’utilisation.
 >
 >
 
-## <a name="about-the-stopped-deallocated-status"></a>À propos de l’état Arrêté (Désalloué)
-Les machines virtuelles créées dans le modèle de déploiement classique et conservées auront le statut **Arrêté (Désalloué)** soit sur le [portail Azure](https://portal.azure.com/), soit sur le [portail Azure Classic](https://manage.windowsazure.com/).
+## <a name="about-hello-stopped-deallocated-status"></a>À propos de hello arrêté (désallouée) état
+Ordinateurs virtuels qui ont été créées dans le modèle de déploiement classique hello et qui ont été conservées aura hello **arrêté (désallouée)** statut soit hello [portail Azure](https://portal.azure.com/) ou [portail Azure classic ](https://manage.windowsazure.com/).
 
 **Portail Azure Classic**:
 
@@ -132,7 +132,7 @@ Les machines virtuelles créées dans le modèle de déploiement classique et co
 
 ![Statut Arrêté (désalloué) pour les machines virtuelles sur le portail Azure Classic.](./media/storage-cannot-delete-storage-account-container-vhd/moreinfo1.png)
 
-Le statut « Arrêté (désalloué) » libère les ressources de l’ordinateur (processeur, mémoire et réseau). Les disques, cependant, sont toujours conservés de façon à vous permettre de recréer rapidement la machine virtuelle si nécessaire. Ces disques sont créés sur les disques durs virtuels sauvegardés par Azure Storage. Le compte de stockage contient ces disques durs virtuels et les disques ont des baux sur ces disques durs virtuels.
+Un état « Arrêté (désalloué) » libère des ressources d’ordinateur de hello, comme les hello du processeur, mémoire et du réseau. les disques Hello, toutefois, sont toujours conservés afin que vous pouvez rapidement recréer hello machine virtuelle si nécessaire. Ces disques sont créés sur les disques durs virtuels sauvegardés par Azure Storage. compte de stockage Hello a ces disques durs virtuels et des disques hello ont des baux sur ces disques durs virtuels.
 
 ## <a name="next-steps"></a>Étapes suivantes
 * [Suppression d'un compte de stockage](storage-create-storage-account.md#delete-a-storage-account)

@@ -1,6 +1,6 @@
 ---
-title: "Utilisation du stockage d’objets blob Azure avec le Kit de développement logiciel (SDK) WebJobs"
-description: "Découvrez comment utiliser le stockage d’objets blob Microsoft Azure avec le Kit de développement logiciel (SDK) WebJobs. Déclenchez un processus lorsqu’un nouvel objet blob apparaît dans un conteneur et gérez les « objets blob incohérents »."
+title: "aaaHow toouse stockage d’objets blob Azure avec hello WebJobs SDK"
+description: "Découvrez comment toouse Azure stockage d’objets blob par hello WebJobs SDK. Déclenchez un processus lorsqu’un nouvel objet blob apparaît dans un conteneur et gérez les « objets blob incohérents »."
 services: app-service\web, storage
 documentationcenter: .net
 author: ggailey777
@@ -14,30 +14,30 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 06/01/2016
 ms.author: glenga
-ms.openlocfilehash: e0a792ccdf8097d5cde254d6d4690a64838378ea
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b34ea8cffee7c0475641886150dee521130a3132
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-azure-blob-storage-with-the-webjobs-sdk"></a>Utilisation du stockage d’objets blob Azure avec le Kit de développement logiciel (SDK) WebJobs
-## <a name="overview"></a>Vue d’ensemble
-Ce guide fournit des exemples de code c# qui montrent comment déclencher un processus pendant la création ou la mise à jour d’un objet blob Azure. Les exemples de code utilisent le [Kit de développement logiciel (SDK) WebJobs](websites-dotnet-webjobs-sdk.md) version 1.x.
+# <a name="how-toouse-azure-blob-storage-with-hello-webjobs-sdk"></a>Comment toouse Azure stockage d’objets blob par hello WebJobs SDK
+## <a name="overview"></a>Vue d'ensemble
+Ce guide fournit des c# des exemples de code qui montrent comment tootrigger un processus lorsqu’un objet blob Azure est créé ou mis à jour. utilisation des exemples de code de Hello [WebJobs SDK](websites-dotnet-webjobs-sdk.md) version 1.x.
 
-Pour obtenir des exemples de code vous indiquant comment créer des objets blob, consultez la rubrique [Utilisation du stockage de file d’attente Azure avec le Kit de développement logiciel (SDK) WebJobs](websites-dotnet-webjobs-sdk-storage-queues-how-to.md). 
+Pour obtenir des exemples de code qui montrent comment toocreate les objets BLOB, consultez [comment toouse Azure file d’attente de stockage avec hello WebJobs SDK](websites-dotnet-webjobs-sdk-storage-queues-how-to.md). 
 
-Ce guide suppose que vous savez [comment créer un projet WebJob dans Visual Studio avec des chaînes de connexion qui pointent vers votre compte de stockage](websites-dotnet-webjobs-sdk-get-started.md) ou [plusieurs comptes de stockage](https://github.com/Azure/azure-webjobs-sdk/blob/master/test/Microsoft.Azure.WebJobs.Host.EndToEndTests/MultipleStorageAccountsEndToEndTests.cs).
+guide de Hello suppose que vous connaissez [comment toocreate un projet de la tâche Web dans Visual Studio avec connexion chaînes ce compte de stockage point tooyour](websites-dotnet-webjobs-sdk-get-started.md) ou trop[plusieurs comptes de stockage](https://github.com/Azure/azure-webjobs-sdk/blob/master/test/Microsoft.Azure.WebJobs.Host.EndToEndTests/MultipleStorageAccountsEndToEndTests.cs).
 
-## <a id="trigger"></a> Déclenchement d’une fonction lors de la création ou de la mise à jour d’un objet blob
-Cette section vous indique comment utiliser l’attribut `BlobTrigger` . 
+## <a id="trigger"></a>Comment tootrigger une fonction lorsqu’un objet blob est créé ou mis à jour
+Cette section montre comment toouse hello `BlobTrigger` attribut. 
 
 > [!NOTE]
-> Le kit de développement logiciel (SDK) WebJobs analyse les fichiers journaux pour surveiller les objets blob qui ont été créés ou modifiés. Ce processus ne se déroule pas en temps réel ; il se peut qu’une fonction ne se déclenche que quelques minutes ou plus après la création de l’objet blob. En outre, des [journaux de stockage sont créés sur la base du « meilleur effort »](https://msdn.microsoft.com/library/azure/hh343262.aspx) ; il n’est pas garanti que tous les événements soient capturés. Dans certaines conditions, des journaux peuvent être omis. Si les limitations relatives à la vitesse et à la fiabilité des déclenchements d’objets blob ne sont pas acceptables pour votre application, il est conseillé d’utiliser la méthode de création d’un message de file d’attente lorsque vous créez l’objet blob et l’attribut [QueueTrigger](websites-dotnet-webjobs-sdk-storage-queues-how-to.md#trigger) à la place de l’attribut `BlobTrigger` sur la fonction qui traite l’objet blob.
+> Hello toowatch de fichiers WebJobs SDK analyses de journal pour les objets BLOB nouveau ou modifié. Ce processus n’est pas en temps réel ; une fonction ne peut-être pas déclenchée jusqu'à ce que quelques minutes ou plus après que l’objet blob de hello est créé. En outre, des [journaux de stockage sont créés sur la base du « meilleur effort »](https://msdn.microsoft.com/library/azure/hh343262.aspx) ; il n’est pas garanti que tous les événements soient capturés. Dans certaines conditions, des journaux peuvent être omis. Si hello les limitations de vitesse et la fiabilité des déclencheurs de l’objet blob ne sont pas acceptables pour votre application, hello recommandé consiste toocreate un message de la file d’attente lorsque vous créez les blob hello et que vous utilisez hello [QueueTrigger](websites-dotnet-webjobs-sdk-storage-queues-how-to.md#trigger) au lieu de Hello `BlobTrigger` attribut sur la fonction hello qui traite l’objet blob de hello.
 > 
 > 
 
 ### <a name="single-placeholder-for-blob-name-with-extension"></a>Espace réservé unique pour le nom d’objet blob avec extension
-L’exemple de code suivant copie les objets blob de texte qui apparaissent dans le conteneur *input* vers le conteneur *output* :
+Hello exemple de code suivant copie les objets BLOB de texte qui s’affichent dans hello *d’entrée* conteneur toohello *sortie* conteneur :
 
         public static void CopyBlob([BlobTrigger("input/{name}")] TextReader input,
             [Blob("output/{name}")] out string output)
@@ -45,9 +45,9 @@ L’exemple de code suivant copie les objets blob de texte qui apparaissent dans
             output = input.ReadToEnd();
         }
 
-Le constructeur d’attribut prend un paramètre de chaîne qui spécifie le nom du conteneur ainsi qu’un espace réservé pour le nom de l’objet blob. Dans cet exemple, si un objet blob nommé *Blob1.txt* est créé dans le conteneur *input*, la fonction crée un objet blob appelé *Blob1.txt* dans le conteneur *output*. 
+constructeur d’attribut Hello prend un paramètre de chaîne qui spécifie le nom du conteneur hello et un espace réservé pour le nom d’objet blob hello. Dans cet exemple, si un objet blob nommé *Blob1.txt* est créé dans hello *d’entrée* conteneur, la fonction hello crée un objet blob nommé *Blob1.txt* Bonjour *sortie*  conteneur. 
 
-Vous pouvez spécifier un modèle de nom avec l’espace réservé de nom d’objet blob, comme indiqué dans l’exemple de code suivant :
+Vous pouvez spécifier un modèle de nom avec un espace réservé au nom hello blob, comme indiqué dans hello suivant l’exemple de code :
 
         public static void CopyBlob([BlobTrigger("input/original-{name}")] TextReader input,
             [Blob("output/copy-{name}")] out string output)
@@ -55,9 +55,9 @@ Vous pouvez spécifier un modèle de nom avec l’espace réservé de nom d’ob
             output = input.ReadToEnd();
         }
 
-Ce code copie uniquement les objets blob dont le nom commence par "original-". Par exemple, *original-Blob1.txt* dans le conteneur *input* est copié vers *copy-Blob1.txt* dans le conteneur *output*.
+Ce code copie uniquement les objets blob dont le nom commence par "original-". Par exemple, *d’origine-Blob1.txt* Bonjour *d’entrée* conteneur est copié trop*copie-Blob1.txt* Bonjour *sortie* conteneur.
 
-Si vous devez spécifier un modèle de nom pour les noms d’objet blob qui présentent des accolades, doublez ces dernières. Par exemple, si vous souhaitez rechercher des objets blob, dans le conteneur *images* , qui présentent des noms comme suit :
+Si vous avez besoin de toospecify un modèle de nom pour les noms d’objet blob qui ont des accolades dans le nom de hello, deux accolades hello. Par exemple, si vous souhaitez que les objets BLOB toofind hello *images* conteneur qui ont des noms comme suit :
 
         {20140101}-soundfile.mp3
 
@@ -65,10 +65,10 @@ utilisez ce qui suit pour votre modèle :
 
         images/{{20140101}}-{name}
 
-Dans cet exemple, la valeur de l’espace réservé *name* correspond à *soundfile.mp3*. 
+Dans l’exemple de hello, hello *nom* valeur d’espace réservé serait *soundfile.mp3*. 
 
 ### <a name="separate-blob-name-and-extension-placeholders"></a>Séparation des espaces réservés d’extension et des noms d’objet blob
-L’exemple de code suivant remplace l’extension de fichier pendant la copie des objets blob qui s’affichent dans le conteneur *input*, vers le conteneur *output*. Le code enregistre l’extension de l’objet blob *input* et définit l’extension de l’objet blob *output* sur *.txt*.
+Hello modifications suivantes au code exemple hello extension de fichier pendant la copie des objets BLOB qui s’affichent dans hello *d’entrée* conteneur toohello *sortie* conteneur. code de Hello consigne extension hello Hello *d’entrée* d’objets blob et définit l’extension hello Hello *sortie* trop d’objets blob*.txt*.
 
         public static void CopyBlobToTxtFile([BlobTrigger("input/{name}.{ext}")] TextReader input,
             [Blob("output/{name}.txt")] out string output,
@@ -81,8 +81,8 @@ L’exemple de code suivant remplace l’extension de fichier pendant la copie d
             output = input.ReadToEnd();
         }
 
-## <a id="types"></a> Types que vous pouvez lier aux objets blob
-Vous pouvez utiliser l’attribut `BlobTrigger` sur les types de paramètre suivants :
+## <a id="types"></a>Types que vous pouvez lier tooblobs
+Vous pouvez utiliser hello `BlobTrigger` attribut sur hello les types suivants :
 
 * `string`
 * `TextReader`
@@ -96,12 +96,12 @@ Vous pouvez utiliser l’attribut `BlobTrigger` sur les types de paramètre suiv
 * `IEnumerable<CloudPageBlob>`
 * Autres types de désérialisation par [ICloudBlobStreamBinder](#icbsb) 
 
-Si vous souhaitez utiliser directement le compte Microsoft Azure Storage, vous pouvez ajouter un paramètre `CloudStorageAccount` à la signature de méthode.
+Si vous souhaitez toowork directement avec hello compte de stockage Azure, vous pouvez également ajouter un `CloudStorageAccount` la signature de méthode toohello paramètre.
 
-Pour obtenir des exemples, consultez le [code de liaison d’objets blob dans le référentiel azure-webjobs-sdk sur GitHub.com](https://github.com/Azure/azure-webjobs-sdk/blob/master/test/Microsoft.Azure.WebJobs.Host.EndToEndTests/BlobBindingEndToEndTests.cs).
+Pour obtenir des exemples, consultez hello [code de liaison dans le référentiel du Kit sdk azure webjobs hello sur GitHub.com d’objets blob](https://github.com/Azure/azure-webjobs-sdk/blob/master/test/Microsoft.Azure.WebJobs.Host.EndToEndTests/BlobBindingEndToEndTests.cs).
 
-## <a id="string"></a> Obtention du contenu de l’objet blob de texte via la liaison à une chaîne
-Si vous attendez des objets de texte blob, vous pouvez appliquer l’élément `BlobTrigger` à un paramètre `string`. L’exemple de code suivant lie un objet blob de texte à un paramètre `string` nommé `logMessage`. La fonction utilise ce paramètre pour écrire le contenu de l’objet blob dans le tableau de bord du Kit de développement logiciel (SDK) WebJobs. 
+## <a id="string"></a>Mise en route du contenu d’objet blob de texte par liaison toostring
+Si les objets BLOB de texte est attendus, `BlobTrigger` peuvent être appliqué tooa `string` paramètre. exemple de code suivant Hello lie un tooa d’objets blob de texte `string` paramètre nommé `logMessage`. fonction Hello utilise ce contenu de hello paramètre toowrite de hello blob toohello du tableau de bord WebJobs SDK. 
 
         public static void WriteLog([BlobTrigger("input/{name}")] string logMessage,
             string name, 
@@ -113,7 +113,7 @@ Si vous attendez des objets de texte blob, vous pouvez appliquer l’élément `
         }
 
 ## <a id="icbsb"></a> Obtention de contenu d’objet blob sérialisé via ICloudBlobStreamBinder
-L’exemple de code suivant utilise une classe qui implémente l’élément `ICloudBlobStreamBinder` pour activer l’attribut `BlobTrigger`, afin de lier un objet blob au type `WebImage`.
+Hello exemple de code suivant utilise une classe qui implémente `ICloudBlobStreamBinder` tooenable hello `BlobTrigger` toobind un toohello de l’objet blob d’attribut `WebImage` type.
 
         public static void WaterMark(
             [BlobTrigger("images3/{name}")] WebImage input,
@@ -132,7 +132,7 @@ L’exemple de code suivant utilise une classe qui implémente l’élément `IC
             output = input.Resize(width, height);
         }
 
-Le code de liaison du type `WebImage` est fourni dans une classe `WebImageBinder` dérivée de la classe `ICloudBlobStreamBinder`.
+Hello `WebImage` code de liaison est fournie dans un `WebImageBinder` classe qui dérive de `ICloudBlobStreamBinder`.
 
         public class WebImageBinder : ICloudBlobStreamBinder<WebImage>
         {
@@ -149,8 +149,8 @@ Le code de liaison du type `WebImage` est fourni dans une classe `WebImageBinder
             }
         }
 
-## <a name="getting-the-blob-path-for-the-triggering-blob"></a>Obtenir le chemin d'accès aux objets blob pour l'objet blob de déclenchement
-Pour obtenir le nom du conteneur et le nom blob de l'objet blob qui a déclenché la fonction, incluez un paramètre de chaîne `blobTrigger` dans la signature de la fonction.
+## <a name="getting-hello-blob-path-for-hello-triggering-blob"></a>Mise en route de chemin d’accès des blob hello pour hello déclenchant des objets blob
+nom du conteneur tooget hello et nom d’objet blob d’objet blob hello qui a déclenché fonction hello, incluent un `blobTrigger` paramètre dans la signature de fonction hello de chaîne.
 
         public static void WriteLog([BlobTrigger("input/{name}")] string logMessage,
             string name,
@@ -163,20 +163,20 @@ Pour obtenir le nom du conteneur et le nom blob de l'objet blob qui a déclench�
         }
 
 
-## <a id="poison"></a> Gestion des objets blob incohérents
-Lorsqu’une fonction `BlobTrigger` échoue, le Kit de développement logiciel (SDK) l’appelle à nouveau, au cas où l’échec aurait été provoqué par une erreur temporaire. Si le problème est occasionné par le contenu de l’objet blob, la fonction échoue chaque fois qu’elle tente de traiter cet objet. Par défaut, le Kit de développement logiciel (SDK) appelle une fonction jusqu’à 5 fois pour un objet blob donné. En cas d’échec après la cinquième tentative, le Kit de développement logiciel (SDK) ajoute un message à la file d’attente nommée *webjobs-blobtrigger-poison*.
+## <a id="poison"></a>Comment les objets BLOB toohandle incohérents
+Lorsqu’un `BlobTrigger` fonction échoue, hello SDK appelle à nouveau, en cas d’échec de hello a été provoquée par une erreur temporaire. Si l’erreur de hello est provoquée par le contenu de l’objet blob de hello hello, fonction hello échoue à chaque fois qu’il essaie d’objet blob de tooprocess hello. Par défaut, hello SDK appelle une fonction des heures de too5 pour un objet blob donné. Si vous essayez de cinquième hello échoue, hello Kit de développement logiciel ajoute une file d’attente de tooa message nommé *webjobs-blobtrigger-incohérents*.
 
-Vous pouvez configurer le nombre maximal de tentatives. Le paramètre [MaxDequeueCount](websites-dotnet-webjobs-sdk-storage-queues-how-to.md#configqueue) est utilisé à la fois pour la gestion des objets blob incohérents et pour l’administration des messages de la file d’attente de messages incohérents. 
+Hello le nombre maximal de tentatives est configurable. Hello même [MaxDequeueCount](websites-dotnet-webjobs-sdk-storage-queues-how-to.md#configqueue) paramètre est utilisé pour la gestion des objets blob incohérent et la gestion des messages de file d’attente de messages incohérents. 
 
-Le message en file d’attente associé aux objets blob incohérents correspond à un objet JSON, qui contient les propriétés suivantes :
+message de file d’attente Hello pour les objets BLOB incohérent est un objet JSON qui contient les propriétés suivantes de hello :
 
-* FunctionId (au format *{nom_tâche_web}*.Functions.*{nom_fonction}*, par exemple : WebJob1.Functions.CopyBlob)
+* ID de fonction (au format de hello *{nom de la tâche Web}*. Fonctions. *{Nom de la fonction}*, par exemple : WebJob1.Functions.CopyBlob)
 * BlobType (« BlockBlob » ou « PageBlob »)
 * ContainerName
 * BlobName
 * ETag (identificateur de version de l’objet blob, par exemple : « 0x8D1DC6E70A277EF »)
 
-Dans l’exemple de code suivant, la fonction `CopyBlob` comporte du code qui provoque l’échec de cette fonction chaque fois qu’elle est appelée. Une fois que le Kit de développement logiciel (SDK) a atteint le nombre de tentatives d’appel défini, un message est créé dans la file d’attente des objets blob incohérents. Ce message est traité par la fonction `LogPoisonBlob`. 
+Dans hello code suivant exemple hello `CopyBlob` fonction comporte du code qui provoque son toofail chaque fois qu’elle est appelée. Une fois hello SDK appelle pour le nombre maximal de hello de nouvelles tentatives, un message est créé sur la file d’attente de messages incohérents blob hello et ce message est traité par hello `LogPoisonBlob` (fonction). 
 
         public static void CopyBlob([BlobTrigger("input/{name}")] TextReader input,
             [Blob("textblobs/output-{name}")] out string output)
@@ -196,7 +196,7 @@ Dans l’exemple de code suivant, la fonction `CopyBlob` comporte du code qui pr
             logger.WriteLine("ETag: {0}", message.ETag);
         }
 
-Le Kit de développement logiciel (SDK) désérialise automatiquement le message JSON. Voici la classe `PoisonBlobMessage` : 
+Hello SDK désérialise automatiquement un message JSON hello. Voici hello `PoisonBlobMessage` classe : 
 
         public class PoisonBlobMessage
         {
@@ -208,40 +208,40 @@ Le Kit de développement logiciel (SDK) désérialise automatiquement le messag
         }
 
 ### <a id="polling"></a> Algorithme d’interrogation des objets blob
-Le Kit de développement logiciel (SDK) WebJobs analyse tous les conteneurs spécifiés par les attributs `BlobTrigger` au démarrage de l’application. Dans un compte de stockage volumineux, cette analyse peut prendre du temps. Il se peut que les nouveaux objets blob ne soient pas tout de suite détectés et que les fonctions `BlobTrigger` ne soient pas exécutées avant un certain temps.
+Hello WebJobs SDK analyse tous les conteneurs spécifiés par `BlobTrigger` attributs au démarrage de l’application. Dans un compte de stockage volumineux, cette analyse peut prendre du temps. Il se peut que les nouveaux objets blob ne soient pas tout de suite détectés et que les fonctions `BlobTrigger` ne soient pas exécutées avant un certain temps.
 
-Pour détecter des objets blob nouveaux ou modifiés après le démarrage de l’application, le Kit de développement logiciel (SDK) lit régulièrement les journaux de stockage d’objets blob. Les journaux des objets blob sont mis en mémoire tampon ; ils ne sont écrits physiquement que toutes les 10 minutes environ. Il peut donc y avoir un délai important après la création ou la mise à jour d’un objet blob avant l’exécution de la fonction `BlobTrigger` correspondante. 
+toodetect BLOB nouvelles ou modifiées après le démarrage de l’application, hello que SDK lit périodiquement à partir du stockage d’objets blob hello se connecte. Hello blob journaux sont en mémoire tampon et sont écrites uniquement physiquement de toutes les 10 minutes ou, par conséquent, il peut y avoir un délai important après un objet blob est créé ou mis à jour avant hello correspondant `BlobTrigger` fonction s’exécute. 
 
-Il existe une exception pour les objets blob que vous créez à l’aide de l’attribut `Blob` . Lorsque le Kit de développement logiciel (SDK) WebJobs crée un objet blob, il le transmet immédiatement à toutes les fonctions `BlobTrigger` correspondantes. Par conséquent, si vous avez une chaîne d’entrées et de sorties d’objets blob, le Kit de développement logiciel (SDK) peut les traiter efficacement. Mais si vous voulez bénéficier d’une faible latence lors de l’exécution des fonctions de traitement des objets blob créés ou mis à jour par d’autres moyens, nous vous recommandons d’utiliser l’élément `QueueTrigger` plutôt que l’élément `BlobTrigger`.
+Il existe une exception pour les objets BLOB que vous créez à l’aide de hello `Blob` attribut. Lorsque hello WebJobs SDK crée un nouvel objet blob, il passe immédiatement hello un nouvel objet blob tooany correspondance `BlobTrigger` fonctions. Par conséquent, si vous avez une chaîne d’objets blob entrées et sorties, hello SDK peut les traiter efficacement. Mais si vous voulez bénéficier d’une faible latence lors de l’exécution des fonctions de traitement des objets blob créés ou mis à jour par d’autres moyens, nous vous recommandons d’utiliser l’élément `QueueTrigger` plutôt que l’élément `BlobTrigger`.
 
 ### <a id="receipts"></a> Reçus d’objets blob
-Le Kit de développement logiciel (SDK) Webjobs s’assure qu’aucune fonction `BlobTrigger` n’est appelée plusieurs fois pour un seul et même objet blob, nouveau ou mis à jour. Pour ce faire, il tient à jour les *reçus d’objets blob* afin de déterminer si la version d’un objet blob donné a été traitée.
+Hello WebJobs SDK vous assurer qu’aucune `BlobTrigger` fonction est appelée plusieurs fois pour hello même nouveaux ou mis à jour des objets blob. Pour ce faire, il en conservant *accusés de réception d’objets blob* dans l’ordre toodetermine si une version de l’objet blob donné a été traitée.
 
-Les reçus d’objets blob sont stockés dans un conteneur appelé *azure-webjobs-hosts* associé au compte de stockage Microsoft Azure indiqué par la chaîne de connexion AzureWebJobsStorage. Un reçu d’objet blob contient les informations suivantes :
+Accusés de réception BLOB sont stockées dans un conteneur nommé *hôtes de tâches Web azure* dans le compte de stockage Azure hello spécifié par la chaîne de connexion AzureWebJobsStorage de hello. Un accusé de réception d’objet blob a hello informations suivantes :
 
-* Fonction appelée pour l’objet blob ("*{nom_tâche_web}*.Functions.*{nom_fonction}*", par exemple : « WebJob1.Functions.CopyBlob »)
-* Nom du conteneur
-* Type d’objet blob (« BlockBlob » ou « PageBlob »)
-* Nom de l’objet blob
-* ETag (identificateur de version de l’objet blob, par exemple : « 0x8D1DC6E70A277EF »)
+* fonction qui a été appelée pour l’objet blob de hello de Hello («*{nom de la tâche Web}*. Fonctions. *{Nom de la fonction}*», par exemple : « WebJob1.Functions.CopyBlob »)
+* nom du conteneur Hello
+* type d’objet blob Hello (« BlockBlob » ou « Un PageBlob »)
+* nom d’objet blob Hello
+* Hello ETag (un identificateur de version des objets blob, par exemple : « 0x8D1DC6E70A277EF »)
 
-Si vous souhaitez forcer le retraitement d’un objet blob, vous pouvez supprimer manuellement le reçu de l’objet blob à partir du conteneur *azure-webjobs-hosts* .
+Si vous souhaitez tooforce retraitement d’un objet blob, vous pouvez supprimer manuellement le reçu de blob hello pour cet objet blob à partir de hello *hôtes de tâches Web azure* conteneur.
 
-## <a id="queues"></a>Sujets connexes traités dans l’article relatif aux files d’attente
-Pour en savoir plus sur la gestion du traitement d’objets blob déclenché par un message en file d’attente, ou pour consulter des scénarios relatifs au Kit de développement logiciel (SDK) WebJobs non spécifiques du traitement d’objets blob, consultez la rubrique [Utilisation du stockage de la file d’attente Azure avec le Kit de développement logiciel (SDK) WebJobs](websites-dotnet-webjobs-sdk-storage-queues-how-to.md). 
+## <a id="queues"></a>Rubriques connexes couvertes par l’article de files d’attente hello
+Pour plus d’informations sur la façon dont le traitement des objets blob toohandle déclenché par un message de la file d’attente, ou pour les tâches Web scénarios du Kit de développement logiciel pas tooblob spécifique du traitement, consultez [comment toouse Azure file d’attente de stockage avec hello WebJobs SDK](websites-dotnet-webjobs-sdk-storage-queues-how-to.md). 
 
-Les sujets associés abordés dans cet article sont les suivants :
+Rubriques connexes dans cet article hello suivants :
 
 * Fonctions asynchrones
 * Instances multiples
 * Arrêt approprié
-* Utilisation des attributs du Kit de développement logiciel (SDK) WebJobs dans le corps d’une fonction
-* Définition des chaînes de connexion du Kit de développement logiciel (SDK) dans le code.
+* Utiliser les attributs de WebJobs SDK dans le corps d’une fonction de hello
+* Définir des chaînes de connexion du Kit de développement logiciel hello dans le code.
 * Définition des valeurs des paramètres de constructeur du Kit de développement logiciel (SDK) WebJobs dans le code
 * Configuration de l’élément `MaxDequeueCount` pour la gestion des objets blob incohérents.
 * Déclenchement manuel d’une fonction
 * Écriture de journaux
 
 ## <a id="nextsteps"></a> Étapes suivantes
-Ce guide fournit des exemples de code qui indiquent comment gérer des scénarios courants pour l’utilisation des objets blob Microsoft Azure. Pour plus d’informations sur l’utilisation d’Azure Webjobs et du Kit de développement logiciel (SDK) WebJobs Azure, consultez la rubrique [Azure Webjobs - Ressources recommandées](http://go.microsoft.com/fwlink/?linkid=390226).
+Ce guide a fourni des exemples de code qui montrent comment les objets BLOB toohandle des scénarios courants d’utilisation de Azure. Pour plus d’informations sur la façon dont toouse tâches Web Azure et hello WebJobs SDK, consultez [Azure WebJobs recommandé de ressources](http://go.microsoft.com/fwlink/?linkid=390226).
 

@@ -1,6 +1,6 @@
 ---
-title: "Prévision de la demande énergétique : guide technique | Microsoft Docs"
-description: "Guide technique de l’utilisation du modèle de solution avec Microsoft Cortana Intelligence pour prévoir la demande énergétique."
+title: "aaaDemand prévision dans le Guide technique de l’énergie | Documents Microsoft"
+description: "Un guide technique toohello modèle de Solution avec Business Intelligence de Microsoft Cortana pour la prévision de l’énergie de la demande."
 services: cortana-analytics
 documentationcenter: 
 author: yijichen
@@ -14,225 +14,225 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/16/2016
 ms.author: inqiu;yijichen;ilanr9
-ms.openlocfilehash: c3bbef8fee018dc54e7d3edb86e3f9434999bdae
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c97b7c19c9e3a317aecc329e61a0692d2f1ec53e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="technical-guide-to-the-cortana-intelligence-solution-template-for-demand-forecast-in-energy"></a>Guide technique de l’utilisation du modèle de solution Cortana Intelligence pour prévoir la demande énergétique
-## <a name="overview"></a>**Vue d’ensemble**
-Les modèles de solution visent à accélérer le processus de création d’une démonstration E2E sur Cortana Intelligence Suite. Un modèle déployé fournit à votre abonnement les composants Cortana Intelligence nécessaires et établit les relations entre eux. Il amorce également le pipeline de données avec des exemples de données générées à partir d'une application de simulation de données. Téléchargez le simulateur de données en cliquant sur le lien fourni et installez-le sur votre ordinateur local. Pour obtenir des instructions sur l'utilisation du simulateur, consultez le fichier readme.txt. Les données issues du simulateur alimentent le pipeline de données et génèrent des prédictions Machine Learning que vous pouvez ensuite visualiser dans le tableau de bord Power BI.
+# <a name="technical-guide-toohello-cortana-intelligence-solution-template-for-demand-forecast-in-energy"></a>Guide technique toohello Cortana Intelligence Solution de modèle de prévision de l’énergie de la demande
+## <a name="overview"></a>**Vue d'ensemble**
+Modèles de solution sont conçues tooaccelerate hello consistant à générer une démonstration E2E par-dessus Cortana Intelligence Suite. Un modèle déployé provisionner votre abonnement avec le composant Cortana Intelligence nécessaire et établir des relations entre hello. Il alimente également pipeline de données hello avec des exemples de données générés à partir d’une application de simulation des données. Télécharger le simulateur de données hello à partir du lien hello fourni et l’installer sur votre ordinateur local, consultez le fichier Lisezmoi.txt de toohello pour obtenir des instructions sur l’utilisation de simulateur de hello. Données générées à partir du simulateur de hello seront hydrate pipeline de données hello et commencer à générer la prédiction d’apprentissage machine qui peut ensuite être visualisée dans le tableau de bord Power BI hello.
 
-Le modèle de solution se trouve [ici](https://gallery.cortanaintelligence.com/SolutionTemplate/Demand-Forecasting-for-Energy-1)
+modèle de solution Hello [ici](https://gallery.cortanaintelligence.com/SolutionTemplate/Demand-Forecasting-for-Energy-1)
 
-Le processus de déploiement vous guide à travers plusieurs étapes permettant de configurer les informations d’identification de votre solution. Veillez à consigner les informations d’identification, telles que le nom de la solution, le nom d’utilisateur et le mot de passe, que vous renseignez pendant le déploiement.
+processus de déploiement Hello va vous guider tout au long de plusieurs étapes tooset, vos informations d’identification de la solution. Assurez-vous que vous enregistrez ces informations d’identification telles que le nom de la solution, nom d’utilisateur et mot de passe indiqués au cours du déploiement de hello.
 
-L’objectif de ce document est de vous présenter l’architecture de référence et les différents composants configurés dans votre abonnement dans le cadre de ce modèle de solution. Ce document explique également comment remplacer les exemples de données par vos propres données réelles afin de vous permettre de visualiser des analyses et des prévisions dérivées de vos propres données. Il décrit enfin les éléments du modèle de solution que vous devez modifier si vous souhaitez personnaliser la solution avec vos propres données. Vous trouverez à la fin de ce document des instructions sur la façon de configurer le tableau de bord Power BI pour ce modèle de solution.
+objectif Hello de ce document est l’architecture de référence tooexplain hello et différents composants configurés dans votre abonnement dans le cadre de ce modèle de Solution. document de Hello parle également comment tooreplace hello des exemples de données, avec des données réelles de votre propre toobe toosee en mesure d’insights/prédictions vous a gagné des données. En outre, hello document aborde les parties hello Hello modèle de Solution qui doivent toobe modifiée si vous souhaitez que les solutions de hello toocustomize avec vos propres données. Obtenir des instructions sur la façon dont toobuild hello du tableau de bord Power BI pour ce modèle de Solution sont fournies à la fin de hello.
 
 ## <a name="big-picture"></a>**Grandes lignes**
 ![](media/cortana-analytics-technical-guide-demand-forecast/ca-topologies-energy-forecasting.png)
 
 ### <a name="architecture-explained"></a>Architecture
-Le déploiement de la solution entraîne l’activation de divers services Azure dans Cortana Analytics Suite (*c’est-à-dire* Event Hub, Stream Analytics, HDInsight, Data Factory, Machine Learning, *etc.*). Le schéma d’architecture ci-dessus illustre globalement la construction de bout en bout du modèle de solution de prévision de la demande énergétique. Vous pouvez passer en revue ces services en cliquant dessus sur le schéma du modèle de solution créé avec le déploiement de la solution. Les sections suivantes décrivent chaque élément du schéma.
+Lors de la solution de hello est déployée, les divers services Azure dans Cortana Analytique Suite sont activés (*par exemple,* Event Hub, Stream Analytics, HDInsight, Data Factory, Machine Learning, *etc.*). diagramme d’architecture Hello ci-dessus montre, à un niveau élevé, comment hello prévision de la demande pour le modèle de Solution de l’énergie est construit à partir de bout en bout. Vous serez en mesure de tooinvestigate ces services en cliquant dessus sur hello diagramme de modèle de solution créé avec le déploiement hello de solution de hello. Hello les sections suivantes décrire chaque élément.
 
 ## <a name="data-source-and-ingestion"></a>**Source et ingestion de données**
 ### <a name="synthetic-data-source"></a>Source de données de synthèse
-Pour ce modèle, la source de données utilisée est générée à partir d’une application de bureau que vous allez télécharger et exécuter localement après la réussite du déploiement. Vous trouverez les instructions de téléchargement et d’installation de cette application dans la barre des propriétés lorsque vous sélectionnez le premier nœud appelé Energy Forecasting Data Simulator sur le schéma du modèle de solution. Cette application alimente le service [Azure Event Hub](#azure-event-hub) avec des points de données, ou événements, qui seront utilisés dans le reste du flux de la solution.
+Pour ces données de hello du modèle source utilisé est généré à partir d’une application de bureau que vous allez télécharger et exécuter localement après un déploiement réussi. Vous recherchez toodownload d’instructions hello et installer cette application dans la barre des propriétés hello lorsque vous sélectionnez hello premier nœud appelé simulateur de données de prévision d’énergie sur le diagramme de modèle de solution hello. Cette application de flux de hello [concentrateur d’événements Azure](#azure-event-hub) service avec des points de données ou des événements, qui seront utilisés dans le reste de hello du flux de solution hello.
 
-L’application de génération d’événements alimente le service Azure Event Hub uniquement lorsqu’elle est exécutée sur votre ordinateur.
+application de la génération des événements Hello remplira hello concentrateur d’événements Azure uniquement lors de son exécution sur votre ordinateur.
 
 ### <a name="azure-event-hub"></a>Azure Event Hub
-Le service [Azure Event Hub](https://azure.microsoft.com/services/event-hubs/) est le destinataire des données fournies par la source de données de synthèse décrite ci-dessus.
+Hello [concentrateur d’événements Azure](https://azure.microsoft.com/services/event-hubs/) service est destinataire hello d’entrée hello fournie par hello synthétique Source de données décrit ci-dessus.
 
 ## <a name="data-preparation-and-analysis"></a>**Préparation et analyse des données**
 ### <a name="azure-stream-analytics"></a>Azure Stream Analytics
-Le service [Azure Stream Analytics](https://azure.microsoft.com/services/stream-analytics/) sert à fournir des analyses en temps quasi-réel sur le flux d’entrée du service [Azure Event Hub](#azure-event-hub) et à publier les résultats dans un tableau de bord [Power BI](https://powerbi.microsoft.com). Il permet également d’archiver, dans le service [Azure Storage](https://azure.microsoft.com/services/storage/), tous les événements bruts entrants qui seront ensuite traités par le service [Azure Data Factory](https://azure.microsoft.com/documentation/services/data-factory/).
+Hello [Analytique de flux de données Azure](https://azure.microsoft.com/services/stream-analytics/) service est utilisé tooprovide près analytique en temps réel sur les flux d’entrée de hello de hello [concentrateur d’événements Azure](#azure-event-hub) de service et de publier les résultats sur un [Power BI](https://powerbi.microsoft.com) tableau de bord, ainsi que l’archivage de tous les bruts toohello événements entrants [Azure Storage](https://azure.microsoft.com/services/storage/) service pour un traitement ultérieur par hello [Azure Data Factory](https://azure.microsoft.com/documentation/services/data-factory/) service.
 
 ### <a name="hd-insights-custom-aggregation"></a>Agrégation personnalisée HDInsight
-Le service Azure HD Insight est utilisé pour exécuter des scripts [Hive](http://blogs.msdn.com/b/bigdatasupport/archive/2013/11/11/get-started-with-hive-on-hdinsight.aspx) (orchestrés par Azure Data Factory) pour agréger les événements bruts ayant été archivés à l’aide du service Azure Stream Analytics.
+Hello service de Azure HD Insight est utilisé toorun [Hive](http://blogs.msdn.com/b/bigdatasupport/archive/2013/11/11/get-started-with-hive-on-hdinsight.aspx) agrégations tooprovide de scripts (orchestrés par Azure Data Factory) sur des événements bruts hello qui ont été archivés à l’aide du service d’Analytique de flux de données Azure hello.
 
 ### <a name="azure-machine-learning"></a>Azure Machine Learning
-Le service [Azure Machine Learning](https://azure.microsoft.com/services/machine-learning/) est utilisé (et orchestré par Azure Data Factory) pour prédire la consommation électrique future d’une région particulière compte tenu des entrées reçues.
+Hello [Azure Machine Learning](https://azure.microsoft.com/services/machine-learning/) service est utilisé (orchestrés par Azure Data Factory) toomake prévoir la consommation d’énergie de futures d’une région donnée, fonction d’entrées hello reçues.
 
 ## <a name="data-publishing"></a>**Publication des données**
 ### <a name="azure-sql-database-service"></a>Service de base de données SQL Azure
-Le service [Azure SQL Database](https://azure.microsoft.com/services/sql-database/) sert à stocker (sous le contrôle d’Azure Data Factory) les prédictions reçues par le service Azure Machine Learning et qui seront utilisées dans le tableau de bord [Power BI](https://powerbi.microsoft.com).
+Hello [base de données SQL Azure](https://azure.microsoft.com/services/sql-database/) service est reçues par hello service Azure Machine Learning qui est consommée Bonjour des prédictions de hello toostore utilisé (géré par Azure Data Factory) [Power BI](https://powerbi.microsoft.com) tableau de bord.
 
 ## <a name="data-consumption"></a>**Consommation des données**
 ### <a name="power-bi"></a>Power BI
-Le service [Power BI](https://powerbi.microsoft.com) permet d’afficher un tableau de bord contenant les agrégations fournies par le service [Azure Stream Analytics](https://azure.microsoft.com/services/stream-analytics/), ainsi que les résultats des prévisions de la demande stockés dans [Azure SQL Database](https://azure.microsoft.com/services/sql-database/) et qui ont été générés à l’aide du service [Azure Machine Learning](https://azure.microsoft.com/services/machine-learning/). Pour obtenir des instructions sur la façon de configurer le tableau de bord Power BI pour ce modèle de solution, consultez la section ci-dessous.
+Hello [Power BI](https://powerbi.microsoft.com) service est tooshow utilisé un tableau de bord contient des agrégations fournies par hello [Analytique de flux de données Azure](https://azure.microsoft.com/services/stream-analytics/) service, ainsi que la demande des prévisions, stocké dans [SQL Azure Base de données](https://azure.microsoft.com/services/sql-database/) qui ont été générés à l’aide de hello [Azure Machine Learning](https://azure.microsoft.com/services/machine-learning/) service. Pour obtenir des Instructions sur la façon dont toobuild hello du tableau de bord Power BI pour ce modèle de Solution, consultez la section toohello ci-dessous.
 
-## <a name="how-to-bring-in-your-own-data"></a>**Comment importer vos propres données**
-Cette section explique comment importer vos propres données dans Azure et décrit les éléments à modifier compte tenu des données que vous importez dans cette architecture.
+## <a name="how-toobring-in-your-own-data"></a>**Comment toobring vos données**
+Cette section décrit comment toobring tooAzure de vos propres données et zones nécessiterait change pour les données de salutation vous amener à cette architecture.
 
-Les jeux de données que vous importez ont peu de chance de correspondre parfaitement à ce modèle de solution. Il est important de bien comprendre vos données et besoins pour déterminer la façon dont vous allez modifier ce modèle pour l’utiliser avec vos propres données. Si vous n’êtes pas familiarisé avec le service Azure Machine Learning, vous pouvez consulter la page [Didacticiel sur l’apprentissage automatique : création de votre première expérience dans Azure Machine Learning Studio](machine-learning/machine-learning-create-experiment.md) pour en obtenir un premier aperçu.
+Il est peu probable que vous mettez tout jeu de données correspondrait à hello le jeu de données utilisé pour ce modèle de solution. Présentation de vos données et la configuration requise sera essentiel dans la façon dont vous modifier toowork de ce modèle avec vos propres données. S’il s’agit de votre première toohello d’exposition service Azure Machine Learning, vous pouvez obtenir un tooit introduction à l’aide d’exemple hello dans [comment toocreate votre première expérience](machine-learning/machine-learning-create-experiment.md).
 
-Dans les sections suivantes, nous allons décrire les sections du modèle que vous devrez modifier lors de l’introduction d’un nouveau jeu de données.
+traite des sections hello du modèle hello qui requièrent des modifications lorsqu’un nouveau jeu de données est introduit Hello les sections suivantes.
 
 ### <a name="azure-event-hub"></a>Azure Event Hub
-Le service [Azure Event Hub](https://azure.microsoft.com/services/event-hubs/) est très générique, au point que les données peuvent être publiées sur le hub au format CSV ou JSON. Bien que le service Azure Event Hub n’implique aucun traitement particulier, il est important de comprendre les données qui l’alimentent.
+Hello [concentrateur d’événements Azure](https://azure.microsoft.com/services/event-hubs/) service est très générique, telles que les données peuvent être publiées toohello hub au format CSV ou JSON. Aucun traitement spécial ne se Bonjour concentrateur d’événements Azure, mais il est important de que vous familiariser avec les données hello qui sont chargées dans celui-ci.
 
-Ce document ne décrit pas le mode de réception de vos données, mais vous pouvez facilement envoyer des événements ou des données vers un service Azure Event Hub à l’aide de l’[API Event Hub](event-hubs/event-hubs-programming-guide.md).
+Ce document ne décrit pas comment tooingest vos données, mais l’un peut facilement envoyer des événements ou des données tooan concentrateur d’événements Azure, à l’aide de hello [API de concentrateur d’événements](event-hubs/event-hubs-programming-guide.md).
 
 ### <a name="azure-stream-analytics"></a>Azure Stream Analytics
-Le service [Azure Stream Analytics](https://azure.microsoft.com/services/stream-analytics/) permet de fournir des analyses en temps quasi-réel grâce à une lecture des flux de données et à l’envoi de données vers diverses sources.
+Hello [Analytique de flux de données Azure](https://azure.microsoft.com/services/stream-analytics/) service est utilisé tooprovide près analytique en temps réel par la lecture à partir de flux de données et la sortie des données tooany de diverses sources.
 
-Dans le cas du modèle de solution de prévision de la demande énergétique, la requête Azure Stream Analytics se compose de deux sous-requêtes, chacune utilisant les événements du service Azure Event Hub en tant qu’entrées et générant des sorties à deux emplacements distincts. Ces sorties comprennent un jeu de données Power BI et un emplacement Azure Storage.
+Pourquoi la demande de prévision de modèle de Solution de l’énergie, hello Analytique de flux de données Azure constituée de deux sous-requêtes, chaque consomment des événements du service de concentrateur d’événements Azure de hello en tant qu’entrées et ayant des sorties tootwo des emplacements distincts. Ces sorties comprennent un jeu de données Power BI et un emplacement Azure Storage.
 
-Pour accéder à la requête [Azure Stream Analytics](https://azure.microsoft.com/services/stream-analytics/) :
+Hello [Analytique de flux de données Azure](https://azure.microsoft.com/services/stream-analytics/) accessibles de requête :
 
-* Connectez-vous au [portail de gestion Azure](https://manage.windowsazure.com/)
-* Recherchez les travaux Stream Analytics ![](media/cortana-analytics-technical-guide-demand-forecast/icon-stream-analytics.png) qui ont été générés au moment du déploiement de la solution. L’un effectue un Push des données vers Blob Storage (par exemple, mytest1streaming432822asablob), et l'autre vers Power BI (par exemple, mytest1streaming432822asapbi).
+* Connectez hello [portail de gestion Azure](https://manage.windowsazure.com/)
+* Localisation des travaux hello stream analytique ![](media/cortana-analytics-technical-guide-demand-forecast/icon-stream-analytics.png) qui ont été générés lors du déploiement de solutions de hello. Une est pour pousser le stockage des données tooblob (par exemple, mytest1streaming432822asablob) et hello autres une est pour pousser des données tooPower BI (par exemple, mytest1streaming432822asapbi).
 * Sélectionnez
 
-  * ***INPUTS*** pour afficher l’entrée de la requête
-  * ***QUERY*** pour afficher la requête elle-même
-  * ***OUTPUTS*** pour afficher les différentes sorties
+  * ***ENTRÉES*** entrée de requête hello tooview
+  * ***REQUÊTE*** tooview hello requête
+  * ***SORTIES*** tooview hello différentes sorties
 
-Pour plus d’informations sur la construction des requêtes Azure Stream Analytics, consultez la [référence de requête Stream Analytics](https://msdn.microsoft.com/library/azure/dn834998.aspx) sur MSDN.
+Vous trouverez plus d’informations sur la construction de la requête Analytique de flux de données Azure Bonjour [référence de flux de requête Analytique](https://msdn.microsoft.com/library/azure/dn834998.aspx) sur MSDN.
 
-Dans cette solution, le travail Azure Stream Analytics qui génère le jeu de données avec des informations d’analyse en temps quasi-réel concernant le flux de données entrant dans un tableau de bord Power BI est fourni dans le cadre de ce modèle de solution. Étant donné que le format des données entrantes est implicitement connu, ces requêtes devront être modifiées en fonction de votre format de données.
+Dans cette solution, hello tâche Analytique de flux de données Azure qui génère le dataset avec des informations d’analytique en temps réel sur hello entrant données flux tooa tableau de bord presque est fourni dans le cadre de ce modèle de solution. Étant donné qu’une connaissance implicite sur le format de données entrants hello, ces requêtes devez toobe modifiée en fonction de votre format de données.
 
-L’autre travail Azure Stream Analytics génère tous les événements [Event Hub](https://azure.microsoft.com/services/event-hubs/) dans [Azure Storage](https://azure.microsoft.com/services/storage/) et ne nécessite donc aucune modification, quel que soit votre format de données, puisque les informations d’événement complètes sont transmises en continu vers le stockage.
+Hello autre tâche Analytique de flux de données Azure génère tous les [concentrateur d’événements](https://azure.microsoft.com/services/event-hubs/) événements [Azure Storage](https://azure.microsoft.com/services/storage/) et ne nécessite donc aucune modification, quelle que soit votre format de données comme informations d’événement complet hello sont transmis en continu toostorage.
 
 ### <a name="azure-data-factory"></a>Azure Data Factory
-Le service [Azure Data Factory](https://azure.microsoft.com/documentation/services/data-factory/) orchestre le déplacement et le traitement des données. Dans le modèle de solution de prévision de la demande énergétique, la fabrique de données est constituée de douze [pipelines](data-factory/data-factory-create-pipelines.md) qui déplacent et traitent les données à l’aide de différentes technologies.
+Hello [Azure Data Factory](https://azure.microsoft.com/documentation/services/data-factory/) service orchestre le déplacement des hello et le traitement des données. Bonjour à la demande de prévision pour les données de modèle de Solution énergie hello fabrique est constituée de douze [pipelines](data-factory/data-factory-create-pipelines.md) qui déplacer et traiter les données hello à l’aide de différentes technologies.
 
-  Vous pouvez accéder à votre fabrique de données en ouvrant le nœud Data Factory en bas du diagramme du modèle de solution créé avec le déploiement de la solution. Vous êtes alors redirigé vers la fabrique de données sur votre portail de gestion Azure. Si vous rencontrez des erreurs dans vos jeux de données, vous pouvez les ignorer car ces erreurs sont liées à la fabrique de données déployée avant le démarrage du générateur de données. Ces erreurs ne perturbent pas le fonctionnement de votre fabrique de données.
+  Vous pouvez accéder à votre fabrique de données en ouvrant le nœud de fabrique de données hello bas hello du diagramme de modèle de solution hello créé avec le déploiement hello de solution de hello. Cette opération prendra vous toohello fabrique de données sur le portail de gestion Azure. Si vous constatez des erreurs dans vos jeux de données, vous pouvez ignorer ceux qu’ils sont en raison de la fabrique de toodata en cours de déploiement avant le démarrage de générateur de données hello. Ces erreurs ne perturbent pas le fonctionnement de votre fabrique de données.
 
-Cette section décrit les [pipelines](data-factory/data-factory-create-pipelines.md) et les [activités](data-factory/data-factory-create-pipelines.md) nécessaires qui sont contenus dans le service [Azure Data Factory](https://azure.microsoft.com/documentation/services/data-factory/). Vous trouverez ci-dessous une vue schématique de la solution.
+Cette section traite des hello nécessaire [pipelines](data-factory/data-factory-create-pipelines.md) et [activités](data-factory/data-factory-create-pipelines.md) contenus dans hello [Azure Data Factory](https://azure.microsoft.com/documentation/services/data-factory/). Voici la vue de diagramme hello de solution de hello.
 
 ![](media/cortana-analytics-technical-guide-demand-forecast/ADF2.png)
 
-Cinq des pipelines de cette fabrique contiennent des scripts [Hive](http://blogs.msdn.com/b/bigdatasupport/archive/2013/11/11/get-started-with-hive-on-hdinsight.aspx) utilisés pour partitionner et agréger les données. Quand ils sont référencés, les scripts apparaissent dans le compte [Azure Storage](https://azure.microsoft.com/services/storage/) créé pendant l’installation, à l’emplacement suivant : demandforecasting\\\\script\\\\hive\\\\ (ou https://[nom de votre solution].blob.core.windows.net/demandforecasting).
+Cinq de pipelines hello de cette fabrique contiennent [Hive](http://blogs.msdn.com/b/bigdatasupport/archive/2013/11/11/get-started-with-hive-on-hdinsight.aspx) scripts toopartition utilisée et les données d’agrégation hello. Lorsque cela est indiqué, les scripts hello se trouve dans hello [Azure Storage](https://azure.microsoft.com/services/storage/) compte créé pendant l’installation. à l’emplacement suivant : demandforecasting\\\\script\\\\hive\\\\ (ou https://[nom de votre solution].blob.core.windows.net/demandforecasting).
 
-De la même manière que les requêtes [Azure Stream Analytics](#azure-stream-analytics-1), les scripts [Hive](http://blogs.msdn.com/b/bigdatasupport/archive/2013/11/11/get-started-with-hive-on-hdinsight.aspx) ont une connaissance implicite du format des données entrantes. Vous devez donc modifier ces requêtes en fonction de votre format de données et des exigences [d’ingénierie des caractéristiques](machine-learning/machine-learning-feature-selection-and-engineering.md).
+Toohello similaire [Analytique de flux de données Azure](#azure-stream-analytics-1) requêtes, le [Hive](http://blogs.msdn.com/b/bigdatasupport/archive/2013/11/11/get-started-with-hive-on-hdinsight.aspx) scripts ont une connaissance implicite sur le format de données entrants hello, ces requêtes devez toobe modifiée en fonction de votre format de date et [l’équipe d’ingénierie de fonctionnalité](machine-learning/machine-learning-feature-selection-and-engineering.md) configuration requise.
 
 #### <a name="aggregatedemanddatato1hrpipeline"></a>*AggregateDemandDataTo1HrPipeline*
-Ce [pipeline](data-factory/data-factory-create-pipelines.md) contient une seule activité, [HDInsightHive](data-factory/data-factory-hive-activity.md). Cette activité utilise un [HDInsightLinkedService](https://msdn.microsoft.com/library/azure/dn893526.aspx) qui exécute un script [Hive](http://blogs.msdn.com/b/bigdatasupport/archive/2013/11/11/get-started-with-hive-on-hdinsight.aspx) pour agréger les données à la demande diffusées en continu toutes les 10 secondes au niveau de la sous-station en données horaires au niveau de la région et les placer dans [Azure Storage](https://azure.microsoft.com/services/storage/) par le biais du travail Azure Stream Analytics.
+Cela [pipeline](data-factory/data-factory-create-pipelines.md) pipeline contient une activité unique - une [HDInsightHive](data-factory/data-factory-hive-activity.md) à l’aide de l’activité un [HDInsightLinkedService](https://msdn.microsoft.com/library/azure/dn893526.aspx) qui exécute un [Hive](http://blogs.msdn.com/b/bigdatasupport/archive/2013/11/11/get-started-with-hive-on-hdinsight.aspx)en continu dans des données de la demande au niveau de la région de toohourly niveau sous-centrale hello tooaggregate de script toutes les 10 secondes et le placer dans [Azure Storage](https://azure.microsoft.com/services/storage/) tâche d’Analytique de flux de données Azure hello.
 
 Le script [Hive](http://blogs.msdn.com/b/bigdatasupport/archive/2013/11/11/get-started-with-hive-on-hdinsight.aspx) utilisé pour cette tâche de partitionnement est ***AggregateDemandRegion1Hr.hql***
 
 #### <a name="loadhistorydemanddatapipeline"></a>*LoadHistoryDemandDataPipeline*
 Ce [pipeline](data-factory/data-factory-create-pipelines.md) contient deux activités :
 
-* [HDInsightHive](data-factory/data-factory-hive-activity.md), qui utilise un [HDInsightLinkedService](https://msdn.microsoft.com/library/azure/dn893526.aspx) exécutant un script Hive pour agréger les données de demande d’historique horaire au niveau de la sous-station en données horaires au niveau de la région et les placer dans Azure Storage pendant le travail Azure Stream Analytics
-* [Copy](https://msdn.microsoft.com/library/azure/dn835035.aspx) , qui déplace les données agrégées de l’objet blob Azure Storage vers la base de données SQL Microsoft Azure approvisionnée dans le cadre de l’installation du modèle de solution.
+* [HDInsightHive](data-factory/data-factory-hive-activity.md) à l’aide de l’activité une [HDInsightLinkedService](https://msdn.microsoft.com/library/azure/dn893526.aspx) que s’exécute une ruche tooaggregate hello toutes les heures l’historique des données à la demande au niveau de la région sous-centrale toohourly au niveau de script et la placer dans le stockage Azure pendant hello Azure Tâche de flux de données Analytique
+* [Copie](https://msdn.microsoft.com/library/azure/dn835035.aspx) activité qui déplace hello des données agrégées à partir de l’objet blob de stockage Azure toohello base de données SQL Azure qui a été configuré dans le cadre de l’installation du modèle de solution hello.
 
-Le script [Hive](http://blogs.msdn.com/b/bigdatasupport/archive/2013/11/11/get-started-with-hive-on-hdinsight.aspx) pour cette tâche est ***AggregateDemandHistoryRegion.hql***.
+Hello [Hive](http://blogs.msdn.com/b/bigdatasupport/archive/2013/11/11/get-started-with-hive-on-hdinsight.aspx) de script pour cette tâche est ***AggregateDemandHistoryRegion.hql***.
 
 #### <a name="mlscoringregionxpipeline"></a>*MLScoringRegionXPipeline*
-Ces [pipelines](data-factory/data-factory-create-pipelines.md) comprennent plusieurs activités dont le résultat final contient les prédictions notées à partir de l’expérience Azure Machine Learning associée à ce modèle de solution. Ils sont quasiment identiques : ce qui les différencie, c’est qu’ils gèrent chacun une région différente. Pour cela, un RegionID différent est passé dans le pipeline ADF et le script Hive pour chaque région.  
-Ce pipeline contient les activités suivantes :
+Ces [pipelines](data-factory/data-factory-create-pipelines.md) contient plusieurs activités et dont le résultat final est hello noté des prédictions à partir de l’expérience d’Azure Machine Learning hello associé à ce modèle de solution. Ils sont presque identiques, sauf chacun d’eux gère uniquement les hello autre région qui est effectuée par un autre RegionID passé au pipeline ADF hello et le script hive de hello pour chaque région.  
+les activités Hello contenues dans ce sont :
 
-* [HDInsightHive](data-factory/data-factory-hive-activity.md), qui utilise un [HDInsightLinkedService](https://msdn.microsoft.com/library/azure/dn893526.aspx) exécutant un script Hive pour effectuer les agrégations et l’ingénierie de fonctionnalités nécessaires pour l’expérience Azure Machine Learning. Les scripts Hive pour cette tâche sont le ***PrepareMLInputRegionX.hql*** respectif.
-* Activité [Copy](https://msdn.microsoft.com/library/azure/dn835035.aspx) qui déplace les résultats de l’activité [HDInsightHive](data-factory/data-factory-hive-activity.md) vers un objet blob Azure Storage unique, accessible à l’activité [AzureMLBatchScoring](https://msdn.microsoft.com/library/azure/dn894009.aspx).
-* [AzureMLBatchScoring](https://msdn.microsoft.com/library/azure/dn894009.aspx) qui appelle l’expérience Azure Machine Learning pour placer les résultats dans un objet blob Azure Storage unique.
+* [HDInsightHive](data-factory/data-factory-hive-activity.md) à l’aide de l’activité une [HDInsightLinkedService](https://msdn.microsoft.com/library/azure/dn893526.aspx) qui exécute une ruche script tooperform agrégations, qu’il fonctionnalité nécessaire pour hello expérience Azure Machine Learning l’ingénierie. Hello scripts Hive pour cette tâche sont respectifs ***PrepareMLInputRegionX.hql***.
+* [Copie](https://msdn.microsoft.com/library/azure/dn835035.aspx) activité qui déplace les résultats hello hello [HDInsightHive](data-factory/data-factory-hive-activity.md) activité tooa unique objet blob Azure Storage qui est accessibles par hello [AzureMLBatchScoring](https://msdn.microsoft.com/library/azure/dn894009.aspx) activité.
+* [AzureMLBatchScoring](https://msdn.microsoft.com/library/azure/dn894009.aspx) activité qui appelle l’expérience d’Azure Machine Learning hello qui se traduit par hello entraîne être placé dans un seul objet blob de stockage Azure.
 
 #### <a name="copyscoredresultregionxpipeline"></a>*CopyScoredResultRegionXPipeline*
-Ces [pipelines](data-factory/data-factory-create-pipelines.md) contiennent une seule activité, [Copy](https://msdn.microsoft.com/library/azure/dn835035.aspx). Cette activité déplace les résultats de l’expérience Azure Machine Learning du ***MLScoringRegionXPipeline*** respectif vers la base de données Azure SQL Database approvisionnée dans le cadre de l’installation du modèle de solution.
+Ces [pipelines](data-factory/data-factory-create-pipelines.md) contienne une seule activité - un [copie](https://msdn.microsoft.com/library/azure/dn835035.aspx) activité qui déplace les résultats hello Hello expérience Azure Machine Learning hello respectif ***MLScoringRegionXPipeline *** toohello base de données SQL Azure qui a été configuré dans le cadre de l’installation du modèle de solution hello.
 
 #### <a name="copyaggdemandpipeline"></a>*CopyAggDemandPipeline*
-Ces [pipelines](data-factory/data-factory-create-pipelines.md) contiennent une seule activité, [Copy](https://msdn.microsoft.com/library/azure/dn835035.aspx). Cette activité déplace les données à la demande agrégées en continu de ***LoadHistoryDemandDataPipeline*** vers la base de données Azure SQL Database approvisionnée dans le cadre de l’installation du modèle de solution.
+Cela [pipelines](data-factory/data-factory-create-pipelines.md) contienne une seule activité - un [copie](https://msdn.microsoft.com/library/azure/dn835035.aspx) activité qui déplace hello agrégée des données à la demande en cours à partir de ***LoadHistoryDemandDataPipeline*** toohello Azure Base de données SQL a été configuré dans le cadre de l’installation du modèle de solution hello.
 
 #### <a name="copyregiondatapipeline-copysubstationdatapipeline-copytopologydatapipeline"></a>*CopyRegionDataPipeline, CopySubstationDataPipeline, CopyTopologyDataPipeline*
-Ces [pipelines](data-factory/data-factory-create-pipelines.md) contiennent une seule activité, [Copy](https://msdn.microsoft.com/library/azure/dn835035.aspx). Cette activité déplace les données de référence de Region/Substation/Topologygeo chargées dans l’objet blob Azure Storage dans le cadre de l’installation du modèle de solution vers la base de données Azure SQL Database approvisionnée dans le cadre de l’installation du modèle de solution.
+Ces [pipelines](data-factory/data-factory-create-pipelines.md) contienne une seule activité - un [copie](https://msdn.microsoft.com/library/azure/dn835035.aspx) activité qui déplace les données de référence hello de région/sous-centrale/Topologygeo qui sont téléchargés tooAzure objet blob de stockage dans le cadre de la solution de hello modèle toohello d’installation base de données SQL Azure qui a été configuré dans le cadre de l’installation du modèle de solution hello.
 
 ### <a name="azure-machine-learning"></a>Azure Machine Learning
-L’expérience [Azure Machine Learning](https://azure.microsoft.com/services/machine-learning/) utilisée pour ce modèle de solution fournit la prédiction de la demande de la région. L’expérience est spécifique au jeu de données consommé et doit donc être modifiée ou remplacée compte tenu des données qui y sont importées.
+Hello [Azure Machine Learning](https://azure.microsoft.com/services/machine-learning/) faire des essais utilisés pour ce modèle de solution fournit prédiction hello de la demande de région. expérience de Hello est le jeu de données spécifique toohello consommée et nécessite donc des données spécifiques toohello modification ou de remplacement qui s’affiche dans.
 
 ## <a name="monitor-progress"></a>**Surveiller la progression**
-Une fois le Générateur de données lancé, l’alimentation du pipeline commence et les différents composants de votre solution entrent en action selon les commandes émises par la fabrique de données. Il existe deux méthodes de surveillance du pipeline.
+Une fois que hello Générateur de données est lancé, pipeline hello commence tooget intégré et hello différents composants de votre solution démarrent son en action commandes hello émis par hello Data Factory. Il existe deux façons, que vous pouvez surveiller le pipeline de hello.
 
-1. Vérifiez les données à partir d’Azure Blob Storage.
+1. Vérifier les données de hello à partir du stockage d’objets Blob Azure.
 
-    Un des travaux Stream Analytics enregistre les données brutes entrantes dans Blob Storage. Si vous cliquez sur le composant **Azure Blob Storage** de votre solution dans l’écran à partir duquel vous avez déployé la solution, puis cliquez sur **Ouvrir** dans le volet droit, vous accédez au [portail de gestion Azure](https://portal.azure.com). Une fois dans le portail, cliquez sur **Objets BLOB**. Dans le panneau suivant, vous verrez une liste de conteneurs. Cliquez sur **energysadata**. Le panneau suivant affiche le dossier **demandongoing**. Celui-ci comprend des dossiers nommés par exemple date=2016-01-28, etc. Si vous voyez ces dossiers, cela signifie que les données brutes sont correctement générées sur votre ordinateur et stockées dans Blob Storage. Vous devriez voir des fichiers avec des tailles finies en Mo dans ces dossiers.
-2. Vérifiez les données à partir d’Azure SQL Database.
+    Un des travaux de flux de données Analytique hello écrit hello entrants données tooblob un stockage brut. Si vous cliquez sur **stockage d’objets Blob Azure** composant de votre solution hello écran vous solution de hello correctement déployé, puis cliquez sur **ouvrir** dans le volet droit de hello, il vous faudra toohello [Portail de gestion azure](https://portal.azure.com). Une fois dans le portail, cliquez sur **Objets BLOB**. Dans le panneau de configuration suivant hello, vous verrez une liste de conteneurs. Cliquez sur **energysadata**. Dans le panneau de configuration suivant hello, vous verrez hello **« demandongoing »** dossier. À l’intérieur du dossier de rawdata hello, vous verrez des dossiers avec des noms comme date = 2016-01-28 etc.. Si vous voyez ces dossiers, il indique que les données brutes hello sont correctement générée sur votre ordinateur et stockées dans le stockage d’objets blob. Vous devriez voir des fichiers avec des tailles finies en Mo dans ces dossiers.
+2. Vérifiez les données de salutation à partir de la base de données SQL Azure.
 
-    La dernière étape du pipeline consiste à enregistrer des données (par exemple, les prédictions générées à partir de Machine Learning) dans SQL Database. Vous devrez peut-être attendre un maximum de deux heures pour que les données s'affichent dans SQL Database. Le [portail de gestion Azure](https://manage.windowsazure.com/)offre un moyen de surveiller la quantité de données disponible dans votre base de données SQL. Dans le volet gauche, identifiez les BASES DE DONNÉES SQL![](media/cortana-analytics-technical-guide-demand-forecast/SQLicon2.png) et cliquez dessus. Recherchez ensuite votre base de données (par exemple, demo123456db), puis cliquez dessus. Dans la page suivante, sous la section **Se connecter à votre base de données**, cliquez sur **Exécuter des requêtes Transact-SQL sur votre base de données SQL**.
+    Hello dernière étape du pipeline de hello donnée toowrite (par exemple, les prédictions à partir de l’apprentissage) dans la base de données SQL. Vous pouvez avoir toowait un maximum de 2 heures pour hello données tooappear dans base de données SQL. Une façon toomonitor la quantité de données est disponible dans votre base de données SQL s’effectue via [portail de gestion Azure](https://manage.windowsazure.com/). Sur le panneau gauche hello localiser les bases de données SQL![](media/cortana-analytics-technical-guide-demand-forecast/SQLicon2.png) et cliquez dessus. Recherchez ensuite votre base de données (par exemple, demo123456db), puis cliquez dessus. Sur la page suivante de hello sous **« Connexion base de données tooyour »** , cliquez sur **« Requêtes Transact-SQL d’exécution sur votre base de données SQL »**.
 
-    Ici, vous pouvez cliquer sur Nouvelle requête et entrez une requête pour obtenir le nombre de lignes (par exemple, select count(*) from DemandRealHourly). À mesure que votre base de données augmente, le nombre de lignes de la table doit augmenter.
-3. Vérifiez les données à partir du tableau de bord Power BI.
+    Ici, vous pouvez cliquer sur Nouvelle requête et de requête pour le nombre de hello de lignes (par exemple, « select count à partir de DemandRealHourly) » à mesure que votre base de données augmente, hello nombre de lignes dans la table de hello doit augmenter.)
+3. Vérifier les données de hello à partir du tableau de bord Power BI.
 
-    Vous pouvez configurer un tableau de bord de chemin à chaud Power BI pour surveiller les données brutes entrantes. Suivez les instructions contenues dans la section « Tableau de bord Power BI ».
+    Vous pouvez configurer Power BI chemin réactif du tableau de bord toomonitor hello entrantes données brutes. Veuillez suivre les instructions hello Bonjour section « Tableau de bord Power BI ».
 
 ## <a name="power-bi-dashboard"></a>**Tableau de bord Power BI**
 ### <a name="overview"></a>Vue d'ensemble
-Cette section décrit comment configurer un tableau de bord Power BI afin de visualiser vos données en temps réel à partir d’Azure Stream Analytics (chemin à chaud), ainsi que les résultats des prévisions à partir d’Azure Machine Learning (chemin à froid).
+Cette section décrit comment tooset des toovisualize du tableau de bord Power BI vos données en temps réel à partir d’Azure stream analytique (chemin d’accès à chaud), en tant que résultats ainsi que les prévisions à partir de Azure d’apprentissage (chemin d’accès à froid).
 
 ### <a name="setup-hot-path-dashboard"></a>Configurer le tableau de bord de chemin à chaud
-Dans les étapes suivantes, nous allons vous expliquer comment visualiser la sortie de données en temps réel des tâches Stream Analytics qui ont été générées au moment du déploiement de la solution. Les étapes suivantes nécessitent un compte [Power BI en ligne](http://www.powerbi.com/) . Si vous ne possédez pas de compte, vous pouvez en [créer un](https://powerbi.microsoft.com/pricing).
+vous guide Hello suit comment toovisualize en temps réel de sortie de données à partir de l’Analytique des flux de travaux qui ont été générées au moment de hello du déploiement de la solution. A [Power BI en ligne](http://www.powerbi.com/) compte est hello tooperform requis comme suit. Si vous ne possédez pas de compte, vous pouvez en [créer un](https://powerbi.microsoft.com/pricing).
 
 1. Ajouter une sortie Power BI dans Azure Stream Analytics (ASA).
 
-   * Pour configurer la sortie de votre travail Azure Stream Analytics en tant que tableau de bord Power BI, vous devez suivre les instructions contenues dans [Azure Stream Analytics et Power BI : tableau de bord d’analyse permettant de visualiser en temps réel les données de diffusion en continu](stream-analytics/stream-analytics-power-bi-dashboard.md).
-   * Dans votre [portail de gestion Azure](https://manage.windowsazure.com), recherchez le travail Stream Analytics. Le nom du travail doit être au format nom_solution+"streamingjob"+nombre_aléatoire+"asapbi" (c’est-à-dire, demostreamingjob123456asapbi).
-   * Ajoutez une sortie PowerBI pour le travail ASA. Définissez l’**alias de sortie** sur **PBIoutput**. Dans **Nom du jeu de données** et **Nom de la table**, entrez **EnergyStreamData**. Une fois que vous avez ajouté la sortie, cliquez sur **Démarrer** en bas de la page pour démarrer le travail Stream Analytics. Un message de confirmation doit s’afficher (*par exemple*: La tâche Stream Analytics ’myteststreamingjob12345asablob’ a bien démarré).
-2. Se connecter à [Power BI en ligne](http://www.powerbi.com)
+   * Vous devez obtenir des instructions de hello toofollow dans [Analytique de flux de données Azure et Power BI : un tableau de bord analytique en temps réel pour la visibilité en temps réel des flux de données](stream-analytics/stream-analytics-power-bi-dashboard.md) tooset de sortie hello de votre travail Analytique des flux de données Azure en tant que votre puissance Tableau de bord BI.
+   * Recherchez la tâche analytique hello stream dans votre [portail de gestion Azure](https://manage.windowsazure.com). nom Hello du travail de hello doit être : Nom_solution + streamingjob » » + nombre aléatoire + « asapbi » (c'est-à-dire demostreamingjob123456asapbi).
+   * Ajouter une sortie de Power BI pour le travail ASA hello. Ensemble hello **Alias de sortie** en tant que **'PBIoutput'**. Dans **Nom du jeu de données** et **Nom de la table**, entrez **EnergyStreamData**. Une fois que vous avez ajouté une sortie de hello, cliquez sur **« Démarrer »** bas hello de tâche de flux de données Analytique hello page toostart hello. Un message de confirmation doit s’afficher (*par exemple*: La tâche Stream Analytics ’myteststreamingjob12345asablob’ a bien démarré).
+2. Connectez-vous trop[Power BI en ligne](http://www.powerbi.com)
 
-   * Dans la section Jeux de données du volet gauche de Mon espace de travail, un nouveau jeu de données doit apparaître dans le volet gauche de Power BI. Il s'agit des données de diffusion en continu qui ont fait l’objet d’un Push à partir d'Azure Stream Analytics au cours de l'étape précédente.
-   * Assurez-vous que le volet ***Visualisations*** est ouvert et qu’il s’affiche à droite de l’écran.
-3. Créez la vignette Demand by Timestamp :
+   * Sur hello gauche Panneau de configuration des groupes de données dans mon espace de travail, vous devez être en mesure de toosee un nouveau présentant de jeu de données sur le panneau gauche de hello de Power BI. Il s’agit de hello de diffusion en continu de données que vous envoyées à l’étape précédente de hello Analytique de flux de données Azure.
+   * Vérifiez que hello ***visualisations*** volet est ouvert et qu’il est affiché sur le côté droit de l’écran hello.
+3. Créer hello « À la demande par horodatage » vignette :
 
-   * Cliquez sur le jeu de données **EnergyStreamData** dans la section Jeux de données du volet gauche.
+   * Cliquez sur le dataset **'EnergyStreamData'** sur hello section des jeux de données du Panneau de gauche.
    * Cliquez sur l’icône **Courbes** ![](media/cortana-analytics-technical-guide-demand-forecast/PowerBIpic8.png).
    * Cliquez sur EnergyStreamData dans le panneau **Champs** .
    * Cliquez sur **Horodatage** et vérifiez qu’il apparaît sous Axe. Cliquez sur **Charger** et vérifiez qu’il apparaît sous Valeurs.
-   * Cliquez sur **ENREGISTRER** en haut de l’écran et nommez le rapport EnergyStreamDataReport. Le rapport EnergyStreamDataReport s’affiche dans la section Rapports du volet Navigateur de gauche.
-   * Cliquez sur l’icône **Épingler au tableau de bord**![](media/cortana-analytics-technical-guide-demand-forecast/PowerBIpic6.png) dans le coin supérieur droit de ce graphique en courbes. Une fenêtre Épingler au tableau de bord peut apparaître pour vous permettre de sélectionner un tableau de bord. Sélectionnez EnergyStreamDataReport, puis cliquez sur Épingler.
-   * Dans le tableau de bord, pointez la souris sur cette vignette, cliquez sur l’icône Modifier située en haut à droite pour donner le titre « Demand by Timestamp ».
-4. Créez d’autres vignettes de tableau de bord en fonction des jeux de données appropriés. La vue Tableau de bord finale est illustrée ci-dessous.
+   * Cliquez sur **enregistrer** hello haut et nommez le rapport hello en tant que « EnergyStreamDataReport ». rapport Hello nommé « EnergyStreamDataReport » s’affichera dans la section rapports dans le volet de navigation hello sur la gauche.
+   * Cliquez sur **« Pin visuelles »** ![](media/cortana-analytics-technical-guide-demand-forecast/PowerBIpic6.png) icône dans le coin supérieur droit de ce graphique en courbes, une fenêtre « Pin tooDashboard » peut s’afficheront vous toochoose un tableau de bord. Sélectionnez EnergyStreamDataReport, puis cliquez sur Épingler.
+   * Pointez la souris hello sur cette vignette de tableau de bord hello, cliquez sur « Modifier » icône dans le coin supérieur droit toochange son titre en tant que « À la demande par Timestamp »
+4. Créez d’autres vignettes de tableau de bord en fonction des jeux de données appropriés. affichage du tableau de bord final Hello est indiqué ci-dessous.
      ![](media/cortana-analytics-technical-guide-demand-forecast/PBIFullScreen.png)
 
 ### <a name="setup-cold-path-dashboard"></a>Configurer le tableau de bord de chemin à froid
-Dans le pipeline de données de chemin à froid, l'objectif principal est d’obtenir la prévision de la demande de chaque région. Power BI se connecte à une base de données SQL Azure en tant que source de données où sont stockés les résultats de la prédiction.
+Dans le pipeline de données de chemin d’accès à froid, hello essentielles vise à la demande de tooget hello prévision de chaque région. Power BI connecte à base de données SQL Azure tooan comme source de données, où sont stockés les résultats de prédiction hello.
 
 > [!NOTE]
-> 1) Il faut plusieurs heures pour collecter suffisamment de résultats de prévisions pour le tableau de bord. Nous vous recommandons donc de démarrer ce processus 2 à 3 heures après le lancement du Générateur de données. 2) Dans cette étape, la condition préalable consiste à télécharger et installer le logiciel gratuit [Power BI Desktop](https://powerbi.microsoft.com/desktop).
+> 1) Il prend quelques heures toocollect suffisamment prévision des résultats pour le tableau de bord hello. Nous vous recommandons de que commencer ce processus 2-3 heures après déjeuner de générateur de données hello. (2) dans cette étape, condition préalable de hello est toodownload et installer le logiciel libre hello [Power BI desktop](https://powerbi.microsoft.com/desktop).
 >
 >
 
-1. Obtenez les informations d’identification de la base de données.
+1. Obtenir des informations d’identification de la base de données hello.
 
-   Avant de passer aux étapes suivantes, vous devez rechercher **le nom du serveur de base de données, le nom de la base de données, le nom d’utilisateur et le mot de passe** . Voici les étapes à suivre pour obtenir ces informations.
+   Vous devez **nom du serveur, nom de la base de données, nom d’utilisateur et mot de passe de base de données** avant de déplacer des étapes de toonext. Voici hello étapes tooguide vous comment toofind les.
 
-   * Une fois qu’**Azure SQL Database** apparaît en vert sur votre schéma de modèle de solution, cliquez dessus, puis cliquez sur **Ouvrir**. Vous accédez alors au portail de gestion Azure qui affiche une page d'informations sur votre base de données.
-   * La page contient une section Base de données dans laquelle figure la base de données que vous avez créée. Le nom de votre base de données doit être au format **nom_solution+nombre_aléatoire+db** (par exemple, montest12345db).
-   * Cliquez sur votre base de données. Dans le nouveau panneau contextuel, le nom de votre serveur de base de données apparaît dans la partie supérieure. Le nom de votre base de données doit être au format **"Your Solution Name + Random Number + 'database.windows.net,1433'"** (e.g. "mytest12345.database.windows.net,1433").
-   * Les **nom d’utilisateur** et **mot de passe** de votre base de données sont identiques aux nom d’utilisateur et mot de passe précédemment enregistrés au moment du déploiement de la solution.
-2. Mettez à jour la source de données du fichier Power BI de chemin à froid.
+   * Une fois qu’**Azure SQL Database** apparaît en vert sur votre schéma de modèle de solution, cliquez dessus, puis cliquez sur **Ouvrir**. Vous serez le portail de gestion tooAzure guidée et votre page d’informations de base de données s’ouvre également.
+   * Sur la page de hello, vous trouverez une section « Database ». Il indique que vous avez créé une base de données hello. nom de Hello de votre base de données doit être **« Votre nom de la Solution + nombre aléatoire + « db » »** (par exemple, « mytest12345db »).
+   * Cliquez sur votre base de données, Bonjour nouveau que POP panneau, vous pouvez trouver le nom de votre serveur de base de données en haut de hello. Le nom de votre base de données doit être au format **"Your Solution Name + Random Number + 'database.windows.net,1433'"** (e.g. "mytest12345.database.windows.net,1433").
+   * Votre base de données **nom d’utilisateur** et **mot de passe** sont hello identique hello nom d’utilisateur et mot de passe enregistré précédemment au cours de déploiement de solution de hello.
+2. Mettre à jour la source de données hello du chemin d’accès à froid hello fichier Power BI
 
-   * Vérifiez que vous avez installé la dernière version de [Power BI Desktop](https://powerbi.microsoft.com/desktop).
-   * Dans le dossier **DemandForecastingDataGeneratorv1.0** que vous avez téléchargé, double-cliquez sur le fichier **Power BI Template\DemandForecastPowerBI.pbix**. Les visualisations initiales sont basées sur des données fictives. **Remarque :** si un message d’erreur s’affiche, vérifiez que vous avez installé la dernière version de Power BI Desktop.
+   * Assurez-vous que vous avez installé la version la plus récente de hello [Power BI desktop](https://powerbi.microsoft.com/desktop).
+   * Bonjour **« DemandForecastingDataGeneratorv1.0 »** dossier que vous avez téléchargé, double-cliquez sur hello **'Template\DemandForecastPowerBI.pbix de BI Power'** fichier. les visualisations initiale Hello sont basées sur des données fictives. **Remarque :** si vous voyez une erreur de massage, assurez-vous que vous avez installé la version la plus récente de Power BI Desktop hello.
 
-     Après avoir ouvert le fichier, cliquez sur **Modifier les requêtes**dans la partie supérieure. Dans la fenêtre contextuelle, double-cliquez sur **Source** dans le volet droit.
+     Une fois que vous ouvrez, haut hello du fichier de hello, cliquez sur **modifier les requêtes**. Bonjour pop fenêtre, double-cliquez sur **'Source'** sur le panneau droit hello.
      ![](media/cortana-analytics-technical-guide-demand-forecast/PowerBIpic1.png)
-   * Dans la fenêtre contextuelle, remplacez **Serveur** et **Base de données** par vos propres noms de serveur et de base de données, puis cliquez sur **OK**. Pour le nom du serveur, veillez à spécifier le port 1433 (**NomVotreSolution.database.windows.net, 1433**). Ignorez les messages d’avertissement qui s’affichent à l’écran.
-   * Dans la fenêtre contextuelle suivante, deux options s’affichent dans le volet gauche (**Windows** et **Base de données**). Cliquez sur **Base de données** et renseignez vos **Nom d’utilisateur** et **Mot de passe** (il s’agit des nom d’utilisateur et mot de passe que vous avez entrés au moment du déploiement de la solution et de la création de la base de données SQL Azure). Dans ***Sélectionnez le niveau auquel appliquer ces paramètres***, cochez l’option du niveau de base de données. Cliquez ensuite sur **Se connecter**.
-   * Une fois redirigé sur la page précédente, fermez la fenêtre. Un message s’affiche ; cliquez sur **Appliquer**. Pour finir, cliquez sur le bouton **Enregistrer** pour enregistrer les modifications. Votre fichier Power BI a maintenant établi la connexion au serveur. Si vos visualisations sont vides, veillez à désactiver les sélections de visualisation pour visualiser toutes les données en cliquant sur l’icône de suppression en haut à droite des légendes. Utilisez le bouton Actualiser pour afficher les nouvelles données sur les visualisations. Au départ, vous verrez uniquement les données d’amorçage sur vos visualisations, étant donné que la fabrique de données est planifiée pour s’actualiser toutes les 3 heures. Au bout de 3 heures, les nouvelles prédictions sont reflétées dans vos visualisations lorsque vous actualisez les données.
-3. (Facultatif) Publier le tableau de bord de chemin à froid dans [Power BI en ligne](http://www.powerbi.com/). Notez que vous avez besoin d’un compte Power BI (ou d’un compte Office 365) pour cette étape.
+   * Bonjour pop fenêtre, remplacez **« Server »** et **« Database »** avec vos propres noms de serveur et de base de données, puis cliquez sur **« OK »**. Nom de serveur, veillez à spécifier le port 1433 hello (**YourSolutionName.database.windows.net, 1433**). Ignorer les messages d’avertissement hello qui apparaissent sur l’écran hello.
+   * Pop suivant de hello fenêtre, vous voyez deux options dans le volet gauche de hello (**Windows** et **base de données**). Cliquez sur **« Database »**, renseignez vos **« Nom_utilisateur »** et **« Password »** (c’est le nom d’utilisateur hello et mot de passe lorsque vous tout d’abord hello solution déployée et créé un Base de données SQL Azure). Dans ***sélectionnez qui niveau tooapply ces paramètres***, vérifiez l’option de niveau de base de données. Cliquez ensuite sur **Se connecter**.
+   * Une fois que vous êtes page précédente de guidée toohello précédent, fermez la fenêtre hello. Un message s’affiche ; cliquez sur **Appliquer**. Enfin, cliquez sur hello **enregistrer** bouton les modifications de hello toosave. Votre fichier Power BI a désormais établi toohello de connexion du serveur. Si vos visualisations sont vides, veillez à que désactiver les sélections de hello sur hello visualisations toovisualize toutes les données hello en cliquant sur icône de gomme hello sur hello coin supérieur droit de légendes de hello. Utiliser hello actualisation bouton tooreflect nouvelles données sur les visualisations hello. Au départ, vous verrez seulement les données de valeur initiale salutation sur vos visualisations comme hello data factory est toorefresh planifiée toutes les 3 heures. Après 3 heures, vous verrez les nouvelles prédictions reflétées dans vos visualisations lorsque vous actualisez les données de salutation.
+3. (Facultatif) Publier le tableau de bord de chemin d’accès à froid hello trop[Power BI en ligne](http://www.powerbi.com/). Notez que vous avez besoin d’un compte Power BI (ou d’un compte Office 365) pour cette étape.
 
-   * Cliquez sur **Publier** et attendez quelques secondes : une fenêtre s’affiche pour confirmer que la publication dans Power BI a bien été effectuée avec une coche verte. Cliquez sur le lien sous Ouvrir demoprediction.pbix dans Power BI. Pour obtenir des instructions détaillées, consultez la page [Publier à partir de Power BI Desktop](https://support.powerbi.com/knowledgebase/articles/461278-publish-from-power-bi-desktop).
-   * Pour créer un tableau de bord : cliquez sur le signe **+** en regard de la section **Tableaux de bord** dans le volet gauche. Nommez ce nouveau tableau de bord « Prévision de la demande - Démonstration ».
-   * Après avoir ouvert le rapport, cliquez sur ![](media/cortana-analytics-technical-guide-demand-forecast/PowerBIpic6.png) pour épingler toutes les visualisations à votre tableau de bord. Pour obtenir des instructions détaillées, consultez la page [Épingler une vignette à un tableau de bord Power BI à partir d’un rapport](https://support.powerbi.com/knowledgebase/articles/430323-pin-a-tile-to-a-power-bi-dashboard-from-a-report).
-     Accédez à la page Tableau de bord et ajustez la taille et l’emplacement de vos visualisations, puis modifier leurs titres. Pour obtenir des instructions détaillées sur la modification de vos vignettes, consultez [Modifier une vignette -- redimensionner, déplacer, renommer, épingler, supprimer, ajouter un lien hypertexte](https://powerbi.microsoft.com/documentation/powerbi-service-edit-a-tile-in-a-dashboard/#rename). Voici un exemple de tableau de bord sur lequel sont épinglées des visualisations de chemin à froid.
+   * Cliquez sur **« Publier »** et quelques secondes plus tard une fenêtre s’affiche et indique « Publication tooPower BI succès ! » avec une coche verte. Cliquez sur lien hello sous « Demoprediction.pbix ouvrir dans Power BI ». toofind des instructions, consultez [publier à partir de Power BI Desktop](https://support.powerbi.com/knowledgebase/articles/461278-publish-from-power-bi-desktop).
+   * toocreate un tableau de bord : cliquez sur hello  **+**  signer suivant toothe **tableaux de bord** section dans le volet gauche de hello. Entrez le nom hello « À la demande de prévision Demo » pour le nouveau tableau de bord.
+   * Une fois que vous ouvrez hello rapport, cliquez sur ![](media/cortana-analytics-technical-guide-demand-forecast/PowerBIpic6.png) toopin toutes les visualisations tooyour tableau de bord. toofind des instructions, consultez [épingler un tableau de bord Power BI de tooa vignette à partir d’un rapport](https://support.powerbi.com/knowledgebase/articles/430323-pin-a-tile-to-a-power-bi-dashboard-from-a-report).
+     Atteindre la page de tableau de bord toohello et ajuster la taille de hello et l’emplacement de vos visualisations et modifiez leur titre. toofind des instructions détaillées sur tooedit vos vignettes, voir [modifier un titre--redimensionner, déplacer, renommer, épingler, supprimer, ajouter un lien hypertexte](https://powerbi.microsoft.com/documentation/powerbi-service-edit-a-tile-in-a-dashboard/#rename). Voici un exemple d’un tableau de bord avec certaines tooit de visualisations épinglées de chemin d’accès à froid.
 
      ![](media/cortana-analytics-technical-guide-demand-forecast/PowerBIpic7.png)
-4. (Facultatif) Planifiez l'actualisation de la source de données.
+4. (Facultatif) Planifier l’actualisation de la source de données hello.
 
-   * Pour planifier l’actualisation des données, pointez votre souris sur le jeu de données **EnergyBPI-Final**, cliquez sur ![](media/cortana-analytics-technical-guide-demand-forecast/PowerBIpic3.png), puis sélectionnez **Planifier l’actualisation**.
-     **Remarque :** si vous voyez un message d’avertissement, cliquez sur **Modifier les informations d’identification** et assurez-vous que vos informations d’identification de base de données sont les mêmes que celles décrites à l’étape 1.
+   * tooschedule l’actualisation des données de hello, pointez votre souris sur hello **EnergyBPI-Final** jeu de données, cliquez sur ![](media/cortana-analytics-technical-guide-demand-forecast/PowerBIpic3.png) , puis **planifier l’actualisation**.
+     **Remarque :** si vous voyez un message d’avertissement, cliquez sur **modifier les informations d’identification** et assurez-vous que vos informations d’identification de base de données sont hello identiques à ceux décrits à l’étape 1.
 
      ![](media/cortana-analytics-technical-guide-demand-forecast/PowerBIpic4.png)
-   * Développez la section **Planifier l’actualisation** . Activez l’option Maintenir vos données à jour.
-   * Planifiez l’actualisation selon vos besoins. Pour plus d’informations, consultez la page [Actualisation des données dans Power BI](https://powerbi.microsoft.com/documentation/powerbi-refresh-data/).
+   * Développez hello **planifier l’actualisation** section. Activez l’option Maintenir vos données à jour.
+   * Planifier l’actualisation hello selon vos besoins. toofind plus d’informations, consultez [d’actualisation des données dans Power BI](https://powerbi.microsoft.com/documentation/powerbi-refresh-data/).
 
-## <a name="how-to-delete-your-solution"></a>**Comment supprimer votre solution**
-Veillez à arrêter le générateur de données quand vous n’utilisez pas la solution activement, car l’exécution du générateur de données entraîne des coûts plus élevés. Supprimez la solution si vous ne l’utilisez pas. La suppression de votre solution supprime tous les composants qui étaient configurés dans votre abonnement quand vous avez déployé la solution. Pour supprimer la solution, cliquez sur son nom dans le volet gauche du modèle de solution, puis cliquez sur Supprimer.
+## <a name="how-toodelete-your-solution"></a>**Comment toodelete votre solution**
+Veuillez vous assurer que vous arrêtez le Générateur de données hello lorsque vous N'utilisez pas activement des solutions de hello en exécutant le Générateur de données hello entraîne des coûts plus élevés. Si vous ne l’utilisez pas, supprimez les solutions hello. La suppression de votre solution supprimera tous les composants hello configurés dans votre abonnement lorsque vous avez déployé la solution de hello. solution de hello toodelete cliquez sur le nom de votre solution dans le panneau gauche de hello du modèle de solution hello et cliquez sur Supprimer.
 
 ## <a name="cost-estimation-tools"></a>**Outils d’estimation des coûts**
-Les deux outils suivants peuvent vous aider à mieux comprendre les coûts impliqués dans l’exécution du modèle de solution de prévision de la demande énergétique dans votre abonnement :
+Hello deux outils suivants sont disponible toohelp vous de mieux comprendre le coût total en cours d’hello prévision de la demande pour le modèle de Solution de l’énergie dans votre abonnement :
 
 * [Microsoft Azure Cost Estimator Tool (en ligne)](https://azure.microsoft.com/pricing/calculator/)
 * [Microsoft Azure Cost Estimator Tool (de bureau)](http://www.microsoft.com/download/details.aspx?id=43376)

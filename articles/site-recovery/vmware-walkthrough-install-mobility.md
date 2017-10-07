@@ -1,6 +1,6 @@
 ---
-title: "Installer le service Mobilité pour VMware en vue d’une réplication sur Azure | Microsoft Docs"
-description: "Cet article explique comment installer l’agent du service Mobilité pour VMware en vue d’une réplication sur Azure à l’aide du service Azure Site Recovery."
+title: "aaaInstall hello service mobilité pour la réplication VMware tooAzure | Documents Microsoft"
+description: "Cet article décrit comment tooinstall hello agent du service mobilité pour la réplication tooAzure VMware avec le service d’Azure Site Recovery hello."
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,40 +14,40 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 06/27/2017
 ms.author: raynew
-ms.openlocfilehash: bc520bd2ea54208889861a7a3b275e3008a05d53
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d3b7bc9c4d84d13317e0b0b47adcf38e8c41d0bb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="step-10-install-the-mobility-service"></a>Étape 10 : installer le service Mobilité
+# <a name="step-10-install-hello-mobility-service"></a>Étape 10 : Installer le service de mobilité hello
 
 
-Cet article explique comment configurer des paramètres source et cible lors de la réplication de machines virtuelles VMware locales sur Azure à l’aide du service [Azure Site Recovery](site-recovery-overview.md) dans le portail Azure.
+Cet article décrit comment tooconfigure les paramètres de source et cible lors de la réplication locale tooAzure d’ordinateurs virtuels VMware, à l’aide de hello [Azure Site Recovery](site-recovery-overview.md) service Bonjour portail Azure.
 
-Le service Mobilité enregistre les écritures de données sur une machine et les transmet au serveur de traitement. Ce service devrait être installé sur chaque machine que vous souhaitez répliquer sur Azure.
+Hello service mobilité capture les écritures de données sur un ordinateur et les transfère de serveur de processus toohello. Il doit être installé sur chaque ordinateur que vous souhaitez tooreplicate tooAzure.
 
-Vous pouvez installer le manuel du service Mobilité, à l’aide d’une installation push à partir du serveur de traitement de Site Recovery lorsque la réplication est activée, ou utiliser un outil de System Center Configuration Manager. Si vous utilisez l’installation push, le service est installé sur la machine virtuelle lorsque la réplication est activée.
+Vous pouvez installer manuel de service de mobilité hello, à l’aide d’une installation push du serveur de processus de récupération de Site hello lorsque la réplication est activée, ou utiliser un outil de System Center Configuration Manager. Si vous utilisez installation push, service de hello est installé sur hello machine virtuelle lorsque la réplication est activée.
 
-Publiez des commentaires et des questions au bas de cet article, ou sur le [Forum Azure Recovery Services](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
+Ajouter des commentaires et questions bas hello de cet article, ou sur hello [Forum sur Azure Recovery Services](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
 
 ## <a name="install-manually"></a>Installer manuellement
 
-1. Vérifiez les [prérequis](site-recovery-vmware-to-azure-install-mob-svc.md#prerequisites) pour l’installation manuelle.
-2. Suivez [ces instructions](site-recovery-vmware-to-azure-install-mob-svc.md#install-mobility-service-manually-by-using-the-gui) pour l’installation manuelle à l’aide du portail.
-3. Si vous préférez installer à partir de la ligne de commande, suivez [ces instructions](site-recovery-vmware-to-azure-install-mob-svc.md#install-mobility-service-manually-at-a-command-prompt).
+1. Vérifiez hello [conditions préalables](site-recovery-vmware-to-azure-install-mob-svc.md#prerequisites) pour l’installation manuelle.
+2. Suivez [ces instructions](site-recovery-vmware-to-azure-install-mob-svc.md#install-mobility-service-manually-by-using-the-gui) pour l’installation manuelle à l’aide du portail de hello.
+3. Si vous préférez tooinstall à partir de la ligne de commande hello, procédez comme [ces instructions](site-recovery-vmware-to-azure-install-mob-svc.md#install-mobility-service-manually-at-a-command-prompt).
 
-## <a name="install-from-the-process-server"></a>Installer à partir du serveur de processus
+## <a name="install-from-hello-process-server"></a>Installer hello serveur de processus
 
-Si vous voulez effectuer une installation push du service Mobilité à partir du serveur de processus lorsque la réplication est activée, vous devez disposer d’un compte pouvant être utilisé par le serveur de processus pour accéder à la machine virtuelle. Le compte est utilisé uniquement pour l’installation Push.
+Installation du service mobilité toopush hello hello du serveur de processus lorsque vous activez la réplication pour une machine virtuelle, vous devez un compte qui peut être utilisé par hello processus serveur tooaccess hello machine virtuelle. Hello compte est uniquement utilisé pour l’installation push de hello.
 
-1. Vous devriez avoir [créé un compte](vmware-walkthrough-prepare-vmware.md) qui peut être utilisé pour l’installation push. Vous pouvez ensuite spécifier le compte que vous souhaitez utiliser lors de la configuration des paramètres source pendant le déploiement de Site Recovery.
-2. Suivez ensuite [ces instructions](site-recovery-vmware-to-azure-install-mob-svc.md#install-mobility-service-by-push-installation-from-azure-site-recovery) si vous souhaitez effectuer une transmission push du service Mobilité sur les machines virtuelles exécutant Windows ou Linux.
+1. Vous devriez avoir [créé un compte](vmware-walkthrough-prepare-vmware.md) qui peut être utilisé pour l’installation push. Puis, vous spécifiez hello compte toouse lorsque vous configurez des paramètres de la source pendant le déploiement de Site Recovery.
+2. Suivez ensuite [ces instructions](site-recovery-vmware-to-azure-install-mob-svc.md#install-mobility-service-by-push-installation-from-azure-site-recovery) si vous souhaitez que le service de mobilité hello toopush sur des machines virtuelles exécutant Windows ou Linux.
 
 ## <a name="other-methods"></a>Autres méthodes
 
-En savoir plus sur comment [installer le service Mobilité à l’aide du Gestionnaire de configuration](site-recovery-install-mobility-service-using-sccm.md), ou à l’aide [d’Azure Automation DSC](site-recovery-automate-mobility-service-install.md).
+En savoir plus sur [installation à l’aide du Gestionnaire de Configuration du service mobilité hello](site-recovery-install-mobility-service-using-sccm.md), ou à l’aide de [Azure Automation DSC](site-recovery-automate-mobility-service-install.md).
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Aller à [Étape 11 : activer la réplication](vmware-walkthrough-enable-replication.md)
+Accédez trop[étape 11 : activer la réplication](vmware-walkthrough-enable-replication.md)

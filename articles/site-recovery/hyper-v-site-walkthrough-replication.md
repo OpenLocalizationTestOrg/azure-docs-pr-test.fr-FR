@@ -1,6 +1,6 @@
 ---
-title: "Configurer une stratégie de réplication pour la réplication de machines virtuelles Hyper-V (sans System Center VMM) vers Azure avec Azure Site Recovery | Microsoft Docs"
-description: "Résume les étapes à suivre pour configurer une stratégie de réplication pour la réplication de machines virtuelles Hyper-V vers le stockage Azure."
+title: "aaaSet une stratégie de réplication pour tooAzure de réplication (sans System Center VMM) d’un ordinateur virtuel Hyper-V avec Azure Site Recovery | Documents Microsoft"
+description: "Résume les étapes hello vous devez tooset une stratégie de réplication lors de la réplication des ordinateurs virtuels Hyper-V tooAzure stockage"
 documentationcenter: 
 author: rayne-wiselman
 manager: carmonm
@@ -13,46 +13,46 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 06/22/2017
 ms.author: raynew
-ms.openlocfilehash: ca5bec5cf1152e6259b9fe7a869edd2d62b88e1a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 4bd7161f4a0f015da0ecf595fbc6861ede5d68b0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="step-9-set-up-a-replication-policy-for-hyper-v-vm-replication-to-azure"></a>Étape 9 : configurer une stratégie de réplication pour la réplication de machines virtuelles Hyper-V vers Azure
+# <a name="step-9-set-up-a-replication-policy-for-hyper-v-vm-replication-tooazure"></a>Étape 9 : Configurer une stratégie de réplication pour tooAzure de réplication de machine virtuelle Hyper-V
 
-Cet article explique comment configurer une stratégie de réplication pour la réplication de machines virtuelles Hyper-V vers Azure (sans System Center VMM) à l’aide du service [Azure Site Recovery](site-recovery-overview.md) dans le portail Azure.
+Cet article décrit comment tooset une stratégie de réplication lorsque vous effectuez une réplication tooAzure d’ordinateurs virtuels Hyper-V (sans System Center VMM) à l’aide de hello [Azure Site Recovery](site-recovery-overview.md) service Bonjour portail Azure.
 
 
-Publiez des commentaires et des questions au bas de cet article, ou sur le [Forum Azure Recovery Services](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
+Ajouter des commentaires et questions bas hello de cet article, ou sur hello [Forum sur Azure Recovery Services](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
 
 ## <a name="about-snapshots"></a>Informations concernant les instantanés
 
-Hyper-V utilise deux types d’instantanés : un instantané standard qui fournit un instantané incrémentiel de la machine virtuelle complète et un instantané cohérent avec l'application qui prend un instantané des données d'application d'une machine virtuelle.
-    - Les instantanés cohérents avec l'application utilisent le service VSS (Volume Shadow Copy Service) pour s'assurer que les applications sont dans un état cohérent lors de la prise des instantanés.
-    - Si vous activez les instantanés cohérents avec l'application, cela affecte les performances des applications exécutées sur les machines virtuelles sources. Assurez-vous que la valeur définie est inférieure au nombre de points de récupération supplémentaires que vous configurez.
+Hyper-V utilise deux types de captures instantanées, un instantané standard qui fournit un instantané incrémentiel de la machine virtuelle hello et un instantané cohérent de l’application qui prend un instantané de point-à-temps hello des données d’application à l’intérieur de machine virtuelle de hello.
+    - Instantanés cohérents au niveau de l’application utilisent tooensure Volume Shadow Copy Service (VSS) que les applications sont dans un état cohérent lors de l’instantané hello.
+    - Si vous activez les instantanés cohérents au niveau de l’application, il affecte les performances de hello des applications exécutées sur des machines virtuelles sources. Assurez-vous que la valeur hello que vous définissez est inférieur au nombre de hello de points de récupération supplémentaires que vous configurez.
 
 ## <a name="set-up-a-replication-policy"></a>Configurer une stratégie de réplication
 
-1. Pour créer une stratégie de réplication, cliquez sur **Préparer l’infrastructure** > **Paramètres de réplication** > **+Créer et associer**.
+1. toocreate une stratégie de réplication, cliquez sur **Prepare infrastructure** > **les paramètres de réplication** > **+ créer et associer**.
 
     ![Réseau](./media/hyper-v-site-walkthrough-replication/gs-replication.png)
 2. Dans **Créer et associer une stratégie**, indiquez le nom de la stratégie.
-3. Dans **Fréquence de copie**, spécifiez la fréquence selon laquelle répliquer les données delta après la réplication initiale (toutes les 30 secondes ou toutes les 5 ou 15 minutes).
+3. Dans **fréquence de copie**, spécifiez la fréquence à laquelle vous souhaitez tooreplicate d’éventuelles données delta après la réplication initiale de hello (toutes les 30 secondes, 5 ou 15 minutes).
 
     > [!NOTE]
-    > Une fréquence de 30 secondes n’est pas prise en charge lors de la réplication sur un Stockage Premium. La limitation est déterminée par le nombre de captures instantanées par objet blob (100) pris en charge par le Stockage Premium. [Plus d’informations](../storage/common/storage-premium-storage.md#snapshots-and-copy-blob)
+    > Une fréquence de deuxième 30 n’est pas pris en charge lors de la réplication de stockage de toopremium. limitation de Hello est déterminée par le nombre de hello d’instantanés par l’objet blob (100) pris en charge par le stockage premium. [En savoir plus](../storage/common/storage-premium-storage.md#snapshots-and-copy-blob).
 
-4. Dans **Rétention des points de récupération**, spécifiez la durée (en heures) de la fenêtre de rétention pour chaque point de récupération. Les machines virtuelles peuvent être récupérées à tout moment pendant cette fenêtre temporelle.
+4. Dans **rétention du point de récupération**, spécifiez combien d’heures de conservation hello est pour chaque point de récupération. Machines virtuelles peuvent être récupérée point tooany dans une fenêtre.
 5. Dans **Fréquence des captures instantanées cohérentes de l’application**, spécifiez la fréquence de création des points de récupération contenant des instantanés cohérents au niveau des applications (entre 1 et 12 heures).
-6. Dans **Heure de début de la réplication initiale**, indiquez à quel moment démarrer la réplication initiale. La réplication se produit via votre bande passante Internet. Il est donc préférable de prévoir son exécution en dehors des heures de bureau. Cliquez ensuite sur **OK**.
+6. Dans **heure de début de la réplication initiale**, spécifiez quand toostart hello la réplication initiale. la réplication Hello se produit sur votre bande passante internet, vous pouvez donc tooschedule il en dehors des heures occupés. Cliquez ensuite sur **OK**.
 
     ![Stratégie de réplication](./media/hyper-v-site-walkthrough-replication/gs-replication2.png)
 
-Lorsque vous créez une stratégie, elle est automatiquement associée au site Hyper-V. Vous pouvez associer un site Hyper-V (et les machines virtuelles qu’il contient) à plusieurs stratégies de réplication dans **Réplication** > nom de la stratégie > **Associer le site Hyper-V**.
+Lorsque vous créez une nouvelle stratégie, il est automatiquement associé site Hyper-V de hello. Vous pouvez associer un site Hyper-V (et hello machines virtuelles qu’il contient) à plusieurs stratégies de réplication dans **réplication** > nom de la stratégie > **associer le Site Hyper-V**.
 
 
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Aller à [Étape 10 : activer la réplication](hyper-v-site-walkthrough-enable-replication.md)
+Accédez trop[étape 10 : activer la réplication](hyper-v-site-walkthrough-enable-replication.md)

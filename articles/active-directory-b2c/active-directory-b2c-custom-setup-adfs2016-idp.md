@@ -1,6 +1,6 @@
 ---
 title: "Azure Active Directory B2C : Ajout d’ADFS en tant que fournisseur d’identités SAML à l’aide de stratégies personnalisées"
-description: "Un guide pratique sur la configuration d’ADFS 2016 à l’aide du protocole SAML et de stratégies personnalisées"
+description: "Une procédure-tooarticle sur la configuration de 2016 ADFS à l’aide du protocole SAML et les stratégies personnalisées"
 services: active-directory-b2c
 documentationcenter: 
 author: yoelhor
@@ -14,103 +14,103 @@ ms.topic: article
 ms.devlang: na
 ms.date: 08/04/2017
 ms.author: yoelh
-ms.openlocfilehash: ef0495460b5652dd6052a49ab9c722381e93458b
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 30fb7700e7834e3d91fab1fc1b169b761584b204
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-b2c-add-adfs-as-a-saml-identity-provider-using-custom-policies"></a>Azure Active Directory B2C : Ajout d’ADFS en tant que fournisseur d’identités SAML à l’aide de stratégies personnalisées
 
 [!INCLUDE [active-directory-b2c-advanced-audience-warning](../../includes/active-directory-b2c-advanced-audience-warning.md)]
 
-Cet article vous montre comment activer l’identification pour les utilisateurs de comptes ADFS à l’aide des [stratégies personnalisées](active-directory-b2c-overview-custom.md).
+Cet article vous explique comment tooenable connectez-vous pour les utilisateurs de compte AD FS via l’utilisation de hello de [des stratégies personnalisées](active-directory-b2c-overview-custom.md).
 
 ## <a name="prerequisites"></a>Composants requis
 
-Suivez les étapes décrites dans [Bien démarrer avec les stratégies personnalisées](active-directory-b2c-get-started-custom.md).
+Hello terminé les étapes Bonjour [mise en route avec les stratégies personnalisées](active-directory-b2c-get-started-custom.md) l’article.
 
 Ces étapes sont les suivantes :
 
 1.  Création d’une approbation de partie de confiance ADFS.
-2.  Ajout du certificat d’approbation de partie de confiance ADFS à Azure AD B2C.
-3.  Ajout du fournisseur de revendications à une stratégie.
-4.  Inscription du fournisseur de revendications de compte ADFS à un parcours utilisateur.
-5.  Téléchargement et test de la stratégie sur un client Azure AD B2C.
+2.  Ajout de hello ADFS de confiance certificat tooAzure AD B2C.
+3.  Ajout de stratégie tooa de fournisseur de revendications.
+4.  Compte d’ADFS hello l’enregistrement des revendications voyage de fournisseur tooa utilisateur.
+5.  Téléchargement de stratégie de hello tooan Azure AD B2C de client et de le tester.
 
-## <a name="to-create-a-claims-aware-relying-party-trust"></a>Créer une approbation de partie de confiance prenant en charge les revendications
+## <a name="toocreate-a-claims-aware-relying-party-trust"></a>toocreate une approbation de partie de confiance prenant en charge les revendications
 
-Pour utiliser ADFS en tant que fournisseur d’identité dans Azure Active Directory (Azure AD) B2C, vous devez créer une approbation de partie de confiance ADFS et lui fournir les paramètres appropriés.
+toouse AD FS en tant que fournisseur d’identité dans Azure Active Directory (Azure AD) B2C, vous devez toocreate une ADFS de confiance et lui fournir les paramètres appropriés hello.
 
-Pour ajouter une nouvelle approbation de partie de confiance en utilisant le composant logiciel enfichable de gestion ADFS et configurer manuellement les paramètres, effectuez la procédure suivante sur un serveur de fédération.
+tooadd une nouvelle partie de confiance faire confiance à l’aide de composant logiciel enfichable hello AD FS Management et configurer manuellement les paramètres de hello, effectuer hello suivant la procédure sur un serveur de fédération.
 
-L’appartenance au groupe **Administrateurs** ou équivalent sur l’ordinateur local est la condition minimale requise pour effectuer cette procédure. Examinez les informations relatives à l’utilisation des comptes et appartenances de groupe appropriés sur les [Groupes de domaine et locaux par défaut](http://go.microsoft.com/fwlink/?LinkId=83477)
+L’appartenance au **administrateurs**, ou équivalent, sur l’ordinateur local de hello est toocomplete requise minimale de hello cette procédure. Examinez les informations relatives à l’aide des comptes appropriés de hello et les appartenances au groupe [locaux et les groupes de domaine par défaut](http://go.microsoft.com/fwlink/?LinkId=83477)
 
 1.  Dans Gestionnaire de serveur, cliquez sur **Outils**, puis sélectionnez sur **Gestion ADFS**.
 
 2.  Cliquez sur **Ajouter une approbation de partie de confiance**.
     ![Ajouter une approbation de partie de confiance](media/active-directory-b2c-custom-setup-adfs2016-idp/aadb2c-ief-setup-adfs2016-idp-rp-1.png)
 
-3.  Sur la page **Bienvenue**, choisissez **Prise en charge des revendications** et cliquez sur **Démarrer**.
-    ![Sur la page d’accueil, choisissez Prise en charge des revendications](media/active-directory-b2c-custom-setup-adfs2016-idp/aadb2c-ief-setup-adfs2016-idp-rp-2.png)
-4.  Sur la page **Sélectionner une source de données**, cliquez sur **Entrer manuellement les données relatives à la partie de confiance**, puis sur **Suivant**.
-    ![Entrer les informations sur la partie de confiance](media/active-directory-b2c-custom-setup-adfs2016-idp/aadb2c-ief-setup-adfs2016-idp-rp-3.png)
+3.  Sur hello **Bienvenue** choisissez **prenant en charge des revendications** et cliquez sur **Démarrer**.
+    ![Sur la page d’accueil hello, choisissez prenant en charge des revendications](media/active-directory-b2c-custom-setup-adfs2016-idp/aadb2c-ief-setup-adfs2016-idp-rp-2.png)
+4.  Sur hello **sélectionner une Source de données** , cliquez sur **entrer manuellement les données sur la partie de confiance hello**, puis cliquez sur **suivant**.
+    ![Entrer des informations sur la partie de confiance hello](media/active-directory-b2c-custom-setup-adfs2016-idp/aadb2c-ief-setup-adfs2016-idp-rp-3.png)
 
-5.  Sur la page **Spécifier le nom d’affichage**, saisissez un nom dans **Nom d’affichage**. Sous **Notes**, saisissez une description pour cette partie de confiance, puis cliquez sur **Suivant**.
+5.  Sur hello **spécifier le nom complet** , tapez un nom dans **nom d’affichage**, sous **Notes** tapez une description pour cette partie de confiance, puis cliquez sur **suivant** .
     ![Spécifier le nom d’affichage et les notes](media/active-directory-b2c-custom-setup-adfs2016-idp/aadb2c-ief-setup-adfs2016-idp-rp-4.png)
-6.  facultatif. Si vous disposez d’un certificat de chiffrement de jeton facultatif, allez sur la page **Configurer certificat**, cliquez sur **Parcourir** pour localiser votre fichier de certificat, puis cliquez sur **Suivant**.
+6.  facultatif. Si vous avez un certificat de chiffrement de jeton facultatif, puis sur hello **configurer le certificat** , cliquez sur **Parcourir** toolocate votre fichier de certificat, puis cliquez sur **suivant** .
     ![Configurer le certificat](media/active-directory-b2c-custom-setup-adfs2016-idp/aadb2c-ief-setup-adfs2016-idp-rp-5.png)
-7.  Sur la page **Configurer l’URL**, cochez la case **Activer la prise en charge du protocole WebSSO SAML 2.0**. Sous **URL du service SSO SAML 2.0 de la partie de confiance**, saisissez l’URL du point de terminaison de service Security Assertion Markup Language (SAML) pour cette partie de confiance, puis cliquez sur **Suivant**.  Pour **URL du service SSO SAML 2.0 de la partie de confiance**, collez la `https://login.microsoftonline.com/te/{tenant}.onmicrosoft.com/{policy}`. Remplacez {tenant} par le nom de votre client (par exemple, contosob2c.onmicrosoft.com) et remplacez {policy} par votre nom de stratégie d’extension (par exemple, B2C_1A_TrustFrameworkExtensions).
+7.  Sur hello **configurer l’URL** page, sélectionnez hello **activer la prise en charge de hello protocole WebSSO SAML 2.0** case à cocher. Sous **URL du service SSO SAML 2.0 confiance**, tapez l’URL du point de terminaison du service Security Assertion Markup Language (SAML) hello pour cette partie de confiance, puis cliquez sur **suivant**.  Pourquoi **URL du service SSO SAML 2.0 confiance**, collez hello `https://login.microsoftonline.com/te/{tenant}.onmicrosoft.com/{policy}`. Remplacez {tenant} avec le nom de votre locataire (par exemple, contosob2c.onmicrosoft.com) et remplacez hello {stratégie} avec votre nom de la stratégie extensions (par exemple, B2C_1A_TrustFrameworkExtensions).
     > [!IMPORTANT]
-    >Le nom de la stratégie est celui dont signup_or_signin hérite. Dans ce cas, il s’agit de : `B2C_1A_TrustFrameworkExtensions`.
-    >Par exemple l’URL peut être : https://login.microsoftonline.com/te/**contosob2c**.onmicrosoft.com/**B2C_1A_TrustFrameworkBase**.
+    >nom de la stratégie Hello est hello une stratégie de signup_or_signin hérite, dans ce cas, il est : `B2C_1A_TrustFrameworkExtensions`.
+    >Par exemple hello URL peut être : https://login.microsoftonline.com/te/**contosob2c**.onmicrosoft.com/**B2C_1A_TrustFrameworkBase**.
 
     ![URL du service SSO SAML 2.0 de la partie de confiance](media/active-directory-b2c-custom-setup-adfs2016-idp/aadb2c-ief-setup-adfs2016-idp-rp-6.png)
-8. Sur la page **Configurer les identificateurs**, spécifiez la même URL qu’à l’étape précédente, cliquez sur **Ajouter** pour les ajouter à la liste, puis cliquez sur **Suivant**.
+8. Sur hello **configurer les identificateurs** , spécifiez hello même URL que l’étape précédente de hello, cliquez sur **ajouter** tooadd les toohello liste, puis cliquez sur **suivant**.
     ![Identificateurs d’approbation de partie de confiance](media/active-directory-b2c-custom-setup-adfs2016-idp/aadb2c-ief-setup-adfs2016-idp-rp-7.png)
-9.  Dans la page **Choisir la stratégie de contrôle d’accès**, sélectionnez une stratégie puis cliquez sur **Suivant**.
+9.  Sur hello **stratégie de contrôle d’accès choisissez** sélectionner une stratégie, puis cliquez sur **suivant**.
     ![Choisir la stratégie de contrôle d’accès](media/active-directory-b2c-custom-setup-adfs2016-idp/aadb2c-ief-setup-adfs2016-idp-rp-8.png)
-10.  Sur la page **Prêt à ajouter l’approbation**, passez en revue les paramètres, puis cliquez sur **Suivant** pour enregistrer vos informations d’approbation de partie de confiance.
+10.  Sur hello **tooAdd approbation de prêt** page, passez en revue les paramètres de hello, puis cliquez sur **suivant** toosave les informations de confidentialité de votre partie de confiance.
     ![Enregistrer vos informations d’approbation de partie de confiance](media/active-directory-b2c-custom-setup-adfs2016-idp/aadb2c-ief-setup-adfs2016-idp-rp-9.png)
-11.  Sur la page **Terminer**, cliquez sur **Fermer**, cette action affiche automatiquement la boîte de dialogue **Modifier les règles de revendication**.
+11.  Sur hello **Terminer** , cliquez sur **fermer**, cette action affiche automatiquement hello **modifier les règles de revendication** boîte de dialogue.
     ![Modifier les règles de revendication](media/active-directory-b2c-custom-setup-adfs2016-idp/aadb2c-ief-setup-adfs2016-idp-rp-10.png)
 12. Cliquez sur **Ajouter une règle**.  
       ![Ajouter une nouvelle règle](media/active-directory-b2c-custom-setup-adfs2016-idp/aadb2c-ief-setup-adfs2016-idp-claims-1.png)
 13.  Dans **Modèle de règle de revendication**, sélectionnez **Envoyer les attributs LDAP en tant que revendications**.
     ![Sélectionner la règle de modèle « Envoyer les attributs LDAP comme des revendications »](media/active-directory-b2c-custom-setup-adfs2016-idp/aadb2c-ief-setup-adfs2016-idp-claims-2.png)
-14.  Fournissez le **Nom de règle de revendication**. Pour le **Magasin d’attributs** sélectionnez **Sélectionner Active Directory**, ajoutez les revendications suivantes, puis cliquez sur **Terminer** et **OK**.
+14.  Fournissez le **Nom de règle de revendication**. Pourquoi **magasin d’attributs** sélectionnez **Sélectionnez Active Directory** ajouter hello suivant des revendications, puis cliquez sur **Terminer** et **OK**.
     ![Définir les propriétés de règle](media/active-directory-b2c-custom-setup-adfs2016-idp/aadb2c-ief-setup-adfs2016-idp-claims-3.png)
-15.  Dans le gestionnaire de serveur, sélectionnez **Approbations de partie de confiance** , puis sélectionnez l’approbation de partie de confiance vous avez créée, puis cliquez sur **Propriétés**.
+15.  Dans le Gestionnaire de serveur, sélectionnez **confiance** sélectionnez hello de confiance vous avez créé, puis cliquez sur **propriétés**.
     ![Modifier les propriétés de la partie de confiance](media/active-directory-b2c-custom-setup-adfs2016-idp/aadb2c-ief-setup-adfs2016-idp-sig-1.png)
-16.  Sur la fenêtre de propriétés d’approbation de partie de confiance (B2C Demo), cliquez sur l’onglet **Signature** puis cliquez sur **Ajouter**.  
+16.  Un hello partie de confiance tiers fenêtre de propriétés d’approbation (B2C démo) cliquez sur **Signature** onglet et cliquez sur **ajouter**.  
     ![Définir signature](media/active-directory-b2c-custom-setup-adfs2016-idp/aadb2c-ief-setup-adfs2016-idp-sig-2.png)
 17.  Ajoutez votre certificat de signature (fichier .cert sans clé privée).  
     ![Ajouter votre certificat de signature](media/active-directory-b2c-custom-setup-adfs2016-idp/aadb2c-ief-setup-adfs2016-idp-sig-3.png)
-18.  Sur la fenêtre de propriétés d’approbation de partie de confiance (B2C Demo), cliquez sur l’onglet **Avancé** et modifiez le **Algorithme de hachage sécurisé** sur **SHA-1**, puis cliquez sur **Ok**.  
-    ![Définir l’algorithme de hachage sécurisé SHA-1](media/active-directory-b2c-custom-setup-adfs2016-idp/aadb2c-ief-setup-adfs2016-idp-sig-4.png)
+18.  Fenêtre de propriétés d’approbation (B2C démo) tiers hello partie de confiance sur **avancé** onglet et modifier hello **algorithme de hachage sécurisé** trop**SHA-1**, cliquez sur **surOk**.  
+    ![Définir l’algorithme de hachage sécurisé tooSHA-1](media/active-directory-b2c-custom-setup-adfs2016-idp/aadb2c-ief-setup-adfs2016-idp-sig-4.png)
 
-## <a name="add-the-adfs-account-application-key-to-azure-ad-b2c"></a>Ajouter la clé d’application de compte ADFS à Azure AD B2C
-La fédération avec les comptes ADFS requiert une clé secrète client pour le compte ADFS pour accorder la confiance à Azure AD B2C au nom de l’application. Vous devez enregistrer votre certificat ADFS dans votre client Azure AD B2C. 
+## <a name="add-hello-adfs-account-application-key-tooazure-ad-b2c"></a>Ajouter hello ADFS compte application clé tooAzure AD B2C
+Fédération avec les comptes AD FS requiert une clé secrète client pour ADFS tootrust de compte Azure AD B2C au nom de l’application hello. Vous avez besoin de toostore votre certificat ADFS dans votre locataire Azure AD B2C. 
 
-1.  Accédez à votre locataire Azure AD B2C, puis sélectionnez **Paramètres Azure AD B2C** > **Infrastructure d’expérience d’identité**
-2.  Sélectionnez **Clés de stratégie** pour afficher les clés disponibles dans votre client.
+1.  Accédez tooyour Azure AD B2C client, puis sélectionnez **B2C paramètres** > **infrastructure expérience d’identité**
+2.  Sélectionnez **clés de stratégie** tooview hello disponibles dans votre client.
 3.  Cliquez sur **+Ajouter**.
 4.  Pour **Options**, utilisez **Télécharger**.
 5.  Pour **Nom**, utilisez `ADFSSamlCert`.  
-    Il est possible que le préfixe `B2C_1A_` soit ajouté automatiquement.
-6.  Dans le Télécharger fichier,** sélectionnez votre fichier de certificat .pfx avec la clé privée. Remarque : ce certificat (avec la clé privée) doit être le même que celui qui délivré et utilisé pour la partie de confiance d’ADFS.
+    préfixe de Hello `B2C_1A_` peuvent être ajoutées automatiquement.
+6.  Dans le téléchargement du fichier hello, ** sélectionnez votre fichier de certificat .pfx avec la clé privée. Remarque : ce certificat (avec la clé privée de hello) doit être hello même que celui qui a délivré et utilisé pour la partie de confiance AD FS hello.
 ![Télécharger la clé de stratégie](media/active-directory-b2c-custom-setup-adfs2016-idp/aadb2c-ief-setup-adfs2016-idp-cert.png)
 7.  Cliquez sur **Créer**
-8.  Vérifiez que vous avez créé la clé `B2C_1A_ADFSSamlCert`.
+8.  Vérifiez que vous avez créé la clé de hello `B2C_1A_ADFSSamlCert`.
 
 ## <a name="add-a-claims-provider-in-your-extension-policy"></a>Ajouter un fournisseur de revendications à une stratégie d’extension
-Si vous souhaitez que les utilisateurs se connectent à l’aide d’un compte ADFS, vous devez définir le compte ADFS comme fournisseur de revendications. En d’autres termes, vous devez spécifier un point de terminaison avec lequel Azure AD B2C communiquera. Le point de terminaison fournit un ensemble de revendications utilisées par Azure AD B2C pour vérifier qu’un utilisateur spécifique s’est authentifié.
+Si vous souhaitez que les utilisateurs toosign à l’aide du compte d’ADFS, vous devez compte ADFS de toodefine comme fournisseur de revendications. En d’autres termes, vous devez toospecify un point de terminaison Azure AD B2C communique avec. point de terminaison Hello fournit un ensemble de revendications qui sont utilisées par Azure AD B2C tooverify authentifié un utilisateur spécifique.
 
 Définissez ADFS comme fournisseur de revendications, en ajoutant le nœud `<ClaimsProvider>` dans votre fichier de stratégie d’extension :
 
-1. Ouvrez le fichier de stratégie d’extension (TrustFrameworkExtensions.xml) à partir de votre répertoire de travail. Si vous avez besoin d’un éditeur XML, [essayez Visual Studio Code](https://code.visualstudio.com/download), un éditeur multiplateforme léger.
-2. Recherchez la section `<ClaimsProviders>`
-3. Ajoutez l’extrait XML suivant sous l’élément `ClaimsProviders` et remplacez `identityProvider` par votre serveur DNS (valeur arbitraire qui indique votre domaine), puis enregistrez le fichier. 
+1. Ouvrez le fichier de stratégie d’extension hello (TrustFrameworkExtensions.xml) à partir de votre répertoire de travail. Si vous avez besoin d’un éditeur XML, [essayez Visual Studio Code](https://code.visualstudio.com/download), un éditeur multiplateforme léger.
+2. Recherche hello `<ClaimsProviders>` section
+3. Ajouter hello suivant extrait de code XML sous hello `ClaimsProviders` élément et remplacer `identityProvider` avec votre serveur DNS (valeur arbitraire qui indique votre domaine) et enregistrer le fichier de hello. 
 
 ```xml
 <ClaimsProvider>
@@ -151,30 +151,30 @@ Définissez ADFS comme fournisseur de revendications, en ajoutant le nœud `<Cla
 </ClaimsProvider>
 ```
 
-## <a name="register-the-adfs-account-claims-provider-to-sign-up-or-sign-in-user-journey"></a>Inscription du fournisseur de revendications de compte ADFS à un parcours utilisateur Inscription ou Connexion
-À ce stade, le fournisseur d’identité a été configuré.  Toutefois, il n’est disponible dans aucun des écrans d’inscription/de connexion. Maintenant vous devez ajouter le fournisseur d’identité du compte AD FS au parcours `SignUpOrSignIn` de votre utilisateur. Pour le rendre disponible, nous créons un doublon d’un modèle de parcours utilisateur existant.  Ensuite, nous le modifions pour qu’il comporte le fournisseur d’identité ADFS :
+## <a name="register-hello-adfs-account-claims-provider-toosign-up-or-sign-in-user-journey"></a>Inscrire hello ADFS compte revendications fournisseur tooSign des ou se connecter dans le parcours de l’utilisateur
+À ce stade, le fournisseur d’identité hello a été configuré.  Toutefois, il n’est pas disponible dans les écrans de connexion-haut/connectez-vous hello. Maintenant vous devez utilisateur tooyour fournisseur de l’identité tooadd hello ADFS compte `SignUpOrSignIn` parcours de l’utilisateur. toomake il est disponible, nous créons un doublon d’un déplacement de modèle à l’utilisateur existant.  Ensuite, nous la modifier pour qu’elle comporte le fournisseur d’identité ADFS hello :
     >[!NOTE]
-    >If you previously copied the `<UserJourneys>` element from base file of your policy to the extension file (TrustFrameworkExtensions.xml) you can skip this section.
-1.  Ouvrez le fichier de base de votre stratégie (par exemple, TrustFrameworkBase.xml).
-2.  Recherchez l’élément `<UserJourneys>` et copiez la totalité du contenu du nœud `<UserJourneys>`.
-3.  Ouvrez le fichier d’extension (par exemple, TrustFrameworkExtensions.xml), puis recherchez l’élément `<UserJourneys>`. Si l’élément n’existe pas, ajoutez-en un.
-4.  Collez l’intégralité du contenu du nœud `<UserJournesy>` que vous avez copié en tant qu’enfant de l’élément `<UserJourneys>`.
+    >If you previously copied hello `<UserJourneys>` element from base file of your policy toohello extension file (TrustFrameworkExtensions.xml) you can skip this section.
+1.  Ouvrez le fichier de base hello de votre stratégie (par exemple, TrustFrameworkBase.xml).
+2.  Recherche hello `<UserJourneys>` élément et copie hello ensemble du contenu de `<UserJourneys>` nœud.
+3.  Ouvrez le fichier d’extension hello (par exemple, TrustFrameworkExtensions.xml) et recherche hello `<UserJourneys>` élément. Si l’élément de hello n’existe pas, ajoutez-en un.
+4.  Coller le contenu entier de hello de `<UserJournesy>` nœud que vous avez copié en tant qu’enfant de hello `<UserJourneys>` élément.
 
-### <a name="display-the-button"></a>Afficher le bouton
-L’élément `<ClaimsProviderSelections>` définit la liste des options de sélection du fournisseur de revendications et leur ordre.  L’élément `<ClaimsProviderSelection>` est analogue à un bouton de fournisseur d’identité sur une page d’inscription/de connexion. Si vous ajoutez un élément `<ClaimsProviderSelection>` au compte ADFS, un nouveau bouton apparaît quand un utilisateur accède à la page. Pour ajouter cet élément :
+### <a name="display-hello-button"></a>Bouton d’affichage hello
+Hello `<ClaimsProviderSelections>` élément définit la liste hello des options de sélection de fournisseur de revendications et leur ordre.  `<ClaimsProviderSelection>`élément est un bouton de fournisseur d’identité tooan analogue sur une connexion-haut/page de connexion. Si vous ajoutez un `<ClaimsProviderSelection>` élément ADFS compte, un nouveau bouton apparaît lorsqu’un utilisateur arrive sur la page de hello. tooadd cet élément :
 
-1.  Recherchez le nœud `<UserJourney>` incluant `Id="SignUpOrSignIn"` dans le parcours utilisateur que vous avez copié.
-2.  Localisez le nœud `<OrchestrationStep>` qui inclut `Order="1"`.
+1.  Recherche hello `<UserJourney>` nœud incluant `Id="SignUpOrSignIn"` dans voyage utilisateur hello que vous avez copiée.
+2.  Recherchez hello `<OrchestrationStep>` nœud qui inclut`Order="1"`
 3.  Ajoutez l’extrait de code XML suivant sous le nœud `<ClaimsProviderSelections>` :
 
 ```xml
 <ClaimsProviderSelection TargetClaimsExchangeId="ContosoExchange" />
 ```
-### <a name="link-the-button-to-an-action"></a>Lier le bouton à une action
+### <a name="link-hello-button-tooan-action"></a>Action de lien hello bouton tooan
 
-Maintenant que vous avez un bouton en place, vous devez le lier à une action. L’action est, dans ce cas, la communication d’Azure AD B2C avec le compte ADFS pour recevoir un jeton. Liez le bouton à une action en liant le profil technique de votre fournisseur de revendications compte ADFS :
+Maintenant que vous avez un bouton en place, vous devez toolink il tooan action. action de Hello, dans ce cas, est de toocommunicate Azure AD B2C avec ADFS compte tooreceive un jeton. Action de tooan bouton lien hello en liant le profil de technique hello pour votre fournisseur de revendications AD FS compte :
 
-1.  Recherchez l’élément `<OrchestrationStep>` qui inclut `Order="2"` dans le nœud `<UserJourney>`.
+1.  Recherche hello `<OrchestrationStep>` qui inclut `Order="2"` Bonjour `<UserJourney>` nœud.
 2.  Ajoutez l’extrait de code XML suivant sous le nœud `<ClaimsExchanges>` :
 
 ```xml
@@ -182,47 +182,47 @@ Maintenant que vous avez un bouton en place, vous devez le lier à une action. L
 ```
 
 > [!NOTE]
-> * Assurez-vous que `Id` a la même valeur que celle de `TargetClaimsExchangeId` dans la section précédente.
-> * Vérifiez que `TechnicalProfileReferenceId` est défini sur le profil de technique que vous avez créé plus haut (Contoso-SAML2).
+> * Assurez-vous de hello `Id` a hello même valeur que celle de `TargetClaimsExchangeId` Bonjour précédant la section.
+> * Vérifiez `TechnicalProfileReferenceId` a la valeur toohello de profil technique vous avez créé plus haut (Contoso-SAML2).
 
-## <a name="upload-the-policy-to-your-tenant"></a>Charger la stratégie sur votre client
-1.  Dans le [portail Azure](https://portal.azure.com), passez au [contexte de votre locataire Azure AD B2C](active-directory-b2c-navigate-to-b2c-context.md) et ouvrez le panneau **Azure AD B2C**.
+## <a name="upload-hello-policy-tooyour-tenant"></a>Télécharger le client de tooyour stratégie hello
+1.  Bonjour [portail Azure](https://portal.azure.com), basculez dans hello [contexte de votre locataire Azure AD B2C](active-directory-b2c-navigate-to-b2c-context.md)et ouvrez hello **Azure AD B2C** panneau.
 2.  Sélectionnez **Infrastructure d’expérience d’identité**.
-3.  Ouvrez le panneau **Toutes les stratégies**.
+3.  Ouvrez hello **toutes les stratégies** panneau.
 4.  Sélectionnez **Charger la stratégie**.
-5.  Cochez la case **Remplacer la stratégie si elle existe**.
-6.  **Téléchargez** TrustFrameworkExtensions.xml et vérifiez que sa validation n’échoue pas
+5.  Vérifiez **remplacer la stratégie de hello si elle existe** boîte.
+6.  **Télécharger** TrustFrameworkExtensions.xml et assurez-vous qu’il validation n’échoue pas hello
 
-## <a name="test-the-custom-policy-by-using-run-now"></a>Tester la stratégie personnalisée en utilisant Exécuter maintenant
-1.  Ouvrez **Paramètres Azure AD B2C** et accédez à **Infrastructure d’expérience d’identité**.
-2.  Ouvrez **B2C_1A_signup_signin**, la stratégie personnalisée de partie de confiance que vous avez chargée. Sélectionnez **Exécuter maintenant**.
-3.  Vous devriez être en mesure de vous connecter à l’aide de votre compte ADFS.
+## <a name="test-hello-custom-policy-by-using-run-now"></a>Tester une stratégie personnalisée de hello à l’aide d’exécuter maintenant
+1.  Ouvrez **paramètres d’Azure AD B2C** et accédez trop**infrastructure d’identité expérience**.
+2.  Ouvrez **B2C_1A_signup_signin**, hello stratégie personnalisée partie de confiance (RP) de tiers que vous avez téléchargé. Sélectionnez **Exécuter maintenant**.
+3.  Vous devez être en mesure de toosign à l’aide du compte d’ADFS.
 
-## <a name="optional-register-the-adfs-account-claims-provider-to-profile-edit-user-journey"></a>[Facultatif] Inscription du fournisseur de revendications de compte ADFS à un parcours utilisateur Modification de profil
-Vous pouvez également ajouter le fournisseur d’identité du compte ADFS au parcours utilisateur `ProfileEdit` de votre utilisateur. Pour le rendre disponible, nous répétons les deux dernières étapes :
+## <a name="optional-register-hello-adfs-account-claims-provider-tooprofile-edit-user-journey"></a>[Facultatif] Inscrire le voyage utilisateur de hello ADFS compte revendications fournisseur tooProfile-modifier
+Vous pouvez souhaiter fournisseur d’identité tooadd hello ADFS compte également tooyour utilisateur `ProfileEdit` parcours de l’utilisateur. toomake disponibles, nous Répétez hello a deux étapes :
 
-### <a name="display-the-button"></a>Afficher le bouton
-1.  Ouvrez le fichier d’extension de votre stratégie (par exemple, TrustFrameworkExtensions.xml).
-2.  Recherchez le nœud `<UserJourney>` incluant `Id="ProfileEdit"` dans le parcours utilisateur que vous avez copié.
-3.  Localisez le nœud `<OrchestrationStep>` qui inclut `Order="1"`.
+### <a name="display-hello-button"></a>Bouton d’affichage hello
+1.  Ouvrez le fichier d’extension hello de votre stratégie (par exemple, TrustFrameworkExtensions.xml).
+2.  Recherche hello `<UserJourney>` nœud incluant `Id="ProfileEdit"` dans voyage utilisateur hello que vous avez copiée.
+3.  Recherchez hello `<OrchestrationStep>` nœud qui inclut`Order="1"`
 4.  Ajoutez l’extrait de code XML suivant sous le nœud `<ClaimsProviderSelections>` :
 
 ```xml
 <ClaimsProviderSelection TargetClaimsExchangeId="ContosoExchange" />
 ```
 
-### <a name="link-the-button-to-an-action"></a>Lier le bouton à une action
-1.  Recherchez l’élément `<OrchestrationStep>` qui inclut `Order="2"` dans le nœud `<UserJourney>`.
+### <a name="link-hello-button-tooan-action"></a>Action de lien hello bouton tooan
+1.  Recherche hello `<OrchestrationStep>` qui inclut `Order="2"` Bonjour `<UserJourney>` nœud.
 2.  Ajoutez l’extrait de code XML suivant sous le nœud `<ClaimsExchanges>` :
 
 ```xml
 <ClaimsExchange Id="ContosoExchange" TechnicalProfileReferenceId="Contoso-SAML2" />
 ```
 
-### <a name="test-the-custom-profile-edit-policy-by-using-run-now"></a>Tester la stratégie personnalisée de modification de profil en utilisant Exécuter maintenant
-1.  Ouvrez **Paramètres Azure AD B2C** et accédez à **Infrastructure d’expérience d’identité**.
-2.  Ouvrez **B2C_1A_ProfileEdit**, la stratégie personnalisée de partie de confiance que vous avez chargée. Sélectionnez **Exécuter maintenant**.
-3.  Vous devriez être en mesure de vous connecter à l’aide de votre compte ADFS.
+### <a name="test-hello-custom-profile-edit-policy-by-using-run-now"></a>Tester une stratégie de profil de modification personnalisée hello à l’aide d’exécuter maintenant
+1.  Ouvrez **paramètres d’Azure AD B2C** et accédez trop**infrastructure d’identité expérience**.
+2.  Ouvrez **B2C_1A_ProfileEdit**, hello stratégie personnalisée partie de confiance (RP) de tiers que vous avez téléchargé. Sélectionnez **Exécuter maintenant**.
+3.  Vous devez être en mesure de toosign à l’aide du compte d’ADFS.
 
-## <a name="download-the-complete-policy-files"></a>Télécharger les fichiers de stratégie complets
-Facultatif : nous vous recommandons de créer votre scénario à l’aide de vos propres fichiers de stratégie personnalisée après avoir effectué la prise en main des stratégies personnalisées. [Exemples de fichiers de stratégie pour référence uniquement](https://github.com/Azure-Samples/active-directory-b2c-custom-policy-starterpack/tree/master/scenarios/aadb2c-ief-setup-adfs2016-app)
+## <a name="download-hello-complete-policy-files"></a>Télécharger les fichiers de stratégie complète hello
+Facultatif : Nous vous recommandons de que générer votre scénario à l’aide de vos propres fichiers de stratégie personnalisée hello prise en main des stratégies personnalisées guident à la fin. [Exemples de fichiers de stratégie pour référence uniquement](https://github.com/Azure-Samples/active-directory-b2c-custom-policy-starterpack/tree/master/scenarios/aadb2c-ief-setup-adfs2016-app)
