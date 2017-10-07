@@ -1,6 +1,6 @@
 ---
-title: "Créer des images de machine virtuelle personnalisées avec Azure PowerShell | Microsoft Docs"
-description: "Tutoriel : créez une image de machine virtuelle personnalisée à l’aide d’Azure PowerShell."
+title: "images de machine virtuelle personnalisées aaaCreate avec hello Azure PowerShell | Documents Microsoft"
+description: "Didacticiel : créer une image de machine virtuelle personnalisée à l’aide de hello Azure PowerShell."
 services: virtual-machines-windows
 documentationcenter: virtual-machines
 author: cynthn
@@ -16,97 +16,97 @@ ms.workload: infrastructure
 ms.date: 05/08/2017
 ms.author: cynthn
 ms.custom: mvc
-ms.openlocfilehash: 96be2872a902a7d7063bf1dff7b4ca209a5b67c1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3a759fe1b7e7b72f531399b0f4a99e341713c6a4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-custom-image-of-an-azure-vm-using-powershell"></a><span data-ttu-id="3e90f-103">Créer une image personnalisée d’une machine virtuelle Azure à l’aide de PowerShell</span><span class="sxs-lookup"><span data-stu-id="3e90f-103">Create a custom image of an Azure VM using PowerShell</span></span>
+# <a name="create-a-custom-image-of-an-azure-vm-using-powershell"></a><span data-ttu-id="2f5fa-103">Créer une image personnalisée d’une machine virtuelle Azure à l’aide de PowerShell</span><span class="sxs-lookup"><span data-stu-id="2f5fa-103">Create a custom image of an Azure VM using PowerShell</span></span>
 
-<span data-ttu-id="3e90f-104">Les images personnalisées sont comme des images de la Place de marché, sauf que vous les créez vous-même.</span><span class="sxs-lookup"><span data-stu-id="3e90f-104">Custom images are like marketplace images, but you create them yourself.</span></span> <span data-ttu-id="3e90f-105">Les images personnalisées peuvent être utilisées pour amorcer des configurations comme le préchargement des applications, les configurations d’application et d’autres configurations de système d’exploitation.</span><span class="sxs-lookup"><span data-stu-id="3e90f-105">Custom images can be used to bootstrap configurations such as preloading applications, application configurations, and other OS configurations.</span></span> <span data-ttu-id="3e90f-106">Ce didacticiel explique comment créer votre propre image personnalisée d’une machine virtuelle Azure.</span><span class="sxs-lookup"><span data-stu-id="3e90f-106">In this tutorial, you create your own custom image of an Azure virtual machine.</span></span> <span data-ttu-id="3e90f-107">Vous allez apprendre à effectuer les actions suivantes :</span><span class="sxs-lookup"><span data-stu-id="3e90f-107">You learn how to:</span></span>
+<span data-ttu-id="2f5fa-104">Les images personnalisées sont comme des images de la Place de marché, sauf que vous les créez vous-même.</span><span class="sxs-lookup"><span data-stu-id="2f5fa-104">Custom images are like marketplace images, but you create them yourself.</span></span> <span data-ttu-id="2f5fa-105">Images personnalisées peuvent être des configurations toobootstrap utilisés tels que le préchargement des applications, les configurations de l’application et les autres configurations de système d’exploitation.</span><span class="sxs-lookup"><span data-stu-id="2f5fa-105">Custom images can be used toobootstrap configurations such as preloading applications, application configurations, and other OS configurations.</span></span> <span data-ttu-id="2f5fa-106">Ce didacticiel explique comment créer votre propre image personnalisée d’une machine virtuelle Azure.</span><span class="sxs-lookup"><span data-stu-id="2f5fa-106">In this tutorial, you create your own custom image of an Azure virtual machine.</span></span> <span data-ttu-id="2f5fa-107">Vous allez apprendre à effectuer les actions suivantes :</span><span class="sxs-lookup"><span data-stu-id="2f5fa-107">You learn how to:</span></span>
 
 > [!div class="checklist"]
-> * <span data-ttu-id="3e90f-108">Exécuter Sysprep et généraliser les machines virtuelles</span><span class="sxs-lookup"><span data-stu-id="3e90f-108">Sysprep and generalize VMs</span></span>
-> * <span data-ttu-id="3e90f-109">Créer une image personnalisée</span><span class="sxs-lookup"><span data-stu-id="3e90f-109">Create a custom image</span></span>
-> * <span data-ttu-id="3e90f-110">Créer une machine virtuelle à partir d’une image personnalisée</span><span class="sxs-lookup"><span data-stu-id="3e90f-110">Create a VM from a custom image</span></span>
-> * <span data-ttu-id="3e90f-111">Répertorier toutes les images dans votre abonnement</span><span class="sxs-lookup"><span data-stu-id="3e90f-111">List all the images in your subscription</span></span>
-> * <span data-ttu-id="3e90f-112">Supprimer une image</span><span class="sxs-lookup"><span data-stu-id="3e90f-112">Delete an image</span></span>
+> * <span data-ttu-id="2f5fa-108">Exécuter Sysprep et généraliser les machines virtuelles</span><span class="sxs-lookup"><span data-stu-id="2f5fa-108">Sysprep and generalize VMs</span></span>
+> * <span data-ttu-id="2f5fa-109">Créer une image personnalisée</span><span class="sxs-lookup"><span data-stu-id="2f5fa-109">Create a custom image</span></span>
+> * <span data-ttu-id="2f5fa-110">Créer une machine virtuelle à partir d’une image personnalisée</span><span class="sxs-lookup"><span data-stu-id="2f5fa-110">Create a VM from a custom image</span></span>
+> * <span data-ttu-id="2f5fa-111">La liste de toutes les images hello dans votre abonnement</span><span class="sxs-lookup"><span data-stu-id="2f5fa-111">List all hello images in your subscription</span></span>
+> * <span data-ttu-id="2f5fa-112">Supprimer une image</span><span class="sxs-lookup"><span data-stu-id="2f5fa-112">Delete an image</span></span>
 
-<span data-ttu-id="3e90f-113">Ce didacticiel requiert le module Azure PowerShell version 3.6 ou ultérieure.</span><span class="sxs-lookup"><span data-stu-id="3e90f-113">This tutorial requires the Azure PowerShell module version 3.6 or later.</span></span> <span data-ttu-id="3e90f-114">Exécutez ` Get-Module -ListAvailable AzureRM` pour trouver la version.</span><span class="sxs-lookup"><span data-stu-id="3e90f-114">Run ` Get-Module -ListAvailable AzureRM` to find the version.</span></span> <span data-ttu-id="3e90f-115">Si vous devez effectuer une mise à niveau, consultez [Installer le module Azure PowerShell](/powershell/azure/install-azurerm-ps).</span><span class="sxs-lookup"><span data-stu-id="3e90f-115">If you need to upgrade, see [Install Azure PowerShell module](/powershell/azure/install-azurerm-ps).</span></span>
+<span data-ttu-id="2f5fa-113">Ce didacticiel nécessite hello Azure PowerShell version 3.6 ou version ultérieure du module.</span><span class="sxs-lookup"><span data-stu-id="2f5fa-113">This tutorial requires hello Azure PowerShell module version 3.6 or later.</span></span> <span data-ttu-id="2f5fa-114">Exécutez ` Get-Module -ListAvailable AzureRM` version de hello toofind.</span><span class="sxs-lookup"><span data-stu-id="2f5fa-114">Run ` Get-Module -ListAvailable AzureRM` toofind hello version.</span></span> <span data-ttu-id="2f5fa-115">Si vous avez besoin de tooupgrade, consultez [installez Azure PowerShell module](/powershell/azure/install-azurerm-ps).</span><span class="sxs-lookup"><span data-stu-id="2f5fa-115">If you need tooupgrade, see [Install Azure PowerShell module](/powershell/azure/install-azurerm-ps).</span></span>
 
-## <a name="before-you-begin"></a><span data-ttu-id="3e90f-116">Avant de commencer</span><span class="sxs-lookup"><span data-stu-id="3e90f-116">Before you begin</span></span>
+## <a name="before-you-begin"></a><span data-ttu-id="2f5fa-116">Avant de commencer</span><span class="sxs-lookup"><span data-stu-id="2f5fa-116">Before you begin</span></span>
 
-<span data-ttu-id="3e90f-117">Les étapes ci-dessous expliquent comment prendre une machine virtuelle existante et la transformer en une image personnalisée réutilisable que vous pouvez utiliser pour créer de nouvelles instances de machines virtuelles.</span><span class="sxs-lookup"><span data-stu-id="3e90f-117">The steps below detail how to take an existing VM and turn it into a re-usable custom image that you can use to create new VM instances.</span></span>
+<span data-ttu-id="2f5fa-117">étapes Hello ci-dessous décrit en détail comment tootake une machine virtuelle existante et les activer dans personnalisé réutilisable de l’image que vous peuvent utiliser toocreate de nouvelles instances de machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="2f5fa-117">hello steps below detail how tootake an existing VM and turn it into a re-usable custom image that you can use toocreate new VM instances.</span></span>
 
-<span data-ttu-id="3e90f-118">Pour exécuter l’exemple dans ce didacticiel, vous devez disposer d’une machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="3e90f-118">To complete the example in this tutorial, you must have an existing virtual machine.</span></span> <span data-ttu-id="3e90f-119">Si nécessaire, cet [exemple de script](../scripts/virtual-machines-windows-powershell-sample-create-vm.md) peut en créer une pour vous.</span><span class="sxs-lookup"><span data-stu-id="3e90f-119">If needed, this [script sample](../scripts/virtual-machines-windows-powershell-sample-create-vm.md) can create one for you.</span></span> <span data-ttu-id="3e90f-120">Au cours du didacticiel, remplacez les noms du groupe de ressources et de la machine virtuelle si nécessaire.</span><span class="sxs-lookup"><span data-stu-id="3e90f-120">When working through the tutorial, replace the resource group and VM names where needed.</span></span>
+<span data-ttu-id="2f5fa-118">exemple de hello toocomplete dans ce didacticiel, vous devez disposer d’un ordinateur virtuel existant.</span><span class="sxs-lookup"><span data-stu-id="2f5fa-118">toocomplete hello example in this tutorial, you must have an existing virtual machine.</span></span> <span data-ttu-id="2f5fa-119">Si nécessaire, cet [exemple de script](../scripts/virtual-machines-windows-powershell-sample-create-vm.md) peut en créer une pour vous.</span><span class="sxs-lookup"><span data-stu-id="2f5fa-119">If needed, this [script sample](../scripts/virtual-machines-windows-powershell-sample-create-vm.md) can create one for you.</span></span> <span data-ttu-id="2f5fa-120">Lorsque le travail didacticiel de hello, remplacez machine virtuelle et groupe de ressources hello noms lorsque cela est nécessaire.</span><span class="sxs-lookup"><span data-stu-id="2f5fa-120">When working through hello tutorial, replace hello resource group and VM names where needed.</span></span>
 
-## <a name="prepare-vm"></a><span data-ttu-id="3e90f-121">Préparer la machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="3e90f-121">Prepare VM</span></span>
+## <a name="prepare-vm"></a><span data-ttu-id="2f5fa-121">Préparer la machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="2f5fa-121">Prepare VM</span></span>
 
-<span data-ttu-id="3e90f-122">Pour créer une image de machine virtuelle, vous devez préparer la machine virtuelle en la généralisant, en la libérant et en la marquant comme généralisée dans Azure.</span><span class="sxs-lookup"><span data-stu-id="3e90f-122">To create an image of a virtual machine, you need to prepare the VM by generalizing the VM, deallocating, and then marking the source VM as generalized in Azure.</span></span>
+<span data-ttu-id="2f5fa-122">toocreate une image d’un ordinateur virtuel, vous devez tooprepare hello VM par hello généraliser machine virtuelle, désallocation et puis marque la source de hello machine virtuelle comme généralisé dans Azure.</span><span class="sxs-lookup"><span data-stu-id="2f5fa-122">toocreate an image of a virtual machine, you need tooprepare hello VM by generalizing hello VM, deallocating, and then marking hello source VM as generalized in Azure.</span></span>
 
-### <a name="generalize-the-windows-vm-using-sysprep"></a><span data-ttu-id="3e90f-123">Généraliser la machine virtuelle Windows à l’aide de Sysprep</span><span class="sxs-lookup"><span data-stu-id="3e90f-123">Generalize the Windows VM using Sysprep</span></span>
+### <a name="generalize-hello-windows-vm-using-sysprep"></a><span data-ttu-id="2f5fa-123">Généraliser hello virtuelle Windows à l’aide de Sysprep</span><span class="sxs-lookup"><span data-stu-id="2f5fa-123">Generalize hello Windows VM using Sysprep</span></span>
 
-<span data-ttu-id="3e90f-124">Sysprep supprime toutes les informations personnelles de votre compte, entre autres, et prépare la machine de façon à pouvoir l’utiliser comme image.</span><span class="sxs-lookup"><span data-stu-id="3e90f-124">Sysprep removes all your personal account information, among other things, and prepares the machine to be used as an image.</span></span> <span data-ttu-id="3e90f-125">Pour plus d’informations sur Sysprep, voir [Introduction à l’utilisation de Sysprep](http://technet.microsoft.com/library/bb457073.aspx).</span><span class="sxs-lookup"><span data-stu-id="3e90f-125">For details about Sysprep, see [How to Use Sysprep: An Introduction](http://technet.microsoft.com/library/bb457073.aspx).</span></span>
+<span data-ttu-id="2f5fa-124">Sysprep supprime toutes vos informations de compte personnel, entre autres choses et prépare hello machine toobe est utilisé en tant qu’image.</span><span class="sxs-lookup"><span data-stu-id="2f5fa-124">Sysprep removes all your personal account information, among other things, and prepares hello machine toobe used as an image.</span></span> <span data-ttu-id="2f5fa-125">Pour plus d’informations sur Sysprep, consultez [comment tooUse Sysprep : Introduction](http://technet.microsoft.com/library/bb457073.aspx).</span><span class="sxs-lookup"><span data-stu-id="2f5fa-125">For details about Sysprep, see [How tooUse Sysprep: An Introduction](http://technet.microsoft.com/library/bb457073.aspx).</span></span>
 
 
-1. <span data-ttu-id="3e90f-126">Connectez-vous à la machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="3e90f-126">Connect to the virtual machine.</span></span>
-2. <span data-ttu-id="3e90f-127">Ouvrez la fenêtre d’invite de commandes en tant qu’administrateur.</span><span class="sxs-lookup"><span data-stu-id="3e90f-127">Open the Command Prompt window as an administrator.</span></span> <span data-ttu-id="3e90f-128">Remplacez le répertoire par *%windir%\system32\sysprep*, puis exécutez *sysprep.exe*.</span><span class="sxs-lookup"><span data-stu-id="3e90f-128">Change the directory to *%windir%\system32\sysprep*, and then run *sysprep.exe*.</span></span>
-3. <span data-ttu-id="3e90f-129">Dans la boîte de dialogue **Outil de préparation du système**, sélectionnez *Entrer en mode OOBE (Out-of-Box Experience)* et vérifiez que la case *Généraliser* est cochée.</span><span class="sxs-lookup"><span data-stu-id="3e90f-129">In the **System Preparation Tool** dialog box, select *Enter System Out-of-Box Experience (OOBE)*, and make sure that the *Generalize* check box is selected.</span></span>
-4. <span data-ttu-id="3e90f-130">Dans **Options d’arrêt**, sélectionnez *Arrêter*, puis cliquez sur **OK**.</span><span class="sxs-lookup"><span data-stu-id="3e90f-130">In **Shutdown Options**, select *Shutdown* and then click **OK**.</span></span>
-5. <span data-ttu-id="3e90f-131">Une fois l’opération Sysprep terminée, elle arrête la machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="3e90f-131">When Sysprep completes, it shuts down the virtual machine.</span></span> <span data-ttu-id="3e90f-132">**Ne redémarrez pas la machine virtuelle**.</span><span class="sxs-lookup"><span data-stu-id="3e90f-132">**Do not restart the VM**.</span></span>
+1. <span data-ttu-id="2f5fa-126">Connecter l’ordinateur virtuel de toohello.</span><span class="sxs-lookup"><span data-stu-id="2f5fa-126">Connect toohello virtual machine.</span></span>
+2. <span data-ttu-id="2f5fa-127">Ouvrez la fenêtre d’invite de commandes hello en tant qu’administrateur.</span><span class="sxs-lookup"><span data-stu-id="2f5fa-127">Open hello Command Prompt window as an administrator.</span></span> <span data-ttu-id="2f5fa-128">Basculez hello trop*%windir%\system32\sysprep*, puis exécutez *sysprep.exe*.</span><span class="sxs-lookup"><span data-stu-id="2f5fa-128">Change hello directory too*%windir%\system32\sysprep*, and then run *sysprep.exe*.</span></span>
+3. <span data-ttu-id="2f5fa-129">Bonjour **outil de préparation système** boîte de dialogue, sélectionnez *entrer le système Out-of-Box Experience (OOBE)*et assurez-vous que hello *Generalize* case à cocher est activée.</span><span class="sxs-lookup"><span data-stu-id="2f5fa-129">In hello **System Preparation Tool** dialog box, select *Enter System Out-of-Box Experience (OOBE)*, and make sure that hello *Generalize* check box is selected.</span></span>
+4. <span data-ttu-id="2f5fa-130">Dans **Options d’arrêt**, sélectionnez *Arrêter*, puis cliquez sur **OK**.</span><span class="sxs-lookup"><span data-stu-id="2f5fa-130">In **Shutdown Options**, select *Shutdown* and then click **OK**.</span></span>
+5. <span data-ttu-id="2f5fa-131">Quand Sysprep se termine, il arrête de machine virtuelle de hello.</span><span class="sxs-lookup"><span data-stu-id="2f5fa-131">When Sysprep completes, it shuts down hello virtual machine.</span></span> <span data-ttu-id="2f5fa-132">**Ne redémarrez pas hello VM**.</span><span class="sxs-lookup"><span data-stu-id="2f5fa-132">**Do not restart hello VM**.</span></span>
 
-### <a name="deallocate-and-mark-the-vm-as-generalized"></a><span data-ttu-id="3e90f-133">Libérer la machine virtuelle et la marquer comme généralisée</span><span class="sxs-lookup"><span data-stu-id="3e90f-133">Deallocate and mark the VM as generalized</span></span>
+### <a name="deallocate-and-mark-hello-vm-as-generalized"></a><span data-ttu-id="2f5fa-133">Désallouer et marquer hello machine virtuelle comme généralisé</span><span class="sxs-lookup"><span data-stu-id="2f5fa-133">Deallocate and mark hello VM as generalized</span></span>
 
-<span data-ttu-id="3e90f-134">Pour créer une image, la machine virtuelle doit être libérée et marquée comme généralisée dans Azure.</span><span class="sxs-lookup"><span data-stu-id="3e90f-134">To create an image, the VM needs to be deallocated and marked as generalized in Azure.</span></span>
+<span data-ttu-id="2f5fa-134">toocreate une image, hello machine virtuelle doit toobe désalloué et marquée comme généralisé dans Azure.</span><span class="sxs-lookup"><span data-stu-id="2f5fa-134">toocreate an image, hello VM needs toobe deallocated and marked as generalized in Azure.</span></span>
 
-<span data-ttu-id="3e90f-135">Libérez la machine virtuelle à l’aide de [Stop-AzureRmVM](/powershell/module/azurerm.compute/stop-azurermvm).</span><span class="sxs-lookup"><span data-stu-id="3e90f-135">Deallocated the VM using [Stop-AzureRmVM](/powershell/module/azurerm.compute/stop-azurermvm).</span></span>
+<span data-ttu-id="2f5fa-135">À l’aide de machine virtuelle libérée hello [Stop-AzureRmVM](/powershell/module/azurerm.compute/stop-azurermvm).</span><span class="sxs-lookup"><span data-stu-id="2f5fa-135">Deallocated hello VM using [Stop-AzureRmVM](/powershell/module/azurerm.compute/stop-azurermvm).</span></span>
 
 ```powershell
 Stop-AzureRmVM -ResourceGroupName myResourceGroupImages -Name myVM -Force
 ```
 
-<span data-ttu-id="3e90f-136">Définissez l’état de la machine virtuelle sur `-Generalized` à l’aide de [Set-AzureRmVm](/powershell/module/azurerm.compute/set-azurermvm).</span><span class="sxs-lookup"><span data-stu-id="3e90f-136">Set the status of the virtual machine to `-Generalized` using [Set-AzureRmVm](/powershell/module/azurerm.compute/set-azurermvm).</span></span> 
+<span data-ttu-id="2f5fa-136">Définir le statut de hello de machine virtuelle de hello trop`-Generalized` à l’aide de [Set-AzureRmVm](/powershell/module/azurerm.compute/set-azurermvm).</span><span class="sxs-lookup"><span data-stu-id="2f5fa-136">Set hello status of hello virtual machine too`-Generalized` using [Set-AzureRmVm](/powershell/module/azurerm.compute/set-azurermvm).</span></span> 
    
 ```powershell
 Set-AzureRmVM -ResourceGroupName myResourceGroupImages -Name myVM -Generalized
 ```
 
 
-## <a name="create-the-image"></a><span data-ttu-id="3e90f-137">Création de l’image</span><span class="sxs-lookup"><span data-stu-id="3e90f-137">Create the image</span></span>
+## <a name="create-hello-image"></a><span data-ttu-id="2f5fa-137">Création d’image de hello</span><span class="sxs-lookup"><span data-stu-id="2f5fa-137">Create hello image</span></span>
 
-<span data-ttu-id="3e90f-138">Créez à présent une image de la machine virtuelle à l’aide de [New-AzureRmImageConfig](/powershell/module/azurerm.compute/new-azurermimageconfig) et [New-AzureRmImage](/powershell/module/azurerm.compute/new-azurermimage).</span><span class="sxs-lookup"><span data-stu-id="3e90f-138">Now you can create an image of the VM by using [New-AzureRmImageConfig](/powershell/module/azurerm.compute/new-azurermimageconfig) and [New-AzureRmImage](/powershell/module/azurerm.compute/new-azurermimage).</span></span> <span data-ttu-id="3e90f-139">L’exemple suivant crée une image nommée *myimage* à partir d’une machine virtuelle nommée *myimage*.</span><span class="sxs-lookup"><span data-stu-id="3e90f-139">The following example creates an image named *myImage* from a VM named *myVM*.</span></span>
+<span data-ttu-id="2f5fa-138">Vous pouvez désormais créer une image de machine virtuelle de hello à l’aide de [New-AzureRmImageConfig](/powershell/module/azurerm.compute/new-azurermimageconfig) et [New-AzureRmImage](/powershell/module/azurerm.compute/new-azurermimage).</span><span class="sxs-lookup"><span data-stu-id="2f5fa-138">Now you can create an image of hello VM by using [New-AzureRmImageConfig](/powershell/module/azurerm.compute/new-azurermimageconfig) and [New-AzureRmImage](/powershell/module/azurerm.compute/new-azurermimage).</span></span> <span data-ttu-id="2f5fa-139">Hello exemple suivant crée une image nommée *myImage* à partir d’un ordinateur virtuel nommé *myVM*.</span><span class="sxs-lookup"><span data-stu-id="2f5fa-139">hello following example creates an image named *myImage* from a VM named *myVM*.</span></span>
 
-<span data-ttu-id="3e90f-140">Accédez à la machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="3e90f-140">Get the virtual machine.</span></span> 
+<span data-ttu-id="2f5fa-140">Obtenir un ordinateur virtuel de hello.</span><span class="sxs-lookup"><span data-stu-id="2f5fa-140">Get hello virtual machine.</span></span> 
 
 ```powershell
 $vm = Get-AzureRmVM -Name myVM -ResourceGroupName myResourceGroupImages
 ```
 
-<span data-ttu-id="3e90f-141">Créez la configuration de l’image.</span><span class="sxs-lookup"><span data-stu-id="3e90f-141">Create the image configuration.</span></span>
+<span data-ttu-id="2f5fa-141">Créer la configuration de l’image hello.</span><span class="sxs-lookup"><span data-stu-id="2f5fa-141">Create hello image configuration.</span></span>
 
 ```powershell
 $image = New-AzureRmImageConfig -Location EastUS -SourceVirtualMachineId $vm.ID 
 ```
 
-<span data-ttu-id="3e90f-142">Créez l’image.</span><span class="sxs-lookup"><span data-stu-id="3e90f-142">Create the image.</span></span>
+<span data-ttu-id="2f5fa-142">Créer l’image de hello.</span><span class="sxs-lookup"><span data-stu-id="2f5fa-142">Create hello image.</span></span>
 
 ```powershell
 New-AzureRmImage -Image $image -ImageName myImage -ResourceGroupName myResourceGroupImages
 ``` 
 
  
-## <a name="create-vms-from-the-image"></a><span data-ttu-id="3e90f-143">Créer des machines virtuelles à partir de l’image</span><span class="sxs-lookup"><span data-stu-id="3e90f-143">Create VMs from the image</span></span>
+## <a name="create-vms-from-hello-image"></a><span data-ttu-id="2f5fa-143">Créer des ordinateurs virtuels à partir de l’image de hello</span><span class="sxs-lookup"><span data-stu-id="2f5fa-143">Create VMs from hello image</span></span>
 
-<span data-ttu-id="3e90f-144">Maintenant que vous avez une image, vous pouvez créer une ou plusieurs nouvelles machines virtuelles à partir de l’image.</span><span class="sxs-lookup"><span data-stu-id="3e90f-144">Now that you have an image, you can create one or more new VMs from the image.</span></span> <span data-ttu-id="3e90f-145">La création d’une machine virtuelle à partir d’une image personnalisée est très similaire à la création d’une machine virtuelle à l’aide d’une image de la Place de marché.</span><span class="sxs-lookup"><span data-stu-id="3e90f-145">Creating a VM from a custom image is very similar to creating a VM using a Marketplace image.</span></span> <span data-ttu-id="3e90f-146">Lorsque vous utilisez une image de la Place de marché, vous devez entrer des informations sur l’image, le fournisseur de l’image, l’offre, la référence et la version.</span><span class="sxs-lookup"><span data-stu-id="3e90f-146">When you use a Marketplace image, you have to information about the image, image provider, offer, SKU and version.</span></span> <span data-ttu-id="3e90f-147">Avec une image personnalisée, vous devez simplement fournir l’ID de la ressource d’image personnalisée.</span><span class="sxs-lookup"><span data-stu-id="3e90f-147">With a custom image, you just need to provide the ID of the custom image resource.</span></span> 
+<span data-ttu-id="2f5fa-144">Maintenant que vous disposez d’une image, vous pouvez créer un ou plusieurs nouveaux ordinateurs virtuels à partir de l’image de hello.</span><span class="sxs-lookup"><span data-stu-id="2f5fa-144">Now that you have an image, you can create one or more new VMs from hello image.</span></span> <span data-ttu-id="2f5fa-145">Création d’une machine virtuelle à partir d’une image personnalisée est très similaire toocreating une machine virtuelle à l’aide d’une image de Marketplace.</span><span class="sxs-lookup"><span data-stu-id="2f5fa-145">Creating a VM from a custom image is very similar toocreating a VM using a Marketplace image.</span></span> <span data-ttu-id="2f5fa-146">Lorsque vous utilisez une image de Marketplace, vous avez tooinformation sur les images de hello, fournisseur d’images, offre, référence (SKU) et version.</span><span class="sxs-lookup"><span data-stu-id="2f5fa-146">When you use a Marketplace image, you have tooinformation about hello image, image provider, offer, SKU and version.</span></span> <span data-ttu-id="2f5fa-147">Avec une image personnalisée, vous devez simplement des ID de hello tooprovide de ressource d’image personnalisée hello.</span><span class="sxs-lookup"><span data-stu-id="2f5fa-147">With a custom image, you just need tooprovide hello ID of hello custom image resource.</span></span> 
 
-<span data-ttu-id="3e90f-148">Dans le script suivant, nous créons une variable *$image* pour stocker des informations sur l’image personnalisée à l’aide de [Get-AzureRmImage](/powershell/module/azurerm.compute/get-azurermimage) et nous utilisons ensuite [Set-AzureRmVMSourceImage](/powershell/module/azurerm.compute/set-azurermvmsourceimage) et spécifions l’ID à l’aide de la variable *$image* que nous venons de créer.</span><span class="sxs-lookup"><span data-stu-id="3e90f-148">In the following script, we create a variable *$image* to store information about the custom image using [Get-AzureRmImage](/powershell/module/azurerm.compute/get-azurermimage) and then we use [Set-AzureRmVMSourceImage](/powershell/module/azurerm.compute/set-azurermvmsourceimage) and specify the ID using the *$image* variable we just created.</span></span> 
+<span data-ttu-id="2f5fa-148">Dans hello le script suivant, nous créons une variable *$image* toostore plus d’informations sur l’utilisation d’une image personnalisée hello [Get-AzureRmImage](/powershell/module/azurerm.compute/get-azurermimage) puis nous les utilisons [Set-AzureRmVMSourceImage](/powershell/module/azurerm.compute/set-azurermvmsourceimage)et spécifiez l’ID de hello à l’aide de hello *$image* variable nous venons de créer.</span><span class="sxs-lookup"><span data-stu-id="2f5fa-148">In hello following script, we create a variable *$image* toostore information about hello custom image using [Get-AzureRmImage](/powershell/module/azurerm.compute/get-azurermimage) and then we use [Set-AzureRmVMSourceImage](/powershell/module/azurerm.compute/set-azurermvmsourceimage) and specify hello ID using hello *$image* variable we just created.</span></span> 
 
-<span data-ttu-id="3e90f-149">Le script crée une machine virtuelle nommée *myVMfromImage* à partir de notre image personnalisée dans un groupe de ressources nommé *myResourceGroupFromImage* dans l’emplacement *Ouest des États-Unis*.</span><span class="sxs-lookup"><span data-stu-id="3e90f-149">The script creates a VM named *myVMfromImage* from our custom image in a new resource group named *myResourceGroupFromImage* in the *West US* location.</span></span>
+<span data-ttu-id="2f5fa-149">script de Hello crée un ordinateur virtuel nommé *myVMfromImage* à partir de notre image personnalisée dans un groupe de ressources nommé *myResourceGroupFromImage* Bonjour *ouest des États-Unis* emplacement.</span><span class="sxs-lookup"><span data-stu-id="2f5fa-149">hello script creates a VM named *myVMfromImage* from our custom image in a new resource group named *myResourceGroupFromImage* in hello *West US* location.</span></span>
 
 
 ```powershell
-$cred = Get-Credential -Message "Enter a username and password for the virtual machine."
+$cred = Get-Credential -Message "Enter a username and password for hello virtual machine."
 
 New-AzureRmResourceGroup -Name myResourceGroupFromImage -Location EastUS
 
@@ -159,12 +159,12 @@ $vmConfig = New-AzureRmVMConfig `
         -ComputerName myComputer `
         -Credential $cred 
 
-# Here is where we create a variable to store information about the image 
+# Here is where we create a variable toostore information about hello image 
 $image = Get-AzureRmImage `
     -ImageName myImage `
     -ResourceGroupName myResourceGroupImages
 
-# Here is where we specify that we want to create the VM from and image and provide the image ID
+# Here is where we specify that we want toocreate hello VM from and image and provide hello image ID
 $vmConfig = Set-AzureRmVMSourceImage -VM $vmConfig -Id $image.Id
 
 $vmConfig = Add-AzureRmVMNetworkInterface -VM $vmConfig -Id $nic.Id
@@ -175,18 +175,18 @@ New-AzureRmVM `
     -VM $vmConfig
 ```
 
-## <a name="image-management"></a><span data-ttu-id="3e90f-150">Gestion d’image</span><span class="sxs-lookup"><span data-stu-id="3e90f-150">Image management</span></span> 
+## <a name="image-management"></a><span data-ttu-id="2f5fa-150">Gestion d’image</span><span class="sxs-lookup"><span data-stu-id="2f5fa-150">Image management</span></span> 
 
-<span data-ttu-id="3e90f-151">Voici quelques exemples de tâches d’images de gestion courantes et comment les exécuter à l’aide de PowerShell.</span><span class="sxs-lookup"><span data-stu-id="3e90f-151">Here are some examples of common management image tasks and how to complete them using PowerShell.</span></span>
+<span data-ttu-id="2f5fa-151">Voici quelques exemples de tâches courantes de gestion image et comment toocomplete les à l’aide de PowerShell.</span><span class="sxs-lookup"><span data-stu-id="2f5fa-151">Here are some examples of common management image tasks and how toocomplete them using PowerShell.</span></span>
 
-<span data-ttu-id="3e90f-152">Répertoriez toutes les images par nom.</span><span class="sxs-lookup"><span data-stu-id="3e90f-152">List all images by name.</span></span>
+<span data-ttu-id="2f5fa-152">Répertoriez toutes les images par nom.</span><span class="sxs-lookup"><span data-stu-id="2f5fa-152">List all images by name.</span></span>
 
 ```powershell
 $images = Find-AzureRMResource -ResourceType Microsoft.Compute/images 
 $images.name
 ```
 
-<span data-ttu-id="3e90f-153">Supprimez une image.</span><span class="sxs-lookup"><span data-stu-id="3e90f-153">Delete an image.</span></span> <span data-ttu-id="3e90f-154">Cet exemple supprime l’image nommée *myOldImage* à partir du groupe *myResourceGroup*.</span><span class="sxs-lookup"><span data-stu-id="3e90f-154">This example deletes the image named *myOldImage* from the *myResourceGroup*.</span></span>
+<span data-ttu-id="2f5fa-153">Supprimez une image.</span><span class="sxs-lookup"><span data-stu-id="2f5fa-153">Delete an image.</span></span> <span data-ttu-id="2f5fa-154">Cet exemple supprime hello image nommée *myOldImage* de hello *myResourceGroup*.</span><span class="sxs-lookup"><span data-stu-id="2f5fa-154">This example deletes hello image named *myOldImage* from hello *myResourceGroup*.</span></span>
 
 ```powershell
 Remove-AzureRmImage `
@@ -194,21 +194,21 @@ Remove-AzureRmImage `
     -ResourceGroupName myResourceGroup
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="3e90f-155">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="3e90f-155">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="2f5fa-155">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="2f5fa-155">Next steps</span></span>
 
-<span data-ttu-id="3e90f-156">Ce didacticiel vous montré comment créer une image de machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="3e90f-156">In this tutorial, you created a custom VM image.</span></span> <span data-ttu-id="3e90f-157">Vous avez appris à effectuer les actions suivantes :</span><span class="sxs-lookup"><span data-stu-id="3e90f-157">You learned how to:</span></span>
+<span data-ttu-id="2f5fa-156">Ce didacticiel vous montré comment créer une image de machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="2f5fa-156">In this tutorial, you created a custom VM image.</span></span> <span data-ttu-id="2f5fa-157">Vous avez appris à effectuer les actions suivantes :</span><span class="sxs-lookup"><span data-stu-id="2f5fa-157">You learned how to:</span></span>
 
 > [!div class="checklist"]
-> * <span data-ttu-id="3e90f-158">Exécuter Sysprep et généraliser les machines virtuelles</span><span class="sxs-lookup"><span data-stu-id="3e90f-158">Sysprep and generalize VMs</span></span>
-> * <span data-ttu-id="3e90f-159">Créer une image personnalisée</span><span class="sxs-lookup"><span data-stu-id="3e90f-159">Create a custom image</span></span>
-> * <span data-ttu-id="3e90f-160">Créer une machine virtuelle à partir d’une image personnalisée</span><span class="sxs-lookup"><span data-stu-id="3e90f-160">Create a VM from a custom image</span></span>
-> * <span data-ttu-id="3e90f-161">Répertorier toutes les images dans votre abonnement</span><span class="sxs-lookup"><span data-stu-id="3e90f-161">List all the images in your subscription</span></span>
-> * <span data-ttu-id="3e90f-162">Supprimer une image</span><span class="sxs-lookup"><span data-stu-id="3e90f-162">Delete an image</span></span>
+> * <span data-ttu-id="2f5fa-158">Exécuter Sysprep et généraliser les machines virtuelles</span><span class="sxs-lookup"><span data-stu-id="2f5fa-158">Sysprep and generalize VMs</span></span>
+> * <span data-ttu-id="2f5fa-159">Créer une image personnalisée</span><span class="sxs-lookup"><span data-stu-id="2f5fa-159">Create a custom image</span></span>
+> * <span data-ttu-id="2f5fa-160">Créer une machine virtuelle à partir d’une image personnalisée</span><span class="sxs-lookup"><span data-stu-id="2f5fa-160">Create a VM from a custom image</span></span>
+> * <span data-ttu-id="2f5fa-161">La liste de toutes les images hello dans votre abonnement</span><span class="sxs-lookup"><span data-stu-id="2f5fa-161">List all hello images in your subscription</span></span>
+> * <span data-ttu-id="2f5fa-162">Supprimer une image</span><span class="sxs-lookup"><span data-stu-id="2f5fa-162">Delete an image</span></span>
 
-<span data-ttu-id="3e90f-163">Passez au didacticiel suivant pour en savoir plus sur les machines virtuelles hautement disponibles.</span><span class="sxs-lookup"><span data-stu-id="3e90f-163">Advance to the next tutorial to learn about how highly available virtual machines.</span></span>
+<span data-ttu-id="2f5fa-163">Avance toohello toolearn de didacticiel suivant sur les ordinateurs virtuels comment hautement disponibles.</span><span class="sxs-lookup"><span data-stu-id="2f5fa-163">Advance toohello next tutorial toolearn about how highly available virtual machines.</span></span>
 
 > [!div class="nextstepaction"]
-> [<span data-ttu-id="3e90f-164">Créer des machines virtuelles hautement disponibles</span><span class="sxs-lookup"><span data-stu-id="3e90f-164">Create highly available VMs</span></span>](tutorial-availability-sets.md)
+> [<span data-ttu-id="2f5fa-164">Créer des machines virtuelles hautement disponibles</span><span class="sxs-lookup"><span data-stu-id="2f5fa-164">Create highly available VMs</span></span>](tutorial-availability-sets.md)
 
 
 

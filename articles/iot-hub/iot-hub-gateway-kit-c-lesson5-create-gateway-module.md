@@ -1,6 +1,6 @@
 ---
-title: "Créer votre premier module de passerelle Azure IoT | Microsoft Docs"
-description: "Créez un module et ajoutez-le à un exemple d’application pour personnaliser les comportements du module."
+title: aaaCreate votre premier module Azure IoT passerelle | Documents Microsoft
+description: "Créez un module et ajouter des comportements de module toocustomize tooa exemple application."
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -17,47 +17,47 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: 5e28422158684c3aaf0ac3fdf5b19c80fbccfb02
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 48996fc026c8b708e328b5629801465810e5b6a2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="lesson-5-create-your-first-azure-iot-gateway-module"></a><span data-ttu-id="02fef-103">Leçon 5 : Créer votre premier module de passerelle Azure IoT</span><span class="sxs-lookup"><span data-stu-id="02fef-103">Lesson 5: Create your first Azure IoT Gateway module</span></span>
-<span data-ttu-id="02fef-104">Bien qu’Azure IoT Edge permette de développer des modules écrits en Java, .NET ou Node.js, ce didacticiel vous guide à travers les étapes de création d’un module en langage C.</span><span class="sxs-lookup"><span data-stu-id="02fef-104">While Azure IoT Edge allows you to build modules written in Java, .NET, or Node.js, this tutorial walks you through the steps for building a module in C.</span></span>
+# <a name="lesson-5-create-your-first-azure-iot-gateway-module"></a><span data-ttu-id="c38c0-103">Leçon 5 : Créer votre premier module de passerelle Azure IoT</span><span class="sxs-lookup"><span data-stu-id="c38c0-103">Lesson 5: Create your first Azure IoT Gateway module</span></span>
+<span data-ttu-id="c38c0-104">Azure IoT bord vous permet de modules toobuild écrits en Java, .NET ou Node.js, ce didacticiel vous guide à travers les étapes de hello pour la création d’un module en C.</span><span class="sxs-lookup"><span data-stu-id="c38c0-104">While Azure IoT Edge allows you toobuild modules written in Java, .NET, or Node.js, this tutorial walks you through hello steps for building a module in C.</span></span>
 
-## <a name="what-you-will-do"></a><span data-ttu-id="02fef-105">Procédure à suivre</span><span class="sxs-lookup"><span data-stu-id="02fef-105">What you will do</span></span>
+## <a name="what-you-will-do"></a><span data-ttu-id="c38c0-105">Procédure à suivre</span><span class="sxs-lookup"><span data-stu-id="c38c0-105">What you will do</span></span>
 
-- <span data-ttu-id="02fef-106">Compilez et exécutez l’exemple d’application hello_world sur l’Intel NUC.</span><span class="sxs-lookup"><span data-stu-id="02fef-106">Compile and run the hello_world sample app on Intel NUC.</span></span>
-- <span data-ttu-id="02fef-107">Créez un module et compilez-le sur l’Intel NUC.</span><span class="sxs-lookup"><span data-stu-id="02fef-107">Create a module and compile it on Intel NUC.</span></span>
-- <span data-ttu-id="02fef-108">Ajouter le nouveau module à l’exemple d’application hello_world, puis exécutez l’exemple sur l’Intel NUC.</span><span class="sxs-lookup"><span data-stu-id="02fef-108">Add the new module to the hello_world sample app and then run the sample on Intel NUC.</span></span> <span data-ttu-id="02fef-109">Le nouveau module affiche des messages « hello world » avec un horodatage.</span><span class="sxs-lookup"><span data-stu-id="02fef-109">The new module prints out "hello_world" messages with a timestamp.</span></span>
+- <span data-ttu-id="c38c0-106">Compilez et exécutez l’application d’exemple hello Bonjour_monde sur Intel NUC.</span><span class="sxs-lookup"><span data-stu-id="c38c0-106">Compile and run hello hello_world sample app on Intel NUC.</span></span>
+- <span data-ttu-id="c38c0-107">Créez un module et compilez-le sur l’Intel NUC.</span><span class="sxs-lookup"><span data-stu-id="c38c0-107">Create a module and compile it on Intel NUC.</span></span>
+- <span data-ttu-id="c38c0-108">Ajouter hello nouveau module toohello Bonjour_monde exemple d’application, puis exécutez exemple hello sur NUC d’Intel.</span><span class="sxs-lookup"><span data-stu-id="c38c0-108">Add hello new module toohello hello_world sample app and then run hello sample on Intel NUC.</span></span> <span data-ttu-id="c38c0-109">nouveau module de Hello imprime les messages « Bonjour_monde » avec un horodatage.</span><span class="sxs-lookup"><span data-stu-id="c38c0-109">hello new module prints out "hello_world" messages with a timestamp.</span></span>
 
-## <a name="what-you-will-learn"></a><span data-ttu-id="02fef-110">Contenu</span><span class="sxs-lookup"><span data-stu-id="02fef-110">What you will learn</span></span>
+## <a name="what-you-will-learn"></a><span data-ttu-id="c38c0-110">Contenu</span><span class="sxs-lookup"><span data-stu-id="c38c0-110">What you will learn</span></span>
 
-- <span data-ttu-id="02fef-111">Compilation et exécution d’un exemple d’application sur l’Intel NUC.</span><span class="sxs-lookup"><span data-stu-id="02fef-111">How to compile and run a sample app on Intel NUC.</span></span>
-- <span data-ttu-id="02fef-112">Création d’un module.</span><span class="sxs-lookup"><span data-stu-id="02fef-112">How to create a module.</span></span>
-- <span data-ttu-id="02fef-113">Ajout d’un module à un exemple d’application.</span><span class="sxs-lookup"><span data-stu-id="02fef-113">How to add module to a sample app.</span></span>
+- <span data-ttu-id="c38c0-111">Comment toocompile et exécuter un exemple d’application sur NUC d’Intel.</span><span class="sxs-lookup"><span data-stu-id="c38c0-111">How toocompile and run a sample app on Intel NUC.</span></span>
+- <span data-ttu-id="c38c0-112">Comment toocreate un module.</span><span class="sxs-lookup"><span data-stu-id="c38c0-112">How toocreate a module.</span></span>
+- <span data-ttu-id="c38c0-113">Comment tooadd module tooa exemple d’application.</span><span class="sxs-lookup"><span data-stu-id="c38c0-113">How tooadd module tooa sample app.</span></span>
 
-## <a name="what-you-need"></a><span data-ttu-id="02fef-114">Ce dont vous avez besoin</span><span class="sxs-lookup"><span data-stu-id="02fef-114">What you need</span></span>
+## <a name="what-you-need"></a><span data-ttu-id="c38c0-114">Ce dont vous avez besoin</span><span class="sxs-lookup"><span data-stu-id="c38c0-114">What you need</span></span>
 
-<span data-ttu-id="02fef-115">Azure IoT Edge installé sur votre ordinateur hôte.</span><span class="sxs-lookup"><span data-stu-id="02fef-115">Azure IoT Edge that has been installed on your host computer.</span></span>
+<span data-ttu-id="c38c0-115">Azure IoT Edge installé sur votre ordinateur hôte.</span><span class="sxs-lookup"><span data-stu-id="c38c0-115">Azure IoT Edge that has been installed on your host computer.</span></span>
 
-## <a name="folder-structure"></a><span data-ttu-id="02fef-116">Structure de dossiers</span><span class="sxs-lookup"><span data-stu-id="02fef-116">Folder structure</span></span>
+## <a name="folder-structure"></a><span data-ttu-id="c38c0-116">Structure de dossiers</span><span class="sxs-lookup"><span data-stu-id="c38c0-116">Folder structure</span></span>
 
-<span data-ttu-id="02fef-117">Dans le sous-dossier de la leçon 5 pour l’exemple de code que vous avez cloné dans la leçon 1, il y a un dossier `module` et un dossier `sample`.</span><span class="sxs-lookup"><span data-stu-id="02fef-117">In the Lesson 5 subfolder of the sample code which you cloned in lesson 1, there is a `module` folder and a `sample` folder.</span></span>
+<span data-ttu-id="c38c0-117">Dans le sous-dossier hello leçon 5 de l’exemple de code hello que vous avez cloné dans la leçon 1, il existe un `module` dossier et un `sample` dossier.</span><span class="sxs-lookup"><span data-stu-id="c38c0-117">In hello Lesson 5 subfolder of hello sample code which you cloned in lesson 1, there is a `module` folder and a `sample` folder.</span></span>
 
 ![my_module](media/iot-hub-gateway-kit-lessons/lesson5/my_module.png)
 
-- <span data-ttu-id="02fef-119">Le dossier `module/my_module` contient le code source et le script permettant de générer le module.</span><span class="sxs-lookup"><span data-stu-id="02fef-119">The `module/my_module` folder contains the source code and script to build the module.</span></span>
-- <span data-ttu-id="02fef-120">Le dossier `sample` contient le code source et le script permettant de générer l’exemple d’application.</span><span class="sxs-lookup"><span data-stu-id="02fef-120">The `sample` folder contains the source code and script to build the sample app.</span></span>
+- <span data-ttu-id="c38c0-119">Hello `module/my_module` dossier contient hello code et le script toobuild hello module de source.</span><span class="sxs-lookup"><span data-stu-id="c38c0-119">hello `module/my_module` folder contains hello source code and script toobuild hello module.</span></span>
+- <span data-ttu-id="c38c0-120">Hello `sample` dossier contient hello source code et le script toobuild hello exemple d’application.</span><span class="sxs-lookup"><span data-stu-id="c38c0-120">hello `sample` folder contains hello source code and script toobuild hello sample app.</span></span>
 
-## <a name="compile-and-run-the-helloworld-sample-app-on-intel-nuc"></a><span data-ttu-id="02fef-121">Compiler et exécuter l’exemple d’application hello_world sur l’Intel NUC</span><span class="sxs-lookup"><span data-stu-id="02fef-121">Compile and run the hello_world sample app on Intel NUC</span></span>
+## <a name="compile-and-run-hello-helloworld-sample-app-on-intel-nuc"></a><span data-ttu-id="c38c0-121">Compiler et exécuter l’application d’exemple hello Bonjour_monde sur Intel NUC</span><span class="sxs-lookup"><span data-stu-id="c38c0-121">Compile and run hello hello_world sample app on Intel NUC</span></span>
 
-<span data-ttu-id="02fef-122">L’exemple `hello_world` crée une passerelle en fonction du fichier `hello_world.json` qui spécifie les deux modules prédéfinis associés à l’application.</span><span class="sxs-lookup"><span data-stu-id="02fef-122">The `hello_world` sample creates a gateway based on the `hello_world.json` file which specifies the two predefined modules associated with the app.</span></span> <span data-ttu-id="02fef-123">La passerelle consigne un message « hello world » dans un fichier toutes les 5 secondes.</span><span class="sxs-lookup"><span data-stu-id="02fef-123">The gateway logs a "hello world" message to a file every 5 seconds.</span></span> <span data-ttu-id="02fef-124">Dans cette section, vous compilez et exécutez l’application `hello_world` avec son module par défaut.</span><span class="sxs-lookup"><span data-stu-id="02fef-124">In this section, you compile and run the `hello_world` app with its default module.</span></span>
+<span data-ttu-id="c38c0-122">Hello `hello_world` exemple crée une passerelle selon hello `hello_world.json` fichier qui spécifie les modules prédéfinis deux hello associés application hello.</span><span class="sxs-lookup"><span data-stu-id="c38c0-122">hello `hello_world` sample creates a gateway based on hello `hello_world.json` file which specifies hello two predefined modules associated with hello app.</span></span> <span data-ttu-id="c38c0-123">passerelle de Hello enregistre toutes les 5 secondes à un fichier de tooa de message « hello world ».</span><span class="sxs-lookup"><span data-stu-id="c38c0-123">hello gateway logs a "hello world" message tooa file every 5 seconds.</span></span> <span data-ttu-id="c38c0-124">Dans cette section, vous compilez et exécutez hello `hello_world` application avec son module par défaut.</span><span class="sxs-lookup"><span data-stu-id="c38c0-124">In this section, you compile and run hello `hello_world` app with its default module.</span></span>
 
-<span data-ttu-id="02fef-125">Pour compiler et exécuter l’application `hello_world`, procédez comme suit sur votre ordinateur hôte :</span><span class="sxs-lookup"><span data-stu-id="02fef-125">To compile and run the `hello_world` app, follow these steps on your host computer:</span></span>
+<span data-ttu-id="c38c0-125">hello toocompile et exécutez `hello_world` application, procédez comme suit sur votre ordinateur hôte :</span><span class="sxs-lookup"><span data-stu-id="c38c0-125">toocompile and run hello `hello_world` app, follow these steps on your host computer:</span></span>
 
-1. <span data-ttu-id="02fef-126">Initialisez les fichiers de configuration en exécutant les commandes suivantes :</span><span class="sxs-lookup"><span data-stu-id="02fef-126">Initialize the configuration files by running the following commands:</span></span>
+1. <span data-ttu-id="c38c0-126">Initialiser les fichiers de configuration hello en hello suivant les commandes en cours d’exécution :</span><span class="sxs-lookup"><span data-stu-id="c38c0-126">Initialize hello configuration files by running hello following commands:</span></span>
 
    ```bash
    cd iot-hub-c-intel-nuc-gateway-getting-started
@@ -66,9 +66,9 @@ ms.lasthandoff: 07/11/2017
    gulp init
    ```
 
-1. <span data-ttu-id="02fef-127">Mettez à jour le fichier de configuration de la passerelle avec l’adresse MAC de l’Intel NUC.</span><span class="sxs-lookup"><span data-stu-id="02fef-127">Update the gateway configuration file with the MAC address of Intel NUC.</span></span> <span data-ttu-id="02fef-128">Ignorez cette étape si vous avez suivi la leçon pour [configurer et exécuter un exemple d’application BLE][config_ble].</span><span class="sxs-lookup"><span data-stu-id="02fef-128">Skip this step if you have gone through the lesson to [configure and run a BLE sample application][config_ble].</span></span>
+1. <span data-ttu-id="c38c0-127">Mettre à jour le fichier de configuration de passerelle hello avec hello adresse MAC d’Intel NUC.</span><span class="sxs-lookup"><span data-stu-id="c38c0-127">Update hello gateway configuration file with hello MAC address of Intel NUC.</span></span> <span data-ttu-id="c38c0-128">Ignorez cette étape si vous avez parcouru leçon de hello trop[configurer et exécuter un exemple d’application BLE][config_ble].</span><span class="sxs-lookup"><span data-stu-id="c38c0-128">Skip this step if you have gone through hello lesson too[configure and run a BLE sample application][config_ble].</span></span>
 
-   1. <span data-ttu-id="02fef-129">Ouvrez le fichier de configuration de la passerelle en exécutant la commande suivante :</span><span class="sxs-lookup"><span data-stu-id="02fef-129">Open the gateway configuration file by running the following command:</span></span>
+   1. <span data-ttu-id="c38c0-129">Ouvrez le fichier de configuration de passerelle de hello en exécutant hello de commande suivante :</span><span class="sxs-lookup"><span data-stu-id="c38c0-129">Open hello gateway configuration file by running hello following command:</span></span>
 
       ```bash
       # For Windows command prompt
@@ -78,31 +78,31 @@ ms.lasthandoff: 07/11/2017
       code ~/.iot-hub-getting-started/config-gateway.json
       ```
 
-   1. <span data-ttu-id="02fef-130">Mettez à jour l’adresse MAC de la passerelle lorsque vous [configurez l’Intel NUC en tant que passerelle IoT][setup_nuc], puis enregistrez le fichier.</span><span class="sxs-lookup"><span data-stu-id="02fef-130">Update the gateway's MAC address when you [set up Intel NUC as a IoT gateway][setup_nuc], and then save the file.</span></span>
+   1. <span data-ttu-id="c38c0-130">D’adresses MAC de la passerelle de mise à jour hello lorsque vous [configurer NUC Intel comme passerelle IoT][setup_nuc], puis enregistrez le fichier de hello.</span><span class="sxs-lookup"><span data-stu-id="c38c0-130">Update hello gateway's MAC address when you [set up Intel NUC as a IoT gateway][setup_nuc], and then save hello file.</span></span>
 
-1. <span data-ttu-id="02fef-131">Compilez l’exemple de code source en exécutant la commande suivante :</span><span class="sxs-lookup"><span data-stu-id="02fef-131">Compile the sample source code by running the following command:</span></span>
+1. <span data-ttu-id="c38c0-131">Compilez les exemples de code source hello en exécutant hello de commande suivante :</span><span class="sxs-lookup"><span data-stu-id="c38c0-131">Compile hello sample source code by running hello following command:</span></span>
 
    ```bash
    gulp compile
    ```
 
-   <span data-ttu-id="02fef-132">La commande transfère l’exemple de code source à l’Intel NUC et exécute `build.sh` pour le compiler.</span><span class="sxs-lookup"><span data-stu-id="02fef-132">The command transfers the sample source code to Intel NUC and runs `build.sh` to compile it.</span></span>
+   <span data-ttu-id="c38c0-132">transfère la source d’exemple hello tooIntel code NUC Hello commande et exécute `build.sh` toocompile il.</span><span class="sxs-lookup"><span data-stu-id="c38c0-132">hello command transfers hello sample source code tooIntel NUC and runs `build.sh` toocompile it.</span></span>
 
-1. <span data-ttu-id="02fef-133">Exécutez l’application `hello_world` sur l’Intel NUC à l’aide de la commande suivante :</span><span class="sxs-lookup"><span data-stu-id="02fef-133">Run the `hello_world` app on Intel NUC by running the following command:</span></span>
+1. <span data-ttu-id="c38c0-133">Exécutez hello `hello_world` application sur Intel NUC en exécutant hello de commande suivante :</span><span class="sxs-lookup"><span data-stu-id="c38c0-133">Run hello `hello_world` app on Intel NUC by running hello following command:</span></span>
 
    ```bash
    gulp run
    ```
 
-   <span data-ttu-id="02fef-134">Cette commande exécute le fichier `../Tools/run-hello-world.js` spécifié dans `config.json` pour démarrer l’exemple d’application sur l’Intel NUC.</span><span class="sxs-lookup"><span data-stu-id="02fef-134">The command runs `../Tools/run-hello-world.js` that is specified in `config.json` to start the sample app on Intel NUC.</span></span>
+   <span data-ttu-id="c38c0-134">Hello s’exécute la commande `../Tools/run-hello-world.js` qui est spécifié dans `config.json` toostart hello exemple d’application sur NUC d’Intel.</span><span class="sxs-lookup"><span data-stu-id="c38c0-134">hello command runs `../Tools/run-hello-world.js` that is specified in `config.json` toostart hello sample app on Intel NUC.</span></span>
 
    ![run_sample](media/iot-hub-gateway-kit-lessons/lesson5/run_sample.png)
 
-## <a name="create-a-new-module-and-compile-it-on-intel-nuc"></a><span data-ttu-id="02fef-136">Créer un module et le compiler sur l’Intel NUC</span><span class="sxs-lookup"><span data-stu-id="02fef-136">Create a new module and compile it on Intel NUC</span></span>
+## <a name="create-a-new-module-and-compile-it-on-intel-nuc"></a><span data-ttu-id="c38c0-136">Créer un module et le compiler sur l’Intel NUC</span><span class="sxs-lookup"><span data-stu-id="c38c0-136">Create a new module and compile it on Intel NUC</span></span>
 
-<span data-ttu-id="02fef-137">La procédure ci-dessous vous guide dans la création d’un module et sa compilation sur l’Intel NUC.</span><span class="sxs-lookup"><span data-stu-id="02fef-137">The steps below walk you through creating a new module and compile it on Intel NUC.</span></span> <span data-ttu-id="02fef-138">Le module affiche des messages avec un horodatage au moment de leur réception.</span><span class="sxs-lookup"><span data-stu-id="02fef-138">The module prints out messages with a timestamp upon receiving them.</span></span> <span data-ttu-id="02fef-139">Vous allez créer votre premier module de passerelle personnalisé dans cette section.</span><span class="sxs-lookup"><span data-stu-id="02fef-139">You will create your first customized gateway module in this section.</span></span>
+<span data-ttu-id="c38c0-137">étapes Hello ci-dessous vous guident dans la création d’un nouveau module et le compiler sur NUC d’Intel.</span><span class="sxs-lookup"><span data-stu-id="c38c0-137">hello steps below walk you through creating a new module and compile it on Intel NUC.</span></span> <span data-ttu-id="c38c0-138">module de Hello imprime les messages avec un horodatage lors de leur réception.</span><span class="sxs-lookup"><span data-stu-id="c38c0-138">hello module prints out messages with a timestamp upon receiving them.</span></span> <span data-ttu-id="c38c0-139">Vous allez créer votre premier module de passerelle personnalisé dans cette section.</span><span class="sxs-lookup"><span data-stu-id="c38c0-139">You will create your first customized gateway module in this section.</span></span>
 
-<span data-ttu-id="02fef-140">Tout module Azure IoT Edge doit implémenter les interfaces suivantes :</span><span class="sxs-lookup"><span data-stu-id="02fef-140">Any Azure IoT Edge module must implement the following interfaces:</span></span>
+<span data-ttu-id="c38c0-140">N’importe quel module Azure IoT Edge doit implémenter hello suivant des interfaces :</span><span class="sxs-lookup"><span data-stu-id="c38c0-140">Any Azure IoT Edge module must implement hello following interfaces:</span></span>
 
    ```C
    pfModule_ParseConfigurationFromJson Module_ParseConfigurationFromJson
@@ -112,19 +112,19 @@ ms.lasthandoff: 07/11/2017
    pfModule_Receive Module_Receive
    ```
 
-<span data-ttu-id="02fef-141">Vous avez également la possibilité d’implémenter l’interface suivante :</span><span class="sxs-lookup"><span data-stu-id="02fef-141">You can optionally implement the following interface:</span></span>
+<span data-ttu-id="c38c0-141">Vous pouvez implémenter hello suivant interface :</span><span class="sxs-lookup"><span data-stu-id="c38c0-141">You can optionally implement hello following interface:</span></span>
 
    ```C
    pfModule_Start Module_Start
    ```
 
-<span data-ttu-id="02fef-142">Le schéma suivant illustre les chemins d’état importants d’un module.</span><span class="sxs-lookup"><span data-stu-id="02fef-142">The following diagram shows the important state paths of a module.</span></span> <span data-ttu-id="02fef-143">Les rectangles représentent les méthodes que vous implémentez pour exécuter des opérations lorsque le module passe d’un état à un autre.</span><span class="sxs-lookup"><span data-stu-id="02fef-143">The square rectangles represent methods you implement to perform operations when the module moves between states.</span></span> <span data-ttu-id="02fef-144">Les ovales correspondent aux états principaux dans lesquels le module peut se trouver.</span><span class="sxs-lookup"><span data-stu-id="02fef-144">The ovals are major states the module can be in.</span></span>
+<span data-ttu-id="c38c0-142">Hello diagramme suivant montre chemins d’accès de hello état importants d’un module.</span><span class="sxs-lookup"><span data-stu-id="c38c0-142">hello following diagram shows hello important state paths of a module.</span></span> <span data-ttu-id="c38c0-143">les rectangles carré Hello représentent des méthodes que vous implémentez les opérations tooperform lorsque le module de hello se déplace entre les États.</span><span class="sxs-lookup"><span data-stu-id="c38c0-143">hello square rectangles represent methods you implement tooperform operations when hello module moves between states.</span></span> <span data-ttu-id="c38c0-144">ovales de Hello sont les principaux États module de hello.</span><span class="sxs-lookup"><span data-stu-id="c38c0-144">hello ovals are major states hello module can be in.</span></span>
 
 ![state_path](media/iot-hub-gateway-kit-lessons/lesson5/state_path.png)
 
-<span data-ttu-id="02fef-146">Maintenant, nous allons créer un module basé sur le modèle :</span><span class="sxs-lookup"><span data-stu-id="02fef-146">Now let’s create a module based on the template:</span></span>
+<span data-ttu-id="c38c0-146">Maintenant nous allons créer un module basé sur le modèle de hello :</span><span class="sxs-lookup"><span data-stu-id="c38c0-146">Now let’s create a module based on hello template:</span></span>
 
-1. <span data-ttu-id="02fef-147">Ouvrez le dossier du modèle en exécutant la commande suivante :</span><span class="sxs-lookup"><span data-stu-id="02fef-147">Open the template folder by running the following command:</span></span>
+1. <span data-ttu-id="c38c0-147">Ouvrez le dossier de modèle de hello en exécutant hello de commande suivante :</span><span class="sxs-lookup"><span data-stu-id="c38c0-147">Open hello template folder by running hello following command:</span></span>
 
    ```bash
    code module/my_module
@@ -132,16 +132,16 @@ ms.lasthandoff: 07/11/2017
 
    ![code_module](media/iot-hub-gateway-kit-lessons/lesson5/code_module.png)
 
-   - <span data-ttu-id="02fef-149">`src/my_module.c` joue un rôle de modèle qui facilite la création d’un module.</span><span class="sxs-lookup"><span data-stu-id="02fef-149">`src/my_module.c` serves as a template that facilitates the creation of a module.</span></span> <span data-ttu-id="02fef-150">Le modèle déclare les interfaces.</span><span class="sxs-lookup"><span data-stu-id="02fef-150">The template declares the interfaces.</span></span> <span data-ttu-id="02fef-151">Vous avez simplement besoin d’ajouter une logique à la fonction `MyModule_Receive`.</span><span class="sxs-lookup"><span data-stu-id="02fef-151">All you need to do is to add logic to the `MyModule_Receive` function.</span></span>
-   - <span data-ttu-id="02fef-152">`build.sh` est le script permettant de compiler le module sur l’Intel NUC.</span><span class="sxs-lookup"><span data-stu-id="02fef-152">`build.sh` is the build script to compile the module on Intel NUC.</span></span>
-1. <span data-ttu-id="02fef-153">Ouvrez le fichier `src/my_module.c` et incluez deux fichiers d’en-tête :</span><span class="sxs-lookup"><span data-stu-id="02fef-153">Open the `src/my_module.c` file and include two header files:</span></span>
+   - <span data-ttu-id="c38c0-149">`src/my_module.c`sert de modèle qui facilite la création d’un module hello.</span><span class="sxs-lookup"><span data-stu-id="c38c0-149">`src/my_module.c` serves as a template that facilitates hello creation of a module.</span></span> <span data-ttu-id="c38c0-150">modèle de Hello déclare les interfaces hello.</span><span class="sxs-lookup"><span data-stu-id="c38c0-150">hello template declares hello interfaces.</span></span> <span data-ttu-id="c38c0-151">Il vous suffit de toodo est tooadd logique toohello `MyModule_Receive` (fonction).</span><span class="sxs-lookup"><span data-stu-id="c38c0-151">All you need toodo is tooadd logic toohello `MyModule_Receive` function.</span></span>
+   - <span data-ttu-id="c38c0-152">`build.sh`est hello build script toocompile hello module NUC d’Intel.</span><span class="sxs-lookup"><span data-stu-id="c38c0-152">`build.sh` is hello build script toocompile hello module on Intel NUC.</span></span>
+1. <span data-ttu-id="c38c0-153">Ouvrez hello `src/my_module.c` de fichiers et d’inclure les deux fichiers d’en-tête :</span><span class="sxs-lookup"><span data-stu-id="c38c0-153">Open hello `src/my_module.c` file and include two header files:</span></span>
 
    ```C
    #include <stdio.h>
    #include "azure_c_shared_utility/xlogging.h"
    ```
 
-1. <span data-ttu-id="02fef-154">Ajoutez le code suivant à la fonction `MyModule_Receive` :</span><span class="sxs-lookup"><span data-stu-id="02fef-154">Add the following code to the `MyModule_Receive` function:</span></span>
+1. <span data-ttu-id="c38c0-154">Ajouter hello suivant code toohello `MyModule_Receive` fonction :</span><span class="sxs-lookup"><span data-stu-id="c38c0-154">Add hello following code toohello `MyModule_Receive` function:</span></span>
 
    ```C
    if (message == NULL)
@@ -150,9 +150,9 @@ ms.lasthandoff: 07/11/2017
    }
    else
    {
-      // get the message content
+      // get hello message content
       const CONSTBUFFER * content = Message_GetContent(message);
-      // get the local time and format it
+      // get hello local time and format it
       time_t temp = time(NULL);
       if (temp == (time_t)-1)
       {
@@ -170,7 +170,7 @@ ms.lasthandoff: 07/11/2017
               char timetemp[80] = { 0 };
               if (strftime(timetemp, sizeof(timetemp) / sizeof(timetemp[0]), "%c", t) == 0)
               {
-                  LogError("unable to strftime");
+                  LogError("unable toostrftime");
               }
               else
               {
@@ -181,15 +181,15 @@ ms.lasthandoff: 07/11/2017
    }
    ```
 
-1. <span data-ttu-id="02fef-155">Mettez à jour le fichier `config.json` pour spécifier le dossier `workspace` sur votre ordinateur hôte et le chemin de déploiement sur l’Intel NUC.</span><span class="sxs-lookup"><span data-stu-id="02fef-155">Update the `config.json` file to specify the `workspace` folder on your host computer and the deployment path on Intel NUC.</span></span> <span data-ttu-id="02fef-156">Pendant la compilation, les fichiers du dossier `workspace` sont transférés vers le chemin de déploiement.</span><span class="sxs-lookup"><span data-stu-id="02fef-156">During compiling, the files in the `workspace` folder will be transferred to the deployment path.</span></span>
+1. <span data-ttu-id="c38c0-155">Hello de mise à jour `config.json` hello toospecify de fichier `workspace` dossier sur votre ordinateur et hello déploiement chemin vers l’hôte sur NUC d’Intel.</span><span class="sxs-lookup"><span data-stu-id="c38c0-155">Update hello `config.json` file toospecify hello `workspace` folder on your host computer and hello deployment path on Intel NUC.</span></span> <span data-ttu-id="c38c0-156">Pendant la compilation, hello fichiers Bonjour `workspace` dossier seront transférées toohello le chemin de déploiement.</span><span class="sxs-lookup"><span data-stu-id="c38c0-156">During compiling, hello files in hello `workspace` folder will be transferred toohello deployment path.</span></span>
 
-   1. <span data-ttu-id="02fef-157">Ouvrez le fichier `config.json` en exécutant la commande suivante :</span><span class="sxs-lookup"><span data-stu-id="02fef-157">Open the `config.json` file by running the following command:</span></span>
+   1. <span data-ttu-id="c38c0-157">Ouvrez hello `config.json` fichier en exécutant hello de commande suivante :</span><span class="sxs-lookup"><span data-stu-id="c38c0-157">Open hello `config.json` file by running hello following command:</span></span>
 
       ```bash
       code config.json
       ```
 
-   1. <span data-ttu-id="02fef-158">Mettez à jour `config.json` avec la configuration suivante :</span><span class="sxs-lookup"><span data-stu-id="02fef-158">Update `config.json` with the following configuration:</span></span>
+   1. <span data-ttu-id="c38c0-158">Mise à jour `config.json` avec hello configuration suivante :</span><span class="sxs-lookup"><span data-stu-id="c38c0-158">Update `config.json` with hello following configuration:</span></span>
 
       ```json
       "workspace": "./module/my_module",
@@ -198,41 +198,41 @@ ms.lasthandoff: 07/11/2017
 
       ![config_json](media/iot-hub-gateway-kit-lessons/lesson5/config_json.png)
 
-1. <span data-ttu-id="02fef-160">Compilez le module en exécutant la commande suivante :</span><span class="sxs-lookup"><span data-stu-id="02fef-160">Compile the module by running the following command:</span></span>
+1. <span data-ttu-id="c38c0-160">Compilez le module de hello en exécutant hello de commande suivante :</span><span class="sxs-lookup"><span data-stu-id="c38c0-160">Compile hello module by running hello following command:</span></span>
 
    ```bash
    gulp compile
    ```
 
-   <span data-ttu-id="02fef-161">La commande transfère le code source à l’Intel NUC et exécute `build.sh` pour le compiler.</span><span class="sxs-lookup"><span data-stu-id="02fef-161">The command transfers the source code to Intel NUC and runs `build.sh` to compile the module.</span></span>
+   <span data-ttu-id="c38c0-161">transfère hello source code tooIntel NUC Hello commande et exécute `build.sh` module de hello toocompile.</span><span class="sxs-lookup"><span data-stu-id="c38c0-161">hello command transfers hello source code tooIntel NUC and runs `build.sh` toocompile hello module.</span></span>
 
-## <a name="add-the-module-to-the-helloworld-sample-app-and-run-the-app-on-intel-nuc"></a><span data-ttu-id="02fef-162">Ajouter le module à l’exemple d’application hello_world et exécuter l’application sur l’Intel NUC</span><span class="sxs-lookup"><span data-stu-id="02fef-162">Add the module to the hello_world sample app and run the app on Intel NUC</span></span>
+## <a name="add-hello-module-toohello-helloworld-sample-app-and-run-hello-app-on-intel-nuc"></a><span data-ttu-id="c38c0-162">Ajouter hello module toohello Bonjour_monde exemple d’application et exécutez l’application hello sur Intel NUC</span><span class="sxs-lookup"><span data-stu-id="c38c0-162">Add hello module toohello hello_world sample app and run hello app on Intel NUC</span></span>
 
-<span data-ttu-id="02fef-163">Pour accomplir cette tâche, procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="02fef-163">To perform this task, follow these steps:</span></span>
+<span data-ttu-id="c38c0-163">tooperform cette tâche, procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="c38c0-163">tooperform this task, follow these steps:</span></span>
 
-1. <span data-ttu-id="02fef-164">Répertoriez tous les fichiers binaires de module disponibles (fichiers .so) sur l’Intel NUC en exécutant la commande suivante :</span><span class="sxs-lookup"><span data-stu-id="02fef-164">List all the available module binaries (.so files) on Intel NUC by running the following command:</span></span>
+1. <span data-ttu-id="c38c0-164">Répertorier tous les binaires de module disponible hello (fichiers .so) sur Intel NUC en exécutant hello de commande suivante :</span><span class="sxs-lookup"><span data-stu-id="c38c0-164">List all hello available module binaries (.so files) on Intel NUC by running hello following command:</span></span>
 
    ```bash
    gulp modules --list
    ```
 
-   <span data-ttu-id="02fef-165">Le chemin binaire de `my_module` que vous avez compilé doit être répertorié comme suit :</span><span class="sxs-lookup"><span data-stu-id="02fef-165">The binary path of `my_module` that you compiled should be listed as below:</span></span>
+   <span data-ttu-id="c38c0-165">Hello chemin d’accès binaire `my_module` que vous avez compilé doit être répertorié comme ci-dessous :</span><span class="sxs-lookup"><span data-stu-id="c38c0-165">hello binary path of `my_module` that you compiled should be listed as below:</span></span>
 
    ```path
    /root/gateway_sample/module/my_module/build/libmy_module.so
    ```
 
-   <span data-ttu-id="02fef-166">Si vous modifiez le nom d’utilisateur de connexion par défaut dans `config-gateway.json`, le chemin binaire commencera par `home/<your username>` au lieu de `root`.</span><span class="sxs-lookup"><span data-stu-id="02fef-166">If you change the default login username in `config-gateway.json`, the binary path will start with `home/<your username>` instead of `root`.</span></span>
+   <span data-ttu-id="c38c0-166">Si vous modifiez le nom d’utilisateur du compte de connexion par défaut hello dans `config-gateway.json`, chemin d’accès binaire de hello démarrera avec `home/<your username>` au lieu de `root`.</span><span class="sxs-lookup"><span data-stu-id="c38c0-166">If you change hello default login username in `config-gateway.json`, hello binary path will start with `home/<your username>` instead of `root`.</span></span>
 
-1. <span data-ttu-id="02fef-167">Ajoutez `my_module` à l’exemple d’application `hello_world`:</span><span class="sxs-lookup"><span data-stu-id="02fef-167">Add `my_module` to the `hello_world` sample app:</span></span>
+1. <span data-ttu-id="c38c0-167">Ajouter `my_module` toohello `hello_world` exemple d’application :</span><span class="sxs-lookup"><span data-stu-id="c38c0-167">Add `my_module` toohello `hello_world` sample app:</span></span>
 
-   1. <span data-ttu-id="02fef-168">Ouvrez le fichier `hello_world.json` en exécutant la commande suivante :</span><span class="sxs-lookup"><span data-stu-id="02fef-168">Open the `hello_world.json` file by running the following command:</span></span>
+   1. <span data-ttu-id="c38c0-168">Ouvrez hello `hello_world.json` fichier en exécutant hello de commande suivante :</span><span class="sxs-lookup"><span data-stu-id="c38c0-168">Open hello `hello_world.json` file by running hello following command:</span></span>
 
       ```bash
       code sample/hello_world/src/hello_world.json
       ```
 
-   1. <span data-ttu-id="02fef-169">Ajoutez le code suivant à la section `modules` :</span><span class="sxs-lookup"><span data-stu-id="02fef-169">Add the following code to the `modules` section:</span></span>
+   1. <span data-ttu-id="c38c0-169">Ajouter hello suivant code toohello `modules` section :</span><span class="sxs-lookup"><span data-stu-id="c38c0-169">Add hello following code toohello `modules` section:</span></span>
 
       ```json
       {
@@ -247,8 +247,8 @@ ms.lasthandoff: 07/11/2017
       }
       ```
 
-      <span data-ttu-id="02fef-170">La valeur de `module.path` doit être `/root/gateway_sample/module/my_module/build/libmy_module.so`.</span><span class="sxs-lookup"><span data-stu-id="02fef-170">The value of `module.path` should be `/root/gateway_sample/module/my_module/build/libmy_module.so`.</span></span> <span data-ttu-id="02fef-171">Le code déclare l’association de `my_module` à la passerelle, ainsi que l’emplacement du fichier binaire de module spécifié dans `module.path`.</span><span class="sxs-lookup"><span data-stu-id="02fef-171">The code declares `my_module` to be associated with the gateway as well as the location of the module binary specified in `module.path`.</span></span>
-   1. <span data-ttu-id="02fef-172">Ajoutez le code suivant à la section `links` :</span><span class="sxs-lookup"><span data-stu-id="02fef-172">Add the following code to the `links` section:</span></span>
+      <span data-ttu-id="c38c0-170">Hello valeur `module.path` doit être `/root/gateway_sample/module/my_module/build/libmy_module.so`.</span><span class="sxs-lookup"><span data-stu-id="c38c0-170">hello value of `module.path` should be `/root/gateway_sample/module/my_module/build/libmy_module.so`.</span></span> <span data-ttu-id="c38c0-171">code de Hello déclare `my_module` toobe associée passerelle de hello ainsi que d’emplacement hello du fichier binaire du module hello spécifié dans `module.path`.</span><span class="sxs-lookup"><span data-stu-id="c38c0-171">hello code declares `my_module` toobe associated with hello gateway as well as hello location of hello module binary specified in `module.path`.</span></span>
+   1. <span data-ttu-id="c38c0-172">Ajouter hello suivant code toohello `links` section :</span><span class="sxs-lookup"><span data-stu-id="c38c0-172">Add hello following code toohello `links` section:</span></span>
 
       ```json
       {
@@ -257,25 +257,25 @@ ms.lasthandoff: 07/11/2017
       }
       ```
 
-      <span data-ttu-id="02fef-173">Ce code spécifie le transfert des messages du module `hello_world` à `my_module`.</span><span class="sxs-lookup"><span data-stu-id="02fef-173">This code specifies that messages are transferred from the `hello_world` module to `my_module`.</span></span>
+      <span data-ttu-id="c38c0-173">Ce code spécifie que les messages sont transférés de hello `hello_world` module trop`my_module`.</span><span class="sxs-lookup"><span data-stu-id="c38c0-173">This code specifies that messages are transferred from hello `hello_world` module too`my_module`.</span></span>
 
       ![hello_world_json](media/iot-hub-gateway-kit-lessons/lesson5/hello_world_json.png)
 
-1. <span data-ttu-id="02fef-175">Exécutez l’exemple d’application `hello_world` avec la commande suivante :</span><span class="sxs-lookup"><span data-stu-id="02fef-175">Run the `hello_world` sample app by running the following command:</span></span>
+1. <span data-ttu-id="c38c0-175">Exécutez hello `hello_world` exemple d’application en exécutant hello de commande suivante :</span><span class="sxs-lookup"><span data-stu-id="c38c0-175">Run hello `hello_world` sample app by running hello following command:</span></span>
 
    ```bash
    gulp run --config sample/hello_world/src/hello_world.json
    ```
 
-   <span data-ttu-id="02fef-176">Le paramètre `--config` force le script `run-hello-world.js` à s’exécuter à l’aide du fichier `hello_world.json`.</span><span class="sxs-lookup"><span data-stu-id="02fef-176">The `--config` parameter forces the `run-hello-world.js` script to run by using the `hello_world.json` file.</span></span>
+   <span data-ttu-id="c38c0-176">Hello `--config` paramètre force hello `run-hello-world.js` toorun de script à l’aide de hello `hello_world.json` fichier.</span><span class="sxs-lookup"><span data-stu-id="c38c0-176">hello `--config` parameter forces hello `run-hello-world.js` script toorun by using hello `hello_world.json` file.</span></span>
 
    ![hello_world_new](media/iot-hub-gateway-kit-lessons/lesson5/hello_world_new.png)
 
-<span data-ttu-id="02fef-178">Félicitations !</span><span class="sxs-lookup"><span data-stu-id="02fef-178">Congratulations.</span></span> <span data-ttu-id="02fef-179">Vous pouvez maintenant voir le comportement de ce nouveau module, qui affiche simplement des messages « hello world » avec un horodatage, résultat qui diffère de celui du module « hello_world » d’origine.</span><span class="sxs-lookup"><span data-stu-id="02fef-179">You can now see the behavior of this new module, it simply prints out "hello world" messages with a timestamp, a different result from the original "hello_world" module.</span></span>
+<span data-ttu-id="c38c0-178">Félicitations !</span><span class="sxs-lookup"><span data-stu-id="c38c0-178">Congratulations.</span></span> <span data-ttu-id="c38c0-179">Vous pouvez maintenant voir le comportement de hello ce nouveau module, il imprime simplement les messages « hello world » avec un horodatage, un résultat différent d’un module hello d’origine « Bonjour_monde ».</span><span class="sxs-lookup"><span data-stu-id="c38c0-179">You can now see hello behavior of this new module, it simply prints out "hello world" messages with a timestamp, a different result from hello original "hello_world" module.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="02fef-180">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="02fef-180">Next Steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="c38c0-180">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="c38c0-180">Next Steps</span></span>
 
-<span data-ttu-id="02fef-181">Vous avez créé un module, l’avez ajouté à l’exemple d’application hello_world et fait s’exécuter l’exemple d’application avec le nouveau module sur votre passerelle.</span><span class="sxs-lookup"><span data-stu-id="02fef-181">You’ve created a new module, added it to the hello_world sample, and get the sample app to run with the new module on your gateway.</span></span> <span data-ttu-id="02fef-182">Si vous souhaitez en savoir plus sur les modules de passerelle Azure IoT, vous trouverez d’autres exemples de modules ici : [https://github.com/Azure/azure-iot-gateway-sdk/tree/master/modules](https://github.com/Azure/azure-iot-gateway-sdk/tree/master/modules).</span><span class="sxs-lookup"><span data-stu-id="02fef-182">If you want to learn more about Azure IoT gateway modules, you can find more module samples here: [https://github.com/Azure/azure-iot-gateway-sdk/tree/master/modules](https://github.com/Azure/azure-iot-gateway-sdk/tree/master/modules).</span></span>
+<span data-ttu-id="c38c0-181">Vous avez créé un nouveau module, ajouté toohello Bonjour_monde exemple et get hello exemple application toorun avec le nouveau module de hello sur votre passerelle.</span><span class="sxs-lookup"><span data-stu-id="c38c0-181">You’ve created a new module, added it toohello hello_world sample, and get hello sample app toorun with hello new module on your gateway.</span></span> <span data-ttu-id="c38c0-182">Si vous souhaitez toolearn plus d’informations sur les modules de passerelle Azure IoT, vous trouverez d’autres exemples de module ici : [https://github.com/Azure/azure-iot-gateway-sdk/tree/master/modules](https://github.com/Azure/azure-iot-gateway-sdk/tree/master/modules).</span><span class="sxs-lookup"><span data-stu-id="c38c0-182">If you want toolearn more about Azure IoT gateway modules, you can find more module samples here: [https://github.com/Azure/azure-iot-gateway-sdk/tree/master/modules](https://github.com/Azure/azure-iot-gateway-sdk/tree/master/modules).</span></span>
 
 <!-- Images and links -->
 

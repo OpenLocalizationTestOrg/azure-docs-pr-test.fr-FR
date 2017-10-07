@@ -1,6 +1,6 @@
 ---
-title: "Mise à l’échelle d’un cluster Azure Container Service | Microsoft Docs"
-description: "Guide pratique de mise à l’échelle du nombre de nœuds de l’agent dans un cluster DC/OS, Docker Swarm ou Kubernetes dans Azure Container Service à l’aide du Portail Azure ou de l’interface de ligne de commande Azure."
+title: cluster du Service de conteneur Azure aaaScale | Documents Microsoft
+description: "Comment tooscale les nœuds de l’agent dans un cluster de contrôleur de domaine/système d’exploitation, Docker Swarm ou Kubernetes à l’aide du Service de conteneur Azure hello CLI d’Azure ou le portail Azure."
 services: container-service
 documentationcenter: 
 author: sauryadas
@@ -17,10 +17,10 @@ ms.workload: na
 ms.date: 03/01/2017
 ms.author: saudas
 ms.custom: H1Hack27Feb2017, mvc
-ms.openlocfilehash: cf04cc45bde16af54afdbb3fa01b7a8ad6ab141f
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 21e644bceee3c418e565323ab5f2484e3c565316
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 [!INCLUDE [container-service-scale.md](../../../includes/container-service-scale.md)]

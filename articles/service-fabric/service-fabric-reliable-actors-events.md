@@ -1,6 +1,6 @@
 ---
-title: "Événements dans les microservices Azure basés sur acteur | Microsoft Docs"
-description: "Présentation des événements pour Reliable Actors Service Fabric"
+title: "aaaEvents dans microservices de Azure basé sur acteur | Documents Microsoft"
+description: "Tooevents d’introduction pour Service Fabric Reliable Actors."
 services: service-fabric
 documentationcenter: .net
 author: vturecek
@@ -14,18 +14,18 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/13/2017
 ms.author: amanbha
-ms.openlocfilehash: d936670c548ff709fc2e935d3f28d94e4bde8a04
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a51e41c35441a5fea508138968b36a35f0ba6699
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="actor-events"></a><span data-ttu-id="5401d-103">Événements d’acteurs</span><span class="sxs-lookup"><span data-stu-id="5401d-103">Actor events</span></span>
-<span data-ttu-id="5401d-104">Les événements d’acteur sont un moyen d’envoyer des notifications Meilleur effort de l’acteur aux clients.</span><span class="sxs-lookup"><span data-stu-id="5401d-104">Actor events provide a way to send best-effort notifications from the actor to the clients.</span></span> <span data-ttu-id="5401d-105">Les événements d’acteur sont conçus pour la communication acteur-client et ne doivent pas être utilisés pour la communication acteur-acteur.</span><span class="sxs-lookup"><span data-stu-id="5401d-105">Actor events are designed for actor-to-client communication and should not be used for actor-to-actor communication.</span></span>
+# <a name="actor-events"></a><span data-ttu-id="8e643-103">Événements d’acteurs</span><span class="sxs-lookup"><span data-stu-id="8e643-103">Actor events</span></span>
+<span data-ttu-id="8e643-104">Événements d’acteur notifier un moyen toosend meilleur effort à partir de clients de toohello hello acteur.</span><span class="sxs-lookup"><span data-stu-id="8e643-104">Actor events provide a way toosend best-effort notifications from hello actor toohello clients.</span></span> <span data-ttu-id="8e643-105">Les événements d’acteur sont conçus pour la communication acteur-client et ne doivent pas être utilisés pour la communication acteur-acteur.</span><span class="sxs-lookup"><span data-stu-id="8e643-105">Actor events are designed for actor-to-client communication and should not be used for actor-to-actor communication.</span></span>
 
-<span data-ttu-id="5401d-106">L’extrait de code suivant montre comment utiliser les événements d’acteur dans votre application.</span><span class="sxs-lookup"><span data-stu-id="5401d-106">The following code snippets show how to use actor events in your application.</span></span>
+<span data-ttu-id="8e643-106">afficher des extraits de code de la code Hello suivant comment toouse les événements intervenant dans votre application.</span><span class="sxs-lookup"><span data-stu-id="8e643-106">hello following code snippets show how toouse actor events in your application.</span></span>
 
-<span data-ttu-id="5401d-107">Définissez une interface qui décrit les événements publiés par l'acteur.</span><span class="sxs-lookup"><span data-stu-id="5401d-107">Define an interface that describes the events published by the actor.</span></span> <span data-ttu-id="5401d-108">Cette interface doit être dérivée de l'interface `IActorEvents` .</span><span class="sxs-lookup"><span data-stu-id="5401d-108">This interface must be derived from the `IActorEvents` interface.</span></span> <span data-ttu-id="5401d-109">Les arguments des méthodes doivent être [sérialisables en contrat de données](service-fabric-reliable-actors-notes-on-actor-type-serialization.md).</span><span class="sxs-lookup"><span data-stu-id="5401d-109">The arguments of the methods must be [data contract serializable](service-fabric-reliable-actors-notes-on-actor-type-serialization.md).</span></span> <span data-ttu-id="5401d-110">Les méthodes doivent retourner une valeur nulle, car les notifications d’événement sont unidirectionnelles et Meilleur effort.</span><span class="sxs-lookup"><span data-stu-id="5401d-110">The methods must return void, as event notifications are one way and best effort.</span></span>
+<span data-ttu-id="8e643-107">Définissez une interface qui décrit les événements hello publiés par acteur de hello.</span><span class="sxs-lookup"><span data-stu-id="8e643-107">Define an interface that describes hello events published by hello actor.</span></span> <span data-ttu-id="8e643-108">Cette interface doit être dérivée de hello `IActorEvents` interface.</span><span class="sxs-lookup"><span data-stu-id="8e643-108">This interface must be derived from hello `IActorEvents` interface.</span></span> <span data-ttu-id="8e643-109">les arguments des méthodes de hello Hello doivent être [de contrat de données sérialisable](service-fabric-reliable-actors-notes-on-actor-type-serialization.md).</span><span class="sxs-lookup"><span data-stu-id="8e643-109">hello arguments of hello methods must be [data contract serializable](service-fabric-reliable-actors-notes-on-actor-type-serialization.md).</span></span> <span data-ttu-id="8e643-110">les méthodes de Hello doivent retourner void, en tant qu’événement notifications sont une façon et meilleur effort.</span><span class="sxs-lookup"><span data-stu-id="8e643-110">hello methods must return void, as event notifications are one way and best effort.</span></span>
 
 ```csharp
 public interface IGameEvents : IActorEvents
@@ -39,7 +39,7 @@ public interface GameEvents implements ActorEvents
     void gameScoreUpdated(UUID gameId, String currentScore);
 }
 ```
-<span data-ttu-id="5401d-111">Déclarez les événements publiés par l'acteur dans l'interface d'acteur.</span><span class="sxs-lookup"><span data-stu-id="5401d-111">Declare the events published by the actor in the actor interface.</span></span>
+<span data-ttu-id="8e643-111">Déclarer des événements hello publiés par acteur hello dans l’interface d’acteur hello.</span><span class="sxs-lookup"><span data-stu-id="8e643-111">Declare hello events published by hello actor in hello actor interface.</span></span>
 
 ```csharp
 public interface IGameActor : IActor, IActorEventPublisher<IGameEvents>
@@ -57,7 +57,7 @@ public interface GameActor extends Actor, ActorEventPublisherE<GameEvents>
     CompletableFuture<String> getGameScore();
 }
 ```
-<span data-ttu-id="5401d-112">Côté client, implémentez le gestionnaire d'événements.</span><span class="sxs-lookup"><span data-stu-id="5401d-112">On the client side, implement the event handler.</span></span>
+<span data-ttu-id="8e643-112">Côté client de hello, implémentez le Gestionnaire d’événements hello.</span><span class="sxs-lookup"><span data-stu-id="8e643-112">On hello client side, implement hello event handler.</span></span>
 
 ```csharp
 class GameEventsHandler : IGameEvents
@@ -78,7 +78,7 @@ class GameEventsHandler implements GameEvents {
 }
 ```
 
-<span data-ttu-id="5401d-113">Sur le client, créez un proxy pour l'acteur qui publie l'événement et s'abonne à ses événements.</span><span class="sxs-lookup"><span data-stu-id="5401d-113">On the client, create a proxy to the actor that publishes the event and subscribe to its events.</span></span>
+<span data-ttu-id="8e643-113">Sur le client de hello, créez un acteur toohello proxy qui publie les événements hello et abonner les événements de tooits.</span><span class="sxs-lookup"><span data-stu-id="8e643-113">On hello client, create a proxy toohello actor that publishes hello event and subscribe tooits events.</span></span>
 
 ```csharp
 var proxy = ActorProxy.Create<IGameActor>(
@@ -93,9 +93,9 @@ GameActor actorProxy = ActorProxyBase.create<GameActor>(GameActor.class, new Act
 return ActorProxyEventUtility.subscribeAsync(actorProxy, new GameEventsHandler());
 ```
 
-<span data-ttu-id="5401d-114">En cas de basculement, l’acteur peut basculer sur un nœud ou processus différent.</span><span class="sxs-lookup"><span data-stu-id="5401d-114">In the event of failovers, the actor may fail over to a different process or node.</span></span> <span data-ttu-id="5401d-115">Le proxy de l’acteur gère les abonnements actifs et s’y réabonne automatiquement.</span><span class="sxs-lookup"><span data-stu-id="5401d-115">The actor proxy manages the active subscriptions and automatically re-subscribes them.</span></span> <span data-ttu-id="5401d-116">Vous pouvez contrôler l’intervalle de réabonnement via l’API `ActorProxyEventExtensions.SubscribeAsync<TEvent>` .</span><span class="sxs-lookup"><span data-stu-id="5401d-116">You can control the re-subscription interval through the `ActorProxyEventExtensions.SubscribeAsync<TEvent>` API.</span></span> <span data-ttu-id="5401d-117">Pour vous désabonner, utilisez l’API `ActorProxyEventExtensions.UnsubscribeAsync<TEvent>` .</span><span class="sxs-lookup"><span data-stu-id="5401d-117">To unsubscribe, use the `ActorProxyEventExtensions.UnsubscribeAsync<TEvent>` API.</span></span>
+<span data-ttu-id="8e643-114">En cas de hello de basculements, acteur de hello peut basculer tooa autre processus ou de nœud.</span><span class="sxs-lookup"><span data-stu-id="8e643-114">In hello event of failovers, hello actor may fail over tooa different process or node.</span></span> <span data-ttu-id="8e643-115">proxy d’acteur Hello gère les abonnements actifs hello et automatiquement nouveau s’abonne les.</span><span class="sxs-lookup"><span data-stu-id="8e643-115">hello actor proxy manages hello active subscriptions and automatically re-subscribes them.</span></span> <span data-ttu-id="8e643-116">Vous pouvez contrôler l’intervalle de RE-abonnement hello via hello `ActorProxyEventExtensions.SubscribeAsync<TEvent>` API.</span><span class="sxs-lookup"><span data-stu-id="8e643-116">You can control hello re-subscription interval through hello `ActorProxyEventExtensions.SubscribeAsync<TEvent>` API.</span></span> <span data-ttu-id="8e643-117">toounsubscribe, utilisez hello `ActorProxyEventExtensions.UnsubscribeAsync<TEvent>` API.</span><span class="sxs-lookup"><span data-stu-id="8e643-117">toounsubscribe, use hello `ActorProxyEventExtensions.UnsubscribeAsync<TEvent>` API.</span></span>
 
-<span data-ttu-id="5401d-118">Sur l'acteur, publiez simplement les événements à mesure qu'ils se produisent.</span><span class="sxs-lookup"><span data-stu-id="5401d-118">On the actor, simply publish the events as they happen.</span></span> <span data-ttu-id="5401d-119">Le runtime Actors envoie la notification aux abonnés à l’événement, le cas échéant.</span><span class="sxs-lookup"><span data-stu-id="5401d-119">If there are subscribers to the event, the Actors runtime will send them the notification.</span></span>
+<span data-ttu-id="8e643-118">Sur l’acteur de hello, simplement publier des événements de hello comme ils se produisent.</span><span class="sxs-lookup"><span data-stu-id="8e643-118">On hello actor, simply publish hello events as they happen.</span></span> <span data-ttu-id="8e643-119">S’il existe des événements de toohello abonnés, hello acteurs runtime envoie les hello notification.</span><span class="sxs-lookup"><span data-stu-id="8e643-119">If there are subscribers toohello event, hello Actors runtime will send them hello notification.</span></span>
 
 ```csharp
 var ev = GetEvent<IGameEvents>();
@@ -107,10 +107,10 @@ event.gameScoreUpdated(Id.getUUIDId(), score);
 ```
 
 
-## <a name="next-steps"></a><span data-ttu-id="5401d-120">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="5401d-120">Next steps</span></span>
-* [<span data-ttu-id="5401d-121">Réentrance des acteurs</span><span class="sxs-lookup"><span data-stu-id="5401d-121">Actor reentrancy</span></span>](service-fabric-reliable-actors-reentrancy.md)
-* [<span data-ttu-id="5401d-122">Diagnostics et surveillance des performances d’acteur</span><span class="sxs-lookup"><span data-stu-id="5401d-122">Actor diagnostics and performance monitoring</span></span>](service-fabric-reliable-actors-diagnostics.md)
-* [<span data-ttu-id="5401d-123">Documentation de référence de l’API d’acteur</span><span class="sxs-lookup"><span data-stu-id="5401d-123">Actor API reference documentation</span></span>](https://msdn.microsoft.com/library/azure/dn971626.aspx)
-* [<span data-ttu-id="5401d-124">Exemple de code C#</span><span class="sxs-lookup"><span data-stu-id="5401d-124">C# Sample code</span></span>](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started)
-* [<span data-ttu-id="5401d-125">Exemple de code C# .NET Core</span><span class="sxs-lookup"><span data-stu-id="5401d-125">C# .NET Core Sample code</span></span>](https://github.com/Azure-Samples/service-fabric-dotnet-core-getting-started)
-* [<span data-ttu-id="5401d-126">Exemple de code Java</span><span class="sxs-lookup"><span data-stu-id="5401d-126">Java Sample code</span></span>](http://github.com/Azure-Samples/service-fabric-java-getting-started)
+## <a name="next-steps"></a><span data-ttu-id="8e643-120">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="8e643-120">Next steps</span></span>
+* [<span data-ttu-id="8e643-121">Réentrance des acteurs</span><span class="sxs-lookup"><span data-stu-id="8e643-121">Actor reentrancy</span></span>](service-fabric-reliable-actors-reentrancy.md)
+* [<span data-ttu-id="8e643-122">Diagnostics et surveillance des performances d’acteur</span><span class="sxs-lookup"><span data-stu-id="8e643-122">Actor diagnostics and performance monitoring</span></span>](service-fabric-reliable-actors-diagnostics.md)
+* [<span data-ttu-id="8e643-123">Documentation de référence de l’API d’acteur</span><span class="sxs-lookup"><span data-stu-id="8e643-123">Actor API reference documentation</span></span>](https://msdn.microsoft.com/library/azure/dn971626.aspx)
+* [<span data-ttu-id="8e643-124">Exemple de code C#</span><span class="sxs-lookup"><span data-stu-id="8e643-124">C# Sample code</span></span>](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started)
+* [<span data-ttu-id="8e643-125">Exemple de code C# .NET Core</span><span class="sxs-lookup"><span data-stu-id="8e643-125">C# .NET Core Sample code</span></span>](https://github.com/Azure-Samples/service-fabric-dotnet-core-getting-started)
+* [<span data-ttu-id="8e643-126">Exemple de code Java</span><span class="sxs-lookup"><span data-stu-id="8e643-126">Java Sample code</span></span>](http://github.com/Azure-Samples/service-fabric-java-getting-started)

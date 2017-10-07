@@ -1,6 +1,6 @@
 ---
-title: "Créer une image personnalisée Azure DevTest Labs à partir d’un fichier de disque dur virtuel | Microsoft Docs"
-description: "Apprenez à créer une image personnalisée dans Azure DevTest Labs à partir d’un fichier de disque dur virtuel à l’aide du portail Azure"
+title: "aaaCreate une image personnalisée de Azure DevTest Labs à partir d’un fichier de disque dur virtuel | Documents Microsoft"
+description: "Découvrez comment une image personnalisée dans Azure DevTest Labs à partir d’un fichier de disque dur virtuel à l’aide de toocreate hello portail Azure"
 services: devtest-lab,virtual-machines
 documentationcenter: na
 author: tomarcher
@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/10/2017
 ms.author: tarcher
-ms.openlocfilehash: 9983ea9b847f44ed18a6169a4bdb224b63626a64
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 80af8ea1cb72380f868df0a76c4a0dcd92e63cf5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-custom-image-from-a-vhd-file"></a><span data-ttu-id="f46fb-103">Créer une image personnalisée à partir d’un fichier de disque dur virtuel</span><span class="sxs-lookup"><span data-stu-id="f46fb-103">Create a custom image from a VHD file</span></span>
+# <a name="create-a-custom-image-from-a-vhd-file"></a><span data-ttu-id="4e2d3-103">Créer une image personnalisée à partir d’un fichier de disque dur virtuel</span><span class="sxs-lookup"><span data-stu-id="4e2d3-103">Create a custom image from a VHD file</span></span>
 
 [!INCLUDE [devtest-lab-create-custom-image-from-vhd-selector](../../includes/devtest-lab-create-custom-image-from-vhd-selector.md)]
 
@@ -28,51 +28,51 @@ ms.lasthandoff: 07/11/2017
 
 [!INCLUDE [devtest-lab-upload-vhd-options](../../includes/devtest-lab-upload-vhd-options.md)]
 
-## <a name="step-by-step-instructions"></a><span data-ttu-id="f46fb-104">Instructions pas à pas</span><span class="sxs-lookup"><span data-stu-id="f46fb-104">Step-by-step instructions</span></span>
+## <a name="step-by-step-instructions"></a><span data-ttu-id="4e2d3-104">Instructions pas à pas</span><span class="sxs-lookup"><span data-stu-id="4e2d3-104">Step-by-step instructions</span></span>
 
-<span data-ttu-id="f46fb-105">La procédure suivante décrit comment créer une image personnalisée à partir d’un fichier de disque dur virtuel avec le portail Azure :</span><span class="sxs-lookup"><span data-stu-id="f46fb-105">The following steps walk you through creating a custom image from a VHD file using the Azure portal:</span></span>
+<span data-ttu-id="4e2d3-105">Hello étapes suivantes vous aider à créer une image personnalisée à partir d’un fichier de disque dur virtuel à l’aide de hello portail Azure :</span><span class="sxs-lookup"><span data-stu-id="4e2d3-105">hello following steps walk you through creating a custom image from a VHD file using hello Azure portal:</span></span>
 
-1. <span data-ttu-id="f46fb-106">Connectez-vous au [portail Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040).</span><span class="sxs-lookup"><span data-stu-id="f46fb-106">Sign in to the [Azure portal](http://go.microsoft.com/fwlink/p/?LinkID=525040).</span></span>
+1. <span data-ttu-id="4e2d3-106">Connectez-vous à toohello [portail Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040).</span><span class="sxs-lookup"><span data-stu-id="4e2d3-106">Sign in toohello [Azure portal](http://go.microsoft.com/fwlink/p/?LinkID=525040).</span></span>
 
-1. <span data-ttu-id="f46fb-107">Sélectionnez **Plus de services**, puis **DevTest Labs** dans la liste.</span><span class="sxs-lookup"><span data-stu-id="f46fb-107">Select **More services**, and then select **DevTest Labs** from the list.</span></span>
+1. <span data-ttu-id="4e2d3-107">Sélectionnez **davantage de services**, puis sélectionnez **DevTest Labs** à partir de la liste de hello.</span><span class="sxs-lookup"><span data-stu-id="4e2d3-107">Select **More services**, and then select **DevTest Labs** from hello list.</span></span>
 
-1. <span data-ttu-id="f46fb-108">Sélectionnez le laboratoire souhaité dans la liste des laboratoires.</span><span class="sxs-lookup"><span data-stu-id="f46fb-108">From the list of labs, select the desired lab.</span></span>  
+1. <span data-ttu-id="4e2d3-108">Dans liste hello labs, sélectionnez lab souhaité de hello.</span><span class="sxs-lookup"><span data-stu-id="4e2d3-108">From hello list of labs, select hello desired lab.</span></span>  
 
-1. <span data-ttu-id="f46fb-109">Dans le panneau du laboratoire, sélectionnez **Configuration**.</span><span class="sxs-lookup"><span data-stu-id="f46fb-109">On the lab's blade, select **Configuration**.</span></span> 
+1. <span data-ttu-id="4e2d3-109">Dans le panneau de hello lab, sélectionnez **Configuration**.</span><span class="sxs-lookup"><span data-stu-id="4e2d3-109">On hello lab's blade, select **Configuration**.</span></span> 
 
-1. <span data-ttu-id="f46fb-110">Dans le panneau **Configuration** du laboratoire, sélectionnez **Custom images (VHDs)** (Images personnalisées (disques durs virtuels)).</span><span class="sxs-lookup"><span data-stu-id="f46fb-110">On the lab **Configuration** blade, select **Custom images (VHDs)**.</span></span>
+1. <span data-ttu-id="4e2d3-110">Atelier de hello **Configuration** panneau, sélectionnez **les images personnalisées (VHD)**.</span><span class="sxs-lookup"><span data-stu-id="4e2d3-110">On hello lab **Configuration** blade, select **Custom images (VHDs)**.</span></span>
 
-1. <span data-ttu-id="f46fb-111">Dans le panneau **Images personnalisées**, sélectionnez **+Ajouter**.</span><span class="sxs-lookup"><span data-stu-id="f46fb-111">On the **Custom images** blade, select **+Add**.</span></span>
+1. <span data-ttu-id="4e2d3-111">Sur hello **les images personnalisées** panneau, sélectionnez **+ ajouter**.</span><span class="sxs-lookup"><span data-stu-id="4e2d3-111">On hello **Custom images** blade, select **+Add**.</span></span>
 
     ![Ajouter une image personnalisée](./media/devtest-lab-create-template/add-custom-image.png)
 
-1. <span data-ttu-id="f46fb-113">Entrez le nom de l’image personnalisée.</span><span class="sxs-lookup"><span data-stu-id="f46fb-113">Enter the name of the custom image.</span></span> <span data-ttu-id="f46fb-114">Ce nom s’affiche dans la liste des images de base quand vous créez une machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="f46fb-114">This name is displayed in the list of base images when creating a VM.</span></span>
+1. <span data-ttu-id="4e2d3-113">Entrez le nom hello d’image personnalisée de hello.</span><span class="sxs-lookup"><span data-stu-id="4e2d3-113">Enter hello name of hello custom image.</span></span> <span data-ttu-id="4e2d3-114">Ce nom s’affiche dans la liste hello des images de base lors de la création d’une machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="4e2d3-114">This name is displayed in hello list of base images when creating a VM.</span></span>
 
-1. <span data-ttu-id="f46fb-115">Entrez la description de l’image personnalisée.</span><span class="sxs-lookup"><span data-stu-id="f46fb-115">Enter the description of the custom image.</span></span> <span data-ttu-id="f46fb-116">Cette description s’affiche dans la liste des images de base quand vous créez une machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="f46fb-116">This description is displayed in the list of base images when creating a VM.</span></span>
+1. <span data-ttu-id="4e2d3-115">Entrez la description hello d’image personnalisée de hello.</span><span class="sxs-lookup"><span data-stu-id="4e2d3-115">Enter hello description of hello custom image.</span></span> <span data-ttu-id="4e2d3-116">Cette description s’affiche dans la liste hello des images de base lors de la création d’une machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="4e2d3-116">This description is displayed in hello list of base images when creating a VM.</span></span>
 
-1. <span data-ttu-id="f46fb-117">Sélectionnez **VHD**.</span><span class="sxs-lookup"><span data-stu-id="f46fb-117">Select **VHD**.</span></span>
+1. <span data-ttu-id="4e2d3-117">Sélectionnez **VHD**.</span><span class="sxs-lookup"><span data-stu-id="4e2d3-117">Select **VHD**.</span></span>
 
-1. <span data-ttu-id="f46fb-118">Dans le panneau **VHD**, sélectionnez le fichier de disque dur virtuel souhaité.</span><span class="sxs-lookup"><span data-stu-id="f46fb-118">From the **VHD** blade, select the desired VHD file.</span></span>
+1. <span data-ttu-id="4e2d3-118">À partir de hello **VHD** panneau, un fichier de disque dur virtuel sélectionnez hello souhaité.</span><span class="sxs-lookup"><span data-stu-id="4e2d3-118">From hello **VHD** blade, select hello desired VHD file.</span></span>
 
-1. <span data-ttu-id="f46fb-119">Cliquez sur **OK** pour fermer le panneau **VHD**.</span><span class="sxs-lookup"><span data-stu-id="f46fb-119">Select **OK** to close the **VHD** blade.</span></span>
+1. <span data-ttu-id="4e2d3-119">Sélectionnez **OK** tooclose hello **VHD** panneau.</span><span class="sxs-lookup"><span data-stu-id="4e2d3-119">Select **OK** tooclose hello **VHD** blade.</span></span>
 
-1. <span data-ttu-id="f46fb-120">Sélectionnez **Configuration du système d’exploitation**.</span><span class="sxs-lookup"><span data-stu-id="f46fb-120">Select **OS configuration**.</span></span>
+1. <span data-ttu-id="4e2d3-120">Sélectionnez **Configuration du système d’exploitation**.</span><span class="sxs-lookup"><span data-stu-id="4e2d3-120">Select **OS configuration**.</span></span>
 
-1. <span data-ttu-id="f46fb-121">Sous l’onglet **Configuration du système d’exploitation**, sélectionnez **Windows** ou **Linux**.</span><span class="sxs-lookup"><span data-stu-id="f46fb-121">On the **OS configuration** tab, select either **Windows** or **Linux**.</span></span>
+1. <span data-ttu-id="4e2d3-121">Sur hello **configuration du système d’exploitation** , sélectionnez soit **Windows** ou **Linux**.</span><span class="sxs-lookup"><span data-stu-id="4e2d3-121">On hello **OS configuration** tab, select either **Windows** or **Linux**.</span></span>
 
-1. <span data-ttu-id="f46fb-122">Si vous sélectionnez **Windows** , cochez la case pour indiquer si *Sysprep* a été exécuté sur la machine.</span><span class="sxs-lookup"><span data-stu-id="f46fb-122">If **Windows** is selected, specify via the checkbox whether *Sysprep* has been run on the machine.</span></span> 
+1. <span data-ttu-id="4e2d3-122">Si **Windows** est sélectionnée, spécifiez via la case à cocher hello si *Sysprep* a été exécuté sur l’ordinateur de hello.</span><span class="sxs-lookup"><span data-stu-id="4e2d3-122">If **Windows** is selected, specify via hello checkbox whether *Sysprep* has been run on hello machine.</span></span> 
 
-1. <span data-ttu-id="f46fb-123">Cliquez sur **OK** pour fermer le panneau **Configuration du système d’exploitation**.</span><span class="sxs-lookup"><span data-stu-id="f46fb-123">Select **OK** to close the **OS configuration** blade.</span></span>
+1. <span data-ttu-id="4e2d3-123">Sélectionnez **OK** tooclose hello **configuration du système d’exploitation** panneau.</span><span class="sxs-lookup"><span data-stu-id="4e2d3-123">Select **OK** tooclose hello **OS configuration** blade.</span></span>
 
-1. <span data-ttu-id="f46fb-124">Cliquez sur **OK** pour créer l’image personnalisée.</span><span class="sxs-lookup"><span data-stu-id="f46fb-124">Select **OK** to create the custom image.</span></span>
+1. <span data-ttu-id="4e2d3-124">Sélectionnez **OK** image personnalisée de toocreate hello.</span><span class="sxs-lookup"><span data-stu-id="4e2d3-124">Select **OK** toocreate hello custom image.</span></span>
 
 [!INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
 
-## <a name="related-blog-posts"></a><span data-ttu-id="f46fb-125">Billets de blog connexes</span><span class="sxs-lookup"><span data-stu-id="f46fb-125">Related blog posts</span></span>
+## <a name="related-blog-posts"></a><span data-ttu-id="4e2d3-125">Billets de blog connexes</span><span class="sxs-lookup"><span data-stu-id="4e2d3-125">Related blog posts</span></span>
 
-- [<span data-ttu-id="f46fb-126">Custom images or formulas? (Images personnalisées ou formules ?)</span><span class="sxs-lookup"><span data-stu-id="f46fb-126">Custom images or formulas?</span></span>](https://blogs.msdn.microsoft.com/devtestlab/2016/04/06/custom-images-or-formulas/)
-- [<span data-ttu-id="f46fb-127">Copying Custom Images between Azure DevTest Labs (Copie d’images personnalisées entre plusieurs Azure DevTest Labs)</span><span class="sxs-lookup"><span data-stu-id="f46fb-127">Copying Custom Images between Azure DevTest Labs</span></span>](http://www.visualstudiogeeks.com/blog/DevOps/How-To-Move-CustomImages-VHD-Between-AzureDevTestLabs#copying-custom-images-between-azure-devtest-labs)
+- [<span data-ttu-id="4e2d3-126">Custom images or formulas? (Images personnalisées ou formules ?)</span><span class="sxs-lookup"><span data-stu-id="4e2d3-126">Custom images or formulas?</span></span>](https://blogs.msdn.microsoft.com/devtestlab/2016/04/06/custom-images-or-formulas/)
+- [<span data-ttu-id="4e2d3-127">Copying Custom Images between Azure DevTest Labs (Copie d’images personnalisées entre plusieurs Azure DevTest Labs)</span><span class="sxs-lookup"><span data-stu-id="4e2d3-127">Copying Custom Images between Azure DevTest Labs</span></span>](http://www.visualstudiogeeks.com/blog/DevOps/How-To-Move-CustomImages-VHD-Between-AzureDevTestLabs#copying-custom-images-between-azure-devtest-labs)
 
-##<a name="next-steps"></a><span data-ttu-id="f46fb-128">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="f46fb-128">Next steps</span></span>
+##<a name="next-steps"></a><span data-ttu-id="4e2d3-128">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="4e2d3-128">Next steps</span></span>
 
-- [<span data-ttu-id="f46fb-129">Ajout d’une machine virtuelle à votre laboratoire</span><span class="sxs-lookup"><span data-stu-id="f46fb-129">Add a VM to your lab</span></span>](./devtest-lab-add-vm-with-artifacts.md)
+- [<span data-ttu-id="4e2d3-129">Ajouter un laboratoire tooyour de machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="4e2d3-129">Add a VM tooyour lab</span></span>](./devtest-lab-add-vm-with-artifacts.md)

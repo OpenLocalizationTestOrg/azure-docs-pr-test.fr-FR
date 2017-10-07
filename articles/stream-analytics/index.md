@@ -1,6 +1,6 @@
 ---
-title: "Documentation Azure Stream Analytics - Didacticiels, informations de référence sur les API | Microsoft Docs"
-description: "Apprenez à exécuter des analyses IoT dans le cloud avec le traitement des événements entièrement géré. Analysez en temps réel des données d’applications, de détecteurs, d’appareils et autres."
+title: "aaaAzure Documentation Analytique de flux - didacticiels, référence de l’API | Documents Microsoft"
+description: "En savoir plus analytique de IoT toorun Bonjour de cloud avec le traitement des événements d’entièrement géré. Analysez en temps réel des données d’applications, de détecteurs, d’appareils et autres."
 services: stream-analytics
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 05/23/2017
 ms.author: carolz
-ms.openlocfilehash: f82be4ff7bd0839be4f826f9a04ba0876f4ec91d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4015137b0f39f86ada69d92e77e72b77b799d2d6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="stream-analytics-documentation"></a>Documentation Stream Analytics
 
-Découvrez comment exécuter des analyses IoT dans le cloud avec Stream Analytics, un moteur de traitement des événements entièrement géré. Des didacticiels et d’autres documents vous montrent comment analyser les données en temps réel à partir d’applications, de capteurs, d’appareils, de réseaux sociaux et autres. 
+Découvrez comment analytique d’Internet des objets (IoT) toorun Bonjour cloud avec le flux de données Analytique, un moteur de traitement des événements entièrement géré. Didacticiels et autres documentations vous indiquent comment tooanalyze des données en temps réel à partir d’applications, capteurs, appareils, réseaux sociaux et bien plus encore. 
 
 <ul class="panelContent cardsFTitle">
      <li>

@@ -1,6 +1,6 @@
 ---
-title: "Développer le disque du système d’exploitation sur une machine virtuelle Linux avec Azure CLI 1.0 | Microsoft Docs"
-description: "Cet article explique comment développer le disque virtuel du système d’exploitation sur une machine virtuelle Linux à l’aide de l’interface Azure CLI 1.0 et du modèle de déploiement Resource Manager."
+title: "disque aaaExpand du système d’exploitation Linux VM par hello Azure CLI 1.0 | Documents Microsoft"
+description: "Découvrez comment tooexpand hello le système d’exploitation (OS) de disque virtuel sur un VM Linux à l’aide de hello Azure CLI 1.0 et le modèle de déploiement du Gestionnaire de ressources hello"
 services: virtual-machines-linux
 documentationcenter: 
 author: iainfoulds
@@ -14,42 +14,42 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 05/11/2017
 ms.author: iainfou
-ms.openlocfilehash: 0aedcd70b54c2ed47ec327ccf0529a48351353c0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0db78c0b86b48b2c5358611e11bb0b7ad781a559
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="expand-os-disk-on-a-linux-vm-using-the-azure-cli-with-the-azure-cli-10"></a><span data-ttu-id="fe289-103">Développer le disque de système d’exploitation sur une machine virtuelle Linux à l’aide de l’interface Azure CLI 1.0</span><span class="sxs-lookup"><span data-stu-id="fe289-103">Expand OS disk on a Linux VM using the Azure CLI with the Azure CLI 1.0</span></span>
-<span data-ttu-id="fe289-104">La taille par défaut de disque virtuel pour le système d’exploitation est généralement de 30 Go sur une machine virtuelle Linux dans Azure.</span><span class="sxs-lookup"><span data-stu-id="fe289-104">The default virtual hard disk size for the operating system (OS) is typically 30 GB on a Linux virtual machine (VM) in Azure.</span></span> <span data-ttu-id="fe289-105">Vous pouvez [ajouter des disques de données](add-disk.md) afin d’offrir un espace de stockage supplémentaire, mais vous pouvez également développer le disque du système d’exploitation.</span><span class="sxs-lookup"><span data-stu-id="fe289-105">You can [add data disks](add-disk.md) to provide for additional storage space, but you may also wish to expand the OS disk.</span></span> <span data-ttu-id="fe289-106">Cet article vous explique comment développer le disque du système d’exploitation sur une machine virtuelle Linux à l’aide de disques non managés avec l’interface Azure CLI 1.0.</span><span class="sxs-lookup"><span data-stu-id="fe289-106">This article details how to expand the OS disk for a Linux VM using unmanaged disks with the Azure CLI 1.0.</span></span>
+# <a name="expand-os-disk-on-a-linux-vm-using-hello-azure-cli-with-hello-azure-cli-10"></a><span data-ttu-id="a8beb-103">Développez le disque du système d’exploitation sur un VM Linux à l’aide de hello CLI d’Azure avec hello Azure CLI 1.0</span><span class="sxs-lookup"><span data-stu-id="a8beb-103">Expand OS disk on a Linux VM using hello Azure CLI with hello Azure CLI 1.0</span></span>
+<span data-ttu-id="a8beb-104">taille de disque dur virtuel par défaut Hello hello système d’exploitation (OS) est généralement 30 Go sur un ordinateur virtuel de Linux (VM) dans Azure.</span><span class="sxs-lookup"><span data-stu-id="a8beb-104">hello default virtual hard disk size for hello operating system (OS) is typically 30 GB on a Linux virtual machine (VM) in Azure.</span></span> <span data-ttu-id="a8beb-105">Vous pouvez [ajouter des disques de données](add-disk.md) tooprovide d’espace de stockage supplémentaire, mais vous souhaiterez peut-être également disque hello du système d’exploitation de tooexpand.</span><span class="sxs-lookup"><span data-stu-id="a8beb-105">You can [add data disks](add-disk.md) tooprovide for additional storage space, but you may also wish tooexpand hello OS disk.</span></span> <span data-ttu-id="a8beb-106">Cet article décrit en détail comment tooexpand hello du système d’exploitation du disque pour un VM Linux à l’aide de disques non managés avec hello Azure CLI 1.0.</span><span class="sxs-lookup"><span data-stu-id="a8beb-106">This article details how tooexpand hello OS disk for a Linux VM using unmanaged disks with hello Azure CLI 1.0.</span></span>
 
-## <a name="cli-versions-to-complete-the-task"></a><span data-ttu-id="fe289-107">Versions de l’interface de ligne de commande permettant d’effectuer la tâche</span><span class="sxs-lookup"><span data-stu-id="fe289-107">CLI versions to complete the task</span></span>
-<span data-ttu-id="fe289-108">Vous pouvez exécuter la tâche en utilisant l’une des versions suivantes de l’interface de ligne de commande (CLI) :</span><span class="sxs-lookup"><span data-stu-id="fe289-108">You can complete the task using one of the following CLI versions:</span></span>
+## <a name="cli-versions-toocomplete-hello-task"></a><span data-ttu-id="a8beb-107">Tâche de hello CLI versions toocomplete</span><span class="sxs-lookup"><span data-stu-id="a8beb-107">CLI versions toocomplete hello task</span></span>
+<span data-ttu-id="a8beb-108">Vous pouvez exécuter la tâche hello à l’aide de hello CLI versions suivantes :</span><span class="sxs-lookup"><span data-stu-id="a8beb-108">You can complete hello task using one of hello following CLI versions:</span></span>
 
-- <span data-ttu-id="fe289-109">[Azure CLI 1.0](#prerequisites) : notre interface de ligne de commande pour les modèles de déploiement Classique et Resource Manager (cet article)</span><span class="sxs-lookup"><span data-stu-id="fe289-109">[Azure CLI 1.0](#prerequisites) – our CLI for the classic and resource management deployment models (this article)</span></span>
-- <span data-ttu-id="fe289-110">[Azure CLI 2.0](expand-disks.md) : notre interface de ligne de commande nouvelle génération pour le modèle de déploiement Resource Manager</span><span class="sxs-lookup"><span data-stu-id="fe289-110">[Azure CLI 2.0](expand-disks.md) - our next generation CLI for the resource management deployment model</span></span>
+- <span data-ttu-id="a8beb-109">[Azure CLI 1.0](#prerequisites) – notre CLI pour hello classique et la ressource gestion des modèles de déploiement (cet article)</span><span class="sxs-lookup"><span data-stu-id="a8beb-109">[Azure CLI 1.0](#prerequisites) – our CLI for hello classic and resource management deployment models (this article)</span></span>
+- <span data-ttu-id="a8beb-110">[Azure CLI 2.0](expand-disks.md) -notre prochaine génération CLI pour le modèle de déploiement de gestion de ressources hello</span><span class="sxs-lookup"><span data-stu-id="a8beb-110">[Azure CLI 2.0](expand-disks.md) - our next generation CLI for hello resource management deployment model</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="fe289-111">Composants requis</span><span class="sxs-lookup"><span data-stu-id="fe289-111">Prerequisites</span></span>
-<span data-ttu-id="fe289-112">La [dernière version de l’interface Azure CLI 1.0](../../cli-install-nodejs.md) doit être installée et connectée à un [compte Azure](https://azure.microsoft.com/pricing/free-trial/) à l’aide du mode Resource Manager comme suit :</span><span class="sxs-lookup"><span data-stu-id="fe289-112">You need the [latest Azure CLI 1.0](../../cli-install-nodejs.md) installed and logged in to an [Azure account](https://azure.microsoft.com/pricing/free-trial/) using the Resource Manager mode as follows:</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="a8beb-111">Composants requis</span><span class="sxs-lookup"><span data-stu-id="a8beb-111">Prerequisites</span></span>
+<span data-ttu-id="a8beb-112">Vous devez hello [dernière Azure CLI 1.0](../../cli-install-nodejs.md) installé et enregistré dans tooan [compte Azure](https://azure.microsoft.com/pricing/free-trial/) en utilisant le mode Gestionnaire de ressources hello comme suit :</span><span class="sxs-lookup"><span data-stu-id="a8beb-112">You need hello [latest Azure CLI 1.0](../../cli-install-nodejs.md) installed and logged in tooan [Azure account](https://azure.microsoft.com/pricing/free-trial/) using hello Resource Manager mode as follows:</span></span>
 
 ```azurecli
 azure config mode arm
 ```
 
-<span data-ttu-id="fe289-113">Dans les exemples suivants, remplacez les exemples de noms de paramètre par vos propres valeurs.</span><span class="sxs-lookup"><span data-stu-id="fe289-113">In the following samples, replace example parameter names with your own values.</span></span> <span data-ttu-id="fe289-114">Les noms de paramètre sont par exemple *myResourceGroup* et *myVM*.</span><span class="sxs-lookup"><span data-stu-id="fe289-114">Example parameter names include *myResourceGroup* and *myVM*.</span></span>
+<span data-ttu-id="a8beb-113">Bonjour les exemples suivants, remplacez les exemples de noms de paramètre par vos propres valeurs.</span><span class="sxs-lookup"><span data-stu-id="a8beb-113">In hello following samples, replace example parameter names with your own values.</span></span> <span data-ttu-id="a8beb-114">Les noms de paramètre sont par exemple *myResourceGroup* et *myVM*.</span><span class="sxs-lookup"><span data-stu-id="a8beb-114">Example parameter names include *myResourceGroup* and *myVM*.</span></span>
 
-## <a name="expand-os-disk"></a><span data-ttu-id="fe289-115">Développer le disque du système d’exploitation</span><span class="sxs-lookup"><span data-stu-id="fe289-115">Expand OS disk</span></span>
+## <a name="expand-os-disk"></a><span data-ttu-id="a8beb-115">Développer le disque du système d’exploitation</span><span class="sxs-lookup"><span data-stu-id="a8beb-115">Expand OS disk</span></span>
 
-1. <span data-ttu-id="fe289-116">Il est impossible d’exécuter les opérations sur les disques durs virtuels avec la machine virtuelle en cours d’exécution.</span><span class="sxs-lookup"><span data-stu-id="fe289-116">Operations on virtual hard disks cannot be performed with the VM running.</span></span> <span data-ttu-id="fe289-117">L’exemple suivant arrête et redéploie la machine virtuelle nommée *myVM* dans le groupe de ressources nommé *myResourceGroup* :</span><span class="sxs-lookup"><span data-stu-id="fe289-117">The following example stops and deallocates the VM named *myVM* in the resource group named *myResourceGroup*:</span></span>
+1. <span data-ttu-id="a8beb-116">Opérations sur les disques durs virtuels ne peuvent pas être effectuées avec hello machine virtuelle en cours d’exécution.</span><span class="sxs-lookup"><span data-stu-id="a8beb-116">Operations on virtual hard disks cannot be performed with hello VM running.</span></span> <span data-ttu-id="a8beb-117">Hello exemple suivant arrête et désalloue hello ordinateur virtuel nommé *myVM* dans le groupe de ressources hello nommé *myResourceGroup*:</span><span class="sxs-lookup"><span data-stu-id="a8beb-117">hello following example stops and deallocates hello VM named *myVM* in hello resource group named *myResourceGroup*:</span></span>
 
     ```azurecli
     azure vm deallocate --resource-group myResourceGroup --name myVM
     ```
 
     > [!NOTE]
-    > <span data-ttu-id="fe289-118">`azure vm stop` ne publie pas les ressources de calcul.</span><span class="sxs-lookup"><span data-stu-id="fe289-118">`azure vm stop` does not release the compute resources.</span></span> <span data-ttu-id="fe289-119">Pour publier les ressources de calcul, utilisez `azure vm deallocate`.</span><span class="sxs-lookup"><span data-stu-id="fe289-119">To release compute resources, use `azure vm deallocate`.</span></span> <span data-ttu-id="fe289-120">La machine virtuelle doit être libérée pour développer le disque dur virtuel.</span><span class="sxs-lookup"><span data-stu-id="fe289-120">The VM must be deallocated to expand the virtual hard disk.</span></span>
+    > <span data-ttu-id="a8beb-118">`azure vm stop`ne libère pas de ressources de calcul hello.</span><span class="sxs-lookup"><span data-stu-id="a8beb-118">`azure vm stop` does not release hello compute resources.</span></span> <span data-ttu-id="a8beb-119">toorelease des ressources de calcul, utilisez `azure vm deallocate`.</span><span class="sxs-lookup"><span data-stu-id="a8beb-119">toorelease compute resources, use `azure vm deallocate`.</span></span> <span data-ttu-id="a8beb-120">Hello machine virtuelle doit être libérée tooexpand hello un disque dur virtuel.</span><span class="sxs-lookup"><span data-stu-id="a8beb-120">hello VM must be deallocated tooexpand hello virtual hard disk.</span></span>
 
-2. <span data-ttu-id="fe289-121">Modifiez la taille du disque non géré du système d’exploitation à l’aide de la commande `azure vm set`.</span><span class="sxs-lookup"><span data-stu-id="fe289-121">Update the size of the unmanaged OS disk using the `azure vm set` command.</span></span> <span data-ttu-id="fe289-122">L’exemple suivant met à jour la machine virtuelle nommée *myVM* dans le groupe de ressources nommé *myResourceGroup* sur la valeur de *50* Go :</span><span class="sxs-lookup"><span data-stu-id="fe289-122">The following example updates the VM named *myVM* in the resource group named *myResourceGroup* to be *50* GB:</span></span>
+2. <span data-ttu-id="a8beb-121">Mettre à jour de la taille de hello du disque du système d’exploitation hello non managée à l’aide de hello `azure vm set` commande.</span><span class="sxs-lookup"><span data-stu-id="a8beb-121">Update hello size of hello unmanaged OS disk using hello `azure vm set` command.</span></span> <span data-ttu-id="a8beb-122">Hello après les mises à jour de l’exemple hello ordinateur virtuel nommé *myVM* dans le groupe de ressources hello nommé *myResourceGroup* toobe *50* Go :</span><span class="sxs-lookup"><span data-stu-id="a8beb-122">hello following example updates hello VM named *myVM* in hello resource group named *myResourceGroup* toobe *50* GB:</span></span>
 
     ```azurecli
     azure vm set \
@@ -58,13 +58,13 @@ azure config mode arm
         --new-os-disk-size 50
     ```
 
-3. <span data-ttu-id="fe289-123">Démarrez votre machine virtuelle comme suit :</span><span class="sxs-lookup"><span data-stu-id="fe289-123">Start your VM as follows:</span></span>
+3. <span data-ttu-id="a8beb-123">Démarrez votre machine virtuelle comme suit :</span><span class="sxs-lookup"><span data-stu-id="a8beb-123">Start your VM as follows:</span></span>
 
     ```azurecli
     azure vm start --resource-group myResourceGroup --name myVM
     ```
 
-4. <span data-ttu-id="fe289-124">Établissez une connexion SSH à votre machine virtuelle à l’aide des informations d’identification appropriées.</span><span class="sxs-lookup"><span data-stu-id="fe289-124">SSH to your VM with the appropriate credentials.</span></span> <span data-ttu-id="fe289-125">Pour vérifier que le disque du système d’exploitation a été redimensionné, utilisez `df -h`.</span><span class="sxs-lookup"><span data-stu-id="fe289-125">To verify the OS disk has been resized, use `df -h`.</span></span> <span data-ttu-id="fe289-126">La sortie de l’exemple suivant indique que la partition primaire (*/dev/sda1*) est désormais de 50 Go :</span><span class="sxs-lookup"><span data-stu-id="fe289-126">The following example output shows the primary partition (*/dev/sda1*) is now 50 GB:</span></span>
+4. <span data-ttu-id="a8beb-124">SSH tooyour machine virtuelle avec les informations d’identification appropriées hello.</span><span class="sxs-lookup"><span data-stu-id="a8beb-124">SSH tooyour VM with hello appropriate credentials.</span></span> <span data-ttu-id="a8beb-125">disque de hello du système d’exploitation tooverify a été redimensionné, utilisez `df -h`.</span><span class="sxs-lookup"><span data-stu-id="a8beb-125">tooverify hello OS disk has been resized, use `df -h`.</span></span> <span data-ttu-id="a8beb-126">Hello après la sortie de l’exemple montre la partition principale de hello (*/dev/sda1*) est maintenant de 50 Go :</span><span class="sxs-lookup"><span data-stu-id="a8beb-126">hello following example output shows hello primary partition (*/dev/sda1*) is now 50 GB:</span></span>
 
     ```bash
     Filesystem      Size  Used Avail Use% Mounted on
@@ -73,5 +73,5 @@ azure config mode arm
     /dev/sda1        49G  1.3G   48G   3% /
     ```
 
-## <a name="next-steps"></a><span data-ttu-id="fe289-127">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="fe289-127">Next steps</span></span>
-<span data-ttu-id="fe289-128">Si vous avez besoin de stockage supplémentaire, vous pouvez également [ajouter des disques de données à une machine virtuelle Linux](add-disk.md).</span><span class="sxs-lookup"><span data-stu-id="fe289-128">If you need additional storage, you also [add data disks to a Linux VM](add-disk.md).</span></span> <span data-ttu-id="fe289-129">Pour plus d’informations sur le chiffrement de disque, consultez la section [Chiffrer des disques sur une machine virtuelle Linux à l’aide de l’interface de ligne de commande Azure (CLI)](encrypt-disks.md).</span><span class="sxs-lookup"><span data-stu-id="fe289-129">For more information about disk encryption, see [Encrypt disks on a Linux VM using the Azure CLI](encrypt-disks.md).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="a8beb-127">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="a8beb-127">Next steps</span></span>
+<span data-ttu-id="a8beb-128">Si vous avez besoin de stockage supplémentaire, vous également [ajouter des disques de données tooa Linux VM](add-disk.md).</span><span class="sxs-lookup"><span data-stu-id="a8beb-128">If you need additional storage, you also [add data disks tooa Linux VM](add-disk.md).</span></span> <span data-ttu-id="a8beb-129">Pour plus d’informations sur le chiffrement de disque, consultez [crypter les disques sur un VM Linux à l’aide de hello CLI d’Azure](encrypt-disks.md).</span><span class="sxs-lookup"><span data-stu-id="a8beb-129">For more information about disk encryption, see [Encrypt disks on a Linux VM using hello Azure CLI](encrypt-disks.md).</span></span>

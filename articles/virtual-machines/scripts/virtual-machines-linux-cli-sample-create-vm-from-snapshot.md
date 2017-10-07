@@ -1,5 +1,5 @@
 ---
-title: "Exemples de script Azure CLI - Créer une machine virtuelle à partir d’une capture instantanée | Documents Microsoft"
+title: "aaaAzure exemple de Script CLI - créer une machine virtuelle à partir d’un instantané | Documents Microsoft"
 description: "Exemples de script Azure CLI - Créer une machine virtuelle à partir d’une capture instantanée"
 services: virtual-machines-linux
 documentationcenter: virtual-machines
@@ -16,44 +16,44 @@ ms.workload: infrastructure
 ms.date: 05/10/2017
 ms.author: ramankum
 ms.custom: mvc
-ms.openlocfilehash: 6e47c3baebd5b68ec29d55c43dc00ae7665c81f2
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ddc95289dcb8a0ca7c7854d969983f96b8f4613f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-virtual-machine-from-a-snapshot-with-cli"></a><span data-ttu-id="b5f37-103">Créer une machine virtuelle à partir d’une capture instantanée avec l’interface de ligne de commande</span><span class="sxs-lookup"><span data-stu-id="b5f37-103">Create a virtual machine from a snapshot with CLI</span></span>
+# <a name="create-a-virtual-machine-from-a-snapshot-with-cli"></a><span data-ttu-id="358b8-103">Créer une machine virtuelle à partir d’une capture instantanée avec l’interface de ligne de commande</span><span class="sxs-lookup"><span data-stu-id="358b8-103">Create a virtual machine from a snapshot with CLI</span></span>
 
-<span data-ttu-id="b5f37-104">Ce script crée une machine virtuelle à partir d’une capture instantanée d’un disque de système d’exploitation.</span><span class="sxs-lookup"><span data-stu-id="b5f37-104">This script creates a virtual machine from a snapshot of an OS disk.</span></span>
+<span data-ttu-id="358b8-104">Ce script crée une machine virtuelle à partir d’une capture instantanée d’un disque de système d’exploitation.</span><span class="sxs-lookup"><span data-stu-id="358b8-104">This script creates a virtual machine from a snapshot of an OS disk.</span></span>
 
 [!INCLUDE [sample-cli-install](../../../includes/sample-cli-install.md)]
 
 [!INCLUDE [quickstarts-free-trial-note](../../../includes/quickstarts-free-trial-note.md)]
 
-## <a name="sample-script"></a><span data-ttu-id="b5f37-105">Exemple de script</span><span class="sxs-lookup"><span data-stu-id="b5f37-105">Sample script</span></span>
+## <a name="sample-script"></a><span data-ttu-id="358b8-105">Exemple de script</span><span class="sxs-lookup"><span data-stu-id="358b8-105">Sample script</span></span>
 
-<span data-ttu-id="b5f37-106">[!code-azurecli-interactive[main](../../../cli_scripts/virtual-machine/create-vm-from-snapshot/create-vm-from-snapshot.sh "Créer une machine virtuelle à partir d’une capture instantanée")]</span><span class="sxs-lookup"><span data-stu-id="b5f37-106">[!code-azurecli-interactive[main](../../../cli_scripts/virtual-machine/create-vm-from-snapshot/create-vm-from-snapshot.sh "Create VM from snapshot")]</span></span>
+[!code-azurecli-interactive[main](../../../cli_scripts/virtual-machine/create-vm-from-snapshot/create-vm-from-snapshot.sh "Create VM from snapshot")]
 
-## <a name="clean-up-deployment"></a><span data-ttu-id="b5f37-107">Nettoyer le déploiement</span><span class="sxs-lookup"><span data-stu-id="b5f37-107">Clean up deployment</span></span> 
+## <a name="clean-up-deployment"></a><span data-ttu-id="358b8-106">Nettoyer le déploiement</span><span class="sxs-lookup"><span data-stu-id="358b8-106">Clean up deployment</span></span> 
 
-<span data-ttu-id="b5f37-108">Exécutez la commande suivante pour supprimer le groupe de ressources, la machine virtuelle et toutes les ressources associées.</span><span class="sxs-lookup"><span data-stu-id="b5f37-108">Run the following command to remove the resource group, VM, and all related resources.</span></span>
+<span data-ttu-id="358b8-107">Exécutez hello suivant du groupe de ressources de commande tooremove hello, machine virtuelle et toutes les ressources.</span><span class="sxs-lookup"><span data-stu-id="358b8-107">Run hello following command tooremove hello resource group, VM, and all related resources.</span></span>
 
 ```azurecli-interactive 
 az group delete --name myResourceGroup
 ```
 
-## <a name="script-explanation"></a><span data-ttu-id="b5f37-109">Explication du script</span><span class="sxs-lookup"><span data-stu-id="b5f37-109">Script explanation</span></span>
+## <a name="script-explanation"></a><span data-ttu-id="358b8-108">Explication du script</span><span class="sxs-lookup"><span data-stu-id="358b8-108">Script explanation</span></span>
 
-<span data-ttu-id="b5f37-110">Ce script utilise les commandes suivantes pour créer un disque géré, une machine virtuelle et toutes les ressources associées.</span><span class="sxs-lookup"><span data-stu-id="b5f37-110">This script uses the following commands to create a managed disk, virtual machine, and all related resources.</span></span> <span data-ttu-id="b5f37-111">Chaque commande du tableau renvoie à une documentation spécifique.</span><span class="sxs-lookup"><span data-stu-id="b5f37-111">Each command in the table links to command specific documentation.</span></span>
+<span data-ttu-id="358b8-109">Ce script utilise hello suivant de commandes toocreate un disque géré, l’ordinateur virtuel, et toutes les ressources associées.</span><span class="sxs-lookup"><span data-stu-id="358b8-109">This script uses hello following commands toocreate a managed disk, virtual machine, and all related resources.</span></span> <span data-ttu-id="358b8-110">Chaque commande figurant dans la documentation spécifique du toocommand liens table hello.</span><span class="sxs-lookup"><span data-stu-id="358b8-110">Each command in hello table links toocommand specific documentation.</span></span>
 
-| <span data-ttu-id="b5f37-112">Commande</span><span class="sxs-lookup"><span data-stu-id="b5f37-112">Command</span></span> | <span data-ttu-id="b5f37-113">Remarques</span><span class="sxs-lookup"><span data-stu-id="b5f37-113">Notes</span></span> |
+| <span data-ttu-id="358b8-111">Commande</span><span class="sxs-lookup"><span data-stu-id="358b8-111">Command</span></span> | <span data-ttu-id="358b8-112">Remarques</span><span class="sxs-lookup"><span data-stu-id="358b8-112">Notes</span></span> |
 |---|---|
-| [<span data-ttu-id="b5f37-114">az snapshot show</span><span class="sxs-lookup"><span data-stu-id="b5f37-114">az snapshot show</span></span>](https://docs.microsoft.com/cli/azure/snapshot#show) | <span data-ttu-id="b5f37-115">Obtient une capture instantanée à l’aide d’un nom de capture instantanée et d’un nom de groupe de ressources.</span><span class="sxs-lookup"><span data-stu-id="b5f37-115">Gets snapshot using snapshot name and resource group name.</span></span> <span data-ttu-id="b5f37-116">La propriété Id de l’objet retourné est utilisée pour créer un disque géré.</span><span class="sxs-lookup"><span data-stu-id="b5f37-116">Id property of the returned object is used to create a managed disk.</span></span>  |
-| [<span data-ttu-id="b5f37-117">az disk create</span><span class="sxs-lookup"><span data-stu-id="b5f37-117">az disk create</span></span>](https://docs.microsoft.com/cli/azure/disk#create) | <span data-ttu-id="b5f37-118">Crée des disques gérés à partir d’une capture instantanée en utilisant un ID de capture instantanée, un nom de disque, un type de stockage et une taille</span><span class="sxs-lookup"><span data-stu-id="b5f37-118">Creates managed disks from a snapshot using snapshot Id, disk name, storage type, and size</span></span>  |
-| [<span data-ttu-id="b5f37-119">az vm create</span><span class="sxs-lookup"><span data-stu-id="b5f37-119">az vm create</span></span>](https://docs.microsoft.com/cli/azure/vm#create) | <span data-ttu-id="b5f37-120">Crée une machine virtuelle à l’aide d’un disque de système d’exploitation géré</span><span class="sxs-lookup"><span data-stu-id="b5f37-120">Creates a VM using a managed OS disk</span></span> |
+| [<span data-ttu-id="358b8-113">az snapshot show</span><span class="sxs-lookup"><span data-stu-id="358b8-113">az snapshot show</span></span>](https://docs.microsoft.com/cli/azure/snapshot#show) | <span data-ttu-id="358b8-114">Obtient une capture instantanée à l’aide d’un nom de capture instantanée et d’un nom de groupe de ressources.</span><span class="sxs-lookup"><span data-stu-id="358b8-114">Gets snapshot using snapshot name and resource group name.</span></span> <span data-ttu-id="358b8-115">Propriété d’ID de hello retourné d’objet est utilisé toocreate un disque géré.</span><span class="sxs-lookup"><span data-stu-id="358b8-115">Id property of hello returned object is used toocreate a managed disk.</span></span>  |
+| [<span data-ttu-id="358b8-116">az disk create</span><span class="sxs-lookup"><span data-stu-id="358b8-116">az disk create</span></span>](https://docs.microsoft.com/cli/azure/disk#create) | <span data-ttu-id="358b8-117">Crée des disques gérés à partir d’une capture instantanée en utilisant un ID de capture instantanée, un nom de disque, un type de stockage et une taille</span><span class="sxs-lookup"><span data-stu-id="358b8-117">Creates managed disks from a snapshot using snapshot Id, disk name, storage type, and size</span></span>  |
+| [<span data-ttu-id="358b8-118">az vm create</span><span class="sxs-lookup"><span data-stu-id="358b8-118">az vm create</span></span>](https://docs.microsoft.com/cli/azure/vm#create) | <span data-ttu-id="358b8-119">Crée une machine virtuelle à l’aide d’un disque de système d’exploitation géré</span><span class="sxs-lookup"><span data-stu-id="358b8-119">Creates a VM using a managed OS disk</span></span> |
 
-## <a name="next-steps"></a><span data-ttu-id="b5f37-121">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="b5f37-121">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="358b8-120">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="358b8-120">Next steps</span></span>
 
-<span data-ttu-id="b5f37-122">Pour plus d’informations sur l’interface Azure CLI, consultez la [documentation relative à l’interface Azure CLI](https://docs.microsoft.com/cli/azure/overview).</span><span class="sxs-lookup"><span data-stu-id="b5f37-122">For more information on the Azure CLI, see [Azure CLI documentation](https://docs.microsoft.com/cli/azure/overview).</span></span>
+<span data-ttu-id="358b8-121">Pour plus d’informations sur hello CLI d’Azure, consultez [documentation relative à Azure CLI](https://docs.microsoft.com/cli/azure/overview).</span><span class="sxs-lookup"><span data-stu-id="358b8-121">For more information on hello Azure CLI, see [Azure CLI documentation](https://docs.microsoft.com/cli/azure/overview).</span></span>
 
-<span data-ttu-id="b5f37-123">Vous trouverez des exemples supplémentaires de scripts CLI de machine virtuelle dans la [documentation relative aux machines virtuelles Linux Azure](../linux/cli-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="b5f37-123">Additional virtual machine CLI script samples can be found in the [Azure Linux VM documentation](../linux/cli-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span>
+<span data-ttu-id="358b8-122">Exemples de script CLI supplémentaires de l’ordinateur virtuel se trouvent dans hello [documentation de la machine virtuelle de Azure Linux](../linux/cli-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="358b8-122">Additional virtual machine CLI script samples can be found in hello [Azure Linux VM documentation](../linux/cli-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span>

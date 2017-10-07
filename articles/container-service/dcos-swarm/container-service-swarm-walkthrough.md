@@ -1,6 +1,6 @@
 ---
-title: "Démarrage rapide : Cluster Azure Docker Swarm pour Linux | Microsoft Docs"
-description: "Découvrez rapidement comment créer un cluster Docker Swarm pour des conteneurs Linux dans Azure Container Service, avec Azure CLI."
+title: aaaQuickstart - Swarm de Docker Azure de cluster pour Linux | Documents Microsoft
+description: "En savoir plus rapidement les toocreate un cluster Docker Swarm pour les conteneurs Linux dans le conteneur de Service Azure avec hello CLI d’Azure."
 services: container-service
 documentationcenter: 
 author: neilpeterson
@@ -17,31 +17,31 @@ ms.workload: na
 ms.date: 08/14/2017
 ms.author: nepeters
 ms.custom: 
-ms.openlocfilehash: 1d10c347795227ed056a95d1bcd4aff82af7b876
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 3028d2d00585360ec163518bf98f69bb0dd44dec
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deploy-docker-swarm-cluster"></a><span data-ttu-id="81115-103">Déployer le cluster Docker Swarm</span><span class="sxs-lookup"><span data-stu-id="81115-103">Deploy Docker Swarm cluster</span></span>
+# <a name="deploy-docker-swarm-cluster"></a><span data-ttu-id="0b2b3-103">Déployer le cluster Docker Swarm</span><span class="sxs-lookup"><span data-stu-id="0b2b3-103">Deploy Docker Swarm cluster</span></span>
 
-<span data-ttu-id="81115-104">Dans ce guide de démarrage rapide, un cluster Docker Swarm est déployé à l’aide d’Azure CLI.</span><span class="sxs-lookup"><span data-stu-id="81115-104">In this quick start, a Docker Swarm cluster is deployed using the Azure CLI.</span></span> <span data-ttu-id="81115-105">Une application à plusieurs conteneurs composée d’un serveur web frontal et d’une instance Redis est ensuite déployée, puis exécutée sur le cluster.</span><span class="sxs-lookup"><span data-stu-id="81115-105">A multi-container application consisting of web front end and a Redis instance is then deployed and run on the cluster.</span></span> <span data-ttu-id="81115-106">Ceci fait, l’application est accessible via internet.</span><span class="sxs-lookup"><span data-stu-id="81115-106">Once completed, the application is accessible over the internet.</span></span>
+<span data-ttu-id="0b2b3-104">Dans ce guide de démarrage rapide, un cluster Docker Swarm est déployé à l’aide de hello CLI d’Azure.</span><span class="sxs-lookup"><span data-stu-id="0b2b3-104">In this quick start, a Docker Swarm cluster is deployed using hello Azure CLI.</span></span> <span data-ttu-id="0b2b3-105">Une application conteneur multi composé d’un serveur web frontal et une instance de Redis est puis déployée et exécutée sur le cluster de hello.</span><span class="sxs-lookup"><span data-stu-id="0b2b3-105">A multi-container application consisting of web front end and a Redis instance is then deployed and run on hello cluster.</span></span> <span data-ttu-id="0b2b3-106">Une fois terminé, l’application hello est accessible sur internet de hello.</span><span class="sxs-lookup"><span data-stu-id="0b2b3-106">Once completed, hello application is accessible over hello internet.</span></span>
 
-<span data-ttu-id="81115-107">Si vous n’avez pas d’abonnement Azure, créez un [compte gratuit](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) avant de commencer.</span><span class="sxs-lookup"><span data-stu-id="81115-107">If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.</span></span>
+<span data-ttu-id="0b2b3-107">Si vous n’avez pas d’abonnement Azure, créez un [compte gratuit](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) avant de commencer.</span><span class="sxs-lookup"><span data-stu-id="0b2b3-107">If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.</span></span>
 
-<span data-ttu-id="81115-108">Ce guide de démarrage rapide nécessite que vous exécutiez Azure CLI version 2.0.4 ou ultérieure.</span><span class="sxs-lookup"><span data-stu-id="81115-108">This quickstart requires that you are running the Azure CLI version 2.0.4 or later.</span></span> <span data-ttu-id="81115-109">Exécutez `az --version` pour trouver la version.</span><span class="sxs-lookup"><span data-stu-id="81115-109">Run `az --version` to find the version.</span></span> <span data-ttu-id="81115-110">Si vous devez installer ou mettre à niveau, consultez [Installation d’Azure CLI 2.0]( /cli/azure/install-azure-cli).</span><span class="sxs-lookup"><span data-stu-id="81115-110">If you need to install or upgrade, see [Install Azure CLI 2.0]( /cli/azure/install-azure-cli).</span></span>
+<span data-ttu-id="0b2b3-108">Ce démarrage rapide nécessite que vous exécutez hello CLI d’Azure version 2.0.4 ou version ultérieure.</span><span class="sxs-lookup"><span data-stu-id="0b2b3-108">This quickstart requires that you are running hello Azure CLI version 2.0.4 or later.</span></span> <span data-ttu-id="0b2b3-109">Exécutez `az --version` version de hello toofind.</span><span class="sxs-lookup"><span data-stu-id="0b2b3-109">Run `az --version` toofind hello version.</span></span> <span data-ttu-id="0b2b3-110">Si vous avez besoin de tooinstall ou mise à niveau, consultez [installer Azure CLI 2.0]( /cli/azure/install-azure-cli).</span><span class="sxs-lookup"><span data-stu-id="0b2b3-110">If you need tooinstall or upgrade, see [Install Azure CLI 2.0]( /cli/azure/install-azure-cli).</span></span>
 
-## <a name="create-a-resource-group"></a><span data-ttu-id="81115-111">Créer un groupe de ressources</span><span class="sxs-lookup"><span data-stu-id="81115-111">Create a resource group</span></span>
+## <a name="create-a-resource-group"></a><span data-ttu-id="0b2b3-111">Créer un groupe de ressources</span><span class="sxs-lookup"><span data-stu-id="0b2b3-111">Create a resource group</span></span>
 
-<span data-ttu-id="81115-112">Créez un groupe de ressources avec la commande [az group create](/cli/azure/group#create).</span><span class="sxs-lookup"><span data-stu-id="81115-112">Create a resource group with the [az group create](/cli/azure/group#create) command.</span></span> <span data-ttu-id="81115-113">Un groupe de ressources Azure est un groupe logique dans lequel des ressources Azure sont déployées et gérées.</span><span class="sxs-lookup"><span data-stu-id="81115-113">An Azure resource group is a logical group in which Azure resources are deployed and managed.</span></span>
+<span data-ttu-id="0b2b3-112">Créer un groupe de ressources avec hello [création de groupe de az](/cli/azure/group#create) commande.</span><span class="sxs-lookup"><span data-stu-id="0b2b3-112">Create a resource group with hello [az group create](/cli/azure/group#create) command.</span></span> <span data-ttu-id="0b2b3-113">Un groupe de ressources Azure est un groupe logique dans lequel des ressources Azure sont déployées et gérées.</span><span class="sxs-lookup"><span data-stu-id="0b2b3-113">An Azure resource group is a logical group in which Azure resources are deployed and managed.</span></span>
 
-<span data-ttu-id="81115-114">L’exemple suivant crée un groupe de ressources nommé *myResourceGroup* à l’emplacement *westus*.</span><span class="sxs-lookup"><span data-stu-id="81115-114">The following example creates a resource group named *myResourceGroup* in the *westus* location.</span></span>
+<span data-ttu-id="0b2b3-114">Hello exemple suivant crée un groupe de ressources nommé *myResourceGroup* Bonjour *westus* emplacement.</span><span class="sxs-lookup"><span data-stu-id="0b2b3-114">hello following example creates a resource group named *myResourceGroup* in hello *westus* location.</span></span>
 
 ```azurecli-interactive
 az group create --name myResourceGroup --location westus
 ```
 
-<span data-ttu-id="81115-115">Output:</span><span class="sxs-lookup"><span data-stu-id="81115-115">Output:</span></span>
+<span data-ttu-id="0b2b3-115">Output:</span><span class="sxs-lookup"><span data-stu-id="0b2b3-115">Output:</span></span>
 
 ```json
 {
@@ -56,28 +56,28 @@ az group create --name myResourceGroup --location westus
 }
 ```
 
-## <a name="create-docker-swarm-cluster"></a><span data-ttu-id="81115-116">Créer le cluster Docker Swarm</span><span class="sxs-lookup"><span data-stu-id="81115-116">Create Docker Swarm cluster</span></span>
+## <a name="create-docker-swarm-cluster"></a><span data-ttu-id="0b2b3-116">Créer le cluster Docker Swarm</span><span class="sxs-lookup"><span data-stu-id="0b2b3-116">Create Docker Swarm cluster</span></span>
 
-<span data-ttu-id="81115-117">Pour créer un cluster Docker Swarm dans Azure Container Service, utilisez la commande [az acs create](/cli/azure/acs#create).</span><span class="sxs-lookup"><span data-stu-id="81115-117">Create a Docker Swarm cluster in Azure Container Service with the [az acs create](/cli/azure/acs#create) command.</span></span> 
+<span data-ttu-id="0b2b3-117">Créer un cluster de Docker Swarm dans le Service de conteneur Azure avec hello [az acs créer](/cli/azure/acs#create) commande.</span><span class="sxs-lookup"><span data-stu-id="0b2b3-117">Create a Docker Swarm cluster in Azure Container Service with hello [az acs create](/cli/azure/acs#create) command.</span></span> 
 
-<span data-ttu-id="81115-118">L’exemple ci-après permet de créer un cluster nommé *mySwarmCluster*, qui inclut un nœud maître Linux et trois nœuds agents Linux.</span><span class="sxs-lookup"><span data-stu-id="81115-118">The following example creates a cluster named *mySwarmCluster* with one Linux master node and three Linux agent nodes.</span></span>
+<span data-ttu-id="0b2b3-118">Hello exemple suivant crée un cluster nommé *mySwarmCluster* avec un Linux maître nœud et trois nœuds de l’agent Linux.</span><span class="sxs-lookup"><span data-stu-id="0b2b3-118">hello following example creates a cluster named *mySwarmCluster* with one Linux master node and three Linux agent nodes.</span></span>
 
 ```azurecli-interactive
 az acs create --name mySwarmCluster --orchestrator-type Swarm --resource-group myResourceGroup --generate-ssh-keys
 ```
 
-<span data-ttu-id="81115-119">Au bout de quelques minutes, la commande se termine et retourne des informations formatées Json sur le cluster.</span><span class="sxs-lookup"><span data-stu-id="81115-119">After several minutes, the command completes and returns json formatted information about the cluster.</span></span>
+<span data-ttu-id="0b2b3-119">Après quelques minutes, commande hello se termine et retourne des informations au format json sur le cluster de hello.</span><span class="sxs-lookup"><span data-stu-id="0b2b3-119">After several minutes, hello command completes and returns json formatted information about hello cluster.</span></span>
 
-## <a name="connect-to-the-cluster"></a><span data-ttu-id="81115-120">Connexion au cluster</span><span class="sxs-lookup"><span data-stu-id="81115-120">Connect to the cluster</span></span>
+## <a name="connect-toohello-cluster"></a><span data-ttu-id="0b2b3-120">Se connecter toohello cluster</span><span class="sxs-lookup"><span data-stu-id="0b2b3-120">Connect toohello cluster</span></span>
 
-<span data-ttu-id="81115-121">Pour suivre ce guide de démarrage rapide, vous avez besoin de l’adresse IP du nœud maître Docker Swarm et du pool d’agents Docker.</span><span class="sxs-lookup"><span data-stu-id="81115-121">Throughout this quick start, you need the IP address of both the Docker Swarm master and the Docker agent pool.</span></span> <span data-ttu-id="81115-122">Exécutez la commande suivante pour retourner les deux adresses IP.</span><span class="sxs-lookup"><span data-stu-id="81115-122">Run the following command to return both IP addresses.</span></span>
+<span data-ttu-id="0b2b3-121">Tout au long de ce guide de démarrage rapide, vous avez besoin de l’adresse IP hello principale de Docker Swarm hello et pool d’agents hello Docker.</span><span class="sxs-lookup"><span data-stu-id="0b2b3-121">Throughout this quick start, you need hello IP address of both hello Docker Swarm master and hello Docker agent pool.</span></span> <span data-ttu-id="0b2b3-122">La commande suivante d’exécution hello tooreturn les deux adresses IP.</span><span class="sxs-lookup"><span data-stu-id="0b2b3-122">Run hello following command tooreturn both IP addresses.</span></span>
 
 
 ```bash
 az network public-ip list --resource-group myResourceGroup --query '[*].{Name:name,IPAddress:ipAddress}' -o table
 ```
 
-<span data-ttu-id="81115-123">Output:</span><span class="sxs-lookup"><span data-stu-id="81115-123">Output:</span></span>
+<span data-ttu-id="0b2b3-123">Output:</span><span class="sxs-lookup"><span data-stu-id="0b2b3-123">Output:</span></span>
 
 ```bash
 Name                                                                 IPAddress
@@ -86,24 +86,24 @@ swarmm-agent-ip-myswarmcluster-myresourcegroup-d5b9d4agent-66066781  52.179.23.1
 swarmm-master-ip-myswarmcluster-myresourcegroup-d5b9d4mgmt-66066781  52.141.37.199
 ```
 
-<span data-ttu-id="81115-124">Créez un tunnel SSH vers le nœud maître Docker Swarm.</span><span class="sxs-lookup"><span data-stu-id="81115-124">Create an SSH tunnel to the Swarm master.</span></span> <span data-ttu-id="81115-125">Remplacez `IPAddress` par l’adresse IP du nœud maître Docker Swarm.</span><span class="sxs-lookup"><span data-stu-id="81115-125">Replace `IPAddress` with the IP address of the Swarm master.</span></span>
+<span data-ttu-id="0b2b3-124">Créer un SSH maître de tunnel toohello essaim.</span><span class="sxs-lookup"><span data-stu-id="0b2b3-124">Create an SSH tunnel toohello Swarm master.</span></span> <span data-ttu-id="0b2b3-125">Remplacez `IPAddress` avec adresse IP principale d’essaim hello hello.</span><span class="sxs-lookup"><span data-stu-id="0b2b3-125">Replace `IPAddress` with hello IP address of hello Swarm master.</span></span>
 
 ```bash
 ssh -p 2200 -fNL 2375:localhost:2375 azureuser@IPAddress
 ```
 
-<span data-ttu-id="81115-126">Définissez la variable d’environnement `DOCKER_HOST`.</span><span class="sxs-lookup"><span data-stu-id="81115-126">Set the `DOCKER_HOST` environment variable.</span></span> <span data-ttu-id="81115-127">Ceci vous permet d’exécuter des commandes docker pour le Docker Swarm sans avoir à spécifier le nom de l’hôte.</span><span class="sxs-lookup"><span data-stu-id="81115-127">This allows you to run docker commands against the Docker Swarm without having to specify the name of the host.</span></span>
+<span data-ttu-id="0b2b3-126">Ensemble hello `DOCKER_HOST` variable d’environnement.</span><span class="sxs-lookup"><span data-stu-id="0b2b3-126">Set hello `DOCKER_HOST` environment variable.</span></span> <span data-ttu-id="0b2b3-127">Ainsi, vous toorun les commandes docker sur hello Docker Swarm sans avoir le nom de hello toospecify d’hôte de hello.</span><span class="sxs-lookup"><span data-stu-id="0b2b3-127">This allows you toorun docker commands against hello Docker Swarm without having toospecify hello name of hello host.</span></span>
 
 ```bash
 export DOCKER_HOST=:2375
 ```
 
-<span data-ttu-id="81115-128">Vous êtes maintenant prêt à exécuter les services Docker sur le Docker Swarm.</span><span class="sxs-lookup"><span data-stu-id="81115-128">You are now ready to run Docker services on the Docker Swarm.</span></span>
+<span data-ttu-id="0b2b3-128">Vous êtes maintenant prêt toorun des services de Docker sur hello Docker Swarm.</span><span class="sxs-lookup"><span data-stu-id="0b2b3-128">You are now ready toorun Docker services on hello Docker Swarm.</span></span>
 
 
-## <a name="run-the-application"></a><span data-ttu-id="81115-129">Exécution de l'application</span><span class="sxs-lookup"><span data-stu-id="81115-129">Run the application</span></span>
+## <a name="run-hello-application"></a><span data-ttu-id="0b2b3-129">Exécutez l’application hello</span><span class="sxs-lookup"><span data-stu-id="0b2b3-129">Run hello application</span></span>
 
-<span data-ttu-id="81115-130">Créez un fichier nommé `docker-compose.yaml`, puis copiez-y le contenu suivant.</span><span class="sxs-lookup"><span data-stu-id="81115-130">Create a file named `docker-compose.yaml` and copy the following content into it.</span></span>
+<span data-ttu-id="0b2b3-130">Créez un fichier nommé `docker-compose.yaml` et hello de copie suivant contenu dans celui-ci.</span><span class="sxs-lookup"><span data-stu-id="0b2b3-130">Create a file named `docker-compose.yaml` and copy hello following content into it.</span></span>
 
 ```yaml
 version: '3'
@@ -123,16 +123,16 @@ services:
         - "80:80"
 ```
 
-<span data-ttu-id="81115-131">Exécutez la commande ci-dessous pour créer le service Azure Vote.</span><span class="sxs-lookup"><span data-stu-id="81115-131">Run the following command to create the Azure Vote service.</span></span>
+<span data-ttu-id="0b2b3-131">Exécutez hello après commande toocreate hello Azure Vote service.</span><span class="sxs-lookup"><span data-stu-id="0b2b3-131">Run hello following command toocreate hello Azure Vote service.</span></span>
 
 ```bash
 docker-compose up -d
 ```
 
-<span data-ttu-id="81115-132">Output:</span><span class="sxs-lookup"><span data-stu-id="81115-132">Output:</span></span>
+<span data-ttu-id="0b2b3-132">Output:</span><span class="sxs-lookup"><span data-stu-id="0b2b3-132">Output:</span></span>
 
 ```bash
-Creating network "user_default" with the default driver
+Creating network "user_default" with hello default driver
 Pulling azure-vote-front (microsoft/azure-vote-front:redis-v1)...
 swarm-agent-EE873B23000005: Pulling microsoft/azure-vote-front:redis-v1...
 swarm-agent-EE873B23000004: Pulling microsoft/azure-vote-front:redis-v1... : downloaded
@@ -144,30 +144,30 @@ Creating azure-vote-front
 Creating azure-vote-back ...
 ```
 
-## <a name="test-the-application"></a><span data-ttu-id="81115-133">Test de l'application</span><span class="sxs-lookup"><span data-stu-id="81115-133">Test the application</span></span>
+## <a name="test-hello-application"></a><span data-ttu-id="0b2b3-133">Tester l’application hello</span><span class="sxs-lookup"><span data-stu-id="0b2b3-133">Test hello application</span></span>
 
-<span data-ttu-id="81115-134">Naviguez dans l’adresse IP du pool d’agents Swarm pour tester l’application Azure Vote.</span><span class="sxs-lookup"><span data-stu-id="81115-134">Browse to the IP address of the Swarm agent pool to test out the Azure Vote application.</span></span>
+<span data-ttu-id="0b2b3-134">Parcourir l’adresse IP toohello hello essaim agent pool tootest d’application Azure Vote hello.</span><span class="sxs-lookup"><span data-stu-id="0b2b3-134">Browse toohello IP address of hello Swarm agent pool tootest out hello Azure Vote application.</span></span>
 
-![Image de la navigation vers Azure Vote](media/container-service-docker-swarm-mode-walkthrough/azure-vote.png)
+![Image de navigation tooAzure Vote](media/container-service-docker-swarm-mode-walkthrough/azure-vote.png)
 
-## <a name="delete-cluster"></a><span data-ttu-id="81115-136">Supprimer un cluster</span><span class="sxs-lookup"><span data-stu-id="81115-136">Delete cluster</span></span>
-<span data-ttu-id="81115-137">Lorsque vous n’avez plus besoin du cluster, vous pouvez utiliser la commande [az group delete](/cli/azure/group#delete) pour supprimer le groupe de ressources, le service de conteneur et toutes les ressources associées.</span><span class="sxs-lookup"><span data-stu-id="81115-137">When the cluster is no longer needed, you can use the [az group delete](/cli/azure/group#delete) command to remove the resource group, container service, and all related resources.</span></span>
+## <a name="delete-cluster"></a><span data-ttu-id="0b2b3-136">Supprimer un cluster</span><span class="sxs-lookup"><span data-stu-id="0b2b3-136">Delete cluster</span></span>
+<span data-ttu-id="0b2b3-137">Lorsque le cluster de hello n’est plus nécessaire, vous pouvez utiliser hello [suppression du groupe az](/cli/azure/group#delete) groupe de ressources tooremove hello, service de conteneur et toutes les ressources de la commande.</span><span class="sxs-lookup"><span data-stu-id="0b2b3-137">When hello cluster is no longer needed, you can use hello [az group delete](/cli/azure/group#delete) command tooremove hello resource group, container service, and all related resources.</span></span>
 
 ```azurecli-interactive
 az group delete --name myResourceGroup --yes --no-wait
 ```
 
-## <a name="get-the-code"></a><span data-ttu-id="81115-138">Obtenir le code</span><span class="sxs-lookup"><span data-stu-id="81115-138">Get the code</span></span>
+## <a name="get-hello-code"></a><span data-ttu-id="0b2b3-138">Obtenir le code de hello</span><span class="sxs-lookup"><span data-stu-id="0b2b3-138">Get hello code</span></span>
 
-<span data-ttu-id="81115-139">Dans ce guide de démarrage rapide, des images de conteneur créées au préalable ont été utilisées pour créer un service Docker.</span><span class="sxs-lookup"><span data-stu-id="81115-139">In this quick start, pre-created container images have been used to create a Docker service.</span></span> <span data-ttu-id="81115-140">Le code de l’application associé, Dockerfile, et le fichier Compose sont disponibles sur GitHub.</span><span class="sxs-lookup"><span data-stu-id="81115-140">The related application code, Dockerfile, and Compose file are available on GitHub.</span></span>
+<span data-ttu-id="0b2b3-139">Dans ce guide de démarrage rapide, les images de conteneur précréés ont été toocreate utilisé un service de Docker.</span><span class="sxs-lookup"><span data-stu-id="0b2b3-139">In this quick start, pre-created container images have been used toocreate a Docker service.</span></span> <span data-ttu-id="0b2b3-140">Hello liés le code d’application, fichier Dockerfile, et le fichier de message sont disponibles sur GitHub.</span><span class="sxs-lookup"><span data-stu-id="0b2b3-140">hello related application code, Dockerfile, and Compose file are available on GitHub.</span></span>
 
-[<span data-ttu-id="81115-141">https://github.com/Azure-Samples/azure-voting-app-redis</span><span class="sxs-lookup"><span data-stu-id="81115-141">https://github.com/Azure-Samples/azure-voting-app-redis</span></span>](https://github.com/Azure-Samples/azure-voting-app-redis.git)
+[<span data-ttu-id="0b2b3-141">https://github.com/Azure-Samples/azure-voting-app-redis</span><span class="sxs-lookup"><span data-stu-id="0b2b3-141">https://github.com/Azure-Samples/azure-voting-app-redis</span></span>](https://github.com/Azure-Samples/azure-voting-app-redis.git)
 
-## <a name="next-steps"></a><span data-ttu-id="81115-142">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="81115-142">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="0b2b3-142">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="0b2b3-142">Next steps</span></span>
 
-<span data-ttu-id="81115-143">Dans ce guide de démarrage rapide, vous avez déployé un cluster Docker Swarm et vous y avez déployé une application de plusieurs conteneurs.</span><span class="sxs-lookup"><span data-stu-id="81115-143">In this quick start, you deployed a Docker Swarm cluster and deployed a multi-container application to it.</span></span>
+<span data-ttu-id="0b2b3-143">Dans ce guide de démarrage rapide, vous déployé un cluster Docker Swarm et déployé une application conteneur multiples de tooit.</span><span class="sxs-lookup"><span data-stu-id="0b2b3-143">In this quick start, you deployed a Docker Swarm cluster and deployed a multi-container application tooit.</span></span>
 
-<span data-ttu-id="81115-144">Pour en savoir plus sur l’intégration de Docker Swarm avec Visual Studio Team Services, passez à la section CI/CD avec Docker Swarm et VSTS.</span><span class="sxs-lookup"><span data-stu-id="81115-144">To learn about integrating Docker warm with Visual Studio Team Services, continue to the CI/CD with Docker Swarm and VSTS.</span></span>
+<span data-ttu-id="0b2b3-144">toolearn sur l’intégration de Docker à chaud avec Visual Studio Team Services, continuer toohello CI/CD avec Docker Swarm et VSTS.</span><span class="sxs-lookup"><span data-stu-id="0b2b3-144">toolearn about integrating Docker warm with Visual Studio Team Services, continue toohello CI/CD with Docker Swarm and VSTS.</span></span>
 
 > [!div class="nextstepaction"]
-> [<span data-ttu-id="81115-145">CI/CD avec Docker Swarm et VSTS</span><span class="sxs-lookup"><span data-stu-id="81115-145">CI/CD with Docker Swarm and VSTS</span></span>](./container-service-docker-swarm-setup-ci-cd.md)
+> [<span data-ttu-id="0b2b3-145">CI/CD avec Docker Swarm et VSTS</span><span class="sxs-lookup"><span data-stu-id="0b2b3-145">CI/CD with Docker Swarm and VSTS</span></span>](./container-service-docker-swarm-setup-ci-cd.md)

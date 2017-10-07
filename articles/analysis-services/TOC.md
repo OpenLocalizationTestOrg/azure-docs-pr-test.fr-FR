@@ -2,7 +2,7 @@
 ## [Qu’est-ce qu’Azure Analysis Services ?](analysis-services-overview.md)
 ## [Sources de données prises en charge](analysis-services-datasource.md)
 ## [Authentification et autorisations utilisateur](analysis-services-manage-users.md)
-## [Connexion à des sources de données locales](analysis-services-gateway.md)
+## [Connexion des sources de données de site tooon](analysis-services-gateway.md)
 ## [Niveau de compatibilité](analysis-services-compat-level.md)
 ## [Haute disponibilité](analysis-services-bcdr.md)
 
@@ -12,7 +12,7 @@
 ## [Déployer un modèle à partir de Visual Studio](analysis-services-deploy.md)
 ## [Créer un modèle dans le portail Azure (aperçu)](analysis-services-create-model-portal.md)
 
-# Procédure 
+# Procédure trop
 ## [Gérer un serveur](analysis-services-manage.md)
 ## [Gérer les utilisateurs de base de données](analysis-services-database-users.md)
 ## [Gérer les administrateurs de serveur](analysis-services-server-admins.md)
