@@ -1,6 +1,6 @@
 ---
-title: "Utilisation des workflows Hadoop Oozie dans HDInsight basé sur Linux | Microsoft Docs"
-description: "Utilisation de Hadoop Oozie dans HDInsight basé sur Linux. Découvrez comment définir un workflow Oozie et envoyer une tâche Oozie."
+title: "flux de travail aaaUse Oozie de Hadoop dans HDInsight de basés sur Linux | Documents Microsoft"
+description: "Utilisation de Hadoop Oozie dans HDInsight basé sur Linux. Découvrez comment toodefine Oozie d’un flux de travail et soumettre un travail Oozie."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,108 +16,108 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/04/2017
 ms.author: larryfr
-ms.openlocfilehash: e3206078e451aefe02689bfb61ce22a20dd0fa70
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: cb5682837543312621e3424b7a9341b5d2a00bf8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-oozie-with-hadoop-to-define-and-run-a-workflow-on-linux-based-hdinsight"></a><span data-ttu-id="52c41-104">Utilisation d’Oozie avec Hadoop pour définir et exécuter un flux de travail dans HDInsight</span><span class="sxs-lookup"><span data-stu-id="52c41-104">Use Oozie with Hadoop to define and run a workflow on Linux-based HDInsight</span></span>
+# <a name="use-oozie-with-hadoop-toodefine-and-run-a-workflow-on-linux-based-hdinsight"></a><span data-ttu-id="088be-104">Utilisez Oozie avec Hadoop toodefine et exécuter un workflow sur HDInsight de basés sur Linux</span><span class="sxs-lookup"><span data-stu-id="088be-104">Use Oozie with Hadoop toodefine and run a workflow on Linux-based HDInsight</span></span>
 
 [!INCLUDE [oozie-selector](../../includes/hdinsight-oozie-selector.md)]
 
-<span data-ttu-id="52c41-105">Découvrez comment utiliser Apache Oozie avec Hadoop sur HDInsight.</span><span class="sxs-lookup"><span data-stu-id="52c41-105">Learn how to use Apache Oozie with Hadoop on HDInsight.</span></span> <span data-ttu-id="52c41-106">Apache Oozie est un système de workflow/coordination qui gère les tâches Hadoop.</span><span class="sxs-lookup"><span data-stu-id="52c41-106">Apache Oozie is a workflow/coordination system that manages Hadoop jobs.</span></span> <span data-ttu-id="52c41-107">Oozie est intégré dans la pile Hadoop et prend en charge les travaux suivants :</span><span class="sxs-lookup"><span data-stu-id="52c41-107">Oozie is integrated with the Hadoop stack, and it supports the following jobs:</span></span>
+<span data-ttu-id="088be-105">Découvrez comment toouse Oozie Apache avec Hadoop dans HDInsight.</span><span class="sxs-lookup"><span data-stu-id="088be-105">Learn how toouse Apache Oozie with Hadoop on HDInsight.</span></span> <span data-ttu-id="088be-106">Apache Oozie est un système de workflow/coordination qui gère les tâches Hadoop.</span><span class="sxs-lookup"><span data-stu-id="088be-106">Apache Oozie is a workflow/coordination system that manages Hadoop jobs.</span></span> <span data-ttu-id="088be-107">Oozie est intégré à la pile de Hadoop hello, et il prend en charge hello suivant de tâches :</span><span class="sxs-lookup"><span data-stu-id="088be-107">Oozie is integrated with hello Hadoop stack, and it supports hello following jobs:</span></span>
 
-* <span data-ttu-id="52c41-108">Apache MapReduce</span><span class="sxs-lookup"><span data-stu-id="52c41-108">Apache MapReduce</span></span>
-* <span data-ttu-id="52c41-109">Apache Pig</span><span class="sxs-lookup"><span data-stu-id="52c41-109">Apache Pig</span></span>
-* <span data-ttu-id="52c41-110">Apache Hive</span><span class="sxs-lookup"><span data-stu-id="52c41-110">Apache Hive</span></span>
-* <span data-ttu-id="52c41-111">Apache Sqoop</span><span class="sxs-lookup"><span data-stu-id="52c41-111">Apache Sqoop</span></span>
+* <span data-ttu-id="088be-108">Apache MapReduce</span><span class="sxs-lookup"><span data-stu-id="088be-108">Apache MapReduce</span></span>
+* <span data-ttu-id="088be-109">Apache Pig</span><span class="sxs-lookup"><span data-stu-id="088be-109">Apache Pig</span></span>
+* <span data-ttu-id="088be-110">Apache Hive</span><span class="sxs-lookup"><span data-stu-id="088be-110">Apache Hive</span></span>
+* <span data-ttu-id="088be-111">Apache Sqoop</span><span class="sxs-lookup"><span data-stu-id="088be-111">Apache Sqoop</span></span>
 
-<span data-ttu-id="52c41-112">Oozie peut également être utilisé pour planifier des travaux propres à un système, comme des programmes Java ou des scripts de l’interpréteur de commandes</span><span class="sxs-lookup"><span data-stu-id="52c41-112">Oozie can also be used to schedule jobs that are specific to a system, like Java programs or shell scripts</span></span>
+<span data-ttu-id="088be-112">Oozie peut également être utilisé tooschedule les travaux système tooa spécifiques, tels que les programmes Java ou des scripts de shell</span><span class="sxs-lookup"><span data-stu-id="088be-112">Oozie can also be used tooschedule jobs that are specific tooa system, like Java programs or shell scripts</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="52c41-113">Une autre option pour définir des flux de travail avec HDInsight consiste à utiliser Azure Data Factory.</span><span class="sxs-lookup"><span data-stu-id="52c41-113">Another option for defining workflows with HDInsight is Azure Data Factory.</span></span> <span data-ttu-id="52c41-114">Pour en savoir plus sur Azure Data Factory, consultez la page [Utilisation de Pig et Hive avec Data Factory][azure-data-factory-pig-hive].</span><span class="sxs-lookup"><span data-stu-id="52c41-114">To learn more about Azure Data Factory, see [Use Pig and Hive with Data Factory][azure-data-factory-pig-hive].</span></span>
+> <span data-ttu-id="088be-113">Une autre option pour définir des flux de travail avec HDInsight consiste à utiliser Azure Data Factory.</span><span class="sxs-lookup"><span data-stu-id="088be-113">Another option for defining workflows with HDInsight is Azure Data Factory.</span></span> <span data-ttu-id="088be-114">toolearn en savoir plus sur Azure Data Factory, consultez [utilisez Pig et Hive avec Data Factory][azure-data-factory-pig-hive].</span><span class="sxs-lookup"><span data-stu-id="088be-114">toolearn more about Azure Data Factory, see [Use Pig and Hive with Data Factory][azure-data-factory-pig-hive].</span></span>
 
 > [!IMPORTANT]
-> <span data-ttu-id="52c41-115">Oozie n’est pas activé sur HDInsight joint à un domaine.</span><span class="sxs-lookup"><span data-stu-id="52c41-115">Oozie is not enabled on domain-joined HDInsight.</span></span>
+> <span data-ttu-id="088be-115">Oozie n’est pas activé sur HDInsight joint à un domaine.</span><span class="sxs-lookup"><span data-stu-id="088be-115">Oozie is not enabled on domain-joined HDInsight.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="52c41-116">Composants requis</span><span class="sxs-lookup"><span data-stu-id="52c41-116">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="088be-116">Composants requis</span><span class="sxs-lookup"><span data-stu-id="088be-116">Prerequisites</span></span>
 
-* <span data-ttu-id="52c41-117">**Un cluster HDInsight**: consultez la page [Prise en main de HDInsight sur Linux](hdinsight-hadoop-linux-tutorial-get-started.md)</span><span class="sxs-lookup"><span data-stu-id="52c41-117">**An HDInsight cluster**: See [Get Started with HDInsight on Linux](hdinsight-hadoop-linux-tutorial-get-started.md)</span></span>
+* <span data-ttu-id="088be-117">**Un cluster HDInsight**: consultez la page [Prise en main de HDInsight sur Linux](hdinsight-hadoop-linux-tutorial-get-started.md)</span><span class="sxs-lookup"><span data-stu-id="088be-117">**An HDInsight cluster**: See [Get Started with HDInsight on Linux](hdinsight-hadoop-linux-tutorial-get-started.md)</span></span>
 
   > [!IMPORTANT]
-  > <span data-ttu-id="52c41-118">Les étapes décrites dans ce document nécessitent un cluster HDInsight utilisant Linux.</span><span class="sxs-lookup"><span data-stu-id="52c41-118">The steps in this document require an HDInsight cluster that uses Linux.</span></span> <span data-ttu-id="52c41-119">Linux est le seul système d’exploitation utilisé sur HDInsight version 3.4 ou supérieure.</span><span class="sxs-lookup"><span data-stu-id="52c41-119">Linux is the only operating system used on HDInsight version 3.4 or greater.</span></span> <span data-ttu-id="52c41-120">Pour plus d’informations, consultez [Suppression de HDInsight sous Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).</span><span class="sxs-lookup"><span data-stu-id="52c41-120">For more information, see [HDInsight retirement on Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).</span></span>
+  > <span data-ttu-id="088be-118">étapes de Hello dans ce document nécessitent un cluster HDInsight qui utilise Linux.</span><span class="sxs-lookup"><span data-stu-id="088be-118">hello steps in this document require an HDInsight cluster that uses Linux.</span></span> <span data-ttu-id="088be-119">Linux est hello seul système d’exploitation utilisé sur HDInsight version 3.4 ou supérieure.</span><span class="sxs-lookup"><span data-stu-id="088be-119">Linux is hello only operating system used on HDInsight version 3.4 or greater.</span></span> <span data-ttu-id="088be-120">Pour plus d’informations, consultez [Suppression de HDInsight sous Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).</span><span class="sxs-lookup"><span data-stu-id="088be-120">For more information, see [HDInsight retirement on Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).</span></span>
 
-## <a name="example-workflow"></a><span data-ttu-id="52c41-121">Exemple de flux de travail</span><span class="sxs-lookup"><span data-stu-id="52c41-121">Example workflow</span></span>
+## <a name="example-workflow"></a><span data-ttu-id="088be-121">Exemple de flux de travail</span><span class="sxs-lookup"><span data-stu-id="088be-121">Example workflow</span></span>
 
-<span data-ttu-id="52c41-122">Le workflow utilisé dans ce document comporte deux actions.</span><span class="sxs-lookup"><span data-stu-id="52c41-122">The workflow used in this document contains two actions.</span></span> <span data-ttu-id="52c41-123">Les actions sont des définitions de tâches, telles que l’exécution de Hive, Sqoop, MapReduce ou un autre processus :</span><span class="sxs-lookup"><span data-stu-id="52c41-123">Actions are definitions for tasks, such as running Hive, Sqoop, MapReduce, or other process:</span></span>
+<span data-ttu-id="088be-122">flux de travail Hello utilisé dans ce document contient deux actions.</span><span class="sxs-lookup"><span data-stu-id="088be-122">hello workflow used in this document contains two actions.</span></span> <span data-ttu-id="088be-123">Les actions sont des définitions de tâches, telles que l’exécution de Hive, Sqoop, MapReduce ou un autre processus :</span><span class="sxs-lookup"><span data-stu-id="088be-123">Actions are definitions for tasks, such as running Hive, Sqoop, MapReduce, or other process:</span></span>
 
 ![Diagramme du workflow][img-workflow-diagram]
 
-1. <span data-ttu-id="52c41-125">Une action Hive exécute un script HiveQL pour extraire des enregistrements à partir de la table **hivesampletable** incluse avec HDInsight.</span><span class="sxs-lookup"><span data-stu-id="52c41-125">A Hive action runs a HiveQL script to extract records from the **hivesampletable** included with HDInsight.</span></span> <span data-ttu-id="52c41-126">Chaque ligne de données décrit un accès depuis un appareil mobile spécifique.</span><span class="sxs-lookup"><span data-stu-id="52c41-126">Each row of data describes a visit from a specific mobile device.</span></span> <span data-ttu-id="52c41-127">Le format d’enregistrement ressemble à ce qui suit :</span><span class="sxs-lookup"><span data-stu-id="52c41-127">The record format appears similar to the following text:</span></span>
+1. <span data-ttu-id="088be-125">Une ruche action s’exécute un script HiveQL tooextract enregistrements à partir de hello **hivesampletable** inclus avec HDInsight.</span><span class="sxs-lookup"><span data-stu-id="088be-125">A Hive action runs a HiveQL script tooextract records from hello **hivesampletable** included with HDInsight.</span></span> <span data-ttu-id="088be-126">Chaque ligne de données décrit un accès depuis un appareil mobile spécifique.</span><span class="sxs-lookup"><span data-stu-id="088be-126">Each row of data describes a visit from a specific mobile device.</span></span> <span data-ttu-id="088be-127">le format d’enregistrement Hello apparaît toohello similaire après le texte :</span><span class="sxs-lookup"><span data-stu-id="088be-127">hello record format appears similar toohello following text:</span></span>
 
         8       18:54:20        en-US   Android Samsung SCH-i500        California     United States    13.9204007      0       0
         23      19:19:44        en-US   Android HTC     Incredible      Pennsylvania   United States    NULL    0       0
         23      19:19:46        en-US   Android HTC     Incredible      Pennsylvania   United States    1.4757422       0       1
 
-    <span data-ttu-id="52c41-128">Le script Hive utilisé dans ce document comptabilise le nombre total d’accès pour chaque plateforme (par exemple, Android ou iPhone) et stocke les nombres dans une nouvelle table Hive.</span><span class="sxs-lookup"><span data-stu-id="52c41-128">The Hive script used in this document counts the total visits for each platform (such as Android or iPhone) and stores the counts to a new Hive table.</span></span>
+    <span data-ttu-id="088be-128">Hello script Hive utilisé dans ce document compte le nombre total de visites hello pour chaque plateforme (par exemple, Android ou iPhone) et stocke les nombres hello tooa nouvelle table de ruche.</span><span class="sxs-lookup"><span data-stu-id="088be-128">hello Hive script used in this document counts hello total visits for each platform (such as Android or iPhone) and stores hello counts tooa new Hive table.</span></span>
 
-    <span data-ttu-id="52c41-129">Pour plus d’informations sur Hive, consultez l’article [Utilisation de Hive avec HDInsight][hdinsight-use-hive].</span><span class="sxs-lookup"><span data-stu-id="52c41-129">For more information about Hive, see [Use Hive with HDInsight][hdinsight-use-hive].</span></span>
+    <span data-ttu-id="088be-129">Pour plus d’informations sur Hive, consultez l’article [Utilisation de Hive avec HDInsight][hdinsight-use-hive].</span><span class="sxs-lookup"><span data-stu-id="088be-129">For more information about Hive, see [Use Hive with HDInsight][hdinsight-use-hive].</span></span>
 
-2. <span data-ttu-id="52c41-130">Une action Sqoop exporte le contenu de la nouvelle table Hive vers une table dans la base de données SQL Azure.</span><span class="sxs-lookup"><span data-stu-id="52c41-130">A Sqoop action exports the contents of the new Hive table to a table in an Azure SQL database.</span></span> <span data-ttu-id="52c41-131">Pour plus d’informations sur Sqoop, consultez la rubrique [Utilisation de Hadoop Sqoop avec HDInsight][hdinsight-use-sqoop].</span><span class="sxs-lookup"><span data-stu-id="52c41-131">For more information about Sqoop, see [Use Hadoop Sqoop with HDInsight][hdinsight-use-sqoop].</span></span>
+2. <span data-ttu-id="088be-130">Une action Sqoop exporte contenu hello de hello nouvelle table tooa table Hive dans une base de données SQL Azure.</span><span class="sxs-lookup"><span data-stu-id="088be-130">A Sqoop action exports hello contents of hello new Hive table tooa table in an Azure SQL database.</span></span> <span data-ttu-id="088be-131">Pour plus d’informations sur Sqoop, consultez la rubrique [Utilisation de Hadoop Sqoop avec HDInsight][hdinsight-use-sqoop].</span><span class="sxs-lookup"><span data-stu-id="088be-131">For more information about Sqoop, see [Use Hadoop Sqoop with HDInsight][hdinsight-use-sqoop].</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="52c41-132">Pour obtenir la liste des versions Oozie prises en charge sur les clusters HDInsight, voir [Nouveautés des versions de cluster Hadoop fournies par HDInsight][hdinsight-versions].</span><span class="sxs-lookup"><span data-stu-id="52c41-132">For supported Oozie versions on HDInsight clusters, see [What's new in the Hadoop cluster versions provided by HDInsight][hdinsight-versions].</span></span>
+> <span data-ttu-id="088be-132">Pour les versions Oozie prises en charge sur les clusters HDInsight, consultez [quelles sont les nouveautés dans les versions de cluster Hadoop hello fournies par HDInsight][hdinsight-versions].</span><span class="sxs-lookup"><span data-stu-id="088be-132">For supported Oozie versions on HDInsight clusters, see [What's new in hello Hadoop cluster versions provided by HDInsight][hdinsight-versions].</span></span>
 
-## <a name="create-the-working-directory"></a><span data-ttu-id="52c41-133">Création du répertoire de travail</span><span class="sxs-lookup"><span data-stu-id="52c41-133">Create the working directory</span></span>
+## <a name="create-hello-working-directory"></a><span data-ttu-id="088be-133">Créer le répertoire de travail hello</span><span class="sxs-lookup"><span data-stu-id="088be-133">Create hello working directory</span></span>
 
-<span data-ttu-id="52c41-134">Oozie s’attend à ce que les ressources requises pour un travail soient stockées dans le même répertoire.</span><span class="sxs-lookup"><span data-stu-id="52c41-134">Oozie expects resources required for a job to be stored in the same directory.</span></span> <span data-ttu-id="52c41-135">Cet exemple utilise **wasb:///tutorials/useoozie**.</span><span class="sxs-lookup"><span data-stu-id="52c41-135">This example uses **wasb:///tutorials/useoozie**.</span></span> <span data-ttu-id="52c41-136">Utilisez la commande suivante pour créer ce répertoire et le répertoire de données qui contient la nouvelle table Hive créée par ce workflow :</span><span class="sxs-lookup"><span data-stu-id="52c41-136">Use the following command to create this directory, and the data directory that holds the new Hive table created by this workflow:</span></span>
+<span data-ttu-id="088be-134">Oozie attend des ressources requises pour un travail toobe stockée Bonjour même répertoire.</span><span class="sxs-lookup"><span data-stu-id="088be-134">Oozie expects resources required for a job toobe stored in hello same directory.</span></span> <span data-ttu-id="088be-135">Cet exemple utilise **wasb:///tutorials/useoozie**.</span><span class="sxs-lookup"><span data-stu-id="088be-135">This example uses **wasb:///tutorials/useoozie**.</span></span> <span data-ttu-id="088be-136">Utilisez hello suivant commande toocreate ce répertoire et le répertoire de données hello qui contient la nouvelle table Hive hello, créé par ce flux de travail :</span><span class="sxs-lookup"><span data-stu-id="088be-136">Use hello following command toocreate this directory, and hello data directory that holds hello new Hive table created by this workflow:</span></span>
 
 ```
 hdfs dfs -mkdir -p /tutorials/useoozie/data
 ```
 
 > [!NOTE]
-> <span data-ttu-id="52c41-137">Le paramètre `-p` a provoqué la création de tous les répertoires dans le chemin d’accès.</span><span class="sxs-lookup"><span data-stu-id="52c41-137">The `-p` parameter causes all directories in the path to be created.</span></span> <span data-ttu-id="52c41-138">Le répertoire **data** est utilisé pour contenir les données utilisées par le script **useooziewf.hql**.</span><span class="sxs-lookup"><span data-stu-id="52c41-138">The **data** directory is used to hold data used by the **useooziewf.hql** script.</span></span>
+> <span data-ttu-id="088be-137">Hello `-p` paramètre indique tous les répertoires dans hello toobe de chemin d’accès créé.</span><span class="sxs-lookup"><span data-stu-id="088be-137">hello `-p` parameter causes all directories in hello path toobe created.</span></span> <span data-ttu-id="088be-138">Hello **données** répertoire est données toohold utilisé utilisées par hello **useooziewf.hql** script.</span><span class="sxs-lookup"><span data-stu-id="088be-138">hello **data** directory is used toohold data used by hello **useooziewf.hql** script.</span></span>
 
-<span data-ttu-id="52c41-139">Exécutez également la commande suivante, qui garantit que Oozie peut emprunter l’identité de votre compte d'utilisateur lors de l’exécution de travaux Hive et Sqoop.</span><span class="sxs-lookup"><span data-stu-id="52c41-139">Also run the following command, which ensures that Oozie can impersonate your user account when running Hive and Sqoop jobs.</span></span> <span data-ttu-id="52c41-140">Remplacez **USERNAME** par votre nom de connexion :</span><span class="sxs-lookup"><span data-stu-id="52c41-140">Replace **USERNAME** with your login name:</span></span>
+<span data-ttu-id="088be-139">Également exécuter hello suivant de commande, ce qui garantit que Oozie peut emprunter l’identité de votre compte d’utilisateur lors de l’exécution de tâches Hive et Sqoop.</span><span class="sxs-lookup"><span data-stu-id="088be-139">Also run hello following command, which ensures that Oozie can impersonate your user account when running Hive and Sqoop jobs.</span></span> <span data-ttu-id="088be-140">Remplacez **USERNAME** par votre nom de connexion :</span><span class="sxs-lookup"><span data-stu-id="088be-140">Replace **USERNAME** with your login name:</span></span>
 
 ```
 sudo adduser USERNAME users
 ```
 
 > [!NOTE]
-> <span data-ttu-id="52c41-141">Vous pouvez ignorer les erreurs indiquant que l’utilisateur est déjà membre du groupe `users`.</span><span class="sxs-lookup"><span data-stu-id="52c41-141">You can ignore errors that the user is already a member of the `users` group.</span></span>
+> <span data-ttu-id="088be-141">Vous pouvez ignorer les erreurs de cet utilisateur hello est déjà membre de hello `users` groupe.</span><span class="sxs-lookup"><span data-stu-id="088be-141">You can ignore errors that hello user is already a member of hello `users` group.</span></span>
 
-## <a name="add-a-database-driver"></a><span data-ttu-id="52c41-142">Ajout d’un pilote de base de données</span><span class="sxs-lookup"><span data-stu-id="52c41-142">Add a database driver</span></span>
+## <a name="add-a-database-driver"></a><span data-ttu-id="088be-142">Ajout d’un pilote de base de données</span><span class="sxs-lookup"><span data-stu-id="088be-142">Add a database driver</span></span>
 
-<span data-ttu-id="52c41-143">Étant donné que ce flux de travail utilise Sqoop pour exporter des données vers la base de données SQL, vous devez fournir une copie du pilote JDBC utilisé pour communiquer avec la base de données SQL.</span><span class="sxs-lookup"><span data-stu-id="52c41-143">Since this workflow uses Sqoop to export data to SQL Database, you must provide a copy of the JDBC driver used to talk to SQL Database.</span></span> <span data-ttu-id="52c41-144">Pour le copier dans le répertoire de travail, utilisez la commande suivante :</span><span class="sxs-lookup"><span data-stu-id="52c41-144">Use the following command to copy it to the working directory:</span></span>
+<span data-ttu-id="088be-143">Étant donné que ce flux de travail utilise Sqoop tooexport tooSQL de données de base de données, vous devez fournir qu'une copie du pilote JDBC de hello utilisé tootalk tooSQL base de données.</span><span class="sxs-lookup"><span data-stu-id="088be-143">Since this workflow uses Sqoop tooexport data tooSQL Database, you must provide a copy of hello JDBC driver used tootalk tooSQL Database.</span></span> <span data-ttu-id="088be-144">Utilisez hello suivant toocopy de commande de répertoire de travail toohello :</span><span class="sxs-lookup"><span data-stu-id="088be-144">Use hello following command toocopy it toohello working directory:</span></span>
 
 ```
 hdfs dfs -put /usr/share/java/sqljdbc_4.1/enu/sqljdbc*.jar /tutorials/useoozie/
 ```
 
-<span data-ttu-id="52c41-145">Si votre flux de travail utilisait d’autres ressources, par exemple un fichier jar contenant une application MapReduce, vous devez également les ajouter.</span><span class="sxs-lookup"><span data-stu-id="52c41-145">If your workflow used other resources, such as a jar containing a MapReduce application, you would need to add these resources as well.</span></span>
+<span data-ttu-id="088be-145">Si votre flux de travail utilisé les autres ressources, telles que fichier jar contenant une application MapReduce, vous devez tooadd également ces ressources.</span><span class="sxs-lookup"><span data-stu-id="088be-145">If your workflow used other resources, such as a jar containing a MapReduce application, you would need tooadd these resources as well.</span></span>
 
-## <a name="define-the-hive-query"></a><span data-ttu-id="52c41-146">Définition de la requête Hive</span><span class="sxs-lookup"><span data-stu-id="52c41-146">Define the Hive query</span></span>
+## <a name="define-hello-hive-query"></a><span data-ttu-id="088be-146">Définir la requête Hive de hello</span><span class="sxs-lookup"><span data-stu-id="088be-146">Define hello Hive query</span></span>
 
-<span data-ttu-id="52c41-147">Utilisez les étapes suivantes pour créer un script HiveQL qui définit une requête qui est utilisée dans un workflow Oozie plus loin dans ce document.</span><span class="sxs-lookup"><span data-stu-id="52c41-147">Use the following steps to create a HiveQL script that defines a query, which is used in an Oozie workflow later in this document.</span></span>
+<span data-ttu-id="088be-147">Utilisez hello suivant les étapes toocreate un script HiveQL qui définit une requête, qui est utilisée dans un flux de travail Oozie plus loin dans ce document.</span><span class="sxs-lookup"><span data-stu-id="088be-147">Use hello following steps toocreate a HiveQL script that defines a query, which is used in an Oozie workflow later in this document.</span></span>
 
-1. <span data-ttu-id="52c41-148">Connectez-vous au cluster à l'aide de SSH.</span><span class="sxs-lookup"><span data-stu-id="52c41-148">Connect to the cluster using SSH.</span></span> <span data-ttu-id="52c41-149">La commande suivante est un exemple d’utilisation de la commande `ssh`.</span><span class="sxs-lookup"><span data-stu-id="52c41-149">The following command is an example of using the `ssh` command.</span></span> <span data-ttu-id="52c41-150">Remplacez __USERNAME__ par l’utilisateur SSH pour le cluster.</span><span class="sxs-lookup"><span data-stu-id="52c41-150">Replace __USERNAME__ with the SSH user for the cluster.</span></span> <span data-ttu-id="52c41-151">Remplacez __CLUSTERNAME__ par le nom du cluster HDInsight.</span><span class="sxs-lookup"><span data-stu-id="52c41-151">Replace __CLUSTERNAME__ with the name of the HDInsight cluster.</span></span>
+1. <span data-ttu-id="088be-148">Connectez le cluster toohello à l’aide de SSH.</span><span class="sxs-lookup"><span data-stu-id="088be-148">Connect toohello cluster using SSH.</span></span> <span data-ttu-id="088be-149">Bonjour commande suivante est un exemple d’utilisation hello `ssh` commande.</span><span class="sxs-lookup"><span data-stu-id="088be-149">hello following command is an example of using hello `ssh` command.</span></span> <span data-ttu-id="088be-150">Remplacez __nom d’utilisateur__ avec l’utilisateur SSH hello pour le cluster de hello.</span><span class="sxs-lookup"><span data-stu-id="088be-150">Replace __USERNAME__ with hello SSH user for hello cluster.</span></span> <span data-ttu-id="088be-151">Remplacez __CLUSTERNAME__ avec nom hello du cluster HDInsight de hello.</span><span class="sxs-lookup"><span data-stu-id="088be-151">Replace __CLUSTERNAME__ with hello name of hello HDInsight cluster.</span></span>
 
     ```
     ssh USERNAME@CLUSTERNAME-ssh.azurehdinsight.net
     ```
 
-    <span data-ttu-id="52c41-152">Pour en savoir plus, voir [Utilisation de SSH avec Hadoop Linux sur HDInsight depuis Linux, Unix ou OS X](hdinsight-hadoop-linux-use-ssh-unix.md).</span><span class="sxs-lookup"><span data-stu-id="52c41-152">For more information, see [Use SSH with HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md).</span></span>
+    <span data-ttu-id="088be-152">Pour en savoir plus, voir [Utilisation de SSH avec Hadoop Linux sur HDInsight depuis Linux, Unix ou OS X](hdinsight-hadoop-linux-use-ssh-unix.md).</span><span class="sxs-lookup"><span data-stu-id="088be-152">For more information, see [Use SSH with HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md).</span></span>
 
-2. <span data-ttu-id="52c41-153">À partir de la connexion SSH, utilisez la commande suivante pour créer un fichier :</span><span class="sxs-lookup"><span data-stu-id="52c41-153">From the SSH connection, use the following command to create a file:</span></span>
+2. <span data-ttu-id="088be-153">À partir de hello connexion SSH, utilisez hello suivant commande toocreate un fichier :</span><span class="sxs-lookup"><span data-stu-id="088be-153">From hello SSH connection, use hello following command toocreate a file:</span></span>
 
     ```
     nano useooziewf.hql
     ```
 
-3. <span data-ttu-id="52c41-154">Une fois que l’éditeur nano est ouvert, utilisez la requête suivante comme contenu du fichier :</span><span class="sxs-lookup"><span data-stu-id="52c41-154">Once the nano editor opens, use the following query as the contents of the file:</span></span>
+3. <span data-ttu-id="088be-154">Une fois que l’éditeur de nano hello s’ouvre, utilisez hello suivant la requête en tant que contenu hello du fichier de hello :</span><span class="sxs-lookup"><span data-stu-id="088be-154">Once hello nano editor opens, use hello following query as hello contents of hello file:</span></span>
 
     ```hiveql
     DROP TABLE ${hiveTableName};
@@ -126,39 +126,39 @@ hdfs dfs -put /usr/share/java/sqljdbc_4.1/enu/sqljdbc*.jar /tutorials/useoozie/
     INSERT OVERWRITE TABLE ${hiveTableName} SELECT deviceplatform, COUNT(*) as count FROM hivesampletable GROUP BY deviceplatform;
     ```
 
-    <span data-ttu-id="52c41-155">Deux variables sont utilisées dans le script :</span><span class="sxs-lookup"><span data-stu-id="52c41-155">There are two variables used in the script:</span></span>
+    <span data-ttu-id="088be-155">Il existe deux variables utilisées dans un script de hello :</span><span class="sxs-lookup"><span data-stu-id="088be-155">There are two variables used in hello script:</span></span>
 
-    * <span data-ttu-id="52c41-156">**${hiveTableName}** : contient le nom de la table à créer.</span><span class="sxs-lookup"><span data-stu-id="52c41-156">**${hiveTableName}**: contains the name of the table to be created</span></span>
+    * <span data-ttu-id="088be-156">**${hiveTableName}**: contient le nom hello de hello toobe de table créé</span><span class="sxs-lookup"><span data-stu-id="088be-156">**${hiveTableName}**: contains hello name of hello table toobe created</span></span>
 
-    * <span data-ttu-id="52c41-157">**${hiveDataFolder}** : contient l’emplacement où stocker les fichiers de données pour la table.</span><span class="sxs-lookup"><span data-stu-id="52c41-157">**${hiveDataFolder}**: contains the location to store the data files for the table</span></span>
+    * <span data-ttu-id="088be-157">**${hiveDataFolder}**: contient les fichiers de données hello emplacement toostore hello pour la table de hello</span><span class="sxs-lookup"><span data-stu-id="088be-157">**${hiveDataFolder}**: contains hello location toostore hello data files for hello table</span></span>
 
-    <span data-ttu-id="52c41-158">Le fichier de définition du workflow (workflow.xml dans ce didacticiel) transmet ces valeurs à ce script HiveQL au moment de l’exécution.</span><span class="sxs-lookup"><span data-stu-id="52c41-158">The workflow definition file (workflow.xml in this tutorial) passes these values to this HiveQL script at run time</span></span>
+    <span data-ttu-id="088be-158">le fichier de définition de flux de travail Hello (workflow.xml dans ce didacticiel) passe ces toothis valeurs HiveQL script en cours d’exécution</span><span class="sxs-lookup"><span data-stu-id="088be-158">hello workflow definition file (workflow.xml in this tutorial) passes these values toothis HiveQL script at run time</span></span>
 
-4. <span data-ttu-id="52c41-159">Appuyez sur Ctrl+X pour quitter l’éditeur.</span><span class="sxs-lookup"><span data-stu-id="52c41-159">To exit the editor, press Ctrl-X.</span></span> <span data-ttu-id="52c41-160">Lorsque vous y êtes invité, sélectionnez **Y** pour enregistrer le fichier, puis sélectionnez **Entrée** pour utiliser le nom de fichier **useooziewf.hql**.</span><span class="sxs-lookup"><span data-stu-id="52c41-160">When prompted, select **Y** to save the file, then use **Enter** to use the **useooziewf.hql** file name.</span></span>
+4. <span data-ttu-id="088be-159">éditeur de hello tooexit, appuyez sur Ctrl-X.</span><span class="sxs-lookup"><span data-stu-id="088be-159">tooexit hello editor, press Ctrl-X.</span></span> <span data-ttu-id="088be-160">Lorsque vous y êtes invité, sélectionnez **Y** toosave hello du fichier, puis utilisez **entrée** toouse hello **useooziewf.hql** nom de fichier.</span><span class="sxs-lookup"><span data-stu-id="088be-160">When prompted, select **Y** toosave hello file, then use **Enter** toouse hello **useooziewf.hql** file name.</span></span>
 
-5. <span data-ttu-id="52c41-161">Utilisez les commandes suivantes pour copier **useooziewf.hql** vers **wasb:///tutorials/useoozie/useooziewf.hql** :</span><span class="sxs-lookup"><span data-stu-id="52c41-161">Use the following commands to copy **useooziewf.hql** to **wasb:///tutorials/useoozie/useooziewf.hql**:</span></span>
+5. <span data-ttu-id="088be-161">Suivant de hello utilisez commandes toocopy **useooziewf.hql** trop**wasb:///tutorials/useoozie/useooziewf.hql**:</span><span class="sxs-lookup"><span data-stu-id="088be-161">Use hello following commands toocopy **useooziewf.hql** too**wasb:///tutorials/useoozie/useooziewf.hql**:</span></span>
 
     ```
     hdfs dfs -put useooziewf.hql /tutorials/useoozie/useooziewf.hql
     ```
 
-    <span data-ttu-id="52c41-162">Ces commandes stockent le fichier **useooziewf.hql** sur le stockage compatible avec HDFS pour le cluster.</span><span class="sxs-lookup"><span data-stu-id="52c41-162">These commands store the **useooziewf.hql** file on the HDFS-compatible storage for the cluster.</span></span>
+    <span data-ttu-id="088be-162">Ces commandes stockent hello **useooziewf.hql** fichier sur un stockage hello HDFS compatibles pour le cluster de hello.</span><span class="sxs-lookup"><span data-stu-id="088be-162">These commands store hello **useooziewf.hql** file on hello HDFS-compatible storage for hello cluster.</span></span>
 
-## <a name="define-the-workflow"></a><span data-ttu-id="52c41-163">Définition du flux de travail</span><span class="sxs-lookup"><span data-stu-id="52c41-163">Define the workflow</span></span>
+## <a name="define-hello-workflow"></a><span data-ttu-id="088be-163">Définir le flux de travail hello</span><span class="sxs-lookup"><span data-stu-id="088be-163">Define hello workflow</span></span>
 
-<span data-ttu-id="52c41-164">Les définitions des workflows Oozie sont écrites en hPDL (un langage de définition du processus XML).</span><span class="sxs-lookup"><span data-stu-id="52c41-164">Oozie workflows definitions are written in hPDL (an XML Process Definition Language).</span></span> <span data-ttu-id="52c41-165">Pour définir le flux de travail, procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="52c41-165">Use the following steps to define the workflow:</span></span>
+<span data-ttu-id="088be-164">Les définitions des workflows Oozie sont écrites en hPDL (un langage de définition du processus XML).</span><span class="sxs-lookup"><span data-stu-id="088be-164">Oozie workflows definitions are written in hPDL (an XML Process Definition Language).</span></span> <span data-ttu-id="088be-165">Utilisez hello suivant du flux de travail suit toodefine hello :</span><span class="sxs-lookup"><span data-stu-id="088be-165">Use hello following steps toodefine hello workflow:</span></span>
 
-1. <span data-ttu-id="52c41-166">Pour créer et modifier un fichier, utilisez l’instruction suivante :</span><span class="sxs-lookup"><span data-stu-id="52c41-166">Use the following statement to create and edit a new file:</span></span>
+1. <span data-ttu-id="088be-166">Utilisez hello suivant l’instruction toocreate et modifier un fichier :</span><span class="sxs-lookup"><span data-stu-id="088be-166">Use hello following statement toocreate and edit a new file:</span></span>
 
     ```
     nano workflow.xml
     ```
 
-2. <span data-ttu-id="52c41-167">Une fois que l’éditeur nano est ouvert, saisissez le code XML suivant comme contenu du fichier :</span><span class="sxs-lookup"><span data-stu-id="52c41-167">Once the nano editor opens, enter the following XML as the file contents:</span></span>
+2. <span data-ttu-id="088be-167">Une fois que l’éditeur de nano hello s’ouvre, entrez hello XML suivant comme contenu du fichier hello :</span><span class="sxs-lookup"><span data-stu-id="088be-167">Once hello nano editor opens, enter hello following XML as hello file contents:</span></span>
 
     ```xml
     <workflow-app name="useooziewf" xmlns="uri:oozie:workflow:0.2">
-        <start to = "RunHiveScript"/>
+        <start too= "RunHiveScript"/>
         <action name="RunHiveScript">
         <hive xmlns="uri:oozie:hive-action:0.2">
             <job-tracker>${jobTracker}</job-tracker>
@@ -209,55 +209,55 @@ hdfs dfs -put /usr/share/java/sqljdbc_4.1/enu/sqljdbc*.jar /tutorials/useoozie/
     </workflow-app>
     ```
 
-    <span data-ttu-id="52c41-168">Deux actions sont définies dans le flux de travail :</span><span class="sxs-lookup"><span data-stu-id="52c41-168">There are two actions defined in the workflow:</span></span>
+    <span data-ttu-id="088be-168">Il existe deux actions définies dans le flux de travail hello :</span><span class="sxs-lookup"><span data-stu-id="088be-168">There are two actions defined in hello workflow:</span></span>
 
-   * <span data-ttu-id="52c41-169">**RunHiveScript** : il s’agit de l’action de départ, qui exécute le script Hive **useooziewf.hql**</span><span class="sxs-lookup"><span data-stu-id="52c41-169">**RunHiveScript**: This action is the start action, and runs the **useooziewf.hql** Hive script</span></span>
+   * <span data-ttu-id="088be-169">**RunHiveScript**: cette action est l’action de démarrage hello et s’exécute hello **useooziewf.hql** script Hive</span><span class="sxs-lookup"><span data-stu-id="088be-169">**RunHiveScript**: This action is hello start action, and runs hello **useooziewf.hql** Hive script</span></span>
 
-   * <span data-ttu-id="52c41-170">**RunSqoopExport** : cette action exporte les données créées à partir du script Hive vers la base de données SQL à l’aide de Sqoop.</span><span class="sxs-lookup"><span data-stu-id="52c41-170">**RunSqoopExport**: This action exports the data created from the Hive script to SQL Database using Sqoop.</span></span> <span data-ttu-id="52c41-171">Elle n’est exécutée que si l’action **RunHiveScript** a abouti.</span><span class="sxs-lookup"><span data-stu-id="52c41-171">This action only runs if the **RunHiveScript** action is successful.</span></span>
+   * <span data-ttu-id="088be-170">**RunSqoopExport**: cette action exporte les données de hello créées à partir de hello ruche script tooSQL Sqoop à l’aide de la base de données.</span><span class="sxs-lookup"><span data-stu-id="088be-170">**RunSqoopExport**: This action exports hello data created from hello Hive script tooSQL Database using Sqoop.</span></span> <span data-ttu-id="088be-171">Cette action s’exécute uniquement si hello **RunHiveScript** action a abouti.</span><span class="sxs-lookup"><span data-stu-id="088be-171">This action only runs if hello **RunHiveScript** action is successful.</span></span>
 
-     <span data-ttu-id="52c41-172">Le workflow a plusieurs entrées, telle que `${jobTracker}`.</span><span class="sxs-lookup"><span data-stu-id="52c41-172">The workflow has several entries, such as `${jobTracker}`.</span></span> <span data-ttu-id="52c41-173">Ces entrées sont remplacées par les valeurs que vous utilisez dans la définition du travail.</span><span class="sxs-lookup"><span data-stu-id="52c41-173">These entries are replaced by values you use in the job definition.</span></span> <span data-ttu-id="52c41-174">La définition du travail est créée ultérieurement dans ce document.</span><span class="sxs-lookup"><span data-stu-id="52c41-174">The job definition is created later in this document.</span></span>
+     <span data-ttu-id="088be-172">flux de travail Hello a plusieurs entrées, telles que `${jobTracker}`.</span><span class="sxs-lookup"><span data-stu-id="088be-172">hello workflow has several entries, such as `${jobTracker}`.</span></span> <span data-ttu-id="088be-173">Ces entrées sont remplacées par les valeurs que vous utilisez dans la définition de la tâche hello.</span><span class="sxs-lookup"><span data-stu-id="088be-173">These entries are replaced by values you use in hello job definition.</span></span> <span data-ttu-id="088be-174">définition de la tâche Hello est créée ultérieurement dans ce document.</span><span class="sxs-lookup"><span data-stu-id="088be-174">hello job definition is created later in this document.</span></span>
 
-     <span data-ttu-id="52c41-175">Notez également l’entrée `<archive>sqljdbc4.jar</arcive>` dans la section Sqoop.</span><span class="sxs-lookup"><span data-stu-id="52c41-175">Also note the `<archive>sqljdbc4.jar</arcive>` entry in the Sqoop section.</span></span> <span data-ttu-id="52c41-176">Celle-ci indique à Oozie de rendre cette archive disponible pour Sqoop lors de l’exécution de cette action.</span><span class="sxs-lookup"><span data-stu-id="52c41-176">This entry instructs Oozie to make this archive available for Sqoop when this action runs.</span></span>
+     <span data-ttu-id="088be-175">Hello de note également `<archive>sqljdbc4.jar</arcive>` entrée Bonjour Sqoop section.</span><span class="sxs-lookup"><span data-stu-id="088be-175">Also note hello `<archive>sqljdbc4.jar</arcive>` entry in hello Sqoop section.</span></span> <span data-ttu-id="088be-176">Cette entrée indique au Oozie toomake cette archive disponible pour Sqoop lors de l’exécution de cette action.</span><span class="sxs-lookup"><span data-stu-id="088be-176">This entry instructs Oozie toomake this archive available for Sqoop when this action runs.</span></span>
 
-3. <span data-ttu-id="52c41-177">Utilisez Ctrl-X, puis **Y** et **Entrée** pour enregistrer le fichier.</span><span class="sxs-lookup"><span data-stu-id="52c41-177">Use Ctrl-X, then **Y** and **Enter** to save the file.</span></span>
+3. <span data-ttu-id="088be-177">Utilisez Ctrl-X, puis **Y** et **entrée** fichier hello de toosave.</span><span class="sxs-lookup"><span data-stu-id="088be-177">Use Ctrl-X, then **Y** and **Enter** toosave hello file.</span></span>
 
-4. <span data-ttu-id="52c41-178">Utilisez la commande suivante pour copier le fichier **workflow.xml** vers **/tutorials/useoozie/workflow.xml** :</span><span class="sxs-lookup"><span data-stu-id="52c41-178">Use the following command to copy the **workflow.xml** file to **/tutorials/useoozie/workflow.xml**:</span></span>
+4. <span data-ttu-id="088be-178">Suivant de hello utilisez commande toocopy hello **workflow.xml** trop de fichiers**/tutorials/useoozie/workflow.xml**:</span><span class="sxs-lookup"><span data-stu-id="088be-178">Use hello following command toocopy hello **workflow.xml** file too**/tutorials/useoozie/workflow.xml**:</span></span>
 
     ```
     hdfs dfs -put workflow.xml /tutorials/useoozie/workflow.xml
     ```
 
-## <a name="create-the-database"></a><span data-ttu-id="52c41-179">Création de la base de données</span><span class="sxs-lookup"><span data-stu-id="52c41-179">Create the database</span></span>
+## <a name="create-hello-database"></a><span data-ttu-id="088be-179">Créer la base de données hello</span><span class="sxs-lookup"><span data-stu-id="088be-179">Create hello database</span></span>
 
-<span data-ttu-id="52c41-180">Suivez les étapes du document [Création d’une base de données SQL](../sql-database/sql-database-get-started.md) afin de créer une base de données SQL Azure.</span><span class="sxs-lookup"><span data-stu-id="52c41-180">To create an Azure SQL Database, follow the steps in the [Create a SQL Database](../sql-database/sql-database-get-started.md) document.</span></span> <span data-ttu-id="52c41-181">Lorsque vous créez la base de données, utilisez `oozietest` comme nom de base de données.</span><span class="sxs-lookup"><span data-stu-id="52c41-181">When creating the database, use `oozietest` as the database name.</span></span> <span data-ttu-id="52c41-182">Prenez également note du nom du serveur de base de données.</span><span class="sxs-lookup"><span data-stu-id="52c41-182">Also make a note of the name of the database server.</span></span>
+<span data-ttu-id="088be-180">toocreate une base de données SQL Azure, suivez les étapes de hello Bonjour [créer une base de données SQL](../sql-database/sql-database-get-started.md) document.</span><span class="sxs-lookup"><span data-stu-id="088be-180">toocreate an Azure SQL Database, follow hello steps in hello [Create a SQL Database](../sql-database/sql-database-get-started.md) document.</span></span> <span data-ttu-id="088be-181">Lors de la création de la base de données hello, utilisez `oozietest` comme nom de base de données hello.</span><span class="sxs-lookup"><span data-stu-id="088be-181">When creating hello database, use `oozietest` as hello database name.</span></span> <span data-ttu-id="088be-182">Notez également du nom de hello du serveur de base de données hello.</span><span class="sxs-lookup"><span data-stu-id="088be-182">Also make a note of hello name of hello database server.</span></span>
 
-### <a name="create-the-table"></a><span data-ttu-id="52c41-183">Créer la table</span><span class="sxs-lookup"><span data-stu-id="52c41-183">Create the table</span></span>
+### <a name="create-hello-table"></a><span data-ttu-id="088be-183">Créer la table de hello</span><span class="sxs-lookup"><span data-stu-id="088be-183">Create hello table</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="52c41-184">Il existe de nombreuses façons de se connecter à la base de données SQL pour créer une table.</span><span class="sxs-lookup"><span data-stu-id="52c41-184">There are many ways to connect to SQL Database to create a table.</span></span> <span data-ttu-id="52c41-185">Les étapes suivantes utilisent [FreeTDS](http://www.freetds.org/) à partir du cluster HDInsight.</span><span class="sxs-lookup"><span data-stu-id="52c41-185">The following steps use [FreeTDS](http://www.freetds.org/) from the HDInsight cluster.</span></span>
+> <span data-ttu-id="088be-184">Il existe de nombreuses façons tooconnect tooSQL base de données toocreate une table.</span><span class="sxs-lookup"><span data-stu-id="088be-184">There are many ways tooconnect tooSQL Database toocreate a table.</span></span> <span data-ttu-id="088be-185">Hello suivant l’utilisation d’étapes [FreeTDS](http://www.freetds.org/) à partir du cluster HDInsight de hello.</span><span class="sxs-lookup"><span data-stu-id="088be-185">hello following steps use [FreeTDS](http://www.freetds.org/) from hello HDInsight cluster.</span></span>
 
 
-1. <span data-ttu-id="52c41-186">Utilisez la commande suivante pour installer FreeTDS sur le cluster HDInsight :</span><span class="sxs-lookup"><span data-stu-id="52c41-186">Use the following command to install FreeTDS on the HDInsight cluster:</span></span>
+1. <span data-ttu-id="088be-186">Utilisez hello suivant de commande tooinstall FreeTDS de cluster HDInsight de hello :</span><span class="sxs-lookup"><span data-stu-id="088be-186">Use hello following command tooinstall FreeTDS on hello HDInsight cluster:</span></span>
 
     ```
     sudo apt-get --assume-yes install freetds-dev freetds-bin
     ```
 
-2. <span data-ttu-id="52c41-187">Une fois FreeTDS installé, utilisez la commande suivante pour vous connecter au serveur de base de données SQL créé précédemment :</span><span class="sxs-lookup"><span data-stu-id="52c41-187">Once FreeTDS has been installed, use the following command to connect to the SQL Database server you created previously:</span></span>
+2. <span data-ttu-id="088be-187">Une fois que FreeTDS a été installé, utilisez hello suivant du serveur de base de données SQL commandes tooconnect toohello que vous avez créé précédemment :</span><span class="sxs-lookup"><span data-stu-id="088be-187">Once FreeTDS has been installed, use hello following command tooconnect toohello SQL Database server you created previously:</span></span>
 
     ```
     TDSVER=8.0 tsql -H <serverName>.database.windows.net -U <sqlLogin> -P <sqlPassword> -p 1433 -D oozietest
     ```
 
-    <span data-ttu-id="52c41-188">Le résultat ressemble au texte suivant :</span><span class="sxs-lookup"><span data-stu-id="52c41-188">You receive output similar to the following text:</span></span>
+    <span data-ttu-id="088be-188">Vous recevez toohello similaire de sortie suivant du texte :</span><span class="sxs-lookup"><span data-stu-id="088be-188">You receive output similar toohello following text:</span></span>
 
         locale is "en_US.UTF-8"
         locale charset is "UTF-8"
         using default charset "UTF-8"
-        Default database being set to oozietest
+        Default database being set toooozietest
         1>
 
-3. <span data-ttu-id="52c41-189">À l’invite de commandes `1>` , entrez les lignes suivantes :</span><span class="sxs-lookup"><span data-stu-id="52c41-189">At the `1>` prompt, enter the following lines:</span></span>
+3. <span data-ttu-id="088be-189">À hello `1>` invite, entrez hello lignes suivantes :</span><span class="sxs-lookup"><span data-stu-id="088be-189">At hello `1>` prompt, enter hello following lines:</span></span>
 
     ```
     CREATE TABLE [dbo].[mobiledata](
@@ -268,35 +268,35 @@ hdfs dfs -put /usr/share/java/sqljdbc_4.1/enu/sqljdbc*.jar /tutorials/useoozie/
     GO
     ```
 
-    <span data-ttu-id="52c41-190">Une fois l’instruction `GO` entrée, les instructions précédentes sont évaluées.</span><span class="sxs-lookup"><span data-stu-id="52c41-190">When the `GO` statement is entered, the previous statements are evaluated.</span></span> <span data-ttu-id="52c41-191">Ces instructions créent une table nommée **mobiledata** qui est utilisé par le workflow.</span><span class="sxs-lookup"><span data-stu-id="52c41-191">These statements create a table named **mobiledata** that is used by the workflow.</span></span>
+    <span data-ttu-id="088be-190">Hello lorsque `GO` instruction est entrée, les instructions précédentes hello sont évaluées.</span><span class="sxs-lookup"><span data-stu-id="088be-190">When hello `GO` statement is entered, hello previous statements are evaluated.</span></span> <span data-ttu-id="088be-191">Ces instructions créent une table nommée **mobiledata** qui est utilisé par les flux de travail hello.</span><span class="sxs-lookup"><span data-stu-id="088be-191">These statements create a table named **mobiledata** that is used by hello workflow.</span></span>
 
-    <span data-ttu-id="52c41-192">Vérifiez que la table a été créée à l’aide des éléments suivants :</span><span class="sxs-lookup"><span data-stu-id="52c41-192">Use the following to verify that the table has been created:</span></span>
+    <span data-ttu-id="088be-192">Hello utilisation suivant tooverify qui hello table a été créé :</span><span class="sxs-lookup"><span data-stu-id="088be-192">Use hello following tooverify that hello table has been created:</span></span>
 
     ```
     SELECT * FROM information_schema.tables
     GO
     ```
 
-    <span data-ttu-id="52c41-193">Le résultat est similaire au texte suivant :</span><span class="sxs-lookup"><span data-stu-id="52c41-193">You see output similar to the following text:</span></span>
+    <span data-ttu-id="088be-193">Vous consultez toohello similaire de sortie suivant du texte :</span><span class="sxs-lookup"><span data-stu-id="088be-193">You see output similar toohello following text:</span></span>
 
     ```
     TABLE_CATALOG   TABLE_SCHEMA    TABLE_NAME      TABLE_TYPE
     oozietest       dbo     mobiledata      BASE TABLE
     ```
 
-4. <span data-ttu-id="52c41-194">Pour quitter l’utilitaire psql, entrez `exit` at the `1>` .</span><span class="sxs-lookup"><span data-stu-id="52c41-194">Enter `exit` at the `1>` prompt to exit the tsql utility.</span></span>
+4. <span data-ttu-id="088be-194">Entrez `exit` à hello `1>` tooexit hello tsql utilitaire d’invite.</span><span class="sxs-lookup"><span data-stu-id="088be-194">Enter `exit` at hello `1>` prompt tooexit hello tsql utility.</span></span>
 
-## <a name="create-the-job-definition"></a><span data-ttu-id="52c41-195">Création de la définition de travail</span><span class="sxs-lookup"><span data-stu-id="52c41-195">Create the job definition</span></span>
+## <a name="create-hello-job-definition"></a><span data-ttu-id="088be-195">Créer la définition de la tâche hello</span><span class="sxs-lookup"><span data-stu-id="088be-195">Create hello job definition</span></span>
 
-<span data-ttu-id="52c41-196">La définition du travail indique où se trouve le fichier workflow.xml.</span><span class="sxs-lookup"><span data-stu-id="52c41-196">The job definition describes where to find the workflow.xml.</span></span> <span data-ttu-id="52c41-197">Elle indique également où se trouvent les autres fichiers utilisés par le workflow (par exemple, useooziewf.hql). Elle définit également les valeurs des propriétés utilisées dans le flux de travail et les fichiers associés.</span><span class="sxs-lookup"><span data-stu-id="52c41-197">It also describes where to find other files used by the workflow (such as useooziewf.hql.) It also defines the values for properties used within the workflow and associated files.</span></span>
+<span data-ttu-id="088be-196">définition de la tâche Hello décrit où toofind hello workflow.xml.</span><span class="sxs-lookup"><span data-stu-id="088be-196">hello job definition describes where toofind hello workflow.xml.</span></span> <span data-ttu-id="088be-197">Il explique également où toofind autres fichiers utilisés par le flux de travail hello (par exemple, useooziewf.hql.) Il définit également les valeurs hello pour les propriétés utilisées dans le flux de travail hello et fichiers associés.</span><span class="sxs-lookup"><span data-stu-id="088be-197">It also describes where toofind other files used by hello workflow (such as useooziewf.hql.) It also defines hello values for properties used within hello workflow and associated files.</span></span>
 
-1. <span data-ttu-id="52c41-198">Utilisez la commande suivante pour obtenir l’adresse complète du stockage par défaut.</span><span class="sxs-lookup"><span data-stu-id="52c41-198">Use the following command to get the full address of the default storage.</span></span> <span data-ttu-id="52c41-199">Nous nous en servirons dans le fichier de configuration dans un moment :</span><span class="sxs-lookup"><span data-stu-id="52c41-199">This address is used in the configuration file in a moment:</span></span>
+1. <span data-ttu-id="088be-198">Utilisez hello commande tooget hello adresse complète du stockage par défaut de hello suivante.</span><span class="sxs-lookup"><span data-stu-id="088be-198">Use hello following command tooget hello full address of hello default storage.</span></span> <span data-ttu-id="088be-199">Cette adresse est utilisée dans le fichier de configuration hello dans un instant :</span><span class="sxs-lookup"><span data-stu-id="088be-199">This address is used in hello configuration file in a moment:</span></span>
 
     ```
     sed -n '/<name>fs.default/,/<\/value>/p' /etc/hadoop/conf/core-site.xml
     ```
 
-    <span data-ttu-id="52c41-200">Cette commande renvoie des informations similaires au code XML suivant :</span><span class="sxs-lookup"><span data-stu-id="52c41-200">This command returns information similar to the following XML:</span></span>
+    <span data-ttu-id="088be-200">Cette commande retourne des informations similaires toohello est XML suivant :</span><span class="sxs-lookup"><span data-stu-id="088be-200">This command returns information similar toohello following XML:</span></span>
 
     ```xml
     <name>fs.defaultFS</name>
@@ -304,29 +304,29 @@ hdfs dfs -put /usr/share/java/sqljdbc_4.1/enu/sqljdbc*.jar /tutorials/useoozie/
     ```
 
     > [!NOTE]
-    > <span data-ttu-id="52c41-201">Si le cluster HDInsight utilise le stockage Azure comme stockage par défaut, le contenu de l’élément `<value>` commence par `wasb://`.</span><span class="sxs-lookup"><span data-stu-id="52c41-201">If the HDInsight cluster uses Azure Storage as the default storage, the `<value>` element contents begin with `wasb://`.</span></span> <span data-ttu-id="52c41-202">En revanche, si Azure Data Lake Store est utilisé, il commence par `adl://`.</span><span class="sxs-lookup"><span data-stu-id="52c41-202">If Azure Data Lake Store is used instead, it begins with `adl://`.</span></span>
+    > <span data-ttu-id="088be-201">Si le cluster HDInsight de hello utilise le stockage Azure en tant que stockage par défaut de hello, hello `<value>` le contenu d’éléments commence par `wasb://`.</span><span class="sxs-lookup"><span data-stu-id="088be-201">If hello HDInsight cluster uses Azure Storage as hello default storage, hello `<value>` element contents begin with `wasb://`.</span></span> <span data-ttu-id="088be-202">En revanche, si Azure Data Lake Store est utilisé, il commence par `adl://`.</span><span class="sxs-lookup"><span data-stu-id="088be-202">If Azure Data Lake Store is used instead, it begins with `adl://`.</span></span>
 
-    <span data-ttu-id="52c41-203">Enregistrez le contenu de l’élément `<value>`, tel qu’il est utilisé dans les prochaines étapes.</span><span class="sxs-lookup"><span data-stu-id="52c41-203">Save the contents of the `<value>` element, as it is used in the next steps.</span></span>
+    <span data-ttu-id="088be-203">Enregistrer le contenu de hello hello `<value>` élément, tel qu’il est utilisé dans les étapes suivantes hello.</span><span class="sxs-lookup"><span data-stu-id="088be-203">Save hello contents of hello `<value>` element, as it is used in hello next steps.</span></span>
 
-2. <span data-ttu-id="52c41-204">Utilisez la commande suivante pour obtenir le nom de domaine complet du nœud principal du cluster.</span><span class="sxs-lookup"><span data-stu-id="52c41-204">Use the following command to get FQDN of the cluster headnode.</span></span> <span data-ttu-id="52c41-205">Il est utilisé comme adresse JobTracker pour le cluster :</span><span class="sxs-lookup"><span data-stu-id="52c41-205">This information is used for the JobTracker address for the cluster:</span></span>
+2. <span data-ttu-id="088be-204">Utilisez hello suivant commande tooget nom de domaine complet du nœud principal de cluster hello.</span><span class="sxs-lookup"><span data-stu-id="088be-204">Use hello following command tooget FQDN of hello cluster headnode.</span></span> <span data-ttu-id="088be-205">Ces informations sont utilisées pour hello adresse JobTracker pour le cluster de hello :</span><span class="sxs-lookup"><span data-stu-id="088be-205">This information is used for hello JobTracker address for hello cluster:</span></span>
 
     ```
     hostname -f
     ```
 
-    <span data-ttu-id="52c41-206">Cette commande renvoie des informations semblables au texte suivant :</span><span class="sxs-lookup"><span data-stu-id="52c41-206">This returns information similar to the following text:</span></span>
+    <span data-ttu-id="088be-206">Cet exemple renvoie toohello similaire à informations suivant le texte :</span><span class="sxs-lookup"><span data-stu-id="088be-206">This returns information similar toohello following text:</span></span>
 
     ```hn0-CLUSTERNAME.randomcharacters.cx.internal.cloudapp.net```
 
-    <span data-ttu-id="52c41-207">Le port utilisé pour JobTracker est 8050. Ainsi, l’adresse complète à utiliser pour JobTracker est la suivante : `hn0-CLUSTERNAME.randomcharacters.cx.internal.cloudapp.net:8050`.</span><span class="sxs-lookup"><span data-stu-id="52c41-207">The port used for the JobTracker is 8050, so the full address to use for the JobTracker is `hn0-CLUSTERNAME.randomcharacters.cx.internal.cloudapp.net:8050`.</span></span>
+    <span data-ttu-id="088be-207">Hello port utilisé pour hello JobTracker étant 8050, toouse d’adresse complète hello pour hello JobTracker est `hn0-CLUSTERNAME.randomcharacters.cx.internal.cloudapp.net:8050`.</span><span class="sxs-lookup"><span data-stu-id="088be-207">hello port used for hello JobTracker is 8050, so hello full address toouse for hello JobTracker is `hn0-CLUSTERNAME.randomcharacters.cx.internal.cloudapp.net:8050`.</span></span>
 
-3. <span data-ttu-id="52c41-208">Utilisez la commande suivante pour créer la configuration de définition de travail Oozie :</span><span class="sxs-lookup"><span data-stu-id="52c41-208">Use the following to create the Oozie job definition configuration:</span></span>
+3. <span data-ttu-id="088be-208">Utilisez hello toocreate hello Oozie travail définition configuration suivante :</span><span class="sxs-lookup"><span data-stu-id="088be-208">Use hello following toocreate hello Oozie job definition configuration:</span></span>
 
     ```
     nano job.xml
     ```
 
-4. <span data-ttu-id="52c41-209">Une fois que l’éditeur nano est ouvert, utilisez le code XML suivant comme contenu du fichier :</span><span class="sxs-lookup"><span data-stu-id="52c41-209">Once the nano editor opens, use the following XML as the contents of the file:</span></span>
+4. <span data-ttu-id="088be-209">Une fois que l’éditeur de nano hello s’ouvre, utilisez hello XML suivant comme contenu hello du fichier de hello :</span><span class="sxs-lookup"><span data-stu-id="088be-209">Once hello nano editor opens, use hello following XML as hello contents of hello file:</span></span>
 
     ```xml
     <?xml version="1.0" encoding="UTF-8"?>
@@ -389,72 +389,72 @@ hdfs dfs -put /usr/share/java/sqljdbc_4.1/enu/sqljdbc*.jar /tutorials/useoozie/
     </configuration>
     ```
 
-   * <span data-ttu-id="52c41-210">Remplacez toutes les instances de **wasb://mycontainer@mystorageaccount.blob.core.windows.net** par la valeur que vous avez reçue précédemment pour le stockage par défaut.</span><span class="sxs-lookup"><span data-stu-id="52c41-210">Replace all instances of **wasb://mycontainer@mystorageaccount.blob.core.windows.net** with the value you received earlier for default storage.</span></span>
+   * <span data-ttu-id="088be-210">Remplacez toutes les instances de  **wasb://mycontainer@mystorageaccount.blob.core.windows.net**  avec la valeur hello reçu précédemment pour le stockage de la valeur par défaut.</span><span class="sxs-lookup"><span data-stu-id="088be-210">Replace all instances of **wasb://mycontainer@mystorageaccount.blob.core.windows.net** with hello value you received earlier for default storage.</span></span>
 
      > [!WARNING]
-     > <span data-ttu-id="52c41-211">Si le chemin d’accès est un chemin `wasb`, vous devez utiliser le chemin d’accès complet.</span><span class="sxs-lookup"><span data-stu-id="52c41-211">If the path is a `wasb` path, you must use the full path.</span></span> <span data-ttu-id="52c41-212">Ne le limitez pas simplement à `wasb:///`.</span><span class="sxs-lookup"><span data-stu-id="52c41-212">Do not shorten it to just `wasb:///`.</span></span>
+     > <span data-ttu-id="088be-211">Si le chemin d’accès hello est un `wasb` chemin d’accès, vous devez utiliser le chemin d’accès complet de hello.</span><span class="sxs-lookup"><span data-stu-id="088be-211">If hello path is a `wasb` path, you must use hello full path.</span></span> <span data-ttu-id="088be-212">Ne le diminuez pas toojust `wasb:///`.</span><span class="sxs-lookup"><span data-stu-id="088be-212">Do not shorten it toojust `wasb:///`.</span></span>
 
-   * <span data-ttu-id="52c41-213">Remplacez **JOBTRACKERADDRESS** par l’adresse de JobTracker/ResourceManager reçue précédemment.</span><span class="sxs-lookup"><span data-stu-id="52c41-213">Replace **JOBTRACKERADDRESS** with the JobTracker/ResourceManager address you received earlier.</span></span>
-   * <span data-ttu-id="52c41-214">Remplacez **YourName** par votre nom de connexion pour le cluster HDInsight.</span><span class="sxs-lookup"><span data-stu-id="52c41-214">Replace **YourName** with your login name for the HDInsight cluster.</span></span>
-   * <span data-ttu-id="52c41-215">Remplacez **serverName**, **adminLogin** et **adminPassword** par les informations de votre Azure SQL Database.</span><span class="sxs-lookup"><span data-stu-id="52c41-215">Replace **serverName**, **adminLogin**, and **adminPassword** with the information for your Azure SQL Database.</span></span>
+   * <span data-ttu-id="088be-213">Remplacez **JOBTRACKERADDRESS** avec hello adresse JobTracker/ResourceManager reçu précédemment.</span><span class="sxs-lookup"><span data-stu-id="088be-213">Replace **JOBTRACKERADDRESS** with hello JobTracker/ResourceManager address you received earlier.</span></span>
+   * <span data-ttu-id="088be-214">Remplacez **votrenom** avec votre nom de connexion pour le cluster HDInsight de hello.</span><span class="sxs-lookup"><span data-stu-id="088be-214">Replace **YourName** with your login name for hello HDInsight cluster.</span></span>
+   * <span data-ttu-id="088be-215">Remplacez **nom_serveur**, **adminLogin**, et **adminPassword** avec des informations de hello pour votre base de données SQL Azure.</span><span class="sxs-lookup"><span data-stu-id="088be-215">Replace **serverName**, **adminLogin**, and **adminPassword** with hello information for your Azure SQL Database.</span></span>
 
-     <span data-ttu-id="52c41-216">La plupart des informations de ce fichier sont utilisées pour remplir les valeurs utilisées dans les fichiers workflow.xml ou ooziewf.hql (comme ${nameNode}).</span><span class="sxs-lookup"><span data-stu-id="52c41-216">Most of the information in this file is used to populate the values used in the workflow.xml or ooziewf.hql files (such as ${nameNode}.)</span></span>
+     <span data-ttu-id="088be-216">La plupart des informations hello dans ce fichier est toopopulate utilisé les valeurs hello utilisés dans les fichiers de hello workflow.xml ou ooziewf.hql (par exemple, ${nameNode}.)</span><span class="sxs-lookup"><span data-stu-id="088be-216">Most of hello information in this file is used toopopulate hello values used in hello workflow.xml or ooziewf.hql files (such as ${nameNode}.)</span></span>
 
      > [!NOTE]
-     > <span data-ttu-id="52c41-217">L’entrée **oozie.wf.application.path** définit l’emplacement du fichier workflow.xml, qui contient le flux de travail exécuté par ce travail.</span><span class="sxs-lookup"><span data-stu-id="52c41-217">The **oozie.wf.application.path** entry defines where to find the workflow.xml file, which contains the workflow ran by this job.</span></span>
+     > <span data-ttu-id="088be-217">Hello **oozie.wf.application.path** entrée définit où fichier workflow.xml toofind hello, qui contient le flux de travail hello exécuté par ce travail.</span><span class="sxs-lookup"><span data-stu-id="088be-217">hello **oozie.wf.application.path** entry defines where toofind hello workflow.xml file, which contains hello workflow ran by this job.</span></span>
 
-5. <span data-ttu-id="52c41-218">Utilisez Ctrl-X, puis **Y** et **Entrée** pour enregistrer le fichier.</span><span class="sxs-lookup"><span data-stu-id="52c41-218">Use Ctrl-X, then **Y** and **Enter** to save the file.</span></span>
+5. <span data-ttu-id="088be-218">Utilisez Ctrl-X, puis **Y** et **entrée** fichier hello de toosave.</span><span class="sxs-lookup"><span data-stu-id="088be-218">Use Ctrl-X, then **Y** and **Enter** toosave hello file.</span></span>
 
-## <a name="submit-and-manage-the-job"></a><span data-ttu-id="52c41-219">Soumission et gestion du travail</span><span class="sxs-lookup"><span data-stu-id="52c41-219">Submit and manage the job</span></span>
+## <a name="submit-and-manage-hello-job"></a><span data-ttu-id="088be-219">Soumettre et de gérer le travail de hello</span><span class="sxs-lookup"><span data-stu-id="088be-219">Submit and manage hello job</span></span>
 
-<span data-ttu-id="52c41-220">Les étapes suivantes utilisent la commande Oozie pour soumettre et gérer des flux de travail Oozie sur le cluster.</span><span class="sxs-lookup"><span data-stu-id="52c41-220">The following steps use the Oozie command to submit and manage Oozie workflows on the cluster.</span></span> <span data-ttu-id="52c41-221">La commande Oozie est une interface conviviale sur l’ [API REST Oozie](https://oozie.apache.org/docs/4.1.0/WebServicesAPI.html).</span><span class="sxs-lookup"><span data-stu-id="52c41-221">The Oozie command is a friendly interface over the [Oozie REST API](https://oozie.apache.org/docs/4.1.0/WebServicesAPI.html).</span></span>
+<span data-ttu-id="088be-220">Hello suit hello Oozie commande toosubmit et gérer des flux de travail Oozie sur le cluster de hello.</span><span class="sxs-lookup"><span data-stu-id="088be-220">hello following steps use hello Oozie command toosubmit and manage Oozie workflows on hello cluster.</span></span> <span data-ttu-id="088be-221">Hello Oozie commande est une interface conviviale sur hello [Oozie REST API](https://oozie.apache.org/docs/4.1.0/WebServicesAPI.html).</span><span class="sxs-lookup"><span data-stu-id="088be-221">hello Oozie command is a friendly interface over hello [Oozie REST API](https://oozie.apache.org/docs/4.1.0/WebServicesAPI.html).</span></span>
 
 > [!IMPORTANT]
-> <span data-ttu-id="52c41-222">Lorsque vous utilisez la commande Oozie, vous devez utiliser le nom de domaine complet pour le nœud principal HDInsight.</span><span class="sxs-lookup"><span data-stu-id="52c41-222">When using the Oozie command, you must use the FQDN for the HDInsight headnode.</span></span> <span data-ttu-id="52c41-223">Ce nom de domaine complet est uniquement accessible à partir du cluster, ou, si le cluster se trouve sur un réseau virtuel Azure, à partir des autres ordinateurs sur le même réseau.</span><span class="sxs-lookup"><span data-stu-id="52c41-223">This FQDN is only accessible from the cluster, or if the cluster is on an Azure Virtual Network, from other machines on the same network.</span></span>
+> <span data-ttu-id="088be-222">Lorsque vous utilisez la commande de hello Oozie, vous devez utiliser hello nom de domaine complet pour le nœud principal de HDInsight hello.</span><span class="sxs-lookup"><span data-stu-id="088be-222">When using hello Oozie command, you must use hello FQDN for hello HDInsight headnode.</span></span> <span data-ttu-id="088be-223">Ce nom de domaine complet n’est accessible à partir du cluster de hello, ou si hello cluster se trouve sur un réseau virtuel Azure, à partir d’autres ordinateurs sur hello même réseau.</span><span class="sxs-lookup"><span data-stu-id="088be-223">This FQDN is only accessible from hello cluster, or if hello cluster is on an Azure Virtual Network, from other machines on hello same network.</span></span>
 
 
-1. <span data-ttu-id="52c41-224">Utilisez la commande suivante pour obtenir l’URL du service Oozie :</span><span class="sxs-lookup"><span data-stu-id="52c41-224">Use the following to obtain the URL to the Oozie service:</span></span>
+1. <span data-ttu-id="088be-224">Utilisez hello après tooobtain hello URL toohello Oozie service :</span><span class="sxs-lookup"><span data-stu-id="088be-224">Use hello following tooobtain hello URL toohello Oozie service:</span></span>
 
     ```
     sed -n '/<name>oozie.base.url/,/<\/value>/p' /etc/oozie/conf/oozie-site.xml
     ```
 
-    <span data-ttu-id="52c41-225">Cette commande renvoie des informations semblables au code XML suivant :</span><span class="sxs-lookup"><span data-stu-id="52c41-225">This returns information similar to the following XML:</span></span>
+    <span data-ttu-id="088be-225">Cet exemple renvoie toohello similaires à des informations XML suivant :</span><span class="sxs-lookup"><span data-stu-id="088be-225">This returns information similar toohello following XML:</span></span>
 
     ```xml
     <name>oozie.base.url</name>
     <value>http://hn0-CLUSTERNAME.randomcharacters.cx.internal.cloudapp.net:11000/oozie</value>
     ```
 
-    <span data-ttu-id="52c41-226">La partie `http://hn0-CLUSTERNAME.randomcharacters.cx.internal.cloudapp.net:11000/oozie` correspond à l’URL à utiliser avec la commande Oozie.</span><span class="sxs-lookup"><span data-stu-id="52c41-226">The `http://hn0-CLUSTERNAME.randomcharacters.cx.internal.cloudapp.net:11000/oozie` portion is the URL to use with the Oozie command.</span></span>
+    <span data-ttu-id="088be-226">Hello `http://hn0-CLUSTERNAME.randomcharacters.cx.internal.cloudapp.net:11000/oozie` partie est toouse d’URL hello avec hello Oozie commande.</span><span class="sxs-lookup"><span data-stu-id="088be-226">hello `http://hn0-CLUSTERNAME.randomcharacters.cx.internal.cloudapp.net:11000/oozie` portion is hello URL toouse with hello Oozie command.</span></span>
 
-2. <span data-ttu-id="52c41-227">Pour créer une variable d’environnement pour l’URL de manière à ne pas être obligé de la taper pour chaque commande :</span><span class="sxs-lookup"><span data-stu-id="52c41-227">Use the following to create an environment variable for the URL, so you don't have to type it for every command:</span></span>
+2. <span data-ttu-id="088be-227">Hello utilisation suivant toocreate une variable d’environnement pour l’URL de hello, donc vous n’avez pas tootype pour chaque commande :</span><span class="sxs-lookup"><span data-stu-id="088be-227">Use hello following toocreate an environment variable for hello URL, so you don't have tootype it for every command:</span></span>
 
     ```
     export OOZIE_URL=http://HOSTNAMEt:11000/oozie
     ```
 
-    <span data-ttu-id="52c41-228">Remplacez l’URL par celle reçue précédemment.</span><span class="sxs-lookup"><span data-stu-id="52c41-228">Replace the URL with the one you received earlier.</span></span>
-3. <span data-ttu-id="52c41-229">Pour envoyer le travail, utilisez la commande suivante :</span><span class="sxs-lookup"><span data-stu-id="52c41-229">Use the following to submit the job:</span></span>
+    <span data-ttu-id="088be-228">Remplacer les URL hello hello un reçu précédemment.</span><span class="sxs-lookup"><span data-stu-id="088be-228">Replace hello URL with hello one you received earlier.</span></span>
+3. <span data-ttu-id="088be-229">Utilisez hello suivant le travail de hello toosubmit :</span><span class="sxs-lookup"><span data-stu-id="088be-229">Use hello following toosubmit hello job:</span></span>
 
     ```
     oozie job -config job.xml -submit
     ```
 
-    <span data-ttu-id="52c41-230">Cette commande charge les informations du travail à partir de **job.xml** et les envoie à Oozie, mais n’exécute pas le travail.</span><span class="sxs-lookup"><span data-stu-id="52c41-230">This command loads the job information from **job.xml** and submits it to Oozie, but does not run it.</span></span>
+    <span data-ttu-id="088be-230">Cette commande charge des informations sur les travaux hello de **job.xml** et la soumet tooOozie, mais ne s’exécute ne pas.</span><span class="sxs-lookup"><span data-stu-id="088be-230">This command loads hello job information from **job.xml** and submits it tooOozie, but does not run it.</span></span>
 
-    <span data-ttu-id="52c41-231">Une fois la commande terminée, elle retourne normalement l’ID du travail.</span><span class="sxs-lookup"><span data-stu-id="52c41-231">Once the command completes, it should return the ID of the job.</span></span> <span data-ttu-id="52c41-232">Par exemple, `0000005-150622124850154-oozie-oozi-W`.</span><span class="sxs-lookup"><span data-stu-id="52c41-232">For example, `0000005-150622124850154-oozie-oozi-W`.</span></span> <span data-ttu-id="52c41-233">Cet ID est utilisé pour gérer le travail.</span><span class="sxs-lookup"><span data-stu-id="52c41-233">This ID is used to manage the job.</span></span>
+    <span data-ttu-id="088be-231">Une fois la commande hello terminée, elle doit retourner hello des ID de tâche de hello.</span><span class="sxs-lookup"><span data-stu-id="088be-231">Once hello command completes, it should return hello ID of hello job.</span></span> <span data-ttu-id="088be-232">Par exemple, `0000005-150622124850154-oozie-oozi-W`.</span><span class="sxs-lookup"><span data-stu-id="088be-232">For example, `0000005-150622124850154-oozie-oozi-W`.</span></span> <span data-ttu-id="088be-233">Cet ID est un travail de hello toomanage utilisé.</span><span class="sxs-lookup"><span data-stu-id="088be-233">This ID is used toomanage hello job.</span></span>
 
-4. <span data-ttu-id="52c41-234">Affichez l’état du travail à l’aide de la commande suivante :</span><span class="sxs-lookup"><span data-stu-id="52c41-234">View the status of the job using the following command:</span></span>
+4. <span data-ttu-id="088be-234">Afficher l’état de hello du travail hello à l’aide de hello de commande suivante :</span><span class="sxs-lookup"><span data-stu-id="088be-234">View hello status of hello job using hello following command:</span></span>
 
     ```
     oozie job -info <JOBID>
     ```
 
     > [!NOTE]
-    > <span data-ttu-id="52c41-235">Remplacez `<JOBID>` par l’ID renvoyé à l’étape précédente.</span><span class="sxs-lookup"><span data-stu-id="52c41-235">Replace `<JOBID>` with the ID returned in the previous step.</span></span>
+    > <span data-ttu-id="088be-235">Remplacez `<JOBID>` par hello ID retourné à l’étape précédente de hello.</span><span class="sxs-lookup"><span data-stu-id="088be-235">Replace `<JOBID>` with hello ID returned in hello previous step.</span></span>
 
-    <span data-ttu-id="52c41-236">Cette commande renvoie des informations semblables au texte suivant :</span><span class="sxs-lookup"><span data-stu-id="52c41-236">This returns information similar to the following text:</span></span>
+    <span data-ttu-id="088be-236">Cet exemple renvoie toohello similaire à informations suivant le texte :</span><span class="sxs-lookup"><span data-stu-id="088be-236">This returns information similar toohello following text:</span></span>
 
     ```
     Job ID : 0000005-150622124850154-oozie-oozi-W
@@ -473,33 +473,33 @@ hdfs dfs -put /usr/share/java/sqljdbc_4.1/enu/sqljdbc*.jar /tutorials/useoozie/
     ------------------------------------------------------------------------------------------------------------------------------------
     ```
 
-    <span data-ttu-id="52c41-237">Ce travail a le statut `PREP`,</span><span class="sxs-lookup"><span data-stu-id="52c41-237">This job has a status of `PREP`.</span></span> <span data-ttu-id="52c41-238">Cet état indique que le travail a été créé, mais qu’il n’a pas commencé.</span><span class="sxs-lookup"><span data-stu-id="52c41-238">This status indicates that the job was created, but not started.</span></span>
+    <span data-ttu-id="088be-237">Ce travail a le statut `PREP`,</span><span class="sxs-lookup"><span data-stu-id="088be-237">This job has a status of `PREP`.</span></span> <span data-ttu-id="088be-238">Cet état indique que le travail hello a été créé, mais n’a pas démarré.</span><span class="sxs-lookup"><span data-stu-id="088be-238">This status indicates that hello job was created, but not started.</span></span>
 
-5. <span data-ttu-id="52c41-239">Utilisez la commande suivante pour démarrer le travail :</span><span class="sxs-lookup"><span data-stu-id="52c41-239">Use the following command to start the job:</span></span>
+5. <span data-ttu-id="088be-239">Utilisez hello suivant le travail de commande toostart hello :</span><span class="sxs-lookup"><span data-stu-id="088be-239">Use hello following command toostart hello job:</span></span>
 
     ```
     oozie job -start JOBID
     ```
 
     > [!NOTE]
-    > <span data-ttu-id="52c41-240">Remplacez `<JOBID>` par l’ID renvoyé précédemment.</span><span class="sxs-lookup"><span data-stu-id="52c41-240">Replace `<JOBID>` with the ID returned previously.</span></span>
+    > <span data-ttu-id="088be-240">Remplacez `<JOBID>` par hello ID retourné précédemment.</span><span class="sxs-lookup"><span data-stu-id="088be-240">Replace `<JOBID>` with hello ID returned previously.</span></span>
 
-    <span data-ttu-id="52c41-241">Si vous vérifiez l’état après cette commande, il sera en cours d’exécution et des informations pour les actions au sein du travail seront retournées.</span><span class="sxs-lookup"><span data-stu-id="52c41-241">If you check the status after this command, it is in a running state, and information is returned for the actions within the job.</span></span>
+    <span data-ttu-id="088be-241">Si vous vérifiez l’état de hello après cette commande, il est en cours d’exécution, et informations sont retournées pour les actions de hello dans le travail de hello.</span><span class="sxs-lookup"><span data-stu-id="088be-241">If you check hello status after this command, it is in a running state, and information is returned for hello actions within hello job.</span></span>
 
-6. <span data-ttu-id="52c41-242">Une fois le travail terminé correctement, vous pouvez vérifier que les données ont été générées et exportées vers la table de base de données SQL en utilisant les commandes suivantes :</span><span class="sxs-lookup"><span data-stu-id="52c41-242">Once the task completes successfully, you can verify that the data was generated and exported to the SQL Database table by using the following commands:</span></span>
+6. <span data-ttu-id="088be-242">Une fois la tâche hello se termine correctement, vous pouvez vérifier que les données de salutation a été générées et exportés de table de base de données SQL toohello à l’aide de hello suivant de commandes :</span><span class="sxs-lookup"><span data-stu-id="088be-242">Once hello task completes successfully, you can verify that hello data was generated and exported toohello SQL Database table by using hello following commands:</span></span>
 
     ```
     TDSVER=8.0 tsql -H <serverName>.database.windows.net -U <adminLogin> -P <adminPassword> -p 1433 -D oozietest
     ```
 
-    <span data-ttu-id="52c41-243">À l’invite de commandes `1>` , entrez la requête suivante :</span><span class="sxs-lookup"><span data-stu-id="52c41-243">At the `1>` prompt, enter the following query:</span></span>
+    <span data-ttu-id="088be-243">À hello `1>` invite, entrez hello suivant la requête :</span><span class="sxs-lookup"><span data-stu-id="088be-243">At hello `1>` prompt, enter hello following query:</span></span>
 
     ```
     SELECT * FROM mobiledata
     GO
     ```
 
-    <span data-ttu-id="52c41-244">Les informations renvoyées sont semblables à ce qui suit :</span><span class="sxs-lookup"><span data-stu-id="52c41-244">The information returned is similar to the following text:</span></span>
+    <span data-ttu-id="088be-244">les informations de Hello retournées sont similaires toohello suivant du texte :</span><span class="sxs-lookup"><span data-stu-id="088be-244">hello information returned is similar toohello following text:</span></span>
 
         deviceplatform  count
         Android 31591
@@ -510,79 +510,79 @@ hdfs dfs -put /usr/share/java/sqljdbc_4.1/enu/sqljdbc*.jar /tutorials/useoozie/
         Windows Phone   1791
         (6 rows affected)
 
-<span data-ttu-id="52c41-245">Pour plus d’informations sur la commande Oozie, consultez la page [Outil en ligne de commande Oozie](https://oozie.apache.org/docs/4.1.0/DG_CommandLineTool.html).</span><span class="sxs-lookup"><span data-stu-id="52c41-245">For more information on the Oozie command, see [Oozie command-line tool](https://oozie.apache.org/docs/4.1.0/DG_CommandLineTool.html).</span></span>
+<span data-ttu-id="088be-245">Pour plus d’informations sur hello Oozie commande, consultez [outil de ligne de commande Oozie](https://oozie.apache.org/docs/4.1.0/DG_CommandLineTool.html).</span><span class="sxs-lookup"><span data-stu-id="088be-245">For more information on hello Oozie command, see [Oozie command-line tool](https://oozie.apache.org/docs/4.1.0/DG_CommandLineTool.html).</span></span>
 
-## <a name="oozie-rest-api"></a><span data-ttu-id="52c41-246">API REST Oozie</span><span class="sxs-lookup"><span data-stu-id="52c41-246">Oozie REST API</span></span>
+## <a name="oozie-rest-api"></a><span data-ttu-id="088be-246">API REST Oozie</span><span class="sxs-lookup"><span data-stu-id="088be-246">Oozie REST API</span></span>
 
-<span data-ttu-id="52c41-247">L’API REST Oozie vous permet de créer vos propres outils fonctionnant avec Oozie.</span><span class="sxs-lookup"><span data-stu-id="52c41-247">The Oozie REST API allows you to build your own tools that work with Oozie.</span></span> <span data-ttu-id="52c41-248">Les informations suivantes sont des informations spécifiques de HDInsight sur l’utilisation de l’API REST Oozie :</span><span class="sxs-lookup"><span data-stu-id="52c41-248">The following are HDInsight specific information about using the Oozie REST API:</span></span>
+<span data-ttu-id="088be-247">Hello Oozie REST API vous permet de toobuild vos propres outils qui fonctionnent avec Oozie.</span><span class="sxs-lookup"><span data-stu-id="088be-247">hello Oozie REST API allows you toobuild your own tools that work with Oozie.</span></span> <span data-ttu-id="088be-248">Hello Voici HDInsight des informations spécifiques sur l’utilisation de hello Oozie REST API :</span><span class="sxs-lookup"><span data-stu-id="088be-248">hello following are HDInsight specific information about using hello Oozie REST API:</span></span>
 
-* <span data-ttu-id="52c41-249">**URI** : l’API REST est accessible depuis l’extérieur du cluster à l’adresse `https://CLUSTERNAME.azurehdinsight.net/oozie`</span><span class="sxs-lookup"><span data-stu-id="52c41-249">**URI**: The REST API can be accessed from outside the cluster at `https://CLUSTERNAME.azurehdinsight.net/oozie`</span></span>
+* <span data-ttu-id="088be-249">**URI**: hello API REST sont accessibles à partir de l’extérieur cluster hello à`https://CLUSTERNAME.azurehdinsight.net/oozie`</span><span class="sxs-lookup"><span data-stu-id="088be-249">**URI**: hello REST API can be accessed from outside hello cluster at `https://CLUSTERNAME.azurehdinsight.net/oozie`</span></span>
 
-* <span data-ttu-id="52c41-250">**Authentification** : authentifiez-vous à l’API en utilisant le compte HTTP (admin) et le mot de passe du cluster.</span><span class="sxs-lookup"><span data-stu-id="52c41-250">**Authentication**: Authenticate to the API using the cluster HTTP account (admin) and password.</span></span> <span data-ttu-id="52c41-251">Par exemple :</span><span class="sxs-lookup"><span data-stu-id="52c41-251">For example:</span></span>
+* <span data-ttu-id="088be-250">**Authentification**: authentifier API toohello à l’aide du compte de cluster HTTP hello (administrateur) et le mot de passe.</span><span class="sxs-lookup"><span data-stu-id="088be-250">**Authentication**: Authenticate toohello API using hello cluster HTTP account (admin) and password.</span></span> <span data-ttu-id="088be-251">Par exemple :</span><span class="sxs-lookup"><span data-stu-id="088be-251">For example:</span></span>
 
     ```
     curl -u admin:PASSWORD https://CLUSTERNAME.azurehdinsight.net/oozie/versions
     ```
 
-<span data-ttu-id="52c41-252">Pour plus d'informations sur l’utilisation de l’API REST Oozie, consultez la page [API des services web Oozie](https://oozie.apache.org/docs/4.1.0/WebServicesAPI.html).</span><span class="sxs-lookup"><span data-stu-id="52c41-252">For more information on using the Oozie REST API, see [Oozie Web Services API](https://oozie.apache.org/docs/4.1.0/WebServicesAPI.html).</span></span>
+<span data-ttu-id="088be-252">Pour plus d’informations sur l’utilisation de hello Oozie REST API, consultez [API des Services Web Oozie](https://oozie.apache.org/docs/4.1.0/WebServicesAPI.html).</span><span class="sxs-lookup"><span data-stu-id="088be-252">For more information on using hello Oozie REST API, see [Oozie Web Services API](https://oozie.apache.org/docs/4.1.0/WebServicesAPI.html).</span></span>
 
-## <a name="oozie-web-ui"></a><span data-ttu-id="52c41-253">Interface utilisateur web Oozie</span><span class="sxs-lookup"><span data-stu-id="52c41-253">Oozie Web UI</span></span>
+## <a name="oozie-web-ui"></a><span data-ttu-id="088be-253">Interface utilisateur web Oozie</span><span class="sxs-lookup"><span data-stu-id="088be-253">Oozie Web UI</span></span>
 
-<span data-ttu-id="52c41-254">L’interface utilisateur web Oozie fournit une vue web de l’état des travaux Oozie sur le cluster.</span><span class="sxs-lookup"><span data-stu-id="52c41-254">The Oozie Web UI provides a web-based view into the status of Oozie jobs on the cluster.</span></span> <span data-ttu-id="52c41-255">L’interface utilisateur web vous permet d’afficher les informations suivantes :</span><span class="sxs-lookup"><span data-stu-id="52c41-255">The web UI allows you to view the following information:</span></span>
+<span data-ttu-id="088be-254">Hello l’interface utilisateur Web de Oozie offre une vue basée sur le web état hello de Oozie travaux sur le cluster de hello.</span><span class="sxs-lookup"><span data-stu-id="088be-254">hello Oozie Web UI provides a web-based view into hello status of Oozie jobs on hello cluster.</span></span> <span data-ttu-id="088be-255">interface utilisateur web de Hello permet hello tooview informations suivantes :</span><span class="sxs-lookup"><span data-stu-id="088be-255">hello web UI allows you tooview hello following information:</span></span>
 
-* <span data-ttu-id="52c41-256">Statut de tâche</span><span class="sxs-lookup"><span data-stu-id="52c41-256">Job status</span></span>
-* <span data-ttu-id="52c41-257">Définition du travail</span><span class="sxs-lookup"><span data-stu-id="52c41-257">Job definition</span></span>
-* <span data-ttu-id="52c41-258">Configuration</span><span class="sxs-lookup"><span data-stu-id="52c41-258">Configuration</span></span>
-* <span data-ttu-id="52c41-259">Un graphique des actions exécutées sur le travail</span><span class="sxs-lookup"><span data-stu-id="52c41-259">A graph of the actions in the job</span></span>
-* <span data-ttu-id="52c41-260">Les journaux du travail</span><span class="sxs-lookup"><span data-stu-id="52c41-260">Logs for the job</span></span>
+* <span data-ttu-id="088be-256">Statut de tâche</span><span class="sxs-lookup"><span data-stu-id="088be-256">Job status</span></span>
+* <span data-ttu-id="088be-257">Définition du travail</span><span class="sxs-lookup"><span data-stu-id="088be-257">Job definition</span></span>
+* <span data-ttu-id="088be-258">Configuration</span><span class="sxs-lookup"><span data-stu-id="088be-258">Configuration</span></span>
+* <span data-ttu-id="088be-259">Un graphique des actions hello dans la tâche de hello</span><span class="sxs-lookup"><span data-stu-id="088be-259">A graph of hello actions in hello job</span></span>
+* <span data-ttu-id="088be-260">Journaux hello travail</span><span class="sxs-lookup"><span data-stu-id="088be-260">Logs for hello job</span></span>
 
-<span data-ttu-id="52c41-261">Vous pouvez également afficher les détails pour les actions du travail.</span><span class="sxs-lookup"><span data-stu-id="52c41-261">You can also view details for actions within a job.</span></span>
+<span data-ttu-id="088be-261">Vous pouvez également afficher les détails pour les actions du travail.</span><span class="sxs-lookup"><span data-stu-id="088be-261">You can also view details for actions within a job.</span></span>
 
-<span data-ttu-id="52c41-262">Pour accéder à l'interface utilisateur web Oozie, procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="52c41-262">To access the Oozie Web UI, use the following steps:</span></span>
+<span data-ttu-id="088be-262">tooaccess hello l’interface utilisateur Web de Oozie, utilisez hello comme suit :</span><span class="sxs-lookup"><span data-stu-id="088be-262">tooaccess hello Oozie Web UI, use hello following steps:</span></span>
 
-1. <span data-ttu-id="52c41-263">Créez un tunnel SSH vers le cluster HDInsight.</span><span class="sxs-lookup"><span data-stu-id="52c41-263">Create an SSH tunnel to the HDInsight cluster.</span></span> <span data-ttu-id="52c41-264">Pour plus d’informations, consultez le document [Utilisation du tunnel SSH avec HDInsight](hdinsight-linux-ambari-ssh-tunnel.md).</span><span class="sxs-lookup"><span data-stu-id="52c41-264">For information, see the [Use SSH Tunneling with HDInsight](hdinsight-linux-ambari-ssh-tunnel.md) document.</span></span>
+1. <span data-ttu-id="088be-263">Créer un cluster de HDInsight de toohello tunnel SSH.</span><span class="sxs-lookup"><span data-stu-id="088be-263">Create an SSH tunnel toohello HDInsight cluster.</span></span> <span data-ttu-id="088be-264">Pour plus d’informations, consultez hello [utiliser SSH Tunneling hdinsight](hdinsight-linux-ambari-ssh-tunnel.md) document.</span><span class="sxs-lookup"><span data-stu-id="088be-264">For information, see hello [Use SSH Tunneling with HDInsight](hdinsight-linux-ambari-ssh-tunnel.md) document.</span></span>
 
-2. <span data-ttu-id="52c41-265">Une fois qu’un tunnel a été créé, ouvrez l’interface utilisateur web Ambari dans votre navigateur web.</span><span class="sxs-lookup"><span data-stu-id="52c41-265">Once a tunnel has been created, open the Ambari web UI in your web browser.</span></span> <span data-ttu-id="52c41-266">L’URI du site Ambari est **https://CLUSTERNAME.azurehdinsight.net**.</span><span class="sxs-lookup"><span data-stu-id="52c41-266">The URI for the Ambari site is **https://CLUSTERNAME.azurehdinsight.net**.</span></span> <span data-ttu-id="52c41-267">Remplacez **CLUSTERNAME** par le nom de votre cluster HDInsight basé sur Linux.</span><span class="sxs-lookup"><span data-stu-id="52c41-267">Replace **CLUSTERNAME** with the name of your Linux-based HDInsight cluster.</span></span>
+2. <span data-ttu-id="088be-265">Une fois qu’un tunnel a été créé, ouvrez l’interface utilisateur web de Ambari hello dans votre navigateur web.</span><span class="sxs-lookup"><span data-stu-id="088be-265">Once a tunnel has been created, open hello Ambari web UI in your web browser.</span></span> <span data-ttu-id="088be-266">Hello URI pour le site de Ambari hello est **https://CLUSTERNAME.azurehdinsight.net**.</span><span class="sxs-lookup"><span data-stu-id="088be-266">hello URI for hello Ambari site is **https://CLUSTERNAME.azurehdinsight.net**.</span></span> <span data-ttu-id="088be-267">Remplacez **CLUSTERNAME** avec nom hello de votre cluster HDInsight de basés sur Linux.</span><span class="sxs-lookup"><span data-stu-id="088be-267">Replace **CLUSTERNAME** with hello name of your Linux-based HDInsight cluster.</span></span>
 
-3. <span data-ttu-id="52c41-268">Sur le côté gauche de la page, sélectionnez **Oozie**, puis **Liens rapides**, et enfin **Interface utilisateur web Oozie**.</span><span class="sxs-lookup"><span data-stu-id="52c41-268">From the left side of the page, select **Oozie**, then **Quick Links**, and finally **Oozie Web UI**.</span></span>
+3. <span data-ttu-id="088be-268">Bonjour à gauche de la page de hello, sélectionnez **Oozie**, puis **liens rapides**et enfin **l’interface utilisateur Web de Oozie**.</span><span class="sxs-lookup"><span data-stu-id="088be-268">From hello left side of hello page, select **Oozie**, then **Quick Links**, and finally **Oozie Web UI**.</span></span>
 
-    ![image des menus](./media/hdinsight-use-oozie-linux-mac/ooziewebuisteps.png)
+    ![image des menus de hello](./media/hdinsight-use-oozie-linux-mac/ooziewebuisteps.png)
 
-4. <span data-ttu-id="52c41-270">L’interface utilisateur web Oozie affiche par défaut les travaux du flux de travail en cours d’exécution.</span><span class="sxs-lookup"><span data-stu-id="52c41-270">The Oozie Web UI defaults to displaying running Workflow Jobs.</span></span> <span data-ttu-id="52c41-271">Pour voir tous les travaux du flux de travail, sélectionnez **Tous les travaux**.</span><span class="sxs-lookup"><span data-stu-id="52c41-271">To see all workflow jobs, select **All Jobs**.</span></span>
+4. <span data-ttu-id="088be-270">Bonjour toodisplaying de valeurs par défaut de l’interface utilisateur Web de Oozie tâches de Workflow en cours d’exécution.</span><span class="sxs-lookup"><span data-stu-id="088be-270">hello Oozie Web UI defaults toodisplaying running Workflow Jobs.</span></span> <span data-ttu-id="088be-271">sélectionner de toutes les tâches de workflow, toosee **tous les travaux**.</span><span class="sxs-lookup"><span data-stu-id="088be-271">toosee all workflow jobs, select **All Jobs**.</span></span>
 
     ![Tous les travaux affichés](./media/hdinsight-use-oozie-linux-mac/ooziejobs.png)
 
-5. <span data-ttu-id="52c41-273">Sélectionnez un travail pour afficher plus d’informations sur celui-ci.</span><span class="sxs-lookup"><span data-stu-id="52c41-273">Select a job to view more information about the job.</span></span>
+5. <span data-ttu-id="088be-273">Sélectionnez un travail tooview plus d’informations sur la tâche de hello.</span><span class="sxs-lookup"><span data-stu-id="088be-273">Select a job tooview more information about hello job.</span></span>
 
     ![Job Info](./media/hdinsight-use-oozie-linux-mac/jobinfo.png)
 
-6. <span data-ttu-id="52c41-275">Sous l’onglet Job Info, vous pouvez voir les informations de base sur le travail, ainsi que les actions individuelles au sein du travail.</span><span class="sxs-lookup"><span data-stu-id="52c41-275">From the Job Info tab, you can see basic job information and the individual actions within the job.</span></span> <span data-ttu-id="52c41-276">Les onglets visibles en haut de la page vous permettent d’afficher la définition du travail et la configuration du travail, d’accéder au journal du travail ou d’afficher un graphique non cyclique dirigé du travail.</span><span class="sxs-lookup"><span data-stu-id="52c41-276">Using the tabs at the top you can view the Job Definition, Job Configuration, access the Job Log or view a Directed Acyclic Graph (DAG) of the job.</span></span>
+6. <span data-ttu-id="088be-275">À partir de l’onglet informations du travail de hello, vous pouvez voir des informations sur les travaux de base et des actions individuelles hello dans le travail de hello.</span><span class="sxs-lookup"><span data-stu-id="088be-275">From hello Job Info tab, you can see basic job information and hello individual actions within hello job.</span></span> <span data-ttu-id="088be-276">À l’aide des onglets de hello haut hello, que vous pouvez afficher hello définition du travail, Configuration des tâches, hello d’accès journal des travaux ou afficher un dirigées acycliques graphique (DAG) du travail de hello.</span><span class="sxs-lookup"><span data-stu-id="088be-276">Using hello tabs at hello top you can view hello Job Definition, Job Configuration, access hello Job Log or view a Directed Acyclic Graph (DAG) of hello job.</span></span>
 
-   * <span data-ttu-id="52c41-277">**Job Log** : cliquez sur le bouton **GetLogs** pour obtenir tous les journaux du travail, ou utilisez le champ **Enter Search Filter** pour filtrer les journaux.</span><span class="sxs-lookup"><span data-stu-id="52c41-277">**Job Log**: Select the **GetLogs** button to get all logs for the job, or use the **Enter Search Filter** field to filter logs</span></span>
+   * <span data-ttu-id="088be-277">**Journal des travaux**: hello sélectionnez **GetLogs** tooget tous les journaux hello travail ou pour utiliser hello **Entrez un filtre de recherche** champ toofilter journaux</span><span class="sxs-lookup"><span data-stu-id="088be-277">**Job Log**: Select hello **GetLogs** button tooget all logs for hello job, or use hello **Enter Search Filter** field toofilter logs</span></span>
 
        ![Journal du travail](./media/hdinsight-use-oozie-linux-mac/joblog.png)
 
-   * <span data-ttu-id="52c41-279">**JobDAG**: le graphique non cyclique dirigé est une représentation graphique des chemins de données utilisés à travers le flux de travail.</span><span class="sxs-lookup"><span data-stu-id="52c41-279">**JobDAG**: The DAG is a graphical overview of the data paths taken through the workflow</span></span>
+   * <span data-ttu-id="088be-279">**JobDAG**: hello DAG est une représentation graphique des chemins d’accès de données hello effectuée par le biais du flux de travail hello</span><span class="sxs-lookup"><span data-stu-id="088be-279">**JobDAG**: hello DAG is a graphical overview of hello data paths taken through hello workflow</span></span>
 
        ![Graphique non cyclique dirigé du travail](./media/hdinsight-use-oozie-linux-mac/jobdag.png)
 
-7. <span data-ttu-id="52c41-281">Lorsque vous sélectionnez l’une des actions sous l’onglet **Infos travail**, des informations sur l’action s’affichent.</span><span class="sxs-lookup"><span data-stu-id="52c41-281">Selecting one of the actions from the **Job Info** tab brings up information for the action.</span></span> <span data-ttu-id="52c41-282">Par exemple, sélectionnez l’action **RunHiveScript** .</span><span class="sxs-lookup"><span data-stu-id="52c41-282">For example, select the **RunHiveScript** action.</span></span>
+7. <span data-ttu-id="088be-281">Sélectionner l’une des actions de hello dans hello **infos travail** onglet affiche des informations pour l’action de hello.</span><span class="sxs-lookup"><span data-stu-id="088be-281">Selecting one of hello actions from hello **Job Info** tab brings up information for hello action.</span></span> <span data-ttu-id="088be-282">Par exemple, sélectionnez hello **RunHiveScript** action.</span><span class="sxs-lookup"><span data-stu-id="088be-282">For example, select hello **RunHiveScript** action.</span></span>
 
     ![Informations sur l’action](./media/hdinsight-use-oozie-linux-mac/action.png)
 
-8. <span data-ttu-id="52c41-284">Vous pouvez voir les détails de l’action, notamment un lien vers **l’URL de la console**</span><span class="sxs-lookup"><span data-stu-id="52c41-284">You can see details for the action, such as a link to the **Console URL**.</span></span> <span data-ttu-id="52c41-285">qui peut être utilisé pour afficher les informations de JobTracker pour le travail.</span><span class="sxs-lookup"><span data-stu-id="52c41-285">This link can be used to view JobTracker information for the job.</span></span>
+8. <span data-ttu-id="088be-284">Vous pouvez voir les détails pour hello action, comme un lien de toohello **URL de la Console**.</span><span class="sxs-lookup"><span data-stu-id="088be-284">You can see details for hello action, such as a link toohello **Console URL**.</span></span> <span data-ttu-id="088be-285">Ce lien peut renvoyer des informations de JobTracker tooview utilisé pour le travail de hello.</span><span class="sxs-lookup"><span data-stu-id="088be-285">This link can be used tooview JobTracker information for hello job.</span></span>
 
-## <a name="scheduling-jobs"></a><span data-ttu-id="52c41-286">Planification des travaux</span><span class="sxs-lookup"><span data-stu-id="52c41-286">Scheduling jobs</span></span>
+## <a name="scheduling-jobs"></a><span data-ttu-id="088be-286">Planification des travaux</span><span class="sxs-lookup"><span data-stu-id="088be-286">Scheduling jobs</span></span>
 
-<span data-ttu-id="52c41-287">Le coordinateur vous permet de spécifier le début, la fin et la fréquence d’occurrence des travaux.</span><span class="sxs-lookup"><span data-stu-id="52c41-287">The coordinator allows you to specify a start, end, and occurrence frequency for jobs.</span></span> <span data-ttu-id="52c41-288">Pour définir une planification pour le flux de travail, procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="52c41-288">To define a schedule for the workflow, use the following steps:</span></span>
+<span data-ttu-id="088be-287">coordinateur de Hello vous permet de toospecify une fréquence d’occurrence, de début et de fin pour les travaux.</span><span class="sxs-lookup"><span data-stu-id="088be-287">hello coordinator allows you toospecify a start, end, and occurrence frequency for jobs.</span></span> <span data-ttu-id="088be-288">toodefine une planification de flux de travail hello, hello utilisation comme suit :</span><span class="sxs-lookup"><span data-stu-id="088be-288">toodefine a schedule for hello workflow, use hello following steps:</span></span>
 
-1. <span data-ttu-id="52c41-289">Utilisez la commande suivante pour créer un fichier nommé **coordinator.xml** :</span><span class="sxs-lookup"><span data-stu-id="52c41-289">Use the following to create a file named **coordinator.xml**:</span></span>
+1. <span data-ttu-id="088be-289">Hello utilisation suivant toocreate un fichier nommé **coordinator.xml**:</span><span class="sxs-lookup"><span data-stu-id="088be-289">Use hello following toocreate a file named **coordinator.xml**:</span></span>
 
     ```
     nano coordinator.xml
     ```
 
-    <span data-ttu-id="52c41-290">Utilisez le code XML suivant comme contenu du fichier :</span><span class="sxs-lookup"><span data-stu-id="52c41-290">Use the following XML as the contents of the file:</span></span>
+    <span data-ttu-id="088be-290">Utilisez hello XML suivant comme contenu hello du fichier de hello :</span><span class="sxs-lookup"><span data-stu-id="088be-290">Use hello following XML as hello contents of hello file:</span></span>
 
     ```xml
     <coordinator-app name="my_coord_app" frequency="${coordFrequency}" start="${coordStart}" end="${coordEnd}" timezone="${coordTimezone}" xmlns="uri:oozie:coordinator:0.4">
@@ -595,33 +595,33 @@ hdfs dfs -put /usr/share/java/sqljdbc_4.1/enu/sqljdbc*.jar /tutorials/useoozie/
     ```
 
     > [!NOTE]
-    > <span data-ttu-id="52c41-291">Les variables `${...}` sont remplacées par des valeurs dans la définition du travail lors de l’exécution.</span><span class="sxs-lookup"><span data-stu-id="52c41-291">The `${...}` variables are replaced by values in the job definition at run-time.</span></span> <span data-ttu-id="52c41-292">Les variables sont les suivantes :</span><span class="sxs-lookup"><span data-stu-id="52c41-292">The variables are:</span></span>
+    > <span data-ttu-id="088be-291">Hello `${...}` variables sont remplacées par les valeurs dans la définition de la tâche hello au moment de l’exécution.</span><span class="sxs-lookup"><span data-stu-id="088be-291">hello `${...}` variables are replaced by values in hello job definition at run-time.</span></span> <span data-ttu-id="088be-292">variables de Hello sont :</span><span class="sxs-lookup"><span data-stu-id="088be-292">hello variables are:</span></span>
     >
-    > * <span data-ttu-id="52c41-293">`${coordFrequency}` : délai entre les instances du travail en cours d’exécution.</span><span class="sxs-lookup"><span data-stu-id="52c41-293">`${coordFrequency}`: Time between running instances of the job.</span></span>
-    > <span data-ttu-id="52c41-294">** `${coordStart}` : heure de début du travail.</span><span class="sxs-lookup"><span data-stu-id="52c41-294">** `${coordStart}`: The job start time.</span></span>
-    > * <span data-ttu-id="52c41-295">`${coordEnd}` : heure de fin du travail.</span><span class="sxs-lookup"><span data-stu-id="52c41-295">`${coordEnd}`: The job end time.</span></span>
-    > * <span data-ttu-id="52c41-296">`${coordTimezone}`: les travaux du coordinateur se trouvent dans un fuseau horaire fixe sans passage à l’heure d’été (généralement représenté par UTC).</span><span class="sxs-lookup"><span data-stu-id="52c41-296">`${coordTimezone}`: Coordinator jobs are in a fixed time zone with no daylight savings time (typically represented by using UTC).</span></span> <span data-ttu-id="52c41-297">Ce fuseau horaire est appelé le « fuseau horaire du traitement d’Oozie ».</span><span class="sxs-lookup"><span data-stu-id="52c41-297">This time zone is referred as the "Oozie processing timezone."</span></span>
-    > * <span data-ttu-id="52c41-298">`${wfPath}` : chemin d’accès au fichier workflow.xml.</span><span class="sxs-lookup"><span data-stu-id="52c41-298">`${wfPath}`: The path to the workflow.xml.</span></span>
+    > * <span data-ttu-id="088be-293">`${coordFrequency}`: Délai entre les instances de tâche de hello en cours d’exécution.</span><span class="sxs-lookup"><span data-stu-id="088be-293">`${coordFrequency}`: Time between running instances of hello job.</span></span>
+    > <span data-ttu-id="088be-294">** `${coordStart}`: heure de début du travail de hello.</span><span class="sxs-lookup"><span data-stu-id="088be-294">** `${coordStart}`: hello job start time.</span></span>
+    > * <span data-ttu-id="088be-295">`${coordEnd}`: heure de fin de tâche hello.</span><span class="sxs-lookup"><span data-stu-id="088be-295">`${coordEnd}`: hello job end time.</span></span>
+    > * <span data-ttu-id="088be-296">`${coordTimezone}`: les travaux du coordinateur se trouvent dans un fuseau horaire fixe sans passage à l’heure d’été (généralement représenté par UTC).</span><span class="sxs-lookup"><span data-stu-id="088be-296">`${coordTimezone}`: Coordinator jobs are in a fixed time zone with no daylight savings time (typically represented by using UTC).</span></span> <span data-ttu-id="088be-297">Ce fuseau horaire est appelé hello » Oozie traitement fuseau horaire. »</span><span class="sxs-lookup"><span data-stu-id="088be-297">This time zone is referred as hello "Oozie processing timezone."</span></span>
+    > * <span data-ttu-id="088be-298">`${wfPath}`: hello workflow.xml toohello de chemin d’accès.</span><span class="sxs-lookup"><span data-stu-id="088be-298">`${wfPath}`: hello path toohello workflow.xml.</span></span>
 
-2. <span data-ttu-id="52c41-299">Sélectionnez Ctrl+X, **Y**, puis **Entrée** pour enregistrer le fichier.</span><span class="sxs-lookup"><span data-stu-id="52c41-299">To save the file, use Ctrl-X, **Y**, and **Enter**.</span></span>
+2. <span data-ttu-id="088be-299">toosave hello, utilisez Ctrl-X, **Y**, et **entrée**.</span><span class="sxs-lookup"><span data-stu-id="088be-299">toosave hello file, use Ctrl-X, **Y**, and **Enter**.</span></span>
 
-3. <span data-ttu-id="52c41-300">Pour le copier dans le répertoire de travail pour ce travail, utilisez la commande suivante :</span><span class="sxs-lookup"><span data-stu-id="52c41-300">Use the following command to copy the file to the working directory for this job:</span></span>
+3. <span data-ttu-id="088be-300">Hello suivant commande toocopy hello toohello travail répertoire du fichier pour cette tâche, utilisez :</span><span class="sxs-lookup"><span data-stu-id="088be-300">Use hello following command toocopy hello file toohello working directory for this job:</span></span>
 
     ```
     hadoop fs -put coordinator.xml /tutorials/useoozie/coordinator.xml
     ```
 
-4. <span data-ttu-id="52c41-301">Utilisez la commande suivante pour modifier le fichier **job.xml** :</span><span class="sxs-lookup"><span data-stu-id="52c41-301">Use the following to modify the **job.xml** file:</span></span>
+4. <span data-ttu-id="088be-301">Hello utilisation suivant toomodify hello **job.xml** fichier :</span><span class="sxs-lookup"><span data-stu-id="088be-301">Use hello following toomodify hello **job.xml** file:</span></span>
 
     ```
     nano job.xml
     ```
 
-    <span data-ttu-id="52c41-302">Effectuez les modifications suivantes :</span><span class="sxs-lookup"><span data-stu-id="52c41-302">Make the following changes:</span></span>
+    <span data-ttu-id="088be-302">Rendre hello modifications suivantes :</span><span class="sxs-lookup"><span data-stu-id="088be-302">Make hello following changes:</span></span>
 
-   * <span data-ttu-id="52c41-303">Pour ordonner à Oozie d’exécuter le fichier coordinateur au lieu du fichier de workflow, remplacez `<name>oozie.wf.application.path</name>` par `<name>oozie.coord.application.path</name>`.</span><span class="sxs-lookup"><span data-stu-id="52c41-303">To instruct oozie to run the coordinator file instead of the workflow, change `<name>oozie.wf.application.path</name>` to `<name>oozie.coord.application.path</name>`.</span></span>
+   * <span data-ttu-id="088be-303">fichier tooinstruct oozie toorun hello coordinator au lieu de flux de travail hello, modification `<name>oozie.wf.application.path</name>` trop`<name>oozie.coord.application.path</name>`.</span><span class="sxs-lookup"><span data-stu-id="088be-303">tooinstruct oozie toorun hello coordinator file instead of hello workflow, change `<name>oozie.wf.application.path</name>` too`<name>oozie.coord.application.path</name>`.</span></span>
 
-   * <span data-ttu-id="52c41-304">Pour définir la variable `workflowPath` utilisée par le coordinateur, ajoutez le code XML suivant :</span><span class="sxs-lookup"><span data-stu-id="52c41-304">To set the `workflowPath` variable used by the coordinator, add the following XML:</span></span>
+   * <span data-ttu-id="088be-304">tooset hello `workflowPath` variable utilisée par le coordinateur de hello, ajouter hello XML suivant :</span><span class="sxs-lookup"><span data-stu-id="088be-304">tooset hello `workflowPath` variable used by hello coordinator, add hello following XML:</span></span>
 
         ```xml
         <property>
@@ -630,9 +630,9 @@ hdfs dfs -put /usr/share/java/sqljdbc_4.1/enu/sqljdbc*.jar /tutorials/useoozie/
         </property>
         ```
 
-       <span data-ttu-id="52c41-305">Remplacez le texte `wasb://mycontainer@mystorageaccount.blob.core.windows` par la valeur utilisée dans les autres entrées du fichier job.xml.</span><span class="sxs-lookup"><span data-stu-id="52c41-305">Replace the `wasb://mycontainer@mystorageaccount.blob.core.windows` text with the value used in other entries in the job.xml file.</span></span>
+       <span data-ttu-id="088be-305">Remplacez hello `wasb://mycontainer@mystorageaccount.blob.core.windows` texte avec la valeur de hello utilisée dans d’autres entrées dans le fichier de job.xml hello.</span><span class="sxs-lookup"><span data-stu-id="088be-305">Replace hello `wasb://mycontainer@mystorageaccount.blob.core.windows` text with hello value used in other entries in hello job.xml file.</span></span>
 
-   * <span data-ttu-id="52c41-306">Pour définir le début, la fin et la fréquence correspondant au coordinateur, ajoutez le code XML suivant :</span><span class="sxs-lookup"><span data-stu-id="52c41-306">To define the start, end, and frequency for the coordinator, add the following XML:</span></span>
+   * <span data-ttu-id="088be-306">toodefine hello début, fin et la fréquence de coordinateur de hello, ajoutent hello XML suivant :</span><span class="sxs-lookup"><span data-stu-id="088be-306">toodefine hello start, end, and frequency for hello coordinator, add hello following XML:</span></span>
 
         ```xml
         <property>
@@ -656,104 +656,104 @@ hdfs dfs -put /usr/share/java/sqljdbc_4.1/enu/sqljdbc*.jar /tutorials/useoozie/
         </property>
         ```
 
-       <span data-ttu-id="52c41-307">Ces valeurs définissent l’heure de début sur 12 h 00 le 10 mai 2017 et la fin sur le 12 mai 2017.</span><span class="sxs-lookup"><span data-stu-id="52c41-307">These values set the start time to 12:00PM on May 10, 2017, the end time to May 12, 2017.</span></span> <span data-ttu-id="52c41-308">L’intervalle d’exécution de ce travail est quotidien.</span><span class="sxs-lookup"><span data-stu-id="52c41-308">The interval for running this job daily.</span></span> <span data-ttu-id="52c41-309">La fréquence est exprimée en minutes, par conséquent, 24 heures x 60 minutes = 1 440 minutes.</span><span class="sxs-lookup"><span data-stu-id="52c41-309">The frequency is in minutes, so 24 hours x 60 minutes = 1440 minutes.</span></span> <span data-ttu-id="52c41-310">Enfin, le fuseau horaire est défini au format UTC.</span><span class="sxs-lookup"><span data-stu-id="52c41-310">Finally, the timezone is set to UTC.</span></span>
+       <span data-ttu-id="088be-307">Ces valeurs définies hello début heure too12 : 00 PM sur 10 mai 2017, hello fin heure tooMay 12, 2017.</span><span class="sxs-lookup"><span data-stu-id="088be-307">These values set hello start time too12:00PM on May 10, 2017, hello end time tooMay 12, 2017.</span></span> <span data-ttu-id="088be-308">Intervalle Hello pour l’exécution de ce travail tous les jours.</span><span class="sxs-lookup"><span data-stu-id="088be-308">hello interval for running this job daily.</span></span> <span data-ttu-id="088be-309">fréquence de Hello est exprimée en minutes, par conséquent, 24 heures x 60 minutes = 1440 minutes.</span><span class="sxs-lookup"><span data-stu-id="088be-309">hello frequency is in minutes, so 24 hours x 60 minutes = 1440 minutes.</span></span> <span data-ttu-id="088be-310">Enfin, hello timezone a la valeur tooUTC.</span><span class="sxs-lookup"><span data-stu-id="088be-310">Finally, hello timezone is set tooUTC.</span></span>
 
-5. <span data-ttu-id="52c41-311">Utilisez Ctrl-X, puis **Y** et **Entrée** pour enregistrer le fichier.</span><span class="sxs-lookup"><span data-stu-id="52c41-311">Use Ctrl-X, then **Y** and **Enter** to save the file.</span></span>
+5. <span data-ttu-id="088be-311">Utilisez Ctrl-X, puis **Y** et **entrée** fichier hello de toosave.</span><span class="sxs-lookup"><span data-stu-id="088be-311">Use Ctrl-X, then **Y** and **Enter** toosave hello file.</span></span>
 
-6. <span data-ttu-id="52c41-312">Utilisez la commande suivante pour exécuter le travail :</span><span class="sxs-lookup"><span data-stu-id="52c41-312">To run the job, use the following command:</span></span>
+6. <span data-ttu-id="088be-312">travail de hello toorun, hello utilisez commande suivante :</span><span class="sxs-lookup"><span data-stu-id="088be-312">toorun hello job, use hello following command:</span></span>
 
     ```
     oozie job -config job.xml -run
     ```
 
-    <span data-ttu-id="52c41-313">Cette commande envoie et démarre le travail.</span><span class="sxs-lookup"><span data-stu-id="52c41-313">This command submits and starts the job.</span></span>
+    <span data-ttu-id="088be-313">Cette commande envoie et démarre le travail de hello.</span><span class="sxs-lookup"><span data-stu-id="088be-313">This command submits and starts hello job.</span></span>
 
-7. <span data-ttu-id="52c41-314">Si vous accédez à l’interface utilisateur web Oozie et sélectionnez l’onglet **Travaux du coordinateur**, vous obtenez des informations semblables à l’image suivante :</span><span class="sxs-lookup"><span data-stu-id="52c41-314">If you visit the Oozie Web UI and select the **Coordinator Jobs** tab, you see information similar to the following image:</span></span>
+7. <span data-ttu-id="088be-314">Si vous visitez hello l’interface utilisateur Web de Oozie et sélectionnez hello **travaux du coordinateur** onglet, vous voyez toohello similaire à informations suivant image :</span><span class="sxs-lookup"><span data-stu-id="088be-314">If you visit hello Oozie Web UI and select hello **Coordinator Jobs** tab, you see information similar toohello following image:</span></span>
 
     ![Onglet Travaux du coordinateur](./media/hdinsight-use-oozie-linux-mac/coordinatorjob.png)
 
-    <span data-ttu-id="52c41-316">L’entrée **Next Materialization** (Matérialisation suivante) indique l’heure de la prochaine exécution du travail.</span><span class="sxs-lookup"><span data-stu-id="52c41-316">The **Next Materialization** entry contains the next time that the job runs.</span></span>
+    <span data-ttu-id="088be-316">Hello **matérialisation suivant** entrée contient hello prochaine hello s’exécute.</span><span class="sxs-lookup"><span data-stu-id="088be-316">hello **Next Materialization** entry contains hello next time that hello job runs.</span></span>
 
-8. <span data-ttu-id="52c41-317">De même que pour le workflow précédent, lorsque vous sélectionnez l’entrée du travail dans l’interface utilisateur web, des informations sur le travail s’affichent :</span><span class="sxs-lookup"><span data-stu-id="52c41-317">Similar to the earlier workflow job, selecting the job entry in the web UI displays information on the job:</span></span>
+8. <span data-ttu-id="088be-317">Toohello similaire précédente tâche de workflow, sélection d’entrée de tâche hello dans l’interface utilisateur web de hello affiche des informations sur les travaux hello :</span><span class="sxs-lookup"><span data-stu-id="088be-317">Similar toohello earlier workflow job, selecting hello job entry in hello web UI displays information on hello job:</span></span>
 
     ![Informations sur les travaux du coordinateur](./media/hdinsight-use-oozie-linux-mac/coordinatorjobinfo.png)
 
     > [!NOTE]
-    > <span data-ttu-id="52c41-319">L’image affiche uniquement les exécutions réussies du travail, et non les actions individuelles dans le workflow planifié.</span><span class="sxs-lookup"><span data-stu-id="52c41-319">This image only shows successful runs of the job, not individual actions within the scheduled workflow.</span></span> <span data-ttu-id="52c41-320">Pour voir ces dernières, sélectionnez l’une des entrées **Action** .</span><span class="sxs-lookup"><span data-stu-id="52c41-320">To see that, select one of the **Action** entries.</span></span>
+    > <span data-ttu-id="088be-319">Cette image montre uniquement réussies exécutions du travail de hello, pas les actions au sein du flux de travail hello planifiée.</span><span class="sxs-lookup"><span data-stu-id="088be-319">This image only shows successful runs of hello job, not individual actions within hello scheduled workflow.</span></span> <span data-ttu-id="088be-320">toosee qui, sélectionnez une des hello **Action** entrées.</span><span class="sxs-lookup"><span data-stu-id="088be-320">toosee that, select one of hello **Action** entries.</span></span>
 
     ![Informations sur l’action](./media/hdinsight-use-oozie-linux-mac/coordinatoractionjob.png)
 
-## <a name="troubleshooting"></a><span data-ttu-id="52c41-322">Résolution des problèmes</span><span class="sxs-lookup"><span data-stu-id="52c41-322">Troubleshooting</span></span>
+## <a name="troubleshooting"></a><span data-ttu-id="088be-322">Résolution des problèmes</span><span class="sxs-lookup"><span data-stu-id="088be-322">Troubleshooting</span></span>
 
-<span data-ttu-id="52c41-323">L’interface utilisateur Oozie vous permet d’afficher les journaux Oozie.</span><span class="sxs-lookup"><span data-stu-id="52c41-323">The Oozie UI allows you to view Oozie logs.</span></span> <span data-ttu-id="52c41-324">Elle contient également des liens vers les journaux JobTracker pour les tâches MapReduce démarrées par le workflow.</span><span class="sxs-lookup"><span data-stu-id="52c41-324">It also contains links to JobTracker logs for MapReduce tasks started by the workflow.</span></span> <span data-ttu-id="52c41-325">Le modèle pour la résolution des problèmes doit être le suivant :</span><span class="sxs-lookup"><span data-stu-id="52c41-325">The pattern for troubleshooting should be:</span></span>
+<span data-ttu-id="088be-323">Hello Oozie UI vous permet de tooview Oozie journaux.</span><span class="sxs-lookup"><span data-stu-id="088be-323">hello Oozie UI allows you tooview Oozie logs.</span></span> <span data-ttu-id="088be-324">Il contient également les journaux de tooJobTracker des liens pour les tâches MapReduce démarrés par le flux de travail hello.</span><span class="sxs-lookup"><span data-stu-id="088be-324">It also contains links tooJobTracker logs for MapReduce tasks started by hello workflow.</span></span> <span data-ttu-id="088be-325">modèle de Hello pour le dépannage doit être :</span><span class="sxs-lookup"><span data-stu-id="088be-325">hello pattern for troubleshooting should be:</span></span>
 
-1. <span data-ttu-id="52c41-326">Afficher le travail dans l’interface utilisateur web Oozie.</span><span class="sxs-lookup"><span data-stu-id="52c41-326">View the job in Oozie Web UI.</span></span>
+1. <span data-ttu-id="088be-326">Afficher le travail hello dans l’interface utilisateur Web de Oozie.</span><span class="sxs-lookup"><span data-stu-id="088be-326">View hello job in Oozie Web UI.</span></span>
 
-2. <span data-ttu-id="52c41-327">En cas d’erreur ou d’échec d’une action spécifique, sélectionnez l’action pour voir si le champ **Message d’erreur** fournit plus d’informations sur l’échec.</span><span class="sxs-lookup"><span data-stu-id="52c41-327">If there is an error or failure for a specific action, select the action to see if the **Error Message** field provides more information on the failure.</span></span>
+2. <span data-ttu-id="088be-327">S’il existe une erreur ou un échec d’une action spécifique, sélectionnez hello action toosee si hello **Message d’erreur** champ fournit plus d’informations en cas d’échec hello.</span><span class="sxs-lookup"><span data-stu-id="088be-327">If there is an error or failure for a specific action, select hello action toosee if hello **Error Message** field provides more information on hello failure.</span></span>
 
-3. <span data-ttu-id="52c41-328">Si elle est disponible, utilisez l’URL de l’action pour afficher des détails supplémentaires (tels que les journaux JobTracker) pour l’action.</span><span class="sxs-lookup"><span data-stu-id="52c41-328">If available, use the URL from the action to view more details (such as JobTracker logs) for the action.</span></span>
+3. <span data-ttu-id="088be-328">S’il est disponible, utilisez URL hello hello action tooview plus de détails (par exemple, les journaux JobTracker) pour l’action de hello.</span><span class="sxs-lookup"><span data-stu-id="088be-328">If available, use hello URL from hello action tooview more details (such as JobTracker logs) for hello action.</span></span>
 
-<span data-ttu-id="52c41-329">Voici des erreurs spécifiques que vous pouvez rencontrer avec une description de la marche à suivre pour les résoudre.</span><span class="sxs-lookup"><span data-stu-id="52c41-329">The following are specific errors you may encounter, and how to resolve them.</span></span>
+<span data-ttu-id="088be-329">Hello suivantes sont des erreurs spécifiques, vous pouvez rencontrer, et comment tooresolve les.</span><span class="sxs-lookup"><span data-stu-id="088be-329">hello following are specific errors you may encounter, and how tooresolve them.</span></span>
 
-### <a name="ja009-cannot-initialize-cluster"></a><span data-ttu-id="52c41-330">JA009 : Cannot initialize cluster (Impossible d'initialiser le cluster)</span><span class="sxs-lookup"><span data-stu-id="52c41-330">JA009: Cannot initialize cluster</span></span>
+### <a name="ja009-cannot-initialize-cluster"></a><span data-ttu-id="088be-330">JA009 : Cannot initialize cluster (Impossible d'initialiser le cluster)</span><span class="sxs-lookup"><span data-stu-id="088be-330">JA009: Cannot initialize cluster</span></span>
 
-<span data-ttu-id="52c41-331">**Symptômes** : l’état du travail devient **SUSPENDED**.</span><span class="sxs-lookup"><span data-stu-id="52c41-331">**Symptoms**: The job status changes to **SUSPENDED**.</span></span> <span data-ttu-id="52c41-332">Dans les détails du travail, **START_MANUAL** est affiché pour l’état de RunHiveScript.</span><span class="sxs-lookup"><span data-stu-id="52c41-332">Details for the job show the RunHiveScript status as **START_MANUAL**.</span></span> <span data-ttu-id="52c41-333">Lorsque vous sélectionnez l’action, le message d’erreur suivant apparaît :</span><span class="sxs-lookup"><span data-stu-id="52c41-333">Selecting the action displays the following error message:</span></span>
+<span data-ttu-id="088be-331">**Symptômes**: hello les changements d’état de tâche trop**SUSPENDED**.</span><span class="sxs-lookup"><span data-stu-id="088be-331">**Symptoms**: hello job status changes too**SUSPENDED**.</span></span> <span data-ttu-id="088be-332">Détails de tâche de hello indiquent l’état RunHiveScript hello **START_MANUAL**.</span><span class="sxs-lookup"><span data-stu-id="088be-332">Details for hello job show hello RunHiveScript status as **START_MANUAL**.</span></span> <span data-ttu-id="088be-333">Sélection de l’action de hello affiche hello message d’erreur suivant :</span><span class="sxs-lookup"><span data-stu-id="088be-333">Selecting hello action displays hello following error message:</span></span>
 
     JA009: Cannot initialize Cluster. Please check your configuration for map
 
-<span data-ttu-id="52c41-334">**Cause** : les adresses WASB utilisées dans le fichier **job.xml** ne contiennent pas le conteneur de stockage ou le nom du compte de stockage.</span><span class="sxs-lookup"><span data-stu-id="52c41-334">**Cause**: The WASB addresses used in the **job.xml** file do not contain the storage container or storage account name.</span></span> <span data-ttu-id="52c41-335">Le format d’adresse WASB doit être `wasb://containername@storageaccountname.blob.core.windows.net`.</span><span class="sxs-lookup"><span data-stu-id="52c41-335">The WASB address format must be `wasb://containername@storageaccountname.blob.core.windows.net`.</span></span>
+<span data-ttu-id="088be-334">**Cause**: hello adresses WASB utilisés Bonjour **job.xml** fichier ne contiennent pas de conteneur de stockage hello ou nom de compte de stockage.</span><span class="sxs-lookup"><span data-stu-id="088be-334">**Cause**: hello WASB addresses used in hello **job.xml** file do not contain hello storage container or storage account name.</span></span> <span data-ttu-id="088be-335">format d’adresse Hello WASB doit être `wasb://containername@storageaccountname.blob.core.windows.net`.</span><span class="sxs-lookup"><span data-stu-id="088be-335">hello WASB address format must be `wasb://containername@storageaccountname.blob.core.windows.net`.</span></span>
 
-<span data-ttu-id="52c41-336">**Résolution**: modifiez les adresses WASB utilisées par le travail.</span><span class="sxs-lookup"><span data-stu-id="52c41-336">**Resolution**: Change the WASB addresses used by the job.</span></span>
+<span data-ttu-id="088be-336">**Résolution**: modifier les adresses hello WASB utilisés par le travail de hello.</span><span class="sxs-lookup"><span data-stu-id="088be-336">**Resolution**: Change hello WASB addresses used by hello job.</span></span>
 
-### <a name="ja002-oozie-is-not-allowed-to-impersonate-ltuser"></a><span data-ttu-id="52c41-337">JA002 : Oozie is not allowed to impersonate &lt;USER> (Oozie ne peut pas emprunter l’identité USER>)</span><span class="sxs-lookup"><span data-stu-id="52c41-337">JA002: Oozie is not allowed to impersonate &lt;USER></span></span>
+### <a name="ja002-oozie-is-not-allowed-tooimpersonate-ltuser"></a><span data-ttu-id="088be-337">JA002 : Oozie n’est pas autorisée tooimpersonate &lt;utilisateur ></span><span class="sxs-lookup"><span data-stu-id="088be-337">JA002: Oozie is not allowed tooimpersonate &lt;USER></span></span>
 
-<span data-ttu-id="52c41-338">**Symptômes** : l’état du travail devient **SUSPENDED**.</span><span class="sxs-lookup"><span data-stu-id="52c41-338">**Symptoms**: The job status changes to **SUSPENDED**.</span></span> <span data-ttu-id="52c41-339">Dans les détails du travail, **START_MANUAL** est affiché pour l’état de RunHiveScript.</span><span class="sxs-lookup"><span data-stu-id="52c41-339">Details for the job show the RunHiveScript status as **START_MANUAL**.</span></span> <span data-ttu-id="52c41-340">Lorsque vous sélectionnez l’action, le message d’erreur suivant apparaît :</span><span class="sxs-lookup"><span data-stu-id="52c41-340">Selecting the action shows the following error message:</span></span>
+<span data-ttu-id="088be-338">**Symptômes**: hello les changements d’état de tâche trop**SUSPENDED**.</span><span class="sxs-lookup"><span data-stu-id="088be-338">**Symptoms**: hello job status changes too**SUSPENDED**.</span></span> <span data-ttu-id="088be-339">Détails de tâche de hello indiquent l’état RunHiveScript hello **START_MANUAL**.</span><span class="sxs-lookup"><span data-stu-id="088be-339">Details for hello job show hello RunHiveScript status as **START_MANUAL**.</span></span> <span data-ttu-id="088be-340">Action de hello cochant hello message d’erreur suivant :</span><span class="sxs-lookup"><span data-stu-id="088be-340">Selecting hello action shows hello following error message:</span></span>
 
-    JA002: User: oozie is not allowed to impersonate <USER>
+    JA002: User: oozie is not allowed tooimpersonate <USER>
 
-<span data-ttu-id="52c41-341">**Cause**: les paramètres d’autorisation actuels ne permettent pas à Oozie d’emprunter l’identité du compte d’utilisateur spécifié.</span><span class="sxs-lookup"><span data-stu-id="52c41-341">**Cause**: Current permission settings do not allow Oozie to impersonate the specified user account.</span></span>
+<span data-ttu-id="088be-341">**Cause**: paramètres d’autorisation actuels n’autorisent pas Oozie tooimpersonate hello de compte d’utilisateur spécifié.</span><span class="sxs-lookup"><span data-stu-id="088be-341">**Cause**: Current permission settings do not allow Oozie tooimpersonate hello specified user account.</span></span>
 
-<span data-ttu-id="52c41-342">**Résolution** : Oozie est autorisé à emprunter l’identité des utilisateurs dans le groupe **users**.</span><span class="sxs-lookup"><span data-stu-id="52c41-342">**Resolution**: Oozie is allowed to impersonate users in the **users** group.</span></span> <span data-ttu-id="52c41-343">Utilisez le `groups USERNAME` pour voir les groupes dont le compte d’utilisateur est membre.</span><span class="sxs-lookup"><span data-stu-id="52c41-343">Use the `groups USERNAME` to see the groups that the user account is a member of.</span></span> <span data-ttu-id="52c41-344">Si l’utilisateur n’est pas membre du groupe **users** , utilisez la commande suivante pour ajouter l’utilisateur au groupe :</span><span class="sxs-lookup"><span data-stu-id="52c41-344">If the user is not a member of the **users** group, use the following command to add the user to the group:</span></span>
+<span data-ttu-id="088be-342">**Résolution**: Oozie est autorisé aux utilisateurs de tooimpersonate Bonjour **utilisateurs** groupe.</span><span class="sxs-lookup"><span data-stu-id="088be-342">**Resolution**: Oozie is allowed tooimpersonate users in hello **users** group.</span></span> <span data-ttu-id="088be-343">Hello d’utilisation `groups USERNAME` groupes hello toosee hello du compte d’utilisateur est membre.</span><span class="sxs-lookup"><span data-stu-id="088be-343">Use hello `groups USERNAME` toosee hello groups that hello user account is a member of.</span></span> <span data-ttu-id="088be-344">Si l’utilisateur de hello n’est pas un membre de hello **utilisateurs** groupe, utilisez hello suivant du groupe de commandes tooadd hello utilisateur toohello :</span><span class="sxs-lookup"><span data-stu-id="088be-344">If hello user is not a member of hello **users** group, use hello following command tooadd hello user toohello group:</span></span>
 
     sudo adduser USERNAME users
 
 > [!NOTE]
-> <span data-ttu-id="52c41-345">Il peut se passer plusieurs minutes avant que HDInsight reconnaisse que l'utilisateur a été ajouté au groupe.</span><span class="sxs-lookup"><span data-stu-id="52c41-345">It may take several minutes before HDInsight recognizes that the user has been added to the group.</span></span>
+> <span data-ttu-id="088be-345">Il peut prendre plusieurs minutes avant de HDInsight reconnaît que toohello groupe a été ajouté à cet utilisateur hello.</span><span class="sxs-lookup"><span data-stu-id="088be-345">It may take several minutes before HDInsight recognizes that hello user has been added toohello group.</span></span>
 
-### <a name="launcher-error-sqoop"></a><span data-ttu-id="52c41-346">Launcher ERROR (Sqoop) (Erreur du lanceur, Sqoop)</span><span class="sxs-lookup"><span data-stu-id="52c41-346">Launcher ERROR (Sqoop)</span></span>
+### <a name="launcher-error-sqoop"></a><span data-ttu-id="088be-346">Launcher ERROR (Sqoop) (Erreur du lanceur, Sqoop)</span><span class="sxs-lookup"><span data-stu-id="088be-346">Launcher ERROR (Sqoop)</span></span>
 
-<span data-ttu-id="52c41-347">**Symptômes** : l’état du travail devient **KILLED**.</span><span class="sxs-lookup"><span data-stu-id="52c41-347">**Symptoms**: The job status changes to **KILLED**.</span></span> <span data-ttu-id="52c41-348">Les détails du travail affichent **ERROR** pour l’état de RunSqoopExport.</span><span class="sxs-lookup"><span data-stu-id="52c41-348">Details for the job show the RunSqoopExport status as **ERROR**.</span></span> <span data-ttu-id="52c41-349">Lorsque vous sélectionnez l’action, le message d’erreur suivant apparaît :</span><span class="sxs-lookup"><span data-stu-id="52c41-349">Selecting the action shows the following error message:</span></span>
+<span data-ttu-id="088be-347">**Symptômes**: hello les changements d’état de tâche trop**KILLED**.</span><span class="sxs-lookup"><span data-stu-id="088be-347">**Symptoms**: hello job status changes too**KILLED**.</span></span> <span data-ttu-id="088be-348">Détails de tâche de hello indiquent l’état RunSqoopExport hello **erreur**.</span><span class="sxs-lookup"><span data-stu-id="088be-348">Details for hello job show hello RunSqoopExport status as **ERROR**.</span></span> <span data-ttu-id="088be-349">Action de hello cochant hello message d’erreur suivant :</span><span class="sxs-lookup"><span data-stu-id="088be-349">Selecting hello action shows hello following error message:</span></span>
 
     Launcher ERROR, reason: Main class [org.apache.oozie.action.hadoop.SqoopMain], exit code [1]
 
-<span data-ttu-id="52c41-350">**Cause**: Sqoop ne peut pas charger le pilote de base de données requis pour accéder à la base de données.</span><span class="sxs-lookup"><span data-stu-id="52c41-350">**Cause**: Sqoop is unable to load the database driver required to access the database.</span></span>
+<span data-ttu-id="088be-350">**Cause**: Sqoop est impossible tooload hello pilote requis tooaccess hello base de données.</span><span class="sxs-lookup"><span data-stu-id="088be-350">**Cause**: Sqoop is unable tooload hello database driver required tooaccess hello database.</span></span>
 
-<span data-ttu-id="52c41-351">**Résolution** : lors de l’utilisation de Sqoop à partir d’un travail Oozie, vous devez inclure le pilote de base de données avec les autres ressources (telles que workflow.xml) utilisées par le travail.</span><span class="sxs-lookup"><span data-stu-id="52c41-351">**Resolution**: When using Sqoop from an Oozie job, you must include the database driver with the other resources (such as the workflow.xml) used by the job.</span></span> <span data-ttu-id="52c41-352">Vous devez également référencer l’archive contenant le pilote de base de données à partir de la section `<sqoop>...</sqoop>` de workflow.xml.</span><span class="sxs-lookup"><span data-stu-id="52c41-352">Also Reference the archive containing the database driver from the `<sqoop>...</sqoop>` section of the workflow.xml.</span></span>
+<span data-ttu-id="088be-351">**Résolution**: lorsque vous utilisez Sqoop à partir d’un travail Oozie, vous devez inclure pilote de base de données hello avec hello autres ressources (par exemple hello workflow.xml) utilisés par le travail de hello.</span><span class="sxs-lookup"><span data-stu-id="088be-351">**Resolution**: When using Sqoop from an Oozie job, you must include hello database driver with hello other resources (such as hello workflow.xml) used by hello job.</span></span> <span data-ttu-id="088be-352">Font également référence archive hello contenant le pilote de base de données hello de hello `<sqoop>...</sqoop>` section de hello workflow.xml.</span><span class="sxs-lookup"><span data-stu-id="088be-352">Also Reference hello archive containing hello database driver from hello `<sqoop>...</sqoop>` section of hello workflow.xml.</span></span>
 
-<span data-ttu-id="52c41-353">Par exemple, pour le travail de ce document, vous utiliseriez les étapes suivantes :</span><span class="sxs-lookup"><span data-stu-id="52c41-353">For example, for the job in this document, you would use the following steps:</span></span>
+<span data-ttu-id="088be-353">Par exemple, pour la tâche hello dans ce document, vous utiliseriez hello comme suit :</span><span class="sxs-lookup"><span data-stu-id="088be-353">For example, for hello job in this document, you would use hello following steps:</span></span>
 
-1. <span data-ttu-id="52c41-354">Copier le fichier sqljdbc4.1.jar dans le répertoire /tutorials/useoozie :</span><span class="sxs-lookup"><span data-stu-id="52c41-354">Copy the sqljdbc4.1.jar file to the /tutorials/useoozie directory:</span></span>
+1. <span data-ttu-id="088be-354">Copie hello sqljdbc4.1.jar toohello /tutorials/useoozie répertoire du fichier :</span><span class="sxs-lookup"><span data-stu-id="088be-354">Copy hello sqljdbc4.1.jar file toohello /tutorials/useoozie directory:</span></span>
 
     ```
     hdfs dfs -put /usr/share/java/sqljdbc_4.1/enu/sqljdbc41.jar /tutorials/useoozie/sqljdbc41.jar
     ```
 
-2. <span data-ttu-id="52c41-355">Modifier le fichier workflow.xml pour ajouter le code XML suivant sur une nouvelle ligne au-dessus de `</sqoop>` :</span><span class="sxs-lookup"><span data-stu-id="52c41-355">Modify the workflow.xml to add the following XML on a new line above `</sqoop>`:</span></span>
+2. <span data-ttu-id="088be-355">Modifier le XML suivant sur une nouvelle ligne au-dessus de Bonjour workflow.xml tooadd Bonjour `</sqoop>`:</span><span class="sxs-lookup"><span data-stu-id="088be-355">Modify hello workflow.xml tooadd hello following XML on a new line above `</sqoop>`:</span></span>
 
     ```xml
     <archive>sqljdbc41.jar</archive>
     ```
 
-## <a name="next-steps"></a><span data-ttu-id="52c41-356">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="52c41-356">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="088be-356">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="088be-356">Next steps</span></span>
 
-<span data-ttu-id="52c41-357">Dans ce didacticiel, vous avez appris comment définir un flux de travail Oozie et comment exécuter un travail Oozie.</span><span class="sxs-lookup"><span data-stu-id="52c41-357">In this tutorial, you learned how to define an Oozie workflow and how to run an Oozie job.</span></span> <span data-ttu-id="52c41-358">Pour en savoir plus sur l’utilisation de HDInsight, consultez les articles suivants :</span><span class="sxs-lookup"><span data-stu-id="52c41-358">To learn more about working with HDInsight, see the following articles:</span></span>
+<span data-ttu-id="088be-357">Dans ce didacticiel, vous avez appris comment toodefine Oozie d’un flux de travail et comment toorun un travail Oozie.</span><span class="sxs-lookup"><span data-stu-id="088be-357">In this tutorial, you learned how toodefine an Oozie workflow and how toorun an Oozie job.</span></span> <span data-ttu-id="088be-358">toolearn en savoir plus sur l’utilisation de HDInsight, consultez hello suivant des articles :</span><span class="sxs-lookup"><span data-stu-id="088be-358">toolearn more about working with HDInsight, see hello following articles:</span></span>
 
-* <span data-ttu-id="52c41-359">[Utilisation du coordinateur Oozie basé sur le temps avec HDInsight][hdinsight-oozie-coordinator-time]</span><span class="sxs-lookup"><span data-stu-id="52c41-359">[Use time-based Oozie Coordinator with HDInsight][hdinsight-oozie-coordinator-time]</span></span>
-* <span data-ttu-id="52c41-360">[Importation de données pour les tâches Hadoop dans HDInsight][hdinsight-upload-data]</span><span class="sxs-lookup"><span data-stu-id="52c41-360">[Upload data for Hadoop jobs in HDInsight][hdinsight-upload-data]</span></span>
-* <span data-ttu-id="52c41-361">[Utilisation de Sqoop avec Hadoop dans HDInsight][hdinsight-use-sqoop]</span><span class="sxs-lookup"><span data-stu-id="52c41-361">[Use Sqoop with Hadoop in HDInsight][hdinsight-use-sqoop]</span></span>
-* <span data-ttu-id="52c41-362">[Utilisation de Hive avec Hadoop sur HDInsight][hdinsight-use-hive]</span><span class="sxs-lookup"><span data-stu-id="52c41-362">[Use Hive with Hadoop on HDInsight][hdinsight-use-hive]</span></span>
-* <span data-ttu-id="52c41-363">[Utilisation de Pig avec Hadoop sur HDInsight][hdinsight-use-pig]</span><span class="sxs-lookup"><span data-stu-id="52c41-363">[Use Pig with Hadoop on HDInsight][hdinsight-use-pig]</span></span>
-* <span data-ttu-id="52c41-364">[Développement de programmes MapReduce en Java pour HDInsight][hdinsight-develop-mapreduce]</span><span class="sxs-lookup"><span data-stu-id="52c41-364">[Develop Java MapReduce programs for HDInsight][hdinsight-develop-mapreduce]</span></span>
+* <span data-ttu-id="088be-359">[Utilisation du coordinateur Oozie basé sur le temps avec HDInsight][hdinsight-oozie-coordinator-time]</span><span class="sxs-lookup"><span data-stu-id="088be-359">[Use time-based Oozie Coordinator with HDInsight][hdinsight-oozie-coordinator-time]</span></span>
+* <span data-ttu-id="088be-360">[Importation de données pour les tâches Hadoop dans HDInsight][hdinsight-upload-data]</span><span class="sxs-lookup"><span data-stu-id="088be-360">[Upload data for Hadoop jobs in HDInsight][hdinsight-upload-data]</span></span>
+* <span data-ttu-id="088be-361">[Utilisation de Sqoop avec Hadoop dans HDInsight][hdinsight-use-sqoop]</span><span class="sxs-lookup"><span data-stu-id="088be-361">[Use Sqoop with Hadoop in HDInsight][hdinsight-use-sqoop]</span></span>
+* <span data-ttu-id="088be-362">[Utilisation de Hive avec Hadoop sur HDInsight][hdinsight-use-hive]</span><span class="sxs-lookup"><span data-stu-id="088be-362">[Use Hive with Hadoop on HDInsight][hdinsight-use-hive]</span></span>
+* <span data-ttu-id="088be-363">[Utilisation de Pig avec Hadoop sur HDInsight][hdinsight-use-pig]</span><span class="sxs-lookup"><span data-stu-id="088be-363">[Use Pig with Hadoop on HDInsight][hdinsight-use-pig]</span></span>
+* <span data-ttu-id="088be-364">[Développement de programmes MapReduce en Java pour HDInsight][hdinsight-develop-mapreduce]</span><span class="sxs-lookup"><span data-stu-id="088be-364">[Develop Java MapReduce programs for HDInsight][hdinsight-develop-mapreduce]</span></span>
 
 [hdinsight-cmdlets-download]: http://go.microsoft.com/fwlink/?LinkID=325563
 [azure-data-factory-pig-hive]: ../data-factory/data-factory-data-transformation-activities.md

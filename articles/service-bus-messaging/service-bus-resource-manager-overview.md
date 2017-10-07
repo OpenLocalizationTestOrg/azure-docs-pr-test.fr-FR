@@ -1,6 +1,6 @@
 ---
-title: "Création de ressources Azure Service Bus à l’aide de modèles Azure Resource Manager | Microsoft Docs"
-description: "Utilisez les modèles Azure Resource Manager pour automatiser la création de ressources Service Bus"
+title: "ressources d’Azure Service Bus aaaCreate à l’aide de modèles Azure Resource Manager | Documents Microsoft"
+description: "Utilisez Azure Resource Manager modèles tooautomate hello la création de ressources de Service Bus"
 services: service-bus-messaging
 documentationcenter: .net
 author: sethmanheim
@@ -14,54 +14,54 @@ ms.tgt_pltfrm: dotnet
 ms.workload: na
 ms.date: 08/07/2017
 ms.author: sethm
-ms.openlocfilehash: c8142d8edfd3a527b13d655bac21acf5332f2d14
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: e539902cae307b63ae7c332580e2064761331ec5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-service-bus-resources-using-azure-resource-manager-templates"></a><span data-ttu-id="f5d06-103">Création de ressources Service Bus à l’aide de modèles Azure Resource Manager</span><span class="sxs-lookup"><span data-stu-id="f5d06-103">Create Service Bus resources using Azure Resource Manager templates</span></span>
+# <a name="create-service-bus-resources-using-azure-resource-manager-templates"></a><span data-ttu-id="369bf-103">Création de ressources Service Bus à l’aide de modèles Azure Resource Manager</span><span class="sxs-lookup"><span data-stu-id="369bf-103">Create Service Bus resources using Azure Resource Manager templates</span></span>
 
-<span data-ttu-id="f5d06-104">Cet article décrit comment créer et déployer des ressources Service Bus à l'aide de modèles Azure Resource Manager, de PowerShell et du fournisseur de ressources Service Bus.</span><span class="sxs-lookup"><span data-stu-id="f5d06-104">This article describes how to create and deploy Service Bus resources using Azure Resource Manager templates, PowerShell, and the Service Bus resource provider.</span></span>
+<span data-ttu-id="369bf-104">Cet article décrit comment toocreate et déployer des ressources Service Bus à l’aide de modèles Azure Resource Manager, PowerShell et fournisseur de ressources de Service Bus hello.</span><span class="sxs-lookup"><span data-stu-id="369bf-104">This article describes how toocreate and deploy Service Bus resources using Azure Resource Manager templates, PowerShell, and hello Service Bus resource provider.</span></span>
 
-<span data-ttu-id="f5d06-105">Les modèles Azure Resource Manager vous permettent de définir les ressources à déployer pour une solution et de spécifier les paramètres et variables qui permettent d'entrer des valeurs pour les différents environnements.</span><span class="sxs-lookup"><span data-stu-id="f5d06-105">Azure Resource Manager templates help you define the resources to deploy for a solution, and to specify parameters and variables that enable you to input values for different environments.</span></span> <span data-ttu-id="f5d06-106">Le modèle se compose d’un JSON et d’expressions que vous pouvez utiliser pour construire des valeurs pour votre déploiement.</span><span class="sxs-lookup"><span data-stu-id="f5d06-106">The template consists of JSON and expressions that you can use to construct values for your deployment.</span></span> <span data-ttu-id="f5d06-107">Pour plus d’informations sur l’écriture de modèles Azure Resource Manager et sur le format du modèle, consultez [Structure et syntaxe de modèles Azure Resource Manager](../azure-resource-manager/resource-group-authoring-templates.md).</span><span class="sxs-lookup"><span data-stu-id="f5d06-107">For detailed information about writing Azure Resource Manager templates, and a discussion of the template format, see [structure and syntax of Azure Resource Manager templates](../azure-resource-manager/resource-group-authoring-templates.md).</span></span>
+<span data-ttu-id="369bf-105">Modèles de gestionnaire de ressources Azure vous permettent de définir toodeploy de ressources hello pour une solution et les paramètres toospecify et les variables qui vous permettent de valeurs tooinput pour différents environnements.</span><span class="sxs-lookup"><span data-stu-id="369bf-105">Azure Resource Manager templates help you define hello resources toodeploy for a solution, and toospecify parameters and variables that enable you tooinput values for different environments.</span></span> <span data-ttu-id="369bf-106">modèle de Hello se compose de JSON et les expressions que vous pouvez utiliser les valeurs tooconstruct pour votre déploiement.</span><span class="sxs-lookup"><span data-stu-id="369bf-106">hello template consists of JSON and expressions that you can use tooconstruct values for your deployment.</span></span> <span data-ttu-id="369bf-107">Pour plus d’informations sur l’écriture de modèles Azure Resource Manager et une description de format de modèle hello, consultez [structure et la syntaxe des modèles Azure Resource Manager](../azure-resource-manager/resource-group-authoring-templates.md).</span><span class="sxs-lookup"><span data-stu-id="369bf-107">For detailed information about writing Azure Resource Manager templates, and a discussion of hello template format, see [structure and syntax of Azure Resource Manager templates](../azure-resource-manager/resource-group-authoring-templates.md).</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="f5d06-108">Les exemples de cet article montrent comment utiliser Azure Resource Manager pour créer un espace de noms et une entité de messagerie (file d'attente) Service Bus.</span><span class="sxs-lookup"><span data-stu-id="f5d06-108">The examples in this article show how to use Azure Resource Manager to create a Service Bus namespace and messaging entity (queue).</span></span> <span data-ttu-id="f5d06-109">Pour accéder à d’autres exemples de modèles, recherchez « Service Bus » dans la [Galerie de modèles de démarrage rapide Azure][Azure Quickstart Templates gallery].</span><span class="sxs-lookup"><span data-stu-id="f5d06-109">For other template examples, visit the [Azure Quickstart Templates gallery][Azure Quickstart Templates gallery] and search for "Service Bus."</span></span>
+> <span data-ttu-id="369bf-108">Hello les exemples de cette montrent l’article comment toouse Azure Resource Manager toocreate un espace de noms Service Bus et la messagerie de l’entité (file d’attente).</span><span class="sxs-lookup"><span data-stu-id="369bf-108">hello examples in this article show how toouse Azure Resource Manager toocreate a Service Bus namespace and messaging entity (queue).</span></span> <span data-ttu-id="369bf-109">Pour obtenir des exemples de modèle, visitez hello [la galerie de modèles de démarrage rapide Azure] [ Azure Quickstart Templates gallery] et recherchez « Service Bus ».</span><span class="sxs-lookup"><span data-stu-id="369bf-109">For other template examples, visit hello [Azure Quickstart Templates gallery][Azure Quickstart Templates gallery] and search for "Service Bus."</span></span>
 >
 >
 
-## <a name="service-bus-resource-manager-templates"></a><span data-ttu-id="f5d06-110">Modèles Resource Manager Service Bus</span><span class="sxs-lookup"><span data-stu-id="f5d06-110">Service Bus Resource Manager templates</span></span>
+## <a name="service-bus-resource-manager-templates"></a><span data-ttu-id="369bf-110">Modèles Resource Manager Service Bus</span><span class="sxs-lookup"><span data-stu-id="369bf-110">Service Bus Resource Manager templates</span></span>
 
-<span data-ttu-id="f5d06-111">Ces modèles Azure Resource Manager Service Bus sont disponibles au téléchargement et au déploiement.</span><span class="sxs-lookup"><span data-stu-id="f5d06-111">These Service Bus Azure Resource Manager templates are available for download and deployment.</span></span> <span data-ttu-id="f5d06-112">Cliquez sur les liens suivants pour plus d'informations sur chacun d’eux, ainsi que des liens vers les modèles sur GitHub :</span><span class="sxs-lookup"><span data-stu-id="f5d06-112">Click the following links for details about each one, with links to the templates on GitHub:</span></span>
+<span data-ttu-id="369bf-111">Ces modèles Azure Resource Manager Service Bus sont disponibles au téléchargement et au déploiement.</span><span class="sxs-lookup"><span data-stu-id="369bf-111">These Service Bus Azure Resource Manager templates are available for download and deployment.</span></span> <span data-ttu-id="369bf-112">Cliquez sur hello suivant les liens pour plus d’informations sur chacune d’elles, avec des modèles de toohello de liens sur GitHub :</span><span class="sxs-lookup"><span data-stu-id="369bf-112">Click hello following links for details about each one, with links toohello templates on GitHub:</span></span>
 
-* [<span data-ttu-id="f5d06-113">Création d'un espace de noms Service Bus</span><span class="sxs-lookup"><span data-stu-id="f5d06-113">Create a Service Bus namespace</span></span>](service-bus-resource-manager-namespace.md)
-* [<span data-ttu-id="f5d06-114">Créer un espace de noms Service Bus avec file d’attente</span><span class="sxs-lookup"><span data-stu-id="f5d06-114">Create a Service Bus namespace with queue</span></span>](service-bus-resource-manager-namespace-queue.md)
-* [<span data-ttu-id="f5d06-115">Créer un espace de noms Service Bus par rubrique et abonnement</span><span class="sxs-lookup"><span data-stu-id="f5d06-115">Create a Service Bus namespace with topic and subscription</span></span>](service-bus-resource-manager-namespace-topic.md)
-* [<span data-ttu-id="f5d06-116">Créer un espace de noms Service Bus avec file d'attente et règle d’autorisation</span><span class="sxs-lookup"><span data-stu-id="f5d06-116">Create a Service Bus namespace with queue and authorization rule</span></span>](service-bus-resource-manager-namespace-auth-rule.md)
-* [<span data-ttu-id="f5d06-117">Créer un modèle d’espace de noms Service Bus avec rubrique, abonnement et règle</span><span class="sxs-lookup"><span data-stu-id="f5d06-117">Create a Service Bus namespace with topic, subscription, and rule</span></span>](service-bus-resource-manager-namespace-topic-with-rule.md)
+* [<span data-ttu-id="369bf-113">Création d'un espace de noms Service Bus</span><span class="sxs-lookup"><span data-stu-id="369bf-113">Create a Service Bus namespace</span></span>](service-bus-resource-manager-namespace.md)
+* [<span data-ttu-id="369bf-114">Créer un espace de noms Service Bus avec file d’attente</span><span class="sxs-lookup"><span data-stu-id="369bf-114">Create a Service Bus namespace with queue</span></span>](service-bus-resource-manager-namespace-queue.md)
+* [<span data-ttu-id="369bf-115">Créer un espace de noms Service Bus par rubrique et abonnement</span><span class="sxs-lookup"><span data-stu-id="369bf-115">Create a Service Bus namespace with topic and subscription</span></span>](service-bus-resource-manager-namespace-topic.md)
+* [<span data-ttu-id="369bf-116">Créer un espace de noms Service Bus avec file d'attente et règle d’autorisation</span><span class="sxs-lookup"><span data-stu-id="369bf-116">Create a Service Bus namespace with queue and authorization rule</span></span>](service-bus-resource-manager-namespace-auth-rule.md)
+* [<span data-ttu-id="369bf-117">Créer un modèle d’espace de noms Service Bus avec rubrique, abonnement et règle</span><span class="sxs-lookup"><span data-stu-id="369bf-117">Create a Service Bus namespace with topic, subscription, and rule</span></span>](service-bus-resource-manager-namespace-topic-with-rule.md)
 
-## <a name="deploy-with-powershell"></a><span data-ttu-id="f5d06-118">Déployer avec PowerShell</span><span class="sxs-lookup"><span data-stu-id="f5d06-118">Deploy with PowerShell</span></span>
+## <a name="deploy-with-powershell"></a><span data-ttu-id="369bf-118">Déployer avec PowerShell</span><span class="sxs-lookup"><span data-stu-id="369bf-118">Deploy with PowerShell</span></span>
 
-<span data-ttu-id="f5d06-119">La procédure suivante décrit comment utiliser PowerShell pour déployer un modèle Azure Resource Manager qui crée un espace de noms Service Bus de niveau **Standard** et une file d’attente au sein de cet espace de noms.</span><span class="sxs-lookup"><span data-stu-id="f5d06-119">The following procedure describes how to use PowerShell to deploy an Azure Resource Manager template that creates a **Standard** tier Service Bus namespace, and a queue within that namespace.</span></span> <span data-ttu-id="f5d06-120">Cet exemple est basé sur le modèle [Créer un espace de noms Service Bus avec file d’attente](https://github.com/Azure/azure-quickstart-templates/tree/master/201-servicebus-create-queue).</span><span class="sxs-lookup"><span data-stu-id="f5d06-120">This example is based on the [Create a Service Bus namespace with queue](https://github.com/Azure/azure-quickstart-templates/tree/master/201-servicebus-create-queue) template.</span></span> <span data-ttu-id="f5d06-121">Le flux de travail est approximativement le suivant :</span><span class="sxs-lookup"><span data-stu-id="f5d06-121">The approximate workflow is as follows:</span></span>
+<span data-ttu-id="369bf-119">Hello procédure suivante décrit comment toouse PowerShell toodeploy un modèle Azure Resource Manager qui crée un **Standard** de niveau espace de noms Service Bus et une file d’attente au sein de cet espace de noms.</span><span class="sxs-lookup"><span data-stu-id="369bf-119">hello following procedure describes how toouse PowerShell toodeploy an Azure Resource Manager template that creates a **Standard** tier Service Bus namespace, and a queue within that namespace.</span></span> <span data-ttu-id="369bf-120">Cet exemple est basé sur hello [créer un espace de noms Service Bus avec la file d’attente](https://github.com/Azure/azure-quickstart-templates/tree/master/201-servicebus-create-queue) modèle.</span><span class="sxs-lookup"><span data-stu-id="369bf-120">This example is based on hello [Create a Service Bus namespace with queue](https://github.com/Azure/azure-quickstart-templates/tree/master/201-servicebus-create-queue) template.</span></span> <span data-ttu-id="369bf-121">flux de travail approximatif Hello est comme suit :</span><span class="sxs-lookup"><span data-stu-id="369bf-121">hello approximate workflow is as follows:</span></span>
 
-1. <span data-ttu-id="f5d06-122">Installez PowerShell.</span><span class="sxs-lookup"><span data-stu-id="f5d06-122">Install PowerShell.</span></span>
-2. <span data-ttu-id="f5d06-123">Créez le modèle et (éventuellement) un fichier de paramètres.</span><span class="sxs-lookup"><span data-stu-id="f5d06-123">Create the template and (optionally) a parameter file.</span></span>
-3. <span data-ttu-id="f5d06-124">Dans PowerShell, connectez-vous à votre compte Azure.</span><span class="sxs-lookup"><span data-stu-id="f5d06-124">In PowerShell, log in to your Azure account.</span></span>
-4. <span data-ttu-id="f5d06-125">Créez un groupe de ressources s'il n'en existe pas.</span><span class="sxs-lookup"><span data-stu-id="f5d06-125">Create a new resource group if one does not exist.</span></span>
-5. <span data-ttu-id="f5d06-126">Testez le déploiement.</span><span class="sxs-lookup"><span data-stu-id="f5d06-126">Test the deployment.</span></span>
-6. <span data-ttu-id="f5d06-127">Si vous le souhaitez, définissez le mode de déploiement.</span><span class="sxs-lookup"><span data-stu-id="f5d06-127">If desired, set the deployment mode.</span></span>
-7. <span data-ttu-id="f5d06-128">Déployez le modèle.</span><span class="sxs-lookup"><span data-stu-id="f5d06-128">Deploy the template.</span></span>
+1. <span data-ttu-id="369bf-122">Installez PowerShell.</span><span class="sxs-lookup"><span data-stu-id="369bf-122">Install PowerShell.</span></span>
+2. <span data-ttu-id="369bf-123">Créer le modèle de hello et (facultativement) d’un fichier de paramètres.</span><span class="sxs-lookup"><span data-stu-id="369bf-123">Create hello template and (optionally) a parameter file.</span></span>
+3. <span data-ttu-id="369bf-124">Dans PowerShell, connectez-vous tooyour compte Azure.</span><span class="sxs-lookup"><span data-stu-id="369bf-124">In PowerShell, log in tooyour Azure account.</span></span>
+4. <span data-ttu-id="369bf-125">Créez un groupe de ressources s'il n'en existe pas.</span><span class="sxs-lookup"><span data-stu-id="369bf-125">Create a new resource group if one does not exist.</span></span>
+5. <span data-ttu-id="369bf-126">Tester le déploiement de hello.</span><span class="sxs-lookup"><span data-stu-id="369bf-126">Test hello deployment.</span></span>
+6. <span data-ttu-id="369bf-127">Si vous le souhaitez, définissez le mode de déploiement hello.</span><span class="sxs-lookup"><span data-stu-id="369bf-127">If desired, set hello deployment mode.</span></span>
+7. <span data-ttu-id="369bf-128">Déployer le modèle de hello.</span><span class="sxs-lookup"><span data-stu-id="369bf-128">Deploy hello template.</span></span>
 
-<span data-ttu-id="f5d06-129">Pour des informations complètes sur le déploiement de modèles Azure Resource Manager, consultez [Déployer des ressources à l’aide de modèles Azure Resource Manager][Deploy resources with Azure Resource Manager templates].</span><span class="sxs-lookup"><span data-stu-id="f5d06-129">For complete information about deploying Azure Resource Manager templates, see [Deploy resources with Azure Resource Manager templates][Deploy resources with Azure Resource Manager templates].</span></span>
+<span data-ttu-id="369bf-129">Pour des informations complètes sur le déploiement de modèles Azure Resource Manager, consultez [Déployer des ressources à l’aide de modèles Azure Resource Manager][Deploy resources with Azure Resource Manager templates].</span><span class="sxs-lookup"><span data-stu-id="369bf-129">For complete information about deploying Azure Resource Manager templates, see [Deploy resources with Azure Resource Manager templates][Deploy resources with Azure Resource Manager templates].</span></span>
 
-### <a name="install-powershell"></a><span data-ttu-id="f5d06-130">Installer PowerShell</span><span class="sxs-lookup"><span data-stu-id="f5d06-130">Install PowerShell</span></span>
+### <a name="install-powershell"></a><span data-ttu-id="369bf-130">Installer PowerShell</span><span class="sxs-lookup"><span data-stu-id="369bf-130">Install PowerShell</span></span>
 
-<span data-ttu-id="f5d06-131">Installez Azure PowerShell en suivant les instructions disponibles dans [Prise en main d’Azure PowerShell](/powershell/azure/get-started-azureps).</span><span class="sxs-lookup"><span data-stu-id="f5d06-131">Install Azure PowerShell by following the instructions in [Getting started with Azure PowerShell](/powershell/azure/get-started-azureps).</span></span>
+<span data-ttu-id="369bf-131">Installez Azure PowerShell en suivant les instructions de hello dans [prise en main d’Azure PowerShell](/powershell/azure/get-started-azureps).</span><span class="sxs-lookup"><span data-stu-id="369bf-131">Install Azure PowerShell by following hello instructions in [Getting started with Azure PowerShell](/powershell/azure/get-started-azureps).</span></span>
 
-### <a name="create-a-template"></a><span data-ttu-id="f5d06-132">Créer un modèle</span><span class="sxs-lookup"><span data-stu-id="f5d06-132">Create a template</span></span>
+### <a name="create-a-template"></a><span data-ttu-id="369bf-132">Créer un modèle</span><span class="sxs-lookup"><span data-stu-id="369bf-132">Create a template</span></span>
 
-<span data-ttu-id="f5d06-133">Clonez ou copiez le modèle [201-servicebus-create-queue](https://github.com/Azure/azure-quickstart-templates/blob/master/201-servicebus-create-queue/azuredeploy.json) à partir de GitHub :</span><span class="sxs-lookup"><span data-stu-id="f5d06-133">Clone or copy the [201-servicebus-create-queue](https://github.com/Azure/azure-quickstart-templates/blob/master/201-servicebus-create-queue/azuredeploy.json) template from GitHub:</span></span>
+<span data-ttu-id="369bf-133">Clone ou copie hello [201-servicebus-créer-file d’attente](https://github.com/Azure/azure-quickstart-templates/blob/master/201-servicebus-create-queue/azuredeploy.json) modèle à partir de GitHub :</span><span class="sxs-lookup"><span data-stu-id="369bf-133">Clone or copy hello [201-servicebus-create-queue](https://github.com/Azure/azure-quickstart-templates/blob/master/201-servicebus-create-queue/azuredeploy.json) template from GitHub:</span></span>
 
 ```json
 {
@@ -71,20 +71,20 @@ ms.lasthandoff: 08/18/2017
         "serviceBusNamespaceName": {
             "type": "string",
             "metadata": {
-                "description": "Name of the Service Bus namespace"
+                "description": "Name of hello Service Bus namespace"
             }
         },
         "serviceBusQueueName": {
             "type": "string",
             "metadata": {
-                "description": "Name of the Queue"
+                "description": "Name of hello Queue"
             }
         },
         "serviceBusApiVersion": {
             "type": "string",
             "defaultValue": "2015-08-01",
             "metadata": {
-                "description": "Service Bus ApiVersion used by the template"
+                "description": "Service Bus ApiVersion used by hello template"
             }
         }
     },
@@ -129,9 +129,9 @@ ms.lasthandoff: 08/18/2017
 }
 ```
 
-### <a name="create-a-parameters-file-optional"></a><span data-ttu-id="f5d06-134">Créer un fichier de paramètres (facultatif)</span><span class="sxs-lookup"><span data-stu-id="f5d06-134">Create a parameters file (optional)</span></span>
+### <a name="create-a-parameters-file-optional"></a><span data-ttu-id="369bf-134">Créer un fichier de paramètres (facultatif)</span><span class="sxs-lookup"><span data-stu-id="369bf-134">Create a parameters file (optional)</span></span>
 
-<span data-ttu-id="f5d06-135">Pour utiliser un fichier de paramètres facultatif, copiez le fichier [201-servicebus-create-queue](https://github.com/Azure/azure-quickstart-templates/blob/master/201-servicebus-create-queue/azuredeploy.parameters.json).</span><span class="sxs-lookup"><span data-stu-id="f5d06-135">To use an optional parameters file, copy the [201-servicebus-create-queue](https://github.com/Azure/azure-quickstart-templates/blob/master/201-servicebus-create-queue/azuredeploy.parameters.json) file.</span></span> <span data-ttu-id="f5d06-136">Remplacez la valeur de `serviceBusNamespaceName` par le nom de l'espace de noms Service Bus que vous souhaitez créer dans ce déploiement, puis remplacez la valeur de `serviceBusQueueName` par le nom de la file d'attente que vous souhaitez créer.</span><span class="sxs-lookup"><span data-stu-id="f5d06-136">Replace the value of `serviceBusNamespaceName` with the name of the Service Bus namespace you want to create in this deployment, and replace the value of `serviceBusQueueName` with the name of the queue you want to create.</span></span>
+<span data-ttu-id="369bf-135">toouse un fichier de paramètres facultatifs, hello de copie [201-servicebus-créer-file d’attente](https://github.com/Azure/azure-quickstart-templates/blob/master/201-servicebus-create-queue/azuredeploy.parameters.json) fichier.</span><span class="sxs-lookup"><span data-stu-id="369bf-135">toouse an optional parameters file, copy hello [201-servicebus-create-queue](https://github.com/Azure/azure-quickstart-templates/blob/master/201-servicebus-create-queue/azuredeploy.parameters.json) file.</span></span> <span data-ttu-id="369bf-136">Remplacez la valeur hello `serviceBusNamespaceName` avec nom hello d’espace de noms Service Bus hello votre choix toocreate dans ce déploiement, remplacez la valeur hello `serviceBusQueueName` avec nom hello de file d’attente hello souhaité toocreate.</span><span class="sxs-lookup"><span data-stu-id="369bf-136">Replace hello value of `serviceBusNamespaceName` with hello name of hello Service Bus namespace you want toocreate in this deployment, and replace hello value of `serviceBusQueueName` with hello name of hello queue you want toocreate.</span></span>
 
 ```json
 {
@@ -151,37 +151,37 @@ ms.lasthandoff: 08/18/2017
 }
 ```
 
-<span data-ttu-id="f5d06-137">Pour plus d’informations, consultez la rubrique [aramètres](../azure-resource-manager/resource-group-template-deploy.md#parameter-files).</span><span class="sxs-lookup"><span data-stu-id="f5d06-137">For more information, see the [Parameters](../azure-resource-manager/resource-group-template-deploy.md#parameter-files) topic.</span></span>
+<span data-ttu-id="369bf-137">Pour plus d’informations, consultez hello [paramètres](../azure-resource-manager/resource-group-template-deploy.md#parameter-files) rubrique.</span><span class="sxs-lookup"><span data-stu-id="369bf-137">For more information, see hello [Parameters](../azure-resource-manager/resource-group-template-deploy.md#parameter-files) topic.</span></span>
 
-### <a name="log-in-to-azure-and-set-the-azure-subscription"></a><span data-ttu-id="f5d06-138">Se connecter à Azure et définir l’abonnement Azure</span><span class="sxs-lookup"><span data-stu-id="f5d06-138">Log in to Azure and set the Azure subscription</span></span>
+### <a name="log-in-tooazure-and-set-hello-azure-subscription"></a><span data-ttu-id="369bf-138">Connectez-vous à tooAzure et définir hello abonnement Azure</span><span class="sxs-lookup"><span data-stu-id="369bf-138">Log in tooAzure and set hello Azure subscription</span></span>
 
-<span data-ttu-id="f5d06-139">À partir d’une invite de commandes PowerShell, exécutez la commande suivante :</span><span class="sxs-lookup"><span data-stu-id="f5d06-139">From a PowerShell prompt, run the following command:</span></span>
+<span data-ttu-id="369bf-139">À partir d’une invite de PowerShell, exécutez hello de commande suivante :</span><span class="sxs-lookup"><span data-stu-id="369bf-139">From a PowerShell prompt, run hello following command:</span></span>
 
 ```powershell
 Login-AzureRmAccount
 ```
 
-<span data-ttu-id="f5d06-140">Vous êtes invité à ouvrir une session sur votre compte Azure.</span><span class="sxs-lookup"><span data-stu-id="f5d06-140">You are prompted to log on to your Azure account.</span></span> <span data-ttu-id="f5d06-141">Une fois connecté, exécutez la commande suivante pour afficher les abonnements disponibles.</span><span class="sxs-lookup"><span data-stu-id="f5d06-141">After logging on, run the following command to view your available subscriptions.</span></span>
+<span data-ttu-id="369bf-140">Vous êtes invité à toolog sur tooyour compte Azure.</span><span class="sxs-lookup"><span data-stu-id="369bf-140">You are prompted toolog on tooyour Azure account.</span></span> <span data-ttu-id="369bf-141">Après l’ouverture de session, exécutez hello suivant commande tooview vos abonnements disponibles.</span><span class="sxs-lookup"><span data-stu-id="369bf-141">After logging on, run hello following command tooview your available subscriptions.</span></span>
 
 ```powershell
 Get-AzureRMSubscription
 ```
 
-<span data-ttu-id="f5d06-142">Cette commande renvoie la liste des abonnements Azure disponibles.</span><span class="sxs-lookup"><span data-stu-id="f5d06-142">This command returns a list of available Azure subscriptions.</span></span> <span data-ttu-id="f5d06-143">Choisissez un abonnement pour la session en cours en exécutant la commande suivante.</span><span class="sxs-lookup"><span data-stu-id="f5d06-143">Choose a subscription for the current session by running the following command.</span></span> <span data-ttu-id="f5d06-144">Remplacez `<YourSubscriptionId>` par le GUID de l’abonnement Azure que vous souhaitez utiliser.</span><span class="sxs-lookup"><span data-stu-id="f5d06-144">Replace `<YourSubscriptionId>` with the GUID for the Azure subscription you want to use.</span></span>
+<span data-ttu-id="369bf-142">Cette commande renvoie la liste des abonnements Azure disponibles.</span><span class="sxs-lookup"><span data-stu-id="369bf-142">This command returns a list of available Azure subscriptions.</span></span> <span data-ttu-id="369bf-143">Choisissez un abonnement pour hello session en cours en exécutant hello commande suivante.</span><span class="sxs-lookup"><span data-stu-id="369bf-143">Choose a subscription for hello current session by running hello following command.</span></span> <span data-ttu-id="369bf-144">Remplacez `<YourSubscriptionId>` par hello GUID pour hello abonnement Azure, vous souhaitez toouse.</span><span class="sxs-lookup"><span data-stu-id="369bf-144">Replace `<YourSubscriptionId>` with hello GUID for hello Azure subscription you want toouse.</span></span>
 
 ```powershell
 Set-AzureRmContext -SubscriptionID <YourSubscriptionId>
 ```
 
-### <a name="set-the-resource-group"></a><span data-ttu-id="f5d06-145">Définir le groupe de ressources</span><span class="sxs-lookup"><span data-stu-id="f5d06-145">Set the resource group</span></span>
+### <a name="set-hello-resource-group"></a><span data-ttu-id="369bf-145">Définir le groupe de ressources hello</span><span class="sxs-lookup"><span data-stu-id="369bf-145">Set hello resource group</span></span>
 
-<span data-ttu-id="f5d06-146">Si vous n’avez pas de groupe de ressources, créez-en un avec la commande **New-AzureRmResourceGroup**.</span><span class="sxs-lookup"><span data-stu-id="f5d06-146">If you do not have an existing resource group, create a new resource group with the **New-AzureRmResourceGroup ** command.</span></span> <span data-ttu-id="f5d06-147">Indiquez le nom du groupe de ressources et l'emplacement que vous souhaitez utiliser.</span><span class="sxs-lookup"><span data-stu-id="f5d06-147">Provide the name of the resource group and location you want to use.</span></span> <span data-ttu-id="f5d06-148">Par exemple :</span><span class="sxs-lookup"><span data-stu-id="f5d06-148">For example:</span></span>
+<span data-ttu-id="369bf-146">Si vous n’avez pas une ressource existante, créer un groupe de ressources avec hello ** New-AzureRmResourceGroup ** commande.</span><span class="sxs-lookup"><span data-stu-id="369bf-146">If you do not have an existing resource group, create a new resource group with hello **New-AzureRmResourceGroup ** command.</span></span> <span data-ttu-id="369bf-147">Fournir le nom hello du groupe de ressources hello et un emplacement toouse.</span><span class="sxs-lookup"><span data-stu-id="369bf-147">Provide hello name of hello resource group and location you want toouse.</span></span> <span data-ttu-id="369bf-148">Par exemple :</span><span class="sxs-lookup"><span data-stu-id="369bf-148">For example:</span></span>
 
 ```powershell
 New-AzureRmResourceGroup -Name MyDemoRG -Location "West US"
 ```
 
-<span data-ttu-id="f5d06-149">En cas de réussite, un résumé du nouveau groupe de ressources s’affiche.</span><span class="sxs-lookup"><span data-stu-id="f5d06-149">If successful, a summary of the new resource group is displayed.</span></span>
+<span data-ttu-id="369bf-149">En cas de réussite, un résumé du nouveau groupe de ressources hello s’affiche.</span><span class="sxs-lookup"><span data-stu-id="369bf-149">If successful, a summary of hello new resource group is displayed.</span></span>
 
 ```powershell
 ResourceGroupName : MyDemoRG
@@ -191,44 +191,44 @@ Tags              :
 ResourceId        : /subscriptions/<GUID>/resourceGroups/MyDemoRG
 ```
 
-### <a name="test-the-deployment"></a><span data-ttu-id="f5d06-150">test du déploiement</span><span class="sxs-lookup"><span data-stu-id="f5d06-150">Test the deployment</span></span>
+### <a name="test-hello-deployment"></a><span data-ttu-id="369bf-150">Déploiement de test hello</span><span class="sxs-lookup"><span data-stu-id="369bf-150">Test hello deployment</span></span>
 
-<span data-ttu-id="f5d06-151">Validez votre déploiement en exécutant l’applet de commande `Test-AzureRmResourceGroupDeployment`.</span><span class="sxs-lookup"><span data-stu-id="f5d06-151">Validate your deployment by running the `Test-AzureRmResourceGroupDeployment` cmdlet.</span></span> <span data-ttu-id="f5d06-152">Lorsque vous testez le déploiement, indiquez les paramètres exactement comme vous le feriez lors de l'exécution du déploiement.</span><span class="sxs-lookup"><span data-stu-id="f5d06-152">When testing the deployment, provide parameters exactly as you would when executing the deployment.</span></span>
-
-```powershell
-Test-AzureRmResourceGroupDeployment -ResourceGroupName MyDemoRG -TemplateFile <path to template file>\azuredeploy.json
-```
-
-### <a name="create-the-deployment"></a><span data-ttu-id="f5d06-153">Créer le déploiement</span><span class="sxs-lookup"><span data-stu-id="f5d06-153">Create the deployment</span></span>
-
-<span data-ttu-id="f5d06-154">Pour créer le déploiement, exécutez l’applet de commande `New-AzureRmResourceGroupDeployment` et indiquez les paramètres nécessaires quand vous y êtes invité.</span><span class="sxs-lookup"><span data-stu-id="f5d06-154">To create the new deployment, run the `New-AzureRmResourceGroupDeployment` cmdlet, and provide the necessary parameters when prompted.</span></span> <span data-ttu-id="f5d06-155">Les paramètres incluent un nom pour votre déploiement, le nom de votre groupe de ressources, le chemin d’accès ou l’URL du fichier de modèle.</span><span class="sxs-lookup"><span data-stu-id="f5d06-155">The parameters include a name for your deployment, the name of your resource group, and the path or URL to the template file.</span></span> <span data-ttu-id="f5d06-156">Si le paramètre **Mode** n’est pas spécifié, la valeur par défaut **Incremental** est utilisée.</span><span class="sxs-lookup"><span data-stu-id="f5d06-156">If the **Mode** parameter is not specified, the default value of **Incremental** is used.</span></span> <span data-ttu-id="f5d06-157">Pour plus d’informations, consultez [Déploiements incrémentiels et complets](../azure-resource-manager/resource-group-template-deploy.md#incremental-and-complete-deployments).</span><span class="sxs-lookup"><span data-stu-id="f5d06-157">For more information, see [Incremental and complete deployments](../azure-resource-manager/resource-group-template-deploy.md#incremental-and-complete-deployments).</span></span>
-
-<span data-ttu-id="f5d06-158">La commande suivante vous invite à entrer les trois paramètres dans la fenêtre PowerShell :</span><span class="sxs-lookup"><span data-stu-id="f5d06-158">The following command prompts you for the three parameters in the PowerShell window:</span></span>
+<span data-ttu-id="369bf-151">Valider votre déploiement en exécutant hello `Test-AzureRmResourceGroupDeployment` applet de commande.</span><span class="sxs-lookup"><span data-stu-id="369bf-151">Validate your deployment by running hello `Test-AzureRmResourceGroupDeployment` cmdlet.</span></span> <span data-ttu-id="369bf-152">Lorsque vous testez le déploiement de hello, spécifiez les paramètres exactement comme vous le feriez lors de l’exécution du déploiement de hello.</span><span class="sxs-lookup"><span data-stu-id="369bf-152">When testing hello deployment, provide parameters exactly as you would when executing hello deployment.</span></span>
 
 ```powershell
-New-AzureRmResourceGroupDeployment -Name MyDemoDeployment -ResourceGroupName MyDemoRG -TemplateFile <path to template file>\azuredeploy.json
+Test-AzureRmResourceGroupDeployment -ResourceGroupName MyDemoRG -TemplateFile <path tootemplate file>\azuredeploy.json
 ```
 
-<span data-ttu-id="f5d06-159">Pour spécifier un fichier de paramètres à la place, utilisez la commande suivante.</span><span class="sxs-lookup"><span data-stu-id="f5d06-159">To specify a parameters file instead, use the following command.</span></span>
+### <a name="create-hello-deployment"></a><span data-ttu-id="369bf-153">Créer le déploiement de hello</span><span class="sxs-lookup"><span data-stu-id="369bf-153">Create hello deployment</span></span>
+
+<span data-ttu-id="369bf-154">toocreate hello nouveau déploiement, exécutez hello `New-AzureRmResourceGroupDeployment` applet de commande et fournir les paramètres nécessaires hello lorsque vous y êtes invité.</span><span class="sxs-lookup"><span data-stu-id="369bf-154">toocreate hello new deployment, run hello `New-AzureRmResourceGroupDeployment` cmdlet, and provide hello necessary parameters when prompted.</span></span> <span data-ttu-id="369bf-155">les paramètres de Hello incluent un nom pour votre déploiement, le nom de votre groupe de ressources et le chemin d’accès hello ou le fichier de modèle d’URL toohello de hello.</span><span class="sxs-lookup"><span data-stu-id="369bf-155">hello parameters include a name for your deployment, hello name of your resource group, and hello path or URL toohello template file.</span></span> <span data-ttu-id="369bf-156">Si hello **Mode** paramètre n’est pas spécifié, hello la valeur par défaut de **incrémentiel** est utilisé.</span><span class="sxs-lookup"><span data-stu-id="369bf-156">If hello **Mode** parameter is not specified, hello default value of **Incremental** is used.</span></span> <span data-ttu-id="369bf-157">Pour plus d’informations, consultez [Déploiements incrémentiels et complets](../azure-resource-manager/resource-group-template-deploy.md#incremental-and-complete-deployments).</span><span class="sxs-lookup"><span data-stu-id="369bf-157">For more information, see [Incremental and complete deployments](../azure-resource-manager/resource-group-template-deploy.md#incremental-and-complete-deployments).</span></span>
+
+<span data-ttu-id="369bf-158">Hello après les invites de commandes vous pour les paramètres dans la fenêtre de PowerShell hello hello trois :</span><span class="sxs-lookup"><span data-stu-id="369bf-158">hello following command prompts you for hello three parameters in hello PowerShell window:</span></span>
 
 ```powershell
-New-AzureRmResourceGroupDeployment -Name MyDemoDeployment -ResourceGroupName MyDemoRG -TemplateFile <path to template file>\azuredeploy.json -TemplateParameterFile <path to parameters file>\azuredeploy.parameters.json
+New-AzureRmResourceGroupDeployment -Name MyDemoDeployment -ResourceGroupName MyDemoRG -TemplateFile <path tootemplate file>\azuredeploy.json
 ```
 
-<span data-ttu-id="f5d06-160">Vous pouvez également utiliser des paramètres inclus lorsque vous exécutez l'applet de commande de déploiement.</span><span class="sxs-lookup"><span data-stu-id="f5d06-160">You can also use inline parameters when you run the deployment cmdlet.</span></span> <span data-ttu-id="f5d06-161">La commande est la suivante :</span><span class="sxs-lookup"><span data-stu-id="f5d06-161">The command is as follows:</span></span>
+<span data-ttu-id="369bf-159">toospecify un fichier de paramètres, utilisez hello commande suivante.</span><span class="sxs-lookup"><span data-stu-id="369bf-159">toospecify a parameters file instead, use hello following command.</span></span>
 
 ```powershell
-New-AzureRmResourceGroupDeployment -Name MyDemoDeployment -ResourceGroupName MyDemoRG -TemplateFile <path to template file>\azuredeploy.json -parameterName "parameterValue"
+New-AzureRmResourceGroupDeployment -Name MyDemoDeployment -ResourceGroupName MyDemoRG -TemplateFile <path tootemplate file>\azuredeploy.json -TemplateParameterFile <path tooparameters file>\azuredeploy.parameters.json
 ```
 
-<span data-ttu-id="f5d06-162">Pour exécuter un déploiement [complet](../azure-resource-manager/resource-group-template-deploy.md#incremental-and-complete-deployments), affectez la valeur **Complet** au paramètre **Mode** :</span><span class="sxs-lookup"><span data-stu-id="f5d06-162">To run a [complete](../azure-resource-manager/resource-group-template-deploy.md#incremental-and-complete-deployments) deployment, set the **Mode** parameter to **Complete**:</span></span>
+<span data-ttu-id="369bf-160">Vous pouvez également utiliser des paramètres inclus lorsque vous exécutez l’applet de commande de déploiement hello.</span><span class="sxs-lookup"><span data-stu-id="369bf-160">You can also use inline parameters when you run hello deployment cmdlet.</span></span> <span data-ttu-id="369bf-161">commande Hello est comme suit :</span><span class="sxs-lookup"><span data-stu-id="369bf-161">hello command is as follows:</span></span>
 
 ```powershell
-New-AzureRmResourceGroupDeployment -Name MyDemoDeployment -Mode Complete -ResourceGroupName MyDemoRG -TemplateFile <path to template file>\azuredeploy.json
+New-AzureRmResourceGroupDeployment -Name MyDemoDeployment -ResourceGroupName MyDemoRG -TemplateFile <path tootemplate file>\azuredeploy.json -parameterName "parameterValue"
 ```
 
-### <a name="verify-the-deployment"></a><span data-ttu-id="f5d06-163">Vérifier le déploiement</span><span class="sxs-lookup"><span data-stu-id="f5d06-163">Verify the deployment</span></span>
-<span data-ttu-id="f5d06-164">Si les ressources sont déployées avec succès, un résumé du déploiement s’affiche dans la fenêtre PowerShell :</span><span class="sxs-lookup"><span data-stu-id="f5d06-164">If the resources are deployed successfully, a summary of the deployment is displayed in the PowerShell window:</span></span>
+<span data-ttu-id="369bf-162">toorun un [complète](../azure-resource-manager/resource-group-template-deploy.md#incremental-and-complete-deployments) hello d’ensemble du déploiement, **Mode** paramètre trop**Complete**:</span><span class="sxs-lookup"><span data-stu-id="369bf-162">toorun a [complete](../azure-resource-manager/resource-group-template-deploy.md#incremental-and-complete-deployments) deployment, set hello **Mode** parameter too**Complete**:</span></span>
+
+```powershell
+New-AzureRmResourceGroupDeployment -Name MyDemoDeployment -Mode Complete -ResourceGroupName MyDemoRG -TemplateFile <path tootemplate file>\azuredeploy.json
+```
+
+### <a name="verify-hello-deployment"></a><span data-ttu-id="369bf-163">Vérifier le déploiement de hello</span><span class="sxs-lookup"><span data-stu-id="369bf-163">Verify hello deployment</span></span>
+<span data-ttu-id="369bf-164">Si les ressources hello sont déployées avec succès, un résumé du déploiement de hello s’affiche dans la fenêtre de PowerShell hello :</span><span class="sxs-lookup"><span data-stu-id="369bf-164">If hello resources are deployed successfully, a summary of hello deployment is displayed in hello PowerShell window:</span></span>
 
 ```powershell
 DeploymentName    : MyDemoDeployment
@@ -246,12 +246,12 @@ Parameters        :
 
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="f5d06-165">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="f5d06-165">Next steps</span></span>
-<span data-ttu-id="f5d06-166">Vous avez maintenant vu le flux de travail et les commandes de base pour le déploiement d'un modèle Azure Resource Manager.</span><span class="sxs-lookup"><span data-stu-id="f5d06-166">You've now seen the basic workflow and commands for deploying an Azure Resource Manager template.</span></span> <span data-ttu-id="f5d06-167">Pour plus d'informations, consultez les liens suivants :</span><span class="sxs-lookup"><span data-stu-id="f5d06-167">For more detailed information, visit the following links:</span></span>
+## <a name="next-steps"></a><span data-ttu-id="369bf-165">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="369bf-165">Next steps</span></span>
+<span data-ttu-id="369bf-166">Vous avez maintenant vu des flux de travail hello et les commandes pour le déploiement d’un modèle Azure Resource Manager.</span><span class="sxs-lookup"><span data-stu-id="369bf-166">You've now seen hello basic workflow and commands for deploying an Azure Resource Manager template.</span></span> <span data-ttu-id="369bf-167">Pour plus d’informations, visitez hello suivant liens :</span><span class="sxs-lookup"><span data-stu-id="369bf-167">For more detailed information, visit hello following links:</span></span>
 
-* <span data-ttu-id="f5d06-168">[Présentation d’Azure Resource Manager][Azure Resource Manager overview]</span><span class="sxs-lookup"><span data-stu-id="f5d06-168">[Azure Resource Manager overview][Azure Resource Manager overview]</span></span>
-* <span data-ttu-id="f5d06-169">[Déployer des ressources à l’aide de modèles Resource Manager et d’Azure PowerShell][Deploy resources with Azure Resource Manager templates]</span><span class="sxs-lookup"><span data-stu-id="f5d06-169">[Deploy resources with Resource Manager templates and Azure PowerShell][Deploy resources with Azure Resource Manager templates]</span></span>
-* [<span data-ttu-id="f5d06-170">Création de modèles Azure Resource Manager</span><span class="sxs-lookup"><span data-stu-id="f5d06-170">Authoring Azure Resource Manager templates</span></span>](../azure-resource-manager/resource-group-authoring-templates.md)
+* <span data-ttu-id="369bf-168">[Présentation d’Azure Resource Manager][Azure Resource Manager overview]</span><span class="sxs-lookup"><span data-stu-id="369bf-168">[Azure Resource Manager overview][Azure Resource Manager overview]</span></span>
+* <span data-ttu-id="369bf-169">[Déployer des ressources à l’aide de modèles Resource Manager et d’Azure PowerShell][Deploy resources with Azure Resource Manager templates]</span><span class="sxs-lookup"><span data-stu-id="369bf-169">[Deploy resources with Resource Manager templates and Azure PowerShell][Deploy resources with Azure Resource Manager templates]</span></span>
+* [<span data-ttu-id="369bf-170">Création de modèles Azure Resource Manager</span><span class="sxs-lookup"><span data-stu-id="369bf-170">Authoring Azure Resource Manager templates</span></span>](../azure-resource-manager/resource-group-authoring-templates.md)
 
 [Azure Resource Manager overview]: ../azure-resource-manager/resource-group-overview.md
 [Deploy resources with Azure Resource Manager templates]: ../azure-resource-manager/resource-group-template-deploy.md

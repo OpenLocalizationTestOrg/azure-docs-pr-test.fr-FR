@@ -28,14 +28,14 @@
 #### [Sparkfun ESP8266 Thing Dev avec Arduino IDE](iot-hub-sparkfun-esp8266-thing-dev-get-started.md)
 #### [Adafruit Feather M0 avec Arduino IDE](iot-hub-adafruit-feather-m0-wifi-kit-arduino-get-started.md)
 
-#### Utiliser le Kit de démarrage de la passerelle IoT
+#### Utilisez hello IoT passerelle Starter Kit
 ##### [Configurer Intel NUC comme une passerelle](iot-hub-gateway-kit-c-lesson1-set-up-nuc.md)
-##### [Connecter la passerelle à IoT Hub](iot-hub-gateway-kit-c-iot-gateway-connect-device-to-cloud.md)
-##### [Utiliser la passerelle pour la conversion de données](iot-hub-gateway-kit-c-use-iot-gateway-for-data-conversion.md)
+##### [Se connecter hello passerelle tooIoT Hub](iot-hub-gateway-kit-c-iot-gateway-connect-device-to-cloud.md)
+##### [Utiliser la passerelle hello pour la conversion de données](iot-hub-gateway-kit-c-use-iot-gateway-for-data-conversion.md)
 
 ## Scénarios IoT étendus
 ### [Gérer la messagerie de périphérique cloud avec iothub-explorer](iot-hub-explorer-cloud-device-messaging.md)
-### [Enregistrer les messages IoT Hub dans le stockage de données Azure](iot-hub-store-data-in-azure-table-storage.md)
+### [Enregistrer les messages IoT Hub tooAzure le stockage de données](iot-hub-store-data-in-azure-table-storage.md)
 ### [Visualisation des données dans Power BI](iot-hub-live-data-visualization-in-power-bi.md)
 ### [Visualisation des données avec des applications web](iot-hub-live-data-visualization-in-web-apps.md)
 ### [Prévisions météo avec Azure Machine Learning](iot-hub-weather-forecast-machine-learning.md)
@@ -44,7 +44,7 @@
 
 # Procédure
 ## Planification
-### [Comparaison entre IoT Hub et Event Hubs](iot-hub-compare-event-hubs.md)
+### [Comparaison de IoT Hub tooEvent concentrateurs](iot-hub-compare-event-hubs.md)
 ### [Mettre à l’échelle votre solution](iot-hub-scaling.md)
 ### [Haute disponibilité et récupération d’urgence](iot-hub-ha-dr.md)
 ### [Protocoles supplémentaires pris en charge](iot-hub-protocol-gateway.md)
@@ -53,15 +53,15 @@
 #### [Guide des fonctionnalités appareil-à-cloud](iot-hub-devguide-d2c-guidance.md)
 #### [Guide des fonctionnalités cloud-à-appareil](iot-hub-devguide-c2d-guidance.md)
 #### [Envoyer et recevoir des messages](iot-hub-devguide-messaging.md)
-##### [Envoyer des messages appareil-à-cloud sur IoT Hub](iot-hub-devguide-messages-d2c.md)
-##### [Lire des messages appareil-à-cloud à partir du point de terminaison intégré](iot-hub-devguide-messages-read-builtin.md)
+##### [Envoyer des messages appareil-à-cloud tooIoT Hub](iot-hub-devguide-messages-d2c.md)
+##### [Lire des messages de l’appareil-à-cloud à partir du point de terminaison hello intégrés](iot-hub-devguide-messages-read-builtin.md)
 ##### [Utiliser des points de terminaison et des règles de routage personnalisés pour les messages appareil-à-cloud](iot-hub-devguide-messages-read-custom.md)
 ##### [Envoyer des messages cloud-à-appareil à partir d’IoT Hub](iot-hub-devguide-messages-c2d.md)
 ##### [Créer et lire des messages IoT Hub](iot-hub-devguide-messages-construct.md)
 ##### [Choisir un protocole de communication](iot-hub-devguide-protocols.md)
 #### [Charger des fichiers à partir d’un appareil](iot-hub-devguide-file-upload.md)
 #### [Gérer les identités des appareils](iot-hub-devguide-identity-registry.md)
-#### [Contrôler l’accès à IoT Hub](iot-hub-devguide-security.md)
+#### [Contrôle l’accès tooIoT Hub](iot-hub-devguide-security.md)
 #### [Comprendre les représentations d’appareils](iot-hub-devguide-device-twins.md)
 #### [Appeler des méthodes directes sur un appareil](iot-hub-devguide-direct-methods.md)
 #### [Planifier des travaux sur plusieurs appareils](iot-hub-devguide-jobs.md)
@@ -72,9 +72,9 @@
 #### [Kits de développement logiciel (SDK) de services et d’appareils](iot-hub-devguide-sdks.md)
 #### [Support MQTT](iot-hub-mqtt-support.md)
 #### [Glossaire](iot-hub-devguide-glossary.md)
-### [Utiliser le Kit de développement logiciel (SDK) Azure IoT device pour C](iot-hub-device-sdk-c-intro.md)
-#### [Utiliser IoTHubClient](iot-hub-device-sdk-c-iothubclient.md)
-#### [Utiliser le sérialiseur](iot-hub-device-sdk-c-serializer.md)
+### [Utiliser des appareils IoT de hello SDK pour C](iot-hub-device-sdk-c-intro.md)
+#### [Utilisez hello IoTHubClient](iot-hub-device-sdk-c-iothubclient.md)
+#### [Utiliser le sérialiseur de hello](iot-hub-device-sdk-c-serializer.md)
 ### Traitement des messages appareil-à-cloud
 #### [.NET](iot-hub-csharp-csharp-process-d2c.md)
 #### [Java](iot-hub-java-java-process-d2c.md)
@@ -97,11 +97,11 @@
 #### [Serveur principal Node.js/appareil Node.js](iot-hub-node-node-device-management-get-started.md)
 #### [Serveur principal .NET/appareil Node.js](iot-hub-csharp-node-device-management-get-started.md)
 #### [Serveur principal Java/appareil Java](iot-hub-java-java-device-management-getstarted.md)
-### Utilisation des propriétés des représentations
+### Comment toouse à deux propriétés
 #### [Serveur principal Node.js/appareil Node.js](iot-hub-node-node-twin-how-to-configure.md)
 #### [Serveur principal .NET/appareil Node.js](iot-hub-csharp-node-twin-how-to-configure.md)
 #### [Appareil back end/.NET de .NET](iot-hub-csharp-csharp-twin-how-to-configure.md)
-### Utiliser des travaux d’appareils pour mettre à jour le microprogramme des appareils
+### Utilisez microprogramme de l’appareil tooupdate appareil travaux
 #### [Serveur principal Node/appareil Node](iot-hub-node-node-firmware-update.md)
 #### [Serveur principal .NET/appareil Node.js](iot-hub-csharp-node-firmware-update.md)
 ### Planifier et diffuser des travaux
@@ -110,15 +110,15 @@
 #### [Java](iot-hub-java-java-schedule-jobs.md)
 ## Gérer
 ### Créer un hub IoT 
-#### [Utiliser le portail](iot-hub-create-through-portal.md)
+#### [Utiliser le portail de hello](iot-hub-create-through-portal.md)
 #### [Utiliser PowerShell](iot-hub-create-using-powershell.md)
 #### [Utiliser l’interface de ligne de commande 2.0](iot-hub-create-using-cli.md)
 #### [Utiliser l’interface de ligne de commande](iot-hub-create-using-cli-nodejs.md)
-#### [Utiliser l’API REST](iot-hub-rm-rest.md)
+#### [Utiliser l’API REST de hello](iot-hub-rm-rest.md)
 #### [Utiliser un modèle à partir de PowerShell](iot-hub-rm-template-powershell.md)
 #### [Utiliser un modèle à partir de .NET](iot-hub-rm-template.md)
 ### Configurer le chargement de fichiers
-#### [Utiliser le portail](iot-hub-configure-file-upload.md)
+#### [Utiliser le portail de hello](iot-hub-configure-file-upload.md)
 #### [Utiliser PowerShell](iot-hub-configure-file-upload-powershell.md)
 #### [Utiliser l’interface de ligne de commande 2.0](iot-hub-configure-file-upload-cli.md)
 ### [Gestion en bloc des appareils IoT](iot-hub-bulk-identity-mgmt.md)
@@ -126,7 +126,7 @@
 ### [Surveillance des opérations](iot-hub-operations-monitoring.md)
 ### [Configurer le filtrage d’adresse IP](iot-hub-ip-filtering.md)
 ## Sécuriser
-### [Tout savoir sur la sécurité](iot-hub-security-ground-up.md)
+### [Hello d’arrière-plan la sécurité](iot-hub-security-ground-up.md)
 ### [Meilleures pratiques en matière de sécurité](iot-hub-security-best-practices.md)
 ### [Architecture de la sécurité](iot-hub-security-architecture.md)
 ### [Sécuriser votre déploiement IoT](iot-hub-security-deployment.md)

@@ -1,6 +1,6 @@
 ---
-title: "Gestion des groupes de sécurité réseau - Azure CLI 2.0 | Microsoft Docs"
-description: "Découvrez comment gérer les groupes de sécurité réseau à l’aide d’Azure CLI 2.0."
+title: "aaaManage réseau des groupes de sécurité - Azure CLI 2.0 | Documents Microsoft"
+description: "Découvrez comment les groupes de sécurité réseau toomanage à l’aide de hello Azure interface de ligne de commande (CLI) 2.0."
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -16,52 +16,52 @@ ms.workload: infrastructure-services
 ms.date: 02/21/2017
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 11ec0d3d9e33c06d4c0a164f7fba5dd5cca73872
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a3036b465e1e4049cba00e5e13ce1b479a2301d3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-network-security-groups-using-the-azure-cli-20"></a><span data-ttu-id="a572e-103">Gérer des groupes de sécurité réseau avec Azure CLI 2.0</span><span class="sxs-lookup"><span data-stu-id="a572e-103">Manage network security groups using the Azure CLI 2.0</span></span>
+# <a name="manage-network-security-groups-using-hello-azure-cli-20"></a><span data-ttu-id="ce3a5-103">Gérer des groupes de sécurité réseau à l’aide de hello Azure CLI 2.0</span><span class="sxs-lookup"><span data-stu-id="ce3a5-103">Manage network security groups using hello Azure CLI 2.0</span></span>
 
 [!INCLUDE [virtual-network-manage-arm-selectors-include.md](../../includes/virtual-network-manage-nsg-arm-selectors-include.md)]
 
-## <a name="cli-versions-to-complete-the-task"></a><span data-ttu-id="a572e-104">Versions de l’interface de ligne de commande permettant d’effectuer la tâche</span><span class="sxs-lookup"><span data-stu-id="a572e-104">CLI versions to complete the task</span></span> 
+## <a name="cli-versions-toocomplete-hello-task"></a><span data-ttu-id="ce3a5-104">Tâche de hello CLI versions toocomplete</span><span class="sxs-lookup"><span data-stu-id="ce3a5-104">CLI versions toocomplete hello task</span></span> 
 
-<span data-ttu-id="a572e-105">Vous pouvez exécuter la tâche en utilisant l’une des versions suivantes de l’interface de ligne de commande (CLI) :</span><span class="sxs-lookup"><span data-stu-id="a572e-105">You can complete the task using one of the following CLI versions:</span></span> 
+<span data-ttu-id="ce3a5-105">Vous pouvez exécuter la tâche hello à l’aide de hello CLI versions suivantes :</span><span class="sxs-lookup"><span data-stu-id="ce3a5-105">You can complete hello task using one of hello following CLI versions:</span></span> 
 
-- <span data-ttu-id="a572e-106">[Azure CLI 1.0](virtual-network-manage-nsg-cli-nodejs.md) : notre interface de ligne de commande pour les modèles de déploiement Classique et Resource Manager</span><span class="sxs-lookup"><span data-stu-id="a572e-106">[Azure CLI 1.0](virtual-network-manage-nsg-cli-nodejs.md) – our CLI for the classic and resource management deployment models</span></span> 
-- <span data-ttu-id="a572e-107">[Azure CLI 2.0 ](#View-existing-NSGs) : notre interface Azure CLI nouvelle génération pour le modèle de déploiement Resource Manager (cet article)</span><span class="sxs-lookup"><span data-stu-id="a572e-107">[Azure CLI 2.0](#View-existing-NSGs) - our next generation CLI for the resource management deployment model (this article)</span></span>
+- <span data-ttu-id="ce3a5-106">[Azure CLI 1.0](virtual-network-manage-nsg-cli-nodejs.md) – notre CLI pour les modèles de déploiement gestion classique et les ressources des hello</span><span class="sxs-lookup"><span data-stu-id="ce3a5-106">[Azure CLI 1.0](virtual-network-manage-nsg-cli-nodejs.md) – our CLI for hello classic and resource management deployment models</span></span> 
+- <span data-ttu-id="ce3a5-107">[Azure CLI 2.0](#View-existing-NSGs) -notre prochaine génération CLI pour le modèle de déploiement de gestion hello de ressource (cet article)</span><span class="sxs-lookup"><span data-stu-id="ce3a5-107">[Azure CLI 2.0](#View-existing-NSGs) - our next generation CLI for hello resource management deployment model (this article)</span></span>
 
 
 [!INCLUDE [virtual-network-manage-nsg-intro-include.md](../../includes/virtual-network-manage-nsg-intro-include.md)]
 
 > [!NOTE]
-> <span data-ttu-id="a572e-108">Azure dispose de deux modèles de déploiement différents pour créer et utiliser des ressources : [Resource Manager et classique](../resource-manager-deployment-model.md).</span><span class="sxs-lookup"><span data-stu-id="a572e-108">Azure has two different deployment models for creating and working with resources:  [Resource Manager and classic](../resource-manager-deployment-model.md).</span></span> <span data-ttu-id="a572e-109">Cet article traite de l’utilisation du modèle de déploiement Resource Manager que Microsoft recommande pour la plupart des nouveaux déploiements à la place du modèle de déploiement classique.</span><span class="sxs-lookup"><span data-stu-id="a572e-109">This article covers using the Resource Manager deployment model, which Microsoft recommends for most new deployments instead of the classic deployment model.</span></span>
+> <span data-ttu-id="ce3a5-108">Azure dispose de deux modèles de déploiement différents pour créer et utiliser des ressources : [Resource Manager et classique](../resource-manager-deployment-model.md).</span><span class="sxs-lookup"><span data-stu-id="ce3a5-108">Azure has two different deployment models for creating and working with resources:  [Resource Manager and classic](../resource-manager-deployment-model.md).</span></span> <span data-ttu-id="ce3a5-109">Cet article décrit à l’aide du modèle de déploiement Resource Manager hello, qui recommandées par Microsoft pour la plupart des déploiements de nouveau au lieu du modèle de déploiement classique hello.</span><span class="sxs-lookup"><span data-stu-id="ce3a5-109">This article covers using hello Resource Manager deployment model, which Microsoft recommends for most new deployments instead of hello classic deployment model.</span></span>
 > 
 
 [!INCLUDE [virtual-network-manage-nsg-arm-scenario-include.md](../../includes/virtual-network-manage-nsg-arm-scenario-include.md)]
 
-## <a name="prerequisite"></a><span data-ttu-id="a572e-110">Configuration requise</span><span class="sxs-lookup"><span data-stu-id="a572e-110">Prerequisite</span></span>
-<span data-ttu-id="a572e-111">Si vous ne l’avez pas encore fait, installez et configurez la dernière version d’[Azure CLI 2.0](/cli/azure/install-az-cli2) et connectez-vous à un compte Azure par le biais de la commande [az login](/cli/azure/#login).</span><span class="sxs-lookup"><span data-stu-id="a572e-111">If you haven't yet, install and configure the latest [Azure CLI 2.0](/cli/azure/install-az-cli2) and log in to an Azure account using [az login](/cli/azure/#login).</span></span> 
+## <a name="prerequisite"></a><span data-ttu-id="ce3a5-110">Configuration requise</span><span class="sxs-lookup"><span data-stu-id="ce3a5-110">Prerequisite</span></span>
+<span data-ttu-id="ce3a5-111">Si vous n’avez pas encore, installer et configurer hello dernières [Azure CLI 2.0](/cli/azure/install-az-cli2) et connectez-vous à l’aide du compte Azure tooan [ouverture de session az](/cli/azure/#login).</span><span class="sxs-lookup"><span data-stu-id="ce3a5-111">If you haven't yet, install and configure hello latest [Azure CLI 2.0](/cli/azure/install-az-cli2) and log in tooan Azure account using [az login](/cli/azure/#login).</span></span> 
 
 
-## <a name="view-existing-nsgs"></a><span data-ttu-id="a572e-112">Afficher les groupes de sécurité réseau existants</span><span class="sxs-lookup"><span data-stu-id="a572e-112">View existing NSGs</span></span>
-<span data-ttu-id="a572e-113">Pour afficher la liste des groupes de sécurité réseau d’un groupe de ressources spécifique, exécutez la commande [az network nsg list](/cli/azure/network/nsg#list) avec un format de sortie `-o table` :</span><span class="sxs-lookup"><span data-stu-id="a572e-113">To view the list of NSGs in a specific resource group, run the [az network nsg list](/cli/azure/network/nsg#list) command with a `-o table` output format:</span></span>
+## <a name="view-existing-nsgs"></a><span data-ttu-id="ce3a5-112">Afficher les groupes de sécurité réseau existants</span><span class="sxs-lookup"><span data-stu-id="ce3a5-112">View existing NSGs</span></span>
+<span data-ttu-id="ce3a5-113">liste de hello tooview de groupes de sécurité réseau dans un groupe de ressources spécifique, exécutez hello [liste de groupe de sécurité réseau réseau az](/cli/azure/network/nsg#list) avec un `-o table` format de sortie :</span><span class="sxs-lookup"><span data-stu-id="ce3a5-113">tooview hello list of NSGs in a specific resource group, run hello [az network nsg list](/cli/azure/network/nsg#list) command with a `-o table` output format:</span></span>
 
 ```azurecli
 az network nsg list -g RG-NSG -o table
 ```
 
-<span data-ttu-id="a572e-114">Sortie attendue :</span><span class="sxs-lookup"><span data-stu-id="a572e-114">Expected output:</span></span>
+<span data-ttu-id="ce3a5-114">Sortie attendue :</span><span class="sxs-lookup"><span data-stu-id="ce3a5-114">Expected output:</span></span>
 
     Location    Name          ProvisioningState    ResourceGroup    ResourceGuid
     ----------  ------------  -------------------  ---------------  ------------------------------------
     centralus   NSG-BackEnd   Succeeded            RG-NSG           <guid>
     centralus   NSG-FrontEnd  Succeeded            RG-NSG           <guid>
 
-## <a name="list-all-rules-for-an-nsg"></a><span data-ttu-id="a572e-115">Répertorier toutes les règles pour un groupe de sécurité réseau</span><span class="sxs-lookup"><span data-stu-id="a572e-115">List all rules for an NSG</span></span>
-<span data-ttu-id="a572e-116">Pour afficher les règles d’un groupe de sécurité réseau nommé **NSG-FrontEnd**, exécutez la commande [az network nsg show](/cli/azure/network/nsg#show) avec un [filtre de requête JMESPATH](/cli/azure/query-az-cli2) et le format de sortie `-o table` :</span><span class="sxs-lookup"><span data-stu-id="a572e-116">To view the rules of an NSG named **NSG-FrontEnd**, run the [az network nsg show](/cli/azure/network/nsg#show) command using a [JMESPATH query filter](/cli/azure/query-az-cli2) and the `-o table` output format:</span></span>
+## <a name="list-all-rules-for-an-nsg"></a><span data-ttu-id="ce3a5-115">Répertorier toutes les règles pour un groupe de sécurité réseau</span><span class="sxs-lookup"><span data-stu-id="ce3a5-115">List all rules for an NSG</span></span>
+<span data-ttu-id="ce3a5-116">règles de hello tooview d’un groupe de sécurité réseau nommé **NSG-FrontEnd**, hello exécutez [az réseau nsg afficher](/cli/azure/network/nsg#show) à l’aide de la commande une [filtre de requête JMESPATH](/cli/azure/query-az-cli2) et hello `-o table` format de sortie :</span><span class="sxs-lookup"><span data-stu-id="ce3a5-116">tooview hello rules of an NSG named **NSG-FrontEnd**, run hello [az network nsg show](/cli/azure/network/nsg#show) command using a [JMESPATH query filter](/cli/azure/query-az-cli2) and hello `-o table` output format:</span></span>
 
 ```azurecli
     az network nsg show \
@@ -71,31 +71,31 @@ az network nsg list -g RG-NSG -o table
     -o table
 ```
 
-<span data-ttu-id="a572e-117">Sortie attendue :</span><span class="sxs-lookup"><span data-stu-id="a572e-117">Expected output:</span></span>
+<span data-ttu-id="ce3a5-117">Sortie attendue :</span><span class="sxs-lookup"><span data-stu-id="ce3a5-117">Expected output:</span></span>
 
     Name                           Desc                                                    Access    Direction    DestPortRange    DestAddrPrefix    SrcPortRange    SrcAddrPrefix
     -----------------------------  ------------------------------------------------------  --------  -----------  ---------------  ----------------  --------------  -----------------
     AllowVnetInBound               Allow inbound traffic from all VMs in VNET              Allow     Inbound      *                VirtualNetwork    *               VirtualNetwork
     AllowAzureLoadBalancerInBound  Allow inbound traffic from azure load balancer          Allow     Inbound      *                *                 *               AzureLoadBalancer
     DenyAllInBound                 Deny all inbound traffic                                Deny      Inbound      *                *                 *               *
-    AllowVnetOutBound              Allow outbound traffic from all VMs to all VMs in VNET  Allow     Outbound     *                VirtualNetwork    *               VirtualNetwork
-    AllowInternetOutBound          Allow outbound traffic from all VMs to Internet         Allow     Outbound     *                Internet          *               *
+    AllowVnetOutBound              Allow outbound traffic from all VMs tooall VMs in VNET  Allow     Outbound     *                VirtualNetwork    *               VirtualNetwork
+    AllowInternetOutBound          Allow outbound traffic from all VMs tooInternet         Allow     Outbound     *                Internet          *               *
     DenyAllOutBound                Deny all outbound traffic                               Deny      Outbound     *                *                 *               *
     rdp-rule                                                                               Allow     Inbound      3389             *                 *               Internet
     web-rule                                                                               Allow     Inbound      80               *                 *               Internet
 > [!NOTE]
-> <span data-ttu-id="a572e-118">Vous pouvez également utiliser [az network nsg rule list](/cli/azure/network/nsg/rule#list) afin de répertorier uniquement les règles personnalisées d’un groupe de sécurité réseau.</span><span class="sxs-lookup"><span data-stu-id="a572e-118">You can also use [az network nsg rule list](/cli/azure/network/nsg/rule#list) to list only the custom rules from an NSG .</span></span>
+> <span data-ttu-id="ce3a5-118">Vous pouvez également utiliser [liste de règles du groupe de sécurité réseau az réseau](/cli/azure/network/nsg/rule#list) toolist uniquement hello règles personnalisées à partir d’un groupe de sécurité réseau.</span><span class="sxs-lookup"><span data-stu-id="ce3a5-118">You can also use [az network nsg rule list](/cli/azure/network/nsg/rule#list) toolist only hello custom rules from an NSG .</span></span>
 >
 
-## <a name="view-nsg-associations"></a><span data-ttu-id="a572e-119">Afficher les associations de groupes de sécurité réseau</span><span class="sxs-lookup"><span data-stu-id="a572e-119">View NSG associations</span></span>
+## <a name="view-nsg-associations"></a><span data-ttu-id="ce3a5-119">Afficher les associations de groupes de sécurité réseau</span><span class="sxs-lookup"><span data-stu-id="ce3a5-119">View NSG associations</span></span>
 
-<span data-ttu-id="a572e-120">Pour afficher les ressources associées au groupe de sécurité réseau **NSG-FrontEnd**, exécutez la commande `az network nsg show`, comme indiqué ci-dessous.</span><span class="sxs-lookup"><span data-stu-id="a572e-120">To view what resources the **NSG-FrontEnd** NSG is associate with, run the `az network nsg show` command as shown below.</span></span> 
+<span data-ttu-id="ce3a5-120">tooview hello de quelles ressources **NSG-FrontEnd** groupe de sécurité réseau est hello associez, exécutez `az network nsg show` commande comme indiqué ci-dessous.</span><span class="sxs-lookup"><span data-stu-id="ce3a5-120">tooview what resources hello **NSG-FrontEnd** NSG is associate with, run hello `az network nsg show` command as shown below.</span></span> 
 
 ```azurecli
 az network nsg show -g RG-NSG -n nsg-frontend --query '[subnets,networkInterfaces]'
 ```
 
-<span data-ttu-id="a572e-121">Recherchez les propriétés **networkInterfaces** et **subnets**, comme indiqué ci-dessous :</span><span class="sxs-lookup"><span data-stu-id="a572e-121">Look for the **networkInterfaces** and **subnets** properties as shown below:</span></span>
+<span data-ttu-id="ce3a5-121">Recherchez hello **networkInterfaces** et **sous-réseaux** propriétés comme indiqué ci-dessous :</span><span class="sxs-lookup"><span data-stu-id="ce3a5-121">Look for hello **networkInterfaces** and **subnets** properties as shown below:</span></span>
 
 ```json
 [
@@ -117,17 +117,17 @@ az network nsg show -g RG-NSG -n nsg-frontend --query '[subnets,networkInterface
 ]
 ```
 
-<span data-ttu-id="a572e-122">Dans l’exemple ci-dessus, le groupe de sécurité réseau n’est associé à aucune interface réseau, mais à un sous-réseau nommé **FrontEnd**.</span><span class="sxs-lookup"><span data-stu-id="a572e-122">In the example above, the NSG is not associated to any network interfaces (NICs), and it is associated to a subnet named **FrontEnd**.</span></span>
+<span data-ttu-id="ce3a5-122">Dans l’exemple hello ci-dessus, hello groupe de sécurité réseau n’est pas associé tooany les interfaces réseau (NIC), et il s’agit de sous-réseau associé tooa nommé **frontal**.</span><span class="sxs-lookup"><span data-stu-id="ce3a5-122">In hello example above, hello NSG is not associated tooany network interfaces (NICs), and it is associated tooa subnet named **FrontEnd**.</span></span>
 
-## <a name="add-a-rule"></a><span data-ttu-id="a572e-123">Ajouter une règle</span><span class="sxs-lookup"><span data-stu-id="a572e-123">Add a rule</span></span>
-<span data-ttu-id="a572e-124">Pour ajouter une règle autorisant le trafic **entrant** sur le port **443** d’une machine vers le groupe de sécurité réseau **NSG-FrontEnd**, entrez la commande suivante :</span><span class="sxs-lookup"><span data-stu-id="a572e-124">To add a rule allowing **inbound** traffic to port **443** from any machine to the **NSG-FrontEnd** NSG, enter the following command:</span></span>
+## <a name="add-a-rule"></a><span data-ttu-id="ce3a5-123">Ajouter une règle</span><span class="sxs-lookup"><span data-stu-id="ce3a5-123">Add a rule</span></span>
+<span data-ttu-id="ce3a5-124">tooadd une règle autorisant **entrant** trafic tooport **443** à partir de n’importe quel ordinateur toohello **NSG-FrontEnd** groupe de sécurité réseau, entrez hello de commande suivante :</span><span class="sxs-lookup"><span data-stu-id="ce3a5-124">tooadd a rule allowing **inbound** traffic tooport **443** from any machine toohello **NSG-FrontEnd** NSG, enter hello following command:</span></span>
 
 ```azurecli
 az network nsg rule create  \
 --resource-group RG-NSG \
 --nsg-name NSG-FrontEnd  \
 --name allow-https \
---description "Allow access to port 443 for HTTPS" \
+--description "Allow access tooport 443 for HTTPS" \
 --access Allow \
 --protocol Tcp  \
 --direction Inbound \
@@ -138,12 +138,12 @@ az network nsg rule create  \
 --destination-port-range "443"
 ```
 
-<span data-ttu-id="a572e-125">Sortie attendue :</span><span class="sxs-lookup"><span data-stu-id="a572e-125">Expected output:</span></span>
+<span data-ttu-id="ce3a5-125">Sortie attendue :</span><span class="sxs-lookup"><span data-stu-id="ce3a5-125">Expected output:</span></span>
 
 ```json
 {
   "access": "Allow",
-  "description": "Allow access to port 443 for HTTPS",
+  "description": "Allow access tooport 443 for HTTPS",
   "destinationAddressPrefix": "*",
   "destinationPortRange": "443",
   "direction": "Inbound",
@@ -159,8 +159,8 @@ az network nsg rule create  \
 }
 ```
 
-## <a name="change-a-rule"></a><span data-ttu-id="a572e-126">Modifier une règle</span><span class="sxs-lookup"><span data-stu-id="a572e-126">Change a rule</span></span>
-<span data-ttu-id="a572e-127">Pour modifier la règle créée précédemment qui permet d’autoriser le trafic entrant d’**Internet** uniquement, exécutez la commande [az network nsg rule update](/cli/azure/network/nsg/rule#update) :</span><span class="sxs-lookup"><span data-stu-id="a572e-127">To change the rule created above to allow inbound traffic from the **Internet** only, run the [az network nsg rule update](/cli/azure/network/nsg/rule#update) command:</span></span>
+## <a name="change-a-rule"></a><span data-ttu-id="ce3a5-126">Modifier une règle</span><span class="sxs-lookup"><span data-stu-id="ce3a5-126">Change a rule</span></span>
+<span data-ttu-id="ce3a5-127">règle de hello toochange créé ci-dessus tooallow le trafic entrant provenance hello **Internet** uniquement, exécutez hello [mise à jour des règles nsg réseau az](/cli/azure/network/nsg/rule#update) commande :</span><span class="sxs-lookup"><span data-stu-id="ce3a5-127">toochange hello rule created above tooallow inbound traffic from hello **Internet** only, run hello [az network nsg rule update](/cli/azure/network/nsg/rule#update) command:</span></span>
 
 ```azurecli
 az network nsg rule update \
@@ -170,12 +170,12 @@ az network nsg rule update \
 --source-address-prefix Internet
 ```
 
-<span data-ttu-id="a572e-128">Sortie attendue :</span><span class="sxs-lookup"><span data-stu-id="a572e-128">Expected output:</span></span>
+<span data-ttu-id="ce3a5-128">Sortie attendue :</span><span class="sxs-lookup"><span data-stu-id="ce3a5-128">Expected output:</span></span>
 
 ```json
 {
 "access": "Allow",
-"description": "Allow access to port 443 for HTTPS",
+"description": "Allow access tooport 443 for HTTPS",
 "destinationAddressPrefix": "*",
 "destinationPortRange": "443",
 "direction": "Inbound",
@@ -191,8 +191,8 @@ az network nsg rule update \
 }
 ```
 
-## <a name="delete-a-rule"></a><span data-ttu-id="a572e-129">Supprimer une règle</span><span class="sxs-lookup"><span data-stu-id="a572e-129">Delete a rule</span></span>
-<span data-ttu-id="a572e-130">Pour supprimer la règle créée précédemment, exécutez la commande suivante :</span><span class="sxs-lookup"><span data-stu-id="a572e-130">To delete the rule created above, run the following command:</span></span>
+## <a name="delete-a-rule"></a><span data-ttu-id="ce3a5-129">Supprimer une règle</span><span class="sxs-lookup"><span data-stu-id="ce3a5-129">Delete a rule</span></span>
+<span data-ttu-id="ce3a5-130">règle de hello toodelete créé ci-dessus, exécutez hello de commande suivante :</span><span class="sxs-lookup"><span data-stu-id="ce3a5-130">toodelete hello rule created above, run hello following command:</span></span>
 
 ```azurecli
 az network nsg rule delete \
@@ -202,8 +202,8 @@ az network nsg rule delete \
 ```
 
 
-## <a name="associate-an-nsg-to-a-nic"></a><span data-ttu-id="a572e-131">Associer un groupe de sécurité réseau à une carte réseau</span><span class="sxs-lookup"><span data-stu-id="a572e-131">Associate an NSG to a NIC</span></span>
-<span data-ttu-id="a572e-132">Pour associer le groupe de sécurité réseau **NSG-FrontEnd** à la carte réseau **TestNICWeb1**, exécutez la commande [az network nic update](/cli/azure/network/nic#update) :</span><span class="sxs-lookup"><span data-stu-id="a572e-132">To associate the **NSG-FrontEnd** NSG to the **TestNICWeb1** NIC, use the [az network nic update](/cli/azure/network/nic#update) command:</span></span>
+## <a name="associate-an-nsg-tooa-nic"></a><span data-ttu-id="ce3a5-131">Associer un groupe de sécurité réseau de tooa carte réseau</span><span class="sxs-lookup"><span data-stu-id="ce3a5-131">Associate an NSG tooa NIC</span></span>
+<span data-ttu-id="ce3a5-132">tooassociate hello **NSG-FrontEnd** NSG toohello **TestNICWeb1** carte réseau, utilisez hello [mise à jour de la carte réseau az réseau](/cli/azure/network/nic#update) commande :</span><span class="sxs-lookup"><span data-stu-id="ce3a5-132">tooassociate hello **NSG-FrontEnd** NSG toohello **TestNICWeb1** NIC, use hello [az network nic update](/cli/azure/network/nic#update) command:</span></span>
 
 ```azurecli
 az network nic update \
@@ -212,7 +212,7 @@ az network nic update \
 --network-security-group NSG-FrontEnd    
 ```
 
-<span data-ttu-id="a572e-133">Sortie attendue :</span><span class="sxs-lookup"><span data-stu-id="a572e-133">Expected output:</span></span>
+<span data-ttu-id="ce3a5-133">Sortie attendue :</span><span class="sxs-lookup"><span data-stu-id="ce3a5-133">Expected output:</span></span>
 
 ```json
 {
@@ -284,18 +284,18 @@ az network nic update \
 }
 ```
 
-## <a name="dissociate-an-nsg-from-a-nic"></a><span data-ttu-id="a572e-134">Dissocier un groupe de sécurité réseau d’une carte réseau</span><span class="sxs-lookup"><span data-stu-id="a572e-134">Dissociate an NSG from a NIC</span></span>
+## <a name="dissociate-an-nsg-from-a-nic"></a><span data-ttu-id="ce3a5-134">Dissocier un groupe de sécurité réseau d’une carte réseau</span><span class="sxs-lookup"><span data-stu-id="ce3a5-134">Dissociate an NSG from a NIC</span></span>
 
-<span data-ttu-id="a572e-135">Pour dissocier le groupe de sécurité réseau **NSG-FrontEnd** de la carte réseau **TestNICWeb1**, exécutez à nouveau la commande [az network nsg rule update](/cli/azure/network/nsg/rule#update) en remplaçant l’argument `--network-security-group` par une chaîne vide (`""`).</span><span class="sxs-lookup"><span data-stu-id="a572e-135">To dissociate the **NSG-FrontEnd** NSG from the **TestNICWeb1** NIC, run the [az network nsg rule update](/cli/azure/network/nsg/rule#update) command again but replace the `--network-security-group` argument with an empty string (`""`).</span></span>
+<span data-ttu-id="ce3a5-135">toodissociate hello **NSG-FrontEnd** groupe de sécurité réseau à partir de hello **TestNICWeb1** carte réseau, exécutez hello [mise à jour des règles nsg réseau az](/cli/azure/network/nsg/rule#update) réexécutez la commande, mais remplacez hello `--network-security-group` argument avec une chaîne vide (`""`).</span><span class="sxs-lookup"><span data-stu-id="ce3a5-135">toodissociate hello **NSG-FrontEnd** NSG from hello **TestNICWeb1** NIC, run hello [az network nsg rule update](/cli/azure/network/nsg/rule#update) command again but replace hello `--network-security-group` argument with an empty string (`""`).</span></span>
 
 ```azurecli
 az network nic update --resource-group RG-NSG --name TestNICWeb3 --network-security-group ""
 ```
 
-<span data-ttu-id="a572e-136">Dans la sortie, la clé `networkSecurityGroup` présente la valeur null.</span><span class="sxs-lookup"><span data-stu-id="a572e-136">In the output, the `networkSecurityGroup` key is set to null.</span></span>
+<span data-ttu-id="ce3a5-136">Dans la sortie de hello, hello `networkSecurityGroup` clé a la valeur toonull.</span><span class="sxs-lookup"><span data-stu-id="ce3a5-136">In hello output, hello `networkSecurityGroup` key is set toonull.</span></span>
 
-## <a name="dissociate-an-nsg-from-a-subnet"></a><span data-ttu-id="a572e-137">Dissocier un groupe de sécurité réseau d’un sous-réseau</span><span class="sxs-lookup"><span data-stu-id="a572e-137">Dissociate an NSG from a subnet</span></span>
-<span data-ttu-id="a572e-138">Pour dissocier le groupe de sécurité réseau **NSG-FrontEnd** du sous-réseau **FrontEnd**, exécutez à nouveau la commande [az network nsg rule update](/cli/azure/network/nsg/rule#update) en remplaçant l’argument `--network-security-group` par une chaîne vide (`""`).</span><span class="sxs-lookup"><span data-stu-id="a572e-138">To dissociate the **NSG-FrontEnd** NSG from the **FrontEnd** subnet, again run the [az network nsg rule update](/cli/azure/network/nsg/rule#update) command again but replace the `--network-security-group` argument with an empty string (`""`).</span></span>
+## <a name="dissociate-an-nsg-from-a-subnet"></a><span data-ttu-id="ce3a5-137">Dissocier un groupe de sécurité réseau d’un sous-réseau</span><span class="sxs-lookup"><span data-stu-id="ce3a5-137">Dissociate an NSG from a subnet</span></span>
+<span data-ttu-id="ce3a5-138">toodissociate hello **NSG-FrontEnd** groupe de sécurité réseau à partir de hello **frontal** sous-réseau, exécutez à nouveau les hello [mise à jour des règles nsg réseau az](/cli/azure/network/nsg/rule#update) réexécutez la commande, mais remplacez hello `--network-security-group` argument avec une chaîne vide (`""`).</span><span class="sxs-lookup"><span data-stu-id="ce3a5-138">toodissociate hello **NSG-FrontEnd** NSG from hello **FrontEnd** subnet, again run hello [az network nsg rule update](/cli/azure/network/nsg/rule#update) command again but replace hello `--network-security-group` argument with an empty string (`""`).</span></span>
 
 ```azurecli
 az network vnet subnet update \
@@ -305,10 +305,10 @@ az network vnet subnet update \
 --network-security-group ""
 ```
 
-<span data-ttu-id="a572e-139">Dans la sortie, la clé `networkSecurityGroup` présente la valeur null.</span><span class="sxs-lookup"><span data-stu-id="a572e-139">In the output, the `networkSecurityGroup` key is set to null.</span></span>
+<span data-ttu-id="ce3a5-139">Dans la sortie de hello, hello `networkSecurityGroup` clé a la valeur toonull.</span><span class="sxs-lookup"><span data-stu-id="ce3a5-139">In hello output, hello `networkSecurityGroup` key is set toonull.</span></span>
 
-## <a name="associate-an-nsg-to-a-subnet"></a><span data-ttu-id="a572e-140">Association d’un groupe de sécurité réseau à un sous-réseau</span><span class="sxs-lookup"><span data-stu-id="a572e-140">Associate an NSG to a subnet</span></span>
-<span data-ttu-id="a572e-141">Pour associer à nouveau le groupe de sécurité réseau **NSG-FrontEnd** au sous-réseau **FrontEnd**, exécutez la commande suivante :</span><span class="sxs-lookup"><span data-stu-id="a572e-141">To associate the **NSG-FrontEnd** NSG to the **FrontEnd** subnet again, run the following command:</span></span>
+## <a name="associate-an-nsg-tooa-subnet"></a><span data-ttu-id="ce3a5-140">Associez un sous-réseau de tooa du groupe de sécurité réseau</span><span class="sxs-lookup"><span data-stu-id="ce3a5-140">Associate an NSG tooa subnet</span></span>
+<span data-ttu-id="ce3a5-141">tooassociate hello **NSG-FrontEnd** NSG toohello **frontal** sous-réseau exécuter à nouveau, hello de commande suivante :</span><span class="sxs-lookup"><span data-stu-id="ce3a5-141">tooassociate hello **NSG-FrontEnd** NSG toohello **FrontEnd** subnet again, run hello following command:</span></span>
 
 ```azurecli
 az network vnet subnet update \
@@ -318,7 +318,7 @@ az network vnet subnet update \
 --network-security-group NSG-FrontEnd
 ```
 
-<span data-ttu-id="a572e-142">Dans la sortie, la clé `networkSecurityGroup` présente une valeur similaire à ce qui suit :</span><span class="sxs-lookup"><span data-stu-id="a572e-142">In the output, the `networkSecurityGroup` key has something similar for the value:</span></span>
+<span data-ttu-id="ce3a5-142">Dans la sortie de hello, hello `networkSecurityGroup` clé a quelque chose de similaire pour la valeur de hello :</span><span class="sxs-lookup"><span data-stu-id="ce3a5-142">In hello output, hello `networkSecurityGroup` key has something similar for hello value:</span></span>
 
 ```json
 "networkSecurityGroup": {
@@ -338,17 +338,17 @@ az network vnet subnet update \
   }
   ```
 
-## <a name="delete-an-nsg"></a><span data-ttu-id="a572e-143">Suppression d'un groupe de sécurité réseau</span><span class="sxs-lookup"><span data-stu-id="a572e-143">Delete an NSG</span></span>
-<span data-ttu-id="a572e-144">Vous ne pouvez supprimer un groupe de sécurité réseau que s’il n’est associé à aucune ressource.</span><span class="sxs-lookup"><span data-stu-id="a572e-144">You can only delete an NSG if it's not associated to any resource.</span></span> <span data-ttu-id="a572e-145">Pour supprimer un groupe de sécurité réseau, procédez comme suit.</span><span class="sxs-lookup"><span data-stu-id="a572e-145">To delete an NSG, follow the steps below.</span></span>
+## <a name="delete-an-nsg"></a><span data-ttu-id="ce3a5-143">Suppression d'un groupe de sécurité réseau</span><span class="sxs-lookup"><span data-stu-id="ce3a5-143">Delete an NSG</span></span>
+<span data-ttu-id="ce3a5-144">Vous ne pouvez supprimer un groupe de sécurité réseau si elle n’est pas associé à tooany ressource.</span><span class="sxs-lookup"><span data-stu-id="ce3a5-144">You can only delete an NSG if it's not associated tooany resource.</span></span> <span data-ttu-id="ce3a5-145">toodelete un groupe de sécurité réseau, suivez les étapes de hello ci-dessous.</span><span class="sxs-lookup"><span data-stu-id="ce3a5-145">toodelete an NSG, follow hello steps below.</span></span>
 
-1. <span data-ttu-id="a572e-146">Pour consulter les ressources associées à un groupe de sécurité réseau, exécutez `azure network nsg show` comme illustré dans [Afficher les associations de groupes de sécurité réseau](#View-NSGs-associations).</span><span class="sxs-lookup"><span data-stu-id="a572e-146">To check the resources associated to an NSG, run the `azure network nsg show` as shown in [View NSGs associations](#View-NSGs-associations).</span></span>
-2. <span data-ttu-id="a572e-147">Si le groupe de sécurité réseau est associé à des cartes réseau, exécutez `azure network nic set` comme illustré dans [Dissocier un groupe de sécurité réseau d’une carte réseau](#Dissociate-an-NSG-from-a-NIC) pour chaque carte réseau.</span><span class="sxs-lookup"><span data-stu-id="a572e-147">If the NSG is associated to any NICs, run the `azure network nic set` as shown in [Dissociate an NSG from a NIC](#Dissociate-an-NSG-from-a-NIC) for each NIC.</span></span> 
-3. <span data-ttu-id="a572e-148">Si le groupe de sécurité réseau est associé à un sous-réseau, exécutez `azure network vnet subnet set` comme illustré dans [Dissocier un groupe de sécurité réseau d’un sous-réseau](#Dissociate-an-NSG-from-a-subnet) pour chaque sous-réseau.</span><span class="sxs-lookup"><span data-stu-id="a572e-148">If the NSG is associated to any subnet, run the `azure network vnet subnet set` as shown in [Dissociate an NSG from a subnet](#Dissociate-an-NSG-from-a-subnet) for each subnet.</span></span>
-4. <span data-ttu-id="a572e-149">Pour supprimer le groupe de sécurité réseau, exécutez la commande suivante :</span><span class="sxs-lookup"><span data-stu-id="a572e-149">To delete the NSG, run the following command:</span></span>
+1. <span data-ttu-id="ce3a5-146">ressources de hello toocheck associés tooan NSG, exécutez hello `azure network nsg show` comme indiqué dans [associations de groupes de sécurité réseau vue](#View-NSGs-associations).</span><span class="sxs-lookup"><span data-stu-id="ce3a5-146">toocheck hello resources associated tooan NSG, run hello `azure network nsg show` as shown in [View NSGs associations](#View-NSGs-associations).</span></span>
+2. <span data-ttu-id="ce3a5-147">Si hello NSG est associé tooany cartes réseau, exécutez hello `azure network nic set` comme indiqué dans [dissocier un groupe de sécurité réseau à partir d’une carte réseau](#Dissociate-an-NSG-from-a-NIC) pour chaque carte réseau.</span><span class="sxs-lookup"><span data-stu-id="ce3a5-147">If hello NSG is associated tooany NICs, run hello `azure network nic set` as shown in [Dissociate an NSG from a NIC](#Dissociate-an-NSG-from-a-NIC) for each NIC.</span></span> 
+3. <span data-ttu-id="ce3a5-148">Si hello NSG est associé tooany sous-réseau, exécutez hello `azure network vnet subnet set` comme indiqué dans [dissocier un groupe de sécurité réseau à partir d’un sous-réseau](#Dissociate-an-NSG-from-a-subnet) pour chaque sous-réseau.</span><span class="sxs-lookup"><span data-stu-id="ce3a5-148">If hello NSG is associated tooany subnet, run hello `azure network vnet subnet set` as shown in [Dissociate an NSG from a subnet](#Dissociate-an-NSG-from-a-subnet) for each subnet.</span></span>
+4. <span data-ttu-id="ce3a5-149">toodelete hello NSG, exécutez hello de commande suivante :</span><span class="sxs-lookup"><span data-stu-id="ce3a5-149">toodelete hello NSG, run hello following command:</span></span>
 
     ```azurecli
     az network nsg delete --resource-group RG-NSG --name NSG-FrontEnd
     ```
-## <a name="next-steps"></a><span data-ttu-id="a572e-150">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="a572e-150">Next steps</span></span>
-* <span data-ttu-id="a572e-151">[Activez la journalisation](virtual-network-nsg-manage-log.md) des groupes de sécurité réseau.</span><span class="sxs-lookup"><span data-stu-id="a572e-151">[Enable logging](virtual-network-nsg-manage-log.md) for NSGs.</span></span>
+## <a name="next-steps"></a><span data-ttu-id="ce3a5-150">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="ce3a5-150">Next steps</span></span>
+* <span data-ttu-id="ce3a5-151">[Activez la journalisation](virtual-network-nsg-manage-log.md) des groupes de sécurité réseau.</span><span class="sxs-lookup"><span data-stu-id="ce3a5-151">[Enable logging](virtual-network-nsg-manage-log.md) for NSGs.</span></span>
 

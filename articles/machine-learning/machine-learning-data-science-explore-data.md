@@ -1,6 +1,6 @@
 ---
-title: "Exploration des données dans le processus TDSP (Team Data Science Process) | Microsoft Docs"
-description: "Comment explorer les données dans différents environnements de stockage."
+title: "données aaaExplore Bonjour processus de science des données équipe | Documents Microsoft"
+description: "Comment tooexplore les données dans différents environnements de stockage."
 services: machine-learning,storage
 documentationcenter: 
 author: bradsev
@@ -14,21 +14,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/24/2017
 ms.author: bradsev
-ms.openlocfilehash: b0735d659412699d06d5e4f1e9a713444ad5ac61
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ec582a43fbfcdb19429138a0a4ce9ffe396bee5f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="explore-data-in-the-team-data-science-process"></a><span data-ttu-id="c9634-103">Exploration des données dans le processus TDSP (Team Data Science Process)</span><span class="sxs-lookup"><span data-stu-id="c9634-103">Explore data in the Team Data Science Process</span></span>
-<span data-ttu-id="c9634-104">Ce document explique comment explorer les données dans quatre environnements de stockage différents généralement utilisés dans le processus de sciences des données :</span><span class="sxs-lookup"><span data-stu-id="c9634-104">This document covers how to explore data in four different storage environments that are typically used in the Data Science Process:</span></span>
+# <a name="explore-data-in-hello-team-data-science-process"></a><span data-ttu-id="f8455-103">Explorer les données Bonjour processus de science des données équipe</span><span class="sxs-lookup"><span data-stu-id="f8455-103">Explore data in hello Team Data Science Process</span></span>
+<span data-ttu-id="f8455-104">Ce document décrit comment les données tooexplore quatre différents environnements de stockage qui sont généralement utilisés dans hello processus de science des données :</span><span class="sxs-lookup"><span data-stu-id="f8455-104">This document covers how tooexplore data in four different storage environments that are typically used in hello Data Science Process:</span></span>
 
-* <span data-ttu-id="c9634-105">**conteneurs d’objets blob Azure** sont explorées à l’aide du package Python [Pandas](http://pandas.pydata.org/) .</span><span class="sxs-lookup"><span data-stu-id="c9634-105">**Azure blob container** data is explored using the [Pandas](http://pandas.pydata.org/) Python package.</span></span>
-* <span data-ttu-id="c9634-106">**SQL Server** sont explorées à l’aide de SQL et d’un langage de programmation comme Python.</span><span class="sxs-lookup"><span data-stu-id="c9634-106">**SQL Server** data is explored by using SQL and by using a programming language like Python.</span></span>
-* <span data-ttu-id="c9634-107">**tables Hive** sont explorées à l’aide de requêtes Hive.</span><span class="sxs-lookup"><span data-stu-id="c9634-107">**Hive table** data is explored using Hive queries.</span></span>
-* <span data-ttu-id="c9634-108">**Azure Machine Learning (AML) Studio** sont explorées à l'aide de modules AML.</span><span class="sxs-lookup"><span data-stu-id="c9634-108">**Azure Machine Learning (AML) Studio** data is explored using AML modules.</span></span>
+* <span data-ttu-id="f8455-105">**Conteneur d’objets blob Azure** données à Explorer à l’aide de hello [Pandas](http://pandas.pydata.org/) package Python.</span><span class="sxs-lookup"><span data-stu-id="f8455-105">**Azure blob container** data is explored using hello [Pandas](http://pandas.pydata.org/) Python package.</span></span>
+* <span data-ttu-id="f8455-106">**SQL Server** sont explorées à l’aide de SQL et d’un langage de programmation comme Python.</span><span class="sxs-lookup"><span data-stu-id="f8455-106">**SQL Server** data is explored by using SQL and by using a programming language like Python.</span></span>
+* <span data-ttu-id="f8455-107">**tables Hive** sont explorées à l’aide de requêtes Hive.</span><span class="sxs-lookup"><span data-stu-id="f8455-107">**Hive table** data is explored using Hive queries.</span></span>
+* <span data-ttu-id="f8455-108">**Azure Machine Learning (AML) Studio** sont explorées à l'aide de modules AML.</span><span class="sxs-lookup"><span data-stu-id="f8455-108">**Azure Machine Learning (AML) Studio** data is explored using AML modules.</span></span>
 
-<span data-ttu-id="c9634-109">Le **menu** suivant pointe vers les rubriques qui expliquent comment utiliser ces outils pour explorer des données dans différents environnements de stockage.</span><span class="sxs-lookup"><span data-stu-id="c9634-109">The following **menu** links to the topics that describe how to use these tools to explore data from various storage environments.</span></span> 
+<span data-ttu-id="f8455-109">suivant de Hello **menu** liens toohello rubriques qui décrivent comment toouse ces données tooexplore des outils à partir de différents environnements de stockage.</span><span class="sxs-lookup"><span data-stu-id="f8455-109">hello following **menu** links toohello topics that describe how toouse these tools tooexplore data from various storage environments.</span></span> 
 
 [!INCLUDE [cap-explore-data-selector](../../includes/cap-explore-data-selector.md)]
 

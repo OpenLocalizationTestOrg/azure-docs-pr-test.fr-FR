@@ -2,7 +2,7 @@
 ## [Que sont les groupes de machines virtuelles identiques ?](virtual-machine-scale-sets-overview.md)
 
 # Prise en main
-## [Déployer un groupe identique dans le portail](virtual-machine-scale-sets-portal-create.md)
+## [Déployer une mise à l’échelle définie dans le portail de hello](virtual-machine-scale-sets-portal-create.md)
 ## [Déployer un groupe identique avec PowerShell ou l’interface de ligne de commande Azure](virtual-machine-scale-sets-create.md)
 ## [Déployer une application de mise à l’échelle automatique à l’aide d’un modèle](virtual-machine-scale-sets-deploy-scaling-app-template.md)
 
@@ -17,7 +17,7 @@
 ### [Utiliser la mise à l’échelle automatique basée sur des invités avec un modèle de groupe identique Linux](virtual-machine-scale-sets-mvss-guest-based-autoscale-linux.md)
 
 ## Déployer
-### [Créer à l’aide du portail](virtual-machine-scale-sets-portal-create.md)
+### [Créer avec le portail de hello](virtual-machine-scale-sets-portal-create.md)
 ### [Créer avec Visual Studio](virtual-machine-scale-sets-vs-create.md)
 ### [Créer avec PowerShell ou l’interface de ligne de commande Azure](virtual-machine-scale-sets-create.md)
 ### [Groupe de machines virtuelles identiques avec des disques gérés](virtual-machine-scale-sets-managed-disks.md)
@@ -26,7 +26,7 @@
 ### [Applications dans les groupes de machines virtuelles identiques](virtual-machine-scale-sets-deploy-app.md)
 ### [Utiliser des disques de données avec des groupes identiques](virtual-machine-scale-sets-attached-disks.md)
 ### [Travailler avec des groupes identiques de grande taille](virtual-machine-scale-sets-placement-groups.md)
-### [Convertir un modèle de groupe identique pour utiliser un disque géré](virtual-machine-scale-sets-convert-template-to-md.md)
+### [Convertir un disque échelle ensemble modèle toouse gérés](virtual-machine-scale-sets-convert-template-to-md.md)
 
 
 
@@ -38,7 +38,7 @@
 ### [Mises à jour pour les groupes de machines virtuelles identiques](virtual-machine-scale-sets-upgrade-scale-set.md)
 ### [Groupes de machines virtuelles identiques et configuration d’état souhaité](virtual-machine-scale-sets-dsc.md)
 ### [Mise en réseau pour les groupes identiques](virtual-machine-scale-sets-networking.md)
-### [Convertir un modèle en disques gérés](virtual-machine-scale-sets-convert-template-to-md.md)
+### [Convertir un disque de toomanaged de modèle](virtual-machine-scale-sets-convert-template-to-md.md)
 
 ## Résolution des problèmes
 ### [Mise à l’échelle automatique](virtual-machine-scale-sets-troubleshoot.md)

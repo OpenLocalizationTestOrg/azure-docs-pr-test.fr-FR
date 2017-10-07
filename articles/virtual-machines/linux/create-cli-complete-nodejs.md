@@ -1,6 +1,6 @@
 ---
-title: "Création d’un environnement Linux complet à l’aide de l’interface Azure CLI 1.0 | Microsoft Docs"
-description: "Créez un stockage, une machine virtuelle Linux, un réseau virtuel et un sous-réseau, un équilibreur de charge, une carte d’interface réseau, une adresse IP publique et un groupe de sécurité réseau à partir de zéro à l’aide de l’interface de ligne de commande Azure 1.0."
+title: aaaCreate un environnement Linux complet avec hello Azure CLI 1.0 | Documents Microsoft
+description: "Créer des stockage, un VM Linux, un réseau virtuel et du sous-réseau, un équilibreur de charge, une carte réseau, une adresse IP publique et un groupe de sécurité réseau, tous les à partir de hello d’arrière-plan à l’aide de hello Azure CLI 1.0."
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: iainfoulds
@@ -15,117 +15,117 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 02/09/2017
 ms.author: iainfou
-ms.openlocfilehash: 201ccd523e49d638ace50fbc0ffdceb705b35473
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 7fe00e138704fe9c9a1c9b87a7dd1afd6174e527
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-complete-linux-environment-with-the-azure-cli-10"></a><span data-ttu-id="8f43b-103">Créer un environnement Linux complet à l’aide de l’interface Azure CLI 1.0</span><span class="sxs-lookup"><span data-stu-id="8f43b-103">Create a complete Linux environment with the Azure CLI 1.0</span></span>
-<span data-ttu-id="8f43b-104">Dans cet article, nous créons un réseau simple avec un équilibreur de charge et deux machines virtuelles à des fins de développement et de calcul simple.</span><span class="sxs-lookup"><span data-stu-id="8f43b-104">In this article, we build a simple network with a load balancer and a pair of VMs that are useful for development and simple computing.</span></span> <span data-ttu-id="8f43b-105">Nous suivons ce processus, commande par commande, jusqu’à ce que vous disposiez de deux machines virtuelles Linux sécurisées opérationnelles, auxquelles vous pouvez vous connecter à partir de n’importe quel emplacement via Internet.</span><span class="sxs-lookup"><span data-stu-id="8f43b-105">We walk through the process command by command, until you have two working, secure Linux VMs to which you can connect from anywhere on the Internet.</span></span> <span data-ttu-id="8f43b-106">Vous pourrez ensuite créer des réseaux et des environnements plus complexes.</span><span class="sxs-lookup"><span data-stu-id="8f43b-106">Then you can move on to more complex networks and environments.</span></span>
+# <a name="create-a-complete-linux-environment-with-hello-azure-cli-10"></a><span data-ttu-id="2cf21-103">Créer un environnement de Linux complète avec hello Azure CLI 1.0</span><span class="sxs-lookup"><span data-stu-id="2cf21-103">Create a complete Linux environment with hello Azure CLI 1.0</span></span>
+<span data-ttu-id="2cf21-104">Dans cet article, nous créons un réseau simple avec un équilibreur de charge et deux machines virtuelles à des fins de développement et de calcul simple.</span><span class="sxs-lookup"><span data-stu-id="2cf21-104">In this article, we build a simple network with a load balancer and a pair of VMs that are useful for development and simple computing.</span></span> <span data-ttu-id="2cf21-105">Nous Guide de processus de hello par commande, jusqu'à ce que vous avez deux, sécurisez toowhich les machines virtuelles Linux que vous pouvez vous connecter à partir de n’importe où sur hello Internet.</span><span class="sxs-lookup"><span data-stu-id="2cf21-105">We walk through hello process command by command, until you have two working, secure Linux VMs toowhich you can connect from anywhere on hello Internet.</span></span> <span data-ttu-id="2cf21-106">Ensuite, vous pouvez déplacer sur les environnements et les réseaux complexes toomore.</span><span class="sxs-lookup"><span data-stu-id="2cf21-106">Then you can move on toomore complex networks and environments.</span></span>
 
-<span data-ttu-id="8f43b-107">Vous allez découvrir la hiérarchie des dépendances et la puissance que vous offre le modèle de déploiement Resource Manager.</span><span class="sxs-lookup"><span data-stu-id="8f43b-107">Along the way, you learn about the dependency hierarchy that the Resource Manager deployment model gives you, and about how much power it provides.</span></span> <span data-ttu-id="8f43b-108">Une fois que vous avez compris la façon dont le système est créé, vous pouvez le reconstruire beaucoup plus rapidement en utilisant des [modèles Azure Resource Manager](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="8f43b-108">After you see how the system is built, you can rebuild it much more quickly by using [Azure Resource Manager templates](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span> <span data-ttu-id="8f43b-109">De même, après avoir compris la façon dont les différentes parties de votre environnement s’imbriquent, la création de modèles pour automatiser ces dernières se révèle plus simple.</span><span class="sxs-lookup"><span data-stu-id="8f43b-109">Also, after you learn how the parts of your environment fit together, creating templates to automate them becomes easier.</span></span>
+<span data-ttu-id="2cf21-107">Le long de la façon de hello, vous allez découvrir la hiérarchie des dépendances hello que modèle de déploiement du Gestionnaire de ressources hello offre, et sur la quantité d’énergie il.</span><span class="sxs-lookup"><span data-stu-id="2cf21-107">Along hello way, you learn about hello dependency hierarchy that hello Resource Manager deployment model gives you, and about how much power it provides.</span></span> <span data-ttu-id="2cf21-108">Une fois que vous voyez comment le système de hello est créée, vous pouvez reconstruire il beaucoup plus rapidement à l’aide de [modèles Azure Resource Manager](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="2cf21-108">After you see how hello system is built, you can rebuild it much more quickly by using [Azure Resource Manager templates](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span> <span data-ttu-id="2cf21-109">En outre, une fois que vous coordination des parties hello de votre environnement, la création de modèles tooautomate les devient plus facile.</span><span class="sxs-lookup"><span data-stu-id="2cf21-109">Also, after you learn how hello parts of your environment fit together, creating templates tooautomate them becomes easier.</span></span>
 
-<span data-ttu-id="8f43b-110">L’environnement contient :</span><span class="sxs-lookup"><span data-stu-id="8f43b-110">The environment contains:</span></span>
+<span data-ttu-id="2cf21-110">environnement de Hello contient :</span><span class="sxs-lookup"><span data-stu-id="2cf21-110">hello environment contains:</span></span>
 
-* <span data-ttu-id="8f43b-111">Deux machines virtuelles dans un groupe à haute disponibilité.</span><span class="sxs-lookup"><span data-stu-id="8f43b-111">Two VMs inside an availability set.</span></span>
-* <span data-ttu-id="8f43b-112">Un équilibreur de charge avec une règle d’équilibrage de charge sur le port 80.</span><span class="sxs-lookup"><span data-stu-id="8f43b-112">A load balancer with a load-balancing rule on port 80.</span></span>
-* <span data-ttu-id="8f43b-113">Des règles de groupe de sécurité réseau (NSG) pour protéger votre machine virtuelle de tout trafic indésirable.</span><span class="sxs-lookup"><span data-stu-id="8f43b-113">Network security group (NSG) rules to protect your VM from unwanted traffic.</span></span>
+* <span data-ttu-id="2cf21-111">Deux machines virtuelles dans un groupe à haute disponibilité.</span><span class="sxs-lookup"><span data-stu-id="2cf21-111">Two VMs inside an availability set.</span></span>
+* <span data-ttu-id="2cf21-112">Un équilibreur de charge avec une règle d’équilibrage de charge sur le port 80.</span><span class="sxs-lookup"><span data-stu-id="2cf21-112">A load balancer with a load-balancing rule on port 80.</span></span>
+* <span data-ttu-id="2cf21-113">Les règles de groupe de sécurité réseau (NSG) tooprotect votre machine virtuelle à partir d’un trafic indésirable.</span><span class="sxs-lookup"><span data-stu-id="2cf21-113">Network security group (NSG) rules tooprotect your VM from unwanted traffic.</span></span>
 
-<span data-ttu-id="8f43b-114">Pour créer cet environnement personnalisé, [l’interface de ligne de commande 1.0 Azure](../../cli-install-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) la plus récente doit être installée en mode Resource Manager (`azure config mode arm`).</span><span class="sxs-lookup"><span data-stu-id="8f43b-114">To create this custom environment, you need the latest [Azure CLI 1.0](../../cli-install-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) in Resource Manager mode (`azure config mode arm`).</span></span> <span data-ttu-id="8f43b-115">Vous avez également besoin d’un outil d’analyse JSON.</span><span class="sxs-lookup"><span data-stu-id="8f43b-115">You also need a JSON parsing tool.</span></span> <span data-ttu-id="8f43b-116">Cet exemple utilise [jq](https://stedolan.github.io/jq/).</span><span class="sxs-lookup"><span data-stu-id="8f43b-116">This example uses [jq](https://stedolan.github.io/jq/).</span></span>
-
-
-## <a name="cli-versions-to-complete-the-task"></a><span data-ttu-id="8f43b-117">Versions de l’interface de ligne de commande permettant d’effectuer la tâche</span><span class="sxs-lookup"><span data-stu-id="8f43b-117">CLI versions to complete the task</span></span>
-<span data-ttu-id="8f43b-118">Vous pouvez exécuter la tâche en utilisant l’une des versions suivantes de l’interface de ligne de commande (CLI) :</span><span class="sxs-lookup"><span data-stu-id="8f43b-118">You can complete the task using one of the following CLI versions:</span></span>
-
-- <span data-ttu-id="8f43b-119">[Azure CLI 1.0](#quick-commands) : notre interface de ligne de commande pour les modèles de déploiement Classique et Resource Manager (cet article)</span><span class="sxs-lookup"><span data-stu-id="8f43b-119">[Azure CLI 1.0](#quick-commands) – our CLI for the classic and resource management deployment models (this article)</span></span>
-- <span data-ttu-id="8f43b-120">[Azure CLI 2.0](create-cli-complete.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) : notre interface Azure CLI nouvelle génération pour le modèle de déploiement Resource Manager</span><span class="sxs-lookup"><span data-stu-id="8f43b-120">[Azure CLI 2.0](create-cli-complete.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) - our next generation CLI for the resource management deployment model</span></span>
+<span data-ttu-id="2cf21-114">toocreate cet environnement personnalisé, vous devez hello dernières [Azure CLI 1.0](../../cli-install-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) en mode de gestionnaire de ressources (`azure config mode arm`).</span><span class="sxs-lookup"><span data-stu-id="2cf21-114">toocreate this custom environment, you need hello latest [Azure CLI 1.0](../../cli-install-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) in Resource Manager mode (`azure config mode arm`).</span></span> <span data-ttu-id="2cf21-115">Vous avez également besoin d’un outil d’analyse JSON.</span><span class="sxs-lookup"><span data-stu-id="2cf21-115">You also need a JSON parsing tool.</span></span> <span data-ttu-id="2cf21-116">Cet exemple utilise [jq](https://stedolan.github.io/jq/).</span><span class="sxs-lookup"><span data-stu-id="2cf21-116">This example uses [jq](https://stedolan.github.io/jq/).</span></span>
 
 
-## <a name="quick-commands"></a><span data-ttu-id="8f43b-121">Commandes rapides</span><span class="sxs-lookup"><span data-stu-id="8f43b-121">Quick commands</span></span>
-<span data-ttu-id="8f43b-122">Si vous avez besoin d’accomplir rapidement cette tâche, la section suivante décrit les commandes de base qui vous permettront de charger une machine virtuelle dans Azure.</span><span class="sxs-lookup"><span data-stu-id="8f43b-122">If you need to quickly accomplish the task, the following section details the base commands to upload a VM to Azure.</span></span> <span data-ttu-id="8f43b-123">Pour obtenir plus d’informations et davantage de contexte pour chaque étape, lisez la suite de ce document, à partir de [cette section](#detailed-walkthrough).</span><span class="sxs-lookup"><span data-stu-id="8f43b-123">More detailed information and context for each step can be found in the rest of the document, starting [here](#detailed-walkthrough).</span></span>
+## <a name="cli-versions-toocomplete-hello-task"></a><span data-ttu-id="2cf21-117">Tâche de hello CLI versions toocomplete</span><span class="sxs-lookup"><span data-stu-id="2cf21-117">CLI versions toocomplete hello task</span></span>
+<span data-ttu-id="2cf21-118">Vous pouvez exécuter la tâche hello à l’aide de hello CLI versions suivantes :</span><span class="sxs-lookup"><span data-stu-id="2cf21-118">You can complete hello task using one of hello following CLI versions:</span></span>
 
-<span data-ttu-id="8f43b-124">Veillez à ce que [l’interface de ligne de commande 1.0 Azure](../../cli-install-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) soit connectée et utilise le mode Resource Manager :</span><span class="sxs-lookup"><span data-stu-id="8f43b-124">Make sure that you have [the Azure CLI 1.0](../../cli-install-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) logged in and using Resource Manager mode:</span></span>
+- <span data-ttu-id="2cf21-119">[Azure CLI 1.0](#quick-commands) – notre CLI pour hello classique et la ressource gestion des modèles de déploiement (cet article)</span><span class="sxs-lookup"><span data-stu-id="2cf21-119">[Azure CLI 1.0](#quick-commands) – our CLI for hello classic and resource management deployment models (this article)</span></span>
+- <span data-ttu-id="2cf21-120">[Azure CLI 2.0](create-cli-complete.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) -notre prochaine génération CLI pour le modèle de déploiement de gestion de ressources hello</span><span class="sxs-lookup"><span data-stu-id="2cf21-120">[Azure CLI 2.0](create-cli-complete.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) - our next generation CLI for hello resource management deployment model</span></span>
+
+
+## <a name="quick-commands"></a><span data-ttu-id="2cf21-121">Commandes rapides</span><span class="sxs-lookup"><span data-stu-id="2cf21-121">Quick commands</span></span>
+<span data-ttu-id="2cf21-122">Si vous avez besoin de tooquickly accomplir la tâche hello, hello suivant hello de détails section tooupload des commandes de base un tooAzure de machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="2cf21-122">If you need tooquickly accomplish hello task, hello following section details hello base commands tooupload a VM tooAzure.</span></span> <span data-ttu-id="2cf21-123">Plus d’informations et le contexte de chaque étape se trouvent dans le reste de hello du document hello, en commençant [ici](#detailed-walkthrough).</span><span class="sxs-lookup"><span data-stu-id="2cf21-123">More detailed information and context for each step can be found in hello rest of hello document, starting [here](#detailed-walkthrough).</span></span>
+
+<span data-ttu-id="2cf21-124">Assurez-vous que vous avez [hello Azure CLI 1.0](../../cli-install-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) connecté et l’utilisation du mode de gestionnaire de ressources :</span><span class="sxs-lookup"><span data-stu-id="2cf21-124">Make sure that you have [hello Azure CLI 1.0](../../cli-install-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) logged in and using Resource Manager mode:</span></span>
 
 ```azurecli
 azure config mode arm
 ```
 
-<span data-ttu-id="8f43b-125">Dans les exemples suivants, remplacez les exemples de noms de paramètre par vos propres valeurs.</span><span class="sxs-lookup"><span data-stu-id="8f43b-125">In the following examples, replace example parameter names with your own values.</span></span> <span data-ttu-id="8f43b-126">Exemples de noms de paramètre : `myResourceGroup`, `mystorageaccount` et `myVM`.</span><span class="sxs-lookup"><span data-stu-id="8f43b-126">Example parameter names include `myResourceGroup`, `mystorageaccount`, and `myVM`.</span></span>
+<span data-ttu-id="2cf21-125">Bonjour les exemples suivants, remplacez les exemples de noms de paramètre par vos propres valeurs.</span><span class="sxs-lookup"><span data-stu-id="2cf21-125">In hello following examples, replace example parameter names with your own values.</span></span> <span data-ttu-id="2cf21-126">Exemples de noms de paramètre : `myResourceGroup`, `mystorageaccount` et `myVM`.</span><span class="sxs-lookup"><span data-stu-id="2cf21-126">Example parameter names include `myResourceGroup`, `mystorageaccount`, and `myVM`.</span></span>
 
-<span data-ttu-id="8f43b-127">Créez le groupe de ressources.</span><span class="sxs-lookup"><span data-stu-id="8f43b-127">Create the resource group.</span></span> <span data-ttu-id="8f43b-128">L’exemple suivant crée un groupe de ressources nommé `myResourceGroup` à l’emplacement `westeurope` :</span><span class="sxs-lookup"><span data-stu-id="8f43b-128">The following example creates a resource group named `myResourceGroup` in the `westeurope` location:</span></span>
+<span data-ttu-id="2cf21-127">Créer un groupe de ressources hello.</span><span class="sxs-lookup"><span data-stu-id="2cf21-127">Create hello resource group.</span></span> <span data-ttu-id="2cf21-128">Hello exemple suivant crée un groupe de ressources nommé `myResourceGroup` Bonjour `westeurope` emplacement :</span><span class="sxs-lookup"><span data-stu-id="2cf21-128">hello following example creates a resource group named `myResourceGroup` in hello `westeurope` location:</span></span>
 
 ```azurecli
 azure group create -n myResourceGroup -l westeurope
 ```
 
-<span data-ttu-id="8f43b-129">Vérifiez le groupe de ressources à l’aide de l’analyseur JSON :</span><span class="sxs-lookup"><span data-stu-id="8f43b-129">Verify the resource group by using the JSON parser:</span></span>
+<span data-ttu-id="2cf21-129">Vérifiez le groupe de ressources hello en utilisant l’analyseur JSON hello :</span><span class="sxs-lookup"><span data-stu-id="2cf21-129">Verify hello resource group by using hello JSON parser:</span></span>
 
 ```azurecli
 azure group show myResourceGroup --json | jq '.'
 ```
 
-<span data-ttu-id="8f43b-130">Créez le compte de stockage.</span><span class="sxs-lookup"><span data-stu-id="8f43b-130">Create the storage account.</span></span> <span data-ttu-id="8f43b-131">L’exemple suivant permet de créer un compte de stockage nommé `mystorageaccount`.</span><span class="sxs-lookup"><span data-stu-id="8f43b-131">The following example creates a storage account named `mystorageaccount`.</span></span> <span data-ttu-id="8f43b-132">(Le nom du compte de stockage doit être unique, fournissez donc votre propre nom unique.)</span><span class="sxs-lookup"><span data-stu-id="8f43b-132">(The storage account name must be unique, so provide your own unique name.)</span></span>
+<span data-ttu-id="2cf21-130">Créer un compte de stockage hello.</span><span class="sxs-lookup"><span data-stu-id="2cf21-130">Create hello storage account.</span></span> <span data-ttu-id="2cf21-131">Hello exemple suivant crée un compte de stockage nommé `mystorageaccount`.</span><span class="sxs-lookup"><span data-stu-id="2cf21-131">hello following example creates a storage account named `mystorageaccount`.</span></span> <span data-ttu-id="2cf21-132">(nom de compte de stockage hello doit être unique, par conséquent, fournissez votre propre nom unique).</span><span class="sxs-lookup"><span data-stu-id="2cf21-132">(hello storage account name must be unique, so provide your own unique name.)</span></span>
 
 ```azurecli
 azure storage account create -g myResourceGroup -l westeurope \
   --kind Storage --sku-name GRS mystorageaccount
 ```
 
-<span data-ttu-id="8f43b-133">Vérifiez le compte de stockage à l’aide de l’analyseur JSON :</span><span class="sxs-lookup"><span data-stu-id="8f43b-133">Verify the storage account by using the JSON parser:</span></span>
+<span data-ttu-id="2cf21-133">Vérifiez le compte de stockage hello en utilisant l’analyseur JSON hello :</span><span class="sxs-lookup"><span data-stu-id="2cf21-133">Verify hello storage account by using hello JSON parser:</span></span>
 
 ```azurecli
 azure storage account show -g myResourceGroup mystorageaccount --json | jq '.'
 ```
 
-<span data-ttu-id="8f43b-134">Création du réseau virtuel.</span><span class="sxs-lookup"><span data-stu-id="8f43b-134">Create the virtual network.</span></span> <span data-ttu-id="8f43b-135">L’exemple suivant crée un réseau virtuel nommé `myVnet` :</span><span class="sxs-lookup"><span data-stu-id="8f43b-135">The following example creates a virtual network named `myVnet`:</span></span>
+<span data-ttu-id="2cf21-134">Créer un réseau virtuel de hello.</span><span class="sxs-lookup"><span data-stu-id="2cf21-134">Create hello virtual network.</span></span> <span data-ttu-id="2cf21-135">Hello exemple suivant crée un réseau virtuel nommé `myVnet`:</span><span class="sxs-lookup"><span data-stu-id="2cf21-135">hello following example creates a virtual network named `myVnet`:</span></span>
 
 ```azurecli
 azure network vnet create -g myResourceGroup -l westeurope\
   -n myVnet -a 192.168.0.0/16
 ```
 
-<span data-ttu-id="8f43b-136">Créez un sous-réseau.</span><span class="sxs-lookup"><span data-stu-id="8f43b-136">Create a subnet.</span></span> <span data-ttu-id="8f43b-137">L’exemple suivant permet de créer un sous-réseau nommé `mySubnet` :</span><span class="sxs-lookup"><span data-stu-id="8f43b-137">The following example creates a subnet named `mySubnet`:</span></span>
+<span data-ttu-id="2cf21-136">Créez un sous-réseau.</span><span class="sxs-lookup"><span data-stu-id="2cf21-136">Create a subnet.</span></span> <span data-ttu-id="2cf21-137">Hello exemple suivant crée un sous-réseau nommé `mySubnet`:</span><span class="sxs-lookup"><span data-stu-id="2cf21-137">hello following example creates a subnet named `mySubnet`:</span></span>
 
 ```azurecli
 azure network vnet subnet create -g myResourceGroup \
   -e myVnet -n mySubnet -a 192.168.1.0/24
 ```
 
-<span data-ttu-id="8f43b-138">Vérifiez le réseau virtuel et le sous-réseau à l’aide de l’analyseur JSON :</span><span class="sxs-lookup"><span data-stu-id="8f43b-138">Verify the virtual network and subnet by using the JSON parser:</span></span>
+<span data-ttu-id="2cf21-138">Vérifiez que hello réseau et sous-réseau virtuels en utilisant l’analyseur JSON hello :</span><span class="sxs-lookup"><span data-stu-id="2cf21-138">Verify hello virtual network and subnet by using hello JSON parser:</span></span>
 
 ```azurecli
 azure network vnet show myResourceGroup myVnet --json | jq '.'
 ```
 
-<span data-ttu-id="8f43b-139">Créez une adresse IP publique.</span><span class="sxs-lookup"><span data-stu-id="8f43b-139">Create a public IP.</span></span> <span data-ttu-id="8f43b-140">L’exemple suivant permet de créer une adresse IP publique nommée `myPublicIP` avec le nom DNS de `mypublicdns`.</span><span class="sxs-lookup"><span data-stu-id="8f43b-140">The following example creates a public IP named `myPublicIP` with the DNS name of `mypublicdns`.</span></span> <span data-ttu-id="8f43b-141">(Le nom DNS doit être unique, fournissez donc votre propre nom unique.)</span><span class="sxs-lookup"><span data-stu-id="8f43b-141">(The DNS name must be unique, so provide your own unique name.)</span></span>
+<span data-ttu-id="2cf21-139">Créez une adresse IP publique.</span><span class="sxs-lookup"><span data-stu-id="2cf21-139">Create a public IP.</span></span> <span data-ttu-id="2cf21-140">Hello exemple suivant crée une adresse IP publique nommée `myPublicIP` portant le nom DNS de hello de `mypublicdns`.</span><span class="sxs-lookup"><span data-stu-id="2cf21-140">hello following example creates a public IP named `myPublicIP` with hello DNS name of `mypublicdns`.</span></span> <span data-ttu-id="2cf21-141">(nom DNS de hello doit être unique, par conséquent, fournissez votre propre nom unique).</span><span class="sxs-lookup"><span data-stu-id="2cf21-141">(hello DNS name must be unique, so provide your own unique name.)</span></span>
 
 ```azurecli
 azure network public-ip create -g myResourceGroup -l westeurope \
   -n myPublicIP  -d mypublicdns -a static -i 4
 ```
 
-<span data-ttu-id="8f43b-142">Créez l’équilibreur de charge.</span><span class="sxs-lookup"><span data-stu-id="8f43b-142">Create the load balancer.</span></span> <span data-ttu-id="8f43b-143">L’exemple suivant permet de créer un équilibrage de charge nommé `myLoadBalancer` :</span><span class="sxs-lookup"><span data-stu-id="8f43b-143">The following example creates a load balancer named `myLoadBalancer`:</span></span>
+<span data-ttu-id="2cf21-142">Créer un équilibreur de charge hello.</span><span class="sxs-lookup"><span data-stu-id="2cf21-142">Create hello load balancer.</span></span> <span data-ttu-id="2cf21-143">Hello exemple suivant crée un équilibreur de charge nommé `myLoadBalancer`:</span><span class="sxs-lookup"><span data-stu-id="2cf21-143">hello following example creates a load balancer named `myLoadBalancer`:</span></span>
 
 ```azurecli
 azure network lb create -g myResourceGroup -l westeurope -n myLoadBalancer
 ```
 
-<span data-ttu-id="8f43b-144">Créez un pool d’adresses IP frontal pour l’équilibrage de charge et associez-le à l’adresse IP publique.</span><span class="sxs-lookup"><span data-stu-id="8f43b-144">Create a front-end IP pool for the load balancer, and associate the public IP.</span></span> <span data-ttu-id="8f43b-145">L’exemple suivant permet de créer un pool d’adresses IP frontal nommé `mySubnetPool` :</span><span class="sxs-lookup"><span data-stu-id="8f43b-145">The following example creates a front-end IP pool named `mySubnetPool`:</span></span>
+<span data-ttu-id="2cf21-144">Créer un pool IP frontal pour l’équilibrage de charge hello et associer l’adresse IP publique hello.</span><span class="sxs-lookup"><span data-stu-id="2cf21-144">Create a front-end IP pool for hello load balancer, and associate hello public IP.</span></span> <span data-ttu-id="2cf21-145">Hello exemple suivant crée un pool IP frontal nommé `mySubnetPool`:</span><span class="sxs-lookup"><span data-stu-id="2cf21-145">hello following example creates a front-end IP pool named `mySubnetPool`:</span></span>
 
 ```azurecli
 azure network lb frontend-ip create -g myResourceGroup -l myLoadBalancer \
   -i myPublicIP -n myFrontEndPool
 ```
 
-<span data-ttu-id="8f43b-146">Créez le pool d’adresses IP principal pour l’équilibrage de charge.</span><span class="sxs-lookup"><span data-stu-id="8f43b-146">Create the back-end IP pool for the load balancer.</span></span> <span data-ttu-id="8f43b-147">L’exemple suivant permet de créer un pool d’adresses IP principal nommé `myBackEndPool` :</span><span class="sxs-lookup"><span data-stu-id="8f43b-147">The following example creates a back-end IP pool named `myBackEndPool`:</span></span>
+<span data-ttu-id="2cf21-146">Créer un pool d’IP hello principal pour l’équilibrage de charge hello.</span><span class="sxs-lookup"><span data-stu-id="2cf21-146">Create hello back-end IP pool for hello load balancer.</span></span> <span data-ttu-id="2cf21-147">Hello exemple suivant crée un pool d’IP principal nommé `myBackEndPool`:</span><span class="sxs-lookup"><span data-stu-id="2cf21-147">hello following example creates a back-end IP pool named `myBackEndPool`:</span></span>
 
 ```azurecli
 azure network lb address-pool create -g myResourceGroup -l myLoadBalancer \
   -n myBackEndPool
 ```
 
-<span data-ttu-id="8f43b-148">Créez les règles de traduction d’adresse réseau (NAT) de trafic entrant SSH pour l’équilibrage de charge.</span><span class="sxs-lookup"><span data-stu-id="8f43b-148">Create SSH inbound network address translation (NAT) rules for the load balancer.</span></span> <span data-ttu-id="8f43b-149">L’exemple suivant permet de créer deux règles d’équilibrage de charge, `myLoadBalancerRuleSSH1` et `myLoadBalancerRuleSSH2` :</span><span class="sxs-lookup"><span data-stu-id="8f43b-149">The following example creates two load balancer rules, `myLoadBalancerRuleSSH1` and `myLoadBalancerRuleSSH2`:</span></span>
+<span data-ttu-id="2cf21-148">Permet de créer des règles de translation (NAT) d’adresse pour l’équilibrage de charge hello de réseau entrant de SSH.</span><span class="sxs-lookup"><span data-stu-id="2cf21-148">Create SSH inbound network address translation (NAT) rules for hello load balancer.</span></span> <span data-ttu-id="2cf21-149">Hello exemple suivant crée deux règles d’équilibrage de charge, `myLoadBalancerRuleSSH1` et `myLoadBalancerRuleSSH2`:</span><span class="sxs-lookup"><span data-stu-id="2cf21-149">hello following example creates two load balancer rules, `myLoadBalancerRuleSSH1` and `myLoadBalancerRuleSSH2`:</span></span>
 
 ```azurecli
 azure network lb inbound-nat-rule create -g myResourceGroup -l myLoadBalancer \
@@ -134,7 +134,7 @@ azure network lb inbound-nat-rule create -g myResourceGroup -l myLoadBalancer \
   -n myLoadBalancerRuleSSH2 -p tcp -f 4223 -b 22
 ```
 
-<span data-ttu-id="8f43b-150">Créez les règles NAT entrantes Web pour l’équilibrage de charge.</span><span class="sxs-lookup"><span data-stu-id="8f43b-150">Create the web inbound NAT rules for the load balancer.</span></span> <span data-ttu-id="8f43b-151">L’exemple suivant permet de créer une règle d’équilibrage de charge nommée `myLoadBalancerRuleWeb` :</span><span class="sxs-lookup"><span data-stu-id="8f43b-151">The following example creates a load balancer rule named `myLoadBalancerRuleWeb`:</span></span>
+<span data-ttu-id="2cf21-150">Créer hello web règles NAT de trafic entrant pour hello l’équilibrage de charge.</span><span class="sxs-lookup"><span data-stu-id="2cf21-150">Create hello web inbound NAT rules for hello load balancer.</span></span> <span data-ttu-id="2cf21-151">Hello exemple suivant crée une règle d’équilibreur de charge nommée `myLoadBalancerRuleWeb`:</span><span class="sxs-lookup"><span data-stu-id="2cf21-151">hello following example creates a load balancer rule named `myLoadBalancerRuleWeb`:</span></span>
 
 ```azurecli
 azure network lb rule create -g myResourceGroup -l myLoadBalancer \
@@ -142,22 +142,22 @@ azure network lb rule create -g myResourceGroup -l myLoadBalancer \
   -t myFrontEndPool -o myBackEndPool
 ```
 
-<span data-ttu-id="8f43b-152">Créez la sonde d’intégrité d’équilibrage de charge.</span><span class="sxs-lookup"><span data-stu-id="8f43b-152">Create the load balancer health probe.</span></span> <span data-ttu-id="8f43b-153">L’exemple suivant permet de créer une sonde TCP nommée `myHealthProbe` :</span><span class="sxs-lookup"><span data-stu-id="8f43b-153">The following example creates a TCP probe named `myHealthProbe`:</span></span>
+<span data-ttu-id="2cf21-152">Créez la sonde d’intégrité d’équilibrage de charge hello.</span><span class="sxs-lookup"><span data-stu-id="2cf21-152">Create hello load balancer health probe.</span></span> <span data-ttu-id="2cf21-153">Hello exemple suivant crée une sonde TCP nommée `myHealthProbe`:</span><span class="sxs-lookup"><span data-stu-id="2cf21-153">hello following example creates a TCP probe named `myHealthProbe`:</span></span>
 
 ```azurecli
 azure network lb probe create -g myResourceGroup -l myLoadBalancer \
   -n myHealthProbe -p "tcp" -i 15 -c 4
 ```
 
-<span data-ttu-id="8f43b-154">Vérifier l’équilibreur de charge, les pools d’adresses IP et les règles NAT à l’aide de l’analyseur JSON :</span><span class="sxs-lookup"><span data-stu-id="8f43b-154">Verify the load balancer, IP pools, and NAT rules by using the JSON parser:</span></span>
+<span data-ttu-id="2cf21-154">Vérifiez hello équilibrage de charge, pools d’adresses IP et les règles NAT à l’aide d’analyseur JSON hello :</span><span class="sxs-lookup"><span data-stu-id="2cf21-154">Verify hello load balancer, IP pools, and NAT rules by using hello JSON parser:</span></span>
 
 ```azurecli
 azure network lb show -g myResourceGroup -n myLoadBalancer --json | jq '.'
 ```
 
-<span data-ttu-id="8f43b-155">Créez la première carte d’interface réseau (NIC).</span><span class="sxs-lookup"><span data-stu-id="8f43b-155">Create the first network interface card (NIC).</span></span> <span data-ttu-id="8f43b-156">Remplacez les sections `#####-###-###` par votre propre ID d’abonnement Azure.</span><span class="sxs-lookup"><span data-stu-id="8f43b-156">Replace the `#####-###-###` sections with your own Azure subscription ID.</span></span> <span data-ttu-id="8f43b-157">Votre ID d’abonnement est indiqué dans la sortie de **jq** lorsque vous examinez les ressources créées.</span><span class="sxs-lookup"><span data-stu-id="8f43b-157">Your subscription ID is noted in the output of **jq** when you examine the resources you are creating.</span></span> <span data-ttu-id="8f43b-158">Vous pouvez également afficher votre ID d’abonnement avec `azure account list`.</span><span class="sxs-lookup"><span data-stu-id="8f43b-158">You can also view your subscription ID with `azure account list`.</span></span>
+<span data-ttu-id="2cf21-155">Créer hello première carte d’interface réseau (NIC).</span><span class="sxs-lookup"><span data-stu-id="2cf21-155">Create hello first network interface card (NIC).</span></span> <span data-ttu-id="2cf21-156">Remplacez hello `#####-###-###` sections avec votre propre ID d’abonnement Azure.</span><span class="sxs-lookup"><span data-stu-id="2cf21-156">Replace hello `#####-###-###` sections with your own Azure subscription ID.</span></span> <span data-ttu-id="2cf21-157">Votre abonnement ID est indiqué dans la sortie de hello de **jq** lorsque vous examinez les ressources hello vous créez.</span><span class="sxs-lookup"><span data-stu-id="2cf21-157">Your subscription ID is noted in hello output of **jq** when you examine hello resources you are creating.</span></span> <span data-ttu-id="2cf21-158">Vous pouvez également afficher votre ID d’abonnement avec `azure account list`.</span><span class="sxs-lookup"><span data-stu-id="2cf21-158">You can also view your subscription ID with `azure account list`.</span></span>
 
-<span data-ttu-id="8f43b-159">L’exemple suivant permet de créer une carte d’interface réseau nommée `myNic1` :</span><span class="sxs-lookup"><span data-stu-id="8f43b-159">The following example creates a NIC named `myNic1`:</span></span>
+<span data-ttu-id="2cf21-159">Hello exemple suivant crée une carte réseau nommée `myNic1`:</span><span class="sxs-lookup"><span data-stu-id="2cf21-159">hello following example creates a NIC named `myNic1`:</span></span>
 
 ```azurecli
 azure network nic create -g myResourceGroup -l westeurope \
@@ -166,7 +166,7 @@ azure network nic create -g myResourceGroup -l westeurope \
   -e "/subscriptions/########-####-####-####-############/resourceGroups/myResourceGroup/providers/Microsoft.Network/loadBalancers/myLoadBalancer/inboundNatRules/myLoadBalancerRuleSSH1"
 ```
 
-<span data-ttu-id="8f43b-160">Créez la deuxième carte d’interface réseau.</span><span class="sxs-lookup"><span data-stu-id="8f43b-160">Create the second NIC.</span></span> <span data-ttu-id="8f43b-161">L’exemple suivant permet de créer une carte d’interface réseau nommée `myNic2` :</span><span class="sxs-lookup"><span data-stu-id="8f43b-161">The following example creates a NIC named `myNic2`:</span></span>
+<span data-ttu-id="2cf21-160">Créer hello seconde carte réseau.</span><span class="sxs-lookup"><span data-stu-id="2cf21-160">Create hello second NIC.</span></span> <span data-ttu-id="2cf21-161">Hello exemple suivant crée une carte réseau nommée `myNic2`:</span><span class="sxs-lookup"><span data-stu-id="2cf21-161">hello following example creates a NIC named `myNic2`:</span></span>
 
 ```azurecli
 azure network nic create -g myResourceGroup -l westeurope \
@@ -175,21 +175,21 @@ azure network nic create -g myResourceGroup -l westeurope \
   -e "/subscriptions/########-####-####-####-############/resourceGroups/myResourceGroup/providers/Microsoft.Network/loadBalancers/myLoadBalancer/inboundNatRules/myLoadBalancerRuleSSH2"
 ```
 
-<span data-ttu-id="8f43b-162">Vérifiez les deux cartes d’interface réseau à l’aide de l’analyseur JSON :</span><span class="sxs-lookup"><span data-stu-id="8f43b-162">Verify the two NICs by using the JSON parser:</span></span>
+<span data-ttu-id="2cf21-162">Vérifiez que hello deux cartes d’interface réseau en utilisant l’analyseur JSON hello :</span><span class="sxs-lookup"><span data-stu-id="2cf21-162">Verify hello two NICs by using hello JSON parser:</span></span>
 
 ```azurecli
 azure network nic show myResourceGroup myNic1 --json | jq '.'
 azure network nic show myResourceGroup myNic2 --json | jq '.'
 ```
 
-<span data-ttu-id="8f43b-163">Créez le groupe de sécurité réseau.</span><span class="sxs-lookup"><span data-stu-id="8f43b-163">Create the network security group.</span></span> <span data-ttu-id="8f43b-164">L’exemple suivant permet de créer un groupe de sécurité réseau nommé `myNetworkSecurityGroup` :</span><span class="sxs-lookup"><span data-stu-id="8f43b-164">The following example creates a network security group named `myNetworkSecurityGroup`:</span></span>
+<span data-ttu-id="2cf21-163">Créer un groupe de sécurité réseau hello.</span><span class="sxs-lookup"><span data-stu-id="2cf21-163">Create hello network security group.</span></span> <span data-ttu-id="2cf21-164">Hello exemple suivant crée un groupe de sécurité réseau nommé `myNetworkSecurityGroup`:</span><span class="sxs-lookup"><span data-stu-id="2cf21-164">hello following example creates a network security group named `myNetworkSecurityGroup`:</span></span>
 
 ```azurecli
 azure network nsg create -g myResourceGroup -l westeurope \
   -n myNetworkSecurityGroup
 ```
 
-<span data-ttu-id="8f43b-165">Ajoutez deux règles de trafic entrant pour le groupe de sécurité réseau.</span><span class="sxs-lookup"><span data-stu-id="8f43b-165">Add two inbound rules for the network security group.</span></span> <span data-ttu-id="8f43b-166">L’exemple suivant permet de créer deux règles, `myNetworkSecurityGroupRuleSSH` et `myNetworkSecurityGroupRuleHTTP` :</span><span class="sxs-lookup"><span data-stu-id="8f43b-166">The following example creates two rules, `myNetworkSecurityGroupRuleSSH` and `myNetworkSecurityGroupRuleHTTP`:</span></span>
+<span data-ttu-id="2cf21-165">Ajoutez deux règles de trafic entrant pour le groupe de sécurité réseau hello.</span><span class="sxs-lookup"><span data-stu-id="2cf21-165">Add two inbound rules for hello network security group.</span></span> <span data-ttu-id="2cf21-166">Hello exemple suivant crée deux règles, `myNetworkSecurityGroupRuleSSH` et `myNetworkSecurityGroupRuleHTTP`:</span><span class="sxs-lookup"><span data-stu-id="2cf21-166">hello following example creates two rules, `myNetworkSecurityGroupRuleSSH` and `myNetworkSecurityGroupRuleHTTP`:</span></span>
 
 ```azurecli
 azure network nsg rule create -p tcp -r inbound -y 1000 -u 22 -c allow \
@@ -198,26 +198,26 @@ azure network nsg rule create -p tcp -r inbound -y 1001 -u 80 -c allow \
   -g myResourceGroup -a myNetworkSecurityGroup -n myNetworkSecurityGroupRuleHTTP
 ```
 
-<span data-ttu-id="8f43b-167">Vérifiez le groupe de sécurité réseau et les règles de trafic entrant à l’aide de l’analyseur JSON :</span><span class="sxs-lookup"><span data-stu-id="8f43b-167">Verify the network security group and inbound rules by using the JSON parser:</span></span>
+<span data-ttu-id="2cf21-167">Vérifiez le groupe de sécurité réseau hello et les règles de trafic entrant à l’aide d’analyseur JSON hello :</span><span class="sxs-lookup"><span data-stu-id="2cf21-167">Verify hello network security group and inbound rules by using hello JSON parser:</span></span>
 
 ```azurecli
 azure network nsg show -g myResourceGroup -n myNetworkSecurityGroup --json | jq '.'
 ```
 
-<span data-ttu-id="8f43b-168">Liez le groupe de sécurité réseau aux deux cartes réseau :</span><span class="sxs-lookup"><span data-stu-id="8f43b-168">Bind the network security group to the two NICs:</span></span>
+<span data-ttu-id="2cf21-168">Liaison de sécurité réseau hello toohello deux cartes d’interface réseau de groupe :</span><span class="sxs-lookup"><span data-stu-id="2cf21-168">Bind hello network security group toohello two NICs:</span></span>
 
 ```azurecli
 azure network nic set -g myResourceGroup -o myNetworkSecurityGroup -n myNic1
 azure network nic set -g myResourceGroup -o myNetworkSecurityGroup -n myNic2
 ```
 
-<span data-ttu-id="8f43b-169">Créez le groupe à haute disponibilité.</span><span class="sxs-lookup"><span data-stu-id="8f43b-169">Create the availability set.</span></span> <span data-ttu-id="8f43b-170">L’exemple suivant permet de créer un groupe à haute disponibilité nommé `myAvailabilitySet` :</span><span class="sxs-lookup"><span data-stu-id="8f43b-170">The following example creates an availability set named `myAvailabilitySet`:</span></span>
+<span data-ttu-id="2cf21-169">Créer un groupe à haute disponibilité hello.</span><span class="sxs-lookup"><span data-stu-id="2cf21-169">Create hello availability set.</span></span> <span data-ttu-id="2cf21-170">Hello exemple suivant crée un groupe à haute disponibilité nommée `myAvailabilitySet`:</span><span class="sxs-lookup"><span data-stu-id="2cf21-170">hello following example creates an availability set named `myAvailabilitySet`:</span></span>
 
 ```azurecli
 azure availset create -g myResourceGroup -l westeurope -n myAvailabilitySet
 ```
 
-<span data-ttu-id="8f43b-171">Créez la première machine virtuelle Linux.</span><span class="sxs-lookup"><span data-stu-id="8f43b-171">Create the first Linux VM.</span></span> <span data-ttu-id="8f43b-172">L’exemple suivant permet de créer une machine virtuelle nommée `myVM1` :</span><span class="sxs-lookup"><span data-stu-id="8f43b-172">The following example creates a VM named `myVM1`:</span></span>
+<span data-ttu-id="2cf21-171">Créer hello première Linux VM.</span><span class="sxs-lookup"><span data-stu-id="2cf21-171">Create hello first Linux VM.</span></span> <span data-ttu-id="2cf21-172">Hello exemple suivant crée un ordinateur virtuel nommé `myVM1`:</span><span class="sxs-lookup"><span data-stu-id="2cf21-172">hello following example creates a VM named `myVM1`:</span></span>
 
 ```azurecli
 azure vm create \
@@ -235,7 +235,7 @@ azure vm create \
     --admin-username azureuser
 ```
 
-<span data-ttu-id="8f43b-173">Créez la deuxième machine virtuelle Linux.</span><span class="sxs-lookup"><span data-stu-id="8f43b-173">Create the second Linux VM.</span></span> <span data-ttu-id="8f43b-174">L’exemple suivant permet de créer une machine virtuelle nommée `myVM2` :</span><span class="sxs-lookup"><span data-stu-id="8f43b-174">The following example creates a VM named `myVM2`:</span></span>
+<span data-ttu-id="2cf21-173">Créer hello deuxième Linux VM.</span><span class="sxs-lookup"><span data-stu-id="2cf21-173">Create hello second Linux VM.</span></span> <span data-ttu-id="2cf21-174">Hello exemple suivant crée un ordinateur virtuel nommé `myVM2`:</span><span class="sxs-lookup"><span data-stu-id="2cf21-174">hello following example creates a VM named `myVM2`:</span></span>
 
 ```azurecli
 azure vm create \
@@ -253,38 +253,38 @@ azure vm create \
     --admin-username azureuser
 ```
 
-<span data-ttu-id="8f43b-175">Utilisez l’analyseur JSON pour vérifier tout ce qui a été créé :</span><span class="sxs-lookup"><span data-stu-id="8f43b-175">Use the JSON parser to verify that everything that was built:</span></span>
+<span data-ttu-id="2cf21-175">Utilisez hello JSON analyseur tooverify que tout ce qui a été créé :</span><span class="sxs-lookup"><span data-stu-id="2cf21-175">Use hello JSON parser tooverify that everything that was built:</span></span>
 
 ```azurecli
 azure vm show -g myResourceGroup -n myVM1 --json | jq '.'
 azure vm show -g myResourceGroup -n myVM2 --json | jq '.'
 ```
 
-<span data-ttu-id="8f43b-176">Exportez votre nouvel environnement dans un modèle pour recréer rapidement des instances nouvelles :</span><span class="sxs-lookup"><span data-stu-id="8f43b-176">Export your new environment to a template to quickly re-create new instances:</span></span>
+<span data-ttu-id="2cf21-176">Exporter votre nouvel environnement tooa modèle tooquickly nouvelle création de nouvelles instances :</span><span class="sxs-lookup"><span data-stu-id="2cf21-176">Export your new environment tooa template tooquickly re-create new instances:</span></span>
 
 ```azurecli
 azure group export myResourceGroup
 ```
 
-## <a name="detailed-walkthrough"></a><span data-ttu-id="8f43b-177">Procédure pas à pas</span><span class="sxs-lookup"><span data-stu-id="8f43b-177">Detailed walkthrough</span></span>
-<span data-ttu-id="8f43b-178">Les étapes détaillées qui suivent expliquent ce que chaque commande fait lorsque vous générez votre environnement.</span><span class="sxs-lookup"><span data-stu-id="8f43b-178">The detailed steps that follow explain what each command is doing as you build out your environment.</span></span> <span data-ttu-id="8f43b-179">Ces concepts sont utiles lorsque vous créez vos propres environnements personnalisés pour le développement ou la production.</span><span class="sxs-lookup"><span data-stu-id="8f43b-179">These concepts are helpful when you build your own custom environments for development or production.</span></span>
+## <a name="detailed-walkthrough"></a><span data-ttu-id="2cf21-177">Procédure pas à pas</span><span class="sxs-lookup"><span data-stu-id="2cf21-177">Detailed walkthrough</span></span>
+<span data-ttu-id="2cf21-178">Hello détaillées étapes qui suivent expliquent ce que chaque commande fait pendant la génération de votre environnement.</span><span class="sxs-lookup"><span data-stu-id="2cf21-178">hello detailed steps that follow explain what each command is doing as you build out your environment.</span></span> <span data-ttu-id="2cf21-179">Ces concepts sont utiles lorsque vous créez vos propres environnements personnalisés pour le développement ou la production.</span><span class="sxs-lookup"><span data-stu-id="2cf21-179">These concepts are helpful when you build your own custom environments for development or production.</span></span>
 
-<span data-ttu-id="8f43b-180">Veillez à ce que [l’interface de ligne de commande 1.0 Azure](../../cli-install-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) soit connectée et utilise le mode Resource Manager :</span><span class="sxs-lookup"><span data-stu-id="8f43b-180">Make sure that you have [the Azure CLI 1.0](../../cli-install-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) logged in and using Resource Manager mode:</span></span>
+<span data-ttu-id="2cf21-180">Assurez-vous que vous avez [hello Azure CLI 1.0](../../cli-install-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) connecté et l’utilisation du mode de gestionnaire de ressources :</span><span class="sxs-lookup"><span data-stu-id="2cf21-180">Make sure that you have [hello Azure CLI 1.0](../../cli-install-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) logged in and using Resource Manager mode:</span></span>
 
 ```azurecli
 azure config mode arm
 ```
 
-<span data-ttu-id="8f43b-181">Dans les exemples suivants, remplacez les exemples de noms de paramètre par vos propres valeurs.</span><span class="sxs-lookup"><span data-stu-id="8f43b-181">In the following examples, replace example parameter names with your own values.</span></span> <span data-ttu-id="8f43b-182">Exemples de noms de paramètre : `myResourceGroup`, `mystorageaccount` et `myVM`.</span><span class="sxs-lookup"><span data-stu-id="8f43b-182">Example parameter names include `myResourceGroup`, `mystorageaccount`, and `myVM`.</span></span>
+<span data-ttu-id="2cf21-181">Bonjour les exemples suivants, remplacez les exemples de noms de paramètre par vos propres valeurs.</span><span class="sxs-lookup"><span data-stu-id="2cf21-181">In hello following examples, replace example parameter names with your own values.</span></span> <span data-ttu-id="2cf21-182">Exemples de noms de paramètre : `myResourceGroup`, `mystorageaccount` et `myVM`.</span><span class="sxs-lookup"><span data-stu-id="2cf21-182">Example parameter names include `myResourceGroup`, `mystorageaccount`, and `myVM`.</span></span>
 
-## <a name="create-resource-groups-and-choose-deployment-locations"></a><span data-ttu-id="8f43b-183">Créer des groupes de ressources et choisir les emplacements de déploiement</span><span class="sxs-lookup"><span data-stu-id="8f43b-183">Create resource groups and choose deployment locations</span></span>
-<span data-ttu-id="8f43b-184">Les groupes de ressources Azure sont des entités de déploiement logiques qui contiennent des informations de configuration et des métadonnées pour permettre la gestion logique des déploiements de ressources.</span><span class="sxs-lookup"><span data-stu-id="8f43b-184">Azure resource groups are logical deployment entities that contain configuration information and metadata to enable the logical management of resource deployments.</span></span> <span data-ttu-id="8f43b-185">L’exemple suivant crée un groupe de ressources nommé `myResourceGroup` à l’emplacement `westeurope` :</span><span class="sxs-lookup"><span data-stu-id="8f43b-185">The following example creates a resource group named `myResourceGroup` in the `westeurope` location:</span></span>
+## <a name="create-resource-groups-and-choose-deployment-locations"></a><span data-ttu-id="2cf21-183">Créer des groupes de ressources et choisir les emplacements de déploiement</span><span class="sxs-lookup"><span data-stu-id="2cf21-183">Create resource groups and choose deployment locations</span></span>
+<span data-ttu-id="2cf21-184">Groupes de ressources Azure sont des entités logiques de déploiement qui contiennent des informations et des métadonnées tooenable hello logique gestion de la configuration des déploiements de ressources.</span><span class="sxs-lookup"><span data-stu-id="2cf21-184">Azure resource groups are logical deployment entities that contain configuration information and metadata tooenable hello logical management of resource deployments.</span></span> <span data-ttu-id="2cf21-185">Hello exemple suivant crée un groupe de ressources nommé `myResourceGroup` Bonjour `westeurope` emplacement :</span><span class="sxs-lookup"><span data-stu-id="2cf21-185">hello following example creates a resource group named `myResourceGroup` in hello `westeurope` location:</span></span>
 
 ```azurecli
 azure group create --name myResourceGroup --location westeurope
 ```
 
-<span data-ttu-id="8f43b-186">Output:</span><span class="sxs-lookup"><span data-stu-id="8f43b-186">Output:</span></span>
+<span data-ttu-id="2cf21-186">Output:</span><span class="sxs-lookup"><span data-stu-id="2cf21-186">Output:</span></span>
 
 ```azurecli                        
 info:    Executing command group create
@@ -300,10 +300,10 @@ data:
 info:    group create command OK
 ```
 
-## <a name="create-a-storage-account"></a><span data-ttu-id="8f43b-187">Créez un compte de stockage.</span><span class="sxs-lookup"><span data-stu-id="8f43b-187">Create a storage account</span></span>
-<span data-ttu-id="8f43b-188">Vous avez besoin de comptes de stockage pour vos disques de machine virtuelle et pour tous les disques de données que vous souhaitez ajouter.</span><span class="sxs-lookup"><span data-stu-id="8f43b-188">You need storage accounts for your VM disks and for any additional data disks that you want to add.</span></span> <span data-ttu-id="8f43b-189">Vous créez des comptes de stockage presque immédiatement après avoir créé des groupes de ressources.</span><span class="sxs-lookup"><span data-stu-id="8f43b-189">You create storage accounts almost immediately after you create resource groups.</span></span>
+## <a name="create-a-storage-account"></a><span data-ttu-id="2cf21-187">Créez un compte de stockage.</span><span class="sxs-lookup"><span data-stu-id="2cf21-187">Create a storage account</span></span>
+<span data-ttu-id="2cf21-188">Vous avez besoin de comptes de stockage pour vos disques de machine virtuelle et les disques de données supplémentaires que vous souhaitez tooadd.</span><span class="sxs-lookup"><span data-stu-id="2cf21-188">You need storage accounts for your VM disks and for any additional data disks that you want tooadd.</span></span> <span data-ttu-id="2cf21-189">Vous créez des comptes de stockage presque immédiatement après avoir créé des groupes de ressources.</span><span class="sxs-lookup"><span data-stu-id="2cf21-189">You create storage accounts almost immediately after you create resource groups.</span></span>
 
-<span data-ttu-id="8f43b-190">Ici, nous utilisons la commande `azure storage account create` pour transmettre l’emplacement du compte, le groupe de ressources qui le contrôle, ainsi que le type de support de stockage souhaité.</span><span class="sxs-lookup"><span data-stu-id="8f43b-190">Here we use the `azure storage account create` command, passing the location of the account, the resource group that controls it, and the type of storage support you want.</span></span> <span data-ttu-id="8f43b-191">L’exemple qui suit permet de créer un compte de stockage nommé `mystorageaccount` :</span><span class="sxs-lookup"><span data-stu-id="8f43b-191">The following example creates a storage account named `mystorageaccount`:</span></span>
+<span data-ttu-id="2cf21-190">Nous utilisons ici hello `azure storage account create` de commande, en passant emplacement hello du compte hello, groupe de ressources hello qui contrôle et le type hello de prise en charge de stockage souhaité.</span><span class="sxs-lookup"><span data-stu-id="2cf21-190">Here we use hello `azure storage account create` command, passing hello location of hello account, hello resource group that controls it, and hello type of storage support you want.</span></span> <span data-ttu-id="2cf21-191">Hello exemple suivant crée un compte de stockage nommé `mystorageaccount`:</span><span class="sxs-lookup"><span data-stu-id="2cf21-191">hello following example creates a storage account named `mystorageaccount`:</span></span>
 
 ```azurecli
 azure storage account create \  
@@ -313,7 +313,7 @@ azure storage account create \
   mystorageaccount
 ```
 
-<span data-ttu-id="8f43b-192">Output:</span><span class="sxs-lookup"><span data-stu-id="8f43b-192">Output:</span></span>
+<span data-ttu-id="2cf21-192">Output:</span><span class="sxs-lookup"><span data-stu-id="2cf21-192">Output:</span></span>
 
 ```azurecli
 info:    Executing command storage account create
@@ -321,13 +321,13 @@ info:    Executing command storage account create
 info:    storage account create command OK
 ```
 
-<span data-ttu-id="8f43b-193">Pour examiner notre groupe de ressources à l’aide de la commande `azure group show`, nous nous servons de l’outil [jq](https://stedolan.github.io/jq/) avec l’option de ligne de commande Azure `--json`.</span><span class="sxs-lookup"><span data-stu-id="8f43b-193">To examine our resource group by using the `azure group show` command, let's use the [jq](https://stedolan.github.io/jq/) tool along with the `--json` Azure CLI option.</span></span> <span data-ttu-id="8f43b-194">(Vous pouvez utiliser **jsawk** ou la bibliothèque de langue de votre choix pour analyser le fichier JSON.)</span><span class="sxs-lookup"><span data-stu-id="8f43b-194">(You can use **jsawk** or any language library you prefer to parse the JSON.)</span></span>
+<span data-ttu-id="2cf21-193">tooexamine notre ressource de groupe à l’aide de hello `azure group show` de commande, nous allons utiliser hello [jq](https://stedolan.github.io/jq/) outil avec hello `--json` option de CLI d’Azure.</span><span class="sxs-lookup"><span data-stu-id="2cf21-193">tooexamine our resource group by using hello `azure group show` command, let's use hello [jq](https://stedolan.github.io/jq/) tool along with hello `--json` Azure CLI option.</span></span> <span data-ttu-id="2cf21-194">(Vous pouvez utiliser **jsawk** ou n’importe quelle bibliothèque de langue que vous préférez tooparse hello JSON.)</span><span class="sxs-lookup"><span data-stu-id="2cf21-194">(You can use **jsawk** or any language library you prefer tooparse hello JSON.)</span></span>
 
 ```azurecli
 azure group show myResourceGroup --json | jq '.'
 ```
 
-<span data-ttu-id="8f43b-195">Output:</span><span class="sxs-lookup"><span data-stu-id="8f43b-195">Output:</span></span>
+<span data-ttu-id="2cf21-195">Output:</span><span class="sxs-lookup"><span data-stu-id="2cf21-195">Output:</span></span>
 
 ```json
 {
@@ -359,19 +359,19 @@ azure group show myResourceGroup --json | jq '.'
 }
 ```
 
-<span data-ttu-id="8f43b-196">Pour examiner le compte de stockage à l’aide de l’interface de ligne de commande, vous devez d’abord définir les noms de comptes et les clés.</span><span class="sxs-lookup"><span data-stu-id="8f43b-196">To investigate the storage account by using the CLI, you first need to set the account names and keys.</span></span> <span data-ttu-id="8f43b-197">Remplacez le nom du compte de stockage dans l’exemple suivant par le nom de votre choix :</span><span class="sxs-lookup"><span data-stu-id="8f43b-197">Replace the name of the storage account in the following example with a name that you choose:</span></span>
+<span data-ttu-id="2cf21-196">le compte de stockage tooinvestigate hello à l’aide de hello CLI, vous devez tout d’abord clés et les noms de compte tooset hello.</span><span class="sxs-lookup"><span data-stu-id="2cf21-196">tooinvestigate hello storage account by using hello CLI, you first need tooset hello account names and keys.</span></span> <span data-ttu-id="2cf21-197">Remplacez le nom hello hello du compte de stockage Bonjour avec un nom que vous choisissez l’exemple suivant :</span><span class="sxs-lookup"><span data-stu-id="2cf21-197">Replace hello name of hello storage account in hello following example with a name that you choose:</span></span>
 
 ```bash
 export AZURE_STORAGE_CONNECTION_STRING="$(azure storage account connectionstring show mystorageaccount --resource-group myResourceGroup --json | jq -r '.string')"
 ```
 
-<span data-ttu-id="8f43b-198">Vous pouvez alors visualiser facilement vos informations de stockage :</span><span class="sxs-lookup"><span data-stu-id="8f43b-198">Then you can view your storage information easily:</span></span>
+<span data-ttu-id="2cf21-198">Vous pouvez alors visualiser facilement vos informations de stockage :</span><span class="sxs-lookup"><span data-stu-id="2cf21-198">Then you can view your storage information easily:</span></span>
 
 ```azurecli
 azure storage container list
 ```
 
-<span data-ttu-id="8f43b-199">Output:</span><span class="sxs-lookup"><span data-stu-id="8f43b-199">Output:</span></span>
+<span data-ttu-id="2cf21-199">Output:</span><span class="sxs-lookup"><span data-stu-id="2cf21-199">Output:</span></span>
 
 ```azurecli
 info:    Executing command storage container list
@@ -382,15 +382,15 @@ data:    vhds  Off            Sun, 27 Sep 2015 19:03:54 GMT
 info:    storage container list command OK
 ```
 
-## <a name="create-a-virtual-network-and-subnet"></a><span data-ttu-id="8f43b-200">Créer un réseau virtuel et un sous-réseau</span><span class="sxs-lookup"><span data-stu-id="8f43b-200">Create a virtual network and subnet</span></span>
-<span data-ttu-id="8f43b-201">Vous allez maintenant créer un réseau virtuel dans Azure et un sous-réseau dans lesquels vous pouvez créer vos machines virtuelles.</span><span class="sxs-lookup"><span data-stu-id="8f43b-201">Next you're going to need to create a virtual network running in Azure and a subnet in which you can create your VMs.</span></span> <span data-ttu-id="8f43b-202">L’exemple suivant permet de créer un réseau virtuel nommé `myVnet` avec le préfixe d’adresse `192.168.0.0/16` :</span><span class="sxs-lookup"><span data-stu-id="8f43b-202">The following example creates a virtual network named `myVnet` with the `192.168.0.0/16` address prefix:</span></span>
+## <a name="create-a-virtual-network-and-subnet"></a><span data-ttu-id="2cf21-200">Créer un réseau virtuel et un sous-réseau</span><span class="sxs-lookup"><span data-stu-id="2cf21-200">Create a virtual network and subnet</span></span>
+<span data-ttu-id="2cf21-201">Ensuite vous allez tooneed toocreate un réseau virtuel en cours d’exécution dans Azure et un sous-réseau dans lequel vous pouvez créer vos machines virtuelles.</span><span class="sxs-lookup"><span data-stu-id="2cf21-201">Next you're going tooneed toocreate a virtual network running in Azure and a subnet in which you can create your VMs.</span></span> <span data-ttu-id="2cf21-202">Hello exemple suivant crée un réseau virtuel nommé `myVnet` avec hello `192.168.0.0/16` préfixe d’adresse :</span><span class="sxs-lookup"><span data-stu-id="2cf21-202">hello following example creates a virtual network named `myVnet` with hello `192.168.0.0/16` address prefix:</span></span>
 
 ```azurecli
 azure network vnet create --resource-group myResourceGroup --location westeurope \
   --name myVnet --address-prefixes 192.168.0.0/16
 ```
 
-<span data-ttu-id="8f43b-203">Output:</span><span class="sxs-lookup"><span data-stu-id="8f43b-203">Output:</span></span>
+<span data-ttu-id="2cf21-203">Output:</span><span class="sxs-lookup"><span data-stu-id="2cf21-203">Output:</span></span>
 
 ```azurecli
 info:    Executing command network vnet create
@@ -407,13 +407,13 @@ data:      192.168.0.0/16
 info:    network vnet create command OK
 ```
 
-<span data-ttu-id="8f43b-204">Là encore, nous allons utiliser l’option --json de `azure group show` et de `jq` pour examiner la façon dont nous créons nos ressources.</span><span class="sxs-lookup"><span data-stu-id="8f43b-204">Again, let's use the --json option of `azure group show` and `jq` to see how we're building our resources.</span></span> <span data-ttu-id="8f43b-205">Nous disposons maintenant d’une ressource `storageAccounts` et d’une ressource `virtualNetworks`.</span><span class="sxs-lookup"><span data-stu-id="8f43b-205">We now have a `storageAccounts` resource and a `virtualNetworks` resource.</span></span>  
+<span data-ttu-id="2cf21-204">Là encore, nous allons opter hello--json de `azure group show` et `jq` toosee comment nous mettons nos ressources.</span><span class="sxs-lookup"><span data-stu-id="2cf21-204">Again, let's use hello --json option of `azure group show` and `jq` toosee how we're building our resources.</span></span> <span data-ttu-id="2cf21-205">Nous disposons maintenant d’une ressource `storageAccounts` et d’une ressource `virtualNetworks`.</span><span class="sxs-lookup"><span data-stu-id="2cf21-205">We now have a `storageAccounts` resource and a `virtualNetworks` resource.</span></span>  
 
 ```azurecli
 azure group show myResourceGroup --json | jq '.'
 ```
 
-<span data-ttu-id="8f43b-206">Output:</span><span class="sxs-lookup"><span data-stu-id="8f43b-206">Output:</span></span>
+<span data-ttu-id="2cf21-206">Output:</span><span class="sxs-lookup"><span data-stu-id="2cf21-206">Output:</span></span>
 
 ```json
 {
@@ -452,20 +452,20 @@ azure group show myResourceGroup --json | jq '.'
 }
 ```
 
-<span data-ttu-id="8f43b-207">À présent, créons dans le réseau virtuel `myVnet` un sous-réseau dans lequel les machines virtuelles seront déployées.</span><span class="sxs-lookup"><span data-stu-id="8f43b-207">Now let's create a subnet in the `myVnet` virtual network into which the VMs are deployed.</span></span> <span data-ttu-id="8f43b-208">Nous utilisons la commande `azure network vnet subnet create` ainsi que les ressources que nous avons déjà créées : le groupe de ressources `myResourceGroup` et le réseau virtuel `myVnet`.</span><span class="sxs-lookup"><span data-stu-id="8f43b-208">We use the `azure network vnet subnet create` command, along with the resources we've already created: the `myResourceGroup` resource group and the `myVnet` virtual network.</span></span> <span data-ttu-id="8f43b-209">Dans l’exemple suivant, nous ajoutons le sous-réseau nommé `mySubnet` avec le préfixe d’adresse de sous-réseau `192.168.1.0/24` :</span><span class="sxs-lookup"><span data-stu-id="8f43b-209">In the following example, we add the subnet named `mySubnet` with the subnet address prefix of `192.168.1.0/24`:</span></span>
+<span data-ttu-id="2cf21-207">Maintenant nous allons créer un sous-réseau Bonjour `myVnet` réseau virtuel dans le hello machines virtuelles sont déployées.</span><span class="sxs-lookup"><span data-stu-id="2cf21-207">Now let's create a subnet in hello `myVnet` virtual network into which hello VMs are deployed.</span></span> <span data-ttu-id="2cf21-208">Nous utilisons hello `azure network vnet subnet create` commande, ainsi que des ressources hello, nous avons déjà créé : hello `myResourceGroup` groupe de ressources et hello `myVnet` réseau virtuel.</span><span class="sxs-lookup"><span data-stu-id="2cf21-208">We use hello `azure network vnet subnet create` command, along with hello resources we've already created: hello `myResourceGroup` resource group and hello `myVnet` virtual network.</span></span> <span data-ttu-id="2cf21-209">Bonjour l’exemple suivant, nous ajoutons sous-réseau hello nommé `mySubnet` avec un préfixe d’adresse de sous-réseau hello `192.168.1.0/24`:</span><span class="sxs-lookup"><span data-stu-id="2cf21-209">In hello following example, we add hello subnet named `mySubnet` with hello subnet address prefix of `192.168.1.0/24`:</span></span>
 
 ```azurecli
 azure network vnet subnet create --resource-group myResourceGroup \
   --vnet-name myVnet --name mySubnet --address-prefix 192.168.1.0/24
 ```
 
-<span data-ttu-id="8f43b-210">Output:</span><span class="sxs-lookup"><span data-stu-id="8f43b-210">Output:</span></span>
+<span data-ttu-id="2cf21-210">Output:</span><span class="sxs-lookup"><span data-stu-id="2cf21-210">Output:</span></span>
 
 ```azurecli
 info:    Executing command network vnet subnet create
-+ Looking up the subnet "mySubnet"
++ Looking up hello subnet "mySubnet"
 + Creating subnet "mySubnet"
-+ Looking up the subnet "mySubnet"
++ Looking up hello subnet "mySubnet"
 data:    Id                              : /subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/myVnet/subnets/mySubnet
 data:    Type                            : Microsoft.Network/virtualNetworks/subnets
 data:    ProvisioningState               : Succeeded
@@ -475,13 +475,13 @@ data:
 info:    network vnet subnet create command OK
 ```
 
-<span data-ttu-id="8f43b-211">Étant donné que le sous-réseau figure logiquement à l’intérieur du réseau virtuel, nous recherchons les informations de sous-réseau avec une commande légèrement différente.</span><span class="sxs-lookup"><span data-stu-id="8f43b-211">Because the subnet is logically inside the virtual network, we look for the subnet information with a slightly different command.</span></span> <span data-ttu-id="8f43b-212">Nous utilisons la commande `azure network vnet show`, mais nous continuons à examiner la sortie JSON à l’aide de `jq`.</span><span class="sxs-lookup"><span data-stu-id="8f43b-212">The command we use is `azure network vnet show`, but we continue to examine the JSON output by using `jq`.</span></span>
+<span data-ttu-id="2cf21-211">Étant donné que le sous-réseau de hello est logiquement à l’intérieur du réseau virtuel de hello, nous allons pour plus d’informations de sous-réseau hello avec une commande légèrement différente.</span><span class="sxs-lookup"><span data-stu-id="2cf21-211">Because hello subnet is logically inside hello virtual network, we look for hello subnet information with a slightly different command.</span></span> <span data-ttu-id="2cf21-212">Nous utilisons la commande Hello est `azure network vnet show`, mais nous continuons la sortie JSON hello tooexamine à l’aide de `jq`.</span><span class="sxs-lookup"><span data-stu-id="2cf21-212">hello command we use is `azure network vnet show`, but we continue tooexamine hello JSON output by using `jq`.</span></span>
 
 ```azurecli
 azure network vnet show myResourceGroup myVnet --json | jq '.'
 ```
 
-<span data-ttu-id="8f43b-213">Output:</span><span class="sxs-lookup"><span data-stu-id="8f43b-213">Output:</span></span>
+<span data-ttu-id="2cf21-213">Output:</span><span class="sxs-lookup"><span data-stu-id="2cf21-213">Output:</span></span>
 
 ```json
 {
@@ -512,21 +512,21 @@ azure network vnet show myResourceGroup myVnet --json | jq '.'
 }
 ```
 
-## <a name="create-a-public-ip-address"></a><span data-ttu-id="8f43b-214">Créer une adresse IP publique</span><span class="sxs-lookup"><span data-stu-id="8f43b-214">Create a public IP address</span></span>
-<span data-ttu-id="8f43b-215">Créons à présent l’adresse IP publique (PIP) à attribuer à votre équilibreur de charge.</span><span class="sxs-lookup"><span data-stu-id="8f43b-215">Now let's create the public IP address (PIP) that we assign to your load balancer.</span></span> <span data-ttu-id="8f43b-216">Elle permet de vous connecter à vos machines virtuelles depuis Internet à l’aide de la commande `azure network public-ip create` .</span><span class="sxs-lookup"><span data-stu-id="8f43b-216">It enables you to connect to your VMs from the Internet by using the `azure network public-ip create` command.</span></span> <span data-ttu-id="8f43b-217">Étant donné que l’adresse par défaut est dynamique, nous créons une entrée DNS nommée dans le domaine **cloudapp.azure.com** à l’aide de l’option `--domain-name-label`.</span><span class="sxs-lookup"><span data-stu-id="8f43b-217">Because the default address is dynamic, we create a named DNS entry in the **cloudapp.azure.com** domain by using the `--domain-name-label` option.</span></span> <span data-ttu-id="8f43b-218">L’exemple suivant permet de créer une adresse IP publique nommée `myPublicIP` avec le nom DNS de `mypublicdns`.</span><span class="sxs-lookup"><span data-stu-id="8f43b-218">The following example creates a public IP named `myPublicIP` with the DNS name of `mypublicdns`.</span></span> <span data-ttu-id="8f43b-219">Étant donné que le nom DNS doit être unique, choisissez un autre nom DNS qui n’est pas susceptible d’être déjà utilisé :</span><span class="sxs-lookup"><span data-stu-id="8f43b-219">Because the DNS name must be unique, you provide your own unique DNS name:</span></span>
+## <a name="create-a-public-ip-address"></a><span data-ttu-id="2cf21-214">Créer une adresse IP publique</span><span class="sxs-lookup"><span data-stu-id="2cf21-214">Create a public IP address</span></span>
+<span data-ttu-id="2cf21-215">Maintenant nous allons créer hello adresse IP publique (PIP) que nous affectons d’équilibrage de charge tooyour.</span><span class="sxs-lookup"><span data-stu-id="2cf21-215">Now let's create hello public IP address (PIP) that we assign tooyour load balancer.</span></span> <span data-ttu-id="2cf21-216">Il vous permet de tooconnect tooyour machines virtuelles à partir de hello Internet à l’aide de hello `azure network public-ip create` commande.</span><span class="sxs-lookup"><span data-stu-id="2cf21-216">It enables you tooconnect tooyour VMs from hello Internet by using hello `azure network public-ip create` command.</span></span> <span data-ttu-id="2cf21-217">Étant donné que l’adresse par défaut de hello est dynamique, nous créons une entrée DNS nommée Bonjour **cloudapp.azure.com** domaine à l’aide de hello `--domain-name-label` option.</span><span class="sxs-lookup"><span data-stu-id="2cf21-217">Because hello default address is dynamic, we create a named DNS entry in hello **cloudapp.azure.com** domain by using hello `--domain-name-label` option.</span></span> <span data-ttu-id="2cf21-218">Hello exemple suivant crée une adresse IP publique nommée `myPublicIP` portant le nom DNS de hello de `mypublicdns`.</span><span class="sxs-lookup"><span data-stu-id="2cf21-218">hello following example creates a public IP named `myPublicIP` with hello DNS name of `mypublicdns`.</span></span> <span data-ttu-id="2cf21-219">Étant donné que le nom DNS de hello doit être unique, vous fournissez votre propre nom DNS unique :</span><span class="sxs-lookup"><span data-stu-id="2cf21-219">Because hello DNS name must be unique, you provide your own unique DNS name:</span></span>
 
 ```azurecli
 azure network public-ip create --resource-group myResourceGroup \
   --location westeurope --name myPublicIP --domain-name-label mypublicdns
 ```
 
-<span data-ttu-id="8f43b-220">Output:</span><span class="sxs-lookup"><span data-stu-id="8f43b-220">Output:</span></span>
+<span data-ttu-id="2cf21-220">Output:</span><span class="sxs-lookup"><span data-stu-id="2cf21-220">Output:</span></span>
 
 ```azurecli
 info:    Executing command network public-ip create
-+ Looking up the public ip "myPublicIP"
++ Looking up hello public ip "myPublicIP"
 + Creating public ip address "myPublicIP"
-+ Looking up the public ip "myPublicIP"
++ Looking up hello public ip "myPublicIP"
 data:    Id                              : /subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/publicIPAddresses/myPublicIP
 data:    Name                            : myPublicIP
 data:    Type                            : Microsoft.Network/publicIPAddresses
@@ -539,13 +539,13 @@ data:    FQDN                            : mypublicdns.westeurope.cloudapp.azure
 info:    network public-ip create command OK
 ```
 
-<span data-ttu-id="8f43b-221">L’adresse IP publique étant également une ressource de niveau supérieur, vous pouvez la visualiser avec `azure group show`.</span><span class="sxs-lookup"><span data-stu-id="8f43b-221">The public IP address is also a top-level resource, so you can see it with `azure group show`.</span></span>
+<span data-ttu-id="2cf21-221">Bonjour adresse IP publique est également une ressource de niveau supérieur, afin de voir avec `azure group show`.</span><span class="sxs-lookup"><span data-stu-id="2cf21-221">hello public IP address is also a top-level resource, so you can see it with `azure group show`.</span></span>
 
 ```azurecli
 azure group show myResourceGroup --json | jq '.'
 ```
 
-<span data-ttu-id="8f43b-222">Output:</span><span class="sxs-lookup"><span data-stu-id="8f43b-222">Output:</span></span>
+<span data-ttu-id="2cf21-222">Output:</span><span class="sxs-lookup"><span data-stu-id="2cf21-222">Output:</span></span>
 
 ```json
 {
@@ -591,13 +591,13 @@ azure group show myResourceGroup --json | jq '.'
 }
 ```
 
-<span data-ttu-id="8f43b-223">Vous pouvez examiner d’autres détails de la ressource, dont le nom de domaine complet (FQDN) du sous-domaine, en utilisant la commande `azure network public-ip show` complète.</span><span class="sxs-lookup"><span data-stu-id="8f43b-223">You can investigate more resource details, including the fully qualified domain name (FQDN) of the subdomain, by using the complete `azure network public-ip show` command.</span></span> <span data-ttu-id="8f43b-224">La ressource d’adresse IP publique a été allouée de façon logique, mais aucune adresse spécifique n’a encore été attribuée.</span><span class="sxs-lookup"><span data-stu-id="8f43b-224">The public IP address resource has been allocated logically, but a specific address has not yet been assigned.</span></span> <span data-ttu-id="8f43b-225">Pour obtenir une adresse IP, vous aurez besoin d’un équilibreur de charge que nous n’avons pas encore créé.</span><span class="sxs-lookup"><span data-stu-id="8f43b-225">To obtain an IP address, you're going to need a load balancer, which we have not yet created.</span></span>
+<span data-ttu-id="2cf21-223">Vous pouvez rechercher plus d’informations de ressources, notamment le nom de domaine complet (FQDN) hello du sous-domaine de hello, à l’aide de hello complète `azure network public-ip show` commande.</span><span class="sxs-lookup"><span data-stu-id="2cf21-223">You can investigate more resource details, including hello fully qualified domain name (FQDN) of hello subdomain, by using hello complete `azure network public-ip show` command.</span></span> <span data-ttu-id="2cf21-224">ressource d’adresse IP publique Hello a été allouée logiquement, mais une adresse spécifique n’a pas encore été assignée.</span><span class="sxs-lookup"><span data-stu-id="2cf21-224">hello public IP address resource has been allocated logically, but a specific address has not yet been assigned.</span></span> <span data-ttu-id="2cf21-225">tooobtain une adresse IP, vous allez tooneed un équilibreur de charge, nous n’avons pas encore créé.</span><span class="sxs-lookup"><span data-stu-id="2cf21-225">tooobtain an IP address, you're going tooneed a load balancer, which we have not yet created.</span></span>
 
 ```azurecli
 azure network public-ip show myResourceGroup myPublicIP --json | jq '.'
 ```
 
-<span data-ttu-id="8f43b-226">Output:</span><span class="sxs-lookup"><span data-stu-id="8f43b-226">Output:</span></span>
+<span data-ttu-id="2cf21-226">Output:</span><span class="sxs-lookup"><span data-stu-id="2cf21-226">Output:</span></span>
 
 ```json
 {
@@ -616,19 +616,19 @@ azure network public-ip show myResourceGroup myPublicIP --json | jq '.'
 }
 ```
 
-## <a name="create-a-load-balancer-and-ip-pools"></a><span data-ttu-id="8f43b-227">Créer un équilibreur de charge et des pools d’adresses IP</span><span class="sxs-lookup"><span data-stu-id="8f43b-227">Create a load balancer and IP pools</span></span>
-<span data-ttu-id="8f43b-228">Lorsque vous créez un équilibreur de charge, celui-ci vous permet de répartir le trafic entre plusieurs machines virtuelles.</span><span class="sxs-lookup"><span data-stu-id="8f43b-228">When you create a load balancer, it enables you to distribute traffic across multiple VMs.</span></span> <span data-ttu-id="8f43b-229">Cela assure également la redondance de votre application en exécutant plusieurs machines virtuelles qui répondent aux demandes des utilisateurs en cas de maintenance ou de lourdes charges.</span><span class="sxs-lookup"><span data-stu-id="8f43b-229">It also provides redundancy to your application by running multiple VMs that respond to user requests in the event of maintenance or heavy loads.</span></span> <span data-ttu-id="8f43b-230">L’exemple suivant permet de créer un équilibrage de charge nommé `myLoadBalancer` :</span><span class="sxs-lookup"><span data-stu-id="8f43b-230">The following example creates a load balancer named `myLoadBalancer`:</span></span>
+## <a name="create-a-load-balancer-and-ip-pools"></a><span data-ttu-id="2cf21-227">Créer un équilibreur de charge et des pools d’adresses IP</span><span class="sxs-lookup"><span data-stu-id="2cf21-227">Create a load balancer and IP pools</span></span>
+<span data-ttu-id="2cf21-228">Lorsque vous créez un équilibreur de charge, il vous permet de toodistribute du trafic entre plusieurs machines virtuelles.</span><span class="sxs-lookup"><span data-stu-id="2cf21-228">When you create a load balancer, it enables you toodistribute traffic across multiple VMs.</span></span> <span data-ttu-id="2cf21-229">Il fournit également l’application tooyour de redondance en exécutant plusieurs machines virtuelles qui répondent toouser des demandes dans l’événement hello de maintenance ou de lourdes charges.</span><span class="sxs-lookup"><span data-stu-id="2cf21-229">It also provides redundancy tooyour application by running multiple VMs that respond toouser requests in hello event of maintenance or heavy loads.</span></span> <span data-ttu-id="2cf21-230">Hello exemple suivant crée un équilibreur de charge nommé `myLoadBalancer`:</span><span class="sxs-lookup"><span data-stu-id="2cf21-230">hello following example creates a load balancer named `myLoadBalancer`:</span></span>
 
 ```azurecli
 azure network lb create --resource-group myResourceGroup --location westeurope \
   --name myLoadBalancer
 ```
 
-<span data-ttu-id="8f43b-231">Output:</span><span class="sxs-lookup"><span data-stu-id="8f43b-231">Output:</span></span>
+<span data-ttu-id="2cf21-231">Output:</span><span class="sxs-lookup"><span data-stu-id="2cf21-231">Output:</span></span>
 
 ```azurecli
 info:    Executing command network lb create
-+ Looking up the load balancer "myLoadBalancer"
++ Looking up hello load balancer "myLoadBalancer"
 + Creating load balancer "myLoadBalancer"
 data:    Id                              : /subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/loadBalancers/myLoadBalancer
 data:    Name                            : myLoadBalancer
@@ -638,9 +638,9 @@ data:    Provisioning state              : Succeeded
 info:    network lb create command OK
 ```
 
-<span data-ttu-id="8f43b-232">Notre équilibreur de charge est relativement vide. Nous allons donc créer des pools d’adresses IP.</span><span class="sxs-lookup"><span data-stu-id="8f43b-232">Our load balancer is fairly empty, so let's create some IP pools.</span></span> <span data-ttu-id="8f43b-233">Nous souhaitons créer deux pools d’adresses IP pour notre équilibreur de charge : une pour le pool frontal et une pour le pool principal.</span><span class="sxs-lookup"><span data-stu-id="8f43b-233">We want to create two IP pools for our load balancer, one for the front end and one for the back end.</span></span> <span data-ttu-id="8f43b-234">Le pool d’adresses IP frontal est visible publiquement.</span><span class="sxs-lookup"><span data-stu-id="8f43b-234">The front-end IP pool is publicly visible.</span></span> <span data-ttu-id="8f43b-235">Il s’agit également de l’emplacement où nous attribuons le PIP que nous avons créé précédemment.</span><span class="sxs-lookup"><span data-stu-id="8f43b-235">It's also the location to which we assign the PIP that we created earlier.</span></span> <span data-ttu-id="8f43b-236">Nous utilisons ensuite le pool principal comme emplacement auquel connecter nos machines virtuelles.</span><span class="sxs-lookup"><span data-stu-id="8f43b-236">Then we use the back-end pool as a location for our VMs to connect to.</span></span> <span data-ttu-id="8f43b-237">Ainsi, le trafic peut transiter via l’équilibreur de charge vers les machines virtuelles.</span><span class="sxs-lookup"><span data-stu-id="8f43b-237">That way, the traffic can flow through the load balancer to the VMs.</span></span>
+<span data-ttu-id="2cf21-232">Notre équilibreur de charge est relativement vide. Nous allons donc créer des pools d’adresses IP.</span><span class="sxs-lookup"><span data-stu-id="2cf21-232">Our load balancer is fairly empty, so let's create some IP pools.</span></span> <span data-ttu-id="2cf21-233">Nous souhaitons toocreate deux pools d’adresses IP pour notre programme d’équilibrage de charge, un serveur frontal hello et un pour le back-end hello.</span><span class="sxs-lookup"><span data-stu-id="2cf21-233">We want toocreate two IP pools for our load balancer, one for hello front end and one for hello back end.</span></span> <span data-ttu-id="2cf21-234">pool d’adresses IP frontal Hello est visible publiquement.</span><span class="sxs-lookup"><span data-stu-id="2cf21-234">hello front-end IP pool is publicly visible.</span></span> <span data-ttu-id="2cf21-235">Il est également toowhich d’emplacement hello que nous affectons hello PIP que nous avons créés précédemment.</span><span class="sxs-lookup"><span data-stu-id="2cf21-235">It's also hello location toowhich we assign hello PIP that we created earlier.</span></span> <span data-ttu-id="2cf21-236">Puis nous utiliser hello principal comme un emplacement pour notre tooconnect de machines virtuelles à.</span><span class="sxs-lookup"><span data-stu-id="2cf21-236">Then we use hello back-end pool as a location for our VMs tooconnect to.</span></span> <span data-ttu-id="2cf21-237">De cette façon, hello circulent via toohello équilibrage de charge hello machines virtuelles.</span><span class="sxs-lookup"><span data-stu-id="2cf21-237">That way, hello traffic can flow through hello load balancer toohello VMs.</span></span>
 
-<span data-ttu-id="8f43b-238">Commençons tout d’abord par créer notre pool d’adresses IP frontal.</span><span class="sxs-lookup"><span data-stu-id="8f43b-238">First, let's create our front-end IP pool.</span></span> <span data-ttu-id="8f43b-239">L’exemple suivant permet de créer un pool frontal nommé `myFrontEndPool` :</span><span class="sxs-lookup"><span data-stu-id="8f43b-239">The following example creates a front-end pool named `myFrontEndPool`:</span></span>
+<span data-ttu-id="2cf21-238">Commençons tout d’abord par créer notre pool d’adresses IP frontal.</span><span class="sxs-lookup"><span data-stu-id="2cf21-238">First, let's create our front-end IP pool.</span></span> <span data-ttu-id="2cf21-239">Hello exemple suivant crée un pool frontal nommé `myFrontEndPool`:</span><span class="sxs-lookup"><span data-stu-id="2cf21-239">hello following example creates a front-end pool named `myFrontEndPool`:</span></span>
 
 ```azurecli
 azure network lb frontend-ip create --resource-group myResourceGroup \
@@ -648,12 +648,12 @@ azure network lb frontend-ip create --resource-group myResourceGroup \
   --name myFrontEndPool
 ```
 
-<span data-ttu-id="8f43b-240">Output:</span><span class="sxs-lookup"><span data-stu-id="8f43b-240">Output:</span></span>
+<span data-ttu-id="2cf21-240">Output:</span><span class="sxs-lookup"><span data-stu-id="2cf21-240">Output:</span></span>
 
 ```azurecli
 info:    Executing command network lb frontend-ip create
-+ Looking up the load balancer "myLoadBalancer"
-+ Looking up the public ip "myPublicIP"
++ Looking up hello load balancer "myLoadBalancer"
++ Looking up hello public ip "myPublicIP"
 + Updating load balancer "myLoadBalancer"
 data:    Name                            : myFrontEndPool
 data:    Provisioning state              : Succeeded
@@ -662,33 +662,33 @@ data:    Public IP address id            : /subscriptions/guid/resourceGroups/my
 info:    network lb mySubnet-ip create command OK
 ```
 
-<span data-ttu-id="8f43b-241">Notez comment nous avons utilisé le commutateur `--public-ip-name` pour transmettre le `myPublicIP` créé précédemment.</span><span class="sxs-lookup"><span data-stu-id="8f43b-241">Note how we used the `--public-ip-name` switch to pass in the `myPublicIP` that we created earlier.</span></span> <span data-ttu-id="8f43b-242">L’attribution de l’adresse IP publique à l’équilibreur de charge vous permet d’atteindre vos machines virtuelles via Internet.</span><span class="sxs-lookup"><span data-stu-id="8f43b-242">Assigning the public IP address to the load balancer allows you to reach your VMs across the Internet.</span></span>
+<span data-ttu-id="2cf21-241">Notez comment nous avons utilisé hello `--public-ip-name` commutateur toopass Bonjour `myPublicIP` que nous avons créé précédemment.</span><span class="sxs-lookup"><span data-stu-id="2cf21-241">Note how we used hello `--public-ip-name` switch toopass in hello `myPublicIP` that we created earlier.</span></span> <span data-ttu-id="2cf21-242">Affectation d’adresse IP publique hello équilibrage de charge adresse toohello vous permet de tooreach vos machines virtuelles entre hello Internet.</span><span class="sxs-lookup"><span data-stu-id="2cf21-242">Assigning hello public IP address toohello load balancer allows you tooreach your VMs across hello Internet.</span></span>
 
-<span data-ttu-id="8f43b-243">Nous allons maintenant créer notre deuxième pool d’adresses IP pour le trafic principal.</span><span class="sxs-lookup"><span data-stu-id="8f43b-243">Next, let's create our second IP pool, this time for our back-end traffic.</span></span> <span data-ttu-id="8f43b-244">L’exemple suivant permet de créer un pool principal nommé `myBackEndPool` :</span><span class="sxs-lookup"><span data-stu-id="8f43b-244">The following example creates a back-end pool named `myBackEndPool`:</span></span>
+<span data-ttu-id="2cf21-243">Nous allons maintenant créer notre deuxième pool d’adresses IP pour le trafic principal.</span><span class="sxs-lookup"><span data-stu-id="2cf21-243">Next, let's create our second IP pool, this time for our back-end traffic.</span></span> <span data-ttu-id="2cf21-244">Hello exemple suivant crée un pool principal nommé `myBackEndPool`:</span><span class="sxs-lookup"><span data-stu-id="2cf21-244">hello following example creates a back-end pool named `myBackEndPool`:</span></span>
 
 ```azurecli
 azure network lb address-pool create --resource-group myResourceGroup \
   --lb-name myLoadBalancer --name myBackEndPool
 ```
 
-<span data-ttu-id="8f43b-245">Output:</span><span class="sxs-lookup"><span data-stu-id="8f43b-245">Output:</span></span>
+<span data-ttu-id="2cf21-245">Output:</span><span class="sxs-lookup"><span data-stu-id="2cf21-245">Output:</span></span>
 
 ```azurecli
 info:    Executing command network lb address-pool create
-+ Looking up the load balancer "myLoadBalancer"
++ Looking up hello load balancer "myLoadBalancer"
 + Updating load balancer "myLoadBalancer"
 data:    Name                            : myBackEndPool
 data:    Provisioning state              : Succeeded
 info:    network lb address-pool create command OK
 ```
 
-<span data-ttu-id="8f43b-246">Nous pouvons vérifier la façon dont notre équilibreur de charge apparaît avec `azure network lb show` et en examinant la sortie JSON :</span><span class="sxs-lookup"><span data-stu-id="8f43b-246">We can see how our load balancer is doing by looking with `azure network lb show` and examining the JSON output:</span></span>
+<span data-ttu-id="2cf21-246">Nous pouvons voir faire de notre programme d’équilibrage de charge en consultant avec `azure network lb show` et en examinant la sortie JSON hello :</span><span class="sxs-lookup"><span data-stu-id="2cf21-246">We can see how our load balancer is doing by looking with `azure network lb show` and examining hello JSON output:</span></span>
 
 ```azurecli
 azure network lb show myResourceGroup myLoadBalancer --json | jq '.'
 ```
 
-<span data-ttu-id="8f43b-247">Output:</span><span class="sxs-lookup"><span data-stu-id="8f43b-247">Output:</span></span>
+<span data-ttu-id="2cf21-247">Output:</span><span class="sxs-lookup"><span data-stu-id="2cf21-247">Output:</span></span>
 
 ```json
 {
@@ -727,8 +727,8 @@ azure network lb show myResourceGroup myLoadBalancer --json | jq '.'
 }
 ```
 
-## <a name="create-load-balancer-nat-rules"></a><span data-ttu-id="8f43b-248">Créer des règles NAT d’équilibreur de charge</span><span class="sxs-lookup"><span data-stu-id="8f43b-248">Create load balancer NAT rules</span></span>
-<span data-ttu-id="8f43b-249">Pour que le trafic transite par notre équilibrage de charge, nous devons créer des règles de traduction d’adresse réseau (NAT) spécifiant les actions entrantes ou sortantes.</span><span class="sxs-lookup"><span data-stu-id="8f43b-249">To get traffic flowing through our load balancer, we need to create network address translation (NAT) rules that specify either inbound or outbound actions.</span></span> <span data-ttu-id="8f43b-250">Vous pouvez spécifier le protocole utilisé, puis mapper les ports externes aux ports internes comme vous le souhaitez.</span><span class="sxs-lookup"><span data-stu-id="8f43b-250">You can specify the protocol to use, then map external ports to internal ports as desired.</span></span> <span data-ttu-id="8f43b-251">Pour notre environnement, nous allons créer des règles autorisant SSH à accéder à nos machines virtuelles par le biais de notre équilibreur de charge.</span><span class="sxs-lookup"><span data-stu-id="8f43b-251">For our environment, let's create some rules that allow SSH through our load balancer to our VMs.</span></span> <span data-ttu-id="8f43b-252">Nous configurons les ports TCP 4222 et 4223 de manière à orienter le trafic vers le port TCP 22 sur nos machines virtuelles (que nous créerons plus tard).</span><span class="sxs-lookup"><span data-stu-id="8f43b-252">We set up TCP ports 4222 and 4223 to direct to TCP port 22 on our VMs (which we create later).</span></span> <span data-ttu-id="8f43b-253">L’exemple suivant crée une règle nommée `myLoadBalancerRuleSSH1` pour mapper le port TCP 4222 sur le port 22 :</span><span class="sxs-lookup"><span data-stu-id="8f43b-253">The following example creates a rule named `myLoadBalancerRuleSSH1` to map TCP port 4222 to port 22:</span></span>
+## <a name="create-load-balancer-nat-rules"></a><span data-ttu-id="2cf21-248">Créer des règles NAT d’équilibreur de charge</span><span class="sxs-lookup"><span data-stu-id="2cf21-248">Create load balancer NAT rules</span></span>
+<span data-ttu-id="2cf21-249">tout trafic tooget via notre programme d’équilibrage de charge, nous avons besoin de règles toocreate réseau adresse translation (NAT) qui spécifient les actions entrantes ou sortantes.</span><span class="sxs-lookup"><span data-stu-id="2cf21-249">tooget traffic flowing through our load balancer, we need toocreate network address translation (NAT) rules that specify either inbound or outbound actions.</span></span> <span data-ttu-id="2cf21-250">Vous pouvez spécifier hello protocole toouse, puis mapper les ports de toointernal des ports externes comme vous le souhaitez.</span><span class="sxs-lookup"><span data-stu-id="2cf21-250">You can specify hello protocol toouse, then map external ports toointernal ports as desired.</span></span> <span data-ttu-id="2cf21-251">Pour notre environnement, nous allons créer des règles qui autorisent SSH via notre tooour d’équilibrage de charge machines virtuelles.</span><span class="sxs-lookup"><span data-stu-id="2cf21-251">For our environment, let's create some rules that allow SSH through our load balancer tooour VMs.</span></span> <span data-ttu-id="2cf21-252">Nous avons configuré le port TCP ports 4222 et 4223 toodirect tooTCP 22 sur nos machines virtuelles (ce qui nous créer ultérieurement).</span><span class="sxs-lookup"><span data-stu-id="2cf21-252">We set up TCP ports 4222 and 4223 toodirect tooTCP port 22 on our VMs (which we create later).</span></span> <span data-ttu-id="2cf21-253">Hello exemple suivant crée une règle nommée `myLoadBalancerRuleSSH1` toomap TCP port 4222 tooport 22 :</span><span class="sxs-lookup"><span data-stu-id="2cf21-253">hello following example creates a rule named `myLoadBalancerRuleSSH1` toomap TCP port 4222 tooport 22:</span></span>
 
 ```azurecli
 azure network lb inbound-nat-rule create --resource-group myResourceGroup \
@@ -736,11 +736,11 @@ azure network lb inbound-nat-rule create --resource-group myResourceGroup \
   --protocol tcp --frontend-port 4222 --backend-port 22
 ```
 
-<span data-ttu-id="8f43b-254">Output:</span><span class="sxs-lookup"><span data-stu-id="8f43b-254">Output:</span></span>
+<span data-ttu-id="2cf21-254">Output:</span><span class="sxs-lookup"><span data-stu-id="2cf21-254">Output:</span></span>
 
 ```azurecli
 info:    Executing command network lb inbound-nat-rule create
-+ Looking up the load balancer "myLoadBalancer"
++ Looking up hello load balancer "myLoadBalancer"
 warn:    Using default enable floating ip: false
 warn:    Using default idle timeout: 4
 warn:    Using default mySubnet IP configuration "myFrontEndPool"
@@ -756,7 +756,7 @@ data:    mySubnet IP configuration id    : /subscriptions/guid/resourceGroups/my
 info:    network lb inbound-nat-rule create command OK
 ```
 
-<span data-ttu-id="8f43b-255">Répétez cette procédure pour votre deuxième règle NAT pour le protocole SSH.</span><span class="sxs-lookup"><span data-stu-id="8f43b-255">Repeat the procedure for your second NAT rule for SSH.</span></span> <span data-ttu-id="8f43b-256">L’exemple suivant crée une règle nommée `myLoadBalancerRuleSSH2` pour mapper le port TCP 4223 sur le port 22 :</span><span class="sxs-lookup"><span data-stu-id="8f43b-256">The following example creates a rule named `myLoadBalancerRuleSSH2` to map TCP port 4223 to port 22:</span></span>
+<span data-ttu-id="2cf21-255">Répétez la procédure de hello pour votre deuxième règle NAT pour SSH.</span><span class="sxs-lookup"><span data-stu-id="2cf21-255">Repeat hello procedure for your second NAT rule for SSH.</span></span> <span data-ttu-id="2cf21-256">Hello exemple suivant crée une règle nommée `myLoadBalancerRuleSSH2` toomap TCP port 4223 tooport 22 :</span><span class="sxs-lookup"><span data-stu-id="2cf21-256">hello following example creates a rule named `myLoadBalancerRuleSSH2` toomap TCP port 4223 tooport 22:</span></span>
 
 ```azurecli
 azure network lb inbound-nat-rule create --resource-group myResourceGroup \
@@ -764,7 +764,7 @@ azure network lb inbound-nat-rule create --resource-group myResourceGroup \
   --frontend-port 4223 --backend-port 22
 ```
 
-<span data-ttu-id="8f43b-257">Nous allons maintenant créer une règle NAT pour le port TCP 80 du trafic web , en liant la règle à nos pools d’adresses IP.</span><span class="sxs-lookup"><span data-stu-id="8f43b-257">Let's also go ahead and create a NAT rule for TCP port 80 for web traffic, hooking the rule up to our IP pools.</span></span> <span data-ttu-id="8f43b-258">Si nous lions l’adresse à un pool d’adresses IP au lieu de la lier à nos machines virtuelles individuellement, nous pouvons ajouter ou supprimer des machines virtuelles dans le pool d’adresses IP.</span><span class="sxs-lookup"><span data-stu-id="8f43b-258">If we hook up the rule to an IP pool, instead of hooking up the rule to our VMs individually, we can add or remove VMs from the IP pool.</span></span> <span data-ttu-id="8f43b-259">L’équilibrage de charge ajuste alors automatiquement le flux de trafic.</span><span class="sxs-lookup"><span data-stu-id="8f43b-259">The load balancer automatically adjusts the flow of traffic.</span></span> <span data-ttu-id="8f43b-260">L’exemple suivant crée une règle nommée `myLoadBalancerRuleWeb` pour mapper le port TCP 80 sur le port 80 :</span><span class="sxs-lookup"><span data-stu-id="8f43b-260">The following example creates a rule named `myLoadBalancerRuleWeb` to map TCP port 80 to port 80:</span></span>
+<span data-ttu-id="2cf21-257">Nous allons également continuer et créer une règle NAT pour le port TCP 80 pour le trafic web, raccorder les règle hello tooour pools d’adresses IP.</span><span class="sxs-lookup"><span data-stu-id="2cf21-257">Let's also go ahead and create a NAT rule for TCP port 80 for web traffic, hooking hello rule up tooour IP pools.</span></span> <span data-ttu-id="2cf21-258">Si nous raccorder hello règle tooan de pool IP, au lieu de raccorder hello règle tooour machines virtuelles individuellement, nous pouvons ajouter ou supprimer des machines virtuelles à partir du pool d’adresses IP hello.</span><span class="sxs-lookup"><span data-stu-id="2cf21-258">If we hook up hello rule tooan IP pool, instead of hooking up hello rule tooour VMs individually, we can add or remove VMs from hello IP pool.</span></span> <span data-ttu-id="2cf21-259">équilibrage de charge Hello ajuste automatiquement le flux hello du trafic.</span><span class="sxs-lookup"><span data-stu-id="2cf21-259">hello load balancer automatically adjusts hello flow of traffic.</span></span> <span data-ttu-id="2cf21-260">Hello exemple suivant crée une règle nommée `myLoadBalancerRuleWeb` toomap TCP port 80 tooport 80 :</span><span class="sxs-lookup"><span data-stu-id="2cf21-260">hello following example creates a rule named `myLoadBalancerRuleWeb` toomap TCP port 80 tooport 80:</span></span>
 
 ```azurecli
 azure network lb rule create --resource-group myResourceGroup \
@@ -773,11 +773,11 @@ azure network lb rule create --resource-group myResourceGroup \
   --backend-address-pool-name myBackEndPool
 ```
 
-<span data-ttu-id="8f43b-261">Output:</span><span class="sxs-lookup"><span data-stu-id="8f43b-261">Output:</span></span>
+<span data-ttu-id="2cf21-261">Output:</span><span class="sxs-lookup"><span data-stu-id="2cf21-261">Output:</span></span>
 
 ```azurecli
 info:    Executing command network lb rule create
-+ Looking up the load balancer "myLoadBalancer"
++ Looking up hello load balancer "myLoadBalancer"
 warn:    Using default idle timeout: 4
 warn:    Using default enable floating ip: false
 warn:    Using default load distribution: Default
@@ -795,8 +795,8 @@ data:    Backend address pool id         : /subscriptions/guid/resourceGroups/my
 info:    network lb rule create command OK
 ```
 
-## <a name="create-a-load-balancer-health-probe"></a><span data-ttu-id="8f43b-262">Créer une sonde d’intégrité d’équilibreur de charge</span><span class="sxs-lookup"><span data-stu-id="8f43b-262">Create a load balancer health probe</span></span>
-<span data-ttu-id="8f43b-263">Une sonde d’intégrité contrôle régulièrement les machines virtuelles situées derrière notre équilibreur de charge pour s’assurer qu’elles fonctionnent correctement et répondent aux demandes, telles que définies.</span><span class="sxs-lookup"><span data-stu-id="8f43b-263">A health probe periodically checks on the VMs that are behind our load balancer to make sure they're operating and responding to requests as defined.</span></span> <span data-ttu-id="8f43b-264">Dans le cas contraire, elles sont supprimées du processus pour garantir que les utilisateurs ne sont pas orientés vers elles.</span><span class="sxs-lookup"><span data-stu-id="8f43b-264">If not, they're removed from operation to ensure that users aren't being directed to them.</span></span> <span data-ttu-id="8f43b-265">Vous pouvez définir les contrôles personnalisés de la sonde d’intégrité, ainsi que des valeurs d’intervalle et de délai d’attente.</span><span class="sxs-lookup"><span data-stu-id="8f43b-265">You can define custom checks for the health probe, along with intervals and timeout values.</span></span> <span data-ttu-id="8f43b-266">Pour plus d'informations sur les sondes d’intégrité, consultez [Sondes d’équilibreur de charge](../../load-balancer/load-balancer-custom-probe-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="8f43b-266">For more information about health probes, see [Load Balancer probes](../../load-balancer/load-balancer-custom-probe-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span> <span data-ttu-id="8f43b-267">L’exemple suivant permet de créer une sonde d’intégrité TCP nommée `myHealthProbe` :</span><span class="sxs-lookup"><span data-stu-id="8f43b-267">The following example creates a TCP health probed named `myHealthProbe`:</span></span>
+## <a name="create-a-load-balancer-health-probe"></a><span data-ttu-id="2cf21-262">Créer une sonde d’intégrité d’équilibreur de charge</span><span class="sxs-lookup"><span data-stu-id="2cf21-262">Create a load balancer health probe</span></span>
+<span data-ttu-id="2cf21-263">Un contrôle d’intégrité de sonde périodiquement les vérifications sur hello machines virtuelles qui se trouvent derrière notre toomake d’équilibrage de charge que leur date d’exploitation et de répondre toorequests tel que défini.</span><span class="sxs-lookup"><span data-stu-id="2cf21-263">A health probe periodically checks on hello VMs that are behind our load balancer toomake sure they're operating and responding toorequests as defined.</span></span> <span data-ttu-id="2cf21-264">Si non, ils sont supprimés de tooensure opération que les utilisateurs ne sont pas en cours dirigé toothem.</span><span class="sxs-lookup"><span data-stu-id="2cf21-264">If not, they're removed from operation tooensure that users aren't being directed toothem.</span></span> <span data-ttu-id="2cf21-265">Vous pouvez définir des contrôles personnalisés pour la sonde d’intégrité hello, ainsi que les intervalles et les valeurs de délai d’attente.</span><span class="sxs-lookup"><span data-stu-id="2cf21-265">You can define custom checks for hello health probe, along with intervals and timeout values.</span></span> <span data-ttu-id="2cf21-266">Pour plus d'informations sur les sondes d’intégrité, consultez [Sondes d’équilibreur de charge](../../load-balancer/load-balancer-custom-probe-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="2cf21-266">For more information about health probes, see [Load Balancer probes](../../load-balancer/load-balancer-custom-probe-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span> <span data-ttu-id="2cf21-267">Hello exemple suivant crée un TCP intégrité détectés nommée `myHealthProbe`:</span><span class="sxs-lookup"><span data-stu-id="2cf21-267">hello following example creates a TCP health probed named `myHealthProbe`:</span></span>
 
 ```azurecli
 azure network lb probe create --resource-group myResourceGroup \
@@ -804,12 +804,12 @@ azure network lb probe create --resource-group myResourceGroup \
   --interval 15 --count 4
 ```
 
-<span data-ttu-id="8f43b-268">Output:</span><span class="sxs-lookup"><span data-stu-id="8f43b-268">Output:</span></span>
+<span data-ttu-id="2cf21-268">Output:</span><span class="sxs-lookup"><span data-stu-id="2cf21-268">Output:</span></span>
 
 ```azurecli
 info:    Executing command network lb probe create
 warn:    Using default probe port: 80
-+ Looking up the load balancer "myLoadBalancer"
++ Looking up hello load balancer "myLoadBalancer"
 + Updating load balancer "myLoadBalancer"
 data:    Name                            : myHealthProbe
 data:    Provisioning state              : Succeeded
@@ -820,25 +820,25 @@ data:    Number of probes                : 4
 info:    network lb probe create command OK
 ```
 
-<span data-ttu-id="8f43b-269">Ici, nous avons spécifié un intervalle de 15 secondes pour nos contrôles d’intégrité.</span><span class="sxs-lookup"><span data-stu-id="8f43b-269">Here, we specified an interval of 15 seconds for our health checks.</span></span> <span data-ttu-id="8f43b-270">Nous pouvons manquer au maximum quatre sondes (une minute) avant que l’équilibreur de charge considère que l’hôte ne fonctionne plus.</span><span class="sxs-lookup"><span data-stu-id="8f43b-270">We can miss a maximum of four probes (one minute) before the load balancer considers that the host is no longer functioning.</span></span>
+<span data-ttu-id="2cf21-269">Ici, nous avons spécifié un intervalle de 15 secondes pour nos contrôles d’intégrité.</span><span class="sxs-lookup"><span data-stu-id="2cf21-269">Here, we specified an interval of 15 seconds for our health checks.</span></span> <span data-ttu-id="2cf21-270">Nous pouvons ne pas conforme à un maximum de quatre sondes (une minute) avant de l’équilibrage de charge hello considère que cet hôte hello ne fonctionne plus.</span><span class="sxs-lookup"><span data-stu-id="2cf21-270">We can miss a maximum of four probes (one minute) before hello load balancer considers that hello host is no longer functioning.</span></span>
 
-## <a name="verify-the-load-balancer"></a><span data-ttu-id="8f43b-271">Vérifier l’équilibreur de charge</span><span class="sxs-lookup"><span data-stu-id="8f43b-271">Verify the load balancer</span></span>
-<span data-ttu-id="8f43b-272">Vérifiez maintenant que la configuration de l’équilibreur de charge est terminée.</span><span class="sxs-lookup"><span data-stu-id="8f43b-272">Now the load balancer configuration is done.</span></span> <span data-ttu-id="8f43b-273">Voici la procédure que vous avez suivie :</span><span class="sxs-lookup"><span data-stu-id="8f43b-273">Here are the steps you took:</span></span>
+## <a name="verify-hello-load-balancer"></a><span data-ttu-id="2cf21-271">Vérifiez l’équilibrage de charge hello</span><span class="sxs-lookup"><span data-stu-id="2cf21-271">Verify hello load balancer</span></span>
+<span data-ttu-id="2cf21-272">Configuration d’équilibrage de charge de hello est maintenant terminée.</span><span class="sxs-lookup"><span data-stu-id="2cf21-272">Now hello load balancer configuration is done.</span></span> <span data-ttu-id="2cf21-273">Voici les étapes hello que vous avez suivies :</span><span class="sxs-lookup"><span data-stu-id="2cf21-273">Here are hello steps you took:</span></span>
 
-1. <span data-ttu-id="8f43b-274">Vous avez créé un équilibrage de charge.</span><span class="sxs-lookup"><span data-stu-id="8f43b-274">You created a load balancer.</span></span>
-2. <span data-ttu-id="8f43b-275">Vous avez créé un pool d’adresses IP frontal et lui avez affecté une adresse IP publique.</span><span class="sxs-lookup"><span data-stu-id="8f43b-275">You created a front-end IP pool and assigned a public IP to it.</span></span>
-3. <span data-ttu-id="8f43b-276">Vous avez créé un pool d’adresses IP principal auquel les machines virtuelles peuvent se connecter.</span><span class="sxs-lookup"><span data-stu-id="8f43b-276">You created a back-end IP pool that VMs can connect to.</span></span>
-4. <span data-ttu-id="8f43b-277">Vous avez créé des règles NAT qui autorisent le protocole SSH pour les machines virtuelles à des fins de gestion, ainsi qu’une règle autorisant le port TCP 80 de notre application web.</span><span class="sxs-lookup"><span data-stu-id="8f43b-277">You created NAT rules that allow SSH to the VMs for management, along with a rule that allows TCP port 80 for our web app.</span></span>
-5. <span data-ttu-id="8f43b-278">Vous avez ajouté une sonde d’intégrité pour contrôler périodiquement les machines virtuelles.</span><span class="sxs-lookup"><span data-stu-id="8f43b-278">You added a health probe to periodically check the VMs.</span></span> <span data-ttu-id="8f43b-279">Cette sonde d’intégrité s’assure que des utilisateurs n’essaient d’accéder à une machine virtuelle qui ne fonctionne plus ou qui ne sert plus de contenu.</span><span class="sxs-lookup"><span data-stu-id="8f43b-279">This health probe ensures that users don't try to access a VM that is no longer functioning or serving content.</span></span>
+1. <span data-ttu-id="2cf21-274">Vous avez créé un équilibrage de charge.</span><span class="sxs-lookup"><span data-stu-id="2cf21-274">You created a load balancer.</span></span>
+2. <span data-ttu-id="2cf21-275">Vous créé un pool IP frontal et affecté un tooit IP public.</span><span class="sxs-lookup"><span data-stu-id="2cf21-275">You created a front-end IP pool and assigned a public IP tooit.</span></span>
+3. <span data-ttu-id="2cf21-276">Vous avez créé un pool d’adresses IP principal auquel les machines virtuelles peuvent se connecter.</span><span class="sxs-lookup"><span data-stu-id="2cf21-276">You created a back-end IP pool that VMs can connect to.</span></span>
+4. <span data-ttu-id="2cf21-277">Vous avez créé des règles NAT qui autorisent les machines virtuelles toohello SSH pour la gestion, ainsi que d’une règle qui autorise le port TCP 80 pour notre application web.</span><span class="sxs-lookup"><span data-stu-id="2cf21-277">You created NAT rules that allow SSH toohello VMs for management, along with a rule that allows TCP port 80 for our web app.</span></span>
+5. <span data-ttu-id="2cf21-278">Vous avez ajouté un Bonjour de vérification d’intégrité sonde tooperiodically machines virtuelles.</span><span class="sxs-lookup"><span data-stu-id="2cf21-278">You added a health probe tooperiodically check hello VMs.</span></span> <span data-ttu-id="2cf21-279">Cette sonde d’intégrité permet de s’assurer que les utilisateurs n’essaient pas tooaccess une machine virtuelle qui n’est plus fonctionne ni héberger un contenu.</span><span class="sxs-lookup"><span data-stu-id="2cf21-279">This health probe ensures that users don't try tooaccess a VM that is no longer functioning or serving content.</span></span>
 
-<span data-ttu-id="8f43b-280">Regardons maintenant à quoi ressemble votre équilibreur de charge :</span><span class="sxs-lookup"><span data-stu-id="8f43b-280">Let's review what your load balancer looks like now:</span></span>
+<span data-ttu-id="2cf21-280">Regardons maintenant à quoi ressemble votre équilibreur de charge :</span><span class="sxs-lookup"><span data-stu-id="2cf21-280">Let's review what your load balancer looks like now:</span></span>
 
 ```azurecli
 azure network lb show --resource-group myResourceGroup \
   --name myLoadBalancer --json | jq '.'
 ```
 
-<span data-ttu-id="8f43b-281">Output:</span><span class="sxs-lookup"><span data-stu-id="8f43b-281">Output:</span></span>
+<span data-ttu-id="2cf21-281">Output:</span><span class="sxs-lookup"><span data-stu-id="2cf21-281">Output:</span></span>
 
 ```json
 {
@@ -954,12 +954,12 @@ azure network lb show --resource-group myResourceGroup \
 }
 ```
 
-## <a name="create-an-nic-to-use-with-the-linux-vm"></a><span data-ttu-id="8f43b-282">Créer une carte d’interface réseau (NIC) à utiliser avec la machine virtuelle Linux</span><span class="sxs-lookup"><span data-stu-id="8f43b-282">Create an NIC to use with the Linux VM</span></span>
-<span data-ttu-id="8f43b-283">La disponibilité des cartes d’interface réseau peut être déterminée par programme car vous pouvez définir des règles régissant leur utilisation.</span><span class="sxs-lookup"><span data-stu-id="8f43b-283">NICs are programmatically available because you can apply rules to their use.</span></span> <span data-ttu-id="8f43b-284">Vous pouvez également avoir plusieurs cartes.</span><span class="sxs-lookup"><span data-stu-id="8f43b-284">You can also have more than one.</span></span> <span data-ttu-id="8f43b-285">Dans la commande `azure network nic create` suivante, vous avez lié la carte d’interface réseau au pool d’adresses IP principal de charge, et l’avez associée à la règle NAT pour autoriser le trafic SSH.</span><span class="sxs-lookup"><span data-stu-id="8f43b-285">In the following `azure network nic create` command, you hook up the NIC to the load back-end IP pool and associate it with the NAT rule to permit SSH traffic.</span></span>
+## <a name="create-an-nic-toouse-with-hello-linux-vm"></a><span data-ttu-id="2cf21-282">Créer une carte réseau toouse avec hello Linux VM</span><span class="sxs-lookup"><span data-stu-id="2cf21-282">Create an NIC toouse with hello Linux VM</span></span>
+<span data-ttu-id="2cf21-283">Cartes réseau est disponibles par programme, car vous pouvez appliquer des règles tootheir utilisation.</span><span class="sxs-lookup"><span data-stu-id="2cf21-283">NICs are programmatically available because you can apply rules tootheir use.</span></span> <span data-ttu-id="2cf21-284">Vous pouvez également avoir plusieurs cartes.</span><span class="sxs-lookup"><span data-stu-id="2cf21-284">You can also have more than one.</span></span> <span data-ttu-id="2cf21-285">Suivant de hello `azure network nic create` de commande, vous raccordez le pool d’adresses IP hello NIC toohello charge principal et l’associez à hello NAT règle toopermit SSH du trafic.</span><span class="sxs-lookup"><span data-stu-id="2cf21-285">In hello following `azure network nic create` command, you hook up hello NIC toohello load back-end IP pool and associate it with hello NAT rule toopermit SSH traffic.</span></span>
 
-<span data-ttu-id="8f43b-286">Remplacez les sections `#####-###-###` par votre propre ID d’abonnement Azure.</span><span class="sxs-lookup"><span data-stu-id="8f43b-286">Replace the `#####-###-###` sections with your own Azure subscription ID.</span></span> <span data-ttu-id="8f43b-287">Votre ID d’abonnement est indiqué dans la sortie de `jq` lorsque vous examinez les ressources créées.</span><span class="sxs-lookup"><span data-stu-id="8f43b-287">Your subscription ID is noted in the output of `jq` when you examine the resources you are creating.</span></span> <span data-ttu-id="8f43b-288">Vous pouvez également afficher votre ID d’abonnement avec `azure account list`.</span><span class="sxs-lookup"><span data-stu-id="8f43b-288">You can also view your subscription ID with `azure account list`.</span></span>
+<span data-ttu-id="2cf21-286">Remplacez hello `#####-###-###` sections avec votre propre ID d’abonnement Azure.</span><span class="sxs-lookup"><span data-stu-id="2cf21-286">Replace hello `#####-###-###` sections with your own Azure subscription ID.</span></span> <span data-ttu-id="2cf21-287">Votre abonnement ID est indiqué dans la sortie de hello de `jq` lorsque vous examinez les ressources hello vous créez.</span><span class="sxs-lookup"><span data-stu-id="2cf21-287">Your subscription ID is noted in hello output of `jq` when you examine hello resources you are creating.</span></span> <span data-ttu-id="2cf21-288">Vous pouvez également afficher votre ID d’abonnement avec `azure account list`.</span><span class="sxs-lookup"><span data-stu-id="2cf21-288">You can also view your subscription ID with `azure account list`.</span></span>
 
-<span data-ttu-id="8f43b-289">L’exemple suivant permet de créer une carte d’interface réseau nommée `myNic1` :</span><span class="sxs-lookup"><span data-stu-id="8f43b-289">The following example creates a NIC named `myNic1`:</span></span>
+<span data-ttu-id="2cf21-289">Hello exemple suivant crée une carte réseau nommée `myNic1`:</span><span class="sxs-lookup"><span data-stu-id="2cf21-289">hello following example creates a NIC named `myNic1`:</span></span>
 
 ```azurecli
 azure network nic create --resource-group myResourceGroup --location westeurope \
@@ -968,12 +968,12 @@ azure network nic create --resource-group myResourceGroup --location westeurope 
   --lb-inbound-nat-rule-ids /subscriptions/########-####-####-####-############/resourceGroups/myResourceGroup/providers/Microsoft.Network/loadBalancers/myLoadBalancer/inboundNatRules/myLoadBalancerRuleSSH1
 ```
 
-<span data-ttu-id="8f43b-290">Output:</span><span class="sxs-lookup"><span data-stu-id="8f43b-290">Output:</span></span>
+<span data-ttu-id="2cf21-290">Output:</span><span class="sxs-lookup"><span data-stu-id="2cf21-290">Output:</span></span>
 
 ```azurecli
 info:    Executing command network nic create
-+ Looking up the subnet "mySubnet"
-+ Looking up the network interface "myNic1"
++ Looking up hello subnet "mySubnet"
++ Looking up hello network interface "myNic1"
 + Creating network interface "myNic1"
 data:    Id                              : /subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/networkInterfaces/myNic1
 data:    Name                            : myNic1
@@ -995,13 +995,13 @@ data:
 info:    network nic create command OK
 ```
 
-<span data-ttu-id="8f43b-291">Vous pouvez visualiser les détails de la ressource en examinant directement cette dernière.</span><span class="sxs-lookup"><span data-stu-id="8f43b-291">You can see the details by examining the resource directly.</span></span> <span data-ttu-id="8f43b-292">Vous examinez la ressource à l’aide de la commande `azure network nic show` :</span><span class="sxs-lookup"><span data-stu-id="8f43b-292">You examine the resource by using the `azure network nic show` command:</span></span>
+<span data-ttu-id="2cf21-291">Vous pouvez afficher les détails de hello en examinant les ressources hello directement.</span><span class="sxs-lookup"><span data-stu-id="2cf21-291">You can see hello details by examining hello resource directly.</span></span> <span data-ttu-id="2cf21-292">Vous examinez les ressources hello à l’aide de hello `azure network nic show` commande :</span><span class="sxs-lookup"><span data-stu-id="2cf21-292">You examine hello resource by using hello `azure network nic show` command:</span></span>
 
 ```azurecli
 azure network nic show myResourceGroup myNic1 --json | jq '.'
 ```
 
-<span data-ttu-id="8f43b-293">Output:</span><span class="sxs-lookup"><span data-stu-id="8f43b-293">Output:</span></span>
+<span data-ttu-id="2cf21-293">Output:</span><span class="sxs-lookup"><span data-stu-id="2cf21-293">Output:</span></span>
 
 ```json
 {
@@ -1043,7 +1043,7 @@ azure network nic show myResourceGroup myNic1 --json | jq '.'
 }
 ```
 
-<span data-ttu-id="8f43b-294">Nous créons maintenant la deuxième carte réseau en la liant à nouveau à notre pool d’adresses IP principal.</span><span class="sxs-lookup"><span data-stu-id="8f43b-294">Now we create the second NIC, hooking in to our back-end IP pool again.</span></span> <span data-ttu-id="8f43b-295">Cette fois, la deuxième règle NAT autorise le trafic SSH.</span><span class="sxs-lookup"><span data-stu-id="8f43b-295">This time the second NAT rule permits SSH traffic.</span></span> <span data-ttu-id="8f43b-296">L’exemple suivant permet de créer une carte d’interface réseau nommée `myNic2` :</span><span class="sxs-lookup"><span data-stu-id="8f43b-296">The following example creates a NIC named `myNic2`:</span></span>
+<span data-ttu-id="2cf21-294">Maintenant nous créons hello seconde carte réseau, raccorder à nouveau dans le pool d’adresses IP tooour back-end.</span><span class="sxs-lookup"><span data-stu-id="2cf21-294">Now we create hello second NIC, hooking in tooour back-end IP pool again.</span></span> <span data-ttu-id="2cf21-295">Cette règle NAT hello deuxième autorise le trafic SSH.</span><span class="sxs-lookup"><span data-stu-id="2cf21-295">This time hello second NAT rule permits SSH traffic.</span></span> <span data-ttu-id="2cf21-296">Hello exemple suivant crée une carte réseau nommée `myNic2`:</span><span class="sxs-lookup"><span data-stu-id="2cf21-296">hello following example creates a NIC named `myNic2`:</span></span>
 
 ```azurecli
 azure network nic create --resource-group myResourceGroup --location westeurope \
@@ -1052,15 +1052,15 @@ azure network nic create --resource-group myResourceGroup --location westeurope 
   --lb-inbound-nat-rule-ids /subscriptions/########-####-####-####-############/resourceGroups/myResourceGroup/providers/Microsoft.Network/loadBalancers/myLoadBalancer/inboundNatRules/myLoadBalancerRuleSSH2
 ```
 
-## <a name="create-a-network-security-group-and-rules"></a><span data-ttu-id="8f43b-297">Créer un groupe de sécurité réseau et les règles associées</span><span class="sxs-lookup"><span data-stu-id="8f43b-297">Create a network security group and rules</span></span>
-<span data-ttu-id="8f43b-298">Nous allons à présent créer un groupe de sécurité réseau et les règles de trafic entrant qui régissent l’accès à la carte d’interface réseau.</span><span class="sxs-lookup"><span data-stu-id="8f43b-298">Now we create a network security group and the inbound rules that govern access to the NIC.</span></span> <span data-ttu-id="8f43b-299">Un groupe de sécurité réseau peut être appliqué à une carte d’interface réseau ou à un sous-réseau.</span><span class="sxs-lookup"><span data-stu-id="8f43b-299">A network security group can be applied to a NIC or subnet.</span></span> <span data-ttu-id="8f43b-300">Vous définissez des règles pour contrôler le flux de trafic vers et à partir de vos machines virtuelles.</span><span class="sxs-lookup"><span data-stu-id="8f43b-300">You define rules to control the flow of traffic in and out of your VMs.</span></span> <span data-ttu-id="8f43b-301">L’exemple suivant permet de créer un groupe de sécurité réseau nommé `myNetworkSecurityGroup` :</span><span class="sxs-lookup"><span data-stu-id="8f43b-301">The following example creates a network security group named `myNetworkSecurityGroup`:</span></span>
+## <a name="create-a-network-security-group-and-rules"></a><span data-ttu-id="2cf21-297">Créer un groupe de sécurité réseau et les règles associées</span><span class="sxs-lookup"><span data-stu-id="2cf21-297">Create a network security group and rules</span></span>
+<span data-ttu-id="2cf21-298">Désormais nous créer un groupe de sécurité réseau, hello des règles de trafic entrant qui régissent l’accès toohello carte</span><span class="sxs-lookup"><span data-stu-id="2cf21-298">Now we create a network security group and hello inbound rules that govern access toohello NIC.</span></span> <span data-ttu-id="2cf21-299">Un groupe de sécurité réseau peut être appliqué tooa carte réseau ou sous-réseau.</span><span class="sxs-lookup"><span data-stu-id="2cf21-299">A network security group can be applied tooa NIC or subnet.</span></span> <span data-ttu-id="2cf21-300">Vous définissez un flux de hello toocontrol de règles de trafic vers et depuis vos machines virtuelles.</span><span class="sxs-lookup"><span data-stu-id="2cf21-300">You define rules toocontrol hello flow of traffic in and out of your VMs.</span></span> <span data-ttu-id="2cf21-301">Hello exemple suivant crée un groupe de sécurité réseau nommé `myNetworkSecurityGroup`:</span><span class="sxs-lookup"><span data-stu-id="2cf21-301">hello following example creates a network security group named `myNetworkSecurityGroup`:</span></span>
 
 ```azurecli
 azure network nsg create --resource-group myResourceGroup --location westeurope \
   --name myNetworkSecurityGroup
 ```
 
-<span data-ttu-id="8f43b-302">Ajoutons la règle de trafic entrant pour le groupe de sécurité réseau afin d’autoriser les connexions entrantes sur le port 22 (pour prendre en charge le protocole SSH).</span><span class="sxs-lookup"><span data-stu-id="8f43b-302">Let's add the inbound rule for the NSG to allow inbound connections on port 22 (to support SSH).</span></span> <span data-ttu-id="8f43b-303">L’exemple suivant permet de créer une règle nommée `myNetworkSecurityGroupRuleSSH` pour autoriser le trafic TCP sur le port 22 :</span><span class="sxs-lookup"><span data-stu-id="8f43b-303">The following example creates a rule named `myNetworkSecurityGroupRuleSSH` to allow TCP on port 22:</span></span>
+<span data-ttu-id="2cf21-302">Vous allez ajouter la règle de trafic entrant hello pour hello NSG tooallow connexions sur le port 22 (toosupport SSH) entrantes.</span><span class="sxs-lookup"><span data-stu-id="2cf21-302">Let's add hello inbound rule for hello NSG tooallow inbound connections on port 22 (toosupport SSH).</span></span> <span data-ttu-id="2cf21-303">Hello exemple suivant crée une règle nommée `myNetworkSecurityGroupRuleSSH` tooallow TCP sur le port 22 :</span><span class="sxs-lookup"><span data-stu-id="2cf21-303">hello following example creates a rule named `myNetworkSecurityGroupRuleSSH` tooallow TCP on port 22:</span></span>
 
 ```azurecli
 azure network nsg rule create --resource-group myResourceGroup \
@@ -1069,7 +1069,7 @@ azure network nsg rule create --resource-group myResourceGroup \
   --name myNetworkSecurityGroupRuleSSH
 ```
 
-<span data-ttu-id="8f43b-304">À présent, nous ajoutons la règle de trafic entrant pour le groupe de sécurité réseau afin d’autoriser les connexions entrantes sur le port 80 (pour prendre en charge le trafic web).</span><span class="sxs-lookup"><span data-stu-id="8f43b-304">Now let's add the inbound rule for the NSG to allow inbound connections on port 80 (to support web traffic).</span></span> <span data-ttu-id="8f43b-305">L’exemple suivant permet de créer une règle nommée `myNetworkSecurityGroupRuleHTTP` pour autoriser le trafic TCP sur le port 80 :</span><span class="sxs-lookup"><span data-stu-id="8f43b-305">The following example creates a rule named `myNetworkSecurityGroupRuleHTTP` to allow TCP on port 80:</span></span>
+<span data-ttu-id="2cf21-304">Maintenant vous allez ajouter la règle de trafic entrant hello pour hello NSG tooallow connexions sur le port 80 (trafic web de toosupport) entrantes.</span><span class="sxs-lookup"><span data-stu-id="2cf21-304">Now let's add hello inbound rule for hello NSG tooallow inbound connections on port 80 (toosupport web traffic).</span></span> <span data-ttu-id="2cf21-305">Hello exemple suivant crée une règle nommée `myNetworkSecurityGroupRuleHTTP` tooallow TCP sur le port 80 :</span><span class="sxs-lookup"><span data-stu-id="2cf21-305">hello following example creates a rule named `myNetworkSecurityGroupRuleHTTP` tooallow TCP on port 80:</span></span>
 
 ```azurecli
 azure network nsg rule create --resource-group myResourceGroup \
@@ -1079,12 +1079,12 @@ azure network nsg rule create --resource-group myResourceGroup \
 ```
 
 > [!NOTE]
-> <span data-ttu-id="8f43b-306">La règle de trafic entrant est un filtre pour les connexions réseau entrantes.</span><span class="sxs-lookup"><span data-stu-id="8f43b-306">The inbound rule is a filter for inbound network connections.</span></span> <span data-ttu-id="8f43b-307">Dans cet exemple, nous lions le NSG à la carte d’interface réseau (NIC) virtuelle des machines virtuelles, ce qui signifie que toute demande adressée au port 22 est transmise à la carte d’interface réseau sur notre machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="8f43b-307">In this example, we bind the NSG to the VMs virtual NIC, which means that any request to port 22 is passed through to the NIC on our VM.</span></span> <span data-ttu-id="8f43b-308">Cette règle de trafic entrant concerne une connexion réseau, et non à un point de terminaison, comme dans le cas de déploiements classiques.</span><span class="sxs-lookup"><span data-stu-id="8f43b-308">This inbound rule is about a network connection, and not about an endpoint, which is what it would be about in classic deployments.</span></span> <span data-ttu-id="8f43b-309">Pour ouvrir un port, vous devez laisser la commande `--source-port-range` définie sur « \* » (valeur par défaut) afin d’accepter les demandes entrantes de **tous** les ports demandeurs.</span><span class="sxs-lookup"><span data-stu-id="8f43b-309">To open a port, you must leave the `--source-port-range` set to '\*' (the default value) to accept inbound requests from **any** requesting port.</span></span> <span data-ttu-id="8f43b-310">Ces ports sont généralement dynamiques.</span><span class="sxs-lookup"><span data-stu-id="8f43b-310">Ports are typically dynamic.</span></span>
+> <span data-ttu-id="2cf21-306">règle de trafic entrant Hello est un filtre pour les connexions réseau entrantes.</span><span class="sxs-lookup"><span data-stu-id="2cf21-306">hello inbound rule is a filter for inbound network connections.</span></span> <span data-ttu-id="2cf21-307">Dans cet exemple, nous lions hello NSG toohello machines virtuelles carte réseau virtuelle, ce qui signifie que n’importe quel tooport demande 22 est passée via toohello carte réseau sur votre machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="2cf21-307">In this example, we bind hello NSG toohello VMs virtual NIC, which means that any request tooport 22 is passed through toohello NIC on our VM.</span></span> <span data-ttu-id="2cf21-308">Cette règle de trafic entrant concerne une connexion réseau, et non à un point de terminaison, comme dans le cas de déploiements classiques.</span><span class="sxs-lookup"><span data-stu-id="2cf21-308">This inbound rule is about a network connection, and not about an endpoint, which is what it would be about in classic deployments.</span></span> <span data-ttu-id="2cf21-309">tooopen un port, vous devez laisser hello `--source-port-range` défini trop '\*' (valeur par défaut de hello) tooaccept les demandes d’entrantes **n’importe quel** port de demande.</span><span class="sxs-lookup"><span data-stu-id="2cf21-309">tooopen a port, you must leave hello `--source-port-range` set too'\*' (hello default value) tooaccept inbound requests from **any** requesting port.</span></span> <span data-ttu-id="2cf21-310">Ces ports sont généralement dynamiques.</span><span class="sxs-lookup"><span data-stu-id="2cf21-310">Ports are typically dynamic.</span></span>
 >
 >
 
-## <a name="bind-to-the-nic"></a><span data-ttu-id="8f43b-311">Liaison avec la carte d’interface réseau</span><span class="sxs-lookup"><span data-stu-id="8f43b-311">Bind to the NIC</span></span>
-<span data-ttu-id="8f43b-312">Liez le groupe de sécurité réseau aux cartes d’interface réseau.</span><span class="sxs-lookup"><span data-stu-id="8f43b-312">Bind the NSG to the NICs.</span></span> <span data-ttu-id="8f43b-313">Vous devez connecter les cartes d’interface réseau avec le groupe de sécurité réseau.</span><span class="sxs-lookup"><span data-stu-id="8f43b-313">We need to connect our NICs with our network security group.</span></span> <span data-ttu-id="8f43b-314">Exécutez les deux commandes, pour connecter les deux cartes d’interface réseau :</span><span class="sxs-lookup"><span data-stu-id="8f43b-314">Run both commands, to hook up both of our NICs:</span></span>
+## <a name="bind-toohello-nic"></a><span data-ttu-id="2cf21-311">Lier toohello carte réseau</span><span class="sxs-lookup"><span data-stu-id="2cf21-311">Bind toohello NIC</span></span>
+<span data-ttu-id="2cf21-312">Lier hello NSG toohello cartes réseau.</span><span class="sxs-lookup"><span data-stu-id="2cf21-312">Bind hello NSG toohello NICs.</span></span> <span data-ttu-id="2cf21-313">Nous avons besoin de ses cartes réseau tooconnect à notre groupe de sécurité réseau.</span><span class="sxs-lookup"><span data-stu-id="2cf21-313">We need tooconnect our NICs with our network security group.</span></span> <span data-ttu-id="2cf21-314">Exécutez les deux commandes, toohook des deux de ses cartes réseau :</span><span class="sxs-lookup"><span data-stu-id="2cf21-314">Run both commands, toohook up both of our NICs:</span></span>
 
 ```azurecli
 azure network nic set --resource-group myResourceGroup --name myNic1 \
@@ -1096,33 +1096,33 @@ azure network nic set --resource-group myResourceGroup --name myNic2 \
   --network-security-group-name myNetworkSecurityGroup
 ```
 
-## <a name="create-an-availability-set"></a><span data-ttu-id="8f43b-315">Créer un groupe à haute disponibilité</span><span class="sxs-lookup"><span data-stu-id="8f43b-315">Create an availability set</span></span>
-<span data-ttu-id="8f43b-316">Les groupes à haute disponibilité aident à diffuser vos machines virtuelles sur des domaines d’erreur et des domaines de mise à niveau.</span><span class="sxs-lookup"><span data-stu-id="8f43b-316">Availability sets help spread your VMs across fault domains and upgrade domains.</span></span> <span data-ttu-id="8f43b-317">Nous allons maintenant voir comment créer un groupe à haute disponibilité pour vos machines virtuelles.</span><span class="sxs-lookup"><span data-stu-id="8f43b-317">Let's create an availability set for your VMs.</span></span> <span data-ttu-id="8f43b-318">L’exemple suivant permet de créer un groupe à haute disponibilité nommé `myAvailabilitySet` :</span><span class="sxs-lookup"><span data-stu-id="8f43b-318">The following example creates an availability set named `myAvailabilitySet`:</span></span>
+## <a name="create-an-availability-set"></a><span data-ttu-id="2cf21-315">Créer un groupe à haute disponibilité</span><span class="sxs-lookup"><span data-stu-id="2cf21-315">Create an availability set</span></span>
+<span data-ttu-id="2cf21-316">Les groupes à haute disponibilité aident à diffuser vos machines virtuelles sur des domaines d’erreur et des domaines de mise à niveau.</span><span class="sxs-lookup"><span data-stu-id="2cf21-316">Availability sets help spread your VMs across fault domains and upgrade domains.</span></span> <span data-ttu-id="2cf21-317">Nous allons maintenant voir comment créer un groupe à haute disponibilité pour vos machines virtuelles.</span><span class="sxs-lookup"><span data-stu-id="2cf21-317">Let's create an availability set for your VMs.</span></span> <span data-ttu-id="2cf21-318">Hello exemple suivant crée un groupe à haute disponibilité nommée `myAvailabilitySet`:</span><span class="sxs-lookup"><span data-stu-id="2cf21-318">hello following example creates an availability set named `myAvailabilitySet`:</span></span>
 
 ```azurecli
 azure availset create --resource-group myResourceGroup --location westeurope
   --name myAvailabilitySet
 ```
 
-<span data-ttu-id="8f43b-319">Les domaines d’erreur désignent un groupe de machines virtuelles partageant une source d’alimentation et un commutateur réseau communs.</span><span class="sxs-lookup"><span data-stu-id="8f43b-319">Fault domains define a grouping of virtual machines that share a common power source and network switch.</span></span> <span data-ttu-id="8f43b-320">Par défaut, les machines virtuelles configurées dans votre groupe à haute disponibilité sont réparties entre trois domaines de défaillance au maximum.</span><span class="sxs-lookup"><span data-stu-id="8f43b-320">By default, the virtual machines that are configured within your availability set are separated across up to three fault domains.</span></span> <span data-ttu-id="8f43b-321">Ainsi, en cas de problème matériel dans l’un de ces domaines d’erreur, aucune machine virtuelle exécutant votre application n’est affectée.</span><span class="sxs-lookup"><span data-stu-id="8f43b-321">The idea is that a hardware issue in one of these fault domains does not affect every VM that is running your app.</span></span> <span data-ttu-id="8f43b-322">Azure distribue automatiquement les machines virtuelles sur les domaines d’erreur lorsque vous les placez dans un groupe à haute disponibilité.</span><span class="sxs-lookup"><span data-stu-id="8f43b-322">Azure automatically distributes VMs across the fault domains when placing them in an availability set.</span></span>
+<span data-ttu-id="2cf21-319">Les domaines d’erreur désignent un groupe de machines virtuelles partageant une source d’alimentation et un commutateur réseau communs.</span><span class="sxs-lookup"><span data-stu-id="2cf21-319">Fault domains define a grouping of virtual machines that share a common power source and network switch.</span></span> <span data-ttu-id="2cf21-320">Par défaut, hello virtuels qui sont configurés au sein de votre jeu de disponibilité sont séparées à travers des domaines d’erreur toothree.</span><span class="sxs-lookup"><span data-stu-id="2cf21-320">By default, hello virtual machines that are configured within your availability set are separated across up toothree fault domains.</span></span> <span data-ttu-id="2cf21-321">Hello est qu’un problème matériel dans un de ces domaines d’erreur n’affecte pas de chaque machine virtuelle qui exécute votre application.</span><span class="sxs-lookup"><span data-stu-id="2cf21-321">hello idea is that a hardware issue in one of these fault domains does not affect every VM that is running your app.</span></span> <span data-ttu-id="2cf21-322">Azure distribue automatiquement les machines virtuelles entre les domaines d’erreur hello lorsque vous les placez dans un ensemble de disponibilité.</span><span class="sxs-lookup"><span data-stu-id="2cf21-322">Azure automatically distributes VMs across hello fault domains when placing them in an availability set.</span></span>
 
-<span data-ttu-id="8f43b-323">Les domaines de mise à niveau indiquent les groupes de machines virtuelles et les équipements physiques sous-jacents pouvant être redémarrés en même temps.</span><span class="sxs-lookup"><span data-stu-id="8f43b-323">Upgrade domains indicate groups of virtual machines and underlying physical hardware that can be rebooted at the same time.</span></span> <span data-ttu-id="8f43b-324">L’ordre de redémarrage des domaines de mise à jour peut ne pas être séquentiel au cours de la maintenance planifiée, mais les mises à niveau sont redémarrées une par une.</span><span class="sxs-lookup"><span data-stu-id="8f43b-324">The order in which upgrade domains are rebooted might not be sequential during planned maintenance, but only one upgrade is rebooted at a time.</span></span> <span data-ttu-id="8f43b-325">Cette fois encore, Azure distribue automatiquement vos machines virtuelles entre les domaines de mise à niveau lorsque vous les placez dans un site de disponibilité.</span><span class="sxs-lookup"><span data-stu-id="8f43b-325">Again, Azure automatically distributes your VMs across upgrade domains when placing them in an availability site.</span></span>
+<span data-ttu-id="2cf21-323">Indiquent les domaines de mise à niveau des ordinateurs virtuels et le matériel physique sous-jacent qui peut être redémarré à hello même temps.</span><span class="sxs-lookup"><span data-stu-id="2cf21-323">Upgrade domains indicate groups of virtual machines and underlying physical hardware that can be rebooted at hello same time.</span></span> <span data-ttu-id="2cf21-324">commande Hello dans lequel les domaines de mise à niveau sont redémarrés peut ne pas être séquentiel pendant les maintenances, mais la mise à niveau qu’un seul est redémarré à la fois.</span><span class="sxs-lookup"><span data-stu-id="2cf21-324">hello order in which upgrade domains are rebooted might not be sequential during planned maintenance, but only one upgrade is rebooted at a time.</span></span> <span data-ttu-id="2cf21-325">Cette fois encore, Azure distribue automatiquement vos machines virtuelles entre les domaines de mise à niveau lorsque vous les placez dans un site de disponibilité.</span><span class="sxs-lookup"><span data-stu-id="2cf21-325">Again, Azure automatically distributes your VMs across upgrade domains when placing them in an availability site.</span></span>
 
-<span data-ttu-id="8f43b-326">Vous pouvez obtenir des informations supplémentaires sur [la gestion de la disponibilité des machines virtuelles](manage-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="8f43b-326">Read more about [managing the availability of VMs](manage-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span>
+<span data-ttu-id="2cf21-326">En savoir plus sur [gestion de la disponibilité de hello de machines virtuelles](manage-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="2cf21-326">Read more about [managing hello availability of VMs](manage-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span>
 
-## <a name="create-the-linux-vms"></a><span data-ttu-id="8f43b-327">Créer les machines virtuelles Linux</span><span class="sxs-lookup"><span data-stu-id="8f43b-327">Create the Linux VMs</span></span>
-<span data-ttu-id="8f43b-328">Vous avez créé les ressources de stockage et de réseau pour prendre en charge des machines virtuelles accessibles par Internet.</span><span class="sxs-lookup"><span data-stu-id="8f43b-328">You've created the storage and network resources to support Internet-accessible VMs.</span></span> <span data-ttu-id="8f43b-329">Créons maintenant ces machines virtuelles et sécurisons-les avec une clé SSH sans mot de passe.</span><span class="sxs-lookup"><span data-stu-id="8f43b-329">Now let's create those VMs and secure them with an SSH key that doesn't have a password.</span></span> <span data-ttu-id="8f43b-330">Dans ce cas précis, nous allons créer une machine virtuelle Ubuntu basée sur la dernière version LTS.</span><span class="sxs-lookup"><span data-stu-id="8f43b-330">In this case, we're going to create an Ubuntu VM based on the most recent LTS.</span></span> <span data-ttu-id="8f43b-331">Nous recherchons les informations de cette image en utilisant `azure vm image list`, comme décrit dans [Recherche d’images de machine virtuelle Azure](../windows/cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="8f43b-331">We locate that image information by using `azure vm image list`, as described in [finding Azure VM images](../windows/cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span>
+## <a name="create-hello-linux-vms"></a><span data-ttu-id="2cf21-327">Créer des machines virtuelles Linux hello</span><span class="sxs-lookup"><span data-stu-id="2cf21-327">Create hello Linux VMs</span></span>
+<span data-ttu-id="2cf21-328">Vous avez créé des ressources de stockage et réseau hello machines virtuelles de toosupport accessible via Internet.</span><span class="sxs-lookup"><span data-stu-id="2cf21-328">You've created hello storage and network resources toosupport Internet-accessible VMs.</span></span> <span data-ttu-id="2cf21-329">Créons maintenant ces machines virtuelles et sécurisons-les avec une clé SSH sans mot de passe.</span><span class="sxs-lookup"><span data-stu-id="2cf21-329">Now let's create those VMs and secure them with an SSH key that doesn't have a password.</span></span> <span data-ttu-id="2cf21-330">Dans ce cas, nous allons toocreate une VM Ubuntu selon hello LTS plus récente.</span><span class="sxs-lookup"><span data-stu-id="2cf21-330">In this case, we're going toocreate an Ubuntu VM based on hello most recent LTS.</span></span> <span data-ttu-id="2cf21-331">Nous recherchons les informations de cette image en utilisant `azure vm image list`, comme décrit dans [Recherche d’images de machine virtuelle Azure](../windows/cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="2cf21-331">We locate that image information by using `azure vm image list`, as described in [finding Azure VM images](../windows/cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span>
 
-<span data-ttu-id="8f43b-332">Nous avons sélectionné une image à l’aide de la commande `azure vm image list westeurope canonical | grep LTS`.</span><span class="sxs-lookup"><span data-stu-id="8f43b-332">We selected an image by using the command `azure vm image list westeurope canonical | grep LTS`.</span></span> <span data-ttu-id="8f43b-333">Dans ce cas, nous utilisons `canonical:UbuntuServer:16.04.0-LTS:16.04.201608150`.</span><span class="sxs-lookup"><span data-stu-id="8f43b-333">In this case, we use `canonical:UbuntuServer:16.04.0-LTS:16.04.201608150`.</span></span> <span data-ttu-id="8f43b-334">Pour le dernier champ, nous passons `latest` afin de toujours obtenir la build la plus récente.</span><span class="sxs-lookup"><span data-stu-id="8f43b-334">For the last field, we pass `latest` so that in the future we always get the most recent build.</span></span> <span data-ttu-id="8f43b-335">(La chaîne que nous utilisons est `canonical:UbuntuServer:16.04.0-LTS:16.04.201608150`).</span><span class="sxs-lookup"><span data-stu-id="8f43b-335">(The string we use is `canonical:UbuntuServer:16.04.0-LTS:16.04.201608150`).</span></span>
+<span data-ttu-id="2cf21-332">Nous avons sélectionné une image à l’aide de commande hello `azure vm image list westeurope canonical | grep LTS`.</span><span class="sxs-lookup"><span data-stu-id="2cf21-332">We selected an image by using hello command `azure vm image list westeurope canonical | grep LTS`.</span></span> <span data-ttu-id="2cf21-333">Dans ce cas, nous utilisons `canonical:UbuntuServer:16.04.0-LTS:16.04.201608150`.</span><span class="sxs-lookup"><span data-stu-id="2cf21-333">In this case, we use `canonical:UbuntuServer:16.04.0-LTS:16.04.201608150`.</span></span> <span data-ttu-id="2cf21-334">Pour le dernier champ de hello, nous passons `latest` afin que dans les futures hello, nous obtenons toujours build la plus récente hello.</span><span class="sxs-lookup"><span data-stu-id="2cf21-334">For hello last field, we pass `latest` so that in hello future we always get hello most recent build.</span></span> <span data-ttu-id="2cf21-335">(nous utilisons la chaîne hello est `canonical:UbuntuServer:16.04.0-LTS:16.04.201608150`).</span><span class="sxs-lookup"><span data-stu-id="2cf21-335">(hello string we use is `canonical:UbuntuServer:16.04.0-LTS:16.04.201608150`).</span></span>
 
-<span data-ttu-id="8f43b-336">Cette étape est familière à toute personne ayant déjà créé une paire de clés publique et privée SSH RSA sur Linux ou Mac à l’aide de la commande **ssh-keygen -t rsa -b 2048**.</span><span class="sxs-lookup"><span data-stu-id="8f43b-336">This next step is familiar to anyone who has already created an ssh rsa public and private key pair on Linux or Mac by using **ssh-keygen -t rsa -b 2048**.</span></span> <span data-ttu-id="8f43b-337">Si vous ne disposez pas de toutes les paires de clés de certificat dans votre répertoire `~/.ssh` , vous pouvez les créer ainsi :</span><span class="sxs-lookup"><span data-stu-id="8f43b-337">If you do not have any certificate key pairs in your `~/.ssh` directory, you can create them:</span></span>
+<span data-ttu-id="2cf21-336">Cette étape est familier tooanyone qui a déjà créé un ssh rsa publique et privée paire de clés sur Linux ou Mac à l’aide de **ssh-keygen - t rsa -b 2048**.</span><span class="sxs-lookup"><span data-stu-id="2cf21-336">This next step is familiar tooanyone who has already created an ssh rsa public and private key pair on Linux or Mac by using **ssh-keygen -t rsa -b 2048**.</span></span> <span data-ttu-id="2cf21-337">Si vous ne disposez pas de toutes les paires de clés de certificat dans votre répertoire `~/.ssh` , vous pouvez les créer ainsi :</span><span class="sxs-lookup"><span data-stu-id="2cf21-337">If you do not have any certificate key pairs in your `~/.ssh` directory, you can create them:</span></span>
 
-* <span data-ttu-id="8f43b-338">Automatiquement à l’aide de l’option `azure vm create --generate-ssh-keys` .</span><span class="sxs-lookup"><span data-stu-id="8f43b-338">Automatically, by using the `azure vm create --generate-ssh-keys` option.</span></span>
-* <span data-ttu-id="8f43b-339">Manuellement en suivant [les instructions pour les créer vous-même](mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="8f43b-339">Manually, by using [the instructions to create them yourself](mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span>
+* <span data-ttu-id="2cf21-338">Automatiquement, à l’aide de hello `azure vm create --generate-ssh-keys` option.</span><span class="sxs-lookup"><span data-stu-id="2cf21-338">Automatically, by using hello `azure vm create --generate-ssh-keys` option.</span></span>
+* <span data-ttu-id="2cf21-339">Manuellement, à l’aide [hello instructions toocreate les vous-même](mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="2cf21-339">Manually, by using [hello instructions toocreate them yourself](mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span>
 
-<span data-ttu-id="8f43b-340">Vous pouvez également utiliser la méthode `--admin-password` pour authentifier vos connexions SSH une fois la machine virtuelle créée.</span><span class="sxs-lookup"><span data-stu-id="8f43b-340">Alternatively, you can use the `--admin-password` method to authenticate your SSH connections after the VM is created.</span></span> <span data-ttu-id="8f43b-341">Cette méthode est généralement moins sécurisée.</span><span class="sxs-lookup"><span data-stu-id="8f43b-341">This method is typically less secure.</span></span>
+<span data-ttu-id="2cf21-340">Vous pouvez également utiliser hello `--admin-password` méthode tooauthenticate vos connexions SSH après hello machine virtuelle est créée.</span><span class="sxs-lookup"><span data-stu-id="2cf21-340">Alternatively, you can use hello `--admin-password` method tooauthenticate your SSH connections after hello VM is created.</span></span> <span data-ttu-id="2cf21-341">Cette méthode est généralement moins sécurisée.</span><span class="sxs-lookup"><span data-stu-id="2cf21-341">This method is typically less secure.</span></span>
 
-<span data-ttu-id="8f43b-342">Nous créons la machine virtuelle en regroupant toutes nos ressources et informations avec la commande `azure vm create` :</span><span class="sxs-lookup"><span data-stu-id="8f43b-342">We create the VM by bringing all our resources and information together with the `azure vm create` command:</span></span>
+<span data-ttu-id="2cf21-342">Nous créons hello machine virtuelle en rassemblant tous nos ressources et informations avec hello `azure vm create` commande :</span><span class="sxs-lookup"><span data-stu-id="2cf21-342">We create hello VM by bringing all our resources and information together with hello `azure vm create` command:</span></span>
 
 ```azurecli
 azure vm create \
@@ -1140,39 +1140,39 @@ azure vm create \
   --admin-username azureuser
 ```
 
-<span data-ttu-id="8f43b-343">Output:</span><span class="sxs-lookup"><span data-stu-id="8f43b-343">Output:</span></span>
+<span data-ttu-id="2cf21-343">Output:</span><span class="sxs-lookup"><span data-stu-id="2cf21-343">Output:</span></span>
 
 ```azurecli
 info:    Executing command vm create
-+ Looking up the VM "myVM1"
-info:    Verifying the public key SSH file: /home/ahmet/.ssh/id_rsa.pub
-info:    Using the VM Size "Standard_DS1"
-info:    The [OS, Data] Disk or image configuration requires storage account
-+ Looking up the storage account mystorageaccount
-+ Looking up the availability set "myAvailabilitySet"
++ Looking up hello VM "myVM1"
+info:    Verifying hello public key SSH file: /home/ahmet/.ssh/id_rsa.pub
+info:    Using hello VM Size "Standard_DS1"
+info:    hello [OS, Data] Disk or image configuration requires storage account
++ Looking up hello storage account mystorageaccount
++ Looking up hello availability set "myAvailabilitySet"
 info:    Found an Availability set "myAvailabilitySet"
-+ Looking up the NIC "myNic1"
++ Looking up hello NIC "myNic1"
 info:    Found an existing NIC "myNic1"
-info:    Found an IP configuration with virtual network subnet id "/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/myVnet/subnets/mySubnet" in the NIC "myNic1"
+info:    Found an IP configuration with virtual network subnet id "/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/myVnet/subnets/mySubnet" in hello NIC "myNic1"
 info:    This is an NIC without publicIP configured
-info:    The storage URI 'https://mystorageaccount.blob.core.windows.net/' will be used for boot diagnostics settings, and it can be overwritten by the parameter input of '--boot-diagnostics-storage-uri'.
+info:    hello storage URI 'https://mystorageaccount.blob.core.windows.net/' will be used for boot diagnostics settings, and it can be overwritten by hello parameter input of '--boot-diagnostics-storage-uri'.
 info:    vm create command OK
 ```
 
-<span data-ttu-id="8f43b-344">Vous pouvez alors vous connecter immédiatement à votre machine virtuelle à l’aide de vos clés SSH par défaut.</span><span class="sxs-lookup"><span data-stu-id="8f43b-344">You can connect to your VM immediately by using your default SSH keys.</span></span> <span data-ttu-id="8f43b-345">Assurez-vous de spécifier le port approprié dans la mesure où nous transitions par l’équilibreur de charge.</span><span class="sxs-lookup"><span data-stu-id="8f43b-345">Make sure that you specify the appropriate port since we're passing through the load balancer.</span></span> <span data-ttu-id="8f43b-346">(Pour notre première machine virtuelle, nous configurons la règle NAT pour transférer le port 4222 vers votre machine virtuelle.)</span><span class="sxs-lookup"><span data-stu-id="8f43b-346">(For our first VM, we set up the NAT rule to forward port 4222 to our VM.)</span></span>
+<span data-ttu-id="2cf21-344">Vous pouvez connecter tooyour VM immédiatement à l’aide de vos clés SSH par défaut.</span><span class="sxs-lookup"><span data-stu-id="2cf21-344">You can connect tooyour VM immediately by using your default SSH keys.</span></span> <span data-ttu-id="2cf21-345">Assurez-vous que vous spécifiez le port approprié de hello dans la mesure où nous transmettons via l’équilibrage de charge hello.</span><span class="sxs-lookup"><span data-stu-id="2cf21-345">Make sure that you specify hello appropriate port since we're passing through hello load balancer.</span></span> <span data-ttu-id="2cf21-346">(Pour notre premier ordinateur virtuel, nous configurons hello NAT règle tooforward port 4222 tooour machine virtuelle.)</span><span class="sxs-lookup"><span data-stu-id="2cf21-346">(For our first VM, we set up hello NAT rule tooforward port 4222 tooour VM.)</span></span>
 
 ```bash
 ssh ops@mypublicdns.westeurope.cloudapp.azure.com -p 4222
 ```
 
-<span data-ttu-id="8f43b-347">Output:</span><span class="sxs-lookup"><span data-stu-id="8f43b-347">Output:</span></span>
+<span data-ttu-id="2cf21-347">Output:</span><span class="sxs-lookup"><span data-stu-id="2cf21-347">Output:</span></span>
 
 ```bash
-The authenticity of host '[mypublicdns.westeurope.cloudapp.azure.com]:4222 ([xx.xx.xx.xx]:4222)' can't be established.
+hello authenticity of host '[mypublicdns.westeurope.cloudapp.azure.com]:4222 ([xx.xx.xx.xx]:4222)' can't be established.
 ECDSA key fingerprint is 94:2d:d0:ce:6b:fb:7f:ad:5b:3c:78:93:75:82:12:f9.
-Are you sure you want to continue connecting (yes/no)? yes
-Warning: Permanently added '[mypublicdns.westeurope.cloudapp.azure.com]:4222,[xx.xx.xx.xx]:4222' (ECDSA) to the list of known hosts.
-Welcome to Ubuntu 16.04.1 LTS (GNU/Linux 4.4.0-34-generic x86_64)
+Are you sure you want toocontinue connecting (yes/no)? yes
+Warning: Permanently added '[mypublicdns.westeurope.cloudapp.azure.com]:4222,[xx.xx.xx.xx]:4222' (ECDSA) toohello list of known hosts.
+Welcome tooUbuntu 16.04.1 LTS (GNU/Linux 4.4.0-34-generic x86_64)
 
  * Documentation:  https://help.ubuntu.com
  * Management:     https://landscape.canonical.com
@@ -1187,7 +1187,7 @@ Welcome to Ubuntu 16.04.1 LTS (GNU/Linux 4.4.0-34-generic x86_64)
 ops@myVM1:~$
 ```
 
-<span data-ttu-id="8f43b-348">Vous allez maintenant créer votre deuxième machine virtuelle en procédant de la même manière :</span><span class="sxs-lookup"><span data-stu-id="8f43b-348">Go ahead and create your second VM in the same manner:</span></span>
+<span data-ttu-id="2cf21-348">Pour commencer, créez votre deuxième machine virtuelle Bonjour même manière :</span><span class="sxs-lookup"><span data-stu-id="2cf21-348">Go ahead and create your second VM in hello same manner:</span></span>
 
 ```azurecli
 azure vm create \
@@ -1205,18 +1205,18 @@ azure vm create \
   --admin-username azureuser
 ```
 
-<span data-ttu-id="8f43b-349">Et vous pouvez à présent utiliser la commande `azure vm show myResourceGroup myVM1` pour examiner ce que vous avez créé.</span><span class="sxs-lookup"><span data-stu-id="8f43b-349">And you can now use the `azure vm show myResourceGroup myVM1` command to examine what you've created.</span></span> <span data-ttu-id="8f43b-350">À ce stade, vous exécutez vos machines virtuelles Ubuntu derrière un équilibreur de charge dans Azure auquel vous pouvez uniquement vous connecter avec votre paire de clés SSH (car les mots de passe sont désactivés).</span><span class="sxs-lookup"><span data-stu-id="8f43b-350">At this point, you're running your Ubuntu VMs behind a load balancer in Azure that you can sign into only with your SSH key pair (because passwords are disabled).</span></span> <span data-ttu-id="8f43b-351">Vous pouvez installer nginx ou httpd, déployer une application web et voir le flux de trafic transitant par l’équilibreur de charge vers toutes les machines virtuelles.</span><span class="sxs-lookup"><span data-stu-id="8f43b-351">You can install nginx or httpd, deploy a web app, and see the traffic flow through the load balancer to both of the VMs.</span></span>
+<span data-ttu-id="2cf21-349">Et vous pouvez maintenant utiliser hello `azure vm show myResourceGroup myVM1` commande tooexamine à ce que vous avez créé.</span><span class="sxs-lookup"><span data-stu-id="2cf21-349">And you can now use hello `azure vm show myResourceGroup myVM1` command tooexamine what you've created.</span></span> <span data-ttu-id="2cf21-350">À ce stade, vous exécutez vos machines virtuelles Ubuntu derrière un équilibreur de charge dans Azure auquel vous pouvez uniquement vous connecter avec votre paire de clés SSH (car les mots de passe sont désactivés).</span><span class="sxs-lookup"><span data-stu-id="2cf21-350">At this point, you're running your Ubuntu VMs behind a load balancer in Azure that you can sign into only with your SSH key pair (because passwords are disabled).</span></span> <span data-ttu-id="2cf21-351">Vous pouvez installer nginx ou httpd, déployer une application web et voir hello trafic circule tooboth d’équilibrage de charge hello de machines virtuelles de hello.</span><span class="sxs-lookup"><span data-stu-id="2cf21-351">You can install nginx or httpd, deploy a web app, and see hello traffic flow through hello load balancer tooboth of hello VMs.</span></span>
 
 ```azurecli
 azure vm show --resource-group myResourceGroup --name myVM1
 ```
 
-<span data-ttu-id="8f43b-352">Output:</span><span class="sxs-lookup"><span data-stu-id="8f43b-352">Output:</span></span>
+<span data-ttu-id="2cf21-352">Output:</span><span class="sxs-lookup"><span data-stu-id="2cf21-352">Output:</span></span>
 
 ```azurecli
 info:    Executing command vm show
-+ Looking up the VM "TestVM1"
-+ Looking up the NIC "myNic1"
++ Looking up hello VM "TestVM1"
++ Looking up hello NIC "myNic1"
 data:    Id                              :/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Compute/virtualMachines/myVM1
 data:    ProvisioningState               :Succeeded
 data:    Name                            :myVM1
@@ -1269,23 +1269,23 @@ info:    vm show command OK
 ```
 
 
-## <a name="export-the-environment-as-a-template"></a><span data-ttu-id="8f43b-353">Exportation de l’environnement en tant que modèle</span><span class="sxs-lookup"><span data-stu-id="8f43b-353">Export the environment as a template</span></span>
-<span data-ttu-id="8f43b-354">Maintenant que vous avez créé cet environnement, que se passe-t-il si vous souhaitez créer un environnement de développement supplémentaire avec les mêmes paramètres ou un environnement de production correspondant ?</span><span class="sxs-lookup"><span data-stu-id="8f43b-354">Now that you have built out this environment, what if you want to create an additional development environment with the same parameters, or a production environment that matches it?</span></span> <span data-ttu-id="8f43b-355">Resource Manager utilise des modèles JSON qui définissent tous les paramètres pour votre environnement.</span><span class="sxs-lookup"><span data-stu-id="8f43b-355">Resource Manager uses JSON templates that define all the parameters for your environment.</span></span> <span data-ttu-id="8f43b-356">Vous créez des environnements entiers en faisant référence à ce modèle JSON.</span><span class="sxs-lookup"><span data-stu-id="8f43b-356">You build out entire environments by referencing this JSON template.</span></span> <span data-ttu-id="8f43b-357">Vous pouvez [créer manuellement des modèles JSON](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) ou exporter un environnement existant qui créera le modèle JSON pour vous :</span><span class="sxs-lookup"><span data-stu-id="8f43b-357">You can [build JSON templates manually](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) or export an existing environment to create the JSON template for you:</span></span>
+## <a name="export-hello-environment-as-a-template"></a><span data-ttu-id="2cf21-353">Environnement de hello d’exportation en tant que modèle</span><span class="sxs-lookup"><span data-stu-id="2cf21-353">Export hello environment as a template</span></span>
+<span data-ttu-id="2cf21-354">Maintenant que vous avez créé à cet environnement, que se passe-t-il si vous souhaitez toocreate à un environnement de développement supplémentaire avec hello mêmes paramètres, ou un environnement de production qui lui correspond ?</span><span class="sxs-lookup"><span data-stu-id="2cf21-354">Now that you have built out this environment, what if you want toocreate an additional development environment with hello same parameters, or a production environment that matches it?</span></span> <span data-ttu-id="2cf21-355">Le Gestionnaire de ressources utilise des modèles JSON qui définissent tous les paramètres de hello pour votre environnement.</span><span class="sxs-lookup"><span data-stu-id="2cf21-355">Resource Manager uses JSON templates that define all hello parameters for your environment.</span></span> <span data-ttu-id="2cf21-356">Vous créez des environnements entiers en faisant référence à ce modèle JSON.</span><span class="sxs-lookup"><span data-stu-id="2cf21-356">You build out entire environments by referencing this JSON template.</span></span> <span data-ttu-id="2cf21-357">Vous pouvez [créer manuellement des modèles JSON](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) ou exporter un modèle JSON environnement toocreate hello existant pour vous :</span><span class="sxs-lookup"><span data-stu-id="2cf21-357">You can [build JSON templates manually](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) or export an existing environment toocreate hello JSON template for you:</span></span>
 
 ```azurecli
 azure group export --name myResourceGroup
 ```
 
-<span data-ttu-id="8f43b-358">Cette commande crée le fichier `myResourceGroup.json` dans votre répertoire de travail actuel.</span><span class="sxs-lookup"><span data-stu-id="8f43b-358">This command creates the `myResourceGroup.json` file in your current working directory.</span></span> <span data-ttu-id="8f43b-359">Lorsque vous créez un environnement à partir de ce modèle, vous êtes invité à fournir les noms de toutes les ressources, dont l’équilibreur de charge, les interfaces réseau ou les machines virtuelles.</span><span class="sxs-lookup"><span data-stu-id="8f43b-359">When you create an environment from this template, you are prompted for all the resource names, including the names for the load balancer, network interfaces, or VMs.</span></span> <span data-ttu-id="8f43b-360">Vous pouvez entrer ces éléments dans votre fichier de modèle en ajoutant le paramètre `-p` ou `--includeParameterDefaultValue` à la commande `azure group export` indiquée ci-dessus.</span><span class="sxs-lookup"><span data-stu-id="8f43b-360">You can populate these names in your template file by adding the `-p` or `--includeParameterDefaultValue` parameter to the `azure group export` command that was shown earlier.</span></span> <span data-ttu-id="8f43b-361">Modifiez votre modèle JSON pour spécifier les noms de ressources, ou [créez un fichier parameters.json](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) qui spécifie les noms de ressources.</span><span class="sxs-lookup"><span data-stu-id="8f43b-361">Edit your JSON template to specify the resource names, or [create a parameters.json file](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) that specifies the resource names.</span></span>
+<span data-ttu-id="2cf21-358">Cette commande crée hello `myResourceGroup.json` fichier dans votre répertoire de travail actuel.</span><span class="sxs-lookup"><span data-stu-id="2cf21-358">This command creates hello `myResourceGroup.json` file in your current working directory.</span></span> <span data-ttu-id="2cf21-359">Lorsque vous créez un environnement à partir de ce modèle, vous êtes invité pour tous les noms de ressource hello, y compris les noms de hello pour l’équilibrage de charge hello, les interfaces réseau ou les machines virtuelles.</span><span class="sxs-lookup"><span data-stu-id="2cf21-359">When you create an environment from this template, you are prompted for all hello resource names, including hello names for hello load balancer, network interfaces, or VMs.</span></span> <span data-ttu-id="2cf21-360">Vous pouvez remplir ces noms dans votre fichier de modèle en ajoutant hello `-p` ou `--includeParameterDefaultValue` paramètre toohello `azure group export` commande qui a été indiqué précédemment.</span><span class="sxs-lookup"><span data-stu-id="2cf21-360">You can populate these names in your template file by adding hello `-p` or `--includeParameterDefaultValue` parameter toohello `azure group export` command that was shown earlier.</span></span> <span data-ttu-id="2cf21-361">Modifier les noms de ressources JSON modèle toospecify hello, ou [créer un fichier parameters.json](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) qui spécifie les noms de ressources hello.</span><span class="sxs-lookup"><span data-stu-id="2cf21-361">Edit your JSON template toospecify hello resource names, or [create a parameters.json file](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) that specifies hello resource names.</span></span>
 
-<span data-ttu-id="8f43b-362">Pour créer un nouvel environnement à partir de votre modèle :</span><span class="sxs-lookup"><span data-stu-id="8f43b-362">To create an environment from your template:</span></span>
+<span data-ttu-id="2cf21-362">toocreate un environnement à partir de votre modèle :</span><span class="sxs-lookup"><span data-stu-id="2cf21-362">toocreate an environment from your template:</span></span>
 
 ```azurecli
 azure group deployment create --resource-group myNewResourceGroup \
   --template-file myResourceGroup.json
 ```
 
-<span data-ttu-id="8f43b-363">Vous pouvez lire la section contenant [plus de détails sur le déploiement à partir de modèles](../../resource-group-template-deploy-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="8f43b-363">You might want to read [more about how to deploy from templates](../../resource-group-template-deploy-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span> <span data-ttu-id="8f43b-364">Découvrez notamment comment mettre à jour des environnements de manière incrémentielle, utiliser le fichier de paramètres et accéder aux modèles à partir d’un emplacement de stockage unique.</span><span class="sxs-lookup"><span data-stu-id="8f43b-364">Learn about how to incrementally update environments, use the parameters file, and access templates from a single storage location.</span></span>
+<span data-ttu-id="2cf21-363">Vous souhaiterez peut-être tooread [plus sur la façon toodeploy à partir de modèles](../../resource-group-template-deploy-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="2cf21-363">You might want tooread [more about how toodeploy from templates](../../resource-group-template-deploy-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span> <span data-ttu-id="2cf21-364">Découvrez comment tooincrementally les environnements de mise à jour, utilisez le fichier de paramètres hello et accéder aux modèles à partir d’un emplacement de stockage unique.</span><span class="sxs-lookup"><span data-stu-id="2cf21-364">Learn about how tooincrementally update environments, use hello parameters file, and access templates from a single storage location.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="8f43b-365">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="8f43b-365">Next steps</span></span>
-<span data-ttu-id="8f43b-366">Vous voici en mesure de commencer à utiliser plusieurs composants réseau et machines virtuelles.</span><span class="sxs-lookup"><span data-stu-id="8f43b-366">Now you're ready to begin working with multiple networking components and VMs.</span></span> <span data-ttu-id="8f43b-367">Vous pouvez utiliser cet exemple d’environnement pour générer votre application en utilisant les composants de base présentés ici.</span><span class="sxs-lookup"><span data-stu-id="8f43b-367">You can use this sample environment to build out your application by using the core components introduced here.</span></span>
+## <a name="next-steps"></a><span data-ttu-id="2cf21-365">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="2cf21-365">Next steps</span></span>
+<span data-ttu-id="2cf21-366">Vous êtes maintenant prêt toobegin utilisation de plusieurs composants réseau et les machines virtuelles.</span><span class="sxs-lookup"><span data-stu-id="2cf21-366">Now you're ready toobegin working with multiple networking components and VMs.</span></span> <span data-ttu-id="2cf21-367">Vous pouvez utiliser cette toobuild d’environnement exemple votre application à l’aide de composants hello introduits ici.</span><span class="sxs-lookup"><span data-stu-id="2cf21-367">You can use this sample environment toobuild out your application by using hello core components introduced here.</span></span>

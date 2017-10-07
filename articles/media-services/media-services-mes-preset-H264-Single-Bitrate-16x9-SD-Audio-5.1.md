@@ -1,6 +1,6 @@
 ---
-title: "H264 - Vitesse de transmission unique - 16 x 9 SD - Audio 5.1 | Microsoft Docs"
-description: "La rubrique présente une vue d’ensemble de la présélection de travaux **H264 - Vitesse de transmission unique - 16 x 9 SD - Audio 5.1**."
+title: "aaaH264 de transmission unique – 16 x 9 SD – Audio 5.1 | Documents Microsoft"
+description: "rubrique de Hello donne une vue d’ensemble de hello ** H264 unique 16 x 9 SD – Audio 5.1* * présélection de tâches."
 author: Juliako
 manager: cfowler
 editor: 
@@ -14,20 +14,20 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/20/2017
 ms.author: juliako
-ms.openlocfilehash: 6e8b7201d1c37deb02803f2e5160c68c8fdf1ed8
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a1805112549668699bc17c56b7b8c869c30eaf90
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="h264-single-bitrate-16x9-sd-audio-51"></a><span data-ttu-id="59221-103">H264 – Vitesse de transmission unique – 16 x 9 SD – Audio 5.1</span><span class="sxs-lookup"><span data-stu-id="59221-103">H264 Single Bitrate 16x9 SD Audio 5.1</span></span>
-<span data-ttu-id="59221-104">`Media Encoder Standard` définit un ensemble de présélections d’encodage à utiliser lors de la création de travaux d’encodage.</span><span class="sxs-lookup"><span data-stu-id="59221-104">`Media Encoder Standard` defines a set of encoding presets you can use when creating encoding jobs.</span></span> <span data-ttu-id="59221-105">Vous pouvez utiliser un `preset name` afin de spécifier le format dans lequel vous souhaitez encoder votre fichier multimédia.</span><span class="sxs-lookup"><span data-stu-id="59221-105">You can either use a `preset name` to specify into which format you would like to encode your media file.</span></span> <span data-ttu-id="59221-106">Sinon, vous pouvez créer vos propres présélections basées sur JSON ou XML (à l’aide de l’encodage UTF-8 ou UTF-16).</span><span class="sxs-lookup"><span data-stu-id="59221-106">Or, you can create your own JSON or XML-based presets (using UTF-8 or UTF-16 encoding.</span></span> <span data-ttu-id="59221-107">Vous pouvez ensuite transmettre la présélection personnalisée à l’encodeur.</span><span class="sxs-lookup"><span data-stu-id="59221-107">You would then pass the custom preset to the encoder.</span></span> <span data-ttu-id="59221-108">Pour obtenir la liste de tous les noms de présélections pris en charge par cet encodeur `Media Encoder Standard`, consultez [Présélections de tâches pour Media Encoder Standard](media-services-mes-presets-overview.md).</span><span class="sxs-lookup"><span data-stu-id="59221-108">For the list of all the preset names supported by this `Media Encoder Standard` encoder, see [Task Presets for Media Encoder Standard](media-services-mes-presets-overview.md).</span></span>  
+# <a name="h264-single-bitrate-16x9-sd-audio-51"></a><span data-ttu-id="160c5-103">H264 – Vitesse de transmission unique – 16 x 9 SD – Audio 5.1</span><span class="sxs-lookup"><span data-stu-id="160c5-103">H264 Single Bitrate 16x9 SD Audio 5.1</span></span>
+<span data-ttu-id="160c5-104">`Media Encoder Standard` définit un ensemble de présélections d’encodage à utiliser lors de la création de travaux d’encodage.</span><span class="sxs-lookup"><span data-stu-id="160c5-104">`Media Encoder Standard` defines a set of encoding presets you can use when creating encoding jobs.</span></span> <span data-ttu-id="160c5-105">Vous pouvez utiliser un `preset name` toospecify dans le format que tooencode votre fichier multimédia.</span><span class="sxs-lookup"><span data-stu-id="160c5-105">You can either use a `preset name` toospecify into which format you would like tooencode your media file.</span></span> <span data-ttu-id="160c5-106">Sinon, vous pouvez créer vos propres présélections basées sur JSON ou XML (à l’aide de l’encodage UTF-8 ou UTF-16).</span><span class="sxs-lookup"><span data-stu-id="160c5-106">Or, you can create your own JSON or XML-based presets (using UTF-8 or UTF-16 encoding.</span></span> <span data-ttu-id="160c5-107">Vous pouvez ensuite transmettre encodeur personnalisé toohello prédéfini de hello.</span><span class="sxs-lookup"><span data-stu-id="160c5-107">You would then pass hello custom preset toohello encoder.</span></span> <span data-ttu-id="160c5-108">Pour la liste de tous les hello hello présélection noms pris en charge par ce `Media Encoder Standard` encodeur, consultez [Présélections de tâches pour Media Encoder Standard](media-services-mes-presets-overview.md).</span><span class="sxs-lookup"><span data-stu-id="160c5-108">For hello list of all hello preset names supported by this `Media Encoder Standard` encoder, see [Task Presets for Media Encoder Standard](media-services-mes-presets-overview.md).</span></span>  
   
- <span data-ttu-id="59221-109">Cette rubrique présente la présélection `H264 Single Bitrate 16x9 SD Audio 5.1` aux formats XML et JSON.</span><span class="sxs-lookup"><span data-stu-id="59221-109">This topic shows the `H264 Single Bitrate 16x9 SD Audio 5.1` preset in XML and JSON format.</span></span>  
+ <span data-ttu-id="160c5-109">Cette rubrique montre hello `H264 Single Bitrate 16x9 SD Audio 5.1` prédéfinie au format XML et JSON.</span><span class="sxs-lookup"><span data-stu-id="160c5-109">This topic shows hello `H264 Single Bitrate 16x9 SD Audio 5.1` preset in XML and JSON format.</span></span>  
   
- <span data-ttu-id="59221-110">Cette présélection produit un fichier MP4 unique avec une vitesse de transmission de 2 200 kbit/s, et de l’audio AAC 5.1.</span><span class="sxs-lookup"><span data-stu-id="59221-110">This preset produces a single MP4 file with a bitrate of 2200 kbps, and AAC 5.1 audio.</span></span> <span data-ttu-id="59221-111">Pour plus d’informations sur le profil, la vitesse de transmission, la fréquence d’échantillonnage, etc. de cette présélection, examinez le format XML ou JSON défini ci-dessous.</span><span class="sxs-lookup"><span data-stu-id="59221-111">For detailed information about profile, bitrate, sampling rate, etc. of this preset, examine the XML or JSON defined below.</span></span> <span data-ttu-id="59221-112">Pour connaître la signification des différents éléments et les valeurs valides pour chaque élément, consultez [Schéma Media Encoder Standard](media-services-mes-schema.md).</span><span class="sxs-lookup"><span data-stu-id="59221-112">For explanations of what each element means, and the valid values for each element, see the [Media Encoder Standard schema](media-services-mes-schema.md).</span></span>  
+ <span data-ttu-id="160c5-110">Cette présélection produit un fichier MP4 unique avec une vitesse de transmission de 2 200 kbit/s, et de l’audio AAC 5.1.</span><span class="sxs-lookup"><span data-stu-id="160c5-110">This preset produces a single MP4 file with a bitrate of 2200 kbps, and AAC 5.1 audio.</span></span> <span data-ttu-id="160c5-111">Pour obtenir des informations détaillées sur le profil, vitesse de transmission, d’échantillonnage, le taux, etc. cela prédéfinies, examiner hello XML ou JSON défini ci-dessous.</span><span class="sxs-lookup"><span data-stu-id="160c5-111">For detailed information about profile, bitrate, sampling rate, etc. of this preset, examine hello XML or JSON defined below.</span></span> <span data-ttu-id="160c5-112">Pour des explications signifie de chaque élément et les valeurs valides de hello pour chaque élément, consultez hello [schéma Media Encoder Standard](media-services-mes-schema.md).</span><span class="sxs-lookup"><span data-stu-id="160c5-112">For explanations of what each element means, and hello valid values for each element, see hello [Media Encoder Standard schema](media-services-mes-schema.md).</span></span>  
   
- <span data-ttu-id="59221-113">XML</span><span class="sxs-lookup"><span data-stu-id="59221-113">XML</span></span>  
+ <span data-ttu-id="160c5-113">XML</span><span class="sxs-lookup"><span data-stu-id="160c5-113">XML</span></span>  
   
 ```  
 <?xml version="1.0" encoding="utf-16"?>  
@@ -70,7 +70,7 @@ ms.lasthandoff: 08/29/2017
 </Preset>  
 ```  
   
- <span data-ttu-id="59221-114">JSON</span><span class="sxs-lookup"><span data-stu-id="59221-114">JSON</span></span>  
+ <span data-ttu-id="160c5-114">JSON</span><span class="sxs-lookup"><span data-stu-id="160c5-114">JSON</span></span>  
   
 ```  
 {  

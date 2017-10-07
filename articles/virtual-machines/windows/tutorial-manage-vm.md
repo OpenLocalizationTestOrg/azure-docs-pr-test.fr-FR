@@ -1,6 +1,6 @@
 ---
-title: "Créer et gérer des machines virtuelles Windows avec le module Azure PowerShell | Microsoft Docs"
-description: "Didacticiel : créer et gérer des machines virtuelles Windows avec le module Azure PowerShell"
+title: "aaaCreate et gérer des machines virtuelles Windows avec hello module Azure PowerShell | Documents Microsoft"
+description: "Didacticiel : créer et gérer des machines virtuelles Windows avec hello module Azure PowerShell"
 services: virtual-machines-windows
 documentationcenter: virtual-machines
 author: neilpeterson
@@ -16,44 +16,44 @@ ms.workload: infrastructure
 ms.date: 05/02/2017
 ms.author: nepeters
 ms.custom: mvc
-ms.openlocfilehash: ec1bb7834beb66dc28dd5b1db764bd358243292c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 20adcb673ef4de683e6ad82d048a9625a1dc838c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-and-manage-windows-vms-with-the-azure-powershell-module"></a><span data-ttu-id="5d0e6-103">Créer et gérer des machines virtuelles Windows avec le module Azure PowerShell</span><span class="sxs-lookup"><span data-stu-id="5d0e6-103">Create and Manage Windows VMs with the Azure PowerShell module</span></span>
+# <a name="create-and-manage-windows-vms-with-hello-azure-powershell-module"></a><span data-ttu-id="920d8-103">Créer et gérer des machines virtuelles Windows avec hello module Azure PowerShell</span><span class="sxs-lookup"><span data-stu-id="920d8-103">Create and Manage Windows VMs with hello Azure PowerShell module</span></span>
 
-<span data-ttu-id="5d0e6-104">Les machines virtuelles fournissent un environnement informatique entièrement configurable et flexible.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-104">Azure virtual machines provide a fully configurable and flexible computing environment.</span></span> <span data-ttu-id="5d0e6-105">Ce didacticiel traite d’aspects de base du déploiement de machines virtuelles Azure, tels que la sélection d’une taille de machine virtuelle, la sélection d’une image de machine virtuelle et le déploiement d’une machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-105">This tutorial covers basic Azure virtual machine deployment items such as selecting a VM size, selecting a VM image, and deploying a VM.</span></span> <span data-ttu-id="5d0e6-106">Vous allez apprendre à effectuer les actions suivantes :</span><span class="sxs-lookup"><span data-stu-id="5d0e6-106">You learn how to:</span></span>
+<span data-ttu-id="920d8-104">Les machines virtuelles fournissent un environnement informatique entièrement configurable et flexible.</span><span class="sxs-lookup"><span data-stu-id="920d8-104">Azure virtual machines provide a fully configurable and flexible computing environment.</span></span> <span data-ttu-id="920d8-105">Ce didacticiel traite d’aspects de base du déploiement de machines virtuelles Azure, tels que la sélection d’une taille de machine virtuelle, la sélection d’une image de machine virtuelle et le déploiement d’une machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="920d8-105">This tutorial covers basic Azure virtual machine deployment items such as selecting a VM size, selecting a VM image, and deploying a VM.</span></span> <span data-ttu-id="920d8-106">Vous allez apprendre à effectuer les actions suivantes :</span><span class="sxs-lookup"><span data-stu-id="920d8-106">You learn how to:</span></span>
 
 > [!div class="checklist"]
-> * <span data-ttu-id="5d0e6-107">Créer une machine virtuelle et vous y connecter</span><span class="sxs-lookup"><span data-stu-id="5d0e6-107">Create and connect to a VM</span></span>
-> * <span data-ttu-id="5d0e6-108">Sélectionner et utiliser des images de machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="5d0e6-108">Select and use VM images</span></span>
-> * <span data-ttu-id="5d0e6-109">Afficher et utiliser des tailles de machine virtuelle spécifiques</span><span class="sxs-lookup"><span data-stu-id="5d0e6-109">View and use specific VM sizes</span></span>
-> * <span data-ttu-id="5d0e6-110">Redimensionner une machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="5d0e6-110">Resize a VM</span></span>
-> * <span data-ttu-id="5d0e6-111">Consulter et comprendre l’état d’une machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="5d0e6-111">View and understand VM state</span></span>
+> * <span data-ttu-id="920d8-107">Créer et connecter tooa machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="920d8-107">Create and connect tooa VM</span></span>
+> * <span data-ttu-id="920d8-108">Sélectionner et utiliser des images de machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="920d8-108">Select and use VM images</span></span>
+> * <span data-ttu-id="920d8-109">Afficher et utiliser des tailles de machine virtuelle spécifiques</span><span class="sxs-lookup"><span data-stu-id="920d8-109">View and use specific VM sizes</span></span>
+> * <span data-ttu-id="920d8-110">Redimensionner une machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="920d8-110">Resize a VM</span></span>
+> * <span data-ttu-id="920d8-111">Consulter et comprendre l’état d’une machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="920d8-111">View and understand VM state</span></span>
 
-<span data-ttu-id="5d0e6-112">Ce didacticiel requiert le module Azure PowerShell version 3.6 ou ultérieure.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-112">This tutorial requires the Azure PowerShell module version 3.6 or later.</span></span> <span data-ttu-id="5d0e6-113">Exécutez ` Get-Module -ListAvailable AzureRM` pour trouver la version.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-113">Run ` Get-Module -ListAvailable AzureRM` to find the version.</span></span> <span data-ttu-id="5d0e6-114">Si vous devez effectuer une mise à niveau, consultez [Installer le module Azure PowerShell](/powershell/azure/install-azurerm-ps).</span><span class="sxs-lookup"><span data-stu-id="5d0e6-114">If you need to upgrade, see [Install Azure PowerShell module](/powershell/azure/install-azurerm-ps).</span></span>
+<span data-ttu-id="920d8-112">Ce didacticiel nécessite hello Azure PowerShell version 3.6 ou version ultérieure du module.</span><span class="sxs-lookup"><span data-stu-id="920d8-112">This tutorial requires hello Azure PowerShell module version 3.6 or later.</span></span> <span data-ttu-id="920d8-113">Exécutez ` Get-Module -ListAvailable AzureRM` version de hello toofind.</span><span class="sxs-lookup"><span data-stu-id="920d8-113">Run ` Get-Module -ListAvailable AzureRM` toofind hello version.</span></span> <span data-ttu-id="920d8-114">Si vous avez besoin de tooupgrade, consultez [installez Azure PowerShell module](/powershell/azure/install-azurerm-ps).</span><span class="sxs-lookup"><span data-stu-id="920d8-114">If you need tooupgrade, see [Install Azure PowerShell module](/powershell/azure/install-azurerm-ps).</span></span>
 
-## <a name="create-resource-group"></a><span data-ttu-id="5d0e6-115">Créer un groupe de ressources</span><span class="sxs-lookup"><span data-stu-id="5d0e6-115">Create resource group</span></span>
+## <a name="create-resource-group"></a><span data-ttu-id="920d8-115">Créer un groupe de ressources</span><span class="sxs-lookup"><span data-stu-id="920d8-115">Create resource group</span></span>
 
-<span data-ttu-id="5d0e6-116">Créez un groupe de ressources avec la commande [New-AzureRmResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup).</span><span class="sxs-lookup"><span data-stu-id="5d0e6-116">Create a resource group with the [New-AzureRmResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup) command.</span></span> 
+<span data-ttu-id="920d8-116">Créer un groupe de ressources avec hello [New-AzureRmResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup) commande.</span><span class="sxs-lookup"><span data-stu-id="920d8-116">Create a resource group with hello [New-AzureRmResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup) command.</span></span> 
 
-<span data-ttu-id="5d0e6-117">Un groupe de ressources Azure est un conteneur logique dans lequel les ressources Azure sont déployées et gérées.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-117">An Azure resource group is a logical container into which Azure resources are deployed and managed.</span></span> <span data-ttu-id="5d0e6-118">Un groupe de ressources doit être créé avant les machines virtuelles.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-118">A resource group must be created before a virtual machine.</span></span> <span data-ttu-id="5d0e6-119">Dans cet exemple, un groupe de ressources nommé *myResourceGroupVM* est créé dans la région *EastUS*.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-119">In this example, a resource group named *myResourceGroupVM* is created in the *EastUS* region.</span></span> 
+<span data-ttu-id="920d8-117">Un groupe de ressources Azure est un conteneur logique dans lequel les ressources Azure sont déployées et gérées.</span><span class="sxs-lookup"><span data-stu-id="920d8-117">An Azure resource group is a logical container into which Azure resources are deployed and managed.</span></span> <span data-ttu-id="920d8-118">Un groupe de ressources doit être créé avant les machines virtuelles.</span><span class="sxs-lookup"><span data-stu-id="920d8-118">A resource group must be created before a virtual machine.</span></span> <span data-ttu-id="920d8-119">Dans cet exemple, un groupe de ressources nommé *myResourceGroupVM* est créé dans hello *EastUS* région.</span><span class="sxs-lookup"><span data-stu-id="920d8-119">In this example, a resource group named *myResourceGroupVM* is created in hello *EastUS* region.</span></span> 
 
 ```powershell
 New-AzureRmResourceGroup -ResourceGroupName myResourceGroupVM -Location EastUS
 ```
 
-<span data-ttu-id="5d0e6-120">Le groupe de ressources est spécifié lors de la création ou de la modification d’une machine virtuelle, qui peut être vue dans ce didacticiel.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-120">The resource group is specified when creating or modifying a VM, which can be seen throughout this tutorial.</span></span>
+<span data-ttu-id="920d8-120">groupe de ressources Hello est spécifié lors de la création ou la modification d’une machine virtuelle, ce qui peut être vu dans ce didacticiel.</span><span class="sxs-lookup"><span data-stu-id="920d8-120">hello resource group is specified when creating or modifying a VM, which can be seen throughout this tutorial.</span></span>
 
-## <a name="create-virtual-machine"></a><span data-ttu-id="5d0e6-121">Create virtual machine</span><span class="sxs-lookup"><span data-stu-id="5d0e6-121">Create virtual machine</span></span>
+## <a name="create-virtual-machine"></a><span data-ttu-id="920d8-121">Create virtual machine</span><span class="sxs-lookup"><span data-stu-id="920d8-121">Create virtual machine</span></span>
 
-<span data-ttu-id="5d0e6-122">Une machine virtuelle doit être connectée à un réseau virtuel.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-122">A virtual machine must be connected to a virtual network.</span></span> <span data-ttu-id="5d0e6-123">Vous communiquez avec la machine virtuelle à l’aide d’une adresse IP publique via une carte réseau (NIC).</span><span class="sxs-lookup"><span data-stu-id="5d0e6-123">You communicate with the virtual machine using a public IP address through a network interface card.</span></span>
+<span data-ttu-id="920d8-122">Un ordinateur virtuel doit être connecté tooa des réseaux virtuels.</span><span class="sxs-lookup"><span data-stu-id="920d8-122">A virtual machine must be connected tooa virtual network.</span></span> <span data-ttu-id="920d8-123">Vous communiquez avec l’ordinateur virtuel de hello à l’aide d’une adresse IP publique via une carte d’interface réseau.</span><span class="sxs-lookup"><span data-stu-id="920d8-123">You communicate with hello virtual machine using a public IP address through a network interface card.</span></span>
 
-### <a name="create-virtual-network"></a><span data-ttu-id="5d0e6-124">Création d’un réseau virtuel</span><span class="sxs-lookup"><span data-stu-id="5d0e6-124">Create virtual network</span></span>
+### <a name="create-virtual-network"></a><span data-ttu-id="920d8-124">Création d’un réseau virtuel</span><span class="sxs-lookup"><span data-stu-id="920d8-124">Create virtual network</span></span>
 
-<span data-ttu-id="5d0e6-125">Créez un sous-réseau avec [New-AzureRmVirtualNetworkSubnetConfig](/powershell/module/azurerm.network/new-azurermvirtualnetworksubnetconfig) :</span><span class="sxs-lookup"><span data-stu-id="5d0e6-125">Create a subnet with [New-AzureRmVirtualNetworkSubnetConfig](/powershell/module/azurerm.network/new-azurermvirtualnetworksubnetconfig):</span></span>
+<span data-ttu-id="920d8-125">Créez un sous-réseau avec [New-AzureRmVirtualNetworkSubnetConfig](/powershell/module/azurerm.network/new-azurermvirtualnetworksubnetconfig) :</span><span class="sxs-lookup"><span data-stu-id="920d8-125">Create a subnet with [New-AzureRmVirtualNetworkSubnetConfig](/powershell/module/azurerm.network/new-azurermvirtualnetworksubnetconfig):</span></span>
 
 ```powershell
 $subnetConfig = New-AzureRmVirtualNetworkSubnetConfig `
@@ -61,7 +61,7 @@ $subnetConfig = New-AzureRmVirtualNetworkSubnetConfig `
     -AddressPrefix 192.168.1.0/24
 ```
 
-<span data-ttu-id="5d0e6-126">Créez un réseau virtuel avec [New-AzureRmVirtualNetwork](/powershell/module/azurerm.network/new-azurermvirtualnetwork) :</span><span class="sxs-lookup"><span data-stu-id="5d0e6-126">Create a virtual network with [New-AzureRmVirtualNetwork](/powershell/module/azurerm.network/new-azurermvirtualnetwork):</span></span>
+<span data-ttu-id="920d8-126">Créez un réseau virtuel avec [New-AzureRmVirtualNetwork](/powershell/module/azurerm.network/new-azurermvirtualnetwork) :</span><span class="sxs-lookup"><span data-stu-id="920d8-126">Create a virtual network with [New-AzureRmVirtualNetwork](/powershell/module/azurerm.network/new-azurermvirtualnetwork):</span></span>
 
 ```powershell
 $vnet = New-AzureRmVirtualNetwork `
@@ -71,9 +71,9 @@ $vnet = New-AzureRmVirtualNetwork `
   -AddressPrefix 192.168.0.0/16 ` 
   -Subnet $subnetConfig
 ```
-### <a name="create-public-ip-address"></a><span data-ttu-id="5d0e6-127">Création d’une adresse IP publique</span><span class="sxs-lookup"><span data-stu-id="5d0e6-127">Create public IP address</span></span>
+### <a name="create-public-ip-address"></a><span data-ttu-id="920d8-127">Création d’une adresse IP publique</span><span class="sxs-lookup"><span data-stu-id="920d8-127">Create public IP address</span></span>
 
-<span data-ttu-id="5d0e6-128">Créez une adresse IP publique avec [New-AzureRmPublicIpAddress](/powershell/module/azurerm.network/new-azurermpublicipaddress) :</span><span class="sxs-lookup"><span data-stu-id="5d0e6-128">Create a public IP address with [New-AzureRmPublicIpAddress](/powershell/module/azurerm.network/new-azurermpublicipaddress):</span></span>
+<span data-ttu-id="920d8-128">Créez une adresse IP publique avec [New-AzureRmPublicIpAddress](/powershell/module/azurerm.network/new-azurermpublicipaddress) :</span><span class="sxs-lookup"><span data-stu-id="920d8-128">Create a public IP address with [New-AzureRmPublicIpAddress](/powershell/module/azurerm.network/new-azurermpublicipaddress):</span></span>
 
 ```powershell
 $pip = New-AzureRmPublicIpAddress ` 
@@ -83,9 +83,9 @@ $pip = New-AzureRmPublicIpAddress `
   -Name myPublicIPAddress
 ```
 
-### <a name="create-network-interface-card"></a><span data-ttu-id="5d0e6-129">Création de la carte réseau</span><span class="sxs-lookup"><span data-stu-id="5d0e6-129">Create network interface card</span></span>
+### <a name="create-network-interface-card"></a><span data-ttu-id="920d8-129">Création de la carte réseau</span><span class="sxs-lookup"><span data-stu-id="920d8-129">Create network interface card</span></span>
 
-<span data-ttu-id="5d0e6-130">Créez une carte réseau avec [New-AzureRmNetworkInterface](/powershell/module/azurerm.network/new-azurermnetworkinterface) :</span><span class="sxs-lookup"><span data-stu-id="5d0e6-130">Create a network interface card with [New-AzureRmNetworkInterface](/powershell/module/azurerm.network/new-azurermnetworkinterface):</span></span>
+<span data-ttu-id="920d8-130">Créez une carte réseau avec [New-AzureRmNetworkInterface](/powershell/module/azurerm.network/new-azurermnetworkinterface) :</span><span class="sxs-lookup"><span data-stu-id="920d8-130">Create a network interface card with [New-AzureRmNetworkInterface](/powershell/module/azurerm.network/new-azurermnetworkinterface):</span></span>
 
 ```powershell
 $nic = New-AzureRmNetworkInterface `
@@ -96,11 +96,11 @@ $nic = New-AzureRmNetworkInterface `
   -PublicIpAddressId $pip.Id
 ```
 
-### <a name="create-network-security-group"></a><span data-ttu-id="5d0e6-131">Création d’un groupe de sécurité réseau</span><span class="sxs-lookup"><span data-stu-id="5d0e6-131">Create network security group</span></span>
+### <a name="create-network-security-group"></a><span data-ttu-id="920d8-131">Création d’un groupe de sécurité réseau</span><span class="sxs-lookup"><span data-stu-id="920d8-131">Create network security group</span></span>
 
-<span data-ttu-id="5d0e6-132">Un [groupe de sécurité réseau](../../virtual-network/virtual-networks-nsg.md) (NSG) Azure contrôle le trafic entrant et sortant pour une ou plusieurs machines virtuelles.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-132">An Azure [network security group](../../virtual-network/virtual-networks-nsg.md) (NSG) controls inbound and outbound traffic for one or many virtual machines.</span></span> <span data-ttu-id="5d0e6-133">Les règles de groupe de sécurité réseau autorisent ou refusent le trafic réseau sur un port ou une plage de ports spécifique.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-133">Network security group rules allow or deny network traffic on a specific port or port range.</span></span> <span data-ttu-id="5d0e6-134">Ces règles peuvent également inclure un préfixe d’adresse source afin que seul le trafic provenant d’une source prédéfinie puisse communiquer avec une machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-134">These rules can also include a source address prefix so that only traffic originating at a predefined source can communicate with a virtual machine.</span></span> <span data-ttu-id="5d0e6-135">Pour accéder au serveur web IIS que vous installez, vous devez ajouter une règle de groupe de sécurité réseau entrante.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-135">To access the IIS webserver that you are installing, you must add an inbound NSG rule.</span></span>
+<span data-ttu-id="920d8-132">Un [groupe de sécurité réseau](../../virtual-network/virtual-networks-nsg.md) (NSG) Azure contrôle le trafic entrant et sortant pour une ou plusieurs machines virtuelles.</span><span class="sxs-lookup"><span data-stu-id="920d8-132">An Azure [network security group](../../virtual-network/virtual-networks-nsg.md) (NSG) controls inbound and outbound traffic for one or many virtual machines.</span></span> <span data-ttu-id="920d8-133">Les règles de groupe de sécurité réseau autorisent ou refusent le trafic réseau sur un port ou une plage de ports spécifique.</span><span class="sxs-lookup"><span data-stu-id="920d8-133">Network security group rules allow or deny network traffic on a specific port or port range.</span></span> <span data-ttu-id="920d8-134">Ces règles peuvent également inclure un préfixe d’adresse source afin que seul le trafic provenant d’une source prédéfinie puisse communiquer avec une machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="920d8-134">These rules can also include a source address prefix so that only traffic originating at a predefined source can communicate with a virtual machine.</span></span> <span data-ttu-id="920d8-135">tooaccess hello IIS serveur Web que vous installez, vous devez ajouter une règle entrante de groupe de sécurité réseau.</span><span class="sxs-lookup"><span data-stu-id="920d8-135">tooaccess hello IIS webserver that you are installing, you must add an inbound NSG rule.</span></span>
 
-<span data-ttu-id="5d0e6-136">Pour créer une règle de groupe de sécurité réseau entrante, utilisez [Add-AzureRmNetworkSecurityRuleConfig](/powershell/module/azurerm.network/add-azurermnetworksecurityruleconfig).</span><span class="sxs-lookup"><span data-stu-id="5d0e6-136">To create an inbound NSG rule, use [Add-AzureRmNetworkSecurityRuleConfig](/powershell/module/azurerm.network/add-azurermnetworksecurityruleconfig).</span></span> <span data-ttu-id="5d0e6-137">L’exemple suivant crée une règle de groupe de sécurité réseau nommée *myNSGRule* qui ouvre le port *3389* pour la machine virtuelle :</span><span class="sxs-lookup"><span data-stu-id="5d0e6-137">The following example creates an NSG rule named *myNSGRule* that opens port *3389* for the virtual machine:</span></span>
+<span data-ttu-id="920d8-136">toocreate une règle entrante de groupe de sécurité réseau, utilisez [Add-AzureRmNetworkSecurityRuleConfig](/powershell/module/azurerm.network/add-azurermnetworksecurityruleconfig).</span><span class="sxs-lookup"><span data-stu-id="920d8-136">toocreate an inbound NSG rule, use [Add-AzureRmNetworkSecurityRuleConfig](/powershell/module/azurerm.network/add-azurermnetworksecurityruleconfig).</span></span> <span data-ttu-id="920d8-137">Hello exemple suivant crée une règle de groupe de sécurité réseau nommée *myNSGRule* qui ouvre le port *3389* pour la machine virtuelle de hello :</span><span class="sxs-lookup"><span data-stu-id="920d8-137">hello following example creates an NSG rule named *myNSGRule* that opens port *3389* for hello virtual machine:</span></span>
 
 ```powershell
 $nsgRule = New-AzureRmNetworkSecurityRuleConfig `
@@ -115,7 +115,7 @@ $nsgRule = New-AzureRmNetworkSecurityRuleConfig `
   -Access Allow
 ```
 
-<span data-ttu-id="5d0e6-138">Créez le groupe de sécurité réseau *myNSGRule* avec [New-AzureRmNetworkSecurityGroup](/powershell/module/azurerm.network/new-azurermnetworksecuritygroup) :</span><span class="sxs-lookup"><span data-stu-id="5d0e6-138">Create the NSG using *myNSGRule* with [New-AzureRmNetworkSecurityGroup](/powershell/module/azurerm.network/new-azurermnetworksecuritygroup):</span></span>
+<span data-ttu-id="920d8-138">Créer à l’aide du groupe de sécurité réseau hello *myNSGRule* avec [New-AzureRmNetworkSecurityGroup](/powershell/module/azurerm.network/new-azurermnetworksecuritygroup):</span><span class="sxs-lookup"><span data-stu-id="920d8-138">Create hello NSG using *myNSGRule* with [New-AzureRmNetworkSecurityGroup](/powershell/module/azurerm.network/new-azurermnetworksecuritygroup):</span></span>
 
 ```powershell
 $nsg = New-AzureRmNetworkSecurityGroup `
@@ -125,7 +125,7 @@ $nsg = New-AzureRmNetworkSecurityGroup `
     -SecurityRules $nsgRule
 ```
 
-<span data-ttu-id="5d0e6-139">Ajoutez le groupe de sécurité réseau au sous-groupe dans le réseau virtuel avec [Set-AzureRmVirtualNetworkSubnetConfig](/powershell/module/azurerm.network/set-azurermvirtualnetworksubnetconfig) :</span><span class="sxs-lookup"><span data-stu-id="5d0e6-139">Add the NSG to the subnet in the virtual network with [Set-AzureRmVirtualNetworkSubnetConfig](/powershell/module/azurerm.network/set-azurermvirtualnetworksubnetconfig):</span></span>
+<span data-ttu-id="920d8-139">Ajouter un sous-réseau de toohello de groupe de sécurité réseau hello dans le réseau virtuel hello [Set-AzureRmVirtualNetworkSubnetConfig](/powershell/module/azurerm.network/set-azurermvirtualnetworksubnetconfig):</span><span class="sxs-lookup"><span data-stu-id="920d8-139">Add hello NSG toohello subnet in hello virtual network with [Set-AzureRmVirtualNetworkSubnetConfig](/powershell/module/azurerm.network/set-azurermvirtualnetworksubnetconfig):</span></span>
 
 ```powershell
 Set-AzureRmVirtualNetworkSubnetConfig `
@@ -135,29 +135,29 @@ Set-AzureRmVirtualNetworkSubnetConfig `
     -AddressPrefix 192.168.1.0/24
 ```
 
-<span data-ttu-id="5d0e6-140">Mettez à jour le réseau virtuel avec [Set-AzureRmVirtualNetwork](/powershell/module/azurerm.network/set-azurermvirtualnetwork) :</span><span class="sxs-lookup"><span data-stu-id="5d0e6-140">Update the virtual network with [Set-AzureRmVirtualNetwork](/powershell/module/azurerm.network/set-azurermvirtualnetwork):</span></span>
+<span data-ttu-id="920d8-140">Réseau virtuel de mise à jour hello avec [Set-AzureRmVirtualNetwork](/powershell/module/azurerm.network/set-azurermvirtualnetwork):</span><span class="sxs-lookup"><span data-stu-id="920d8-140">Update hello virtual network with [Set-AzureRmVirtualNetwork](/powershell/module/azurerm.network/set-azurermvirtualnetwork):</span></span>
 
 ```powershell
 Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
 ```
 
-### <a name="create-virtual-machine"></a><span data-ttu-id="5d0e6-141">Create virtual machine</span><span class="sxs-lookup"><span data-stu-id="5d0e6-141">Create virtual machine</span></span>
+### <a name="create-virtual-machine"></a><span data-ttu-id="920d8-141">Create virtual machine</span><span class="sxs-lookup"><span data-stu-id="920d8-141">Create virtual machine</span></span>
 
-<span data-ttu-id="5d0e6-142">Lorsque vous créez une machine virtuelle, plusieurs options sont disponibles, comme l’image de système d’exploitation, les informations d’identification d’administration ou le dimensionnement des disques.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-142">When creating a virtual machine, several options are available such as operating system image, disk sizing, and administrative credentials.</span></span> <span data-ttu-id="5d0e6-143">Dans cet exemple, une machine virtuelle est créée avec le nom *myVM* ; elle exécute la dernière version de Windows Server 2016 Datacenter.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-143">In this example, a virtual machine is created with a name of *myVM* running the latest version of Windows Server 2016 Datacenter.</span></span>
+<span data-ttu-id="920d8-142">Lorsque vous créez une machine virtuelle, plusieurs options sont disponibles, comme l’image de système d’exploitation, les informations d’identification d’administration ou le dimensionnement des disques.</span><span class="sxs-lookup"><span data-stu-id="920d8-142">When creating a virtual machine, several options are available such as operating system image, disk sizing, and administrative credentials.</span></span> <span data-ttu-id="920d8-143">Dans cet exemple, un ordinateur virtuel est créé avec un nom de *myVM* en cours d’exécution hello dernière version de Windows Server 2016 Datacenter.</span><span class="sxs-lookup"><span data-stu-id="920d8-143">In this example, a virtual machine is created with a name of *myVM* running hello latest version of Windows Server 2016 Datacenter.</span></span>
 
-<span data-ttu-id="5d0e6-144">Définissez le nom d’utilisateur et le mot de passe pour le compte d’administrateur sur la machine virtuelle avec [Get-Credential](https://msdn.microsoft.com/powershell/reference/5.1/microsoft.powershell.security/Get-Credential) :</span><span class="sxs-lookup"><span data-stu-id="5d0e6-144">Set the username and password needed for the administrator account on the virtual machine with [Get-Credential](https://msdn.microsoft.com/powershell/reference/5.1/microsoft.powershell.security/Get-Credential):</span></span>
+<span data-ttu-id="920d8-144">Définir le nom d’utilisateur hello et le mot de passe pour le compte d’administrateur hello sur l’ordinateur virtuel de hello avec [Get-Credential](https://msdn.microsoft.com/powershell/reference/5.1/microsoft.powershell.security/Get-Credential):</span><span class="sxs-lookup"><span data-stu-id="920d8-144">Set hello username and password needed for hello administrator account on hello virtual machine with [Get-Credential](https://msdn.microsoft.com/powershell/reference/5.1/microsoft.powershell.security/Get-Credential):</span></span>
 
 ```powershell
 $cred = Get-Credential
 ```
 
-<span data-ttu-id="5d0e6-145">Créez la configuration initiale de la machine virtuelle avec [New-AzureRmVMConfig](/powershell/module/azurerm.compute/new-azurermvmconfig) :</span><span class="sxs-lookup"><span data-stu-id="5d0e6-145">Create the initial configuration for the virtual machine with [New-AzureRmVMConfig](/powershell/module/azurerm.compute/new-azurermvmconfig):</span></span>
+<span data-ttu-id="920d8-145">Créer la configuration initiale de l’ordinateur virtuel hello hello [New-AzureRmVMConfig](/powershell/module/azurerm.compute/new-azurermvmconfig):</span><span class="sxs-lookup"><span data-stu-id="920d8-145">Create hello initial configuration for hello virtual machine with [New-AzureRmVMConfig](/powershell/module/azurerm.compute/new-azurermvmconfig):</span></span>
 
 ```powershell
 $vm = New-AzureRmVMConfig -VMName myVM -VMSize Standard_D1
 ```
 
-<span data-ttu-id="5d0e6-146">Ajoutez les informations relatives au système d’exploitation à la configuration de la machine virtuelle avec [Set-AzureRmVMOperatingSystem](/powershell/module/azurerm.compute/set-azurermvmoperatingsystem) :</span><span class="sxs-lookup"><span data-stu-id="5d0e6-146">Add the operating system information to the virtual machine configuration with [Set-AzureRmVMOperatingSystem](/powershell/module/azurerm.compute/set-azurermvmoperatingsystem):</span></span>
+<span data-ttu-id="920d8-146">Ajouter une configuration de machine virtuelle hello système d’exploitation informations toohello avec [Set-AzureRmVMOperatingSystem](/powershell/module/azurerm.compute/set-azurermvmoperatingsystem):</span><span class="sxs-lookup"><span data-stu-id="920d8-146">Add hello operating system information toohello virtual machine configuration with [Set-AzureRmVMOperatingSystem](/powershell/module/azurerm.compute/set-azurermvmoperatingsystem):</span></span>
 
 ```powershell
 $vm = Set-AzureRmVMOperatingSystem `
@@ -168,7 +168,7 @@ $vm = Set-AzureRmVMOperatingSystem `
     -ProvisionVMAgent -EnableAutoUpdate
 ```
 
-<span data-ttu-id="5d0e6-147">Ajoutez les informations relatives à l’image à la configuration de la machine virtuelle avec [Set-AzureRmVMSourceImage](/powershell/module/azurerm.compute/set-azurermvmsourceimage) :</span><span class="sxs-lookup"><span data-stu-id="5d0e6-147">Add the image information to the virtual machine configuration with [Set-AzureRmVMSourceImage](/powershell/module/azurerm.compute/set-azurermvmsourceimage):</span></span>
+<span data-ttu-id="920d8-147">Ajouter la configuration d’ordinateur virtuel hello image informations toohello avec [Set-AzureRmVMSourceImage](/powershell/module/azurerm.compute/set-azurermvmsourceimage):</span><span class="sxs-lookup"><span data-stu-id="920d8-147">Add hello image information toohello virtual machine configuration with [Set-AzureRmVMSourceImage](/powershell/module/azurerm.compute/set-azurermvmsourceimage):</span></span>
 
 ```powershell
 $vm = Set-AzureRmVMSourceImage `
@@ -179,7 +179,7 @@ $vm = Set-AzureRmVMSourceImage `
     -Version latest
 ```
 
-<span data-ttu-id="5d0e6-148">Ajoutez les paramètres du disque du système d’exploitation à la configuration de la machine virtuelle avec [Set-AzureRmVMOSDisk](/powershell/module/azurerm.compute/set-azurermvmosdisk) :</span><span class="sxs-lookup"><span data-stu-id="5d0e6-148">Add the operating system disk settings to the virtual machine configuration with [Set-AzureRmVMOSDisk](/powershell/module/azurerm.compute/set-azurermvmosdisk):</span></span>
+<span data-ttu-id="920d8-148">Ajouter hello système d’exploitation disque paramètres toohello configuration d’ordinateur virtuel avec [Set-AzureRmVMOSDisk](/powershell/module/azurerm.compute/set-azurermvmosdisk):</span><span class="sxs-lookup"><span data-stu-id="920d8-148">Add hello operating system disk settings toohello virtual machine configuration with [Set-AzureRmVMOSDisk](/powershell/module/azurerm.compute/set-azurermvmosdisk):</span></span>
 
 ```powershell
 $vm = Set-AzureRmVMOSDisk `
@@ -190,45 +190,45 @@ $vm = Set-AzureRmVMOSDisk `
     -Caching ReadWrite
 ```
 
-<span data-ttu-id="5d0e6-149">Ajoutez la carte réseau que vous avez créée précédemment à la configuration de la machine virtuelle avec [Add-AzureRmVMNetworkInterface](/powershell/module/azurerm.compute/add-azurermvmnetworkinterface) :</span><span class="sxs-lookup"><span data-stu-id="5d0e6-149">Add the network interface card that you previously created to the virtual machine configuration with [Add-AzureRmVMNetworkInterface](/powershell/module/azurerm.compute/add-azurermvmnetworkinterface):</span></span>
+<span data-ttu-id="920d8-149">Ajouter hello carte réseau que vous avez créé précédemment toohello configuration d’ordinateur virtuel avec [Add-AzureRmVMNetworkInterface](/powershell/module/azurerm.compute/add-azurermvmnetworkinterface):</span><span class="sxs-lookup"><span data-stu-id="920d8-149">Add hello network interface card that you previously created toohello virtual machine configuration with [Add-AzureRmVMNetworkInterface](/powershell/module/azurerm.compute/add-azurermvmnetworkinterface):</span></span>
 
 ```powershell
 $vm = Add-AzureRmVMNetworkInterface -VM $vm -Id $nic.Id
 ```
 
-<span data-ttu-id="5d0e6-150">Créez la machine virtuelle avec [New-AzureRmVM](/powershell/module/azurerm.compute/new-azurermvm).</span><span class="sxs-lookup"><span data-stu-id="5d0e6-150">Create the virtual machine with [New-AzureRmVM](/powershell/module/azurerm.compute/new-azurermvm).</span></span>
+<span data-ttu-id="920d8-150">Créer la machine virtuelle hello [New-AzureRmVM](/powershell/module/azurerm.compute/new-azurermvm).</span><span class="sxs-lookup"><span data-stu-id="920d8-150">Create hello virtual machine with [New-AzureRmVM](/powershell/module/azurerm.compute/new-azurermvm).</span></span>
 
 ```powershell
 New-AzureRmVM -ResourceGroupName myResourceGroupVM -Location EastUS -VM $vm
 ```
 
-## <a name="connect-to-vm"></a><span data-ttu-id="5d0e6-151">Se connecter à une machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="5d0e6-151">Connect to VM</span></span>
+## <a name="connect-toovm"></a><span data-ttu-id="920d8-151">Se connecter tooVM</span><span class="sxs-lookup"><span data-stu-id="920d8-151">Connect tooVM</span></span>
 
-<span data-ttu-id="5d0e6-152">Une fois le déploiement terminé, créez une connexion Bureau à distance avec la machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-152">After the deployment has completed, create a remote desktop connection with the virtual machine.</span></span>
+<span data-ttu-id="920d8-152">Après que le déploiement de hello terminée, créez une connexion Bureau à distance avec l’ordinateur virtuel de hello.</span><span class="sxs-lookup"><span data-stu-id="920d8-152">After hello deployment has completed, create a remote desktop connection with hello virtual machine.</span></span>
 
-<span data-ttu-id="5d0e6-153">Exécutez les commandes suivantes pour renvoyer l’adresse IP publique de la machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-153">Run the following commands to return the public IP address of the virtual machine.</span></span> <span data-ttu-id="5d0e6-154">Prenez note de cette adresse IP, afin de pouvoir vous y connecter ultérieurement avec votre navigateur de manière à tester la connectivité web.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-154">Take note of this IP Address so you can connect to it with your browser to test web connectivity in a future step.</span></span>
+<span data-ttu-id="920d8-153">Exécutez hello suivant de commandes tooreturn hello adresse IP publique de l’ordinateur virtuel de hello.</span><span class="sxs-lookup"><span data-stu-id="920d8-153">Run hello following commands tooreturn hello public IP address of hello virtual machine.</span></span> <span data-ttu-id="920d8-154">Prenez note de cette adresse IP pour pouvoir vous connecter tooit reliées votre navigateur tootest web dans une étape ultérieure.</span><span class="sxs-lookup"><span data-stu-id="920d8-154">Take note of this IP Address so you can connect tooit with your browser tootest web connectivity in a future step.</span></span>
 
 ```powershell
 Get-AzureRmPublicIpAddress -ResourceGroupName myResourceGroupVM  | Select IpAddress
 ```
 
-<span data-ttu-id="5d0e6-155">Utilisez la commande suivante pour créer une session Bureau à distance avec la machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-155">Use the following command to create a remote desktop session with the virtual machine.</span></span> <span data-ttu-id="5d0e6-156">Remplacez l’adresse IP par l’adresse *publicIPAddress* de votre machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-156">Replace the IP address with the *publicIPAddress* of your virtual machine.</span></span> <span data-ttu-id="5d0e6-157">À l'invite, saisissez les informations d’identification que vous avez utilisées lors de la création de la machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-157">When prompted, enter the credentials used when creating the virtual machine.</span></span>
+<span data-ttu-id="920d8-155">La commande suivante de hello utilisation toocreate une session Bureau à distance avec l’ordinateur virtuel de hello.</span><span class="sxs-lookup"><span data-stu-id="920d8-155">Use hello following command toocreate a remote desktop session with hello virtual machine.</span></span> <span data-ttu-id="920d8-156">Remplacer l’adresse IP de hello avec hello *publicIPAddress* de votre machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="920d8-156">Replace hello IP address with hello *publicIPAddress* of your virtual machine.</span></span> <span data-ttu-id="920d8-157">Lorsque vous y êtes invité, entrez les informations d’identification de l’hello utilisées lors de la création d’ordinateur virtuel de hello.</span><span class="sxs-lookup"><span data-stu-id="920d8-157">When prompted, enter hello credentials used when creating hello virtual machine.</span></span>
 
 ```powershell
 mstsc /v:<publicIpAddress>
 ```
 
-## <a name="understand-vm-images"></a><span data-ttu-id="5d0e6-158">Comprendre les images de machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="5d0e6-158">Understand VM images</span></span>
+## <a name="understand-vm-images"></a><span data-ttu-id="920d8-158">Comprendre les images de machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="920d8-158">Understand VM images</span></span>
 
-<span data-ttu-id="5d0e6-159">La Place de marché Azure comprend de nombreuses images de machine virtuelle qui permettent de créer une machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-159">The Azure marketplace includes many virtual machine images that can be used to create a new virtual machine.</span></span> <span data-ttu-id="5d0e6-160">Dans les étapes précédentes, une machine virtuelle a été créée à l’aide de l’image Windows Server 2016 Datacenter.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-160">In the previous steps, a virtual machine was created using the Windows Server 2016-Datacenter image.</span></span> <span data-ttu-id="5d0e6-161">Dans cette étape, le module PowerShell est utilisé pour rechercher d’autres images Windows dans la place de marché, qui peuvent également servir de base pour les nouvelles machines virtuelles.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-161">In this step, the PowerShell module is used to search the marketplace for other Windows images, which can also as a base for new VMs.</span></span> <span data-ttu-id="5d0e6-162">Ce processus consiste à rechercher l’éditeur, l’offre et le nom de l’image (SKU).</span><span class="sxs-lookup"><span data-stu-id="5d0e6-162">This process consists of finding the publisher, offer, and the image name (Sku).</span></span> 
+<span data-ttu-id="920d8-159">Bonjour Azure marketplace inclut plusieurs images de machine virtuelle qui peuvent être utilisé toocreate un nouvel ordinateur virtuel.</span><span class="sxs-lookup"><span data-stu-id="920d8-159">hello Azure marketplace includes many virtual machine images that can be used toocreate a new virtual machine.</span></span> <span data-ttu-id="920d8-160">Dans les étapes précédentes hello, un ordinateur virtuel a été créé à l’aide d’image de Windows Server 2016-Datacenter hello.</span><span class="sxs-lookup"><span data-stu-id="920d8-160">In hello previous steps, a virtual machine was created using hello Windows Server 2016-Datacenter image.</span></span> <span data-ttu-id="920d8-161">Dans cette étape, le module PowerShell de hello est marketplace de hello toosearch utilisé pour les autres images de Windows, qui peut également comme base pour les nouvelles machines virtuelles.</span><span class="sxs-lookup"><span data-stu-id="920d8-161">In this step, hello PowerShell module is used toosearch hello marketplace for other Windows images, which can also as a base for new VMs.</span></span> <span data-ttu-id="920d8-162">Ce processus se compose de recherche de serveur de publication hello, offre et le nom d’image hello (référence Sku).</span><span class="sxs-lookup"><span data-stu-id="920d8-162">This process consists of finding hello publisher, offer, and hello image name (Sku).</span></span> 
 
-<span data-ttu-id="5d0e6-163">Utilisez la commande [Get-AzureRmVMImagePublisher](/powershell/module/azurerm.compute/get-azurermvmimagepublisher) pour retourner une liste d’éditeurs d’images.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-163">Use the [Get-AzureRmVMImagePublisher](/powershell/module/azurerm.compute/get-azurermvmimagepublisher) command to return a list of image publishers.</span></span>  
+<span data-ttu-id="920d8-163">Hello d’utilisation [Get-AzureRmVMImagePublisher](/powershell/module/azurerm.compute/get-azurermvmimagepublisher) commande tooreturn une liste des serveurs de publication de l’image.</span><span class="sxs-lookup"><span data-stu-id="920d8-163">Use hello [Get-AzureRmVMImagePublisher](/powershell/module/azurerm.compute/get-azurermvmimagepublisher) command tooreturn a list of image publishers.</span></span>  
 
 ```powersehll
 Get-AzureRmVMImagePublisher -Location "EastUS"
 ```
 
-<span data-ttu-id="5d0e6-164">Utilisez la commande [Get-AzureRmVMImageOffer](/powershell/module/azurerm.compute/get-azurermvmimageoffer) pour retourner une liste d’offres d’images.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-164">Use the [Get-AzureRmVMImageOffer](/powershell/module/azurerm.compute/get-azurermvmimageoffer) to return a list of image offers.</span></span> <span data-ttu-id="5d0e6-165">Cette commande permet de filtrer la liste retournée en fonction de l’éditeur spécifié.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-165">With this command, the returned list is filtered on the specified publisher.</span></span> 
+<span data-ttu-id="920d8-164">Hello d’utilisation [Get-AzureRmVMImageOffer](/powershell/module/azurerm.compute/get-azurermvmimageoffer) tooreturn une liste des offres de l’image.</span><span class="sxs-lookup"><span data-stu-id="920d8-164">Use hello [Get-AzureRmVMImageOffer](/powershell/module/azurerm.compute/get-azurermvmimageoffer) tooreturn a list of image offers.</span></span> <span data-ttu-id="920d8-165">Avec cette commande, hello retourné la liste est filtrée sur le serveur de publication spécifié hello.</span><span class="sxs-lookup"><span data-stu-id="920d8-165">With this command, hello returned list is filtered on hello specified publisher.</span></span> 
 
 ```powershell
 Get-AzureRmVMImageOffer -Location "EastUS" -PublisherName "MicrosoftWindowsServer"
@@ -242,7 +242,7 @@ WindowsServer     MicrosoftWindowsServer EastUS
 WindowsServer-HUB MicrosoftWindowsServer EastUS   
 ```
 
-<span data-ttu-id="5d0e6-166">La commande [Get-AzureRmVMImageSku](/powershell/module/azurerm.compute/get-azurermvmimagesku) filtre ensuite les résultats en fonction du nom de l’éditeur et de l’offre pour retourner une liste de noms d’images.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-166">The [Get-AzureRmVMImageSku](/powershell/module/azurerm.compute/get-azurermvmimagesku) command will then filter on the publisher and offer name to return a list of image names.</span></span>
+<span data-ttu-id="920d8-166">Hello [Get-AzureRmVMImageSku](/powershell/module/azurerm.compute/get-azurermvmimagesku) commande puis filtre sur tooreturn de nom de serveur de publication et offre hello une liste de noms d’images.</span><span class="sxs-lookup"><span data-stu-id="920d8-166">hello [Get-AzureRmVMImageSku](/powershell/module/azurerm.compute/get-azurermvmimagesku) command will then filter on hello publisher and offer name tooreturn a list of image names.</span></span>
 
 ```powershell
 Get-AzureRmVMImageSku -Location "EastUS" -PublisherName "MicrosoftWindowsServer" -Offer "WindowsServer"
@@ -263,7 +263,7 @@ Skus                            Offer         PublisherName          Location
 2016-Nano-Server                WindowsServer MicrosoftWindowsServer EastUS
 ```
 
-<span data-ttu-id="5d0e6-167">Ces informations peuvent être utilisées pour déployer une machine virtuelle avec une image spécifique.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-167">This information can be used to deploy a VM with a specific image.</span></span> <span data-ttu-id="5d0e6-168">Cet exemple définit le nom de l’image sur l’objet de machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-168">This example sets the image name on the VM object.</span></span> <span data-ttu-id="5d0e6-169">Reportez-vous aux exemples indiqués précédemment dans ce didacticiel pour effectuer les étapes de déploiement.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-169">Refer to the previous examples in this tutorial for complete deployment steps.</span></span>
+<span data-ttu-id="920d8-167">Ces informations peuvent être utilisée toodeploy une machine virtuelle avec une image spécifique.</span><span class="sxs-lookup"><span data-stu-id="920d8-167">This information can be used toodeploy a VM with a specific image.</span></span> <span data-ttu-id="920d8-168">Cet exemple définit le nom de l’image hello sur l’objet de machine virtuelle hello.</span><span class="sxs-lookup"><span data-stu-id="920d8-168">This example sets hello image name on hello VM object.</span></span> <span data-ttu-id="920d8-169">Consultez les exemples précédents toohello dans ce didacticiel pour les étapes de déploiement complet.</span><span class="sxs-lookup"><span data-stu-id="920d8-169">Refer toohello previous examples in this tutorial for complete deployment steps.</span></span>
 
 ```powershell
 $vm = Set-AzureRmVMSourceImage `
@@ -274,43 +274,43 @@ $vm = Set-AzureRmVMSourceImage `
     -Version latest
 ```
 
-## <a name="understand-vm-sizes"></a><span data-ttu-id="5d0e6-170">Comprendre les tailles de machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="5d0e6-170">Understand VM sizes</span></span>
+## <a name="understand-vm-sizes"></a><span data-ttu-id="920d8-170">Comprendre les tailles de machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="920d8-170">Understand VM sizes</span></span>
 
-<span data-ttu-id="5d0e6-171">Une taille de machine virtuelle détermine la quantité de ressources de calcul comme le processeur, le processeur graphique (GPU) et la mémoire qui sont mises à la disposition de la machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-171">A virtual machine size determines the amount of compute resources such as CPU, GPU, and memory that are made available to the virtual machine.</span></span> <span data-ttu-id="5d0e6-172">Les machines virtuelles doivent être créées avec une taille adaptée à la charge de travail attendue.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-172">Virtual machines need to be created with a size appropriate for the expect work load.</span></span> <span data-ttu-id="5d0e6-173">Si la charge de travail augmente, une machine virtuelle existante peut être redimensionnée.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-173">If workload increases, an existing virtual machine can be resized.</span></span>
+<span data-ttu-id="920d8-171">Une taille de machine virtuelle détermine hello des ressources de calcul tels que le processeur et mémoire GPU apportées virtuels toohello disponibles.</span><span class="sxs-lookup"><span data-stu-id="920d8-171">A virtual machine size determines hello amount of compute resources such as CPU, GPU, and memory that are made available toohello virtual machine.</span></span> <span data-ttu-id="920d8-172">Machines virtuelles doivent toobe créé avec une taille appropriée pour hello attendent la charge de travail.</span><span class="sxs-lookup"><span data-stu-id="920d8-172">Virtual machines need toobe created with a size appropriate for hello expect work load.</span></span> <span data-ttu-id="920d8-173">Si la charge de travail augmente, une machine virtuelle existante peut être redimensionnée.</span><span class="sxs-lookup"><span data-stu-id="920d8-173">If workload increases, an existing virtual machine can be resized.</span></span>
 
-### <a name="vm-sizes"></a><span data-ttu-id="5d0e6-174">Tailles de machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="5d0e6-174">VM Sizes</span></span>
+### <a name="vm-sizes"></a><span data-ttu-id="920d8-174">Tailles de machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="920d8-174">VM Sizes</span></span>
 
-<span data-ttu-id="5d0e6-175">Le tableau suivant classe les tailles en fonction des cas d’utilisation.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-175">The following table categorizes sizes into use cases.</span></span>  
+<span data-ttu-id="920d8-175">Hello tableau suivant catégorise les tailles en cas d’usage.</span><span class="sxs-lookup"><span data-stu-id="920d8-175">hello following table categorizes sizes into use cases.</span></span>  
 
-| <span data-ttu-id="5d0e6-176">Type</span><span class="sxs-lookup"><span data-stu-id="5d0e6-176">Type</span></span>                     | <span data-ttu-id="5d0e6-177">Tailles</span><span class="sxs-lookup"><span data-stu-id="5d0e6-177">Sizes</span></span>           |    <span data-ttu-id="5d0e6-178">Description</span><span class="sxs-lookup"><span data-stu-id="5d0e6-178">Description</span></span>       |
+| <span data-ttu-id="920d8-176">Type</span><span class="sxs-lookup"><span data-stu-id="920d8-176">Type</span></span>                     | <span data-ttu-id="920d8-177">Tailles</span><span class="sxs-lookup"><span data-stu-id="920d8-177">Sizes</span></span>           |    <span data-ttu-id="920d8-178">Description</span><span class="sxs-lookup"><span data-stu-id="920d8-178">Description</span></span>       |
 |--------------------------|-------------------|------------------------------------------------------------------------------------------------------------------------------------|
-| <span data-ttu-id="5d0e6-179">Usage général</span><span class="sxs-lookup"><span data-stu-id="5d0e6-179">General purpose</span></span>         |<span data-ttu-id="5d0e6-180">DSv2, Dv2, DS, D, Av2, A0-7</span><span class="sxs-lookup"><span data-stu-id="5d0e6-180">DSv2, Dv2, DS, D, Av2, A0-7</span></span>| <span data-ttu-id="5d0e6-181">Ratio processeur/mémoire équilibré.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-181">Balanced CPU-to-memory.</span></span> <span data-ttu-id="5d0e6-182">Idéale pour le développement/test et pour les petites et moyennes applications et solutions de données.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-182">Ideal for dev / test and small to medium applications and data solutions.</span></span>  |
-| <span data-ttu-id="5d0e6-183">Optimisé pour le calcul</span><span class="sxs-lookup"><span data-stu-id="5d0e6-183">Compute optimized</span></span>      | <span data-ttu-id="5d0e6-184">Fs, F</span><span class="sxs-lookup"><span data-stu-id="5d0e6-184">Fs, F</span></span>             | <span data-ttu-id="5d0e6-185">Ratio processeur/mémoire élevé.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-185">High CPU-to-memory.</span></span> <span data-ttu-id="5d0e6-186">Convient pour les applications au trafic moyen, les appliances réseau et les processus de traitement par lots.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-186">Good for medium traffic applications, network appliances, and batch processes.</span></span>        |
-| <span data-ttu-id="5d0e6-187">Mémoire optimisée</span><span class="sxs-lookup"><span data-stu-id="5d0e6-187">Memory optimized</span></span>       | <span data-ttu-id="5d0e6-188">GS, G, DSv2, DS, Dv2, D</span><span class="sxs-lookup"><span data-stu-id="5d0e6-188">GS, G, DSv2, DS, Dv2, D</span></span>   | <span data-ttu-id="5d0e6-189">Ratio mémoire/cœur élevé.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-189">High memory-to-core.</span></span> <span data-ttu-id="5d0e6-190">Idéale pour les bases de données relationnelles, les caches moyens à grands et l’analytique en mémoire.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-190">Great for relational databases, medium to large caches, and in-memory analytics.</span></span>                 |
-| <span data-ttu-id="5d0e6-191">Optimisé pour le stockage</span><span class="sxs-lookup"><span data-stu-id="5d0e6-191">Storage optimized</span></span>       | <span data-ttu-id="5d0e6-192">Ls</span><span class="sxs-lookup"><span data-stu-id="5d0e6-192">Ls</span></span>                | <span data-ttu-id="5d0e6-193">Débit de disque et E/S élevés.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-193">High disk throughput and IO.</span></span> <span data-ttu-id="5d0e6-194">Idéale pour les bases de données NoSQL, SQL et Big Data.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-194">Ideal for Big Data, SQL, and NoSQL databases.</span></span>                                                         |
-| <span data-ttu-id="5d0e6-195">GPU</span><span class="sxs-lookup"><span data-stu-id="5d0e6-195">GPU</span></span>           | <span data-ttu-id="5d0e6-196">NV, NC</span><span class="sxs-lookup"><span data-stu-id="5d0e6-196">NV, NC</span></span>            | <span data-ttu-id="5d0e6-197">Machines virtuelles spécialisées conçues pour les opérations graphiques lourdes et la retouche vidéo.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-197">Specialized VMs targeted for heavy graphic rendering and video editing.</span></span>       |
-| <span data-ttu-id="5d0e6-198">Hautes performances</span><span class="sxs-lookup"><span data-stu-id="5d0e6-198">High performance</span></span> | <span data-ttu-id="5d0e6-199">H, A8-11</span><span class="sxs-lookup"><span data-stu-id="5d0e6-199">H, A8-11</span></span>          | <span data-ttu-id="5d0e6-200">Nos machines virtuelles dotées des processeurs les plus puissants avec interfaces réseau haut débit en option (RDMA).</span><span class="sxs-lookup"><span data-stu-id="5d0e6-200">Our most powerful CPU VMs with optional high-throughput network interfaces (RDMA).</span></span> 
+| <span data-ttu-id="920d8-179">Usage général</span><span class="sxs-lookup"><span data-stu-id="920d8-179">General purpose</span></span>         |<span data-ttu-id="920d8-180">DSv2, Dv2, DS, D, Av2, A0-7</span><span class="sxs-lookup"><span data-stu-id="920d8-180">DSv2, Dv2, DS, D, Av2, A0-7</span></span>| <span data-ttu-id="920d8-181">Ratio processeur/mémoire équilibré.</span><span class="sxs-lookup"><span data-stu-id="920d8-181">Balanced CPU-to-memory.</span></span> <span data-ttu-id="920d8-182">La solution idéale pour le développement / test et des solutions d’applications et des données toomedium petit.</span><span class="sxs-lookup"><span data-stu-id="920d8-182">Ideal for dev / test and small toomedium applications and data solutions.</span></span>  |
+| <span data-ttu-id="920d8-183">Optimisé pour le calcul</span><span class="sxs-lookup"><span data-stu-id="920d8-183">Compute optimized</span></span>      | <span data-ttu-id="920d8-184">Fs, F</span><span class="sxs-lookup"><span data-stu-id="920d8-184">Fs, F</span></span>             | <span data-ttu-id="920d8-185">Ratio processeur/mémoire élevé.</span><span class="sxs-lookup"><span data-stu-id="920d8-185">High CPU-to-memory.</span></span> <span data-ttu-id="920d8-186">Convient pour les applications au trafic moyen, les appliances réseau et les processus de traitement par lots.</span><span class="sxs-lookup"><span data-stu-id="920d8-186">Good for medium traffic applications, network appliances, and batch processes.</span></span>        |
+| <span data-ttu-id="920d8-187">Mémoire optimisée</span><span class="sxs-lookup"><span data-stu-id="920d8-187">Memory optimized</span></span>       | <span data-ttu-id="920d8-188">GS, G, DSv2, DS, Dv2, D</span><span class="sxs-lookup"><span data-stu-id="920d8-188">GS, G, DSv2, DS, Dv2, D</span></span>   | <span data-ttu-id="920d8-189">Ratio mémoire/cœur élevé.</span><span class="sxs-lookup"><span data-stu-id="920d8-189">High memory-to-core.</span></span> <span data-ttu-id="920d8-190">Idéal pour les bases de données relationnelles, les caches toolarge moyenne et en mémoire analytique.</span><span class="sxs-lookup"><span data-stu-id="920d8-190">Great for relational databases, medium toolarge caches, and in-memory analytics.</span></span>                 |
+| <span data-ttu-id="920d8-191">Optimisé pour le stockage</span><span class="sxs-lookup"><span data-stu-id="920d8-191">Storage optimized</span></span>       | <span data-ttu-id="920d8-192">Ls</span><span class="sxs-lookup"><span data-stu-id="920d8-192">Ls</span></span>                | <span data-ttu-id="920d8-193">Débit de disque et E/S élevés.</span><span class="sxs-lookup"><span data-stu-id="920d8-193">High disk throughput and IO.</span></span> <span data-ttu-id="920d8-194">Idéale pour les bases de données NoSQL, SQL et Big Data.</span><span class="sxs-lookup"><span data-stu-id="920d8-194">Ideal for Big Data, SQL, and NoSQL databases.</span></span>                                                         |
+| <span data-ttu-id="920d8-195">GPU</span><span class="sxs-lookup"><span data-stu-id="920d8-195">GPU</span></span>           | <span data-ttu-id="920d8-196">NV, NC</span><span class="sxs-lookup"><span data-stu-id="920d8-196">NV, NC</span></span>            | <span data-ttu-id="920d8-197">Machines virtuelles spécialisées conçues pour les opérations graphiques lourdes et la retouche vidéo.</span><span class="sxs-lookup"><span data-stu-id="920d8-197">Specialized VMs targeted for heavy graphic rendering and video editing.</span></span>       |
+| <span data-ttu-id="920d8-198">Hautes performances</span><span class="sxs-lookup"><span data-stu-id="920d8-198">High performance</span></span> | <span data-ttu-id="920d8-199">H, A8-11</span><span class="sxs-lookup"><span data-stu-id="920d8-199">H, A8-11</span></span>          | <span data-ttu-id="920d8-200">Nos machines virtuelles dotées des processeurs les plus puissants avec interfaces réseau haut débit en option (RDMA).</span><span class="sxs-lookup"><span data-stu-id="920d8-200">Our most powerful CPU VMs with optional high-throughput network interfaces (RDMA).</span></span> 
 
 
-### <a name="find-available-vm-sizes"></a><span data-ttu-id="5d0e6-201">Rechercher les tailles de machines virtuelles disponibles</span><span class="sxs-lookup"><span data-stu-id="5d0e6-201">Find available VM sizes</span></span>
+### <a name="find-available-vm-sizes"></a><span data-ttu-id="920d8-201">Rechercher les tailles de machines virtuelles disponibles</span><span class="sxs-lookup"><span data-stu-id="920d8-201">Find available VM sizes</span></span>
 
-<span data-ttu-id="5d0e6-202">Pour afficher la liste des tailles de machines virtuelles disponibles dans une région particulière, utilisez la commande [Get-AzureRmVMSize](/powershell/module/azurerm.compute/get-azurermvmsize).</span><span class="sxs-lookup"><span data-stu-id="5d0e6-202">To see a list of VM sizes available in a particular region, use the [Get-AzureRmVMSize](/powershell/module/azurerm.compute/get-azurermvmsize) command.</span></span>
+<span data-ttu-id="920d8-202">toosee une liste des ordinateurs virtuels des tailles disponibles dans une région particulière, utilisez hello [Get-AzureRmVMSize](/powershell/module/azurerm.compute/get-azurermvmsize) commande.</span><span class="sxs-lookup"><span data-stu-id="920d8-202">toosee a list of VM sizes available in a particular region, use hello [Get-AzureRmVMSize](/powershell/module/azurerm.compute/get-azurermvmsize) command.</span></span>
 
 ```powershell
 Get-AzureRmVMSize -Location EastUS
 ```
 
-## <a name="resize-a-vm"></a><span data-ttu-id="5d0e6-203">Redimensionner une machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="5d0e6-203">Resize a VM</span></span>
+## <a name="resize-a-vm"></a><span data-ttu-id="920d8-203">Redimensionner une machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="920d8-203">Resize a VM</span></span>
 
-<span data-ttu-id="5d0e6-204">Après avoir déployé une machine virtuelle, vous pouvez la redimensionner pour augmenter ou diminuer l’allocation des ressources.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-204">After a VM has been deployed, it can be resized to increase or decrease resource allocation.</span></span>
+<span data-ttu-id="920d8-204">Après avoir déployé une machine virtuelle, il peut être redimensionné tooincrease ou diminuer l’allocation de ressources.</span><span class="sxs-lookup"><span data-stu-id="920d8-204">After a VM has been deployed, it can be resized tooincrease or decrease resource allocation.</span></span>
 
-<span data-ttu-id="5d0e6-205">Avant de redimensionner une machine virtuelle, vérifiez si la taille souhaitée est disponible dans le cluster de machines virtuelles actuel.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-205">Before resizing a VM, check if the desired size is available on the current VM cluster.</span></span> <span data-ttu-id="5d0e6-206">La commande [Get-AzureRmVMSize](/powershell/module/azurerm.compute/get-azurermvmsize) retourne une liste de tailles.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-206">The [Get-AzureRmVMSize](/powershell/module/azurerm.compute/get-azurermvmsize) command returns a list of sizes.</span></span> 
+<span data-ttu-id="920d8-205">Avant de redimensionner une machine virtuelle, vérifiez si hello taille souhaitée est disponible sur le cluster d’ordinateurs virtuels en cours hello.</span><span class="sxs-lookup"><span data-stu-id="920d8-205">Before resizing a VM, check if hello desired size is available on hello current VM cluster.</span></span> <span data-ttu-id="920d8-206">Hello [Get-AzureRmVMSize](/powershell/module/azurerm.compute/get-azurermvmsize) commande renvoie une liste de tailles.</span><span class="sxs-lookup"><span data-stu-id="920d8-206">hello [Get-AzureRmVMSize](/powershell/module/azurerm.compute/get-azurermvmsize) command returns a list of sizes.</span></span> 
 
 ```powershell
 Get-AzureRmVMSize -ResourceGroupName myResourceGroupVM -VMName myVM 
 ```
 
-<span data-ttu-id="5d0e6-207">Si la taille souhaitée est disponible, la machine virtuelle peut être redimensionnée à partir d’un état sous tension, mais elle est redémarrée au cours de l’opération.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-207">If the desired size is available, the VM can be resized from a powered-on state, however it is rebooted during the operation.</span></span>
+<span data-ttu-id="920d8-207">Si hello souhaité de taille n’est disponible, hello machine virtuelle peut être redimensionnée à partir d’un état sous tension, mais il est redémarré au cours de l’opération de hello.</span><span class="sxs-lookup"><span data-stu-id="920d8-207">If hello desired size is available, hello VM can be resized from a powered-on state, however it is rebooted during hello operation.</span></span>
 
 ```powershell
 $vm = Get-AzureRmVM -ResourceGroupName myResourceGroupVM  -VMName myVM 
@@ -318,7 +318,7 @@ $vm.HardwareProfile.VmSize = "Standard_D4"
 Update-AzureRmVM -VM $vm -ResourceGroupName myResourceGroupVM 
 ```
 
-<span data-ttu-id="5d0e6-208">Si la taille souhaitée ne figure pas dans le cluster actuel, la machine virtuelle doit être libérée avant de procéder au redimensionnement.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-208">If the desired size is not on the current cluster, the VM needs to be deallocated before the resize operation can occur.</span></span> <span data-ttu-id="5d0e6-209">Lorsque la machine virtuelle est de nouveau sous tension, notez que toutes les données du disque temporaire sont supprimées et que l’adresse IP publique est modifiée, sauf si une adresse IP statique est utilisée.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-209">Note, when the VM is powered back on, any data on the temp disk are removed, and the public IP address change unless a static IP address is being used.</span></span> 
+<span data-ttu-id="920d8-208">Si vous le souhaitez hello taille n’est pas sur le cluster actuel hello, hello VM besoins toobe libérée avant que l’opération de redimensionnement hello peut se produire.</span><span class="sxs-lookup"><span data-stu-id="920d8-208">If hello desired size is not on hello current cluster, hello VM needs toobe deallocated before hello resize operation can occur.</span></span> <span data-ttu-id="920d8-209">Notez que, quand hello VM est sous tension précédent, toutes les données sur le disque temporaire de hello sont supprimées et adresse IP publique de hello modifier, sauf si une adresse IP statique est utilisée.</span><span class="sxs-lookup"><span data-stu-id="920d8-209">Note, when hello VM is powered back on, any data on hello temp disk are removed, and hello public IP address change unless a static IP address is being used.</span></span> 
 
 ```powershell
 Stop-AzureRmVM -ResourceGroupName myResourceGroupVM -Name "myVM" -Force
@@ -328,25 +328,25 @@ Update-AzureRmVM -VM $vm -ResourceGroupName myResourceGroupVM
 Start-AzureRmVM -ResourceGroupName myResourceGroupVM  -Name $vm.name
 ```
 
-## <a name="vm-power-states"></a><span data-ttu-id="5d0e6-210">États d’alimentation de machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="5d0e6-210">VM power states</span></span>
+## <a name="vm-power-states"></a><span data-ttu-id="920d8-210">États d’alimentation de la machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="920d8-210">VM power states</span></span>
 
-<span data-ttu-id="5d0e6-211">Une machine virtuelle Azure peut présenter différents états d’alimentation.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-211">An Azure VM can have one of many power states.</span></span> <span data-ttu-id="5d0e6-212">Cet état représente l’état actuel de la machine virtuelle du point de vue de l’hyperviseur.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-212">This state represents the current state of the VM from the standpoint of the hypervisor.</span></span> 
+<span data-ttu-id="920d8-211">Une machine virtuelle Azure peut présenter différents états d’alimentation.</span><span class="sxs-lookup"><span data-stu-id="920d8-211">An Azure VM can have one of many power states.</span></span> <span data-ttu-id="920d8-212">Cet état représente état actuel de hello Hello machine virtuelle à partir du point de vue hello de hello hyperviseur.</span><span class="sxs-lookup"><span data-stu-id="920d8-212">This state represents hello current state of hello VM from hello standpoint of hello hypervisor.</span></span> 
 
-### <a name="power-states"></a><span data-ttu-id="5d0e6-213">États d’alimentation</span><span class="sxs-lookup"><span data-stu-id="5d0e6-213">Power states</span></span>
+### <a name="power-states"></a><span data-ttu-id="920d8-213">États d’alimentation</span><span class="sxs-lookup"><span data-stu-id="920d8-213">Power states</span></span>
 
-| <span data-ttu-id="5d0e6-214">État d’alimentation</span><span class="sxs-lookup"><span data-stu-id="5d0e6-214">Power State</span></span> | <span data-ttu-id="5d0e6-215">Description</span><span class="sxs-lookup"><span data-stu-id="5d0e6-215">Description</span></span>
+| <span data-ttu-id="920d8-214">État d’alimentation</span><span class="sxs-lookup"><span data-stu-id="920d8-214">Power State</span></span> | <span data-ttu-id="920d8-215">Description</span><span class="sxs-lookup"><span data-stu-id="920d8-215">Description</span></span>
 |----|----|
-| <span data-ttu-id="5d0e6-216">Starting</span><span class="sxs-lookup"><span data-stu-id="5d0e6-216">Starting</span></span> | <span data-ttu-id="5d0e6-217">Indique que la machine virtuelle est en cours de démarrage.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-217">Indicates the virtual machine is being started.</span></span> |
-| <span data-ttu-id="5d0e6-218">Exécution</span><span class="sxs-lookup"><span data-stu-id="5d0e6-218">Running</span></span> | <span data-ttu-id="5d0e6-219">Indique que la machine virtuelle est en cours d’exécution.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-219">Indicates that the virtual machine is running.</span></span> |
-| <span data-ttu-id="5d0e6-220">En cours d’arrêt</span><span class="sxs-lookup"><span data-stu-id="5d0e6-220">Stopping</span></span> | <span data-ttu-id="5d0e6-221">Indique que la machine virtuelle est en cours d’arrêt.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-221">Indicates that the virtual machine is being stopped.</span></span> | 
-| <span data-ttu-id="5d0e6-222">Arrêté</span><span class="sxs-lookup"><span data-stu-id="5d0e6-222">Stopped</span></span> | <span data-ttu-id="5d0e6-223">Indique que la machine virtuelle est arrêtée.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-223">Indicates that the virtual machine is stopped.</span></span> <span data-ttu-id="5d0e6-224">Notez que les machines virtuelles à l’état arrêté entraînent toujours des frais de calcul.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-224">Note that virtual machines in the stopped state still incur compute charges.</span></span>  |
-| <span data-ttu-id="5d0e6-225">Libération</span><span class="sxs-lookup"><span data-stu-id="5d0e6-225">Deallocating</span></span> | <span data-ttu-id="5d0e6-226">Indique que la machine virtuelle est en cours de libération.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-226">Indicates that the virtual machine is being deallocated.</span></span> |
-| <span data-ttu-id="5d0e6-227">Libéré</span><span class="sxs-lookup"><span data-stu-id="5d0e6-227">Deallocated</span></span> | <span data-ttu-id="5d0e6-228">Indique que la machine virtuelle est totalement supprimée de l’hyperviseur, mais reste disponible dans le plan de contrôle.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-228">Indicates that the virtual machine is completely removed from the hypervisor but still available in the control plane.</span></span> <span data-ttu-id="5d0e6-229">Les machines virtuelles à l’état Libéré n’entraînent pas de frais de calcul.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-229">Virtual machines in the Deallocated state do not incur compute charges.</span></span> |
-| - | <span data-ttu-id="5d0e6-230">Indique que l’état d’alimentation de la machine virtuelle est inconnu.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-230">Indicates that the power state of the virtual machine is unknown.</span></span> |
+| <span data-ttu-id="920d8-216">Starting</span><span class="sxs-lookup"><span data-stu-id="920d8-216">Starting</span></span> | <span data-ttu-id="920d8-217">Indique l’ordinateur virtuel de hello est en cours de démarrage.</span><span class="sxs-lookup"><span data-stu-id="920d8-217">Indicates hello virtual machine is being started.</span></span> |
+| <span data-ttu-id="920d8-218">Exécution</span><span class="sxs-lookup"><span data-stu-id="920d8-218">Running</span></span> | <span data-ttu-id="920d8-219">Indique que l’ordinateur virtuel hello est en cours d’exécution.</span><span class="sxs-lookup"><span data-stu-id="920d8-219">Indicates that hello virtual machine is running.</span></span> |
+| <span data-ttu-id="920d8-220">En cours d’arrêt</span><span class="sxs-lookup"><span data-stu-id="920d8-220">Stopping</span></span> | <span data-ttu-id="920d8-221">Indique que l’ordinateur virtuel hello est en cours d’arrêt.</span><span class="sxs-lookup"><span data-stu-id="920d8-221">Indicates that hello virtual machine is being stopped.</span></span> | 
+| <span data-ttu-id="920d8-222">Arrêté</span><span class="sxs-lookup"><span data-stu-id="920d8-222">Stopped</span></span> | <span data-ttu-id="920d8-223">Indique que l’ordinateur virtuel hello est arrêté.</span><span class="sxs-lookup"><span data-stu-id="920d8-223">Indicates that hello virtual machine is stopped.</span></span> <span data-ttu-id="920d8-224">Notez que les ordinateurs virtuels en état de hello arrêté peut toujours occasionner des frais de calcul.</span><span class="sxs-lookup"><span data-stu-id="920d8-224">Note that virtual machines in hello stopped state still incur compute charges.</span></span>  |
+| <span data-ttu-id="920d8-225">Libération</span><span class="sxs-lookup"><span data-stu-id="920d8-225">Deallocating</span></span> | <span data-ttu-id="920d8-226">Indique que l’ordinateur virtuel hello est désalloué.</span><span class="sxs-lookup"><span data-stu-id="920d8-226">Indicates that hello virtual machine is being deallocated.</span></span> |
+| <span data-ttu-id="920d8-227">Libéré</span><span class="sxs-lookup"><span data-stu-id="920d8-227">Deallocated</span></span> | <span data-ttu-id="920d8-228">Indique que l’ordinateur virtuel hello est entièrement supprimé du hyperviseur hello mais restent disponibles dans le plan de contrôle hello.</span><span class="sxs-lookup"><span data-stu-id="920d8-228">Indicates that hello virtual machine is completely removed from hello hypervisor but still available in hello control plane.</span></span> <span data-ttu-id="920d8-229">Machines virtuelles dans hello désallouée état n’entraînent aucun frais de calcul.</span><span class="sxs-lookup"><span data-stu-id="920d8-229">Virtual machines in hello Deallocated state do not incur compute charges.</span></span> |
+| - | <span data-ttu-id="920d8-230">Indique que l’état de l’alimentation de l’ordinateur virtuel de hello hello est inconnu.</span><span class="sxs-lookup"><span data-stu-id="920d8-230">Indicates that hello power state of hello virtual machine is unknown.</span></span> |
 
-### <a name="find-power-state"></a><span data-ttu-id="5d0e6-231">Rechercher un état d’alimentation</span><span class="sxs-lookup"><span data-stu-id="5d0e6-231">Find power state</span></span>
+### <a name="find-power-state"></a><span data-ttu-id="920d8-231">Rechercher un état d’alimentation</span><span class="sxs-lookup"><span data-stu-id="920d8-231">Find power state</span></span>
 
-<span data-ttu-id="5d0e6-232">Pour récupérer l’état d’une machine virtuelle spécifique, utilisez la commande [Get-AzureRmVM](/powershell/module/azurerm.compute/get-azurermvm).</span><span class="sxs-lookup"><span data-stu-id="5d0e6-232">To retrieve the state of a particular VM, use the [Get-AzureRmVM](/powershell/module/azurerm.compute/get-azurermvm) command.</span></span> <span data-ttu-id="5d0e6-233">Veillez à spécifier le nom valide d’une machine virtuelle et d’un groupe de ressources.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-233">Be sure to specify a valid name for a virtual machine and resource group.</span></span> 
+<span data-ttu-id="920d8-232">état de hello tooretrieve d’un ordinateur virtuel, utilisez hello [Get-AzureRmVM](/powershell/module/azurerm.compute/get-azurermvm) commande.</span><span class="sxs-lookup"><span data-stu-id="920d8-232">tooretrieve hello state of a particular VM, use hello [Get-AzureRmVM](/powershell/module/azurerm.compute/get-azurermvm) command.</span></span> <span data-ttu-id="920d8-233">Être vraiment toospecify un nom valide pour un ordinateur virtuel et le groupe de ressources.</span><span class="sxs-lookup"><span data-stu-id="920d8-233">Be sure toospecify a valid name for a virtual machine and resource group.</span></span> 
 
 ```powershell
 Get-AzureRmVM `
@@ -355,7 +355,7 @@ Get-AzureRmVM `
     -Status | Select @{n="Status"; e={$_.Statuses[1].Code}}
 ```
 
-<span data-ttu-id="5d0e6-234">Output:</span><span class="sxs-lookup"><span data-stu-id="5d0e6-234">Output:</span></span>
+<span data-ttu-id="920d8-234">Output:</span><span class="sxs-lookup"><span data-stu-id="920d8-234">Output:</span></span>
 
 ```powershell
 Status
@@ -363,46 +363,46 @@ Status
 PowerState/running
 ```
 
-## <a name="management-tasks"></a><span data-ttu-id="5d0e6-235">Tâches de gestion</span><span class="sxs-lookup"><span data-stu-id="5d0e6-235">Management tasks</span></span>
+## <a name="management-tasks"></a><span data-ttu-id="920d8-235">Tâches de gestion</span><span class="sxs-lookup"><span data-stu-id="920d8-235">Management tasks</span></span>
 
-<span data-ttu-id="5d0e6-236">Pendant le cycle de vie d’une machine virtuelle, vous souhaiterez exécuter des tâches de gestion telles que le démarrage, l’arrêt ou la suppression d’une machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-236">During the lifecycle of a virtual machine, you may want to run management tasks such as starting, stopping, or deleting a virtual machine.</span></span> <span data-ttu-id="5d0e6-237">En outre, vous souhaiterez peut-être créer des scripts pour automatiser les tâches répétitives ou complexes.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-237">Additionally, you may want to create scripts to automate repetitive or complex tasks.</span></span> <span data-ttu-id="5d0e6-238">À l’aide d’Azure PowerShell, de nombreuses tâches courantes de gestion peuvent être exécutées à partir de la ligne de commande ou dans des scripts.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-238">Using Azure PowerShell, many common management tasks can be run from the command line or in scripts.</span></span>
+<span data-ttu-id="920d8-236">Au cours de hello du cycle de vie d’un ordinateur virtuel, vous souhaiterez toorun des tâches de gestion telles que le démarrage, arrêt ou suppression d’une machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="920d8-236">During hello lifecycle of a virtual machine, you may want toorun management tasks such as starting, stopping, or deleting a virtual machine.</span></span> <span data-ttu-id="920d8-237">En outre, vous souhaiterez toocreate scripts tooautomate répétitives ou complexes des tâches.</span><span class="sxs-lookup"><span data-stu-id="920d8-237">Additionally, you may want toocreate scripts tooautomate repetitive or complex tasks.</span></span> <span data-ttu-id="920d8-238">À l’aide d’Azure PowerShell, nombreuses tâches courantes de gestion peuvent être exécutées à partir de la ligne de commande hello ou dans des scripts.</span><span class="sxs-lookup"><span data-stu-id="920d8-238">Using Azure PowerShell, many common management tasks can be run from hello command line or in scripts.</span></span>
 
-### <a name="stop-virtual-machine"></a><span data-ttu-id="5d0e6-239">Arrêt d’une machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="5d0e6-239">Stop virtual machine</span></span>
+### <a name="stop-virtual-machine"></a><span data-ttu-id="920d8-239">Arrêt d’une machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="920d8-239">Stop virtual machine</span></span>
 
-<span data-ttu-id="5d0e6-240">Arrêtez et libérez une machine virtuelle avec [Stop-AzureRmVM](/powershell/module/azurerm.compute/stop-azurermvm) :</span><span class="sxs-lookup"><span data-stu-id="5d0e6-240">Stop and deallocate a virtual machine with [Stop-AzureRmVM](/powershell/module/azurerm.compute/stop-azurermvm):</span></span>
+<span data-ttu-id="920d8-240">Arrêtez et libérez une machine virtuelle avec [Stop-AzureRmVM](/powershell/module/azurerm.compute/stop-azurermvm) :</span><span class="sxs-lookup"><span data-stu-id="920d8-240">Stop and deallocate a virtual machine with [Stop-AzureRmVM](/powershell/module/azurerm.compute/stop-azurermvm):</span></span>
 
 ```powershell
 Stop-AzureRmVM -ResourceGroupName myResourceGroupVM -Name "myVM" -Force
 ```
 
-<span data-ttu-id="5d0e6-241">Si vous souhaitez conserver la machine virtuelle dans un état approvisionné, utilisez le paramètre -StayProvisioned.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-241">If you want to keep the virtual machine in a provisioned state, use the -StayProvisioned parameter.</span></span>
+<span data-ttu-id="920d8-241">Si vous voulez tookeep hello virtual machine dans un état configuré, utilisez le paramètre de - StayProvisioned de hello.</span><span class="sxs-lookup"><span data-stu-id="920d8-241">If you want tookeep hello virtual machine in a provisioned state, use hello -StayProvisioned parameter.</span></span>
 
-### <a name="start-virtual-machine"></a><span data-ttu-id="5d0e6-242">Démarrage d’une machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="5d0e6-242">Start virtual machine</span></span>
+### <a name="start-virtual-machine"></a><span data-ttu-id="920d8-242">Démarrage d’une machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="920d8-242">Start virtual machine</span></span>
 
 ```powershell
 Start-AzureRmVM -ResourceGroupName myResourceGroupVM -Name myVM
 ```
 
-### <a name="delete-resource-group"></a><span data-ttu-id="5d0e6-243">Supprimer un groupe de ressources</span><span class="sxs-lookup"><span data-stu-id="5d0e6-243">Delete resource group</span></span>
+### <a name="delete-resource-group"></a><span data-ttu-id="920d8-243">Supprimer un groupe de ressources</span><span class="sxs-lookup"><span data-stu-id="920d8-243">Delete resource group</span></span>
 
-<span data-ttu-id="5d0e6-244">La suppression d’un groupe de ressources supprime également toutes les ressources qu’il contient.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-244">Deleting a resource group also deletes all resources contained within.</span></span>
+<span data-ttu-id="920d8-244">La suppression d’un groupe de ressources supprime également toutes les ressources qu’il contient.</span><span class="sxs-lookup"><span data-stu-id="920d8-244">Deleting a resource group also deletes all resources contained within.</span></span>
 
 ```powershell
 Remove-AzureRmResourceGroup -Name myResourceGroupVM -Force
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="5d0e6-245">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="5d0e6-245">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="920d8-245">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="920d8-245">Next steps</span></span>
 
-<span data-ttu-id="5d0e6-246">Ce didacticiel vous a montré les tâches de base de création et de gestion de machines virtuelles, notamment :</span><span class="sxs-lookup"><span data-stu-id="5d0e6-246">In this tutorial, you learned about basic VM creation and management such as how to:</span></span>
+<span data-ttu-id="920d8-246">Ce didacticiel vous a montré les tâches de base de création et de gestion de machines virtuelles, notamment :</span><span class="sxs-lookup"><span data-stu-id="920d8-246">In this tutorial, you learned about basic VM creation and management such as how to:</span></span>
 
 > [!div class="checklist"]
-> * <span data-ttu-id="5d0e6-247">Créer une machine virtuelle et vous y connecter</span><span class="sxs-lookup"><span data-stu-id="5d0e6-247">Create and connect to a VM</span></span>
-> * <span data-ttu-id="5d0e6-248">Sélectionner et utiliser des images de machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="5d0e6-248">Select and use VM images</span></span>
-> * <span data-ttu-id="5d0e6-249">Afficher et utiliser des tailles de machine virtuelle spécifiques</span><span class="sxs-lookup"><span data-stu-id="5d0e6-249">View and use specific VM sizes</span></span>
-> * <span data-ttu-id="5d0e6-250">Redimensionner une machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="5d0e6-250">Resize a VM</span></span>
-> * <span data-ttu-id="5d0e6-251">Consulter et comprendre l’état d’une machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="5d0e6-251">View and understand VM state</span></span>
+> * <span data-ttu-id="920d8-247">Créer et connecter tooa machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="920d8-247">Create and connect tooa VM</span></span>
+> * <span data-ttu-id="920d8-248">Sélectionner et utiliser des images de machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="920d8-248">Select and use VM images</span></span>
+> * <span data-ttu-id="920d8-249">Afficher et utiliser des tailles de machine virtuelle spécifiques</span><span class="sxs-lookup"><span data-stu-id="920d8-249">View and use specific VM sizes</span></span>
+> * <span data-ttu-id="920d8-250">Redimensionner une machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="920d8-250">Resize a VM</span></span>
+> * <span data-ttu-id="920d8-251">Consulter et comprendre l’état d’une machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="920d8-251">View and understand VM state</span></span>
 
-<span data-ttu-id="5d0e6-252">Passez au didacticiel suivant pour en savoir plus sur les disques de machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="5d0e6-252">Advance to the next tutorial to learn about VM disks.</span></span>  
+<span data-ttu-id="920d8-252">Avance toohello toolearn de didacticiel suivant sur les disques de machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="920d8-252">Advance toohello next tutorial toolearn about VM disks.</span></span>  
 
 > [!div class="nextstepaction"]
-> [<span data-ttu-id="5d0e6-253">Créer et gérer des disques de machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="5d0e6-253">Create and Manage VM disks</span></span>](./tutorial-manage-data-disk.md)
+> [<span data-ttu-id="920d8-253">Créer et gérer des disques de machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="920d8-253">Create and Manage VM disks</span></span>](./tutorial-manage-data-disk.md)

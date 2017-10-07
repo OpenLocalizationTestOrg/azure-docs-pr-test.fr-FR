@@ -1,6 +1,6 @@
 ---
-title: "Vérifier la connectivité avec Azure Network Watcher - PowerShell | Microsoft Docs"
-description: "Cette page explique comment tester la connectivité avec Network Watcher à l’aide de PowerShell"
+title: "connectivité aaaCheck avec l’Observateur réseau de Azure - PowerShell | Documents Microsoft"
+description: "Cette page explique comment tootest une connectivité avec l’Observateur réseau à l’aide de PowerShell"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -13,51 +13,51 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 07/11/2017
 ms.author: gwallace
-ms.openlocfilehash: a8f936cd23838759dc30b04688d3c6544e4895cc
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 4bcb90a72f178445c38b7bd7fc5054c5d0c200bb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="check-connectivity-with-azure-network-watcher-using-powershell"></a><span data-ttu-id="3963c-103">Vérifier la connectivité avec Azure Network Watcher à l’aide de PowerShell</span><span class="sxs-lookup"><span data-stu-id="3963c-103">Check connectivity with Azure Network Watcher using PowerShell</span></span>
+# <a name="check-connectivity-with-azure-network-watcher-using-powershell"></a><span data-ttu-id="01c6f-103">Vérifier la connectivité avec Azure Network Watcher à l’aide de PowerShell</span><span class="sxs-lookup"><span data-stu-id="01c6f-103">Check connectivity with Azure Network Watcher using PowerShell</span></span>
 
 > [!div class="op_single_selector"]
-> - [<span data-ttu-id="3963c-104">Portail</span><span class="sxs-lookup"><span data-stu-id="3963c-104">Portal</span></span>](network-watcher-connectivity-portal.md)
-> - [<span data-ttu-id="3963c-105">PowerShell</span><span class="sxs-lookup"><span data-stu-id="3963c-105">PowerShell</span></span>](network-watcher-connectivity-powershell.md)
-> - [<span data-ttu-id="3963c-106">CLI 2.0</span><span class="sxs-lookup"><span data-stu-id="3963c-106">CLI 2.0</span></span>](network-watcher-connectivity-cli.md)
-> - [<span data-ttu-id="3963c-107">API REST Azure</span><span class="sxs-lookup"><span data-stu-id="3963c-107">Azure REST API</span></span>](network-watcher-connectivity-rest.md)
+> - [<span data-ttu-id="01c6f-104">Portail</span><span class="sxs-lookup"><span data-stu-id="01c6f-104">Portal</span></span>](network-watcher-connectivity-portal.md)
+> - [<span data-ttu-id="01c6f-105">PowerShell</span><span class="sxs-lookup"><span data-stu-id="01c6f-105">PowerShell</span></span>](network-watcher-connectivity-powershell.md)
+> - [<span data-ttu-id="01c6f-106">CLI 2.0</span><span class="sxs-lookup"><span data-stu-id="01c6f-106">CLI 2.0</span></span>](network-watcher-connectivity-cli.md)
+> - [<span data-ttu-id="01c6f-107">API REST Azure</span><span class="sxs-lookup"><span data-stu-id="01c6f-107">Azure REST API</span></span>](network-watcher-connectivity-rest.md)
 
-<span data-ttu-id="3963c-108">Découvrez comment utiliser la connectivité pour vérifier si une connexion TCP directe entre une machine virtuelle et un point de terminaison donné peut être établie.</span><span class="sxs-lookup"><span data-stu-id="3963c-108">Learn how to use connectivity to verify if a direct TCP connection from a virtual machine to a given endpoint can be established.</span></span>
+<span data-ttu-id="01c6f-108">Découvrez comment toouse connectivité tooverify si une connexion TCP directe à partir d’un tooa de machine virtuelle donné du point de terminaison peut être établie.</span><span class="sxs-lookup"><span data-stu-id="01c6f-108">Learn how toouse connectivity tooverify if a direct TCP connection from a virtual machine tooa given endpoint can be established.</span></span>
 
-## <a name="before-you-begin"></a><span data-ttu-id="3963c-109">Avant de commencer</span><span class="sxs-lookup"><span data-stu-id="3963c-109">Before you begin</span></span>
+## <a name="before-you-begin"></a><span data-ttu-id="01c6f-109">Avant de commencer</span><span class="sxs-lookup"><span data-stu-id="01c6f-109">Before you begin</span></span>
 
-<span data-ttu-id="3963c-110">Cet article part du principe que vous disposez des ressources suivantes :</span><span class="sxs-lookup"><span data-stu-id="3963c-110">This article assumes you have the following resources:</span></span>
+<span data-ttu-id="01c6f-110">Cet article suppose que vous avez hello suivant des ressources :</span><span class="sxs-lookup"><span data-stu-id="01c6f-110">This article assumes you have hello following resources:</span></span>
 
-* <span data-ttu-id="3963c-111">Une instance de Network Watcher dans la région où vous souhaitez vérifier la connectivité.</span><span class="sxs-lookup"><span data-stu-id="3963c-111">An instance of Network Watcher in the region you want to check connectivity.</span></span>
+* <span data-ttu-id="01c6f-111">Une instance de l’Observateur réseau dans la région de hello souhaité toocheck connectivité.</span><span class="sxs-lookup"><span data-stu-id="01c6f-111">An instance of Network Watcher in hello region you want toocheck connectivity.</span></span>
 
-* <span data-ttu-id="3963c-112">Des machines virtuelles avec lesquelles vérifier la connectivité.</span><span class="sxs-lookup"><span data-stu-id="3963c-112">Virtual machines to check connectivity with.</span></span>
+* <span data-ttu-id="01c6f-112">Machines virtuelles toocheck la connectivité avec.</span><span class="sxs-lookup"><span data-stu-id="01c6f-112">Virtual machines toocheck connectivity with.</span></span>
 
 [!INCLUDE [network-watcher-preview](../../includes/network-watcher-public-preview-notice.md)]
 
 > [!IMPORTANT]
-> <span data-ttu-id="3963c-113">La vérification de la connectivité requiert une extension de machine virtuelle `AzureNetworkWatcherExtension`.</span><span class="sxs-lookup"><span data-stu-id="3963c-113">Connectivity check requires a virtual machine extension `AzureNetworkWatcherExtension`.</span></span> <span data-ttu-id="3963c-114">Pour installer l’extension sur une machine virtuelle Windows, consultez la page [Azure Network Watcher Agent virtual machine extension for Windows](../virtual-machines/windows/extensions-nwa.md) (Extension de machine virtuelle Azure Network Watcher Agent pour Windows). Pour une machine virtuelle Linux, consultez la page [Azure Network Watcher Agent virtual machine extension for Linux](../virtual-machines/linux/extensions-nwa.md) (Extension de machine virtuelle Azure Network Watcher Agent pour Linux).</span><span class="sxs-lookup"><span data-stu-id="3963c-114">For installing the extension on a Windows VM visit [Azure Network Watcher Agent virtual machine extension for Windows](../virtual-machines/windows/extensions-nwa.md) and for Linux VM visit [Azure Network Watcher Agent virtual machine extension for Linux](../virtual-machines/linux/extensions-nwa.md).</span></span>
+> <span data-ttu-id="01c6f-113">La vérification de la connectivité requiert une extension de machine virtuelle `AzureNetworkWatcherExtension`.</span><span class="sxs-lookup"><span data-stu-id="01c6f-113">Connectivity check requires a virtual machine extension `AzureNetworkWatcherExtension`.</span></span> <span data-ttu-id="01c6f-114">Pour installer l’extension de hello sur une machine virtuelle Windows, visitez [extension de machine virtuelle d’Agent de l’Observateur réseau Azure pour Windows](../virtual-machines/windows/extensions-nwa.md) et de, visitez Linux VM [extension de machine virtuelle Azure réseau Observateur Agent pour Linux](../virtual-machines/linux/extensions-nwa.md).</span><span class="sxs-lookup"><span data-stu-id="01c6f-114">For installing hello extension on a Windows VM visit [Azure Network Watcher Agent virtual machine extension for Windows](../virtual-machines/windows/extensions-nwa.md) and for Linux VM visit [Azure Network Watcher Agent virtual machine extension for Linux](../virtual-machines/linux/extensions-nwa.md).</span></span>
 
-## <a name="register-the-preview-capability"></a><span data-ttu-id="3963c-115">Inscrire la fonction de version préliminaire</span><span class="sxs-lookup"><span data-stu-id="3963c-115">Register the preview capability</span></span>
+## <a name="register-hello-preview-capability"></a><span data-ttu-id="01c6f-115">Inscrire la fonction d’aperçu hello</span><span class="sxs-lookup"><span data-stu-id="01c6f-115">Register hello preview capability</span></span>
 
-<span data-ttu-id="3963c-116">La connectivité est actuellement en préversion publique. Pour l’utiliser, cette fonctionnalité doit être inscrite.</span><span class="sxs-lookup"><span data-stu-id="3963c-116">Connectivity is currently in public preview, to use this feature it needs to be registered.</span></span> <span data-ttu-id="3963c-117">Pour ce faire, exécutez l’exemple PowerShell suivant :</span><span class="sxs-lookup"><span data-stu-id="3963c-117">To do this, run the following PowerShell sample:</span></span>
+<span data-ttu-id="01c6f-116">Connectivité est actuellement en version préliminaire publique, toouse cette fonctionnalité, qu'il doit toobe inscrit.</span><span class="sxs-lookup"><span data-stu-id="01c6f-116">Connectivity is currently in public preview, toouse this feature it needs toobe registered.</span></span> <span data-ttu-id="01c6f-117">toodo, exécution hello suivant l’exemple PowerShell :</span><span class="sxs-lookup"><span data-stu-id="01c6f-117">toodo this, run hello following PowerShell sample:</span></span>
 
 ```powershell
 Register-AzureRmProviderFeature -FeatureName AllowNetworkWatcherConnectivityCheck  -ProviderNamespace Microsoft.Network
 Register-AzureRmResourceProvider -ProviderNamespace Microsoft.Network
 ```
 
-<span data-ttu-id="3963c-118">Pour vérifier que l’inscription s’est bien déroulée, exécutez l’exemple Powershell suivant :</span><span class="sxs-lookup"><span data-stu-id="3963c-118">To verify the registration was successful, run the following Powershell sample:</span></span>
+<span data-ttu-id="01c6f-118">l’inscription de hello tooverify a réussi, exécutez hello suivant l’exemple Powershell :</span><span class="sxs-lookup"><span data-stu-id="01c6f-118">tooverify hello registration was successful, run hello following Powershell sample:</span></span>
 
 ```powershell
 Get-AzureRmProviderFeature -FeatureName AllowNetworkWatcherConnectivityCheck  -ProviderNamespace  Microsoft.Network
 ```
 
-<span data-ttu-id="3963c-119">Si la fonctionnalité a été correctement inscrite, vous devez obtenir la sortie suivante :</span><span class="sxs-lookup"><span data-stu-id="3963c-119">If the feature was properly registered, the output should match the following:</span></span>
+<span data-ttu-id="01c6f-119">Si la fonctionnalité de hello a été inscrit correctement, sortie de hello doit correspondre au suivant de hello :</span><span class="sxs-lookup"><span data-stu-id="01c6f-119">If hello feature was properly registered, hello output should match hello following:</span></span>
 
 ```
 FeatureName         ProviderName      RegistrationState
@@ -65,11 +65,11 @@ FeatureName         ProviderName      RegistrationState
 AllowNetworkWatcherConnectivityCheck  Microsoft.Network Registered
 ```
 
-## <a name="check-connectivity-to-a-virtual-machine"></a><span data-ttu-id="3963c-120">Vérifier la connectivité à une machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="3963c-120">Check connectivity to a virtual machine</span></span>
+## <a name="check-connectivity-tooa-virtual-machine"></a><span data-ttu-id="01c6f-120">Vérifiez la connectivité tooa virtual machine</span><span class="sxs-lookup"><span data-stu-id="01c6f-120">Check connectivity tooa virtual machine</span></span>
 
-<span data-ttu-id="3963c-121">Cet exemple vérifie la connectivité à une machine virtuelle de destination sur le port 80.</span><span class="sxs-lookup"><span data-stu-id="3963c-121">This example checks connectivity to a destination virtual machine over port 80.</span></span>
+<span data-ttu-id="01c6f-121">Cet exemple vérifie l’ordinateur virtuel de destination de tooa connectivité via le port 80.</span><span class="sxs-lookup"><span data-stu-id="01c6f-121">This example checks connectivity tooa destination virtual machine over port 80.</span></span>
 
-### <a name="example"></a><span data-ttu-id="3963c-122">Exemple</span><span class="sxs-lookup"><span data-stu-id="3963c-122">Example</span></span>
+### <a name="example"></a><span data-ttu-id="01c6f-122">Exemple</span><span class="sxs-lookup"><span data-stu-id="01c6f-122">Example</span></span>
 
 ```powershell
 $rgName = "ContosoRG"
@@ -87,9 +87,9 @@ $VM2 = Get-AzureRMVM -ResourceGroupName $rgName | Where-Object -Property Name -E
 Test-AzureRmNetworkWatcherConnectivity -NetworkWatcher $networkWatcher -SourceId $VM1.Id -DestinationId $VM2.Id -DestinationPort 80
 ```
 
-### <a name="response"></a><span data-ttu-id="3963c-123">Réponse</span><span class="sxs-lookup"><span data-stu-id="3963c-123">Response</span></span>
+### <a name="response"></a><span data-ttu-id="01c6f-123">Réponse</span><span class="sxs-lookup"><span data-stu-id="01c6f-123">Response</span></span>
 
-<span data-ttu-id="3963c-124">La réponse suivante est tirée de l’exemple précédent.</span><span class="sxs-lookup"><span data-stu-id="3963c-124">The following response is from the previous example.</span></span>  <span data-ttu-id="3963c-125">Dans cette réponse, `ConnectionStatus` est **Inaccessible**.</span><span class="sxs-lookup"><span data-stu-id="3963c-125">In this response, the `ConnectionStatus` is **Unreachable**.</span></span> <span data-ttu-id="3963c-126">Vous pouvez constater que toutes les sondes envoyées ont échoué.</span><span class="sxs-lookup"><span data-stu-id="3963c-126">You can see that all the probes sent failed.</span></span> <span data-ttu-id="3963c-127">La connectivité a échoué au niveau de l’appliance virtuelle en raison de `NetworkSecurityRule`, configuré par l’utilisateur et nommé **UserRule_Port80**, destiné à bloquer le trafic entrant sur le port 80.</span><span class="sxs-lookup"><span data-stu-id="3963c-127">The connectivity failed at the virtual appliance due to a user-configured `NetworkSecurityRule` named **UserRule_Port80**, configured to block incoming traffic on port 80.</span></span> <span data-ttu-id="3963c-128">Ces informations peuvent être utilisées pour mener des recherches sur les problèmes de connexion.</span><span class="sxs-lookup"><span data-stu-id="3963c-128">This information can be used to research connection issues.</span></span>
+<span data-ttu-id="01c6f-124">Hello suivant la réponse est à partir de l’exemple précédent de hello.</span><span class="sxs-lookup"><span data-stu-id="01c6f-124">hello following response is from hello previous example.</span></span>  <span data-ttu-id="01c6f-125">Dans cette réponse, hello `ConnectionStatus` est **inaccessible**.</span><span class="sxs-lookup"><span data-stu-id="01c6f-125">In this response, hello `ConnectionStatus` is **Unreachable**.</span></span> <span data-ttu-id="01c6f-126">Vous pouvez voir que tous les hello sondes envoyées ayant échouées.</span><span class="sxs-lookup"><span data-stu-id="01c6f-126">You can see that all hello probes sent failed.</span></span> <span data-ttu-id="01c6f-127">Échec de la connectivité de Hello au niveau de l’appliance virtuelle hello tooa échéance configurée par l’utilisateur `NetworkSecurityRule` nommé **UserRule_Port80**, configuré tooblock du trafic entrant sur le port 80.</span><span class="sxs-lookup"><span data-stu-id="01c6f-127">hello connectivity failed at hello virtual appliance due tooa user-configured `NetworkSecurityRule` named **UserRule_Port80**, configured tooblock incoming traffic on port 80.</span></span> <span data-ttu-id="01c6f-128">Ces informations peuvent être utilisées tooresearch les problèmes de connexion.</span><span class="sxs-lookup"><span data-stu-id="01c6f-128">This information can be used tooresearch connection issues.</span></span>
 
 ```
 ConnectionStatus : Unreachable
@@ -160,11 +160,11 @@ Hops             : [
                    ]
 ```
 
-## <a name="validate-routing-issues"></a><span data-ttu-id="3963c-129">Valider les problèmes de routage</span><span class="sxs-lookup"><span data-stu-id="3963c-129">Validate routing issues</span></span>
+## <a name="validate-routing-issues"></a><span data-ttu-id="01c6f-129">Valider les problèmes de routage</span><span class="sxs-lookup"><span data-stu-id="01c6f-129">Validate routing issues</span></span>
 
-<span data-ttu-id="3963c-130">Cet exemple vérifie la connectivité entre une machine virtuelle et un point de terminaison distant.</span><span class="sxs-lookup"><span data-stu-id="3963c-130">The example checks connectivity between a virtual machine and a remote endpoint.</span></span>
+<span data-ttu-id="01c6f-130">exemple de Hello vérifie la connectivité entre un ordinateur virtuel et un point de terminaison distant.</span><span class="sxs-lookup"><span data-stu-id="01c6f-130">hello example checks connectivity between a virtual machine and a remote endpoint.</span></span>
 
-### <a name="example"></a><span data-ttu-id="3963c-131">Exemple</span><span class="sxs-lookup"><span data-stu-id="3963c-131">Example</span></span>
+### <a name="example"></a><span data-ttu-id="01c6f-131">Exemple</span><span class="sxs-lookup"><span data-stu-id="01c6f-131">Example</span></span>
 
 ```powershell
 $rgName = "ContosoRG"
@@ -180,9 +180,9 @@ $VM1 = Get-AzureRMVM -ResourceGroupName $rgName | Where-Object -Property Name -E
 Test-AzureRmNetworkWatcherConnectivity -NetworkWatcher $networkWatcher -SourceId $VM1.Id -DestinationAddress 13.107.21.200 -DestinationPort 80
 ```
 
-### <a name="response"></a><span data-ttu-id="3963c-132">Réponse</span><span class="sxs-lookup"><span data-stu-id="3963c-132">Response</span></span>
+### <a name="response"></a><span data-ttu-id="01c6f-132">Réponse</span><span class="sxs-lookup"><span data-stu-id="01c6f-132">Response</span></span>
 
-<span data-ttu-id="3963c-133">Dans l’exemple suivant, `ConnectionStatus` est **Inaccessible**.</span><span class="sxs-lookup"><span data-stu-id="3963c-133">In the following example, the `ConnectionStatus` is shown as **Unreachable**.</span></span> <span data-ttu-id="3963c-134">Dans les informations relatives à `Hops`, vous pouvez constater sous `Issues` que le trafic a été bloqué par `UserDefinedRoute`.</span><span class="sxs-lookup"><span data-stu-id="3963c-134">In the `Hops` details, you can see under `Issues` that the traffic was blocked due to a `UserDefinedRoute`.</span></span> 
+<span data-ttu-id="01c6f-133">Dans l’exemple suivant de hello, hello `ConnectionStatus` est affiché comme **inaccessible**.</span><span class="sxs-lookup"><span data-stu-id="01c6f-133">In hello following example, hello `ConnectionStatus` is shown as **Unreachable**.</span></span> <span data-ttu-id="01c6f-134">Bonjour `Hops` plus d’informations, vous pouvez voir sous `Issues` que le trafic de hello a été bloqué échéance tooa `UserDefinedRoute`.</span><span class="sxs-lookup"><span data-stu-id="01c6f-134">In hello `Hops` details, you can see under `Issues` that hello traffic was blocked due tooa `UserDefinedRoute`.</span></span> 
 
 ```
 ConnectionStatus : Unreachable
@@ -225,11 +225,11 @@ Hops             : [
                    ]
 ```
 
-## <a name="check-website-latency"></a><span data-ttu-id="3963c-135">Vérifier la latence du site Web</span><span class="sxs-lookup"><span data-stu-id="3963c-135">Check website latency</span></span>
+## <a name="check-website-latency"></a><span data-ttu-id="01c6f-135">Vérifier la latence du site Web</span><span class="sxs-lookup"><span data-stu-id="01c6f-135">Check website latency</span></span>
 
-<span data-ttu-id="3963c-136">L’exemple suivant vérifie la connectivité à un site Web.</span><span class="sxs-lookup"><span data-stu-id="3963c-136">The following example checks the connectivity to a website.</span></span>
+<span data-ttu-id="01c6f-136">Hello exemple suivant vérifie le site Web du tooa hello connectivité.</span><span class="sxs-lookup"><span data-stu-id="01c6f-136">hello following example checks hello connectivity tooa website.</span></span>
 
-### <a name="example"></a><span data-ttu-id="3963c-137">Exemple</span><span class="sxs-lookup"><span data-stu-id="3963c-137">Example</span></span>
+### <a name="example"></a><span data-ttu-id="01c6f-137">Exemple</span><span class="sxs-lookup"><span data-stu-id="01c6f-137">Example</span></span>
 
 ```powershell
 $rgName = "ContosoRG"
@@ -245,9 +245,9 @@ $VM1 = Get-AzureRMVM -ResourceGroupName $rgName | Where-Object -Property Name -E
 Test-AzureRmNetworkWatcherConnectivity -NetworkWatcher $networkWatcher -SourceId $VM1.Id -DestinationAddress http://bing.com/
 ```
 
-### <a name="response"></a><span data-ttu-id="3963c-138">Réponse</span><span class="sxs-lookup"><span data-stu-id="3963c-138">Response</span></span>
+### <a name="response"></a><span data-ttu-id="01c6f-138">Réponse</span><span class="sxs-lookup"><span data-stu-id="01c6f-138">Response</span></span>
 
-<span data-ttu-id="3963c-139">Dans la réponse suivante, vous pouvez constater que `ConnectionStatus` apparaît **Joignable**.</span><span class="sxs-lookup"><span data-stu-id="3963c-139">In the following response, you can see the `ConnectionStatus` shows as **Reachable**.</span></span> <span data-ttu-id="3963c-140">Lorsqu’une connexion est établie, les valeurs de latence sont fournies.</span><span class="sxs-lookup"><span data-stu-id="3963c-140">When a connection is successful, latency values are provided.</span></span>
+<span data-ttu-id="01c6f-139">Bonjour suivant la réponse, vous pouvez voir hello `ConnectionStatus` affiche sous la forme **joignable**.</span><span class="sxs-lookup"><span data-stu-id="01c6f-139">In hello following response, you can see hello `ConnectionStatus` shows as **Reachable**.</span></span> <span data-ttu-id="01c6f-140">Lorsqu’une connexion est établie, les valeurs de latence sont fournies.</span><span class="sxs-lookup"><span data-stu-id="01c6f-140">When a connection is successful, latency values are provided.</span></span>
 
 ```
 ConnectionStatus : Reachable
@@ -278,11 +278,11 @@ Hops             : [
                    ]
 ```
 
-## <a name="check-connectivity-to-a-storage-endpoint"></a><span data-ttu-id="3963c-141">Vérifier la connectivité à un point de terminaison de stockage</span><span class="sxs-lookup"><span data-stu-id="3963c-141">Check connectivity to a storage endpoint</span></span>
+## <a name="check-connectivity-tooa-storage-endpoint"></a><span data-ttu-id="01c6f-141">Vérifiez le point de terminaison de stockage de connectivité tooa</span><span class="sxs-lookup"><span data-stu-id="01c6f-141">Check connectivity tooa storage endpoint</span></span>
 
-<span data-ttu-id="3963c-142">L’exemple suivant teste la connectivité entre une machine virtuelle et un compte de stockage blob.</span><span class="sxs-lookup"><span data-stu-id="3963c-142">The following example tests the connectivity from a virtual machine to a blog storage account.</span></span>
+<span data-ttu-id="01c6f-142">Bonjour à l’exemple suivant teste la connectivité de hello à partir d’un compte de stockage de blog de l’ordinateur virtuel tooa.</span><span class="sxs-lookup"><span data-stu-id="01c6f-142">hello following example tests hello connectivity from a virtual machine tooa blog storage account.</span></span>
 
-### <a name="example"></a><span data-ttu-id="3963c-143">Exemple</span><span class="sxs-lookup"><span data-stu-id="3963c-143">Example</span></span>
+### <a name="example"></a><span data-ttu-id="01c6f-143">Exemple</span><span class="sxs-lookup"><span data-stu-id="01c6f-143">Example</span></span>
 
 ```powershell
 $rgName = "ContosoRG"
@@ -298,9 +298,9 @@ $VM1 = Get-AzureRMVM -ResourceGroupName $rgName | Where-Object -Property Name -E
 Test-AzureRmNetworkWatcherConnectivity -NetworkWatcher $networkWatcher -SourceId $VM1.Id -DestinationAddress https://contosostorageexample.blob.core.windows.net/ 
 ```
 
-### <a name="response"></a><span data-ttu-id="3963c-144">Réponse</span><span class="sxs-lookup"><span data-stu-id="3963c-144">Response</span></span>
+### <a name="response"></a><span data-ttu-id="01c6f-144">Réponse</span><span class="sxs-lookup"><span data-stu-id="01c6f-144">Response</span></span>
 
-<span data-ttu-id="3963c-145">Le code json suivant est un exemple de réponse tiré de l’exécution de la cmdlet précédente.</span><span class="sxs-lookup"><span data-stu-id="3963c-145">The following json is the example response from running the previous cmdlet.</span></span> <span data-ttu-id="3963c-146">Comme la destination est joignable, la propriété `ConnectionStatus` apparaît **Joignable**.</span><span class="sxs-lookup"><span data-stu-id="3963c-146">As the destination is reachable, the `ConnectionStatus` property shows as **Reachable**.</span></span>  <span data-ttu-id="3963c-147">Les détails concernant le nombre de tronçons nécessaires pour accéder à l’objet blob de stockage et la latence vous sont fournis.</span><span class="sxs-lookup"><span data-stu-id="3963c-147">You are provided the details regarding the number of hops required to reach the storage blob and latency.</span></span>
+<span data-ttu-id="01c6f-145">Hello json suivant est hello exemple de réponse à partir de l’applet de commande précédente hello en cours d’exécution.</span><span class="sxs-lookup"><span data-stu-id="01c6f-145">hello following json is hello example response from running hello previous cmdlet.</span></span> <span data-ttu-id="01c6f-146">Comme destination de hello est accessible, hello `ConnectionStatus` propriété s’affiche en tant que **joignable**.</span><span class="sxs-lookup"><span data-stu-id="01c6f-146">As hello destination is reachable, hello `ConnectionStatus` property shows as **Reachable**.</span></span>  <span data-ttu-id="01c6f-147">Vous trouverez détails hello concernant le nombre de hello de blob de stockage hello sauts tooreach requis et la latence.</span><span class="sxs-lookup"><span data-stu-id="01c6f-147">You are provided hello details regarding hello number of hops required tooreach hello storage blob and latency.</span></span>
 
 ```
 ConnectionStatus : Reachable
@@ -331,11 +331,11 @@ Hops             : [
                    ]
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="3963c-148">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="3963c-148">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="01c6f-148">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="01c6f-148">Next steps</span></span>
 
-<span data-ttu-id="3963c-149">Recherchez si certains types de trafic sont autorisés au sein ou en dehors de votre machine virtuelle en consultant [Check IP flow verify (Vérifier les flux IP)](network-watcher-check-ip-flow-verify-portal.md)</span><span class="sxs-lookup"><span data-stu-id="3963c-149">Find if certain traffic is allowed in or out of your VM by visiting [Check IP flow verify](network-watcher-check-ip-flow-verify-portal.md)</span></span>
+<span data-ttu-id="01c6f-149">Recherchez si certains types de trafic sont autorisés au sein ou en dehors de votre machine virtuelle en consultant [Check IP flow verify (Vérifier les flux IP)](network-watcher-check-ip-flow-verify-portal.md)</span><span class="sxs-lookup"><span data-stu-id="01c6f-149">Find if certain traffic is allowed in or out of your VM by visiting [Check IP flow verify](network-watcher-check-ip-flow-verify-portal.md)</span></span>
 
-<span data-ttu-id="3963c-150">Si le trafic est bloqué alors qu’il ne devrait pas l’être, consultez [Gérer les groupes de sécurité réseau à partir du portail](../virtual-network/virtual-network-manage-nsg-arm-portal.md) afin de surveiller le groupe de sécurité réseau et les règles de sécurité définis.</span><span class="sxs-lookup"><span data-stu-id="3963c-150">If traffic is being blocked and it should not be, see [Manage Network Security Groups](../virtual-network/virtual-network-manage-nsg-arm-portal.md) to track down the network security group and security rules that are defined.</span></span>
+<span data-ttu-id="01c6f-150">Si le trafic est bloqué et ne doit pas être, consultez [gérer les groupes de sécurité réseau](../virtual-network/virtual-network-manage-nsg-arm-portal.md) tootrack vers le bas hello sécurité et groupe de règles de sécurité réseau qui sont définis.</span><span class="sxs-lookup"><span data-stu-id="01c6f-150">If traffic is being blocked and it should not be, see [Manage Network Security Groups](../virtual-network/virtual-network-manage-nsg-arm-portal.md) tootrack down hello network security group and security rules that are defined.</span></span>
 
 <!-- Image references -->
 

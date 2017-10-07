@@ -1,6 +1,6 @@
 ---
-title: "Modifier le chemin d’accès d’objet blob par défaut | Microsoft Docs"
-description: "Découvrez comment configurer une fonction Azure pour renommer un chemin d’accès de fichier d’objet blob (version préliminaire privée)"
+title: "chemin d’accès des blob aaaChange à partir de la valeur par défaut hello | Documents Microsoft"
+description: "Apprenez comment tooset d’Azure fonctionner toorename un chemin d’accès du fichier blob (aperçu privé)"
 services: storsimple
 documentationcenter: NA
 author: vidarmsft
@@ -14,93 +14,93 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 03/16/2017
 ms.author: vidarmsft
-ms.openlocfilehash: 057d4d7370207859617eb63238bf425bfa6d3e16
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2c414603514223c701ab1a3bd0b81ee18f1af666
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="change-a-blob-path-from-the-default-path-private-preview"></a><span data-ttu-id="74fb9-103">Modifier le chemin d’accès d’objet blob par défaut (version préliminaire privée)</span><span class="sxs-lookup"><span data-stu-id="74fb9-103">Change a blob path from the default path (private preview)</span></span>
+# <a name="change-a-blob-path-from-hello-default-path-private-preview"></a><span data-ttu-id="3a2e3-103">Modifier un chemin d’accès de l’objet blob à partir du chemin d’accès par défaut de hello (aperçu privé)</span><span class="sxs-lookup"><span data-stu-id="3a2e3-103">Change a blob path from hello default path (private preview)</span></span>
 
-<span data-ttu-id="74fb9-104">Cet article décrit comment configurer une fonction Azure pour renommer un chemin d’accès de fichier d’objet blob par défaut.</span><span class="sxs-lookup"><span data-stu-id="74fb9-104">This article describes how to set up an Azure function to rename a default blob file path.</span></span> 
+<span data-ttu-id="3a2e3-104">Cet article décrit comment tooset d’Azure fonction toorename un chemin de fichier blob par défaut.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-104">This article describes how tooset up an Azure function toorename a default blob file path.</span></span> 
 
-## <a name="prerequisites"></a><span data-ttu-id="74fb9-105">Composants requis</span><span class="sxs-lookup"><span data-stu-id="74fb9-105">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="3a2e3-105">Composants requis</span><span class="sxs-lookup"><span data-stu-id="3a2e3-105">Prerequisites</span></span>
 
-<span data-ttu-id="74fb9-106">Vérifiez que vous disposez d’une définition de travail qui a été configurée correctement dans une ressource de données hybride dans un groupe de ressources.</span><span class="sxs-lookup"><span data-stu-id="74fb9-106">Ensure that you have a job definition that has been correctly configured in a hybrid data resource within a resource group.</span></span>
+<span data-ttu-id="3a2e3-106">Vérifiez que vous disposez d’une définition de travail qui a été configurée correctement dans une ressource de données hybride dans un groupe de ressources.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-106">Ensure that you have a job definition that has been correctly configured in a hybrid data resource within a resource group.</span></span>
 
-## <a name="create-an-azure-function"></a><span data-ttu-id="74fb9-107">Création d’une fonction Azure</span><span class="sxs-lookup"><span data-stu-id="74fb9-107">Create an Azure function</span></span>
+## <a name="create-an-azure-function"></a><span data-ttu-id="3a2e3-107">Création d’une fonction Azure</span><span class="sxs-lookup"><span data-stu-id="3a2e3-107">Create an Azure function</span></span>
 
-<span data-ttu-id="74fb9-108">Pour créer une fonction Azure, procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="74fb9-108">To create an Azure function, do the following:</span></span>
+<span data-ttu-id="3a2e3-108">toocreate une fonction d’Azure, procédez comme hello suivant :</span><span class="sxs-lookup"><span data-stu-id="3a2e3-108">toocreate an Azure function, do hello following:</span></span>
 
-1. <span data-ttu-id="74fb9-109">Accédez au [portail Azure](http://portal.azure.com/).</span><span class="sxs-lookup"><span data-stu-id="74fb9-109">Go to the [Azure portal](http://portal.azure.com/).</span></span>
+1. <span data-ttu-id="3a2e3-109">Accédez toohello [portail Azure](http://portal.azure.com/).</span><span class="sxs-lookup"><span data-stu-id="3a2e3-109">Go toohello [Azure portal](http://portal.azure.com/).</span></span>
 
-2. <span data-ttu-id="74fb9-110">En haut du panneau gauche, cliquez sur **Nouveau**.</span><span class="sxs-lookup"><span data-stu-id="74fb9-110">At the top of the left pane, click **New**.</span></span> 
+2. <span data-ttu-id="3a2e3-110">Haut hello du volet gauche de hello, cliquez sur **nouveau**.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-110">At hello top of hello left pane, click **New**.</span></span> 
 
-3. <span data-ttu-id="74fb9-111">Dans la zone de **recherche**, saisissez **Function App**, puis appuyez sur Entrée.</span><span class="sxs-lookup"><span data-stu-id="74fb9-111">In the **Search** box, type **Function App**, and then press Enter.</span></span>
+3. <span data-ttu-id="3a2e3-111">Bonjour **recherche** , tapez **application de la fonction**, puis appuyez sur ENTRÉE.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-111">In hello **Search** box, type **Function App**, and then press Enter.</span></span>
 
-    ![Saisissez « Function App » dans la zone de recherche](./media/storsimple-data-manager-change-default-blob-path/goto-function-app-resource.png)
+    ![Tapez « Fonction App » dans la zone de recherche hello](./media/storsimple-data-manager-change-default-blob-path/goto-function-app-resource.png)
 
-4. <span data-ttu-id="74fb9-113">Dans la liste **Résultats**, cliquez sur **Function App**.</span><span class="sxs-lookup"><span data-stu-id="74fb9-113">In the **Results** list, click **Function App**.</span></span>
+4. <span data-ttu-id="3a2e3-113">Bonjour **résultats** , cliquez sur **fonction application**.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-113">In hello **Results** list, click **Function App**.</span></span>
 
-    ![Sélectionnez la ressource Function App dans la liste des résultats](./media/storsimple-data-manager-change-default-blob-path/select-function-app-resource.png)
+    ![Sélectionnez la ressource application hello fonction dans la liste des résultats hello](./media/storsimple-data-manager-change-default-blob-path/select-function-app-resource.png)
 
-    <span data-ttu-id="74fb9-115">La fenêtre **Function App** s’ouvre.</span><span class="sxs-lookup"><span data-stu-id="74fb9-115">The **Function App** window opens.</span></span>
+    <span data-ttu-id="3a2e3-115">Hello **fonction application** fenêtre s’ouvre.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-115">hello **Function App** window opens.</span></span>
 
-5. <span data-ttu-id="74fb9-116">Cliquez sur **Create**.</span><span class="sxs-lookup"><span data-stu-id="74fb9-116">Click **Create**.</span></span>
+5. <span data-ttu-id="3a2e3-116">Cliquez sur **Créer**.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-116">Click **Create**.</span></span>
 
-    ![Bouton « Créer » de la fenêtre Function App](./media/storsimple-data-manager-change-default-blob-path/create-new-function-app.png)
+    ![bouton « Créer » une fenêtre Hello application de fonction](./media/storsimple-data-manager-change-default-blob-path/create-new-function-app.png)
 
-6. <span data-ttu-id="74fb9-118">Dans le panneau de configuration **Function App**, procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="74fb9-118">On the **Function App** configuration blade, do the following:</span></span>
+6. <span data-ttu-id="3a2e3-118">Sur hello **fonction application** Panneau de configuration, procédez comme hello suivant :</span><span class="sxs-lookup"><span data-stu-id="3a2e3-118">On hello **Function App** configuration blade, do hello following:</span></span>
 
-    <span data-ttu-id="74fb9-119">a.</span><span class="sxs-lookup"><span data-stu-id="74fb9-119">a.</span></span> <span data-ttu-id="74fb9-120">Dans la zone **Nom de l’application**, saisissez le nom de l’application.</span><span class="sxs-lookup"><span data-stu-id="74fb9-120">In the **App name** box, type the app name.</span></span>
+    <span data-ttu-id="3a2e3-119">a.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-119">a.</span></span> <span data-ttu-id="3a2e3-120">Bonjour **nom de l’application** boîte, nom d’application de type hello.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-120">In hello **App name** box, type hello app name.</span></span>
     
-    <span data-ttu-id="74fb9-121">b.</span><span class="sxs-lookup"><span data-stu-id="74fb9-121">b.</span></span> <span data-ttu-id="74fb9-122">Dans la zone **Abonnement**, saisissez le nom de l’abonnement.</span><span class="sxs-lookup"><span data-stu-id="74fb9-122">In the **Subscription** box, type the name of the subscription.</span></span>
+    <span data-ttu-id="3a2e3-121">b.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-121">b.</span></span> <span data-ttu-id="3a2e3-122">Bonjour **abonnement** zone, entrez un nom hello d’abonnement de hello.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-122">In hello **Subscription** box, type hello name of hello subscription.</span></span>
 
-    <span data-ttu-id="74fb9-123">c.</span><span class="sxs-lookup"><span data-stu-id="74fb9-123">c.</span></span> <span data-ttu-id="74fb9-124">Sous **Groupe de ressources**, cliquez sur **Créer un nouveau** et saisissez le nom du groupe de ressources.</span><span class="sxs-lookup"><span data-stu-id="74fb9-124">Under **Resource Group**, click **Create new**, and then type the name of the resource group.</span></span>
+    <span data-ttu-id="3a2e3-123">c.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-123">c.</span></span> <span data-ttu-id="3a2e3-124">Sous **groupe de ressources**, cliquez sur **nouvel**et puis hello nom du type de groupe de ressources hello.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-124">Under **Resource Group**, click **Create new**, and then type hello name of hello resource group.</span></span>
 
-    <span data-ttu-id="74fb9-125">d.</span><span class="sxs-lookup"><span data-stu-id="74fb9-125">d.</span></span> <span data-ttu-id="74fb9-126">Dans la zone **Plan d’hébergement**, saisissez **Plan de consommation**.</span><span class="sxs-lookup"><span data-stu-id="74fb9-126">In the **Hosting Plan** box, type **Consumption Plan**.</span></span>
+    <span data-ttu-id="3a2e3-125">d.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-125">d.</span></span> <span data-ttu-id="3a2e3-126">Bonjour **Plan d’hébergement** , tapez **consommation Plan**.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-126">In hello **Hosting Plan** box, type **Consumption Plan**.</span></span>
 
-    <span data-ttu-id="74fb9-127">e.</span><span class="sxs-lookup"><span data-stu-id="74fb9-127">e.</span></span> <span data-ttu-id="74fb9-128">Dans la zone **Emplacement**, saisissez l’emplacement.</span><span class="sxs-lookup"><span data-stu-id="74fb9-128">In the **Location** box, type the location.</span></span>
+    <span data-ttu-id="3a2e3-127">e.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-127">e.</span></span> <span data-ttu-id="3a2e3-128">Bonjour **emplacement** boîte de type hello emplacement.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-128">In hello **Location** box, type hello location.</span></span>
 
-    <span data-ttu-id="74fb9-129">f.</span><span class="sxs-lookup"><span data-stu-id="74fb9-129">f.</span></span> <span data-ttu-id="74fb9-130">Sous **Compte de stockage**, sélectionnez un compte de stockage existant ou créez un nouveau compte de stockage.</span><span class="sxs-lookup"><span data-stu-id="74fb9-130">Under **Storage account**, select an existing storage account or create a new storage account.</span></span> <span data-ttu-id="74fb9-131">Un compte de stockage est utilisé en interne pour la fonction.</span><span class="sxs-lookup"><span data-stu-id="74fb9-131">A storage account is used internally for the function.</span></span>
+    <span data-ttu-id="3a2e3-129">f.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-129">f.</span></span> <span data-ttu-id="3a2e3-130">Sous **Compte de stockage**, sélectionnez un compte de stockage existant ou créez un nouveau compte de stockage.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-130">Under **Storage account**, select an existing storage account or create a new storage account.</span></span> <span data-ttu-id="3a2e3-131">Un compte de stockage est utilisé en interne pour la fonction hello.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-131">A storage account is used internally for hello function.</span></span>
 
     ![Entrer les données de configuration de la nouvelle application Function App](./media/storsimple-data-manager-change-default-blob-path/enter-new-funcion-app-data.png)
 
-7. <span data-ttu-id="74fb9-133">Cliquez sur **Create**.</span><span class="sxs-lookup"><span data-stu-id="74fb9-133">Click **Create**.</span></span>  
-    <span data-ttu-id="74fb9-134">L’application Function App est créée.</span><span class="sxs-lookup"><span data-stu-id="74fb9-134">The function app is created.</span></span>
+7. <span data-ttu-id="3a2e3-133">Cliquez sur **Créer**.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-133">Click **Create**.</span></span>  
+    <span data-ttu-id="3a2e3-134">application de fonction Hello est créée.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-134">hello function app is created.</span></span>
 
-8. <span data-ttu-id="74fb9-135">Dans le volet gauche, cliquez sur **Plus de services**, puis procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="74fb9-135">In the left pane, click **More services**, and then do the following:</span></span>
+8. <span data-ttu-id="3a2e3-135">Dans le volet gauche de hello, cliquez sur **davantage de services**et puis hello suivant :</span><span class="sxs-lookup"><span data-stu-id="3a2e3-135">In hello left pane, click **More services**, and then do hello following:</span></span>
     
-    <span data-ttu-id="74fb9-136">a.</span><span class="sxs-lookup"><span data-stu-id="74fb9-136">a.</span></span> <span data-ttu-id="74fb9-137">Dans la zone **Filtre**, saisissez **App Services**.</span><span class="sxs-lookup"><span data-stu-id="74fb9-137">In the **Filter** box, type **App services**.</span></span>
+    <span data-ttu-id="3a2e3-136">a.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-136">a.</span></span> <span data-ttu-id="3a2e3-137">Bonjour **filtre** , tapez **des services d’application**.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-137">In hello **Filter** box, type **App services**.</span></span>
     
-    <span data-ttu-id="74fb9-138">b.</span><span class="sxs-lookup"><span data-stu-id="74fb9-138">b.</span></span> <span data-ttu-id="74fb9-139">Cliquez sur **App Services**.</span><span class="sxs-lookup"><span data-stu-id="74fb9-139">Click **App Services**.</span></span> 
+    <span data-ttu-id="3a2e3-138">b.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-138">b.</span></span> <span data-ttu-id="3a2e3-139">Cliquez sur **App Services**.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-139">Click **App Services**.</span></span> 
 
-    ![Lien « Plus de services » dans le volet gauche](./media/storsimple-data-manager-change-default-blob-path/more-services.png)
+    ![Lien « Plus services » dans le volet gauche de hello](./media/storsimple-data-manager-change-default-blob-path/more-services.png)
 
-9. <span data-ttu-id="74fb9-141">Dans la liste des services d’application, cliquez sur le nom de l’application Function App.</span><span class="sxs-lookup"><span data-stu-id="74fb9-141">In the list of app services, click the name of the function app.</span></span>  
-    <span data-ttu-id="74fb9-142">La page de l’application Function App s’ouvre.</span><span class="sxs-lookup"><span data-stu-id="74fb9-142">The function app page opens.</span></span>
+9. <span data-ttu-id="3a2e3-141">Dans la liste de hello des services d’application, cliquez sur nom hello hello fonction app.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-141">In hello list of app services, click hello name of hello function app.</span></span>  
+    <span data-ttu-id="3a2e3-142">Ouvre la page de l’application Hello (fonction).</span><span class="sxs-lookup"><span data-stu-id="3a2e3-142">hello function app page opens.</span></span>
 
-10. <span data-ttu-id="74fb9-143">Dans le volet gauche, cliquez sur **Nouvelle fonction**, puis procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="74fb9-143">In the left pane, click **New Function**, and then do the following:</span></span> 
+10. <span data-ttu-id="3a2e3-143">Dans le volet gauche de hello, cliquez sur **nouvelle fonction**et puis hello suivant :</span><span class="sxs-lookup"><span data-stu-id="3a2e3-143">In hello left pane, click **New Function**, and then do hello following:</span></span> 
 
-    <span data-ttu-id="74fb9-144">a.</span><span class="sxs-lookup"><span data-stu-id="74fb9-144">a.</span></span> <span data-ttu-id="74fb9-145">Dans la liste **Langage**, sélectionnez **C#**.</span><span class="sxs-lookup"><span data-stu-id="74fb9-145">In the **Language** list, select **C#**.</span></span>
+    <span data-ttu-id="3a2e3-144">a.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-144">a.</span></span> <span data-ttu-id="3a2e3-145">Bonjour **langage** liste, sélectionnez **c#**.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-145">In hello **Language** list, select **C#**.</span></span>
     
-    <span data-ttu-id="74fb9-146">b.</span><span class="sxs-lookup"><span data-stu-id="74fb9-146">b.</span></span> <span data-ttu-id="74fb9-147">Dans le tableau de vignettes de modèle, sélectionnez **QueueTrigger-CSharp**.</span><span class="sxs-lookup"><span data-stu-id="74fb9-147">In the array of template tiles, select **QueueTrigger-CSharp**.</span></span>
+    <span data-ttu-id="3a2e3-146">b.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-146">b.</span></span> <span data-ttu-id="3a2e3-147">Dans le tableau de hello des vignettes de modèle, sélectionnez **QueueTrigger-CSharp**.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-147">In hello array of template tiles, select **QueueTrigger-CSharp**.</span></span>
 
-    <span data-ttu-id="74fb9-148">c.</span><span class="sxs-lookup"><span data-stu-id="74fb9-148">c.</span></span> <span data-ttu-id="74fb9-149">Dans la zone **Nommez votre fonction**, saisissez un nom pour la fonction.</span><span class="sxs-lookup"><span data-stu-id="74fb9-149">In the **Name your function** box, type a name for your function.</span></span>
+    <span data-ttu-id="3a2e3-148">c.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-148">c.</span></span> <span data-ttu-id="3a2e3-149">Bonjour **nom de votre fonction** , tapez un nom pour la fonction.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-149">In hello **Name your function** box, type a name for your function.</span></span>
 
-    <span data-ttu-id="74fb9-150">d.</span><span class="sxs-lookup"><span data-stu-id="74fb9-150">d.</span></span> <span data-ttu-id="74fb9-151">Dans la zone **Nom de file d’attente**, saisissez le nom de la définition du travail de transformation des données.</span><span class="sxs-lookup"><span data-stu-id="74fb9-151">In the **Queue name** box, type your data-transformation job definition name.</span></span>
+    <span data-ttu-id="3a2e3-150">d.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-150">d.</span></span> <span data-ttu-id="3a2e3-151">Bonjour **nom de la file d’attente** , tapez votre nom de définition de tâche de transformation de données.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-151">In hello **Queue name** box, type your data-transformation job definition name.</span></span>
 
-    <span data-ttu-id="74fb9-152">e.</span><span class="sxs-lookup"><span data-stu-id="74fb9-152">e.</span></span> <span data-ttu-id="74fb9-153">Sous **Connexion au compte de stockage**, cliquez sur **nouveau**, puis sélectionnez le compte correspondant au travail de transformation des données.</span><span class="sxs-lookup"><span data-stu-id="74fb9-153">Under **Storage account connection**, click **new**, and then select the account that corresponds to the data-transformation job.</span></span>  
-        <span data-ttu-id="74fb9-154">Notez le nom de la connexion.</span><span class="sxs-lookup"><span data-stu-id="74fb9-154">Make a note of the connection name.</span></span> <span data-ttu-id="74fb9-155">Ce nom est requis plus loin dans la fonction Azure.</span><span class="sxs-lookup"><span data-stu-id="74fb9-155">The name is required later in the Azure function.</span></span>
+    <span data-ttu-id="3a2e3-152">e.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-152">e.</span></span> <span data-ttu-id="3a2e3-153">Sous **connexion au compte de stockage**, cliquez sur **nouveau**, puis sélectionnez le compte hello qui correspond la tâche de transformation de données toohello.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-153">Under **Storage account connection**, click **new**, and then select hello account that corresponds toohello data-transformation job.</span></span>  
+        <span data-ttu-id="3a2e3-154">Prenez note du nom de connexion hello.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-154">Make a note of hello connection name.</span></span> <span data-ttu-id="3a2e3-155">nom de Hello est requis plus loin dans hello fonction Azure.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-155">hello name is required later in hello Azure function.</span></span>
 
        ![Créer une fonction C#](./media/storsimple-data-manager-change-default-blob-path/create-new-csharp-function.png)
 
-    <span data-ttu-id="74fb9-157">f.</span><span class="sxs-lookup"><span data-stu-id="74fb9-157">f.</span></span> <span data-ttu-id="74fb9-158">Cliquez sur **Create**.</span><span class="sxs-lookup"><span data-stu-id="74fb9-158">Click **Create**.</span></span>  
-    <span data-ttu-id="74fb9-159">La fenêtre **Function** s’ouvre.</span><span class="sxs-lookup"><span data-stu-id="74fb9-159">The **Function** window opens.</span></span>
+    <span data-ttu-id="3a2e3-157">f.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-157">f.</span></span> <span data-ttu-id="3a2e3-158">Cliquez sur **Créer**.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-158">Click **Create**.</span></span>  
+    <span data-ttu-id="3a2e3-159">Hello **fonction** fenêtre s’ouvre.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-159">hello **Function** window opens.</span></span>
 
-11. <span data-ttu-id="74fb9-160">Dans la fenêtre **Function**, exécutez le fichier _.csx_, puis procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="74fb9-160">In the **Function** window, run _.csx_ file, and then do the following:</span></span>
+11. <span data-ttu-id="3a2e3-160">Bonjour **fonction** fenêtre, exécutez _.csx_ de fichiers, puis hello suivant :</span><span class="sxs-lookup"><span data-stu-id="3a2e3-160">In hello **Function** window, run _.csx_ file, and then do hello following:</span></span>
 
-    <span data-ttu-id="74fb9-161">a.</span><span class="sxs-lookup"><span data-stu-id="74fb9-161">a.</span></span> <span data-ttu-id="74fb9-162">Collez le code suivant :</span><span class="sxs-lookup"><span data-stu-id="74fb9-162">Paste the following code:</span></span>
+    <span data-ttu-id="3a2e3-161">a.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-161">a.</span></span> <span data-ttu-id="3a2e3-162">Collez hello suivant de code :</span><span class="sxs-lookup"><span data-stu-id="3a2e3-162">Paste hello following code:</span></span>
 
     ```
     using System;
@@ -146,7 +146,7 @@ ms.lasthandoff: 07/11/2017
         log.Info($"Blob name: {blobName}");
         log.Info($"New blob name: {newBlobName}");
 
-        // Create the blob client.
+        // Create hello blob client.
         CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 
         // Container reference
@@ -169,8 +169,8 @@ ms.lasthandoff: 07/11/2017
         CloudBlockBlob blob = container.GetBlockBlobReference(blobName);
         if (!blob.Exists())
         {
-            // Skip to copy the blob to new container, if source blob doesn't exist
-            log.Info($"The specified blob does not exist.");
+            // Skip toocopy hello blob toonew container, if source blob doesn't exist
+            log.Info($"hello specified blob does not exist.");
             log.Info($"Blob Uri: {blob.Uri}");
             return;
         }
@@ -179,7 +179,7 @@ ms.lasthandoff: 07/11/2017
         if (!blobCopy.Exists())
         {
             blobCopy.StartCopy(blob);
-            // Delete old blob, after copy to new container
+            // Delete old blob, after copy toonew container
             blob.DeleteIfExists();
             log.Info($"Blob file path renamed completed successfully");
         }
@@ -202,23 +202,23 @@ ms.lasthandoff: 07/11/2017
 
     ```
 
-    <span data-ttu-id="74fb9-163">b.</span><span class="sxs-lookup"><span data-stu-id="74fb9-163">b.</span></span> <span data-ttu-id="74fb9-164">Remplacez la valeur **STORAGE_CONNECTIONNAME** de la ligne 11 par la connexion à votre compte de stockage (point de référence 8c).</span><span class="sxs-lookup"><span data-stu-id="74fb9-164">Replace **STORAGE_CONNECTIONNAME** on line 11 with your storage account connection (refer point 8c).</span></span>
+    <span data-ttu-id="3a2e3-163">b.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-163">b.</span></span> <span data-ttu-id="3a2e3-164">Remplacez la valeur **STORAGE_CONNECTIONNAME** de la ligne 11 par la connexion à votre compte de stockage (point de référence 8c).</span><span class="sxs-lookup"><span data-stu-id="3a2e3-164">Replace **STORAGE_CONNECTIONNAME** on line 11 with your storage account connection (refer point 8c).</span></span>
 
-    <span data-ttu-id="74fb9-165">c.</span><span class="sxs-lookup"><span data-stu-id="74fb9-165">c.</span></span> <span data-ttu-id="74fb9-166">Cliquez sur **Enregistrer** en haut à gauche.</span><span class="sxs-lookup"><span data-stu-id="74fb9-166">At the top left, click **Save**.</span></span>
+    <span data-ttu-id="3a2e3-165">c.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-165">c.</span></span> <span data-ttu-id="3a2e3-166">À hello gauche en haut, cliquez sur **enregistrer**.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-166">At hello top left, click **Save**.</span></span>
 
     ![Enregistrer la fonction](./media/storsimple-data-manager-change-default-blob-path/save-function.png)
 
-12. <span data-ttu-id="74fb9-168">Pour terminer la fonction, ajoutez un fichier de plus en procédant comme suit :</span><span class="sxs-lookup"><span data-stu-id="74fb9-168">To complete the function, add one more file by doing the following:</span></span>
+12. <span data-ttu-id="3a2e3-168">toocomplete hello (fonction), ajoutez un fichier de plus de manière hello suivante :</span><span class="sxs-lookup"><span data-stu-id="3a2e3-168">toocomplete hello function, add one more file by doing hello following:</span></span>
 
-    <span data-ttu-id="74fb9-169">a.</span><span class="sxs-lookup"><span data-stu-id="74fb9-169">a.</span></span> <span data-ttu-id="74fb9-170">Cliquez sur **Afficher les fichiers**.</span><span class="sxs-lookup"><span data-stu-id="74fb9-170">Click **View files**.</span></span>
+    <span data-ttu-id="3a2e3-169">a.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-169">a.</span></span> <span data-ttu-id="3a2e3-170">Cliquez sur **Afficher les fichiers**.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-170">Click **View files**.</span></span>
 
-       ![Lien « Afficher les fichiers »](./media/storsimple-data-manager-change-default-blob-path/view-files.png)
+       ![lien de « Afficher les fichiers » Hello](./media/storsimple-data-manager-change-default-blob-path/view-files.png)
 
-    <span data-ttu-id="74fb9-172">b.</span><span class="sxs-lookup"><span data-stu-id="74fb9-172">b.</span></span> <span data-ttu-id="74fb9-173">Cliquez sur **Add**.</span><span class="sxs-lookup"><span data-stu-id="74fb9-173">Click **Add**.</span></span>
+    <span data-ttu-id="3a2e3-172">b.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-172">b.</span></span> <span data-ttu-id="3a2e3-173">Cliquez sur **Add**.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-173">Click **Add**.</span></span>
     
-    <span data-ttu-id="74fb9-174">c.</span><span class="sxs-lookup"><span data-stu-id="74fb9-174">c.</span></span> <span data-ttu-id="74fb9-175">Saisissez **project.json** et appuyez sur Entrée.</span><span class="sxs-lookup"><span data-stu-id="74fb9-175">Type **project.json**, and then press Enter.</span></span>
+    <span data-ttu-id="3a2e3-174">c.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-174">c.</span></span> <span data-ttu-id="3a2e3-175">Saisissez **project.json** et appuyez sur Entrée.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-175">Type **project.json**, and then press Enter.</span></span>
     
-    <span data-ttu-id="74fb9-176">d.</span><span class="sxs-lookup"><span data-stu-id="74fb9-176">d.</span></span> <span data-ttu-id="74fb9-177">Collez le code suivant dans le fichier **project.json** :</span><span class="sxs-lookup"><span data-stu-id="74fb9-177">In the **project.json** file, paste the following code:</span></span>
+    <span data-ttu-id="3a2e3-176">d.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-176">d.</span></span> <span data-ttu-id="3a2e3-177">Bonjour **project.json** file, collez hello suivant de code :</span><span class="sxs-lookup"><span data-stu-id="3a2e3-177">In hello **project.json** file, paste hello following code:</span></span>
 
     ```
     {
@@ -233,10 +233,10 @@ ms.lasthandoff: 07/11/2017
 
     ```
 
-    <span data-ttu-id="74fb9-178">e.</span><span class="sxs-lookup"><span data-stu-id="74fb9-178">e.</span></span> <span data-ttu-id="74fb9-179">Cliquez sur **Enregistrer**.</span><span class="sxs-lookup"><span data-stu-id="74fb9-179">Click **Save**.</span></span>
+    <span data-ttu-id="3a2e3-178">e.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-178">e.</span></span> <span data-ttu-id="3a2e3-179">Cliquez sur **Enregistrer**.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-179">Click **Save**.</span></span>
 
-<span data-ttu-id="74fb9-180">Vous avez créé une fonction Azure.</span><span class="sxs-lookup"><span data-stu-id="74fb9-180">You have created an Azure function.</span></span> <span data-ttu-id="74fb9-181">Cette fonction est déclenchée à chaque fois qu’un nouvel objet blob est généré par le travail de transformation des données.</span><span class="sxs-lookup"><span data-stu-id="74fb9-181">This function is triggered each time a new blob is generated by the data-transformation job.</span></span>
+<span data-ttu-id="3a2e3-180">Vous avez créé une fonction Azure.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-180">You have created an Azure function.</span></span> <span data-ttu-id="3a2e3-181">Cette fonction est déclenchée chaque fois qu’un nouvel objet blob est généré par la tâche de transformation de données hello.</span><span class="sxs-lookup"><span data-stu-id="3a2e3-181">This function is triggered each time a new blob is generated by hello data-transformation job.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="74fb9-182">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="74fb9-182">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="3a2e3-182">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="3a2e3-182">Next steps</span></span>
 
-[<span data-ttu-id="74fb9-183">Utilisez l’interface utilisateur de StorSimple Data Manager pour transformer vos données</span><span class="sxs-lookup"><span data-stu-id="74fb9-183">Use StorSimple Data Manager UI to transform your data</span></span>](storsimple-data-manager-ui.md)
+[<span data-ttu-id="3a2e3-183">Utilisez l’interface utilisateur de gestionnaire de données StorSimple tootransform vos données</span><span class="sxs-lookup"><span data-stu-id="3a2e3-183">Use StorSimple Data Manager UI tootransform your data</span></span>](storsimple-data-manager-ui.md)

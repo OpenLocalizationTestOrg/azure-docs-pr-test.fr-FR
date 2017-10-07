@@ -14,59 +14,59 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/02/2017
 ms.author: LADocs; padmavc
-ms.openlocfilehash: 1865d75f1b4c2aa18d5a3130f639572d19563b3e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0340e2979f1972ba631354e206c93969e55946e9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="logic-apps-b2b-list-of-errors-and-solutions"></a><span data-ttu-id="b0237-103">Liste des erreurs et des solutions Logic Apps B2B</span><span class="sxs-lookup"><span data-stu-id="b0237-103">Logic Apps B2B list of errors and solutions</span></span>  
-<span data-ttu-id="b0237-104">Cet article vous aide à comprendre les erreurs qui peuvent se produire dans le cadre des scénarios Logic Apps B2B et suggère des actions appropriées pour corriger ces erreurs.</span><span class="sxs-lookup"><span data-stu-id="b0237-104">This article helps you troubleshoot errors that might happen in Logic Apps B2B scenarios and suggests appropriate actions for correcting those errors.</span></span>
+# <a name="logic-apps-b2b-list-of-errors-and-solutions"></a><span data-ttu-id="7933c-103">Liste des erreurs et des solutions Logic Apps B2B</span><span class="sxs-lookup"><span data-stu-id="7933c-103">Logic Apps B2B list of errors and solutions</span></span>  
+<span data-ttu-id="7933c-104">Cet article vous aide à comprendre les erreurs qui peuvent se produire dans le cadre des scénarios Logic Apps B2B et suggère des actions appropriées pour corriger ces erreurs.</span><span class="sxs-lookup"><span data-stu-id="7933c-104">This article helps you troubleshoot errors that might happen in Logic Apps B2B scenarios and suggests appropriate actions for correcting those errors.</span></span>
 
 
-## <a name="agreement-resolution"></a><span data-ttu-id="b0237-105">Résolution d’accord</span><span class="sxs-lookup"><span data-stu-id="b0237-105">Agreement Resolution</span></span>
+## <a name="agreement-resolution"></a><span data-ttu-id="7933c-105">Résolution d’accord</span><span class="sxs-lookup"><span data-stu-id="7933c-105">Agreement Resolution</span></span>
 
-### <a name="no-agreement-found"></a><span data-ttu-id="b0237-106">* Aucun accord trouvé</span><span class="sxs-lookup"><span data-stu-id="b0237-106">*No agreement found</span></span> 
+### <a name="no-agreement-found"></a><span data-ttu-id="7933c-106">* Aucun accord trouvé</span><span class="sxs-lookup"><span data-stu-id="7933c-106">*No agreement found</span></span> 
 
 |   |   |  
 |---|---|
-| <span data-ttu-id="b0237-107">Description de l’erreur</span><span class="sxs-lookup"><span data-stu-id="b0237-107">Error description</span></span> | <span data-ttu-id="b0237-108">Aucun accord trouvé avec les paramètres de résolution d’accord</span><span class="sxs-lookup"><span data-stu-id="b0237-108">No agreement found with Agreement Resolution Parameters</span></span>|    
-| <span data-ttu-id="b0237-109">Action requise</span><span class="sxs-lookup"><span data-stu-id="b0237-109">User action</span></span> | <span data-ttu-id="b0237-110">L’accord doit être ajouté au compte d’intégration avec les identités commerciales convenues.</span><span class="sxs-lookup"><span data-stu-id="b0237-110">The agreement should be added to the integration account with agreed business identities.</span></span></br> <span data-ttu-id="b0237-111">Les identités commerciales doivent correspondre aux ID de message entrant.</span><span class="sxs-lookup"><span data-stu-id="b0237-111">The business identities should match to the input message ids</span></span>|  
+| <span data-ttu-id="7933c-107">Description de l’erreur</span><span class="sxs-lookup"><span data-stu-id="7933c-107">Error description</span></span> | <span data-ttu-id="7933c-108">Aucun accord trouvé avec les paramètres de résolution d’accord</span><span class="sxs-lookup"><span data-stu-id="7933c-108">No agreement found with Agreement Resolution Parameters</span></span>|    
+| <span data-ttu-id="7933c-109">Action requise</span><span class="sxs-lookup"><span data-stu-id="7933c-109">User action</span></span> | <span data-ttu-id="7933c-110">accord de Hello doit être ajouté toohello compte d’intégration avec des identités d’entreprise convenu.</span><span class="sxs-lookup"><span data-stu-id="7933c-110">hello agreement should be added toohello integration account with agreed business identities.</span></span></br> <span data-ttu-id="7933c-111">les identités d’entreprise Hello doivent correspondre à l’ID de message d’entrée toohello</span><span class="sxs-lookup"><span data-stu-id="7933c-111">hello business identities should match toohello input message ids</span></span>|  
 |   |   |
 
-### <a name="-no-agreement-found-with-identities"></a><span data-ttu-id="b0237-112">* Aucun accord trouvé avec les identités</span><span class="sxs-lookup"><span data-stu-id="b0237-112">* No agreement found with identities</span></span>
+### <a name="-no-agreement-found-with-identities"></a><span data-ttu-id="7933c-112">* Aucun accord trouvé avec les identités</span><span class="sxs-lookup"><span data-stu-id="7933c-112">* No agreement found with identities</span></span>
 
 |   |   | 
 |---|---|
-| <span data-ttu-id="b0237-113">Description de l’erreur</span><span class="sxs-lookup"><span data-stu-id="b0237-113">Error description</span></span> | <span data-ttu-id="b0237-114">Aucun accord trouvé avec les identités : ’AS2Identity’::’Partner1’ et ’AS2Identity’::’Partner3’.</span><span class="sxs-lookup"><span data-stu-id="b0237-114">No agreement found with identities: 'AS2Identity'::'Partner1' and'AS2Identity'::'Partner3'</span></span>| 
-| <span data-ttu-id="b0237-115">Action requise</span><span class="sxs-lookup"><span data-stu-id="b0237-115">User action</span></span> | <span data-ttu-id="b0237-116">En-tête AS2-From ou AS2-To non valide configuré pour l’accord.</span><span class="sxs-lookup"><span data-stu-id="b0237-116">Invalid AS2-From or AS2-To configured for agreement.</span></span> </br> <span data-ttu-id="b0237-117">Corrigez les en-têtes de message AS2 AS2-From ou AS2-To de l’accord de manière à ce que les ID AS2 des en-têtes de message AS2 correspondent aux configurations de l’accord.</span><span class="sxs-lookup"><span data-stu-id="b0237-117">Correct AS2 message AS2-From or AS2-To headers or agreement to match AS2 ids in AS2 message headers with agreement configurations</span></span> |
+| <span data-ttu-id="7933c-113">Description de l’erreur</span><span class="sxs-lookup"><span data-stu-id="7933c-113">Error description</span></span> | <span data-ttu-id="7933c-114">Aucun accord trouvé avec les identités : ’AS2Identity’::’Partner1’ et ’AS2Identity’::’Partner3’.</span><span class="sxs-lookup"><span data-stu-id="7933c-114">No agreement found with identities: 'AS2Identity'::'Partner1' and'AS2Identity'::'Partner3'</span></span>| 
+| <span data-ttu-id="7933c-115">Action requise</span><span class="sxs-lookup"><span data-stu-id="7933c-115">User action</span></span> | <span data-ttu-id="7933c-116">AS2 non valide-à partir d’ou AS2-tooconfigured pour l’accord.</span><span class="sxs-lookup"><span data-stu-id="7933c-116">Invalid AS2-From or AS2-tooconfigured for agreement.</span></span> </br> <span data-ttu-id="7933c-117">Messages AS2 AS2-à partir d’ou en-têtes avec des configurations de contrat de message AS2-tooheaders ou contrat ID toomatch AS2 dans AS2</span><span class="sxs-lookup"><span data-stu-id="7933c-117">Correct AS2 message AS2-From or AS2-tooheaders or agreement toomatch AS2 ids in AS2 message headers with agreement configurations</span></span> |
 |   |   |     
 
-## <a name="as2"></a><span data-ttu-id="b0237-118">AS2</span><span class="sxs-lookup"><span data-stu-id="b0237-118">AS2</span></span>
+## <a name="as2"></a><span data-ttu-id="7933c-118">AS2</span><span class="sxs-lookup"><span data-stu-id="7933c-118">AS2</span></span>
 
-### <a name="-missing-as2-message-headers"></a><span data-ttu-id="b0237-119">* En-têtes de message AS2 manquants</span><span class="sxs-lookup"><span data-stu-id="b0237-119">* Missing AS2 message headers</span></span>  
-
-|   |   |  
-|---|---|
-| <span data-ttu-id="b0237-120">Description de l’erreur</span><span class="sxs-lookup"><span data-stu-id="b0237-120">Error description</span></span>| <span data-ttu-id="b0237-121">En-têtes AS2 non valides.</span><span class="sxs-lookup"><span data-stu-id="b0237-121">Invalid AS2 headers.</span></span> <span data-ttu-id="b0237-122">L’en-tête « AS2-To » ou « AS2-From » est vide.</span><span class="sxs-lookup"><span data-stu-id="b0237-122">One of 'AS2-To' or 'AS2-From' headers are empty</span></span>| 
-| <span data-ttu-id="b0237-123">Action requise</span><span class="sxs-lookup"><span data-stu-id="b0237-123">User action</span></span> | <span data-ttu-id="b0237-124">Un message AS2 ne contenant pas d’en-tête AS2-From ou AS2-To a été reçu.</span><span class="sxs-lookup"><span data-stu-id="b0237-124">An AS2 message was received that did not contain the AS2-From or AS2-To or both headers.</span></span> </br> <span data-ttu-id="b0237-125">Vérifiez les en-têtes AS2-From et AS2-To de message AS2 et corrigez-les en fonction de la configuration de l’accord.</span><span class="sxs-lookup"><span data-stu-id="b0237-125">Check AS2 message AS2-From and AS2-To headers and correct them based on agreement configuration</span></span> |
-|  |  | 
-
-
-### <a name="-missing-as2-message-body-and-headers"></a><span data-ttu-id="b0237-126">* Corps et en-têtes de message AS2 manquants</span><span class="sxs-lookup"><span data-stu-id="b0237-126">* Missing AS2 message body and headers</span></span>    
+### <a name="-missing-as2-message-headers"></a><span data-ttu-id="7933c-119">* En-têtes de message AS2 manquants</span><span class="sxs-lookup"><span data-stu-id="7933c-119">* Missing AS2 message headers</span></span>  
 
 |   |   |  
 |---|---|
-| <span data-ttu-id="b0237-127">Description de l’erreur</span><span class="sxs-lookup"><span data-stu-id="b0237-127">Error description</span></span>| <span data-ttu-id="b0237-128">Le contenu de la requête est nul ou vide.</span><span class="sxs-lookup"><span data-stu-id="b0237-128">The request content is null or empty</span></span> | 
-| <span data-ttu-id="b0237-129">Action requise</span><span class="sxs-lookup"><span data-stu-id="b0237-129">User action</span></span> | <span data-ttu-id="b0237-130">Un message AS2 ne comportant pas de corps de message a été reçu.</span><span class="sxs-lookup"><span data-stu-id="b0237-130">An AS2 message was received that did not contain the message body</span></span> |
+| <span data-ttu-id="7933c-120">Description de l’erreur</span><span class="sxs-lookup"><span data-stu-id="7933c-120">Error description</span></span>| <span data-ttu-id="7933c-121">En-têtes AS2 non valides.</span><span class="sxs-lookup"><span data-stu-id="7933c-121">Invalid AS2 headers.</span></span> <span data-ttu-id="7933c-122">L’en-tête « AS2-To » ou « AS2-From » est vide.</span><span class="sxs-lookup"><span data-stu-id="7933c-122">One of 'AS2-To' or 'AS2-From' headers are empty</span></span>| 
+| <span data-ttu-id="7933c-123">Action requise</span><span class="sxs-lookup"><span data-stu-id="7933c-123">User action</span></span> | <span data-ttu-id="7933c-124">Réception d’un message AS2 ne contenant pas hello AS2-à partir d’ou AS2-tooor les deux en-têtes.</span><span class="sxs-lookup"><span data-stu-id="7933c-124">An AS2 message was received that did not contain hello AS2-From or AS2-tooor both headers.</span></span> </br> <span data-ttu-id="7933c-125">Vérifiez le message AS2 AS2-à partir d’et AS2-tooheaders et corrigez-les en fonction de la configuration de l’accord</span><span class="sxs-lookup"><span data-stu-id="7933c-125">Check AS2 message AS2-From and AS2-tooheaders and correct them based on agreement configuration</span></span> |
 |  |  | 
 
-### <a name="-as2-message-decryption-failure"></a><span data-ttu-id="b0237-131">* Échec du déchiffrement de message AS2</span><span class="sxs-lookup"><span data-stu-id="b0237-131">* AS2 message decryption failure</span></span>
+
+### <a name="-missing-as2-message-body-and-headers"></a><span data-ttu-id="7933c-126">* Corps et en-têtes de message AS2 manquants</span><span class="sxs-lookup"><span data-stu-id="7933c-126">* Missing AS2 message body and headers</span></span>    
+
+|   |   |  
+|---|---|
+| <span data-ttu-id="7933c-127">Description de l’erreur</span><span class="sxs-lookup"><span data-stu-id="7933c-127">Error description</span></span>| <span data-ttu-id="7933c-128">contenu de la demande Hello est null ou vide</span><span class="sxs-lookup"><span data-stu-id="7933c-128">hello request content is null or empty</span></span> | 
+| <span data-ttu-id="7933c-129">Action requise</span><span class="sxs-lookup"><span data-stu-id="7933c-129">User action</span></span> | <span data-ttu-id="7933c-130">Réception d’un message AS2 ne contenant pas de corps de message hello</span><span class="sxs-lookup"><span data-stu-id="7933c-130">An AS2 message was received that did not contain hello message body</span></span> |
+|  |  | 
+
+### <a name="-as2-message-decryption-failure"></a><span data-ttu-id="7933c-131">* Échec du déchiffrement de message AS2</span><span class="sxs-lookup"><span data-stu-id="7933c-131">* AS2 message decryption failure</span></span>
 
 |   |   | 
 |---|---|
-| <span data-ttu-id="b0237-132">Description de l’erreur</span><span class="sxs-lookup"><span data-stu-id="b0237-132">Error description</span></span> |  <span data-ttu-id="b0237-133">[processed/Error: decryption-failed]</span><span class="sxs-lookup"><span data-stu-id="b0237-133">[processed/Error: decryption-failed]</span></span> | 
-| <span data-ttu-id="b0237-134">Action requise</span><span class="sxs-lookup"><span data-stu-id="b0237-134">User action</span></span> | <span data-ttu-id="b0237-135">Ajoutez @base64ToBinary au message AS2 avant de l’envoyer au partenaire.</span><span class="sxs-lookup"><span data-stu-id="b0237-135">Add @base64ToBinary to AS2Message before sending to partner</span></span> 
+| <span data-ttu-id="7933c-132">Description de l’erreur</span><span class="sxs-lookup"><span data-stu-id="7933c-132">Error description</span></span> |  <span data-ttu-id="7933c-133">[processed/Error: decryption-failed]</span><span class="sxs-lookup"><span data-stu-id="7933c-133">[processed/Error: decryption-failed]</span></span> | 
+| <span data-ttu-id="7933c-134">Action requise</span><span class="sxs-lookup"><span data-stu-id="7933c-134">User action</span></span> | <span data-ttu-id="7933c-135">Ajouter @base64ToBinary tooAS2Message avant d’envoyer toopartner</span><span class="sxs-lookup"><span data-stu-id="7933c-135">Add @base64ToBinary tooAS2Message before sending toopartner</span></span> 
 ```java
             "HTTP": {
                 "inputs": {
@@ -78,12 +78,12 @@ ms.lasthandoff: 07/11/2017
                 
 ``` 
 
-### <a name="-mdn-decryption-failure"></a><span data-ttu-id="b0237-136">* Échec du déchiffrement du MDN</span><span class="sxs-lookup"><span data-stu-id="b0237-136">* MDN decryption failure</span></span>
+### <a name="-mdn-decryption-failure"></a><span data-ttu-id="7933c-136">* Échec du déchiffrement du MDN</span><span class="sxs-lookup"><span data-stu-id="7933c-136">* MDN decryption failure</span></span>
 
 |   |   | 
 |---|---|
-| <span data-ttu-id="b0237-137">Description de l’erreur</span><span class="sxs-lookup"><span data-stu-id="b0237-137">Error description</span></span> |  <span data-ttu-id="b0237-138">[processed/Error: decryption-failed]</span><span class="sxs-lookup"><span data-stu-id="b0237-138">[processed/Error: decryption-failed]</span></span> | 
-| <span data-ttu-id="b0237-139">Action requise</span><span class="sxs-lookup"><span data-stu-id="b0237-139">User action</span></span> | <span data-ttu-id="b0237-140">Ajoutez @base64ToBinary au MDN avant de l’envoyer au partenaire.</span><span class="sxs-lookup"><span data-stu-id="b0237-140">Add @base64ToBinary to MDN before sending to partner</span></span> 
+| <span data-ttu-id="7933c-137">Description de l’erreur</span><span class="sxs-lookup"><span data-stu-id="7933c-137">Error description</span></span> |  <span data-ttu-id="7933c-138">[processed/Error: decryption-failed]</span><span class="sxs-lookup"><span data-stu-id="7933c-138">[processed/Error: decryption-failed]</span></span> | 
+| <span data-ttu-id="7933c-139">Action requise</span><span class="sxs-lookup"><span data-stu-id="7933c-139">User action</span></span> | <span data-ttu-id="7933c-140">Ajouter @base64ToBinary tooMDN avant d’envoyer toopartner</span><span class="sxs-lookup"><span data-stu-id="7933c-140">Add @base64ToBinary tooMDN before sending toopartner</span></span> 
 ```java
             "Response": {
                 "inputs": {
@@ -94,59 +94,59 @@ ms.lasthandoff: 07/11/2017
                 
 ``` 
 
-### <a name="-missing-signing-certificate"></a><span data-ttu-id="b0237-141">* Certificat de signature manquant</span><span class="sxs-lookup"><span data-stu-id="b0237-141">* Missing signing certificate</span></span>
+### <a name="-missing-signing-certificate"></a><span data-ttu-id="7933c-141">* Certificat de signature manquant</span><span class="sxs-lookup"><span data-stu-id="7933c-141">* Missing signing certificate</span></span>
 
 |   |   |  
 |---|---|
-| <span data-ttu-id="b0237-142">Description de l’erreur</span><span class="sxs-lookup"><span data-stu-id="b0237-142">Error description</span></span>| <span data-ttu-id="b0237-143">Le certificat de signature n’a pas été configuré pour le tiers AS2.</span><span class="sxs-lookup"><span data-stu-id="b0237-143">The Signing Certificate has not been configured for AS2 party.</span></span> </br> <span data-ttu-id="b0237-144">AS2-From : partner1 AS2-To : partner2</span><span class="sxs-lookup"><span data-stu-id="b0237-144">AS2-From: partner1 AS2-To: partner2</span></span> | 
-| <span data-ttu-id="b0237-145">Action requise</span><span class="sxs-lookup"><span data-stu-id="b0237-145">User action</span></span> | <span data-ttu-id="b0237-146">Configurez les paramètres d’accord AS2 avec le certificat approprié pour la signature.</span><span class="sxs-lookup"><span data-stu-id="b0237-146">Configure AS2 agreement settings with correct certificate for signature</span></span> |
+| <span data-ttu-id="7933c-142">Description de l’erreur</span><span class="sxs-lookup"><span data-stu-id="7933c-142">Error description</span></span>| <span data-ttu-id="7933c-143">Hello certificat de signature n'a pas été configuré pour le tiers AS2.</span><span class="sxs-lookup"><span data-stu-id="7933c-143">hello Signing Certificate has not been configured for AS2 party.</span></span> </br> <span data-ttu-id="7933c-144">AS2-From : partner1 AS2-To : partner2</span><span class="sxs-lookup"><span data-stu-id="7933c-144">AS2-From: partner1 AS2-To: partner2</span></span> | 
+| <span data-ttu-id="7933c-145">Action requise</span><span class="sxs-lookup"><span data-stu-id="7933c-145">User action</span></span> | <span data-ttu-id="7933c-146">Configurez les paramètres d’accord AS2 avec le certificat approprié pour la signature.</span><span class="sxs-lookup"><span data-stu-id="7933c-146">Configure AS2 agreement settings with correct certificate for signature</span></span> |
 |  |  | 
 
-## <a name="x12-and-edifact"></a><span data-ttu-id="b0237-147">X12 et EDIFACT</span><span class="sxs-lookup"><span data-stu-id="b0237-147">X12 and EDIFACT</span></span>
+## <a name="x12-and-edifact"></a><span data-ttu-id="7933c-147">X12 et EDIFACT</span><span class="sxs-lookup"><span data-stu-id="7933c-147">X12 and EDIFACT</span></span>
 
-### <a name="-leading-or-trailing-space-found"></a><span data-ttu-id="b0237-148">* Espace de début ou de fin trouvé</span><span class="sxs-lookup"><span data-stu-id="b0237-148">* Leading or trailing space found</span></span>    
+### <a name="-leading-or-trailing-space-found"></a><span data-ttu-id="7933c-148">* Espace de début ou de fin trouvé</span><span class="sxs-lookup"><span data-stu-id="7933c-148">* Leading or trailing space found</span></span>    
     
 |   |   | 
 |---|---|
-| <span data-ttu-id="b0237-149">Description de l’erreur</span><span class="sxs-lookup"><span data-stu-id="b0237-149">Error description</span></span> | <span data-ttu-id="b0237-150">Erreur rencontrée lors de l’analyse.</span><span class="sxs-lookup"><span data-stu-id="b0237-150">Error encountered during parsing.</span></span> <span data-ttu-id="b0237-151">Le document informatisé EDIFACT ayant l’id ’123456’ contenu dans l’échange (sans groupe) ayant l’id ’987654’, l’id d’expéditeur ’Partner1’, l’id de destinataire ’Partner2’ est interrompu avec les erreurs suivantes : Séparateur de début trouvé.</span><span class="sxs-lookup"><span data-stu-id="b0237-151">The Edifact transaction set with id '123456' contained in interchange (without group) with id '987654', with sender id 'Partner1', receiver id 'Partner2' is being suspended with following errors: Leading Trailing separator found</span></span> |
-| <span data-ttu-id="b0237-152">Action requise</span><span class="sxs-lookup"><span data-stu-id="b0237-152">User action</span></span> | <span data-ttu-id="b0237-153">Les paramètres d’accord doivent être configurés de manière à autoriser les espaces de début et de fin.</span><span class="sxs-lookup"><span data-stu-id="b0237-153">The agreement settings to be configured to allow leading and trailing space.</span></span> </br> <span data-ttu-id="b0237-154">Modifiez les paramètres d’accord de manière à autoriser les espaces de début et de fin.</span><span class="sxs-lookup"><span data-stu-id="b0237-154">Edit agreement settings to allow leading and trailing space</span></span> |
+| <span data-ttu-id="7933c-149">Description de l’erreur</span><span class="sxs-lookup"><span data-stu-id="7933c-149">Error description</span></span> | <span data-ttu-id="7933c-150">Erreur rencontrée lors de l’analyse.</span><span class="sxs-lookup"><span data-stu-id="7933c-150">Error encountered during parsing.</span></span> <span data-ttu-id="7933c-151">Hello document informatisé Edifact avec l’id ' 123456 'contenu dans l’échange (sans groupe) avec l’id ' 987654', id d’expéditeur 'Partner1', id de destinataire 'Partner2' est interrompu avec les erreurs suivantes : début à la fin de séparateur trouvé</span><span class="sxs-lookup"><span data-stu-id="7933c-151">hello Edifact transaction set with id '123456' contained in interchange (without group) with id '987654', with sender id 'Partner1', receiver id 'Partner2' is being suspended with following errors: Leading Trailing separator found</span></span> |
+| <span data-ttu-id="7933c-152">Action requise</span><span class="sxs-lookup"><span data-stu-id="7933c-152">User action</span></span> | <span data-ttu-id="7933c-153">toobe de paramètres d’accord Hello configuré tooallow de début et de fin d’espace.</span><span class="sxs-lookup"><span data-stu-id="7933c-153">hello agreement settings toobe configured tooallow leading and trailing space.</span></span> </br> <span data-ttu-id="7933c-154">Modifier le contrat paramètres tooallow début et de fin d’espace</span><span class="sxs-lookup"><span data-stu-id="7933c-154">Edit agreement settings tooallow leading and trailing space</span></span> |
 |   |   |
 
 ![Autoriser l’espace](./media/logic-apps-enterprise-integration-b2b-list-errors-solutions/leadingandtrailing.png)
 
-### <a name="-duplicate-check-has-enabled-in-the-agreement"></a><span data-ttu-id="b0237-156">* La vérification de doublons a été activée dans l’accord</span><span class="sxs-lookup"><span data-stu-id="b0237-156">* Duplicate check has enabled in the agreement</span></span>
+### <a name="-duplicate-check-has-enabled-in-hello-agreement"></a><span data-ttu-id="7933c-156">* Check en double a activé dans l’accord de hello</span><span class="sxs-lookup"><span data-stu-id="7933c-156">* Duplicate check has enabled in hello agreement</span></span>
 
 |   |   | 
 |---|---| 
-| <span data-ttu-id="b0237-157">Description de l’erreur</span><span class="sxs-lookup"><span data-stu-id="b0237-157">Error description</span></span> | <span data-ttu-id="b0237-158">Numéro de contrôle en double</span><span class="sxs-lookup"><span data-stu-id="b0237-158">Duplicate Control Number</span></span> |
-| <span data-ttu-id="b0237-159">Action requise</span><span class="sxs-lookup"><span data-stu-id="b0237-159">User action</span></span> | <span data-ttu-id="b0237-160">Cette erreur indique que le message reçu contient des numéros de contrôle en double.</span><span class="sxs-lookup"><span data-stu-id="b0237-160">This error indicates the received message has duplicate control numbers.</span></span> </br> <span data-ttu-id="b0237-161">Corrigez le numéro de contrôle et renvoyez le message.</span><span class="sxs-lookup"><span data-stu-id="b0237-161">Correct the control number and resend the message</span></span> |
+| <span data-ttu-id="7933c-157">Description de l’erreur</span><span class="sxs-lookup"><span data-stu-id="7933c-157">Error description</span></span> | <span data-ttu-id="7933c-158">Numéro de contrôle en double</span><span class="sxs-lookup"><span data-stu-id="7933c-158">Duplicate Control Number</span></span> |
+| <span data-ttu-id="7933c-159">Action requise</span><span class="sxs-lookup"><span data-stu-id="7933c-159">User action</span></span> | <span data-ttu-id="7933c-160">Cette erreur indique que message de salutation reçu a des numéros de contrôle dupliqués.</span><span class="sxs-lookup"><span data-stu-id="7933c-160">This error indicates hello received message has duplicate control numbers.</span></span> </br> <span data-ttu-id="7933c-161">Corrigez le numéro de contrôle hello et renvoyez le message de type hello</span><span class="sxs-lookup"><span data-stu-id="7933c-161">Correct hello control number and resend hello message</span></span> |
 |   |   |
 
-### <a name="-missing-schema-in-the-agreement"></a><span data-ttu-id="b0237-162">* Schéma manquant dans l’accord</span><span class="sxs-lookup"><span data-stu-id="b0237-162">* Missing schema in the agreement</span></span>
+### <a name="-missing-schema-in-hello-agreement"></a><span data-ttu-id="7933c-162">* Schéma manquant dans le contrat de hello</span><span class="sxs-lookup"><span data-stu-id="7933c-162">* Missing schema in hello agreement</span></span>
 
 |   |   | 
 |---|---| 
-| <span data-ttu-id="b0237-163">Description de l’erreur</span><span class="sxs-lookup"><span data-stu-id="b0237-163">Error description</span></span> | <span data-ttu-id="b0237-164">Erreur rencontrée lors de l’analyse.</span><span class="sxs-lookup"><span data-stu-id="b0237-164">Error encountered during parsing.</span></span> <span data-ttu-id="b0237-165">Le document informatisé X12 possédant l’id ’564220001’ contenu dans le groupe fonctionnel d’id ’56422’, dans l’échange possédant l’id ’000056422’, l’id d’expéditeur ’12345678       ’ et l’id de destinataire ’87654321       ’ est interrompu avec les erreurs suivantes : « Le type de document du message est inconnu, et n’a pas été résolu en l’un des schémas existants configurés dans l’accord. »</span><span class="sxs-lookup"><span data-stu-id="b0237-165">The X12 transaction set with id '564220001' contained in functional group with id '56422', in interchange with id '000056422', with sender id '12345678       ', receiver id '87654321       ' is being suspended with following errors "The message has an unknown document type and did not resolve to any of the existing schemas configured in the agreement"</span></span> |
-| <span data-ttu-id="b0237-166">Action requise</span><span class="sxs-lookup"><span data-stu-id="b0237-166">User action</span></span> | <span data-ttu-id="b0237-167">Configurez le schéma dans les paramètres d’accord.</span><span class="sxs-lookup"><span data-stu-id="b0237-167">Configure schema in the agreement settings</span></span>  |
+| <span data-ttu-id="7933c-163">Description de l’erreur</span><span class="sxs-lookup"><span data-stu-id="7933c-163">Error description</span></span> | <span data-ttu-id="7933c-164">Erreur rencontrée lors de l’analyse.</span><span class="sxs-lookup"><span data-stu-id="7933c-164">Error encountered during parsing.</span></span> <span data-ttu-id="7933c-165">jeu de transactions Hello X12 avec l’id '564220001' contenue dans le groupe fonctionnel avec l’id '56422', dans l’échange avec l’id '000056422', id d’expéditeur ' 12345678', id de destinataire ' 87654321' est interrompu avec les erreurs suivantes « message de salutation a un type de document inconnu PE et n’a pas résolu tooany de schémas existants de hello configuré dans l’accord de hello »</span><span class="sxs-lookup"><span data-stu-id="7933c-165">hello X12 transaction set with id '564220001' contained in functional group with id '56422', in interchange with id '000056422', with sender id '12345678       ', receiver id '87654321       ' is being suspended with following errors "hello message has an unknown document type and did not resolve tooany of hello existing schemas configured in hello agreement"</span></span> |
+| <span data-ttu-id="7933c-166">Action requise</span><span class="sxs-lookup"><span data-stu-id="7933c-166">User action</span></span> | <span data-ttu-id="7933c-167">Configurer le schéma dans les paramètres de l’accord hello</span><span class="sxs-lookup"><span data-stu-id="7933c-167">Configure schema in hello agreement settings</span></span>  |
 |   |   |
 
-### <a name="-incorrect-schema-in-the-agreement"></a><span data-ttu-id="b0237-168">* Schéma incorrect dans l’accord</span><span class="sxs-lookup"><span data-stu-id="b0237-168">* Incorrect schema in the agreement</span></span>
+### <a name="-incorrect-schema-in-hello-agreement"></a><span data-ttu-id="7933c-168">* Schéma incorrect dans l’accord de hello</span><span class="sxs-lookup"><span data-stu-id="7933c-168">* Incorrect schema in hello agreement</span></span>
 
 |   |   | 
 |---|---| 
-| <span data-ttu-id="b0237-169">Description de l’erreur</span><span class="sxs-lookup"><span data-stu-id="b0237-169">Error description</span></span> | <span data-ttu-id="b0237-170">Le type de document du message est inconnu, et n’a pas été résolu en l’un des schémas existants configurés dans l’accord.</span><span class="sxs-lookup"><span data-stu-id="b0237-170">The message has an unknown document type and did not resolve to any of the existing schemas configured in the agreement.</span></span> |
-| <span data-ttu-id="b0237-171">Action requise</span><span class="sxs-lookup"><span data-stu-id="b0237-171">User action</span></span> | <span data-ttu-id="b0237-172">Configurez le schéma correct dans les paramètres d’accord.</span><span class="sxs-lookup"><span data-stu-id="b0237-172">Configure correct schema in the agreement settings</span></span>  |
+| <span data-ttu-id="7933c-169">Description de l’erreur</span><span class="sxs-lookup"><span data-stu-id="7933c-169">Error description</span></span> | <span data-ttu-id="7933c-170">message de type Hello a un type de document inconnu et tooany de schémas existants de hello configurés dans hello accord n’a pas été résolue.</span><span class="sxs-lookup"><span data-stu-id="7933c-170">hello message has an unknown document type and did not resolve tooany of hello existing schemas configured in hello agreement.</span></span> |
+| <span data-ttu-id="7933c-171">Action requise</span><span class="sxs-lookup"><span data-stu-id="7933c-171">User action</span></span> | <span data-ttu-id="7933c-172">Configurer le schéma correct dans les paramètres de l’accord hello</span><span class="sxs-lookup"><span data-stu-id="7933c-172">Configure correct schema in hello agreement settings</span></span>  |
 |   |   |
 
-## <a name="flat-file"></a><span data-ttu-id="b0237-173">Fichier plat</span><span class="sxs-lookup"><span data-stu-id="b0237-173">Flat file</span></span>
+## <a name="flat-file"></a><span data-ttu-id="7933c-173">Fichier plat</span><span class="sxs-lookup"><span data-stu-id="7933c-173">Flat file</span></span>
 
-### <a name="-input-message-with-no-body"></a><span data-ttu-id="b0237-174">* Message d’entrée sans corps</span><span class="sxs-lookup"><span data-stu-id="b0237-174">* Input message with no body</span></span>
+### <a name="-input-message-with-no-body"></a><span data-ttu-id="7933c-174">* Message d’entrée sans corps</span><span class="sxs-lookup"><span data-stu-id="7933c-174">* Input message with no body</span></span>
 
 |   |   | 
 |---|---|
-| <span data-ttu-id="b0237-175">Description de l’erreur</span><span class="sxs-lookup"><span data-stu-id="b0237-175">Error description</span></span> | <span data-ttu-id="b0237-176">Modèle non valide.</span><span class="sxs-lookup"><span data-stu-id="b0237-176">InvalidTemplate.</span></span> <span data-ttu-id="b0237-177">Impossible de traiter les expressions de langage de gabarit dans les entrées d’action ’Flat_File_Decoding’ à la ligne « 1 » et à la colonne « 1902 » : La propriété « content » requise attend une valeur, mais a reçu null.</span><span class="sxs-lookup"><span data-stu-id="b0237-177">Unable to process template language expressions in action 'Flat_File_Decoding' inputs at line '1' and column '1902': 'Required property 'content' expects a value but got null.</span></span> <span data-ttu-id="b0237-178">Chemin d’accès « . ».</span><span class="sxs-lookup"><span data-stu-id="b0237-178">Path ''.'.</span></span> |
-| <span data-ttu-id="b0237-179">Action requise</span><span class="sxs-lookup"><span data-stu-id="b0237-179">User action</span></span> | <span data-ttu-id="b0237-180">Cette erreur indique que le message d’entrée ne contient pas de corps.</span><span class="sxs-lookup"><span data-stu-id="b0237-180">This error indicates the input message does not contain a body</span></span> |
+| <span data-ttu-id="7933c-175">Description de l’erreur</span><span class="sxs-lookup"><span data-stu-id="7933c-175">Error description</span></span> | <span data-ttu-id="7933c-176">Modèle non valide.</span><span class="sxs-lookup"><span data-stu-id="7933c-176">InvalidTemplate.</span></span> <span data-ttu-id="7933c-177">Les expressions de langage de modèle tooprocess impossible dans les entrées d’action 'Flat_File_Decoding' à la ligne '1' et la colonne '1902' : ' requise de la propriété « content » attend une valeur, mais dispose null.</span><span class="sxs-lookup"><span data-stu-id="7933c-177">Unable tooprocess template language expressions in action 'Flat_File_Decoding' inputs at line '1' and column '1902': 'Required property 'content' expects a value but got null.</span></span> <span data-ttu-id="7933c-178">Chemin d’accès « . ».</span><span class="sxs-lookup"><span data-stu-id="7933c-178">Path ''.'.</span></span> |
+| <span data-ttu-id="7933c-179">Action requise</span><span class="sxs-lookup"><span data-stu-id="7933c-179">User action</span></span> | <span data-ttu-id="7933c-180">Cette erreur indique le message d’entrée de type hello ne contient pas un corps</span><span class="sxs-lookup"><span data-stu-id="7933c-180">This error indicates hello input message does not contain a body</span></span> |
 |   |   | 
 
-## <a name="learn-more"></a><span data-ttu-id="b0237-181">En savoir plus</span><span class="sxs-lookup"><span data-stu-id="b0237-181">Learn more</span></span>
-[<span data-ttu-id="b0237-182">En savoir plus sur Enterprise Integration Pack</span><span class="sxs-lookup"><span data-stu-id="b0237-182">Learn more about the Enterprise Integration Pack</span></span>](logic-apps-enterprise-integration-overview.md)
+## <a name="learn-more"></a><span data-ttu-id="7933c-181">En savoir plus</span><span class="sxs-lookup"><span data-stu-id="7933c-181">Learn more</span></span>
+[<span data-ttu-id="7933c-182">En savoir plus sur hello Pack d’intégration Enterprise</span><span class="sxs-lookup"><span data-stu-id="7933c-182">Learn more about hello Enterprise Integration Pack</span></span>](logic-apps-enterprise-integration-overview.md)

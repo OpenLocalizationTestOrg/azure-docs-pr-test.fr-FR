@@ -1,6 +1,6 @@
 ---
-title: "Documentation Azure Redis Cache - Didacticiels, informations de référence sur les API | Microsoft Docs"
-description: "Découvrez comment utiliser le Cache Redis Azure, un cache de données sécurisé et un répartiteur de messagerie qui permet aux applications d’accéder rapidement aux données. Didacticiels, références d’API et autres."
+title: "aaaAzure Documentation du Cache Redis - didacticiels, référence de l’API | Documents Microsoft"
+description: "Découvrez comment toouse le Cache Redis Azure, un cache de données sécurisé et le broker de messagerie qui donne aux applications rapide d’accès toodata. Didacticiels, références d’API et autres."
 services: redis-cache
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 19756171a8831eef9ac25cfa619a815d17140257
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1344e242321b84fe2fbd3bc466a3cb82aba177f4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 #<a name="redis-cache-documentation"></a>Documentation Cache Redis
 
-Découvrez comment utiliser le Cache Redis Azure, un cache de données sécurisé et un répartiteur de messagerie qui permet aux applications d’accéder aux données via un débit élevé et une faible latence. Des didacticiels, des références d’API et d’autres documents vous montrent comment utiliser le Cache Redis à partir de toute application sur Azure.
+Apprenez comment toouse Cache Redis Azure, un cache de données sécurisé et le broker qui fournit un débit élevé et toodata d’accès de faible latence pour les applications de messagerie. Didacticiels, des références de l’API et toute autre documentation vous montrent comment toouse Cache Redis à partir de n’importe quelle application dans Azure.
 
 <ul class="panelContent cardsFTitle">
     <li>
