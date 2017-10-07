@@ -1,6 +1,6 @@
 ---
-title: "Prérequis techniques pour la création d’un modèle de solution pour Azure Marketplace | Microsoft Docs"
-description: "Identifier la configuration requise pour la création d'un modèle de solution à déployer et à vendre sur Azure Marketplace"
+title: "aaaTechnical les conditions préalables requises pour la création d’un modèle de solution pour hello Marketplace | Documents Microsoft"
+description: "Comprendre les exigences de hello pour la création d’un toodeploy de modèle de solution et de vendre sur hello Azure Marketplace"
 services: marketplace-publishing
 documentationcenter: 
 author: HannibalSII
@@ -14,17 +14,17 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 01/28/2016
 ms.author: hascipio; v-divte
-ms.openlocfilehash: 40f0e2b1b1b6144b2f9aa5814a4408b4964ede97
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 13fe586ab822e6a9340cd28d873bf0217400aa73
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="technical-prerequisites-for-creating-a-solution-template-for-the-azure-marketplace"></a>Conditions techniques préalables à la création d'un modèle de solution pour Azure Marketplace
-Avant de commencer, lisez attentivement cette procédure, de manière à comprendre à quel moment effectuer une étape et pourquoi chaque étape doit être exécutée. Autant que possible, préparez les informations et autres données de votre entreprise, téléchargez les outils nécessaires et/ou créez les composants techniques avant de lancer le processus de création de l’offre.  
+# <a name="technical-prerequisites-for-creating-a-solution-template-for-hello-azure-marketplace"></a>Conditions préalables de techniques pour la création d’un modèle de solution pour hello Azure Marketplace
+Processus hello soigneusement avant le début de lire et comprendre où et pourquoi chaque étape est effectuée. Autant que possible, vous devez préparer les informations de votre société et d’autres données, téléchargez les outils nécessaires, ou créer des composants techniques avant de commencer le processus de création offre hello.  
 
 ## <a name="developing-building-blocks"></a>Développement de blocs de construction
-Vous devez choisir les blocs de construction de votre solution avant de compléter votre modèle de solution sur le portail de publication. Voici des liens vers les documents qui peuvent vous aider dans le processus :
+Vous devez décider de hello des blocs de construction de votre solution avant de continuer avec votre modèle de solution sur hello portail de publication. Voici certains liens toohello les documents qui peuvent vous aider dans le processus de hello :
 
 1. [Meilleures pratiques relatives à la conception des modèles Azure Resource Manager](../azure-resource-manager/best-practices-resource-manager-design-templates.md)
 2. [Création de modèles Azure Resource Manager](../azure-resource-manager/resource-group-authoring-templates.md)
@@ -33,6 +33,6 @@ Vous devez choisir les blocs de construction de votre solution avant de complét
    * [https://github.com/azure/azure-quickstart-templates](https://github.com/azure/azure-quickstart-templates)
 
 ## <a name="next-steps"></a>Étapes suivantes
-À présent que vous avez passé en revue les conditions préalables et effectué les tâches nécessaires, vous pouvez procéder à la création de votre offre de modèle de solution, comme indiqué dans le document suivant : [Guide de création d'un modèle de solution](marketplace-publishing-solution-template-creation.md). Pour revenir à la page principale des tâches du serveur de publication, consultez [Prise en main : Publier une offre dans Azure Marketplace](marketplace-publishing-getting-started.md).
+Maintenant que vous avez consulté les conditions préalables de hello et les tâches nécessaires de hello terminée, vous pouvez déplacer vers l’avant avec la création de votre offre de modèle de solution comme détaillé dans hello [Guide toocreating un modèle de solution](marketplace-publishing-solution-template-creation.md). page principale de tooreturn toohello de tâches du serveur de publication, consultez [mise en route : comment toopublish une toohello offre Azure Marketplace](marketplace-publishing-getting-started.md).
 
 [link-acct]:marketplace-publishing-accounts-creation-registration.md

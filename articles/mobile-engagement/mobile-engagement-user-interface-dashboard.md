@@ -1,6 +1,6 @@
 ---
-title: Interface utilisateur d'Azure Mobile Engagement - Tableau de bord
-description: "En savoir plus sur l’affichage et la gestion des graphiques de données relatifs à votre application à l’aide d’Azure Mobile Engagement"
+title: "aaaAzure l’Interface utilisateur Mobile Engagement - tableau de bord"
+description: "Découvrez comment tooview et gérer des graphiques de données sur votre application à l’aide d’Azure Mobile Engagement"
 services: mobile-engagement
 documentationcenter: 
 author: piyushjo
@@ -14,26 +14,26 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: eaf5a2f9fdfcec33e8b4e2ddf77505980cd37c5e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d834c01cb748a962d50006398b75b381fa6d8cef
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-view-and-manage-charts-of-data-about-your-application"></a>Affichage et gestion des graphiques de données relatifs à votre application
-La section Tableau de bord de l'interface utilisateur permet aux clients de créer des graphiques personnalisés afin d'optimiser leur temps en fournissant les informations exactes qu'ils souhaitent au lieu de les rechercher dans la section Analyse. Un tableau de bord affiche les tendances de votre application et le nombre d'utilisateurs actifs pour les différentes versions de votre application pendant une période donnée (heure/jour/semaine/mois/personnalisé). Les tendances présentées sont basées sur les 7 derniers jours.
+# <a name="how-tooview-and-manage-charts-of-data-about-your-application"></a>Comment tooview et gérer des graphiques de données sur votre application
+Hello section tableau de bord de hello permet de l’interface utilisateur personnalisés des clients toocreate graphiques toomaximize leur temps en fournissant des informations exactes de hello qu’ils souhaitent au lieu de la recherche dans la section d’analytique hello. Un tableau de bord affiche les tendances de hello de votre application et le hello compte d’utilisateur Active pour hello différentes versions de votre application pendant une période donnée (heure/jour/semaine/mois/personnalisés). tendances Hello présentées reposent sur hello ces 7 derniers jours.
 
 ### <a name="see-also"></a>Voir aussi
 * [Guide de résolution des problèmes - Analyse][Link 21]
 
-## <a name="dashboard"></a>Tableau de bord
-* Vous pouvez ajouter des graphiques à un tableau de bord vide en choisissant l'action « Envoyer au tableau de bord » dans le menu engrenage de n'importe quel graphique dans la section Analyse de l'interface utilisateur que vous aimeriez voir dans un tableau de bord.
+## <a name="dashboard"></a>tableau de bord
+* Vous pouvez ajouter des graphiques tooan vides du tableau de bord en sélectionnant hello « envoi toodashboard » à partir du menu d’engrenage hello de tout graphique dans la section Analytique hello hello l’interface utilisateur que vous aimeriez toosee sur un tableau de bord.
 
 ## <a name="-add-a-dashboard"></a>+ (Ajouter un tableau de bord)
-* Vous pouvez utiliser l'élément de menu de ruban « + » pour créer un nouveau tableau de bord qui s'affichera dans le menu de ruban.
+* Vous pouvez utiliser hello « + » du ruban, élément de menu toocreate un tableau de bord qui s’affichera dans le menu de ruban hello.
 
 ## <a name="gear-menu"></a>Menu engrenage :
-* Vous pouvez utiliser le menu engrenage d'un tableau de bord pour supprimer, renommer, partager ou planifier (réception de messages électroniques) votre tableau de bord. Vous pouvez utiliser l'option de planification pour définir la fréquence à laquelle vous souhaitez recevoir votre tableau de bord personnalisé par courrier électronique. Vous pouvez choisir de le recevoir à un rythme quotidien, hebdomadaire ou mensuel. Vous pouvez choisir l'heure de la journée et le jour de la semaine ou du mois auxquels vous souhaitez recevoir le courrier électronique. Votre adresse de messagerie et le fuseau horaire sont basés sur les paramètres que vous avez configurés dans la section Mon compte de l'interface utilisateur.
+* Vous pouvez utiliser hello ENGRENAGE menu d’un tableau de bord tooDelete, renommer, partage ou planification (réception de messages électroniques) de votre tableau de bord. Vous pouvez utiliser hello option toodefine hello planifier à laquelle vous souhaitez que tooreceive votre tableau de bord personnalisé par courrier électronique. Vous pouvez planifier tooreceive quotidienne, hebdomadaire ou mensuelle. Vous pouvez choisir hello heure hello et du jour hello Hello semaine ou du mois hello lorsque vous souhaitez que le courrier électronique de tooreceive hello. Votre adresse de messagerie et le fuseau horaire sont basés sur les paramètres de hello que vous avez configuré dans hello section Mon compte Hello l’interface utilisateur.
   
   ![Tableau de bord 1][34]
 

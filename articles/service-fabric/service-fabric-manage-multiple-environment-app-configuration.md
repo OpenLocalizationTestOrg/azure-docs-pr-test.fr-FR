@@ -1,6 +1,6 @@
 ---
-title: "Gérer plusieurs environnements dans Fabric Service | Microsoft Docs"
-description: "Les applications Fabric Service peuvent être exécutées sur des clusters comportant entre une machine et des milliers. Dans certains cas, vous devez configurer votre application différemment pour les différents environnements. Cet article explique comment définir des paramètres d’application par l’environnement."
+title: aaaManage plusieurs environnements dans le Service Fabric | Documents Microsoft
+description: "Applications de service Fabric peuvent être exécutées sur des clusters dont la taille à partir d’un ordinateur toothousands, des ordinateurs. Dans certains cas, vous devez tooconfigure votre application différemment pour les différents environnements. Cet article décrit comment toodefine les paramètres d’application par l’environnement."
 services: service-fabric
 documentationcenter: .net
 author: mikkelhegn
@@ -14,22 +14,22 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 08/18/2017
 ms.author: mikkelhegn
-ms.openlocfilehash: 9317b3f0b7984e795c4205360ed58e2c4f3fbcb1
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 2b3327e0e1a3bbd35a50835e720619f308b1b501
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-application-parameters-for-multiple-environments"></a>Gestion des paramètres d’application pour plusieurs environnements
-Vous pouvez créer des clusters Service Fabric comportant n’importe quel nombre d’ordinateurs compris entre un et plusieurs milliers. Bien que les fichiers binaires d’application puissent s’exécuter sans modification dans ce large éventail d’environnements, vous souhaiterez certainement configurer l’application différemment, selon le nombre d’ordinateurs sur lesquels vous la déployez.
+Vous pouvez créer des clusters d’Azure Service Fabric à l’aide de n’importe où à partir d’un seul réduire des milliers d’ordinateurs. Alors que les fichiers binaires d’application peuvent s’exécuter sans modification sur ce large éventail d’environnements, il est souvent nécessaire application hello de tooconfigure différemment, en fonction du nombre de hello d’ordinateurs que vous déployez.
 
-À titre d’exemple, envisagez d’utiliser `InstanceCount` pour un service sans état. Lorsque vous exécutez des applications dans Azure, vous souhaitez généralement définir ce paramètre sur la valeur spéciale « -1 ». Cette configuration garantit que votre service s’exécute sur chaque nœud du cluster (ou tous les nœuds du type de nœud, si vous avez défini une contrainte de placement). Cependant, cette configuration ne convient pas à un cluster à une seule machine, car vous ne disposez pas de plusieurs processus à l’écoute du même point de terminaison sur une seule machine. Au lieu de cela, vous définissez généralement `InstanceCount` sur « 1 ».
+À titre d’exemple, envisagez d’utiliser `InstanceCount` pour un service sans état. Quand vous exécutez des applications dans Azure, vous devez généralement tooset ce paramètre toohello valeur spéciale « -1 ». Cette configuration garantit que votre service s’exécute sur chaque nœud de cluster de hello (ou tous les nœuds de type de nœud hello si vous avez défini une contrainte de placement). Toutefois, cette configuration n’est pas appropriée pour un seul ordinateur cluster, car vous ne peut pas avoir plusieurs processus à l’écoute sur hello même point de terminaison sur un seul ordinateur. Au lieu de cela, vous définissez généralement `InstanceCount` trop « 1 ».
 
 ## <a name="specifying-environment-specific-parameters"></a>Spécification des paramètres spécifiques à l’environnement
-La solution à ce problème de configuration est un ensemble de services paramétrables par défaut et des fichiers de paramètres d’application qui remplissent ces valeurs de paramètre pour un environnement donné. Les services par défaut et paramètres d’application sont configurés dans les manifestes d’applications et de services. La définition de schéma pour les fichiers ServiceManifest.xml et ApplicationManifest.xml est installée avec le Kit de développement logiciel (SDK) Service Fabric et les outils sous *C:\Program Files\Microsoft SDKs\Service Fabric\schemas\ServiceFabricServiceModel.xsd*.
+problème de configuration toothis Hello solution est un ensemble de services paramétrable par défaut et les fichiers de paramètres d’application qui remplissent ces valeurs de paramètre pour un environnement donné. Services par défaut et les paramètres de l’application sont configurés dans l’application hello et manifestes de service. Hello définition de schéma pour les fichiers ServiceManifest.xml et ApplicationManifest.xml hello est installée avec hello SDK de l’infrastructure de Service et les outils trop*C:\Program Files\Microsoft SDKs\Service Fabric\schemas\ServiceFabricServiceModel.xsd*.
 
 ### <a name="default-services"></a>Services par défaut
-Les applications Service Fabric sont constituées d’une collection d’instances de service. Bien qu’il vous soit possible de créer une application vide, puis toutes les instances de service de manière dynamique, la plupart des applications possèdent un ensemble de services de base qui doivent être créés systématiquement lors de l’instanciation de l’application. Ils sont nommés « services par défaut » et sont spécifiés dans le manifeste d’application avec des espaces réservés à la configuration par environnement inclus entre crochets :
+Les applications Service Fabric sont constituées d’une collection d’instances de service. Il est possible que vous toocreate une application vide et ensuite créer dynamiquement toutes les instances de service, la plupart des applications dispose un ensemble de services principaux qui doit toujours être créé lors de l’application hello est instanciée. Il s’agit tooas référencé « services par défaut ». Ils sont spécifiés dans le manifeste de l’application hello, avec des espaces réservés pour la configuration per-environnement inclus entre crochets :
 
 ```xml
   <DefaultServices>
@@ -49,7 +49,7 @@ Les applications Service Fabric sont constituées d’une collection d’instanc
   </DefaultServices>
 ```
 
-Chacun des paramètres nommés doit être défini dans l’élément Paramètres du manifeste d’application :
+Chacun des paramètres nommé de hello doit être défini dans l’élément des paramètres hello hello du manifeste d’application :
 
 ```xml
     <Parameters>
@@ -59,24 +59,24 @@ Chacun des paramètres nommés doit être défini dans l’élément Paramètres
     </Parameters>
 ```
 
-L’attribut DefaultValue spécifie la valeur à utiliser en l’absence d’un paramètre plus spécifique pour un environnement donné.
+attribut de DefaultValue Hello spécifie hello toobe de valeur utilisé dans l’absence de hello d’un paramètre plus spécifique pour un environnement donné.
 
 > [!NOTE]
-> Tous les paramètres d’instance de service conviennent à la configuration par environnement. Dans l’exemple ci-dessus, les valeurs LowKey et HighKey du schéma de partitionnement du service sont explicitement définies pour toutes les instances du service dans la mesure où la plage de partition est une fonction du domaine de données et non de l’environnement.
+> Tous les paramètres d’instance de service conviennent à la configuration par environnement. Dans l’exemple hello ci-dessus, hello LowKey et HighKey valeurs pour le schéma de partitionnement du service hello sont explicitement définies pour toutes les instances de service de hello, car la plage de partition hello est une fonction de domaine de données hello, pas l’environnement hello.
 > 
 > 
 
 ### <a name="per-environment-service-configuration-settings"></a>Paramètres de configuration de service par environnement
-Le [modèle d’application Service Fabric](service-fabric-application-model.md) permet aux services d’inclure des packages de configuration contenant des paires clé-valeur personnalisées lisibles lors de l’exécution. Les valeurs de ces paramètres peuvent également être différenciées par l’environnement en spécifiant un `ConfigOverride` dans le manifeste d’application.
+Hello [modèle d’application Service Fabric](service-fabric-application-model.md) tooinclude les packages de configuration qui contiennent des paires clé-valeur personnalisées qui peuvent être lus au moment de l’exécution des services Active. valeurs Hello de ces paramètres peuvent également être différenciées par l’environnement en spécifiant un `ConfigOverride` dans le manifeste de l’application hello.
 
-Supposons que vous utilisiez le paramètre suivant dans le fichier Config\Settings.xml pour le service `Stateful1` :
+Supposons que vous ayez hello suivant paramètre dans le fichier de Config\Settings.xml hello pour hello `Stateful1` service :
 
 ```xml
   <Section Name="MyConfigSection">
      <Parameter Name="MaxQueueSize" Value="25" />
   </Section>
 ```
-Pour remplacer cette valeur par une paire application/environnement spécifique, créez un `ConfigOverride` lors de l’importation du manifeste de service dans le manifeste d’application.
+Création de cette valeur pour une paire d’application/environnement spécifique, toooverride un `ConfigOverride` lorsque vous importez le manifeste de service hello dans le manifeste de l’application hello.
 
 ```xml
   <ConfigOverrides>
@@ -89,16 +89,16 @@ Pour remplacer cette valeur par une paire application/environnement spécifique,
      </ConfigOverride>
   </ConfigOverrides>
 ```
-Ce paramètre peut ensuite être configuré par environnement, comme indiqué ci-dessus. Vous pouvez réaliser cette opération par le biais d’une déclaration dans la section Paramètres du manifeste d’application et la spécification des valeurs spécifiques à l’environnement dans les fichiers de paramètres d’application.
+Ce paramètre peut ensuite être configuré par environnement, comme indiqué ci-dessus. Vous pouvez le faire en déclarant dans la section Paramètres de hello hello du manifeste d’application et en spécifiant des valeurs spécifiques à l’environnement dans les fichiers de paramètres d’application hello.
 
 > [!NOTE]
-> Dans le cas de paramètres de configuration de service, il existe trois emplacements où la valeur d’une clé peut être définie : le package de configuration du service, le manifeste d’application et le fichier de paramètre d’application. Service Fabric choisira toujours dans le fichier de paramètres d’application en premier (s’il est spécifié), puis le manifeste d’application et enfin, le package de configuration.
+> Dans les cas de hello des paramètres de configuration de service, il existe trois emplacements où hello d’une clé peut avoir la valeur : package de configuration du service hello, manifeste de l’application hello et fichier de paramètres d’application hello. L’infrastructure de service seront toujours choisir à partir du fichier de paramètres d’application hello tout d’abord (si spécifié), hello du manifeste d’application, puis enfin hello package de configuration.
 > 
 > 
 
 ### <a name="setting-and-using-environment-variables"></a>Définition et utilisation des variables d’environnement 
-Vous pouvez spécifier et définir des variables d’environnement dans le fichier ServiceManifest.xml, puis les remplacer dans le fichier ApplicationManifest.xml instance par instance.
-L’exemple suivant montre deux variables d’environnement, une avec un ensemble de valeurs et une autre qui est ignorée. Vous pouvez utiliser les paramètres d’application pour définir les valeurs des variables d’environnement de la même manière que pour les substitutions de configuration.
+Vous pouvez spécifier et définir des variables d’environnement dans le fichier ServiceManifest.xml de hello et ensuite substituer ces éléments dans le fichier ApplicationManifest.xml de hello sur chaque instance.
+exemple Hello ci-dessous montre les deux variables d’environnement, une avec une valeur définie et hello autres est remplacé. Vous pouvez utiliser les paramètres de valeurs de variables d’environnement tooset Bonjour même façon que ces ont été utilisés pour les remplacements de configuration d’application.
 
 ```xml
 <?xml version="1.0" encoding="utf-8" ?>
@@ -127,7 +127,7 @@ L’exemple suivant montre deux variables d’environnement, une avec un ensembl
   <DataPackage Name="MyData" Version="DataVersion1" />
 </ServiceManifest>
 ```
-Pour remplacer les variables d’environnement dans le fichier ApplicationManifest.xml, faites référence au package de code dans ServiceManifest avec l’élément `EnvironmentOverrides`.
+variables d’environnement toooverride hello Bonjour ApplicationManifest.xml, package de code hello référence Bonjour ServiceManifest avec hello `EnvironmentOverrides` élément.
 
 ```xml
   <ServiceManifestImport>
@@ -137,14 +137,14 @@ Pour remplacer les variables d’environnement dans le fichier ApplicationManife
     </EnvironmentOverrides>
   </ServiceManifestImport>
  ``` 
- Une fois que l’instance de service nommé est créée, vous pouvez accéder aux variables d’environnement à partir du code. Par exemple, en C#, vous pouvez effectuer les opérations suivantes :
+ Une fois hello nommé l’instance de service est créé, vous pouvez accéder variables d’environnement hello à partir du code. par exemple, en c# vous pouvez effectuer suivant de hello
 
 ```csharp
     string EnvVariable = Environment.GetEnvironmentVariable("MyEnvVariable");
 ```
 
 ### <a name="service-fabric-environment-variables"></a>Variables d’environnement de Service Fabric
-Des variables d’environnement définies pour chaque instance de service sont intégrées à Service Fabric. Vous trouverez ci-dessous la liste complète des variables d’environnement. Vous pourrez utiliser celles en gras dans votre service, tandis que les autres seront utilisées par le runtime Service Fabric. 
+Des variables d’environnement définies pour chaque instance de service sont intégrées à Service Fabric. Hello la liste complète des variables d’environnement est ci-dessous, où hello celles en gras sont hello ceux que vous utiliserez dans votre service, hello autre étant utilisé par le runtime Service Fabric. 
 
 * Fabric_ApplicationHostId
 * Fabric_ApplicationHostType
@@ -166,7 +166,7 @@ Des variables d’environnement définies pour chaque instance de service sont i
 * Fabric_ServicePackageVersionInstance
 * FabricPackageFileName
 
-Le code ci-dessous montre comment répertorier les variables d’environnement de Service Fabric.
+Hello code belows montre comment toolist hello variables d’environnement Service Fabric
  ```csharp
     foreach (DictionaryEntry de in Environment.GetEnvironmentVariables())
     {
@@ -176,7 +176,7 @@ Le code ci-dessous montre comment répertorier les variables d’environnement d
         }
     }
 ```
-Vous trouverez ci-après un exemple de variables d’environnement pour un type d’application nommé `GuestExe.Application` avec un type de service appelé `FrontEndService` lorsque vous travaillez sur votre ordinateur de développement local.
+Hello ci-dessous des exemples de variables d’environnement pour un type d’application appelé `GuestExe.Application` avec un type de service appelé `FrontEndService` sur votre ordinateur de développement local.
 
 * **Fabric_ApplicationName = fabric:/GuestExe.Application**
 * **Fabric_CodePackageName = Code**
@@ -185,7 +185,7 @@ Vous trouverez ci-après un exemple de variables d’environnement pour un type 
 * **Fabric_NodeName = _Node_2**
 
 ### <a name="application-parameter-files"></a>Fichiers de paramètre d’application
-Le projet d’application Service Fabric peut inclure un ou plusieurs fichiers de paramètres d’application. Chacun d’eux définit les valeurs spécifiques pour les paramètres qui sont définis dans le manifeste d’application :
+projet d’application Service Fabric Hello peut inclure un ou plusieurs fichiers de paramètres d’application. Chacun d’eux définit des valeurs spécifiques hello pour les paramètres hello qui sont définis dans le manifeste de l’application hello :
 
 ```xml
     <!-- ApplicationParameters\Local.xml -->
@@ -202,25 +202,25 @@ Par défaut, une nouvelle application contient trois fichiers de paramètres, no
 
 ![Fichiers de paramètres d’application dans l’Explorateur de solutions][app-parameters-solution-explorer]
 
-Pour créer un fichier de paramètres, il vous suffit de copier et coller un fichier de paramètres existant et de lui donner un nouveau nom.
+toocreate un fichier de paramètres, simplement copier et coller un et lui donner un nouveau nom.
 
 ## <a name="identifying-environment-specific-parameters-during-deployment"></a>Identification des paramètres spécifiques à l’environnement au cours du déploiement
-Au moment du déploiement, vous devez choisir le fichier de paramètres approprié à utiliser avec votre application. Vous pouvez le faire via la boîte de dialogue Publier de Visual Studio ou via PowerShell.
+Au moment du déploiement, vous devez tooapply de fichier toochoose hello paramètre approprié à votre application. Vous pouvez le faire via la boîte de dialogue Publier hello dans Visual Studio ou PowerShell.
 
 ### <a name="deploy-from-visual-studio"></a>Déploiement depuis Visual Studio
-Vous pouvez choisir dans la liste des fichiers de paramètres disponibles lors de la publication de votre application dans Visual Studio.
+Lorsque vous publiez votre application dans Visual Studio, vous pouvez choisir à partir de la liste de hello des fichiers de paramètres disponibles.
 
-![Choisir un fichier de paramètres dans la boîte de dialogue Publier][publishdialog]
+![Choisissez un fichier de paramètres dans la boîte de dialogue Publier hello][publishdialog]
 
 ### <a name="deploy-from-powershell"></a>Déploiement depuis PowerShell
-Le script PowerShell `Deploy-FabricApplication.ps1` inclus dans le modèle de projet d’application accepte un profil de publication en tant que paramètre et le profil PublishProfile contient une référence au fichier de paramètres d’application.
+Hello `Deploy-FabricApplication.ps1` script PowerShell inclus dans le modèle de projet application hello accepte un profil de publication en tant que paramètre et hello PublishProfile contient un fichier de paramètres de référence toohello application.
 
   ```PowerShell
     ./Deploy-FabricApplication -ApplicationPackagePath <app_package_path> -PublishProfileFile <publishprofile_path>
   ```
 
 ## <a name="next-steps"></a>Étapes suivantes
-Pour en savoir plus sur certains des principaux concepts abordés dans cette rubrique, consultez la [Présentation technique de Fabric Service](service-fabric-technical-overview.md). Pour plus d’informations sur les autres fonctionnalités de gestion d’application disponibles dans Visual Studio, consultez la section [Gestion de vos applications de Service Fabric dans Visual Studio](service-fabric-manage-application-in-visual-studio.md).
+toolearn savoir plus sur certains concepts fondamentaux hello qui sont décrites dans cette rubrique, consultez hello [vue d’ensemble technique du Service Fabric](service-fabric-technical-overview.md). Pour plus d’informations sur les autres fonctionnalités de gestion d’application disponibles dans Visual Studio, consultez la section [Gestion de vos applications de Service Fabric dans Visual Studio](service-fabric-manage-application-in-visual-studio.md).
 
 <!-- Image references -->
 

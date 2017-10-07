@@ -1,6 +1,6 @@
 ---
-title: "Utiliser la télémétrie dynamique | Microsoft Docs"
-description: "Suivez ce didacticiel pour savoir comment utiliser la télémétrie dynamique avec la solution préconfigurée de surveillance à distance Azure IoT Suite."
+title: "données de télémétrie dynamique aaaUse | Documents Microsoft"
+description: "Suivez ce didacticiel toolearn comment toouse de télémétrie dynamique avec l’analyse à distance hello Azure IoT Suite solution préconfigurée."
 services: 
 suite: iot-suite
 documentationcenter: 
@@ -15,19 +15,19 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/24/2017
 ms.author: dobett
-ms.openlocfilehash: 0114f27f9b8ae76e1170d04ddf66e2c4bf20686a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 06cb2a370b67b4950efdfa4c7d906ac92106f4a0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-dynamic-telemetry-with-the-remote-monitoring-preconfigured-solution"></a>Utilisation de la télémétrie dynamique avec la solution préconfigurée de surveillance à distance
+# <a name="use-dynamic-telemetry-with-hello-remote-monitoring-preconfigured-solution"></a>Utiliser la télémétrie dynamique avec hello solution préconfigurée de surveillance à distance
 
-La télémétrie dynamique vous permet de visualiser toutes les données de télémétrie envoyées vers la solution préconfigurée de surveillance à distance. Les appareils simulés déployés avec la solution préconfigurée envoient les données de télémétrie de température et d’humidité, que vous pouvez afficher sur le tableau de bord. Si vous personnalisez les appareils simulés existants, créez des appareils simulés ou connectez des appareils physiques sur la solution préconfigurée vers laquelle vous pouvez envoyer d’autres valeurs de télémétrie comme la température externe, les données RPM ou la vitesse du vent. Vous pouvez ensuite visualiser ces données de télémétrie supplémentaires sur le tableau de bord.
+Télémétrie dynamique permet de vous toovisualize tout toohello de télémétrie envoyé solution préconfigurée de surveillance à distance. périphériques Hello simulée déploiement avec hello préconfiguré solution envoient la télémétrie des température et humidité, ce qui vous permet de visualiser dans le tableau de bord hello. Si vous personnalisez les simulations de périphériques existants, créer de nouveaux périphériques simulés ou connecter solution toohello préconfiguré de périphériques physiques vous pouvez envoyer d’autres valeurs de données de télémétrie telles que la température externe de hello, RPM ou vitesse du vent. Vous pouvez ensuite visualiser ces données de télémétrie supplémentaires sur le tableau de bord hello.
 
-Ce didacticiel utilise un appareil simulé Node.js simple que vous pouvez facilement modifier pour faire des essais avec les données de télémétrie dynamique.
+Ce didacticiel utilise un appareil simulé Node.js simple que vous pouvez facilement modifier tooexperiment avec les données de télémétrie dynamique.
 
-Pour suivre ce didacticiel, vous avez besoin des éléments suivants :
+toocomplete ce didacticiel, vous devez :
 
 * Un abonnement Azure actif. Si vous ne possédez pas de compte, vous pouvez créer un compte d’évaluation gratuit en quelques minutes. Pour plus d’informations, consultez la rubrique [Version d’évaluation gratuite d’Azure][lnk_free_trial].
 * [Node.js][lnk-node] version 0.12.x ou ultérieure.
@@ -40,10 +40,10 @@ Vous pouvez suivre ce didacticiel sur n’importe quel système d’exploitation
 
 ## <a name="add-a-telemetry-type"></a>Ajouter un type de télémétrie
 
-L’étape suivante consiste à remplacer les données de télémétrie générées par l’appareil simulé Node.js par un nouveau jeu de valeurs :
+étape suivante de Hello est télémétrie de hello tooreplace généré par appareil simulé de hello Node.js avec un nouveau jeu de valeurs :
 
-1. Arrêtez l’appareil simulé Node.js en tapant **Ctrl+C** dans l’invite de commandes ou l’interpréteur de commandes.
-2. Dans le fichier remote_monitoring.js, vous pouvez voir les valeurs de données de base pour la télémétrie existante de température, d’humidité et de température externe. Ajoutez une valeur de données de base pour **rpm** comme suit :
+1. APPAREIL simulé Node.js hello STOP en tapant **Ctrl + C** dans votre invite de commandes ou d’un interpréteur de commandes.
+2. Dans le fichier de remote_monitoring.js hello, vous pouvez voir hello des valeurs de base de données de température existant de hello, humidité et télémétrie de température externe. Ajoutez une valeur de données de base pour **rpm** comme suit :
 
     ```nodejs
     // Sensors data
@@ -53,7 +53,7 @@ L’étape suivante consiste à remplacer les données de télémétrie génér�
     var rpm = 200;
     ```
 
-3. L’appareil simulé Node.js utilise la fonction **generateRandomIncrement** dans le fichier remote_monitoring.js pour ajouter un incrément aléatoire aux valeurs de données de base. Rendez aléatoire la valeur **rpm** en ajoutant une ligne de code après les randomisations existantes comme suit :
+3. APPAREIL simulé de Node.js Hello utilise hello **generateRandomIncrement** de fonction dans hello remote_monitoring.js fichier tooadd un toohello incrément aléatoire des valeurs de base de données. Rendre aléatoire hello **rpm** valeur en ajoutant une ligne de code après randomisations existant de hello comme suit :
 
     ```nodejs
     temperature += generateRandomIncrement();
@@ -62,7 +62,7 @@ L’étape suivante consiste à remplacer les données de télémétrie génér�
     rpm += generateRandomIncrement();
     ```
 
-4. Ajoutez la nouvelle valeur rpm pour la charge utile JSON que l’appareil envoie vers IoT Hub :
+4. Ajoutez hello nouvelle rpm valeur toohello JSON charge utile hello appareil envoie tooIoT Hub :
 
     ```nodejs
     var data = JSON.stringify({
@@ -74,20 +74,20 @@ L’étape suivante consiste à remplacer les données de télémétrie génér�
     });
     ```
 
-5. Exécutez l’appareil simulé Node.js à l’aide de la commande suivante :
+5. Exécutez les appareil simulé Node.js hello à l’aide de hello de commande suivante :
 
     `node remote_monitoring.js`
 
-6. Observez le nouveau type de télémétrie RPM qui s’affiche sur le graphique dans le tableau de bord :
+6. Observez hello nouveau RPM télémétrie type qui s’affiche sur le graphique de hello dans le tableau de bord hello :
 
-![Ajouter les valeurs RPM au tableau de bord][image3]
+![Ajouter le tableau de bord toohello tr/min][image3]
 
 > [!NOTE]
-> Vous devrez peut-être désactiver, puis activer l’appareil Node.js sur la page **Appareils** du tableau de bord pour afficher immédiatement les changements.
+> Vous pouvez peut-être toodisable, puis activer le dispositif de Node.js hello hello **périphériques** page hello du tableau de bord toosee hello modification immédiatement.
 
-## <a name="customize-the-dashboard-display"></a>Personnaliser l’affichage du tableau de bord
+## <a name="customize-hello-dashboard-display"></a>Personnaliser l’affichage du tableau de bord hello
 
-Le message **Device-Info** peut inclure des métadonnées sur la télémétrie pouvant être envoyée par l’appareil vers IoT Hub. Ces métadonnées peuvent spécifier les types de télémétrie envoyés par l’appareil. Modifiez la valeur **deviceMetaData** dans le fichier remote_monitoring.js pour inclure une définition **Telemetry** à la suite de la définition **Commands**. L’extrait de code suivant illustre la définition **Commands** (veillez à ajouter un `,` après la définition **Commands**) :
+Hello **informations de périphérique** message peut inclure des métadonnées sur les données de télémétrie hello appareil de hello peut envoyer des tooIoT Hub. Ces métadonnées peuvent spécifier les types de données de télémétrie hello hello appareil envoie. Modifier hello **deviceMetaData** valeur hello remote_monitoring.js fichier tooinclude un **télémétrie** définition suivant hello **commandes** définition. Hello extrait de code suivant montre hello **commandes** définition (être tooadd vraiment une `,` après hello **commandes** définition) :
 
 ```nodejs
 'Commands': [{
@@ -119,10 +119,10 @@ Le message **Device-Info** peut inclure des métadonnées sur la télémétrie p
 ```
 
 > [!NOTE]
-> La solution de surveillance à distance utilise une correspondance non sensible à la casse pour comparer la définition des métadonnées avec les données du flux de télémétrie.
+> solution de surveillance à distance Hello utilise une définition de métadonnées de la casse toocompare hello avec des données dans le flux de données de télémétrie hello.
 
 
-Le fait d’ajouter une définition **Telemetry** comme le montre l’extrait de code précédent ne modifie pas le comportement du tableau de bord. Cependant, les métadonnées peuvent également inclure un attribut **DisplayName** pour personnaliser l’affichage dans le tableau de bord. Mettez à jour la définition des métadonnées **Telemetry** comme le montre l’extrait suivant :
+Ajout d’un **télémétrie** définition, comme indiqué dans hello précédente extrait de code ne modifie pas le comportement de hello du tableau de bord hello. Toutefois, les métadonnées de hello peuvent également inclure un **DisplayName** affichage de hello toocustomize dans le tableau de bord hello d’attribut. Hello de mise à jour **télémétrie** définition de métadonnées comme indiqué dans hello suivant extrait de code :
 
 ```nodejs
 'Telemetry': [
@@ -144,18 +144,18 @@ Le fait d’ajouter une définition **Telemetry** comme le montre l’extrait de
 ]
 ```
 
-La capture d’écran suivante montre de quelle manière ce changement modifie la légende du graphique dans le tableau de bord :
+Hello capture d’écran suivante montre comment cette modification modifie la légende du graphique sur le tableau de bord hello hello :
 
-![Personnaliser la légende du graphique][image4]
+![Personnaliser la légende du graphique hello][image4]
 
 > [!NOTE]
-> Vous devrez peut-être désactiver, puis activer l’appareil Node.js sur la page **Appareils** du tableau de bord pour afficher immédiatement les changements.
+> Vous pouvez peut-être toodisable, puis activer le dispositif de Node.js hello hello **périphériques** page hello du tableau de bord toosee hello modification immédiatement.
 
-## <a name="filter-the-telemetry-types"></a>Filtrer les types de télémétrie
+## <a name="filter-hello-telemetry-types"></a>Filtrer les types de données de télémétrie hello
 
-Par défaut, le graphique du tableau de bord affiche toutes les séries de données dans le flux de télémétrie. Vous pouvez utiliser les métadonnées **Device-Info** pour supprimer l’affichage des types de télémétrie spécifiques sur le graphique. 
+Par défaut, le graphique hello sur le tableau de bord hello affiche chaque série de données dans le flux de données de télémétrie hello. Vous pouvez utiliser hello **informations de périphérique** toosuppress de métadonnées hello l’affichage des types de données de télémétrie spécifique sur le graphique de hello. 
 
-Pour que le graphique affiche uniquement la télémétrie de température et d’humidité, omettez **ExternalTemperature** dans les métadonnées **Telemetry** **Device-Info** comme suit :
+graphique de hello toomake afficher uniquement les télémétrie température et humidité, omettez **ExternalTemperature** de hello **informations de périphérique** **télémétrie** métadonnées comme suit :
 
 ```nodejs
 'Telemetry': [
@@ -177,22 +177,22 @@ Pour que le graphique affiche uniquement la télémétrie de température et d�
 ]
 ```
 
-**Outdoor Temperature** (Température externe) ne s’affiche plus dans le graphique :
+Hello **température extérieur** ne s’affiche plus dans le graphique de hello :
 
-![Filtrer la télémétrie sur le tableau de bord][image5]
+![Filtrer la télémétrie hello sur tableau de bord hello][image5]
 
-Cette modification affecte uniquement l’affichage du graphique. Les données **ExternalTemperature** sont toujours stockées et mises à disposition pour le traitement principal, quel qu’il soit.
+Cette modification affecte uniquement l’affichage du graphique hello. Hello **ExternalTemperature** des valeurs de données sont toujours stockés et disponibles pour tout traitement principal.
 
 > [!NOTE]
-> Vous devrez peut-être désactiver, puis activer l’appareil Node.js sur la page **Appareils** du tableau de bord pour afficher immédiatement les changements.
+> Vous pouvez peut-être toodisable, puis activer le dispositif de Node.js hello hello **périphériques** page hello du tableau de bord toosee hello modification immédiatement.
 
 ## <a name="handle-errors"></a>des erreurs
 
-Pour qu’un flux de données s’affiche sur le graphique, son **Type** dans les métadonnées **Device-Info** doit correspondre au type de données des valeurs de télémétrie. Par exemple, si les métadonnées spécifient que le **Type** de données d’humidité est **int** et qu’un **double** est trouvé dans le flux de télémétrie, la télémétrie d’humidité ne s’affiche pas sur le graphique. Toutefois, les valeurs **d’humidité** sont toujours stockées et mises à disposition pour le traitement principal, quel qu’il soit.
+Pour un toodisplay de flux de données sur le graphique de hello, son **Type** Bonjour **informations de périphérique** métadonnées doivent correspondre au type de données hello des valeurs de données de télémétrie hello. Par exemple, si hello métadonnées spécifient que hello **Type** de l’humidité, les données sont **int** et un **double** se trouve dans le flux de données de télémétrie hello ne de télémétrie de humidité hello pas d’affichage sur le graphique de hello. Toutefois, hello **humidité** les valeurs sont toujours stockées et mises à disposition pour tout traitement principal.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Maintenant que vous savez comment utiliser la télémétrie dynamique, vous pouvez en savoir plus sur la manière dont les solutions préconfigurées utilisent les informations d’appareil : [Métadonnées relatives aux informations d’appareil dans la solution préconfigurée de surveillance à distance][lnk-devinfo].
+Maintenant que vous avez vu comment toouse de télémétrie dynamique, vous pouvez en savoir plus sur comment hello préconfiguré solutions utilisent les informations de périphérique : [solution préconfigurée de métadonnées informations de périphérique dans le contrôle à distance hello] [ lnk-devinfo].
 
 [lnk-devinfo]: iot-suite-remote-monitoring-device-info.md
 

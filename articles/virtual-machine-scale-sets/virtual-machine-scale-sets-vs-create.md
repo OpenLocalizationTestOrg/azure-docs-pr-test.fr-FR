@@ -1,5 +1,5 @@
 ---
-title: "Déployer un groupe de machines virtuelles identiques à l’aide de Visual Studio | Microsoft Docs"
+title: "aaaDeploy ensemble d’échelle de Machine virtuelle à l’aide de Visual Studio | Documents Microsoft"
 description: "Déployer des jeux de mise à l'échelle de machines virtuelles à l'aide de Visual Studio et d’un modèle Resource Manager"
 services: virtual-machine-scale-sets
 documentationcenter: 
@@ -16,21 +16,21 @@ ms.topic: article
 ms.date: 03/13/2017
 ms.author: guybo
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 78a4b0c8d305f57f495402cecb92d18425ff6bff
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: c89a9f2478ccc3d22989aea604a4273bcc46df82
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-create-a-virtual-machine-scale-set-with-visual-studio"></a>Création d’un jeu de mise à l’échelle de machines virtuelles avec Visual Studio
-Cet article vous indique comment déployer un jeu de mise à l’échelle de machines virtuelles Azure à l'aide d'un déploiement de groupe de ressources Visual Studio.
+# <a name="how-toocreate-a-virtual-machine-scale-set-with-visual-studio"></a>Comment toocreate une échelle de l’ordinateur virtuel défini avec Visual Studio
+Cet article vous explique comment toodeploy une échelle de machines virtuelles Azure définie à l’aide d’un déploiement de groupe de ressources Visual Studio.
 
-Les [groupes de machines virtuelles identiques Azure](https://azure.microsoft.com/blog/azure-vm-scale-sets-public-preview/) représentent une ressource de calcul Azure qui permet de déployer et de gérer une collection de machines virtuelles similaires via des options de mise à l'échelle automatique et d'équilibrage de charge. Vous pouvez configurer et déployer des groupes de machines virtuelles identiques à l’aide de [modèles Azure Resource Manager](https://github.com/Azure/azure-quickstart-templates). Les modèles Azure Resource Manager peuvent être déployés à l’aide de l’interface de ligne de commande (CLI) Azure, de PowerShell, de REST et directement à partir de Visual Studio. Visual Studio fournit des exemples de modèles qui peuvent être déployés dans le cadre d’un projet de déploiement de groupe de ressources Azure.
+[Machines virtuelles Azure identiques](https://azure.microsoft.com/blog/azure-vm-scale-sets-public-preview/) est une toodeploy de ressources de calcul Azure et de gérer une collection de machines virtuelles similaires à l’échelle automatique et de l’équilibrage de charge. Vous pouvez configurer et déployer des groupes de machines virtuelles identiques à l’aide de [modèles Azure Resource Manager](https://github.com/Azure/azure-quickstart-templates). Les modèles Azure Resource Manager peuvent être déployés à l’aide de l’interface de ligne de commande (CLI) Azure, de PowerShell, de REST et directement à partir de Visual Studio. Visual Studio fournit des exemples de modèles qui peuvent être déployés dans le cadre d’un projet de déploiement de groupe de ressources Azure.
 
-Les déploiements de groupe de ressources Azure vous permettent de regrouper et de publier un ensemble de ressources Azure connexes dans une même opération de déploiement. Pour en savoir plus, consultez la rubrique [Création et déploiement de groupes de ressources Azure à l’aide de Visual Studio](../vs-azure-tools-resource-groups-deployment-projects-create-deploy.md)
+Déploiements de groupe de ressources Azure sont un moyen toogroup et publient un ensemble de ressources Azure connexes dans une même opération de déploiement. Pour en savoir plus, consultez la rubrique [Création et déploiement de groupes de ressources Azure à l’aide de Visual Studio](../vs-azure-tools-resource-groups-deployment-projects-create-deploy.md)
 
 ## <a name="pre-requisites"></a>Conditions préalables
-Pour commencer le déploiement de groupes de machines virtuelles identiques dans Visual Studio, vous devez disposer des éléments suivants :
+tooget de déployer des machines virtuelles identiques dans Visual Studio, hello éléments suivants sont nécessaires :
 
 * Visual Studio 2013 ou une version ultérieure
 * Kit de développement logiciel (SDK) Azure 2.7, 2.8 ou 2.9
@@ -43,57 +43,57 @@ Pour commencer le déploiement de groupes de machines virtuelles identiques dans
    
     ![Fichier Nouveau][file_new]
 
-2. Sous **Visual C# | Cloud**, sélectionnez **Azure Resource Manager** pour créer un projet de déploiement d’un modèle Azure Resource Manager.
+2. Sous **Visual C# | Cloud**, choisissez **Azure Resource Manager** toocreate un projet pour le déploiement d’un modèle de gestionnaire de ressources Azure.
    
     ![Créer un projet][create_project]
 
-3. Depuis la liste des modèles, sélectionnez le modèle de jeux de mise à l'échelle de machines virtuelles Windows ou Linux.
+3. À partir de la liste de hello des modèles, sélectionnez hello Linux ou modèle de définir de mise à l’échelle d’ordinateur virtuel Windows.
    
    ![Sélectionner un modèle][select_Template]
 
-4. Une fois votre projet créé, des scripts de déploiement PowerShell, un modèle Azure Resource Manager et un fichier de paramètres pour le groupe de machines virtuelles identiques s’affichent.
+4. Une fois votre projet créé, vous voyez les scripts de déploiement PowerShell, un modèle de gestionnaire de ressources Azure et un fichier de paramètres pour hello ensemble d’échelle de Machine virtuelle.
    
     ![Explorateur de solutions][solution_explorer]
 
 ## <a name="customize-your-project"></a>Personnalisation de votre projet
-Vous pouvez modifier dès à présent le modèle pour le personnaliser en fonction des besoins de votre application, en ajoutant par exemple des propriétés d'extension de machines virtuelles ou en modifiant les règles d'équilibrage de charge. Par défaut, les modèles de groupe de machines virtuelles identiques sont configurés pour déployer l’extension AzureDiagnostics qui permet d’ajouter très facilement des règles de mise à l’échelle automatique. Il déploie également un équilibreur de charge avec une adresse IP publique, configuré avec les règles NAT entrantes. 
+Maintenant vous pouvez modifier toocustomize du modèle hello pour les besoins de votre application, telles que l’ajout de propriétés d’extension de machine virtuelle ou la modification de charger les règles d’équilibrage. Par défaut les modèles d’ensembles hello Machine virtuelle mise à l’échelle sont extension toodeploy configuré hello AzureDiagnostics, ce qui rend les règles de mise à l’échelle tooadd facile. Il déploie également un équilibreur de charge avec une adresse IP publique, configuré avec les règles NAT entrantes. 
 
-L’équilibrage de charge vous permet de vous connecter aux instances de machine virtuelle avec SSH (Linux) ou RDP (Windows). La plage de ports frontaux commence à 50000. Pour Linux, cela signifie que si vous utilisez SSH pour le port 50000, vous êtes redirigé vers le port 22 de la première machine virtuelle dans le groupe identique. La connexion au port 50001 est acheminée vers le port 22 de la deuxième machine virtuelle et ainsi de suite.
+équilibrage de charge Hello vous permet de connecter des instances de machine virtuelle toohello avec SSH (Linux) ou RDP (Windows). plage de ports frontaux de Hello commence à 50000. Pour linux, cela signifie que si vous SSH tooport 50000, vous êtes routé tooport 22 de hello première machine virtuelle Bonjour ensemble d’échelle. Connexion tooport 50001 est routé tooport 22 Hello deuxième machine virtuelle et ainsi de suite.
 
- Un bon moyen de modifier vos modèles avec Visual Studio consiste à utiliser le plan JSON pour organiser des paramètres, des variables et des ressources. En comprenant le schéma, Visual Studio peut signaler les erreurs figurant dans votre modèle avant de le déployer.
+ Un bon moyen tooedit vos modèles avec Visual Studio est le paramètres hello tooorganize toouse hello structure JSON, des variables et des ressources. Le fonctionnement de hello schéma Visual Studio peut souligner les erreurs dans votre modèle avant de le déployer.
 
 ![JSON Explorer][json_explorer]
 
-## <a name="deploy-the-project"></a>Déployer le projet
-1. Déployez le modèle Azure Resource Manager pour créer la ressource du groupe de machines virtuelles identiques. Cliquez avec le bouton droit de la souris sur le nœud du projet et sélectionnez **Déployer | Nouveau déploiement**.
+## <a name="deploy-hello-project"></a>Déployer le projet de hello
+1. Déployer hello Azure Resource Manager ressource modèle de toocreate hello ensemble d’échelle de Machine virtuelle. Avec le bouton droit sur le nœud de projet hello et choisissez **déployer | Nouveau déploiement**.
    
     ![Déployer un modèle][5deploy_Template]
     
-2. Sélectionnez votre abonnement dans la boîte de dialogue « Déploiement vers un groupe de ressources ».
+2. Dans la boîte de dialogue « Déployer tooResource groupe » hello, sélectionnez votre abonnement.
    
     ![Déployer un modèle][6deploy_Template]
 
-3. À ce stade, vous pouvez créer un groupe de ressources Azure sur lequel déployer votre modèle.
+3. À ce stade, vous pouvez créer un groupe de ressources Azure de toodeploy votre modèle de.
    
     ![Nouveau groupe de ressources][new_resource]
 
-4. Ensuite, cliquez sur **Modifier les paramètres** pour entrer des paramètres qui sont transmis à votre modèle. Entrez le nom d’utilisateur et le mot de passe pour le système d’exploitation, requis pour créer le déploiement. Si les outils PowerShell pour Visual Studio ne sont pas installés, il est recommandé d’activer l’option **Enregistrer les mots de passe** afin d’éviter une invite de ligne de commande PowerShell masquée, ou utilisez le [support KeyVault](https://azure.microsoft.com/blog/keyvault-support-for-arm-templates/).
+4. Ensuite, cliquez sur **modifier les paramètres** tooenter les paramètres qui sont passés tooyour modèle. Fournissez hello username et password pour hello du système d’exploitation, qui est le déploiement de hello toocreate requis. Si vous n’avez outils PowerShell pour Visual Studio est installé, il est recommandé de toocheck **enregistrer les mots de passe** tooavoid une ligne de commande PowerShell masqué invite, ou utilisez [prise en charge keyvault](https://azure.microsoft.com/blog/keyvault-support-for-arm-templates/).
    
     ![Modifier les paramètres][edit_parameters]
 
-5. Cliquez maintenant sur **Déployer**. La fenêtre **Sortie** affiche la progression du déploiement. Notez que l’action exécute le script **Deploy-AzureResourceGroup.ps1**.
+5. Cliquez maintenant sur **Déployer**. Hello **sortie** fenêtre affiche la progression du déploiement hello. Notez que les actions hello exécute hello **Deploy-azureresourcegroup.ps1** script.
    
    ![Fenêtre Sortie][output_window]
 
 ## <a name="exploring-your-virtual-machine-scale-set"></a>Exploration de votre groupe de machines virtuelles identiques
-Une fois le déploiement terminé, vous pouvez afficher le nouveau groupe de machines virtuelles identiques dans le **Cloud Explorer** de Visual Studio (actualisez la liste). Cloud Explorer vous permet de gérer des ressources Azure dans Visual Studio lors du développement d'applications. Vous pouvez également afficher votre groupe identique de machines virtuelles dans le [portail Azure](https://portal.azure.com) et [l’Explorateur de ressources Azure](https://resources.azure.com/).
+Hello déploiement terminé, vous pouvez afficher hello nouvelle Machine virtuelle ensemble d’échelle Bonjour Visual Studio **Cloud Explorer** (liste d’actualisation hello). Cloud Explorer vous permet de gérer des ressources Azure dans Visual Studio lors du développement d'applications. Vous pouvez également afficher votre ensemble d’échelle de Machine virtuelle dans hello [portail Azure](https://portal.azure.com) et [Explorateur de ressources Azure](https://resources.azure.com/).
 
 ![Cloud Explorer][cloud_explorer]
 
- Le portail vous explique comment gérer visuellement votre infrastructure Azure par le biais d’un navigateur web, tandis qu’Azure Resource Explorer vous permet d’explorer et de déboguer très facilement des ressources Azure, en vous donnant un aperçu de la « vue d’instance » et en vous indiquant également les commandes PowerShell pour les ressources que vous recherchez.
+ portail de Hello fournit la meilleure hello toovisually gérer votre infrastructure d’Azure avec un navigateur web, alors que l’Explorateur de ressources Azure fournit un moyen simple de tooexplore et débogage des ressources Azure, ce qui dans une fenêtre de hello « afficher les instance » et en montrant également PowerShell commandes pour les ressources hello que vous examinez.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Une fois les groupes de machines virtuelles identiques déployés avec succès via Visual Studio, vous pouvez personnaliser davantage votre projet en fonction des besoins de votre application. Vous pouvez, par exemple, configurer la mise à l’échelle automatique via l’ajout d’une ressource **Insights**, l’ajout d’une infrastructure à votre modèle (comme des machines virtuelles autonomes) ou le déploiement d’applications à l’aide de l’extension de script personnalisé. Vous trouverez de bons exemples de modèles dans le référentiel GitHub [Modèles de démarrage rapide Azure](https://github.com/Azure/azure-quickstart-templates) (recherchez le terme « vmss »).
+Une fois que vous avez correctement déployé des machines virtuelles identiques via Visual Studio, vous pouvez personnaliser davantage votre toosuit projet spécifications de votre application. Par exemple, configurer à l’échelle automatique en ajoutant un **Insights** ressource, ajout d’infrastructure tooyour modèle (comme les ordinateurs virtuels autonomes), ou du déploiement des applications à l’aide d’extension de script personnalisé hello. Bon exemple modèles se trouvent dans hello [modèles de démarrage rapide Azure](https://github.com/Azure/azure-quickstart-templates) le référentiel GitHub (recherche de « mise »).
 
 [file_new]: ./media/virtual-machine-scale-sets-vs-create/1-FileNew.png
 [create_project]: ./media/virtual-machine-scale-sets-vs-create/2-CreateProject.png

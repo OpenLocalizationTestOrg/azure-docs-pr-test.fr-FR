@@ -1,6 +1,6 @@
 ---
-title: "Groupes de volumes du Gestionnaire d’instantanés StorSimple | Microsoft Docs"
-description: "Décrit comment utiliser le composant logiciel enfichable MMC du Gestionnaire d’instantanés StorSimple pour créer et gérer des groupes de volumes."
+title: "groupes de volumes Gestionnaire d’instantanés aaaStorSimple | Documents Microsoft"
+description: "Décrit comment toouse hello StorSimple Snapshot Manager MMC enfichable toocreate et gérer des groupes de volumes."
 services: storsimple
 documentationcenter: NA
 author: SharS
@@ -14,21 +14,21 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 06/05/2017
 ms.author: v-sharos
-ms.openlocfilehash: 6067a88cd42d29c3d2f4b74580095424de77561e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f7830b62761db7aa5139456b555b6168fb6a85de
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-storsimple-snapshot-manager-to-create-and-manage-volume-groups"></a>Utiliser le Gestionnaire d’instantanés StorSimple pour créer et gérer des groupes de volumes
+# <a name="use-storsimple-snapshot-manager-toocreate-and-manage-volume-groups"></a>Utilisez le Gestionnaire d’instantanés StorSimple toocreate et gérer des groupes de volumes
 ## <a name="overview"></a>Vue d'ensemble
-Vous pouvez utiliser le nœud **Groupes de volumes** du volet **Étendue** pour attribuer des volumes aux groupes de volumes, afficher des informations relatives à un groupe de volumes, planifier des sauvegardes et modifier des groupes de volumes.
+Vous pouvez utiliser hello **groupes de volumes** nœud sur hello **étendue** groupes toovolume du volet tooassign volumes, afficher des informations sur un groupe de volumes, planifiez des sauvegardes et modifier des groupes de volumes.
 
-Les groupes de volumes sont des pools de volumes associés utilisés pour vérifier que les sauvegardes sont cohérentes au niveau applicatif. Pour plus d’informations, consultez les sections [Volumes et groupes de volumes](storsimple-what-is-snapshot-manager.md#volumes-and-volume-groups) et [Intégration avec le service VSS de Windows](storsimple-what-is-snapshot-manager.md#integration-with-windows-volume-shadow-copy-service).
+Groupes de volumes sont des pools de tooensure de volumes associés utilisés que les sauvegardes sont cohérentes avec les applications. Pour plus d’informations, consultez les sections [Volumes et groupes de volumes](storsimple-what-is-snapshot-manager.md#volumes-and-volume-groups) et [Intégration avec le service VSS de Windows](storsimple-what-is-snapshot-manager.md#integration-with-windows-volume-shadow-copy-service).
 
 > [!IMPORTANT]
 > * Tous les volumes d’un groupe de volumes doivent provenir d’un fournisseur de services cloud unique.
-> * Lorsque vous configurez des groupes de volumes, ne mélangez pas des volumes partagés de cluster et des volumes non partagés de cluster dans un groupe de volumes. Le Gestionnaire d’instantanés StorSimple ne prend pas en charge les combinaisons de volumes partagés de cluster et non partagés de cluster dans un même instantané.
+> * Lorsque vous configurez des groupes de volumes, ne mélangez pas les volumes partagés de cluster (CSV) non-CSV dans hello même groupe de volumes. Gestionnaire d’instantanés StorSimple ne prend pas en charge un mélange de volumes partagés de cluster et non-CSV dans hello même instantané.
 
 ![Nœud de groupes de volumes](./media/storsimple-snapshot-manager-manage-volume-groups/HCS_SSM_Volume_groups.png)
 
@@ -42,89 +42,89 @@ Ce didacticiel vous explique comment utiliser le Gestionnaire d’instantanés S
 * Modifier un groupe de volumes
 * Supprimer un groupe de volumes
 
-L’ensemble de ces actions sont également disponibles dans le volet **Actions** .
+Toutes ces actions sont également disponibles sur hello **Actions** volet.
 
 ## <a name="view-volume-groups"></a>Afficher les groupes de volumes
-Si vous cliquez sur le nœud **Groupes de volumes**, le volet **Résultats** indique les informations suivantes sur chaque groupe de volumes, en fonction des colonnes sélectionnées. (Les colonnes du volet **Résultats** sont configurables. (Cliquez avec le bouton droit sur le nœud **Volumes**, sélectionnez **Affichage**, puis sélectionnez **Ajouter/Supprimer des colonnes**.)
+Si vous cliquez sur hello **groupes de volumes** nœud, hello **résultats** volet affiche hello suivant des informations sur chaque groupe de volumes, en fonction des sélections de colonne hello vous apporter. (hello colonnes Bonjour **résultats** volet sont configurables. Avec le bouton hello **Volumes** nœud, sélectionnez **vue**, puis sélectionnez **Ajout/Suppression de colonnes**.)
 
 | Colonne de résultats | Description |
 |:--- |:--- |
-| Nom |La colonne **Nom** comporte le nom du groupe de volumes. |
-| Application |La colonne **Applications** indique le nombre d’enregistreurs VSS actuellement installés et exécutés sur l’hôte Windows. |
-| Volumes sélectionnés |La colonne **Volumes sélectionnés** indique le nombre de volumes du groupe de volumes. Une valeur nulle (0) indique qu’aucune application n’est associée aux volumes du groupe de volumes. |
-| Volumes importés |La colonne **Volumes importés** représente le nombre de volumes importés. Lorsqu’elle est définie sur **Vrai**, cette colonne indique qu’un groupe de volumes a été importé du portail Azure, et n’a pas été créé dans le Gestionnaire d’instantanés StorSimple. |
+| Nom |Hello **nom** colonne contient le nom de hello du groupe de volumes hello. |
+| Application |Hello **Applications** colonne indique le nombre de hello d’enregistreurs VSS actuellement installés et en cours d’exécution hello hôte Windows. |
+| Sélectionné |Hello **sélectionnés** colonne indique le nombre de hello de volumes qui sont contenus dans le groupe de volumes hello. Zéro (0) indique qu’aucune application n’est associée à des volumes dans le groupe de volumes hello hello. |
+| Volumes importés |Hello **importé** colonne indique le nombre de hello de volumes importés. Lorsque la valeur trop**True**, cette colonne indique qu’un groupe de volumes ont été importé à partir de hello portail Azure et qu’il a été créé pas de gestionnaire d’instantanés StorSimple. |
 
 > [!NOTE]
-> Les groupes de volumes du Gestionnaire d’instantanés StorSimple s’affichent également sur l’onglet **Stratégies de sauvegarde** du portail Azure.
+> Groupes de volumes StorSimple Snapshot Manager sont également affichées sur hello **stratégies de sauvegarde** onglet Bonjour portail Azure.
 > 
 > 
 
 ## <a name="create-a-volume-group"></a>Créer un groupe de volumes
-Exécutez la procédure suivante pour créer un groupe de volumes.
+Utilisez hello suivant la procédure toocreate un groupe de volumes.
 
-#### <a name="to-create-a-volume-group"></a>Pour créer un groupe de volumes
-1. Cliquez sur l’icône de bureau pour démarrer le Gestionnaire d’instantanés StorSimple.
-2. Dans le volet **Étendue**, cliquez avec le bouton droit sur **Groupes de volumes**, puis cliquez sur **Créer un groupe de volumes**.
+#### <a name="toocreate-a-volume-group"></a>toocreate un groupe de volumes
+1. Cliquez sur icône du bureau de hello toostart Gestionnaire d’instantanés StorSimple.
+2. Bonjour **étendue** volet, avec le bouton droit **groupes de volumes**, puis cliquez sur **créer un groupe de volumes**.
    
     ![Créer un groupe de volumes](./media/storsimple-snapshot-manager-manage-volume-groups/HCS_SSM_Create_volume_group.png)
    
-    La boîte de dialogue **Créer un groupe de volumes** apparaît.
+    Hello **créer un groupe de volumes** boîte de dialogue s’affiche.
    
     ![Boîte de dialogue Créer un groupe de volumes](./media/storsimple-snapshot-manager-manage-volume-groups/HCS_SSM_CreateVolumeGroup_dialog.png)
-3. Entrez les informations suivantes :
+3. Entrez hello informations suivantes :
    
-   1. Dans la zone **Nom** , saisissez un nom unique pour le nouveau groupe de volumes.
-   2. Dans la zone **Applications** , sélectionnez les applications associées aux volumes que vous ajouterez au groupe de volumes.
+   1. Bonjour **nom** , tapez un nom unique pour le nouveau groupe de volumes hello.
+   2. Bonjour **Applications** zone, sélectionnez les applications associées aux volumes hello que vous allez ajouter un groupe de volumes toohello.
       
-       La zone **Applications** répertorie uniquement les applications qui utilisent des volumes StorSimple et pour lesquelles des enregistreurs VSS sont activés. Un enregistreur VSS est activé uniquement si l’ensemble des volumes auxquels il a accès sont des volumes StorSimple. Si la zone Applications est vide, aucune application utilisant des volumes Azure StorSimple et présentant des enregistreurs VSS pris en charge n’est installée. (Actuellement, Azure StorSimple prend en charge Microsoft Exchange et SQL Server.) Pour plus d’informations sur les enregistreurs VSS, consultez la page [Intégration avec le service VSS de Windows](storsimple-what-is-snapshot-manager.md#integration-with-windows-volume-shadow-copy-service).
+       Hello **Applications** listes case à cocher uniquement les applications qui utilisent des volumes StorSimple et sont dotées d’enregistreurs VSS sont activées. Un enregistreur VSS est activé uniquement si tous les hello volumes que l’enregistreur hello connaît sont des volumes StorSimple. Si les Applications hello est vide, aucune des applications qui utilisent des volumes StorSimple d’Azure et sont prise en charge des enregistreurs VSS ne sont installées. (Actuellement, Azure StorSimple prend en charge Microsoft Exchange et SQL Server.) Pour plus d’informations sur les enregistreurs VSS, consultez la page [Intégration avec le service VSS de Windows](storsimple-what-is-snapshot-manager.md#integration-with-windows-volume-shadow-copy-service).
       
-       Si vous sélectionnez une application, l’ensemble des volumes associés sont automatiquement sélectionnés. Inversement, si vous sélectionnez des volumes associés à une application spécifique, l’application est automatiquement sélectionnée dans la zone **Applications** . 
-   3. Dans la zone **Volumes** , sélectionnez les volumes StorSimple à ajouter au groupe de volumes. 
+       Si vous sélectionnez une application, l’ensemble des volumes associés sont automatiquement sélectionnés. À l’inverse, si vous sélectionnez les volumes associés à une application spécifique, application hello est sélectionnée automatiquement dans hello **Applications** boîte. 
+   3. Bonjour **Volumes** , sélectionnez le groupe de volumes StorSimple volumes tooadd toohello. 
       
-      * Vous pouvez inclure des volumes à une ou plusieurs partitions. (Les volumes à plusieurs partitions peuvent être des disques dynamiques ou des disques de base avec plusieurs partitions.) Un volume contenant plusieurs partitions est traité comme une unité unique. Par conséquent, si vous ajoutez uniquement une des partitions au groupe de volumes, l’ensemble des autres partitions sont automatiquement ajoutées au même moment. Un volume à plusieurs partitions ajouté à un groupe de volumes continue à être considéré comme une unité unique.
-      * Vous pouvez créer des groupes de volumes vides. Pour ce faire, ne leur attribuez aucun volume. 
-      * Ne mélangez pas des volumes partagés de cluster et des volumes non partagés de cluster au sein d’un même groupe de volumes. Le Gestionnaire d’instantanés StorSimple ne prend pas en charge les combinaisons de volumes partagés de cluster et non partagés de cluster dans un même instantané.
-4. Cliquez sur **OK** pour enregistrer le groupe de volumes.
+      * Vous pouvez inclure des volumes à une ou plusieurs partitions. (Les volumes à plusieurs partitions peuvent être des disques dynamiques ou des disques de base avec plusieurs partitions.) Un volume contenant plusieurs partitions est traité comme une unité unique. Par conséquent, si vous ajoutez seul groupe de volumes tooa hello partitions, hello toutes les autres partitions sont automatiquement ajoutés toothat volume groupe au hello même temps. Après avoir ajouté un groupe de volumes plusieurs partition volume tooa, hello plusieurs volumes de partition continue toobe traité comme une unité unique.
+      * Vous pouvez créer des groupes de volumes vides en affectant ne pas de n’importe quel toothem de volumes. 
+      * Ne mélangez pas les volumes partagés de cluster (CSV) non-CSV dans hello même groupe de volumes. Gestionnaire d’instantanés StorSimple ne prend pas en charge un mélange de volumes partagés de cluster et non-volumes partagés de cluster dans hello même instantané.
+4. Cliquez sur **OK** groupe de volumes toosave hello.
 
 ## <a name="back-up-a-volume-group"></a>Sauvegarder un groupe de volumes
-Exécutez la procédure suivante pour sauvegarder un groupe de volumes.
+Utilisez hello suivant tooback procédure d’un groupe de volumes.
 
-#### <a name="to-back-up-a-volume-group"></a>Pour sauvegarder un groupe de volumes
-1. Cliquez sur l’icône de bureau pour démarrer le Gestionnaire d’instantanés StorSimple.
-2. Dans le volet **Étendue**, développez le nœud **Groupes de volumes**, cliquez avec le bouton droit sur un nom de groupe de volumes, puis cliquez sur **Démarrer la sauvegarde**.
+#### <a name="tooback-up-a-volume-group"></a>tooback d’un groupe de volumes
+1. Cliquez sur icône du bureau de hello toostart Gestionnaire d’instantanés StorSimple.
+2. Bonjour **étendue** volet, développez hello **groupes de volumes** nœud, cliquez sur un nom de groupe de volumes, puis cliquez sur **créer une sauvegarde**.
    
     ![Sauvegarde immédiate d’un groupe de volumes](./media/storsimple-snapshot-manager-manage-volume-groups/HCS_SSM_Take_backup.png)
-3. Dans la boîte de dialogue **Démarrer la sauvegarde**, sélectionnez **Instantané local** ou **Instantané cloud**, puis cliquez sur **Créer**.
+3. Bonjour **créer une sauvegarde** boîte de dialogue, sélectionnez **instantané Local** ou **instantané Cloud**, puis cliquez sur **créer**.
    
     ![Boîte de dialogue Démarrer la sauvegarde](./media/storsimple-snapshot-manager-manage-volume-groups/HCS_SSM_TakeBackup_dialog.png)
-4. Pour vérifier que la sauvegarde est en cours, développez le nœud **Tâches**, puis cliquez sur **En cours d’exécution**. La sauvegarde doit être répertoriée.
-5. Pour afficher l’instantané terminé, développez le nœud **Catalogue de sauvegarde**, développez le nom du groupe de volumes, puis cliquez sur **Instantané local** ou **Instantané cloud**. Si elle aboutit, la sauvegarde est répertoriée.
+4. tooconfirm hello sauvegarde est en cours d’exécution, développez hello **travaux** nœud, puis cliquez sur **en cours d’exécution**. sauvegarde de Hello doit être répertorié.
+5. hello tooview terminé d’instantané, développez hello **catalogue de sauvegarde** nœud, développez le nom de groupe de volumes hello, puis cliquez sur **instantané Local** ou **instantané Cloud**. sauvegarde de Hello s’afficheront si elle est terminée correctement.
 
 ## <a name="edit-a-volume-group"></a>Modifier un groupe de volumes
-Exécutez la procédure suivante pour modifier un groupe de volumes.
+Utilisez hello suivant la procédure tooedit un groupe de volumes.
 
-#### <a name="to-edit-a-volume-group"></a>Pour modifier un groupe de volumes
-1. Cliquez sur l’icône de bureau pour démarrer le Gestionnaire d’instantanés StorSimple.
-2. Dans le volet **Étendue**, développez le nœud **Groupes de volumes**, cliquez avec le bouton droit sur un nom de groupe de volumes, puis cliquez sur **Modifier**.
-3. La boîte de dialogue **Créer un groupe de volumes** apparaît. Vous pouvez modifier les entrées **Nom**, **Applications** et **Volumes**.
-4. Cliquez sur **OK** pour enregistrer vos modifications.
+#### <a name="tooedit-a-volume-group"></a>tooedit un groupe de volumes
+1. Cliquez sur icône du bureau de hello toostart Gestionnaire d’instantanés StorSimple.
+2. Bonjour **étendue** volet, développez hello **groupes de volumes** nœud, cliquez sur un nom de groupe de volumes, puis cliquez sur **modifier**.
+3. Hello ** créer un groupe de volumes ** boîte de dialogue s’affiche. Vous pouvez modifier hello **nom**, **Applications**, et **Volumes** entrées.
+4. Cliquez sur **OK** toosave vos modifications.
 
 ## <a name="delete-a-volume-group"></a>Supprimer un groupe de volumes
-Exécutez la procédure suivante pour supprimer un groupe de volumes. 
+Utilisez hello suivant la procédure toodelete un groupe de volumes. 
 
 > [!WARNING]
-> Le cas échéant, vous supprimez également l’ensemble des sauvegardes associées au groupe de volumes.
+> Cette opération supprime également toutes les sauvegardes hello associés à un groupe de volumes hello.
 > 
 > 
 
-#### <a name="to-delete-a-volume-group"></a>Pour supprimer un groupe de volumes
-1. Cliquez sur l’icône de bureau pour démarrer le Gestionnaire d’instantanés StorSimple.
-2. Dans le volet **Étendue**, développez le nœud **Groupes de volumes**, cliquez avec le bouton droit sur un nom de groupe de volumes, puis cliquez sur **Supprimer**.
-3. La boîte de dialogue **Supprimer le groupe de volumes** apparaît. Saisissez **Confirmer** dans la zone de texte, puis cliquez sur **OK**.
+#### <a name="toodelete-a-volume-group"></a>toodelete un groupe de volumes
+1. Cliquez sur icône du bureau de hello toostart Gestionnaire d’instantanés StorSimple.
+2. Bonjour **étendue** volet, développez hello **groupes de volumes** nœud, cliquez sur un nom de groupe de volumes, puis cliquez sur **supprimer**.
+3. Hello **supprimer un groupe de volumes** boîte de dialogue s’affiche. Type **confirmer** dans hello de zone de texte, puis cliquez sur **OK**.
    
-    Le groupe de volumes supprimé disparaît de la liste du volet **Résultats** et toutes les sauvegardes associées à ce groupe de volumes sont supprimées du catalogue des sauvegardes.
+    groupe de volumes Hello supprimé n’est plus répertorié dans liste hello hello **résultats** volet et toutes les sauvegardes qui sont associés à ce groupe de volumes sont supprimés à partir du catalogue de sauvegarde hello.
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Découvrez comment [utiliser le Gestionnaire d’instantanés StorSimple pour gérer votre solution StorSimple](storsimple-snapshot-manager-admin.md).
-* Découvrez comment [utiliser le Gestionnaire d’instantanés StorSimple pour créer et gérer des stratégies de sauvegarde](storsimple-snapshot-manager-manage-backup-policies.md).
+* Découvrez comment trop[utiliser le Gestionnaire d’instantanés StorSimple tooadminister votre solution StorSimple](storsimple-snapshot-manager-admin.md).
+* Découvrez comment trop[utiliser le Gestionnaire d’instantanés StorSimple toocreate et gérer des stratégies de sauvegarde](storsimple-snapshot-manager-manage-backup-policies.md).
 

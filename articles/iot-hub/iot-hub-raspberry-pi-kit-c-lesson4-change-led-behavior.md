@@ -1,6 +1,6 @@
 ---
-title: "Connecter Raspberry Pi (C) à Azure IoT - Leçon 4 : Modifier une application | Microsoft Docs"
-description: "Personnalisez les messages pour modifier le comportement activé/désactivé de la LED."
+title: "Connect Raspberry PI (C) tooAzure IoT - leçon 4 : modifier l’application | Documents Microsoft"
+description: "Personnaliser hello de toochange messages hello voyants du et désactiver le comportement."
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -17,30 +17,30 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: b1e441b20e161f4a03d4c2c300b21aca4fedb2a2
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f4739c4e9a58b4b0fe964b5c3c81e5918982099f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="change-the-on-and-off-behavior-of-the-led"></a>Modification du comportement activé/désactivé de la LED
+# <a name="change-hello-on-and-off-behavior-of-hello-led"></a>Modifier hello et désactiver le comportement de hello DEL
 ## <a name="what-you-will-do"></a>Procédure à suivre
-Personnalisez les messages pour modifier le comportement activé/désactivé de la LED. Si vous rencontrez des problèmes, recherchez des solutions dans la [page de résolution des problèmes](iot-hub-raspberry-pi-kit-c-troubleshooting.md).
+Personnaliser hello de toochange messages hello voyants du et désactiver le comportement. Si vous rencontrez des problèmes, recherchez des solutions sur hello [page Résolution des problèmes](iot-hub-raspberry-pi-kit-c-troubleshooting.md).
 
 ## <a name="what-you-will-learn"></a>Contenu
-Utiliser des fonctions supplémentaires de Node.js pour modifier le comportement activé/désactivé de la LED.
+Utilisez hello toochange fonctions supplémentaire Node.js voyants du et désactiver le comportement.
 
 ## <a name="what-you-need"></a>Ce dont vous avez besoin
-Vous devez avoir correctement suivi la section [Exécution d’un exemple d’application sur Raspberry Pi pour recevoir des messages cloud-à-appareil](iot-hub-raspberry-pi-kit-c-lesson4-send-cloud-to-device-messages.md).
+Vous devez avoir terminé [exécuter un exemple d’application sur le cloud de tooreceive framboises Pi toodevice messages](iot-hub-raspberry-pi-kit-c-lesson4-send-cloud-to-device-messages.md).
 
-## <a name="add-functions-to-mainc-and-gulpfilejs"></a>Ajouter des fonctions à main.c et gulpfile.js
-1. Ouvrez l’exemple d’application dans Visual Studio Code en exécutant les commandes suivantes :
+## <a name="add-functions-toomainc-and-gulpfilejs"></a>Ajouter des gulpfile.js et des fonctions toomain.c
+1. Ouvrir l’exemple d’application hello dans le code de Visual Studio en exécutant hello suivant les commandes :
 
    ```bash
    cd Lesson4
    code .
    ```
-2. Ouvrez le fichier `main.c` et ajoutez les fonctions suivantes après la fonction blinkLED() :
+2. Ouvrez hello `main.c` et puis ajoutez hello suivant des fonctions après blinkLED() fonction :
 
    ```c
    static void turnOnLED()
@@ -55,7 +55,7 @@ Vous devez avoir correctement suivi la section [Exécution d’un exemple d’ap
    ```
 
    ![Fichier main.c avec fonctions ajoutées](media/iot-hub-raspberry-pi-lessons/lesson4/updated_app_c.png)
-3. Ajoutez les conditions suivantes avant la condition par défaut dans le bloc `if` de la fonction `receiveMessageCallback` :
+3. Ajouter hello suivant les conditions avant hello par défaut hello `if` bloc Hello `receiveMessageCallback` fonction :
 
    ```c
    else if (0 == strcmp((const char*)value, "\"on\""))
@@ -68,8 +68,8 @@ Vous devez avoir correctement suivi la section [Exécution d’un exemple d’ap
    }
    ```
 
-   Vous avez maintenant configuré l’exemple d’application pour répondre à davantage d’instructions envoyées via des messages. L’instruction « on » active la LED et l’instruction « off » la désactive.
-4. Ouvrez le fichier gulpfile.js, puis ajoutez une nouvelle fonction devant la fonction `sendMessage` :
+   Vous avez maintenant configuré instructions toomore de toorespond l’application exemple hello via des messages. Hello « sur « instruction active hello DEL et hello instruction « off » désactive hello DEL.
+4. Ouvrez le fichier de gulpfile.js hello et puis ajoutez une nouvelle fonction avant la fonction hello `sendMessage`:
 
    ```javascript
    var buildCustomMessage = function (messageId) {
@@ -84,25 +84,25 @@ Vous devez avoir correctement suivi la section [Exécution d’un exemple d’ap
    ```
 
    ![Fichier Gulpfile.js avec fonction ajoutée](media/iot-hub-raspberry-pi-lessons/lesson4/updated_gulpfile_c.png)
-5. Dans la fonction `sendMessage`, remplacez la ligne `var message = buildMessage(sentMessageCount);` par la nouvelle ligne illustrée dans l’extrait de code suivant :
+5. Bonjour `sendMessage` de fonction, remplacez la ligne de hello `var message = buildMessage(sentMessageCount);` avec ligne hello illustré hello suivant extrait de code :
 
    ```javascript
    var message = buildCustomMessage(sentMessageCount);
    ```
-6. Enregistrez toutes les modifications.
+6. Enregistrer toutes les modifications de hello.
 
-### <a name="deploy-and-run-the-sample-application"></a>Déploiement et exécution de l’exemple d’application
-Déployez et exécutez l’exemple d’application sur Pi en exécutant la commande suivante :
+### <a name="deploy-and-run-hello-sample-application"></a>Déployer et exécuter l’exemple d’application hello
+Déployer et exécuter l’exemple d’application hello sur Pi en exécutant hello de commande suivante :
 
 ```bash
 gulp deploy && gulp run
 ```
 
-La LED doit s’allumer pendant deux secondes, puis s’éteindre pendant deux secondes. Le dernier message de « stop » arrête l’exécution de l’exemple d’application.
+Vous devez voir hello DEL activer pendant deux secondes et puis désactivez l’option pour un autre deux secondes. dernier « arrêter » message Hello arrête l’application d’exemple hello de s’exécuter.
 
 ![Exemple d’application messages d’activation et de désactivation](media/iot-hub-raspberry-pi-lessons/lesson4/gulp_on_and_off_c.png)
 
-Félicitations ! Vous avez correctement personnalisé les messages qui sont envoyés à Pi à partir de votre IoT Hub.
+Félicitations ! Vous avez personnalisé correctement les messages hello tooPi envoyés à partir de votre hub IoT.
 
 ### <a name="summary"></a>Résumé
-Cette section facultative montre comment personnaliser les messages de sorte que l’exemple d’application puisse contrôler le comportement activé/désactivé de la LED d’une autre manière.
+Cette section montre comment toocustomize messages d’application d’exemple hello peut contrôler hello et désactiver le comportement de hello DEL d’une manière différente.

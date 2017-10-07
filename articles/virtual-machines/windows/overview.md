@@ -1,5 +1,5 @@
 ---
-title: "Vue d’ensemble des machines virtuelles Windows | Microsoft Docs"
+title: "aaaWindows vue d’ensemble des Machines virtuelles | Documents Microsoft"
 description: "Apprenez à créer et à gérer des machines virtuelles Windows dans Azure."
 services: virtual-machines-windows
 documentationcenter: 
@@ -16,136 +16,136 @@ ms.topic: get-started-article
 ms.date: 07/17/2017
 ms.author: davidmu
 ms.custom: mvc
-ms.openlocfilehash: 52113e1240b81299ae3338f35b2934891017adbf
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 8015b1aa4bcdaac2e721f25d85a5bc995a22f0f2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="overview-of-windows-virtual-machines-in-azure"></a>Vue d’ensemble des machines virtuelles Windows dans Azure
 
-Les Machines Virtuelles Azure sont l’un des nombreux types de [ressources informatiques évolutives et à la demande](../../app-service-web/choose-web-site-cloud-service-vm.md) proposés par Azure. En règle générale, une machine virtuelle est mieux adaptée à vos besoins si vous devez surtout améliorer le contrôle de votre environnement informatique. Cet article vous informe sur les points à prendre en compte avant de créer une machine virtuelle, sur sa création et sur sa gestion.
+Les Machines Virtuelles Azure sont l’un des nombreux types de [ressources informatiques évolutives et à la demande](../../app-service-web/choose-web-site-cloud-service-vm.md) proposés par Azure. En règle générale, vous choisissez une machine virtuelle lorsque vous avez besoin de plus de contrôle sur l’environnement informatique de hello qu’offre hello autres choix. Cet article vous informe sur les points à prendre en compte avant de créer une machine virtuelle, sur sa création et sur sa gestion.
 
-Une machine virtuelle Azure vous donne la flexibilité de la virtualisation sans que vous ayez à acheter le matériel physique qui exécute la machine virtuelle ni à en assurer la maintenance. Toutefois, vous devez toujours assurer la maintenance de la machine virtuelle en effectuant des tâches comme la configuration, la mise à jour corrective et l’installation des logiciels qui s’exécutent dessus.
+Une offre Azure VM hello flexibilité de la virtualisation sans avoir toobuy et de maintenir un matériel physique hello qui l’exécute. Toutefois, vous devez toujours toomaintain hello machine virtuelle en effectuant les tâches, telles que la configuration, mise à jour corrective et installation du logiciel hello qui s’exécute sur celui-ci.
 
 Les Machines Virtuelles Azure peuvent être utilisées de différentes manières. Voici quelques exemples :
 
-* **Développement et test** : les machines virtuelles Azure permettent de créer rapidement et facilement un ordinateur avec des configurations spécifiques requises pour encoder et tester une application.
-* **Applications dans le cloud** : la demande de votre application étant susceptible de fluctuer, il peut être économique de l’exécuter sur une machine virtuelle dans Azure. Vous payez pour des machines virtuelles supplémentaires lorsque vous en avez besoin et vous les arrêtez le reste du temps.
-* **Centre de données étendu** : les machines virtuelles au sein d’un réseau virtuel Azure peuvent être facilement connectées au réseau de votre organisation.
+* **Développement et test** – machines virtuelles Azure offrent une rapide et facilement toocreate un ordinateur avec des configurations spécifiques requis toocode et tester une application.
+* **Les applications dans le cloud de hello** – étant donné que la demande pour votre application permettre varier, il peut être économique sens toorun sur une machine virtuelle dans Azure. Vous payez pour des machines virtuelles supplémentaires lorsque vous en avez besoin et vous les arrêtez le reste du temps.
+* **Étendue du centre de données** – machines virtuelles dans un réseau virtuel Azure peuvent être facilement le réseau de l’organisation tooyour connecté.
 
-Le nombre de machines virtuelles utilisées par votre application peut varier (montée en puissance et augmentation de la charge) pour répondre à vos besoins.
+nombre de Hello de machines virtuelles utilisées par votre application capable d’évoluer et toowhatever est requis toomeet vos besoins.
 
-## <a name="what-do-i-need-to-think-about-before-creating-a-vm"></a>À quoi dois-je penser avant de créer une machine virtuelle ?
-Il existe toujours une multitude de [considérations liées à la conception](/architecture/reference-architectures/virtual-machines-linux?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) lorsque vous générez une infrastructure d’application dans Azure. Il est important de réfléchir à ces aspects des machines virtuelles avant de commencer :
+## <a name="what-do-i-need-toothink-about-before-creating-a-vm"></a>De quoi ai-je besoin toothink sur avant de créer une machine virtuelle ?
+Il existe toujours une multitude de [considérations liées à la conception](/architecture/reference-architectures/virtual-machines-linux?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) lorsque vous générez une infrastructure d’application dans Azure. Ces aspects d’une machine virtuelle sont toothink important avant de commencer :
 
-* le nom de vos ressources d’application,
-* l’emplacement de stockage des ressources,
-* la taille de la machine virtuelle,
-* le nombre maximal de machines virtuelles qui peuvent être créées,
-* le système d’exploitation de la machine virtuelle,
-* la configuration de la machine virtuelle après son démarrage
-* et les ressources liées dont a besoin la machine virtuelle.
+* noms de Hello vos ressources d’application
+* emplacement Hello où sont stockés les ressources de hello
+* taille de Hello Hello machine virtuelle
+* nombre maximal de Hello de machines virtuelles qui peuvent être créés
+* système d’exploitation Hello hello machine virtuelle s’exécute.
+* configuration de Hello Hello machine virtuelle après son démarrage
+* Hello les ressources associées qui hello que machine virtuelle doit
 
 ### <a name="naming"></a>Dénomination
-Une machine virtuelle se voit affecter un [nom](/architecture/best-practices/naming-conventions#naming-rules-and-restrictions?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) et possède un nom d’ordinateur configuré au sein du système d’exploitation. Le nom d’une machine virtuelle peut comprendre jusqu’à 15 caractères.
+Un ordinateur virtuel possède un [nom](/architecture/best-practices/naming-conventions#naming-rules-and-restrictions?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) tooit attribué et qu’il a un nom d’ordinateur configuré en tant que partie du système d’exploitation de hello. nom de Hello d’une machine virtuelle peut être too15 caractères.
 
-Si vous utilisez Azure pour créer le disque du système d’exploitation, le nom de l’ordinateur et celui de la machine virtuelle sont identiques. Si vous [chargez et utilisez votre propre image](upload-generalized-managed.md) qui contient un système d’exploitation précédemment configuré et que vous l’utilisez pour créer une machine virtuelle, les noms peuvent être différents. Nous vous recommandons de faire en sorte que le nom d’ordinateur dans le système d’exploitation et celui de la machine virtuelle soient identiques lorsque vous chargez votre propre fichier d’image.
+Si vous utilisez le disque de système d’exploitation toocreate Azure hello, Nom_Ordinateur hello et le nom de machine virtuelle hello sont hello identiques. Si vous [télécharger et utiliser votre propre image](upload-generalized-managed.md) qui contient un système d’exploitation précédemment configuré et l’utiliser toocreate une machine virtuelle, les noms de hello peuvent être différentes. Nous recommandons que lorsque vous téléchargez votre propre fichier image, vous nom de l’ordinateur dans le système d’exploitation de hello hello et nom d’ordinateur virtuel hello hello même.
 
 ### <a name="locations"></a>Emplacements
-Toutes les ressources créées dans Azure sont réparties sur plusieurs [régions géographiques](https://azure.microsoft.com/regions/) dans le monde. En règle générale, la région est appelée **emplacement** lorsque vous créez une machine virtuelle. Pour une machine virtuelle, l’emplacement spécifie l’endroit où les disques durs virtuels sont stockés.
+Toutes les ressources créées dans Azure sont distribués sur plusieurs [des régions géographiques](https://azure.microsoft.com/regions/) monde hello. En règle générale, la région de hello est appelée **emplacement** lorsque vous créez une machine virtuelle. Pour une machine virtuelle, emplacement de hello spécifie où se trouvent les disques durs virtuels hello.
 
-Ce tableau présente quelques moyens d’obtenir la liste des emplacements disponibles.
+Ce tableau présente quelques-unes des utilisations hello que vous pouvez obtenir une liste des emplacements disponibles.
 
 | Méthode | Description |
 | --- | --- |
-| Portail Azure |Sélectionnez un emplacement dans la liste lorsque vous créez une machine virtuelle. |
-| Azure PowerShell |Utilisez la commande [Get-AzureRmLocation](/powershell/module/azurerm.resources/get-azurermlocation). |
-| API REST |Utilisez l’opération [Lister les emplacements](https://docs.microsoft.com/rest/api/resources/subscriptions#Subscriptions_ListLocations). |
+| Portail Azure |Sélectionnez un emplacement à partir de la liste de hello lorsque vous créez une machine virtuelle. |
+| Azure PowerShell |Hello d’utilisation [Get-AzureRmLocation](/powershell/module/azurerm.resources/get-azurermlocation) commande. |
+| API REST |Hello d’utilisation [liste d’emplacements](https://docs.microsoft.com/rest/api/resources/subscriptions#Subscriptions_ListLocations) opération. |
 
 ### <a name="vm-size"></a>Taille de la machine virtuelle
-La [taille](sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) de la machine virtuelle que vous utilisez est déterminée par la charge de travail que vous souhaitez exécuter. La taille que vous choisissez détermine ensuite des facteurs comme la puissance de traitement, la mémoire et la capacité de stockage. Azure propose différentes tailles vous permettant de prendre en charge de nombreux types d'utilisation.
+Hello [taille](sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) Hello machine virtuelle que vous utilisez est déterminé par la charge de travail hello que vous souhaitez toorun. taille Hello que vous choisissez détermine ensuite des facteurs tels que la capacité d’alimentation, la mémoire et le stockage, de traitement. Azure propose un large éventail de tailles toosupport de nombreux types d’utilisations.
 
-Azure facture un [prix horaire](https://azure.microsoft.com/pricing/details/virtual-machines/windows/) en fonction de la taille et du système d’exploitation de la machine virtuelle. Pour les heures partielles, Azure facture uniquement les minutes utilisées. Le stockage est facturé séparément.
+Azure facture un [tarif horaire](https://azure.microsoft.com/pricing/details/virtual-machines/windows/) en fonction de la taille et le système d’exploitation de machine virtuelle hello. Pour les heures entamées, Azure facture uniquement pour les minutes hello utilisés. Le stockage est facturé séparément.
 
 ### <a name="vm-limits"></a>Limites des machines virtuelles
-Votre abonnement comporte des [limites de quota](../../azure-subscription-service-limits.md) par défaut qui peuvent avoir un impact négatif sur le déploiement d’un grand nombre de machines virtuelles pour votre projet. La limite est de 20 machines virtuelles par région et par abonnement. Les limites peuvent être augmentées en soumettant un ticket de support demandant leur hausse.
+Votre abonnement a la valeur par défaut [des limites de quota](../../azure-subscription-service-limits.md) en place qui pourrait avoir un impact sur déploiement hello de nombreux ordinateurs virtuels pour votre projet. limite actuelle de Hello par abonnement est 20 ordinateurs virtuels par région. Les limites peuvent être augmentées en soumettant un ticket de support demandant leur hausse.
 
 ### <a name="operating-system-disks-and-images"></a>Images et disques du système d’exploitation
-Les machines virtuelles utilisent des [disques durs virtuels](about-disks-and-vhds.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) pour stocker leurs données et leur système d’exploitation (SE). Les disques durs virtuels sont également utilisés pour les images à partir desquelles vous pouvez choisir d'installer un système d'exploitation. 
+Utiliser des machines virtuelles [les disques durs virtuels (VHD)](about-disks-and-vhds.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) toostore leur système d’exploitation (OS) et les données. Disques durs virtuels sont également utilisés pour les images hello que vous pouvez choisir parmi tooinstall un système d’exploitation. 
 
-Azure fournit de nombreuses [images Marketplace](https://azure.microsoft.com/marketplace/virtual-machines/) à utiliser avec différentes versions et différents types de systèmes d’exploitation Windows Server. Les images Marketplace sont identifiées par l’éditeur d’images, l’offre, la référence (SKU) et la version (la version est généralement spécifiée en dernier). 
+Azure propose de nombreuses [les images marketplace](https://azure.microsoft.com/marketplace/virtual-machines/) toouse avec différentes versions et les types de systèmes d’exploitation Windows Server. Les images Marketplace sont identifiées par l’éditeur d’images, l’offre, la référence (SKU) et la version (la version est généralement spécifiée en dernier). 
 
-Ce tableau présente différents moyens de trouver les informations d’une image.
+Ce tableau présente quelques méthodes que vous pouvez trouver des informations hello pour une image.
 
 | Méthode | Description |
 | --- | --- |
-| Portail Azure |Les valeurs sont spécifiées automatiquement pour vous lorsque vous sélectionnez une image à utiliser. |
+| Portail Azure |les valeurs Hello sont automatiquement spécifiées pour vous lorsque vous sélectionnez une image toouse. |
 | Azure PowerShell |[Get-AzureRMVMImagePublisher](https://docs.microsoft.com/powershell/resourcemanager/azurerm.compute/v2.5.0/get-azurermvmimagepublisher) -Location "emplacement"<BR>[Get-AzureRMVMImageOffer](https://docs.microsoft.com/powershell/resourcemanager/azurerm.compute/v2.5.0/get-azurermvmimageoffer) -Location "emplacement" -Publisher "nomÉditeur"<BR>[Get-AzureRMVMImageSku](/powershell/module/azurerm.compute/get-azurermvmimagesku) -Location "emplacement" -Publisher "nomÉditeur" -Offer "nomOffre" |
 | API REST |[Lister les éditeurs d’images](https://docs.microsoft.com/rest/api/compute/platformimages/platformimages-list-publishers)<BR>[Lister les offres d’images](https://docs.microsoft.com/rest/api/compute/platformimages/platformimages-list-publisher-offers)<BR>[Lister les références d’images](https://docs.microsoft.com/rest/api/compute/platformimages/platformimages-list-publisher-offer-skus) |
 
-Vous pouvez choisir de [charger et utiliser votre propre image](upload-generalized-managed.md#upload-the-vhd-to-your-storage-account) ; lorsque vous procédez ainsi, le nom de l’éditeur, l’offre et la référence ne sont pas utilisés.
+Vous pouvez choisir trop[télécharger et utiliser votre propre image](upload-generalized-managed.md#upload-the-vhd-to-your-storage-account) et lorsque vous procédez ainsi, le nom du serveur de publication hello offre et la référence (SKU) ne sont pas utilisés.
 
 ### <a name="extensions"></a>Extensions
 Les [extensions](extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) de machines virtuelles étendent les fonctionnalités de votre machine virtuelle par le biais de la configuration post-déploiement et de tâches automatisées.
 
 Ces tâches courantes peuvent être accomplies à l’aide des extensions :
 
-* **Exécuter des scripts personnalisés** : [l’extension de script personnalisé](extensions-customscript.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) vous permet de configurer des charges de travail sur la machine virtuelle en exécutant votre script pendant l’approvisionnement de la machine virtuelle.
-* **Déployer et gérer des configurations** : [l’extension de configuration d’état souhaité (DSC) PowerShell](extensions-dsc-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) vous permet de configurer DSC sur une machine virtuelle pour gérer les environnements et les configurations.
-* **Collecter les données de diagnostic** : [l’extension des diagnostics Azure](extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) vous permet de configurer la machine virtuelle de sorte qu’elle collecte des données de diagnostics utilisées pour surveiller l’intégrité de votre application.
+* **Exécuter des scripts personnalisés** : hello [Extension de Script personnalisé](extensions-customscript.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) vous permet de configurer des charges de travail sur hello machine virtuelle en exécutant le script lorsque hello machine virtuelle est configurée.
+* **Déployer et gérer des configurations** : hello [Extension de Configuration d’état souhaité (DSC) PowerShell](extensions-dsc-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) vous permet de configurer DSC sur une machine virtuelle toomanage environnements et des configurations.
+* **Collecter les données de diagnostic** : hello [Extension des Diagnostics Azure](extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) vous permet de configurer les données de diagnostic hello VM toocollect qui peuvent être utilisé toomonitor hello d’intégrité de votre application.
 
 ### <a name="related-resources"></a>Ressources associées
-Les ressources de cette table sont utilisées par la machine virtuelle et doivent exister ou être créées lors de sa création.
+ressources Hello dans cette table sont utilisés par hello VM et doivent tooexist ou être créées lorsque hello machine virtuelle est créée.
 
 | Ressource | Requis | Description |
 | --- | --- | --- |
-| [Groupe de ressources](../../azure-resource-manager/resource-group-overview.md) |Oui |La machine virtuelle doit être contenue dans un groupe de ressources. |
-| [Compte de stockage](../../storage/common/storage-create-storage-account.md) |Oui |La machine virtuelle doit stocker ses disques durs virtuels dans le compte de stockage. |
-| [Réseau virtuel](../../virtual-network/virtual-networks-overview.md) |Oui |La machine virtuelle doit faire partie d’un réseau virtuel. |
-| [Adresse IP publique](../../virtual-network/virtual-network-ip-addresses-overview-arm.md) |Non |La machine virtuelle peut avoir une adresse IP publique pour être accessible à distance. |
-| [Interface réseau](../../virtual-network/virtual-network-network-interface.md) |Oui |La machine virtuelle a besoin de l’interface réseau pour communiquer sur le réseau. |
-| [Disques de données](attach-managed-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) |Non |La machine virtuelle peut comprendre des disques de données pour développer ses capacités de stockage. |
+| [Groupe de ressources](../../azure-resource-manager/resource-group-overview.md) |Oui |Hello machine virtuelle doit être contenu dans un groupe de ressources. |
+| [Compte de stockage](../../storage/common/storage-create-storage-account.md) |Oui |Hello machine virtuelle doit toostore de compte de stockage hello ses disques durs virtuels. |
+| [Réseau virtuel](../../virtual-network/virtual-networks-overview.md) |Oui |Hello machine virtuelle doit être un membre d’un réseau virtuel. |
+| [Adresse IP publique](../../virtual-network/virtual-network-ip-addresses-overview-arm.md) |Non |Hello machine virtuelle peut avoir un tooremotely de tooit adresse IP publique à y accéder. |
+| [Interface réseau](../../virtual-network/virtual-network-network-interface.md) |Oui |Hello machine virtuelle doit hello réseau interface toocommunicate dans le réseau de hello. |
+| [Disques de données](attach-managed-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) |Non |Hello VM peut inclure des fonctionnalités de stockage de tooexpand de disques de données. |
 
 ## <a name="how-do-i-create-my-first-vm"></a>Comment créer sa première machine virtuelle ?
-Vous avez plusieurs possibilités pour la création de votre machine virtuelle. Votre choix dépend de votre environnement. 
+Vous avez plusieurs possibilités pour la création de votre machine virtuelle. les choix de Hello que vous effectuez dépend de l’environnement hello dans. 
 
-Ce tableau fournit des informations pour vous aider à créer votre machine virtuelle.
+Ce tableau fournit tooget informations que vous aider à créer votre machine virtuelle.
 
 | Méthode | Article |
 | --- | --- |
-| Portail Azure |[Créer une machine virtuelle exécutant Windows dans le portail](../virtual-machines-windows-hero-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) |
+| Portail Azure |[Créer une machine virtuelle exécutant Windows à l’aide du portail de hello](../virtual-machines-windows-hero-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) |
 | Modèles |[Création d’une machine virtuelle Windows avec un modèle du Gestionnaire de ressources](ps-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) |
 | Azure PowerShell |[Créer une machine virtuelle Windows à l’aide de PowerShell](../virtual-machines-windows-ps-create.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) |
 | Kits de développement logiciel (SDK) client |[Déployer des ressources Azure en C#](csharp.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) |
 | API REST |[Créer ou mettre à jour une machine virtuelle](https://docs.microsoft.com/rest/api/compute/virtualmachines/virtualmachines-create-or-update) |
 
-Même si l’on souhaite que cela ne se produise jamais, des problèmes peuvent survenir. Si vous rencontrez cette situation, consultez les informations dans [Résolution des problèmes de déploiement Resource Manager lors de la création d’une machine virtuelle Windows dans Azure](troubleshoot-deployment-new-vm.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+Même si l’on souhaite que cela ne se produise jamais, des problèmes peuvent survenir. Si cette situation produit tooyou, voir informations hello [Gestionnaire de ressources de dépannage des problèmes de déploiement avec la création d’une machine virtuelle Windows dans Azure](troubleshoot-deployment-new-vm.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
-## <a name="how-do-i-manage-the-vm-that-i-created"></a>Comment gérer la machine virtuelle créée ?
-Les machines virtuelles peuvent être gérées à l’aide d’un portail sur navigateur, d’outils de ligne de commande avec prise en charge des scripts ou directement au moyen des API. Certaines tâches de gestion courantes que vous êtes susceptible d’effectuer récupèrent des informations sur une machine virtuelle, s’y connectent, gèrent la disponibilité et effectuent des sauvegardes.
+## <a name="how-do-i-manage-hello-vm-that-i-created"></a>Comment gérer les hello VM que j’ai créé ?
+Les machines virtuelles peuvent être gérées à l’aide d’un portail sur navigateur, d’outils de ligne de commande avec prise en charge des scripts ou directement au moyen des API. Certaines tâches de gestion classiques que vous pouvez exécuter obtenez plus d’informations sur une machine virtuelle, ouverture de session tooa machine virtuelle, gestion de la disponibilité et les sauvegardes.
 
 ### <a name="get-information-about-a-vm"></a>Obtenir des informations sur une machine virtuelle
-Ce tableau montre différents moyens d’obtenir des informations sur une machine virtuelle.
+Cette table montre quelques-unes des utilisations hello que vous pouvez obtenir plus d’informations sur une machine virtuelle.
 
 | Méthode | Description |
 | --- | --- |
-| Portail Azure |Dans le menu Hub, cliquez sur **Machines virtuelles**, puis sélectionnez la machine virtuelle dans la liste. Dans le panneau de la machine virtuelle, vous pouvez consulter les informations, fixer des valeurs et surveiller les métriques. |
-| Azure PowerShell |Pour plus d’informations sur l’utilisation de PowerShell pour gérer des machines virtuelles, voir [Créer et gérer des machines virtuelles Windows avec le module Azure PowerShell](tutorial-manage-vm.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). |
-| API REST |Utilisez l’opération [Récupérer des informations sur la machine virtuelle](https://docs.microsoft.com/rest/api/compute/virtualmachines/virtualmachines-get) pour obtenir des informations sur une machine virtuelle. |
-| Kits de développement logiciel (SDK) client |Pour plus d’informations sur l’utilisation de C# pour gérer des machines virtuelles, consultez [Gérer des Machines Virtuelles Azure à l’aide d’Azure Ressources Manager et de C#](csharp-manage.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). |
+| Portail Azure |Dans le menu du hub hello, cliquez sur **virtuels** , puis sélectionnez hello machine virtuelle à partir de la liste de hello. Panneau hello pour hello machine virtuelle, vous avez accès toooverview d’informations, les valeurs de paramètre et métriques de surveillance. |
+| Azure PowerShell |Pour plus d’informations sur l’utilisation de machines virtuelles toomanage de PowerShell, consultez [créer et gérer des machines virtuelles Windows avec module d’Azure PowerShell hello](tutorial-manage-vm.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). |
+| API REST |Hello d’utilisation [informations d’obtenir un ordinateur virtuel](https://docs.microsoft.com/rest/api/compute/virtualmachines/virtualmachines-get) informations tooget d’opération sur une machine virtuelle. |
+| Kits de développement logiciel (SDK) client |Pour plus d’informations sur l’utilisation de machines virtuelles de toomanage c#, consultez [gérer des Machines virtuelles Azure à l’aide du Gestionnaire de ressources Azure et c#](csharp-manage.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). |
 
-### <a name="log-on-to-the-vm"></a>Se connecter à la machine virtuelle
-Vous utilisez le bouton [Connecter](connect-logon.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) dans le Portail Azure pour démarrer une session Bureau à distance (RDP). Des problèmes peuvent survenir lorsque vous tentez d’utiliser une connexion à distance. Si vous en rencontrez, consultez les informations d’aide dans [Résoudre les problèmes de connexions bureau à distance à une machine virtuelle Azure sous Windows](troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+### <a name="log-on-toohello-vm"></a>Ouvrez une session toohello machine virtuelle
+Vous utilisez trop le bouton de connexion de hello Bonjour Azure portal[démarrer une session Bureau à distance (RDP)](connect-logon.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). Incidents peuvent parfois se produire lors de la tentative de toouse une connexion à distance. Si cette situation produit tooyou, extraire des informations d’aide hello dans [tooan de connexions de résoudre les problèmes de bureau à distance Azure machine virtuelle exécutant Windows](troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
 ### <a name="manage-availability"></a>Gérer la disponibilité
-Il est important de comprendre comment [garantir la haute disponibilité](manage-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) de votre application. Cette configuration implique la création de plusieurs machines virtuelles afin qu’il y en ait au moins une en cours d’exécution.
+Il est important pour vous toounderstand comment trop[garantir une haute disponibilité](manage-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) pour votre application. Cette configuration implique la création de plusieurs tooensure de machines virtuelles au moins est en cours d’exécution.
 
-Afin que votre déploiement puisse bénéficier de notre contrat de niveau de service de 99,95 % pour les machines virtuelles, vous devez déployer au moins deux machines virtuelles exécutant votre charge de travail à l’intérieur d’un [groupe à haute disponibilité](tutorial-availability-sets.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). Grâce à cette configuration, vos machines virtuelles sont réparties sur plusieurs domaines d’erreur et déployées sur des hôtes ayant des fenêtres de maintenance distinctes. La version complète du [contrat SLA Azure](https://azure.microsoft.com/support/legal/sla/virtual-machines/v1_0/) explique la disponibilité garantie d’Azure dans son ensemble.
+Pour votre tooqualify de déploiement pour notre 99.95 contrat de niveau de Service de machine virtuelle, vous devez toodeploy deux ou plusieurs ordinateurs virtuels sont en cours d’exécution à l’intérieur de votre charge de travail un [à haute disponibilité](tutorial-availability-sets.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). Grâce à cette configuration, vos machines virtuelles sont réparties sur plusieurs domaines d’erreur et déployées sur des hôtes ayant des fenêtres de maintenance distinctes. Hello complète [contrat SLA Azure](https://azure.microsoft.com/support/legal/sla/virtual-machines/v1_0/) explique hello garantie de disponibilité de Azure dans sa globalité.
 
-### <a name="back-up-the-vm"></a>Sauvegarder la machine virtuelle
-Un [coffre Recovery Services](../../backup/backup-introduction-to-azure-backup.md) est utilisé pour protéger les données et les actifs dans la Sauvegarde Azure et Azure Site Recovery Services. Vous pouvez utiliser un coffre Recovery Services pour [déployer et gérer les sauvegardes des machines virtuelles déployées avec le modèle Resource Manager à l’aide de PowerShell](../../backup/backup-azure-vms-automation.md). 
+### <a name="back-up-hello-vm"></a>Sauvegarder hello machine virtuelle
+A [de coffre Recovery Services](../../backup/backup-introduction-to-azure-backup.md) est utilisé tooprotect données et des ressources dans Azure Backup et Azure Site Recovery services. Vous pouvez utiliser un coffre Recovery Services trop[déployer et gérer des sauvegardes pour les machines virtuelles déployées par le Gestionnaire de ressources à l’aide de PowerShell](../../backup/backup-azure-vms-automation.md). 
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Si votre objectif est d’utiliser des machines virtuelles Linux, consultez [Azure et Linux](../linux/overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
-* Pour en savoir plus sur les instructions de configuration de votre infrastructure, consultez [Exploration d’un exemple d’infrastructure Azure](infrastructure-example.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+* Si votre objectif est toowork avec les machines virtuelles Linux, consultez [Azure et Linux](../linux/overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+* En savoir plus sur les instructions de hello autour de la configuration de votre infrastructure Bonjour [procédure pas à pas d’exemple Azure infrastructure](infrastructure-example.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).

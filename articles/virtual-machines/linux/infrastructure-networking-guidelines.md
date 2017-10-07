@@ -1,6 +1,6 @@
 ---
-title: "Instructions pour les infrastructures réseau Azure - Linux | Microsoft Docs"
-description: "Découvrez-en plus sur les principales instructions de conception et d’implémentation pour le déploiement d’un réseau virtuel dans des services d’infrastructure Azure."
+title: "aaaAzure mise en réseau des instructions de l’infrastructure - Linux | Documents Microsoft"
+description: "Découvrez hello clé conception et implémentation des recommandations pour le déploiement d’un réseau virtuel dans les services d’infrastructure Azure."
 documentationcenter: 
 services: virtual-machines-linux
 author: iainfoulds
@@ -16,67 +16,67 @@ ms.topic: article
 ms.date: 06/26/2017
 ms.author: iainfou
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 13e041956c05bec522c83587f8a7f99ac1ceb510
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f3f49b135b1f9bca3fd463e9ff27299fb97908c0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-networking-infrastructure-guidelines-for-linux-vms"></a>Instructions pour les infrastructures réseau Azure pour machines virtuelles Linux
 
 [!INCLUDE [virtual-machines-linux-infrastructure-guidelines-intro](../../../includes/virtual-machines-linux-infrastructure-guidelines-intro.md)]
 
-Cet article se concentre sur la compréhension des étapes de planification nécessaires pour un réseau virtuel dans Azure et la connectivité entre les environnements locaux existants.
+Cet article se concentre sur hello compréhension requises de planification pour un réseau virtuel dans Azure et la connectivité entre les environnements local existant.
 
 ## <a name="implementation-guidelines-for-virtual-networks"></a>Instructions d’implémentation pour les réseaux virtuels
 Décisions :
 
-* Quel type de réseau virtuel devez-vous pour héberger votre charge de travail ou votre infrastructure informatique (cloud ou intersite) ?
-* Pour les réseaux virtuels intersite, de quelle taille d’espace adressage avez-vous besoin pour héberger les sous-réseaux et les machines virtuelles maintenant et pour une extension future raisonnable ?
-* Allez-vous créer des réseaux virtuels centralisés ou plutôt des réseaux virtuels pour chaque groupe de ressources ?
+* Le type de réseau virtuel devez-vous toohost votre charge de travail informatique ou d’infrastructure (cloud uniquement ou intersite) ?
+* Pour les réseaux virtuels intersite, quel espace d’adressage devez-vous sous-réseaux de hello toohost et les machines virtuelles maintenant et pour l’expansion raisonnable Bonjour futures ?
+* Sont allez-vous toocreate centralisée des réseaux virtuels ou créer des réseaux virtuels individuels pour chaque groupe de ressources ?
 
 Tâches :
 
-* Définissez l’espace d’adressage du réseau virtuel à créer.
-* Définir l’ensemble de sous-réseaux et l’espace d’adressage pour chacun.
-* Pour les réseaux virtuels intersite, définir l’ensemble des espaces d’adressage de réseau local pour les emplacements locaux auxquels les machines virtuelles doivent accéder dans le réseau virtuel.
-* Travaillez avec l’équipe réseau locale pour assurer que le routage approprié est configuré lors de la création de réseaux virtuels intersite.
-* Créer le réseau virtuel à l’aide de votre convention d’affectation de noms.
+* Définir un espace d’adressage hello hello toobe de réseaux virtuels créé.
+* Définir l’hello des sous-réseaux et de l’espace d’adressage hello pour chacun.
+* Pour les réseaux virtuels intersite, définir hello des espaces d’adressage de réseau local pour les sites locaux hello hello des machines virtuelles dans hello réseau virtuel nécessaire tooreach.
+* Travail avec mise en réseau équipe tooensure hello appropriée le routage est configuré lors de la création en local entre sites réseaux virtuels.
+* Créez hello de réseau virtuel à l’aide de votre convention d’affectation de noms.
 
 ## <a name="virtual-networks"></a>Réseaux virtuels
-Des réseaux virtuels sont nécessaires pour prendre en charge les communications entre les machines virtuelles. Vous pouvez définir des sous-réseaux, des adresses IP personnalisées, des paramètres DNS, des filtrages de sécurité et l’équilibrage de charge, tout comme avec les réseaux physiques. Avec une [passerelle VPN](../../vpn-gateway/vpn-gateway-about-vpngateways.md) ou un [Circuit Express Route](../../expressroute/expressroute-introduction.md), vous pouvez connecter des réseaux virtuels Azure à vos réseaux locaux. Vous pouvez en savoir plus sur [les réseaux virtuels et leurs composants](../../virtual-network/virtual-networks-overview.md).
+Les réseaux virtuels sont nécessaires toosupport les communications entre les machines virtuelles (VM). Vous pouvez définir des sous-réseaux, des adresses IP personnalisées, des paramètres DNS, des filtrages de sécurité et l’équilibrage de charge, tout comme avec les réseaux physiques. En utilisant un [passerelle VPN](../../vpn-gateway/vpn-gateway-about-vpngateways.md) ou [circuit Express Route](../../expressroute/expressroute-introduction.md), vous pouvez vous connecter à des réseaux virtuels Azure tooyour sur des réseaux locaux. Vous pouvez en savoir plus sur [les réseaux virtuels et leurs composants](../../virtual-network/virtual-networks-overview.md).
 
-Avec les groupes de ressources, vous disposez de plus de flexibilité dans la façon dont vous concevez vos composants de réseau virtuel. Les machines virtuelles peuvent se connecter à des réseaux virtuels en dehors de leur propre groupe de ressources. Une approche de conception courante consisterait à créer des groupes de ressources centralisés contenant votre infrastructure réseau de base, qui peut être gérée par une équipe commune. Les machines virtuelles et leurs applications sont déployées sur des groupes de ressources distincts. Cette approche permet aux propriétaires d’applications d’accéder au groupe de ressources qui contient leurs machines virtuelles sans ouvrir l’accès à la configuration des ressources réseau virtuelles à plus grande échelle.
+Avec les groupes de ressources, vous disposez de plus de flexibilité dans la façon dont vous concevez vos composants de réseau virtuel. Machines virtuelles peuvent se connecter à des réseaux de toovirtual en dehors de leur propre groupe de ressources. Une approche de conception courante serait des groupes de ressources toocreate centralisée qui contiennent votre infrastructure réseau de base qui peut être géré par une équipe commune. Machines virtuelles et leurs applications déploiement tooseparate les groupes de ressources. Cette approche permet aux propriétaires d’applications accès groupe de ressources toohello qui contient leurs ordinateurs virtuels sans ouverture de la configuration de l’accès toohello de hello plus large réseau ressources virtuelles.
 
 ## <a name="site-connectivity"></a>Connectivité de site
 ### <a name="cloud-only-virtual-networks"></a>Réseaux virtuels cloud uniquement
-Si les utilisateurs et les ordinateurs locaux ne nécessitent pas de connectivité continue aux machines virtuelles dans un réseau virtuel Azure, votre conception de réseau virtuel sera simple :
+Si les ordinateurs et les utilisateurs locaux ne requièrent pas tooVMs de connectivité en cours dans un réseau virtuel Azure, votre conception de réseau virtuel n’est simple :
 
 ![Diagramme d’un réseau virtuel de base uniquement dans le cloud](./media/infrastructure-networking-guidelines/vnet01.png)
 
 Cette approche s’applique généralement à des charges de travail Internet, telles qu’un serveur web Internet. Vous pouvez gérer ces machines virtuelles par SSH ou connexion VPN point à site.
 
-Étant donné qu’ils ne se connectent pas à votre réseau local, les réseaux virtuels Azure uniquement peuvent utiliser une partie de l’espace d’adressage IP privé. L’espace d’adressage peut être l’espace privé utilisé en local.
+Car ils ne connectent pas de réseau local de tooyour, des réseaux virtuels Azure uniquement peuvent utiliser toute partie d’un espace d’adressage IP privé hello. espace d’adressage Hello peut être hello même espace privé qui se trouve dans utiliser localement.
 
 ### <a name="cross-premises-virtual-networks"></a>Réseaux virtuels intersite
-Si les utilisateurs et les ordinateurs locaux nécessitent une connectivité continue aux machines virtuelles dans un réseau virtuel Azure, créez un réseau virtuel entre différents locaux. Connectez le réseau virtuel à votre réseau local avec une connexion ExpressRoute ou VPN de site à site.
+Si les ordinateurs et les utilisateurs locaux requièrent tooVMs de connectivité en cours dans un réseau virtuel Azure, créez un réseau virtuel intersite. Se connecter à réseau local de hello réseau virtuel tooyour avec un ExpressRoute ou d’une connexion VPN de site à site.
 
 ![Diagramme de réseau virtuel entre sites locaux](./media/infrastructure-networking-guidelines/vnet02.png)
 
-Dans cette configuration, le réseau virtuel Azure est essentiellement une extension cloud de votre réseau local.
+Dans cette configuration, hello réseau virtuel Azure est essentiellement une extension en cloud de votre réseau local.
 
-Étant donné qu’ils se connectent à votre réseau local, les réseaux virtuels intersite doivent utiliser une partie de l’espace d’adressage utilisé par votre organisation, qui est unique. De la même façon que différents emplacements de l’entreprise se voient affecter un sous-réseau IP spécifique, Azure devient un autre emplacement lorsque vous étendez votre réseau.
+Puisqu’ils se connectent tooyour réseau local, des réseaux virtuels doivent utiliser une partie de l’espace d’adressage hello utilisé par votre organisation qui est unique entre différents locaux. Hello même façon que différents endroits de l’entreprise assignés un sous-réseau IP spécifique, Azure devient un autre emplacement que vous étendez votre réseau.
 
-Pour autoriser les paquets à circuler de votre réseau virtuel intersite vers votre réseau local, vous devez configurer le jeu de préfixes d’adresses locales pertinents dans le cadre de la définition du réseau local pour le réseau virtuel. En fonction de l’espace d’adressage du réseau virtuel et de l’ensemble des emplacements locaux concernés, le réseau local peut comprendre de nombreux préfixes d’adresse.
+tooallow tootravel de paquets de votre réseau de local de tooyour de réseau virtuel intersite, vous devez configurer ensemble hello de préfixes d’adresse pertinentes sur site dans le cadre de la définition de réseau local hello pour le réseau virtuel de hello. En fonction de l’adresse de hello espace hello virtuel réseau et hello ensemble de pertinentes local emplacements, il peut y avoir plusieurs préfixes d’adresse de réseau local de hello.
 
-Vous pouvez convertir un réseau virtuel cloud en un réseau virtuel intersite, mais il nécessite probablement une renumérotation de l’IP de votre espace d’adressage de réseau virtuel et des ressources Azure. Par conséquent, déterminez avec soin si un réseau virtuel doit se connecter à votre réseau local lorsque vous affectez un sous-réseau d’IP.
+Vous pouvez convertir un réseau virtuel de réseau virtuel cloud uniquement tooa entre différents locaux, mais il s’agit probablement nécessite toore IP votre espace d’adressage de réseau virtuel et les ressources Azure. Par conséquent, étudiez attentivement si un réseau virtuel doit toobe tooyour connectés sur réseau local lorsque vous affectez un sous-réseau IP.
 
 ## <a name="subnets"></a>Sous-réseaux
-Les sous-réseaux vous permettent d’organiser des ressources apparentées, soit logiquement (par exemple, un sous-réseau pour les machines virtuelles associées à la même application), soit physiquement (par exemple, un sous-réseau par groupe de ressources), ou d’employer des techniques d’isolation de sous-réseaux pour renforcer la sécurité. Vous pouvez également employer des techniques d’isolation de sous-réseaux pour renforcer la sécurité.
+Autoriser les sous-réseaux vous tooorganize les ressources qui sont liées, soit logiquement (par exemple, un sous-réseau pour les machines virtuelles associées toohello même application), ou physiquement (par exemple, il s’agit d’un sous-réseau par groupe de ressources). Vous pouvez également employer des techniques d’isolation de sous-réseaux pour renforcer la sécurité.
 
-Pour les réseaux virtuels entre différents locaux, vous devez concevoir des sous-réseaux possédant les mêmes conventions que les ressources locales. **Azure utilise toujours les trois premières adresses IP de l’espace d’adressage pour chaque sous-réseau**. Pour déterminer le nombre d’adresses nécessaires pour le sous-réseau, commencez par compter le nombre de machines virtuelles dont vous avez besoin actuellement. Estimez la croissance future, puis utilisez le tableau suivant pour déterminer la taille du sous-réseau.
+Pour les réseaux virtuels intersite, vous devez concevoir des sous-réseaux avec hello mêmes conventions que vous utilisez pour les ressources locales. **Azure toujours utilise hello trois premières adresses IP de l’espace d’adressage hello pour chaque sous-réseau**. nombre de hello toodetermine d’adresses requises pour le sous-réseau de hello, démarrez en comptant le nombre de hello d’ordinateurs virtuels dont vous avez besoin maintenant. Estimation de la croissance future et utilisez hello suivant la taille du sous-réseau de hello hello de toodetermine la table.
 
-| Nombre de machines virtuelles nécessaires | Nombre de bits hôte nécessaires | Taille du sous-réseau |
+| Nombre de machines virtuelles nécessaires | Nombre de bits hôte nécessaires | Taille du sous-réseau de hello |
 | --- | --- | --- |
 | 1 à 3 |3 |/29 |
 | 4 à 11 |4 |/28 |
@@ -85,22 +85,22 @@ Pour les réseaux virtuels entre différents locaux, vous devez concevoir des so
 | 60 à 123 |7 |/25 |
 
 > [!NOTE]
-> Pour des sous-réseaux locaux normaux, le nombre maximal d’adresses d’hôte pour un sous-réseau avec n bits hôte est 2<sup>n</sup> – 2. Pour un sous-réseau Azure, le nombre maximal d’adresses d’hôte pour un sous-réseau avec n bits hôte est 2<sup>n</sup> – 5 (2 plus 3 pour les adresses qu’Azure utilise sur chaque sous-réseau).
+> Pour les sous-réseaux locaux normal, nombre maximal de hello d’adresses d’hôte pour un sous-réseau avec bits hôte n est 2<sup> n </sup> : 2. Pour un sous-réseau Azure, le nombre maximal de hello d’adresses d’hôte pour un sous-réseau avec bits hôte n est 2<sup> n </sup> – 5 (2 et 3 pour les adresses de hello Azure utilise sur chaque sous-réseau).
 > 
 > 
 
-Si vous choisissez une taille de sous-réseau trop petite, vous devez renuméroter les IP et redéployer les machines virtuelles dans le sous-réseau.
+Si vous choisissez une taille de sous-réseau est trop petite, vous disposez de toore-IP et redéployez les machines virtuelles de hello dans le sous-réseau de hello.
 
-## <a name="network-security-groups"></a>Groupes de sécurité réseau
-Vous pouvez appliquer des règles de filtrage pour le trafic qui transite via vos réseaux virtuels à l’aide de groupes de sécurité réseau. Vous pouvez créer des règles de filtrage granulaires pour sécuriser votre environnement de réseau virtuel, le trafic entrant et sortant du trafic, les plages d’IP de source et de destination, les ports autorisés, etc. Les groupes de sécurité réseau peuvent être appliqués à des sous-réseaux au sein d’un réseau virtuel, ou directement à une interface réseau virtuelle spécifiée. Il est recommandé d’avoir un certain niveau de filtrage du trafic sur vos groupes de sécurité réseau pour vos réseaux virtuels. Vous pouvez en savoir plus sur [Groupes de sécurité réseau](../../virtual-network/virtual-networks-nsg.md).
+## <a name="network-security-groups"></a>Network Security Group
+Vous pouvez appliquer le filtrage trafic toohello règles qui circulent via vos réseaux virtuels à l’aide de groupes de sécurité réseau. Vous pouvez générer toosecure de règles de filtrage granulaire votre environnement de réseau virtuel, entrants et sortants du trafic, source et destination plages IP, autorisé de ports, etc. de contrôle. Groupes de sécurité réseau peut être appliqué toosubnets au sein d’un réseau virtuel ou directement tooa donné d’interface réseau virtuelle. Il est recommandé de toohave un niveau de filtrage du trafic sur vos réseaux virtuels de groupe de sécurité réseau. Vous pouvez en savoir plus sur [Groupes de sécurité réseau](../../virtual-network/virtual-networks-nsg.md).
 
 ## <a name="additional-network-components"></a>Composants réseau supplémentaires
-Comme avec une infrastructure de réseau local physique, un réseau virtuel Windows Azure peut contenir plus que des sous-réseaux et des adresses IP. Lorsque vous concevez votre infrastructure d’application, vous souhaiterez incorporer certains de ces composants supplémentaires :
+Comme avec une infrastructure de réseau local physique, un réseau virtuel Windows Azure peut contenir plus que des sous-réseaux et des adresses IP. Lorsque vous concevez votre infrastructure d’application, vous souhaiterez peut-être tooincorporate certains de ces composants supplémentaires :
 
-* [Des passerelles VPN](../../vpn-gateway/vpn-gateway-about-vpngateways.md) - connectez des réseaux virtuels Azure à d’autres réseaux virtuels Azure, ou connectez des réseaux locaux via une connexion VPN de site à site. Implémentez des connexions Express Route dédiées et sécurisées. Vous pouvez également fournir aux utilisateurs un accès direct grâce à des connexions VPN de point à site.
+* [Passerelles VPN](../../vpn-gateway/vpn-gateway-about-vpngateways.md) -se connecter à des réseaux virtuels Azure tooother Azure virtual networks ou connectez-vous tooon des réseaux locaux via une connexion VPN de Site à Site. Implémentez des connexions Express Route dédiées et sécurisées. Vous pouvez également fournir aux utilisateurs un accès direct grâce à des connexions VPN de point à site.
 * [Un équilibreur de charge](../../load-balancer/load-balancer-overview.md) - fournit l’équilibrage de la charge du trafic pour le trafic externe et interne de la façon dont vous le souhaitez.
-* [Une Application Gateway](../../application-gateway/application-gateway-introduction.md) - équilibrage de charge HTTP de la couche Application, en fournissant des avantages supplémentaires pour les applications web par rapport au déploiement de l’équilibreur de charge Azure.
-* [Traffic Manager](../../traffic-manager/traffic-manager-overview.md) - distribution du trafic basée sur DNS aux utilisateurs finaux directs vers le point de terminaison de l’application disponible le plus proche, ce qui vous permet d’héberger votre application hors des centres de données Azure dans différentes régions.
+* [Passerelle d’application](../../application-gateway/application-gateway-introduction.md) - HTTP, l’équilibrage de charge au niveau de la couche d’application hello, qui fournit des avantages supplémentaires pour les applications web plutôt que de déployer l’équilibrage de charge Azure hello.
+* [Traffic Manager](../../traffic-manager/traffic-manager-overview.md) - basée sur DNS distribution toodirect les utilisateurs finaux toohello le plus proche disponible application point de terminaison, toohost vous permettant de trafic de votre application en dehors des centres de données Azure dans des régions différentes.
 
 ## <a name="next-steps"></a>Étapes suivantes
 [!INCLUDE [virtual-machines-linux-infrastructure-guidelines-next-steps](../../../includes/virtual-machines-linux-infrastructure-guidelines-next-steps.md)]

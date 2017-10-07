@@ -1,5 +1,5 @@
 ---
-title: "Guide pratique pour configurer les sorties de données pour les travaux Stream Analytics | Microsoft Docs"
+title: "génère des données de tooconfigure aaaHow pour les tâches de flux de données Analytique | Documents Microsoft"
 description: "Configurer les sorties pour les tâches Stream Analytics | segment du parcours d’apprentissage."
 keywords: "sortie de données, déplacement des données"
 documentationcenter: 
@@ -15,45 +15,45 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 04/26/2017
 ms.author: samacha
-ms.openlocfilehash: 1ffa517469da1a8d79917b9747abc97ca3bef463
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: c5d89e9e9f9211d3e778580c071dd53d56aed9fe
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-configure-data-outputs-for-stream-analytics-jobs"></a>Comment configurer les sorties de données pour les tâches Stream Analytics
+# <a name="how-tooconfigure-data-outputs-for-stream-analytics-jobs"></a>Comment les données tooconfigure génère des tâches de flux de données Analytique
 
-Les tâches Azure Stream Analytics peuvent être connectées à une ou plusieurs sorties de données qui définissent une connexion à un récepteur de données existant. Quand votre travail Stream Analytics traite et transforme les données entrantes, un flux d’événements de sortie de données est écrit dans la sortie de votre travail.
+Les travaux de flux de données Analytique Azure peuvent être tooone connecté ou des sorties de données supplémentaires, qui définissent un récepteur de données connexion tooan existant. Lorsque votre tâche de flux de données Analytique traite et transforme les données entrantes, un flux de données d’événements de sortie est écrite la sortie de la tâche tooyour.
 
-Les sorties de données Stream Analytics peuvent servir de source aux tableaux de bord ou aux alertes en temps réel, déclencher des workflows de déplacement ou simplement archiver les données pour le traitement par lot ultérieurement. Stream Analytics bénéficie d'une intégration de première classe avec plusieurs services Azure, qui sont expliqués en détail ici.
+Sorties de flux de données Analytique peuvent être utilisé toosource de tableaux de bord en temps réel ou alertes, déclencheur les workflows de déplacement des données ou simplement les données d’archive pour la suite de traitement par lot. Stream Analytics bénéficie d'une intégration de première classe avec plusieurs services Azure, qui sont expliqués en détail ici.
 
-Pour ajouter une sortie à votre tâche Stream Analytics :
+tooadd une tâche de flux de données Analytique tooyour sortie :
 
-1. Dans le [portail Azure](https://portal.azure.com), ouvrez votre tâche et cliquez successivement sur **Sorties**, puis sur **Ajouter** dans le panneau Sorties qui s’affiche.
+1. Bonjour [portail Azure](https://portal.azure.com), ouvrez votre projet, cliquez sur **sorties** puis cliquez sur **ajouter** dans le panneau de sorties hello qui s’affiche.
    
     ![Ajout de sorties](./media/stream-analytics-add-outputs/1-stream-analytics-add-outputs.png)  
    
-2. Attribuez un nom convivial à cette sortie dans la zone **Alias de sortie** . Ce nom pourra être utilisé dans la requête de votre tâche plus tard pour faire référence à la sortie.  
+2. Fournissez un nom convivial pour cette sortie Bonjour **Alias de sortie** boîte. Ce nom peut être utilisé dans la requête de votre travail plus tard sur toorefer toohello sortie.  
    
-    Renseignez le reste des propriétés de connexion requises pour vous connecter à votre sortie.  Ces champs varient selon le type de sortie et sont définis en détail ici.  
+    Renseignez les autres hello hello requis connexion propriétés tooconnect tooyour sortie.  Ces champs varient selon le type de sortie et sont définis en détail ici.  
    
     ![Choisir le type de déplacement des données](./media/stream-analytics-add-outputs/2-stream-analytics-add-outputs.png)  
    
-3. Selon le type de sortie, vous devrez peut-être spécifier comment les données sont sérialisées ou mises en forme. Les paramètres de sérialisation spécifiques pour chaque type de sortie sont décrits ici.
+3. Selon le type de sortie hello, vous devrez peut-être toospecify comment les données de salutation sont sérialisées ou mis en forme. paramètres de sérialisation spécifique Hello pour chaque type de sortie sont décrits ici.
    
-    Renseignez le reste des propriétés de connexion requises pour vous connecter à votre source de données. Ces champs varient selon le type d’entrée et le type de source et sont définis en détail dans l’[article Créer une tâche](stream-analytics-create-a-job.md).  
+    Renseignez les autres hello hello connexion requise propriétés tooconnect tooyour de source de données. Ces champs varient selon le type d’entrée et source de type et sont définies en détail dans hello [article de créer une tâche](stream-analytics-create-a-job.md).  
 
 > [!Note]
 >
-> Tout élément de sortie ajouté à la tâche doit exister avant que la tâche soit démarrée et que les événements commencent à transiter. Par exemple, si vous utilisez le stockage d'objets Blob en tant que sortie, la tâche ne créera pas de compte de stockage automatiquement. Celui-ci doit être créé par l'utilisateur avant que la tâche ASA soit démarrée.
+> Une tâche d’ajouté toohello élément de sortie, doivent exister avant la tâche hello est démarrée et événements démarrer le flux. Par exemple, si vous utilisez le stockage d’objets Blob comme sortie, le travail de hello ne crée pas un compte de stockage automatiquement. Il doit toobe créé par l’utilisateur de hello avant le démarrage du travail ASA hello.
 > 
  
 
-## <a name="get-help"></a>Obtenir de l'aide
+## <a name="get-help"></a>Obtenir de l’aide
 Pour obtenir une assistance, essayez notre [forum Azure Stream Analytics](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics)
 
 ## <a name="next-steps"></a>Étapes suivantes
-* [Présentation d’Azure Stream Analytics](stream-analytics-introduction.md)
+* [Introduction tooAzure Analytique de flux de données](stream-analytics-introduction.md)
 * [Prise en main d’Azure Stream Analytics](stream-analytics-real-time-fraud-detection.md)
 * [Mise à l'échelle des travaux Azure Stream Analytics](stream-analytics-scale-jobs.md)
 * [Références sur le langage des requêtes d'Azure Stream Analytics](https://msdn.microsoft.com/library/azure/dn834998.aspx)

@@ -1,6 +1,6 @@
 ---
-title: "Déployer des infrastructures d’applications sur des machines virtuelles Linux dans Azure | Documents Microsoft"
-description: "Créez des infrastructures d’applications populaires sur des machines virtuelles Linux à l’aide de modèles Azure Resource Manager pour installer Active Directory, Docker et bien davantage."
+title: "les infrastructures d’applications aaaDeploy sur les machines virtuelles Linux dans Azure | Documents Microsoft"
+description: "Créer des infrastructures d’applications répandues sur les machines virtuelles Linux à l’aide de tooinstall de modèles Azure Resource Manager Active Directory, Docker et bien plus encore."
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: squillace
@@ -16,15 +16,15 @@ ms.workload: infrastructure
 ms.date: 05/19/2017
 ms.author: rasquill
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: c5d0d064c0afc4a9a5cb802fce66e219d23dc1ca
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5e3e2d65639680e09d83d50be69d8fe2d86e3bda
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploy-popular-application-frameworks-on-linux-using-azure-resource-manager-templates"></a>Déployer des infrastructures d’application populaires sur Linux à l’aide de modèles Azure Resource Manager
 
-Les charges de travail nécessitent généralement de nombreuses ressources pour fonctionner conformément à la conception. Les modèles Azure Resource Manager vous permettent de définir non seulement comment les applications sont configurées, mais également comment les ressources sont déployées pour prendre en charge les applications configurées. Cet article vous présente les modèles les plus populaires de la galerie et fournit des informations sur l’utilisation du portail Azure, de l’interface de ligne de commande Azure ou de PowerShell pour les déployer.
+Les charges de travail nécessitent généralement de nombreuses ressources toofunction selon toodesign. Azure Resource Manager modèles permettent à vous toonot uniquement définir la configuration des applications, mais également la façon dont les ressources de hello sont déployés toosupport configuré les applications. Cet article vous présente toohello les modèles les plus populaires dans la galerie de hello et vous donne des informations sur l’utilisation de hello portail Azure, Azure CLI ou PowerShell toodeploy les.
 
 [!INCLUDE [virtual-machines-common-app-frameworks](../../../includes/virtual-machines-common-app-frameworks.md)]
 

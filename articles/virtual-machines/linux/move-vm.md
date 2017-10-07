@@ -1,6 +1,6 @@
 ---
-title: "Déplacer une machine virtuelle Linux dans Azure | Microsoft Docs"
-description: "Déplacez une machine virtuelle Linux vers un autre abonnement ou groupe de ressources Azure dans le modèle de déploiement Resource Manager."
+title: aaaMove un VM Linux dans Azure | Documents Microsoft
+description: "Déplacer un Linux VM tooanother abonnement Azure ou un groupe de ressources dans le modèle de déploiement du Gestionnaire de ressources hello."
 services: virtual-machines-linux
 documentationcenter: 
 author: cynthn
@@ -15,28 +15,28 @@ ms.devlang: azurecli
 ms.topic: article
 ms.date: 03/22/2017
 ms.author: cynthn
-ms.openlocfilehash: 4695a9c934f97f2b2d448c4990e7ad5533e38e9f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 938d04234059111912f03e72d14dabd338bc0678
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="move-a-linux-vm-to-another-subscription-or-resource-group"></a>Déplacer une machine virtuelle Linux vers un autre abonnement ou groupe de ressources
-Cet article vous guide tout au long du déplacement d’une machine virtuelle Linux entre des groupes de ressources ou des abonnements. Le déplacement d’une machine virtuelle entre abonnements peut être pratique si vous avez créé une machine virtuelle dans un abonnement personnel, et que vous souhaitez à présent la déplacer vers l’abonnement de votre entreprise.
+# <a name="move-a-linux-vm-tooanother-subscription-or-resource-group"></a>Déplacer un groupe d’abonnement ou une ressource de tooanother Linux VM
+Cet article vous guide toomove un VM Linux entre les groupes de ressources ou des abonnements. Déplacer un ordinateur virtuel entre des abonnements peut être pratique si vous avez créé une machine virtuelle dans un abonnement personnel, vous souhaitez toomove il abonnement tooyour société.
 
 > [!IMPORTANT]
 >Vous ne pouvez pas déplacer des disques managés pour l’instant. 
 >
->De nouveaux ID de ressource sont créés dans le cadre du déplacement. Une fois que la machine virtuelle a été déplacée, vous devez mettre à jour vos outils et vos scripts pour utiliser les nouveaux ID de ressource. 
+>Nouveaux ID de ressource sont créés dans le cadre de déplacement de hello. Une fois que hello machine virtuelle a été déplacé, vous devez tooupdate vos outils et scripts toouse hello nouveaux ID de ressource. 
 > 
 > 
 
-## <a name="use-the-azure-cli-to-move-a-vm"></a>Utiliser l’interface CLI Azure pour déplacer une machine virtuelle
-Pour déplacer avec succès une machine virtuelle, vous devez déplacer la machine virtuelle et toutes les ressources qui l’accompagnent. Utilisez la commande **azure group show** pour répertorier toutes les ressources d’un groupe de ressources et leurs ID. Cela permet de diriger la sortie de cette commande dans un fichier. Vous pouvez ainsi copier et coller les ID dans des commandes ultérieures.
+## <a name="use-hello-azure-cli-toomove-a-vm"></a>Utilisez hello CLI d’Azure toomove une machine virtuelle
+toosuccessfully déplacer un ordinateur virtuel, vous devez toomove hello VM et toutes ses ressources de prise en charge. Hello d’utilisation **afficher de groupe azure** commande toolist toutes les ressources hello dans un groupe de ressources et leurs ID. Il permet de sortie de hello toopipe cet tooa du fichier de commandes afin de pouvoir copier et coller hello ID des commandes ultérieures.
 
     azure group show <resourceGroupName>
 
-Pour déplacer une machine virtuelle et ses ressources vers un autre groupe de ressources, exécutez la commande CLI **azure resource move** . L’exemple suivant montre comment déplacer une machine virtuelle et les ressources courantes nécessaires. Nous utilisons le paramètre **-i** et transmettons une liste séparée par des virgules (sans espaces) d’ID de ressources à déplacer.
+toomove une machine virtuelle et son groupe de ressources tooanother ressources, utilisez hello **du déplacement des Ressources azure** commande CLI. Bonjour à l’exemple suivant montre comment toomove une machine virtuelle et ressources courants de hello il requiert. Nous utilisons hello **-i** paramètre et passez une liste séparée par des virgules (sans espaces) d’ID pour hello ressources toomove.
 
     vm=/subscriptions/<sourceSubscriptionID>/resourceGroups/<sourceResourceGroup>/providers/Microsoft.Compute/virtualMachines/<vmName>
     nic=/subscriptions/<sourceSubscriptionID>/resourceGroups/<sourceResourceGroup>/providers/Microsoft.Network/networkInterfaces/<nicName>
@@ -48,14 +48,14 @@ Pour déplacer une machine virtuelle et ses ressources vers un autre groupe de r
 
     azure resource move --ids $vm,$nic,$nsg,$pip,$vnet,$storage,$diag -d "<destinationResourceGroup>"
 
-Si vous souhaitez déplacer la machine virtuelle et ses ressources vers un autre abonnement, ajoutez le paramètre **--destination-subscriptionId &#60;destinationSubscriptionID&#62;** pour spécifier l’abonnement de destination.
+Si vous souhaitez toomove hello de machine virtuelle et son abonnement aux ressources de différentes tooa, ajouter hello **--destination-subscriptionId &#60; destinationSubscriptionID &#62;** abonnement de destination paramètre toospecify hello.
 
-Si vous travaillez sur l’invite de commandes d’un ordinateur Windows, vous devez ajouter un **$** devant les noms de variables lorsque vous les déclarez. Cela n’est pas nécessaire sous Linux.
+Si vous travaillez à partir de l’invite de commandes de hello sur un ordinateur Windows, vous devez tooadd une  **$**  devant les noms de variable hello lorsque vous les déclarez. Cela n’est pas nécessaire sous Linux.
 
-Vous devez confirmer que vous souhaitez déplacer la ressource spécifiée. Tapez **Y** pour confirmer que vous souhaitez déplacer les ressources.
+Vous êtes invité tooconfirm que vous souhaitez toomove hello de la ressource spécifiée. Type **Y** tooconfirm que vous souhaitez que les ressources de hello toomove.
 
 [!INCLUDE [virtual-machines-common-move-vm](../../../includes/virtual-machines-common-move-vm.md)]
 
 ## <a name="next-steps"></a>Étapes suivantes
-Vous pouvez déplacer de nombreux types de ressources différents entre les groupes de ressources et les abonnements. Pour plus d’informations, consultez la page [Déplacement de ressources vers un nouveau groupe de ressources ou un abonnement](../../resource-group-move-resources.md).    
+Vous pouvez déplacer de nombreux types de ressources différents entre les groupes de ressources et les abonnements. Pour plus d’informations, consultez [déplacer le groupe de ressources toonew ressources ou d’un abonnement](../../resource-group-move-resources.md).    
 

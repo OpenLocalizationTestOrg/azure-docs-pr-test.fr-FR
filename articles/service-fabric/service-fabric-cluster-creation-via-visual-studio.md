@@ -1,6 +1,6 @@
 ---
-title: "Configuration d’un cluster Service Fabric à l’aide de Visual Studio | Microsoft Docs"
-description: "Décrit comment configurer un cluster Service Fabric à l’aide d’un modèle Azure Resource Manager créé par un projet de groupe de ressources Azure dans Visual Studio"
+title: "aaaSetting configuration d’un cluster Service Fabric à l’aide de Visual Studio | Documents Microsoft"
+description: "Décrit comment tooset d’une infrastructure de Service de cluster à l’aide du modèle Azure Resource Manager créé par un projet de groupe de ressources Azure dans Visual Studio"
 services: service-fabric
 documentationcenter: .net
 author: mikkelhegn
@@ -15,59 +15,59 @@ ms.workload: NA
 ms.date: 02/21/2017
 ms.author: mikhegn
 redirect_url: /azure/service-fabric/service-fabric-cluster-creation-via-arm
-ms.openlocfilehash: c43145b96cdbdfaa7e1893e50d027321fe4c0510
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: adb0dd2169a28b46e832c6f06c998cbed0c473f8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="set-up-a-service-fabric-cluster-by-using-visual-studio"></a>Configuration d’un cluster Service Fabric à l’aide de Visual Studio
-Cet article décrit comment configurer un cluster Azure Service Fabric à l’aide de Visual Studio et d’un modèle Azure Resource Manager. Nous utiliserons un projet du groupe de ressources Azure Visual Studio pour créer le modèle. Une fois le modèle créé, il peut être déployé directement vers Azure à partir de Visual Studio. Il peut également être utilisé à partir d’un script ou dans le cadre de la fonctionnalité d’intégration continue (CI).
+Cet article décrit comment tooset d’un Service Azure Fabric de cluster à l’aide de Visual Studio et un modèle Azure Resource Manager. Nous allons utiliser un modèle de Visual Studio Azure ressource groupe projet toocreate hello. Une fois le modèle de hello a été créé, il peut être déployé directement tooAzure à partir de Visual Studio. Il peut également être utilisé à partir d’un script ou dans le cadre de la fonctionnalité d’intégration continue (CI).
 
 ## <a name="create-a-service-fabric-cluster-template-by-using-an-azure-resource-group-project"></a>Création d’un modèle de cluster Service Fabric à l’aide d’un projet de groupe de ressources Azure
-Pour commencer, ouvrez Visual Studio et créez un projet de groupe de ressources Azure (disponible dans le dossier **Cloud** ) :
+tooget a démarré, ouvrez Visual Studio et créez un projet de groupe de ressources Azure (il est disponible dans hello **Cloud** dossier) :
 
 ![Boîte de dialogue Nouveau projet avec le projet du groupe de ressources Azure sélectionné][1]
 
-Vous pouvez créer une solution Visual Studio pour ce projet ou l’ajouter à une solution existante.
+Vous pouvez créer une solution Visual Studio pour ce projet ou solution existante de tooan l’ajouter.
 
 > [!NOTE]
-> Si vous ne voyez pas le projet de groupe de ressources Azure sous le nœud Cloud, le Kit de développement logiciel (SDK) Azure n’est pas installé. Lancez Web Platform Installer ([à installer maintenant](http://www.microsoft.com/web/downloads/platform.aspx) si ce n’est pas déjà fait), puis recherchez « Azure SDK pour .NET » et installez la version compatible avec votre version de Visual Studio.
+> Si vous ne voyez pas le projet de groupe de ressources Azure hello sous le nœud de Cloud hello, vous n’avez pas hello Azure SDK est installé. Lancez Web Platform Installer ([installer maintenant](http://www.microsoft.com/web/downloads/platform.aspx) si vous n’avez pas déjà), puis recherchez « Azure SDK pour .NET » et installer la version hello qui est compatible avec votre version de Visual Studio.
 > 
 > 
 
-Une fois que vous avez cliqué sur le bouton OK, Visual Studio vous demande de sélectionner le modèle Resource Manager à créer :
+Après avoir appuyé sur le bouton OK de hello, Visual Studio vous demandera tooselect hello Gestionnaire de ressources du modèle de toocreate :
 
 ![Boîte de dialogue Sélectionner le modèle Azure avec le modèle de cluster Service Fabric sélectionné][2]
 
-Sélectionnez le modèle Service Fabric Cluster et cliquez à nouveau sur le bouton OK. Le projet et le modèle Resource Manager sont maintenant créés.
+Sélectionnez à nouveau le modèle de Cluster Service Fabric hello et le bouton de positionnement hello OK. projet de Hello et modèle du Gestionnaire de ressources hello ont été créés.
 
-## <a name="prepare-the-template-for-deployment"></a>Préparation du modèle pour le déploiement
-Avant de déployer le modèle pour créer le cluster, vous devez fournir les valeurs des paramètres obligatoires du modèle. Ces valeurs de paramètres sont lues à partir du fichier `ServiceFabricCluster.parameters.json`, qui se trouve dans le dossier `Templates` du projet de groupe de ressources. Ouvrez le fichier et spécifiez les valeurs suivantes :
+## <a name="prepare-hello-template-for-deployment"></a>Préparer un modèle de hello pour le déploiement
+Avant cluster de hello toocreate déployé le modèle de hello, vous devez fournir des valeurs des paramètres du modèle hello requis. Ces valeurs de paramètres sont lus à partir de hello `ServiceFabricCluster.parameters.json` fichier, qui est Bonjour `Templates` dossier du projet de groupe de ressources hello. Ouvrir le fichier de hello et fournir hello valeurs suivantes :
 
 | Nom du paramètre | Description |
 | --- | --- |
-| adminUsername |Nom du compte de l’administrateur pour les machines Service Fabric (nœuds). |
-| certificateThumbprint |Empreinte numérique du certificat qui sécurise le cluster. |
-| sourceVaultResourceId |*ID de ressource* du coffre de clés où est stocké le certificat qui sécurise le cluster. |
-| certificateUrlValue |URL du certificat de sécurité du cluster. |
+| adminUsername |nom de Hello du compte d’administrateur hello pour les ordinateurs de l’infrastructure de Service (nœuds). |
+| certificateThumbprint |Hello empreinte numérique du certificat hello qui sécurise le cluster de hello. |
+| sourceVaultResourceId |Hello *ID de ressource* de coffre de clés hello où est stocké certificat hello qui sécurise le cluster de hello. |
+| certificateUrlValue |URL de Hello hello cluster du certificat de sécurité. |
 
-Le modèle Resource Manager Service Fabric Visual Studio crée un cluster sécurisé, qui est protégé par un certificat. Ce certificat est identifié par les trois derniers paramètres du modèle (`certificateThumbprint`, `sourceVaultValue` et `certificateUrlValue`) et doit être présent dans **Azure Key Vault**. Pour plus d’informations sur la création du certificat de sécurité du cluster, consultez l’article [Scénarios de sécurité d’un cluster Service Fabric](service-fabric-cluster-security.md#x509-certificates-and-service-fabric) .
+modèle de gestionnaire de ressources de Visual Studio Service Fabric Hello crée un cluster sécurisé qui est protégé par un certificat. Ce certificat est identifié par hello a trois paramètres de modèle (`certificateThumbprint`, `sourceVaultValue`, et `certificateUrlValue`), et il doit exister dans un **Azure Key Vault**. Pour plus d’informations sur la façon dont toocreate hello le certificat de sécurité de cluster, consultez [scénarios de sécurité du cluster Service Fabric](service-fabric-cluster-security.md#x509-certificates-and-service-fabric) l’article.
 
-## <a name="optional-change-the-cluster-name"></a>Facultatif : modifier le nom du cluster
-Chaque cluster Service Fabric dispose d’un nom. Lors de la création d’un cluster Fabric dans Azure, le nom de cluster détermine (avec la région Azure) le nom du système DNS (Domain Name System) pour le cluster. Par exemple, si vous nommez votre cluster `myBigCluster`, et que l’emplacement (région Azure) du groupe de ressources qui hébergera le nouveau cluster est États-Unis de l’Est, le nom DNS du cluster sera `myBigCluster.eastus.cloudapp.azure.com`.
+## <a name="optional-change-hello-cluster-name"></a>Facultatif : Remplacez nom de cluster hello
+Chaque cluster Service Fabric dispose d’un nom. Lors de la création d’un cluster de l’ensemble fibre optique dans Azure, le nom de cluster détermine (conjointement avec hello région Azure) nom du système DNS (Domain Name) hello pour le cluster de hello. Par exemple, si vous le nommez votre cluster `myBigCluster`et emplacement hello (région Azure) hello du groupe de ressources qui hébergera le nouveau cluster de hello est des États-Unis, nom DNS de hello du cluster de hello `myBigCluster.eastus.cloudapp.azure.com`.
 
-Par défaut, le nom du cluster est généré automatiquement et rendu unique en associant un suffixe aléatoire à un préfixe « cluster ». Cela permet d’utiliser très facilement le modèle comme un élément d’un système d’ **intégration continue** (CI). Si vous souhaitez utiliser un nom spécifique (qui a un sens pour vous) pour votre cluster, définissez la valeur de la variable `clusterName` dans le fichier de modèle Resource Manager (`ServiceFabricCluster.json`) avec le nom de votre choix. Il s’agit de la première variable définie dans ce fichier.
+Par défaut, nom du cluster hello est généré automatiquement et rendu unique en attachant un préfixe « cluster » du tooa suffixe aléatoire. Cela rend modèle de hello toouse très facilement en tant que partie d’un **intégration continue** système (CI). Si vous voulez toouse un nom spécifique pour votre cluster, qui est significatif tooyou, valeur hello hello `clusterName` variable dans le fichier de modèle de gestionnaire de ressources hello (`ServiceFabricCluster.json`) nom de tooyour choisi. Il est hello première variable définie dans ce fichier.
 
 ## <a name="optional-add-public-application-ports"></a>Facultatif : ajout de ports d’application publics
-Vous pouvez également souhaiter modifier les ports d’application publics pour le cluster avant de le déployer. Par défaut, le modèle ouvre seulement deux ports TCP publics (80 et 8081). Si vous avez besoin d’autres ports pour vos applications, modifiez la définition de l’équilibreur de charge Azure dans le modèle. La définition est stockée dans le fichier modèle principal (`ServiceFabricCluster.json`). Ouvrez ce fichier et recherchez `loadBalancedAppPort`. Chaque port est associé à trois artefacts :
+Vous pouvez également les ports publics application toochange hello pour le cluster de hello avant de le déployer. Par défaut, le modèle de hello ouvre deux ports TCP publics (80 et 8081). Si vous avez besoin pour vos applications, modifiez la définition d’équilibrage de charge Azure hello dans le modèle de hello. définition de Hello est stockée dans le fichier de modèle principal hello (`ServiceFabricCluster.json`). Ouvrez ce fichier et recherchez `loadBalancedAppPort`. Chaque port est associé à trois artefacts :
 
-1. Une variable de modèle qui définit la valeur du port TCP pour le port :
+1. Une variable de modèle qui définit la valeur du port TCP hello pour le port de hello :
    
     ```json
     "loadBalancedAppPort1": "80"
     ```
-2. Une *sonde* qui définit la fréquence et la durée pendant lesquelles l’équilibrage de charge Azure tente d’utiliser un nœud Service Fabric spécifique avant de basculer vers un autre. Les sondes font partie de la ressource d’équilibreur de charge. Voici la définition de la sonde du premier port d’application par défaut :
+2. A *sonde* qui définit la fréquence et la durée pendant laquelle hello équilibrage de charge Azure tentatives tooanother une toouse un nœud de l’infrastructure de Service spécifique avant d’échouer. les sondes Hello font partie de hello ressource d’équilibrage de charge. Voici la définition de sonde hello pour le port de l’application hello première valeur par défaut :
    
     ```json
     {
@@ -80,7 +80,7 @@ Vous pouvez également souhaiter modifier les ports d’application publics pour
         }
     }
     ```
-3. Une *règle d’équilibrage de charge* qui relie le port et la sonde, permettant ainsi un équilibrage de charge sur un ensemble de nœuds de cluster Service Fabric :
+3. A *règle d’équilibrage de charge* qui relie les ports hello et sonde hello, qui permet à équilibrage de charge entre un ensemble de nœuds de cluster Service Fabric :
    
     ```json
     {
@@ -103,42 +103,42 @@ Vous pouvez également souhaiter modifier les ports d’application publics pour
         }
     }
     ```
-   Si les applications que vous envisagez de déployer sur le cluster ont besoin de davantage de ports, vous pouvez les ajouter en créant des définitions de règle de sonde et d’équilibrage de charge supplémentaires. Pour plus d’informations sur l’utilisation de l’équilibreur de charge Azure par le biais des modèles Resource Manager, consultez [Prise en main de la création d’un équilibreur de charge interne à l’aide d’un modèle](../load-balancer/load-balancer-get-started-ilb-arm-template.md).
+   Si les applications de hello que vous envisagez de toodeploy toohello cluster ont besoin de davantage de ports, vous pouvez les ajouter par la création de sonde supplémentaire et les définitions de règle de l’équilibrage de charge. Pour plus d’informations sur la façon de toowork avec équilibrage de charge Azure grâce aux modèles du Gestionnaire de ressources, consultez [prise en main la création d’un équilibreur de charge interne à l’aide d’un modèle](../load-balancer/load-balancer-get-started-ilb-arm-template.md).
 
-## <a name="deploy-the-template-by-using-visual-studio"></a>Déploiement du modèle à l’aide de Visual Studio
-Une fois que vous avez enregistré toutes les valeurs de paramètres requises dans le fichier`ServiceFabricCluster.param.dev.json` , vous êtes prêt à déployer le modèle et à créer votre cluster Service Fabric. Cliquez avec le bouton droit sur le projet de groupe de ressources dans l’Explorateur de solutions Visual Studio, puis sélectionnez **Déployer | Nouveau déploiement...**. Si nécessaire, Visual Studio affiche la boîte de dialogue **Déployer vers le groupe de ressources**, vous demandant de vous authentifier auprès d’Azure :
+## <a name="deploy-hello-template-by-using-visual-studio"></a>Déployer le modèle de hello à l’aide de Visual Studio
+Après avoir enregistré toutes les hello des valeurs de paramètre obligatoires dans le`ServiceFabricCluster.param.dev.json` fichier, vous toodeploy prêt hello modèle et créez votre cluster Service Fabric. Cliquez sur le projet de groupe de ressources hello dans l’Explorateur de solutions Visual Studio et choisissez **déployer | Nouveau déploiement...** . Si la nécessaire, Visual Studio affiche hello **déployer tooResource groupe** boîte de dialogue vous demandant de tooauthenticate tooAzure :
 
-![Boîte de dialogue Déployer vers le groupe de ressources][3]
+![Déployer la boîte de dialogue groupe tooResource][3]
 
-La boîte de dialogue vous permet de choisir un groupe de ressources Resource Manager existant pour le cluster et vous permet d’en créer un. Normalement, il est judicieux d’utiliser un groupe de ressources distinct pour un cluster Service Fabric.
+boîte de dialogue Hello vous permet de choisir un groupe de ressources existant Gestionnaire de ressources de cluster de hello et donne vous hello option toocreate un. Il est normalement sens toouse un groupe de ressources distinct pour un cluster Service Fabric.
 
-Quand vous cliquez sur le bouton Déployer, Visual Studio vous invite à confirmer les valeurs des paramètres du modèle. Cliquez sur le bouton **Enregistrer** . Un paramètre n’a pas une valeur persistante : le mot de passe du compte d’administrateur pour le cluster. Vous devez fournir une valeur de mot de passe quand Visual Studio vous en demande une.
-
-> [!NOTE]
-> À partir d’Azure SDK 2.9, Visual Studio prend en charge la lecture des mots de passe depuis **Azure Key Vault** pendant le déploiement. Dans la boîte de dialogue de paramètres de modèle, notez que la zone de texte des paramètres `adminPassword` possède une petite icône de « clé » à droite. Cette icône vous permet de sélectionner un secret de coffre de clés existant en tant que mot de passe d’administration du cluster. Assurez-vous simplement d’abord d’activer l’accès à Azure Resource Manager pour le déploiement du modèle dans les stratégies d’accès avancé de votre coffre de clés. 
-> 
-> 
-
-Vous pouvez surveiller la progression du processus de déploiement dans la fenêtre de sortie de Visual Studio. Une fois le déploiement de modèle terminé, votre nouveau cluster est prêt à utiliser.
+Après avoir appuyé sur le bouton de déployer hello, Visual Studio vous invite valeurs de paramètre de modèle tooconfirm hello. Positionnement hello **enregistrer** bouton. Un paramètre n’a pas une valeur persistante : un mot de passe de compte d’administrateur de cluster de hello hello. Vous devez tooprovide une valeur de mot de passe lorsque Visual Studio vous invite à un.
 
 > [!NOTE]
-> Si PowerShell n’a jamais été utilisé pour administrer Azure à partir de l’ordinateur que vous utilisez actuellement, vous devez faire un peu de ménage.
-> 
-> 1. Activez l’écriture de scripts PowerShell en exécutant la commande [`Set-ExecutionPolicy`](https://technet.microsoft.com/library/hh849812.aspx) . Pour les machines de développement, la stratégie « unrestricted » est généralement acceptable.
-> 2. Décidez s’il faut autoriser la collecte de données de diagnostics à partir de commandes Azure PowerShell et exécutez [`Enable-AzureRmDataCollection`](https://msdn.microsoft.com/library/mt619303.aspx) ou [`Disable-AzureRmDataCollection`](https://msdn.microsoft.com/library/mt619236.aspx) au besoin. Cela permet d'éviter les invites inutiles lors du déploiement du modèle.
+> À partir d’Azure SDK 2.9, Visual Studio prend en charge la lecture des mots de passe depuis **Azure Key Vault** pendant le déploiement. Dans la boîte de dialogue Paramètres de modèle hello, notez que hello `adminPassword` zone de texte de paramètre a une petite icône de « clé » sur hello droite. Cette icône vous permet de tooselect un secret de coffre de clés existant en tant que mot de passe d’administration hello pour le cluster de hello. Assurez-vous simplement que toofirst à activer l’accès Azure Resource Manager pour le déploiement de modèle dans hello avancée des stratégies d’accès de votre coffre de clés. 
 > 
 > 
 
-Si des erreurs se produisent, accédez au [portail Azure](https://portal.azure.com/) et ouvrez le groupe de ressources utilisé pour le déploiement. Cliquez sur **Tous les paramètres**, puis sur**Déploiements** dans le panneau Paramètres. Un déploiement de groupe de ressources ayant échoué laisse des informations de diagnostic détaillées à cet endroit.
+Vous pouvez surveiller la progression hello du processus de déploiement hello dans la fenêtre de sortie de Visual Studio hello. Une fois le déploiement d’un modèle hello est terminé, votre nouveau cluster est prêt toouse !
 
 > [!NOTE]
-> Les clusters Service Fabric nécessitent un certain nombre de nœuds actifs pour maintenir la disponibilité et préserver l’état. Cette situation est appelée « conservation du quorum ». Par conséquent, il est déconseillé d’arrêter tous les ordinateurs du cluster, sauf si vous avez d’abord effectué une [sauvegarde complète de votre état](service-fabric-reliable-services-backup-restore.md).
+> Si PowerShell n’a jamais été utilisé tooadminister Azure à partir de l’ordinateur hello que vous utilisez, vous devez toodo maintenance un peu.
+> 
+> 1. Activer les scripts en exécutant hello PowerShell [ `Set-ExecutionPolicy` ](https://technet.microsoft.com/library/hh849812.aspx) commande. Pour les machines de développement, la stratégie « unrestricted » est généralement acceptable.
+> 2. Décidez si collecte de données de diagnostic tooallow commandes Azure PowerShell, puis exécutez [ `Enable-AzureRmDataCollection` ](https://msdn.microsoft.com/library/mt619303.aspx) ou [ `Disable-AzureRmDataCollection` ](https://msdn.microsoft.com/library/mt619236.aspx) si nécessaire. Cela permet d'éviter les invites inutiles lors du déploiement du modèle.
+> 
+> 
+
+S’il existe des erreurs, accédez à toohello [portail Azure](https://portal.azure.com/) et groupe de ressources hello ouverts que vous avez déployé à. Cliquez sur **tous les paramètres**, puis cliquez sur **déploiements** sur le panneau des paramètres hello. Un déploiement de groupe de ressources ayant échoué laisse des informations de diagnostic détaillées à cet endroit.
+
+> [!NOTE]
+> Clusters service Fabric nécessitent un certain nombre de toobe nœuds la disponibilité du toomaintain et conservent l’état - tooas référencé « gestion de quorum ». Par conséquent, il n’est pas sécurisé tooshut vers le bas de toutes les machines de hello du cluster de hello, sauf si vous avez tout d’abord exécuté un [une sauvegarde complète de l’état](service-fabric-reliable-services-backup-restore.md).
 > 
 > 
 
 ## <a name="next-steps"></a>Étapes suivantes
-* [En savoir plus sur la configuration de cluster Service Fabric à l’aide du portail Azure](service-fabric-cluster-creation-via-portal.md)
-* [Apprenez à gérer et déployer des applications Service Fabric à l’aide de Visual Studio](service-fabric-manage-application-in-visual-studio.md)
+* [En savoir plus sur la configuration de cluster Service Fabric à l’aide de hello portail Azure](service-fabric-cluster-creation-via-portal.md)
+* [Découvrez comment toomanage et déployer des applications de Service Fabric à l’aide de Visual Studio](service-fabric-manage-application-in-visual-studio.md)
 
 <!--Image references-->
 [1]: ./media/service-fabric-cluster-creation-via-visual-studio/azure-resource-group-project-creation.png

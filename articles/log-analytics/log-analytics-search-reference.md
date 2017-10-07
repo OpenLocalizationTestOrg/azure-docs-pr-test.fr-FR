@@ -1,6 +1,6 @@
 ---
-title: "Référence de recherche Azure Log Analytics | Microsoft Docs"
-description: "La référence de recherche Log Analytics décrit le langage de recherche et fournit la syntaxe de requête générale que vous pouvez utiliser lorsque vous recherchez des données et que vous filtrez des expressions pour affiner votre recherche."
+title: "référence de recherche Analytique de journal d’aaaAzure | Documents Microsoft"
+description: "référence de recherche Analytique de journal Hello décrit le langage de recherche hello et fournit des options de syntaxe de requête générale hello que vous pouvez utiliser lorsque vous recherchez des données et le filtrage des expressions toohelp affiner votre recherche."
 services: log-analytics
 documentationcenter: 
 author: bwren
@@ -15,29 +15,29 @@ ms.topic: article
 ms.date: 07/13/2017
 ms.author: bwren
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: fc9c9b0a6292dab256997a86a6db16367fc48cd3
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 7478a1139b88a1ce76ebb7b76027a6ccd66f4f27
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="log-analytics-search-reference"></a>Référence de recherche Log Analytics
 
 >[!NOTE]
-> Cet article détaille les recherches dans les journaux via le langage de requête actuel de Log Analytics.  Si vous avez mis a niveau votre espace de travail vers le [nouveau langage de requête dans Log Analytics](log-analytics-log-search-upgrade.md), référez-vous à [la référence du nouveau langage](https://go.microsoft.com/fwlink/?linkid=856079).
+> Cet article décrit les recherches de journal à l’aide du langage de requête en cours hello dans Analytique de journal.  Si votre espace de travail a été mis à niveau toohello [Analytique de journal nouveau langage de requête](log-analytics-log-search-upgrade.md), puis vous devez faire référence trop[hello référence du langage pour le nouveau langage de hello](https://go.microsoft.com/fwlink/?linkid=856079).
 
-La section d’informations de référence suivante sur le langage de recherche décrit les options de syntaxe de requête générales que vous pouvez utiliser lorsque vous recherchez des données et que vous filtrez des expressions pour affiner votre recherche. Elle décrit également les commandes que vous pouvez utiliser pour effectuer une opération sur les données récupérées.
+Hello section de référence suivante sur le langage de recherche décrit les options de syntaxe de requête générale hello que vous pouvez utiliser lorsque vous recherchez des données et le filtrage des expressions toohelp affiner votre recherche. Il décrit également les commandes que vous pouvez utiliser l’action de tootake sur hello les données récupérées.
 
-Vous pouvez consulter la section [Référence de champ et de facette de recherche](#search-field-and-facet-reference) pour en savoir plus sur les champs retournés dans les recherches et sur les facettes qui vous aident à explorer des catégories de données similaires.
+Vous pouvez lire sur les champs hello retournés dans les recherches et les facettes hello qui vous aident à en savoir plus sur les catégories de données, Bonjour similaires [section de référence de champ de recherche et de facette](#search-field-and-facet-reference).
 
 ## <a name="general-query-syntax"></a>Syntaxe de requête générale
-La syntaxe d’interrogation générale est la suivante :
+syntaxe de Hello pour l’interrogation générale est la suivante :
 
 ```
 filterExpression | command1 | command2 …
 ```
 
-L’expression de filtre (`filterExpression`) définit la condition « where » pour la requête. Les commandes s'appliquent aux résultats retournés par la requête. Plusieurs commandes doivent être séparées par la barre verticale (|).
+expression de filtre de Hello (`filterExpression`) définit hello « where » une condition pour hello la requête. commandes Hello s’appliquent toohello les résultats retournés par la requête de hello. Plusieurs commandes doivent être séparés par une barre verticale hello (|).
 
 ### <a name="general-syntax-examples"></a>Exemples de syntaxe générale
 Exemples :
@@ -46,10 +46,10 @@ Exemples :
 system
 ```
 
-Cette requête retourne les résultats qui contiennent le mot *système* dans un champ qui a été indexé pour la recherche de termes ou en texte intégral.
+Cette requête retourne des résultats qui contiennent les mot hello *système* dans un champ qui a été indexé pour la recherche en texte intégral ou de conditions de recherche.
 
 > [!NOTE]
-> Tous les champs ne sont pas indexés de cette façon, mais les champs textuels les plus courants (tels que les descriptions et les noms) le sont généralement.
+> Tous les champs sont indexés de cette façon, mais sont de hello plus courante des champs texte (par exemple, les noms et les descriptions) généralement.
 >
 >
 
@@ -57,24 +57,24 @@ Cette requête retourne les résultats qui contiennent le mot *système* dans un
 system error
 ```
 
-Cette requête retourne des résultats qui contiennent les mots *système* et *erreur*.
+Cette requête renvoie les résultats qui contiennent les mots hello *système* et *erreur*.
 
 ```
 system error | sort ManagementGroupName, TimeGenerated desc | top 10
 ```
 
-Cette requête retourne des résultats qui contiennent les mots *système* et *erreur*. Elle trie ensuite les résultats en fonction du champ *ManagementGroupName* (dans l’ordre croissant), puis du champ *TimeGenerated* (dans l’ordre décroissant). Seuls les 10 premiers résultats sont nécessaires.
+Cette requête renvoie les résultats qui contiennent les mots hello *système* et *erreur*. Elle trie ensuite les résultats de hello en hello *ManagementGroupName* champ (dans l’ordre croissant), puis par hello *TimeGenerated* champ (dans l’ordre décroissant). Il prend uniquement hello 10 premiers résultats.
 
 > [!IMPORTANT]
-> Tous les noms de champ et les valeurs pour les champs de texte et de chaîne respectent la casse.
+> Tous les hello des noms de champs et valeurs hello pour les champs de texte et la chaîne hello respectent la casse.
 >
 >
 
 ## <a name="filter-expressions"></a>Expressions de filtre
-Les sous-sections suivantes expliquent les expressions de filtre.
+Hello suivant sous-sections explique les expressions de filtre hello.
 
 ### <a name="string-literals"></a>Littéraux de chaîne
-Un littéral de chaîne est une chaîne qui n'est pas reconnue par l'analyseur comme un mot clé ou un type de données prédéfini (par exemple un nombre ou une date).
+Un littéral de chaîne est une chaîne qui n’est pas reconnue par l’Analyseur de hello comme un mot clé ou un type de données prédéfini (par exemple, un nombre ou une date).
 
 Exemples :
 
@@ -82,7 +82,7 @@ Exemples :
 These all are string literals
 ```
 
-Cette requête recherche des résultats qui contiennent les occurrences des cinq mots. Pour effectuer une recherche de chaîne complexe, placez le littéral de chaîne entre guillemets. Par exemple :
+Cette requête recherche des résultats qui contiennent les occurrences des cinq mots. tooperform une recherche de chaîne complexe, placez hello littéral de chaîne dans des guillemets doubles. Par exemple :
 
 ```
 "Windows Server"
@@ -91,7 +91,7 @@ Cette requête recherche des résultats qui contiennent les occurrences des cinq
 Cela renvoie uniquement les résultats avec des correspondances exactes pour *Windows Server*.
 
 ### <a name="numbers"></a>Nombres
-L'analyseur prend en charge l'entier décimal et une syntaxe de nombre à virgule flottante pour les champs numériques.
+Analyseur de Hello prend en charge le nombre entier décimal hello et syntaxe de nombre à virgule flottante pour les champs numériques.
 
 Exemples :
 
@@ -104,11 +104,11 @@ HTTP 500
 ```
 
 ### <a name="dates-and-times"></a>Dates et heures
-Chaque élément de données dans le système a une propriété *TimeGenerated* qui représente la date et l'heure d’origine de l'enregistrement. Certains types de données peuvent avoir davantage de champs Date/Heure (par exemple, *LastModified*).
+Chaque élément de données dans le système de hello a un *TimeGenerated* propriété, qui représente la date d’origine de hello et l’heure d’enregistrement de hello. Certains types de données peuvent avoir davantage de champs Date/Heure (par exemple, *LastModified*).
 
-Le sélecteur de **graphique/heure** de chronologie dans Azure Log Analytics montre une répartition des résultats au fil du temps (en fonction de la requête en cours d’exécution). Elle repose sur le champ *TimeGenerated*. Les champs Date/Heure ont un format de chaîne spécifique qui peut être utilisé dans des requêtes pour limiter ces dernières à une période particulière. Vous pouvez également utiliser la syntaxe pour faire référence à des intervalles de temps relatifs (par exemple, « entre il y a 3 jours et il y a 2 heures »).
+Hello chronologie **graphique/heure** sélecteur dans Azure journal Analytique montre une répartition des résultats au fil du temps (en fonction toohello requête actuelle en cours d’exécution). Il est basé sur hello *TimeGenerated* champ. Les champs de date et l’heure ont un format de chaîne spécifique qui peut être utilisé dans les requêtes toorestrict hello requête tooa période particulière. Vous pouvez également utiliser la syntaxe toorefer toorelative intervalles de temps (par exemple, « entre il y a 3 jours et il y a 2 heures »).
 
-Les éléments suivants sont des formes de syntaxe valides pour les dates et les heures :
+les Voici Hello valides formes de syntaxe pour les dates et heures :
 
 ```
 yyyy-mm-ddThh:mm:ss.dddZ
@@ -141,14 +141,14 @@ Par exemple :
 TimeGenerated:2013-10-01T12:20
 ```
 
-La commande précédente retourne uniquement les enregistrements avec une valeur *TimeGenerated* indiquant exactement 12:20 le 1er octobre 2013.
+commande précédente Hello retourne uniquement les enregistrements avec un *TimeGenerated* valeur exactement 12:20 le 1er octobre 2013.
 
-L'analyseur prend également en charge la valeur Date/Heure mnémonique NOW. (Il est peu probable que cela génère des résultats, car les données ne traversent pas le système si rapidement.)
+Hello prend également en valeur Date/heure mnémonique hello maintenant. (Il est peu probable que cela génère des résultats, car les données ne traversent pas hello système si rapidement.)
 
-Ces exemples sont des blocs de construction à utiliser pour des dates relatives et absolues. Dans les trois sous-sections suivantes, vous découvrirez comment les utiliser dans des filtres plus avancés avec des exemples qui utilisent des plages de dates relatives.
+Ces exemples sont des blocs de construction toouse de dates relatives et absolues. Dans hello trois sous-sections suivantes, vous verrez comment toouse les plus avancés filtres, avec des exemples qui utilisent des plages de dates relatives.
 
 ### <a name="datetime-math"></a>Mathématique de Date/Heure
-Utilisez les opérateurs mathématiques de Date/Heure pour décaler ou arrondir la valeur de Date/Heure en utilisant de simples calculs de Date/Heure.
+Utilisez toooffset d’opérateurs mathématiques hello Date/heure ou arrondir la valeur de Date/heure hello, à l’aide de simples calculs de Date/heure.
 
 Syntaxe :
 
@@ -162,29 +162,29 @@ datetime[+|-]count unit
 
 | Opérateur  | Description |
 | --- | --- |
-| / |Arrondit la valeur Date/Heure à l'unité spécifiée. Par exemple, NOW/DAY arrondit la valeur Date/Heure actuelle à minuit pour le jour en cours. |
-| + ou - |Décale la valeur Date/Heure du nombre d’unités spécifié. Par exemple, NOW+1HOUR avance la valeur Date/Heure actuelle d’une heure. 2013-10-01T12:00-10DAYS recule la valeur Date de 10 jours. |
+| / |Arrondit Date/heure toohello spécifié d’unité. Par exemple, désormais / DAY arrondit hello toomidnight de Date/heure actuelle de hello jour actuel. |
+| + ou - |Les décalages de Date/heure par hello spécifié le nombre d’unités. Par exemple, NOW + 1HOUR décale hello actuel Date/heure en une heure en avant. 2013-10-01T12:00-10 jours décale la valeur de Date de hello 10 jours en arrière. |
 
-Vous pouvez chaîner les opérateurs mathématiques Date/Heure. Par exemple :
+Vous pouvez chaîner les opérateurs mathématiques Date/heure hello. Par exemple :
 
 ```
 NOW+1HOUR-10MONTHS/MINUTE
 ```
 
-Le tableau suivant répertorie les unités Date/Heure prises en charge.
+Hello tableau suivant répertorie les unités de Date/heure hello pris en charge.
 
 | Unité Date/Heure | Description |
 | --- | --- |
-| YEAR, YEARS |Arrondit à l'année en cours ou décale du nombre d'années spécifié. |
-| MONTH, MONTHS |Arrondit au mois en cours ou décale du nombre de mois spécifié. |
-| DAY, DAYS, DATE |Arrondit au jour du mois en cours ou décale du nombre de jours spécifié. |
-| HOUR, HOURS |Arrondit à l'heure en cours ou décale du nombre d'heures spécifié. |
-| MINUTE, MINUTES |Arrondit à la minute en cours ou décale du nombre de minutes spécifié. |
-| SECOND, SECONDS |Arrondit à la seconde en cours ou décale du nombre de secondes spécifié. |
-| MILLISECOND, MILLISECONDS, MILLI, MILLIS |Arrondit à la milliseconde en cours ou décale du nombre de millisecondes spécifié. |
+| YEAR, YEARS |Arrondit toocurrent année ou les décalages de par Bonjour spécifié le nombre d’années. |
+| MONTH, MONTHS |Arrondit toocurrent mois ou les décalages de par Bonjour nombre spécifié de mois. |
+| DAY, DAYS, DATE |Jour de toocurrent essais de hello mois ou les décalages de par Bonjour spécifié le nombre de jours. |
+| HOUR, HOURS |Arrondit toocurrent heure ou les décalages de par Bonjour spécifié le nombre d’heures. |
+| MINUTE, MINUTES |Arrondit toocurrent minute ou les décalages de par Bonjour nombre spécifié de minutes. |
+| SECOND, SECONDS |Arrondit la seconde toocurrent, ou décale hello spécifié nombre de secondes. |
+| MILLISECOND, MILLISECONDS, MILLI, MILLIS |Millisecondes de toocurrent arrondit ou décalages par hello spécifié en millisecondes. |
 
 ### <a name="field-facets"></a>Facettes de champ
-À l’aide des facettes de champ, vous pouvez spécifier la condition de recherche pour des champs spécifiques et leurs valeurs exactes. Cela diffère de l’écriture de requêtes de « texte libre » pour différents termes dans l’index. Vous avez déjà vu cette technique dans plusieurs des exemples précédents. Voici des exemples plus complexes.
+À l’aide de facettes de champ, vous pouvez spécifier la condition de recherche de hello pour des champs spécifiques et leurs valeurs exactes. Cela diffère de l’écriture de requêtes de « texte libre » pour différents termes dans l’index de hello. Vous avez déjà vu cette technique dans plusieurs des exemples précédents. Hello Voici des exemples plus complexes.
 
 **Syntaxe**
 
@@ -198,7 +198,7 @@ field=value
 
 **Description**
 
-Recherche la valeur spécifique dans le champ. La valeur peut être un littéral de chaîne, un nombre ou une Date/Heure.
+Recherches hello champ de valeur spécifique de hello. valeur de Hello peut être un littéral de chaîne, la numéro, ou la date et l’heure.
 
 Par exemple :
 
@@ -216,13 +216,13 @@ SampleValue:0.3
 
 **Syntaxe**
 
-*champ>valeur*
+*champ&gt;valeur*
 
-*champ<valeur*
+*champ&lt;valeur*
 
-*champ>=valeur*
+*champ&gt;=valeur*
 
-*champ<=valeur*
+*champ&lt;=valeur*
 
 *champ!=valeur*
 
@@ -257,7 +257,7 @@ SampleValue:[0..2]
 ```
 
 ### <a name="in"></a>IN
-Le mot-clé **IN** vous permet de sélectionner un élément dans une liste de valeurs. En fonction de la syntaxe utilisée, il peut s’agir d’une liste simple de valeurs que vous fournissez ou d’une liste de valeurs provenant d’une agrégation.
+Hello **IN** (mot clé) vous permet de tooselect à partir d’une liste de valeurs. Selon la syntaxe hello que vous utilisez, cela peut être une simple liste de valeurs que vous fournissez, ou une liste de valeurs à partir d’une agrégation.
 
 Syntaxe 1 :
 
@@ -265,7 +265,7 @@ Syntaxe 1 :
 field IN {value1,value2,value3,...}
 ```
 
-Cette syntaxe vous permet d’inclure toutes les valeurs dans une liste simple.
+Cette syntaxe vous permet de tooinclude toutes les valeurs dans une liste simple.
 
 
 
@@ -282,25 +282,25 @@ Computer IN {"srv01.contoso.com","srv02.contoso.com"}
 Syntaxe 2 :
 
 ```
-(Outer query) (Field to use with inner query results) IN {Inner query | measure count() by (Field to send to outer query)} (rest  of outer query)  
+(Outer query) (Field toouse with inner query results) IN {Inner query | measure count() by (Field toosend tooouter query)} (rest  of outer query)  
 ```
 
-Cette syntaxe vous permet de créer une agrégation. Vous pouvez ensuite transmettre la liste de valeurs à partir de cette agrégation dans une autre recherche externe (principale) qui recherche les événements avec ces valeurs. Pour cela, incluez la recherche interne dans des accolades et indiquez ses résultats en tant que valeurs possibles pour un champ dans la recherche externe à l’aide de l’opérateur IN.
+Cette syntaxe vous permet de toocreate une agrégation. Vous pouvez ensuite alimenter la liste des valeurs hello à partir de cette agrégation dans une autre recherche externe (principale) permettant de rechercher des événements avec cette valeur. Pour cela, vous devez hello, recherche interne entre accolades et alimentez ses résultats sous forme de valeurs possibles pour un champ de recherche externe de hello en utilisant l’opérateur IN de hello.
 
-Exemple de requête interne : *ordinateurs ne disposant pas actuellement des mises à jour de sécurité* avec la requête d’agrégation suivante :
+Exemple de requête interne : *ordinateurs auxquels il manque des mises à jour de sécurité* avec hello suivant la requête d’agrégation :
 
 ```
 Type:Update Classification="Security Updates"  UpdateState=needed TimeGenerated>NOW-25HOURS | measure count() by Computer
 ```    
 
-La dernière requête portant sur *tous les événements Windows pour les ordinateurs ne disposant pas actuellement des mises à jour de sécurité* prend la forme suivante :
+Hello dernière requête qui recherche *tous les événements de Windows pour les ordinateurs auxquels il manque des mises à jour de sécurité* similaire hello suivant :
 
 ```
 Type=Event Computer IN {Type:Update Classification="Security Updates"  UpdateState=needed TimeGenerated>NOW-25HOURS | measure count() by Computer}
 ```
 
 ### <a name="contains"></a>Contient
-Le mot clé **Contient** vous permet de filtrer les enregistrements avec un champ contenant une chaîne spécifique. Il respecte la casse, fonctionne uniquement avec des champs de type chaîne et ne peut inclure de caractère d’échappement.
+Hello **contient** (mot clé) vous permet de toofilter des enregistrements avec un champ qui contient une chaîne spécifiée. Il respecte la casse, fonctionne uniquement avec des champs de type chaîne et ne peut inclure de caractère d’échappement.
 
 Syntaxe :
 
@@ -314,12 +314,12 @@ Exemple :
 Type:contains("Event")
 ```
 
-Cela renvoie les enregistrements avec un type contenant la chaîne « Event ». Les exemples incluent **Event**, **SecurityEvent** et **ServiceFabricOperationEvent**.
+Cela retourne les enregistrements avec un type qui contient la chaîne de hello « Événement ». Les exemples incluent **Event**, **SecurityEvent** et **ServiceFabricOperationEvent**.
 
 
 
 ### <a name="regular-expressions"></a>Expressions régulières
-Vous pouvez spécifier les conditions de recherche pour un champ avec une expression régulière en utilisant le mot clé **Regex**. Pour obtenir une description complète de la syntaxe que vous pouvez utiliser dans les expressions régulières, reportez-vous à l’article [Utilisation d’expressions régulières pour filtrer les recherches dans les journaux Log Analytics](log-analytics-log-searches-regex.md).
+Vous pouvez spécifier une condition de recherche pour un champ avec une expression régulière, à l’aide de hello **Regex** (mot clé). Pour obtenir une description complète de la syntaxe hello que vous pouvez utiliser dans les expressions régulières, consultez [à l’aide de recherches de journal toofilter des expressions régulières dans le journal Analytique](log-analytics-log-searches-regex.md).
 
 Syntaxe :
 
@@ -334,7 +334,7 @@ Computer:Regex("^C.*")
 ```
 
 ### <a name="logical-operators"></a>Opérateurs logiques
-Les langages de requête prennent en charge les opérateurs logiques (*AND*, *OR* et *NOT*) et leurs alias de style C (*&&*, *||* et *!*). Vous pouvez utiliser des parenthèses pour regrouper ces opérateurs.
+requête Hello langages prennent en charge les opérateurs logiques hello (*AND*, *ou*, et *pas*) et de leurs alias C-style (*&&*,  *||* , et *!*, respectivement). Vous pouvez utiliser des parenthèses toogroup ces opérateurs.
 
 Exemples :
 
@@ -347,35 +347,35 @@ system OR error
 Type:Alert AND NOT(Severity:1 OR ObjectId:"8066bbc0-9ec8-ca83-1edc-6f30d4779bcb8066bbc0-9ec8-ca83-1edc-6f30d4779bcb")
 ```
 
-Vous pouvez omettre l'opérateur logique pour les arguments de filtre de niveau supérieur. Dans ce cas, l'opérateur AND est supposé.
+Vous pouvez omettre l’opérateur logique de hello pour les arguments de filtre de niveau supérieur hello. Dans ce cas, hello opérateur AND est supposé.
 
-| Expression de filtre | Équivalent à |
+| Expression de filtre | Équivalent trop|
 | --- | --- |
 | erreur système |système AND erreur |
 | système « Windows Server » OR Gravité:1 |système AND (« Windows Server » OR Gravité:1) |
 
 ### <a name="wildcarding"></a>Utilisation des caractères génériques
-Le langage de requête prend en charge l’utilisation du caractère ( \* ) pour représenter un ou plusieurs caractères pour une valeur dans une requête.
+langage de requête Hello prend en charge à l’aide de hello ( \* ) caractères représentent trop un ou plusieurs caractères pour une valeur dans une requête.
 
 Exemple :
 
- Recherchez tous les ordinateurs dont le nom contient « SQL », par exemple « Redmond-SQL ».
+ Rechercher tous les ordinateurs par « SQL » nom hello, tels que « Redmond-SQL ».
 
 ```
 Type=Event Computer=*SQL*
 ```
 
 > [!NOTE]
-> Pour l’instant, les caractères génériques ne peuvent pas être utilisés entre guillemets. Par exemple, le message `"*This text*"` considère (\*) comme un caractère (\*) littéral.
+> Pour l’instant, les caractères génériques ne peuvent pas être utilisés entre guillemets. Par exemple, message de type hello `"*This text*"` considère hello (\*) utilisé comme littéral (\*) caractères.
 
 
 ## <a name="commands"></a>Commandes
 
 
-Les commandes s'appliquent aux résultats qui sont retournés par la requête. Utilisez la barre verticale (|) pour appliquer une commande aux résultats récupérés. Les commandes multiples doivent être séparées par la barre verticale (|).
+commandes Hello s’appliquent toohello les résultats retournés par la requête de hello. Utilisez hello canal caractère (|) tooapply un toohello de commande récupérer les résultats. Plusieurs commandes doivent être séparés par une barre verticale hello.
 
 > [!NOTE]
-> Les noms de commande peuvent être écrits en majuscules ou en minuscules, contrairement aux noms de champ et aux données.
+> Les noms de commande peuvent être écrits en majuscules ou minuscules, contrairement aux noms de champs hello et les données de salutation.
 >
 >
 
@@ -384,7 +384,7 @@ Syntaxe :
 
     sort field1 asc|desc, field2 asc|desc, …
 
-Trie les résultats en fonction de champs particuliers. Le suffixe asc/desc pour trier les résultats dans l’ordre croissant ou décroissant est facultatif. S’il est omis, l’ordre de tri *asc* est supposé. Pour le champ **TimeGenerated**, l’ordre de tri *desc* est supposé, ce qui renvoie les résultats les plus récents en premier par défaut.
+Trie les résultats de hello champs particuliers. résultats de hello Hello asc/desc suffixe toosort dans l’ordre croissant ou décroissant est facultative. S’il est omis, hello *asc* ordre de tri est supposé. Pourquoi **TimeGenerated** champ, *desc* est donné par ordre de tri, elle retourne les résultats les plus récents hello tout d’abord par défaut.
 
 ### <a name="toplimit"></a>Top/Limit
 Syntaxe :
@@ -393,20 +393,20 @@ Syntaxe :
 
 
     limit number
-Limite la réponse aux N premiers résultats.
+Limites hello réponse toohello top N des résultats.
 
 Exemple :
 
     Type:Alert errors detected | top 10
 
-Retourne les 10 premiers résultats de correspondance.
+Retourne hello 10 premiers résultats correspondants.
 
 ### <a name="skip"></a>Skip
 Syntaxe :
 
     skip number
 
-Ignore le nombre de résultats répertoriés.
+Ignore la hello nombre de résultats répertoriés.
 
 Exemple :
 
@@ -419,16 +419,16 @@ Syntaxe :
 
     select field1, field2, ...
 
-Limite les résultats aux champs que vous choisissez.
+Limite les champs de toohello de résultats que vous choisissez.
 
 Exemple :
 
     Type:Alert errors detected | select Name, Severity
 
-Limite les champs de résultats retournés à *Name* and *Severity*pour en savoir plus sur les champs retournés dans les recherches et sur les facettes qui vous aident à explorer des catégories de données similaires.
+Limites hello des champs de résultats retournés trop*nom* et *gravité*.
 
 ### <a name="measure"></a>Measure
-La commande *measure* est utilisée pour appliquer des fonctions statistiques pour les résultats de recherche bruts. Cela est très utile pour obtenir un affichage *groupé* des données. Lorsque vous utilisez la commande measure, Log Analytics affiche une table contenant des résultats agrégés.
+Hello *mesure* commande est les résultats de recherche bruts toohello tooapply utilisé des fonctions statistiques. Cela est très utile tooget *group by* vues sur les données de salutation. Lorsque vous utilisez la commande de mesure hello, la recherche de journal Analytique affiche une table avec des résultats agrégés.
 
 **Syntaxe :**
 
@@ -439,19 +439,19 @@ La commande *measure* est utilisée pour appliquer des fonctions statistiques po
 
 
 
-Agrège les résultats par valeur de *groupField*, puis calcule les valeurs de measure agrégées à l’aide de *aggregatedField*.
+Regroupe les résultats hello en *groupField*et calcule les valeurs de mesure hello agrégée à l’aide de *aggregatedField*.
 
 | Fonction statistique de mesure | Description |
 | --- | --- |
-| *aggregateFunction* |Nom de la fonction d’agrégation (non sensible à la casse). Les fonctions d’agrégation suivantes sont prises en charge : COUNT, MAX, MIN, SUM, AVG, STDDEV, COUNTDISTINCT, PERCENTILE## ou PCT## (## étant un nombre compris entre 1 et 99). |
-| *aggregatedField* |Champ en cours d’agrégation. Ce champ est facultatif pour la fonction d’agrégation COUNT, mais il doit s’agir d’un champ numérique existant pour les fonctions SUM, MAX, MIN, AVG, STDDEV, PERCENTILE## ou PCT## (## étant un nombre compris entre 1 et 99). aggregatedField peut être également n’importe laquelle des fonctions **Extend** prises en charge. |
-| *fieldAlias* |Alias (facultatif) de la valeur agrégée calculée. S’il n’est pas spécifié, le nom du champ sera **AggregatedValue**. |
-| *groupField* |Nom du champ qui regroupe le jeu de résultats. |
-| *Intervalle* |Intervalle de temps, au format **nnnNAME**. **nnn** est le nombre entier positif. **NAME** est le nom de l’intervalle. Les noms d’intervalle pris en charge sont sensibles à la casse et incluent : MILLISECOND[S], SECOND[S], MINUTE[S], HOUR[S], DAY[S], MONTH[S] et YEAR[S]. |
+| *aggregateFunction* |nom de Hello de fonction d’agrégation hello (sensible à la casse). Hello suivant des fonctions d’agrégation est prises en charge : COUNT, MAX, MIN, SUM, AVG, STDDEV, COUNTDISTINCT, centile ## ou PCT ## (## est un nombre compris entre 1 et 99). |
+| *aggregatedField* |champ de Hello est en cours d’agrégation. Ce champ est facultatif pour hello fonction d’agrégation COUNT, mais a toobe un champ numérique existant pour SUM, MAX, MIN, AVG, STDDEV, centile ## ou PCT ## (## est un nombre compris entre 1 et 99). Hello aggregatedField peut également s’agir de hello **étendre** fonctions prises en charge. |
+| *fieldAlias* |alias (facultatif) Hello hello calculée valeur agrégée. Si non spécifié, le nom du champ hello est **AggregatedValue**. |
+| *groupField* |nom Hello du champ de hello du jeu de résultats de hello de regroupement. |
+| *Intervalle* |intervalle de temps Hello, dans le format de hello :**Nnnnom**. **nnn**est un nombre entier positif de hello. **NOM** est le nom de l’intervalle hello. Les noms d’intervalle pris en charge sont sensibles à la casse et incluent : MILLISECOND[S], SECOND[S], MINUTE[S], HOUR[S], DAY[S], MONTH[S] et YEAR[S]. |
 
-L'option d'intervalle ne peut être utilisée que dans des champs de groupe Date/Heure (tels que *TimeGenerated* and *TimeCreated*). Actuellement, elle n’est pas appliquée par le service, mais un champ sans la valeur Date/Heure qui est transmis au serveur principal entraîne une erreur d’exécution. Lorsque le schéma de validation est implémenté, l’API de service rejette les requêtes qui utilisent des champs sans la valeur Date/Heure pour l’agrégation d’intervalles. L’implémentation actuelle de *Measure* prend en charge le regroupement d’intervalles pour n’importe quelle fonction d’agrégation.
+option d’intervalle Hello utilisable uniquement dans les champs de groupe Date/heure (tels que *TimeGenerated* et *TimeCreated*). Actuellement, il n’est pas appliquée par le service de hello, mais un champ sans la Date/heure qui est passé toohello back-end provoque une erreur d’exécution. Lors de la validation de schéma hello est implémenté, hello service API rejette les requêtes qui utilisent des champs sans la Date/heure pour l’agrégation d’intervalle. Hello actuel *mesure* implémentation prend en charge le regroupement de l’intervalle pour une fonction d’agrégation.
 
-Si la clause BY est omise alors qu’un intervalle est spécifié (comme seconde syntaxe), le champ *TimeGenerated* est supposé par défaut.
+Si la clause de hello BY est omise, mais un intervalle est spécifié (comme seconde syntaxe), hello *TimeGenerated* champ est supposé par défaut.
 
 Exemples :
 
@@ -459,91 +459,91 @@ Exemples :
 
     Type:Alert | measure count() as Count by ObjectId
 
-Regroupe les alertes par *ObjectID* et calcule le nombre d’alertes pour chaque groupe. La valeur d'agrégation est retournée en tant que champ (alias) *Count* .
+Groupes hello alertes par *ObjectID*et calcule le nombre de hello d’alertes pour chaque groupe. valeur d’agrégation Hello est retournée en tant que hello *nombre* champ (alias).
 
 **Exemple 2**
 
     Type:Alert | measure count() interval 1HOUR
 
-Groupe les alertes par intervalles d'une heure à l'aide du champ *TimeGenerated* et retourne le nombre d'alertes dans chaque intervalle.
+Groupes hello alertes par intervalles de 1 heure à l’aide de hello *TimeGenerated* champ et le numéro de hello retourne des alertes dans chaque intervalle.
 
 **Exemple 3**
 
     Type:Alert | measure count() as AlertsPerHour interval 1HOUR
 
-Comme pour l'exemple précédent, mais avec un alias de champ agrégé (*AlertsPerHour*).
+Comme hello l’exemple précédent, mais avec un alias de champ agrégé (*AlertsPerHour*).
 
 **Exemple 4**
 
     * | measure count() by TimeCreated interval 5DAYS
 
-Groupe les résultats par intervalles de 5 jours à l'aide du champ *TimeCreated* et retourne le nombre de résultats dans chaque intervalle.
+Regroupe les résultats de hello par intervalles de 5 jours à l’aide de hello *TimeCreated* champ et le numéro de hello retourne des résultats dans chaque intervalle.
 
 **Exemple 5**
 
     Type:Alert | measure max(Severity) by WorkflowName
 
-Groupe les alertes par nom de la charge de travail et retourne la valeur de gravité d'alerte maximum pour chaque flux de travail.
+Groupes hello alertes par nom de la charge de travail et retourne hello valeur de gravité d’alerte maximum pour chaque flux de travail.
 
 **Exemple 6**
 
     Type:Alert | measure min(Severity) by WorkflowName
 
-Identique à l’exemple précédent, mais avec la fonction agrégée *min*.
+Comme hello l’exemple précédent, mais avec hello *min* fonction agrégée.
 
 **Exemple 7**
 
     Type:Perf | measure avg(CounterValue) by Computer
 
-Regroupe les performances par ordinateur et calcule la moyenne (avg).
+Regroupe les performances par ordinateur et calcule la moyenne de hello (moyenne).
 
 **Exemple 8**
 
     Type:Perf | measure sum(CounterValue) by Computer
 
-Identique à l’exemple précédent, mais utilise *sum*.
+Comme l’exemple précédent de hello, mais utilise *somme*.
 
 **Exemple 9**
 
     Type:Perf | measure stddev(CounterValue) by Computer
 
-Identique à l’exemple précédent, mais utilise *stddev*.
+Comme l’exemple précédent de hello, mais utilise *stddev*.
 
 **Exemple 10**
 
     Type:Perf | measure percentile70(CounterValue) by Computer
 
-Identique à l’exemple précédent, mais utilise *percentile70*.
+Comme l’exemple précédent de hello, mais utilise *percentile70*.
 
 **Exemple 11**
 
     Type:Perf | measure pct70(CounterValue) by Computer
 
-Identique à l’exemple précédent, mais utilise *pct70*. Notez que *PCT##* est uniquement un alias de la fonction *PERCENTILE##*.
+Comme l’exemple précédent de hello, mais utilise *pct70*. Notez que *PCT##* est uniquement un alias de la fonction *PERCENTILE##*.
 
 **Exemple 12**
 
     Type:Perf | measure avg(CounterValue) by Computer, CounterName
 
-Regroupe Perf d’abord par ordinateur, puis CounterName, puis calcule la moyenne (avg).
+Regroupe d’abord les performances par ordinateur, puis CounterName et calcule hello moyenne (moyenne).
 
 **Exemple 13**
 
     Type:Alert | measure count() as Count by WorkflowName | sort Count desc | top 5
 
-Obtient les cinq premiers flux de travail avec le nombre maximal d'alertes.
+Obtient des premiers cinq flux de travail avec un nombre maximal d’alertes hello hello.
 
 **Exemple 14**
 
     * | measure countdistinct(Computer) by Type
 
-Compte le nombre d’ordinateurs uniques générant des rapports pour chaque Type.
+Hello nombre d’ordinateurs uniques pour chaque Type.
 
 **Exemple 15**
 
     * | measure countdistinct(Computer) Interval 1HOUR
 
-Compte le nombre d’ordinateurs uniques générant des rapports pour chaque heure.
+Hello nombre d’ordinateurs uniques pour toutes les heures.
 
 **Exemple 16**
 
@@ -551,13 +551,13 @@ Compte le nombre d’ordinateurs uniques générant des rapports pour chaque heu
 Type:Perf CounterName=”% Processor Time” InstanceName=”_Total” | measure avg(CounterValue) by Computer Interval 1HOUR
 ```
 
-Regroupe le % de temps processeur par ordinateur et retourne la moyenne pour chaque heure.
+% Temps processeur par ordinateur de groupe et renvoie la moyenne de hello pour toutes les heures.
 
 **Exemple 17**
 
     Type:W3CIISLog | measure max(TimeTaken) by csMethod Interval 5MINUTES
 
-Groupe W3CIISLog par méthode et retourne la valeur maximale pour chaque tranche de 5 minutes.
+Groupe W3CIISLog par la méthode et retourne hello maximale pour toutes les 5 minutes.
 
 **Exemple 18**
 
@@ -565,7 +565,7 @@ Groupe W3CIISLog par méthode et retourne la valeur maximale pour chaque tranche
 Type:Perf CounterName=”% Processor Time” InstanceName=”_Total”  | measure min(CounterValue) as MIN, avg(CounterValue) as AVG, percentile75(CounterValue) as PCT75, max(CounterValue) as MAX by Computer Interval 1HOUR
 ```
 
-Regroupe le % de temps processeur par ordinateur et retourne la valeur minimale, la moyenne, le 75e centile et la valeur maximale pour chaque heure.
+Groupes % temps processeur par ordinateur et retourne hello minimum, moyenne, 75e centile et maximal pour toutes les heures.
 
 **Exemple 19**
 
@@ -573,7 +573,7 @@ Regroupe le % de temps processeur par ordinateur et retourne la valeur minimale,
 Type:Perf CounterName=”% Processor Time”  | measure min(CounterValue) as MIN, avg(CounterValue) as AVG, percentile75(CounterValue) as PCT75, max(CounterValue) as MAX by Computer, InstanceName Interval 1HOUR
 ```
 
-Regroupe le % de temps processeur d’abord par ordinateur, puis par nom d’instance, puis retourne la valeur minimale, la moyenne, le 75e centile et la valeur maximale pour chaque heure.
+Groupes % temps processeur tout d’abord par ordinateur, puis par Instance nom et retourne hello minimum, moyenne, 75e centile et maximal pour toutes les heures.
 
 **Exemple 20**
 
@@ -581,7 +581,7 @@ Regroupe le % de temps processeur d’abord par ordinateur, puis par nom d’ins
 Type= Perf CounterName="Disk Writes/sec" Computer="BaconDC01.BaconLand.com" | measure max(product(CounterValue,60)) as MaxDWPerMin by InstanceName Interval 1HOUR
 ```
 
-Calcule le nombre maximal d’écritures disque par minute pour chaque disque sur votre ordinateur.
+Calcule le maximum de hello d’écritures sur disque par minute pour chaque disque sur votre ordinateur.
 
 ### <a name="where"></a>Where
 Syntaxe :
@@ -590,7 +590,7 @@ Syntaxe :
 **where** AggregatedValue>20
 ```
 
-Peut être utilisée uniquement après une commande *Measure* pour filtrer davantage les résultats agrégés que la fonction d’agrégation *Measure* a produits.
+Peut être utilisée uniquement après un *mesure* commande hello de filtre toofurther agrégée des résultats que hello *mesure* fonction d’agrégation a généré.
 
 Exemples :
 
@@ -605,16 +605,16 @@ Syntaxe :
 
     Dedup FieldName
 
-Renvoie le premier document trouvé pour chaque valeur unique du champ donné.
+Retourne hello premier document trouvé pour chaque valeur unique du champ de hello.
 
 Exemple :
 
     Type=Event | Dedup EventID | sort TimeGenerated DESC
 
-Cet exemple renvoie un événement (le dernier événement) par EventID.
+Cet exemple retourne un événement (événement de dernière hello) par ID d’événement.
 
 ### <a name="join"></a>Join
-Regroupe les résultats de deux requêtes pour former un seul jeu de résultats.  Prend en charge différents types de jointures décrits dans le tableau suivant.
+Jointures hello les résultats de deux requêtes tooform un seul jeu de résultats.  Prend en charge plusieurs types de jointures décrites dans hello suivre la table.
 
 | Type de jointure | Description |
 |:--|:--|
@@ -623,7 +623,7 @@ Regroupe les résultats de deux requêtes pour former un seul jeu de résultats.
 | gauche  | Renvoie tous les enregistrements de la requête de gauche et les enregistrements correspondants de la requête de droite. |
 
 
-- Les jointures ne prennent pas en charge les requêtes qui incluent le mot clé **IN**, la commande **Measure** ou **Extend** si un champ de la requête de droite est ciblé.
+- Jointures ne prennent pas en charge les requêtes qui incluent hello **IN** (mot clé), hello **mesure** commande ou hello **étendre** commande si elle cible un champ de requête à droite de hello.
 - Vous ne pouvez inclure qu’un seul champ dans une jointure.
 - Une recherche unique ne doit pas comporter plus d’une jointure.
 
@@ -635,7 +635,7 @@ Regroupe les résultats de deux requêtes pour former un seul jeu de résultats.
 
 **Exemples**
 
-Pour illustrer les différents types de jointures, pensez à joindre un type de données recueilli à partir d’un journal personnalisé appelé MyBackup_CL avec la pulsation pour chaque ordinateur.  Ces types de données contiennent les données suivantes.
+types de jointure différent tooillustrate hello, envisagez de rejoindre un type de données collectées à partir d’un journal personnalisé appelé MyBackup_CL pulsation de hello pour chaque ordinateur.  Ces types de données ont hello données suivantes.
 
 `Type = MyBackup_CL`
 
@@ -657,7 +657,7 @@ Pour illustrer les différents types de jointures, pensez à joindre un type de 
 
 `Type=MyBackup_CL | join inner Computer (Type=Heartbeat) Computer`
 
-Renvoie les enregistrements suivants dans lesquels le champ Ordinateur correspond pour les deux types de données.
+Hello retourne les enregistrements suivants, où le champ de l’ordinateur hello correspond à pour les deux types de données.
 
 | Ordinateur| TimeGenerated | LastBackupStatus | TimeGenerated_joined | ComputerIP_joined | Type_joined |
 |:---|:---|:---|:---|:---|:---|
@@ -669,7 +669,7 @@ Renvoie les enregistrements suivants dans lesquels le champ Ordinateur correspon
 
 `Type=MyBackup_CL | join outer Computer (Type=Heartbeat) Computer`
 
-Renvoie les enregistrements suivants pour les deux types de données.
+Hello retourne les enregistrements pour les deux types de données suivants.
 
 | Ordinateur| TimeGenerated | LastBackupStatus | TimeGenerated_joined | ComputerIP_joined | Type_joined |
 |:---|:---|:---|:---|:---|:---|
@@ -684,7 +684,7 @@ Renvoie les enregistrements suivants pour les deux types de données.
 
 `Type=MyBackup_CL | join left Computer (Type=Heartbeat) Computer`
 
-Renvoie les enregistrements suivants à partir de MyBackup_CL avec tous les champs correspondants à partir de Heartbeat.
+Retourne les enregistrements suivants MyBackup_CL avec tous les champs de correspondance à partir de la pulsation de hello.
 
 | Ordinateur| TimeGenerated | LastBackupStatus | TimeGenerated_joined | ComputerIP_joined | Type_joined |
 |:---|:---|:---|:---|:---|:---|
@@ -694,7 +694,7 @@ Renvoie les enregistrements suivants à partir de MyBackup_CL avec tous les cham
 
 
 ### <a name="extend"></a>Extend
-Vous permet de créer des champs d’exécution dans les requêtes. Notez que les champs d’exécution ne peuvent pas être utilisés avec la commande measure pour effectuer l’agrégation.
+Vous permet de toocreate les champs d’exécution dans les requêtes. Notez que les champs d’exécution ne peut pas être utilisés avec l’agrégation de tooperform commande hello mesure.
 
 **Exemple 1**
 
@@ -709,7 +709,7 @@ Affiche la valeur de compteur en Ko au lieu d’octets.
 **Exemple 3**
 
     Type=WireData | EXTEND scale(TotalBytes,0,100) AS ScaledTotalBytes | Select ScaledTotalBytes,TotalBytes | SORT TotalBytes DESC
-Met à l’échelle la valeur de WireData TotalBytes, de sorte que tous les résultats soient compris entre 0 et 100.
+Échelles hello valeur de WireData TotalBytes, de telle sorte que tous les résultats sont compris entre 0 et 100.
 
 **Exemple 4**
 
@@ -723,169 +723,169 @@ Les valeurs Tag Perf Counter inférieures à 50 % sont définies comme LOW, et 
 ```
 Type= Perf CounterName="Disk Writes/sec" Computer="BaconDC01.BaconLand.com" | Extend product(CounterValue,60) as DWPerMin| measure max(DWPerMin) by InstanceName Interval 1HOUR
 ```
-Calcule le nombre maximal d’écritures disque par minute pour chaque disque sur votre ordinateur.
+Calcule le maximum de hello d’écritures sur disque par minute pour chaque disque sur votre ordinateur.
 
 **Fonctions prises en charge**
 
 | Fonction | Description | Exemples de syntaxe |
 | --- | --- | --- |
-| abs |Retourne la valeur absolue de la valeur ou de la fonction spécifiée. |`abs(x)` <br> `abs(-5)` |
+| abs |Retourne la valeur absolue hello Hello spécifié la valeur ou une fonction. |`abs(x)` <br> `abs(-5)` |
 | acos |Retourne l’arc cosinus d’une valeur ou d’une fonction. |`acos(x)` |
-| and |Retourne la valeur true si et seulement si tous les opérandes ont la valeur true. |`and(not(exists(popularity)),exists(price))` |
+| and |Retourne la valeur true si et seulement si tous les opérandes ont la tootrue. |`and(not(exists(popularity)),exists(price))` |
 | asin |Retourne l’arc sinus d’une valeur ou d’une fonction. |`asin(x)` |
 | atan |Retourne l’arc tangente d’une valeur ou d’une fonction. |`atan(x)` |
-| atan2 |Retourne l’angle résultant de la conversion de coordonnées rectangulaires x,y en coordonnées polaires. |`atan2(x,y)` |
+| atan2 |Retourne l’angle hello résultant de conversion hello des coordonnées rectangulaires de hello coordonnées x et y toopolar. |`atan2(x,y)` |
 | cbrt |Racine cubique. |`cbrt(x)` |
-| ceil |Arrondit à un entier. |`ceil(x)`  <br> `ceil(5.6)` Retourne 6 |
+| ceil |Arrondit tooan entier. |`ceil(x)`  <br> `ceil(5.6)` Retourne 6 |
 | cos |Retourne le cosinus d’un angle. |`cos(x)` |
 | cosh |Retourne le cosinus hyperbolique d’un angle. |`cosh(x)` |
-| def |Abréviation de valeur par défaut. Retourne la valeur du champ « field ». Si le champ n’existe pas, renvoie la valeur par défaut spécifiée et retourne la première valeur où : `exists()==true`. |`def(rating,5)`. Cette fonction def() retourne l’évaluation ou, si aucune évaluation n’est spécifiée dans le document, retourne 5. <br> `def(myfield, 1.0)` équivaut à `if(exists(myfield),myfield,1.0)`. |
-| deg |Convertit les radians en degrés. |`deg(x)` |
+| def |Abréviation de valeur par défaut. Retourne hello la valeur du champ « field ». Si le champ de hello n’existe pas, renvoie la valeur par défaut hello et génère hello première valeur où : `exists()==true`. |`def(rating,5)`. Cette fonction def() renvoie hello évaluation ou, si aucun classement n’est spécifié dans le document de hello, 5. <br> `def(myfield, 1.0)`est équivalent trop`if(exists(myfield),myfield,1.0)`. |
+| deg |Convertit des radians toodegrees. |`deg(x)` |
 | div |`div(x,y)` divise x par y. |`div(1,y)` <br> `div(sum(x,100),max(y,1))` |
-| dist |Retourne la distance entre deux vecteurs, (points) dans un espace à n dimensions. Prend la puissance, ainsi que deux instances ValueSource ou plus, et calcule les distances entre les deux vecteurs. Chaque ValueSource doit être un nombre. Un nombre pair d’instances ValueSource doit être transféré et la méthode suppose que la première moitié représente le premier vecteur et que la seconde moitié représente le second vecteur. |`dist(2, x, y, 0, 0)` Calcule la distance euclidienne entre (0,0,0) et (x,y) pour chaque document. <br> `dist(1, x, y, 0, 0)` Calcule la distance de Manhattan (taxi) entre (0,0) et (x,y) pour chaque document. <br> `dist(2,,x,y,z,0,0,0)` Calcule la distance euclidienne entre (0,0,0) et (x,y,z) pour chaque document.<br>`dist(1,x,y,z,e,f,g)` Calcule la distance de Manhattan entre (x,y,z) et (e,f,g), où chaque lettre est un nom de champ. |
-| exists |Retourne TRUE si un membre du champ existe. |`exists(author)` Retourne TRUE pour tout document contenant une valeur dans le champ « author ».<br>`exists(query(price:5.00))` Retourne TRUE si la valeur de « price » est égale à « 5.00 ». |
-| exp |Retourne le nombre d’Euler élevé à la puissance x. |`exp(x)` |
-| floor |Arrondit à l’entier inférieur. |`floor(x)`  <br> `floor(5.6)` Retourne 5 |
+| dist |Retourne la distance hello entre deux vecteurs (points) dans un espace à n dimensions. Prend la puissance de hello, ainsi que les instances de ValueSource deux ou plus et calcule les distances hello entre deux vecteurs de hello. Chaque ValueSource doit être un nombre. Il doit être un nombre pair d’instances de ValueSource passées dans, et méthode hello part du principe que hello première moitié représente premier vecteur de hello et deuxième moitié de hello représente hello second vecteur. |`dist(2, x, y, 0, 0)`Calcule la distance EUCLIDIENNE hello entre (0,0) et (x, y) pour chaque document. <br> `dist(1, x, y, 0, 0)`Calcule la distance de Manhattan (taxi) hello entre (0,0) et (x, y) pour chaque document. <br> `dist(2,,x,y,z,0,0,0)` Calcule la distance euclidienne entre (0,0,0) et (x,y,z) pour chaque document.<br>`dist(1,x,y,z,e,f,g)` Calcule la distance de Manhattan entre (x,y,z) et (e,f,g), où chaque lettre est un nom de champ. |
+| exists |Retourne TRUE si les membres du champ de hello existe. |`exists(author)`Retourne TRUE pour tout document qui a une valeur dans le champ « author » de hello.<br>`exists(query(price:5.00))` Retourne TRUE si la valeur de « price » est égale à « 5.00 ». |
+| exp |Nombre d’Euler retourne déclenché toopower x. |`exp(x)` |
+| floor |Arrondit vers le bas tooan entier. |`floor(x)`  <br> `floor(5.6)` Retourne 5 |
 | hypo |Retourne Sqrt(sum(pow(x,2),pow(y,2))) sans dépassement positif ou négatif intermédiaire. |`hypo(x,y)`  <br> ` |
-| if |Autorise les requêtes de fonction conditionnelle. Dans `if(test,value1,value2)`, test est ou fait référence à une valeur logique ou à une expression qui retourne une valeur logique (TRUE ou FALSE). `value1` est la valeur retournée par la fonction si le test renvoie la valeur TRUE. `value2` est la valeur retournée par la fonction si le test renvoie la valeur FALSE. Une expression peut être n’importe quelle fonction qui génère des valeurs booléennes. Elle peut également être une fonction qui retourne des valeurs numériques, auquel cas la valeur 0 est interprétée comme false, ou qui retourne des chaînes, auquel cas une chaîne vide est interprétée comme false. |`if(termfreq(cat,'electronics'),popularity,42)` Cette fonction contrôle chaque document pour vérifier s’il contient le terme « electronics » dans le champ cat. Si tel est le cas, la valeur du champ popularity est renvoyée. Sinon, la valeur 42 est retournée. |
-| linear |Implémente `m*x+c`, où m et c sont des constantes et x est une fonction arbitraire. Cette requête équivaut à `sum(product(m,x),c)`, mais est un peu plus efficace puisqu’elle est implémentée comme une seule fonction. |`linear(x,m,c) linear(x,2,4)` retourne `2*x+4` |
-| ln |Retourne le logarithme naturel de la fonction spécifiée. |`ln(x)` |
-| log |Retourne la base logarithmique 10 de la fonction spécifiée. |`log(x)   log(sum(x,100))` |
-| map |Mappe les valeurs d’une fonction d’entrée x comprises entre min et max (inclus) à la cible spécifiée. Les arguments min et max doivent être des constantes. Les valeurs cible et par défaut des arguments peuvent être des constantes ou des fonctions. Si la valeur de x n’est pas comprise entre min et max, la valeur de x est retournée, ou une valeur par défaut est retournée si elle est spécifiée comme 5e argument. |`map(x,min,max,target) map(x,0,0,1)` Remplace toutes les valeurs de 0 par 1. Cela peut être utile pour le traitement des valeurs par défaut 0.<br> `map(x,min,max,target,default)    map(x,0,100,1,-1)` Remplace toutes les valeurs comprises entre 0 et 100 par 1, et toutes les autres valeurs par -1.<br>  `map(x,0,100,sum(x,599),docfreq(text,solr))` Remplace toutes les valeurs comprises entre 0 et 100 par x+599 et toutes les autres valeurs par la fréquence du terme « solr » dans le texte du champ. |
-| max |Retourne la valeur numérique maximale de plusieurs fonctions ou constantes imbriquées, lesquelles sont spécifiées en tant qu’arguments : `max(x,y,...)`. La fonction max peut également être utile pour réduire une autre fonction ou un autre champ à une constante spécifiée.  Utilisez la syntaxe `field(myfield,max)` pour sélectionner la valeur maximale d’un seul champ à valeurs multiples. |`max(myfield,myotherfield,0)` |
-| Min |Retourne la valeur numérique minimale de plusieurs fonctions ou constantes imbriquées, lesquelles sont spécifiées en tant qu’arguments : `min(x,y,...)`. La fonction min peut également être utile pour définir une « limite supérieure » sur une fonction à l’aide d’une constante. Utilisez la syntaxe `field(myfield,min)` pour sélectionner la valeur minimale d’un seul champ à valeurs multiples. |`min(myfield,myotherfield,0)` |
-| mod |Calcule le modulo de la fonction x par la fonction y. |`mod(1,x)` <br> `mod(sum(x,100), max(y,1))` |
-| ms |Retourne la différence en millisecondes entre ses arguments. Les dates se rapportent à l’époque Unix ou POSIX, à minuit, le 1er janvier 1970 (UTC). Les arguments peuvent prendre le nom d’un TrieDateField indexé ou d’une mathématique de date basée sur une date constante ou sur NOW. `ms()` est équivalent à `ms(NOW)`, nombre de millisecondes depuis l’époque spécifiée. `ms(a)` : retourne le nombre de millisecondes depuis l’époque représentée par l’argument. `ms(a,b)` retourne le nombre de millisecondes avant a de la survenance de b, qui est `a - b`. |`ms(NOW/DAY)`<br>`ms(2000-01-01T00:00:00Z)`<br>`ms(mydatefield)`<br>`ms(NOW,mydatefield)`<br>`ms(mydatefield,2000-01-01T00:00:00Z)`<br>`ms(datefield1,datefield2)` |
-| not |Valeur de négation logique de la fonction encapsulée. |`not(exists(author))` TRUE uniquement lorsque `exists(author)` a la valeur false. |
+| if |Autorise les requêtes de fonction conditionnelle. Dans `if(test,value1,value2)`, le test est ou fait référence la valeur logique de tooa ou une expression qui retourne une valeur logique (TRUE ou FALSE). `value1`est hello valeur retournée par la fonction hello si test renvoie la valeur TRUE. `value2`est hello valeur retournée par la fonction hello si le test retourne FALSE. Une expression peut être n’importe quelle fonction qui génère des valeurs booléennes. Elle peut également être une fonction qui retourne des valeurs numériques, auquel cas la valeur 0 est interprétée comme false, ou qui retourne des chaînes, auquel cas une chaîne vide est interprétée comme false. |`if(termfreq(cat,'electronics'),popularity,42)`Cette fonction vérifie chaque toosee document s’il contient le terme hello « electronics » dans le champ cat de hello. Si elle existe, puis hello la valeur du champ de popularité hello est retourné. Sinon, valeur hello 42 est retournée. |
+| linear |Implémente `m*x+c`, où m et c sont des constantes et x est une fonction arbitraire. Cela est équivalent`sum(product(m,x),c)`, mais légèrement plus efficace car elle est implémentée comme une fonction unique. |`linear(x,m,c) linear(x,2,4)` retourne `2*x+4` |
+| ln |Logarithme naturel de hello retourne Hello spécifié (fonction). |`ln(x)` |
+| log |Retourne hello journal base 10 de hello spécifié (fonction). |`log(x)   log(sum(x,100))` |
+| map |Mappe toute valeur d’une fonction d’entrée x comprise entre min et cible spécifié de toohello max (inclus). hello arguments min et max doivent être des constantes. par défaut et la cible d’arguments hello peuvent être des constantes ou des fonctions. Si la valeur hello de x n’est pas comprise entre min et max, puis une valeur hello x est retournée ou une valeur par défaut est retournée s’il est spécifié comme argument de 5. |`map(x,min,max,target) map(x,0,0,1)`Remplace toute valeur too1 0. Cela peut être utile pour le traitement des valeurs par défaut 0.<br> `map(x,min,max,target,default)    map(x,0,100,1,-1)`Remplace toute valeur entre 0 et 100 too1 et toutes les autres valeurs trop-1.<br>  `map(x,0,100,sum(x,599),docfreq(text,solr))`Modifie les valeurs comprises entre 0 et 100 toox + 599 et tous les autres toofrequency de valeurs de durée de hello « solr » dans le texte du champ hello. |
+| max |Retourne hello valeur numérique maximale de plusieurs fonctions ou constantes imbriquées, qui sont spécifiées en tant qu’arguments : `max(x,y,...)`. fonction max Hello peut également être utile pour « limiter par le bas » une autre fonction ou champ à une constante spécifiée.  Hello d’utilisation `field(myfield,max)` syntaxe pour sélectionner hello la valeur maximale d’un champ à valeurs multiples. |`max(myfield,myotherfield,0)` |
+| Min |Retourne hello valeur numérique minimale de plusieurs fonctions imbriquées, des constantes, qui sont spécifiés en tant qu’arguments : `min(x,y,...)`. Hello fonction min peut également être utile pour fournir une « limite supérieure » sur une fonction à l’aide d’une constante. Hello d’utilisation `field(myfield,min)` syntaxe pour sélectionner hello la valeur minimale d’un champ à valeurs multiples. |`min(myfield,myotherfield,0)` |
+| mod |Calcule le modulo hello de fonction hello x par y de fonction hello. |`mod(1,x)` <br> `mod(sum(x,100), max(y,1))` |
+| ms |Retourne la différence en millisecondes entre ses arguments. Les dates sont relative toohello Unix ou POSIX époque, minuit le 1er janvier 1970 UTC. Les arguments peuvent être nom hello d’un TrieDateField indexé, ou mathématique de date basée sur une date constante ou NOW. `ms()`est équivalent trop`ms(NOW)`, nombre de millisecondes depuis l’époque de hello. `ms(a)`Retourne le nombre hello de millisecondes depuis l’époque de hello hello argument représente. `ms(a,b)`Retourne hello les nombre de millisecondes que b se produit avant a, qui est `a - b`. |`ms(NOW/DAY)`<br>`ms(2000-01-01T00:00:00Z)`<br>`ms(mydatefield)`<br>`ms(NOW,mydatefield)`<br>`ms(mydatefield,2000-01-01T00:00:00Z)`<br>`ms(datefield1,datefield2)` |
+| not |valeur Hello logiquement niée hello encapsulé (fonction). |`not(exists(author))` TRUE uniquement lorsque `exists(author)` a la valeur false. |
 | ou |Une disjonction logique. |`or(value1,value2)` TRUE si value1 ou value2 a la valeur true. |
-| pow |Élève la base spécifiée à la puissance spécifiée. `pow(x,y)` élève x à la puissance de y. |`pow(x,y)`<br>`pow(x,log(y))`<br>`pow(x,0.5)` Identique à sqrt. |
-| product |Retourne le produit de plusieurs valeurs ou fonctions spécifiées dans une liste séparée par des virgules. `mul(...)` peut également être utilisé comme alias pour cette fonction. |`product(x,y,...)`<br>`product(x,2)`<br>`product(x,y)`<br>`mul(x,y)` |
-| recip |Exécute une fonction réciproque avec `recip(x,m,a,b)` implémentant `a/(m*x+b)`, où m, a et b sont des constantes, et x toute fonction arbitrairement complexe. Lorsque a et b sont égaux et que x>=0, cette fonction a une valeur maximale de 1 qui diminue à mesure que x augmente. Le fait d’augmenter simultanément la valeur de a et de b a pour effet de déplacer l’ensemble de la fonction vers une partie plus plane de la courbe. Ces propriétés peuvent en faire une fonction idéale pour améliorer les documents plus récents lorsque x est `rord(datefield)`. |`recip(myfield,m,a,b)`<br>`recip(rord(creationDate),1,1000,1000)` |
-| rad |Convertit les degrés en radians. |`rad(x)` |
-| rint |Arrondit à l’entier le plus proche. |`rint(x)`  <br> `rint(5.6)` Retourne 6 |
+| pow |Déclenche hello spécifié toohello base spécifié power. `pow(x,y)`déclenche x toohello puissance y. |`pow(x,y)`<br>`pow(x,log(y))`<br>`pow(x,0.5)`Bonjour même en tant que racine. |
+| product |Retourne hello produit de plusieurs valeurs ou fonctions qui sont spécifiées dans une liste séparée par des virgules. `mul(...)` peut également être utilisé comme alias pour cette fonction. |`product(x,y,...)`<br>`product(x,2)`<br>`product(x,y)`<br>`mul(x,y)` |
+| recip |Exécute une fonction réciproque avec `recip(x,m,a,b)` implémentant `a/(m*x+b)`, où m, a et b sont des constantes, et x toute fonction arbitrairement complexe. Lorsque a et b sont égaux et que x>=0, cette fonction a une valeur maximale de 1 qui diminue à mesure que x augmente. Augmenter la valeur hello un et b entraîne un déplacement de hello fonction entière tooa plate partie de la courbe de hello. Ces propriétés peuvent en faire une fonction idéale pour améliorer les documents plus récents lorsque x est `rord(datefield)`. |`recip(myfield,m,a,b)`<br>`recip(rord(creationDate),1,1000,1000)` |
+| rad |Convertit de degrés tooradians. |`rad(x)` |
+| rint |Toohello arrondit entière la plus proche. |`rint(x)`  <br> `rint(5.6)` Retourne 6 |
 | sin |Retourne le sinus d’un angle. |`sin(x)` |
 | sinh |Retourne le sinus hyperbolique d’un angle. |`sinh(x)` |
-| scale |Met à l’échelle les valeurs de la fonction x de sorte qu’elles soient comprises entre les valeurs minTarget et maxTarget spécifiées (incluses). L’implémentation actuelle parcourt toutes les valeurs de la fonction pour obtenir les valeurs min et max afin de pouvoir récupérer l’échelle adéquate. L’implémentation actuelle ne peut pas déterminer lorsque des documents ont été supprimés ou lorsqu’ils ne comportent aucune valeur. Elle utilise les valeurs 0.0 dans ces cas. Cela signifie que si les valeurs sont normalement toutes supérieures à 0.0, l’une d’elles peut finir par une valeur min de 0.0 à partir de laquelle sera effectué le mappage. Dans ces cas, une fonction `map()` appropriée peut être utilisée comme solution de contournement pour remplacer 0.0 par une valeur comprise dans la plage réelle, comme indiqué ici : `scale(map(x,0,0,5),1,2)`. |`scale(x,minTarget,maxTarget)`<br>`scale(x,1,2)` Met à l’échelle les valeurs de x de telle sorte que toutes les valeurs sont comprises entre 1 et 2 inclus. |
-| sqrt |Retourne la racine carrée de la valeur ou fonction spécifiée. |`sqrt(x)`<br>`sqrt(100)`<br>`sqrt(sum(x,100))` |
-| strdist |Calcule la distance entre deux chaînes. Utilise l’interface StringDistance du vérificateur orthographique Lucene et prend en charge toutes les implémentations disponibles dans ce package. Permet également aux applications de se connecter d’elles-mêmes à l’aide des fonctionnalités de chargement de la ressource de Solr. strdist prend les valeurs `(string1, string2, distance measure)`. Les valeurs possibles pour la mesure de distance sont les suivantes :<ul><li>jw : Jaro-Winkler</li><li>edit : distance de Levenstein ou d’édition</li><li>ngram : la distance n-grammes, si elle est spécifiée, peut éventuellement exprimer la taille. La valeur par défaut est 2.</li><li>FQN : nomplet nom de la classe pour une implémentation de l’interface StringDistance. Doit avoir un constructeur non arg.</li></ul> |`strdist("SOLR",id,edit)` |
+| scale |Les valeurs d’échelles de fonction de hello x, tel qu’elles soient comprises entre hello spécifié, valeurs et maxTarget. mise en œuvre actuelle Hello parcourt toutes les de hello fonction valeurs tooobtain hello min et max, afin de choisir la mise à l’échelle correcte hello. mise en œuvre actuelle Hello ne peut pas distinguer quand les documents ont été supprimés, ou les documents qui n’ont aucune valeur. Elle utilise les valeurs 0.0 dans ces cas. Cela signifie que si les valeurs sont normalement toutes supérieures à 0.0, vous pouvez toujours 0.0 comme hello toomap de valeur min à partir de. Dans ce cas, un `map()` fonction peut être utilisée en tant que solution de contournement toochange 0.0 tooa valeur dans la plage réelle de hello, comme illustré ici :`scale(map(x,0,0,5),1,2)` |`scale(x,minTarget,maxTarget)`<br>`scale(x,1,2)`Échelles hello des valeurs de x, tel que toutes les valeurs sont compris entre 1 et 2 inclus. |
+| sqrt |Racine carrée retourne hello hello spécifié de valeur ou une fonction. |`sqrt(x)`<br>`sqrt(100)`<br>`sqrt(sum(x,100))` |
+| strdist |Calcule la distance entre deux chaînes hello. Utilise l’interface StringDistance de hello Lucene orthographe vérificateur et prend en charge toutes les implémentations de hello disponibles dans ce package. Autorise également les applications tooplug dans leurs propres ressources de Solr capacités de chargement. strdist prend les valeurs `(string1, string2, distance measure)`. Les valeurs possibles pour la mesure de distance sont les suivantes :<ul><li>jw : Jaro-Winkler</li><li>edit : distance de Levenstein ou d’édition</li><li>ngram : hello NGramDistance, si spécifié, peut éventuellement aussi passer la taille ngram hello trop. La valeur par défaut est 2.</li><li>FQN : Nom d’une implémentation de l’interface StringDistance de hello de classe de complet. Doit avoir un constructeur non arg.</li></ul> |`strdist("SOLR",id,edit)` |
 | sub |Retourne x-y à partir de `sub(x,y)`. |`sub(myfield,myfield2)`<br>`sub(100,sqrt(myfield))` |
-| Sum |Retourne la somme de plusieurs valeurs ou fonctions spécifiées dans une liste séparée par des virgules. `add(...)` peut également être utilisé comme alias pour cette fonction. |`sum(x,y,...)`<br>`sum(x,1)`<br>`sum(x,y)`<br>`sum(sqrt(x),log(y),z,0.5)`<br>`add(x,y)` |
-| termfreq |Retourne le nombre de fois où que le terme apparaît dans le champ de ce document. |termfreq(text,’memory’) |
+| Sum |Retourne hello somme de plusieurs valeurs ou fonctions qui sont spécifiées dans une liste séparée par des virgules. `add(...)` peut également être utilisé comme alias pour cette fonction. |`sum(x,y,...)`<br>`sum(x,1)`<br>`sum(x,y)`<br>`sum(sqrt(x),log(y),z,0.5)`<br>`add(x,y)` |
+| termfreq |Retourne le nombre de hello de terme de hello s’affiche dans le champ hello pour ce document. |termfreq(text,’memory’) |
 | tan |Retourne la tangente d’un angle. |`tan(x)` |
 | tanh |Retourne la tangente hyperbolique d’un angle. |`tanh(x)` |
 
 ## <a name="search-field-and-facet-reference"></a>Référence de champ et de facette de recherche
-Lorsque vous utilisez log Search pour rechercher des données, les résultats affichent différents champs et facettes. Certaines informations ne sont pas très descriptives. Utilisez les informations suivantes pour mieux comprendre les résultats.
+Lorsque vous utilisez des données toofind de recherche de journal, les résultats affichent différents champs et facettes. Certaines des informations de hello ne sont pas très descriptives. Utilisez hello suivant toohelp informations vous comprenez les résultats hello.
 
 | Champ | Type de recherche | Description |
 | --- | --- | --- |
-| TenantId |Tout |Utilisé pour partitionner les données. |
-| TimeGenerated |Tout |Il est utilisé pour piloter la chronologie et des sélections d’heure (dans la recherche et dans d'autres écrans). Il indique le moment où l'élément de données a été généré (en général sur l'agent). L’heure est exprimée au format ISO et toujours en UTC. Dans le cas des types basés sur une instrumentation existante (événements dans un journal), il s’agit généralement de l’heure réelle à laquelle l’entrée/la ligne/l’enregistrement du journal a été enregistré. Pour certains des autres types produits par le biais de packs d’administration ou dans le cloud (par exemple, recommandations ou alertes), l’heure représente autre chose. Il s’agit de l’heure à laquelle ce nouvel élément de données avec capture instantanée d’une configuration quelconque a été collecté, ou à laquelle une recommandation/alerte a été générée à partir de ce dernier. |
-| EventID |Événement |ID d’événement dans le journal des événements Windows. |
-| EventLog |Événement |Journal des événements dans lequel l’événement a été enregistré par Windows. |
+| TenantId |Tout |Toopartition les données utilisées. |
+| TimeGenerated |Tout |Utilisé toodrive hello chronologie, il est (dans la recherche et dans d’autres écrans). Il représente lors de l’élément de hello de données a été généré (en général sur l’agent de hello). Hello heure est exprimée au format ISO et toujours en UTC. Dans les cas de hello des types qui sont basées sur une instrumentation existante (autrement dit, les événements dans un journal), il s’agit généralement de hello temps que hello entrée/ligne/enregistrement du journal a été enregistré. Pour certaines des hello autres types produits via des packs d’administration ou dans le cloud hello (par exemple, les recommandations ou les alertes), hello représente temps quelque chose d’autre. Il s’agit de heure hello lorsque ce nouvel élément de données avec un instantané d’une configuration quelconque a été collecté, ou une recommandation/alerte a été générée en fonction de celui-ci. |
+| EventID |Événement |ID d’événement dans le journal des événements Windows hello. |
+| EventLog |Événement |Journal des événements où l’événement de hello a été enregistré par Windows. |
 | EventLevelName |Événement |Critique, avertissement, information ou réussite |
 | EventLevel |Événement |Valeur numérique indiquant le niveau d’événement : critique, avertissement, information ou réussite (utilisez la valeur EventLevelName pour des requêtes plus faciles et mieux lisibles). |
-| SourceSystem |Tout |Provenance des données (en termes de mode d’attachement au service). Entre autres, on peut citer Microsoft System Center Operations Manager et le stockage Azure. |
+| SourceSystem |Tout |D'où proviennent les données hello (en termes de joindre le service de toohello en mode). Entre autres, on peut citer Microsoft System Center Operations Manager et le stockage Azure. |
 | ObjectName |PerfHourly |Nom d’objet de performances Windows. |
 | InstanceName |PerfHourly |Nom d’instance du compteur de performances Windows. |
 | CounteName |PerfHourly |Nom du compteur de performances Windows. |
-| ObjectDisplayName |PerfHourly, ConfigurationAlert, ConfigurationObject, ConfigurationObjectProperty |Nom d’affiche de l’objet ciblé par une règle de collecte des performances dans Operations Manager. Peut également être le nom d’affichage de l’objet découvert par Operational Insights, ou pour lequel l’alerte a été générée. |
-| RootObjectName |PerfHourly, ConfigurationAlert, ConfigurationObject, ConfigurationObjectProperty |Nom d’affichage du parent du parent (dans une relation d’hébergement double) de l’objet ciblé par une règle de collecte des performances dans Operations Manager. Peut également être le nom d’affichage de l’objet découvert par Operational Insights, ou pour lequel l’alerte a été générée. |
-| Ordinateur |La plupart des types |Nom de l’ordinateur auquel appartiennent les données. |
-| DeviceName |ProtectionStatus |Nom de l’ordinateur auquel appartiennent les données (identique à « Computer »). |
+| ObjectDisplayName |PerfHourly, ConfigurationAlert, ConfigurationObject, ConfigurationObjectProperty |Nom complet de l’objet de hello ciblé par une règle de collecte des performances dans Operations Manager. Peut également être le nom d’affichage hello d’objet hello découvert par Operational Insights, ou contre le hello alerte a été générée. |
+| RootObjectName |PerfHourly, ConfigurationAlert, ConfigurationObject, ConfigurationObjectProperty |Nom d’affichage du parent hello parent de hello (dans une relation d’hébergement double) d’objet hello ciblé par une règle de collecte des performances dans Operations Manager. Peut également être le nom d’affichage hello d’objet hello découvert par Operational Insights, ou contre le hello alerte a été générée. |
+| Ordinateur |La plupart des types |Nom de l’ordinateur auquel appartiennent les données hello. |
+| DeviceName |ProtectionStatus |Les données des ordinateurs nom hello appartient trop (identique à « Computer »). |
 | DetectionId |ProtectionStatus | |
-| ThreatStatusRank |ProtectionStatus |Le classement d’état de la menace est une représentation numérique de l’état de la menace. Comme pour les codes de réponse HTTP, nous avons laissé des intervalles entre les nombres (c’est pourquoi le niveau qui indique aucune menace est 150, et non 100 ou 0). Cela nous permet d’avoir de l’espace pour ajouter de nouveaux états. En cas de cumul de l’état de la menace et de l’état de la protection, l’intention consiste à montrer l’état le plus grave qu’a connu l’ordinateur sur une période sélectionnée. Les numéros permettent de classer les différents états afin que vous puissiez rechercher l’enregistrement avec le nombre le plus élevé. |
+| ThreatStatusRank |ProtectionStatus |Classement d’état de menace est une représentation numérique de l’état de la menace hello. Codes de réponse tooHTTP similaire, classement de hello a des écarts entre les nombres hello (c’est pourquoi aucune menace est 150 et non 100 ou 0), ne laissant place tooadd nouveaux États. Pour un cumul d’état de la menace et l’état de protection, l’intention hello est tooshow hello pire état hello ordinateur a été durant hello période sélectionnée. nombres de Hello classent les différents États, hello afin que vous pouvez rechercher hello enregistrement avec un nombre plus élevé de hello. |
 | ThreatStatus |ProtectionStatus |Description de ThreatStatus, mappe 1:1 avec ThreatStatusRank. |
-| TypeofProtection |ProtectionStatus |Produit anti-programme malveillant qui est détecté sur l’ordinateur : aucun, outil de suppression de logiciels malveillants de Microsoft, Forefront, etc. |
+| TypeofProtection |ProtectionStatus |Produit anti-programme malveillant détecté sur l’ordinateur de hello : aucun, outil de suppression de logiciels malveillants de Microsoft, Forefront et ainsi de suite. |
 | ScanDate |ProtectionStatus | |
 | SourceHealthServiceId |ProtectionStatus, RequiredUpdate |ID du service de contrôle d’intégrité de l’agent de cet ordinateur. |
 | HealthServiceId |La plupart des types |ID du service de contrôle d’intégrité de l’agent de cet ordinateur. |
 | ManagementGroupName |La plupart des types |Nom du groupe d’administration pour les agents liés à Operations Manager. Dans le cas contraire, il sera Null/vide. |
 | ObjectType |ConfigurationObject |Type (comme « type » ou « classe » dans le pack d’administration d’Operations Manager) pour cet objet découvert par l’évaluation de configuration Log Analytics. |
-| UpdateTitle |RequiredUpdate |Nom de la mise à jour qui a été trouvée mais pas installée. |
-| PublishDate |RequiredUpdate |Date à laquelle la mise à jour a été publiée sur Microsoft Update. |
-| Serveur |RequiredUpdate |Nom de l’ordinateur auquel appartiennent les données (identique à « Computer »). |
-| Produit |RequiredUpdate |Produit auquel s’applique la mise à jour. |
+| UpdateTitle |RequiredUpdate |Nom de la mise à jour de hello est pas installée. |
+| PublishDate |RequiredUpdate |Lorsque la mise à jour hello a été publiée sur Microsoft Update. |
+| Serveur |RequiredUpdate |Les données des ordinateurs nom hello appartient trop (identique à « Computer »). |
+| Produit |RequiredUpdate |Produit hello mise à jour s’applique à. |
 | UpdateClassification |RequiredUpdate |Type de mise à jour (par exemple, correctif cumulatif ou service pack). |
 | KBID |RequiredUpdate |ID d’article de la base de connaissances qui décrit cette meilleure pratique ou cette mise à jour. |
-| WorkflowName |ConfigurationAlert |Nom de la règle ou du moniteur qui a généré l’alerte. |
-| Severity |ConfigurationAlert |Gravité de l’alerte. |
-| Priorité |ConfigurationAlert |Priorité de l’alerte. |
+| WorkflowName |ConfigurationAlert |Nom de la règle de hello ou l’analyse qui a produit l’alerte de hello. |
+| Severity |ConfigurationAlert |Niveau de gravité d’alerte de hello. |
+| Priorité |ConfigurationAlert |Priorité d’alerte de hello. |
 | IsMonitorAlert |ConfigurationAlert |Cette alerte est-elle générée par une analyse (true) ou une règle (false) ? |
-| AlertParameters |ConfigurationAlert |XML avec les paramètres de l’alerte Log Analytics. |
-| Context |ConfigurationAlert |XML avec le contexte de l’alerte Log Analytics. |
-| Charge de travail |ConfigurationAlert |Technologie ou charge de travail à laquelle l’alerte fait référence. |
-| AdvisorWorkload |Recommandation |Technologie ou charge de travail à laquelle la recommandation fait référence. |
+| AlertParameters |ConfigurationAlert |XML avec des paramètres d’alerte de journal Analytique hello hello. |
+| Context |ConfigurationAlert |XML avec le contexte hello d’alerte d’Analytique de journal hello. |
+| Charge de travail |ConfigurationAlert |Technologie ou une charge de travail hello alerte fait référence à. |
+| AdvisorWorkload |Recommandation |Technologie ou la charge de travail hello recommandation fait référence à. |
 | Description |ConfigurationAlert |Description de l’alerte (en bref). |
-| DaysSinceLastUpdate |UpdateAgent |Nombre de jours (par rapport à la valeur TimeGenerated de cet enregistrement) auquel remonte la dernière installation par l’agent d’une mise à jour quelconque provenant de Windows Server Update Service (WSUS) ou de Microsoft Update. |
+| DaysSinceLastUpdate |UpdateAgent |Combien de jours (tooTimeGenerated relative de cet enregistrement) cet agent installation de mise à jour à partir de Windows Server Update Services (WSUS) ou Microsoft Update ? |
 | DaysSinceLastUpdateBucket |UpdateAgent |Catégorisation, basée sur la valeur DaysSinceLastUpdate, en intervalles de planification du temps écoulé depuis qu’un ordinateur a installé pour la dernière fois une mise à jour quelconque provenant de WSUS ou de Microsoft Update. |
 | AutomaticUpdateEnabled |UpdateAgent |Activation ou désactivation de la vérification de mise à jour automatique sur cet agent. |
-| AutomaticUpdateValue |UpdateAgent |Configuration de la vérification de mise à jour automatique : téléchargement et installation, téléchargement uniquement ou vérification uniquement. |
-| WindowsUpdateAgentVersion |UpdateAgent |Numéro de version de l’agent Microsoft Update. |
+| AutomaticUpdateValue |UpdateAgent |Téléchargement tooautomatically ensemble la vérification de mise à jour automatique n’est et installer, téléchargement uniquement ou vérification uniquement ? |
+| WindowsUpdateAgentVersion |UpdateAgent |Numéro de version de l’agent de Microsoft Update hello. |
 | WSUSServer |UpdateAgent |Quel serveur WSUS cet agent de mise à jour cible-t-il ? |
-| OSVersion: |UpdateAgent |Version du système d’exploitation sur laquelle l’agent de cette mise à jour est exécuté. |
-| Nom |Recommendation, ConfigurationObjectProperty |Nom ou titre de la recommandation, ou nom de la propriété de l’évaluation de configuration de Log Analytics. |
+| OSVersion: |UpdateAgent |Version du système d’exploitation de hello que cet agent de mise à jour est en cours d’exécution. |
+| Nom |Recommendation, ConfigurationObjectProperty |Nom ou titre de recommandation de hello, ou nom de propriété hello à partir de l’évaluation de la configuration Analytique de journal. |
 | Valeur |ConfigurationObjectProperty |Valeur d’une propriété de l’évaluation de configuration de Log Analytics. |
-| KBLink |Recommandation |URL menant à l’article de la base de connaissances qui décrit cette meilleure pratique ou mise à jour. |
-| RecommendationStatus |Recommandation |Les recommandations font partie des quelques types dont les enregistrements sont mis à jour au lieu d’être simplement ajoutés à l’index de recherche. Cet état change si la recommandation est active/ouverte ou si Log Analytics détecte qu’elle a été résolue. |
+| KBLink |Recommandation |Article toohello Ko URL qui décrit cette meilleure pratique ou la mise à jour. |
+| RecommendationStatus |Recommandation |Recommandations font partie des hello quelques types dont les enregistrements obtenir l’index de recherche toohello mis à jour, pas vient d’être ajoutée. Cet état change si la recommandation de hello est active/ouverte ou si le journal Analytique détecte qu’elle a été résolu. |
 | RenderedDescription |Événement |Description rendue (texte réutilisé avec des paramètres remplis) d’un événement Windows. |
-| ParameterXml |Événement |XML avec les paramètres de la section données d’un événement Windows (comme indiqué dans l’observateur d’événements). |
-| EventData |Événement |XML avec toute la section données d’un événement Windows (comme indiqué dans l’observateur d’événements). |
-| Source |Événement |Source du journal des événements ayant généré l’événement. |
-| EventCategory |Événement |Catégorie de l’événement, extraite directement du journal des événements Windows. |
-| Nom d’utilisateur |Événement |Nom d’utilisateur de l’événement Windows (en général, NT AUTHORITY\LOCALSYSTEM). |
-| SampleValue |PerfHourly |Valeur moyenne de l’agrégation de toutes les heures d’un compteur de performances. |
-| Min |PerfHourly |Valeur minimale de l’intervalle horaire d’un agrégat de toutes les heures du compteur de performances. |
-| max |PerfHourly |Valeur maximale de l’intervalle horaire d’un agrégat de toutes les heures du compteur de performances. |
-| Percentile95 |PerfHourly |Valeur du 95e centile de l’intervalle horaire d’un agrégat de toutes les heures du compteur de performances. |
-| SampleCount |PerfHourly |Nombre d’exemples de compteurs de performances bruts utilisés pour produire cet enregistrement d’agrégation toutes les heures. |
+| ParameterXml |Événement |XML avec les paramètres de hello dans la section de données hello d’un événement Windows (tel qu’affiché dans l’Observateur d’événements). |
+| EventData |Événement |XML avec hello toute section données d’un événement Windows (tel qu’affiché dans l’Observateur d’événements). |
+| Source |Événement |Source de journal des événements qui a généré l’événement de hello. |
+| EventCategory |Événement |Catégorie d’événement hello, directement à partir de journal des événements Windows hello. |
+| Nom d’utilisateur |Événement |Nom d’utilisateur de l’événement de Windows hello (en général, NT AUTHORITY\LOCALSYSTEM). |
+| SampleValue |PerfHourly |Valeur moyenne pour l’agrégation de toutes les heures hello d’un compteur de performances. |
+| Min |PerfHourly |Valeur minimale dans l’intervalle horaire de hello d’un agrégat horaire de compteur de performances. |
+| max |PerfHourly |Valeur maximale dans l’intervalle horaire de hello d’un agrégat horaire de compteur de performances. |
+| Percentile95 |PerfHourly |Hello 95e centile pour l’intervalle horaire de hello d’un agrégat horaire de compteur de performances. |
+| SampleCount |PerfHourly |Enregistrement d’agrégation échantillons de compteur de performances brutes combien ont été tooproduce utilisé ce toutes les heures. |
 | Menace |ProtectionStatus |Nom du programme malveillant trouvé. |
-| StorageAccount |W3CIISLog |Compte de stockage Azure à partir duquel le journal a été lu. |
-| AzureDeploymentID |W3CIISLog |ID de déploiement Azure du service cloud auquel appartient le journal. |
-| Rôle |W3CIISLog |Rôle du service cloud Azure auquel appartient le journal. |
-| RoleInstance |W3CIISLog |Instance du rôle Azure auquel appartient le journal. |
-| sSiteName |W3CIISLog |Site web IIS auquel appartient le journal (notation métabase) ; champ s-sitename dans le journal d’origine. |
-| sComputerName |W3CIISLog |Champ s-computername dans le journal d’origine. |
-| sIP |W3CIISLog |Adresse IP du serveur à laquelle la requête HTTP a été envoyée. Champ s-ip dans le journal d’origine. |
-| csMethod |W3CIISLog |Méthode HTTP (par exemple, GET/POST) utilisée par le client dans la requête HTTP. Méthode cs-method dans le journal d’origine. |
-| cIP |W3CIISLog |Adresse IP cliente d’où provenait la requête HTTP. Champ c-ip dans le journal d’origine. |
-| csUserAgent |W3CIISLog |Agent utilisateur HTTP déclaré par le client (navigateur ou autre). Champ cs-user-agent dans le journal d’origine. |
-| scStatus |W3CIISLog |Code d’état HTTP (par exemple, 200/403/500) retourné par le serveur au client. Champ cs-status dans le journal d’origine. |
-| TimeTaken |W3CIISLog |La durée (en millisecondes) nécessaire à la requête pour se terminer. Champ timetaken dans le journal d’origine. |
-| csUriStem |W3CIISLog |URI relatif (sans adresse d’hôte, c’est-à-dire /search) qui a été demandé. Champ cs-uristem dans le journal d’origine. |
+| StorageAccount |W3CIISLog |Journal hello de compte de stockage Azure a été lu à partir de. |
+| AzureDeploymentID |W3CIISLog |ID de déploiement Azure du journal de hello hello cloud service appartient. |
+| Rôle |W3CIISLog |Propriétaire du rôle du journal de hello hello Azure cloud service. |
+| RoleInstance |W3CIISLog |Instance du hello rôle Azure hello journal appartient. |
+| sSiteName |W3CIISLog |Site Web IIS qui hello journal appartient too(metabase notation) ; champ s-sitename Hello journal d’origine de hello. |
+| sComputerName |W3CIISLog |champ s-computername Hello journal d’origine de hello. |
+| sIP |W3CIISLog |Serveur IP adresse hello HTTP requête a été envoyée. champ s-ip Hello journal d’origine de hello. |
+| csMethod |W3CIISLog |Méthode HTTP (par exemple, GET/POST) utilisée par le client hello dans la demande HTTP de hello. Hello cs-method dans le journal d’origine de hello. |
+| cIP |W3CIISLog |Requête HTTP de client IP adresse hello provenait. champ c-ip Hello journal d’origine de hello. |
+| csUserAgent |W3CIISLog |Agent utilisateur HTTP déclaré par le client de hello (navigateur ou autre). Bonjour cs-user-agent dans le journal d’origine de hello. |
+| scStatus |W3CIISLog |Code d’état HTTP (par exemple, 200/403/500) retourné par le client de toohello server hello. Hello cs-METHODE dans le journal d’origine de hello. |
+| TimeTaken |W3CIISLog |Combien de temps (en millisecondes), cette demande hello a duré toocomplete. champ timetaken Hello journal d’origine de hello. |
+| csUriStem |W3CIISLog |URI relatif (sans adresse d’hôte, c’est-à-dire /search) qui a été demandé. champ cs-uristem Hello journal d’origine de hello. |
 | csUriQuery |W3CIISLog |Requête d’URI. Les requêtes d’URI sont nécessaires uniquement pour les pages dynamiques, telles que des pages ASP. Par conséquent, ce champ contient souvent un trait d’union pour les pages statiques. |
-| sPort |W3CIISLog |Port du serveur auquel la demande HTTP a été envoyée (et qui est écouté par IIS puisqu’il a récupéré cette demande). |
-| csUserName |W3CIISLog |Nom d’utilisateur authentifié, si la demande est authentifiée et n’est pas anonyme. |
-| csVersion |W3CIISLog |Version du protocole HTTP utilisée dans la demande (par exemple, HTTP/1.1). |
+| sPort |W3CIISLog |Port du serveur qui hello demande HTTP a été envoyée trop (et qu’IIS écoute, puisqu’il l’a récupéré). |
+| csUserName |W3CIISLog |Nom d’utilisateur, authentifié si la demande de hello est authentifiée et non anonyme. |
+| csVersion |W3CIISLog |Version du protocole HTTP utilisée dans la demande de hello (par exemple, HTTP/1.1). |
 | csCookie |W3CIISLog |Informations sur le cookie. |
-| csReferer |W3CIISLog |Dernier site visité par l’utilisateur. Ce site a fourni un lien vers le site actuel. |
+| csReferer |W3CIISLog |Cet utilisateur hello dernière visité du site. Ce site a fourni un lien toohello le site actuel. |
 | csHost |W3CIISLog |En-tête d’hôte (par exemple, www.mysite.com) qui a été demandé. |
 | scSubStatus |W3CIISLog |Code d'erreur du sous-état. |
 | scWin32Status |W3CIISLog |Code d’état Windows. |
-| csBytes |W3CIISLog |Octets envoyés dans la demande du client au serveur. |
-| scBytes |W3CIISLog |Octets retournés dans la réponse du serveur au client. |
+| csBytes |W3CIISLog |Octets envoyés dans la demande de hello hello client toohello serveur. |
+| scBytes |W3CIISLog |Octets retourné en réponse hello du client de toohello serveur hello. |
 | ConfigChangeType |ConfigurationChange |Type de modification (par exemple, services Windows et logiciels). |
-| ChangeCategory |ConfigurationChange |Catégorie de la modification (modifié, ajouté, supprimé). |
+| ChangeCategory |ConfigurationChange |Catégorie de la modification de hello (modifiées, ajoutées/supprimées). |
 | SoftwareType |ConfigurationChange |Type de logiciel (mise à jour, application). |
-| SoftwareName |ConfigurationChange |Nom du logiciel (applicable uniquement aux modifications logicielles). |
-| Éditeur |ConfigurationChange |Fournisseur qui publie le logiciel (applicable uniquement aux modifications logicielles). |
-| SvcChangeType |ConfigurationChange |Type de modification appliquée à un service Windows (état, type d’état, chemin d’accès, compte de service). Cela s’applique uniquement aux modifications de service Windows. |
-| SvcDisplayName |ConfigurationChange |Nom d’affichage du service qui a été modifié. |
-| SvcName |ConfigurationChange |Nom du service qui a été modifié. |
-| SvcState |ConfigurationChange |Nouvel état (actuel) du service. |
-| SvcPreviousState |ConfigurationChange |Précédent état connu du service (applicable uniquement si l’état du service a été modifié). |
+| SoftwareName |ConfigurationChange |Nom du logiciel de hello (seules les modifications toosoftware applicable). |
+| Éditeur |ConfigurationChange |Fournisseur qui publie le logiciel hello (seules les modifications toosoftware applicable). |
+| SvcChangeType |ConfigurationChange |Type de modification appliquée à un service Windows (état, type d’état, chemin d’accès, compte de service). Il s’agit de tooWindows applicables uniquement les modifications de service. |
+| SvcDisplayName |ConfigurationChange |Nom complet du service hello qui a été modifié. |
+| SvcName |ConfigurationChange |Nom du service hello qui a été modifié. |
+| SvcState |ConfigurationChange |Nouvel état (actuel) du service de hello. |
+| SvcPreviousState |ConfigurationChange |Précédent état connu du service hello (applicable uniquement si l’état du service a changé). |
 | SvcStartupType |ConfigurationChange |Type de démarrage du service. |
 | SvcPreviousStartupType |ConfigurationChange |Dernier type de démarrage du service (applicable uniquement si le type de démarrage du service a été modifié). |
 | SvcAccount |ConfigurationChange |Compte de service. |
 | SvcPreviousAccount |ConfigurationChange |Compte de service précédent (applicable uniquement si le compte de service a été modifié). |
-| SvcPath |ConfigurationChange |Chemin d’accès au fichier exécutable du service Windows. |
-| SvcPreviousPath |ConfigurationChange |Chemin d’accès précédent de l’exécutable du service Windows (applicable uniquement s’il a été modifié). |
-| SvcDescription |ConfigurationChange |Description du service. |
+| SvcPath |ConfigurationChange |Chemin d’accès toohello fichier exécutable du service de Windows hello. |
+| SvcPreviousPath |ConfigurationChange |Chemin d’accès précédent hello exécutable pour hello service Windows (applicable uniquement si elle a changé). |
+| SvcDescription |ConfigurationChange |Description du service de hello. |
 | Précédent |ConfigurationChange |État précédent de ce logiciel (installé, non installé, version précédente). |
 | Current |ConfigurationChange |Dernier état de ce logiciel (installé, non installé, version actuelle). |
 
 ## <a name="next-steps"></a>Étapes suivantes
 Pour plus d’informations sur les recherches de journal :
 
-* Familiarisez-vous avec les [recherches de journal](log-analytics-log-searches.md) pour afficher les informations détaillées collectées par les solutions.
-* Utilisez des [champs personnalisés dans Log Analytics](log-analytics-custom-fields.md) pour étendre les recherches de journal.
+* Se familiariser avec [recherche de journal](log-analytics-log-searches.md) tooview détaillées des informations collectées par les solutions.
+* Utilisez [des champs personnalisés dans le journal Analytique](log-analytics-custom-fields.md) tooextend des recherches de journaux.

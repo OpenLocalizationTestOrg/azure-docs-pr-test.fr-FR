@@ -1,6 +1,6 @@
 ---
-title: "Équilibrage de la charge des machines virtuelles Windows dans Azure | Microsoft Docs"
-description: "Découvrez comment utiliser l’équilibreur de charge Azure pour créer une application hautement disponible et sécurisée entre trois machines virtuelles Windows"
+title: "aaaHow tooload équilibrer les machines virtuelles Windows Azure | Documents Microsoft"
+description: "Découvrez comment la toouse hello Azure charge équilibrage toocreate une application hautement disponible et sécurisée entre trois machines virtuelles de Windows"
 services: virtual-machines-windows
 documentationcenter: virtual-machines
 author: iainfoulds
@@ -16,39 +16,39 @@ ms.workload: infrastructure
 ms.date: 08/11/2017
 ms.author: iainfou
 ms.custom: mvc
-ms.openlocfilehash: 6738d88d5a0430abaf3855dbf97a618e4c83617f
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: bfbd6a24e90a33e60d7d4f7b0c471af5d4e71f45
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-load-balance-windows-virtual-machines-in-azure-to-create-a-highly-available-application"></a>Équilibrage de la charge des machines virtuelles Windows dans Azure pour créer une application hautement disponible
-L’équilibrage de charge offre un niveau plus élevé de disponibilité en répartissant les demandes entrantes sur plusieurs machines virtuelles. Dans ce didacticiel, vous allez découvrir les différents composants de l’équilibreur de charge Azure qui répartissent le trafic et fournissent une haute disponibilité. Vous allez apprendre à effectuer les actions suivantes :
+# <a name="how-tooload-balance-windows-virtual-machines-in-azure-toocreate-a-highly-available-application"></a>Comment tooload équilibrer les machines virtuelles Windows dans Azure toocreate une application hautement disponible
+L’équilibrage de charge offre un niveau plus élevé de disponibilité en répartissant les demandes entrantes sur plusieurs machines virtuelles. Dans ce didacticiel, vous découvrez hello différents composants d’équilibrage de charge Azure hello de distribuer le trafic et fournissant une haute disponibilité. Vous allez apprendre à effectuer les actions suivantes :
 
 > [!div class="checklist"]
 > * Crée un équilibrage de charge Azure
 > * Créer une sonde d’intégrité d’équilibreur de charge
 > * Créer des règles de trafic pour l’équilibrage de charge
-> * Utilisez l’extension de script personnalisé pour créer un site de base IIS
-> * Créer des machines virtuelles et les attacher à un équilibrage de charge
+> * Utiliser l’Extension de Script personnalisé de hello toocreate un site IIS de base
+> * Créer des ordinateurs virtuels et d’attachement d’équilibrage de charge tooa
 > * Afficher un équilibrage de charge en action
-> * Ajouter et supprimer des machines virtuelles d’un équilibrage de charge
+> * Ajouter et supprimer des machines virtuelles d’un équilibreur de charge
 
-Ce didacticiel requiert le module Azure PowerShell version 3.6 ou ultérieure. Exécutez ` Get-Module -ListAvailable AzureRM` pour trouver la version. Si vous devez effectuer une mise à niveau, consultez [Installer le module Azure PowerShell](/powershell/azure/install-azurerm-ps).
+Ce didacticiel nécessite hello Azure PowerShell version 3.6 ou version ultérieure du module. Exécutez ` Get-Module -ListAvailable AzureRM` version de hello toofind. Si vous avez besoin de tooupgrade, consultez [installez Azure PowerShell module](/powershell/azure/install-azurerm-ps).
 
 
 ## <a name="azure-load-balancer-overview"></a>Vue d’ensemble de l’équilibreur de charge Azure
-Un équilibreur de charge Azure est un équilibreur de charge de type Couche 4 (TCP, UDP) qui offre une haute disponibilité en répartissant le trafic entrant entre les machines virtuelles saines. Une sonde d’intégrité d’équilibreur de charge surveille un port donné sur chaque machine virtuelle et ne distribue le trafic que vers une machine virtuelle opérationnelle.
+Un équilibreur de charge Azure est un équilibreur de charge de type Couche 4 (TCP, UDP) qui offre une haute disponibilité en répartissant le trafic entrant entre les machines virtuelles saines. Une sonde d’intégrité d’équilibrage de charge surveille un port donné sur chaque machine virtuelle et ne distribue le trafic tooan machine virtuelle opérationnelle.
 
-Vous définissez une configuration IP frontale qui contient une ou plusieurs adresses IP publiques. Cette configuration IP frontale permet d’accéder à votre équilibreur de charge et à vos applications via Internet. 
+Vous définissez une configuration IP frontale qui contient une ou plusieurs adresses IP publiques. Cette configuration IP frontale permet à votre toobe d’applications et d’équilibrage de charge accessible sur Internet de hello. 
 
-Les machines virtuelles se connectent à un équilibreur de charge à l’aide de leur carte d’interface réseau virtuelle (NIC). Pour distribuer le trafic vers les machines virtuelles, un pool d’adresses principal contient les adresses IP des cartes d’interface réseau virtuelles connectées à l’équilibreur de charge.
+Machines virtuelles se connecter tooa équilibrage de charge à l’aide de leur carte réseau virtuelle (NIC). toohello du trafic toodistribute machines virtuelles, un pool d’adresses de serveur principal contient des adresses IP de hello d’équilibrage de charge hello virtuelle (NIC) connectées toohello.
 
-Pour contrôler le flux de trafic, vous définissez les règles d’équilibrage de charge pour les ports et les protocoles spécifiques qui correspondent à vos machines virtuelles.
+flux de hello toocontrol du trafic, vous définissez des règles d’équilibrage de charge pour les ports et protocoles qui mappent des machines virtuelles de tooyour spécifiques.
 
 
 ## <a name="create-azure-load-balancer"></a>Créer un équilibreur de charge Azure
-Cette section explique en détail comment vous pouvez créer et configurer chaque composant de l’équilibreur de charge. Avant de créer un équilibreur de charge, créez un groupe de ressources avec [New-AzureRmResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup). L’exemple suivant crée un groupe de ressources nommé *myResourceGroupLoadBalancer* dans l’emplacement *EastUS* :
+Cette section décrit en détail comment vous pouvez créer et configurer chaque composant d’équilibrage de charge hello. Avant de créer un équilibreur de charge, créez un groupe de ressources avec [New-AzureRmResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup). Hello exemple suivant crée un groupe de ressources nommé *myResourceGroupLoadBalancer* Bonjour *EastUS* emplacement :
 
 ```powershell
 New-AzureRmResourceGroup `
@@ -57,7 +57,7 @@ New-AzureRmResourceGroup `
 ```
 
 ### <a name="create-a-public-ip-address"></a>Créer une adresse IP publique
-Pour accéder à votre application sur Internet, vous avez besoin d’une adresse IP publique pour l’équilibreur de charge. Créez une adresse IP publique avec [New-AzureRmPublicIpAddress](/powershell/module/azurerm.network/new-azurermpublicipaddress). L’exemple suivant crée une adresse IP publique nommée *myPublicIP* dans le groupe de ressources *myResourceGroupLoadBalancer* :
+tooaccess votre application sur hello Internet, vous avez besoin d’une adresse IP publique pour l’équilibrage de charge hello. Créez une adresse IP publique avec [New-AzureRmPublicIpAddress](/powershell/module/azurerm.network/new-azurermpublicipaddress). Hello exemple suivant crée une adresse IP publique nommée *myPublicIP* Bonjour *myResourceGroupLoadBalancer* groupe de ressources :
 
 ```powershell
 $publicIP = New-AzureRmPublicIpAddress `
@@ -68,7 +68,7 @@ $publicIP = New-AzureRmPublicIpAddress `
 ```
 
 ### <a name="create-a-load-balancer"></a>Créer un équilibrage de charge
-Créez une adresse IP frontale avec [New-AzureRmLoadBalancerFrontendIpConfig](/powershell/module/azurerm.network/new-azurermloadbalancerfrontendipconfig). L’exemple suivant crée une adresse IP frontale nommée *myFrontEndPool* : 
+Créez une adresse IP frontale avec [New-AzureRmLoadBalancerFrontendIpConfig](/powershell/module/azurerm.network/new-azurermloadbalancerfrontendipconfig). Hello exemple suivant crée une adresse IP de serveur frontal nommée *myFrontEndPool*: 
 
 ```powershell
 $frontendIP = New-AzureRmLoadBalancerFrontendIpConfig `
@@ -76,13 +76,13 @@ $frontendIP = New-AzureRmLoadBalancerFrontendIpConfig `
   -PublicIpAddress $publicIP
 ```
 
-Créez un pool d’adresses principales avec [New-AzureRmLoadBalancerBackendAddressPoolConfig](/powershell/module/azurerm.network/new-azurermloadbalancerbackendaddresspoolconfig). L’exemple suivant crée un pool d’adresses principales nommé *myBackEndPool* :
+Créez un pool d’adresses principales avec [New-AzureRmLoadBalancerBackendAddressPoolConfig](/powershell/module/azurerm.network/new-azurermloadbalancerbackendaddresspoolconfig). Hello exemple suivant crée un pool d’adresses principales nommé *myBackEndPool*:
 
 ```powershell
 $backendPool = New-AzureRmLoadBalancerBackendAddressPoolConfig -Name myBackEndPool
 ```
 
-Maintenant, créez l’équilibreur de charge avec [New-AzureRmLoadBalancer](/powershell/module/azurerm.network/new-azurermloadbalancer). L’exemple suivant créer un équilibrage de charge nommé *myLoadBalancer* avec l’adresse *myPublicIP* :
+Maintenant, créez équilibrage de charge hello [New-AzureRmLoadBalancer](/powershell/module/azurerm.network/new-azurermloadbalancer). Hello exemple suivant crée un équilibreur de charge nommé *myLoadBalancer* à l’aide de hello *myPublicIP* adresse :
 
 ```powershell
 $lb = New-AzureRmLoadBalancer `
@@ -94,11 +94,11 @@ $lb = New-AzureRmLoadBalancer `
 ```
 
 ### <a name="create-a-health-probe"></a>Créer une sonde d’intégrité
-Pour permettre à l’équilibrage de charge de surveiller l’état de votre application, vous utilisez une sonde d’intégrité. La sonde d’intégrité ajoute ou supprime dynamiquement des machines virtuelles de la rotation d’équilibrage de charge en fonction de leur réponse aux vérifications d’intégrité. Par défaut, une machine virtuelle est supprimée de la distribution d’équilibrage de charge après deux échecs consécutifs à des intervalles de 15 secondes. Vous créez une sonde d’intégrité selon un protocole ou une page de vérification d’intégrité spécifique pour votre application. 
+tooallow hello équilibrage toomonitor hello l’état de charge de votre application, vous utilisez une sonde d’intégrité. Sonde d’intégrité Hello dynamiquement ajoute ou supprime des machines virtuelles à partir de la rotation d’équilibrage de charge hello en fonction de leurs contrôles toohealth de réponse. Par défaut, un ordinateur virtuel est supprimé de la distribution d’équilibrage de charge hello après deux défaillances consécutives à des intervalles de 15 secondes. Vous créez une sonde d’intégrité selon un protocole ou une page de vérification d’intégrité spécifique pour votre application. 
 
-L’exemple suivant permet de créer une sonde TCP. Vous pouvez également créer des sondes HTTP personnalisées pour des contrôles d’intégrité plus affinés. Lorsque vous utilisez une sonde HTTP personnalisée, vous devez créer la page de contrôle d’intégrité, par exemple *healthcheck.aspx*. La sonde doit retourner une réponse **HTTP 200 OK** pour l’équilibreur de charge pour assurer la rotation de l’hôte.
+Bonjour à l’exemple suivant crée une sonde TCP. Vous pouvez également créer des sondes HTTP personnalisées pour des contrôles d’intégrité plus affinés. Lorsque vous utilisez une sonde HTTP personnalisée, vous devez créer page vérifier l’intégrité hello, tel que *healthcheck.aspx*. Sonde de Hello doit retourner un **HTTP 200 OK** réponse pour hello charge équilibrage tookeep hello hôte en rotation.
 
-Pour créer une sonde d’intégrité TCP, utilisez [Add-AzureRmLoadBalancerProbeConfig](/powershell/module/azurerm.network/add-azurermloadbalancerprobeconfig). L’exemple suivant crée une sonde d’intégrité nommée *myHealthProbe* qui surveille chaque machine virtuelle :
+toocreate une sonde d’intégrité TCP, vous utilisez [Add-AzureRmLoadBalancerProbeConfig](/powershell/module/azurerm.network/add-azurermloadbalancerprobeconfig). Hello exemple suivant crée une sonde d’intégrité nommée *myHealthProbe* qui analyse chaque machine virtuelle :
 
 ```powershell
 Add-AzureRmLoadBalancerProbeConfig `
@@ -110,16 +110,16 @@ Add-AzureRmLoadBalancerProbeConfig `
   -ProbeCount 2
 ```
 
-Mettez à jour l’équilibreur de charge avec [New-AzureRmLoadBalancer](/powershell/module/azurerm.network/set-azurermloadbalancer) :
+Mettre à jour d’équilibrage de charge hello [Set-AzureRmLoadBalancer](/powershell/module/azurerm.network/set-azurermloadbalancer):
 
 ```powershell
 Set-AzureRmLoadBalancer -LoadBalancer $lb
 ```
 
 ### <a name="create-a-load-balancer-rule"></a>Créer une règle d’équilibreur de charge
-Une règle d’équilibrage de charge est utilisée pour définir la distribution du trafic vers les machines virtuelles. Vous définissez la configuration IP frontale pour le trafic entrant et le pool d’adresses IP principal pour recevoir le trafic, ainsi que le port source et le port de destination requis. Pour veiller à ce que seules les machines virtuelles saines reçoivent le trafic, vous devez également définir la sonde d’intégrité à utiliser.
+Une règle d’équilibreur de charge est utilisé toodefine comment le trafic est distribué toohello machines virtuelles. Vous définissez la configuration IP frontale de hello pour le trafic entrant de hello et hello principal pool tooreceive hello du trafic IP, ainsi que les sources requis hello et port de destination. toomake que seuls les ordinateurs virtuels sains recevoir du trafic, vous définissez également toouse de sonde d’intégrité hello.
 
-Créez une règle d’équilibreur de charge avec [Add-AzureRmLoadBalancerRuleConfig](/powershell/module/azurerm.network/add-azurermloadbalancerruleconfig). L’exemple suivant crée une règle d’équilibreur de charge nommée *myLoadBalancerRule* et équilibre le trafic sur le port *80* :
+Créez une règle d’équilibreur de charge avec [Add-AzureRmLoadBalancerRuleConfig](/powershell/module/azurerm.network/add-azurermloadbalancerruleconfig). Hello exemple suivant crée une règle d’équilibreur de charge nommée *myLoadBalancerRule* et équilibre le trafic sur le port *80*:
 
 ```powershell
 $probe = Get-AzureRmLoadBalancerProbeConfig -LoadBalancer $lb -Name myHealthProbe
@@ -135,7 +135,7 @@ Add-AzureRmLoadBalancerRuleConfig `
   -Probe $probe
 ```
 
-Mettez à jour l’équilibreur de charge avec [New-AzureRmLoadBalancer](/powershell/module/azurerm.network/set-azurermloadbalancer) :
+Mettre à jour d’équilibrage de charge hello [Set-AzureRmLoadBalancer](/powershell/module/azurerm.network/set-azurermloadbalancer):
 
 ```powershell
 Set-AzureRmLoadBalancer -LoadBalancer $lb
@@ -143,10 +143,10 @@ Set-AzureRmLoadBalancer -LoadBalancer $lb
 
 
 ## <a name="configure-virtual-network"></a>Configurer un réseau virtuel
-Avant de déployer des machines virtuelles et de pouvoir tester votre équilibreur, créez les ressources de réseau virtuel de prise en charge. Pour plus d’informations sur les réseaux virtuels, consultez le didacticiel [Manage Azure Virtual Networks (Gérer les réseaux virtuels Azure)](tutorial-virtual-network.md).
+Avant de déployer des machines virtuelles et tester votre programme d’équilibrage, créer hello prenant en charge des ressources du réseau virtuel. Pour plus d’informations sur les réseaux virtuels, consultez hello [gérer les réseaux virtuels Azure](tutorial-virtual-network.md) didacticiel.
 
 ### <a name="create-network-resources"></a>Créer des ressources réseau
-Créez un réseau virtuel avec [New-AzureRmVirtualNetwork](/powershell/module/azurerm.network/new-azurermvirtualnetwork). L’exemple suivant crée un réseau virtuel nommé *myVnet* avec un sous-réseau nommé *mySubnet* :
+Créez un réseau virtuel avec [New-AzureRmVirtualNetwork](/powershell/module/azurerm.network/new-azurermvirtualnetwork). Hello exemple suivant crée un réseau virtuel nommé *myVnet* avec *mySubnet*:
 
 ```powershell
 # Create subnet config
@@ -154,7 +154,7 @@ $subnetConfig = New-AzureRmVirtualNetworkSubnetConfig `
   -Name mySubnet `
   -AddressPrefix 192.168.1.0/24
 
-# Create the virtual network
+# Create hello virtual network
 $vnet = New-AzureRmVirtualNetwork `
   -ResourceGroupName myResourceGroupLoadBalancer `
   -Location EastUS `
@@ -163,9 +163,9 @@ $vnet = New-AzureRmVirtualNetwork `
   -Subnet $subnetConfig
 ```
 
-Créez une règle de groupe de sécurité réseau avec [New-AzureRmNetworkSecurityRuleConfig](/powershell/module/azurerm.network/new-azurermnetworksecurityruleconfig), puis un groupe de sécurité réseau avec [New-AzureRmNetworkSecurityGroup](/powershell/module/azurerm.network/new-azurermnetworksecuritygroup). Ajoutez le groupe de sécurité réseau au sous-réseau avec [Set-AzureRmVirtualNetworkSubnetConfig](/powershell/module/azurerm.network/set-azurermvirtualnetworksubnetconfig), puis mettez à jour le réseau virtuel avec [Set-AzureRmVirtualNetwork](/powershell/module/azurerm.network/set-azurermvirtualnetwork). 
+Créez une règle de groupe de sécurité réseau avec [New-AzureRmNetworkSecurityRuleConfig](/powershell/module/azurerm.network/new-azurermnetworksecurityruleconfig), puis un groupe de sécurité réseau avec [New-AzureRmNetworkSecurityGroup](/powershell/module/azurerm.network/new-azurermnetworksecuritygroup). Ajouter hello sécurité groupe toohello sous-réseau avec [Set-AzureRmVirtualNetworkSubnetConfig](/powershell/module/azurerm.network/set-azurermvirtualnetworksubnetconfig) puis mettez à jour de réseau virtuel hello [Set-AzureRmVirtualNetwork](/powershell/module/azurerm.network/set-azurermvirtualnetwork). 
 
-L’exemple suivant crée une règle de groupe de sécurité réseau nommée *myNetworkSecurityGroup* et l’applique à *mySubnet* :
+Hello exemple suivant crée une règle de groupe de sécurité réseau nommée *myNetworkSecurityGroup* et l’applique trop*mySubnet*:
 
 ```powershell
 # Create security rule config
@@ -180,25 +180,25 @@ $nsgRule = New-AzureRmNetworkSecurityRuleConfig `
   -DestinationPortRange 80 `
   -Access Allow
 
-# Create the network security group
+# Create hello network security group
 $nsg = New-AzureRmNetworkSecurityGroup `
   -ResourceGroupName myResourceGroupLoadBalancer `
   -Location EastUS `
   -Name myNetworkSecurityGroup `
   -SecurityRules $nsgRule
 
-# Apply the network security group to a subnet
+# Apply hello network security group tooa subnet
 Set-AzureRmVirtualNetworkSubnetConfig `
   -VirtualNetwork $vnet `
   -Name mySubnet `
   -NetworkSecurityGroup $nsg `
   -AddressPrefix 192.168.1.0/24
 
-# Update the virtual network
+# Update hello virtual network
 Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
 ```
 
-Des cartes d’interface réseau virtuelles sont créées avec [New-AzureRmNetworkInterface](/powershell/module/azurerm.network/new-azurermnetworkinterface). L’exemple suivant crée trois cartes réseau virtuelles. (Une carte d’interface réseau virtuelle pour chaque machine virtuelle que vous créez pour votre application dans les étapes suivantes). Vous pouvez créer des machines virtuelles et des cartes d’interface réseau virtuelles supplémentaires à tout moment et les ajouter à l’équilibreur de charge :
+Des cartes d’interface réseau virtuelles sont créées avec [New-AzureRmNetworkInterface](/powershell/module/azurerm.network/new-azurermnetworkinterface). Hello exemple suivant crée trois cartes réseau virtuelles. (Une carte réseau virtuelle pour chaque ordinateur virtuel que vous créez pour votre application Bonjour suivant les étapes). Vous pouvez créer des cartes réseau virtuelles supplémentaires et des machines virtuelles à tout moment et ajoutez-les à équilibrage de charge toohello :
 
 ```powershell
 for ($i=1; $i -le 3; $i++)
@@ -213,9 +213,9 @@ for ($i=1; $i -le 3; $i++)
 ```
 
 ## <a name="create-virtual-machines"></a>Créer des machines virtuelles
-Pour améliorer la haute disponibilité de votre application, placez vos machines virtuelles dans un groupe à haute disponibilité.
+tooimprove hello haute disponibilité de votre application, placez vos machines virtuelles dans un ensemble de disponibilité.
 
-Créez un groupe à haute disponibilité avec la commande [New-AzureRmAvailabilitySet](/powershell/module/azurerm.compute/new-azurermavailabilityset). L’exemple suivant permet de créer un groupe à haute disponibilité nommé *myAvailabilitySet* :
+Créez un groupe à haute disponibilité avec la commande [New-AzureRmAvailabilitySet](/powershell/module/azurerm.compute/new-azurermavailabilityset). Hello exemple suivant crée un groupe à haute disponibilité nommée *myAvailabilitySet*:
 
 ```powershell
 $availabilitySet = New-AzureRmAvailabilitySet `
@@ -227,13 +227,13 @@ $availabilitySet = New-AzureRmAvailabilitySet `
   -PlatformUpdateDomainCount 2
 ```
 
-Définissez un nom d’utilisateur administrateur et un mot de passe pour les machines virtuelles avec [Get-Credential](https://msdn.microsoft.com/powershell/reference/5.1/microsoft.powershell.security/Get-Credential) :
+Définir un administrateur de nom d’utilisateur et mot de passe pour les machines virtuelles hello avec [Get-Credential](https://msdn.microsoft.com/powershell/reference/5.1/microsoft.powershell.security/Get-Credential):
 
 ```powershell
 $cred = Get-Credential
 ```
 
-Vous pouvez maintenant créer les machines virtuelles avec [New-AzureRmVM](/powershell/module/azurerm.compute/new-azurermvm). L’exemple suivant crée trois machines virtuelles :
+Vous pouvez désormais créer VMs hello avec [New-AzureRmVM](/powershell/module/azurerm.compute/new-azurermvm). Bonjour à l’exemple suivant crée trois machines virtuelles :
 
 ```powershell
 for ($i=1; $i -le 3; $i++)
@@ -272,12 +272,12 @@ for ($i=1; $i -le 3; $i++)
 }
 ```
 
-La création et la configuration des trois machines virtuelles prennent quelques minutes.
+Il prend quelques minutes toocreate et configurer tous les trois machines virtuelles.
 
 ### <a name="install-iis-with-custom-script-extension"></a>Installer IIS avec l’extension de script personnalisé
-Dans un didacticiel précédent [How to customize a Windows virtual machine (Personnalisation d’une machine virtuelle Windows)](tutorial-automate-vm-deployment.md), vous avez appris à automatiser la personnalisation des machines virtuelles avec l’extension de script personnalisé pour Windows. Vous pouvez utiliser la même approche pour installer et configurer IIS sur vos machines virtuelles.
+Dans un didacticiel précédent sur [comment toocustomize une machine virtuelle Windows](tutorial-automate-vm-deployment.md), vous avez appris comment personnalisation tooautomate avec hello Extension de Script personnalisé pour Windows. Vous pouvez utiliser hello même approche tooinstall et configurer IIS sur vos ordinateurs virtuels.
 
-Utilisez [Set-AzureRmVMExtension](/powershell/module/azurerm.compute/set-azurermvmextension) pour installer l’extension de script personnalisé. L’extension exécute `powershell Add-WindowsFeature Web-Server` pour installer le serveur web IIS, puis met à jour la page *Default.htm* pour qu’elle affiche le nom d’hôte de la machine virtuelle :
+Utilisez [Set-AzureRmVMExtension](/powershell/module/azurerm.compute/set-azurermvmextension) tooinstall hello Extension de Script personnalisé. Hello extension exécute `powershell Add-WindowsFeature Web-Server` tooinstall hello serveur Web d’IIS, puis hello de mises à jour *Default.htm* page tooshow hello nom d’hôte de hello machine virtuelle :
 
 ```powershell
 for ($i=1; $i -le 3; $i++)
@@ -295,7 +295,7 @@ for ($i=1; $i -le 3; $i++)
 ```
 
 ## <a name="test-load-balancer"></a>Tester l’équilibreur de charge
-Obtenez l’adresse IP publique de votre équilibreur de charge avec [Get-AzureRmPublicIPAddress](/powershell/module/azurerm.network/get-azurermpublicipaddress). L’exemple suivant obtient l’adresse IP pour *myPublicIP* créée précédemment :
+Obtenir hello une adresse IP publique de votre équilibreur de charge avec [Get-AzureRmPublicIPAddress](/powershell/module/azurerm.network/get-azurermpublicipaddress). exemple Hello obtient adresse IP hello *myPublicIP* créé précédemment :
 
 ```powershell
 Get-AzureRmPublicIPAddress `
@@ -303,18 +303,18 @@ Get-AzureRmPublicIPAddress `
   -Name myPublicIP | select IpAddress
 ```
 
-Vous pouvez alors entrer l’adresse IP publique dans un navigateur web. Le site web s’affiche, avec notamment le nom d’hôte de la machine virtuelle sur laquelle l’équilibreur de charge a distribué le trafic comme dans l’exemple suivant :
+Vous pouvez entrer ensuite des adresse IP publique de hello dans tooa navigateur. site Web de Hello est affichée, notamment le nom d’hôte hello Hello VM cet équilibrage de charge hello distributed tooas trafic Bonjour l’exemple suivant :
 
 ![Site web IIS en cours d’exécution](./media/tutorial-load-balancer/running-iis-website.png)
 
-Pour visualiser la distribution de trafic par l’équilibreur de charge sur les trois machines virtuelles exécutant votre application, vous pouvez forcer l’actualisation de votre navigateur web.
+équilibrage de charge toosee hello répartir le trafic entre tous les trois machines virtuelles exécutant votre application, vous pouvez forcer l’actualisation votre navigateur web.
 
 
 ## <a name="add-and-remove-vms"></a>Ajouter et supprimer des machines virtuelles
-Vous devrez peut-être effectuer la maintenance sur la machine virtuelle exécutant votre application, avec par exemple l’installation des mises à jour du système d’exploitation. Pour faire face à une augmentation du trafic vers votre application, vous devrez peut-être ajouter des machines virtuelles supplémentaires. Cette section vous indique comment supprimer ou ajouter une machine virtuelle pour l’équilibrage de charge.
+Vous devrez peut-être maintenance tooperform sur hello machines virtuelles exécutant votre application, telles que l’installation des mises à jour du système d’exploitation. toodeal avec une augmentation du trafic tooyour application, vous devrez peut-être tooadd des machines virtuelles supplémentaires. Cette section vous montre comment tooremove ou ajouter une machine virtuelle à partir de l’équilibrage de charge hello.
 
-### <a name="remove-a-vm-from-the-load-balancer"></a>Supprimer une machine virtuelle de l’équilibrage de charge
-Obtenez la carte d’interface réseau avec [Get-AzureRmNetworkInterface](/powershell/module/azurerm.network/get-azurermnetworkinterface), puis définissez la propriété *LoadBalancerBackendAddressPools* de la carte d’interface réseau virtuelle sur *$null*. Pour finir, mettez à jour la carte d’interface réseau virtuelle.
+### <a name="remove-a-vm-from-hello-load-balancer"></a>Supprimer une machine virtuelle à partir de l’équilibrage de charge hello
+Obtenir la carte d’interface réseau hello avec [Get-AzureRmNetworkInterface](/powershell/module/azurerm.network/get-azurermnetworkinterface), puis ensemble hello *LoadBalancerBackendAddressPools* propriété de hello carte réseau virtuelle trop*$null*. Enfin, mettez à jour de carte réseau virtuelle de hello. :
 
 ```powershell
 $nic = Get-AzureRmNetworkInterface `
@@ -324,12 +324,12 @@ $nic.Ipconfigurations[0].LoadBalancerBackendAddressPools=$null
 Set-AzureRmNetworkInterface -NetworkInterface $nic
 ```
 
-Pour visualiser la distribution de trafic par l’équilibreur de charge sur les deux machines virtuelles restantes exécutant votre application, vous pouvez forcer l’actualisation de votre navigateur web. Vous pouvez maintenant effectuer la maintenance sur la machine virtuelle, avec par exemple l’installation des mises à jour du système d’exploitation ou le redémarrage de la machine virtuelle.
+équilibrage de charge toosee hello répartir le trafic entre hello deux autres machines virtuelles exécutant votre application vous pouvez forcer l’actualisation votre navigateur web. Vous pouvez désormais effectuer la maintenance sur hello machine virtuelle, tels que l’installation des mises à jour du système d’exploitation ou d’effectuer un redémarrage de l’ordinateur virtuel.
 
-### <a name="add-a-vm-to-the-load-balancer"></a>Ajouter une machine virtuelle à l’équilibrage de charge
-Après avoir effectué des opérations de maintenance sur la machine virtuelle ou si vous devez développer sa capacité, définissez la propriété *LoadBalancerBackendAddressPools* de la carte d’interface réseau virtuelle sur le *BackendAddressPool* de [Get-AzureRMLoadBalancer](/powershell/module/azurerm.network/get-azurermloadbalancer) :
+### <a name="add-a-vm-toohello-load-balancer"></a>Ajouter un équilibrage de charge de toohello de machine virtuelle
+Après une maintenance de la machine virtuelle, ou si vous avez besoin de la capacité de tooexpand, définissez hello *LoadBalancerBackendAddressPools* propriété du toohello de carte réseau virtuelle hello *BackendAddressPool* de [ Get-AzureRMLoadBalancer](/powershell/module/azurerm.network/get-azurermloadbalancer):
 
-Récupérez l’équilibreur de charge :
+Obtenir l’équilibrage de charge hello :
 
 ```powershell
 $lb = Get-AzureRMLoadBalancer `
@@ -341,18 +341,18 @@ Set-AzureRmNetworkInterface -NetworkInterface $nic
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Ce didacticiel vous a montré comment créer un équilibrage de charge et y attacher des machines virtuelles. Vous avez appris à effectuer les actions suivantes :
+Dans ce didacticiel, vous créé un équilibreur de charge et attaché tooit de machines virtuelles. Vous avez appris à effectuer les actions suivantes :
 
 > [!div class="checklist"]
 > * Crée un équilibrage de charge Azure
 > * Créer une sonde d’intégrité d’équilibreur de charge
 > * Créer des règles de trafic pour l’équilibrage de charge
-> * Utilisez l’extension de script personnalisé pour créer un site de base IIS
-> * Créer des machines virtuelles et les attacher à un équilibrage de charge
+> * Utiliser l’Extension de Script personnalisé de hello toocreate un site IIS de base
+> * Créer des ordinateurs virtuels et d’attachement d’équilibrage de charge tooa
 > * Afficher un équilibrage de charge en action
-> * Ajouter et supprimer des machines virtuelles d’un équilibrage de charge
+> * Ajouter et supprimer des machines virtuelles d’un équilibreur de charge
 
-Passez au didacticiel suivant pour découvrir comment gérer la mise en réseau des machines virtuelles.
+Avancer toohello toolearn de didacticiel suivant la mise en réseau de la machine virtuelle toomanage.
 
 > [!div class="nextstepaction"]
 > [Gérer les machines virtuelles et les réseaux virtuels](./tutorial-virtual-network.md)

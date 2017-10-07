@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory à Confluence SAML SSO by Microsoft | Microsoft Docs"
-description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et Confluence SAML SSO by Microsoft."
+description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et l’authentification unique SAML de Confluence par Microsoft."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -14,41 +14,41 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/19/2017
 ms.author: jeedes
-ms.openlocfilehash: 56de86df9c915fa7c41e3bf0a545cc528cdcf959
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: ace23800e3908c8125052b4a2edcaae71f19935d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-confluence-saml-sso-by-microsoft"></a>Didacticiel : Intégration d’Azure Active Directory à Confluence SAML SSO by Microsoft
 
-Dans ce didacticiel, vous allez apprendre à intégrer Confluence SAML SSO by Microsoft à Azure Active Directory (Azure AD).
+Dans ce didacticiel, vous apprendrez comment toointegrate SSO SAML de Confluence par Microsoft avec Azure Active Directory (Azure AD).
 
-L’intégration de Confluence SAML SSO by Microsoft à Azure AD vous offre les avantages suivants :
+Intégration de l’authentification unique SAML de Confluence par Microsoft à Azure AD offre hello avantages suivants :
 
-- Vous pouvez contrôler dans Azure AD qui a accès à Confluence SAML SSO by Microsoft.
-- Vous pouvez permettre à vos utilisateurs d’être automatiquement authentifiés dans Confluence SAML SSO by Microsoft (authentification unique) avec leurs comptes Azure AD.
-- Vous pouvez gérer vos comptes à partir d’un emplacement central : le portail Azure
+- Vous pouvez contrôler dans Azure AD qui a accès tooConfluence SSO SAML par Microsoft
+- Vous pouvez activer vos utilisateurs tooautomatically get connecté tooConfluence SSO SAML par Microsoft (Single Sign-On) avec leurs comptes Azure AD
+- Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure
 
-Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).
+Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Composants requis
 
-Pour configurer l’intégration d’Azure AD à Confluence SAML SSO by Microsoft, vous avez besoin des éléments suivants :
+tooconfigure intégration d’Azure AD avec l’authentification unique SAML de Confluence par Microsoft, vous devez hello éléments suivants :
 
 - Un abonnement Azure AD
-- Une application serveur Confluence installée sur un serveur Windows 64 bits (local ou dans l’infrastructure IaaS cloud)
+- Application de serveur confluence installée sur un serveur Windows 64 bits (localement ou sur le cloud hello IaaS infrastructure)
 - L’activation du HTTPS dans le serveur
-- Notez que les versions prises en charge par le plug-in Confluence sont mentionnées dans la section ci-dessous.
-- L’accessibilité du serveur Confluence via Internet (particulièrement pour la page de connexion Azure AD pour l’authentification) et la capacité à recevoir le jeton d’Azure AD
+- Remarque hello pris en charge les versions du plug-in Confluence sont mentionnées dans section.
+- Serveur de confluence est accessible sur internet particulièrement tooAzure page de connexion d’Active Directory pour l’authentification et doit en mesure de tooreceive hello jeton d’Azure AD
 - La création d’informations d’identification administrateur dans Confluence
 - La désactivation de WebSudo dans Confluence
-- La création d’un utilisateur de test dans l’application serveur Confluence
+- Utilisateur créé dans hello application de serveur Confluence de test
 
 > [!NOTE]
-> Il est déconseillé d’utiliser un environnement de production Confluence pour tester les étapes de ce didacticiel. Testez d’abord l’intégration dans l’environnement de développement ou l’environnement intermédiaire de l’application, puis passez à l’environnement de production.
+> les étapes tootest hello dans ce didacticiel, nous déconseillons à l’aide d’un environnement de production confluence. Tester l’intégration hello d’abord dans le développement ou l’environnement d’application hello, puis utilisez hello production environnement de mise en lots.
 
-Vous devez en outre suivre les recommandations ci-dessous :
+tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :
 
 - N’utilisez pas votre environnement de production, sauf si cela est nécessaire.
 - Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez bénéficier de [l’offre d’essai](https://azure.microsoft.com/pricing/free-trial/) d’une durée d’un mois.
@@ -57,118 +57,118 @@ Vous devez en outre suivre les recommandations ci-dessous :
 
 Les versions suivantes de Confluence sont actuellement prises en charge :
 
-- Confluence : 5.0 à 5.10
+- Confluence : too5.10 5.0
 
 ## <a name="scenario-description"></a>Description du scénario
-Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :
+Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :
 
-1. Ajout de Confluence SAML SSO by Microsoft à partir de la galerie
+1. Ajout de l’authentification unique SAML de Confluence par Microsoft à partir de la galerie de hello
 2. Configuration et test de l’authentification unique Azure AD
 
-## <a name="adding-confluence-saml-sso-by-microsoft-from-the-gallery"></a>Ajout de Confluence SAML SSO by Microsoft à partir de la galerie
-Pour configurer l’intégration de Confluence SAML SSO by Microsoft à Azure AD, vous devez ajouter Confluence SAML SSO by Microsoft, disponible dans la galerie, à votre liste d’applications SaaS gérées.
+## <a name="adding-confluence-saml-sso-by-microsoft-from-hello-gallery"></a>Ajout de l’authentification unique SAML de Confluence par Microsoft à partir de la galerie de hello
+tooconfigure hello intégration de l’authentification unique SAML de Confluence par Microsoft dans Azure AD, vous devez tooadd SSO SAML de Confluence par Microsoft à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.
 
-**Pour ajouter Confluence SAML SSO by Microsoft à partir de la galerie, effectuez les étapes suivantes :**
+**tooadd SSO SAML de Confluence par Microsoft à partir de la galerie hello, procédez hello comme suit :**
 
-1. Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**. 
+1. Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône. 
 
     ![Active Directory][1]
 
-2. Accédez à **Applications d’entreprise**. Accédez ensuite à **Toutes les applications**.
+2. Accédez trop**des applications d’entreprise**. Passez trop**toutes les applications**.
 
     ![Applications][2]
     
-3. Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.
+3. tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.
 
     ![Applications][3]
 
-4. Dans la zone de recherche, tapez **Confluence SAML SSO by Microsoft**.
+4. Dans la zone de recherche de hello, tapez **SSO SAML de Confluence par Microsoft**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-confluencemicrosoft-tutorial/tutorial_confluencemicrosoft_search.png)
 
-5. Dans le volet de résultats, sélectionnez **Confluence SAML SSO by Microsoft**, puis cliquez sur le bouton **Ajouter** pour ajouter l’application.
+5. Dans le volet de résultats hello, sélectionnez **SSO SAML de Confluence par Microsoft**, puis cliquez sur **ajouter** bouton application hello de tooadd.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-confluencemicrosoft-tutorial/tutorial_confluencemicrosoft_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configuration et test de l’authentification unique Azure AD
 Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec Confluence SAML SSO by Microsoft, avec un utilisateur de test appelé « Britta Simon ».
 
-Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur Confluence SAML SSO by Microsoft équivalent dans Azure AD. En d’autres termes, une relation doit être établie entre l’utilisateur Azure AD et l’utilisateur Confluence SAML SSO by Microsoft associé.
+Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans l’authentification unique SAML de Confluence par Microsoft est tooa utilisateur dans Azure AD. En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur dans l’authentification unique SAML de Confluence par Microsoft hello doit toobe établie.
 
-Dans Confluence SAML SSO by Microsoft, affectez la valeur du **nom d’utilisateur** dans Azure AD comme valeur du **nom d’utilisateur** pour établir la relation.
+Dans l’authentification unique SAML Confluence par Microsoft, affecter la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** relation de lien tooestablish hello.
 
-Pour configurer et tester l’authentification unique Azure AD avec Confluence SAML SSO by Microsoft, vous devez suivre les indications des sections suivantes :
+tooconfigure et test Azure AD l’authentification unique avec l’authentification unique SAML de Confluence par Microsoft, vous devez hello toocomplete suivant des blocs de construction :
 
-1. **[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.
-2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.
-3. **[Création d’un utilisateur de test Confluence SAML SSO by Microsoft](#creating-a-confluence-saml-sso-by-microsoft-test-user)** pour avoir un équivalent de Britta Simon dans Confluence SAML SSO by Microsoft lié à la représentation Azure AD de l’utilisateur.
-4. **[Affectation de l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.
-5. **[Testing Single Sign-On](#testing-single-sign-on)** pour vérifier si la configuration fonctionne.
+1. **[Configuration d’Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.
+2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.
+3. **[Création d’une authentification unique SAML de Confluence par l’utilisateur de test Microsoft](#creating-a-confluence-saml-sso-by-microsoft-test-user)**  -toohave un équivalent de Britta Simon dans l’authentification unique SAML de Confluence par Microsoft, qui est la représentation sous forme de toohello lié Azure AD de l’utilisateur.
+4. **[Utilisateur de test affectation hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.
+5. **[Test de l’authentification unique sur](#testing-single-sign-on)**  -tooverify hello indique si les tâches de configuration.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Configuration de l’authentification unique Azure AD
 
-Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure et configurer l’authentification unique dans votre application Confluence SAML SSO by Microsoft.
+Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre authentification unique SAML de Confluence par application de Microsoft.
 
-**Pour configurer l’authentification unique Azure AD avec Confluence SAML SSO by Microsoft, effectuez les étapes suivantes :**
+**tooconfigure Azure AD l’authentification unique avec l’authentification unique SAML de Confluence par Microsoft, effectuez hello comme suit :**
 
-1. Dans le portail Azure, dans la page d’intégration de l’application **Confluence SAML SSO by Microsoft**, cliquez sur **Authentification unique**.
+1. Bonjour portail Azure, sur hello **SSO SAML de Confluence par Microsoft** page d’intégration d’application, cliquez sur **l’authentification unique**.
 
     ![Configurer l’authentification unique][4]
 
-2. Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.
+2. Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.
  
     ![Configurer l’authentification unique](./media/active-directory-saas-confluencemicrosoft-tutorial/tutorial_confluencemicrosoft_samlbase.png)
 
-3. Dans la section **Domaine et URL Confluence SAML SSO by Microsoft**, effectuez les étapes suivantes :
+3. Sur hello **SSO SAML de Confluence par domaine Microsoft et les URL** section, effectuer hello comme suit :
 
     ![Configurer l’authentification unique](./media/active-directory-saas-confluencemicrosoft-tutorial/tutorial_confluencemicrosoft_url.png)
 
-    a. Dans la zone de texte **URL de connexion**, tapez une URL au format suivant : `https://<domain:port>/plugins/servlet/saml/auth`
+    a. Bonjour **URL de connexion** zone de texte, tapez une URL à l’aide de hello modèle :`https://<domain:port>/plugins/servlet/saml/auth`
 
-    b. Dans la zone de texte **Identificateur**, tapez une URL au format suivant : `https://<domain:port>/`
+    b. Bonjour **identificateur** zone de texte, tapez une URL à l’aide de hello modèle :`https://<domain:port>/`
 
-    c. Dans la zone de texte **URL de réponse** , tapez une URL au format suivant : `https://<domain:port>/plugins/servlet/saml/auth`
+    c. Bonjour **URL de réponse** zone de texte, tapez une URL à l’aide de hello modèle :`https://<domain:port>/plugins/servlet/saml/auth`
 
     > [!NOTE] 
-    > Il ne s’agit pas de valeurs réelles. Mettez à jour ces valeurs avec l’identificateur, l’URL de réponse et l’URL de connexion réels. Le port est facultatif s’il s’agit d’une URL nommée. Ces valeurs sont reçues durant la configuration du plug-in Confluence qui est décrite plus loin dans le didacticiel.
+    > Il ne s’agit pas de valeurs réelles. Mettre à jour ces valeurs avec hello réel identificateur, URL de réponse et URL de connexion. Le port est facultatif s’il s’agit d’une URL nommée. Ces valeurs sont reçus pendant la configuration hello du plug-in Confluence, qui est expliquée plus loin dans le didacticiel de hello.
  
 
-4. Pour générer l’URL des **métadonnées**, effectuez les étapes suivantes :
+4. toogenerate hello **métadonnées** url, effectuer hello comme suit :
 
     a. Cliquez sur **Inscriptions des applications**.
     
     ![Configurer l’authentification unique](./media/active-directory-saas-Confluencemicrosoft-tutorial/appregistrations.png)
    
-    b. Cliquez sur **Points de terminaison** pour ouvrir la boîte de dialogue **Points de terminaison**.  
+    b. Cliquez sur **points de terminaison** tooopen **points de terminaison** boîte de dialogue.  
     
     ![Configurer l’authentification unique](./media/active-directory-saas-Confluencemicrosoft-tutorial/endpointicon.png)
 
-    c. Cliquez sur le bouton Copier pour copier l’URL du document de métadonnées de fédération (**FEDERATION METADATA DOCUMENT**), puis collez-la dans le Bloc-notes.
+    c. Cliquez sur hello copie bouton toocopy **DOCUMENT de métadonnées de fédération** url et collez-le dans le bloc-notes.
     
     ![Configurer l’authentification unique](./media/active-directory-saas-Confluencemicrosoft-tutorial/endpoint.png)
      
-    d. Accédez maintenant à la page de propriétés de **Confluence SAML SSO by Microsoft**, copiez **l’ID d’application** à l’aide du bouton **Copier**, puis collez-le dans le Bloc-notes.
+    d. Maintenant accédez toohello page de propriétés de **SSO SAML de Confluence par Microsoft** et copie Bonjour **Id d’Application** à l’aide de **copie** bouton et collez-le dans le bloc-notes.
  
     ![Configurer l’authentification unique](./media/active-directory-saas-Confluencemicrosoft-tutorial/appid.png)
 
-    e. Générez **l’URL de métadonnées** en respectant le format suivant : `<FEDERATION METADATA DOCUMENT url>?appid=<application id>` et copiez cette valeur dans le Bloc-notes, car vous en aurez besoin plus tard pour la configuration du plug-in.
+    e. Générer hello **URL de métadonnées** à l’aide de hello modèle : `<FEDERATION METADATA DOCUMENT url>?appid=<application id>` et copiez cette valeur dans le bloc-notes, tel qu’il est utilisé ultérieurement pour la configuration de hello du plug-in hello.
 
 5. Cliquez sur le bouton **Enregistrer** .
 
     ![Configurer l’authentification unique](./media/active-directory-saas-Confluencemicrosoft-tutorial/tutorial_general_400.png)
 
-6. Communiquez à [Microsoft](mailto:waadpartners@microsoft.com) les informations suivantes pour le plug-in Confluence.
+6. Contact [Microsoft](mailto:waadpartners@microsoft.com) avec hello informations pour le plug-in de hello Confluence suivantes.
     
     *   Nom du client :
     *   Nom du domaine principal :
-    *   Azure AD Premium : Oui/Non (le plug-in est disponible pour tous les clients disposant d’un abonnement Gratuit, De base et Premium)
+    *   Azure AD Premium : Oui/non (plug-in sera disponible tooall client de hello gratuit, Basic et Premium SKU)
     *   Nombre d’utilisateurs qui vont utiliser cette intégration :
     *   Version de Confluence :
     *   Commentaires :
 
-7. Dans une autre fenêtre de navigateur web, connectez-vous à votre instance de Confluence en tant qu’administrateur.
+7. Dans une fenêtre de navigateur web, ouvrez une session dans l’instance de Confluence tooyour en tant qu’administrateur.
 
-8. Pointez sur le roue dentée, puis cliquez sur **Modules complémentaires**.
+8. Pointez sur représentant une roue dentée et cliquez sur hello **modules complémentaires**.
     
     ![Configurer l’authentification unique](./media/active-directory-saas-Confluencemicrosoft-tutorial/addon1.png)
 
@@ -176,119 +176,119 @@ Dans cette section, vous allez activer l’authentification unique Azure AD dans
 
     ![Configurer l’authentification unique](./media/active-directory-saas-Confluencemicrosoft-tutorial/addon72.png)
 
-10. Chargez manuellement le plug-in fourni par Microsoft. Une fois que le plug-in est installé, il s’affiche sous **User Installed** (Installé par l’utilisateur), dans la section **Manage add-ons** (Gérer les modules complémentaires).
+10. Charger manuellement les plug-in hello fourni par Microsoft. Une fois que le plug-in hello est installé, il apparaît dans **utilisateur installé** section modules complémentaires de **gérer le module complémentaire** section.
 
-11. Cliquez sur **Configurer** pour configurer le nouveau plug-in.
+11. Cliquez sur **configurer** tooconfigure hello nouveau plug-in.
 
 12. Effectuez les opérations suivantes dans la page de configuration :
 
     ![Configurer l’authentification unique](./media/active-directory-saas-Confluencemicrosoft-tutorial/addon5.png)
  
-    a. Dans **Metadata URL** (URL des métadonnées), collez **l’URL de métadonnées** générée dans Azure AD, puis cliquez sur le bouton **Resolve** (Résoudre). L’URL des métadonnées IdP est alors lue et tous les champs sont renseignés.
+    a. Dans **URL de métadonnées** coller hello **URL de métadonnées** généré à partir d’Azure AD et cliquez sur hello **résoudre** bouton. Il lit les URL des métadonnées IdP hello et remplit toutes les informations de champs hello.
 
     > [!Note]
-    > Par défaut, l’emplacement de l’identificateur d’utilisateur SAML est défini sur l’élément NameIdentifier. Vous pouvez remplacer cela par une option d’attribut et entrer le nom de l’attribut souhaité.
+    > Par défaut, l’emplacement de l’identificateur d’utilisateur SAML est défini sur l’élément NameIdentifier. Vous pouvez modifier cette option d’attribut tooan et entrez le nom de l’attribut approprié hello.
 
     > [!TIP]
-    > Vérifiez qu’un seul certificat est associé à l’application pour éviter toute erreur liée à la résolution des métadonnées. Si plusieurs certificats sont associés, l’administrateur verra un message d’erreur s’afficher lors de la résolution des métadonnées.
+    > Vérifiez qu’un seul certificat mappé par rapport à l’application hello afin qu’il n’existe aucune erreur dans la résolution des métadonnées de hello. S’il existe plusieurs certificats, lors de la résolution des métadonnées de hello, admin Obtient une erreur.
     
-    b. Copiez les valeurs des champs **Identifier, Reply URL et Sign on URL**, puis collez-les dans les zones de texte **Identificateur, URL de réponse et URL de connexion** correspondantes dans la section **Domaine et URL Confluence SAML SSO by Microsoft** du portail Azure.
+    b. Hello de copie **identificateur, URL de réponse et l’URL de connexion** les valeurs et les coller dans **identificateur, URL de réponse et l’URL de connexion** zones de texte respectivement dans **SSO SAML de Confluence par domaine Microsoft et les URL**  section sur le portail Azure.
 
-    c. Dans **Login Button Name** (Nom du bouton de connexion), tapez le nom du bouton que les utilisateurs doivent voir sur l’écran de connexion.
+    c. Dans **nom de bouton de connexion** nom de type hello du bouton de votre organisation souhaite toosee des utilisateurs hello sur l’écran de connexion.
 
-    d. Dans **SAML User ID Locations** (Emplacements de l’identificateur d’utilisateur SAML), sélectionnez **User ID is in the NameIdentifier element of the Subject statement** (L’ID utilisateur se trouve dans l’élément NameIdentifier de l’instruction Subject ) ou **User ID is in an Attribute element** (L’identificateur d’utilisateur se trouve dans l’élément Attribute).  Cet ID doit être l’ID utilisateur Confluence. Si aucun identificateur d’utilisateur correspondant n’est trouvé, le système n’autorise pas l’utilisateur à se connecter. 
+    d. Dans **les emplacements des ID utilisateur SAML** sélectionnez **ID d’utilisateur est dans l’élément NameIdentifier de hello Hello Subject statement** ou **ID utilisateur est dans un élément Attribute**.  Cet ID a un id d’utilisateur Confluence toobe hello. Si l’id d’utilisateur hello n’est pas mis en correspondance, système ne permet pas de toolog d’utilisateurs dans. 
     
-    e. Si vous sélectionnez l’option **User ID is in an Attribute element**, dans la zone de texte **Attribute name** (Nom de l’attribut), tapez le nom de l’attribut dans lequel l’identificateur d’utilisateur doit se trouver. 
+    e. Si vous sélectionnez **ID utilisateur est dans un élément Attribute** option, puis dans **nom de l’attribut** nom de hello de type zone de texte d’attribut hello lorsque l’Id d’utilisateur est attendu. 
 
-    f. Si vous utilisez le domaine fédéré (AD FS, etc.) avec Azure AD, cochez l’option **Enable Home Realm Discovery** (Activer la détection de domaine d’accueil), puis entrez un nom de domaine sous **Domain Name**.
+    f. Si vous utilisez un domaine fédéré de hello (par exemple, ADFS, etc.) auprès d’Azure AD, puis cliquez sur hello **activer la découverte de domaine d’accueil** option et configurer hello **nom de domaine**.
     
-    g. Si la connexion est basée sur AD FS, tapez le nom du domaine dans le champ **Domain Name**.
+    g. Dans **nom de domaine** hello domaine nom de type ici en cas de connexion de base de ADFS hello.
 
-    h. Cochez l’option **Enable Single Sign out** (Activer la déconnexion unique) si vous souhaitez qu’un utilisateur soit déconnecté d’Azure AD lorsqu’il se déconnecte de Confluence. 
+    h. Vérifiez **activer la déconnexion unique** si vous souhaitez toolog out d’Azure AD quand un utilisateur se déconnecte de Confluence. 
 
-    i. Cliquez sur **Enregistrer** pour enregistrer les paramètres.
+    i. Cliquez sur **enregistrer** bouton Paramètres de hello toosave.
 
 
 > [!TIP]
-> Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.  Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas. Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !  Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello. Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Création d’un utilisateur de test Azure AD
-L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.
+objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.
 
 ![Créer un utilisateur Azure AD][100]
 
-**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**
+**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**
 
-1. Dans le panneau de navigation gauche du **portail Azure**, cliquez sur l’icône **Azure Active Directory**.
+1. Bonjour **portail Azure**, on hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-confluencemicrosoft-tutorial/create_aaduser_01.png) 
 
-2. Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.
+2. liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes** et cliquez sur **tous les utilisateurs**.
     
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-confluencemicrosoft-tutorial/create_aaduser_02.png) 
 
-3. Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue.
+3. tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello de boîte de dialogue hello.
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-confluencemicrosoft-tutorial/create_aaduser_03.png) 
 
-4. Dans la boîte de dialogue **Utilisateur**, procédez comme suit :
+4. Sur hello **utilisateur** boîte de dialogue de page, effectuer hello comme suit :
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-confluencemicrosoft-tutorial/create_aaduser_04.png) 
 
-    a. Dans la zone de texte **Nom**, entrez **BrittaSimon**.
+    a. Bonjour **nom** zone de texte, type **BrittaSimon**.
 
-    b. Dans la zone de texte **Nom d’utilisateur**, tapez **l’adresse e-mail** de Britta Simon.
+    b. Bonjour **nom d’utilisateur** hello de type zone de texte **adresse de messagerie** de BrittaSimon.
 
-    c. Sélectionnez **Afficher le mot de passe** et notez la valeur du **mot de passe**.
+    c. Sélectionnez **afficher le mot de passe** et notez la valeur hello hello **mot de passe**.
 
     d. Cliquez sur **Create**.
  
 ### <a name="creating-a-confluence-saml-sso-by-microsoft-test-user"></a>Création d’un utilisateur de test Confluence SAML SSO by Microsoft
 
-Pour permettre aux utilisateurs Azure AD de se connecter à un serveur local Confluence, vous devez les attribuer dans Confluence SAML SSO by Microsoft. Pour Confluence SAML SSO by Microsoft, l’attribution des utilisateurs se fait manuellement.
+tooenable Azure AD les utilisateurs toolog dans tooConfluence sur le serveur local, ils doivent être configurés dans Confluence SAML SSO par Microsoft. Pour Confluence SAML SSO by Microsoft, l’attribution des utilisateurs se fait manuellement.
 
-**Pour approvisionner un compte d’utilisateur, procédez comme suit :**
+**tooprovision un compte d’utilisateur, effectuez hello comme suit :**
 
-1. Connectez-vous à votre serveur local Confluence en tant qu’administrateur.
+1. Ouvrez une session dans tooyour Confluence sur le serveur local en tant qu’administrateur.
 
-2. Pointez sur la roue dentée, puis cliquez sur **Gestion des utilisateurs**.
+2. Pointez sur représentant une roue dentée et cliquez sur hello **gestion des utilisateurs**.
 
     ![Ajouter un employé](./media/active-directory-saas-confluencemicrosoft-tutorial/user1.png) 
 
-3. Dans la section Utilisateurs, cliquez sur l’onglet **Add users** (Ajouter des utilisateurs). Dans la page de boîte de dialogue **Add a User** (Ajouter un utilisateur), procédez comme suit :
+3. Dans la section Utilisateurs, cliquez sur l’onglet **Add users** (Ajouter des utilisateurs). Sur hello **« Ajouter un utilisateur »** boîte de dialogue de page, effectuer hello comme suit :
 
     ![Ajouter un employé](./media/active-directory-saas-confluencemicrosoft-tutorial/user2.png) 
 
-    a. Dans la zone de texte **Username** (Nom d’utilisateur), tapez le nom d’un utilisateur, par exemple, Britta Simon.
+    a. Bonjour **nom d’utilisateur** zone de texte, par courrier électronique de type hello d’utilisateur comme Britta Simon.
 
-    b. Dans la zone de texte **Full Name** (Nom complet), tapez le nom complet d’un utilisateur, par exemple, Britta Simon.
+    b. Bonjour **nom complet** zone de texte, nom complet de type hello d’utilisateur comme Britta Simon.
 
-    c. Dans la zone de texte **Email** (E-mail), tapez l’adresse e-mail d’un utilisateur, par exemple, Brittasimon@contoso.com.
+    c. Bonjour **messagerie** adresse de messagerie de type hello d’utilisateur de zone de texte, comme Brittasimon@contoso.com.
 
-    d. Dans la zone de texte **Password** (Mot de passe), tapez le mot de passe de Britta Simon.
+    d. Bonjour **mot de passe** zone de texte, type hello mot de passe Britta Simon.
 
-    e. Cliquez sur **Confirm Password** (Confirmer le mot de passe), puis entrez de nouveau le mot de passe.
+    e. Cliquez sur **confirmer le mot de passe** entrer à nouveau le mot de passe hello.
     
     f. Cliquez sur le bouton **Ajouter**.
 
-### <a name="assigning-the-azure-ad-test-user"></a>Affectation de l’utilisateur de test Azure AD
+### <a name="assigning-hello-azure-ad-test-user"></a>Affectation d’utilisateur de test hello Azure AD
 
-Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à Confluence SAML SSO by Microsoft.
+Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooConfluence SSO SAML par Microsoft.
 
 ![Affecter des utilisateurs][200] 
 
-**Pour attribuer Britta Simon à Confluence SAML SSO by Microsoft, effectuez les étapes suivantes :**
+**tooassign Britta Simon tooConfluence SSO SAML par Microsoft, effectuez hello comme suit :**
 
-1. Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.
+1. Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.
 
     ![Affecter des utilisateurs][201] 
 
-2. Dans la liste des applications, sélectionnez **Confluence SAML SSO by Microsoft**.
+2. Dans la liste des applications hello, sélectionnez **SSO SAML de Confluence par Microsoft**.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-confluencemicrosoft-tutorial/tutorial_confluencemicrosoft_app.png) 
 
-3. Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.
+3. Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.
 
     ![Affecter des utilisateurs][202] 
 
@@ -296,7 +296,7 @@ Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentifi
 
     ![Affecter des utilisateurs][203]
 
-5. Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.
+5. Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.
 
 6. Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.
 
@@ -304,14 +304,14 @@ Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentifi
     
 ### <a name="testing-single-sign-on"></a>Test de l’authentification unique
 
-Dans cette section, vous allez tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.
+Dans cette section, vous tester votre configuration Azure AD unique de session à l’aide de hello panneau d’accès.
 
-Lorsque vous cliquez sur la vignette Confluence SAML SSO by Microsoft dans le volet d’accès, vous devez être connecté automatiquement à votre application Confluence SAML SSO by Microsoft.
-Pour plus d’informations sur le panneau d’accès, consultez [Présentation du panneau d’accès](active-directory-saas-access-panel-introduction.md).
+Lorsque vous cliquez sur hello Confluence SAML SSO par vignette Microsoft Bonjour volet d’accès, vous devez obtenir automatiquement signé sur tooyour Confluence SAML SSO par application de Microsoft.
+Pour plus d’informations sur hello volet d’accès, consultez [Introduction toohello volet d’accès](active-directory-saas-access-panel-introduction.md).
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-* [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md)
 
 

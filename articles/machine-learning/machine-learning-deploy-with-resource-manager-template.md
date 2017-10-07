@@ -1,6 +1,6 @@
 ---
-title: "Déployer un espace de travail Machine Learning avec Azure Resource Manager | Microsoft Docs"
-description: "Comment déployer un espace de travail pour Azure Machine Learning à l’aide du modèle Azure Resource Manager"
+title: aaaDeploy un espace de travail Machine Learning avec Azure Resource Manager | Documents Microsoft
+description: "Comment toodeploy un espace de travail pour l’apprentissage d’Azure à l’aide du modèle Azure Resource Manager"
 services: machine-learning
 documentationcenter: 
 author: ahgyger
@@ -14,22 +14,22 @@ ms.devlang: na
 ms.topic: article
 ms.date: 3/15/2017
 ms.author: ahgyger
-ms.openlocfilehash: 9e37780428b0867da63987ec4f7f843a8abeb907
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 308959825bcbd670f6ce9b6dc381be767f172357
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploy-machine-learning-workspace-using-azure-resource-manager"></a>Déployer un espace de travail Machine Learning à l’aide d’Azure Resource Manager
 ## <a name="introduction"></a>Introduction
-Les modèles de déploiement Azure Resource Manager vous font gagner du temps en vous offrant une méthode évolutive pour déployer des composants interconnectés avec un mécanisme de validation et de nouvelle tentative. Pour configurer des espaces de travail Azure Machine Learning, par exemple, vous devez d’abord configurer un compte de stockage Azure et ensuite déployer votre espace de travail. Imaginez effectuer cette opération manuellement pour des centaines d’espaces de travail. Une alternative plus simple consiste à utiliser un modèle Azure Resource Manager pour déployer un espace de travail Azure Machine Learning et toutes ses dépendances. Cet article vous accompagne tout au long de cette procédure pas à pas. Pour une intéressante présentation d’Azure Resource Manager, consultez [Présentation d’Azure Resource Manager](../azure-resource-manager/resource-group-overview.md).
+Temps en vous donnant une toodeploy évolutive qui soit à l’aide d’un modèle de déploiement vous évite de Azure Resource Manager interconnectés des composants avec un mécanisme de validation, puis réessayez. tooset des espaces de travail Azure Machine Learning, par exemple, vous devez configurer un compte de stockage Azure de toofirst et déployez-le sur votre espace de travail. Imaginez effectuer cette opération manuellement pour des centaines d’espaces de travail. Une alternative plus simple est toouse un toodeploy de modèle Azure Resource Manager un espace de travail Azure Machine Learning et toutes ses dépendances. Cet article vous accompagne tout au long de cette procédure pas à pas. Pour une intéressante présentation d’Azure Resource Manager, consultez [Présentation d’Azure Resource Manager](../azure-resource-manager/resource-group-overview.md).
 
 ## <a name="step-by-step-create-a-machine-learning-workspace"></a>Pas à pas : créer un espace de travail Machine Learning
-Nous créerons un groupe de ressources Azure, puis déploierons un nouveau compte de stockage Azure et un nouvel espace de travail Azure Machine Learning à l’aide d’un modèle Resource Manager. Une fois le déploiement terminé, nous imprimerons des informations importantes sur les espaces de travail créés (clé primaire, workspaceID et URL de l’espace de travail).
+Nous créerons un groupe de ressources Azure, puis déploierons un nouveau compte de stockage Azure et un nouvel espace de travail Azure Machine Learning à l’aide d’un modèle Resource Manager. Une fois le déploiement de hello est terminé, nous imprime des informations importantes sur les espaces de travail hello qui ont été créés (clé primaire de hello hello Id_espace_de_travail et espace de travail toohello hello URL).
 
 ### <a name="create-an-azure-resource-manager-template"></a>Créer un modèle Azure Resource Manager
-Un espace de travail Machine Learning requiert un compte de stockage Azure pour stocker le jeu de données lié.
-Le modèle suivant utilise le nom du groupe de ressources pour générer le nom du compte de stockage et celui de l’espace de travail.  Il utilise également le nom du compte de stockage comme propriété lors de la création de l’espace de travail.
+Un espace de travail Machine Learning requiert un tooit dataset lié de stockage Azure compte toostore hello.
+Hello modèle suivant utilise hello nom hello nom groupe de ressources toogenerate hello stockage compte et le nom d’espace de travail hello.  Il utilise également nom de compte de stockage hello en tant que propriété lors de la création d’espace de travail hello.
 
 ```
 {
@@ -78,31 +78,31 @@ Le modèle suivant utilise le nom du groupe de ressources pour générer le nom 
 ```
 Enregistrez ce modèle en tant que fichier mlworkspace.json sous C:\temp\.
 
-### <a name="deploy-the-resource-group-based-on-the-template"></a>Déployer le groupe de ressources à partir du modèle
+### <a name="deploy-hello-resource-group-based-on-hello-template"></a>Déployer le groupe de ressources hello, basé sur le modèle de hello
 * Ouvrez PowerShell
 * Installez les modules d’Azure Resource Manager et d’Azure Service Management  
 
 ```
-# Install the Azure Resource Manager modules from the PowerShell Gallery (press “A”)
+# Install hello Azure Resource Manager modules from hello PowerShell Gallery (press “A”)
 Install-Module AzureRM -Scope CurrentUser
 
-# Install the Azure Service Management modules from the PowerShell Gallery (press “A”)
+# Install hello Azure Service Management modules from hello PowerShell Gallery (press “A”)
 Install-Module Azure -Scope CurrentUser
 ```
 
-   Ces étapes de téléchargement et d’installation des modules sont nécessaires pour effectuer les étapes restantes. Cette opération ne doit être effectuée qu’une fois dans l’environnement dans lequel vous exécutez les commandes PowerShell.   
+   Ces étapes téléchargement et installez les étapes restantes de hello modules nécessaires toocomplete hello. Cette opération ne doit toobe effectuée une seule fois dans un environnement hello où vous exécutez des commandes PowerShell de hello.   
 
-* Authentifiez-vous sur Azure  
+* Authentifier tooAzure  
 
 ```
-# Authenticate (enter your credentials in the pop-up window)
+# Authenticate (enter your credentials in hello pop-up window)
 Add-AzureRmAccount
 ```
-Cette étape doit être répétée pour chaque session. Une fois que vous êtes authentifié, vos informations d’abonnement s’affichent.
+Cette étape doit toobe répété pour chaque session. Une fois que vous êtes authentifié, vos informations d’abonnement s’affichent.
 
 ![Compte Azure.][1]
 
-Maintenant que nous avons accès à Azure, nous pouvons créer le groupe de ressources.
+Maintenant que nous avons accès tooAzure, nous pouvons créer le groupe de ressources hello.
 
 * Créer un groupe de ressources
 
@@ -111,36 +111,36 @@ $rg = New-AzureRmResourceGroup -Name "uniquenamerequired523" -Location "South Ce
 $rg
 ```
 
-Vérifiez que le groupe de ressources est correctement configuré. **ProvisioningState** doit être « Réussi ».
-Le nom du groupe de ressources est utilisé par le modèle pour générer le nom du compte de stockage. Le nom du compte de stockage doit comprendre entre 3 et 24 caractères, uniquement des lettres en minuscules et des nombres.
+Vérifier que ce groupe de ressources hello est correctement configuré. **ProvisioningState** doit être « Réussi ».
+nom de groupe de ressources Hello est utilisé par le nom de compte de stockage hello modèle toogenerate hello. nom de compte de stockage Hello doit être comprise entre 3 et 24 caractères et utiliser des nombres et des lettres minuscules.
 
 ![Groupe de ressources][2]
 
-* À l’aide du déploiement du groupe de ressources, déployez un nouvel espace de travail Machine Learning.
+* Déploiement de groupe de ressources hello, de déployer un nouvel espace de travail de Machine Learning.
 
 ```
-# Create a Resource Group, TemplateFile is the location of the JSON template.
+# Create a Resource Group, TemplateFile is hello location of hello JSON template.
 $rgd = New-AzureRmResourceGroupDeployment -Name "demo" -TemplateFile "C:\temp\mlworkspace.json" -ResourceGroupName $rg.ResourceGroupName
 ```
 
-Une fois le déploiement terminé, il est simple d’accéder aux propriétés de l’espace de travail que vous avez déployé. Par exemple, vous pouvez accéder au jeton de clé primaire.
+Une fois le déploiement de hello est terminé, il est simple tooaccess des propriétés de l’espace de travail hello que vous avez déployé. Par exemple, vous pouvez accéder à un jeton de clé primaire de hello.
 
 ```
 # Access Azure ML Workspace Token after its deployment.
 $rgd.Outputs.mlWorkspaceToken.Value
 ```
 
-Une autre méthode pour récupérer des jetons de l’espace de travail existant consiste à utiliser la commande Invoke-AzureRmResourceAction. Par exemple, vous pouvez répertorier les jetons principaux et secondaires de tous les espaces de travail.
+Les jetons tooretrieve un autre moyen de l’espace de travail existant est toouse hello Invoke-AzureRmResourceAction commande. Par exemple, vous pouvez répertorier les jetons principaux et secondaires de hello de tous les espaces de travail.
 
 ```  
-# List the primary and secondary tokens of all workspaces
+# List hello primary and secondary tokens of all workspaces
 Get-AzureRmResource |? { $_.ResourceType -Like "*MachineLearning/workspaces*"} |% { Invoke-AzureRmResourceAction -ResourceId $_.ResourceId -Action listworkspacekeys -Force}  
 ```
-Après la configuration de l’espace de travail, vous pouvez également automatiser de nombreuses tâches Azure Machine Learning Studio à l’aide du [Module PowerShell pour Azure Machine Learning](http://aka.ms/amlps).
+Une fois que l’espace de travail hello est configuré, vous pouvez également automatiser plusieurs tâches d’Azure Machine Learning Studio à l’aide de hello [PowerShell Module pour Azure Machine Learning](http://aka.ms/amlps).
 
 ## <a name="next-steps"></a>Étapes suivantes
 * Pour en savoir plus, consultez [Création de modèles Azure Resource Manager](../azure-resource-manager/resource-group-authoring-templates.md). 
-* Parcourez le [Référentiel de modèles de démarrage rapide Azure](https://github.com/Azure/azure-quickstart-templates). 
+* Regardez hello [référentiel de modèles de démarrage rapide Azure](https://github.com/Azure/azure-quickstart-templates). 
 * Regardez cette vidéo sur [Azure Resource Manager](https://channel9.msdn.com/Events/Ignite/2015/C9-39). 
 
 <!--Image references-->

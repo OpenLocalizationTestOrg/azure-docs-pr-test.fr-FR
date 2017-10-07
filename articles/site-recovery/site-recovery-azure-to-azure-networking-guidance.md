@@ -1,5 +1,5 @@
 ---
-title: "Aide à la mise en réseau Azure Site Recovery pour la réplication de machines virtuelles d’Azure vers Azure | Microsoft Docs"
+title: "aaaAzure Guide de mise en réseau de Site Recovery pour répliquer les machines virtuelles à partir d’Azure tooAzure | Documents Microsoft"
 description: "Aide à la mise en réseau pour la réplication des machines virtuelles Azure"
 services: site-recovery
 documentationcenter: 
@@ -14,69 +14,69 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 05/13/2017
 ms.author: sujayt
-ms.openlocfilehash: eb7b6d606d1a7455710be5e1cf0298c368fc8b1e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3a3391b8c3512932d243458fd17d2a2b39248448
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="networking-guidance-for-replicating-azure-virtual-machines"></a>Aide à la mise en réseau pour la réplication des machines virtuelles Azure
 
 >[!NOTE]
 > La réplication Site Recovery pour les machines virtuelles Azure est actuellement en préversion.
 
-Cet article fournit des instructions détaillées sur la mise en réseau pour Azure Site Recovery quand vous répliquez et récupérez des machines virtuelles d’une région vers une autre. Pour plus d’informations sur les conditions requises pour Azure Site Recovery, consultez l’article sur les [prérequis](site-recovery-prereq.md).
+Cet article explique hello pour Azure Site Recovery guide relatif au réseau lorsque vous êtes de réplication et de récupération des machines virtuelles à partir de la région de tooanother d’une région. Pour plus d’informations sur la configuration requise d’Azure Site Recovery, consultez hello [conditions préalables](site-recovery-prereq.md) l’article.
 
 ## <a name="site-recovery-architecture"></a>Architecture de Site Recovery
 
-Site Recovery fournit un moyen simple et facile de répliquer des applications qui s’exécutent sur des machines virtuelles vers une autre région Azure afin qu’elles puissent être récupérées en cas d’interruption dans la région principale. En savoir plus sur [ce scénario et l’architecture Site Recovery](site-recovery-azure-to-azure-architecture.md).
+Récupération de site fournit un moyen simple et facile de tooreplicate applications s’exécutant sur des machines virtuelles tooanother région Azure afin qu’ils puissent être récupérées s’il existe une interruption de la région principale de hello. En savoir plus sur [ce scénario et l’architecture Site Recovery](site-recovery-azure-to-azure-architecture.md).
 
 ## <a name="your-network-infrastructure"></a>Votre infrastructure réseau
 
-Le diagramme suivant illustre l’environnement Azure classique pour une application qui s’exécute sur des machines virtuelles Azure :
+Hello diagramme suivant représente hello classique environnement Azure pour une application s’exécutant sur des machines virtuelles :
 
 ![environnement client](./media/site-recovery-azure-to-azure-architecture/source-environment.png)
 
-Si vous utilisez Azure ExpressRoute ou une connexion VPN d’un réseau local vers Azure, l’environnement ressemble à ceci :
+Si vous utilisez Azure ExpressRoute ou une connexion VPN à partir d’un tooAzure de réseau local, l’environnement de hello ressemble à ceci :
 
 ![environnement client](./media/site-recovery-azure-to-azure-architecture/source-environment-expressroute.png)
 
-En règle générale, les clients protègent leurs réseaux à l’aide de pare-feu et/ou de groupes de sécurité réseau. Les pare-feu peuvent utiliser des listes vertes basées sur les URL ou sur les adresses IP pour contrôler la connectivité réseau. Les groupes de sécurité réseau permettent d’appliquer des règles d’utilisation de plages d’adresses IP pour contrôler la connectivité réseau.
+En règle générale, les clients protègent leurs réseaux à l’aide de pare-feu et/ou de groupes de sécurité réseau. pare-feux Hello permet qu’il soit basée sur URL ou IP création de listes autorisées pour le contrôle de la connectivité réseau. Règles d’autorisation de groupes de sécurité réseau pour l’utilisation de connectivité du réseau toocontrol plages IP.
 
 >[!IMPORTANT]
-> Si vous utilisez un proxy authentifié pour contrôler la connectivité réseau, il n’est pas pris en charge et la réplication Site Recovery ne peut pas être activé. 
+> Si vous utilisez une connectivité de réseau toocontrol proxy authentifié, il n’est pas pris en charge et ne peut pas activer la réplication de la récupération de Site. 
 
-Les sections suivantes décrivent les modifications de connectivité réseau sortante qui sont nécessaires sur les machines virtuelles pour que la réplication Site Recovery fonctionne.
+Hello sections suivantes décrivent les modifications connectivité sortante hello réseau qui sont requises à partir de machines virtuelles pour toowork de réplication de Site Recovery.
 
 ## <a name="outbound-connectivity-for-azure-site-recovery-urls"></a>Connectivité sortante pour les URL Azure Site Recovery
 
-Si vous utilisez un proxy de pare-feu quelconque basé sur l’URL pour contrôler la connectivité sortante, veillez à inclure les URL de service Azure Site Recovery nécessaires suivantes dans la liste verte :
+Si vous utilisez toute connexion sortante de pare-feu basé sur l’URL de proxy toocontrol, être toowhitelist que ceux-ci requis des URL de service Azure Site Recovery :
 
 
 **URL** | **Objectif**  
 --- | ---
-*.blob.core.windows.net | Nécessaire pour que les données puissent être écrites dans le compte de stockage de cache dans la région source à partir de la machine virtuelle.
-login.microsoftonline.com | Nécessaire pour l’autorisation et l’authentification aux URL du service Site Recovery.
-*.hypervrecoverymanager.windowsazure.com | Nécessaire pour que la communication du service Site Recovery puisse avoir lieu à partir de la machine virtuelle.
-*.servicebus.windows.net | Nécessaire pour que les données de surveillance et de diagnostic Site Recovery puissent être écrites à partir de la machine virtuelle.
+*.blob.core.windows.net | Requis pour que les données peuvent être écrites compte de stockage de cache toohello dans la région de hello source à partir de la machine virtuelle de hello.
+login.microsoftonline.com | Obligatoire pour les authentifications et les URL du service de récupération de Site toohello.
+*.hypervrecoverymanager.windowsazure.com | Requis pour que la communication avec le service Site Recovery hello peut se produire à partir de la machine virtuelle de hello.
+*.servicebus.windows.net | Requis pour que les données de surveillance et de diagnostic de la récupération de Site hello peuvent être écrites à partir de la machine virtuelle de hello.
 
 ## <a name="outbound-connectivity-for-azure-site-recovery-ip-ranges"></a>Connectivité sortante pour les plages d’adresses IP Azure Site Recovery
 
 >[!NOTE]
-> Pour créer automatiquement les règles de groupe de sécurité réseau requises sur le groupe de sécurité réseau, vous pouvez [télécharger et utiliser ce script](https://gallery.technet.microsoft.com/Azure-Recovery-script-to-0c950702).
+> tooautomatically créer des règles du groupe de sécurité réseau hello requis sur le groupe de sécurité réseau hello, vous pouvez [télécharger et utiliser ce script](https://gallery.technet.microsoft.com/Azure-Recovery-script-to-0c950702).
 
 >[!IMPORTANT]
-> * Nous vous recommandons de créer les règles de groupe de sécurité réseau requises sur un groupe de sécurité réseau de test, et de vérifier qu’il n’y a aucun problème avant de créer les règles sur un groupe de sécurité réseau de production.
-> * Pour créer le nombre nécessaire de règles de groupe de sécurité réseau, vérifiez que votre abonnement figure dans la liste verte. Contactez le support pour augmenter la limite du nombre de règles de groupe de sécurité réseau dans votre abonnement.
+> * Nous vous recommandons de créer des règles de groupe de sécurité réseau hello requis sur un groupe de sécurité de réseau de test et de vérifier qu’il n’y a aucun problème avant de créer des règles de hello sur un groupe de sécurité de réseau de production.
+> * nombre de hello requis toocreate de règles du groupe de sécurité réseau, assurez-vous que votre abonnement est dans la liste approuvée. Contactez le support technique tooincrease hello NSG règle limite dans votre abonnement.
 
-Si vous utilisez un proxy de pare-feu quelconque basé sur l’adresse IP ou des règles de groupe de sécurité réseau pour contrôler la connectivité sortante, les plages d’adresses IP suivantes doivent figurer dans la liste verte, en fonction des emplacements source et cible des machines virtuelles :
+Si vous utilisez un pare-feu basé sur IP proxy connectivité sortante de groupe de sécurité réseau règles toocontrol, hello plages IP suivantes besoin dans la liste approuvée toobe, selon les emplacements source et cible de hello d’ordinateurs virtuels hello :
 
-- Toutes les plages d’adresses IP qui correspondent à l’emplacement source. (Vous pouvez télécharger les [plages d’adresses IP](https://www.microsoft.com/download/confirmation.aspx?id=41653).) L’inclusion dans la liste verte est nécessaire pour que les données puissent être écrites dans le compte de stockage de cache à partir de la machine virtuelle.
+- Emplacement source de toutes les plages IP qui correspondent toohello. (Vous pouvez télécharger hello [plages IP](https://www.microsoft.com/download/confirmation.aspx?id=41653).) Création de listes autorisées est requise afin que les données peuvent être écrites compte de stockage de cache toohello à partir de la machine virtuelle de hello.
 
-- Toutes les plages d’adresses IP qui correspondent aux [points de terminaison IP V4 d’authentification et d’identité](https://support.office.com/article/Office-365-URLs-and-IP-address-ranges-8548a211-3fe7-47cb-abb1-355ea5aa88a2#bkmk_identity) Office 365.
+- Toutes les plages IP qui correspondent tooOffice 365 [authentification et identité de points de terminaison IP V4](https://support.office.com/article/Office-365-URLs-and-IP-address-ranges-8548a211-3fe7-47cb-abb1-355ea5aa88a2#bkmk_identity).
 
     >[!NOTE]
-    > Si de nouvelles adresses IP sont ajoutées ultérieurement aux plages d’adresses IP Office 365, vous devez créer des règles de groupe de sécurité réseau.
+    > Si de nouvelles adresses IP sont ajouté les plages d’adresses IP 365 tooOffice Bonjour futures, vous devez toocreate de nouvelles règles de groupe de sécurité réseau.
     
 - Adresses IP des points de terminaison du service Site Recovery ([disponibles dans un fichier XML](https://aka.ms/site-recovery-public-ips)), qui dépendent de votre emplacement cible : 
 
@@ -107,38 +107,38 @@ Si vous utilisez un proxy de pare-feu quelconque basé sur l’adresse IP ou des
    Sud du Royaume-Uni | 51.140.43.158</br>51.140.29.146 | 51.140.189.52
 
 ## <a name="sample-nsg-configuration"></a>Exemple de configuration de groupe de sécurité réseau
-Cette section décrit les étapes nécessaires pour configurer des règles de groupe de sécurité réseau afin que la réplication Site Recovery puisse fonctionner sur une machine virtuelle. Si vous utilisez des règles de groupe de sécurité réseau pour contrôler la connectivité sortante, utilisez des règles « Autoriser le trafic HTTPS sortant » pour toutes les plages d’adresses IP requises.
+Cette section explique les règles de groupe de sécurité réseau tooconfigure hello étapes afin que la réplication de la récupération de Site peut travailler sur un ordinateur virtuel. Si vous utilisez une connexion sortante de groupe de sécurité réseau règles toocontrol, utilisez « Autoriser HTTPS sortant » de règles pour toutes les plages IP de hello requis.
 
 >[!Note]
-> Pour créer automatiquement les règles de groupe de sécurité réseau requises sur le groupe de sécurité réseau, vous pouvez [télécharger et utiliser ce script](https://gallery.technet.microsoft.com/Azure-Recovery-script-to-0c950702).
+> tooautomatically créer des règles du groupe de sécurité réseau hello requis sur le groupe de sécurité réseau hello, vous pouvez [télécharger et utiliser ce script](https://gallery.technet.microsoft.com/Azure-Recovery-script-to-0c950702).
 
-Par exemple, si l’emplacement source de votre machine virtuelle est « Est des États-Unis » et que l’emplacement cible de réplication est « Centre des États-Unis », suivez les étapes décrites dans les deux sections suivantes.
+Par exemple, si l’emplacement de la source de votre machine virtuelle est « États-Unis » et l’emplacement cible de réplication est « États-Unis », suivez les étapes de hello dans hello deux sections suivantes.
 
 >[!IMPORTANT]
-> * Nous vous recommandons de créer les règles de groupe de sécurité réseau requises sur un groupe de sécurité réseau de test, et de vérifier qu’il n’y a aucun problème avant de créer les règles sur un groupe de sécurité réseau de production.
-> * Pour créer le nombre nécessaire de règles de groupe de sécurité réseau, vérifiez que votre abonnement figure dans la liste verte. Contactez le support pour augmenter la limite du nombre de règles de groupe de sécurité réseau dans votre abonnement. 
+> * Nous vous recommandons de créer des règles de groupe de sécurité réseau hello requis sur un groupe de sécurité de réseau de test et de vérifier qu’il n’y a aucun problème avant de créer des règles de hello sur un groupe de sécurité de réseau de production.
+> * nombre de hello requis toocreate de règles du groupe de sécurité réseau, assurez-vous que votre abonnement est dans la liste approuvée. Contactez le support technique tooincrease hello NSG règle limite dans votre abonnement. 
 
-### <a name="nsg-rules-on-the-east-us-network-security-group"></a>Règles de groupe de sécurité réseau sur le groupe de sécurité réseau Est des États-Unis
+### <a name="nsg-rules-on-hello-east-us-network-security-group"></a>Règles du groupe de sécurité réseau sur le groupe de sécurité réseau hello est des États-Unis
 
-* Créez des règles qui correspondent aux [plages d’adresses IP d’Est des États-Unis](https://www.microsoft.com/download/confirmation.aspx?id=41653). Ceci est nécessaire pour que les données puissent être écrites dans le compte de stockage de cache à partir de la machine virtuelle.
+* Créer des règles qui correspondent trop[plages d’adresses IP d’US East](https://www.microsoft.com/download/confirmation.aspx?id=41653). Cela est nécessaire afin que les données peuvent être écrites compte de stockage de cache toohello à partir de la machine virtuelle de hello.
 
-* Créez des règles pour toutes les plages d’adresses IP qui correspondent aux [points de terminaison IP V4 d’authentification et d’identité](https://support.office.com/article/Office-365-URLs-and-IP-address-ranges-8548a211-3fe7-47cb-abb1-355ea5aa88a2#bkmk_identity) Office 365.
+* Créer des règles pour toutes les plages IP qui correspondent tooOffice 365 [authentification et identité de points de terminaison IP V4](https://support.office.com/article/Office-365-URLs-and-IP-address-ranges-8548a211-3fe7-47cb-abb1-355ea5aa88a2#bkmk_identity).
 
-* Créez des règles qui correspondent à l’emplacement cible :
+* Créer des règles qui correspondent emplacement cible de toohello :
 
    **Emplacement** | **Adresses IP du service Site Recovery** |  **Adresse IP de surveillance Site Recovery**
     --- | --- | ---
    Centre des États-Unis | 40.69.144.231</br>40.69.167.116 | 52.165.34.144
 
-### <a name="nsg-rules-on-the-central-us-network-security-group"></a>Règles de groupe de sécurité réseau sur le groupe de sécurité réseau Centre des États-Unis
+### <a name="nsg-rules-on-hello-central-us-network-security-group"></a>Règles du groupe de sécurité réseau sur le groupe de sécurité réseau hello du centre des États-Unis
 
-Ces règles sont nécessaires pour que la réplication puisse être activée de la région cible vers la région source après le basculement :
+Ces règles sont requis pour que la réplication peut être activée à partir de hello cible région toohello source région après le basculement :
 
-* Règles qui correspondent aux [plages d’adresses IP de Centre des États-Unis](https://www.microsoft.com/download/confirmation.aspx?id=41653). Ces règles sont nécessaires pour que les données puissent être écrites dans le compte de stockage de cache à partir de la machine virtuelle.
+* Les règles qui correspondent trop[plages d’adresses IP d’US Central](https://www.microsoft.com/download/confirmation.aspx?id=41653). Celles-ci sont requises afin que les données peuvent être écrites compte de stockage de cache toohello à partir de la machine virtuelle de hello.
 
-* Règles pour toutes les plages d’adresses IP qui correspondent aux [points de terminaison IP V4 d’authentification et d’identité](https://support.office.com/article/Office-365-URLs-and-IP-address-ranges-8548a211-3fe7-47cb-abb1-355ea5aa88a2#bkmk_identity) Office 365.
+* Règles pour toutes les plages IP qui correspondent tooOffice 365 [authentification et identité de points de terminaison IP V4](https://support.office.com/article/Office-365-URLs-and-IP-address-ranges-8548a211-3fe7-47cb-abb1-355ea5aa88a2#bkmk_identity).
 
-* Règles qui correspondent à l’emplacement source :
+* Emplacement source de règles qui correspondent toohello :
 
    **Emplacement** | **Adresses IP du service Site Recovery** |  **Adresse IP de surveillance Site Recovery**
     --- | --- | ---
@@ -147,36 +147,36 @@ Ces règles sont nécessaires pour que la réplication puisse être activée de 
 
 ## <a name="guidelines-for-existing-azure-to-on-premises-expressroutevpn-configuration"></a>Instructions pour une configuration ExpressRoute/VPN Azure vers Local
 
-Si vous avez une connexion ExpressRoute ou VPN entre l’infrastructure locale et l’emplacement source dans Azure, suivez les instructions de cette section.
+Si vous disposez d’une connexion ExpressRoute ou VPN entre locaux et hello source d’emplacement dans Azure, suivez les instructions de hello dans cette section.
 
 ### <a name="forced-tunneling-configuration"></a>Configuration de tunneling forcé
 
-Une configuration client courante consiste à définir un itinéraire par défaut (0.0.0.0/0) qui force le trafic Internet sortant à passer par l’emplacement local. Nous ne recommandons pas cette configuration. Le trafic de réplication et la communication du service Site Recovery ne doivent pas quitter la limite Azure. La solution consiste à ajouter des itinéraires définis par l’utilisateur pour [ces plages d’adresses IP](#outbound-connectivity-for-azure-site-recovery-ip-ranges) afin que le trafic de réplication n’accède pas à l’infrastructure locale.
+Une configuration de client commune est toodefine un itinéraire par défaut (0.0.0.0/0) force tooflow de trafic Internet sortant via un emplacement local de hello. Nous ne recommandons pas cette configuration. le trafic de réplication Hello et de communication du service de récupération de Site ne doivent pas laisser hello Azure limite. Bonjour solution est tooadd itinéraires définis par l’utilisateur (UDRs) pour [ces plages IP](#outbound-connectivity-for-azure-site-recovery-ip-ranges) afin que le trafic de réplication hello n’accéder localement.
 
-### <a name="connectivity-between-the-target-and-on-premises-location"></a>Connectivité entre l’emplacement cible et l’emplacement local
+### <a name="connectivity-between-hello-target-and-on-premises-location"></a>Connectivité entre l’emplacement local et la cible de hello
 
-Suivez ces instructions pour les connexions entre l’emplacement cible et l’emplacement local :
-- Si votre application doit se connecter aux machines locales ou s’il existe des clients qui se connectent à l’application à partir de l’infrastructure locale par le biais d’un VPN/ExpressRoute, vérifiez que vous avez au moins une [connexion site à site](../vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal.md) entre votre région Azure cible et le centre de données local.
+Suivez ces instructions pour les connexions entre l’emplacement cible de hello et un emplacement local de hello :
+- Si votre application a besoin de machines locales de toohello tooconnect ou s’il existe des clients qui se connectent toohello application sur site via VPN/ExpressRoute, assurez-vous d’avoir au moins un [connexion site à site](../vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal.md) entre votre centre de données cible Azure région et hello locaux.
 
-- Si vous prévoyez qu’un trafic élevé circulera entre votre région Azure cible et le centre de données local, vous devez créer une autre [connexion ExpressRoute](../expressroute/expressroute-introduction.md) entre la région Azure cible et le centre de données local.
+- Si vous prévoyez un grand nombre de tooflow le trafic entre votre cible région Azure et le centre de données hello local, vous devez créer un autre [connexion ExpressRoute](../expressroute/expressroute-introduction.md) entre le centre de données cible Azure région et hello locaux hello.
 
-- Si vous souhaitez conserver les adresses IP des machines virtuelles après leur basculement, laissez la connexion site à site/ExpressRoute de la région cible dans un état déconnecté. Ainsi, il n’y aura aucun conflit de plage entre les plages d’adresses IP de la région source et celles de la région cible.
+- Si vous souhaitez tooretain des adresses IP pour les ordinateurs virtuels de hello après que qu’ils basculent, conserver la connexion de site à site/ExpressRoute de la région de hello cible dans un état déconnecté. Il s’agit de toomake qu’il n’y a aucun conflit de plage entre les plages d’adresses IP de la région de hello source et les plages d’adresses IP de la région cible.
 
 ### <a name="best-practices-for-expressroute-configuration"></a>Bonnes pratiques en matière de configuration d’ExpressRoute
 Suivez ces bonnes pratiques pour la configuration d’ExpressRoute :
 
-- Vous devez créer un circuit ExpressRoute dans les régions source et cible. Vous devez ensuite créer une connexion entre :
-  - Le réseau virtuel source et le circuit ExpressRoute
-  - Le réseau virtuel cible et le circuit ExpressRoute
+- Vous devez toocreate un circuit ExpressRoute dans les deux régions de hello source et cible. Vous devez ensuite toocreate une connexion entre :
+  - réseau virtuel de Hello source et le circuit ExpressRoute de hello.
+  - réseau virtuel de Hello cible et le circuit ExpressRoute de hello.
 
-- Dans le cadre de la norme ExpressRoute, vous pouvez créer des circuits dans la même région géopolitique. Pour créer des circuits ExpressRoute dans des régions géopolitiques différentes, Azure ExpressRoute Premium est obligatoire, ce qui implique un coût incrémentiel. (Si vous utilisez déjà ExpressRoute Premium, il n’y a aucun frais supplémentaires.) Pour plus d’informations, consultez le [document relatifs aux emplacements ExpressRoute](../expressroute/expressroute-locations.md#azure-regions-to-expressroute-locations-within-a-geopolitical-region) et la [tarification ExpressRoute](https://azure.microsoft.com/pricing/details/expressroute/).
+- Dans le cadre de la norme d’ExpressRoute, vous pouvez créer des circuits Bonjour même région géopolitique. toocreate des circuits ExpressRoute dans différentes régions géopolitiques, Azure ExpressRoute Premium est requise, ce qui implique un coût incrémentiel. (Si vous utilisez déjà ExpressRoute Premium, il n’y a aucun frais supplémentaires.) Pour plus d’informations, consultez hello [document d’emplacements ExpressRoute](../expressroute/expressroute-locations.md#azure-regions-to-expressroute-locations-within-a-geopolitical-region) et [ExpressRoute tarification](https://azure.microsoft.com/pricing/details/expressroute/).
 
-- Nous vous recommandons d’utiliser des plages d’adresses IP différentes dans les régions source et cible. Le circuit ExpressRoute ne pourra pas se connecter en même temps à deux réseaux virtuels Azure ayant les mêmes plages d’adresses IP.
+- Nous vous recommandons d’utiliser des plages d’adresses IP différentes dans les régions source et cible. Hello circuit ExpressRoute ne pourra plus être tooconnect avec deux réseaux virtuels Azure Hello les plages IP même à hello même temps.
 
-- Vous pouvez créer des réseaux virtuels avec les mêmes plages d’adresses IP dans les deux régions, puis créer des circuits ExpressRoute dans les deux régions. En cas d’événement de basculement, déconnectez le circuit du réseau virtuel source et connectez le circuit sur le réseau virtuel cible.
+- Vous pouvez créer des réseaux virtuels avec la même adresse IP comprise dans les deux régions et créer des circuits ExpressRoute dans les deux régions de hello. Dans le cas de hello d’un événement de basculement, vous déconnecter de circuit de hello de réseau virtuel de hello source et connectez-vous circuit hello dans le réseau virtuel de hello cible.
 
  >[!IMPORTANT]
- > Si la région principale est complètement en panne, l’opération de déconnexion peut échouer. Cela empêchera le réseau virtuel cible d’obtenir la connectivité ExpressRoute.
+ > Si la région primaire hello est complètement bas, hello déconnexion opération peut échouer. Réseau virtuel de hello cible qui empêche de mise en route de la connectivité d’ExpressRoute.
 
 ## <a name="next-steps"></a>Étapes suivantes
 Commencez à protéger vos charges de travail en [répliquant des machines virtuelles Azure](site-recovery-azure-to-azure.md).

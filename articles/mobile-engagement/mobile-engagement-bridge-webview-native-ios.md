@@ -1,6 +1,6 @@
 ---
-title: "Créer un pont iOS WebView avec le Kit SDK Mobile Engagement iOS natif"
-description: "Décrit comment créer un pont entre WebView exécutant Javascript et le kit SDK Mobile Engagement iOS natif"
+title: aaaBridge iOS WebView avec native SDK iOS de Mobile Engagement
+description: "Décrit comment toocreate un pont entre WebView en cours d’exécution Javascript et hello natif Mobile Engagement SDK iOS"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,11 +14,11 @@ ms.devlang: objective-c
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 35f7bdbeb480122513ae2a0b04a6d8cfd426802a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 089ed8484722cb5ba624e5dce0e670ab56de514d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="bridge-ios-webview-with-native-mobile-engagement-ios-sdk"></a>Créer un pont iOS WebView avec le Kit SDK Mobile Engagement iOS natif
 > [!div class="op_single_selector"]
@@ -27,25 +27,25 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-Certaines applications mobiles sont conçues comme applications hybrides : le développement de l’application proprement dite s’effectue de manière native dans iOS Objective-C, mais certains ou même tous les écrans sont rendus dans une WebView iOS. Vous pouvez toujours utiliser le Kit SDK Mobile Engagement iOS dans ces applications. Ce didacticiel explique comment procéder. 
+Certaines applications mobiles sont conçues comme une application hybride où application hello elle-même est développée à l’aide de développement iOS native Objective-C, mais certains ou tous les écrans hello même sont rendues dans un WebView iOS. Vous pouvez utiliser toujours Mobile Engagement iOS SDK au sein de ces applications et de ce didacticiel décrit comment toogo sur cette opération. 
 
-Il existe deux approches, mais aucune n’est documentée :
+Il existe deux approches tooachieve ce que les deux ne sont pas documentées :
 
 * La première est décrite dans cet [article](http://stackoverflow.com/questions/9826792/how-to-invoke-objective-c-method-from-javascript-and-send-back-data-to-javascrip). Elle nécessite l’inscription d’un `UIWebViewDelegate` sur votre WebView et l’interception puis l’annulation immédiate d’une modification de l’emplacement effectuée dans Javascript. 
-* La deuxième approche est basée sur cette [session WWDC 2013](https://developer.apple.com/videos/play/wwdc2013/615). Elle est plus claire que la première, c’est pourquoi nous allons la suivre dans ce guide. Notez que cette approche fonctionne uniquement sur iOS7 et versions ultérieures. 
+* Une deuxième repose sur ce [WWDC 2013 session](https://developer.apple.com/videos/play/wwdc2013/615), une approche plus claire que hello tout d’abord et qui nous allons suivre ce guide. Notez que cette approche fonctionne uniquement sur iOS7 et versions ultérieures. 
 
-Suivez les étapes ci-dessous pour l’exemple de pont iOS :
+Suivez les étapes de hello ci-dessous pour hello iOS pont exemple :
 
-1. Tout d’abord, vous devez vérifier que vous avez bien effectué notre [didacticiel de prise en main](mobile-engagement-ios-get-started.md) pour intégrer le Kit SDK Mobile Engagement iOS à votre application hybride. Si vous le souhaitez, vous pouvez activer la journalisation de test comme suit, pour voir les méthodes du Kit SDK à mesure que nous les déclenchons à partir de la WebView. 
+1. Tout d’abord, vous devez tooensure que vous avez parcouru notre [didacticiel de mise en route](mobile-engagement-ios-get-started.md) toointegrate hello Mobile Engagement iOS SDK dans votre application hybride. Si vous le souhaitez, vous pouvez également activer la journalisation de test comme suit afin que vous puissiez voir les méthodes du Kit de développement logiciel hello comme nous les déclencher de hello webview. 
    
         - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
            ....
              [EngagementAgent setTestLogEnabled:YES];
            ....
         }
-2. Vérifiez maintenant que votre application hybride a un écran avec une WebView. Vous pouvez l’ajouter au `Main.storyboard` de l’application. 
-3. Associez cette WebView à votre **ViewController** en faisant glisser la WebView de la scène de contrôleur d’affichage vers l’écran de modification `ViewController.h`, et en la plaçant juste en dessous de la ligne `@interface`. 
-4. Après cela, une boîte de dialogue vous invite à fournir un nom. Tapez **webView**. Le fichier `ViewController.h` doit ressembler à ceci :
+2. Vérifiez maintenant que votre application hybride a un écran avec une WebView. Vous pouvez l’ajouter toohello `Main.storyboard` de l’application hello. 
+3. Associer ce webview avec votre **ViewController** en faisant glisser hello webview de hello vue contrôleur scène toohello `ViewController.h` modifier l’écran, en plaçant juste en dessous de hello `@interface` ligne. 
+4. Après cela, une boîte de dialogue vous invite à fournir un nom. Fournir le nom hello en tant que **webView**. Votre `ViewController.h` fichier doit ressembler à hello suivantes :
    
         #import <UIKit/UIKit.h>
         #import "EngagementViewController.h"
@@ -54,7 +54,7 @@ Suivez les étapes ci-dessous pour l’exemple de pont iOS :
         @property (strong, nonatomic) IBOutlet UIWebView *webView;
    
         @end
-5. Nous mettrons à jour le fichier `ViewController.m` ultérieurement. Tout d’abord, nous allons créer le fichier de pont qui crée un wrapper sur certaines méthodes du Kit SDK Mobile Engagement iOS couramment utilisées. Créez un fichier d’en-tête nommé **EngagementJsExports.h** qui utilise le mécanisme `JSExport` décrit dans la [session](https://developer.apple.com/videos/play/wwdc2013/615) mentionnée précédemment pour exposer les méthodes iOS natives. 
+5. Nous mettrons à jour hello `ViewController.m` fichier ultérieurement, mais tout d’abord, nous allons créer des fichiers de pont hello qui crée un wrapper sur certains iOS Mobile Engagement couramment utilisés méthodes du Kit de développement logiciel. Créer un nouveau fichier d’en-tête appelé **EngagementJsExports.h** qui utilise hello `JSExport` mécanisme décrit dans hello susmentionné [session](https://developer.apple.com/videos/play/wwdc2013/615) méthodes de tooexpose hello iOS natif. 
    
         #import <Foundation/Foundation.h>
         #import <JavaScriptCore/JavascriptCore.h>
@@ -72,7 +72,7 @@ Suivez les étapes ci-dessous pour l’exemple de pont iOS :
         @interface EngagementJs : NSObject <EngagementJsExports>
    
         @end
-6. Nous allons ensuite créer la deuxième partie du fichier de pont. Créez un fichier nommé **EngagementJsExports.m** qui contiendra l’implémentation créant les wrappers réels en appelant les méthodes du Kit SDK Mobile Engagement iOS. Notez également que nous analysons le `extras` qui est passé à partir du code Javascript de la WebView et que nous le mettons dans un objet `NSMutableDictionary` à passer avec les appels de méthode du Kit SDK Engagement.  
+6. Ensuite, nous allons créer hello deuxième partie du fichier de pont hello. Créez un fichier appelé **EngagementJsExports.m** qui contiendra la mise en œuvre hello création de wrappers réels hello en appelant des méthodes du Kit de développement logiciel hello Mobile Engagement iOS. Notez également que nous examinons l’analyse hello `extras` transmises à partir de javascript du webview hello et à placer dans un `NSMutableDictionary` toobe de l’objet passé avec la méthode du SDK de l’Engagement de hello appels.  
    
         #import <UIKit/UIKit.h>
         #import "EngagementAgent.h"
@@ -113,7 +113,7 @@ Suivez les étapes ci-dessous pour l’exemple de pont iOS :
         }
    
         @end
-7. Maintenant, nous revenons à **ViewController.m** et nous le mettons à jour avec le code suivant : 
+7. Maintenant nous reviendrons toohello **ViewController.m** et de mises à jour hello suivant de code : 
    
         #import <JavaScriptCore/JavaScriptCore.h>
         #import "ViewController.h"
@@ -158,11 +158,11 @@ Suivez les étapes ci-dessous pour l’exemple de pont iOS :
         }
    
         @end
-8. Notez les points suivants concernant le fichier **ViewController.m** :
+8. Points suivants de hello Remarque à propos hello **ViewController.m** fichier :
    
-   * Dans la méthode `loadWebView` , nous chargeons un fichier HTML local nommé **LocalPage.html** , dont nous allons maintenant examiner le code. 
-   * Dans la méthode `webViewDidFinishLoad`, nous prenons le `JsContext` et nous l’associons à notre classe wrapper. Cela va nous permettre d’appeler nos méthodes du Kit SDK de wrapper **EngagementJs** à partir de la WebView. 
-9. Créez un fichier nommé **LocalPage.html** avec le code suivant :
+   * Bonjour `loadWebView` (méthode), nous chargeons un fichier HTML local appelé **LocalPage.html** dont nous allons examiner ensuite le code. 
+   * Bonjour `webViewDidFinishLoad` (méthode), nous sommes en saisissant hello `JsContext` et en associant notre classe wrapper. Cela permettra de méthodes de wrapper de notre kit de développement logiciel à l’aide de la poignée de hello **EngagementJs** de hello webView. 
+9. Créez un fichier appelé **LocalPage.html** avec hello suivant de code :
    
         <!doctype html>
         <html>
@@ -186,7 +186,7 @@ Suivez les étapes ci-dessous pour l’exemple de pont iOS :
                    if(input)
                    {
                        var value = input.value;
-                       // Example of how extras info can be passed with the Engagement logs
+                       // Example of how extras info can be passed with hello Engagement logs
                        var extras = '{"CustomerId":"MS290011"}';
                    }
    
@@ -248,16 +248,16 @@ Suivez les étapes ci-dessous pour l’exemple de pont iOS :
                </div>
            </body>
         </html>
-10. Notez les points suivants concernant le fichier HTML ci-dessus :
+10. Remarque hello points suivants à le sur le fichier HTML de hello ci-dessus :
     
-    * Il contient un ensemble de zones d’entrée où vous pouvez fournir des données à utiliser comme noms pour votre event, job, error et appInfo. Quand vous cliquez sur le bouton en regard, le code Javascript est appelé, et celui-ci appelle les méthodes à partir du fichier de pont pour passer cet appel au kit SDK Mobile Engagement iOS. 
-    * Nous associons certaines informations statiques supplémentaire aux événements, aux tâches et même aux erreurs pour illustrer comment cela est réalisable. Ces informations supplémentaires sont envoyées sous forme de chaîne JSON qui, si vous regardez dans le fichier `EngagementJsExports.m` , est analysée et transmise lors de l’envoi des événements, tâches et erreurs. 
-    * Une tâche Mobile Engagement est démarrée avec le nom que vous spécifiez dans la zone d’entrée, elle s’exécute pendant 10 secondes, puis elle s’arrête. 
-    * Une balise ou une appinfo Mobile Engagement est passée avec « customer_name » comme clé statique et la valeur que vous avez entrée comme valeur de balise. 
-11. Exécutez l’application. Vous verrez ce qui suit. Maintenant, fournissez un nom pour un événement de test comme celui qui suit et cliquez sur **Send** à côté. 
+    * Il contient un ensemble de zones d’entrée dans laquelle vous pouvez fournir toobe de données utilisé comme noms pour votre événement, la tâche, l’erreur, l’AppInfo. Lorsque vous cliquez sur tooit de hello bouton suivant, un appel est fait toohello Javascript qui appelle finalement les méthodes de hello de hello pont fichier toopass cette toohello appel SDK iOS de Mobile Engagement. 
+    * Nous sommes le marquage sur certains événements de toohello statique informations supplémentaire, les travaux et même erreurs toodemonstrate comment cette opération peut être effectuée. Cette information supplémentaire est envoyée en tant que chaîne de JSON qui, si vous regardez dans hello `EngagementJsExports.m` de fichiers, qui est analysée et passés en même temps que les événements, les tâches, erreurs d’envoi. 
+    * Un travail d’Engagement Mobile est lancé avec nom hello vous spécifiez dans la zone d’entrée de hello, exécutez pendant 10 secondes et arrêté. 
+    * Un appinfo d’Engagement Mobile ou une balise est passé en tant que clé statique de hello et valeur hello que vous avez entré dans l’entrée de hello en tant que valeur de hello de balise de hello avec 'customer_name'. 
+11. Application hello d’exécution et que vous découvrez hello. Maintenant fournir un nom pour un événement de test comme hello suivant et cliquez sur **envoyer** tooit suivant. 
     
      ![][1]
-12. Maintenant, si vous accédez à l’onglet **Surveiller** de votre application et que vous regardez sous **Événements -> Détails**, vous voyez cet événement et les informations d’application statiques que nous envoyons. 
+12. Maintenant, si vous accédez toohello **moniteur** onglet de votre application et l’aspect sous **événements -> détails**, vous verrez cet événement s’affichent en même temps que hello statique-informations sur l’application que vous envoyez. 
     
     ![][2]
 

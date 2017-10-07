@@ -1,6 +1,6 @@
 ---
-title: "(obsolète) Publication du service web Machine Learning sur Azure Marketplace | Microsoft Docs"
-description: "(obsolète) Publication du service web Machine Learning sur Azure Marketplace"
+title: web service tooAzure Marketplace apprentissage publication automatique AAA(deprecated) | Documents Microsoft
+description: "(déconseillée) Comment toopublish votre toohello de Service Web de Azure Machine Learning Azure Marketplace"
 services: machine-learning
 documentationcenter: 
 author: BharathS
@@ -16,78 +16,78 @@ ms.date: 06/02/2017
 ms.author: bharaths
 ROBOTS: NOINDEX
 redirect_url: machine-learning-gallery-experiments
-redirect_document_id: TRUE
-ms.openlocfilehash: 3e3420872f0c604e027d1f309a6de6f52a5a788c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+redirect_document_id: True
+ms.openlocfilehash: 149abc3df9b79c1b37d233d5e85e803592ff1020
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deprecated-publish-azure-machine-learning-web-service-to-the-azure-marketplace"></a>(obsolète) Publication du service web Machine Learning sur Azure Marketplace
+# <a name="deprecated-publish-azure-machine-learning-web-service-toohello-azure-marketplace"></a>(déconseillée) Publier le Service Web de Azure Machine Learning toohello Azure Marketplace
 
 > [!NOTE]
 > DataMarket et Data Services vont être mis hors service et les abonnements existants seront annulés à compter du 31/03/2017. Par conséquent, cet article deviendra obsolète. 
 > 
-> Vous pouvez aussi publier vos expériences d’apprentissage Machine Learning dans la [galerie Cortana Intelligence](https://gallery.cortanaintelligence.com/) pour les partager avec la communauté spécialiste des données. Pour plus d’informations, consultez [Partager et découvrir des solutions dans la galerie Cortana Intelligence](https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-gallery-how-to-use-contribute-publish).
+> En guise d’alternative, vous pouvez publier votre toohello d’expériences d’apprentissage [Cortana Intelligence galerie](https://gallery.cortanaintelligence.com/) pour avantage hello de communauté de science des données hello. Pour plus d’informations, consultez [partager et découvrir des ressources Bonjour Cortana Intelligence galerie](https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-gallery-how-to-use-contribute-publish).
 
-Azure Marketplace offre la possibilité de publier des services web Azure Machine Learning sous forme de services payants ou gratuits que des clients externes pourront consommer. Cet article propose une présentation du processus, avec des liens vers les consignes pour vous aider à démarrer. À l’aide de ce processus, vous pouvez mettre vos services Web à disposition d’autres développeurs, qui pourront les consommer dans leurs applications.
+Bonjour Azure Marketplace permet hello les services web Azure Machine Learning toopublish payée ou libérez de services pour la consommation par les clients externes. Cet article fournit une vue d’ensemble du processus avec des liens tooget de tooguidelines que vous avez démarré. À l’aide de ce processus, vous proposer vos services web pour les autres tooconsume les développeurs dans leurs applications.
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-## <a name="overview-of-the-publishing-process"></a>Présentation du processus de publication
-Les étapes suivantes vous permettront de publier un service Web Azure Machine Learning sur Azure Marketplace :
+## <a name="overview-of-hello-publishing-process"></a>Vue d’ensemble du processus de publication de hello
+Hello Voici les étapes de hello pour la publication d’un tooAzure de service web Azure Machine Learning Marketplace :
 
 1. Créez et publiez un service Request-Response (Request-Response Service, service de requête-réponse) Machine Learning
-2. Déployez le service en production et obtenez les informations du point de terminaison OData et de la clé d’API.
-3. Utilisez l’URL du service Web à publier sur [Azure Marketplace (Data Market)](https://publish.windowsazure.com/workspace/) 
-4. Une fois soumise, votre offre est évaluée et doit être approuvée avant que vos clients puissent commencer à l'acheter. Le processus de publication peut prendre quelques jours ouvrés. 
+2. Déployez hello service tooproduction et obtenir hello les informations de point de terminaison OData et de la clé d’API.
+3. Utilisez les URL de hello Hello publié toopublish de service web trop[Azure Marketplace (Data Market)](https://publish.windowsazure.com/workspace/) 
+4. Une fois envoyé, votre offre est examinée et doit toobe approuvée avant son vos clients pouvez commencer à acheter. processus de publication Hello peut prendre de quelques jours ouvrables. 
 
 ## <a name="walk-through"></a>Procédure
 ### <a name="step-1-create-and-publish-a-machine-learning-request-response-service-rrs"></a>Étape 1 : créez et publiez un RRS (Request-Response Service, service de requête-réponse) Machine Learning
  Si vous ne l’avez pas encore fait, consultez ce [guide](machine-learning-walkthrough-5-publish-web-service.md).
 
-### <a name="step-2-deploy-the-service-to-production-and-obtain-the-api-key-and-odata-endpoint-information"></a>Étape 2 : déployez le service en production et obtenez les informations de point de terminaison OData et de la clé d’API.
-1. Depuis le [portail Azure Classic](http://manage.windowsazure.com), sélectionnez l’option **MACHINE LEARNING** dans la barre de navigation de gauche, puis sélectionnez votre espace de travail. 
-2. Cliquez sur l’onglet **WEB SERVICES** (services Web) et sélectionnez le service Web que vous souhaitez publier sur le marché.
+### <a name="step-2-deploy-hello-service-tooproduction-and-obtain-hello-api-key-and-odata-endpoint-information"></a>Étape 2 : Déployer hello service tooproduction et obtenir hello les informations de point de terminaison OData et de la clé d’API
+1. À partir de hello [portail classique Azure](http://manage.windowsazure.com), sélectionnez hello **MACHINE LEARNING** option à partir de la barre de navigation gauche hello et sélectionnez votre espace de travail. 
+2. Cliquez sur hello **SERVICES WEB** onglet et sélectionnez hello web vous aimeriez toopublish toohello marketplace.
    
     ![Azure Marketplace][workspace]
-3. Sélectionnez le point de terminaison que vous souhaitez voir consommé par le marché. Si vous n’avez créé aucun point de terminaison supplémentaire, vous pouvez sélectionner le point de terminaison **Default** (par défaut).
-4. Une fois que vous avez cliqué sur le point de terminaison, vous voyez la **API KEY** (clé API). Vous aurez besoin de cette information par la suite, lors de l’étape 3. Faites-en une copie.
+3. Sélectionnez le point de terminaison hello vous comme toohave hello marketplace consomme. Si vous n’avez pas créé de points de terminaison supplémentaires, vous pouvez sélectionner hello **par défaut** point de terminaison.
+4. Une fois que vous avez cliqué sur le point de terminaison hello, vous serez en mesure de toosee hello **clé API**. Vous aurez besoin de cette information par la suite, lors de l’étape 3. Faites-en une copie.
    
     ![Azure Marketplace][apikey]
-5. Cliquez sur la méthode **REQUEST/RESPONSE** (requête/réponse). Pour l’instant, nous ne prenons pas en charge la publication de services d’exécution par lots sur le marketplace. Vous serez dirigé sur la page d’aide API pour la méthode Request/Response.
-6. Copiez l’ **OData Endpoint Address**(l’adresse du point de terminaison OData), vous aurez besoin de ces informations ultérieurement, lors de l’étape 3.
+5. Cliquez sur hello **demande/réponse** toohello marketplace de services de méthode, à ce stade, nous ne prennent pas en charge la publication de l’exécution par lots. Que vous obtiendrez la page d’aide toohello API hello méthode de demande/réponse.
+6. Hello de copie **adresse de point de terminaison OData**, vous devez ces informations ultérieurement à l’étape 3.
    
     ![Azure Marketplace][odata]
 
-déployez le service en production.
+déployer un service de hello en production.
 
-### <a name="step-3-use-the-url-of-the-published-web-service-to-publish-to-azure-marketplace-datamarket"></a>Étape 3 : utilisez l’URL du service Web à publier sur Azure Marketplace (DataMarket)
-1. Accédez à [Azure Marketplace (Data Market)](http://datamarket.azure.com/home) 
-2. Cliquez sur le lien **Publish** (Publier) en haut de la page. Vous serez dirigé vers le [portail de publication Microsoft Azure](https://publish.windowsazure.com)
-3. Cliquez sur la section **publishers** (éditeurs) pour vous inscrire en tant qu’éditeur.
+### <a name="step-3-use-hello-url-of-hello-published-web-service-toopublish-tooazure-marketplace-datamarket"></a>Étape 3 : Utilisation des URL de hello Hello publié web service toopublish tooAzure Marketplace (DataMarket)
+1. Accédez trop[Azure Marketplace (Data Market)](http://datamarket.azure.com/home) 
+2. Cliquez sur hello **publier** lien en hello haut hello. Cette opération prendra toohello [portail de publication Microsoft Azure](https://publish.windowsazure.com)
+3. Cliquez sur hello **éditeurs** tooregister section comme serveur de publication.
 4. Durant la création d’une offre, sélectionnez **Services de données**, puis cliquez sur **Créer un nouveau service de données**. 
    
    ![Azure Marketplace][image1]
    
    <br />
-5. Sous **Plans** , indiquez les informations relatives à votre offre, y compris un plan de tarification. Vous pouvez choisir de proposer un service payant ou gratuit. Pour être payé, vous devez indiquer des informations de paiement, notamment vos renseignements bancaires et fiscaux.
-6. Sous **Marketing** , vous devez fournir des informations relatives à votre offre, comme son titre et sa description.
-7. Sous **Tarification** , vous pouvez fixer le prix de vos plans pour des pays donnés, ou laisser le système décider lui-même du prix de votre offre.
-8. Sous l’onglet **Service de données**, cliquez sur **Service Web** pour la **Source de données**.
+5. Sous **Plans** , indiquez les informations relatives à votre offre, y compris un plan de tarification. Vous pouvez choisir de proposer un service payant ou gratuit. tooget payé, fournissent des informations de paiement telles que vos informations bancaires et les taxes.
+6. Sous **Marketing** fournissent des informations sur votre offre, telles que le titre de hello et une description pour votre offre.
+7. Sous **tarification** vous pouvez définir les prix hello pour vos plans pour pays spécifiques, ou laissez le système hello « autoprice » dans votre offre.
+8. Sur hello **Service de données** , cliquez sur **Service Web** comme hello **Source de données**.
    
     ![Azure Marketplace][image2]
-9. Obtenez l’URL du service web et la clé API à partir du portail Azure Classic, tel qu’expliqué dans l’étape 2 ci-dessus.
-10. Dans la boîte de dialogue de configuration du service de données Marketplace, collez l’adresse du point de terminaison OData dans la zone de texte **URL du service** .
-11. Pour **l’authentification**, choisissez **En-tête** comme **Schéma d’authentification**.
+9. Obtenir hello web service URL et la clé API hello portail Azure Classic, comme expliqué à l’étape 2 ci-dessus.
+10. Dans la boîte de dialogue de configuration de Service de données Marketplace de hello, collez adresse de point de terminaison OData hello hello **URL du Service** zone de texte.
+11. Pour **authentification**, choisissez **en-tête** comme hello **schéma d’authentification**.
     
-    * Saisissez « Autorisation » comme **nom d’en-tête**.
-    * Pour la **valeur d’en-tête**, entrez « Titulaire » (sans les guillemets), appuyez sur la barre **d’espace** et collez la clé API.
-    * Cochez la case **Ce service est OData** .
-    * Cliquez sur **Tester la connexion** pour tester la connexion.
+    * Entrez « Authorization » pour hello **nom d’en-tête**.
+    * Pourquoi **valeur d’en-tête**, entrez « Support » (sans les guillemets hello), cliquez sur hello **espace** barre, puis collez la clé d’API de hello.
+    * Sélectionnez hello **ce Service est OData** case à cocher.
+    * Cliquez sur **tester la connexion** connexion de hello tootest.
 12. Sous **Catégories**, assurez-vous que l’option **Apprentissage automatique** est sélectionnée.
-13. Quand vous avez terminé la saisie de toutes les métadonnées concernant votre offre, cliquez sur **Publier**, puis **Push dans l’environnement intermédiaire**. À ce stade, vous recevrez une notification pour chaque problème restant à corriger.
-14. Après avoir vérifié l’achèvement de tous les problèmes en suspens, cliquez sur **Demander l’approbation pour pousser vers la Production**. Le processus de publication peut prendre quelques jours ouvrés. 
+13. Lorsque vous avez terminé de saisir toutes hello métadonnées sur votre offre, cliquez sur **publier**, puis **Push tooStaging**. À ce stade, vous soient prévenus de tous les problèmes restants que vous avez besoin de toofix.
+14. Une fois que vous avez vérifié que l’achèvement de tous les problèmes en suspens hello, cliquez sur **demander l’approbation toopush tooProduction**. processus de publication Hello peut prendre de quelques jours ouvrables. 
 
 [image1]:./media/machine-learning-publish-web-service-to-azure-marketplace/image1.png
 [image2]:./media/machine-learning-publish-web-service-to-azure-marketplace/image2.png

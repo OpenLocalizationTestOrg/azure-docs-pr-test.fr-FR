@@ -1,6 +1,6 @@
 ---
-title: Enregistrer des rapports dans Azure Power BI Embedded | Microsoft Docs
-description: "Découvrez comment enregistrer des rapports dans Power BI Embedded. Cela requiert les autorisations appropriées pour fonctionner correctement."
+title: rapports aaaSave dans Azure Power BI Embedded | Documents Microsoft
+description: "Découvrez comment toosave des rapports dans Power BI incorporé. Cela nécessite des autorisations appropriées dans l’ordre toowork avec succès."
 services: power-bi-embedded
 documentationcenter: 
 author: guyinacube
@@ -15,36 +15,36 @@ ms.tgt_pltfrm: NA
 ms.workload: powerbi
 ms.date: 03/11/2017
 ms.author: asaxton
-ms.openlocfilehash: ad895004cc2972f2ded81566186325a16d401151
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 984537ce1ce1afc787d6c6c9f61ae8d6226d1171
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="save-reports-in-power-bi-embedded"></a>Enregistrer des rapports dans Power BI Embedded
 
-Découvrez comment enregistrer des rapports dans Power BI Embedded. Cela requiert les autorisations appropriées pour fonctionner correctement.
+Découvrez comment toosave des rapports dans Power BI incorporé. Cela nécessite des autorisations appropriées dans l’ordre toowork avec succès.
 
-Dans Power BI Embedded, vous pouvez modifier des rapports existants et les enregistrer. Vous pouvez également créer un nouveau rapport ou enregistrer un rapport sous un nouveau rapport.
+Dans Power BI Embedded, vous pouvez modifier des rapports existants et les enregistrer. Vous pouvez également créer un nouveau rapport et l’enregistrer en tant qu’un nouveau toocreate de rapport une.
 
-Pour enregistrer un rapport, vous devez d’abord créer un jeton pour le rapport en question avec des étendues adaptées :
+Dans l’ordre toosave un rapport, vous devez tout d’abord toocreate un jeton de rapport avec des étendues de droite hello hello :
 
-* Pour activer « enregistrer », l’étendue Report.ReadWrite est requise.
-* Pour activer « enregistrer sous », les étendues Report.Read et Workspace.Report.Copy sont requises.
-* Pour activer « enregistrer » et « enregistrer sous », les étendues Report.ReadWrite et Workspace.Report.Copy sont requises.
+* tooenable enregistrer Report.ReadWrite étendue est requise
+* tooenable enregistrer en tant que, Report.Read et Workspace.Report.Copy étendues sont requis
+* tooenable enregistrer et enregistrer sous, Report.ReadWrite et Workspace.Report.Copy requierd
 
-Pour activer les boutons « enregistrer » / « enregistrer sous » respectivement dans le menu Fichier, vous devez fournir les autorisations adéquates dans la configuration d’incorporation lorsque vous incorporez le rapport :
+Respectivement Bonjour de tooenable commande droit enregistrer/enregistrer que des boutons dans le menu fichier, vous devez tooprovide hello avec le bouton droit autorisation dans la configuration d’incorporer hello lorsque vous Embed hello rapport :
 
 * models.Permissions.ReadWrite
 * models.Permissions.Copy
 * models.Permissions.All
 
 > [!NOTE]
-> Votre jeton d’accès a également besoin des étendues appropriées. Pour plus d’informations, consultez la page [Étendues](power-bi-embedded-app-token-flow.md#scopes).
+> Votre jeton d’accès doit également les étendues appropriées hello. Pour plus d’informations, consultez la page [Étendues](power-bi-embedded-app-token-flow.md#scopes).
 
 ## <a name="embed-report-in-edit-mode"></a>Incorporer un rapport en mode Édition
 
-Supposons que vous souhaitez incorporer un rapport en mode Édition à l’intérieur de votre application : pour cela, transmettez simplement les propriétés adéquates dans la configuration d’incorporation et appelez powerbi.embed(). Vous devrez fournir les autorisations et un mode Affichage pour voir les boutons « enregistrer » et « enregistrer sous » en mode Édition. Pour plus d’informations, consultez la page [Détails de la configuration d’incorporation](https://github.com/Microsoft/PowerBI-JavaScript/wiki/Embed-Configuration-Details).
+Supposons que vous vouliez tooEmbed un rapport en mode d’édition à l’intérieur de votre application, toodo simplement passer des propriétés du droit de hello dans la configuration de l’incorporation d’appeler powerbi.embed(). Vous devez les autorisations toosupply et un viewMode Bonjour de toosee commande Enregistrer et enregistrer sous forme de boutons en mode édition. Pour plus d’informations, consultez la page [Détails de la configuration d’incorporation](https://github.com/Microsoft/PowerBI-JavaScript/wiki/Embed-Configuration-Details).
 
 Par exemple, dans JavaScript :
 
@@ -54,7 +54,7 @@ Par exemple, dans JavaScript :
     // Get models. Models, it contains enums that can be used.
     var models = window['powerbi-client'].models;
 
-    // Embed configuration used to describe the what and how to embed.
+    // Embed configuration used toodescribe hello what and how tooembed.
     // This object is used when calling powerbi.embed.
     // This also includes settings and options such as filters.
     // You can find more information at https://github.com/Microsoft/PowerBI-JavaScript/wiki/Embed-Configuration-Details.
@@ -71,10 +71,10 @@ Par exemple, dans JavaScript :
         }
     };
 
-    // Get a reference to the embedded report HTML element
+    // Get a reference toohello embedded report HTML element
     var reportContainer = $('#reportContainer')[0];
 
-    // Embed the report and display it within the div container.
+    // Embed hello report and display it within hello div container.
     var report = powerbi.embed(reportContainer, config);
 ```
 
@@ -82,10 +82,10 @@ Un rapport sera alors incorporé dans votre application en mode Édition.
 
 ## <a name="save-report"></a>Enregistrer le rapport
 
-Après avoir incorporé le rapport en mode Édition avec le bon jeton et les autorisations appropriées, vous pouvez enregistrer le rapport dans le menu Fichier ou à partir de JavaScript :
+Une fois le rapport de hello Embbeding dans modifier le mode avec hello à droite de jeton et les autorisations, vous pouvez enregistrer les rapports hello à partir du menu fichier de hello ou à partir de javascript :
 
 ```
- // Get a reference to the embedded report.
+ // Get a reference toohello embedded report.
     report = powerbi.get(reportContainer);
 
  // Save report
@@ -95,7 +95,7 @@ Après avoir incorporé le rapport en mode Édition avec le bon jeton et les aut
 ## <a name="save-as"></a>Enregistrer sous
 
 ```
-// Get a reference to the embedded report.
+// Get a reference toohello embedded report.
     report = powerbi.get(reportContainer);
     
     var saveAsParameters = {
@@ -107,9 +107,9 @@ Après avoir incorporé le rapport en mode Édition avec le bon jeton et les aut
 ```
 
 > [!IMPORTANT]
-> Le nouveau rapport n’est créé qu’après l’opération *enregistrer sous*. Après l’enregistrement, le canevas affiche toujours l’ancien rapport en mode Édition, et non le nouveau rapport. Vous devrez incorporer le nouveau rapport qui a été créé. Cela nécessite un nouveau jeton d’accès, car ils sont créés rapport par rapport.
+> Le nouveau rapport n’est créé qu’après l’opération *enregistrer sous*. Après hello enregistré, zone de dessin hello affiche toujours les rapports ancien hello dans modifier le mode et pas hello nouveau rapport. Vous devez tooembed hello nouveau rapport qui a été créé. Cela nécessite un nouveau jeton d’accès, car ils sont créés rapport par rapport.
 
-Vous devrez ensuite charger le nouveau rapport après une opération *enregistrer sous*. Cette opération est semblable à l’incorporation de tout autre rapport.
+Vous devez ensuite tooload hello nouveau rapport après un *enregistrer en tant que*. Cela est similaire tooembedding n’importe quel rapport.
 
 ```
 <div id="reportContainer"></div>
@@ -120,7 +120,7 @@ var embedConfiguration = {
         reportId: '5dac7a4a-4452-46b3-99f6-a25915e0fe54',
     };
     
-    // Grab the reference to the div HTML element that will host the report
+    // Grab hello reference toohello div HTML element that will host hello report
     var reportContainer = $('#reportContainer')[0];
 
     // Embed report
@@ -135,5 +135,5 @@ var embedConfiguration = {
 [Authentification et autorisation dans Power BI Embedded](power-bi-embedded-app-token-flow.md)  
 [Power BI Desktop](https://powerbi.microsoft.com/documentation/powerbi-desktop-get-the-desktop/)  
 [Exemple d’incorporation JavaScript](https://microsoft.github.io/PowerBI-JavaScript/demo/)  
-Des questions ? [Essayer la communauté Power BI](http://community.powerbi.com/)
+Des questions ? [Essayez de hello Communauté Power BI](http://community.powerbi.com/)
 

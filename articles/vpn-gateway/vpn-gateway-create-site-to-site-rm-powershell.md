@@ -1,6 +1,6 @@
 ---
-title: "Connecter votre réseau local à un réseau virtuel Azure : VPN site à site : PowerShell | Microsoft Docs"
-description: "Étapes de création d’une connexion IPsec entre votre réseau local et un réseau virtuel Azure via l’Internet public. Ces étapes vous aideront à créer une connexion de passerelle VPN de site à site à l’aide de PowerShell."
+title: "Se connecter à votre tooan de réseau local sur le réseau virtuel Azure : VPN de Site à Site : PowerShell | Documents Microsoft"
+description: "Toocreate étapes une connexion IPsec à partir de votre site réseau tooan réseau virtuel Azure sur hello Internet public. Ces étapes vous aideront à créer une connexion de passerelle VPN de site à site à l’aide de PowerShell."
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
@@ -15,15 +15,15 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 08/09/2017
 ms.author: cherylmc
-ms.openlocfilehash: 27f4a8fb9a83b98e99df635bf4c80f6048ce348c
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: cb8db1dab3a5488816a7f7e8e63908a4c02f55db
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-vnet-with-a-site-to-site-vpn-connection-using-powershell"></a>Créer un réseau virtuel avec une connexion VPN de site à site à l’aide de PowerShell
 
-Cet article vous explique comment utiliser PowerShell pour créer une connexion de passerelle VPN de site à site à partir de votre réseau local vers le réseau virtuel. Les étapes mentionnées dans cet article s’appliquent au modèle de déploiement Resource Manager. Vous pouvez également créer cette configuration à l’aide d’un autre outil ou modèle de déploiement en sélectionnant une option différente dans la liste suivante :
+Cet article explique comment toouse connexion de passerelle PowerShell toocreate un Site à Site VPN à partir de votre site réseau toohello réseau virtuel. étapes de Hello dans cet article s’appliquent à modèle de déploiement du Gestionnaire de ressources toohello. Vous pouvez également créer cette configuration à l’aide d’un outil de déploiement différentes ou d’un modèle de déploiement en sélectionnant une option différente de hello suivant liste :
 
 > [!div class="op_single_selector"]
 > * [Portail Azure](vpn-gateway-howto-site-to-site-resource-manager-portal.md)
@@ -35,22 +35,22 @@ Cet article vous explique comment utiliser PowerShell pour créer une connexion 
 >
 
 
-Une connexion de passerelle VPN de site à site permet de connecter votre réseau local à un réseau virtuel Azure via un tunnel VPN IPsec/IKE (IKEv1 ou IKEv2). Ce type de connexion requiert un périphérique VPN local disposant d’une adresse IP publique exposée en externe. Pour plus d’informations sur les passerelles VPN, consultez l’article [À propos de la passerelle VPN](vpn-gateway-about-vpngateways.md).
+Une connexion de passerelle VPN de Site à Site est utilisé tooconnect votre site réseau tooan réseau virtuel Azure via un tunnel VPN de IPsec/IKE (IKEv1 ou IKEv2). Ce type de connexion requiert un VPN périphérique local qui a un tooit d’adresse IP publique externe. Pour plus d’informations sur les passerelles VPN, consultez l’article [À propos de la passerelle VPN](vpn-gateway-about-vpngateways.md).
 
 ![Schéma de connexion intersite d’une passerelle VPN site à site](./media/vpn-gateway-create-site-to-site-rm-powershell/site-to-site-diagram.png)
 
 ## <a name="before"></a>Avant de commencer
 
-Vérifiez que vous disposez des éléments ci-dessous avant de commencer votre configuration :
+Vérifiez que vous avez rempli hello suivant des critères avant de commencer votre configuration :
 
-* Veillez à disposer d’un périphérique VPN compatible et à être entouré d’une personne en mesure de le configurer. Pour plus d’informations sur les périphériques VPN compatibles et la configuration de votre périphérique, consultez l’article [À propos des périphériques VPN](vpn-gateway-about-vpn-devices.md).
+* Assurez-vous que vous disposez d’un périphérique VPN compatible et une personne qui est en mesure de tooconfigure il. Pour plus d’informations sur les périphériques VPN compatibles et la configuration de votre périphérique, consultez l’article [À propos des périphériques VPN](vpn-gateway-about-vpn-devices.md).
 * Vérifiez que vous disposez d’une adresse IPv4 publique exposée en externe pour votre périphérique VPN. Cette adresse IP ne peut pas se trouver derrière un NAT.
-* Si vous ne maîtrisez pas les plages d’adresses IP situées dans votre configuration de réseau local, vous devez contacter une personne en mesure de vous aider. Lorsque vous créez cette configuration, vous devez spécifier les préfixes des plages d’adresses IP qu’Azure acheminera vers votre emplacement local. Aucun des sous-réseaux de votre réseau local ne peut chevaucher les sous-réseaux du réseau virtuel auquel vous souhaitez vous connecter.
-* Installez la dernière version des applets de commande PowerShell Azure Resource Manager. Les applets de commande PowerShell sont fréquemment mises à jour, et vous devez généralement mettre à jour les vôtres pour obtenir les toutes dernières fonctionnalités. Si vous ne mettez pas à jour vos applets de commande PowerShell, les valeurs spécifiées peuvent échouer. Pour plus d’informations sur le téléchargement et l’installation des applets de commande PowerShell, voir [How to install and configure Azure PowerShell (Guide pratique d’installation et de configuration d’Azure PowerShell)](/powershell/azure/overview).
+* Si vous n’êtes pas familiarisé avec les plages d’adresses IP hello situés dans configuration du réseau de votre site, vous devez toocoordinate avec une personne qui peut fournir ces informations pour vous. Lorsque vous créez cette configuration, vous devez spécifier hello plage préfixes d’adresse que Azure achemine emplacement local de tooyour. Aucun des sous-réseaux hello de votre réseau local peuvent se chevauchant avec les sous-réseaux du réseau virtuel hello tooconnect à souhaitées sur.
+* Installer la version la plus récente hello Hello applets de commande PowerShell de gestionnaire de ressources Azure. Applets de commande PowerShell sont fréquemment mis à jour et vous en aurez besoin tooupdate votre PowerShell applets de commande tooget hello dernières fonctionnalités. Si vous ne mettez à jour vos applets de commande PowerShell, les valeurs hello spécifiées peuvent échouer. Consultez [comment tooinstall et configurer Azure PowerShell](/powershell/azure/overview) pour plus d’informations sur le téléchargement et installation des applets de commande PowerShell.
 
 ### <a name="example"></a>Exemples de valeurs
 
-Nous utilisons les valeurs suivantes dans les exemples de cet article. Vous pouvez utiliser ces valeurs pour créer un environnement de test ou vous y référer pour mieux comprendre les exemples de cet article.
+exemples de Hello dans cet article utilisent hello valeurs suivantes. Vous pouvez utiliser ces valeurs de toocreate un environnement de test, ou consultez toothem toobetter comprendre les exemples hello dans cet article.
 
 ```
 #Example values
@@ -75,21 +75,21 @@ ConnectionName          = VNet1toSite2
 ```
 
 
-## <a name="Login"></a>1. Connexion à votre abonnement
+## <a name="Login"></a>1. Se connecter tooyour abonnement
 
 [!INCLUDE [PowerShell login](../../includes/vpn-gateway-ps-login-include.md)]
 
 ## <a name="VNet"></a>2. Créer un réseau virtuel et un sous-réseau de passerelle
 
-Si vous n’avez pas de réseau virtuel, créez-en un. Lorsque vous créez un réseau virtuel, vérifiez que les espaces d’adressage que vous spécifiez ne chevauchent pas les espaces d’adressage de votre réseau local.
+Si vous n’avez pas de réseau virtuel, créez-en un. Lorsque vous créez un réseau virtuel, assurez-vous que vous spécifiez des espaces d’adressage hello ne chevauchent pas hello d’espaces d’adressage que vous disposez sur votre réseau local.
 
 [!INCLUDE [About gateway subnets](../../includes/vpn-gateway-about-gwsubnet-include.md)]
 
 [!INCLUDE [No NSG warning](../../includes/vpn-gateway-no-nsg-include.md)]
 
-### <a name="vnet"></a>Création d’un réseau virtuel et d’un sous-réseau de passerelle
+### <a name="vnet"></a>toocreate un réseau virtuel et un sous-réseau de passerelle
 
-Cet exemple permet de créer un réseau virtuel et un sous-réseau de passerelle. Si vous disposez déjà d’un réseau virtuel auquel vous devez ajouter un sous-réseau de passerelle, consultez [Pour ajouter un sous-réseau de passerelle à un réseau virtuel que vous avez déjà créé](#gatewaysubnet).
+Cet exemple permet de créer un réseau virtuel et un sous-réseau de passerelle. Si vous disposez déjà d’un réseau virtuel que vous devez tooadd un sous-réseau de passerelle pour voir [tooadd un réseau virtuel tooa sous-réseau passerelle que vous avez déjà créé](#gatewaysubnet).
 
 Créez un groupe de ressources :
 
@@ -99,76 +99,76 @@ New-AzureRmResourceGroup -Name TestRG1 -Location 'East US'
 
 Créez votre réseau virtuel.
 
-1. Définissez les variables.
+1. Définir les variables de hello.
 
   ```powershell
   $subnet1 = New-AzureRmVirtualNetworkSubnetConfig -Name 'GatewaySubnet' -AddressPrefix 10.11.0.0/27
   $subnet2 = New-AzureRmVirtualNetworkSubnetConfig -Name 'Subnet1' -AddressPrefix 10.11.1.0/28
   ```
-2. Créez le réseau virtuel.
+2. Créer hello réseau virtuel.
 
   ```powershell
   New-AzureRmVirtualNetwork -Name TestVNet1 -ResourceGroupName TestRG1 `
   -Location 'East US' -AddressPrefix 10.11.0.0/16 -Subnet $subnet1, $subnet2
   ```
 
-### <a name="gatewaysubnet"></a>Pour ajouter un sous-réseau de passerelle à un réseau virtuel que vous avez déjà créé
+### <a name="gatewaysubnet"></a>tooadd un réseau virtuel de tooa de sous-réseau de passerelle que vous avez déjà créé
 
-1. Définissez les variables.
+1. Définir les variables de hello.
 
   ```powershell
   $vnet = Get-AzureRmVirtualNetwork -ResourceGroupName TestRG1 -Name TestVet1
   ```
-2. Créez le sous-réseau de passerelle.
+2. Créer un sous-réseau de passerelle hello.
 
   ```powershell
   Add-AzureRmVirtualNetworkSubnetConfig -Name 'GatewaySubnet' -AddressPrefix 10.11.0.0/27 -VirtualNetwork $vnet
   ```
-3. Définissez la configuration.
+3. Définir la configuration hello.
 
   ```powershell
   Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
   ```
 
-## 3. <a name="localnet"></a>Créer la passerelle de réseau local
+## 3. <a name="localnet"></a>Créer une passerelle de réseau local hello
 
-La passerelle de réseau local fait généralement référence à votre emplacement local. Donnez au site un nom auquel Azure pourra se référer, puis spécifiez l’adresse IP du périphérique VPN local vers lequel vous allez créer une connexion. Spécifiez également les préfixes d’adresses IP qui seront acheminés via la passerelle VPN vers le périphérique VPN. Les préfixes d’adresses que vous spécifiez sont les préfixes situés sur votre réseau local. Vous pouvez facilement mettre à jour ces préfixes si votre réseau local change.
+passerelle de réseau local Hello fait généralement référence d’emplacement de site tooyour. Vous attribuez un nom par lequel Azure permettre faire référence tooit, puis spécifier l’adresse IP de hello au site de hello de toowhich de périphérique VPN hello localement, vous allez créer une connexion. Vous spécifiez également préfixes d’adresses IP hello qui doivent être routés via le périphérique VPN toohello hello VPN gateway. vous spécifiez les préfixes d’adresse Hello sont des préfixes hello situés sur votre réseau local. Si votre réseau local change, vous pouvez facilement mettre à jour les préfixes hello.
 
-Utilisez les valeurs suivantes :
+Utilisez hello valeurs suivantes :
 
-* *GatewayIPAddress* est l’adresse IP de votre périphérique VPN local. Votre périphérique VPN ne peut pas se trouver derrière un NAT.
-* *AddressPrefix* est votre espace d’adressage local.
+* Hello *GatewayIPAddress* est l’adresse IP de hello de votre périphérique VPN sur site. Votre périphérique VPN ne peut pas se trouver derrière un NAT.
+* Hello *AddressPrefix* est votre site sur l’espace d’adressage.
 
-Pour ajouter une passerelle de réseau local avec un préfixe d’adresse unique :
+tooadd une passerelle de réseau local avec un préfixe d’adresse unique :
 
   ```powershell
   New-AzureRmLocalNetworkGateway -Name Site2 -ResourceGroupName TestRG1 `
   -Location 'East US' -GatewayIpAddress '23.99.221.164' -AddressPrefix '10.0.0.0/24'
   ```
 
-Pour ajouter une passerelle de réseau local avec des préfixes d’adresse multiples :
+tooadd une passerelle de réseau local avec plusieurs préfixes d’adresses :
 
   ```powershell
   New-AzureRmLocalNetworkGateway -Name Site2 -ResourceGroupName TestRG1 `
   -Location 'East US' -GatewayIpAddress '23.99.221.164' -AddressPrefix @('10.0.0.0/24','20.0.0.0/24')
   ```
 
-Pour modifier des préfixes d’adresses IP de votre passerelle de réseau local :<br>
-Parfois, les préfixes de votre passerelle de réseau local changent. Les étapes à suivre pour modifier vos préfixes d’adresses IP varient selon que vous avez créé une connexion à la passerelle VPN. Consultez la section [Modifier des préfixes d’adresses IP de votre passerelle de réseau local](#modify) de cet article.
+toomodify les préfixes d’adresse IP de la passerelle de réseau local :<br>
+Parfois, les préfixes de votre passerelle de réseau local changent. Hello vous étapes toomodify votre adresse IP préfixes varient selon que vous avez créé une connexion de passerelle VPN. Consultez hello [modifier les préfixes d’adresse d’une passerelle de réseau local](#modify) section de cet article.
 
 ## <a name="PublicIP"></a>4. Demander une adresse IP publique
 
-Une passerelle VPN doit avoir une adresse IP publique. Vous commencez par demander la ressource d’adresse IP, puis vous y faites référence lors de la création de votre passerelle de réseau virtuel. L’adresse IP est affectée dynamiquement à la ressource lors de la création de la passerelle VPN. Actuellement, la passerelle VPN prend uniquement en charge l’allocation d’adresses IP publiques *dynamiques*. Vous ne pouvez pas demander d’affectation d’adresse IP publique statique. Toutefois, cela ne signifie pas que l’adresse IP change après son affectation à votre passerelle VPN. L’adresse IP publique change uniquement lorsque la passerelle est supprimée, puis recréée. Elle n’est pas modifiée lors du redimensionnement, de la réinitialisation ou des autres opérations de maintenance/mise à niveau internes de votre passerelle VPN.
+Une passerelle VPN doit avoir une adresse IP publique. Votre ressource d’adresse IP hello d’abord demander, puis consultez tooit lors de la création de votre passerelle de réseau virtuel. adresse IP de Hello est attribué dynamiquement les ressources toohello lors de la création de la passerelle VPN de hello. Actuellement, la passerelle VPN prend uniquement en charge l’allocation d’adresses IP publiques *dynamiques*. Vous ne pouvez pas demander d’affectation d’adresse IP publique statique. Toutefois, cela ne signifie pas que l’adresse IP de hello change après que qu’elle a été affectée passerelle VPN de tooyour. Hello seule fois changements d’adresses IP publiques hello est hello lorsque la passerelle est supprimé et recréé. Elle n’est pas modifiée lors du redimensionnement, de la réinitialisation ou des autres opérations de maintenance/mise à niveau internes de votre passerelle VPN.
 
-Demandez une adresse IP publique qui sera affectée à votre passerelle VPN de réseau virtuel.
+Demander une adresse IP publique qui sera assignée tooyour de réseau virtuel passerelle VPN.
 
 ```powershell
 $gwpip= New-AzureRmPublicIpAddress -Name gwpip -ResourceGroupName TestRG1 -Location 'East US' -AllocationMethod Dynamic
 ```
 
-## <a name="GatewayIPConfig"></a>5. Créer la configuration de l’adressage IP de la passerelle
+## <a name="GatewayIPConfig"></a>5. Créer la configuration d’adressage IP de la passerelle hello
 
-La configuration de la passerelle définit le sous-réseau et l’adresse IP publique à utiliser. Utilisez l’exemple suivant pour créer la configuration de votre passerelle :
+configuration de la passerelle Hello définit le sous-réseau de hello et toouse adresse IP publique de hello. Utilisez hello suivant exemple toocreate votre configuration de la passerelle :
 
 ```powershell
 $vnet = Get-AzureRmVirtualNetwork -Name TestVNet1 -ResourceGroupName TestRG1
@@ -176,15 +176,15 @@ $subnet = Get-AzureRmVirtualNetworkSubnetConfig -Name 'GatewaySubnet' -VirtualNe
 $gwipconfig = New-AzureRmVirtualNetworkGatewayIpConfig -Name gwipconfig1 -SubnetId $subnet.Id -PublicIpAddressId $gwpip.Id
 ```
 
-## <a name="CreateGateway"></a>6. Créer la passerelle VPN
+## <a name="CreateGateway"></a>6. Créer une passerelle VPN de hello
 
-Créez la passerelle VPN de réseau virtuel. La création d’une passerelle VPN peut prendre 45 minutes ou plus.
+Créer la passerelle VPN de réseau virtuel hello. Création d’une passerelle VPN peut prendre jusqu'à too45 minutes ou plus toocomplete.
 
-Utilisez les valeurs suivantes :
+Utilisez hello valeurs suivantes :
 
-* Le paramètre *-GatewayType* pour une configuration de site à site est *Vpn*. Le type de passerelle dépend toujours de la configuration que vous implémentez. Par exemple, d’autres configurations de passerelle peuvent nécessiter GatewayType ExpressRoute.
-* Le paramètre *-VpnType* peut avoir pour valeur *RouteBased* (appelé passerelle dynamique dans certaines documentations) ou *PolicyBased* (appelé passerelle statique dans certaines documentations). Pour plus d’informations sur les types de passerelles VPN, consultez [À propos de la passerelle VPN](vpn-gateway-about-vpngateways.md).
-* Sélectionnez la référence SKU de la passerelle que vous souhaitez utiliser. Des limites de configuration s’appliquent à certaines références (SKU). Pour plus d’informations, consultez l’article [Références (SKU) de passerelle](vpn-gateway-about-vpn-gateway-settings.md#gwsku). Si vous obtenez une erreur lors de la création de la passerelle VPN relative au paramètre -GatewaySku, vérifiez que vous avez installé la dernière version des applets de commande PowerShell.
+* Hello *- le type de passerelle* pour un Site à Site est configuration *Vpn*. type de passerelle Hello est toujours configuration toohello spécifique que vous implémentez. Par exemple, d’autres configurations de passerelle peuvent nécessiter GatewayType ExpressRoute.
+* Hello *- VpnType* peut être *RouteBased* (appelée tooas une passerelle dynamique dans certains documents), ou *basée sur des stratégies* (appelée tooas une passerelle statique dans la documentation ). Pour plus d’informations sur les types de passerelles VPN, consultez [À propos de la passerelle VPN](vpn-gateway-about-vpngateways.md).
+* Sélectionnez hello SKU de passerelle que vous souhaitez toouse. Des limites de configuration s’appliquent à certaines références (SKU). Pour plus d’informations, consultez l’article [Références (SKU) de passerelle](vpn-gateway-about-vpn-gateway-settings.md#gwsku). Si vous obtenez une erreur lors de la création de passerelle VPN de hello concernant hello - GatewaySku, vérifiez que vous avez installé la version la plus récente des applets de commande PowerShell hello hello.
 
 ```powershell
 New-AzureRmVirtualNetworkGateway -Name VNet1GW -ResourceGroupName TestRG1 `
@@ -194,10 +194,10 @@ New-AzureRmVirtualNetworkGateway -Name VNet1GW -ResourceGroupName TestRG1 `
 
 ## <a name="ConfigureVPNDevice"></a>7. Configuration de votre périphérique VPN
 
-Les connexions site à site vers un réseau local nécessitent un périphérique VPN. Dans cette étape, vous configurez votre périphérique VPN. Pour configurer votre périphérique VPN, vous avez besoin des éléments suivants :
+Réseau local de tooan connexions site à Site requièrent un périphérique VPN. Dans cette étape, vous configurez votre périphérique VPN. Lorsque vous configurez votre périphérique VPN, vous devez suivant de hello :
 
-- Une clé partagée. Il s’agit de la clé partagée spécifiée lors de la création de la connexion VPN de site à site. Dans nos exemples, nous utilisons une clé partagée basique. Nous vous conseillons de générer une clé plus complexe.
-- L’adresse IP publique de votre passerelle de réseau virtuel. Vous pouvez afficher l’adresse IP publique à l’aide du portail Azure, de PowerShell ou de l’interface de ligne de commande. Pour trouver l’adresse IP publique de votre passerelle de réseau virtuel à l’aide de PowerShell, utilisez l’exemple suivant :
+- Une clé partagée. Cela est hello même partagé clé que vous spécifiez lors de la création de votre connexion VPN de Site à Site. Dans nos exemples, nous utilisons une clé partagée basique. Nous conseillons de générer un toouse de clé plus complexe.
+- Hello adresse IP publique de votre passerelle de réseau virtuel. Vous pouvez afficher l’adresse IP publique de hello à l’aide de hello portail Azure, PowerShell ou CLI. hello toofind adresse IP publique de votre passerelle de réseau virtuel à l’aide de PowerShell, hello d’utiliser l’exemple suivant :
 
   ```powershell
   Get-AzureRmPublicIpAddress -Name GW1PublicIP -ResourceGroupName TestRG1
@@ -206,47 +206,47 @@ Les connexions site à site vers un réseau local nécessitent un périphérique
 [!INCLUDE [Configure VPN device](../../includes/vpn-gateway-configure-vpn-device-rm-include.md)]
 
 
-## <a name="CreateConnection"></a>8. Créer la connexion VPN
+## <a name="CreateConnection"></a>8. Créer la connexion VPN de hello
 
-Créez ensuite la connexion VPN de site à site entre votre passerelle de réseau virtuel et votre périphérique VPN. Assurez-vous de remplacer ces valeurs par les vôtres. La clé partagée doit correspondre à la valeur que vous avez utilisée pour la configuration de votre périphérique VPN. Notez que la valeur « -ConnectionType » pour la connexion de site à site est *IPsec*.
+Ensuite, créez hello VPN de Site à Site connexion entre votre passerelle de réseau virtuel et votre périphérique VPN. Être des valeurs de hello tooreplace que par les vôtres. clé partagée de Hello doit correspondre à valeur hello que vous avez utilisé pour la configuration de votre périphérique VPN. Notez que hello '-ConnectionType' pour le Site à Site est *IPsec*.
 
-1. Définissez les variables.
+1. Définir les variables de hello.
   ```powershell
   $gateway1 = Get-AzureRmVirtualNetworkGateway -Name VNet1GW -ResourceGroupName TestRG1
   $local = Get-AzureRmLocalNetworkGateway -Name Site2 -ResourceGroupName TestRG1
   ```
 
-2. Créez la connexion.
+2. Créer la connexion de hello.
   ```powershell
   New-AzureRmVirtualNetworkGatewayConnection -Name VNet1toSite2 -ResourceGroupName TestRG1 `
   -Location 'East US' -VirtualNetworkGateway1 $gateway1 -LocalNetworkGateway2 $local `
   -ConnectionType IPsec -RoutingWeight 10 -SharedKey 'abc123'
   ```
 
-Après un bref délai, la connexion sera établie.
+Après quelques instants, hello connexion sera établie.
 
-## <a name="toverify"></a>9. Vérifier la connexion VPN
+## <a name="toverify"></a>9. Vérifiez la connexion VPN de hello
 
-Il existe différentes façons de vérifier votre connexion VPN.
+Il existe quelques façons tooverify votre connexion VPN.
 
 [!INCLUDE [Verify connection](../../includes/vpn-gateway-verify-connection-ps-rm-include.md)]
 
-## <a name="connectVM"></a>Se connecter à une machine virtuelle
+## <a name="connectVM"></a>machine virtuelle de tooa tooconnect
 
-[!INCLUDE [Connect to a VM](../../includes/vpn-gateway-connect-vm-s2s-include.md)]
+[!INCLUDE [Connect tooa VM](../../includes/vpn-gateway-connect-vm-s2s-include.md)]
 
 
 ## <a name="modify"></a>Modifier des préfixes d’adresses IP d’une passerelle de réseau local
 
-Si les préfixes d’adresse IP que vous souhaitez acheminer vers votre emplacement local changent, vous pouvez modifier la passerelle de réseau local. Deux ensembles d’instructions vous sont fournis : Les instructions que vous choisissez d’appliquer varient selon que vous avez déjà créé ou non votre connexion à la passerelle.
+Si vous changez de préfixes d’adresses IP hello souhaité routé emplacement local de tooyour, vous pouvez modifier la passerelle de réseau local hello. Deux ensembles d’instructions vous sont fournis : instructions Hello que vous choisissez dépendant de si vous avez déjà créé votre connexion de passerelle.
 
 [!INCLUDE [Modify prefixes](../../includes/vpn-gateway-modify-ip-prefix-rm-include.md)]
 
-## <a name="modifygwipaddress"></a>Modifier l’adresse IP d’une passerelle de réseau local
+## <a name="modifygwipaddress"></a>Modifier l’adresse IP de passerelle hello pour une passerelle de réseau local
 
 [!INCLUDE [Modify gateway IP address](../../includes/vpn-gateway-modify-lng-gateway-ip-rm-include.md)]
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-*  Une fois la connexion achevée, vous pouvez ajouter des machines virtuelles à vos réseaux virtuels. Pour plus d’informations, consultez [Machines virtuelles](https://docs.microsoft.com/azure/#pivot=services&panel=Compute).
-* Pour plus d’informations sur le protocole BGP, consultez les articles [Vue d’ensemble du protocole BGP](vpn-gateway-bgp-overview.md) et [Comment configurer BGP](vpn-gateway-bgp-resource-manager-ps.md).
+*  Une fois que votre connexion est terminée, vous pouvez ajouter des machines virtuelles tooyour des réseaux virtuels. Pour plus d’informations, consultez [Machines virtuelles](https://docs.microsoft.com/azure/#pivot=services&panel=Compute).
+* Pour plus d’informations sur BGP, consultez hello [vue d’ensemble du protocole BGP](vpn-gateway-bgp-overview.md) et [comment tooconfigure BGP](vpn-gateway-bgp-resource-manager-ps.md).

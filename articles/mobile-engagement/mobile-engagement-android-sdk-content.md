@@ -1,5 +1,5 @@
 ---
-title: "Intégration du SDK Android d'Azure Mobile Engagement"
+title: "aaaAzure intégration du Kit de développement logiciel Android Mobile Engagement"
 description: "Dernières mises à jour et procédures du SDK Android pour Azure Mobile Engagement"
 services: mobile-engagement
 documentationcenter: mobile
@@ -14,14 +14,14 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 27190b54fc2b3b5c77b5f0a02273883e36ceaf1d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6085a9ba90b713235e0aae99759597af9db77865
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sdk-content"></a>Contenu du Kit de développement logiciel (SDK)
-Ce document répertorie et décrit le contenu de l'archive du SDK.
+Ce document répertorie et décrit le contenu de hello d’archive du Kit de développement logiciel hello.
 
 `mobile-engagement-VERSION.jar`
 
@@ -29,25 +29,25 @@ Ce document répertorie et décrit le contenu de l'archive du SDK.
 > 
 > 
 
-`res` 
+`res`
 
-> Ressources du SDK du module Couverture Engagement (fichiers drawable et layout à inclure dans vos applications).
+> Ressources de SDK Reach engagement (drawable et tooinclude de fichiers de mise en page dans vos applications).
 > 
 > 
 
-`src` 
+`src`
 
 > Code source du SDK Engagement.
 > 
-> Notez que les sources du service ne sont pas incluses (`com.microsoft.azure.engagement.service.EngagementService` et ses fichiers source associés).
+> Notez que les sources de hello du service de hello ne sont pas inclus (`com.microsoft.azure.engagement.service.EngagementService` et ses fichiers sources associées).
 > 
 > 
 
 `documentation.html`
 
-> Un raccourci vers le site de la documentation de la version téléchargée du SDK.
+> Un raccourci toohello documentation site correspondant toohello téléchargé la version de hello SDK.
 > 
 > 
 
-Les autres fichiers sont une copie des licences logicielles.
+Autres fichiers sont une copie de licences de logiciels hello.
 

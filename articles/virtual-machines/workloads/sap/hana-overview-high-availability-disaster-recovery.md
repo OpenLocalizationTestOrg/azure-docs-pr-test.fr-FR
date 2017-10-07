@@ -1,5 +1,5 @@
 ---
-title: "Haute disponibilité et récupération d’urgence de SAP HANA sur Azure (grandes instances) | Microsoft Docs"
+title: "aaaHigh disponibilité et récupération d’urgence de HANA SAP sur Azure (instances de grande taille) | Documents Microsoft"
 description: "Établissez la haute disponibilité et planifiez la récupération d’urgence de SAP HANA sur Azure (grandes instances)."
 services: virtual-machines-linux
 documentationcenter: 
@@ -14,25 +14,25 @@ ms.workload: infrastructure
 ms.date: 12/01/2016
 ms.author: rclaus
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: f95e944fc3ec3a831d97386443eb644420ae54dc
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0c0967f54cf29bbb275eb7cda9d36608488add9e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sap-hana-large-instances-high-availability-and-disaster-recovery-on-azure"></a>Haute disponibilité et récupération d’urgence de SAP HANA (grandes instances) sur Azure 
 
-La haute disponibilité et la récupération d’urgence constituent des aspects fondamentaux de l’exécution de vos serveurs SAP HANA sur Azure (grandes instances) stratégiques. Il est important que vous collaboriez avec SAP, votre intégrateur de systèmes ou Microsoft pour concevoir et implémenter efficacement la stratégie de haute disponibilité/récupération d’urgence. Il est également important de tenir compte de l’objectif de point de récupération et de l’objectif de délai de récupération, qui sont spécifiques à votre environnement.
+La haute disponibilité et la récupération d’urgence constituent des aspects fondamentaux de l’exécution de vos serveurs SAP HANA sur Azure (grandes instances) stratégiques. Son toowork important avec SAP, votre intégrateur système, ou Microsoft tooproperly architectes et implémentez hello stratégie de droite haute-disponibilité/récupération d’urgence. Il est également objectif de point de récupération tooconsider important hello et objectif de temps de récupération, qui sont spécifiques tooyour environnement.
 
 ## <a name="high-availability"></a>Haute disponibilité
 
-Microsoft prend en charge les méthodes de haute disponibilité prêtes à l’emploi de SAP HANA, qui sont décrites ci-dessous :
+Microsoft prend en charge les méthodes de haute disponibilité SAP HANA « hors de la zone de hello, » qui incluent :
 
-- **Réplication du stockage :** capacité du système de stockage à répliquer lui-même toutes les données à un autre emplacement (dans le même centre de données ou séparément de ce dernier). SAP HANA opère indépendamment de cette méthode.
-- **Réplication du système HANA :** réplication de toutes les données de SAP HANA sur un autre système SAP HANA. L’objectif de délai de récupération est réduit grâce à une réplication des données à intervalles réguliers. SAP HANA prend en charge les modes asynchrone, synchrone en mémoire et synchrone (uniquement recommandé pour les systèmes SAP HANA situés dans le même centre de données ou à moins de 100 km de distance). Dans la conception actuelle des horodatages de grande instance HANA, la réplication de système HANA peut être utilisée uniquement pour garantir la haute disponibilité.
-- **Basculement automatique de l’hôte :** solution de récupération après incident locale à utiliser comme alternative à la réplication du système. Lorsque le nœud principal n’est plus disponible, un ou plusieurs nœuds SAP HANA de secours sont configurés en mode montée en puissance parallèle, et SAP HANA bascule automatiquement vers un autre nœud.
+- **La réplication du stockage :** hello tooreplicate de capacité du système de stockage de tout emplacement tooanother de données (dans, ou distinct, hello même centre de données). SAP HANA opère indépendamment de cette méthode.
+- **Réplication du système HANA :** hello de réplication de toutes les données dans le système de SAP HANA SAP HANA tooa distinct. objectif de temps de récupération Hello est réduit grâce à la réplication de données à intervalles réguliers. SAP HANA prend en charge les modes de mémoire et synchrones asynchrones, synchrones (recommandé uniquement pour SAP HANA systèmes qui se trouvent dans hello même centre de données ou inférieur à 100 KM éloignés). Dans la conception actuelle de hello de tampons de grande instance HANA, la réplication de système HANA peut être utilisée pour la haute disponibilité uniquement.
+- **Héberger le basculement automatique :** un toouse de solution de récupération après incident local en tant qu’une autre toosystem la réplication. Lorsque hello principal devient indisponible, un ou plusieurs nœuds de SAP HANA en attente sont configurés en mode de montée en puissance parallèle et SAP HANA bascule automatiquement tooanother nœud.
 
-Pour plus d’informations sur la haute disponibilité de la plateforme SAP HANA, consultez les informations SAP suivantes :
+Pour plus d’informations sur la haute disponibilité de SAP HANA, consultez hello SAP informations suivantes :
 
 - [SAP HANA High-Availability Whitepaper (Livre blanc sur la haute disponibilité de SAP HANA)](http://go.sap.com/documents/2016/05/f8e5eeba-737c-0010-82c7-eda71af511fa.html)
 - [SAP HANA Administration Guide (Guide d’administration de SAP HANA)](http://help.sap.com/hana/SAP_HANA_Administration_Guide_en.pdf)
@@ -43,77 +43,77 @@ Pour plus d’informations sur la haute disponibilité de la plateforme SAP HANA
 
 ## <a name="disaster-recovery"></a>Récupération d'urgence
 
-SAP HANA sur Azure (grandes instances) est offert dans deux régions Azure d’une région géopolitique. Une connectivité réseau directe a été mise en place entre les deux tampons de grande instance de ces deux régions pour la réplication des données dans le cadre d’une récupération d’urgence. La réplication des données repose sur l’infrastructure de stockage. La réplication n’est pas effectuée par défaut. Il s’applique aux configurations client qui ont demandé la récupération d’urgence. Dans la conception actuelle, la réplication du système HANA ne peut pas être utilisée pour la récupération d’urgence.
+SAP HANA sur Azure (grandes instances) est offert dans deux régions Azure d’une région géopolitique. Entre les tampons de grande instance deux hello de deux régions différentes est une connectivité réseau directe pour répliquer les données pendant la récupération d’urgence. la réplication de données de hello Hello est infrastructure de stockage. la réplication de Hello n’est pas effectuée par défaut. Il est fait pour les configurations de client hello classés de la récupération d’urgence hello. Dans la conception actuelle de hello, réplication HANA du système ne peut pas être utilisée pour la récupération d’urgence.
 
-Toutefois, pour tirer parti de la récupération d’urgence, vous devez commencer par concevoir la connectivité réseau des deux régions Azure. Pour cela, vous avez besoin d’un circuit Azure ExpressRoute assurant la connexion entre l’emplacement local dans votre région Azure principale, et d’un autre circuit pour la connexion entre l’emplacement local et votre région de récupération d’urgence. Cette mesure s’applique à une situation dans laquelle une région Azure complète, incluant l’emplacement d’un routeur Microsoft Enterprise Edge (MSEE), rencontre un problème.
+Toutefois, tootake parti hello la récupération d’urgence, vous devez toostart toodesign hello réseau connectivité toohello deux régions différentes Azure. toodo, vous pouvez donc une connexion de circuit ExpressRoute de Azure localement dans votre région Azure principale et une autre connexion de circuit de région de récupération d’urgence tooyour local. Cette mesure s’applique à une situation dans laquelle une région Azure complète, incluant l’emplacement d’un routeur Microsoft Enterprise Edge (MSEE), rencontre un problème.
 
-Votre seconde mesure consiste à connecter à ces deux circuits ExpressRoute tous les réseaux virtuels Azure qui sont connectés au serveur SAP HANA sur Azure (grandes instances) dans l’une des régions. Cette mesure remédie à la situation dans laquelle un seul des emplacements MSEE qui connecte votre emplacement local à Azure devient hors service.
+Comme deuxième mesure, vous pouvez vous connecter à tous les réseaux virtuels Azure qui se connectent tooSAP HANA sur Azure (instances de grande taille) dans un des tooboth de régions hello de ces circuits ExpressRoute. Cette mesure répond à un cas où seule des emplacements de MSEE hello qui se connecte votre emplacement local avec Azure est mis hors service.
 
-La figure ci-après montre la configuration optimale pour la récupération d’urgence :
+Hello figure ci-dessous illustre une configuration optimale hello pour la récupération d’urgence :
 
 ![Configuration optimale pour la récupération d’urgence](./media/hana-overview-high-availability-disaster-recovery/image1-optimal-configuration.png)
 
-Une configuration de récupération d’urgence optimale du réseau consiste à utiliser deux circuits ExpressRoute entre l’emplacement local et les deux régions Azure. L’un des circuits aboutit à la région n°1, exécutant une instance de production. Le second circuit ExpressRoute aboutit à la région n°2, exécutant certaines instances HANA hors production. (Ceci est important dans le cas où la totalité d’une région Azure, comprenant le MSEE et le tampon de grande instance, est déconnectée).
+Bonjour cas optimale pour une configuration de la récupération d’urgence du réseau de hello est toohave deux des circuits ExpressRoute à partir de local toohello deux régions différentes Azure. Un circuit passe tooregion #1, une instance de production en cours d’exécution. circuit ExpressRoute de la deuxième Hello passe tooregion #2, certaines instances HANA hors production en cours d’exécution. (Cela est important si une région Azure entière, y compris hello MSEE et tampon de grande instance, sort de la grille de hello.)
 
-Comme deuxième mesure, les différents réseaux virtuels sont connectés à divers circuits ExpressRoute connectés à SAP HANA sur Azure (grandes instances). Vous pouvez contourner l’emplacement d’un MSEE défaillant, ou bien réduire l’objectif de point de récupération pour récupération d’urgence, comme nous le verrons par la suite.
+Comme deuxième mesure, hello différents réseaux virtuels est connecté toohello des circuits ExpressRoute différents qui sont connecté tooSAP HANA sur Azure (instances de grande taille). Vous pouvez contourner hello emplacement de stockage un MSEE échoue, ou vous réduirez l’objectif de point de récupération de hello pour la récupération d’urgence, comme nous aborderons plus tard.
 
-Une configuration de récupération d’urgence présente les exigences suivantes :
+Hello des spécifications suivantes pour une installation de récupération d’urgence sont :
 
-- Vous devez commander des références (SKU) SAP HANA sur Azure (grandes instances) de la même taille que vos SKU de production et les déployer dans la région de récupération d’urgence. Ces instances peuvent servir à exécuter des instances HANA de test, bac à sable (sandbox) ou d’assurance qualité.
-- Vous devez commander un profil de récupération d’urgence pour chacune des SKU SAP HANA sur Azure (grandes instances) que vous souhaitez récupérer sur le site de récupération d’urgence, si nécessaire. Cette action entraîne l’allocation de volumes de stockage, qui constituent la cible de la réplication de stockage entre votre région de production et la région de récupération d’urgence.
+- Vous devez ordonner SAP HANA sur les références de Azure (instances de grande taille) de hello même taille que votre production références (SKU) et que vous les déployer dans la zone de reprise après sinistre hello. Ces instances peuvent être utilisés toorun test, bac à sable ou des instances de QA HANA.
+- Vous devez commander un profil de la récupération d’urgence pour chacune de vos HANA SAP sur Azure (instances de grande taille) références (SKU) que vous souhaitez toorecover dans le site de récupération d’urgence hello, si nécessaire. Cette action entraîne une allocation toohello des volumes de stockage, qui sont la cible de hello de réplication de stockage hello à partir de votre région de production dans la zone de reprise après sinistre hello.
 
-Après avoir rempli les conditions requises ci-dessus, il vous incombe de lancer la réplication de stockage. Dans l’infrastructure de stockage utilisée pour SAP HANA sur Azure (grandes instances), la réplication du stockage repose sur les captures instantanées de stockage. Pour démarrer la réplication de récupération d’urgence, vous devez exécuter :
+Une fois que vous remplissez hello précédant la configuration requise, il est la réplication de stockage de responsabilité toostart hello. Dans l’infrastructure de stockage hello utilisée pour SAP HANA sur Azure (instances de grande taille), hello la réplication du stockage est instantanés de stockage. réplication de la récupération d’urgence toostart hello, vous devez tooperform :
 
 - Une capture instantanée de votre numéro d’unité logique de démarrage, comme décrit précédemment.
 - Une capture instantanée de vos volumes associés à HANA, comme décrit précédemment.
 
-Une fois que vous exécutez ces captures instantanées, un réplica initial des volumes est amorcé sur les volumes associés à votre profil de récupération d’urgence dans la région de récupération d’urgence.
+Après avoir exécuté ces captures instantanées, un réplica initial des volumes de hello est amorcé sur des volumes hello qui sont associés à votre profil de récupération d’urgence dans la région de récupération d’urgence hello.
 
-Par la suite, la dernière capture instantanée de stockage est utilisée toutes les heures pour répliquer les deltas qui se développent sur les volumes de stockage.
+Par la suite, instantané stockage le plus récent hello est utilisé toutes les heures deltas hello tooreplicate qui surviennent sur des volumes de stockage hello.
 
-L’objectif de point de récupération obtenu avec cette configuration est compris entre 60 et 90 minutes. Pour améliorer l’objectif de point de récupération dans le cadre d’une récupération d’urgence, copiez les sauvegardes des journaux de transactions HANA de SAP HANA sur Azure (grandes instances) vers l’autre région Azure. Pour atteindre cet objectif de point de récupération, procédez comme suit :
+objectif de point de récupération Hello obtenue avec cette configuration est de 60 minutes too90. tooachieve une amélioration de la reprise de point dans les cas de récupération d’urgence hello, copie hello HANA journal des transactions à partir de SAP HANA sur Azure (instances de grande taille) toohello autre région Azure. tooachieve cet objectif de point de récupération, hello suivant :
 
-1. Sauvegardez le journal des transactions HANA aussi souvent que possible dans /hana/log/backup.
-2. Copiez les sauvegardes des journaux de transactions terminées sur une machine virtuelle Azure, qui se trouve dans un réseau virtuel connecté au serveur SAP HANA sur Azure (grandes instances).
-3. À partir de cette machine virtuelle, copiez la sauvegarde sur une machine virtuelle qui se trouve dans un réseau virtuel de la région de récupération après sinistre.
-4. Conservez les sauvegardes des journaux de transactions dans cette région sur la machine virtuelle.
+1. Sauvegardez hello HANA transaction sauvegarde du journal aussi souvent que possible trop/hana/journaux /.
+2. Copiez les sauvegardes de journaux de transactions hello lorsqu’ils sont tooan terminé de machine virtuelle Azure (VM), qui se trouve dans un réseau virtuel qui s’est connecté toohello SAP HANA sur le serveur Azure (instances de grande taille).
+3. À partir de cette machine virtuelle, copiez tooa de sauvegarde hello machine virtuelle qui est dans un réseau virtuel dans la zone de reprise après sinistre hello.
+4. Conserver des sauvegardes du journal des transactions de hello dans cette région hello machine virtuelle.
 
-En cas de sinistre, une fois que le profil de récupération d’urgence a été déployé sur un serveur réel, copiez les sauvegardes des journaux de transactions à partir de la machine virtuelle vers le serveur SAP HANA sur Azure (grandes instances), qui constitue désormais le serveur principal dans la région de récupération d’urgence, puis restaurez ces sauvegardes. Cette récupération est possible car l’état de HANA sur les disques de récupération d’urgence est celui d’une capture instantanée HANA. Il s’agit du point de décalage pour les restaurations ultérieures des sauvegardes des journaux de transactions.
+En cas de sinistre, une fois le profil de la récupération d’urgence hello a été déployé sur un serveur réel, copier les sauvegardes de journaux de transactions hello à partir de la toohello de machine virtuelle hello HANA SAP sur Azure (instances de grande taille) qui est maintenant hello serveur principal dans la zone de reprise après sinistre hello, et restaurez ces sauvegardes. Cette récupération est possible car l’état de hello de HANA sur des disques de récupération d’urgence hello est celle d’un instantané HANA. Il s’agit de point d’offset hello pour d’autres restaurations du journal des transactions.
 
 ## <a name="backup-and-restore"></a>Sauvegarde et restauration
 
-L’un des aspects les plus importants de l’utilisation de bases de données consiste à s’assurer que ces bases peuvent être protégées de différents événements graves. Ces événements peuvent avoir une multitude de causes, depuis les catastrophes naturelles jusqu’aux simples erreurs des utilisateurs.
+Une des bases de toooperating hello principaux aspects consiste à s’assurer de base de données hello peut être protégé à partir de divers événements graves. Ces événements peuvent être provoqués par quoi que ce soit à partir d’erreurs de l’utilisateur toosimple catastrophes naturelles.
 
-La sauvegarde d’une base de données, combinée à une possibilité de restauration à un moment donné quelconque (par exemple avant la suppression de données critiques), permet de récupérer la base de données dans un état aussi proche que possible de celui qu’elle présentait au moment de l’interruption.
+Sauvegarde une base de données hello capacité toorestore il tooany point dans le temps (tel qu’avant la suppression des données critiques, une personne), permet à l’état de restauration tooa qui est aussi proche que possible toohello moyen, elle était avant l’interruption de hello s’est produite.
 
 Pour optimiser les résultats, vous devez effectuer deux types de sauvegardes :
 
 - Sauvegardes de base de données
 - Sauvegardes des journaux de transactions
 
-Pour plus de sûreté, vous pouvez compléter les sauvegardes de base de données complètes exécutées au niveau application par des sauvegardes effectuées à l’aide des captures instantanées de stockage. L’exécution de sauvegardes des journaux se révèle également importante pour la restauration de la base de données (et pour la suppression des transactions déjà validées dans les journaux).
+En outre les sauvegardes de base de données toofull effectuées à un niveau de l’application, vous pouvez être encore plus précise en effectuant des sauvegardes et les instantanés de stockage. Effectuer des sauvegardes de journal est également important pour la restauration de la base de données hello (tooempty hello journaux et des transactions déjà validées).
 
 SAP HANA sur Azure (grandes instances) offre deux options de sauvegarde et de restauration :
 
-- Utilisation de vos propres méthodes de sauvegarde. Après avoir calculé et vérifié l’espace disque requis, effectuez des sauvegardes complètes de la base de données et des journaux à l’aide des méthodes de sauvegarde de disque (sur ces disques). Au fil du temps, les sauvegardes sont copiées vers un compte de stockage Azure (une fois que vous avez configuré un serveur de fichiers reposant sur Azure avec un stockage quasiment illimité), ou utilisent Azure Backup Vault ou Azure Cold Storage. Une autre possibilité consiste à recourir à un outil de protection des données tiers, tel que Commvault, pour stocker les sauvegardes une fois ces dernières copiées dans le compte de stockage. L’utilisation de vos propres méthodes de sauvegarde peut également se révéler nécessaire pour les données qui doivent être stockées sur de plus longues périodes à des fins de conformité et d’audit.
-- Utilisation des fonctionnalités de sauvegarde et de restauration fournies par l’infrastructure sous-jacente de SAP HANA sur Azure (grandes instances). Cette option répond à la nécessité d’effectuer des sauvegardes, et rend les sauvegardes manuelles quasiment obsolètes (sauf dans les cas où des sauvegardes de données sont requises pour des besoins de conformité). Le reste de cette section traite des fonctionnalités de sauvegarde et de restauration offertes avec HANA grandes instances.
+- Utilisation de vos propres méthodes de sauvegarde. Une fois que vous calculez tooensure suffisamment d’espace disque, effectuer des sauvegardes complètes de base de données et du journal à l’aide des méthodes de sauvegarde de disque (disques toothose). Au fil du temps, les sauvegardes hello sont copié tooan compte de stockage Azure (une fois que vous configurez un serveur de fichiers Azure avec stockage quasiment illimitée), ou utilisent un coffre de sauvegarde Azure ou d’un froid le stockage Azure. Une autre option est toouse un outil de protection des données tierces, telles que Commvault, les sauvegardes de hello toostore une fois qu’ils sont copiés de compte de stockage tooa. Hello, option de sauvegarde personnalisée peut également être nécessaire pour les données qui doit toobe stockée plus longtemps à des fins d’audit et de conformité.
+- Utiliser hello de sauvegarde et de restauration qui hello infrastructure sous-jacente de HANA SAP sur Azure (instances de grande taille) fournit. Cette option correspond à la nécessité de hello pour les sauvegardes et rend les sauvegardes manuelles presque obsolète (sauf où les sauvegardes de données sont requises pour des raisons de compatibilité). rest Hello de cette section traite hello sauvegarde et de restauration des fonctionnalités offertes avec HANA (instances de grande taille).
 
 > [!NOTE]
-> La technologie de capture instantanée utilisée par l’infrastructure sous-jacente de HANA (grandes instances) a une dépendance sur les captures instantanées SAP HANA. Les captures instantanées SAP HANA ne fonctionnent pas conjointement avec les conteneurs de bases de données SAP HANA mutualisées. Par conséquent, cette méthode de sauvegarde ne peut pas être utilisée pour déployer des conteneurs de bases de données SAP HANA mutualisées.
+> technologie de capture instantanée Hello qui est utilisée par l’infrastructure sous-jacente de hello de HANA (instances de grande taille) a une dépendance sur les instantanés de SAP HANA. Les captures instantanées SAP HANA ne fonctionnent pas conjointement avec les conteneurs de bases de données SAP HANA mutualisées. Par conséquent, cette méthode de sauvegarde ne peut pas être utilisé toodeploy SAP HANA mutualisée base de données de conteneurs.
 
 ### <a name="using-storage-snapshots-of-sap-hana-on-azure-large-instances"></a>Utilisation des captures instantanées de stockage de SAP HANA sur Azure (grandes instances)
 
-L’infrastructure de stockage qui sous-tend SAP HANA sur Azure (grandes instances) met en œuvre la notion de capture instantanée des volumes de stockage. La prise en charge de la sauvegarde et de la restauration d’un volume spécifique est régie par les règles suivantes :
+infrastructure de stockage Hello sous-jacent HANA SAP sur Azure (instances de grande taille) prend en charge la notion de hello d’un instantané du stockage de volumes. Sauvegarde et restauration d’un volume particulier sont pris en charge, hello suivant considérations :
 
 - Au lieu d’exécuter des sauvegardes de base de données, le système procède à de fréquentes captures instantanées des volumes de stockage.
-- La capture instantanée de stockage initie une capture instantanée SAP HANA avant d’exécuter la capture instantanée de stockage proprement dite. Cette capture instantanée SAP HANA est le point d’installation d’éventuelles restaurations de journaux après récupération de la capture instantanée de stockage.
-- Une fois la capture instantanée de stockage exécutée avec succès, la capture instantanée SAP HANA est supprimée.
-- Les sauvegardes de journaux sont effectuées fréquemment et stockées dans le volume de sauvegarde des journaux ou dans Azure.
-- Si la base de données doit être restaurée à un point dans le temps spécifique, une demande est envoyée au support technique de Microsoft Azure (interruption de production) ou à l’équipe de gestion des services SAP HANA sur Azure afin de solliciter une restauration à partir d’une capture instantanée de stockage donnée (par exemple, une restauration planifiée d’un système bac à sable à son état d’origine).
-- La capture instantanée SAP HANA incluse dans la capture instantanée de stockage constitue un point de décalage pour l’application des sauvegardes de journaux qui ont été exécutées et stockées après la création de la capture instantanée de stockage.
-- Ces sauvegardes de journaux sont effectuées pour restaurer la base de données à un point dans le temps spécifique.
+- instantané de stockage Hello lance un instantané de SAP HANA avant l’exécution de capture instantanée de stockage hello. Cet instantané SAP HANA est le point de programme d’installation de hello pour les restaurations du journal éventuelle après la récupération de l’instantané du stockage hello.
+- À un moment hello où les instantanés de stockage hello est exécutée avec succès, instantané de SAP HANA hello est supprimé.
+- Sauvegardes de journaux fréquemment et sont stockées dans le volume de sauvegarde de journal hello ou dans Azure.
+- Si la base de données hello doit être restauré tooa certain point dans le temps, une demande est faite tooMicrosoft prise en charge de Azure (panne de production) ou SAP HANA sur la gestion des services Azure toorestore tooa certaines instantané du stockage (par exemple, une planifié restauration d’un système de bac à sable état d’origine tooits).
+- instantané de SAP HANA Hello qui est inclus dans l’instantané de stockage hello est un point de décalage pour appliquer les sauvegardes du journal qui ont été exécutées et stockées après que hello stockage instantané a été pris.
+- Ces sauvegardes de journal sont effectuées toorestore tooa arrière de base de données hello certain point dans le temps.
 
-La spécification du nom de la sauvegarde\_ entraînera la capture instantanée des volumes suivants :
+Sauvegarde de hello en spécifiant\_nom crée un instantané de hello suivant volumes :
 
 - hana/data
 - hana/log
@@ -125,38 +125,38 @@ La spécification du nom de la sauvegarde\_ entraînera la capture instantanée 
 >[!NOTE]
 >Les captures instantanées de stockage ne sont _pas_ fournies gratuitement car elles nécessitent l’allocation d’un espace de stockage supplémentaire.
 
-Les mécanismes spécifiques des captures instantanées de stockage de SAP HANA sur Azure (grandes instances) incluent :
+mécanismes spécifiques de Hello d’instantanés de stockage pour SAP HANA sur Azure (instances de grande taille) sont les suivantes :
 
-- Une capture instantanée de stockage spécifique (au moment précis de sa création) consomme très peu de stockage.
-- Étant donné que les données changent et que le contenu des fichiers de données SAP HANA évolue sur le volume de stockage, la capture instantanée doit stocker le contenu des blocs d’origine.
-- La taille de la capture instantanée de stockage augmente. Plus la durée d’existence de la capture instantanée est longue, plus la capture instantanée de stockage devient volumineuse.
-- Plus le volume de base de données SAP HANA fait l’objet de modifications pendant la durée de vie d’une capture instantanée de stockage, plus la capture instantanée de stockage consomme d’espace.
+- Un instantané de stockage spécifique (ponctuelle hello lorsqu’elle est récupérée) consomme très peu de stockage.
+- En tant que les modifications de contenu de données et du contenu de hello dans les données SAP HANA modification des fichiers sur le volume de stockage hello, instantané d’hello doit le contenu de bloc d’origine toostore hello.
+- instantané de stockage Hello augmente en taille. Hello plus hello instantané existe, hello plus grande hello stockage snapshot devient.
+- Hello plus apportés toohello volume de base de données SAP HANA sur la durée de vie hello d’un instantané du stockage, hello plus grande hello la consommation d’espace d’instantané de stockage hello devient.
 
-SAP HANA sur Azure (grandes instances) est fourni avec des tailles de volume fixes pour le volume de données et de journaux SAP HANA. L’exécution de captures instantanées de ces volumes consomme une partie de l’espace des volumes. Il vous incombe donc de planifier les captures instantanées de stockage (au sein du processus SAP HANA sur Azure (grandes instances)).
+SAP HANA sur Azure (instances de grande taille) est fourni avec des tailles de volume fixe pour le volume de données et les journaux de SAP HANA hello. Effectuer des captures instantanées de ces volumes mange à votre espace de volume afin qu’il soit votre instantanés de stockage responsabilité tooschedule (dans hello SAP HANA sur processus Azure [instances de grande taille]).
 
-Les sections ci-après fournissent diverses informations concernant l’exécution de ces captures instantanées, y compris des recommandations générales :
+Hello sections suivantes fournissent des informations pour effectuer ces captures instantanées, y compris les recommandations générales :
 
-- Bien que le matériel puisse prendre en charge 255 captures instantanées par volume, il est vivement recommandé de rester bien en deçà de ce nombre.
+- Bien que le matériel de hello peut faire face aux 255 instantanés par volume, nous vous recommandons vivement de rester en dessous de ce nombre.
 - Avant d’effectuer des captures instantanées du stockage, surveillez l’espace libre.
-- Réduisez le nombre de captures instantanées de stockage en fonction de l’espace libre. Vous devrez peut-être réduire le nombre de captures instantanées à conserver, ou être étendre les volumes. (Vous pouvez commander du stockage supplémentaire par unités de 1 To).
-- Lorsque vous exécutez des tâches telles que le déplacement de données dans SAP HANA avec des outils de migration système (en utilisant R3load ou en restaurant des bases de données SAP HANA à partir de sauvegardes), il est fortement déconseillé d’effectuer la moindre capture instantanée de stockage. (Si une migration système est exécutée sur un nouveau système SAP HANA, aucune capture instantanée n’est nécessaire.)
+- Nombre de hello inférieur d’instantanés de stockage basé sur l’espace libre. Vous devrez peut-être le nombre de hello toolower d’instantanés que vous conservez, ou vous devrez peut-être les volumes tooextend hello. (Vous pouvez commander du stockage supplémentaire par unités de 1 To).
+- Lorsque vous exécutez des tâches telles que le déplacement de données dans SAP HANA avec des outils de migration système (en utilisant R3load ou en restaurant des bases de données SAP HANA à partir de sauvegardes), il est fortement déconseillé d’effectuer la moindre capture instantanée de stockage. (Si une migration de système est en cours sur un nouveau système SAP HANA, des instantanés de stockage seraient inutile toobe effectuée.)
 - Dans le cadre de réorganisations plus vastes des tables SAP HANA, les captures instantanées de stockage doivent être évitées dans la mesure du possible.
-- Les captures instantanées de stockage constituent une condition préalable à l’utilisation des fonctionnalités de récupération d’urgence de SAP HANA sur Azure (grandes instances).
+- Les instantanés de stockage sont une fonctionnalités de récupération d’urgence hello tooengaging requis de HANA SAP sur Azure (instances de grande taille).
 
 ### <a name="setting-up-storage-snapshots"></a>Configuration des captures instantanées de stockage
 
-1. Assurez-vous que Perl est installé dans le système d’exploitation Linux sur le serveur HANA grandes instances.
-2. Modifiez /etc/ssh/ssh\_config en ajoutant la ligne _MACs hmac-sha1_.
-3. Créez un compte d’utilisateur de sauvegarde SAP HANA sur le nœud principal de chaque instance SAP HANA que vous exécutez (le cas échéant).
-4. Le client SAP HANA HDB doit être installé sur tous les serveurs SAP HANA (grandes instances).
-5. Sur le premier serveur SAP HANA grandes instances de chaque région, vous devez créer une clé publique pour accéder à l’infrastructure de stockage sous-jacente qui contrôle la création de captures instantanées.
-6. Copiez le script azure\_hana\_backup.pl à partir du dossier /scripts à l’emplacement de l’outil **hdbsql** de l’installation SAP HANA.
-7. Copiez le fichier HANABackupDetails.txt à partir du dossier /scripts au même emplacement que le script Perl.
-8. Modifiez le fichier HANABackupDetails.txt selon vos besoins pour les spécifications client appropriées.
+1. Assurez-vous que Perl est installé dans le système de d’exploitation Linux hello sur serveur de hello HANA (instances de grande taille).
+2. Modifier/etc/ssh/ssh\_ligne de hello config tooadd _Mac hmac-sha1_.
+3. Créer un compte d’utilisateur de sauvegarde SAP HANA sur le nœud principal de hello pour chaque instance SAP HANA que vous sont en cours d’exécution (le cas échéant).
+4. client de SAP HANA HDB Hello doit être installé sur tous les serveurs (instances de grande taille) de SAP HANA.
+5. Sur serveur hello première SAP HANA (instances de grande taille) de chaque région, une clé publique doit être créée hello tooaccess sous-jacent d’infrastructure de stockage qui contrôle la création d’instantanés.
+6. Copiez le script hello azure\_hana\_backup.pl à partir de l’emplacement de toohello/scripts de **hdbsql** Hello installation de SAP HANA.
+7. Hello de copie HANABackupDetails.txt de fichiers à partir / scripts toohello même emplacement que hello script Perl.
+8. Modifier le fichier de HANABackupDetails.txt de hello en fonction des spécifications du client approprié hello.
 
 ### <a name="step-1-install-sap-hana-hdbclient"></a>Étape 1 : Installer SAP HANA HDBClient
 
-Le système d’exploitation Linux installé dans SAP HANA sur Azure (grandes instances) inclut les dossiers et scripts nécessaires pour l’exécution de captures instantanées de stockage SAP HANA à des fins de sauvegarde et de récupération d’urgence. Toutefois, il vous incombe d’installer SAP HANA HDBclient lorsque vous installez SAP HANA. (Microsoft n’installe ni HDBclient, ni SAP HANA.)
+Hello Linux installé sur SAP HANA sur Azure (instances de grande taille) inclut des dossiers de hello et des scripts d’instantanés de stockage SAP HANA tooexecute nécessaire pour des raisons de sauvegarde et récupération d’urgence. Toutefois, il est votre tooinstall responsabilité SAP HANA HDBclient lors de l’installation SAP HANA. (Microsoft installe ni hello HDBclient ni SAP HANA.)
 
 ### <a name="step-2-change-etcsshsshconfig"></a>Étape 2 : Modifier /etc/ssh/ssh\_config
 
@@ -194,49 +194,49 @@ MACs hmac-sha1
 
 ### <a name="step-3-create-a-public-key"></a>Étape 3 : Créer une clé publique
 
-Sur le premier serveur SAP HANA sur Azure (grandes instances) de chaque région Azure, créez une clé publique servant à accéder à l’infrastructure de stockage pour vous permettre de créer des captures instantanées. Cette clé publique garantit qu’aucun mot de passe n’est requis pour la connexion au stockage et que le système ne conserve aucune information d’identification de mot de passe. Dans le système d’exploitation Linux du serveur SAP HANA grandes instances, exécutez la commande ci-après pour générer la clé publique :
+Sur hello première SAP HANA sur le serveur de Azure (instances de grande taille) dans chaque région Azure, créez une infrastructure de stockage hello tooaccess toobe de clé publique utilisé afin que vous pouvez créer des instantanés. clé publique de Hello garantit qu’un mot de passe n’est pas toosign requis dans le stockage toohello et que les informations d’identification de mot de passe ne sont pas conservées. Dans Linux sur le serveur SAP HANA (instances de grande taille) de hello, exécutez hello commande toogenerate hello publique clé suivante :
 ```
   ssh-keygen –t dsa –b 1024
 ```
-Le nouvel emplacement est _/root/.ssh/id\_dsa.pub. N’entrez pas une phrase secrète réelle, sans quoi vous devrez l’entrer chaque fois que vous vous connectez. À la place, appuyez deux fois sur **Entrée** pour supprimer l’exigence de saisie d’une phrase secrète au moment de la connexion.
+nouvel emplacement de Hello est _/root/.ssh/id\_dsa.pub. N’entrez pas un mot de passe réel, sans quoi vous serez tooenter requis, hello phrase secrète chaque fois que vous vous connectez. Au lieu de cela, appuyez sur **entrée** deux fois tooremove hello Entrez exigence de mot de passe pour établir la connexion.
 
-Assurez-vous que la clé publique a été corrigée comme attendu en remplaçant les dossiers par /root/.ssh/, puis en exécutant la commande **ls**. Si la clé est présente, vous pouvez la copier en exécutant la commande suivante :
+Vérifiez toomake que cette clé publique hello a été résolue comme prévu en modifiant les dossiers too/root/.ssh/, puis d’exécuter hello **ls** commande. Si la clé de hello est présent, vous pouvez le copier en exécutant hello de commande suivante :
 
 ![Clé publique copiée par l’exécution de cette commande](./media/hana-overview-high-availability-disaster-recovery/image2-public-key.png)
 
-À ce stade, contactez l’équipe de gestion des services SAP HANA sur Azure et fournissez-lui la clé. Le représentant du service utilisera la clé publique pour l’inscrire dans l’infrastructure de stockage sous-jacente.
+À ce stade, contactez SAP HANA sur la gestion des services Azure et fournir la clé de hello. Hello représentant du service utilise tooregister de clé publique hello dans hello sous-jacent de l’infrastructure de stockage.
 
 ### <a name="step-4-create-an-sap-hana-user-account"></a>Étape 4 : Créer un compte d’utilisateur SAP HANA
 
-Créez un compte d’utilisateur SAP HANA dans SAP HANA Studio à des fins de sauvegarde. Ce compte doit disposer des privilèges _Backup Admin_ (administration des sauvegardes) et _Catalog Read_ (lecture du catalogue). Dans cet exemple, le nom d’utilisateur SCADMIN est créé.
+Créez un compte d’utilisateur SAP HANA dans SAP HANA Studio à des fins de sauvegarde. Ce compte doit disposer de hello suivant des privilèges : _sauvegarde Admin_ et _lecture de catalogue_. Dans cet exemple, le nom d’utilisateur hello SCADMIN est créé.
 
 ![Création d’un utilisateur dans HANA Studio](./media/hana-overview-high-availability-disaster-recovery/image3-creating-user.png)
 
-### <a name="step-5-authorize-the-sap-hana-user-account"></a>Étape 5 : Autoriser le compte d’utilisateur SAP HANA
+### <a name="step-5-authorize-hello-sap-hana-user-account"></a>Étape 5 : Autoriser le compte d’utilisateur SAP HANA hello
 
-Autorisez le compte d’utilisateur SAP HANA (à être utilisé par les scripts sans nécessiter d’autorisation chaque fois que le script est exécuté). La commande SAP HANA `hdbuserstore` permet la création d’une clé utilisateur SAP HANA, stockée sur un ou plusieurs nœuds SAP HANA. Cette clé utilisateur autorise également l’utilisateur à accéder à SAP HANA sans avoir à gérer les mots de passe à partir du processus d’utilisation de scripts décrit ci-dessous.
+Autoriser le compte d’utilisateur SAP HANA hello (toobe utilisé par les scripts de hello sans nécessiter une autorisation chaque fois que hello script est exécuté). Hello commande de SAP HANA `hdbuserstore` permet la création d’une clé utilisateur SAP HANA, qui est stockée sur un ou plusieurs nœuds de SAP HANA hello. clé d’utilisateur Hello permet également hello utilisateur tooaccess SAP HANA sans avoir toomanage les mots de passe à partir de dans hello scripting des processus qui est décrit plus loin.
 
 >[!IMPORTANT]
->Exécutez la commande suivante en tant que `_root_`. Dans le cas contraire, le script ne fonctionne pas correctement.
+>Exécution hello après une commande en tant que `_root_`. Sinon, le script de hello ne peut pas fonctionner correctement.
 
-Entrez La commande `hdbuserstore` comme suit :
+Entrez hello `hdbuserstore` commande comme suit :
 
-![Saisie de la commande hdbuserstore](./media/hana-overview-high-availability-disaster-recovery/image4-hdbuserstore-command.png)
+![Entrez la commande de hdbuserstore hello](./media/hana-overview-high-availability-disaster-recovery/image4-hdbuserstore-command.png)
 
-Dans l’exemple ci-après, impliquant l’utilisateur SCADMIN01 et le nom d’hôte lhanad01, la commande est la suivante :
+Bonjour exemple, où l’utilisateur hello est SCADMIN01 et nom d’hôte hello est lhanad01, commande hello est :
 ```
 hdbuserstore set SCADMIN01 lhanad01:30115 <backup username> <password>
 ```
-Gérez la totalité des scripts à partir d’un seul serveur pour les instances HANA de montée en puissance parallèle. Dans cet exemple, la clé SAP HANA SCADMIN01 doit être modifiée pour chaque hôte de façon à refléter l’hôte qui est associé à la clé. Autrement dit, le compte de sauvegarde SAP HANA est modifié avec le nombre d’instances de la base de données HANA, **lhanad**. La clé doit disposer de privilèges administratifs sur l’hôte auquel elle est affectée, et l’utilisateur de sauvegarde pour la montée en puissance parallèle doit disposer de droits d’accès à toutes les instances SAP HANA.
+Gérez la totalité des scripts à partir d’un seul serveur pour les instances HANA de montée en puissance parallèle. Dans cet exemple, la clé de SAP HANA hello SCADMIN01 doit être modifié pour chaque hôte d’une manière qui reflète l’hôte hello toohello connexes clé. Autrement dit, hello compte de sauvegarde SAP HANA est modifiée avec un numéro d’instance hello Hello HANA DB, **lhanad**. clé de Hello doit avoir des privilèges d’administrateur sur l’ordinateur hôte de hello qu'auquel elle est assignée, et utilisateur de sauvegarde hello pour la montée en puissance parallèle doit avoir accès aux droits tooall SAP HANA instances.
 ```
 hdbuserstore set SCADMIN01 lhanad:30015 SCADMIN <password>
 hdbuserstore set SCADMIN02 lhanad:30115 SCADMIN <password>
 hdbuserstore set SCADMIN03 lhanad:30215 SCADMIN <password>
 ```
 
-### <a name="step-6-copy-items-from-the-scripts-folder"></a>Étape 6 : Copier des éléments à partir du dossier /scripts
+### <a name="step-6-copy-items-from-hello-scripts-folder"></a>Étape 6 : Copier des éléments à partir du dossier/scripts hello
 
-Copiez les éléments ci-après à partir du dossier /scripts, (figurant sur l’image Gold de l’installation), dans le répertoire de travail de **hdbsql**. Pour les installations HANA actuelles, il s’agit du répertoire /hana/shared/D01/exe/linuxx86\_64/hdb.
+Suit hello de copie des éléments de hello/répertoire de travail toohello dossier (inclus sur image hello gold d’installation de hello) pour les scripts **hdbsql**. Pour les installations HANA actuelles, il s’agit du répertoire /hana/shared/D01/exe/linuxx86\_64/hdb.
 ```
 azure\_hana\_backup.pl
 testHANAConnection.pl
@@ -244,7 +244,7 @@ testStorageSnapshotConnection.pl
 removeTestStorageSnapshot.pl
 HANABackupCustomerDetails.txt
 ```
-Copiez les éléments ci-après s’ils exécutent une montée en puissance parallèle ou un traitement analytique en ligne (OLAP) :
+Copiez hello éléments suivants s’ils exécutent une montée en puissance parallèle ou OLAP :
 ```
 azure\_hana\_backup\_bw.pl
 testHANAConnectionBW.pl
@@ -252,9 +252,9 @@ testStorageSnapshotConnectionBW.pl
 removeTestStorageSnapshotBW.pl
 HANABackupCustomerDetailsBW.txt
 ```
-Le fichier HANABackupCustomerDetails.txt est modifiable comme suit pour un déploiement avec montée en puissance. Il s’agit du fichier de contrôle et de configuration pour le script qui exécute les captures instantanées de stockage. Vous devez avoir reçu les informations _Storage Backup Name (Nom de sauvegarde du stockage)_ et _Storage IP Address (Adresse IP de stockage)_ de la part de l’équipe de gestion des services SAP HANA sur Azure au moment où vos instances ont été déployées. Vous ne pouvez pas modifier la séquence, l’ordre ou l’espacement des variables ; dans le cas contraire, le script ne s’exécute pas correctement.
+fichier de HANABackupCustomerDetails.txt Hello est modifiable comme suit pour un déploiement de la montée en puissance parallèle. Il est hello contrôle et fichier de configuration pour le script hello qui exécute des instantanés de stockage hello. Vous devez avoir reçu hello _nom du stockage de sauvegarde_ et _adresse IP de stockage_ à partir de SAP HANA sur la gestion des services Azure lors de vos instances ont été déployés. Vous ne pouvez pas modifier les séquence hello, classement ou l’espacement de toutes les variables hello ou un script de hello ne fonctionne pas correctement.
 
-Dans le cas d’un déploiement avec montée en puissance, le fichier de configuration ressemblerait à ceci :
+Pour un déploiement de la montée en puissance parallèle, le fichier de configuration hello ressemble à :
 ```
 #Provided by Microsoft Service Management
 Storage Backup Name: lhanad01backup
@@ -262,7 +262,7 @@ Storage IP Address: 10.250.20.21
 #Created by customer using hdbuserstore
 HANA Backup Name: SCADMIND01
 ```
-Pour une configuration de montée en puissance parallèle, le fichier HANABackupCustomerDetailsBW.txt ressemblerait à ceci :
+Pour une configuration de la montée en puissance parallèle, le fichier de HANABackupCustomerDetailsBW.txt hello ressemble à :
 ```
 #Provided by Microsoft Service Management
 Storage Backup Name: lhanad01backup
@@ -296,9 +296,9 @@ Node 8 HANA instance number: 08
 Node 8 HANA Backup Name: SCADMIN08
 ```
 >[!NOTE]
->Actuellement, seules les informations de nœud 1 sont utilisées dans le script réel de capture instantanée de stockage HANA. Nous vous recommandons de tester l’accès à tous les nœuds HANA ou à partir de ces derniers. De cette façon, si le nœud de sauvegarde principal doit changer, vous êtes déjà assuré qu’un autre nœud pourra prendre sa place en modifiant les détails du nœud 1.
+>Actuellement, uniquement les informations de nœud 1 sont utilisées dans le script de capture instantanée de stockage hello réel HANA. Nous vous recommandons de tester tooor d’accès de tous les nœuds HANA, afin que, si le nœud de sauvegarde maître hello change, vous avez déjà vérifié que tout autre nœud peut prendre sa place en modifiant les détails hello dans le nœud 1.
 
-Pour vérifier l’exactitude des configurations dans le fichier de configuration ou l’adéquation de la connectivité aux instances HANA, exécutez l’un des scripts suivants :
+toocheck pour les configurations de hello correct dans le fichier de configuration hello ou instances HANA toohello une connectivité, exécutez une des hello scripts suivants :
 - Pour une configuration de montée en puissance (indépendamment de la charge de travail SAP) :
 
  ```
@@ -310,22 +310,22 @@ testHANAConnection.pl
 testHANAConnectionBW.pl
 ```
 
-Assurez-vous que l’instance HANA principale a accès à tous les serveurs HANA requis. Il n’existe aucun paramètre pour le script, mais vous devez compléter le fichier HANABackupCustomerDetails/HANABackupCustomerDetailsBW approprié pour que le script s’exécute correctement. Puisque seuls les codes d’erreur de commande d’environnement sont renvoyés, le script n’est pas en mesure de vérifier l’absence d’erreurs pour chaque instance. Même dans ce cas, le script fournit des commentaires utiles vous permettant de revérifier.
+Vous assurer que hello master HANA instance HANA des serveurs d’accès tooall requis. Il n’y aucun script toohello de paramètres, mais vous devez effectuer hello approprié HANABackupCustomerDetails /file HANABackupCustomerDetailsBW pour hello script toorun correctement. Étant donné que seuls hello shell commande codes d’erreur sont renvoyés, il n’est pas possible pour hello script tooerror-Vérifiez chaque instance de. Même dans ce cas, le script de hello fournit des commentaires utiles pour toodouble vérification.
 
-Pour exécuter le script :
+script de hello toorun :
 ```
  ./testHANAConnection.pl
 ```
- Si le script parvient à obtenir le statut de l’instance HANA, il renvoie un message indiquant que la connexion HANA a réussi.
+ Si le script de hello obtient correctement état hello d’instance HANA hello, il affiche un message de réussite de connexion de HANA hello.
 
-En outre, il existe un second type de script qui vous permet de vérifier la capacité du serveur de l’instance HANA principale à se connecter au stockage. Avant d’exécuter le script azure\_hana\_backup(\_bw).pl, vous devez exécuter le script suivant. Si un volume ne comporte aucune capture instantanée, il est impossible de faire la différence entre un volume simplement vide et un échec d’obtention des détails de capture instantanée par le protocole ssh. C’est la raison pour laquelle le script exécute deux étapes :
+En outre, un deuxième type est de script, vous pouvez utiliser toosign de capacité toocheck hello master HANA instance serveur dans le stockage toohello. Avant d’exécuter Bonjour azure\_hana\_sauvegarde (\_bw) .pl script, vous devez exécuter le script suivant de hello. Si un volume ne contient aucun instantané, il est impossible toodetermine si le volume de hello est simplement vide ou il est un ssh hello tooobtain de défaillance détails de l’instantané. Pour cette raison, le script de hello exécute deux étapes :
 
-- Il vérifie que la console de stockage est accessible.
+- Il vérifie que cette console de stockage hello est accessible.
 - Il crée une capture instantanée de test, ou fictive, pour chaque volume par instance HANA.
 
-L’instance HANA est donc incluse en tant qu’argument. Là encore, vous ne pouvez pas vérifier l’absence d’erreurs au niveau de la connexion du stockage, mais le script vous fournit quelques indications utiles si son exécution échoue.
+Pour cette raison, instance HANA hello est inclus en tant qu’argument. Là encore, il n’est pas possible de tooprovide vérification des erreurs de connexion de stockage hello, mais le script de hello fournit des conseils utiles en cas de l’exécution de hello.
 
-Le script est exécuté sous la forme :
+script de Hello est exécuté en tant que :
 ```
  ./testStorageSnapshotConnection.pl <hana instance>
 ```
@@ -333,11 +333,11 @@ Ou sous la forme :
 ```
 ./testStorageSnapshotConnectionBW.pl <hana instance>
 ```
-Le script affiche également un message indiquant que vous pouvez vous connecter correctement à votre client de stockage déployé, qui est organisé autour des numéros d’unité logique (LUN) utilisés par les instances de serveur dont vous êtes propriétaire.
+script de Hello affiche également un message que vous êtes en mesure de toosign dans correctement tooyour déployé stockage locataire, qui est axé sur hello unité logique (LUN) qui est utilisés par les instances de serveur hello que vous êtes propriétaire.
 
-Avant d’exécuter les premières sauvegardes basées sur les captures instantanées de stockage, exécutez les scripts suivants pour vous assurer que la configuration est correcte.
+Avant d’exécuter des sauvegardes hello premier stockage basé sur un instantané, exécutez toomake scripts hello suivant que cette configuration hello est correcte.
 
-Après avoir exécuté ces scripts, vous pouvez supprimer les captures instantanées en exécutant la commande ci-après :
+Après avoir exécuté ces scripts, vous pouvez supprimer les instantanés hello en exécutant :
 ```
 ./removeTestStorageSnapshot.pl <hana instance>
 ```
@@ -350,233 +350,233 @@ Ou
 
 Effectuez des captures instantanées à la demande (et planifiez des captures instantanées régulières à l’aide de cron) comme décrit ici.
 
-Pour les configurations de montée en puissance, exécutez le script suivant :
+Pour les configurations de montée en puissance parallèle, exécutez hello script suivant :
 ```
 ./azure_hana_backup.pl lhanad01 customer 20
 ```
-Pour les configurations de montée en puissance parallèle, exécutez le script suivant :
+Pour les configurations de montée en puissance parallèle, exécutez hello script suivant :
 ```
 ./azure_hana_backup_bw.pl lhanad01 customer 20
 ```
-Le script de montée en puissance parallèle effectue certaines vérifications supplémentaires pour contrôler que tous les serveurs HANA sont accessibles, et que toutes les instances HANA renvoient le statut d’instance approprié, avant de procéder à la création de captures instantanées SAP HANA ou de stockage.
+script de montée en puissance parallèle de Hello effectue certaines toomake de vérification supplémentaire tous les serveurs HANA est accessible, et toutes les instances HANA retournent statut approprié de l’instance hello avant de procéder à la création d’instantanés de stockage ou de SAP HANA.
 
-Les arguments requis sont les suivants :
+Hello arguments suivants est requis :
 
-- Instance HANA nécessitant une sauvegarde
-- Préfixe de capture instantanée pour la capture instantanée de stockage
-- Nombre de captures instantanées à conserver pour le préfixe spécifique
+- Hello HANA nécessitant une sauvegarde d’une instance.
+- préfixe d’instantané Hello pour la capture instantanée de stockage hello.
+- nombre de Hello de toobe instantanés conservé pour un préfixe spécifique de hello.
 
 ```
 ./azure_hana_backup.pl lhanad01 customer 20
 ```
 
-L’exécution du script crée la capture instantanée de stockage à l’aide de trois phases distinctes :
+l’exécution de Hello du script de hello crée un instantané du stockage hello dans ces trois phases distinctes :
 
 - Exécution d’une capture instantanée HANA
 - Exécution d’une capture instantanée de stockage
-- Suppression de la capture instantanée HANA
+- Supprimer un instantané HANA hello.
 
-Exécutez le script en l’appelant à partir du dossier exécutable HDB dans lequel il a été copié. Il sauvegarde au moins les volumes ci-après, mais également tous les volumes dont le nom comporte le nom de l’instance SAP HANA explicite.
+Exécutez le script de hello en l’appelant à partir du dossier exécutable hello HDB a été copié à. Il sauvegarde hello au moins la suite des volumes, mais il sauvegarde un volume qui a le nom d’instance SAP HANA hello explicite dans le nom de volume hello.
 ```
 hana_data_<hana instance>_prod_t020_vol
 hana_log_<hana instance>_prod_t020_vol
 hana_log_backup_<hana instance>_prod_t020_vol
 hana_shared_<hana instance>_prod_t020_vol
 ```
-La période de rétention est strictement administrée avec le nombre de captures instantanées soumis sous la forme d’un paramètre lorsque vous exécutez le script (par exemple 20, comme indiqué précédemment). Par conséquent, la durée est tributaire de la période d’exécution et du nombre de captures instantanées dans l’appel du script. Si le nombre de captures instantanées conservées dépasse le nombre spécifié en tant que paramètre dans l’appel du script, la plus ancienne capture instantanée de stockage portant cette étiquette (dans notre cas précédent, _custom_) est supprimée avant l’exécution d’une nouvelle capture instantanée. Cela signifie que le nombre que vous indiquez comme dernier paramètre de l’appel correspond au nombre que vous pouvez utiliser pour contrôler le nombre de captures instantanées.
+période de rétention Hello est strictement administrée, nombre de hello d’instantanés soumis en tant que paramètre lorsque vous exécutez le script hello (par exemple, 20, tel que décrit précédemment). Par conséquent, hello temps est une fonction de la période d’exécution et hello nombre d’instantanés dans l’appel de hello du script de hello hello. Si hello nombre d’instantanés sont conservés excède hello sont nommés en tant que paramètre dans l’appel de hello du script de hello, hello instantané le plus ancien stockage de cette étiquette (dans notre cas précédent, _personnalisé_) est supprimé avant un nouvel instantané est exécutée. Cela signifie que le nombre de hello que vous donnez comme dernier paramètre d’appel de hello hello est nombre hello vous pouvez utiliser le nombre de hello toocontrol d’instantanés.
 
 >[!NOTE]
->Dès que vous modifiez l’étiquette, le comptage redémarre.
+>Dès que vous modifiez les étiquette hello, hello commence le comptage à nouveau.
 
-Vous devez inclure le nom d’instance HANA fourni en tant qu’argument par l’équipe de gestion des services SAP HANA sur Azure, si cette équipe crée des captures instantanées d’environnements à plusieurs nœuds. Dans les environnements à nœud unique, l’indication du nom de l’unité SAP HANA sur Azure (grandes instances) suffit, mais la spécification du nom de l’instance HANA reste recommandée.
+Vous devez tooinclude hello HANA nom de l’instance qui est fournie par SAP HANA sur la gestion des services Azure en tant qu’argument, si elles sont également créer des instantanés dans des environnements à plusieurs nœuds. Dans les environnements à nœud unique, nom hello Hello SAP HANA sur l’unité de Azure (instances de grande taille) est suffisante, mais nom de l’instance HANA hello est toujours recommandé.
 
-En outre, vous pouvez sauvegarder des volumes\numéros d’unité logique de démarrage à l’aide du même script. Vous devez sauvegarder votre volume de démarrage au moins une fois lorsque vous exécutez HANA pour la première fois, bien que nous recommandions une planification de sauvegarde hebdomadaire ou nocturne pour le démarrage dans cron. Au lieu d’ajouter un nom d’instance SAP HANA, insérez _boot_ en tant qu’argument dans le script, comme ci-dessous :
+En outre, vous pouvez sauvegarder volumes\LUNs de démarrage à l’aide de hello même script. Vous devez sauvegarder votre volume de démarrage au moins une fois lorsque vous exécutez HANA pour la première fois, bien que nous recommandions une planification de sauvegarde hebdomadaire ou nocturne pour le démarrage dans cron. Plutôt que d’ajouter un nom d’instance SAP HANA, insérer _démarrage_ comme hello argument dans le script de hello comme suit :
 ```
 ./azure_hana_backup boot customer 20
 ```
-La même stratégie de rétention est également associée au volume de démarrage. Comme indiqué ci-dessus, les captures instantanées à la demande ne doivent être utilisées que pour des cas spéciaux, par exemple, au cours d’une mise à niveau par le biais d’un package d’extension (EHP) SAP ou lorsque vous devez créer une capture instantanée de stockage distincte.
+Hello même stratégie de rétention est accordée volume de démarrage toohello également. Utiliser des instantanés à la demande, comme décrit précédemment, pour les cas spéciaux, tels que pendant une mise à niveau SAP Amélioration package (EHP), ou lorsque vous avez besoin de toocreate un instantané de stockage distinct.
 
-Nous vous encourageons à effectuer des captures instantanées de stockage planifiées à l’aide de cron, et d’utiliser le même script pour la totalité des sauvegardes et des besoins en matière de récupération d’urgence (en modifiant les entrées du script en fonction des différentes heures de sauvegarde demandées). Ces captures sont toutes planifiées différemment dans cron selon leur durée d’exécution : toutes les heures, toutes les 12 heures, une fois par jour ou une fois par semaine. La planification cron est destinée à créer des captures instantanées de stockage qui correspondent à l’étiquetage de rétention précédemment décrit pour la sauvegarde hors site à long terme. Le script inclut des commandes demandant la sauvegarde de tous les volumes de production en fonction de la fréquence requise (les données et les fichiers journaux sont sauvegardés toutes les heures, tandis que le volume de démarrage est sauvegardé une fois par jour).
+Nous vous conseillons d’instantanés de stockage tooperform planifiée à l’aide de cron, et nous vous recommandons d’utiliser hello même générer un script pour toutes les sauvegardes et les besoins de récupération d’urgence (modification hello script entrées toomatch hello différents demandé des temps de sauvegarde). Ces captures sont toutes planifiées différemment dans cron selon leur durée d’exécution : toutes les heures, toutes les 12 heures, une fois par jour ou une fois par semaine. Cette planification cron Hello est conçue toocreate des instantanés de stockage qui correspondent à étiquetage de rétention hello décrit précédemment pour la sauvegarde hors site à long terme. script de Hello inclut tooback de commandes de tous les volumes de production, en fonction de leur fréquence demandée (données et fichiers journaux sont sauvegardés toutes les heures, tandis que le volume de démarrage hello est sauvegardé quotidiennement).
 
-Les entrées du script cron ci-après s’exécutent toutes les heures à la dixième minute, toutes les 12 heures à la dixième minute et une fois par jour à la dixième minute. Les travaux cron sont créés de façon à n’effectuer qu’une seule capture instantanée de stockage SAP HANA au cours d’une heure donnée, afin que les sauvegardes effectuées une fois par heure et une fois par jour ne se produisent pas à la même heure (12h10). Pour optimiser votre processus de création et de réplication de captures instantanées, l’équipe de gestion des services SAP HANA sur Azure vous indique l’heure d’exécution recommandée pour vos sauvegardes.
+entrées Hello Bonjour cron script suivant exécute chaque heure dix minutes, toutes les 12 heures à hello les dix minutes et tous les jours à hello dix minutes hello. cron Hello travaux sont créés de manière à ce qu’un seul instantané de stockage SAP HANA a lieu pendant toute heure particulière, afin que hello horaires et quotidiennes des sauvegardes ne se produisent pas au hello que même moment (12:10:00). toohelp optimiser votre création de capture instantanée et la réplication, SAP HANA sur la gestion des services Azure fournit hello durée recommandée pour vous toorun vos sauvegardes.
 
-La planification cron par défaut dans /etc/crontab est la suivante :
+Hello cron de valeur par défaut dans /etc/crontab de planification est la suivante :
 ```
 10 1-11,13-23 * * * ./azure_hana_backup.pl lhanad01 hourly 66
 10 12 * * *  ./azure_hana_backup.pl lhanad01 12hour 14
 ```
-Dans les instructions cron précédentes, les volumes HANA (sans le volume de démarrage) font l’objet d’une capture instantanée toutes les heures avec l’étiquette « hourly ». 66 de ces captures instantanées sont conservées. En outre, 14 captures instantanées portant l’étiquette 12 heures sont conservées. Vous obtenez potentiellement des captures instantanées toutes les heures pendant trois jours, plus des captures instantanées toutes les 12 heures pendant quatre autres jours, soit une semaine complète de captures instantanées.
+Volumes HANA hello (sans le volume de démarrage) hello précédente cron pour obtenir des instructions, obtiennent un horaire instantané avec l’étiquette de hello. 66 de ces captures instantanées sont conservées. En outre, les 14 instantanés avec étiquette de 12 heures hello sont conservés. Vous obtenez potentiellement des captures instantanées toutes les heures pendant trois jours, plus des captures instantanées toutes les 12 heures pendant quatre autres jours, soit une semaine complète de captures instantanées.
 
-La planification dans cron peut se révéler complexe car un seul script doit être exécuté à une heure donnée, à moins que le script ne soit décalé de plusieurs minutes. Si vous souhaitez effectuer des sauvegardes quotidiennes pour une rétention à long terme, soit une capture instantanée quotidienne est conservée avec une capture instantanée effectuée toutes les 12 heures (avec une valeur de rétention de sept pour chacune d’elles), soit la capture instantanée effectuée une fois par heure est décalée pour survenir 10 minutes plus tard. Une seule capture instantanée quotidienne est conservée dans le volume de production.
+Planification de cron peut être difficile, car un seul script doit être exécuté à un moment donné, à moins que les scripts de hello sont répartis en plusieurs minutes. Si vous souhaitez que les sauvegardes quotidiennes pour une rétention à long terme, un instantané quotidien est conservé avec un instantané de 12 heures (avec un nombre de rétention de sept chaque) ou instantané de toutes les heures hello est décalé tootake place 10 minutes plus tard. Un seul instantané quotidien est conservé dans le volume de production hello.
 ```
 10 1-11,13-23 * * * ./azure_hana_backup.pl lhanad01 hourly 66
 10 12 * * *  ./azure_hana_backup.pl lhanad01 12hour 7
 10 0 * * * ./azure_hana_backup.pl lhanad01 daily 7
 ```
-Ici, les fréquences sont fournies uniquement à titre d’exemple. Pour déterminer votre nombre optimal de captures instantanées, utilisez les critères suivants :
+les fréquences Hello répertoriés ici sont des exemples uniquement. tooderive votre nombre optimal d’instantanés, hello utilisation suivant des critères :
 
 - Exigences en matière d’objectif de délai de récupération pour une récupération dans le temps.
 - Utilisation de l’espace
 - Exigences en matière d’objectif de point de récupération et d’objectif de délai de récupération pour une récupération d’urgence potentielle.
-- Exécution de sauvegardes de base de données complètes HANA pour les disques. Chaque fois qu’une sauvegarde de base de données complète sera effectuée pour les disques, ou pour l’interface _backint_, l’exécution de captures instantanées de stockage échoue. Si vous prévoyez d’exécuter des sauvegardes de base de données complètes reposant sur des captures instantanées de stockage, assurez-vous que l’exécution des captures instantanées de stockage est désactivée pendant cette période.
+- Exécution de sauvegardes de base de données complètes HANA pour les disques. Chaque fois qu’une sauvegarde complète de base de données sur des disques, ou _backint_ interface, est effectuée, l’exécution de hello d’instantanés de stockage échoue. Si vous prévoyez des sauvegardes de base de données complète tooexecute au-dessus des instantanés de stockage, assurez-vous que l’exécution de hello d’instantanés de stockage est désactivée pendant ce temps.
 
 >[!IMPORTANT]
-> L’utilisation de captures instantanées de stockage pour les sauvegardes SAP HANA est uniquement valide lorsque ces captures sont effectuées conjointement avec des sauvegardes de journaux SAP HANA. Ces sauvegardes de journaux doivent pouvoir couvrir les périodes qui s’écoulent entre les captures instantanées de stockage. Si vous vous êtes engagé envers les utilisateurs à assurer une récupération jusqu’à une date et heure remontant à 30 jours, vous devez disposer des éléments suivants :
+> utilisation de Hello d’instantanés de stockage pour les sauvegardes de SAP HANA n’est valide que lorsque les instantanés hello sont exécutées conjointement avec les sauvegardes de journaux de SAP HANA. Ces journaux hello toocover en mesure de sauvegardes besoin toobe des périodes de temps entre les instantanés de stockage hello. Si vous avez défini un toousers engagement d’une récupération limitée dans le temps de 30 jours, vous devez suivant de hello :
 
-- Possibilité d’accès à une capture instantanée de stockage datant de 30 jours.
-- Sauvegardes de journaux contiguës sur les 30 derniers jours
+- Capacité tooaccess un instantané de stockage est de 30 jours.
+- Sauvegardes de journaux contigus sur hello 30 derniers jours.
 
-Dans la plage des sauvegardes de journaux, créez également une capture instantanée du volume de sauvegarde des journaux. Toutefois, veillez à sauvegarder régulièrement les journaux afin de pouvoir :
+Dans la plage hello de sauvegardes de journaux, créer un instantané du volume de sauvegarde de journal hello également. Toutefois, être a tooperform que les sauvegardes de journaux régulières afin que vous puissiez :
 
-- Disposer des sauvegardes de journaux contiguës nécessaires pour l’exécution de récupérations jusqu’à une date et heure
-- Éviter que le volume de journaux SAP HANA manque d’espace.
+- Sauvegardes de journaux contigus hello nécessité tooperform les restaurations de point-à-temps.
+- Volume de journal hello SAP HANA empêche de manquer d’espace.
 
-L’une des dernières étapes consiste à planifier les sauvegardes de journaux SAP HANA dans SAP HANA Studio. La destination cible des sauvegardes de journaux SAP HANA est le volume hana/log\_backups spécialement créé avec le point de montage de /hana/log/backups.
+Une des étapes de dernière hello est tooschedule journaux de sauvegarde SAP HANA dans SAP HANA Studio. destination de cible de sauvegarde de journal de SAP HANA Hello est hello créée spécialement hana/journal\_volume de sauvegardes avec le point de montage hello de /hana/log/backups.
 
 ![Planifier les sauvegardes de journaux SAP HANA dans SAP HANA Studio](./media/hana-overview-high-availability-disaster-recovery/image5-schedule-backup.png)
 
 Vous pouvez choisir d’effectuer des sauvegardes plus fréquemment que toutes les 15 minutes. Certains utilisateurs effectuent même des sauvegardes de journaux toutes les minutes, mais un intervalle _supérieur_ à 15 minutes est déconseillé.
 
-La dernière étape consiste à effectuer une sauvegarde basée sur un fichier (après l’installation initiale de SAP HANA) afin de créer une entrée de sauvegarde unique devant figurer dans le catalogue de sauvegarde. Dans le cas contraire, SAP HANA ne peut pas lancer vos sauvegardes de journaux spécifiées.
+étape finale de Hello est tooperform basée sur un fichier de sauvegarde (après l’installation initiale de hello de SAP HANA) toocreate une entrée de sauvegarde unique qui doit exister dans le catalogue de sauvegarde hello. Dans le cas contraire, SAP HANA ne peut pas lancer vos sauvegardes de journaux spécifiées.
 
-![Créer une sauvegarde basée sur un fichier pour créer une entrée de sauvegarde unique](./media/hana-overview-high-availability-disaster-recovery/image6-make-backup.png)
+![Créer une basée sur le fichier de sauvegarde toocreate une entrée de sauvegarde unique](./media/hana-overview-high-availability-disaster-recovery/image6-make-backup.png)
 
-### <a name="monitoring-the-number-and-size-of-snapshots-on-the-disk-volume"></a>Surveillance du nombre et de la taille des captures instantanées sur le volume de disque
+### <a name="monitoring-hello-number-and-size-of-snapshots-on-hello-disk-volume"></a>Analyse le nombre de hello et la taille des instantanés sur le volume de disque hello
 
-Sur un volume de stockage spécifique, vous pouvez surveiller le nombre de captures instantanées et l’espace de stockage consommé par ces captures. La commande `ls` n’affiche pas le répertoire des captures instantanées ni les fichiers. En revanche, la commande `du` du système d’exploitation Linux affiche ces informations à l’aide des commandes suivantes :
+Sur un volume de stockage particulier, vous pouvez surveiller le nombre hello d’instantanés et la consommation du stockage hello d’instantanés. Hello `ls` commande n’affiche pas hello instantané répertoire ou les fichiers. Toutefois, hello commande du système d’exploitation Linux `du` fait, avec hello suivant de commandes :
 
-- `du –sh .snapshot` fournit le total des captures instantanées au sein du répertoire de captures instantanées.
-- `du –sh --max-depth=1` répertorie toutes les captures instantanées enregistrées dans le dossier .snapshot et la taille de chaque capture instantanée.
-- `du –hc` fournit la taille totale utilisée par toutes les captures instantanées.
+- `du –sh .snapshot`fournit un total de toutes les captures instantanées dans le répertoire de capture instantanée hello.
+- `du –sh --max-depth=1`Répertorie tous les instantanés sont enregistrés dans le dossier de .snapshot hello et hello de chaque instantané.
+- `du –hc`Fournit la taille totale de hello utilisé par toutes les captures instantanées.
 
-Utilisez ces commandes pour vous assurer que les captures instantanées créées et stockées ne consomment pas la totalité du stockage sur les volumes.
+Utilisez ces toomake commandes assurer que les instantanés hello et sont stockées ne consomment pas tout le stockage sur des volumes hello hello.
 
-### <a name="reducing-the-number-of-snapshots-on-a-server"></a>Réduction du nombre de captures instantanées sur un serveur
+### <a name="reducing-hello-number-of-snapshots-on-a-server"></a>Ce qui réduit le nombre hello des captures instantanées sur un serveur
 
-Comme expliqué précédemment, vous pouvez réduire le nombre de captures instantanées stockées portant une certaine étiquette. Les deux derniers paramètres de la commande permettant de lancer une capture instantanée correspondent à une étiquette et au nombre de captures instantanées à conserver.
+Comme expliqué précédemment, vous pouvez réduire le nombre de hello de certaines étiquettes d’instantanés que vous stockez. deux paramètres de tooinitiate de commande hello une capture instantanée sont un nombre d’étiquette et hello d’instantanés que vous souhaitez que la dernière Hello tooretain.
 ```
 ./azure_hana_backup.pl lhanad01 customer 20
 ```
-Dans l’exemple précédent, la capture instantanée présente l’étiquette _customer_, et le nombre de captures instantanées dotées de cette étiquette qui doivent être conservées est de _20_. Afin de faire face au problème de la consommation d’espace disque, vous pouvez vouloir réduire le nombre de captures instantanées stockées. Un moyen simple de réduire le nombre de captures instantanées consiste à exécuter le script en définissant le dernier paramètre sur la valeur 5 :
+Dans l’exemple précédent de hello, étiquette de capture instantanée hello est _client_ et le numéro de hello d’instantanés avec cette toobe étiquette conservées _20_. Comme vous avez répondu toodisk la consommation d’espace, vous pourriez nombre de hello tooreduce de captures instantanées stockées. nombre de hello tooreduce d’instantanés est script de hello toorun avec hello dernier paramètre ensemble too5 facilement Hello :
 ```
 ./azure_hana_backup.pl lhanad01 customer 5
 ```
-L’exécution du script défini à l’aide de ce paramètre abaisse le nombre total de captures instantanées à _5_, y compris la nouvelle capture instantanée de stockage.
+En raison de l’exécution du script hello avec ce paramètre, nombre de hello d’instantanés, y compris hello nouveau stockage, d’instantané est _5_.
 
  >[!NOTE]
- > Ce script réduit le nombre de captures instantanées uniquement si la capture instantanée la plus récente date de plus d’une heure. Le script ne supprime pas les captures instantanées datant de moins d’une heure.
+ > Ce script réduit le nombre de hello d’instantanés uniquement si l’instantané précédent le plus récent hello est datant de plus d’une heure. script de Hello ne supprime pas les instantanés datant de moins d’une heure.
 
-Ces restrictions sont associées à la fonctionnalité de récupération d’urgence facultative offerte.
+Ces restrictions sont les fonctionnalités de récupération d’urgence facultatif toohello connexes offertes.
 
-Si vous ne souhaitez plus conserver un ensemble de captures instantanées portant ce préfixe, vous pouvez exécuter le script en définissant _0_ comme valeur de rétention afin de supprimer toutes les captures instantanées correspondant à ce préfixe. Toutefois, la suppression de toutes les captures instantanées aura une incidence sur les possibilités de récupération d’urgence.
+Si vous ne voulez plus toomaintain un ensemble d’instantanés par ce préfixe, vous pouvez exécuter le script de hello avec _0_ comme hello rétention numéro tooremove tous les instantanés correspondant à ce préfixe. Toutefois, la suppression de tous les instantanés peut affecter fonctionnalités hello de récupération d’urgence.
 
-### <a name="recovering-to-the-most-recent-hana-snapshot"></a>Récupération jusqu’à la capture instantanée HANA la plus récente
+### <a name="recovering-toohello-most-recent-hana-snapshot"></a>Récupération toohello instantané le plus récent HANA
 
-Si vous devez faire face à une interruption de la production, le processus de récupération à partir d’une capture instantanée de stockage peut être lancé sous la forme d’un incident client auprès de l’équipe de gestion des services SAP HANA sur Azure. Un tel scénario inattendu peut constituer un problème de la plus haute urgence si des données sont supprimées d’un système de production et que le seul moyen de les récupérer consiste à restaurer la base de données de production.
+En cas de hello que vous rencontrez un scénario de production vers le bas, le processus hello de récupération à partir d’un instantané de stockage peut être lancé comme un incident de client avec SAP HANA sur la gestion des services Azure. Un tel scénario d’inattendue peut être une question d’une urgence si les données ont été supprimées de production système hello seule manière et les données de salutation tooretrieve sont la base de données de production toorestore hello.
 
-En revanche, une récupération jusqu’à une date et heure peut ne pas avoir de caractère d’urgence et être planifiée plusieurs jours à l’avance. Vous pouvez planifier cette récupération avec l’équipe de gestion des services SAP HANA sur Azure au lieu de signaler un problème hautement prioritaire. Par exemple, vous pourriez envisager de tester une mise à niveau du logiciel SAP en appliquant un nouveau package d’extension, puis vouloir ensuite revenir à une capture instantanée correspondant à l’état du système avant sa mise à niveau par le package d’extension.
+Sur hello autre part, un point-à-temps de récupération peut être faible urgence et planifié pour les jours à l’avance. Vous pouvez planifier cette récupération avec l’équipe de gestion des services SAP HANA sur Azure au lieu de signaler un problème hautement prioritaire. Par exemple, supposons que vous planifiiez tootry une mise à niveau de hello logiciel SAP en appliquant un nouveau package d’extension et vous puis devez toorevert sauvegarder instantané tooa représentant l’état avant la mise à niveau hello EHP hello.
 
-Avant d’émettre la requête, vous devez effectuer certaines tâches de préparation. L’équipe de gestion des services SAP HANA sur Azure peut alors traiter la demande et fournir les volumes restaurés. Il vous incombera ensuite de restaurer la base de données HANA à l’aide des captures instantanées. Voici comment se préparer pour émettre la requête :
+Avant d’émettre la demande de hello, vous devez toodo certaines tâches de préparation. SAP HANA sur l’équipe de gestion des services Azure, puis gérer les demande de hello et fournir des volumes de hello restaurée. C’est par la suite, tooyou toorestore hello HANA base de données de captures instantanées de hello. Voici comment tooprepare pourquoi demander :
 
 >[!NOTE]
->Votre interface utilisateur peut être différente des captures d’écran suivantes, selon la version de SAP HANA que vous utilisez.
+>Votre interface utilisateur peut-être différer des hello suivant des captures d’écran, en fonction de hello version SAP HANA que vous utilisez.
 
-1. Déterminez la capture instantanée à restaurer. Sauf indication contraire, seul le volume hana/data est restauré.
+1. Décidez quels toorestore instantané. Que le volume de données/hana hello à restaurer, sauf si vous êtes invité dans le cas contraire.
 
-2. Arrêtez l’instance HANA.
+2. Arrêtez l’instance HANA hello.
 
- ![Arrêter l’instance HANA](./media/hana-overview-high-availability-disaster-recovery/image7-shutdown-hana.png)
+ ![Arrêter hello HANA instance](./media/hana-overview-high-availability-disaster-recovery/image7-shutdown-hana.png)
 
-3. Démontez les volumes de données sur chaque nœud de base de données HANA. La restauration de la capture instantanée échoue si les volumes de données ne sont pas démontés.
+3. Démontage des volumes de données hello sur chaque nœud de la base de données HANA. Hello de restauration de capture instantanée de hello échoue si les volumes de données hello ne sont pas démontés.
 
- ![Démonter les volumes de données sur chaque nœud de base de données HANA](./media/hana-overview-high-availability-disaster-recovery/image8-unmount-data-volumes.png)
+ ![Démontage des volumes de données hello sur chaque nœud de la base de données HANA](./media/hana-overview-high-availability-disaster-recovery/image8-unmount-data-volumes.png)
 
-4. Ouvrez une demande de support Azure pour demander la restauration d’une capture instantanée spécifique.
+4. Ouvrez une restauration hello de prise en charge Azure demande tooinstruct d’un instantané spécifique.
 
- - Lors de la restauration : l’équipe de gestion des services SAP HANA sur Azure peut vous demander de participer à une téléconférence pour s’assurer qu’aucune donnée n’est perdue.
+ - Pendant la restauration de hello : SAP HANA sur la gestion des services Azure peut vous demander tooattend un tooensure de téléconférence aucune donnée n’est perdue.
 
- - Après la restauration : l’équipe de gestion des services SAP HANA sur Azure vous informe lorsque la capture instantanée de stockage a été restaurée.
+ - Après la restauration de hello : SAP HANA sur la gestion des services Azure vous avertit de capture instantanée de stockage hello a été restaurée.
 
-5. Une fois le processus de restauration terminé, remontez tous les volumes de données.
+5. Une fois le processus de restauration hello terminée, remontez tous les volumes de données.
 
  ![Remonter tous les volumes de données](./media/hana-overview-high-availability-disaster-recovery/image9-remount-data-volumes.png)
 
-6. Sélectionnez les options de récupération dans SAP HANA Studio, si ces options ne s’affichent pas automatiquement lorsque vous vous reconnectez à la base de données HANA par le biais de SAP HANA Studio. L’exemple ci-après illustre une restauration à partir de la dernière capture instantanée HANA. Une capture instantanée de stockage incorpore une capture instantanée HANA. Si vous effectuez la restauration à partir de la capture instantanée de stockage la plus récente, il doit s’agir de la capture instantanée HANA la plus récente. (Si vous effectuez une restauration à partir de captures instantanées de stockage antérieures, vous devez localiser la capture instantanée HANA correspondante en vous basant sur l’heure de création de la capture instantanée de stockage.)
+6. Sélectionnez les options de récupération SAP HANA Studio, si elles ne sont pas automatiquement fournies lorsque vous vous reconnectez tooHANA DB via SAP HANA Studio. Hello suivant montre un restauration toohello HANA l’instantané. Un instantané du stockage incorpore un seul instantané HANA, et si vous restaurez le dernier instantané de stockage toohello, il doit être instantané HANA hello le plus récent. (Si vous restaurez tooolder des instantanés de stockage, vous devez toolocate hello HANA en fonction de l’instantané stockage hello hello instantané.)
 
  ![Sélectionner les options de récupération dans SAP HANA Studio](./media/hana-overview-high-availability-disaster-recovery/image10-recover-options-a.png)
 
-7. Sélectionnez l’option **Recover the database to a specific data backup or storage snapshot (Récupérer la base de données jusqu’à une sauvegarde de données ou une capture instantanée de stockage spécifiques)**.
+7. Sélectionnez **restauration hello tooa spécifique de données sauvegarde ou stockage instantané**.
 
- ![Fenêtre de sélection du type de récupération](./media/hana-overview-high-availability-disaster-recovery/image11-recover-options-b.png)
+ ![fenêtre de « Type de récupération spécifier » Hello](./media/hana-overview-high-availability-disaster-recovery/image11-recover-options-b.png)
 
 8. Sélectionnez l’option de **spécification d’une sauvegarde sans catalogue**.
 
- ![Fenêtre de spécification de l’emplacement de sauvegarde](./media/hana-overview-high-availability-disaster-recovery/image12-recover-options-c.png)
+ ![fenêtre de « Emplacement de sauvegarde spécifier » Hello](./media/hana-overview-high-availability-disaster-recovery/image12-recover-options-c.png)
 
-9. Dans la liste **Type de destination**, sélectionnez **Instantané**.
+9. Bonjour **le Type de Destination** liste, sélectionnez **instantané**.
 
- ![Fenêtre de spécification de la sauvegarde à récupérer](./media/hana-overview-high-availability-disaster-recovery/image13-recover-options-d.png)
+ ![fenêtre de « Spécifier hello sauvegarde tooRecover » Hello](./media/hana-overview-high-availability-disaster-recovery/image13-recover-options-d.png)
 
-10. Cliquez sur **Finish (Terminer)** pour démarrer le processus de récupération.
+10. Cliquez sur **Terminer** processus de récupération toostart hello.
 
- ![Cliquer sur Finish (Terminer) pour démarrer le processus de récupération](./media/hana-overview-high-availability-disaster-recovery/image14-recover-options-e.png)
+ ![Cliquez sur « Terminer » le processus de récupération de hello toostart](./media/hana-overview-high-availability-disaster-recovery/image14-recover-options-e.png)
 
-11. La base de données HANA est restaurée et récupérée à partir de la capture instantanée HANA incluse dans la capture instantanée de stockage.
+11. base de données HANA Hello est restaurée et récupérée d’instantané HANA toohello qui est inclus dans l’instantané de stockage hello.
 
- ![Base de données HANA restaurée et récupérée dans la capture instantanée de stockage](./media/hana-overview-high-availability-disaster-recovery/image15-recover-options-f.png)
+ ![Base de données HANA est instantané HANA toohello restaurée et récupérée](./media/hana-overview-high-availability-disaster-recovery/image15-recover-options-f.png)
 
-### <a name="recovering-to-the-most-recent-state"></a>Récupération jusqu’à l’état le plus récent
+### <a name="recovering-toohello-most-recent-state"></a>Récupérez l’état le plus récent toohello
 
-Le processus suivant restaure la capture instantanée HANA incluse dans la capture instantanée de stockage. Il restaure ensuite les sauvegardes des journaux de transactions à l’état le plus récent de la base de données avant de restaurer la capture instantanée de stockage.
+Hello processus suivant restaure hello HANA snapshot qui est inclus dans l’instantané de stockage hello. Il restaure ensuite hello transaction journal sauvegardes toohello état le plus récent de la base de données hello avant de restaurer l’instantané du stockage hello.
 
 >[!IMPORTANT]
->Avant de poursuivre, assurez-vous que vous disposez d’une chaîne complète et contiguë de sauvegardes de journaux des transactions. Sans ces sauvegardes, vous ne pouvez pas restaurer l’état actuel de la base de données.
+>Avant de poursuivre, assurez-vous que vous disposez d’une chaîne complète et contiguë de sauvegardes de journaux des transactions. Sans ces sauvegardes, vous ne pouvez pas restaurer l’état actuel de hello de base de données hello.
 
-1. Effectuez les étapes 1 à 6 de la procédure précédente « Récupération jusqu’à la capture instantanée HANA la plus récente ».
+1. Les étapes 1 à 6 de hello précédant la procédure dans « Recovering toohello HANA instantané le plus récent. »
 
-2. Sélectionnez l’option de **récupération de la base de données jusqu’à son état le plus récent**.
+2. Sélectionnez **récupérer l’état le plus récent hello de base de données tooits**.
 
- ![Sélectionner l’option de « récupération de la base de données jusqu’à son état le plus récent »](./media/hana-overview-high-availability-disaster-recovery/image16-recover-database-a.png)
+ ![Sélectionnez « Restaurer l’état le plus récent hello de base de données tooits »](./media/hana-overview-high-availability-disaster-recovery/image16-recover-database-a.png)
 
-3. Spécifiez l’emplacement des dernières sauvegardes de journaux HANA. L’emplacement doit contenir toutes les sauvegardes des journaux de transactions HANA entre la capture instantanée HANA et l’état le plus récent.
+3. Spécifier l’emplacement hello hello plus récent HANA de sauvegardes de journaux. emplacement de Hello doit toocontain toutes les sauvegardes de journal des transactions HANA à partir de l’état le plus récent hello HANA instantané toohello.
 
- ![Spécifier l’emplacement des dernières sauvegardes de journaux HANA](./media/hana-overview-high-availability-disaster-recovery/image17-recover-database-b.png)
+ ![Spécifier l’emplacement de hello hello plus récent HANA de sauvegardes de journaux](./media/hana-overview-high-availability-disaster-recovery/image17-recover-database-b.png)
 
-4. Sélectionnez une sauvegarde comme base pour la récupération de la base de données. Dans notre exemple, il s’agit de la capture instantanée HANA qui était incluse dans la capture instantanée de stockage. (Une seule capture instantanée est répertoriée dans la capture d’écran suivante).
+4. Sélectionnez une sauvegarde comme base à partir de la base de données toorecover hello. Dans notre exemple, il s’agit d’instantané HANA hello qui était inclus dans l’instantané de stockage hello. (Un seul instantané est répertorié Bonjour suivant capture d’écran).
 
- ![Sélectionner une sauvegarde comme base pour la récupération de la base de données](./media/hana-overview-high-availability-disaster-recovery/image18-recover-database-c.png)
+ ![Sélectionner une sauvegarde comme base à partir de la base de données qui hello toorecover](./media/hana-overview-high-availability-disaster-recovery/image18-recover-database-c.png)
 
-5. Désélectionnez l’option **Use Delta Backups (Utiliser les sauvegardes différentielles)** si ces sauvegardes n’existent pas entre le moment de la capture instantanée HANA et l’état le plus récent.
+5. Désactivez hello **utiliser les sauvegardes Delta** case à cocher si deltas n’existent pas entre hello instantané HANA hello et état le plus récent hello.
 
- ![Désélectionner l’option Use Delta Backups (Utiliser les sauvegardes différentielles) si ces sauvegardes n’existent pas](./media/hana-overview-high-availability-disaster-recovery/image19-recover-database-d.png)
+ ![Désactivez hello « Utiliser les sauvegardes Delta » case à cocher si aucun deltas n’existe](./media/hana-overview-high-availability-disaster-recovery/image19-recover-database-d.png)
 
-6. Sur l’écran récapitulatif, cliquez sur **Finish (Terminer)** pour lancer la procédure de restauration.
+6. Dans l’écran de résumé hello, cliquez sur **Terminer** procédure de restauration toostart hello.
 
- ![Cliquer sur "Finish" (Terminer) sur l’écran récapitulatif](./media/hana-overview-high-availability-disaster-recovery/image20-recover-database-e.png)
+ ![Cliquez sur « Terminer » sur l’écran de résumé hello](./media/hana-overview-high-availability-disaster-recovery/image20-recover-database-e.png)
 
-### <a name="recovering-to-another-point-in-time"></a>Récupération à un autre point dans le temps
-Pour effectuer une récupération jusqu’à une date et heure situées entre la capture instantanée HANA (incluse dans la capture instantanée de stockage) et une autre date et heures postérieures à cette capture instantanée, procédez comme suit :
+### <a name="recovering-tooanother-point-in-time"></a>Récupération point tooanother dans le temps
+point de tooa toorecover dans le temps entre l’instantané HANA hello (inclus dans l’instantané de stockage hello) et l’autre est postérieure à la récupération de point-à-temps, de capture instantanée hello HANA hello suivant :
 
-1. Vérifiez que vous disposez de toutes les sauvegardes des journaux de transactions entre la capture instantanée HANA et l’heure souhaitée pour la récupération.
-2. Commencez la procédure « Récupération jusqu’à l’état le plus récent ».
-3. À l’étape 2 de la procédure, dans la fenêtre de **spécification du type de récupération**, sélectionnez l’option **Recover the database to the following point in time (Récupérer la base de données jusqu’au point dans le temps suivant)**, spécifiez le point dans le temps, puis effectuez les étapes 3 à 6.
+1. Assurez-vous que vous disposez de toutes les sauvegardes de journaux de transaction de hello HANA instantané toohello pendant laquelle vous souhaitez que toorecover.
+2. Commencer la procédure hello sous « Recovering toohello état le plus récent. »
+3. Dans l’étape 2 de la procédure hello, Bonjour **spécifier le Type de récupération** fenêtre, sélectionnez **suivant de toohello de base de données de récupération hello point dans le temps**, spécifiez hello point dans le temps, puis effectuez les étapes 3 à 6.
 
-## <a name="monitoring-the-execution-of-snapshots"></a>Surveillance de l’exécution de captures instantanées
+## <a name="monitoring-hello-execution-of-snapshots"></a>Surveillance de l’exécution de hello d’instantanés
 
-Vous devez surveiller l’exécution des captures instantanées de stockage. Le script qui exécute une capture instantanée de stockage écrit la sortie dans un fichier, puis enregistre ce dernier au même emplacement que les scripts Perl. Un fichier distinct est créé pour chaque capture instantanée. Le résultat de chaque fichier montre clairement les différentes phases que le script de capture instantanée exécute :
+Vous avez besoin de l’exécution de hello toomonitor d’instantanés de stockage. script Hello qui exécute un instantané du stockage écrit le fichier de sortie tooa, puis l’enregistre toohello même emplacement que les scripts Perl hello. Un fichier distinct est créé pour chaque capture instantanée. sortie Hello de chaque fichier montre clairement hello différentes phases hello instantané s’exécute :
 
-- Recherche des volumes qui doivent créer une capture instantanée
-- Recherche des captures instantanées créées à partir de ces volumes
-- Suppression des captures instantanées existantes en fonction du nombre de captures instantanées que vous avez spécifié
+- Recherche d’un instantané de volumes hello nécessitant toocreate
+- Recherche d’instantanés hello obtenues à partir de ces volumes.
+- La suppression éventuelle existant instantanés toomatch hello nombre d’instantanés que vous avez spécifié
 - Création d’une capture instantanée HANA
-- Création de la capture instantanée de stockage sur les volumes
-- Suppression de la capture instantanée HANA
-- Changement du nom de la capture instantanée la plus récente par l’attribution de la valeur **.0**
+- Création d’instantanés de stockage hello sur les volumes de hello
+- Suppression hello HANA instantané
+- Changement de nom hello plus récente d’instantanés trop**.0**
 
-La partie la plus importante du script est la suivante :
+étape la plus importante du script de hello Hello est la suivante :
 ```
 **********************Creating HANA snapshot**********************
-Creating the HANA snapshot with command: "./hdbsql -n localhost -i 01 -U SCADMIN01 "backup data create snapshot"" ...
+Creating hello HANA snapshot with command: "./hdbsql -n localhost -i 01 -U SCADMIN01 "backup data create snapshot"" ...
 HANA snapshot created successfully.
 **********************Creating Storage snapshot**********************
 Taking snapshot hourly.recent for hana_data_lhanad01_t020_vol ...
@@ -590,7 +590,7 @@ Snapshot created successfully.
 Taking snapshot hourly.recent for sapmnt_lhanad01_t020_vol ...
 Snapshot created successfully.
 **********************Deleting HANA snapshot**********************
-Deleting the HANA snapshot with command: "./hdbsql -n localhost -i 01 -U SCADMIN01 "backup data drop snapshot"" ...
+Deleting hello HANA snapshot with command: "./hdbsql -n localhost -i 01 -U SCADMIN01 "backup data drop snapshot"" ...
 HANA snapshot deletion successfully.
 ```
-Dans cet exemple, vous pouvez voir la façon dont le script enregistre la création de la capture instantanée HANA. Dans le cas d’une montée en puissance parallèle, ce processus est initialisé sur le nœud principal. Le nœud principal initie la création synchrone des captures instantanées sur chacun des nœuds de travail. Puis la capture instantanée de stockage est effectuée. Une fois que l’exécution des captures instantanées de stockage a réussi, la capture instantanée HANA est supprimée.
+À partir de cet exemple, vous pouvez voir comment les enregistrements de script hello hello la création de hello HANA instantané. Dans les cas de montée en puissance parallèle hello, ce processus est lancé sur le nœud principal de hello. nœud maître de Hello lance la création de synchrone de hello d’instantanés hello sur chacun des nœuds de travail hello. Instantané de stockage hello est extraite. Après l’exécution réussie de hello d’instantanés de stockage hello, instantané HANA hello est supprimé.

@@ -1,6 +1,6 @@
 ---
-title: Collecte des journaux avec Linux Azure Diagnostics | Microsoft Docs
-description: "Cet article décrit la procédure de configuration d’Azure Diagnostics pour la collecte de journaux d’un cluster Linux Service Fabric exécuté dans Azure."
+title: "journaux aaaCollect à l’aide des Diagnostics Azure Linux | Documents Microsoft"
+description: "Cet article décrit comment tooset des Diagnostics Windows Azure toocollect se connecte à partir d’un cluster Service Fabric Linux s’exécutant dans Azure."
 services: service-fabric
 documentationcenter: .net
 author: mani-ramaswamy
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 6/28/2017
 ms.author: subramar
-ms.openlocfilehash: 3e41caaeb38c55d1c6c3bfdce2f81c86b4aff4d0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f61172876e744ea3e361f9ae513254239d6ba27f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="collect-logs-by-using-azure-diagnostics"></a>Collecte des journaux avec Azure Diagnostics
 > [!div class="op_single_selector"]
@@ -27,25 +27,25 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-Lorsque vous exécutez un cluster Service Fabric dans Azure, il peut être intéressant de collecter les journaux de tous les nœuds pour les regrouper dans un emplacement central. La centralisation des journaux facilite l’analyse et la résolution des problèmes concernant vos services, votre application, voire le cluster lui-même. L’une des façons de charger et collecter les journaux consiste à utiliser l’extension Azure Diagnostics, qui charge les journaux dans Azure Storage, Azure Application Insights ou Azure Event Hubs. Vous pouvez également lire les événements du stockage ou d’Event Hubs et les placer dans un produit comme [Log Analytics](../log-analytics/log-analytics-service-fabric.md) ou une autre solution d’analyse de journaux. [Azure Application Insights](https://azure.microsoft.com/services/application-insights/) est fourni avec un service complet de recherche dans les journaux et un service d’analyse intégré.
+Lorsque vous exécutez un cluster Azure Service Fabric, il s’agit d’une bonne idée toocollect hello les journaux à partir de tous les nœuds hello dans un emplacement central. Hello journaux dans un emplacement central rend facile tooanalyze et résoudre les problèmes, qu’ils soient dans vos services, votre application ou le cluster hello lui-même. Tooupload d’une façon et collecter des journaux est l’extension de Diagnostics Windows Azure hello toouse, les téléchargements de journaux tooAzure stockage, Azure Application Insights ou Azure Event Hubs. Vous pouvez également lire les événements de hello de stockage ou les concentrateurs d’événements et les placer dans un produit tel que [Analytique de journal](../log-analytics/log-analytics-service-fabric.md) ou une autre solution d’analyse de journal. [Azure Application Insights](https://azure.microsoft.com/services/application-insights/) est fourni avec un service complet de recherche dans les journaux et d’analyse des données intégré.
 
-## <a name="log-sources-that-you-might-want-to-collect"></a>Sources de journaux que vous pourriez vouloir collecter
-* **Journaux Service Fabric** : émis par la plateforme via [LTTng](http://lttng.org) et chargés dans votre compte de stockage. Les journaux peuvent porter sur les événements opérationnels ou d’exécution émis par la plate-forme. Ils sont stockés dans l’emplacement spécifié par le manifeste de cluster. (Pour obtenir les informations sur le compte de stockage, recherchez la balise **AzureTableWinFabETWQueryable**, puis **StoreConnectionString**.)
-* **Événements d’application** : émis par le code de votre service. Vous pouvez utiliser une solution de journalisation qui écrit des fichiers journaux textuels, par exemple LTTng. Pour plus d’informations, consultez la documentation de LTTng sur le traçage de votre application.  
+## <a name="log-sources-that-you-might-want-toocollect"></a>Vous voudrez probablement toocollect des sources de journal
+* **Journaux du service Fabric**: émis à partir de la plateforme hello via [LTTng](http://lttng.org) et téléchargé le compte de stockage tooyour. Les journaux peuvent être des événements opérationnels ou émet des événements du runtime que hello plateforme. Ces journaux sont stockés dans un emplacement de hello spécifie ce manifeste du cluster hello. (tooget les détails du compte de stockage d’hello, recherchez la balise de hello **AzureTableWinFabETWQueryable** et recherchez **StoreConnectionString**.)
+* **Événements d’application** : émis par le code de votre service. Vous pouvez utiliser une solution de journalisation qui écrit des fichiers journaux textuels, par exemple LTTng. Pour plus d’informations, consultez la documentation de LTTng hello le suivi de votre application.  
 
-## <a name="deploy-the-diagnostics-extension"></a>Déployer l’extension Diagnostics
-La première étape de la collecte de journaux consiste à déployer l’extension Diagnostics sur chaque machine virtuelle du cluster Service Fabric. Cette extension collecte les journaux sur chaque machine virtuelle et les charge dans le compte de stockage que vous spécifiez. Les étapes varient selon que vous utilisez le portail Azure ou Azure Resource Manager.
+## <a name="deploy-hello-diagnostics-extension"></a>Déployer l’extension de Diagnostics hello
+Hello première étape de collecte de journaux est l’extension de Diagnostics toodeploy hello sur chacune des machines virtuelles de hello dans le cluster Service Fabric de hello. Hello, extension de diagnostic collecte des journaux sur chaque machine virtuelle et les charge compte de stockage toohello que vous spécifiez. étapes de Hello varient selon que vous utilisez hello portail Azure ou Azure Resource Manager.
 
-Pour déployer l’extension Diagnostics sur les machines virtuelles du cluster lors de la création de ce dernier, définissez **Diagnostics** sur **Activé**. Une fois le cluster créé, vous ne pouvez plus modifier ce paramètre à l’aide du portail.
+toodeploy hello Diagnostics extension toohello machines virtuelles dans le cluster hello dans le cadre de la création du cluster, définissez **Diagnostics** trop**sur**. Après avoir créé le cluster de hello, vous ne pouvez pas modifier ce paramètre à l’aide du portail de hello.
 
-Ensuite, configurez Linux Azure Diagnostics (LAD) pour collecter les fichiers et les placer dans votre compte de stockage. Ce processus est détaillé dans le scénario 3 (Charger vos propres fichiers journaux) de l’article [Utilisation de l’extension de diagnostic Linux pour analyser les données de performances et de diagnostic d’une machine virtuelle Linux](../virtual-machines/linux/classic/diagnostic-extension.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json). Cette procédure vous fournit un accès aux suivis. Vous pouvez charger les suivis dans le visualiseur de votre choix.
+Ensuite, configurez les fichiers de hello toocollect Linux Azure Diagnostics (SCÉNARISTE) et les placer dans votre compte de stockage. Ce processus est expliqué en tant que scénario 3 (« charger vos propres fichiers journaux ») dans l’article de hello [à l’aide de SCÉNARISTE toomonitor et diagnostiquer les machines virtuelles Linux](../virtual-machines/linux/classic/diagnostic-extension.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json). Après cette Obtient de processus que vous l’accès toohello effectue le suivi. Vous pouvez télécharger le visualiseur de tooa hello traces de votre choix.
 
-Vous pouvez également déployer l’extension Diagnostics à l’aide d’Azure Resource Manager. Le processus, identique pour Windows et Linux, est documenté pour les clusters Windows, dans la section [Collecte des journaux avec Linux Azure Diagnostics](service-fabric-diagnostics-how-to-setup-wad.md).
+Vous pouvez également déployer l’extension de Diagnostics hello à l’aide du Gestionnaire de ressources Azure. Hello processus est similaire pour Windows et Linux et est documenté pour les clusters Windows dans [comment toocollect se connecte avec Azure Diagnostics](service-fabric-diagnostics-how-to-setup-wad.md).
 
 Vous pouvez également utiliser Operations Management Suite, comme indiqué dans [Operations Management Suite Log Analytics with Linux (Analyse des journaux Operations Management Suite avec Linux)](https://blogs.technet.microsoft.com/hybridcloud/2016/01/28/operations-management-suite-log-analytics-with-linux/).
 
-Une fois cette configuration effectuée, l’agent LAD analyse les fichiers journaux spécifiés. Dès qu’une nouvelle ligne est ajoutée au fichier, elle crée une entrée dans le journal syslog, qui est envoyée au stockage que vous avez spécifié.
+Après avoir terminé cette configuration, analyses de l’agent hello SCÉNARISTE hello des fichiers journaux spécifiés. Chaque fois qu’une nouvelle ligne est ajoutée toohello fichier, il crée une entrée de journal système qui est envoyé toohello de stockage que vous avez spécifié.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Pour identifier plus précisément les événements à consulter lors de la résolution des problèmes, consultez la [documentation de LTTng](http://lttng.org/docs) et la section [Utilisation de l’extension de diagnostic Linux pour analyser les données de performances et de diagnostic d’une machine virtuelle Linux](../virtual-machines/linux/classic/diagnostic-extension.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json).
+toounderstand plus en détail les événements que vous devez examiner lors de la résolution des problèmes, consultez [LTTng documentation](http://lttng.org/docs) et [à l’aide de SCÉNARISTE](../virtual-machines/linux/classic/diagnostic-extension.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json).
 

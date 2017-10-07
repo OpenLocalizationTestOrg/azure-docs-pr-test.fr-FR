@@ -1,6 +1,6 @@
 ---
-title: "Créer une homologation de réseaux virtuels Azure - Resource Manager - Abonnements différents | Microsoft Docs"
-description: "Découvrez comment créer une homologation de réseaux virtuels entre des réseaux virtuels créés via Resource Manager dans des abonnements Azure différents."
+title: "aaaCreate virtuelle Azure réseau homologation - Gestionnaire de ressources - différents abonnements | Documents Microsoft"
+description: "Découvrez comment toocreate un réseau virtuel d’homologation entre les réseaux virtuels créés via le Gestionnaire des ressources qui existent dans différents abonnements Azure."
 services: virtual-network
 documentationcenter: 
 author: jimdial
@@ -15,17 +15,17 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 07/17/2017
 ms.author: jdial;narayan;annahar
-ms.openlocfilehash: 84bbf90257f038fb5f3e964b7b35419acd77fc6d
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: c7983a86031e061c1155144e5c493ee9578fa583
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-virtual-network-peering---resource-manager-different-subscriptions"></a>Créer une homologation de réseaux virtuels - Resource Manager - Abonnements différents 
 
-Dans ce didacticiel, vous allez découvrir comment créer une homologation de réseaux virtuels entre des réseaux virtuels créés par le biais de Resource Manager. Les réseaux virtuels existent dans des abonnements différents. Homologuer deux réseaux virtuels permet aux ressources de différents réseaux virtuels de communiquer entre elles avec la même bande passante et latence, comme si les ressources se trouvaient sur le même réseau virtuel. En savoir plus sur l’[homologation de réseaux virtuels](virtual-network-peering-overview.md). 
+Dans ce didacticiel, vous découvrez toocreate un réseau virtuel d’homologation entre réseaux virtuels créés par le biais du Gestionnaire de ressources. les réseaux virtuels Hello existent dans différents abonnements. D’homologation deux réseaux virtuels Active ressources toocommunicate différents réseaux virtuels entre eux avec hello même la bande passante et la latence comme si les ressources hello étaient hello même réseau virtuel. En savoir plus sur l’[homologation de réseaux virtuels](virtual-network-peering-overview.md). 
 
-Les étapes de création d’une homologation de réseaux virtuels sont différentes, selon que les réseaux virtuels sont dans le même abonnement ou dans des abonnements différents, et selon le [modèle de déploiement Azure](../azure-resource-manager/resource-manager-deployment-model.md?toc=%2fazure%2fvirtual-network%2ftoc.json) utilisé pour les créer. Découvrez comment créer une homologation de réseaux virtuels dans d’autres scénarios en cliquant sur le scénario souhaité dans le tableau suivant :
+Hello étapes toocreate une homologation de réseau virtuel sont différents, selon que les réseaux virtuels hello sont dans hello identiques ou différent, les abonnements et qui [modèle de déploiement Azure](../azure-resource-manager/resource-manager-deployment-model.md?toc=%2fazure%2fvirtual-network%2ftoc.json) hello des réseaux virtuels sont créés via. Découvrez comment toocreate a virtual network homologation dans d’autres scénarios en cliquant sur le scénario hello hello tableau suivant :
 
 |Modèle de déploiement Azure  | Abonnement Azure  |
 |--------- |---------|
@@ -33,17 +33,17 @@ Les étapes de création d’une homologation de réseaux virtuels sont différe
 |[Un modèle Resource Manager, un modèle classique](create-peering-different-deployment-models.md) |Identique|
 |[Un modèle Resource Manager, un modèle classique](create-peering-different-deployment-models-subscriptions.md) |Différent|
 
-Vous ne pouvez pas créer d’homologation de réseaux virtuels entre deux réseaux virtuels déployés via le modèle de déploiement classique. Une homologation de réseaux virtuels ne peut être créée qu’entre deux réseaux virtuels qui existent dans la même région Azure. Lors de la création d’une homologation de réseaux virtuels entre des réseaux virtuels dans différents abonnements, les abonnements doivent tous deux être associés au même locataire Active Directory. Si vous n’avez pas encore de locataire Azure Active Directory, vous pouvez rapidement en [créer un](../active-directory/develop/active-directory-howto-tenant.md?toc=%2fazure%2fvirtual-network%2ftoc.json#start-from-scratch). Si vous avez besoin de connecter des réseaux virtuels tous deux créés par le biais du modèle de déploiement classique, qui existent dans différentes régions Azure ou qui existent dans abonnements associés à des locataires Active Directory différents, vous pouvez utiliser une [passerelle VPN](../vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal.md?toc=%2fazure%2fvirtual-network%2ftoc.json) Azure. 
+Une homologation de réseau virtuel ne peut pas être créée entre deux réseaux virtuels déployés via le modèle de déploiement classique hello. Une homologation de réseau virtuel ne peut être créée qu’entre deux réseaux virtuels qui existent dans hello même région Azure. Lors de la création d’un réseau virtuel d’homologation entre les réseaux virtuels qui existent dans différents abonnements, hello les abonnements doivent être associés toohello même client Azure Active Directory. Si vous n’avez pas encore de locataire Azure Active Directory, vous pouvez rapidement en [créer un](../active-directory/develop/active-directory-howto-tenant.md?toc=%2fazure%2fvirtual-network%2ftoc.json#start-from-scratch). Si vous avez besoin de tooconnect virtuel réseaux qui ont été créés via le modèle de déploiement classique de hello, qui existe dans différentes régions Azure, ou qui existent dans les abonnements associés clients d’Azure Active Directory toodifferent, que vous pouvez utiliser Azure [Passerelle VPN](../vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal.md?toc=%2fazure%2fvirtual-network%2ftoc.json) tooconnect hello des réseaux virtuels. 
 
-Vous pouvez utiliser le [portail Azure](#portal), l’[interface de ligne de commande](#cli) ou Azure [PowerShell](#powershell) pour créer une homologation de réseaux virtuels. Cliquez sur les liens des outils précédents pour accéder directement à la procédure permettant de créer une homologation de réseaux virtuels à l’aide de l’outil de votre choix.
+Vous pouvez utiliser hello [portail Azure](#portal), hello Azure [une interface de ligne](#cli) (CLI), ou Azure [PowerShell](#powershell) toocreate une homologation de réseau virtuel. Cliquez sur un des hello précédente outil liens toogo directement toohello les étapes de création d’une homologation de réseau virtuel à l’aide de votre outil de choix.
 
 ## <a name="portal"></a>Créer une homologation - portail Azure
 
-Ce didacticiel utilise des comptes différents pour chaque abonnement. Si vous utilisez un compte qui a des autorisations pour les deux abonnements, vous pouvez utiliser le même compte pour toutes les étapes, ignorer les étapes de déconnexion du portail et ignorer les étapes d’affectation d’autorisations d’accès aux réseaux virtuels à un autre utilisateur.
+Ce didacticiel utilise des comptes différents pour chaque abonnement. Si vous utilisez un compte disposant d’autorisations tooboth abonnements, vous pouvez utiliser hello même compte pour toutes les étapes, ignorez les étapes hello pour la journalisation déconnecte du portail de hello et ignorez les étapes hello pour affecter des réseaux virtuels d’autorisations toohello un autre utilisateur.
 
-1. Connectez-vous au [portail Azure](https://portal.azure.com) en tant que UserA. Le compte auquel vous vous connectez doit avoir les autorisations nécessaires pour créer une homologation de réseaux virtuels. Consultez la section [Autorisations](#permissions) de cet article pour plus d’informations.
+1. Connectez-vous à toohello [portail Azure](https://portal.azure.com) comme l’UtilisateurA. compte de Hello avec que vous vous connectez doit avoir toocreate des autorisations nécessaires hello une homologation de réseau virtuel. Consultez hello [autorisations](#permissions) section de cet article pour plus d’informations.
 2. Cliquez sur **+ Nouveau**, puis sur **Mise en réseau** et **Réseau virtuel**.
-3. Dans le panneau **Créer un réseau virtuel**, entrez ou sélectionnez les valeurs des paramètres suivants, puis cliquez sur **Créer** :
+3. Bonjour **créer un réseau virtuel** panneau, puis entrez ou sélectionnez les valeurs pour hello suivant les paramètres, **créer**:
     - **Nom** : *myVnetA*
     - **Espace d’adressage** : *10.0.0.0/16*
     - **Nom du sous-réseau** : *par défaut*
@@ -51,15 +51,15 @@ Ce didacticiel utilise des comptes différents pour chaque abonnement. Si vous u
     - **Abonnement :** sélectionnez l’abonnement A.
     - **Groupe de ressources** : sélectionnez **Créer** et entrez *myResourceGroupA*
     - **Emplacement** : *États-Unis de l’Est*
-4. Dans le champ **Rechercher des ressources** située en haut du portail, tapez *myVnetA*. Quand la mention **myVnetA** apparaît dans les résultats de recherche, cliquez dessus. Un panneau apparaît pour le réseau virtuel **myVnetA**.
-5. Dans le panneau **myVnetA** qui apparaît, cliquez sur **Contrôle d’accès (IAM)** dans la liste verticale des options sur le côté gauche du panneau.
-6. Dans le panneau **myVnetA - Contrôle d’accès (IAM)** qui apparaît, cliquez sur **+ Ajouter**.
-7. Dans le panneau **Ajouter les autorisations** qui s’affiche, sélectionnez **Contributeur de réseaux** dans le champ **Rôle**.
-8. Dans la zone **Sélectionner**, sélectionnez UserB ou tapez l’adresse e-mail de UserB pour le rechercher. La liste des utilisateurs affichée provient du même locataire Azure Active Directory que le réseau virtuel pour lequel vous configurez l’homologation.
+4. Bonjour **recherche les ressources** zone en haut hello hello du portail de, type *myVnetA*. Cliquez sur **myVnetA** lorsqu’il apparaît dans les résultats de recherche hello. Un panneau s’affiche pour hello **myVnetA** réseau virtuel.
+5. Bonjour **myVnetA** panneau qui s’affiche, cliquez sur **(IAM) de contrôle d’accès** de liste verticale de hello des options sur hello gauche du Panneau de hello.
+6. Bonjour **myVnetA - contrôle d’accès (IAM)** panneau qui s’affiche, cliquez sur **+ ajouter**.
+7. Bonjour **ajouter des autorisations** panneau qui s’affiche, sélectionnez **collaborateur de réseau** Bonjour **rôle** boîte.
+8. Bonjour **sélectionnez** zone, sélectionnez un UserB ou tapez toosearch d’adresse de messagerie de UserB pour celle-ci. Bonjour la liste des utilisateurs affichés est de hello même locataire Azure Active Directory en tant que réseau virtuel de hello que vous configurez hello d’homologation pour.
 9. Cliquez sur **Enregistrer**.
-10. Dans le panneau **myVnetA - Contrôle d’accès (IAM)**, cliquez sur **Propriétés** dans la liste verticale des options sur le côté gauche du panneau. Copiez l’**ID de ressource**, qui vous servira lors d’une étape ultérieure. L’ID de ressource est similaire à l’exemple suivant : /subscriptions/<Subscription Id>/resourceGroups/myResourceGroupA/providers/Microsoft.Network/virtualNetworks/myVnetA.
-11. Déconnectez-vous du portail en tant que UserA, puis connectez-vous en tant que UserB.
-12. Effectuez les étapes 2 et 3, en entrant ou en sélectionnant les valeurs suivantes à l’étape 3 :
+10. Bonjour **myVnetA - contrôle d’accès (IAM)** panneau, cliquez sur **propriétés** de liste verticale de hello des options sur hello gauche du Panneau de hello. Hello de copie **ID de ressource**, qui est utilisé dans une étape ultérieure. ID de ressource Hello est similaire toohello l’exemple suivant : /subscriptions/<Subscription Id>/resourceGroups/myResourceGroupA/providers/Microsoft.Network/virtualNetworks/myVnetA.
+11. Se déconnecter portail hello en tant que l’UtilisateurA, puis connectez-vous en tant qu’utilisateur b.
+12. Effectuez les étapes 2 et 3, entrant ou en sélectionnant hello suivant à l’étape 3 :
 
     - **Nom** : *myVnetB*
     - **Espace d’adressage** : *10.1.0.0/16*
@@ -69,43 +69,43 @@ Ce didacticiel utilise des comptes différents pour chaque abonnement. Si vous u
     - **Groupe de ressources** : sélectionnez **Créer** et entrez *myResourceGroupB*
     - **Emplacement** : *États-Unis de l’Est*
 
-13. Dans le champ **Rechercher des ressources** située en haut du portail, tapez *myVnetB*. Quand la mention **myVnetB** apparaît dans les résultats de recherche, cliquez dessus. Un panneau apparaît pour le réseau virtuel **myVnetB**.
-14. Dans le panneau **myVnetB** qui s’affiche, cliquez sur **Propriétés** dans la liste verticale des options sur le côté gauche du panneau. Copiez l’**ID de ressource**, qui vous servira lors d’une étape ultérieure. L’ID de ressource est similaire à l’exemple suivant : /subscriptions/<Susbscription ID>/resourceGroups/myResoureGroupB/providers/Microsoft.ClassicNetwork/virtualNetworks/myVnetB.
-15. Cliquez sur **Contrôle d’accès (IAM)** dans le panneau **myVnetB**, puis suivez les étapes 5 à 10 pour myVnetB, en entrant **UserA** à l’étape 8.
-16. Déconnectez-vous du portail en tant que UserB, puis connectez-vous en tant que UserA.
-17. Dans le champ **Rechercher des ressources** située en haut du portail, tapez *myVnetA*. Quand la mention **myVnetA** apparaît dans les résultats de recherche, cliquez dessus. Un panneau apparaît pour le réseau virtuel **myVnet**.
+13. Bonjour **recherche les ressources** zone en haut hello hello du portail de, type *myVnetB*. Cliquez sur **myVnetB** lorsqu’il apparaît dans les résultats de recherche hello. Un panneau s’affiche pour hello **myVnetB** réseau virtuel.
+14. Bonjour **myVnetB** panneau qui s’affiche, cliquez sur **propriétés** de liste verticale de hello des options sur hello gauche du Panneau de hello. Hello de copie **ID de ressource**, qui est utilisé dans une étape ultérieure. ID de ressource Hello est similaire toohello l’exemple suivant : /subscriptions/<Susbscription ID>/resourceGroups/myResoureGroupB/providers/Microsoft.ClassicNetwork/virtualNetworks/myVnetB.
+15. Cliquez sur **(IAM) de contrôle d’accès** Bonjour **myVnetB** lame et puis suivez les étapes 5 à 10 pour myVnetB, entrez **UserA** à l’étape 8.
+16. Déconnectez-vous de portail hello comme UtilisateurB et connectez-vous en tant que l’UtilisateurA.
+17. Bonjour **recherche les ressources** zone en haut hello hello du portail de, type *myVnetA*. Cliquez sur **myVnetA** lorsqu’il apparaît dans les résultats de recherche hello. Un panneau s’affiche pour hello **myVnet** réseau virtuel.
 18. Cliquez sur **myVnetA**.
-19. Dans le panneau **myVnetA** qui s’affiche, cliquez sur **Homologations** dans la liste verticale des options sur le côté gauche du panneau.
-20. Dans le panneau **myVnetA - Homologations** qui s’est affiché, cliquez sur **+ Ajouter**.
-21. Dans le panneau **Ajouter l’homologation** qui s’affiche, entrez ou sélectionnez les options suivantes et cliquez sur **OK** :
+19. Bonjour **myVnetA** panneau qui s’affiche, cliquez sur **homologations** de liste verticale de hello des options sur hello gauche du Panneau de hello.
+20. Bonjour **myVnetA - homologations** panneau s’affiche, cliquez sur **+ ajouter**
+21. Bonjour **ajouter d’homologation** panneau qui s’affiche, entrez, ou sélectionnez hello options suivantes, puis cliquez sur **OK**:
      - **Nom** : *myVnetAToMyVnetB*
      - **Modèle de déploiement de réseau virtuel** : sélectionnez **Resource Manager**.
      - **Je connais mon ID de ressource** : cochez cette case.
-     - **ID de ressource** : entrez l’ID de ressource noté à l’étape 14.
+     - **ID de ressource**: entrez l’ID de ressource hello à l’étape 14.
      - **Autoriser l’accès au réseau virtuel :** vérifiez que l’option **Activé** est sélectionnée.
-    Il n’y aucun autre paramètre utilisé dans ce didacticiel. Pour en savoir plus sur tous les paramètres d’homologation, consultez [Create, change, or delete a virtual network peering](virtual-network-manage-peering.md#create-a-peering) (Créer, modifier ou supprimer une homologation de réseaux virtuels).
-22. Après avoir cliqué sur **OK** à l’étape précédente, le panneau **Ajouter l’homologation** se ferme et vous pouvez à nouveau voir le panneau **myVnetA - Homologations**. Après quelques secondes, l’homologation que vous avez créée apparaît dans le panneau. **Lancé** est indiqué dans la colonne **ÉTAT D’APPAIRAGE** pour l’homologation **myVnetAToMyVnetB** que vous avez créée. Vous avez homologué myVnetA à myVnetB, mais vous devez maintenant homologuer myVnetB à myVnetA. L’homologation doit être créée dans les deux directions pour permettre aux ressources des réseaux virtuels de communiquer entre elles.
-23. Déconnectez-vous du portail en tant que UserA, puis connectez-vous en tant que UserB.
-24. Répétez les étapes 17 à 21 pour MyVnetB. À l’étape 21, nommez l’homologation *myVnetBToMyVnetA*, sélectionnez *myVnetA* pour **Réseau virtuel** et entrez l’ID noté à l’étape 10 dans la zone **ID de ressource**.
-25. Quelques secondes après que vous avez cliqué sur **OK** pour créer l’homologation pour myVnetB, l’homologation **myVnetBToMyVnetA** que vous venez de créer est répertoriée avec **Connecté** dans la colonne **ÉTAT D’APPAIRAGE**.
-26. Déconnectez-vous du portail en tant que UserB, puis connectez-vous en tant que UserA.
-27. Répétez les étapes 17-19. L’**ÉTAT D’APPAIRAGE** pour l’homologation **myVnetAToVNetB** est maintenant également défini sur **Connecté**. L’homologation est établie avec succès une fois que vous voyez **Connecté** dans la colonne **ÉTAT D’APPAIRAGE** pour les deux réseaux virtuels de l’homologation. Les ressources Azure que vous créez dans un réseau virtuel sont désormais en mesure de communiquer entre elles via leurs adresses IP. Si vous utilisez la résolution de noms Azure par défaut pour les réseaux virtuels, les ressources dans les réseaux virtuels ne sont pas en mesure de résoudre les noms dans les réseaux virtuels. Si vous souhaitez résoudre les noms dans les réseaux virtuels d’une homologation, vous devez créer votre propre serveur DNS. Apprenez à configurer la [résolution de noms à l’aide de votre propre serveur DNS](virtual-networks-name-resolution-for-vms-and-role-instances.md#name-resolution-using-your-own-dns-server).
-28. **Facultatif** : bien que la création de machines virtuelles ne soit pas abordée dans ce didacticiel, vous pouvez créer une machine virtuelle dans chaque réseau virtuel et vous connecter d’une machine virtuelle à l’autre pour valider la connectivité.
-29. **Facultatif :** pour supprimer les ressources créées dans ce didacticiel, procédez de la manière décrite dans la section [Supprimer des ressources](#delete-portal) de cet article.
+    Il n’y aucun autre paramètre utilisé dans ce didacticiel. toolearn sur tous les paramètres d’homologation, lire [gérer homologations de réseaux virtuels](virtual-network-manage-peering.md#create-a-peering).
+22. Après avoir cliqué sur **OK** à l’étape précédente de hello, hello **ajouter d’homologation** panneau se ferme et vous voyez hello **myVnetA - homologations** panneau à nouveau. Après quelques secondes, hello d’homologation que vous avez créé s’affiche dans le panneau de hello. **Initiée par** est répertorié dans hello **d’homologation de statut** colonne hello **myVnetAToMyVnetB** d’homologation vous créé. Vous avez homologuer myVnetA toomyVnetB, mais vous devez maintenant homologue myVnetB toomyVnetA. Hello d’homologation doit être créé dans les deux sens tooenable ressources toocommunicate de réseaux virtuels hello entre eux.
+23. Déconnectez-vous de portail hello en tant que l’UtilisateurA et connectez-vous en tant qu’utilisateur b.
+24. Répétez les étapes 17 à 21 pour MyVnetB. À l’étape 21, nom hello d’homologation *myVnetBToMyVnetA*, sélectionnez *myVnetA* pour **réseau virtuel**et entrez l’ID de hello à l’étape 10 de hello **ID de ressource** boîte.
+25. Quelques secondes après avoir cliqué sur **OK** toocreate hello d’homologation pour myVnetB, hello **myVnetBToMyVnetA** d’homologation vous venez de créer est répertorié avec **connecté** Bonjour  **ÉTAT de l’homologation** colonne.
+26. Déconnectez-vous de portail hello comme UtilisateurB et connectez-vous en tant que l’UtilisateurA.
+27. Répétez les étapes 17-19. Hello **d’homologation de statut** pour hello **myVnetAToVNetB** d’homologation est désormais également **connecté**. Hello d’homologation est établie avec succès une fois que vous **connecté** Bonjour **d’homologation de statut** colonne pour les deux réseaux virtuels dans l’homologation de hello. Les ressources Azure que vous créez dans un réseau virtuel sont désormais en mesure de toocommunicate entre eux via leurs adresses IP. Si vous utilisez la résolution de noms Azure par défaut pour les réseaux virtuels hello, hello ressources dans des réseaux virtuels hello ne sont pas en mesure de tooresolve noms sur des réseaux virtuels hello. Si vous voulez que les noms de tooresolve sur plusieurs réseaux virtuels dans une homologation, vous devez créer votre propre serveur DNS. Découvrez comment tooset des [à l’aide de votre propre serveur DNS de résolution de noms](virtual-networks-name-resolution-for-vms-and-role-instances.md#name-resolution-using-your-own-dns-server).
+28. **Facultatif**: bien que la création d’ordinateurs virtuels n’est pas abordé dans ce didacticiel, vous pouvez créer une machine virtuelle de chaque réseau virtuel et vous connecter à partir d’un ordinateur virtuel toohello autres toovalidate connectivité.
+29. **Facultatif**: toodelete ressources hello que vous créez dans ce didacticiel, les étapes hello complète Bonjour [supprimer des ressources](#delete-portal) section de cet article.
 
 ## <a name="cli"></a>Créer une homologation - interface de ligne de commande Azure
 
-Ce didacticiel utilise des comptes différents pour chaque abonnement. Si vous utilisez un compte qui a des autorisations pour les deux abonnements, vous pouvez utiliser le même compte pour toutes les étapes, ignorer les étapes de déconnexion d’Azure et supprimer les lignes de script qui créent les affectations de rôle utilisateur. Remplacez UserA@azure.com et UserB@azure.com dans tous les scripts suivants par les noms d’utilisateurs que vous utilisez pour UserA et UserB.
+Ce didacticiel utilise des comptes différents pour chaque abonnement. Si vous utilisez un compte disposant d’autorisations tooboth abonnements, vous pouvez utiliser hello même compte pour toutes les étapes, ignorez les étapes hello pour la journalisation en dehors d’Azure et supprimer des lignes hello de script qui créent des attributions de rôles utilisateur. Remplacez UserA@azure.com et UserB@azure.com dans tous les hello scripts avec les noms d’utilisateur hello que vous utilisez pour l’UtilisateurA et UserB suivants.
 
-Le script suivant :
+Hello le script suivant :
 
-- Requiert l’interface de ligne de commande Azure version 2.0.4 ou ultérieure. Pour connaître la version de l’interface, exécutez `az --version`. Si vous devez mettre à niveau, consultez [Installation d’Azure CLI 2.0](/cli/azure/install-azure-cli?toc=%2fazure%2fvirtual-network%2ftoc.json).
-- Fonctionne dans un interpréteur de commandes Bash. Pour en savoir plus les options d’exécution de scripts Azure CLI dans le client Windows, consultez la page [Running the Azure CLI in Windows (Exécution d’Azure CLI dans Windows)](../virtual-machines/windows/cli-options.md?toc=%2fazure%2fvirtual-network%2ftoc.json). 
+- Requiert hello CLI d’Azure version 2.0.4 ou version ultérieure. version de hello toofind, exécutez `az --version`. Si vous avez besoin de tooupgrade, consultez [installer Azure CLI 2.0](/cli/azure/install-azure-cli?toc=%2fazure%2fvirtual-network%2ftoc.json).
+- Fonctionne dans un interpréteur de commandes Bash. Pour les options sur l’exécution de scripts CLI d’Azure sur le client Windows, consultez [hello CLI d’Azure en cours d’exécution dans Windows](../virtual-machines/windows/cli-options.md?toc=%2fazure%2fvirtual-network%2ftoc.json). 
 
-Au lieu d’installer l’interface CLI et ses dépendances, vous pouvez utiliser Azure Cloud Shell. Azure Cloud Shell est un interpréteur de commandes Bash gratuit, que vous pouvez exécuter directement dans le portail Azure. L’interface Azure CLI est préinstallée et configurée pour être utilisée avec votre compte. Cliquez sur le bouton **Try it** dans le script qui suit, ce qui appelle un Cloud Shell avec lequel vous pouvez vous connecter à votre compte Azure. 
+Au lieu d’installer hello CLI et ses dépendances, vous pouvez utiliser hello Azure Cloud Shell. Bonjour Azure Cloud Shell est un interpréteur de commandes Bash gratuit que vous pouvez exécuter directement à l’intérieur hello portail Azure. Il a hello CLI d’Azure préinstallé et configuré toouse avec votre compte. Cliquez sur hello **essayez-la** bouton dans le script hello qui suit, qui permet d’appeler un environnement de Cloud qui vous pouvez vous connecter tooyour compte Azure avec. 
 
-1. Ouvrez une session CLI et connectez-vous à Azure en tant que UserA à l’aide de la commande `azure login`. Le compte auquel vous vous connectez doit avoir les autorisations nécessaires pour créer une homologation de réseaux virtuels. Consultez la section [Autorisations](#permissions) de cet article pour plus d’informations.
-2. Copiez le script suivant dans un éditeur de texte sur votre ordinateur, remplacez `<SubscriptionA-Id>` par l’ID de l’abonnement A, puis copiez le script modifié, collez-le dans votre session CLI et appuyez sur `Enter`. Si vous ne connaissez pas votre ID d’abonnement, entrez la commande « az account show ». La valeur de **id** dans la sortie est votre ID d’abonnement.
+1. Ouvrez une session CLI et se connecter en tant que l’UtilisateurA à l’aide de hello tooAzure `azure login` commande. compte de Hello avec que vous vous connectez doit avoir toocreate des autorisations nécessaires hello une homologation de réseau virtuel. Consultez hello [autorisations](#permissions) section de cet article pour plus d’informations.
+2. Copiez hello suivant l’éditeur de texte script tooa sur votre ordinateur, remplacez `<SubscriptionA-Id>` avec hello ID d’abonnement a, puis hello de copie modifié script, collez-le dans votre session CLI, puis appuyez sur `Enter`. Si vous ne connaissez pas votre Id d’abonnement, entrez la commande de 'afficher de compte az' hello. Hello valeur pour **id** Bonjour sortie est votre ID d’abonnement.
 
     ```azurecli-interactive
     # Create a resource group.
@@ -120,27 +120,27 @@ Au lieu d’installer l’interface CLI et ses dépendances, vous pouvez utilise
       --location eastus \
       --address-prefix 10.0.0.0/16
 
-    # Assign UserB permissions to virtual network A.
+    # Assign UserB permissions toovirtual network A.
     az role assignment create \
       --assignee UserB@azure.com \
       --role "Network Contributor" \
       --scope /subscriptions/<SubscriptionA-Id>/resourceGroups/myResourceGroupA/providers/Microsoft.Network/VirtualNetworks/myVnetA
     ```
     
-     L’attribution d’autorisations pour UserB n’est pas obligatoire. L’homologation peut être établie même si des utilisateurs ont effectué des demandes d’homologation individuelles pour leurs réseaux virtuels respectifs, à condition que les demandes correspondent. L’ajout d’un utilisateur de myVNetB privilégié en tant que Contributeur de réseaux sur le réseau virtuel local simplifie l’installation.
-3. Déconnectez-vous d’Azure en tant que UserA à l’aide de la commande `az logout`, puis connectez-vous à Azure en tant que UserB. Le compte auquel vous vous connectez doit avoir les autorisations nécessaires pour créer une homologation de réseaux virtuels. Consultez la section [Autorisations](#permissions) de cet article pour plus d’informations.
-4. Créez myVnetB. Copiez le contenu du script à l’étape 2 dans un éditeur de texte sur votre PC. Remplacez `<SubscriptionA-Id>` par l’ID de l’abonnement B. Remplacez 10.0.0.0/16 par 10.1.0.0/16, remplacez tous les A par des B, et tous les B par des A. Copiez le script modifié, collez-le dans votre session CLI et appuyez sur `Enter`. 
-5. Déconnectez-vous d’Azure en tant que UserB et connectez-vous à Azure en tant que UserA.
-6. Créez une homologation de réseaux virtuels de myVnetA à myVnetB. Copiez le contenu du script suivant dans un éditeur de texte sur votre PC. Remplacez `<SubscriptionB-Id>` par l’ID de l’abonnement B. Pour exécuter le script, copiez le script modifié, collez-le dans votre session CLI, puis appuyez sur Entrée.
+     attribution d’autorisation Hello pour l’UtilisateurB n’est pas obligatoire. Homologation peut être établie même si les utilisateurs individuellement déclenchent des demandes d’homologation pour leurs réseaux virtuels respectifs, tant que hello demande la correspondance. Ajout d’un utilisateur doté de privilèges de myVNetB en tant que réseau collaborateur dans le réseau virtuel local de hello rend plus facile d’installation de hello toodo.
+3. Déconnectez-vous d’Azure en tant que l’UtilisateurA à l’aide de hello `az logout` de commandes, puis connectez-vous à tooAzure comme UserB. compte de Hello avec que vous vous connectez doit avoir toocreate des autorisations nécessaires hello une homologation de réseau virtuel. Consultez hello [autorisations](#permissions) section de cet article pour plus d’informations.
+4. Créez myVnetB. Copiez le contenu du script hello dans l’éditeur de texte étape 2 tooa sur votre PC. Remplacez `<SubscriptionA-Id>` par hello ID de SubscriptionB. Modifiez 10.0.0.0/16 too10.1.0.0/16, des modifications sous la forme tooB et tous les Bs tooA. Copiez le script de hello modifié, collez-le dans la session CLI tooyour, puis appuyez sur `Enter`. 
+5. Déconnecter Azure comme l’UtilisateurB et dans tooAzure comme l’UtilisateurA.
+6. Créez un réseau virtuel d’homologation de myVnetA toomyVnetB. Copiez hello suivant d’éditeur de texte de script contenu tooa sur votre PC. Remplacez `<SubscriptionB-Id>` par hello ID de SubscriptionB. script de hello tooexecute, copiez le script de hello modifié, collez-le dans votre session CLI, appuyez sur ENTRÉE.
  
     ```azurecli-interactive
-        # Get the id for myVnetA.
+        # Get hello id for myVnetA.
         vnetAId=$(az network vnet show \
           --resource-group myResourceGroupA \
           --name myVnetA \
           --query id --out tsv)
     
-        # Peer myVNetA to myVNetB.
+        # Peer myVNetA toomyVNetB.
         az network vnet peering create \
           --name myVnetAToMyVnetB \
           --resource-group myResourceGroupA \
@@ -149,7 +149,7 @@ Au lieu d’installer l’interface CLI et ses dépendances, vous pouvez utilise
           --allow-vnet-access
     ```
 
-7. Affichez l’état d’homologation de myVnetA.
+7. État d’homologation de hello de myVnetA d’affichage.
 
     ```azurecli-interactive
     az network vnet peering list \
@@ -158,28 +158,28 @@ Au lieu d’installer l’interface CLI et ses dépendances, vous pouvez utilise
       --output table
     ```
 
-    L’état est **Lancé**. Il devient **Connecté** une fois que vous avez créé l’homologation à myVnetA à partir de myVnetB.
+    état de Hello est **a été initiée**. Il change également**connecté** après avoir créé les toomyVnetA d’homologation hello de myVnetB.
 
-8. Déconnectez UserA d’Azure et connectez-vous à Azure en tant que UserB.
-9. Créez l’homologation de myVnetB à myVnetA. Copiez le contenu du script à l’étape 6 dans un éditeur de texte sur votre PC. Remplacez `<SubscriptionB-Id>` par l’ID de l’abonnement A, et remplacez tous les A par des B et tous les B par des A. Une fois les modifications effectuées, copiez le script modifié, collez-le dans votre session CLI, puis appuyez sur `Enter`.
-10. Affichez l’état d’homologation de myVnetB. Copiez le contenu du script à l’étape 7 dans un éditeur de texte sur votre PC. Remplacez A par B dans les noms du groupe de ressources et du réseau virtuel, copiez le script, collez le script modifié dans votre session CLI, puis appuyez sur `Enter`. L’état d’homologation est **Connecté**. L’état d’homologation de myVnetA devient **Connecté** une fois que vous avez créé l’homologation de myVnetB à myVnetA. Vous pouvez reconnecter UserA dans Azure et réeffectuer l’étape 7 pour vérifier l’état d’homologation de myVnetA. 
+8. Déconnecter l’UtilisateurA à partir d’Azure et dans tooAzure en tant qu’utilisateur b.
+9. Créer hello d’homologation de myVnetB toomyVnetA. Copiez le contenu du script hello dans l’éditeur de texte étape 6 tooa sur votre PC. Remplacez `<SubscriptionB-Id>` avec ID hello SubscriptionA et de modification sous la forme tooB et tous les Bs tooA. Une fois que vous avez apporté des modifications de hello, hello de copie modifiée de script, collez-le dans votre session CLI, puis appuyez sur `Enter`.
+10. État d’homologation de hello de myVnetB d’affichage. Copiez le contenu du script hello dans l’éditeur de texte étape 7 tooa sur votre PC. Modifier un tooB pour le groupe de ressources hello et noms de réseau virtuel, copiez le script de hello, collez le script que vous hello modifié dans la session CLI tooyour, puis appuyez sur `Enter`. Hello d’homologation de l’état est **connecté**. Hello d’homologation état myVnetA modifications trop**connecté** après avoir créé hello d’homologation de myVnetB toomyVnetA. Vous pouvez reconnecter l’UtilisateurA tooAzure et l’étape 7 état d’homologation de hello tooverify de myVnetA. 
 
     > [!NOTE]
-    > L’homologation n’est pas établie tant que l’état d’homologation n’est pas **Connecté** pour les deux réseaux virtuels.
+    > Hello d’homologation n’est pas établie jusqu'à ce que l’état d’homologation hello est **connecté** pour les deux réseaux virtuels.
 
-11. **Facultatif** : bien que la création de machines virtuelles ne soit pas abordée dans ce didacticiel, vous pouvez créer une machine virtuelle dans chaque réseau virtuel et vous connecter d’une machine virtuelle à l’autre pour valider la connectivité.
-12. **Facultatif :** pour supprimer les ressources créées dans ce didacticiel, procédez de la manière décrite dans la section [Supprimer des ressources](#delete-cli) de cet article.
+11. **Facultatif**: bien que la création d’ordinateurs virtuels n’est pas abordé dans ce didacticiel, vous pouvez créer une machine virtuelle de chaque réseau virtuel et vous connecter à partir d’un ordinateur virtuel toohello autres toovalidate connectivité.
+12. **Facultatif**: hello complète toodelete ressources hello que vous créez dans ce didacticiel, les étapes [supprimer des ressources](#delete-cli) dans cet article.
 
-Les ressources Azure que vous créez dans un réseau virtuel sont désormais en mesure de communiquer entre elles via leurs adresses IP. Si vous utilisez la résolution de noms Azure par défaut pour les réseaux virtuels, les ressources dans les réseaux virtuels ne sont pas en mesure de résoudre les noms dans les réseaux virtuels. Si vous souhaitez résoudre les noms dans les réseaux virtuels d’une homologation, vous devez créer votre propre serveur DNS. Apprenez à configurer la [résolution de noms à l’aide de votre propre serveur DNS](virtual-networks-name-resolution-for-vms-and-role-instances.md#name-resolution-using-your-own-dns-server).
+Les ressources Azure que vous créez dans un réseau virtuel sont désormais en mesure de toocommunicate entre eux via leurs adresses IP. Si vous utilisez la résolution de noms Azure par défaut pour les réseaux virtuels hello, hello ressources dans des réseaux virtuels hello ne sont pas en mesure de tooresolve noms sur des réseaux virtuels hello. Si vous voulez que les noms de tooresolve sur plusieurs réseaux virtuels dans une homologation, vous devez créer votre propre serveur DNS. Découvrez comment tooset des [à l’aide de votre propre serveur DNS de résolution de noms](virtual-networks-name-resolution-for-vms-and-role-instances.md#name-resolution-using-your-own-dns-server).
  
 ## <a name="powershell"></a>Créer une homologation - PowerShell
 
-Ce didacticiel utilise des comptes différents pour chaque abonnement. Si vous utilisez un compte qui a des autorisations pour les deux abonnements, vous pouvez utiliser le même compte pour toutes les étapes, ignorer les étapes de déconnexion d’Azure et supprimer les lignes de script qui créent les affectations de rôle utilisateur. Remplacez UserA@azure.com et UserB@azure.com dans tous les scripts suivants par les noms d’utilisateurs que vous utilisez pour UserA et UserB.
+Ce didacticiel utilise des comptes différents pour chaque abonnement. Si vous utilisez un compte disposant d’autorisations tooboth abonnements, vous pouvez utiliser hello même compte pour toutes les étapes, ignorez les étapes hello pour la journalisation en dehors d’Azure et supprimer des lignes hello de script qui créent des attributions de rôles utilisateur. Remplacez UserA@azure.com et UserB@azure.com dans tous les hello scripts avec les noms d’utilisateur hello que vous utilisez pour l’UtilisateurA et UserB suivants.
 
-1. Installez la dernière version du module PowerShell [AzureRm](https://www.powershellgallery.com/packages/AzureRM/). Si vous débutez dans l’utilisation d’Azure PowerShell, voir [Vue d’ensemble d’Azure PowerShell](/powershell/azure/overview?toc=%2fazure%2fvirtual-network%2ftoc.json).
+1. Installer la version la plus récente de hello PowerShell hello [AzureRm](https://www.powershellgallery.com/packages/AzureRM/) module. Si vous êtes nouveau tooAzure PowerShell, consultez [vue d’ensemble d’Azure PowerShell](/powershell/azure/overview?toc=%2fazure%2fvirtual-network%2ftoc.json).
 2. Démarrez une session PowerShell.
-3. Dans PowerShell, connectez-vous à Azure en tant que UserA en entrant la commande `login-azurermaccount`. Le compte auquel vous vous connectez doit avoir les autorisations nécessaires pour créer une homologation de réseaux virtuels. Consultez la section [Autorisations](#permissions) de cet article pour plus d’informations.
-4. Créez un groupe de ressources et le réseau virtuel A. Copiez le script suivant dans un éditeur de texte sur votre PC. Remplacez `<SubscriptionA-Id>` par l’ID de l’abonnement A. Si vous ne connaissez pas votre ID d’abonnement, entrez la commande `Get-AzureRmSubscription` pour l’afficher. La valeur de **id** dans la sortie retournée est votre ID d’abonnement. Pour exécuter le script, copiez le script modifié, collez-le dans PowerShell, puis appuyez sur `Enter`.
+3. Dans PowerShell, connectez-vous tooAzure comme l’UtilisateurA en entrant hello `login-azurermaccount` commande. compte de Hello avec que vous vous connectez doit avoir toocreate des autorisations nécessaires hello une homologation de réseau virtuel. Consultez hello [autorisations](#permissions) section de cet article pour plus d’informations.
+4. Créer un groupe de ressources et le réseau virtuel A. copie hello suivant le texte du script tooa éditeur sur votre PC. Remplacez `<SubscriptionA-Id>` par hello ID d’abonnement a. Si vous ne connaissez pas votre Id d’abonnement, entrez hello `Get-AzureRmSubscription` commande tooview il. Hello valeur pour **Id** Bonjour retourné de sortie est votre ID d’abonnement. script de hello tooexecute, hello de copie modifiée script, collez-le dans tooPowerShell, puis appuyez sur `Enter`.
 
     ```powershell
     # Create a resource group.
@@ -194,21 +194,21 @@ Ce didacticiel utilise des comptes différents pour chaque abonnement. Si vous u
       -AddressPrefix '10.0.0.0/16' `
       -Location eastus
 
-    # Assign UserB permissions to myVnetA.
+    # Assign UserB permissions toomyVnetA.
     New-AzureRmRoleAssignment `
       -SignInName UserB@azure.com `
       -RoleDefinitionName "Network Contributor" `
       -Scope /subscriptions/<SubscriptionA-Id>/resourceGroups/myResourceGroupA/providers/Microsoft.Network/VirtualNetworks/myVnetA
     ```
 
-    L’attribution d’autorisations pour UserB n’est pas obligatoire. L’homologation peut être établie même si des utilisateurs ont effectué des demandes d’homologation individuelles pour leurs réseaux virtuels respectifs, à condition que les demandes correspondent. L’ajout d’un utilisateur privilégié de l’autre réseau virtuel en tant qu’utilisateur sur le réseau virtuel local simplifie l’installation.
-5. Déconnectez UserA d’Azure et connectez UserB. Le compte auquel vous vous connectez doit avoir les autorisations nécessaires pour créer une homologation de réseaux virtuels. Consultez la section [Autorisations](#permissions) de cet article pour plus d’informations.
-6. Copiez le contenu du script à l’étape 4 dans un éditeur de texte sur votre PC. Remplacez `<SubscriptionA-Id>` par l’ID de l’abonnement B. Remplacez 10.0.0.0/16 par 10.1.0.0/16. Remplacez tous les A par des B et tous les B par des A. Pour exécuter le script, copiez le script modifié, collez-le dans PowerShell, puis appuyez sur `Enter`.
+    attribution d’autorisation Hello pour l’UtilisateurB n’est pas obligatoire. Homologation peut être établie même si les utilisateurs individuellement déclenchent des demandes d’homologation pour leurs réseaux virtuels respectifs, tant que hello demande la correspondance. Ajout d’un utilisateur doté de privilèges de hello autre réseau virtuel en tant qu’utilisateur dans le réseau virtuel local de hello rend plus facile d’installation de hello toodo.
+5. Déconnectez UserA d’Azure et connectez UserB. compte de Hello avec que vous vous connectez doit avoir toocreate des autorisations nécessaires hello une homologation de réseau virtuel. Consultez hello [autorisations](#permissions) section de cet article pour plus d’informations.
+6. Copiez le contenu du script hello dans l’éditeur de texte étape 4 tooa sur votre PC. Remplacez `<SubscriptionA-Id>` avec l’ID de hello pour l’abonnement B. modification 10.0.0.0/16 too10.1.0.0/16. Modification, tout comme tooB et tous les Bs tooA. script de hello tooexecute, hello de copie modifiée script, collez dans PowerShell, puis appuyez sur `Enter`.
 7. Déconnectez UserB d’Azure et connectez UserA.
-8. Créez l’homologation de myVnetA à myVnetB. Copiez le script suivant dans un éditeur de texte sur votre PC. Remplacez `<SubscriptionB-Id>` par l’ID de l’abonnement B. Pour exécuter le script, copiez le script modifié, collez-le dans PowerShell, puis appuyez sur `Enter`.
+8. Créer hello d’homologation de myVnetA toomyVnetB. Copiez hello suivant d’éditeur de texte script tooa sur votre PC. Remplacez `<SubscriptionB-Id>` avec hello l’ID d’abonnement script hello de b. tooexecute, copiez hello modifié script, collez dans tooPowerShell, puis appuyez sur `Enter`.
  
     ```powershell
-    # Peer myVnetA to myVnetB.
+    # Peer myVnetA toomyVnetB.
     $vNetA=Get-AzureRmVirtualNetwork -Name myVnetA -ResourceGroupName myResourceGroupA
     Add-AzureRmVirtualNetworkPeering `
       -Name 'myVnetAToMyVnetB' `
@@ -216,7 +216,7 @@ Ce didacticiel utilise des comptes différents pour chaque abonnement. Si vous u
       -RemoteVirtualNetworkId "/subscriptions/<SubscriptionB-Id>/resourceGroups/myResourceGroupB/providers/Microsoft.Network/virtualNetworks/myVnetB"
     ```
 
-9. Affichez l’état d’homologation de myVnetA.
+9. État d’homologation de hello de myVnetA d’affichage.
 
     ```powershell
     Get-AzureRmVirtualNetworkPeering `
@@ -225,52 +225,52 @@ Ce didacticiel utilise des comptes différents pour chaque abonnement. Si vous u
       | Format-Table VirtualNetworkName, PeeringState
     ```
 
-    L’état est **Lancé**. Il devient **Connecté** une fois que vous avez configuré l’homologation à myVnetA à partir de myVnetB.
+    état de Hello est **a été initiée**. Il change également**connecté** une fois que vous configurez toomyVnetA d’homologation de hello à partir de myVnetB.
 
 10. Déconnectez UserA d’Azure et connectez UserB.
-11. Créez l’homologation de myVnetB à myVnetA. Copiez le contenu du script à l’étape 8 dans un éditeur de texte sur votre PC. Remplacez `<SubscriptionB-Id>` par l’ID de l’abonnement A. Remplacez tous les A par des B et tous les B par des A. Pour exécuter le script, copiez le script modifié, collez-le dans PowerShell, puis appuyez sur `Enter`.
-12. Affichez l’état d’homologation de myVnetB. Copiez le contenu du script à l’étape 9 dans un éditeur de texte sur votre PC. Remplacez A par B dans les noms du groupe de ressources et du réseau virtuel. Pour exécuter le script, collez le script modifié dans PowerShell, puis appuyez sur `Enter`. L’état est **Connecté**. L’état d’homologation de **myVnetA** devient **Connecté** une fois que vous avez créé l’homologation de **myVnetB** à **myVnetA**. Vous pouvez reconnecter UserA dans Azure et réeffectuer l’étape 9 pour vérifier l’état d’homologation de myVnetA. 
+11. Créer hello d’homologation de myVnetB toomyVnetA. Copiez le contenu du script hello dans l’éditeur de texte étape tooa 8 sur votre PC. Remplacez `<SubscriptionB-Id>` avec l’ID de hello d’abonnement A et modifier tous les tooB de A et tooA de l’ensemble B. script de hello tooexecute, hello de copie modifiée script, collez-le dans tooPowerShell, puis appuyez sur `Enter`.
+12. État d’homologation de hello de myVnetB d’affichage. Copiez le contenu du script hello dans l’éditeur de texte étape 9 tooa sur votre PC. Modifier un tooB pour le groupe de ressources hello et noms de réseau virtuel. script de hello tooexecute, collez hello modifié script PowerShell, puis appuyez sur `Enter`. état de Hello est **connecté**. Hello d’état d’homologation de **myVnetA** change également**connecté** après avoir créé hello d’homologation de **myVnetB** trop**myVnetA**. Vous pouvez reconnecter l’UtilisateurA tooAzure et l’étape 9 état d’homologation de hello tooverify de myVnetA. 
 
     > [!NOTE]
-    > L’homologation n’est pas établie tant que l’état d’homologation n’est pas **Connecté** pour les deux réseaux virtuels.
+    > Hello d’homologation n’est pas établie jusqu'à ce que l’état d’homologation hello est **connecté** pour les deux réseaux virtuels.
 
-    Les ressources Azure que vous créez dans un réseau virtuel sont désormais en mesure de communiquer entre elles via leurs adresses IP. Si vous utilisez la résolution de noms Azure par défaut pour les réseaux virtuels, les ressources dans les réseaux virtuels ne sont pas en mesure de résoudre les noms dans les réseaux virtuels. Si vous souhaitez résoudre les noms dans les réseaux virtuels d’une homologation, vous devez créer votre propre serveur DNS. Apprenez à configurer la [résolution de noms à l’aide de votre propre serveur DNS](virtual-networks-name-resolution-for-vms-and-role-instances.md#name-resolution-using-your-own-dns-server).
+    Les ressources Azure que vous créez dans un réseau virtuel sont désormais en mesure de toocommunicate entre eux via leurs adresses IP. Si vous utilisez la résolution de noms Azure par défaut pour les réseaux virtuels hello, hello ressources dans des réseaux virtuels hello ne sont pas en mesure de tooresolve noms sur des réseaux virtuels hello. Si vous voulez que les noms de tooresolve sur plusieurs réseaux virtuels dans une homologation, vous devez créer votre propre serveur DNS. Découvrez comment tooset des [à l’aide de votre propre serveur DNS de résolution de noms](virtual-networks-name-resolution-for-vms-and-role-instances.md#name-resolution-using-your-own-dns-server).
 
-13. **Facultatif** : bien que la création de machines virtuelles ne soit pas abordée dans ce didacticiel, vous pouvez créer une machine virtuelle dans chaque réseau virtuel et vous connecter d’une machine virtuelle à l’autre pour valider la connectivité.
-14. **Facultatif :** pour supprimer les ressources créées dans ce didacticiel, procédez de la manière décrite dans la section [Supprimer des ressources](#delete-powershell) de cet article.
+13. **Facultatif**: bien que la création d’ordinateurs virtuels n’est pas abordé dans ce didacticiel, vous pouvez créer une machine virtuelle de chaque réseau virtuel et vous connecter à partir d’un ordinateur virtuel toohello autres toovalidate connectivité.
+14. **Facultatif**: hello complète toodelete ressources hello que vous créez dans ce didacticiel, les étapes [supprimer des ressources](#delete-powershell) dans cet article.
 
 ## <a name="permissions"></a>Autorisations
 
-Les comptes que vous utilisez pour créer une homologation de réseaux virtuels doivent avoir les autorisations ou le rôle nécessaires. Par exemple, si vous homologuez deux réseaux virtuels nommés **myVnetA** et **myVnetB**, votre compte doit avoir le rôle ou les autorisations minimaux suivants pour chaque réseau virtuel :
+Hello tous les comptes toocreate une homologation de réseau virtuel doivent avoir hello nécessaires ou autorisations. Par exemple, si vous ont été d’homologation deux réseaux virtuels nommés **myVnetA** et **myVnetB**, hello suivant rôle minimale ou les autorisations pour chaque réseau virtuel doit être affecté à votre compte :
     
 |Réseau virtuel|Rôle|Autorisations|
 |---|---|---|
 |myVnetA|[Collaborateur de réseau](../active-directory/role-based-access-built-in-roles.md?toc=%2fazure%2fvirtual-network%2ftoc.json#network-contributor)|Microsoft.Network/virtualNetworks/virtualNetworkPeerings/write|
 |myVnetB|[Collaborateur de réseau](../active-directory/role-based-access-built-in-roles.md?toc=%2fazure%2fvirtual-network%2ftoc.json#network-contributor)|Microsoft.Network/virtualNetworks/peer|
 
-Apprenez-en davantage sur les [rôles intégrés](../active-directory/role-based-access-built-in-roles.md?toc=%2fazure%2fvirtual-network%2ftoc.json#network-contributor) et l’affectation d’autorisations spécifiques aux [rôles personnalisés](../active-directory/role-based-access-control-custom-roles.md?toc=%2fazure%2fvirtual-network%2ftoc.json) (Gestionnaire des ressources uniquement).
+En savoir plus sur [rôles intégrés](../active-directory/role-based-access-built-in-roles.md?toc=%2fazure%2fvirtual-network%2ftoc.json#network-contributor) et l’affectation des autorisations spécifiques trop[des rôles personnalisés](../active-directory/role-based-access-control-custom-roles.md?toc=%2fazure%2fvirtual-network%2ftoc.json) (Resource Manager uniquement).
 
 ## <a name="delete"></a>Supprimer des ressources
-Lorsque vous aurez terminé ce didacticiel, vous souhaiterez peut-être supprimer les ressources que vous avez créées, afin que leur utilisation ne soit pas facturée. La suppression d’un groupe de ressources supprime également toutes les ressources qu’il contient.
+Lorsque vous avez terminé ce didacticiel, vous pourriez les ressources de hello toodelete que vous avez créé dans le didacticiel de hello, donc vous ne subissez des frais d’utilisation. Suppression d’un groupe de ressources supprime également toutes les ressources qui se trouvent dans le groupe de ressources hello.
 
 ### <a name="delete-portal"></a>Portail Azure
 
-1. Connectez-vous au portail Azure en tant que UserA.
-2. Dans le champ de recherche du portail, entrez **myResourceGroupA**. Dans les résultats de la recherche, cliquez sur **myResourceGroupA**.
-3. Dans le panneau **myResourceGroupA**, cliquez sur l’icône **Supprimer**.
-4. Pour confirmer la suppression, dans le champ **Tapez le nom du groupe de ressources**, entrez **myResourceGroupA**, puis cliquez sur **Supprimer**.
-5. Déconnectez-vous du portail en tant que UserA, puis connectez-vous en tant que UserB.
+1. Ouvrez une session dans toohello portail Azure en tant que l’UtilisateurA.
+2. Dans la zone de recherche du portail hello, entrez **myResourceGroupA**. Dans les résultats de recherche de hello, cliquez sur **myResourceGroupA**.
+3. Sur hello **myResourceGroupA** panneau, cliquez sur hello **supprimer** icône.
+4. suppression de hello tooconfirm, Bonjour **hello TYPE nom groupe de ressources** , entrez **myResourceGroupA**, puis cliquez sur **supprimer**.
+5. Déconnectez-vous de portail hello en tant que l’UtilisateurA et connectez-vous en tant qu’utilisateur b.
 6. Effectuez les étapes 2 à 4 pour myResourceGroupB.
 
 ### <a name="delete-cli"></a>Interface CLI Azure
 
-1. Connectez-vous à Azure en tant que UserA et exécutez la commande suivante :
+1. Connectez-vous en tooAzure en tant que l’UtilisateurA et exécutez hello de commande suivante :
 
     ```azurecli-interactive
     az group delete --name myResourceGroupA --yes
     ```
 2. Déconnectez-vous d’Azure en tant que UserA, puis connectez-vous en tant que UserB.
-3. Exécutez la commande suivante :
+3. Exécutez hello de commande suivante :
 
     ```azurecli-interactive
     az group delete --name myResourceGroupB --yes
@@ -278,14 +278,14 @@ Lorsque vous aurez terminé ce didacticiel, vous souhaiterez peut-être supprime
 
 ### <a name="delete-powershell"></a>PowerShell
 
-1. Connectez-vous à Azure en tant que UserA et exécutez la commande suivante :
+1. Connectez-vous en tooAzure en tant que l’UtilisateurA et exécutez hello de commande suivante :
 
     ```powershell
     Remove-AzureRmResourceGroup -Name myResourceGroupA -force
     ```
 
 2. Déconnectez-vous d’Azure en tant que UserA, puis connectez-vous en tant que UserB.
-3. Exécutez la commande suivante :
+3. Exécutez hello de commande suivante :
 
     ```powershell
     Remove-AzureRmResourceGroup -Name myResourceGroupB -force
@@ -295,4 +295,4 @@ Lorsque vous aurez terminé ce didacticiel, vous souhaiterez peut-être supprime
 
 - Familiarisez-vous bien avec les [comportements et contraintes importants de l’homologation de réseaux virtuels](virtual-network-manage-peering.md#requirements-and-constraints) avant d’en créer une pour une utilisation en production.
 - Apprenez-en davantage sur tous les [paramètres d’homologation de réseaux virtuels](virtual-network-manage-peering.md#create-a-peering).
-- Découvrez comment [créer une topologie de réseau de type hub et spoke](/azure/architecture/reference-architectures/hybrid-networking/hub-spoke?toc=%2fazure%2fvirtual-network%2ftoc.json#vnet-peering) avec l’homologation de réseaux virtuels.
+- Découvrez comment trop[créer un hub et spoke topologie de réseau](/azure/architecture/reference-architectures/hybrid-networking/hub-spoke?toc=%2fazure%2fvirtual-network%2ftoc.json#vnet-peering) avec le réseau virtuel d’homologation.

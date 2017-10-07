@@ -1,7 +1,7 @@
 ---
-title: "Composants et versions Hadoop - Azure HDInsight | Microsoft Docs"
-description: "Découvrez les composants et versions Hadoop de HDInsight et les niveaux de service disponibles dans cette distribution cloud de la solution Hortonworks Data Platform."
-keywords: "versions Hadoop,composants de l’écosystème hadoop,composants hadoop,comment vérifier la version hadoop"
+title: aaaHadoop composants et des versions - Azure HDInsight | Documents Microsoft
+description: "Découvrez les composants Hadoop hello et les versions dans les niveaux de service HDInsight et hello disponibles dans cette distribution de cloud de Hortonworks Data Platform."
+keywords: "les versions Hadoop, les composants écosystème hadoop, des composants hadoop, la version de hadoop toocheck"
 services: hdinsight
 editor: cgronlun
 manager: asadk
@@ -17,25 +17,25 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/14/2017
 ms.author: bprakash
-ms.openlocfilehash: 26512049dba3d4dde575c5a67ba884fb56374236
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: b661d901b0113458c3501ec06454fc8841189672
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="what-are-the-hadoop-components-and-versions-available-with-hdinsight"></a>Quels sont les composants et versions Hadoop disponibles avec HDInsight ?
+# <a name="what-are-hello-hadoop-components-and-versions-available-with-hdinsight"></a>Quels sont les composants de Hadoop hello et les versions disponibles avec HDInsight ?
 
-Découvrez les composants et versions de l’écosystème Apache Hadoop inclus dans Microsoft Azure HDInsight, ainsi que les niveaux de service Standard et Premium. Découvrez également comment vérifier les versions des composants Hadoop dans HDInsight. 
+En savoir plus sur les composants d’écosystème hello Apache Hadoop et des versions de Microsoft Azure HDInsight, ainsi que les niveaux de service Standard et Premium de hello. En outre, découvrez comment toocheck les versions des composants Hadoop dans HDInsight. 
 
 Chaque version de HDInsight est une distribution cloud d’une version de la solution Hortonworks Data Platform (HDP).
 
 ## <a name="hadoop-components-available-with-different-hdinsight-versions"></a>Composants Hadoop disponibles avec différentes versions de HDInsight
-Azure HDInsight prend en charge plusieurs versions de cluster Hadoop qui peuvent être déployées à tout moment. Le choix d’une version crée une version spécifique de la distribution de la plateforme HDP ainsi qu’un ensemble de composants, qui sont contenus dans cette distribution. Depuis le 17 février 2017, la version de cluster par défaut utilisée par Azure HDInsight est la version 3.5 ; elle est basée sur la plateforme HDP 2.5.
+Azure HDInsight prend en charge plusieurs versions de cluster Hadoop qui peuvent être déployées à tout moment. Chaque choix version crée une version spécifique de la distribution de HDP hello et un ensemble de composants qui sont contenues dans cette distribution. À compter du 17 février 2017, version du cluster par défaut hello utilisée par Azure HDInsight est 3.5 et est basée sur HDP 2.5.
 
-Les versions de composants associées aux versions de cluster HDInsight sont répertoriées dans le tableau suivant. 
+les versions des composants Hello associées aux versions de cluster HDInsight sont répertoriées dans hello tableau suivant. 
 
 > [!NOTE]
-> La version par défaut associée au service HDInsight peut changer sans préavis. Si vous dépendez d’une version, spécifiez cette dernière lorsque vous créez des clusters à l’aide du Kit de développement logiciel (SDK) .NET avec Azure PowerShell et Azure CLI.
+> version par défaut de Hello pour hello service HDInsight peut changer sans préavis. Si vous avez une dépendance de version, spécifiez la version de HDInsight hello lorsque vous créez vos clusters avec hello SDK .NET avec Azure PowerShell et CLI d’Azure.
 
 | Composant | HDInsight 3.6 (par défaut) | HDInsight 3.5 | HDInsight 3.4 | HDInsight 3.3 | HDInsight 3.2 | HDInsight 3.1 | HDInsight 3.0 |
 | --- | --- | --- | --- | --- | --- | --- |--- |
@@ -62,26 +62,26 @@ Les versions de composants associées aux versions de cluster HDInsight sont r�
 
 ## <a name="check-for-current-hadoop-component-version-information"></a>Comment vérifier les informations de version du composant Hadoop actuel
 
-Les versions de composant d’écosystème Hadoop associées aux versions de cluster HDInsight peuvent changer avec les mises à jour de HDInsight. Pour vérifier les composants Hadoop ainsi que les versions utilisées pour un cluster, utilisez l’API REST Ambari. La commande **GetComponentInformation** extrait des informations sur les composants du service. Pour plus d’informations, consultez la page [Documentation Ambari][ambari-docs].
+versions des composants Hello Hadoop écosystème associées aux versions de cluster HDInsight peuvent changer à tooHDInsight de mises à jour. composants de Hadoop toocheck hello et tooverify les versions sont utilisées pour un cluster, utilisez hello Ambari REST API. Hello **GetComponentInformation** commande récupère les informations sur les composants de service. Pour plus d’informations, consultez hello [Ambari documentation][ambari-docs].
 
-Il existe un autre moyen d’obtenir la version des composants dans le cas des clusters Windows : vous pouvez vous connecter à un cluster à l’aide du Bureau à distance, puis examiner le contenu du répertoire C:\apps\dist\.
+Pour les clusters Windows, une autre façon toocheck hello la version du composant est toolog tooa cluster à l’aide du Bureau à distance et examiner le contenu hello du répertoire de C:\apps\dist\ hello.
 
 > [!IMPORTANT]
-> Linux est le seul système d’exploitation utilisé sur HDInsight version 3.4 ou supérieure. Pour en savoir plus, voir [Mise hors service de HDInsight sur Windows](#hdinsight-windows-retirement).
+> Linux est hello seul système d’exploitation utilisé sur HDInsight version 3.4 ou version ultérieure. Pour en savoir plus, voir [Mise hors service de HDInsight sur Windows](#hdinsight-windows-retirement).
 
 ### <a name="release-notes"></a>Notes de publication
 
-Pour d’autres notes de publication sur les dernières versions de HDInsight, consultez la page [Notes de publication de HDInsight](hdinsight-release-notes.md) .
+Consultez [notes de version de HDInsight](hdinsight-release-notes.md) pour notes supplémentaires sur les versions les plus récentes de HDInsight hello.
 
 ## <a name="supported-hdinsight-versions"></a>Versions de HDInsight prises en charge
-Le tableau suivant répertorie les versions de HDInsight qui sont actuellement disponibles sur le portail Azure. Les versions de la plateforme HDP qui correspondent à chaque version de HDInsight sont répertoriées, ainsi que les dates de mise en production des logiciels. Les dates d’expiration et de mise hors service sont également fournies, lorsqu’elles sont connues.
+Hello tableau suivant répertorie les versions hello de HDInsight qui sont actuellement disponibles sur hello portail Azure. les versions HDP Hello qui correspondent tooeach HDInsight version sont répertoriées, ainsi que les dates de publication de produit hello. dates d’expiration et de retrait du support Hello sont également fournies, lorsqu’ils sont connus.
 
 > [!NOTE]
-> Lorsqu’une version cesse d’être prise en charge, elle n’est plus proposée par le portail Microsoft Azure Classic. Toutefois, les versions des clusters restent disponibles avec le paramètre `Version` de la commande Windows PowerShell [New-AzureRmHDInsightCluster](https://msdn.microsoft.com/library/mt619331.aspx) et le Kit de développement logiciel (SDK) .NET, jusqu’à leur date de mise hors service.
+> Après la prise en charge pour une version a expiré, il peut être disponible via le portail classique de Microsoft Azure hello. Toutefois, les versions de cluster continuent toobe disponible à l’aide de hello `Version` paramètre Bonjour Windows PowerShell [New-AzureRmHDInsightCluster](https://msdn.microsoft.com/library/mt619331.aspx) des commandes et hello .NET SDK jusqu'à ce que la version de hello date de suppression.
 > 
 > Les clusters à haute disponibilité avec deux nœuds principaux sont déployés par défaut pour les clusters HDInsight 2.1 et versions ultérieures. Ils ne sont pas disponibles pour les clusters HDInsight version 1.6.
 
-| Version de HDInsight | Version de la plateforme HDP | SYSTÈME D’EXPLOITATION DE LA MACHINE VIRTUELLE | Haute disponibilité | Date de lancement | Disponibilité sur le portail Azure | Date d’expiration du support | Date de mise hors service |
+| Version de HDInsight | Version de la plateforme HDP | SYSTÈME D’EXPLOITATION DE LA MACHINE VIRTUELLE | Haute disponibilité | Date de lancement | Disponibilité sur hello portail Azure | Date d’expiration du support | Date de mise hors service |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | HDInsight 3.6 |HDP 2.6 |Ubuntu 16 |Oui |4 avril 2017 |Oui | | |
 | HDInsight 3.5 |HDP 2.5 |Ubuntu 16 |Oui |30 septembre 2016 |Oui |5 septembre 2017 |31 mai 2018 |
@@ -95,68 +95,68 @@ Le tableau suivant répertorie les versions de HDInsight qui sont actuellement d
 | HDInsight 1.6 |HDP 1.1 | |Non |28 octobre 2013 |Non |26 avril 2014 |31 mai 2015 |
 
 ## <a name="hdinsight-windows-retirement"></a>Mise hors service de HDInsight sur Windows
-La version 3.3 est la dernière version de Microsoft Azure HDInsight sur Windows. La date de mise hors service de HDInsight sur Windows est le 31 juillet 2018. Si vous disposez de clusters HDInsight sur Windows dont la version est 3.3 ou antérieure, vous devez migrer vers HDInsight sur Linux (version 3.5 ou ultérieure) avant le 31 juillet 2018. Grâce à la migration vers le système d’exploitation Linux, vous pouvez continuer de créer ou de redimensionner vos clusters HDInsight. La prise en charge de HDInsight version 3.3 sur Windows a expiré le 27 juin 2016.
+Microsoft Azure HDInsight version 3.3 était la dernière version de HDInsight sur Windows hello. Hello date de suppression pour HDInsight sur Windows est le 31 juillet 2018. Si vous disposez de tous les clusters HDInsight sur Windows 3.3 ou version antérieure, vous devez migrer tooHDInsight sur Linux (HDInsight version 3.5 ou version ultérieure) avant le 31 juillet 2018. Migration toohello système d’exploitation Linux vous permet de tooretain hello capacité toocreate ou redimensionner vos clusters HDInsight. La prise en charge de HDInsight version 3.3 sur Windows a expiré le 27 juin 2016.
 
-Depuis HDInsight version 3.4, Microsoft a publié ce logiciel uniquement sur le système d’exploitation Linux. Par conséquent, certains composants de HDInsight sont disponibles pour Linux uniquement. Cela inclut les applications Apache Ranger, Kafka, Hive interactif, Spark et HDInsight ainsi que l’utilisation de Azure Data Lake Store en tant que système de fichiers principal. Les versions ultérieures de HDInsight sont également disponibles sur Linux uniquement. Aucune version de HDInsight ne sera proposée sur Windows. 
+À partir de HDInsight version 3.4, Microsoft a publié HDInsight uniquement sur hello du système d’exploitation Linux. Par conséquent, certains composants hello dans HDInsight sont disponibles pour Linux uniquement. Ceux-ci incluent Apache Ranger Kafka, Hive interactif, Spark, HDInsight, applications et Azure Data Lake Store en tant que système de fichiers principal hello. Les versions futures de HDInsight sont disponibles uniquement sur hello du système d’exploitation Linux. Aucune version de HDInsight ne sera proposée sur Windows. 
 
 ## <a name="faqs"></a>FAQ
 
-### <a name="what-is-the-timeline-for-retiring-hdinsight-on-windows"></a>Quelle est la chronologie de mise hors service de HDInsight sur Windows ?
-La date de mise hors service de HDInsight sous Windows est le 31 juillet 2018. Si la date de mise hors service est différente dans votre région, vous en serez averti au cas par cas. 
+### <a name="what-is-hello-timeline-for-retiring-hdinsight-on-windows"></a>Quelle est la chronologie hello pour mettre hors service HDInsight sur Windows ?
+31 juillet 2018, est hello date de suppression pour HDInsight sur Windows. Si hello planifié date de suppression est différent de votre région, vous serez averti séparément. 
 
-### <a name="what-is-the-impact-of-retiring-hdinsight-on-windows-for-existing-customers"></a>Quel est l’impact de la mise hors service de HDInsight sur Windows pour les clients existants ?
-Une fois HDInsight mis hors service sur Windows, vous ne pourrez plus créer de clusters HDInsight sur Windows, ni redimensionner un cluster HDInsight existant sur ce système. La prise en charge de HDInsight version 3.3 a expiré le 27 juin 2016. Par conséquent, la résolution des bogues et le support ne sont plus assurés pour HDInsight 3.3 et versions antérieures. Les versions ultérieures de HDInsight sont également disponibles sur Linux uniquement. Aucune version de HDInsight ne sera proposée sur Windows.
+### <a name="what-is-hello-impact-of-retiring-hdinsight-on-windows-for-existing-customers"></a>Nouveautés d’impact hello de mise hors service HDInsight sur Windows pour les clients existants ?
+Une fois HDInsight mis hors service sur Windows, vous ne pourrez plus créer de clusters HDInsight sur Windows, ni redimensionner un cluster HDInsight existant sur ce système. La prise en charge de HDInsight version 3.3 a expiré le 27 juin 2016. Par conséquent, la résolution des bogues et le support ne sont plus assurés pour HDInsight 3.3 et versions antérieures. Les versions futures de HDInsight sont disponibles uniquement sur hello du système d’exploitation Linux. Aucune version de HDInsight ne sera proposée sur Windows.
  
 ### <a name="which-versions-of-hdinsight-on-windows-are-affected"></a>Quelles sont les versions de HDInsight sur Windows qui seront affectées ?
-La version 3.3 est la dernière version de HDInsight sur Windows. Avant la mise hors service de HDInsight sur Windows, tous les clusters HDInsight de version 3.3 ou antérieure installés sur Windows doivent être migrés vers HDInsight sur Linux de versions 3.5 et ultérieures. Grâce à la migration des clusters vers HDInsight sur Linux, vous pouvez continuer de créer des clusters ou de redimensionner les clusters existants. 
+Azure HDInsight version 3.3 est la dernière version de HDInsight pour Windows hello. Avant de HDInsight sur Windows est retiré, toutes les fenêtres de HDInsight clusters version 3.3 ou une version antérieure doit être migré tooHDInsight sur Linux version 3.5 ou version ultérieure. Migration de votre tooHDInsight de clusters sur Linux vous permet de nouveaux clusters tooretain hello capacité toocreate ou redimensionner des clusters existants. 
 
-### <a name="what-do-i-need-to-do"></a>Que dois-je faire ?
-Effectuez la migration des clusters HDInsight sur Windows vers HDInsight sur Linux avant le 31 juillet 2018. Pour en savoir plus, voir [Effectuer la migration d’un cluster HDInsight Windows vers un cluster Linux](https://docs.microsoft.com/en-gb/azure/hdinsight/hdinsight-migrate-from-windows-to-linux). Pour en savoir plus sur les versions d’Azure HDInsight, consultez la liste des [versions prises en charge](https://docs.microsoft.com/en-us/azure/hdinsight/hdinsight-component-versioning#supported-hdinsight-versions). 
+### <a name="what-do-i-need-toodo"></a>Comment dois-je toodo ?
+Migrer votre cluster HDInsight Linux de HDInsight Windows clusters tooa pris en charge avant le 31 juillet 2018. Pour en savoir plus hello [document de migration HDInsight](https://docs.microsoft.com/en-gb/azure/hdinsight/hdinsight-migrate-from-windows-to-linux). Pour plus d’informations sur les versions d’Azure HDInsight, consultez la liste des hello [versions prises en charge](https://docs.microsoft.com/en-us/azure/hdinsight/hdinsight-component-versioning#supported-hdinsight-versions). 
 
-### <a name="where-do-i-find-the-cluster-os-type"></a>Où puis-je trouver le type de système d’exploitation du cluster ?
-Dans le portail Azure, accédez à la page de vue d’ensemble du cluster HDInsight et recherchez l’option **Type de cluster** sous **Essentials**. Les types de système d’exploitation du cluster sont répertoriés dans cette page. 
+### <a name="where-do-i-find-hello-cluster-os-type"></a>Où trouver le type de système d’exploitation de cluster hello ?
+Bonjour portail Azure, accédez à toohello page Vue d’ensemble de HDInsight Cluster et recherchez **Cluster type** sous **Essentials**. types de système d’exploitation de cluster Hello sont répertoriés dans cette page. 
 
-### <a name="i-cant-migrate-to-an-hdinsight-linux-cluster-by-july-31-2018-what-is-the-impact-to-my-hdinsight-windows-cluster"></a>Je ne pourrai pas effectuer la migration vers un cluster HDInsight sur Linux avant le 31 juillet 2018. Que va-t-il arriver à mon cluster HDInsight sur Windows ?
-Votre cluster pourra s’exécuter en l’état, mais vous ne pourrez pas le redimensionner, ni créer des clusters HDInsight sur Windows. 
+### <a name="i-cant-migrate-tooan-hdinsight-linux-cluster-by-july-31-2018-what-is-hello-impact-toomy-hdinsight-windows-cluster"></a>Je ne parviens pas à migrer tooan cluster HDInsight Linux en au 31 juillet 2018. Qu’est hello impact toomy cluster HDInsight Windows ?
+Hello cluster HDInsight Windows s’exécute en tant que-est, mais vous ne pouvez pas créer un cluster HDInsight Windows ou redimensionner un cluster HDInsight Windows existant. 
 
 ### <a name="my-cluster-has-a-net-dependency-how-do-i-resolve-this-dependency-on-linux"></a>Mon cluster présente une dépendance à .NET. Comment puis-je la résoudre sur Linux ?
-Vous pouvez résoudre la dépendance de votre cluster à Linux à l’aide du [projet Mono](http://www.mono-project.com/). Cette implémentation open source de .NET est disponible pour les clusters HDInsight sur Linux. Pour en savoir plus, voir [Effectuer la migration d’un cluster HDInsight Windows vers un cluster Linux](https://docs.microsoft.com/en-gb/azure/hdinsight/hdinsight-migrate-from-windows-to-linux). 
+Vous pouvez résoudre votre dépendance de cluster Linux à l’aide de hello [projet Mono](http://www.mono-project.com/). Cette implémentation open source de .NET est disponible pour les clusters HDInsight sur Linux. Pour en savoir plus hello [document de migration HDInsight](https://docs.microsoft.com/en-gb/azure/hdinsight/hdinsight-migrate-from-windows-to-linux). 
 
 ### <a name="im-a-new-customer-for-hdinsight-on-windows-how-can-i-create-an-hdinsight-windows-cluster"></a>Je n’utilise HDInsight sur Windows que depuis peu. Comment puis-je créer un cluster HDInsight sur Windows ?
-Depuis le 3 juillet 2017, seuls les clients HDInsight sur Windows existants peuvent créer des clusters HDInsight sur Windows. Les nouveaux clients ne peuvent pas utiliser PowerShell ou le Kit de développement logiciel (SDK) pour créer un cluster HDInsight sur le portail Azure. Nous recommandons aux nouveaux clients de créer un cluster HDInsight sur Linux. Les clients existants peuvent créer des clusters HDInsight sur Windows jusqu’à la mise hors service de HDInsight sur Windows. 
+Depuis le 3 juillet 2017, seuls les clients HDInsight sur Windows existants peuvent créer des clusters HDInsight sur Windows. Nouveaux clients ne peut pas créer un cluster HDInsight Windows Bonjour portail Azure à l’aide de PowerShell ou hello SDK. Nous recommandons aux nouveaux clients de créer un cluster HDInsight sur Linux. Les clients existants peuvent créer de nouvelles fenêtres HDInsight clusters jusqu'à hello HDInsight sur Windows date de suppression. 
 
-### <a name="is-there-a-pricing-impact-associated-with-moving-from-hdinsight-on-windows-to-hdinsight-on-linux"></a>La migration de HDInsight sur Windows à Linux entraîne-t-elle des changements de tarification ?
-Non, la tarification est identique pour HDInsight, que ce soit sur Windows ou sur Linux. 
+### <a name="is-there-a-pricing-impact-associated-with-moving-from-hdinsight-on-windows-toohdinsight-on-linux"></a>Existe-t-il un impact sur la tarification associée au déplacement de HDInsight sur tooHDInsight Windows sur Linux ?
+Non, hello tarification est hello même pour HDInsight sur un système d’exploitation. 
 
-### <a name="what-are-the-customer-advantages-associated-with-the-move-to-only-using-hdinsight-on-linux"></a>Une fois la migration effectuée, en quoi l’utilisation de HDInsight sur Linux uniquement est-elle avantageuse pour les clients ?
-* Un délai de mise sur le marché plus court pour les technologies Big Data open source, grâce au service HDInsight
+### <a name="what-are-hello-customer-advantages-associated-with-hello-move-tooonly-using-hdinsight-on-linux"></a>Quels sont les avantages de client hello associés hello déplacer tooonly à l’aide de HDInsight sur Linux ?
+* Temps de commercialisation plus rapide des technologies de données volumineuses open source via hello service HDInsight
 * Communauté et écosystème de support importants
-* Possibilité de procéder à un développement actif, par l’intermédiaire de la communauté Hadoop open source et d’autres technologies de Big Data
+* Capacité tooexercise activement par hello ouvrir Communauté source pour Hadoop et d’autres technologies de données volumineuses
 
 ### <a name="does-hdinsight-on-linux-provide-additional-functionality-beyond-what-is-available-in-hdinsight-on-windows"></a>La version de HDInsight sur Linux propose-t-elle des fonctionnalités supplémentaires par rapport à la version de ce logiciel sous Windows ?
-Depuis HDInsight version 3.4, Microsoft a publié ce logiciel uniquement sur le système d’exploitation Linux. Par conséquent, certains composants de HDInsight sont disponibles pour Linux uniquement. Cela inclut les applications Apache Ranger, Kafka, Hive interactif, Spark et HDInsight ainsi que l’utilisation d’Azure Data Lake Store en tant que système de fichiers principal. 
+À partir de HDInsight version 3.4, Microsoft a publié HDInsight uniquement sur hello du système d’exploitation Linux. Par conséquent, certains composants hello dans HDInsight sont disponibles pour Linux uniquement. Ceux-ci incluent Apache Ranger Kafka, Hive interactif, Spark, HDInsight, applications et Azure Data Lake Store en tant que système de fichiers principal hello. 
 
 ## <a name="service-level-agreement-for-hdinsight-cluster-versions"></a>Contrat de niveau de service pour les versions de cluster HDInsight
-Le contrat de niveau de service (SLA) est défini en termes de _fenêtre de support_. L’expression « fenêtre de support » désigne la durée pendant laquelle une version de cluster HDInsight est prise en charge par le support technique et le service clientèle Microsoft. Si la version du logiciel est associée à une _date d’expiration du support_ dépassée, cela signifie que le cluster HDInsight n’est plus inclus dans la fenêtre de support. Pour en savoir plus sur les versions gérées, consultez la liste des [versions de cluster HDInsight prises en charge](https://docs.microsoft.com/en-gb/azure/hdinsight/hdinsight-migrate-from-windows-to-linux). La date d’expiration du support d’une version donnée de HDInsight (lorsqu’une version X+1 plus récente est disponible) est calculée comme suit, la date la plus tardive prévalant :  
+contrat de niveau de service (SLA) Hello est définie en termes d’un _prise en charge de fenêtre_. fenêtre de prise en charge Hello est hello durée pendant laquelle une version du cluster HDInsight est pris en charge par le support technique et Service clientèle Microsoft. Si la version de hello a un _prennent en charge de la date d’expiration_ qui a passé, le cluster HDInsight de hello est en dehors de la fenêtre de prise en charge hello. Pour plus d’informations sur les versions prises en charge, consultez la liste des hello [prise en charge des versions du cluster HDInsight](https://docs.microsoft.com/en-gb/azure/hdinsight/hdinsight-migrate-from-windows-to-linux). date d’expiration de prise en charge Hello pour une version X (une fois une version plus récente de X + 1 est disponible) de HDInsight spécifié est calculée comme hello plus tard de :  
 
-* Formule 1 : ajoutez 180 jours à la date de lancement du cluster HDInsight version X.
-* Formule 2 : ajoutez 90 jours à la date de lancement du cluster HDInsight version X+1 dans le portail Azure.
+* La formule 1 : Ajouter la date de toohello de 180 jours lorsque la version du cluster HDInsight hello X a été publiée.
+* Formule 2 : Ajouter la date de toohello de 90 jours lorsque version du cluster HDInsight hello X + 1 est mis à disposition dans le portail Azure.
 
-La _date de mise hors service_ est la date après laquelle la version du cluster ne peut plus être créée sur HDInsight. Depuis le 31 juillet 2017, vous ne pouvez pas redimensionner un cluster HDInsight après sa date de mise hors service. 
+Hello _date de retrait_ est date hello après lequel la version du cluster hello ne peut pas être créée sur HDInsight. Depuis le 31 juillet 2017, vous ne pouvez pas redimensionner un cluster HDInsight après sa date de mise hors service. 
 
 > [!NOTE]
-> Les clusters HDInsight sous Windows (y compris les versions 2.1, 3.0, 3.1, 3.2 et 3.3) s’exécutent sur la 4e famille de systèmes d’exploitation invités d’Azure, qui utilise la version 64 bits de Windows Server 2012 R2. Cette famille prend en charge les versions de .NET Framework 4.0, 4.5, 4.5.1 et 4.5.2.
+> Les clusters HDInsight Windows (y compris les versions 2.1, 3.0, 3.1, 3.2 et 3.3) s’exécuter sur la famille de systèmes d’exploitation invité Azure version 4, qui utilise la version 64 bits de hello de Windows Server 2012 R2. Famille de systèmes d’exploitation invité Azure version 4 prend en charge les versions du .NET Framework hello 4.0, 4.5, 4.5.1 et 4.5.2.
 
 ## <a name="hortonworks-release-notes-associated-with-hdinsight-versions"></a>Notes de publication de Hortonworks associées aux versions de HDInsight
 
-Cette section fournit des liens vers des notes de publication des distributions Hortonworks Data Platform et des composants Apache utilisés avec HDInsight.
+section de Hello fournit des liens toorelease notes pour les distributions Hortonworks Data Platform hello et composants Apache qui sont utilisés avec HDInsight.
 * Le cluster HDInsight version 3.6 utilise une distribution Hadoop basée sur [Hortonworks Data Platform 2.6](http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.6.0/bk_release-notes/content/ch_relnotes.html).
-* Le cluster HDInsight version 3.5 utilise une distribution Hadoop basée sur [Hortonworks Data Platform 2.5](http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.5.0/bk_release-notes/content/ch_relnotes_v250.html). HDInsight 3.5 est la version _par défaut_ du cluster Hadoop créé dans le portail Azure.
+* Le cluster HDInsight version 3.5 utilise une distribution Hadoop basée sur [Hortonworks Data Platform 2.5](http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.5.0/bk_release-notes/content/ch_relnotes_v250.html). La version 3.5 du cluster HDInsight est hello _par défaut_ cluster Hadoop qui est créé dans hello portail Azure.
 * Le cluster HDInsight version 3.4 utilise une distribution Hadoop basée sur [Hortonworks Data Platform 2.4](http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.4.0/bk_HDP_RelNotes/content/ch_relnotes_v240.html).
 * Le cluster HDInsight version 3.3 utilise une distribution Hadoop basée sur [Hortonworks Data Platform 2.3](http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.3.0/bk_HDP_RelNotes/content/ch_relnotes_v230.html).
 
-  * Les [notes de publication d’Apache Storm](https://storm.apache.org/2015/11/05/storm0100-released.html) sont disponibles sur le site web d’Apache.
-  * Les [notes de publication d’Apache Hive](https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12332384&styleName=Text&projectId=12310843) sont disponibles sur le site web d’Apache.
+  * [Notes de publication Apache Storm](https://storm.apache.org/2015/11/05/storm0100-released.html) sont disponibles sur le site Web de Apache hello.
+  * [Notes de publication Apache Hive](https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12332384&styleName=Text&projectId=12310843) sont disponibles sur le site Web de Apache hello.
 * Le cluster HDInsight version 3.2 utilise une distribution Hadoop basée sur [Hortonworks Data Platform 2.2][hdp-2-2].
 
   * Des notes de publication sont proposées pour des composants Apache spécifiques : [Hive 0.14](https://issues.apache.org/jira/secure/ReleaseNote.jspa?projectId=12310843&version=12326450), [Pig 0.14](https://issues.apache.org/jira/secure/ReleaseNote.jspa?projectId=12310730&version=12326954), [HBase 0.98.4](https://issues.apache.org/jira/secure/ReleaseNote.jspa?projectId=12310753&version=12326810), [Phoenix 4.2.0](https://issues.apache.org/jira/secure/ReleaseNote.jspa?projectId=12315120&version=12327581), [M/R 2.6](https://issues.apache.org/jira/secure/ReleaseNote.jspa?projectId=12310941&version=12327180), [HDFS 2.6](https://issues.apache.org/jira/secure/ReleaseNote.jspa?projectId=12310942&version=12327181), [YARN 2.6](https://issues.apache.org/jira/secure/ReleaseNote.jspa?projectId=12313722&version=12327197), [Common](https://issues.apache.org/jira/secure/ReleaseNote.jspa?projectId=12310240&version=12327179), [Tez 0.5.2](https://issues.apache.org/jira/secure/ReleaseNote.jspa?projectId=12314426&version=12328742), [Ambari 2.0](https://issues.apache.org/jira/secure/ReleaseNote.jspa?projectId=12312020&version=12327486), [Storm 0.9.3](https://issues.apache.org/jira/secure/ReleaseNote.jspa?projectId=12314820&version=12327112) et [Oozie 4.1.0](https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12324960&projectId=12311620).
@@ -167,17 +167,17 @@ Cette section fournit des liens vers des notes de publication des distributions�
 
 ## <a name="hdinsight-standard-and-hdinsight-premium"></a>HDInsight Standard et HDInsight Premium
 
-Azure HDInsight propose deux catégories d’offres de cloud Big Data : _Standard_ et _Premium_. Le tableau suivant répertorie les fonctionnalités disponibles _uniquement_ dans HDInsight Premium. Les fonctionnalités qui ne sont pas explicitement décrites dans le tableau sont disponibles dans HDInsight Standard et HDInsight Premium.
+HDInsight Azure fournit les offres de cloud de données volumineuses hello dans deux catégories : _Standard_ et _Premium_. Hello tableau suivant répertorie les fonctionnalités qui sont disponibles _uniquement_ dans HDInsight Premium. Fonctionnalités qui ne sont pas explicitement décrits dans la table de hello sont disponibles dans HDInsight Standard et Premium.
 
 > [!NOTE]
-> L’offre HDInsight Premium est actuellement en version préliminaire, disponible uniquement pour les clusters Linux.
+> Hello HDInsight Premium offre est actuellement en version préliminaire et est disponible uniquement pour les clusters Linux.
 
 | Fonctionnalité HDInsight Premium | Description |
 | --- | --- |
-| Clusters HDInsight joints à un domaine |Joignez des clusters HDInsight à des domaines Azure Active Directory (AAD) pour bénéficier d’une sécurité de niveau entreprise. Dans HDInsight Premium, vous pouvez configurer une liste d’employés de votre entreprise, qui peuvent s’authentifier via Azure Active Directory pour se connecter à un cluster HDInsight. L’administrateur d’entreprise peut configurer le contrôle d’accès en fonction du rôle pour assurer la sécurité de Hive à l’aide [d’Apache Ranger](http://hortonworks.com/apache/ranger/), limitant ainsi l’accès aux données de manière appropriée. Enfin, l’administrateur peut auditer les données auxquelles les employés ont accès et les modifications apportées aux stratégies de contrôle d’accès, d’où un degré élevé de gouvernance des ressources de l’entreprise. Pour plus d’informations, consultez la section [Configurer des clusters HDInsight joints à un domaine](hdinsight-domain-joined-configure.md). |
+| Clusters HDInsight joints à un domaine |Joindre des clusters HDInsight tooAzure des domaines Active Directory (Azure AD) pour la sécurité au niveau de l’entreprise. Dans HDInsight Premium, vous pouvez configurer une liste d’employés à partir de votre entreprise qui peut s’authentifier via toolog Azure AD sur le cluster HDInsight de tooan. administrateur d’entreprise Hello pouvez configurer le contrôle d’accès basé sur un rôle pour la sécurité de la ruche à l’aide de [Apache Ranger](http://hortonworks.com/apache/ranger/) et restreindre toouse d’accès aux données que nécessaire. Enfin, hello administrateur pouvez auditer les données accédées par les employés et les modifications tooaccess contrôler les stratégies, et atteindre un niveau élevé de la gouvernance des ressources d’entreprise. Pour plus d’informations, consultez la section [Configurer des clusters HDInsight joints à un domaine](hdinsight-domain-joined-configure.md). |
 
 ### <a name="cluster-types-supported-in-hdinsight-premium"></a>Types de clusters pris en charge par HDInsight Premium
-Le tableau suivant répertorie les types de cluster qui sont pris en charge dans HDInsight Premium.
+Hello tableau suivant répertorie les types de cluster hello qui sont pris en charge dans HDInsight Premium.
 
 | Type de cluster | Standard | Premium (version préliminaire) |
 | --- | --- | --- |
@@ -197,7 +197,7 @@ Les clusters HDInsight Premium ne permettent pas à l’utilisation d’Azure 
 Pour plus d’informations sur la tarification et le contrat SLA pour l’édition Premium de HDInsight, consultez [Tarification HDInsight](https://azure.microsoft.com/pricing/details/hdinsight/).
 
 ## <a name="default-node-configuration-and-virtual-machine-sizes-for-clusters"></a>Tailles des machines virtuelles et configuration des nœuds par défaut pour les clusters
-Les tableaux suivants répertorient les tailles de machine virtuelle par défaut des clusters HDInsight.
+Hello suivant des tailles de machine virtuelle (VM) tables liste hello par défaut pour les clusters HDInsight.
 
 > [!IMPORTANT]
 > Si vous avez besoin de plus de 32 nœuds worker dans un cluster, vous devez sélectionner une taille de nœud principal avec au moins 8 cœurs et 14 Go de RAM.
@@ -230,9 +230,9 @@ Les tableaux suivants répertorient les tailles de machine virtuelle par défaut
   | Edge : tailles de machine virtuelle recommandées | | | | |Windows : D12, D13, D14 ; Linux : D4, D12, D13, D14 |
 
 > [!NOTE]
-> - Head est appelé *Nimbus* pour le type de cluster Storm.
-> - L’élément Worker est appelé *Supervisor* pour le type de cluster Storm.
-> - L’élément Worker est appelé *Region* pour le type de cluster HBase.
+> - Head est appelé *Nimbus* pour hello Storm cluster type.
+> - Processus de travail est appelé *superviseur* pour hello Storm cluster type.
+> - Processus de travail est appelé *région* pour hello HBase le type de cluster.
 
 ## <a name="next-steps"></a>Étapes suivantes
 - [Création de clusters Hadoop dans HDInsight](hdinsight-hadoop-provision-linux-clusters.md)

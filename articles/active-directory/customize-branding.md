@@ -1,6 +1,6 @@
 ---
-title: Personnaliser votre page de connexion dans Azure Active Directory | Microsoft Docs
-description: "Découvrir comment ajouter une société à la page de connexion Azure"
+title: "aaaCustomize vous connecter à la page Bonjour Azure Active Directory | Documents Microsoft"
+description: "Découvrez comment tooadd une page toohello connectez-vous Azure marque de société"
 services: active-directory
 documentationcenter: 
 author: jeffgilb
@@ -15,101 +15,101 @@ ms.topic: article
 ms.date: 08/11/2017
 ms.author: jeffgilb
 custom: it-pro
-ms.openlocfilehash: bddf2542eecce8bdeccda6053203bf2c2ba0ffb2
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 7a7ccdeef0764f6cf9e9e224acd4350983031fe0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="quickstart-add-company-branding-to-your-sign-in-page-in-azure-ad"></a>Démarrage rapide : Ajouter la marque de votre société à votre page de connexion dans Azure AD
-Pour éviter toute confusion, de nombreuses entreprises veulent que tous les sites Web et services qu’elles gèrent aient un aspect similaire. Azure Active Directory (AD) offre cette possibilité en vous permettant de personnaliser l’apparence la page de connexion pour qu’elle affiche le logo de votre société et sa palette de couleurs personnalisée. La page de connexion s’affiche lorsque vous vous connectez à Office 365 ou à d’autres applications Web qui utilisent Azure AD comme fournisseur d’identité. Vous interagissez avec cette page pour saisir vos informations d’identification.
+# <a name="quickstart-add-company-branding-tooyour-sign-in-page-in-azure-ad"></a>Démarrage rapide : Ajouter la marque de société tooyour-page de connexion dans Azure AD
+tooavoid confusion, de nombreuses sociétés souhaitent tooapply une apparence cohérente sur tous les sites Web de hello et services qu’ils gèrent. Azure Active Directory (Azure AD) offre cette possibilité en vous donnant l’apparence de hello toocustomize de hello-page de connexion avec votre logo de l’entreprise et les jeux de couleurs personnalisées. page de connexion Hello est page hello qui s’affiche lorsque vous vous connectez tooOffice 365 ou autres applications web qui utilisent Azure AD comme fournisseur d’identité. Vous interagissez avec cette tooenter page vos informations d’identification.
 
 > [!NOTE]
-> * La marque de société est une fonctionnalité disponible uniquement si vous avez effectué une mise à niveau vers l’édition Premium ou De base d’Azure AD, ou si vous disposez d’une licence Office 365. Pour savoir si une fonctionnalité est prise en charge par votre type de licence, consultez la page [Tarification d’Azure Active Directory](https://azure.microsoft.com/pricing/details/active-directory/).
+> * Marque de société est disponible uniquement si la mise à niveau toohello Premium ou édition Basic d’Azure AD, ou disposer d’une licence Office 365. toolearn si une fonctionnalité est prise en charge par votre type de licence, vérifiez hello [page d’informations de la tarification Azure Active Directory](https://azure.microsoft.com/pricing/details/active-directory/).
 > 
-> * Les clients vivant en Chine peuvent accéder aux éditions De base et Premium d’Azure Active Directory à l’aide de l’instance mondiale d’Azure Active Directory. Actuellement, les éditions De base et Premium d’Azure Active Directory ne sont pas prises en charge dans le service Microsoft Azure utilisé par 21Vianet en Chine. Pour plus d’informations, contactez-nous via le [Forum Azure Active Directory](https://feedback.azure.com/forums/169401-azure-active-directory/).
+> * Azure Active Directory Premium et les éditions de base sont disponibles pour les clients en Chine utilisent hello instance mondiale d’Azure Active Directory. Azure Active Directory Premium et les éditions de base ne sont pas actuellement pris en charge dans le service Microsoft Azure hello géré par 21Vianet en Chine. Pour plus d’informations, veuillez nous contacter à hello [Forum Azure Active Directory](https://feedback.azure.com/forums/169401-azure-active-directory/).
 
-## <a name="customizing-the-sign-in-page"></a>Personnalisation de la page de connexion
+## <a name="customizing-hello-sign-in-page"></a>Personnalisation de hello-page de connexion
 
-<!--You can customize the following elements on the sign-in page: <attach image>-->
+<!--You can customize hello following elements on hello sign-in page: <attach image>-->
 
-Les personnalisations de la marque de société s’affichent sur la page de connexion Azure AD lorsque les utilisateurs accèdent à une URL spécifique à un locataire, par exemple : [*https://outlook.com/contoso.com*](https://outlook.com/contoso.com).
+Société personnalisations marque apparaissent sur la page de connexion hello Azure AD lorsque les utilisateurs accèdent à une URL spécifique du client tel que [ *https://outlook.com/contoso.com*](https://outlook.com/contoso.com).
 
-Lorsque les utilisateurs accèdent à un service se trouvant à une adresse URL générique, comme www.office.com, la page de connexion ne contient pas de personnalisations de la marque de société, car le système ne connaît pas cet utilisateur. La marque de société s’affiche une fois que les utilisateurs ont indiqué leur identifiant d’utilisateur, ou sélectionné la mosaïque d’un utilisateur.
+Lorsque les utilisateurs ont accès à une URL générique, telle que www.office.com, hello-page de connexion ne contient pas de marque les personnalisations, car le système de hello ne sait pas qui hello utilisateur de l’entreprise. La marque de société s’affiche une fois que les utilisateurs ont indiqué leur identifiant d’utilisateur, ou sélectionné la mosaïque d’un utilisateur.
 
 > [!NOTE]
-> * Votre nom de domaine doit apparaître comme étant « Actif » dans la partie **Domaines** du portail Azure dans lequel vous avez effectué la personnalisation de société. Pour plus d’informations, consultez [Ajouter un nom de domaine personnalisé](add-custom-domain.md).
-> * La personnalisation de marque de la page de connexion ne s’étend pas à la page de connexion des comptes Microsoft personnels. Si les employés ou des invités professionnels se connectent avec un compte Microsoft personnel, leur page de connexion ne reflète pas la marque de votre organisation.
+> * Votre nom de domaine doit être « Actif » dans hello **domaines** partie de hello portail Azure, dans lequel vous avez effectué la personnalisation. Pour plus d’informations, consultez [Ajouter un nom de domaine personnalisé](add-custom-domain.md).
+> * Personnalisation de la page de connexion n’est pas reflétée sur toohello-page de connexion pour les comptes Microsoft personnels. Si vos employés ou les invités à vous connecter avec un compte Microsoft personnel, leur page de connexion ne reflète pas hello de personnalisation de votre organisation.
 
 
 ### <a name="banner-logo"></a>Logo de bannière 
 
 Description | Contraintes | Recommandations
 ------- | ------- | ----------
-Le logo de bannière s’affiche sur les pages de connexion et du volet d’accès.<br>Sur la page de connexion, cela s’affiche une fois que l’organisation de l’utilisateur est identifiée (en règle générale, une fois le nom d’utilisateur saisi).  | JPG ou PNG transparent<br>Hauteur max. : 36 px<br>Largeur max. : 245 px | Utilisez le logo de votre organisation ici.<br>Utilisez une image transparente. Ne partez pas du principe que l’arrière-plan est blanc.<br>N’ajoutez pas de marge intérieure autour de votre logo dans l’image, sinon le logo s’affichera disproportionnellement petit.
+logo de bannière Hello est affichée sur hello connexion et la page du volet d’accès hello.<br>Sur la page de connexion hello, cela indique une fois que l’organisation de l’utilisateur hello est déterminée, généralement après que le nom d’utilisateur hello est entré.  | JPG ou PNG transparent<br>Hauteur max. : 36 px<br>Largeur max. : 245 px | Utilisez le logo de votre organisation ici.<br>Utilisez une image transparente. Ne supposez pas que hello arrière-plan apparaîtra en blanc.<br>N’ajoutez pas de marge intérieure autour de votre logo dans l’image de hello ou votre logo ressemblera disproportionnellement petit.
 
 ### <a name="username-hint"></a>Indication sur le nom d’utilisateur   
 Description | Contraintes | Recommandations
 ------- | ------- | ----------
-Cela permet de personnaliser le texte d’information dans le champ du nom d’utilisateur. | Texte Unicode, jusqu’à 64 caractères<br>Texte brut uniquement | Nous vous recommandons de ne pas définir cette option si vous prévoyez que des utilisateurs invités en dehors de votre organisation se connectent à votre application.
+Cela personnalise le texte d’indication hello dans le champ de nom d’utilisateur hello. | Texte Unicode des caractères de too64<br>Texte brut uniquement | Nous vous recommandons de ne pas définir cela si vous pensez que les utilisateurs invités à l’extérieur de votre toosign d’organisation dans tooyour application.
             
 ### <a name="sign-in-page-text"></a>Texte de la page de connexion   
 Description | Contraintes | Recommandations
 ------- | ------- | ----------
-Cela apparaît en bas du formulaire de connexion et peut être utilisé pour communiquer des informations supplémentaires telles que le numéro de téléphone à votre support technique ou une mention légale. | Texte Unicode, jusqu’à 256 caractères<br>Texte brut uniquement (aucun lien ni balise HTML)   
+Cela s’affiche en bas de hello du formulaire de connexion hello et peut être utilisé toocommunicate des informations supplémentaires telles que hello phone numéro tooyour d’assistance ou une mention légale. | Texte Unicode des caractères de too256<br>Texte brut uniquement (aucun lien ni balise HTML) 
 
 ### <a name="sign-in-page-image"></a>Image de la page de connexion  
 Description | Contraintes | Recommandations
 ------- | ------- | ----------
-Cela s’affiche dans l’arrière-plan de la page de connexion. L’image est ancrée au centre de l’espace visible, mise à l’échelle et rognée pour remplir la fenêtre du navigateur.    <br>Sur les écrans étroits tels que les téléphones mobiles, l’image n’est pas affichée.<br>Un masque noir avec une opacité de 0,55 sera appliqué sur cette image par notre code lors du chargement de la page. | JPG ou PNG<br>Dimensions de l’image : 1 920 x 1 080 px<br>Taille de fichier : &gt; 300 Ko | <br>Utilisez des images lorsqu’il n’y a pas de focalisation forte sur l’objet. Le formulaire de connexion opaque apparaît au centre de cette image et peut couvrir une partie de l’image en fonction de la taille de la fenêtre du navigateur.<br>Conservez la taille du fichier aussi réduite que possible pour garantir des temps de chargement rapides. 
+Cette propriété apparaît en arrière-plan hello de hello-page de connexion, est ancré toohello centre d’espace visible de hello et sera mise à l’échelle et rogner toofill fenêtre du navigateur hello.  <br>Sur les écrans étroits tels que les téléphones mobiles, l’image n’est pas affichée.<br>Un masque noir avec opacité 0,55 sera appliqué sur cette image par notre code lorsque hello est chargée. | JPG ou PNG<br>Dimensions de l’image : 1 920 x 1 080 px<br>Taille de fichier : &gt; 300 Ko | <br>Utilisez des images lorsqu’il n’y a pas de focalisation forte sur l’objet. Hello opaque-formulaire de connexion s’affiche sur le centre de hello de cette image et peut couvrir une partie de l’image de hello en fonction de la taille de fenêtre du navigateur hello de hello.<br>Conserver la taille du fichier hello aussi petit que le temps de chargement rapide de tooensure possible. 
 
 ### <a name="background-color"></a>Couleur d’arrière-plan
 Description | Contraintes | Recommandations
 ------- | ------- | ----------
-Cette couleur est utilisée à la place de l’image d’arrière-plan sur les connexions à faible bande passante. | Couleur RVB en hexadécimal (par exemple #FFFFFF) | Nous vous suggérons d’utiliser la couleur principale du logo de bannière ou la couleur de votre organisation.
+Cette couleur est utilisée à la place d’image d’arrière-plan hello sur les connexions à faible bande passante. |   Couleur RVB en hexadécimal (par exemple #FFFFFF) | Nous vous suggérons d’à l’aide de la couleur de principal de hello de logo de bannière hello ou votre organisation.
 
-### <a name="show-option-to-remain-signed-in"></a>Afficher l’option permettant de rester connecté
+### <a name="show-option-tooremain-signed-in"></a>Afficher les tooremain option connecté
 Description | Contraintes | Recommandations
 ------- | ------- | ----------
-La connexion Azure AD permet à l’utilisateur de rester connecté lorsqu’il ferme et ouvre à nouveau son navigateur. Utilisez cela pour masquer cette option.<br>Définissez cet élément sur « Non » pour que vos utilisateurs ne voient pas cette option. | &nbsp; | Cela n’a pas d’effet sur la durée de vie de session.<br>Certaines fonctionnalités de SharePoint Online et Office 2010 dépendent du choix des utilisateurs de rester connecté. Si vous définissez cet élément pour qu’il soit masqué, il se peut que vos utilisateurs voient des invites de connexion supplémentaires et inattendues.
+Connexion Azure AD offre hello utilisateur hello option tooremain connecté lorsqu’ils ferment et rouvrir leur navigateur. Utilisez cette toohide cette option.<br>Définissez cette trop « non » toohide cette option à partir de vos utilisateurs. | &nbsp; | Cela n’a pas d’effet sur la durée de vie de session.<br>Certaines fonctionnalités de SharePoint Online et Office 2010 dépendent des utilisateurs tooremain en mesure de toochoose connecté. Si vous définissez cette toobe masqué, vos utilisateurs peuvent voir des invites de supplémentaires et inattendues dans toosign.
 
 > [!NOTE]
-> Tous ces éléments sont facultatifs. Par exemple, si vous spécifiez un logo de bannière sans image d’arrière-plan, la page de connexion affiche votre logo et l’image d’arrière-plan pour le site de destination (par exemple, Office 365).
+> Tous ces éléments sont facultatifs. Par exemple, si vous spécifiez un logo de bannière avec aucune image d’arrière-plan, hello-page de connexion affiche votre image d’arrière-plan hello et le logo hello site de destination (par exemple, Office 365).
 
-## <a name="add-company-branding-to-your-directory"></a>Ajouter la marque de société à votre répertoire
+## <a name="add-company-branding-tooyour-directory"></a>Ajouter des logos tooyour active de la société
 
-1. Connectez-vous au [portail Azure](https://portal.azure.com) en utilisant un compte d’administrateur global pour l’annuaire.
-2. Sélectionnez **Plus de services**, saisissez **Utilisateurs et groupes** dans la zone de texte, puis sélectionnez **Entrée**.
+1. Connectez-vous trop[hello portail Azure](https://portal.azure.com) avec un compte qui est un administrateur global pour le répertoire de hello.
+2. Sélectionnez **davantage de services**, entrez **utilisateurs et groupes** dans hello de zone de texte, puis sélectionnez **entrée**.
 
    ![Ouvrir la gestion des utilisateurs](./media/active-directory-branding-custom-signon-azure-portal/user-management.png)
-3. Sur le panneau **Utilisateurs et groupes** panneau, sélectionnez **Personnalisation de société**.
-4. Sur le panneau **Utilisateurs et groupes - Personnalisation de la société**, sélectionnez la commande **Modifier**.
+3. Sur hello **utilisateurs et groupes** panneau, sélectionnez **de personnalisation de la société**.
+4. Sur hello **utilisateurs et groupes - personnalisation de la société** panneau, sélectionnez hello **modifier** commande.
 
     ![Modifier la personnalisation de société](./media/active-directory-branding-custom-signon-azure-portal/edit-branding.png)
-5. Modifiez les éléments que vous voulez personnaliser. Tous ces éléments sont facultatifs.
-6. Cliquez sur **Save**.
+5. Modifier les éléments hello toocustomize. Tous ces éléments sont facultatifs.
+6. Cliquez sur **Enregistrer**.
 
-Il peut s’écouler jusqu’à une heure avant que les modifications que vous avez apportées à la page de connexion soient visibles.
+Pour les modifications éventuelles apportées toohello connectez-vous page tooappear marque peut prendre jusqu'à tooan heure.
 
-## <a name="add-language-specific-company-branding-to-your-directory"></a>Ajouter une marque de société spécifique à une langue à votre répertoire
+## <a name="add-language-specific-company-branding-tooyour-directory"></a>Ajouter des logos tooyour active de la société spécifiques au langage
 
-1. Connectez-vous au [centre d’administration Azure AD](https://aad.portal.azure.com) en utilisant un compte d’administrateur général pour le répertoire.
-2. Sélectionnez **Utilisateurs et groupes** dans la zone de texte, puis sélectionnez **Entrée**.
+1. Connectez-vous à toohello [centre d’administration Azure AD](https://aad.portal.azure.com) avec un compte qui est un administrateur global pour le répertoire de hello.
+2. Sélectionnez **utilisateurs et groupes** dans hello de zone de texte, puis sélectionnez **entrée**.
 
    ![Ouvrir la gestion des utilisateurs](./media/active-directory-branding-localize-azure-portal/user-management.png)
-3. Sur le panneau **Utilisateurs et groupes** panneau, sélectionnez **Personnalisation de société**.
-4. Sur le panneau **Utilisateurs et groupes - Personnalisation de la société**, sélectionnez la commande **Ajouter une langue**.
+3. Sur hello **utilisateurs et groupes** panneau, sélectionnez **de personnalisation de la société**.
+4. Sur hello **utilisateurs et groupes - personnalisation de la société** panneau, sélectionnez hello **Ajouter langue** commande.
 
     ![Ajouter des éléments spécifiques à une langue](./media/active-directory-branding-localize-azure-portal/add-language.png)
-5. Modifiez les éléments que vous voulez personnaliser. Tous ces éléments sont facultatifs.
-6. Cliquez sur **Save**.
+5. Modifier les éléments hello toocustomize. Tous ces éléments sont facultatifs.
+6. Cliquez sur **Enregistrer**.
 
-Il peut s’écouler jusqu’à une heure avant que les modifications que vous avez apportées à la page de connexion soient visibles.
+Pour les modifications éventuelles apportées toohello connectez-vous page tooappear marque peut prendre jusqu'à tooan heure.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Dans ce guide de démarrage rapide, vous avez appris à ajouter la marque de société à votre annuaire Azure AD. 
+Dans ce démarrage rapide, vous avez appris comment tooadd marque tooyour Azure AD directory d’entreprise. 
 
-Vous pouvez utiliser le lien suivant pour configurer la marque de votre société dans Azure AD à partir du portail Azure.
+Vous pouvez utiliser hello suivant lien tooconfigure votre marque de société dans Azure AD à partir de hello portail Azure.
 
 > [!div class="nextstepaction"]
 > [Configurer la marque de la société](https://aad.portal.azure.com/#blade/Microsoft_AAD_IAM/LoginTenantBrandingBlade) 

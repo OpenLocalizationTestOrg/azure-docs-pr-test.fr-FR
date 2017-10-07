@@ -1,6 +1,6 @@
 ---
-title: "Gestion des configurations - Outil Microsoft de modélisation des menaces - Azure | Microsoft Docs"
-description: "mesures de prévention des menaces exposées dans l’outil de modélisation des menaces"
+title: "aaaConfiguration de gestion - outil de modélisation des menaces Microsoft - Azure | Documents Microsoft"
+description: "mesures d’atténuation des menaces exposé Bonjour outil de modélisation des menaces"
 services: security
 documentationcenter: na
 author: RodSan
@@ -14,21 +14,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/17/2017
 ms.author: rodsan
-ms.openlocfilehash: 114666d0c173786373e3bdd025027eb217922749
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 77aa4352fa61e928a1b7a4ff1d488a55d3d9b970
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="security-frame-configuration-management--mitigations"></a>Infrastructure de sécurité : gestion des configurations | Mesures de prévention 
 | Produit/service | Article |
 | --------------- | ------- |
-| **Application web** | <ul><li>[Implémenter la stratégie de sécurité de contenu (CSP) et désactiver l’exécution de scripts JavaScript inline](#csp-js)</li><li>[Activer le filtre XSS du navigateur](#xss-filter)</li><li>[Désactiver le traçage et le débogage dans les applications ASP.NET avant le déploiement](#trace-deploy)</li><li>[Accéder aux scripts JavaScript tiers émanant uniquement de sources approuvées](#js-trusted)</li><li>[S’assurer que les pages ASP.NET authentifiées incorporent des techniques de défense contre les attaques par redirection d’interface utilisateur ou détournement de clics](#ui-defenses)</li><li>[S’assurer que seules les origines approuvées sont autorisées si le mécanisme CORS est activé sur les applications web ASP.NET](#cors-aspnet)</li><li>[Activer l’attribut ValidateRequest sur les pages ASP.NET](#validate-aspnet)</li><li>[Utiliser les dernières versions des bibliothèques JavaScript hébergées localement](#local-js)</li><li>[Désactiver la détection MIME automatique](#mime-sniff)</li><li>[Supprimer les en-têtes de serveur standard de l’offre Sites Web Microsoft Azure pour éviter la création d’une empreinte numérique](#standard-finger)</li></ul> |
+| **Application web** | <ul><li>[Implémenter la stratégie de sécurité de contenu (CSP) et désactiver l’exécution de scripts JavaScript inline](#csp-js)</li><li>[Activer le filtre XSS du navigateur](#xss-filter)</li><li>[Les applications ASP.NET doivent désactiver le suivi et de débogage toodeployment préalable](#trace-deploy)</li><li>[Accéder aux scripts JavaScript tiers émanant uniquement de sources approuvées](#js-trusted)</li><li>[S’assurer que les pages ASP.NET authentifiées incorporent des techniques de défense contre les attaques par redirection d’interface utilisateur ou détournement de clics](#ui-defenses)</li><li>[S’assurer que seules les origines approuvées sont autorisées si le mécanisme CORS est activé sur les applications web ASP.NET](#cors-aspnet)</li><li>[Activer l’attribut ValidateRequest sur les pages ASP.NET](#validate-aspnet)</li><li>[Utiliser les dernières versions des bibliothèques JavaScript hébergées localement](#local-js)</li><li>[Désactiver la détection MIME automatique](#mime-sniff)</li><li>[Supprimer les en-têtes standard de serveur sur l’identification par empreinte tooavoid des Sites Web Windows Azure](#standard-finger)</li></ul> |
 | **Base de données** | <ul><li>[Configurer un pare-feu Windows pour accéder au moteur de base de données](#firewall-db)</li></ul> |
 | **API Web** | <ul><li>[S’assurer que seules les origines approuvées sont autorisées si le mécanisme CORS est activé sur API Web ASP.NET](#cors-api)</li><li>[Chiffrer les sections des fichiers de configuration de l’API Web qui contiennent des données sensibles](#config-sensitive)</li></ul> |
-| **Appareil IoT** | <ul><li>[S’assurer que toutes les interfaces d’administration sont sécurisées avec des informations d’identification fortes](#admin-strong)</li><li>[S’assurer que le code inconnu ne peut pas s’exécuter sur les appareils](#unknown-exe)</li><li>[Chiffrer les partitions du système d’exploitation et les partitions supplémentaires de l’appareil IoT avec BitLocker](#partition-iot)</li><li>[S’assurer que seuls les services/fonctionnalités minimaux sont activés sur les appareils](#min-enable)</li></ul> |
-| **Passerelle de champ IoT** | <ul><li>[Chiffrer les partitions du système d’exploitation et les partitions supplémentaires de la passerelle de champ IoT avec Bitlocker](#field-bit-locker)</li><li>[S’assurer que les informations d’identification de connexion par défaut de la passerelle de champ sont modifiées lors de l’installation](#default-change)</li></ul> |
-| **Passerelle de cloud IoT** | <ul><li>[S’assurer que la passerelle cloud implémente un processus garantissant la mise à jour continue du micrologiciel des appareils connectés](#cloud-firmware)</li></ul> |
+| **Appareil IoT** | <ul><li>[S’assurer que toutes les interfaces d’administration sont sécurisées avec des informations d’identification fortes](#admin-strong)</li><li>[S’assurer que le code inconnu ne peut pas s’exécuter sur les appareils](#unknown-exe)</li><li>[Chiffrer les partitions du système d’exploitation et les partitions supplémentaires de l’appareil IoT avec BitLocker](#partition-iot)</li><li>[Assurez-vous qu’uniquement hello services/fonctionnalités minimales sont activées sur les appareils](#min-enable)</li></ul> |
+| **Passerelle de champ IoT** | <ul><li>[Chiffrer les partitions du système d’exploitation et les partitions supplémentaires de la passerelle de champ IoT avec Bitlocker](#field-bit-locker)</li><li>[Vérifiez que les informations d’identification du compte de connexion par défaut hello de passerelle de champ hello sont modifiées pendant l’installation](#default-change)</li></ul> |
+| **Passerelle de cloud IoT** | <ul><li>[Assurez-vous que la passerelle de Cloud hello implémente un microprogramme des périphériques processus tookeep hello connecté des toodate](#cloud-firmware)</li></ul> |
 | **Délimitation d’approbation machine** | <ul><li>[S’assurer que les appareils disposent de contrôles de sécurité des points de terminaison configurés conformément aux directives organisationnelles](#controls-policies)</li></ul> |
 | **Azure Storage** | <ul><li>[Garantir une gestion sécurisée des clés d’accès de stockage Azure](#secure-keys)</li><li>[S’assurer que seules les origines approuvées sont autorisées si le mécanisme CORS est activé sur le stockage Azure](#cors-storage)</li></ul> |
 | **WCF** | <ul><li>[Activer la fonctionnalité de limitation de service WCF](#throttling)</li><li>[Divulgation d’informations WCF par le biais des métadonnées](#info-metadata)</li></ul> | 
@@ -41,15 +41,15 @@ ms.lasthandoff: 08/29/2017
 | **Phase SDL**               | Créer |  
 | **Technologies applicables** | Générique |
 | **Attributs**              | N/A  |
-| **Informations de référence**              | [An Introduction to Content Security Policy (Présentation de la stratégie de sécurité de contenu)](http://www.html5rocks.com/en/tutorials/security/content-security-policy/), [Content Security Policy Reference (Informations de référence sur la stratégie de sécurité de contenu)](http://content-security-policy.com/), [Security features (Fonctionnalités de sécurité)](https://developer.microsoft.com/microsoft-edge/platform/documentation/dev-guide/security/), [Introduction to content security policy (Présentation de la stratégie de sécurité de contenu)](https://docs.webplatform.org/wiki/tutorials/content-security-policy), [Can I use CSP? (Puis-je utiliser CSP ?)](http://caniuse.com/#feat=contentsecuritypolicy) |
-| **Étapes** | <p>La stratégie de sécurité de contenu (CSP, Content Security Policy) est un mécanisme de protection fiable, correspondant à une norme W3C, qui permet aux propriétaires d’applications web de contrôler le contenu incorporé dans leur site. La stratégie CSP est ajoutée sous la forme d’un en-tête de réponse HTTP sur le serveur web et est appliquée côté client par les navigateurs. Cette stratégie repose sur une liste blanche : un site web peut déclarer un ensemble de domaines approuvés à partir desquels un contenu actif tel qu’un script JavaScript peut être chargé.</p><p>La stratégie CSP procure les avantages de sécurité suivants :</p><ul><li>**Protection contre l’exécution de scripts intersites (XSS, Cross-Site Scripting) :** si une page est vulnérable aux attaques XSS, un attaquant peut exploiter cette faille de 2 manières :<ul><li>Injection du code `<script>malicious code</script>`. Ce type d’attaque ne fonctionnera pas en raison d’une restriction de base 1 de la stratégie CSP.</li><li>Injection du code `<script src=”http://attacker.com/maliciousCode.js”/>`. Ce type d’attaque échouera, car le domaine contrôlé par l’attaquant ne figurera pas dans la liste blanche de domaines de la stratégie CSP.</li></ul></li><li>**Contrôle de l’exfiltration des données :** si un contenu malveillant présent sur une page web tente de se connecter à un site web externe et de voler des données, la stratégie CSP annule la connexion. Ce comportement découle du fait que le domaine cible ne figure pas dans la liste blanche de la stratégie CSP.</li><li>**Protection contre le détournement de clics :** le détournement de clics est une technique d’attaque par laquelle un attaquant superpose un cadre caché à un site web authentique et incite les utilisateurs à cliquer sur des éléments de l’interface utilisateur. À l’heure actuelle, la technique de défense contre le détournement de clics consiste à configurer un en-tête de réponse X-Frame-Options. Toutefois, certains navigateurs ne respectent pas cet en-tête. L’application de la stratégie CSP constitue donc un moyen de protection standard contre le détournement de clics</li><li>**Signalement des attaques en temps réel:** en cas d’attaque par injection sur un site web protégé par la stratégie CSP, les navigateurs envoient automatiquement une notification à un point de terminaison configuré sur le serveur web. De cette façon, la stratégie CSP fait office de système d’avertissement en temps réel.</li></ul> |
+| **Informations de référence**              | [Une stratégie de sécurité de tooContent Introduction](http://www.html5rocks.com/en/tutorials/security/content-security-policy/), [référence de stratégie de sécurité contenu](http://content-security-policy.com/), [des fonctionnalités de sécurité](https://developer.microsoft.com/microsoft-edge/platform/documentation/dev-guide/security/), [stratégie de sécurité toocontent Introduction](https://docs.webplatform.org/wiki/tutorials/content-security-policy), [CSP puis-je utiliser ?](http://caniuse.com/#feat=contentsecuritypolicy) |
+| **Étapes** | <p>Stratégie de sécurité contenu (CSP) est un mécanisme de sécurité de défense en profondeur, tel qu’un W3C standard, qui permet le contrôle web application propriétaires toohave sur le contenu de hello incorporé dans leur site. Fournisseur de services cryptographiques est ajouté comme un en-tête de réponse HTTP sur le serveur web de hello et est appliquée côté client de hello par les navigateurs. Cette stratégie repose sur une liste blanche : un site web peut déclarer un ensemble de domaines approuvés à partir desquels un contenu actif tel qu’un script JavaScript peut être chargé.</p><p>Fournisseur de services cryptographiques fournit hello avantages de sécurité suivants :</p><ul><li>**Protection contre les XSS :** si une page est vulnérable tooXSS, un intrus peut exploiter il 2 façons :<ul><li>Injection du code `<script>malicious code</script>`. Cette attaque ne fonctionnera pas en raison de tooCSP Base Restriction-1</li><li>Injection du code `<script src=”http://attacker.com/maliciousCode.js”/>`. Cette attaque ne fonctionnera pas comme domaine contrôlé par l’attaquant de hello ne sera pas dans la liste blanche d’adresses du CSP de domaines</li></ul></li><li>**Un contrôle sur une exfiltration de données :** si un contenu malveillant sur une page Web tente de dérober des données et site Web externe de tooconnect tooan, hello connexion sera interrompue par le fournisseur de services cryptographiques. Il s’agit, car le domaine cible de hello ne sera pas dans la liste blanche d’adresses du CSP</li><li>**Défense contre levage de clic :** levage de clic est une technique d’attaque à l’aide de laquelle un adversaire encadrer un site Web authentique et forcer les utilisateurs tooclick sur les éléments d’interface utilisateur. À l’heure actuelle, la technique de défense contre le détournement de clics consiste à configurer un en-tête de réponse X-Frame-Options. Pas tous les navigateurs respectent cet en-tête et CSP vers l’avant de passer sera un toodefend de manière standard contre levage-cliquez sur</li><li>**Création de rapports en temps réel attaque :** s’il existe une attaque par injection de code sur un site Web compatible CSP, navigateurs déclenche automatiquement un point de terminaison tooan notification configuré sur le serveur Web de hello. De cette façon, la stratégie CSP fait office de système d’avertissement en temps réel.</li></ul> |
 
 ### <a name="example"></a>Exemple
 Exemple de stratégie : 
 ```C#
 Content-Security-Policy: default-src 'self'; script-src 'self' www.google-analytics.com 
 ```
-Cette stratégie n’autorise le chargement de scripts qu’à partir du serveur de l’application web et du serveur Google Analytics. Les scripts chargés à partir de tout autre site seront rejetés. Lorsque la stratégie CSP est activée sur un site web, les fonctionnalités ci-après sont automatiquement désactivées afin de prévenir les attaques XSS. 
+Cette stratégie permet à tooload de scripts uniquement à partir de l’application hello web server et serveur analytique de google. Les scripts chargés à partir de tout autre site seront rejetés. Lorsque le fournisseur de services cryptographiques est activé sur un site Web, hello fonctionnalités suivantes sont automatiquement désactivés toomitigate XSS attaques. 
 
 ### <a name="example"></a>Exemple
 Les scripts inline ne s’exécuteront pas. Voici quelques exemples de scripts inline. 
@@ -74,9 +74,9 @@ Example: var str="alert(1)"; eval(str);
 | **Technologies applicables** | Générique |
 | **Attributs**              | N/A  |
 | **Informations de référence**              | [XSS Protection Filter (Filtre de protection anti-XSS)](https://www.owasp.org/index.php/List_of_useful_HTTP_headers#X-XSS-Protection) |
-| **Étapes** | <p>La configuration de l’en-tête de réponse X-XSS-Protection contrôle le filtre de protection contre l’exécution de scripts intersites du navigateur. Cet en-tête de réponse peut présenter les valeurs suivantes :</p><ul><li>`0:`. Le filtre est désactivé.</li><li>`1: Filter enabled`. En cas de détection d’une attaque par exécution de script intersites, le navigateur assainit la page afin de neutraliser l’attaque.</li><li>`1: mode=block : Filter enabled`. En cas de détection d’une attaque XSS, le navigateur empêche le rendu de la page au lieu d’assainir la page.</li><li>`1: report=http://[YOURDOMAIN]/your_report_URI : Filter enabled`. Le navigateur assainit la page et signale la violation.</li></ul><p>Il s’agit d’une fonction Chrome utilisant les rapports de violation CSP pour envoyer des détails à un URI de votre choix. Les 2 dernières options sont considérées comme des valeurs sûres.</p>|
+| **Étapes** | <p>Contrôles de configuration d’en-tête X-XSS-Protection réponse hello filtre de script entre sites du navigateur. Cet en-tête de réponse peut présenter les valeurs suivantes :</p><ul><li>`0:`Cette opération va désactiver le filtre de hello</li><li>`1: Filter enabled`Si une attaque de script entre sites est détectée, en cas d’attaque ordre toostop hello, navigateur de hello assainir la page de hello</li><li>`1: mode=block : Filter enabled`. Au lieu d’expurgation page hello lors de la détection d’une attaque XSS, hello navigateur empêche le rendu de page de hello</li><li>`1: report=http://[YOURDOMAIN]/your_report_URI : Filter enabled`. navigateur de Hello assainir la violation du hello hello page et de rapport.</li></ul><p>Il s’agit d’une fonction de chrome utilisant le fournisseur de services cryptographiques violation rapports toosend détails tooa URI de votre choix. Hello 2 dernières options sont considérés comme valeurs sûres.</p>|
 
-## <a id="trace-deploy"></a>Désactiver le traçage et le débogage dans les applications ASP.NET avant le déploiement
+## <a id="trace-deploy"></a>Les applications ASP.NET doivent désactiver le suivi et de débogage toodeployment préalable
 
 | Intitulé                   | Détails      |
 | ----------------------- | ------------ |
@@ -85,7 +85,7 @@ Example: var str="alert(1)"; eval(str);
 | **Technologies applicables** | Générique |
 | **Attributs**              | N/A  |
 | **Informations de référence**              | [Vue d’ensemble du débogage ASP.NET](http://msdn2.microsoft.com/library/ms227556.aspx), [Vue d’ensemble du traçage ASP.NET](http://msdn2.microsoft.com/library/bb386420.aspx), [Comment : activer le traçage d’une application ASP.NET](http://msdn2.microsoft.com/library/0x5wc973.aspx), [Comment : activer le débogage pour les applications ASP.NET](http://msdn2.microsoft.com/library/e8z01xdh(VS.80).aspx) |
-| **Étapes** | Lorsque le traçage est activé pour la page, chaque navigateur demandant la page obtient également les informations de traçage qui contiennent des données sur l’état et le workflow du serveur interne. Ces informations peuvent être liées à la sécurité. Lorsque le débogage est activé pour la page, les erreurs qui surviennent sur le serveur entraînent la présentation de données de trace de la pile complètes au navigateur. Ces données peuvent exposer des informations liées à la sécurité concernant le workflow du serveur. |
+| **Étapes** | Lorsque le traçage est activé pour la page de hello, chaque navigateur demandant également Obtient des informations de trace hello qui contient des données sur l’état du serveur interne et le flux de travail. Ces informations peuvent être liées à la sécurité. Lorsque le débogage est activé pour la page de hello, les erreurs qui se passe sur les résultats du serveur hello dans une données de trace de pile complet présenté toohello navigateur. Ces données peuvent exposer les informations de sécurité sur les flux de travail du serveur hello. |
 
 ## <a id="js-trusted"></a>Accéder aux scripts JavaScript tiers émanant uniquement de sources approuvées
 
@@ -96,7 +96,7 @@ Example: var str="alert(1)"; eval(str);
 | **Technologies applicables** | Générique |
 | **Attributs**              | N/A  |
 | **Informations de référence**              | N/A  |
-| **Étapes** | Les scripts JavaScript tiers doivent uniquement être référencés à partir de sources approuvées. Les points de terminaison de référence doivent toujours se trouver sur SSL. |
+| **Étapes** | Les scripts JavaScript tiers doivent uniquement être référencés à partir de sources approuvées. points de terminaison Hello référence doivent toujours être sur SSL. |
 
 ## <a id="ui-defenses"></a>S’assurer que les pages ASP.NET authentifiées incorporent des techniques de défense contre les attaques par redirection d’interface utilisateur ou détournement de clics
 
@@ -107,10 +107,10 @@ Example: var str="alert(1)"; eval(str);
 | **Technologies applicables** | Générique |
 | **Attributs**              | N/A  |
 | **Informations de référence**              | [OWASP Clickjacking Defense Cheat Sheet (Aide-mémoire OWASP sur les techniques de défense contre le détournement de clics)](https://www.owasp.org/index.php/Clickjacking_Defense_Cheat_Sheet), [IE Internals - Combating ClickJacking With X-Frame-Options (IEInternals - Lutter contre le détournement de clics avec X-Frame-Options)](https://blogs.msdn.microsoft.com/ieinternals/2010/03/30/combating-click-jacking-with-x-frame-options/) |
-| **Étapes** | <p>Le détournement de clics, également appelé « attaque par redirection d’interface utilisateur », se produit lorsqu’un attaquant utilise plusieurs calques transparents ou opaques pour piéger un utilisateur en incitant ce dernier à cliquer sur un bouton ou sur un lien figurant sur une autre page que celle sur laquelle l’utilisateur pensait cliquer.</p><p>Cette superposition de calques s’effectue par l’élaboration d’une page malveillante intégrant un cadre IFrame caché qui charge la page de l’utilisateur piégé. De cette façon, l’attaquant « détourne » les clics destinés à cette page en les redirigeant vers une autre page, appartenant généralement à une autre application et/ou à un autre domaine. Pour prévenir les attaques par détournement de clics, définissez les en-têtes de réponse HTTP X-Frame-Options appropriés, qui demandent au navigateur de ne pas autoriser le chargement dans des cadres à partir d’autres domaines</p>|
+| **Étapes** | <p>levage-cliquez sur, également appelé une « attaque de recours l’interface utilisateur, » est lorsqu’une personne malveillante utilise plusieurs couches transparent ou opaque tootrick un utilisateur en cliquant sur un bouton ou un lien sur une autre page lorsqu’ils ont l’intention tooclick sur la page de niveau supérieur hello.</p><p>Cette disposition est obtenue en créant une page avec un iframe, ce qui charge la page de la victime hello. Par conséquent, les intrus hello sont « détournement » clique sur destinée à leur page, de leur routage page tooanother, très probablement détenu par une autre application, domaine ou les deux. Autoriser l’ensemble hello approprié X-Frame-Options en-têtes de réponse HTTP qui commandent aux hello navigateur toonot tooprevent levage-cliquez sur les attaques, trame à partir d’autres domaines</p>|
 
 ### <a name="example"></a>Exemple
-L’en-tête X-FRAME-OPTIONS peut être défini par le biais de web.config IIS. Extrait de code du fichier web.config pour les sites qui ne doivent jamais être chargés dans un cadre : 
+en-tête X-FRAME-OPTIONS de Hello peut être définie via IIS web.config. Extrait de code du fichier web.config pour les sites qui ne doivent jamais être chargés dans un cadre : 
 ```C#
     <system.webServer>
         <httpProtocol>
@@ -122,7 +122,7 @@ L’en-tête X-FRAME-OPTIONS peut être défini par le biais de web.config IIS. 
 ```
 
 ### <a name="example"></a>Exemple
-Code du fichier web.config pour les sites qui ne doivent être chargés dans un cadre que par des pages appartenant au même domaine : 
+Code du fichier Web.config pour les sites qui doivent uniquement être encadrée par des pages en hello même domaine : 
 ```C#
     <system.webServer>
         <httpProtocol>
@@ -142,10 +142,10 @@ Code du fichier web.config pour les sites qui ne doivent être chargés dans un 
 | **Technologies applicables** | Web Forms, MVC5 |
 | **Attributs**              | N/A  |
 | **Informations de référence**              | N/A  |
-| **Étapes** | <p>La sécurité des navigateurs empêche une page web d’adresser des demandes AJAX à un autre domaine. Cette restriction est appelée stratégie de même origine et empêche un site malveillant de lire des données sensibles à partir d’un autre site. Toutefois, il est parfois nécessaire d’exposer en toute sécurité des API que d’autres sites peuvent consommer. CORS (Cross Origin Resource Sharing, partage des ressources multi-origines) est une norme W3C qui permet à un serveur d’assouplir la stratégie de même origine. Grâce au mécanisme CORS, un serveur peut autoriser explicitement certaines demandes multi-origines tout en en refusant d’autres.</p><p>CORS est plus sûr et plus flexible que les techniques précédentes telles que JSONP. L’activation de CORS se traduit essentiellement par l’ajout d’un petit nombre d’en-têtes de réponse HTTP (Access-Control-*) à l’application web, cette opération pouvant être effectuée de deux manières.</p>|
+| **Étapes** | <p>Sécurité du navigateur empêche la rend AJAX demandes tooanother domaine d’une page web. Cette restriction est appelée stratégie de même origine hello et un site malveillant empêche de lire des données sensibles à partir d’un autre site. Cependant, parfois, il peut être requis tooexpose API en toute sécurité que les autres sites peuvent consommer. Entre le partage de ressources Origin (CORS) est une norme W3C qui permet à un serveur de stratégie de même origine toorelax hello. Grâce au mécanisme CORS, un serveur peut autoriser explicitement certaines demandes multi-origines tout en en refusant d’autres.</p><p>CORS est plus sûr et plus flexible que les techniques précédentes telles que JSONP. Fondamentalement, l’activation de CORS traduit tooadding quelques en-têtes de réponse HTTP (Access - Control-*) d’application web de toohello et il est possible de deux façons.</p>|
 
 ### <a name="example"></a>Exemple
-Si le fichier Web.config est accessible, CORS peut être ajouté par le biais du code suivant : 
+Si l’accès tooWeb.config est disponible, CORS peuvent être ajoutées via hello suivant de code : 
 ```XML
 <system.webServer>
     <httpProtocol>
@@ -157,12 +157,12 @@ Si le fichier Web.config est accessible, CORS peut être ajouté par le biais du
 ```
 
 ### <a name="example"></a>Exemple
-Si le fichier web.config n’est pas accessible, CORS est configurable par l’ajout du code CSharp suivant : 
+Si l’accès tooweb.config n’est pas disponible, CORS peut être configuré en ajoutant hello après CSharp de code : 
 ```C#
 HttpContext.Response.AppendHeader("Access-Control-Allow-Origin", "http://example.com")
 ```
 
-Notez qu’il est indispensable de s’assurer que la liste d’origines dans l’attribut « Access-Control-Allow-Origin » est définie sur un ensemble d’origines fini et approuvé. Une configuration inappropriée de cet attribut (par exemple, la définition de la valeur "*") autorisera les sites malveillants à adresser des demandes multi-origines à l’application web sans aucune restriction, exposant ainsi l’application à des risques d’attaques par falsification de requête intersites (CSRF, Cross Site Request Forgery). 
+Veuillez Notez qu’il est critique tooensure qui hello liste des origines dans l’attribut de « Access-Control-Allow-Origin » a la valeur tooa un jeu finie et approuvé d’origine. Échec tooconfigure ce de façon inappropriée (par exemple, valeur hello en tant que ' *') permet tootrigger sites malveillants des requêtes d’origine entre toohello web application > sans aucune restriction, rendant ainsi hello application vulnérable tooCSRF attaques. 
 
 ## <a id="validate-aspnet"></a>Activer l’attribut ValidateRequest sur les pages ASP.NET
 
@@ -173,7 +173,7 @@ Notez qu’il est indispensable de s’assurer que la liste d’origines dans l�
 | **Technologies applicables** | Web Forms, MVC5 |
 | **Attributs**              | N/A  |
 | **Informations de référence**              | [Request Validation - Preventing Script Attacks (Validation des demandes - Prévention des attaques par script)](http://www.asp.net/whitepapers/request-validation) |
-| **Étapes** | <p>La fonctionnalité de validation des demandes, disponible dans ASP.NET depuis la version 1.1, empêche le serveur d’accepter les contenus intégrant du code HTML non encodé. Cette fonctionnalité est destinée à éviter certaines attaques par injection de script dans lesquelles un code de script client ou HTML peut être, à l’insu de tous, envoyé à un serveur, stocké, puis présenté à d’autres utilisateurs. Nous vous recommandons vivement de valider toutes les données d’entrée et de les encoder en HTML s’il y a lieu.</p><p>La validation des demandes consiste à comparer toutes les données d’entrée à une liste de valeurs potentiellement dangereuses. Si une correspondance est trouvée, ASP.NET lève une exception `HttpRequestValidationException`. La fonctionnalité de validation des demandes est activée par défaut.</p>|
+| **Étapes** | <p>Validation de la demande, une fonctionnalité d’ASP.NET depuis la version 1.1, empêche l’acceptation de contenu HTML de non encodée contenant les serveur hello. Cette fonctionnalité est conçue toohelp empêcher certaines attaques d’injection de script : code de script client ou HTML peut être involontairement soumis tooa server, stockées et ensuite présenté aux utilisateurs de tooother. Nous vous recommandons vivement de valider toutes les données d’entrée et de les encoder en HTML s’il y a lieu.</p><p>Validation de la demande est effectuée en comparant la liste de tooa toutes les données d’entrée de valeurs potentiellement dangereuses. Si une correspondance est trouvée, ASP.NET lève une exception `HttpRequestValidationException`. La fonctionnalité de validation des demandes est activée par défaut.</p>|
 
 ### <a name="example"></a>Exemple
 Toutefois, cette fonctionnalité peut être désactivée au niveau de la page : 
@@ -199,7 +199,7 @@ Notez que la fonctionnalité de validation des demandes n’est pas prise en cha
 | **Technologies applicables** | Générique |
 | **Attributs**              | N/A  |
 | **Informations de référence**              | N/A  |
-| **Étapes** | <p>Les développeurs ayant recours aux bibliothèques JavaScript standard telles que JQuery doivent utiliser des versions approuvées des bibliothèques JavaScript courantes qui ne présentent aucun défaut de sécurité connu. Une bonne pratique consiste à utiliser la toute dernière version de ces bibliothèques, car ces versions intègrent des correctifs de sécurité pour les vulnérabilités répertoriées dans les versions antérieures.</p><p>Si la version la plus récente n’est pas utilisable pour des raisons de compatibilité, il convient de recourir aux versions minimales ci-dessous.</p><p>Versions minimales acceptables :</p><ul><li>**JQuery**<ul><li>JQuery 1.7.1</li><li>JQueryUI 1.10.0</li><li>JQuery Validate 1.9</li><li>JQuery Mobile 1.0.1</li><li>JQuery Cycle 2.99</li><li>JQuery DataTables 1.9.0</li></ul></li><li>**Ajax Control Toolkit**<ul><li>Ajax Control Toolkit 40412</li></ul></li><li>**ASP.NET Web Forms et Ajax**<ul><li>ASP.NET Web Forms et Ajax 4</li><li>ASP.NET Ajax 3.5</li></ul></li><li>**ASP.NET MVC**<ul><li>ASP.NET MVC 3.0</li></ul></li></ul><p>Ne chargez jamais une bibliothèque JavaScript à partir de sites externes tels que des réseaux de distribution de contenu (CDN) publics.</p>|
+| **Étapes** | <p>Les développeurs ayant recours aux bibliothèques JavaScript standard telles que JQuery doivent utiliser des versions approuvées des bibliothèques JavaScript courantes qui ne présentent aucun défaut de sécurité connu. Une bonne pratique est toouse hello plus dernière version des bibliothèques de hello, puisqu’elles contiennent des correctifs de sécurité pour les vulnérabilités connues dans leurs versions antérieures.</p><p>Si la version la plus récente hello ne peut pas être utilisée en raison des raisons de toocompatibility, hello sous la version minimale doit être utilisé.</p><p>Versions minimales acceptables :</p><ul><li>**JQuery**<ul><li>JQuery 1.7.1</li><li>JQueryUI 1.10.0</li><li>JQuery Validate 1.9</li><li>JQuery Mobile 1.0.1</li><li>JQuery Cycle 2.99</li><li>JQuery DataTables 1.9.0</li></ul></li><li>**Ajax Control Toolkit**<ul><li>Ajax Control Toolkit 40412</li></ul></li><li>**ASP.NET Web Forms et Ajax**<ul><li>ASP.NET Web Forms et Ajax 4</li><li>ASP.NET Ajax 3.5</li></ul></li><li>**ASP.NET MVC**<ul><li>ASP.NET MVC 3.0</li></ul></li></ul><p>Ne chargez jamais une bibliothèque JavaScript à partir de sites externes tels que des réseaux de distribution de contenu (CDN) publics.</p>|
 
 ## <a id="mime-sniff"></a>Désactiver la détection MIME automatique
 
@@ -210,10 +210,10 @@ Notez que la fonctionnalité de validation des demandes n’est pas prise en cha
 | **Technologies applicables** | Générique |
 | **Attributs**              | N/A  |
 | **Informations de référence**              | [IE8 Security Part V: Comprehensive Protection (Sécurité IE8 Partie V - Protection complète)](http://blogs.msdn.com/ie/archive/2008/07/02/ie8-security-part-v-comprehensive-protection.aspx), [MIME type (Type MIME)](http://en.wikipedia.org/wiki/Mime_type) |
-| **Étapes** | L’en-tête X-Content-Type-Options est un en-tête HTTP permettant aux développeurs de spécifier que leur contenu ne doit pas être détecté par MIME. Cet en-tête est conçu pour limiter les attaques par détection MIME. Pour chaque page susceptible de comporter du contenu contrôlable par l’utilisateur, vous devez utiliser l’en-tête HTTP X-Content-Type-Options:nosniff. Pour activer l’en-tête requis sur toutes les pages de l’application, vous pouvez effectuer l’une des opérations suivantes :|
+| **Étapes** | en-tête de Hello X-contenu-Type-Options est un en-tête HTTP qui permet aux développeurs toospecify que leur contenu ne doit pas être détectées de MIME. Cet en-tête est conçue toomitigate détection MIME sur les attaques. Pour chaque page peut contenir du contenu contrôlable par l’utilisateur, vous devez utiliser hello HTTP en-tête X-contenu-Type-Options : nosniff. en-tête requis du hello tooenable globalement pour toutes les pages de l’application hello, vous pouvez procédez d’une des manières de hello|
 
 ### <a name="example"></a>Exemple
-Ajoutez l’en-tête dans le fichier web.config si l’application est hébergée par Internet Information Services (IIS) 7 ou ses versions ultérieures. 
+Ajoutez les en-tête hello dans le fichier web.config de hello si l’application hello est hébergée par Internet Information Services (IIS) 7 et versions ultérieures. 
 ```XML
 <system.webServer>
 <httpProtocol>
@@ -225,7 +225,7 @@ Ajoutez l’en-tête dans le fichier web.config si l’application est hébergé
 ```
 
 ### <a name="example"></a>Exemple
-Ajoutez l’en-tête par le biais de la méthode globale Application\_BeginRequest. 
+Ajouter un en-tête hello via hello Application globale\_BeginRequest 
 ```C#
 void Application_BeginRequest(object sender, EventArgs e)
 {
@@ -260,13 +260,13 @@ application.Response.Headers.Add("X-Content-Type-Options ", "nosniff");
 ```
 
 ### <a name="example"></a>Exemple
-Vous pouvez activer l’en-tête requis uniquement pour des pages spécifiques en l’ajoutant à des réponses individuelles : 
+Vous pouvez activer l’en-tête requis de hello uniquement pour les pages spécifiques en ajoutant des réponses de tooindividual : 
 
 ```C#
 this.Response.Headers["X-Content-Type-Options"] = "nosniff";
 ```
 
-## <a id="standard-finger"></a>Supprimer les en-têtes de serveur standard de l’offre Sites Web Microsoft Azure pour éviter la création d’une empreinte numérique
+## <a id="standard-finger"></a>Supprimer les en-têtes standard de serveur sur l’identification par empreinte tooavoid des Sites Web Windows Azure
 
 | Intitulé                   | Détails      |
 | ----------------------- | ------------ |
@@ -275,7 +275,7 @@ this.Response.Headers["X-Content-Type-Options"] = "nosniff";
 | **Technologies applicables** | Générique |
 | **Attributs**              | EnvironmentType - Azure |
 | **Informations de référence**              | [Removing standard server headers on Windows Azure Web Sites (Supprimer les en-têtes de serveur standard de l’offre Sites Web Microsoft Azure)](https://azure.microsoft.com/blog/removing-standard-server-headers-on-windows-azure-web-sites/) |
-| **Étapes** | Les en-têtes tels que Server, X-Powered-By et X-AspNet-Version affichent des informations relatives au serveur et aux technologies sous-jacentes. Il est donc recommandé de supprimer ces en-têtes afin d’empêcher la création d’une empreinte numérique de l’application |
+| **Étapes** | En-têtes telles que Server, X-alimenté par, Version X-AspNet révèlent des informations sur le serveur de hello et hello technologies sous-jacentes. Il est recommandé de toosuppress ces en-têtes, ce qui évite d’identification par empreinte hello application |
 
 ## <a id="firewall-db"></a>Configurer un pare-feu Windows pour accéder au moteur de base de données
 
@@ -285,8 +285,8 @@ this.Response.Headers["X-Content-Type-Options"] = "nosniff";
 | **Phase SDL**               | Créer |  
 | **Technologies applicables** | SQL Azure, OnPrem |
 | **Attributs**              | N/A, Version SQL - V12 |
-| **Informations de référence**              | [Vue d’ensemble des règles de pare-feu d’Azure SQL Database](https://azure.microsoft.com/documentation/articles/sql-database-firewall-configure/), [Configurer un pare-feu Windows pour accéder au moteur de base de données](https://msdn.microsoft.com/library/ms175043) |
-| **Étapes** | Les systèmes de pare-feu contribuent à empêcher les accès non autorisés aux ressources informatiques. Pour accéder à une instance du moteur de base de données SQL Server de l’autre côté d’un pare-feu, vous devez configurer le pare-feu sur l’ordinateur exécutant SQL Server de façon à autoriser cet accès. |
+| **Informations de référence**              | [Pare-feu de données SQL Azure de tooconfigure](https://azure.microsoft.com/documentation/articles/sql-database-firewall-configure/), [configurer un pare-feu Windows pour accéder au moteur de base de données](https://msdn.microsoft.com/library/ms175043) |
+| **Étapes** | Systèmes de pare-feu empêchent les ressources de toocomputer tout accès non autorisé. tooaccess une instance de hello du moteur de base de données SQL Server via un pare-feu, vous devez configurer le pare-feu hello sur ordinateur hello accès tooallow de SQL Server en cours d’exécution |
 
 ## <a id="cors-api"></a>S’assurer que seules les origines approuvées sont autorisées si le mécanisme CORS est activé sur API Web ASP.NET
 
@@ -297,10 +297,10 @@ this.Response.Headers["X-Content-Type-Options"] = "nosniff";
 | **Technologies applicables** | MVC 5 |
 | **Attributs**              | N/A  |
 | **Informations de référence**              | [Enabling Cross-Origin Requests in ASP.NET Web API 2 (Activation des demandes multi-origines dans API Web ASP.NET 2)](http://www.asp.net/web-api/overview/security/enabling-cross-origin-requests-in-web-api), [API Web ASP.NET - Prise en charge de CORS dans l’API Web ASP.NET 2](https://msdn.microsoft.com/magazine/dn532203.aspx) |
-| **Étapes** | <p>La sécurité des navigateurs empêche une page web d’adresser des demandes AJAX à un autre domaine. Cette restriction est appelée stratégie de même origine et empêche un site malveillant de lire des données sensibles à partir d’un autre site. Toutefois, il est parfois nécessaire d’exposer en toute sécurité des API que d’autres sites peuvent consommer. CORS (Cross Origin Resource Sharing, partage des ressources multi-origines) est une norme W3C qui permet à un serveur d’assouplir la stratégie de même origine.</p><p>Grâce au mécanisme CORS, un serveur peut autoriser explicitement certaines demandes multi-origines tout en en refusant d’autres. CORS est plus sûr et plus flexible que les techniques précédentes telles que JSONP.</p>|
+| **Étapes** | <p>Sécurité du navigateur empêche la rend AJAX demandes tooanother domaine d’une page web. Cette restriction est appelée stratégie de même origine hello et un site malveillant empêche de lire des données sensibles à partir d’un autre site. Cependant, parfois, il peut être requis tooexpose API en toute sécurité que les autres sites peuvent consommer. Entre le partage de ressources Origin (CORS) est une norme W3C qui permet à un serveur de stratégie de même origine toorelax hello.</p><p>Grâce au mécanisme CORS, un serveur peut autoriser explicitement certaines demandes multi-origines tout en en refusant d’autres. CORS est plus sûr et plus flexible que les techniques précédentes telles que JSONP.</p>|
 
 ### <a name="example"></a>Exemple
-Dans le fichier App_Start/WebApiConfig.cs, ajoutez le code suivant à la méthode WebApiConfig.Register : 
+Bonjour App_Start/WebApiConfig.cs, ajouter hello code toohello WebApiConfig.Register méthode 
 ```C#
 using System.Web.Http;
 namespace WebService
@@ -323,7 +323,7 @@ namespace WebService
 ```
 
 ### <a name="example"></a>Exemple
-L’attribut EnableCors peut être appliqué aux méthodes d’action dans un contrôleur comme suit : 
+Attribut de EnableCors peut être des méthodes de tooaction appliqués dans un contrôleur comme suit : 
 
 ```C#
 public class ResourcesController : ApiController
@@ -361,10 +361,10 @@ public class ResourcesController : ApiController
 }
 ```
 
-Notez qu’il est indispensable de s’assurer que la liste d’origines dans l’attribut EnableCors est définie sur un ensemble d’origines fini et approuvé. Une configuration inappropriée de cet attribut (par exemple, la définition de la valeur "*") autorisera les sites malveillants à adresser des demandes multi-origines à l’API sans aucune restriction, exposant ainsi l’API à des risques d’attaques par falsification de requête intersites. EnableCors peut être décoré au niveau du contrôleur. 
+Veuillez Notez qu’il est critique tooensure qui hello liste des origines dans EnableCors attribut a la valeur tooa un jeu finie et approuvé d’origine. Échec tooconfigure ce de façon inappropriée (par exemple, valeur hello en tant que ' *') permettra tootrigger sites malveillants Cross-origine demandes toohello API sans aucune restriction, > rendant hello API tooCSRF vulnérable attaques. EnableCors peut être décoré au niveau du contrôleur. 
 
 ### <a name="example"></a>Exemple
-Pour désactiver le mécanisme CORS sur une méthode spécifique d’une classe, il est possible d’utiliser l’attribut DisableCors comme suit : 
+toodisable CORS sur une méthode particulière dans une classe, hello DisableCors attribut peut être utilisé comme indiqué ci-dessous : 
 ```C#
 [EnableCors("http://example.com", "Accept, Origin, Content-Type", "POST")]
 public class ResourcesController : ApiController
@@ -377,7 +377,7 @@ public class ResourcesController : ApiController
   {
     return Request.CreateResponse(HttpStatusCode.OK, data);
   }
-  // CORS not allowed because of the [DisableCors] attribute
+  // CORS not allowed because of hello [DisableCors] attribute
   [DisableCors]
   public HttpResponseMessage Delete(int id)
   {
@@ -393,12 +393,12 @@ public class ResourcesController : ApiController
 | **Technologies applicables** | MVC 6 |
 | **Attributs**              | N/A  |
 | **Informations de référence**              | [Enabling Cross-Origin Requests (CORS) in ASP.NET Core 1.0 (Activation des demandes multi-origines (CORS) dans ASP.NET Core 1.0)](https://docs.asp.net/en/latest/security/cors.html) |
-| **Étapes** | <p>Dans ASP.NET Core 1.0, CORS peut être activé au moyen d’un intergiciel (middleware) ou de MVC. Lorsque vous utilisez MVC pour activer CORS, les mêmes services CORS sont utilisés, mais l’intergiciel (middleware) CORS ne l’est pas.</p>|
+| **Étapes** | <p>Dans ASP.NET Core 1.0, CORS peut être activé au moyen d’un intergiciel (middleware) ou de MVC. Lorsque vous utilisez hello CORS tooenable MVC mêmes services CORS sont utilisés, mais hello intergiciel (middleware) CORS n’est pas.</p>|
 
-**Approche 1** Activation de CORS avec un intergiciel (middleware) : pour activer CORS pour la totalité de l’application, ajoutez l’intergiciel (middleware) CORS au pipeline de demande à l’aide de la méthode d’extension UseCors. Vous pouvez spécifier une stratégie multi-origines lors de l’ajout de l’intergiciel (middleware) CORS à l’aide de la classe CorsPolicyBuilder. Il existe deux façons d'effectuer cette opération :
+**Approche-1** l’activation de CORS avec intergiciel (middleware) : tooenable CORS pour l’ensemble de l’application hello ajouter pipeline hello CORS intergiciel (middleware) toohello demande à l’aide de la méthode d’extension UseCors hello. Une stratégie de cross-origine peut être spécifiée lors de l’ajout d’intergiciel (middleware) CORS hello à l’aide de la classe de CorsPolicyBuilder hello. Il existe deux façons toodo cela :
 
 ### <a name="example"></a>Exemple
-La première façon consiste à appeler UseCors avec une expression lambda. Cette expression lambda utilise un objet CorsPolicyBuilder : 
+Hello est tout d’abord toocall UseCors avec une expression lambda. Les lambda Hello prend un objet CorsPolicyBuilder : 
 ```C#
 public void Configure(IApplicationBuilder app)
 {
@@ -410,7 +410,7 @@ public void Configure(IApplicationBuilder app)
 ```
 
 ### <a name="example"></a>Exemple
-La seconde façon consiste à définir une ou plusieurs stratégies CORS nommées, puis à sélectionner la stratégie par son nom au moment de l’exécution. 
+Hello est ensuite toodefine une ou plusieurs stratégies de règles CORS et la stratégie de hello puis par nom au moment de l’exécution. 
 ```C#
 public void ConfigureServices(IServiceCollection services)
 {
@@ -430,10 +430,10 @@ public void Configure(IApplicationBuilder app)
 }
 ```
 
-**Approche 2** Activation de CORS dans MVC : les développeurs peuvent également utiliser MVC pour appliquer une stratégie CORS spécifique par action, par contrôleur ou de façon globale pour tous les contrôleurs.
+**2-approche** l’activation de CORS dans MVC : les développeurs peuvent également utiliser MVC tooapply CORS spécifique par action, par contrôleur, ou pour tous les contrôleurs.
 
 ### <a name="example"></a>Exemple
-Par action : pour spécifier une stratégie CORS pour une action spécifique, ajoutez l’attribut [EnableCors] à l’action. Spécifiez le nom de la stratégie. 
+Par action : une stratégie CORS pour une action spécifique de toospecify ajouter une action de toohello d’attribut hello [EnableCors]. Spécifiez le nom de la stratégie hello. 
 ```C#
 public class HomeController : Controller
 {
@@ -464,10 +464,10 @@ public void ConfigureServices(IServiceCollection services)
     });
 }
 ```
-Notez qu’il est indispensable de s’assurer que la liste d’origines dans l’attribut EnableCors est définie sur un ensemble d’origines fini et approuvé. Une configuration inappropriée de cet attribut (par exemple, la définition de la valeur "*") autorisera les sites malveillants à adresser des demandes multi-origines à l’API sans aucune restriction, exposant ainsi l’API à des risques d’attaques par falsification de requête intersites. 
+Veuillez Notez qu’il est critique tooensure qui hello liste des origines dans EnableCors attribut a la valeur tooa un jeu finie et approuvé d’origine. Échec tooconfigure ce de façon inappropriée (par exemple, valeur hello en tant que ' *') permettra tootrigger sites malveillants Cross-origine demandes toohello API sans aucune restriction, > rendant hello API tooCSRF vulnérable attaques. 
 
 ### <a name="example"></a>Exemple
-Pour désactiver une stratégie CORS pour un contrôleur ou une action, utilisez l’attribut [DisableCors]. 
+toodisable CORS pour un contrôleur ou d’une action, utiliser l’attribut hello [DisableCors]. 
 ```C#
 [DisableCors]
     public IActionResult About()
@@ -484,8 +484,8 @@ Pour désactiver une stratégie CORS pour un contrôleur ou une action, utilisez
 | **Phase SDL**               | Déploiement |  
 | **Technologies applicables** | Générique |
 | **Attributs**              | N/A  |
-| **Informations de référence**              | [How To: Encrypt Configuration Sections in ASP.NET 2.0 Using DPAPI (Chiffrement des sections de configuration dans ASP.NET 2.0 à l’aide de DPAPI)](https://msdn.microsoft.com/library/ff647398.aspx), [Spécification d’un fournisseur de configuration protégée](https://msdn.microsoft.com/library/68ze1hb2.aspx), [Using Azure Key Vault to protect application secrets (Utilisation d’Azure Key Vault pour protéger la confidentialité de l’application)](https://azure.microsoft.com/documentation/articles/guidance-multitenant-identity-keyvault/) |
-| **Étapes** | Les fichiers de configuration tels que web.config et appsettings.json sont souvent utilisés pour stocker des informations sensibles, comme les noms d’utilisateur, les mots de passe, les chaînes de connexion de base de données et les clés de chiffrement. Si vous ne protégez pas ces informations, votre application est vulnérable aux attaquants ou aux personnes malveillantes qui veulent obtenir des informations sensibles, comme les noms d’utilisateur et les mots de passe de comptes, les noms de bases de données et les noms de serveurs. Selon le type de déploiement (Azure/local), chiffrez les sections sensibles des fichiers de configuration à l’aide de DPAPI ou de services tels qu’Azure Key Vault. |
+| **Informations de référence**              | [Comment : Chiffrer des Sections de Configuration dans ASP.NET 2.0 à l’aide de DPAPI](https://msdn.microsoft.com/library/ff647398.aspx), [en spécifiant un fournisseur de Configuration protégée](https://msdn.microsoft.com/library/68ze1hb2.aspx), [secrets d’application à l’aide d’Azure Key Vault tooprotect](https://azure.microsoft.com/documentation/articles/guidance-multitenant-identity-keyvault/) |
+| **Étapes** | Fichiers de configuration tels que hello Web.config, appsettings.json sont souvent utilisées toohold des informations sensibles, notamment des noms d’utilisateur, les mots de passe, des chaînes de connexion de base de données et des clés de chiffrement. Si vous ne protégez pas ces informations, votre application est vulnérable tooattackers ou obtenir des informations sensibles telles que les noms d’utilisateur de compte et les mots de passe, les noms de base de données et les noms de serveur des utilisateurs malveillants. Selon le type de déploiement hello (azure/localement), chiffrer les sections de sensibles hello de fichiers de configuration à l’aide de DPAPI ou des services tels que le coffre de clés Azure. |
 
 ## <a id="admin-strong"></a>S’assurer que toutes les interfaces d’administration sont sécurisées avec des informations d’identification fortes
 
@@ -496,7 +496,7 @@ Pour désactiver une stratégie CORS pour un contrôleur ou une action, utilisez
 | **Technologies applicables** | Générique |
 | **Attributs**              | N/A  |
 | **Informations de référence**              | N/A  |
-| **Étapes** | Toutes les interfaces d’administration exposées par la passerelle d’appareil ou de champ doivent être sécurisées à l’aide d’informations d’identification fortes. Il en est de même pour toutes les autres interfaces exposées telles que WiFi, SSH, Partages de fichiers et FTP. Les mots de passe faibles par défaut ne doivent pas être utilisés. |
+| **Étapes** | Toute administration interfaces cet appareil hello ou expose de passerelle de champ doit être sécurisées à l’aide des informations d’identification fortes. Il en est de même pour toutes les autres interfaces exposées telles que WiFi, SSH, Partages de fichiers et FTP. Les mots de passe faibles par défaut ne doivent pas être utilisés. |
 
 ## <a id="unknown-exe"></a>S’assurer que le code inconnu ne peut pas s’exécuter sur les appareils
 
@@ -507,7 +507,7 @@ Pour désactiver une stratégie CORS pour un contrôleur ou une action, utilisez
 | **Technologies applicables** | Générique |
 | **Attributs**              | N/A  |
 | **Informations de référence**              | [Enabling Secure Boot and BitLocker Device Encryption on Windows 10 IoT Core (Activation du démarrage sécurisé et du chiffrement d’appareil BitLocker sur Windows 10 IoT Standard)](https://developer.microsoft.com/windows/iot/win10/sb_bl) |
-| **Étapes** | Le démarrage sécurisé UEFI contraint le système à autoriser uniquement l’exécution de fichiers binaires signés par une autorité spécifiée. Cette fonctionnalité empêche un code inconnu de s’exécuter sur la plateforme et d’affaiblir potentiellement la sécurisation de cette dernière. Activez le démarrage sécurisé UEFI et restreignez la liste des autorités de certification aux autorités approuvées pour la signature du code. Signez l’ensemble du code déployé sur l’appareil à l’aide de l’une des autorités de confiance. |
+| **Étapes** | Le démarrage sécurisé UEFI limite système de hello tooonly autorise l’exécution de fichiers binaires signés par une autorité spécifiée. Cette fonctionnalité empêche le code inconnu d’être exécutée sur une plateforme de hello et potentiellement d’affaiblissement posture de sécurité hello de celui-ci. Activer le démarrage sécurisé UEFI et restreindre la liste des autorités de certification de confiance pour la signature de code hello. Se connecter tout le code qui est déployé sur le périphérique hello utilisant l’une des autorités de hello approuvé. |
 
 ## <a id="partition-iot"></a>Chiffrer les partitions du système d’exploitation et les partitions supplémentaires de l’appareil IoT avec BitLocker
 
@@ -518,9 +518,9 @@ Pour désactiver une stratégie CORS pour un contrôleur ou une action, utilisez
 | **Technologies applicables** | Générique |
 | **Attributs**              | N/A  |
 | **Informations de référence**              | N/A  |
-| **Étapes** | Windows 10 IoT Standard implémente une version allégée de BitLocker Device Encryption, qui dépend fortement de la présence d’un module de plateforme sécurisée (TPM) sur la plateforme, et notamment du protocole preOS nécessaire dans UEFI qui prend les mesures requises. Ces mesures preOS vérifient que le système d’exploitation possède par la suite un enregistrement définitif de son mode de lancement. Chiffrez également les partitions du système d’exploitation à l’aide de Bitlocker, ainsi que toutes les partitions supplémentaires susceptibles de stocker des données sensibles. |
+| **Étapes** | Windows 10 IoT Core implémente une version légère de BitLocker chiffrement de l’appareil, ce qui a une dépendance fort sur la présence de hello d’un module de plateforme sécurisée sur plateforme hello, y compris le protocole de preOS nécessaire hello dans UEFI qui effectue des mesures hello. Ces mesures preOS Vérifiez que hello que système d’exploitation possède plus tard un enregistrement définitif de comment hello du système d’exploitation a été lancée. Chiffrer les partitions du système d’exploitation à l’aide de BitLocker et toutes les partitions supplémentaires également au cas où ils stockent des données sensibles. |
 
-## <a id="min-enable"></a>S’assurer que seuls les services/fonctionnalités minimaux sont activés sur les appareils
+## <a id="min-enable"></a>Assurez-vous qu’uniquement hello services/fonctionnalités minimales sont activées sur les appareils
 
 | Intitulé                   | Détails      |
 | ----------------------- | ------------ |
@@ -529,7 +529,7 @@ Pour désactiver une stratégie CORS pour un contrôleur ou une action, utilisez
 | **Technologies applicables** | Générique |
 | **Attributs**              | N/A  |
 | **Informations de référence**              | N/A  |
-| **Étapes** | Évitez d’activer ou désactivez les fonctionnalités ou services du système d’exploitation qui ne sont pas requis pour le fonctionnement de la solution. Par exemple, si l’appareil ne nécessite pas le déploiement d’une interface utilisateur, installez Windows IoT Standard sans périphérique de contrôle. |
+| **Étapes** | Ne pas activer ou désactiver des fonctionnalités ou des services dans hello du système d’exploitation qui n’est pas requis pour hello fonctionne de la solution de hello. Pour par exemple, si les appareils hello ne requièrent pas un toobe de l’interface utilisateur déployé, installez Windows IoT standard en mode contrôlé à distance. |
 
 ## <a id="field-bit-locker"></a>Chiffrer les partitions du système d’exploitation et les partitions supplémentaires de la passerelle de champ IoT avec Bitlocker
 
@@ -540,9 +540,9 @@ Pour désactiver une stratégie CORS pour un contrôleur ou une action, utilisez
 | **Technologies applicables** | Générique |
 | **Attributs**              | N/A  |
 | **Informations de référence**              | N/A  |
-| **Étapes** | Windows 10 IoT Standard implémente une version allégée de BitLocker Device Encryption, qui dépend fortement de la présence d’un module de plateforme sécurisée (TPM) sur la plateforme, et notamment du protocole preOS nécessaire dans UEFI qui prend les mesures requises. Ces mesures preOS vérifient que le système d’exploitation possède par la suite un enregistrement définitif de son mode de lancement. Chiffrez également les partitions du système d’exploitation à l’aide de Bitlocker, ainsi que toutes les partitions supplémentaires susceptibles de stocker des données sensibles. |
+| **Étapes** | Windows 10 IoT Core implémente une version légère de BitLocker chiffrement de l’appareil, ce qui a une dépendance fort sur la présence de hello d’un module de plateforme sécurisée sur plateforme hello, y compris le protocole de preOS nécessaire hello dans UEFI qui effectue des mesures hello. Ces mesures preOS Vérifiez que hello que système d’exploitation possède plus tard un enregistrement définitif de comment hello du système d’exploitation a été lancée. Chiffrer les partitions du système d’exploitation à l’aide de BitLocker et toutes les partitions supplémentaires également au cas où ils stockent des données sensibles. |
 
-## <a id="default-change"></a>S’assurer que les informations d’identification de connexion par défaut de la passerelle de champ sont modifiées lors de l’installation
+## <a id="default-change"></a>Vérifiez que les informations d’identification du compte de connexion par défaut hello de passerelle de champ hello sont modifiées pendant l’installation
 
 | Intitulé                   | Détails      |
 | ----------------------- | ------------ |
@@ -551,9 +551,9 @@ Pour désactiver une stratégie CORS pour un contrôleur ou une action, utilisez
 | **Technologies applicables** | Générique |
 | **Attributs**              | N/A  |
 | **Informations de référence**              | N/A  |
-| **Étapes** | Assurez-vous que les informations d’identification de connexion par défaut de la passerelle de champ sont modifiées lors de l’installation. |
+| **Étapes** | Vérifiez que les informations d’identification du compte de connexion par défaut hello de passerelle de champ hello sont modifiées pendant l’installation |
 
-## <a id="cloud-firmware"></a>S’assurer que la passerelle cloud implémente un processus garantissant la mise à jour continue du micrologiciel des appareils connectés
+## <a id="cloud-firmware"></a>Assurez-vous que la passerelle de Cloud hello implémente un microprogramme des périphériques processus tookeep hello connecté des toodate
 
 | Intitulé                   | Détails      |
 | ----------------------- | ------------ |
@@ -561,8 +561,8 @@ Pour désactiver une stratégie CORS pour un contrôleur ou une action, utilisez
 | **Phase SDL**               | Créer |  
 | **Technologies applicables** | Générique |
 | **Attributs**              | Choix de passerelle - Azure IoT Hub |
-| **Informations de référence**              | [Vue d’ensemble de la gestion des appareils avec IoT Hub](https://azure.microsoft.com/documentation/articles/iot-hub-device-management-overview/), [How to update Device Firmware (Mise à jour du micrologiciel des appareils)](https://azure.microsoft.com/documentation/articles/iot-hub-device-management-device-jobs/) |
-| **Étapes** | LWM2M est un protocole défini par l’organisme Open Mobile Alliance pour la gestion des appareils IoT. La gestion des appareils IoT Azure permet d’interagir avec les appareils physiques à l’aide de travaux d’appareil. Assurez-vous que la passerelle cloud implémente un processus pour garantir la mise à jour continue des données de l’appareil et d’autres données de configuration à l’aide de la gestion des appareils Azure IoT Hub. |
+| **Informations de référence**              | [La présentation de la gestion de périphérique du Hub IoT](https://azure.microsoft.com/documentation/articles/iot-hub-device-management-overview/), [comment tooupdate microprogramme de l’appareil](https://azure.microsoft.com/documentation/articles/iot-hub-device-management-device-jobs/) |
+| **Étapes** | LWM2M est un protocole de hello Open Mobile Alliance, pour la gestion des appareils IoT. Gestion des appareils Azure IoT permet toointeract avec des périphériques physiques à l’aide des travaux de l’appareil. Assurez-vous que la passerelle de Cloud hello implémente un périphérique de processus tooroutinely conserver hello et d’autres données de configuration des toodate à l’aide de la gestion des appareils Azure IoT Hub. |
 
 ## <a id="controls-policies"></a>S’assurer que les appareils disposent de contrôles de sécurité des points de terminaison configurés conformément aux directives organisationnelles
 
@@ -584,7 +584,7 @@ Pour désactiver une stratégie CORS pour un contrôleur ou une action, utilisez
 | **Technologies applicables** | Générique |
 | **Attributs**              | N/A  |
 | **Informations de référence**              | [Guide de sécurité de Stockage Azure - Gestion des clés de compte de stockage](https://azure.microsoft.com/documentation/articles/storage-security-guide/#_managing-your-storage-account-keys) |
-| **Étapes** | <p>Stockage des clés : il est recommandé de stocker les clés d’accès du service Stockage Azure dans Azure Key Vault sous la forme d’un secret et de demander aux applications de récupérer la clé à partir d’Azure Key Vault. Cette approche est recommandée pour les raisons suivantes :</p><ul><li>L’application ne disposera jamais de la clé de stockage codée en dur dans un fichier de configuration, ce qui rend impossible l’accès aux clés par une personne sans autorisation spécifique.</li><li>L’accès aux clés peut être contrôlé à l’aide d’Azure Active Directory. Cela signifie que le propriétaire d’un compte peut accorder l’accès aux seules applications qui doivent récupérer les clés à partir d’Azure Key Vault. Les autres applications ne pourront pas accéder aux clés sans avoir bénéficié d’une autorisation en particulier.</li><li>Régénération des clés : il est recommandé de mettre en place un processus de régénération des clés d’accès de stockage Azure pour des raisons de sécurité. Des informations détaillées sur les motifs et la procédure de planification d’une régénération des clés sont fournies dans l’article de référence du Guide de sécurité du service Stockage Azure.</li></ul>|
+| **Étapes** | <p>Stockage de clés : Il est recommandé de clés d’accès toostore hello Azure Storage dans Azure Key Vault en tant que secret et ont des applications de hello extraire la clé de hello du coffre de clés. Cette opération est recommandée en raison de toohello suivant raisons :</p><ul><li>application Hello n’aura jamais codé en dur de hello stockage clé dans un fichier de configuration, ce qui supprime cette voie d’une personne l’accès des clés de toohello sans autorisation spécifique</li><li>Touches d’accès toohello peuvent être contrôlés à l’aide d’Azure Active Directory. Cela signifie que d’un propriétaire de compte peut accorder quelques toohello accès aux applications qui nécessitent des clés de hello tooretrieve d’Azure Key Vault. Autres applications ne seront pas en mesure de tooaccess des clés de hello sans leur accorder l’autorisation en particulier</li><li>Régénération de la clé : Il est recommandé de clés de toohave un processus en place tooregenerate accès au stockage Azure pour des raisons de sécurité. Pour plus d’informations sur pourquoi et comment tooplan hello de pour la régénération de la clé sont documentés dans le Guide de sécurité de stockage Azure font référence à l’article</li></ul>|
 
 ## <a id="cors-storage"></a>S’assurer que seules les origines approuvées sont autorisées si le mécanisme CORS est activé sur le stockage Azure
 
@@ -594,8 +594,8 @@ Pour désactiver une stratégie CORS pour un contrôleur ou une action, utilisez
 | **Phase SDL**               | Créer |  
 | **Technologies applicables** | Générique |
 | **Attributs**              | N/A  |
-| **Informations de référence**              | [CORS Support for the Azure Storage Services (Prise en charge du mécanisme Partage des ressources multi-origines (CORS) pour les services Stockage Azure)](https://msdn.microsoft.com/library/azure/dn535601.aspx) |
-| **Étapes** | Azure Storage vous permet d’activer le Partage des ressources cross-origin (CORS, Cross Origin Resource Sharing). Pour chaque compte de stockage, vous pouvez spécifier les domaines qui peuvent accéder aux ressources de ce compte de stockage. Par défaut, CORS est désactivé sur tous les services. Vous pouvez activer CORS à l’aide de l’API REST ou de la bibliothèque cliente de stockage afin d’appeler l’une des méthodes pour définir les stratégies de service. |
+| **Informations de référence**              | [Prise en charge de CORS pour hello Services de stockage Azure](https://msdn.microsoft.com/library/azure/dn535601.aspx) |
+| **Étapes** | Le stockage Azure vous permet de tooenable CORS – partage des ressources Cross-Origin. Pour chaque compte de stockage, vous pouvez spécifier les domaines qui peuvent accéder aux ressources hello dans ce compte de stockage. Par défaut, CORS est désactivé sur tous les services. Vous pouvez activer CORS à l’aide de hello API REST ou hello storage client library toocall une des stratégies de service hello méthodes tooset hello. |
 
 ## <a id="throttling"></a>Activer la fonctionnalité de limitation de service WCF
 
@@ -606,10 +606,10 @@ Pour désactiver une stratégie CORS pour un contrôleur ou une action, utilisez
 | **Technologies applicables** | .NET Framework 3 |
 | **Attributs**              | N/A  |
 | **Informations de référence**              | [MSDN](https://msdn.microsoft.com/library/ff648500.aspx), [Fortify Kingdom](https://vulncat.fortify.com/en/vulncat/index.html) |
-| **Étapes** | <p>L’absence de limitation de l’utilisation des ressources système peut entraîner un épuisement des ressources et, à terme, un déni de service.</p><ul><li>**EXPLICATION :** Windows Communication Foundation (WCF) offre la possibilité de limiter les demandes de service. Le fait d’autoriser un nombre excessif de demandes de client est susceptible de saturer un système et d’en épuiser les ressources. En revanche, une restriction trop importante du nombre de demandes pouvant être adressées à un service risque d’empêcher des utilisateurs légitimes de recourir à ce service. Il convient donc de régler et de configurer chaque service individuellement afin d’autoriser la quantité de ressources appropriée.</li><li>**RECOMMANDATIONS** Activez la fonctionnalité de limitation de service de WCF et définissez les limites appropriées pour votre application.</li></ul>|
+| **Étapes** | <p>Hello ne pas en limitant l’utilisation de ressources peut entraîner une insuffisance des ressources et finalement un déni de service de système.</p><ul><li>**Explication :** Windows Communication Foundation (WCF) propose des demandes de service toothrottle hello possibilité. Le fait d’autoriser un nombre excessif de demandes de client est susceptible de saturer un système et d’en épuiser les ressources. Sur hello autre part, en autorisant uniquement un petit nombre de demandes tooa service peut empêcher les utilisateurs légitimes d’utiliser le service de hello. Chaque service doit être analysées individuellement tooand configuré tooallow hello quantité appropriée de ressources.</li><li>**RECOMMANDATIONS** Activez la fonctionnalité de limitation de service de WCF et définissez les limites appropriées pour votre application.</li></ul>|
 
 ### <a name="example"></a>Exemple
-Voici un exemple de configuration dans lequel la limitation est activée :
+Hello Voici un exemple de configuration avec la limitation activée :
 ```
 <system.serviceModel> 
   <behaviors>
@@ -629,20 +629,20 @@ Voici un exemple de configuration dans lequel la limitation est activée :
 | **Technologies applicables** | .NET Framework 3 |
 | **Attributs**              | N/A  |
 | **Informations de référence**              | [MSDN](https://msdn.microsoft.com/library/ff648500.aspx), [Fortify Kingdom](https://vulncat.fortify.com/en/vulncat/index.html) |
-| **Étapes** | Les métadonnées peuvent aider des attaquants à se renseigner sur le système et à planifier un certain type d’attaque. Les services WCF peuvent être configurés pour exposer les métadonnées. Les métadonnées fournissent des descriptions détaillées des services et ne doivent pas être diffusées dans les environnements de production. Les propriétés `HttpGetEnabled` / `HttpsGetEnabled` de la classe ServiceMetaData définissent si un service exposera ou non les métadonnées. | 
+| **Étapes** | Métadonnées peuvent aider les personnes malveillantes en savoir plus sur le système de hello et planifier une forme d’attaque. Les services WCF peuvent être des métadonnées de tooexpose configuré. Les métadonnées fournissent des descriptions détaillées des services et ne doivent pas être diffusées dans les environnements de production. Hello `HttpGetEnabled`  /  `HttpsGetEnabled` propriétés de classe de ServiceMetaData hello définit si un service expose les métadonnées de hello | 
 
 ### <a name="example"></a>Exemple
-Le code ci-dessous demande à WCF de diffuser les métadonnées d’un service.
+code Hello ci-dessous indique à WCF toobroadcast métadonnées d’un service
 ```
 ServiceMetadataBehavior smb = new ServiceMetadataBehavior();
 smb.HttpGetEnabled = true; 
 smb.HttpGetUrl = new Uri(EndPointAddress); 
 Host.Description.Behaviors.Add(smb); 
 ```
-Ne diffusez pas les métadonnées de service dans un environnement de production. Pour ce faire, définissez les propriétés HttpGetEnabled / HttpsGetEnabled de la classe ServiceMetaData sur la valeur false. 
+Ne diffusez pas les métadonnées de service dans un environnement de production. Définir hello HttpGetEnabled / propriétés HttpsGetEnabled de hello ServiceMetaData classe toofalse. 
 
 ### <a name="example"></a>Exemple
-Le code ci-dessous demande à WCF de ne pas diffuser les métadonnées d’un service. 
+code Hello ci-dessous indique à WCF toonot les métadonnées d’un service de diffusion. 
 ```
 ServiceMetadataBehavior smb = new ServiceMetadataBehavior(); 
 smb.HttpGetEnabled = false; 

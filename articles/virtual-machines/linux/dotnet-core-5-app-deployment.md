@@ -1,5 +1,5 @@
 ---
-title: "Automatisation du déploiement d’application avec des extensions de machine virtuelle | Microsoft Docs"
+title: "aaaAutomating déploiement d’applications avec les Extensions de Machine virtuelle | Documents Microsoft"
 description: Didacticiel sur DotNet Core pour les machines virtuelles Azure
 services: virtual-machines-linux
 documentationcenter: virtual-machines
@@ -16,24 +16,24 @@ ms.workload: infrastructure
 ms.date: 05/12/2017
 ms.author: nepeters
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 2f972fef75aa8e13af7dab908c2b0e2ec28f1324
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 38a02a4271d6b9ba02a473a51794a7bd90ca3a35
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="application-deployment-with-azure-resource-manager-templates-for-linux-vms"></a>Déploiement d’applications avec des modèles Azure Resource Manager pour les machines virtuelles Linux
 
-Une fois que toutes les exigences infrastructurelles d’Azure sont identifiées et converties en un modèle de déploiement, le déploiement de l’application réelle doit être effectué. Le déploiement de l’application fait ici référence à l’installation des fichiers binaires de l’application réelle sur les ressources Azure. Pour l’exemple du Store musique, .NET Core, NGINX et Superviseur doivent être installés et configurés sur chaque machine virtuelle. Les fichiers binaires du Store musique doivent être installés sur la machine virtuelle, et la base de données du Store musique doit avoir été créée au préalable.
+Une fois que toutes les exigences d’infrastructures Azure ont été identifiés et de traduire un modèle de déploiement, déploiement d’application réelle hello doit toobe adressé. Déploiement d’application fait référence des fichiers binaires d’application réelle de hello tooinstalling sur les ressources Azure. Pour un exemple de magasin de musique hello, .net Core, NGINX et superviseur doivent toobe installé et configuré sur chaque ordinateur virtuel. Bonjour magasin de musique binaires doivent toobe installé sur l’ordinateur virtuel de hello et hello de base de données du magasin de musique créé au préalable.
 
-Ce document décrit en détail comment des extensions de machine virtuelle peuvent automatiser le déploiement et la configuration d’applications sur des machines virtuelles Azure. Toutes les dépendances et configurations uniques sont en surbrillance. Pour optimiser l’expérience, prédéployez une instance de la solution sur votre abonnement Azure et travaillez avec le modèle Azure Resource Manager. Pour le modèle complet, consultez [Déploiement du Store musique sur Ubuntu](https://github.com/Microsoft/dotnet-core-sample-templates/tree/master/dotnet-core-music-linux).
+Ce document décrit en détail comment extensions de Machine virtuelle peuvent automatiser la configuration et déploiement tooAzure ordinateurs virtuels d’application. Toutes les dépendances et configurations uniques sont en surbrillance. Pour une expérience optimale de hello, préalable déployer une instance de hello solution tooyour abonnement Azure et de travail en même temps que le modèle de gestionnaire de ressources Azure hello. modèle complète de Hello se trouve ici : [déploiement du magasin de musique sur Ubuntu](https://github.com/Microsoft/dotnet-core-sample-templates/tree/master/dotnet-core-music-linux).
 
 ## <a name="configuration-script"></a>Script de configuration
-Les extensions de machine virtuelle sont des programmes spécialisés qui s’exécutent sur des machines virtuelles pour automatiser la configuration. Les extensions sont disponibles pour de nombreux objectifs spécifiques tels que la protection contre les virus, la configuration de la journalisation et la configuration de Docker. Une extension de script personnalisé peut être utilisée pour exécuter un script sur une machine virtuelle. Avec l’exemple du Store musique, l’extension de script personnalisé doit configurer les machines virtuelles Ubuntu et installer l’application du Store musique. 
+Extensions de Machine virtuelle sont des programmes spécialisés qui s’exécutent sur l’automatisation de machines virtuelles tooprovide configuration. Les extensions sont disponibles pour de nombreux objectifs spécifiques tels que la protection contre les virus, la configuration de la journalisation et la configuration de Docker. Une extension de script personnalisé peut être utilisé toorun un script sur un ordinateur virtuel. Exemple de magasin de musique hello, il est les machines virtuelles de toohello script personnalisé extension tooconfigure hello Ubuntu et installer l’application de magasin de musique hello. 
 
-Avant de détailler la manière dont les extensions de machine virtuelle sont déclarées dans un modèle Azure Resource Manager, examinez le script exécuté. Celui-ci configure la machine virtuelle Linux Ubuntu pour héberger l’application du Store musique. Lors de son exécution, le script installe tous les logiciels nécessaires, installe l’application du Store musique à partir du contrôle de code source et prépare la base de données. 
+Avant indiquant comment les extensions de machine virtuelle sont déclarées dans un modèle Azure Resource Manager, examinez le script hello qui est exécuté. Ce script configure la machine virtuelle d’Ubuntu Bonjour Bonjour toohost application de magasin de musique. Lors de l’exécution, le script de hello installe les logiciels requis de tous les installer l’application de magasin de musique hello à partir du contrôle de code source et préparer hello de base de données. 
 
-Pour plus d’informations sur l’hébergement d’une application .NET Core sur Linux, consultez [Publier dans un environnement de production Linux](https://docs.asp.net/en/latest/publishing/linuxproduction.html).
+application de base toolearn en savoir plus sur l’hébergement de .net sur Linux, consultez [environnement de production de publication tooa Linux](https://docs.asp.net/en/latest/publishing/linuxproduction.html).
 
 > Cet exemple ne sert qu’à des fins de démonstration.
 > 
@@ -80,11 +80,11 @@ sudo service supervisor start
 ```
 
 ## <a name="vm-script-extension"></a>Extension de script de machine virtuelle
-Les extensions de machine virtuelle peuvent être exécutées sur une machine virtuelle au moment de sa génération en incluant la ressource d’extension dans le modèle Azure Resource Manager. L’extension peut être ajoutée avec l’Assistant Ajouter une ressource de Visual Studio, ou en insérant un JSON valide dans le modèle. La ressource d’extension de script est imbriquée dans la ressource de machine virtuelle, comme le montre l’exemple suivant.
+Extensions de machine virtuelle peut être exécutées sur un ordinateur virtuel au moment de la génération en incluant la ressource d’extension hello dans le modèle de gestionnaire de ressources Azure hello. extension de Hello peut être ajoutée avec l’Assistant de Visual Studio ajouter une ressource hello, ou en insérant un JSON valide dans le modèle de hello. Hello ressource d’Extension de Script est imbriquée dans hello ressource d’ordinateur virtuel ; Ceci peut être observé dans hello l’exemple suivant.
 
-Pour voir l’exemple JSON dans le modèle Resource Manager, suivez ce lien : [Extension de script de machine virtuelle](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L359). 
+Suivez ce lien toosee hello JSON exemple dans le modèle de gestionnaire de ressources hello – [Extension de Script de machine virtuelle](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L359). 
 
-Notez que, dans le JSON ci-dessous, le script est stocké dans GitHub. Ce script pourrait également être stocké dans Stockage Blob Azure. De même, les modèles Azure Resource Manager permettent de construire la chaîne d’exécution du script de façon à ce que les valeurs des paramètres du modèle puissent être utilisées en tant que paramètres pour l’exécution du script. Dans ce cas, des données sont fournies lors du déploiement des modèles et ces valeurs peuvent ensuite être utilisées lors de l’exécution du script.
+Notez dans hello ci-dessous JSON qui hello script est stocké dans GitHub. Ce script pourrait également être stocké dans Stockage Blob Azure. Modèles Azure Resource Manager permettent également, tooconstructed de chaîne de l’exécution de script hello telles que les valeurs de paramètres de modèle peuvent être utilisées en tant que paramètres pour l’exécution du script. Dans ce cas les données sont fournies lors du déploiement de modèles de hello, et ces valeurs peuvent ensuite être utilisées lors de l’exécution du script de hello.
 
 ```json
 {
@@ -115,7 +115,7 @@ Notez que, dans le JSON ci-dessous, le script est stocké dans GitHub. Ce script
 }
 ```
 
-Pour plus d’informations sur l’utilisation des extensions de script personnalisé, consultez [Extensions de script personnalisé avec des modèles Resource Manager](extensions-customscript.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+Pour plus d’informations sur l’utilisation d’extension de script personnalisé hello, consultez [extensions de script personnalisé avec les modèles de gestionnaire de ressources](extensions-customscript.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 
 ## <a name="next-step"></a>Étape suivante
 <hr>

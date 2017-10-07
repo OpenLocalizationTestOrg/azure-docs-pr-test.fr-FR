@@ -1,5 +1,5 @@
 ---
-title: "Ressources pour le développement d’un entrepôt de données dans Azure | Microsoft Docs"
+title: "aaaResources pour le développement d’un entrepôt de données dans Azure | Documents Microsoft"
 description: "Concepts de développement, choix de conception, recommandations et des techniques de codage pour SQL Data Warehouse."
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,17 +15,17 @@ ms.workload: data-services
 ms.custom: develop
 ms.date: 10/31/2016
 ms.author: jrj;barbkess
-ms.openlocfilehash: b85a4f09e561e429aa5bf46ec680014487fb40c7
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 67e3a6a3e2664919c3445ea5d5eba251054de020
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="design-decisions-and-coding-techniques-for-sql-data-warehouse"></a>Choix de conception et techniques de codage pour SQL Data Warehouse
-Consultez les articles sur le développement afin de mieux comprendre les choix de conception, les recommandations et les techniques de codage fondamentaux pour SQL Data Warehouse.
+Examinez ces articles développement toobetter comprendre principales décisions de conception, des recommandations et des techniques de codage pour SQL Data Warehouse.
 
 ## <a name="key-design-decisions"></a>Choix de conception clés
-Les articles suivants offrent un aperçu de quelques-uns des concepts principaux et des décisions de conception que vous devrez maîtriser pour le développement de votre entrepôt de données distribué à l’aide de SQL Data Warehouse :
+Hello articles suivants de la mettre en évidence certains des concepts clés de hello et les décisions de conception que vous devez toounderstand pour le développement hello de votre entrepôt de données distribuées à l’aide de l’entrepôt de données SQL :
 
 * [Connexions][connections]
 * [Accès concurrentiel][concurrency]
@@ -50,7 +50,7 @@ Ces articles mettent l’accent sur des techniques de codage spécifiques, des c
 * [Attribution de variables][variable assignment]
 
 ## <a name="next-steps"></a>Étapes suivantes
-Une fois que vous avez consulté les articles sur le développement, accédez à la page des [informations de référence sur Transact-SQL][Transact-SQL reference] pour en savoir plus sur la syntaxe prise en charge pour SQL Data Warehouse.
+Une fois que vous avez été articles de développement hello jetez un œil à hello [référence Transact-SQL] [ Transact-SQL reference] pour plus d’informations sur la syntaxe hello pris en charge pour SQL Data Warehouse.
 
 <!--Image references-->
 

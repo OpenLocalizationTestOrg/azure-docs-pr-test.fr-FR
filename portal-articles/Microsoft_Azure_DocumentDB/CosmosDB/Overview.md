@@ -1,5 +1,5 @@
 ---
-title: "Vue d’ensemble de base de données Cosmos Azure | Documents Microsoft"
+title: "vue d’ensemble de la base de données Cosmos aaaAzure | Documents Microsoft"
 description: "Le contenu de la vue d’ensemble de la base de données Azure Cosmos dans le portail Azure"
 services: cosmos-db
 author: sewatson
@@ -8,19 +8,19 @@ ms.service: cosmos-db
 ms.topic: article
 ms.date: 05/10/2017
 ms.author: sewatson
-ms.openlocfilehash: 30ffaff9c4a7bacbda1f6b973f328a345eb5d5b0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d38c1983a766660f448ca36c23435cf604a174b6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-cosmos-db-documentation"></a>Documentation Azure Cosmos DB
 
-Azure Cosmos DB est un service de base de données distribuée mondialement conçu pour permettre de faire évoluer en toute flexibilité et de façon indépendante le débit et stockage sur n’importe quel nombre de régions géographiques avec un contrat SLA complet. Vous pouvez développer des bases de données de graphique, clé/valeur ou Cosmos DB à l’aide d’une série d’API courantes et de modèles de programmation. Découvrez comment utiliser Cosmos DB avec nos mises en route rapides, didacticiels et exemples.
+Base de données Azure Cosmos est un tooenable service conçu de base de données distribués internationalement vous tooelastically et de débit de mise à l’échelle indépendamment et de stockage entre plusieurs régions géographiques avec un contrat SLA complète. Vous pouvez développer des bases de données de graphique, clé/valeur ou Cosmos DB à l’aide d’une série d’API courantes et de modèles de programmation. Découvrez comment toouse Cosmos DB avec notre Démarrages rapides, didacticiels et exemples.
 
 ## <a name="5-minute-quickstarts"></a>Démarrages en 5 minutes
 
-En savoir plus sur Azure Cosmos DB permet de créer une base de données mondialement distribuée en utilisant l’une des API multi-modèles :
+Découvrez comment toocreate de base de données Azure Cosmos toouse une base de données distribuée globalement à l’aide d’une des hello API comportant plusieurs modèles :
 
 ### <a name="documentdb-api"></a>API DocumentDB
 
@@ -48,22 +48,22 @@ En savoir plus sur Azure Cosmos DB permet de créer une base de données mondia
 
 ## <a name="step-by-step-tutorials"></a>Didacticiels pas à pas
 
-Apprenez comment développer des applications à l’aide de la base de données Azure Cosmos :
+Découvrez comment les applications de toodevelop à l’aide de la base de données Azure Cosmos :
 
 - Développer une application avec Cosmos DB : [DocumentDB](/azure/cosmos-db/tutorial-develop-documentdb-dotnet) | [MongoDB](/azure/cosmos-db/tutorial-develop-mongodb) | [Table](/azure/cosmos-db/tutorial-develop-table-dotnet) | [graphique](/azure/cosmos-db/tutorial-develop-graph-dotnet)
 - Importer des données dans la base de données Cosmos [DocumentDB](/azure/documentdb/documentdb-import-data) | [MongoDB](/azure/documentdb/documentdb-mongodb-migrate) 
 - Interroger des données avec la base de données Cosmos : [DocumentDB](/azure/cosmos-db/tutorial-query-documentdb) | [MongoDB](/azure/cosmos-db/tutorial-query-mongodb) | [Table](/azure/cosmos-db/tutorial-query-table) | [graphique](/azure/cosmos-db/tutorial-query-graph)
 - Réplication de base de données global avec Cosmos DB : [DocumentDB](/azure/cosmos-db/tutorial-global-distribution-documentdb) | [MongoDB](/azure/cosmos-db/tutorial-global-distribution-mongodb) | [Table] (/ / cosmos-db/didacticiel-global-distribution-table azure | [Graphique](/azure/cosmos-db/tutorial-global-distribution-graph)
-- [Développer votre application localement à l’aide de l’émulateur](/azure/documentdb/documentdb-nosql-local-emulator)
+- [Développer votre application localement à l’aide d’émulateur de hello](/azure/documentdb/documentdb-nosql-local-emulator)
 
 ## <a name="samples"></a>Exemples
 
-Trouvez des scripts pour gérer les tâches courantes.
+Rechercher les scripts toomanage les tâches courantes.
 
 - [Interface de ligne de commande Azure](/azure/cosmos-db/cli-samples)
 - [Azure PowerShell](/azure/cosmos-db/powershell-samples)
 
 ## <a name="more"></a>En savoir plus
 
-- [Consultez la documentation pour en savoir plus](/azure/cosmos-db/index)
+- [Visitez toolearn documentation plus](/azure/cosmos-db/index)
 - [En savoir plus sur tous les Services Azure](https://aka.ms/j3wr7y)

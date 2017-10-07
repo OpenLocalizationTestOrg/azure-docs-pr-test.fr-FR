@@ -1,6 +1,6 @@
 ---
-title: "Gestion des disques Azure avec l’interface de ligne de commande Azure | Microsoft Docs"
-description: "Didacticiel - Gestion des disques Azure avec l’interface de ligne de commande Azure"
+title: "aaaManage Azure disques avec hello CLI d’Azure | Documents Microsoft"
+description: "Didacticiel - gérer les disques Azure avec hello CLI d’Azure"
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: neilpeterson
@@ -16,15 +16,15 @@ ms.workload: infrastructure
 ms.date: 05/02/2017
 ms.author: nepeters
 ms.custom: mvc
-ms.openlocfilehash: d77dd2b44dca8cee6fa2e93e79cda76c80ccfe1a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ad29cfbec5f9738f47705b19d0450c9a2f555492
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-azure-disks-with-the-azure-cli"></a>Gestion des disques Azure avec l’interface de ligne de commande Azure
+# <a name="manage-azure-disks-with-hello-azure-cli"></a>Gérer les disques Azure avec hello CLI d’Azure
 
-Les machines virtuelles utilisent des disques pour stocker leur système d’exploitation, leurs applications et leurs données. Lorsque vous créez une machine virtuelle, il est important de choisir une taille de disque et une configuration appropriées à la charge de travail prévue. Ce didacticiel décrit le déploiement et la gestion des disques de machine virtuelle. Vous en apprendrez davantage sur les points suivants :
+Machines virtuelles Azure utilisent le système d’exploitation de disques toostore hello machines virtuelles, des applications et des données. Lorsque vous créez une machine virtuelle, il est important toochoose une taille de disque et la charge de travail de configuration approprié toohello attendu. Ce didacticiel décrit le déploiement et la gestion des disques de machine virtuelle. Vous en apprendrez davantage sur les points suivants :
 
 > [!div class="checklist"]
 > * Disques de système d’exploitation et disques temporaires
@@ -38,15 +38,15 @@ Les machines virtuelles utilisent des disques pour stocker leur système d’exp
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-Si vous choisissez d’installer et d’utiliser l’interface de ligne de commande localement, vous devez exécuter l’interface de ligne de commande Azure version 2.0.4 ou une version ultérieure pour poursuivre la procédure décrite dans ce didacticiel. Exécutez `az --version` pour trouver la version. Si vous devez installer ou mettre à niveau, consultez [Installation d’Azure CLI 2.0]( /cli/azure/install-azure-cli). 
+Si vous choisissez tooinstall et que vous utilisez hello CLI localement, ce didacticiel nécessite que vous exécutez hello CLI d’Azure version 2.0.4 ou version ultérieure. Exécutez `az --version` version de hello toofind. Si vous avez besoin de tooinstall ou mise à niveau, consultez [installer Azure CLI 2.0]( /cli/azure/install-azure-cli). 
 
 ## <a name="default-azure-disks"></a>Disques Azure par défaut
 
-Lorsqu’une machine virtuelle Azure est créée, deux disques sont automatiquement attachés à celle-ci. 
+Création d’une machine virtuelle Azure, deux disques sont automatiquement attaché toohello virtual machine. 
 
-**Disque de système d’exploitation** : la taille des disques de système d’exploitation peut atteindre 1 To ; ces disques hébergent le système d’exploitation des machines virtuelles. Le disque de système d’exploitation est nommé */dev/sda* par défaut. La configuration de la mise en cache de disque de système d’exploitation est optimisée pour les performances du système d’exploitation. En raison de cette configuration, le disque de système d’exploitation **ne doit pas** héberger d’applications ou de données. Pour héberger ce type de contenu, utilisez plutôt des disques de données, qui sont décrits plus loin dans cet article. 
+**Disque de système d’exploitation** - disques de système d’exploitation peuvent être dimensionnés des téraoctets de too1 et hôtes hello de système d’exploitation de machines virtuelles. disque de Hello du système d’exploitation est étiqueté */dev/sda* par défaut. disque Hello mise en cache de la configuration du disque du système d’exploitation hello est optimisé pour les performances du système d’exploitation. En raison de cette configuration, hello disque de système d’exploitation **ne doivent pas** héberger des applications ou des données. Pour héberger ce type de contenu, utilisez plutôt des disques de données, qui sont décrits plus loin dans cet article. 
 
-**Disque temporaire** : les disques temporaires utilisent un disque SSD qui se trouve sur le même hôte Azure que la machine virtuelle. Les disques temporaires sont extrêmement performants et peuvent être utilisés pour des opérations telles que le traitement de données temporaires. Toutefois, si la machine virtuelle est déplacée vers un nouvel hôte, toutes les données stockées sur un disque temporaire sont supprimées. La taille du disque temporaire est déterminée par la taille de la machine virtuelle. Les disques temporaires sont nommés */dev/sdb* et ont un point de montage */mnt*.
+**Disque temporaire** -les disques temporaires utilisent un disque SSD qui se trouve sur hello même hôte Azure en tant que machine virtuelle de hello. Les disques temporaires sont extrêmement performants et peuvent être utilisés pour des opérations telles que le traitement de données temporaires. Toutefois, si hello machine virtuelle est déplacée tooa nouvel hôte, toutes les données stockées sur un disque temporaire sont supprimées. taille de Hello du disque temporaire de hello est déterminé par hello taille de machine virtuelle. Les disques temporaires sont nommés */dev/sdb* et ont un point de montage */mnt*.
 
 ### <a name="temporary-disk-sizes"></a>Tailles du disque temporaire
 
@@ -61,7 +61,7 @@ Lorsqu’une machine virtuelle Azure est créée, deux disques sont automatiquem
 
 ## <a name="azure-data-disks"></a>Disques de données Azure
 
-Des disques de données supplémentaires peuvent être ajoutés pour installer des applications et stocker des données. Les disques de données doivent être utilisés dans les cas où un stockage des données durable et réactif est souhaité. Chaque disque de données possède une capacité maximale de 1 To. La taille de la machine virtuelle détermine le nombre de disques de données pouvant être attachés à cette machine virtuelle. Pour chaque cœur de la machine virtuelle, deux disques de données peuvent être attachés. 
+Des disques de données supplémentaires peuvent être ajoutés pour installer des applications et stocker des données. Les disques de données doivent être utilisés dans les cas où un stockage des données durable et réactif est souhaité. Chaque disque de données possède une capacité maximale de 1 To. taille de Hello de machine virtuelle de hello détermine le nombre de disques de données peut être attaché tooa machine virtuelle. Pour chaque cœur de la machine virtuelle, deux disques de données peuvent être attachés. 
 
 ### <a name="max-data-disks-per-vm"></a>Disques de données max. par machine virtuelle
 
@@ -84,7 +84,7 @@ Le stockage Standard s’appuie sur des disques durs et offre un stockage écono
 
 ### <a name="premium-disk"></a>Disque Premium
 
-Les disques Premium reposent sur un disque SSD à faible latence et hautes performances. Ils conviennent parfaitement aux machines virtuelles exécutant une charge de travail en production. Le stockage Premium prend en charge les machines virtuelles des séries DS, DSv2, GS et FS. Les disques Premium sont de trois types (P10, P20, P30), la taille du disque détermine le type de disque. Lorsque vous sélectionnez une taille de disque, la valeur est arrondie au type suivant. Par exemple, si la taille du disque est inférieure à 128 Go, le type de disque est P10. Si la taille du disque est entre 129 Go et 512 Go, le type de disque est P20. Pour toute taille de disque supérieure à 512 Go, le type de disques est P30.
+Les disques Premium reposent sur un disque SSD à faible latence et hautes performances. Ils conviennent parfaitement aux machines virtuelles exécutant une charge de travail en production. Le stockage Premium prend en charge les machines virtuelles des séries DS, DSv2, GS et FS. Les disques Premium sont fournis dans les trois types (P10, P20, P30), taille hello du disque de hello détermine le type de disque hello. Lors de la sélection, une valeur de hello de taille de disque est arrondie toohello les type suivant. Par exemple, si la taille du disque hello est inférieure à 128 Go, le type de disque hello est P10. Si la taille du disque hello est comprise entre 129 et 512 Go, taille de hello est un P20. Tout élément plus de 512 Go, taille de hello est un P30.
 
 ### <a name="premium-disk-performance"></a>Performances du disque Premium
 
@@ -94,21 +94,21 @@ Les disques Premium reposent sur un disque SSD à faible latence et hautes perfo
 | Nb max. d'E/S par seconde par disque | 500 | 2 300 | 5 000 |
 Débit par disque | 100 Mo/s | 150 Mo/s | 200 Mo/s |
 
-Bien que le tableau ci-dessus identifie le nombre max. d’E/S par seconde par disque, un niveau de performances plus élevé est possible en entrelaçant plusieurs disques de données. Par exemple, une machine virtuelle Standard_GS5 peut atteindre un nombre maximum d’E/S par seconde de 80 000. Pour plus d’informations sur le nombre max. d’E/S par seconde par machine virtuelle, consultez [Tailles des machines virtuelles Linux dans Azure](sizes.md).
+Tandis que hello au-dessus de table identifie max IOPS par disque, un niveau plus élevé de performances est possible par l’agrégation de plusieurs disques de données. Par exemple, une machine virtuelle Standard_GS5 peut atteindre un nombre maximum d’E/S par seconde de 80 000. Pour plus d’informations sur le nombre max. d’E/S par seconde par machine virtuelle, consultez [Tailles des machines virtuelles Linux dans Azure](sizes.md).
 
 ## <a name="create-and-attach-disks"></a>Créer et attacher des disques
 
-Des disques de données peuvent être créés et attachés lors de la création d’une machine virtuelle, mais ils peuvent également être créés et attachés à une machine virtuelle existante.
+Disques de données peuvent être créés et attachés au moment de la création de machine virtuelle ou tooan existant de machine virtuelle.
 
 ### <a name="attach-disk-at-vm-creation"></a>Attacher le disque lors de la création d’une machine virtuelle
 
-Créez un groupe de ressources avec la commande [az group create](https://docs.microsoft.com/cli/azure/group#create). 
+Créer un groupe de ressources avec hello [création de groupe de az](https://docs.microsoft.com/cli/azure/group#create) commande. 
 
 ```azurecli-interactive 
 az group create --name myResourceGroupDisk --location eastus
 ```
 
-Créez une machine virtuelle avec la commande [az vm create]( /cli/azure/vm#create). L’argument `--datadisk-sizes-gb` est utilisé pour spécifier qu’un disque supplémentaire doit être créé et attaché à la machine virtuelle. Pour créer et attacher plusieurs disques, utilisez une liste séparée par des espaces des valeurs de taille de disque. Dans l’exemple suivant, une machine virtuelle est créée avec deux disques de données, tous deux de 128 Go. La taille des disques étant de 128 Go, ces disques sont configurés en tant que disques P10, qui fournissent 500 E/S par seconde maximum par disque.
+Créer une machine virtuelle à l’aide de hello [az vm créer]( /cli/azure/vm#create) commande. Hello `--datadisk-sizes-gb` argument est utilisé toospecify qu’un disque supplémentaire doit être créé et attaché toohello virtual machine. toocreate et attacher plusieurs disques, utilisez une liste délimitée par l’espace de valeurs de taille de disque. Bonjour l’exemple suivant, un ordinateur virtuel est créé avec des disques de données de deux, les deux 128 Go. Les tailles de disque hello étant 128 Go, ces disques sont tous deux configurés en tant que P10s, qui fournissent des 500 IOPS maximales par disque.
 
 ```azurecli-interactive 
 az vm create \
@@ -120,9 +120,9 @@ az vm create \
   --generate-ssh-keys
 ```
 
-### <a name="attach-disk-to-existing-vm"></a>Attacher un disque à une machine virtuelle existante
+### <a name="attach-disk-tooexisting-vm"></a>Attacher le disque tooexisting machine virtuelle
 
-Pour créer et attacher un nouveau disque à une machine virtuelle existante, utilisez la commande [az vm disk attach](/cli/azure/vm/disk#attach). L’exemple suivant crée un disque Premium de 128 Go et l’attache à la machine virtuelle créée à l’étape précédente.
+toocreate et attacher une disque tooan existant machine virtuelle, utilisez hello [attacher de disque de machine virtuelle az](/cli/azure/vm/disk#attach) commande. Hello exemple suivant crée un disque premium, 128 Go de taille et l’attache toohello que machine virtuelle créée dans la dernière étape de hello.
 
 ```azurecli-interactive 
 az vm disk attach --vm-name myVM --resource-group myResourceGroupDisk --disk myDataDisk --size-gb 128 --sku Premium_LRS --new 
@@ -130,41 +130,41 @@ az vm disk attach --vm-name myVM --resource-group myResourceGroupDisk --disk myD
 
 ## <a name="prepare-data-disks"></a>Préparer les disques de données
 
-Une fois qu’un disque a été attaché à la machine virtuelle, le système d’exploitation doit être configuré pour utiliser le disque. L’exemple suivant montre comment configurer manuellement un disque. Ce processus peut également être automatisé à l’aide de cloud-init, qui est présenté dans un [prochain didacticiel](./tutorial-automate-vm-deployment.md).
+Une fois qu’un disque a été attaché toohello virtual machine, le système d’exploitation de hello doit toobe configuré toouse hello disque. Bonjour à l’exemple suivant montre comment toomanually configurer un disque. Ce processus peut également être automatisé à l’aide de cloud-init, qui est présenté dans un [prochain didacticiel](./tutorial-automate-vm-deployment.md).
 
 ### <a name="manual-configuration"></a>Configuration manuelle
 
-Créez une connexion SSH avec la machine virtuelle. Remplacez l’exemple d’adresse IP par l’adresse IP publique de la machine virtuelle.
+Créer une connexion SSH avec l’ordinateur virtuel de hello. Remplacez l’exemple d’adresse IP hello avec l’adresse IP publique de l’ordinateur virtuel de hello hello.
 
 ```azurecli-interactive 
 ssh 52.174.34.95
 ```
 
-Partitionnez le disque avec `fdisk`.
+Partition de disque hello avec `fdisk`.
 
 ```bash
 (echo n; echo p; echo 1; echo ; echo ; echo w) | sudo fdisk /dev/sdc
 ```
 
-Écrivez un système de fichiers dans la partition avec la commande `mkfs`.
+Écrire une partition toohello à l’aide de hello `mkfs` commande.
 
 ```bash
 sudo mkfs -t ext4 /dev/sdc1
 ```
 
-Montez le nouveau disque afin qu’il soit accessible dans le système d’exploitation.
+Monter le disque de nouveau hello afin qu’il soit accessible dans le système d’exploitation de hello.
 
 ```bash
 sudo mkdir /datadrive && sudo mount /dev/sdc1 /datadrive
 ```
 
-Le disque est désormais accessible via le point de montage *datadrive*, qui peut être vérifié en exécutant la commande `df -h`. 
+disque de Hello sont maintenant accessibles via hello *datadrive* point de montage, ce qui peut être vérifié en exécutant hello `df -h` commande. 
 
 ```bash
 df -h
 ```
 
-La sortie indique le nouveau lecteur monté sur */datadrive*.
+sortie de Hello affiche hello nouveau lecteur monté sur */datadrive*.
 
 ```bash
 Filesystem      Size  Used Avail Use% Mounted on
@@ -173,25 +173,25 @@ Filesystem      Size  Used Avail Use% Mounted on
 /dev/sdc1        50G   52M   47G   1% /datadrive
 ```
 
-Pour vous assurer que le lecteur est remonté automatiquement après un redémarrage, vous devez l’ajouter au fichier */etc/fstab*. Pour ce faire, obtenez l’UUID du disque avec l’utilitaire `blkid`.
+tooensure qui hello lecteur est remontée après un redémarrage, il doit être ajouté toohello */etc/fstab* fichier. toodo par conséquent, obtenir hello UUID de disque de hello avec hello `blkid` utilitaire.
 
 ```bash
 sudo -i blkid
 ```
 
-La sortie affiche l’UUID du lecteur, `/dev/sdc1` dans cet exemple.
+sortie de Hello affiche hello UUID du lecteur de hello `/dev/sdc1` dans ce cas.
 
 ```bash
 /dev/sdc1: UUID="33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e" TYPE="ext4"
 ```
 
-Ajoutez une ligne semblable à ce qui suit au fichier */etc/fstab*. Notez également que la fonctionnalité permettant d’écrire des barrières peut être désactivée à l’aide de *barrier=0*, cette configuration peut améliorer les performances de disque. 
+Ajouter un toohello similaire de ligne suivant toohello */etc/fstab* fichier. Notez également que la fonctionnalité permettant d’écrire des barrières peut être désactivée à l’aide de *barrier=0*, cette configuration peut améliorer les performances de disque. 
 
 ```bash
 UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive  ext4    defaults,nofail,barrier=0   1  2
 ```
 
-Maintenant que le disque a été configuré, fermez la session SSH.
+Maintenant que hello disque a été configuré, fermez la session SSH de hello.
 
 ```bash
 exit
@@ -199,47 +199,47 @@ exit
 
 ## <a name="resize-vm-disk"></a>Redimensionner le disque de machine virtuelle
 
-Une fois qu’une machine virtuelle a été déployée, vous pouvez augmenter la taille du disque de système d’exploitation ou des disques de données attachés. Augmenter la taille d’un disque peut être utile lorsque vous avez besoin de plus d’espace de stockage ou d’un niveau de performances plus élevé (P10, P20 et P30). Notez que vous ne pouvez pas réduire la taille des disques.
+Une fois qu’un ordinateur virtuel a été déployé, disque de système d’exploitation hello ou les disques de données attaché peuvent être augmentées la taille. L’augmentation de taille hello d’un disque est utile lorsque vous avez besoin de davantage d’espace de stockage ou un niveau plus élevé de performances (P10, P20, P30). Notez que vous ne pouvez pas réduire la taille des disques.
 
-Avant d’augmenter la taille du disque, l’ID ou le nom du disque est nécessaire. Utilisez la commande [az disk list](/cli/azure/vm/disk#list) pour renvoyer tous les disques d’un groupe de ressources. Notez le nom du disque que vous souhaitez redimensionner.
+Avant d’augmenter la taille du disque, hello Id ou nom du disque de hello est nécessaire. Hello d’utilisation [liste des disques az](/cli/azure/vm/disk#list) tooreturn commande tous les disques dans un groupe de ressources. Prenez note du nom du disque hello que vous aimeriez tooresize.
 
 ```azurecli-interactive 
 az disk list -g myResourceGroupDisk --query '[*].{Name:name,Gb:diskSizeGb,Tier:accountType}' --output table
 ```
 
-La machine virtuelle doit également être libérée. Utilisez la commande [az vm deallocate]( /cli/azure/vm#deallocate) pour arrêter la machine virtuelle et la libérer.
+Hello machine virtuelle doit également être libéré. Hello d’utilisation [az vm désallouer]( /cli/azure/vm#deallocate) commande toostop et désallouer hello machine virtuelle.
 
 ```azurecli-interactive 
 az vm deallocate --resource-group myResourceGroupDisk --name myVM
 ```
 
-Utilisez la commande [az disk update](/cli/azure/vm/disk#update) pour redimensionner le disque. Cet exemple redimensionne un disque nommé *myDataDisk* pour que sa taille soit de 1 To.
+Hello d’utilisation [mise à jour du disque az](/cli/azure/vm/disk#update) disque de commande tooresize hello. Cet exemple redimensionne un disque nommé *myDataDisk* too1 téraoctet.
 
 ```azurecli-interactive 
 az disk update --name myDataDisk --resource-group myResourceGroupDisk --size-gb 1023
 ```
 
-Une fois l’opération de redimensionnement terminée, démarrez la machine virtuelle.
+Une fois l’opération de redimensionnement hello terminée, démarrer hello machine virtuelle.
 
 ```azurecli-interactive 
 az vm start --resource-group myResourceGroupDisk --name myVM
 ```
 
-Si vous avez redimensionné le disque de système d’exploitation, la partition est automatiquement étendue. Si vous avez redimensionné un disque de données, toutes les partitions en cours doivent être étendues dans le système d’exploitation des machines virtuelles.
+Si vous avez redimensionné hello d’exploitation du disque système, partition de hello est automatiquement développé. Si vous avez redimensionné un disque de données, toutes les partitions en cours doivent toobe développée dans le système d’exploitation de machines virtuelles hello.
 
 ## <a name="snapshot-azure-disks"></a>Prendre une capture instantanée des disques Azure
 
-La capture instantanée du disque crée une copie en lecture seule à un moment donné du disque. Les captures instantanées de machine virtuelle Azure sont utiles pour enregistrer rapidement l’état d’une machine virtuelle avant d’apporter des modifications à la configuration. Si les modifications apportées à la configuration s’avèrent indésirables, l’état de la machine virtuelle peut être restauré à l’aide de la capture instantanée. Lorsqu’une machine virtuelle a plusieurs disques, une capture instantanée de chaque disque est prise. Pour les sauvegardes cohérentes des applications, pensez à arrêter la machine virtuelle avant de prendre des captures instantanées du disque. Vous pouvez également utiliser le [service Sauvegarde Azure](/azure/backup/), qui vous permet d’effectuer des sauvegardes automatisées alors que la machine virtuelle est en cours d’exécution.
+Un instantané de disque crée une copie uniquement, point-à-temps lecture du disque de hello. Les instantanés de machine virtuelle Azure sont utiles pour rapidement enregistrer l’état de hello d’une machine virtuelle avant d’apporter des modifications de configuration. En cas de hello hello modifications de configuration révèle toobe indésirables, état de la machine virtuelle peut être restaurée à l’aide de la capture instantanée de hello. Lorsqu’un ordinateur virtuel possède plusieurs disques, un instantané de chaque disque indépendamment hello d’autres. Pour effectuer des sauvegardes cohérentes d’application, envisagez l’arrêt hello machine virtuelle avant d’effectuer des captures instantanées de disque. Vous pouvez également utiliser hello [service Azure Backup](/azure/backup/), qui permet aux vous tooperform automatisée sauvegardes hello machine virtuelle est en cours d’exécution.
 
 ### <a name="create-snapshot"></a>Création d’un instantané
 
-Avant de créer une capture instantanée de disque de machine virtuelle, l’ID ou le nom du disque est nécessaire. Utilisez la commande [az vm show](https://docs.microsoft.com/en-us/cli/azure/vm#show) pour renvoyer l’ID du disque. Dans cet exemple, l’ID du disque est stocké dans une variable pour qu’il puisse être utilisé dans une étape ultérieure.
+Avant de créer un instantané de disque de machine virtuelle, hello Id ou nom de disque de hello est nécessaire. Hello d’utilisation [afficher de machine virtuelle az](https://docs.microsoft.com/en-us/cli/azure/vm#show) id de commande tooreturn hello disque. Dans cet exemple, l’id du disque hello est stocké dans une variable afin qu’il peut être utilisé dans une étape ultérieure.
 
 ```azurecli-interactive 
 osdiskid=$(az vm show -g myResourceGroupDisk -n myVM --query "storageProfile.osDisk.managedDisk.id" -o tsv)
 ```
 
-Maintenant que vous avez l’ID du disque de machine virtuelle, la commande suivante crée une capture instantanée du disque.
+Maintenant que vous avez id hello du disque de machine virtuelle hello, hello commande suivante crée un instantané du disque de hello.
 
 ```azurcli
 az snapshot create -g myResourceGroupDisk --source "$osdiskid" --name osDisk-backup
@@ -247,7 +247,7 @@ az snapshot create -g myResourceGroupDisk --source "$osdiskid" --name osDisk-bac
 
 ### <a name="create-disk-from-snapshot"></a>Création d’un disque à partir d’une capture instantanée
 
-Cet instantané peut ensuite être converti en disque qui peut être utilisé pour recréer la machine virtuelle.
+Cet instantané peut ensuite être converti en un disque, ce qui peut être utilisé toorecreate hello virtual machine.
 
 ```azurecli-interactive 
 az disk create --resource-group myResourceGroupDisk --name mySnapshotDisk --source osDisk-backup
@@ -255,13 +255,13 @@ az disk create --resource-group myResourceGroupDisk --name mySnapshotDisk --sour
 
 ### <a name="restore-virtual-machine-from-snapshot"></a>Restauration de la machine virtuelle à partir de l’instantané
 
-Pour illustrer la récupération de machine virtuelle, supprimez la machine virtuelle existante. 
+récupération de machine virtuelle toodemonstrate, ordinateur virtuel existant de suppression hello. 
 
 ```azurecli-interactive 
 az vm delete --resource-group myResourceGroupDisk --name myVM
 ```
 
-Créez une nouvelle machine virtuelle à l’aide du disque d’instantané.
+Créer un nouvel ordinateur virtuel à partir du disque de capture instantanée hello.
 
 ```azurecli-interactive 
 az vm create --resource-group myResourceGroupDisk --name myVM --attach-os-disk mySnapshotDisk --os-type linux
@@ -269,15 +269,15 @@ az vm create --resource-group myResourceGroupDisk --name myVM --attach-os-disk m
 
 ### <a name="reattach-data-disk"></a>Rattacher un disque de données
 
-Tous les disques de données doivent être rattachés à la machine virtuelle.
+Tous les disques de données doivent toobe rattaché toohello virtual machine.
 
-Trouvez d’abord le nom du disque de données à l’aide de la commande [az disk list](https://docs.microsoft.com/cli/azure/disk#list). Cet exemple place le nom du disque dans une variable nommée *datadisk*, qui est utilisée à l’étape suivante.
+Tout d’abord rechercher nom hello de disque de données à l’aide de hello [liste des disques az](https://docs.microsoft.com/cli/azure/disk#list) commande. Cet exemple place hello nom du disque hello dans une variable nommée *datadisk*, qui est utilisé dans l’étape suivante de hello.
 
 ```azurecli-interactive 
 datadisk=$(az disk list -g myResourceGroupDisk --query "[?contains(name,'myVM')].[name]" -o tsv)
 ```
 
-Utilisez la commande [az vm disk attach](https://docs.microsoft.com/cli/azure/vm/disk#attach) pour attacher le disque.
+Hello d’utilisation [attacher de disque de machine virtuelle az](https://docs.microsoft.com/cli/azure/vm/disk#attach) disque de commande tooattach hello.
 
 ```azurecli-interactive 
 az vm disk attach –g myResourceGroupDisk –-vm-name myVM –-disk $datadisk
@@ -296,7 +296,7 @@ Ce didacticiel vous a apporté des connaissances concernant les disques de machi
 > * Redimensionnement des disques
 > * Captures instantanées de disque
 
-Passez au didacticiel suivant pour en apprendre davantage sur l’automatisation de la configuration de machine virtuelle.
+Avance toohello toolearn de didacticiel suivant sur l’automatisation de configuration d’ordinateur virtuel.
 
 > [!div class="nextstepaction"]
-> [How to customize a Linux virtual machine on first boot](./tutorial-automate-vm-deployment.md) (Comment personnaliser une machine virtuelle Linux au premier démarrage)
+> [Automatiser la configuration de machine virtuelle](./tutorial-automate-vm-deployment.md)

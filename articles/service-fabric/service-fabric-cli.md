@@ -1,6 +1,6 @@
 ---
-title: "Prise en main de l’interface de ligne de commande Azure Service Fabric (sfctl)"
-description: "Découvrez comment utiliser l’interface de ligne de commande Azure Service Fabric. Apprenez à vous connecter à un cluster et à gérer des applications."
+title: "aaaGet main d’Azure Service Fabric CLI (sfctl)"
+description: "Découvrez comment toouse hello CLI d’Azure Service Fabric. Découvrez comment tooconnect tooa cluster et la manière dont les applications toomanage."
 services: service-fabric
 author: samedder
 manager: timlt
@@ -8,47 +8,47 @@ ms.service: service-fabric
 ms.topic: get-started-article
 ms.date: 08/22/2017
 ms.author: edwardsa
-ms.openlocfilehash: 5ce9adf6c82e3a5521883c5de1e0689d5bf0d94e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: f76e8ff65bb38dfb63791da0a23e19b93b337f6b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-service-fabric-command-line"></a>Ligne de commande Azure Service Fabric
 
-L’interface de ligne de commande Azure Service Fabric (sfctl) est un utilitaire de la ligne de commande pour l’interaction et de la gestion des entités Azure Service Fabric. Sfctl peut être utilisé avec des clusters Windows ou Linux. Sfctl s’exécute sur toute plateforme prenant en charge python.
+Bonjour Azure Service Fabric CLI (sfctl) est un utilitaire de ligne de commande pour l’interaction et de la gestion des entités de Azure Service Fabric. Sfctl peut être utilisé avec des clusters Windows ou Linux. Sfctl s’exécute sur toute plateforme prenant en charge python.
 
 ## <a name="prerequisites"></a>Composants requis
 
-Avant l’installation, vérifiez que python et pip sont installés dans votre environnement. Pour plus d’informations, examinez la [documentation de démarrage rapide de pip](https://pip.pypa.io/en/latest/quickstart/)et la [documentation d’installation officielle de python](https://wiki.python.org/moin/BeginnersGuide/Download).
+Tooinstallation préalable, assurez-vous que votre environnement a python et pip installé. Pour plus d’informations, examinez hello [pip documentation de démarrage rapide](https://pip.pypa.io/en/latest/quickstart/)et officiel [python installer la documentation](https://wiki.python.org/moin/BeginnersGuide/Download).
 
-Il est recommandé d’utiliser python 3.6 même si python 2.7 et 3.6 sont tous deux pris en charge.
+Si les deux python 2.7 et 3.6 est prises en charge, il est recommandé de toouse python 3.6.
 
 ## <a name="install"></a>Installer
 
-L’ interface de ligne de commande Azure Service Fabric (sfctl) est empaquetée en tant que package python. Pour installer la version la plus récente, exécutez :
+Bonjour Azure Service Fabric CLI (sfctl) est fourni comme un package python. tooinstall hello version la plus récente s’exécuter :
 
 ```bash
 pip install sfctl
 ```
 
-Après l’installation, exécutez `sfctl -h` pour obtenir des informations sur les commandes disponibles.
+Après l’installation, exécutez `sfctl -h` tooget plus d’informations sur les commandes disponibles.
 
 ## <a name="cli-syntax"></a>Syntaxe d’Azure CLI
 
 Les commandes sont toujours préfixées avec `sfctl`. Pour obtenir des informations générales sur les commandes dont vous pouvez vous servir, utilisez `sfctl -h`. Pour obtenir de l’aide avec une seule commande, utilisez `sfctl <command> -h`.
 
-Les commandes suivent une structure renouvelée, avec la cible de la commande qui précède le verbe ou l’action :
+Commandes suivent une structure reproductible, avec une cible de hello hello de commandes de verbe de hello ou l’action précédente :
 
 ```azurecli
 sfctl <object> <action>
 ```
 
-Dans cet exemple, `<object>` est la cible de `<action>`.
+Dans cet exemple, `<object>` est cible hello pour `<action>`.
 
 ## <a name="select-a-cluster"></a>Sélectionner un cluster
 
-Avant d’effectuer toute opération, vous devez sélectionner un cluster auquel vous connecter. Vous pouvez par exemple exécuter la commande suivante pour sélectionner un cluster et vous y connecter avec le nom `testcluster.com`.
+Avant d’effectuer des opérations, vous devez sélectionner un tooconnect de cluster à. Par exemple, exécutez hello suivant tooselect et se connecter toohello cluster avec le nom de hello `testcluster.com`.
 
 > [!WARNING]
 > N’utilisez pas de clusters Service Fabric non sécurisés dans un environnement de production.
@@ -57,27 +57,27 @@ Avant d’effectuer toute opération, vous devez sélectionner un cluster auquel
 sfctl cluster select --endpoint http://testcluster.com:19080
 ```
 
-Le point de terminaison de cluster doit inclure le préfixe `http` ou `https`. Il doit inclure le port pour la passerelle HTTP. Le port et l’adresse sont identiques à l’URL de Service Fabric Explorer.
+point de terminaison Hello cluster doit être préfixé par `http` ou `https`. Il doit inclure le port hello pour la passerelle HTTP hello. adresse et le port de hello sont hello identique hello URL de Service Fabric Explorer.
 
-Pour les clusters qui sont sécurisés avec un certificat, vous pouvez spécifier un certificat PEM encodé. Le certificat peut être spécifié en tant que fichier unique ou en tant qu’ensemble de cert et de clé.
+Pour les clusters qui sont sécurisés avec un certificat, vous pouvez spécifier un certificat PEM encodé. certificat de Hello peut être spécifié en tant qu’un seul fichier ou le certificat et la paire de clés.
 
 ```azurecli
 sfctl cluster select --endpoint https://testsecurecluster.com:19080 --pem ./client.pem
 ```
 
-Pour plus d’informations, consultez [Se connecter à un cluster sécurisé](service-fabric-connect-to-secure-cluster.md).
+Pour plus d’informations, consultez [cluster Azure Service Fabric sécurisée de se connecter tooa](service-fabric-connect-to-secure-cluster.md).
 
 ## <a name="basic-operations"></a>Opérations de base
 
-Les informations de connexion du cluster persistent dans plusieurs sessions sfctl. Une fois qu’un cluster Service Fabric est sélectionné, vous pouvez exécuter n’importe quelle commande Service Fabric sur le cluster.
+Les informations de connexion du cluster persistent dans plusieurs sessions sfctl. Après avoir sélectionné un cluster Service Fabric, vous pouvez exécuter n’importe quelle commande de l’infrastructure de Service sur le cluster de hello.
 
-Par exemple, pour obtenir l’état d’intégrité d’un cluster Service Fabric, utilisez la commande suivante :
+Par exemple, tooget hello état d’intégrité de cluster Service Fabric, utilisez hello de commande suivante :
 
 ```azurecli
 sfctl cluster health
 ```
 
-La commande débouche sur le résultat suivant :
+résultats de la commande Hello Bonjour suivant de sortie :
 
 ```json
 {
@@ -106,31 +106,31 @@ La commande débouche sur le résultat suivant :
 
 Quelques suggestions et conseils pour la résolution des problèmes courants.
 
-### <a name="convert-a-certificate-from-pfx-to-pem-format"></a>Convertir un certificat au format PFX en PEM
+### <a name="convert-a-certificate-from-pfx-toopem-format"></a>Convertir un certificat PFX tooPEM format
 
-L’interface de ligne de commande Service Fabric prend en charge les certificats côté client en tant que fichiers PEM (extension .pem). Si vous utilisez des fichiers PFX à partir de Windows, vous devez convertir ces certificats au format PEM. Pour convertir un fichier PFX en fichier PEM, utilisez la commande suivante :
+Hello Service Fabric CLI prend en charge les certificats côté client en tant que les fichiers PEM (extension .pem). Si vous utilisez des fichiers PFX à partir de Windows, vous devez convertir ces format tooPEM de certificats. tooconvert un fichier PEM de tooa du fichier PFX, utilisez la commande suivante :
 
 ```bash
 openssl pkcs12 -in certificate.pfx -out mycert.pem -nodes
 ```
 
-Pour plus d’informations, consultez la [documentation OpenSSL](https://www.openssl.org/docs/).
+Pour plus d’informations, consultez hello [OpenSSL documentation](https://www.openssl.org/docs/).
 
 ### <a name="connection-issues"></a>Problèmes de connexion
 
-Certaines opérations peuvent générer le message suivant :
+Certaines opérations peuvent générer hello message suivant :
 
-`Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known`
+`Failed tooestablish a new connection: [Errno 8] nodename nor servname provided, or not known`
 
-Vérifiez que le point de terminaison du cluster spécifié est disponible et à l’écoute. Vérifiez également que l’interface utilisateur de Service Fabric Explorer est disponible au niveau de cet hôte et de ce port. Utilisez `sfctl cluster select` pour mettre à jour le point de terminaison.
+Vérifiez que hello spécifié de point de terminaison de cluster est disponible et à l’écoute. En outre, vérifiez que hello que l’interface utilisateur de Service Fabric Explorer est disponible à l’hôte et le port. point de terminaison de hello tooupdate, utilisez `sfctl cluster select`.
 
 ### <a name="detailed-logs"></a>Journaux détaillés
 
-Les journaux détaillés peuvent souvent être utiles lorsque vous déboguez ou signalez un problème. Il existe un indicateur `--debug` général qui accroît les commentaires des fichiers journaux.
+Les journaux détaillés peuvent souvent être utiles lorsque vous déboguez ou signalez un problème. Il existe un global `--debug` indicateur qui augmente de détail hello de fichiers journaux.
 
 ### <a name="command-help-and-syntax"></a>Aide et syntaxe de commande
 
-Pour obtenir de l’aide sur une commande spécifique ou un groupe de commandes, utilisez l’indicateur `-h` :
+Pour l’aide sur une commande spécifique ou un groupe de commandes, utilisez hello `-h` indicateur :
 
 ```azurecli
 sfctl application -h
@@ -144,5 +144,5 @@ sfctl application create -h
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* [Déployer une application avec l’interface de ligne de commande Azure Service Fabric](service-fabric-application-lifecycle-sfctl.md)
+* [Déployer une application avec hello CLI d’Azure Service Fabric](service-fabric-application-lifecycle-sfctl.md)
 * [Prise en main de Service Fabric sur Linux](service-fabric-get-started-linux.md)

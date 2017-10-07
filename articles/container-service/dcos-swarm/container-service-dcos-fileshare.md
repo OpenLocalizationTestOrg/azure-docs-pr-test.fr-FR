@@ -1,6 +1,6 @@
 ---
-title: Partage de fichiers pour un cluster DC/OS Azure | Microsoft Docs
-description: "Créer et monter un partage de fichiers sur un cluster DC/OS dans Azure Container Service"
+title: "partage d’aaaFile pour le cluster de contrôleur de domaine/système d’exploitation Azure | Documents Microsoft"
+description: "Créer et monter un partage tooa contrôleur de domaine/système d’exploitation de fichiers dans le Service de conteneur Azure"
 services: container-service
 documentationcenter: 
 author: julienstroheker
@@ -17,29 +17,29 @@ ms.workload: na
 ms.date: 06/07/2017
 ms.author: juliens
 ms.custom: mvc
-ms.openlocfilehash: 549b52bfb0a0268f754da26c6a374b267861f6d0
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: d18090d414a3e00202ccde442ac9b865d74f1e34
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-and-mount-a-file-share-to-a-dcos-cluster"></a>Créer et monter un partage de fichiers sur un cluster DC/OS
-Ce didacticiel explique en détail comment créer un partage de fichiers dans Azure et comment le monter sur chaque agent et chaque maître du cluster DC/OS. La configuration d’un partage de fichiers facilite le partage de fichiers sur votre cluster, par exemple la configuration, l’accès, les journaux et bien plus encore. Dans ce didacticiel, les tâches suivantes sont effectuées :
+# <a name="create-and-mount-a-file-share-tooa-dcos-cluster"></a>Créer et monter un cluster de contrôleur de domaine/système d’exploitation de tooa partage de fichiers
+Ce didacticiel décrit en détail comment toocreate un fichier de partage dans Azure et l’installer sur chaque agent et le masque de hello cluster du contrôleur de domaine/système d’exploitation. Configuration d’un partage de fichiers rend plus facile tooshare fichiers sur votre cluster telles que la configuration, l’accès, les journaux et bien plus encore. Bonjour tâches suivantes est effectuée dans ce didacticiel :
 
 > [!div class="checklist"]
-> * Créer un compte de stockage Azure
+> * Création d'un compte de stockage Azure
 > * Créer un partage de fichiers
-> * Montage du partage sur votre cluster DC/OS
+> * Monter le partage hello dans un cluster de contrôleur de domaine/système d’exploitation hello
 
-Vous avez besoin d’un cluster DC/OS ACS pour suivre les étapes de ce didacticiel. Le cas échéant, cet [exemple de script](./../kubernetes/scripts/container-service-cli-deploy-dcos.md) peut en créer un pour vous.
+Vous avez besoin d’un contrôleur de domaine/OS ACS hello toocomplete de cluster les étapes de ce didacticiel. Le cas échéant, cet [exemple de script](./../kubernetes/scripts/container-service-cli-deploy-dcos.md) peut en créer un pour vous.
 
-Ce didacticiel requiert Azure CLI version 2.0.4 ou ultérieure. Exécutez `az --version` pour trouver la version. Si vous devez effectuer une mise à niveau, consultez [Installation d’Azure CLI 2.0]( /cli/azure/install-azure-cli). 
+Ce didacticiel requiert hello CLI d’Azure version 2.0.4 ou version ultérieure. Exécutez `az --version` version de hello toofind. Si vous avez besoin de tooupgrade, consultez [installer Azure CLI 2.0]( /cli/azure/install-azure-cli). 
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
 ## <a name="create-a-file-share-on-microsoft-azure"></a>Créer un partage de fichiers sur Microsoft Azure
 
-Avant d’utiliser un partage de fichiers Azure avec un cluster ACS DC/OS, vous devez créer le compte de stockage et le partage de fichiers. Exécutez le script suivant pour créer le stockage et le partage de fichiers. Mettez à jour les paramètres avec ceux de votre environnement.
+Avant d’utiliser un partage de fichiers Azure avec un cluster ACS contrôleur de domaine/système d’exploitation, le partage de fichier et de compte de stockage hello doit être créé. Exécutez hello suivant script toocreate hello stockage et le fichier partage. Mettre à jour les paramètres hello spéciales à partir de votre environnement.
 
 ```azurecli-interactive
 # Change these four parameters
@@ -48,23 +48,23 @@ DCOS_PERS_RESOURCE_GROUP=myResourceGroup
 DCOS_PERS_LOCATION=eastus
 DCOS_PERS_SHARE_NAME=dcosshare
 
-# Create the storage account with the parameters
+# Create hello storage account with hello parameters
 az storage account create -n $DCOS_PERS_STORAGE_ACCOUNT_NAME -g $DCOS_PERS_RESOURCE_GROUP -l $DCOS_PERS_LOCATION --sku Standard_LRS
 
-# Export the connection string as an environment variable, this is used when creating the Azure file share
+# Export hello connection string as an environment variable, this is used when creating hello Azure file share
 export AZURE_STORAGE_CONNECTION_STRING=`az storage account show-connection-string -n $DCOS_PERS_STORAGE_ACCOUNT_NAME -g $DCOS_PERS_RESOURCE_GROUP -o tsv`
 
-# Create the share
+# Create hello share
 az storage share create -n $DCOS_PERS_SHARE_NAME
 ```
 
-## <a name="mount-the-share-in-your-cluster"></a>Monter le partage sur votre cluster
+## <a name="mount-hello-share-in-your-cluster"></a>Monter le partage hello dans votre cluster
 
-Ensuite, le partage de fichiers doit être monté sur chaque machine virtuelle à l’intérieur de votre cluster. Cette tâche est effectuée à l’aide de l’outil/protocole cifs. Vous pouvez effectuer manuellement cette opération de montage sur chaque nœud du cluster, ou exécuter un script sur chacun d’eux.
+Ensuite, hello de partage de fichiers a besoin toobe monté sur chaque ordinateur virtuel à l’intérieur de votre cluster. Cette tâche est effectuée à l’aide de hello cifs outil/protocole. opération de montage Hello peut être effectuée manuellement sur chaque nœud du cluster de hello, ou en exécutant un script sur chaque nœud de cluster de hello.
 
-Dans cet exemple, deux scripts sont exécutés, l’un pour monter le partage de fichiers Azure, l’autre pour exécuter ce script sur chaque nœud du cluster DC/OS.
+Dans cet exemple, deux scripts sont exécutés, une toomount hello Azure partage de fichiers et une deuxième toorun ce script sur chaque nœud du cluster de contrôleur de domaine/système d’exploitation hello.
 
-Tout d’abord, vous devez connaître le nom du compte de stockage Azure et la clé d’accès. Pour récupérer ces informations, utilisez les commandes suivantes. Notez-les, car elles vont être utiles à une prochaine étape.
+Tout d’abord, le nom de compte de stockage Windows Azure hello et la clé d’accès sont nécessaires. Exécutez hello suivant de commandes tooget ces informations. Notez-les, car elles vont être utiles à une prochaine étape.
 
 Nom du compte de stockage :
 
@@ -79,27 +79,27 @@ Clé d’accès au compte de stockage :
 az storage account keys list --resource-group myResourceGroup --account-name $STORAGE_ACCT --query "[0].value" -o tsv
 ```
 
-Récupérez ensuite le nom de domaine complet du maître DC/OS et stockez-le dans une variable.
+Ensuite, obtenez hello hello DC/OS maître et le stocker dans une variable de nom de domaine complet.
 
 ```azurecli-interactive
 FQDN=$(az acs list --resource-group myResourceGroup --query "[0].masterProfile.fqdn" --output tsv)
 ```
 
-Copiez votre clé privée dans le nœud principal. Cette clé est nécessaire pour créer une connexion ssh avec tous les nœuds du cluster. Si une valeur non définie par défaut a été utilisée lors de la création du cluster, mettez à jour le nom d’utilisateur. 
+Copiez votre nœud principal toohello de clé privée. Cette clé est nécessaire toocreate un ssh connexion avec tous les nœuds de cluster de hello. Modifiez le nom d’utilisateur de hello si une valeur par défaut a été utilisée lors de la création du cluster de hello. 
 
 ```azurecli-interactive
 scp ~/.ssh/id_rsa azureuser@$FQDN:~/.ssh
 ```
 
-Connectez-vous par SSH au maître (ou premier maître) de votre cluster DC/OS. Si une valeur non définie par défaut a été utilisée lors de la création du cluster, mettez à jour le nom d’utilisateur.
+Créez une connexion SSH avec hello masque (ou de hello première) de votre cluster basé sur le système d’exploitation contrôleur de domaine. Modifiez le nom d’utilisateur de hello si une valeur par défaut a été utilisée lors de la création du cluster de hello.
 
 ```azurecli-interactive
 ssh azureuser@$FQDN
 ```
 
-Créez un fichier nommé **cifsMount.sh** et copiez le contenu suivant dedans. 
+Créez un fichier nommé **cifsMount.sh**, et en hello de copie suivant contenu dans celui-ci. 
 
-Ce script est utilisé pour monter le partage de fichiers Azure. Mettez à jour les variables `STORAGE_ACCT_NAME` et `ACCESS_KEY` avec les informations recueillies précédemment.
+Ce script est un partage de fichiers Azure hello toomount utilisé. Hello de mise à jour `STORAGE_ACCT_NAME` et `ACCESS_KEY` variables avec des informations de hello recueillies précédemment.
 
 ```azurecli-interactive
 #!/bin/bash
@@ -108,53 +108,53 @@ Ce script est utilisé pour monter le partage de fichiers Azure. Mettez à jour 
 STORAGE_ACCT_NAME=mystorageaccount
 ACCESS_KEY=mystorageaccountKey
 
-# Install the cifs utils, should be already installed
+# Install hello cifs utils, should be already installed
 sudo apt-get update && sudo apt-get -y install cifs-utils
 
-# Create the local folder that will contain our share
+# Create hello local folder that will contain our share
 if [ ! -d "/mnt/share/dcosshare" ]; then sudo mkdir -p "/mnt/share/dcosshare" ; fi
 
-# Mount the share under the previous local folder created
+# Mount hello share under hello previous local folder created
 sudo mount -t cifs //$STORAGE_ACCT_NAME.file.core.windows.net/dcosshare /mnt/share/dcosshare -o vers=3.0,username=$STORAGE_ACCT_NAME,password=$ACCESS_KEY,dir_mode=0777,file_mode=0777
 ```
-Créez un deuxième fichier nommé **getNodesRunScript.sh** et copiez le contenu suivant dans le fichier. 
+Créez un deuxième fichier nommé **getNodesRunScript.sh** et hello de copie suivant contenu dans le fichier de hello. 
 
-Ce script détecte tous les nœuds de cluster, puis exécute le script **cifsMount.sh** pour monter le partage de fichiers sur chacun d’eux.
+Ce script détecte tous les nœuds de cluster, puis exécute hello **cifsMount.sh** partage de fichiers de script toomount hello sur chacun.
 
 ```azurecli-interactive
 #!/bin/bash
 
-# Install jq used for the next command
+# Install jq used for hello next command
 sudo apt-get install jq -y
 
-# Get the IP address of each node using the mesos API and store it inside a file called nodes
+# Get hello IP address of each node using hello mesos API and store it inside a file called nodes
 curl http://leader.mesos:1050/system/health/v1/nodes | jq '.nodes[].host_ip' | sed 's/\"//g' | sed '/172/d' > nodes
 
-# From the previous file created, run our script to mount our share on each node
+# From hello previous file created, run our script toomount our share on each node
 cat nodes | while read line
 do
   ssh `whoami`@$line -o StrictHostKeyChecking=no < ./cifsMount.sh
   done
 ```
 
-Exécutez le script pour monter le partage de fichiers Azure sur tous les nœuds du cluster.
+Partage de fichiers Azure hello hello exécution script toomount sur tous les nœuds du cluster de hello.
 
 ```azurecli-interactive
 sh ./getNodesRunScript.sh
 ```  
 
-Le partage de fichiers est désormais accessible sur `/mnt/share/dcosshare` dans chaque nœud du cluster.
+Hello partage de fichiers est désormais accessible à `/mnt/share/dcosshare` sur chaque nœud du cluster de hello.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Dans ce didacticiel, un partage de fichiers Azure a été rendu disponible sur un cluster DC/OS en suivant les étapes suivantes :
+Dans ce didacticiel Azure partage de fichiers a été faite tooa disponible cluster de contrôleur de domaine/système d’exploitation à l’aide des étapes de hello :
 
 > [!div class="checklist"]
-> * Créer un compte de stockage Azure
+> * Création d'un compte de stockage Azure
 > * Créer un partage de fichiers
-> * Monter le partage sur votre cluster DC/OS
+> * Monter le partage hello dans un cluster de contrôleur de domaine/système d’exploitation hello
 
-Passez au didacticiel suivant pour en savoir plus sur l’intégration d’un service Azure Container Registry avec DC/OS dans Azure.  
+Avance toohello toolearn de didacticiel suivant sur l’intégration d’un Registre de conteneur Azure avec contrôleur de domaine/système d’exploitation dans Azure.  
 
 > [!div class="nextstepaction"]
 > [Équilibrer la charge des applications](container-service-dcos-acr.md)

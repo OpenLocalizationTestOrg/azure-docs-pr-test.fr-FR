@@ -1,6 +1,6 @@
 ---
-title: Interface utilisateur Microsoft Azure StorSimple Data Manager | Microsoft Docs
-description: "Décrit comment utiliser l’interface utilisateur du service StorSimple Data Manager (version préliminaire privée)"
+title: aaaMicrosoft Azure StorSimple Data Manager UI | Documents Microsoft
+description: "Décrit comment toouse StorSimple Data Manager, repérez l’interface utilisateur (aperçu privé)"
 services: storsimple
 documentationcenter: NA
 author: vidarmsft
@@ -14,98 +14,98 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 11/22/2016
 ms.author: vidarmsft
-ms.openlocfilehash: 53a8599df2c647613122cd791b680e2e658586b0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b0ee12b3e495400b54e48eb1a98c68b1af2e5f7a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-using-the-storsimple-data-manager-service-ui-private-preview"></a>Gérer l’utilisation de l’interface utilisateur du service StorSimple Data Manager (version préliminaire privée)
+# <a name="manage-using-hello-storsimple-data-manager-service-ui-private-preview"></a>Gérer à l’aide du service de données de StorSimple Manager hello UI (aperçu privé)
 
-Cet article vous explique comment utiliser l’interface utilisateur StorSimple Data Manager pour effectuer la transformation des données hébergées sur les appareils StorSimple série 8000. Les données transformées peuvent ensuite être consommées par d’autres services Azure, comme Azure Media Services, Azure HDInsight, Azure Machine Learning et Azure Search. 
+Cet article explique comment vous pouvez utiliser hello transformation des données StorSimple Data Manager UI tooperform sur les données résidant sur les périphériques série StorSimple 8000 hello. Hello données transformées peuvent ensuite être consommées par d’autres services Azure comme Azure Media Services, Azure HDInsight, Azure Machine Learning et Azure Search. 
 
 
 ## <a name="use-storsimple-data-transformation"></a>Utiliser la transformation des données StorSimple
 
-StorSimple Data Manager est la ressource dans laquelle il est possible d’instancier la transformation des données. Le service de transformation de données vous permet de déplacer des données de votre appareil StorSimple sur site vers des objets blob du stockage Azure. Par conséquent, dans le workflow, il vous faudra spécifier les détails sur l’appareil StorSimple et les données intéressantes que vous souhaitez transférer sur le compte de stockage.
+Hello Data StorSimple Manager est ressource hello dans lequel la Transformation de données peut être instanciée. Hello service de Transformation de données vous permet de déplacer des données à partir de votre tooblobs de périphérique StorSimple local dans le stockage Azure. Par conséquent, dans le flux de travail, vous devez les détails de hello toospecify sur vos données StorSimple hello et des appareils d’intérêt que vous souhaitez le compte de stockage toomove toohello.
 
 ### <a name="create-a-storsimple-data-manager-service"></a>Créer un service StorSimple Data Manager
 
-Pour créer un service StorSimple Data Manager, procédez comme suit.
+Effectuer hello suivant les étapes toocreate un service de données de StorSimple Manager.
 
-1. Pour créer un service StorSimple Data Manager, accédez à l’adresse [https://aka.ms/HybridDataManager](https://aka.ms/HybridDataManager).
+1. toocreate un service de données de StorSimple Manager, accédez trop[https://aka.ms/HybridDataManager](https://aka.ms/HybridDataManager)
 
-2. Cliquez sur l’icône **+**, puis recherchez StorSimple Data Manager. Cliquez sur votre service StorSimple Data Manager, puis sur **Créer**.
+2. Cliquez sur hello  **+**  icône et recherche pour le Gestionnaire de données StorSimple. Cliquez sur votre service StorSimple Data Manager, puis sur **Créer**.
 
-3. Si votre abonnement prend en charge la création de ce service, le panneau suivant s’affiche.
+3. Si votre abonnement est activé pour la création de ce service, vous consultez hello suivant du panneau.
 
     ![Créer une ressource StorSimple Data Manager](./media/storsimple-data-manager-ui/create-new-data-manager-service.png)
 
-4. Indiquez les entrées, puis cliquez sur **Créer**. L’emplacement spécifié doit être celui qui héberge vos comptes de stockage et votre service StorSimple Manager. Actuellement, seules les États-Unis de l’Ouest et l’Europe de l’Ouest sont prises en charge. Par conséquent, votre service StorSimple Manager, votre service Data Manager et le compte de stockage associé doivent tous être situés dans les régions précédemment citées prises en charge. La création du service prend environ 1 minute.
+4. Entrez les entrées hello et cliquez sur **créer**. Hello spécifié l’emplacement doit être hello qui héberge vos comptes de stockage et votre service StorSimple Manager. Actuellement, seules les États-Unis de l’Ouest et l’Europe de l’Ouest sont prises en charge. Par conséquent, votre service StorSimple Manager, service Manager de données et hello compte de stockage associé doit être dans des régions hello précédent pris en charge. Cela prend environ un service de hello toocreate minute.
 
 ### <a name="create-a-data-transformation-job-definition"></a>Créer une définition de travail de transformation de données
 
-Au sein d’un service StorSimple Data Manager, vous devez créer une définition de travail de transformation de données. Une définition de travail spécifie des détails sur les données que vous souhaitez transférer dans un compte de stockage au format natif. 
+Dans un service de données de StorSimple Manager, vous devez toocreate une définition de tâche de transformation de données. Une définition de travail spécifie les détails de données hello qui vous intéressez le déplacement dans un compte de stockage dans le format natif hello. 
 
-Procédez comme suit pour créer un travail de transformation de données.
+Effectuer hello suivant les étapes toocreate une nouvelle définition de tâche de transformation de données.
 
-1.  Accédez au service créé. Cliquez sur **+ Définition du travail**.
+1.  Accédez à service toohello que vous avez créé. Cliquez sur **+ Définition du travail**.
 
     ![Cliquez sur +Définition du travail](./media/storsimple-data-manager-ui/click-add-job-definition.png)
 
-2. Le nouveau panneau de définition de travail s’ouvre. Attribuez un nom à votre définition de travail, puis cliquez sur **Source**. Dans le panneau **Configurer la source de données**, spécifiez les détails de votre appareil StorSimple et les données intéressantes.
+2. nouveau panneau de définition de tâche Hello s’ouvre. Attribuez un nom à votre définition de travail, puis cliquez sur **Source**. Bonjour **configurer la source de données** panneau, spécifiez les détails de hello de votre appareil StorSimple, hello des données d’intérêt.
 
     ![Créer une définition de travail](./media/storsimple-data-manager-ui//create-new-job-deifnition.png)
 
-3. Dans la mesure où il s’agit d’un nouveau service Data Manager, aucun référentiel de données n’est configuré. Pour ajouter votre instance StorSimple manager en tant que référentiel de données, cliquez sur **Ajouter nouveau** dans la liste déroulante des référentiels de données, puis cliquez sur **Add Data Repository** (Ajouter un référentiel de données).
+3. Dans la mesure où il s’agit d’un nouveau service Data Manager, aucun référentiel de données n’est configuré. tooadd votre StorSimple Manager en tant que référentiel de données, cliquez sur **ajouter un nouveau** dans hello dropdown de référentiel de données, puis cliquez sur **ajouter un référentiel de données**.
 
-4. Sélectionnez **StorSimple 8000 series Manager** (StorSimple Manager série 8000) en tant que type de référentiel, puis saisissez les propriétés de votre instance **StorSimple Manager**. Pour le champ **ID de ressource**, vous devez saisir le numéro avant le symbole **:** dans la clé d’enregistrement de votre instance StorSimple Manager.
+4. Choisissez **Manager pour la série StorSimple 8000** comme référentiel de hello tapez et entrez les propriétés hello de votre **StorSimple Manager**. Pourquoi **Id de ressource** champ, vous devez tooenter hello avant hello **:** dans la clé d’inscription de hello de votre StorSimple manager.
 
     ![Créer une source de données](./media/storsimple-data-manager-ui/create-new-data-source.png)
 
-5.  Une fois l’opération terminée, cliquez sur **OK**. Votre référentiel de données est enregistré, et cette instance StorSimple Manager peut être réutilisée dans d’autres définitions de travail, sans nouvelle saisie de ces paramètres. Une fois que vous avez cliqué sur **OK**, attendez quelques secondes pour voir apparaître StorSimple Manager dans la liste déroulante.
+5.  Une fois l’opération terminée, cliquez sur **OK**. Votre référentiel de données est enregistré, et cette instance StorSimple Manager peut être réutilisée dans d’autres définitions de travail, sans nouvelle saisie de ces paramètres. Il prend quelques secondes après avoir cliqué sur **OK** pour hello tooshow StorSimple Manager haut dans la liste déroulante de hello.
 
-6.  Dans le panneau **Configurer la source de données**, saisissez le nom de l’appareil et le nom de volume associé à vos données intéressantes.
+6.  Bonjour **configurer la source de données** panneau, entrez le nom de l’appareil hello et hello nom volume de vos données d’intérêt.
 
-7.  Dans la sous-section **Filtrer**, saisissez le répertoire racine comportant vos données intéressantes (ce champ doit commencer par `\`). Les filtres de fichiers s’ajoutent également ici.
+7.  Bonjour **filtre** sous-section, entrez le répertoire racine hello qui contient vos données d’intérêt (ce champ doit commencer par un `\`). Les filtres de fichiers s’ajoutent également ici.
 
-8.  Le service de transformation de données traite les données qui sont envoyées à Azure via des instantanés. Durant l’exécution du travail, vous pouvez décider de procéder à une sauvegarde à chaque itération (pour traiter les données les plus récentes) ou d’utiliser la dernière sauvegarde existante dans le cloud (si vous traitez des données archivées).
+8.  service de transformation de données Hello fonctionne sur les données de salutation toohello Azure sont transmies via des instantanés. Lors de l’exécution de cette tâche, vous pouvez choisir tootake une sauvegarde chaque fois que cette tâche est exécutée (toowork sur les données les plus récentes) ou toouse hello dernière sauvegarde existant dans le cloud de hello (si vous travaillez sur des données archivées).
 
     ![Nouveaux détails de la source de données](./media/storsimple-data-manager-ui/new-data-source-details.png)
 
-9. Ensuite, vous devez configurer les paramètres de la cible. Il existe 2 types de cibles prises en charge : les comptes de stockage Azure et les comptes Azure Media Services. Choisissez les comptes de stockage, afin de placer des fichiers dans des objets blob de ce compte. Choisissez le compte de services multimédia, afin de placer des fichiers dans les ressources de ce compte. Là encore, il nous faut ajouter un référentiel. Dans la liste déroulante, sélectionnez **Ajouter nouveau**, puis **Configuration des paramètres**.
+9. Ensuite, les paramètres de cible de hello doivent toobe configuré. Il existe 2 types de cibles prises en charge : les comptes de stockage Azure et les comptes Azure Media Services. Choisissez les comptes de stockage tooput fichiers dans des objets BLOB dans ce compte. Choisissez le compte media services tooput fichiers en actifs dans ce compte. Là encore, nous devons tooadd un référentiel. Dans la liste déroulante de hello, sélectionnez **ajouter un nouveau** , puis **configurer les paramètres**.
 
     ![Créer un récepteur de données](./media/storsimple-data-manager-ui/create-new-data-sink.png)
 
-10. Ici, vous pouvez sélectionner le type de référentiel que vous souhaitez ajouter et les autres paramètres qui lui sont associés. Dans les deux cas, une file d’attente de stockage est créée durant l’exécution du travail. Cette file d’attente est renseignée avec des messages sur les objets blob transformés, au fur et à mesure de leur mise à disposition. Le nom de cette file d’attente est identique à celui de la définition du travail. Si vous sélectionnez **Services Multimédia** comme type de référentiel, vous pouvez également saisir les informations d’identification du compte de stockage à l’emplacement de création de la file d’attente.
+10. Ici, vous pouvez sélectionner type hello du référentiel tooadd et hello autres paramètres associés au référentiel de hello. Dans les deux cas, une file d’attente de stockage est créé lors de la tâche de hello s’exécute. Cette file d’attente est renseignée avec des messages sur les objets blob transformés, au fur et à mesure de leur mise à disposition. nom de Hello de cette file d’attente est hello identique au nom de la définition de la tâche hello hello. Si vous sélectionnez **Media Services** en tant que type de référentiel hello, puis vous pouvez également entrer informations d’identification du compte de stockage dans lequel la file d’attente hello est créé.
 
     ![Détails sur le nouveau récepteur de données](./media/storsimple-data-manager-ui/new-data-sink-details.png)
 
-11. Une fois le référentiel de données ajouté (cette opération prend quelques secondes), vous trouverez le référentiel dans la liste déroulante de l’option **Nom de compte cible**.  Choisissez la cible dont vous avez besoin.
+11. Après avoir ajouté un référentiel de données hello (qui prend quelques secondes), vous trouverez les référentiel hello dans la liste déroulante hello hello **nom du compte cible**.  Choisissez la cible hello dont vous avez besoin.
 
-12. Cliquez sur **OK** pour créer la définition du travail. Votre définition de travail est désormais configurée. Vous pouvez utiliser cette définition de travail plusieurs fois via l’interface utilisateur.
+12. Cliquez sur **OK** toocreate définition de la tâche hello. Votre définition de travail est désormais configurée. Vous pouvez utiliser cette définition de tâche plusieurs fois via l’interface utilisateur de hello.
 
     ![Ajouter une définition de travail](./media/storsimple-data-manager-ui/add-new-job-definition.png)
 
-### <a name="run-the-job-definition"></a>Exécuter la définition de travail
+### <a name="run-hello-job-definition"></a>Exécuter la définition de la tâche hello
 
-Chaque fois qu’il vous est nécessaire de transférer des données de StorSimple vers le compte de stockage spécifié dans la définition de travail, vous devez appeler cette dernière. Il existe une certaine flexibilité dans la façon de modifier les paramètres chaque fois que vous appelez le travail. La procédure comporte trois étapes :
+Chaque fois que vous avez besoin de toomove données StorSimple toohello compte de stockage que vous avez spécifié dans la définition de la tâche hello, vous devez tooinvoke il. Il existe une certaine flexibilité lors de la modification des paramètres de hello chaque fois que vous appelez le travail de hello. étapes de Hello sont les suivantes :
 
-1. Sélectionnez votre service StorSimple Data Manager, puis accédez à **Analyse**. Cliquez sur **Exécuter maintenant**.
+1. Sélectionnez votre service de données de StorSimple Manager et accédez trop**analyse**. Cliquez sur **Exécuter maintenant**.
 
     ![Déclencher la définition de travail](./media/storsimple-data-manager-ui/run-now.png)
 
-2. Sélectionnez la définition de travail que vous souhaitez exécuter. Cliquez sur **Paramètres d'exécution** afin de modifier les paramètres à changer pour cette exécution de travail.
+2. Choisissez la définition de la tâche hello que vous souhaitez toorun. Cliquez sur **des paramètres d’exécution** toomodify tous les paramètres que vous pouvez toochange pour cet exécution du travail.
 
     ![Exécuter les paramètres de travail](./media/storsimple-data-manager-ui/run-settings.png)
 
-3. Cliquez sur **OK**, puis sur **Exécuter** pour lancer votre travail. Pour analyser ce travail, accédez à la page **Travaux** de votre instance StorSimple Data Manager.
+3. Cliquez sur **OK** puis cliquez sur **exécuter** toolaunch votre travail. toomonitor cette tâche, l’accédez toohello **travaux** page votre gestionnaire de données de StorSimple.
 
     ![Liste et état des travaux](./media/storsimple-data-manager-ui/jobs-list-and-status.png)
 
-4. En plus du panneau **Travaux**, vous pouvez également examiner la file d’attente de stockage, dans laquelle un message est ajouté chaque fois qu’un fichier est déplacé de StorSimple vers le compte de stockage.
+4. Dans toomonitoring Ajout Bonjour **travaux** panneau, vous pouvez également écouter sur file d’attente de stockage hello dans lequel un message est ajouté chaque fois qu’un fichier est déplacé à partir du compte de stockage StorSimple toohello.
 
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-[Utilisez .NET SDK pour lancer les travaux StorSimple Data Manager](storsimple-data-manager-dotnet-jobs.md).
+[Utilisez des tâches de gestionnaire de données de StorSimple .NET SDK toolaunch](storsimple-data-manager-dotnet-jobs.md).

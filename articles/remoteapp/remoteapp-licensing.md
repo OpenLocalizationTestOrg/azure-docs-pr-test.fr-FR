@@ -1,5 +1,5 @@
 ---
-title: Licences Azure RemoteApp | Microsoft Docs
+title: Gestionnaire de licences RemoteApp aaaAzure | Documents Microsoft
 description: "Découvrez comment fonctionnent les licences dans Azure RemoteApp."
 services: remoteapp
 documentationcenter: 
@@ -13,31 +13,31 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 04/26/2017
 ms.author: mbaldwin
-ms.openlocfilehash: 4c1ad1657ab628283f071afbc9361d67cc301417
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: dfa808a65ea6b1a78bf74f3daddb9a84e186eebe
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="how-does-licensing-work-in-azure-remoteapp"></a>Fonctionnement des licences dans Azure RemoteApp
 > [!IMPORTANT]
-> Azure RemoteApp ne sera plus disponible à partir du 31 août 2017. Pour plus d’informations, lisez [l’annonce](https://go.microsoft.com/fwlink/?linkid=821148) .
+> Azure RemoteApp ne sera plus disponible à partir du 31 août 2017. Hello de lecture [annonce](https://go.microsoft.com/fwlink/?linkid=821148) pour plus d’informations.
 > 
 > 
 
-Vous avez donc configuré votre service Azure RemoteApp, créé vos modèles et vous êtes prêt à publier des applications pour vos utilisateurs. Toutefois, vous devez encore résoudre la question des licences. Et comprendre comment elles fonctionnent pour RemoteApp et les applications que vous partagez par l’intermédiaire de RemoteApp.
+Par conséquent, vous avez défini votre service Azure RemoteApp, créé vos modèles et prêt toopublish applications tooyour utilisateurs. Mais il existe toujours un toofigure chose dernière out : Gestionnaire de licences. Simplement fonctionnement des licences pour RemoteApp et pour les applications de hello que vous partagez via RemoteApp
 
-RemoteApp ne requiert pas de licences Windows ni de licences d'accès client du Bureau à distance. Votre abonnement s’occupe du côté RemoteApp lui-même. (Consultez les détails des [plans de tarification](https://azure.microsoft.com/pricing/details/remoteapp).)
+RemoteApp ne requiert pas de licences Windows ni de licences d'accès client du Bureau à distance. Votre abonnement prend en charge de hello côté RemoteApp lui-même. (Vérifiez les détails de hello Hello [plans de tarification](https://azure.microsoft.com/pricing/details/remoteapp).)
 
-Si vous utilisez l’une des images incluses dans votre abonnement, vous pouvez partager n’importe laquelle des applications installées sur cette image sans avoir besoin d’une licence distincte. Par exemple, si vous utilisez l'image de modèle Windows Server 2012 R2 pour créer votre collection, vous pouvez partager System Center Endpoint Protection avec vos utilisateurs. Les seules exceptions à cette règle sont Office 365 ProPlus, qui requiert un abonnement distinct et Office 2013 qui ne peut pas être partagé dans une collection de production.
+Si vous utilisez une des images de hello est inclus dans votre abonnement, vous pouvez partager des applications hello installées sur cette image sans avoir besoin d’une licence distincte. Par exemple, si vous utilisez hello Windows Server 2012 R2 modèle image toobuild votre collection, vous pouvez partager de System Center Endpoint Protection avec vos utilisateurs. Hello uniquement les règles de toothis exceptions sont Office 365 ProPlus, ce qui nécessite un abonnement distinct, et Office 2013, qui ne peut pas être partagée dans un regroupement de préproduction.
 
-Si vous voulez utiliser l'image de modèle Office 365 incluse dans RemoteApp, vous devez disposer d'une offre Office 365 ProPlus *existante* . Cela s'applique également à n'importe quelle application Office 365 que vous publiez à l'aide d'un modèle personnalisé. Vous devez activer les applications avec votre propre abonnement. Cela s’applique aux abonnements d’évaluation et payants. Si vous voulez utiliser l’image de modèle Office 365 pendant la période d’évaluation, *et que vous ne disposez pas déjà d’un abonnement*, accédez à la page Office 365 pour [souscrire](https://go.microsoft.com/fwlink/p/?LinkID=403802) un abonnement d’évaluation. Consultez [Comment RemoteApp et Office fonctionnent ensemble](remoteapp-o365.md) pour plus d'informations.
+Si vous souhaitez toouse hello Office 365 modèle image qui est fourni avec RemoteApp, vous devez avoir un *existant* plan Office 365 ProPlus. Hello qu'est également vrai pour n’importe quelle application Office 365 que vous publiez à l’aide d’un modèle personnalisé. Vous devez tooactivate hello applications avec votre propre abonnement. Cela s’applique aux abonnements d’évaluation et payants. Si vous souhaitez l’image de modèle toouse hello Office 365 pendant la période d’évaluation de hello, *et vous n’avez pas déjà un abonnement*, accédez toohello Office 365 page trop[inscrire](https://go.microsoft.com/fwlink/p/?LinkID=403802) pour un abonnement d’évaluation. Consultez [Comment RemoteApp et Office fonctionnent ensemble](remoteapp-o365.md) pour plus d'informations.
 
-Si pendant la période d’évaluation, vous ne voulez pas bénéficier d’un abonnement d’évaluation à Office 365, utilisez l’image de modèle Office Professionnel Plus 2013 incluse dans RemoteApp. Cette image de modèle peut uniquement être utilisée pendant 30 jours et ne peut pas être convertie en collection payante.
+Si, pendant la période d’évaluation de hello, vous ne souhaitez pas d’évaluation tooget un Office 365, utilisez image de modèle d’Office 2013 Professionnel Plus hello est fourni avec RemoteApp. Cette image de modèle peut uniquement être utilisée pendant 30 jours et ne peut pas être convertie en collection payante.
 
-Pour les autres applications, vous devez vous assurer de disposer de la licence appropriée pour partager l'application.
+Pour les autres applications, vous devez toomake que vous avez hello licence tooshare hello application.
 
-Ce qui paraît logique. Vous pouvez publier une application que vous êtes légalement habilité à partager. Pour cela vous devez vous assurer que vous avez l'autorisation de partager vos programmes.
+Ce qui paraît logique. Vous pouvez publier n’importe quelle application que vous pouvez légalement tooshare. Et vous devez toomake que vous êtes vraiment intitulée tooshare vos programmes.
 
-Notez que vous ne pouvez pas utiliser de contrat de licence d'accès client ou de contrat de licence en volume dans une collection cloud. Vous *pouvez* utiliser un contrat de licence en volume pour activer des applications dans votre collection hybride (sauf pour Office). Vous devez simplement les installer dans votre image de modèle à partir du support de la licence en volume. Suivez les instructions du fournisseur de l'application pour installer des licences dans un environnement Bureau à distance.
+Notez que vous ne pouvez pas utiliser de contrat de licence d'accès client ou de contrat de licence en volume dans une collection cloud. Vous *pouvez* utiliser une application de tooactivate de contrat de licence en Volume dans votre collection hybride (à l’exception d’Office). Vous devez simplement tooinstall en fonction de votre modèle de l’image à partir de hello support de licence en Volume. Suivez les informations hello hello application fournisseur tooinstall des licences dans un environnement de bureau à distance.
 

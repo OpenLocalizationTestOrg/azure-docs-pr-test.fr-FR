@@ -1,6 +1,6 @@
 ---
-title: API REST de recherche de journal Log Analytics | Microsoft Docs
-description: "Ce guide fournit un didacticiel de base qui décrit comment utiliser l’API REST de recherche Log Analytics dans Operations Management Suite (OMS). Il propose aussi des exemples qui vous permettent de découvrir comment utiliser les commandes."
+title: recherche de journal Analytique aaaLog API REST | Documents Microsoft
+description: "Ce guide fournit un didacticiel de base qui décrit comment vous pouvez utiliser hello Analytique de journal rechercher l’API REST Bonjour Operations Management Suite (OMS) et fournit des exemples qui illustrent la façon dont les commandes de hello toouse."
 services: log-analytics
 documentationcenter: 
 author: bwren
@@ -14,54 +14,54 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/23/2017
 ms.author: bwren
-ms.openlocfilehash: 78afb2f065dde4a3e7a3ab787c939b3c52b72cc6
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: dafe5eeb8cc11a339f2cbf78cec657e344d87cac
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="log-analytics-log-search-rest-api"></a>API REST de recherche de journal Log Analytics
-Ce guide fournit un didacticiel de base, y compris des exemples, sur la façon dont vous pouvez utiliser l’API REST de recherche de journal Log Analytics. Log Analytics fait partie d'Operations Management Suite (OMS).
+Ce guide fournit un didacticiel de base, y compris des exemples, vous pouvez utiliser hello journal Analytique recherche REST API. Analytique de journal fait partie de hello Operations Management Suite (OMS).
 
 > [!NOTE]
-> Si votre espace de travail a été mis à niveau avec le [nouveau langage de requête Log Analytics](log-analytics-log-search-upgrade.md), vous devez continuer à utiliser le langage de requête existant avec l’API de recherche dans les journaux, comme indiqué dans cet article.  Une nouvelle API sera publiée pour les espaces de travail mis à niveau, et la documentation sera mise à jour à ce moment-là. 
+> Si votre espace de travail a été mis à niveau toohello [Analytique de journal nouveau langage de requête](log-analytics-log-search-upgrade.md), puis vous devez continuer de langage de requête hérité hello toouse avec les API de recherche de journal hello comme décrit dans cet article.  Une nouvelle API sera disponible pour les espaces de travail mis à niveau et mise à jour des hello documentation à ce moment-là. 
 
 > [!NOTE]
-> Avant, Log Analytics s’appelait Operational Insights, ce qui explique pourquoi ce nom est présent dans le fournisseur de ressources.
+> Analytique de journal s’appelait auparavant Operational Insights, c’est pourquoi il est le nom hello utilisé dans le fournisseur de ressources hello.
 >
 >
 
-## <a name="overview-of-the-log-search-rest-api"></a>Vue d’ensemble de l’API REST de recherche de journal
-L’API REST de recherche Log Analytics est un service RESTful qui est accessible par le biais de l’API Azure Resource Manager. Cet article fournit des exemples qui vous indiqueront comment accéder à l'API via [ARMClient](https://github.com/projectkudu/ARMClient), un outil de ligne de commande open source qui simplifie l'appel de l'API du Gestionnaire de ressources Azure. L'utilisation d’ARMClient est une des nombreuses options vous permettant d’accéder à l'API de recherche de journal de Log Analytics. Une autre option consiste à utiliser le module Azure PowerShell pour OperationalInsights qui inclut des applets de commande pour accéder à la recherche. Grâce à ces outils, vous pouvez utiliser l'API Azure Resource Manager pour effectuer des appels vers les espaces de travail OMS et exécuter en leur sein des commandes de recherche. L'API produit des résultats de recherche au format JSON, qui vous permet d'utiliser ces résultats, par programme, de différentes manières.
+## <a name="overview-of-hello-log-search-rest-api"></a>Vue d’ensemble de hello API REST de recherche journal
+Hello API REST de journal Analytique Search est RESTful et est accessible via hello API Azure Resource Manager. Cet article fournit des exemples d’accès aux API hello via [ARMClient](https://github.com/projectkudu/ARMClient), un outil de ligne de commande open source qui simplifie l’appel hello API Azure Resource Manager. utilisation de Hello d’ARMClient est une des nombreuses options de tooaccess hello API de recherche Analytique de journal. Une autre option est un module d’Azure PowerShell hello toouse pour OperationalInsights, qui inclut des applets de commande pour l’accès à la recherche. Grâce à ces outils, vous pouvez utiliser des espaces de travail hello API Azure Resource Manager toomake appelle tooOMS et exécuter des commandes de recherche de. Hello API génère des résultats de recherche au format JSON, ce qui vous toouse résultats de la recherche hello de différentes façons par programme.
 
-Le Gestionnaire de ressources Azure peut être utilisé via une [Bibliothèque pour .NET](https://msdn.microsoft.com/library/azure/dn910477.aspx) et l'[API REST](https://msdn.microsoft.com/library/azure/mt163658.aspx). Pour en savoir plus, consultez les pages web connexes.
+Bonjour Azure Resource Manager peut être utilisé via une [bibliothèque pour .NET](https://msdn.microsoft.com/library/azure/dn910477.aspx) et hello [API REST](https://msdn.microsoft.com/library/azure/mt163658.aspx). toolearn plus, consulter les pages web hello lié.
 
 > [!NOTE]
-> Si vous utilisez une commande d’agrégation comme `|measure count()` ou `distinct`, chaque appel à la recherche peut retourner jusqu'à 500 000 enregistrements. Les recherches qui n’incluent pas une commande d’agrégation renvoient jusqu'à 5 000 enregistrements.
+> Si vous utilisez une commande d’agrégation, telles que `|measure count()` ou `distinct`, chaque appel toosearch peut retourner au maximum 500 000 enregistrements. Les recherches qui n’incluent pas une commande d’agrégation renvoient jusqu'à 5 000 enregistrements.
 >
 >
 
 ## <a name="basic-log-analytics-search-rest-api-tutorial"></a>Didacticiel de base sur l’API de recherche de journal de Log Analytics
-### <a name="to-use-armclient"></a>Pour utiliser ARMClient
-1. Installez [Chocolatey](https://chocolatey.org/)(gestionnaire de packages open source pour Windows). Ouvrez une fenêtre d’invite de commandes en tant qu’administrateur, puis exécutez la commande suivante :
+### <a name="toouse-armclient"></a>toouse ARMClient
+1. Installez [Chocolatey](https://chocolatey.org/)(gestionnaire de packages open source pour Windows). Ouvrez une fenêtre d’invite de commandes en tant qu’administrateur, puis exécutez hello de commande suivante :
 
     ```
     @powershell -NoProfile -ExecutionPolicy unrestricted -Command "iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))" && SET PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin
     ```
-2. Installez ARMClient en exécutant la commande suivante :
+2. Installez ARMClient en exécutant hello de commande suivante :
 
     ```
     choco install armclient
     ```
 
-### <a name="to-perform-a-search-using-armclient"></a>Pour effectuer une recherche à l’aide d’ARMClient
+### <a name="tooperform-a-search-using-armclient"></a>tooperform une recherche à l’aide d’ARMClient
 1. Connectez-vous à l’aide de votre compte Microsoft, ou de votre compte professionnel ou scolaire :
 
     ```
     armclient login
     ```
 
-    Une connexion réussie répertorie tous les abonnements associés au compte spécifique :
+    Une connexion réussie répertorie tous les abonnements qui sont associés toohello compte donné :
 
     ```
     PS C:\Users\SampleUserName> armclient login
@@ -72,13 +72,13 @@ Le Gestionnaire de ressources Azure peut être utilisé via une [Bibliothèque p
     Subscription xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx (Example Name 2)
     Subscription xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx (Example Name 3)
     ```
-2. Obtenez les espaces de travail Operations Management Suite :
+2. Obtenir les espaces de travail hello Operations Management Suite :
 
     ```
     armclient get /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/OI-Default-East-US/providers/Microsoft.OperationalInsights/workspaces?api-version=2015-03-20
     ```
 
-    Un appel Get réussi affiche tous les espaces de travail liés à l’abonnement :
+    Un appel Get affiche que tous les espaces de travail lié toohello abonnement :
 
     ```
     {
@@ -108,7 +108,7 @@ Le Gestionnaire de ressources Azure peut être utilisé via une [Bibliothèque p
     ```
 
 ## <a name="log-analytics-search-rest-api-reference-examples"></a>Exemples de référence de l’API REST de recherche Log Analytics
-Les exemples suivants vous expliquent comment utiliser l'API de recherche.
+Hello suivant exemples vous montrent comment vous pouvez utiliser les API de recherche de hello.
 
 ### <a name="search---actionread"></a>Recherche - Action/lecture
 **Exemple d’URL :**
@@ -133,17 +133,17 @@ Les exemples suivants vous expliquent comment utiliser l'API de recherche.
     }
     armclient post /subscriptions/{Subscription ID}/resourceGroups/OI-Default-East-US/providers/Microsoft.OperationalInsights/workspaces/{Workspace ID}/search?api-version=2015-03-20 $searchParametersJson
 ```
-Le tableau suivant décrit les propriétés qui sont disponibles
+Hello tableau suivant décrit les propriétés de hello qui sont disponibles.
 
 | **Propriété** | **Description** |
 | --- | --- |
-| top |Le nombre maximal de résultats à renvoyer. |
+| top |nombre maximal de Hello de tooreturn de résultats. |
 | highlight |Contient des pré- et post-paramètres, utilisés généralement pour mettre en surbrillance les champs de correspondance |
-| pre |Préfixe la chaîne spécifique à vos champs correspondants. |
-| post |Ajoute la chaîne spécifique à vos champs correspondants. |
-| query |La requête de recherche utilisée pour recueillir et renvoyer des résultats. |
-| start |Le début de la plage horaire à partir de laquelle vous souhaitez obtenir des résultats. |
-| end |La fin de la plage horaire à partir de laquelle vous souhaitez obtenir des résultats. |
+| pre |Préfixes hello donné champs tooyour mis en correspondance de chaîne. |
+| post |Ajoute hello donné champs tooyour mis en correspondance de chaîne. |
+| query |requête de recherche Hello utilisé toocollect et retourner des résultats. |
+| start |début de Hello hello de fenêtre de temps de que vous souhaitez toobe résultats trouvée à partir. |
+| end |fin de Hello hello de fenêtre de temps de que vous souhaitez toobe résultats trouvée à partir. |
 
 **Réponse :**
 
@@ -197,14 +197,14 @@ Le tableau suivant décrit les propriétés qui sont disponibles
 ```
 
 ### <a name="searchid---actionread"></a>Recherche/{ID} - Action/lecture
-**Demander le contenu d'une recherche enregistrée :**
+**Contenu de hello la demande d’une recherche enregistrée :**
 
 ```
     armclient post /subscriptions/{SubId}/resourceGroups/{ResourceGroupId}/providers/Microsoft.OperationalInsights/workspaces/{WorkspaceName}/search/{SearchId}?api-version=2015-03-20
 ```
 
 > [!NOTE]
-> Si la recherche renvoie un état « En attente », une interrogation des résultats mis à jour peut alors être réalisée via cette API. Après 6 minutes, le résultat de la recherche est supprimé du cache et HTTP Gone est retourné. Si la demande de recherche initiale retourne immédiatement un état « Succès », les résultats ne sont pas ajoutés au cache, ce qui signifie que cette API retourne HTTP Gone si elle est interrogée. Le contenu d’un résultat HTTP 200 est présenté dans le même format que la demande de recherche initiale. Toutefois, les valeurs sont mises à jour.
+> Si hello recherche retourne un état « En attente », résultats de l’interrogation hello mis à jour peuvent être effectuées via cette API. Après 6 minutes, résultat hello de recherche de hello est supprimé du cache de hello et HTTP Gone est renvoyé. Si la demande de recherche initiale hello retourne immédiatement l’état « Succès », les résultats de hello ne sont pas ajoutés de cache toohello à l’origine de cette tooreturn API HTTP Gone si elle est interrogée. Hello le contenu d’un résultat HTTP 200 est Bonjour même format que la demande de recherche initiale hello, avec des valeurs mises à jour.
 >
 >
 
@@ -219,18 +219,18 @@ Méthodes prises en charge : GET PUT DELETE
 
 Méthodes de collection prises en charge : GET
 
-Le tableau suivant décrit les propriétés qui sont disponibles
+Hello tableau suivant décrit les propriétés de hello qui sont disponibles.
 
 | Propriété | Description |
 | --- | --- |
-| ID |Identificateur unique. |
-| Etag |**Requis pour le correctif**. Mis à jour par le serveur à chaque écriture. La valeur doit être égale à la valeur actuelle stockée ou '*' pour mettre à jour. 409 retourné pour les valeurs anciennes ou non valides. |
-| properties.query |**Requis**. Requête de la recherche. |
-| properties.displayName |**Requis**. Nom d'affichage de la requête défini par l'utilisateur. |
-| properties.category |**Requis**. Catégorie de la requête définie par l'utilisateur. |
+| Id |Identificateur unique de Hello. |
+| Etag |**Requis pour le correctif**. Mis à jour par le serveur à chaque écriture. Valeur doit être égale toohello actuelle stockée ou ' *' tooupdate. 409 retourné pour les valeurs anciennes ou non valides. |
+| properties.query |**Requis**. requête de recherche Hello. |
+| properties.displayName |**Requis**. nom d’affichage de défini par l’utilisateur de Hello de requête de hello. |
+| properties.category |**Requis**. catégories définies par l’utilisateur Hello de requête de hello. |
 
 > [!NOTE]
-> Actuellement, l'API de recherche Log Analytics retourne des recherches enregistrées créées par l'utilisateur lorsqu'elle est interrogée concernant les recherches enregistrées dans un espace de travail. L'API ne retourne pas de recherches enregistrées fournies par les solutions.
+> Hello API de recherche Analytique de journal actuellement renvoie créés par l’utilisateur quand elle est interrogée concernant les recherches enregistrées dans un espace de travail de recherches enregistrées. Hello API ne retourne pas de recherches enregistrées fournies par les solutions.
 >
 >
 
@@ -243,7 +243,7 @@ Le tableau suivant décrit les propriétés qui sont disponibles
 ```
 
 > [!NOTE]
-> Le nom de l’ensemble des recherches enregistrées, des planifications et des actions créées avec l’API Log Analytics doit être en minuscules.
+> nom de Hello pour toutes les recherches enregistrées, planifications et créées par hello API Analytique de journal des actions doit être en minuscules.
 
 ### <a name="delete-saved-searches"></a>Supprimer les recherches enregistrées
 **Requête :**
@@ -261,7 +261,7 @@ Le tableau suivant décrit les propriétés qui sont disponibles
 ```
 
 ### <a name="metadata---json-only"></a>Métadonnées - JSON uniquement
-Voici un moyen d'afficher les champs pour tous les types de journaux pour les données collectées dans votre espace de travail. Par exemple, si vous voulez savoir si le type Événement possède un champ nommé Ordinateur, ceci constitue une méthode de vérification.
+Voici un moyen toosee hello des champs pour tous les types de journaux pour les données hello collectées dans votre espace de travail. Par exemple, si vous souhaitez que savoir si le type d’événement de hello possède un champ nommé ordinateur, cette requête est une façon toocheck.
 
 **Requête de champs :**
 
@@ -300,25 +300,25 @@ Voici un moyen d'afficher les champs pour tous les types de journaux pour les do
     }
 ```
 
-Le tableau suivant décrit les propriétés qui sont disponibles
+Hello tableau suivant décrit les propriétés de hello qui sont disponibles.
 
 | **Propriété** | **Description** |
 | --- | --- |
 | name |Nom du champ. |
-| displayName |Nom d'affichage du champ. |
-| type |Type de la valeur du champ. |
+| displayName |Hello affiche le nom du champ de hello. |
+| type |Type de valeur du champ hello de Hello. |
 | facetable |Combinaison des propriétés « indexed », « stored » et « facet » actuelles. |
 | display |Propriété « display » actuelle. True si le champ est visible dans la recherche. |
-| ownerType |Réduit uniquement aux types appartenant aux adresses IP intégrées. |
+| ownerType |Types de tooonly réduite qui appartiennent à l’adresse IP tooonboarded. |
 
 ## <a name="optional-parameters"></a>Paramètres facultatifs
-Les informations suivantes décrivent les paramètres facultatifs disponibles.
+Hello informations suivantes décrit les paramètres facultatifs disponibles.
 
 ### <a name="highlighting"></a>Highlighting
-Le paramètre « Highlight » est un paramètre facultatif que vous pouvez utiliser pour demander au sous-système de recherche d'inclure un jeu de marqueurs dans sa réponse.
+paramètre de « Highlight » Hello est un paramètre facultatif, vous pouvez utiliser le sous-système de recherche hello toorequest inclure un jeu de marqueurs dans sa réponse.
 
-Ces marqueurs indiquent le début et la fin du texte mis en surbrillance qui correspond aux critères fournis dans votre requête de recherche.
-Vous pouvez spécifier les marqueurs de début et de fin qui sont utilisés par la recherche pour encapsuler le terme en surbrillance.
+Ces marqueurs indiquent hello début et la fin du texte en surbrillance qui correspond aux critères de hello fournis dans votre requête de recherche.
+Vous pouvez spécifier hello début et fin des marqueurs qui sont utilisés par le terme de recherche toowrap hello mis en surbrillance.
 
 **Exemple de requête de recherche**
 
@@ -361,10 +361,10 @@ Vous pouvez spécifier les marqueurs de début et de fin qui sont utilisés par 
     }
 ```
 
-Notez que le résultat précédent contient un message d'erreur qui a été préfixé et ajouté.
+Notez que hello résultat précédent contient un message d’erreur qui a été préfixé et ajouté.
 
 ## <a name="computer-groups"></a>Groupes d’ordinateurs
-Les groupes d'ordinateurs sont des recherches spéciales enregistrées qui retournent un ensemble d'ordinateurs.  Vous pouvez utiliser un groupe d'ordinateurs dans d'autres requêtes pour limiter les résultats aux ordinateurs du groupe.  Un groupe d'ordinateurs est implémenté comme une recherche enregistrée avec une balise Group dont la valeur est Computer.
+Les groupes d'ordinateurs sont des recherches spéciales enregistrées qui retournent un ensemble d'ordinateurs.  Vous pouvez utiliser un groupe d’ordinateurs dans d’autres ordinateurs de toohello des résultats de requêtes toolimit hello dans le groupe de hello.  Un groupe d'ordinateurs est implémenté comme une recherche enregistrée avec une balise Group dont la valeur est Computer.
 
 Voici un exemple de réponse pour un groupe d'ordinateurs.
 
@@ -383,18 +383,18 @@ Voici un exemple de réponse pour un groupe d'ordinateurs.
 ```
 
 ### <a name="retrieving-computer-groups"></a>Récupération de groupes d'ordinateurs
-pour récupérer un groupe d'ordinateurs, utilisez la méthode Get avec l'ID de groupe.
+ID d’un groupe d’ordinateurs, utilisez hello méthode Get avec groupe de hello tooretrieve
 
 ```
 armclient get /subscriptions/{Subscription ID}/resourceGroups/{Resource Group Name}/providers/Microsoft.OperationalInsights/workspaces/{Workspace Name}/savedSearches/{Group ID}`?api-version=2015-03-20
 ```
 
 ### <a name="creating-or-updating-a-computer-group"></a>Création ou mise à jour d'un groupe d'ordinateurs
-Pour créer un groupe d'ordinateurs, utilisez la méthode Put avec un ID de recherche enregistrée unique. Si vous utilisez un ID de groupe d’ordinateurs existant, celui-ci est modifié. Lorsque vous créez un groupe d'ordinateurs dans le portail Log Analytics, l'ID est créé à partir du groupe et du nom.
+toocreate un groupe d’ordinateurs, utilisez hello méthode Put avec un ID de recherche enregistrée unique. Si vous utilisez un ID de groupe d’ordinateurs existant, celui-ci est modifié. Lorsque vous créez un groupe d’ordinateurs dans le portail d’Analytique de journal hello, hello ID est créé à partir de nom et le groupe de hello.
 
-La requête utilisée pour la définition du groupe doit retourner un ensemble d'ordinateurs pour que le groupe fonctionne correctement.  Il est recommandé de terminer la requête par `| Distinct Computer` pour s’assurer que les données correctes sont retournées.
+requête Hello utilisé pour la définition de groupe hello doit retourner un ensemble d’ordinateurs pour hello groupe toofunction correctement.  Il est recommandé que vous mettez fin à la requête avec `| Distinct Computer` hello tooensure correct de données sont retournées.
 
-La définition de la recherche enregistrée doit inclure une balise nommée Group avec une valeur Computer pour que la recherche soit classée comme un groupe d'ordinateurs.
+définition de Hello Hello recherche enregistrée doit inclure une balise nommée groupe avec la valeur de l’ordinateur pour toobe de recherche hello classée sous forme d’un groupe d’ordinateurs.
 
 ```
     $etag=Get-Date -Format yyyy-MM-ddThh:mm:ss.msZ
@@ -409,7 +409,7 @@ La définition de la recherche enregistrée doit inclure une balise nommée Grou
 ```
 
 ### <a name="deleting-computer-groups"></a>Suppression de groupes d'ordinateurs
-Pour supprimer un groupe d'ordinateurs, utilisez la méthode Delete avec l'ID de groupe.
+ID d’un groupe d’ordinateurs, utilisez hello méthode Delete avec groupe de hello toodelete
 
 ```
 armclient delete /subscriptions/{Subscription ID}/resourceGroups/{Resource Group Name}/providers/Microsoft.OperationalInsights/workspaces/{Workspace Name}/savedSearches/$groupId`?api-version=2015-03-20
@@ -417,4 +417,4 @@ armclient delete /subscriptions/{Subscription ID}/resourceGroups/{Resource Group
 
 
 ## <a name="next-steps"></a>Étapes suivantes
-* En savoir plus sur les [recherches de journaux](log-analytics-log-searches.md) pour générer des requêtes utilisant des champs personnalisés comme critères.
+* En savoir plus sur [recherche de journal](log-analytics-log-searches.md) toobuild les requêtes à l’aide des champs personnalisés pour les critères.

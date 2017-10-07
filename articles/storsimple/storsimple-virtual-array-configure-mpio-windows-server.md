@@ -1,6 +1,6 @@
 ---
-title: "Configurer MPIO sur un hôte connecté à StorSimple Virtual Array | Microsoft Docs"
-description: "Décrit comment configurer Multipath I/O (MPIO) pour votre tableau virtuel StorSimple connecté à un hôte exécutant Windows Server 2012 R2."
+title: "aaaConfigure MPIO sur l’ordinateur hôte connecté tooStorSimple Virtual Array | Documents Microsoft"
+description: "Décrit comment tooconfigure MPIO d’e/s (o) pour votre StorSimple Virtual Array connectées hôte tooa exécutant Windows Server 2012 R2."
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -14,94 +14,94 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 05/01/2017
 ms.author: alkohli
-ms.openlocfilehash: c75c6ed40754aee964e2b68f4f569dc1422507f2
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0e6df23bba29395329685cbf2c968675abb04cfc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="configure-multipath-io-on-windows-server-host-for-the-storsimple-virtual-array"></a>Configurer MPIO (Multipath I/O) sur un hôte Windows Server pour la baie virtuelle StorSimple
+# <a name="configure-multipath-io-on-windows-server-host-for-hello-storsimple-virtual-array"></a>Configurer MPIO sur un hôte Windows Server pour hello StorSimple Virtual Array
 ## <a name="overview"></a>Vue d'ensemble
-Cet article décrit comment installer la fonctionnalité Multipath I/O (MPIO) sur votre hôte Windows Server, appliquer des paramètres de configuration spécifiques pour les volumes StorSimple uniquement, puis vérifiez MPIO pour les volumes StorSimple. La procédure suppose que votre baie virtuelle StorSimple 1200 avec deux interfaces réseau est connectée à un hôte Windows Server avec deux interfaces réseau. Les informations contenues dans cet article s’appliquent uniquement à la baie virtuelle. Pour plus d’informations sur les appareils StorSimple série 8000, accédez à [Configuration de MPIO pour un hôte StorSimple](storsimple-configure-mpio-windows-server.md). 
+Cet article décrit comment appliquer les paramètres de configuration spécifiques pour les volumes StorSimple uniquement tooinstall, fonctionnalité Multipath i/o (MPIO) sur votre hôte Windows Server et puis vérifiez MPIO pour des volumes StorSimple. procédure de Hello suppose que votre tableau virtuel StorSimple 1200 avec deux interfaces réseau hôte de Windows Server connectés tooa avec deux interfaces réseau. les informations de Hello contenues dans cet article s’appliquent uniquement toohello de tableau virtuel. Pour plus d’informations sur les périphériques série StorSimple 8000, accédez trop[configuration de MPIO pour StorSimple hôte](storsimple-configure-mpio-windows-server.md). 
 
-La fonctionnalité MPIO dans Windows Server aide à créer des configurations de stockage à tolérance de pannes et haut niveau de disponibilité. MPIO utilise les composants de chemin d’accès physique redondants (adaptateurs, câbles et commutateurs) pour créer des chemins d’accès logiques entre le serveur et l’appareil de stockage. En cas de défaillance de composant à l’origine de l’échec du chemin d’accès logique, la logique de gestion multivoie utilise un autre chemin pour l’E/S afin que les applications puissent toujours accéder à leurs données. De plus, selon votre configuration, MPIO peut également améliorer les performances en rééquilibrant la charge sur ces chemins d’accès. Pour plus d’informations, consultez la [Présentation de MPIO](https://technet.microsoft.com/library/cc725907.aspx "Présentation de MPIO and features").
+fonctionnalité MPIO de Hello dans les configurations de stockage hautement disponible et à tolérance de pannes de Windows Server vous aide à build. MPIO utilise les composants de chemin d’accès physique redondants, cartes, des câbles et commutateurs : toocreate les chemins d’accès logiques entre le serveur de hello et de périphérique de stockage hello. S’il existe une défaillance d’un composant, à l’origine d’un chemin d’accès logique toofail, logique multivoie utilise un autre chemin d’e/s afin que les applications peuvent toujours accéder à leurs données. En outre selon votre configuration, MPIO peut également améliorer les performances par l’équilibrage de charge hello entre ces chemins d’accès. Pour plus d’informations, consultez la [Présentation de MPIO](https://technet.microsoft.com/library/cc725907.aspx "Présentation de MPIO and features").
 
-Pour la haute disponibilité de votre solution StorSimple, configurez MPIO sur les hôtes Windows Server connectés à votre tableau virtuel StorSimple 1200. Les serveurs hôtes peuvent alors tolérer l’échec d’un lien, d’un réseau ou d’une interface. 
+Pour hello haute disponibilité de votre solution StorSimple, configurer MPIO sur hello Windows Server hôtes tooyour connecté StorSimple Virtual Array (modèle 1200). les serveurs hôtes Hello peuvent ensuite tolérer un lien, un réseau ou une défaillance de l’interface. 
 
-Procédez comme suit pour configurer MPIO : 
+Vous devez toofollow ces tooconfigure étapes MPIO : 
 
 * Conditions préalables à la configuration
-* Étape 1 : installer MPIO sur l’hôte Windows Server
+* Étape 1 : Installer MPIO sur un hôte Windows hello
 * Étape 2 : configurer MPIO pour les volumes StorSimple
-* Étape 3 : monter des volumes StorSimple sur l’hôte
+* Étape 3 : Monter des volumes StorSimple sur l’ordinateur hôte de hello
 
-Chacune des étapes ci-dessus est abordée dans les sections suivantes.
+Hello étapes ci-dessus sont toutes décrites dans les sections suivantes de hello.
 
 ## <a name="prerequisites"></a>Composants requis
-Cette section détaille la configuration requise de l’hôte Windows Server et de votre baie virtuelle.
+Cette section détaille hello configuration requise pour l’hôte du serveur de Windows hello et votre tableau virtuel.
 
 ### <a name="on-windows-server-host"></a>Sur l’hôte Windows Server
 * Assurez-vous que votre hôte Windows Server possède 2 interfaces réseau activées.
 
 ### <a name="on-storsimple-virtual-array"></a>Sur le tableau virtuel StorSimple
-* La baie virtuelle doit être configurée comme un serveur iSCSI. Pour en savoir plus, consultez [Configurer une baie virtuelle comme un serveur iSCSI](storsimple-virtual-array-deploy3-iscsi-setup.md). Une ou plusieurs interfaces réseau doivent être activées sur la baie.   
-* Les interfaces réseau de votre baie virtuelle doivent être accessibles à partir de l’hôte Windows Server.
-* Un ou plusieurs volumes doivent être créés sur votre baie virtuelle StorSimple. Pour plus d’informations, consultez [Ajouter un volume](storsimple-virtual-array-deploy3-iscsi-setup.md#step-3-add-a-volume) à votre tableau virtuel StorSimple. Dans cette procédure, nous avons créé 3 volumes (1 localement épinglé et 2 volumes à plusieurs niveaux, comme indiqué ci-dessous) sur le tableau virtuel.
+* unité de stockage virtuelle Hello doit être configurée comme un serveur iSCSI. toolearn, voir [tableau virtuel en tant que serveur iSCSI](storsimple-virtual-array-deploy3-iscsi-setup.md). Une ou plusieurs interfaces réseau doivent être activés sur le tableau de hello.   
+* interfaces réseau de Hello sur votre tableau virtuel doivent être accessibles à partir de l’hôte du serveur de Windows hello.
+* Un ou plusieurs volumes doivent être créés sur votre baie virtuelle StorSimple. toolearn, voir [ajouter un volume](storsimple-virtual-array-deploy3-iscsi-setup.md#step-3-add-a-volume) sur votre tableau virtuel StorSimple. Dans cette procédure, nous avons créé des 3 volumes (1 localement épinglés et 2 volumes hiérarchisés comme indiqué ci-dessous) sur l’unité de stockage virtuelle hello.
   
     ![mpio0](./media/storsimple-virtual-array-configure-mpio-windows-server/mpio0.png)
 
 ### <a name="hardware-configuration-for-storsimple-virtual-array"></a>Configuration matérielle pour le tableau virtuel StorSimple
-La figure ci-dessous illustre la configuration matérielle pour la gestion multivoie haute disponibilité et à équilibrage de charge pour votre hôte Windows Server et votre instance StorSimple Virtual Array utilisée dans cette procédure.
+figure Hello ci-dessous montre la configuration matérielle de hello pour la haute disponibilité et l’équilibrage de charge de gestion multivoie pour votre hôte Windows Server et le StorSimple Virtual Array est utilisé dans cette procédure.
 
 ![configuration matérielle mpio](./media/storsimple-virtual-array-configure-mpio-windows-server/1200hardwareconfig.png)
 
-Comme indiqué dans la figure précédente :
+Comme indiqué dans hello précédant figure :
 
 * Votre tableau virtuel StorSimple approvisionné sur Hyper-V est un appareil actif à nœud unique configuré comme un serveur iSCSI.
-* Deux interfaces de réseau virtuel sont activées sur votre baie. Dans l’interface utilisateur web locale de votre tableau virtuel, vérifiez que deux interfaces réseau sont activées en accédant à **Paramètres réseau** comme indiqué ci-dessous :
+* Deux interfaces de réseau virtuel sont activées sur votre baie. Dans hello local interface utilisateur web de votre tableau virtuel, vérifiez que les deux interfaces réseau sont activés en naviguant trop**paramètres réseau** comme indiqué ci-dessous :
   
     ![Interfaces réseau activées sur 1200](./media/storsimple-virtual-array-configure-mpio-windows-server/mpio9.png)
   
-    Notez les adresses IPv4 des interfaces réseau activées (Ethernet, Ethernet 2 par défaut) et enregistrez-les pour une utilisation ultérieure sur l’hôte.
-* Deux interfaces réseau sont activées sur votre hôte Windows Server. Si les interfaces connectées pour l’hôte et la baie sont sur le même sous-réseau, 4 chemins sont disponibles. C’est le cas dans cette procédure. Toutefois, si chaque interface réseau sur la baie et l’interface de l’hôte sont sur un autre sous-réseau IP (non routable), alors seuls 2 chemins sont disponibles.
+    Notez les adresses de hello IPv4 Hello activé (Ethernet, Ethernet 2 par défaut) d’interfaces réseau et enregistrement pour une utilisation ultérieure sur l’ordinateur hôte de hello.
+* Deux interfaces réseau sont activées sur votre hôte Windows Server. Si hello connecté des interfaces pour l’hôte et le tableau se trouvent sur hello même sous-réseau, les chemins de 4 accès sera alors disponible. C’était le cas de hello dans cette procédure. Toutefois, si chaque interface réseau sur l’interface de tableau et l’hôte hello est sur un sous-réseau IP différent (et non routables), puis les chemins d’accès seulement 2 sera disponibles.
 
-## <a name="step-1-install-mpio-on-the-windows-server-host"></a>Étape 1 : installer MPIO sur l’hôte Windows Server
-MPIO est une fonctionnalité facultative sur Windows Server et n’est pas installé par défaut. Il doit être installé en tant que fonctionnalité via le Gestionnaire de serveur. Pour installer cette fonctionnalité sur votre hôte Windows Server, effectuez la procédure suivante.
+## <a name="step-1-install-mpio-on-hello-windows-server-host"></a>Étape 1 : Installer MPIO sur un hôte Windows hello
+MPIO est une fonctionnalité facultative sur Windows Server et n’est pas installé par défaut. Il doit être installé en tant que fonctionnalité via le Gestionnaire de serveur. fin de cette fonctionnalité sur votre hôte Windows Server, tooinstall hello suivant la procédure.
 
 [!INCLUDE [storsimple-install-mpio-windows-server-host](../../includes/storsimple-install-mpio-windows-server-host.md)]
 
 ## <a name="step-2-configure-mpio-for-storsimple-volumes"></a>Étape 2 : configurer MPIO pour les volumes StorSimple
-MPIO doit être configuré afin d’identifier les volumes StorSimple. Pour configurer MPIO pour reconnaître des volumes StorSimple, procédez comme suit.
+MPIO doit les volumes StorSimple tooidentify toobe configuré. volumes de StorSimple toorecognize tooconfigure MPIO, effectuer hello comme suit.
 
 [!INCLUDE [storsimple-configure-mpio-volumes](../../includes/storsimple-configure-mpio-volumes.md)]
 
-## <a name="step-3-mount-storsimple-volumes-on-the-host"></a>Étape 3 : monter des volumes StorSimple sur l’hôte
-Une fois MPIO configuré sur Windows Server, le ou les volumes créés sur la baie StorSimple peuvent être montés et peuvent alors tirer parti de MPIO pour la redondance. Pour monter un volume, effectuez les étapes suivantes.
+## <a name="step-3-mount-storsimple-volumes-on-hello-host"></a>Étape 3 : Monter des volumes StorSimple sur l’ordinateur hôte de hello
+Une fois MPIO est configuré sur Windows Server, ou les volumes créés sur le tableau de StorSimple hello peuvent être montés et peuvent effectuer tirer parti de MPIO pour assurer la redondance. toomount un volume, exécutez hello comme suit.
 
-#### <a name="to-mount-volumes-on-the-host"></a>Montage de volumes sur l’hôte
-1. Ouvrez la fenêtre **Propriétés de l’initiateur iSCSI** sur l’hôte Windows Server. Accédez à **Gestionnaire de serveur > Tableau de bord > Outils > Initiateur iSCSI** .
-2. Dans la boîte de dialogue **Propriétés de l’initiateur iSCSI**, cliquez sur **Détection**, puis cliquez sur **Détecter un portail cible**.
-3. Dans la boîte de dialogue **Détecter un portail cible** , procédez comme suit :
+#### <a name="toomount-volumes-on-hello-host"></a>volumes toomount sur l’ordinateur hôte de hello
+1. Ouvrez hello **propriétés de l’initiateur iSCSI** fenêtre sur l’hôte du serveur de Windows hello. Accédez trop**le Gestionnaire de serveur > tableau de bord > Outils > initiateur iSCSI**.
+2. Bonjour **propriétés de l’initiateur iSCSI** boîte de dialogue, cliquez sur **découverte**, puis cliquez sur **détecter un portail cible**.
+3. Bonjour **détecter un portail cible** boîte de dialogue zone, hello suivant :
    
-    1. Entrez l’adresse IP de la première interface réseau activée sur votre baie virtuelle StorSimple. Par défaut, il s’agit d’ **Ethernet**. 
-    2. Cliquez sur **OK** pour revenir à la boîte de dialogue **Propriétés de l’initiateur iSCSI**.
+    1. Entrez l’adresse hello d’interface réseau activée de la première hello sur votre tableau virtuel StorSimple. Par défaut, il s’agit d’ **Ethernet**. 
+    2. Cliquez sur **OK** tooreturn toohello **propriétés de l’initiateur iSCSI** boîte de dialogue.
      
     > [!IMPORTANT]
-    > Si vous utilisez un réseau privé pour les connexions iSCSI, entrez l’adresse IP du port DATA connecté au réseau privé.
+    > Si vous utilisez un réseau privé pour les connexions iSCSI, entrez hello adresseIP du port de données hello qui est le réseau privé de toohello connecté.
      
 4. Répétez les étapes 2 et 3 pour une deuxième interface réseau (par exemple, Ethernet 2) sur votre baie. 
-5. Sélectionnez l’onglet **Cibles** dans la boîte de dialogue **Propriétés de l’initiateur iSCSI**. Pour votre baie virtuelle, vous devez voir la surface de chaque volume en tant que cible sous **Cibles découvertes**. Dans ce cas, trois cibles (correspondant aux trois volumes) doivent être découvertes.
+5. Sélectionnez hello **cibles** onglet Bonjour **propriétés de l’initiateur iSCSI** boîte de dialogue. Pour votre baie virtuelle, vous devez voir la surface de chaque volume en tant que cible sous **Cibles découvertes**. Dans ce cas, trois cibles (volumes toothree correspondants) seraient découvertes.
    
     ![mpio1](./media/storsimple-virtual-array-configure-mpio-windows-server/mpio1.png)
-6. Cliquez sur **Connexion** pour établir une session iSCSI avec votre tableau virtuel StorSimple. Une boîte de dialogue **Se connecter à la cible** s’affiche. Sélectionnez la case à cocher **Activer la prise en charge de plusieurs chemins d’accès** . Cliquez sur **Avancé**.
+6. Cliquez sur **Connect** tooestablish une session iSCSI avec votre StorSimple Virtual Array. A **connecter tooTarget** boîte de dialogue s’affiche. Sélectionnez hello **Enable multi-path** case à cocher. Cliquez sur **Avancé**.
    
     ![mpio2](./media/storsimple-virtual-array-configure-mpio-windows-server/mpio2.png)
-7. Dans la boîte de dialogue **Paramètres avancés** , procédez comme suit :                                        
+7. Bonjour **paramètres avancés** boîte de dialogue zone, hello suivant :                                        
    
-    1. Dans la liste déroulante **Adaptateur local**, sélectionnez **Initiateur Microsoft iSCSI**.
-    2. Dans la liste déroulante **IP de l’initiateur** , sélectionnez l’adresse IP de l’hôte.
-    3. Dans la liste déroulante d’adresses IP du **portail cible** , sélectionnez l’adresse IP de l’interface de la baie.
-    4. Cliquez sur **OK** pour revenir à la boîte de dialogue **Propriétés de l’initiateur iSCSI**.
+    1. Sur hello **adaptateur Local** la liste déroulante, sélectionnez **initiateur Microsoft iSCSI**.
+    2. Sur hello **IP de l’initiateur** liste déroulante, sélectionnez hello adresseIP de hôte de hello.
+    3. Sur hello **portail cible** la liste déroulante IP, IP hello select de l’interface du tableau.
+    4. Cliquez sur **OK** tooreturn toohello **propriétés de l’initiateur iSCSI** boîte de dialogue.
      
         ![mpio3](./media/storsimple-ova-configure-mpio-windows-server/mpio3.png)
 
@@ -109,42 +109,42 @@ Une fois MPIO configuré sur Windows Server, le ou les volumes créés sur la ba
    
     ![mpio4](./media/storsimple-ova-configure-mpio-windows-server/mpio4.png)
 
-9. Dans la boîte de dialogue **Propriétés**, cliquez sur **Ajouter une session**.
+9. Bonjour **propriétés** boîte de dialogue, cliquez sur **Ajout d’une Session**.
    
    ![mpio5](./media/storsimple-ova-configure-mpio-windows-server/mpio5.png)
-10. Dans la boîte de dialogue **Se connecter à la cible**, sélectionnez la case à cocher **Activer la prise en charge de plusieurs chemins d’accès**. Cliquez sur **Avancé**.
-11. Dans la boîte de dialogue **Paramètres avancés** :                                        
+10. Bonjour **connecter tooTarget** boîte de dialogue, sélectionnez hello **Enable multi-path** case à cocher. Cliquez sur **Avancé**.
+11. Bonjour **paramètres avancés** boîte de dialogue :                                        
     
-    1. Dans la liste déroulante **Adaptateur local** , sélectionnez Initiateur Microsoft iSCSI.
+    1. Sur hello **adaptateur Local** la liste déroulante, sélectionnez Microsoft iSCSI Initiator.
 
-    2. Dans la liste déroulante **IP de l’initiateur** , sélectionnez l’adresse IP correspondant à l’hôte. Dans ce cas, vous connectez deux interfaces réseau sur la baie à une seule interface réseau sur l’hôte. Par conséquent, cette interface est identique à celle fournie pour la première session.
+    2. Sur hello **IP de l’initiateur** liste déroulante, sélectionnez hello IP adresse correspondant toohello hôte. Dans ce cas, vous vous connectez deux interfaces réseau sur hello tableau tooa seule interface réseau sur l’ordinateur hôte de hello. Par conséquent, cette interface est hello identique à celui fourni pour hello première session.
 
-    3. Dans la liste déroulante d’ **adresses IP du portail cible** , sélectionnez l’adresse IP de la deuxième interface de données activée sur la baie.
+    3. Sur hello **IP du portail cible** liste déroulante, sélectionnez hello adresseIP pour seconde interface de données hello activé sur le tableau de hello.
 
-    4. Cliquez sur **OK** pour revenir à la boîte de dialogue Propriétés de l’initiateur iSCSI. Vous avez ajouté une deuxième session à la cible.
+    4. Cliquez sur **OK** boîte de dialogue Propriétés de l’initiateur tooreturn toohello iSCSI. Vous avez ajouté une deuxième cible toohello de session.
       
        ![mpio11](./media/storsimple-virtual-array-configure-mpio-windows-server/mpio11.png)
     
-    5. Après avoir ajouté les sessions souhaitées (chemins d’accès), dans la boîte de dialogue **Propriétés de l’initiateur iSCSI**, sélectionnez la cible et cliquez sur **Propriétés**. Sous l’onglet Sessions de la boîte de dialogue **Propriétés** , notez les quatre identificateurs de session qui correspondent aux permutations de chemin d’accès possibles. Pour annuler une session, activez la case à cocher en regard d’un identificateur de session, puis cliquez sur **Déconnexion**.
+    5. Après avoir ajouté hello souhaité sessions (chemins d’accès), Bonjour **propriétés de l’initiateur iSCSI** boîte de dialogue, cible de hello sélectionnez et cliquez sur **propriétés**. Sur l’onglet Sessions de hello Hello **propriétés** boîte de dialogue, notez hello quatre identificateurs de session qui correspondent les permutations de chemin d’accès possibles toohello. toocancel une session, sélectionnez l’identificateur de session hello case à cocher suivante tooa, puis cliquez sur **déconnexion**.
 
-    6. Pour afficher les appareils présentés dans les sessions, sélectionnez l’onglet **Périphériques** . Pour configurer la stratégie MPIO pour un appareil sélectionné, cliquez sur **MPIO**.
+    6. appareils tooview présentés dans les sessions, sélectionnez hello **périphériques** hello de tooconfigure onglet stratégie MPIO sur un périphérique sélectionné, cliquez sur **MPIO**.
 
-    7. La boîte de dialogue **Détails** s’affiche. Sous l’onglet **MPIO**, vous pouvez sélectionner les paramètres **Stratégie d’équilibrage de charge** appropriés. Vous pouvez également afficher le type de chemin d’accès **Actif** ou **Veille**.
-12. Répétez les étapes 8 à 11 pour ajouter des sessions supplémentaires (chemins) à la cible. Avec deux interfaces sur l’hôte et deux sur la baie virtuelle, vous pouvez ajouter un total de quatre sessions pour chaque cible. 
+    7. Hello **détails** boîte de dialogue s’affiche. Sur hello **MPIO** onglet, vous pouvez sélectionner hello approprié **stratégie d’équilibrage de charge** paramètres. Vous pouvez également afficher hello **Active** ou **Standby** type de chemin d’accès.
+12. Répétez la cible de toohello étapes 8 à 11 tooadd supplémentaires sessions (chemins d’accès). Avec deux interfaces sur l’ordinateur hôte de hello et deux sur l’unité de stockage virtuelle hello, vous pouvez ajouter un total de quatre sessions pour chaque cible. 
     
     ![mpio14](./media/storsimple-virtual-array-configure-mpio-windows-server/mpio14.png)
-13. Vous devez répéter ces étapes pour chaque volume (surfaces en tant que cible).
+13. Vous devez toorepeat ces étapes pour chaque volume (surfaces en tant que cible).
     
     ![mpio15](./media/storsimple-virtual-array-configure-mpio-windows-server/mpio15.png)
-14. Ouvrez **Gestion de l’ordinateur** en accédant à **Gestionnaire de serveur > Tableau de bord > Gestion de l’ordinateur**. Dans le volet gauche, cliquez sur **Stockage > Gestion des disques**. Le ou les volumes créés sur la baie virtuelle StorSimple visibles pour cet hôte s’affichent sous **Gestion des disques** en tant que nouveaux disques.
-15. Initialisez le disque et créez un nouveau volume. Pendant le processus de formatage, sélectionnez une taille d’unité d’allocation de 64 Ko. Répétez le processus pour tous les volumes disponibles.
+14. Ouvrez **gestion de l’ordinateur** en naviguant trop**le Gestionnaire de serveur > tableau de bord > Gestion de l’ordinateur**. Dans le volet gauche de hello, cliquez sur **stockage > Gestion des disques**. Hello ou les volumes créés sur hello StorSimple Virtual Array qui sont visibles toothis hôte apparaissent sous **gestion des disques** en tant que nouveaux disques.
+15. Hello du disque et créez un volume. Au cours du processus de formatage hello, sélectionnez une taille d’unité d’allocation (AUS) de 64 Ko. Répétez le processus de hello pour tous les volumes disponibles hello.
     
     ![Gestion des disques](./media/storsimple-virtual-array-configure-mpio-windows-server/mpio20.png)
-16. Sous **Gestion des disques**, cliquez avec le bouton droit sur le **Disque** et sélectionnez **Propriétés**.
-17. Dans la boîte de dialogue **Propriétés de l’appareil de disque à chemins multiples**, cliquez sur l’onglet **MPIO**.
+16. Sous **gestion des disques**, avec le bouton hello **disque** et sélectionnez **propriétés**.
+17. Bonjour **propriétés Multi-Path** boîte de dialogue, cliquez sur hello **MPIO** onglet.
     
     ![Propriétés du disque](./media/storsimple-virtual-array-configure-mpio-windows-server/mpio21.png)
-18. Dans la section **Nom DSM**, cliquez sur **Détails** et vérifiez que les paramètres par défaut sont définis. Les paramètres par défaut sont les suivants :
+18. Bonjour **nom DSM** , cliquez sur **détails** et vérifiez que les paramètres de hello sont définies toohello les paramètres par défaut. les paramètres par défaut Hello sont :
     
     * Période de vérification du chemin d’accès = 30
     * Nombre de tentatives = 3
@@ -153,8 +153,8 @@ Une fois MPIO configuré sur Windows Server, le ou les volumes créés sur la ba
     * Vérification du chemin activée = désactivé.
     
     > [!NOTE]
-    > **Ne modifiez pas les paramètres par défaut.**
+    > **Ne modifiez pas les paramètres par défaut de hello.**
    
 ## <a name="next-steps"></a>Étapes suivantes
-En savoir plus sur l’ [utilisation du service StorSimple Device Manager pour gérer votre tableau virtuel StorSimple](storsimple-virtual-array-manager-service-administration.md).
+En savoir plus sur [à l’aide de hello tooadminister du service Gestionnaire de périphériques StorSimple votre StorSimple Virtual Array](storsimple-virtual-array-manager-service-administration.md).
 

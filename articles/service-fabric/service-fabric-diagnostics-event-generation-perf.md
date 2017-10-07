@@ -1,5 +1,5 @@
 ---
-title: "Suivi des performances d’Azure Service Fabric | Microsoft Docs"
+title: aaaAzure analyse des performances de Service Fabric | Documents Microsoft
 description: En savoir plus sur les compteurs de performances pour le suivi et le diagnostic des clusters Azure Service Fabric.
 services: service-fabric
 documentationcenter: .net
@@ -14,19 +14,19 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/30/2017
 ms.author: dekapur
-ms.openlocfilehash: 9d63148c182c705b6b49733c59ed8fdd13872d72
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 54d4c62b7250a1f70b0898ba07ae5a37716f4cf4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="performance-metrics"></a>Mesures de performances
 
-Les mesures doivent être collectées pour comprendre les performances de votre cluster, et des applications qu’il prend en charge. Pour les clusters Service Fabric, nous vous recommandons de collecter les compteurs de performances suivants.
+Métriques doivent être collectées toounderstand hello de performance de votre cluster ainsi que les applications de hello en cours d’exécution qu’il contient. Pour les clusters de l’infrastructure de Service, nous vous recommandons de hello suivant des compteurs de performance de collecte.
 
 ## <a name="nodes"></a>Nœuds
 
-Pour les ordinateurs de votre cluster, veuillez collecter les compteurs de performances suivants afin de mieux comprendre la charge de chaque ordinateur et de prendre les meilleures décisions quant à la mise à l’échelle des clusters.
+Pour les ordinateurs hello dans votre cluster, envisagez de hello suivant toobetter comprendre hello charge sur chaque ordinateur et de rendre le cluster approprié de mise à l’échelle des décisions les compteurs de performance de collecte.
 
 | Catégorie de compteur | Nom de compteur |
 | --- | --- |
@@ -51,7 +51,7 @@ Pour les ordinateurs de votre cluster, veuillez collecter les compteurs de perfo
 
 ## <a name="net-applications-and-services"></a>Applications et services .NET
 
-Collectez les compteurs suivants si vous déployez des services .NET dans votre cluster. 
+Collecter hello suivant compteurs si vous déployez un cluster de tooyour services .NET. 
 
 | Catégorie de compteur | Nom de compteur |
 | --- | --- |
@@ -66,16 +66,16 @@ Collectez les compteurs suivants si vous déployez des services .NET dans votre 
 
 ### <a name="service-fabrics-custom-performance-counters"></a>Compteurs de performances personnalisés de Service Fabric
 
-Service Fabric génère une quantité importante de compteurs de performance personnalisés. Si le kit de développement SDK est installé, vous pouvez voir la liste complète sur votre ordinateur Windows dans l’Analyseur de performances (Démarrer > Analyseur de performances). 
+Service Fabric génère une quantité importante de compteurs de performance personnalisés. Si vous avez hello SDK installé, vous pouvez voir la liste complète de hello sur votre ordinateur Windows dans votre application de l’Analyseur de performances (Démarrer > Analyseur de performances). 
 
-Si vous utilisez Reliable Actors, dans les applications que vous déployez dans votre cluster, ajoutez des compteurs des catégories `Service Fabric Actor` et `Service Fabric Actor Method` (consultez [Service Fabric Reliable Actors Diagnostics](service-fabric-reliable-actors-diagnostics.md)) (Diagnostics Reliable Actors de Service Fabric).
+Dans les applications de hello vous déployez tooyour cluster, si vous utilisez Reliable Actors, ajoutez des countes de `Service Fabric Actor` et `Service Fabric Actor Method` catégories (consultez [Service Fabric fiable acteurs Diagnostics](service-fabric-reliable-actors-diagnostics.md)).
 
 Si vous utilisez Reliable Services, nous disposons également de catégories `Service Fabric Service` et `Service Fabric Service Method` desquelles vous devez collecter des compteurs. 
 
-Si vous utilisez Reliable Collections, nous vous recommandons d’ajouter `Avg. Transaction ms/Commit` depuis le `Service Fabric Transactional Replicator` pour collecter la latence moyenne de validation par mesure de transaction.
+Si vous utilisez des Collections fiable, nous vous recommandons d’ajouter hello `Avg. Transaction ms/Commit` de hello `Service Fabric Transactional Replicator` toocollect la latence moyenne de validation hello par mesure de la transaction.
 
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* En savoir plus sur la [génération d’événements au niveau de la plateforme](service-fabric-diagnostics-event-generation-infra.md) dans Service Fabric
+* En savoir plus sur [génération des événements au niveau de plate-forme hello](service-fabric-diagnostics-event-generation-infra.md) dans Service Fabric
 * Collecter des mesures de performances via [Azure Diagnostics](service-fabric-diagnostics-event-aggregation-wad.md)

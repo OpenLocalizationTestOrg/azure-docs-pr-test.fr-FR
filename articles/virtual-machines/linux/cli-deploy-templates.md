@@ -1,6 +1,6 @@
 ---
-title: "Déployer des machines virtuelles Linux avec des modèles Azure | Microsoft Docs"
-description: "Déployez et gérez les configurations les plus courantes pour les machines virtuelles Azure à l’aide des modèles Resource Manager et de l’interface de ligne de commande Azure."
+title: "aaaDeploy les machines virtuelles Linux avec des modèles Azure | Documents Microsoft"
+description: "Déployer et gérer les configurations les plus courantes de hello pour les machines virtuelles à l’aide de modèles de gestionnaire de ressources et CLI d’Azure."
 services: virtual-machines-linux
 documentationcenter: 
 author: squillace
@@ -15,14 +15,14 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/23/2016
 ms.author: rasquill
-ms.openlocfilehash: 415be559a8e0d1940a6a3da4f44ebd26b750fab0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 087b21504adc7e5f462530a748d26f0c1a1c99a5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deploy-and-manage-virtual-machines-by-using-azure-resource-manager-templates-and-the-azure-cli"></a>Déploiement et gestion de machines virtuelles à l’aide des modèles Azure Resource Manager et de l’interface de ligne de commande Azure
-Cet article montre comment utiliser les modèles Azure Resource Manager et l’interface de ligne de commande Azure pour effectuer les tâches courantes suivantes de déploiement et de gestion de machines virtuelles Azure. Pour plus d’informations sur les autres modèles utilisables, consultez les articles [Modèles de démarrage rapide Microsoft Azure](https://azure.microsoft.com/documentation/templates/) et [Infrastructures d’application utilisant des modèles](app-frameworks.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+# <a name="deploy-and-manage-virtual-machines-by-using-azure-resource-manager-templates-and-hello-azure-cli"></a>Déployer et gérer des ordinateurs virtuels à l’aide de modèles Azure Resource Manager et hello CLI d’Azure
+Cet article vous montre comment toouse Azure Resource Manager modèles et hello de toodo CLI d’Azure hello suivant de tâches pour déployer et gérer des machines virtuelles. Pour plus d’informations sur les autres modèles utilisables, consultez les articles [Modèles de démarrage rapide Microsoft Azure](https://azure.microsoft.com/documentation/templates/) et [Infrastructures d’application utilisant des modèles](app-frameworks.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 
 [!INCLUDE [virtual-machines-common-cli-deploy-templates](../../../includes/virtual-machines-common-cli-deploy-templates.md)]
 

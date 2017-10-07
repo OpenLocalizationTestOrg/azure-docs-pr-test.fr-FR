@@ -1,6 +1,6 @@
 ---
-title: "Développer pour Stockage Fichier Azure avec .NET | Microsoft Docs"
-description: "Apprenez à développer des services et applications .NET qui utilisent Stockage Fichier Azure pour stocker les données de fichiers."
+title: aaaDevelop pour le stockage de fichiers Azure avec .NET | Documents Microsoft
+description: "Découvrez comment toodevelop applications et services .NET qui utilisent des fichiers Azure storage toostore fichier de données."
 services: storage
 documentationcenter: .net
 author: RenaShahMSFT
@@ -14,15 +14,15 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.date: 05/27/2017
 ms.author: renash
-ms.openlocfilehash: e26da88ef1803d47d7286c5ae836ac9c041dadd1
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: aa8f84f1c93249055370e2a2cb33d7118b972be1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="develop-for-azure-file-storage-with-net"></a>Développer pour Stockage Fichier Azure avec .NET 
 > [!NOTE]
-> Cet article explique comment gérer le stockage Fichier Azure avec du code .NET. Pour en savoir plus sur Stockage Fichier Azure, consultez [Introduction à Stockage Fichier Azure](storage-files-introduction.md) .
+> Cet article explique comment toomanage stockage Azure files avec le code .NET. toolearn en savoir plus sur le stockage de fichiers Azure, consultez hello [Introduction tooAzure stockage de fichiers](storage-files-introduction.md).
 >
 
 [!INCLUDE [storage-selector-file-include](../../includes/storage-selector-file-include.md)]
@@ -30,46 +30,46 @@ ms.lasthandoff: 08/03/2017
 [!INCLUDE [storage-check-out-samples-dotnet](../../includes/storage-check-out-samples-dotnet.md)]
 
 ## <a name="about-this-tutorial"></a>À propos de ce didacticiel
-Ce tutoriel vous montre les principes fondamentaux de l’utilisation de .NET pour développer des applications ou services qui utilisent Stockage Fichier Azure pour stocker les données de fichiers. Dans ce tutoriel, vous allez créer une application console simple et effectuer des actions de base avec .NET et Stockage Fichier Azure :
+Ce didacticiel va vous montrer des bases de hello de l’utilisation des applications de toodevelop .NET ou les services qui utilisent des données de fichier toostore fichier Azure storage. Dans ce didacticiel, nous crée une application console simple et montrent comment tooperform les actions de base avec un stockage .NET et des fichiers Azure :
 
-* Obtenir le contenu d’un fichier
-* Définir le quota (taille maximale) pour le partage de fichiers
-* Créer une signature d’accès partagé pour un fichier qui utilise une stratégie d’accès partagé définie sur le partage
-* Copier un fichier dans un autre fichier au sein du même compte de stockage
-* Copier un fichier dans un objet blob au sein du même compte de stockage.
+* Obtenir le contenu de hello d’un fichier
+* Définir le quota hello (taille maximale) pour le partage de fichiers hello.
+* Créer une signature d’accès partagé (clé SAS) pour un fichier qui utilise une stratégie d’accès partagé définie sur le partage de hello.
+* Copier un fichier tooanother Bonjour même compte de stockage.
+* Copier un objet blob de fichier tooa Bonjour même compte de stockage.
 * Utiliser Azure Storage Metrics pour la résolution des problèmes.
 
 > [!Note]  
-> Étant donné que Stockage Fichier Azure est accessible sur SMB, il est possible d’écrire de simples applications qui accèdent au partage de fichiers Azure à l’aide des classes System.IO standard pour les E/S de fichier. Cet article indique comment écrire des applications qui utilisent le SDK .NET Stockage Azure, lequel utilise l’[API REST Stockage Fichier Azure](https://docs.microsoft.com/rest/api/storageservices/fileservices/file-service-rest-api) pour communiquer avec Stockage Fichier Azure. 
+> Stockage de fichiers Azure sont accessibles sur SMB, il est possible toowrite applications simples qui accéder au partage de fichiers Azure hello à l’aide de classes de System.IO hello standard d’e/s de fichier. Cet article décrit comment toowrite les applications qui utilisent hello Azure stockage .NET SDK, qui utilise hello [le stockage de fichiers Azure API REST](https://docs.microsoft.com/rest/api/storageservices/fileservices/file-service-rest-api) tootalk tooAzure stockage de fichiers. 
 
 
-## <a name="create-the-console-application-and-obtain-the-assembly"></a>Création de l’application console et obtention de l’assembly
-Dans Visual Studio, créez une application de console Windows. Les étapes suivantes vous montrent comment créer une application de console dans Visual Studio 2017. Les étapes sont similaires à celles des autres versions de Visual Studio.
+## <a name="create-hello-console-application-and-obtain-hello-assembly"></a>Créer l’application de console hello et obtenir l’assembly hello
+Dans Visual Studio, créez une application de console Windows. Hello suit vous montre comment toocreate une application de console dans Visual Studio 2017, toutefois, les étapes de hello sont similaires dans les autres versions de Visual Studio.
 
 1. Sélectionnez **Fichier** > **Nouveau** > **Projet**
 2. Sélectionnez **Installé** > **Modèles** > **Visual C#** > **Bureau classique Windows**
 3. Sélectionnez **Application console (.NET Framework)**
-4. Entrez un nom pour votre application dans le champ **Nom :**
+4. Entrez un nom pour votre application dans hello **nom :** champ
 5. Sélectionnez **OK**.
 
-Tous les exemples de code figurant dans ce didacticiel peuvent être ajoutés à la méthode `Main()` du fichier `Program.cs` de votre application de console.
+Tous les exemples de code dans ce didacticiel peuvent être ajoutés toohello `Main()` méthode de votre application de console `Program.cs` fichier.
 
-Vous pouvez utiliser la bibliothèque cliente d’Azure Storage dans n’importe quelle application .NET, y compris un service cloud Azure, une application web, une application de bureau ou une application mobile. Dans ce guide, nous utilisons une application console pour plus de simplicité.
+Vous pouvez utiliser hello bibliothèque cliente de stockage Azure dans n’importe quel type d’application .NET, y compris une application web ou de service cloud Azure et les applications de bureau et mobiles. Dans ce guide, nous utilisons une application console pour plus de simplicité.
 
-## <a name="use-nuget-to-install-the-required-packages"></a>Utiliser NuGet pour installer les packages requis
-Vous devez référencer deux packages dans votre projet pour terminer ce didacticiel :
+## <a name="use-nuget-tooinstall-hello-required-packages"></a>Utiliser les packages NuGet tooinstall hello requis
+Il existe deux packages, vous devez tooreference dans votre projet toocomplete ce didacticiel :
 
-* [Bibliothèque cliente Microsoft Azure Storage pour .NET](https://www.nuget.org/packages/WindowsAzure.Storage/): ce package fournit un accès par programme aux ressources de données dans votre compte de stockage.
+* [Bibliothèque cliente Microsoft Azure Storage pour .NET](https://www.nuget.org/packages/WindowsAzure.Storage/): ce package fournit un accès par programmation toodata des ressources dans votre compte de stockage.
 * [Bibliothèque Microsoft Azure Configuration Manager pour .NET](https://www.nuget.org/packages/Microsoft.WindowsAzure.ConfigurationManager/) : ce package fournit une classe pour l’analyse d’une chaîne de connexion à partir d’un fichier de configuration, quel que soit l’emplacement d’exécution de votre application.
 
-Vous pouvez utiliser NuGet pour obtenir ces deux packages. Procédez comme suit :
+Vous pouvez utiliser NuGet tooobtain les deux packages. Procédez comme suit :
 
 1. Cliquez avec le bouton droit sur votre projet dans **l’Explorateur de solutions**, puis sélectionnez **Gérer les packages NuGet**.
-2. Recherchez « WindowsAzure.Storage » en ligne, puis cliquez sur **Installer** pour installer la bibliothèque cliente Azure Storage et ses dépendances.
-3. Recherchez « WindowsAzure.ConfigurationManager » en ligne, puis cliquez sur **Installer** pour installer Azure Configuration Manager.
+2. Rechercher en ligne du terme « WindowsAzure.Storage » et cliquez sur **installer** tooinstall hello bibliothèque cliente de stockage et de ses dépendances.
+3. Rechercher en ligne « WindowsAzure.ConfigurationManager » et cliquez sur **installer** tooinstall hello Azure Configuration Manager.
 
-## <a name="save-your-storage-account-credentials-to-the-appconfig-file"></a>Enregistrement des informations d’identification de votre compte de stockage dans le fichier app.config
-Enregistrez ensuite vos informations d’identification dans le fichier app.config du projet. Modifiez le fichier app.config de façon à ce qu’il soit similaire à l’exemple ci-après, en remplaçant `myaccount` par le nom de votre compte de stockage et `mykey` par la clé de votre compte de stockage.
+## <a name="save-your-storage-account-credentials-toohello-appconfig-file"></a>Enregistrez votre fichier app.config toohello d’informations d’identification de compte stockage
+Enregistrez ensuite vos informations d’identification dans le fichier app.config du projet. Modifier le fichier app.config de hello afin qu’il apparaisse toohello similaire, l’exemple suivant, en remplaçant `myaccount` avec le nom de votre compte de stockage, et `mykey` avec votre clé de compte de stockage.
 
 ```xml
 <?xml version="1.0" encoding="utf-8" ?>
@@ -84,10 +84,10 @@ Enregistrez ensuite vos informations d’identification dans le fichier app.conf
 ```
 
 > [!NOTE]
-> La dernière version de l’émulateur de stockage Azure ne prend pas en charge Stockage Fichier Azure. Votre chaîne de connexion doit cibler un compte de stockage Azure dans le cloud pour fonctionner avec Stockage Fichier Azure.
+> version la plus récente de l’émulateur de stockage Azure hello Hello ne prend pas en charge le stockage Azure. Votre chaîne de connexion doit cibler un compte Azure Storage dans hello cloud toowork avec le stockage de fichiers Azure.
 
 ## <a name="add-using-directives"></a>Ajouter des directives d’utilisation
-Ouvrez le fichier `Program.cs` à partir de l’Explorateur de solutions. puis ajoutez les directives d’utilisation suivantes en haut du fichier.
+Ouvrez hello `Program.cs` à partir de l’Explorateur de solutions et ajoutez hello qui suit à l’aide de top toohello de directives de fichier de hello.
 
 ```csharp
 using Microsoft.Azure; // Namespace for Azure Configuration Manager
@@ -98,97 +98,97 @@ using Microsoft.WindowsAzure.Storage.File; // Namespace for Azure File storage
 
 [!INCLUDE [storage-cloud-configuration-manager-include](../../includes/storage-cloud-configuration-manager-include.md)]
 
-## <a name="access-the-file-share-programmatically"></a>Accès au partage de fichiers par programmation
-Ajoutez ensuite le code suivant à la méthode `Main()` (après le code montré ci-dessus) pour récupérer la chaîne de connexion. Ce code obtient une référence vers le fichier créé plus tôt et renvoie son contenu dans la fenêtre de console.
+## <a name="access-hello-file-share-programmatically"></a>Un partage de fichiers de hello d’accès par programmation
+Ensuite, ajoutez hello suivant code toohello `Main()` chaîne de connexion de hello tooretrieve (méthode) (après le code hello ci-dessus). Ce code obtient un fichier de toohello référence créée précédemment et renvoie sa fenêtre de console toohello contenu.
 
 ```csharp
-// Create a CloudFileClient object for credentialed access to Azure File storage.
+// Create a CloudFileClient object for credentialed access tooAzure File storage.
 CloudFileClient fileClient = storageAccount.CreateCloudFileClient();
 
-// Get a reference to the file share we created previously.
+// Get a reference toohello file share we created previously.
 CloudFileShare share = fileClient.GetShareReference("logs");
 
-// Ensure that the share exists.
+// Ensure that hello share exists.
 if (share.Exists())
 {
-    // Get a reference to the root directory for the share.
+    // Get a reference toohello root directory for hello share.
     CloudFileDirectory rootDir = share.GetRootDirectoryReference();
 
-    // Get a reference to the directory we created previously.
+    // Get a reference toohello directory we created previously.
     CloudFileDirectory sampleDir = rootDir.GetDirectoryReference("CustomLogs");
 
-    // Ensure that the directory exists.
+    // Ensure that hello directory exists.
     if (sampleDir.Exists())
     {
-        // Get a reference to the file we created previously.
+        // Get a reference toohello file we created previously.
         CloudFile file = sampleDir.GetFileReference("Log1.txt");
 
-        // Ensure that the file exists.
+        // Ensure that hello file exists.
         if (file.Exists())
         {
-            // Write the contents of the file to the console window.
+            // Write hello contents of hello file toohello console window.
             Console.WriteLine(file.DownloadTextAsync().Result);
         }
     }
 }
 ```
 
-Exécutez l’application console pour voir le résultat.
+Exécutez la sortie de hello hello toosee de l’application console.
 
-## <a name="set-the-maximum-size-for-a-file-share"></a>Définition de la taille maximale d’un partage de fichiers
-Depuis la version 5.x de la bibliothèque cliente Azure Storage, vous pouvez définir le quota (ou la taille maximale) pour un partage de fichier, en gigaoctets. Vous pouvez également vérifier la quantité de données actuellement stockée sur le partage.
+## <a name="set-hello-maximum-size-for-a-file-share"></a>Taille maximale du jeu hello pour un partage de fichiers
+Depuis la version 5.x de hello bibliothèque cliente de stockage Azure, vous pouvez définir ensemble hello quota (ou taille maximale) pour un partage de fichiers, en gigaoctets. Vous pouvez également vérifier toosee la quantité de données est actuellement stocké sur le partage de hello.
 
-En définissant le quota pour un partage, vous pouvez limiter la taille totale des fichiers stockés sur ce partage. Si la taille totale des fichiers sur le partage dépasse le quota défini sur celui-ci, les clients ne peuvent pas augmenter la taille des fichiers existants ou créer des fichiers, sauf si ces fichiers sont vides.
+En définissant le quota de hello pour un partage, vous pouvez limiter la taille totale de hello hello les fichiers stockés sur le partage de hello. Si hello la taille totale des fichiers sur le partage de hello dépasse quota de hello défini sur le partage de hello, les clients seront taille de hello tooincrease impossible des fichiers existants ou créer de nouveaux fichiers, à moins que ces fichiers sont vides.
 
-L’exemple ci-dessous illustre comment vérifier l’utilisation actuelle pour un partage et comment définir le quota pour le partage.
+exemple Hello ci-dessous montre comment toocheck hello en cours d’utilisation pour un partage et comment tooset hello quota pour le partage de hello.
 
 ```csharp
-// Parse the connection string for the storage account.
+// Parse hello connection string for hello storage account.
 CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
     Microsoft.Azure.CloudConfigurationManager.GetSetting("StorageConnectionString"));
 
-// Create a CloudFileClient object for credentialed access to Azure File storage.
+// Create a CloudFileClient object for credentialed access tooAzure File storage.
 CloudFileClient fileClient = storageAccount.CreateCloudFileClient();
 
-// Get a reference to the file share we created previously.
+// Get a reference toohello file share we created previously.
 CloudFileShare share = fileClient.GetShareReference("logs");
 
-// Ensure that the share exists.
+// Ensure that hello share exists.
 if (share.Exists())
 {
-    // Check current usage stats for the share.
-    // Note that the ShareStats object is part of the protocol layer for the File service.
+    // Check current usage stats for hello share.
+    // Note that hello ShareStats object is part of hello protocol layer for hello File service.
     Microsoft.WindowsAzure.Storage.File.Protocol.ShareStats stats = share.GetStats();
     Console.WriteLine("Current share usage: {0} GB", stats.Usage.ToString());
 
-    // Specify the maximum size of the share, in GB.
-    // This line sets the quota to be 10 GB greater than the current usage of the share.
+    // Specify hello maximum size of hello share, in GB.
+    // This line sets hello quota toobe 10 GB greater than hello current usage of hello share.
     share.Properties.Quota = 10 + stats.Usage;
     share.SetProperties();
 
-    // Now check the quota for the share. Call FetchAttributes() to populate the share's properties.
+    // Now check hello quota for hello share. Call FetchAttributes() toopopulate hello share's properties.
     share.FetchAttributes();
     Console.WriteLine("Current share quota: {0} GB", share.Properties.Quota);
 }
 ```
 
 ### <a name="generate-a-shared-access-signature-for-a-file-or-file-share"></a>Génération d’une signature d’accès partagé pour un fichier ou partage de fichiers
-Depuis la version 5.x de la bibliothèque cliente Azure Storage, vous pouvez générer une signature d’accès partagé (SAP) pour un partage de fichiers ou un fichier individuel. Vous pouvez également créer une stratégie d’accès partagé sur un partage de fichiers pour gérer les signatures d’accès partagé. Créer une stratégie d’accès partagé est recommandé, car cette opération permet de révoquer la SAP si elle doit être compromise.
+Depuis la version 5.x de hello bibliothèque cliente de stockage Azure, vous pouvez générer une signature d’accès partagé (SAP) pour un partage de fichiers ou un fichier. Vous pouvez également créer une stratégie d’accès partagé sur un toomanage partagé accès au partage de fichier signatures. Création d’une stratégie d’accès partagé est recommandée, car elle fournit un moyen de révocation hello SAS si elle doit être compromise.
 
-L’exemple suivant crée une stratégie d’accès partagé sur un partage, puis utilise cette stratégie pour fournir les contraintes pour une SAP sur un fichier du partage.
+Bonjour à l’exemple suivant crée une stratégie d’accès partagé sur un partage, puis utilise que tooprovide hello les contraintes de stratégie pour une SAP sur un fichier dans hello partagent.
 
 ```csharp
-// Parse the connection string for the storage account.
+// Parse hello connection string for hello storage account.
 CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
     Microsoft.Azure.CloudConfigurationManager.GetSetting("StorageConnectionString"));
 
-// Create a CloudFileClient object for credentialed access to Azure File storage.
+// Create a CloudFileClient object for credentialed access tooAzure File storage.
 CloudFileClient fileClient = storageAccount.CreateCloudFileClient();
 
-// Get a reference to the file share we created previously.
+// Get a reference toohello file share we created previously.
 CloudFileShare share = fileClient.GetShareReference("logs");
 
-// Ensure that the share exists.
+// Ensure that hello share exists.
 if (share.Exists())
 {
     string policyName = "sampleSharePolicy" + DateTime.UtcNow.Ticks;
@@ -200,21 +200,21 @@ if (share.Exists())
             Permissions = SharedAccessFilePermissions.Read | SharedAccessFilePermissions.Write
         };
 
-    // Get existing permissions for the share.
+    // Get existing permissions for hello share.
     FileSharePermissions permissions = share.GetPermissions();
 
-    // Add the shared access policy to the share's policies. Note that each policy must have a unique name.
+    // Add hello shared access policy toohello share's policies. Note that each policy must have a unique name.
     permissions.SharedAccessPolicies.Add(policyName, sharedPolicy);
     share.SetPermissions(permissions);
 
-    // Generate a SAS for a file in the share and associate this access policy with it.
+    // Generate a SAS for a file in hello share and associate this access policy with it.
     CloudFileDirectory rootDir = share.GetRootDirectoryReference();
     CloudFileDirectory sampleDir = rootDir.GetDirectoryReference("CustomLogs");
     CloudFile file = sampleDir.GetFileReference("Log1.txt");
     string sasToken = file.GetSharedAccessSignature(null, policyName);
     Uri fileSasUri = new Uri(file.StorageUri.PrimaryUri.ToString() + sasToken);
 
-    // Create a new CloudFile object from the SAS, and write some text to the file.
+    // Create a new CloudFile object from hello SAS, and write some text toohello file.
     CloudFile fileSas = new CloudFile(fileSasUri);
     fileSas.UploadText("This write operation is authenticated via SAS.");
     Console.WriteLine(fileSas.DownloadText());
@@ -224,135 +224,135 @@ if (share.Exists())
 Pour plus d’informations sur la création et l’utilisation de signatures d’accès partagé, consultez [Utilisation des signatures d’accès partagé (SAP)](storage-dotnet-shared-access-signature-part-1.md) et [Créer et utiliser une signature d’accès partagé avec des blobs Azure](storage-dotnet-shared-access-signature-part-2.md).
 
 ## <a name="copy-files"></a>Copie des fichiers
-Depuis la version 5.x de la bibliothèque cliente Azure Storage, vous pouvez copier un fichier dans un autre fichier, un fichier dans un objet blob ou un objet blob dans un fichier. Dans les sections suivantes, nous montrons comment effectuer ces opérations de copie par programmation.
+Depuis la version 5.x de hello bibliothèque cliente de stockage Azure, vous pouvez copier un fichier de tooanother, un objet blob tooa de fichier ou un objet blob tooa fichier. Dans les sections suivantes hello, nous allons montrer comment tooperform ces copier les opérations par programme.
 
-Vous pouvez également utiliser AzCopy pour copier un fichier dans un autre ou pour copier un objet blob dans un fichier ou vice versa. Consultez l’article [Transfert de données avec l’utilitaire de ligne de commande AzCopy](storage-use-azcopy.md).
+Vous pouvez également utiliser AzCopy toocopy un fichier tooanother ou toocopy un objet blob tooa fichier et inversement. Consultez [transférer des données avec l’utilitaire de ligne de commande AzCopy de hello](storage-use-azcopy.md).
 
 > [!NOTE]
-> Si vous copiez un objet blob dans un fichier ou un fichier dans un objet blob, vous devez utiliser une signature d’accès partagé (SAP) pour authentifier l’objet source, même si vous effectuez la copie dans le même compte de stockage.
+> Si vous copiez un fichier de tooa blob ou d’un objet blob tooa de fichier, vous devez utiliser un objet de source accès partagé (SAS) de signature tooauthenticate hello, même si vous copiez dans hello même compte de stockage.
 > 
 > 
 
-**Copier un fichier vers un autre** L’exemple suivant copie un fichier dans un autre fichier au sein du même partage. Étant donné que cette opération de copie a lieu entre des fichiers du même compte de stockage, vous pouvez utiliser l’authentification Clé partagée pour l’effectuer.
+**Copier un fichier tooanother** hello exemple suivant copie un fichier tooanother Bonjour même partage. Étant donné que cette opération de copie entre les fichiers dans hello même compte de stockage, vous pouvez utiliser la copie de la clé partagée d’authentification tooperform hello.
 
 ```csharp
-// Parse the connection string for the storage account.
+// Parse hello connection string for hello storage account.
 CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
     Microsoft.Azure.CloudConfigurationManager.GetSetting("StorageConnectionString"));
 
-// Create a CloudFileClient object for credentialed access to Azure File storage.
+// Create a CloudFileClient object for credentialed access tooAzure File storage.
 CloudFileClient fileClient = storageAccount.CreateCloudFileClient();
 
-// Get a reference to the file share we created previously.
+// Get a reference toohello file share we created previously.
 CloudFileShare share = fileClient.GetShareReference("logs");
 
-// Ensure that the share exists.
+// Ensure that hello share exists.
 if (share.Exists())
 {
-    // Get a reference to the root directory for the share.
+    // Get a reference toohello root directory for hello share.
     CloudFileDirectory rootDir = share.GetRootDirectoryReference();
 
-    // Get a reference to the directory we created previously.
+    // Get a reference toohello directory we created previously.
     CloudFileDirectory sampleDir = rootDir.GetDirectoryReference("CustomLogs");
 
-    // Ensure that the directory exists.
+    // Ensure that hello directory exists.
     if (sampleDir.Exists())
     {
-        // Get a reference to the file we created previously.
+        // Get a reference toohello file we created previously.
         CloudFile sourceFile = sampleDir.GetFileReference("Log1.txt");
 
-        // Ensure that the source file exists.
+        // Ensure that hello source file exists.
         if (sourceFile.Exists())
         {
-            // Get a reference to the destination file.
+            // Get a reference toohello destination file.
             CloudFile destFile = sampleDir.GetFileReference("Log1Copy.txt");
 
-            // Start the copy operation.
+            // Start hello copy operation.
             destFile.StartCopy(sourceFile);
 
-            // Write the contents of the destination file to the console window.
+            // Write hello contents of hello destination file toohello console window.
             Console.WriteLine(destFile.DownloadText());
         }
     }
 }
 ```
 
-**Copier un fichier vers un blob** L’exemple ci-dessous crée un fichier et le copie dans un blob au sein du même compte de stockage. L’exemple crée une SAP pour le fichier source, que le service utilise pour authentifier l’accès au fichier source pendant l’opération de copie.
+**Copier un objet blob tooa de fichier** hello exemple suivant crée un fichier et le copie blob tooa dans hello même compte de stockage. exemple de Hello crée un SAS pour le fichier de source de hello, quel service hello utilise le fichier de source toohello tooauthenticate accès pendant l’opération de copie hello.
 
 ```csharp
-// Parse the connection string for the storage account.
+// Parse hello connection string for hello storage account.
 CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
     Microsoft.Azure.CloudConfigurationManager.GetSetting("StorageConnectionString"));
 
-// Create a CloudFileClient object for credentialed access to Azure File storage.
+// Create a CloudFileClient object for credentialed access tooAzure File storage.
 CloudFileClient fileClient = storageAccount.CreateCloudFileClient();
 
 // Create a new file share, if it does not already exist.
 CloudFileShare share = fileClient.GetShareReference("sample-share");
 share.CreateIfNotExists();
 
-// Create a new file in the root directory.
+// Create a new file in hello root directory.
 CloudFile sourceFile = share.GetRootDirectoryReference().GetFileReference("sample-file.txt");
-sourceFile.UploadText("A sample file in the root directory.");
+sourceFile.UploadText("A sample file in hello root directory.");
 
-// Get a reference to the blob to which the file will be copied.
+// Get a reference toohello blob toowhich hello file will be copied.
 CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 CloudBlobContainer container = blobClient.GetContainerReference("sample-container");
 container.CreateIfNotExists();
 CloudBlockBlob destBlob = container.GetBlockBlobReference("sample-blob.txt");
 
-// Create a SAS for the file that's valid for 24 hours.
-// Note that when you are copying a file to a blob, or a blob to a file, you must use a SAS
-// to authenticate access to the source object, even if you are copying within the same
+// Create a SAS for hello file that's valid for 24 hours.
+// Note that when you are copying a file tooa blob, or a blob tooa file, you must use a SAS
+// tooauthenticate access toohello source object, even if you are copying within hello same
 // storage account.
 string fileSas = sourceFile.GetSharedAccessSignature(new SharedAccessFilePolicy()
 {
-    // Only read permissions are required for the source file.
+    // Only read permissions are required for hello source file.
     Permissions = SharedAccessFilePermissions.Read,
     SharedAccessExpiryTime = DateTime.UtcNow.AddHours(24)
 });
 
-// Construct the URI to the source file, including the SAS token.
+// Construct hello URI toohello source file, including hello SAS token.
 Uri fileSasUri = new Uri(sourceFile.StorageUri.PrimaryUri.ToString() + fileSas);
 
-// Copy the file to the blob.
+// Copy hello file toohello blob.
 destBlob.StartCopy(fileSasUri);
 
-// Write the contents of the file to the console window.
+// Write hello contents of hello file toohello console window.
 Console.WriteLine("Source file contents: {0}", sourceFile.DownloadText());
 Console.WriteLine("Destination blob contents: {0}", destBlob.DownloadText());
 ```
 
-Vous pouvez copier un objet blob dans un fichier de la même façon. Si l’objet source est un objet blob, créez une SAP pour authentifier l’accès à cet objet blob pendant l’opération de copie.
+Vous pouvez copier un fichier de tooa blob Bonjour identique. Si l’objet de source de hello est un objet blob, vous devez ensuite créer un objet blob SAS tooauthenticate accès toothat au cours de l’opération de copie hello.
 
 ## <a name="troubleshooting-azure-file-storage-using-metrics"></a>Résolution des problèmes Stockage Fichier Azure à l’aide de métriques
 Azure Storage Analytics prend à présent en charge les métriques pour Stockage Fichier Azure. Avec les données de métriques, vous pouvez suivre les demandes et diagnostiquer les problèmes.
 
 
-Vous pouvez activer les métriques pour Stockage Fichier Azure par le biais du [portail Azure](https://portal.azure.com). Vous pouvez également activer les métriques par programmation en appelant l’opération de définition des propriétés du service de fichiers via l’API REST ou l’un de ses analogues dans la bibliothèque cliente de stockage.
+Vous pouvez activer les métriques pour le stockage de fichiers Azure à partir de hello [Azure Portal](https://portal.azure.com). Vous pouvez également activer les métriques par programme en appelant hello opération de définition des propriétés de Service fichier via l’API REST de hello, ou l’un de ses analogues Bonjour bibliothèque cliente de stockage.
 
 
-L’exemple de code suivant explique comment utiliser la bibliothèque cliente Stockage Azure pour .NET afin d’activer les métriques Stockage Fichier Azure.
+Hello, exemple de code suivant montre comment toouse hello bibliothèque cliente de stockage pour les métriques de tooenable .NET pour le stockage de fichiers Azure.
 
-Commencez par ajouter les directives `using` suivantes à votre fichier `Program.cs`, en plus de celles que vous avez ajoutées ci-dessus :
+Tout d’abord, ajoutez hello qui suit `using` directives tooyour `Program.cs` un fichier, en outre toothose que vous avez ajouté ci-dessus :
 
 ```csharp
 using Microsoft.WindowsAzure.Storage.File.Protocol;
 using Microsoft.WindowsAzure.Storage.Shared.Protocol;
 ```
 
-Bien que les services Blob, Table et File d’attente Azure utilisent le type `ServiceProperties` partagé dans l’espace de noms `Microsoft.WindowsAzure.Storage.Shared.Protocol`, Stockage Fichier Azure utilise son propre type (`FileServiceProperties`) dans l’espace de noms `Microsoft.WindowsAzure.Storage.File.Protocol`. Pour pouvoir compiler le code suivant, vous devez cependant référencer les deux espaces de noms à partir de votre code.
+Notez que, pendant que les objets BLOB Azure, la Table de Azure et files d’attente Azure, utilisez hello partagé `ServiceProperties` type Bonjour `Microsoft.WindowsAzure.Storage.Shared.Protocol` espace de noms, stockage de fichier Azure utilise son propre type, hello `FileServiceProperties` type Bonjour `Microsoft.WindowsAzure.Storage.File.Protocol` espace de noms. Les deux espaces de noms doivent être référencées à partir de votre code, toutefois, pour hello suivant toocompile de code.
 
 ```csharp
 // Parse your storage connection string from your application's configuration file.
 CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
         Microsoft.Azure.CloudConfigurationManager.GetSetting("StorageConnectionString"));
-// Create the File service client.
+// Create hello File service client.
 CloudFileClient fileClient = storageAccount.CreateCloudFileClient();
 
 // Set metrics properties for File service.
-// Note that the File service currently uses its own service properties type,
-// available in the Microsoft.WindowsAzure.Storage.File.Protocol namespace.
+// Note that hello File service currently uses its own service properties type,
+// available in hello Microsoft.WindowsAzure.Storage.File.Protocol namespace.
 fileClient.SetServiceProperties(new FileServiceProperties()
 {
     // Set hour metrics
@@ -371,7 +371,7 @@ fileClient.SetServiceProperties(new FileServiceProperties()
     }
 });
 
-// Read the metrics properties we just set.
+// Read hello metrics properties we just set.
 FileServiceProperties serviceProperties = fileClient.GetServiceProperties();
 Console.WriteLine("Hour metrics:");
 Console.WriteLine(serviceProperties.HourMetrics.MetricsLevel);
@@ -384,19 +384,19 @@ Console.WriteLine(serviceProperties.MinuteMetrics.RetentionDays);
 Console.WriteLine(serviceProperties.MinuteMetrics.Version);
 ```
 
-Vous pouvez également vous référer à [l’article Résolution des problèmes relatifs à Stockage Fichier Azure](storage-troubleshoot-file-connection-problems.md) pour obtenir une aide de bout en bout.
+En outre, vous pouvez faire référence trop[le stockage de fichiers Azure Article de résolution des problèmes](storage-troubleshoot-file-connection-problems.md) de bout en bout des conseils de dépannage.
 
 ## <a name="next-steps"></a>Étapes suivantes
 Pour plus d’informations sur le stockage de fichiers Azure, consultez ces liens.
 
 ### <a name="conceptual-articles-and-videos"></a>Vidéos et articles conceptuels
 * [Stockage Fichier Azure : un système de fichiers SMB dans le cloud sans friction pour Windows et Linux](https://azure.microsoft.com/documentation/videos/azurecon-2015-azure-files-storage-a-frictionless-cloud-smb-file-system-for-windows-and-linux/)
-* [Utilisation de Stockage Fichier Azure avec Linux](storage-how-to-use-files-linux.md)
+* [Comment toouse stockage Azure files avec Linux](storage-how-to-use-files-linux.md)
 
 ### <a name="tooling-support-for-file-storage"></a>Outils pris en charge pour le stockage de fichiers
 * [Utilisation d'Azure PowerShell avec Azure Storage](storage-powershell-guide-full.md)
-* [Utilisation de AzCopy avec Microsoft Azure Storage](storage-use-azcopy.md)
-* [Utilisation de la CLI Microsoft Azure avec Microsoft Azure Storage](storage-azure-cli.md#create-and-manage-file-shares)
+* [Comment toouse AzCopy avec Microsoft Azure Storage](storage-use-azcopy.md)
+* [À l’aide de hello CLI d’Azure avec le stockage Azure](storage-azure-cli.md#create-and-manage-file-shares)
 * [Résolution des problèmes de stockage de fichiers Azure](https://docs.microsoft.com/azure/storage/storage-troubleshoot-file-connection-problems)
 
 ### <a name="reference"></a>Référence
@@ -407,4 +407,4 @@ Pour plus d’informations sur le stockage de fichiers Azure, consultez ces lien
 * [Le stockage de fichiers Azure est désormais mis à la disposition générale](https://azure.microsoft.com/blog/azure-file-storage-now-generally-available/)
 * [Dans le Stockage Fichier Azure](https://azure.microsoft.com/blog/inside-azure-file-storage/)
 * [Présentation de Microsoft Azure File Service](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/12/introducing-microsoft-azure-file-service.aspx)
-* [Persisting connections to Microsoft Azure File storage](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/27/persisting-connections-to-microsoft-azure-files.aspx) (Conservation des connexions vers Stockage Fichier Microsoft Azure)
+* [TooMicrosoft connexions persistantes stockage Azure](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/27/persisting-connections-to-microsoft-azure-files.aspx)

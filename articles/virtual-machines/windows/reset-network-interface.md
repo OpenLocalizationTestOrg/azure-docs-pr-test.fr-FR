@@ -1,6 +1,6 @@
 ---
-title: "Procédure de réinitialisation de l’interface réseau pour les machines virtuelles Windows Azure | Microsoft Docs"
-description: "Montre comment réinitialiser l’interface réseau pour une machine virtuelle Windows Azure"
+title: "interface réseau Windows Azure VM aaaHow tooreset | Documents Microsoft"
+description: "Montre comment tooreset interface réseau pour la machine virtuelle de Windows Azure"
 services: virtual-machines-windows, azure-resource-manager
 documentationcenter: 
 author: genlin
@@ -14,61 +14,61 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/26/2017
 ms.author: genli
-ms.openlocfilehash: 220e426be20086841854d89831f6c9d67529867f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1b653820927ef4c3bb8f384a7e752846a8be3da9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-reset-network-interface-for-azure-windows-vm"></a>Comment réinitialiser l’interface réseau pour une machine virtuelle Windows Azure 
+# <a name="how-tooreset-network-interface-for-azure-windows-vm"></a>Comment tooreset interface réseau pour la machine virtuelle de Windows Azure 
 
 [!INCLUDE [learn-about-deployment-models](../../../includes/learn-about-deployment-models-both-include.md)]
 
-Vous ne pouvez pas vous connecter à une machine virtuelle Microsoft Azure Windows après avoir désactivé l’interface réseau (carte réseau) par défaut ou défini manuellement une adresse IP statique pour la carte réseau. Cet article explique comment réinitialiser l’interface réseau pour une machine virtuelle Windows Azure, ce qui résoudra le problème de connexion distante.
+Vous ne peut pas se connecter à tooMicrosoft Machine virtuelle de Windows Azure (VM) après la désactivation de la valeur par défaut de hello d’Interface réseau (NIC) ou manuellement définit une adresse IP statique pour la carte réseau de hello. Cet article explique comment tooreset hello interface réseau de l’ordinateur virtuel Windows Azure, qui résout le problème de connexion à distance hello.
 
 [!INCLUDE [support-disclaimer](../../../includes/support-disclaimer.md)]
 ## <a name="reset-network-interface"></a>Réinitialiser l’interface réseau
 
 ### <a name="for-classic-vms"></a>Pour les machines virtuelles Classic
 
-Pour réinitialiser l’interface réseau, procédez comme suit :
+tooreset réseau de l’interface, procédez comme suit :
 
-1.  Accédez au [portail Azure]( https://ms.portal.azure.com).
+1.  Accédez toohello [portail Azure]( https://ms.portal.azure.com).
 2.  Sélectionnez **Machines virtuelles (Classic)**.
-3.  Sélectionnez la machine virtuelle concernée.
+3.  Sélectionnez hello affectées de Machine virtuelle.
 4.  Sélectionnez **Adresses IP**.
-5.  Si l’**attribution d’adresse IP privée** n’est pas **Statique**, choisissez **Statique**.
-6.  Modifiez l’**adresse IP** pour indiquer une autre adresse IP, disponible dans le sous-réseau.
+5.  Si hello **l’attribution IP privé** n’est pas **statique**, modifiez-le trop**statique**.
+6.  Hello de modification **adresse IP** tooanother adresse IP disponible dans hello sous-réseau.
 7.  Sélectionnez Enregistrer.
-8.  La machine virtuelle redémarre afin d’initialiser la nouvelle carte réseau pour le système.
-9.  Essayez d’utiliser le protocole RDP sur votre machine. En cas de réussite, vous pouvez redéfinir l’adresse IP privée d’origine si vous le souhaitez. Sinon, vous pouvez conserver cette adresse. 
+8.  machine virtuelle de Hello redémarre tooinitialize hello nouveau NIC toohello système.
+9.  Essayez tooRDP tooyour machine. En cas de réussite, vous pouvez modifier hello IP privé adresse arrière toohello d’origine si vous le souhaitez. Sinon, vous pouvez conserver cette adresse. 
 
 ### <a name="for-vms-deployed-in-resource-group-model"></a>Pour les machines virtuelles déployées dans le modèle de groupe de ressources
 
-1.  Accédez au [portail Azure]( https://ms.portal.azure.com).
-2.  Sélectionnez la machine virtuelle concernée.
+1.  Accédez toohello [portail Azure]( https://ms.portal.azure.com).
+2.  Sélectionnez hello affectées de Machine virtuelle.
 3.  Sélectionnez **Interfaces réseau**.
-4.  Sélectionnez l’interface réseau associée à votre machine.
+4.  Sélectionnez hello Qu'interface réseau associé à votre ordinateur
 5.  Sélectionnez **Configurations IP**.
-6.  Sélectionnez l’adresse IP. 
-7.  Si l’**attribution d’adresse IP privée** n’est pas **Statique**, choisissez **Statique**.
-8.  Modifiez l’**adresse IP** pour indiquer une autre adresse IP, disponible dans le sous-réseau.
-9. La machine virtuelle redémarre afin d’initialiser la nouvelle carte réseau pour le système.
-10. Essayez d’utiliser le protocole RDP sur votre machine. En cas de réussite, vous pouvez redéfinir l’adresse IP privée d’origine si vous le souhaitez. Sinon, vous pouvez conserver cette adresse. 
+6.  Sélectionnez adresse IP de hello. 
+7.  Si hello **l’attribution IP privé** n’est pas **statique**, modifiez-le trop**statique**.
+8.  Hello de modification **adresse IP** tooanother adresse IP disponible dans hello sous-réseau.
+9. machine virtuelle de Hello redémarre tooinitialize hello nouveau NIC toohello système.
+10. Essayez tooRDP tooyour machine. En cas de réussite, vous pouvez modifier hello IP privé adresse arrière toohello d’origine si vous le souhaitez. Sinon, vous pouvez conserver cette adresse. 
 
-## <a name="delete-the-unavailable-nics"></a>Supprimer les cartes réseau non disponibles
-Une fois que vous pouvez vous connecter directement à la machine à l’aide du bureau à distance, vous devez supprimer les anciennes cartes réseau pour éviter tout problème potentiel :
+## <a name="delete-hello-unavailable-nics"></a>Supprimer hello cartes réseau non disponible
+Une fois que vous pouvez les ordinateur toohello Bureau à distance, vous devez supprimer le problème potentiel de hello anciennes cartes réseau tooavoid hello :
 
 1.  Ouvrez le Gestionnaire de périphériques.
 2.  Sélectionnez **Afficher** > **Afficher les périphériques cachés**.
 3.  Sélectionnez **Adaptateurs réseau**. 
-4.  Recherchez les adaptateurs nommés « Carte réseau de bus Microsoft Hyper-V ».
-5.  Il se peut qu’un adaptateur non disponible apparaisse grisé. Cliquez avec le bouton droit sur l’adaptateur, puis sélectionnez Désinstaller.
+4.  Rechercher les cartes de hello nommés en tant que « Carte de réseau Microsoft Hyper-V ».
+5.  Il se peut qu’un adaptateur non disponible apparaisse grisé. L’adaptateur hello d’avec le bouton droit, puis sélectionnez Désinstaller.
 
-    ![Image de la carte réseau](media/reset-network-interface/nicpage.png)
+    ![image Hello Hello NIC](media/reset-network-interface/nicpage.png)
 
     > [!NOTE]
-    > Désinstallez uniquement les adaptateurs non disponibles qui portent le nom « Carte réseau de bus Microsoft Hyper-V ». Si vous désinstallez un autre adaptateur caché, cela peut entraîner des problèmes supplémentaires.
+    > Désinstaller uniquement les adaptateurs indisponible hello qui portent le nom hello « Carte de réseau Microsoft Hyper-V ». Si vous désinstallez des hello autres adaptateurs masquées, elle peut entraîner des problèmes supplémentaires.
     >
     >
 

@@ -1,6 +1,6 @@
 ---
-title: "Présentation des journaux de diagnostic Azure | Microsoft Docs"
-description: "Découvrez les journaux de diagnostic Azure et comment les utiliser pour comprendre les événements qui se produisent au sein d’une ressource Azure."
+title: aaaOverview de journaux de Diagnostic Azure | Documents Microsoft
+description: "Découvrez ce que sont les journaux de diagnostic Azure et comment vous pouvez utiliser les événements de toounderstand qui se produisent au sein d’une ressource Azure."
 author: johnkemnetz
 manager: orenr
 editor: 
@@ -14,36 +14,36 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/21/2017
 ms.author: johnkem; magoedte
-ms.openlocfilehash: d59abde29fc7b73a799e5bf3659b02f824b693de
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: e38991c540626b4bb5b5b9a995276881ee58f368
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="collect-and-consume-log-data-from-your-azure-resources"></a>Collecter et utiliser des données de journaux à partir de vos ressources Azure
 
 ## <a name="what-are-azure-resource-diagnostic-logs"></a>Présentation des journaux de diagnostic des ressources Azure
-Les **journaux de diagnostic au niveau des ressources Azure** sont des journaux émis par une ressource, qui fournissent des informations détaillées et riches sur l’utilisation de celle-ci, à intervalles réguliers. Le contenu de ces journaux varie en fonction du type de ressource. Les compteurs de règles du groupe de sécurité réseau et les audits de coffres de clés sont deux exemples de catégories de journaux de ressource.
+**Les journaux de diagnostic au niveau des ressources Azure** journaux émis par une ressource qui fournissent des données riches et fréquentes relatives au fonctionnement de hello de cette ressource. le contenu de ces journaux Hello varie selon le type de ressource. Les compteurs de règles du groupe de sécurité réseau et les audits de coffres de clés sont deux exemples de catégories de journaux de ressource.
 
-Les journaux de diagnostic des ressources ne fournissent pas les mêmes informations que le [Journal d’activité](monitoring-overview-activity-logs.md). Le journal d’activité fournit un aperçu des opérations qui ont été effectuées sur les ressources de votre abonnement à l’aide de Resource Manager (par exemple, la création d’une machine virtuelle ou la suppression d’une application logique). Il s’intéresse aux opérations effectuées au niveau de l’abonnement. Les journaux de diagnostic des ressources, quant à eux, donnent un aperçu des opérations qui ont été effectuées au sein d’une ressource (par exemple, l’obtention d’un secret à partir d’un coffre de clés).
+Les journaux de diagnostic au niveau des ressources diffèrent hello [le journal d’activité](monitoring-overview-activity-logs.md). Hello journal d’activité fournit des indications sur les opérations de hello qui ont été effectuées sur les ressources dans votre abonnement à l’aide du Gestionnaire de ressources, par exemple, la création d’une machine virtuelle ou la suppression d’une application logique. Hello journal d’activité est un journal au niveau de l’abonnement. Les journaux de diagnostic des ressources, quant à eux, donnent un aperçu des opérations qui ont été effectuées au sein d’une ressource (par exemple, l’obtention d’un secret à partir d’un coffre de clés).
 
-Les journaux de diagnostic des ressources diffèrent également des journaux de diagnostic de système d’exploitation invité. Les journaux de diagnostic de système d’exploitation invité sont collectés par un agent exécuté sur une machine virtuelle ou un autre type de ressource pris en charge. Les journaux de diagnostic des ressources ne nécessitent aucun agent et capturent les données relatives à la ressource à partir de la plateforme Azure, alors que les journaux de diagnostic du système d’exploitation invité capturent les données provenant du système d’exploitation et des applications exécutées sur la machine virtuelle.
+Les journaux de diagnostic des ressources diffèrent également des journaux de diagnostic de système d’exploitation invité. Les journaux de diagnostic de système d’exploitation invité sont collectés par un agent exécuté sur une machine virtuelle ou un autre type de ressource pris en charge. Les journaux de diagnostic au niveau des ressources ne nécessitent aucun agent et capturer des données propres à la ressource à partir de hello plateforme Azure lui-même, les journaux de diagnostic au niveau du système d’exploitation invité de capturer les données de système d’exploitation de hello et applications en cours d’exécution sur un ordinateur virtuel.
 
-Le nouveau type de journal de diagnostic décrit ici n’est cependant pas pris en charge par toutes les ressources. Cet article comprend une section répertoriant les types de ressources qui prennent en charge les nouveaux journaux de diagnostic des ressources.
+Pas toutes les ressources prennent en charge hello nouveau type de ressource des journaux de diagnostic décrites ici. Cet article contient une liste de section quels types de ressources prend en charge les nouveaux journaux de diagnostic au niveau des ressources hello.
 
 ![Comparaison entre les journaux de diagnostic des ressources et les autres types de journaux ](./media/monitoring-overview-of-diagnostic-logs/Diagnostics_Logs_vs_other_logs_v5.png)
 
 ## <a name="what-you-can-do-with-resource-level-diagnostic-logs"></a>Comment utiliser les journaux de diagnostic au niveau des ressources
-Voici ce que vous pouvez faire avec les journaux de diagnostic des ressources :
+Voici quelques-unes des choses hello que vous pouvez faire avec les journaux de diagnostic de ressource :
 
 ![Positionnement logique des journaux de diagnostic des ressources](./media/monitoring-overview-of-diagnostic-logs/Diagnostics_Logs_Actions.png)
 
 
-* Enregistrez-les dans un [**compte de stockage**](monitoring-archive-diagnostic-logs.md) pour l’audit ou l’inspection manuelle. Vous pouvez spécifier la durée de rétention (en jours) à l’aide des **paramètres de diagnostic des ressources**.
-* [Diffusez-les en streaming sur **Event Hubs**](monitoring-stream-diagnostic-logs-to-event-hubs.md) pour qu’un service tiers ou une solution d’analyse personnalisée (comme PowerBI) les ingère.
+* Enregistrer les tooa [ **compte de stockage** ](monitoring-archive-diagnostic-logs.md) pour l’inspection de l’audit ou manuelle. Vous pouvez spécifier à l’aide de temps (en jours) de rétention hello **les paramètres de diagnostic ressource**.
+* [Les flux trop**concentrateurs d’événements** ](monitoring-stream-diagnostic-logs-to-event-hubs.md) pour l’ingestion par un service tiers ou d’une solution personnalisée analytique telles que Power BI.
 * Analysez-les avec [OMS Log Analytics](../log-analytics/log-analytics-azure-storage.md)
 
-Vous pouvez utiliser un compte de stockage ou un espace de noms Event Hubs qui n’est pas dans le même abonnement que celui générant des journaux. L’utilisateur qui configure le paramètre doit disposer d’un accès RBAC approprié aux deux abonnements.
+Vous pouvez utiliser un compte de stockage ou d’espace de noms de concentrateurs d’événements qui n’est pas hello même abonnement comme une émission journaux hello. utilisateur de Hello qui configure hello paramètre doit avoir des abonnements tooboth d’accès appropriés RBAC hello.
 
 ## <a name="resource-diagnostic-settings"></a>Paramètres de diagnostic des ressources
 Les journaux de diagnostic des ressources non liées au calcul sont configurés à l’aide des paramètres de diagnostic des ressources. **Paramètres de diagnostic des ressources** pour un contrôle des ressources :
@@ -51,131 +51,131 @@ Les journaux de diagnostic des ressources non liées au calcul sont configurés 
 * Où les journaux de diagnostic des ressources et les mesures sont envoyés (compte de stockage, Concentrateurs d’événements et/ou Analyse des journaux OMS).
 * Les catégories de journal envoyées et les données de mesure également envoyées.
 * La durée pendant laquelle chaque catégorie de journal doit être conservée dans un compte de stockage
-    - Une durée de rétention de zéro jour signifie que les journaux sont conservés indéfiniment. La valeur peut également être n’importe quel nombre de jours, compris entre 1 et 2147483647.
-    - Si des stratégies de rétention sont définies, mais que le stockage des journaux dans un compte de stockage est désactivé (par exemple si seules les options Event Hubs ou OMS sont sélectionnées), les stratégies de rétention n’ont aucun effet.
-    - Les stratégies de rétention sont appliquées sur une base quotidienne. Donc, à la fin d’une journée (UTC), les journaux de la journée qui est désormais au-delà de la stratégie de rétention sont supprimés. Par exemple, si vous aviez une stratégie de rétention d’une journée, au début de la journée d’aujourd’hui les journaux d’avant-hier seront supprimés.
+    - Une durée de rétention de zéro jour signifie que les journaux sont conservés indéfiniment. Sinon, valeur de hello peut être n’importe quel nombre de jours compris entre 1 et 2147483647.
+    - Si les stratégies de rétention sont définies, mais que le stockage des journaux dans un compte de stockage est désactivé (par exemple, si uniquement les options de concentrateurs d’événements ou OMS sont sélectionnées), les stratégies de rétention hello n’ont aucun effet.
+    - Stratégies de rétention sont appliquées par jour, donc à hello fin d’une journée (UTC), consigne un jour hello qui est désormais au-delà de la stratégie de rétention hello sont supprimés. Par exemple, si vous aviez une stratégie de rétention d’un jour, au début de hello du jour hello aujourd'hui hello les journaux à partir de hello avant-hier seraient supprimés.
 
-Ces paramètres peuvent être facilement configurés via les paramètres de diagnostics pour une ressource dans le portail Azure, via les commandes Azure PowerShell et de l’interface CLI ou via [Azure Monitor REST API](https://msdn.microsoft.com/library/azure/dn931943.aspx).
+Ces paramètres sont configurés facilement via les paramètres de diagnostic hello pour une ressource Bonjour portail Azure, via Azure PowerShell et les commandes CLI ou hello [API REST de Azure analyse](https://msdn.microsoft.com/library/azure/dn931943.aspx).
 
 > [!WARNING]
-> Mesures et journaux de diagnostic depuis la couche de système d’exploitation invité des ressources Compute (comme les machines virtuelles ou Service Fabric) utilisent [un mécanisme distinct pour la configuration et la sélection des sorties](../azure-diagnostics.md).
+> Journaux de diagnostic et les mesures pour à partir de la couche de système d’exploitation invité hello d’utilisation des ressources (par exemple, les machines virtuelles ou Service Fabric) calcul [un mécanisme distinct pour la configuration et la sélection des sorties](../azure-diagnostics.md).
 >
 >
 
-## <a name="how-to-enable-collection-of-resource-diagnostic-logs"></a>Comment activer la collecte des journaux de diagnostic des ressources
-La collecte des journaux de diagnostic des ressources peut être activée [dans le cadre de la création d’une ressource dans un modèle Resource Manager](./monitoring-enable-diagnostic-logs-using-template.md) ou après la création d’une ressource via la page d’une ressource dans le portail. Vous pouvez également activer la collecte à tout moment via les commandes de l’interface de ligne de commande ou d’Azure PowerShell, ou via l’API REST Azure Monitor.
+## <a name="how-tooenable-collection-of-resource-diagnostic-logs"></a>La collection tooenable des journaux de diagnostic de ressources
+Collecte des journaux de diagnostic de ressource peut être activée [dans le cadre de la création d’une ressource dans un modèle de gestionnaire de ressources](./monitoring-enable-diagnostic-logs-using-template.md) ou après avoir créé une ressource à partir de la page de cette ressource dans le portail de hello. Vous pouvez également activer la collection à tout moment à l’aide de commandes Azure PowerShell ou CLI, ou à l’aide de hello API REST du moniteur Azure.
 
 > [!TIP]
-> Ces instructions peuvent ne pas s’appliquer directement à toutes les ressources. Consultez les liens de schéma en bas de cette page pour comprendre les étapes spécifiques qui peuvent concerner certains types de ressources.
+> Ces instructions ne peuvent pas appliquer directement tooevery ressource. Consultez les liens de schéma hello bas hello cette page toounderstand spéciaux comme suit qui peuvent s’appliquer à des types de ressources toocertain.
 >
 >
 
-### <a name="enable-collection-of-resource-diagnostic-logs-in-the-portal"></a>Activer la collecte des journaux de diagnostic des ressources dans le portail
-Vous pouvez activer la collecte des journaux de diagnostic des ressources dans le portail Azure après la création d’une ressource, en allant vers une ressource spécifique ou en navigant vers Azure Monitor. Pour activer cette option via Azure Monitor :
+### <a name="enable-collection-of-resource-diagnostic-logs-in-hello-portal"></a>Activer la collecte des journaux de diagnostic de ressource dans le portail de hello
+Vous pouvez activer la collecte des journaux de diagnostic de ressource Bonjour Azure portal après la création d’une ressource va de ressource spécifique tooa ou en naviguant tooAzure moniteur. tooenable cela via le moniteur de Windows Azure :
 
-1. Dans le [portail Azure](http://portal.azure.com), naviguez jusqu’à Azure Monitor, puis cliquez sur **Paramètres de diagnostic**
+1. Bonjour [portail Azure](http://portal.azure.com), accédez tooAzure analyse et cliquez sur **les paramètres de Diagnostic**
 
     ![Section Surveillance d’Azure Monitor](media/monitoring-overview-of-diagnostic-logs/diagnostic-settings-blade.png)
 
-2. Vous pouvez également filtrer la liste par type ou groupe de ressources, puis cliquez sur la ressource pour laquelle vous souhaitez définir un paramètre de diagnostic.
+2. Vous pouvez également filtrer la liste de hello par type de ressource ou le groupe de ressources, puis cliquez sur ressources hello pour laquelle vous aimeriez tooset un paramètre de diagnostic.
 
-3. S’il n’existe aucun paramètre sur la ressource que vous avez sélectionnée, vous êtes invité à créer un paramètre. Cliquez sur « Activer les diagnostics ».
+3. Si aucun paramètre n’existe sur la ressource hello que vous avez sélectionné, vous êtes invité à toocreate un paramètre. Cliquez sur « Activer les diagnostics ».
 
    ![Ajouter le paramètre de diagnostic - aucun paramètre existant](media/monitoring-overview-of-diagnostic-logs/diagnostic-settings-none.png)
 
-   S’il existe des paramètres existants sur la ressource, vous verrez une liste de paramètres déjà configurés sur cette ressource. Cliquez sur « Ajouter le paramètre de diagnostic ».
+   S’il existe des paramètres existants sur les ressources hello, vous verrez une liste de paramètres déjà configuré sur cette ressource. Cliquez sur « Ajouter le paramètre de diagnostic ».
 
    ![Ajouter le paramètre de diagnostic - paramètres existants](media/monitoring-overview-of-diagnostic-logs/diagnostic-settings-multiple.png)
 
-3. Donnez un nom à votre définition, cochez les cases pour chaque destination vers laquelle vous souhaitez envoyer des données et configurez la ressource utilisée pour chaque destination. Si vous le souhaitez, vous pouvez définir un nombre de jours pour conserver ces journaux à l’aide des curseurs **Rétention (jours)** (uniquement applicable à la destination du compte de stockage). Si la valeur zéro est appliquée à la rétention, les journaux sont stockés pour une durée indéfinie.
+3. Donnez à votre définition d’un nom, hello cases à cocher pour chaque toowhich destination vous toosend données et configurer la ressource qui est utilisée pour chaque destination. Si vous le souhaitez, vous pouvez définir un nombre de jours tooretain ces journaux à l’aide de hello **rétention (jours)** curseurs (uniquement applicable toohello compte destination de stockage). Une durée de rétention de zéro jours stocke les journaux hello indéfiniment.
    
    ![Ajouter le paramètre de diagnostic - paramètres existants](media/monitoring-overview-of-diagnostic-logs/diagnostic-settings-configure.png)
     
 4. Cliquez sur **Enregistrer**.
 
-Après quelques instants, le nouveau paramètre apparaît dans la liste des paramètres de cette ressource et les journaux de diagnostic sont envoyés vers les destinations spécifiées dès la génération de nouvelles données d’événements.
+Après quelques instants, hello nouveau paramètre apparaît dans la liste des paramètres pour cette ressource et les journaux de diagnostic sont envoyées toohello spécifié destinations dès que les nouvelles données d’événement sont générées.
 
 ### <a name="enable-collection-of-resource-diagnostic-logs-via-powershell"></a>Activer la collecte des journaux de diagnostic des ressources via PowerShell
-Pour activer la collecte des journaux de diagnostic des ressources via Azure PowerShell, utilisez les commandes suivantes :
+collection de tooenable de journaux de diagnostic des ressources via Azure PowerShell, hello utilisation suivant les commandes :
 
-Pour activer le stockage des journaux de diagnostic dans un compte de stockage, utilisez cette commande :
+stockage tooenable de journaux de diagnostic dans un compte de stockage, utilisez cette commande :
 
 ```powershell
 Set-AzureRmDiagnosticSetting -ResourceId [your resource id] -StorageAccountId [your storage account id] -Enabled $true
 ```
 
-L’ID de compte de stockage est l’ID de ressource du compte de stockage auquel vous souhaitez envoyer les journaux.
+stockage Hello ID de compte est hello ID de ressource pour toowhich de compte de stockage hello souhaité toosend hello se connecte.
 
-Pour activer le streaming des journaux de diagnostic vers un hub d’événements, utilisez cette commande :
+tooenable de diffusion en continu de concentrateur d’événements des journaux de diagnostic tooan, utilisez cette commande :
 
 ```powershell
 Set-AzureRmDiagnosticSetting -ResourceId [your resource id] -ServiceBusRuleId [your Service Bus rule id] -Enabled $true
 ```
 
-L’ID de règle Service Bus est une chaîne au format suivant : `{Service Bus resource ID}/authorizationrules/{key name}`.
+ID de règle Hello service bus est une chaîne au format suivant : `{Service Bus resource ID}/authorizationrules/{key name}`.
 
-Pour activer l’envoi des journaux de diagnostic vers un espace de travail Log Analytics, utilisez cette commande :
+Utilisez la commande tooenable envoi de journaux de diagnostic tooa Analytique de journal espace de travail :
 
 ```powershell
-Set-AzureRmDiagnosticSetting -ResourceId [your resource id] -WorkspaceId [resource id of the log analytics workspace] -Enabled $true
+Set-AzureRmDiagnosticSetting -ResourceId [your resource id] -WorkspaceId [resource id of hello log analytics workspace] -Enabled $true
 ```
 
-Vous pouvez obtenir l’ID de ressource de votre espace de travail Log Analytics à l’aide de la commande suivante :
+Vous pouvez obtenir les ID de ressource hello de votre espace de travail Analytique des journaux à l’aide de hello de commande suivante :
 
 ```powershell
 (Get-AzureRmOperationalInsightsWorkspace).ResourceId
 ```
 
-Vous pouvez combiner ces paramètres pour activer plusieurs options de sortie.
+Vous pouvez combiner ces paramètres tooenable plusieurs options de sortie.
 
 ### <a name="enable-collection-of-resource-diagnostic-logs-via-cli"></a>Activer la collecte des journaux de diagnostic des ressources via l’interface de ligne de commande (CLI)
-Pour activer la collecte des journaux de diagnostic des ressources via Azure CLI, utilisez les commandes suivantes :
+collection tooenable de journaux de diagnostic des ressources via hello CLI d’Azure, utilisez hello suivant de commandes :
 
-Pour activer le stockage des journaux de diagnostic dans un compte de stockage, utilisez cette commande :
+stockage tooenable de journaux de diagnostic dans un compte de stockage, utilisez cette commande :
 
 ```azurecli
 azure insights diagnostic set --resourceId <resourceId> --storageId <storageAccountId> --enabled true
 ```
 
-L’ID de compte de stockage est l’ID de ressource du compte de stockage auquel vous souhaitez envoyer les journaux.
+stockage Hello ID de compte est hello ID de ressource pour toowhich de compte de stockage hello souhaité toosend hello se connecte.
 
-Pour activer le streaming des journaux de diagnostic vers un hub d’événements, utilisez cette commande :
+tooenable de diffusion en continu de concentrateur d’événements des journaux de diagnostic tooan, utilisez cette commande :
 
 ```azurecli
 azure insights diagnostic set --resourceId <resourceId> --serviceBusRuleId <serviceBusRuleId> --enabled true
 ```
 
-L’ID de règle Service Bus est une chaîne au format suivant : `{Service Bus resource ID}/authorizationrules/{key name}`.
+ID de règle Hello service bus est une chaîne au format suivant : `{Service Bus resource ID}/authorizationrules/{key name}`.
 
-Pour activer l’envoi des journaux de diagnostic vers un espace de travail Log Analytics, utilisez cette commande :
+Utilisez la commande tooenable envoi de journaux de diagnostic tooa Analytique de journal espace de travail :
 
 ```azurecli
-azure insights diagnostic set --resourceId <resourceId> --workspaceId <resource id of the log analytics workspace> --enabled true
+azure insights diagnostic set --resourceId <resourceId> --workspaceId <resource id of hello log analytics workspace> --enabled true
 ```
 
-Vous pouvez combiner ces paramètres pour activer plusieurs options de sortie.
+Vous pouvez combiner ces paramètres tooenable plusieurs options de sortie.
 
 ### <a name="enable-collection-of-resource-diagnostic-logs-via-rest-api"></a>Activer la collecte des journaux de diagnostic des ressources via l’API REST
-Pour modifier les paramètres de diagnostic à l’aide de Azure Monitor REST API, consultez [ce document](https://msdn.microsoft.com/library/azure/dn931931.aspx).
+les paramètres de diagnostic toochange à l’aide de hello API REST de moniteur Azure, consultez [ce document](https://msdn.microsoft.com/library/azure/dn931931.aspx).
 
-## <a name="manage-resource-diagnostic-settings-in-the-portal"></a>Gérer les paramètres de diagnostic des ressources dans le portail
-Assurez-vous que toutes vos ressources sont configurées avec des paramètres de diagnostic. Accédez à **Moniteur** dans le portail et ouvrez **Paramètres de diagnostic**.
+## <a name="manage-resource-diagnostic-settings-in-hello-portal"></a>Gérer les paramètres de diagnostic des ressources dans le portail de hello
+Assurez-vous que toutes vos ressources sont configurées avec des paramètres de diagnostic. Accédez trop**moniteur** Bonjour portail et ouvrez **les paramètres de Diagnostic**.
 
-![Panneau Journaux de diagnostic dans le portail](./media/monitoring-overview-of-diagnostic-logs/diagnostic-settings-nav.png)
+![Diagnostic lame de journaux dans le portail de hello](./media/monitoring-overview-of-diagnostic-logs/diagnostic-settings-nav.png)
 
-Vous devrez peut-être cliquer sur « Plus de services » pour trouver la section Moniteur.
+Vous avez peut-être tooclick section d’analyse « Services plus » toofind hello.
 
-Dans cette section, vous pouvez afficher et filtrer toutes les ressources qui prennent en charge les paramètres de diagnostic pour voir si les diagnostics y sont activés. Vous pouvez également explorer pour voir si plusieurs paramètres sont définis sur une ressource et vérifier quel compte de stockage, espace de noms des concentrateurs d’événements et/ou espace de travail Log Analytics vers lesquels sont diffusées les données.
+Ici, vous pouvez afficher et filtrer toutes les ressources qui prennent en charge les paramètres de diagnostic toosee si elles les diagnostics sont activés. Vous pouvez également Explorer toosee si plusieurs paramètres sont définies sur une ressource et vérifiez quel compte de stockage, espace de noms de concentrateurs d’événements et/ou espace de travail Analytique de journal qui passent des données à.
 
 ![Résultats des Journaux de diagnostic dans le portail](./media/monitoring-overview-of-diagnostic-logs/diagnostic-settings-blade.png)
 
-L’ajout d’un paramètre de diagnostic permet d’afficher le panneau Paramètres de diagnostic, où vous pouvez activer, désactiver ou modifier vos paramètres de diagnostic pour la ressource sélectionnée.
+Ajout de qu'un paramètre de diagnostic affiche hello afficher les paramètres de Diagnostic, où vous pouvez activer, désactiver ou modifier vos paramètres de diagnostic pour hello la ressource sélectionnée.
 
 ## <a name="supported-services-categories-and-schemas-for-resource-diagnostic-logs"></a>Services, catégories et schémas pris en charge pour les journaux de diagnostic de ressources
-[Consultez cet article](monitoring-diagnostic-logs-schema.md) pour obtenir la liste complète des services pris en charge et des catégories de journaux et des schémas utilisés par ces services.
+[Consultez l’article](monitoring-diagnostic-logs-schema.md) pour une liste complète des services pris en charge et les catégories du journal hello et les schémas utilisés par ces services.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* [Diffuser en continu les journaux de diagnostic des ressources vers **Event Hubs**](monitoring-stream-diagnostic-logs-to-event-hubs.md)
-* [Modifier les paramètres de diagnostic des ressources via l’API REST Azure Monitor](https://msdn.microsoft.com/library/azure/dn931931.aspx)
+* [Flux des journaux de diagnostic de ressource trop**concentrateurs d’événements**](monitoring-stream-diagnostic-logs-to-event-hubs.md)
+* [Modifier les paramètres de diagnostic de ressources à l’aide de hello API REST du moniteur de Azure](https://msdn.microsoft.com/library/azure/dn931931.aspx)
 * [Analyser les journaux du stockage Azure avec Log Analytics](../log-analytics/log-analytics-azure-storage.md)

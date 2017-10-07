@@ -1,6 +1,6 @@
 ---
-title: "Panneau de synthèse de l’appareil StorSimple Virtual Array | Microsoft Docs"
-description: "Décrit le panneau de synthèse des appareils pour StorSimple Device Manager et explique comment l’utiliser pour surveiller l’intégrité de votre instance StorSimple Virtual Array."
+title: "panneau Résumé du périphérique virtuel tableau aaaStorSimple | Documents Microsoft"
+description: "Décrit le panneau Résumé du périphérique hello pour le Gestionnaire de périphériques StorSimple et explique comment toouse il intégrité hello toomonitor votre StorSimple Virtual Array."
 services: storsimple
 documentationcenter: 
 author: manuaery
@@ -14,19 +14,19 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/29/2016
 ms.author: manuaery
-ms.openlocfilehash: 35413d597c3b6b1c7600241a78572b63f982d175
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3649eaac8a924a772f310a809ddf9706e912157a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-the-device-summary-blade-for-storsimple-device-manager-connected-to-storsimple-virtual-array"></a>Utiliser le panneau de synthèse des appareils pour StorSimple Device Manager connecté à StorSimple Virtual Array
+# <a name="use-hello-device-summary-blade-for-storsimple-device-manager-connected-toostorsimple-virtual-array"></a>Panneau Résumé utilisation hello périphérique pour le Gestionnaire de périphériques StorSimple connecté tooStorSimple tableau virtuel
 
-## <a name="overview"></a>Vue d’ensemble
+## <a name="overview"></a>Vue d'ensemble
 
-Le panneau de synthèse des appareils StorSimple Device Manager procure un résumé d’une instance StorSimple Virtual Array enregistrée auprès d’un service StorSimple Device Manager, en mettant en évidence les problèmes qui nécessitent l’intervention d’un administrateur système. Ce didacticiel présente le panneau de synthèse des appareils, explique le contenu et la fonctionnalité et décrit les travaux que vous pouvez effectuer à partir de ce panneau.
+Panneau de périphérique StorSimple le Gestionnaire de périphériques Hello fournit un résumé d’un tableau virtuel StorSimple qui est inscrit avec une donnée StorSimple Gestionnaire de périphériques, mise en évidence les problèmes de périphériques qui nécessitent une intervention d’un administrateur système. Ce didacticiel présente panneau Résumé du périphérique hello, explique la fonction et le contenu de hello et décrit les tâches hello que vous pouvez effectuer à partir de ce panneau.
 
-Le panneau de synthèse des appareils affiche les informations suivantes :
+panneau Résumé du périphérique Hello affiche hello informations suivantes :
 
 ![Page du tableau de bord d’un appareil](./media/storsimple-virtual-array-device-summary/device-blade.png)
 
@@ -34,21 +34,21 @@ Le panneau de synthèse des appareils affiche les informations suivantes :
 
 ## <a name="management"></a>Gestion
 
-Dans le panneau des appareils StorSimple, vous avez accès aux options de gestion de votre appareil StorSimple. Les commandes de gestion se trouvent dans la partie supérieure et sur le côté gauche du panneau. Utilisez ces options pour ajouter des partages ou des volumes, ou pour mettre à jour ou basculer votre tableau virtuel.
+Dans le panneau de périphérique StorSimple hello, vous voyez les options hello gestion de votre périphérique StorSimple. Vous consultez les commandes de gestion hello haut hello du Panneau de hello et sur le côté gauche de hello. Utilisez ces options tooadd partages ou des volumes, ou mettre à jour ou basculer votre tableau virtuel.
 
-La zone des éléments principaux comporte quelques-unes des propriétés importantes, telles que le statut, le modèle, la version logicielle, ainsi qu’un lien vers l’**IU web** du tableau. Si vous vous trouvez sur un réseau interne, vous pouvez directement lancer [l’interface utilisateur web locale](storsimple-ova-web-ui-admin.md) pour administrer votre tableau virtuel.
+Hello zone d’essentials capture certaines des propriétés importantes de hello, telles que, état de hello, modèle, version du logiciel ainsi qu’un toohello lien **l’interface utilisateur Web** du tableau de hello. Si vous êtes sur un réseau interne, vous pouvez exécuter directement hello [interface utilisateur web locale](storsimple-ova-web-ui-admin.md) tooadminister votre tableau virtuel.
 
 ![Éléments principaux des appareils](./media/storsimple-virtual-array-device-summary/device-essentials.png)
 
 ## <a name="storsimple-device-summary"></a>Synthèse des appareils StorSimple
 
-* La vignette **Alertes** fournit un instantané de l’ensemble des alertes actives associées à votre tableau virtuel, et groupées par gravité. Cliquez sur la vignette pour ouvrir le panneau **Alertes**, puis cliquez sur une alerte pour afficher des détails supplémentaires sur cette alerte, y compris les actions recommandées. Vous pouvez également effacer l'alerte si le problème a été résolu.
+* Hello **alertes** vignette fournit un instantané de toutes les alertes actives hello pour votre groupe virtuel, regroupée par gravité. Cliquez sur Bonjour vignette tooopen Bonjour **alertes** panneau, puis cliquez sur un individu alerte tooview supplémentaire plus d’informations sur cette alerte, y compris les actions recommandées. Vous pouvez également effacer les alerte hello si hello est résolu.
 
-* La vignette **Capacité** affiche le stockage primaire configuré et demeurant sur l’appareil virtuel, relativement au stockage total disponible pour cet élément. **Configuré** fait référence au volume de stockage préparé et alloué pour l’utilisation, **Restant** fait référence à la capacité restante pouvant être configurée sur cet appareil. La capacité **Hiérarchisée restante** est la capacité disponible pouvant être configurée, notamment le cloud, tandis que la capacité **Locale restante** est la capacité restant sur les disques associés à ce tableau virtuel.
+* Hello **capacité** vignette affiche hello stockage principal qui est configuré et restants dans hello périphérique virtuel relatif toohello stockage total disponible pour hello identiques. **Configuré** fait référence toohello quantité de stockage qui est préparée et allouée à l’utilisation, **restant** fait référence toohello restant de capacité qui peut être configurée sur ce périphérique. Hello **hiérarchisé restantes** capacité est la capacité disponible hello qui peut être configurée, y compris le nuage, tout en hello **restant Local** est la capacité hello restant sur des disques hello attaché toothis virtuel tableau.
 
-* Dans le tableau **Utilisation**, vous pouvez consulter le stockage primaire utilisé au sein de votre tableau virtuel, ainsi que le stockage cloud consommé ces 7 derniers jours, la période par défaut. Utilisez l’option **Modifier** du coin supérieur droit du tableau pour définir une période différente.
+* Bonjour **utilisation** graphique, vous pouvez afficher les stockage principal hello utilisé dans votre tableau virtuel, ainsi que les stockages hello consommées sur hello des 7 derniers jours, la valeur par défaut de hello laps de temps. Hello d’utilisation **modifier** option hello en haut à droite de hello graphique toochoose une échelle de temps différent.
 
-* La vignette **Partages** ou **Volumes** fournit une synthèse des nombres de partages ou de volumes de votre appareil, groupés par état. Cliquez sur la vignette pour ouvrir le panneau de la liste **Partages** ou **Volumes**, puis cliquez sur un partage ou un volume individuel pour afficher ou modifier ses propriétés. Pour plus d’informations, découvrez comment [gérer des partages](storsimple-virtual-array-manage-shares.md) ou [gérer des volumes](storsimple-virtual-array-manage-volumes.md).
+* Hello **partages** ou **Volumes** vignette fournit un résumé du nombre de hello de partages ou volumes de votre appareil, regroupés par état. Cliquez sur Bonjour vignette tooopen Bonjour **partages** ou **Volumes** liste panneau, puis cliquez sur une tooview partage ou volume individuel ou modifier ses propriétés. Pour plus d’informations, consultez Comment trop[gérer les partages](storsimple-virtual-array-manage-shares.md) ou [gérer les volumes](storsimple-virtual-array-manage-volumes.md).
 
 ## <a name="next-steps"></a>Étapes suivantes
 Découvrez comment :

@@ -1,6 +1,6 @@
 ---
-title: "Tutoriel sur les groupes à haute disponibilité pour les machines virtuelles Windows dans Azure | Microsoft Docs"
-description: "Découvrez les groupes à haute disponibilité pour les machines virtuelles Windows dans Azure."
+title: "aaaAvailability définit le didacticiel pour les machines virtuelles Windows dans Azure | Documents Microsoft"
+description: "Découvrez hello disponibilité définit pour les machines virtuelles Windows dans Azure."
 documentationcenter: 
 services: virtual-machines-windows
 author: cynthn
@@ -16,36 +16,36 @@ ms.topic: article
 ms.date: 05/08/2017
 ms.author: cynthn
 ms.custom: mvc
-ms.openlocfilehash: d918362106ef93cf47620e0018d363cd510884b0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 853775c5f126dd815c1933f9d71d2274a75ea661
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-availability-sets"></a>Utilisation des groupes à haute disponibilité
+# <a name="how-toouse-availability-sets"></a>Comment à haute disponibilité de toouse
 
-Ce didacticiel explique comment améliorer la disponibilité et la fiabilité de vos solutions de machine virtuelle sur Azure en utilisant une fonctionnalité appelée Groupes à haute disponibilité. Les groupes à haute disponibilité veillent à ce que les machines virtuelles que vous déployez sur Azure soient distribuées sur plusieurs clusters matériels isolés. Cela garantit que, si une défaillance matérielle ou logicielle se produit dans Azure, seul un sous-ensemble de vos machines virtuelles soit concerné et que votre solution globale reste disponible et opérationnelle dans la perspective des clients qui l’utilisent. 
+Dans ce didacticiel, vous allez apprendre comment la disponibilité de hello tooincrease et la fiabilité de vos solutions d’ordinateur virtuel sur Azure à l’aide d’une fonctionnalité appelée haute disponibilité. Haute disponibilité vous assurer que hello machines virtuelles que vous déployez sur Azure sont réparties entre plusieurs clusters matérielles isolées. Cela garantit que si une défaillance matérielle ou logicielle dans Azure se produit, qu’un ensemble sous-chemin de vos machines virtuelles est concerné et que votre solution globale resteront disponibles et opérationnels du point de vue hello de vos clients à l’utiliser. 
 
-Ce tutoriel vous montre comment effectuer les opérations suivantes :
+Ce didacticiel vous montre comment effectuer les opérations suivantes :
 
 > [!div class="checklist"]
 > * Créer un groupe à haute disponibilité
 > * Créer une machine virtuelle dans un groupe à haute disponibilité
 > * Vérifier les tailles de machines virtuelles disponibles
 
-Ce didacticiel requiert le module Azure PowerShell version 3.6 ou ultérieure. Exécutez ` Get-Module -ListAvailable AzureRM` pour trouver la version. Si vous devez effectuer une mise à niveau, consultez [Installer le module Azure PowerShell](/powershell/azure/install-azurerm-ps).
+Ce didacticiel nécessite hello Azure PowerShell version 3.6 ou version ultérieure du module. Exécutez ` Get-Module -ListAvailable AzureRM` version de hello toofind. Si vous avez besoin de tooupgrade, consultez [installez Azure PowerShell module](/powershell/azure/install-azurerm-ps).
 
 ## <a name="availability-set-overview"></a>Vue d’ensemble des groupes à haute disponibilité
 
-Un groupe à haute disponibilité est une fonctionnalité de regroupement logique que vous pouvez utiliser dans Azure pour vous assurer que les ressources de machine virtuelle que vous y incluez sont isolées les unes des autres lors de leur déploiement dans un centre de données Azure. Azure veille à ce que les machines virtuelles que vous placez dans un groupe à haute disponibilité s’exécutent sur plusieurs serveurs physiques, racks de calcul, unités de stockage et commutateurs réseau. Cela garantit qu’en cas de panne matérielle ou logicielle d’Azure, seul un sous-ensemble de vos machines virtuelles est affecté, et que votre application globale reste opérationnelle et disponible pour vos clients. L’utilisation de groupes à haute disponibilité est essentielle pour créer des solutions cloud fiables.
+Un ensemble de disponibilité d’est une fonctionnalité de regroupement logique que vous pouvez utiliser dans Azure tooensure que les ressources de machine virtuelle de hello que vous placez qu’il contient sont isolées des autres lorsqu’ils sont déployés dans un centre de données Azure. Azure garantit que machines virtuelles que vous placez dans un ensemble de disponibilité s’exécuter sur plusieurs serveurs physiques hello, le calcul des racks, les unités de stockage et les commutateurs de réseau. Cela garantit que dans le cas de hello d’un problème matériel ou logiciel d’Azure, uniquement un sous-ensemble de vos machines virtuelles est affecté, et continuer à et continuer toobe disponible tooyour clients de votre application globale. À l’aide de la haute disponibilité est une fonctionnalité essentielle de tooleverage toobuild les solutions de cloud fiable.
 
-Prenons l’exemple d’une solution basée sur une machine virtuelle classique dans laquelle vous disposez de 4 serveurs web frontaux et utilisez 2 machines virtuelles principales hébergeant une base de données. Avec Azure, vous pouvez définir deux groupes à haute disponibilité avant de déployer vos machines virtuelles : l’un pour le niveau « web » et l’autre pour le niveau « base de données ». Lorsque vous créez une machine virtuelle, vous pouvez spécifier le groupe à haute disponibilité en tant que paramètre pour la commande az vm create, de sorte qu’Azure veille automatiquement à ce que les machines virtuelles que vous créez dans le groupe disponible soient isolées sur plusieurs ressources matérielles. Cela signifie que, si le matériel sur lequel s’exécute l’une de vos machines virtuelles serveur web ou serveur de base de données rencontre un problème, vous savez que les autres instances de votre serveur web et de vos machines virtuelles de base de données continueront à s’exécuter correctement parce qu’elles se trouvent sur d’autres éléments matériels.
+Prenons l’exemple d’une solution basée sur une machine virtuelle classique dans laquelle vous disposez de 4 serveurs web frontaux et utilisez 2 machines virtuelles principales hébergeant une base de données. Avec Azure, vous souhaiteriez toodefine deux groupes à haute disponibilité avant de déployer vos machines virtuelles : une disponibilité définie pour le niveau de « web » hello et une haute disponibilité pour le niveau de « base de données » hello. Lorsque vous créez une nouvelle machine virtuelle que vous pouvez ensuite spécifier hello groupe à haute disponibilité comme une machine virtuelle de paramètre toohello az Créer commande et Azure automatiquement garantit que machines virtuelles que vous créez au sein de hello disponible hello ensemble sont isolés sur plusieurs ressources de matériel physique. Cela signifie que si le matériel physique hello que votre serveur Web ou les machines virtuelles de serveur de base de données est en cours d’exécution sur a un problème, vous savez que hello autres instances de votre serveur Web et les machines virtuelles de base de données reste en cours d’exécution correctement, car ils sont sur un matériel différent.
 
-Vous devriez toujours utiliser des groupes à haute disponibilité lorsque vous souhaitez déployer des solutions fiables basées sur des machines virtuelles dans Azure.
+Vous devez toujours utiliser des ensembles de disponibilité lorsque vous souhaitez que des solutions toodeploy fiables en fonction de machine virtuelle dans Azure.
 
 ## <a name="create-an-availability-set"></a>Créer un groupe à haute disponibilité
 
-Vous pouvez créez un groupe à haute disponibilité avec la commande [New-AzureRmAvailabilitySet](/powershell/module/azurerm.compute/new-azurermavailabilityset). Dans cet exemple, nous définissons le nombre de domaines de mise à jour et d’erreur sur *2* pour le groupe à haute disponibilité nommé *myAvailabilitySet* dans le groupe de ressources *myResourceGroupAvailability*.
+Vous pouvez créez un groupe à haute disponibilité avec la commande [New-AzureRmAvailabilitySet](/powershell/module/azurerm.compute/new-azurermavailabilityset). Dans cet exemple, nous avons défini à la fois nombre hello domaines de mise à jour et d’erreur à *2* pour hello groupe à haute disponibilité nommée *myAvailabilitySet* Bonjour *myResourceGroupAvailability*groupe de ressources.
 
 Créez un groupe de ressources.
 
@@ -66,20 +66,20 @@ New-AzureRmAvailabilitySet `
 
 ## <a name="create-vms-inside-an-availability-set"></a>Créer des machines virtuelles dans un groupe à haute disponibilité
 
-Vous devez créer des machines virtuelles au sein du groupe à haute disponibilité pour vous assurer qu’elles sont correctement réparties dans le matériel. Vous ne pouvez pas ajouter une machine virtuelle existante à un groupe à haute disponibilité après sa création. 
+Machines virtuelles doivent toobe créé dans hello disponibilité ensemble toomake qu’ils sont correctement distribués sur les matériels hello. Vous ne pouvez pas ajouter un groupe de machines virtuelles tooan disponibilité définie après sa création. 
 
-Le matériel situé à un emplacement est divisé en plusieurs domaines de mise à jour et d’erreur. Un **domaine de mise à jour** est un groupe de machines virtuelles et d’équipements physiques sous-jacents pouvant être redémarrés en même temps. Les machines virtuelles d’un même **domaine d’erreur** partagent un espace de stockage commun ainsi qu’une source d’alimentation et un commutateur réseau. 
+matériel Hello dans un emplacement est divisée dans les domaines de mise à jour toomultiple et les domaines d’erreur. Un **domaine de mise à jour** est un groupe de machines virtuelles et le matériel physique sous-jacent qui peut être redémarré à hello même temps. Machines virtuelles dans hello même **domaine d’erreur** partager commun, ainsi qu’un commutateur de réseau et de la source power courantes. 
 
-Lorsque vous créez une machine virtuelle à l’aide de la configuration utilisant [New-AzureRMVMConfig](/powershell/module/azurerm.compute/new-azurermvmconfig), vous spécifiez le groupe à haute disponibilité à l’aide du paramètre `-AvailabilitySetId` pour en spécifier l’ID.
+Lorsque vous créez une machine virtuelle à l’aide de la configuration à l’aide [New-AzureRMVMConfig](/powershell/module/azurerm.compute/new-azurermvmconfig) vous spécifiez hello haute disponibilité via hello `-AvailabilitySetId` hello toospecify du paramètre d’ID de groupe à haute disponibilité hello.
 
-Créez 2 machines virtuelles avec [New-AzureRmVM](/powershell/module/azurerm.compute/new-azurermvm) dans le groupe à haute disponibilité.
+Créer 2 machines virtuelles avec [New-AzureRmVM](/powershell/module/azurerm.compute/new-azurermvm) groupe à haute disponibilité hello définie.
 
 ```powershell
 $availabilitySet = Get-AzureRmAvailabilitySet `
     -ResourceGroupName myResourceGroupAvailability `
     -Name myAvailabilitySet
 
-$cred = Get-Credential -Message "Enter a username and password for the virtual machine."
+$cred = Get-Credential -Message "Enter a username and password for hello virtual machine."
 
 $subnetConfig = New-AzureRmVirtualNetworkSubnetConfig `
     -Name mySubnet `
@@ -125,7 +125,7 @@ for ($i=1; $i -le 2; $i++)
         -PublicIpAddressId $pip.Id `
         -NetworkSecurityGroupId $nsg.Id
 
-   # Here is where we specify the availability set
+   # Here is where we specify hello availability set
    $vm = New-AzureRmVMConfig `
         -VMName myVM$i `
         -VMSize Standard_D1 `
@@ -158,11 +158,11 @@ for ($i=1; $i -le 2; $i++)
 
 ```
 
-La création et la configuration des deux machines virtuelles prennent quelques minutes. Vous disposez ensuite de 2 machines virtuelles réparties sur le matériel sous-jacent. 
+Il prend quelques minutes toocreate et configurer les deux ordinateurs virtuels. Lorsque vous avez terminé, vous aurez 2 machines virtuelles sont réparties entre hello matériel sous-jacent. 
 
 ## <a name="check-for-available-vm-sizes"></a>Vérifier les tailles de machines virtuelles disponibles 
 
-Vous pouvez ajouter ultérieurement d’autres machines virtuelles au groupe à haute disponibilité, mais vous devez connaître les tailles des machines virtuelles qui sont disponibles sur le matériel. Utilisez [Get-AzureRMVMSize](/powershell/module/azurerm.compute/get-azurermvmsize) pour répertorier toutes les tailles disponibles sur le cluster matériel pour le groupe à haute disponibilité.
+Vous pouvez ajouter plusieurs machines virtuelles toohello haute disponibilité plus tard, mais vous devez tooknow les tailles de machine virtuelle sont disponibles sur le matériel de hello. Utilisez [Get-AzureRMVMSize](/powershell/module/azurerm.compute/get-azurermvmsize) toolist toutes les tailles disponibles hello sur du matériel de hello du cluster pour hello à haute disponibilité.
 
 ```powershell
 Get-AzureRmVMSize `
@@ -179,7 +179,7 @@ Dans ce didacticiel, vous avez appris à :
 > * Créer une machine virtuelle dans un groupe à haute disponibilité
 > * Vérifier les tailles de machines virtuelles disponibles
 
-Passez au didacticiel suivant pour en savoir plus sur les groupes de machines virtuelles identiques.
+Avance toohello toolearn de didacticiel suivant sur les machines virtuelles identiques.
 
 > [!div class="nextstepaction"]
 > [Créer un groupe de machines virtuelles identiques](tutorial-create-vmss.md)

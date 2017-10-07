@@ -1,6 +1,6 @@
 ---
 title: "Configurer une passerelle VPN : portail classique : Azure | Microsoft Docs"
-description: "Cet article vous indique comment configurer votre passerelle VPN de réseau virtuel et comment modifier un type de routage VPN de passerelle. Ces étapes s’appliquent au modèle de déploiement classique et au portail classique."
+description: "Cet article vous indique comment configurer votre passerelle VPN de réseau virtuel et comment modifier un type de routage VPN de passerelle. Ces étapes s’appliquent toohello déploiement classique modèle et hello portail classique."
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
@@ -15,120 +15,120 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/04/2017
 ms.author: cherylmc
-ms.openlocfilehash: 2ea4e6bb86b1ba6f7b501b193d0713d3901457af
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 00d2fa18bab6eb24b33ddb18113f2a557db638d8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="configure-a-vpn-gateway-in-the-classic-portal"></a>Configurer une passerelle VPN dans le portail classique 
-Si vous voulez créer une connexion intersite sécurisée entre Azure et votre emplacement local, vous devrez créer une passerelle de réseau virtuel. Une passerelle VPN est un type spécifique de passerelle de réseau virtuel. Dans le modèle de déploiement classique, le routage VPN d’une passerelle VPN peut être de type statique ou dynamique. Le type VPN que vous choisissez dépend de votre plan de conception de réseau et du périphérique VPN local à utiliser. Pour plus d’informations sur les périphériques VPN, voir [À propos des périphériques VPN](vpn-gateway-about-vpn-devices.md).
+# <a name="configure-a-vpn-gateway-in-hello-classic-portal"></a>Configurez une passerelle VPN dans le portail classique de hello 
+Si vous souhaitez toocreate une connexion intersite sécurisée entre Azure et votre emplacement local, vous devez toocreate une passerelle de réseau virtuel. Une passerelle VPN est un type spécifique de passerelle de réseau virtuel. Dans le modèle de déploiement classique de hello, une passerelle VPN peut être un des deux types de routage VPN : statique ou dynamique. Hello type VPN que vous choisissez dépend de votre plan de conception de réseau et hello local VPN périphérique toouse. Pour plus d’informations sur les périphériques VPN, voir [À propos des périphériques VPN](vpn-gateway-about-vpn-devices.md).
 
 **À propos des modèles de déploiement Azure**
 
 [!INCLUDE [vpn-gateway-clasic-rm](../../includes/vpn-gateway-classic-rm-include.md)]
 
 ## <a name="configuration-overview"></a>Présentation de la configuration
-Les étapes suivantes vous expliquent comment configurer votre passerelle VPN dans le portail classique. Ces étapes s’appliquent aux passerelles pour les réseaux virtuels créés à l’aide du modèle de déploiement classique. Actuellement, les paramètres de configuration pour les passerelles ne sont pas tous disponibles dans le portail Azure. Quand ils le seront, nous créerons une série d’instructions qui s’appliquent au portail Azure.
+Hello étapes suivantes vous guident portail de configurer la passerelle VPN de hello classique. Ces étapes s’appliquent toogateways pour les réseaux virtuels qui ont été créés à l’aide du modèle de déploiement classique hello. Actuellement, tous les paramètres de configuration hello pour les passerelles sont disponibles dans hello portail Azure. Lorsqu’ils sont, nous allons créer un nouvel ensemble d’instructions qui s’appliquent toohello portail Azure.
 
 ### <a name="before-you-begin"></a>Avant de commencer
-Avant de configurer votre passerelle, vous devez tout d’abord créer votre réseau virtuel. Pour savoir comment créer un réseau virtuel pour des connexions entre différents locaux, consultez [Configuration d’un réseau virtuel avec une connexion VPN de site à site](vpn-gateway-site-to-site-create.md) ou [Configuration d’un réseau virtuel avec une connexion VPN de point à site](vpn-gateway-point-to-site-create.md). Suivez ensuite les étapes ci-dessous pour configurer la passerelle VPN et rassemblez les informations qui vous sont nécessaires pour configurer votre périphérique VPN. 
+Avant de configurer votre passerelle, vous devez tout d’abord toocreate votre réseau virtuel. Pour les étapes toocreate un réseau virtuel pour la connectivité intersite, consultez [configurer un réseau virtuel avec une connexion VPN de site à site](vpn-gateway-site-to-site-create.md), ou [configurer un réseau virtuel avec une connexion VPN de point-to-site](vpn-gateway-point-to-site-create.md). Ensuite, utilisez hello suivant de passerelle VPN d’étapes tooconfigure hello et rassembler les informations de hello nécessaires tooconfigure votre périphérique VPN. 
 
-Si vous disposez déjà d’une passerelle VPN et que vous souhaitez modifier le type de routage VPN, consultez la section [Modification du type de routage VPN de votre passerelle](#how-to-change-the-vpn-routing-type-for-your-gateway).
+Si vous disposez déjà d’une passerelle VPN et que vous souhaitez que le type de routage VPN hello toochange, consultez [comment toochange hello type de routage VPN pour votre passerelle](#how-to-change-the-vpn-routing-type-for-your-gateway).
 
 ## <a name="create-a-vpn-gateway"></a>Créer une passerelle VPN
-1. Dans le [portail Azure Classic](https://manage.windowsazure.com), dans la page **Réseaux**, vérifiez que la colonne d’état de votre réseau virtuel indique **Créé**.
-2. Dans la colonne **Nom** , cliquez sur le nom de votre réseau virtuel.
-3. Dans la page **Tableau de bord** , notez que pour ce réseau virtuel, aucune passerelle n’est encore configurée. Vous verrez cet état tout au long des étapes de configuration de votre passerelle.
+1. Bonjour [portail Azure classic](https://manage.windowsazure.com), sur hello **réseaux** , vérifiez cette colonne de statut hello pour votre réseau virtuel est **créé**.
+2. Bonjour **nom** colonne, cliquez sur nom hello de votre réseau virtuel.
+3. Sur hello **tableau de bord** page, notez que ce réseau virtuel aucune passerelle n’est encore configurée. Vous verrez ce statut tout au long de hello étapes tooconfigure votre passerelle.
 
 ![Passerelle non créée](./media/vpn-gateway-configure-vpn-gateway-mp/IC717025.png)
 
-Cliquez ensuite sur **Créer une passerelle**en bas de la page. Vous pouvez sélectionner *Routage statique* ou *Routage dynamique*. Le type de routage VPN que vous sélectionnez dépend de quelques facteurs. Par exemple, ce que votre périphérique VPN prend en charge et si vous devez prendre en charge des connexions de point à site. Pour vérifier le type de routage dont vous avez besoin, consultez la rubrique [À propos des périphériques VPN pour Virtual Network Connectivity](vpn-gateway-about-vpn-devices.md) . Si vous souhaitez changer de type de routage de la passerelle VPN une fois celle-ci créée, il vous faudra la supprimer et en recréer une nouvelle. Lorsque le système vous demande de confirmer la création de la passerelle, cliquez sur **Oui**.
+Ensuite, hello en bas de page de hello, cliquez sur **créer une passerelle**. Vous pouvez sélectionner *Routage statique* ou *Routage dynamique*. Hello type routage VPN que vous sélectionnez dépend de plusieurs facteurs. Par exemple, que votre périphérique VPN prend en charge et si vous avez besoin de connexions de point-to-site toosupport. Vérifiez [sur des périphériques VPN pour la connectivité de réseau virtuel](vpn-gateway-about-vpn-devices.md) tooverify hello type de routage VPN dont vous avez besoin. Une fois que la passerelle de hello a été créé, vous ne pouvez pas modifier entre types routage de passerelle VPN sans supprimer et recréer hello passerelle. Lorsque hello système vous demande tooconfirm que vous souhaitez hello passerelle créée, cliquez sur **Oui**.
 
 ![Type de routage VPN de passerelle](./media/vpn-gateway-configure-vpn-gateway-mp/IC717026.png)
 
-Lorsque la passerelle est en cours de création, notez que le graphique de la passerelle sur la page devient jaune et indique *Créer une passerelle*. La création de la passerelle peut durer jusqu’à 45 minutes. Attendez que la passerelle soit créée avant de pouvoir utiliser d’autres paramètres de configuration.
+Lors de la création de la passerelle, notez le graphique de la passerelle hello sur la page de hello modifie tooyellow et indique *création d’une passerelle*. Cela peut prendre jusqu'à minutes too45 hello passerelle toocreate. Attendez que la passerelle de hello est terminée avant de pouvoir déplacer vers l’avant avec d’autres paramètres de configuration.
 
 ![Création de passerelle](./media/vpn-gateway-configure-vpn-gateway-mp/IC717027.png)
 
-Lorsque l’état de la passerelle passe en *Connexion en cours*, vous pouvez collecter les informations dont vous aurez besoin pour votre périphérique VPN.
+Lorsque de trop hello modifications de la passerelle*connexion*, vous pouvez collecter des informations de hello vous aurez besoin pour votre périphérique VPN.
 
 ![Connexion de passerelle](./media/vpn-gateway-configure-vpn-gateway-mp/IC717028.png)
 
 ## <a name="site-to-site-connections"></a>Connexions site à site
 
 ### <a name="step-1-gather-information-for-your-vpn-device-configuration"></a>Étape 1. Collecter des informations pour la configuration de votre périphérique VPN
-Si vous créez une connexion de site à site, une fois la passerelle créée, collectez les informations de configuration de votre périphérique VPN. Ces informations se trouvent sur la page **Tableau de bord** de votre réseau virtuel :
+Si vous créez une connexion Site à Site, une fois hello passerelle a été créée, collecter des informations pour la configuration de votre périphérique VPN. Ces informations se trouvent sur hello **tableau de bord** page de votre réseau virtuel :
 
-1. **Adresse IP de la passerelle** : l’adresse IP se trouve dans la page **Tableau de bord**. Vous ne pourrez le découvrir qu’après avoir créé votre passerelle.
-2. **Clé partagée** : cliquez sur **Gérer la clé** au bas de l’écran. Cliquez sur l’icône située à côté de la clé pour la copier dans le Presse-papiers, puis collez et enregistrez la clé. Ce bouton ne fonctionne qu’avec un tunnel VPN S2S unique. Si vous avez de plusieurs tunnels VPN S2S, utilisez l’API *d’obtention de la clé partagée de la passerelle de réseau virtuel* ou l’applet de commande PowerShell.
+1. **Adresse IP de passerelle -** adresse hello se trouvent sur hello **tableau de bord** page. Vous ne serez pas en mesure de toosee il jusqu'à ce que votre passerelle a terminé la création.
+2. **Clé partagée -** cliquez sur **gérer la clé** bas hello écran hello. Cliquez sur hello icône suivant toohello clé toocopy il tooyour Presse-papiers, puis coller et enregistrer la clé de hello. Ce bouton ne fonctionne qu’avec un tunnel VPN S2S unique. Si vous avez plusieurs tunnels VPN de S2S, utilisez hello *Get Virtual Network Gateway Shared Key* API ou une cmdlet PowerShell.
 
 ![Gérer la clé](./media/vpn-gateway-configure-vpn-gateway-mp/IC717029.png)
 
 ### <a name="step-2--configure-your-vpn-device"></a>Étape 2.  Configuration de votre périphérique VPN
-Les connexions site à site vers un réseau local nécessitent un périphérique VPN. Nous ne fournissons pas les étapes de configuration de tous les périphériques VPN, mais les informations des liens ci-dessous pourront vous être utiles :
+Réseau local de tooan connexions site à Site requièrent un périphérique VPN. Pendant que nous ne fournissent pas les étapes de configuration pour tous les périphériques VPN, vous trouverez des informations de hello Bonjour suivant liens utiles :
 
 - Pour plus d’informations sur les périphériques VPN compatibles, consultez la page [Périphériques VPN](vpn-gateway-about-vpn-devices.md). 
-- Pour des liens vers les paramètres de configuration des appareils, consultez [Appareils VPN validés](vpn-gateway-about-vpn-devices.md#devicetable). Ces liens sont fournis dans la mesure du possible. Il est toujours préférable de vérifier les dernières informations de configuration auprès du fabricant de l’appareil.
+- Pour les paramètres de configuration toodevice liens, consultez [des périphériques VPN validés](vpn-gateway-about-vpn-devices.md#devicetable). Ces liens sont fournis dans la mesure du possible. Il est toujours meilleure toocheck avec le fabricant de votre appareil pour les dernières informations de configuration hello.
 - Pour plus d’informations sur la modification des exemples de configuration des périphériques, consultez la page [Modifier les exemples](vpn-gateway-about-vpn-devices.md#editing).
 - En ce qui concerne les paramètres IPsec/IKE, consultez la page [Paramètres](vpn-gateway-about-vpn-devices.md#ipsec).
-- Avant de configurer votre périphérique VPN, identifiez également les éventuels [Problèmes de compatibilité connus avec le matériel](vpn-gateway-about-vpn-devices.md#known) pour le périphérique VPN que vous souhaitez utiliser.
+- Avant de configurer votre périphérique VPN, recherchez les [des problèmes de compatibilité des appareils](vpn-gateway-about-vpn-devices.md#known) pour le périphérique VPN de hello que vous souhaitez toouse.
 
-Pour configurer votre périphérique VPN, vous avez besoin des éléments suivants :
+Lorsque vous configurez votre périphérique VPN, vous devez hello éléments suivants :
 
-- L’adresse IP publique de votre passerelle de réseau virtuel. Vous la trouverez dans le panneau **Vue d’ensemble** de votre réseau virtuel.
-- Une clé partagée. Il s’agit de la clé partagée spécifiée lors de la création de la connexion VPN de site à site. Dans nos exemples, nous utilisons une clé partagée très basique. Vous devez générer une clé plus complexe à utiliser.
+- Hello adresse IP publique de votre passerelle de réseau virtuel. Vous pouvez localiser l’il en va de toohello **vue d’ensemble** panneau pour votre réseau virtuel.
+- Une clé partagée. Cela est hello même partagé clé que vous spécifiez lors de la création de votre connexion VPN de Site à Site. Dans nos exemples, nous utilisons une clé partagée très basique. Vous devez générer un toouse de clé plus complexe.
 
-Une fois le périphérique VPN configuré, vous pouvez afficher vos informations de connexion mises à jour sur la page Tableau de bord de votre réseau virtuel.
+Une fois le périphérique VPN de hello a été configuré, vous pouvez afficher vos informations de connexion mises à jour sur la page du tableau de bord hello pour votre réseau virtuel.
 
 ### <a name="step-3-verify-your-local-network-ranges-and-vpn-gateway-ip-address"></a>Étape 3. Vérifier vos plages de réseau local et l’adresse IP de la passerelle VPN
 #### <a name="verify-your-vpn-gateway-ip-address"></a>Vérifier votre adresse IP de passerelle VPN
-Pour que la passerelle se connecte correctement, l’adresse IP de votre périphérique VPN doit être configurée pour le réseau local que vous avez spécifié pour votre configuration intersite. Elle est généralement configurée lors du processus de configuration de site à site. Toutefois, si vous avez déjà utilisé ce réseau local avec un autre périphérique ou que l’adresse IP a été modifiée pour ce réseau local, modifiez les paramètres pour spécifier l’adresse IP de la passerelle.
+Pour la passerelle tooconnect correctement, hello adresse IP de votre périphérique VPN doit être correctement configurée pour hello réseau Local que vous avez spécifié pour votre configuration entre différents locaux. En règle générale, il est configuré au cours du processus de configuration de site à site hello. Toutefois, si vous avez déjà utilisé ce réseau local avec un autre périphérique ou adresse IP de hello a été modifiée pour ce réseau local, modifiez hello paramètres toospecify hello passerelle une adresse IP correcte.
 
-1. Pour vérifier l’adresse IP de votre passerelle, cliquez sur **Réseaux** dans le volet gauche du portail, puis sélectionnez **Réseaux locaux** en haut de la page. Vous pouvez afficher l’adresse de passerelle VPN pour chaque réseau local que vous avez créé. Pour modifier l'adresse IP, sélectionnez le réseau virtuel et cliquez sur **Modifier** en bas de la page.
-2. Sur la page **Spécifier les détails de votre réseau local** , modifiez l'adresse IP, puis cliquez sur la flèche Suivant en bas de la page.
-3. Dans la page **Spécifier l’espace d’adresses** , cliquez sur la coche en bas à droite pour enregistrer vos paramètres.
+1. tooverify votre adresse IP de passerelle, cliquez sur **réseaux** sur hello du volet gauche du portail, puis sélectionnez **réseaux locaux** en hello haut hello. Vous verrez hello adresse de passerelle VPN pour chaque réseau local que vous avez créés. adresse IP de hello tooedit, sélectionnez hello réseau virtuel et cliquez sur **modifier** bas hello de page de hello.
+2. Sur hello **spécifier les détails de votre réseau local** page, modifier l’adresse IP de hello, puis cliquez sur la flèche suivant de hello bas hello de page de hello.
+3. Sur hello **spécifier l’espace d’adressage hello** , cliquez sur coche hello sur toosave de droite inférieure hello vos paramètres.
 
-#### <a name="verify-the-address-ranges-for-your-local-networks"></a>Vérifier les plages d’adresses de vos réseaux locaux
-Pour que le trafic adéquat franchisse la passerelle et atteigne votre emplacement local, vous devez vérifier que chaque plage d’adresses IP est spécifiée. Chaque plage doit être répertoriée dans la configuration **Réseaux locaux** d’Azure. Selon la configuration réseau de votre emplacement local, elle peut s’avérer quelque peu volumineuse. Le trafic lié à une adresse IP qui est contenue dans les plages répertoriées est envoyé par le biais de la passerelle VPN du réseau virtuel. Les plages que vous répertoriez ne doivent pas nécessairement être des plages privées, même si vous souhaitez vérifier que votre configuration locale est en mesure de recevoir le trafic entrant.
+#### <a name="verify-hello-address-ranges-for-your-local-networks"></a>Vérifiez que les plages d’adresses hello pour vos réseaux locaux
+Hello tooflow de trafic approprié via l’emplacement hello passerelle tooyour local, vous devez tooverify que chaque plage d’adresses IP est spécifiée. Chaque plage doit être répertoriée dans la configuration **Réseaux locaux** d’Azure. Selon la configuration de réseau hello de votre emplacement local, cela peut être une tâche laborieuse. Le trafic qui est lié à une adresse IP qui figure dans les plages hello répertorié sera envoyé via la passerelle VPN de réseau virtuel hello. Hello les plages que vous répertoriez ne doivent pas nécessairement toobe des plages privées, bien que vous pouvez tooverify votre configuration locale peut recevoir hello le trafic entrant.
 
-Pour ajouter ou modifier les plages d’un réseau local, suivez les étapes suivantes :
+les plages hello tooadd ou de modification d’un réseau Local, utilisez hello comme suit :
 
-1. Pour modifier les plages d’adresses IP d’un réseau local, cliquez sur **Réseaux** dans le volet gauche du portail, puis sélectionnez **Réseaux locaux** en haut de la page. Pour découvrir la meilleure façon d’afficher les plages que vous avez répertoriées, voir la page **Modifier** . Pour modifier vos plages, sélectionnez le réseau virtuel et cliquez sur **Modifier** en bas de la page.
-2. Sur la page **Spécifier les détails de votre réseau local** , n’effectuez aucune modification. Cliquez sur la flèche Suivant en bas à droite de la page.
-3. Sur la page **Spécifier l’espace d’adressage** , modifiez votre espace d’adressage de réseau. Cliquez ensuite sur la coche pour enregistrer votre configuration.
+1. plages d’adresses IP tooedit hello pour un réseau local, cliquez sur **réseaux** sur hello du volet gauche du portail, puis sélectionnez **réseaux locaux** en hello haut hello. Dans le portail hello, hello plus simple façon tooview hello plages répertoriées est sur hello **modifier** page. toosee vos plages, sélectionnez hello réseau virtuel et cliquez sur **modifier** bas hello de page de hello.
+2. Sur hello **spécifier les détails de votre réseau local** page, n’apportez aucune modification. Cliquez sur hello de flèche suivant en bas de hello de page de hello.
+3. Sur hello **spécifier l’espace d’adressage hello** page, apportez vos modifications d’espace d’adresse réseau. Cliquez ensuite sur hello coche toosave votre configuration.
 
-## <a name="how-to-view-gateway-traffic"></a>Affichage du trafic de la passerelle
+## <a name="how-tooview-gateway-traffic"></a>Comment le trafic de passerelle tooview
 Vous pouvez afficher votre passerelle et le trafic de la passerelle depuis la page **Tableau de bord** de votre réseau virtuel.
 
-Sur la page **Tableau de bord** , vous pouvez afficher les informations suivantes :
+Sur hello **tableau de bord** page, vous pouvez afficher les informations suivantes hello :
 
-* La quantité de données qui transitent par votre passerelle (données entrantes et sortantes).
-* Les noms des serveurs DNS qui sont spécifiés pour votre réseau virtuel.
-* La connexion entre votre passerelle et votre périphérique VPN.
-* La clé partagée qui est utilisée pour configurer la connexion de votre passerelle sur votre périphérique VPN.
+* quantité de Hello de données qui traversent votre passerelle, les données d’et de données sortantes.
+* noms de Hello des serveurs DNS hello qui sont spécifiées pour votre réseau virtuel.
+* connexion Hello entre votre passerelle et votre périphérique VPN.
+* Hello partagé clé tooconfigure utilisé votre périphérique VPN de passerelle connexion tooyour.
 
-## <a name="how-to-change-the-vpn-routing-type-for-your-gateway"></a>Modification du type de routage VPN de votre passerelle
-Étant donné que certaines configurations de connectivité ne sont disponibles que pour certains types de routage de passerelle, vous serez peut-être amené à modifier le type de routage VPN d’une passerelle VPN existante. Vous souhaiterez par exemple ajouter une connectivité de point à site à une connexion de site à site déjà existante, qui dispose d’une passerelle statique. Les connexions point à site nécessitent une passerelle dynamique. Cela signifie que pour configurer une connexion P2S, vous devez modifier votre type de routage VPN de passerelle de statique à dynamique.
+## <a name="how-toochange-hello-vpn-routing-type-for-your-gateway"></a>Comment toochange hello type de routage VPN pour votre passerelle
+Étant donné que certaines configurations de connectivité sont uniquement disponibles pour certains types de routage de passerelle, vous découvrirez peut-être que vous devez toochange hello passerelle VPN type de routage d’une passerelle VPN existante. Par exemple, vous voudrez tooadd connectivité de point-to-site tooan déjà site-à-site connexion existante qui possède une passerelle statique. Les connexions point à site nécessitent une passerelle dynamique. Cela signifie tooconfigure une connexion P2S, vous avez toochange votre type de routage VPN gateway toodynamic statique.
 
-Pour modifier un type de routage VPN de passerelle, vous supprimez la passerelle existante et vous créez une passerelle avec le nouveau type de routage. Vous n’avez pas besoin de supprimer le réseau virtuel entier pour modifier le type de routage de passerelle.
+Si vous avez besoin de toochange une type de routage VPN de passerelle, vous allez supprimer la passerelle existante de hello et puis créer une passerelle avec un nouveau type de routage hello. Vous n’avez pas besoin toodelete hello entière toochange hello passerelle routage type de réseau virtuel.
 
-Avant de modifier le type de routage VPN de votre passerelle, vérifiez que votre périphérique VPN prend en charge le type de routage que vous voulez utiliser. Pour télécharger de nouveaux exemples de configuration de routage et vérifier les spécifications de périphérique VPN, consultez la rubrique [À propos des périphériques VPN pour  Virtual Network Connectivity](vpn-gateway-about-vpn-devices.md).
+Avant de modifier votre type de routage VPN de passerelle, être tooverify sûr que votre périphérique VPN prend en charge le type de routage hello que vous souhaitez toouse. exemples de configuration de routage nouvelle toodownload et vérification de spécifications de périphérique VPN, consultez [sur des périphériques VPN pour la connectivité de réseau virtuel](vpn-gateway-about-vpn-devices.md).
 
 > [!IMPORTANT]
-> Lorsque vous supprimez une passerelle VPN de réseau virtuel, l’adresse IP virtuelle attribuée à la passerelle est de nouveau disponible. Quand vous recréez la passerelle, une nouvelle adresse IP virtuelle lui est affectée.
+> Lorsque vous supprimez une passerelle VPN de réseau virtuel, hello adresse IP virtuelle affectée toohello passerelle est libérée. Lorsque vous recréez la passerelle de hello, une nouvelle adresse VIP est assignée tooit.
 > 
 > 
 
-1. **Suppression de la passerelle VPN existante.**
+1. **Supprimer la passerelle VPN existante de hello.**
    
-    Dans la page **Tableau de bord** de votre réseau virtuel, accédez au bas de la page et cliquez sur **Supprimer une passerelle**. Patientez jusqu’à ce qu’une notification vous indique que la passerelle a été supprimée. Vous pourrez créer une passerelle après avoir reçu la notification vous indiquant que votre passerelle a bien été supprimée.
+    Sur hello **tableau de bord** page de votre réseau virtuel, accédez bas toohello de page de hello et cliquez sur **Delete Gateway**. Attente de notification hello hello passerelle a été supprimé. Une fois que vous recevez une notification de hello sur l’écran hello que votre passerelle a été supprimée, vous pouvez créer une nouvelle passerelle.
 2. **Création d'une passerelle VPN.**
    
-    Suivez la procédure mentionnée en haut de la page pour créer une nouvelle passerelle : [Création d’une passerelle VPN](#create-a-vpn-gateway).
+    Hello, procédez haut hello hello page toocreate une nouvelle passerelle : [créer une passerelle VPN](#create-a-vpn-gateway).
 
 ## <a name="next-steps"></a>Étapes suivantes
-Vous pouvez ajouter des machines virtuelles à votre réseau virtuel. Consultez [Création d’une machine virtuelle personnalisée](../virtual-machines/windows/classic/createportal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json).
+Vous pouvez ajouter le réseau virtuel tooyour de machines virtuelles. Consultez [comment toocreate une machine virtuelle personnalisée](../virtual-machines/windows/classic/createportal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json).
 
-Si vous souhaitez configurer une connexion VPN de point à site, voir l’article [Configuration d’une connexion VPN de point à site](vpn-gateway-point-to-site-create.md).
+Si vous voulez tooconfigure un point-to-site VPN, consultez [configurer une connexion VPN de point-to-site](vpn-gateway-point-to-site-create.md).
 

@@ -1,6 +1,6 @@
 ---
-title: "Analyse des données sur les retards de vol avec Hadoop dans HDInsight - Azure | Microsoft Docs"
-description: "Apprenez à utiliser un script Windows PowerShell pour créer un cluster HDInsight, exécuter une tâche Hive, exécuter une tache Sqoop et supprimer le cluster."
+title: "données de retard de vol aaaAnalyze avec Hadoop dans HDInsight - Azure | Documents Microsoft"
+description: "Découvrez comment toouse un Windows PowerShell script toocreate un cluster HDInsight, exécuter un travail Hive, exécuter un travail Sqoop et supprimer hello cluster."
 services: hdinsight
 documentationcenter: 
 author: mumian
@@ -15,85 +15,85 @@ ms.topic: article
 ms.date: 05/25/2017
 ms.author: jgao
 ROBOTS: NOINDEX
-ms.openlocfilehash: 77790136c9bd3a4e3f7dcabea2fbe0bcffb6eafe
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 6ebaee65d9b270e5dc2141dd1265011d372f497d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="analyze-flight-delay-data-by-using-hive-in-hdinsight"></a>Analyse des données sur les retards de vol avec Hive dans HDInsight
 Hive permet d’exécuter des tâches Hadoop MapReduce via un langage de création de scripts semblable à SQL, nommé *[HiveQL][hadoop-hiveql]*, qui peut être appliqué à la synthèse, à l’envoi de requêtes et à l’analyse d’importants volumes de données.
 
 > [!IMPORTANT]
-> Les étapes décrites dans ce document nécessitent un cluster HDInsight Windows. Linux est le seul système d’exploitation utilisé sur HDInsight version 3.4 ou supérieure. Pour plus d’informations, consultez [Suppression de HDInsight sous Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement). Pour les étapes fonctionnant avec un cluster basé sur Linux, consultez la rubrique [Analyse des données sur les retards de vol avec Hive dans HDInsight (Linux)](hdinsight-analyze-flight-delay-data-linux.md).
+> Hello étapes décrites dans ce document nécessitent un cluster HDInsight de basés sur Windows. Linux est hello seul système d’exploitation utilisé sur HDInsight version 3.4 ou supérieure. Pour plus d’informations, consultez [Suppression de HDInsight sous Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement). Pour les étapes fonctionnant avec un cluster basé sur Linux, consultez la rubrique [Analyse des données sur les retards de vol avec Hive dans HDInsight (Linux)](hdinsight-analyze-flight-delay-data-linux.md).
 
-L’un des principaux avantages d’Azure HDInsight est la séparation du calcul et du stockage des données. HDInsight utilise le stockage d’objets blob Azure pour stocker les données. Une tâche classique comprend trois parties :
+Un des principaux avantages de hello d’Azure HDInsight est séparation hello de calcul et de stockage de données. HDInsight utilise le stockage d’objets blob Azure pour stocker les données. Une tâche classique comprend trois parties :
 
 1. **Le stockage des données dans un stockage d’objets blob Azure.**  Par exemple, les données météorologiques, les données de capteur, les journaux web et, en l’occurrence, les données liées aux retards de vol, sont enregistrés dans un stockage d’objets blob Azure.
-2. **L’exécution des tâches.** Au moment de traiter des données, exécutez un script Windows PowerShell (ou une application cliente) pour créer un cluster HDInsight, exécuter des tâches et supprimer le cluster. Les tâches enregistrent les données de sortie dans le stockage d'objets blob Azure. Les données de sortie sont conservées même après la suppression du cluster. De cette façon, vous ne payez que ce que vous avez consommé.
-3. **La récupération du résultat à partir du stockage d’objets blob Azure**ou, dans le cas présent, l’exportation des données vers une base de données SQL Azure.
+2. **L’exécution des tâches.** Lorsqu’il est données hello tooprocess du temps, vous exécutez un script Windows PowerShell (ou une application cliente) toocreate un cluster HDInsight, exécuter des travaux et supprimer le cluster de hello. travaux Hello enregistrer les données de sortie tooAzure stockage d’objets Blob. les données de sortie Hello sont conservées même après la suppression de cluster de hello. De cette façon, vous ne payez que ce que vous avez consommé.
+3. **Récupérer la sortie de hello du stockage d’objets Blob Azure**, ou dans ce didacticiel, exporter la base de données SQL Azure hello données tooan.
 
-Le schéma suivant illustre le scénario et la structure de ce didacticiel :
+Hello diagramme suivant illustre le scénario de hello et structure hello de ce didacticiel :
 
 ![HDI.FlightDelays.flow][img-hdi-flightdelays-flow]
 
-Notez que les nombres indiqués dans le schéma correspondent aux titres des sections. **M** représente le processus principal. **A** représente le contenu dans l'annexe.
+Notez que les nombres hello dans le diagramme de hello correspondent toohello les titres de section. **M** représente le processus principal hello. **A** représente le contenu dans l’annexe de hello hello.
 
-La partie principale de ce didacticiel indique comment utiliser un script Windows PowerShell pour effectuer les tâches suivantes :
+partie principale de Hello du didacticiel de hello vous montre des tâches de toouse un Windows PowerShell script tooperform hello suivant :
 
 * Créez un cluster HDInsight.
-* Exécution d’une tâche Hive sur le cluster pour calculer les retards moyens enregistrés dans les aéroports. Les données sur les retards de vol sont stockées dans un compte de stockage d’objets blob Azure.
-* Exécution d'une tâche Sqoop pour exporter le résultat de la tâche Hive dans une base de données SQL Azure.
-* Suppression du cluster HDInsight.
+* Exécuter un travail Hive sur des retards de hello cluster toocalculate moyenne dans les aéroports. données de retard de vol Hello sont stockées dans un compte de stockage d’objets Blob Azure.
+* Exécuter un Sqoop travail tooexport hello ruche travail sortie tooan SQL Azure de base de données.
+* Supprimer le cluster HDInsight de hello.
 
-Dans les annexes, vous trouverez les instructions permettant de télécharger les données sur les retards de vol, de créer/télécharger une chaîne de requête Hive et de préparer une base de données SQL Azure pour la tâche Sqoop.
+Dans les annexes hello, vous trouverez des instructions de hello pour télécharger des données de retard de vol, création/chargement d’une chaîne de requête Hive et préparation de la base de données SQL Azure hello pour le travail de Sqoop hello.
 
 > [!NOTE]
-> Les étapes de cette procédure sont spécifiques aux clusters HDInsight basés sur Windows. Pour les étapes fonctionnant avec un cluster basé sur Linux, consultez la rubrique [Analyse des données sur les retards de vol avec Hive dans HDInsight (Linux)](hdinsight-analyze-flight-delay-data-linux.md).
+> étapes de Hello dans ce document sont des clusters HDInsight tooWindows spécifiques. Pour les étapes fonctionnant avec un cluster basé sur Linux, consultez la rubrique [Analyse des données sur les retards de vol avec Hive dans HDInsight (Linux)](hdinsight-analyze-flight-delay-data-linux.md).
 
 ### <a name="prerequisites"></a>Composants requis
-Avant de commencer ce didacticiel, vous devez disposer des éléments suivants :
+Avant de commencer ce didacticiel, vous devez disposer des éléments suivants de hello :
 
 * **Un abonnement Azure**. Consultez la page [Obtention d’un essai gratuit d’Azure](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/).
 * **Un poste de travail sur lequel est installé Azure PowerShell**.
 
     > [!IMPORTANT]
-    > La prise en charge de la gestion des ressources HDInsight par Azure PowerShell à l’aide d’Azure Service Manager est **déconseillée** ; elle a été supprimée le 1er janvier 2017. Dans ce document, la procédure repose sur les nouvelles applets de commande HDInsight qui fonctionnent avec Azure Resource Manager.
+    > La prise en charge de la gestion des ressources HDInsight par Azure PowerShell à l’aide d’Azure Service Manager est **déconseillée** ; elle a été supprimée le 1er janvier 2017. étapes de Hello dans ce document Utilisez hello nouvelles applets de commande HDInsight qui fonctionnent avec Azure Resource Manager.
     >
-    > Suivez les étapes indiquées dans [Installation et de configuration d’Azure PowerShell](/powershell/azureps-cmdlets-docs) pour installer la dernière version d’Azure PowerShell. Si vous devez modifier certains scripts pour utiliser les nouvelles applets de commande fonctionnant avec Azure Resource Manager, consultez [Migration vers les outils de développement Azure Resource Manager pour les clusters HDInsight](hdinsight-hadoop-development-using-azure-resource-manager.md) pour plus d’informations.
+    > Suivez les étapes de hello dans [installer et configurer Azure PowerShell](/powershell/azureps-cmdlets-docs) tooinstall hello dernière version d’Azure PowerShell. Si vous avez des scripts qui toobe besoin modifié toouse hello nouvelles applets de commande qui fonctionnent avec Azure Resource Manager, consultez [des outils de migration tooAzure développement basé sur le Gestionnaire de ressources pour les clusters HDInsight](hdinsight-hadoop-development-using-azure-resource-manager.md) pour plus d’informations.
 
 **Fichiers utilisés dans ce didacticiel**
 
-Ce didacticiel utilise les données de ponctualité des vols des compagnies aériennes de la [Research and Innovative Technology Administration, Bureau of Transportation Statistics (RITA)][rita-website].
-Une copie des données a été téléchargée dans un conteneur de stockage d’objets blob Azure avec l’autorisation d’accès aux objets blob publics.
-Une partie de votre script PowerShell copie les données à partir du conteneur d'objets blob public dans le conteneur d'objets blob par défaut de votre cluster. Le script HiveQL est également copié dans le même conteneur d’objets blob.
-Pour savoir comment obtenir/télécharger les données sur votre propre compte de stockage et comment créer/télécharger le fichier de script HiveQL, consultez l’[annexe A](#appendix-a) et l’[annexe B](#appendix-b).
+Ce didacticiel utilise hello sur performances compagnie aérienne de données de vol de [recherche et Administration de la technologie novatrice, Bureau de statistiques de transport ou RITA][rita-website].
+Une copie de hello données a été téléchargé tooan conteneur de stockage d’objets Blob Azure avec l’autorisation d’accès Public Blob hello.
+Une partie de votre script PowerShell copie des données de hello de hello blob publics conteneur toohello par défaut conteneur d’objets blob de votre cluster. Hello HiveQL script est également copié toohello même conteneur d’objets Blob.
+Si vous souhaitez toolearn comment tooget/téléchargement hello données tooyour propriétaire de compte de stockage, et comment toocreate/téléchargement hello HiveQL script de fichier, consultez [annexe A](#appendix-a) et [annexe B](#appendix-b).
 
-Le tableau suivant répertorie les fichiers utilisés dans ce didacticiel :
+Hello tableau suivant répertorie les fichiers hello utilisés dans ce didacticiel :
 
 <table border="1">
 <tr><th>Fichiers</th><th>Description</th></tr>
-<tr><td>wasb://flightdelay@hditutorialdata.blob.core.windows.net/flightdelays.hql</td><td>Fichier script HiveQL utilisé par la tâche Hive. Ce script a été téléchargé dans un conteneur de stockage d'objets blob Azure avec l'autorisation d'accès publique. L’<a href="#appendix-b">annexe B</a> présente des instructions sur la préparation et le téléchargement de ce fichier sur votre propre compte de stockage d’objets blob Azure.</td></tr>
-<tr><td>wasb://flightdelay@hditutorialdata.blob.core.windows.net/2013Data</td><td>Données d’entrée pour la tâche Hive. Les données ont été téléchargées dans un compte de stockage d’objets blob Azure avec une autorisation d’accès public. L’<a href="#appendix-a">annexe A</a> présente des instructions sur l’obtention des données et leur téléchargement sur votre propre compte de stockage d’objets blob Azure.</td></tr>
-<tr><td>\tutorials\flightdelays\output</td><td>Chemin de sortie pour la tâche Hive. Le conteneur par défaut est utilisé pour le stockage des données de sortie.</td></tr>
-<tr><td>\tutorials\flightdelays\jobstatus</td><td>Le dossier de statut Hive sur le conteneur par défaut.</td></tr>
+<tr><td>wasb://flightdelay@hditutorialdata.blob.core.windows.net/flightdelays.hql</td><td>fichier de script HiveQL Hello utilisé par hello tâche Hive. Ce script a été téléchargé tooan compte de stockage d’objets Blob Azure avec un accès public hello. <a href="#appendix-b">Annexe B</a> contient des instructions sur la préparation et le téléchargement de ce compte de stockage de fichier tooyour propre objets Blob Azure.</td></tr>
+<tr><td>wasb://flightdelay@hditutorialdata.blob.core.windows.net/2013Data</td><td>Données d’entrée pour le travail de ruche hello. les données de salutation a été téléchargé tooan compte de stockage d’objets Blob Azure avec un accès public hello. <a href="#appendix-a">Annexe A</a> contient des instructions sur l’obtention de données de hello et le téléchargement de compte de stockage Azure Blob propre hello données tooyour.</td></tr>
+<tr><td>\tutorials\flightdelays\output</td><td>chemin de sortie Hello pour le travail de ruche hello. conteneur par défaut de Hello est utilisé pour stocker les données de sortie hello.</td></tr>
+<tr><td>\tutorials\flightdelays\jobstatus</td><td>Hello ruche travail état dossier conteneur par défaut de hello.</td></tr>
 </table>
 
 ## <a name="create-cluster-and-run-hivesqoop-jobs"></a>Création d’un cluster et exécution de tâches Hive/Sqoop
-Hadoop MapReduce correspond au traitement par lots. La manière la plus économique d’exécuter une tâche Hive consiste à créer un cluster pour la tâche et à supprimer cette dernière une fois qu’elle est terminée. Le script suivant couvre le processus dans son intégralité.
+Hadoop MapReduce correspond au traitement par lots. Hello plus rentable toorun un travail Hive est toocreate un cluster pour la tâche de hello et supprimer le travail de hello après la tâche de hello. Hello script suivant couvre les processus hello.
 Pour plus d’informations sur la création d’un cluster HDInsight et l’exécution de tâches Hive, consultez les rubriques [Création de clusters Hadoop dans HDInsight][hdinsight-provision] et [Utilisation de Hive avec HDInsight][hdinsight-use-hive].
 
-**Pour exécuter des requêtes Hive à l’aide d’Azure PowerShell**
+**requêtes Hive toorun hello par Azure PowerShell**
 
-1. Créez une base de données SQL Azure et la table pour le résultat de tâche Sqoop au moyen des instructions figurant dans l’ [annexe C](#appendix-c).
-2. Ouvrez Windows PowerShell ISE et exécutez le script suivant :
+1. Créer une table de base de données et hello SQL Azure pour la sortie de tâche hello Sqoop à l’aide d’instructions hello dans [annexe C](#appendix-c).
+2. Ouvrez Windows PowerShell ISE et exécutez hello script suivant :
 
     ```powershell
     $subscriptionID = "<Azure Subscription ID>"
     $nameToken = "<Enter an Alias>"
 
     ###########################################
-    # You must configure the follwing variables
+    # You must configure hello follwing variables
     # for an existing Azure SQL Database
     ###########################################
     $existingSqlDatabaseServerName = "<Azure SQL Database Server>"
@@ -102,10 +102,10 @@ Pour plus d’informations sur la création d’un cluster HDInsight et l’exé
     $existingSqlDatabaseName = "<Azure SQL Database name>"
 
     $localFolder = "E:\Tutorials\Downloads\" # A temp location for copying files.
-    $azcopyPath = "C:\Program Files (x86)\Microsoft SDKs\Azure\AzCopy" # depends on the version, the folder can be different
+    $azcopyPath = "C:\Program Files (x86)\Microsoft SDKs\Azure\AzCopy" # depends on hello version, hello folder can be different
 
     ###########################################
-    # (Optional) configure the following variables
+    # (Optional) configure hello following variables
     ###########################################
 
     $namePrefix = $nameToken.ToLower() + (Get-Date -Format "MMdd")
@@ -115,10 +115,10 @@ Pour plus d’informations sur la création d’un cluster HDInsight et l’exé
 
     $HDInsightClusterName = $namePrefix + "hdi"
     $httpUserName = "admin"
-    $httpPassword = "<Enter the Password>"
+    $httpPassword = "<Enter hello Password>"
 
     $defaultStorageAccountName = $namePrefix + "store"
-    $defaultBlobContainerName = $HDInsightClusterName # use the cluster name
+    $defaultBlobContainerName = $HDInsightClusterName # use hello cluster name
 
     $existingSqlDatabaseTableName = "AvgDelays"
     $sqlDatabaseConnectionString = "jdbc:sqlserver://$existingSqlDatabaseServerName.database.windows.net;user=$existingSqlDatabaseLogin@$existingSqlDatabaseServerName;password=$existingSqlDatabaseLogin;database=$existingSqlDatabaseName"
@@ -145,15 +145,15 @@ Pour plus d’informations sur la création d’un cluster HDInsight et l’exé
     # Create ARM group
     New-AzureRmResourceGroup -Name $resourceGroupName -Location $location
 
-    # Create the default storage account
+    # Create hello default storage account
     New-AzureRmStorageAccount -ResourceGroupName $resourceGroupName -Name $defaultStorageAccountName -Location $location -Type Standard_LRS
 
-    # Create the default Blob container
+    # Create hello default Blob container
     $defaultStorageAccountKey = (Get-AzureRmStorageAccountKey -ResourceGroupName $resourceGroupName -Name $defaultStorageAccountName)[0].Value
     $defaultStorageAccountContext = New-AzureStorageContext -StorageAccountName $defaultStorageAccountName -StorageAccountKey $defaultStorageAccountKey
     New-AzureStorageContainer -Name $defaultBlobContainerName -Context $defaultStorageAccountContext
 
-    # Create the HDInsight cluster
+    # Create hello HDInsight cluster
     $pw = ConvertTo-SecureString -String $httpPassword -AsPlainText -Force
     $httpCredential = New-Object System.Management.Automation.PSCredential($httpUserName,$pw)
 
@@ -170,25 +170,25 @@ Pour plus d’informations sur la création d’un cluster HDInsight et l’exé
         -DefaultStorageContainer $existingDefaultBlobContainerName
 
     ###########################################
-    # Prepare the HiveQL script and source data
+    # Prepare hello HiveQL script and source data
     ###########################################
 
-    # Create the temp location
+    # Create hello temp location
     New-Item -Path $localFolder -ItemType Directory -Force
 
-    # Download the sample file from Azure Blob storage
+    # Download hello sample file from Azure Blob storage
     $context = New-AzureStorageContext -StorageAccountName "hditutorialdata" -Anonymous
     $blobs = Get-AzureStorageBlob -Container "flightdelay" -Context $context
     #$blobs | Get-AzureStorageBlobContent -Context $context -Destination $localFolder
 
-    # Upload data to default container
+    # Upload data toodefault container
 
     $azcopycmd = "cmd.exe /C '$azcopyPath\azcopy.exe' /S /Source:'$localFolder' /Dest:'https://$defaultStorageAccountName.blob.core.windows.net/$defaultBlobContainerName/tutorials/flightdelays' /DestKey:$defaultStorageAccountKey"
 
     Invoke-Expression -Command:$azcopycmd
 
     ###########################################
-    # Submit the Hive job
+    # Submit hello Hive job
     ###########################################
     Use-AzureRmHDInsightCluster -ClusterName $HDInsightClusterName -HttpCredential $httpCredential
     $response = Invoke-AzureRmHDInsightHiveJob `
@@ -201,7 +201,7 @@ Pour plus d’informations sur la création d’un cluster HDInsight et l’exé
     write-Host $response
 
     ###########################################
-    # Submit the Sqoop job
+    # Submit hello Sqoop job
     ###########################################
     $exportDir = "wasb://$defaultBlobContainerName@$defaultStorageAccountName.blob.core.windows.net/tutorials/flightdelays/output"
 
@@ -231,29 +231,29 @@ Pour plus d’informations sur la création d’un cluster HDInsight et l’exé
         -DisplayOutputType StandardError
 
     ###########################################
-    # Delete the cluster
+    # Delete hello cluster
     ###########################################
     Remove-AzureRmHDInsightCluster -ResourceGroupName $resourceGroupName -ClusterName $hdinsightClusterName
     ```
-3. Connectez-vous à votre base de données SQL et consultez les retards de vol moyens par ville dans la table AvgDelays :
+3. Connexion de base de données SQL tooyour et consultez les retards de vol moyenne par ville dans la table de AvgDelays hello :
 
     ![HDI.FlightDelays.AvgDelays.Dataset][image-hdi-flightdelays-avgdelays-dataset]
 
 - - -
 
-## <a id="appendix-a"></a>Annexe A - Téléchargement de données de retard de vol vers le stockage d’objets blob Azure
-Le téléchargement du fichier de données et des fichiers de script HiveQL (voir l’ [annexe B](#appendix-b)) nécessite un minimum de planification. Il s’agit de stocker les fichiers de données et le fichier HiveQL avant de créer un cluster HDInsight et d’exécuter la tâche Hive. Deux options s'offrent à vous :
+## <a id="appendix-a"></a>Annexe A - téléchargement flight delay données tooAzure stockage d’objets Blob
+Téléchargement du fichier de données hello et les fichiers de script de HiveQL hello (consultez [annexe B](#appendix-b)) requiert une planification. Hello est toostore des fichiers de données hello et fichier de HiveQL hello avant de créer un cluster HDInsight et de travail de ruche hello en cours d’exécution. Deux options s'offrent à vous :
 
-* **Utiliser le même compte Azure Storage qui sera utilisé par le cluster HDInsight en tant que système de fichier par défaut.** Étant donné que le cluster HDInsight disposera de la clé d’accès au compte de stockage, vous n’avez pas besoin d’effectuer des modifications supplémentaires.
-* **Utiliser un compte Azure Storage différent du système de fichier par défaut du cluster HDInsight.** Le cas échéant, vous devez modifier la partie de création du script Windows PowerShell figurant dans [Création d’un cluster HDInsight et exécution de tâches Hive/Sqoop](#runjob) de manière à lier le compte de stockage comme compte supplémentaire. Pour plus d’informations, consultez la rubrique [Création de clusters Hadoop dans HDInsight][hdinsight-provision]. Le cluster HDInsight connaît ainsi la clé d’accès du compte de stockage.
+* **Utilisez hello même compte de stockage Azure qui servira par cluster HDInsight de hello en tant que système de fichiers par défaut hello.** Étant donné que le cluster HDInsight de hello aura hello compte clé d’accès, vous n’avez pas besoin toomake des modifications supplémentaires.
+* **Utilisez un compte de stockage Azure différent de hello système de fichiers HDInsight cluster par défaut.** Si c’est le cas de hello, vous devez modifier la partie de la création de hello Hello Windows PowerShell script trouvé dans [cluster HDInsight de créer et tâches d’exécution Hive/Sqoop](#runjob) toolink hello compte de stockage comme un compte de stockage supplémentaire. Pour plus d’informations, consultez la rubrique [Création de clusters Hadoop dans HDInsight][hdinsight-provision]. cluster HDInsight de Hello sait ensuite la clé d’accès hello hello compte de stockage.
 
 > [!NOTE]
-> Le chemin d’accès au stockage d’objets blob pour le fichier de données est codé en dur dans le fichier de script HiveQL. Vous devez le mettre à jour en conséquence.
+> Bonjour le chemin d’accès de stockage Blob pour hello fichier de données est codé en dur dans le fichier de script HiveQL hello. Vous devez le mettre à jour en conséquence.
 
-**Pour télécharger les données de vol**
+**données de vol hello toodownload**
 
-1. Accédez à [Research and Innovative Technology Administration, Bureau of Transportation Statistics][rita-website].
-2. Sur la page, sélectionnez les valeurs suivantes :
+1. Parcourir trop[recherche et l’Administration de technologie novatrice, Bureau de statistiques de transport][rita-website].
+2. Sur la page de hello, sélectionnez hello valeurs suivantes :
 
     <table border="1">
     <tr><th>Nom</th><th>Valeur</th></tr>
@@ -262,129 +262,129 @@ Le téléchargement du fichier de données et des fichiers de script HiveQL (voi
     <tr><td>Champs</td><td>*Year*, *FlightDate*, *UniqueCarrier*, *Carrier*, *FlightNum*, *OriginAirportID*, *Origin*, *OriginCityName*, *OriginState*, *DestAirportID*, *Dest*, *DestCityName*, *DestState*, *DepDelayMinutes*, *ArrDelay*, *ArrDelayMinutes*, *CarrierDelay*, *WeatherDelay*, *NASDelay*, *SecurityDelay*, *LateAircraftDelay* (effacez tous les autres champs)</td></tr>
     </table>
 3. Cliquez sur **Télécharger**.
-4. Décompressez le fichier dans le dossier **C:\Tutorials\FlightDelay\2013Data**. Chaque fichier correspond à un fichier CSV d’environ 60 Go.
-5. Donnez au fichier le nom du mois dont il contient les données. Par exemple, renommez le fichier contenant les données du mois de janvier *Janvier.csv*.
-6. Répétez les étapes 2 et 5 pour télécharger chaque fichier correspondant aux 12 mois de l’année 2013. Vous devez disposer d’au moins un fichier pour exécuter le didacticiel.
+4. Décompressez hello fichier toohello **C:\Tutorials\FlightDelay\2013Data** dossier. Chaque fichier correspond à un fichier CSV d’environ 60 Go.
+5. Renommer hello fichier toohello du mois hello qu’il contient des données. Par exemple, fichier hello contenant hello janvier données serait nommé *January.csv*.
+6. Répétez le toodownload les étapes 2 et 5 un fichier pour chaque hello 12 mois dans 2013. Vous devez au minimum un didacticiel de hello toorun fichier.
 
-**Pour télécharger les données de retard de vol vers le stockage d’objets blob Azure**
+**tooupload hello flight delay données tooAzure stockage d’objets Blob**
 
-1. Préparez les paramètres :
+1. Préparer les paramètres hello :
 
     <table border="1">
     <tr><th>Nom de la variable</th><th>Remarques</th></tr>
-    <tr><td>$storageAccountName</td><td>Compte Azure Storage sur lequel vous voulez télécharger les données.</td></tr>
-    <tr><td>$blobContainerName</td><td>Conteneur d'objets blob dans lequel vous voulez télécharger les données.</td></tr>
+    <tr><td>$storageAccountName</td><td>compte de stockage Azure où vous souhaitez que les données hello tooupload de Hello.</td></tr>
+    <tr><td>$blobContainerName</td><td>conteneur d’objets Blob Hello où vous souhaitez que les données hello tooupload.</td></tr>
     </table>
 2. Ouvrez Azure PowerShell ISE.
-3. Collez le script suivant dans le volet du script :
+3. Collez hello script suivant dans le volet de script hello :
 
     ```powershell
     [CmdletBinding()]
     Param(
 
         [Parameter(Mandatory=$True,
-                    HelpMessage="Enter the Azure storage account name for creating a new HDInsight cluster. If the account doesn't exist, the script will create one.")]
+                    HelpMessage="Enter hello Azure storage account name for creating a new HDInsight cluster. If hello account doesn't exist, hello script will create one.")]
         [String]$storageAccountName,
 
         [Parameter(Mandatory=$True,
-                    HelpMessage="Enter the Azure blob container name for creating a new HDInsight cluster. If not specified, the HDInsight cluster name will be used.")]
+                    HelpMessage="Enter hello Azure blob container name for creating a new HDInsight cluster. If not specified, hello HDInsight cluster name will be used.")]
         [String]$blobContainerName
     )
 
     #Region - Variables
-    $localFolder = "C:\Tutorials\FlightDelay\2013Data"  # The source folder
-    $destFolder = "tutorials/flightdelay/2013data"     #The blob name prefix for the files to be uploaded
+    $localFolder = "C:\Tutorials\FlightDelay\2013Data"  # hello source folder
+    $destFolder = "tutorials/flightdelay/2013data"     #hello blob name prefix for hello files toobe uploaded
     #EndRegion
 
-    #Region - Connect to Azure subscription
-    Write-Host "`nConnecting to your Azure subscription ..." -ForegroundColor Green
+    #Region - Connect tooAzure subscription
+    Write-Host "`nConnecting tooyour Azure subscription ..." -ForegroundColor Green
     try{Get-AzureRmContext}
     catch{Login-AzureRmAccount}
     #EndRegion
 
     #Region - Validate user input
-    Write-Host "`nValidating the Azure Storage account and the Blob container..." -ForegroundColor Green
-    # Validate the Storage account
+    Write-Host "`nValidating hello Azure Storage account and hello Blob container..." -ForegroundColor Green
+    # Validate hello Storage account
     if (-not (Get-AzureRmStorageAccount|Where-Object{$_.StorageAccountName -eq $storageAccountName}))
     {
-        Write-Host "The storage account, $storageAccountName, doesn't exist." -ForegroundColor Red
+        Write-Host "hello storage account, $storageAccountName, doesn't exist." -ForegroundColor Red
         exit
     }
     else{
         $resourceGroupName = (Get-AzureRmStorageAccount|Where-Object{$_.StorageAccountName -eq $storageAccountName}).ResourceGroupName
     }
 
-    # Validate the container
+    # Validate hello container
     $storageAccountKey = (Get-AzureRmStorageAccountKey -StorageAccountName $storageAccountName -ResourceGroupName $resourceGroupName)[0].Value
     $storageContext = New-AzureStorageContext -StorageAccountName $storageAccountName -StorageAccountKey $storageAccountKey
 
     if (-not (Get-AzureStorageContainer -Context $storageContext |Where-Object{$_.Name -eq $blobContainerName}))
     {
-        Write-Host "The Blob container, $blobContainerName, doesn't exist" -ForegroundColor Red
+        Write-Host "hello Blob container, $blobContainerName, doesn't exist" -ForegroundColor Red
         Exit
     }
     #EngRegion
 
-    #Region - Copy the file from local workstation to Azure Blob storage
+    #Region - Copy hello file from local workstation tooAzure Blob storage
     if (test-path -Path $localFolder)
     {
         foreach ($item in Get-ChildItem -Path $localFolder){
             $fileName = "$localFolder\$item"
             $blobName = "$destFolder/$item"
 
-            Write-Host "Copying $fileName to $blobName" -ForegroundColor Green
+            Write-Host "Copying $fileName too$blobName" -ForegroundColor Green
 
             Set-AzureStorageBlobContent -File $fileName -Container $blobContainerName -Blob $blobName -Context $storageContext
         }
     }
     else
     {
-        Write-Host "The source folder on the workstation doesn't exist" -ForegroundColor Red
+        Write-Host "hello source folder on hello workstation doesn't exist" -ForegroundColor Red
     }
 
-    # List the uploaded files on HDInsight
+    # List hello uploaded files on HDInsight
     Get-AzureStorageBlob -Container $blobContainerName  -Context $storageContext -Prefix $destFolder
     #EndRegion
     ```
-4. Appuyez sur **F5** pour exécuter le script.
+4. Appuyez sur **F5** script de hello toorun.
 
-Si vous décidez d’utiliser une autre méthode pour télécharger les fichiers, vérifiez que le chemin d’accès au fichier est tutorials/flightdelay/data. La syntaxe permettant d'accéder aux fichiers est la suivante :
+Si vous choisissez toouse une autre méthode de téléchargement des fichiers de hello, assurez-vous que le chemin d’accès du fichier hello est didacticiels/flightdelay/données. syntaxe Hello pour accéder aux fichiers de hello est :
 
     wasb://<ContainerName>@<StorageAccountName>.blob.core.windows.net/tutorials/flightdelay/data
 
-Le chemin d’accès tutorials/flightdelay/data correspond au dossier virtuel que vous avez créé lors du chargement des fichiers. Assurez-vous qu'il existe 12 fichiers, un par mois.
+Hello chemin didacticiels/flightdelay/données est un dossier virtuel de hello que vous avez créé lorsque vous avez téléchargé les fichiers hello. Assurez-vous qu'il existe 12 fichiers, un par mois.
 
 > [!NOTE]
-> Vous devez mettre à jour la requête Hive pour lire à partir du nouvel emplacement.
+> Vous devez mettre à jour hello ruche requête tooread à partir de l’emplacement du nouveau hello.
 >
-> Vous devez configurer l’autorisation d’accès au conteneur pour qu’il soit public ou lier le compte de stockage au cluster HDInsight. Dans le cas contraire, la chaîne de requête Hive ne pourra pas accéder aux fichiers de données.
+> Vous devez configurer hello conteneur accès autorisation toobe public ou lier toohello de compte de stockage hello cluster HDInsight. Sinon, chaîne de requête Hive hello ne sera pas en mesure de tooaccess des fichiers de données hello.
 
 - - -
 
 ## <a id="appendix-b"></a>Annexe B - Création et téléchargement d’un script HiveQL
-À l'aide d'Azure PowerShell, vous pouvez exécuter plusieurs instructions HiveQL, une par une, ou empaqueter l'instruction HiveQL dans un fichier de script. Cette section explique comment créer un script HiveQL et télécharger celui-ci vers le stockage d’objets blob Azure en utilisant Azure PowerShell. Hive requiert le stockage de scripts HiveQL dans le stockage d’objets blob Azure.
+À l’aide d’Azure PowerShell, vous pouvez exécuter plusieurs instructions HiveQL une à une heure ou package hello HiveQL instruction dans un fichier de script. Cette section vous montre comment toocreate un script HiveQL hello de chargement de script et tooAzure stockage d’objets Blob à l’aide d’Azure PowerShell. Ruche requiert hello HiveQL scripts toobe stockée dans le stockage Blob Azure.
 
-Le script HiveQL exécutera les opérations suivantes :
+Hello script HiveQL effectuera suivant de hello :
 
-1. **Il supprime la table delays_raw**, le cas échéant.
-2. **Il crée la table externe Hive delays_raw** pointant vers l’emplacement du stockage d’objets blob où se trouvent les fichiers de retard de vol. Cette requête spécifie les champs délimités par « , » et les lignes se terminant par « \n ». Cela pose un problème lorsque les valeurs des champs contiennent des virgules, car Hive n'est pas en mesure de différencier une virgule utilisée en tant que délimiteur de champ d'une virgule faisant partie d'une valeur de champ (ce qui est le cas pour les valeurs des champs ORIGIN\_CITY\_NAME and DEST\_CITY\_NAME). Pour y remédier, la requête crée des colonnes TEMP afin de contenir les données incorrectement réparties dans les colonnes.
-3. **Il supprime la table des retards**, le cas échéant.
-4. **Il crée la table des retards**. Il est conseillé de nettoyer les données avant tout traitement plus approfondi. Cette requête crée une nouvelle table, *delays*, à partir de la table delays_raw. Notez que les colonnes TEMP (comme indiqué précédemment) ne sont pas copiées et que la fonction **substring** est utilisée pour supprimer les guillemets présents dans les données.
-5. **Il calcule les retards moyens liés aux conditions météo et regroupe les résultats par nom de ville.** Il transmet également les résultats au stockage d’objets blob. Notez que la requête supprime les apostrophes des données et exclut les lignes dans lesquelles la valeur de **weather_delay** est de type null. Ces mesures sont nécessaires, car Sqoop, qui est utilisé ultérieurement dans ce didacticiel, ne gère pas correctement ces valeurs par défaut.
+1. **Supprimer la table de delays_raw hello**, au cas où la table hello existe déjà.
+2. **Créer une table Hive externe hello delays_raw** pointant d’emplacement de stockage d’objets Blob toohello avec les fichiers de retard de vol hello. Cette requête spécifie les champs délimités par « , » et les lignes se terminant par « \n ». Cela pose un problème lorsque les valeurs de champ contiennent des virgules, car la ruche ne peut pas différencier une virgule est un délimiteur de champ et un qui fait partie d’une valeur de champ (qui est le cas de hello dans les valeurs de champ pour l’origine\_Ville\_nom et DEST\_ Ville\_nom). tooaddress, hello requête crée les colonnes TEMP données toohold sont incorrectement divisées en colonnes.
+3. **Supprimer la table de retards hello**, au cas où la table hello existe déjà.
+4. **Créer la table de retards hello**. Il est utile tooclean les données de hello avant tout traitement supplémentaire. Cette requête crée une nouvelle table, *retards*, à partir de la table de delays_raw hello. Notez que les colonnes TEMP hello (comme indiqué précédemment) ne sont pas copiés et ce hello **sous-chaîne** fonction est guillemets tooremove utilisés à partir des données de hello.
+5. **Calcul résultats hello hello météo moyenne délai et les groupes par nom de ville.** Il produira également de stockage de tooBlob résultats hello. Notez cette requête hello supprimera les apostrophes à partir des données de hello et exclut les lignes où la valeur hello pour **weather_delay** a la valeur null. Ces mesures sont nécessaires, car Sqoop, qui est utilisé ultérieurement dans ce didacticiel, ne gère pas correctement ces valeurs par défaut.
 
-Pour obtenir la liste complète des commandes HiveQL, consultez la rubrique [Langage de définition des données Hive][hadoop-hiveql]. Chaque commande HiveQL doit se terminer par un point virgule.
+Pour obtenir une liste complète des commandes de HiveQL hello, consultez [Hive Data Definition Language][hadoop-hiveql]. Chaque commande HiveQL doit se terminer par un point virgule.
 
-**Pour créer un fichier de script HiveQL**
+**toocreate un fichier de script HiveQL**
 
-1. Préparez les paramètres :
+1. Préparer les paramètres hello :
 
     <table border="1">
     <tr><th>Nom de la variable</th><th>Remarques</th></tr>
-    <tr><td>$storageAccountName</td><td>Compte Azure Storage sur lequel vous voulez télécharger le script HiveQL.</td></tr>
-    <tr><td>$blobContainerName</td><td>Conteneur d'objets blob dans lequel vous voulez télécharger le script HiveQL.</td></tr>
+    <tr><td>$storageAccountName</td><td>Hello compte de stockage Azure où vous souhaitez que tooupload hello script HiveQL.</td></tr>
+    <tr><td>$blobContainerName</td><td>conteneur d’objets Blob Hello où vous souhaitez que tooupload hello script HiveQL.</td></tr>
     </table>
 2. Ouvrez Azure PowerShell ISE.
-3. Copiez-collez le script suivant dans le volet du script :
+3. Copiez et collez le script suivant dans le volet de script hello de hello :
 
     ```powershell
     [CmdletBinding()]
@@ -392,11 +392,11 @@ Pour obtenir la liste complète des commandes HiveQL, consultez la rubrique [Lan
 
         # Azure Blob storage variables
         [Parameter(Mandatory=$True,
-                    HelpMessage="Enter the Azure storage account name for creating a new HDInsight cluster. If the account doesn't exist, the script will create one.")]
+                    HelpMessage="Enter hello Azure storage account name for creating a new HDInsight cluster. If hello account doesn't exist, hello script will create one.")]
         [String]$storageAccountName,
 
         [Parameter(Mandatory=$True,
-                    HelpMessage="Enter the Azure blob container name for creating a new HDInsight cluster. If not specified, the HDInsight cluster name will be used.")]
+                    HelpMessage="Enter hello Azure blob container name for creating a new HDInsight cluster. If not specified, hello HDInsight cluster name will be used.")]
         [String]$blobContainerName
     )
 
@@ -404,53 +404,53 @@ Pour obtenir la liste complète des commandes HiveQL, consultez la rubrique [Lan
     # Treat all errors as terminating
     $ErrorActionPreference = "Stop"
 
-    # The HiveQL script file is exported as this file before it's uploaded to Blob storage
+    # hello HiveQL script file is exported as this file before it's uploaded tooBlob storage
     $hqlLocalFileName = "e:\tutorials\flightdelay\flightdelays.hql"
 
-    # The HiveQL script file will be uploaded to Blob storage as this blob name
+    # hello HiveQL script file will be uploaded tooBlob storage as this blob name
     $hqlBlobName = "tutorials/flightdelay/flightdelays.hql"
 
-    # These two constants are used by the HiveQL script file
+    # These two constants are used by hello HiveQL script file
     #$srcDataFolder = "tutorials/flightdelay/data"
     $dstDataFolder = "/tutorials/flightdelay/output"
     #endregion
 
-    #Region - Connect to Azure subscription
-    Write-Host "`nConnecting to your Azure subscription ..." -ForegroundColor Green
+    #Region - Connect tooAzure subscription
+    Write-Host "`nConnecting tooyour Azure subscription ..." -ForegroundColor Green
     try{Get-AzureRmContext}
     catch{Login-AzureRmAccount}
     #EndRegion
 
     #Region - Validate user input
-    Write-Host "`nValidating the Azure Storage account and the Blob container..." -ForegroundColor Green
-    # Validate the Storage account
+    Write-Host "`nValidating hello Azure Storage account and hello Blob container..." -ForegroundColor Green
+    # Validate hello Storage account
     if (-not (Get-AzureRmStorageAccount|Where-Object{$_.StorageAccountName -eq $storageAccountName}))
     {
-        Write-Host "The storage account, $storageAccountName, doesn't exist." -ForegroundColor Red
+        Write-Host "hello storage account, $storageAccountName, doesn't exist." -ForegroundColor Red
         exit
     }
     else{
         $resourceGroupName = (Get-AzureRmStorageAccount|Where-Object{$_.StorageAccountName -eq $storageAccountName}).ResourceGroupName
     }
 
-    # Validate the container
+    # Validate hello container
     $storageAccountKey = (Get-AzureRmStorageAccountKey -StorageAccountName $storageAccountName -ResourceGroupName $resourceGroupName)[0].Value
     $storageContext = New-AzureStorageContext -StorageAccountName $storageAccountName -StorageAccountKey $storageAccountKey
 
     if (-not (Get-AzureStorageContainer -Context $storageContext |Where-Object{$_.Name -eq $blobContainerName}))
     {
-        Write-Host "The Blob container, $blobContainerName, doesn't exist" -ForegroundColor Red
+        Write-Host "hello Blob container, $blobContainerName, doesn't exist" -ForegroundColor Red
         Exit
     }
     #EngRegion
 
-    #region - Validate the file and file path
+    #region - Validate hello file and file path
 
-    # Check if a file with the same file name already exists on the workstation
-    Write-Host "`nvalidating the folder structure on the workstation for saving the HQL script file ..."  -ForegroundColor Green
+    # Check if a file with hello same file name already exists on hello workstation
+    Write-Host "`nvalidating hello folder structure on hello workstation for saving hello HQL script file ..."  -ForegroundColor Green
     if (test-path $hqlLocalFileName){
 
-        $isDelete = Read-Host 'The file, ' $hqlLocalFileName ', exists.  Do you want to overwirte it? (Y/N)'
+        $isDelete = Read-Host 'hello file, ' $hqlLocalFileName ', exists.  Do you want toooverwirte it? (Y/N)'
 
         if ($isDelete.ToLower() -ne "y")
         {
@@ -458,7 +458,7 @@ Pour obtenir la liste complète des commandes HiveQL, consultez la rubrique [Lan
         }
     }
 
-    # Create the folder if it doesn't exist
+    # Create hello folder if it doesn't exist
     $folder = split-path $hqlLocalFileName
     if (-not (test-path $folder))
     {
@@ -468,8 +468,8 @@ Pour obtenir la liste complète des commandes HiveQL, consultez la rubrique [Lan
     }
     #end region
 
-    #region - Write the Hive script into a local file
-    Write-Host "`nWriting the Hive script into a file on your workstation ..." `
+    #region - Write hello Hive script into a local file
+    Write-Host "`nWriting hello Hive script into a file on your workstation ..." `
                 -ForegroundColor Green
 
     $hqlDropDelaysRaw = "DROP TABLE delays_raw;"
@@ -539,42 +539,42 @@ Pour obtenir la liste complète des commandes HiveQL, consultez la rubrique [Lan
     $hqlScript | Out-File $hqlLocalFileName -Encoding ascii -Force
     #endregion
 
-    #region - Upload the Hive script to the default Blob container
-    Write-Host "`nUploading the Hive script to the default Blob container ..." -ForegroundColor Green
+    #region - Upload hello Hive script toohello default Blob container
+    Write-Host "`nUploading hello Hive script toohello default Blob container ..." -ForegroundColor Green
 
     # Create a storage context object
     $storageAccountKey = (Get-AzureRmStorageAccountKey -StorageAccountName $storageAccountName -ResourceGroupName $resourceGroupName)[0].Value
     $destContext = New-AzureStorageContext -StorageAccountName $storageAccountName -StorageAccountKey $storageAccountKey
 
-    # Upload the file from local workstation to Blob storage
+    # Upload hello file from local workstation tooBlob storage
     Set-AzureStorageBlobContent -File $hqlLocalFileName -Container $blobContainerName -Blob $hqlBlobName -Context $destContext
     #endregion
 
-    Write-host "`nEnd of the PowerShell script" -ForegroundColor Green
+    Write-host "`nEnd of hello PowerShell script" -ForegroundColor Green
     ```
 
-    Voici les variables utilisées dans le script :
+    Voici les variables hello utilisées dans le script de hello :
 
-   * **$hqlLocalFileName** - Le script enregistre le fichier script HiveQL en local avant de le télécharger dans le stockage d’objets blob. Il s'agit du nom de fichier. La valeur par défaut est <u>C:\tutorials\flightdelay\flightdelays.hql</u>.
-   * **$hqlBlobName** - Il s’agit du nom d’objet blob du fichier de script HiveQL utilisé dans le stockage d’objets blob Azure. La valeur par défaut est tutorials/flightdelay/flightdelays.hql. Étant donné que le fichier sera écrit directement dans le stockage d'objets blob Azure, il n'y a PAS de « / » au début du nom d'objet blob. Si vous voulez accéder au fichier à partir du stockage d’objets blob, il vous faudra ajouter « / » au début du nom de fichier.
+   * **$hqlLocalFileName** -hello script enregistre fichier de script HiveQL hello localement avant de le télécharger tooBlob stockage. Il s’agit de nom de fichier hello. la valeur par défaut Hello est <u>C:\tutorials\flightdelay\flightdelays.hql</u>.
+   * **$hqlBlobName** -hello HiveQL script blob nom du fichier utilisé dans hello le stockage Blob Azure. valeur par défaut de Hello est tutorials/flightdelay/flightdelays.hql. Étant donné que hello fichier sera écrit directement tooAzure stockage d’objets Blob, il n’est pas un « / » au début de hello du nom d’objet blob hello. Si vous voulez tooaccess hello depuis le stockage Blob, vous devez tooadd « / » au début de hello hello du nom de fichier.
    * **$srcDataFolder** et **$dstDataFolder** - = "tutorials/flightdelay/data" = "tutorials/flightdelay/output"
 
 - - -
-## <a id="appendix-c"></a>Annexe C - Préparation d’une base de données SQL Azure pour le résultat de tâche Sqoop
-**Pour préparer la base de données SQL (fusionnez celle-ci avec le script Sqoop)**
+## <a id="appendix-c"></a>Annexe C - préparer une base de données SQL Azure hello sortie de travail Sqoop
+**base de données SQL tooprepare hello (fusionne avec hello Sqoop script)**
 
-1. Préparez les paramètres :
+1. Préparer les paramètres hello :
 
     <table border="1">
     <tr><th>Nom de la variable</th><th>Remarques</th></tr>
-    <tr><td>$sqlDatabaseServerName</td><td>Nom du serveur de la base de données SQL Azure. N'entrez rien pour créer un nouveau serveur.</td></tr>
-    <tr><td>$sqlDatabaseUsername</td><td>Nom de connexion pour le serveur de la base de données SQL Azure. Si $sqlDatabaseServerName est un serveur existant, la connexion et le mot de passe de connexion permettent de s'authentifier auprès du serveur. Sinon, ils permettent de créer un nouveau serveur.</td></tr>
-    <tr><td>$sqlDatabasePassword</td><td>Mot de passe pour se connecter au serveur de la base de données SQL Azure.</td></tr>
+    <tr><td>$sqlDatabaseServerName</td><td>nom de Hello du serveur de base de données SQL Azure hello. Entrez rien toocreate un nouveau serveur.</td></tr>
+    <tr><td>$sqlDatabaseUsername</td><td>nom de connexion Hello pour le serveur de base de données SQL Azure hello. Si $sqlDatabaseServerName est un serveur existant, connexion de hello et le mot de passe sont tooauthenticate utilisé avec le serveur de hello. Sinon, elles sont utilisée toocreate un nouveau serveur.</td></tr>
+    <tr><td>$sqlDatabasePassword</td><td>Hello mot de passe pour le serveur de base de données SQL Azure hello.</td></tr>
     <tr><td>$sqlDatabaseLocation</td><td>Cette valeur est uniquement utilisée lors de la création d’un nouveau serveur de base de données Azure.</td></tr>
-    <tr><td>$sqlDatabaseName</td><td>Base de données SQL utilisée pour créer la table AvgDelays pour la tâche Sqoop. Si vous laissez cette valeur vide, une base de données intitulée HDISqoop est créée. La table créée pour le résultat de la tâche Sqoop s’appelle AvgDelays. </td></tr>
+    <tr><td>$sqlDatabaseName</td><td>base de données SQL Hello utilisé table de AvgDelays toocreate hello pour le travail de Sqoop hello. Si vous laissez cette valeur vide, une base de données intitulée HDISqoop est créée. nom de la table Hello pour hello sortie de travail Sqoop est AvgDelays. </td></tr>
     </table>
 2. Ouvrez Azure PowerShell ISE.
-3. Copiez-collez le script suivant dans le volet du script :
+3. Copiez et collez le script suivant dans le volet de script hello de hello :
 
     ```powershell
     [CmdletBinding()]
@@ -582,30 +582,30 @@ Pour obtenir la liste complète des commandes HiveQL, consultez la rubrique [Lan
 
         # Azure Resource group variables
         [Parameter(Mandatory=$True,
-                HelpMessage="Enter the Azure resource group name. It will be created if it doesn't exist.")]
+                HelpMessage="Enter hello Azure resource group name. It will be created if it doesn't exist.")]
         [String]$resourceGroupName,
 
         # SQL database server variables
         [Parameter(Mandatory=$True,
-                HelpMessage="Enter the Azure SQL Database Server Name. It will be created if it doesn't exist.")]
+                HelpMessage="Enter hello Azure SQL Database Server Name. It will be created if it doesn't exist.")]
         [String]$sqlDatabaseServer,
 
         [Parameter(Mandatory=$True,
-                HelpMessage="Enter the Azure SQL Database admin user.")]
+                HelpMessage="Enter hello Azure SQL Database admin user.")]
         [String]$sqlDatabaseLogin,
 
         [Parameter(Mandatory=$True,
-                HelpMessage="Enter the Azure SQL Database admin user password.")]
+                HelpMessage="Enter hello Azure SQL Database admin user password.")]
         [String]$sqlDatabasePassword,
 
         [Parameter(Mandatory=$True,
-                HelpMessage="Enter the region to create the Database in.")]
+                HelpMessage="Enter hello region toocreate hello Database in.")]
         [String]$sqlDatabaseLocation,   #For example, West US.
 
         # SQL database variables
         [Parameter(Mandatory=$True,
-                HelpMessage="Enter the database name. It will be created if it doesn't exist.")]
-        [String]$sqlDatabaseName # specify the database name if you have one created. Otherwise use "" to have the script create one for you.
+                HelpMessage="Enter hello database name. It will be created if it doesn't exist.")]
+        [String]$sqlDatabaseName # specify hello database name if you have one created. Otherwise use "" toohave hello script create one for you.
     )
 
     # Treat all errors as terminating
@@ -632,8 +632,8 @@ Pour obtenir la liste complète des commandes HiveQL, consultez la rubrique [Lan
             )"
     #endregion
 
-    #Region - Connect to Azure subscription
-    Write-Host "`nConnecting to your Azure subscription ..." -ForegroundColor Green
+    #Region - Connect tooAzure subscription
+    Write-Host "`nConnecting tooyour Azure subscription ..." -ForegroundColor Green
     try{Get-AzureRmContext}
     catch{Login-AzureRmAccount}
     #EndRegion
@@ -664,7 +664,7 @@ Pour obtenir la liste complète des commandes HiveQL, consultez la rubrique [Lan
         $workstationIPAddress = Invoke-RestMethod $ipAddressRestService
         New-AzureRmSqlServerFirewallRule -ResourceGroupName $resourceGroupName -ServerName $sqlDatabaseServer -FirewallRuleName "$fireWallRuleName-workstation" -StartIpAddress $workstationIPAddress -EndIpAddress $workstationIPAddress
 
-        #To allow other Azure services to access the server add a firewall rule and set both the StartIpAddress and EndIpAddress to 0.0.0.0. Note that this allows Azure traffic from any Azure subscription to access the server.
+        #tooallow other Azure services tooaccess hello server add a firewall rule and set both hello StartIpAddress and EndIpAddress too0.0.0.0. Note that this allows Azure traffic from any Azure subscription tooaccess hello server.
         New-AzureRmSqlServerFirewallRule -ResourceGroupName $resourceGroupName -ServerName $sqlDatabaseServer -FirewallRuleName "$fireWallRuleName-Azureservices" -StartIpAddress "0.0.0.0" -EndIpAddress "0.0.0.0"
     }
 
@@ -682,7 +682,7 @@ Pour obtenir la liste complète des commandes HiveQL, consultez la rubrique [Lan
 
     #endregion
 
-    #region -  Execute an SQL command to create the AvgDelays table
+    #region -  Execute an SQL command toocreate hello AvgDelays table
 
     Write-Host "`nCreating SQL Database table ..."  -ForegroundColor Green
     $conn = New-Object System.Data.SqlClient.SqlConnection
@@ -695,23 +695,23 @@ Pour obtenir la liste complète des commandes HiveQL, consultez la rubrique [Lan
 
     $conn.close()
 
-    Write-host "`nEnd of the PowerShell script" -ForegroundColor Green
+    Write-host "`nEnd of hello PowerShell script" -ForegroundColor Green
     ```
 
    > [!NOTE]
-   > Le script utilise un service REST (representational state transfer), http://bot.whatismyipaddress.com, pour extraire votre adresse IP externe. L’adresse IP permet de créer une règle de pare-feu pour votre serveur de base de données SQL.
+   > Hello script utilise un service de transfert (REST) état representational, http://bot.whatismyipaddress.com, tooretrieve votre adresse IP externe. adresse IP de Hello est utilisé pour la création d’une règle de pare-feu pour votre serveur de base de données SQL.
 
-    Voici quelques variables utilisées dans le script :
+    Voici quelques-unes des variables utilisées dans le script de hello :
 
-   * **$ipAddressRestService** : la valeur par défaut est http://bot.whatismyipaddress.com. Il s’agit d’un service REST d’adresse IP publique permettant d’obtenir votre adresse IP externe. Vous pouvez utiliser d'autres services si vous voulez. L’adresse IP externe extraite au moyen du service servira à créer une règle de pare-feu pour votre serveur de base de données SQL Azure, ce qui vous permet d’accéder à la base de données à partir de votre poste de travail (au moyen d’un script Windows PowerShell).
-   * **$fireWallRuleName** - Il s’agit du nom de la règle de pare-feu pour le serveur de la base de données SQL Azure. Le nom par défaut est <u>FlightDelay</u>. Vous pouvez le renommer si vous voulez.
-   * **$sqlDatabaseMaxSizeGB** - Cette valeur est uniquement utilisée lors de la création d’un nouveau serveur de base de données SQL Azure. La valeur par défaut est 10 Go. Une capacité de 10 Go est suffisante pour ce didacticiel.
-   * **$sqlDatabaseName** - Cette valeur est uniquement utilisée lors de la création d’une nouvelle base de données SQL Azure. La valeur par défaut est HDISqoop. Si vous la renommez, vous devez mettre à jour le script Sqoop Windows PowerShell en conséquence.
-4. Appuyez sur **F5** pour exécuter le script.
-5. Validez la sortie du script. Vérifiez que le script s'est correctement exécuté.
+   * **$ipAddressRestService** -valeur par défaut de hello est http://bot.whatismyipaddress.com. Il s’agit d’un service REST d’adresse IP publique permettant d’obtenir votre adresse IP externe. Vous pouvez utiliser d'autres services si vous voulez. adresse IP externe Hello récupérée via le service de hello sera utilisé toocreate une règle de pare-feu pour votre serveur de base de données SQL Azure, afin que vous pouvez accéder de la base de données hello à partir de votre station de travail (en utilisant un script Windows PowerShell).
+   * **$fireWallRuleName** -il s’agit d’un nom de hello hello de règle de pare-feu pour le serveur de base de données SQL Azure hello. le nom par défaut Hello est <u>FlightDelay</u>. Vous pouvez le renommer si vous voulez.
+   * **$sqlDatabaseMaxSizeGB** - Cette valeur est uniquement utilisée lors de la création d’un nouveau serveur de base de données SQL Azure. valeur par défaut de Hello est de 10 Go. Une capacité de 10 Go est suffisante pour ce didacticiel.
+   * **$sqlDatabaseName** - Cette valeur est uniquement utilisée lors de la création d’une nouvelle base de données SQL Azure. valeur par défaut de Hello est HDISqoop. Si vous renommez, vous devez mettre à jour en conséquence hello Sqoop de script Windows PowerShell.
+4. Appuyez sur **F5** script de hello toorun.
+5. Valider la sortie du script hello. Assurez-vous que le script de hello s’est correctement exécutée.
 
 ## <a id="nextsteps"></a> Étapes suivantes
-Vous savez à présent télécharger un fichier vers le stockage d’objets blob Azure, renseigner une table Hive à l’aide des données du stockage d’objets blob Azure, exécuter des requêtes Hive et utiliser Sqoop pour exporter des données entre HDFS et une base de données SQL Azure. Pour en savoir plus, consultez les articles suivants :
+Présent que vous savez comment tooupload un tooAzure fichier stockage d’objets Blob, comment toopopulate une ruche de table à l’aide de données hello du stockage d’objets Blob Azure, comment toorun Hive requêtes et comment toouse données tooexport de Sqoop à partir de la base de données SQL Azure de tooan HDFS. toolearn, voir hello suivant des articles :
 
 * [Prise en main de HDInsight][hdinsight-get-started]
 * [Utilisation de Hive avec HDInsight][hdinsight-use-hive]

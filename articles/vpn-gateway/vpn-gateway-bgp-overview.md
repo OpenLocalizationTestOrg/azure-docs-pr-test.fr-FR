@@ -1,5 +1,5 @@
 ---
-title: "Vue d’ensemble du protocole BGP avec les passerelles VPN Azure | Microsoft Docs"
+title: aaaOverview de protocole BGP avec les passerelles VPN Azure | Documents Microsoft
 description: "Cet article fournit une vue d’ensemble du protocole BGP avec les passerelles VPN Azure."
 services: vpn-gateway
 documentationcenter: na
@@ -15,38 +15,38 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/12/2017
 ms.author: yushwang
-ms.openlocfilehash: 60d8dd45ecbd4a075721c25acadb21d4e2fd5448
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: ced3f77ecd791c84fb72b96447e839be3bf94846
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="overview-of-bgp-with-azure-vpn-gateways"></a>Vue d’ensemble du protocole BGP avec les passerelles VPN Azure
 Cet article fournit une vue d’ensemble de la prise en charge du protocole BGP (Border Gateway Protocol) avec les passerelles VPN Azure.
 
-BGP est le protocole de routage standard couramment utilisé sur Internet pour l’échange d’informations d’accessibilité et de routage entre plusieurs réseaux. Dans le contexte des réseaux virtuels Azure, le protocole BGP permet aux passerelles VPN Azure et à vos périphériques VPN locaux (appelés voisins ou homologues BGP) d’échanger des « itinéraires » qui informent les deux passerelles de la disponibilité et de l’accessibilité de ces préfixes pour transiter par les passerelles ou routeurs impliqués. Le protocole BGP permet également le routage de transit entre plusieurs réseaux en propageant les itinéraires qu’une passerelle BGP obtient d’un homologue BGP vers tous les autres homologues BGP. 
+BGP est hello protocole de routage standard couramment utilisé dans hello Internet tooexchange routage et l’accessibilité des informations entre deux ou plusieurs réseaux. Lorsque BGP utilisé dans le contexte de hello de réseaux virtuels Azure, Active les passerelles VPN Azure hello et vos périphériques VPN local, appelés homologues BGP ou voisins, tooexchange « achemine » qui vous informe les deux passerelles sur la disponibilité de hello et l’accessibilité pour les les préfixes toogo via des passerelles de hello ou routeurs impliqués. Protocole BGP peut également activer le routage de transit entre plusieurs réseaux en propageant les itinéraires une passerelle BGP apprend à partir d’un tooall d’homologue BGP autres homologues BGP. 
 
 ## <a name="why-use-bgp"></a>Pourquoi utiliser le protocole BGP ?
-Le protocole BGP est une fonctionnalité facultative que vous pouvez utiliser avec les passerelles VPN Azure basées sur des itinéraires. Vous devez vous assurer que vos périphériques VPN locaux prennent en charge le protocole BGP avant d’activer cette fonctionnalité. Vous pouvez continuer à utiliser des passerelles VPN Azure et vos périphériques VPN locaux sans le protocole BGP. Cela revient à utiliser des itinéraires statiques (sans le protocole BGP) *au lieu* d’utiliser un routage dynamique avec le protocole BGP entre vos réseaux et Azure.
+Le protocole BGP est une fonctionnalité facultative que vous pouvez utiliser avec les passerelles VPN Azure basées sur des itinéraires. Vous devez également vous assurer de que vos périphériques VPN locale prend en charge BGP avant d’activer la fonctionnalité de hello. Vous pouvez continuer toouse les passerelles VPN Azure et vos périphériques VPN de localement sans BGP. Il s’agit de hello équivalente à l’aide d’itinéraires statiques (sans BGP) *et* à l’aide d’un routage dynamique avec protocole BGP entre les réseaux Azure.
 
 Le protocole BGP offre plusieurs avantages et de nouvelles fonctionnalités :
 
 ### <a name="support-automatic-and-flexible-prefix-updates"></a>Prise en charge de mises à jour de préfixe automatiques et flexibles
-Avec le protocole BGP, il vous suffit de déclarer un préfixe minimal pour un homologue BGP spécifique sur le tunnel VPN S2S IPsec. Il peut être aussi réduit que le préfixe d’un hôte (/32) de l’adresse IP de l’homologue BGP de votre périphérique VPN local. Vous pouvez décider des préfixes de réseaux locaux à publier sur Azure, qui pourront accéder à votre réseau virtuel Azure.
+Avec protocole BGP, vous devez uniquement toodeclare un préfixe minimale tooa spécifique de l’homologue BGP sur tunnel d’IPsec S2S VPN hello. Il peut être aussi petit que le préfixe d’un hôte (/ 32) de hello adresse IP l’homologue BGP de votre périphérique VPN sur site. Vous pouvez contrôler qui local préfixes réseau que vous souhaitez tooadvertise tooAzure tooallow tooaccess de votre réseau virtuel Azure.
 
-Vous pouvez également publier un préfixe plus étendu, qui peut inclure certains préfixes d’adresses de votre réseau virtuel, par exemple un large espace d’adressage IP privé (par exemple, 10.0.0.0/8). Notez cependant que les préfixes ne peuvent en aucun cas être identiques à ceux de votre réseau virtuel. Les itinéraires identiques aux préfixes de votre réseau virtuel seront rejetés.
+Vous pouvez également publier un préfixe plus étendu, qui peut inclure certains préfixes d’adresses de votre réseau virtuel, par exemple un large espace d’adressage IP privé (par exemple, 10.0.0.0/8). Notez bien que les préfixes hello ne peut pas être identiques à l’un des préfixes d’espaces de votre réseau virtuel. Ces préfixes de réseau virtuel itinéraires tooyour identiques seront rejetées.
 
 ### <a name="support-multiple-tunnels-between-a-vnet-and-an-on-premises-site-with-automatic-failover-based-on-bgp"></a>Prise en charge de plusieurs tunnels entre un réseau virtuel et un site local avec basculement automatique basé sur le protocole BGP
-Vous pouvez établir plusieurs connexions entre votre réseau virtuel Azure et vos périphériques VPN locaux au même emplacement. Cette fonctionnalité fournit plusieurs tunnels (chemins) entre les deux réseaux dans une configuration actif-actif. Si l’un des tunnels est déconnecté, les itinéraires correspondants seront retirés par le biais du protocole BGP et le trafic est automatiquement déplacé vers les tunnels restants.
+Vous pouvez établir plusieurs connexions entre votre réseau virtuel Azure et vos périphériques VPN de local Bonjour même emplacement. Cette fonctionnalité fournit plusieurs tunnels (chemins d’accès) entre deux réseaux de hello dans une configuration actif / actif. Si un des tunnels de hello est déconnecté, les itinéraires correspondants hello seront retirées via BGP et le trafic de hello déplace automatiquement les tunnels toohello restantes.
 
-Le schéma suivant offre un exemple simple de cette configuration à haute disponibilité :
+Hello suivant schéma montre un exemple simple de ce programme d’installation à haute disponibilité :
 
 ![Plusieurs chemins actifs](./media/vpn-gateway-bgp-overview/multiple-active-tunnels.png)
 
 ### <a name="support-transit-routing-between-your-on-premises-networks-and-multiple-azure-vnets"></a>Prise en charge du routage de transit entre vos réseaux locaux et plusieurs réseaux virtuels Azure
-Le protocole BGP permet à plusieurs passerelles d’obtenir des préfixes de différents réseaux et de les propager, que la connexion soit directe ou indirecte. Ceci peut permettre un routage de transit avec des passerelles VPN Azure entre vos sites locaux ou sur plusieurs réseaux virtuels Azure.
+Protocole BGP permet à plusieurs passerelles toolearn et propager les préfixes à partir de différents réseaux, si elles sont connectés directement ou indirectement. Ceci peut permettre un routage de transit avec des passerelles VPN Azure entre vos sites locaux ou sur plusieurs réseaux virtuels Azure.
 
-Le schéma suivant offre un exemple de topologie à tronçons multiples, avec plusieurs chemins permettant de faire transiter le trafic entre les deux réseaux locaux via les passerelles VPN Azure dans les réseaux Microsoft :
+Hello diagramme suivant montre un exemple de topologie de cascade avec plusieurs chemins d’accès qui peuvent transiter le trafic entre hello deux réseaux locaux via des passerelles VPN Azure dans hello Microsoft Networks :
 
 ![Transit sur plusieurs tronçons](./media/vpn-gateway-bgp-overview/full-mesh-transit.png)
 
@@ -54,5 +54,5 @@ Le schéma suivant offre un exemple de topologie à tronçons multiples, avec pl
 [!INCLUDE [vpn-gateway-bgp-faq-include](../../includes/vpn-gateway-bpg-faq-include.md)]
 
 ## <a name="next-steps"></a>Étapes suivantes
-Consultez la page [Getting started with BGP on Azure VPN gateways](vpn-gateway-bgp-resource-manager-ps.md) (Prise en main du protocole BGP sur les passerelles VPN Azure) pour savoir comment configurer le protocole BGP pour vos connexions entre sites locaux et entre réseaux virtuels.
+Consultez [mise en route avec protocole BGP sur les passerelles VPN Azure](vpn-gateway-bgp-resource-manager-ps.md) pour les étapes tooconfigure BGP pour les connexions de réseau virtuel à réseau virtuel et votre entre différents locaux.
 

@@ -1,6 +1,6 @@
 ---
-title: "Mettre à jour l’agent Linux Azure à partir de GitHub | Microsoft Docs"
-description: "Découvrez comment mettre à jour l’agent Linux Azure pour votre machine virtuelle Linux dans Azure vers la dernière version à partir de GitHub"
+title: "aaaUpdate hello Azure Linux Agent à partir de GitHub | Documents Microsoft"
+description: "Découvrez comment tooupdate Azure Linux Agent pour votre VM Linux dans la version la plus récente à partir de GitHub toohello Azure"
 services: virtual-machines-linux
 documentationcenter: 
 author: SuperScottz
@@ -15,22 +15,22 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/02/2017
 ms.author: mingzhan
-ms.openlocfilehash: c79e37976a58ae5384b5856e0f7f258a773ef0fd
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 4ce7c56efc1e6563e6415f7687573f9fb9e7b4c3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-update-the-azure-linux-agent-on-a-vm"></a>Guide pratique pour mettre à jour l’agent Linux Azure sur une machine virtuelle
+# <a name="how-tooupdate-hello-azure-linux-agent-on-a-vm"></a>Comment tooupdate hello Azure Linux Agent sur un ordinateur virtuel
 
-Pour mettre à jour votre [agent Linux Azure](https://github.com/Azure/WALinuxAgent) sur une machine virtuelle Linux dans Azure vous devez déjà disposer des éléments suivants :
+tooupdate votre [Linux Agent Azure](https://github.com/Azure/WALinuxAgent) sur un Linux VM dans Azure, vous devez déjà disposer :
 
 - Une machine virtuelle Linux en cours d'exécution dans Azure.
-- Une connexion à cette machine virtuelle Linux à l'aide de SSH.
+- Une connexion de toothat Linux VM à l’aide de SSH.
 
-Vous devez toujours d’abord vérifier s’il existe un package dans le référentiel de distribution Linux. Il est possible que le package disponible ne soit pas la dernière version. Toutefois, l’activation de la mise à jour automatique permet de s’assurer que l’agent Linux obtiendra toujours la mise à jour la plus récente. Si vous avez des problèmes d’installation à partir des gestionnaires de package, contactez l’éditeur de distribution pour obtenir de l’aide.
+Vous devez toujours vérifier tout d’abord d’un package dans le référentiel de distribution de Linux hello. Il est possible de package hello disponible peut être pas la version la plus récente hello, toutefois, l’activation de mise à jour automatique garantit hello Linux Agent sera toujours obtenir les dernières mises à jour de hello. Si vous avez des problèmes d’installation à partir des gestionnaires de packages hello, vous devez rechercher la prise en charge à partir du fournisseur de distributeur hello.
 
-## <a name="updating-the-azure-linux-agent"></a>Mise à jour de l’agent Linux Azure
+## <a name="updating-hello-azure-linux-agent"></a>Mise à jour hello Linux Agent Azure
 
 ## <a name="ubuntu"></a>Ubuntu
 
@@ -46,7 +46,7 @@ apt list --installed | grep walinuxagent
 sudo apt-get -qq update
 ```
 
-#### <a name="install-the-latest-package-version"></a>Installer la dernière version du package
+#### <a name="install-hello-latest-package-version"></a>Installez la dernière version de package hello
 
 ```bash
 sudo apt-get install walinuxagent
@@ -54,7 +54,7 @@ sudo apt-get install walinuxagent
 
 #### <a name="ensure-auto-update-is-enabled"></a>Vérifier que la mise à jour automatique est activée
 
-Tout d’abord, vérifiez si elle est activée :
+Vérifiez tout d’abord, toosee s’il est activé :
 
 ```bash
 cat /etc/waagent.conf
@@ -67,13 +67,13 @@ Recherchez « AutoUpdate.Enabled ». Si vous voyez cette sortie, cela signifie
 AutoUpdate.Enabled=y
 ```
 
-Pour l’activer, exécutez :
+tooenable exécuter :
 
 ```bash
 sudo sed -i 's/AutoUpdate.Enabled=n/AutoUpdate.Enabled=y/g' /etc/waagent.conf
 ```
 
-### <a name="restart-the-waagent-service"></a>Redémarrer le service waagent
+### <a name="restart-hello-waagent-service"></a>Redémarrez le service de waagent hello
 
 #### <a name="restart-agent-for-1404"></a>Redémarrer l’agent pour 14.04
 
@@ -103,14 +103,14 @@ dpkg -l | grep waagent
 sudo apt-get -qq update
 ```
 
-#### <a name="install-the-latest-package-version"></a>Installer la dernière version du package
+#### <a name="install-hello-latest-package-version"></a>Installez la dernière version de package hello
 
 ```bash
 sudo apt-get install waagent
 ```
 
 #### <a name="enable-agent-auto-update"></a>Activer la mise à jour automatique de l’agent
-Cette version de Debian n’a pas de version supérieure ou égale à 2.0.16. Par conséquent, AutoUpdate n’est pas disponible pour elle. La sortie de la commande ci-dessus indique si le package est à jour.
+Cette version de Debian n’a pas de version supérieure ou égale à 2.0.16. Par conséquent, AutoUpdate n’est pas disponible pour elle. sortie de Hello de hello au-dessus de commande vous indiquera si le package de hello est à jour.
 
 ### <a name="debian-8-jessie--debian-9-stretch"></a>Debian 8 « Jessie » / Debian 9 « Stretch »
 
@@ -126,14 +126,14 @@ apt list --installed | grep walinuxagent
 sudo apt-get -qq update
 ```
 
-#### <a name="install-the-latest-package-version"></a>Installer la dernière version du package
+#### <a name="install-hello-latest-package-version"></a>Installez la dernière version de package hello
 
 ```bash
 sudo apt-get install waagent
 ```
 #### <a name="ensure-auto-update-is-enabled"></a>Vérifier que la mise à jour automatique est activée 
 
-Tout d’abord, vérifiez si elle est activée :
+Vérifiez tout d’abord, toosee s’il est activé :
 
 ```bash
 cat /etc/waagent.conf
@@ -146,13 +146,13 @@ Recherchez « AutoUpdate.Enabled ». Si vous voyez cette sortie, cela signifie
 AutoUpdate.Enabled=y
 ```
 
-Pour l’activer, exécutez :
+tooenable exécuter :
 
 ```bash
 sudo sed -i 's/AutoUpdate.Enabled=n/AutoUpdate.Enabled=y/g' /etc/waagent.conf
 ```
 
-### <a name="restart-the-waagent-service"></a>Redémarrer le service waagent
+### <a name="restart-hello-waagent-service"></a>Redémarrez le service de waagent hello
 
 ```
 sudo systemctl restart walinuxagent.service
@@ -174,7 +174,7 @@ sudo yum list WALinuxAgent
 sudo yum check-update WALinuxAgent
 ```
 
-#### <a name="install-the-latest-package-version"></a>Installer la dernière version du package
+#### <a name="install-hello-latest-package-version"></a>Installez la dernière version de package hello
 
 ```bash
 sudo yum install WALinuxAgent
@@ -182,7 +182,7 @@ sudo yum install WALinuxAgent
 
 #### <a name="ensure-auto-update-is-enabled"></a>Vérifier que la mise à jour automatique est activée 
 
-Tout d’abord, vérifiez si elle est activée :
+Vérifiez tout d’abord, toosee s’il est activé :
 
 ```bash
 cat /etc/waagent.conf
@@ -195,13 +195,13 @@ Recherchez « AutoUpdate.Enabled ». Si vous voyez cette sortie, cela signifie
 AutoUpdate.Enabled=y
 ```
 
-Pour l’activer, exécutez :
+tooenable exécuter :
 
 ```bash
 sudo sed -i 's/AutoUpdate.Enabled=n/AutoUpdate.Enabled=y/g' /etc/waagent.conf
 ```
 
-### <a name="restart-the-waagent-service"></a>Redémarrer le service waagent
+### <a name="restart-hello-waagent-service"></a>Redémarrez le service de waagent hello
 
 ```
 sudo service waagent restart
@@ -221,7 +221,7 @@ sudo yum list WALinuxAgent
 sudo yum check-update WALinuxAgent
 ```
 
-#### <a name="install-the-latest-package-version"></a>Installer la dernière version du package
+#### <a name="install-hello-latest-package-version"></a>Installez la dernière version de package hello
 
 ```bash
 sudo yum install WALinuxAgent  
@@ -229,7 +229,7 @@ sudo yum install WALinuxAgent
 
 #### <a name="ensure-auto-update-is-enabled"></a>Vérifier que la mise à jour automatique est activée 
 
-Tout d’abord, vérifiez si elle est activée :
+Vérifiez tout d’abord, toosee s’il est activé :
 
 ```bash
 cat /etc/waagent.conf
@@ -242,13 +242,13 @@ Recherchez « AutoUpdate.Enabled ». Si vous voyez cette sortie, cela signifie
 AutoUpdate.Enabled=y
 ```
 
-Pour l’activer, exécutez :
+tooenable exécuter :
 
 ```bash
 sudo sed -i 's/AutoUpdate.Enabled=n/AutoUpdate.Enabled=y/g' /etc/waagent.conf
 ```
 
-### <a name="restart-the-waagent-service"></a>Redémarrer le service waagent
+### <a name="restart-hello-waagent-service"></a>Redémarrez le service de waagent hello
 
 ```bash
 sudo systemctl restart waagent.service
@@ -266,9 +266,9 @@ zypper info python-azure-agent
 
 #### <a name="check-available-updates"></a>Vérifier les mises à jour disponibles
 
-La sortie ci-dessus indique si le package est à jour.
+Hello au-dessus de sortie vous indique si le package de hello est de toodate.
 
-#### <a name="install-the-latest-package-version"></a>Installer la dernière version du package
+#### <a name="install-hello-latest-package-version"></a>Installez la dernière version de package hello
 
 ```bash
 sudo zypper install python-azure-agent
@@ -276,7 +276,7 @@ sudo zypper install python-azure-agent
 
 #### <a name="ensure-auto-update-is-enabled"></a>Vérifier que la mise à jour automatique est activée 
 
-Tout d’abord, vérifiez si elle est activée :
+Vérifiez tout d’abord, toosee s’il est activé :
 
 ```bash
 cat /etc/waagent.conf
@@ -289,13 +289,13 @@ Recherchez « AutoUpdate.Enabled ». Si vous voyez cette sortie, cela signifie
 AutoUpdate.Enabled=y
 ```
 
-Pour l’activer, exécutez :
+tooenable exécuter :
 
 ```bash
 sudo sed -i 's/AutoUpdate.Enabled=n/AutoUpdate.Enabled=y/g' /etc/waagent.conf
 ```
 
-### <a name="restart-the-waagent-service"></a>Redémarrer le service waagent
+### <a name="restart-hello-waagent-service"></a>Redémarrez le service de waagent hello
 
 ```bash
 sudo /etc/init.d/waagent restart
@@ -311,9 +311,9 @@ zypper info python-azure-agent
 
 #### <a name="check-available-updates"></a>Vérifier les mises à jour disponibles
 
-La sortie de la commande ci-dessus indique si le package est à jour.
+Dans la sortie de hello de hello ci-dessus, cela vous indiquera si le package de hello est à jour.
 
-#### <a name="install-the-latest-package-version"></a>Installer la dernière version du package
+#### <a name="install-hello-latest-package-version"></a>Installez la dernière version de package hello
 
 ```bash
 sudo zypper install python-azure-agent
@@ -321,7 +321,7 @@ sudo zypper install python-azure-agent
 
 #### <a name="ensure-auto-update-is-enabled"></a>Vérifier que la mise à jour automatique est activée 
 
-Tout d’abord, vérifiez si elle est activée :
+Vérifiez tout d’abord, toosee s’il est activé :
 
 ```bash
 cat /etc/waagent.conf
@@ -334,13 +334,13 @@ Recherchez « AutoUpdate.Enabled ». Si vous voyez cette sortie, cela signifie
 AutoUpdate.Enabled=y
 ```
 
-Pour l’activer, exécutez :
+tooenable exécuter :
 
 ```bash
 sudo sed -i 's/AutoUpdate.Enabled=n/AutoUpdate.Enabled=y/g' /etc/waagent.conf
 ```
 
-### <a name="restart-the-waagent-service"></a>Redémarrer le service waagent
+### <a name="restart-hello-waagent-service"></a>Redémarrez le service de waagent hello
 
 ```bash
 sudo systemctl restart waagent.service
@@ -348,15 +348,15 @@ sudo systemctl restart waagent.service
 
 ## <a name="oracle-6-and-7"></a>Oracle 6 et 7
 
-Pour Oracle Linux, assurez-vous que le référentiel `Addons` est activé. Modifiez le fichier `/etc/yum.repos.d/public-yum-ol6.repo`(Oracle Linux 6) ou `/etc/yum.repos.d/public-yum-ol7.repo`(Oracle Linux), modifiez la ligne `enabled=0` en `enabled=1` sous **[ol6_addons]** ou **[ol7_addons]** dans ce fichier.
+Pour Oracle Linux, assurez-vous que hello `Addons` référentiel est activé. Choisissez le fichier de hello tooedit `/etc/yum.repos.d/public-yum-ol6.repo`(Oracle Linux 6) ou `/etc/yum.repos.d/public-yum-ol7.repo`(Oracle Linux) et remplacez-la par hello `enabled=0` trop`enabled=1` sous **[ol6_addons]** ou **[ol7_addons]** Dans ce fichier.
 
-Puis, pour installer la dernière version de l'agent Linux Azure, tapez :
+Ensuite, tooinstall hello version la plus récente de hello Azure Linux Agent, type :
 
 ```bash
 sudo yum install WALinuxAgent
 ```
 
-Si vous ne trouvez pas le référentiel de compléments, vous pouvez ajouter ces lignes à la fin de votre fichier .repo en fonction de votre version d’Oracle Linux :
+Si vous ne trouvez pas référentiel de module complémentaire hello vous pouvez simplement ajouter ces lignes à fin hello de votre fichier .repo selon la version d’Oracle Linux tooyour :
 
 Pour les machines virtuelles Oracle Linux 6 :
 
@@ -386,15 +386,15 @@ Tapez ensuite :
 sudo yum update WALinuxAgent
 ```
 
-Généralement, c’est tout ce qu’il vous est demandé de faire. Toutefois, si pour une raison quelconque vous devez l’installer directement à partir de https://github.com, procédez comme suit.
+En général, cela est que nécessaire, mais si pour une raison quelconque vous devez tooinstall à partir de https://github.com directement, hello utilisation suivant les étapes.
 
 
-## <a name="update-the-linux-agent-when-no-agent-package-exists-for-distribution"></a>Mettre à jour l’agent Linux quand il n’existe aucun package d’agent pour la distribution
+## <a name="update-hello-linux-agent-when-no-agent-package-exists-for-distribution"></a>Mettre à jour hello Linux Agent lorsque aucun package de l’agent n’existe pour la distribution
 
-Installez wget (certaines versions, telles que Redhat, CentOS et Oracle Linux versions 6.4 et 6.5, ne l’installent pas par défaut) en tapant `sudo yum install wget` sur la ligne de commande.
+Installez wget (il existe des versions qui ne l’installation par défaut, tels que des versions Redhat, CentOS et Oracle Linux 6.4 et 6.5) en tapant `sudo yum install wget` sur la ligne de commande hello.
 
-### <a name="1-download-the-latest-version"></a>1. Téléchargez la dernière version
-Ouvrez [la version de l’agent Linux Azure dans Github](https://github.com/Azure/WALinuxAgent/releases) dans une page web et cherchez le dernier numéro de version. (Vous pouvez rechercher votre version actuelle en tapant `waagent --version`.)
+### <a name="1-download-hello-latest-version"></a>1. Télécharger la version la plus récente hello
+Ouvrez [hello version de l’Agent de Linux Azure dans GitHub](https://github.com/Azure/WALinuxAgent/releases) dans une page web et découvrez le numéro de version plus récente hello. (Vous pouvez rechercher votre version actuelle en tapant `waagent --version`.)
 
 #### <a name="for-version-22x-or-later-type"></a>Pour la version 2.2.x ou ultérieure, tapez :
 ```bash
@@ -403,7 +403,7 @@ unzip v2.2.x.zip.zip
 cd WALinuxAgent-2.2.x
 ```
 
-La ligne suivante utilise la version 2.2.0 comme exemple :
+Hello ligne suivante utilise version2.2.0 comme exemple :
 
 ```bash
 wget https://github.com/Azure/WALinuxAgent/archive/v2.2.14.zip
@@ -411,10 +411,10 @@ unzip v2.2.14.zip
 cd WALinuxAgent-2.2.14
 ```
 
-### <a name="2-install-the-azure-linux-agent"></a>2. Installez l'agent Linux Azure.
+### <a name="2-install-hello-azure-linux-agent"></a>2. Installer hello Linux Agent Azure
 
 #### <a name="for-version-22x-use"></a>Pour la version 2.2.x, tapez :
-Vous devrez peut-être installer d’abord le package `setuptools`. Consultez [ces informations](https://pypi.python.org/pypi/setuptools). Exécutez ensuite la commande suivante :
+Vous devrez peut-être le package de hello tooinstall `setuptools` premier--se [ici](https://pypi.python.org/pypi/setuptools). Exécutez ensuite la commande suivante :
 
 ```bash
 sudo python setup.py install
@@ -422,7 +422,7 @@ sudo python setup.py install
 
 #### <a name="ensure-auto-update-is-enabled"></a>Vérifier que la mise à jour automatique est activée
 
-Tout d’abord, vérifiez si elle est activée :
+Vérifiez tout d’abord, toosee s’il est activé :
 
 ```bash
 cat /etc/waagent.conf
@@ -435,13 +435,13 @@ Recherchez « AutoUpdate.Enabled ». Si vous voyez cette sortie, cela signifie
 AutoUpdate.Enabled=y
 ```
 
-Pour l’activer, exécutez :
+tooenable exécuter :
 
 ```bash
 sudo sed -i 's/AutoUpdate.Enabled=n/AutoUpdate.Enabled=y/g' /etc/waagent.conf
 ```
 
-### <a name="3-restart-the-waagent-service"></a>3. Redémarrer le service waagent
+### <a name="3-restart-hello-waagent-service"></a>3. Redémarrez le service de waagent hello
 Pour la plupart des versions de linux :
 
 ```bash
@@ -460,14 +460,14 @@ Pour CoreOS, procédez comme suit :
 sudo systemctl restart waagent
 ```
 
-### <a name="4-confirm-the-azure-linux-agent-version"></a>4. Confirmer la version de l'agent Linux Azure
+### <a name="4-confirm-hello-azure-linux-agent-version"></a>4. Confirmer la version de le Linux Agent Azure hello
     
 ```bash
 waagent -version
 ```
 
-Pour CoreOS, la commande ci-dessus peut ne pas fonctionner.
+Pour CoreOS, hello au-dessus de commande peuvent ne pas fonctionne.
 
-Vous verrez que la version de l'agent Linux Azure a été mise à jour vers la nouvelle version.
+Vous verrez que hello Azure Linux Agent version a été mis à jour toohello nouvelle version.
 
-Pour plus d’informations sur l’agent Linux Azure, consultez le fichier [Lisezmoi de l’agent Linux Azure](https://github.com/Azure/WALinuxAgent).
+Pour plus d’informations sur hello Linux Agent Azure, consultez [Lisezmoi de l’Agent Linux Azure](https://github.com/Azure/WALinuxAgent).

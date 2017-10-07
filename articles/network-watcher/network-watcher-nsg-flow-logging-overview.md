@@ -1,6 +1,6 @@
 ---
-title: "Présentation de la journalisation des flux pour les groupes de sécurité réseau avec Azure Network Watcher | Microsoft Docs"
-description: "Cette page explique comment utiliser les journaux de flux de groupe de sécurité réseau, une fonctionnalité d’Azure Network Watcher"
+title: "journalisation de tooflow aaaIntroduction pour les groupes de sécurité réseau avec l’Observateur de réseau Azure | Documents Microsoft"
+description: "Cette page explique comment les flux de groupe de sécurité réseau toouse connecte à une fonctionnalité de l’Observateur de réseau Azure"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,56 +14,56 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: b7a9162d6c6219b6b1c51a49cd34b9616e9d3e8f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: da85e946147b14717144cb47d1c742057c6dfa24
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="introduction-to-flow-logging-for-network-security-groups"></a>Présentation de la journalisation des flux pour les groupes de sécurité réseau
+# <a name="introduction-tooflow-logging-for-network-security-groups"></a>Journalisation de tooflow de présentation pour les groupes de sécurité réseau
 
-Les journaux de flux de groupe de sécurité réseau désignent une fonctionnalité de Network Watcher qui vous permet d’afficher des informations sur le trafic IP entrant et sortant d’un groupe de sécurité réseau. Ces journaux de flux sont écrits au format json et affichent les flux entrants et sortants en fonction de règles, de la carte réseau à laquelle le flux s’applique, des informations à 5 tuples sur le flux (adresse IP source/de destination, port source/de destination, protocole), et de l’autorisation ou du refus du trafic.
+Journaux du groupe de sécurité réseau de flux sont une fonctionnalité de l’Observateur réseau qui vous permet de tooview d’informations sur le trafic IP entrant et sortant via un groupe de sécurité réseau. Ces flux de journaux est écrits au format json et affiche sortant des flux entrants sur une base par la règle, hello flux hello de carte réseau s’applique, 5-tuple d’informations sur le flux hello (protocole IP Source et de Destination, Port Source et de Destination) et si hello le trafic a été autorisé ou refusé.
 
-![vue d’ensemble des journaux de flux][1]
+![vue d’ensemble des journaux des flux][1]
 
-Même si les journaux de flux ciblent les groupes de sécurité réseau, ils ne sont pas affichés de la même façon que les autres journaux. Les journaux de flux sont uniquement stockés dans un compte de stockage et suivent le chemin de journalisation comme indiqué dans l’exemple ci-après :
+Flux enregistre les groupes de sécurité réseau cible, ils ne sont pas affichés même hello comme hello autres journaux. Flux de journaux sont stockés uniquement dans un compte de stockage et le chemin d’accès de journalisation de hello suivant comme indiqué dans hello l’exemple suivant :
 
 ```
 https://{storageAccountName}.blob.core.windows.net/insights-logs-networksecuritygroupflowevent/resourceId%3D/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/microsoft.network/networksecuritygroups/{nsgName}/{year}/{month}/{day}/PT1H.json
 ```
 
-Les mêmes stratégies de rétention que celles des autres journaux s’appliquent aux journaux de flux. Les journaux ont une stratégie de rétention qui peut être définie dans une plage comprise entre 1 et 365 jours. Si aucune stratégie de rétention n’est définie, les journaux sont conservés indéfiniment.
+Hello même des stratégies de rétention comme sur les autres journaux appliquent les journaux de tooflow. Les journaux ont une stratégie de rétention peut être définie de jours too365 de 1 jour. Si une stratégie de rétention n’est pas définie, les journaux de hello sont conservées indéfiniment.
 
 ## <a name="log-file"></a>Fichier journal
 
-Les journaux de flux ont plusieurs propriétés. La liste suivante répertorie les propriétés qui sont renvoyées dans le journal de flux de groupe de sécurité réseau :
+Les journaux de flux ont plusieurs propriétés. Bonjour liste suivante est une liste de propriétés hello qui sont retournés dans le journal de flux de groupe de sécurité réseau hello :
 
-* **time** - L’heure à laquelle l’événement a été journalisé.
+* **heure** - temps lorsque hello événement a été enregistré
 * **systemId** - L’ID de la ressource du groupe de sécurité réseau.
-* **category** - La catégorie de l’événement ; il s’agit toujours de NetworkSecurityGroupFlowEvent.
-* **resourceid** - L’ID de la ressource du groupe de sécurité réseau.
+* **catégorie** -catégorie de hello d’événement de hello, il est toujours être NetworkSecurityGroupFlowEvent
+* **ID de ressource** -hello Id de ressource de hello NSG
 * **operationName** - Toujours NetworkSecurityGroupFlowEvents.
-* **properties** - Une collection des propriétés du flux.
-    * **Version** - Le numéro de version du schéma d’événement du journal de flux.
+* **propriétés** -une collection de propriétés de flux de hello
+    * **Version** -numéro de Version du schéma d’événement de flux de journal hello
     * **flow** - Une collection de flux. Cette propriété a plusieurs entrées pour différentes règles.
-        * **rule** - La règle pour laquelle les flux sont répertoriés.
+        * **règle** -règle pour le hello flux sont répertoriés
             * **flows** - Une collection de flux.
-                * **mac** - L’adresse MAC de la carte réseau de la machine virtuelle où le flux a été collecté.
-                * **flowTuples** - Une chaîne qui contient plusieurs propriétés séparées par des virgules pour le tuple de flux.
-                    * **Time Stamp** - Cette valeur indique la date et l’heure du flux au format UNIX EPOCH.
-                    * **Source IP** - L’adresse IP source.
-                    * **Destination IP** - L’adresse IP de destination.
-                    * **Source Port** - Le port source.
-                    * **Destination Port** - Le port de destination.
-                    * **Protocol** - Le protocole du flux. Les valeurs valides sont **T** pour TCP et **U** pour UDP.
-                    * **Traffic Flow** - La direction du flux de trafic. Les valeurs valides sont **I** pour le trafic entrant et **O** pour le trafic sortant.
+                * **Mac** -hello adresse MAC de hello NIC pour hello où les flux hello a été collecté de machine virtuelle
+                * **flowTuples** -chaîne qui contient plusieurs propriétés pour le tuple de flux hello dans un format séparé par des virgules
+                    * **Horodatage** -cette valeur est l’horodatage hello de lorsque les flux hello s’est produite dans le format de l’époque de UNIX
+                    * **Adresse IP source** hello - adresse IP source
+                    * **Destination IP** -hello IP de destination
+                    * **Port source** hello - port source
+                    * **Port de destination** -hello du Port de destination
+                    * **Protocole** -hello protocole de flux de hello. Les valeurs valides sont **T** pour TCP et **U** pour UDP.
+                    * **Flux de trafic** -hello direction hello du flux de trafic. Les valeurs valides sont **I** pour le trafic entrant et **O** pour le trafic sortant.
                     * **Traffic** - Indique si le trafic a été autorisé ou refusé. Les valeurs valides sont **A** pour autorisé et **D** pour refusé.
 
 
-Vous trouverez ci-dessous un exemple de journal de flux. Comme vous pouvez le voir, il existe plusieurs enregistrements qui suivent la liste des propriétés décrite dans la section précédente. 
+Hello Voici un exemple d’un flux de journal. Comme vous pouvez le voir, il existe plusieurs enregistrements qui suivent la liste de propriétés hello décrite dans hello précédant la section. 
 
 > [!NOTE]
-> Les valeurs de la propriété flowTuples sont une liste séparée par des virgules.
+> Valeurs de propriété de flowTuples hello sont une liste séparée par des virgules.
  
 ```json
 {
@@ -102,7 +102,7 @@ Vous trouverez ci-dessous un exemple de journal de flux. Comme vous pouvez le vo
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Découvrez comment activer les journaux de flux en consultant [Enable flow logs](network-watcher-nsg-flow-logging-portal.md) (Activer les journaux de flux).
+Découvrez comment tooenable flux se connecte en vous rendant sur [de flux de l’activation de la journalisation](network-watcher-nsg-flow-logging-portal.md).
 
 Pour en savoir plus sur la journalisation du groupe de sécurité réseau, consultez [Analyse de journaux pour les groupes de sécurité réseau (NSG)](../virtual-network/virtual-network-nsg-manage-log.md).
 

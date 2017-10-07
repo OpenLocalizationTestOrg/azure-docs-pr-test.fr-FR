@@ -1,6 +1,6 @@
 ---
-title: "Remplacer la batterie d’un appareil Microsoft Azure StorSimple | Microsoft Docs"
-description: "Décrit comment retirer, remplacer et entretenir le module de batterie de secours sur votre appareil StorSimple."
+title: "batterie aaaReplace sur l’appareil Microsoft Azure StorSimple | Documents Microsoft"
+description: "Décrit comment remplacer les tooremove et mettre à jour le module de batterie de secours hello sur votre appareil StorSimple."
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -14,33 +14,33 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 08/17/2016
 ms.author: alkohli
-ms.openlocfilehash: f8b89b3f6851ec9ee0570f551b5407419fdba2d6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 542774a5f451ec7ad2bd442f88598df318d8b285
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="replace-the-backup-battery-module-on-your-storsimple-device"></a>Remplacer le module de batterie de secours sur votre appareil StorSimple
+# <a name="replace-hello-backup-battery-module-on-your-storsimple-device"></a>Remplacez le module de batterie de secours hello sur votre appareil StorSimple
 ## <a name="overview"></a>Vue d'ensemble
-Le module d’alimentation et de refroidissement (PCM) du boîtier principal de votre appareil Microsoft Azure StorSimple dispose d’une batterie supplémentaire. Celle-ci fournit l’alimentation pour que l’appareil StorSimple puisse enregistrer des données en cas de perte d’alimentation au niveau du boîtier principal. Cette batterie est appelée *module de batterie de secours*. Le module de batterie de secours existe uniquement pour le boîtier principal de votre appareil StorSimple (le boîtier EBOD ne contient pas de module de batterie de secours). 
+boîtier principal de Hello d’alimentation et de Module de refroidissement (PCM) sur votre appareil Microsoft Azure StorSimple a un pack batterie supplémentaire. Ce pack fournit power afin que hello appareil StorSimple peut enregistrer les données si la perte de boîtier principal du toohello d’alimentation secteur. Ce pack batterie est référencé tooas hello *module de batterie de secours*. module de batterie de secours Hello existe uniquement pour le boîtier principal de hello dans votre appareil StorSimple (hello boîtiers ne contient pas un module de batterie de secours). 
 
 Ce didacticiel explique comment :
 
-* Retirer le module de batterie de secours 
+* Supprimer le module de batterie de secours hello 
 * Installer un nouveau module de batterie de secours
-* Entretenir le module de batterie de secours
+* Mettre à jour le module de batterie de secours hello
 
 > [!IMPORTANT]
-> Avant le retrait et le remplacement d’un module de batterie de secours, passez en revue les informations de sécurité dans l’ [Introduction au remplacement des composants matériels StorSimple](storsimple-hardware-component-replacement.md).
+> Avant la suppression et le remplacement d’un module de batterie de secours, passez en revue les informations de sécurité hello Bonjour [remplacement de composant matériel Introduction tooStorSimple](storsimple-hardware-component-replacement.md).
 > 
 > 
 
-## <a name="remove-the-backup-battery-module"></a>Retirer le module de batterie de secours
-Le module de batterie de secours pour votre appareil StorSimple est une unité remplaçable sur site. Avant son installation dans le module PCM, le module de batterie doit être conservé dans son emballage d’origine. Procédez comme suit pour supprimer la batterie de secours.
+## <a name="remove-hello-backup-battery-module"></a>Supprimer le module de batterie de secours hello
+module de batterie de secours Hello pour votre appareil StorSimple est une unité remplaçable. Avant son installation Bonjour PCM, module de batterie hello doit être stockée dans son emballage d’origine. Effectuer hello suivant la batterie de secours étapes tooremove hello.
 
-#### <a name="to-remove-the-backup-battery-module"></a>Pour retirer le module de batterie de secours
-1. Dans le portail Azure Classic, accédez à **Appareils** > **Maintenance** > **État du matériel**. Sous **Composants partagés**, regardez l’état de la batterie.
-2. Identifiez le PCM dans lequel la batterie est défectueuse. La figure 1 illustre l’arrière de l’appareil StorSimple.
+#### <a name="tooremove-hello-backup-battery-module"></a>module de batterie de secours hello tooremove
+1. Dans hello portail Azure classic, accédez trop**périphériques** > **Maintenance** > **état du matériel**. Sous **composants partagés**, regardez statut hello de batterie de hello.
+2. Identifier le PCM hello dans le hello batterie a échoué. La figure 1 montre hello arrière de l’appareil StorSimple hello.
    
     ![Fond du panier des modules du boîtier principal de l’appareil](./media/storsimple-battery-replacement/IC740994.png)
    
@@ -53,11 +53,11 @@ Le module de batterie de secours pour votre appareil StorSimple est une unité r
    | 3 |Contrôleur 0 |
    | 4 |Contrôleur 1 |
    
-    Comme l’illustre le numéro 3 dans la figure 2, le voyant LED de surveillance sur PCM 0 qui correspond à **Panne de batterie** doit être allumé.
+    Comme indiqué par le numéro 3 Bonjour Figure 2, hello analyse indicateur LED sur PCM 0 qui correspond trop**panne** doit être allumée.
    
     ![Fond du panier du module PCM de l’appareil avec voyants LED de surveillance](./media/storsimple-battery-replacement/IC740992.png)
    
-    **Figure 2** Arrière du PCM avec les voyants LED de surveillance
+    **Figure 2** hello d’affichage arrière du PCM des témoins DEL
    
    | Étiquette | Description |
    |:--- |:--- |
@@ -67,44 +67,44 @@ Le module de batterie de secours pour votre appareil StorSimple est une unité r
    | 4 |PCM OK |
    | 5 |Panne d’alimentation secteur |
    | 6 |Batterie saine |
-3. Pour retirer le PCM dont la batterie est défectueuse, suivez les étapes de la procédure [Retrait d’un PCM](storsimple-power-cooling-module-replacement.md#remove-a-pcm).
-4. Une fois le PCM retiré, soulevez la poignée du module de batterie et faites-la pivoter vers le haut, comme l’illustre la figure ci-après, puis tirez dessus pour extraire la batterie.
+3. tooremove hello PCM avec la batterie est défectueuse, suivez les étapes de hello dans [retirer un PCM](storsimple-power-cooling-module-replacement.md#remove-a-pcm).
+4. Hello PCM supprimé, courbes d’élévation et une batterie de rotation hello module gérer vers le haut, comme indiqué dans la figure suivante de hello et tirez dessus pour les batteries de hello tooremove.
    
     ![Retrait de la batterie du module PCM](./media/storsimple-battery-replacement/IC741019.png)
    
-    **Figure 3** Retrait de la batterie du PCM
-5. Placez le module dans l’emballage de l’unité remplaçable sur site.
-6. Renvoyez l’unité défectueuse à Microsoft qui en assurera l’entretien et la manutention.
+    **Figure 3** supprime les batterie hello hello PCM
+5. Placez le module de hello dans hello remplaçable emballage de l’unité.
+6. Retourner tooMicrosoft d’unité défectueuse hello de maintenance et de gestion appropriée.
 
 ## <a name="install-a-new-backup-battery-module"></a>Installer un nouveau module de batterie de secours
-Procédez comme suit pour installer le module de batterie de remplacement dans le PCM du boîtier principal de votre appareil StorSimple.
+Effectuer hello suivant du module de batterie de rechange étapes tooinstall hello Bonjour PCM dans le boîtier principal de hello de votre appareil StorSimple.
 
-#### <a name="to-install-the-battery-module"></a>Pour installer le module de batterie
-1. Orientez correctement le module de batterie de secours dans le PCM.
-2. Appuyez sur la poignée du module de batterie jusqu’en bas pour placer le connecteur.
-3. Remplacez le PCM dans le boîtier principal en procédant de la manière décrite dans [Remplacement d’un module d’alimentation et de refroidissement (PCM) sur votre appareil StorSimple](storsimple-power-cooling-module-replacement.md).
-4. Une fois le remplacement terminé, accédez à **Appareils** > **Maintenance** > **État du matériel** dans le portail Azure Classic. Vérifiez l'état de la batterie pour vous assurer que l'installation a réussi. Un état vert indique que la batterie est saine.
+#### <a name="tooinstall-hello-battery-module"></a>module de batterie hello tooinstall
+1. Placez le module de batterie de secours hello dans l’orientation appropriée de hello Bonjour PCM.
+2. Module de batterie hello appuyez gérer connecteur hello de tous les hello moyen tooseat.
+3. Remplacez hello PCM dans le boîtier principal de hello en suivant les instructions de hello dans [remplacer un Module de refroidissement et de puissance de votre appareil StorSimple](storsimple-power-cooling-module-replacement.md).
+4. Une fois le remplacement de hello terminée, accédez trop**périphériques** > **Maintenance** > **état du matériel** Bonjour portail Azure classic. Vérifiez l’état hello de hello toomake de batterie que que hello installation a réussi. Un état vert indique que la batterie de hello est sain.
 
-## <a name="maintain-the-backup-battery-module"></a>Entretenir le module de batterie de secours
-Dans votre appareil StorSimple, le module de batterie de secours de votre appareil alimente le contrôleur en cas de panne de courant. Il permet à l’appareil StorSimple d’enregistrer des données critiques avant de s’arrêter de façon contrôlée. Ce système, équipé de deux batteries entièrement chargées dans les PCM, peut faire face à deux pannes de courant consécutives.
+## <a name="maintain-hello-backup-battery-module"></a>Mettre à jour le module de batterie de secours hello
+Dans votre appareil StorSimple, module de batterie de secours hello fournit contrôleur toohello de l’alimentation pendant un événement de perte d’alimentation. Il permet de hello StorSimple périphérique toosave données critiques de tooshutting de préalable vers le bas de manière contrôlée. Avec deux batteries entièrement chargées Bonjour PCM, système de hello peut gérer deux d’affilée.
 
-Dans le portail Azure Classic, l’option **État du matériel** dans la page **Maintenance** indique si la batterie ne fonctionne pas correctement ou si elle approche de la fin de sa durée de vie. L’état de la batterie est indiqué par **Batterie dans PCM 0** ou **Batterie dans PCM 1** sous **Composants partagés**. Cette page indique l’état **DÉTÉRIORÉ** si la fin de durée de vie approche et l’état **ÉCHEC** si elle est atteinte. 
+Bonjour portail Azure classic, hello **état du matériel** sur hello **Maintenance** page indique si la batterie de hello est défectueux ou hello en fin de vie est proche. état de la batterie Hello est indiqué par **batterie dans PCM 0** ou **batterie dans PCM 1** sous **composants partagés**. Cette page indique l’état **DÉTÉRIORÉ** si la fin de durée de vie approche et l’état **ÉCHEC** si elle est atteinte. 
 
 > [!NOTE]
-> La batterie peut signaler **ÉCHEC** quand elle a juste besoin d’être chargée.
+> batterie de Hello peut signaler **n’a pas pu** lorsqu’elle doit simplement toobe facturé.
 > 
 > 
 
-Si l’état **DÉTÉRIORÉ** s’affiche, nous vous recommandons de procéder ainsi :
+Si hello **détérioré** état s’affiche, nous vous recommandons de hello suivant la marche à suivre :
 
-* Le système a peut-être récemment subi une panne ou des opérations de maintenance peuvent être en cours sur les batteries. Observez le système pendant 12 heures avant de continuer.
+* système de Hello a peut-être rencontré une panne de courant récentes ou les piles hello peuvent être en cours de maintenance périodique. Observez le système de hello pendant 12 heures avant de continuer.
   
-  * Si l’état est toujours **DÉTÉRIORÉ** après 12 heures de branchement sur secteur alors que les contrôleurs et les PCM sont en cours d’exécution, vous devez changer la batterie. Veuillez [contacter le support Microsoft](storsimple-contact-microsoft-support.md) pour obtenir un module de batterie de secours de remplacement.
-  * Si l’état redevient opérationnel après 12 heures, cela veut dire que la batterie fonctionne et qu’elle avait juste besoin d’être chargée dans le cadre de la maintenance.
-* Si aucune panne n’est survenue et que le PCM est activé et branché sur secteur, la batterie doit être remplacée. [Contact Microsoft Support](storsimple-contact-microsoft-support.md) pour commander un module de batterie de secours de remplacement.
+  * Si l’état de hello est toujours **détérioré** après 12 heures d’alimentation de tooAC connexion permanente avec hello contrôleurs et les PCM sont en cours d’exécution, puis hello batterie doit toobe remplacé. Veuillez [contacter le support Microsoft](storsimple-contact-microsoft-support.md) pour obtenir un module de batterie de secours de remplacement.
+  * Si l’état de hello devient OK après 12 heures, hello batterie est opérationnelle, et il nécessaire uniquement les frais de maintenance.
+* S’il n’a pas été une entraîne une perte d’alimentation secteur et hello PCM est allumée et connecté tooAC power, batterie de hello doit toobe remplacé. [Contactez le Support Microsoft](storsimple-contact-microsoft-support.md) tooorder un module de batterie de secours.
 
 > [!IMPORTANT]
-> Jetez la batterie en panne en respectant les réglementations nationales et locales applicables. 
+> Dispose de hello Échec de la batterie en fonction de toonational et réglementations régionales. 
 > 
 > 
 

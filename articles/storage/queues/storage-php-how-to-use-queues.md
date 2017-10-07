@@ -1,6 +1,6 @@
 ---
-title: "Utilisation du stockage de files d’attente à partir de PHP | Microsoft Docs"
-description: "Découvrez comment utiliser le service de stockage de files d’attente Azure pour créer et supprimer des files d’attente, ainsi que pour insérer, récupérer et supprimer des messages. Les exemples sont écrits en PHP."
+title: "aaaHow toouse stockage de file d’attente à partir de PHP | Documents Microsoft"
+description: "Découvrez comment toouse hello file d’attente Azure storage service toocreate et les files d’attente de suppression, insertion, obtenir et supprimer les messages. Les exemples sont écrits en PHP."
 documentationcenter: php
 services: storage
 author: robinsh
@@ -14,42 +14,42 @@ ms.devlang: PHP
 ms.topic: article
 ms.date: 12/08/2016
 ms.author: robinsh
-ms.openlocfilehash: 12ebb905184e74da534cd44e8314335145f7042d
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 8daabcc9b3b4de121a309f21bb3325242cff06f5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-queue-storage-from-php"></a>Utilisation du stockage de files d'attente à partir de PHP
+# <a name="how-toouse-queue-storage-from-php"></a>Comment toouse stockage de file d’attente à partir de PHP
 [!INCLUDE [storage-selector-queue-include](../../../includes/storage-selector-queue-include.md)]
 
 [!INCLUDE [storage-try-azure-tools-queues](../../../includes/storage-try-azure-tools-queues.md)]
 
 ## <a name="overview"></a>Vue d'ensemble
-Ce guide décrit le déroulement de scénarios courants dans le cadre de l’utilisation du service de stockage des files d’attente Azure. Les exemples sont écrits au moyen de classes issues du Kit de développement logiciel (SDK) Windows pour PHP. Les scénarios traités incluent l’insertion, la lecture furtive, la récupération et la suppression des messages de file d’attente, ainsi que la création et suppression des files d’attente.
+Ce guide explique comment tooperform des scénarios courants à l’aide de hello service de stockage de file d’attente Azure. exemples de Hello sont écrites via des classes hello SDK Windows pour PHP. Hello scénarios couverts sont insertion, lecture, mise en route et suppression des messages de la file d’attente, ainsi que la création et la suppression de files d’attente.
 
 [!INCLUDE [storage-queue-concepts-include](../../../includes/storage-queue-concepts-include.md)]
 
 [!INCLUDE [storage-create-account-include](../../../includes/storage-create-account-include.md)]
 
 ## <a name="create-a-php-application"></a>Création d'une application PHP
-Le référencement de classes issues du Kit de développement logiciel (SDK) Azure pour PHP dans votre code constitue la seule exigence pour créer une application PHP qui accède au service de File d’attente Azure. Vous pouvez utiliser tous les outils de développement pour créer votre application, y compris Bloc-notes.
+Hello seule exigence pour la création d’une application PHP qui accède au stockage de file d’attente Azure est hello faisant référence à des classes à partir de hello Azure SDK pour PHP à partir de votre code. Vous pouvez utiliser n’importe quel toocreate d’outils de développement de votre application, notamment le bloc-notes.
 
 Dans ce guide, vous allez utiliser des fonctionnalités du service de File d’attente qui peuvent être appelées dans une application PHP localement ou dans le code d’un rôle web, d’un rôle de travail ou d’un site web Azure.
 
-## <a name="get-the-azure-client-libraries"></a>Obtention des bibliothèques clientes Azure
+## <a name="get-hello-azure-client-libraries"></a>Obtenir les bibliothèques clientes Azure hello
 [!INCLUDE [get-client-libraries](../../../includes/get-client-libraries.md)]
 
-## <a name="configure-your-application-to-access-queue-storage"></a>Configuration de votre application pour accéder au stockage de files d’attente
-Pour utiliser les API du stockage de files d’attente Azure, vous devez :
+## <a name="configure-your-application-tooaccess-queue-storage"></a>Configurer votre stockage de file d’attente de tooaccess application
+toouse hello API pour le stockage de la file d’attente Azure, vous devez :
 
-1. référencer le fichier de chargeur automatique à l’aide de l’instruction [require_once] ;
+1. Fichier de chargeur automatique hello référence à l’aide de hello [require_once] instruction.
 2. référencer toutes les classes que vous êtes susceptible d’utiliser.
 
-L'exemple suivant montre comment inclure le fichier du chargeur automatique et référencer la classe **ServicesBuilder** .
+Hello suivant montre comment tooinclude hello hello de référence et le fichier de chargeur automatique **ServicesBuilder** classe.
 
 > [!NOTE]
-> Cet exemple et d’autres exemples dans cet article partent du principe que vous avez installé les bibliothèques clientes PHP pour Azure via Composer. Si vous avez installé les bibliothèques manuellement, vous devrez référencer le fichier de chargeur automatique `WindowsAzure.php` .
+> Cet exemple (et autres exemples de cet article) suppose que vous avez installé les bibliothèques clientes hello PHP pour Azure via le compositeur. Si vous avez installé les bibliothèques hello manuellement, vous devez tooreference hello `WindowsAzure.php` fichier de chargeur automatique.
 > 
 > 
 
@@ -59,10 +59,10 @@ use WindowsAzure\Common\ServicesBuilder;
 
 ```
 
-Dans les exemples ci-dessous, l’instruction `require_once` s’affiche toujours, mais seules les classes nécessaires à l’exécution de l’exemple sont référencées.
+Dans les exemples de hello ci-dessous, hello `require_once` instruction s’affiche toujours, mais seules les classes hello qui sont nécessaires pour hello exemple tooexecute seront référencés.
 
 ## <a name="set-up-an-azure-storage-connection"></a>Configuration d’une connexion de stockage Azure
-Pour instancier un client de stockage de files d’attente Azure, vous devez disposer d’une chaîne de connexion valide. Le format de la chaîne de connexion du service de File d’attente est le suivant :
+tooinstantiate un client de stockage de file d’attente Azure, vous devez avoir une chaîne de connexion valide. format Hello pour la chaîne de connexion de service de file d’attente hello est comme suit.
 
 Pour accéder à un service en ligne :
 
@@ -70,20 +70,20 @@ Pour accéder à un service en ligne :
 DefaultEndpointsProtocol=[http|https];AccountName=[yourAccount];AccountKey=[yourKey]
 ```
 
-Pour accéder au stockage de l’émulateur :
+Pour accéder au stockage d’émulateur hello :
 
 ```php
 UseDevelopmentStorage=true
 ```
 
-Pour créer un client de service Azure, vous devez utiliser la classe **ServicesBuilder** . Vous pouvez utiliser une des techniques suivantes :
+toocreate n’importe quel client de service Azure, vous devez toouse hello **ServicesBuilder** classe. Vous pouvez utiliser de hello suivant techniques :
 
-* Lui passer directement la chaîne de connexion.
-* Utiliser **CloudConfigurationManager (CCM)** pour vérifier plusieurs sources externes pour la chaîne de connexion :
+* Passer hello connexion chaîne directement tooit.
+* Utilisez **CloudConfigurationManager (CCM)** toocheck externe de plusieurs sources pour la chaîne de connexion hello :
   * Par défaut, il prend en charge une source externe : les variables d’environnement.
-  * Vous pouvez ajouter de nouvelles sources via une extension de la classe **ConnectionStringSource** .
+  * Vous pouvez ajouter de nouvelles sources en étendant hello **ConnectionStringSource** classe.
 
-Dans les exemples ci-dessous, la chaîne de connexion est passée directement.
+Pour obtenir des exemples hello décrites ici, la chaîne de connexion hello sera passé directement.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -94,7 +94,7 @@ $queueRestProxy = ServicesBuilder::getInstance()->createQueueService($connection
 ```
 
 ## <a name="create-a-queue"></a>Création d’une file d’attente
-Un objet **QueueRestProxy** vous permet de créer une file d’attente avec la méthode **createQueue**. Lors de la création d'une file d'attente, vous pouvez définir des options sur cette dernière, mais vous n'y êtes pas obligé. L'exemple ci-dessous illustre comment définir des métadonnées dans une file d'attente.
+A **QueueRestProxy** objet vous permet de créer une file d’attente à l’aide de hello **createQueue** (méthode). Lorsque vous créez une file d’attente, vous pouvez définir des options sur la file d’attente hello, mais cela n’est pas requis. (hello exemple ci-dessous montre comment les métadonnées tooset sur une file d’attente.)
 
 ```php
 require_once 'vendor/autoload.php';
@@ -126,12 +126,12 @@ catch(ServiceException $e){
 ```
 
 > [!NOTE]
-> Ne tenez pas compte de la différence entre majuscules et minuscules pour les clés de métadonnées. Toutes les clés sont lues en minuscules sur le service.
+> Ne tenez pas compte de la différence entre majuscules et minuscules pour les clés de métadonnées. Toutes les clés sont lus à partir de service hello en minuscules.
 > 
 > 
 
-## <a name="add-a-message-to-a-queue"></a>Ajout d'un message à une file d'attente
-Pour ajouter un message à une file d’attente, utilisez **QueueRestProxy->createMessage**. La méthode prend le nom de la file d'attente, le texte du message et les options du message (qui sont facultatives).
+## <a name="add-a-message-tooa-queue"></a>Ajouter une file d’attente de messages tooa
+tooadd une file d’attente de message tooa, utilisez **QueueRestProxy -> createMessage**. méthode Hello prend le nom de file d’attente de hello, texte du message hello et les options de message (qui sont facultatifs).
 
 ```php
 require_once 'vendor/autoload.php';
@@ -158,8 +158,8 @@ catch(ServiceException $e){
 }
 ```
 
-## <a name="peek-at-the-next-message"></a>Lecture furtive du message suivant
-Vous pouvez lire furtivement un ou plusieurs messages au début d’une file d’attente sans les supprimer de la file d’attente en appelant la méthode **QueueRestProxy->peekMessages**. Par défaut, la méthode **peekMessage** renvoie un seul message, mais vous pouvez modifier cette valeur à l’aide de la méthode **PeekMessagesOptions->setNumberOfMessages**.
+## <a name="peek-at-hello-next-message"></a>Lire des message de type hello suivant
+Lire un message (ou messages) à avant hello d’une file d’attente sans le supprimer de la file d’attente hello en appelant **QueueRestProxy -> peekMessages**. Par défaut, hello **peekMessage** méthode retourne un seul message, mais vous pouvez modifier cette valeur à l’aide de hello **PeekMessagesOptions -> setNumberOfMessages** (méthode).
 
 ```php
 require_once 'vendor/autoload.php';
@@ -204,8 +204,8 @@ else{
 }
 ```
 
-## <a name="de-queue-the-next-message"></a>Enlèvement du message suivant de la file d'attente
-Votre code supprime un message d'une file d'attente en deux étapes. Tout d’abord, vous appelez **QueueRestProxy->listMessages**, ce qui rend le message invisible à tout autre code lu à partir de la file d’attente. Par défaut, ce message reste invisible pendant 30 secondes. (Si le message n’est pas supprimé pendant cette période, il redevient visible dans la file d’attente). Pour finaliser la suppression du message de la file d’attente, vous devez appeler **QueueRestProxy->deleteMessage**. Ce processus de suppression d’un message en deux étapes garantit que, si votre code ne parvient pas à traiter un message à cause d’une défaillance matérielle ou logicielle, une autre instance de votre code peut obtenir le même message et réessayer. Votre code appelle **deleteMessage** juste après le traitement du message.
+## <a name="de-queue-hello-next-message"></a>File d’attente message de type hello suivant
+Votre code supprime un message d'une file d'attente en deux étapes. Tout d’abord, vous appelez **QueueRestProxy -> listMessages**, ce qui rend tooany invisible du message hello tout autre code qui lit à partir de la file d’attente hello. Par défaut, ce message reste invisible pendant 30 secondes. (Si le message de type hello n’est pas supprimé dans cette période, elle redevient visible sur la file d’attente hello.) toofinish lors de la suppression du message de salutation à partir de la file d’attente hello, vous devez appeler **QueueRestProxy -> deleteMessage**. Ce processus en deux étapes de la suppression d’un message garantit que lorsque votre tooprocess échoue de code un message en raison de la défaillance toohardware ou logiciel, une autre instance de votre code peut obtenir hello même message et essayez à nouveau. Votre code appelle **deleteMessage** juste après le message de salutation a été traité.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -243,8 +243,8 @@ catch(ServiceException $e){
 }
 ```
 
-## <a name="change-the-contents-of-a-queued-message"></a>Modification du contenu d'un message en file d'attente
-Vous pouvez modifier le contenu d’un message placé dans la file d’attente en appelant **QueueRestProxy->updateMessage**. Si le message représente une tâche, vous pouvez utiliser cette fonctionnalité pour mettre à jour l'état de la tâche. Le code suivant met à jour le message de la file d’attente avec un nouveau contenu et ajoute 60 secondes au délai d’expiration de la visibilité. Cette opération enregistre l’état de la tâche associée au message et accorde une minute supplémentaire au client pour traiter le message. Vous pouvez utiliser cette technique pour suivre des flux de travail à plusieurs étapes sur les messages de file d'attente, sans devoir reprendre du début si une étape du traitement échoue à cause d'une défaillance matérielle ou logicielle. Normalement, vous conservez aussi un nombre de nouvelles tentatives et si le message est retenté plus de *n* fois, vous le supprimez. Cela protège du déclenchement d'une erreur d'application par un message chaque fois qu'il est traité.
+## <a name="change-hello-contents-of-a-queued-message"></a>Modifier le contenu de hello d’un message en file d’attente
+Vous pouvez modifier le contenu de hello d’un message en place dans la file d’attente hello en appelant **QueueRestProxy -> updateMessage**. Si le message de type hello représente une tâche de travail, vous pouvez utiliser cet état de hello tooupdate la fonctionnalité de tâche hello. Hello suivant code met à jour le message de file d’attente hello avec le nouveau contenu, et il définit tooextend de délai d’attente de visibilité hello un autre 60 secondes. Cela enregistre l’état de hello de travail qui a associé à un message de type hello et il donne les client hello un autre toocontinue minute travaillant sur un message de type hello. Vous pouvez utiliser ce flux de travail à plusieurs étapes de tootrack technique sur les messages de la file d’attente, sans avoir toostart sur du début de hello si une étape de traitement échoue en raison de l’erreur toohardware ou logicielle. En règle générale, vous conservez ainsi un nombre de tentatives, et si hello message est retentée plusieurs  *n*  fois, vous le supprimez. Cela protège du déclenchement d'une erreur d'application par un message chaque fois qu'il est traité.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -287,7 +287,7 @@ catch(ServiceException $e){
 ```
 
 ## <a name="additional-options-for-de-queuing-messages"></a>Options supplémentaires pour l'extraction de messages
-Il existe deux façons de personnaliser la récupération des messages à partir d’une file d’attente. Premièrement, vous pouvez obtenir un lot de messages (jusqu'à 32). Deuxièmement, vous pouvez définir un délai d'expiration de la visibilité plus long ou plus court afin d'accorder à votre code plus ou moins de temps pour traiter complètement chaque message. L'exemple de code suivant utilise la méthode **getMessages** pour obtenir 16 messages en un appel. Ensuite, il traite chaque message à l’aide d’une boucle **for** . Il définit également le délai d'expiration de l'invisibilité sur cinq minutes pour chaque message.
+Il existe deux façons de personnaliser la récupération des messages à partir d’une file d’attente. Tout d’abord, vous pouvez obtenir un lot de messages (haut too32). Ensuite, vous pouvez définir un délai d’attente de visibilité plus ou moins longtemps, ce qui permet de votre code plus ou moins toofully temps traitent chaque message. exemple de code suivant Hello utilise hello **getMessages** messages tooget 16 de méthode dans un seul appel. Ensuite, il traite chaque message à l’aide d’une boucle **for** . Il définit également hello invisibilité délai d’expiration toofive minutes pour chaque message.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -335,7 +335,7 @@ catch(ServiceException $e){
 ```
 
 ## <a name="get-queue-length"></a>Obtention de la longueur de la file d'attente
-Vous pouvez obtenir une estimation du nombre de messages dans une file d'attente. La méthode **QueueRestProxy->getQueueMetadata** demande au service de file d’attente de renvoyer les métadonnées relatives à la file d’attente. Appeler la méthode **getApproximateMessageCount** sur l'objet renvoyé permet d'obtenir le nombre de messages figurant dans une file d'attente. Ce nombre est approximatif étant donné que des messages peuvent être ajoutés ou supprimés une fois que le service de File d'attente a répondu à votre demande.
+Vous pouvez obtenir une estimation du nombre de hello de messages dans une file d’attente. Hello **QueueRestProxy -> getQueueMetadata** méthode demande hello file d’attente service tooreturn métadonnées sur la file d’attente hello. Appel hello **getApproximateMessageCount** méthode sur hello a retourné d’objet fournit un nombre du nombre de messages dans une file d’attente. nombre de Hello uniquement est approximatif, car les messages peuvent être ajoutées ou supprimées une fois le service de file d’attente hello répond tooyour demande.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -364,7 +364,7 @@ echo $approx_msg_count;
 ```
 
 ## <a name="delete-a-queue"></a>Suppression d'une file d'attente
-Pour supprimer une file d’attente et tous les messages qu’elle contient, appelez la méthode **QueueRestProxy->deleteQueue**.
+toodelete une file d’attente et tous les messages hello, appelez hello **QueueRestProxy -> deleteQueue** (méthode).
 
 ```php
 require_once 'vendor/autoload.php';
@@ -390,11 +390,11 @@ catch(ServiceException $e){
 ```
 
 ## <a name="next-steps"></a>Étapes suivantes
-Maintenant que vous connaissez les bases du stockage des files d’attente Azure, consultez les liens suivants pour apprendre à effectuer des tâches de stockage plus complexes :
+Maintenant que vous avez appris les notions de base de hello de stockage de la file d’attente Azure, suivez ces toolearn des liens sur les tâches de stockage plus complexes :
 
-* Consultez le [blog de l’équipe Azure Storage](http://blogs.msdn.com/b/windowsazurestorage/).
+* Visitez hello [blog de l’équipe de stockage Azure](http://blogs.msdn.com/b/windowsazurestorage/).
 
-Pour plus d’informations, consultez également le [Centre pour développeurs PHP](/develop/php/).
+Pour plus d’informations, consultez également hello [centre de développement PHP](/develop/php/).
 
 [download]: http://go.microsoft.com/fwlink/?LinkID=252473
 [require_once]: http://www.php.net/manual/en/function.require-once.php

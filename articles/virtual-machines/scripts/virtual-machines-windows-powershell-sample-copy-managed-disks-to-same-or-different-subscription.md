@@ -1,6 +1,6 @@
 ---
-title: "Exemple de script Azure PowerShell : Copier (déplacer) des disques gérés vers un abonnement identique ou différent | Microsoft Docs"
-description: "Exemple de script Azure PowerShell : Copier (déplacer) des disques gérés vers un abonnement identique ou différent"
+title: "aaaAzure exemple de Script PowerShell - copie (déplacer) géré toosame de disques ou d’un autre abonnement | Documents Microsoft"
+description: "Exemple de PowerShell Script Azure - toosame de disques géré de copie (déplacer) ou autre abonnement"
 services: virtual-machines-windows
 documentationcenter: storage
 author: ramankumarlive
@@ -15,15 +15,15 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 ms.date: 06/06/2017
 ms.author: ramankum
-ms.openlocfilehash: 75beb35dc19fa530d9b2c19aed6040f74afafbc0
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 22e19a47228cbf628bebebd73012b8aa7baf073c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="copy-managed-disks-in-the-same-subscription-or-different-subscription-with-powershell"></a>Copier des disques gérés dans un abonnement unique ou différent avec PowerShell
+# <a name="copy-managed-disks-in-hello-same-subscription-or-different-subscription-with-powershell"></a>Copie géré des disques hello même abonnement ou autre avec PowerShell
 
-Ce script crée la copie d’un disque géré existant dans le même abonnement ou un autre abonnement. Le disque est créé dans la même région que le disque géré parent.   
+Ce script crée une copie d’un disque géré existant Bonjour même abonnement ou autre. Hello nouveau disque est créé dans hello même région que le parent de hello gérés disque.   
 
 [!INCLUDE [sample-powershell-install](../../../includes/sample-powershell-install.md)]
 
@@ -31,16 +31,16 @@ Ce script crée la copie d’un disque géré existant dans le même abonnement 
 
 ## <a name="sample-script"></a>Exemple de script
 
-[!code-powershell[main](../../../powershell_scripts/virtual-machine/copy-managed-disks-to-same-or-different-subscription/copy-managed-disks-to-same-or-different-subscription.ps1 "Copier un disque managé")]
+[!code-powershell[main](../../../powershell_scripts/virtual-machine/copy-managed-disks-to-same-or-different-subscription/copy-managed-disks-to-same-or-different-subscription.ps1 "Copy managed disk")]
 
 
 ## <a name="script-explanation"></a>Explication du script
 
-Ce script utilise les commandes suivantes pour créer un disque géré dans l’abonnement cible à l’aide de l’ID du disque source géré. Chaque commande du tableau renvoie à une documentation spécifique.
+Ce script utilise suivante commandes toocreate un nouveau disque géré à l’aide d’abonnement cible hello hello Id de source de hello gérés disque. Chaque commande figurant dans la documentation spécifique du toocommand liens table hello.
 
 | Commande | Remarques |
 |---|---|
-| [New-AzureRmDiskConfig](/powershell/module/azurerm.compute/New-AzureRmDiskConfig) | Crée une configuration de disque qui est utilisée pour la création du disque. Elle inclut l’ID de ressource du disque parent et un emplacement identique à l’emplacement du disque parent.  |
+| [New-AzureRmDiskConfig](/powershell/module/azurerm.compute/New-AzureRmDiskConfig) | Crée une configuration de disque qui est utilisée pour la création du disque. Il inclut hello Id de ressource de disque parent de hello et l’emplacement qui est identique à l’emplacement de hello du disque parent.  |
 | [New-AzureRmDisk](/powershell/module/azurerm.compute/New-AzureRmDisk) | Crée un disque à partir de la configuration de disque, du nom du disque et du nom de groupe de ressources transmis en tant que paramètres. |
 
 
@@ -48,6 +48,6 @@ Ce script utilise les commandes suivantes pour créer un disque géré dans l’
 
 [Créer une machine virtuelle à partir d’un disque géré](./virtual-machines-windows-powershell-sample-create-vm-from-managed-os-disks.md?toc=%2fpowershell%2fmodule%2ftoc.json)
 
-Pour plus d’informations sur le module Azure PowerShell, consultez [Documentation Azure PowerShell](/powershell/azure/overview).
+Pour plus d’informations sur le module Azure PowerShell de hello, consultez [documentation Azure PowerShell](/powershell/azure/overview).
 
-Vous trouverez des exemples supplémentaires de scripts PowerShell de machine virtuelle dans la [documentation relative aux machines virtuelles Windows Azure](../../app-service-web/app-service-powershell-samples.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+Exemples de script PowerShell supplémentaires de l’ordinateur virtuel se trouvent Bonjour [documentation de Windows Azure VM](../../app-service-web/app-service-powershell-samples.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).

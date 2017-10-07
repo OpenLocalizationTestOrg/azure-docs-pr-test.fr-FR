@@ -1,6 +1,6 @@
 ---
-title: "Gestion de la disponibilité des machines virtuelles Windows dans Azure | Microsoft Docs"
-description: "Découvrez comment utiliser plusieurs machines virtuelles afin de garantir la haute disponibilité de votre application Windows dans Azure."
+title: "disponibilité de hello aaaManage de machines virtuelles Windows Azure | Documents Microsoft"
+description: "Découvrez comment toouse plusieurs machines virtuelles tooensure haute disponibilité pour votre application Windows Azure"
 services: virtual-machines-windows
 documentationcenter: 
 author: cynthn
@@ -16,22 +16,22 @@ ms.topic: article
 ms.date: 03/21/2017
 ms.author: cynthn
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 408d030a7c26fea47669a690b0487e0868fbc2c9
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 5a7ccdc4a110ea24dd07ee18bd78941fb3aaac11
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-the-availability-of-windows-virtual-machines-in-azure"></a>Gestion de la disponibilité des machines virtuelles Windows dans Azure 
+# <a name="manage-hello-availability-of-windows-virtual-machines-in-azure"></a>Gérer la disponibilité hello de machines virtuelles Windows Azure 
 
-Découvrez comment configurer et gérer plusieurs machines virtuelles pour garantir une haute disponibilité pour votre application Windows dans Azure. Vous pouvez également [gérer la disponibilité des machines virtuelles Linux](../linux/manage-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+En savoir plus de façons tooset des et gérer plusieurs machines virtuelles tooensure haute disponibilité pour votre application Windows Azure. Vous pouvez également [gérer la disponibilité hello des ordinateurs virtuels Linux](../linux/manage-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 
 [!INCLUDE [learn-about-deployment-models](../../../includes/learn-about-deployment-models-both-include.md)]
 
-Pour obtenir des instructions sur la création et l’utilisation de groupes à haute disponibilité lorsque vous utilisez le modèle de déploiement classique, consultez la rubrique [Configuration d’un groupe à haute disponibilité](classic/configure-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json).
+Pour obtenir des instructions sur la création et à l’aide de la haute disponibilité lors de l’utilisation du modèle de déploiement classique de hello, consultez [comment tooConfigure un ensemble de disponibilité](classic/configure-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json).
 
 [!INCLUDE [virtual-machines-common-manage-availability](../../../includes/virtual-machines-common-manage-availability.md)]
 
 ## <a name="next-steps"></a>Étapes suivantes
-Pour en savoir plus sur l’équilibrage de charge de vos machines virtuelles, consultez la rubrique concernant [l’équilibrage de charge des machines virtuelles](tutorial-load-balancer.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+toolearn en savoir plus sur vos ordinateurs virtuels, d’équilibrage de charge consultez [l’équilibrage de charge des machines virtuelles](tutorial-load-balancer.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 

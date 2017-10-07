@@ -1,6 +1,6 @@
 ---
-title: "Gérer les enregistrements de contrôle d’accès pour StorSimple Virtual Array | Microsoft Docs"
-description: "Décrit comment gérer les enregistrements de contrôle d’accès pour déterminer les hôtes qui peuvent se connecter à un volume sur le StorSimple Virtual Array."
+title: "enregistrements de contrôle d’accès aaaManage pour StorSimple Virtual Array | Documents Microsoft"
+description: "Décrit comment le contrôle d’accès toomanage enregistre toodetermine (ACR) les hôtes qui peuvent se connecter tooa volume hello StorSimple Virtual Array."
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -15,114 +15,114 @@ ms.workload: na
 ms.date: 02/27/2017
 ms.author: alkohli
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 2ce65aa4efba735305208f7a6d761bc2814d1b8f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 608fdf72413761ce3c9c4bf297a748489c415685
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-storsimple-device-manager-to-manage-access-control-records-for-storsimple-virtual-array"></a>Utiliser StorSimple Device Manager pour gérer les enregistrements de contrôle d’accès pour StorSimple Virtual Array
+# <a name="use-storsimple-device-manager-toomanage-access-control-records-for-storsimple-virtual-array"></a>Utilisez le Gestionnaire de périphérique StorSimple toomanage des enregistrements de contrôle d’accès pour StorSimple Virtual Array
 
 ## <a name="overview"></a>Vue d'ensemble
 
-Les enregistrements de contrôle d’accès vous permettent de spécifier les hôtes qui peuvent se connecter à un volume sur le StorSimple Virtual Array (également appelé appareil virtuel local StorSimple). Les enregistrements de contrôle d’accès sont définis pour un volume spécifique et contiennent les noms complets iSCSI (IQN) des ordinateurs hôtes. Quand un hôte essaie de se connecter à un volume, l’appareil vérifie l’enregistrement de contrôle d’accès associé à ce volume pour le nom IQN et, s’il existe une correspondance, la connexion est établie. Le panneau **Enregistrements de contrôle d’accès** de la section **Configuration** de votre service Device Manager affiche tous les enregistrements de contrôle d’accès avec les noms complets iSCSI (IQN) des hôtes correspondants.
+Enregistrements de contrôle d’accès (ACR) permettent de toospecify les hôtes qui peuvent se connecter tooa volume hello StorSimple Virtual Array (également appelé hello local périphérique virtuel StorSimple). ACR sont définies les volume spécifique tooa et contenir hello iSCSI (IQN) de noms qualifiés d’hôtes de hello. Quand un hôte tente de tooconnect tooa volume, les appareils hello vérifie hello ACR associé à ce volume pour le nom IQN de hello, et s’il existe une correspondance, puis hello est établie. Hello **enregistrements de contrôle d’accès** panneau dans hello **Configuration** section de votre service de gestionnaire de périphériques affiche tous les enregistrements de contrôle d’accès hello avec hello correspondant iqn des hôtes de hello.
 
 ![Gestion d’enregistrements de contrôle d’accès](./media/storsimple-virtual-array-manage-acrs/ova-manage-acrs.png)
 
-Le didacticiel décrit les tâches courantes liées aux enregistrements de contrôle d’accès :
+Ce didacticiel explique hello suivant ACR tâches :
 
-* Obtenir le nom IQN
+* Obtenir hello IQN
 * Ajouter un enregistrement de contrôle d’accès
 * Modifier un enregistrement de contrôle d’accès
 * Supprimer un enregistrement de contrôle d’accès
 
 > [!IMPORTANT]
 > 
-> * Lorsque vous attribuez un enregistrement de contrôle d’accès à un volume, veillez à ce que plusieurs hôtes non cluster n’accèdent pas simultanément au volume, sans quoi celui-ci pourrait être endommagé.
-> * Lorsque vous supprimez un enregistrement de contrôle d’accès d’un volume, assurez-vous que l’hôte correspondant n’accède pas au volume, car la suppression pourrait entraîner une perturbation des opérations de lecture-écriture.
+> * Lorsque vous affectez un volume de tooa ACR, prenez soin que volume de hello n'est pas accédé simultanément par plus d’un hôte non cluster, car cela peut endommager le volume de hello.
+> * Lorsque vous supprimez un ACR d’un volume, assurez-vous que cet hôte correspondant hello n’accède pas aux volumes de hello, car la suppression de hello pourrait entraîner une interruption en lecture-écriture.
 
 
-## <a name="get-the-iqn"></a>Obtenir le nom IQN
+## <a name="get-hello-iqn"></a>Obtenir hello IQN
 
-Procédez comme suit pour obtenir le nom IQN d’un hôte Windows exécutant Windows Server 2012.
+Effectuer hello suivant les étapes tooget hello IQN d’un hôte Windows qui exécute Windows Server 2012.
 
 [!INCLUDE [storsimple-get-iqn](../../includes/storsimple-get-iqn.md)]
 
 ## <a name="add-an-acr"></a>Ajouter un enregistrement de contrôle d’accès
 
-Pour ajouter des enregistrements de contrôle d’accès, utilisez le panneau **Enregistrements de contrôle d’accès** de la section **Configuration** de votre service StorSimple Device Manager. En général, vous associez un enregistrement de contrôle d’accès à un volume.
+Vous utilisez **enregistrements de contrôle d’accès** panneau dans hello **Configuration** section de votre tooadd de service du Gestionnaire de périphériques StorSimple ACR. En général, vous associez un enregistrement de contrôle d’accès à un volume.
 
-Pour plus d’informations sur l’association d’un enregistrement de contrôle d’accès à un volume, consultez la page [Ajouter un volume](storsimple-virtual-array-deploy3-iscsi-setup.md#step-3-add-a-volume).
+Pour plus d’informations sur l’association d’un ACR à un volume, accédez trop[ajouter un volume](storsimple-virtual-array-deploy3-iscsi-setup.md#step-3-add-a-volume).
 
 > [!IMPORTANT]
-> Lorsque vous attribuez un enregistrement de contrôle d’accès à un volume, veillez à ce que plusieurs hôtes non cluster n’accèdent pas simultanément au volume, sans quoi celui-ci pourrait être endommagé.
+> Lorsque vous affectez un volume de tooa ACR, prenez soin que volume de hello n'est pas accédé simultanément par plus d’un hôte non cluster, car cela peut endommager le volume de hello.
 
 
-Effectuez les opérations suivantes pour ajouter un enregistrement de contrôle d’accès.
+Effectuer hello suivant les étapes tooadd un ACR.
 
-#### <a name="to-add-an-acr"></a>Pour ajouter un enregistrement de contrôle d’accès
+#### <a name="tooadd-an-acr"></a>tooadd un ACR
 
-1. Sur la page d’accueil du service, sélectionnez votre service, double-cliquez sur le nom du service, puis dans la section **Configuration**, cliquez sur **Enregistrements de contrôle d’accès**.
-2. Dans le panneau **Enregistrements de contrôle d’accès**, cliquez sur **Ajouter**.
-3. Dans le panneau **Ajouter un ACR**, procédez comme suit :
+1. Sur la page d’accueil hello service, sélectionnez votre service, double-cliquez sur service hello nom, puis dans hello **Configuration** , cliquez sur **enregistrements de contrôle d’accès**.
+2. Bonjour **enregistrements de contrôle d’accès** panneau, cliquez sur **ajouter**.
+3. Bonjour **ajouter un ACR** panneau, hello suivant :
    
     1. Saisissez un **Nom** pour votre ACR.
     
-    2. Sous **Nom d’initiateur iSCSI**, indiquez le nom IQN de votre hôte Windows. Pour obtenir le nom IQN de l’hôte Windows Server, procédez comme suit :
+    2. Sous **nom de l’initiateur iSCSI**, fournissez le nom IQN de hello de votre hôte Windows. tooget hello IQN de votre hôte Windows Server, procédez comme hello suivant :
    
-    3. Démarrez l’initiateur Microsoft iSCSI sur l’hôte Windows. Dans la fenêtre Propriétés de l’initiateur iSCSI, sous l’onglet **Configuration**, sélectionnez et copiez la chaîne affichée dans le champ **Nom de l’initiateur**.
-    Collez cette chaîne dans le champ **IQN** du panneau **Ajouter un ACR**.
+    3. Démarrez l’initiateur iSCSI Microsoft hello sur votre hôte Windows. Dans la fenêtre Propriétés de l’initiateur iSCSI hello, sur hello **Configuration** , sélectionnez et copiez les chaîne hello de hello **nom de l’initiateur** champ.
+    Collez cette chaîne Bonjour **IQN** champ hello **ajouter un ACR** panneau.
    
-    6. Cliquez sur **Ajouter** pour ajouter l’enregistrement de contrôle d’accès.  
+    6. Cliquez sur **ajouter** tooadd hello ACR.  
    
         ![Ajouter des enregistrements de contrôle d’accès](./media/storsimple-virtual-array-manage-acrs/ova-add-acrs.png)
-4. La liste tabulaire est mise à jour pour refléter les modifications.
+4. Hello Liste tabulaire est mis à jour tooreflect cet ajout.
 
 ## <a name="edit-an-acr"></a>Modifier un enregistrement de contrôle d’accès
 
-Pour modifier des enregistrements de contrôle d’accès, utilisez le panneau **Enregistrements de contrôle d’accès** de la section **Configuration** de votre service StorSimple Device Manager dans le portail Azure.
+Vous utilisez hello **enregistrements de contrôle d’accès** panneau dans hello **Configuration** section de votre service de gestionnaire de périphériques Bonjour Azure tooedit portail ACR.
 
 > [!NOTE]
-> Vous ne devez pas modifier un enregistrement de contrôle d’accès en cours d’utilisation. Pour modifier un enregistrement de contrôle d’accès associé à un volume en cours d’utilisation, vous devez d’abord placer le volume hors connexion.
+> Vous ne devez pas modifier un enregistrement de contrôle d’accès en cours d’utilisation. tooedit qu'un ACR associé à un volume qui est actuellement en cours d’utilisation, vous devez tout d’abord mettre hello volume hors connexion.
 
 
-Effectuez les opérations suivantes pour modifier un enregistrement de contrôle d’accès.
+Effectuer hello suivant les étapes tooedit un ACR.
 
-#### <a name="to-edit-an-acr"></a>Pour modifier un enregistrement de contrôle d’accès
+#### <a name="tooedit-an-acr"></a>tooedit un ACR
 
-1. Sur la page d’accueil du service, sélectionnez votre service, double-cliquez sur le nom du service, puis dans la section **Configuration**, cliquez sur **Enregistrements de contrôle d’accès**.
-2. Dans la liste tabulaire des enregistrements de contrôle d’accès du panneau **Enregistrements de contrôle d’accès**, double-cliquez sur l’enregistrement que vous souhaitez modifier.
-3. Dans le panneau **Enregistrements de contrôle d’accès**, procédez comme suit :
+1. Sur la page d’accueil hello service, sélectionnez votre service, double-cliquez sur service hello nom, puis dans hello **Configuration** section, **enregistrements de contrôle d’accès**.
+2. Bonjour **enregistrements de contrôle d’accès** panneau, à partir de la liste tabulaire hello des enregistrements de contrôle d’accès hello, double-cliquez sur hello ACR que vous souhaitez toomodify.
+3. Bonjour **enregistrements de contrôle d’accès modifier** panneau, hello suivant :
    
-    1. Indiquez le nom qualifié (IQN) de l’enregistrement de contrôle d’accès.
+    1. Approvisionnement hello IQN pour hello ACR.
    
-    2. Cliquez sur **Enregistrer** en haut du panneau pour enregistrer l’enregistrement de contrôle d’accès modifié. Le message de confirmation suivant s’affiche :
+    2. Cliquez sur **enregistrer** haut hello hello panneau toosave hello modifié ACR. Vous consultez hello message de confirmation suivant :
    
         ![Modifier des enregistrements de contrôle d’accès](./media/storsimple-virtual-array-manage-acrs/ova-edit-acrs.png)
 
 ## <a name="delete-an-access-control-record"></a>Supprimer un enregistrement de contrôle d’accès
 
-Pour supprimer des enregistrements de contrôle d’accès, utilisez la page **Configuration** du portail Azure.
+Vous utilisez hello **Configuration** page Bonjour Azure toodelete portail ACR.
 
 > [!NOTE]
 > 
-> * Vous ne devez pas supprimer un enregistrement de contrôle d’accès en cours d’utilisation. Pour supprimer un enregistrement de contrôle d’accès associé à un volume en cours d’utilisation, vous devez d’abord placer le volume hors connexion.
-> * Lorsque vous supprimez un enregistrement de contrôle d’accès d’un volume, assurez-vous que l’hôte correspondant n’accède pas au volume, car la suppression pourrait entraîner une perturbation des opérations de lecture-écriture.
+> * Vous ne devez pas supprimer un enregistrement de contrôle d’accès en cours d’utilisation. toodelete qu'un ACR associé à un volume qui est actuellement en cours d’utilisation, vous devez tout d’abord mettre hello volume hors connexion.
+> * Lorsque vous supprimez un ACR d’un volume, assurez-vous que cet hôte correspondant hello n’accède pas aux volumes de hello, car la suppression de hello pourrait entraîner une interruption en lecture-écriture.
 
 
-Pour supprimer un enregistrement de contrôle d’accès, procédez comme suit.
+Effectuer hello suivant les étapes toodelete un enregistrement de contrôle d’accès.
 
-#### <a name="to-delete-an-access-control-record"></a>Pour supprimer un enregistrement de contrôle d’accès
+#### <a name="toodelete-an-access-control-record"></a>toodelete un enregistrement de contrôle d’accès
 
-1. Sur la page d’accueil du service, sélectionnez votre service, double-cliquez sur le nom du service, puis dans la section **Configuration**, cliquez sur **Enregistrements de contrôle d’accès**.
+1. Sur la page d’accueil hello service, sélectionnez votre service, double-cliquez sur service hello nom, puis dans hello **Configuration** section, **enregistrements de contrôle d’accès**.
 
-2. Dans la liste tabulaire des enregistrements de contrôle d’accès du panneau **Enregistrements de contrôle d’accès**, double-cliquez sur l’enregistrement que vous souhaitez supprimer.
+2. Bonjour **enregistrements de contrôle d’accès** panneau, à partir de la liste tabulaire hello des enregistrements de contrôle d’accès hello, double-cliquez sur hello ACR que vous souhaitez toodelete.
 
-3. Dans le panneau Enregistrements de contrôle d’accès, cliquez sur **Supprimer**.
+3. Dans Panneau d’enregistrements hello modifier accès contrôle, cliquez sur **supprimer**.
    
     ![Supprimer des enregistrements de contrôle d’accès](./media/storsimple-virtual-array-manage-acrs/ova-del-acrs.png)
 
-4. Lorsque vous êtes invité à confirmer la suppression, cliquez sur **Supprimer**. La liste tabulaire est mise à jour pour refléter la suppression.
+4. Lorsque vous êtes invité à confirmer l’opération, cliquez sur **supprimer** toocontinue avec suppression des hello. la liste tabulaire Hello est mise à jour tooreflect hello suppression.
    
    ![Message d'avertissement](./media/storsimple-virtual-array-manage-acrs/ova-del-acrs-warning.png)
 

@@ -1,6 +1,6 @@
 ---
-title: "Résoudre les problèmes relatifs aux groupes de sécurité réseau - PowerShell | Microsoft Docs"
-description: "Découvrez comment résoudre les problèmes liés aux groupes de sécurité réseau dans le modèle de déploiement Azure Resource Manager à l’aide d’Azure PowerShell."
+title: "aaaTroubleshoot des groupes de sécurité réseau - PowerShell | Documents Microsoft"
+description: "Découvrez comment les groupes de sécurité réseau tootroubleshoot dans un déploiement d’Azure Resource Manager hello modèle à l’aide d’Azure PowerShell."
 services: virtual-network
 documentationcenter: na
 author: AnithaAdusumilli
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 09/23/2016
 ms.author: anithaa
-ms.openlocfilehash: 5edaf7197576ac1c0bd1fc6bed21fd65ed135106
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 95fd60fa72cf6d17fa990e3c3eb7d980878f7c15
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshoot-network-security-groups-using-azure-powershell"></a>Résoudre les groupes de sécurité réseau à l’aide d’Azure PowerShell
 > [!div class="op_single_selector"]
@@ -28,35 +28,35 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-Si vous avez configuré des groupes de sécurité réseau sur votre machine virtuelle et rencontrez des problèmes de connectivité de machine virtuelle, cet article fournit une vue d’ensemble des fonctionnalités de diagnostic pour les groupes de sécurité réseau afin de vous aider à dépanner.
+Si vous configuré des groupes de sécurité réseau (NSG) sur votre machine virtuelle (VM) et qui rencontrent des problèmes de connectivité de machine virtuelle, cet article fournit une vue d’ensemble des fonctionnalités des diagnostics pour les groupes de sécurité réseau toohelp dépannage.
 
-Les groupes de sécurité réseau vous permettent de contrôler les types de trafic transitant sur vos machines virtuelles. Des groupes de sécurité réseau peuvent être appliqués à des sous-réseaux d’un réseau virtuel Azure (VNet), à des cartes réseau ou aux deux. Les règles effectives appliquées à une carte réseau sont une agrégation de règles existant dans les groupes de sécurité réseau appliqués à une carte réseau et au sous-réseau auquel elle est connectée. Les règles appliquées à ces groupes de sécurité réseau sont parfois en conflit entre elles et peuvent avoir une incidence sur la connectivité réseau d’une machine virtuelle.  
+Groupes de sécurité réseau permettent de types de hello toocontrol de trafic ce flux et vos machines virtuelles (VM). Groupes de sécurité réseau peuvent être appliqués toosubnets dans un réseau virtuel de Azure (VNet), les interfaces de réseau (NIC) ou les deux. Hello efficace règles appliquées tooa NIC sont un regroupement de règles hello qui existent dans hello NSG appliqué tooa NIC hello sous-réseau et il est connecté à. Les règles appliquées à ces groupes de sécurité réseau sont parfois en conflit entre elles et peuvent avoir une incidence sur la connectivité réseau d’une machine virtuelle.  
 
-Vous pouvez afficher toutes les règles de sécurité effectives de vos groupes de sécurité réseau, telles qu’appliquées aux cartes réseau de votre machine virtuelle. Cet article explique comment résoudre les problèmes de connectivité de machine virtuelle à l’aide de ces règles dans le modèle de déploiement Azure Resource Manager. Si vous n’êtes pas familiarisé avec les concepts de réseau virtuel et de groupe de sécurité réseau, lisez les articles de présentation [Réseau virtuel](virtual-networks-overview.md) et [Groupes de sécurité réseau](virtual-networks-nsg.md).
+Vous pouvez afficher toutes les règles de sécurité efficace hello à partir de vos groupes de sécurité réseau, tel qu’appliqué sur les cartes d’interface réseau de votre machine virtuelle. Cet article explique comment tootroubleshoot des problèmes de connectivité de la machine virtuelle à l’aide de ces règles dans hello modèle de déploiement Azure Resource Manager. Si vous n’êtes pas familiarisé avec les concepts de réseau virtuel et le groupe de sécurité réseau, lire hello [réseau virtuel](virtual-networks-overview.md) et [groupes de sécurité réseau](virtual-networks-nsg.md) articles de vue d’ensemble.
 
-## <a name="using-effective-security-rules-to-troubleshoot-vm-traffic-flow"></a>Utilisation de règles de sécurité effectives pour résoudre des problèmes de flux de trafic de machine virtuelle
-Le scénario qui suit illustre un problème de connexion courant :
+## <a name="using-effective-security-rules-tootroubleshoot-vm-traffic-flow"></a>À l’aide de flux de trafic des règles de sécurité efficace tootroubleshoot machine virtuelle
+scénario Hello qui suit est un exemple d’un problème de connexion courantes :
 
-Une machine virtuelle nommée *VM1* fait partie d’un sous-réseau nommé *Subnet1* au sein d’un réseau virtuel nommé *WestUS-VNet1*. Une tentative de connexion à la machine virtuelle à l’aide du protocole RDP sur le port TCP 3389 a échoué. Des groupes de sécurité réseau sont appliqués tant à la carte réseau *VM1-NIC1* qu’au sous-réseau *Subnet1*. Le trafic vers le port TCP 3389 est autorisé dans le groupe de sécurité réseau associé à l’interface réseau *VM1-NIC1*. Toutefois, le test Ping du port TCP 3389 de VM1 échoue.
+Une machine virtuelle nommée *VM1* fait partie d’un sous-réseau nommé *Subnet1* au sein d’un réseau virtuel nommé *WestUS-VNet1*. Un toohello tooconnect de tentative de machine virtuelle à l’aide du protocole RDP sur le port TCP 3389 échoue. Groupes de sécurité réseau sont appliquées sur les deux cartes réseau hello *NIC1 de VM1* et hello sous-réseau *Subnet1*. Le port du trafic tooTCP 3389 est autorisé dans hello NSG associée à interface réseau de hello *NIC1 de VM1*toutefois TCP ping échoue de tooVM1 port 3389.
 
-Bien que cet exemple utilise le port TCP 3389, les étapes suivantes permettent de déterminer les échecs de connexion entrante et sortante sur n’importe quel port.
+Bien que cet exemple utilise le port TCP 3389, hello comme suit peut être utilisé toodetermine échecs de connexion entrant et sortant sur n’importe quel port.
 
 ## <a name="detailed-troubleshooting-steps"></a>Étapes de dépannage détaillées
-Pour dépanner des groupes de sécurité réseau pour une machine virtuelle, procédez comme suit :
+Terminer hello suivant les étapes tootroubleshoot groupes de sécurité réseau pour une machine virtuelle :
 
-1. Démarrez une session Azure PowerShell et connectez-vous à Azure. Si vous n’êtes pas familiarisé avec l’utilisation d’Azure PowerShell, lisez l’article [Installation et configuration d’Azure PowerShell](/powershell/azure/overview) .
-2. Entrez la commande suivante pour renvoyer toutes les règles du groupe de sécurité réseau appliquées à une carte d’interface réseau nommée *VM1-NIC1* dans le groupe de ressources *RG1* :
+1. Démarrer un tooAzure de session et de connexion Azure PowerShell. Si vous n’êtes pas familiarisé avec l’utilisation d’Azure PowerShell, lire hello [comment tooinstall et configurer Azure PowerShell](/powershell/azure/overview) l’article.
+2. Entrez hello commande tooreturn toutes les règles du groupe de sécurité réseau appliquent tooa carte réseau nommée suivante *NIC1 de VM1* dans le groupe de ressources hello *RG1*:
    
         Get-AzureRmEffectiveNetworkSecurityGroup -NetworkInterfaceName VM1-NIC1 -ResourceGroupName RG1
    
    > [!TIP]
-   > Si vous ne connaissez pas le nom d’une carte d’interface réseau, entrez la commande suivante pour récupérer les noms de toutes les cartes d’interface réseau d’un groupe de ressources : 
+   > Si vous ne connaissez pas nom hello d’une carte réseau, entrez hello commande tooretrieve hello nom de toutes les cartes réseau dans un groupe de ressources : 
    > 
    > `Get-AzureRmNetworkInterface -ResourceGroupName RG1 | Format-Table Name`
    > 
    > 
    
-    Le texte suivant est un exemple de sortie de règles effectives retournée pour la carte d’interface réseau *VM1-NIC1* :
+    Hello texte suivant est un exemple de sortie de règles efficaces de hello retournée pour hello *NIC1 de VM1* carte réseau :
    
         NetworkSecurityGroup   : {
                                    "Id": "/subscriptions/[Subscription ID]/resourceGroups/RG1/providers/Microsoft.Network/networkSecurityGroups/VM1-NIC1-NSG"
@@ -155,46 +155,46 @@ Pour dépanner des groupes de sécurité réseau pour une machine virtuelle, pro
                                 },...
                                 ]
    
-    Notez les informations suivantes dans la sortie :
+    Notez hello informations dans la sortie de hello suivantes :
    
-   * Il existe deux sections **NetworkSecurityGroup** : l’une est associée à un sous-réseau (*Subnet1*), et l’autre à une carte d’interface réseau (*VM1-NIC1*). Dans cet exemple, un groupe de sécurité réseau a été appliquée à chacune d’elles.
-   * **Association** montre les ressources (carte d’interface réseau ou sous-réseau) auxquelles un groupe de sécurité réseau donné est associé. Si la ressource de groupe de sécurité réseau est déplacée/dissociée immédiatement avant l’exécution de cette commande, il se peut que vous deviez attendre quelques secondes pour que la modification apparaisse dans la sortie de la commande. 
-   * Les noms de règle sont précédés de *defaultSecurityRules*: lors de la création d’un groupe de sécurité réseau, plusieurs règles de sécurité par défaut sont créées à l’intérieur de celui-ci. Vous ne pouvez pas supprimer des règles par défaut, mais vous pouvez les remplacer par des règles de priorité plus élevée.
-     Pour en savoir plus sur les règles de sécurité par défaut de groupe de sécurité réseau , voir l’article [Vue d’ensemble de groupe de sécurité réseau](virtual-networks-nsg.md#default-rules) .
-   * **ExpandedAddressPrefix** développe les préfixes d’adresse pour les balises par défaut de groupe de sécurité réseau. Les balises représentent plusieurs préfixes d’adresse. L’expansion des balises peut être utile lors de la résolution de problèmes de connectivité de machine virtuelle avec des préfixes d’adresse spécifiques. Par exemple, avec VNET Peering, la balise VIRTUAL_NETWORK se développe pour afficher les préfixes de réseau virtuel homologués dans la sortie précédente.
+   * Il existe deux sections **NetworkSecurityGroup** : l’une est associée à un sous-réseau (*Subnet1*), et l’autre à une carte d’interface réseau (*VM1-NIC1*). Dans cet exemple, un groupe de sécurité réseau a été appliqué tooeach.
+   * **Association** montre les ressources de hello (carte réseau ou sous-réseau) à un groupe de sécurité réseau donné est associé. Si hello ressource du groupe de sécurité réseau est déplacée/dissocié immédiatement avant d’exécuter cette commande, vous devrez peut-être toowait quelques secondes pour tooreflect de modification hello dans la sortie de la commande hello. 
+   * les noms de règle qui sont précédés de Hello *defaultSecurityRules*: quand un groupe de sécurité réseau est créé, plusieurs règles de sécurité par défaut sont créés dans celui-ci. Vous ne pouvez pas supprimer des règles par défaut, mais vous pouvez les remplacer par des règles de priorité plus élevée.
+     Hello de lecture [vue d’ensemble du groupe de sécurité réseau](virtual-networks-nsg.md#default-rules) toolearn article en savoir plus sur le groupe de sécurité réseau par défaut des règles de sécurité.
+   * **ExpandedAddressPrefix** développe les préfixes d’adresse hello pour les étiquettes de groupe de sécurité réseau par défaut. Les balises représentent plusieurs préfixes d’adresse. Expansion de balises de hello peut être utile lors de la résolution des problèmes de connectivité de machine virtuelle à partir de préfixes d’adresse spécifique. Par exemple, avec le réseau virtuel d’homologation, balise VIRTUAL_NETWORK développe tooshow homologuer les préfixes de réseau virtuel dans la sortie précédente hello.
      
      > [!NOTE]
-     > La commande affiche des règles effectives uniquement si un groupe de sécurité réseau est associé à un sous-réseau, à une carte d’interface réseau ou aux deux. Une machine virtuelle peut avoir plusieurs cartes d’interface réseau à laquelle différents groupes de sécurité réseau sont appliqués. Lors de la résolution du problème, exécutez la commande pour chaque carte d’interface réseau.
+     > Bonjour commande effective règles affiche uniquement si un groupe de sécurité réseau est associé à un sous-réseau, une carte réseau ou les deux. Une machine virtuelle peut avoir plusieurs cartes d’interface réseau à laquelle différents groupes de sécurité réseau sont appliqués. Lors de la résolution du problème, exécutez la commande hello pour chaque carte réseau.
      > 
      > 
-3. Pour faciliter le filtrage d’un nombre plus important de règles de groupe de sécurité réseau, entrez les commandes suivantes pour résoudre le problème : 
+3. tooease le filtrage sur un plus grand nombre de règles du groupe de sécurité réseau, entrez hello suivant tootroubleshoot des commandes supplémentaires : 
    
         $NSGs = Get-AzureRmEffectiveNetworkSecurityGroup -NetworkInterfaceName VM1-NIC1 -ResourceGroupName RG1
         $NSGs.EffectiveSecurityRules | Sort-Object Direction, Access, Priority | Out-GridView
    
-    Un filtre pour le trafic RDP (port TCP 3389) est appliqué à l’affichage grille, comme illustré dans l’image suivante :
+    Un filtre pour le trafic RDP (port TCP 3389), est appliqué toohello affichage de grille, comme indiqué dans hello illustration suivante :
    
     ![Liste des règles](./media/virtual-network-nsg-troubleshoot-powershell/rules.png)
-4. Comme vous pouvez le voir dans l’affichage grille, il existe des règles d’autorisation et de refus pour RDP. La sortie de l’étape 2 montre que la règle *DenyRDP* figure dans le groupe de sécurité réseau appliqué au sous-réseau. Pour les règles de trafic entrant, les groupes de sécurité réseau appliqués au sous-réseau sont traités en premier. Si une correspondance est trouvée, le groupe de sécurité réseau appliqué à l’interface réseau n’est pas traité. Dans ce cas, la règle *DenyRDP* du sous-réseau bloque le RDP à la machine virtuelle (**VM1**).
+4. Comme vous pouvez le voir dans l’affichage de grille hello, il existe deux autorisent et refuser des règles pour RDP. sortie de l’étape 2 Hello indique que hello *DenyRDP* règle est Bonjour NSG appliqué toohello sous-réseau. Pour les règles de trafic entrant, groupes de sécurité réseau appliquées toohello sous-réseau sont traitées en premier. Si une correspondance est trouvée, l’interface de réseau toohello hello NSG appliqué n’est pas traitée. Dans ce cas, hello *DenyRDP* de règle de sous-réseau de hello bloque RDP toohello VM (**VM1**).
    
    > [!NOTE]
-   > Plusieurs cartes d’interface réseau peuvent être attachées à une machine virtuelle. Chacune peut être connectée à un sous-réseau différent. Étant donné que les commandes des étapes précédentes sont exécutées sur une carte d’interface réseau, il est important de spécifier la carte d’interface réseau avec laquelle l’échec de connectivité se produit. Si vous n’êtes pas sûr, vous pouvez toujours exécuter les commandes sur chaque carte d’interface réseau attachée à la machine virtuelle.
+   > Une machine virtuelle peut avoir plusieurs tooit de cartes réseau attachée. Chacun peut être connecté tooa autre sous-réseau. Étant donné que les commandes hello dans les étapes précédentes hello sont exécutées sur une carte réseau, il est important de tooensure que vous spécifiez hello carte réseau que vous rencontrez Échec de connectivité hello. Si vous n’êtes pas sûr, vous pouvez toujours exécuter des commandes hello sur chaque machine virtuelle de toohello carte réseau attachée.
    > 
    > 
-5. Pour le protocole RDP dans la machine virtuelle VM1, modifiez la règle *Refuser RDP (3389)* en *Autoriser RDP(3389)* dans le groupe de sécurité réseau **Subnet1-NSG**. Vérifiez que le port TCP 3389 est ouvert en ouvrant une connexion RDP à la machine virtuelle ou en utilisant l’outil PsPing. Pour en savoir plus sur PsPing, lire la [page de téléchargement de PsPing](https://technet.microsoft.com/sysinternals/psping.aspx)
+5. tooRDP dans VM1, modification hello *refuser RDP (3389)* trop de règles*autoriser les RDP(3389)* Bonjour **Subnet1-groupe de sécurité réseau** groupe de sécurité réseau. Vérifiez que le port TCP 3389 est ouvert en ouvrant un toohello de connexion RDP machine virtuelle ou en utilisant l’outil PsPing de hello. Vous pouvez en savoir plus sur PsPing par la lecture de hello [page de téléchargement PsPing](https://technet.microsoft.com/sysinternals/psping.aspx)
    
-    Vous pouvez supprimer des règles d’un groupe de sécurité réseau en utilisant les informations de la sortie de la commande suivante :
+    Vous pouvez ou supprimez des règles à partir d’un groupe de sécurité réseau en utilisant les informations de hello sortie hello hello de commande suivante :
    
         Get-Help *-AzureRmNetworkSecurityRuleConfig
 
 ## <a name="considerations"></a>Considérations
-Lors de la résolution de problèmes de connectivité, considérez les points suivants :
+Tenez compte des points suivants lors de la résolution des problèmes de connectivité de hello :
 
-* Des règles de groupe de sécurité réseau par défaut bloquent l’accès entrant à partir d’internet et n’autorisent que le trafic entrant dans le réseau virtuel. Les règles doivent être ajoutées de façon explicite afin d’autoriser l’accès entrant à partir d’Internet, en fonction des besoins.
-* Si aucune règle de sécurité du groupe de sécurité réseau n’est à l’origine d’un échec de connectivité réseau d’une machine virtuelle, les causes du problème peuvent être les suivantes :
-  * Logiciel de pare-feu s’exécutant à l’intérieur du système d’exploitation de la machine virtuelle
-  * Itinéraires configurés pour des appliances virtuelles ou un trafic local. Le trafic Internet peut être redirigé localement au moyen d’un tunneling forcé. Il se peut qu’une connexion RDP/SSH d’Internet à votre machine virtuelle ne fonctionne pas avec ce paramètre, selon la façon dont le matériel de réseau local gère ce trafic. Pour savoir comment diagnostiquer des problèmes d’itinéraire susceptibles d’entraver le flux de trafic échangé avec la machine virtuelle, consultez [Résolution des problèmes d’itinéraire](virtual-network-routes-troubleshoot-powershell.md) . 
-* Si vous avez des réseaux virtuels homologues, par défaut, la balise VIRTUAL_NETWORK s’étend automatiquement pour inclure les préfixes des réseaux virtuels homologues. Pour résoudre des problèmes liés à la connectivité d’homologation de réseau virtuel, vous pouvez consulter ces préfixes dans la liste **ExpandedAddressPrefix** . 
-* Les règles de sécurité effectives sont affichées uniquement s’il existe un groupe de sécurité réseau associé à la carte réseau et au sous-réseau de la machine virtuelle. 
-* Si aucun groupe de sécurité réseau n’est associé à la carte réseau ou au sous-réseau, et si une adresse IP publique est affectée à votre machine virtuelle, tous les ports sont ouverts pour les accès entrants et sortants. Si la machine virtuelle a une adresse IP publique, l’application de groupes de sécurité réseau à la carte réseau ou au sous-réseau est vivement recommandée.  
+* Règles du groupe de sécurité réseau par défaut bloque l’accès entrant à partir de hello internet et seulement ce réseau virtuel qui permet le trafic entrant. Les règles doivent être ajoutés explicitement tooallow accès entrant depuis Internet, en fonction des besoins.
+* S’il n’y a aucune règle de sécurité groupe de sécurité réseau à l’origine de toofail de connectivité de réseau de l’ordinateur virtuel, problème de hello peut être due à :
+  * Logiciel de pare-feu qui s’exécutent dans le système d’exploitation de la machine virtuelle hello
+  * Itinéraires configurés pour des appliances virtuelles ou un trafic local. Le trafic Internet peut être redirigé tooon-site via le tunneling forcé. Une connexion RDP/SSH à partir de hello Internet tooyour machine virtuelle peut ne pas fonctionne avec ce paramètre, selon la façon dont le matériel de réseau local hello gère ce trafic. Hello de lecture [dépannage des itinéraires](virtual-network-routes-troubleshoot-powershell.md) article toolearn, comment les problèmes d’itinéraire toodiagnose qui peuvent être compromettent hello flux du trafic et se déconnecte de hello machine virtuelle. 
+* Si vous avez homologuer les réseaux virtuels, par défaut, hello balise VIRTUAL_NETWORK développe automatiquement les préfixes tooinclude pour les réseaux virtuels de ressources. Vous pouvez afficher ces préfixes Bonjour **ExpandedAddressPrefix** répertorier, tootroubleshoot tout tooVNet connexes de problèmes d’homologation de connectivité. 
+* Les règles de sécurité efficace sont affichent uniquement s’il existe qu'un groupe de sécurité réseau associé à la machine virtuelle hello NIC et ou un sous-réseau. 
+* Si aucun groupes de sécurité réseau associés hello carte réseau ou sous-réseau et que vous avez une adresse IP publique affectée tooyour machine virtuelle, tous les ports seront ouverts pour un accès entrant et sortant. Si hello machine virtuelle a une adresse IP publique, appliquer des groupes de sécurité réseau toohello carte réseau ou sous-réseau est fortement recommandé.  
 

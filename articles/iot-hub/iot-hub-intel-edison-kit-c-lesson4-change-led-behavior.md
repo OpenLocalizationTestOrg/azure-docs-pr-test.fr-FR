@@ -1,12 +1,12 @@
 ---
-title: "Connecter Intel Edison (C) à Azure IoT - Leçon 4 : Faire clignoter la LED | Microsoft Docs"
-description: "Personnalisez les messages pour modifier le comportement activé/désactivé de la LED."
+title: "Connect Intel Edison (C) tooAzure IoT - leçon 4 : Blink hello DEL | Documents Microsoft"
+description: "Personnaliser hello de toochange messages hello voyants du et désactiver le comportement."
 services: iot-hub
 documentationcenter: 
 author: shizn
 manager: timtl
 tags: 
-keywords: "contrôle de la led avec arduino"
+keywords: "contrôle de la LED avec arduino"
 ROBOTS: NOINDEX
 redirect_url: /azure/iot-hub/iot-hub-intel-edison-kit-c-get-started
 ms.assetid: 9826c55a-0e24-4296-ae54-29b7fe66436a
@@ -17,30 +17,30 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: 4852b1cca4c6186ef4857b903b771f76cc20adb8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c51acb42aa297ca91cfe76d7b0361ad95e2fb2e4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="change-the-on-and-off-behavior-of-the-led"></a>Modification du comportement activé/désactivé de la LED
+# <a name="change-hello-on-and-off-behavior-of-hello-led"></a>Modifier hello et désactiver le comportement de hello DEL
 ## <a name="what-you-will-do"></a>Procédure à suivre
-Personnalisez les messages pour modifier le comportement activé/désactivé de la LED. Si vous rencontrez des problèmes, recherchez des solutions sur la [page de résolution des problèmes][troubleshooting].
+Personnaliser hello de toochange messages hello voyants du et désactiver le comportement. Si vous rencontrez des problèmes, recherchez des solutions sur hello [page Résolution des problèmes][troubleshooting].
 
 ## <a name="what-you-will-learn"></a>Contenu
-Utiliser des fonctions supplémentaires pour modifier le comportement activé/désactivé de la LED.
+Utilisez hello toochange de fonctions supplémentaires voyants du et désactiver le comportement.
 
 ## <a name="what-you-need"></a>Ce dont vous avez besoin
-Vous devez avoir correctement suivi la section [Exécution d’un exemple d’application sur Intel Edison pour recevoir des messages cloud-à-appareil][receive-cloud-to-device-messages].
+Vous devez avoir terminé [exécuter un exemple d’application sur le cloud de tooreceive Intel Edison toodevice messages][receive-cloud-to-device-messages].
 
-## <a name="add-functions-to-mainc-and-gulpfilejs"></a>Ajouter des fonctions à main.c et gulpfile.js
-1. Ouvrez l’exemple d’application dans Visual Studio Code en exécutant les commandes suivantes :
+## <a name="add-functions-toomainc-and-gulpfilejs"></a>Ajouter des gulpfile.js et des fonctions toomain.c
+1. Ouvrir l’exemple d’application hello dans le code de Visual Studio en exécutant hello suivant les commandes :
 
    ```bash
    cd Lesson4
    code .
    ```
-2. Ouvrez le fichier `main.c` et ajoutez les fonctions suivantes après la fonction blinkLED() :
+2. Ouvrez hello `main.c` et puis ajoutez hello suivant des fonctions après blinkLED() fonction :
 
    ```c
    static void turnOnLED()
@@ -56,7 +56,7 @@ Vous devez avoir correctement suivi la section [Exécution d’un exemple d’ap
 
    ![Fichier main.c avec fonctions ajoutées](media/iot-hub-intel-edison-lessons/lesson4/updated_app_c.png)
 
-3. Ajoutez les conditions suivantes avant d’effectuer le bloc `else if` de la fonction `receiveMessageCallback` :
+3. Ajouter hello conditions avant hello suivantes `else if` bloc Hello `receiveMessageCallback` fonction :
 
    ```c
    else if (0 == strcmp((const char*)value, "\"on\""))
@@ -69,8 +69,8 @@ Vous devez avoir correctement suivi la section [Exécution d’un exemple d’ap
    }
    ```
 
-   Vous avez maintenant configuré l’exemple d’application pour répondre à davantage d’instructions envoyées via des messages. L’instruction « on » active la LED et l’instruction « off » la désactive.
-4. Ouvrez le fichier gulpfile.js, puis ajoutez une nouvelle fonction devant la fonction `sendMessage` :
+   Vous avez maintenant configuré instructions toomore de toorespond l’application exemple hello via des messages. Hello « sur « instruction active hello DEL et hello instruction « off » désactive hello DEL.
+4. Ouvrez le fichier de gulpfile.js hello et puis ajoutez une nouvelle fonction avant la fonction hello `sendMessage`:
 
    ```javascript
    var buildCustomMessage = function (messageId) {
@@ -85,28 +85,28 @@ Vous devez avoir correctement suivi la section [Exécution d’un exemple d’ap
    ```
 
    ![Fichier Gulpfile.js avec fonction ajoutée][gulpfile]
-5. Dans la fonction `sendMessage`, remplacez la ligne `var message = buildMessage(sentMessageCount);` par la nouvelle ligne illustrée dans l’extrait de code suivant :
+5. Bonjour `sendMessage` de fonction, remplacez la ligne de hello `var message = buildMessage(sentMessageCount);` avec ligne hello illustré hello suivant extrait de code :
 
    ```javascript
    var message = buildCustomMessage(sentMessageCount);
    ```
-6. Enregistrez toutes les modifications.
+6. Enregistrer toutes les modifications de hello.
 
-### <a name="deploy-and-run-the-sample-application"></a>Déploiement et exécution de l’exemple d’application
-Déployez et exécutez l’exemple d’application sur Edison en exécutant la commande suivante :
+### <a name="deploy-and-run-hello-sample-application"></a>Déployer et exécuter l’exemple d’application hello
+Déployer et exécuter l’exemple d’application hello sur Edison en exécutant hello de commande suivante :
 
 ```bash
 gulp deploy && gulp run
 ```
 
-La LED doit s’allumer pendant deux secondes, puis s’éteindre pendant deux secondes. Le dernier message de « stop » arrête l’exécution de l’exemple d’application.
+Vous devez voir hello DEL activer pendant deux secondes et puis désactivez l’option pour un autre deux secondes. dernier « arrêter » message Hello arrête l’application d’exemple hello de s’exécuter.
 
 ![activer et désactiver][on-and-off]
 
-Félicitations ! Vous avez correctement personnalisé les messages qui sont envoyés à Edison à partir de votre IoT Hub.
+Félicitations ! Vous avez personnalisé correctement les messages hello tooEdison envoyés à partir de votre hub IoT.
 
 ### <a name="summary"></a>Résumé
-Cette section facultative montre comment personnaliser les messages de sorte que l’exemple d’application puisse contrôler le comportement activé/désactivé de la LED d’une autre manière.
+Cette section montre comment toocustomize messages d’application d’exemple hello peut contrôler hello et désactiver le comportement de hello DEL d’une manière différente.
 
 <!-- Images and links -->
 

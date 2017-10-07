@@ -1,6 +1,6 @@
 ---
-title: "Déployer LAMP sur une machine virtuelle Linux dans Azure | Microsoft Docs"
-description: "Découvrez comment installer la pile LAMP sur une machine virtuelle Linux dans Azure"
+title: "FEU d’aaaDeploy sur un ordinateur virtuel de Linux dans Azure | Documents Microsoft"
+description: "Découvrez comment tooinstall hello feu de pile sur un VM Linux dans Azure"
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: jluk
@@ -15,19 +15,19 @@ ms.devlang: azurecli
 ms.topic: article
 ms.date: 2/21/2017
 ms.author: juluk
-ms.openlocfilehash: ad69876bfbeba5f948a81e5c48c659fdf2265ae2
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 42d887bb9f78becc02505e336be25fdaaf78df70
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploy-lamp-stack-on-azure"></a>Déployer une pile LAMP dans Azure
-Cet article vous guide à travers le déploiement d’un serveur web Apache, de MySQL et de PHP (la pile LAMP) sur Azure. Vous avez besoin d’un compte Azure ([obtenir un essai gratuit](https://azure.microsoft.com/pricing/free-trial/)) et [d’Azure CLI 2.0](https://docs.microsoft.com/en-us/cli/azure/install-az-cli2). Vous pouvez également suivre ces étapes avec [Azure CLI 1.0](create-lamp-stack-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+Cet article vous guide tout au long de comment toodeploy un Apache web server, MySQL et PHP (pile de feu hello) sur Azure. Vous avez besoin d’un compte Azure ([obtenir une évaluation gratuite](https://azure.microsoft.com/pricing/free-trial/)) et hello [Azure CLI 2.0](https://docs.microsoft.com/en-us/cli/azure/install-az-cli2). Vous pouvez également effectuer ces étapes avec hello [Azure CLI 1.0](create-lamp-stack-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 
 ## <a name="quick-command-summary"></a>Résumé des commandes rapides
 
-1. Enregistrez et modifiez le [fichier azuredeploy.parameters.json](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/lamp-app/azuredeploy.parameters.json) à votre convenance sur votre ordinateur local.
-2. Exécutez les deux commandes suivantes pour créer un groupe de ressources, puis déployez votre modèle :
+1. Enregistrer et modifier hello [azuredeploy.parameters.json fichier](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/lamp-app/azuredeploy.parameters.json) préférence tooyour sur votre ordinateur local.
+2. Exécutez hello suivant deux commandes toocreate un groupe de ressources et ensuite déployer votre modèle :
 
 ```azurecli
 az group create -l westus -n myResourceGroup
@@ -37,7 +37,7 @@ az group deployment create -g myResourceGroup \
 ```
 
 ### <a name="deploy-lamp-on-existing-vm"></a>Déploiement de LAMP sur une machine virtuelle existante
-Les commandes suivantes mettent à jour les packages, puis installent Apache, MySQL et PHP :
+suivant de Hello packages de mises à jour des commandes, puis installe Apache, MySQL et PHP :
 
 ```bash
 sudo apt-get update
@@ -46,16 +46,16 @@ sudo apt-get install apache2 mysql-server php5 php5-mysql
 
 ## <a name="deploy-lamp-on-new-vm-walkthrough"></a>Procédure pas à pas de déploiement de LAMP sur une nouvelle machine virtuelle
 
-1. Avec la commande [az group create](/cli/azure/group#create), créez un groupe de ressources qui contiendra la nouvelle machine virtuelle :
+1. Créer un groupe de ressources avec [création de groupe de az](/cli/azure/group#create) toocontain hello nouvelle machine virtuelle :
 
 ```azurecli
 az group create -l westus -n myResourceGroup
 ```
-Pour créer la machine virtuelle elle-même, vous pouvez utiliser un modèle Azure Resource Manager déjà écrit [ici sur GitHub](https://github.com/Azure/azure-quickstart-templates/tree/master/lamp-app).
+toocreate hello machine virtuelle proprement dite, vous pouvez utiliser un modèle Azure Resource Manager déjà écrite [ici sur GitHub](https://github.com/Azure/azure-quickstart-templates/tree/master/lamp-app).
 
-2. Enregistrez le [fichier azuredeploy.parameters.json](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/lamp-app/azuredeploy.parameters.json) sur votre ordinateur local.
-3. Modifiez le fichier **azuredeploy.parameters.json** en insérant les entrées de votre choix.
-4. Déployez le modèle avec [az group deployment create] en faisant référence au fichier JSON téléchargé :
+2. Enregistrer hello [azuredeploy.parameters.json fichier](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/lamp-app/azuredeploy.parameters.json) tooyour les ordinateur local.
+3. Modifier hello **azuredeploy.parameters.json** tooyour de fichier par défaut des entrées.
+4. Déployer le modèle hello avec [création du déploiement d’un groupe az] référençant hello téléchargé fichier json :
 
 ```azurecli
 az group deployment create -g myResourceGroup \
@@ -63,7 +63,7 @@ az group deployment create -g myResourceGroup \
     --parameters @filepathToParameters.json
 ```
 
-Le résultat ressemble à l’exemple suivant :
+Hello la sortie est similaire toohello l’exemple suivant :
 
 ```json
 {
@@ -86,17 +86,17 @@ Le résultat ressemble à l’exemple suivant :
 }
 ```
 
-Vous avez maintenant créé une machine virtuelle Linux avec LAMP déjà installé. Si vous le souhaitez, vous pouvez vérifier l’installation en accédant à la section [Vérification de l’installation correcte de LAMP](#verify-lamp-successfully-installed).
+Vous avez maintenant créé une machine virtuelle Linux avec LAMP déjà installé. Si vous le souhaitez, vous pouvez vérifier l’installation de hello en sautant trop bas[vérifier feu installé avec succès](#verify-lamp-successfully-installed).
 
 ## <a name="deploy-lamp-on-existing-vm-walkthrough"></a>Procédure pas à pas de déploiement de LAMP sur une machine virtuelle existante
-Si vous avez besoin d’aide pour créer une machine virtuelle Linux, vous pouvez vous rendre [ici pour apprendre à créer une machine virtuelle Linux](https://docs.microsoft.com/azure/virtual-machines/virtual-machines-linux-quick-create-cli). Ensuite, vous devez intégrer SSH à la machine virtuelle Linux. Si vous avez besoin d’aide pour créer une clé SSH, vous pouvez vous rendre [ici pour apprendre à créer une clé SSH sous Linux/Mac](mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+Si vous avez besoin d’aide pour créer une VM Linux, vous pouvez head [toolearn ici comment toocreate un VM Linux](https://docs.microsoft.com/azure/virtual-machines/virtual-machines-linux-quick-create-cli). Ensuite, vous devez tooSSH dans hello Linux VM. Si vous avez besoin d’aide sur la création d’une clé SSH, vous pouvez head [toolearn ici comment toocreate une clé SSH sur Linux/Mac](mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 Si vous disposez déjà d’une clé SSH, continuez et ouvrez en ligne de commande une connexion SSH à votre machine virtuelle Linux avec `ssh azureuser@mypublicdns.westus.cloudapp.azure.com`.
 
-Maintenant que vous travaillez dans votre machine virtuelle Linux, nous allons étudier l’installation de la pile LAMP sur des distributions Debian. Les commandes exactes peuvent varier pour les autres distributions Linux.
+Maintenant que vous utilisez dans votre VM Linux, nous pouvons guider dans l’installation de la pile de feu hello sur les distributions Debian. les commandes exactes Hello peuvent différer pour les autres versions de Linux.
 
 #### <a name="installing-on-debianubuntu"></a>Installation sur Debian/Ubuntu
-Les packages suivants doivent être installés : `apache2`, `mysql-server`, `php5` et `php5-mysql`. Vous pouvez les installer directement à partir de ces packages ou à l’aide de Tasksel.
-Avant de procéder à l’installation, vous devez télécharger et mettre à jour les listes de packages.
+Vous devez hello suivant des packages installés : `apache2`, `mysql-server`, `php5`, et `php5-mysql`. Vous pouvez les installer directement à partir de ces packages ou à l’aide de Tasksel.
+Avant d’installer, vous devez toodownload et mettre à jour les listes de package.
 
 ```bash
 sudo apt-get update
@@ -117,26 +117,26 @@ sudo apt-get install tasksel
 sudo tasksel install lamp-server
 ```
 
-Après avoir exécuté l’une des options précédentes, vous serez invité à installer ces packages et d’autres dépendances. Pour définir un mot de passe d’administration pour MySQL, appuyez sur « y » puis « Entrée » pour continuer et suivez les indications des invites. Ce processus installe les extensions PHP minimales requises pour utiliser PHP avec MySQL. 
+Après l’exécution d’une des options précédentes de hello, vous allez être invité à tooinstall ces packages et divers autres dépendances. tooset un mot de passe d’administration pour MySQL, appuyez sur « y », puis sur 'Entrée' toocontinue, suivez toutes les invites. Ce processus installe hello minimale requise PHP les extensions nécessitées toouse PHP avec MySQL. 
 
 ![][1]
 
-Exécutez les commandes suivantes pour voir les autres extensions PHP disponibles sous forme de packages :
+Exécutez hello suivant commande toosee autres extensions PHP disponibles sous forme de packages :
 
 ```bash
 apt-cache search php5
 ```
 
 #### <a name="create-infophp-document"></a>Création d’un document info.php
-Vous devez maintenant être en mesure de vérifier la version d’Apache, de MySQL et de PHP figurant dans la ligne de commande en tapant `apache2 -v`, `mysql -v` ou `php -v`.
+Vous devez maintenant être en mesure de toocheck quelle version de PHP, MySQL et Apache vous avez via la ligne de commande hello en tapant `apache2 -v`, `mysql -v`, ou `php -v`.
 
-Si vous souhaitez poursuivre le test, vous pouvez créer une page d’informations PHP rapide à afficher dans un navigateur. Créez un fichier avec l’éditeur de texte Nano à l’aide de la commande suivante :
+Si vous devez comme tootest en outre, vous pouvez créer un tooview de page PHP info rapide dans un navigateur. Créez un fichier avec l’éditeur de texte Nano à l’aide de la commande suivante :
 
 ```bash
 sudo nano /var/www/html/info.php
 ```
 
-Dans l’éditeur de texte GNU Nano, ajoutez les lignes suivantes :
+Dans l’éditeur de texte hello GNU Nano, ajoutez hello lignes suivantes :
 
 ```php
 <?php
@@ -144,7 +144,7 @@ phpinfo();
 ?>
 ```
 
-Enregistrez ensuite votre travail et quittez l’éditeur de texte.
+Ensuite, enregistrez et quittez l’éditeur de texte hello.
 
 Redémarrez Apache avec cette commande pour que toutes les nouvelles installations prennent effet.
 
@@ -153,18 +153,18 @@ sudo service apache2 restart
 ```
 
 ## <a name="verify-lamp-successfully-installed"></a>Vérification de l’installation correcte de LAMP
-Vous pouvez maintenant consulter la page d’informations PHP que vous avez créée en ouvrant un navigateur et en accédant à http://votreDNSunique/info.php. Elle doit ressembler à cette image.
+Vous pouvez maintenant vérifier vous avez créé en ouvrant un navigateur et allez toohttp://youruniqueDNS/info.php page des informations hello PHP. Il doit se présenter une image toothis similaire.
 
 ![][2]
 
-Vous pouvez vérifier votre installation Apache en consultant la page par défaut d’Ubuntu Apache2 en accédant à http://votreDNSunique/. Le résultat ressemble à l’exemple suivant :
+Vous pouvez vérifier votre installation Apache en consultant hello Apache2 Ubuntu par défaut Page en accédant tooyou http://youruniqueDNS/. Hello la sortie est similaire toohello l’exemple suivant :
 
 ![][3]
 
 Félicitations, vous avez configuré une pile LAMP sur votre machine virtuelle Azure !
 
 ## <a name="next-steps"></a>Étapes suivantes
-Consultez la documentation Ubuntu sur la pile LAMP :
+Consultez hello documentation Ubuntu sur la pile de feu hello :
 
 * [https://help.ubuntu.com/community/ApacheMySQLPHP](https://help.ubuntu.com/community/ApacheMySQLPHP)
 

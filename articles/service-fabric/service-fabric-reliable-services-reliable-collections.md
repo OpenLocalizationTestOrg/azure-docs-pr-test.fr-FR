@@ -1,6 +1,6 @@
 ---
-title: "Introduction aux Collections fiables dans les services avec état d’Azure Service Fabric | Microsoft Docs"
-description: "Les services avec état de Service Fabric fournissent des collections fiables qui vous permettent d’écrire des applications cloud hautement disponibles, évolutives et à faible latence."
+title: "aaaIntroduction tooReliable Collections dans les services avec état Azure Service Fabric | Documents Microsoft"
+description: "Services avec état service Fabric fournissent des collections fiables qui vous toowrite les applications de cloud hautement disponibles, évolutives et à faible latence."
 services: service-fabric
 documentationcenter: .net
 author: mcoskun
@@ -14,44 +14,44 @@ ms.tgt_pltfrm: na
 ms.workload: required
 ms.date: 5/1/2017
 ms.author: mcoskun
-ms.openlocfilehash: d0247ba0242af05ca6dcd8049ff9116683538fa5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9f67c48f13e8b91b84977e127e2545cbb9d9a158
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="introduction-to-reliable-collections-in-azure-service-fabric-stateful-services"></a>Introduction aux Collections fiables dans les services avec état d’Azure Service Fabric
-Les Collections fiables vous permettent d’écrire des applications cloud hautement disponibles, évolutives et à faible latence comme si vous écriviez des applications informatiques uniques. Les classes dans l’espace de noms **Microsoft.ServiceFabric.Data.Collections** fournissent un ensemble de collections qui rendent automatiquement votre état hautement disponible. Les développeurs doivent programmer uniquement les API de Collection fiable et laisser les Collections fiables gérer l’état répliqué et local.
+# <a name="introduction-tooreliable-collections-in-azure-service-fabric-stateful-services"></a>Introduction tooReliable Collections dans les services avec état Azure Service Fabric
+Fiables Collections vous permettent aux applications de cloud hautement disponibles, évolutives et à faible latence toowrite comme si vous écrivez des applications d’ordinateur unique. Hello classes Bonjour **Microsoft.ServiceFabric.Data.Collections** espace de noms fournissent un jeu de collections qui automatiquement votre état hautement disponible. Les développeurs doivent tooprogram, toohello uniquement les API de Collection fiable et permettent à des Collections fiable de gérer hello répliquées et état local.
 
-La principale différence entre les Collections fiables et d'autres technologies de haute disponibilité (comme Redis, le service Table Azure et le service File d'attente Azure) est que l'état est conservé localement dans l'instance de service tout en étant également rendu hautement disponible. Cela signifie que :
+Hello principale différence entre les Collections fiable et d’autres technologies de haute disponibilité (par exemple, Redis, service de Table Azure et le service de file d’attente Azure) est que l’état de hello est conservé localement dans l’instance de service hello lors également rendue hautement disponible. Cela signifie que :
 
 * Toutes les lectures sont locales, ce qui entraîne des lectures à faible latence et à débit élevé.
-* Toutes les écritures induisent un nombre minimal d’entrées et sorties réseau, ce qui entraîne des écritures à latence faible et à débit élevé.
+* Toutes les écritures entraînent hello minimum d’e/s du réseau, ce qui entraîne une latence faible et haut débit est écrit.
 
 ![Image de l'évolution des collections.](media/service-fabric-reliable-services-reliable-collections/ReliableCollectionsEvolution.png)
 
-Les Collections fiables peuvent être considérées comme l’évolution naturelle des classes **System.Collections** : un nouveau jeu de collections qui sont conçues pour les applications cloud et les applications pour plusieurs ordinateurs sans accroître la complexité pour les développeurs. En tant que telles, les Collections fiables sont :
+Collections fiables peuvent être considérées comme évolution naturelle de hello Hello **System.Collections** classes : un nouveau jeu de collections qui sont conçues pour les applications cloud et sur plusieurs ordinateurs hello sans augmenter la complexité de la développeur de Hello. En tant que telles, les Collections fiables sont :
 
 * Répliquées : les modifications d'état sont répliquées pour une haute disponibilité.
-* Persistantes : les données sont conservées sur le disque pour la durabilité contre les pannes à grande échelle (par exemple, une panne de courant dans un centre de données).
-* Asynchrones : les API sont asynchrones afin de s’assurer que les threads ne sont pas bloqués en cas d’entrées/sorties.
-* Transactionnelles : les API utilisent l’abstraction de transactions pour vous permettre de gérer facilement plusieurs Collections fiables au sein d’un service.
+* Persistantes : Les données sont persistante toodisk pour une durabilité contre les pannes à grande échelle (par exemple, une panne de courant de centre de données).
+* Asynchrone : Les API sont tooensure asynchrone que les threads ne sont pas bloqués lors de subir des e/s.
+* Transactionnelle : API utilise abstraction hello de transactions vous pouvez de gérer facilement plusieurs Collections fiable au sein d’un service.
 
-Les Collections fiables fournissent des garanties de forte cohérence instantanée afin de faciliter le raisonnement sur l'état de l'application.
-La forte cohérence est obtenue en s’assurant que la transaction n’est validée comme terminée que lorsque l’intégralité de la transaction a été enregistrée dans un quorum majoritaire de réplicas, y compris le réplica principal.
-Pour obtenir une cohérence plus faible, les applications peuvent accuser réception au client/demandeur avant la validation asynchrone.
+Collections fiables fournissent des garanties de cohérence forte hors toomake de zone hello raisonnement concernant l’état de l’application plus facile.
+Cohérence forte est obtenue en s’assurant que la transaction est validée terminer uniquement après que l’intégralité de la transaction hello a été enregistré sur un quorum majoritaire de réplicas, y compris hello principal.
+tooachieve de cohérence plus faible, applications peuvent accuser réception différé toohello client/demandeur avant le retour de validation asynchrone de hello.
 
-Les API de Collections fiables sont une évolution des API de collections simultanées (trouvées dans l’espace de noms **System.Collections.Concurrent** ) :
+API de Collections fiable Hello sont une évolution de collections simultanées API (trouvé dans hello **System.Collections.Concurrent** espace de noms) :
 
-* Asynchrones : renvoie une tâche, car contrairement aux collections simultanées, les opérations sont répliquées et conservées.
-* Aucun paramètre de sortie : utilise `ConditionalValue<T>` pour renvoyer un paramètre booléen et une valeur au lieu de paramètres. `ConditionalValue<T>` est similaire à `Nullable<T>`, mais ne nécessite ne pas que T soit une structure.
-* Transactions : utilise un objet de transaction pour permettre à l'utilisateur de regrouper des actions sur plusieurs Collections fiables dans une transaction.
+* Asynchrone : Retourne une tâche puisque, contrairement aux regroupements simultanées, les opérations de hello sont répliquées et persistante.
+* Paramètres de sortie ne : utilise `ConditionalValue<T>` tooreturn un bool et une valeur à la place de paramètres de sortie. `ConditionalValue<T>`est semblable à `Nullable<T>` mais ne nécessite ne pas de T toobe un struct.
+* Transactions : Utilise un transaction objet tooenable hello utilisateur toogroup d’actions sur plusieurs Collections fiable dans une transaction.
 
 Actuellement, **Microsoft.ServiceFabric.Data.Collections** contient trois collections :
 
-* [Dictionnaire fiable](https://msdn.microsoft.com/library/azure/dn971511.aspx): représente une collection répliquée, transactionnelle et asynchrone de paires clé/valeur. Semblables à celles de **ConcurrentDictionary**, la clé et la valeur peuvent être de tout type.
-* [File d’attente fiable](https://msdn.microsoft.com/library/azure/dn971527.aspx): représente une file d’attente FIFO stricte, répliquée, transactionnelle et asynchrone. Semblable à celle de **ConcurrentQueue**, la valeur peut être de tout type.
-* [File d’attente simultanée fiable](service-fabric-reliable-services-reliable-concurrent-queue.md) : représente une file d’attente de classement de meilleur effort répliquée, transactionnelle et asynchrone, pour un débit élevé. Semblable à celle de **ConcurrentQueue**, la valeur peut être de tout type.
+* [Dictionnaire fiable](https://msdn.microsoft.com/library/azure/dn971511.aspx): représente une collection répliquée, transactionnelle et asynchrone de paires clé/valeur. Similaire trop**ConcurrentDictionary**, les deux hello clé et valeur de hello peut être de n’importe quel type.
+* [File d’attente fiable](https://msdn.microsoft.com/library/azure/dn971527.aspx): représente une file d’attente FIFO stricte, répliquée, transactionnelle et asynchrone. Similaire trop**ConcurrentQueue**, valeur de hello peut être de n’importe quel type.
+* [File d’attente simultanée fiable](service-fabric-reliable-services-reliable-concurrent-queue.md) : représente une file d’attente de classement de meilleur effort répliquée, transactionnelle et asynchrone, pour un débit élevé. Similaire toohello **ConcurrentQueue**, valeur de hello peut être de n’importe quel type.
 
 ## <a name="next-steps"></a>Étapes suivantes
 * [Instructions et recommandations relatives aux collections fiables](service-fabric-reliable-services-reliable-collections-guidelines.md)

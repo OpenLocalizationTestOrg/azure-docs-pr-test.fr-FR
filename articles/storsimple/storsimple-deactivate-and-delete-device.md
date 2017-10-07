@@ -1,6 +1,6 @@
 ---
-title: "Désactiver et supprimer un appareil StorSimple | Microsoft Docs"
-description: "Explique comment supprimer un appareil StorSimple du service en le désactivant dans un premier temps, puis en le supprimant."
+title: aaaDeactivate et supprimer un appareil StorSimple | Documents Microsoft
+description: "Décrit comment l’appareil StorSimple tooremove service en désactiver tout d’abord, puis leur suppression."
 services: storsimple
 documentationcenter: 
 author: SharS
@@ -15,83 +15,83 @@ ms.workload: na
 ms.date: 05/17/2017
 ms.author: anbacker
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: c000a642aa088ac80cc7077453b87e9a47f96900
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ed86bcd089aa957128e14b1709c836d938c131a4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deactivate-and-delete-a-storsimple-8000-series-device-via-storsimple-manager-service"></a>Désactivation et suppression d’un appareil StorSimple série 8000 via le service StorSimple Manager
 ## <a name="overview"></a>Vue d'ensemble
-Vous pouvez souhaiter mettre un appareil StorSimple hors service (par exemple, si vous voulez le remplacer ou le mettre à niveau, ou si vous ne voulez plus utiliser StorSimple). Dans ce cas, vous devez désactiver l’appareil avant de le supprimer. La désactivation interrompt la connexion entre l’appareil et le service StorSimple Manager correspondant. Ce didacticiel explique comment mettre un appareil StorSimple hors service en le désactivant, puis en le supprimant. 
+Vous souhaiterez peut-être tootake un appareil StorSimple hors service (par exemple, si vous remplacez ou la mise à niveau de votre appareil ou si vous n’utilisez plus StorSimple). Si c’est le cas de hello, vous devez appareil de hello toodeactivate avant de pouvoir le supprimer. La désactivation d’interrompt la connexion de hello entre l’appareil de hello et le service StorSimple Manager correspondant hello. Ce didacticiel explique comment tooremove un appareil StorSimple à partir de service par tout d’abord le désactiver, puis leur suppression. 
 
-Si vous désactivez un appareil, les données stockées localement sur ce dernier ne seront plus accessibles. Seules les données associées à l’appareil qui a été stocké dans le cloud peuvent être récupérées.  
+Lorsque vous désactivez un périphérique, toutes les données stockées localement sur l’appareil de hello ne seront plus accessibles. Uniquement les données de hello associées hello périphérique qui a été enregistrée dans le cloud de hello peuvent être récupérées.  
 
 > [!WARNING]
-> La désactivation est une opération DÉFINITIVE et ne peut pas être annulée. Un appareil désactivé ne peut pas être enregistré auprès du service StorSimple Manager, sauf s’il est d’abord réinitialisé aux paramètres d’usine par défaut. 
+> La désactivation est une opération DÉFINITIVE et ne peut pas être annulée. Un appareil désactivé ne peut pas être inscrit avec le service StorSimple Manager hello sauf s’il est tout d’abord rétablir les paramètres d’usine par défaut toohello. 
 > 
-> La réinitialisation aux paramètres d’usine supprime toutes les données stockées localement sur votre appareil. Par conséquent, il est essentiel de prendre un instantané cloud de toutes vos données avant de désactiver un appareil. Cela vous permettra de récupérer toutes les données à un stade ultérieur.
+> Hello réinitialisation processus supprime toutes les données hello qui a été stockées localement sur votre appareil. Par conséquent, il est essentiel de prendre un instantané cloud de toutes vos données avant de désactiver un appareil. Cela vous permettra de toorecover tous hello des données à un stade ultérieur.
 > 
 > 
 
 Ce didacticiel explique comment :
 
-* Désactiver un appareil et supprimer ses données
-* Désactiver un appareil et conserver ses données
+* Désactiver un appareil et de supprimer des données de hello
+* Désactiver un appareil et conserver les données de hello
 
 Il explique également comment fonctionnent la désactivation et la suppression sur un appareil virtuel StorSimple.
 
 > [!NOTE]
-> Avant de désactiver un appareil physique ou virtuel StorSimple, arrêtez ou supprimez les clients et les hôtes qui en dépendent.
+> Avant de désactiver un périphérique physique ou virtuel de StorSimple, assurez-vous que toostop ou supprimer des clients et les hôtes qui dépendent de cet appareil.
 > 
 > 
 
 ## <a name="deactivate-and-delete-data"></a>Désactiver et supprimer des données
-Si vous êtes intéressé par la suppression complète de l’appareil et que vous ne voulez pas conserver ses données, procédez comme suit :
+Si vous souhaitez supprimer complètement de périphérique de hello et que vous ne souhaitez pas que les données de salutation tooretain sur l’appareil de hello, puis terminez hello comme suit.
 
-#### <a name="to-deactivate-the-device-and-delete-the-data"></a>Pour désactiver l’appareil et supprimer ses données
-1. Avant de désactiver un appareil, vous devez supprimer tous les conteneurs de volumes (et les volumes) qui lui sont associés. Vous ne pouvez supprimer les conteneurs de volumes qu’après avoir supprimé les sauvegardes associées.
-2. Désactivez l’appareil de la manière suivante :
+#### <a name="toodeactivate-hello-device-and-delete-hello-data"></a>toodeactivate hello dispositif et supprimer les données de salutation
+1. Toodeactivating préalable un appareil, vous devez supprimer tous les hello volume conteneurs (et les volumes hello) associé au périphérique de hello. Vous pouvez supprimer des conteneurs de volumes uniquement après avoir supprimé les sauvegardes hello associé.
+2. Désactiver le dispositif de hello comme suit :
    
-   1. Dans la page **Appareil** du service StorSimple Manager, sélectionnez l’appareil que vous souhaitez désactiver, puis, en bas de la page, cliquez sur **Désactiver**.
-   2. Un message de confirmation s’affiche. Cliquez sur **Oui** pour continuer. Le processus de désactivation démarre et son exécution dure quelques minutes.
-3. À l’issue de la désactivation, vous pouvez supprimer complètement l’appareil. Si vous supprimez un appareil, il est retiré de la liste des appareils connectés au service. Le service ne peut alors plus gérer l’appareil supprimé. Procédez comme suit pour supprimer l’appareil :
+   1. Sur hello service StorSimple Manager **périphériques** page, l’appareil de hello select que vous souhaitez toodeactivate, au bas de hello de page de hello, cliquez sur **Deactivate**.
+   2. Un message de confirmation s’affiche. Cliquez sur **Oui** toocontinue. Hello désactiver le processus démarre et prendre quelques minutes toocomplete.
+3. Après la désactivation, vous pouvez supprimer complètement le périphérique de hello. Suppression d’un appareil supprime de la liste hello des périphériques connectés toohello service. service de Hello puis ne peut plus gérer les appareils hello supprimé. Utilisez hello suivant l’appareil de hello toodelete comme suit :
    
-   1. Dans la page **Appareils** du service StorSimple Manager, sélectionnez l’appareil désactivé à supprimer.
-   2. En bas de la page, cliquez sur **Supprimer**.
-   3. Vous êtes invité à confirmer l’opération. Cliquez sur **Oui** pour continuer.
+   1. Sur hello service StorSimple Manager **périphériques** , sélectionnez un appareil désactivé que vous souhaitez toodelete.
+   2. Bas hello sur la page de hello, cliquez sur **supprimer**.
+   3. Vous êtes invité à confirmer l’opération. Cliquez sur **Oui** toocontinue.
       
-      La suppression de l’appareil peut nécessiter quelques minutes.
+      Il peut prendre quelques minutes pour hello appareil toobe est supprimé.
 
 ## <a name="deactivate-and-retain-data"></a>Désactiver et conserver des données
-Si vous êtes intéressé par la suppression de l’appareil, mais voulez conserver ses données, procédez comme suit :
+Si vous intéressent supprimer hello appareil mais les données de salutation tooretain, puis terminez hello comme suit.
 
-#### <a name="to-deactivate-a-device-and-retain-the-data"></a>Pour désactiver un appareil et conserver ses données
-1. Désactivez l’appareil. Tous les conteneurs de volumes et les instantanés de l’appareil sont conservés.
+#### <a name="toodeactivate-a-device-and-retain-hello-data"></a>toodeactivate un appareil et conserver les données de hello
+1. Désactiver le dispositif de hello. Tous les hello conteneurs de volumes et instantanés hello du périphérique de hello reste.
    
-   1. Dans la page **Appareils** du service StorSimple Manager, sélectionnez l’appareil que vous souhaitez désactiver, puis, en bas de la page, cliquez sur **Désactiver**.
-   2. Un message de confirmation s’affiche. Cliquez sur **Oui** pour continuer. Le processus de désactivation démarre et son exécution dure quelques minutes.
-2. Vous pouvez maintenant basculer les conteneurs de volumes et les instantanés associés. Pour connaître les procédures, consultez [Basculement et récupération d'urgence pour votre appareil StorSimple](storsimple-device-failover-disaster-recovery.md).
-3. Après la désactivation et le basculement, vous pouvez supprimer complètement l’appareil. Si vous supprimez un appareil, il est retiré de la liste des appareils connectés au service. Le service ne peut alors plus gérer l’appareil supprimé. Procédez comme suit pour supprimer l’appareil :
+   1. Sur hello service StorSimple Manager **périphériques** page, l’appareil de hello select que vous souhaitez toodeactivate, au bas de hello de page de hello, cliquez sur **Deactivate**.
+   2. Un message de confirmation s’affiche. Cliquez sur **Oui** toocontinue. Hello désactiver le processus démarre et prendre quelques minutes toocomplete.
+2. Vous pouvez maintenant basculer les conteneurs de volumes hello et les instantanés de hello associé. Pour les procédures, passez trop[basculement et récupération d’urgence pour votre appareil StorSimple](storsimple-device-failover-disaster-recovery.md).
+3. Après la désactivation et de basculement, vous pouvez supprimer les périphériques hello complètement. Suppression d’un appareil supprime de la liste hello des périphériques connectés toohello service. service de Hello puis ne peut plus gérer les appareils hello supprimé. Hello complet suivant l’appareil de hello toodelete comme suit :
    
-   1. Dans la page **Appareils** du service StorSimple Manager, sélectionnez l’appareil désactivé à supprimer.
-   2. En bas de la page, cliquez sur **Supprimer**.
-   3. Vous êtes invité à confirmer l’opération. Cliquez sur **Oui** pour continuer.
+   1. Sur hello service StorSimple Manager **périphériques** , sélectionnez un appareil désactivé que vous souhaitez toodelete.
+   2. Bas hello sur la page de hello, cliquez sur **supprimer**.
+   3. Vous êtes invité à confirmer l’opération. Cliquez sur **Oui** toocontinue.
       
-      La suppression de l’appareil peut nécessiter quelques minutes.
+      Il peut prendre quelques minutes pour hello appareil toobe est supprimé.
 
 ## <a name="deactivate-and-delete-a-virtual-device"></a>Désactiver et supprimer un appareil virtuel
-Dans le cas d’un appareil virtuel StorSimple, la désactivation a pour effet de libérer la machine virtuelle. Vous pouvez ensuite supprimer la machine virtuelle et les ressources créées lors de son approvisionnement. Une fois l’appareil virtuel désactivé, il ne peut pas être restauré vers son état précédent. 
+Pour un périphérique virtuel StorSimple, désactivation désalloue hello virtual machine. Vous pouvez ensuite supprimer la machine virtuelle de hello et ressources hello créés lors de sa préparation. Une fois un appareil virtuel hello est désactivé, il ne peut pas être restauré tooits l’état précédent. 
 
-La désactivation entraîne ce qui suit :
+Résultats de la désactivation Bonjour suivant des actions :
 
-* L’appareil virtuel StorSimple est supprimé.
-* Les disques de données et de système d’exploitation créés pour l’appareil virtuel StorSimple sont supprimés.
-* Le service hébergé et le réseau virtuel créés lors de l’approvisionnement sont conservés. Si vous n’utilisez pas ces entités, vous devez les supprimer manuellement.
-* Les instantanés cloud créés par l’appareil virtuel StorSimple sont conservés.
+* un appareil virtuel StorSimple Hello est supprimé.
+* Hello OSDisk et des disques de données créé pour un appareil virtuel StorSimple hello sont supprimés.
+* Hello Service hébergé et un réseau virtuel qui ont été créés lors de la configuration sont conservés. Si vous n’utilisez pas ces entités, vous devez les supprimer manuellement.
+* Les instantanés cloud créés par un appareil virtuel StorSimple hello sont conservés.
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Pour restaurer les paramètres d’usine de l’appareil désactivé, consultez [Rétablir les paramètres d’usine de l’appareil](storsimple-manage-device-controller.md#reset-the-device-to-factory-default-settings).
+* toorestore hello des valeurs par défaut de toofactory appareil désactivé, accédez trop[rétablir les paramètres par défaut de hello appareil toofactory](storsimple-manage-device-controller.md#reset-the-device-to-factory-default-settings).
 * Pour obtenir une assistance technique, [contactez le support technique de Microsoft](storsimple-contact-microsoft-support.md).
-* Pour en savoir plus sur l’utilisation du service StorSimple Manager, consultez [Utiliser le service StorSimple Manager pour gérer votre appareil StorSimple](storsimple-manager-service-administration.md). 
+* toolearn savoir plus sur comment toouse hello service StorSimple Manager, accédez trop[utilisez hello tooadminister du service StorSimple Manager de votre appareil StorSimple](storsimple-manager-service-administration.md). 
 

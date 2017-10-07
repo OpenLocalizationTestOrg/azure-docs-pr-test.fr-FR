@@ -1,6 +1,6 @@
 ---
-title: "Documentation sur les groupes de machines virtuelles identiques Azure - Didacticiels, informations de référence sur les API | Microsoft Docs"
-description: "Apprenez à utiliser Virtual Machine Scale Sets pour créer des machines virtuelles Windows ou Linux prenant en charge la mise à l’échelle automatique dans le cadre de solutions de calculs volumineux, de solutions Big Data et de solutions en conteneur."
+title: "aaaAzure Documentation de jeux de Machine virtuelle mise à l’échelle - didacticiels, référence de l’API | Documents Microsoft"
+description: "Découvrez comment toocreate de machines virtuelles identiques toouse montée en puissance automatique Windows ou les machines virtuelles Linux pour des solutions big compute et données volumineuses."
 services: virtual-machine-scale-sets
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: c03fc321082b8be9044faf0e57e2f26ddc22c243
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7f4a4812e2ba44cabfd54bc25fa3b66a04c5bbe8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 #<a name="virtual-machine-scale-sets-documentation"></a>Documentation sur les groupes de machines virtuelles identiques
 
-Découvrez comment utiliser Virtual Machine Scale Sets pour déployer et gérer un ensemble de machines virtuelles Windows ou Linux identiques prenant en charge la mise à l’échelle automatique. La documentation vous montre comment utiliser Scale Sets pour prendre en charge des services qui ciblent des solutions de calculs volumineux, des solutions Big Data et des solutions en conteneur.
+Découvrez comment mettre à l’échelle de Machine virtuelle toouse définit toodeploy et gérer un ensemble d’identiques, montée en puissance automatique Windows ou les machines virtuelles Linux. Documentation vous montre comment toouse identiques toosupport ce calcul big de cible, données et services des solutions.
 
 <ul class="panelContent cardsFTitle">
     <li>

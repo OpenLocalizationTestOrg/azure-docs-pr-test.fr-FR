@@ -1,6 +1,6 @@
 ---
-title: Log Analytics - FAQ | Microsoft Docs
-description: "Réponses aux questions fréquemment posées sur le service Azure Log Analytics."
+title: aaaLog Analytique FAQ | Documents Microsoft
+description: "Elles en sonttrop de réponses aux questions posées hello service de l’Analytique des journaux Azure."
 services: log-analytics
 documentationcenter: 
 author: MGoedtel
@@ -14,156 +14,156 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/18/2017
 ms.author: magoedte
-ms.openlocfilehash: 8ddea06b1a90e9b1599466ad4d1c3af7a6dc8ba9
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 25931f521cbb6ec840184221c6c1a5794b3445f0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="log-analytics-faq"></a>FAQ sur Log Analytics
-Ce FAQ Microsoft est une liste des questions fréquemment posées concernant Log Analytics dans Microsoft Operations Management Suite (OMS). Si vous avez d’autres questions sur Log Analytics, rendez-vous sur le [forum de discussion](https://social.msdn.microsoft.com/Forums/azure/home?forum=opinsights) et publiez vos questions. Lorsqu’une question est fréquemment posée, nous l’ajoutons à cet article pour qu’elle soit facile et rapide à trouver.
+Ce FAQ Microsoft est une liste des questions fréquemment posées concernant Log Analytics dans Microsoft Operations Management Suite (OMS). Si vous avez d’autres questions sur Analytique de journal, accédez à toohello [forum de discussion](https://social.msdn.microsoft.com/Forums/azure/home?forum=opinsights) et publiez vos questions. Lorsqu’une question est fréquemment posée, nous ajouter toothis article afin qu’il peut trouver rapidement et facilement.
 
 ## <a name="general"></a>Généralités
 
-### <a name="q-does-log-analytics-use-the-same-agent-as-azure-security-center"></a>Q : Log Analytics utilise-t-il le même agent qu’Azure Security Center ?
+### <a name="q-does-log-analytics-use-hello-same-agent-as-azure-security-center"></a>Q : Analytique de journal utilise-t-il hello même agent comme Azure Security Center ?
 
-R : Au début du mois de juin 2017, Azure Security Center a commencé à utiliser Microsoft Monitoring Agent pour collecter et stocker des données. Pour en savoir plus, consultez [Forum aux questions sur la migration de plateforme Azure Security Center](../security-center/security-center-platform-migration-faq.md).
+R : Dans les premières juin 2017, Azure Security Center a commencé à l’aide de Microsoft Monitoring Agent toocollect et le magasin de données d’hello. toolearn, voir [Azure Security Center Platform Migration FAQ](../security-center/security-center-platform-migration-faq.md).
 
-### <a name="q-what-checks-are-performed-by-the-ad-and-sql-assessment-solutions"></a>Q : Quels sont les contrôles effectués par les solutions AD et SQL Assessment ?
+### <a name="q-what-checks-are-performed-by-hello-ad-and-sql-assessment-solutions"></a>Q : Les vérifications sont effectuées par hello AD et les solutions d’évaluation de SQL ?
 
-R. La requête suivante comporte une description de tous les contrôles effectués actuellement :
+R : Hello requête suivante affiche une description de toutes les vérifications actuellement effectuées :
 
 ```
 (Type=SQLAssessmentRecommendation OR Type=ADAssessmentRecommendation) | dedup RecommendationId | select FocusArea, ActionArea, Recommendation, Description | sort Type, FocusArea,ActionArea, Recommendation
 ```
 
-Les résultats peuvent ensuite être exportés vers Excel pour être examinés.
+Hello résultats peuvent ensuite être exportée tooExcel pour un examen plus approfondi.
 
 ### <a name="q-why-do-i-see-something-different-than-oms-in-system-center-operations-manager-console"></a>Q : Pourquoi vois-je autre chose *qu’OMS* dans la console System Center Operations Manager ?
 
 R : Selon le correctif cumulatif d’Operations Manager que vous utilisez, vous pouvez voir un nœud pour *System Center Advisor*, *Operational Insights* ou *Log Analytics*.
 
-La mise à jour de la chaîne de texte vers *OMS* est incluse dans un pack d’administration, qui doit être importé manuellement. Pour afficher le texte et les fonctionnalités actuels, suivez les instructions de l’article de la Base de connaissances sur le dernier correctif cumulatif de System Center Operations Manager et actualisez la console.
+Hello mise à jour de chaîne de texte trop*OMS* est inclus dans un Pack d’administration, qui doit toobe importé manuellement. texte de toosee hello actuel et les fonctionnalités, suivez les instructions de hello hello dernière mise à jour cumul Ko de System Center Operations Manager article et actualisation hello console.
 
 ### <a name="q-is-there-an-on-premises-version-of-log-analytics"></a>Q : Existe-t-il une version *locale* de Log Analytics ?
 
-R : Non. Log Analytics traite et stocke de grandes quantités de données. En tant que service cloud, Log Analytics peut évoluer si nécessaire et éviter tout impact sur les performances de votre environnement.
+R : Non. Log Analytics traite et stocke de grandes quantités de données. Comme un service cloud, Analytique de journal est en mesure de tooscale à distance si nécessaire et éviter de n’importe quel environnement de tooyour d’impact sur les performances.
 
 En voici d’autres avantages :
-- Microsoft exécute l’infrastructure Log Analytics, ce qui est source d’économies pour vous.
+- Microsoft s’exécute l’infrastructure hello Analytique de journal, vous évitant les coûts
 - Des correctifs et des mises à jour des fonctionnalités sont régulièrement déployés.
 
 ### <a name="q-how-do-i-troubleshoot-that-log-analytics-is-no-longer-collecting-data"></a>Q : Si Log Analytics ne collecte plus de données, comment détecter le problème ?
 
-R : Si vous utilisez le niveau tarifaire gratuit et que vous avez envoyé plus de 500 Mo de données le même jour, la collecte de données s’arrête pour le reste de la journée. La limite quotidienne est la principale raison pour laquelle Log Analytics arrête la collecte de données ou des données semblent manquantes.
+R : Si vous êtes sur hello libre de niveau de tarification et que vous avez envoyés plus de 500 Mo de données dans un jour, la collecte de données s’arrête pour rest hello du jour de hello. Après avoir atteint limite quotidienne de hello est une raison courante Analytique de journal arrête la collecte de données ou les données apparaissent toobe manquant.
 
 Log Analytics crée un événement de type *Operation* lorsque la collecte de données démarre et s’arrête. 
 
-Exécutez la requête suivante dans la recherche pour vérifier si vous atteignez la limite quotidienne et si des données sont manquantes :`Type=Operation OperationCategory="Data Collection Status"`
+Exécutez hello suivant la requête de recherche toocheck si vous êtes atteint la limite quotidienne de hello et données manquantes :`Type=Operation OperationCategory="Data Collection Status"`
 
-Lorsque la collecte de données s’arrête, *OperationStatus* a la valeur **Warning**. Lorsque la collecte de données démarre, *OperationStatus* a la valeur **Succeeded**. 
+Lorsque la collecte de données s’arrête, hello *OperationStatus* est **avertissement**. Lorsque la collecte de données démarre, hello *OperationStatus* est **Succeeded**. 
 
-Le tableau suivant décrit les raisons pour lesquelles la collecte de données s’arrête et suggère une action pour la reprendre :
+Hello tableau suivant décrit les raisons pour lesquelles l’arrêt de la collecte de données et une collection de données tooresume action suggérée :
 
-| Raison pour laquelle la collecte de données s’arrête                       | Pour reprendre la collecte de données |
+| Raison pour laquelle la collecte de données s’arrête                       | collecte des données tooresume |
 | -------------------------------------------------- | ----------------  |
-| Limite quotidienne de données gratuites atteinte<sup>1</sup>       | Attendez le jour suivant pour que la collecte redémarre automatiquement ou<br> Passez à un niveau tarifaire payant |
-| Abonnement Azure à l’état interrompu pour la raison suivante : <br> Fin de l’essai gratuit <br> Expiration du Pass Azure <br> Limite de dépense mensuelle atteinte (par exemple, sur un abonnement MSDN ou Visual Studio)                          | Passer à un abonnement payant <br> Passer à un abonnement payant <br> Supprimer la limite ou attendre sa réinitialisation |
+| Limite quotidienne de données gratuites atteinte<sup>1</sup>       | Attendez que hello suivant jour pour le redémarrage de tooautomatically de collection, ou<br> Modification tooa payé niveau tarifaire |
+| Abonnement Azure à l’état interrompu pour la raison suivante : <br> Fin de l’essai gratuit <br> Expiration du Pass Azure <br> Limite de dépense mensuelle atteinte (par exemple, sur un abonnement MSDN ou Visual Studio)                          | Convertir tooa abonnement payée <br> Convertir tooa abonnement payée <br> Supprimer la limite ou attendre sa réinitialisation |
 
-<sup>1</sup> Si votre espace de travail utilise le niveau tarifaire gratuit, vous êtes limité à 500 Mo de données envoyées au service par jour. Lorsque vous atteignez la limite quotidienne, la collecte de données s’arrête jusqu’au jour suivant. Les données envoyées pendant l’arrêt de la collecte de données ne sont pas indexées et ne sont pas accessibles à la recherche. Lorsque la collecte de données reprend, le traitement se produit uniquement pour les nouvelles données envoyées. 
+<sup>1</sup> si votre espace de travail se trouve sur hello libre de niveau de tarification, vous êtes limité toosending 500 Mo de données par le service de toohello jour. Lorsque vous atteignez la limite quotidienne de hello, collecte de données s’arrête jusqu'à hello jour suivant. Les données envoyées pendant l’arrêt de la collecte de données ne sont pas indexées et ne sont pas accessibles à la recherche. Lorsque la collecte de données reprend, le traitement se produit uniquement pour les nouvelles données envoyées. 
 
-Log Analytics utilise l’heure UTC ; chaque jour commence à minuit UTC. Si l’espace de travail atteint la limite quotidienne, le traitement reprend à la première heure du jour UTC suivant.
+Log Analytics utilise l’heure UTC ; chaque jour commence à minuit UTC. Si l’espace de travail hello atteint la limite quotidienne de hello, le traitement reprend pendant hello première heure Hello jour UTC suivant.
 
 ### <a name="q-how-can-i-be-notified-when-data-collection-stops"></a>Q : Comment être informé de l’arrêt de la collecte de données ?
 
-R : Suivez les étapes décrites dans [Créer une règle d’alerte](log-analytics-alerts-creating.md#create-an-alert-rule) pour être averti lorsque la collecte de données s’arrête.
+R : utilisez les étapes de hello décrites dans [créer une règle d’alerte](log-analytics-alerts-creating.md#create-an-alert-rule) toobe informé de l’arrêt de la collecte de données.
 
-Lorsque vous créez l’alerte d’arrêt de la collecte de données, définissez les valeurs suivantes :
-- **Nom** : *Collecte de données arrêtée*
-- **Gravité** : *Avertissement*
-- **Requête de recherche** : `Type=Operation OperationCategory="Data Collection Status" OperationStatus=Warning`
-- **Fenêtre de temps** : *2 heures*
-- **Fréquence de l’alerte** : une heure, car les données d’utilisation ne sont mises à jour qu’une fois par heure.
-- **Générer l’alerte selon** sur *nombre de résultats*
-- **Nombre de résultats** sur *Greater than 0* (Supérieur à 0)
+Lors de la création d’alerte hello arrêt de la collecte de données, définissez le :
+- **Nom** trop*arrêtée la collecte de données*
+- **Gravité** trop*avertissement*
+- **Requête de recherche** trop`Type=Operation OperationCategory="Data Collection Status" OperationStatus=Warning`
+- **Fenêtre de temps** trop*2 heures*.
+- **Fréquence des alertes** toobe une heure dans la mesure où les données d’utilisation hello met à jour uniquement une fois par heure.
+- **Générer une alerte en fonction de** toobe *nombre de résultats*
+- **Nombre de résultats** toobe *supérieur à 0*
 
-Suivez les étapes décrites dans [ajouter des actions à des règles d’alerte](log-analytics-alerts-actions.md) afin de configurer une action de type courrier électronique, webhook ou runbook pour la règle d’alerte.
+Utilisez les étapes hello décrites dans [ajouter des actions tooalert règles](log-analytics-alerts-actions.md) configurer une action de courrier électronique, webhook ou runbook pour la règle d’alerte hello.
 
 
 ## <a name="configuration"></a>Configuration
-### <a name="q-can-i-change-the-name-of-the-tableblob-container-used-to-read-from-azure-diagnostics-wad"></a>Q : Puis-je modifier le nom du conteneur Blob ou Table utilisé pour lire sur Azure Diagnostics (WAD) ?
+### <a name="q-can-i-change-hello-name-of-hello-tableblob-container-used-tooread-from-azure-diagnostics-wad"></a>Q : Modifier le nom hello de hello objets blob ou table conteneur utilisé tooread à partir de Azure Diagnostics (WAD) ?
 
-R. Non, il n’est pas possible pour le moment de lire des tables ou des conteneurs arbitraires dans le stockage Azure.
+R : Non, il n’est pas possible actuellement tooread à partir de tables arbitraires ou des conteneurs dans le stockage Azure.
 
-### <a name="q-what-ip-addresses-does-the-log-analytics-service-use-how-do-i-ensure-that-my-firewall-only-allows-traffic-to-the-log-analytics-service"></a>Q : Quelles sont les adresses IP utilisées par le service Log Analytics ? Comment vérifier que le pare-feu autorise uniquement le trafic vers le service Log Analytics ?
+### <a name="q-what-ip-addresses-does-hello-log-analytics-service-use-how-do-i-ensure-that-my-firewall-only-allows-traffic-toohello-log-analytics-service"></a>Q : Les adresses IP hello utilisation du service journal Analytique ? Comment s’assurer que mon pare-feu autorise uniquement les services d’Analytique des journaux de trafic toohello ?
 
-R. Le service Log Analytics repose sur Azure. Les adresses IP Log Analytics se trouvent dans les [plages d’adresses IP des centres de données Microsoft Azure](http://www.microsoft.com/download/details.aspx?id=41653).
+R : Hello service d’Analytique de journal s’appuie sur Azure. Adresses IP de l’Analytique de journal sont Bonjour [plages d’adresses IP Microsoft Azure Datacenter](http://www.microsoft.com/download/details.aspx?id=41653).
 
-Les adresses IP réelles du service Log Analytics changent au fil des déploiements. Les noms DNS autorisés par votre pare-feu sont documentées à l’adresse [Configurer les paramètres de pare-feu et de proxy dans Log Analytics](log-analytics-proxy-firewall.md).
+Lors des déploiements de service, hello adresses IP de service de l’Analytique des journaux de hello changent. Hello tooallow de noms DNS dans votre pare-feu sont documentés dans [configurer les paramètres de pare-feu et de proxy dans le journal Analytique](log-analytics-proxy-firewall.md).
 
-### <a name="q-i-use-expressroute-for-connecting-to-azure-does-my-log-analytics-traffic-use-my-expressroute-connection"></a>Q : J’utilise ExpressRoute pour me connecter à Azure. Mon trafic Log Analytics utilise-t-il ma connexion ExpressRoute ?
+### <a name="q-i-use-expressroute-for-connecting-tooazure-does-my-log-analytics-traffic-use-my-expressroute-connection"></a>Q : J’utilise ExpressRoute pour la connexion tooAzure. Mon trafic Log Analytics utilise-t-il ma connexion ExpressRoute ?
 
-R. Les différents types de trafic ExpressRoute sont décrits dans la [documentation ExpressRoute](../expressroute/expressroute-faqs.md#supported-services).
+R : Hello de différents types de trafic ExpressRoute est décrits dans hello [documentation d’ExpressRoute](../expressroute/expressroute-faqs.md#supported-services).
 
-Le trafic vers Log Analytics utilise le circuit ExpressRoute d’homologation publique.
+Le trafic tooLog Analytique utilise le circuit de ExpressRoute d’homologation publique hello.
 
-### <a name="q-is-there-a-simple-and-easy-way-to-move-an-existing-log-analytics-workspace-to-another-log-analytics-workspaceazure-subscription"></a>Q : Existe-t-il un moyen simple de déplacer un espace de travail Log Analytics existant vers un autre espace de travail Log Analytics ou un autre abonnement Azure ?
+### <a name="q-is-there-a-simple-and-easy-way-toomove-an-existing-log-analytics-workspace-tooanother-log-analytics-workspaceazure-subscription"></a>Q : Existe-t-il un moyen simple et facile de toomove un tooanother d’espace de travail existant Analytique de journal Analytique de journal espace de travail/abonnement Azure ?
 
-R. La cmdlet `Move-AzureRmResource` permet de déplacer un espace de travail Log Analytics ainsi qu’un compte Automation d’un abonnement Azure à un autre. Pour plus d’informations, consultez [Move-AzureRmResource](http://msdn.microsoft.com/library/mt652516.aspx).
+R : Hello `Move-AzureRmResource` applet de commande vous permet de déplacer un espace de travail Analytique de journal et un compte Automation à partir d’un abonnement Azure tooanother. Pour plus d’informations, consultez [Move-AzureRmResource](http://msdn.microsoft.com/library/mt652516.aspx).
 
-Cette modification peut également être effectuée dans le portail Azure.
+Cette modification peut également avoir lieu dans hello portail Azure.
 
-Vous ne pouvez pas déplacer les données d’un espace de travail Log Analytics vers un autre ou modifier la région de données dans laquelle les données Log Analytics sont stockées.
+Vous ne peut pas déplacer les données d’une tooanother d’espace de travail Analytique des journaux ou modifier les données Analytique de journal sont stockées dans la région hello.
 
-### <a name="q-how-do-i-add-log-analytics-to-system-center-operations-manager"></a>Q : Comment ajouter Log Analytics à System Center Operations Manager ?
+### <a name="q-how-do-i-add-log-analytics-toosystem-center-operations-manager"></a>Q : comment ajouter des journaux Analytique tooSystem Center Operations Manager ?
 
-R : La mise à jour vers le dernier correctif cumulatif et l’importation de packs d’administration permettent de connecter Operations Manager à Log Analytics.
+R : mise à jour toohello dernier correctif cumulatif de mise à jour et de l’importation des packs d’administration vous permettent de tooconnect Operations Manager tooLog Analytique.
 
 >[!NOTE]
->La connexion d’Operations Manager à Log Analytics n’est disponible que pour System Center Operations Manager 2012 SP1 et les versions ultérieures.
+>tooLog de connexion d’Operations Manager Hello Analytique n’est disponible que pour System Center Operations Manager 2012 SP1 et versions ultérieures.
 
-### <a name="q-how-can-i-confirm-that-an-agent-is-able-to-communicate-with-log-analytics"></a>Q : Comment vérifier qu’un agent est en mesure de communiquer avec Log Analytics ?
+### <a name="q-how-can-i-confirm-that-an-agent-is-able-toocommunicate-with-log-analytics"></a>Q : Comment puis-je vérifier qu’un agent est en mesure de toocommunicate avec Analytique de journal ?
 
-R : Pour s’assurer que l’agent peut communiquer avec OMS, accédez à : Panneau de configuration, Security & Settings (Sécurité et paramètres), **Microsoft Monitoring Agent**.
+R : tooensure que l’agent hello peut communiquer avec OMS, accédez à : le panneau de configuration, de sécurité et de paramètres, **Microsoft Monitoring Agent**.
 
-Sous l’onglet **Azure Log Analytics (OMS)** , recherchez une coche verte. Une icône de coche verte confirme que l’agent est en mesure de communiquer avec le service OMS.
+Sous hello **Analytique des journaux (OMS) Azure** onglet, recherchez une coche verte. Une icône de coche verte confirme que l’agent hello est en mesure de toocommunicate avec hello service OMS.
 
-Une icône d’avertissement jaune signifie que l’agent rencontre des problèmes de communication avec OMS. L’une des raisons courantes est que le service Microsoft Monitoring Agent s’est arrêté. Utilisez le Gestionnaire de contrôle des services pour redémarrer le service.
+Une icône d’avertissement jaune signifie hello agent rencontre des problèmes de communication avec OMS. L’une des raisons courantes sont hello service Microsoft Monitoring Agent s’est arrêté. Utiliser service manager toorestart hello service de contrôle de.
 
 ### <a name="q-how-do-i-stop-an-agent-from-communicating-with-log-analytics"></a>Q : Comment empêcher un agent de communiquer avec Log Analytics ?
 
-R : Dans System Center Operations Manager, supprimez l’ordinateur de la liste des ordinateurs gérés par Advisor. Operations Manager met à jour la configuration de l’agent pour qu’il ne fasse plus de rapports à Log Analytics. En ce qui concerne les agents connectés directement à Log Analytics, vous pouvez les empêcher de communiquer de la façon suivante : Panneau de configuration, Sécurité et paramètres, **Microsoft Monitoring Agent**.
+R : dans System Center Operations Manager, supprimez ordinateur de hello à partir de la liste des ordinateurs gérés hello Advisor. Mises à jour de Operations Manager hello configuration de hello agent toono plus rapport tooLog Analytique. Pour les agents directement connectés tooLog Analytique, vous pouvez les arrêter de communiquer via : le panneau de configuration, de sécurité et de paramètres, **Microsoft Monitoring Agent**.
 Sous **Azure Log Analytics (OMS)**, supprimez tous les espaces de travail répertoriés.
 
-### <a name="q-why-am-i-getting-an-error-when-i-try-to-move-my-workspace-from-one-azure-subscription-to-another"></a>Q : Pourquoi une erreur se produit-elle lorsque j’essaie de déplacer mon espace de travail d’un abonnement Azure vers un autre ?
+### <a name="q-why-am-i-getting-an-error-when-i-try-toomove-my-workspace-from-one-azure-subscription-tooanother"></a>Q : pourquoi une erreur lors de le toomove mon espace de travail à partir d’un abonnement Azure tooanother ?
 
-R : Si vous utilisez le Portail Azure, assurez-vous que seul l’espace de travail est sélectionné pour le déplacement. Ne sélectionnez pas les solutions : elles migreront automatiquement une fois l’espace de travail déplacé. 
+R : Si vous utilisez hello portail Azure, n'assurez-vous qu’espace de travail hello est sélectionné pour hello de déplacement. Ne sélectionnez pas les solutions hello--il va passer automatiquement une fois l’espace de travail hello déplace. 
 
 Vérifiez que vous disposez de l’autorisation nécessaire dans les deux abonnements Azure.
 
 ## <a name="agent-data"></a>Données de l’agent
-### <a name="q-how-much-data-can-i-send-through-the-agent-to-log-analytics-is-there-a-maximum-amount-of-data-per-customer"></a>Q : Quelle quantité de données puis-je envoyer via l’agent à Log Analytics ? Existe-t-il une quantité maximale de données par client ?
-R. Le forfait gratuit définit une limite quotidienne de 500 Mo par espace de travail. Les forfaits standard et premium ne présentent aucune limite concernant la quantité de données chargées. Comme un service cloud, Log Analytics est conçu pour monter en puissance automatiquement afin de traiter le volume provenant du client, même si cela se chiffre en téraoctets par jour.
+### <a name="q-how-much-data-can-i-send-through-hello-agent-toolog-analytics-is-there-a-maximum-amount-of-data-per-customer"></a>Q : La quantité de données puis-je envoyer via hello agent tooLog Analytique ? Existe-t-il une quantité maximale de données par client ?
+R : un plan gratuit Hello définit une limite quotidienne de 500 Mo par espace de travail. Hello standard et les plans de premium n’ont aucune limite de quantité hello de données qui sont téléchargées. Comme un service cloud, Analytique de journal est conçu échelle tooautomatically volume de hello toohandle provenant d’un client, même si elle est de plusieurs téraoctets par jour.
 
-L’agent Log Analytics a été conçu pour garantir un faible encombrement. Un de nos clients a écrit un blog sur les tests effectués avec notre agent et a expliqué à quel point il a été impressionné. Le volume de données varie selon les solutions activées. Vous trouverez des informations détaillées sur le volume de données ainsi que la répartition par solution sur la page [Utilisation](log-analytics-usage.md).
+agent d’Analytique de journal Hello a été tooensure conçue, il a un faible encombrement mémoire. Un de nos clients a écrit un blog sur les tests hello qu’il a effectués sur notre agent, impressionnantes. volume de données Hello varie en fonction des solutions hello que vous activez. Vous pouvez trouver des informations détaillées sur le volume de données hello et voir les limites de hello par solution Bonjour [utilisation](log-analytics-usage.md) page.
 
-Pour en savoir plus, vous pouvez consulter le [blog d’un client](http://thoughtsonopsmgr.blogspot.com/2015/09/one-small-footprint-for-server-one.html) sur le faible encombrement de l’agent OMS.
+Pour plus d’informations, vous pouvez lire un [client blog](http://thoughtsonopsmgr.blogspot.com/2015/09/one-small-footprint-for-server-one.html) sur hello faible encombrement de l’agent OMS de hello.
 
-### <a name="q-how-much-network-bandwidth-is-used-by-the-microsoft-management-agent-mma-when-sending-data-to-log-analytics"></a>Q : Quelle est la quantité de bande passante réseau utilisée par Microsoft Management Agent (MMA) lorsqu’il envoie des données à Log Analytics ?
+### <a name="q-how-much-network-bandwidth-is-used-by-hello-microsoft-management-agent-mma-when-sending-data-toolog-analytics"></a>Q : Quantité de bande passante réseau est utilisé par hello Microsoft Management Agent (MMA) lors de l’envoi des données tooLog Analytique ?
 
-R. La bande passante est fonction de la quantité de données envoyées. Les données sont compressées à mesure de leur envoi sur le réseau
+R : La bande passante est fonction de quantité hello de données envoyées. Données sont compressées lors de leur envoi réseau hello.
 
 ### <a name="q-how-much-data-is-sent-per-agent"></a>Q : Quelle est la quantité de données envoyées par agent ?
 
-R. La quantité de données envoyées par agent dépend :
+R : Hello des données envoyées par agent dépend :
 
-* des solutions activées ;
-* du nombre de journaux et de compteurs de performances collectés ;
-* du volume de données des journaux.
+* vous avez activé des solutions Hello
+* nombre de Hello de journaux et des compteurs de performances collectés
+* volume Hello de données dans les journaux de hello
 
-Le niveau tarifaire gratuit est un bon moyen d’intégrer plusieurs serveurs et de mesurer le volume de données classique. L’utilisation globale est indiquée sur la page [Utilisation](log-analytics-usage.md) .
+Hello libre niveau tarifaire est un bon moyen tooonboard plusieurs serveurs et évaluer le volume de données de type hello. L’utilisation globale est affichée sur hello [utilisation](log-analytics-usage.md) page.
 
-Pour les ordinateurs en mesure d’exécuter l’agent Wire Data, lancez la requête suivante afin de connaître la quantité de données envoyées :
+Pour les ordinateurs qui sont en mesure de toorun hello par l’agent WireData, utilisez hello suivant toosee requête la quantité de données envoyée :
 
 ```
 Type=WireData (ProcessName="C:\\Program Files\\Microsoft Monitoring Agent\\Agent\\MonitoringHost.exe") (Direction=Outbound) | measure Sum(TotalBytes) by Computer
@@ -172,4 +172,4 @@ Type=WireData (ProcessName="C:\\Program Files\\Microsoft Monitoring Agent\\Agent
 
 
 ## <a name="next-steps"></a>Étapes suivantes
-* [Familiarisez-vous avec Log Analytics](log-analytics-get-started.md) pour en savoir plus sur Log Analytics et être opérationnel en quelques minutes.
+* [Prise en main Analytique de journal](log-analytics-get-started.md) toolearn plus d’informations sur le journal Analytique et get opérationnel en quelques minutes.

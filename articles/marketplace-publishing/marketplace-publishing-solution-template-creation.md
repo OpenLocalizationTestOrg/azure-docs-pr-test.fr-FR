@@ -1,6 +1,6 @@
 ---
-title: "Guide de création d’un modèle de solution pour Azure Marketplace | Microsoft Docs"
-description: "Instructions détaillées pour créer, certifier et déployer un modèle de solution d’image multimachine virtuelle que d’autres peuvent acheter sur Azure Marketplace."
+title: "aaaGuide toocreating un modèle de solution pour hello Marketplace | Documents Microsoft"
+description: "Instructions détaillées sur comment toocreate, certifier et déployer un modèle de Solution Multi-VM Image à l’achat sur hello Azure Marketplace."
 services: marketplace-publishing
 documentationcenter: 
 author: HannibalSII
@@ -14,17 +14,17 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/27/2016
 ms.author: hascipio; v-divte
-ms.openlocfilehash: b753bfb4bd69bd9aacf4eebd8999397394c28bc4
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: b0e7067176337dd0d3f6f6ec04c963f80f706ab0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="guide-to-create-a-solution-template-for-azure-marketplace"></a>Guide de création d’un modèle de solution pour Azure Marketplace
-Une fois l’étape 1 [Création de comptes et inscription][link-acct-creation] exécutée, nous vous avons guidé dans la procédure de création d’un modèle de solution compatible Azure avec la section [Conditions techniques préalables pour créer un modèle de solution](marketplace-publishing-solution-template-creation-prerequisites.md). À présent, nous allons vous guider dans la procédure de création d’un modèle de solution à plusieurs machines virtuelles dans le [Portail de publication][link-pubportal] pour Azure Marketplace.
+# <a name="guide-toocreate-a-solution-template-for-azure-marketplace"></a>Guide toocreate un modèle de solution pour Azure Marketplace
+Après avoir effectué l’étape 1, [compte de la création et l’inscription][link-acct-creation], nous vous interactive sur la création de hello d’un modèle de solution compatible avec Azure à [technique configuration requise pour la création d’un modèle de solution](marketplace-publishing-solution-template-creation-prerequisites.md). Maintenant nous vous guidera à travers les étapes de hello pour la création d’un modèle de solution pour plusieurs machines virtuelles sur hello [portail de publication] [ link-pubportal] pour hello Azure Marketplace.
 
-## <a name="create-your-solution-template-offer-in-the-publishing-portal"></a>Créer votre offre de modèle de solution dans le portail de publication
-Accédez à [https://publish.windowsazure.com](http://publish.windowsazure.com). Pour votre première connexion au [portail de publication](https://publish.windowsazure.com/), utilisez le compte avec lequel le profil de vendeur de votre entreprise a été inscrit. Plus tard, vous pourrez ajouter des employés de l’entreprise comme coadministrateurs dans le portail de publication.
+## <a name="create-your-solution-template-offer-in-hello-publishing-portal"></a>Créer votre offre de modèle de solution Bonjour portail de publication
+Accédez trop [https://publish.windowsazure.com](http://publish.windowsazure.com). Lors de la connexion pour hello première heure toohello [portail de publication](https://publish.windowsazure.com/), hello utilisez même compte avec lequel le profil de vendeur de votre entreprise a été inscrite. Une version ultérieure, vous pouvez ajouter tous les employés de votre société en tant qu’un administrateur de co Bonjour portail de publication.
 
 ### <a name="1-select-solution-templates"></a>1. Sélectionner « Modèles de solution »
   ![dessin][img-pubportal-menu-sol-templ]
@@ -33,9 +33,9 @@ Accédez à [https://publish.windowsazure.com](http://publish.windowsazure.com).
   ![dessin][img-pubportal-sol-templ-new]
 
 ### <a name="3-start-with-topologies"></a>3. Démarrer avec les topologies
-Un modèle de solution est « parent » de toutes ses topologies. Vous pouvez définir plusieurs topologies dans une offre/un modèle de solution. Quand une offre est envoyée dans l’environnement intermédiaire, toutes ses topologies l’accompagnent. Suivez les étapes ci-dessous pour définir votre offre :     
+Un modèle de solution est un tooall « parent » de son topologies. Vous pouvez définir plusieurs topologies dans une offre/un modèle de solution. Lorsqu’une offre est envoyée toostaging, il est envoyé avec toutes ses topologies. Suivez les étapes de hello ci-dessous toodefine votre offre :     
 
-* Créer une topologie : « Identificateur de topologie » est généralement le nom de la topologie pour le modèle de solution. L’identificateur de topologie est utilisé dans l’URL comme indiqué ci-dessous :
+* Créer une topologie : « Identificateur de la topologie » désigne généralement hello de topologie de hello pour le modèle de solution hello. identificateur de topologie Hello est utilisé dans les URL de hello, comme indiqué ci-dessous :
 
   Azure Marketplace : http://azure.microsoft.com/marketplace/partners/{PublisherNamespace}/{OfferIdentifier}{TopologyIdentifier}
 
@@ -43,25 +43,25 @@ Un modèle de solution est « parent » de toutes ses topologies. Vous pouvez 
 * Ajouter une nouvelle version.
 
 ### <a name="4-get-your-topology-versions-certified"></a>4. Obtenir la certification des versions de votre topologie
-Téléchargez un fichier zip contenant tous les fichiers requis pour configurer cette version particulière de la topologie. Ce fichier zip doit contenir les fichiers suivants :
+Télécharger un fichier zip qui contient tous les fichiers requis tooprovision cette version particulière de la topologie de hello. Ce fichier zip doit contenir des éléments suivants de hello :
 
 * Fichiers *mainTemplate.json* et *createUiDefinition.json* dans le répertoire racine.
 * Tous les modèles liés et tous les scripts nécessaires.
 
   > [!TIP]
-  > Pendant que vos développeurs se chargent de la création des topologies du modèle de solution et obtiennent leur certification, les services commerciaux, marketing et/ou juridique de votre entreprise se chargent du contenu marketing et juridique.
+  > Alors que les développeurs de travaillent sur la création des topologies de modèle de solution de hello et leur certifié, l’activité hello, marketing et/ou juridiques départements de votre entreprise peuvent travailler sur le contenu marketing et juridiques hello.
   >
   >
 
 ## <a name="next-steps"></a>Étapes suivantes
-Maintenant que vous créé votre modèle de solution et téléchargé le fichier zip, suivez les instructions du [Guide de contenu marketing Marketplace](marketplace-publishing-push-to-staging.md) avant de faire passer l’offre en production. Vous pouvez accéder à l’ensemble des articles de publication Marketplace via l’article [Prise en main : publier une offre dans Azure Marketplace](marketplace-publishing-getting-started.md).
+Maintenant que vous avez créé votre modèle de solution et que vous téléchargé le fichier zip de hello, suivez les instructions de hello Bonjour [guide de contenu marketing Marketplace](marketplace-publishing-push-to-staging.md) avant d’installer hello offre toostaging. ensemble complet de hello toosee de marketplace publication d’articles, visitez [mise en route : comment toopublish une toohello offre Azure Marketplace](marketplace-publishing-getting-started.md).
 
 Les rubriques suivantes peuvent également vous intéresser :
 
 * Images de machine virtuelle : [À propos des images de machine virtuelle dans Azure](https://msdn.microsoft.com/library/azure/dn790290.aspx)
 * Extensions de machine virtuelle : [Présentation de l’agent de machine virtuelle et des extensions de machine virtuelle](https://msdn.microsoft.com/library/azure/dn832621.aspx) et [Fonctionnalités et extensions de machine virtuelle Azure](https://msdn.microsoft.com/library/azure/dn606311.aspx)
 * Azure Resource Manager : [Création de modèles Azure Resource Manager](../azure-resource-manager/resource-group-authoring-templates.md) et [Exemples de modèles simples](https://github.com/rjmax/ArmExamples)
-* Limitations des comptes de stockage : [Surveiller les limitations des comptes de stockage](http://blogs.msdn.com/b/mast/archive/2014/08/02/how-to-monitor-for-storage-account-throttling.aspx) et [Stockage Premium](../storage/common/storage-premium-storage.md#scalability-and-performance-targets)
+* Limite du compte de stockage : [comment tooMonitor de limitation du compte de stockage](http://blogs.msdn.com/b/mast/archive/2014/08/02/how-to-monitor-for-storage-account-throttling.aspx) et [stockage Premium](../storage/common/storage-premium-storage.md#scalability-and-performance-targets)
 
 [img-pubportal-menu-sol-templ]:media/marketplace-publishing-solution-template-creation/pubportal-menu-solution-templates.png
 [img-pubportal-sol-templ-new]:media/marketplace-publishing-solution-template-creation/pubportal-solution-template-new.png

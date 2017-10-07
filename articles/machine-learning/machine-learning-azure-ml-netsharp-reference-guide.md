@@ -1,6 +1,6 @@
 ---
-title: "Guide du langage de spécification des réseaux neuronaux Net# | Microsoft Docs"
-description: "Syntaxe pour le neuronaux Net # réseaux langage de spécification, ainsi que des exemples montrant comment créer un modèle de réseau neuronal personnalisé dans Microsoft Azure ML à l’aide de Net #"
+title: "aaaGuide toohello réseau neuronal réseaux langage de spécification | Documents Microsoft"
+description: "Syntaxe de hello Net # neural networks langage de spécification, ainsi que des exemples de comment toocreate un réseau neuronal personnalisé modèle dans Microsoft Azure ML à l’aide de Net #"
 services: machine-learning
 documentationcenter: 
 author: jeannt
@@ -14,112 +14,112 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/31/2017
 ms.author: jeannt
-ms.openlocfilehash: 965c60ffde55041cc3864d06d81f5590c7ea1c11
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3493247ecc39ca3a1382510ad520d7017159ff62
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="guide-to-net-neural-network-specification-language-for-azure-machine-learning"></a>Guide du langage de spécification des réseaux neuronaux Net# pour Azure Machine Learning
+# <a name="guide-toonet-neural-network-specification-language-for-azure-machine-learning"></a>Guide du langage de spécification de réseau neuronal tooNet # pour Azure Machine Learning
 ## <a name="overview"></a>Vue d'ensemble
-Net# est un langage développé par Microsoft qui définit les architectures de réseaux neuronaux. Vous pouvez utiliser Net# dans des modules de réseau neuronal dans Microsoft Azure Machine Learning.
+NET # est un langage développé par Microsoft, qui est utilisé toodefine d’architectures réseau neuronal. Vous pouvez utiliser Net# dans des modules de réseau neuronal dans Microsoft Azure Machine Learning.
 
-<!-- This function doesn't currentlyappear in the MicrosoftML documentation. If it is added in a future update, we can uncomment this text.
+<!-- This function doesn't currentlyappear in hello MicrosoftML documentation. If it is added in a future update, we can uncomment this text.
 
-, or in the `rxNeuralNetwork()` function in [MicrosoftML](https://msdn.microsoft.com/microsoft-r/microsoftml/microsoftml). 
+, or in hello `rxNeuralNetwork()` function in [MicrosoftML](https://msdn.microsoft.com/microsoft-r/microsoftml/microsoftml). 
 
 -->
 
-Dans cet article, vous découvrirez les concepts de base nécessaires au développement d’un réseau neuronal personnalisé : 
+Dans cet article, vous allez apprendre les concepts de base nécessaires toodevelop un réseau neuronal personnalisé : 
 
-* Conditions des réseaux neuronaux et définition des principaux composants
-* Syntaxe et mots clés du langage de spécification Net#
-* Exemples de réseau neuronal personnalisé créé à l’aide de Net # 
+* Configuration requise du réseau neuronal et comment toodefine hello composants principaux
+* syntaxe de Hello et les mots clés de langage de spécification de Net # de hello
+* Exemples de réseaux neuronaux personnalisés créés avec Net# 
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 ## <a name="neural-network-basics"></a>Principes fondamentaux des réseaux neuronaux
-Un réseau neuronal se compose de ***nœuds***, organisés en ***couches***, et de ***connexions*** pondérées (ou ***bords***) reliant les nœuds. Les connexions sont directionnelles ; chaque connexion présente un nœud ***source*** et un nœud de ***destination***.  
+Consistant en une structure de réseau neuronal ***nœuds*** qui sont organisés en ***couches***et pondérées ***connexions*** (ou ***bords***) entre nœuds Hello. connexions de Hello sont directionnelles, et chaque connexion possède un ***source*** nœud et un ***destination*** nœud.  
 
-Chaque ***couche apte à l’apprentissage*** (couche masquée ou de sortie) présente un ou plusieurs ***faisceaux de connexions***. Un faisceau de connexions se compose d'une couche source et d'une définition des connexions de cette couche. Toutes les connexions d’un même faisceau partagent la même ***couche source*** et la même ***couche de destination***. En Net#, on considère qu'un faisceau de connexions appartient à sa couche de destination.  
+Chaque ***couche apte à l’apprentissage*** (couche masquée ou de sortie) présente un ou plusieurs ***faisceaux de connexions***. Un regroupement de connexion se compose d’une couche source et une spécification de connexions hello de cette couche source. Toutes les connexions hello dans un partage de lot donné hello même ***couche source*** et même hello ***calque de destination***. Dans Net #, un regroupement de connexion est considéré comme couche de destination du regroupement appartenant toohello.  
 
-Net# prend en charge différents types de faisceau de connexions, ce qui vous permet de personnaliser la façon dont les entrées sont mappées aux couches masquées et aux sorties.   
+NET # prend en charge différents types de paquets de connexion, ce qui vous permet de personnaliser la façon hello entrées sont mappés toohidden couches et fournit en sortie toohello mappé.   
 
-Le faisceau par défaut ou standard est un **faisceau complet**, dans lequel chaque nœud de la couche source est connecté à tous les nœuds de la couche de destination.  
+par défaut de Hello ou de groupe standard est un **offre complète**, dans chaque nœud qui Bonjour couche source est le nœud connecté tooevery hello calque de destination.  
 
-En outre, Net# prend en charge les quatre types de faisceaux de connexions avancés suivants :  
+En outre, Net # prend en charge hello suivant quatre types de paquets de connexion avancées :  
 
-* **Faisceaux filtrés**. L’utilisateur peut définir un prédicat à l’aide de l’emplacement du nœud de la couche source et de celui de la couche de destination. Les nœuds sont connectés chaque fois que le prédicat a la valeur True.
-* **Faisceaux convolutionnels**. L'utilisateur peut définir de petits voisinages de nœuds dans la couche source. Chaque nœud de la couche de destination est connecté à un voisinage de nœuds de la couche source.
-* **Faisceaux de regroupement** et **faisceaux de normalisation de réponse**. Ces faisceaux sont similaires aux faisceaux convolutionnels dans le sens où l'utilisateur définit de petits voisinages de nœuds dans la couche source. Il existe une différence : les poids des bords dans ces faisceaux ne sont pas aptes à l’apprentissage. Au lieu de cela, une fonction prédéfinie est appliquée aux valeurs de nœud source, afin de déterminer la valeur du nœud de destination.  
+* **Faisceaux filtrés**. utilisateur de la Hello peut définir un prédicat à l’aide des emplacements de nœud de couche source hello et nœud de couche hello destination hello. Nœuds sont connectés à chaque fois que le prédicat de hello a la valeur True.
+* **Faisceaux convolutionnels**. utilisateur de Hello peut définir des petits cercles de nœuds dans la couche de source de hello. Chaque nœud de couche de destination hello est voisinage tooone connecté de nœuds de couche de source de hello.
+* **Faisceaux de regroupement** et **faisceaux de normalisation de réponse**. Il s’agit des regroupements tooconvolutional similaire qui Bonjour utilisateur définit des petits cercles de nœuds de couche de source de hello. Hello différence est que les poids hello des bords hello dans ces offres ne sont pas capable d’apprentissage. Au lieu de cela, une fonction prédéfinie est appliquée toohello nœud de source de valeurs de la valeur de nœud de destination de hello toodetermine.  
 
-L’utilisation de Net# pour définir la structure d’un réseau neuronal permet de spécifier des structures complexes, comme des réseaux neuronaux profonds ou des convolutions de dimensions arbitraires, connues pour améliorer l’apprentissage à partir de données telles que des images, des sons ou des vidéos.  
+À l’aide de Net # structure de hello toodefine d’un réseau neuronal rend possible toodefine des structures complexes telles que les réseaux neuronaux ou des structures de dimensions arbitraires, qui sont connues learning tooimprove sur des données telles que l’image, audio ou vidéo.  
 
 ## <a name="supported-customizations"></a>Personnalisations prises en charge
-L’architecture des modèles de réseau neuronal que vous créez dans Microsoft Azure Machine Learning peut bénéficier d’une personnalisation avancée grâce à Net#. Vous pouvez :  
+architecture de Hello des modèles de réseau neuronal que vous créez dans Azure Machine Learning peut être largement personnalisé à l’aide de Net #. Vous pouvez :  
 
-* créer des couches masquées et contrôler le nombre de nœuds dans chaque couche ;
-* spécifier la façon dont les couches doivent être connectées les unes aux autres ;
+* Créer des couches masquées et le nombre de nœuds hello de contrôle dans chaque couche.
+* Spécifiez comment les couches sont toobe connecté tooeach autres.
 * définir des structures de connectivité spéciales, telles que des convolutions et des faisceaux à poids partagé ;
 * spécifier différentes fonctions d'activation.  
 
-Pour plus d’informations sur la syntaxe du langage de spécification, consultez la section consacrée à la [définition de la structure](#Structure-specifications).  
+Pour plus d’informations de syntaxe du langage de spécification hello, consultez [spécification de la Structure](#Structure-specifications).  
 
-Pour des exemples de définition de réseaux neuronaux pour certaines tâches standard d’apprentissage automatique, simples comme complexes, consultez la section [Exemples](#Examples-of-Net#-usage).  
+Pour obtenir des exemples de définition de réseaux neuronaux pour certaines tâches, à partir de toocomplex simplex, d’apprentissage courantes, consultez [exemples](#Examples-of-Net#-usage).  
 
 ## <a name="general-requirements"></a>Conditions générales
 * Il doit y avoir exactement une couche de sortie, au moins une couche d’entrée et aucune ou plusieurs couches masquées. 
 * Chaque couche a un nombre fixe de nœuds, organisés de façon conceptuelle dans un tableau rectangulaire aux dimensions arbitraires. 
-* Les couches d'entrée n'ont pas de paramètre formé associé et représentent le point où les données d'instance entrent dans le réseau. 
-* Les couches aptes à l’apprentissage (couches masquées et de sortie) présentent des paramètres formés associés, appelés poids et biais. 
-* Les nœuds source et de destination doivent se trouver sur des couches indépendantes. 
-* Les connexions doivent être non cycliques. En d'autres termes, il ne peut pas y avoir une chaîne de connexions ramenant au nœud source initial.
-* La couche de sortie ne peut pas être la couche source d'un faisceau de connexions.  
+* Les couches d’entrée n’ont aucun paramètre formé associé et point hello où les données d’instance entre le réseau de hello. 
+* Paramètres formés, appelés poids et des écarts ont associés à des couches capable d’apprentissage (hello couches masquées et de sortie). 
+* les nœuds source et de destination Hello doivent être dans des couches distinctes. 
+* Les connexions doivent être acycliques ; en d’autres termes, il ne peut pas être une chaîne de connexions de début du nœud source initial de toohello précédent.
+* couche de sortie Hello ne peut pas être une source d’un groupe de connexion.  
 
 ## <a name="structure-specifications"></a>Spécifications de structures
-Une spécification de structure de réseau neuronal se compose de trois sections : la **déclaration de constante**, la **déclaration de couche** et la **déclaration de connexion**. Il existe également une section de **déclaration de partage**, qui est facultative. Ces sections peuvent être définies dans n'importe quel ordre.  
+Une spécification de structure de réseau neuronal est composée de trois sections : hello **déclaration de constante**, hello **déclaration de couche**, hello **déclaration de connexion**. Il existe également une section de **déclaration de partage**, qui est facultative. les sections Hello peuvent être spécifiées dans n’importe quel ordre.  
 
 ## <a name="constant-declaration"></a>Déclaration de constante
-Ce type de déclaration est facultatif. Elle offre une méthode de définition des valeurs utilisées à d’autres emplacements de la définition du réseau neuronal. L'instruction de déclaration se compose d'un identifiant suivi du signe égal et d'une expression de valeur.   
+Ce type de déclaration est facultatif. Il fournit un moyen toodefine utilisées ailleurs dans la définition du réseau neuronal hello des valeurs. instruction de déclaration Hello se compose d’un identificateur suivi par un signe égal et une expression de valeur.   
 
-Par exemple, l’instruction suivante définit une constante **x** :  
+Par exemple, après l’instruction de hello définit une constante **x**:  
 
     Const X = 28;  
 
-Pour définir simultanément deux constantes ou plus, mettez les noms d’identificateur et les valeurs associées entre accolades, en les séparant par des points-virgules. Par exemple :  
+toodefine deux ou plusieurs constantes simultanément, placez les valeurs et les noms d’identificateur hello entre accolades et séparés par des points-virgules. Par exemple :  
 
     Const { X = 28; Y = 4; }  
 
-Le côté droit de chaque expression d’affectation peut être un entier, un nombre réel, une valeur booléenne (vrai/faux) ou une expression mathématique. Par exemple :  
+côté droit de Hello de chaque expression d’assignation peut être un entier, un nombre réel, une valeur booléenne (True ou False) ou une expression mathématique. Par exemple :  
 
     Const { X = 17 * 2; Y = true; }  
 
 ## <a name="layer-declaration"></a>Déclaration de couche
-La déclaration de couche est requise. Elle définit la taille et la source de la couche, y compris ses attributs et faisceaux de connexions. L’instruction de déclaration commence par le nom de la couche (d’entrée, masquée ou de sortie), suivi de ses dimensions (un tuple d’entiers positifs). Par exemple :  
+déclaration de couche Hello est obligatoire. Il définit la taille de hello et de la source de la couche de hello, y compris ses attributs et groupes de connexion. Hello commence d’instruction de déclaration par nom hello de couche hello (entrée, masqués ou de sortie), suivis de dimensions hello de couche de hello (il s’agit d’un tuple d’entiers positifs). Par exemple :  
 
     input Data auto;
     hidden Hidden[5,20] from Data all;
     output Result[2] from Hidden all;  
 
-* Le produit des dimensions est le nombre de nœuds de la couche. Dans cet exemple, il y a deux dimensions [5,20], ce qui signifie qu’il y a 100 nœuds dans la couche.
-* Les couches peuvent être déclarés dans n'importe quel ordre, à une exception près : si plusieurs couches d'entrée sont définies, l'ordre dans lequel elles sont déclarées doit être le même que celui des fonctions dans les données d'entrée.  
+* Hello de dimensions de hello est nombre hello de nœuds de couche de hello. Dans cet exemple, il existe deux dimensions [5,20], ce qui signifie qu’il existe 100 nœuds dans la couche de hello.
+* les couches Hello peuvent être déclarés dans n’importe quel ordre, à une exception près : Si plusieurs couches d’entrée est défini, hello dans lequel ils sont déclarés doivent suivre hello ordre de fonctionnalités dans les données d’entrée hello.  
 
-Pour spécifier que le nombre de nœuds d’une couche doit être déterminé automatiquement, utilisez le mot clé **auto**. Le mot clé **auto** peut avoir différents effets selon le type de couche :  
+toospecify hello le nombre de nœuds dans une couche être déterminé automatiquement, utilisez hello **automatique** (mot clé). Hello **automatique** (mot clé) a des effets différents, selon la couche de hello :  
 
-* Dans une déclaration de couche d'entrée, le nombre de nœuds est le nombre de caractéristiques dans les données d'entrée.
-* Dans une déclaration de couche masquée, le nombre de nœuds correspond au nombre spécifié par la valeur du paramètre définissant le **Nombre de nœuds masqués**. 
-* Dans une déclaration de couche de sortie, le nombre de nœuds est de 2 pour les classifications à deux classes, de 1 pour la régression et égal au nombre de nœuds de sortie pour une classification multiclasse.   
+* Dans une déclaration de la couche d’entrée, nombre de hello de nœuds est nombre hello de fonctionnalités dans les données d’entrée hello.
+* Dans une déclaration de la couche masquée, nombre hello de nœuds est nombre hello spécifié par la valeur du paramètre hello pour **nombre de nœuds masqués**. 
+* Dans une déclaration de couche de sortie, nombre hello de nœuds est 2 pour la classification de deux classes, 1 pour la régression et le numéro de toohello égale de nœuds de sortie pour la classification multiclasse.   
 
-Par exemple, la définition de réseau ci-après permet de déterminer automatiquement la taille de toutes les couches :  
+Par exemple, hello définition de réseau suivant autorise hello taille de toutes les couches toobe déterminé automatiquement :  
 
     input Data auto;
     hidden Hidden auto from Data all;
     output Result auto from Hidden all;  
 
 
-Une déclaration d’une couche apte à l’apprentissage (couche masquée ou de sortie) peut éventuellement inclure la fonction de sortie (également appelée fonction d’activation), configurée par défaut sur **sigmoid** pour des modèles de classification, et **linéaire** pour des modèles de régression. (Même si vous utilisez la valeur par défaut, vous pouvez déclarer explicitement la fonction d'activation, si vous le souhaitez pour plus de clarté.)
+Une déclaration de la couche d’une couche capable d’apprentissage (hello couches masquées ou de sortie) peut éventuellement inclure hello sortie (fonction) (également appelée une fonction d’activation), qui utilise par défaut trop**sigmoïde** pour les modèles de classification et **linéaire** pour les modèles de régression. (Même si vous utilisez la valeur par défaut de hello, vous pouvez déclarer explicitement fonction d’activation de hello, si vous le souhaitez pour plus de clarté.)
 
-Les fonctions de sortie suivantes sont prises en charge :  
+Hello des fonctions de sortie suivantes sont prises en charge :  
 
 * sigmoid
 * linear
@@ -132,69 +132,69 @@ Les fonctions de sortie suivantes sont prises en charge :
 * tanh 
 * brlinear  
 
-Par exemple, la déclaration suivante utilise la fonction **softmax** :  
+Par exemple, hello suit déclaration utilise hello **softmax** fonction :  
 
     output Result [100] softmax from Hidden all;  
 
 ## <a name="connection-declaration"></a>Déclaration de connexion
-Immédiatement après avoir défini la couche entraînable, vous devez déclarer les connexions entre les couches définies. Une déclaration de faisceau de connexions commence par le mot clé **from**, suivi du nom de la couche source du faisceau et du genre de faisceau à créer.   
+Immédiatement après la définition de couche capable d’apprentissage de hello, vous devez déclarer les connexions entre les couches hello que vous avez défini. déclaration de regroupement de connexion Hello commence par le mot clé de hello **de**, suivi par nom hello de type de couche et hello de source de toocreate de regroupement de connexion du regroupement hello.   
 
 À ce jour, cinq types de faisceau de connexions sont pris en charge :  
 
-* Faisceau **complet**, signalé par le mot clé **all**
-* Faisceau **filtré**, signalé par le mot clé **where**, suivi par une expression de prédicat
-* Faisceau **convolutionnel**, signalé par le mot clé **convolve**, suivi des attributs de convolution
-* Faisceau de **regroupement**, signalé par les mots clés **max pool** ou **mean pool**
-* Faisceau de **normalisation de réponse**, signalé par le mot clé **response norm**      
+* **Complète** lots, indiqués par le mot clé de hello **toutes les**
+* **Filtré** lots, indiqués par le mot clé de hello **où**, suivi d’une expression de prédicat
+* **À convolution** lots, indiqués par le mot clé de hello **convolve**, suivi par les attributs de convolution hello
+* **Le regroupement de** lots, indiquées par mots clés de hello **max pool** ou **signifie pool**
+* **Normalisation de la réponse** lots, indiqués par le mot clé de hello **normales de réponse**      
 
 ## <a name="full-bundles"></a>Faisceaux complets
-Les faisceaux de connexions complets incluent une connexion entre chaque nœud de la couche source et chaque nœud de la couche de destination. Il s'agit du type de connexion réseau par défaut.  
+Un regroupement de connexion complète inclut une connexion à partir de chaque nœud dans le nœud de tooeach hello source couche hello calque de destination. Il s’agit de type de connexion réseau hello par défaut.  
 
 ## <a name="filtered-bundles"></a>Faisceaux filtrés
-Une spécification de faisceau de connexion filtré inclut un prédicat, dont la syntaxe est assez similaire à celle d'une expression lambda C#. L'exemple suivant est une définition de deux faisceaux filtrés :  
+Une spécification de faisceau de connexion filtré inclut un prédicat, dont la syntaxe est assez similaire à celle d'une expression lambda C#. Hello exemple suivant définit deux groupes filtrées :  
 
     input Pixels [10, 20];
     hidden ByRow[10, 12] from Pixels where (s,d) => s[0] == d[0];
     hidden ByCol[5, 20] from Pixels where (s,d) => abs(s[1] - d[1]) <= 1;  
 
-* Dans le prédicat de *ByRow*, **s** est un paramètre représentant un index dans le tableau rectangulaire de nœuds de la couche d’entrée, *Pixels*, tandis que **d** est un paramètre représentant un index dans le tableau de nœuds de la couche masquée, *ByRow*. Le type de **s** et de **d** est un tuple d’entiers de longueur 2. D’un point de vue conceptuel, **s** couvre toutes les paires d’entiers avec *0 <= s[0] < 10* et *0 <= s[1] < 20*, tandis que **d** couvre toutes les paires d’entiers avec *0 <= d[0] < 10* et *0 <= d[1] < 12*. 
-* Sur la droite de l'expression de prédicat se trouve une condition. Dans cet exemple, pour chaque valeur de **s** et **d** permettant à la condition d’avoir la valeur True, il existe un bord à partir du nœud de couche source vers le nœud de couche de destination. Ainsi, cette expression de filtre indique que le faisceau inclut une connexion du nœud défini par **s** au nœud défini par **d**, dans tous les cas où s[0] est égal à d[0].  
+* Dans le prédicat hello pour *ByRow*, **s** est un paramètre représentant un index dans un tableau rectangulaire de hello des nœuds de la couche d’entrée de hello, *Pixels*, et **d**  est un paramètre représentant un index dans le tableau hello des nœuds de couche masquée de hello, *ByRow*. Hello type des deux **s** et **d** est un tuple d’entiers de longueur deux. D’un point de vue conceptuel, **s** couvre toutes les paires d’entiers avec *0 <= s[0] < 10* et *0 <= s[1] < 20*, tandis que **d** couvre toutes les paires d’entiers avec *0 <= d[0] < 10* et *0 <= d[1] < 12*. 
+* Sur le côté droit de hello d’expression de prédicat hello, il existe une condition. Dans cet exemple, pour chaque valeur de **s** et **d** telles que hello condition est True, il est un bord à partir du nœud de destination couche toohello hello source couche nœud. Par conséquent, cette expression de filtre indique cette offre groupée hello inclut une connexion à partir du nœud hello défini par **s** nœud toohello défini par **d** dans tous les cas où s [0] est égale alimentaire [0].  
 
-Vous pouvez également spécifier un ensemble de poids pour un faisceau filtré. La valeur de l’attribut **Weights** doit être un tuple de valeurs à virgule flottante dont la longueur est égale au nombre de connexions défini par le faisceau. Par défaut, les poids sont générés de façon aléatoire.  
+Vous pouvez également spécifier un ensemble de poids pour un faisceau filtré. Hello valeur hello **poids** l’attribut doit être un tuple de valeurs à virgule flottante dont la longueur correspond au nombre de hello de connexions définis par l’offre groupée de hello. Par défaut, les poids sont générés de façon aléatoire.  
 
-Les valeurs de poids sont regroupées par l'index de nœuds de destination. Ainsi, si le premier nœud de destination est connecté à K nœuds sources, les *K* premiers éléments du tuple **Weights** correspondent aux poids du premier nœud de destination, selon l’ordre de l’index source. Il en va de même pour les nœuds de destination restants.  
+Valeurs de pondération sont regroupés par index hello du nœud de destination. Autrement dit, si le premier nœud de destination hello est connecté a duré nœuds sources, hello tout d’abord *K* éléments Hello **poids** tuple sont les poids hello pour hello premier nœud de destination, dans l’ordre d’index source. Hello que va de même pour hello restant des nœuds de destination.  
 
-Il est possible de spécifier les poids directement comme des valeurs constantes. Par exemple, si vous connaissez déjà les poids, vous pouvez les spécifier en tant que constantes à l'aide de cette syntaxe :
+Il est possible de toospecify poids directement en tant que valeurs de constante. Par exemple, si vous avez appris les poids hello précédemment, vous pouvez les spécifier en tant que constantes à l’aide de cette syntaxe :
 
     const Weights_1 = [0.0188045055, 0.130500451, ...]
 
 
 ## <a name="convolutional-bundles"></a>Faisceaux convolutionnels
-Lorsque les données d’apprentissage présentent une structure homogène, des connexions convolutionnelles sont généralement utilisées pour l’apprentissage des caractéristiques de haut niveau des données. Par exemple, pour les données images, audio ou vidéo, la dimensionnalité spatiale ou temporelle peut être assez uniforme.  
+Lorsque les données d’apprentissage hello possèdent une structure homogène, les connexions à convolution sont couramment utilisés toolearn les fonctionnalités de haut niveau de données de hello. Par exemple, pour les données images, audio ou vidéo, la dimensionnalité spatiale ou temporelle peut être assez uniforme.  
 
-Les faisceaux convolutionnels emploient des **noyaux** rectangulaires, glissés à travers les dimensions. En gros, chaque noyau définit un ensemble de poids appliqués dans les voisinages locaux, que l’on appelle **applications de noyau**. Chaque application de noyau correspond à un nœud de la couche source appelé **nœud central**. Les poids d'un noyau sont partagés entre de nombreuses connexions. Dans un faisceau convolutionnel, chaque noyau est rectangulaire et toutes les applications de noyau sont de la même taille.  
+Les regroupements à convolution employant rectangulaire **noyaux** qui sont glissé des dimensions de hello. Essentiellement, chaque noyau définit un ensemble de poids appliquées dans les cercles locales, tooas référencé **applications du noyau**. Chaque application de noyau correspond nœud tooa dans la couche de source de hello, qui est référencé tooas hello **nœud central**. poids Hello d’un noyau sont partagés entre plusieurs connexions. Dans un regroupement à convolution, chaque noyau est rectangulaire et toutes les applications du noyau sont hello même taille.  
 
-Les faisceaux convolutionnels prennent en charge les attributs suivants :
+Les regroupements à convolution prennent en charge hello suivant d’attributs :
 
-**InputShape** définit la dimensionnalité de la couche source pour ce faisceau convolutionnel. Cette valeur doit être un tuple d’entiers positifs. Le produit de ces entiers doit être égal au nombre de nœuds de la couche source, mais ne doit pas forcément correspondre à la dimensionnalité déclarée pour celle-ci. La longueur de ce tuple devient la valeur **arity** (arité) du faisceau convolutionnel. En général, l’arité fait référence au nombre d’arguments ou d’opérandes qu’une fonction peut accepter.  
+**InputShape** définit la dimensionnalité hello de couche de source de hello pour les besoins de hello de ce groupe à convolution. valeur de Hello doit être un tuple d’entiers positifs. produit Hello d’entiers de hello doit être égal à nombre hello de nœuds de couche de source de hello, mais dans le cas contraire, il n’a pas besoin dimensionnalité de hello toomatch déclarée pour la couche de source de hello. la longueur de ce tuple Hello devient hello **arité** valeur pour le regroupement à convolution de hello. (Généralement une arité fait référence toohello nombre d’arguments ou les opérandes qu’une fonction peut prendre).  
 
-Pour définir la forme et les emplacements des noyaux, utilisez les attributs **KernelShape**, **Stride**, **Padding**, **LowerPad** et **UpperPad** :   
+forme de hello toodefine et les emplacements des noyaux de hello, utiliser les attributs de hello **KernelShape**, **Stride**, **remplissage**, **LowerPad**, et **UpperPad**:   
 
-* **KernelShape** : (obligatoire) définit la dimensionnalité de chaque noyau du faisceau convolutionnel. Cette valeur doit être un tuple d’entiers positifs, dont la longueur est égale à l’arité du faisceau. Chaque composant de ce tuple doit avoir une valeur inférieure ou égale au composant correspondant de l’élément **InputShape**. 
-* **Stride** : (facultatif) définit les tailles d’incrément ajustables de la convolution (une par dimension), soit la distance entre les nœuds centraux. Cette valeur doit être un tuple d'entiers positifs, dont la longueur correspond à l'arité du faisceau. Chaque composant de ce tuple doit avoir une valeur inférieure ou égale au composant correspondant de l’élément **KernelShape**. La valeur par défaut est un tuple dont tous les éléments sont égaux à un. 
-* **Sharing** : (facultatif) définit le partage des poids pour chaque dimension de la convolution. La valeur peut être une valeur booléenne unique ou un tuple de valeurs booléennes, dont la longueur est égale à l'arité du faisceau. Une valeur booléenne unique est étendue de façon à devenir un tuple de la bonne longueur dont tous les éléments sont égaux à la valeur spécifiée. La valeur par défaut est un tuple composé uniquement de valeurs True. 
-* **MapCount** : (facultatif) définit le nombre de signatures pour le faisceau convolutionnel. Cette valeur peut être un entier positif unique ou un tuple d’entiers positifs dont la longueur est égale à l’arité du faisceau. Une valeur d'entier unique est étendue de façon à devenir un tuple de la bonne longueur dont les premiers éléments sont égaux à la valeur spécifiée et dont tous les éléments restants sont égaux à un. La valeur par défaut est 1. Le nombre total de signatures est le produit des éléments du tuple. La factorisation de ce nombre total sur les éléments détermine la façon dont les valeurs de signature sont regroupées dans les nœuds de destination. 
-* **Weights** : (facultatif) définit les poids initiaux du faisceau. La valeur doit être un tuple de valeurs à virgule flottante dont la longueur correspond au nombre de noyaux, multiplié par le nombre de poids par noyau, tel que défini plus loin dans cet article. Les poids par défaut sont générés de façon aléatoire.  
+* **KernelShape**: dimensionnalité de hello définit (obligatoire) de chaque noyau pour le regroupement à convolution de hello. valeur de Hello doit être un tuple d’entiers positifs avec une longueur égale à arité hello du groupement de hello. Chaque composant de ce tuple doit pas être supérieure à composant correspondant de hello de **InputShape**. 
+* **STRIDE**: (facultatif) définit hello glissante tailles d’étape de la convolution de hello (taille d’une seule étape pour chaque dimension), qui est la distance entre les nœuds de centrale hello hello. valeur de Hello doit être un tuple d’entiers positifs avec une longueur arité hello du groupement de hello. Chaque composant de ce tuple doit pas être supérieure à composant correspondant de hello de **KernelShape**. valeur par défaut de Hello est un tuple avec tous les tooone égale de composants. 
+* **Partage**: (facultatif) définit hello partage de la pondération pour chaque dimension de la convolution de hello. valeur de Hello peut être une valeur booléenne unique ou un tuple de valeurs booléennes avec une longueur arité hello du groupement de hello. Une valeur booléenne est étendue toobe un tuple de longueur correcte de hello avec tous les composants toohello égale de valeur spécifiée. valeur par défaut de Hello est un tuple qui se compose de toutes les valeurs True. 
+* **MapCount**: (facultatif) définit hello nombre de fonctionnalité de mappages pour l’offre groupée à convolution de hello. valeur de Hello peut être un entier positif unique ou un tuple d’entiers positifs avec une longueur arité hello du groupement de hello. Une seule valeur entière est étendue toobe un tuple de longueur correcte de hello avec hello première composants égal toohello spécifié de valeur et tous les hello tooone égale des composants restants. Hello par défaut est 1. Nombre total de Hello des mappages de fonction est produit hello des composants hello de hello tuple. Hello factorisation de ce nombre total entre les composants de hello détermine comment les valeurs de mappage de fonction hello sont regroupés dans les nœuds de destination hello. 
+* **Poids**: (facultatif) définit hello initiales poids pour le groupe de hello. valeur de Hello doit être un tuple de valeurs à virgule flottante avec une longueur de hello nombre de noyaux fois hello poids par noyau, tel que défini plus loin dans cet article. poids par défaut de Hello sont générés de façon aléatoire.  
 
-Il existe deux ensembles de propriétés contrôlant le remplissage, qui s'excluent mutuellement :
+Il existe deux ensembles de propriétés qui contrôlent la marge intérieure, propriétés hello en cours s’excluent mutuellement :
 
-* **Padding** : (facultatif) détermine si l’entrée doit être remplie selon un **schéma de remplissage par défaut**. La valeur peut être une valeur booléenne unique ou un tuple de valeurs booléennes, dont la longueur est égale à l’arité du faisceau. Une valeur booléenne unique est étendue de façon à devenir un tuple de la bonne longueur dont tous les éléments sont égaux à la valeur spécifiée. Si la valeur d'une dimension correspond à True, la source est remplie de façon logique dans cette dimension par des cellules de valeur zéro afin de prendre en charge d'autres applications de noyau, de façon que les nœuds centraux des premier et dernier noyaux de cette dimension soient les premier et dernier nœuds de cette dimension dans la couche source. Ainsi, le nombre de nœuds « factices » de chaque dimension est déterminé automatiquement, afin de correspondre exactement à *(InputShape[d] - 1) / Stride[d] + 1* noyaux dans la couche source remplie. Si la valeur d’une dimension correspond à False, les noyaux sont définis de façon que le nombre de nœuds omis soit le même de chaque côté (une différence de 1 au maximum est tolérée). La valeur par défaut de cet attribut est un tuple dont tous les éléments ont la valeur False.
-* **UpperPad** et **LowerPad** : (facultatifs) permettent de contrôler la quantité de remplissage à utiliser. **Important :** Ces attributs peuvent être définis si et seulement si la propriété **Padding** ci-dessus n’est ***pas*** définie. Les valeurs doivent être des tuples d’entiers dont la longueur est égale à l’arité du faisceau. Lorsque ces attributs sont spécifiés, des nœuds « factices » sont ajoutés aux extrémités inférieure et supérieure de chaque dimension de la couche d’entrée. Le nombre de nœuds ajoutés aux extrémités inférieure et supérieure de la dimension est déterminé respectivement par **LowerPad**[i] et **UpperPad**[i]. Afin de veiller à ce que les noyaux correspondent à des nœuds « réels » et non « factices », les conditions suivantes doivent être respectées :
+* **Marge intérieure**: (facultatif) détermine si hello d’entrée doit être remplie à l’aide un **modèle de remplissage par défaut**. valeur de Hello peut être une valeur booléenne unique, ou il peut être un tuple de valeurs booléennes avec une longueur arité hello du groupement de hello. Une valeur booléenne est étendue toobe un tuple de longueur correcte de hello avec tous les composants toohello égale de valeur spécifiée. Si la valeur hello pour une dimension a la valeur True, source de hello logiquement remplie dans la dimension avec des applications de cellules de valeur zéro toosupport noyau supplémentaires, telles que hello des nœuds central des noyaux de première et dernières hello dans la dimension sont des nœuds de premier et derniers de hello dans la dimension dans la couche de source de hello. Par conséquent, le nombre hello de nœuds de « factices » dans chaque dimension est déterminé automatiquement, toofit exactement *(InputShape [d] - 1) / Stride [d] + 1* noyaux dans la couche de source de hello complétée. Si la valeur hello pour une dimension a la valeur False, hello noyaux définies de sorte que le nombre de hello de nœuds de chaque côté sont omis est même hello (haut tooa la différence de 1). Hello par défaut de cet attribut est un tuple avec tous les tooFalse égale de composants.
+* **UpperPad** et **LowerPad**: (facultatif) indiquez mieux contrôler durée hello toouse de remplissage. **Important :** ces attributs peuvent être définis si et seulement si hello **remplissage** propriété ci-dessus est ***pas*** défini. les valeurs de Hello doivent être des valeurs entières de tuples avec des longueurs qui sont arité hello du groupement de hello. Lorsque ces attributs sont spécifiés, « factices » nœuds sont ajoutés toohello inférieur et supérieures extrémités de chaque dimension du hello d’entrée couche. Hello nombre de nœuds ajoutés toohello inférieure et supérieure se termine dans chaque dimension est déterminée par **LowerPad**[i] et **UpperPad**[i] respectivement. tooensure que noyaux correspondent uniquement trop « réels » nœuds et pas trop « factice », hello conditions suivantes doit être remplie :
   * Chaque élément de **LowerPad** doit être strictement inférieur à KernelShape[d]/2. 
   * Chaque élément de **UpperPad** ne doit pas être supérieur à KernelShape[d]/2. 
-  * La valeur par défaut de ces attributs est un tuple dont tous les éléments sont égaux à 0. 
+  * Hello par défaut de ces attributs est un tuple avec tous les too0 égale de composants. 
 
-Le paramètre **Padding** = true permet d’obtenir le remplissage requis pour maintenir le « centre » du noyau à l’intérieur de l’entrée « réelle ». Cela modifie un peu le calcul de la taille de sortie. En règle générale, la taille de sortie *D* est calculée comme suit : *D = (I - K) / S + 1*, où *I* est la taille d’entrée, *K* est la taille du noyau, *S* est le stride, et */* est la division d’entier (arrondi vers zéro). Si vous définissez UpperPad = [1, 1], la taille d’entrée *I* est effectivement 29 et, ainsi, *D = (29 - 5) / 2 + 1 = 13*. Toutefois, quand **Padding** = true, *I* est essentiellement augmenté de *K - 1* ; donc *D = ((28 + 4) - 5) / 2 + 1 = 27 / 2 + 1 = 13 + 1 = 14*. En spécifiant des valeurs pour **UpperPad** et **LowerPad**, vous obtenez un meilleur contrôle sur le remplissage que si vous définissez simplement **Padding** = true.
+paramètre de Hello **remplissage** = true permet de marge intérieure est besoins tookeep hello « center » du noyau de hello à l’intérieur de hello à « réal » d’entrée. Cela modifie mathématiques hello un bit pour le calcul de taille de la sortie hello. En règle générale, la taille de sortie hello *D* est calculée en tant que *D = (I - K) / S + 1*, où *I* est la taille de l’entrée hello, *K* est la taille du noyau de hello, *S* est stride de hello, et  */*  est la division d’entier (arrondi vers zéro). Si vous définissez UpperPad = [1, 1], hello entrée taille *I* est effectivement 29 et par conséquent *D = (29-5) / 2 + 1 = 13*. Toutefois, quand **Padding** = true, *I* est essentiellement augmenté de *K - 1* ; donc *D = ((28 + 4) - 5) / 2 + 1 = 27 / 2 + 1 = 13 + 1 = 14*. En spécifiant des valeurs pour **UpperPad** et **LowerPad** vous contrôlez beaucoup plus hello de remplissage qu’if vous venez de définir **remplissage** = true.
 
 Pour plus d’informations sur les réseaux convolutionnels et leurs applications, consultez les articles suivants :  
 
@@ -203,11 +203,11 @@ Pour plus d’informations sur les réseaux convolutionnels et leurs application
 * [http://people.csail.mit.edu/jvb/papers/cnn_tutorial.pdf](http://people.csail.mit.edu/jvb/papers/cnn_tutorial.pdf)  
 
 ## <a name="pooling-bundles"></a>Faisceaux de regroupement
-Un **faisceau de regroupement** applique une géométrie similaire à la connectivité convolutionnelle, mais utilise des fonctions prédéfinies pour dériver les valeurs du nœud source vers la valeur du nœud de destination. De ce fait, les faisceaux de regroupement n’ont pas d’état entraînable (poids ou biais). Ils prennent en charge tous les attributs convolutionnels, hormis **Sharing**, **MapCount** et **Weights**.  
+A **le regroupement de regroupement** s’applique à la connectivité tooconvolutional similaire geometry, mais il utilise la valeur de nœud destination valeurs tooderive hello fonctions prédéfinies toosource nœud. De ce fait, les faisceaux de regroupement n’ont pas d’état entraînable (poids ou biais). Le regroupement tous hello à convolution attributs à l’exception de la prise en charge regroupements **partage**, **MapCount**, et **poids**.  
 
-En général, les noyaux résumés par des unités de regroupement adjacentes ne se chevauchent pas. Si Stride[d] est égal à KernelShape[d] dans chaque dimension, la couche obtenue est la couche de regroupement locale traditionnelle, qui est généralement employée dans les réseaux neuronaux convolutionnels. Chaque nœud de destination calcule le maximum ou la moyenne des activités de son noyau dans la couche source.  
+En règle générale, les noyaux hello résumées par unités regroupement adjacentes ne se chevauchent pas. Si Stride [d] est égale tooKernelShape [d] dans chaque dimension, une couche hello obtenue est hello traditionnelle locale regroupement couche, qui est couramment employé dans les réseaux neuronaux à convolution. Chaque nœud de destination calcule hello maximale ou moyenne hello des activités de hello de son noyau dans la couche de source de hello.  
 
-L'exemple suivant illustre un faisceau de regroupement : 
+Hello, l’exemple suivant illustre un ensemble de regroupement : 
 
     hidden P1 [5, 12, 12]
       from C1 max pool {
@@ -216,10 +216,10 @@ L'exemple suivant illustre un faisceau de regroupement :
         Stride      = [ 1,  2,  2];
       }  
 
-* L’arité du faisceau est de 3 (longueur des tuples **InputShape**, **KernelShape** et **Stride**). 
-* Le nombre de nœuds de la couche source est égal à *5 * 24 * 24 = 2 880*. 
+* arité Hello du groupement de hello est 3 (hello longueur de hello tuples **InputShape**, **KernelShape**, et **Stride**). 
+* nombre de Hello de nœuds de couche de source de hello est *5 * 24 * 24 = 2880*. 
 * Il s’agit d’une couche de regroupement locale traditionnelle, car les valeurs **KernelShape** et **Stride** sont égales. 
-* Le nombre de nœuds de la couche de destination est égal à *5 * 12 * 12 = 1 440*.  
+* nombre de Hello de nœuds de couche de destination hello est *5 * 12 * 12 = 1 440*.  
 
 Pour plus d’informations sur les couches de regroupement, consultez les articles suivants :  
 
@@ -228,26 +228,26 @@ Pour plus d’informations sur les couches de regroupement, consultez les articl
 * [http://cs.nyu.edu/~koray/publis/jarrett-iccv-09.pdf](http://cs.nyu.edu/~koray/publis/jarrett-iccv-09.pdf)
 
 ## <a name="response-normalization-bundles"></a>Faisceaux de normalisation de réponse
-La **normalisation de réponse** est un schéma de normalisation local initialement proposé par Geoffrey Hinton et al. dans le document [ImageNet Classification with Deep Convolutional Neural Networks](http://www.cs.toronto.edu/~hinton/absps/imagenet.pdf) (Classification ImageNet avec les réseaux neuronaux convolutionnels profonds). La normalisation de réponse permet de contribuer à la généralisation dans les réseaux neuronaux. Lorsqu’un neurone s’active à un niveau très élevé, la couche de normalisation de réponse locale supprime le niveau d’activation des neurones alentour. Cette opération s’effectue à l’aide de trois paramètres (***α***, ***β*** et ***k***) et d’une structure convolutionnelle (ou forme de voisinage). Chaque neurone ***y*** de la couche de destination correspond à un neurone ***x*** de la couche source. Le niveau de l’activation de l’élément ***y*** est calculé via la formule suivante, où ***f*** correspond au niveau de l’activation d’un neurone de la valeur ***Nx***, au noyau (ou à l’ensemble qui contient les neurones dans le voisinage de l’élément ***x***), comme défini par la structure convolutionnelle suivante :  
+**Normalisation de la réponse** est un modèle de normalisation local qui a été introduit par Geoffrey Hinton, et autres, dans le livre de hello [ImageNet Classiﬁcation avec des réseaux neuronaux à convolution approfondie](http://www.cs.toronto.edu/~hinton/absps/imagenet.pdf). Normalisation de la réponse est généralisation tooaid utilisés dans les réseaux neurones. Lorsqu’un neurone déclenche à un niveau très élevé d’activation, une couche de normalisation de réponse local supprime au niveau de l’activation de hello Hello entourant les neurones. Cette opération s’effectue à l’aide de trois paramètres (***α***, ***β*** et ***k***) et d’une structure convolutionnelle (ou forme de voisinage). Chaque neurone hello calque de destination ***y*** correspond tooa neurone ***x*** dans la couche de source de hello. Hello au niveau de l’activation de ***y*** est donnée par hello formule, suivante où ***f*** est au niveau de l’activation de hello d’un neurone, et ***Nx*** est noyau de hello (ou un ensemble de hello contenant hello neurones dans le voisinage hello de ***x***), comme défini par hello suivant à convolution structure :  
 
 ![][1]  
 
-Les faisceaux de normalisation de réponse prennent en charge tous les attributs convolutionnels, hormis **Sharing**, **MapCount** et **Weights**.  
+Groupes de normalisation de réponse prend en charge tous les attributs à convolution hello sauf **partage**, **MapCount**, et **poids**.  
 
-* Si le noyau contient des neurones de la même signature que ***x***, le schéma de normalisation est appelé **normalisation de même signature**. Pour définir une normalisation de ce type, la première coordonnée de **InputShape** doit avoir la valeur 1.
-* Si le noyau contient des neurones dans la même position spatiale que ***x***, mais situés dans d’autres signatures, le schéma de normalisation est appelé **normalisation intersignature**. Ce type de normalisation de réponse implémente une forme d'inhibition latérale inspirée par le type trouvé dans les vrais neurones et qui crée une compétition pour des niveaux d'activation élevés entre les sorties neuronales calculées sur différentes signatures. Pour définir une normalisation intersignature, la première coordonnée doit être un entier supérieur à 1 et inférieur ou égal au nombre de signatures. Les coordonnées restantes doivent avoir la valeur 1.  
+* Si le noyau de hello contient neurones hello même mapper en tant que ***x***, schéma de normalisation hello est référencé tooas **même mapper normalisation**. toodefine même mapper normalisation, dans la première coordonnée hello **InputShape** doit avoir hello valeur 1.
+* Si le noyau de hello contient neurones hello même position spatiale ***x***, mais les neurones hello se trouvent dans d’autres mappages, schéma de normalisation hello est appelée **mappe à travers de normalisation**. Ce type de normalisation de la réponse implémente un formulaire d’inhiber latéral inspiré par type de hello trouvé dans les neurones réels, création de concurrence pour les niveaux d’activation big dans la liste de sorties neurone calculées sur des cartes de différents. toodefine entre mappe la normalisation et la première coordonnée hello doit être un entier supérieur à un et ne supérieur au nombre de hello des mappages reste hello de coordonnées de hello doit avoir la valeur de hello 1.  
 
-Les faisceaux de normalisation de réponse appliquant une fonction prédéfinie aux valeurs de nœud source pour déterminer la valeur du nœud de destination, ils n’ont pas d’état entraînable (poids ou biais).   
+Étant donné que les offres groupées de normalisation de réponse s’appliquent à une fonction prédéfinie toosource nœud valeurs toodetermine hello nœud valeur de destination, ils n’ont aucun état capable d’apprentissage (poids ou écarts).   
 
-**Alerte** : les nœuds de la couche de destination correspondent aux neurones centraux des noyaux. Par exemple, si KernelShape[d] est impair, *KernelShape[d]/2* correspond au nœud de noyau central. Si la valeur *KernelShape[d]* est paire, le nœud central a la valeur *KernelShape[d]/2 - 1*. Ainsi, si le paramètre **Padding**[d] a la valeur False, les premier et dernier nœuds *KernelShape[d]/2* ne sont associés à aucun nœud correspondant dans la couche de destination. Pour éviter cette situation, définissez **Padding** sur [true, true, …, true].  
+**Alerte**: nœuds hello hello calque de destination correspondent tooneurons qui sont des nœuds de centrale hello des noyaux de hello. Par exemple, si KernelShape [d] est impair, puis *KernelShape [d] / 2* correspond le nœud de noyau central toohello. Si *KernelShape [d]* est pair, nœud central de hello est *KernelShape [d] / 2-1*. Par conséquent, si **remplissage**[d] est False, hello tout d’abord et hello dernière *KernelShape [d] / 2* nœuds n’ont pas de nœuds correspondants hello calque de destination. tooavoid cette situation, définissez **remplissage** en tant que [valeur est true, la valeur true,..., true].  
 
-Outre les quatre attributs décrits précédemment, les faisceaux de normalisation de réponse prennent également en charge les attributs suivants :  
+En outre toohello quatre attributs décrits précédemment, groupes de normalisation de réponse également hello prise en charge suivant d’attributs :  
 
-* **Alpha** : (obligatoire) spécifie une valeur à virgule flottante qui correspond à ***α*** dans la formule précédente. 
-* **Beta** : (obligatoire) spécifie une valeur à virgule flottante qui correspond à ***β*** dans la formule précédente. 
-* **Offset** : (facultatif) spécifie une valeur à virgule flottante correspondant à l’élément ***k*** dans la formule précédente. Par défaut, elle est de 1.  
+* **Alpha**: (obligatoire) spécifie une valeur à virgule flottante qui correspond trop***α*** dans la formule précédente de hello. 
+* **Version bêta**: (obligatoire) spécifie une valeur à virgule flottante qui correspond trop***β*** dans la formule précédente de hello. 
+* **Décalage**: (facultatif) spécifie une valeur à virgule flottante qui correspond trop***k*** dans la formule précédente de hello. Too1 la valeur par défaut.  
 
-L'exemple suivant définit un faisceau de normalisation de réponse utilisant ces attributs :  
+Hello exemple suivant définit un groupe de normalisation de réponse à l’aide de ces attributs :  
 
     hidden RN1 [5, 10, 10]
       from P1 response norm {
@@ -257,12 +257,12 @@ L'exemple suivant définit un faisceau de normalisation de réponse utilisant ce
         Beta = 0.75;
       }  
 
-* La couche source inclut cinq signatures, chacune présentant des dimensions 12x12, pour un total de 1 440 nœuds. 
-* La valeur de **KernelShape** indique qu’il s’agit d’une couche de normalisation de même signature, où le voisinage est un rectangle 3x3. 
-* La valeur par défaut de **Padding** est False. La couche de destination n’a donc que 10 nœuds par dimension. Pour inclure un seul nœud dans la couche de destination correspondant à tous les nœuds de la couche source, ajoutez la chaîne Padding = [true, true, true] et remplacez la taille de l'élément RN1 par [5, 12, 12].  
+* couche de source de Hello inclut cinq tables, chaque dimension unede 12 x 12, total de nœuds de 1440. 
+* Hello valeur **KernelShape** indique qu’il s’agit d’une même normalisation couche, où les voisinage hello est un rectangle 3 x 3. 
+* Hello la valeur par défaut de **remplissage** est False, par conséquent, la couche de destination hello est uniquement 10 nœuds dans chaque dimension. un nœud de tooinclude hello calque de destination qui correspond à nœud tooevery dans la couche de source de hello, ajouter une marge intérieure = [true, true, true] ; et également modifier taille hello de RN1 [5, 12, 12].  
 
 ## <a name="share-declaration"></a>Déclaration de partage
-Net# peut prendre en charge la définition de plusieurs faisceaux avec des poids partagés. Les poids de deux faisceaux quelconques peuvent être partagés tant qu’ils ont la même structure. La syntaxe suivante définit des faisceaux avec des poids partagés :  
+Net# peut prendre en charge la définition de plusieurs faisceaux avec des poids partagés. poids Hello de n’importe quel deux regroupements peuvent être partagées si leurs structures sont hello identiques. Hello syntaxe définit les regroupements avec des poids partagés :  
 
     share-declaration:
         share    {    layer-list    }
@@ -290,7 +290,7 @@ Net# peut prendre en charge la définition de plusieurs faisceaux avec des poids
     layer-name:
         identifier  
 
-Par exemple, la déclaration de partage spécifie les noms de couches, indiquant que les poids et biais doivent être partagés :  
+Par exemple, hello partage-déclaration suivante spécifie les noms de couches hello, qui indique que le poids et biais doivent être partagés :  
 
     Const {
       InputSize = 37;
@@ -310,9 +310,9 @@ Par exemple, la déclaration de partage spécifie les noms de couches, indiquant
     }
     share { H1, H2 } // share both weights and biases  
 
-* Les caractéristiques d'entrée sont partitionnées en deux couches d'entrée de même taille. 
-* Les couches masquées calculent alors des caractéristiques de niveau supérieur sur les deux couches d'entrée. 
-* La déclaration de partage spécifie que *H1* et *H2* doivent être calculés de la même façon à partir de leurs entrées respectives.  
+* les fonctionnalités d’entrée Hello sont répartis dans deux couches d’entrée tailles égales. 
+* les couches Hello masqué calculez des fonctionnalités au niveau supérieures sur deux couches de d’entrée hello. 
+* Hello partage-déclaration spécifie que *H1* et *H2* doivent être calculées Bonjour même de façon à partir de leurs entrées respectives.  
 
 Il est également possible de spécifier cet élément avec deux déclarations de partage indépendantes, comme suit :  
 
@@ -322,59 +322,59 @@ Il est également possible de spécifier cet élément avec deux déclarations d
 
     share { 1 => H1, 1 => H2 } // share biases  
 
-Vous ne pouvez utiliser la forme abrégée que si les couches contiennent un seul faisceau. En général, le partage n’est possible que lorsque les structures concernées sont identiques, c’est-à-dire si elles ont la même taille, la même géométrie convolutionnelle, etc.  
+Vous pouvez utiliser la forme abrégée de hello uniquement lorsque les couches hello contient un lot unique. En règle générale, de partage est possible uniquement lorsque la structure pertinentes de hello est identique, ce qui signifie que leur ont hello même taille, de même geometry à convolution et ainsi de suite.  
 
 ## <a name="examples-of-net-usage"></a>Exemples d’utilisation de Net#
-Cette section fournit des exemples d’utilisation de Net# pour ajouter des couches masquées, définir la façon dont elles interagissent avec les autres couches et construire des réseaux convolutionnels.   
+Cette section fournit quelques exemples de la façon dont vous pouvez utiliser Net # tooadd masqué couches, qui définissent la façon de hello que couches masquées interagissent avec d’autres couches et créer des réseaux à convolution.   
 
 ### <a name="define-a-simple-custom-neural-network-hello-world-example"></a>Définition d'un réseau neuronal personnalisé simple : exemple « Hello World »
-Cet exemple simple montre comment créer un modèle de réseau neuronal contenant une seule couche masquée.  
+Cet exemple simple montre comment toocreate un neuronal réseau modèle qui a une seule couche cachée.  
 
     input Data auto;
     hidden H [200] from Data all;
     output Out [10] sigmoid from H all;  
 
-Cet exemple illustre certaines commandes de base, comme suit :  
+Hello illustre certaines commandes de base comme suit :  
 
-* La première ligne définit la couche d’entrée (nommé *Données*). Quand vous utilisez le mot-clé **auto**, le réseau neuronal inclut automatiquement toutes les colonnes de caractéristique dans les exemples d’entrée. 
-* La deuxième ligne crée la couche masquée. Le nom *H* est affecté à la couche masquée, qui contient 200 nœuds. Cette couche est entièrement connectée à la couche d’entrée.
-* La troisième ligne définit la couche de sortie (appelée*O*), qui contient 10 nœuds de sortie. Si le réseau neuronal est utilisé pour une classification, il y a un nœud de sortie par classe. Le mot clé **sigmoid** indique que la fonction de sortie est appliquée à la couche de sortie.   
+* première ligne Hello définit couche d’entrée de hello (nommé *données*). Lorsque vous utilisez hello **automatique** (mot clé), les réseaux neuronaux hello inclut automatiquement toutes les colonnes de fonctionnalités dans les exemples d’entrée hello. 
+* Hello deuxième ligne crée la couche masquée de hello. nom de Hello *H* est attribué toohello couche masquée, qui possède des nœuds de 200. Cette couche est totalement connecté toohello d’entrée.
+* troisième ligne de Hello définit la couche de sortie hello (nommé *O*), qui contient 10 nœuds de sortie. Si le réseau neuronal de hello est utilisé pour la classification, il est un nœud de sortie par la classe. mot clé de Hello **sigmoïde** indique que la fonction de sortie hello est couche de sortie toohello appliqué.   
 
 ### <a name="define-multiple-hidden-layers-computer-vision-example"></a>Définir plusieurs couches masquées : exemple de vision
-L’exemple suivant montre comment définir un réseau neuronal un peu plus complexe, avec plusieurs couches masquées personnalisées.  
+Hello exemple suivant montre comment toodefine un réseau neuronal légèrement plus complexe, avec plusieurs couches masquées personnalisés.  
 
-    // Define the input layers 
+    // Define hello input layers 
     input Pixels [10, 20];
     input MetaData [7];
 
-    // Define the first two hidden layers, using data only from the Pixels input
+    // Define hello first two hidden layers, using data only from hello Pixels input
     hidden ByRow [10, 12] from Pixels where (s,d) => s[0] == d[0];
     hidden ByCol [5, 20] from Pixels where (s,d) => abs(s[1] - d[1]) <= 1;
 
-    // Define the third hidden layer, which uses as source the hidden layers ByRow and ByCol
+    // Define hello third hidden layer, which uses as source hello hidden layers ByRow and ByCol
     hidden Gather [100] 
     {
       from ByRow all;
       from ByCol all;
     }
 
-    // Define the output layer and its sources
+    // Define hello output layer and its sources
     output Result [10]  
     {
       from Gather all;
       from MetaData all;
     }  
 
-Cet exemple illustre plusieurs caractéristiques du langage de spécification des réseaux neuronaux :  
+Cet exemple illustre plusieurs fonctionnalités du langage de spécification de réseaux neuronaux hello :  
 
-* La structure a deux couches d’entrée, *Pixels* et *MetaData*.
-* La couche *Pixels* est une couche source pour deux ensembles de connexion, avec les couches de destination, *ByRow* et *ByCol*.
-* Les couches *Gather* et *Result* sont des couches de destination dans plusieurs ensembles de connexion.
-* La couche de sortie, *Result*, est une couche de destination dans deux ensembles de connexion, le premier indiquant la deuxième couche masquée (Gather) en tant que couche de destination et le deuxième (MetaData) en tant que couche de destination.
-* Les couches masquées *ByRow* et *ByCol* spécifient une connectivité filtrée en utilisant des expressions de prédicat. Plus précisément, le nœud dans *ByRow* à [x, y] est connecté aux nœuds dans l’élément *Pixels*, car la première coordonnée d’index est égale à la première coordonnée du nœud, x. De même, le nœud de l’élément *ByCol à [x, y] est connecté à ces nœuds dans _Pixels*, dont la deuxième coordonnée d’index se trouve dans la deuxième coordonnée du nœud, y.  
+* structure de Hello possède deux couches d’entrée, *Pixels* et *métadonnées*.
+* Hello *Pixels* couche est une couche de source pour les deux groupes de connexion, avec des couches de destination, *ByRow* et *ByCol*.
+* Hello couches *collecter* et *résultat* sont des couches de destination dans plusieurs groupes de connexion.
+* couche de sortie Hello *résultat*, est une couche de destination dans deux groupes de connexion, une par hello masqué (regroupement) de second niveau comme une couche de destination et hello autre avec la couche d’entrée de hello (métadonnées) comme une couche de destination.
+* Hello couches masquées, *ByRow* et *ByCol*, spécifiez la connectivité filtrée à l’aide d’expressions de prédicat. Plus précisément, le nœud de hello dans *ByRow* à [x, y] est nœuds connectés toohello *Pixels* qui ont le premier x de coordonnées, hello premier index toohello égal coordonnées du nœud. De même, le nœud de hello dans *ByCol à [x, y] est nœuds connectés toohello _Pixels* qui ont des coordonnées d’index deuxième hello dans une des coordonnées de deuxième du nœud hello, y.  
 
 ### <a name="define-a-convolutional-network-for-multiclass-classification-digit-recognition-example"></a>Définir un réseau convolutionnel pour la classification multiclasse : exemple de reconnaissance de chiffre
-La définition du réseau ci-après, conçu pour reconnaître les chiffres, illustre certaines techniques avancées de personnalisation d’un réseau neuronal.  
+définition de Hello Hello suivant réseau est conçue toorecognize numéros et il illustre des techniques avancées pour la personnalisation d’un réseau neuronal.  
 
     input Image [29, 29];
     hidden Conv1 [5, 13, 13] from Image convolve 
@@ -397,21 +397,21 @@ La définition du réseau ci-après, conçu pour reconnaître les chiffres, illu
     output Digit [10] from Hid3 all;  
 
 
-* La structure a une seule couche d’entrée, *Image*.
-* Le mot clé **convolve** indique que les couches nommées *Conv1* et *Conv2* sont des couches convolutionnelles. Chacune de ces déclarations de couche est suivie d'une liste des attributs de convolution.
-* Le réseau contient une troisième couche masquée, *Hid3*, entièrement connectée à la deuxième couche masquée, *Conv2*.
-* La couche de sortie, *Digit*, n’est connectée qu’à la troisième couche masquée, *Hid3*. Le mot clé **all** indique que la couche de sortie est entièrement connectée à *Hid3*.
-* L’arité de la convolution est de 3 (longueur des tuples **InputShape**, **KernelShape**, **Stride** et **Sharing**). 
-* Le nombre de poids par noyau est de *1 + **KernelShape**\[0] * **KernelShape**\[1] * **KernelShape**\[2] = 1 + 1 * 5 * 5 = 26. Ou 26 * 50 = 1 300*.
-* Vous pouvez calculer les nœuds de chaque couche masquée comme suit :
+* structure de Hello dispose d’une couche d’entrée unique, *Image*.
+* Hello mot clé **convolve** indique que les couches hello *Conv1* et *Conv2* sont des couches à convolution. Chacune de ces déclarations de couche est suivie d’une liste d’attributs de convolution hello.
+* Hello net a une troisième masquée couche, *Hid3*, qui est entièrement connecté toohello deuxième couche masquée, *Conv2*.
+* couche de sortie Hello *chiffre*, est la troisième couche masquée toohello uniquement connecté, *Hid3*. mot clé de Hello **tous les** indique cette couche de sortie hello est entièrement connectée trop*Hid3*.
+* Hello arité de convolution de hello est trois (hello longueur de hello tuples **InputShape**, **KernelShape**, **Stride**, et **partage**). 
+* nombre de Hello de poids par noyau est *1 + **KernelShape**\[0] * **KernelShape**\[1] * **KernelShape** \[2] = 1 + 1 * 5 * 5 = 26. Ou 26 * 50 = 1 300*.
+* Vous pouvez calculer les nœuds hello dans chaque couche masquée comme suit :
   * **NodeCount**\[0] = (5 - 1) / 1 + 1 = 5.
   * **NodeCount**\[1] = (13 - 5) / 2 + 1 = 5. 
   * **NodeCount**\[2] = (13 - 5) / 2 + 1 = 5. 
-* Vous pouvez calculer le nombre total de nœuds en utilisant la dimensionnalité déclarée de la couche, [50, 5, 5], comme suit : ***MapCount** * **NodeCount**\[0] * **NodeCount**\[1] * **NodeCount**\[2] = 10 * 5 * 5 * 5*
-* Puisque **Sharing**[d] est faux uniquement pour *d == 0*, le nombre de noyaux est ***MapCount**  * **NodeCount**\[0] = 10 * 5 = 50*. 
+* Hello nombre total de nœuds peut être calculée à l’aide de hello déclaré la dimensionnalité de hello de couche, [50, 5, 5], comme suit :  ***MapCount** * **NodeCount** \[ 0] * **NodeCount**\[1] * **NodeCount**\[2] = 10 * 5 * 5 * 5*
+* Étant donné que **partage**[d] a la valeur False uniquement pour *d == 0*, nombre de hello de noyaux est  ***MapCount** * **NodeCount** \[0] = 10 * 5 = 50*. 
 
 ## <a name="acknowledgements"></a>Remerciements
-Le langage Net # pour la personnalisation de l'architecture des réseaux neuronaux a été développée chez Microsoft par Shon Katzenberger (architecte, Machine Learning) et Alexey Kamenev (ingénieur logiciel, Microsoft Research). Il est utilisé en interne pour l'apprentissage de projets et d'applications allant de la détection d'images à l'analyse de texte. Pour plus d’informations, consultez [Neural Nets in Azure ML - Introduction to Net#](http://blogs.technet.com/b/machinelearning/archive/2015/02/16/neural-nets-in-azure-ml-introduction-to-net.aspx) (Réseaux neuronaux dans Azure ML - présentation de Net #).
+Hello langage Net # pour personnaliser l’architecture hello des réseaux neuronaux a été développé à Microsoft par Shon Katzenberger (architecte, apprentissage) et Alexey Kamenev (Software Engineer, Microsoft Research). Il est utilisé en interne pour l’apprentissage de projets et des applications allant des analytique de tootext détection image. Pour plus d’informations, consultez [réseaux neuronaux dans Azure ML - Introduction tooNet #](http://blogs.technet.com/b/machinelearning/archive/2015/02/16/neural-nets-in-azure-ml-introduction-to-net.aspx)
 
 [1]:./media/machine-learning-azure-ml-netsharp-reference-guide/formula_large.gif
 

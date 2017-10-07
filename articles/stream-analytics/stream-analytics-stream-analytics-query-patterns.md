@@ -1,5 +1,5 @@
 ---
-title: "Exemples de requête pour les modes d’utilisation courants dans Stream Analytics | Microsoft Docs"
+title: "exemples d’aaaQuery pour les modèles d’utilisation courants dans le flux de données Analytique | Documents Microsoft"
 description: "Modèles courants de requêtes Azure Stream Analytics"
 keywords: "exemples de requête"
 services: stream-analytics
@@ -15,19 +15,19 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 08/08/2017
 ms.author: jenniehubbard
-ms.openlocfilehash: a00855c200b3fb365073bad4c5773b02c4c2c7fe
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: c8f7a8ac661eaf0281f4140b02c42141b73040fe
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="query-examples-for-common-stream-analytics-usage-patterns"></a>Exemples de requête pour les modes d’utilisation courants dans Stream Analytics
 ## <a name="introduction"></a>Introduction
-Les requêtes dans Azure Stream Analytics sont exprimées dans un langage de requête de type SQL. Ces requêtes sont documentées dans le guide [Stream Analytics query language reference](https://msdn.microsoft.com/library/azure/dn834998.aspx) (Informations de référence sur le langage de requête Stream Analytics). Cet article décrit les solutions à plusieurs modèles de requête habituels, inspirés de scénarios réels. Il est en cours et mis à jour avec de nouveaux modèles de manière continue.
+Les requêtes dans Azure Stream Analytics sont exprimées dans un langage de requête de type SQL. Ces requêtes sont documentées dans hello [Analytique de flux de données de référence du langage de requête](https://msdn.microsoft.com/library/azure/dn834998.aspx) guide. Ce article décrit les solutions tooseveral requête des modèles courants, les selon des scénarios concrets. Il est un travail en cours et continue toobe mis à jour avec les nouveaux modèles de manière continue.
 
 ## <a name="query-example-convert-data-types"></a>Exemple de requête : Convertir des types de données
-**Description** : Définir les types des propriétés sur le flux d’entrée.
-Par exemple, le poids de la voiture arrive sur le flux d’entrée sous forme de chaîne, et doit être converti en **INT** pour exécuter la fonction **SUM**.
+**Description**: définir des types de hello de propriétés sur les flux d’entrée hello.
+Par exemple, le poids de voiture hello sera disponible sur les flux d’entrée hello sous forme de chaînes et doit toobe converti trop**INT** tooperform **somme** , configurez-le.
 
 **Entrée**:
 
@@ -53,11 +53,11 @@ Par exemple, le poids de la voiture arrive sur le flux d’entrée sous forme de
         Make,
         TumblingWindow(second, 10)
 
-**Explication** : Utilisez une instruction **CAST** dans le champ **Poids** pour spécifier son type de données. Voir la liste des types de données pris en charge dans [Data types (Azure Stream Analytics)](https://msdn.microsoft.com/library/azure/dn835065.aspx) (Types de données (Azure Stream Analytics)).
+**Explication**: utilisez un **CAST** instruction Bonjour **poids** champ toospecify son type de données. Consultez la liste hello des types de données pris en charge dans [des types de données (Analytique de flux de données Azure)](https://msdn.microsoft.com/library/azure/dn835065.aspx).
 
-## <a name="query-example-use-likenot-like-to-do-pattern-matching"></a>Exemple de requête : Utiliser Like/Not like pour les critères spéciaux
-**Description**: Vérifier qu’une valeur de champ sur l’événement correspond à un certain modèle.
-Par exemple, vérifier que le résultat retourne des plaques d’immatriculation qui commencent par A et se terminent par 9.
+## <a name="query-example-use-likenot-like-toodo-pattern-matching"></a>Exemple de requête : utilisation non Like comme toodo critères spéciaux
+**Description**: Vérifiez qu’une valeur de champ d’événement de hello correspond à un certain modèle.
+Par exemple, vérifiez que les résultats hello retourne plaques d’immatriculation qui commence par A et se terminer par 9.
 
 **Entrée**:
 
@@ -83,11 +83,11 @@ Par exemple, vérifier que le résultat retourne des plaques d’immatriculation
     WHERE
         LicensePlate LIKE 'A%9'
 
-**Explication** : Utilisez l’instruction **LIKE** pour vérifier la valeur du champ **LicensePlate**. Il doit commencer par un A, puis avoir une chaîne de zéro, un ou plusieurs caractères, puis se terminer par un 9. 
+**Explication**: hello d’utilisation **comme** hello de toocheck instruction **LicensePlate** valeur du champ. Il doit commencer par un A, puis avoir une chaîne de zéro, un ou plusieurs caractères, puis se terminer par un 9. 
 
 ## <a name="query-example-specify-logic-for-different-casesvalues-case-statements"></a>Exemple de requête : Spécifier la logique pour différentes casses/valeurs (instructions CASE)
 **Description** : Fournir un calcul différent pour un champ en fonction de certains critères.
-Par exemple, fournir une description de chaîne pour le nombre de voitures de la même marque avec une casse spéciale pour 1.
+Par exemple, fournir une description de chaîne pour le nombre de voitures Hello même rendre passé, avec une casse spéciale pour 1.
 
 **Entrée**:
 
@@ -118,11 +118,11 @@ Par exemple, fournir une description de chaîne pour le nombre de voitures de la
         Make,
         TumblingWindow(second, 10)
 
-**Explication** : La clause **CASE** permet de fournir un calcul différent en fonction de certains critères (ici, le nombre de voitures dans la fenêtre d’agrégation).
+**Explication**: hello **cas** clause nous permet de tooprovide un calcul différent, en fonction de certains critères (dans notre cas, le nombre de hello de voitures hello dans la fenêtre d’agrégation hello).
 
-## <a name="query-example-send-data-to-multiple-outputs"></a>Exemple de requête : envoi de données vers plusieurs sorties
-**Description** : Envoyer des données à plusieurs cibles de sortie à partir d’un travail unique.
-Par exemple, analyser des données relatives à une alerte basée sur un seuil et archiver tous les événements dans le Stockage Blob.
+## <a name="query-example-send-data-toomultiple-outputs"></a>Exemple de requête : envoyer des données toomultiple fournit en sortie
+**Description**: toomultiple de données d’envoi de sortie cibles à partir d’une seule tâche.
+Par exemple, analyser des données pour une alerte de seuil et stockage de tooblob tous les événements d’archivage.
 
 **Entrée**:
 
@@ -173,11 +173,11 @@ Par exemple, analyser des données relatives à une alerte basée sur un seuil e
     HAVING
         [Count] >= 3
 
-**Explication** : La clause **INTO** indique à Stream Analytics la sortie sur laquelle écrire les données à partir de cette instruction.
-La première requête est un transfert des données que nous avons reçues vers une sortie nommée **ArchiveOutput**.
-La deuxième requête effectue une agrégation et un filtrage simples, et envoie les résultats vers un système d’alerte en aval.
+**Explication**: hello **INTO** clause indique Analytique de flux de données qui génère des toowrite hello données toofrom Hello cette instruction.
+Hello première requête est une passerelle de données hello nous avons reçu sortie tooan que nous avons nommé **ArchiveOutput**.
+fait une requête de deuxième Hello certains d’agrégation simple et le filtrage et envoie les résultats de hello tooa de système d’alerte en aval.
 
-Notez que vous pouvez également réutiliser les résultats d’expressions de table communes (par exemple avec des instructions **WITH**) dans plusieurs instructions de sortie. Cette option a l’avantage d’ouvrir moins de lecteurs vers la source d’entrée.
+Notez que vous pouvez également réutiliser des résultats d’expressions de table communes (CTE) hello hello (tel que **WITH** instructions) dans plusieurs instructions de sortie. Cette option a hello avantage de l’ouverture de source d’entrée de toohello des lecteurs moins.
 Par exemple : 
 
     WITH AllRedCars AS (
@@ -192,8 +192,8 @@ Par exemple :
     SELECT * INTO ToyotaOutput FROM AllRedCars WHERE Make = 'Toyota'
 
 ## <a name="query-example-count-unique-values"></a>Exemple de requête : Compter des valeurs uniques
-**Description** : Compter le nombre de valeurs de champ uniques qui apparaissent dans le flux au cours d’une fenêtre de temps.
-Par exemple, combien de voitures d’une même marque ont franchi le péage dans une fenêtre de temps de deux secondes ?
+**Description**: hello dénombrer les valeurs de champ unique qui s’affichent dans le flux hello dans une fenêtre de temps.
+Par exemple, le nombre unique fait de voitures passées gare de péage hello dans une fenêtre de 2 secondes ?
 
 **Entrée**:
 
@@ -225,11 +225,11 @@ GROUP BY
 
 
 **Explication :**
-**COUNT(DISTINCT Make)** retourne le nombre de valeurs distinctes de la colonne **Marque** dans une fenêtre de temps.
+**COUNT (DISTINCT Vérifiez)** renvoie hello le nombre de valeurs distinctes dans hello **rendre** colonne dans une fenêtre de temps.
 
 ## <a name="query-example-determine-if-a-value-has-changed"></a>Exemple de requête : Déterminer si une valeur a changé
-**Description** : Examiner une valeur précédente pour déterminer si elle est différente de la valeur actuelle.
-Par exemple, la voiture précédente sur la route à péage est-elle de la même marque que la voiture actuelle ?
+**Description**: examinez un toodetermine valeur précédente si elle est différente de la valeur actuelle de hello.
+Par exemple, est voiture précédente de hello sur hello de route de péage hello que même rendre aussi voiture en cours de hello ?
 
 **Entrée**:
 
@@ -254,10 +254,10 @@ Par exemple, la voiture précédente sur la route à péage est-elle de la même
     WHERE
         LAG(Make, 1) OVER (LIMIT DURATION(minute, 1)) <> Make
 
-**Explication** : Utilisez **LAG** pour lire le flux d’entrée de l’événement précédent et obtenir la valeur de **Marque**. Ensuite, la comparer à la valeur **Marque** de l’événement en cours, puis générer l’événement si elles sont différentes.
+**Explication**: utilisez **LAG** toopeek dans hello d’entrée d’un événement nouveau flux de données et obtenir hello **rendre** valeur. Comparez-le toohello **rendre** valeur sur les événements en cours hello et sortie hello si elles sont différentes.
 
-## <a name="query-example-find-the-first-event-in-a-window"></a>Exemple de requête : Rechercher le premier événement dans une fenêtre
-**Description** : Rechercher la première voiture dans chaque intervalle de 10 minutes.
+## <a name="query-example-find-hello-first-event-in-a-window"></a>Exemple de requête : rechercher hello premier événement dans une fenêtre
+**Description**: rechercher hello première voiture dans chaque intervalle de 10 minutes.
 
 **Entrée**:
 
@@ -289,7 +289,7 @@ Par exemple, la voiture précédente sur la route à péage est-elle de la même
     WHERE 
         IsFirst(minute, 10) = 1
 
-À présent, nous allons changer le problème et rechercher la première voiture d’une marque donnée dans chaque intervalle de 10 minutes.
+Maintenant assurons-nous modification hello problème et rechercher hello première voiture d’un particulier dans chaque intervalle de 10 minutes.
 
 | LicensePlate | Marque | Temps |
 | --- | --- | --- |
@@ -310,8 +310,8 @@ Par exemple, la voiture précédente sur la route à péage est-elle de la même
     WHERE 
         IsFirst(minute, 10) OVER (PARTITION BY Make) = 1
 
-## <a name="query-example-find-the-last-event-in-a-window"></a>Exemple de requête : Rechercher le dernier événement dans une fenêtre
-**Description** : Rechercher la dernière voiture dans chaque intervalle de 10 minutes.
+## <a name="query-example-find-hello-last-event-in-a-window"></a>Exemple de requête : rechercher hello du dernier événement dans une fenêtre
+**Description**: voiture de dernière hello rechercher dans chaque intervalle de 10 minutes.
 
 **Entrée**:
 
@@ -353,11 +353,11 @@ Par exemple, la voiture précédente sur la route à péage est-elle de la même
         ON DATEDIFF(minute, Input, LastInWindow) BETWEEN 0 AND 10
         AND Input.Time = LastInWindow.LastEventTime
 
-**Explication** : La requête comporte deux étapes. La première recherche l’horodatage le plus récent dans les fenêtres de 10 minutes. La deuxième joint les résultats de la première requête avec le flux d’origine pour rechercher les événements qui correspondent aux derniers horodatages dans chaque fenêtre. 
+**Explication**: il existe deux étapes de requête de hello. Hello première recherche un hello dernière horodatage dans les fenêtres de 10 minutes. les jointures Hello deuxième étape hello des résultats de requête de première hello avec hello d’origine flux toofind hello les événements qui correspondent aux hello derniers horodatages dans chaque fenêtre. 
 
-## <a name="query-example-detect-the-absence-of-events"></a>Exemple de requête : Détecter l’absence d’événements
+## <a name="query-example-detect-hello-absence-of-events"></a>Exemple de requête : détecte l’absence de hello d’événements
 **Description** : Vérifier qu’un flux ne contient aucune valeur correspondant à certains critères.
-Par exemple, deux voitures consécutives de la même marque se sont-elles engagées dans la route à péage durant les 90 dernières secondes ?
+Par exemple, 2 voitures consécutifs de hello que même rendre saisi route de péage hello dans hello dernière 90 secondes ?
 
 **Entrée**:
 
@@ -387,10 +387,10 @@ Par exemple, deux voitures consécutives de la même marque se sont-elles engag
     WHERE
         LAG(Make, 1) OVER (LIMIT DURATION(second, 90)) = Make
 
-**Explication** : Utilisez **LAG** pour lire le flux d’entrée de l’événement précédent et obtenir la valeur de **Marque**. La comparer à la valeur **Marque** de l’événement en cours, puis générer l’événement si elles sont identiques. Vous pouvez également utiliser **LAG** pour obtenir des données relatives à la voiture précédente.
+**Explication**: utilisez **LAG** toopeek dans hello d’entrée d’un événement nouveau flux de données et obtenir hello **rendre** valeur. Comparer toohello **rendre** valeur dans l’événement hello en cours, puis sur les événements de hello sortie si elles sont hello identiques. Vous pouvez également utiliser **LAG** tooget des données sur les voitures précédente hello.
 
-## <a name="query-example-detect-the-duration-between-events"></a>Exemple de requête : Détecter la durée entre des événements
-**Description** : Rechercher la durée d’un événement donné. Par exemple, sur la base d’un parcours web, déterminer le temps passé sur une fonctionnalité.
+## <a name="query-example-detect-hello-duration-between-events"></a>Exemple de requête : détecter la durée hello entre les événements
+**Description**: trouver durée hello d’un événement donné. Par exemple, étant donné un parcours de web, déterminer temps hello sur une fonctionnalité.
 
 **Entrée**:  
 
@@ -415,11 +415,11 @@ Par exemple, deux voitures consécutives de la même marque se sont-elles engag
         Event = 'end'
 ````
 
-**Explication** : Utilisez la fonction **LAST** pour récupérer la dernière valeur **TEMPS** quand le type d’événement était **Démarrer**. Notez que la fonction **LAST** utilise **PARTITION BY [user]** pour indiquer que le résultat est calculé par utilisateur unique. La requête a un seuil maximal d’une heure pour la différence de temps entre les événements **Démarrer** et **Terminer** **(LIMIT DURATION(hour, 1)**, mais ce seuil est configurable en fonction des besoins.
+**Explication**: hello d’utilisation **dernière** fonction tooretrieve hello dernière **temps** valeur lorsque le type d’événement hello a été **Démarrer**. Hello **dernière** fonction utilise **PARTITION BY [user]** tooindicate qui hello le résultat est calculé par l’utilisateur unique. requête de Hello a un seuil maximal de 1 heure pour la différence de temps hello entre **Démarrer** et **arrêter** événements, mais peut être configuré en fonction des besoins **(limite DURATION(hour, 1)**.
 
-## <a name="query-example-detect-the-duration-of-a-condition"></a>Exemple de requête : Détecter la durée d’une condition
+## <a name="query-example-detect-hello-duration-of-a-condition"></a>Exemple de requête : détecter la durée hello d’une condition
 **Description** : Rechercher la durée pendant laquelle une condition s’est produite.
-Par exemple, supposez qu’à la suite d’un bogue, le poids de toutes les voitures est incorrect (supérieur à 20 000 livres). Nous voulons calculer la durée du bogue.
+Par exemple, supposez qu’à la suite d’un bogue, le poids de toutes les voitures est incorrect (supérieur à 20 000 livres). Nous voulons que la durée de hello toocompute de bogue de hello.
 
 **Entrée**:
 
@@ -461,11 +461,11 @@ Par exemple, supposez qu’à la suite d’un bogue, le poids de toutes les voit
         AND previousWeight > 20000
 ````
 
-**Explication** : Utilisez **LAG** pour afficher le flux d’entrée sur 24 heures et recherchez les instances dans lesquelles **StartFault** et **StopFault** sont couvertes par la condition « weight < 20000 » (poids inférieur à 20 000 livres).
+**Explication**: utilisez **LAG** tooview hello flux d’entrée des dernières 24 heures, puis recherchez les instances où **StartFault** et **StopFault** sont couvertes par hello poids < 20000.
 
 ## <a name="query-example-fill-missing-values"></a>Exemple de requête : Remplir les valeurs manquantes
-**Description** : Pour le flux des événements qui ont des valeurs manquantes, produire un flux d’événements à intervalles réguliers.
-Par exemple, générer toutes les cinq secondes un événement qui indique le point de données le plus récemment observé.
+**Description**: pour les flux de hello d’événements qui ont des valeurs manquantes, produisent un flux d’événements à intervalles réguliers.
+Par exemple, génère un événement toutes les 5 secondes qui indique le point de données hello plus récemment affichée.
 
 **Entrée**:
 
@@ -503,13 +503,13 @@ Par exemple, générer toutes les cinq secondes un événement qui indique le p
     GROUP BY HOPPINGWINDOW(second, 300, 5)
 
 
-**Explication** : Cette requête génère des événements toutes les cinq secondes et indique le dernier événement précédemment reçu. La [Fenêtre récurrente](https://msdn.microsoft.com/library/dn835041.aspx "Fenêtre récurrente - Azure Stream Analytics") détermine la période que la requête remonte pour rechercher le dernier événement (300 secondes, dans cet exemple).
+**Explication**: cette requête génère des événements toutes les 5 secondes et sorties hello du dernier événement reçu précédemment. Hello [saut fenêtre](https://msdn.microsoft.com/library/dn835041.aspx "fenêtre saut--Analytique de flux de données Azure") durée détermine combien hello arrière requête se présente événement plus récente de hello toofind (300 secondes dans cet exemple).
 
 ## <a name="get-help"></a>Obtenir de l’aide
 Pour obtenir une assistance, consultez le [forum Azure Stream Analytics](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics)
 
 ## <a name="next-steps"></a>Étapes suivantes
-* [Présentation d’Azure Stream Analytics](stream-analytics-introduction.md)
+* [Introduction tooAzure Analytique de flux de données](stream-analytics-introduction.md)
 * [Prise en main d’Azure Stream Analytics](stream-analytics-real-time-fraud-detection.md)
 * [Mise à l'échelle des travaux Azure Stream Analytics](stream-analytics-scale-jobs.md)
 * [Références sur le langage des requêtes d'Azure Stream Analytics](https://msdn.microsoft.com/library/azure/dn834998.aspx)

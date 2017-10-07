@@ -1,5 +1,5 @@
 ---
-title: "Ajouter des conditions pour exécuter les workflows - Azure Logic Apps | Microsoft Docs"
+title: "conditions d’aaaAdd et démarrer le flux de travail - Azure Logic Apps | Documents Microsoft"
 description: "Contrôlez le mode d’exécution des workflows dans Azure Logic Apps en ajoutant une logique conditionnelle, des déclencheurs, des actions et des paramètres."
 author: stepsic-microsoft-com
 manager: anneta
@@ -14,131 +14,131 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/28/2017
 ms.author: LADocs; stepsic
-ms.openlocfilehash: e632c48ed31e82536db55a9c54438bece0c38fd4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 76d5e44590ffa14cf70d7a93b99a241d286d555b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-logic-apps-features"></a>Utiliser les fonctionnalités des applications logiques
 
-Dans une [rubrique précédente](../logic-apps/logic-apps-create-a-logic-app.md), vous avez créé votre première application logique. Pour contrôler le workflow de votre application logique, vous pouvez définir des chemins d’accès différents pour l’exécution de votre application logique et spécifier comment traiter les données dans des tableaux, des collections et des lots. Vous pouvez inclure les éléments suivants dans le workflow de votre application logique :
+Dans une [rubrique précédente](../logic-apps/logic-apps-create-a-logic-app.md), vous avez créé votre première application logique. toocontrol flux de travail de votre application logique, vous pouvez spécifier des chemins d’accès pour votre toorun d’application logique et comment trop de traiter les données dans les tableaux, les collections et les lots. Vous pouvez inclure les éléments suivants dans le workflow de votre application logique :
 
 * Les conditions et les [instructions switch](../logic-apps/logic-apps-switch-case.md) permettent à votre application logique d’exécuter différentes actions si certaines conditions sont remplies ou non.
 
 * Les [boucles](../logic-apps/logic-apps-loops-and-scopes.md) permettent à votre application logique d’exécuter des étapes à plusieurs reprises. Par exemple, vous pouvez répéter des actions sur un tableau en utilisant une boucle **For_each**. Vous pouvez également répéter des actions jusqu’à ce qu’une condition soit remplie à l’aide d’une boucle **Until**.
 
-* Les [étendues](../logic-apps/logic-apps-loops-and-scopes.md) permettent de regrouper des séries d’actions, par exemple pour mettre en œuvre la gestion des exceptions.
+* [Étendues](../logic-apps/logic-apps-loops-and-scopes.md) permettent de vous regroupez série d’actions, par exemple, la gestion des exceptions tooimplement.
 
-* La [décomposition](../logic-apps/logic-apps-loops-and-scopes.md) permet à votre application logique de démarrer des workflows distincts pour les éléments d’un tableau lorsque vous utilisez la commande **SplitOn**.
+* [Debatching](../logic-apps/logic-apps-loops-and-scopes.md) permet à votre application logique de démarrer le flux de travail distinct pour les éléments dans un tableau quand vous utilisez hello **SplitOn** commande.
 
 Cette rubrique présente d’autres concepts utiles pour la création de votre application logique :
 
-* mode code pour modifier une application logique existante ;
+* Vue tooedit une application existante de la logique du code
 * options de démarrage d’un flux de travail.
 
 ## <a name="conditions-run-steps-only-after-meeting-a-condition"></a>Conditions : exécuter des étapes uniquement lorsqu’une condition est remplie
 
-Pour que votre application logique exécute des étapes uniquement lorsque les données remplissent des critères spécifiques, vous pouvez ajouter une condition qui compare les données du workflow à des champs ou des valeurs spécifiques.
+toohave votre application logique exécutée des étapes uniquement lorsque les données satisfont aux critères spécifiques, vous pouvez ajouter une condition qui compare les données dans le flux de travail hello par rapport à des champs ou des valeurs.
 
-Par exemple, supposons que vous disposez d’une application logique qui vous envoie un trop grand nombre d’e-mails pour des publications sur le flux RSS d’un site web. Vous pouvez ajouter une condition afin que votre application logique envoie un e-mail uniquement lorsque la nouvelle publication appartient à une catégorie spécifique.
+Par exemple, supposons que vous disposez d’une application logique qui vous envoie un trop grand nombre d’e-mails pour des publications sur le flux RSS d’un site web. Vous pouvez ajouter une condition afin que votre application logique envoie un e-mail uniquement lorsque hello nouvelle validation appartienne catégorie spécifique de tooa.
 
-1. Dans le [portail Azure](https://portal.azure.com), recherchez et ouvrez votre application logique dans le concepteur d’application logique.
+1. Bonjour [portail Azure](https://portal.azure.com), recherchez et ouvrez votre application de logique dans le Concepteur de la logique d’application.
 
-2. Ajoutez une condition dans le workflow à l’emplacement souhaité. 
+2. Ajouter un emplacement de flux de travail toohello condition que vous le souhaitez. 
 
-   Pour ajouter la condition entre des étapes existantes du workflow de l’application logique, déplacez le pointeur sur la flèche où vous voulez ajouter la condition. 
-   Cliquez sur le **signe plus** (**+**), puis choisissez **Ajouter une condition**. Par exemple :
+   condition de hello tooadd entre les étapes d’un workflow d’application hello logique, pointent hello sur la flèche de hello où vous souhaitez la condition de hello tooadd. 
+   Choisissez hello **signe** (**+**), puis choisissez **ajouter une condition**. Par exemple :
 
-   ![Ajouter une condition à l’application logique](./media/logic-apps-use-logic-app-features/add-condition.png)
+   ![Ajouter une condition toologic application](./media/logic-apps-use-logic-app-features/add-condition.png)
 
    > [!NOTE]
-   > Si vous souhaitez ajouter une condition à la fin de votre workflow actuel, accédez au bas de votre application logique et sélectionnez **+ Nouvelle étape**.
+   > Si vous souhaitez tooadd une condition à fin hello votre flux de travail en cours, accédez bas toohello de votre application logique, puis choisissez **+ nouvelle étape**.
 
-3. Maintenant, définissez la condition. Spécifiez le champ source à évaluer, l’opération à effectuer et la valeur ou le champ cible. Pour ajouter des champs existants à votre condition, utilisez la liste **Ajouter du contenu dynamique**.
+3. Maintenant définir la condition de hello. Spécifier le champ de source de hello que vous souhaitez tooevaluate, hello opération tooperform et valeur de cible de hello ou le champ. tooadd existant champs tooyour condition, choisissez hello **ajouter une liste de contenu dynamique**.
 
    Par exemple :
 
    ![Modifier la condition en mode de base](./media/logic-apps-use-logic-app-features/edit-condition-basic-mode.png)
 
-   Voici la condition complète :
+   Voici les conditions de saisie hello :
 
    ![Condition complète](./media/logic-apps-use-logic-app-features/edit-condition-basic-mode-2.png)
 
    > [!TIP]
-   > Pour définir la condition dans le code, choisissez **Modifier en mode Avancé**. Par exemple :
+   > condition de hello toodefine dans le code, choisissez **modifier en mode avancé**. Par exemple :
    > 
    > ![Modifier la condition dans le code](./media/logic-apps-use-logic-app-features/edit-condition-advanced-mode.png)
 
-4. Sous **SI OUI** et **SI NON**, ajoutez les étapes à effectuer si la condition est remplie ou non.
+4. Sous **si Oui** et **si aucun**, ajouter tooperform d’étapes hello selon si hello condition est remplie.
 
    Par exemple :
 
    ![Condition avec les chemins SI OUI et SI NON](./media/logic-apps-use-logic-app-features/condition-yes-no-path.png)
 
    > [!TIP]
-   > Vous pouvez faire glisser des actions existantes dans les chemins **SI OUI** et **SI NON**.
+   > Vous pouvez faire glisser des actions existantes hello **si Oui** et **si aucun** chemins d’accès.
 
 5. Lorsque vous avez terminé, enregistrez votre application logique.
 
-À présent, vous ne recevrez des e-mails que lorsque les publications remplissent votre condition.
+Vous n’êtes e-mails uniquement lorsque hello publications répondent à la condition.
 
 ## <a name="repeat-actions-over-a-list-with-foreach"></a>Répétition des actions sur une liste à l’aide de forEach
 
-La boucle forEach spécifie un tableau sur lequel répéter une action. Le flux échouera s’il ne se présente pas sous la forme d’un tableau. Par exemple, si action1 génère un tableau de messages et que vous souhaitez envoyer chaque message, vous pouvez inclure cette instruction forEach dans les propriétés de votre action : `forEach : "@action('action1').outputs.messages"`
+boucle forEach de Hello spécifie un tableau de toorepeat une action de pointage. Si elle n’est pas un tableau, les flux hello échoue. Par exemple, si vous avez action1 qui génère un tableau de messages, et que vous souhaitez toosend chaque message, vous pouvez inclure cette instruction forEach dans les propriétés de votre action hello :`forEach : "@action('action1').outputs.messages"`
 
-## <a name="edit-the-code-definition-for-a-logic-app"></a>Modification de la définition du code pour une application logique
+## <a name="edit-hello-code-definition-for-a-logic-app"></a>Modifier la définition de code hello pour une application de logique
 
-Même si vous avez le concepteur d’applications logiques, vous pouvez modifier directement le code qui définit une application logique.
+Bien que vous avez hello Concepteur d’application logique, vous pouvez modifier directement le code hello qui définit une application logique.
 
-1. Dans la barre de commandes, choisissez **Mode Code**.
+1. Dans la barre de commandes hello, choisissez **mode Code**.
 
-    Cela ouvre un éditeur complet qui affiche la définition que vous venez de modifier.
+    Un éditeur complète s’ouvre et affiche les définition hello que vous avez modifié.
 
     ![Mode code](media/logic-apps-use-logic-app-features/codeview.png)
 
-    Dans l'éditeur de texte, vous pouvez copier et coller les actions de votre choix dans la même application logique ou d'une application logique vers une autre. 
-    Vous pouvez aussi ajouter ou supprimer facilement des sections entières de la définition et partager des définitions avec d'autres utilisateurs.
+    Dans l’éditeur de texte hello, vous pouvez copier et coller n’importe quel nombre d’actions au sein de hello même application logique ou entre les applications de la logique. 
+    Vous pouvez également facilement ajouter ou supprimer des sections entières à partir de la définition de hello, et vous pouvez également partager les définitions avec d’autres utilisateurs.
 
-2. Pour enregistrer vos modifications, cliquez sur **Enregistrer**.
+2. Choisissez de vos modifications, toosave **enregistrer**.
 
 ## <a name="parameters"></a>Paramètres
 
-Certaines fonctionnalités de Logic Apps sont disponibles uniquement en mode code, les paramètres par exemple. Les paramètres simplifient la réutilisation des valeurs dans votre application logique. Par exemple, si vous avez une adresse de messagerie que vous souhaitez utiliser dans plusieurs actions, vous devez la définir en tant que paramètre.
+Certaines fonctionnalités de Logic Apps sont disponibles uniquement en mode code, les paramètres par exemple. Paramètres rendent tooreuse facile des valeurs dans l’ensemble de votre application logique. Par exemple, si vous avez une adresse de messagerie que vous souhaitez utiliser dans plusieurs actions, vous devez la définir en tant que paramètre.
 
-Les paramètres constituent un bon moyen d'extraire des valeurs que vous êtes susceptible de modifier souvent. Ils sont particulièrement utiles quand vous devez substituer des paramètres dans différents environnements. Pour découvrir comment substituer des paramètres en fonction de l’environnement, consultez [Créer des définitions d’application logique](../logic-apps/logic-apps-author-definitions.md) et la [documentation de l’API REST](https://docs.microsoft.com/rest/api/logic).
+Les paramètres sont adaptés pour extraire les valeurs que vous êtes probablement toochange beaucoup. Ils sont particulièrement utiles lorsque vous avez besoin des paramètres toooverride dans différents environnements. toolearn toooverride basés sur l’environnement, voir [créer des définitions d’application logique](../logic-apps/logic-apps-author-definitions.md) et [documentation de l’API REST](https://docs.microsoft.com/rest/api/logic).
 
-L’exemple montre comment mettre à jour votre application logique existante pour utiliser des paramètres pour le terme de requête.
+Cet exemple montre comment tooupdate votre application logique existant afin que vous pouvez utiliser des paramètres pour un terme de requête hello.
 
-1. En mode code, recherchez l’objet `parameters : {}` et ajoutez un objet `currentFeedUrl` :
+1. Dans la vue code, recherchez hello `parameters : {}` de l’objet, puis ajoutez un `currentFeedUrl` objet :
 
         "currentFeedUrl" : {
             "type" : "string",
             "defaultValue" : "http://rss.cnn.com/rss/cnn_topstories.rss"
         }
 
-2. Naviguez jusqu’à l’action `When_a_feed-item_is_published`, recherchez la section `queries` et remplacez la valeur de la requête par `"feedUrl": "#@{parameters('currentFeedUrl')}"`. 
+2. Accédez toohello `When_a_feed-item_is_published` action, rechercher hello `queries` section et remplacez la valeur de requête hello avec :`"feedUrl": "#@{parameters('currentFeedUrl')}"` 
 
-    Pour joindre deux chaînes ou plus, vous pouvez également utiliser la fonction `concat`. 
-    Par exemple, `"@concat('#',parameters('currentFeedUrl'))"` est la même que ci-dessus.
+    toojoin deux ou plusieurs chaînes, vous pouvez également utiliser hello `concat` (fonction). 
+    Par exemple, `"@concat('#',parameters('currentFeedUrl'))"` fonctionne même hello comme hello ci-dessus.
 
 3.  Une fois ces opérations effectuées, sélectionnez **Enregistrer**. 
 
-    Vous pouvez maintenant modifier le flux RSS du site web en transmettant une autre URL via l’objet `currentFeedURL`.
+    Maintenant vous pouvez modifier flux RSS du hello du site Web en passant une autre URL via hello `currentFeedURL` objet.
 
-En savoir plus sur la [création de définitions d’application logique](../logic-apps/logic-apps-author-definitions.md).
+En savoir plus sur [comment définitions d’application logique tooauthor](../logic-apps/logic-apps-author-definitions.md).
 
 ## <a name="start-logic-app-workflows"></a>Démarrage de workflows d’application logique
 
-Vous avez plusieurs options pour démarrer le flux de travail défini dans votre application logique. Vous pouvez toujours démarrer un flux de travail à la demande dans le [portail Azure].
+Vous disposez des options différentes pour le démarrage du workflow hello défini dans votre application logique. Vous pouvez toujours démarrer une flux de travail à la demande dans hello [portail Azure].
 
 ### <a name="recurrence-triggers"></a>Déclencheurs de périodicité
 
-Un déclencheur de périodicité s'exécute selon un intervalle que vous spécifiez. Quand le déclencheur a une logique conditionnelle, il détermine si le flux de travail doit s'exécuter ou non. Un déclencheur indique que le workflow doit s’exécuter en retournant un code d’état `200` . Lorsque le workflow n’a pas besoin de s’exécuter, le déclencheur renvoie un code d’état `202`.
+Un déclencheur de périodicité s'exécute selon un intervalle que vous spécifiez. Lorsque le déclencheur de hello possède une logique conditionnelle, déclencheur de hello détermine si le flux de travail hello doit toorun. Un déclencheur indique le flux de travail hello doit s’exécuter en retournant un `200` code d’état. Lorsque le flux de travail hello n’a pas besoin de toorun, le déclencheur de hello retourne un `202` code d’état.
 
 ### <a name="callback-using-rest-apis"></a>Rappel à l'aide des API REST
 
-Pour démarrer un workflow, les services peuvent appeler un point de terminaison d'application logique. Pour démarrer ce type d’application logique à la demande, choisissez **Exécuter maintenant** dans la barre de commandes. Consultez la page [Démarrage des flux de travail en appelant les points de terminaison en tant que déclencheurs](../logic-apps/logic-apps-http-endpoint.md). 
+toostart un flux de travail, les services peuvent appeler un point de terminaison application logique. Choisissez de ce genre de logique application à la demande, toostart **exécuter maintenant** sur la barre de commandes hello. Consultez la page [Démarrage des flux de travail en appelant les points de terminaison en tant que déclencheurs](../logic-apps/logic-apps-http-endpoint.md). 
 
 <!-- Shared links -->
 [portail Azure]: https://portal.azure.com

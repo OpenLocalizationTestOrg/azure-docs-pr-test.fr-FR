@@ -1,6 +1,6 @@
 ---
-title: "Science des données d’une machine virtuelle de science des données Linux | Microsoft Docs"
-description: "Comment effectuer plusieurs tâches courantes de science des données avec la machine virtuelle de science des données Linux."
+title: "science aaaData sur hello une Machine virtuelle pour la science des données Linux | Documents Microsoft"
+description: "Comment tooperform scientifiques de données commun plusieurs tâches avec hello VM de science des données Linux."
 services: machine-learning
 documentationcenter: 
 author: bradsev
@@ -14,98 +14,98 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/21/2017
 ms.author: bradsev;paulsh
-ms.openlocfilehash: 6da9a8e3f9f8ac851c2a8deb861ac1d0b3ec5874
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 78764825f2e834fa4ddb7fdc2f59418dbe736e1d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="data-science-on-the-linux-data-science-virtual-machine"></a>Science des données sur la machine virtuelle de science des données Linux
-Cette procédure pas à pas vous montre comment effectuer plusieurs tâches courantes de science des données avec la machine virtuelle de science des données Linux. La machine virtuelle de science des données Linux est une image de machine virtuelle disponible sur Azure qui est préinstallée avec plusieurs outils couramment utilisés dans le cadre de l’analyse de données et du Machine Learning. Les composants logiciels clés sont détaillés dans la rubrique [Approvisionnement d’une machine virtuelle de science des données Linux](machine-learning-data-science-linux-dsvm-intro.md) . L’image de la machine virtuelle facilite la prise en main de la science des données en quelques minutes, sans avoir à installer et à configurer individuellement chacun des outils individuellement. Le cas échéant, vous pouvez facilement faire monter en puissance la machine virtuelle, et l’arrêter lorsqu’elle est inutilisée. Cette ressource est donc flexible et économique.
+# <a name="data-science-on-hello-linux-data-science-virtual-machine"></a>Recherche de données sur hello une Machine virtuelle pour la science des données Linux
+Cette procédure pas à pas vous montre comment tooperform scientifiques de données commun plusieurs tâches avec hello VM de science des données Linux. Hello Machine virtuelle de science des données Linux (DSVM) est une image de machine virtuelle disponible sur Azure est préinstallé avec un ensemble d’outils utilisés pour l’analytique des données et l’apprentissage. les composants logiciels de clé Hello sont répertoriés dans hello [hello de configurer une Machine virtuelle pour la science des données Linux](machine-learning-data-science-linux-dsvm-intro.md) rubrique. Hello image de machine virtuelle rend facile tooget commencé à faire la science des données en quelques minutes, sans avoir tooinstall et configurer chacun des outils de hello individuellement. Vous pouvez facilement évoluer hello machine virtuelle, si nécessaire et l’arrêter inutilisés. Cette ressource est donc flexible et économique.
 
-Les tâches de science des données décrites dans cette procédure pas à pas suivent les étapes décrites dans le [processus de science des données pour les équipes](https://azure.microsoft.com/documentation/learning-paths/data-science-process/). Ce processus fournit une approche systématique de la science des données qui permet aux équipes de scientifiques des données de collaborer efficacement tout au long du cycle de vie du développement d’applications intelligentes. Le processus de science des données fournit également une infrastructure itérative pour la science des données, qui peut être suivie par une personne.
+tâches courantes relatives aux données présentées dans cette procédure pas à pas Hello suivent étapes hello hello [processus de science des données équipe](https://azure.microsoft.com/documentation/learning-paths/data-science-process/). Ce processus fournit une science toodata approche systématique permettant aux équipes de chercheurs de données tooeffectively collaborer hello du cycle de vie de la création d’applications intelligentes. processus de science des données Hello fournit également une infrastructure itérative pour la science des données qui peuvent être suivie par une personne.
 
-Au cours de cette procédure pas à pas, nous analysons le jeu de données [spambase](https://archive.ics.uci.edu/ml/datasets/spambase) . Il s’agit d’un ensemble d’e-mails marqués comme courrier indésirable ou courrier légitime (non indésirable), qui contient également des statistiques sur le contenu des e-mails. Les statistiques incluses sont évoquées dans la section suivante.
+Nous analysons hello [spambase](https://archive.ics.uci.edu/ml/datasets/spambase) jeu de données dans cette procédure pas à pas. Il s’agit d’un ensemble d’adresses de messagerie qui sont marqués comme étant du courrier indésirable ou ham (ce qui signifie qu’ils ne sont pas courrier indésirable), et contient également des statistiques sur le contenu des e-mails de hello hello. statistiques Hello inclus sont abordés plus loin dans hello mais une seule section.
 
 ## <a name="prerequisites"></a>Composants requis
-Avant de pouvoir utiliser une machine virtuelle de science des données Linux, vous devez disposer des éléments suivants :
+Avant de pouvoir utiliser un ordinateur de virtuel de science des données Linux, vous devez disposer de hello :
 
 * Un **abonnement Azure**. Si vous n’en avez pas déjà un, voir [Créez votre compte Azure gratuit](https://azure.microsoft.com/free/).
-* Une [**machine virtuelle de science des données Linux**](https://azure.microsoft.com/marketplace/partners/microsoft-ads/linux-data-science-vm). Pour plus d’informations sur l’approvisionnement de cette machine virtuelle, consultez [Approvisionnement d’une machine virtuelle de science des données Linux](machine-learning-data-science-linux-dsvm-intro.md).
+* Une [**machine virtuelle de science des données Linux**](https://azure.microsoft.com/marketplace/partners/microsoft-ads/linux-data-science-vm). Pour plus d’informations sur la configuration de cet ordinateur virtuel, consultez [hello de configurer une Machine virtuelle pour la science des données Linux](machine-learning-data-science-linux-dsvm-intro.md).
 * [X2Go](http://wiki.x2go.org/doku.php) installé sur votre ordinateur et une session XFCE ouverte. Pour plus d’informations sur l’installation et la configuration d’un **client X2Go**, consultez [Installation et configuration du client X2Go](machine-learning-data-science-linux-dsvm-intro.md#installing-and-configuring-x2go-client). 
-* Un **compte AzureML**. Si vous n’avez pas déjà un, inscrivez-vous pour en obtenir un nouveau sur la [page d’accueil AzureML](https://studio.azureml.net/). Il existe un niveau d’utilisation gratuit pour vous aider à commencer.
+* Un **compte AzureML**. Si vous n’avez pas encore, inscrivez-vous pour un nouveau à hello [page d’accueil AzureML](https://studio.azureml.net/). Il existe un toohelp de niveau d’utilisation libre commencer.
 
-## <a name="download-the-spambase-dataset"></a>Télécharger le jeu de données spambase
-Le jeu de données [spambase](https://archive.ics.uci.edu/ml/datasets/spambase) est un ensemble de données relativement réduit qui ne contient que 4 601 exemples. Il s’agit d’une taille pratique à utiliser lors de la démonstration de certaines des fonctionnalités clés de la machine virtuelle de science des données, car elle limite les besoins en ressources.
+## <a name="download-hello-spambase-dataset"></a>Télécharger le jeu de données hello spambase
+Hello [spambase](https://archive.ics.uci.edu/ml/datasets/spambase) jeu de données est un ensemble relativement réduit de données qui contient des 4601 uniquement exemples. Il s’agit d’un toouse taille pratique lors de la démonstration que certaines des fonctionnalités clés de hello Hello VM de science des données tel qu’il conserve les besoins en ressources hello modeste.
 
 > [!NOTE]
-> Cette procédure pas à pas a été créée sur une machine virtuelle de science des données Linux de taille D2 v2. Cette taille de machine virtuelle de science des données est capable de gérer les procédures décrites dans cette procédure pas à pas.
+> Cette procédure pas à pas a été créée sur une machine virtuelle de science des données Linux de taille D2 v2. Cette taille DSVM est capable de gérer des procédures hello dans cette procédure pas à pas.
 >
 >
 
-Si vous avez besoin de plus d’espace de stockage, vous pouvez créer des disques supplémentaires et les joindre à votre machine virtuelle. Ces disques utilisent le stockage Azure persistant ; ainsi, leurs données sont conservées même lorsque le serveur est réapprovisionné en raison d’un redimensionnement ou d’un arrêt. Pour ajouter un disque et l’attacher à votre machine virtuelle, suivez les instructions [Ajouter un disque à une machine virtuelle Linux](../virtual-machines/linux/add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). Cette procédure utilise l’interface de ligne de commande Azure (Azure CLI), qui est déjà installée sur la machine virtuelle de science des données. Par conséquent, ces procédures peuvent être entièrement effectuées à partir de la machine virtuelle elle-même. Une autre option pour augmenter le stockage consiste à utiliser les [fichiers Azure](../storage/files/storage-how-to-use-files-linux.md).
+Si vous avez besoin de davantage d’espace de stockage, vous pouvez créer des disques supplémentaires et les attacher tooyour machine virtuelle. Ces disques utilisent le stockage Azure persistant, afin de leurs données sont conservées même lorsque le serveur de hello est remise en service dues tooresizing ou est arrêté. tooadd un disque et attacher tooyour VM, suivez les instructions de hello dans [ajouter un tooa de disque Linux VM](../virtual-machines/linux/add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). Ces étapes utilisent hello Azure Interface de ligne (Azure), qui est déjà installé sur hello DSVM. Par conséquent, ces procédures possible entièrement à partir hello machine virtuelle proprement dite. Une autre option de stockage tooincrease est toouse [fichiers Azure](../storage/files/storage-how-to-use-files-linux.md).
 
-Pour télécharger les données, ouvrez une fenêtre de terminal et exécutez cette commande :
+les données de salutation toodownload, ouvrez une fenêtre de terminal et exécuter cette commande :
 
     wget http://archive.ics.uci.edu/ml/machine-learning-databases/spambase/spambase.data
 
-Le fichier téléchargé n’a pas de ligne d’en-tête, nous allons donc créer un autre fichier doté d’un en-tête. Exécutez cette commande pour créer un fichier avec les en-têtes appropriés :
+fichier téléchargé de Hello ne pas avoir une ligne d’en-tête, nous allons donc créer un autre fichier qui n’a pas un en-tête. Exécuter cette commande toocreate un fichier avec les en-têtes appropriés hello :
 
     echo 'word_freq_make, word_freq_address, word_freq_all, word_freq_3d,word_freq_our, word_freq_over, word_freq_remove, word_freq_internet,word_freq_order, word_freq_mail, word_freq_receive, word_freq_will,word_freq_people, word_freq_report, word_freq_addresses, word_freq_free,word_freq_business, word_freq_email, word_freq_you, word_freq_credit,word_freq_your, word_freq_font, word_freq_000, word_freq_money,word_freq_hp, word_freq_hpl, word_freq_george, word_freq_650, word_freq_lab,word_freq_labs, word_freq_telnet, word_freq_857, word_freq_data,word_freq_415, word_freq_85, word_freq_technology, word_freq_1999,word_freq_parts, word_freq_pm, word_freq_direct, word_freq_cs, word_freq_meeting,word_freq_original, word_freq_project, word_freq_re, word_freq_edu,word_freq_table, word_freq_conference, char_freq_semicolon, char_freq_leftParen,char_freq_leftBracket, char_freq_exclamation, char_freq_dollar, char_freq_pound, capital_run_length_average,capital_run_length_longest, capital_run_length_total, spam' > headers
 
-Ensuite, concaténez les deux fichiers ensemble avec la commande :
+Puis concaténer les deux fichiers de hello avec la commande hello :
 
     cat spambase.data >> headers
     mv headers spambaseHeaders.data
 
-Le jeu de données possède plusieurs types de statistiques sur chaque e-mail :
+Hello dataset possède plusieurs types de statistiques sur chaque e-mail :
 
-* Les colonnes comme ***word\_freq\_WORD*** indiquent le pourcentage de mots dans l’e-mail correspondant à *WORD*. Par exemple, si la valeur *word\_freq\_make* correspond à 1, 1 % de tous les mots dans l’e-mail était *make*.
-* Les colonnes comme ***char\_freq\_CHAR*** indiquent le pourcentage de tous les caractères dans l’e-mail correspondant à *CHAR*.
-* ***capital\_run\_length\_longest*** est la longueur la plus longue d’une séquence de lettres majuscules.
-* ***capital\_run\_length\_average*** est la longueur moyenne de toutes les séquences de lettres majuscules.
-* ***capital\_run\_length\_total*** est la longueur totale de toutes les séquences de lettres majuscules.
-* ***spam*** indique si l’e-mail a été considéré comme du courrier indésirable ou non (1 = courrier indésirable, 0 = courrier non indésirable).
+* Comme les colonnes ***word\_fréquence\_WORD*** indiquent le pourcentage hello de mots par courrier électronique hello qui correspondent aux *WORD*. Par exemple, si *word\_fréquence\_rendre* est 1, 1 % de tous les mots par courrier électronique hello ont été *rendre*.
+* Comme les colonnes ***char\_fréquence\_CHAR*** indiquent le pourcentage hello de tous les caractères qui ont été par courrier électronique hello *CHAR*.
+* ***majuscule\_exécuter\_longueur\_plus longue*** est la longueur la plus importante d’une séquence de lettres majuscules hello.
+* ***majuscule\_exécuter\_longueur\_moyenne*** est hello la durée moyenne de toutes les séquences de lettres en majuscules.
+* ***majuscule\_exécuter\_longueur\_total*** est hello la longueur totale de toutes les séquences de lettres en majuscules.
+* ***anti-spam*** indique si les e-mails hello a été considéré comme du courrier indésirable ou non (1 = le courrier indésirable, 0 ne = pas de courrier indésirable).
 
-## <a name="explore-the-dataset-with-microsoft-r-open"></a>Explorer le jeu de données avec Microsoft R Open
-Nous allons examiner les données et découvrir certaines fonctionnalités de base du Machine Learning avec R. La machine virtuelle de science des données est fournie avec [Microsoft R Open](https://mran.revolutionanalytics.com/open/) préinstallé. Les bibliothèques mathématiques multithread dans cette version de R offrent de meilleures performances que les différentes versions monothread. Microsoft R Open fournit également la reproductibilité à l’aide d’une capture instantanée du référentiel du package CRAN.
+## <a name="explore-hello-dataset-with-microsoft-r-open"></a>Explorer hello le jeu de données avec Microsoft R Open
+Nous allons examiner les données de hello et effectuer un apprentissage base avec r. hello VM de science des données est fourni avec [Microsoft R Open](https://mran.revolutionanalytics.com/open/) préinstallé. Hello des bibliothèques de mathématiques multithread dans cette version de R offrent de meilleures performances que les différentes versions monothread. Microsoft R Open fournit également reproductibilité à l’aide d’un instantané d’un référentiel de packages CRAN hello.
 
-Pour obtenir des copies des exemples de code utilisés dans cette procédure pas à pas, clonez le référentiel **Azure-Machine-Learning-Data-Science** à l’aide de git, qui est déjà préinstallé sur la machine virtuelle. Depuis la ligne de commande git, exécutez :
+exemples utilisés dans cette procédure pas à pas, hello du clone de code de copies tooget Hello **Azure-Machine-Learning--science des données** référentiel à l’aide de git, qui est préinstallé sur hello machine virtuelle. À partir de la ligne de commande git hello, exécutez :
 
     git clone https://github.com/Azure/Azure-MachineLearning-DataScience.git
 
-Ouvrez une fenêtre de terminal et démarrez une nouvelle session R avec la console interactive R.
+Ouvrez une fenêtre de terminal et démarrez une nouvelle session de R à la console interactive hello R.
 
 > [!NOTE]
-> Vous pouvez également utiliser RStudio pour les procédures suivantes. Pour installer RStudio, exécutez cette commande à partir d’un terminal : `./Desktop/DSVM\ tools/installRStudio.sh`
+> Vous pouvez également utiliser RStudio pour hello procédures suivantes. tooinstall RStudio, exécutez cette commande dans un terminal :`./Desktop/DSVM\ tools/installRStudio.sh`
 >
 >
 
-Pour importer les données et configurer l’environnement, exécutez :
+les données de salutation tooimport et configurer l’environnement de hello, exécutez :
 
     data <- read.csv("spambaseHeaders.data")
     set.seed(123)
 
-Pour afficher un résumé des statistiques de chaque colonne :
+toosee résumé des statistiques sur chaque colonne :
 
     summary(data)
 
-Pour une vue différente des données :
+Pour obtenir une vue différente des données de salutation :
 
     str(data)
 
-Vous voyez le type de chaque variable et les premières valeurs dans le jeu de données.
+Elle indique hello du type de chaque variable et de hello tout d’abord peu de valeurs dans le jeu de données hello.
 
-La colonne *spam* a été lue comme un entier, mais il s’agit en fait d’une variable par catégorie (ou facteur). Pour définir son type :
+Hello *anti-spam* colonne a été lu en tant qu’entier, mais il est réellement catégorielles variable (ou facteur). tooset son type :
 
     data$spam <- as.factor(data$spam)
 
-Pour effectuer une analyse exploratoire, utilisez le package [ggplot2](http://ggplot2.org/) , une bibliothèque de graphiques populaire pour R qui est déjà installée sur la machine virtuelle. Remarque : à partir des données récapitulatives affichées précédemment, nous disposons de statistiques résumées sur la fréquence du point d’exclamation. Nous allons tracer ces fréquences ici avec les commandes suivantes :
+toodo certains analyse exploratoire, l’utilisation hello [ggplot2](http://ggplot2.org/) du package, une bibliothèque de graphique courants pour R est déjà installé sur hello machine virtuelle. Notez, à partir des données de synthèse hello affichées précédemment, que nous avons résumé des statistiques sur la fréquence hello du caractère de point d’exclamation hello. Nous allons tracer les fréquences ici avec hello suivant de commandes :
 
     library(ggplot2)
     ggplot(data) + geom_histogram(aes(x=char_freq_exclamation), binwidth=0.25)
 
-Étant donné que la barre de zéro décale le tracé, nous allons nous en débarrasser :
+Étant donné que la barre de hello zéro est inclinaison de traçage hello, nous allons la supprimer :
 
     email_with_exclamation = data[data$char_freq_exclamation > 0, ]
     ggplot(email_with_exclamation) + geom_histogram(aes(x=char_freq_exclamation), binwidth=0.25)
@@ -123,48 +123,48 @@ Ensuite, répartissez-les en courrier indésirable et courrier légitime :
     ggtitle("Distribution of spam \nby frequency of !") +
     labs(fill="spam", y="Density")
 
-Ces exemples doivent vous permettre d’effectuer des tracés similaires des autres colonnes pour explorer les données qu’elles contiennent.
+Ces exemples doivent vous permettre de toomake des graphiques similaires de hello autres tooexplore colonnes hello les données qu’ils contiennent.
 
 ## <a name="train-and-test-an-ml-model"></a>Effectuer l’apprentissage et tester un modèle ML
-À présent, nous allons effectuer l’apprentissage de quelques modèles de Machine Learning pour classer les e-mails dans le jeu de données comme courrier indésirable ou courrier légitime. Dans cette section, nous effectuons l’apprentissage d’un modèle d’arbre de décision et d’un modèle de forêts aléatoires, puis nous testons la précision de leurs prédictions.
+Maintenant nous allons train quelques de l’apprentissage des modèles des messages électroniques de hello tooclassify hello DataSet comme contenant soit span ou ham. Dans cette section, nous effectuons l’apprentissage d’un modèle d’arbre de décision et d’un modèle de forêts aléatoires, puis nous testons la précision de leurs prédictions.
 
 > [!NOTE]
-> Le package rpart (partition récursive et arbres de régression) utilisé dans le code suivant est déjà installé sur la machine virtuelle de science des données.
+> Hello rpart (partitionnement récursif et les arbres de régression) package utilisé Bonjour suivant de code est déjà installé sur hello VM de science des données.
 >
 >
 
-Nous allons commencer par diviser le jeu de données en jeu d’apprentissage et jeu de test :
+Tout d’abord, nous allons fractionner hello le jeu de données en jeux d’apprentissage et de test :
 
     rnd <- runif(dim(data)[1])
     trainSet = subset(data, rnd <= 0.7)
     testSet = subset(data, rnd > 0.7)
 
-Ensuite, nous allons créer un arbre de décision pour classer les e-mails.
+Puis créez un Bonjour de tooclassify décision arborescence des messages électroniques.
 
     require(rpart)
     model.rpart <- rpart(spam ~ ., method = "class", data = trainSet)
     plot(model.rpart)
     text(model.rpart)
 
-Voici le résultat :
+Voici le résultat de hello :
 
 ![1](./media/machine-learning-data-science-linux-dsvm-walkthrough/decision-tree.png)
 
-Pour déterminer la qualité d’exécution sur l’ensemble d’apprentissage, utilisez le code suivant :
+toodetermine si elle fonctionne bien pour la formation de hello définir, utilisez les hello suivant de code :
 
     trainSetPred <- predict(model.rpart, newdata = trainSet, type = "class")
     t <- table(`Actual Class` = trainSet$spam, `Predicted Class` = trainSetPred)
     accuracy <- sum(diag(t))/sum(t)
     accuracy
 
-Pour déterminer la qualité d’exécution sur le jeu de test :
+degré de toodetermine qu’il exécute sur le jeu de test hello :
 
     testSetPred <- predict(model.rpart, newdata = testSet, type = "class")
     t <- table(`Actual Class` = testSet$spam, `Predicted Class` = testSetPred)
     accuracy <- sum(diag(t))/sum(t)
     accuracy
 
-Essayons également un modèle de forêts aléatoires. Les forêts aléatoires effectuent l’apprentissage d’une multitude d’arbres de décision et génèrent une classe qui constitue le mode de classification de tous les arbres de décision individuels. Elles fournissent une approche de Machine Learning plus puissante, car elles corrigent la tendance d’un modèle d’arbre de décision à dépasser un jeu de données d’apprentissage.
+Essayons également un modèle de forêts aléatoires. Forêts aléatoires former une multitude d’arbres de décision et de sortie d’une classe qui est le mode de classifications hello de tous les arbres de décision individuelle hello hello. Ils fournissent une plus puissante d’apprentissage approche comme étant ils correcte pour la tendance d’un toooverfit de modèle de l’arborescence de la décision un jeu de données d’apprentissage hello.
 
     require(randomForest)
     trainVars <- setdiff(colnames(data), 'spam')
@@ -179,30 +179,30 @@ Essayons également un modèle de forêts aléatoires. Les forêts aléatoires e
     accuracy
 
 
-## <a name="deploy-a-model-to-azure-ml"></a>Déployer un modèle dans Azure ML
-[Azure Machine Learning Studio](https://studio.azureml.net/) (AzureML) est un service cloud qui facilite la création et le déploiement des modèles d’analyse prédictive. L’une des fonctionnalités intéressantes d’AzureML est sa capacité à publier toute fonction R comme un service web. Le package R AzureML rend le déploiement facile à réaliser à partir de notre session R sur la machine virtuelle de science des données.
+## <a name="deploy-a-model-tooazure-ml"></a>Déployer un modèle de tooAzure ML
+[Azure Machine Learning Studio](https://studio.azureml.net/) (AzureML) est un service cloud qui la rend facile toobuild et déployer des modèles de prévision analytique. Une des fonctionnalités intéressantes de hello de AzureML est son toopublish capacité tout R fonctionne comme un service web. Hello lot AzureML R rend toodo facile de déploiement à partir de notre session R sur hello DSVM.
 
-Pour déployer le code de l’arbre de décision à partir de la section précédente, vous devez vous connecter à Azure Machine Learning Studio. Vous avez besoin de votre ID d’espace de travail et d’un jeton d’autorisation pour vous connecter. Pour rechercher ces valeurs et initialiser les variables AzureML avec celles-ci :
+toodeploy hello décision code de l’organigramme à partir de la section précédente de hello, vous devez toosign dans tooAzure Machine Learning Studio. Vous avez besoin de votre ID d’espace de travail et une toosign de jeton d’autorisation dans. toofind ces valeurs et des variables de AzureML hello initialize avec eux :
 
-Sélectionnez **Paramètres** dans le menu de gauche. Notez votre **ID D’ESPACE DE TRAVAIL**. ![2](./media/machine-learning-data-science-linux-dsvm-walkthrough/workspace-id.png)
+Sélectionnez **paramètres** sur le menu de gauche hello. Notez votre **ID D’ESPACE DE TRAVAIL**. ![2](./media/machine-learning-data-science-linux-dsvm-walkthrough/workspace-id.png)
 
-Sélectionnez **Jetons d’authentification** dans le menu général et notez votre **Jeton d’autorisation principal**.![3](./media/machine-learning-data-science-linux-dsvm-walkthrough/workspace-token.png)
+Sélectionnez **jetons d’autorisation** de menu de surcharge hello et notez votre **le jeton d’autorisation principal**.![ 3](./media/machine-learning-data-science-linux-dsvm-walkthrough/workspace-token.png)
 
-Chargez le package **AzureML** , puis définissez les valeurs des variables avec votre jeton et votre ID d’espace de travail dans votre session R sur la machine virtuelle de science des données :
+Hello de charge **AzureML** du package et définissez les valeurs des variables hello avec votre ID de jeton et l’espace de travail dans votre session R sur hello DSVM :
 
     require(AzureML)
     wsAuth = "<authorization-token>"
     wsID = "<workspace-id>"
 
 
-Nous allons simplifier le modèle afin de rendre cette démonstration plus facile à implémenter. Sélectionnez les trois variables dans l’arbre de décision le plus proche de la racine, et créez un arbre à l’aide de ces trois variables seulement :
+Nous allons simplifier hello modèle toomake cette tooimplement plus facile de démonstration. Choisir des trois variables hello dans hello décision arborescence le plus proche toohello racine et générer une nouvelle arborescence à l’aide des ces trois variables :
 
     colNames <- c("char_freq_dollar", "word_freq_remove", "word_freq_hp", "spam")
     smallTrainSet <- trainSet[, colNames]
     smallTestSet <- testSet[, colNames]
     model.rpart <- rpart(spam ~ ., method = "class", data = smallTrainSet)
 
-Nous avons besoin d’une fonction de prédiction qui prend les fonctionnalités comme une entrée et renvoie les valeurs prédites :
+Nous avons besoin d’une fonction de prédiction qui accepte les fonctions hello comme entrée et retourne hello valeurs prédites :
 
     predictSpam <- function(char_freq_dollar, word_freq_remove, word_freq_hp) {
         predictDF <- predict(model.rpart, data.frame("char_freq_dollar" = char_freq_dollar,
@@ -210,7 +210,7 @@ Nous avons besoin d’une fonction de prédiction qui prend les fonctionnalités
         return(colnames(predictDF)[apply(predictDF, 1, which.max)])
     }
 
-Publiez la fonction predictSpam sur AzureML à l’aide de la fonction **publishWebService** :
+Publier hello predictSpam fonction tooAzureML à l’aide de hello **publishWebService** (fonction) :
 
     spamWebService <- publishWebService("predictSpam",
         "spamWebService",
@@ -218,19 +218,19 @@ Publiez la fonction predictSpam sur AzureML à l’aide de la fonction **publish
         list("spam"="int"),
         wsID, wsAuth)
 
-Cette fonction prend la fonction **predictSpam**, crée un service web nommé **spamWebService** avec des entrées et des sorties définies, et renvoie des informations sur le nouveau point de terminaison.
+Cette fonction accepte hello **predictSpam** de fonction, crée un service web appelé **spamWebService** avec défini les entrées et sorties et retourne des informations sur le nouveau point de terminaison hello.
 
-Affichez les détails du service web publié, notamment son point de terminaison d’API et les touches d’accès rapide avec la commande :
+Afficher les détails de hello publié le service web, y compris ses clés de point de terminaison et l’accès aux API avec la commande hello :
 
     spamWebService[[2]]
 
-Pour l’essayer sur les 10 premières lignes du test défini :
+tootry son évolution horizontale sur hello 10 premières lignes du jeu de test hello :
 
     consumeDataframe(spamWebService$endpoints[[1]]$PrimaryKey, spamWebService$endpoints[[1]]$ApiLocation, smallTestSet[1:10, 1:3])
 
 
 ## <a name="use-other-tools-available"></a>Utiliser les autres outils disponibles
-Les sections suivantes montrent comment utiliser certains des outils installés sur la machine virtuelle de science des données Linux. Voici la liste des outils abordés :
+les sections restantes Hello montrent comment toouse certains des outils de hello installé sur hello VM de science des données Linux. Voici la liste hello des outils décrits :
 
 * XGBoost
 * Python
@@ -259,14 +259,14 @@ Les sections suivantes montrent comment utiliser certains des outils installés 
 XGBoost peut également appeler à partir de Python ou d’une ligne de commande.
 
 ## <a name="python"></a>Python
-Pour un développement basé sur Python, les versions 2.7 et 3.5 des distributions Anaconda Python ont été installées dans la machine virtuelle de science des données Linux.
+Pour le développement à l’aide de Python, les distributions hello Anaconda Python 2.7 et 3.5 ont été installées dans hello DSVM.
 
 > [!NOTE]
-> La distribution Anaconda inclut [Condas](http://conda.pydata.org/docs/index.html), qui peut être utilisé pour créer des environnements personnalisés pour Python avec des versions et/ou des packages différents installés.
+> Hello distribution Anaconda inclut [Condas](http://conda.pydata.org/docs/index.html), qui peut être utilisé toocreate environnements personnalisés pour Python qui ont des versions différentes et/ou des packages installés dans les.
 >
 >
 
-Nous allons lire le jeu de données spambase et classer les e-mails avec des machines à vecteurs de support dans scikit-learn :
+Nous allons lire dans certains du jeu de données spambase hello et classer des messages électroniques hello avec des machines à vecteurs de support dans scikit-en savoir plus :
 
     import pandas
     from sklearn import svm    
@@ -276,20 +276,20 @@ Nous allons lire le jeu de données spambase et classer les e-mails avec des mac
     clf = svm.SVC()
     clf.fit(X, y)
 
-Pour effectuer des prédictions :
+toomake prédictions :
 
     clf.predict(X.ix[0:20, :])
 
-Pour montrer comment publier un point de terminaison AzureML, créons un modèle plus simple des trois variables comme nous l’avons fait précédemment lorsque nous avons publié le modèle R.
+tooshow comment toopublish AzureML d’un point de terminaison, nous allons créer un modèle plus simple hello trois variables comme nous l’avons fait lorsque nous avons publié le modèle de hello R précédemment.
 
     X = data.ix[["char_freq_dollar", "word_freq_remove", "word_freq_hp"]]
     y = data.ix[:, 57]
     clf = svm.SVC()
     clf.fit(X, y)
 
-Pour publier le modèle dans AzureML :
+toopublish hello modèle tooAzureML :
 
-    # Publish the model.
+    # Publish hello model.
     workspace_id = "<workspace-id>"
     workspace_token = "<workspace-token>"
     from azureml import services
@@ -300,11 +300,11 @@ Pour publier le modèle dans AzureML :
         inputArray = [char_freq_dollar, word_freq_remove, word_freq_hp]
         return clf.predict(inputArray)
 
-    # Get some info about the resulting model.
+    # Get some info about hello resulting model.
     predictSpam.service.url
     predictSpam.service.api_key
 
-    # Call the model
+    # Call hello model
     predictSpam.service(1, 1, 1)
 
 > [!NOTE]
@@ -313,67 +313,67 @@ Pour publier le modèle dans AzureML :
 >
 
 ## <a name="jupyterhub"></a>Jupyterhub
-La distribution Anaconda dans la machine virtuelle de science des données est fournie avec un bloc-notes Jupyter, un environnement multiplateforme pour partager Python, R, ou le code et l’analyse Julia. Le serveur Jupyter Notebook est accessible via JupyterHub. Vous vous connectez en utilisant votre nom d’utilisateur Linux local et votre mot de passe à ***https://\<nom DNS de machine virtuelle ou adresse IP\>:8000/***. Tous les fichiers de configuration pour JupyterHub se trouvent dans le répertoire **/etc/jupyterhub**.
+distribution de Anaconda Hello Bonjour DSVM est fourni avec un bloc-notes jupyter, un environnement multiplateforme tooshare Python, R, Julia code ou et l’analyse. Bloc-notes jupyter de Hello est accessible via JupyterHub. Vous vous connectez en utilisant votre nom d’utilisateur Linux local et votre mot de passe à ***https://\<nom DNS de machine virtuelle ou adresse IP\>:8000/***. Tous les fichiers de configuration pour JupyterHub se trouvent dans le répertoire **/etc/jupyterhub**.
 
-Plusieurs exemples de notebooks sont déjà installés sur la machine virtuelle :
+Plusieurs exemples d’agendas sont déjà installés sur hello machine virtuelle :
 
-* Consultez [IntroToJupyterPython.ipynb](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Data-Science-Virtual-Machine/Samples/Notebooks/IntroToJupyterPython.ipynb) pour un exemple de notebook Python.
+* Consultez hello [IntroToJupyterPython.ipynb](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Data-Science-Virtual-Machine/Samples/Notebooks/IntroToJupyterPython.ipynb) d’un ordinateur portable Python d’exemple.
 * Consultez [IntroTutorialinR](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Data-Science-Virtual-Machine/Samples/Notebooks/IntroTutorialinR.ipynb) pour un exemple de notebook **R** .
-* Consultez [IrisClassifierPyMLWebService](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Data-Science-Virtual-Machine/Samples/Notebooks/IrisClassifierPyMLWebService.ipynb) pour un autre exemple de notebook **Python** .
+* Consultez hello [IrisClassifierPyMLWebService](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Data-Science-Virtual-Machine/Samples/Notebooks/IrisClassifierPyMLWebService.ipynb) pour un autre exemple **Python** bloc-notes.
 
 > [!NOTE]
-> Le langage Julia est également disponible à partir de la ligne de commande sur la machine virtuelle de science des données Linux.
+> Hello language de Julia est également disponible à partir de la ligne de commande hello hello VM de science des données Linux.
 >
 >
 
 ## <a name="rattle"></a>Rattle
-[Rattle](https://cran.r-project.org/web/packages/rattle/index.html) (l’outil d’analyse R pour apprendre plus facilement) est un outil R graphique pour l’exploration de données. Il possède une interface intuitive qui facilite la charge, l’exploration et la transformation des données, ainsi que la création et l’évaluation des modèles.  L’article [Rattle: A Data Mining GUI for R](https://journal.r-project.org/archive/2009-2/RJournal_2009-2_Williams.pdf) (Rattle : une interface utilisateur graphique pour l’exploration de données pour R) fournit une procédure pas à pas présentant ses fonctionnalités.
+[Vibrer](https://cran.r-project.org/web/packages/rattle/index.html) (hello facilement l’outil d’analyse R tooLearn) est un outil graphique de R pour l’exploration de données. Elle a une interface intuitive qui le rend facile tooload, Explorer et transformer des données et générer et évaluer des modèles.  article de Hello [vibrer : GUI d’exploration de données A pour R](https://journal.r-project.org/archive/2009-2/RJournal_2009-2_Williams.pdf) fournit une procédure pas à pas qui montre comment ses fonctionnalités.
 
-Installez et démarrez Rattle avec les commandes suivantes :
+Installer et démarrer vibrer avec hello suivant de commandes :
 
     if(!require("rattle")) install.packages("rattle")
     require(rattle)
     rattle()
 
 > [!NOTE]
-> L’installation n’est pas obligatoire sur la machine virtuelle de science des données. Toutefois, Rattle peut vous inviter à installer des packages supplémentaires lors de son chargement.
+> L’installation n’est pas obligatoire sur hello DSVM. Mais Hochet peut vous demander de packages supplémentaires de tooinstall lors du chargement.
 >
 >
 
-Rattle utilise une interface basée sur des onglets. La plupart des onglets correspondent aux étapes du [Processus de science des données](https://azure.microsoft.com/documentation/learning-paths/data-science-process/), telles que le chargement de données ou l’exploration. Le processus de science des données se déroule de gauche à droite à travers les onglets. Cependant, le dernier onglet contient un journal des commandes R exécutées par Rattle.
+Rattle utilise une interface basée sur des onglets. La plupart des onglets de hello correspondent toosteps Bonjour [processus de science des données](https://azure.microsoft.com/documentation/learning-paths/data-science-process/), telles que le chargement de données ou l’exploration. processus de science des données Hello circulent à partir de la gauche tooright via les onglets hello. Mais le dernier onglet de hello contient un journal des commandes hello R exécuté par Hochet.
 
-Pour charger et configurer le jeu de données :
+tooload et configurer le jeu de données hello :
 
-* Pour charger le fichier, sélectionnez l’onglet **Données** , puis
-* Choisissez le sélecteur en regard de **Nom de fichier**, puis **spambaseHeaders.data**.
-* Pour charger le fichier, sélectionnez **Exécuter** dans la première ligne de boutons. Vous devez voir un résumé de chaque colonne, notamment son type de données identifié, qu’il s’agisse d’une entrée, d’une cible ou d’un autre type de variable, ainsi que le nombre de valeurs uniques.
-* Rattle a correctement identifié la colonne **spam** comme étant la cible. Sélectionnez la colonne spam, puis définissez le **Type de données cible** sur **Par catégorie**.
+* fichier de hello tooload, sélectionnez hello **données** sous l’onglet puis
+* Cliquez sur le sélecteur de hello suivant trop**nom de fichier** et choisissez **spambaseHeaders.data**.
+* fichier de hello tooload. Sélectionnez **Execute** dans la ligne du haut hello de boutons. Vous devez voir un résumé de chaque colonne, y compris son type de données identifié, s’il s’agit d’une entrée, une cible ou autre type de variable et le nombre de hello de valeurs uniques.
+* Hochet a correctement identifié hello **anti-spam** colonne en tant que cible de hello. Colonne de spam hello sélectionnez, puis ensemble hello **Type de données cible** trop**Categoric**.
 
-Pour explorer les données :
+données de salutation tooexplore :
 
-* Sélectionnez l’onglet **Explorer** .
-* Cliquez sur **Résumé**, puis sur **Exécuter**, pour afficher des informations sur les types de variable et certaines statistiques résumées.
-* Pour afficher d’autres types de statistiques relatives à chaque variable, sélectionnez d’autres options, comme **Décrire** ou **Concepts de base**.
+* Sélectionnez hello **Explorer** onglet.
+* Cliquez sur **Résumé**, puis **Execute**, toosee certaines informations sur les types de variables hello et des statistiques de résumé.
+* tooview autres types de statistiques à propos de chaque variable, sélectionnez d’autres options, comme **Describe** ou **notions de base**.
 
-L’onglet **Explorer** vous permet également de générer de nombreux tracés ingénieux. Pour tracer un histogramme des données :
+Hello **Explorer** onglet vous permet également de toogenerate nombreux instructif trace. tooplot un histogramme de données de salutation :
 
 * Sélectionnez **Distributions**.
 * Cochez **Histogramme** pour **word_freq_remove** et **word_freq_you**.
-* Sélectionnez **Exécuter**. Vous devez voir les deux graphiques de densité dans une seule fenêtre de graphique, où il est clair que le mot « you » (vous) apparaît beaucoup plus fréquemment dans les e-mails que le mot « remove » (supprimer).
+* Sélectionnez **Exécuter**. Vous devez voir que deux densité de la trace dans une fenêtre de graphique unique, où il est clair que word hello « vous » s’affiche plus fréquemment dans les messages électroniques que « supprimer ».
 
-Les tracés de corrélation sont également intéressants. Pour en créer un :
+graphiques de corrélation Hello peuvent également vous intéresser. toocreate une :
 
-* Choisissez **Corrélation** comme **Type**, puis
+* Choisissez **corrélation** comme hello **Type**, puis
 * Sélectionnez **Exécuter**.
-* Rattle vous avertit qu’il recommande un maximum de 40 variables. Sélectionnez **Oui** pour afficher le tracé.
+* Rattle vous avertit qu’il recommande un maximum de 40 variables. Sélectionnez **Oui** traçage de hello tooview.
 
-Des corrélations intéressantes existent : le terme « technologie » est étroitement corrélé avec les termes « HP » et « laboratoires », par exemple. Il est également étroitement corrélé avec « 650 », car le code de région des donneurs du dataset est 650.
+Il existe des corrélations intéressantes qui apparaissent : « technologie » est en corrélation trop « HP » et « labs », par exemple. Il est également étroitement lié trop « 650 », code de région de hello de donneurs de dataset hello étant 650.
 
-Les valeurs numériques des corrélations entre les mots sont disponibles dans la fenêtre d’exploration. Il est intéressant de noter, par exemple, que le terme « technologie » est négativement corrélé avec les termes « votre » et « argent ».
+valeurs numériques de Hello pour les corrélations hello entre les mots sont disponibles dans la fenêtre d’Explorer hello. Il est intéressant toonote, par exemple, que « technologie » est négative corrélée avec « votre » et « money ».
 
-Rattle peut transformer le jeu de données pour gérer certains problèmes courants. Par exemple, il vous permet de remettre à l’échelle les fonctionnalités, d’imputer les valeurs manquantes, de gérer les valeurs hors-norme et de supprimer des variables ou des observations avec des données manquantes. Rattle peut également identifier des règles d’association entre des observations et/ou des variables. Ces onglets sont hors de portée pour cette introduction pas à pas.
+Hochet peut transformer hello dataset toohandle certains problèmes courants. Par exemple, il vous permet de toorescale fonctionnalités imputer les valeurs manquantes, gérer les observations aberrantes et supprimer des variables ou des observations avec les données manquantes. Rattle peut également identifier des règles d’association entre des observations et/ou des variables. Ces onglets sont hors de portée pour cette introduction pas à pas.
 
-Rattle peut également effectuer une analyse de cluster. Nous allons exclure certaines fonctionnalités pour simplifier la lecture de la sortie. Sous l’onglet **Données**, choisissez **Ignorer** en regard de chacune des variables à l’exception de ces dix éléments :
+Rattle peut également effectuer une analyse de cluster. Nous allons exclure certains tooread fonctionnalités toomake hello sortie plus facile. Sur hello **données** , onglet choisir **ignorer** tooeach suivant des variables hello, à l’exception de ces dix éléments :
 
 * word_freq_hp
 * word_freq_technology
@@ -386,38 +386,38 @@ Rattle peut également effectuer une analyse de cluster. Nous allons exclure cer
 * word_freq_business
 * spam
 
-Ensuite, revenez à l’onglet **Cluster**, choisissez **KMeans**, et définissez le *Nombre de clusters* sur 4. Ensuite, sélectionnez **Exécuter**. Les résultats s’affichent dans la fenêtre de sortie. Un cluster possède une fréquence élevée de « george » et de « hp » et est probablement un e-mail professionnel légitime.
+Puis revenir en arrière toohello **Cluster** , onglet choisir **KMeans**et ensemble hello *nombre de clusters* too4. Ensuite, sélectionnez **Exécuter**. résultats de Hello sont affichés dans la fenêtre de sortie hello. Un cluster possède une fréquence élevée de « george » et de « hp » et est probablement un e-mail professionnel légitime.
 
-Pour créer un modèle Machine Learning d’arbre de décision simple :
+toobuild un modèle d’apprentissage arbre de décision simple :
 
-* Sélectionnez l’onglet **Modèle** ,
-* Choisissez **Arbre** en tant que **Type**.
-* Sélectionnez **Exécuter** pour afficher l’arbre sous forme de texte dans la fenêtre de sortie.
-* Sélectionnez le bouton **Dessin** pour afficher une version graphique. Celle-ci est très similaire à l’arbre obtenu précédemment à l’aide de *rpart*.
+* Sélectionnez hello **modèle** onglet,
+* Choisissez **arborescence** comme hello **Type**.
+* Sélectionnez **Execute** arborescence de hello toodisplay sous forme de texte Bonjour fenêtre de sortie.
+* Sélectionnez hello **dessiner** bouton tooview une version graphique. Cela ressemble assez similaire toohello arborescence, nous avons obtenu précédemment à l’aide de *rpart*.
 
-L’une des fonctionnalités intéressantes de Rattle est sa capacité à exécuter plusieurs méthodes Machine Learning et à les évaluer rapidement. Voici la procédure :
+Une des fonctionnalités intéressantes de hello de Hochet est sa capacité toorun apprentissage plusieurs méthodes et les évaluer rapidement. Voici la procédure de hello :
 
-* Choisissez **Tous** pour le **Type**.
+* Choisissez **tous les** pour hello **Type**.
 * Sélectionnez **Exécuter**.
-* Une fois la procédure terminée, vous pouvez cliquer sur n’importe quel **Type** unique, comme **SVM**, et afficher les résultats.
-* Vous pouvez également comparer les performances des modèles sur le jeu de validation à l’aide de l’onglet **Évaluer** . Par exemple, la sélection de l’option **Matrice d’erreur** affiche la matrice de confusion, l’erreur globale et l’erreur de classe moyennée pour chaque modèle sur le jeu de validation.
+* Une fois celle-ci terminée, vous pouvez cliquer sur une même **Type**, comme **SVM**et afficher les résultats de hello.
+* Vous pouvez également comparer les performances de hello des modèles de hello sur validation hello définies à l’aide de hello **évaluer** onglet. Par exemple, hello **erreur matrice** sélection vous montre matrice de confusion hello, erreur global et d’erreur de classe moyenne pour chaque modèle sur l’ensemble de validation hello.
 * Vous pouvez également tracer des courbes ROC, effectuer des analyses de sensibilité et d’autres types d’évaluations de modèle.
 
-Une fois que vous avez terminé la création de modèles, sélectionnez l’onglet **Journal** pour afficher le code R exécuté par Rattle pendant votre session. Vous pouvez sélectionner le bouton **Exporter** pour l’enregistrer.
+Une fois que vous avez terminé la création de modèles, sélectionnez hello **journal** onglet code de hello R tooview exécuté par Hochet pendant votre session. Vous pouvez sélectionner hello **exporter** bouton toosave il.
 
 > [!NOTE]
-> Il existe un bogue dans la version actuelle de Rattle. Pour modifier le script ou l’utiliser pour répéter les étapes ultérieurement, vous devez insérer un symbole dièse (#) devant *Exporter ce journal… * dans le texte du journal.
+> Il existe un bogue dans la version actuelle de Rattle. toomodify hello script ou utilisez-le toorepeat vos étapes plus tard, vous devez insérer un caractère # devant * exporter ce journal... * dans le texte hello du journal de hello.
 >
 >
 
 ## <a name="postgresql--squirrel-sql"></a>PostgreSQL et Squirrel SQL
-La machine virtuelle de science des données est fournie avec PostgreSQL installé. PostgreSQL est une base de données relationnelle, open source et sophistiquée. Cette section montre comment charger notre jeu de données spam dans PostgreSQL, puis l’interroger.
+Hello DSVM est fourni avec PostgreSQL installé. PostgreSQL est une base de données relationnelle, open source et sophistiquée. Cette section montre comment tooload notre jeu de données de spam dans PostgreSQL et puis de la requête.
 
-Avant de pouvoir charger les données, vous devez autoriser l’authentification par mot de passe à partir de l’hôte local. À l’invite de commandes :
+Avant de pouvoir charger les données de salutation, vous devez tooallow d’authentification de mot de passe à partir de localhost de hello. À l’invite de commandes :
 
     sudo gedit /var/lib/pgsql/data/pg_hba.conf
 
-Au bas du fichier de configuration, plusieurs lignes détaillent les connexions autorisées :
+Bas hello hello du fichier de configuration sont plusieurs lignes de détaillent hello de connexions autorisée :
 
     # "local" is for Unix domain socket connections only
     local   all             all                                     trust
@@ -426,31 +426,31 @@ Au bas du fichier de configuration, plusieurs lignes détaillent les connexions 
     # IPv6 local connections:
     host    all             all             ::1/128                 ident
 
-Modifiez la ligne « connexions locales IPv4 » pour utiliser md5 au lieu d’ident, afin de permettre la connexion avec un nom d’utilisateur et un mot de passe :
+Modifier hello « IPv4 des connexions locales » ligne toouse md5 au lieu d’ident, afin de nous pouvons connecter à l’aide d’un nom d’utilisateur et un mot de passe :
 
     # IPv4 local connections:
     host    all             all             127.0.0.1/32            md5
 
-Ensuite, redémarrez le service postgres :
+Et redémarrez le service postgres hello :
 
     sudo systemctl restart postgresql
 
-Pour lancer psql, un terminal interactif pour PostgreSQL, en tant qu’utilisateur postgres intégré, exécutez la commande suivante à partir d’une invite de commandes :
+toolaunch psql, un terminal interactive pour PostgreSQL, en tant qu’utilisateur de postgres intégrés hello, exécutez hello de commande suivante à partir d’une invite de commandes :
 
     sudo -u postgres psql
 
-Créez un compte d’utilisateur à l’aide du même nom d’utilisateur que celui du compte Linux avec lequel vous êtes actuellement connecté, et attribuez-lui un mot de passe :
+Créer un nouveau compte d’utilisateur, à l’aide de hello le même nom d’utilisateur comme hello compte Linux que vous êtes actuellement connecté, attribuez-lui un mot de passe :
 
     CREATE USER <username> WITH CREATEDB;
     CREATE DATABASE <username>;
     ALTER USER <username> password '<password>';
     \quit
 
-Ensuite, connectez-vous à psql en tant qu’utilisateur :
+Connectez-vous ensuite toopsql en tant que votre utilisateur :
 
     psql
 
-Et importez les données dans une base de données :
+Et importer des données de hello dans une base de données :
 
     CREATE DATABASE spam;
     \c spam
@@ -458,54 +458,54 @@ Et importez les données dans une base de données :
     \copy data FROM /home/<username>/spambase.data DELIMITER ',' CSV;
     \quit
 
-À présent, nous allons explorer les données et exécuter des requêtes à l’aide de **Squirrel SQL**, un outil graphique qui vous permet d’interagir avec les bases de données via un pilote JDBC.
+Maintenant, nous allons explorer les données hello et exécuter des requêtes à l’aide de **non SQL**, un outil graphique qui vous permet d’interagir avec les bases de données via un pilote JDBC.
 
-Pour commencer, lancez Squirrel SQL à partir du menu Applications. Pour configurer le pilote :
+tooget de démarrer, lancez non SQL à partir du menu d’Applications hello. tooset pilote de hello :
 
 * Sélectionnez **Windows**, puis **Afficher les pilotes**.
 * Cliquez avec le bouton droit sur **PostgreSQL** et sélectionnez **Modifier le pilote**.
 * Sélectionnez **Chemin d’accès de la classe supplémentaire**, puis **Ajouter**.
-* Entrez ***/usr/share/java/jdbcdrivers/postgresql-9.4.1208.jre6.jar*** pour le **nom de fichier** et
+* Entrez ***/usr/share/java/jdbcdrivers/postgresql-9.4.1208.jre6.jar*** pour hello **nom de fichier** et
 * Sélectionnez **Ouvrir**.
 * Choisissez Pilotes de la liste, puis sélectionnez **org.postgresql.Driver** dans **Nom de la classe**, et sélectionnez **OK**.
 
-Pour configurer la connexion au serveur local :
+tooset des hello de connexion toohello local du serveur :
 
 * Sélectionnez **Windows**, puis **Afficher les alias**.
-* Choisissez le bouton **+** pour créer un alias.
-* Nommez-le *Base de données de courrier indésirable*, et choisissez **PostgreSQL** dans la liste déroulante **Pilote**.
-* Définissez l’URL sur *jdbc:postgresql://localhost/spam*.
+* Choisissez hello  **+**  bouton toomake un nouvel alias.
+* Nommez-le *base de données de courrier indésirable*, choisissez **PostgreSQL** Bonjour **pilote** liste déroulante.
+* Définir les URL de hello trop*jdbc:postgresql://localhost/spam*.
 * Entrez votre *nom d’utilisateur* et votre *mot de passe*.
 * Cliquez sur **OK**.
-* Pour ouvrir la fenêtre **Connexion**, double-cliquez sur l’alias de la ***Base de données de courrier indésirable***.
+* tooopen hello **connexion** fenêtre, double-cliquez sur hello ***base de données de courrier indésirable*** alias.
 * Sélectionnez **Connecter**.
 
-Pour exécuter des requêtes :
+toorun certaines requêtes :
 
-* Sélectionnez l’onglet **SQL** .
-* Entrez une requête simple telle que `SELECT * from data;` dans la zone de texte de requête en haut de l’onglet SQL.
-* Appuyez sur **Ctrl+Entrée** pour l’exécuter. Par défaut, SQL Squirrel renvoie les 100 premières lignes de votre requête.
+* Sélectionnez hello **SQL** onglet.
+* Entrez une requête simple tel `SELECT * from data;` dans zone de texte hello requête haut hello d’onglet de hello SQL.
+* Appuyez sur **Ctrl + entrée** toorun il. Par défaut non SQL renvoie hello 100 premières lignes de votre requête.
 
-Il existe de nombreuses requêtes supplémentaires, que vous pouvez exécuter pour explorer ces données. Par exemple, en quoi la fréquence du mot *make* diffère-t-elle entre le courrier indésirable et le courrier légitime ?
+Il existe de nombreuses requêtes plus que tooexplore pourrait utiliser ces données. Par exemple, comment le fait hello fréquence du mot de hello *rendre* diffèrent entre anti-spam et ham ?
 
     SELECT avg(word_freq_make), spam from data group by spam;
 
-Ou quelles sont les caractéristiques des e-mails qui contiennent souvent le terme *3d*?
+Ou quelles sont les caractéristiques de hello des messages électroniques qui contiennent souvent *3d*?
 
     SELECT * from data order by word_freq_3d desc;
 
-La plupart des e-mails qui présentent de nombreuses occurrences de *3d* sont apparemment du courrier indésirable. Cela peut donc constituer une fonctionnalité utile pour la création d’un modèle prédictif de classement des e-mails.
+La plupart des e-mails qui ont une occurrence élevée de *3d* sont apparemment envoyer du courrier indésirable, il peut donc être une fonction très utile pour la création d’un Bonjour tooclassify de modèle de prévision des messages électroniques.
 
-Si vous souhaitiez effectuer du Machine Learning avec des données stockées dans une base de données PostgreSQL, envisagez d’utiliser [MADlib](http://madlib.incubator.apache.org/).
+Si vous souhaitiez tooperform apprentissage des données stockées dans une base de données PostgreSQL, envisagez d’utiliser [MADlib](http://madlib.incubator.apache.org/).
 
 ## <a name="sql-server-data-warehouse"></a>SQL Server Data Warehouse
 Azure SQL Data Warehouse est une base de données de mise à l’échelle basée sur le cloud qui prend en charge le traitement de grands volumes de données relationnelles et non relationnelles. Pour plus d’informations, consultez [En quoi consiste Azure SQL Data Warehouse ?](../sql-data-warehouse/sql-data-warehouse-overview-what-is.md)
 
-Pour vous connecter à l’entrepôt de données et créer la table, exécutez la commande suivante depuis une invite de commandes :
+tooconnect toohello données de l’entrepôt et créer table hello suivant de hello exécution de commandes à partir d’une invite de commandes :
 
     sqlcmd -S <server-name>.database.windows.net -d <database-name> -U <username> -P <password> -I
 
-Ensuite, à l’invite sqlcmd :
+Puis, à l’invite sqlcmd hello :
 
     CREATE TABLE spam (word_freq_make real, word_freq_address real, word_freq_all real, word_freq_3d real,word_freq_our real, word_freq_over real, word_freq_remove real, word_freq_internet real,word_freq_order real, word_freq_mail real, word_freq_receive real, word_freq_will real,word_freq_people real, word_freq_report real, word_freq_addresses real, word_freq_free real,word_freq_business real, word_freq_email real, word_freq_you real, word_freq_credit real,word_freq_your real, word_freq_font real, word_freq_000 real, word_freq_money real,word_freq_hp real, word_freq_hpl real, word_freq_george real, word_freq_650 real, word_freq_lab real,word_freq_labs real, word_freq_telnet real, word_freq_857 real, word_freq_data real,word_freq_415 real, word_freq_85 real, word_freq_technology real, word_freq_1999 real,word_freq_parts real, word_freq_pm real, word_freq_direct real, word_freq_cs real, word_freq_meeting real,word_freq_original real, word_freq_project real, word_freq_re real, word_freq_edu real,word_freq_table real, word_freq_conference real, char_freq_semicolon real, char_freq_leftParen real,char_freq_leftBracket real, char_freq_exclamation real, char_freq_dollar real, char_freq_pound real, capital_run_length_average real, capital_run_length_longest real, capital_run_length_total real, spam integer) WITH (CLUSTERED COLUMNSTORE INDEX, DISTRIBUTION = ROUND_ROBIN);
     GO
@@ -515,7 +515,7 @@ Copier des données avec bcp :
     bcp spam in spambaseHeaders.data -q -c -t  ',' -S <server-name>.database.windows.net -d <database-name> -U <username> -P <password> -F 1 -r "\r\n"
 
 > [!NOTE]
-> Les fins de ligne dans le fichier téléchargé sont de type Windows, mais bcp attend le style UNIX ; il convient donc de l’indiquer à bcp avec l’indicateur -r.
+> les fins de ligne Hello dans le fichier téléchargé de hello sont de type Windows, mais bcp attend de style UNIX, donc nous devez bcp tootell qu’avec hello indicateur de - r.
 >
 >
 
@@ -524,9 +524,9 @@ Et exécuter des requêtes avec sqlcmd :
     select top 10 spam, char_freq_dollar from spam;
     GO
 
-Vous pouvez également exécuter des requêtes avec Squirrel SQL. Suivez des étapes similaires pour PostgreSQL, à l’aide du pilote JDBC Microsoft MSSQL Server, disponible dans ***/usr/share/java/jdbcdrivers/sqljdbc42.jar***.
+Vous pouvez également exécuter des requêtes avec Squirrel SQL. Suivez les étapes similaires pour PostgreSQL, à l’aide de hello Microsoft MSSQL Server JDBC Driver, qui se trouve dans ***/usr/share/java/jdbcdrivers/sqljdbc42.jar***.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Pour une vue d’ensemble des rubriques qui vous guident à travers les tâches qui constituent le processus de science des données dans Azure, consultez [processus de science des données pour les équipes](http://aka.ms/datascienceprocess).
+Pour une vue d’ensemble des rubriques qui vous guident tout au long des tâches de hello qui impliquent des processus de science des données hello dans Azure, consultez [processus de science des données équipe](http://aka.ms/datascienceprocess).
 
-Pour une description des autres procédures pas à pas complètes illustrant les étapes du processus TDSP pour des scénarios spécifiques, voir [Procédures pas à pas du processus TDSP (Team Data Science Process)](data-science-process-walkthroughs.md). Les procédures pas à pas montrent également comment combiner les outils et services dans le cloud et sur site dans un flux de travail ou un pipeline pour créer une application intelligente.
+Pour obtenir une description de l’autre bout en bout procédures pas à pas qui illustrent les étapes hello Bonjour processus de science des données équipe pour des scénarios spécifiques, consultez [procédures pas à pas du processus de science des données équipe](data-science-process-walkthroughs.md). procédures pas à pas Hello également illustrent comment toocombine cloud et locaux outils et services dans un toocreate de flux de travail ou d’un pipeline, une application intelligente.

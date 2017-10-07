@@ -1,6 +1,6 @@
 ---
-title: "Afficher et gérer les tâches StorSimple Virtual Array | Microsoft Docs"
-description: "Décrit la page Tâches du service StorSimple Device Manager et explique comment l’utiliser pour effectuer le suivi des tâches récentes et actuelles du StorSimple Virtual Array."
+title: "aaaView et gérer des tâches de StorSimple Virtual Array | Documents Microsoft"
+description: "Décrit la page de travaux du service de gestionnaire de périphérique StorSimple hello et comment toouse il tootrack des travaux récents et en cours pour hello StorSimple Virtual Array."
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -14,54 +14,54 @@ ms.tgt_pltfrm: NA
 ms.workload: na
 ms.date: 11/11/2016
 ms.author: alkohli
-ms.openlocfilehash: 3fd1c262a8ce94d8e98f2b066a8028d974b15b1d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: cf3f3e7bcdfff0ff2328b7354db2482286800e93
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-the-storsimple-device-manager-service-to-view-jobs-for-the-storsimple-virtual-array"></a>Utiliser le service StorSimple Device Manager pour afficher les tâches du StorSimple Virtual Array
+# <a name="use-hello-storsimple-device-manager-service-tooview-jobs-for-hello-storsimple-virtual-array"></a>Utilisez des tâches de tooview de service de gestionnaire de périphériques StorSimple hello pour hello StorSimple Virtual Array
 ## <a name="overview"></a>Vue d'ensemble
-Le panneau **Tâches** offre un portail centralisé unique pour afficher et gérer les tâches qui sont lancées sur les Virtual Arrays connectés à votre service StorSimple Manager. Vous pouvez consulter les tâches en cours d’exécution, terminées et en échec pour plusieurs appareils virtuels. Les résultats sont présentés sous forme de tableau.
+Hello **travaux** panneau fournit un portail centralisé unique pour afficher et gérer des travaux qui est démarrés sur les réseaux virtuels sont connecté tooyour service du Gestionnaire de périphériques StorSimple. Vous pouvez consulter les tâches en cours d’exécution, terminées et en échec pour plusieurs appareils virtuels. Les résultats sont présentés sous forme de tableau.
 
 ![Panneau Tâches](./media/storsimple-virtual-array-manage-jobs/ova-jobs-blade.png)
 
-Vous pouvez rechercher rapidement les tâches qui vous intéressent en filtrant sur les champs, à savoir :
+Vous pouvez rechercher rapidement les travaux qui hello que vous intéressent en filtrant sur des champs tels que :
 
-* **Période** : les tâches peuvent être filtrées selon la date et l’heure.
-* **Appareils** : les tâches sont initiées sur un appareil spécifique connecté à votre service. Les tâches filtrées sont ensuite affichées sous forme de tableau sur la base des attributs suivants :
+* **Intervalle de temps** – travaux peuvent être filtrées hello en fonction de date et la plage horaire.
+* **Appareils** – travaux sont initiés sur un service de tooyour périphérique connecté. Hello travaux filtrés est ensuite sous forme de tableau en fonction de hello suivant d’attributs :
   
-  * **Nom** : le nom des tâches peut présenter la valeur **Toutes**, **Sauvegarder**, **Cloner**, **Effectuer un basculement**, **Télécharger les mises à jour** ou **Installer les mises à jour**.
+  * **Nom** – nom de la tâche hello peut être **tous les**, **sauvegarde**, **Clone**, **basculer**, **télécharger les mises à jour** , ou **installer les mises à jour**.
   * **État** : l’état des tâches peut présenter la valeur **Toutes**, **En cours**, **Réussite**, **Échec** ou **Annulé**.
-  * **Entité** : les tâches peuvent être associées à un volume, un partage ou un appareil.
-  * **Appareil** : nom de l'appareil sur lequel la tâche a été lancée.
-  * **Démarré le** : heure à laquelle la tâche a été lancée.
-  * **Durée**: durée d’exécution de la tâche.
+  * **Entité** – les travaux hello peuvent être associés à un volume, partage ou périphérique.
+  * **APPAREIL** hello – nom de l’appareil hello sur quel hello travail a été démarré.
+  * **Démarré sur** – heure hello auxquelles hello travail a démarré.
+  * **Durée** : hello durée sur laquelle travail hello a été exécutée.
 * **État** : vous pouvez rechercher la totalité des tâches ou celles en cours d’exécution, terminées ou en échec.
-* **Type de tâche** : le type de tâche peut présenter la valeur Toutes, Sauvegarder, Restaurer, Effectuer un basculement, Télécharger les mises à jour ou Installer les mises à jour.
+* **Type de tâche** – type de tâche hello peut être all, sauvegarde, restauration, basculement, télécharger des mises à jour ou installer des mises à jour.
 
-La liste des tâches est actualisée toutes les 30 secondes.
+Hello de la liste des travaux est actualisée toutes les 30 secondes.
 
 ## <a name="view-job-details"></a>Affichage des détails d’une tâche
-Pour afficher les détails d’une tâche, procédez comme suit.
+Effectuer hello suivant détaille de hello tooview étapes d’un travail.
 
-#### <a name="to-view-job-details"></a>Pour afficher les détails d’une tâche
-1. Dans le panneau **Tâches**, affichez la ou les tâches qui vous intéressent en exécutant une requête avec les filtres appropriés. Vous pouvez rechercher des tâches terminées ou en cours d’exécution.
-2. Sélectionnez une tâche dans la liste des tâches sous forme de tableau.
+#### <a name="tooview-job-details"></a>Détails de la tâche tooview
+1. Sur hello **travaux** panneau, une ou plusieurs tâches hello affichage vous intéressent en exécutant une requête avec les filtres appropriés. Vous pouvez rechercher des tâches terminées ou en cours d’exécution.
+2. Sélectionnez une tâche à partir de la liste tabulaire de hello des tâches.
    
     ![Panneau Tâches](./media/storsimple-virtual-array-manage-jobs/ova-jobs-blade.png)
-3. En bas de la page, cliquez sur **Détails**.
-4. La boîte de dialogue **Détails** indique l’état, les détails et les statistiques horaires. La figure suivante illustre la boîte de dialogue **Détails du travail Sauvegarde** .
+3. Au bas de hello de page de hello, cliquez sur **détails**.
+4. Bonjour **détails** boîte de dialogue, vous pouvez afficher le statut, les détails et les statistiques de temps. Hello l’illustration suivante montre un exemple de hello **détails de la tâche sauvegarde** boîte de dialogue.
    
     ![Détails du travail](./media/storsimple-virtual-array-manage-jobs/ova-jobs-details.png)
 
-#### <a name="job-failures-when-the-virtual-machine-is-paused-in-the-hypervisor"></a>Échec des tâches lorsque la machine virtuelle est en pause dans l'hyperviseur
-Lorsqu’une tâche est en cours sur votre StorSimple Virtual Array et que l’appareil (machine virtuelle approvisionnée dans l’hyperviseur) est en pause pendant plus de 15 minutes, la tâche échoue. Ceci en raison du fait que l’heure de votre StorSimple Virtual Array est désynchronisée avec l'heure de Microsoft Azure. 
+#### <a name="job-failures-when-hello-virtual-machine-is-paused-in-hello-hypervisor"></a>Échecs des tâches lors de la machine virtuelle de hello est suspendu dans hello hyperviseur
+Lorsqu’une tâche est en cours sur votre StorSimple Virtual Array et le périphérique de hello (ordinateur virtuel configuré dans l’hyperviseur) est en pause est supérieure à 15 minutes, échec du travail de hello. Cela en raison du temps de StorSimple Virtual Array tooyour est synchronisée avec l’heure de Microsoft Azure hello. 
 
-L’erreur suivante s’affiche : « Your device time is out of sync with the Microsoft Azure time by more than 15 minutes. Ensure that the hypervisor and the device times are synchronized with an NTP server. Verify that there are no connectivity issues. To troubleshoot connectivity issues, run diagnostic tests from the local web UI of your virtual device. » (L’heure de votre appareil est désynchronisée de plus de 15 minutes par rapport à l’heure de Microsoft Azure. Assurez-vous que l’heure de l’hyperviseur et l’heure de l’appareil sont synchronisées à l’aide d’un serveur NTP. Vérifiez qu’il n’existe aucun problème de connectivité. Pour résoudre les problèmes de connectivité, exécutez des tests de diagnostic à partir de l’interface utilisateur web locale de votre appareil virtuel.)
+Vous verrez hello l’erreur suivante : « votre heure de l’appareil est synchronisé avec le temps de Microsoft Azure hello de plus de 15 minutes. Vérifiez que hello hyperviseur et les heures d’unité de hello sont synchronisées avec un serveur NTP. Verify that there are no connectivity issues. tootroubleshoot des problèmes de connectivité, exécutez les tests de diagnostic à partir de hello local interface utilisateur web de votre appareil virtuel. »
 
-Cet échec concerne les tâches de sauvegarde, de restauration, de mise à jour et de basculement. Si votre machine virtuelle est provisionnée dans Hyper-V, elle finit par synchroniser son heure avec celle de votre hyperviseur. Une fois que ce sera le cas, vous pourrez redémarrer votre tâche.
+Ces échecs s’appliquent à des travaux toobackup, de restauration, de mise à jour et de basculement. Si votre machine virtuelle est configurée dans Hyper-V, machine de hello synchronise finalement heure avec votre hyperviseur. Une fois que ce sera le cas, vous pourrez redémarrer votre tâche.
 
 ## <a name="next-steps"></a>Étapes suivantes
-[Découvrez comment utiliser l’interface utilisateur web locale pour gérer votre StorSimple Virtual Array](storsimple-ova-web-ui-admin.md).
+[Découvrez comment toouse hello tooadminister de l’interface utilisateur web locale votre StorSimple Virtual Array](storsimple-ova-web-ui-admin.md).
 

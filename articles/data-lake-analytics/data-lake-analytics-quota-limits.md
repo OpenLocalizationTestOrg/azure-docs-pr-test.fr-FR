@@ -1,6 +1,6 @@
 ---
-title: Limites de quota pour Azure Data Lake Analytics | Microsoft Docs
-description: "Découvrez comment ajuster et augmenter les limites de quota dans un compte Azure Data Lake Analytics (ADLA)."
+title: "aaaAzure limites de Quota de données Lake Analytique | Documents Microsoft"
+description: "Découvrez comment tooadjust et l’augmentation de quota limite dans les comptes Azure données Lake Analytique (ADLA)."
 services: data-lake-analytics
 keywords: Service Analytique Azure Data Lake
 documentationcenter: 
@@ -14,41 +14,41 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/18/2017
 ms.author: omidm
-ms.openlocfilehash: 957f306ea0e80b5830ad64e5ef06c6d122d9eccc
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 875c4d00e0c57414031e50754495c02162bdca48
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-data-lake-analytics-quota-limits"></a>Limites de quota pour Azure Data Lake Analytics
 
-Découvrez comment ajuster et augmenter les limites de quota dans un compte Azure Data Lake Analytics (ADLA). Il vous sera plus simple d’appréhender le comportement de vos tâches U-SQL si vous connaissez ces limites. Toutes ces limites sont souples. Pour les augmenter, il vous suffit de nous contacter.
+Découvrez comment tooadjust et l’augmentation de quota limite dans les comptes Azure données Lake Analytique (ADLA). Il vous sera plus simple d’appréhender le comportement de vos tâches U-SQL si vous connaissez ces limites. Toutes les limites de quota sont paramétrés, vous pouvez augmenter les limites maximales hello par approcher toous.
 
 ## <a name="azure-subscriptions-limits"></a>Limites des abonnements Azure
 
 **Nombre maximal de comptes ADLA par abonnement :** 5.
 
- Il s’agit du nombre maximal de comptes ADLA que vous pouvez créer par abonnement. Lorsque vous essayez de créer le sixième compte ADLA, le message d’erreur suivant s’affiche : « Vous avez atteint le nombre maximal de comptes Data Lake Analytics autorisés (5) dans (zone) sous l’abonnement (nom). » Dans ce cas, supprimez les comptes ADLA non utilisés ou contactez-nous en [ouvrant un ticket de support](#increase-maximum-quota-limits).
+ Ceci est hello le nombre maximal de comptes ADLA que vous pouvez créer par abonnement. Si vous essayez de compte ADLA toocreate un sixième, vous obtiendrez une erreur « Vous avez atteint nombre maximal de hello des comptes Analytique lac de données autorisés (5) dans la zone sous le nom de l’abonnement ». Dans ce cas, supprimez tous les comptes ADLA inutilisés ou atteindre toous par [ouvrant un ticket de support](#increase-maximum-quota-limits).
 
 ## <a name="adla-account-limits"></a>Limites des comptes ADLA
 
 **Nombre maximal d’unités Analytics par compte :**  250
 
-Il s’agit du nombre maximal d’unités Analytics pouvant s’exécuter simultanément dans votre compte. Si le nombre total d’unités Analytics exécutées dans l’ensemble des tâches dépasse cette limite, les tâches les plus récentes sont automatiquement placées dans la file d’attente. Par exemple :
+Il s’agit de nombre maximal de hello de AUs pouvant s’exécuter simultanément dans votre compte. Si le nombre total d’unités Analytics exécutées dans l’ensemble des tâches dépasse cette limite, les tâches les plus récentes sont automatiquement placées dans la file d’attente. Par exemple :
 
-* Si une seule tâche est exécutée avec 250 unités Analytics, lorsque vous envoyez une deuxième tâche, celle-ci est placée dans la file d’attente jusqu’à ce que la première tâche soit terminée.
-* Si vous avez déjà cinq tâches en cours d’exécution et que chacune utilise 50 unités Analytics, lorsque vous envoyez une sixième tâche nécessitant 20 unités Analytics, celle-ci est placée dans la file d’attente jusqu’à ce que les 20 unités Analytics soient disponibles.
+* Si vous avez un seul travail en cours d’exécution avec 250 AUs, lorsque vous soumettez une seconde tâche attend dans la file d’attente des travaux hello hello première tâche se termine.
+* Si vous avez déjà cinq tâches en cours d’exécution et que chacune utilise 50 AUs, lorsque vous soumettez une tâche sixième dont a besoin de 20 AUs qu’elle attend dans la file d’attente des travaux hello sont 20 AUs disponibles.
 
 **Nombre maximal de tâches U-SQL simultanées par compte :** 20
 
-Il s’agit du nombre maximal de tâches pouvant s’exécuter simultanément dans votre compte. Au-dessus de cette valeur, les tâches les plus récentes sont automatiquement placées dans la file d’attente.
+Ceci est hello le nombre maximal de tâches pouvant s’exécuter simultanément dans votre compte. Au-dessus de cette valeur, les tâches les plus récentes sont automatiquement placées dans la file d’attente.
 
 ## <a name="adjust-adla-quota-limits-per-account"></a>Ajuster les limites de quota ADLA par compte
 
-1. Connectez-vous au [portail Azure](https://portal.azure.com).
+1. Ouverture de session toohello [portail Azure](https://portal.azure.com).
 2. Choisissez un compte ADLA existant.
 3. Cliquez sur **Propriétés**.
-4. Ajustez les valeurs **Parallélisme** et **Tâches simultanées** selon vos besoins.
+4. Ajuster **parallélisme** et **travaux simultanés** toosuit vos besoins.
 
     ![Volet du portail Azure Data Lake Analytics](./media/data-lake-analytics-quota-limits/data-lake-analytics-quota-properties.png)
 
@@ -59,19 +59,19 @@ Il s’agit du nombre maximal de tâches pouvant s’exécuter simultanément da
     ![Volet du portail Azure Data Lake Analytics](./media/data-lake-analytics-quota-limits/data-lake-analytics-quota-help-support.png)
 
     ![Volet du portail Azure Data Lake Analytics](./media/data-lake-analytics-quota-limits/data-lake-analytics-quota-support-request.png)
-2. Sélectionnez **Quota** comme type de problème.
+2. Sélectionnez le type de problème hello **Quota**.
 3. Sélectionnez votre **Abonnement** (vérifiez qu’il ne s’agit pas d’une version d’essai).
 4. Sélectionnez le type de quota **Data Lake Analytics**.
 
     ![Volet du portail Azure Data Lake Analytics](./media/data-lake-analytics-quota-limits/data-lake-analytics-quota-support-request-basics.png)
 
-5. Dans le panneau Problème, expliquez le motif de votre demande d’augmentation de limite. Indiquez pourquoi vous avez besoin de cette capacité supplémentaire dans la zone **Détails**.
+5. Dans le panneau de problème hello, expliquez votre limite de l’augmentation demandée avec **détails** de pourquoi vous devez cette capacité supplémentaire.
 
     ![Volet du portail Azure Data Lake Analytics](./media/data-lake-analytics-quota-limits/data-lake-analytics-quota-support-request-details.png)
 
-6. Vérifiez vos informations de contact et créez la demande de support.
+6. Vérifiez vos informations de contact et créer une demande de prise en charge hello.
 
-Microsoft examine votre demande et essaie de répondre aux besoins de votre activité dans les plus brefs délais.
+Microsoft vérifie votre demande et tente de tooaccommodate dès que possible les besoins de votre entreprise.
 
 ## <a name="next-steps"></a>Étapes suivantes
 

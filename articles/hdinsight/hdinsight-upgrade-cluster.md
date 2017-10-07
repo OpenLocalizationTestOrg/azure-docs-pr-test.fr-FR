@@ -1,6 +1,6 @@
 ---
-title: "Mettre à niveau le cluster HDInsight avec une version plus récente - Azure | Microsoft Docs"
-description: "Découvrez comment mettre à niveau le cluster HDInsight vers une version plus récente."
+title: "version plus récente du tooa cluster HDInsight aaaUpgrade-Azure | Documents Microsoft"
+description: "Découvrez comment tooUpgrade HDInsight de cluster version plus récente de tooa."
 services: hdinsight
 documentationcenter: 
 author: bhanupr
@@ -15,14 +15,14 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 04/04/2017
 ms.author: bhanupr
-ms.openlocfilehash: fa2e37bd922690322ccc3d8f68128180d013b701
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5fff3c9bc88dfbcbc1ccb0188accdfbbec3a62f6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="upgrade-hdinsight-cluster-to-a-newer-version"></a>Mettre à niveau le cluster HDInsight
-Pour tirer parti des dernières fonctionnalités proposées par HDInsight, nous vous recommandons de mettre à niveau les clusters HDInsight vers la version la plus récente. Suivez les instructions ci-dessous pour mettre à niveau vos clusters HDInsight.
+# <a name="upgrade-hdinsight-cluster-tooa-newer-version"></a>Mise à niveau de version plus récente du tooa cluster HDInsight
+avantage tootake de hello dernières fonctionnalités HDInsight, nous recommandons que les clusters HDInsight être mis à niveau toolatest version. Suivez hello ci-dessous les instructions tooupgrade les versions à votre cluster HDInsight.
 
 > [!NOTE]
 > Les clusters HDInsight version 3.2 et 3.3 seront bientôt obsolètes. Pour obtenir des informations sur les versions HDInsight prises en charge, consultez [Quels sont les différents composants Hadoop disponibles avec HDInsight ?](hdinsight-component-versioning.md#supported-hdinsight-versions).
@@ -30,26 +30,26 @@ Pour tirer parti des dernières fonctionnalités proposées par HDInsight, nous 
 >
 
 ## <a name="upgrade-tasks"></a>Tâches de mise à niveau
-Le workflow pour mettre à niveau un cluster HDInsight est le suivant :
+Hello workflow tooupgrade HDInsight Cluster est la suivante.
 
 ![Schéma du workflow de mise à niveau](./media/hdinsight-upgrade-cluster/upgrade-workflow.png)
 
-1. Lisez chaque section de ce document pour comprendre les modifications qui peuvent être nécessaires lors de la mise à jour de votre cluster HDInsight.
-2. Créez un cluster comme environnement de test ou d’assurance qualité. Pour plus d’informations sur la création d’un cluster, consultez [Création de clusters Hadoop basés sur Linux dans HDInsight](hdinsight-hadoop-provision-linux-clusters.md).
-3. Copiez les travaux, sources de données et récepteurs existants dans le nouvel environnement. Pour plus d’informations, consultez la section [Copier des données dans l’environnement de test](hdinsight-migrate-from-windows-to-linux.md#copy-data-to-the-test-environment).
-4. Effectuez des tests de validation pour vérifier que vos tâches fonctionnent comme prévu sur le nouveau cluster.
+1. Lisez chaque section de ce document toounderstand les modifications qui peuvent être requises lors de la mise à niveau votre cluster HDInsight.
+2. Créez un cluster comme environnement de test ou d’assurance qualité. Pour plus d’informations sur la création d’un cluster, consultez [apprendre comment toocreate clusters HDInsight de basés sur Linux](hdinsight-hadoop-provision-linux-clusters.md)
+3. Copie des travaux, des sources de données et récepteurs toohello nouvel environnement. Consultez [tooTest de copier des données environnement](hdinsight-migrate-from-windows-to-linux.md#copy-data-to-the-test-environment) pour plus d’informations.
+4. Effectuer une validation test toomake assurer que vos tâches fonctionnent comme prévu sur le nouveau cluster de hello.
 
 
-Une fois que vous avez vérifié que tout fonctionne comme prévu, planifiez un temps d’arrêt pour la migration. Pendant ce temps d’arrêt, effectuez les actions suivantes :
+Une fois que vous avez vérifié que tout fonctionne comme prévu, planifier des temps d’arrêt pour la migration de hello. Pendant ce temps mort, hello comme suit :
 
-1.  Sauvegardez toutes les données temporaires stockées localement sur les nœuds du cluster, par exemple si vous avez des données stockées directement sur un nœud principal.
-2.  Supprimez le cluster existant.
-3.  Créez un cluster dans le même sous-réseau de réseau virtuel avec la version HDI la plus récente (ou prise en charge) à l’aide du même magasin de données par défaut que le cluster précédent a utilisé. Cela permet au nouveau cluster de continuer à travailler sur vos données de production existantes.
+1.  Sauvegardez toutes les données temporaires stockées localement sur les nœuds de cluster hello. par exemple si vous avez des données stockées directement sur un nœud principal.
+2.  Supprimer le cluster existant de hello.
+3.  Créer un cluster Bonjour même réseau virtuel sous-réseau avec la plus récente (ou pris en charge) HDI version à l’aide de hello même magasin de données par défaut hello précédent cluster utilisé. Cela permet de nouveaux toocontinue de cluster hello travailler sur vos données de production existant.
 4.  Importez toutes les données temporaires que vous avez sauvegardées.
-5.  Démarrez des tâches ou poursuivez le traitement avec le nouveau cluster.
+5.  Début travaux/continuer le traitement à l’aide du nouveau cluster de hello.
 
 ## <a name="next-steps"></a>Étapes suivantes
-* [Création de clusters Hadoop basés sur Linux dans HDInsight](hdinsight-hadoop-provision-linux-clusters.md)
-* [Se connecter à HDInsight à l’aide de SSH](hdinsight-hadoop-linux-use-ssh-unix.md)
+* [Découvrez comment toocreate clusters HDInsight de basés sur Linux](hdinsight-hadoop-provision-linux-clusters.md)
+* [Se connecter tooHDInsight à l’aide de SSH](hdinsight-hadoop-linux-use-ssh-unix.md)
 * [Gérer des clusters HDInsight à l’aide de l’interface utilisateur Web d’Ambari](hdinsight-hadoop-manage-ambari.md)
 

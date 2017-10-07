@@ -1,13 +1,13 @@
 ---
 featureFlags: usabilla
-title: "Connecter Raspberry Pi (Node) à Azure IoT - Leçon 4 : Cloud-à-appareil | Microsoft Docs"
-description: "L’exemple d’application s’exécute sur Pi et surveille les messages entrants à partir de votre IoT Hub. Une nouvelle tâche gulp envoie des messages à Pi à partir de votre IoT Hub pour faire clignoter la LED."
+title: "Se connecter framboises Pi (nœud) tooAzure IoT - leçon 4 : Cloud-à-appareil | Documents Microsoft"
+description: "Hello, exemple d’application s’exécute sur Pi et surveille les messages entrants à partir de votre hub IoT. Une nouvelle tâche gulp envoie des messages tooPi à partir de votre hello tooblink du hub IoT DEL."
 services: iot-hub
 documentationcenter: 
 author: shizn
 manager: timlt
 tags: 
-keywords: "cloud-à-appareil, message du cloud"
+keywords: "toodevice cloud, le message à partir du cloud"
 ROBOTS: NOINDEX
 redirect_url: /azure/iot-hub/iot-hub-raspberry-pi-kit-node-get-started
 ms.assetid: 6ae6539e-1163-4490-8d72-fdf7803e3054
@@ -18,76 +18,76 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: b8e9e51391f9b6737762b3404658297ab4c82783
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d69ded4e30c27378481ab2a4fb9c5b73be7bd44e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="run-the-sample-application-to-receive-cloud-to-device-messages"></a>Exécution de l’exemple d’application pour recevoir des messages cloud-à-appareil
-Dans cet article, vous déployez un exemple d’application sur Raspberry Pi 3. L’exemple d’application surveille les messages entrants à partir de votre IoT Hub. Vous exécutez également une tâche gulp sur votre ordinateur pour envoyer des messages à Pi à partir de votre IoT Hub. À la réception des messages, l’exemple d’application fait clignoter la LED. Si vous rencontrez des problèmes, recherchez des solutions dans la [page de résolution des problèmes](iot-hub-raspberry-pi-kit-node-troubleshooting.md).
+# <a name="run-hello-sample-application-tooreceive-cloud-to-device-messages"></a>Exécutez hello exemples application tooreceive cloud-à-appareil de messages
+Dans cet article, vous déployez un exemple d’application sur Raspberry Pi 3. exemple d’application Hello surveille les messages entrants à partir de votre hub IoT. Aussi, vous exécutez une tâche de gulp sur votre tooPi de messages toosend ordinateur à partir de votre hub IoT. Lors de l’application d’exemple hello reçoit des messages hello, il clignote hello DEL. Si vous rencontrez des problèmes, rechercher des solutions sur hello [page Résolution des problèmes](iot-hub-raspberry-pi-kit-node-troubleshooting.md).
 
 ## <a name="what-you-will-do"></a>Procédure à suivre
-* Connectez l’exemple d’application à votre IoT Hub.
-* Déployez et exécutez l'exemple d'application.
-* Envoyez des messages à partir votre IoT Hub vers Pi pour faire clignoter la LED.
+* Connectez le hub IoT tooyour hello exemple application.
+* Déployer et exécuter l’exemple d’application hello.
+* Envoyer des messages à partir de votre hello dans IoT hub tooPi tooblink DEL.
 
 ## <a name="what-you-will-learn"></a>Contenu
 Cet article portera sur les éléments suivants :
-* Surveillance des messages entrants à partir de votre IoT Hub
-* Envoi de messages cloud-à-appareil à partir de votre IoT Hub vers Pi.
+* Comment les messages entrants de toomonitor à partir de votre hub IoT
+* Comment les messages à partir de votre tooPi de hub IoT toosend cloud-à-appareil.
 
 ## <a name="what-you-need"></a>Ce dont vous avez besoin
-* Raspberry Pi 3, configuré pour utilisation. Pour savoir comment configurer Pi, consultez [Configuration de votre appareil](iot-hub-raspberry-pi-kit-node-lesson1-configure-your-device.md).
-* Un IoT Hub créé dans le cadre de votre abonnement Azure. Pour savoir comment créer votre IoT Hub, consultez [Création de votre IoT Hub et inscription de Raspberry Pi 3](iot-hub-raspberry-pi-kit-node-lesson2-prepare-azure-iot-hub.md).
+* Raspberry Pi 3, configuré pour utilisation. toolearn tooset de Pi, voir [configurer votre périphérique](iot-hub-raspberry-pi-kit-node-lesson1-configure-your-device.md).
+* Un IoT Hub créé dans le cadre de votre abonnement Azure. toolearn comment toocreate votre IoT hub, consultez [créez votre hub IoT et inscrire framboises Pi 3](iot-hub-raspberry-pi-kit-node-lesson2-prepare-azure-iot-hub.md).
 
-## <a name="connect-the-sample-application-to-your-iot-hub"></a>Connexion de l’exemple d’application à votre IoT Hub
-1. Assurez-vous que vous êtes dans le dossier du référentiel `iot-hub-node-raspberrypi-getting-started`. Ouvrez l’exemple d’application dans Visual Studio Code en exécutant les commandes suivantes :
+## <a name="connect-hello-sample-application-tooyour-iot-hub"></a>Connecter le hub IoT tooyour hello exemple application
+1. Assurez-vous que vous êtes dans le dossier de dépôt hello `iot-hub-node-raspberrypi-getting-started`. Ouvrir l’exemple d’application hello dans Visual Studio Code par hello suivant les commandes en cours d’exécution :
    
    ```bash
    cd Lesson4
    code .
    ```
    
-   Notez la présence du fichier `app.js` dans le sous-dossier `app`. Le fichier `app.js` est le fichier source clé qui contient le code permettant de surveiller les messages entrants à partir du IoT Hub. La fonction `blinkLED` fait clignoter la LED.
+   Hello d’avis `app.js` fichier Bonjour `app` sous-dossier. Hello `app.js` fichier est le fichier de source de la clé de hello qui contient les messages entrants toomonitor code hello à partir du hub IoT de hello. Hello `blinkLED` fonction clignote hello DEL.
    
-   ![Structure de référentiel dans l’exemple d’application](media/iot-hub-raspberry-pi-lessons/lesson4/repo_structure.png)
-2. Initialisez le fichier de configuration à l’aide des commandes suivantes :
+   ![Structure de référentiel dans l’exemple d’application hello](media/iot-hub-raspberry-pi-lessons/lesson4/repo_structure.png)
+2. Initialisation du fichier de configuration hello à l’aide de hello suivant de commandes :
    
    ```bash
    npm install
    gulp init
    ```
    
-   Si vous avez effectué les étapes de la section [Créer une application de fonction Azure et un compte de stockage](iot-hub-raspberry-pi-kit-node-lesson3-deploy-resource-manager-template.md) sur cet ordinateur, toutes les configurations sont héritées, donc vous pouvez passer à la tâche de déploiement et d’exécution de l’exemple d’application. Si vous avez effectué les étapes de la section [Créer une application de fonction Azure et un compte de stockage](iot-hub-raspberry-pi-kit-node-lesson3-deploy-resource-manager-template.md) sur un autre ordinateur, vous devez remplacer les espaces réservés dans le fichier `config-raspberrypi.json`. Le fichier `config-raspberrypi.json` se trouve dans le sous-dossier de votre dossier racine.
+   Si vous avez terminé les étapes de hello dans [créer un compte d’application et de stockage Azure fonction](iot-hub-raspberry-pi-kit-node-lesson3-deploy-resource-manager-template.md) sur cet ordinateur, toutes les configurations de hello sont héritées, vous pouvez sauter toohello des tâches de déploiement et d’application d’exemple hello en cours d’exécution. Si vous avez terminé les étapes de hello dans [créer un compte d’application et de stockage Azure fonction](iot-hub-raspberry-pi-kit-node-lesson3-deploy-resource-manager-template.md) sur un autre ordinateur, vous avez besoin des espaces réservés de hello tooreplace Bonjour `config-raspberrypi.json` fichier. Hello `config-raspberrypi.json` fichier se trouve dans le sous-dossier hello de votre dossier de base.
    
-   ![Contenu du fichier config-raspberrypi.json](media/iot-hub-raspberry-pi-lessons/lesson4/config_raspberrypi.png)
+   ![Contenu du fichier de configuration-raspberrypi.json hello](media/iot-hub-raspberry-pi-lessons/lesson4/config_raspberrypi.png)
 
-* Remplacez **[nom d’hôte ou adresse IP de l’appareil]** par l’adresse IP ou le nom d’hôte de Pi que vous obtenez en exécutant la commande `devdisco list --eth`.
-* Remplacez **[chaîne de connexion d’appareil IoT]** par la chaîne de connexion d’appareil que vous obtenez en exécutant la commande `az iot device show-connection-string --hub-name {my hub name} --device-id {device id} -g iot-sample {resource group name}`.
-* Remplacez **[chaîne de connexion d’IoT Hub]** par la chaîne de connexion IoT Hub que vous obtenez en exécutant la commande `az iot hub show-connection-string --name {my hub name} -g iot-sample {resource group name}`.
+* Remplacez **[nom d’hôte du périphérique ou adresse IP]** avec adresse IP hello hello ou le nom d’hôte que vous obtenez en exécutant hello `devdisco list --eth` commande.
+* Remplacez **[chaîne de connexion de périphérique IoT]** avec la chaîne de connexion de périphérique hello que vous obtenez en exécutant hello `az iot device show-connection-string --hub-name {my hub name} --device-id {device id} -g iot-sample {resource group name}` commande.
+* Remplacez **[chaîne de connexion de hub IoT]** avec hello chaîne de connexion de hub IoT que vous obtenez en exécutant hello `az iot hub show-connection-string --name {my hub name} -g iot-sample {resource group name}` commande.
 
 > [!NOTE]
 > Exécutez également **gulp install-tools**, si vous ne l’avez pas fait dans la leçon 1.
 
-## <a name="deploy-and-run-the-sample-application"></a>Déploiement et exécution de l’exemple d’application
-Déployez et exécutez l’exemple d’application sur Pi en exécutant la commande suivante :
+## <a name="deploy-and-run-hello-sample-application"></a>Déployer et exécuter l’exemple d’application hello
+Déployer et exécuter l’exemple d’application hello sur Pi en exécutant hello de commande suivante :
 
 ```bash
 gulp deploy && gulp run
 ```
 
-La commande déploie l’exemple d’application sur Pi. Ensuite, elle exécute l’application sur Pi et une tâche distincte sur votre ordinateur hôte afin d’envoyer 20 messages de clignotement à Pi à partir de votre IoT Hub.
+commande Hello déploie tooPi d’application exemple hello. Ensuite, elle s’exécute application hello sur Pi et une tâche distincte sur votre hôte ordinateur toosend 20 blink messages tooPi à partir de votre hub IoT.
 
-Une fois l’exemple d’application exécuté, il commence à écouter les messages à partir de votre IoT Hub. Pendant ce temps, la tâche gulp envoie plusieurs messages de « clignotement » à partir de votre IoT Hub vers Pi. Pour chaque message de clignotement reçu par Pi, l’exemple d’application demande à la fonction `blinkLED` de faire clignoter la LED.
+Après l’exécution de l’exemple d’application hello, il commence à écouter toomessages à partir de votre hub IoT. Pendant ce temps, tâche de gulp hello envoie plusieurs messages « clignoter » à partir de votre tooPi de hub IoT. Pour chaque message blink qui reçoit de Pi, exemple d’application hello appelle hello `blinkLED` hello tooblink de fonction DEL.
 
-La LED doit clignoter toutes les deux secondes tandis que la tâche gulp envoie 20 messages de votre IoT Hub vers Pi. Le dernier message est un message « stop » qui indique à l’application d’interrompre l’exécution.
+Vous devez voir clignotement de LED hello toutes les deux secondes comme hello gulp la tâche envoie des messages à partir de votre tooPi de hub IoT 20. Hello dernier un est un message « arrêter » indiquant hello application toostop est en cours d’exécution.
 
 ![Exemple d’application avec la commande gulp et les messages de clignotement](media/iot-hub-raspberry-pi-lessons/lesson4/gulp_blink.png)
 
 ## <a name="summary"></a>Résumé
-Vous avez correctement envoyé des messages à partir de votre IoT Hub vers Pi pour faire clignoter la LED. La tâche suivante est facultative : modifier le comportement activé/désactivé de la LED.
+Vous avez correctement envoyé des messages à partir de votre hello dans IoT hub tooPi tooblink DEL. la tâche suivante Hello est facultative : modifier hello et désactiver le comportement de hello DEL.
 
 ## <a name="next-steps"></a>Étapes suivantes
-[Modification du comportement activé/désactivé de la LED](iot-hub-raspberry-pi-kit-node-lesson4-change-led-behavior.md)
+[Modifier hello et désactiver le comportement de hello DEL](iot-hub-raspberry-pi-kit-node-lesson4-change-led-behavior.md)
 

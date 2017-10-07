@@ -1,6 +1,6 @@
 ---
 title: "Appareil SensorTag et passerelle Azure IoT - Leçon 2 : Obtenir des outils (macOS) | Microsoft Docs"
-description: "Installez les outils sur votre ordinateur Mac, créez un IoT Hub et inscrivez votre appareil dans l’IoT Hub."
+description: "Installer les outils sur votre ordinateur Mac, créez un IoT hub et inscrire votre appareil dans le hub IoT de hello."
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -17,13 +17,13 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: 07bc5f2cf6542273c334371b77520c674c5d2f00
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 44bce452690e18e6c803df564fdafcdda7f41c8c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-the-tools-macos"></a>Obtenir les outils (Mac OS)
+# <a name="get-hello-tools-macos"></a>Obtenir les outils de hello (MacOS)
 > [!div class="op_single_selector"]
 > * [Windows 7 ou version ultérieure](iot-hub-gateway-kit-c-lesson2-get-the-tools-win32.md)
 > * [Ubuntu 16.04](iot-hub-gateway-kit-c-lesson2-get-the-tools-ubuntu.md)
@@ -32,46 +32,46 @@ ms.lasthandoff: 07/11/2017
 ## <a name="what-you-will-do"></a>Procédure à suivre
 
 - Installation de Git, Node.js, Gulp et Python.
-- Installez l’interface de ligne de commande Azure (Azure CLI). 
+- Installez hello Azure interface de ligne de commande (CLI d’Azure). 
 
-Si vous rencontrez des problèmes, recherchez des solutions dans la [page de résolution des problèmes](iot-hub-gateway-kit-c-troubleshooting.md).
+Si vous rencontrez des problèmes, recherchez des solutions sur hello [page Résolution des problèmes](iot-hub-gateway-kit-c-troubleshooting.md).
 
 ## <a name="what-you-will-learn"></a>Contenu
 
-Dans cette leçon, vous allez apprendre ce qui suit :
+Dans cette leçon, vous allez apprendre :
 
-- Installation de [Git](https://git-scm.com/) et [Node.js](https://nodejs.org/en/).
-  - Git est un système de contrôle de versions distribué open source très populaire. L’exemple d’application de cette leçon est stocké sur Git.
+- Comment tooinstall [Git](https://git-scm.com/) et [Node.js](https://nodejs.org/en/).
+  - Git est un système de contrôle de versions distribué open source très populaire. exemple d’application Hello pour cette leçon est stocké sur Git.
   - Node.js est un runtime JavaScript avec un écosystème de packages riche.
-- Utilisation de [NPM](https://www.npmjs.com/) pour installer des outils de développement Node.js.
-  - La version minimale requise de Node.js est 4.5 LTS.
-  - NPM est l’un des gestionnaires de packages pour Node.js.
-- Installation de Visual Studio Code.
+- Comment toouse [NPM](https://www.npmjs.com/) tooinstall des outils de développement Node.js.
+  - la version minimale requise Hello de Node.js est 4.5 LTS.
+  - NPM est un des gestionnaires de package hello pour Node.js.
+- Comment tooinstall Visual Studio Code.
   - Visual Studio Code est un éditeur de code source multiplateforme simple mais puissant pour Windows, Linux et macOS. Il offre une aide appréciable pour le débogage, le contrôle Git incorporé, la mise en surbrillance de syntaxe, la complétion de code intelligente, les extraits et la refactorisation de code.
-- Comment installer Python.
+- Comment tooinstall Python.
   - Python est un langage de programmation interprété et dynamique, à usage général et fréquemment utilisé.
-- Installation de l’interface de ligne de commande Azure.
-  - L’interface de ligne de commande Azure offre une expérience de ligne de commande multiplateforme pour Azure. Vous travaillez directement à partir d’une ligne de commande pour approvisionner et gérer les ressources.
-- Utilisation de l’interface de ligne de commande Azure pour créer un IoT Hub.
+- Comment tooinstall hello CLI d’Azure.
+  - Hello CLI d’Azure fournit une expérience en ligne de commande multiplateforme pour Azure. Travailler directement depuis une tooprovision de ligne de commande et de gérer les ressources.
+- Comment toouse hello CLI d’Azure toocreate un IoT hub.
 
 ## <a name="what-you-need"></a>Ce dont vous avez besoin
 
-- Une connexion Internet pour télécharger les outils et le logiciel.
+- Un toodownload de connexion Internet hello outils et logiciels.
 - Un ordinateur Mac exécutant OS X Yosemite (10.10) ou une version ultérieure.
 
 ## <a name="install-git-and-nodejs"></a>Installation de Git et Node.js
 
-Pour installer Git et Node.js, servez-vous de l’utilitaire de gestion de package Homebrew en procédant comme suit :
+tooinstall Git et Node.js, utilisez l’utilitaire de gestion de package Homebrew hello en procédant comme suit :
 
-1. [Téléchargez](http://brew.sh/) et installez Homebrew. Si vous avez déjà installé Homebrew, passez à l’étape 2.
-   1. Appuyez sur `Cmd + Space` puis entrez `Terminal` pour ouvrir une fenêtre de terminal.
-   2. Exécutez la commande suivante :
+1. [Téléchargez](http://brew.sh/) et installez Homebrew. Si vous avez déjà installé Homebrew, accédez à toostep 2.
+   1. Appuyez sur `Cmd + Space` et entrez `Terminal` tooopen un terminal.
+   2. Exécutez hello de commande suivante :
 
       ```bash
       /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
       ```
 
-2. Installez de Git et Node.js en exécutant la commande suivante :
+2. Installer Git et Node.js en exécutant hello de commande suivante :
 
     ```bash
     brew install node git
@@ -79,57 +79,57 @@ Pour installer Git et Node.js, servez-vous de l’utilitaire de gestion de packa
 
 ## <a name="install-nodejs-development-tools"></a>Installer des outils de développement Node.js
 
-Vous utilisez [gulp.js](http://gulpjs.com/) pour automatiser le déploiement et l’exécution de scripts.
+Vous utilisez [fichier gulp.js](http://gulpjs.com/) tooautomate déploiement et l’exécution de scripts.
 
-Pour installer gulp, exécutez la commande suivante dans le terminal :
+gulp de tooinstall, exécutez hello commande dans un terminal hello suivante :
 
 ```bash
 npm install -g gulp
 ```
 
-Si vous rencontrez des problèmes lors de l’installation, consultez le [guide de dépannage](iot-hub-gateway-kit-c-troubleshooting.md) des problèmes courants.
+Si vous rencontrez des problèmes avec l’installation de hello, consultez hello [guide de dépannage](iot-hub-gateway-kit-c-troubleshooting.md) pour les problèmes de toocommon solutions.
 
 > [!Note]
-> Node, NPM et Gulp sont requis pour exécuter des scripts d’automatisation développés dans Node.js.
+> Nœud, NPM et Gulp sont développés dans Node.js des scripts d’automatisation toorun requis.
 
-## <a name="install-python"></a>Installer python
+## <a name="install-python"></a>Installation de Python
 
 Bien que macOS X soit fourni avec Python 2.7, il est recommandé d’installer Python via Homebrew. Consultez [Installation de Python sur macOS X](http://docs.python-guide.org/en/latest/starting/install/osx/).
 
-Installez Python et pip en exécutant la commande suivante :
+Installer Python et pip en exécutant hello de commande suivante :
 
 ```bash
 brew install python
 ```
 
-## <a name="install-the-azure-cli"></a>Installer l’interface de ligne de commande Microsoft Azure
+## <a name="install-hello-azure-cli"></a>Installer hello CLI d’Azure
 
-Pour installer l’interface de ligne de commande Azure, procédez comme suit :
+tooinstall hello CLI d’Azure, procédez comme suit :
 
-1. Exécutez les commandes suivantes dans le terminal :
+1. Exécutez hello suivant les commandes dans un terminal hello :
    ```bash
    pip install --upgrade azure-cli
    pip install --upgrade azure-cli-iot
    ```
-   L’installation peut prendre 5 minutes.
+   installation de Hello peut prendre 5 minutes.
 
-2. Vérifiez l’installation en exécutant la commande suivante :
+2. Hello Vérifiez-la en exécutant hello de commande suivante :
    ```bash
    az iot -h
    ```
-   Si l’installation a réussi, vous devez voir la sortie suivante.
+   Vous devez voir suivant de hello de sortie si l’installation de hello a réussi.
 
    ![Vérifier l’installation de l’interface de ligne de commande Azure](media/iot-hub-gateway-kit-lessons/lesson2/az_iot_help_osx.png)
 
 ## <a name="install-visual-studio-code"></a>Installation de Visual Studio Code
 
-Visual Studio Code, plus loin dans ce didacticiel, vous permet de modifier les fichiers de configuration.
+Vous utilisez Visual Studio Code ultérieurement dans les fichiers de configuration de didacticiel tooedit hello.
 
 [Téléchargez](https://code.visualstudio.com/docs/setup/osx) et installez Visual Studio Code.
 
 ## <a name="summary"></a>Résumé
 
-Vous avez installé tous les outils et logiciels nécessaires sur votre ordinateur Mac. La tâche suivante consiste à utiliser l’interface de ligne de commande Azure pour créer un IoT Hub et inscrire votre appareil dans votre IoT Hub.
+Vous avez installé tous les outils de hello requis et des logiciels sur votre ordinateur Mac. La tâche suivante est toouse hello CLI d’Azure toocreate un IoT hub et inscrire votre appareil dans votre hub IoT.
 
 ## <a name="next-steps"></a>Étapes suivantes
 [Créer un IoT Hub et inscrire l’appareil](iot-hub-gateway-kit-c-lesson2-register-device.md)

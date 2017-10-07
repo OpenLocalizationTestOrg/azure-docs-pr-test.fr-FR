@@ -1,6 +1,6 @@
 ---
-title: Utilisation de grands groupes de machines virtuelles identiques Azure | Microsoft Docs
-description: Tout ce que vous devez savoir pour utiliser de grands groupes de machines virtuelles identiques Azure
+title: "aaaWorking avec de grands ensembles d’échelle de Machine virtuelle Azure | Documents Microsoft"
+description: "Vous devez tooknow toouse grand machine virtuelle Azure mise à l’échelle de jeux"
 services: virtual-machine-scale-sets
 documentationcenter: 
 author: gbowerman
@@ -15,52 +15,52 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 2/7/2017
 ms.author: guybo
-ms.openlocfilehash: 9e9eae1623e55c1c05e97aa0b836819ce5dc16f9
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: a39aab25925d7fc50763f0a20148b1f2213b492f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="working-with-large-virtual-machine-scale-sets"></a>Utilisation de grands groupes de machines virtuelles identiques
-Vous pouvez désormais créer des [groupes de machines virtuelles identiques](/azure/virtual-machine-scale-sets/) Azure d’une capacité maximum de 1 000 machines virtuelles. Dans ce document, un _grand groupe de machines virtuelles identiques_ est défini comme un groupe identique pouvant contenir plus de 100 machines virtuelles. Cette fonctionnalité est définie par une propriété de groupe identique (_singlePlacementGroup=False_). 
+Vous pouvez désormais créer Azure [machines virtuelles identiques](/azure/virtual-machine-scale-sets/) avec une capacité de configuration too1, 000 machines virtuelles. Dans ce document, un _grand machines virtuelles identiques_ est défini comme une échelle définie capable d’évoluer toogreater à 100 machines virtuelles. Cette fonctionnalité est définie par une propriété de groupe identique (_singlePlacementGroup=False_). 
 
-Certains aspects des grands groupes identiques, tels que les domaines d’erreur et l’équilibrage de charge se comportent différemment d’un groupe identique standard. Ce document explique les caractéristiques des grands groupes identiques et décrit ce que vous devez savoir pour les utiliser correctement dans vos applications. 
+Définit certains aspects d’à grande échelle, tels que les domaines et l’équilibrage de charge comportent différemment tooa un ensemble d’échelle standard. Ce document explique les caractéristiques hello de grands jeux d’et décrit ce que vous avez besoin de tooknow toosuccessfully les utiliser dans vos applications. 
 
-Une approche commune pour le déploiement d’une infrastructure cloud à grande échelle consiste à créer un ensemble d’_unités d'échelle_, par exemple, en créant plusieurs 	groupes de machines virtuelles identiques sur plusieurs réseaux virtuels et comptes de stockage. Cette approche offre une gestion facilitée par rapport aux machines virtuelles uniques, et plusieurs unités d’échelle sont utiles pour de nombreuses applications, notamment celles qui nécessitent d’autres composants empilables comme plusieurs réseaux virtuels et points de terminaison. Toutefois, si votre application nécessite un seul cluster de grande taille, il peut être plus simple de déployer un seul groupe identique contenant jusqu’à 1 000 machines virtuelles. Des exemples de scénarios incluent des déploiements de Big Data centralisés ou des grilles de calcul nécessitant la gestion simple d’un grand pool de nœuds de travail. Combinés avec [des disques de données associés](virtual-machine-scale-sets-attached-disks.md) de groupes de machines virtuelles identiques, les grands groupes identiques vous permettent de déployer une infrastructure évolutive, composée de plusieurs milliers de cœurs et de plusieurs pétaoctets de stockage, en une seule opération.
+Une approche commune pour le déploiement d’infrastructure cloud à grande échelle est toocreate un ensemble de _mettre à l’échelle des unités_, par exemple, en créant plusieurs machines virtuelles, l’échelle jeux sur plusieurs réseaux virtuels et les comptes de stockage. Cette approche offre plus facile par rapport de gestion toosingle machines virtuelles, et plusieurs unités d’échelle sont utiles pour de nombreuses applications, notamment ceux qui nécessitent d’autres composants empilables comme plusieurs réseaux virtuels et les points de terminaison. Si votre application nécessite un seul cluster volumineux Toutefois, il peut être plus simple toodeploy une seule échelle configurer de too1, 000 machines virtuelles. Des exemples de scénarios incluent des déploiements de Big Data centralisés ou des grilles de calcul nécessitant la gestion simple d’un grand pool de nœuds de travail. Combiné avec un ensemble d’échelle de machine virtuelle [disques de données associés](virtual-machine-scale-sets-attached-disks.md), les jeux à grande échelle permettent toodeploy une infrastructure évolutive comprenant des milliers de cœurs et plusieurs pétaoctets de stockage, comme une seule opération.
 
 ## <a name="placement-groups"></a>Groupes de placement 
-Ce n’est pas le nombre de machines virtuelles qui rend un _grand_ groupe identique si spécial, mais plutôt le nombre de _groupes de placement_ qu’il contient. Un groupe de placement est une construction similaire à une haute disponibilité Azure, avec ses propres domaines d’erreur et les domaines de mise à niveau. Par défaut, un groupe identique se compose d’un seul groupe de placement contenant au maximum 100 machines virtuelles. Si une propriété de groupe identique appelée _singlePlacementGroup_ est définie sur _false_, le groupe identique peut se composer de plusieurs groupes de placement et présente une plage de 0 à 1 000 machines virtuelles. Lorsque la valeur par défaut est définie sur _true_, un groupe identique est composé d’un seul groupe de placement et présente une plage de 0 à 100 machines virtuelles.
+Ce qui rend une _grand_ échelle définie spécial n’est pas nombre hello d’ordinateurs virtuels, mais nombre hello de _groupes de la sélection élective_ qu’il contient. Un groupe de la sélection élective est un ensemble de disponibilité Azure tooan de construction similaire, avec ses propres domaines d’erreur et les domaines de mise à niveau. Par défaut, un groupe identique se compose d’un seul groupe de placement contenant au maximum 100 machines virtuelles. Si la valeur de propriété appelée par une échelle _singlePlacementGroup_ a la valeur too_false_, hello identiques peuvent être composées de plusieurs groupes de la sélection élective et a une plage de 0 à 1 000 machines virtuelles. Lorsque la valeur par défaut toohello de _true_, un ensemble d’échelle est composé d’un groupe de la sélection élective unique et a une plage de 0 à 100 machines virtuelles.
 
 ## <a name="checklist-for-using-large-scale-sets"></a>Liste de contrôle pour l’utilisation de grands groupes identiques
-Pour déterminer si votre application peut utiliser efficacement de grands groupes identiques, voici quelques points à prendre en compte :
+toodecide si votre application peut utiliser efficacement les jeux à grande échelle, tenez compte hello suivant les exigences :
 
-- Les grands groupes identiques requièrent Azure Managed Disks. Les groupes identiques qui ne sont pas créés avec Managed Disks nécessitent plusieurs comptes de stockage (un toutes les 20 machines virtuelles). Les grands groupes identiques sont conçus pour fonctionner exclusivement avec Managed Disks afin de réduire vos frais de gestion de stockage et d’éviter tout risque d’exécution dans les limites d’abonnement des comptes de stockage. Si vous n’utilisez pas Managed Disks, votre groupe identique est limité à 100 machines virtuelles.
-- Les groupes identiques créés à partir d’images d’Azure Marketplace peuvent monter en puissance jusqu'à 1 000 machines virtuelles.
-- Les groupes identiques créés à partir d’images personnalisées (images de machine virtuelle que vous créez et téléchargez vous-même) peuvent actuellement monter en puissance jusqu'à 100 machines virtuelles.
-- L’équilibrage de charge de type Couche 4 avec l’équilibrage de charge Azure n’est pas encore possible pour les groupes identiques composés de plusieurs groupes de placement. Si vous devez utiliser Azure Load Balancer, veillez à ce que le groupe identique soit configuré pour utiliser un seul groupe de placement, ce qui est le paramètre par défaut.
-- L’équilibrage de charge de type Couche 7 avec Azure Application Gateway est pris en charge pour tous les groupes identiques.
-- Un groupe identique est défini avec un seul sous-réseau. Vérifiez que votre sous-réseau dispose d’un espace d’adressage suffisamment grand pour toutes les machines virtuelles requises. Par défaut, un groupe identique surprovisionne (c’est-à-dire qu’il crée des machines virtuelles supplémentaires au moment du déploiement ou de la montée en charge pour lesquelles vous n’êtes pas facturé) afin d’améliorer les performances et la fiabilité du déploiement. Prévoyez un espace d’adressage 20 % supérieur au nombre de machines virtuelles que vous envisagez d’atteindre.
-- Si vous prévoyez de déployer plusieurs machines virtuelles, il ne sera peut-être pas nécessaire d’augmenter vos limites de quota de cœur de calcul.
-- Les domaines d’erreur et de mise à niveau sont cohérents uniquement au sein d’un groupe de placement. Cette architecture ne modifie pas la disponibilité globale d’un groupe identique, car les machines virtuelles sont réparties uniformément sur une infrastructure physique distincte. Toutefois, si vous avez besoin de garantir deux machines virtuelles sur des infrastructures différentes, assurez-vous qu’elles se trouvent dans des domaines d’erreur différents au sein du même groupe de placement. Les identifiants du groupe de placement et du domaine d’erreur sont indiqués dans la _vue d’instance_ d’une machine virtuelle de groupe identique. Vous pouvez afficher la vue d’instance d’un groupe de machines virtuelles identiques dans [Azure Resource Explorer](https://resources.azure.com/).
+- Les grands groupes identiques requièrent Azure Managed Disks. Les groupes identiques qui ne sont pas créés avec Managed Disks nécessitent plusieurs comptes de stockage (un toutes les 20 machines virtuelles). Les jeux à grande échelle sont toowork conçue exclusivement avec tooreduce de disques gérés des limites de votre stockage surcharge de gestion et tooavoid hello des risques de l’exécution dans un abonnement pour les comptes de stockage. Si vous n’utilisez pas de disques gérés, votre jeu de mise à l’échelle est limitée too100 VMs.
+- Définit l’échelle créé à partir d’images Azure Marketplace peut évoluer too1, 000 machines virtuelles.
+- Définit l’échelle créé à partir d’images personnalisées (images de machine virtuelle vous créez et chargez vous-même) capable d’évoluer actuellement too100 VMs.
+- Couche 4 équilibrage de charge avec hello équilibrage de charge Azure n'est pas encore prises en charge l’échelle composé de plusieurs groupes de la sélection élective. Si vous avez besoin hello toouse équilibrage de charge Azure que l’échelle de hello que jeu est toouse configuré un groupe de la sélection élective unique, qui est par défaut hello.
+- Couche 7 équilibrage de charge avec hello passerelle d’Application Azure est prise en charge pour tous les jeux de mise à l’échelle.
+- Un ensemble d’échelle est défini avec un seul sous-réseau - Assurez-vous que votre sous-réseau dispose d’un espace d’adressage suffisant pour toutes les machines virtuelles de hello vous avez besoin. Par défaut, une échelle définie overprovisions (crée des machines virtuelles supplémentaires au moment du déploiement ou de la montée en puissance parallèle, ce qui vous n’êtes pas facturé pour) tooimprove déploiement fiabilité et les performances. Autoriser une adresse espace 20 % supérieur au nombre de hello d’ordinateurs virtuels que vous envisagez de tooscale à.
+- Si vous envisagez de toodeploy de machines virtuelles, les limites des quotas core calcul peut-être toobe augmenté.
+- Les domaines d’erreur et de mise à niveau sont cohérents uniquement au sein d’un groupe de placement. Cette architecture ne change pas hello globale d’une échelle de haute disponibilité, comme les machines virtuelles sont réparties uniformément sur un matériel physique distinct, mais c’est le cas signifie que si vous avez besoin de tooguarantee sont de deux machines virtuelles sur un matériel différent, assurez-vous qu’ils sont dans une autre erreur domaines de hello même groupe de sélection élective. ID du groupe de domaine et la sélection élective erreur sont affichés dans hello _affichage de l’instance_ d’une échelle de jeu de machine virtuelle. Vous pouvez afficher la vue d’instance hello d’un ensemble d’échelle de machine virtuelle Bonjour [Explorateur de ressources Azure](https://resources.azure.com/).
 
 
 ## <a name="creating-a-large-scale-set"></a>Création d’un grand groupe identique
-Lorsque vous créez un groupe identique dans le portail Azure, vous pouvez l’autoriser à prendre en charge plusieurs groupes de placement en définissant l’option _Limit to a single placement group (Limiter à un seul groupe de placement)_ sur _False_ dans le panneau _Fonctions de base_. Lorsque cette option est définie sur _False_, vous pouvez spécifier une valeur _Nombre d’instances_ de 1 000 maximum.
+Lorsque vous créez une échelle définie dans hello portail Azure, vous pouvez autoriser son groupes de la sélection élective tooscale toomultiple en définissant un hello _limite tooa unique de groupe positionnement_ too_False_ option Bonjour _notions de base_ panneau. Avec cette too_False_ ensemble option, vous pouvez spécifier une _le nombre d’instances_ la valeur de configuration too1, 000.
 
 ![](./media/virtual-machine-scale-sets-placement-groups/portal-large-scale.png)
 
-Vous pouvez créer un grand groupe de machines virtuelles identiques à l’aide de la commande [Azure CLI](https://github.com/Azure/azure-cli) _az vmss create_. Cette commande définit des valeurs par défaut intelligentes comme la taille du sous-réseau en fonction de l’argument _instance-count_ :
+Vous pouvez créer une à grande échelle de la machine virtuelle à l’aide de hello [CLI d’Azure](https://github.com/Azure/azure-cli) _az mise créer_ commande. Cette commande définit les valeurs par défaut intelligents comme taille de sous-réseau en fonction de hello _-nombre d’instances_ argument :
 
 ```bash
 az group create -l southcentralus -n biginfra
 az vmss create -g biginfra -n bigvmss --image ubuntults --instance-count 1000
 ```
-Notez que la commande _vmss create_ inclut par défaut des valeurs de configuration si vous ne les spécifiez pas. Pour voir les options disponibles que vous pouvez remplacer, essayez :
+Notez que hello _mise créer_ commande par défaut de certaines valeurs de configuration si vous ne spécifiez pas les. options disponibles toosee hello que vous pouvez remplacer, essayez :
 ```bash
 az vmss create --help
 ```
 
-Si vous créez un grand groupe identique en composant un modèle Azure Resource Manager, assurez-vous que le modèle crée un groupe identique basé sur Azure Managed Disks. Vous pouvez définir la propriété _singlePlacementGroup_ sur _false_ dans la section _propriétés_ de la ressource _Microsoft.Compute/virtualMAchineScaleSets_. Le fragment JSON suivant présente le début d’un modèle de groupe identique, y compris la capacité de 1 000 machines virtuelles et le paramètre _"singlePlacementGroup" : false_ :
+Si vous créez une grande échelle définie par la composition d’un modèle Azure Resource Manager, assurez-vous que le modèle de hello crée un jeu de mise à l’échelle basé sur des disques gérés Azure. Vous pouvez définir hello _singlePlacementGroup_ too_false_ propriété Bonjour _propriétés_ section Hello _Microsoft.Compute/virtualMAchineScaleSets_ ressource. Hello fragment JSON suivant illustre début hello d’un modèle de jeu de mise à l’échelle, y compris la capacité de machine virtuelle hello 1 000 et hello _« singlePlacementGroup » : false_ paramètre :
 ```json
 {
   "type": "Microsoft.Compute/virtualMachineScaleSets",
@@ -77,12 +77,12 @@ Si vous créez un grand groupe identique en composant un modèle Azure Resource 
       "mode": "Automatic"
     }
 ```
-Pour obtenir un exemple complet d’un modèle de grand groupe identique, reportez-vous à [https://github.com/gbowerman/azure-myriad/blob/master/bigtest/bigbottle.json](https://github.com/gbowerman/azure-myriad/blob/master/bigtest/bigbottle.json).
+Pour obtenir un exemple complet de grande échelle définir le modèle, consultez trop[https://github.com/gbowerman/azure-myriad/blob/master/bigtest/bigbottle.json](https://github.com/gbowerman/azure-myriad/blob/master/bigtest/bigbottle.json).
 
-## <a name="converting-an-existing-scale-set-to-span-multiple-placement-groups"></a>Conversion d’un groupe identique existant afin qu’il couvre plusieurs groupes de placement
-Pour faire en sorte qu’un groupe de machines virtuelles identiques existant puisse prendre en charge plus de 100 machines virtuelles, vous devez modifier la propriété _singlePlacementGroup_ sur _false_ dans le modèle de groupe identique. Vous pouvez tester la modification de cette propriété avec [Azure Resource Explorer](https://resources.azure.com/). Pour rechercher un groupe identique existant, sélectionnez _Modifier_ et modifiez la propriété _singlePlacementGroup_. Si vous ne voyez pas cette propriété, c’est peut-être parce que vous visionnez le groupe identique avec une version antérieure de l’API Microsoft.Compute.
+## <a name="converting-an-existing-scale-set-toospan-multiple-placement-groups"></a>Conversion d’une échelle existante définie toospan plusieurs groupes de la sélection élective
+toomake une échelle de machine virtuelle existante définie capable d’évoluer toomore à 100 machines virtuelles, vous devez toochange hello _singplePlacementGroup_ too_false_ de propriété dans l’échelle de hello définir le modèle. Vous pouvez tester la modification de cette propriété avec hello [Explorateur de ressources Azure](https://resources.azure.com/). Rechercher un ensemble existant de l’échelle, sélectionnez _modifier_ et modifiez hello _singlePlacementGroup_ propriété. Si vous ne voyez pas cette propriété, vous pouvez consulter à l’échelle de hello définie avec une version antérieure de hello Microsoft.Compute API.
 
 >[!NOTE] 
-Vous pouvez modifier un groupe identique afin qu’il prenne en charge plusieurs groupes de placement au lieu d’un seul (le comportement par défaut), mais l’inverse n’est pas possible. Par conséquent, assurez-vous de bien comprendre les propriétés des grands groupes identiques avant de procéder à la conversion. En particulier, assurez-vous de ne pas avoir besoin d’un équilibrage de charge de type Couche 4 avec Azure Load Balancer.
+Vous pouvez modifier une échelle définie à partir d’un emplacement unique groupe uniquement (comportement par défaut de hello) tooa prise en charge de plusieurs groupes de la sélection élective de prise en charge, mais vous ne pouvez pas convertir hello inverse. Par conséquent Assurez-vous que vous comprenez les propriétés de hello de jeux à grande échelle avant la conversion. Vérifiez en particulier, que vous n’avez pas besoin de couche 4 équilibrage de charge avec hello équilibrage de charge Azure.
 
 

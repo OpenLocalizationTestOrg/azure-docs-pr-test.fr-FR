@@ -1,6 +1,6 @@
 ---
-title: "Gérer le cluster Kubernetes Azure avec l’interface utilisateur Web | Microsoft Docs"
-description: "Utilisation de l’interface web Kubernetes dans Azure Container Service"
+title: "aaaManage Azure Kubernetes cluster associé à l’interface utilisateur web | Documents Microsoft"
+description: "À l’aide de hello Kubernetes web l’interface utilisateur dans le conteneur de Service Azure"
 services: container-service
 documentationcenter: 
 author: bburns
@@ -17,29 +17,29 @@ ms.workload: na
 ms.date: 02/21/2017
 ms.author: bburns
 ms.custom: mvc
-ms.openlocfilehash: e31f90d61fc61f17582372fe9f491a1e21f628b0
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: e24ea0b82c94d2fd4610e4442699ef756590e6bc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="using-the-kubernetes-web-ui-with-azure-container-service"></a>Utilisation de l’interface utilisateur Web Kubernetes avec Azure Container Service
+# <a name="using-hello-kubernetes-web-ui-with-azure-container-service"></a>À l’aide de hello Kubernetes web l’interface utilisateur avec le Service de conteneur Azure
 
 ## <a name="prerequisites"></a>Composants requis
 Cette procédure pas à pas suppose que vous avez [créé un cluster Kubernetes à l’aide d’Azure Container Service](container-service-kubernetes-walkthrough.md).
 
 
-Elle suppose également que vous avez installé les outils `kubectl` et Azure CLI 2.0.
+Il suppose également que vous avez hello Azure CLI 2.0 et `kubectl` outils sont installés.
 
-Vous pouvez tester si l’outil `az` est installé en exécutant :
+Vous pouvez tester si vous avez hello `az` outil est installé en exécutant :
 
 ```console
 $ az --version
 ```
 
-Si l’outil `az` n’est pas installé, suivez les instructions figurant [ici](https://github.com/azure/azure-cli#installation).
+Si vous n’avez pas hello `az` outil est installé, il existe des instructions [ici](https://github.com/azure/azure-cli#installation).
 
-Vous pouvez tester si l’outil `kubectl` est installé en exécutant :
+Vous pouvez tester si vous avez hello `kubectl` outil est installé en exécutant :
 
 ```console
 $ kubectl version
@@ -51,85 +51,85 @@ Si `kubectl` n’est pas installé, vous pouvez exécuter :
 $ az acs kubernetes install-cli
 ```
 
-## <a name="overview"></a>Vue d’ensemble
+## <a name="overview"></a>Vue d'ensemble
 
-### <a name="connect-to-the-web-ui"></a>Connexion à l’interface web
-Vous pouvez lancer l’interface web Kubernetes en exécutant :
+### <a name="connect-toohello-web-ui"></a>Se connecter à l’interface utilisateur web de toohello
+Vous pouvez lancer l’interface utilisateur web de Kubernetes hello en exécutant :
 
 ```console
 $ az acs kubernetes browse -g [Resource Group] -n [Container service instance name]
 ```
 
-Cette commande ouvre un navigateur web configuré pour communiquer avec un proxy sécurisé, en connectant votre machine locale à l’interface utilisateur web Kubernetes.
+Il doit s’ouvrir un proxy de tooa sécurisée web navigateur configuré tootalk se connectant à votre interface utilisateur web de Kubernetes de toohello ordinateur local.
 
 ### <a name="create-and-expose-a-service"></a>Création et exposition d’un service
-1. Dans l’interface web Kubernetes, cliquez sur le bouton **Créer** dans la fenêtre supérieure droite.
+1. Dans hello Kubernetes interface utilisateur web, cliquez sur **créer** bouton hello supérieur droit de la fenêtre.
 
     ![Interface de création Kubernetes](./media/container-service-kubernetes-ui/create.png)
 
     Une boîte de dialogue dans laquelle vous pouvez commencer à créer votre application s’ouvre.
 
-2. Donnez-lui le nom `hello-nginx`. Utilisez le [ `nginx` conteneur de Docker](https://hub.docker.com/_/nginx/) et déployez trois réplicas de ce service web.
+2. Nommez hello `hello-nginx`. Hello d’utilisation [ `nginx` conteneur à partir de Docker](https://hub.docker.com/_/nginx/) et déployer les trois réplicas de ce service web.
 
     ![Boîte de dialogue de création de pods Kubernetes](./media/container-service-kubernetes-ui/nginx.png)
 
 3. Sous **Service**, sélectionnez **Externe** et saisissez le port 80.
 
-    Ce paramètre permet d’équilibrer la charge du trafic pour les trois réplicas.
+    Ce paramètre équilibre la charge de trois réplicas de trafic toohello.
 
     ![Boîte de dialogue de création de service Kubernetes](./media/container-service-kubernetes-ui/service.png)
 
-4. Cliquez sur **Déployer** pour déployer ces conteneurs et ces services.
+4. Cliquez sur **déployer** toodeploy ces conteneurs et les services.
 
     ![Déploiement de Kubernetes](./media/container-service-kubernetes-ui/deploy.png)
 
 ### <a name="view-your-containers"></a>Affichage de vos conteneurs
-Une fois que vous cliquez sur **Déployer**, l’interface utilisateur affiche une vue de votre service pendant son déploiement :
+Après avoir cliqué sur **déployer**, hello l’interface utilisateur affiche une vue de votre service lors de son déploiement :
 
 ![État de Kubernetes](./media/container-service-kubernetes-ui/status.png)
 
-Vous pouvez voir l’état de chaque objet Kubernetes dans le cercle sur le côté gauche de l’interface utilisateur, sous **Pods**. Si le cercle est partiellement complet, l’objet est toujours en cours de déploiement. Lorsqu’un objet est entièrement déployé, une coche verte s’affiche :
+Vous pouvez voir sous état hello de chaque objet Kubernetes dans un cercle hello sur la partie gauche de l’interface utilisateur, hello **POD**. S’il s’agit d’un cercle complet partiellement, puis les objet hello consiste toujours à déployer. Lorsqu’un objet est entièrement déployé, une coche verte s’affiche :
 
 ![Kubernetes déployé](./media/container-service-kubernetes-ui/deployed.png)
 
-Une fois que tout est en cours d’exécution, cliquez sur l’un de vos pods pour afficher les détails sur le service web exécuté.
+Une fois que tout est en cours d’exécution, cliquez sur un de vos modules toosee plus d’informations sur hello en cours d’exécution service web.
 
 ![Pods kubernetes](./media/container-service-kubernetes-ui/pods.png)
 
-Dans la vue **Pods**, vous pouvez voir des informations sur les conteneurs dans le pod, ainsi que les ressources de processeur et de mémoire utilisées par ces conteneurs :
+Bonjour **POD** vue, vous pouvez voir des informations sur les conteneurs hello dans pod de hello, ainsi que des ressources processeur et mémoire hello utilisées par les conteneurs :
 
 ![Ressources Kubernetes](./media/container-service-kubernetes-ui/resources.png)
 
-Si vous ne voyez pas les ressources, vous devrez peut-être attendre quelques minutes que les données de surveillance se propagent.
+Si vous ne voyez pas les ressources hello, vous devrez peut-être toowait quelques minutes pour hello toopropagate des données d’analyse.
 
-Cliquez sur **Afficher les journaux** pour afficher les journaux de votre conteneur.
+journaux de hello toosee pour votre conteneur, cliquez sur **afficher les journaux**.
 
 ![Journaux Kubernetes](./media/container-service-kubernetes-ui/logs.png)
 
 ### <a name="viewing-your-service"></a>Affichage de votre service
-Outre l’exécution de vos conteneurs, l’interface Kubernetes a créé un élément `Service` externe qui approvisionne un équilibrage de charge pour diriger le trafic vers les conteneurs de votre cluster.
+Dans Ajout toorunning vos conteneurs, hello Kubernetes UI a créé par un externe `Service` qui configure une charge équilibrage toobring trafic toohello les conteneurs dans votre cluster.
 
-Dans le volet de navigation de gauche, cliquez sur **Services** pour afficher tous les services (pour le moment, vous ne devriez en voir qu’un).
+Dans le volet de navigation gauche hello, cliquez sur **Services** tooview tous les services (il doit être uniquement).
 
 ![Services Kubernetes](./media/container-service-kubernetes-ui/service-deployed.png)
 
-Dans cette vue, vous devriez voir un point de terminaison externe (adresse IP) qui a été affecté à votre service.
+Dans cet affichage, vous devez voir un point de terminaison externe (adresse IP) qui a été alloué tooyour service.
 Si vous cliquez sur cette adresse IP, vous devez voir votre conteneur Nginx en cours d’exécution derrière l’équilibrage de charge.
 
 ![Vue nginx](./media/container-service-kubernetes-ui/nginx-page.png)
 
 ### <a name="resizing-your-service"></a>Redimensionnement de votre service
-Outre l’affichage de vos objets dans l’interface, vous pouvez modifier et mettre à jour les objets API Kubernetes.
+En outre tooviewing vos objets dans hello l’interface utilisateur, vous pouvez modifier et mettre à jour les objets de l’API de Kubernetes hello.
 
-Cliquez d’abord sur **Déploiements** dans le volet de navigation gauche pour afficher le déploiement pour votre service.
+Tout d’abord, cliquez sur **déploiements** Bonjour laissé le déploiement de navigation volet toosee hello pour votre service.
 
-Une fois que vous êtes dans cette vue, cliquez sur ReplicaSet, puis sur **Modifier** dans la barre de navigation supérieure :
+Une fois que vous êtes dans cette vue, cliquez sur le jeu de réplicas hello, puis cliquez sur **modifier** dans la barre de navigation supérieur hello :
 
 ![Modification de Kubernetes](./media/container-service-kubernetes-ui/edit.png)
 
-Modifiez le champ `spec.replicas` pour avoir la valeur `2`, et cliquez sur **Mettre à jour**.
+Modifier hello `spec.replicas` champ toobe `2`, puis cliquez sur **mise à jour**.
 
-Il n’y aura donc plus que deux réplicas, car l’un de vos pods sera supprimé.
+Cela entraîne un nombre hello de réplicas toodrop tootwo par la suppression de l’un de vos modules.
 
  
 

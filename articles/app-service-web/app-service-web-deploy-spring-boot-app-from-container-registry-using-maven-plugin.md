@@ -1,6 +1,6 @@
 ---
-title: "Comment utiliser le plug-in Maven pour Azure Web Apps pour déployer une application Spring Boot dans Azure Container Registry dans Azure App Service"
-description: "Ce didacticiel vous guide à travers les étapes pour déployer une application Spring Boot dans Azure Container Registry dans Azure App Service à l’aide d’un plug-in Maven."
+title: "aaaHow toouse hello Maven du plug-in pour les applications Web Azure toodeploy une application de démarrage du ressort dans le Registre de conteneur Azure tooAzure du Service d’applications"
+description: "Ce didacticiel vous guidera cependant hello étapes toodeploy une application de démarrage du ressort dans le Registre de conteneur Azure tooAzure tooAzure du Service d’applications à l’aide d’un plug-in Maven."
 services: 
 documentationcenter: java
 author: rmcmurray
@@ -14,29 +14,29 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 08/07/2017
 ms.author: robmcm;kevinzha
-ms.openlocfilehash: f47ee59d72ea49d62be2cb435ebaf8bc841e4198
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 55b95e310c9ee186a6d77d941c5a620c2e259d8a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-the-maven-plugin-for-azure-web-apps-to-deploy-a-spring-boot-app-in-azure-container-registry-to-azure-app-service"></a>Comment utiliser le plug-in Maven pour Azure Web Apps pour déployer une application Spring Boot dans Azure Container Registry dans Azure App Service
+# <a name="how-toouse-hello-maven-plugin-for-azure-web-apps-toodeploy-a-spring-boot-app-in-azure-container-registry-tooazure-app-service"></a>Comment toouse hello plug-in Maven pour les applications Web Azure toodeploy, une application de démarrage du ressort dans le Registre de conteneur Azure tooAzure du Service d’applications
 
-Le **[Spring Framework]** est une infrastructure open source populaire qui aide les développeurs Java à créer des applications web, mobiles et API. Ce didacticiel utilise un exemple d’application créé à l’aide de [Spring Boot], une approche orientée par une convention permettant de prendre en main et d’utiliser Spring rapidement.
+Hello  **[Spring Framework]**  est une infrastructure open source populaire qui permet aux développeurs Java de créer des applications web, mobiles et API. Ce didacticiel utilise un exemple d’application créé à l’aide de [ressort démarrage], une approche pilotée par convention pour l’utilisation du ressort tooget démarrer rapidement.
 
-Cet article explique comment déployer un exemple d’application Spring Boot dans Azure Container Registry, puis utiliser le plug-in Maven pour Azure Web Apps pour déployer votre application dans Azure App Service.
+Cet article explique comment toodeploy un tooAzure d’application exemple ressort démarrage Registre de conteneur, puis utiliser hello plug-in Maven pour les applications Web Azure toodeploy votre tooAzure d’application du Service d’applications.
 
 > [!NOTE]
 >
-> Le plug-in Maven pour Azure Web Apps est actuellement disponible en version préliminaire. Pour l’instant, seule la publication FTP est prise en charge, mais des fonctionnalités supplémentaires sont envisagées pour le futur.
+> Hello Maven les plug-in pour les applications Web Azure est actuellement disponible en version préliminaire. Pour l’instant, seule la publication FTP est pris en charge, bien que des fonctionnalités supplémentaires qui vont hello futures.
 >
 
 ## <a name="prerequisites"></a>Composants requis
 
-Pour pouvoir effectuer les étapes de ce didacticiel, vous avez besoin des éléments suivants :
+Commande toocomplete hello étapes décrites dans ce didacticiel, vous devez hello toohave suivant des conditions préalables :
 
 * Un abonnement Azure. Si vous n’avez pas déjà un abonnement Azure, vous pouvez activer vos [avantages d’abonné MSDN] ou vous inscrire pour un [compte Azure gratuit].
-* [Azure CLI].
+* Hello [Azure Interface de ligne de commande (CLI)].
 * Un [Java Development Kit (JDK)] à jour, version 1.7 ou ultérieure.
 * L’outil de génération [Maven] (version 3) d’Apache.
 * Un [client Git].
@@ -44,14 +44,14 @@ Pour pouvoir effectuer les étapes de ce didacticiel, vous avez besoin des élé
 
 > [!NOTE]
 >
-> En raison des nécessités liées à la virtualisation de ce didacticiel, vous ne pouvez pas suivre les étapes de cet article sur une machine virtuelle : vous devez utiliser un ordinateur physique où les fonctionnalités de virtualisation sont activées.
+> En raison des exigences de la virtualisation toohello de ce didacticiel, vous ne peut pas suivre les étapes de hello dans cet article sur un ordinateur virtuel ; Vous devez utiliser un ordinateur physique avec les fonctionnalités de virtualisation activées.
 >
 
-## <a name="clone-the-sample-spring-boot-on-docker-web-app"></a>Cloner l’exemple Spring Boot sur l’application web Docker
+## <a name="clone-hello-sample-spring-boot-on-docker-web-app"></a>Cloner l’exemple hello ressort démarrage sur l’application web de Docker
 
 Dans cette section, vous clonez une application Spring Boot en conteneur et vous la testez localement.
 
-1. Ouvrez une invite de commandes ou une fenêtre de terminal et créez un répertoire local pour y stocker votre application Spring Boot, puis accédez à ce répertoire. Par exemple :
+1. Ouvrez une invite de commandes ou d’une fenêtre de terminal et créer un répertoire local de toohold votre application de démarrage du ressort et remplacez le répertoire toothat ; par exemple :
    ```shell
    md C:\SpringBoot
    cd C:\SpringBoot
@@ -62,54 +62,54 @@ Dans cette section, vous clonez une application Spring Boot en conteneur et vous
    cd /users/robert/SpringBoot
    ```
 
-1. Clonez l’exemple de projet [Spring Boot on Docker Getting Started] dans le répertoire que vous venez de créer. Par exemple :
+1. Hello du clone [démarrage ressort sur Docker mise en route] exemple de projet dans le répertoire hello créé ; par exemple :
    ```shell
    git clone -b private-registry https://github.com/Microsoft/gs-spring-boot-docker
    ```
 
-1. Accédez au répertoire du projet terminé. Par exemple :
+1. Changer le projet toohello terminée Active ; par exemple :
    ```shell
    cd gs-spring-boot-docker/complete
    ```
 
-1. Générez le fichier JAR en utilisant Maven. Par exemple :
+1. Générer le fichier JAR hello à l’aide de Maven ; par exemple :
    ```shell
    mvn clean package
    ```
 
-1. Lorsque l’application web a été créée, démarrez l’application web à l’aide de Maven ; par exemple :
+1. Lorsque l’application hello web a été créée, démarrer l’application hello web à l’aide de Maven ; par exemple :
    ```shell
    mvn spring-boot:run
    ```
 
-1. Testez l’application web en y accédant localement via un navigateur web. Par exemple, vous pouvez utiliser la commande suivante si curl est disponible :
+1. Tester l’application web hello en parcourant tooit localement à l’aide d’un navigateur web. Par exemple, vous pouvez utiliser hello commande suivante si vous avez curl disponible :
    ```shell
    curl http://localhost:8080
    ```
 
-1. Vous devez normalement voir le message suivant : **Hello Docker World**
+1. Vous devez voir hello message suivant s’affiche : **Hello World de Docker**
 
    ![Parcourir l’exemple d’application en local][SB01]
 
 ## <a name="create-an-azure-service-principal"></a>Créer un principal du service Azure
 
-Dans cette section, vous créez un principal du service Azure utilisé par le plug-in Maven lors du déploiement de votre conteneur dans Azure.
+Dans cette section, vous créez Azure principal du service qui hello utilise de plug-in Maven lors du déploiement de votre tooAzure de conteneur.
 
 1. Ouvrez une invite de commandes.
 
-1. Connectez-vous à votre compte Azure à l’aide de l’interface de ligne de commande Azure :
+1. Connectez-vous à votre compte Azure à l’aide de hello CLI d’Azure :
    ```azurecli
    az login
    ```
-   Suivez les instructions pour terminer le processus de connexion.
+   Suivez hello instructions toocomplete hello processus de connexion.
 
 1. Créez un principal du service Azure :
    ```azurecli
    az ad sp create-for-rbac --name "uuuuuuuu" --password "pppppppp"
    ```
-   Où `uuuuuuuu` est le nom d’utilisateur et `pppppppp` est le mot de passe du principal du service.
+   Où `uuuuuuuu` est le nom d’utilisateur hello et `pppppppp` hello de mot de passe de principal du service hello.
 
-1. Azure répond avec un texte JSON similaire à l’exemple suivant :
+1. Azure répond avec JSON qui ressemble à hello l’exemple suivant :
    ```json
    {
       "appId": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
@@ -122,32 +122,32 @@ Dans cette section, vous créez un principal du service Azure utilisé par le pl
 
    > [!NOTE]
    >
-   > Vous utiliserez les valeurs de cette réponse JSON lors de la configuration du plug-in Maven pour déployer votre conteneur dans Azure. `aaaaaaaa`, `uuuuuuuu`, `pppppppp` et `tttttttt` sont des valeurs d’espace réservé qui sont utilisées dans cet exemple pour faciliter le mappage de ces valeurs avec leurs éléments respectifs lorsque vous configurerez votre fichier `settings.xml` Maven dans la section suivante.
+   > Vous allez utiliser les valeurs de hello à partir de cette réponse JSON lorsque vous configurez hello Maven plug-in toodeploy tooAzure de votre conteneur. Hello `aaaaaaaa`, `uuuuuuuu`, `pppppppp`, et `tttttttt` sont des valeurs d’espace réservé, qui sont utilisées dans cet exemple toomake toomap plus facilement ces éléments de tootheir respectifs valeurs lorsque vous configurez votre Maven `settings.xml` fichier ensuite Bonjour section.
    >
    >
 
-## <a name="create-an-azure-container-registry-using-the-azure-cli"></a>Créer un registre de conteneurs Azure à l’aide de l’interface de ligne de commande Azure
+## <a name="create-an-azure-container-registry-using-hello-azure-cli"></a>Créer un Registre de conteneur Azure à l’aide de hello CLI d’Azure
 
 1. Ouvrez une invite de commandes.
 
-1. Connectez-vous à votre compte Azure :
+1. Ouvrez une session dans tooyour compte Azure :
    ```azurecli
    az login
    ```
 
-1. Créez un groupe de ressources pour les ressources Azure que vous utiliserez dans cet article :
+1. Créer des ressources Azure, que vous allez utiliser un groupe de ressources pour hello dans cet article :
    ```azurecli
    az group create --name=wingtiptoysresources --location=westus
    ```
    Remplacez `wingtiptoysresources` dans cet exemple par un nom unique pour votre groupe de ressources.
 
-1. Créez un registre de conteneurs Azure privé dans le groupe de ressources pour votre application Spring Boot : 
+1. Créer un Registre de conteneur Azure privée dans le groupe de ressources hello pour votre application de démarrage du ressort : 
    ```azurecli
    az acr create --admin-enabled --resource-group wingtiptoysresources --location westus --name wingtiptoysregistry --sku Basic
    ```
    Remplacez `wingtiptoysregistry` dans cet exemple par un nom unique pour votre registre de conteneurs.
 
-1. Récupérez le mot de passe pour votre registre de conteneurs :
+1. Récupérer le mot de passe hello pour votre Registre de conteneur :
    ```azurecli
    az acr credential show --name wingtiptoysregistry --query passwords[0]
    ```
@@ -159,14 +159,14 @@ Dans cette section, vous créez un principal du service Azure utilisé par le pl
    }
    ```
 
-## <a name="add-your-azure-container-registry-and-azure-service-principal-to-your-maven-settings"></a>Ajouter votre registre de conteneurs Azure et votre principal du service Azure à vos paramètres Maven
+## <a name="add-your-azure-container-registry-and-azure-service-principal-tooyour-maven-settings"></a>Ajouter votre Registre de conteneur Azure et les paramètres du service Azure principal tooyour Maven
 
-1. Ouvrez votre fichier `settings.xml` Maven dans un éditeur de texte ; ce fichier peut avoir un chemin d’accès similaire aux exemples suivants :
+1. Ouvrez votre Maven `settings.xml` de fichiers dans un éditeur de texte ; ce fichier peut être dans un chemin d’accès comme hello exemple suivant :
    * `/etc/maven/settings.xml`
    * `%ProgramFiles%\apache-maven\3.5.0\conf\settings.xml`
    * `$HOME/.m2/settings.xml`
 
-1. Ajoutez les paramètres d’accès de votre registre de conteneurs Azure de la section précédente de cet article à la collection `<servers>` dans le fichier *settings.xml*. Par exemple :
+1. Ajouter des paramètres du Registre de conteneur Azure d’accès à partir de hello précédente section de cet article de toohello `<servers>` collection Bonjour *settings.xml* fichier ; par exemple :
 
    ```xml
    <servers>
@@ -180,11 +180,11 @@ Dans cette section, vous créez un principal du service Azure utilisé par le pl
    Où :
    Élément | Description
    ---|---|---
-   `<id>` | Contient le nom de votre registre de conteneurs Azure privé.
-   `<username>` | Contient le nom de votre registre de conteneurs Azure privé.
-   `<password>` | Contient le mot de passe que vous avez récupéré dans la section précédente de cet article.
+   `<id>` | Contient le nom hello du Registre de votre conteneur Azure privée.
+   `<username>` | Contient le nom hello du Registre de votre conteneur Azure privée.
+   `<password>` | Contient le mot de passe hello récupéré à la section précédente de hello de cet article.
 
-1. Ajoutez vos paramètres du principal de service Azure d’une section précédente de cet article à la collection `<servers>` dans le fichier *settings.xml*. Par exemple :
+1. Ajoutez vos paramètres de principal du service Azure à partir d’une section précédente de cet article de toohello `<servers>` collection Bonjour *settings.xml* fichier ; par exemple :
 
    ```xml
    <servers>
@@ -202,19 +202,19 @@ Dans cette section, vous créez un principal du service Azure utilisé par le pl
    Où :
    Élément | Description
    ---|---|---
-   `<id>` | Spécifie un nom unique que Maven utilise pour rechercher vos paramètres de sécurité lorsque vous déployez votre application web dans Azure.
-   `<client>` | Contient la valeur `appId` de votre principal du service.
-   `<tenant>` | Contient la valeur `tenant` de votre principal du service.
-   `<key>` | Contient la valeur `password` de votre principal du service.
-   `<environment>` | Définit l’environnement de cloud Azure cible, qui est `AZURE` dans cet exemple. (Une liste complète des environnements est disponible dans la documentation [Maven Plugin for Azure Web Apps])
+   `<id>` | Spécifie un nom unique qui Maven utilise toolook vos paramètres de sécurité lorsque vous déployez votre tooAzure d’application web.
+   `<client>` | Contient hello `appId` valeur à partir de votre principal de service.
+   `<tenant>` | Contient hello `tenant` valeur à partir de votre principal de service.
+   `<key>` | Contient hello `password` valeur à partir de votre principal de service.
+   `<environment>` | Définit l’environnement de cloud computing Azure cible hello, qui est `AZURE` dans cet exemple. (Une liste complète des environnements est disponible dans hello [Maven les plug-in pour les applications Web Azure] documentation)
 
-1. Enregistrez et fermez le fichier *settings.xml*.
+1. Enregistrez et fermez hello *settings.xml* fichier.
 
-## <a name="build-your-docker-container-image-and-push-it-to-your-azure-container-registry"></a>Créer votre image conteneur Docker et la placer dans votre registre de conteneurs Azure
+## <a name="build-your-docker-container-image-and-push-it-tooyour-azure-container-registry"></a>Générer votre Docker image de conteneur et le Registre de conteneur Azure tooyour pousser
 
-1. Accédez au répertoire du projet terminé pour votre application Spring Boot (par exemple : « *C:\SpringBoot\gs-spring-boot-docker\complete* » ou « */users/robert/SpringBoot/gs-spring-boot-docker/complete* ») et ouvrez le fichier *pom.xml* avec un éditeur de texte.
+1. Accédez répertoire du projet pour votre application de démarrage du ressort, toohello terminée (par exemple) «*C:\SpringBoot\gs-spring-boot-docker\complete*« ou »*/users/robert/SpringBoot/gs-spring-boot-docker/complete*») et ouvrez hello *pom.xml* de fichiers avec un éditeur de texte.
 
-1. Mettez à jour la collection `<properties>` dans le fichier *pom.xml* avec la valeur du serveur de connexion pour votre registre de conteneurs Azure de la section précédente de ce didacticiel. Par exemple :
+1. Hello de mise à jour `<properties>` collection Bonjour *pom.xml* fichier avec la valeur hello du serveur de connexion pour votre Registre de conteneur Azure à partir de la section précédente de hello de ce didacticiel ; par exemple :
 
    ```xml
    <properties>
@@ -227,10 +227,10 @@ Dans cette section, vous créez un principal du service Azure utilisé par le pl
    Où :
    Élément | Description
    ---|---|---
-   `<azure.containerRegistry>` | Spécifie le nom de votre registre de conteneurs Azure privé.
-   `<docker.image.prefix>` | Spécifie l’URL de votre registre de conteneurs Azure privé qui est obtenue en ajoutant « .azurecr.io » au nom de votre registre de conteneurs privé.
+   `<azure.containerRegistry>` | Spécifie le nom hello du Registre de votre conteneur Azure privée.
+   `<docker.image.prefix>` | Spécifie l’URL hello de votre Registre de conteneur Azure privée, qui est dérivé en ajoutant «. azurecr.io « nom toohello du Registre de votre conteneur privé.
 
-1. Vérifiez que `<plugin>` pour le plug-in Docker dans votre fichier *pom.xml* contient les propriétés appropriées de connexion pour l’adresse du serveur et le nom du registre mentionnées à l’étape précédente de ce didacticiel. Par exemple :
+1. Vérifiez que `<plugin>` pour le plug-in de Docker hello dans votre *pom.xml* fichier contient des propriétés de correct hello pour hello adresse et du Registre nom du serveur à partir de l’étape précédente de hello dans ce didacticiel. Par exemple :
 
    ```xml
    <plugin>
@@ -255,22 +255,22 @@ Dans cette section, vous créez un principal du service Azure utilisé par le pl
    Où :
    Élément | Description
    ---|---|---
-   `<serverId>` | Spécifie la propriété contenant le nom de votre registre de conteneurs Azure privé.
-   `<registryUrl>` | Spécifie la propriété contenant l’URL de votre registre de conteneurs Azure privé.
+   `<serverId>` | Spécifie la propriété hello qui contient le nom de votre Registre de conteneur Azure privée.
+   `<registryUrl>` | Spécifie la propriété hello qui contient l’URL de hello du Registre de votre conteneur Azure privée.
 
-1. Accédez au répertoire du projet terminé de votre application Spring Boot, et exécutez la commande suivante pour régénérer l’application et placer le conteneur dans votre registre de conteneurs Azure :
+1. Accédez répertoire du projet pour votre application de démarrage du ressort toohello s’est terminée et exécutez hello après application de commande toorebuild hello push hello conteneur tooyour Registre de conteneur Azure :
 
    ```
    mvn package docker:build -DpushImage 
    ```
 
-1. FACULTATIF : accédez au [portail Azure] et vérifiez qu’il existe une image de conteneur Docker nommée **gs-spring-boot-docker** dans le registre de conteneurs.
+1. FACULTATIF : Parcourir toohello [portail Azure] et vérifiez qu’il existe une image de conteneur Docker nommée **gs-spring-démarrage-docker** dans le Registre de conteneur.
 
    ![Vérification du conteneur dans le portail Azure][CR01]
 
-## <a name="customize-your-pomxml-then-build-and-deploy-your-container-to-azure"></a>Personnaliser votre pom.xml, puis créer et déployer votre conteneur dans Azure
+## <a name="customize-your-pomxml-then-build-and-deploy-your-container-tooazure"></a>Personnaliser votre pom.xml, puis créez et déployez votre tooAzure de conteneur
 
-Ouvrez le fichier `pom.xml` de votre application Spring Boot dans un éditeur de texte et recherchez l’élément `<plugin>` pour `azure-webapp-maven-plugin`. Cet élément doit ressembler à l’exemple suivant :
+Ouvrez hello `pom.xml` de fichiers pour votre application de démarrage du ressort dans un éditeur de texte et recherchez hello `<plugin>` , élément pour `azure-webapp-maven-plugin`. Cet élément doit ressembler à hello l’exemple suivant :
 
    ```xml
    <plugin>
@@ -299,41 +299,41 @@ Ouvrez le fichier `pom.xml` de votre application Spring Boot dans un éditeur de
    </plugin>
    ```
 
-Il existe plusieurs valeurs que vous pouvez modifier pour le plug-in Maven ; une description détaillée de chacun de ces éléments est disponible dans la documentation [Maven Plugin for Azure Web Apps] (Plug-in Maven pour Azure Web Apps). Cela dit, il s’avère intéressant de souligner plusieurs valeurs dans cet article :
+Il existe plusieurs valeurs que vous pouvez modifier pour le plug-in de hello Maven et une description détaillée de chacun de ces éléments est disponible dans hello [Maven les plug-in pour les applications Web Azure] documentation. Cela dit, il s’avère intéressant de souligner plusieurs valeurs dans cet article :
 
 Élément | Description
 ---|---|---
-`<version>` | Spécifie la version du [Maven Plugin for Azure Web Apps]. Vous devez vérifier la version répertoriée dans le [référentiel Maven central](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-webapp-maven-plugin%22) pour vous assurer que vous utilisez la version la plus récente.
-`<authentication>` | Spécifie les informations d’authentification pour Azure, qui dans cet exemple comportent un élément `<serverId>` contenant `azure-auth` ; Maven utilise cette valeur pour rechercher les valeurs du principal du service Azure dans votre fichier *settings.xml* Maven que vous avez défini dans une section précédente de cet article.
-`<resourceGroup>` | Spécifie le groupe de ressources cible, qui est `wingtiptoysresources` dans cet exemple. Il sera créé au cours du déploiement s’il n’existe pas.
-`<appName>` | Spécifie le nom cible de votre application web. Dans cet exemple, le nom cible est `maven-linux-app-${maven.build.timestamp}`, où le suffixe `${maven.build.timestamp}` est ajouté dans cet exemple pour éviter tout conflit. (L’horodatage est facultatif ; vous pouvez spécifier n’importe quelle chaîne unique pour le nom de l’application.)
-`<region>` | Spécifie la région cible, qui dans cet exemple est `westus`. (Une liste complète est disponible dans la documentation [Maven Plugin for Azure Web Apps].)
-`<containerSettings>` | Spécifie les propriétés qui contiennent le nom et l’URL de votre conteneur.
-`<appSettings>` | Spécifie des paramètres uniques que Maven utilisera lors du déploiement de votre application web dans Azure. Dans cet exemple, un élément `<property>` contient une paire nom/valeur d’éléments enfants qui spécifie le port pour votre application.
+`<version>` | Spécifie la version de hello de hello [Maven les plug-in pour les applications Web Azure]. Vous devez vérifier la version de hello répertoriée dans hello [référentiel Central Maven](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-webapp-maven-plugin%22) tooensure que vous utilisez hello version la plus récente.
+`<authentication>` | Spécifie les informations d’authentification hello pour Azure, qui dans cet exemple contient un `<serverId>` élément contenant `azure-auth`; Maven utilise ce toolook valeur des valeurs de principal de service Azure hello dans votre Maven *settings.xml* fichier que vous avez définie dans une section précédente de cet article.
+`<resourceGroup>` | Spécifie le groupe de ressources cible hello, qui est `wingtiptoysresources` dans cet exemple. groupe de ressources Hello sera créé au cours du déploiement s’il n’existe pas.
+`<appName>` | Spécifie le nom de la cible hello pour votre application web. Dans cet exemple, le nom de la cible hello est `maven-linux-app-${maven.build.timestamp}`, où hello `${maven.build.timestamp}` suffixe est ajouté dans ce conflit de tooavoid exemple. (vous pouvez spécifier n’importe quelle chaîne unique pour le nom de l’application hello ; hello timestamp est facultative.)
+`<region>` | Spécifie la région cible hello, qui, dans cet exemple est `westus`. (Une liste complète est Bonjour [Maven les plug-in pour les applications Web Azure] documentation.)
+`<containerSettings>` | Spécifie les propriétés hello qui contiennent le nom de hello et l’URL de votre conteneur.
+`<appSettings>` | Spécifie des paramètres uniques pour Maven toouse lors du déploiement de votre tooAzure d’application web. Dans cet exemple, un `<property>` élément contient une paire nom/valeur des éléments enfants qui spécifient le port hello pour votre application.
 
 > [!NOTE]
 >
-> Les paramètres de modification du numéro de port fournis dans cet exemple sont nécessaires uniquement lorsque vous modifiez le port à partir de la valeur par défaut.
+> numéro de port Hello paramètres toochange hello dans cet exemple ne sont nécessaires lorsque vous modifiez le port de hello à partir de la valeur par défaut hello.
 >
 
-1. À partir de l’invite de commandes ou de la fenêtre de terminal que vous utilisiez précédemment, régénérez le fichier JAR à l’aide de Maven si vous avez apporté des modifications au fichier *pom.xml* ; par exemple :
+1. À partir d’invite de commandes hello ou fenêtre de Terminal Server que vous utilisiez précédemment, régénérez le fichier JAR hello à l’aide de Maven si vous avez apporté les modifications de toohello *pom.xml* fichier ; par exemple :
    ```shell
    mvn clean package
    ```
 
-1. Déployez votre application web dans Azure à l’aide de Maven ; par exemple :
+1. Déployer votre tooAzure d’application web à l’aide de Maven ; par exemple :
    ```shell
    mvn azure-webapp:deploy
    ```
 
-Maven déploiera votre application web dans Azure. Si l’application web n’existe pas déjà, elle sera créée.
+Maven déploierez votre tooAzure d’application web ; Si l’application hello web n’existe pas déjà, il sera créé.
 
 > [!NOTE]
 >
-> Si la région que vous spécifiez dans l’élément `<region>` de votre fichier *pom.xml* n’a pas suffisamment de serveurs disponibles lorsque vous démarrez votre déploiement, vous pouvez voir un message d’erreur similaire à l’exemple suivant :
+> Si la région hello que vous spécifiez dans hello `<region>` élément de votre *pom.xml* fichier n’a pas suffisamment de serveurs disponibles lorsque vous démarrez votre déploiement, vous pouvez voir un toohello similaire erreur l’exemple suivant :
 >
 > ```
-> [INFO] Start deploying to Web App maven-linux-app-20170804...
+> [INFO] Start deploying tooWeb App maven-linux-app-20170804...
 > [INFO] ------------------------------------------------------------------------
 > [INFO] BUILD FAILURE
 > [INFO] ------------------------------------------------------------------------
@@ -341,30 +341,30 @@ Maven déploiera votre application web dans Azure. Si l’application web n’ex
 > [INFO] Finished at: 2017-08-04T12:15:47-07:00
 > [INFO] Final Memory: 51M/279M
 > [INFO] ------------------------------------------------------------------------
-> [ERROR] Failed to execute goal com.microsoft.azure:azure-webapp-maven-plugin:0.1.3:deploy (default-cli) on project gs-spring-boot-docker: null: MojoExecutionException: CloudException: OnError while emitting onNext value: retrofit2.Response.class
+> [ERROR] Failed tooexecute goal com.microsoft.azure:azure-webapp-maven-plugin:0.1.3:deploy (default-cli) on project gs-spring-boot-docker: null: MojoExecutionException: CloudException: OnError while emitting onNext value: retrofit2.Response.class
 > ```
 >
-> Dans ce cas, vous pouvez spécifier une autre région et ré-exécuter la commande Maven pour déployer votre application.
+> Si cela se produit, vous pouvez spécifier qu'une autre région et exécutez de nouveau hello Maven commande toodeploy votre application.
 >
 >
 
-Lorsque votre application web aura été déployée, vous serez en mesure de la gérer à l’aide du [portail Azure].
+Lorsque votre site web a été déployée, vous serez en mesure de toomanage à l’aide de hello [portail Azure].
 
 * Votre application web s’affichera dans **App Services** :
 
    ![Application web répertoriée dans App Services dans le portail Azure][AP01]
 
-* Et l’URL de votre application web sera répertoriée dans la **Vue d’ensemble** de votre application web :
+* Et hello URL pour votre application web s’afficheront dans hello **vue d’ensemble** pour votre application web :
 
-   ![Détermination de l’URL de votre application web][AP02]
+   ![Détermination des URL hello pour votre application web][AP02]
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Pour plus d’informations sur les différentes technologies présentées dans cet article, consultez les articles suivants :
+Pour plus d’informations sur hello diverses technologies abordées dans cet article, consultez hello suivant des articles :
 
-* [Maven Plugin for Azure Web Apps]
+* [Maven les plug-in pour les applications Web Azure]
 
-* [Se connecter à Azure à partir de l’interface de ligne de commande (CLI) Azure](/azure/xplat-cli-connect)
+* [Connectez-vous à tooAzure de hello CLI d’Azure](/azure/xplat-cli-connect)
 
 * [Créer un principal du service avec Azure CLI 2.0](/cli/azure/create-an-azure-service-principal-azure-cli)
 
@@ -374,12 +374,12 @@ Pour plus d’informations sur les différentes technologies présentées dans c
 
 <!-- URL List -->
 
-[Azure CLI]: /cli/azure/overview
+[Azure Interface de ligne de commande (CLI)]: /cli/azure/overview
 [Azure Container Service (ACS)]: https://azure.microsoft.com/services/container-service/
 [Azure Java Developer Center]: https://azure.microsoft.com/develop/java/
 [portail Azure]: https://portal.azure.com/
-[Maven Plugin for Azure Web Apps]: https://github.com/Microsoft/azure-maven-plugins/tree/master/azure-webapp-maven-plugin
-[Create a private Docker container registry using the Azure portal]: /azure/container-registry/container-registry-get-started-portal
+[Maven les plug-in pour les applications Web Azure]: https://github.com/Microsoft/azure-maven-plugins/tree/master/azure-webapp-maven-plugin
+[Create a private Docker container registry using hello Azure portal]: /azure/container-registry/container-registry-get-started-portal
 [Using a custom Docker image for Azure Web App on Linux]: /azure/app-service-web/app-service-linux-using-custom-docker-image
 [client Docker]: https://www.docker.com/
 [Plug-in Docker pour Maven]: https://github.com/spotify/docker-maven-plugin
@@ -389,8 +389,8 @@ Pour plus d’informations sur les différentes technologies présentées dans c
 [Java Tools for Visual Studio Team Services]: https://java.visualstudio.com/
 [Maven]: http://maven.apache.org/
 [avantages d’abonné MSDN]: https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/
-[Spring Boot]: http://projects.spring.io/spring-boot/
-[Spring Boot on Docker Getting Started]: https://github.com/spring-guides/gs-spring-boot-docker
+[ressort démarrage]: http://projects.spring.io/spring-boot/
+[démarrage ressort sur Docker mise en route]: https://github.com/spring-guides/gs-spring-boot-docker
 [Spring Framework]: https://spring.io/
 
 <!-- IMG List -->

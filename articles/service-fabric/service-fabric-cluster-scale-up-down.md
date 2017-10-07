@@ -1,6 +1,6 @@
 ---
-title: "Augmenter ou diminuer la taille des instances d’un cluster Service Fabric | Microsoft Docs"
-description: "Augmentez ou diminuez la taille des instances d’un cluster Service Fabric pour répondre à la demande en définissant des règles de mise à l’échelle automatique pour chaque type de nœud/groupe de machines virtuelles identiques. Ajouter ou supprimer des nœuds d’un cluster Service Fabric"
+title: aaaScale une infrastructure de Service de cluster ou de sortie | Documents Microsoft
+description: "Faire évoluer un cluster Service Fabric ou d’annuler la demande de toomatch en définissant des règles à l’échelle automatique pour chaque nœud type/Virtual Machines identiques. Ajouter ou supprimer le cluster de nœuds tooa Service Fabric"
 services: service-fabric
 documentationcenter: .net
 author: ChackDan
@@ -14,24 +14,24 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/22/2017
 ms.author: chackdan
-ms.openlocfilehash: 32d8fca81c20e77db4ed3aae05d017ccc2ce1be3
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 37cfeaf80edc016cf6de017d1c2dc6fbcb8acc2a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="scale-a-service-fabric-cluster-in-or-out-using-auto-scale-rules"></a>Augmenter ou diminuer la taille des instances d’un cluster Service Fabric à l’aide de règles de mise à l’échelle automatique
-Les jeux de mise à l’échelle de machine virtuelle sont des ressources de calcul Azure que vous pouvez utiliser pour déployer et gérer une collection de machines virtuelles en tant que jeu. Chaque type de nœud qui est défini dans un cluster Service Fabric est configuré en tant que groupe de machines virtuelles identiques distinct. Chaque type de nœud peut ensuite faire l’objet d’une augmentation ou d’une diminution de la taille des instances de manière indépendante, avoir différents jeux de ports ouverts et présenter différentes métriques de capacité. Pour en savoir plus, voir le document portant sur les [types de nœuds Service Fabric](service-fabric-cluster-nodetypes.md) . Étant donné que les types de nœuds Service Fabric de votre cluster sont constitués de groupes de machines virtuelles identiques sur le serveur principal, vous devez définir des règles de mise à l’échelle automatique pour chaque type de nœud/groupe de machines virtuelles identiques.
+Machines virtuelles identiques constituent une ressource de calcul Azure que vous pouvez utiliser toodeploy et gérer une collection d’ordinateurs virtuels en tant qu’ensemble. Chaque type de nœud qui est défini dans un cluster Service Fabric est configuré en tant que groupe de machines virtuelles identiques distinct. Chaque type de nœud peut ensuite faire l’objet d’une augmentation ou d’une diminution de la taille des instances de manière indépendante, avoir différents jeux de ports ouverts et présenter différentes métriques de capacité. En savoir plus sur dans hello [Service Fabric nodetypes](service-fabric-cluster-nodetypes.md) document. Étant donné que les types de nœud de Service Fabric hello dans votre cluster sont constitués de machines virtuelles identiques à hello principal, vous devez tooset des règles de l’échelle automatique pour chaque nœud type/Virtual Machines identiques.
 
 > [!NOTE]
-> Votre abonnement doit avoir suffisamment de cœurs pour ajouter les nouvelles machines virtuelles qui composeront ce cluster. Il n’existe actuellement aucune validation de modèle. Vous obtenez donc une erreur liée au temps de déploiement si l’une des limites de quota est atteinte.
+> Votre abonnement doit avoir suffisamment tooadd cœurs hello de nouveaux ordinateurs virtuels qui composent ce cluster. Il n’existe aucune validation du modèle actuellement, donc vous obtenez une erreur de temps de déploiement, si une des limites de quota hello sont atteints.
 > 
 > 
 
-## <a name="choose-the-node-typevirtual-machine-scale-set-to-scale"></a>Choisir le type de nœud/groupe de machines virtuelles identiques à mettre à l’échelle
-Actuellement, vous n’êtes pas en mesure de spécifier les règles de mise à l’échelle automatique pour les groupes de machines virtuelles identiques à l’aide du portail. Nous allons donc utiliser Azure PowerShell (1.0 et versions ultérieures) pour répertorier les types de nœud et leur ajouter des règles de mise à l’échelle automatique.
+## <a name="choose-hello-node-typevirtual-machine-scale-set-tooscale"></a>Choisissez le nœud type/virtuel échelle de machines hello tooscale
+Actuellement, vous n’êtes pas toospecify en mesure de règles de l’échelle automatique hello pour les machines virtuelles identiques à l’aide du portail de hello, donc nous permettent d’utiliser des types de nœuds Azure PowerShell (1.0 +) toolist hello et puis ajoutez toothem de règles à l’échelle automatique.
 
-Pour obtenir la liste des groupes de machines virtuelles identiques qui composent votre cluster, exécutez les cmdlets suivantes :
+liste de hello tooget de Machine virtuelle ensemble d’échelle qui composent votre cluster, exécutez hello suivant d’applets de commande :
 
 ```powershell
 Get-AzureRmResource -ResourceGroupName <RGname> -ResourceType Microsoft.Compute/VirtualMachineScaleSets
@@ -39,78 +39,78 @@ Get-AzureRmResource -ResourceGroupName <RGname> -ResourceType Microsoft.Compute/
 Get-AzureRmVmss -ResourceGroupName <RGname> -VMScaleSetName <Virtual Machine scale set name>
 ```
 
-## <a name="set-auto-scale-rules-for-the-node-typevirtual-machine-scale-set"></a>Définir des règles de mise à l’échelle automatique pour le type de nœud/groupe de machines virtuelles identiques
-Si votre cluster comporte plusieurs types de nœud, vous devez effectuer cette opération pour chaque type de nœud/groupe de machines virtuelles identiques dont vous voulez augmenter ou diminuer la taille des instances. Tenez compte du nombre de nœuds dont vous devez disposer avant de configurer la mise à l’échelle automatique. Le nombre de nœuds minimal dont vous devez disposer pour le type de nœud principal est déterminé par le niveau de fiabilité que vous avez choisi. En savoir plus sur les [niveaux de fiabilité](service-fabric-cluster-capacity.md).
+## <a name="set-auto-scale-rules-for-hello-node-typevirtual-machine-scale-set"></a>Définir des règles à l’échelle automatique pour l’ensemble d’échelle hello nœud type/Virtual Machine
+Si votre cluster a plusieurs types de nœud, puis répétez ces étapes pour chaque nœud virtuel/types de montée en puissance de l’ordinateur définit que vous souhaitez tooscale (entrant ou sortant). Tenir numéro hello de nœuds que vous devez disposer avant de configurer la mise à l’échelle automatique. nombre minimal de Hello de nœuds que vous devez posséder pour le type de nœud principal hello est piloté par le niveau de fiabilité hello que vous avez choisi. En savoir plus sur les [niveaux de fiabilité](service-fabric-cluster-capacity.md).
 
 > [!NOTE]
-> Une descente en puissance du type de nœud principal en deçà du nombre minimal rend le cluster instable ou entraîne son interruption. Cela peut entraîner une perte de données pour vos applications et pour les services système.
+> Mise à l’échelle vers le bas accessible sans type de nœud principal hello que ce nombre minimal de hello rendre le cluster de hello instable ou mettez-le vers le bas. Cela peut entraîner une perte de données pour vos applications et services de système de hello.
 > 
 > 
 
-Actuellement, la fonctionnalité de mise à l’échelle automatique ne dépend pas des charges que vos applications peuvent signaler à Service Fabric. Par conséquent, pour le moment, la mise à l’échelle automatique que vous obtenez dépend uniquement des compteurs de performances émis par chaque instance du groupe de machines virtuelles identiques.  
+Actuellement fonctionnalité à l’échelle automatique de hello n’est pas pilotée par les charges hello que vos applications peuvent signaler tooService l’ensemble fibre optique. Par conséquent, à ce hello temps vous obtenez à l’échelle automatique est purement piloté par les compteurs de performance hello qui sont émis par chacune des instances de jeu de mise à l’échelle de Machine virtuelle hello.  
 
-Suivez ces instructions afin de [configurer la mise à l’échelle automatique pour chaque groupe de machines virtuelles identiques](../virtual-machine-scale-sets/virtual-machine-scale-sets-autoscale-overview.md).
+Suivez ces instructions [tooset à l’échelle automatique pour chaque ensemble d’échelle de Machine virtuelle](../virtual-machine-scale-sets/virtual-machine-scale-sets-autoscale-overview.md).
 
 > [!NOTE]
-> Dans un scénario de descente en puissance, à moins que votre type de nœud ne possède un niveau de durabilité Gold ou Silver, vous devez appeler [l’applet de commande Remove-ServiceFabricNodeState](https://msdn.microsoft.com/library/azure/mt125993.aspx) avec le nom de nœud approprié.
+> Dans une mise à l’échelle vers le bas du scénario, à moins que votre type de nœud possède un niveau de durabilité d’argent ou or vous devez toocall hello [applet de commande Remove-ServiceFabricNodeState](https://msdn.microsoft.com/library/azure/mt125993.aspx) avec le nom de nœud approprié hello.
 > 
 > 
 
-## <a name="manually-add-vms-to-a-node-typevirtual-machine-scale-set"></a>Ajouter manuellement des machines virtuelles à un type de nœud/groupe de machines virtuelles identiques
-Suivez les exemples/les instructions dans la [galerie de modèles de démarrage rapide](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-scale-existing) pour modifier le nombre de machines virtuelles dans chaque Nodetype. 
+## <a name="manually-add-vms-tooa-node-typevirtual-machine-scale-set"></a>Ajouter manuellement des machines virtuelles tooa nœud type/Virtual Machines identiques
+Suivez l’exemple hello/instructions hello [galerie de modèles de démarrage rapide](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-scale-existing) nombre de hello toochange d’ordinateurs virtuels dans chaque Nodetype. 
 
 > [!NOTE]
-> L’ajout de machines virtuelles prend du temps, donc ne vous attendez pas à ce que les ajouts soient instantanés. Par conséquent, envisagez d’ajouter de la capacité bien à l’avance ; plus de 10 minutes sont nécessaires avant que la capacité de la machine virtuelle soit disponible pour les réplicas/instances de service à placer.
+> Ajout de machines virtuelles du temps, donc n’attendent ne pas hello ajouts toobe instantanée. Par conséquent, planifier la capacité de tooadd bien dans le temps, tooallow plus de 10 minutes avant de hello capacité de machine virtuelle est disponible pour les réplicas de hello / tooget instances placé de service.
 > 
 > 
 
-## <a name="manually-remove-vms-from-the-primary-node-typevirtual-machine-scale-set"></a>Supprimer manuellement des machines virtuelles du type de nœud/groupe de machines virtuelles identiques principal
+## <a name="manually-remove-vms-from-hello-primary-node-typevirtual-machine-scale-set"></a>Supprimer manuellement les ordinateurs virtuels à partir de l’ensemble d’échelle hello nœud principal type/Virtual Machine
 > [!NOTE]
-> Les services système Service Fabric s’exécutent sur le type de nœud principal de votre cluster. Vous ne devez donc jamais arrêter ou faire descendre en puissance le nombre d’instances dans ces types de nœuds sur une valeur inférieure à celle garantie par le niveau de fiabilité. Consultez [les détails sur les niveaux de fiabilité ici](service-fabric-cluster-capacity.md). 
+> services de système de l’infrastructure de service Hello exécutent dans le type de nœud principal hello dans votre cluster. Par conséquent, ne doit jamais arrêter ou nombre hello d’instances qui des types de nœud à l’échelle inférieure à quel niveau de fiabilité hello justifie. Consultez trop[hello plus d’informations sur les niveaux de fiabilité ici](service-fabric-cluster-capacity.md). 
 > 
 > 
 
-Vous devez exécuter les étapes suivantes sur une instance de machine virtuelle à la fois. Ceci permet d’arrêter correctement les services système (et vos services avec état) sur l’instance de machine virtuelle que vous supprimez et les nouveaux réplicas créés sur d’autres nœuds.
+Vous devez tooexecute suivant de hello étapes d’une instance de machine virtuelle à la fois. Ainsi, les services système hello (et vos services avec état) toobe s’arrête sur l’instance de machine virtuelle hello à supprimer et les nouveaux réplicas créés sur d’autres nœuds.
 
-1. Exécutez [Disable-ServiceFabricNode](https://msdn.microsoft.com/library/mt125852.aspx) avec « RemoveNode » pour désactiver le nœud que vous souhaitez supprimer (l’instance la plus élevée dans ce type de nœud).
-2. Exécutez [Get-ServiceFabricNode](https://msdn.microsoft.com/library/mt125856.aspx) pour vous assurer que le nœud est en effet passé à l’état désactivé. Si ce n’est pas le cas, patientez jusqu'à ce que le nœud soit désactivé. Vous ne pouvez pas accélérer cette étape.
-3. Suivez les exemples/instructions dans la [galerie de modèles de démarrage rapide](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-scale-existing) pour modifier le nombre de machines virtuelles d’une unité dans ce Nodetype. L’instance supprimée est l’instance de machine virtuelle la plus élevée. 
-4. Répétez les étapes 1 à 3 selon vos besoins, mais ne faites jamais descendre en puissance le nombre d’instances sur les types de nœuds principaux sur une valeur inférieure à celle garantie par le niveau de fiabilité. Consultez [les détails sur les niveaux de fiabilité ici](service-fabric-cluster-capacity.md). 
+1. Exécutez [Disable-ServiceFabricNode](https://msdn.microsoft.com/library/mt125852.aspx) avec intention nœud de hello toodisable « RemoveNode » que vous allez tooremove (instance la plus élevée dans ce type de nœud hello).
+2. Exécutez [Get-ServiceFabricNode](https://msdn.microsoft.com/library/mt125856.aspx) toomake que ce nœud hello est passée en effet toodisabled. Si ce n’est pas le cas, attendez que le nœud de hello est désactivé. Vous ne pouvez pas accélérer cette étape.
+3. Suivez l’exemple hello/instructions hello [galerie de modèles de démarrage rapide](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-scale-existing) toochange hello plusieurs ordinateurs virtuels d’une unité à ce Nodetype. instance Hello supprimé est instance de machine virtuelle la plus élevée hello. 
+4. Répétez les étapes 1 à 3, en fonction des besoins, mais jamais à l’échelle nombre hello d’instances dans les types de nœud principal de hello inférieur à quel niveau de fiabilité hello justifient ou non. Consultez trop[hello plus d’informations sur les niveaux de fiabilité ici](service-fabric-cluster-capacity.md). 
 
-## <a name="manually-remove-vms-from-the-non-primary-node-typevirtual-machine-scale-set"></a>Supprimer manuellement des machines virtuelles du type de nœud/groupe de machines virtuelles identiques non principal
+## <a name="manually-remove-vms-from-hello-non-primary-node-typevirtual-machine-scale-set"></a>Supprimez manuellement les ordinateurs virtuels à partir d’un nœud principal hello type/Virtual Machines identiques
 > [!NOTE]
-> Pour un service avec état, un certain nombre de nœuds doivent toujours fonctionner afin de maintenir la disponibilité et de conserver l’état de votre service. Au minimum, le nombre de nœuds doit être égal au nombre de jeux de réplicas cibles du service/de la partition. 
+> Pour un service avec état, vous avez besoin un certain nombre de nœuds toobe toujours toomaintain disponibilité et conserver l’état de votre service. Hello minimum, vous devez hello nombre de nœuds égale toohello cible réplica ensemble de service/partition hello. 
 > 
 > 
 
-Vous devez exécuter les étapes suivantes sur une instance de machine virtuelle à la fois. Ceci permet d’arrêter correctement les services système (et vos services avec état) sur l’instance de machine virtuelle que vous supprimez et les nouveaux réplicas créés ailleurs.
+Vous devez hello exécuter hello suivant d’une instance de machine virtuelle comme suit à la fois. Ainsi, toobe s’arrête sur hello instance de machine virtuelle à supprimer les services système hello (et vos services avec état) et nouveaux réplicas créé where else.
 
-1. Exécutez [Disable-ServiceFabricNode](https://msdn.microsoft.com/library/mt125852.aspx) avec « RemoveNode » pour désactiver le nœud que vous souhaitez supprimer (l’instance la plus élevée dans ce type de nœud).
-2. Exécutez [Get-ServiceFabricNode](https://msdn.microsoft.com/library/mt125856.aspx) pour vous assurer que le nœud est en effet passé à l’état désactivé. Si ce n’est pas le cas, patientez jusqu'à ce que le nœud soit désactivé. Vous ne pouvez pas accélérer cette étape.
-3. Suivez les exemples/instructions dans la [galerie de modèles de démarrage rapide](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-scale-existing) pour modifier le nombre de machines virtuelles d’une unité dans ce Nodetype. Ceci supprime l’instance de machine virtuelle la plus élevée. 
-4. Répétez les étapes 1 à 3 selon vos besoins, mais ne faites jamais descendre en puissance le nombre d’instances sur les types de nœuds principaux sur une valeur inférieure à celle garantie par le niveau de fiabilité. Consultez [les détails sur les niveaux de fiabilité ici](service-fabric-cluster-capacity.md).
+1. Exécutez [Disable-ServiceFabricNode](https://msdn.microsoft.com/library/mt125852.aspx) avec intention nœud de hello toodisable « RemoveNode » que vous allez tooremove (instance la plus élevée dans ce type de nœud hello).
+2. Exécutez [Get-ServiceFabricNode](https://msdn.microsoft.com/library/mt125856.aspx) toomake que ce nœud hello est passée en effet toodisabled. Si ce n’est pas le cas, attendez que le nœud de hello est désactivé. Vous ne pouvez pas accélérer cette étape.
+3. Suivez l’exemple hello/instructions hello [galerie de modèles de démarrage rapide](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-scale-existing) toochange hello plusieurs ordinateurs virtuels d’une unité à ce Nodetype. Cela va supprimer instance de machine virtuelle la plus élevée hello. 
+4. Répétez les étapes 1 à 3, en fonction des besoins, mais jamais à l’échelle nombre hello d’instances dans les types de nœud principal de hello inférieur à quel niveau de fiabilité hello justifient ou non. Consultez trop[hello plus d’informations sur les niveaux de fiabilité ici](service-fabric-cluster-capacity.md).
 
 ## <a name="behaviors-you-may-observe-in-service-fabric-explorer"></a>Comportements que vous pouvez observer dans Service Fabric Explorer
-Lorsque vous faites monter un cluster en puissance, Service Fabric Explorer reflète le nombre de nœuds (instances de groupe de machines virtuelles identiques) qui font partie du cluster.  Toutefois, lorsque vous faites descendre un cluster en puissance, le nœud/l’instance de machine virtuelle supprimé reste affiché avec un état défectueux, sauf si vous appelez la [commande Remove-ServiceFabricNodeState](https://msdn.microsoft.com/library/mt125993.aspx) avec le nom de nœud approprié.   
+Lors de la montée en puissance un Bonjour cluster Service Fabric Explorer reflétera nombre hello de nœuds (ensemble d’échelle de Machine virtuelle instances) qui font partie du cluster de hello.  Toutefois, lorsque vous redimensionnez un cluster, vous verrez instance de nœud/VM hello supprimé affiché dans un état non intègre sauf si vous appelez [Remove-ServiceFabricNodeState cmd](https://msdn.microsoft.com/library/mt125993.aspx) avec le nom de nœud approprié hello.   
 
-Voici l’explication de ce comportement.
+Voici une explication hello pour ce comportement.
 
-Les nœuds répertoriés dans Service Fabric Explorer reflètent ce que savent les services système Service Fabric (FM spécifiquement) quant au nombre de nœuds que possède/possédait le cluster. Lorsque vous faites descendre en puissance le groupe de machines virtuelles identiques, la machine virtuelle est supprimée mais le service système FM croit toujours que le nœud (mappé à la machine virtuelle qui a été supprimée) reviendra. Par conséquent, Service Fabric Explorer continue d’afficher ce nœud (même si l’état d’intégrité peut être inconnu ou un état d’erreur).
+nœuds répertoriés dans le Service Fabric Explorer Hello sont une réflexion de quels services de système de Service Fabric hello (FM spécifiquement) connaît le nombre de hello du cluster de hello nœuds attendu/a. Lorsque vous faites évoluer hello échelle de machines virtuelles vers le bas, hello machine virtuelle a été supprimé, mais le service système FM considère toujours que reviendra de ce nœud hello (qui a été mappé toohello machine virtuelle qui a été supprimé). Par conséquent, Service Fabric Explorer continue toodisplay ce nœud (même si l’état d’intégrité hello peut-être erreur ou inconnu).
 
-Pour vous assurer qu’un nœud est supprimé lorsqu’une machine virtuelle est supprimée, vous avez deux possibilités :
+Dans l’ordre les toomake sûr qu’un nœud est supprimé lorsqu’une machine virtuelle est supprimée, vous avez deux options :
 
-1) Choisissez un niveau de durabilité Gold ou Silver (disponible prochainement) pour les types de nœuds de votre cluster, ce qui assure l’intégration de l’infrastructure. Ceci supprimera automatiquement les nœuds de l’état de nos services système (FM) lors de la descente en puissance.
-Consultez les [détails sur les niveaux de durabilité ici](service-fabric-cluster-capacity.md)
+1) Choisissez un niveau de durabilité d’argent ou OR (disponible prochainement) pour les types de nœud hello dans votre cluster, qui vous permet de hello d’intégration de l’infrastructure. Qui puis supprimera automatiquement les nœuds hello de notre état services (FM) du système lorsque vous mettez à l’échelle vers le bas.
+Consultez trop[hello plus d’informations sur les niveaux de durabilité ici](service-fabric-cluster-capacity.md)
 
-2) Après la descente en puissance de l’instance de machine virtuelle, vous devez appeler [l’applet de commande Remove-ServiceFabricNodeState](https://msdn.microsoft.com/library/mt125993.aspx).
+2) Une fois que l’instance de machine virtuelle hello a été mis à l’échelle vers le bas, vous devez toocall hello [applet de commande Remove-ServiceFabricNodeState](https://msdn.microsoft.com/library/mt125993.aspx).
 
 > [!NOTE]
-> Les clusters Service Fabric nécessitent un certain nombre de nœuds actifs en permanence pour maintenir la disponibilité et préserver l’état, situation appelée « conservation du quorum ». Il est donc généralement déconseillé d’arrêter toutes les machines du cluster, sauf si vous avez d’abord effectué une [sauvegarde complète de votre état](service-fabric-reliable-services-backup-restore.md).
+> Les clusters service Fabric nécessitent un certain nombre de nœuds toobe à tout le temps hello dans ordre toomaintain disponibilité et conserver l’état - tooas référencé « gestion de quorum ». Par conséquent, il est généralement unsafe tooshut vers le bas de tous les ordinateurs hello dans un cluster de hello, sauf si vous avez effectué tout d’abord un [une sauvegarde complète de l’état](service-fabric-reliable-services-backup-restore.md).
 > 
 > 
 
 ## <a name="next-steps"></a>Étapes suivantes
-Lisez les documents suivants pour en savoir plus sur la planification de la capacité du cluster, la mise à niveau d’un cluster et le partitionnement des services :
+Hello en lecture suivant tooalso en savoir plus sur la planification de la capacité du cluster, la mise à niveau un cluster et un partitionnement des services :
 
 * [Planification de la capacité de votre cluster](service-fabric-cluster-capacity.md)
 * [Mise à niveau des clusters](service-fabric-cluster-upgrade.md)

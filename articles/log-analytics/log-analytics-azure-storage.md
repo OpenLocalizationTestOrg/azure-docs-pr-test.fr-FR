@@ -1,6 +1,6 @@
 ---
-title: "Collecte des journaux et des métriques des services Azure pour Log Analytics | Microsoft Docs"
-description: "Configuration des diagnostics sur les ressources Azure pour écrire des journaux et métriques dans Log Analytics."
+title: "aaaCollect Azure du service Journaux et des mesures pour l’Analytique de journal | Documents Microsoft"
+description: "Configurer les diagnostics sur les ressources Azure toowrite métriques et journaux tooLog Analytique."
 services: log-analytics
 documentationcenter: 
 author: MGoedtel
@@ -15,20 +15,20 @@ ms.topic: article
 ms.date: 04/12/2017
 ms.author: magoedte
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 7a3785e39f0d1cf849dbbf0d83d89eaed58c5b0b
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 1cede9a94ec83c4e3a95853dc2ec355d8df06d6e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="collect-azure-service-logs-and-metrics-for-use-in-log-analytics"></a>Collecte des journaux et des métriques des services Azure à utiliser dans Log Analytics
 
 Il existe quatre façons différentes de collecter des journaux et des métriques pour les services Azure :
 
-1. Diagnostics Azure directement dans Log Analytics (*Diagnostics* dans le tableau suivant)
-2. Diagnostics Azure vers stockage Azure, puis vers Log Analytics (*Stockage* dans le tableau suivant)
-3. Connecteurs pour les services Azure (*Connecteurs* dans le tableau suivant)
-4. Des scripts pour collecter puis publier les données dans Log Analytics (vide dans le tableau suivant et pour les services qui ne sont pas répertoriés)
+1. Diagnostics Azure directe tooLog Analytique (*Diagnostics* Bonjour tableau suivant)
+2. Diagnostics Azure tooAzure stockage tooLog Analytique (*stockage* Bonjour tableau suivant)
+3. Connecteurs pour les services Azure (*connecteurs* Bonjour tableau suivant)
+4. Scripts toocollect, puis les données de publication dans le journal Analytique (vides Bonjour tableau suivant et pour les services qui ne sont pas répertoriées)
 
 
 | Service                 | Type de ressource                           | Journaux        | Mesures     | Solution |
@@ -60,22 +60,22 @@ Il existe quatre façons différentes de collecter des journaux et des métrique
 
 
 > [!NOTE]
-> Pour l’analyse des machines virtuelles (Linux et Windows), nous vous recommandons d’installer l’[extension de machine virtuelle Log Analytics](log-analytics-azure-vm-extension.md). L’agent vous fournit les informations collectées à partir de vos machines virtuelles. Vous pouvez également utiliser l’extension pour les jeux de mise à l’échelle de machine virtuelle.
+> Pour la surveillance des machines virtuelles Azure (Linux et Windows), nous vous recommandons d’installer hello [extension de machine virtuelle Analytique de journal](log-analytics-azure-vm-extension.md). l’agent de Hello vous fournit les informations collectées à partir de vos machines virtuelles. Vous pouvez également utiliser l’extension de hello pour les machines virtuelles identiques.
 >
 >
 
-## <a name="azure-diagnostics-direct-to-log-analytics"></a>Diagnostics Azure directement dans Log Analytics
-De nombreuses ressources Azure sont en mesure d’écrire des journaux de diagnostic et métriques directement dans Log Analytics, et il s’agit du moyen recommandé de collecter les données à analyser. Lorsque vous utilisez les diagnostics Azure, les données sont écrites immédiatement dans Log Analytics, et il est inutile d’écrire les données dans le stockage avant.
+## <a name="azure-diagnostics-direct-toolog-analytics"></a>Diagnostics Azure directe tooLog Analytique
+Beaucoup de ressources Azure est des mesures et des journaux de diagnostic toowrite en mesure de directement tooLog Analytique, ce qui est moyen hello préféré de la collecte de données hello pour l’analyse. Lors de l’utilisation des diagnostics Azure, données sont immédiatement écrit tooLog Analytique et il n’existe aucun toostorage de données nécessaire toofirst écriture hello.
 
-Mes ressources Azure qui prennent en charge [Azure Monitor](../monitoring-and-diagnostics/monitoring-overview.md) peuvent envoyer leurs journaux et métriques directement vers Log Analytics.
+Les ressources Azure qui prennent en charge [moniteur Azure](../monitoring-and-diagnostics/monitoring-overview.md) peut envoyer les journaux et les métriques directement tooLog Analytique.
 
-* Pour plus d’informations sur les métriques disponibles, voir [Mesures prises en charge avec Azure Monitor](../monitoring-and-diagnostics/monitoring-supported-metrics.md).
-* Pour plus d’informations sur les journaux disponibles, voir [Schéma et services pris en charge pour les journaux de diagnostic](../monitoring-and-diagnostics/monitoring-diagnostic-logs-schema.md).
+* Pour plus d’informations hello de métriques disponibles de hello, consultez trop[prise en charge des métriques avec Azure analyse](../monitoring-and-diagnostics/monitoring-supported-metrics.md).
+* Pour plus d’informations hello de journaux disponibles de hello, consultez trop[prise en charge des services et schéma pour les journaux de diagnostic](../monitoring-and-diagnostics/monitoring-diagnostic-logs-schema.md).
 
 ### <a name="enable-diagnostics-with-powershell"></a>Activer les diagnostics avec PowerShell
-Vous devez disposer de la version de novembre 2016 (v2.3.0) ou d’une version ultérieure d’[Azure PowerShell](/powershell/azure/overview).
+Vous avez besoin hello novembre 2016 (v2.3.0) ou une version plus récente de [Azure PowerShell](/powershell/azure/overview).
 
-L’exemple PowerShell suivant montre comment utiliser [Set-AzureRmDiagnosticSetting](/powershell/module/azurerm.insights/set-azurermdiagnosticsetting) pour activer les diagnostics sur un groupe de sécurité réseau. La même approche fonctionne pour toutes les ressources prises en charge : définissez `$resourceId` sur l’ID de la ressource pour laquelle vous souhaitez activer les diagnostics.
+Hello suivant montre l’exemple PowerShell comment toouse [Set-AzureRmDiagnosticSetting](/powershell/module/azurerm.insights/set-azurermdiagnosticsetting) tooenable des diagnostics sur un groupe de sécurité réseau. Hello même approche fonctionne pour toutes les ressources prises en charge - définir `$resourceId` toohello id de ressource de ressource hello diagnostics tooenable pour.
 
 ```powershell
 $workspaceId = "/subscriptions/d2e37fee-1234-40b2-5678-0b2199de3b50/resourcegroups/oi-default-east-us/providers/microsoft.operationalinsights/workspaces/rollingbaskets"
@@ -87,7 +87,7 @@ Set-AzureRmDiagnosticSetting -ResourceId $ResourceId  -WorkspaceId $workspaceId 
 
 ### <a name="enable-diagnostics-with-resource-manager-templates"></a>Activer les diagnostics avec des modèles Resource Manager
 
-Pour activer les diagnostics sur une ressource lors de sa création, et envoyer les diagnostics vers votre espace de travail Log Analytics, vous pouvez utiliser un modèle semblable à celui ci-dessous. Cet exemple est destiné à un compte Automation, mais fonctionne pour tous les types de ressources pris en charge.
+tooenable des diagnostics sur une ressource lorsqu’il est créé, et ont les diagnostics hello envoyés espace de travail Analytique de journal tooyour que vous pouvez utiliser un modèle toohello similaire un ci-dessous. Cet exemple est destiné à un compte Automation, mais fonctionne pour tous les types de ressources pris en charge.
 
 ```json
         {
@@ -116,11 +116,11 @@ Pour activer les diagnostics sur une ressource lors de sa création, et envoyer 
 
 [!INCLUDE [log-analytics-troubleshoot-azure-diagnostics](../../includes/log-analytics-troubleshoot-azure-diagnostics.md)]
 
-## <a name="azure-diagnostics-to-storage-then-to-log-analytics"></a>Diagnostics Azure vers stockage, puis vers Log Analytics
+## <a name="azure-diagnostics-toostorage-then-toolog-analytics"></a>Diagnostics Azure toostorage puis tooLog Analytique
 
-Pour la collecte des journaux sur certaines ressources, il est possible d’envoyer les journaux vers le stockage Azure, puis de configurer Log Analytics pour lire les journaux depuis le stockage.
+Pour collecter les journaux à partir de certaines ressources, il est possible toosend hello journaux tooAzure stockage et puis configurer les journaux de hello tooread Analytique de journal à partir du stockage.
 
-Log Analytics peut utiliser cette approche pour collecter des diagnostics à partir du stockage Azure pour les journaux et les ressources qui suivent :
+Analytique de journal permet de ce test de diagnostic toocollect approche du stockage Azure hello suivant des ressources et les journaux :
 
 | Ressource | Journaux |
 | --- | --- |
@@ -129,26 +129,26 @@ Log Analytics peut utiliser cette approche pour collecter des diagnostics à par
 | Rôles web <br> Rôles de travail |Syslog Linux <br> Événement Windows <br> Journal IIS <br> ETWEvent Windows |
 
 > [!NOTE]
-> Vous êtes facturé aux tarifs de données Azure normaux pour le stockage et les transactions lorsque vous envoyez des diagnostics à un compte de stockage et lorsque Log Analytics lit les données de votre compte de stockage.
+> Vous payez un taux de données Azure normal pour le stockage et les transactions lorsque vous envoyez des diagnostics compte de stockage tooa et quand Analytique de journal lit les données de hello à partir de votre compte de stockage.
 >
 >
 
-Consultez la page [Utiliser un Stockage Blob pour IIS et un Stockage Table pour les événements](log-analytics-azure-storage-iis-table.md) pour en savoir plus sur la façon dont Log Analytics peut collecter ces journaux.
+Consultez [stockage d’objets blob utilisé pour le stockage IIS et de table pour les événements](log-analytics-azure-storage-iis-table.md) toolearn plus en détail comment Analytique de journal peuvent collecter ces journaux.
 
 ## <a name="connectors-for-azure-services"></a>Connecteurs pour les services Azure
 
-Il existe un connecteur pour Application Insights qui permet aux données collectées par Application Insights d’être envoyées vers Log Analytics.
+Il existe un connecteur pour Application Insights, qui permet aux données collectées par toobe Application Insights envoyé tooLog Analytique.
 
-En savoir plus sur le [connecteur Application Insights](https://blogs.technet.microsoft.com/msoms/2016/09/26/application-insights-connector-in-oms/).
+En savoir plus sur hello [connecteur Application Insights](https://blogs.technet.microsoft.com/msoms/2016/09/26/application-insights-connector-in-oms/).
 
-## <a name="scripts-to-collect-and-post-data-to-log-analytics"></a>Scripts pour collecter et publier des données sur Log Analytics
+## <a name="scripts-toocollect-and-post-data-toolog-analytics"></a>Scripts toocollect et post tooLog données Analytique
 
-Pour les services Azure qui ne fournissent pas de moyen direct d’envoyer les journaux et métriques vers Log Analytics, vous pouvez utiliser un script Azure Automation pour les collecter. Le script peut alors envoyer les données vers Log Analytics à l’aide de [l’API de collecte de données](log-analytics-data-collector-api.md)
+Pour les services Azure qui ne fournissent pas un moyen direct toosend les tooLog journaux et des métriques Analytique, vous pouvez utiliser un toocollect de script Azure Automation hello journal et des mesures. Hello script peut alors envoyer hello données tooLog Analytique à l’aide de hello [API du collecteur de données](log-analytics-data-collector-api.md)
 
-La galerie de modèles Azure propose des [exemples d’utilisation d’Azure Automation](https://azure.microsoft.com/en-us/resources/templates/?term=OMS) pour collecter des données à partir des services et en les envoyer à Log Analytics.
+la galerie de modèle Azure Hello a [exemples d’utilisation d’Azure Automation](https://azure.microsoft.com/en-us/resources/templates/?term=OMS) toocollect des données à partir des services et en l’envoyant tooLog Analytique.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* [Utiliser un Stockage Blob pour IIS et un Stockage Table pour les événements](log-analytics-azure-storage-iis-table.md) afin de lire les journaux pour les services Azure qui écrivent des diagnostics dans Stockage Table ou les journaux IIS écrits dans le Stockage Blob.
-* [Activer les solutions](log-analytics-add-solutions.md) pour fournir des informations sur les données.
-* [Utiliser les requêtes de recherche](log-analytics-log-searches.md) pour analyser les données.
+* [Utiliser le stockage d’objets blob pour le stockage IIS et de table pour les événements](log-analytics-azure-storage-iis-table.md) tooread les journaux hello pour les services Azure qui écrivent des diagnostics tootable stockage ou IIS consigne écrite tooblob stockage.
+* [Activer des Solutions](log-analytics-add-solutions.md) tooprovide comprendre les données de hello.
+* [Utiliser des requêtes de recherche](log-analytics-log-searches.md) tooanalyze les données de salutation.

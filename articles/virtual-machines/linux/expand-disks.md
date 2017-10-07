@@ -1,6 +1,6 @@
 ---
-title: "Développer les disques durs virtuels sur une machine virtuelle Linux dans Azure | Microsoft Docs"
-description: "Apprenez à développer des disques durs virtuels sur une machine virtuelle Linux avec Azure CLI 2.0"
+title: aaaExpand des disques durs virtuels sur un VM Linux dans Azure | Documents Microsoft
+description: "Découvrez comment tooexpand des disques durs virtuels sur un VM Linux avec hello Azure CLI 2.0"
 services: virtual-machines-linux
 documentationcenter: 
 author: iainfoulds
@@ -14,35 +14,35 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 08/21/2017
 ms.author: iainfou
-ms.openlocfilehash: b82cc0473c003da767ee230ab485c69b233977d1
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 7c09a682cb4322c027e57667640e8f1f8e6612f2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-expand-virtual-hard-disks-on-a-linux-vm-with-the-azure-cli"></a>Comment développer des disques durs virtuels sur une machine virtuelle Linux avec Azure CLI
-La taille par défaut de disque virtuel pour le système d’exploitation est généralement de 30 Go sur une machine virtuelle Linux dans Azure. Vous pouvez [ajouter des disques de données](add-disk.md) afin d’offrir un espace de stockage supplémentaire, mais vous pouvez également développer un disque de données existant. Cet article vous explique comment développer les disques gérés pour une machine virtuelle Linux à l’aide de l’interface CLI Azure 2.0. Vous pouvez également développer le disque du système d’exploitation non managé avec [Azure CLI 1.0](expand-disks-nodejs.md).
+# <a name="how-tooexpand-virtual-hard-disks-on-a-linux-vm-with-hello-azure-cli"></a>Comment tooexpand des disques durs virtuels sur un VM Linux avec hello CLI d’Azure
+taille de disque dur virtuel par défaut Hello hello système d’exploitation (OS) est généralement 30 Go sur un ordinateur virtuel de Linux (VM) dans Azure. Vous pouvez [ajouter des disques de données](add-disk.md) tooprovide d’espace de stockage supplémentaire, mais vous souhaiterez également tooexpand un disque de données existant. Cet article décrit en détail comment tooexpand des disques gérés pour un VM Linux avec hello Azure CLI 2.0. Vous pouvez également développer le disque de système d’exploitation hello non managée avec hello [Azure CLI 1.0](expand-disks-nodejs.md).
 
 > [!WARNING]
 > Assurez-vous de toujours sauvegarder vos données avant de redimensionner des disques. Pour plus d’informations, consultez [Back up Linux VMs in Azure](tutorial-backup-vms.md) (Sauvegarder des machines virtuelles Linux dans Azure).
 
 ## <a name="expand-disk"></a>Développer le disque
-Assurez-vous que vous avez installé la dernière version [d’Azure CLI 2.0](/cli/azure/install-az-cli2) et que vous êtes connecté à un compte Azure avec la commande [az login](/cli/azure/#login).
+Assurez-vous que vous avez hello dernières [Azure CLI 2.0](/cli/azure/install-az-cli2) installé et connecté à l’aide du compte Azure tooan [ouverture de session az](/cli/azure/#login).
 
 Cet article nécessite une machine virtuelle existante dans Azure avec au moins un disque de données attaché et préparé. Si vous n’avez pas encore de machine virtuelle à utiliser, consultez [Create and prepare a VM with data disks](tutorial-manage-disks.md#create-and-attach-disks) (Créer et préparer une machine virtuelle avec des disques de données).
 
-Dans les exemples suivants, remplacez les exemples de noms de paramètre par vos propres valeurs. Les noms de paramètre sont par exemple *myResourceGroup* et *myVM*.
+Bonjour les exemples suivants, remplacez les exemples de noms de paramètre par vos propres valeurs. Les noms de paramètre sont par exemple *myResourceGroup* et *myVM*.
 
-1. Il est impossible d’exécuter les opérations sur les disques durs virtuels avec la machine virtuelle en cours d’exécution. Libérez la machine virtuelle avec la commande [az vm deallocate](/cli/azure/vm#deallocate). L’exemple suivant libère la machine virtuelle nommée *myVM* dans le groupe de ressources nommé *myResourceGroup* :
+1. Opérations sur les disques durs virtuels ne peuvent pas être effectuées avec hello machine virtuelle en cours d’exécution. Libérez la machine virtuelle avec la commande [az vm deallocate](/cli/azure/vm#deallocate). exemple Hello désalloue hello ordinateur virtuel nommé *myVM* dans le groupe de ressources hello nommé *myResourceGroup*:
 
     ```azurecli
     az vm deallocate --resource-group myResourceGroup --name myVM
     ```
 
     > [!NOTE]
-    > `az vm stop` ne publie pas les ressources de calcul. Pour publier les ressources de calcul, utilisez `az vm deallocate`. La machine virtuelle doit être libérée pour développer le disque dur virtuel.
+    > `az vm stop`ne libère pas de ressources de calcul hello. toorelease des ressources de calcul, utilisez `az vm deallocate`. Hello machine virtuelle doit être libérée tooexpand hello un disque dur virtuel.
 
-2. Affichez la liste des disques gérés dans un groupe de ressources avec la commande [az disk list](/cli/azure/disk#list). L’exemple suivant affiche la liste des disques managés dans le groupe de ressources nommé *myResourceGroup* :
+2. Affichez la liste des disques gérés dans un groupe de ressources avec la commande [az disk list](/cli/azure/disk#list). Hello exemple suivant affiche une liste de disques gérés dans le groupe de ressources hello nommé *myResourceGroup*:
 
     ```azurecli
     az disk list \
@@ -51,7 +51,7 @@ Dans les exemples suivants, remplacez les exemples de noms de paramètre par vos
         --output table
     ```
 
-    Développez le disque requis avec la commande [az disk update](/cli/azure/disk#update). L’exemple suivant développe le disque managé nommé *myDataDisk* pour qu’il ait une taille de *200* Go :
+    Développez disque hello avec [mise à jour du disque az](/cli/azure/disk#update). exemple Hello développe managé disque hello *myDataDisk* toobe *200*Go :
 
     ```azurecli
     az disk update \
@@ -61,40 +61,40 @@ Dans les exemples suivants, remplacez les exemples de noms de paramètre par vos
     ```
 
     > [!NOTE]
-    > Lorsque vous développez un disque géré, la taille mise à jour est mappée à la taille de disque géré la plus proche. Pour obtenir un tableau des tailles et des niveaux de disques gérés disponibles, consultez [Vue d’ensemble des disques gérés Azure - Tarification et facturation](../windows/managed-disks-overview.md#pricing-and-billing).
+    > Lorsque vous développez un disque géré, taille de hello mis à jour est mappé toohello plus proche de la taille de disque géré. Pour un tableau des tailles de disque géré disponible hello et les niveaux, consultez [présentation des disques Azure géré - tarification et facturation](../windows/managed-disks-overview.md#pricing-and-billing).
 
-3. Démarrez votre machine virtuelle avec [az vm start](/cli/azure/vm#start). L’exemple suivant démarre la machine virtuelle nommée *myVM* dans le groupe de ressources nommé *myResourceGroup* :
+3. Démarrez votre machine virtuelle avec [az vm start](/cli/azure/vm#start). Hello après le démarrage de l’exemple hello ordinateur virtuel nommé *myVM* dans le groupe de ressources hello nommé *myResourceGroup*:
 
     ```azurecli
     az vm start --resource-group myResourceGroup --name myVM
     ```
 
-4. Établissez une connexion SSH à votre machine virtuelle à l’aide des informations d’identification appropriées. Vous pouvez obtenir l’adresse IP publique de votre machine virtuelle à l’aide de la commande [az vm show](/cli/azure/vm#show) :
+4. SSH tooyour machine virtuelle avec les informations d’identification appropriées hello. Vous pouvez obtenir hello adresse IP publique de votre machine virtuelle avec [afficher de machine virtuelle az](/cli/azure/vm#show):
 
     ```azurecli
     az vm show --resource-group myResourceGroup --name myVM -d --query [publicIps] --o tsv
     ```
 
-5. Pour utiliser le disque étendu, vous devez développer la partition et le système de fichiers sous-jacents.
+5. toouse hello développé de disque, vous devez système de fichiers et de la partition de tooexpand hello sous-jacente.
 
-    a. Si le disque est déjà monté, démontez-le :
+    a. Si déjà monté, démontez le disque de hello :
 
     ```bash
     sudo umount /dev/sdc1
     ```
 
-    b. Utilisez `parted` pour afficher des informations sur le disque et redimensionner la partition :
+    b. Utilisez `parted` tooview informations de disque et redimensionner hello partition :
 
     ```bash
     sudo parted /dev/sdc
     ```
 
-    Affichez les informations sur la disposition actuelle de la partition avec `print`. Le résultat est comparable à l’exemple ci-dessous, qui indique que le disque sous-jacent fait 215 Go :
+    Afficher des informations sur la disposition de partition existant hello avec `print`. la sortie est similaire toohello suivant exemple, qui affiche la taille de disque sous-jacent de hello est 215 Go Hello :
 
     ```bash
     GNU Parted 3.2
     Using /dev/sdc1
-    Welcome to GNU Parted! Type 'help' to view a list of commands.
+    Welcome tooGNU Parted! Type 'help' tooview a list of commands.
     (parted) print
     Model: Unknown Msft Virtual Disk (scsi)
     Disk /dev/sdc1: 215GB
@@ -106,7 +106,7 @@ Dans les exemples suivants, remplacez les exemples de noms de paramètre par vos
         1      0.00B  107GB  107GB  ext4
     ```
 
-    c. Développez la partition avec `resizepart`. Entrez le numéro de la partition, *1*, et la taille de la nouvelle partition :
+    c. Développez la partition hello avec `resizepart`. Entrez le numéro de partition hello, *1*et une taille pour la nouvelle partition de hello :
 
     ```bash
     (parted) resizepart
@@ -114,27 +114,27 @@ Dans les exemples suivants, remplacez les exemples de noms de paramètre par vos
     End?  [107GB]? 215GB
     ```
 
-    d. Pour quitter l’outil, saisissez `quit`.
+    d. tooexit, entrez`quit`
 
-5. Une fois la partition redimensionnée, vérifiez la cohérence de la partition avec `e2fsck` :
+5. Avec partition hello redimensionnée, vérifiez la cohérence de partition hello avec `e2fsck`:
 
     ```bash
     sudo e2fsck -f /dev/sdc1
     ```
 
-6. Redimensionnez ensuite le système de fichiers avec `resize2fs` :
+6. Désormais redimensionner filesystem hello avec `resize2fs`:
 
     ```bash
     sudo resize2fs /dev/sdc1
     ```
 
-7. Montez la partition à l’emplacement souhaité, tel que `/datadrive` :
+7. Montage hello partition toohello souhaité emplacement, tel que `/datadrive`:
 
     ```bash
     sudo mount /dev/sdc1 /datadrive
     ```
 
-8. Pour vérifier que le disque du système d’exploitation a été redimensionné, utilisez `df -h`. L’exemple de sortie suivant indique que le disque de données */dev/sdc1* fait désormais 200 Go :
+8. disque de hello du système d’exploitation tooverify a été redimensionné, utilisez `df -h`. Hello après la sortie de l’exemple montre le lecteur de données hello, *sdc1/dev/*, est maintenant de 200 Go :
 
     ```bash
     Filesystem      Size   Used  Avail Use% Mounted on
@@ -142,4 +142,4 @@ Dans les exemples suivants, remplacez les exemples de noms de paramètre par vos
     ```
 
 ## <a name="next-steps"></a>Étapes suivantes
-Si vous avez besoin de stockage supplémentaire, vous pouvez également [ajouter des disques de données à une machine virtuelle Linux](add-disk.md). Pour plus d’informations sur le chiffrement de disque, consultez la section [Chiffrer des disques sur une machine virtuelle Linux à l’aide de l’interface de ligne de commande Azure (CLI)](encrypt-disks.md).
+Si vous avez besoin de stockage supplémentaire, vous également [ajouter des disques de données tooa Linux VM](add-disk.md). Pour plus d’informations sur le chiffrement de disque, consultez [crypter les disques sur un VM Linux à l’aide de hello CLI d’Azure](encrypt-disks.md).

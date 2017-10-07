@@ -1,6 +1,6 @@
 ---
-title: "Création d’un environnement Linux complet à l’aide de l’interface Azure CLI 1.0 | Microsoft Docs"
-description: "Créez un stockage, une machine virtuelle Linux, un réseau virtuel et un sous-réseau, un équilibreur de charge, une carte d’interface réseau, une adresse IP publique et un groupe de sécurité réseau à partir de zéro à l’aide de l’interface de ligne de commande Azure 1.0."
+title: aaaCreate un environnement Linux complet avec hello Azure CLI 1.0 | Documents Microsoft
+description: "Créer des stockage, un VM Linux, un réseau virtuel et du sous-réseau, un équilibreur de charge, une carte réseau, une adresse IP publique et un groupe de sécurité réseau, tous les à partir de hello d’arrière-plan à l’aide de hello Azure CLI 1.0."
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: iainfoulds
@@ -15,117 +15,117 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 02/09/2017
 ms.author: iainfou
-ms.openlocfilehash: 201ccd523e49d638ace50fbc0ffdceb705b35473
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 7fe00e138704fe9c9a1c9b87a7dd1afd6174e527
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-complete-linux-environment-with-the-azure-cli-10"></a>Créer un environnement Linux complet à l’aide de l’interface Azure CLI 1.0
-Dans cet article, nous créons un réseau simple avec un équilibreur de charge et deux machines virtuelles à des fins de développement et de calcul simple. Nous suivons ce processus, commande par commande, jusqu’à ce que vous disposiez de deux machines virtuelles Linux sécurisées opérationnelles, auxquelles vous pouvez vous connecter à partir de n’importe quel emplacement via Internet. Vous pourrez ensuite créer des réseaux et des environnements plus complexes.
+# <a name="create-a-complete-linux-environment-with-hello-azure-cli-10"></a>Créer un environnement de Linux complète avec hello Azure CLI 1.0
+Dans cet article, nous créons un réseau simple avec un équilibreur de charge et deux machines virtuelles à des fins de développement et de calcul simple. Nous Guide de processus de hello par commande, jusqu'à ce que vous avez deux, sécurisez toowhich les machines virtuelles Linux que vous pouvez vous connecter à partir de n’importe où sur hello Internet. Ensuite, vous pouvez déplacer sur les environnements et les réseaux complexes toomore.
 
-Vous allez découvrir la hiérarchie des dépendances et la puissance que vous offre le modèle de déploiement Resource Manager. Une fois que vous avez compris la façon dont le système est créé, vous pouvez le reconstruire beaucoup plus rapidement en utilisant des [modèles Azure Resource Manager](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). De même, après avoir compris la façon dont les différentes parties de votre environnement s’imbriquent, la création de modèles pour automatiser ces dernières se révèle plus simple.
+Le long de la façon de hello, vous allez découvrir la hiérarchie des dépendances hello que modèle de déploiement du Gestionnaire de ressources hello offre, et sur la quantité d’énergie il. Une fois que vous voyez comment le système de hello est créée, vous pouvez reconstruire il beaucoup plus rapidement à l’aide de [modèles Azure Resource Manager](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). En outre, une fois que vous coordination des parties hello de votre environnement, la création de modèles tooautomate les devient plus facile.
 
-L’environnement contient :
+environnement de Hello contient :
 
 * Deux machines virtuelles dans un groupe à haute disponibilité.
 * Un équilibreur de charge avec une règle d’équilibrage de charge sur le port 80.
-* Des règles de groupe de sécurité réseau (NSG) pour protéger votre machine virtuelle de tout trafic indésirable.
+* Les règles de groupe de sécurité réseau (NSG) tooprotect votre machine virtuelle à partir d’un trafic indésirable.
 
-Pour créer cet environnement personnalisé, [l’interface de ligne de commande 1.0 Azure](../../cli-install-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) la plus récente doit être installée en mode Resource Manager (`azure config mode arm`). Vous avez également besoin d’un outil d’analyse JSON. Cet exemple utilise [jq](https://stedolan.github.io/jq/).
+toocreate cet environnement personnalisé, vous devez hello dernières [Azure CLI 1.0](../../cli-install-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) en mode de gestionnaire de ressources (`azure config mode arm`). Vous avez également besoin d’un outil d’analyse JSON. Cet exemple utilise [jq](https://stedolan.github.io/jq/).
 
 
-## <a name="cli-versions-to-complete-the-task"></a>Versions de l’interface de ligne de commande permettant d’effectuer la tâche
-Vous pouvez exécuter la tâche en utilisant l’une des versions suivantes de l’interface de ligne de commande (CLI) :
+## <a name="cli-versions-toocomplete-hello-task"></a>Tâche de hello CLI versions toocomplete
+Vous pouvez exécuter la tâche hello à l’aide de hello CLI versions suivantes :
 
-- [Azure CLI 1.0](#quick-commands) : notre interface de ligne de commande pour les modèles de déploiement Classique et Resource Manager (cet article)
-- [Azure CLI 2.0](create-cli-complete.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) : notre interface Azure CLI nouvelle génération pour le modèle de déploiement Resource Manager
+- [Azure CLI 1.0](#quick-commands) – notre CLI pour hello classique et la ressource gestion des modèles de déploiement (cet article)
+- [Azure CLI 2.0](create-cli-complete.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) -notre prochaine génération CLI pour le modèle de déploiement de gestion de ressources hello
 
 
 ## <a name="quick-commands"></a>Commandes rapides
-Si vous avez besoin d’accomplir rapidement cette tâche, la section suivante décrit les commandes de base qui vous permettront de charger une machine virtuelle dans Azure. Pour obtenir plus d’informations et davantage de contexte pour chaque étape, lisez la suite de ce document, à partir de [cette section](#detailed-walkthrough).
+Si vous avez besoin de tooquickly accomplir la tâche hello, hello suivant hello de détails section tooupload des commandes de base un tooAzure de machine virtuelle. Plus d’informations et le contexte de chaque étape se trouvent dans le reste de hello du document hello, en commençant [ici](#detailed-walkthrough).
 
-Veillez à ce que [l’interface de ligne de commande 1.0 Azure](../../cli-install-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) soit connectée et utilise le mode Resource Manager :
+Assurez-vous que vous avez [hello Azure CLI 1.0](../../cli-install-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) connecté et l’utilisation du mode de gestionnaire de ressources :
 
 ```azurecli
 azure config mode arm
 ```
 
-Dans les exemples suivants, remplacez les exemples de noms de paramètre par vos propres valeurs. Exemples de noms de paramètre : `myResourceGroup`, `mystorageaccount` et `myVM`.
+Bonjour les exemples suivants, remplacez les exemples de noms de paramètre par vos propres valeurs. Exemples de noms de paramètre : `myResourceGroup`, `mystorageaccount` et `myVM`.
 
-Créez le groupe de ressources. L’exemple suivant crée un groupe de ressources nommé `myResourceGroup` à l’emplacement `westeurope` :
+Créer un groupe de ressources hello. Hello exemple suivant crée un groupe de ressources nommé `myResourceGroup` Bonjour `westeurope` emplacement :
 
 ```azurecli
 azure group create -n myResourceGroup -l westeurope
 ```
 
-Vérifiez le groupe de ressources à l’aide de l’analyseur JSON :
+Vérifiez le groupe de ressources hello en utilisant l’analyseur JSON hello :
 
 ```azurecli
 azure group show myResourceGroup --json | jq '.'
 ```
 
-Créez le compte de stockage. L’exemple suivant permet de créer un compte de stockage nommé `mystorageaccount`. (Le nom du compte de stockage doit être unique, fournissez donc votre propre nom unique.)
+Créer un compte de stockage hello. Hello exemple suivant crée un compte de stockage nommé `mystorageaccount`. (nom de compte de stockage hello doit être unique, par conséquent, fournissez votre propre nom unique).
 
 ```azurecli
 azure storage account create -g myResourceGroup -l westeurope \
   --kind Storage --sku-name GRS mystorageaccount
 ```
 
-Vérifiez le compte de stockage à l’aide de l’analyseur JSON :
+Vérifiez le compte de stockage hello en utilisant l’analyseur JSON hello :
 
 ```azurecli
 azure storage account show -g myResourceGroup mystorageaccount --json | jq '.'
 ```
 
-Création du réseau virtuel. L’exemple suivant crée un réseau virtuel nommé `myVnet` :
+Créer un réseau virtuel de hello. Hello exemple suivant crée un réseau virtuel nommé `myVnet`:
 
 ```azurecli
 azure network vnet create -g myResourceGroup -l westeurope\
   -n myVnet -a 192.168.0.0/16
 ```
 
-Créez un sous-réseau. L’exemple suivant permet de créer un sous-réseau nommé `mySubnet` :
+Créez un sous-réseau. Hello exemple suivant crée un sous-réseau nommé `mySubnet`:
 
 ```azurecli
 azure network vnet subnet create -g myResourceGroup \
   -e myVnet -n mySubnet -a 192.168.1.0/24
 ```
 
-Vérifiez le réseau virtuel et le sous-réseau à l’aide de l’analyseur JSON :
+Vérifiez que hello réseau et sous-réseau virtuels en utilisant l’analyseur JSON hello :
 
 ```azurecli
 azure network vnet show myResourceGroup myVnet --json | jq '.'
 ```
 
-Créez une adresse IP publique. L’exemple suivant permet de créer une adresse IP publique nommée `myPublicIP` avec le nom DNS de `mypublicdns`. (Le nom DNS doit être unique, fournissez donc votre propre nom unique.)
+Créez une adresse IP publique. Hello exemple suivant crée une adresse IP publique nommée `myPublicIP` portant le nom DNS de hello de `mypublicdns`. (nom DNS de hello doit être unique, par conséquent, fournissez votre propre nom unique).
 
 ```azurecli
 azure network public-ip create -g myResourceGroup -l westeurope \
   -n myPublicIP  -d mypublicdns -a static -i 4
 ```
 
-Créez l’équilibreur de charge. L’exemple suivant permet de créer un équilibrage de charge nommé `myLoadBalancer` :
+Créer un équilibreur de charge hello. Hello exemple suivant crée un équilibreur de charge nommé `myLoadBalancer`:
 
 ```azurecli
 azure network lb create -g myResourceGroup -l westeurope -n myLoadBalancer
 ```
 
-Créez un pool d’adresses IP frontal pour l’équilibrage de charge et associez-le à l’adresse IP publique. L’exemple suivant permet de créer un pool d’adresses IP frontal nommé `mySubnetPool` :
+Créer un pool IP frontal pour l’équilibrage de charge hello et associer l’adresse IP publique hello. Hello exemple suivant crée un pool IP frontal nommé `mySubnetPool`:
 
 ```azurecli
 azure network lb frontend-ip create -g myResourceGroup -l myLoadBalancer \
   -i myPublicIP -n myFrontEndPool
 ```
 
-Créez le pool d’adresses IP principal pour l’équilibrage de charge. L’exemple suivant permet de créer un pool d’adresses IP principal nommé `myBackEndPool` :
+Créer un pool d’IP hello principal pour l’équilibrage de charge hello. Hello exemple suivant crée un pool d’IP principal nommé `myBackEndPool`:
 
 ```azurecli
 azure network lb address-pool create -g myResourceGroup -l myLoadBalancer \
   -n myBackEndPool
 ```
 
-Créez les règles de traduction d’adresse réseau (NAT) de trafic entrant SSH pour l’équilibrage de charge. L’exemple suivant permet de créer deux règles d’équilibrage de charge, `myLoadBalancerRuleSSH1` et `myLoadBalancerRuleSSH2` :
+Permet de créer des règles de translation (NAT) d’adresse pour l’équilibrage de charge hello de réseau entrant de SSH. Hello exemple suivant crée deux règles d’équilibrage de charge, `myLoadBalancerRuleSSH1` et `myLoadBalancerRuleSSH2`:
 
 ```azurecli
 azure network lb inbound-nat-rule create -g myResourceGroup -l myLoadBalancer \
@@ -134,7 +134,7 @@ azure network lb inbound-nat-rule create -g myResourceGroup -l myLoadBalancer \
   -n myLoadBalancerRuleSSH2 -p tcp -f 4223 -b 22
 ```
 
-Créez les règles NAT entrantes Web pour l’équilibrage de charge. L’exemple suivant permet de créer une règle d’équilibrage de charge nommée `myLoadBalancerRuleWeb` :
+Créer hello web règles NAT de trafic entrant pour hello l’équilibrage de charge. Hello exemple suivant crée une règle d’équilibreur de charge nommée `myLoadBalancerRuleWeb`:
 
 ```azurecli
 azure network lb rule create -g myResourceGroup -l myLoadBalancer \
@@ -142,22 +142,22 @@ azure network lb rule create -g myResourceGroup -l myLoadBalancer \
   -t myFrontEndPool -o myBackEndPool
 ```
 
-Créez la sonde d’intégrité d’équilibrage de charge. L’exemple suivant permet de créer une sonde TCP nommée `myHealthProbe` :
+Créez la sonde d’intégrité d’équilibrage de charge hello. Hello exemple suivant crée une sonde TCP nommée `myHealthProbe`:
 
 ```azurecli
 azure network lb probe create -g myResourceGroup -l myLoadBalancer \
   -n myHealthProbe -p "tcp" -i 15 -c 4
 ```
 
-Vérifier l’équilibreur de charge, les pools d’adresses IP et les règles NAT à l’aide de l’analyseur JSON :
+Vérifiez hello équilibrage de charge, pools d’adresses IP et les règles NAT à l’aide d’analyseur JSON hello :
 
 ```azurecli
 azure network lb show -g myResourceGroup -n myLoadBalancer --json | jq '.'
 ```
 
-Créez la première carte d’interface réseau (NIC). Remplacez les sections `#####-###-###` par votre propre ID d’abonnement Azure. Votre ID d’abonnement est indiqué dans la sortie de **jq** lorsque vous examinez les ressources créées. Vous pouvez également afficher votre ID d’abonnement avec `azure account list`.
+Créer hello première carte d’interface réseau (NIC). Remplacez hello `#####-###-###` sections avec votre propre ID d’abonnement Azure. Votre abonnement ID est indiqué dans la sortie de hello de **jq** lorsque vous examinez les ressources hello vous créez. Vous pouvez également afficher votre ID d’abonnement avec `azure account list`.
 
-L’exemple suivant permet de créer une carte d’interface réseau nommée `myNic1` :
+Hello exemple suivant crée une carte réseau nommée `myNic1`:
 
 ```azurecli
 azure network nic create -g myResourceGroup -l westeurope \
@@ -166,7 +166,7 @@ azure network nic create -g myResourceGroup -l westeurope \
   -e "/subscriptions/########-####-####-####-############/resourceGroups/myResourceGroup/providers/Microsoft.Network/loadBalancers/myLoadBalancer/inboundNatRules/myLoadBalancerRuleSSH1"
 ```
 
-Créez la deuxième carte d’interface réseau. L’exemple suivant permet de créer une carte d’interface réseau nommée `myNic2` :
+Créer hello seconde carte réseau. Hello exemple suivant crée une carte réseau nommée `myNic2`:
 
 ```azurecli
 azure network nic create -g myResourceGroup -l westeurope \
@@ -175,21 +175,21 @@ azure network nic create -g myResourceGroup -l westeurope \
   -e "/subscriptions/########-####-####-####-############/resourceGroups/myResourceGroup/providers/Microsoft.Network/loadBalancers/myLoadBalancer/inboundNatRules/myLoadBalancerRuleSSH2"
 ```
 
-Vérifiez les deux cartes d’interface réseau à l’aide de l’analyseur JSON :
+Vérifiez que hello deux cartes d’interface réseau en utilisant l’analyseur JSON hello :
 
 ```azurecli
 azure network nic show myResourceGroup myNic1 --json | jq '.'
 azure network nic show myResourceGroup myNic2 --json | jq '.'
 ```
 
-Créez le groupe de sécurité réseau. L’exemple suivant permet de créer un groupe de sécurité réseau nommé `myNetworkSecurityGroup` :
+Créer un groupe de sécurité réseau hello. Hello exemple suivant crée un groupe de sécurité réseau nommé `myNetworkSecurityGroup`:
 
 ```azurecli
 azure network nsg create -g myResourceGroup -l westeurope \
   -n myNetworkSecurityGroup
 ```
 
-Ajoutez deux règles de trafic entrant pour le groupe de sécurité réseau. L’exemple suivant permet de créer deux règles, `myNetworkSecurityGroupRuleSSH` et `myNetworkSecurityGroupRuleHTTP` :
+Ajoutez deux règles de trafic entrant pour le groupe de sécurité réseau hello. Hello exemple suivant crée deux règles, `myNetworkSecurityGroupRuleSSH` et `myNetworkSecurityGroupRuleHTTP`:
 
 ```azurecli
 azure network nsg rule create -p tcp -r inbound -y 1000 -u 22 -c allow \
@@ -198,26 +198,26 @@ azure network nsg rule create -p tcp -r inbound -y 1001 -u 80 -c allow \
   -g myResourceGroup -a myNetworkSecurityGroup -n myNetworkSecurityGroupRuleHTTP
 ```
 
-Vérifiez le groupe de sécurité réseau et les règles de trafic entrant à l’aide de l’analyseur JSON :
+Vérifiez le groupe de sécurité réseau hello et les règles de trafic entrant à l’aide d’analyseur JSON hello :
 
 ```azurecli
 azure network nsg show -g myResourceGroup -n myNetworkSecurityGroup --json | jq '.'
 ```
 
-Liez le groupe de sécurité réseau aux deux cartes réseau :
+Liaison de sécurité réseau hello toohello deux cartes d’interface réseau de groupe :
 
 ```azurecli
 azure network nic set -g myResourceGroup -o myNetworkSecurityGroup -n myNic1
 azure network nic set -g myResourceGroup -o myNetworkSecurityGroup -n myNic2
 ```
 
-Créez le groupe à haute disponibilité. L’exemple suivant permet de créer un groupe à haute disponibilité nommé `myAvailabilitySet` :
+Créer un groupe à haute disponibilité hello. Hello exemple suivant crée un groupe à haute disponibilité nommée `myAvailabilitySet`:
 
 ```azurecli
 azure availset create -g myResourceGroup -l westeurope -n myAvailabilitySet
 ```
 
-Créez la première machine virtuelle Linux. L’exemple suivant permet de créer une machine virtuelle nommée `myVM1` :
+Créer hello première Linux VM. Hello exemple suivant crée un ordinateur virtuel nommé `myVM1`:
 
 ```azurecli
 azure vm create \
@@ -235,7 +235,7 @@ azure vm create \
     --admin-username azureuser
 ```
 
-Créez la deuxième machine virtuelle Linux. L’exemple suivant permet de créer une machine virtuelle nommée `myVM2` :
+Créer hello deuxième Linux VM. Hello exemple suivant crée un ordinateur virtuel nommé `myVM2`:
 
 ```azurecli
 azure vm create \
@@ -253,32 +253,32 @@ azure vm create \
     --admin-username azureuser
 ```
 
-Utilisez l’analyseur JSON pour vérifier tout ce qui a été créé :
+Utilisez hello JSON analyseur tooverify que tout ce qui a été créé :
 
 ```azurecli
 azure vm show -g myResourceGroup -n myVM1 --json | jq '.'
 azure vm show -g myResourceGroup -n myVM2 --json | jq '.'
 ```
 
-Exportez votre nouvel environnement dans un modèle pour recréer rapidement des instances nouvelles :
+Exporter votre nouvel environnement tooa modèle tooquickly nouvelle création de nouvelles instances :
 
 ```azurecli
 azure group export myResourceGroup
 ```
 
 ## <a name="detailed-walkthrough"></a>Procédure pas à pas
-Les étapes détaillées qui suivent expliquent ce que chaque commande fait lorsque vous générez votre environnement. Ces concepts sont utiles lorsque vous créez vos propres environnements personnalisés pour le développement ou la production.
+Hello détaillées étapes qui suivent expliquent ce que chaque commande fait pendant la génération de votre environnement. Ces concepts sont utiles lorsque vous créez vos propres environnements personnalisés pour le développement ou la production.
 
-Veillez à ce que [l’interface de ligne de commande 1.0 Azure](../../cli-install-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) soit connectée et utilise le mode Resource Manager :
+Assurez-vous que vous avez [hello Azure CLI 1.0](../../cli-install-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) connecté et l’utilisation du mode de gestionnaire de ressources :
 
 ```azurecli
 azure config mode arm
 ```
 
-Dans les exemples suivants, remplacez les exemples de noms de paramètre par vos propres valeurs. Exemples de noms de paramètre : `myResourceGroup`, `mystorageaccount` et `myVM`.
+Bonjour les exemples suivants, remplacez les exemples de noms de paramètre par vos propres valeurs. Exemples de noms de paramètre : `myResourceGroup`, `mystorageaccount` et `myVM`.
 
 ## <a name="create-resource-groups-and-choose-deployment-locations"></a>Créer des groupes de ressources et choisir les emplacements de déploiement
-Les groupes de ressources Azure sont des entités de déploiement logiques qui contiennent des informations de configuration et des métadonnées pour permettre la gestion logique des déploiements de ressources. L’exemple suivant crée un groupe de ressources nommé `myResourceGroup` à l’emplacement `westeurope` :
+Groupes de ressources Azure sont des entités logiques de déploiement qui contiennent des informations et des métadonnées tooenable hello logique gestion de la configuration des déploiements de ressources. Hello exemple suivant crée un groupe de ressources nommé `myResourceGroup` Bonjour `westeurope` emplacement :
 
 ```azurecli
 azure group create --name myResourceGroup --location westeurope
@@ -301,9 +301,9 @@ info:    group create command OK
 ```
 
 ## <a name="create-a-storage-account"></a>Créez un compte de stockage.
-Vous avez besoin de comptes de stockage pour vos disques de machine virtuelle et pour tous les disques de données que vous souhaitez ajouter. Vous créez des comptes de stockage presque immédiatement après avoir créé des groupes de ressources.
+Vous avez besoin de comptes de stockage pour vos disques de machine virtuelle et les disques de données supplémentaires que vous souhaitez tooadd. Vous créez des comptes de stockage presque immédiatement après avoir créé des groupes de ressources.
 
-Ici, nous utilisons la commande `azure storage account create` pour transmettre l’emplacement du compte, le groupe de ressources qui le contrôle, ainsi que le type de support de stockage souhaité. L’exemple qui suit permet de créer un compte de stockage nommé `mystorageaccount` :
+Nous utilisons ici hello `azure storage account create` de commande, en passant emplacement hello du compte hello, groupe de ressources hello qui contrôle et le type hello de prise en charge de stockage souhaité. Hello exemple suivant crée un compte de stockage nommé `mystorageaccount`:
 
 ```azurecli
 azure storage account create \  
@@ -321,7 +321,7 @@ info:    Executing command storage account create
 info:    storage account create command OK
 ```
 
-Pour examiner notre groupe de ressources à l’aide de la commande `azure group show`, nous nous servons de l’outil [jq](https://stedolan.github.io/jq/) avec l’option de ligne de commande Azure `--json`. (Vous pouvez utiliser **jsawk** ou la bibliothèque de langue de votre choix pour analyser le fichier JSON.)
+tooexamine notre ressource de groupe à l’aide de hello `azure group show` de commande, nous allons utiliser hello [jq](https://stedolan.github.io/jq/) outil avec hello `--json` option de CLI d’Azure. (Vous pouvez utiliser **jsawk** ou n’importe quelle bibliothèque de langue que vous préférez tooparse hello JSON.)
 
 ```azurecli
 azure group show myResourceGroup --json | jq '.'
@@ -359,7 +359,7 @@ Output:
 }
 ```
 
-Pour examiner le compte de stockage à l’aide de l’interface de ligne de commande, vous devez d’abord définir les noms de comptes et les clés. Remplacez le nom du compte de stockage dans l’exemple suivant par le nom de votre choix :
+le compte de stockage tooinvestigate hello à l’aide de hello CLI, vous devez tout d’abord clés et les noms de compte tooset hello. Remplacez le nom hello hello du compte de stockage Bonjour avec un nom que vous choisissez l’exemple suivant :
 
 ```bash
 export AZURE_STORAGE_CONNECTION_STRING="$(azure storage account connectionstring show mystorageaccount --resource-group myResourceGroup --json | jq -r '.string')"
@@ -383,7 +383,7 @@ info:    storage container list command OK
 ```
 
 ## <a name="create-a-virtual-network-and-subnet"></a>Créer un réseau virtuel et un sous-réseau
-Vous allez maintenant créer un réseau virtuel dans Azure et un sous-réseau dans lesquels vous pouvez créer vos machines virtuelles. L’exemple suivant permet de créer un réseau virtuel nommé `myVnet` avec le préfixe d’adresse `192.168.0.0/16` :
+Ensuite vous allez tooneed toocreate un réseau virtuel en cours d’exécution dans Azure et un sous-réseau dans lequel vous pouvez créer vos machines virtuelles. Hello exemple suivant crée un réseau virtuel nommé `myVnet` avec hello `192.168.0.0/16` préfixe d’adresse :
 
 ```azurecli
 azure network vnet create --resource-group myResourceGroup --location westeurope \
@@ -407,7 +407,7 @@ data:      192.168.0.0/16
 info:    network vnet create command OK
 ```
 
-Là encore, nous allons utiliser l’option --json de `azure group show` et de `jq` pour examiner la façon dont nous créons nos ressources. Nous disposons maintenant d’une ressource `storageAccounts` et d’une ressource `virtualNetworks`.  
+Là encore, nous allons opter hello--json de `azure group show` et `jq` toosee comment nous mettons nos ressources. Nous disposons maintenant d’une ressource `storageAccounts` et d’une ressource `virtualNetworks`.  
 
 ```azurecli
 azure group show myResourceGroup --json | jq '.'
@@ -452,7 +452,7 @@ Output:
 }
 ```
 
-À présent, créons dans le réseau virtuel `myVnet` un sous-réseau dans lequel les machines virtuelles seront déployées. Nous utilisons la commande `azure network vnet subnet create` ainsi que les ressources que nous avons déjà créées : le groupe de ressources `myResourceGroup` et le réseau virtuel `myVnet`. Dans l’exemple suivant, nous ajoutons le sous-réseau nommé `mySubnet` avec le préfixe d’adresse de sous-réseau `192.168.1.0/24` :
+Maintenant nous allons créer un sous-réseau Bonjour `myVnet` réseau virtuel dans le hello machines virtuelles sont déployées. Nous utilisons hello `azure network vnet subnet create` commande, ainsi que des ressources hello, nous avons déjà créé : hello `myResourceGroup` groupe de ressources et hello `myVnet` réseau virtuel. Bonjour l’exemple suivant, nous ajoutons sous-réseau hello nommé `mySubnet` avec un préfixe d’adresse de sous-réseau hello `192.168.1.0/24`:
 
 ```azurecli
 azure network vnet subnet create --resource-group myResourceGroup \
@@ -463,9 +463,9 @@ Output:
 
 ```azurecli
 info:    Executing command network vnet subnet create
-+ Looking up the subnet "mySubnet"
++ Looking up hello subnet "mySubnet"
 + Creating subnet "mySubnet"
-+ Looking up the subnet "mySubnet"
++ Looking up hello subnet "mySubnet"
 data:    Id                              : /subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/myVnet/subnets/mySubnet
 data:    Type                            : Microsoft.Network/virtualNetworks/subnets
 data:    ProvisioningState               : Succeeded
@@ -475,7 +475,7 @@ data:
 info:    network vnet subnet create command OK
 ```
 
-Étant donné que le sous-réseau figure logiquement à l’intérieur du réseau virtuel, nous recherchons les informations de sous-réseau avec une commande légèrement différente. Nous utilisons la commande `azure network vnet show`, mais nous continuons à examiner la sortie JSON à l’aide de `jq`.
+Étant donné que le sous-réseau de hello est logiquement à l’intérieur du réseau virtuel de hello, nous allons pour plus d’informations de sous-réseau hello avec une commande légèrement différente. Nous utilisons la commande Hello est `azure network vnet show`, mais nous continuons la sortie JSON hello tooexamine à l’aide de `jq`.
 
 ```azurecli
 azure network vnet show myResourceGroup myVnet --json | jq '.'
@@ -513,7 +513,7 @@ Output:
 ```
 
 ## <a name="create-a-public-ip-address"></a>Créer une adresse IP publique
-Créons à présent l’adresse IP publique (PIP) à attribuer à votre équilibreur de charge. Elle permet de vous connecter à vos machines virtuelles depuis Internet à l’aide de la commande `azure network public-ip create` . Étant donné que l’adresse par défaut est dynamique, nous créons une entrée DNS nommée dans le domaine **cloudapp.azure.com** à l’aide de l’option `--domain-name-label`. L’exemple suivant permet de créer une adresse IP publique nommée `myPublicIP` avec le nom DNS de `mypublicdns`. Étant donné que le nom DNS doit être unique, choisissez un autre nom DNS qui n’est pas susceptible d’être déjà utilisé :
+Maintenant nous allons créer hello adresse IP publique (PIP) que nous affectons d’équilibrage de charge tooyour. Il vous permet de tooconnect tooyour machines virtuelles à partir de hello Internet à l’aide de hello `azure network public-ip create` commande. Étant donné que l’adresse par défaut de hello est dynamique, nous créons une entrée DNS nommée Bonjour **cloudapp.azure.com** domaine à l’aide de hello `--domain-name-label` option. Hello exemple suivant crée une adresse IP publique nommée `myPublicIP` portant le nom DNS de hello de `mypublicdns`. Étant donné que le nom DNS de hello doit être unique, vous fournissez votre propre nom DNS unique :
 
 ```azurecli
 azure network public-ip create --resource-group myResourceGroup \
@@ -524,9 +524,9 @@ Output:
 
 ```azurecli
 info:    Executing command network public-ip create
-+ Looking up the public ip "myPublicIP"
++ Looking up hello public ip "myPublicIP"
 + Creating public ip address "myPublicIP"
-+ Looking up the public ip "myPublicIP"
++ Looking up hello public ip "myPublicIP"
 data:    Id                              : /subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/publicIPAddresses/myPublicIP
 data:    Name                            : myPublicIP
 data:    Type                            : Microsoft.Network/publicIPAddresses
@@ -539,7 +539,7 @@ data:    FQDN                            : mypublicdns.westeurope.cloudapp.azure
 info:    network public-ip create command OK
 ```
 
-L’adresse IP publique étant également une ressource de niveau supérieur, vous pouvez la visualiser avec `azure group show`.
+Bonjour adresse IP publique est également une ressource de niveau supérieur, afin de voir avec `azure group show`.
 
 ```azurecli
 azure group show myResourceGroup --json | jq '.'
@@ -591,7 +591,7 @@ Output:
 }
 ```
 
-Vous pouvez examiner d’autres détails de la ressource, dont le nom de domaine complet (FQDN) du sous-domaine, en utilisant la commande `azure network public-ip show` complète. La ressource d’adresse IP publique a été allouée de façon logique, mais aucune adresse spécifique n’a encore été attribuée. Pour obtenir une adresse IP, vous aurez besoin d’un équilibreur de charge que nous n’avons pas encore créé.
+Vous pouvez rechercher plus d’informations de ressources, notamment le nom de domaine complet (FQDN) hello du sous-domaine de hello, à l’aide de hello complète `azure network public-ip show` commande. ressource d’adresse IP publique Hello a été allouée logiquement, mais une adresse spécifique n’a pas encore été assignée. tooobtain une adresse IP, vous allez tooneed un équilibreur de charge, nous n’avons pas encore créé.
 
 ```azurecli
 azure network public-ip show myResourceGroup myPublicIP --json | jq '.'
@@ -617,7 +617,7 @@ Output:
 ```
 
 ## <a name="create-a-load-balancer-and-ip-pools"></a>Créer un équilibreur de charge et des pools d’adresses IP
-Lorsque vous créez un équilibreur de charge, celui-ci vous permet de répartir le trafic entre plusieurs machines virtuelles. Cela assure également la redondance de votre application en exécutant plusieurs machines virtuelles qui répondent aux demandes des utilisateurs en cas de maintenance ou de lourdes charges. L’exemple suivant permet de créer un équilibrage de charge nommé `myLoadBalancer` :
+Lorsque vous créez un équilibreur de charge, il vous permet de toodistribute du trafic entre plusieurs machines virtuelles. Il fournit également l’application tooyour de redondance en exécutant plusieurs machines virtuelles qui répondent toouser des demandes dans l’événement hello de maintenance ou de lourdes charges. Hello exemple suivant crée un équilibreur de charge nommé `myLoadBalancer`:
 
 ```azurecli
 azure network lb create --resource-group myResourceGroup --location westeurope \
@@ -628,7 +628,7 @@ Output:
 
 ```azurecli
 info:    Executing command network lb create
-+ Looking up the load balancer "myLoadBalancer"
++ Looking up hello load balancer "myLoadBalancer"
 + Creating load balancer "myLoadBalancer"
 data:    Id                              : /subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/loadBalancers/myLoadBalancer
 data:    Name                            : myLoadBalancer
@@ -638,9 +638,9 @@ data:    Provisioning state              : Succeeded
 info:    network lb create command OK
 ```
 
-Notre équilibreur de charge est relativement vide. Nous allons donc créer des pools d’adresses IP. Nous souhaitons créer deux pools d’adresses IP pour notre équilibreur de charge : une pour le pool frontal et une pour le pool principal. Le pool d’adresses IP frontal est visible publiquement. Il s’agit également de l’emplacement où nous attribuons le PIP que nous avons créé précédemment. Nous utilisons ensuite le pool principal comme emplacement auquel connecter nos machines virtuelles. Ainsi, le trafic peut transiter via l’équilibreur de charge vers les machines virtuelles.
+Notre équilibreur de charge est relativement vide. Nous allons donc créer des pools d’adresses IP. Nous souhaitons toocreate deux pools d’adresses IP pour notre programme d’équilibrage de charge, un serveur frontal hello et un pour le back-end hello. pool d’adresses IP frontal Hello est visible publiquement. Il est également toowhich d’emplacement hello que nous affectons hello PIP que nous avons créés précédemment. Puis nous utiliser hello principal comme un emplacement pour notre tooconnect de machines virtuelles à. De cette façon, hello circulent via toohello équilibrage de charge hello machines virtuelles.
 
-Commençons tout d’abord par créer notre pool d’adresses IP frontal. L’exemple suivant permet de créer un pool frontal nommé `myFrontEndPool` :
+Commençons tout d’abord par créer notre pool d’adresses IP frontal. Hello exemple suivant crée un pool frontal nommé `myFrontEndPool`:
 
 ```azurecli
 azure network lb frontend-ip create --resource-group myResourceGroup \
@@ -652,8 +652,8 @@ Output:
 
 ```azurecli
 info:    Executing command network lb frontend-ip create
-+ Looking up the load balancer "myLoadBalancer"
-+ Looking up the public ip "myPublicIP"
++ Looking up hello load balancer "myLoadBalancer"
++ Looking up hello public ip "myPublicIP"
 + Updating load balancer "myLoadBalancer"
 data:    Name                            : myFrontEndPool
 data:    Provisioning state              : Succeeded
@@ -662,9 +662,9 @@ data:    Public IP address id            : /subscriptions/guid/resourceGroups/my
 info:    network lb mySubnet-ip create command OK
 ```
 
-Notez comment nous avons utilisé le commutateur `--public-ip-name` pour transmettre le `myPublicIP` créé précédemment. L’attribution de l’adresse IP publique à l’équilibreur de charge vous permet d’atteindre vos machines virtuelles via Internet.
+Notez comment nous avons utilisé hello `--public-ip-name` commutateur toopass Bonjour `myPublicIP` que nous avons créé précédemment. Affectation d’adresse IP publique hello équilibrage de charge adresse toohello vous permet de tooreach vos machines virtuelles entre hello Internet.
 
-Nous allons maintenant créer notre deuxième pool d’adresses IP pour le trafic principal. L’exemple suivant permet de créer un pool principal nommé `myBackEndPool` :
+Nous allons maintenant créer notre deuxième pool d’adresses IP pour le trafic principal. Hello exemple suivant crée un pool principal nommé `myBackEndPool`:
 
 ```azurecli
 azure network lb address-pool create --resource-group myResourceGroup \
@@ -675,14 +675,14 @@ Output:
 
 ```azurecli
 info:    Executing command network lb address-pool create
-+ Looking up the load balancer "myLoadBalancer"
++ Looking up hello load balancer "myLoadBalancer"
 + Updating load balancer "myLoadBalancer"
 data:    Name                            : myBackEndPool
 data:    Provisioning state              : Succeeded
 info:    network lb address-pool create command OK
 ```
 
-Nous pouvons vérifier la façon dont notre équilibreur de charge apparaît avec `azure network lb show` et en examinant la sortie JSON :
+Nous pouvons voir faire de notre programme d’équilibrage de charge en consultant avec `azure network lb show` et en examinant la sortie JSON hello :
 
 ```azurecli
 azure network lb show myResourceGroup myLoadBalancer --json | jq '.'
@@ -728,7 +728,7 @@ Output:
 ```
 
 ## <a name="create-load-balancer-nat-rules"></a>Créer des règles NAT d’équilibreur de charge
-Pour que le trafic transite par notre équilibrage de charge, nous devons créer des règles de traduction d’adresse réseau (NAT) spécifiant les actions entrantes ou sortantes. Vous pouvez spécifier le protocole utilisé, puis mapper les ports externes aux ports internes comme vous le souhaitez. Pour notre environnement, nous allons créer des règles autorisant SSH à accéder à nos machines virtuelles par le biais de notre équilibreur de charge. Nous configurons les ports TCP 4222 et 4223 de manière à orienter le trafic vers le port TCP 22 sur nos machines virtuelles (que nous créerons plus tard). L’exemple suivant crée une règle nommée `myLoadBalancerRuleSSH1` pour mapper le port TCP 4222 sur le port 22 :
+tout trafic tooget via notre programme d’équilibrage de charge, nous avons besoin de règles toocreate réseau adresse translation (NAT) qui spécifient les actions entrantes ou sortantes. Vous pouvez spécifier hello protocole toouse, puis mapper les ports de toointernal des ports externes comme vous le souhaitez. Pour notre environnement, nous allons créer des règles qui autorisent SSH via notre tooour d’équilibrage de charge machines virtuelles. Nous avons configuré le port TCP ports 4222 et 4223 toodirect tooTCP 22 sur nos machines virtuelles (ce qui nous créer ultérieurement). Hello exemple suivant crée une règle nommée `myLoadBalancerRuleSSH1` toomap TCP port 4222 tooport 22 :
 
 ```azurecli
 azure network lb inbound-nat-rule create --resource-group myResourceGroup \
@@ -740,7 +740,7 @@ Output:
 
 ```azurecli
 info:    Executing command network lb inbound-nat-rule create
-+ Looking up the load balancer "myLoadBalancer"
++ Looking up hello load balancer "myLoadBalancer"
 warn:    Using default enable floating ip: false
 warn:    Using default idle timeout: 4
 warn:    Using default mySubnet IP configuration "myFrontEndPool"
@@ -756,7 +756,7 @@ data:    mySubnet IP configuration id    : /subscriptions/guid/resourceGroups/my
 info:    network lb inbound-nat-rule create command OK
 ```
 
-Répétez cette procédure pour votre deuxième règle NAT pour le protocole SSH. L’exemple suivant crée une règle nommée `myLoadBalancerRuleSSH2` pour mapper le port TCP 4223 sur le port 22 :
+Répétez la procédure de hello pour votre deuxième règle NAT pour SSH. Hello exemple suivant crée une règle nommée `myLoadBalancerRuleSSH2` toomap TCP port 4223 tooport 22 :
 
 ```azurecli
 azure network lb inbound-nat-rule create --resource-group myResourceGroup \
@@ -764,7 +764,7 @@ azure network lb inbound-nat-rule create --resource-group myResourceGroup \
   --frontend-port 4223 --backend-port 22
 ```
 
-Nous allons maintenant créer une règle NAT pour le port TCP 80 du trafic web , en liant la règle à nos pools d’adresses IP. Si nous lions l’adresse à un pool d’adresses IP au lieu de la lier à nos machines virtuelles individuellement, nous pouvons ajouter ou supprimer des machines virtuelles dans le pool d’adresses IP. L’équilibrage de charge ajuste alors automatiquement le flux de trafic. L’exemple suivant crée une règle nommée `myLoadBalancerRuleWeb` pour mapper le port TCP 80 sur le port 80 :
+Nous allons également continuer et créer une règle NAT pour le port TCP 80 pour le trafic web, raccorder les règle hello tooour pools d’adresses IP. Si nous raccorder hello règle tooan de pool IP, au lieu de raccorder hello règle tooour machines virtuelles individuellement, nous pouvons ajouter ou supprimer des machines virtuelles à partir du pool d’adresses IP hello. équilibrage de charge Hello ajuste automatiquement le flux hello du trafic. Hello exemple suivant crée une règle nommée `myLoadBalancerRuleWeb` toomap TCP port 80 tooport 80 :
 
 ```azurecli
 azure network lb rule create --resource-group myResourceGroup \
@@ -777,7 +777,7 @@ Output:
 
 ```azurecli
 info:    Executing command network lb rule create
-+ Looking up the load balancer "myLoadBalancer"
++ Looking up hello load balancer "myLoadBalancer"
 warn:    Using default idle timeout: 4
 warn:    Using default enable floating ip: false
 warn:    Using default load distribution: Default
@@ -796,7 +796,7 @@ info:    network lb rule create command OK
 ```
 
 ## <a name="create-a-load-balancer-health-probe"></a>Créer une sonde d’intégrité d’équilibreur de charge
-Une sonde d’intégrité contrôle régulièrement les machines virtuelles situées derrière notre équilibreur de charge pour s’assurer qu’elles fonctionnent correctement et répondent aux demandes, telles que définies. Dans le cas contraire, elles sont supprimées du processus pour garantir que les utilisateurs ne sont pas orientés vers elles. Vous pouvez définir les contrôles personnalisés de la sonde d’intégrité, ainsi que des valeurs d’intervalle et de délai d’attente. Pour plus d'informations sur les sondes d’intégrité, consultez [Sondes d’équilibreur de charge](../../load-balancer/load-balancer-custom-probe-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). L’exemple suivant permet de créer une sonde d’intégrité TCP nommée `myHealthProbe` :
+Un contrôle d’intégrité de sonde périodiquement les vérifications sur hello machines virtuelles qui se trouvent derrière notre toomake d’équilibrage de charge que leur date d’exploitation et de répondre toorequests tel que défini. Si non, ils sont supprimés de tooensure opération que les utilisateurs ne sont pas en cours dirigé toothem. Vous pouvez définir des contrôles personnalisés pour la sonde d’intégrité hello, ainsi que les intervalles et les valeurs de délai d’attente. Pour plus d'informations sur les sondes d’intégrité, consultez [Sondes d’équilibreur de charge](../../load-balancer/load-balancer-custom-probe-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). Hello exemple suivant crée un TCP intégrité détectés nommée `myHealthProbe`:
 
 ```azurecli
 azure network lb probe create --resource-group myResourceGroup \
@@ -809,7 +809,7 @@ Output:
 ```azurecli
 info:    Executing command network lb probe create
 warn:    Using default probe port: 80
-+ Looking up the load balancer "myLoadBalancer"
++ Looking up hello load balancer "myLoadBalancer"
 + Updating load balancer "myLoadBalancer"
 data:    Name                            : myHealthProbe
 data:    Provisioning state              : Succeeded
@@ -820,16 +820,16 @@ data:    Number of probes                : 4
 info:    network lb probe create command OK
 ```
 
-Ici, nous avons spécifié un intervalle de 15 secondes pour nos contrôles d’intégrité. Nous pouvons manquer au maximum quatre sondes (une minute) avant que l’équilibreur de charge considère que l’hôte ne fonctionne plus.
+Ici, nous avons spécifié un intervalle de 15 secondes pour nos contrôles d’intégrité. Nous pouvons ne pas conforme à un maximum de quatre sondes (une minute) avant de l’équilibrage de charge hello considère que cet hôte hello ne fonctionne plus.
 
-## <a name="verify-the-load-balancer"></a>Vérifier l’équilibreur de charge
-Vérifiez maintenant que la configuration de l’équilibreur de charge est terminée. Voici la procédure que vous avez suivie :
+## <a name="verify-hello-load-balancer"></a>Vérifiez l’équilibrage de charge hello
+Configuration d’équilibrage de charge de hello est maintenant terminée. Voici les étapes hello que vous avez suivies :
 
 1. Vous avez créé un équilibrage de charge.
-2. Vous avez créé un pool d’adresses IP frontal et lui avez affecté une adresse IP publique.
+2. Vous créé un pool IP frontal et affecté un tooit IP public.
 3. Vous avez créé un pool d’adresses IP principal auquel les machines virtuelles peuvent se connecter.
-4. Vous avez créé des règles NAT qui autorisent le protocole SSH pour les machines virtuelles à des fins de gestion, ainsi qu’une règle autorisant le port TCP 80 de notre application web.
-5. Vous avez ajouté une sonde d’intégrité pour contrôler périodiquement les machines virtuelles. Cette sonde d’intégrité s’assure que des utilisateurs n’essaient d’accéder à une machine virtuelle qui ne fonctionne plus ou qui ne sert plus de contenu.
+4. Vous avez créé des règles NAT qui autorisent les machines virtuelles toohello SSH pour la gestion, ainsi que d’une règle qui autorise le port TCP 80 pour notre application web.
+5. Vous avez ajouté un Bonjour de vérification d’intégrité sonde tooperiodically machines virtuelles. Cette sonde d’intégrité permet de s’assurer que les utilisateurs n’essaient pas tooaccess une machine virtuelle qui n’est plus fonctionne ni héberger un contenu.
 
 Regardons maintenant à quoi ressemble votre équilibreur de charge :
 
@@ -954,12 +954,12 @@ Output:
 }
 ```
 
-## <a name="create-an-nic-to-use-with-the-linux-vm"></a>Créer une carte d’interface réseau (NIC) à utiliser avec la machine virtuelle Linux
-La disponibilité des cartes d’interface réseau peut être déterminée par programme car vous pouvez définir des règles régissant leur utilisation. Vous pouvez également avoir plusieurs cartes. Dans la commande `azure network nic create` suivante, vous avez lié la carte d’interface réseau au pool d’adresses IP principal de charge, et l’avez associée à la règle NAT pour autoriser le trafic SSH.
+## <a name="create-an-nic-toouse-with-hello-linux-vm"></a>Créer une carte réseau toouse avec hello Linux VM
+Cartes réseau est disponibles par programme, car vous pouvez appliquer des règles tootheir utilisation. Vous pouvez également avoir plusieurs cartes. Suivant de hello `azure network nic create` de commande, vous raccordez le pool d’adresses IP hello NIC toohello charge principal et l’associez à hello NAT règle toopermit SSH du trafic.
 
-Remplacez les sections `#####-###-###` par votre propre ID d’abonnement Azure. Votre ID d’abonnement est indiqué dans la sortie de `jq` lorsque vous examinez les ressources créées. Vous pouvez également afficher votre ID d’abonnement avec `azure account list`.
+Remplacez hello `#####-###-###` sections avec votre propre ID d’abonnement Azure. Votre abonnement ID est indiqué dans la sortie de hello de `jq` lorsque vous examinez les ressources hello vous créez. Vous pouvez également afficher votre ID d’abonnement avec `azure account list`.
 
-L’exemple suivant permet de créer une carte d’interface réseau nommée `myNic1` :
+Hello exemple suivant crée une carte réseau nommée `myNic1`:
 
 ```azurecli
 azure network nic create --resource-group myResourceGroup --location westeurope \
@@ -972,8 +972,8 @@ Output:
 
 ```azurecli
 info:    Executing command network nic create
-+ Looking up the subnet "mySubnet"
-+ Looking up the network interface "myNic1"
++ Looking up hello subnet "mySubnet"
++ Looking up hello network interface "myNic1"
 + Creating network interface "myNic1"
 data:    Id                              : /subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/networkInterfaces/myNic1
 data:    Name                            : myNic1
@@ -995,7 +995,7 @@ data:
 info:    network nic create command OK
 ```
 
-Vous pouvez visualiser les détails de la ressource en examinant directement cette dernière. Vous examinez la ressource à l’aide de la commande `azure network nic show` :
+Vous pouvez afficher les détails de hello en examinant les ressources hello directement. Vous examinez les ressources hello à l’aide de hello `azure network nic show` commande :
 
 ```azurecli
 azure network nic show myResourceGroup myNic1 --json | jq '.'
@@ -1043,7 +1043,7 @@ Output:
 }
 ```
 
-Nous créons maintenant la deuxième carte réseau en la liant à nouveau à notre pool d’adresses IP principal. Cette fois, la deuxième règle NAT autorise le trafic SSH. L’exemple suivant permet de créer une carte d’interface réseau nommée `myNic2` :
+Maintenant nous créons hello seconde carte réseau, raccorder à nouveau dans le pool d’adresses IP tooour back-end. Cette règle NAT hello deuxième autorise le trafic SSH. Hello exemple suivant crée une carte réseau nommée `myNic2`:
 
 ```azurecli
 azure network nic create --resource-group myResourceGroup --location westeurope \
@@ -1053,14 +1053,14 @@ azure network nic create --resource-group myResourceGroup --location westeurope 
 ```
 
 ## <a name="create-a-network-security-group-and-rules"></a>Créer un groupe de sécurité réseau et les règles associées
-Nous allons à présent créer un groupe de sécurité réseau et les règles de trafic entrant qui régissent l’accès à la carte d’interface réseau. Un groupe de sécurité réseau peut être appliqué à une carte d’interface réseau ou à un sous-réseau. Vous définissez des règles pour contrôler le flux de trafic vers et à partir de vos machines virtuelles. L’exemple suivant permet de créer un groupe de sécurité réseau nommé `myNetworkSecurityGroup` :
+Désormais nous créer un groupe de sécurité réseau, hello des règles de trafic entrant qui régissent l’accès toohello carte Un groupe de sécurité réseau peut être appliqué tooa carte réseau ou sous-réseau. Vous définissez un flux de hello toocontrol de règles de trafic vers et depuis vos machines virtuelles. Hello exemple suivant crée un groupe de sécurité réseau nommé `myNetworkSecurityGroup`:
 
 ```azurecli
 azure network nsg create --resource-group myResourceGroup --location westeurope \
   --name myNetworkSecurityGroup
 ```
 
-Ajoutons la règle de trafic entrant pour le groupe de sécurité réseau afin d’autoriser les connexions entrantes sur le port 22 (pour prendre en charge le protocole SSH). L’exemple suivant permet de créer une règle nommée `myNetworkSecurityGroupRuleSSH` pour autoriser le trafic TCP sur le port 22 :
+Vous allez ajouter la règle de trafic entrant hello pour hello NSG tooallow connexions sur le port 22 (toosupport SSH) entrantes. Hello exemple suivant crée une règle nommée `myNetworkSecurityGroupRuleSSH` tooallow TCP sur le port 22 :
 
 ```azurecli
 azure network nsg rule create --resource-group myResourceGroup \
@@ -1069,7 +1069,7 @@ azure network nsg rule create --resource-group myResourceGroup \
   --name myNetworkSecurityGroupRuleSSH
 ```
 
-À présent, nous ajoutons la règle de trafic entrant pour le groupe de sécurité réseau afin d’autoriser les connexions entrantes sur le port 80 (pour prendre en charge le trafic web). L’exemple suivant permet de créer une règle nommée `myNetworkSecurityGroupRuleHTTP` pour autoriser le trafic TCP sur le port 80 :
+Maintenant vous allez ajouter la règle de trafic entrant hello pour hello NSG tooallow connexions sur le port 80 (trafic web de toosupport) entrantes. Hello exemple suivant crée une règle nommée `myNetworkSecurityGroupRuleHTTP` tooallow TCP sur le port 80 :
 
 ```azurecli
 azure network nsg rule create --resource-group myResourceGroup \
@@ -1079,12 +1079,12 @@ azure network nsg rule create --resource-group myResourceGroup \
 ```
 
 > [!NOTE]
-> La règle de trafic entrant est un filtre pour les connexions réseau entrantes. Dans cet exemple, nous lions le NSG à la carte d’interface réseau (NIC) virtuelle des machines virtuelles, ce qui signifie que toute demande adressée au port 22 est transmise à la carte d’interface réseau sur notre machine virtuelle. Cette règle de trafic entrant concerne une connexion réseau, et non à un point de terminaison, comme dans le cas de déploiements classiques. Pour ouvrir un port, vous devez laisser la commande `--source-port-range` définie sur « \* » (valeur par défaut) afin d’accepter les demandes entrantes de **tous** les ports demandeurs. Ces ports sont généralement dynamiques.
+> règle de trafic entrant Hello est un filtre pour les connexions réseau entrantes. Dans cet exemple, nous lions hello NSG toohello machines virtuelles carte réseau virtuelle, ce qui signifie que n’importe quel tooport demande 22 est passée via toohello carte réseau sur votre machine virtuelle. Cette règle de trafic entrant concerne une connexion réseau, et non à un point de terminaison, comme dans le cas de déploiements classiques. tooopen un port, vous devez laisser hello `--source-port-range` défini trop '\*' (valeur par défaut de hello) tooaccept les demandes d’entrantes **n’importe quel** port de demande. Ces ports sont généralement dynamiques.
 >
 >
 
-## <a name="bind-to-the-nic"></a>Liaison avec la carte d’interface réseau
-Liez le groupe de sécurité réseau aux cartes d’interface réseau. Vous devez connecter les cartes d’interface réseau avec le groupe de sécurité réseau. Exécutez les deux commandes, pour connecter les deux cartes d’interface réseau :
+## <a name="bind-toohello-nic"></a>Lier toohello carte réseau
+Lier hello NSG toohello cartes réseau. Nous avons besoin de ses cartes réseau tooconnect à notre groupe de sécurité réseau. Exécutez les deux commandes, toohook des deux de ses cartes réseau :
 
 ```azurecli
 azure network nic set --resource-group myResourceGroup --name myNic1 \
@@ -1097,32 +1097,32 @@ azure network nic set --resource-group myResourceGroup --name myNic2 \
 ```
 
 ## <a name="create-an-availability-set"></a>Créer un groupe à haute disponibilité
-Les groupes à haute disponibilité aident à diffuser vos machines virtuelles sur des domaines d’erreur et des domaines de mise à niveau. Nous allons maintenant voir comment créer un groupe à haute disponibilité pour vos machines virtuelles. L’exemple suivant permet de créer un groupe à haute disponibilité nommé `myAvailabilitySet` :
+Les groupes à haute disponibilité aident à diffuser vos machines virtuelles sur des domaines d’erreur et des domaines de mise à niveau. Nous allons maintenant voir comment créer un groupe à haute disponibilité pour vos machines virtuelles. Hello exemple suivant crée un groupe à haute disponibilité nommée `myAvailabilitySet`:
 
 ```azurecli
 azure availset create --resource-group myResourceGroup --location westeurope
   --name myAvailabilitySet
 ```
 
-Les domaines d’erreur désignent un groupe de machines virtuelles partageant une source d’alimentation et un commutateur réseau communs. Par défaut, les machines virtuelles configurées dans votre groupe à haute disponibilité sont réparties entre trois domaines de défaillance au maximum. Ainsi, en cas de problème matériel dans l’un de ces domaines d’erreur, aucune machine virtuelle exécutant votre application n’est affectée. Azure distribue automatiquement les machines virtuelles sur les domaines d’erreur lorsque vous les placez dans un groupe à haute disponibilité.
+Les domaines d’erreur désignent un groupe de machines virtuelles partageant une source d’alimentation et un commutateur réseau communs. Par défaut, hello virtuels qui sont configurés au sein de votre jeu de disponibilité sont séparées à travers des domaines d’erreur toothree. Hello est qu’un problème matériel dans un de ces domaines d’erreur n’affecte pas de chaque machine virtuelle qui exécute votre application. Azure distribue automatiquement les machines virtuelles entre les domaines d’erreur hello lorsque vous les placez dans un ensemble de disponibilité.
 
-Les domaines de mise à niveau indiquent les groupes de machines virtuelles et les équipements physiques sous-jacents pouvant être redémarrés en même temps. L’ordre de redémarrage des domaines de mise à jour peut ne pas être séquentiel au cours de la maintenance planifiée, mais les mises à niveau sont redémarrées une par une. Cette fois encore, Azure distribue automatiquement vos machines virtuelles entre les domaines de mise à niveau lorsque vous les placez dans un site de disponibilité.
+Indiquent les domaines de mise à niveau des ordinateurs virtuels et le matériel physique sous-jacent qui peut être redémarré à hello même temps. commande Hello dans lequel les domaines de mise à niveau sont redémarrés peut ne pas être séquentiel pendant les maintenances, mais la mise à niveau qu’un seul est redémarré à la fois. Cette fois encore, Azure distribue automatiquement vos machines virtuelles entre les domaines de mise à niveau lorsque vous les placez dans un site de disponibilité.
 
-Vous pouvez obtenir des informations supplémentaires sur [la gestion de la disponibilité des machines virtuelles](manage-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+En savoir plus sur [gestion de la disponibilité de hello de machines virtuelles](manage-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 
-## <a name="create-the-linux-vms"></a>Créer les machines virtuelles Linux
-Vous avez créé les ressources de stockage et de réseau pour prendre en charge des machines virtuelles accessibles par Internet. Créons maintenant ces machines virtuelles et sécurisons-les avec une clé SSH sans mot de passe. Dans ce cas précis, nous allons créer une machine virtuelle Ubuntu basée sur la dernière version LTS. Nous recherchons les informations de cette image en utilisant `azure vm image list`, comme décrit dans [Recherche d’images de machine virtuelle Azure](../windows/cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+## <a name="create-hello-linux-vms"></a>Créer des machines virtuelles Linux hello
+Vous avez créé des ressources de stockage et réseau hello machines virtuelles de toosupport accessible via Internet. Créons maintenant ces machines virtuelles et sécurisons-les avec une clé SSH sans mot de passe. Dans ce cas, nous allons toocreate une VM Ubuntu selon hello LTS plus récente. Nous recherchons les informations de cette image en utilisant `azure vm image list`, comme décrit dans [Recherche d’images de machine virtuelle Azure](../windows/cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 
-Nous avons sélectionné une image à l’aide de la commande `azure vm image list westeurope canonical | grep LTS`. Dans ce cas, nous utilisons `canonical:UbuntuServer:16.04.0-LTS:16.04.201608150`. Pour le dernier champ, nous passons `latest` afin de toujours obtenir la build la plus récente. (La chaîne que nous utilisons est `canonical:UbuntuServer:16.04.0-LTS:16.04.201608150`).
+Nous avons sélectionné une image à l’aide de commande hello `azure vm image list westeurope canonical | grep LTS`. Dans ce cas, nous utilisons `canonical:UbuntuServer:16.04.0-LTS:16.04.201608150`. Pour le dernier champ de hello, nous passons `latest` afin que dans les futures hello, nous obtenons toujours build la plus récente hello. (nous utilisons la chaîne hello est `canonical:UbuntuServer:16.04.0-LTS:16.04.201608150`).
 
-Cette étape est familière à toute personne ayant déjà créé une paire de clés publique et privée SSH RSA sur Linux ou Mac à l’aide de la commande **ssh-keygen -t rsa -b 2048**. Si vous ne disposez pas de toutes les paires de clés de certificat dans votre répertoire `~/.ssh` , vous pouvez les créer ainsi :
+Cette étape est familier tooanyone qui a déjà créé un ssh rsa publique et privée paire de clés sur Linux ou Mac à l’aide de **ssh-keygen - t rsa -b 2048**. Si vous ne disposez pas de toutes les paires de clés de certificat dans votre répertoire `~/.ssh` , vous pouvez les créer ainsi :
 
-* Automatiquement à l’aide de l’option `azure vm create --generate-ssh-keys` .
-* Manuellement en suivant [les instructions pour les créer vous-même](mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+* Automatiquement, à l’aide de hello `azure vm create --generate-ssh-keys` option.
+* Manuellement, à l’aide [hello instructions toocreate les vous-même](mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 
-Vous pouvez également utiliser la méthode `--admin-password` pour authentifier vos connexions SSH une fois la machine virtuelle créée. Cette méthode est généralement moins sécurisée.
+Vous pouvez également utiliser hello `--admin-password` méthode tooauthenticate vos connexions SSH après hello machine virtuelle est créée. Cette méthode est généralement moins sécurisée.
 
-Nous créons la machine virtuelle en regroupant toutes nos ressources et informations avec la commande `azure vm create` :
+Nous créons hello machine virtuelle en rassemblant tous nos ressources et informations avec hello `azure vm create` commande :
 
 ```azurecli
 azure vm create \
@@ -1144,22 +1144,22 @@ Output:
 
 ```azurecli
 info:    Executing command vm create
-+ Looking up the VM "myVM1"
-info:    Verifying the public key SSH file: /home/ahmet/.ssh/id_rsa.pub
-info:    Using the VM Size "Standard_DS1"
-info:    The [OS, Data] Disk or image configuration requires storage account
-+ Looking up the storage account mystorageaccount
-+ Looking up the availability set "myAvailabilitySet"
++ Looking up hello VM "myVM1"
+info:    Verifying hello public key SSH file: /home/ahmet/.ssh/id_rsa.pub
+info:    Using hello VM Size "Standard_DS1"
+info:    hello [OS, Data] Disk or image configuration requires storage account
++ Looking up hello storage account mystorageaccount
++ Looking up hello availability set "myAvailabilitySet"
 info:    Found an Availability set "myAvailabilitySet"
-+ Looking up the NIC "myNic1"
++ Looking up hello NIC "myNic1"
 info:    Found an existing NIC "myNic1"
-info:    Found an IP configuration with virtual network subnet id "/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/myVnet/subnets/mySubnet" in the NIC "myNic1"
+info:    Found an IP configuration with virtual network subnet id "/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/myVnet/subnets/mySubnet" in hello NIC "myNic1"
 info:    This is an NIC without publicIP configured
-info:    The storage URI 'https://mystorageaccount.blob.core.windows.net/' will be used for boot diagnostics settings, and it can be overwritten by the parameter input of '--boot-diagnostics-storage-uri'.
+info:    hello storage URI 'https://mystorageaccount.blob.core.windows.net/' will be used for boot diagnostics settings, and it can be overwritten by hello parameter input of '--boot-diagnostics-storage-uri'.
 info:    vm create command OK
 ```
 
-Vous pouvez alors vous connecter immédiatement à votre machine virtuelle à l’aide de vos clés SSH par défaut. Assurez-vous de spécifier le port approprié dans la mesure où nous transitions par l’équilibreur de charge. (Pour notre première machine virtuelle, nous configurons la règle NAT pour transférer le port 4222 vers votre machine virtuelle.)
+Vous pouvez connecter tooyour VM immédiatement à l’aide de vos clés SSH par défaut. Assurez-vous que vous spécifiez le port approprié de hello dans la mesure où nous transmettons via l’équilibrage de charge hello. (Pour notre premier ordinateur virtuel, nous configurons hello NAT règle tooforward port 4222 tooour machine virtuelle.)
 
 ```bash
 ssh ops@mypublicdns.westeurope.cloudapp.azure.com -p 4222
@@ -1168,11 +1168,11 @@ ssh ops@mypublicdns.westeurope.cloudapp.azure.com -p 4222
 Output:
 
 ```bash
-The authenticity of host '[mypublicdns.westeurope.cloudapp.azure.com]:4222 ([xx.xx.xx.xx]:4222)' can't be established.
+hello authenticity of host '[mypublicdns.westeurope.cloudapp.azure.com]:4222 ([xx.xx.xx.xx]:4222)' can't be established.
 ECDSA key fingerprint is 94:2d:d0:ce:6b:fb:7f:ad:5b:3c:78:93:75:82:12:f9.
-Are you sure you want to continue connecting (yes/no)? yes
-Warning: Permanently added '[mypublicdns.westeurope.cloudapp.azure.com]:4222,[xx.xx.xx.xx]:4222' (ECDSA) to the list of known hosts.
-Welcome to Ubuntu 16.04.1 LTS (GNU/Linux 4.4.0-34-generic x86_64)
+Are you sure you want toocontinue connecting (yes/no)? yes
+Warning: Permanently added '[mypublicdns.westeurope.cloudapp.azure.com]:4222,[xx.xx.xx.xx]:4222' (ECDSA) toohello list of known hosts.
+Welcome tooUbuntu 16.04.1 LTS (GNU/Linux 4.4.0-34-generic x86_64)
 
  * Documentation:  https://help.ubuntu.com
  * Management:     https://landscape.canonical.com
@@ -1187,7 +1187,7 @@ Welcome to Ubuntu 16.04.1 LTS (GNU/Linux 4.4.0-34-generic x86_64)
 ops@myVM1:~$
 ```
 
-Vous allez maintenant créer votre deuxième machine virtuelle en procédant de la même manière :
+Pour commencer, créez votre deuxième machine virtuelle Bonjour même manière :
 
 ```azurecli
 azure vm create \
@@ -1205,7 +1205,7 @@ azure vm create \
   --admin-username azureuser
 ```
 
-Et vous pouvez à présent utiliser la commande `azure vm show myResourceGroup myVM1` pour examiner ce que vous avez créé. À ce stade, vous exécutez vos machines virtuelles Ubuntu derrière un équilibreur de charge dans Azure auquel vous pouvez uniquement vous connecter avec votre paire de clés SSH (car les mots de passe sont désactivés). Vous pouvez installer nginx ou httpd, déployer une application web et voir le flux de trafic transitant par l’équilibreur de charge vers toutes les machines virtuelles.
+Et vous pouvez maintenant utiliser hello `azure vm show myResourceGroup myVM1` commande tooexamine à ce que vous avez créé. À ce stade, vous exécutez vos machines virtuelles Ubuntu derrière un équilibreur de charge dans Azure auquel vous pouvez uniquement vous connecter avec votre paire de clés SSH (car les mots de passe sont désactivés). Vous pouvez installer nginx ou httpd, déployer une application web et voir hello trafic circule tooboth d’équilibrage de charge hello de machines virtuelles de hello.
 
 ```azurecli
 azure vm show --resource-group myResourceGroup --name myVM1
@@ -1215,8 +1215,8 @@ Output:
 
 ```azurecli
 info:    Executing command vm show
-+ Looking up the VM "TestVM1"
-+ Looking up the NIC "myNic1"
++ Looking up hello VM "TestVM1"
++ Looking up hello NIC "myNic1"
 data:    Id                              :/subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.Compute/virtualMachines/myVM1
 data:    ProvisioningState               :Succeeded
 data:    Name                            :myVM1
@@ -1269,23 +1269,23 @@ info:    vm show command OK
 ```
 
 
-## <a name="export-the-environment-as-a-template"></a>Exportation de l’environnement en tant que modèle
-Maintenant que vous avez créé cet environnement, que se passe-t-il si vous souhaitez créer un environnement de développement supplémentaire avec les mêmes paramètres ou un environnement de production correspondant ? Resource Manager utilise des modèles JSON qui définissent tous les paramètres pour votre environnement. Vous créez des environnements entiers en faisant référence à ce modèle JSON. Vous pouvez [créer manuellement des modèles JSON](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) ou exporter un environnement existant qui créera le modèle JSON pour vous :
+## <a name="export-hello-environment-as-a-template"></a>Environnement de hello d’exportation en tant que modèle
+Maintenant que vous avez créé à cet environnement, que se passe-t-il si vous souhaitez toocreate à un environnement de développement supplémentaire avec hello mêmes paramètres, ou un environnement de production qui lui correspond ? Le Gestionnaire de ressources utilise des modèles JSON qui définissent tous les paramètres de hello pour votre environnement. Vous créez des environnements entiers en faisant référence à ce modèle JSON. Vous pouvez [créer manuellement des modèles JSON](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) ou exporter un modèle JSON environnement toocreate hello existant pour vous :
 
 ```azurecli
 azure group export --name myResourceGroup
 ```
 
-Cette commande crée le fichier `myResourceGroup.json` dans votre répertoire de travail actuel. Lorsque vous créez un environnement à partir de ce modèle, vous êtes invité à fournir les noms de toutes les ressources, dont l’équilibreur de charge, les interfaces réseau ou les machines virtuelles. Vous pouvez entrer ces éléments dans votre fichier de modèle en ajoutant le paramètre `-p` ou `--includeParameterDefaultValue` à la commande `azure group export` indiquée ci-dessus. Modifiez votre modèle JSON pour spécifier les noms de ressources, ou [créez un fichier parameters.json](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) qui spécifie les noms de ressources.
+Cette commande crée hello `myResourceGroup.json` fichier dans votre répertoire de travail actuel. Lorsque vous créez un environnement à partir de ce modèle, vous êtes invité pour tous les noms de ressource hello, y compris les noms de hello pour l’équilibrage de charge hello, les interfaces réseau ou les machines virtuelles. Vous pouvez remplir ces noms dans votre fichier de modèle en ajoutant hello `-p` ou `--includeParameterDefaultValue` paramètre toohello `azure group export` commande qui a été indiqué précédemment. Modifier les noms de ressources JSON modèle toospecify hello, ou [créer un fichier parameters.json](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) qui spécifie les noms de ressources hello.
 
-Pour créer un nouvel environnement à partir de votre modèle :
+toocreate un environnement à partir de votre modèle :
 
 ```azurecli
 azure group deployment create --resource-group myNewResourceGroup \
   --template-file myResourceGroup.json
 ```
 
-Vous pouvez lire la section contenant [plus de détails sur le déploiement à partir de modèles](../../resource-group-template-deploy-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). Découvrez notamment comment mettre à jour des environnements de manière incrémentielle, utiliser le fichier de paramètres et accéder aux modèles à partir d’un emplacement de stockage unique.
+Vous souhaiterez peut-être tooread [plus sur la façon toodeploy à partir de modèles](../../resource-group-template-deploy-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). Découvrez comment tooincrementally les environnements de mise à jour, utilisez le fichier de paramètres hello et accéder aux modèles à partir d’un emplacement de stockage unique.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Vous voici en mesure de commencer à utiliser plusieurs composants réseau et machines virtuelles. Vous pouvez utiliser cet exemple d’environnement pour générer votre application en utilisant les composants de base présentés ici.
+Vous êtes maintenant prêt toobegin utilisation de plusieurs composants réseau et les machines virtuelles. Vous pouvez utiliser cette toobuild d’environnement exemple votre application à l’aide de composants hello introduits ici.

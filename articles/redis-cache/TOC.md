@@ -33,18 +33,18 @@
 ###[Fournisseur d’état de session](cache-aspnet-session-state-provider.md)
 ###[Fournisseur de caches de sortie](cache-aspnet-output-cache-provider.md)
 ## Gérer
-###[Configurer dans le portail](cache-configure.md)
+###[Configurer dans le portail de hello](cache-configure.md)
 ###[Configurer la géoréplication](cache-how-to-geo-replication.md)
 ###[Importer/Exporter des données](cache-how-to-import-export-data.md)
 ###[Reboot](cache-administration.md#reboot)
 ###[Planification de mises à jour](cache-administration.md#schedule-updates)
 ## Surveiller et résoudre des problèmes
-###[Surveiller dans le portail](cache-how-to-monitor.md)
+###[Surveiller dans le portail de hello](cache-how-to-monitor.md)
 ###[Résoudre les problèmes de cache](cache-how-to-troubleshoot.md)
 ###[Définir des alertes pour les exceptions](cache-how-to-monitor.md#operations-and-alerts)
-## Scale
-###[Mettre à jour vers une taille et un niveau différents](cache-how-to-scale.md)
-###[Utiliser un cluster Redis pour augmenter/diminuer la taille des instances](cache-how-to-premium-clustering.md)
+## Mettre à l'échelle
+###[Taille différente tooa de mise à jour et de couche](cache-how-to-scale.md)
+###[Utilisez Redis cluster tooscale in/out](cache-how-to-premium-clustering.md)
 ## Intégrer avec Spring Boot
 ###[Utiliser une application d’initialisation de Spring Boot avec le Cache Redis Azure](cache-java-spring-boot-initializer-with-redis-cache.md)
 

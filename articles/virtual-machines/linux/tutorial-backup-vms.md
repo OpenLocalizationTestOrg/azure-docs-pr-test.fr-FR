@@ -16,15 +16,15 @@ ms.workload: infrastructure
 ms.date: 07/27/2017
 ms.author: cynthn
 ms.custom: mvc
-ms.openlocfilehash: d0cbf7883a8737bcb10e9dd251c9792a12993f77
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 7c00392d5185a2f067f2ee2717529dcbde1e71f5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="back-up-linux--virtual-machines-in-azure"></a>Sauvegarder des machines virtuelles Linux dans Azure
 
-Vous pouvez protéger vos données en effectuant des sauvegardes à intervalles réguliers. Azure Backup crée des points de récupération stockés dans des coffres de récupération géoredondants. Lorsque vous effectuez une restauration à partir d’un point de récupération, vous pouvez restaurer la machine virtuelle entière ou seulement des fichiers spécifiques. Cet article explique comment restaurer un fichier unique sur une machine virtuelle Linux exécutant nginx. Si vous ne disposez d’aucune machine virtuelle, vous pouvez en créer une à l’aide du [démarrage rapide Linux](quick-create-cli.md). Ce didacticiel vous montre comment effectuer les opérations suivantes :
+Vous pouvez protéger vos données en effectuant des sauvegardes à intervalles réguliers. Azure Backup crée des points de récupération stockés dans des coffres de récupération géoredondants. Lorsque vous restaurez à partir d’un point de récupération, vous pouvez restaurer hello toute machine virtuelle ou des fichiers spécifiques. Cet article explique comment toorestore un seul fichier tooa nginx en cours d’exécution de Linux VM. Si vous n’avez pas encore un toouse de machine virtuelle, vous pouvez en créer un à l’aide de hello [Linux quickstart](quick-create-cli.md). Ce didacticiel vous explique comment effectuer les opérations suivantes :
 
 > [!div class="checklist"]
 > * Créer une sauvegarde de machine virtuelle
@@ -35,43 +35,43 @@ Vous pouvez protéger vos données en effectuant des sauvegardes à intervalles 
 
 ## <a name="backup-overview"></a>Présentation de la sauvegarde
 
-Lorsque le service Azure Backup lance une sauvegarde, il déclenche l’extension de sauvegarde pour prendre un instantané à un moment donné. Le service Azure Backup utilise l’extension _VMSnapshotLinux_ dans Linux. L’extension est installée lors de la première sauvegarde de machine virtuelle si cette machine virtuelle est exécutée. Si la machine virtuelle n’est pas en cours d’exécution, le service Sauvegarde prend un instantané du stockage sous-jacent (car aucune écriture de l’application n’a lieu pendant l’arrêt de la machine virtuelle).
+Hello service Azure Backup lorsqu’une sauvegarde, il déclenche hello extension de sauvegarde tootake un instantané de point-à-temps. Hello service Azure Backup utilise hello _VMSnapshotLinux_ extension dans Linux. extension de Hello est installée au cours de la première sauvegarde de machine virtuelle hello si hello machine virtuelle est en cours d’exécution. Si hello machine virtuelle ne fonctionne pas, hello service de sauvegarde prend un instantané de hello stockage sous-jacent (dans la mesure où aucune écriture de l’application se produire lors de la machine virtuelle est arrêtée de hello).
 
-Par défaut, le service Azure Backup effectue une sauvegarde cohérente avec le système de fichiers pour la machine virtuelle Linux, bien qu’il puisse être configuré pour effectuer une [sauvegarde cohérente avec les applications en utilisant des infrastructures pré-script et post-script](https://docs.microsoft.com/azure/backup/backup-azure-linux-app-consistent). Après que le service Sauvegarde Azure a pris l’instantané, les données sont transférées vers le coffre de sauvegarde. Pour optimiser l’efficacité, le service identifie et transfère uniquement les blocs de données qui ont été modifiés depuis la sauvegarde précédente.
+Par défaut, Azure Backup prend une sauvegarde cohérente de système de fichiers pour Linux VM, mais il peut être configuré tootake [sauvegarde cohérente d’application à l’aide du script avant et après script framework](https://docs.microsoft.com/azure/backup/backup-azure-linux-app-consistent). Une fois que hello service Azure Backup prend un instantané de hello, données de hello sont transférées toohello coffre. l’efficacité toomaximize, hello service identifie et transfère uniquement les blocs de hello de données qui ont été modifiés depuis la sauvegarde précédente de hello.
 
-Une fois le transfert de données terminé, l’instantané est supprimé et un point de récupération est créé.
+Lorsque le transfert de données hello est terminé, les instantanés hello sont supprimé et un point de récupération est créé.
 
 
 ## <a name="create-a-backup"></a>Création d'une sauvegarde
-Créez une simple sauvegarde quotidienne planifiée dans un coffre Recovery Services. 
+Créer une simple planifiée quotidienne sauvegarde tooa coffre Recovery Services. 
 
-1. Connectez-vous au [portail Azure](https://portal.azure.com/).
-2. Dans le menu de gauche, sélectionnez **Machines virtuelles**. 
-3. Dans la liste, sélectionnez la machine virtuelle que vous souhaitez sauvegarder.
-4. Dans le panneau de la machine virtuelle, au niveau de la section **Paramètres**, cliquez sur **Sauvegarde**. Le panneau **Activer la sauvegarde** s’ouvre.
-5. Dans **Coffre Recovery Services**, cliquez sur **Créer** et fournissez le nom du nouveau coffre. Un coffre est créé dans le même groupe de ressources et au même emplacement que la machine virtuelle.
-6. Cliquez sur **Stratégie de sauvegarde**. Pour cet exemple, conservez les valeurs par défaut et cliquez sur **OK**.
-7. Dans le panneau **Activer la sauvegarde**, cliquez sur **Activer la sauvegarde**. Cette opération crée une sauvegarde quotidienne selon la planification par défaut.
-10. Pour créer un point de récupération initial, dans le panneau **Sauvegarde**, cliquez sur **Sauvegarder maintenant**.
-11. Dans le panneau **Sauvegarder maintenant**, cliquez sur l’icône de calendrier. Utilisez le contrôle de calendrier pour sélectionner le dernier jour de conservation de ce point de récupération, puis cliquez sur **Sauvegarder**.
-12. Le panneau **Sauvegarde** de votre machine virtuelle affiche le nombre de points de récupération terminés.
+1. Connectez-vous à toohello [portail Azure](https://portal.azure.com/).
+2. Dans le menu hello hello gauche, sélectionnez **virtuels**. 
+3. À partir de la liste de hello, sélectionnez un tooback de machine virtuelle.
+4. Dans Panneau de machine virtuelle hello, Bonjour **paramètres** , cliquez sur **sauvegarde**. Hello **Active la sauvegarde** panneau s’ouvre.
+5. Dans **de coffre Recovery Services**, cliquez sur **nouvel** et fournir le nom hello pour le coffre hello. Un nouvel archivage est créé dans hello même groupe de ressources et l’emplacement en tant que machine virtuelle de hello.
+6. Cliquez sur **Stratégie de sauvegarde**. Pour cet exemple, conservez les valeurs par défaut hello et cliquez sur **OK**.
+7. Sur hello **Active la sauvegarde** panneau, cliquez sur **activez la sauvegarde**. Cette opération crée une sauvegarde quotidienne selon une planification par défaut hello.
+10. toocreate un point de récupération initial sur hello **sauvegarde** cliquez sur le panneau **sauvegarder maintenant**.
+11. Sur hello **sauvegarde maintenant** panneau, cliquez sur icône du calendrier hello, utilisez Bonjour calendrier contrôle tooselect Bonjour dernier jour de ce point de récupération est conservé, puis cliquez sur **sauvegarde**.
+12. Bonjour **sauvegarde** panneau pour votre machine virtuelle, vous verrez nombre hello de points de récupération qui sont terminées.
 
     ![Points de récupération](./media/tutorial-backup-vms/backup-complete.png)
 
-La première sauvegarde prend environ 20 minutes. Une fois la sauvegarde terminée, passez à l’étape suivante de ce didacticiel.
+première sauvegarde de Hello prend environ 20 minutes. Continuer toohello la partie suivante de ce didacticiel, une fois la sauvegarde terminée.
 
 ## <a name="restore-a-file"></a>Restaurer un fichier
 
-Si vous supprimez un fichier ou y apportez des modifications accidentellement, vous pouvez utiliser la récupération de fichier pour restaurer le fichier à partir de votre coffre de sauvegarde. La récupération de fichier utilise un script qui s’exécute sur la machine virtuelle pour monter le point de récupération en tant que lecteur local. Ces lecteurs restent montés pendant 12 heures pour vous permettre de copier des fichiers à partir du point de récupération et de les restaurer sur la machine virtuelle.  
+Si vous supprimez ou rendre le fichier tooa des modifications, vous pouvez utiliser le fichier de récupération de fichier toorecover hello votre coffre de sauvegarde. Récupération de fichiers utilise un script qui s’exécute sur hello machine virtuelle, point de récupération toomount hello en tant que lecteur local. Ces lecteurs restera montés pendant 12 heures, afin que vous pouvez copier les fichiers de point de récupération hello et restaurez-les toohello machine virtuelle.  
 
-Dans cet exemple, nous allons vous montrer comment récupérer la page web nginx par défaut /var/www/html/index.nginx-debian.html. Ici, l’adresse IP publique de notre machine virtuelle est *13.69.75.209*. Vous pouvez trouver l’adresse IP de votre machine virtuelle en procédant comme suit :
+Dans cet exemple, nous montrons comment toorecover hello par défaut nginx page web /var/www/html/index.nginx-debian.html. Hello une adresse IP publique de votre machine virtuelle dans cet exemple est *13.69.75.209*. Vous pouvez trouver l’adresse IP de hello de votre machine virtuelle à l’aide :
 
  ```bash 
  az vm show --resource-group myResourceGroup --name myVM -d --query [publicIps] --o tsv
  ```
 
  
-1. Sur votre ordinateur local, ouvrez un navigateur et tapez l’adresse IP publique de votre machine virtuelle pour afficher la page web nginx par défaut.
+1. Sur votre ordinateur local, ouvrez un navigateur et tapez dans hello adresse IP publique de votre page web de machine virtuelle toosee hello par défaut nginx.
 
     ![Page web nginx par défaut](./media/tutorial-backup-vms/nginx-working.png)
 
@@ -86,78 +86,78 @@ Dans cet exemple, nous allons vous montrer comment récupérer la page web nginx
     sudo rm /var/www/html/index.nginx-debian.html
     ```
     
-4. Sur votre ordinateur local, actualisez le navigateur en appuyant sur CTRL + F5 pour confirmer que cette page nginx par défaut a disparu.
+4. Sur votre ordinateur local, actualisez le navigateur de hello en appuyant sur CTRL + F5 toosee qui nginx page par défaut a disparu.
 
     ![Page web nginx par défaut](./media/tutorial-backup-vms/nginx-broken.png)
     
-1. Sur votre ordinateur local, connectez-vous au [portail Azure](https://portal.azure.com/).
-6. Dans le menu de gauche, sélectionnez **Machines virtuelles**. 
-7. Sélectionnez la machine virtuelle dans la liste.
-8. Dans le panneau de la machine virtuelle, au niveau de la section **Paramètres**, cliquez sur **Sauvegarde**. Le panneau **Sauvegarde** s’ouvre. 
-9. Dans le menu en haut du panneau, sélectionnez **Récupération de fichier**. Le panneau **Récupération de fichier** s’affiche.
-10. Dans **Étape 1 : Sélectionner un point de récupération**, sélectionnez un point de récupération dans la liste déroulante.
-11. Dans **Étape 2 : Télécharger le script pour parcourir et restaurer des fichiers**, cliquez sur le bouton **Télécharger le fichier exécutable**. Enregistrez le fichier téléchargé sur votre ordinateur local.
-7. Cliquez sur **Télécharger le script** pour télécharger le fichier de script localement.
-8. Ouvrez une invite bash et tapez la commande suivante, en remplaçant *Linux_myVM_05-05-2017.sh* par le chemin et le nom de fichier du script que vous avez téléchargé, *azureuser* par le nom d’utilisateur de la machine virtuelle, et *13.69.75.209* par l’adresse IP publique de votre machine virtuelle.
+1. Sur votre ordinateur local, connectez-vous en toohello [portail Azure](https://portal.azure.com/).
+6. Dans le menu hello hello gauche, sélectionnez **virtuels**. 
+7. Dans la liste hello, sélectionnez hello machine virtuelle.
+8. Dans Panneau de machine virtuelle hello, Bonjour **paramètres** , cliquez sur **sauvegarde**. Hello **sauvegarde** panneau s’ouvre. 
+9. Dans le menu hello haut hello du Panneau de hello, sélectionnez **récupération de fichier**. Hello **récupération de fichier** panneau s’ouvre.
+10. Dans **étape 1 : sélectionnez le point de récupération**, sélectionnez un point de récupération à partir de hello de liste déroulante.
+11. Dans **étape 2 : télécharger le script toobrowse et récupérer les fichiers**, cliquez sur hello **télécharger le fichier exécutable** bouton. Enregistrer l’ordinateur local du tooyour hello fichier téléchargé.
+7. Cliquez sur **télécharger le script** fichier de script hello toodownload localement.
+8. Ouvrez un Bonjour Bash invite et le type suivant, en remplaçant *Linux_myVM_05-05-2017.sh* avec hello corriger le chemin d’accès et nom de fichier de script hello que vous avez téléchargé, *azureuser* UserName hello pour hello machine virtuelle et *13.69.75.209* avec l’adresse IP publique de hello pour votre machine virtuelle.
     
     ```bash
     scp Linux_myVM_05-05-2017.sh azureuser@13.69.75.209:
     ```
     
-9. Sur votre ordinateur local, ouvrez une connexion SSH vers la machine virtuelle.
+9. Sur votre ordinateur local, ouvrez un toohello de connexion SSH machine virtuelle.
 
     ```bash
     ssh 13.69.75.209
     ```
     
-10. Sur votre machine virtuelle, ajoutez des autorisations d’exécution au fichier de script.
+10. Sur votre machine virtuelle, ajoutez d’exécuter le fichier de script toohello autorisations.
 
     ```bash
     chmod +x Linux_myVM_05-05-2017.sh
     ```
     
-11. Sur votre machine virtuelle, exécutez le script pour monter le point de récupération comme un système de fichiers.
+11. Sur votre machine virtuelle, exécutez le point de récupération hello hello script toomount comme un système de fichiers.
 
     ```bash
     ./Linux_myVM_05-05-2017.sh
     ```
     
-12. La sortie du script vous donne le chemin d’accès pour le point de montage. Le résultat ressemble à ce qui suit :
+12. Hello de sortie à partir de l’offre de script hello que Hello de chemin d’accès pour le point de montage hello. sortie de Hello ressemble toothis similaire :
 
     ```bash
     Microsoft Azure VM Backup - File Recovery
     ______________________________________________
                           
-    Connecting to recovery point using ISCSI service...
+    Connecting toorecovery point using ISCSI service...
     
     Connection succeeded!
     
-    Please wait while we attach volumes of the recovery point to this machine...
+    Please wait while we attach volumes of hello recovery point toothis machine...
                          
-    ************ Volumes of the recovery point and their mount paths on this machine ************
+    ************ Volumes of hello recovery point and their mount paths on this machine ************
 
     Sr.No.  |  Disk  |  Volume  |  MountPath 
 
     1)  | /dev/sdc  |  /dev/sdc1  |  /home/azureuser/myVM-20170505191055/Volume1
 
-    ************ Open File Explorer to browse for files. ************
+    ************ Open File Explorer toobrowse for files. ************
 
-    After recovery, to remove the disks and close the connection to the recovery point, please click 'Unmount Disks' in step 3 of the portal.
+    After recovery, tooremove hello disks and close hello connection toohello recovery point, please click 'Unmount Disks' in step 3 of hello portal.
 
-    Please enter 'q/Q' to exit...
+    Please enter 'q/Q' tooexit...
     ```
 
-12. Sur votre machine virtuelle, copiez la page web nginx par défaut du point de montage vers l’emplacement où vous avez supprimé le fichier.
+12. Sur votre machine virtuelle, copiez la page web de hello nginx par défaut à partir de toowhere arrière du point de montage hello vous avez supprimé les fichier hello.
 
     ```bash
     sudo cp ~/myVM-20170505191055/Volume1/var/www/html/index.nginx-debian.html /var/www/html/
     ```
     
-17. Sur votre ordinateur local, ouvrez l’onglet du navigateur dans lequel vous êtes connecté à l’adresse IP de la machine virtuelle affichant la page nginx par défaut. Appuyez sur CTRL + F5 pour actualiser la page du navigateur. Vous devriez maintenant voir que la page par défaut fonctionne à nouveau.
+17. Sur votre ordinateur local, ouvrez l’onglet de navigateur hello où vous êtes connecté adresse toohello de hello VM écran hello nginx par défaut de la page. Appuyez sur CTRL + F5 page du navigateur toorefresh hello. Vous devez maintenant voir que hello page par défaut fonctionne à nouveau.
 
     ![Page web nginx par défaut](./media/tutorial-backup-vms/nginx-working.png)
 
-18. Sur votre ordinateur local, revenez à l’onglet du navigateur pour afficher le portail Azure, puis dans **Étape 3 : Démonter les disques après la récupération**, cliquez sur le bouton **Démonter les disques**. Si vous avez omis cette étape, la connexion au point de montage est automatiquement fermée après 12 heures. Une fois ces 12 heures écoulées, vous devez télécharger un nouveau script pour créer un nouveau point de montage.
+18. Sur votre ordinateur local, revenir en arrière toohello onglet du navigateur pour hello portail Azure et dans **étape 3 : démontage de disques de hello après la récupération** cliquez sur hello **démontage de disques** bouton. Si vous oubliez toodo cette étape, point de montage toohello hello connexion est automatiquement fermée après 12 heures. Après les 12 heures, vous devez toodownload une nouvelle toocreate de script un nouveau point de montage.
 
 
 ## <a name="next-steps"></a>Étapes suivantes
@@ -169,7 +169,7 @@ Dans ce didacticiel, vous avez appris à :
 > * Planifier une sauvegarde quotidienne
 > * Restaurer un fichier à partir d’une sauvegarde
 
-Passez au didacticiel suivant pour en savoir plus sur la surveillance des machines virtuelles.
+Avance toohello toolearn de didacticiel suivant sur l’analyse des ordinateurs virtuels.
 
 > [!div class="nextstepaction"]
 > [Surveiller les machines virtuelles](tutorial-monitoring.md)

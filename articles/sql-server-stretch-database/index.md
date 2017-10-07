@@ -1,6 +1,6 @@
 ---
-title: "Documentation Azure SQL Server Stretch Database - Didacticiels | Microsoft Docs"
-description: "Découvrez comment utiliser SQL Server Stretch Database pour migrer des données brutes en toute sécurité vers Azure sans modifier les requêtes ou les applications. Didacticiels et autres documents."
+title: "aaaAzure Documentation de base de données SQL Server Stretch - didacticiels | Documents Microsoft"
+description: "Découvrez comment toouse données de base de données SQL Server Stretch toomigrate à froid en toute sécurité tooAzure sans modifier les requêtes ou applications. Didacticiels et autres documents."
 services: sql-server-stretch-database
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: bb5e0fa9981133a77c235a42be369b3bbacb4ac0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2b009d80224a62d940ec8b11de22ad8c0865d869
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 #<a name="sql-server-stretch-database-documentation"></a>Documentation SQL Server Stretch Database
 
-Découvrez comment utiliser SQL Server Stretch Database pour migrer vos données brutes vers le cloud Azure en toute sécurité et de manière transparente. Les didacticiels et autres documents vous permettent de mettre en place une disponibilité rentable pour les bases de données comportant des données peu utilisées sans le recours à la modification de requêtes ou d’applications existantes.
+Découvrez comment étirer de SQL Server toouse de la base de données toomigrate des données à froid en toute transparence et en toute sécurité toohello Azure cloud. Didacticiels et autres documentation vous permet de que définir la disponibilité économique pour les bases de données avec peu de données utilisées sans nécessiter de modifications tooexisting requêtes ou applications.
 
 
 <ul class="panelContent cardsFTitle">
@@ -89,7 +89,7 @@ Découvrez comment utiliser SQL Server Stretch Database pour migrer vos donnée
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Prise en main de l’Assistant SQL Server Stretch Database</h3>
+                        <h3>Prise en main de l’aide d’Assistant de base de données SQL Server Stretch hello</h3>
                     </div>
                 </div>
             </div>

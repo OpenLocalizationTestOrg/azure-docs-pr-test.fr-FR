@@ -1,5 +1,5 @@
 ---
-title: "Redémarrage de maintenance pour les machines virtuelles Linux dans Azure | Microsoft Docs"
+title: "aaaVM le redémarrage de maintenance pour les machines virtuelles Linux dans Azure | Documents Microsoft"
 description: "Redémarrage de maintenance pour les machines virtuelles Linux."
 services: virtual-machines-linux
 documentationcenter: 
@@ -15,102 +15,102 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/27/2017
 ms.author: zivr
-ms.openlocfilehash: 25beee157bb869067e562189f86312dab173e68f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 41caa2e56740cdfa95d2ea67278e5c1d15a174c5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="vm-restarting-maintenance"></a>Redémarrage de maintenance de machine virtuelle
 
-Dans quelques rares cas, vos machines virtuelles sont redémarrées en raison d’une maintenance prévue sur l’infrastructure sous-jacente. Cela ayant un impact sur la disponibilité de vos machines virtuelles hébergées dans Azure, les éléments suivants peuvent maintenant être utilisés :
+Il existe quelques cas où vos machines virtuelles sont redémarrés en raison de toohello de maintenance tooplanned sous-jacent d’infrastructure. Sa disponibilité toothe impact non négligeable de vos machines virtuelles hébergées dans Azure, hello suivantes sont désormais disponibles pour vous toouse :
 
--   Notification envoyée au moins 30 minutes avant l’impact.
+-   Notification envoyée au moins 30 jours avant l’impact de hello.
 
--   Visibilité sur les fenêtres de maintenance par machine virtuelle.
+-   Fenêtres de maintenance visibilité toohello par chaque ordinateur virtuel.
 
--   Flexibilité et contrôle dans la définition de l’heure exacte de l’impact de la maintenance sur vos machines virtuelles.
+-   Flexibilité et contrôle dans la définition de l’heure exacte de hello pour avoir un impact sur vos machines virtuelles de la maintenance.
 
-La maintenance dans Microsoft Azure est planifiée en itérations. Les itérations initiales ont une portée moindre dans le but de diminuer le risque impliqué dans le déploiement de nouveaux correctifs et fonctionnalités. Les itérations ultérieures peuvent s’étendre sur plusieurs régions (jamais la même paire de régions). Une machine virtuelle est incluse dans une itération de maintenance unique. Si une itération est abandonnée, les machines virtuelles restantes sont incluses dans une future itération.
+La maintenance dans Microsoft Azure est planifiée en itérations. Itérations initiales ont la plus petite portée ordre tooreduce hello les risques impliqués dans le déploiement de fonctionnalités et les nouveaux correctifs. Itérations ultérieures peuvent être réparties entre plusieurs régions (jamais de hello même paire de région). Une machine virtuelle est incluse dans une itération de maintenance unique. Si une itération est abandonnée, les machines virtuelles restantes sont incluses dans une future itération.
 
-L’itération de maintenance planifiée comprend deux phases : une fenêtre de maintenance préemptive et une fenêtre de maintenance planifiée.
+itération de la maintenance planifiée Hello comprend deux phases : fenêtre de Maintenance Pre-emptive et une fenêtre de Maintenance planifiée.
 
-La **fenêtre de maintenance préemptive** vous offre la flexibilité de lancer la maintenance sur vos machines virtuelles. De cette manière, vous pouvez déterminer le moment où vos machines virtuelles sont affectées, la séquence de la mise à jour et le délai entre chaque machine virtuelle. Vous pouvez interroger chaque machine virtuelle pour voir si une maintenance est prévue et consulter le résultat de votre dernière demande de maintenance.
+Hello **fenêtre de Maintenance Pre-emptive** assure la maintenance de hello hello flexibilité tooinitiate sur vos machines virtuelles. En procédant ainsi, vous pouvez déterminer si vos machines virtuelles sont affectés, hello de séquence de mise à jour hello et durée hello entre chaque machine virtuelle en cours de maintenance. Vous pouvez interroger les toosee de chaque machine virtuelle si elle est planifiée pour la maintenance et vérifier les résultats hello de votre dernière demande de maintenance initié.
 
-La **fenêtre de maintenance planifiée** est utilisée quand Azure a planifié une maintenance sur vos machines virtuelles. Pendant cet intervalle de temps, qui suit la fenêtre de maintenance préemptive, vous pouvez toujours interroger la fenêtre de maintenance, mais vous ne pouvez plus orchestrer la maintenance.
+Hello **fenêtre de Maintenance planifiée** est lorsque Azure a planifié vos machines virtuelles pour la maintenance de hello. Au cours de cette fenêtre de temps, ce qui suit la fenêtre de maintenance préventive, vous pouvez tout de même interroger hello fenêtre de maintenance, mais n’est plus maintenance de hello tooorchestrate en mesure de.
 
 ## <a name="availability-considerations-during-planned-maintenance"></a>Considérations relatives à la disponibilité lors de la maintenance planifiée 
 
 ### <a name="paired-regions"></a>Régions jumelées
 
-Chaque région Azure est associée à une autre région au sein de la même région géographique, constituant ainsi des paires régionales. Lors de l’exécution de maintenance, Azure met à jour uniquement les instances de machine virtuelle d’une seule région de la paire. Par exemple, lors de la mise à jour des ordinateurs virtuels de l’Amérique du Nord central, Azure ne met à jour dans le même temps aucune machine virtuelle de l’Amérique du Nord méridionale. La mise à jour est planifiée à un autre moment, en activant le basculement ou l’équilibrage de charge entre les régions. En revanche, les autres régions, l’Europe du Nord par exemple, peuvent faire l’objet d’une maintenance en même temps que la région Est des États-Unis.
+Chaque région Azure est associée à une autre région de hello même geography, créant ainsi une paire régionale. Lors de l’exécution de maintenance, Azure met à jour uniquement les instances de Machine virtuelle hello dans une région de la paire. Par exemple, lors de la mise à jour hello ordinateurs virtuels de l’Amérique du Nord, Azure ne mettra pas à jour les Machines virtuelles dans l’Amérique du Sud à hello même temps. La mise à jour est planifiée à un autre moment, en activant le basculement ou l’équilibrage de charge entre les régions. Toutefois, autres régions comme Europe du Nord peut être en cours de maintenance à hello même temps que les États-Unis.
 En savoir plus sur les [paires de régions Azure](https://docs.microsoft.com/azure/best-practices-availability-paired-regions).
 
 ### <a name="single-instance-vms-vs-availability-set-or-vm-scale-set"></a>Machines virtuelles à instance unique et groupe à haute disponibilité ou groupe de machines virtuelles identiques
 
-Lorsque vous déployez une charge de travail à l’aide de machines virtuelles dans Azure, vous pouvez créer des machines virtuelles dans un groupe à haute disponibilité afin de fournir une haute disponibilité pour votre application. Dans une telle configuration, vous avez la garantie qu’au moins une des machines virtuelles sera disponible pendant une panne ou un événement de maintenance.
+Lors du déploiement d’une charge de travail à l’aide de machines virtuelles dans Azure, vous pouvez créer hello machines virtuelles au sein d’un groupe à haute disponibilité dans l’application tooyour de commandes tooprovide haute disponibilité. Dans une telle configuration, vous avez la garantie qu’au moins une des machines virtuelles sera disponible pendant une panne ou un événement de maintenance.
 
-Au sein d’un groupe à haute disponibilité, les machines virtuelles individuelles sont réparties sur un maximum de 20 domaines de mise à jour. Lors de la maintenance planifiée, un seul domaine de mise à jour est affecté à un moment donné. L’ordre des domaines de mise à jour affectés peut ne pas être consécutif pendant la maintenance planifiée. Pour les machines virtuelles uniques (qui ne font pas partie d’un groupe à haute disponibilité), il n’existe aucun moyen de prédire ou de déterminer les machines virtuelles qui seront affectées en même temps, ni leur nombre.
+Au sein d’un ensemble de disponibilité, des ordinateurs virtuels individuels sont réparties sur les domaines de mise à jour too20. Lors de la maintenance planifiée, un seul domaine de mise à jour est affecté à un moment donné. commande Hello de domaines de mise à jour un impact sur les ne peut pas procèdent de manière séquentielle pendant les maintenances planifiées. Pour unique une instance de machines virtuelles (n’appartenant pas à haute disponibilité), il n’existe aucun moyen toopredict ou déterminer quel et le nombre de machines virtuelles sont affectés ensemble.
 
-Les groupes de machines virtuelles identiques sont des ressources Azure Compute que vous pouvez utiliser pour déployer et gérer un ensemble de machines virtuelles identiques en tant que ressource unique.
-Le groupe identique offre des garanties similaires à un groupe à haute disponibilité sous la forme de domaines de mise à jour. 
+Machines virtuelles identiques sont une ressource de calcul Azure qui vous permet de toodeploy et gérer un ensemble de machines virtuelles identiques en tant qu’une seule ressource.
+ensemble d’échelle Hello fournit des garanties similaires tooan groupe à haute disponibilité dans le formulaire de domaines de mise à jour. 
 
-Pour plus d’informations sur la configuration des machines virtuelles pour une haute disponibilité, consultez [*Gérer la disponibilité de vos machines virtuelles Windows*](manage-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+Pour plus d’informations sur la configuration de vos ordinateurs virtuels pour la haute disponibilité, consultez [ *administrer la disponibilité de vos machines virtuelles de Windows hello des*](manage-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 
 ### <a name="scheduled-events"></a>Événements planifiés
 
-Azure Metadata Service vous permet d'obtenir des informations relatives à votre machine virtuelle hébergée dans Azure. Événements planifiés, une des catégories présentées, affiche des informations concernant les événements à venir (par exemple, un redémarrage) afin que votre application puisse s’y préparer et limiter ainsi l’interruption.
+Metadata Service Azure vous permet de toodiscover d’informations sur votre Machine virtuelle hébergée dans Azure. Les événements, une des catégories hello exposée, des informations concernant les événements à venir surfaces planifiés (par exemple, redémarrez) afin que votre application peut préparer et limiter interruption.
 
-Pour plus d’informations sur les événements planifiés, consultez [Azure Metadata Service - Événements planifiés](../virtual-machines-scheduled-events.md).
+Pour plus d’informations sur les événements planifiés, consultez trop[Service de métadonnées Azure - événements planifiés](../virtual-machines-scheduled-events.md).
 
 ## <a name="maintenance-discovery-and-notifications"></a>Notifications et détection de maintenance
 
-La planification de la maintenance est visible par les clients au niveau des machines virtuelles individuelles. Vous pouvez utiliser le portail Azure, l’API, PowerShell ou l’interface de ligne de commande pour interroger les fenêtres de maintenance préemptive et planifiée. Attendez-vous en outre à recevoir une notification (par e-mail) dans l’éventualité où une (ou plusieurs) de vos machines virtuelles serait affectée au cours du processus.
+Planification de maintenance est toocustomers visibles au niveau de hello d’ordinateurs virtuels individuels. Vous pouvez utiliser Azure portal, tooquery API, PowerShell ou CLI pour les fenêtres de maintenance préventive et planifiée. En outre, attendre à recevoir une notification (messagerie) en cas de hello où un (ou plus) de vos ordinateurs virtuels sont affectés au cours du processus de hello.
 
-Les phases de maintenance préemptive et planifiée commencent par une notification. Attendez-vous à recevoir une seule notification par abonnement Azure. La notification est envoyée à l’administrateur de l’abonnement et au co-administrateur par défaut. Vous pouvez également configurer le public concerné par la notification de maintenance.
+Les phases de maintenance préemptive et planifiée commencent par une notification. Attendez tooreceive une seule notification par abonnement Azure. notification de Hello est envoyée à l’abonnement toohello admin et co-admin par défaut. Vous pouvez également configurer audience hello pour la notification de maintenance.
 
-### <a name="view-the-maintenance-window-in-the-portal"></a>Afficher la fenêtre de maintenance dans le portail 
+### <a name="view-hello-maintenance-window-in-hello-portal"></a>Fenêtre de maintenance de vue hello dans le portail de hello 
 
-Vous pouvez utiliser le portail Azure et rechercher les machines virtuelles sur lesquelles une maintenance est planifiée.
+Vous pouvez utiliser hello portail Azure et rechercher des machines virtuelles de la maintenance planifiées.
 
-1.  Connectez-vous au portail Azure.
+1.  Se connecter toohello portail Azure.
 
-2.  Cliquez sur le panneau **Machines virtuelles** pour l’ouvrir.
+2.  Cliquez sur et ouvrez hello **virtuels** panneau.
 
-3.  Cliquez sur le bouton **Colonnes** pour ouvrir la liste des colonnes disponibles
+3.  Cliquez sur hello **colonnes** liste hello tooopen de toochoose de colonnes disponibles à partir de
 
-4.  Sélectionnez et ajoutez les colonnes **Fenêtre de maintenance**. La fenêtre de maintenance apparaît pour les machines virtuelles sur lesquelles une maintenance est planifiée. Une fois la maintenance terminée ou abandonnée, la fenêtre de maintenance n’est plus présentée.
+4.  Sélectionnez et ajoutez hello **fenêtre de Maintenance** colonnes. Machines virtuelles qui sont planifiées pour la maintenance ont des fenêtres de maintenance hello exposés. Une fois la maintenance terminée ou abandonnée, la fenêtre de maintenance n’est plus présentée.
 
-### <a name="query-maintenance-details-using-the-azure-api"></a>Interroger les détails de la maintenance à l’aide de l’API Azure
+### <a name="query-maintenance-details-using-hello-azure-api"></a>Détails de maintenance de requête à l’aide de hello API Azure
 
-Utilisez l’[API Obtenir les informations de la machine virtuelle](https://docs.microsoft.com/rest/api/compute/virtualmachines/virtualmachines-get) et recherchez le mode instance pour découvrir les détails de la maintenance sur une machine virtuelle individuelle. La réponse inclut les éléments suivants :
+Hello d’utilisation [obtenir des informations sur les ordinateurs virtuels API](https://docs.microsoft.com/rest/api/compute/virtualmachines/virtualmachines-get) et recherchez hello vue toodiscover hello maintenance détails de l’instance sur une machine virtuelle individuelle. réponse de Hello inclut hello suivant d’éléments :
 
-  - isCustomerInitiatedMaintenanceAllowed : indique si vous pouvez lancer un redéploiement préemptif sur la machine virtuelle.
+  - isCustomerInitiatedMaintenanceAllowed : indique si vous pouvez désormais lancer préemptive redéployer sur hello machine virtuelle.
 
-  - preMaintenanceWindowStartTime : heure de début de la fenêtre de maintenance préemptive.
+  - preMaintenanceWindowStartTime : hello heure de début de la fenêtre de maintenance préventive hello.
 
-  - preMaintenanceWindowEndTime : heure de fin de la fenêtre de maintenance préemptive. Une fois ce délai passé, vous ne pourrez plus lancer de maintenance sur cette machine virtuelle.
+  - preMaintenanceWindowEndTime : hello heure de fin de la fenêtre de maintenance préventive hello. Après cette heure, vous ne pourra plus être maintenance en mesure de tooinitiate sur cet ordinateur virtuel.
     
-  - maintenanceWindowStartTime : heure de début de la fenêtre de maintenance planifiée lorsque vos machines virtuelles sont affectées.
+  - maintenanceWindowStartTime : hello heure de début de fenêtre de maintenance planifiée hello lorsque votre machine virtuelle sont affectés.
 
-  - maintenanceWindowEndTime : heure de fin de la fenêtre de maintenance planifiée.
+  - maintenanceWindowEndTime : hello heure de fin de la fenêtre de maintenance planifiée hello.
   
-  - lastOperationResultCode : résultat de votre dernière opération Maintenance-Redeploy.
+  - lastOperationResultCode : hello les résultats de votre dernière opération de redéploiement de la Maintenance.
  
-  - lastOperationMessage : message décrivant le résultat de votre dernière opération Maintenance-Redeploy.
+  - lastOperationMessage : résultat de hello décrivant de votre dernière opération de redéploiement de la Maintenance du Message.
 
 
 ## <a name="pre-emptive-redeploy"></a>Redéploiement préemptif
 
-L’action de redéploiement préemptif offre la possibilité de contrôler le moment où la maintenance est appliquée à vos machines virtuelles dans Azure. La maintenance planifiée commence par une fenêtre de maintenance préemptive où vous pouvez déterminer l’heure exacte de redémarrage de chacune de vos machines virtuelles. Cette fonctionnalité est notamment utile dans les cas d’utilisation suivants :
+Action de redéployer préemptives fournit hello flexibilité toocontrol hello heure maintenance VMs tooyour appliqué dans Azure. Maintenance planifiée commence par une fenêtre de maintenance préventive où vous pouvez décider à l’heure exacte de hello pour chacun de vos toobe de machines virtuelles redémarré. Cette fonctionnalité est notamment utile dans les cas d’utilisation suivants :
 
--   La maintenance doit être coordonnée avec le client final.
+-   Maintenance besoin toobe coordonné avec le client de fin hello.
 
--   La fenêtre de maintenance planifiée proposée par Azure n’est pas suffisante.
-    Il est possible que la fenêtre tombe sur la période la plus chargée de la semaine ou qu’elle soit trop longue.
+-   fenêtre de maintenance planifiée Hello proposé par Azure n’est pas suffisant.
+    Cela peut être que fenêtre hello produit toobe hello le temps de la semaine, ou il est trop long.
 
--   Pour les applications à plusieurs instances ou plusieurs niveaux, un délai suffisant est nécessaire entre deux machines virtuelles ou un ordre précis doit être suivi.
+-   Pour plusieurs instances ou les applications multiniveau, vous avez besoin de suffisamment de temps entre les deux machines virtuelles ou d’une certaine toofollow de séquence.
 
-Lorsque vous appelez un redéploiement préemptif sur une machine virtuelle, celle-ci est déplacée vers un nœud déjà mis à jour, puis remise sous tension, conservant toutes vos options de configuration et ressources associées. Ce faisant, le disque temporaire est perdu et les adresses IP dynamiques associées à l’interface réseau virtuelle sont mises à jour.
+Lorsque vous appelez pour redéployer préemptive sur une machine virtuelle, il déplace hello VM tooan déjà mis à jour du nœud et ensuite l’alimente, en conservant toutes vos options de configuration et les ressources associées. Ainsi, le disque temporaire de hello est perdu et associé à des adresses IP dynamiques interface réseau virtuelle sont mises à jour.
 
-Le redéploiement préemptif est activé une fois par machine virtuelle. Si une erreur survient au cours du processus, l’opération est abandonnée, la machine virtuelle n’est pas affectée et elle est exclue de l’itération de maintenance planifiée. Un nouveau planning vous sera fourni ultérieurement et une nouvelle occasion de planifier et d’organiser l’impact sur vos machines virtuelles vous sera proposée.
+Le redéploiement préemptif est activé une fois par machine virtuelle. S’il existe une erreur pendant le processus de hello, hello opération est abandonnée, hello VM n’est pas affecté et il est exclu de l’itération de maintenance hello planifié. Vous être contacté en une date ultérieure, avec une planification et proposé une nouvelle opportunité tooschedule et séquence hello impact sur vos machines virtuelles.

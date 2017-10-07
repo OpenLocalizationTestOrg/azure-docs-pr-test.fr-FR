@@ -1,6 +1,6 @@
 ---
-title: "Ajouter une source d’événement à votre environnement Azure Time Series Insights | Microsoft Docs"
-description: "Dans ce didacticiel, vous connectez une source d’événement à votre environnement Time Series Insights"
+title: "aaaAdd un environnement de Azure temps série Insights événement source tooyour | Documents Microsoft"
+description: "Dans ce didacticiel, vous vous connectez à un environnement de temps série Insights tooyour événement source"
 keywords: 
 services: time-series-insights
 documentationcenter: 
@@ -15,41 +15,41 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 04/21/2017
 ms.author: omravi
-ms.openlocfilehash: ffa2eaf3680e68ac14aabf49b6308caeb173fd43
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 817df5e81cb4dc3d7376914a4651aabebadbcc32
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-an-event-source-for-your-time-series-insights-environment-using-the-ibiza-portal"></a>Créer une source d’événement pour votre environnement Time Series Insights à l’aide du portail Ibiza
+# <a name="create-an-event-source-for-your-time-series-insights-environment-using-hello-ibiza-portal"></a>Créer une source d’événements pour votre environnement d’un aperçu en temps série à l’aide du portail de Ibiza hello
 
-La source d’événement Time Series Insights est dérivée d’un service Broker pour les événements tel que les concentrateurs d’événements Azure. Time Series Insights se connecte directement aux sources d’événement, en recevant le flux de données sans demander aux utilisateurs d’écrire une seule ligne de code. Actuellement, Time Series Insights prend en charge les concentrateurs d’événements Azure et les IoT Hubs. À l’avenir, plusieurs sources d’événements seront ajoutées.
+La source d’événement Time Series Insights est dérivée d’un service Broker pour les événements tel que les concentrateurs d’événements Azure. Temps série Insights se connecte directement les Sources de tooEvent, absorber les flux de données hello sans nécessiter d’utilisateurs toowrite une seule ligne de code. Actuellement, Time Series Insights prend en charge les concentrateurs d’événements Azure et les IoT Hubs. Bonjour future, plusieurs Sources d’événements est ajoutés.
 
-## <a name="steps-to-add-an-event-source-to-your-environment"></a>Étapes pour ajouter une source d’événement à votre environnement
+## <a name="steps-tooadd-an-event-source-tooyour-environment"></a>Étapes tooadd un environnement de tooyour événement source
 
-1.  Connectez-vous au [portail Ibiza](https://portal.azure.com).
-2.  Cliquez sur « Toutes les ressources » dans le menu de gauche du portail Ibiza.
+1.  Connectez-vous à toohello [portail Ibiza](https://portal.azure.com).
+2.  Cliquez sur « Toutes les ressources » dans le menu hello hello situé à gauche du portail de Ibiza hello.
 3.  Sélectionnez votre environnement Time Series Insights.
 
-  ![Créer la source d’événement Time Series Insights](media/add-event-source/getstarted-create-event-source-1.png)
+  ![Créer source d’événement hello temps série Insights](media/add-event-source/getstarted-create-event-source-1.png)
 
 4.  Sélectionnez « Sources d’événement », puis cliquez sur « + Ajouter ».
 
-  ![Créer la source d’événement Time Series Insights - Détails](media/add-event-source/getstarted-create-event-source-2.png)
+  ![Créer la source d’événement de temps série Insights hello - détails](media/add-event-source/getstarted-create-event-source-2.png)
 
-5.  Spécifiez le nom de la source d’événement. Ce nom est associé à tous les événements provenant de cette source d’événement et est disponible au moment de la requête.
-6.  Sélectionnez un concentrateur d’événements à partir de la liste des ressources du concentrateur d’événements de l’abonnement actuel. Sinon, choisissez l’option d’importation « Fournir des paramètres Event Hub manuellement » pour spécifier un concentrateur d’événements d’un autre abonnement. Les événements doivent être publiés au format JSON.
-7.  Sélectionnez la stratégie disposant de l’autorisation de lecture sur le concentrateur d’événements.
+5.  Spécifiez le nom hello de source d’événements hello. Ce nom est associé à tous les événements provenant de cette source d’événement et est disponible au moment de la requête.
+6.  Sélectionnez un concentrateur d’événements à partir de la liste hello des ressources de concentrateur d’événements dans l’abonnement actif de hello. Sinon choisissez option d’importation « paramètres du concentrateur d’événements fournir manuellement « toospecify un concentrateur d’événements dans un autre abonnement. Les événements doivent être publiés au format JSON.
+7.  Sélectionnez la stratégie de lecture dans le concentrateur d’événements hello.
 8.  Spécifiez un groupe de consommateurs du concentrateur d’événements.
 
   > [!IMPORTANT]
-  > Assurez-vous que ce groupe de consommateurs n’est pas utilisé par un autre service (par exemple, la tâche Stream Analytics ou un autre environnement Time Series Insights). Si le groupe de consommateurs est utilisé par d’autres services, l’opération de lecture est affectée pour cet environnement et les autres services. Si vous utilisez le groupe de consommateurs « $Default », ceci peut entraîner une réutilisation potentielle par d’autres lecteurs.
+  > Assurez-vous que ce groupe de consommateurs n’est pas utilisé par un autre service (par exemple, une tâche Stream Analytics ou un autre environnement Time Series Insights). Si le groupe de consommateurs est utilisé par d’autres services, lisez opération affectée pour cet environnement et hello d’autres services. Si vous utilisez « $Default » en tant que groupe de consommateurs hello, il risque de réutilisation de toopotential par les autres lecteurs.
 
 9.  Cliquez sur « Créer ».
 
-Après la création de la source d’événement, Time Series Insights démarre automatiquement la diffusion de données dans votre environnement.
+Après la création d’une source d’événement hello, temps série Insights démarre automatiquement en continu des données dans votre environnement.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* [Envoyer des événements](time-series-insights-send-events.md) à la source d’événement
+* [Envoyer des événements](time-series-insights-send-events.md) toohello source d’événement
 * Afficher votre environnement dans le [Portail Time Series Insights](https://insights.timeseries.azure.com)

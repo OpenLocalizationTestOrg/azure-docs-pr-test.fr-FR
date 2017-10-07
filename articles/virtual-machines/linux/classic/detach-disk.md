@@ -1,6 +1,6 @@
 ---
-title: "Détacher un disque d’une machine virtuelle Linux dans Azure | Microsoft Docs"
-description: "Apprenez à détacher un disque de données d'une machine virtuelle Azure créée à l'aide du modèle de déploiement classique."
+title: "aaaDetach un disque à partir d’un VM Linux dans Azure | Documents Microsoft"
+description: "En savoir plus toodetach un disque de données à partir d’une machine virtuelle Azure créé à l’aide du modèle de déploiement classique hello."
 services: virtual-machines-linux
 documentationcenter: 
 author: iainfoulds
@@ -15,21 +15,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/09/2017
 ms.author: iainfou
-ms.openlocfilehash: ac982bc153d523de29940af9b9e2609a39cd48a6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d0ae362ab756dc4636bf5574deca7471223fb7f8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-detach-a-disk-from-a-linux-virtual-machine"></a>Détachement d'un disque d'une machine virtuelle Linux
+# <a name="how-toodetach-a-disk-from-a-linux-virtual-machine"></a>Comment tooDetach un disque à partir d’une Machine virtuelle Linux
 > [!IMPORTANT] 
-> Azure dispose de deux modèles de déploiement différents pour créer et utiliser des ressources : [le déploiement Resource Manager et le déploiement classique](../../../resource-manager-deployment-model.md). Cet article traite du modèle de déploiement classique. Pour la plupart des nouveaux déploiements, Microsoft recommande d’utiliser le modèle Resource Manager.
+> Azure dispose de deux modèles de déploiement différents pour créer et utiliser des ressources : [le déploiement Resource Manager et le déploiement classique](../../../resource-manager-deployment-model.md). Cet article décrit à l’aide du modèle de déploiement classique hello. Microsoft recommande que la plupart des nouveaux déploiements de modèle du Gestionnaire de ressources hello.
 
 [!INCLUDE [howto-detach-disk-windows-linux](../../../../includes/howto-detach-disk-linux.md)]
 
 ## <a name="next-steps"></a>Étapes suivantes
-Vous trouverez plus d’informations sur l’utilisation de votre machine virtuelle Linux dans les articles suivants :
+Vous pouvez en savoir plus sur l’utilisation de votre VM Linux Bonjour suivant des articles :
 
-* [Attacher un disque de données à une machine virtuelle Linux](attach-disk.md)
-* [Utilisation de l’interface CLI Azure avec le modèle de déploiement classique](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2)
+* [Comment tooAttach un tooa de disque de données Machine virtuelle Linux](attach-disk.md)
+* [À l’aide de hello CLI d’Azure avec le modèle de déploiement classique de hello](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2)
 

@@ -1,5 +1,5 @@
 ---
-title: Activer des dumps de tas pour les services Hadoop sur HDInsight - Azure | Microsoft Docs
+title: "segment de mémoire aaaEnable vide des services Hadoop dans HDInsight - Azure | Documents Microsoft"
 description: "Activez les services Hadoop à partir des clusters HDInsight sur Linux pour le débogage et l’analyse."
 services: hdinsight
 documentationcenter: 
@@ -16,24 +16,24 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: larryfr
-ms.openlocfilehash: 59942e989d622c2486edf181d76e13344c71e6f9
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 49e30f26e1a83f19e068e9da253b5548caec70d9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="enable-heap-dumps-for-hadoop-services-on-linux-based-hdinsight"></a>Activer les dumps de tas pour les services Hadoop sur HDInsight sur Linux
 
 [!INCLUDE [heapdump-selector](../../includes/hdinsight-selector-heap-dump.md)]
 
-Les dumps de tas contiennent un instantané de la mémoire de l’application, y compris des valeurs des variables au moment de la création du dump. Ils sont donc utiles pour diagnostiquer les problèmes qui se produisent au moment de l’exécution.
+Dumps de tas contiennent un instantané de la mémoire de l’application hello, y compris les valeurs hello des variables au moment de hello création du dump hello. Ils sont donc utiles pour diagnostiquer les problèmes qui se produisent au moment de l’exécution.
 
 > [!IMPORTANT]
-> Les étapes décrites dans ce document fonctionnent uniquement avec les clusters HDInsight sur Linux. Linux est le seul système d’exploitation utilisé sur HDInsight version 3.4 ou supérieure. Pour plus d’informations, consultez [Suppression de HDInsight sous Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+> Hello étapes décrites dans ce document fonctionnent uniquement avec les clusters HDInsight qui utilisent Linux. Linux est hello seul système d’exploitation utilisé sur HDInsight version 3.4 ou supérieure. Pour plus d’informations, consultez [Suppression de HDInsight sous Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 
 ## <a name="whichServices"></a>Services
 
-Vous pouvez activer des dumps de tas pour les services suivants :
+Vous pouvez activer les vidages de segment de mémoire pour hello suivant services :
 
 * **hcatalog** - tempelton
 * **hive** - hiveserver2, metastore, derbyserver
@@ -41,94 +41,94 @@ Vous pouvez activer des dumps de tas pour les services suivants :
 * **yarn** - resourcemanager, nodemanager, timelineserver
 * **hdfs** - datanode, secondarynamenode, namenode
 
-Vous pouvez également activer les dumps de tas du mappage et réduire les processus exécutés par HDInsight.
+Vous pouvez également activer les vidages sur le segment de mémoire pour la carte de hello et réduire les processus qui s’exécutaient par HDInsight.
 
 ## <a name="configuration"></a>Présentation de la configuration du dump du tas
 
-Les dumps de tas sont activés par la transmission d’options (parfois appelées options ou paramètres) à la machine virtuelle Java au démarrage d’un service. Pour la plupart des services Hadoop, vous pouvez modifier le script shell utilisé pour démarrer le service afin d’activer ces options.
+Les vidages de segment de mémoire sont activés en passant des options (parfois appelé opts, ou des paramètres) toohello JVM lorsqu’un service est démarré. Pour la plupart des services Hadoop, vous pouvez modifier hello shell script utilisé toostart hello service toopass ces options.
 
-Dans chaque script, il existe une exportation pour **\*\_OPTS**, qui contient les options transmises à la machine virtuelle Java. Par exemple, dans le script **hadoop-env.sh**, la ligne qui commence par `export HADOOP_NAMENODE_OPTS=` contient les options du service NameNode.
+Dans chaque script, il existe une exportation pour  **\* \_se**, qui contient les options hello passé toohello JVM. Par exemple, dans hello **hadoop-env.sh** un script, ligne hello qui commence par `export HADOOP_NAMENODE_OPTS=` contient les options de hello pour hello NameNode service.
 
-Les processus de mappage et de réduction sont légèrement différents, car ces opérations sont des processus enfant du service MapReduce. Chaque processus de mappage ou de réduction s’exécute dans un conteneur enfant et deux entrées contiennent les options JVM. Ils sont contenus dans **mapred-site.xml**:
+Mapper et réduire les processus sont légèrement différents, car ces opérations sont un processus enfant de hello MapReduce service. Chaque mapper ou de réduire les processus s’exécute dans un conteneur enfant, et il existe deux entrées qui contiennent des options de JVM hello. Ils sont contenus dans **mapred-site.xml**:
 
 * **mapreduce.admin.map.child.java.opts**
 * **mapreduce.admin.reduce.child.java.opts**
 
 > [!NOTE]
-> Nous recommandons d’utiliser Ambari pour modifier les scripts et les paramètres de mapred-site.xml, car Ambari gère la réplication des modifications sur les nœuds du cluster. Consultez la section [Utilisation d’Ambari](#using-ambari) pour connaître les étapes spécifiques.
+> Il est recommandé à l’aide de Ambari toomodify les deux hello scripts mapred-site.XML les paramètres, comme Ambari gérer la réplication des modifications entre les nœuds de cluster de hello. Consultez hello [à l’aide de Ambari](#using-ambari) section pour connaître la procédure.
 
 ### <a name="enable-heap-dumps"></a>Activer les dumps de tas
 
-L’option suivante active les dumps de tas quand OutOfMemoryError se produit :
+Hello option suivante permet les vidages de segment de mémoire lorsqu’un OutOfMemoryError se produit :
 
     -XX:+HeapDumpOnOutOfMemoryError
 
-Le **+** indique que cette option est activée. La valeur par défaut est désactivée.
+Hello  **+**  indique que cette option est activée. valeur par défaut de Hello est désactivé.
 
 > [!WARNING]
-> Les dumps de tas ne sont pas activés pour les services Hadoop sur HDInsight par défaut, car les fichiers dump peuvent être volumineux. Si vous les activez pour la résolution des problèmes, pensez à les désactiver après avoir reproduit le problème et regroupé les fichiers de vidage.
+> Vidages de segment de mémoire ne sont pas activés pour les services de Hadoop dans HDInsight par défaut, comme les fichiers de vidage hello peuvent être volumineux. Si vous activez les pour la résolution des problèmes, n’oubliez pas toodisable les fois que vous avez reproduit hello problème et les fichiers de vidage hello collectées.
 
 ### <a name="dump-location"></a>Emplacement du dump
 
-L’emplacement par défaut pour le fichier dump est le répertoire de travail actuel. Vous pouvez contrôler l’endroit de stockage du fichier à l’aide de l’option suivante :
+emplacement par défaut de Hello pour le fichier de vidage hello est répertoire de travail actuel hello. Vous pouvez contrôler où hello fichier est stocké à l’aide de hello option suivante :
 
     -XX:HeapDumpPath=/path
 
-Par exemple, l’utilisation de `-XX:HeapDumpPath=/tmp` entraîne le stockage des dumps dans le répertoire /tmp.
+Par exemple, à l’aide de `-XX:HeapDumpPath=/tmp` provoque hello vidages toobe est stocké dans le répertoire /tmp de hello.
 
 ### <a name="scripts"></a>Scripts
 
-Vous pouvez également déclencher un script quand **OutOfMemoryError** se produit. Par exemple, vous pouvez déclencher une notification pour signaler que l’erreur s’est produite. Utilisez l’option suivante pour déclencher un script quand __OutOfMemoryError__ survient :
+Vous pouvez également déclencher un script quand **OutOfMemoryError** se produit. Par exemple, déclencher une notification afin que vous sachiez qu’erreur hello s’est produite. Suivant de hello utilisez option tootrigger un script sur un __OutOfMemoryError__:
 
     -XX:OnOutOfMemoryError=/path/to/script
 
 > [!NOTE]
-> Hadoop étant un système distribué, tout script utilisé doit être placé sur tous les nœuds du cluster sur lequel le service s’exécute.
+> Hadoop étant un système distribué, n’importe quel script utilisé doit être placé sur tous les nœuds de cluster de hello hello service s’exécute sur.
 > 
-> Le script doit également être dans un emplacement accessible par le compte sur lequel s’exécute le service et doit fournir des autorisations d’exécution. Par exemple, vous souhaitez stocker les scripts dans `/usr/local/bin` et utiliser `chmod go+rx /usr/local/bin/filename.sh` pour accorder les autorisations de lecture et d’exécution.
+> script de Hello doit également être dans un emplacement qui est accessible par hello compte hello le service s’exécute en tant qu’et doit fournir des autorisations d’exécution. Par exemple, vous souhaiterez peut-être les scripts toostore dans `/usr/local/bin` et utiliser `chmod go+rx /usr/local/bin/filename.sh` toogrant autorisations read et execute.
 
 ## <a name="using-ambari"></a>Utilisation d’Ambari
 
-Pour modifier la configuration d’un service, procédez comme suit :
+configuration de hello toomodify pour un service, hello utilisation comme suit :
 
-1. Ouvrez l’interface utilisateur web Ambari de votre cluster. L’URL est https://NOMDEVOTRECLUSTER.azurehdinsight.net.
+1. Ouvrez hello Ambari web l’interface utilisateur pour votre cluster. URL de Hello est https://YOURCLUSTERNAME.azurehdinsight.net.
 
-    Quand vous y êtes invité, authentifiez-vous auprès du site en utilisant le nom du compte HTTP (par défaut : admin) et le mot de passe de votre cluster.
+    Lorsque vous y êtes invité, authentifier site toohello à l’aide du nom du compte hello HTTP (par défaut : administrateur) et le mot de passe pour votre cluster.
 
    > [!NOTE]
-   > Vous pouvez être invité une deuxième fois par Ambari à entrer le nom d’utilisateur et le mot de passe. Dans ce cas, saisissez simplement les mêmes nom de compte et mot de passe
+   > Vous pouvez être invité une deuxième fois par Ambari de mot de passe et le nom d’utilisateur hello. Dans ce cas, entrez hello du même nom de compte et mot de passe
 
-2. Dans la liste de gauche, sélectionnez la zone de service que vous souhaitez modifier. Par exemple, **HDFS**. Dans la zone centrale, sélectionnez l’onglet **Configurations** .
+2. À l’aide de la liste des hello sur hello gauche, sélectionnez hello service zone toomodify. Par exemple, **HDFS**. Dans la zone du centre de hello, sélectionnez hello **configurations** onglet.
 
     ![Image du site web Ambari avec l’onglet des configurations HDFS sélectionné](./media/hdinsight-hadoop-heap-dump-linux/serviceconfig.png)
 
-3. À l’aide de l’entrée **Filtre...**, entrez **opts**. Seuls les éléments contenant ce texte s’affichent.
+3. À l’aide de hello **filtre...**  entrée, entrez **opts**. Seuls les éléments contenant ce texte s’affichent.
 
     ![Liste de filtrage](./media/hdinsight-hadoop-heap-dump-linux/filter.png)
 
-4. Recherchez l’entrée **\*\_OPTS** du service pour lequel vous souhaitez activer les dumps de tas et ajoutez les options que vous souhaitez activer. Dans l’image suivante, j’ai ajouté `-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/` à l’entrée **HADOOP\_NAMENODE\_OPTS** :
+4. Recherche hello  **\* \_se** entrée pour service hello souhaité des dumps de tas tooenable pour et l’ajouter hello options que vous souhaitez tooenable. Bonjour suivant l’image, j’ai ajouté `-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/` toohello **HADOOP\_NAMENODE\_se** entrée :
 
     ![HADOOP_NAMENODE_OPTS with -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/](./media/hdinsight-hadoop-heap-dump-linux/opts.png)
 
    > [!NOTE]
-   > Quand vous activez les dumps de tas du processus enfant de mappage ou de réduction, cherchez les champs intitulés **mapreduce.admin.map.child.java.opts** et **mapreduce.admin.reduce.child.java.opts**.
+   > Lors de l’activation des dumps de tas pour hello mappent ou réduisent les processus enfant, recherchez les champs de hello nommés **mapreduce.admin.map.child.java.opts** et **mapreduce.admin.reduce.child.java.opts**.
 
-    Utilisez le bouton **Enregistrer** pour enregistrer les modifications. Vous pouvez entrer une courte note décrivant les modifications.
+    Hello d’utilisation **enregistrer** bouton les modifications de hello toosave. Vous pouvez entrer une note décrivant les modifications de hello.
 
-5. Une fois que ces dernières ont été appliquées, l’icône **Redémarrage requis** s’affiche en regard d’un ou de plusieurs services.
+5. Une fois que les modifications de hello ont été appliquées, hello **redémarrage requis** icône s’affiche en regard d’un ou plusieurs services.
 
     ![icône de redémarrage requis et bouton redémarrer](./media/hdinsight-hadoop-heap-dump-linux/restartrequiredicon.png)
 
-6. Sélectionnez chaque service nécessitant un redémarrage et utilisez le bouton **Actions de service** pour **Activer le mode de maintenance**. Le mode de maintenance bloque la génération d’alertes au redémarrage de ce service.
+6. Sélectionnez chaque service nécessitant un redémarrage et utilisez hello **Actions Service** bouton trop**activer sur le Mode Maintenance**. Mode de maintenance empêche la génération à partir du service de hello lors du redémarrage des alertes.
 
     ![menu Activer le mode de maintenance](./media/hdinsight-hadoop-heap-dump-linux/maintenancemode.png)
 
-7. Une fois le mode de maintenance activé, utilisez le bouton **Redémarrer** pour que le service puisse **redémarrer tous les éléments affectés**
+7. Une fois que vous avez activé le mode de maintenance, utilisez hello **redémarrer** bouton pour le service de hello trop**redémarrer l’effectuées toutes les**
 
     ![entrée Redémarrer tous les éléments affectés](./media/hdinsight-hadoop-heap-dump-linux/restartbutton.png)
 
    > [!NOTE]
-   > les entrées du bouton **Redémarrer** peuvent être différentes pour d’autres services.
+   > Hello entrées pour hello **redémarrer** bouton peut être différent pour d’autres services.
 
-8. Une fois que les services ont été redémarrés, utilisez le bouton **Actions de service** pour **Désactiver le mode de maintenance**. Ambari reprend la surveillance des alertes du service.
+8. Une fois le redémarrage des services de hello, utilisez hello **Actions Service** bouton trop**activer en Mode Maintenance**. Cette tooresume Ambari d’analyse pour les alertes pour le service de hello.
 

@@ -1,5 +1,5 @@
 ---
-title: "Calcul des scores de test d’évaluation pour les machines virtuelles Linux | Microsoft Docs"
+title: "scores de banc d’essai aaaCompute pour les machines virtuelles Linux | Documents Microsoft"
 description: "Comparer les scores de test d’évaluation de calcul CoreMark pour les machines virtuelles Azure exécutant Linux"
 services: virtual-machines-linux
 documentationcenter: 
@@ -15,14 +15,14 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 05/11/2017
 ms.author: cynthn
-ms.openlocfilehash: 382c21343f1a41438277dc288dcdf136e4e1437e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b2c1ca5fbd80cea030ac2cc22156c4e9444c6726
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="compute-benchmark-scores-for-linux-vms"></a>Calcul des scores de test d’évaluation pour les machines virtuelles Linux
-Les scores de test d’évaluation CoreMark suivants montrent les performances de calcul pour la gamme de machines virtuelles hautes performances d’Azure exécutant Ubuntu. Les scores de test d’évaluation de calcul sont également disponibles pour [les machines virtuelles Windows](../windows/compute-benchmark-scores.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+Hello suivant afficher de scores de banc d’essai CoreMark calcul des performances pour l’alignement de machine virtuelle de Azure hautes performances Ubuntu en cours d’exécution. Les scores de test d’évaluation de calcul sont également disponibles pour [les machines virtuelles Windows](../windows/compute-benchmark-scores.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
 ## <a name="a-series---compute-intensive"></a>Série A - Calcul intensif
 | Taille | Processeurs virtuels | Nœuds NUMA | UC | Exécutions | Itérations/s | StdDev |
@@ -84,9 +84,9 @@ Les scores de test d’évaluation CoreMark suivants montrent les performances d
 | Standard_H16mr |16 |2 |Intel Xeon E5-2667 v3 @ 3,2 GHz |28 |274 523 |5 698 |
 
 ## <a name="about-coremark"></a>À propos de CoreMark
-Les chiffres Linux ont été calculés en exécutant [CoreMark](http://www.eembc.org/coremark/faq.php) sur Ubuntu. CoreMark a été configuré avec le nombre de threads défini sur le nombre de processeurs virtuels et la concurrence définie sur PThreads. Le nombre cible d’itérations a été ajusté en fonction des performances attendues pour fournir un runtime d’au moins 20 secondes (en général, beaucoup plus long). Le score final représente le nombre d’itérations accomplies, divisé par le nombre de secondes nécessaires pour l’exécution du test. Chaque test a été exécuté au moins sept fois sur chaque machine virtuelle. Les tests (sauf pour la série H) ont été exécutés en octobre 2015 sur plusieurs machines virtuelles dans chaque région Azure publique où la machine virtuelle était prise en charge à la date d’exécution.
+Les chiffres Linux ont été calculés en exécutant [CoreMark](http://www.eembc.org/coremark/faq.php) sur Ubuntu. CoreMark a été configuré avec un nombre hello ensemble toohello de threads de processeurs virtuels et concurrence défini tooPThreads. nombre de cible Hello d’itérations a été ajusté en fonction des performances attendues tooprovide un runtime d’au moins de 20 secondes (généralement beaucoup plus de temps). score final de Hello représente un nombre hello d’itérations terminées divisé par le nombre de hello secondes que test de hello toorun nécessaire. Chaque test a été exécuté au moins sept fois sur chaque machine virtuelle. Tests (sauf pour H-series_ ont été exécutées en octobre 2015 sur plusieurs machines virtuelles dans chaque hello région publique Azure VM a pris en charge sur la date de hello exécution.
 
 ## <a name="next-steps"></a>Étapes suivantes
 * Pour plus d’informations sur les capacités de stockage, les détails du disque et d’autres considérations relatives au choix d’une taille de machine virtuelle, consultez [Tailles des machines virtuelles](sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
-* Pour exécuter les scripts CoreMark sur les machines virtuelles Linux, téléchargez le [Pack de script CoreMark](http://download.microsoft.com/download/3/0/5/305A3707-4D3A-4599-9670-AAEB423B4663/AzureCoreMarkScriptPack.zip).
+* toorun hello CoreMark des scripts sur les machines virtuelles Linux, téléchargez hello [CoreMark pack de script](http://download.microsoft.com/download/3/0/5/305A3707-4D3A-4599-9670-AAEB423B4663/AzureCoreMarkScriptPack.zip).
 

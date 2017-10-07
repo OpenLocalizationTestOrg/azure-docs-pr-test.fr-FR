@@ -1,6 +1,6 @@
 ---
-title: "Création de plans de récupération pour le basculement et la récupération dans Azure Site Recovery | Microsoft Docs"
-description: "Décrit comment créer et personnaliser des plans de récupération dans Azure Site Recovery en vue de basculer et récupérer des machines virtuelles et des serveurs physiques"
+title: "les plans de récupération aaaCreate pour le basculement et récupération dans Azure Site Recovery | Documents Microsoft"
+description: "Décrit comment toocreate et personnaliser des plans de récupération d’Azure Site Recovery, toofail sur et récupérer des machines virtuelles et des serveurs physiques"
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,92 +14,92 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 07/23/2017
 ms.author: raynew
-ms.openlocfilehash: 1b0d64cd592c4738311797b826e490639340f92a
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 09ca7719e92460b283947fdbe752e8654e5b9cab
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-recovery-plans"></a>Créer des plans de récupération
 
 
 Cet article fournit des informations sur la création et la personnalisation des plans de récupération dans [Azure Site Recovery](site-recovery-overview.md).
 
-Publiez des commentaires ou des questions au bas de cet article, ou sur le [Forum Azure Recovery Services](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
+Valider des commentaires ou des questions au bas de hello de cet article, ou sur hello [Forum sur Azure Recovery Services](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
 
- Créez des plans de récupération. Ceux-ci effectuent les opérations suivantes :
+ Créez hello de toodo de plans de récupération suivant :
 
 * Ils définissent les groupes de machines qui basculent ensemble, puis démarrent ensemble.
-* Ils modélisent les dépendances entre les machines, en les rassemblant au sein d’un groupe de plan de récupération. Par exemple, pour basculer et afficher une application spécifique, vous devez regrouper toutes les machines virtuelles pour cette application dans un même groupe de plan de récupération.
+* Ils modélisent les dépendances entre les machines, en les rassemblant au sein d’un groupe de plan de récupération. Par exemple, toofail sur et porter une application spécifique, vous regroupez tous les ordinateurs virtuels de hello pour cette application dans hello même groupe de plan de récupération.
 * Exécuter un basculement. Vous pouvez exécuter un basculement test, planifié ou non planifié sur un plan de récupération.
 
 
 ## <a name="create-a-recovery-plan"></a>Créer un plan de récupération
 
 1. Cliquez sur l’onglet **Plans de récupération** > **Créer un plan de récupération**.
-   Spécifiez un nom pour le plan de récupération, puis définissez une source et une cible. Le basculement et la récupération doivent être activés sur les machines virtuelles de l’emplacement source.
+   Spécifiez un nom pour le plan de récupération hello et d’une source et cible. emplacement de source de Hello doit avoir des machines virtuelles qui sont activés pour le basculement et la récupération.
 
-    - Pour la réplication de VMM vers VMM, sélectionnez **Type de source** > **VMM**, puis les serveurs VMM source et cible. Cliquez sur **Hyper-V** pour afficher les clouds protégés.
-    - Pour une réplication de VMM vers Azure, sélectionnez **Type de source** > **VMM**.  Sélectionnez le serveur VMM source et **Azure** en tant que cible.
-    - Pour la réplication d’Hyper-V vers Azure (sans VMM), sélectionnez **Type de source** > **Site Hyper-V**. Sélectionnez le site en tant que source et **Azure** en tant que cible.
-    - Pour une réplication de machine virtuelle VMware ou de serveur physique local vers Microsoft Azure, sélectionnez un serveur de configuration en tant que source et **Azure** en tant que cible.
-    - Pour un plan de récupération Azure vers Azure, sélectionnez une région Azure comme source et une région Azure secondaire comme cible. Les régions Azure secondaires sont uniquement celles dans lesquelles les machines virtuelles sont protégées.
-2. Dans **Sélectionner les machines virtuelles**, sélectionnez les machines virtuelles (ou le groupe de réplication) que vous voulez ajouter au groupe par défaut (Groupe 1) dans le plan de récupération.
+    - Pour la réplication tooVMM VMM, sélectionnez **Type de Source de** > **VMM**et hello serveurs VMM cible et source. Cliquez sur **Hyper-V** toosee clouds protégés.
+    - Pour VMM tooAzure, sélectionnez **Type de Source de** > **VMM**.  Serveur VMM source à hello SELECT, et **Azure** comme cible de hello.
+    - Pour tooAzure de réplication Hyper-V (sans VMM), sélectionnez **Type de Source de** > **site Hyper-V**. Site hello sélectionnez en tant que source de hello, et **Azure** comme cible de hello.
+    - Pour un VM VMware ou physique locale tooAzure de serveur, sélectionnez un serveur de configuration en tant que source de hello, et **Azure** comme cible de hello.
+    - Pour un plan de récupération Azure tooAzure, sélectionnez une région Azure en tant que source de hello et une région Azure secondaire comme cible de hello. les régions Azure secondaire Hello sont qu'uniquement les machines virtuelles de toowhich sont protégés.
+2. Dans **sélectionner des machines virtuelles**, sélectionnez les ordinateurs virtuels de hello (ou groupe de réplication) que vous souhaitez groupe par défaut de toohello tooadd (groupe 1) dans le plan de récupération hello.
 
 ## <a name="customize-and-extend-recovery-plans"></a>Personnaliser et étendre les plans de récupération
 
 Vous pouvez personnaliser et étendre les plans de récupération :
 
-- **Ajouter de nouveaux groupes** : ajouter des groupes de plan de récupération supplémentaires (jusqu’à sept) au groupe par défaut, puis ajouter des ordinateurs ou groupes de réplication supplémentaires à ces groupes de plan de récupération. Les groupes sont numérotés dans l’ordre dans lequel vous les ajoutez. Vous ne pouvez inclure une machine virtuelle ou un groupe de réplication qu’au sein d’un seul plan de récupération.
-- **Ajouter une action manuelle**: il est possible d’ajouter des actions manuelles qui s’exécutent avant ou après un groupe de plan de récupération. Lorsque le plan de récupération s’exécute, il s’arrête au point où vous avez inséré l’action manuelle. Une boîte de dialogue vous invite à spécifier que l’action manuelle est terminée.
-- **Ajouter un script** : vous pouvez ajouter des scripts qui s’exécutent avant ou après un groupe de plan de récupération. Lorsque vous ajoutez un script, vous ajoutez un nouvel ensemble d’actions au groupe. Par exemple, un ensemble d’étapes préliminaires au sein du Groupe 1 est créé avec le nom : Groupe 1 : Étapes préliminaires. L’ensemble des étapes préliminaires seront répertoriées dans cet ensemble. Pour ajouter un script sur le site principal, vous devez disposer d’un serveur VMM déployé.
-- **Ajouter des runbooks Azure** : vous pouvez étendre des plans de récupération avec des runbooks Azure. Par exemple, pour automatiser des tâches ou pour créer une récupération en une seule étape. [Plus d’informations](site-recovery-runbook-automation.md)
+- **Ajouter de nouveaux groupes**, ajoutez le groupe par défaut toohello récupération supplémentaires plan groupes (haut tooseven) et ajoutez plusieurs ordinateurs ou la réplication des groupes de toothose des groupes de plan de récupération. Les groupes sont numérotées dans l’ordre de hello dans lequel vous les ajoutez. Vous ne pouvez inclure une machine virtuelle ou un groupe de réplication qu’au sein d’un seul plan de récupération.
+- **Ajouter une action manuelle**: il est possible d’ajouter des actions manuelles qui s’exécutent avant ou après un groupe de plan de récupération. Lorsque le plan de récupération hello s’exécute, il s’arrête au point hello à laquelle vous avez inséré une action manuelle hello. Une boîte de dialogue vous invite toospecify qu’une action manuelle hello a été exécutée.
+- **Ajouter un script** : vous pouvez ajouter des scripts qui s’exécutent avant ou après un groupe de plan de récupération. Lorsque vous ajoutez un script, il ajoute un nouvel ensemble d’actions pour le groupe de hello. Par exemple, un ensemble d’étapes préliminaires pour le groupe 1 sera être créé avec le nom de hello : groupe 1 : étapes préliminaires. L’ensemble des étapes préliminaires seront répertoriées dans cet ensemble. Vous pouvez uniquement ajouter un script sur le site principal de hello si vous avez un serveur VMM déployé.
+- **Ajouter des runbooks Azure** : vous pouvez étendre des plans de récupération avec des runbooks Azure. Par exemple, les tâches de tooautomate ou de toocreate seule étape récupération. [En savoir plus](site-recovery-runbook-automation.md).
 
 ## <a name="add-scripts"></a>Ajouter des scripts
 
 Vous pouvez utiliser des scripts PowerShell dans vos plans de récupération.
 
- - Veillez à utiliser des blocs try-catch dans vos scripts, ceci pour garantir le traitement approprié des exceptions.
-    - Si le script comporte une exception, son exécution s’interrompt et la tâche est mise en échec.
-    - Si une erreur se produit, aucune des portions restantes du script ne s’exécute.
-    - Si une erreur se produit lorsque vous exécutez un basculement non planifié, le plan de récupération se poursuit.
-    - Si une erreur se produit lorsque vous exécutez un basculement planifié, le plan de récupération s’arrête. Vous devez corriger le script, vérifier sa bonne exécution, puis exécuter de nouveau le plan de récupération.
-- La commande Write-Host, qui ne fonctionne pas dans un script de plan de récupération, entraîne la mise en échec du script. Pour créer une sortie, générez un script de proxy exécutant votre script principal. Assurez-vous que l’ensemble des sorties sont extraites à l’aide de la commande >>.
-  * Le script expire si aucune sortie n’est produite dans les 600 secondes.
-  * Si des éléments sont écrits sur STDERR, le script est classé comme mis en échec. Ces informations s’affichent dans les détails d’exécution du script.
+ - Assurez-vous que les scripts utilisent des blocs try-catch afin que les exceptions hello soient gérées normalement.
+    - S’il existe une exception dans le script de hello, il arrête l’exécution et tâche hello affiche comme ayant échoué.
+    - Si une erreur se produit, toute partie restante du script de hello ne s’exécute pas.
+    - Si une erreur se produit lorsque vous exécutez un basculement non planifié, plan de récupération hello continue.
+    - Si une erreur se produit lorsque vous exécutez un basculement planifié, le plan de récupération hello s’arrête. Vous devez toofix hello script, vérifiez qu’il s’exécute comme prévu et puis exécutez à nouveau plan de récupération d’hello.
+- Hello les commande Write-Host ne fonctionne pas dans un script de plan de récupération et hello script échoue. toocreate de sortie, créez un script de proxy qui exécute ensuite votre script principal. Assurez-vous que toutes les sorties sont obtenues à l’aide de hello >> commande.
+  * script de Hello expire si elle ne renvoie pas dans les 600 secondes.
+  * Si rien n’est écrit tooSTDERR, le script de hello est classé comme ayant échoué. Ces informations s’affichent dans les détails de l’exécution du script hello.
 
 Si vous utilisez VMM dans votre déploiement :
 
-* Les scripts d’un plan de récupération s’exécutent dans le contexte d’un compte de service VMM. Assurez-vous que ce compte dispose des autorisations en lecture pour le partage distant sur lequel se trouve le script. Testez l’exécution du script au niveau de privilège du compte de service VMM.
-* Les applets de commande VMM sont fournies dans un module Windows PowerShell. Le module est installé lors du montage de la console VMM. Il peut être chargé dans votre script à l’aide de la commande de script suivante :
+* Dans un plan de récupération, les scripts exécutés dans le contexte hello Hello compte de Service VMM. Assurez-vous que ce compte dispose des autorisations en lecture sur le partage distant de hello sur quel hello script se trouve. Test toorun de script hello en hello niveau de privilège de compte de service VMM.
+* Les applets de commande VMM sont fournies dans un module Windows PowerShell. module de Hello est installé lorsque vous installez la console VMM hello. Il peut être chargé dans votre script, à l’aide de hello commande dans le script de hello suivante :
    - Import-Module -Name virtualmachinemanager. [Plus d’informations](https://technet.microsoft.com/library/hh875013.aspx)
-* Vérifiez que vous disposez d’au moins un serveur de bibliothèque au sein de votre déploiement VMM. Par défaut, le chemin d’accès de partage de bibliothèque d’un serveur VMM est disponible localement sur le serveur VMM, sous le nom de dossier MSCVMMLibrary.
-    * Si votre chemin d’accès de partage de bibliothèque est distant (ou local mais non partagé avec MSCVMMLibrary), configurez le partage comme suit (en utilisant \\libserver2.contoso.com\share\ comme exemple) :
-      * Ouvrez l’Éditeur du Registre, puis accédez à **HKEY_LOCAL_MACHINE\SOFTWARE\MICROSOFT\Azure Site Recovery\Registration**.
-      * Modifiez la valeur de **ScriptLibraryPath** et placez-la comme \\libserver2.contoso.com\share\. Spécifiez le nom de domaine complet. Fournissez des autorisations d’accès à l’emplacement de partage.
-      * Veillez à tester le script avec un compte d’utilisateur qui dispose des mêmes autorisations que le compte de service VMM. Cela permet de vérifier que les scripts testés autonomes s’exécuteront de la même manière dans les plans de récupération. Sur le serveur VMM, définissez le mode de contournement suivant de la stratégie d’exécution :
-        * Ouvrez la console Windows PowerShell 64 bits à l’aide des privilèges élevés.
-        * Entrez : **Set-executionpolicy bypass**. [Plus d’informations](https://technet.microsoft.com/library/ee176961.aspx)
+* Vérifiez que vous disposez d’au moins un serveur de bibliothèque au sein de votre déploiement VMM. Par défaut, chemin d’accès du partage de bibliothèque hello pour un serveur VMM se trouve localement sur le serveur VMM, avec le nom du dossier hello MSCVMMLibrary de hello.
+    * Si votre chemin d’accès du partage de bibliothèque est distant (ou local, mais pas partagé avec MSCVMMLibrary), configurez le partage de hello comme suit (à l’aide de \\libserver2.contoso.com\share\ par exemple) :
+      * Ouvrez hello Éditeur du Registre et accédez trop**HKEY_LOCAL_MACHINE\SOFTWARE\MICROSOFT\Azure Site Recovery\Registration**.
+      * Modifier la valeur de hello **ScriptLibraryPath** et le placer en tant que \\libserver2.contoso.com\share\. Spécifiez hello de domaine complet. Fournir des autorisations toohello l’emplacement du partage.
+      * Veillez à tester le script hello avec un compte d’utilisateur qui a hello même compte de service les autorisations hello VMM. Cette procédure vérifie qu’autonome s’exécutent dans les scripts testés hello même façon que qu’ils seront dans les plans de récupération. Sur le serveur VMM de hello, définissez toobypass de stratégie d’exécution hello comme suit :
+        * Ouvrez la console Windows PowerShell de hello 64 bits avec des privilèges élevés.
+        * Entrez : **Set-executionpolicy bypass**. [En savoir plus](https://technet.microsoft.com/library/ee176961.aspx).
 
-## <a name="add-a-script-or-manual-action-to-a-plan"></a>Ajouter un script ou une action manuelle à un plan
+## <a name="add-a-script-or-manual-action-tooa-plan"></a>Ajouter un script ou un plan d’action manuelle tooa
 
-Vous pouvez ajouter un script au groupe de plan de récupération par défaut après y avoir ajouté des machines virtuelles ou des groupes de réplication et après avoir créé le plan.
+Vous pouvez ajouter un groupe de plan de récupération script toohello par défaut une fois que vous avez ajouté des machines virtuelles ou tooit des groupes de réplication et le plan hello créé.
 
-1. Ouvrez le plan de récupération.
-2. Cliquez sur un élément de la liste **Étape,** puis cliquez sur **Script** ou sur **Action manuelle**.
-3. Indiquez si vous souhaitez ajouter le script ou l’action avant ou après l’élément sélectionné. Utilisez les boutons de **Déplacement vers le haut** et de **Déplacement vers le bas** pour faire monter ou descendre le script.
-4. Si vous ajoutez un script VMM, sélectionnez **Basculement vers script VMM**. Dans **Chemin d’accès du script**, tapez le chemin d’accès relatif au partage. Dans l’exemple VMM ci-dessous, spécifiez le chemin d’accès : **\RPScripts\RPScript.PS1**.
-5. Si vous ajoutez un Runbook Azure Automation, spécifiez le compte Azure Automation dans lequel se trouve le runbook, puis sélectionnez le script runbook Azure approprié.
-6. Exécutez un basculement du plan de récupération, afin de vous assurer du bon fonctionnement du script.
+1. Plan de récupération hello ouvert.
+2. Cliquez sur un élément Bonjour **étape** liste, puis cliquez sur **Script** ou **Action manuelle**.
+3. Spécifiez si le script de toowant tooadd hello ou action avant ou après hello sélectionné élément. Hello d’utilisation **monter** et **Descendre** des boutons, position de hello toomove du script de hello vers le haut ou vers le bas.
+4. Si vous ajoutez un script VMM, sélectionnez **basculement tooVMM script**. Dans **chemin d’accès du Script**, partage toohello de type hello chemin d’accès relatif. Dans l’exemple VMM hello ci-dessous, vous spécifiez le chemin d’accès hello : **\RPScripts\RPScript.PS1**.
+5. Si vous ajoutez une automatisation Azure exécuter livre, spécifiez compte Azure Automation de hello dans le hello runbook est script de runbook Azure approprié hello trouve, puis sélectionnez.
+6. Effectuez un basculement d’un plan de récupération hello, toomake que hello script fonctionne comme prévu.
 
 
 ### <a name="add-a-vmm-script"></a>Ajouter un script VMM
 
-Si vous possédez un site source VMM, libre à vous de créer un script sur le serveur VMM, et de l’inclure dans votre plan de récupération.
+Si vous avez un site source VMM, vous pouvez créer un script sur le serveur VMM de hello et inclure dans votre plan de récupération.
 
-1. Créez un dossier dans le partage de bibliothèque. Par exemple, \<VMMServerName>\MSSCVMMLibrary\RPScripts. Placez-le dans les serveurs VMM source et cibles.
-2. Créez le script (par exemple RPScript), et vérifiez son bon fonctionnement.
-3. Placez le script à l’emplacement \<VMMServerName>\MSSCVMMLibrary sur les serveurs VMM source et cible.
+1. Créer un nouveau dossier dans le partage de bibliothèque hello. Par exemple, \<VMMServerName>\MSSCVMMLibrary\RPScripts. Placez-le sur la source de hello et serveurs VMM cible.
+2. Créez le script hello (par exemple, RPScript) et vérifier qu’il fonctionne comme prévu.
+3. Placez le script de hello dans l’emplacement de hello \<VMMServerName > \MSSCVMMLibrary, sur les serveurs VMM source et cible hello.
 
 
 ## <a name="next-steps"></a>Étapes suivantes

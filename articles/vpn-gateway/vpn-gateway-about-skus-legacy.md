@@ -1,5 +1,5 @@
 ---
-title: "Références SKU héritées de passerelle de réseau virtuel Azure | Microsoft Docs"
+title: "passerelle de réseau virtuel Azure aaaLegacy références (SKU) | Documents Microsoft"
 description: "Anciennes références SKU de passerelle de réseau virtuel."
 services: vpn-gateway
 documentationcenter: na
@@ -15,15 +15,15 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 08/01/2017
 ms.author: cherylmc
-ms.openlocfilehash: 3b2126b1ecd1613950bbf311ae08fafd4af0d51f
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 710417581423d2fbc62827cab7949f2e137c5996
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="working-with-virtual-network-gateway-skus-legacy-skus"></a>Utilisation des références SKU de passerelle de réseau virtuel (anciennes références SKU)
 
-Cet article contient des informations sur les anciennes références SKU de passerelle de réseau virtuel. Les anciennes références SKU continuent de fonctionner dans les deux modèles de déploiement pour les passerelles VPN qui ont déjà été créés. Les passerelles VPN classiques continuent à utiliser d’anciennes références SKU, aussi bien pour les passerelles existantes que pour les nouvelles passerelles. Lorsque vous créez de nouvelles passerelles VPN de gestionnaire de ressources, utilisez les références SKU des nouvelles passerelles. Pour plus d’informations sur les nouvelles références SKU, reportez-vous à la rubrique [À propos de la passerelle VPN](vpn-gateway-about-vpngateways.md).
+Cet article contient des informations sur hello hérité (ancienne) passerelle de réseau virtuel références (SKU). hérité de Hello références (SKU) continueront de fonctionner dans les deux modèles de déploiement pour les passerelles VPN qui ont déjà été créés. Les passerelles VPN classiques continuer toouse hello hérité références (SKU), aussi bien pour les passerelles existantes et nouvelles passerelles. Lors de la création des passerelles VPN de nouveau gestionnaire de ressources, utilisez la passerelle hello références (SKU). Pour plus d’informations sur hello nouvelles références SKU, consultez [sur la passerelle du VPN](vpn-gateway-about-vpngateways.md).
 
 ## <a name="gwsku"></a>SKU de passerelle
 
@@ -39,29 +39,29 @@ Cet article contient des informations sur les anciennes références SKU de pas
 
 ## <a name="resize"></a>Redimensionner une passerelle (modifier la référence SKU d’une passerelle)
 
-Vous pouvez redimensionner la référence SKU d’une passerelle au sein de la même famille de références SKU. Par exemple, si vous avez une référence SKU standard, vous pouvez redimensionner selon une référence SKU HighPerformance. Vous ne pouvez pas redimensionner vos passerelles VPN entre d’anciennes références SKU est de nouvelles familles de références SKU. Par exemple, vous ne pouvez pas aller d’une référence SKU standard à une référence SKU VpnGw2. 
+Vous pouvez redimensionner une référence (SKU) de passerelle dans hello même famille de référence (SKU). Par exemple, si vous avez une référence (SKU) Standard, vous pouvez redimensionner tooa HighPerformance SKU. Vous ne pouvez pas redimensionner votre VPN entre les passerelles hello anciennes références (SKU) et hello nouvelles familles de référence (SKU). Par exemple, vous ne peut pas accéder à partir d’un tooa de référence (SKU) Standard VpnGw2 référence (SKU). 
 
-Pour redimensionner une référence SKU de passerelle pour le modèle de déploiement classique, utilisez la commande suivante :
+tooresize une passerelle référence (SKU) pour le modèle de déploiement classique de hello, hello utilisez commande suivante :
 
 ```powershell
 Resize-AzureVirtualNetworkGateway -GatewayId <Gateway ID> -GatewaySKU HighPerformance
 ```
 
-Pour redimensionner une référence SKU de passerelle pour le modèle de déploiement du Gestionnaire de ressources, utilisez la commande suivante :
+tooresize une référence (SKU) de la passerelle pour hello modèle de déploiement du Gestionnaire de ressources, utilisez hello de commande suivante :
 
 ```powershell
 $gw = Get-AzureRmVirtualNetworkGateway -Name vnetgw1 -ResourceGroupName testrg
 Resize-AzureRmVirtualNetworkGateway -VirtualNetworkGateway $gw -GatewaySku HighPerformance
 ```
 
-## <a name="migrate"></a>Migration vers les nouvelles références SKU de passerelle
+## <a name="migrate"></a>Migrer toohello nouvelle passerelle références (SKU)
 
-Si vous utilisez le modèle de déploiement du Gestionnaire de ressources, vous pouvez migrer vers les nouvelles références SKU de la passerelle. Si vous utilisez le modèle de déploiement classique, vous ne pouvez pas migrer vers les nouvelles références SKU et devez continuer à utiliser les anciennes références SKU.
+Si vous travaillez avec un modèle de déploiement du Gestionnaire de ressources hello, vous pouvez migrer toohello nouvelle passerelle références (SKU). Si vous travaillez avec un modèle de déploiement classique de hello, vous ne pouvez pas migrer toohello nouvelles références SKU doivent continuer à la place de toouse hello références (SKU) hérité.
 
 [!INCLUDE [Migrate SKU](../../includes/vpn-gateway-migrate-legacy-sku-include.md)]
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Pour plus d’informations sur les nouvelles références SKU de passerelle, voir [Références (SKU) de passerelle](vpn-gateway-about-vpngateways.md#gwsku).
+Pour plus d’informations sur hello nouvelles références SKU de passerelle, consultez [SKU de passerelle](vpn-gateway-about-vpngateways.md#gwsku).
 
 Pour plus d’informations sur les paramètres de configuration, consultez [À propos des paramètres de configuration de la passerelle VPN](vpn-gateway-about-vpn-gateway-settings.md).

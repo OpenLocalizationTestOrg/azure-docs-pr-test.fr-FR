@@ -1,6 +1,6 @@
 ---
-title: "Service Fabric et le déploiement de conteneurs | Microsoft Docs"
-description: "Présentation de Service Fabric et de la méthode à suivre pour déployer des applications de microservices au moyen de conteneurs. Cet article décrit les fonctionnalités que Service Fabric offre pour les conteneurs et explique comment déployer une image de conteneur Windows dans un cluster."
+title: "aaaService l’infrastructure et le déploiement de conteneurs | Documents Microsoft"
+description: "Service Fabric et hello utilisent des applications de conteneurs toodeploy microservice. Cet article décrit les fonctionnalités de hello Service Fabric fournit des conteneurs et comment toodeploy un conteneur Windows de l’image dans un cluster."
 services: service-fabric
 documentationcenter: .net
 author: msfussell
@@ -14,86 +14,86 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 5/16/2017
 ms.author: msfussell
-ms.openlocfilehash: 25d6b056421e71fa70ed20a39589f77dbbc25c69
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8b6540579641474f21b8712b56049c7d177bec26
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deploy-a-windows-container-to-service-fabric"></a>Déployer un conteneur Windows sur Service Fabric
+# <a name="deploy-a-windows-container-tooservice-fabric"></a>Déployer un tooService de conteneur Windows Fabric
 > [!div class="op_single_selector"]
 > * [Déployer un conteneur Windows](service-fabric-deploy-container.md)
 > * [Déployer un conteneur Docker](service-fabric-deploy-container-linux.md)
 > 
 > 
 
-Cet article vous guide dans le processus de création des services dans des conteneurs Windows.
+Cet article vous guide tout au long des processus hello de création des services dans les conteneurs Windows.
 
 Service Fabric dispose de plusieurs fonctionnalités qui vous aident à créer des applications composées de microservices exécutés dans des conteneurs. 
 
-Ces fonctionnalités sont les suivantes :
+les fonctions Hello incluent :
 
 * Activation et déploiement d’images de conteneur
 * Gouvernance des ressources
 * Authentification de référentiels
 * Mappage des ports de conteneur aux ports hôtes
 * Découverte et communication entre des conteneurs
-* Possibilité de configurer et de définir des variables d’environnement
+* Capacité tooconfigure et définir des variables d’environnement
 
-Examinons à présent le fonctionnement de chacune des fonctionnalités lors de l’empaquetage d’un service en conteneur à inclure dans votre application.
+Examinons chacune des fonctions fonctionne lorsque vous créez un package une toobe en conteneur service inclus dans votre application.
 
 ## <a name="package-a-windows-container"></a>Empaquetage d’un conteneur Windows
-Lors de l’empaquetage d’un conteneur, vous pouvez choisir d’utiliser un modèle de projet Visual Studio ou de [créer le package d’application manuellement](#manually).  Lorsque vous utilisez Visual Studio, la structure de package d’application et les fichiers manifeste sont créés par le modèle de nouveau projet.
+Quand vous créez le package un conteneur, vous pouvez choisir toouse un modèle de projet Visual Studio ou [créer le package d’application hello manuellement](#manually).  Lorsque vous utilisez Visual Studio, structure de package d’application hello et fichiers manifestes sont créés par le modèle de projet hello pour vous.
 
 > [!TIP]
-> Pour empaqueter une image de conteneur existante dans un service, le plus simple consiste à utiliser Visual Studio.
+> toopackage de façon plus simple Hello une image de conteneur existant dans un service est toouse Visual Studio.
 
-## <a name="use-visual-studio-to-package-an-existing-container-image"></a>Utilisation de Visual Studio pour empaqueter une image de conteneur
-Visual Studio fournit un modèle de service Service Fabric pour vous aider à déployer un conteneur sur un cluster Service Fabric.
+## <a name="use-visual-studio-toopackage-an-existing-container-image"></a>Utilisez Visual Studio toopackage une image de conteneur existant
+Visual Studio fournit une infrastructure de Service toohelp de modèle de service vous déployez un cluster Service Fabric de tooa conteneur.
 
 1. Sélectionnez **Fichier** > **Nouveau projet** pour créer une application Service Fabric.
-2. Choisissez **Conteneur d’invités** comme modèle de service.
-3. Choisissez **Nom de l’image** et indiquez le chemin d’accès à l’image dans votre référentiel de conteneur. Par exemple, `myrepo/myimage:v1` dans https://hub.docker.com
+2. Choisissez **invité conteneur** en tant que modèle de service hello.
+3. Choisissez **nom de l’Image** et fournir hello chemin d’accès toohello image dans votre référentiel de conteneur. Par exemple, `myrepo/myimage:v1` dans https://hub.docker.com
 4. Donnez un nom à votre service et cliquez sur **OK**.
-5. Si votre service en conteneur a besoin d’un point de terminaison pour les communications, vous pouvez désormais ajouter le protocole, le port et le type dans le fichier ServiceManifest.xml. Par exemple : 
+5. Si votre service en conteneur a besoin d’un point de terminaison pour la communication, vous pouvez maintenant ajouter hello protocole, port et fichier de type toohello ServiceManifest.xml. Par exemple : 
      
     `<Endpoint Name="MyContainerServiceEndpoint" Protocol="http" Port="80" UriScheme="http" PathSuffix="myapp/" Type="Input" />`
     
-    En fournissant `UriScheme`, Service Fabric enregistre automatiquement le point de terminaison du conteneur avec le Naming Service pour la découverte. Le port peut être fixe (comme indiqué dans l’exemple précédent) ou alloué de manière dynamique. Si vous ne spécifiez pas de port, il est alloué de manière dynamique à partir de la plage de ports d’application (comme avec n’importe quel service).
-    Vous devez également configurer le mappage conteneur/port hôte en spécifiant une stratégie `PortBinding` dans le manifeste d’application. Pour plus d’informations, voir [Configurer le mappage conteneur/port hôte](#Portsection).
+    En fournissant hello `UriScheme`, Service Fabric inscrit automatiquement le point de terminaison de conteneur hello avec hello service d’affectation de noms pour la fonctionnalité de découverte. port de Hello peut être résolu (comme indiqué dans le précédent exemple de hello) ou allouée dynamiquement. Si vous ne spécifiez pas un port, il est attribué dynamiquement à partir de la plage de ports d’application hello (comme avec n’importe quel service).
+    Vous devez également le mappage port toohost tooconfigure hello conteneur en spécifiant un `PortBinding` stratégie dans le manifeste de l’application hello. Pour plus d’informations, consultez [configurer le mappage de port de conteneur toohost](#Portsection).
 6. Si votre conteneur a besoin de gouvernance des ressources, ajoutez un `ResourceGovernancePolicy`.
-8. Si votre conteneur doit s’authentifier auprès d’un référentiel privé, ajoutez `RepositoryCredentials`.
-7. Si vous utilisez un ordinateur Windows Server 2016 avec prise en charge du conteneur, vous pouvez utiliser le package et publier des actions pour déployer sur votre cluster local. 
-8. Vous pouvez, quand vous le souhaitez, publier l’application sur un cluster à distance ou archiver la solution pour contrôler le code source. 
+8. Si votre conteneur doit tooauthenticate avec un référentiel privé, puis ajoutez `RepositoryCredentials`.
+7. Si vous exécutez sur un ordinateur Windows Server 2016 avec prise en charge du conteneur activée, vous pouvez utiliser le package de hello et cluster local du tooyour toodeploy action de publication. 
+8. Lorsque vous êtes prêt, vous pouvez publier le cluster de l’application hello tooa à distance ou archiver hello solution toosource contrôle. 
 
-Pour un exemple, consultez les [exemples de code de conteneur Service Fabric sur GitHub](https://github.com/Azure-Samples/service-fabric-dotnet-containers)
+Pour obtenir un exemple hello d’extraction [exemples de code de conteneur de Service Fabric sur GitHub](https://github.com/Azure-Samples/service-fabric-dotnet-containers)
 
 ## <a name="creating-a-windows-server-2016-cluster"></a>Création d’un cluster Windows Server 2016
-Pour déployer votre application en conteneur, vous devez créer un cluster exécutant Windows Server 2016 avec la prise en charge du conteneur activée. Votre cluster peut s’exécuter localement ou être déployé via Azure Resource Manager dans Azure. 
+toodeploy votre application en conteneur, vous devez toocreate un cluster exécutant Windows Server 2016 avec prise en charge du conteneur est activé. Votre cluster peut s’exécuter localement ou être déployé via Azure Resource Manager dans Azure. 
 
-Pour déployer un cluster à l’aide d’Azure Resource Manager, choisissez l’option d’image **Windows Server 2016 avec Containers** dans Azure. Consultez l’article [Création d’un cluster Service Fabric dans Azure à l’aide d’un modèle Azure Resource Manager](service-fabric-cluster-creation-via-arm.md). Assurez-vous d’utiliser les paramètres suivants dans Azure Resource Manager :
+toodeploy un cluster à l’aide du Gestionnaire de ressources Azure, choisissez hello **Windows Server 2016 avec des conteneurs** option dans Azure de l’image. Consultez l’article hello [créer un cluster Service Fabric à l’aide du Gestionnaire de ressources Azure](service-fabric-cluster-creation-via-arm.md). Assurez-vous que vous utilisez hello suivant les paramètres du Gestionnaire de ressources Azure :
 
 ```xml
 "vmImageOffer": { "type": "string","defaultValue": "WindowsServer"     },
 "vmImageSku": { "defaultValue": "2016-Datacenter-with-Containers","type": "string"     },
 "vmImageVersion": { "defaultValue": "latest","type": "string"     },  
 ```
-Vous pouvez également utiliser le [modèle Azure Resource Manager à cinq nœuds](https://github.com/Azure/azure-quickstart-templates/tree/master/service-fabric-secure-cluster-5-node-1-nodetype) pour créer un cluster. Vous pouvez également lire [l’article de blog](https://loekd.blogspot.com/2017/01/running-windows-containers-on-azure.html) de la communauté sur l’utilisation des conteneurs de Service Fabric et Windows.
+Vous pouvez également utiliser hello [modèle cinq nœuds Azure Resource Manager](https://github.com/Azure/azure-quickstart-templates/tree/master/service-fabric-secure-cluster-5-node-1-nodetype) toocreate un cluster. Vous pouvez également lire [l’article de blog](https://loekd.blogspot.com/2017/01/running-windows-containers-on-azure.html) de la communauté sur l’utilisation des conteneurs de Service Fabric et Windows.
 
 <a id="manually"></a>
 
 ## <a name="manually-package-and-deploy-a-container-image"></a>Empaquetage et déploiement manuel d’une image de conteneur
-Le processus d’empaquetage manuel d’un service avec conteneur est basé sur les étapes suivantes :
+processus Hello d’empaquetage manuel d’un service en conteneur est basée sur hello comme suit :
 
-1. Publiez les conteneurs dans votre référentiel.
-2. Créez la structure de répertoires du package.
-3. Modifiez le fichier de manifeste de service.
-4. Modifiez le fichier de manifeste d’application.
+1. Publier hello conteneurs tooyour référentiel.
+2. Créer la structure de répertoire du package hello.
+3. Modifiez le fichier de manifeste de service hello.
+4. Modifier le fichier manifeste d’application hello.
 
 ## <a name="deploy-and-activate-a-container-image"></a>Déploiement et activation d’une image de conteneur
-Dans le [modèle d’application](service-fabric-application-model.md)Service Fabric, un conteneur représente un hôte d’application sur lequel sont placés plusieurs réplicas de service. Pour déployer et activer un conteneur, placez le nom de l’image de conteneur dans un élément `ContainerHost` au sein du manifeste de service.
+Bonjour Service Fabric [modèle d’application](service-fabric-application-model.md), un conteneur représente un hôte d’application dans le service de plusieurs réplicas sont placés. toodeploy et activer un conteneur, le nom hello put de l’image de conteneur hello dans un `ContainerHost` élément dans le manifeste de service hello.
 
-Dans le manifeste de service, ajoutez un `ContainerHost` pour le point d’entrée. Définissez ensuite le nom de référentiel de conteneur et d’image comme `ImageName`. Le manifeste partiel suivant affiche un exemple illustrant le déploiement du conteneur appelé `myimage:v1` depuis un référentiel appelé `myrepo` :
+Dans le manifeste de service hello, ajoutez un `ContainerHost` hello point d’entrée. Puis ensemble hello `ImageName` nom de hello toobe de référentiel de conteneurs hello et image. Hello manifeste partielle suivante montre un exemple de comment le conteneur de hello toodeploy appelée `myimage:v1` à partir d’un référentiel appelé `myrepo`:
 
 ```xml
     <CodePackage Name="Code" Version="1.0">
@@ -106,10 +106,10 @@ Dans le manifeste de service, ajoutez un `ContainerHost` pour le point d’entr�
     </CodePackage>
 ```
 
-Vous pouvez spécifier des commandes facultatives à exécuter lors du démarrage du conteneur sous l’élément `Commands`. Si vous avez plusieurs commandes, séparez-les par des virgules. 
+Vous pouvez spécifier toorun commandes facultatives au démarrage du conteneur hello sous hello `Commands` élément. Si vous avez plusieurs commandes, séparez-les par des virgules. 
 
 ## <a name="understand-resource-governance"></a>Présentation de la gouvernance des ressources
-La gouvernance des ressources est une fonctionnalité du conteneur, qui limite les ressources que le conteneur peut utiliser sur l’hôte. L’élément `ResourceGovernancePolicy`, spécifié dans le manifeste de l’application, est utilisé pour déclarer des limites relatives aux ressources pour un package de code de service. Des limites de ressources peuvent être définies pour les ressources suivantes :
+Gouvernance des ressources sont une fonctionnalité de conteneur hello qui limite les ressources hello hello conteneur peut utiliser sur l’ordinateur hôte de hello. Hello `ResourceGovernancePolicy`, qui est spécifiée dans le manifeste de l’application hello est toodeclare utilisé des limites de ressources pour un package de code de service. Les limites de ressources peuvent être définies pour hello suivant des ressources :
 
 * Mémoire
 * MemorySwap
@@ -133,7 +133,7 @@ La gouvernance des ressources est une fonctionnalité du conteneur, qui limite l
 ```
 
 ## <a name="authenticate-a-repository"></a>Authentification d’un référentiel
-Pour télécharger un conteneur, vous devrez peut-être fournir des informations d’identification dans le référentiel du conteneur. Les informations d’identification de connexion spécifiées dans le manifeste de l’application sont utilisées pour spécifier les informations de connexion (ou clé SSH) pour le téléchargement de l’image de conteneur à partir du référentiel d’images. L’exemple suivant utilise un compte appelé *TestUser*, ainsi que le mot de passe en texte clair associé (*non* recommandé) :
+toodownload un conteneur, vous pouvez avoir référentiel de conteneurs toohello tooprovide informations de connexion. Hello informations de connexion, spécifiées dans le manifeste de l’application hello sont utilisées toospecify hello connectez-vous plus d’informations ou d’une clé SSH pour télécharger l’image de conteneur hello hello référentiel d’images. Hello suivant montre un compte appelé *TestUser* , ainsi que le mot de passe hello en texte clair (*pas* recommandé) :
 
 ```xml
     <ServiceManifestImport>
@@ -146,11 +146,11 @@ Pour télécharger un conteneur, vous devrez peut-être fournir des informations
     </ServiceManifestImport>
 ```
 
-Nous vous recommandons de chiffrer le mot de passe à l’aide d’un certificat qui est déployé sur l’ordinateur.
+Nous vous conseillons de chiffrer un mot de passe hello à l’aide d’un certificat qui a déployé toohello machine.
 
-L’exemple suivant utilise un compte appelé *TestUser* avec un mot de passe chiffré à l’aide d’un certificat nommé *MyCert*. Vous pouvez utiliser la commande PowerShell `Invoke-ServiceFabricEncryptText` pour créer le texte de chiffrement secret du mot de passe. Pour en savoir plus, consultez l’article [Gestion des secrets dans des applications Service Fabric](service-fabric-application-secret-management.md).
+Hello suivant montre un compte appelé *TestUser*, où le mot de passe hello a été chiffré à l’aide d’un certificat appelé *MonCert*. Vous pouvez utiliser hello `Invoke-ServiceFabricEncryptText` texte PowerShell commande toocreate hello secrète de chiffrement de mot de passe hello. Pour plus d’informations, voir l’article hello [la gestion des clés secrètes dans les applications de Service Fabric](service-fabric-application-secret-management.md).
 
-La clé privée du certificat utilisée pour déchiffrer le mot de passe doit être déployée sur l’ordinateur local dans une méthode hors bande (dans Azure, cette méthode est Azure Resource Manager). Ensuite, lorsque le Service Fabric déploie le package de service sur l’ordinateur, il peut déchiffrer la clé secrète. Avec la clé secrète et le nom du compte, il peut ensuite s’authentifier dans le référentiel de conteneur.
+clé privée de Hello du certificat hello qui a utilisé un mot de passe toodecrypt hello doit être déployé toohello la machine locale dans une méthode hors-bande. (dans Azure, cette méthode est Azure Resource Manager). Ensuite, lorsque le Service Fabric déploie le package toohello ordinateur hello service, il peut déchiffrer un secret de hello. À l’aide de secret hello avec le nom de compte hello, il peut authentifier puis avec le référentiel de conteneurs hello.
 
 ```xml
     <ServiceManifestImport>
@@ -163,8 +163,8 @@ La clé privée du certificat utilisée pour déchiffrer le mot de passe doit ê
     </ServiceManifestImport>
 ```
 
-## <a name ="Portsection"></a> Configurer le mappage conteneur/port hôte
-Vous pouvez configurer un port d’hôte utilisé pour communiquer avec le conteneur en spécifiant un élément `PortBinding` dans le manifeste de l’application. La liaison de port mappe le port sur lequel le service écoute, à l’intérieur du conteneur, à un port sur l’hôte.
+## <a name ="Portsection"></a>Configurer le mappage de port de conteneur toohost
+Vous pouvez configurer un toocommunicate de port utilisé hôte avec le conteneur de hello en spécifiant un `PortBinding` dans le manifeste de l’application hello. Hello port liaison maps hello port toowhich hello service est à l’écoute à l’intérieur de hello conteneur tooa port sur l’ordinateur hôte de hello.
 
 ```xml
     <ServiceManifestImport>
@@ -178,7 +178,7 @@ Vous pouvez configurer un port d’hôte utilisé pour communiquer avec le conte
 ```
 
 ## <a name="configure-container-to-container-discovery-and-communication"></a>Configuration de la découverte et de la communication entre des conteneurs.
-Vous pouvez utiliser l’élément `PortBinding` pour mapper un port de conteneur à un point de terminaison dans le manifeste de service. Dans l’exemple suivant, le point de terminaison `Endpoint1` spécifie un port fixe, 8905. Il peut également ne spécifier aucun port, auquel cas un port aléatoire est sélectionné dans la plage de ports des applications du cluster.
+Vous pouvez utiliser hello `PortBinding` élément toomap un point de terminaison tooan port du conteneur dans le manifeste de service hello. Dans l’exemple suivant de hello, hello le point de terminaison `Endpoint1` spécifie un port fixe, 8905. Il ne peut également spécifier aucun port, auquel cas un port aléatoire à partir de la plage de ports d’application du cluster hello est choisi pour vous.
 
 
 ```xml
@@ -191,14 +191,14 @@ Vous pouvez utiliser l’élément `PortBinding` pour mapper un port de conteneu
         </Policies>
     </ServiceManifestImport>
 ```
-Si vous spécifiez un point de terminaison à l’aide de la balise `Endpoint` dans le manifeste de service d’un conteneur invité, Service Fabric peut publier automatiquement ce point de terminaison au Naming Service. D’autres services exécutés dans le cluster peuvent ainsi détecter ce conteneur à l’aide de requêtes REST pour la résolution.
+Si vous spécifiez un point de terminaison, à l’aide de hello `Endpoint` balise dans le manifeste de service hello d’un conteneur d’invité, l’infrastructure de Service peut publier automatiquement cette toohello de point de terminaison service de noms. Autres services qui s’exécutent dans un cluster de hello peuvent découvrir donc ce conteneur à l’aide de requêtes REST hello pour la résolution.
 
-En vous inscrivant auprès du Naming Service, vous pouvez établir des communications entre les conteneurs au sein de votre conteneur à l’aide d’un [proxy inverse](service-fabric-reverseproxy.md). Pour établir la communication, vous devez fournir le port d’écoute HTTP associé au proxy inverse et le nom des services avec lesquels vous souhaitez communiquer en tant que variables d’environnement. Pour en savoir plus, consultez la section suivante. 
+En inscrivant avec hello Naming service, vous pouvez effectuer communication de conteneur à l’autre au sein de votre conteneur à l’aide de hello [proxy inverse](service-fabric-reverseproxy.md). Communication est effectuée en fournissant le port d’écoute http proxy inverse hello et nom hello de services hello que vous souhaitez toocommunicate avec comme variables d’environnement. Pour plus d’informations, consultez la section suivante de hello. 
 
 ## <a name="configure-and-set-environment-variables"></a>Configurer et définir des variables d’environnement
-Il est possible de spécifier des variables d’environnement pour chaque package de code dans le manifeste de service. Cette fonctionnalité est disponible pour tous les services, qu’ils soient déployés sous forme de conteneurs, de processus ou d’exécutables invités. Vous pouvez remplacer les valeurs de variable d’environnement dans le manifeste de l’application, ou les spécifier lors du déploiement, en tant que paramètres d’application.
+Variables d’environnement peuvent être spécifiées pour chaque package de code dans le manifeste de service hello. Cette fonctionnalité est disponible pour tous les services, qu’ils soient déployés sous forme de conteneurs, de processus ou d’exécutables invités. Vous pouvez remplacer la variable d’environnement valeurs dans une application hello manifeste ou spécifient durant le déploiement en tant que paramètres de l’application.
 
-L’extrait de code XML du manifeste de service suivant illustre la méthode à suivre pour spécifier des variables d’environnement pour un package de code :
+Hello service manifeste XML extrait de code suivant illustre un exemple de variables d’environnement toospecify pour un package de code :
 
 ```xml
     <ServiceManifest Name="FrontendServicePackage" Version="1.0" xmlns="http://schemas.microsoft.com/2011/01/fabric" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -221,7 +221,7 @@ L’extrait de code XML du manifeste de service suivant illustre la méthode à 
     </ServiceManifest>
 ```
 
-Ces variables d’environnement peuvent être remplacées au niveau du manifeste de l’application :
+Ces variables d’environnement peuvent être remplacées au niveau hello du manifeste de l’application :
 
 ```xml
     <ServiceManifestImport>
@@ -233,11 +233,11 @@ Ces variables d’environnement peuvent être remplacées au niveau du manifeste
     </ServiceManifestImport>
 ```
 
-Dans l’exemple ci-dessus, nous avons indiqué une valeur explicite pour la variable d’environnement `HttpGateway` (19000) alors que la valeur du paramètre `BackendServiceName` est définie par le biais du paramètre d’application `[BackendSvc]`. De cette manière, vous pouvez spécifier la valeur de l’élément `BackendServiceName`au moment du déploiement de l’application, sans avoir de valeur fixe dans le manifeste.
+Dans l’exemple précédent de hello, que nous avons spécifié une valeur explicite pour hello `HttpGateway` variable d’environnement (19000) pendant la valeur hello pour `BackendServiceName` paramètre via hello `[BackendSvc]` paramètre d’application. Ces paramètres vous permettent de valeur hello toospecify `BackendServiceName`valeur lorsque vous déployez l’application hello et n’avez pas de valeur fixe dans le manifeste de hello.
 
 ## <a name="configure-isolation-mode"></a>Configurer le mode d’isolation
 
-Windows prend en charge deux modes d’isolation pour les conteneurs : Processus et Hyper-V.  Avec le mode d’isolation Processus, tous les conteneurs s’exécutant sur le même hôte partagent le noyau avec l’hôte. Avec le mode d’isolation Hyper-V, les noyaux sont isolés entre chaque conteneur Hyper-V et l’hôte du conteneur. Le mode d’isolation est spécifié dans la balise `ContainerHostPolicies` dans le fichier manifeste de l’application.  Les modes d’isolation qui peuvent être définis sont `process`, `hyperv` et `default`. Par défaut, le mode d’isolation `default` est défini sur `process` sur les hôtes Windows Server et sur `hyperv` sur les hôtes Windows 10.  L’extrait de code suivant montre comment le mode d’isolation est spécifié dans le fichier manifeste de l’application.
+Windows prend en charge deux modes d’isolation pour les conteneurs : Processus et Hyper-V.  Avec le mode d’isolation du processus de hello, en cours d’exécution tous les conteneurs de hello hello même hôte ordinateur partage hello du noyau avec l’hôte de hello. Avec le mode d’isolation hello Hyper-V, les noyaux hello sont isolées entre chaque conteneur Hyper-V et l’hôte de conteneur hello. le mode d’isolation Hello est spécifié dans hello `ContainerHostPolicies` balise dans le fichier manifeste d’application hello.  modes d’isolation Hello qui peuvent être spécifiées sont `process`, `hyperv`, et `default`. Hello `default` mode d’isolation par défaut est trop`process` sur Windows Server héberge et la valeur par défaut est trop`hyperv` sur des hôtes Windows 10.  Hello extrait de code suivant montre comment le mode d’isolation hello est défini dans le fichier manifeste d’application hello.
 
 ```xml
    <ContainerHostPolicies CodePackageRef="NodeService.Code" Isolation="hyperv">
@@ -272,7 +272,7 @@ Voici un exemple de fichier manifeste de l’application :
     </ApplicationManifest>
 ```
 
-Voici un exemple de manifeste de service (indiqué dans le manifeste de l’application ci-dessus) :
+Un exemple de manifeste de service (spécifié dans hello précédant le manifeste d’application) suivante :
 
 ```xml
     <ServiceManifest Name="FrontendServicePackage" Version="1.0" xmlns="http://schemas.microsoft.com/2011/01/fabric" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -303,7 +303,7 @@ Voici un exemple de manifeste de service (indiqué dans le manifeste de l’appl
 ```
 
 ## <a name="next-steps"></a>Étapes suivantes
-Maintenant que vous avez déployé un service en conteneur, découvrez comment gérer son cycle de vie en lisant [Cycle de vie des applications Service Fabric](service-fabric-application-lifecycle.md).
+Maintenant que vous avez déployé un service en conteneur, découvrez comment toomanage son cycle de vie en lisant [cycle de vie de l’infrastructure de Service application](service-fabric-application-lifecycle.md).
 
 * [Vue d’ensemble de Service Fabric et des conteneurs](service-fabric-containers-overview.md)
 * Pour un exemple, consultez les [exemples de code de conteneur Service Fabric sur GitHub](https://github.com/Azure-Samples/service-fabric-dotnet-containers)

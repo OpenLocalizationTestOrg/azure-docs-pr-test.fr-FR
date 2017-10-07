@@ -1,6 +1,6 @@
 ---
-title: "Rediriger un domaine Internet d’entreprise sur un nom de domaine Traffic Manager | Microsoft Docs"
-description: "Cet article vous aide à rediriger votre nom de domaine d’entreprise vers un nom de domaine Traffic Manager."
+title: aaaPoint un nom de domaine du domaine tooa Traffic Manager entreprise Internet | Documents Microsoft
+description: "Cet article va vous aider à pointer votre nom de domaine de société domaine nom tooa Traffic Manager."
 services: traffic-manager
 documentationcenter: 
 author: kumudd
@@ -14,24 +14,24 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/11/2016
 ms.author: kumud
-ms.openlocfilehash: 0322b3510cfd4f94031d8c1db8f1cc032b997fa8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 84c428f60a1dc70452bf957d98a68c95e0b51715
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="point-a-company-internet-domain-to-an-azure-traffic-manager-domain"></a>Redirection d’un domaine Internet d’entreprise vers un domaine Azure Traffic Manager
+# <a name="point-a-company-internet-domain-tooan-azure-traffic-manager-domain"></a>Pointer un domaine de société Internet domaine tooan Azure Traffic Manager
 
-Lorsque vous créez un profil Traffic Manager, Azure attribue automatiquement un nom DNS pour ce profil. Pour utiliser un nom de votre zone DNS, créez un enregistrement DNS CNAME qui mappe sur le nom de domaine de votre profil Traffic Manager. Vous pouvez trouver le nom de domaine Traffic Manager dans la section **Général** de la page Configuration du profil Traffic Manager.
+Lorsque vous créez un profil Traffic Manager, Azure attribue automatiquement un nom DNS pour ce profil. toouse un nom à partir de votre zone DNS, créez un enregistrement DNS CNAME qui mappe le nom de domaine toohello de votre profil Traffic Manager. Vous trouverez le nom de domaine Traffic Manager hello Bonjour **général** section sur la page de Configuration hello Hello profil Traffic Manager.
 
-Par exemple, pour rediriger le nom www.contoso.com vers le nom DNS Traffic Manager contoso.trafficmanager.net, vous devez créer l’enregistrement de ressource DNS suivant :
+Par exemple, toopoint nom www.contoso.com toohello contoso.trafficmanager.net de nom DNS Traffic Manager, vous devez créer hello suivant l’enregistrement de ressource DNS :
 
     www.contoso.com IN CNAME contoso.trafficmanager.net
 
-L’intégralité des demandes de trafic pour *www.contoso.com* est redirigée vers *contoso.trafficmanager.net*.
+Tout le trafic demande trop*www.contoso.com* sont dirigés trop*contoso.trafficmanager.net*.
 
 > [!IMPORTANT]
-> Vous ne pouvez pas rediriger un domaine de second niveau tel que *contoso.com*vers le domaine Traffic Manager. Les normes de protocole DNS n’autorisent pas les enregistrements CNAME pour les noms de domaine de second niveau.
+> Vous ne peut pas pointer un domaine de second niveau, tel que *contoso.com*, domaine de Traffic Manager toohello. Les normes de protocole DNS n’autorisent pas les enregistrements CNAME pour les noms de domaine de second niveau.
 
 ## <a name="next-steps"></a>Étapes suivantes
 

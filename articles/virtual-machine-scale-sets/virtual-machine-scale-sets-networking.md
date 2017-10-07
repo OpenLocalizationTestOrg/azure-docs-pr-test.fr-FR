@@ -1,5 +1,5 @@
 ---
-title: "Mise en réseau pour les groupes de machines virtuelles identiques Azure | Microsoft Docs"
+title: "aaaNetworking pour les jeux de mise à l’échelle de machine virtuelle Azure | Documents Microsoft"
 description: "Propriétés de mise en réseau de configuration pour des groupes de machines virtuelles identiques Azure."
 services: virtual-machine-scale-sets
 documentationcenter: 
@@ -15,20 +15,20 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 07/17/2017
 ms.author: guybo
-ms.openlocfilehash: a8520c6d8962cc362fc935f6b515a299c0ce75b3
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: ef3f0cfe648d2195c051a73987e654f0e15d13bf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="networking-for-azure-virtual-machine-scale-sets"></a>Mise en réseau pour des groupes de machines virtuelles identiques Azure
 
-Lorsque vous déployez un groupe de machines virtuelles identiques Azure via le portail, certaines propriétés de réseau sont définies par défaut, comme un équilibrage de charge Azure avec des règles NAT entrantes. Cet article explique comment utiliser certaines des fonctionnalités avancées de mise en réseau, que vous pouvez configurer avec les groupes identiques.
+Lorsque vous déployez une échelle de machine virtuelle Azure définie via le portail de hello, certaines propriétés de réseau sont par défaut, par exemple un équilibrage de charge Azure avec des règles de trafic entrant NAT. Cet article décrit comment toouse certaines hello des fonctionnalités réseau que vous pouvez configurer avec une échelle plus avancées définit.
 
-Vous pouvez configurer toutes les fonctionnalités abordées dans cet article à l’aide des modèles Azure Resource Manager. Des exemples d’interfaces de ligne de commande Azure et Powershell sont également inclus pour les fonctionnalités sélectionnées. Utilisez CLI 2.10 et PowerShell 4.2.0 ou version ultérieure.
+Vous pouvez configurer toutes les fonctionnalités de hello abordées dans cet article à l’aide de modèles Azure Resource Manager. Des exemples d’interfaces de ligne de commande Azure et Powershell sont également inclus pour les fonctionnalités sélectionnées. Utilisez CLI 2.10 et PowerShell 4.2.0 ou version ultérieure.
 
 ## <a name="accelerated-networking"></a>Mise en réseau accélérée
-La [mise en réseau accélérée](../virtual-network/virtual-network-create-vm-accelerated-networking.md) Azure améliore les performances du réseau en activant la virtualisation d’E/S de racine unique (SR-IOV) sur une machine virtuelle. Pour utiliser la mise en réseau accélérée avec des groupes identiques, définissez enableAcceleratedNetworking sur **true** dans les paramètres networkInterfaceConfigurations du groupe identique. Par exemple :
+Azure [Accelerated réseau](../virtual-network/virtual-network-create-vm-accelerated-networking.md) améliore les performances du réseau en e/s de racine unique (SR-IOV) de la virtualisation tooa virtual machine. toouse accelerated mise en réseau avec des jeux de mise à l’échelle, définissez enableAcceleratedNetworking trop**true** dans les paramètres des configurations de votre jeu de mise à l’échelle. Par exemple :
 ```json
 "networkProfile": {
     "networkInterfaceConfigurations": [
@@ -47,7 +47,7 @@ La [mise en réseau accélérée](../virtual-network/virtual-network-create-vm-a
 ```
 
 ## <a name="create-a-scale-set-that-references-an-existing-azure-load-balancer"></a>Créer un groupe identique qui fait référence à un équilibrage de charge Azure existant
-Lorsqu’un groupe identique est créé à l’aide du portail Azure, un nouvel équilibrage de charge est créé pour la plupart des options de configuration. Si vous créez un groupe identique qui doit faire référence à un équilibrage de charge existant, vous pouvez le faire à l’aide d’une interface CLI. L’exemple de script suivant crée un équilibrage de charge et crée ensuite un groupe identique qui y fait référence :
+Lorsqu’un ensemble d’échelle est créé à l’aide de hello portail Azure, un nouvel équilibrage de charge est créé pour la plupart des options de configuration. Si vous créez un ensemble d’échelle, qui doit tooreference un équilibrage de charge existante, procéder à l’aide de CLI. Hello, exemple de script suivant crée un équilibreur de charge, puis crée un ensemble d’échelle, ce qui fait référence :
 ```bash
 az network lb create -g lbtest -n mylb --vnet-name myvnet --subnet mysubnet --public-ip-address-allocation Static --backend-pool-name mybackendpool
 
@@ -56,14 +56,14 @@ az vmss create -g lbtest -n myvmss --image Canonical:UbuntuServer:16.04-LTS:late
 ```
 
 ## <a name="configurable-dns-settings"></a>Paramètres DNS configurables
-Par défaut, les groupes identiques adoptent les paramètres DNS spécifiques du réseau virtuel et du sous-réseau dans lesquels ils ont été créés. Toutefois, vous pouvez configurer les paramètres DNS directement pour un groupe identique.
+Par défaut, les groupes identiques de prennent les paramètres DNS spécifiques hello hello réseau virtuel et sous-réseau qu’ils ont été créés dans. Toutefois, vous pouvez configurer les paramètres DNS de hello pour une échelle définie directement.
 ~
 ### <a name="creating-a-scale-set-with-configurable-dns-servers"></a>Création d’un groupe identique avec les serveurs DNS configurables
-Pour créer un groupe identique avec une configuration DNS personnalisée à l’aide de CLI 2.0, ajoutez l’argument **--dns-servers** à la commande **vmss create**, suivi des adresses IP des serveurs, séparées par un espace. Par exemple :
+toocreate une échelle définie avec une configuration DNS personnalisée à l’aide de la version 2.0 CLI, ajoutez hello **serveurs dns--** argument toohello **mise créer** commande, suivi par un espace séparées par des adresses ip de serveur. Par exemple :
 ```bash
 --dns-servers 10.0.0.6 10.0.0.5
 ```
-Pour configurer des serveurs DNS personnalisés dans un modèle Azure, ajoutez une propriété dnsSettings à la section networkInterfaceConfigurations du groupe identique. Par exemple :
+tooconfigure des serveurs DNS personnalisés dans un modèle Azure, ajouter la section des configurations du jeu d’une échelle de toohello de propriété de paramètres DNS. Par exemple :
 ```json
 "dnsSettings":{
     "dnsServers":["10.0.0.6", "10.0.0.5"]
@@ -71,9 +71,9 @@ Pour configurer des serveurs DNS personnalisés dans un modèle Azure, ajoutez u
 ```
 
 ### <a name="creating-a-scale-set-with-configurable-virtual-machine-domain-names"></a>Création d’un groupe identique avec des noms de domaine de machines virtuelles configurables
-Pour créer un groupe identique avec un nom DNS personnalisé pour des machines virtuelles avec CLI 2.0, ajoutez l’argument **--vm-domain-name** à la commande **vmss create**, suivi d’une chaîne représentant le nom de domaine.
+toocreate une échelle définie avec un nom DNS personnalisé pour les ordinateurs virtuels à l’aide de la version 2.0 CLI, ajoutez hello **vm--nom de domaine** argument toohello **mise créer** commande, suivi d’une chaîne représentant le nom de domaine hello.
 
-Pour définir le nom de domaine dans un modèle Azure, ajoutez une propriété **dnsSettings** à la section **networkInterfaceConfigurations** du groupe identique. Par exemple :
+nom de domaine tooset hello dans un modèle Azure, ajoutez un **dnsSettings** ensemble d’échelle de propriété toohello **configurations** section. Par exemple :
 
 ```json
 "networkProfile": {
@@ -105,20 +105,20 @@ Pour définir le nom de domaine dans un modèle Azure, ajoutez une propriété *
 }
 ```
 
-Pour le nom dns d’une machine virtuelle individuelle, le résultat devrait être similaire à : 
+sortie Hello, d’un nom dns de chaque machine virtuelle serait Bonjour suivant du formulaire : 
 ```
 <vm><vmindex>.<specifiedVmssDomainNameLabel>
 ```
 
 ## <a name="public-ipv4-per-virtual-machine"></a>IPv4 publique par machine virtuelle
-En règle générale, les machines virtuelles des groupes identiques Azure ne nécessitent pas leurs propres adresses IP publiques. Dans la plupart des cas, l’association d’une adresse IP publique à un équilibrage de charge ou à une machine virtuelle individuelle (ou jumpbox) qui achemine les connexions entrantes vers les machines virtuelles de groupes identiques selon les besoins (par exemple, via des règles NAT entrantes) constitue une solution plus économique et plus sûre.
+En règle générale, les machines virtuelles des groupes identiques Azure ne nécessitent pas leurs propres adresses IP publiques. La plupart des scénarios, il est plus économique et plus sûre tooassociate un public IP adresse tooa charge équilibrage tooan individuel ordinateur virtuel ou (également appelé jumpbox), qui achemine ensuite entrant connexions tooscale ensemble les ordinateurs virtuels en fonction des besoins (par exemple, via règles NAT entrantes).
 
-Toutefois, dans certains cas, les machines virtuelles de groupes identiques doivent posséder leurs propres adresses IP publiques. Par exemple, dans le cas des jeux vidéo, lorsqu’une console doit être directement connectée à une machine virtuelle sur Cloud qui procède à un traitement physique du jeu. Autre exemple : lorsque des machines virtuelles doivent établir des connexions externes entre elles, dans différentes régions, dans une base de données distribuée.
+Toutefois, certains scénarios nécessitent ensemble d’échelle de machines virtuelles toohave leur propre adresse IP publique adresses. Un exemple de jeu, où une console doit toomake une connexion directe tooa cloud machine, qui effectue le traitement du jeu physique. Un autre exemple est où les ordinateurs virtuels doivent toomake connexions externes tooone autre régions dans une base de données distribuée.
 
 ### <a name="creating-a-scale-set-with-public-ip-per-virtual-machine"></a>Création d’un groupe identique avec IP public par machine virtuelle
-Pour créer un groupe identique qui attribue une adresse IP publique à chaque machine virtuelle avec CLI 2.0, ajoutez le paramètre **--public-ip-per-vm** à la commande **vmss create**. 
+toocreate un ensemble d’échelle qui affecte un ordinateur virtuel des tooeach d’adresse publique IP CLI 2.0, ajouter hello **--public-ip-par-vm** paramètre toohello **mise créer** commande. 
 
-Pour créer un groupe identique à l’aide d’un modèle Azure, assurez-vous que la version API de la ressource Microsoft.Compute/virtualMachineScaleSets correspond au moins à la version du **30/03/2017**, et ajoutez une propriété JSON **publicIpAddressConfiguration** à la section ipConfigurations du groupe identique. Par exemple :
+toocreate une échelle définie à l’aide d’un modèle Azure, vérifiez que hello API version de hello Microsoft.Compute/virtualMachineScaleSets ressource est au moins **2017-03-30**et ajoutez un **publicIpAddressConfiguration**Toohello l’échelle de la propriété JSON définie la section de configurations IP. Par exemple :
 
 ```json
 "publicIpAddressConfiguration": {
@@ -130,22 +130,22 @@ Pour créer un groupe identique à l’aide d’un modèle Azure, assurez-vous q
 ```
 Exemple de modèle : [201-vmss-public-ip-linux](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-public-ip-linux)
 
-### <a name="querying-the-public-ip-addresses-of-the-virtual-machines-in-a-scale-set"></a>Interrogation des adresses IP publiques des machines virtuelles dans un groupe identique
-Pour répertorier les adresses IP publiques attribuées à des machines virtuelles d’un groupe identique avec CLI 2.0, utilisez la commande **az vmss list-instance-public-ips**.
+### <a name="querying-hello-public-ip-addresses-of-hello-virtual-machines-in-a-scale-set"></a>Adresse IP publique hello l’interrogation du jeu d’ordinateurs virtuels hello dans une échelle des adresses
+des adresses IP publiques toolist hello affecté tooscale virtuels ensemble à l’aide de la version 2.0 CLI, utilisez hello **az mise liste-instance-public-IP** commande.
 
-Pour répertorier les adresses IP publiques d’un groupe identique à l’aide de PowerShell, utilisez la commande _Get-AzureRmPublicIpAddress_. Par exemple :
+mise à l’échelle toolist définie les adresses IP publiques à l’aide de PowerShell, utilisez les hello _Get-AzureRmPublicIpAddress_ commande. Par exemple :
 ```PowerShell
 PS C:\> Get-AzureRmPublicIpAddress -ResourceGroupName myrg -VirtualMachineScaleSetName myvmss
 ```
 
-Vous pouvez également interroger les adresses IP publiques en référençant directement l’ID de ressource de la configuration d’adresse IP publique. Par exemple :
+Vous pouvez également des adresses IP publiques requête hello en référençant directement les id de ressource de hello de configuration d’adresse IP publique hello. Par exemple :
 ```PowerShell
 PS C:\> Get-AzureRmPublicIpAddress -ResourceGroupName myrg -Name myvmsspip
 ```
 
-Pour interroger les adresses IP publiques attribuées à des machines virtuelles d’un groupe identique en utilisant [Azure Resource Explorer](https://resources.azure.com) ou l’API REST Azure avec la version **30/03/2017** ou ultérieure.
+attribuer des adresses IP publiques de tooquery hello tooscale virtuels ensemble à l’aide de hello [Explorateur de ressources Azure](https://resources.azure.com), ou hello API REST Azure avec la version **2017-03-30** ou une version ultérieure.
 
-Pour afficher les adresses IP publiques pour un groupe identique avec Resource Explorer, reportez-vous à la section **publicipaddresses** de votre groupe identique. Par exemple : https://resources.azure.com/subscriptions/_your_sub_id_/resourceGroups/_your_rg_/providers/Microsoft.Compute/virtualMachineScaleSets/_your_vmss_/publicipaddresses
+tooview des adresses IP publiques pour une échelle définie à l’aide de l’Explorateur de ressources, de hello examiner hello **publicipaddresses** section sous votre ensemble d’échelle. Par exemple : https://resources.azure.com/subscriptions/_your_sub_id_/resourceGroups/_your_rg_/providers/Microsoft.Compute/virtualMachineScaleSets/_your_vmss_/publicipaddresses
 
 ```
 GET https://management.azure.com/subscriptions/{your sub ID}/resourceGroups/{RG name}/providers/Microsoft.Compute/virtualMachineScaleSets/{scale set name}/publicipaddresses?api-version=2017-03-30
@@ -190,10 +190,10 @@ Exemple de sortie :
 ```
 
 ## <a name="multiple-ip-addresses-per-nic"></a>Plusieurs adresses IP par carte réseau
-Une ou plusieurs configurations IP peuvent être associées à chaque carte réseau attachée à une machine virtuelle, dans un groupe identique. Une adresse IP privée est affectée à chaque configuration. Une ressource d’adresse IP publique peut également être associée à chaque configuration. Pour comprendre combien d’adresses IP peuvent être attribuées à une carte réseau et combien d’adresses IP publiques vous pouvez utiliser dans un abonnement Azure, consultez [Limites Azure](../azure-subscription-service-limits.md?toc=%2fazure%2fvirtual-network%2ftoc.json#azure-resource-manager-virtual-networking-limits).
+Chaque carte réseau attachée tooa que machine virtuelle dans un ensemble d’échelle peut avoir une ou plusieurs configurations IP associées. Une adresse IP privée est affectée à chaque configuration. Une ressource d’adresse IP publique peut également être associée à chaque configuration. toounderstand le nombre d’adresses IP peut être affectée tooa carte réseau, et le nombre d’adresses IP publique que vous pouvez utiliser dans un abonnement Azure, consultez trop[limite Azure](../azure-subscription-service-limits.md?toc=%2fazure%2fvirtual-network%2ftoc.json#azure-resource-manager-virtual-networking-limits).
 
 ## <a name="multiple-nics-per-virtual-machine"></a>Plusieurs cartes réseau par machine virtuelle
-Chaque machine virtuelle peut compter jusqu’à 8 cartes réseau, en fonction de la taille de la machine. Le nombre maximal de cartes réseau par machine est indiqué dans l’[article sur la taille des machines virtuelles](../virtual-machines/windows/sizes.md). L’exemple suivant est un profil réseau de groupe identique illustrant plusieurs entrées de cartes réseau et plusieurs adresses IP publiques par machine virtuelle :
+Vous pouvez avoir des cartes réseau de too8 par machine virtuelle, en fonction de la taille de l’ordinateur. Hello de nombre maximal de cartes réseau par machine est disponible dans hello [article de taille de machine virtuelle](../virtual-machines/windows/sizes.md). Hello exemple suivant est qu'une échelle de définie le profil réseau affichant plusieurs entrées de la carte réseau et plusieurs adresses IP publiques par machine virtuelle :
 ```json
 "networkProfile": {
     "networkInterfaceConfigurations": [
@@ -266,7 +266,7 @@ Chaque machine virtuelle peut compter jusqu’à 8 cartes réseau, en fonction 
 ```
 
 ## <a name="nsg-per-scale-set"></a>Groupes de sécurité réseau par groupe identique
-Des groupes de sécurité réseau peuvent être appliqués directement à un groupe identique en ajoutant une référence à la section de configuration de l’interface réseau des propriétés des machines virtuelles du groupe identique.
+Groupes de sécurité réseau peuvent être appliqués directement tooa un ensemble d’échelle, en ajoutant une section de configuration de référence toohello network interface de montée en puissance hello définie des propriétés de la machine virtuelle.
 
 Par exemple : 
 ```
@@ -306,4 +306,4 @@ Par exemple :
 ```
 
 ## <a name="next-steps"></a>Étapes suivantes
-Pour plus d’informations sur les réseaux virtuels Azure, consultez cette [documentation](../virtual-network/virtual-networks-overview.md).
+Pour plus d’informations sur les réseaux virtuels Azure, consultez trop[cette documentation](../virtual-network/virtual-networks-overview.md).

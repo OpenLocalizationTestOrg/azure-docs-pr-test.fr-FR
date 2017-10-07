@@ -1,6 +1,6 @@
 ---
-title: "Nettoyer et préparer des données pour Azure Machine Learning | Microsoft Docs"
-description: "Prétraitez et nettoyez les données afin de les préparer pour l'apprentissage automatique."
+title: "aaaClean et préparer les données pour Azure Machine Learning | Documents Microsoft"
+description: "Tooprepare de prétraitement et de nettoyer les données pour l’apprentissage."
 services: machine-learning
 documentationcenter: 
 author: bradsev
@@ -14,89 +14,89 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/29/2017
 ms.author: bradsev
-ms.openlocfilehash: cfaccad0a7d81950d80486dcb0d9e6520deab9b3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3e3c3e4b0cfb9187f5820d7165e6ee1ea013ba02
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tasks-to-prepare-data-for-enhanced-machine-learning"></a>Tâches de préparation des données pour l'apprentissage automatique amélioré
-Le prétraitement et le nettoyage des données sont des tâches importantes qui doivent intervenir avant d'utiliser un jeu de données à des fins d'apprentissage automatique. Les données brutes sont souvent bruyantes, peu fiables et incomplètes. Leur utilisation pour la modélisation peut générer des résultats trompeurs. Ces tâches font partie du processus TDSP (Team Data Science Process) et suivent généralement l'exploration initiale d'un jeu de données utilisé pour découvrir et planifier le traitement préliminaire requis. Pour plus d'instructions sur le processus TDSP, consultez les étapes décrites dans le [processus TDSP (Team Data Science Process)](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/).
+# <a name="tasks-tooprepare-data-for-enhanced-machine-learning"></a>Données de tooprepare de tâches pour l’apprentissage améliorée
+Le prétraitement et le nettoyage des données sont des tâches importantes qui doivent intervenir avant d'utiliser un jeu de données à des fins d'apprentissage automatique. Les données brutes sont souvent bruyantes, peu fiables et incomplètes. Leur utilisation pour la modélisation peut générer des résultats trompeurs. Ces tâches font partie du processus de science des données équipe (TDSP) de hello et suivent généralement une exploration initiale d’une toodiscover de jeu de données utilisé et le plan hello pré-traitement requis. Pour plus d’instructions sur le processus TDSP hello, consultez les étapes hello hello [processus de science des données équipe](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/).
 
-Les tâches de traitement préalable et de nettoyage, comme la tâche d'exploration de données, peuvent être exécutées dans une grande variété d'environnements, tels que SQL ou Hive ou Azure Machine Learning Studio et avec différents outils et langages, tels que R ou Python, en fonction de l'emplacement de stockage de vos données et leur mise en forme. Étant donné que le processus TDSP est itératif par nature, ces tâches peuvent avoir lieu à diverses étapes du flux de travail du processus.
+De pré-traitement et de tâches de nettoyage, comme la tâche exploration de données hello, peuvent être effectuées dans un large éventail d’environnements, tels que SQL ou d’une ruche ou d’Azure Machine Learning Studio et avec plusieurs outils et langages, tels que R ou Python, en fonction de ces données stockées et la mise en forme. Étant donné que TDSP est itératif par nature, ces tâches peuvent avoir lieu à différentes étapes d’un flux de travail hello du processus de hello.
 
 Cet article présente différents concepts et tâches de prétraitement des données, à effectuer avant ou après l'intégration de ces données dans Azure Machine Learning.
 
-Pour obtenir un exemple d'exploration de données et de prétraitement effectués dans Azure Machine Learning Studio, consultez la vidéo [Prétraitement des données dans Azure Machine Learning Studio](https://azure.microsoft.com/documentation/videos/preprocessing-data-in-azure-ml-studio/) .
+Pour obtenir un exemple d’exploration de données et de prétraitement effectué dans Azure Machine Learning studio, consultez hello [prétraitement des données dans Azure Machine Learning Studio](https://azure.microsoft.com/documentation/videos/preprocessing-data-in-azure-ml-studio/) vidéo.
 
 ## <a name="why-pre-process-and-clean-data"></a>Pourquoi prétraiter et nettoyer les données ?
-Dans le monde réel, les données proviennent de plusieurs sources et processus. Elles peuvent contenir des anomalies ou des valeurs incorrectes qui compromettent la qualité du jeu de données. Les problèmes de qualité les plus fréquents sont les suivants :
+Données du monde réel sont rassemblées à partir de différentes sources et processus et il peuvent contenir des irrégularités ou données endommagées compromettre la qualité de hello du jeu de données hello. problèmes de qualité des données par défaut Hello qui surviennent sont :
 
 * **Caractère incomplet :**des valeurs ou des attributs sont manquants.
 * **Bruit :**les données contiennent des enregistrements erronés ou des aberrations.
 * **Incohérence :**les données contiennent des enregistrements en conflit ou des contradictions.
 
-La qualité des données est essentielle pour obtenir des modèles prédictifs performants. Pour éviter de traiter des données erronées et améliorer la performance du modèle, il faut impérativement analyser les données, détecter les anomalies le plus tôt possible et déterminer les étapes de prétraitement et de nettoyage appropriées.
+La qualité des données est essentielle pour obtenir des modèles prédictifs performants. tooavoid « garbage dans garbage out » et améliorer la qualité des données et par conséquent, les performances de modèle, il est impératif tooconduct un toospot d’écran de contrôle d’intégrité données données émet tôt et décider de hello correspondant le traitement des données et de nettoyage des étapes.
 
 ## <a name="what-are-some-typical-data-health-screens-that-are-employed"></a>Quels sont les critères d’intégrité des données généralement employés ?
-Il est possible d’évaluer la qualité globale des données en vérifiant les éléments suivants :
+Nous pouvons vérifier hello général de qualité de données en activant :
 
-* Le nombre d' **enregistrements**.
-* Le nombre d’**attributs** (ou de **fonctionnalités**).
-* Le **type de données** des attributs (nominal, ordinal ou continu).
-* Le nombre de **valeurs manquantes**.
-* **qualité de formation** des données.
-  * Si les données sont au format TSV ou CSV, vérifiez que les séparateurs de colonne et de ligne séparent correctement et systématiquement les colonnes et les lignes.
-  * Si les données sont au format HTML ou XML, vérifiez qu'elles sont conformes à leur standard respectif.
-  * Une analyse peut également se révéler nécessaire pour obtenir des informations structurées à partir de données non ou semi-structurées.
-* **Enregistrements de données incohérents**. Vérifiez la plage des valeurs autorisées. Par exemple, si les données sont des notes moyennes d'étudiant, vérifiez qu'elles sont comprises dans la fourchette correcte.
+* Hello nombre de **enregistrements**.
+* Hello nombre de **attributs** (ou **fonctionnalités**).
+* attribut de Hello **des types de données** (nominal, ordinale ou continu).
+* Hello nombre de **les valeurs manquantes**.
+* **Du code** de données de hello.
+  * Si les données de salutation sont TSV ou volume partagé de cluster, vérifiez que les séparateurs de colonnes hello et les séparateurs de ligne toujours correctement séparent les colonnes et lignes.
+  * Si les données de salutation sont au format HTML ou XML, vérifiez si les données de salutation sont correct en fonction sur leurs normes respectifs.
+  * L’analyse peut également être nécessaire dans les informations sur les commandes tooextract structuré à partir des données structurées ou semi-structurées.
+* **Enregistrements de données incohérents**. Vérifiez la plage hello de valeurs sont autorisées. par exemple, si les données de salutation contient amp étudiant, vérifiez si hello amp est Bonjour désigné de plage, par exemple 0 ~ 4.
 
-Lorsque vous détectez des problèmes dans les données, des **étapes de traitement** s'imposent : nettoyage des valeurs manquantes, normalisation des données, discrétisation, traitement de texte pour supprimer et/ou remplacer des caractères susceptibles de perturber l'alignement des données, types de données mixtes dans les champs communs, etc.
+Lorsque vous rencontrez des problèmes liés aux données, **étapes de traitement** sont nécessaires, ce qui implique souvent un nettoyage des valeurs manquantes, normalisation des données, discrétisation, tooremove de traitement de texte et/ou de remplacer des caractères incorporés, ce qui peuvent affecter alignement des données, mixtes types de données en commun les champs et autres.
 
-**Azure Machine Learning n'exploite que les données tabulaires bien formées**.  Si les données sont déjà au format tabulaire, Azure Machine Learning peut les prétraiter directement dans Machine Learning Studio.  Si elles ne sont pas au format tabulaire, comme le format XML, une analyse peut être nécessaire pour les convertir.  
+**Azure Machine Learning n'exploite que les données tabulaires bien formées**.  Si les données de salutation sont déjà dans un format tabulaire, avant le traitement des données peut être effectué directement avec Azure Machine Learning Bonjour Machine Learning Studio.  Si les données ne sont pas dans un format tabulaire, son mot à dire qu’il est au format XML, l’analyse peut être nécessaire dans le formulaire tootabular données commande tooconvert hello.  
 
-## <a name="what-are-some-of-the-major-tasks-in-data-pre-processing"></a>Quelles sont les principales opérations effectuées lors du prétraitement des données ?
+## <a name="what-are-some-of-hello-major-tasks-in-data-pre-processing"></a>Quelles sont des tâches importantes hello dans avant le traitement des données ?
 * **Nettoyage des données :**compléter les valeurs manquantes, détecter et supprimer les données bruyantes et les aberrations.
-* **Transformation des données :**normaliser les données pour réduire le volume et le bruit.
+* **Transformation de données**: normaliser le bruit et des dimensions de tooreduce de données.
 * **Réduction des données :**échantillonner les enregistrements de données ou les attributs pour faciliter la manipulation des données.
-* **Discrétisation des données :** convertir des attributs continus en attributs catégoriels pour simplifier l’exploitation des données dans certains outils d’apprentissage automatique.
+* **Discrétisation des données**: attributs toocategorical pour faciliter l’utilisation d’attributs Convert continue avec certaines méthodes d’apprentissage.
 * **Nettoyage du texte :**supprimer les caractères intégrés pouvant perturber l’alignement des données (comme les tabulations dans un fichier TSV), les nouvelles lignes qui peuvent interrompre des enregistrements, etc.
 
-Les sections suivantes décrivent certaines de ces étapes de traitement des données.
+les sections Hello ci-dessous décrit en détail certaines de ces étapes de traitement des données.
 
-## <a name="how-to-deal-with-missing-values"></a>Comment gérer les valeurs manquantes ?
-Si vous avez des valeurs manquantes, la première chose à faire est d’en identifier l’origine. Les méthodes les plus courantes de traitement des valeurs manquantes sont les suivantes :
+## <a name="how-toodeal-with-missing-values"></a>Comment toodeal sans les valeurs ?
+toodeal avec des valeurs manquantes, il est préférable de toofirst identifier la raison de hello pour hello manquant de valeurs problème de hello toobetter handle. Les méthodes les plus courantes de traitement des valeurs manquantes sont les suivantes :
 
 * **Suppression :**supprimer les enregistrements ayant des valeurs manquantes.
 * **Remplacement par une valeur factice :** remplacer des valeurs manquantes par une valeur factice : par exemple, *inconnu* pour les valeurs catégorielles ou 0 pour les valeurs numériques.
-* **Remplacement par la moyenne :**si les données manquantes sont numériques, remplacez-les par la valeur moyenne.
-* **Remplacement par l’élément le plus fréquent :**si les données manquantes sont catégorielles, remplacer les valeurs manquantes par l’élément le plus fréquent.
-* **Remplacement par la valeur de régression :**remplacer les valeurs manquantes par des valeurs de régression.  
+* **Moyenne de substitution**: si les données manquantes hello sont numériques, remplacez les valeurs manquantes hello moyenne de hello.
+* **Substitution de fréquentes**: si les données manquantes hello sont catégoriques, remplacez les valeurs manquantes hello par élément plus fréquente de hello
+* **Substitution de régression**: utilisation de régression méthode tooreplace absence de valeurs avec des valeurs de régressions.  
 
-## <a name="how-to-normalize-data"></a>Comment normaliser les données ?
-La normalisation des données restreint les valeurs numériques à une plage spécifiée. Les méthodes de normalisation les plus courantes sont les suivantes :
+## <a name="how-toonormalize-data"></a>Comment les données toonormalize ?
+Données normalisation nouveau met à l’échelle des valeurs numériques tooa spécifié de plage. Les méthodes de normalisation les plus courantes sont les suivantes :
 
-* **Normalisation min-max** : adapter linéairement les données à une plage comprise, par exemple, entre 0 et 1. La valeur minimale est 0 et la valeur maximale est 1.
-* **Normalisation par le test Z**: mettre les données à l’échelle en fonction de la moyenne et de l’écart standard : diviser la différence entre les données et la moyenne par l’écart standard.
-* **Mise à l'échelle décimale**: mettre les données à l’échelle en déplaçant le séparateur décimal de la valeur de l’attribut.  
+* **Normalisation Min-Max**: linéairement transforment hello données tooa plage, vous pouvez dire comprise entre 0 et 1, où hello la valeur minimale est mis à l’échelle too0 et too1 de la valeur maximale.
+* **Normalisation Z-score**: l’échelle en fonction de la moyenne et l’écart-type de données : diviser hello différencie les données de salutation hello moyenne par écart type hello.
+* **Mise à l’échelle décimal**: l’échelle des données de hello mobile décimal hello de valeur d’attribut hello.  
 
-## <a name="how-to-discretize-data"></a>Comment discrétiser les données ?
-Pour discrétiser les données, il faut convertir les valeurs continues en attributs ou intervalles nominaux. Plusieurs méthodes permettent d’effectuer cette opération :
+## <a name="how-toodiscretize-data"></a>Comment les données toodiscretize ?
+Données peuvent être discrétisées en convertissant les attributs de toonominal des valeurs continues ou des intervalles. Plusieurs méthodes permettent d’effectuer cette opération :
 
-* **Compartimentage à largeur identique**: diviser la plage de toutes les valeurs possibles d’un attribut en N groupes de même taille et attribuer aux valeurs le numéro de compartiment qui leur correspond.
-* **Compartimentage à hauteur identique :**diviser la plage de toutes les valeurs possibles d’un attribut en N groupes contenant le même nombre d’instances, puis attribuer à aux valeurs le numéro de compartiment qui leur correspond.  
+* **Placement de largeur égale**: diviser plage hello de toutes les valeurs possibles d’un attribut en groupes N Hello même taille et assigner des valeurs de hello qui se trouvent dans un emplacement avec un numéro d’emplacement hello.
+* **Placement de hauteur égale**: diviser hello plage de toutes les valeurs possibles d’un attribut en groupes de N, contenant chacune hello même nombre d’instances, puis affecter de valeurs de hello qui se trouvent dans un emplacement avec hello au numéro d’emplacement.  
 
-## <a name="how-to-reduce-data"></a>Comment réduire les données ?
-Plusieurs méthodes permettent de réduire la taille des données pour en faciliter la manipulation. Selon la taille et le domaine, les méthodes applicables sont les suivantes :
+## <a name="how-tooreduce-data"></a>Comment les données tooreduce ?
+Il existe de taille des données tooreduce méthodes différentes pour la gestion des données plus faciles. Selon la taille et hello domaine de données hello méthodes suivantes peut être appliquée :
 
-* **Échantillonnage des enregistrements**: échantillonner les enregistrements de données et ne choisir que le sous-ensemble représentatif.
-* **Échantillonnage des attributs**: ne sélectionner que les attributs importants dans les données.  
-* **Agrégation**: diviser les données en groupes et stocker les nombres de chaque groupe. Par exemple, le chiffre d’affaires quotidien d’une chaîne de restaurants sur les 20 dernières années peut être agrégé en un chiffre d’affaires mensuel pour réduire la taille des données.  
+* **Enregistrement d’échantillonnage**: exemple hello les enregistrements de données et à ne choisir qu’à partir des données de hello sous-ensemble représentatif de hello.
+* **Attribut d’échantillonnage**: sélectionner uniquement un sous-ensemble des attributs les plus importants hello à partir des données de hello.  
+* **Agrégation**: diviser les données hello en groupes et de stocker les nombres hello pour chaque groupe. Par exemple, hello chiffre d’affaires quotidien nombres d’une chaîne de restaurant sur hello 20 années peuvent être agrégées taille hello tooreduce du chiffre d’affaires toomonthly de données de hello.  
 
-## <a name="how-to-clean-text-data"></a>Comment nettoyer les données textuelles ?
-**Les champs de texte au format tabulaire** peuvent contenir des caractères qui perturbent l’alignement des données et/ou les limites des enregistrements. Par exemple, des tabulations intégrées dans un fichier TSV peuvent décaler les colonnes, et des caractères de nouvelle ligne peuvent déstructurer des enregistrements. Une manipulation inappropriée de l’encodage pendant l’écriture ou la lecture de texte provoque une perte d’informations ou l’ajout intempestif de caractères illisibles, pouvant empêcher une analyse correcte du texte. Soyez prudent lorsque vous analysez et modifiez des champs de texte pour corriger l’alignement et/ou extraire des données structurées de données non ou semi-structurées.
+## <a name="how-tooclean-text-data"></a>Comment les données de texte tooclean ?
+**Les champs de texte au format tabulaire** peuvent contenir des caractères qui perturbent l’alignement des données et/ou les limites des enregistrements. Par exemple, des tabulations intégrées dans un fichier TSV peuvent décaler les colonnes, et des caractères de nouvelle ligne peuvent déstructurer des enregistrements. Gestion lors de l’écriture/lecture texte l’encodage de texte incorrect entraîne une perte de tooinformation, par inadvertance introduction de caractères illisibles, par exemple, les valeurs NULL, et peut également affectent l’analyse. Analyse minutieuse et modification peuvent être nécessaires dans les champs de texte de commande tooclean pour alignement correct et/ou tooextract structurée les données à partir des données de texte non structurées ou semi-structurées.
 
-**L’exploration des données** permet d’obtenir une vue sur l’état des données. Plusieurs problèmes peuvent être détectés pendant cette étape et les méthodes de correction correspondantes, appliquées.  Il est important de s’interroger sur l’origine du problème et la manière dont il a été introduit dans les données. Cela permet de déterminer les étapes de traitement à effectuer pour résoudre ces problèmes. Les conclusions que l’on peut tirer de l’analyse des données permettent également de hiérarchiser le travail de traitement des données.
+**Exploration de données** propose une vue anticipée des données de salutation. Un nombre de problèmes de données soient détecté au cours de cette étape et méthodes correspondantes peuvent être appliqués tooaddress ces problèmes.  Il est important tooask des questions comme origine hello du problème de hello et comment les problème hello peuvent avoir été introduite. Cela vous permet également de décider sur les étapes de traitement des données hello que toobe besoin prise tooresolve les. type Hello d’aperçus un envisage tooderive à partir des données de hello peut également être utilisé tooprioritize hello le traitement des données.
 
 ## <a name="references"></a>Références
 > *Data Mining : Concepts et Techniques*, 3e édition, Morgan Kaufmann, 2011, Jiawei Han, Micheline Kamber et Jian Pei
