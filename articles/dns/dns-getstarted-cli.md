@@ -1,6 +1,6 @@
 ---
-title: "Prise en main d’Azure DNS à l’aide d’Azure CLI 2.0 | Microsoft Docs"
-description: "Découvrez comment créer une zone et un enregistrement DNS dans Azure DNS. Il s’agit d’un guide pas à pas pour la création et la gestion de votre première zone et de votre premier enregistrement DNS à l’aide d’Azure CLI 2.0."
+title: "aaaGet main DNS Azure à l’aide d’Azure CLI 2.0 | Documents Microsoft"
+description: "Découvrez comment toocreate DNS zone et cet enregistrement dans le système DNS Azure. Ceci est un toocreate guide pas à pas et que vous gérez votre première zone DNS et un enregistrement à l’aide de hello Azure CLI 2.0."
 services: dns
 documentationcenter: na
 author: jtuliani
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/10/2017
 ms.author: jonatul
-ms.openlocfilehash: 6958d61b29961f59cb22f62bec55f2d467e7e7cb
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8a894941e9910d5cc35394a1be9dbca9792613f2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-azure-dns-using-azure-cli-20"></a>Prise en main d’Azure DNS à l’aide d’Azure CLI 2.0
 
@@ -29,15 +29,15 @@ ms.lasthandoff: 07/11/2017
 > * [Azure CLI 1.0](dns-getstarted-cli-nodejs.md)
 > * [Azure CLI 2.0](dns-getstarted-cli.md)
 
-Cet article vous guide tout au long de la procédure de création de votre première zone et de votre premier enregistrement DNS à l’aide de l’interface de ligne de commande Azure 2.0 multiplateforme, qui est disponible pour Windows, Mac et Linux. Vous pouvez également effectuer ces étapes à l’aide du portail Azure ou d’Azure PowerShell.
+Cet article vous guide tout hello étapes toocreate votre première zone DNS et à l’aide de l’enregistrement hello à multiplateforme Azure CLI 2.0, qui est disponible pour Windows, Mac et Linux. Vous pouvez également effectuer ces étapes à l’aide de hello portail Azure ou Azure PowerShell.
 
-Une zone DNS permet d’héberger les enregistrements DNS d’un domaine particulier. Pour commencer à héberger votre domaine dans le DNS Azure, vous devez créer une zone DNS pour ce nom de domaine. Chaque enregistrement DNS pour votre domaine est ensuite créé à l’intérieur de cette zone DNS. Enfin, pour publier votre zone DNS sur Internet, vous devez configurer les serveurs de noms du domaine. Chacune de ces étapes est décrite ci-dessous.
+Une zone DNS est toohost utilisé hello les enregistrements DNS pour un domaine particulier. toostart hébergeant votre domaine dans le système DNS Azure, vous devez toocreate une zone DNS pour ce nom de domaine. Chaque enregistrement DNS pour votre domaine est ensuite créé à l’intérieur de cette zone DNS. Enfin, toopublish votre serveur DNS de la zone toohello Internet, vous avez besoin de serveurs de noms tooconfigure hello pour le domaine de hello. Chacune de ces étapes est décrite ci-dessous.
 
-Ces instructions partent du principe que vous avez déjà installé Azure CLI 2.0 et que vous êtes connecté. Pour obtenir de l’aide, consultez [Gérer des zones DNS dans Azure DNS à l’aide d’Azure CLI 2.0](dns-operations-dnszones-cli.md).
+Ces instructions supposent que vous avez déjà installé et connecté tooAzure CLI 2.0. Pour plus d’aide, consultez [fonctionnement des zones toomanage DNS à l’aide d’Azure CLI 2.0](dns-operations-dnszones-cli.md).
 
-## <a name="create-the-resource-group"></a>Créer le groupe de ressources
+## <a name="create-hello-resource-group"></a>Créer le groupe de ressources hello
 
-Avant de créer la zone DNS, un groupe de ressources est créé pour contenir la zone DNS. Voici la commande.
+Avant de créer la zone DNS de hello, un groupe de ressources est créé de Zone DNS de hello toocontain. Hello Voici commande hello.
 
 ```azurecli
 az group create --name MyResourceGroup --location "West US"
@@ -45,9 +45,9 @@ az group create --name MyResourceGroup --location "West US"
 
 ## <a name="create-a-dns-zone"></a>Création d’une zone DNS
 
-Une zone DNS est créée à l'aide de la commande `az network dns zone create`. Pour consulter l’aide de cette commande, tapez `az network dns zone create -h`.
+Une zone DNS est créée à l’aide de hello `az network dns zone create` commande. aide toosee de cette commande, tapez `az network dns zone create -h`.
 
-L’exemple ci-dessous crée une zone DNS appelée *contoso.com* dans le groupe de ressources *MyResourceGroup*. Utilisez l’exemple pour créer une zone DNS, en remplaçant les valeurs indiquées par vos propres valeurs.
+Hello exemple suivant crée une zone DNS appelée *contoso.com* dans le groupe de ressources hello *MyResourceGroup*. Utilisez hello exemple toocreate une zone DNS, en spécifiant les valeurs hello pour votre propre.
 
 ```azurecli
 az network dns zone create -g MyResourceGroup -n contoso.com
@@ -56,20 +56,20 @@ az network dns zone create -g MyResourceGroup -n contoso.com
 
 ## <a name="create-a-dns-record"></a>Créer un enregistrement DNS
 
-Pour créer un enregistrement DNS, utilisez la commande `az network dns record-set [record type] add-record`. Pour obtenir de l’aide, concernant les enregistrements A par exemple, consultez `azure network dns record-set A add-record -h`.
+toocreate un enregistrement DNS, utilisez hello `az network dns record-set [record type] add-record` commande. Pour obtenir de l’aide, concernant les enregistrements A par exemple, consultez `azure network dns record-set A add-record -h`.
 
-L’exemple suivant crée un enregistrement avec le nom relatif « www » dans la zone DNS « contoso.com », dans le groupe de ressources « MyResourceGroup ». Le nom complet du jeu d’enregistrements est « www.contoso.com ». Le type d’enregistrement est « A », avec l’adresse IP « 1.2.3.4 », et une durée de vie par défaut de 3 600 secondes (1 heure) est utilisée.
+Hello exemple suivant crée un enregistrement avec le nom relatif de hello « www » Bonjour Zone du DNS « contoso.com », dans le groupe de ressources « MyResourceGroup ». nom qualifié complet de Hello du jeu d’enregistrements hello est « www.contoso.com ». type d’enregistrement Hello est « A », avec l’adresse IP « 1.2.3.4 », et une durée de vie de 3 600 secondes (1 heure) de la valeur par défaut est utilisée.
 
 ```azurecli
 az network dns record-set a add-record -g MyResourceGroup -z contoso.com -n www -a 1.2.3.4
 ```
 
-Pour découvrir d’autres types d’enregistrements, des jeux d’enregistrements comportant plus d’un enregistrement et d’autres valeurs de durée de vie et pour modifier les enregistrements existants, consultez [Gérer les enregistrements DNS et les jeux d’enregistrement dans Azure DNS à l’aide d’Azure CLI 2.0](dns-operations-recordsets-cli.md).
+Pour les autres types d’enregistrements, pour des jeux d’enregistrements avec plusieurs enregistrements, pour les autres valeurs de durée de vie et toomodify les enregistrements existants, consultez [enregistrements DNS de gérer et jeux d’enregistrements à l’aide de Azure CLI 2.0 hello](dns-operations-recordsets-cli.md).
 
 
 ## <a name="view-records"></a>Affichage des enregistrements
 
-Pour répertorier les enregistrements DNS dans votre zone, utilisez :
+les enregistrements DNS toolist hello dans votre fuseau, utilisez :
 
 ```azurecli
 az network dns record-set list -g MyResourceGroup -z contoso.com
@@ -78,9 +78,9 @@ az network dns record-set list -g MyResourceGroup -z contoso.com
 
 ## <a name="update-name-servers"></a>Mettre à jour les serveurs de noms
 
-Une fois que vous jugez que votre zone et vos enregistrements DNS ont été configurés correctement, vous devez configurer votre nom de domaine pour utiliser les serveurs de noms Azure DNS. Cela permet à d’autres utilisateurs sur Internet de rechercher vos enregistrements DNS.
+Une fois que vous êtes satisfait que votre zone DNS et les enregistrements ont été configurées correctement, vous devez tooconfigure votre nom de domaine toouse serveurs DNS de Azure hello. Cela permet à d’autres utilisateurs sur hello Internet toofind vos enregistrements DNS.
 
-Les serveurs de noms de votre zone sont indiqués par la commande `az network dns zone show`. Pour afficher les noms de serveurs de noms, utilisez la sortie JSON, comme indiqué dans l’exemple suivant.
+serveurs de noms Hello pour votre zone sont fournies par hello `az network dns zone show` commande. noms de serveur nom toosee hello, utilisez JSON de sortie, comme indiqué dans hello l’exemple suivant.
 
 ```azurecli
 az network dns zone show -g MyResourceGroup -n contoso.com -o json
@@ -104,11 +104,11 @@ az network dns zone show -g MyResourceGroup -n contoso.com -o json
 }
 ```
 
-Ces serveurs de noms doivent être configurés avec le bureau d’enregistrement de noms de domaine (dans lequel vous avez acheté le nom de domaine). Votre bureau d’enregistrement offre la possibilité de configurer les serveurs de noms pour le domaine. Pour plus d’informations, consultez [Délégation de domaine à Azure DNS](dns-domain-delegation.md).
+Ces serveurs de noms doivent être configurés avec le Registre des noms de domaine hello (où vous avez acheté nom de domaine hello). Tooset d’option hello des serveurs de noms hello pour le domaine de hello propose de votre bureau d’enregistrement. Pour plus d’informations, consultez [déléguer votre tooAzure de domaine DNS](dns-domain-delegation.md).
 
 ## <a name="delete-all-resources"></a>Supprimer toutes les ressources
  
-Pour supprimer toutes les ressources créées dans cet article, procédez comme suit :
+toodelete toutes les ressources créées dans cet article, hello take suivant l’étape :
 
 ```azurecli
 az group delete --name MyResourceGroup
@@ -116,8 +116,8 @@ az group delete --name MyResourceGroup
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Pour en savoir plus sur Azure DNS, consultez [Vue d’ensemble d’Azure DNS](dns-overview.md).
+toolearn en savoir plus sur Azure DNS, consultez [vue d’ensemble de DNS Azure](dns-overview.md).
 
-Pour en savoir plus sur la gestion des zones DNS dans Azure DNS, consultez [Gérer des zones DNS dans Azure DNS à l’aide d’Azure CLI 2.0](dns-operations-dnszones-cli.md).
+toolearn savoir plus sur la gestion des zones DNS dans le système DNS Azure, consultez [zones DNS de gestion dans DNS Azure à l’aide d’Azure CLI 2.0](dns-operations-dnszones-cli.md).
 
-Pour en savoir plus sur la gestion des enregistrements DNS dans Azure DNS, consultez [Gérer les enregistrements DNS et les jeux d’enregistrement dans Azure DNS à l’aide d’Azure CLI 2.0](dns-operations-recordsets-cli.md).
+toolearn savoir plus sur la gestion des enregistrements DNS dans le système DNS Azure, consultez [des enregistrements DNS de gérer et enregistrement définit dans le système DNS d’Azure à l’aide d’Azure CLI 2.0](dns-operations-recordsets-cli.md).

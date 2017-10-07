@@ -1,6 +1,6 @@
 ---
-title: "Créer des alertes pour les services Azure - Portail Azure | Microsoft Docs"
-description: "Déclenchez des e-mails et des notifications, appelez des URL de sites web (webhooks) ou déclenchez une automatisation lorsque les conditions spécifiées sont remplies."
+title: aaaCreate des alertes pour les services Azure - portail Azure | Documents Microsoft
+description: "Déclencher des messages électroniques, les notifications, les URL de sites Web d’appel (webhooks) ou automation lorsque les conditions hello spécifiées sont remplies."
 author: rboucher
 manager: carmonm
 editor: 
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/23/2016
 ms.author: robb
-ms.openlocfilehash: 745a9c016bd037f1051025a2c5a468c3935e4550
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 78d862d25255cda9fdfe347329e908a471c39846
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-metric-alerts-in-azure-monitor-for-azure-services---azure-portal"></a>Créer des alertes dans Azure Monitor pour les services Azure - Portail Azure
 > [!div class="op_single_selector"]
@@ -28,20 +28,20 @@ ms.lasthandoff: 07/11/2017
 >
 >
 
-## <a name="overview"></a>Vue d’ensemble
-Cet article vous montre comment configurer des alertes de métrique Azure avec le portail Azure.   
+## <a name="overview"></a>Vue d'ensemble
+Cet article vous explique comment tooset des alertes de métrique Azure à l’aide de hello portail Azure.   
 
 Vous pouvez recevoir une alerte en fonction de métriques de surveillance pour vos services Azure ou d'événements sur ces derniers.
 
-* **Valeurs de métriques** : l’alerte se déclenche lorsque la valeur d’une métrique spécifiée dépasse un seuil que vous affectez dans un des deux sens. C’est-à-dire que le déclenchement se fait à la fois lorsque la condition est remplie et par la suite une fois que la condition n’est plus remplie.    
-* **Événements du journal d’activité** : une alerte peut se déclencher sur *chaque* événement ou seulement quand un certain événement se produit. Pour plus d’informations sur les alertes du journal d’activité, [cliquez ici](monitoring-activity-log-alerts.md)
+* **Valeurs de mesure** - hello déclencheurs d’alerte lorsque la valeur de hello d’une métrique spécifique dépasse un seuil que vous affectez dans les deux sens. Autrement dit, elle déclenche à la fois lorsque hello condition est tout d’abord remplie et puis par la suite que lorsque la condition est n’est plus remplie.    
+* **Événements du journal d’activité** : une alerte peut se déclencher sur *chaque* événement ou seulement quand un certain événement se produit. toolearn plus d’informations sur les alertes de journal d’activité [cliquez ici](monitoring-activity-log-alerts.md)
 
-Vous pouvez configurer une alerte de métrique pour effectuer les opérations suivantes lors de son déclenchement :
+Vous pouvez configurer un hello métrique toodo alerte suivant lorsqu’il déclenche :
 
-* envoyer des notifications par courrier électronique à l’administrateur du service et aux coadministrateurs
-* envoyer un courrier électronique à d’autres adresses que vous spécifiez.
+* envoyer l’administrateur de service de messagerie des notifications toohello et coadministrateurs
+* envoyer des e-mails tooadditional que vous spécifiez.
 * appeler un webhook
-* démarrer l’exécution d’un runbook Azure (uniquement à partir du Portail Azure)
+* Démarrer l’exécution d’un runbook Azure (uniquement à partir de hello portail Azure)
 
 Vous pouvez configurer et obtenir des informations sur les règles d’alerte de métrique via
 
@@ -50,44 +50,44 @@ Vous pouvez configurer et obtenir des informations sur les règles d’alerte de
 * [interface de ligne de commande (CLI)](insights-alerts-command-line-interface.md)
 * [API REST Azure Monitor](https://msdn.microsoft.com/library/azure/dn931945.aspx)
 
-## <a name="create-an-alert-rule-on-a-metric-with-the-azure-portal"></a>Créer une règle d’alerte sur une métrique avec le Portail Azure
-1. Sur le [portail](https://portal.azure.com/), localisez la ressource que vous souhaitez surveiller et sélectionnez-la.
+## <a name="create-an-alert-rule-on-a-metric-with-hello-azure-portal"></a>Créer une règle d’alerte sur une mesure avec hello portail Azure
+1. Bonjour [portal](https://portal.azure.com/), recherchez des ressources hello vous intéressez dans l’analyse et sélectionnez-le.
 
-2. Sélectionnez **Alertes** ou **Règles d’alerte** dans la section SURVEILLANCE. Le texte et l’icône peuvent varier légèrement pour les différentes ressources.  
+2. Sélectionnez **alertes** ou **règles d’alerte** sous la section analyse de hello. icône et texte hello peuvent varier légèrement en fonction des ressources différentes.  
 
-    ![Analyse](./media/insights-alerts-portal/AlertRulesButton.png)
+    ![Surveillance](./media/insights-alerts-portal/AlertRulesButton.png)
 
-3. Sélectionnez la commande **Ajouter une alerte** et renseignez les champs.
+3. Sélectionnez hello **ajouter une alerte** commande et renseignez les champs hello.
 
     ![Ajouter une alerte](./media/insights-alerts-portal/AddAlertOnlyParamsPage.png)
 
 4. **Nommez** votre règle d’alerte, puis choisissez une **Description** qui indique également les adresses électroniques de notification.
 
-5. Sélectionnez la **Métrique** que vous souhaitez surveiller, puis choisissez une **Condition** et une valeur de **Seuil** pour la métrique. Choisissez également la **Période** de temps pendant laquelle la règle de métrique doit être satisfaite pour que l’alerte se déclenche. Par exemple, si vous utilisez la période « PT5M » et que vous alerte recherche l’UC au-dessus de 80 %, elle se déclenche quand l’UC a été constamment au-dessus de 80 % pendant cinq minutes. Après le premier déclenchement, elle se déclenche à nouveau lorsque l’UC reste au-dessous de 80 % pendant cinq minutes. La mesure de l’UC se produit toutes les minutes.   
+5. Sélectionnez hello **métrique** toomonitor de souhaité, puis choisissez un **Condition** et **seuil** valeur pour métrique de hello. Sélectionnez également l’option hello **période** de temps qui hello métrique règle doit être satisfaite avant de déclencheurs d’alerte hello. Par exemple, si vous utilisez hello point « PT5M », votre alerte recherche du processeur supérieure à 80 %, hello alerte se déclenche lorsque hello du processeur a été constamment ci-dessus 80 % pendant 5 minutes. Une fois le premier déclencheur de hello se produit, elle déclenche à nouveau lorsque hello UC reste inférieur à 80 % pendant 5 minutes. mesure du processeur de Hello se produit toutes les minutes.   
 
-6. Cochez **Propriétaires de messagerie...** si vous souhaitez que les administrateurs et les coadministrateurs reçoivent un courrier électronique lorsque l’alerte se déclenche.
+6. Vérifiez **propriétaires de messagerie...**  si vous souhaitez que les administrateurs et coadministrateurs toobe envoyé par courrier électronique lorsque hello alerte se déclenche.
 
-7. Si vous souhaitez que d’autres adresses électroniques reçoivent une notification lorsque l’alerte se déclenche, ajoutez-les dans le champ **Adresse(s) de messagerie d’administrateur(s) supplémentaire(s)** . Séparez les adresses e-mails par des points-virgules : *email@contoso.com;email2@contoso.com*
+7. Si vous souhaitez que les messages électroniques supplémentaires tooreceive une notification lorsque hello l’alerte se déclenche, ajoutez-les dans hello **administrateur supplémentaire email(s)** champ. Séparez les adresses e-mails par des points-virgules : *email@contoso.com;email2@contoso.com*
 
-8. Insérez un URI valide dans le champ **Webhook** si vous souhaitez qu’il soit appelé lorsque l’alerte se déclenche.
+8. Placez dans un URI valide Bonjour **Webhook** champ si vous souhaitez qu’il est appelé lorsque hello alerte se déclenche.
 
-9. Si vous utilisez Azure Automation, vous pouvez sélectionner un Runbook à exécuter lorsque l’alerte se déclenche.
+9. Si vous utilisez Azure Automation, vous pouvez sélectionner un toobe Runbook exécuter lors du déclenche de l’alerte de hello.
 
-10. Quand vous avez terminé, sélectionnez **OK** pour créer l’alerte.   
+10. Sélectionnez **OK** lorsque toocreate terminé hello alerte.   
 
-Après quelques minutes, l’alerte est active et se déclenche comme décrit précédemment.
+Dans quelques minutes, alerte de hello est actif et déclenche comme décrit précédemment.
 
 ## <a name="managing-your-alerts"></a>Gestion de vos alertes
 Une fois que vous avez créé une alerte, vous pouvez la sélectionner et :
 
-* Afficher un graphique indiquant le seuil de la métrique et les valeurs réelles du jour précédent.
+* Permet d’afficher un graphique indiquant de seuil de métrique hello et les valeurs actuelles hello hello jour précédent.
 * La modifier ou la supprimer.
-* La **Désactiver** ou l’**Activer** si vous voulez arrêter temporairement ou reprendre l’envoi de notifications pour cette alerte.
+* **Désactiver** ou **activer** si vous souhaitez tootemporarily arrêter ou reprenez la réception de notifications qui.
 
 ## <a name="next-steps"></a>Étapes suivantes
-* [Consultez une vue d’ensemble de la surveillance Azure](monitoring-overview.md) , notamment les types d’informations que vous pouvez collecter et surveiller.
+* [Obtenir une vue d’ensemble de la surveillance Azure](monitoring-overview.md) y compris les types d’informations, vous pouvez collecter et analyser hello.
 * Découvrez plus en détail la [configuration des webhooks dans les alertes](insights-webhooks-alerts.md).
 * Découvrez plus d’informations sur la [configuration des alertes sur les événements de journal d’activité](monitoring-activity-log-alerts.md).
 * Découvrez plus en détails les [runbooks Azure Automation](../automation/automation-starting-a-runbook.md).
 * Consultez une [vue d’ensemble des journaux de diagnostic](monitoring-overview-of-diagnostic-logs.md) et collecter des métriques détaillées à fréquence élevée sur votre service.
-* Consultez une [vue d’ensemble de la collecte des métriques](insights-how-to-customize-monitoring.md) pour vous assurer que votre service est disponible et réactif.
+* Obtenir un [vue d’ensemble de la collecte de métriques](insights-how-to-customize-monitoring.md) toomake que votre service est disponible et réactive.

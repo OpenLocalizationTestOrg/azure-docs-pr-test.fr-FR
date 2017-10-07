@@ -1,6 +1,6 @@
 ---
-title: "Comment utiliser une image Docker personnalisée pour Azure Web App sur Linux | Microsoft Docs"
-description: "Comment utiliser une image Docker personnalisée pour Azure Web App sur Linux."
+title: "aaaHow toouse une image Docker personnalisée pour l’application Web Azure sous Linux | Documents Microsoft"
+description: "Comment toouse une Docker personnalisée de l’image pour l’application Web de Azure sur Linux."
 keywords: azure app service, application web, linux, docker, conteneur
 services: app-service
 documentationcenter: 
@@ -15,54 +15,54 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/16/2017
 ms.author: naziml;wesmc
-ms.openlocfilehash: 1458217a31c4781b28877c030a665f5b22819e13
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 8853095d0e1067cfea4297bbd23b622fe4a0d4db
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="using-a-custom-docker-image-for-azure-web-app-on-linux"></a>Comment utiliser une image Docker personnalisée pour Azure Web App sur Linux #
 
 [!INCLUDE [app-service-linux-preview](../../includes/app-service-linux-preview.md)]
 
 
-App Service fournit des piles d’applications prédéfinies sur Linux avec la prise en charge de versions spécifiques, comme PHP 7.0 et Node.js 4.5. App Service sur Linux utilise des conteneurs Docker pour héberger ces piles d’applications prédéfinies. Vous pouvez également utiliser une image Docker personnalisée pour déployer votre application web sur une pile d’applications qui n’est pas encore définie dans Azure. Les images Docker personnalisées peuvent être hébergées sur un référentiel Docker public ou privé.
+App Service fournit des piles d’applications prédéfinies sur Linux avec la prise en charge de versions spécifiques, comme PHP 7.0 et Node.js 4.5. Service d’applications sur Linux utilise des conteneurs Docker toohost ces intégrées dans les piles d’application. Vous pouvez également utiliser un toodeploy d’image Docker personnalisé à votre pile l’application web application tooan qui n’est pas déjà défini dans Azure. Les images Docker personnalisées peuvent être hébergées sur un référentiel Docker public ou privé.
 
 
 ## <a name="how-to-set-a-custom-docker-image-for-a-web-app"></a>Comment : définir une image Docker personnalisée pour une application web
-Vous pouvez définir une image Docker personnalisée pour les applications web nouvelles et existantes. Lorsque vous créez une application web sur Linux dans le [portail Azure](https://portal.azure.com/#create/Microsoft.AppSvcLinux), cliquez sur **Configurer le conteneur** pour définir une image Docker personnalisée :
+Vous pouvez définir hello Docker image personnalisée pour les nouvelles et les applications Web existantes. Lorsque vous créez une application web sur Linux Bonjour [portail Azure](https://portal.azure.com/#create/Microsoft.AppSvcLinux), cliquez sur **configurer conteneur** tooset une image Docker personnalisée :
 
 ![Image Docker personnalisée pour une nouvelle application web sur Linux][1]
 
 
 ## <a name="how-to-use-a-custom-docker-image-from-docker-hub"></a>Comment : utiliser une image Docker personnalisée à partir de Docker Hub ##
-Pour utiliser une image Docker personnalisée à partir de Docker Hub :
+toouse une image personnalisée de Docker à partir du Hub d’ancrage :
 
-1. Dans le [portail Azure](https://portal.azure.com), localisez votre application web sur Linux, puis dans **Paramètres** cliquez sur **Conteneur Docker**.
+1. Bonjour [portail Azure](https://portal.azure.com), localisez votre application web sur Linux, puis dans **paramètres** cliquez sur **conteneur Docker**.
 
-2.  Sélectionnez **Docker Hub** comme **source de l’image**, puis cliquez sur **Public** ou **Privé** et tapez le **nom de l’image et de la balise facultative**, par exemple `node:4.5`. La **commande de démarrage** est définie automatiquement en fonction de ce qui est défini dans le fichier d’image Docker, mais vous pouvez définir vos propres commandes.  
+2.  Sélectionnez **Hub Docker** comme hello **source de l’Image**, puis cliquez sur **Public** ou **privé** et type Bonjour **Image et nom de la balise facultatif**, tel que `node:4.5`. Hello **commande de démarrage** est jeu automatiquement selon ce qui est défini dans le fichier d’image hello Docker, mais vous pouvez définir vos propres commandes.  
 
     ![Configuration de l’image de référentiel public Docker Hub][2]
 
-    Lorsque votre image est issue d’un référentiel privé, vous devez également entrer les informations d’identification Docker Hub (**Nom d’utilisateur** et **Mot de passe**) du référentiel privé Docker Hub.
+    Lorsque votre image est d’un référentiel privé, vous devez également les informations d’identification du Hub d’ancrage tooenter hello comme (**nom d’utilisateur** et **mot de passe**) pour le référentiel de Hub d’ancrage hello privé.
 
     ![Configuration de l’image de référentiel public Docker Hub][3]
 
-3. Une fois le conteneur configuré, cliquez sur **Enregistrer**.
+3. Une fois que vous avez configuré le conteneur de hello, cliquez sur **enregistrer**.
 
-## <a name="how-to-use-a-docker-image-from-a-private-image-registry"></a>Utilisation d’une image Docker à partir d’un registre d’images privé ##
-Pour utiliser une image Docker personnalisée à partir d’un registre d’images privé :
+## <a name="how-toouse-a-docker-image-from-a-private-image-registry"></a>Comment toouse une Docker de l’image à partir d’un Registre de l’image privée ##
+toouse une image personnalisée de Docker à partir d’un Registre de l’image privée :
 
-1. Dans le [portail Azure](https://portal.azure.com), localisez votre application web sur Linux, puis dans **Paramètres** cliquez sur **Conteneur Docker**.
+1. Bonjour [portail Azure](https://portal.azure.com), localisez votre application web sur Linux, puis dans **paramètres** cliquez sur **conteneur Docker**.
 
-2.  Cliquez sur **Registre privé** comme **source de l’image**. Entrez l**’image et le nom facultatif de la balise**, l**’URL du serveur** du registre privé, ainsi que les informations d’identification (**nom d’utilisateur** et **mot de passe**). Cliquez sur **Save**.
+2.  Cliquez sur **Registre privé** comme hello **source de l’Image**. Entrez hello **Image et le nom de la balise facultatif**, **URL du serveur** Registre privé hello, ainsi que des informations d’identification hello (**nom d’utilisateur** et **mot de passe** ). Cliquez sur **Enregistrer**.
 
     ![Configuration de l’image Docker à partir du registre privé][4]
 
 
-## <a name="how-to-set-the-port-used-by-your-docker-image"></a>Comment : définir le port utilisé par votre image Docker ##
+## <a name="how-to-set-hello-port-used-by-your-docker-image"></a>Comment : définir le port hello utilisé par votre image de Docker ##
 
-Lorsque vous utilisez une image Docker personnalisée pour votre application web, vous pouvez utiliser la variable d’environnement `WEBSITES_PORT` dans votre ficher Docker, qui est ajoutée au conteneur généré. Prenons l’exemple suivant d’un fichier Docker pour une application Ruby :
+Lorsque vous utilisez une image Docker personnalisée pour votre application web, vous pouvez utiliser hello `WEBSITES_PORT` variable d’environnement dans votre fichier Dockerfile, qui est également ajouté toohello généré conteneur. Tenez compte des hello exemple d’un fichier de docker pour une application Ruby suivant :
 
     FROM ruby:2.2.0
     RUN mkdir /app
@@ -71,50 +71,50 @@ Lorsque vous utilisez une image Docker personnalisée pour votre application web
     RUN bundle install
     CMD bundle exec puma config.ru -p WEBSITES_PORT -e production
 
-Sur la dernière ligne de commande, la variable d’environnement WEBSITES_PORT est transmise au moment de l’exécution. N’oubliez pas les commandes sont sensibles à la casse.
+Sur la dernière ligne de commande hello, vous pouvez voir que cette variable d’environnement WEBSITES_PORT hello est passée de l’exécution. N’oubliez pas les commandes sont sensibles à la casse.
 
-Auparavant, la plateforme utilisait le paramètre d’application `PORT`, mais nous envisageons de déconseiller l’utilisation de ce paramètre d’application pour recommander une utilisation exclusive de `WEBSITES_PORT`.
+Précédemment a été à l’aide de la plateforme de hello `PORT` application définissant, nous planifiez toodeprecate hello utiliser cette application définissant et déplacer toousing `WEBSITES_PORT` exclusivement.
 
-Si vous utilisez une image Docker existante créée par une autre personne, vous devrez peut-être spécifier un port autre que le port 80 pour l’application. Pour configurer le port, ajoutez un paramètre d’application nommé `WEBSITES_PORT` avec la valeur, comme indiqué ci-dessous :
+Lorsque vous utilisez une image Docker existante créée par quelqu'un d’autre, vous devrez peut-être toospecify un port autre que le port 80 pour l’application hello. tooconfigure hello port, ajoutez une paramètre d’application nommé `WEBSITES_PORT` avec la valeur hello comme indiqué ci-dessous :
 
 ![Configuration du paramètre d’application PORT pour une image Docker personnalisée][6]
 
-## <a name="how-to-set-the-startup-time-for-your-docker-image"></a>Guide pratique : définir l’heure de démarrage d’une image Docker ##
+## <a name="how-to-set-hello-startup-time-for-your-docker-image"></a>Comment : définir l’heure de démarrage de hello pour votre image de Docker ##
 
-Par défaut, si votre conteneur ne démarre pas avant 230 secondes, la plateforme le redémarre. Si votre image Docker personnalisée met plus de 230 secondes à démarrer, vous pouvez utiliser le paramètre d’application `WEBSITES_CONTAINER_START_TIME_LIMIT`. La valeur de ce paramètre, exprimée en secondes, permet à la plateforme de maintenir votre conteneur en cours d’exécution avant de le redémarrer. La valeur par défaut est de 230 secondes, la valeur maximale autorisée de 600 secondes.
+Par défaut, si votre conteneur ne démarre pas avant 230 secondes, plateforme de hello redémarrera votre conteneur. Si votre image personnalisée de Docker démarre en plus de 230 secondes, vous pouvez utiliser hello `WEBSITES_CONTAINER_START_TIME_LIMIT` application paramètre, valeur hello pour ce paramètre est exprimé en secondes, cela permettra hello plateforme conserver votre conteneur en cours d’exécution avant de le redémarrer. Hello par défaut est secondes 230 et hello maximum valeur est de 600 secondes.
 
-## <a name="how-to-unmount-the-platform-provided-storage"></a>Guide pratique : démonter le stockage fourni par la plateforme ##
+## <a name="how-to-unmount-hello-platform-provided-storage"></a>Comment : décharger le stockage de la plateforme fourni hello ##
 
-Par défaut, la plateforme monte un partage de stockage persistant sur le répertoire `\home\`. Si votre image conteneur n’a pas besoin d’un partage persistant, vous pouvez désactiver le montage de ce stockage en définissant le paramètre d’application `WEBSITES_ENABLE_APP_SERVICE_STORAGE` sur `false`. Vous aurez toujours accès à ce stockage à partir du site scm, et tous les journaux Docker (s’ils sont activés) seront écrits dans les fichiers journaux générés par la plateforme.
+Par défaut, la plateforme de hello monte un toohello de partage du stockage persistant `\home\` active. Si votre image de conteneur ne doit pas un partage persistant, vous pouvez désactiver le montage que le stockage en définissant un hello `WEBSITES_ENABLE_APP_SERVICE_STORAGE` application aussi un paramètre`false`. Vous aurez toujours accès toothat stockage à partir du site de scm hello et tous les journaux de Docker (si activé) seront écrit les fichiers de journaux toohello générés par la plateforme de hello.
 
-## <a name="how-to-switch-back-to-using-a-built-in-image"></a>Comment : revenir à l’utilisation d’une image intégrée ##
+## <a name="how-to-switch-back-toousing-a-built-in-image"></a>Comment : Revenez toousing une image intégrée ##
 
-Pour passer d’une image personnalisée à une image intégrée :
+tooswitch d’utiliser une image personnalisée de toousing une image intégrée :
 
-1. Dans le [portail Azure](https://portal.azure.com), localisez votre application web sur Linux, puis dans **Paramètres** cliquez sur **App Service**.
+1. Bonjour [portail Azure](https://portal.azure.com), localisez votre application web sur Linux, puis dans **paramètres** cliquez sur **du Service d’applications**.
 
-2. Sélectionnez la **pile d’exécution** à utiliser pour l’image intégrée, puis cliquez sur **Enregistrer**. 
+2. Sélectionnez votre **pile de Runtime** toouse pour l’image intégrée de hello, puis cliquez sur **enregistrer**. 
 
 ![Configuration de l’image Docker intégrée][5]
 
 
-## <a name="troubleshooting"></a>Résolution de problèmes ##
+## <a name="troubleshooting"></a>Résolution des problèmes ##
 
-Si le démarrage de l’application échoue avec une image Docker personnalisée, consultez les journaux Docker dans le répertoire LogFiles. Vous pouvez accéder à ce répertoire par le biais de votre site SCM ou d’un FTP.
-Pour journaliser `stdout` et `stderr` à partir de votre conteneur, vous devez activer **Journalisation de conteneur Docker** sous **Journaux de diagnostic**.
+Lorsque votre application échoue toostart avec votre image personnalisée de Docker, vérifiez hello que docker enregistre dans le répertoire des fichiers journaux hello. Vous pouvez accéder à ce répertoire par le biais de votre site SCM ou d’un FTP.
+toolog hello `stdout` et `stderr` à partir de votre conteneur, vous devez tooenable **journalisation du conteneur Docker** sous **les journaux de diagnostic**.
 
 ![Activation de la journalisation][8]
 
-![Affichage des journaux Docker avec Kudu][7]
+![Utilisation des journaux de Kudu tooview Docker][7]
 
-Vous pouvez accéder au site SCM à partir d’**Outils avancés** dans le menu **Outils de développement**.
+Vous pouvez accéder à site SCM hello **outils avancés** Bonjour **outils de développement** menu.
 
 ## <a name="next-steps"></a>Étapes suivantes ##
 
-Suivez les liens ci-après pour vous familiariser avec Web App sur Linux.   
+Suivez hello suivant tooget liens en main de l’application Web sur Linux.   
 
-* [Présentation d’Azure Web App sur Linux](./app-service-linux-intro.md)
-* [Utiliser la configuration PM2 pour Node.js dans Azure Web App sur Linux](./app-service-linux-using-nodejs-pm2.md)
+* [Introduction tooAzure application Web sur Linux](./app-service-linux-intro.md)
+* [Utilisation de la configuration PM2 pour Node.js dans l’application web Azure sur Linux](./app-service-linux-using-nodejs-pm2.md)
 * [FAQ de l’application web Azure App Service sur Linux](app-service-linux-faq.md)
 
 Posez des questions et indiquez vos préoccupations sur [notre forum](https://social.msdn.microsoft.com/forums/azure/home?forum=windowsazurewebsitespreview).

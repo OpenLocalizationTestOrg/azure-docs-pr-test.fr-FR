@@ -1,6 +1,6 @@
 ---
-title: "Utiliser la passerelle Azure Application Gateway avec équilibreur de charge interne - PowerShell | Microsoft Docs"
-description: "Cette page fournit des instructions pour la création, la configuration, le démarrage et la suppression d’une passerelle Application Gateway Azure avec un équilibrage de charge interne (ILB) pour Azure Resource Manager"
+title: "aaaUsing passerelle d’Application Azure avec l’équilibrage de charge interne - PowerShell | Documents Microsoft"
+description: "Cette page fournit des instructions toocreate, configurer, démarrer et supprimer une passerelle d’application Windows Azure avec équilibrage de charge interne (ILB) pour le Gestionnaire de ressources Azure"
 documentationcenter: na
 services: application-gateway
 author: georgewallace
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/23/2017
 ms.author: gwallace
-ms.openlocfilehash: d218eab7e9f124e4825a8a781b4eeb0dcca58b4a
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: dd0d7e954b1fa219ae6ebe42cb4b479dbcf08653
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-application-gateway-with-an-internal-load-balancer-ilb-by-using-azure-resource-manager"></a>Créer une passerelle Application Gateway avec un équilibrage de charge interne (ILB) à l’aide d’Azure Resource Manager
 
@@ -26,39 +26,39 @@ ms.lasthandoff: 08/03/2017
 > * [Azure Classic PowerShell](application-gateway-ilb.md)
 > * [Commandes PowerShell pour Azure Resource Manager](application-gateway-ilb-arm.md)
 
-Vous pouvez configurer une passerelle Azure Application Gateway avec une adresse IP virtuelle côté Internet ou avec un point de terminaison interne non exposé à Internet, également appelé point de terminaison d’équilibrage de charge interne (ILB). La configuration de la passerelle avec un équilibrage de charge interne est utile pour les applications métier internes non exposées à Internet. Elle est également utile pour les services et niveaux au sein d’une application multiniveau qui se trouve dans une limite de sécurité non exposée à Internet, mais qui requiert tout de même une distribution de charge par tourniquet, une adhérence de session ou une terminaison SSL (Secure Sockets Layer).
+Passerelle d’Application Azure peut être configuré avec une adresse IP virtuelle sur Internet ou avec un point de terminaison interne qui n’est pas exposé toohello Internet, également appelée charge interne (ILB) d’équilibrage point de terminaison. Configuration de passerelle hello avec un équilibrage de charge interne est utile pour les applications de métier internes qui ne sont pas exposé toohello Internet. Il est également utile pour les services et niveaux au sein d’une application multicouche qui se trouvent dans une limite de sécurité qui n’est pas exposé toohello Internet mais nécessitent toujours alternée chargement distribution, caractère collant de session ou l’arrêt de Secure Sockets Layer (SSL).
 
-Cet article vous guidera au cours des étapes de configuration d’une passerelle Application Gateway avec un équilibrage de charge interne.
+Cet article vous guide tout au long des étapes de hello tooconfigure une passerelle d’application avec un équilibrage de charge interne.
 
 ## <a name="before-you-begin"></a>Avant de commencer
 
-1. Installez la dernière version des applets de commande Azure PowerShell à l’aide de Web Platform Installer. Vous pouvez télécharger et installer la dernière version à partir de la section **Windows PowerShell** de la [page Téléchargements](https://azure.microsoft.com/downloads/).
-2. Vous créez un réseau virtuel et un sous-réseau pour la passerelle Application Gateway. Assurez-vous qu’aucun ordinateur virtuel ou déploiement cloud n’utilise le sous-réseau. La passerelle Application Gateway doit être seule sur un sous-réseau virtuel.
-3. Les serveurs que vous configurez pour utiliser la passerelle Application Gateway doivent exister ou vous devez créer leurs points de terminaison sur le réseau virtuel ou avec une adresse IP/VIP publique affectée.
+1. Installer version la plus récente des applets de commande PowerShell Azure hello hello à l’aide de hello Web Platform Installer. Vous pouvez télécharger et installer la version la plus récente hello de hello **Windows PowerShell** section Hello [page Téléchargements](https://azure.microsoft.com/downloads/).
+2. Vous créez un réseau virtuel et un sous-réseau pour la passerelle Application Gateway. Assurez-vous qu’aucun ordinateur virtuel ou les déploiements de cloud ne sont à l’aide de sous-réseau de hello. La passerelle Application Gateway doit être seule sur un sous-réseau virtuel.
+3. serveurs Hello configurer la passerelle d’application hello toouse doivent exister ou aient leurs points de terminaison créés dans le réseau virtuel de hello ou avec une adresse IP publique/VIP affectés.
 
-## <a name="what-is-required-to-create-an-application-gateway"></a>Quels sont les éléments nécessaires pour créer une passerelle Application Gateway ?
+## <a name="what-is-required-toocreate-an-application-gateway"></a>Qu’est requis toocreate une passerelle d’application ?
 
-* **Pool de serveurs principaux :** liste des adresses IP des serveurs principaux. Les adresses IP répertoriées doivent appartenir au réseau virtuel, mais à un sous-réseau différent de la plateforme d’application ou elles doivent correspondre à une adresse IP/VIP publique.
-* **Paramètres du pool de serveurs principaux :** chaque pool comporte des paramètres tels que le port, le protocole et une affinité basée sur des cookies. Ces paramètres sont liés à un pool et sont appliqués à tous les serveurs du pool.
-* **Port frontal :** il s’agit du port public ouvert sur la passerelle Application Gateway. Le trafic atteint ce port, puis il est redirigé vers l’un des serveurs principaux.
-* **Écouteur :** l’écouteur a un port frontal, un protocole (Http ou Https, avec respect de la casse) et le nom du certificat SSL (en cas de configuration du déchargement SSL).
-* **Règle :** la règle lie l’écouteur et le pool de serveurs principaux et définit vers quel pool de serveurs principaux le trafic doit être dirigé quand il atteint un écouteur spécifique. Actuellement, seule la règle *de base* est prise en charge. La règle de *base* est la distribution de charge par tourniquet.
+* **Pool de serveur principal :** liste hello des adresses IP des serveurs principaux de hello. Hello adresses IP répertoriées doivent soit appartenir toohello des réseaux virtuels, mais dans un autre sous-réseau pour la passerelle d’application hello ou doit être une adresse IP/VIP publique.
+* **Paramètres du pool de serveurs principaux :** chaque pool comporte des paramètres tels que le port, le protocole et une affinité basée sur des cookies. Ces paramètres sont lié tooa pool et sont des serveurs tooall appliqué dans le pool de hello.
+* **Port frontal :** ce port est le port public hello qui est ouvert sur la passerelle d’application hello. Le trafic atteint ce port et obtient redirigés tooone de hello sur les serveurs principaux.
+* **Écouteur :** hello port d’écoute utilise un port frontal, un protocole (Http ou Https, ils respectent la casse) et le nom du certificat SSL hello (si le déchargement de la configuration de SSL).
+* **La règle :** règle de hello lie le port d’écoute hello et pool de serveur principal hello et définit le trafic de hello de pool de serveur principal doit être dirigée toowhen il atteint un écouteur particulier. Actuellement, seuls hello *base* règle est pris en charge. Hello *base* règle est la distribution de la charge de tourniquet.
 
-## <a name="create-an-application-gateway"></a>Créez une passerelle d’application
+## <a name="create-an-application-gateway"></a>Créer une passerelle Application Gateway
 
-La différence entre l’utilisation d’Azure Classic et celle d’Azure Resource Manager réside dans l’ordre de création de la passerelle Application Gateway et des éléments à configurer.
-Avec Resource Manager, tous les éléments constitutifs d’une passerelle Application Gateway sont configurés individuellement, puis regroupés pour créer la ressource Application Gateway.
+Hello diffère entre l’utilisation classique Azure et Azure Resource Manager commande hello dans lequel vous créez passerelle d’application hello et articles hello toobe configuré.
+Avec le Gestionnaire de ressources, tous les éléments qui rendent une passerelle d’application est configuré individuellement et rassembler puis toocreate ressource de passerelle d’application hello.
 
-Procédure de création d’une passerelle Application Gateway :
+Voici les étapes hello qui sont nécessaire toocreate une passerelle d’application :
 
 1. Créer un groupe de ressources pour Resource Manager
-2. Création d'un réseau virtuel et d'un sous-réseau pour la passerelle Application Gateway
+2. Créer un réseau virtuel et un sous-réseau pour la passerelle d’application hello
 3. Créer un objet de configuration de passerelle Application Gateway
 4. Créer une ressource de passerelle d’application
 
 ## <a name="create-a-resource-group-for-resource-manager"></a>Créer un groupe de ressources pour Resource Manager
 
-Veillez à passer en mode PowerShell pour utiliser les applets de commande d’Azure Resource Manager. Pour plus d’informations, voir l’article [Utilisation de Windows Powershell avec Azure Resource Manager](../powershell-azure-resource-manager.md).
+Assurez-vous que vous basculez des applets de commande PowerShell en mode toouse hello Azure Resource Manager. Pour plus d’informations, voir [Utilisation de Windows PowerShell avec Azure Resource Manager](../powershell-azure-resource-manager.md).
 
 ### <a name="step-1"></a>Étape 1
 
@@ -68,17 +68,17 @@ Login-AzureRmAccount
 
 ### <a name="step-2"></a>Étape 2
 
-Vérifiez les abonnements associés au compte.
+Vérifiez les abonnements hello pour le compte de hello.
 
 ```powershell
 Get-AzureRmSubscription
 ```
 
-Vous êtes invité à saisir vos informations d’identification.
+Vous êtes invité à tooauthenticate avec vos informations d’identification.
 
 ### <a name="step-3"></a>Étape 3 :
 
-Parmi vos abonnements Azure, choisissez celui que vous souhaitez utiliser.
+Choisissez parmi vos toouse abonnements Azure.
 
 ```powershell
 Select-AzureRmSubscription -Subscriptionid "GUID of subscription"
@@ -92,13 +92,13 @@ Créez un groupe de ressources (ignorez cette étape si vous utilisez un groupe 
 New-AzureRmResourceGroup -Name appgw-rg -location "West US"
 ```
 
-Azure Resource Manager requiert que tous les groupes de ressources spécifient un emplacement. Ce dernier est utilisé comme emplacement par défaut des ressources de ce groupe. Assurez-vous que toutes les commandes pour la création d’une passerelle Application Gateway utilisent le même groupe de ressources.
+Azure Resource Manager requiert que tous les groupes de ressources spécifient un emplacement. Cela est utilisé comme emplacement par défaut de hello pour les ressources dans ce groupe de ressources. Assurez-vous que toutes les commandes toocreate une passerelle d’application utilise hello même groupe de ressources.
 
-Dans l’exemple précédent, nous avons créé un groupe de ressources appelé « appgw-rg », ainsi que l’emplacement « West US ».
+Bonjour précédent exemple, nous avons créé un groupe de ressources appelé « Appgw-rg » et l’emplacement « ouest des États-Unis ».
 
-## <a name="create-a-virtual-network-and-a-subnet-for-the-application-gateway"></a>Créer un réseau virtuel et un sous-réseau pour la passerelle Application Gateway
+## <a name="create-a-virtual-network-and-a-subnet-for-hello-application-gateway"></a>Créer un réseau virtuel et un sous-réseau pour la passerelle d’application hello
 
-L’exemple ci-après indique comment créer un réseau virtuel à l’aide de Resource Manager :
+Hello suivant montre l’exemple de comment toocreate un réseau virtuel à l’aide du Gestionnaire de ressources :
 
 ### <a name="step-1"></a>Étape 1
 
@@ -106,7 +106,7 @@ L’exemple ci-après indique comment créer un réseau virtuel à l’aide de R
 $subnetconfig = New-AzureRmVirtualNetworkSubnetConfig -Name subnet01 -AddressPrefix 10.0.0.0/24
 ```
 
-Attribue la plage d’adresses 10.0.0.0/24 à une variable subnet à utiliser pour créer un réseau virtuel.
+Cette étape affecte hello adresse plage 10.0.0.0/24 tooa sous-réseau toobe variable utilisée toocreate un réseau virtuel.
 
 ### <a name="step-2"></a>Étape 2
 
@@ -114,7 +114,7 @@ Attribue la plage d’adresses 10.0.0.0/24 à une variable subnet à utiliser po
 $vnet = New-AzureRmVirtualNetwork -Name appgwvnet -ResourceGroupName appgw-rg -Location "West US" -AddressPrefix 10.0.0.0/16 -Subnet $subnetconfig
 ```
 
-Crée un réseau virtuel nommé « appgwvnet » dans le groupe de ressources « appw-rg » pour la région « West US » à l’aide du préfixe 10.0.0.0/16 avec le sous-réseau 10.0.0.0/24.
+Cette étape crée un réseau virtuel nommé « appgwvnet » dans la ressource groupe « appgw-rg » pour la région ouest des États-Unis hello à l’aide de hello préfixe 10.0.0.0/16 avec le sous-réseau 10.0.0.0/24.
 
 ### <a name="step-3"></a>Étape 3 :
 
@@ -122,7 +122,7 @@ Crée un réseau virtuel nommé « appgwvnet » dans le groupe de ressources �
 $subnet = $vnet.subnets[0]
 ```
 
-Assigne l’objet de sous-réseau à la variable $subnet pour les étapes suivantes.
+Cette étape affecte hello sous-réseau objet toovariable $subnet pour les étapes suivantes de hello.
 
 ## <a name="create-an-application-gateway-configuration-object"></a>Créer un objet de configuration de passerelle Application Gateway
 
@@ -132,7 +132,7 @@ Assigne l’objet de sous-réseau à la variable $subnet pour les étapes suivan
 $gipconfig = New-AzureRmApplicationGatewayIPConfiguration -Name gatewayIP01 -Subnet $subnet
 ```
 
-Crée une configuration IP de passerelle Application Gateway nommée « gatewayIP01 ». Lorsque la passerelle Application Gateway démarre, elle sélectionne une adresse IP à partir du sous-réseau configuré et achemine le trafic réseau vers les adresses IP du pool IP principal. Gardez à l’esprit que chaque instance utilise une adresse IP unique.
+Crée une configuration IP de passerelle Application Gateway nommée « gatewayIP01 ». Au démarrage de la passerelle d’Application, il récupère une adresse IP du sous-réseau hello configuré et acheminer les adresses IP de réseau du trafic toohello dans le pool d’adresses IP hello back-end. Gardez à l’esprit que chaque instance utilise une adresse IP unique.
 
 ### <a name="step-2"></a>Étape 2
 
@@ -140,15 +140,15 @@ Crée une configuration IP de passerelle Application Gateway nommée « gateway
 $pool = New-AzureRmApplicationGatewayBackendAddressPool -Name pool01 -BackendIPAddresses 10.1.1.8,10.1.1.9,10.1.1.10
 ```
 
-Configure le pool d’adresses IP principal nommé « pool01 » avec les adresses IP « 10.1.1.8, 10.1.1.9, 10.1.1.10 ». Il s’agit des adresses IP qui recevront le trafic réseau provenant du point de terminaison IP frontal. Remplacez les adresses IP précédentes pour ajouter vos propres points de terminaison d’adresse IP d’application.
+Cette étape configure le pool d’adresses IP principal hello nommé « pool01 » avec adresse IP adresses « 10.1.1.8, 10.1.1.9, 10.1.1.10 ». Ce sont les adresses IP hello qui reçoivent le trafic réseau hello qui provient d’un point de terminaison IP frontale hello. Vous remplacez hello précédant tooadd d’adresses IP de vos propres points de terminaison application IP adresse.
 
-### <a name="step-3"></a>Étape 3
+### <a name="step-3"></a>Étape 3 :
 
 ```powershell
 $poolSetting = New-AzureRmApplicationGatewayBackendHttpSettings -Name poolsetting01 -Port 80 -Protocol Http -CookieBasedAffinity Disabled
 ```
 
-Cette étape permet de configurer les paramètres de passerelle Application Gateway « poolsetting01 » pour le trafic réseau à charge équilibrée dans le pool principal.
+Cette étape configure le trafic réseau de passerelle paramètre « poolsetting01 » pour la charge hello équilibrés application dans le pool principal d’hello.
 
 ### <a name="step-4"></a>Étape 4
 
@@ -156,7 +156,7 @@ Cette étape permet de configurer les paramètres de passerelle Application Gate
 $fp = New-AzureRmApplicationGatewayFrontendPort -Name frontendport01  -Port 80
 ```
 
-Cette étape permet de configurer le port d’adresses IP frontal nommé « frontendport01 » pour l’équilibrage de charge interne.
+Cette étape configure le port IP frontal hello nommé « frontendport01 » pour hello équilibrage de charge interne.
 
 ### <a name="step-5"></a>Étape 5
 
@@ -164,7 +164,7 @@ Cette étape permet de configurer le port d’adresses IP frontal nommé « fro
 $fipconfig = New-AzureRmApplicationGatewayFrontendIPConfig -Name fipconfig01 -Subnet $subnet
 ```
 
-Cette étape permet de créer la configuration IP frontale nommée « fipconfig01 » et lui associe une adresse IP privée à partir du sous-réseau du réseau virtuel actuel.
+Cette étape crée la configuration IP frontale hello appelée « fipconfig01 » et l’associe à une adresse IP privée à partir du sous-réseau de réseau virtuel en cours hello.
 
 ### <a name="step-6"></a>Étape 6
 
@@ -172,7 +172,7 @@ Cette étape permet de créer la configuration IP frontale nommée « fipconfig
 $listener = New-AzureRmApplicationGatewayHttpListener -Name listener01  -Protocol Http -FrontendIPConfiguration $fipconfig -FrontendPort $fp
 ```
 
-Cette étape permet de créer l’écouteur nommé « listener01 » et associe le port frontal à la configuration IP frontale.
+Cette étape crée écouteur hello appelé « listener01 » et associe la configuration IP frontale de hello port frontal toohello.
 
 ### <a name="step-7"></a>Étape 7
 
@@ -180,7 +180,7 @@ Cette étape permet de créer l’écouteur nommé « listener01 » et associe
 $rule = New-AzureRmApplicationGatewayRequestRoutingRule -Name rule01 -RuleType Basic -BackendHttpSettings $poolSetting -HttpListener $listener -BackendAddressPool $pool
 ```
 
-Cette étape permet de créer la règle d’acheminement d’équilibrage de charge nommée « rule01 » qui configure le comportement d’équilibrage de charge.
+Cette étape crée hello règle équilibreur de charge routage appelé « rule01 » qui configure le comportement de programme d’équilibrage de charge hello.
 
 ### <a name="step-8"></a>Étape 8
 
@@ -188,40 +188,40 @@ Cette étape permet de créer la règle d’acheminement d’équilibrage de cha
 $sku = New-AzureRmApplicationGatewaySku -Name Standard_Small -Tier Standard -Capacity 2
 ```
 
-Cette étape permet de configurer la taille d’instance de la passerelle Application Gateway.
+Cette étape configure la taille de l’instance de la passerelle d’application hello hello.
 
 > [!NOTE]
-> La valeur par défaut pour *InstanceCount* est 2, avec une valeur maximale de 10. La valeur par défaut du paramètre *GatewaySize* est Medium. Vous pouvez choisir entre Standard_Small, Standard_Medium et Standard_Large.
+> Hello la valeur par défaut de *InstanceCount* est 2, avec une valeur maximale de 10. Hello la valeur par défaut de *GatewaySize* est moyenne. Vous pouvez choisir entre Standard_Small, Standard_Medium et Standard_Large.
 
 ## <a name="create-an-application-gateway-by-using-new-azureapplicationgateway"></a>Créer une passerelle Application Gateway avec New-AzureApplicationGateway
 
-Créez une passerelle Application Gateway avec tous les éléments de configuration de la procédure précédente. Dans notre exemple, la passerelle Application Gateway est appelée « appgwtest ».
+Crée une passerelle d’application avec tous les éléments de configuration à partir de hello étapes précédentes. Dans cet exemple, passerelle d’application hello est appelé « appgwtest ».
 
 ```powershell
 $appgw = New-AzureRmApplicationGateway -Name appgwtest -ResourceGroupName appgw-rg -Location "West US" -BackendAddressPools $pool -BackendHttpSettingsCollection $poolSetting -FrontendIpConfigurations $fipconfig  -GatewayIpConfigurations $gipconfig -FrontendPorts $fp -HttpListeners $listener -RequestRoutingRules $rule -Sku $sku
 ```
 
-Cette étape permet de créer une passerelle Application Gateway avec tous les éléments de configuration de la procédure précédente. Dans notre exemple, la passerelle Application Gateway est appelée « appgwtest ».
+Cette étape crée une passerelle d’application avec tous les éléments de configuration à partir de hello étapes précédentes. Dans l’exemple de hello, passerelle d’application hello est appelé « appgwtest ».
 
 ## <a name="delete-an-application-gateway"></a>Supprimer une passerelle Application Gateway
 
-Pour supprimer une passerelle Application Gateway, vous devez effectuer les opérations suivantes dans l’ordre :
+toodelete une passerelle d’application, vous devez hello toodo comme suit dans l’ordre :
 
-1. Utilisez l’applet de commande `Stop-AzureRmApplicationGateway` pour arrêter la passerelle.
-2. Utilisez l’applet de commande `Remove-AzureRmApplicationGateway` pour supprimer la passerelle.
-3. Vérifiez que la passerelle a été supprimée à l’aide de l’applet de commande `Get-AzureApplicationGateway`.
+1. Hello d’utilisation `Stop-AzureRmApplicationGateway` passerelle de hello toostop applet de commande.
+2. Hello d’utilisation `Remove-AzureRmApplicationGateway` passerelle de hello tooremove applet de commande.
+3. Vérifiez cette passerelle hello a été supprimée à l’aide de hello `Get-AzureApplicationGateway` applet de commande.
 
 ### <a name="step-1"></a>Étape 1
 
-Obtenez l’objet de passerelle Application Gateway et associez-le à une variable « $getgw ».
+Obtenir l’objet de passerelle d’application hello et associez-le tooa variable « $getgw ».
 
 ```powershell
 $getgw =  Get-AzureRmApplicationGateway -Name appgwtest -ResourceGroupName appgw-rg
 ```
 
-### <a name="step-2"></a>Étape 2 :
+### <a name="step-2"></a>Étape 2
 
-Utilisez `Stop-AzureRmApplicationGateway` pour arrêter la passerelle Application Gateway. Cet exemple montre l'applet de commande `Stop-AzureRmApplicationGateway` sur la première ligne, suivie de la sortie.
+Utilisez `Stop-AzureRmApplicationGateway` passerelle d’application toostop hello. Cet exemple montre hello `Stop-AzureRmApplicationGateway` applet de commande sur la première ligne de hello, suivie des hello.
 
 ```powershell
 Stop-AzureRmApplicationGateway -ApplicationGateway $getgw  
@@ -235,7 +235,7 @@ Name       HTTP Status Code     Operation ID                             Error
 Successful OK                   ce6c6c95-77b4-2118-9d65-e29defadffb8
 ```
 
-Une fois la passerelle Application Gateway dans un état arrêté, utilisez l’applet de commande `Remove-AzureRmApplicationGateway` pour supprimer le service.
+Une fois que la passerelle d’application hello est dans un état arrêté, utilisez hello `Remove-AzureRmApplicationGateway` service de hello tooremove applet de commande.
 
 ```powershell
 Remove-AzureRmApplicationGateway -Name appgwtest -ResourceGroupName appgw-rg -Force
@@ -250,9 +250,9 @@ Successful OK                   055f3a96-8681-2094-a304-8d9a11ad8301
 ```
 
 > [!NOTE]
-> Il est possible d’utiliser le commutateur **-force** pour supprimer le message de confirmation de suppression.
+> Hello **-force** commutateur peut être le message de confirmation de suppression de hello toosuppress utilisé.
 
-Pour vérifier que le service a été supprimé, vous pouvez utiliser l’applet de commande `Get-AzureRmApplicationGateway`. Cette étape n'est pas requise.
+tooverify qui hello service a été supprimé, vous pouvez utiliser hello `Get-AzureRmApplicationGateway` applet de commande. Cette étape n'est pas requise.
 
 ```powershell
 Get-AzureRmApplicationGateway -Name appgwtest -ResourceGroupName appgw-rg
@@ -261,14 +261,14 @@ Get-AzureRmApplicationGateway -Name appgwtest -ResourceGroupName appgw-rg
 ```
 VERBOSE: 10:52:46 PM - Begin Operation: Get-AzureApplicationGateway
 
-Get-AzureApplicationGateway : ResourceNotFound: The gateway does not exist.
+Get-AzureApplicationGateway : ResourceNotFound: hello gateway does not exist.
 ```
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Si vous souhaitez configurer le déchargement SSL, consultez [Configuration d’une passerelle Application Gateway pour le déchargement SSL](application-gateway-ssl.md).
+Si vous souhaitez tooconfigure le déchargement SSL, consultez [configurer une passerelle d’application pour le déchargement SSL](application-gateway-ssl.md).
 
-Si vous souhaitez configurer une passerelle d’application à utiliser avec l’équilibreur de charge interne, consultez [Création d’une passerelle Application Gateway avec un équilibrage de charge interne (ILB)](application-gateway-ilb.md).
+Si vous souhaitez tooconfigure un toouse de passerelle d’application avec un équilibrage de charge interne, consultez [créer une passerelle d’application avec un équilibreur de charge interne (ILB)](application-gateway-ilb.md).
 
 Si vous souhaitez plus d'informations sur les options d'équilibrage de charge en général, consultez :
 

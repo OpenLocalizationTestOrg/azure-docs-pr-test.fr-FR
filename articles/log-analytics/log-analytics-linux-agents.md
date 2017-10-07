@@ -1,21 +1,21 @@
 ---
 redirect_url: /azure/log-analytics/log-analytics-agent-linux
-redirect_document_id: TRUE
+redirect_document_id: True
 ROBOTS: NOINDEX
-ms.openlocfilehash: 8332bdd39effab8c2ac9a75ca9a1e2510c940719
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8b526144cd565f6750368e12970f008e66cc2023
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-your-linux-computers-to-log-analytics"></a>Connecter vos ordinateurs Linux à Log Analytics
-Avec Log Analytics, vous pouvez collecter et exploiter les données générées par des ordinateurs Linux. L’ajout de données collectées sur Linux dans OMS vous permet de gérer les systèmes Linux et les solutions de conteneur comme Docker, indépendamment de l’emplacement de vos ordinateurs. Les sources de données peuvent résider sur des serveurs physiques de votre centre de données local, sur des ordinateurs virtuels dans un service hébergé sur le cloud comme Amazon Web Services (AWS) ou Microsoft Azure, voire sur votre ordinateur portable. De plus, OMS collecte les données des ordinateurs Windows de la même façon, prenant en charge un véritable environnement informatique hybride.
+# <a name="connect-your-linux-computers-toolog-analytics"></a>Se connecter à votre tooLog d’ordinateurs Linux Analytique
+Avec Log Analytics, vous pouvez collecter et exploiter les données générées par des ordinateurs Linux. Ajout des données collectées à partir de Linux tooOMS vous permet de toomanage les systèmes Linux et les solutions de conteneur comme Docker, quel que soit l’endroit où se trouvent vos ordinateurs, virtuellement n’importe où. Sources de données peuvent résider dans votre centre de données local en tant que serveurs physiques, des ordinateurs virtuels dans un service hébergé dans le cloud, comme Amazon Web Services (AWS) ou Microsoft Azure, ou même hello ordinateur portable sur votre bureau. De plus, OMS collecte les données des ordinateurs Windows de la même façon, prenant en charge un véritable environnement informatique hybride.
 
-Vous pouvez afficher et gérer les données de toutes ces sources avec Log Analytics dans OMS, via un portail unique. Plus besoin de multiplier les systèmes de surveillance des données. De plus, vous pouvez exporter toutes les données que vous souhaitez vers la solution ou le système d’analyse marketing dont vous disposez.
+Vous pouvez afficher et gérer les données de toutes ces sources avec Log Analytics dans OMS, via un portail unique. Ceci réduit le besoin de hello toomonitor à l’aide de différents systèmes et les rend facile tooconsume, et vous pouvez exporter les données de votre choix toowhatever business analytique solution ou du système que vous avez déjà.
 
-Cet article est un guide de démarrage rapide qui vous aide à collecter et gérer les données de vos ordinateurs Linux à l’aide de l’Agent OMS pour Linux. Pour obtenir des détails plus techniques, tels que la configuration du serveur proxy, des informations sur les mesures CollectD, et des sources de données JSON personnalisées, consultez la [présentation de l’Agent OMS pour Linux](https://github.com/Microsoft/OMS-Agent-for-Linux) (en anglais) et la [documentation complète de l’Agent OMS pour Linux](https://github.com/Microsoft/OMS-Agent-for-Linux/blob/master/docs/OMS-Agent-for-Linux.md) (en anglais) sur GitHub.
+Cet article est un guide de démarrage rapide qui vous permet de collecter et de gérer les données de vos ordinateurs Linux à l’aide de hello Agent OMS pour Linux. Pour obtenir des détails plus techniques, tels que la configuration du serveur proxy, des informations sur les mesures CollectD, et des sources de données JSON personnalisées, consultez la [présentation de l’Agent OMS pour Linux](https://github.com/Microsoft/OMS-Agent-for-Linux) (en anglais) et la [documentation complète de l’Agent OMS pour Linux](https://github.com/Microsoft/OMS-Agent-for-Linux/blob/master/docs/OMS-Agent-for-Linux.md) (en anglais) sur GitHub.
 
-Pour l’instant, vous pouvez collecter les types de données suivants sur des ordinateurs Linux :
+Actuellement, vous pouvez collecter hello suivant les types de données à partir d’ordinateurs Linux :
 
 * Mesures de performances
 * Événements Syslog
@@ -23,7 +23,7 @@ Pour l’instant, vous pouvez collecter les types de données suivants sur des o
 * Journaux, inventaire et mesures de performances du conteneur Docker
 
 ## <a name="supported-linux-versions"></a>Versions de Linux prises en charge
-Les versions x86 et x64 sont officiellement prises en charge sur diverses distributions de Linux. Toutefois, l’Agent OMS pour Linux peut également s’exécuter dans d’autres distributions non répertoriées.
+Les versions x86 et x64 sont officiellement prises en charge sur diverses distributions de Linux. Toutefois, hello Agent OMS pour Linux peut également s’exécuter sur les autres distributions non répertoriées.
 
 * Amazon Linux 2012.09 à 2015.09
 * CentOS Linux 5, 6 et 7
@@ -34,12 +34,12 @@ Les versions x86 et x64 sont officiellement prises en charge sur diverses distri
 * SUSE Linux Enterprise Server 11 et 12
 
 ## <a name="oms-agent-for-linux"></a>Agent OMS pour Linux
-L’Agent Operations Management Suite pour Linux comprend plusieurs packages. Les packages suivants sont disponibles en exécutant l’application shell avec `--extract`.
+Hello Operations Management Suite Agent pour Linux comprend plusieurs packages. fichier de la version Hello contient hello suivant des packages, disponibles en cours d’exécution offre groupée du noyau hello avec `--extract`.
 
 | **Package** | **Version** | **Description** |
 | --- | --- | --- |
-| omsagent |1.1.0 |Agent Operations Management Suite pour Linux |
-| omsconfig |1.1.1 |Agent de configuration de l’Agent OMS |
+| omsagent |1.1.0 |Hello Operations Management Suite Agent pour Linux |
+| omsconfig |1.1.1 |Agent de configuration pour hello Agent OMS |
 | omi |1.0.8.3 |Open Management Infrastructure (OMI) - Serveur CIM léger |
 | scx |1.6.2 |Fournisseurs CIM OMI pour les mesures de performances des systèmes d’exploitation |
 | apache-cimprov |1.0.0 |Fournisseur de surveillance des performances d’Apache HTTP Server pour OMI. Installé uniquement si Apache HTTP Server est détecté. |
@@ -47,14 +47,14 @@ L’Agent Operations Management Suite pour Linux comprend plusieurs packages. Le
 | docker-cimprov |0.1.0 |Fournisseur de Docker pour OMI. Installé uniquement si Docker est détecté. |
 
 ### <a name="additional-installation-artifacts"></a>Artefacts d’installation supplémentaires
-Après avoir installé les packages de l’Agent OMS pour Linux, les modifications de configuration système suivantes sont appliquées. Ces artefacts sont supprimés lorsque le package omsagent est désinstallé.
+Après avoir installé l’agent OMS de hello pour les packages Linux, hello les modifications de système de configuration supplémentaires suivantes sont appliquées. Ces artefacts sont supprimés lors de la désinstallation du package omsagent hello.
 
-* Un utilisateur sans privilège nommé `omsagent` est créé. Il s’agit du compte utilisé par le démon omsagent pour s’exécuter.
-* Un fichier « include » sudoers est créé à l’emplacement /etc/sudoers.d/omsagent. Il autorise omsagent à redémarrer les démons syslog et omsagent. Si les directives « include » sudo ne sont pas prises en charge dans la version installée de sudo, ces entrées sont inscrites dans /etc/sudoers.
-* La configuration de syslog est modifiée pour transférer un sous-ensemble d’événements à l’agent. Pour plus d’informations, consultez la section **Configuration de la collecte des données** ci-dessous.
+* Un utilisateur sans privilège nommé `omsagent` est créé. Il s’agit hello compte hello omsagent démon exécute en tant que
+* Un fichier « include » de programmes sudo est créé à /etc/sudoers.d/omsagent ce qui autorise omsagent toorestart hello syslog et omsagent démons. Si les directives « include » de sudo ne sont pas pris en charge dans la version installée de hello de sudo, ces entrées sont écrites trop/etc/programmes sudo.
+* configuration de syslog Hello est modifié tooforward un sous-ensemble de l’agent de toohello d’événements. Pour plus d’informations, consultez hello **collecte des données de configuration de** section ci-dessous
 
 ### <a name="linux-data-collection-details"></a>Détails sur la collecte de données Linux
-Le tableau suivant présente les méthodes de collecte des données et d’autres informations sur le mode de collecte.
+Hello tableau suivant présente les méthodes de collecte de données et d’autres détails sur la façon dont les données sont collectées.
 
 | source | Agent direct | Agent SCOM | Stockage Azure | SCOM requis ? | Données de l’agent SCOM envoyées via un groupe d’administration | Fréquence de collecte |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -74,12 +74,12 @@ Le tableau suivant présente les méthodes de collecte des données et d’autre
 | PAM |Pluggable Authentication Modules |n/a |
 
 > [!NOTE]
-> rsyslog ou syslog-ng est requis pour collecter les messages syslog. Le démon syslog par défaut sur la version 5 de Red Hat Enterprise Linux, CentOS et Oracle Linux (sysklog) ne prend pas en charge la collecte des événements syslog. Pour collecter les données syslog avec cette version de ces distributions, le démon rsyslog doit être installé et configuré à la place de sysklog.
+> Rsyslog ou syslog-ng est des messages syslog toocollect requis. démon syslog par défaut de Hello version 5 de Red Hat Enterprise Linux, CentOS et Oracle Linux (sysklog) n’est pas pris en charge pour la collecte d’événements syslog. toocollect les données syslog de cette version de ces distributions, hello rsyslog démon doit être installé et configuré tooreplace sysklog.
 >
 >
 
 ## <a name="quick-install"></a>Installation rapide
-Exécutez les commandes suivantes pour télécharger l’omsagent, valider la somme de contrôle, puis installer et intégrer l’agent. Ces commandes sont de type 64 bits. L’ID et la clé primaire de l’espace de travail sont disponibles sur le portail OMS dans **Paramètres**, sous l’onglet **Sources connectées**.
+Exécutez hello suivant de commandes toodownload hello omsagent, valider la somme de contrôle hello, puis installer et l’agent de hello intégré. Ces commandes sont de type 64 bits. Hello ID de l’espace de travail et la clé primaire sont trouvent dans le portail OMS de hello sous **paramètres** sur hello **Sources connectées** onglet.
 
 ![détails sur l’espace de travail](./media/log-analytics-linux-agents/oms-direct-agent-primary-key.png)
 
@@ -87,57 +87,57 @@ Exécutez les commandes suivantes pour télécharger l’omsagent, valider la so
 wget https://raw.githubusercontent.com/Microsoft/OMS-Agent-for-Linux/master/installer/scripts/onboard_agent.sh && sh onboard_agent.sh -w <YOUR OMS WORKSPACE ID> -s <YOUR OMS WORKSPACE PRIMARY KEY>
 ```
 
-Il existe plusieurs autres méthodes pour installer l’agent et le mettre à niveau. Pour les découvrir, consultez [Steps to install the OMS Agent for Linux](https://github.com/Microsoft/OMS-Agent-for-Linux/blob/master/docs/OMS-Agent-for-Linux.md#steps-to-install-the-oms-agent-for-linux).
+Il existe une multitude d’autres tooinstall méthodes hello agent et le mettre à niveau. Vous pouvez en savoir plus sur ces méthodes dans [hello de tooinstall étapes Agent OMS pour Linux](https://github.com/Microsoft/OMS-Agent-for-Linux/blob/master/docs/OMS-Agent-for-Linux.md#steps-to-install-the-oms-agent-for-linux).
 
-Vous pouvez également regarder la [présentation vidéo d’Azure](https://www.youtube.com/watch?v=mF1wtHPEzT0).
+Vous pouvez également afficher hello [procédure pas à pas vidéo Azure](https://www.youtube.com/watch?v=mF1wtHPEzT0).
 
 ## <a name="choose-your-linux-data-collection-method"></a>Choisir la mode de collecte des données Linux
-Le choix des types de données à collecter varie selon que vous souhaitez utiliser le portail OMS ou modifier plusieurs fichiers de configuration directement sur vos clients Linux. Si vous choisissez d’utiliser le portail, la configuration est automatiquement envoyée à tous vos clients Linux. Si vous avez besoin de différentes configurations pour différents clients Linux, vous devez modifier les fichiers de chaque client ou utiliser une solution telle que PowerShell DSC, Chef ou Puppet.
+Façon dont vous choisissez hello types de données que vous le feriez comme toocollect varie selon que vous souhaitez toouse du portail OMS hello ou si vous souhaitez modifier différents fichiers de configuration directement sur vos clients Linux. Si vous choisissez de portail de hello toouse, configuration de hello est envoyée automatiquement tooall vos clients Linux. Si vous avez besoin de configurations différentes pour différents clients Linux, vous avez besoin de fichiers du client tooedit individuellement ou utiliser une solution alternative comme PowerShell DSC, Chef ou Puppet.
 
-Vous pouvez spécifier les événements syslog et les compteurs de performances que vous souhaitez collecter, à l’aide des fichiers de configuration sur les ordinateurs Linux. *Si vous avez choisi de configurer la collecte des données en modifiant les fichiers de configuration de l’agent, vous devez désactiver la configuration centralisée.*  Les instructions ci-dessous permettent de configurer la collecte des données dans les fichiers de configuration de l’agent, mais aussi de désactiver la configuration centralisée sur tous les agents OMS pour Linux ou sur chaque ordinateur individuellement.
+Vous pouvez spécifier les événements syslog hello et des compteurs de performance que vous souhaitez toocollect à l’aide de fichiers de configuration sur les ordinateurs Linux hello. *Si vous avez choisi de collecte de données tooconfigure en modifiant les fichiers de configuration de l’agent, vous devez désactiver la configuration centralisée de hello.*  Les instructions sont fournies ci-dessous tooconfigure collecte des données dans l’agent hello les fichiers de configuration, ainsi que toodisable de configuration centrale pour tous les Agents OMS pour Linux ou des ordinateurs individuels.
 
 ### <a name="disable-oms-management-for-an-individual-linux-computer"></a>Désactiver la gestion OMS sur un ordinateur Linux
-La collecte centralisée des données de configuration est désactivée sur un ordinateur Linux grâce au script OMS_MetaConfigHelper.py. Ce script est très utile si quelques ordinateurs requièrent une configuration spéciale.
+Collecte centralisée des données de configuration est désactivée pour un ordinateur Linux avec hello du script OMS_MetaConfigHelper.py. Ce script est très utile si quelques ordinateurs requièrent une configuration spéciale.
 
-Pour désactiver la configuration centralisée :
+toodisable configuration centralisée :
 
 ```
 sudo /opt/microsoft/omsconfig/Scripts/OMS_MetaConfigHelper.py --disable
 ```
 
-Pour réactiver la configuration centralisée :
+toore-activer une configuration centralisée :
 
 ```
 sudo /opt/microsoft/omsconfig/Scripts/OMS_MetaConfigHelper.py –enable
 ```
 
 ## <a name="linux-performance-counters"></a>Compteurs de performances Linux
-Les compteurs de performances Linux sont similaires aux compteurs de performances Windows : ils fonctionnent de la même façon. Vous pouvez utiliser les procédures suivantes pour les ajouter et les configurer. Une fois ces compteurs ajoutés dans OMS, les données sont collectées toutes les 30 secondes.
+Compteurs de performances Linux sont des compteurs de performances tooWindows similaires, les deux fonctionnent de la même façon. Vous pouvez utiliser hello suivant les procédures tooadd et les configurer. Après que les avoir ajoutés tooOMS, données sont collectées pour ces toutes les 30 secondes.
 
-### <a name="to-add-a-linux-performance-counter-in-oms"></a>Pour ajouter un compteur de performances Linux dans OMS
-1. Pour configurer des agents OMS pour Linux à l’aide du portail OMS, ajoutez des compteurs de performances Linux dans la page Paramètres, puis cliquez sur **Données**.  
-2. Dans la page **Paramètres**, sous **Données**, cliquez sur **Compteurs de performance Linux**, puis sélectionnez ou tapez le nom du compteur à ajouter.  
+### <a name="tooadd-a-linux-performance-counter-in-oms"></a>tooadd un compteur de performances Linux dans OMS
+1. tooconfigure Agents OMS pour Linux à l’aide du portail OMS hello, vous pouvez ajouter des compteurs de performances Linux dans la page Paramètres de hello, cliquez sur **données**.  
+2. Sur hello **paramètres** page sous **données** , cliquez sur **compteurs de performances Linux** , puis sélectionnez ou tapez hello nom du compteur de hello souhaité tooadd.  
     ![données](./media/log-analytics-linux-agents/oms-settings-data01.png)
-3. Si vous ne connaissez pas le nom complet du compteur, commencez à taper les premières lettres et la liste des compteurs correspondants s’affiche. Lorsque vous avez trouvé le compteur à ajouter, cliquez sur son nom dans la liste puis sur l’icône de signe plus pour l’ajouter.
-4. Une fois ajouté, le compteur apparaît dans la liste des compteurs avec une barre de couleur.
-5. Par défaut, l’option **Appliquer la configuration ci-dessous à mes machines** est sélectionnée. Si vous souhaitez désactiver l’envoi des données de configuration, décochez la case.
-6. Lorsque vous avez terminé la modification des compteurs de performances, en bas de la page, cliquez sur **Enregistrer** pour finaliser vos modifications. Les modifications de configuration que vous avez apportées sont ensuite envoyées à tous les Agents OMS pour Linux enregistrés dans OMS, généralement dans les 5 minutes.
+3. Si vous ne connaissez le nom complet de hello du compteur de hello, vous pouvez commencer en tapant un nom partiel, et une liste des compteurs disponibles s’affiche. Lorsque vous avez trouvé le compteur de hello vous souhaitez tooadd, cliquez sur nom hello dans la liste de hello puis hello plus hello de tooadd icône compteur.
+4. Après avoir ajouté le compteur de hello, il apparaît dans la liste hello des compteurs mis en surbrillance avec une barre de couleur.
+5. Par défaut, hello **appliquer machines toomy de configuration ci-dessous** option est sélectionnée. Si vous souhaitez toodisable envoi de données de configuration, désactivez la sélection de hello.
+6. Lorsque vous avez terminé la modification des compteurs de performance, en bas de hello de page de hello cliquez sur **enregistrer** toofinalize vos modifications. les modifications de configuration Hello que vous avez apportées sont ensuite envoyées tooall hello Agents OMS pour Linux qui sont inscrits auprès d’OMS, généralement dans les 5 minutes.
 
 ### <a name="configure-linux-performance-counters-in-oms"></a>Configurer des compteurs de performances Linux dans OMS
-Pour les compteurs de performances Windows, vous pouvez choisir une instance spécifique de chaque compteur de performances. En revanche, pour les compteurs de performances Linux, l’instance de compteur que vous choisissez s’applique à tous les compteurs enfants du compteur parent. Le tableau suivant montre les instances courantes disponibles pour les compteurs de performances Linux et Windows.
+Pour les compteurs de performances Windows, vous pouvez choisir une instance spécifique de chaque compteur de performances. Toutefois, pour les compteurs de performances Linux, l’instance de compteur que vous choisissez s’applique ses compteurs enfants tooall compteur parent de hello. Hello tableau suivant montre les instances courantes hello les compteurs de performances Linux et Windows tooboth disponibles.
 
 | **Nom de l’instance** | **Signification** |
 | --- | --- |
-| \_Total |Total de toutes les instances |
+| \_Total |Nombre total de toutes les instances de hello |
 | \* |Toutes les instances |
 | (/&#124;/var) |Correspond aux instances nommées : / ou /var |
 
-De même, l’intervalle d’échantillonnage que vous choisissez pour un compteur parent s’applique à tous ses compteurs enfants. En d’autres termes, tous les intervalles d’échantillonnage et toutes les instances des compteurs enfants sont liés entre elles.
+De même, intervalle d’échantillonnage hello que vous choisissez pour un compteur parent s’applique tooall ses compteurs enfants. En d’autres termes, tous les intervalles d’échantillonnage compteur hello enfant et les instances sont tous liés entre eux.
 
 ### <a name="add-and-configure-performance-metrics-with-linux"></a>Ajouter et configurer des mesures de performances avec Linux
-Les mesures de performances à collecter sont contrôlées par la configuration du fichier /etc/opt/microsoft/omsagent/&lt;workspace id&gt;/conf/omsagent.conf. Pour obtenir les classes et mesures disponibles pour l’Agent OMS pour Linux, consultez [Available Performance Metrics](https://github.com/Microsoft/OMS-Agent-for-Linux/blob/master/docs/OMS-Agent-for-Linux.md#appendix-available-performance-metrics) .
+Toocollect des métriques de performances sont contrôlées par la configuration hello dans/etc/opt/microsoft/omsagent/&lt;id de l’espace de travail&gt;/conf/omsagent.conf. Consultez [métriques de performances disponibles](https://github.com/Microsoft/OMS-Agent-for-Linux/blob/master/docs/OMS-Agent-for-Linux.md#appendix-available-performance-metrics) pour connaître les classes et les métriques pour hello Agent OMS pour Linux.
 
-Chaque objet, ou catégorie, de mesures de performances à collecter doit être défini dans le fichier de configuration comme un seul élément `<source>` . La syntaxe suit le modèle suivant.
+Chaque objet ou la catégorie de toocollect des métriques de performances doit être définie dans le fichier de configuration hello en tant qu’un seul `<source>` élément. syntaxe de Hello suit le modèle hello ci-dessous.
 
 ```
 <source>
@@ -150,14 +150,14 @@ Chaque objet, ou catégorie, de mesures de performances à collecter doit être 
 
 ```
 
-Les paramètres configurables de cet élément sont :
+Hello les paramètres configurables de cet élément sont :
 
-* **Object\_name** : nom de l’objet à collecter.
-* **Instance\_regex** : a *expression régulière* définissant les instances à collecter. La valeur `.*` spécifie toutes les instances. Pour ne collecter les mesures de processeur que de l’instance \_Total, vous pouvez spécifier `_Total`. Pour ne collecter les mesures de processeur que des instances crond ou sshd, vous pouvez spécifier `(crond|sshd)`.
-* **Counter\_name\_regex** : *expression régulière* définissant les compteurs (de l’objet) à collecter. Pour collecter tous les compteurs de l’objet, spécifiez : `.*`. Pour ne collecter que les compteurs du fichier d’échange de l’objet mémoire, vous pouvez spécifier : `.+Swap.+`
-* **Interval**: fréquence de collecte des compteurs de l’objet.
+* **Objet\_nom**: nom de l’objet de collection de hello hello.
+* **Instance\_regex**: un *expression régulière* définissant l’instances toocollect. valeur de Hello : `.*` spécifie toutes les instances. métriques de processeur toocollect pour hello uniquement \_nombre Total d’instances, vous pouvez spécifier `_Total`. les métriques de processus toocollect pour hello uniquement les instances crond ou sshd uniquement, vous pouvez spécifier : `(crond|sshd)`.
+* **Compteur\_nom\_regex**: un *expression régulière* définissant le toocollect compteurs (pour l’objet de hello). Spécifiez de tous les compteurs pour l’objet de hello, toocollect : `.*`. toocollect permutation compteurs d’espace pour l’objet de mémoire hello, vous pouvez spécifier :`.+Swap.+`
+* **Intervalle :**: hello fréquence à quels hello les compteurs de l’objet sont collectés.
 
-La configuration par défaut des mesures de performances est la suivante :
+configuration par défaut de Hello pour les métriques de performances est la suivante :
 
 ```
 <source>
@@ -195,12 +195,12 @@ La configuration par défaut des mesures de performances est la suivante :
 ```
 
 ### <a name="enable-mysql-performance-counters-using-linux-commands"></a>Activer des compteurs de performances MySQL à l’aide de commandes Linux
-Si MySQL Server ou MariaDB Server est détecté sur l’ordinateur où omsagent est installé, un fournisseur de surveillance des performances de MySQL Server est automatiquement installé. Ce fournisseur se connecte au serveur MySQL/MariaDB local pour afficher les statistiques de performances. Vous devez configurer les informations d’identification de l’utilisateur MySQL, afin que le fournisseur puisse accéder à MySQL Server.
+Si MySQL Server ou MariaDB Server est détecté sur l’ordinateur de hello lorsque hello du bundle omsagent, un fournisseur pour MySQL Server d’analyse des performances sont automatiquement installé. Ce fournisseur connecte toohello local MySQL/MariaDB server tooexpose les statistiques de performances. Vous avez besoin d’informations d’identification utilisateur MySQL de tooconfigure afin que hello fournisseur d’accéder à hello MySQL Server.
 
-Pour définir le compte utilisateur par défaut du serveur MySQL sur l’hôte local, utilisez l’exemple de commande suivant.
+toodefine compte d’un utilisateur par défaut pour le serveur MySQL de hello sur localhost, hello utilisez exemple de commande suivant.
 
 > [!NOTE]
-> Le fichier des informations d’identification doit être accessible en lecture par le compte omsagent. L’exécution de la commande mycimprovauth comme omsgent est recommandée.
+> fichier d’informations d’identification de Hello doit être accessible en lecture hello omsagent compte. Est recommandé d’exécuter la commande mycimprovauth de hello pour omsgent.
 >
 >
 
@@ -211,29 +211,29 @@ sudo /opt/omi/bin/service_control restart
 ```
 
 
-Sinon, vous pouvez spécifier les informations d’identification MySQL requises dans un fichier, en créant le fichier : /var/opt/microsoft/mysql-cimprov/auth/omsagent/mysql-auth. Pour plus d’informations sur la gestion des informations d’identification MySQL à des fins de surveillance par le fichier mysql-auth, consultez [Gérer des informations d’identification de surveillance de MySQL dans le fichier d’authentification](#manage-mysql-monitoring-credentials-in-the-authentication-file).
+Vous pouvez également spécifier hello requis des informations d’identification MySQL dans un fichier, en créant un fichier hello : /var/opt/microsoft/mysql-cimprov/auth/omsagent/mysql-auth. Pour plus d’informations sur la gestion des informations d’identification MySQL pour l’analyse via le fichier de hello mysql-auth, consultez [MySQL gérer analyse les informations d’identification dans le fichier d’authentification hello](#manage-mysql-monitoring-credentials-in-the-authentication-file).
 
-Pour plus d’informations sur les autorisations d’objet requises par l’utilisateur MySQL pour collecter les données de performances de MySQL Server, consultez [Autorisations de base de données requises par l’utilisateur MySQL pour collecter les données de performances de MySQL Server](#database-permissions-required-for-mysql-performance-counters) .
+Consultez [de base de données des autorisations requises pour les compteurs de performances MySQL](#database-permissions-required-for-mysql-performance-counters) pour plus d’informations sur les autorisations d’objet requises par hello MySQL utilisateur toocollect données de performances MySQL Server.
 
 ### <a name="enable-apache-http-server-performance-counters-using-linux-commands"></a>Activer les compteurs de performances d’Apache HTTP Server à l’aide de commandes Linux
-Si Apache HTTP Server est détecté sur l’ordinateur où omsagent est installé, un fournisseur de surveillance des performances d’Apache HTTP Server est automatiquement installé. Ce fournisseur repose sur un « module » Apache qui doit être chargé dans Apache HTTP Server afin d’accéder aux données de performances.
+Si Apache HTTP Server est détecté sur l’ordinateur de hello lorsque hello du bundle omsagent, un fournisseur pour Apache HTTP Server d’analyse des performances sont automatiquement installé. Ce fournisseur repose sur un « module » Apache qui doit être chargé dans Apache HTTP Server de hello ordre tooaccess les données de performance.
 
-Vous pouvez charger le module avec la commande suivante :
+Vous pouvez charger le module de hello avec hello de commande suivante :
 
 ```
 sudo /opt/microsoft/apache-cimprov/bin/apache_config.sh -c
 ```
 
-Pour décharger le module de surveillance Apache, exécutez la commande suivante :
+toounload hello module d’analyse Apache, exécutez hello de commande suivante :
 
 ```
 sudo /opt/microsoft/apache-cimprov/bin/apache_config.sh -u
 ```
-### <a name="to-view-performance-data-with-log-analytics"></a>Pour afficher les données de performances avec Log Analytics
-1. Dans le portail Operations Management Suite, cliquez sur la mosaïque Recherche de journal.
-2. Dans la barre de recherche, tapez `* (Type=Perf)` pour afficher tous les compteurs de performances.
+### <a name="tooview-performance-data-with-log-analytics"></a>données de performances tooview avec Analytique de journal
+1. Dans le portail Operations Management Suite hello, cliquez sur la vignette de recherche de journal hello.
+2. Dans la barre de recherche de hello, tapez `* (Type=Perf)` tooview tous les compteurs de performances.
 
-Comme OMS collecte également les données des compteurs de performances Windows, vous devez restreindre la recherche aux données spécifiquement Linux. Ainsi, l’exemple suivant affiche les données de performances concernant un exemple de serveur Linux nommé Chorizo21.
+Comme OMS collecte également les données de compteur de performance Windows, vous devez limiter hello recherche tooLinux propres données. Par conséquent, hello exemple suivant affichera-t-il les performances données tooan spécifique exemple de serveur Linux nommé Chorizo21.
 
 ```
 Type=Perf Computer=chorizo*
@@ -241,35 +241,35 @@ Type=Perf Computer=chorizo*
 
 ![exemple de serveur affiché dans les résultats de la recherche](./media/log-analytics-linux-agents/oms-perfsearch01.png)
 
-Dans les résultats, vous pouvez cliquer sur **Mesures** pour afficher les compteurs pour lesquels des données ont été collectées. Les données en temps réel sont indiquées sous forme graphique pour chaque compteur.
+Dans les résultats de hello, vous pouvez cliquer sur **métriques** compteurs hello tooview collectées pour les données. Les données en temps réel sont indiquées sous forme graphique pour chaque compteur.
 
 ![Mesures](./media/log-analytics-linux-agents/oms-perfmetrics01.png)
 
 ## <a name="syslog"></a>syslog
-Syslog est un protocole de journalisation des événements, similaire aux Journaux des événements Windows : les deux fonctionnent de la même façon lorsqu’ils sont affichés dans OMS.
+Syslog est un protocole tooWindows similaire des journaux des événements de journalisation des événements, les deux fonctionnent de manière similaire dans OMS.
 
-### <a name="to-add-a-new-linux-syslog-facility-in-oms"></a>Pour ajouter une nouvelle fonctionnalité syslog Linux dans OMS
-1. Dans la page **Paramètres** sous **Données**, cliquez sur **Syslog** puis, à gauche de l’icône plus, tapez le nom de la fonctionnalité Syslog à ajouter.
-    ![Syslog Linux](./media/log-analytics-linux-agents/oms-linuxsyslog01.png)
-2. Si vous ne connaissez pas le nom complet de la fonctionnalité, tapez les premières lettres et la liste des fonctionnalités syslog correspondantes s’affiche. Lorsque vous avez trouvé la fonctionnalité syslog à ajouter, cliquez sur son nom dans la liste puis sur l’icône de signe plus pour l’ajouter.
-3. Une fois la fonctionnalité ajoutée, le compteur apparaît dans la liste des compteurs avec une barre de couleur. Ensuite, choisissez les niveaux de gravité (catégories d’informations sur les fonctionnalités syslog) que vous souhaitez collecter.
-4. En bas de la page, cliquez sur **Enregistrer** pour finaliser vos modifications. Les modifications de configuration que vous avez apportées sont ensuite envoyées à tous les Agents OMS pour Linux enregistrés dans OMS, généralement dans les 5 minutes.
+### <a name="tooadd-a-new-linux-syslog-facility-in-oms"></a>tooadd une nouvelle fonction syslog de Linux dans OMS
+1. Sur hello **paramètres** page sous **données** , cliquez sur **Syslog** puis toohello à gauche de l’icône plus hello, tapez hello nom de la fonction syslog de hello que vous souhaitez tooadd.
+    ![syslog de Linux](./media/log-analytics-linux-agents/oms-linuxsyslog01.png)
+2. Si vous ne connaissez le nom complet de hello de facilité de hello, vous pouvez commencer en tapant un nom partiel, et une liste des fonctions syslog disponibles s’affiche. Lorsque vous trouvez la fonction syslog de hello que vous souhaitez tooadd, cliquez sur nom hello dans la liste de hello puis hello plus hello de tooadd icône fonction syslog.
+3. Après avoir ajouté la fonctionnalité de hello, il apparaît dans la liste hello de mise en surbrillance avec une barre de couleur. Ensuite, choisissez hello, niveaux de gravité (catégories d’information sur les fonctions syslog) que vous souhaitez toocollect.
+4. Au bas de hello de page de hello cliquez sur **enregistrer** toofinalize vos modifications. les modifications de configuration Hello que vous avez apportées sont ensuite envoyées tooall hello Agents OMS pour Linux qui sont inscrits auprès d’OMS, généralement dans les 5 minutes.
 
 ### <a name="configure-linux-syslog-facilities-in-linux"></a>Configurer des fonctionnalités syslog Linux dans Linux
-Des événements syslog sont envoyés du démon syslog, par exemple rsyslog ou syslog-ng, à un port local écouté par l’agent. Le port par défaut est 25224. Lorsque l’agent est installé, une configuration syslog par défaut est appliquée. Elle se trouve à l’emplacement suivant :
+Événements syslog sont envoyés du démon syslog de hello, par exemple rsyslog ou syslog-ng, port local de tooa que l’agent hello écoute. Le port par défaut est 25224. Lorsque l’agent hello est installé, une configuration de syslog par défaut est appliquée. Elle se trouve à l’emplacement suivant :
 
 Rsyslog : /etc/rsyslog.d/rsyslog-oms.conf
 
 Syslog-ng : /etc/syslog-ng/syslog-ng.conf
 
-La configuration syslog par défaut de l’agent OMS télécharge les événements syslog de toutes les fonctionnalités ayant au moins le niveau de gravité Avertissement.
+configuration de syslog Hello par défaut OMS agent télécharge les événements syslog de toutes les fonctions ayant un niveau de gravité d’avertissement ou une version ultérieure.
 
 > [!NOTE]
-> Si vous modifiez cette configuration, vous devez redémarrer le démon syslog pour que les modifications prennent effet.
+> Si vous modifiez la configuration syslog hello, vous devez redémarrer le démon syslog hello hello modifications tootake effet.
 >
 >
 
-La configuration syslog par défaut de l’Agent OMS pour Linux dans OMS est la suivante :
+Hello configuration syslog par défaut pour hello Agent OMS pour Linux pour OMS est la suivante :
 
 #### <a name="rsyslog"></a>Rsyslog
 ```
@@ -300,9 +300,9 @@ destination warning_oms { tcp("127.0.0.1" port(25224)); };
 log { source(src); filter(f_warning_oms); destination(warning_oms); };
 ```
 
-### <a name="to-view-all-syslog-events-with-log-analytics"></a>Pour afficher tous les événements Syslog avec Log Analytics
-1. Dans le portail Operations Management Suite, cliquez sur la mosaïque **Recherche de journal** .
-2. Dans le groupe **Gestion de journal** , sélectionnez une recherche syslog prédéfinie puis exécutez-la.
+### <a name="tooview-all-syslog-events-with-log-analytics"></a>tooview tous les événements Syslog avec Analytique de journal
+1. Dans le portail Operations Management Suite hello, cliquez sur hello **recherche de journal** vignette.
+2. Bonjour **gestion du journal** de regroupement, sélectionnez une recherche syslog prédéfinie et puis sélectionnez un toorun il.
 
 Cet exemple montre tous les événements Syslog.
 
@@ -311,22 +311,22 @@ Cet exemple montre tous les événements Syslog.
 Maintenant, vous pouvez examiner les résultats de la recherche plus en détail.
 
 ## <a name="linux-alerts"></a>Alertes Linux
-Si vous utilisez Nagios ou Zabbix pour gérer vos ordinateurs Linux, OMS peut recevoir les alertes générées par ces outils. Toutefois, il n’existe actuellement aucune méthode pour configurer les données d’alerte entrantes à l’aide du portail OMS. En revanche, vous devez modifier un fichier de configuration pour commencer à envoyer des alertes à OMS.
+Si vous utilisez Nagios ou Zabbix toomanage que vos ordinateurs Linux, puis OMS peut recevoir des alertes de hello générées à partir de ces outils. Toutefois, il n’existe actuellement aucune méthode tooconfigure données d’alerte entrantes à l’aide du portail OMS hello. Au lieu de cela, vous devez tooedit une tooOMS alertes config fichier toostart envoi.
 
 ### <a name="collect-alerts-from-nagios"></a>Collecter les alertes de Nagios
-Pour collecter les alertes d’un serveur Nagios, vous devez apporter les modifications de configuration suivantes.
+toocollect les alertes d’un serveur Nagios, vous devez hello toomake suit les modifications de configuration.
 
-1. Accordez à l’utilisateur **omsagent** un accès en lecture au fichier journal Nagios (/var/log/nagios/nagios.log). Si le fichier nagios.log appartient au groupe **nagios**, vous pouvez ajouter l’utilisateur **omsagent** au groupe **nagios**.
+1. Utilisateur de subventions hello **omsagent** fichier de journal accès en lecture toohello Nagios (c'est-à-dire /var/log/nagios/nagios.log). En supposant que le fichier de hello nagios.log est détenu par groupe de hello **nagios** , vous pouvez ajouter hello utilisateur **omsagent** toohello **nagios** groupe.
 
     ```
     sudo usermod –a -G nagios omsagent
     ```
-2. Modifiez le fichier de configuration omsagent.conf (/etc/opt/microsoft/omsagent/&lt;workspace id&gt;/conf/omsagent.conf). Vérifiez que les entrées suivantes sont présentes et non mises en commentaire :
+2. Modifier le fichier de configuration omsagent.conf hello (/ etc/opt/microsoft/omsagent/&lt;id de l’espace de travail&gt;/conf/omsagent.conf). Vérifiez que hello suivant entrées est présents et pas commentées :
 
     ```
     <source>
     type tail
-    #Update path to point to your nagios.log
+    #Update path toopoint tooyour nagios.log
     path /var/log/nagios/nagios.log
     format none
     tag oms.nagios
@@ -336,16 +336,16 @@ Pour collecter les alertes d’un serveur Nagios, vous devez apporter les modifi
     type filter_nagios_log
     </filter>
     ```
-3. Redémarrez le démon omsagent :
+3. Redémarrez le démon omsagent de hello :
 
     ```
     sudo /opt/microsoft/omsagent/bin/service_control restart
     ```
 
 ### <a name="collect-alerts-from-zabbix"></a>Collecter les alertes de Zabbix
-Pour collecter les alertes d’un serveur Zabbix, vous allez effectuer des étapes similaires à celles de Nagios ci-dessus, mais vous devez spécifier un utilisateur et un mot de passe en *clair*. Cette solution n’est pas idéale, mais elle devrait changer rapidement. Pour résoudre ce problème, nous vous recommandons de créer l’utilisateur et de ne lui accorder que l’autorisation de surveillance.
+toocollect des alertes à partir d’un serveur Zabbix, à suivre est similaire étapes toothose de nagios décrite ci-dessus, mais vous devez toospecify un utilisateur et mot de passe dans *clair*. Cette solution n’est pas idéale, mais elle devrait changer rapidement. tooaddress ce problème, nous vous recommandons de créer un utilisateur de hello et de lui accorder toomonitor autorisation uniquement.
 
-Une section du fichier de configuration omsagent.conf (/etc/opt/microsoft/omsagent/&lt;workspace id&gt;/conf/omsagent.conf) pour Zabbix pourrait ressembler à celle ci-dessous :
+Une section de l’exemple de fichier de configuration omsagent.conf hello (/ etc/opt/microsoft/omsagent/&lt;id de l’espace de travail&gt;/conf/omsagent.conf) pour Zabbix suivant de hello :
 
 ```
 <source>
@@ -360,93 +360,93 @@ Une section du fichier de configuration omsagent.conf (/etc/opt/microsoft/omsage
 ```
 
 ### <a name="view-alerts-in-log-analytics-search"></a>Afficher les alertes dans la recherche Log Analytics
-Après avoir configuré vos ordinateurs Linux pour envoyer des alertes à OMS, vous pouvez utiliser quelques requêtes simples pour afficher les alertes. La requête suivante renvoie toutes les alertes enregistrées qui ont été générées. Par exemple, en cas de problème dans votre infrastructure informatique, les résultats de la requête suivante peuvent en révéler la cause. Et vous pouvez facilement examiner les alertes par système source afin de restreindre votre champ d’investigation. L’avantage est que vous n’avez plus à utiliser différents systèmes de gestion. Si vos alertes sont envoyées à OMS, vous pouvez utiliser cet outil.
+Une fois que vous avez configuré votre tooOMS d’alertes Linux ordinateurs toosend, vous pouvez utiliser quelques du journal des simples requêtes tooview hello les alertes de recherche. Hello exemple de requête de recherche ci-dessous retourne toutes les alertes hello enregistrée qui ont été générées. Par exemple, si un problème quelconque se produit dans votre infrastructure informatique, puis les résultats pour hello exemple de requête peut-être indiquer où le problème de hello suivant. Et, vous pouvez explorer facilement dans les alertes de toohello par toohelp du système source étroit votre examen. Bonjour avantage est que vous ne sont pas nécessairement des systèmes de gestion toovarious toogo à partir du début de hello : condition que vos alertes sont envoyées tooOMS, vous pouvez commencer de là.
 
 ```
 Type=Alert
 ```
 
-#### <a name="to-view-all-nagios-alerts-with-log-analytics"></a>Pour afficher toutes les alertes Nagios avec Log Analytics
-1. Dans le portail Operations Management Suite, cliquez sur la mosaïque **Recherche de journal** .
-2. Dans la barre de requête, tapez la requête suivante :
+#### <a name="tooview-all-nagios-alerts-with-log-analytics"></a>tooview Nagios toutes les alertes avec Analytique de journal
+1. Dans le portail Operations Management Suite hello, cliquez sur hello **recherche de journal** vignette.
+2. Dans la barre de requête hello, tapez Bonjour suivant la requête de recherche
 
     ```
     Type=Alert SourceSystem=Nagios
     ```
    ![Alertes Nagios affichées dans Recherche de journal](./media/log-analytics-linux-agents/oms-linux-nagios-alerts.png)
 
-Après avoir consulté les résultats de la recherche, vous pouvez examiner les détails supplémentaires tels que *AlertState*.
+Une fois que vous voyez les résultats de la recherche hello, vous pouvez explorer des détails supplémentaires, comme *AlertState*.
 
-### <a name="to-view-all-zabbix-alerts-with-log-analytics"></a>Pour afficher tous les événements Zabbix avec Log Analytics
-1. Dans le portail Operations Management Suite, cliquez sur la mosaïque **Recherche de journal** .
-2. Dans la barre de requête, tapez la requête suivante :
+### <a name="tooview-all-zabbix-alerts-with-log-analytics"></a>tooview toutes les alertes Zabbix Analytique de journal
+1. Dans le portail Operations Management Suite hello, cliquez sur hello **recherche de journal** vignette.
+2. Dans la barre de requête hello, tapez Bonjour suivant la requête de recherche
 
     ```
     Type=Alert SourceSystem=Zabbix
     ```
    ![Alertes Zabbix affichées dans Recherche de journal](./media/log-analytics-linux-agents/oms-linux-zabbix-alerts.png)
 
-Après avoir consulté les résultats de la recherche, vous pouvez examiner les détails supplémentaires tels que *AlertName*.
+Une fois que vous voyez les résultats de la recherche hello, vous pouvez explorer des détails supplémentaires, comme *AlertName*.
 
 ## <a name="compatibility-with-system-center-operations-manager"></a>Compatibilité avec System Center Operations Manager
-L’Agent OMS pour Linux partage ses fichiers binaires avec l’agent System Center Operations Manager. L’installation de l’Agent OMS pour Linux sur un système géré par Operations Manager met à niveau les packages OMI et SCX sur l’ordinateur. L’Agent OMS pour Linux et System Center 2012 R2 sont compatibles. Toutefois, **System Center 2012 SP1 et ses versions antérieures ne sont actuellement pas compatibles avec l’Agent OMS pour Linux.**
+Hello Agent OMS pour Linux partage des fichiers binaires avec l’agent de System Center Operations Manager hello. Installation hello Agent OMS pour Linux sur un système actuellement géré par Operations Manager les mises à niveau hello packages OMI et SCX sur une version plus récente de hello ordinateur tooa. Hello Agent OMS pour Linux et System Center 2012 R2 sont compatibles. Toutefois, **System Center 2012 SP1 et les versions antérieures ne sont actuellement pas compatibles ni prises en charge avec hello Agent OMS pour Linux.**
 
 > [!NOTE]
-> Si l’Agent OMS pour Linux est installé sur un ordinateur non géré par Operations Manager, et que vous décidez ensuite de gérer l’ordinateur avec Operations Manager, vous devez modifier la configuration d’OMI avant de détecter l’ordinateur. **Cette étape n’est pas nécessaire si l’agent Operations Manager est installé avant l’Agent OMS pour Linux.**
+> Si hello Agent OMS pour Linux est installé tooa ordinateur qui n’est pas actuellement géré par Operations Manager et que vous décidez d’ordinateur de hello toomanage avec Operations Manager, vous devez modifier la configuration de hello OMI avant de découvrir hello ordinateur. **Cette étape n’est pas nécessaire si l’agent Operations Manager de hello est installé avant hello Agent OMS pour Linux.**
 >
 >
 
-### <a name="to-enable-the-oms-agent-for-linux-to-communicate-with-operations-manager"></a>Pour permettre à l’Agent OMS pour Linux de communiquer avec Operations Manager
-1. Modifiez le fichier /etc/opt/omi/conf/omiserver.conf.
-2. Vérifiez que la ligne commençant par **httpsport =** spécifie le port 1270. Par exemple `httpsport=1270`
-3. Redémarrez le serveur OMI.
+### <a name="tooenable-hello-oms-agent-for-linux-toocommunicate-with-operations-manager"></a>tooenable hello Agent OMS pour toocommunicate Linux avec Operations Manager
+1. Modifier hello fichier /etc/opt/omi/conf/omiserver.conf
+2. Vérifiez que hello ligne commençant par **httpsport =** définit le port 1270 hello. Par exemple `httpsport=1270`
+3. Redémarrez le serveur OMI de hello :
 
     ```
     sudo /opt/omi/bin/service_control restart
     ```
 
 ## <a name="database-permissions-required-for-mysql-performance-counters"></a>Autorisations de base de données requises par l’utilisateur MySQL pour collecter les données de performances de MySQL Server
-Pour accorder des autorisations à un utilisateur surveillant MySQL, l’utilisateur doit posséder l’autorisation « GRANT option », ainsi que l’autorisation accordée.
+toogrant autorisations tooa utilisateur d’analyse MySQL, utilisateur hello doit avoir hello privilège « GRANT option », ainsi que des privilèges hello accordée.
 
-Pour que l’utilisateur MySQL renvoie les données de performances, il doit accéder aux requêtes suivantes :
+Dans l’ordre pour hello MySQL utilisateur utilisateur de hello de données de performances tooreturn aura besoin d’accès toohello requêtes suivantes :
 
 ```
 SHOW GLOBAL STATUS;
 SHOW GLOBAL VARIABLES:
 ```
 
-Outre ces requêtes, l’utilisateur de MySQL requiert un accès SELECT aux tables par défaut suivantes :
+En outre, utilisateur de MySQL toothese requêtes hello requiert toohello accès choisi par défaut tables suivantes :
 
 * information_schema
 * mysql
 
-Ces privilèges peuvent être accordés à l’aide des commandes Grant suivantes.
+Ces privilèges peuvent être accordés en exécutant hello suivant de commandes grant.
 
 ```
-GRANT SELECT ON information_schema.* TO ‘monuser’@’localhost’;
-GRANT SELECT ON mysql.* TO ‘monuser’@’localhost’;
+GRANT SELECT ON information_schema.* too‘monuser’@’localhost’;
+GRANT SELECT ON mysql.* too‘monuser’@’localhost’;
 ```
 
-## <a name="manage-mysql-monitoring-credentials-in-the-authentication-file"></a>Gérer des informations d’identification de surveillance de MySQL dans le fichier d’authentification
-Les sections suivantes vous aident à gérer les informations d’identification de MySQL.
+## <a name="manage-mysql-monitoring-credentials-in-hello-authentication-file"></a>Gérer l’analyse des informations d’identification dans le fichier d’authentification hello MySQL
+Hello sections suivantes vous gérez les informations d’identification MySQL.
 
-### <a name="configure-the-mysql-omi-provider"></a>Configurer le fournisseur OMI de MySQL
-Le fournisseur OMI de MySQL nécessite un utilisateur MySQL préconfiguré et des bibliothèques clientes MySQL installées pour interroger les informations d’intégrité et de performances de l’instance MySQL.
+### <a name="configure-hello-mysql-omi-provider"></a>Configurer hello fournisseur OMI MySQL
+Hello fournisseur OMI MySQL requiert un utilisateur MySQL soit préconfiguré et les bibliothèques clientes MySQL installées dans les informations de performances/intégrité tooquery hello ordre à partir de l’instance de MySQL hello.
 
 ### <a name="mysql-omi-authentication-file"></a>Fichier d’authentification OMI de MySQL
-Le fournisseur OMI de MySQL utilise un fichier d’authentification pour déterminer l’adresse de liaison et le port écouté par l’instance MySQL, ainsi que les informations d’identification à utiliser pour collecter des mesures. Pendant l’installation, le fournisseur OMI de MySQL recherche dans les fichiers de configuration my.cnf (emplacements par défaut) l’adresse de liaison et le port, et configure partiellement le fichier d’authentification OMI de MySQL.
+Le fournisseur OMI MySQL utilise un toodetermine de fichier d’authentification quelle instance de MySQL hello adresse de liaison et le port d’écoute et les informations d’identification toouse toogather métriques. Au cours de hello d’installation OMI MySQL fournisseur recherchera les fichiers de configuration MySQL my.cnf (emplacements par défaut) adresse de liaison et un port et partiellement hello de jeu de fichier d’authentification OMI MySQL.
 
-Pour surveiller une instance de serveur MySQL, ajoutez un fichier d’authentification OMI MySQL prégénéré dans le répertoire correct.
+toocomplete d’analyse d’une instance de serveur MySQL, pour ajouter un fichier d’authentification OMI MySQL prégénéré dans le répertoire approprié de hello.
 
 ### <a name="authentication-file-format"></a>Format du fichier d’authentification
-Le fichier d’authentification OMI de MySQL est un fichier texte qui contient les informations suivantes :
+Hello fichier d’authentification OMI MySQL est un fichier texte qui contient des informations sur :
 
 * Port
 * Adresse de liaison
 * Nom d’utilisateur MySQL
 * Mot de passe encodé en base 64
 
-Le fichier d’authentification OMI de MySQL n’accorde que des droits de lecture/écriture à l’utilisateur de Linux qui l’a généré.
+Hello fichier d’authentification OMI MySQL accorde uniquement des droits en lecture/écriture toohello Linux utilisateur qui l’a généré.
 
 ```
 [Port]=[Bind-Address], [username], [Base64 encoded Password]
@@ -455,11 +455,11 @@ Le fichier d’authentification OMI de MySQL n’accorde que des droits de lectu
 AutoUpdate=[true|false]
 ```
 
-Un fichier d’authentification OMI de MySQL par défaut contient une instance et un numéro de port par défaut, selon les informations disponibles et analysées dans le fichier de configuration MySQL trouvé.
+Un fichier d’authentification OMI MySQL par défaut contient une instance par défaut et un numéro de port, selon les informations disponibles et analysé à partir de hello fichier de configuration MySQL trouvé.
 
-L’instance par défaut est un moyen pour faciliter la gestion de plusieurs instances MySQL sur un hôte Linux et est représentée par l’instance avec le port 0. Toutes les instances ajoutées hériteront des propriétés de l’instance par défaut. Par exemple, si l’instance MySQL à l’écoute du port 3308 est ajoutée, l’adresse de liaison, le nom d’utilisateur et le mot de passe encodé en base 64 de l’instance par défaut sont utilisés pour tester et surveiller l’instance à l’écoute de 3308. Si l’instance sur 3308 est liée à une autre adresse et utilise les mêmes nom d’utilisateur et mot de passe MySQL, seule la répétition de l’adresse de liaison est nécessaire. Les autres propriétés seront héritées.
+instance par défaut de Hello un toomake signifie que la gestion de plusieurs instances MySQL sur un même hôte Linux plus facile et est représentée par l’instance de hello associée au port 0. Toutes les instances ajoutées héritent des propriétés définies à partir de l’instance par défaut de hello. Par exemple, si l’instance MySQL à l’écoute sur le port « 3308 » est ajoutée, l’instance par défaut de hello adresse de liaison, nom d’utilisateur et mot de passe codé en Base64 seront être tootry utilisé d’analyser hello instance à l’écoute du port 3308. Si instance hello du port 3308 est lié tooanother adresse et utilise hello le même nom d’utilisateur MySQL et paire mot de passe hello uniquement respecification Hello adresse de liaison est nécessaire et hello autres propriétés sont héritées.
 
-Voici à quoi peuvent ressembler des fichiers d’authentification.
+Vous trouverez des exemples de fichier d’authentification hello suivant de hello.
 
 Instance par défaut et instance avec port 3308 :
 
@@ -476,41 +476,41 @@ Instance par défaut et instance avec port 3308 + mot de passe différent encod�
 
 | **Propriété** | **Description** |
 | --- | --- |
-| Port |Le port représente le port actif écouté par l’instance MySQL.  Le port 0 implique que les propriétés suivantes sont utilisées pour l’instance par défaut. |
-| Adresse de liaison |Cette adresse est l’adresse de liaison MySQL actuelle. |
-| username |Il s’agit du nom d’utilisateur MySQL que vous souhaitez utiliser pour surveiller l’instance de serveur MySQL. |
-| Mot de passe encodé en base 64 |Il s’agit du mot de passe encodé en base 64, de l’utilisateur surveillant MySQL. |
-| AutoUpdate |Lors de sa mise à niveau, le fournisseur OMI de MySQL recherche les modifications dans le fichier my.cnf et remplace le fichier d’authentification OMI de MySQL. Activez (True) ou désactivez (False) cet indicateur selon que le fichier d’authentification OMI de MySQL requiert ou non des mises à jour. |
+| Port |Le port représente hello de port actuel hello MySQL instance écoute.  le port de Hello 0 implique que les propriétés hello suivantes sont utilisées pour l’instance par défaut. |
+| Adresse de liaison |Adresse de liaison de Hello est hello actuel MySQL adresse de liaison |
+| username |Ce nom d’utilisateur hello d’utilisateur MySQL de hello vous souhaitez instance toouse toomonitor hello MySQL server. |
+| Mot de passe encodé en base 64 |Il s’agit d’un mot de passe hello de hello utilisateur d’analyse MySQL codé en Base64. |
+| AutoUpdate |Quand hello fournisseur OMI MySQL est mis à niveau le fournisseur de hello pour les modifications dans le fichier my.cnf hello et remplacer le fichier d’authentification OMI MySQL hello. Définissez cet indicateur tootrue ou false en fonction de mises à jour requises toohello OMI MySQL fichier d’authentification. |
 
 #### <a name="authentication-file-location"></a>Emplacement du fichier d’authentification
-Le fichier d’authentification OMI de MySQL doit être situé à l’emplacement suivant et s’appeler « mysql-auth » :
+Hello fichier d’authentification OMI MySQL doit être situé dans hello l’emplacement suivant et nommé « mysql-auth » :
 
 /var/opt/microsoft/mysql-cimprov/auth/omsagent/mysql-auth
 
-L’utilisateur omsagent doit posséder le fichier (ou le répertoire auth/omsagent).
+fichier de Hello (et le répertoire auth/omsagent) doivent être possédés par l’utilisateur omsagent de hello.
 
 ## <a name="agent-logs"></a>Journaux de l’agent
-Les journaux de l’Agent OMS pour Linux se trouvent à l’emplacement suivant :
+journaux Hello pour hello Agent OMS pour Linux est à :
 
 /var/opt/microsoft/omsagent/&lt;workspace id&gt;/log/
 
-Les journaux de l’Agent OMS pour Linux pour le programme omsconfig (configuration de l’agent) se trouvent à l’emplacement suivant :
+journaux Hello pour hello situé de l’Agent OMS pour Linux pour les programme omsconfig (configuration de l’agent) :
 
 /var/opt/microsoft/omsconfig/log/
 
-Les journaux des composants OMI et SCX (qui fournissent des données de mesures de performances) se trouvent à l’emplacement suivant :
+Les journaux des composants OMI et SCX hello (qui fournissent les données de métriques de performances) se trouve à :
 
 /var/opt/omi/log/ et /var/opt/microsoft/scx/log
 
-## <a name="troubleshooting-the-oms-agent-for-linux"></a>Résolution de problèmes de l’Agent OMS pour Linux
-Pour diagnostiquer et résoudre des problèmes courants, utilisez les informations suivantes.
+## <a name="troubleshooting-hello-oms-agent-for-linux"></a>Résolution des problèmes de hello Agent OMS pour Linux
+Utilisez hello suivant informations toodiagnose et résoudre les problèmes courants.
 
-Si aucune des informations de résolution de problèmes de cette section ne vous est utile, les ressources suivantes peuvent également vous aider à résoudre votre problème.
+Si aucun des hello informations de dépannage de cette section vous aide à vous, vous pouvez également utiliser hello suivant ressources toohelp résoudre votre problème.
 
 * Les clients bénéficiant du Support Premier peuvent soumettre un cas de support via le site [Premier](https://premier.microsoft.com/)
-* Les clients titulaires d’un contrat de support Azure peuvent soumettre des cas de support via le [portail Azure](https://manage.windowsazure.com/?getsupport=true)
+* Clients avec les contrats de support Azure peuvent se connecter les cas de prise en charge hello [portail Azure](https://manage.windowsazure.com/?getsupport=true)
 * Déposer un [problème GitHub](https://github.com/Microsoft/OMS-Agent-for-Linux/issues)
-* Forum de commentaires pour formuler des idées et créer des rapports de bogue [http://aka.ms/opinsightsfeedback](http://aka.ms/opinsightsfeedback)
+* Forum de commentaires pour les idées et toocreate un rapport de bogue [http://aka.ms/opinsightsfeedback](http://aka.ms/opinsightsfeedback)
 
 ### <a name="important-log-locations"></a>Emplacement de journaux importants
 | Fichier | Chemin |
@@ -526,7 +526,7 @@ Si aucune des informations de résolution de problèmes de cette section ne vous
 | Configurations supplémentaires |`/etc/opt/microsoft/omsagent/<workspace id>/omsagent.d/*.conf` |
 
 > [!NOTE]
-> Les fichiers de changement de configuration pour les compteurs de performances et Syslog sont remplacés si la Configuration du portail OMS est activée. Vous pouvez désactiver la configuration sur le portail OMS pour tous les nœuds ou un seul d’entre eux en exécutant la commande suivante :
+> Les fichiers de changement de configuration pour les compteurs de performances et Syslog sont remplacés si la Configuration du portail OMS est activée. Vous pouvez désactiver la configuration Bonjour portail OMS (pour tous les nœuds) ou pour les nœuds uniques en exécutant hello suivante :
 >
 >
 
@@ -536,12 +536,12 @@ sudo su omsagent -c /opt/microsoft/omsconfig/Scripts/OMS_MetaConfigHelper.py --d
 
 
 ### <a name="enable-debug-logging"></a>Activer l’enregistrement du débogage
-Pour activer l’enregistrement du débogage, vous pouvez utiliser le plug-in de sortie OMS et une sortie détaillée.
+débogage de tooenable journalisation, vous pouvez utiliser le plug-in sortie hello OMS et la sortie des commentaires.
 
 #### <a name="oms-output-plugin"></a>Plug-in de sortie OMS
-FluentD permet au plug-in de spécifier des niveaux de journalisation pour différents niveaux du journal en relation avec les entrées et sorties. Pour spécifier un autre niveau du journal pour une sortie OMS, modifiez la configuration générale de l’agent dans le fichier `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.conf`.
+FluentD permet hello plug-in toospecify niveaux de journalisation pour les niveaux de journal différent pour les entrées et sorties. toospecify un niveau de journal différent pour la sortie d’OMS, modifier la configuration de l’agent générales de hello Bonjour `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.conf` fichier.
 
-Près du bas du fichier de configuration, modifiez la propriété `log_level` de `info` en `debug`.
+Bas hello hello du fichier de configuration, modifiez hello `log_level` propriété à partir de `info` trop`debug`.
 
  ```
  <match oms.** docker.**>
@@ -558,7 +558,7 @@ Près du bas du fichier de configuration, modifiez la propriété `log_level` de
 </match>
  ```
 
-La journalisation du débogage vous permet de voir les chargements par lot sur le Service OMS, répartis par type, nombre d’éléments de données et temps d’envoi.
+Enregistrement de débogage vous permet de toohello de téléchargements toosee traités par lot Service OMS séparé par type, le nombre d’éléments de données et durée toosend.
 
 *Exemple de journal activé pour le débogage :*
 
@@ -569,9 +569,9 @@ Success sending oms.syslog.authpriv.info x 1 in 0.91s
 ```
 
 #### <a name="verbose-output"></a>Sortie détaillée.
-Au lieu d’utiliser le plug-in de sortie OMS, vous pouvez acheminer les éléments de données directement vers `stdout`, qui est visible dans le fichier journal de l’Agent OMS pour Linux.
+Au lieu d’utiliser le plug-in sortie hello OMS, vous pouvez également directement la sortie des éléments de données trop`stdout`, qui est visible dans hello Agent OMS pour Linux du journal.
 
-Dans le fichier de configuration générale de l’Agent OMS sur `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.conf`, commentez le plug-in de sortie OMS en ajoutant le symbole `#` au début de chaque ligne.
+Dans fichier de configuration générale de l’agent hello OMS à `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.conf`, commentez hello OMS plug-in de sortie en ajoutant un `#` devant chaque ligne.
 
 ```
 #<match oms.** docker.**>
@@ -588,7 +588,7 @@ Dans le fichier de configuration générale de l’Agent OMS sur `/etc/opt/micro
 #</match>
 ```
 
-Sous le plug-in de sortie, retirez le commentaire de la section suivante en supprimant le symbole `#` au début de chaque ligne.
+Hello plug-in de la sortie ci-dessous, de supprimer le commentaire hello Bonjour suivant la section en supprimant hello `#` symbole au début de hello de chaque ligne.
 
 ```
 <match **>
@@ -596,30 +596,30 @@ Sous le plug-in de sortie, retirez le commentaire de la section suivante en supp
 </match>
 ```
 
-### <a name="forwarded-syslog-messages-do-not-appear-in-the-log"></a>Les messages Syslog transférés n’apparaissent pas dans le journal
+### <a name="forwarded-syslog-messages-do-not-appear-in-hello-log"></a>Les messages Syslog transférés n’apparaissent pas dans le journal de hello
 #### <a name="probable-causes"></a>Causes probables
-* La configuration appliquée au serveur Linux n’autorise pas la collecte des fonctionnalités et/ou niveaux du journal envoyés.
-* Le message Syslog n’est pas transmis correctement au serveur Linux.
-* Le nombre de messages transmis par seconde est trop élevé pour être géré avec la configuration de base de l’Agent OMS pour Linux.
+* Hello configuration appliquée toohello Linux server ne pas autoriser la collecte d’installations de hello envoyé et/ou niveaux de journal
+* Syslog n'est pas transmis correctement toohello Linux server
+* nombre de Hello de messages transférés par seconde est trop élevée pour la configuration de base hello Hello Agent OMS pour Linux toohandle
 
 #### <a name="resolutions"></a>Résolutions
-* Vérifiez que la configuration du portail OMS pour Syslog possède toutes les fonctionnalités nécessaires et les niveaux du journal corrects.
-  * **Portail OMS > Paramètres > Données > Syslog**
-* Vérifiez que les démons de messagerie Syslog natifs (`rsyslog`, `syslog-ng`) sont en mesure de recevoir les messages transférés.
-* Vérifiez les paramètres de pare-feu sur le serveur Syslog pour vous assurer que les messages ne sont pas bloqués.
-* Simulez un message Syslog à OMS à l’aide de la commande `logger`. Par exemple :
+* Vérifiez que la configuration hello Bonjour portail OMS pour Syslog a toutes les installations de hello et niveaux de journal correct hello
+  * **Portail OMS &gt; Paramètres &gt; Données &gt; Syslog**
+* Vérifiez que syslog natif démons de messagerie (`rsyslog`, `syslog-ng`) est en mesure de tooreceive messages hello transmis
+* Vérifiez les paramètres de pare-feu sur hello Syslog serveur tooensure que les messages ne sont pas bloqués
+* Simuler un tooOMS de message Syslog à l’aide de hello `logger` commande - par exemple :
   * `logger -p local0.err "This is my test message"`
 
-### <a name="problems-connecting-to-oms-when-using-a-proxy"></a>Problèmes de connexion à OMS lors de l’utilisation d’un proxy
+### <a name="problems-connecting-toooms-when-using-a-proxy"></a>Problèmes de connexion tooOMS lors de l’utilisation d’un proxy
 #### <a name="probable-causes"></a>Causes probables
-* Le proxy spécifié lors de l’installation et la configuration de l’agent est incorrect.
-* Les points de terminaison du Service OMS ne sont pas approuvés dans votre centre de données.
+* Hello de proxy spécifié lorsque l’agent de hello lors de l’installation et la configuration est incorrecte
+* points de terminaison de Service OMS Hello ne sont pas whitelistested dans votre centre de données
 
 #### <a name="resolutions"></a>Résolutions
-* Réinstallez l’Agent OMS pour Linux à l’aide de la commande suivante avec l’option `-v` activée. Cela autorise une sortie détaillée de l’agent qui se connecte via le proxy au Service OMS.
+* Réinstallez hello Agent OMS pour Linux à l’aide de hello suivant de commande avec l’option de hello `-v` activé. Ainsi, la sortie des commentaires de l’agent de hello qui se connectent via hello proxy toohello Service OMS.
   * `/opt/microsoft/omsagent/bin/omsadmin.sh -w <OMS Workspace ID> -s <OMS Workspace Key> -p <Proxy Conf> -v`
-  * Consultez la documentation relative au proxy d’OMS fournie dans la rubrique [Configuring the agent for use with an HTTP proxy server](https://github.com/Microsoft/OMS-Agent-for-Linux/blob/master/docs/OMS-Agent-for-Linux.md#configuring-the-agent-for-use-with-an-http-proxy-server) (Configuration de l’agent pour une utilisation avec un serveur proxy HTTP).
-* Vérifiez que les points de terminaison du Service OMS suivants sont approuvés.
+  * Passez en revue la documentation hello pour le proxy d’OMS à [agent hello de configuration pour une utilisation avec un serveur proxy HTTP](https://github.com/Microsoft/OMS-Agent-for-Linux/blob/master/docs/OMS-Agent-for-Linux.md#configuring-the-agent-for-use-with-an-http-proxy-server)
+* Vérifiez que hello suivant les points de terminaison de Service OMS sont dans la liste approuvée
 
 | Ressource de l'agent | Ports |
 | --- | --- |
@@ -630,25 +630,25 @@ Sous le plug-in de sortie, retirez le commentaire de la section suivante en supp
 
 ### <a name="a-403-error-is-displayed-when-onboarding"></a>Une erreur 403 s’affiche lors de l’intégration
 #### <a name="probable-causes"></a>Causes probables
-* La date et l’heure sont incorrectes sur le serveur Linux.
-* L’ID et la clé d’espace de travail utilisés sont incorrects.
+* hello date et l’heure sont incorrectes sur le serveur Linux
+* Hello ID de l’espace de travail et la clé d’espace de travail utilisée sont incorrectes
 
 #### <a name="resolution"></a>Résolution :
-* Vérifiez l’heure sur votre serveur Linux avec la commande `date`. Si les données sont postérieures ou antérieures de 15 minutes par rapport à l’heure actuelle, l’intégration échoue. Pour corriger ce problème, mettez à jour de la date et/ou le fuseau horaire de votre serveur Linux.
-* La dernière version de l’Agent OMS pour Linux vous avertit si un décalage horaire entraîne l’échec de l’intégration.
-* Recommencez l’intégration à l’aide de l’ID et de la clé d’espace de travail corrects. Pour plus d’informations, voir [Onboarding using the command line](https://github.com/Microsoft/OMS-Agent-for-Linux/blob/master/docs/OMS-Agent-for-Linux.md#onboarding-using-the-command-line) (Intégration à l’aide de la ligne de commande).
+* Vérifiez le temps de hello sur votre serveur Linux avec hello `date` commande. Si hello données sont supérieures ou inférieure à 15 minutes à partir de hello heure actuelle, l’intégration échoue. toocorrect, mettre à jour la date de hello et/ou de fuseau horaire de votre serveur Linux.
+* version la plus récente de l’Agent OMS pour Linux de hello Hello vous avertit si une différence de temps est entraînent l’échec de l’intégration
+* À l’aide de RE-onboard hello correct ID et la clé de l’espace de travail. Consultez [l’intégration à l’aide de la ligne de commande hello](https://github.com/Microsoft/OMS-Agent-for-Linux/blob/master/docs/OMS-Agent-for-Linux.md#onboarding-using-the-command-line) pour plus d’informations.
 
-### <a name="a-500-error-or-404-error-appears-in-the-log-file-after-onboarding"></a>Une erreur 500 ou 404 apparaît dans le fichier journal après l’intégration
-Il s’agit d’un problème connu qui se produit lors du premier chargement de données Linux dans un espace de travail OMS. Cela n’affecte pas les données envoyées et ne génère pas d’autres problèmes. Vous pouvez ignorer les erreurs lors de l’intégration initiale.
+### <a name="a-500-error-or-404-error-appears-in-hello-log-file-after-onboarding"></a>Une erreur 500 ou erreur 404 s’affiche dans le fichier journal de hello après l’intégration
+Il s’agit d’un problème connu qui se produit lors du chargement de première hello de données de Linux dans un espace de travail OMS. Cela n’affecte pas les données envoyées et ne génère pas d’autres problèmes. Vous pouvez ignorer les erreurs de hello lorsque initialement l’intégration.
 
-### <a name="nagios-data-does-not-appear-in-the-oms-portal"></a>Les données Nagios n’apparaissant pas dans le portail OMS
+### <a name="nagios-data-does-not-appear-in-hello-oms-portal"></a>Données de Nagios n’apparaissant pas dans hello portail OMS
 #### <a name="probable-causes"></a>Causes probables
-* L’utilisateur omsagent n’a pas les autorisations nécessaires pour lire le fichier journal Nagios.
-* Les sections de source et de filtre Nagios sont toujours commentées dans le fichier omsagent.conf.
+* utilisateur omsagent de Hello n’a pas les autorisations tooread à partir du fichier de journal Nagios hello
+* Hello Nagios source et les sections de filtre sont toujours commentées dans le fichier de omsagent.conf hello
 
 #### <a name="resolutions"></a>Résolutions
-* Ajoutez l’utilisateur omsagent afin de lire à partir du fichier Nagios. Pour plus d’informations, voir [Nagios alerts](https://github.com/Microsoft/OMS-Agent-for-Linux/blob/master/docs/OMS-Agent-for-Linux.md#nagios-alerts) (Alertes Nagios).
-* Dans l’Agent OMS pour le fichier de configuration générale de Linux sur `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.conf`, assurez-vous que les commentaires ont été supprimés **des deux** sections de source et de filtre Nagios, comme dans l’exemple suivant.
+* Ajoutez hello omsagent utilisateur tooread de commande à partir du fichier de Nagios hello. Pour plus d’informations, voir [Nagios alerts](https://github.com/Microsoft/OMS-Agent-for-Linux/blob/master/docs/OMS-Agent-for-Linux.md#nagios-alerts) (Alertes Nagios).
+* Dans hello Agent OMS pour le fichier de configuration générale de Linux à `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.conf`, vérifiez que **les deux** hello Nagios source et filtre sections comportent des commentaires, supprimés, toohello similaire, l’exemple suivant.
 
 ```
 <source>
@@ -664,81 +664,81 @@ Il s’agit d’un problème connu qui se produit lors du premier chargement de 
 ```
 
 
-### <a name="linux-data-doesnt-appear-in-the-oms-portal"></a>Les données Linux n’apparaissent pas dans le portail OMS
+### <a name="linux-data-doesnt-appear-in-hello-oms-portal"></a>Les données Linux n’apparaissent pas dans hello portail OMS
 #### <a name="probable-causes"></a>Causes probables
-* L’intégration au Service OMS a échoué.
-* La connexion au Service OMS est bloquée.
-* Les données de l’Agent OMS pour Linux sont sauvegardées.
+* Échec de l’intégration toohello Service OMS
+* Connexion toohello Service OMS est bloquée.
+* Hello Agent OMS pour Linux données est sauvegardée
 
 #### <a name="resolutions"></a>Résolutions
-* Vérifiez que l’intégration au Service OMS a réussi en vous assurant que le fichier `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsadmin.conf` existe.
-* Recommencez l’intégration à l’aide de la ligne de commande omsadmin.sh. Pour plus d’informations, voir [Onboarding using the command line](https://github.com/Microsoft/OMS-Agent-for-Linux/blob/master/docs/OMS-Agent-for-Linux.md#onboarding-using-the-command-line) (Intégration à l’aide de la ligne de commande).
-* Si vous utilisez un proxy, suivez les étapes de résolution de problèmes de proxy décrites plus haut.
-* Dans certains cas, lorsque l’Agent OMS pour Linux ne peut pas communiquer avec le Service OMS, les données de l’Agent sont sauvegardées à la taille de mémoire tampon saturée de 50 Mo. Redémarrez l’Agent OMS pour Linux en exécutant la commande `/opt/microsoft/omsagent/bin/service_control restart`.
+* Vérifiez que l’intégration de toohello Service OMS a réussi en vérifiant que hello `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsadmin.conf` existe.
+* À l’aide de RE-onboard hello la ligne de commande omsadmin.sh. Consultez [l’intégration à l’aide de la ligne de commande hello](https://github.com/Microsoft/OMS-Agent-for-Linux/blob/master/docs/OMS-Agent-for-Linux.md#onboarding-using-the-command-line) pour plus d’informations.
+* Si vous utilisez un proxy, utilisez hello proxy étapes de dépannage ci-dessus
+* Dans certains cas, lorsque hello Agent OMS pour Linux ne peuvent pas communiquer avec hello Service OMS, données sur l’Agent de hello sont taille de mémoire tampon saturée sauvegardé toohello de 50 Mo. Redémarrez hello Agent OMS pour Linux en exécutant hello `/opt/microsoft/omsagent/bin/service_control restart` commande.
   >[AZURE.NOTE] Ce problème est résolu dans l’Agent version 1.1.0-28 et versions ultérieures.
 
-### <a name="syslog-linux-performance-counter-configuration-is-not-applied-in-the-oms-portal"></a>La configuration du compteur de performances Syslog Linux n’est pas appliquée dans le portail OMS
+### <a name="syslog-linux-performance-counter-configuration-is-not-applied-in-hello-oms-portal"></a>Configuration de compteur de performances Syslog Linux n’est pas appliquée dans portail OMS : hello
 #### <a name="probable-causes"></a>Causes probables
-* L’agent de configuration de l’Agent OMS pour Linux n’a pas pu extraire la configuration la plus récente à partir du portail OMS.
-* Les paramètres modifiés dans le portail n’ont pas été appliqués.
+* l’agent de configuration Hello Bonjour Agent OMS pour Linux n’a pas récupéré configuration la plus récente hello à partir du portail OMS hello.
+* Hello révision des paramètres dans le portail de hello n'ont pas été appliquées
 
 #### <a name="resolutions"></a>Résolutions
-`omsconfig` est l’agent de configuration de l’Agent OMS pour Linux qui récupère les changements de configuration du portail OMS toutes les 5 minutes. Cette configuration est ensuite appliquée aux fichiers de configuration de l’Agent OMS pour Linux dans `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsadmin.conf`.
+`omsconfig`est de l’agent de configuration hello Bonjour Agent OMS pour Linux qui Récupère les modifications de configuration du portail OMS toutes les 5 minutes. Cette configuration est appliquée toohello Agent OMS pour Linux les fichiers de configuration situé à `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsadmin.conf`.
 
-* Dans certains cas, l’agent de configuration de l’Agent OMS pour Linux n’est pas en mesure de communiquer avec le service de configuration du portail, de sorte que la configuration la plus récente n’est pas appliquée.
-* Vérifiez que l’agent `omsconfig` est installé avec les éléments suivants :
+* Dans certains cas, les hello Agent OMS pour l’agent de configuration Linux peut-être pas en mesure de toocommunicate avec le service de configuration du portail hello résultant dans la configuration la plus récente ne s’applique ne pas.
+* Vérifiez que hello `omsconfig` agent est installé avec les éléments suivants de hello :
 
   * `dpkg --list omsconfig` ou `rpm -qi omsconfig`
-  * S’il n’est pas installé, réinstallez la dernière version de l’Agent OMS pour Linux.
-* Vérifiez que l’agent `omsconfig` peut communiquer avec le Service OMS.
+  * Le cas contraire, réinstaller la version la plus récente hello Hello Agent OMS pour Linux
+* Vérifiez que hello `omsconfig` agent peut communiquer avec hello service OMS
 
-  * Exécutez la commande `sudo su omsagent -c 'python /opt/microsoft/omsconfig/Scripts/GetDscConfiguration.py'`.
-    * La commande ci-dessus retourne la configuration que l’agent récupère à partir du portail, dont les paramètres Syslog, les compteurs de performances Linux et les journaux personnalisés
-    * En cas d’échec de la commande ci-dessus, exécutez la commande `sudo su omsagent -c 'python /opt/microsoft/omsconfig/Scripts/PerformRequiredConfigurationChecks.py`. Cette commande force l’agent omsconfig à communiquer avec le Service OMS pour récupérer la configuration la plus récente.
+  * Exécutez hello `sudo su omsagent -c 'python /opt/microsoft/omsconfig/Scripts/GetDscConfiguration.py'` commande
+    * Hello commande ci-dessus retourne hello configuration que l’agent récupère à partir du portail hello, notamment les paramètres de Syslog, les compteurs de performances Linux et les journaux personnalisés
+    * En cas d’échec de la commande hello ci-dessus, utilisez hello `sudo su omsagent -c 'python /opt/microsoft/omsconfig/Scripts/PerformRequiredConfigurationChecks.py` commande. Cette commande force hello omsconfig agent toocommunicate avec hello OMS service tooretrieve hello configuration la plus récente.
 
-### <a name="custom-linux-log-data-does-not-appear-in-the-oms-portal"></a>Les données du journal Linux personnalisé n’apparaissent pas sur le portail OMS
+### <a name="custom-linux-log-data-does-not-appear-in-hello-oms-portal"></a>Les données de journal Linux personnalisées n’apparaissent pas dans hello portail OMS
 #### <a name="probable-causes"></a>Causes probables
-* L’intégration au Service OMS a échoué.
-* Le paramètre **Appliquer la configuration suivante à mes serveurs Linux** n’a pas été sélectionné.
-* L’agent omsconfig n’a pas récupéré le dernier journal personnalisé sur le portail.
-* Le programme `omsagent` ne peut pas accéder au journal personnalisé en raison d’un problème d’autorisation ou parce que le programme `omsagent` est introuvable. Dans ce cas, la sortie suivante s’affiche :
+* Échec du Service d’intégration tooOMS
+* Hello **hello appliquer suivant toomy de configuration des serveurs Linux** paramètre n’a pas été sélectionné.
+* omsconfig n’a pas récupéré de journal personnalisées de hello plus récente à partir du portail de hello
+* Hello `omsagent` sert de journal personnalisées de hello tooaccess impossible en raison de problèmes d’autorisation tooa ou `omsagent` n’a été trouvé. Dans ce cas, vous verrez hello suivant de sortie :
   * `[DATETIME] [warn]: file not found. Continuing without tailing it.`
   * `[DATETIME] [error]: file not accessible by omsagent.`
-* Il s’agit d’un problème connu lié à la condition de concurrence, qui a été résolu dans l’Agent OMS pour Linux version 1.1.0-217.
+* Il s’agit d’un problème connu avec hello Condition de concurrence qui a été résolu dans hello Agent OMS pour Linux version 1.1.0-217
 
 #### <a name="resolutions"></a>Résolutions
-* Vérifiez que vous avez correctement effectué l’intégration en déterminant si le fichier `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsadmin.conf` existe.
-  * Si nécessaire, recommencez l’intégration à l’aide de la ligne de commande omsadmin.sh. Pour plus d’informations, voir [Onboarding using the command line](https://github.com/Microsoft/OMS-Agent-for-Linux/blob/master/docs/OMS-Agent-for-Linux.md#onboarding-using-the-command-line) (Intégration à l’aide de la ligne de commande).
-* Sur le portail OMS, dans **Paramètres** sous l’onglet **Données**, vérifiez que l’option **Appliquer la configuration suivante à mes serveurs Linux** est activée.  
+* Vérifiez que vous avez correctement été intégré, en déterminant si hello `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsadmin.conf` fichier existe.
+  * Si nécessaire, intégrer à nouveau à l’aide de la ligne de commande omsadmin.sh hello. Consultez [l’intégration à l’aide de la ligne de commande hello](https://github.com/Microsoft/OMS-Agent-for-Linux/blob/master/docs/OMS-Agent-for-Linux.md#onboarding-using-the-command-line) pour plus d’informations.
+* Dans hello portail OMS, sous **paramètres** sur hello **données** , vérifiez que hello **hello appliquer suivant toomy de configuration des serveurs Linux** paramètre est sélectionné.  
   ![appliquer la configuration](./media/log-analytics-linux-agents/customloglinuxenabled.png)
-* Vérifiez que l’agent `omsconfig` peut communiquer avec le Service OMS.
+* Vérifiez que hello `omsconfig` agent peut communiquer avec hello service OMS
 
-  * Exécutez la commande `sudo su omsagent -c 'python /opt/microsoft/omsconfig/Scripts/GetDscConfiguration.py'`.
-  * La commande ci-dessus retourne la configuration que l’agent récupère à partir du portail, dont les paramètres Syslog, les compteurs de performances Linux et les journaux personnalisés.
-  * En cas d’échec de la commande ci-dessus, exécutez la commande `sudo su omsagent -c 'python /opt/microsoft/omsconfig/Scripts/PerformRequiredConfigurationChecks.py`. Cette commande force l’agent omsconfig à communiquer avec le Service OMS pour récupérer la configuration la plus récente.
+  * Exécutez hello `sudo su omsagent -c 'python /opt/microsoft/omsconfig/Scripts/GetDscConfiguration.py'` commande
+  * Hello commande ci-dessus retourne hello configuration que l’agent récupère à partir de hello portail, y compris les paramètres de Syslog, compteurs de performances Linux et des journaux personnalisés
+  * En cas d’échec de la commande hello ci-dessus, utilisez hello `sudo su omsagent -c 'python /opt/microsoft/omsconfig/Scripts/PerformRequiredConfigurationChecks.py` commande. Cette commande force hello omsconfig agent toocommunicate avec le service OMS et récupérer la configuration la plus récente hello.
 
-Au lieu que l’utilisateur de l’Agent OMS pour Linux opère en tant qu’utilisateur `root` privilégié, l’Agent OMS pour Linux opère en tant qu’utilisateur `omsagent` . Dans la plupart des cas, une autorisation explicite doit être accordée à l’utilisateur pour la lecture de certains fichiers.
+Au lieu de hello Agent OMS pour utilisateur Linux en cours d’exécution en tant qu’un utilisateur doté de privilèges `root`, hello Agent OMS pour Linux s’exécute en tant que hello `omsagent` utilisateur. Dans la plupart des cas, l’autorisation explicite doit être octroyés à l’utilisateur de toohello dans l’ordre tooread certains fichiers.
 
-Pour accorder l’autorisation à l’utilisateur `omsagent`, exécutez les commandes suivantes :
+autorisation de toogrant trop`omsagent` utilisateur, exécutez hello suivant de commandes :
 
-1. Ajoutez l’utilisateur `omsagent` à un groupe spécifique avec `sudo usermod -a -G <GROUPNAME> <USERNAME>`.
-2. Accordez l’accès en lecture universel au fichier requis avec `sudo chmod -R ugo+rw <FILE DIRECTORY>`.
+1. Ajouter hello `omsagent` groupe spécifique d’utilisateurs tooa avec`sudo usermod -a -G <GROUPNAME> <USERNAME>`
+2. Accorder l’accès en lecture universel toohello de fichier requis avec`sudo chmod -R ugo+rw <FILE DIRECTORY>`
 
-Il existe un problème connu lié à la condition de concurrence, qui a été résolu dans l’Agent OMS pour Linux version 1.1.0-217. Après mise à jour vers le dernier agent, exécutez la commande suivante pour obtenir la dernière version du plug-in de sortie :
+Il existe un problème connu avec la Condition de concurrence qui a été résolu dans hello Agent OMS pour Linux version 1.1.0-217 de hello. Après la mise à jour de l’agent toohello plus récent, exécutez hello suivant commande tooget hello version la plus récente du plug-in de la sortie hello :
 
 ```
 sudo cp /etc/opt/microsoft/omsagent/sysconf/omsagent.conf /etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.conf
 ```
 
 ## <a name="known-limitations"></a>Limites connues
-Consultez les sections suivantes pour en savoir plus sur les limites actuelles de l’Agent OMS pour Linux.
+Passez en revue hello suivant toolearn sections sur les limites actuelles de hello Agent OMS pour Linux.
 
 ### <a name="azure-diagnostics"></a>Azure Diagnostics
-Pour les machines virtuelles Linux s’exécutant dans Azure, des étapes supplémentaires peuvent être nécessaires pour permettre la collecte des données par Azure Diagnostics et Operations Management Suite. **version 2.2** d’Extension Diagnostics pour Linux est nécessaire pour la compatibilité avec l’Agent OMS pour Linux.
+Pour les machines virtuelles Linux s’exécutant dans Azure, des étapes supplémentaires peuvent être collecte des données tooallow requis par les Diagnostics Azure et Operations Management Suite. **La version 2.2** hello Extension Diagnostics pour Linux est nécessaire pour la compatibilité avec hello Agent OMS pour Linux.
 
-Pour plus d’informations sur l’installation et la configuration de l’Extension Diagnostics pour Linux, voir [Utiliser la commande de l’interface de ligne de commande Azure afin d’activer l’extension de diagnostic Linux](../virtual-machines/linux/classic/diagnostic-extension-v2.md#use-the-azure-cli-command-to-enable-the-linux-diagnostic-extension).
+Pour plus d’informations sur l’installation et configuration de hello Extension Diagnostics pour Linux, consultez [utiliser tooenable de commande CLI d’Azure hello Extension Diagnostics Linux](../virtual-machines/linux/classic/diagnostic-extension-v2.md#use-the-azure-cli-command-to-enable-the-linux-diagnostic-extension).
 
-**Mise à niveau de l’Extension Diagnostics pour Linux 2.0 vers 2.2 avec l’interface de ligne de commande Azure en mode ASM :**
+**Mise à niveau hello Extension de Diagnostics Linux à partir de 2.0 too2.2 ASM CLI de Azure :**
 
 ```
 azure vm extension set -u <vm_name> LinuxDiagnostic Microsoft.OSTCExtensions 2.0
@@ -752,19 +752,19 @@ azure vm extension set -u <resource-group> <vm-name> Microsoft.Insights.VMDiagno
 azure vm extension set <resource-group> <vm-name> LinuxDiagnostic Microsoft.OSTCExtensions 2.2 --private-config-path PrivateConfig.json
 ```
 
-Ces exemples de commandes font référence à un fichier nommé PrivateConfig.json. Le format de ce fichier doit ressembler à l’exemple suivant.
+Ces exemples de commandes font référence à un fichier nommé PrivateConfig.json. format Hello de ce fichier doit ressembler à hello suivant l’exemple.
 
 ```
     {
-    "storageAccountName":"the storage account to receive data",
-    "storageAccountKey":"the key of the account"
+    "storageAccountName":"hello storage account tooreceive data",
+    "storageAccountKey":"hello key of hello account"
     }
 ```
 
 ### <a name="sysklog-is-not-supported"></a>Sysklog n’est pas pris en charge
-rsyslog ou syslog-ng est requis pour collecter les messages syslog. Le démon syslog par défaut sur la version 5 de Red Hat Enterprise Linux, CentOS et Oracle Linux (sysklog) ne prend pas en charge la collecte des événements syslog. Pour collecter les données syslog avec cette version de ces distributions, le démon rsyslog doit être installé et configuré à la place de sysklog. Pour plus d’informations sur le remplacement de sysklog par rsyslog, consultez [Install the newly built rsyslog RPM](http://wiki.rsyslog.com/index.php/Rsyslog_on_CentOS_success_story#Install_the_newly_built_rsyslog_RPM).
+Rsyslog ou syslog-ng est des messages syslog toocollect requis. démon syslog par défaut de Hello version 5 de Red Hat Enterprise Linux, CentOS et Oracle Linux (sysklog) n’est pas pris en charge pour la collecte d’événements syslog. toocollect les données syslog de cette version de ces distributions, hello rsyslog démon doit être installé et configuré tooreplace sysklog. Pour plus d’informations sur le remplacement de sysklog par rsyslog, consultez [installer le RPM rsyslog de hello nouvellement créé](http://wiki.rsyslog.com/index.php/Rsyslog_on_CentOS_success_story#Install_the_newly_built_rsyslog_RPM).
 
 ## <a name="next-steps"></a>Étapes suivantes
-* [Ajoutez des solutions Log Analytics à partir de la galerie de solutions](log-analytics-add-solutions.md) pour ajouter des fonctionnalités et collecter des données.
-* Familiarisez-vous avec les [recherches de journal](log-analytics-log-searches.md) pour afficher les informations détaillées collectées par les solutions.
-* Utilisez les [tableaux de bord](log-analytics-dashboards.md) pour enregistrer et afficher vos propres recherches personnalisées.
+* [Ajouter des solutions d’Analytique de journal à partir de la galerie des Solutions de hello](log-analytics-add-solutions.md) tooadd fonctionnalité et collecter les données.
+* Se familiariser avec [recherche de journal](log-analytics-log-searches.md) tooview détaillées des informations collectées par les solutions.
+* Utilisez [tableaux de bord](log-analytics-dashboards.md) toosave et afficher vos propres recherche.

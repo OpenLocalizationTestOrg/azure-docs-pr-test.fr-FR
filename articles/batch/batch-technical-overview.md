@@ -1,6 +1,6 @@
 ---
-title: "Azure Batch exécute des solutions de calcul parallèles à grande échelle dans le cloud | Microsoft Docs"
-description: "Découvrez l’utilisation d’Azure Batch pour les charges de travail HPC et parallèles à grande échelle"
+title: "aaaAzure lot exécute les solutions informatiques parallèles à grande échelle dans le cloud de hello | Documents Microsoft"
+description: "En savoir plus sur l’utilisation du service de traitement par lots Azure hello pour parallèles à grande échelle et les charges de travail HPC"
 services: batch
 documentationcenter: 
 author: tamram
@@ -15,17 +15,17 @@ ms.topic: get-started-article
 ms.date: 05/05/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 3bda4859e7ce45f5f7b8df6167e6e9d2cedd5c62
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: acc52e46330c465f81951441d9067371098cf63a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="run-intrinsically-parallel-workloads-with-batch"></a>Exécuter des charges de travail intrinsèquement parallèles avec Batch
 
-Azure Batch est une plateforme qui permet d’exécuter efficacement des applications de calcul haute performance (HPC) en parallèle et à grande échelle dans le cloud. Azure Batch planifie les travaux nécessitant une grande quantité de ressources système à exécuter sur une collection gérée de machines virtuelles. Il peut mettre automatiquement à l’échelle les ressources de calcul pour répondre aux besoins des tâches.
+Traitement par lots Azure est un service de plateforme pour l’exécution des applications à grande échelle parallèle et haute-performance computing (HPC) efficacement dans le cloud de hello. Traitement par lots Azure planifie toorun de travail de calcul intensif sur une collection gérée de machines virtuelles, et peut automatiquement montée en puissance de calcul ressources toomeet hello aux besoins de vos tâches.
 
-Avec le Azure Batch, vous définissez facilement des ressources de calcul Azure pour exécuter vos applications en parallèle et à grande échelle. Vous n’avez pas à créer, configurer et gérer manuellement un cluster HPC, des machines virtuelles individuelles, des réseaux virtuels ou une infrastructure complexe de planification des tâches et des travaux. Azure Batch automatise ou simplifie ces tâches.
+Avec Azure Batch, vous pouvez facilement définir tooexecute des ressources de calcul Azure vos applications en parallèle et à grande échelle. Il n’existe aucun toomanually besoin de créer, configurer et gérer un cluster HPC, les machines virtuelles, les réseaux virtuels ou une tâche complexe et infrastructure de planification de tâches. Azure Batch automatise ou simplifie ces tâches.
 
 ## <a name="use-cases-for-batch"></a>Exemples d’utilisation du service Batch
 Batch est un service Azure géré qui est utilisé pour le *traitement par lots* ou *Batch Computing*, et qui exécute un grand nombre de tâches similaires afin d’obtenir les résultats souhaités. Le traitement par lots est couramment utilisé dans les entreprises qui sont régulièrement amenées à traiter, transformer et analyser d’importants volumes de données.
@@ -44,41 +44,41 @@ Voici quelques exemples de charges de travail communément traitées à l’aide
 * Analyse des contraintes en ingénierie
 * Test de logiciels
 
-Batch peut également effectuer des calculs parallèles avec une opération de réduction à la fin, et des charges de travail HPC plus complexes telles que les applications [MPI (Interface de transfert de message)](batch-mpi.md) .
+Lot peut également effectuer des calculs parallèles avec une étape de la réduire à la fin de hello et exécuter des charges de travail HPC plus complexes telles que [Interface MPI (Message Passing)](batch-mpi.md) applications.
 
 Pour obtenir une comparaison entre Batch et d’autres solutions HPC utilisées dans Azure, consultez la page [Solutions Batch et HPC](batch-hpc-solutions.md).
 
 [!INCLUDE [batch-pricing-include](../../includes/batch-pricing-include.md)]
 
 ## <a name="scenario-scale-out-a-parallel-workload"></a>Scénario : Montée en charge d’une charge de travail parallèle
-Une solution courante qui utilise les API Batch pour interagir avec le service Batch suppose une montée en charge de travaux intrinsèquement parallèles (par exemple, le rendu d’images pour les scènes 3D) sur un pool de nœuds de calcul. Ce pool de nœuds de calcul peut être, par exemple, une « ferme de rendu » qui fournit des dizaines, des centaines voire des milliers de cœurs à votre travail de rendu.
+Une solution commune qui utilise des hello API de lot toointeract avec hello service Batch implique la montée en charge de travail intrinsèquement parallèle telles que le rendu hello des images pour des scènes 3D--sur un pool de nœuds de calcul. Ce pool de nœuds de calcul peut être « votre batterie de rendu » qui fournit des dizaines, centaines ou voire des milliers de travail de rendu tooyour cœurs, par exemple.
 
-Le schéma suivant illustre un flux de travail Batch courant, dans lequel une application cliente ou un service hébergé utilise Batch pour exécuter une charge de travail parallèle.
+Hello diagramme suivant montre un flux de travail de lot courant, avec une application cliente ou un service hébergé à l’aide de lot toorun une charge de travail parallèle.
 
 ![Flux de travail de la solution Batch][2]
 
-Dans ce scénario courant, votre application ou service traite une charge de travail de calcul dans Azure Batch en effectuant les opérations suivantes :
+Dans ce scénario courant, votre application ou service traite une charge de travail de calcul dans Azure Batch en effectuant hello comme suit :
 
-1. Chargement des **fichiers d’entrée** et de **l’application** qui traitera ces fichiers dans votre compte de stockage Azure. Les fichiers d’entrée peuvent correspondre à des données que votre application va traiter (par exemple, des données de modélisation financière ou des fichiers vidéo à transcoder). Les fichiers d’application peuvent être n’importe quelle application pour traiter les données, telle qu’une application de rendu 3D ou un transcodeur multimédia.
-2. Création d’un **pool** de nœuds de calcul dans votre compte Batch : il s’agit des machines virtuelles qui exécuteront les tâches. Vous devez spécifier des propriétés, telles que la [taille du nœud](../cloud-services/cloud-services-sizes-specs.md), le système d’exploitation et l’emplacement d’installation de l’application dans Stockage Azure lorsque les nœuds rejoignent le pool (c’est-à-dire l’application que vous avez chargée à l’étape 1). Vous pouvez également configurer la [mise à l’échelle automatique](batch-automatic-scaling.md)du pool en réponse à la charge de travail que génèrent vos tâches. La mise à l’échelle automatique ajuste le nombre de nœuds de calcul dans le pool.
-3. Création d’un **travail** Batch pour exécuter la charge de travail sur le pool de nœuds de calcul. Lorsque vous créez un travail, vous devez l’associer à un pool Batch.
-4. Ajoutez des **tâches** au travail. Lorsque vous ajoutez des tâches à un travail, le service Batch planifie automatiquement l’exécution des tâches sur les nœuds de calcul du pool. Chaque tâche utilise l’application que vous avez téléchargée pour traiter les fichiers d’entrée.
+1. Télécharger hello **les fichiers d’entrée** et hello **application** qui traitera ces tooyour fichiers compte de stockage Azure. les fichiers d’entrée Hello peuvent être des données de votre application va traiter, comme les données de modélisation financière ou des fichiers vidéo toobe transcodé. fichiers de l’application Hello peuvent être n’importe quelle application qui est utilisée pour le traitement des données hello, tel qu’une application de rendu 3D ou d’un TRANSCODEUR de support.
+2. Créez un lot **pool** de nœuds de calcul dans votre compte Batch--ces nœuds sont des machines virtuelles hello qui exécutera vos tâches. Vous spécifiez des propriétés telles que hello [taille du nœud](../cloud-services/cloud-services-sizes-specs.md), leur système d’exploitation et l’emplacement de hello dans le stockage Azure de hello application tooinstall lorsque les nœuds hello rejoindre le pool de hello (application hello que vous avez téléchargé à l’étape #1). Vous pouvez également configurer le pool de hello trop[mettre automatiquement à l’échelle](batch-automatic-scaling.md) dans la réponse toohello la charge de travail qui génèrent de vos tâches. Montée en puissance automatique dynamiquement ajuste nombre hello de nœuds de calcul dans le pool de hello.
+3. Créez un lot **travail** la charge de travail hello toorun sur pool hello de nœuds de calcul. Lorsque vous créez un travail, vous devez l’associer à un pool Batch.
+4. Ajouter **tâches** toohello travail. Lorsque vous ajoutez la tâche tooa de tâches, hello service Batch planifie automatiquement les tâches de hello d’exécution sur les nœuds de calcul hello dans le pool de hello. Chaque tâche utilise l’application hello que vous avez téléchargé les fichiers d’entrée de tooprocess hello.
    
-   * 4a. Avant son exécution, la tâche peut charger les données (les fichiers d’entrée) qu’elle devra traiter dans le nœud de calcul auquel elle est affectée. Si l’application n’a pas déjà été installée sur le nœud (voir l’étape 2), vous pouvez la télécharger à cet emplacement. Lorsque les téléchargements sont terminés, les tâches s’exécutent sur les nœuds qui leur sont attribués.
-5. Au cours de l’exécution des tâches, vous pouvez interroger le service Batch pour surveiller la progression du travail et des tâches associées. Votre application cliente ou le service communique avec le service Batch par le biais de HTTPS. Étant donné que vous surveillez peut-être des milliers de tâches qui s’exécutent sur des milliers de nœuds de calcul, veillez à [interroger le service Batch efficacement](batch-efficient-list-queries.md).
-6. Une fois les tâches exécutées, elles peuvent chargent leurs données de sortie dans Azure Storage. Vous pouvez également extraire des fichiers directement du système de fichiers ou d’un nœud de calcul.
-7. Lorsque votre analyse détecte la fin de l’exécution des tâches de votre travail, votre application cliente ou votre service peut télécharger les données de sortie afin de les traiter ou de les évaluer.
+   * 4a. Avant l’exécution d’une tâche, il peut télécharger les données de salutation (fichiers d’entrée de hello) qu’il est le nœud de calcul toohello tooprocess qu'auquel elle est assignée. Si application hello n’a pas déjà été installée sur le nœud de hello (voir étape #2), il peut être téléchargé ici à la place. Lorsque les téléchargements hello sont terminées, les tâches de hello s’exécutent sur leurs nœuds attribués.
+5. Comme hello tâches s’exécutent, vous pouvez interroger la progression de hello toomonitor lot de travail de hello et ses tâches. Votre application cliente ou le service communique avec hello service Batch via HTTPS. Étant donné que vous avez peut analyser des milliers de tâches qui s’exécutent sur des milliers de nœuds de calcul, veillez trop[interroger le service de traitement par lots hello efficacement](batch-efficient-list-queries.md).
+6. Comme hello tâches terminées, ils peuvent télécharger leur tooAzure de données de résultat stockage. Vous pouvez également récupérer des fichiers directement à partir de système de fichiers hello sur un nœud de calcul.
+7. Votre analyse détecte que les tâches de hello dans votre travail terminées, votre application cliente ou un service peut télécharger des données de sortie hello pour un traitement supplémentaire ou d’évaluation.
 
-N’oubliez pas qu’il ne s’agit ici que d’une des nombreuses façons d’utiliser Batch et que ce scénario décrit seulement quelques-unes des fonctionnalités disponibles. Par exemple, vous pouvez exécuter [plusieurs tâches en parallèle](batch-parallel-node-tasks.md) sur chaque nœud de calcul et utiliser [les tâches de préparation et d’exécution de travaux](batch-job-prep-release.md) pour préparer les nœuds à l’exécution de vos travaux avant de les nettoyer.
+Gardez à l’esprit, c’est une façon toouse lot et ce scénario décrit quelques-uns de ses fonctionnalités disponibles. Par exemple, vous pouvez exécuter [plusieurs tâches en parallèle](batch-parallel-node-tasks.md) sur chaque nœud de calcul, et vous pouvez utiliser [les tâches de préparation et l’achèvement de la tâche](batch-job-prep-release.md) tooprepare hello nœuds pour vos tâches, puis nettoyer par la suite.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Maintenant que vous disposez d’une vue d’ensemble du service Batch, le moment est venu d’approfondir cette première approche pour découvrir comment utiliser ce service dans le traitement de charges de travail parallèles nécessitant beaucoup de ressources système.
+Maintenant que vous avez une vue d’ensemble de hello service Batch, il est toolearn plu de temps toodig comment vous pouvez l’utiliser tooprocess vos charges de travail parallèles de calcul intensif.
 
-* Consultez la [Présentation des fonctionnalités du service Batch pour les développeurs](batch-api-basics.md). Elle contient des informations indispensables pour toute personne se préparant à l’utilisation de Batch. L’article contient des informations plus détaillées sur les ressources du service Batch telles que les pools, les nœuds, les travaux et les tâches, ainsi que sur les nombreuses fonctionnalités API que vous pouvez utiliser lors de la création de votre application Batch.
-* Découvrez les [outils et API Batch](batch-apis-tools.md) disponibles pour créer des solutions Batch.
-* [Prise en main de la bibliothèque Azure Batch pour .NET](batch-dotnet-get-started.md) pour apprendre à utiliser C# et la bibliothèque .NET Batch pour exécuter une charge de travail simple à l’aide d’un flux de travail Batch courant. Cet article servira de référence essentielle dans la découverte de l’utilisation du service Batch. Il existe également une [version Python](batch-python-tutorial.md) du didacticiel.
-* Téléchargez les [exemples de code sur GitHub][github_samples] pour voir comment C# et Python peuvent interagir avec Batch pour planifier et traiter des exemples de charge de travail.
-* Consultez le [parcours d’apprentissage de Batch][learning_path] pour avoir une idée des ressources dont vous allez disposer dans votre découverte du service Batch.
+* Hello de lecture [vue d’ensemble de lot pour les développeurs](batch-api-basics.md), des informations essentielles pour toute personne préparation toouse lot. Hello contient des informations détaillées sur les ressources du service de traitement par lots comme pools, nœuds, travaux, tâches et des hello nombreuses fonctionnalités de l’API que vous pouvez utiliser lors de la génération de votre application de traitement par lots.
+* En savoir plus sur hello [outils et API de lot](batch-apis-tools.md) disponibles pour la création de solutions de traitement par lots.
+* [Démarrer avec la bibliothèque de traitement par lots Azure hello pour .NET](batch-dotnet-get-started.md) toolearn comment toouse c# et hello Batch .NET bibliothèque tooexecute une charge de travail simple à l’aide d’un flux de travail courant de lot. Cet article doit être votre première arrête lorsque vous apprenez comment toouse hello service Batch. Il existe également un [version Python](batch-python-tutorial.md) du didacticiel de hello.
+* Télécharger hello [code des exemples sur GitHub] [ github_samples] toosee comment c# et Python pouvant communiquer avec le lot tooschedule et processus exemple les charges de travail.
+* Extraire hello [lot cursus] [ learning_path] tooget une idée de tooyou disponible de ressources hello en tant que vous découvrez toowork traitement par lots.
 
 
 [github_samples]: https://github.com/Azure/azure-batch-samples

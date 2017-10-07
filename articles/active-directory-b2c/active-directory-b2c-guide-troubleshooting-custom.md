@@ -1,6 +1,6 @@
 ---
 title: "Azure Active Directory B2C : résoudre les problèmes liés aux stratégies personnalisées | Microsoft Docs"
-description: "Découvrez les approches pour résoudre les erreurs quand vous utilisez des stratégies personnalisées dans Azure Active Directory."
+description: "En savoir plus sur les approches toosolving erreurs lorsque vous travaillez avec des stratégies personnalisées dans Azure Active Directory."
 services: active-directory-b2c
 documentationcenter: 
 author: rojasja
@@ -14,67 +14,67 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/07/2017
 ms.author: joroja
-ms.openlocfilehash: 023390ba36a74217503ff8b3076ad17978fe3fb8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b9e1b46df1ddb29cdb90953e4a0d6f1dd085441f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshoot-azure-ad-b2c-custom-policies-and-identity-experience-framework"></a>Résoudre les problèmes liés aux stratégies personnalisées Azure AD B2C et à l’Infrastructure d’expérience d’identité.
 
-Si vous utilisez des stratégies personnalisées Azure Active Directory B2C (Azure AD B2C), vous risquez de rencontrer des difficultés lors de la configuration de l’Infrastructure d’expérience d’identité dans son format XML de langage de stratégie.  Apprendre à écrire des stratégies personnalisées peut s’apparenter à l’apprentissage d’une nouvelle langue. Dans cet article, nous décrivons des outils et proposons des conseils qui peuvent vous aider à identifier et résoudre rapidement les problèmes. 
+Si vous utilisez Azure Active Directory B2C (B2C Active Directory de Azure) des stratégies personnalisées, vous risquez de rencontrer les défis configuration hello Framework rencontrer d’identité dans son format XML du langage stratégie.  Stratégies personnalisées de formation toowrite peuvent être comme un nouveau langage d’apprentissage. Dans cet article, nous décrivons des outils et proposons des conseils qui peuvent vous aider à identifier et résoudre rapidement les problèmes. 
 
 > [!NOTE]
-> Cet article est axé sur la résolution des problèmes de configuration de stratégie personnalisée Azure AD B2C. Il ne traite pas de l’application par partie de confiance ou de sa bibliothèque d’identités.
+> Cet article est axé sur la résolution des problèmes de configuration de stratégie personnalisée Azure AD B2C. Elle ne répond pas hello application tiers ou sa bibliothèque de l’identité de partie de confiance.
 
 ## <a name="xml-editing"></a>Édition XML
 
-L’erreur la plus courante lors de la configuration des stratégies personnalisées concerne la mise en forme du code XML. Un bon éditeur XML est quasiment essentiel. Un bon éditeur XML affiche le code XML en mode natif, applique un code couleur au contenu, prérenseigne les termes courants, maintient les éléments indexés et peut valider avec un schéma. Voici deux de nos éditeurs XML préférés :
+Hello erreur la plus courante dans la configuration des stratégies personnalisées n’est pas au format XML. Un bon éditeur XML est quasiment essentiel. Un bon éditeur XML affiche le code XML en mode natif, applique un code couleur au contenu, prérenseigne les termes courants, maintient les éléments indexés et peut valider avec un schéma. Voici deux de nos éditeurs XML préférés :
 
 * [Visual Studio Code](https://code.visualstudio.com/)
 * [Notepad++](https://notepad-plus-plus.org/)
 
-La validation du schéma XML identifie les erreurs avant le chargement de votre fichier XML. Dans le dossier racine du pack de démarrage, obtenez la définition du schéma XML TrustFrameworkPolicy_0.3.0.0.xsd. Pour plus d’informations, recherchez *outils XML* et *validation XML* dans la documentation de votre éditeur XML.
+La validation du schéma XML identifie les erreurs avant le chargement de votre fichier XML. Dans le dossier racine de hello du pack de démarrage hello, obtenir la définition de schéma XML hello TrustFrameworkPolicy_0.3.0.0.xsd. Pour plus d’informations, dans la documentation de hello de votre éditeur XML, recherchez *outils XML* et *validation XML*.
 
 Il peut être utile de passer en revue les règles XML. Azure AD B2C rejette toute erreur de mise en forme XML qu’il détecte. Parfois, une mauvaise mise en forme XML peut entraîner des messages d’erreur trompeurs.
 
 ## <a name="upload-policies-and-policy-validation"></a>Chargement et validation de stratégies
 
- La validation du chargement de fichier XML est automatique. La plupart des erreurs provoquent l’échec du chargement. La validation inclut le fichier de stratégie que vous chargez. Elle inclut également la chaîne de fichiers à laquelle le fichier de chargement fait référence (le fichier de stratégie de la partie de confiance, le fichier d’extensions et le fichier de base). 
+ La validation du chargement de fichier XML est automatique. La plupart des erreurs provoquent hello téléchargement toofail. Validation inclut un fichier de stratégie hello que vous téléchargez. Il inclut également la chaîne hello de téléchargement du fichier hello fait référence trop de fichiers (hello fichier partie de confiance de la stratégie de tiers, fichier des extensions hello et fichier de base hello). 
  
- Voici quelques-unes des erreurs de validation courantes.
+ Erreurs de validation courantes suivantes hello.
 
-Extrait de code de l’erreur :`... makes a reference to ClaimType with id "displaName" but neither the policy nor any of its base policies contain such an element`
-* La valeur ClaimType est mal orthographiée ou n’existe pas dans le schéma.
-* Les valeurs ClaimTypes doivent être définies dans au moins l’un des fichiers de la stratégie. 
+Extrait de code de l’erreur :`... makes a reference tooClaimType with id "displaName" but neither hello policy nor any of its base policies contain such an element`
+* Hello ClaimType valeur peut être mal orthographié ou n’existe pas dans le schéma de hello.
+* Les valeurs de ClaimType doivent être définis dans au moins un des fichiers hello dans la stratégie de hello. 
     Par exemple : ` <ClaimType Id="socialIdpUserId">`
-* Si la valeur ClaimType est définie dans le fichier d’extensions mais utilisée également dans une valeur TechnicalProfile du fichier de base, le chargement du fichier de base provoque une erreur.
+* Si ClaimType est défini dans le fichier des extensions hello, mais il est également utilisé dans une valeur TechnicalProfile dans le fichier de base hello, téléchargement du fichier de base hello génère une erreur.
 
-Extrait de code de l’erreur :`...makes a reference to a ClaimsTransformation with id...`
-* Les causes de l’erreur peuvent être les mêmes que pour l’erreur ClaimType.
+Extrait de code de l’erreur :`...makes a reference tooa ClaimsTransformation with id...`
+* Bonjour les causes de l’erreur de hello peut être hello même que pour les erreurs de ClaimType hello.
 
-Extrait de code de l’erreur :`Reason: User is currently logged as a user of 'yourtenant.onmicrosoft.com' tenant. In order to manage 'yourtenant.onmicrosoft.com', please login as a user of 'yourtenant.onmicrosoft.com' tenant`
-* Vérifiez que la valeur TenantId dans les éléments  **\<TrustFrameworkPolicy\>** et **\<BasePolicy\>** correspondent à votre locataire Azure AD B2C cible.  
+Extrait de code de l’erreur :`Reason: User is currently logged as a user of 'yourtenant.onmicrosoft.com' tenant. In order toomanage 'yourtenant.onmicrosoft.com', please login as a user of 'yourtenant.onmicrosoft.com' tenant`
+* Vérifiez que hello valeur TenantId Bonjour  **\<TrustFrameworkPolicy\>**  et  **\<BasePolicy\>**  éléments correspondent à votre cible Azure AD B2C client.  
 
-## <a name="troubleshoot-the-runtime"></a>Résoudre les problèmes au moment de l’exécution
+## <a name="troubleshoot-hello-runtime"></a>Résoudre les problèmes de runtime de hello
 
-* Utilisez `Run Now` et `https://jwt.io` pour tester vos stratégies indépendamment de votre application web ou mobile. Ce site web agit comme une application par partie de confiance. Il affiche le contenu du JSON Web Token (JWT) généré par votre stratégie Azure AD B2C. Pour créer une application de test dans l’Infrastructure d’expérience d’identité, utilisez les valeurs suivantes :
+* Utilisez `Run Now` et `https://jwt.io` tootest vos stratégies indépendamment de votre application mobile ou le web. Ce site web agit comme une application par partie de confiance. Il affiche le contenu hello Hello jeton Web JSON (JWT) qui est généré par votre stratégie Azure Active Directory B2C. toocreate une application test Framework expérience identité hello utilisez valeurs suivantes :
     * Nom : TestApp
     * Application/API web : Non
     * Client natif : Non
 
-* Pour suivre l’échange de messages entre votre navigateur client et Azure AD B2C, utilisez [Fiddler](http://www.telerik.com/fiddler). Il peut vous aider à obtenir une indication de l’endroit où vos étapes d’orchestration échouent dans le parcours utilisateur.
+* l’échange hello tootrace de messages entre votre navigateur client et dans Azure AD B2C, utilisez [Fiddler](http://www.telerik.com/fiddler). Il peut vous aider à obtenir une indication de l’endroit où vos étapes d’orchestration échouent dans le parcours utilisateur.
 
-* En **Mode de développement**, utilisez **Application Insights** pour suivre l’activité de votre parcours utilisateur d’Infrastructure d’expérience d’identité. En **Mode de développement**, vous pouvez observer l’échange de revendications entre l’Infrastructure d’expérience d’identité et les divers fournisseurs de revendications définis par les profils techniques, tels que les fournisseurs d’identité, les services basés sur les API, le répertoire utilisateur Azure AD B2C et d’autres services comme Azure Multi-Factor-Authentication.  
+* Dans **mode de développement**, utilisez **Application Insights** activité de hello tootrace de votre voyage d’utilisateur expérience infrastructure d’identité. Dans **mode de développement**, vous pouvez observer exchange hello de revendications entre hello infrastructure d’identité expérience et hello différentes revendications qui sont définis par les profils de techniques, telles que les fournisseurs d’identité, services basés sur les API, les fournisseurs répertoire de l’utilisateur Hello Azure AD B2C et d’autres services, tels que Azure Multi-Factor-Authentication.  
 
 ## <a name="recommended-practices"></a>Pratiques recommandées
 
-**Conservez plusieurs versions de vos scénarios. Regroupez-les dans un projet avec votre application.** Les fichiers de base, d’extensions et de partie de confiance dépendent directement les uns des autres. Enregistrez-les en tant que groupe. À mesure que de nouvelles fonctionnalités sont ajoutées à vos stratégies, conservez des versions de travail distinctes. Organisez les versions de travail dans votre propre système de fichiers avec le code d’application avec lequel ils interagissent.  Vos applications peuvent appeler de nombreuses stratégies de partie de confiance différentes dans un locataire. Elles peuvent devenir dépendantes envers les revendications qu’elles attendent de vos stratégies Azure AD B2C.
+**Conservez plusieurs versions de vos scénarios. Regroupez-les dans un projet avec votre application.** base de Hello, extensions et les fichiers de tiers partie de confiance sont directement dépendantes de l’autre. Enregistrez-les en tant que groupe. Comme les nouvelles fonctionnalités sont ajoutées les stratégies tooyour, conserver des versions de travail distinctes. Les versions de travail stade dans votre propre système de fichiers par code de l’application hello avec qu'ils interagissent.  Vos applications peuvent appeler de nombreuses stratégies de partie de confiance différentes dans un locataire. Ils peuvent devenir dépendantes sur les revendications hello qu’ils attendent à partir de vos stratégies d’Azure AD B2C.
 
-**Développez et testez des profils techniques avec des parcours utilisateur connus.** Utilisez des stratégies de pack de démarrage testées pour configurer vos profils techniques. Testez-les séparément avant de les incorporer à vos propres parcours utilisateur.
+**Développez et testez des profils techniques avec des parcours utilisateur connus.** Utilisez testé starter pack stratégies tooset vos profils techniques. Testez-les séparément avant de les incorporer à vos propres parcours utilisateur.
 
-**Développez et testez des parcours utilisateur avec des profils techniques testés.** Changez les étapes d’orchestration d’un parcours utilisateur de manière incrémentielle. Générez progressivement vos scénarios prévus.
+**Développez et testez des parcours utilisateur avec des profils techniques testés.** Modifier les étapes d’orchestration hello d’un parcours de l’utilisateur par incrément. Générez progressivement vos scénarios prévus.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* Dans GitHub, téléchargez le fichier .zip [active-directory-b2c-custom-policy-starterpack] (https://github.com/Azure-Samples/active-directory-b2c-custom-policy-starterpack/archive/master.zip).
+* Dans GitHub, téléchargez le fichier .zip (https://github.com/Azure-Samples/active-directory-b2c-custom-policy-starterpack/archive/master.zip) [active-directory-b2c-custom-policy-starterpack] de hello.

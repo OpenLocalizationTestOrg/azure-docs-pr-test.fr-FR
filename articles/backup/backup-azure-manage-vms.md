@@ -1,6 +1,6 @@
 ---
-title: "Gestion des sauvegardes de machines virtuelles déployées via le Gestionnaire de ressources | Microsoft Docs"
-description: "Découvrez comment gérer et surveiller les sauvegardes d’une machine virtuelle déployée via Resource Manager"
+title: "les sauvegardes déployées par le Gestionnaire de ressources des machines virtuelles aaaManage | Documents Microsoft"
+description: "Découvrez comment toomanage et surveiller les sauvegardes déployées par le Gestionnaire de ressources des machines virtuelles"
 services: backup
 documentationcenter: 
 author: trinadhk
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/28/2016
 ms.author: trinadhk;markgal
-ms.openlocfilehash: 35a21cb99ca4bad124a9f764cef9da453e1fe47f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 241fc4b2a29c5cd8b8b0ee8efbf8ba4e96c6a7ea
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-azure-virtual-machine-backups"></a>Gestion des sauvegardes de machines virtuelles Azure
 > [!div class="op_single_selector"]
@@ -27,67 +27,67 @@ ms.lasthandoff: 07/11/2017
 >
 >
 
-Cet article fournit des conseils sur la gestion des sauvegardes de machines virtuelles et décrit les données d’alertes de sauvegarde disponibles dans le tableau de bord du portail. Les instructions contenues dans cet article s’appliquent à l’utilisation de machines virtuelles avec des coffres Recovery Services. Cet article ne couvre pas la création des machines virtuelles et n’explique pas comment protéger les machines virtuelles. Pour une introduction à la protection des machines virtuelles déployées via Azure Resource Manager dans Azure à l’aide d’un coffre Recovery Services, consultez la page [Premier aperçu : sauvegarder les machines virtuelles ARM dans un archivage de Recovery Services](backup-azure-vms-first-look-arm.md).
+Cet article fournit des conseils sur la gestion des sauvegardes de la machine virtuelle et explique les informations d’alertes de sauvegarde hello disponibles dans le tableau de bord de portail hello. les instructions de Hello dans cet article s’appliquent VMs toousing avec les coffres des Services de récupération. Cet article ne couvre pas la création de hello d’ordinateurs virtuels, ni expliquent comment tooprotect virtual machines. Pour une introduction sur la protection Azure Resource Manager déployés de machines virtuelles dans Azure avec un coffre Recovery Services, consultez [tout d’abord rechercher : sauvegardez tooa de machines virtuelles de coffre Recovery Services](backup-azure-vms-first-look-arm.md).
 
 ## <a name="manage-vaults-and-protected-virtual-machines"></a>Gérer les coffres et les machines virtuelles protégées
-Dans le portail Azure, le tableau de bord Coffre Recovery Services permet d’accéder à des informations concernant le coffre, notamment :
+Bonjour portail Azure, tableau de bord coffre de Services de récupération hello fournit tooinformation d’accès sur l’inclusion de coffre hello :
 
-* l’instantané de sauvegarde le plus récent, c’est-à-dire le dernier point de restauration <br\>
-* la stratégie de sauvegarde <br\>
+* Hello sauvegarde la plus récente d’instantané, qui est également dernier point de restauration hello < br\>
+* stratégie de sauvegarde de Hello < br\>
 * la taille totale de tous les instantanés de sauvegarde <br\>
-* le nombre de machines virtuelles protégées par le coffre <br\>
+* nombre d’ordinateurs virtuels qui sont protégées par le coffre hello < br\>
 
-L’ouverture du coffre dans le tableau de bord permet d’initier de nombreuses tâches de gestion associées à une sauvegarde de machine virtuelle. Dans la mesure où les coffres peuvent être utilisés pour protéger plusieurs éléments (ou plusieurs machines virtuelles), vous devez cependant ouvrir le tableau de bord de l’élément du coffre pour afficher les détails d’une machine virtuelle spécifique. La procédure suivante vous montre comment ouvrir le *tableau de bord du coffre* puis le *tableau de bord de l’élément du coffre*. Pour les deux procédures, nous vous proposons des « astuces » pour vous aider à ajouter le coffre et l’élément du coffre au tableau de bord Azure à l’aide de la commande Épingler au tableau de bord. La commande Épingler au tableau de bord permet de créer un raccourci vers le coffre ou l’élément. Vous pouvez également utiliser le raccourci pour exécuter des commandes courantes.
+De nombreuses tâches de gestion avec une sauvegarde de l’ordinateur virtuel commencent avec ouverture hello coffre dans le tableau de bord hello. Toutefois, étant coffres tooprotect utilisé plusieurs éléments (ou plusieurs machines virtuelles), tooview des détails sur un ordinateur virtuel, ouvrez tableau de bord coffre hello. Hello procédure suivante vous montre comment tooopen hello *tableau de bord coffre* , puis continuer toohello *tableau de bord coffre*. Il existe des « conseils » dans les deux procédures qui désignent comment tooadd hello coffre et du coffre, toohello de l’élément du tableau de bord Azure à l’aide de commande de toodashboard hello Pin. Code confidentiel toodashboard est un moyen de créer un coffre toohello de raccourci ou d’un élément. Vous pouvez également exécuter des commandes courantes à partir du raccourci de hello.
 
 > [!TIP]
-> Si vous avez ouvert plusieurs tableaux de bord et panneaux, utilisez le curseur bleu foncé situé en bas de la fenêtre pour faire défiler le tableau de bord Azure.
+> Si vous disposez de plusieurs tableaux de bord et ouvre des panneaux, utilisez le curseur de bleu foncé et de hello bas hello hello tooslide de fenêtre hello du tableau de bord Azure dans les deux sens.
 >
 >
 
 ![Vue complète avec curseur](./media/backup-azure-manage-vms/bottom-slider.png)
 
-### <a name="open-a-recovery-services-vault-in-the-dashboard"></a>Ouvrez un coffre Recovery Services dans le tableau de bord :
-1. Connectez-vous au [portail Azure](https://portal.azure.com/).
-2. Dans le menu Hub, cliquez sur **Parcourir** et, dans la liste des ressources, tapez **Recovery Services**. Au fur et à mesure de la saisie, la liste est filtrée. Cliquez sur **Coffre Recovery Services**.
+### <a name="open-a-recovery-services-vault-in-hello-dashboard"></a>Ouvrez un coffre Recovery Services dans le tableau de bord hello :
+1. Connectez-vous à toohello [portail Azure](https://portal.azure.com/).
+2. Dans le menu du Hub hello, cliquez sur **Parcourir** et, dans la liste hello des ressources, tapez **Recovery Services**. Comme vous commencez à taper, hello filtres de la liste en fonction de votre entrée. Cliquez sur **Coffre Recovery Services**.
 
     ![Créer un archivage de Recovery Services - Étape 1](./media/backup-azure-manage-vms/browse-to-rs-vaults.png) <br/>
 
-    La liste des archivages de Recovery Services est affichée.
+    liste Hello des archivages de Recovery Services s’affiche.
 
     ![Liste des coffres Recovery Services ](./media/backup-azure-manage-vms/list-o-vaults.png) <br/>
 
    > [!TIP]
-   > Si vous épinglez un coffre au tableau de bord Azure, ce coffre est immédiatement accessible à l’ouverture du portail Azure. Pour épingler un coffre au tableau de bord, accédez à la liste des coffres, cliquez avec le bouton droit sur le coffre, puis sélectionnez **Épingler au tableau de bord**.
+   > Si vous épinglez un toohello coffre Azure le tableau de bord, ce coffre est immédiatement accessible lorsque vous ouvrez hello portail Azure. toopin un tableau de bord coffre toohello dans la liste de coffre hello, cliquez sur le coffre de hello, puis sélectionnez **toodashboard du code confidentiel**.
    >
    >
-3. Dans la liste des coffres, sélectionnez le coffre pour ouvrir le tableau de bord correspondant. Lorsque vous sélectionnez le coffre, vous accédez à son tableau de bord et au panneau **Paramètres** . Dans la capture d’écran ci-dessous, le tableau de bord **Contoso-vault** est mis en surbrillance.
+3. À partir de la liste de hello des coffres, sélectionnez hello coffre tooopen son tableau de bord. Lorsque vous sélectionnez le coffre de hello, tableau de bord coffre hello et hello **paramètres** panneau ouvert. Bonjour suivant image, hello **Contoso-coffre** tableau de bord est mis en surbrillance.
 
     ![Ouvrir le tableau de bord du coffre et le panneau Paramètres](./media/backup-azure-manage-vms/full-view-rs-vault.png)
 
 ### <a name="open-a-vault-item-dashboard"></a>Ouvrir le tableau de bord d’un élément du coffre
-Dans la procédure précédente, vous avez ouvert le tableau de bord du coffre. Pour ouvrir maintenant le tableau de bord d’un élément du coffre, procédez comme suit :
+Dans la procédure précédente de hello, vous avez ouvert le tableau de bord hello coffre. tooopen hello coffre tableau de bord :
 
-1. Sur la vignette **Éléments de sauvegarde** du tableau de bord du coffre, cliquez sur **Machines virtuelles Azure**.
+1. Tableau de bord du coffre hello, sur hello **des éléments de sauvegarde** vignette, cliquez sur **des Machines virtuelles Azure**.
 
     ![Ouvrir la mosaïque Éléments de sauvegarde](./media/backup-azure-manage-vms/contoso-vault-1606.png)
 
-    Le panneau **Éléments de sauvegarde** affiche la dernière tâche de sauvegarde pour chaque élément. Dans cet exemple, une machine virtuelle nommée demovm-markgal est protégée par ce coffre.  
+    Hello **des éléments de sauvegarde** panneau répertorie hello dernière tâche de sauvegarde de chaque élément. Dans cet exemple, une machine virtuelle nommée demovm-markgal est protégée par ce coffre.  
 
     ![Mosaïque Éléments de sauvegarde](./media/backup-azure-manage-vms/backup-items-blade.png)
 
    > [!TIP]
-   > Pour y accéder plus facilement, vous pouvez épingler un élément du coffre au tableau de bord Azure. Pour épingler un élément du coffre, accédez à la liste des éléments du coffre, cliquez avec le bouton droit sur l’élément, puis sélectionnez **Épingler au tableau de bord**.
+   > Pour faciliter l’accès, vous pouvez épingler un toohello d’élément de coffre Azure le tableau de bord. toopin un élément de coffre, dans la liste d’éléments de coffre hello, élément de hello avec le bouton droit et sélectionnez **toodashboard du code confidentiel**.
    >
    >
-2. Dans le panneau **Éléments de sauvegarde** , cliquez sur l’élément pour ouvrir le tableau de bord correspondant.
+2. Bonjour **des éléments de sauvegarde** panneau, cliquez sur hello élément tooopen hello coffre élément du tableau de bord.
 
     ![Mosaïque Éléments de sauvegarde](./media/backup-azure-manage-vms/backup-items-blade-select-item.png)
 
-    Le tableau de bord de l’élément du coffre s’ouvre sur le panneau **Paramètres** .
+    tableau de bord coffre Hello et son **paramètres** panneau ouvert.
 
     ![Tableau de bord Éléments de sauvegarde avec panneau Paramètres](./media/backup-azure-manage-vms/item-dashboard-settings.png)
 
-    Le tableau de bord de l’élément du coffre vous permet d’accomplir plusieurs tâches de gestion essentielles, par exemple :
+    À partir de hello coffre élément du tableau de bord, vous pouvez accomplir plusieurs tâches de gestion de clés, telles que :
 
    * modifier des stratégies ou créer une stratégie de sauvegarde <br\>
    * afficher les points de restauration et vérifier leur état de cohérence <br\>
@@ -95,23 +95,23 @@ Dans la procédure précédente, vous avez ouvert le tableau de bord du coffre. 
    * suspendre la protection des machines virtuelles <br\>
    * reprendre la protection d’une machine virtuelle <br\>
    * supprimer des données de sauvegarde (ou un point de récupération) <br\>
-   * [restaurer des disques de sauvegarde](backup-azure-arm-restore-vms.md#restore-backed-up-disks)  <br\>
+   * [restaurer des disques de sauvegarde](backup-azure-arm-restore-vms.md#restore-backed-up-disks)  &lt;br\>
 
-Pour les procédures suivantes, nous allons travailler à partir du tableau de bord de l’élément du coffre.
+Pourquoi les procédures suivantes, hello point de départ est tableau de bord coffre hello.
 
 ## <a name="manage-backup-policies"></a>Gestion des stratégies de sauvegarde
-1. Dans le [tableau de bord de l’élément du coffre](backup-azure-manage-vms.md#open-a-vault-item-dashboard), cliquez sur **Tous les paramètres** pour ouvrir le panneau **Paramètres**.
+1. Sur hello [tableau de bord coffre](backup-azure-manage-vms.md#open-a-vault-item-dashboard), cliquez sur **tous les paramètres** tooopen hello **paramètres** panneau.
 
     ![Panneau Stratégie de sauvegarde](./media/backup-azure-manage-vms/all-settings-button.png)
-2. Dans le panneau **Paramètres**, cliquez sur **Stratégie de sauvegarde** pour ouvrir le panneau correspondant.
+2. Sur hello **paramètres** panneau, cliquez sur **stratégie de sauvegarde** tooopen ce panneau.
 
-    Ce panneau affiche les détails de la plage de rétention et de la fréquence de sauvegarde.
+    Dans Panneau de hello, hello sauvegarde fréquence et rétention détails de la plage sont affichés.
 
     ![Panneau Stratégie de sauvegarde](./media/backup-azure-manage-vms/backup-policy-blade.png)
-3. Dans le menu **Choisir une stratégie de sauvegarde** :
+3. À partir de hello **choisir la stratégie de sauvegarde** menu :
 
-   * Pour modifier les stratégies, sélectionnez une autre stratégie, puis cliquez sur **Enregistrer**. La nouvelle stratégie est appliquée immédiatement au coffre. <br\>
-   * Pour créer une stratégie, sélectionnez **Créer**.
+   * sélectionner une autre stratégie de toochange stratégies, puis cliquez sur **enregistrer**. Hello nouvelle stratégie est appliquée immédiatement toohello coffre. <br\>
+   * toocreate une stratégie, sélectionnez **créer un nouveau**.
 
      ![Sauvegarde de machine virtuelle](./media/backup-azure-manage-vms/backup-policy-create-new.png)
 
@@ -120,108 +120,108 @@ Pour les procédures suivantes, nous allons travailler à partir du tableau de b
 [!INCLUDE [backup-create-backup-policy-for-vm](../../includes/backup-create-backup-policy-for-vm.md)]
 
 > [!NOTE]
-> Pour des performances de sauvegarde optimales, veillez à suivre les [meilleures pratiques](backup-azure-vms-introduction.md#best-practices) lorsque vous gérez des stratégies de sauvegarde.
+> Lors de la gestion des stratégies de sauvegarde, vérifiez que toofollow hello [meilleures pratiques](backup-azure-vms-introduction.md#best-practices) pour des performances optimales de sauvegarde
 >
 >
 
 ## <a name="on-demand-backup-of-a-virtual-machine"></a>Sauvegarde à la demande d’une machine virtuelle
-Vous pouvez effectuer une sauvegarde à la demande d’une machine virtuelle une fois que celle-ci est configurée pour la protection. Si la sauvegarde initiale est en attente, la sauvegarde à la demande crée une copie complète de la machine virtuelle dans le coffre Recovery Services. Si la sauvegarde initiale est terminée, une sauvegarde à la demande enverra au coffre Recovery Services uniquement les modifications par rapport à l’instantané précédent. Autrement dit, les sauvegardes suivantes sont toujours incrémentielles.
+Vous pouvez effectuer une sauvegarde à la demande d’une machine virtuelle une fois que celle-ci est configurée pour la protection. Si la sauvegarde initiale de hello est en attente, à la demande de sauvegarde crée une copie complète de la machine virtuelle de hello Bonjour de coffre Recovery Services. Si la sauvegarde initiale de hello est terminée, une sauvegarde à la demande envoyer uniquement les modifications à partir de l’instantané précédent hello, toohello le coffre Recovery Services. Autrement dit, les sauvegardes suivantes sont toujours incrémentielles.
 
 > [!NOTE]
-> La plage de rétention pour une sauvegarde à la demande correspond à la valeur de rétention spécifiée pour le point de sauvegarde quotidien de la stratégie. Si aucun point de sauvegarde quotidien n’est sélectionné, le point de sauvegarde hebdomadaire est utilisé.
+> Hello de rétention pour une sauvegarde à la demande est la valeur de rétention hello spécifié pour le point de sauvegarde quotidien hello dans la stratégie de hello. Si aucun point de sauvegarde quotidien n’est sélectionnée, point de sauvegarde hebdomadaire hello est utilisé.
 >
 >
 
-Pour déclencher une sauvegarde à la demande d’une machine virtuelle :
+sauvegarde tootrigger une demande d’un ordinateur virtuel :
 
-* Sur le [tableau de bord de l’élément du coffre](backup-azure-manage-vms.md#open-a-vault-item-dashboard), cliquez sur **Sauvegarder maintenant**.
+* Sur hello [tableau de bord coffre](backup-azure-manage-vms.md#open-a-vault-item-dashboard), cliquez sur **sauvegarder maintenant**.
 
     ![Bouton Sauvegarder maintenant](./media/backup-azure-manage-vms/backup-now-button.png)
 
-    Le portail vous demande de confirmer que vous souhaitez démarrer un travail de sauvegarde à la demande. Cliquez sur **Oui** pour démarrer le travail de sauvegarde.
+    portail de Hello permet de s’assurer que vous souhaitez toostart un travail de sauvegarde à la demande. Cliquez sur **Oui** toostart du travail de sauvegarde hello.
 
     ![Bouton Sauvegarder maintenant](./media/backup-azure-manage-vms/backup-now-check.png)
 
-    Le travail de sauvegarde crée un point de récupération. La plage de rétention du point de récupération est identique à celle spécifiée dans la stratégie associée à la machine virtuelle. Pour suivre la progression du travail, dans le tableau de bord du coffre, cliquez sur la mosaïque **Travaux de sauvegarde** .  
+    travail de sauvegarde Hello crée un point de récupération. durée de rétention Hello hello du point de récupération est hello identique à la durée de rétention spécifiée dans la stratégie de hello associée à une machine virtuelle hello. progression de hello tootrack pour travail hello, dans le tableau de bord du coffre hello, cliquez sur hello **des tâches de sauvegarde** vignette.  
 
 ## <a name="stop-protecting-virtual-machines"></a>Arrêt de la protection des machines virtuelles
-Si vous décidez d’arrêter la protection d’une machine virtuelle, vous devrez indiquer si vous souhaitez conserver les points de récupération. Il existe deux façons de suspendre la protection des machines virtuelles :
+Si vous choisissez toostop protéger un ordinateur virtuel, vous êtes invité si vous souhaitez que les points de récupération tooretain hello. Il existe deux façons de machines virtuelles de la protection toostop :
 
 * arrêter tous les travaux de sauvegarde à venir et supprimer tous les points de récupération, ou
-* arrêter tous les travaux de sauvegarde à venir en conservant les points de récupération  <br/>
+* arrêter toutes les tâches futures de sauvegarde, mais laissez hello points de récupération <br/>
 
-La conservation des points de récupération dans le stockage présente un coût, mais elle a l’avantage de vous permettre de restaurer ultérieurement la machine virtuelle, si vous le souhaitez. Pour plus d’informations sur les coûts de conservation des points de récupération, consultez la [tarification](https://azure.microsoft.com/pricing/details/backup/). Si vous choisissez de supprimer tous les points de récupération, vous ne pourrez pas restaurer la machine virtuelle.
+Il existe un coût associé en laissant hello des points de récupération dans le stockage. Toutefois, avantage hello de laisser des points de récupération hello est que vous pouvez restaurer une version ultérieure, hello virtual machine si vous le souhaitez. Pour plus d’informations sur les coûts de hello de laisser hello des points de récupération, consultez hello [tarification](https://azure.microsoft.com/pricing/details/backup/). Si vous choisissez toodelete tous les points de récupération, vous ne pouvez pas restaurer hello virtual machine.
 
-Pour arrêter la protection d’une machine virtuelle :
+protection toostop pour un ordinateur virtuel :
 
-1. Sur le [tableau de bord de l’élément du coffre](backup-azure-manage-vms.md#open-a-vault-item-dashboard), cliquez sur **Arrêter la sauvegarde**.
+1. Sur hello [tableau de bord coffre](backup-azure-manage-vms.md#open-a-vault-item-dashboard), cliquez sur **arrêter la sauvegarde**.
 
     ![Bouton Arrêter la sauvegarde](./media/backup-azure-manage-vms/stop-backup-button.png)
 
-    Le panneau Arrêter la sauvegarde s’ouvre.
+    panneau d’arrêter la sauvegarde Hello s’ouvre.
 
     ![Panneau Arrêter la sauvegarde](./media/backup-azure-manage-vms/stop-backup-blade.png)
-2. Dans le panneau **Arrêter la sauvegarde** , indiquez si vous souhaitez conserver ou supprimer les données de sauvegarde. La zone d’informations fournit des détails pour vous guider dans votre choix.
+2. Sur hello **arrêter la sauvegarde** panneau, choisissez si tooretain ou delete hello des données de sauvegarde. zone d’informations Hello fournit des détails sur votre choix.
 
     ![Arrêter la protection](./media/backup-azure-manage-vms/retain-or-delete-option.png)
-3. Si vous avez choisi de conserver les données de sauvegarde, passez à l’étape 4. Si vous avez choisi de supprimer les données de sauvegarde, confirmez que vous souhaitez bien arrêter les travaux de sauvegarde et supprimer les points de récupération. Saisissez le nom de l’élément.
+3. Si vous avez choisi de données de sauvegarde tooretain hello, ignorez toostep 4. Si vous avez choisi de sauvegarder des données toodelete, confirmez que vous souhaitez que les travaux de sauvegarde toostop hello et supprimez des points de récupération hello - nom hello du type d’élément de hello.
 
     ![Arrêter la vérification](./media/backup-azure-manage-vms/item-verification-box.png)
 
-    Si vous n’êtes pas sûr du nom de l’élément, survolez le point d’exclamation pour en afficher le nom. Le nom de l’élément figure également sous **Arrêter la sauvegarde** en haut du panneau.
+    Si vous n’êtes pas sûr du nom de l’élément hello, pointez sur le nom de hello tooview hello point d’exclamation. En outre, le nom hello d’élément de hello est sous **arrêter la sauvegarde** haut hello du Panneau de hello.
 4. Vous pouvez, si vous le souhaitez, indiquer une **Raison** ou un **Commentaire**.
-5. Pour arrêter le travail de sauvegarde pour l’élément actif, cliquez sur ![bouton sauvegarde arrêter](./media/backup-azure-manage-vms/stop-backup-button-blue.png)
+5. Cliquez sur le travail de sauvegarde toostop hello pour l’élément en cours de hello, ![sauvegarde bouton d’arrêt](./media/backup-azure-manage-vms/stop-backup-button-blue.png)
 
-    Un message de notification vous informe que les travaux de sauvegarde ont été interrompus.
+    Un message de notification vous informe des travaux de sauvegarde hello ont été arrêtés.
 
     ![Confirmation l’arrêt de la protection](./media/backup-azure-manage-vms/stop-message.png)
 
 ## <a name="resume-protection-of-a-virtual-machine"></a>Reprendre la protection d’une machine virtuelle
-Si vous avez choisi l’option **Conserver les données de sauvegarde** au moment de l’arrêt de la protection de la machine virtuelle, vous avez la possibilité de restaurer la protection. Si vous avez choisi l’option **Supprimer les données de sauvegarde** , vous ne pourrez pas restaurer la protection de la machine virtuelle.
+Si hello **conserver les données de sauvegarde** option choisie lors de la protection pour la machine virtuelle de hello a été arrêtée, il est possible de tooresume protection. Si hello **supprimer les données de sauvegarde** option a été choisie, puis ne peut pas reprendre la protection pour la machine virtuelle de hello.
 
-Pour reprendre la protection de la machine virtuelle
+protection tooresume pour la machine virtuelle de hello
 
-1. Sur le [tableau de bord de l’élément du coffre](backup-azure-manage-vms.md#open-a-vault-item-dashboard), cliquez sur **Reprendre la sauvegarde**.
+1. Sur hello [tableau de bord coffre](backup-azure-manage-vms.md#open-a-vault-item-dashboard), cliquez sur **reprendre la sauvegarde**.
 
     ![Reprendre la protection](./media/backup-azure-manage-vms/resume-backup-button.png)
 
-    Le panneau Stratégie de sauvegarde s’ouvre.
+    Panneau de la stratégie de sauvegarde Hello s’ouvre.
 
    > [!NOTE]
-   > Lors de l’application d’une nouvelle protection à la machine virtuelle, vous pouvez choisir une autre stratégie que la stratégie avec laquelle la machine virtuelle a été initialement protégée.
+   > Lors de la nouvelle protection hello virtual machine, vous pouvez choisir une autre stratégie que stratégie hello avec laquelle machine virtuelle a été initialement protégée.
    >
    >
-2. Suivez les étapes de la section [Modifier les stratégies de sauvegarde](backup-azure-manage-vms.md#manage-backup-policies) pour affecter la stratégie de la machine virtuelle.
+2. Suivez les étapes de hello dans [gérer les stratégies de sauvegarde](backup-azure-manage-vms.md#manage-backup-policies) stratégie de hello tooassign pour la machine virtuelle de hello.
 
-    Une fois la stratégie de sauvegarde appliquée à la machine virtuelle, le message suivant s’affiche.
+    Une fois appliqué toohello virtual machine, stratégie de sauvegarde hello vous consultez hello message suivant.
 
     ![Machine virtuelle protégée](./media/backup-azure-manage-vms/success-message.png)
 
-## <a name="delete-backup-data"></a>Supprimer les données de sauvegarde
-Vous pouvez supprimer les données de sauvegarde associées à une machine virtuelle au cours du travail **Arrêter la sauvegarde** , ou à tout moment après la fin du travail de sauvegarde. Il peut même être préférable d’attendre plusieurs jours ou semaines avant de supprimer les points de récupération. Contrairement à la restauration des points de récupération, lors de la suppression des données de sauvegarde, vous ne pouvez pas choisir des points de récupération spécifiques à supprimer. Si vous choisissez de supprimer vos données de sauvegarde, vous supprimerez tous les points de récupération associés à l’élément.
+## <a name="delete-backup-data"></a>Suppression des données de sauvegarde
+Vous pouvez supprimer les données de sauvegarde hello associées à un ordinateur virtuel pendant hello **arrêter la sauvegarde** travail, ou à tout moment après hello du travail de sauvegarde est terminée. Il peut même être bénéfiques toowait jours ou semaines avant de supprimer des points de récupération hello. Contrairement à la restauration des points de récupération, lors de la suppression des données de sauvegarde, vous ne pouvez pas choisir toodelete de points de récupération spécifique. Si vous choisissez toodelete vos données de sauvegarde, vous supprimez tous les points de récupération associés à des éléments de hello.
 
-La procédure suivante suppose que le travail de sauvegarde de la machine virtuelle a été arrêté ou désactivé. Les options **Reprendre la sauvegarde** et **Supprimer la sauvegarde** sont accessibles dans le tableau de bord de l’élément du coffre seulement lorsque le travail de sauvegarde a été désactivé.
+Hello procédure suivante suppose que le travail de sauvegarde hello pour la machine virtuelle de hello a été arrêté ou désactivé. Une fois le travail de sauvegarde hello est désactivé, hello **reprendre la sauvegarde** et **supprimer la sauvegarde** options sont disponibles dans le tableau de bord coffre hello.
 
 ![Boutons Reprendre et Supprimer](./media/backup-azure-manage-vms/resume-delete-buttons.png)
 
-Pour supprimer les données de sauvegarde d’une machine virtuelle avec l’option *Sauvegarde désactivée*:
+toodelete les données de sauvegarde sur un ordinateur virtuel avec hello *sauvegarde désactivé*:
 
-1. Sur le [tableau de bord de l’élément du coffre](backup-azure-manage-vms.md#open-a-vault-item-dashboard), cliquez sur **Supprimer la sauvegarde**.
+1. Sur hello [tableau de bord coffre](backup-azure-manage-vms.md#open-a-vault-item-dashboard), cliquez sur **supprimer la sauvegarde**.
 
     ![Type de machine virtuelle](./media/backup-azure-manage-vms/delete-backup-buttom.png)
 
-    Le panneau **Supprimer les données de sauvegarde** s’ouvre.
+    Hello **supprimer les données de sauvegarde** panneau s’ouvre.
 
     ![Type de machine virtuelle](./media/backup-azure-manage-vms/delete-backup-blade.png)
-2. Saisissez le nom de l’élément pour confirmer la suppression des points de récupération.
+2. Nom de type hello de hello élément tooconfirm vous souhaitez que les points de récupération toodelete hello.
 
     ![Arrêter la vérification](./media/backup-azure-manage-vms/item-verification-box.png)
 
-    Si vous n’êtes pas sûr du nom de l’élément, survolez le point d’exclamation pour en afficher le nom. Le nom de l’élément figure également sous **Supprimer les données de sauvegarde** en haut du panneau.
+    Si vous n’êtes pas sûr du nom de l’élément hello, pointez sur le nom de hello tooview hello point d’exclamation. En outre, le nom hello d’élément de hello est sous **supprimer les données de sauvegarde** haut hello du Panneau de hello.
 3. Vous pouvez, si vous le souhaitez, indiquer une **Raison** ou un **Commentaire**.
-4. Pour supprimer les données de sauvegarde pour l’élément actif, cliquez sur ![bouton sauvegarde arrêter](./media/backup-azure-manage-vms/delete-button.png)
+4. Cliquez sur les données de sauvegarde toodelete hello pour l’élément en cours de hello, ![sauvegarde bouton d’arrêt](./media/backup-azure-manage-vms/delete-button.png)
 
-    Un message de notification vous informe que les données de sauvegarde ont été supprimées.
+    Un message de notification vous informe des données de sauvegarde hello a été supprimées.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Pour plus d’informations sur la manière de recréer une machine virtuelle à partir d’un point de récupération, consultez [Restauration de machines virtuelles Azure](backup-azure-restore-vms.md). Pour plus d’informations sur la protection de vos machines virtuelles, consultez [Premier aperçu : sauvegarder les machines virtuelles ARM dans un archivage de Recovery Services](backup-azure-vms-first-look-arm.md). Pour plus d’informations sur la surveillance des événements, consultez [Monitor alerts for Azure virtual machine backups](backup-azure-monitor-vms.md)(Surveiller les alertes des sauvegardes de machines virtuelles Azure).
+Pour plus d’informations sur la manière de recréer une machine virtuelle à partir d’un point de récupération, consultez [Restauration de machines virtuelles Azure](backup-azure-restore-vms.md). Si vous avez besoin d’informations sur la protection de vos machines virtuelles, consultez [tout d’abord rechercher : sauvegardez tooa de machines virtuelles de coffre Recovery Services](backup-azure-vms-first-look-arm.md). Pour plus d’informations sur la surveillance des événements, consultez [Monitor alerts for Azure virtual machine backups](backup-azure-monitor-vms.md)(Surveiller les alertes des sauvegardes de machines virtuelles Azure).

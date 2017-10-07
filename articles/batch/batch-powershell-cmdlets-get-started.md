@@ -1,6 +1,6 @@
 ---
-title: "Prise en main des applets de commande PowerShell pour Azure Batch | Microsoft Docs"
-description: "Brève présentation des applets de commande Azure PowerShell à utiliser pour gérer les ressources Batch."
+title: aaaGet main de PowerShell pour Azure Batch | Documents Microsoft
+description: "Une brève introduction toohello applets de commande PowerShell de Azure vous pouvez utiliser les ressources de traitement par lots toomanage."
 services: batch
 documentationcenter: 
 author: tamram
@@ -15,48 +15,48 @@ ms.workload: big-compute
 ms.date: 02/27/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: e33be6ed658e00250ea1e80cd7da4d348fb18296
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 3e4d12e9c1e52a5b2db2dd44346edda93b7ef92b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-batch-resources-with-powershell-cmdlets"></a>Gérer les ressources Batch avec les applets de commande PowerShell
 
-Avec les applets de commande Azure Batch PowerShell, vous pouvez effectuer pratiquement les mêmes tâches qu’avec les API Batch, le portail Azure et l’interface de ligne de commande Azure, et en écrire les scripts. Il s’agit d’une présentation rapide des applets de commande que vous pouvez utiliser pour gérer vos comptes Batch et travailler avec des ressources Batch telles que les pools, les travaux et les tâches.
+Avec hello applets de commande PowerShell de traitement par lots Azure, vous pouvez effectuer et script nombreux hello mêmes tâches mener avec hello API de lot, hello portail Azure et hello Azure Interface de ligne de commande (CLI). Il s’agit d’un applets de commande brève introduction toohello, vous pouvez utiliser toomanage vos comptes de lot et travailler avec vos ressources de traitement par lots telles que les pools, les travaux et les tâches.
 
-Pour obtenir une liste complète des applets de commande Batch et la syntaxe détaillée des applets de commande, consultez [Référence d’applet de commande Azure Batch](/powershell/module/azurerm.batch/#batch).
+Pour obtenir une liste complète des applets de commande de lot et la syntaxe de l’applet de commande détaillées, consultez hello [référence d’applet de commande Azure Batch](/powershell/module/azurerm.batch/#batch).
 
-Cet article est basé sur les applets de commande d’Azure PowerShell version 3.0.0. Nous vous recommandons de mettre à jour votre Azure PowerShell fréquemment pour tirer parti des améliorations et des mises à jour de service.
+Cet article est basé sur les applets de commande d’Azure PowerShell version 3.0.0. Nous recommandons de mettre votre Azure PowerShell fréquemment tootake parti du service mises à jour et améliorations.
 
 ## <a name="prerequisites"></a>Composants requis
-Effectuez les opérations suivantes pour utiliser Azure PowerShell pour gérer vos ressources de traitement par lots.
+Effectuer hello suivant operations toouse Azure PowerShell toomanage vos ressources de traitement par lots.
 
 * [Installation et configuration d'Azure PowerShell](/powershell/azure/overview)
-* Exécutez l’applet de commande **Login-AzureRmAccount** pour vous connecter à votre abonnement (les applets de commande Azure Batch font partie du module Azure Resource Manager) :
+* Exécutez hello **AzureRmAccount de connexion** applet de commande tooconnect tooyour abonnement (hello ship applets de commande de traitement par lots Azure dans le module du Gestionnaire de ressources Azure hello) :
   
     `Login-AzureRmAccount`
-* **Inscrivez-vous dans l’espace de noms de fournisseur Batch**. Cette opération ne doit être effectuée qu’**une fois par abonnement**.
+* **Inscrire auprès d’espace de noms hello lot fournisseur**. Cette opération ne doit toobe effectuée **une fois par abonnement**.
   
     `Register-AzureRMResourceProvider -ProviderNamespace Microsoft.Batch`
 
 ## <a name="manage-batch-accounts-and-keys"></a>Gestion des clés et des comptes Batch
 ### <a name="create-a-batch-account"></a>Création d’un compte Batch
-**New-AzureBatchAccount** crée un compte Batch dans un groupe de ressources spécifié. Si vous ne disposez pas d’un groupe de ressources, créez-en un en exécutant l’applet de commande [New-AzureRmResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup). Spécifiez une des régions Azure dans le paramètre **Emplacement**, « États-Unis du Centre » par exemple. Par exemple :
+**New-AzureBatchAccount** crée un compte Batch dans un groupe de ressources spécifié. Si vous n’avez pas déjà un groupe de ressources, créez-le en exécutant hello [New-AzureRmResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup) applet de commande. Spécifiez l’une des hello Azure régions Bonjour **emplacement** paramètre, comme « Centre des États-Unis ». Par exemple :
 
     New-AzureRmResourceGroup –Name MyBatchResourceGroup –location "Central US"
 
-Créez ensuite un compte Batch dans le groupe de ressources en spécifiant le nom du compte dans <*nom_compte*> et l’emplacement et le nom de votre groupe de ressources. La procédure de création du compte Batch peut prendre un certain temps. Par exemple :
+Ensuite, créez un compte de traitement par lots dans le groupe de ressources hello, en spécifiant un nom de compte hello dans <*account_name*> hello emplacement et au nom de votre groupe de ressources. Création du compte Batch hello peut prendre quelques toocomplete de temps. Par exemple :
 
     New-AzureRmBatchAccount –AccountName <account_name> –Location "Central US" –ResourceGroupName <res_group_name>
 
 > [!NOTE]
-> Le nom du compte Batch doit être unique dans la région Azure du groupe de ressources, contenir entre 3 et 24 caractères, et utiliser des minuscules et des chiffres uniquement.
+> compte de traitement par lots Hello nom doit être unique toohello région Azure pour le groupe de ressources hello, contenir entre 3 et 24 caractères et utiliser des lettres minuscules et chiffres uniquement.
 > 
 > 
 
 ### <a name="get-account-access-keys"></a>Obtenir les clés d'accès au compte
-**Get-AzureRmBatchAccountKeys** affiche les clés d’accès associées à un compte Azure Batch. Par exemple, exécutez la commande suivante pour obtenir les clés primaires et secondaires du compte que vous avez créé.
+**Get-AzureRmBatchAccountKeys** affiche hello les clés d’accès associés à un compte Azure Batch. Par exemple, exécutez hello suivant tooget hello principal et secondaire les clés du compte hello créé.
 
     $Account = Get-AzureRmBatchAccountKeys –AccountName <account_name>
 
@@ -65,12 +65,12 @@ Créez ensuite un compte Batch dans le groupe de ressources en spécifiant le no
     $Account.SecondaryAccountKey
 
 ### <a name="generate-a-new-access-key"></a>Générer une nouvelle clé d'accès
-**New-AzureRmBatchAccountKey** génère une nouvelle clé de compte primaire ou secondaire pour un compte Azure Batch. Par exemple, pour générer une nouvelle clé primaire pour votre compte Batch, tapez :
+**New-AzureRmBatchAccountKey** génère une nouvelle clé de compte primaire ou secondaire pour un compte Azure Batch. Par exemple, toogenerate une nouvelle clé primaire pour votre compte Batch, tapez :
 
     New-AzureRmBatchAccountKey -AccountName <account_name> -KeyType Primary
 
 > [!NOTE]
-> Pour générer une nouvelle clé secondaire, spécifiez « Secondary » pour le paramètre **KeyType** . Vous devez régénérer les clés primaires et secondaires séparément.
+> toogenerate une nouvelle clé secondaire, spécifiez « Base de données secondaire » pour hello **KeyType** paramètre. Vous avez des clés primaires et secondaires du hello tooregenerate séparément.
 > 
 > 
 
@@ -79,69 +79,69 @@ Créez ensuite un compte Batch dans le groupe de ressources en spécifiant le no
 
     Remove-AzureRmBatchAccount -AccountName <account_name>
 
-Quand vous y êtes invité, confirmez que vous voulez supprimer le compte. La suppression du compte peut prendre un certain temps.
+Lorsque vous y êtes invité, confirmez que tooremove hello compte. La suppression du compte peut prendre quelques toocomplete de temps.
 
 ## <a name="create-a-batchaccountcontext-object"></a>Créer un objet BatchAccountContext
-Pour une authentification à l’aide des applets de commande Batch PowerShell lors de la création et la gestion des pools, des travaux, des tâches et d’autres ressources, vous devez d’abord créer un objet BatchAccountContext pour stocker vos nom et clés de compte :
+à l’aide de tooauthenticate hello les applets de commande PowerShell de lot lorsque vous créez et gérez des pools de lot, travaux, tâches, et d’autres ressources, d’abord créer un toostore d’objet BatchAccountContext votre nom de compte et les clés :
 
     $context = Get-AzureRmBatchAccountKeys -AccountName <account_name>
 
-Vous passez l’objet BatchAccountContext dans les applets de commande utilisant le paramètre **BatchContext** .
+Vous passez l’objet de BatchAccountContext de hello dans les applets de commande que hello utilisation **BatchContext** paramètre.
 
 > [!NOTE]
-> Par défaut, la clé primaire du compte est utilisée pour l’authentification, mais vous pouvez sélectionner explicitement la clé à utiliser en modifiant la propriété **KeyInUse** de votre objet BatchAccountContext : `$context.KeyInUse = "Secondary"`.
+> Par défaut, les clé primaire du compte hello sont utilisé pour l’authentification, mais vous pouvez sélectionner explicitement les toouse clé hello en modifiant l’objet BatchAccountContext **KeyInUse** propriété : `$context.KeyInUse = "Secondary"`.
 > 
 > 
 
 ## <a name="create-and-modify-batch-resources"></a>Créer et modifier les ressources Batch
-Utilisez les applets de commande telles que **New-AzureBatchPool**, **New-AzureBatchJob** et **New-AzureBatchTask** pour créer des ressources sous un compte Batch. Il existe des applets de commande **Get-** et **Set-** correspondantes pour mettre à jour les propriétés des ressources existantes, et des applets de commande **Remove-** pour supprimer des ressources sous un compte Batch.
+Utilisez les applets de commande telles que **New-AzureBatchPool**, **New-AzureBatchJob**, et **New-AzureBatchTask** ressources toocreate sous un compte de traitement par lots. Des correspondants **Get -** et **Set -** propriétés de hello tooupdate applets de commande de ressources existants, et **Remove -** applets de commande des ressources de tooremove sous un compte de traitement par lots.
 
-Si vous utilisez plusieurs de ces applets de commande, en plus de transmettre un objet BatchContext, vous devez créer ou transmettre les objets qui contiennent des paramètres de ressources détaillés, comme illustré dans l’exemple suivant. Pour obtenir d’autres exemples, consultez l’aide détaillée de chaque applet de commande.
+Lorsque vous utilisez la plupart de ces applets de commande dans Ajout toopassing un objet BatchContext, vous devez toocreate ou passez les objets qui contiennent des paramètres de ressource détaillées, comme illustré dans hello l’exemple suivant. Consultez hello détaillées aide pour chaque applet de commande pour obtenir des exemples supplémentaires.
 
 ### <a name="create-a-batch-pool"></a>Créer un pool Batch
-Lors de la création ou de la mise à jour d’un pool Batch, sélectionnez une configuration de service cloud ou une configuration de machine virtuelle correspondant au système d’exploitation dans les nœuds de calcul (voir [Aperçu des fonctionnalités d’Azure Batch](batch-api-basics.md#pool)). En spécifiant la configuration du service cloud, vos nœuds de calcul sont mis en image avec l’une des [versions de système d’exploitation invité d’Azure](../cloud-services/cloud-services-guestos-update-matrix.md#releases). En spécifiant la configuration de la machine virtuelle, vous pouvez spécifier l’image d’une des machines virtuelles Linux ou Windows qui figurent dans la [Place de marché de machines virtuelles Azure][vm_marketplace], ou bien fournir une image personnalisée que vous aurez préparée.
+Lors de la création ou de mise à jour d’un pool de traitement par lots, sélectionnez configuration du service cloud hello ou configuration d’ordinateur virtuel hello pour hello système d’exploitation sur hello nœuds de calcul (consultez [vue d’ensemble de lot](batch-api-basics.md#pool)). Si vous spécifiez la configuration du service cloud hello, vos nœuds de calcul sont une image avec l’un des hello [mises à jour de système d’exploitation invité de Azure](../cloud-services/cloud-services-guestos-update-matrix.md#releases). Si vous spécifiez la configuration d’ordinateur virtuel hello, vous pouvez spécifier un Hello pris en charge de Linux ou hello répertorié dans l’image de machine virtuelle Windows [Azure Marketplace de Machines virtuelles][vm_marketplace], ou fournissez un personnalisé image que vous avez préparé.
 
-Si vous exécutez **New-AzureBatchPool**, transmettez les paramètres du système d’exploitation dans un objet PSCloudServiceConfiguration ou PSVirtualMachineConfiguration. Par exemple, l’applet de commande suivante crée un pool Batch à l’aide des nœuds de calcul de petite taille dans la configuration de service cloud, avec l’image de la dernière version du système d’exploitation de la famille 3 (Windows Server 2012). Ici, le paramètre **CloudServiceConfiguration** spécifie la variable *$configuration* comme objet PSCloudServiceConfiguration. Le paramètre **BatchContext** spécifie une variable *$context* définie au préalable en tant qu’objet BatchAccountContext.
+Lorsque vous exécutez **New-AzureBatchPool**, passer des paramètres de système d’exploitation hello dans un objet PSCloudServiceConfiguration ou PSVirtualMachineConfiguration. Par exemple, hello applet de commande suivante crée un nouveau pool de traitement par lots avec les nœuds de calcul de petite taille dans la configuration du service cloud hello, une image avec la dernière version de système d’exploitation hello de famille 3 (Windows Server 2012). Ici, hello **CloudServiceConfiguration** paramètre spécifie hello *$configuration* variable en tant qu’objet PSCloudServiceConfiguration hello. Hello **BatchContext** paramètre spécifie une variable précédemment définie *$context* en tant qu’objet BatchAccountContext hello.
 
     $configuration = New-Object -TypeName "Microsoft.Azure.Commands.Batch.Models.PSCloudServiceConfiguration" -ArgumentList @(4,"*")
 
     New-AzureBatchPool -Id "AutoScalePool" -VirtualMachineSize "Small" -CloudServiceConfiguration $configuration -AutoScaleFormula '$TargetDedicated=4;' -BatchContext $context
 
-Le nombre cible de nœuds de calcul dans le nouveau pool est déterminé par une formule de mise à l’échelle automatique. Dans ce cas, la formule est simplement **$TargetDedicated = 4**, ce qui indique que le nombre de nœuds de calcul dans le pool est de 4 au maximum.
+nombre de cible de Hello de nœuds de calcul dans un nouveau pool de hello est déterminé par une formule de l’échelle automatique. Dans ce cas, la formule de hello est simplement **$TargetDedicated = 4**, indiquant le nombre de hello de nœuds de calcul dans le pool de hello est au maximum de 4.
 
 ## <a name="query-for-pools-jobs-tasks-and-other-details"></a>Requête relative aux pools, aux travaux, aux tâches et autres détails
-Utilisez les applets de commande telles que **Get-AzureBatchPool**, **Get-AzureBatchJob** et **Get-AzureBatchTask** pour interroger les entités créées sous un compte Batch.
+Utilisez les applets de commande telles que **Get-AzureBatchPool**, **Get-AzureBatchJob**, et **Get-AzureBatchTask** tooquery pour les entités créées sous un compte Batch.
 
 ### <a name="query-for-data"></a>Interrogation des données
-Par exemple, utilisez **Get-AzureBatchPools** pour rechercher vos pools. Par défaut, cette demande interroge tous les pools sous votre compte, en supposant que vous avez déjà stocké l’objet BatchAccountContext dans *$context*:
+Par exemple, utilisez **Get-AzureBatchPools** toofind vos pools. Par défaut il interroge pour tous les pools sous votre compte, en supposant que vous déjà stockée objet hello BatchAccountContext *$context*:
 
     Get-AzureBatchPool -BatchContext $context
 
 ### <a name="use-an-odata-filter"></a>Utilisation d’un filtre OData
-Vous pouvez fournir un filtre OData à l'aide du paramètre **Filter** pour rechercher uniquement les objets qui vous intéressent. Par exemple, vous pouvez rechercher tous les pools dont l’identificateur commence par « myPool » :
+Vous pouvez fournir un filtre OData à l’aide de hello **filtre** paramètre toofind hello uniquement les objets qui vous intéressent. Par exemple, vous pouvez rechercher tous les pools dont l’identificateur commence par « myPool » :
 
     $filter = "startswith(id,'myPool')"
 
     Get-AzureBatchPool -Filter $filter -BatchContext $context
 
-Cette méthode n'est pas aussi flexible que l'utilisation de « Where-Object » dans un pipeline local. Toutefois, la requête est envoyée au service Batch directement pour que tout le filtrage se produise côté serveur et économise ainsi la bande passante Internet.
+Cette méthode n'est pas aussi flexible que l'utilisation de « Where-Object » dans un pipeline local. Toutefois, les requêtes hello sont envoyées toohello service Batch directement afin que tout le filtrage se produit côté serveur de hello, l’enregistrement de la bande passante Internet.
 
-### <a name="use-the-id-parameter"></a>Utilisation du paramètre Id
-Une alternative au filtre OData consiste à utiliser le paramètre **Id** . Pour rechercher un pool spécifique présentant l’identificateur « myPool » :
+### <a name="use-hello-id-parameter"></a>Utilisez le paramètre d’Id hello
+Un filtre d’OData autre tooan est toouse hello **Id** paramètre. tooquery pour un pool spécifique avec l’id « monpool » :
 
     Get-AzureBatchPool -Id "myPool" -BatchContext $context
 
-Le paramètre **Id** prend uniquement en charge la recherche de l’identificateur complet, et non les caractères génériques ni les filtres de style OData.
+Hello **Id** paramètre prend en charge uniquement intégral-id recherche, pas les caractères génériques ou les filtres OData-style.
 
-### <a name="use-the-maxcount-parameter"></a>Utilisation du paramètre MaxCount
-Par défaut, chaque applet de commande retourne un maximum de 1 000 objets. Si vous atteignez cette limite, affinez votre filtration pour limiter le nombre d’objets retournés, ou définissez explicitement une utilisation maximale à l’aide du paramètre **MaxCount** . Par exemple :
+### <a name="use-hello-maxcount-parameter"></a>Utilisez le paramètre MaxCount de hello
+Par défaut, chaque applet de commande retourne un maximum de 1 000 objets. Si vous atteignez cette limite, affinez votre toobring filtre précédent moins d’objets, ou définir explicitement la valeur maximale à l’aide de hello **MaxCount** paramètre. Par exemple :
 
     Get-AzureBatchTask -MaxCount 2500 -BatchContext $context
 
-Pour supprimer la limite supérieure, définissez **MaxCount** sur 0 ou une valeur inférieure.
+limite supérieure de hello tooremove, définissez **MaxCount** too0 ou moins.
 
-### <a name="use-the-powershell-pipeline"></a>Utilisation du pipeline PowerShell
-Les applets de commande Batch peuvent exploiter le pipeline PowerShell pour envoyer des données entre les applets de commande. Cela a le même effet que la spécification d’un paramètre, mais permet d’utiliser plus facilement plusieurs entités.
+### <a name="use-hello-powershell-pipeline"></a>Utiliser le pipeline de PowerShell hello
+Applets de commande de traitement par lots peut tirer parti des données de toosend hello PowerShell pipeline entre applets de commande. Cela a hello même effet que la spécification d’un paramètre, mais facilite l’utilisation avec plusieurs entités plus facile.
 
 Par exemple, recherchez et affichez toutes les tâches sous votre compte :
 
@@ -152,7 +152,7 @@ Redémarrez chaque nœud de calcul dans un pool :
     Get-AzureBatchComputeNode -PoolId "myPool" -BatchContext $context | Restart-AzureBatchComputeNode -BatchContext $context
 
 ## <a name="application-package-management"></a>Gestion des packages d’application
-Les packages d’application permettent de déployer facilement des applications vers les nœuds de calcul dans vos pools. Grâce aux applets de commande PowerShell pour Batch, vous pouvez télécharger et gérer des packages d’application dans votre compte Batch, et déployer des versions de package sur des nœuds de calcul.
+Les packages d’applications permettent simplifié toodeploy applications toohello nœuds de calcul dans les pools. Avec hello applets de commande PowerShell de lot, vous pouvez télécharger et gérer des packages d’application dans votre compte Batch et déployer des nœuds de toocompute de versions de package.
 
 **Créez** une application :
 
@@ -162,7 +162,7 @@ Les packages d’application permettent de déployer facilement des applications
 
     New-AzureRmBatchApplicationPackage -AccountName <account_name> -ResourceGroupName <res_group_name> -ApplicationId "MyBatchApplication" -ApplicationVersion "1.0" -Format zip -FilePath package001.zip
 
-Définissez la **version par défaut** pour l’application :
+Ensemble hello **version par défaut** pour l’application hello :
 
     Set-AzureRmBatchApplication -AccountName <account_name> -ResourceGroupName <res_group_name> -ApplicationId "MyBatchApplication" -DefaultVersion "1.0"
 
@@ -181,14 +181,14 @@ Définissez la **version par défaut** pour l’application :
     Remove-AzureRmBatchApplication -AccountName <account_name> -ResourceGroupName <res_group_name> -ApplicationId "MyBatchApplication"
 
 > [!NOTE]
-> Vous devez supprimer toutes les versions de packages d’application d’une application avant de supprimer l’application. Vous recevrez une erreur « Conflit » si vous essayez de supprimer une application qui possède des packages d’applications.
+> Vous devez supprimer toutes les versions de package d’application d’une application avant de supprimer application hello. Vous recevez une erreur « Conflit » si vous essayez de toodelete une application qui possède actuellement des packages d’applications.
 > 
 > 
 
 ### <a name="deploy-an-application-package"></a>Déployer un package d’application
-Vous pouvez spécifier un ou plusieurs packages d’application pour le déploiement lorsque vous créez un pool. Lorsque vous spécifiez un package lors de la création du pool, il est déployé sur chaque nœud lorsque le nœud rejoint le pool. Les packages sont également déployés lorsqu’un nœud est redémarré ou réinitialisé.
+Vous pouvez spécifier un ou plusieurs packages d’application pour le déploiement lorsque vous créez un pool. Lorsque vous spécifiez un package au moment de la création du pool, il est déployé tooeach nœud en tant que pool de jointures de nœud hello. Les packages sont également déployés lorsqu’un nœud est redémarré ou réinitialisé.
 
-Spécifiez l’option `-ApplicationPackageReference` lors de la création d’un pool pour déployer un package d’application sur les nœuds du pool dès qu’ils rejoignent le pool. Commencez par créer un objet **PSApplicationPackageReference**, puis configurez-le avec l’ID d’application et la version du package que vous souhaitez déployer sur les nœuds de calcul du pool :
+Spécifiez hello `-ApplicationPackageReference` option lors de la création des nœuds d’un package toohello du pool d’applications un toodeploy pool dès qu’ils rejoignent le pool de hello. Commencez par créer un **PSApplicationPackageReference** de l’objet et configurez-le avec hello Id et le package de version de l’application vous souhaitez que les nœuds de calcul du pool toodeploy toohello :
 
     $appPackageReference = New-Object Microsoft.Azure.Commands.Batch.Models.PSApplicationPackageReference
 
@@ -196,19 +196,19 @@ Spécifiez l’option `-ApplicationPackageReference` lors de la création d’un
 
     $appPackageReference.Version = "1.0"
 
-Créez maintenant le pool et spécifiez l’objet de référence du package comme argument dans l’option `ApplicationPackageReferences` :
+Maintenant créer le pool de hello et spécifiez l’objet de référence de package hello comme hello argument toohello `ApplicationPackageReferences` option :
 
     New-AzureBatchPool -Id "PoolWithAppPackage" -VirtualMachineSize "Small" -CloudServiceConfiguration $configuration -BatchContext $context -ApplicationPackageReferences $appPackageReference
 
-Pour plus d’informations sur les packages d’applications, consultez [Déployer des applications sur les nœuds avec des packages d’applications Batch](batch-application-packages.md).
+Vous trouverez plus d’informations sur les packages d’applications dans [déployer des nœuds de toocompute d’applications avec des packages d’application de lot](batch-application-packages.md).
 
 > [!IMPORTANT]
-> Pour utiliser les packages d’application, vous devez commencer par [lier un compte de stockage Azure](#linked-storage-account-autostorage) à votre compte Batch.
+> Vous devez [lier un compte de stockage Azure](#linked-storage-account-autostorage) tooyour lot compte toouse des packages d’applications.
 > 
 > 
 
 ### <a name="update-a-pools-application-packages"></a>Mise à jour des packages d’applications d’un pool
-Pour mettre à jour les applications associées à un pool existant, commencez par créer un objet PSApplicationPackageReference avec les propriétés souhaitées (ID d’application et version de package) :
+les applications de hello tooupdate affectées tooan pool existant, d’abord créer un objet PSApplicationPackageReference avec les propriétés de hello souhaitée (version Id et le package d’application) :
 
     $appPackageReference = New-Object Microsoft.Azure.Commands.Batch.Models.PSApplicationPackageReference
 
@@ -216,7 +216,7 @@ Pour mettre à jour les applications associées à un pool existant, commencez p
 
     $appPackageReference.Version = "2.0"
 
-Obtenez ensuite le pool dans Batch, effacez tous les packages existants, ajoutez notre nouvelle référence de package, puis mettez à jour le service Batch avec les nouveaux paramètres de pool :
+Ensuite, obtenir le pool de hello de lot, effacer tout package existant, ajoutez notre nouvelle référence de package et mettre à jour le service de traitement par lots hello avec de nouveaux paramètres de pool hello :
 
     $pool = Get-AzureBatchPool -BatchContext $context -Id "PoolWithAppPackage"
 
@@ -226,17 +226,17 @@ Obtenez ensuite le pool dans Batch, effacez tous les packages existants, ajoutez
 
     Set-AzureBatchPool -BatchContext $context -Pool $pool
 
-Vous avez mis à jour les propriétés du pool dans le service Batch. Pour déployer réellement le nouveau package d’application sur des nœuds de calcul dans le pool, vous devez redémarrer ou réinitialiser ces nœuds. Vous pouvez redémarrer tous les nœuds dans un pool avec la commande suivante :
+Vous avez maintenant mis à jour les propriétés du pool hello dans le service de traitement par lots hello. tooactually déployer hello nouveau package toocompute nœuds d’application dans le pool de hello, toutefois, vous devez redémarrer ou réinitialiser ces nœuds. Vous pouvez redémarrer tous les nœuds dans un pool avec la commande suivante :
 
     Get-AzureBatchComputeNode -PoolId "PoolWithAppPackage" -BatchContext $context | Restart-AzureBatchComputeNode -BatchContext $context
 
 > [!TIP]
-> Vous pouvez déployer plusieurs packages d’application sur les nœuds de calcul dans un pool. Si vous souhaitez *ajouter* un package d’application au lieu de remplacer les packages actuellement déployés, omettez la ligne `$pool.ApplicationPackageReferences.Clear()` ci-dessus.
+> Vous pouvez déployer plusieurs applications packages toohello nœuds de calcul un pool. Si vous souhaitez que trop*ajouter* un package d’application au lieu de remplacer les packages hello actuellement déployé, omettez hello `$pool.ApplicationPackageReferences.Clear()` ligne ci-dessus.
 > 
 > 
 
 ## <a name="next-steps"></a>Étapes suivantes
 * Pour connaître la syntaxe détaillée des applets de commande et obtenir des exemples, consultez les [informations de référence sur les applets de commande Azure Batch](/powershell/module/azurerm.batch/#batch).
-* Pour plus d’informations sur les applications et les packages d’applications dans Batch, consultez [Déploiement d’applications avec des packages d’applications Azure Batch](batch-application-packages.md).
+* Pour plus d’informations sur les applications et packages d’applications de traitement par lots, consultez [déployer des nœuds de toocompute d’applications avec des packages d’application de lot](batch-application-packages.md).
 
 [vm_marketplace]: https://azure.microsoft.com/marketplace/virtual-machines/

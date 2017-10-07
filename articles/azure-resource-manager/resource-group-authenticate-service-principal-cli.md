@@ -1,6 +1,6 @@
 ---
-title: "Créer une identité pour une application Azure avec Azure CLI | Microsoft Docs"
-description: "Explique comment utiliser Azure CLI pour créer une application et un principal du service Azure Active Directory, et comment accorder à l’application l’accès aux ressources par le biais du contrôle d’accès en fonction du rôle. Cet article montre comment authentifier l’application avec un mot de passe ou un certificat."
+title: "identité aaaCreate pour une application Azure avec Azure CLI | Documents Microsoft"
+description: "Décrit comment contrôlent les toouse CLI d’Azure toocreate une application Azure Active Directory et principal du service et accordez il accéder tooresources via l’accès en fonction du rôle. Il montre comment application tooauthenticate avec un mot de passe ou un certificat."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,43 +14,43 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 05/15/2017
 ms.author: tomfitz
-ms.openlocfilehash: 3c5826d58887ff1af4df8e66999d9c1a1643bcc7
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 0d693ec801d4f4d6c24ec420580776e73014b325
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-azure-cli-to-create-a-service-principal-to-access-resources"></a>Créer un principal du service pour accéder aux ressources à l’aide d’Azure CLI
+# <a name="use-azure-cli-toocreate-a-service-principal-tooaccess-resources"></a>Utilisez Azure CLI toocreate une ressources tooaccess principal du service
 
-Lorsque vous avez une application ou un script qui doit pouvoir accéder à des ressources, vous pouvez configurer une identité pour l’application et authentifier l’application avec ses propres informations d’identification. Cette identité est connue en tant que principal de service. Cette approche vous permet d’effectuer les opérations suivantes :
+Lorsque vous avez une application ou un script nécessitant des ressources de tooaccess, vous pouvez configurer une identité pour l’application hello et authentifier l’application hello avec ses propres informations d’identification. Cette identité est connue en tant que principal de service. Cette approche vous permet d’effectuer les opérations suivantes :
 
-* Affecter à l’identité de l’application des autorisations différentes de vos propres autorisations. En règle générale, ces autorisations sont strictement limitées à ce que l’application doit faire.
-* Utiliser un certificat pour l’authentification lors de l’exécution d’un script sans assistance.
+* Affecter des autorisations identité d’application toohello différents de vos propres autorisations. En règle générale, ces autorisations sont limitée tooexactly quelle application hello doit toodo.
+* Utilisez un certificat pour l’authentification lors de l’exécution d’un script sans assistance.
 
-Cet article explique comment utiliser [Azure CLI 1.0](../cli-install-nodejs.md) pour configurer une application qui s’exécute sous ses propres informations d’identification et sous sa propre identité. Installez la dernière version d’[Azure CLI 1.0](../cli-install-nodejs.md) pour vous assurer que votre environnement correspond aux exemples utilisés dans cet article.
+Cet article vous montre comment toouse [Azure CLI 1.0](../cli-install-nodejs.md) tooset d’un toorun application sous ses propres informations d’identification et l’identité. Installer la version la plus récente de hello [Azure CLI 1.0](../cli-install-nodejs.md) toomake que votre environnement correspond aux exemples hello dans cet article.
 
 ## <a name="required-permissions"></a>Autorisations requises
-Pour effectuer cette rubrique, vous devez disposer des autorisations suffisantes dans votre annuaire Azure Active Directory et votre abonnement Azure. Plus précisément, vous devez être en mesure de créer une application dans l’annuaire Azure Active Directory et d’affecter un rôle au principal du service. 
+toocomplete cette rubrique, vous devez disposer des autorisations suffisantes dans Azure Active Directory et votre abonnement Azure. Plus précisément, vous devez être en mesure de toocreate une application Bonjour Azure Active Directory et affecter des rôle tooa principal du service hello. 
 
-Le moyen le plus simple pour vérifier que votre compte dispose des autorisations adéquates est d’utiliser le portail. Consultez [Vérifier l’autorisation requise dans le portail](resource-group-create-service-principal-portal.md#required-permissions).
+Hello toocheck de façon plus simple si votre compte dispose des autorisations adéquates est via le portail de hello. Consultez [Vérifier l’autorisation requise dans le portail](resource-group-create-service-principal-portal.md#required-permissions).
 
-Passez maintenant à la section appropriée pour vous authentifier à l’aide d’un [mot de passe](#create-service-principal-with-password) ou d’un [certificat](#create-service-principal-with-certificate).
+Maintenant, soit poursuivre tooa section [mot de passe](#create-service-principal-with-password) ou [certificat](#create-service-principal-with-certificate) l’authentification.
 
 ## <a name="create-service-principal-with-password"></a>Créer un principal du service avec un mot de passe
-Dans cette section, vous allez suivre la procédure qui vous permettra de créer l’application AD à l’aide d’un mot de passe et d’affecter le rôle Lecteur au principal du service.
+Dans cette section, vous effectuez hello étapes toocreate hello application AD avec un mot de passe et assigner de principal du service toohello hello lecture du rôle.
 
-1. Connectez-vous à votre compte.
+1. Tooyour compte de connexion.
    
    ```azurecli
    azure login
    ```
-2. Pour créer une identité d’application, fournissez le nom de l’application et un mot de passe, comme dans la commande suivante :
+2. toocreate une identité de l’application, fournir nom hello de l’application hello et un mot de passe, comme indiqué dans hello de commande suivante :
      
    ```azurecli
    azure ad sp create -n exampleapp -p {your-password}
    ```
      
-   Le nouveau principal du service est renvoyé. L’ID d’objet est nécessaire lorsque vous accordez des autorisations. Le GUID répertorié avec les noms de principal du service est nécessaire lors de la connexion. Ce guid est la même valeur que l’id de l’application. Dans les exemples d’applications, cette valeur est désignée sous le nom `Client ID`. 
+   nouveau service Hello principal est retourné. Hello, Id d’objet est nécessaire lors de l’octroi d’autorisations. guid Hello répertorié par hello noms principaux de Service est nécessaire lors de la connexion. Ce guid est hello même valeur que l’id de l’application hello. Dans les exemples d’applications hello, cette valeur est désignée tooas hello `Client ID`. 
      
    ```azurecli
    info:    Executing command ad sp create
@@ -65,18 +65,18 @@ Dans cette section, vous allez suivre la procédure qui vous permettra de créer
      info:    ad sp create command OK
    ```
 
-3. Accordez des autorisations sur votre abonnement au principal du service. Dans cet exemple, vous ajoutez le principal du service au rôle Lecteur, ce qui l’autorise à lire toutes les ressources de l’abonnement. Pour les autres rôles, voir [RBAC : rôles intégrés](../active-directory/role-based-access-built-in-roles.md). Pour le paramètre objectid, fournissez l’ID objet que vous avez utilisé lors de la création de l’application. Avant d’exécuter cette commande, vous devez donner le temps au nouveau principal du service de se propager dans Azure Active Directory. Lorsque vous exécutez ces commandes manuellement, en général il s’est écoulé suffisamment de temps entre les tâches. Dans un script, vous devez ajouter une étape de veille entre les commandes (telle que `sleep 15`). Si une erreur s’affiche indiquant que le principal n’existe pas dans le répertoire, réexécutez la commande.
+3. Accorder des autorisations de principal de service hello sur votre abonnement. Dans cet exemple, vous ajoutez hello service principal toohello rôle Lecteur, qui accorde l’autorisation tooread toutes les ressources dans l’abonnement de hello. Pour les autres rôles, voir [RBAC : rôles intégrés](../active-directory/role-based-access-built-in-roles.md). Pour le paramètre objectid de hello, fournir hello Id d’objet que vous avez utilisé lors de la création d’application hello. Avant d’exécuter cette commande, vous devez laissez-lui du temps hello de nouveau service principal toopropagate dans Azure Active Directory. Lorsque vous exécutez ces commandes manuellement, en général il s’est écoulé suffisamment de temps entre les tâches. Dans un script, vous devez ajouter un toosleep étape entre commandes hello (comme `sleep 15`). Si vous voyez qu'un hello indiquant erreur principal n’existe pas dans le répertoire de hello, réexécutez la commande hello.
    
    ```azurecli
    azure role assignment create --objectId ff863613-e5e2-4a6b-af07-fff6f2de3f4e -o Reader -c /subscriptions/{subscriptionId}/
    ```
    
-Et voilà ! Votre application Active Directory et votre principal du service sont maintenant configurés. La section suivante vous montre comment vous connecter avec les informations d’identification via Azure CLI. Si vous souhaitez utiliser les informations d’identification dans votre application de code, vous pouvez ignorer cette rubrique. Vous pouvez passer directement aux [exemples d’applications](#sample-applications) pour obtenir des exemples de connexion à l’aide d’un ID d’application et d’un mot de passe. 
+Et voilà ! Votre application Active Directory et votre principal du service sont maintenant configurés. section suivante de Hello vous montre comment toolog avec hello des informations d’identification via l’interface CLI d’Azure. Si vous souhaitez que les informations d’identification de toouse hello dans votre application de code, il est inutile toocontinue avec cette rubrique. Vous pouvez également accéder directement toohello [exemples d’applications](#sample-applications) pour obtenir des exemples de connexion avec votre id d’application et le mot de passe. 
 
 ### <a name="provide-credentials-through-azure-cli"></a>Fournir des informations d’identification via Azure CLI
-Maintenant, vous devez vous connecter en tant qu’application pour effectuer des opérations.
+Maintenant, vous devez toolog dans en tant qu’opérations de tooperform application hello.
 
-1. Chaque fois que vous vous connectez en tant que principal de service, vous devez fournir l’ID de locataire du répertoire de votre application AD. Un locataire est une instance d’Azure Active Directory. Pour récupérer l’ID de locataire pour l’abonnement actuellement authentifié, utilisez :
+1. Chaque fois que vous êtes connecté en tant que service principal, vous avez besoin d’id de client hello tooprovide du répertoire de hello pour votre application AD. Un locataire est une instance d’Azure Active Directory. id de client tooretrieve hello pour votre abonnement actuellement authentifié, utilisez :
    
    ```azurecli
    azure account show
@@ -94,18 +94,18 @@ Maintenant, vous devez vous connecter en tant qu’application pour effectuer de
    ...
    ```
    
-     Si vous avez besoin d’obtenir l’ID de locataire d’un autre abonnement, utilisez la commande suivante :
+     Si vous avez besoin d’id de client hello tooget d’un autre abonnement, utilisez hello de commande suivante :
    
    ```azurecli
    azure account show -s {subscription-id}
    ```
-2. Si vous avez besoin de récupérer l’id de client à utiliser pour la connexion, utilisez :
+2. Si vous devez tooretrieve hello client id toouse pour la connexion, utilisez :
    
    ```azurecli
    azure ad sp show -c exampleapp --json
    ```
    
-     La valeur à utiliser pour la connexion est le guid répertorié dans les noms de principal du service.
+     toouse de valeur Hello pour la connexion est un guid hello répertoriée dans les noms principaux de service hello.
    
    ```azurecli
    [
@@ -121,31 +121,31 @@ Maintenant, vous devez vous connecter en tant qu’application pour effectuer de
      }
    ]
    ```
-3. Connectez-vous en tant que principal du service.
+3. Ouvrez une session en tant que principal du service hello.
    
    ```azurecli
    azure login -u 7132aca4-1bdb-4238-ad81-996ff91d8db4 --service-principal --tenant {tenant-id}
    ```
    
-    Vous êtes invité à entrer le mot de passe. Entrez le mot de passe que vous avez indiqué lors de la création de l’application AD.
+    Vous êtes invité au mot de passe hello. Fournissent un mot de passe hello spécifié lors de la création d’application hello AD.
    
    ```azurecli
    info:    Executing command login
    Password: ********
    ```
 
-Vous êtes maintenant authentifié en tant que principal du service pour le principal du service que vous avez créé.
+Vous êtes désormais authentifié en tant que principal du service hello de principal du service hello que vous avez créé.
 
-Vous pouvez également appeler des opérations REST à partir de la ligne de commande pour vous connecter. Dans la réponse d’authentification, vous pouvez récupérer le jeton d’accès en vue de l’utiliser avec d’autres opérations. Pour un exemple de récupération du jeton d’accès en appelant des opérations REST, consultez [Génération d’un jeton d’accès](resource-manager-rest-api.md#generating-an-access-token).
+Ou bien, vous pouvez appeler des opérations REST à partir de toolog de ligne de commande hello dans. À partir de la réponse d’authentification hello, vous pouvez récupérer le jeton d’accès hello pour une utilisation avec d’autres opérations. Pour obtenir un exemple de la récupération du jeton d’accès hello en appelant les opérations REST, consultez [générer un jeton d’accès](resource-manager-rest-api.md#generating-an-access-token).
 
 ## <a name="create-service-principal-with-certificate"></a>Créer un principal du service avec un certificat
-Cette section explique comment :
+Dans cette section, vous les étapes hello pour :
 
 * créer un certificat auto-signé ;
-* créer l’application Active Directory avec le certificat, ainsi que le principal du service ;
-* affecter le rôle Lecteur au principal du service.
+* créer hello application AD avec hello et de certificat principal de service hello
+* affecter le principal du service toohello hello lecture du rôle
 
-Pour ce faire, [OpenSSL](http://www.openssl.org/) doit être installé.
+toocomplete ces étapes, vous devez avoir [OpenSSL](http://www.openssl.org/) installé.
 
 1. Vous pouvez créer un certificat auto-signé.
    
@@ -153,26 +153,26 @@ Pour ce faire, [OpenSSL](http://www.openssl.org/) doit être installé.
    openssl req -x509 -days 3650 -newkey rsa:2048 -out cert.pem -nodes -subj '/CN=exampleapp'
    ```
 
-2. L’étape précédente a permis de créer deux fichiers : privkey.pem et cert.pem. Combinez les clés publique et privée dans un seul fichier.
+2. Hello précédant étape créé deux fichiers - privkey.pem et cert.pem. Combiner les clés publiques et privées hello dans un seul fichier.
 
    ```
    cat privkey.pem cert.pem > examplecert.pem
    ```
 
-3. Ouvrez le fichier **examplecert.pem** et recherchez la longue séquence de caractères entre **-----BEGIN CERTIFICATE-----** et **-----END CERTIFICATE-----**. Copiez les données du certificat. Vous transmettrez ces données en tant que paramètre lors de la création du principal du service.
+3. Ouvrez hello **examplecert.pem** de fichiers et recherchez hello longue séquence de caractères entre **---BEGIN CERTIFICATE---** et **---END CERTIFICATE---**. Copiez les données de certificat hello. Vous passez ces données en tant que paramètre lors de la création de hello principal du service.
 
-4. Connectez-vous à votre compte.
+4. Tooyour compte de connexion.
 
    ```azurecli
    azure login
    ```
-5. Pour créer le principal de service, fournissez le nom de l’application et les données de certificat, comme indiqué dans la commande suivante :
+5. principal du service toocreate hello, fournir nom hello de l’application hello et les données de certificat hello, comme indiqué dans hello de commande suivante :
      
    ```azurecli
    azure ad sp create -n exampleapp --cert-value {certificate data}
    ```
      
-   Le nouveau principal du service est renvoyé. L’ID d’objet est nécessaire lorsque vous accordez des autorisations. Le GUID répertorié avec les noms de principal du service est nécessaire lors de la connexion. Ce guid est la même valeur que l’id de l’application. Dans les exemples d’applications, cette valeur est appelée ID client. 
+   nouveau service Hello principal est retourné. Hello, Id d’objet est nécessaire lors de l’octroi d’autorisations. guid Hello répertorié par hello noms principaux de Service est nécessaire lors de la connexion. Ce guid est hello même valeur que l’id de l’application hello. Dans les exemples d’applications hello, cette valeur est désignée tooas hello ID Client. 
      
    ```azurecli
    info:    Executing command ad sp create
@@ -185,16 +185,16 @@ Pour ce faire, [OpenSSL](http://www.openssl.org/) doit être installé.
      data:                      https://www.contoso.org/example
      info:    ad sp create command OK
    ```
-6. Accordez des autorisations sur votre abonnement au principal du service. Dans cet exemple, vous ajoutez le principal du service au rôle Lecteur, ce qui l’autorise à lire toutes les ressources de l’abonnement. Pour les autres rôles, voir [RBAC : rôles intégrés](../active-directory/role-based-access-built-in-roles.md). Pour le paramètre objectid, fournissez l’ID objet que vous avez utilisé lors de la création de l’application. Avant d’exécuter cette commande, vous devez donner le temps au nouveau principal du service de se propager dans Azure Active Directory. Lorsque vous exécutez ces commandes manuellement, en général il s’est écoulé suffisamment de temps entre les tâches. Dans un script, vous devez ajouter une étape de veille entre les commandes (telle que `sleep 15`). Si une erreur s’affiche indiquant que le principal n’existe pas dans le répertoire, réexécutez la commande.
+6. Accorder des autorisations de principal de service hello sur votre abonnement. Dans cet exemple, vous ajoutez hello service principal toohello rôle Lecteur, qui accorde l’autorisation tooread toutes les ressources dans l’abonnement de hello. Pour les autres rôles, voir [RBAC : rôles intégrés](../active-directory/role-based-access-built-in-roles.md). Pour le paramètre objectid de hello, fournir hello Id d’objet que vous avez utilisé lors de la création d’application hello. Avant d’exécuter cette commande, vous devez laissez-lui du temps hello de nouveau service principal toopropagate dans Azure Active Directory. Lorsque vous exécutez ces commandes manuellement, en général il s’est écoulé suffisamment de temps entre les tâches. Dans un script, vous devez ajouter un toosleep étape entre commandes hello (comme `sleep 15`). Si vous voyez qu'un hello indiquant erreur principal n’existe pas dans le répertoire de hello, réexécutez la commande hello.
    
    ```azurecli
    azure role assignment create --objectId 7dbc8265-51ed-4038-8e13-31948c7f4ce7 -o Reader -c /subscriptions/{subscriptionId}/
    ```
   
 ### <a name="provide-certificate-through-automated-azure-cli-script"></a>Fournir un certificat via un script Azure CLI automatisé
-Maintenant, vous devez vous connecter en tant qu’application pour effectuer des opérations.
+Maintenant, vous devez toolog dans en tant qu’opérations de tooperform application hello.
 
-1. Chaque fois que vous vous connectez en tant que principal de service, vous devez fournir l’ID de locataire du répertoire de votre application AD. Un locataire est une instance d’Azure Active Directory. Pour récupérer l’ID de locataire pour l’abonnement actuellement authentifié, utilisez :
+1. Chaque fois que vous êtes connecté en tant que service principal, vous avez besoin d’id de client hello tooprovide du répertoire de hello pour votre application AD. Un locataire est une instance d’Azure Active Directory. id de client tooretrieve hello pour votre abonnement actuellement authentifié, utilisez :
    
    ```azurecli
    azure account show
@@ -212,12 +212,12 @@ Maintenant, vous devez vous connecter en tant qu’application pour effectuer de
    ...
    ```
    
-   Si vous avez besoin d’obtenir l’ID de locataire d’un autre abonnement, utilisez la commande suivante :
+   Si vous avez besoin d’id de client hello tooget d’un autre abonnement, utilisez hello de commande suivante :
    
    ```azurecli
    azure account show -s {subscription-id}
    ```
-2. Pour récupérer l’empreinte de certificat et supprimer les caractères inutiles, utilisez :
+2. tooretrieve hello empreinte numérique du certificat et supprimez les caractères inutiles, utilisez :
    
    ```
    openssl x509 -in "C:\certificates\examplecert.pem" -fingerprint -noout | sed 's/SHA1 Fingerprint=//g'  | sed 's/://g'
@@ -228,13 +228,13 @@ Maintenant, vous devez vous connecter en tant qu’application pour effectuer de
    ```
    30996D9CE48A0B6E0CD49DBB9A48059BF9355851
    ```
-3. Si vous avez besoin de récupérer l’id de client à utiliser pour la connexion, utilisez :
+3. Si vous devez tooretrieve hello client id toouse pour la connexion, utilisez :
    
    ```azurecli
    azure ad sp show -c exampleapp
    ```
    
-   La valeur à utiliser pour la connexion est le guid répertorié dans les noms de principal du service.
+   toouse de valeur Hello pour la connexion est un guid hello répertoriée dans les noms principaux de service hello.
      
    ```azurecli
    [
@@ -250,25 +250,25 @@ Maintenant, vous devez vous connecter en tant qu’application pour effectuer de
      }
    ]
    ```
-4. Connectez-vous en tant que principal du service.
+4. Ouvrez une session en tant que principal du service hello.
    
    ```azurecli
    azure login --service-principal --tenant {tenant-id} -u 4fd39843-c338-417d-b549-a545f584a745 --certificate-file C:\certificates\examplecert.pem --thumbprint {thumbprint}
    ```
 
-Vous êtes maintenant authentifié en tant que principal du service pour l’application Azure Active Directory que vous avez créée.
+Vous êtes désormais authentifié en tant que principal de service hello pour hello application Azure Active Directory que vous avez créé.
 
 ## <a name="change-credentials"></a>Modifier les informations d’identification
 
-Pour modifier les informations d’identification pour une application Active Directory, en raison d’une faille de sécurité ou de l’expiration des informations d’identification, utilisez `azure ad app set`.
+informations d’identification de hello toochange pour une application AD, soit en raison d’une compromission de la sécurité ou une date d’expiration des informations d’identification, utilisent `azure ad app set`.
 
-Pour modifier un mot de passe, utilisez :
+toochange un mot de passe, utilisez :
 
 ```azurecli
 azure ad app set --applicationId 4fd39843-c338-417d-b549-a545f584a745 --password p@ssword
 ```
 
-Pour modifier une valeur de certificat, utilisez :
+toochange une valeur de certificat, utilisez :
 
 ```azurecli
 azure ad app set --applicationId 4fd39843-c338-417d-b549-a545f584a745 --cert-value {certificate data}
@@ -276,14 +276,14 @@ azure ad app set --applicationId 4fd39843-c338-417d-b549-a545f584a745 --cert-val
 
 ## <a name="debug"></a>Déboguer
 
-Lors de la création d’un principal de service, vous pouvez rencontrer les erreurs suivantes :
+Vous pouvez rencontrer les erreurs suivantes lors de la création d’un principal de service de hello :
 
-* **« Authentication_Unauthorized »** ou **« Aucun abonnement trouvé dans le contexte. »** - Vous voyez cette erreur lorsque votre compte ne possède pas les [autorisations requises](#required-permissions) sur Azure Active Directory pour inscrire une application. En règle générale, vous obtenez cette erreur lorsque seuls des utilisateurs administrateurs dans votre annuaire Azure Active Directory peuvent inscrire des applications et que votre compte n’est pas un compte d’administrateur. Demandez à votre administrateur de vous affecter à un rôle d’administrateur ou d’autoriser les utilisateurs ordinaires à inscrire des applications.
+* **« Authentication_Unauthorized »** ou **« aucun abonnement ne trouvé dans le contexte de hello. »** -Vous recevez cette erreur lorsque votre compte ne dispose pas de hello [autorisations requises](#required-permissions) sur hello Azure Active Directory tooregister une application. En règle générale, vous obtenez cette erreur lorsque seuls des utilisateurs administrateurs dans votre annuaire Azure Active Directory peuvent inscrire des applications et que votre compte n’est pas un compte d’administrateur. Demandez à votre tooeither administrateur affecter le rôle administrateur tooan ou tooenable utilisateurs tooregister applications.
 
-* Le message indique que votre compte **« n’est pas autorisé à effectuer l’action ’Microsoft.Authorization/roleAssignments/write’ sur l’étendue ’/subscriptions/{guid}’ »** - Vous voyez cette erreur lorsque votre compte ne dispose pas d’autorisations suffisantes pour affecter un rôle à une identité. Demandez à votre administrateur d’abonnement de vous ajouter au rôle Administrateur de l’accès utilisateur.
+* Votre compte **« n’a pas action de tooperform d’autorisation 'Microsoft.Authorization/roleAssignments/write' sur l’étendue '/ subscriptions / {guid}'. »**  -Vous recevez cette erreur lorsque votre compte n’a pas suffisamment autorisations tooassign une identité tooan du rôle. Demandez à votre tooadd d’administrateur abonnement rôle administrateur de l’accès tooUser.
 
 ## <a name="sample-applications"></a>Exemples d'applications
-Pour plus d’informations sur la connexion en tant qu’application via différentes plateformes, voir :
+Pour plus d’informations sur la connexion en tant qu’application hello via différentes plateformes, consultez :
 
 * [.NET](/dotnet/azure/dotnet-sdk-azure-authenticate?view=azure-dotnet)
 * [Java](/java/azure/java-sdk-azure-authenticate)
@@ -292,6 +292,6 @@ Pour plus d’informations sur la connexion en tant qu’application via différ
 * [Ruby](https://azure.microsoft.com/documentation/samples/resource-manager-ruby-resources-and-groups/)
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Pour obtenir des instructions détaillées sur l’intégration d’une application à Azure pour la gestion des ressources, consultez [Guide du développeur pour l’authentification avec l’API Azure Resource Manager](resource-manager-api-authentication.md).
-* Pour obtenir des informations supplémentaires sur l’utilisation de certificats et d’Azure CLI, voir [Certificate-based authentication with Azure Service Principals from Linux command line](http://blogs.msdn.com/b/arsen/archive/2015/09/18/certificate-based-auth-with-azure-service-principals-from-linux-command-line.aspx)(Authentification par certificat à l’aide de principaux du service Azure à partir de la ligne de commande Linux). 
-* Pour une liste des actions disponibles qui peuvent être accordées ou refusées aux utilisateurs, consultez [Opérations du fournisseur de ressources Azure Resource Manager](../active-directory/role-based-access-control-resource-provider-operations.md).
+* Pour obtenir des instructions détaillées sur l’intégration d’une application dans Azure pour la gestion des ressources, consultez [tooauthorization du guide du développeur avec hello API Azure Resource Manager](resource-manager-api-authentication.md).
+* tooget plus d’informations sur l’utilisation de certificats et CLI d’Azure, consultez [l’authentification basée sur le certificat avec les principaux du Service Azure à partir de la ligne de commande Linux](http://blogs.msdn.com/b/arsen/archive/2015/09/18/certificate-based-auth-with-azure-service-principals-from-linux-command-line.aspx). 
+* Pour obtenir la liste des actions disponibles qui peuvent être accordées ou refusées toousers, consultez [opérations du fournisseur de ressources Azure Resource Manager](../active-directory/role-based-access-control-resource-provider-operations.md).

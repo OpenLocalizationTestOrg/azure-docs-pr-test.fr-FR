@@ -1,6 +1,6 @@
 ---
-title: "Mise hors service d’Azure RemoteApp"
-description: "Informations concernant la mise hors service imminente d’Azure RemoteApp"
+title: aaaAzure retrait de RemoteApp
+description: "Plus d’informations sur la retraite imminente de hello d’Azure RemoteApp"
 services: remoteapp
 documentationcenter: 
 author: msmbaldwin
@@ -13,19 +13,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/15/2017
 ms.author: mbaldwin
-ms.openlocfilehash: d12cd49427b3fa4a93d73abc43011bb59f405f7e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a45c27e59757ae3683fc689aa88638108a9c66b6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-remoteapp-retirement"></a>Mise hors service d’Azure RemoteApp
-Vous avez été redirigé vers cet article, car nous n’avons pas pu obtenir la confirmation de votre part que vous êtes au fait de la mise hors service d’Azure RemoteApp. 
+Vous a demandé l’article toothis, car nous n’avons pas été en mesure de toocontact vous tooacknowledge hello retrait d’Azure RemoteApp. 
 
-Nous avons essayé de vous contacter, ainsi que les autres administrateurs d’abonnements Azure, pour vérifier que vous étiez informé de la mise hors service d’Azure RemoteApp le 31 août 2017. Nous avons [annoncé la mise hors service d’Azure RemoteApp le 12 août 2016](http://aka.ms/araretirement).   Nous vous invitons à nous répondre à l’adresse [arainfo@microsoft.com](mailto:arainfo@microsoft.com) en confirmant que :
-1.  Vous et votre organisation êtes au fait de la mise hors service dès le 31 août 2017.
+Nous avons essayé de toocontact vous hello et les autres administrateurs d’abonnement Azure dans l’ordre tooverify que vous êtes conscient que Azure RemoteApp a été supprimée 2017 de 31 août, nous [annoncé retraite hello d’Azure RemoteApp le 12 août, 2016](http://aka.ms/araretirement).   Nous demander urgence vous répondez trop[ arainfo@microsoft.com ](mailto:arainfo@microsoft.com) indiquant :
+1.  Votre organisation et vous reconnaissent retraite hello sur 2017 de 31 août
 2.  Faites-nous part de vos plans de migration (nous pouvons vous aider, si nécessaire). Les options de migration sont détaillées dans [Options de migration hors d’Azure RemoteApp](http://aka.ms/aramigration), notamment Citrix XenApp Essentials, MyCloudIT, Frame, etc. 
 
-Le nœud REMOTEAPP au sein du portail de gestion Azure a peut-être été bloqué. La raison à cela est que nous n’avons pas réussi à vous contacter et avons dû nous résoudre à prendre cette décision.  Vous n’avez peut-être pas reçu nos messages électroniques parce que l’adresse électronique associée à l’abonnement Azure n’est pas supervisée ou est incorrecte.  Nous vous encourageons vivement à vérifier que l’adresse électronique associée à votre abonnement Azure est valide et supervisée. Pour cela, accédez au portail Azure et vérifiez l’abonnement Administrateurs.  
+nœud REMOTEAPP Hello dans le portail de gestion Azure hello ont été bloqué, nous l’avons fait cela car nous pourrait vous contacte pas et a tooforce votre engagement avec nous.  Vous n’aient pas reçu nos messages, car l’adresse de messagerie hello associé hello abonnement Azure ne sont pas analysées ou ne sont pas valide.  Nous vous encourageons vivement toovalidate hello e-mails adresse associée à votre abonnement Azure sont valides et analysé, cela en naviguant toohello portail Azure et de vérification de l’abonnement hello administrateurs.  
 
 Vous vous posez encore des questions ou vous avez besoin d’assistance pour la migration ?  Envoyez-nous dès maintenant un message électronique à l’adresse [arainfo@microsoft.com](mailto:arainfo@microsoft.com) ou [programmez une réunion](http://aka.ms/ericorman) avec notre équipe de transition. 

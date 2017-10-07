@@ -1,5 +1,5 @@
 ---
-title: "Présentation des connexions hybrides | Microsoft Docs"
+title: "vue d’ensemble des connexions aaaHybrid | Documents Microsoft"
 description: "Découvrez les connexions hybrides, la sécurité, les ports TCP et les configurations prises en charge. MABS, WABS."
 services: biztalk-services
 documentationcenter: 
@@ -14,85 +14,85 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 10/18/2016
 ms.author: ccompy
-ms.openlocfilehash: 9367d6f57e694c8a438781004ef29a09de77aaa8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f092c6019aae761e1e73f13d1af8446a896515c2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="hybrid-connections-overview"></a>Aperçu des connexions hybrides
 
 > [!IMPORTANT]
-> Les connexions hybrides BizTalk ont été supprimées et remplacées par les connexions hybrides App Service. Pour plus d’informations, notamment sur la procédure à suivre pour gérer vos connexions hybrides BizTalk existantes, consultez l’article [Connexions hybrides d’Azure App Service](../app-service/app-service-hybrid-connections.md).
+> Les connexions hybrides BizTalk ont été supprimées et remplacées par les connexions hybrides App Service. Pour plus d’informations, y compris comment toomanage vos connexions hybrides BizTalk existant, consultez [connexions hybrides de Azure App Service](../app-service/app-service-hybrid-connections.md).
 
-Présentation des connexions hybrides, listes des configurations prises en charge et listes des ports TCP requis
+Introduction tooHybrid connexions, répertorie les configurations de hello pris en charge, et les listes hello aux ports TCP requis.
 
 ## <a name="what-is-a-hybrid-connection"></a>Présentation des connexions hybrides
-Les connexions hybrides sont une fonctionnalité d’Azure BizTalk Services : Les connexions hybrides sont un moyen simple et pratique de connecter la fonctionnalité Web Apps dans Azure App Service (anciennement Sites Web) et la fonctionnalité Mobile Apps dans Azure App Service (anciennement Mobile Services) à des ressources locales derrière votre pare-feu.
+Les connexions hybrides sont une fonctionnalité d’Azure BizTalk Services : Connexions hybrides fournissent une fonctionnalité de façon simple et pratique tooconnect hello Web Apps dans Azure App Service (anciennement sites Web) et la fonctionnalité des applications mobiles hello dans les ressources du Service d’applications Azure (anciennement Mobile Services) local tooon derrière votre pare-feu.
 
 ![les connexions hybrides][HCImage]
 
 Les avantages des connexions hybrides sont les suivants :
 
 * Les applications Web Apps et Mobile Apps peuvent accéder aux données et aux services locaux existants en toute sécurité.
-* Plusieurs applications Web Apps et Mobile Apps peuvent partager une connexion hybride pour accéder à une ressource locale.
-* Un nombre minimum de ports TCP est requis pour accéder à votre réseau.
-* Les applications qui utilisent des connexions hybrides accèdent uniquement à la ressource locale spécifique qui est publiée par l'intermédiaire de la connexion hybride.
-* Elles peuvent se connecter à n'importe quelle ressource qui utilise un port TCP statique, par exemple, SQL Server, MySQL, les API web HTTP et la plupart des services web personnalisés.
+* Plusieurs applications Web ou des applications mobiles peuvent partager un tooaccess de connexion hybride une ressource locale.
+* Les ports TCP minimales sont requises tooaccess votre réseau.
+* Applications à l’aide de connexions hybrides accéder uniquement hello spécifique ressource locale qui est publiée via hello connexion hybride.
+* Peut se connecter ressource locale tooany qui utilise un port TCP statique, telles que SQL Server, MySQL, API Web de HTTP et la plupart des Services Web personnalisés.
   
   > [!NOTE]
   > Actuellement, les services TCP qui utilisent des ports dynamiques (tels que le mode FTP passif ou le mode passif étendu) ne sont pas pris en charge. Le protocole LDAP n’est pas non plus pris en charge. Celui-ci utilise un port TCP statique, mais il peut également utiliser un port UDP. Par conséquent, il n’est pas pris en charge.
   > 
   > 
 * Elles peuvent être utilisées avec toutes les infrastructures prises en charge par Web Apps (.NET, PHP, Java, Python, Node.js) et Mobile Apps (Node.js, .NET).
-* Les applications Web Apps et Mobile Apps peuvent accéder aux ressources locales exactement de la même manière que si le site web ou le service mobile était situé sur votre réseau local. Par exemple, la chaîne de connexion utilisée localement peut également être utilisée sur Azure.
+* Applications Web et des applications mobiles peuvent accéder à des ressources locales dans exactement hello même façon que si hello Web ou application Mobile se trouve sur votre réseau local. Par exemple, hello même chaîne de connexion utilisés sur site peuvent également être utilisés sur Azure.
 
-Les connexions hybrides peuvent également fournir aux administrateurs d'entreprise des possibilités de contrôle et de visibilité sur les ressources d'entreprise auxquelles elles accèdent, notamment les possibilités suivantes :
+Connexions hybrides fournissent également des administrateurs d’entreprise avec le contrôle et la visibilité des ressources d’entreprise de hello accessibles par des applications hybrides, y compris :
 
-* À l'aide des paramètres de stratégie de groupe, les administrateurs peuvent autoriser les connexions hybrides sur le réseau et également désigner les ressources auxquelles elles peuvent accéder.
-* Les journaux d'événements et d'audit sur le réseau d'entreprise fournissent la visibilité sur les ressources auxquelles accèdent les connexions hybrides.
+* Paramètres de stratégie de groupe, les administrateurs peuvent autoriser des connexions hybrides sur le réseau de hello et désignez également les ressources qui sont accessibles par les applications hybrides.
+* Journaux d’événements et d’audit sur le réseau d’entreprise de hello offrent une visibilité en ressources hello accédé par les connexions hybrides.
 
 ## <a name="example-scenarios"></a>Exemples de scénarios
-Les connexions hybrides prennent en charge les combinaisons d'infrastructure et d'application suivantes :
+Connexions hybrides prennent en charge hello suivant des combinaisons d’infrastructure et d’application :
 
-* Accès .NET Framework à SQL Server
-* Accès .NET Framework aux services HTTP/HTTPS avec WebClient
-* Accès PHP à SQL Server, MySQL
-* Accès Java à SQL Server, MySQL et Oracle
-* Accès Java aux services HTTP/HTTPS
+* .NET framework accès tooSQL Server
+* Services de .NET framework accès tooHTTP/HTTPS avec WebClient
+* PHP accès tooSQL Server, MySQL
+* Java accès tooSQL Server, MySQL et Oracle
+* Services de Java accès tooHTTP/HTTPS
 
-Lorsque vous utilisez des connexions hybrides pour un accès local à SQL Server, tenez compte des éléments suivants :
+Lors de l’aide de connexions hybrides tooaccess sur site SQL Server, considérez les éléments de hello suivants :
 
-* Les instances nommées SQL Express doivent être configurées pour utiliser des ports statiques. Par défaut, les instances nommées SQL Express utilisent des ports dynamiques.
+* Instances nommées de SQL Express doit être configuré toouse les ports statiques. Par défaut, les instances nommées SQL Express utilisent des ports dynamiques.
 * Les instances par défaut de SQL Express utilisent un port statique, mais TCP doit être activé. Par défaut, TCP n’est pas activé.
-* À l’heure actuelle, le mode `MultiSubnetFailover=true` n’est pas pris en charge lorsque vous utilisez le clustering ou des groupes de disponibilité.
-* Le `ApplicationIntent=ReadOnly` n’est actuellement pas pris en charge.
-* L’authentification SQL peut être exigée en tant que méthode d’autorisation de bout en bout prise en charge par l’application Azure et le serveur SQL local.
+* Lorsque vous utilisez la gestion de clusters ou des groupes de disponibilité, hello `MultiSubnetFailover=true` mode n’est actuellement pas pris en charge.
+* Hello `ApplicationIntent=ReadOnly` n’est actuellement pas pris en charge.
+* L’authentification SQL peut être requise comme méthode d’autorisation de bout en bout de hello pris en charge par hello application Windows Azure et SQL server sur site de hello.
 
 ## <a name="security-and-ports"></a>Ports et sécurité
-Les connexions hybrides utilisent l’autorisation avec signature d’accès partagé pour sécuriser les connexions des applications Azure/du Gestionnaire de connexion hybride local à la connexion hybride. Des clés de connexion distinctes sont créées pour l’application et le Gestionnaire de connexion hybride local. Ces clés de connexion peuvent être substituées et révoquées indépendamment.
+Connexions hybrides utilisent des connexions de Signature d’accès partagé (SAS) d’autorisation toosecure hello de hello Azure hello et les applications sur site Gestionnaire de connexions hybrides toohello la connexion hybride. Clés de connexion distincts sont créés pour une application hello et hello Gestionnaire de connexions hybrides sur site. Ces clés de connexion peuvent être substituées et révoquées indépendamment.
 
-Les connexions hybrides assurent une distribution transparente et sécurisée des clés aux applications et au Gestionnaire de connexion hybride local.
+Fournissent des connexions hybrides pour la distribution transparente et sécurisée d’applications de toohello clés hello hello locaux et Gestionnaire de connexions hybrides.
 
 Consultez la page [Création et gestion des connexions hybrides](integration-hybrid-connection-create-manage.md).
 
-*L'autorisation de l'application est séparée de la connexion hybride*. Toute méthode d'autorisation appropriée peut être utilisée. Elle dépend des méthodes d'autorisation de bout en bout prises en charge dans le cloud Azure et sur les composants locaux. Par exemple, votre application Azure accède à un serveur SQL local. Dans ce scénario, l'autorisation SQL peut être la méthode d'autorisation prise en charge de bout en bout.
+*Autorisation de l’application est distincte de la connexion hybride de hello*. Toute méthode d'autorisation appropriée peut être utilisée. méthode d’autorisation Hello dépend des méthodes d’autorisation de bout en bout hello prises en charge sur hello cloud Azure et hello des composants locaux. Par exemple, votre application Azure accède à un serveur SQL local. Dans ce scénario, l’autorisation de SQL peut être méthode hello d’autorisation qui est pris en charge de bout en bout.
 
 #### <a name="tcp-ports"></a>Ports TCP
-Les connexions hybrides nécessitent seulement une connectivité TCP ou HTTP sortante à partir de votre réseau privé. Vous n’avez pas besoin d’ouvrir les ports du pare-feu ou de modifier la configuration du périmètre de votre réseau pour autoriser les connexions entrantes sur votre réseau.
+Les connexions hybrides nécessitent seulement une connectivité TCP ou HTTP sortante à partir de votre réseau privé. Ne pas besoin tooopen de ports de pare-feu ou de modifier votre tooallow de configuration de périmètre réseau toute connectivité entrante à votre réseau.
 
-Les ports TCP suivants sont utilisés par les connexions hybrides :
+Hello suivant les ports TCP est utilisé par les connexions hybrides :
 
 | Port | Raison |
 | --- | --- |
-| 9350 - 9354 |Ces ports sont utilisés pour la transmission de données. Le Gestionnaire de relais Service Bus sonde le port 9350 pour déterminer si la connectivité TCP est disponible. Si elle est disponible, il suppose que le port 9352 est également disponible. Le trafic de données passe par le port 9352. <br/><br/>Autoriser les connexions sortantes à ces ports. |
-| 5671 |Lorsque le port 9352 est utilisé pour le trafic de données, le port 5671 est utilisé en tant que canal de contrôle. <br/><br/>Autoriser les connexions sortantes à ce port. |
-| 80, 443 |Ces ports sont utilisés pour certaines requêtes de données vers Azure. En outre, si les ports 9352 et 5671 ne sont pas utilisables, *alors* les ports 80 et 443 sont les ports de secours utilisés pour la transmission de données et le canal de contrôle.<br/><br/>Autoriser les connexions sortantes à ces ports. <br/><br/>**Remarque** Il est déconseillé d’utiliser ces ports comme ports de secours à la place des autres ports TCP. HTTP/WebSocket est utilisé comme protocole au lieu du protocole TCP natif pour les canaux de données. Cela peut entraîner une dégradation des performances. |
+| 9350 - 9354 |Ces ports sont utilisés pour la transmission de données. Gestionnaire de relais Service Bus Hello sondes port 9350 toodetermine si la connexion TCP est disponible. Si elle est disponible, il suppose que le port 9352 est également disponible. Le trafic de données passe par le port 9352. <br/><br/>Autoriser les connexions sortantes des ports de toothese. |
+| 5671 |Lorsque le port 9352 est utilisé pour le trafic de données, port 5671 est utilisé en tant que canal de contrôle hello. <br/><br/>Autoriser les connexions sortantes toothis port. |
+| 80, 443 |Ces ports sont utilisés pour certaines tooAzure de demandes de données. Également, si les ports 9352 et 5671 ne sont pas utilisables, *puis* ports 80 et 443 sont des ports de secours hello utilisés pour la transmission de données et le canal de contrôle hello.<br/><br/>Autoriser les connexions sortantes des ports de toothese. <br/><br/>**Remarque** n’est pas recommandé de toouse ces comme hello secours ports à la place de hello autres ports TCP. Hello HTTP/WebSocket est utilisé en tant que protocole hello au lieu de TCP natif pour les canaux de données. Cela peut entraîner une dégradation des performances. |
 
 ## <a name="next-steps"></a>Étapes suivantes
 [Create and manage Hybrid Connections](integration-hybrid-connection-create-manage.md)<br/>
-[Connexion d’Azure Web Apps à une ressource locale](../app-service-web/web-sites-hybrid-connection-get-started.md)<br/>
-[Connexion à un serveur SQL Server local à partir d’une application Web Azure](../app-service-web/web-sites-hybrid-connection-connect-on-premises-sql-server.md)<br/>
+[Connecter des applications Web Azure tooan ressource locale](../app-service-web/web-sites-hybrid-connection-get-started.md)<br/>
+[Se connecter tooon local SQL Server à partir d’une application web Azure](../app-service-web/web-sites-hybrid-connection-connect-on-premises-sql-server.md)<br/>
 
 ## <a name="see-also"></a>Voir aussi
 [API REST pour gérer BizTalk Services sur Microsoft Azure](http://msdn.microsoft.com/library/azure/dn232347.aspx)

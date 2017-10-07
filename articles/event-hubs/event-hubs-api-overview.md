@@ -1,5 +1,5 @@
 ---
-title: "Vue d’ensemble de l’API Azure Event Hubs | Microsoft Docs"
+title: "Présentation de l’API de concentrateurs d’événements aaaAzure | Documents Microsoft"
 description: "Vue d’ensemble des API Azure Event Hubs disponibles"
 services: event-hubs
 documentationcenter: na
@@ -14,19 +14,19 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/15/2017
 ms.author: sethm
-ms.openlocfilehash: 40cd76e1aacb68d6051cae4a3c90a8970f5449f0
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 46dfcc544ff92642cfd7a967f9ec38a0d8e2bd5d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="available-event-hubs-apis"></a>API Event Hubs disponibles
 
 ## <a name="runtime-apis"></a>API de runtime
 
-Vous trouverez ci-dessous une description de tous les clients de runtime Azure Event Hubs actuellement disponibles. Bien que certaines de ces bibliothèques incluent aussi des fonctionnalités de gestion limitées, il existe [des bibliothèques](#management-apis) dédiées aux opérations de gestion. Ces bibliothèques sont principalement destinées à envoyer et recevoir des messages d’un hub d’événements.
+Hello Voici une description de tous les clients de runtime Azure Event Hubs actuellement disponibles. Alors que certaines de ces bibliothèques incluent également des fonctionnalités de gestion est limitée, il existe également [bibliothèques spécifiques](#management-apis) dédié toomanagement operations. ACCENT Hello de ces bibliothèques est toosend et recevoir des messages à partir d’un concentrateur d’événements.
 
-Consultez la section [Informations supplémentaires](#additional-information) pour plus de détails sur l’état actuel de chaque bibliothèque de runtime.
+Consultez [des informations supplémentaires](#additional-information) pour plus d’informations sur l’état actuel de hello de chaque bibliothèque runtime.
 
 | Langue/plateforme | Package client | Package EventProcessorHost | Référentiel |
 | --- | --- | --- | --- |
@@ -39,22 +39,22 @@ Consultez la section [Informations supplémentaires](#additional-information) po
 ### <a name="additional-information"></a>Informations supplémentaires
 
 #### <a name="net"></a>.NET
-L’écosystème .NET a plusieurs runtimes, par conséquent, il existe plusieurs bibliothèques .NET pour Event Hubs. La bibliothèque .NET Standard peut être exécutée à l’aide de .NET Core ou de .NET Framework, tandis que la bibliothèque .NET Framework peut uniquement être exécutée dans un environnement .NET Framework. Pour plus d’informations sur .NET Framework, consultez les [versions d’infrastructure](https://docs.microsoft.com/dotnet/articles/standard/frameworks#framework-versions).
+écosystème de .NET Hello a plusieurs runtimes, par conséquent, il existe plusieurs bibliothèques .NET pour les concentrateurs d’événements. bibliothèque .NET Standard de Hello peut être exécuté à l’aide de .NET Core ou hello .NET Framework, tandis que la bibliothèque du .NET Framework hello ne peut être exécuté dans un environnement .NET Framework. Pour plus d’informations sur .NET Framework, consultez les [versions d’infrastructure](https://docs.microsoft.com/dotnet/articles/standard/frameworks#framework-versions).
 
 #### <a name="node"></a>Nœud
 
-La bibliothèque Node.js est actuellement en version préliminaire et est tenue à jour en parallèle par les employés de Microsoft et des contributeurs externes. Toutes les contributions, y compris le code source sont les bienvenues et seront examinées.
+bibliothèque de Node.js Hello est actuellement en version préliminaire et est conservée par les employés de Microsoft et des collaborateurs externes à un projet de côté. Toutes les contributions, y compris le code source sont les bienvenues et seront examinées.
 
 ## <a name="management-apis"></a>API de gestion
 
-Vous trouverez ci-dessous une liste de toutes les bibliothèques dédiées à la gestion actuellement disponibles. Aucune de ces bibliothèques ne contient d’opérations de runtime. Elles sont uniquement destinées à la gestion des entités Event Hubs.
+Hello Voici la liste de toutes les bibliothèques spécifiques de gestion actuellement disponibles. Aucun de ces bibliothèques contiennent des opérations d’exécution et pour hello seul but de la gestion des entités de concentrateurs d’événements.
 
 | Langue/plateforme | Gestion des packages | Référentiel |
 | --- | --- | --- | --- |
 | .NET Standard | [NuGet](https://www.nuget.org/packages/Microsoft.Azure.Management.EventHub) | [GitHub](https://github.com/Azure/azure-sdk-for-net/tree/AutoRest/src/ResourceManagement/EventHub) |
 
 ## <a name="next-steps"></a>Étapes suivantes
-Vous pouvez en apprendre plus sur Event Hubs en consultant les liens suivants :
+Vous pouvez plus d’informations sur les concentrateurs d’événements en visitant hello suivant liens :
 
 * [Vue d’ensemble des hubs d’événements](event-hubs-what-is-event-hubs.md)
 * [Créer un concentrateur d’événements](event-hubs-create.md)

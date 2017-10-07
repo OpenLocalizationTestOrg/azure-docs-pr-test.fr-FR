@@ -1,6 +1,6 @@
 ---
-title: Comment configurer l'authentification Azure Active Directory pour votre application App Services
-description: "Découvrez comment configurer l'authentification Azure Active Directory pour votre application App Services."
+title: "authentification d’Azure Active Directory tooconfigure aaaHow pour votre application de Services d’application"
+description: "Découvrez comment tooconfigure l’authentification Azure Active Directory pour votre application de Services d’application."
 author: mattchenderson
 services: app-service
 documentationcenter: 
@@ -14,80 +14,80 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 10/01/2016
 ms.author: mahender
-ms.openlocfilehash: fe007fa8640d5641f29dc88f8f3a8ca52a1ca8ae
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 5b1d73f8fdf5831a266d900cd07f4e3b0917a7f7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-configure-your-app-service-application-to-use-azure-active-directory-login"></a>Configurer votre application App Service pour utiliser la connexion Azure Active Directory
+# <a name="how-tooconfigure-your-app-service-application-toouse-azure-active-directory-login"></a>Comment tooconfigure votre connexion de Service d’applications application toouse Azure Active Directory
 [!INCLUDE [app-service-mobile-selector-authentication](../../includes/app-service-mobile-selector-authentication.md)]
 
-Cette rubrique montre comment configurer Azure App Services pour utiliser Azure Active Directory comme fournisseur d’authentification.
+Cette rubrique vous montre comment les Services d’application Azure de tooconfigure toouse Azure Active Directory comme fournisseur d’authentification.
 
-## <a name="express"> </a>Configuration d'Azure Active Directory à l'aide de la configuration rapide
-1. Dans le [portail Azure], accédez à votre application. Cliquez sur **Paramètres**, puis sur **Authentification/Autorisation**.
-2. Si la fonctionnalité Authentification / Autorisation n’est pas activée, positionnez le commutateur sur **On**.
+## <a name="express"></a>Configuration d'Azure Active Directory à l'aide de la configuration rapide
+1. Bonjour [portail Azure], accédez tooyour application. Cliquez sur **Paramètres**, puis sur **Authentification/Autorisation**.
+2. Si l’authentification de hello / la fonctionnalité d’autorisation n’est pas activée, activer hello trop**sur**.
 3. Cliquez sur **Azure Active Directory**, puis sur **Rapide** sous **Mode de gestion**.
-4. Cliquez sur **OK** pour inscrire l'application dans Azure Active Directory. Une nouvelle inscription est alors créée. Si vous choisissez une inscription existante à la place, cliquez sur **Sélectionner une application existante** et recherchez le nom d’une inscription précédemment créée au sein de votre locataire.
-   Cliquez sur l'inscription pour la sélectionner, puis sur **OK**. Cliquez ensuite sur **OK** dans le panneau des paramètres Azure Active Directory.
+4. Cliquez sur **OK** application hello de tooregister dans Azure Active Directory. Une nouvelle inscription est alors créée. Si vous souhaitez toochoose une inscription existante au lieu de cela, cliquez sur **sélectionner une application existante** , puis recherchez le nom hello d’une inscription précédemment créée au sein de votre client.
+   Cliquez sur hello inscription tooselect il sur **OK**. Puis cliquez sur **OK** sur le panneau des paramètres Azure Active Directory hello.
    
    ![][0]
    
-   Par défaut, App Service fournit une authentification, mais ne restreint pas l'accès autorisé à votre contenu et aux API de votre site. Vous devez autoriser les utilisateurs dans votre code d'application.
-5. (Facultatif) Pour restreindre l’accès à votre site aux seuls utilisateurs authentifiés par Azure Active Directory, définissez **Action à exécuter quand une demande n’est pas authentifiée** sur **Se connecter avec Azure Active Directory**. Cela implique que toutes les demandes soient authentifiées. Toutes les demandes non authentifiées sont redirigées vers Azure Active Directory pour être authentifiées.
+   Par défaut, le Service d’applications fournit l’authentification mais ne restreint pas les API et contenu de site tooyour autorisé à accéder. Vous devez autoriser les utilisateurs dans votre code d'application.
+5. (Facultatif) toorestrict accès tooyour site tooonly les utilisateurs authentifiés par Azure Active Directory, définissez **tootake Action lors de la demande n’est pas authentifiée** trop**se connecter avec Azure Active Directory**. Cela requiert que toutes les demandes authentifiées, et toutes les demandes non authentifiées sont redirigée tooAzure Active Directory pour l’authentification.
 6. Cliquez sur **Enregistrer**.
 
-Vous êtes maintenant prêt à utiliser Azure Active Directory pour l'authentification dans votre application.
+Vous êtes maintenant prêt toouse Azure Active Directory pour l’authentification dans votre application.
 
-## <a name="advanced"> </a>(Méthode alternative) Configurer manuellement Azure Active Directory avec des paramètres avancés
-Vous pouvez également choisir de fournir des paramètres de configuration manuellement. Il s’agit de la solution préférée si le locataire AAD que vous voulez utiliser diffère de celui avec lequel vous vous connectez à Azure. Pour terminer la configuration, vous devez d’abord créer une inscription dans Azure Active Directory, puis fournir des informations d’inscription à App Service.
+## <a name="advanced"></a>(Méthode alternative) Configurer manuellement Azure Active Directory avec des paramètres avancés
+Vous pouvez également choisir tooprovide paramètres de configuration manuellement. Il s’agit de solution de hello préféré si client AAD de hello vous souhaitez toouse est différente de locataire hello avec lequel vous vous connectez à Azure. configuration de hello toocomplete, vous devez d’abord créer un enregistrement dans Azure Active Directory, et vous devez fournir des tooApp détails de l’inscription hello Service.
 
-### <a name="register"> </a>Inscription de votre application auprès d’Azure Active Directory
-1. Connectez-vous au [portail Azure]et accédez à votre application. Copiez votre **URL**. Elle vous permettra de configurer votre application Azure Active Directory.
-2. Connectez-vous au [portail Azure Classic] et accédez à **Active Directory**.
+### <a name="register"></a>Inscription de votre application auprès d’Azure Active Directory
+1. Ouvrez une session sur toohello [portail Azure]et accédez tooyour application. Copiez votre **URL**. Vous utiliserez cette tooconfigure votre application Azure Active Directory.
+2. Connectez-vous à toohello [portail Azure classic] et accédez trop**Active Directory**.
    
     ![][2]
-3. Sélectionnez votre annuaire, puis l’onglet **Applications** en haut de la page. Cliquez sur **AJOUTER** en bas de la page pour créer une inscription d’application.
+3. Sélectionnez votre annuaire, puis hello **Applications** onglet en haut de hello. Cliquez sur **ajouter** à hello bas toocreate une nouvelle inscription de l’application.
 4. Cliquez sur **Ajouter une application développée par mon organisation**.
-5. Dans l’Assistant Ajout d’application, entrez un **Nom** pour votre application et cliquez sur le type **Application Web et/ou API Web**. Ensuite, cliquez pour continuer.
-6. Dans la zone **URL DE CONNEXION** , collez l'URL de l'application que vous avez copiée précédemment. Entrez cette URL dans la zone **URI ID d’application** . Ensuite, cliquez pour continuer.
-7. Une fois que l'application a été ajoutée, cliquez sur l'onglet **Configurer** . Remplacez **l’URL de réponse** sous **Authentification unique** par l’URL de votre application en y ajoutant le chemin d’accès */.auth/login/aad/callback*. Par exemple, `https://contoso.azurewebsites.net/.auth/login/aad/callback`. Assurez-vous d'utiliser le schéma HTTPS.
+5. Dans hello Assistant Ajout de l’Application, entrez un **nom** pour hello de votre application et cliquez sur **Web Application et/ou API Web** type. Cliquez ensuite sur toocontinue.
+6. Bonjour **URL de connexion** zone, collez l’URL de l’application hello vous avez copiée précédemment. Entrez cette URL même Bonjour **URI ID d’application** boîte. Cliquez ensuite sur toocontinue.
+7. Une fois que l’application hello a été ajoutée, cliquez sur hello **configurer** onglet. Modifier hello **URL de réponse** sous **Single Sign-on** URL de hello toobe de votre application ajoutée avec le chemin d’accès de hello, */.auth/login/aad/callback*. Par exemple, `https://contoso.azurewebsites.net/.auth/login/aad/callback`. Assurez-vous que vous utilisez le schéma HTTPS de hello.
    
     ![][3]
-8. Cliquez sur **Enregistrer**. Copiez ensuite l’ **ID client** pour l’application. Vous configurerez l’application pour utiliser cet ID plus tard.
-9. Dans la barre de commandes située en bas, cliquez sur **Afficher les points de terminaison**, puis copiez l’URL du **document de métadonnées de fédération** et téléchargez ce document ou ouvrez-le dans un navigateur.
-10. L’élément racine **EntityDescriptor** doit contenir un attribut **entityID** au format `https://sts.windows.net/` suivi d’un GUID propre à votre client (appelé « ID client »). Copiez cette valeur qui servira d' **URL de l'émetteur**. Vous configurerez l’application pour utiliser cet ID plus tard.
+8. Cliquez sur **Enregistrer**. Puis hello de copie **ID Client** pour l’application hello. Vous allez configurer votre application toouse cela plus tard.
+9. Dans la barre de commandes hello bas, cliquez sur **points de terminaison**et puis copie Bonjour **Document de métadonnées de fédération** URL et le téléchargement de document ou accédez tooit dans un navigateur.
+10. Dans la racine de hello **EntityDescriptor** élément, il doit y avoir un **entityID** attribut sous forme de hello `https://sts.windows.net/` suivi par un client spécifique tooyour GUID (appelé « ID client »). Copiez cette valeur qui servira d' **URL de l'émetteur**. Vous allez configurer votre application toouse cela plus tard.
 
-### <a name="secrets"> </a>Ajout d'informations Azure Active Directory à votre application
-1. Revenez au [portail Azure]et accédez à votre application. Cliquez sur **Paramètres**, puis sur **Authentification/Autorisation**.
-2. Si la fonctionnalité Authentification/Autorisation n’est pas activée, positionnez le commutateur sur **Activé**.
-3. Cliquez sur **Azure Active Directory**, puis sur **Avancé** sous **Mode de gestion**. Collez-y les valeurs d’ID locataire et d’URL de l’émetteur que vous avez obtenues précédemment. Cliquez ensuite sur **OK**.
+### <a name="secrets"></a>Application de tooyour informations ajouter Azure Active Directory
+1. Dans hello [portail Azure], accédez tooyour application. Cliquez sur **Paramètres**, puis sur **Authentification/Autorisation**.
+2. Si la fonctionnalité d’authentification/autorisation hello n’est pas activée, activer hello trop**sur**.
+3. Cliquez sur **Azure Active Directory**, puis sur **Avancé** sous **Mode de gestion**. Coller dans hello ID Client et l’URL de l’émetteur de valeur que vous obtenu précédemment. Cliquez ensuite sur **OK**.
    
    ![][1]
    
-   Par défaut, App Service fournit une authentification, mais ne restreint pas l'accès autorisé à votre contenu et aux API de votre site. Vous devez autoriser les utilisateurs dans votre code d'application.
-4. (Facultatif) Pour restreindre l’accès à votre site aux seuls utilisateurs authentifiés par Azure Active Directory, définissez **Action à exécuter quand une demande n’est pas authentifiée** sur **Se connecter avec Azure Active Directory**. Cela implique que toutes les demandes soient authentifiées. Toutes les demandes non authentifiées sont redirigées vers Azure Active Directory pour être authentifiées.
+   Par défaut, le Service d’applications fournit l’authentification mais ne restreint pas les API et contenu de site tooyour autorisé à accéder. Vous devez autoriser les utilisateurs dans votre code d'application.
+4. (Facultatif) toorestrict accès tooyour site tooonly les utilisateurs authentifiés par Azure Active Directory, définissez **tootake Action lors de la demande n’est pas authentifiée** trop**se connecter avec Azure Active Directory**. Cela requiert que toutes les demandes authentifiées, et toutes les demandes non authentifiées sont redirigée tooAzure Active Directory pour l’authentification.
 5. Cliquez sur **Enregistrer**.
 
-Vous êtes maintenant prêt à utiliser Azure Active Directory pour l'authentification dans votre application.
+Vous êtes maintenant prêt toouse Azure Active Directory pour l’authentification dans votre application.
 
 ## <a name="optional-configure-a-native-client-application"></a>(Facultatif) Configurer une application cliente native
-Azure Active Directory permet également d’inscrire les clients natifs, ce qui offre un contrôle accru du mappage d’autorisations. Cela est utile si vous souhaitez effectuer des connexions à l’aide d’une bibliothèque telle que **Active Directory Authentication Library**.
+Azure Active Directory vous permet également les clients natifs tooregister, qui offre un meilleur contrôle sur les autorisations de mappage. Vous en avez besoin si vous souhaitez que les connexions tooperform à l’aide d’une bibliothèque, par exemple hello **bibliothèque d’authentification Active Directory**.
 
-1. Accédez à **Active Directory** dans le [portail Azure Classic].
-2. Sélectionnez votre annuaire, puis l’onglet **Applications** en haut de la page. Cliquez sur **AJOUTER** en bas de la page pour créer une inscription d’application.
+1. Accédez trop**Active Directory** Bonjour [portail Azure classic].
+2. Sélectionnez votre annuaire, puis hello **Applications** onglet en haut de hello. Cliquez sur **ajouter** à hello bas toocreate une nouvelle inscription de l’application.
 3. Cliquez sur **Ajouter une application développée par mon organisation**.
-4. Dans l’Assistant Ajout d’application, entrez un **Nom** pour votre application et cliquez sur le type **Application cliente native**. Ensuite, cliquez pour continuer.
-5. Dans la zone **URI de redirection**, entrez le point de terminaison */.auth/login/done* de votre site à l’aide du modèle HTTPS. Cette valeur doit être semblable à *https://contoso.azurewebsites.net/.auth/login/done*. Si vous créez une application Windows, utilisez plutôt le [SID de package](app-service-mobile-dotnet-how-to-use-client-library.md#package-sid) en tant qu’URI.
-6. Une fois l’application native ajoutée, cliquez sur l’onglet **Configurer** . Recherchez l’ **ID client** et notez-en la valeur.
-7. Faites défiler la page vers le bas jusqu’à la section **Autorisations pour d’autres applications** et cliquez sur **Ajouter une application**.
-8. Recherchez l’application web que vous avez inscrite précédemment et cliquez sur l’icône plus, puis sur la coche pour fermer la boîte de dialogue. Si l’application web est introuvable, recherchez son inscription et ajoutez une nouvelle URL de réponse (par exemple, la version HTTP de votre URL en cours). Cliquez sur Enregistrer, puis répétez ces étapes ; l’application doit apparaître dans la liste.
-9. Dans la nouvelle entrée que vous venez d’ajouter, ouvrez la liste déroulante **Autorisations déléguées** et sélectionnez **Accès (appName)**. Cliquez ensuite sur **Enregistrer**.
+4. Dans hello Assistant Ajout de l’Application, entrez un **nom** pour hello de votre application et cliquez sur **Application cliente Native** type. Cliquez ensuite sur toocontinue.
+5. Bonjour **URI de redirection** , entrez de votre site */.auth/login/done* point de terminaison, à l’aide du schéma HTTPS de hello. Cette valeur doit être similaire trop*https://contoso.azurewebsites.net/.auth/login/done*. Si vous créez une application Windows, à la place utiliser hello [SID du package](app-service-mobile-dotnet-how-to-use-client-library.md#package-sid) comme hello URI.
+6. Une fois que l’application native hello a été ajoutée, cliquez sur hello **configurer** onglet. Recherche hello **ID Client** et prenez note de cette valeur.
+7. Page hello de défilement vers le bas toohello **autorisations tooother applications** et cliquez sur **ajouter application**.
+8. Recherchez application hello web que vous avez enregistré précédemment et cliquez sur l’icône plus hello. Cliquez ensuite sur la boîte de dialogue hello cocher tooclose hello. Si l’application web de hello ne peut pas être trouvé, accédez tooits inscription et ajouter une nouvelle URL de réponse (par exemple, hello version HTTP de l’URL actuelle), cliquez sur Enregistrer, puis répétez ces étapes - application hello doit apparaissent dans la liste de hello.
+9. Sur l’entrée de nouveau hello vous venez d’ajouter, ouvrez hello **autorisations déléguées** liste déroulante et sélectionnez **accès (appName)**. Cliquez ensuite sur **Enregistrer**.
 
 Vous avez maintenant configuré une application cliente native qui peut accéder à votre application App Service.
 
-## <a name="related-content"> </a>Contenu connexe
+## <a name="related-content"></a>Contenu connexe
 [!INCLUDE [app-service-mobile-related-content-get-started-users](../../includes/app-service-mobile-related-content-get-started-users.md)]
 
 <!-- Images. -->
@@ -100,5 +100,5 @@ Vous avez maintenant configuré une application cliente native qui peut accéder
 <!-- URLs. -->
 
 [portail Azure]: https://portal.azure.com/
-[portail Azure Classic]: https://manage.windowsazure.com/
+[portail Azure classic]: https://manage.windowsazure.com/
 [alternative method]:#advanced

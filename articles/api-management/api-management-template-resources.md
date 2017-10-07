@@ -1,6 +1,6 @@
 ---
-title: "Ressources du modèle Gestion des API Azure | Microsoft Docs"
-description: "Découvrez les types de ressources utilisables dans les modèles du portail des développeurs dans la Gestion des API Azure."
+title: "ressources de modèle de gestion des API aaaAzure | Documents Microsoft"
+description: "En savoir plus sur les types de ressources disponibles pour une utilisation dans les modèles de portail de développement de gestion des API Azure hello."
 services: api-management
 documentationcenter: 
 author: miaojiang
@@ -14,35 +14,35 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-ms.openlocfilehash: 3c633d54e6b81576a2fbd1adfc69775ca1bdd09d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2221e3852986d485d13817b483e473dfe451d3c3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-api-management-template-resources"></a>Ressources du modèle Gestion des API Azure
-La Gestion des API Azure fournit les types de ressources suivants, utilisables dans les modèles du portail des développeurs.  
+Gestion des API Azure fournit hello les types de ressources pour une utilisation dans les modèles de portail de développement hello suivants.  
   
 -   [Ressources de chaînes](#strings)  
   
 -   [Ressources de glyphes](#glyphs)  
   
 ##  <a name="strings"></a> Ressources de chaînes  
- La Gestion des API fournit un ensemble complet de ressources de chaînes utilisables dans le portail des développeurs. Ces ressources sont traduites dans toutes les langues prises en charge par la Gestion des API. L’ensemble de modèles par défaut utilise ces ressources pour les étiquettes, les en-têtes de pages et les éventuelles chaînes constantes affichées dans le portail des développeurs. Pour utiliser une ressource de chaîne dans vos modèles, fournir le préfixe de la chaîne de ressource suivi du nom de la chaîne, comme le montre l’exemple suivant.  
+ Gestion des API fournit un ensemble complet de ressources de chaîne à utiliser dans le portail des développeurs hello. Ces ressources sont traduits dans toutes les langues hello pris en charge par la gestion des API. ensemble de modèles par défaut de Hello utilise ces ressources pour les en-têtes de page, les étiquettes et les chaînes constantes qui sont affichés dans le portail des développeurs hello. toouse une ressource de chaîne dans vos modèles, fournir préfixe de chaîne de ressource hello suivi par nom de chaîne hello, comme indiqué dans hello l’exemple suivant.  
   
 ```  
 {% localized "Prefix|Name" %}  
   
 ```  
   
- L’exemple suivant est issu du modèle Liste de produits et affiche **Produits** en haut de la page.  
+ Hello exemple suivant provient de modèle de liste de produits hello et affiche **produits** en hello haut hello.  
   
 ```  
 <h2>{% localized "ProductsStrings|PageTitleProducts" %}</h2>  
   
 ```  
   
- Reportez-vous aux tableaux suivants pour connaître les ressources de chaînes utilisables dans vos modèles sur le portail des développeurs. Utilisez le nom de la table comme préfixe des ressources de chaînes dans ce tableau.  
+ Consultez toohello suivant des tables pour les ressources de chaîne hello disponibles pour une utilisation dans vos modèles de portail de développement. Utiliser le nom de la table hello en tant que préfixe de hello pour les ressources de chaîne hello dans cette table.  
   
 -   [ApisStrings](#ApisStrings)  
   
@@ -103,7 +103,7 @@ La Gestion des API Azure fournit les types de ressources suivants, utilisables d
   
 |Nom|Texte|  
 |----------|----------|  
-|WebDevelopersAppDeleteConfirmation|Voulez-vous vraiment supprimer l’application ?|  
+|WebDevelopersAppDeleteConfirmation|Êtes-vous sûr de vouloir tooremove application ?|  
 |WebDevelopersAppNotPublished|Non publié.|  
 |WebDevelopersAppNotSubminted|Non soumis.|  
 |WebDevelopersAppTableCategoryHeader|Catégorie|  
@@ -127,8 +127,8 @@ La Gestion des API Azure fournit les types de ressources suivants, utilisables d
 |----------|----------|  
 |NoItemsToDisplay|Aucun résultat trouvé.|  
 |GeneralExceptionMessage|Il y a un problème. Il peut s’agir d’un dysfonctionnement temporaire ou d’un bogue. Réessayez.|  
-|GeneralJsonExceptionMessage|Il y a un problème. Il peut s’agir d’un dysfonctionnement temporaire ou d’un bogue. Rechargez la page et réessayez.|  
-|ConfirmationMessageUnsavedChanges|Certaines modifications n’ont pas été enregistrées. Voulez-vous vraiment annuler et ignorer les modifications ?|  
+|GeneralJsonExceptionMessage|Il y a un problème. Il peut s’agir d’un dysfonctionnement temporaire ou d’un bogue. Veuillez recharger hello page, puis réessayez.|  
+|ConfirmationMessageUnsavedChanges|Certaines modifications n’ont pas été enregistrées. Êtes-vous sûr que vous le souhaitez toocancel et ignorer les modifications de hello ?|  
 |AzureActiveDirectory|Azure Active Directory|  
 |HttpLargeRequestMessage|Le texte de la requête HTTP est trop long.|  
   
@@ -139,13 +139,13 @@ La Gestion des API Azure fournit les types de ressources suivants, utilisables d
 |ButtonLabelCancel|Annuler|  
 |ButtonLabelSave|Enregistrer|  
 |GeneralExceptionMessage|Il y a un problème. Il peut s’agir d’un dysfonctionnement temporaire ou d’un bogue. Réessayez.|  
-|NoItemsToDisplay|Il n’y a aucun élément à afficher.|  
+|NoItemsToDisplay|Il n’y a aucune toodisplay d’éléments.|  
 |PagerButtonLabelFirst|Premier|  
 |PagerButtonLabelLast|Dernier|  
 |PagerButtonLabelNext|Suivant|  
 |PagerButtonLabelPrevious|Précédent|  
 |PagerLabelPageNOfM|Page {0} sur {1\}|  
-|PasswordTooShort|Le mot de passe est trop court.|  
+|PasswordTooShort|Hello mot de passe est trop court|  
 |EmailAsPassword|N’utilisez pas votre adresse de messagerie comme mot de passe.|  
 |PasswordSameAsUserName|Votre mot de passe ne peut pas contenir votre nom d’utilisateur.|  
 |PasswordTwoCharacterClasses|Utilisez différentes classes de caractères.|  
@@ -153,7 +153,7 @@ La Gestion des API Azure fournit les types de ressources suivants, utilisables d
 |PasswordSequenceFound|Votre mot de passe contient des séquences.|  
 |PagerLabelPageSize|Taille de la page|  
 |CurtainLabelLoading|Chargement en cours...|  
-|TablePlaceholderNothingToDisplay|Aucune donnée pour la période et l’étendue sélectionnées.|  
+|TablePlaceholderNothingToDisplay|Aucune donnée de portée et de la période de hello sélectionné|  
 |ButtonLabelClose|fermez|  
   
 ###  <a name="Documentation"></a> Documentation  
@@ -171,107 +171,107 @@ La Gestion des API Azure fournit les types de ressources suivants, utilisables d
 |WebDocumentationTemplatesCurlForBasicAuth|Pour une autorisation de base, utilisez : --user {nom_utilisateur}:{mot_de_passe}.|  
 |WebDocumentationTemplatesCurlValuesForPath|Fournissez des valeurs aux paramètres de chemin d’accès (indiqués entre {...}), à votre clé d’abonnement et aux paramètres de requête.|  
 |WebDocumentationTemplatesDeveloperKey|Spécifiez votre clé d’abonnement.|  
-|WebDocumentationTemplatesJavaApache|Cet exemple utilise le client HTTP Apache à partir de HttpComponents (http://hc.apache.org/httpcomponents-client-ga/).|  
+|WebDocumentationTemplatesJavaApache|Cet exemple utilise le client d’Apache HTTP hello à partir des composants de HTTP (http://hc.apache.org/httpcomponents-client-ga/)|  
 |WebDocumentationTemplatesOptionalParams|Fournissez des valeurs aux paramètres facultatifs, en fonction des besoins.|  
-|WebDocumentationTemplatesPhpPackage|Cet exemple utilise le package HTTP_Request2. (Pour plus d’informations : http://pear.php.net/package/HTTP_Request2)|  
+|WebDocumentationTemplatesPhpPackage|Cet exemple utilise le package de hello HTTP_Request2. (Pour plus d’informations : http://pear.php.net/package/HTTP_Request2)|  
 |WebDocumentationTemplatesPythonValuesForPath|Fournissez des valeurs aux paramètres de chemin d’accès (indiqués entre {...}) et au corps de la demande si nécessaire.|  
 |WebDocumentationTemplatesRequestBody|Spécifiez le corps de la demande.|  
-|WebDocumentationTemplatesRequiredParams|Donnez des valeurs aux paramètres obligatoires suivants.|  
+|WebDocumentationTemplatesRequiredParams|Spécifier des valeurs pour hello suivant les paramètres requis|  
 |WebDocumentationTemplatesValuesForPath|Donnez des valeurs aux paramètres de chemin d’accès (indiqués entre {...}).|  
-|OAuth2AuthorizationEndpointDescription|Le point de terminaison d’autorisation est utilisé pour interagir avec le propriétaire de la ressource et obtenir une autorisation.|  
+|OAuth2AuthorizationEndpointDescription|point de terminaison d’autorisation Hello est toointeract utilisé avec le propriétaire de la ressource hello et obtenir un octroi d’autorisation.|  
 |OAuth2AuthorizationEndpointName|Point de terminaison d’autorisation|  
-|OAuth2TokenEndpointDescription|Le point de terminaison de jeton est utilisé par le client pour obtenir un jeton d’accès en présentant son autorisation ou son jeton d’actualisation.|  
+|OAuth2TokenEndpointDescription|sert de point de terminaison token Hello en hello client tooobtain un jeton d’accès à l’aide de son autorisation d’accorder ou de jeton d’actualisation.|  
 |OAuth2TokenEndpointName|Point de terminaison de jeton|  
-|OAuth2Flow_AuthorizationCodeGrant_Step_AuthorizationRequest_Description|<p\>         Le client lance le flux en dirigeant l’agent utilisateur du propriétaire de la ressource vers le point de terminaison d’autorisation.  Le client inclut son identificateur client, l’étendue demandée, l’état local et un URI de redirection auquel le serveur d’autorisation renverra l’agent utilisateur une fois l’accès accordé (ou refusé).     </p\>     <p\>         Le serveur d’autorisation authentifie le propriétaire de la ressource (par l’intermédiaire de l’agent utilisateur) et détermine si le propriétaire de la ressource accorde ou refuse la demande d’accès du client.     </p\>     <p\>         En supposant que le propriétaire de la ressource accorde l’accès, le serveur d’autorisation redirige l’agent utilisateur vers le client à l’aide de l’URI de redirection fourni précédemment (dans la demande ou lors de l’inscription du client).  L’URI de redirection comprend un code d’autorisation et les éventuels états locaux fournis précédemment par le client.     </p\>|  
-|OAuth2Flow_AuthorizationCodeGrant_Step_AuthorizationRequest_ErrorDescription|<p\>     Si l’utilisateur refuse la demande d’accès ou que la demande n’est pas valide, le client sera informé en ajoutant les paramètres suivants à la redirection : </p\>|  
+|OAuth2Flow_AuthorizationCodeGrant_Step_AuthorizationRequest_Description|< p\> client de hello lance le flux de hello en dirigeant le point de terminaison d’autorisation du propriétaire des ressources hello agent utilisateur toohello.  client de Hello inclut son identificateur de client, étendue demandée, d’état local, un serveur d’autorisation de la redirection des URI toowhich hello est envoyé de l’agent utilisateur hello une fois que l’accès est accordé (ou refusé).     < /p\> < p\> authentifie le propriétaire de la ressource hello (via l’agent utilisateur du hello) de serveur d’autorisation de hello et établit si le propriétaire de la ressource hello accorde ou refuse la demande d’accès du client hello.     < /p\> < p\> en supposant que le propriétaire de la ressource hello accorde l’accès, le serveur d’autorisation de hello redirige client de toohello arrière de l’agent utilisateur hello à l’aide de la redirection de hello URI fourni plus haut (dans la demande hello ou au cours du client inscription de t).  URI de redirection Hello inclut un code d’autorisation et n’importe quel état local fourni par le client de hello précédemment.     </p\>|  
+|OAuth2Flow_AuthorizationCodeGrant_Step_AuthorizationRequest_ErrorDescription|< p\> si l’utilisateur de hello refuse la demande d’accès hello de si la demande de hello n’est pas valide, les clients hello seront informés à l’aide de hello ajoutés sur toohello redirection des paramètres suivants : < /p\>|  
 |OAuth2Flow_AuthorizationCodeGrant_Step_AuthorizationRequest_Name|Demande d’autorisation.|  
-|OAuth2Flow_AuthorizationCodeGrant_Step_AuthorizationRequest_RequestDescription|<p\>         L’application cliente doit envoyer l’utilisateur vers le point de terminaison d’autorisation afin de lancer le processus OAuth.          Au point de terminaison d’autorisation, l’utilisateur s’authentifie, puis accorde ou refuse l’accès à l’application.     </p\>|  
-|OAuth2Flow_AuthorizationCodeGrant_Step_AuthorizationRequest_ResponseDescription|<p\>     En supposant que le propriétaire de la ressource accorde l’accès, le serveur d’autorisation redirige l’agent utilisateur vers le client à l’aide de l’URI de redirection fourni précédemment (dans la demande ou lors de l’inscription du client).  L’URI de redirection comprend un code d’autorisation et les éventuels états locaux fournis précédemment par le client. </p\>|  
-|OAuth2Flow_AuthorizationCodeGrant_Step_TokenRequest_Description|<p\>  Le client demande un jeton d’accès au point de terminaison du jeton du serveur d’autorisation en incluant le code d’autorisation reçu à l’étape précédente.  Lors de la demande, le client s’authentifie auprès du serveur d’autorisation.  Le client inclut l’URI de redirection utilisé pour obtenir le code d’autorisation à des fins de vérification. </p\> <p\>     Le serveur d’autorisation authentifie le client, valide le code d’autorisation et vérifie que l’URI de redirection reçu correspond à l’URI utilisé pour rediriger le client à l’étape (C).  S’il est valide, le serveur d’autorisation répond en envoyant un jeton d’accès et, éventuellement, un jeton d’actualisation. </p\>|  
-|OAuth2Flow_AuthorizationCodeGrant_Step_TokenRequest_ErrorDescription|<p\>     Si la demande d’authentification du client échoue ou n’est pas valide, le serveur d’autorisation répond en envoyant le code d’état HTTP 400 (demande incorrecte) (sauf indication contraire) et ajoute les paramètres suivants à la réponse. </p\>|  
-|OAuth2Flow_AuthorizationCodeGrant_Step_TokenRequest_RequestDescription|<p\>   Le client effectue une demande auprès du point de terminaison de jeton en envoyant les paramètres suivants au format « application/x-www-forme-urlencodee » avec l’encodage de caractères UTF-8 dans le corps d’entité de la requête HTTP. </p\>|  
-|OAuth2Flow_AuthorizationCodeGrant_Step_TokenRequest_ResponseDescription|<p\>  Le serveur d’autorisation émet un jeton d’accès et un jeton d’actualisation facultatif et construit la réponse en ajoutant les paramètres suivants au corps d’entité de la réponse HTTP avec un code d’état 200 (OK). </p\>|  
-|OAuth2Flow_ClientCredentialsGrant_Step_TokenRequest_Description|<p\>  Le client s’authentifie auprès du serveur d’autorisation et demande un jeton d’accès au point de terminaison de jeton. </p\> <p\>  Le serveur d’autorisation authentifie le client et, s’il est valide, émet un jeton d’accès. </p\>|  
-|OAuth2Flow_ClientCredentialsGrant_Step_TokenRequest_ErrorDescription|<p\>     Si la demande d’authentification du client échoue ou n’est pas valide, le serveur d’autorisation répond en envoyant le code d’état HTTP 400 (demande incorrecte) (sauf indication contraire) et ajoute les paramètres suivants à la réponse. </p\>|  
-|OAuth2Flow_ClientCredentialsGrant_Step_TokenRequest_RequestDescription|<p\>   Le client effectue une demande auprès du point de terminaison de jeton en ajoutant les paramètres suivants au format « application/x-www-forme-urlencodee » avec l’encodage de caractères UTF-8 dans le corps d’entité de la requête HTTP. </p\>|  
-|OAuth2Flow_ClientCredentialsGrant_Step_TokenRequest_ResponseDescription|<p\>  Si la demande de jeton d’accès est valide et autorisée, le serveur d’autorisation émet un jeton d’accès et un jeton d’actualisation facultatif et construit la réponse en ajoutant les paramètres suivants au corps d’entité de la réponse HTTP avec un code d’état 200 (OK). </p\>|  
-|OAuth2Flow_ImplicitGrant_Step_AuthorizationRequest_Description|<p\>         Le client lance le flux en dirigeant l’agent utilisateur du propriétaire de la ressource vers le point de terminaison d’autorisation.  Le client inclut son identificateur client, l’étendue demandée, l’état local et un URI de redirection auquel le serveur d’autorisation renverra l’agent utilisateur une fois l’accès accordé (ou refusé). </p\>     <p\>         Le serveur d’autorisation authentifie le propriétaire de la ressource (par l’intermédiaire de l’agent utilisateur) et détermine si le propriétaire de la ressource accorde ou refuse la demande d’accès du client. </p\>     <p\>         En supposant que le propriétaire de la ressource accorde l’accès, le serveur d’autorisation redirige l’agent utilisateur vers le client à l’aide de l’URI de redirection fourni précédemment.  L’URI de redirection inclut le jeton d’accès dans le fragment d’URI. </p\>|  
-|OAuth2Flow_ImplicitGrant_Step_AuthorizationRequest_ErrorDescription|<p\>     Si le propriétaire de la ressource refuse la demande d’accès ou que la demande échoue pour des raisons autres qu’un URI de redirection manquant ou non valide, le serveur d’autorisation en informe le client en ajoutant les paramètres suivants au composant de fragment de l’URI de redirection au format « application/x-www-forme-urlencodee ». </p\>|  
-|OAuth2Flow_ImplicitGrant_Step_AuthorizationRequest_RequestDescription|<p\>         L’application cliente doit envoyer l’utilisateur vers le point de terminaison d’autorisation afin de lancer le processus OAuth.      Au point de terminaison d’autorisation, l’utilisateur s’authentifie, puis accorde ou refuse l’accès à l’application. </p\>|  
-|OAuth2Flow_ImplicitGrant_Step_AuthorizationRequest_ResponseDescription|<p\>     Si le propriétaire de la ressource accorde la demande d’accès, le serveur d’autorisation émet un jeton d’accès et le remet au client en ajoutant les paramètres suivants au composant de fragment de l’URI de redirection au format « application/x-www-forme-urlencodee ». </p\>|  
-|OAuth2Flow_ObtainAuthorization_AuthorizationCodeGrant_Description|Le flux de code d’autorisation est optimisé pour les clients capables de préserver la confidentialité de leurs identifiants (par exemple, les applications de serveur web implémentées en PHP, Java, Python, Ruby, ASP.NET, etc.).|  
+|OAuth2Flow_AuthorizationCodeGrant_Step_AuthorizationRequest_RequestDescription|< p\> hello client application doit envoyer le point de terminaison d’autorisation hello utilisateur toohello Bonjour de tooinitiate commande processus OAuth.          Au point de terminaison d’autorisation hello, utilisateur de hello authentifie et accorde ou refuse l’accès toohello application.     </p\>|  
+|OAuth2Flow_AuthorizationCodeGrant_Step_AuthorizationRequest_ResponseDescription|< p\> en supposant que le propriétaire de la ressource hello accorde l’accès, le serveur d’autorisation redirige client de toohello arrière de l’agent utilisateur hello à l’aide de la redirection de hello URI fourni plus haut (dans la demande hello ou lors de l’inscription du client).  URI de redirection Hello inclut un code d’autorisation et n’importe quel état local fourni par le client de hello précédemment. </p\>|  
+|OAuth2Flow_AuthorizationCodeGrant_Step_TokenRequest_Description|< p\> hello client demande un jeton d’accès serveur d’autorisation de hello « point de terminaison token s en incluant le code d’autorisation hello à l’étape précédente de hello.  Lors de la demande de hello, client de hello s’authentifie avec un serveur d’autorisation de hello.  client de Hello inclut hello URI utilisé tooobtain hello d’autorisation le code de redirection pour la vérification. < /p\> < p\> serveur d’autorisation de hello authentifie hello client, valide le code d’autorisation de hello et garantit que la redirection de hello URI reçus correspondances hello URI utilisé tooredirect hello client à l’étape (C).  S’il est valide, hello d’autorisation répond avec un jeton d’accès et, éventuellement, un jeton d’actualisation. </p\>|  
+|OAuth2Flow_AuthorizationCodeGrant_Step_TokenRequest_ErrorDescription|< p\> si l’authentification du client hello demande a échoué ou n’est pas valide, serveur d’autorisation de hello répond avec un code d’état HTTP 400 (demande incorrecte) (sauf mention contraire) et inclut hello paramètres avec la réponse de hello suivants. </p\>|  
+|OAuth2Flow_AuthorizationCodeGrant_Step_TokenRequest_RequestDescription|< p\> client de hello rend un point de terminaison demande toohello jeton en envoyant hello hello « application/x--www-form-urlencoded » au format utilisant un codage de caractères UTF-8 dans le corps d’entité hello HTTP demande des paramètres suivants. </p\>|  
+|OAuth2Flow_AuthorizationCodeGrant_Step_TokenRequest_ResponseDescription|< p\> serveur d’autorisation de hello émet un jeton d’accès et un jeton d’actualisation facultatif et constructions hello réponse en ajoutant hello suivant paramètres toohello corps d’entité de réponse hello HTTP avec un code d’état du 200 (OK). </p\>|  
+|OAuth2Flow_ClientCredentialsGrant_Step_TokenRequest_Description|< p\> hello s’authentifie avec un serveur d’autorisation de hello et demande un jeton d’accès à partir du point de terminaison token hello. < /p\> < p\> serveur d’autorisation de hello authentifie hello client et si elle est valide, émet un jeton d’accès. </p\>|  
+|OAuth2Flow_ClientCredentialsGrant_Step_TokenRequest_ErrorDescription|< p\> si la demande de hello l’authentification du client a échoué ou n’est pas valide serveur d’autorisation de hello répond avec un code d’état HTTP 400 (demande incorrecte) (sauf mention contraire) et inclut hello paramètres avec la réponse de hello suivants. </p\>|  
+|OAuth2Flow_ClientCredentialsGrant_Step_TokenRequest_RequestDescription|< p\> client de hello rend un point de terminaison demande toohello jeton en ajoutant hello hello « application/x--www-form-urlencoded » au format utilisant un codage de caractères UTF-8 dans le corps d’entité hello HTTP demande des paramètres suivants. </p\>|  
+|OAuth2Flow_ClientCredentialsGrant_Step_TokenRequest_ResponseDescription|< p\> si demande de jeton d’accès hello est valide et autorisés, serveur d’autorisation de hello émet un jeton d’accès et un jeton d’actualisation facultatif et constructions hello réponse en ajoutant hello suivant paramètres toohello corps d’entité de hello HTTP réponse avec un code d’état du 200 (OK). </p\>|  
+|OAuth2Flow_ImplicitGrant_Step_AuthorizationRequest_Description|< p\> client de hello lance le flux de hello en dirigeant le propriétaire de la ressource hello'' s agent utilisateur toohello point de terminaison.  client de Hello inclut son identificateur de client, étendue demandée, d’état local, un serveur d’autorisation de la redirection des URI toowhich hello est envoyé de l’agent utilisateur hello une fois que l’accès est accordé (ou refusé). < /p\> < p\> serveur d’autorisation de hello authentifie le propriétaire de la ressource hello (via l’agent utilisateur du hello) et établit si le propriétaire de la ressource hello accorde ou refuse les client hello'' demande d’accès s. < /p\> < p\> en supposant que le propriétaire de la ressource hello accorde l’accès, le serveur d’autorisation de hello redirige client de toohello arrière de l’agent utilisateur hello à l’aide de la redirection hello URI fourni précédemment.  URI de redirection Hello inclut un jeton d’accès hello dans un fragment d’URI hello. </p\>|  
+|OAuth2Flow_ImplicitGrant_Step_AuthorizationRequest_ErrorDescription|< p\> Si propriétaire de la ressource hello refuse la demande d’accès hello ou si la demande de hello échoue pour des raisons autres qu’un URI de redirection manquant ou non valide, serveur d’autorisation de hello informe client hello en ajoutant hello suivant paramètres toohello fragme composant NT d’à l’aide des URI de redirection hello hello format « application/x--www-form-urlencoded ». </p\>|  
+|OAuth2Flow_ImplicitGrant_Step_AuthorizationRequest_RequestDescription|< p\> hello client application doit envoyer le point de terminaison d’autorisation hello utilisateur toohello Bonjour de tooinitiate commande processus OAuth.      Au point de terminaison d’autorisation hello, utilisateur de hello authentifie et accorde ou refuse l’accès toohello application. </p\>|  
+|OAuth2Flow_ImplicitGrant_Step_AuthorizationRequest_ResponseDescription|< p\> si le propriétaire de la ressource hello accorde la demande d’accès hello, serveur d’autorisation de hello émet un jeton d’accès, puis les remet toohello client en ajoutant hello paramètres toohello fragment composant de l’URI de redirection hello suivant à l’aide de hello « un format de pplication/x--www-form-urlencoded ». </p\>|  
+|OAuth2Flow_ObtainAuthorization_AuthorizationCodeGrant_Description|Flux de code d’autorisation est optimisé pour les clients permettant de maintenir la confidentialité de hello de leurs informations d’identification (par exemple, applications serveur web implémentées à l’aide de PHP, Java, Python, Ruby, ASP.NET, etc..).|  
 |OAuth2Flow_ObtainAuthorization_AuthorizationCodeGrant_Name|Octroi du code d’autorisation.|  
-|OAuth2Flow_ObtainAuthorization_ClientCredentialsGrant_Description|Le flux d’informations d’identification du client est approprié dans les cas où le client (votre application) demande l’accès aux ressources protégées sous son contrôle. Le client est considéré comme propriétaire de la ressource, par conséquent aucune intervention de l’utilisateur final n’est requise.|  
+|OAuth2Flow_ObtainAuthorization_ClientCredentialsGrant_Description|Flux d’informations d’identification de client convient dans les cas où le client hello (votre application) demande accéder aux ressources de toohello protégé sous son contrôle. client de Hello est considéré comme un propriétaire de la ressource, par conséquent, aucune intervention de l’utilisateur final n’est requise.|  
 |OAuth2Flow_ObtainAuthorization_ClientCredentialsGrant_Name|Octroi des identifiants du client.|  
-|OAuth2Flow_ObtainAuthorization_ImplicitGrant_Description|Le flux implicite est optimisé pour les clients dans l’incapacité de garantir la confidentialité de leurs identifiants connus pour exploiter un URI de redirection en particulier. Ces clients sont généralement implémentés dans un navigateur avec un langage de script comme JavaScript.|  
+|OAuth2Flow_ObtainAuthorization_ImplicitGrant_Description|Flux implicite est optimisé pour les clients non compatibles avec maintien de confidentialité hello de leur toooperate de connus d’informations d’identification une URI de redirection particulier. Ces clients sont généralement implémentés dans un navigateur avec un langage de script comme JavaScript.|  
 |OAuth2Flow_ObtainAuthorization_ImplicitGrant_Name|Octroi implicite.|  
-|OAuth2Flow_ObtainAuthorization_ResourceOwnerPasswordCredentialsGrant_Description|Le flux d’informations de mot de passe du propriétaire de la ressource est approprié dans les cas où le propriétaire de la ressource a une relation de confiance avec le client (votre application), par exemple le système d’exploitation de l’appareil ou une application à privilèges élevés. Ce flux est adapté aux clients capables d’obtenir les identifiants du propriétaire de la ressource (nom d’utilisateur et mot de passe, généralement à l’aide d’un formulaire interactif).|  
+|OAuth2Flow_ObtainAuthorization_ResourceOwnerPasswordCredentialsGrant_Description|Flux d’informations d’identification ressources propriétaire du mot de passe est approprié dans le cas où le propriétaire de la ressource hello une relation d’approbation avec le client hello (votre application), tels que des systèmes d’exploitation hello ou d’une application disposant de privilèges élevés. Ce flux est adapté aux clients capables d’obtenir des informations d’identification du propriétaire des ressources hello (nom d’utilisateur et mot de passe, généralement à l’aide d’un formulaire interactif).|  
 |OAuth2Flow_ObtainAuthorization_ResourceOwnerPasswordCredentialsGrant_Name|Octroi des informations de mot de passe du propriétaire de la ressource.|  
-|OAuth2Flow_ResourceOwnerPasswordCredentialsGrant_Step_TokenRequest_Description|<p\>   Le propriétaire de la ressource fournit au client son nom d’utilisateur et son mot de passe. </p\> <p\> Le client demande un jeton d’accès au point de terminaison du jeton du serveur d’autorisation en incluant les identifiants reçus de la part du propriétaire de la ressource.  Lors de la demande, le client s’authentifie auprès du serveur d’autorisation. </p\> <p\>  Le serveur d’autorisation authentifie le client et valide les identifiants du propriétaire de la ressource ; s’ils sont valides, il émet un jeton d’accès. </p\>|  
-|OAuth2Flow_ResourceOwnerPasswordCredentialsGrant_Step_TokenRequest_ErrorDescription|<p\>     Si la demande d’authentification du client échoue ou n’est pas valide, le serveur d’autorisation répond en envoyant le code d’état HTTP 400 (demande incorrecte) (sauf indication contraire) et ajoute les paramètres suivants à la réponse. </p\>|  
-|OAuth2Flow_ResourceOwnerPasswordCredentialsGrant_Step_TokenRequest_RequestDescription|<p\>   Le client effectue une demande auprès du point de terminaison de jeton en ajoutant les paramètres suivants au format « application/x-www-forme-urlencodee » avec l’encodage de caractères UTF-8 dans le corps d’entité de la requête HTTP. </p\>|  
-|OAuth2Flow_ResourceOwnerPasswordCredentialsGrant_Step_TokenRequest_ResponseDescription|<p\>  Si la demande de jeton d’accès est valide et autorisée, le serveur d’autorisation émet un jeton d’accès et un jeton d’actualisation facultatif et construit la réponse en ajoutant les paramètres suivants au corps d’entité de la réponse HTTP avec un code d’état 200 (OK). </p\>|  
+|OAuth2Flow_ResourceOwnerPasswordCredentialsGrant_Step_TokenRequest_Description|< p\> propriétaire de la ressource hello fournit hello son nom d’utilisateur et un mot de passe. < /p\> < p\> hello client demande un jeton d’accès serveur d’autorisation de hello « point de terminaison token s en incluant les informations d’identification hello provenance du propriétaire de la ressource hello.  Lors de la demande de hello, client de hello s’authentifie avec un serveur d’autorisation de hello. < /p\> < p\> serveur d’autorisation de hello authentifie hello client et valide les informations d’identification de propriétaire de ressource hello et s’il est valide, émet un jeton d’accès. </p\>|  
+|OAuth2Flow_ResourceOwnerPasswordCredentialsGrant_Step_TokenRequest_ErrorDescription|< p\> si la demande de hello l’authentification du client a échoué ou n’est pas valide serveur d’autorisation de hello répond avec un code d’état HTTP 400 (demande incorrecte) (sauf mention contraire) et inclut hello paramètres avec la réponse de hello suivants. </p\>|  
+|OAuth2Flow_ResourceOwnerPasswordCredentialsGrant_Step_TokenRequest_RequestDescription|< p\> client de hello rend un point de terminaison demande toohello jeton en ajoutant hello hello « application/x--www-form-urlencoded » au format utilisant un codage de caractères UTF-8 dans le corps d’entité hello HTTP demande des paramètres suivants. </p\>|  
+|OAuth2Flow_ResourceOwnerPasswordCredentialsGrant_Step_TokenRequest_ResponseDescription|< p\> si demande de jeton d’accès hello est valide et autorisés, serveur d’autorisation de hello émet un jeton d’accès et un jeton d’actualisation facultatif et constructions hello réponse en ajoutant hello suivant paramètres toohello corps d’entité de hello HTTP respo NSE avec un code d’état du 200 (OK). </p\>|  
 |OAuth2Step_AccessTokenRequest_Name|Demande de jeton d’accès.|  
 |OAuth2Step_AuthorizationRequest_Name|Demande d’autorisation.|  
-|OAuth2AccessToken_AuthorizationCodeGrant_TokenResponse|OBLIGATOIRE. Jeton d’accès émis par le serveur d’autorisation.|  
-|OAuth2AccessToken_ClientCredentialsGrant_TokenResponse|OBLIGATOIRE. Jeton d’accès émis par le serveur d’autorisation.|  
-|OAuth2AccessToken_ImplicitGrant_AuthorizationResponse|OBLIGATOIRE. Jeton d’accès émis par le serveur d’autorisation.|  
-|OAuth2AccessToken_ResourceOwnerPasswordCredentialsGrant_TokenResponse|OBLIGATOIRE. Jeton d’accès émis par le serveur d’autorisation.|  
+|OAuth2AccessToken_AuthorizationCodeGrant_TokenResponse|OBLIGATOIRE. jeton d’accès Hello émis par le serveur d’autorisation de hello.|  
+|OAuth2AccessToken_ClientCredentialsGrant_TokenResponse|OBLIGATOIRE. jeton d’accès Hello émis par le serveur d’autorisation de hello.|  
+|OAuth2AccessToken_ImplicitGrant_AuthorizationResponse|OBLIGATOIRE. jeton d’accès Hello émis par le serveur d’autorisation de hello.|  
+|OAuth2AccessToken_ResourceOwnerPasswordCredentialsGrant_TokenResponse|OBLIGATOIRE. jeton d’accès Hello émis par le serveur d’autorisation de hello.|  
 |OAuth2ClientId_AuthorizationCodeGrant_AuthorizationRequest|OBLIGATOIRE. Identificateur client.|  
-|OAuth2ClientId_AuthorizationCodeGrant_TokenRequest|OBLIGATOIRE si le client ne s’authentifie pas auprès du serveur d’autorisation.|  
-|OAuth2ClientId_ImplicitGrant_AuthorizationRequest|OBLIGATOIRE. Identificateur client.|  
-|OAuth2Code_AuthorizationCodeGrant_AuthorizationResponse|OBLIGATOIRE. Code d’autorisation généré par le serveur d’autorisation.|  
-|OAuth2Code_AuthorizationCodeGrant_TokenRequest|OBLIGATOIRE. Code d’autorisation reçu de la part du serveur d’autorisation.|  
+|OAuth2ClientId_AuthorizationCodeGrant_TokenRequest|REQUIS si le client de hello n’authentifie pas avec le serveur d’autorisation de hello.|  
+|OAuth2ClientId_ImplicitGrant_AuthorizationRequest|OBLIGATOIRE. Identificateur du client Hello.|  
+|OAuth2Code_AuthorizationCodeGrant_AuthorizationResponse|OBLIGATOIRE. code d’autorisation Hello généré par le serveur d’autorisation de hello.|  
+|OAuth2Code_AuthorizationCodeGrant_TokenRequest|OBLIGATOIRE. code d’autorisation Hello provenant du serveur d’autorisation de hello.|  
 |OAuth2ErrorDescription_AuthorizationCodeGrant_AuthorizationErrorResponse|FACULTATIF. Texte ASCII lisible fournissant des informations supplémentaires.|  
 |OAuth2ErrorDescription_AuthorizationCodeGrant_TokenErrorResponse|FACULTATIF. Texte ASCII lisible fournissant des informations supplémentaires.|  
 |OAuth2ErrorDescription_ClientCredentialsGrant_TokenErrorResponse|FACULTATIF. Texte ASCII lisible fournissant des informations supplémentaires.|  
 |OAuth2ErrorDescription_ImplicitGrant_AuthorizationErrorResponse|FACULTATIF. Texte ASCII lisible fournissant des informations supplémentaires.|  
 |OAuth2ErrorDescription_ResourceOwnerPasswordCredentialsGrant_TokenErrorResponse|FACULTATIF. Texte ASCII lisible fournissant des informations supplémentaires.|  
-|OAuth2ErrorUri_AuthorizationCodeGrant_AuthorizationErrorResponse|FACULTATIF. URI qui identifie une page web lisible avec des informations sur l’erreur.|  
-|OAuth2ErrorUri_AuthorizationCodeGrant_TokenErrorResponse|FACULTATIF. URI qui identifie une page web lisible avec des informations sur l’erreur.|  
-|OAuth2ErrorUri_ClientCredentialsGrant_TokenErrorResponse|FACULTATIF. URI qui identifie une page web lisible avec des informations sur l’erreur.|  
-|OAuth2ErrorUri_ImplicitGrant_AuthorizationErrorResponse|FACULTATIF. URI qui identifie une page web lisible avec des informations sur l’erreur.|  
-|OAuth2ErrorUri_ResourceOwnerPasswordCredentialsGrant_TokenErrorResponse|FACULTATIF. URI qui identifie une page web lisible avec des informations sur l’erreur.|  
-|OAuth2Error_AuthorizationCodeGrant_AuthorizationErrorResponse|OBLIGATOIRE. Code d’erreur ASCII unique de la liste suivante : invalid_request, unauthorized_client, access_denied, unsupported_response_type, invalid_scope, server_error, temporarily_unavailable.|  
-|OAuth2Error_AuthorizationCodeGrant_TokenErrorResponse|OBLIGATOIRE. Code d’erreur ASCII unique de la liste suivante : invalid_request, invalid_client, invalid_grant, unauthorized_client, unsupported_grant_type, invalid_scope.|  
-|OAuth2Error_ClientCredentialsGrant_TokenErrorResponse|OBLIGATOIRE. Code d’erreur ASCII unique de la liste suivante : invalid_request, invalid_client, invalid_grant, unauthorized_client, unsupported_grant_type, invalid_scope.|  
-|OAuth2Error_ImplicitGrant_AuthorizationErrorResponse|OBLIGATOIRE. Code d’erreur ASCII unique de la liste suivante : invalid_request, unauthorized_client, access_denied, unsupported_response_type, invalid_scope, server_error, temporarily_unavailable.|  
-|OAuth2Error_ResourceOwnerPasswordCredentialsGrant_TokenErrorResponse|OBLIGATOIRE. Code d’erreur ASCII unique de la liste suivante : invalid_request, invalid_client, invalid_grant, unauthorized_client, unsupported_grant_type, invalid_scope.|  
-|OAuth2ExpiresIn_AuthorizationCodeGrant_TokenResponse|RECOMMANDÉ. Durée de vie en secondes du jeton d’accès.|  
-|OAuth2ExpiresIn_ClientCredentialsGrant_TokenResponse|RECOMMANDÉ. Durée de vie en secondes du jeton d’accès.|  
-|OAuth2ExpiresIn_ImplicitGrant_AuthorizationResponse|RECOMMANDÉ. Durée de vie en secondes du jeton d’accès.|  
-|OAuth2ExpiresIn_ResourceOwnerPasswordCredentialsGrant_TokenResponse|RECOMMANDÉ. Durée de vie en secondes du jeton d’accès.|  
-|OAuth2GrantType_AuthorizationCodeGrant_TokenRequest|OBLIGATOIRE. DOIT avoir la valeur « authorization_code ».|  
-|OAuth2GrantType_ClientCredentialsGrant_TokenRequest|OBLIGATOIRE. DOIT avoir la valeur « client_credentials ».|  
-|OAuth2GrantType_ResourceOwnerPasswordCredentialsGrant_TokenRequest|OBLIGATOIRE. DOIT avoir la valeur « password ».|  
-|OAuth2Password_ResourceOwnerPasswordCredentialsGrant_TokenRequest|OBLIGATOIRE. Mot de passe de propriétaire de la ressource.|  
-|OAuth2RedirectUri_AuthorizationCodeGrant_AuthorizationRequest|FACULTATIF. L’URI du point de terminaison de redirection doit être un URI absolu.|  
-|OAuth2RedirectUri_AuthorizationCodeGrant_TokenRequest|OBLIGATOIRE si le paramètre « redirect_uri » a été inclus dans la demande d’autorisation ; leurs valeurs DOIVENT être identiques.|  
-|OAuth2RedirectUri_ImplicitGrant_AuthorizationRequest|FACULTATIF. L’URI du point de terminaison de redirection doit être un URI absolu.|  
-|OAuth2RefreshToken_AuthorizationCodeGrant_TokenResponse|FACULTATIF. Jeton d’actualisation, qui peut être utilisé pour obtenir de nouveaux jetons d’accès.|  
-|OAuth2RefreshToken_ClientCredentialsGrant_TokenResponse|FACULTATIF. Jeton d’actualisation, qui peut être utilisé pour obtenir de nouveaux jetons d’accès.|  
-|OAuth2RefreshToken_ResourceOwnerPasswordCredentialsGrant_TokenResponse|FACULTATIF. Jeton d’actualisation, qui peut être utilisé pour obtenir de nouveaux jetons d’accès.|  
-|OAuth2ResponseType_AuthorizationCodeGrant_AuthorizationRequest|OBLIGATOIRE. DOIT avoir la valeur « code ».|  
-|OAuth2ResponseType_ImplicitGrant_AuthorizationRequest|OBLIGATOIRE. DOIT avoir la valeur « token ».|  
-|OAuth2Scope_AuthorizationCodeGrant_AuthorizationRequest|FACULTATIF. Étendue de la demande d’accès.|  
-|OAuth2Scope_AuthorizationCodeGrant_TokenResponse|FACULTATIF si identique à l’étendue demandée par le client ; sinon, obligatoire.|  
-|OAuth2Scope_ClientCredentialsGrant_TokenRequest|FACULTATIF. Étendue de la demande d’accès.|  
-|OAuth2Scope_ClientCredentialsGrant_TokenResponse|FACULTATIF si identique à l’étendue demandée par le client ; sinon, obligatoire.|  
-|OAuth2Scope_ImplicitGrant_AuthorizationRequest|FACULTATIF. Étendue de la demande d’accès.|  
-|OAuth2Scope_ImplicitGrant_AuthorizationResponse|FACULTATIF si identique à l’étendue demandée par le client ; sinon, obligatoire.|  
-|OAuth2Scope_ResourceOwnerPasswordCredentialsGrant_TokenRequest|FACULTATIF. Étendue de la demande d’accès.|  
-|OAuth2Scope_ResourceOwnerPasswordCredentialsGrant_TokenResponse|FACULTATIF si identique à l’étendue demandée par le client ; sinon, obligatoire.|  
-|OAuth2State_AuthorizationCodeGrant_AuthorizationErrorResponse|OBLIGATOIRE si le paramètre « state » était présent dans la demande d’autorisation du client.  Valeur exacte reçue de la part du client.|  
-|OAuth2State_AuthorizationCodeGrant_AuthorizationRequest|RECOMMANDÉ. Valeur opaque utilisée par le client pour maintenir l’état entre la demande et le rappel.  Le serveur d’autorisation inclut cette valeur lors de la redirection de l’agent utilisateur vers le client.  Le paramètre DOIT DE PRÉFÉRENCE être utilisé pour empêcher la falsification de demandes intersites.|  
-|OAuth2State_AuthorizationCodeGrant_AuthorizationResponse|OBLIGATOIRE si le paramètre « state » était présent dans la demande d’autorisation du client.  Valeur exacte reçue de la part du client.|  
-|OAuth2State_ImplicitGrant_AuthorizationErrorResponse|OBLIGATOIRE si le paramètre « state » était présent dans la demande d’autorisation du client.  Valeur exacte reçue de la part du client.|  
-|OAuth2State_ImplicitGrant_AuthorizationRequest|RECOMMANDÉ. Valeur opaque utilisée par le client pour maintenir l’état entre la demande et le rappel.  Le serveur d’autorisation inclut cette valeur lors de la redirection de l’agent utilisateur vers le client.  Le paramètre DOIT DE PRÉFÉRENCE être utilisé pour empêcher la falsification de demandes intersites.|  
-|OAuth2State_ImplicitGrant_AuthorizationResponse|OBLIGATOIRE si le paramètre « state » était présent dans la demande d’autorisation du client.  Valeur exacte reçue de la part du client.|  
-|OAuth2TokenType_AuthorizationCodeGrant_TokenResponse|OBLIGATOIRE. Type du jeton émis.|  
-|OAuth2TokenType_ClientCredentialsGrant_TokenResponse|OBLIGATOIRE. Type du jeton émis.|  
-|OAuth2TokenType_ImplicitGrant_AuthorizationResponse|OBLIGATOIRE. Type du jeton émis.|  
-|OAuth2TokenType_ResourceOwnerPasswordCredentialsGrant_TokenResponse|OBLIGATOIRE. Type du jeton émis.|  
-|OAuth2UserName_ResourceOwnerPasswordCredentialsGrant_TokenRequest|OBLIGATOIRE. Nom d’utilisateur du propriétaire de la ressource.|  
+|OAuth2ErrorUri_AuthorizationCodeGrant_AuthorizationErrorResponse|FACULTATIF. URI identifiant une page web contrôlable de visu avec des informations sur l’erreur de hello.|  
+|OAuth2ErrorUri_AuthorizationCodeGrant_TokenErrorResponse|FACULTATIF. URI identifiant une page web contrôlable de visu avec des informations sur l’erreur de hello.|  
+|OAuth2ErrorUri_ClientCredentialsGrant_TokenErrorResponse|FACULTATIF. URI identifiant une page web contrôlable de visu avec des informations sur l’erreur de hello.|  
+|OAuth2ErrorUri_ImplicitGrant_AuthorizationErrorResponse|FACULTATIF. URI identifiant une page web contrôlable de visu avec des informations sur l’erreur de hello.|  
+|OAuth2ErrorUri_ResourceOwnerPasswordCredentialsGrant_TokenErrorResponse|FACULTATIF. URI identifiant une page web contrôlable de visu avec des informations sur l’erreur de hello.|  
+|OAuth2Error_AuthorizationCodeGrant_AuthorizationErrorResponse|OBLIGATOIRE. Un code d’erreur ASCII unique depuis hello : invalid_request, unauthorized_client, access_denied, unsupported_response_type, invalid_scope, server_error, temporarily_unavailable.|  
+|OAuth2Error_AuthorizationCodeGrant_TokenErrorResponse|OBLIGATOIRE. Un code d’erreur ASCII unique depuis hello : invalid_request, invalid_client, invalid_grant, unauthorized_client, unsupported_grant_type, invalid_scope.|  
+|OAuth2Error_ClientCredentialsGrant_TokenErrorResponse|OBLIGATOIRE. Un code d’erreur ASCII unique depuis hello : invalid_request, invalid_client, invalid_grant, unauthorized_client, unsupported_grant_type, invalid_scope.|  
+|OAuth2Error_ImplicitGrant_AuthorizationErrorResponse|OBLIGATOIRE. Un code d’erreur ASCII unique depuis hello : invalid_request, unauthorized_client, access_denied, unsupported_response_type, invalid_scope, server_error, temporarily_unavailable.|  
+|OAuth2Error_ResourceOwnerPasswordCredentialsGrant_TokenErrorResponse|OBLIGATOIRE. Un code d’erreur ASCII unique depuis hello : invalid_request, invalid_client, invalid_grant, unauthorized_client, unsupported_grant_type, invalid_scope.|  
+|OAuth2ExpiresIn_AuthorizationCodeGrant_TokenResponse|RECOMMANDÉ. durée de vie Hello en secondes du jeton d’accès hello.|  
+|OAuth2ExpiresIn_ClientCredentialsGrant_TokenResponse|RECOMMANDÉ. durée de vie Hello en secondes du jeton d’accès hello.|  
+|OAuth2ExpiresIn_ImplicitGrant_AuthorizationResponse|RECOMMANDÉ. durée de vie Hello en secondes du jeton d’accès hello.|  
+|OAuth2ExpiresIn_ResourceOwnerPasswordCredentialsGrant_TokenResponse|RECOMMANDÉ. durée de vie Hello en secondes du jeton d’accès hello.|  
+|OAuth2GrantType_AuthorizationCodeGrant_TokenRequest|OBLIGATOIRE. DOIT avoir la valeur trop « authorization_code ».|  
+|OAuth2GrantType_ClientCredentialsGrant_TokenRequest|OBLIGATOIRE. DOIT avoir la valeur trop valeur « client_credentials ».|  
+|OAuth2GrantType_ResourceOwnerPasswordCredentialsGrant_TokenRequest|OBLIGATOIRE. DOIT avoir la valeur trop « password ».|  
+|OAuth2Password_ResourceOwnerPasswordCredentialsGrant_TokenRequest|OBLIGATOIRE. mot de passe du propriétaire de ressource Hello.|  
+|OAuth2RedirectUri_AuthorizationCodeGrant_AuthorizationRequest|FACULTATIF. point de terminaison de redirection Hello URI doit être un URI absolu.|  
+|OAuth2RedirectUri_AuthorizationCodeGrant_TokenRequest|OBLIGATOIRE si paramètre « redirect_uri » de hello a été inclus dans la demande d’autorisation de hello et leurs valeurs doivent être identiques.|  
+|OAuth2RedirectUri_ImplicitGrant_AuthorizationRequest|FACULTATIF. point de terminaison de redirection Hello URI doit être un URI absolu.|  
+|OAuth2RefreshToken_AuthorizationCodeGrant_TokenResponse|FACULTATIF. jeton d’actualisation Hello, qui peut être utilisé tooobtain nouveaux jetons d’accès.|  
+|OAuth2RefreshToken_ClientCredentialsGrant_TokenResponse|FACULTATIF. jeton d’actualisation Hello, qui peut être utilisé tooobtain nouveaux jetons d’accès.|  
+|OAuth2RefreshToken_ResourceOwnerPasswordCredentialsGrant_TokenResponse|FACULTATIF. jeton d’actualisation Hello, qui peut être utilisé tooobtain nouveaux jetons d’accès.|  
+|OAuth2ResponseType_AuthorizationCodeGrant_AuthorizationRequest|OBLIGATOIRE. DOIT avoir la valeur trop « code ».|  
+|OAuth2ResponseType_ImplicitGrant_AuthorizationRequest|OBLIGATOIRE. Valeur doit être définie trop « token ».|  
+|OAuth2Scope_AuthorizationCodeGrant_AuthorizationRequest|FACULTATIF. étendue Hello de demande d’accès hello.|  
+|OAuth2Scope_AuthorizationCodeGrant_TokenResponse|FACULTATIF si toohello identiques étendue demandée par le client de hello ; dans le cas contraire, il est nécessaire.|  
+|OAuth2Scope_ClientCredentialsGrant_TokenRequest|FACULTATIF. étendue Hello de demande d’accès hello.|  
+|OAuth2Scope_ClientCredentialsGrant_TokenResponse|FACULTATIF, si elles sont identiques toohello étendue demandée par le client de hello ; dans le cas contraire, il est nécessaire.|  
+|OAuth2Scope_ImplicitGrant_AuthorizationRequest|FACULTATIF. étendue Hello de demande d’accès hello.|  
+|OAuth2Scope_ImplicitGrant_AuthorizationResponse|FACULTATIF si toohello identiques étendue demandée par le client de hello ; dans le cas contraire, il est nécessaire.|  
+|OAuth2Scope_ResourceOwnerPasswordCredentialsGrant_TokenRequest|FACULTATIF. étendue Hello de demande d’accès hello.|  
+|OAuth2Scope_ResourceOwnerPasswordCredentialsGrant_TokenResponse|FACULTATIF, si elles sont identiques toohello étendue demandée par le client de hello ; dans le cas contraire, il est nécessaire.|  
+|OAuth2State_AuthorizationCodeGrant_AuthorizationErrorResponse|REQUIS si le paramètre « state » de hello était présent dans la demande d’autorisation du client hello.  valeur exacte de Hello provenant du client de hello.|  
+|OAuth2State_AuthorizationCodeGrant_AuthorizationRequest|RECOMMANDÉ. Valeur opaque hello client toomaintain état entre la demande de hello et le rappel.  serveur d’autorisation de Hello inclut cette valeur lors de la redirection du client de toohello arrière de l’agent utilisateur hello.  paramètre de Hello doit être utilisé pour empêcher la falsification de requête.|  
+|OAuth2State_AuthorizationCodeGrant_AuthorizationResponse|REQUIS si le paramètre « state » de hello était présent dans la demande d’autorisation du client hello.  valeur exacte de Hello provenant du client de hello.|  
+|OAuth2State_ImplicitGrant_AuthorizationErrorResponse|REQUIS si le paramètre « state » de hello était présent dans la demande d’autorisation du client hello.  valeur exacte de Hello provenant du client de hello.|  
+|OAuth2State_ImplicitGrant_AuthorizationRequest|RECOMMANDÉ. Valeur opaque hello client toomaintain état entre la demande de hello et le rappel.  serveur d’autorisation de Hello inclut cette valeur lors de la redirection du client de toohello arrière de l’agent utilisateur hello.  paramètre de Hello doit être utilisé pour empêcher la falsification de requête.|  
+|OAuth2State_ImplicitGrant_AuthorizationResponse|REQUIS si le paramètre « state » de hello était présent dans la demande d’autorisation du client hello.  valeur exacte de Hello provenant du client de hello.|  
+|OAuth2TokenType_AuthorizationCodeGrant_TokenResponse|OBLIGATOIRE. type de Hello du jeton hello émis.|  
+|OAuth2TokenType_ClientCredentialsGrant_TokenResponse|OBLIGATOIRE. type de Hello du jeton hello émis.|  
+|OAuth2TokenType_ImplicitGrant_AuthorizationResponse|OBLIGATOIRE. type de Hello du jeton hello émis.|  
+|OAuth2TokenType_ResourceOwnerPasswordCredentialsGrant_TokenResponse|OBLIGATOIRE. type de Hello du jeton hello émis.|  
+|OAuth2UserName_ResourceOwnerPasswordCredentialsGrant_TokenRequest|OBLIGATOIRE. nom d’utilisateur du propriétaire de ressource de Hello.|  
 |OAuth2UnsupportedTokenType|Le type de jeton « {0} » n’est pas pris en charge.|  
 |OAuth2InvalidState|Réponse non valide du serveur d’autorisation.|  
 |OAuth2GrantType_AuthorizationCode|Code d’autorisation.|  
@@ -283,16 +283,16 @@ La Gestion des API Azure fournit les types de ressources suivants, utilisables d
 |OAuth2SendingMethod_AuthHeader|En-tête d’autorisation.|  
 |OAuth2SendingMethod_QueryParam|Paramètre de requête.|  
 |OAuth2AuthorizationServerGeneralException|Une erreur s’est produite lors de l’autorisation d’accès par {0}.|  
-|OAuth2AuthorizationServerCommunicationException|Impossible d’établir une connexion HTTP au serveur d’autorisation ou connexion fermée de façon inattendue.|  
+|OAuth2AuthorizationServerCommunicationException|Un serveur de tooauthorization de connexion HTTP n’a pas pu être établi ou a été fermé de façon inattendue.|  
 |WebDocumentationOAuth2GeneralErrorMessage|Une erreur inattendue s’est produite.|  
 |AuthorizationServerCommunicationException|Une exception de communication du serveur d’autorisation s’est produite. Contactez l’administrateur.|  
-|TextblockSubscriptionKeyHeaderDescription|Clé d’abonnement qui fournit l’accès à cette API. Trouvée dans votre <a href='/developer'\>profil</a\>.|  
+|TextblockSubscriptionKeyHeaderDescription|Clé d’abonnement qui fournit l’accès toothis API. Trouvée dans votre <a href='/developer'\>profil</a\>.|  
 |TextblockOAuthHeaderDescription|Jeton d’accès OAuth 2.0 obtenu à partir de <i\>{0}</i\>. Types d’octrois pris en charge : <i\>{1}</i\>.|  
-|TextblockContentTypeHeaderDescription|Type de média du corps envoyé à l’API.|  
-|ErrorMessageApiNotAccessible|L’API que vous essayez d’appeler n’est pas accessible pour l’instant. Contactez l’éditeur de l’API <a href="/issues"\>ici</a\>.|  
-|ErrorMessageApiTimedout|L’API que vous essayez d’appeler met plus de temps que d’habitude à obtenir une réponse. Contactez l’éditeur de l’API <a href="/issues"\>ici</a\>.|  
+|TextblockContentTypeHeaderDescription|Type de média du corps hello envoyé toohello API.|  
+|ErrorMessageApiNotAccessible|Hello API que vous essayez de toocall n’est pas accessible pour l’instant. Veuillez contacter le serveur de publication hello API < un href = « / émet »\>ici < /a\>.|  
+|ErrorMessageApiTimedout|Hello API que vous essayez de toocall prend plu de réponse de tooget normal précédent. Veuillez contacter le serveur de publication hello API < un href = « / émet »\>ici < /a\>.|  
 |BadRequestParameterExpected|« Le paramètre "{0}" est attendu. »|  
-|TooltipTextDoubleClickToSelectAll|Double-cliquez pour tout sélectionner.|  
+|TooltipTextDoubleClickToSelectAll|Double-cliquez sur tooselect tous.|  
 |TooltipTextHideRevealSecret|Afficher/masquer|  
 |ButtonLinkOpenConsole|Essayer|  
 |SectionHeadingRequestBody|Corps de la demande|  
@@ -311,24 +311,24 @@ La Gestion des API Azure fournit les types de ressources suivants, utilisables d
 |LinkLabelBack|Retour|  
 |LinkLabelHomePage|page d'accueil|  
 |LinkLabelSendUsEmail|Envoyez-nous un e-mail.|  
-|PageTitleError|Désolé, un problème est survenu dans le traitement de la page demandée.|  
+|PageTitleError|Désolé, il est une page demandée de problème à servir hello|  
 |TextblockPotentialCauseIntermittentIssue|Il peut s’agir d’un problème intermittent d’accès aux données qui a déjà disparu.|  
-|TextblockPotentialCauseOldLink|Il est possible que le lien sur lequel vous avez cliqué soit ancien et ne pointe plus vers l’emplacement correct.|  
+|TextblockPotentialCauseOldLink|lien Hello que vous avez cliqué sur est peut-être ancien et pas point toohello corriger emplacement plus.|  
 |TextblockPotentialCauseTechnicalProblem|Un problème technique a pu se produire de notre côté.|  
-|TextblockPotentialSolutionRefresh|Essayez de réactualiser la page.|  
+|TextblockPotentialSolutionRefresh|Essayez d’actualiser la page de hello.|  
 |TextblockPotentialSolutionStartOver|Recommencez à partir de notre {0}.|  
-|TextblockPotentialSolutionTryAgain|Accédez à {0} et retentez l’action effectuée.|  
+|TextblockPotentialSolutionTryAgain|Accédez de {0} et recommencez l’action hello effectuée à nouveau.|  
 |TextReportProblem|{0} décrivant la cause du problème ; nous nous en occuperons dès que possible.|  
 |TitlePotentialCause|Cause potentielle.|  
-|TitlePotentialSolution|Il peut simplement s’agir d’un problème temporaire, quelques actions à tenter.|  
+|TitlePotentialSolution|Il n’est peut-être seulement un problème temporaire, quelques opérations tootry|  
   
 ###  <a name="IssuesStrings"></a> IssuesStrings  
   
 |Nom|Texte|  
 |----------|----------|  
 |WebIssuesIndexTitle|Problèmes|  
-|WebIssuesNoActiveSubscriptions|Vous ne disposez d’aucun abonnement actif. Vous devez vous abonner à un produit pour signaler un problème.|  
-|WebIssuesNotSignin|Vous n’êtes pas connecté. Veuillez {0} pour signaler un problème ou publier un commentaire.|  
+|WebIssuesNoActiveSubscriptions|Vous ne disposez d’aucun abonnement actif. Vous devez toosubscribe pour un tooreport produit un problème.|  
+|WebIssuesNotSignin|Vous n’êtes pas connecté. Veuillez {0} tooreport un problème ou publier un commentaire.|  
 |WebIssuesReportIssueButton|Signaler un problème|  
 |WebIssuesSignIn|se connecter|  
 |WebIssuesStatusReportedBy|État: {0} &#124; Signalé par {1}.|  
@@ -339,10 +339,10 @@ La Gestion des API Azure fournit les types de ressources suivants, utilisables d
 |----------|----------|  
 |LinkLabelHomePage|page d'accueil|  
 |LinkLabelSendUsEmail|Envoyez-nous un e-mail.|  
-|PageTitleNotFound|Désolé, nous ne trouvons pas la page que vous recherchez.|  
-|TextblockPotentialCauseMisspelledUrl|Vous avez peut-être mal orthographié l’URL si vous l’avez tapée.|  
-|TextblockPotentialCauseOldLink|Il est possible que le lien sur lequel vous avez cliqué soit ancien et ne pointe plus vers l’emplacement correct.|  
-|TextblockPotentialSolutionRetype|Essayez de retaper l’URL.|  
+|PageTitleNotFound|Nous sommes désolés, nous ne trouvons page hello que vous recherchez|  
+|TextblockPotentialCauseMisspelledUrl|Vous avez peut-être mal orthographié hello URL si vous l’avez tapée.|  
+|TextblockPotentialCauseOldLink|lien Hello que vous avez cliqué sur est peut-être ancien et pas point toohello corriger emplacement plus.|  
+|TextblockPotentialSolutionRetype|Essayez de retaper hello URL.|  
 |TextblockPotentialSolutionStartOver|Recommencez à partir de notre {0}.|  
 |TextReportProblem|{0} décrivant la cause du problème ; nous nous en occuperons dès que possible.|  
 |TitlePotentialCause|Cause potentielle.|  
@@ -352,21 +352,21 @@ La Gestion des API Azure fournit les types de ressources suivants, utilisables d
   
 |Nom|Texte|  
 |----------|----------|  
-|WebProductsAgreement|En m’abonnant au produit {0}, j’accepte les `<a data-toggle='modal' href='#legal-terms'\>Terms of Use</a\>`.|  
+|WebProductsAgreement|En vous abonnant trop {0} produit, j’accepte toohello `<a data-toggle='modal' href='#legal-terms'\>Terms of Use</a\>`.|  
 |WebProductsLegalTermsLink|Conditions d’utilisation|  
 |WebProductsSubscribeButton|S'abonner|  
 |WebProductsUsageLimitsHeader|Limites d’utilisation|  
-|WebProductsYouAreNotSubscribed|Vous êtes abonné à ce produit.|  
-|WebProductsYouRequestedSubscription|Vous avez demandé l’abonnement à ce produit.|  
-|ErrorYouNeedtoAgreeWithLegalTerms|Vous devez accepter les conditions d’utilisation pour pouvoir continuer.|  
+|WebProductsYouAreNotSubscribed|Vous êtes abonné toothis produit.|  
+|WebProductsYouRequestedSubscription|Vous avez demandé de produit de toothis d’abonnement.|  
+|ErrorYouNeedtoAgreeWithLegalTerms|Vous devez accepter les conditions d’utilisation de toohello avant de pouvoir continuer.|  
 |ButtonLabelAddSubscription|Ajouter un abonnement|  
 |LinkLabelChangeSubscriptionName|Modifier|  
 |ButtonLabelConfirm|Confirmer|  
-|TextblockMultipleSubscriptionsCount|Vous avez {0} abonnements à ce produit :|  
-|TextblockSingleSubscriptionsCount|Vous avez {0} abonnement à ce produit :|  
+|TextblockMultipleSubscriptionsCount|Vous avez produit de toothis abonnements {0} :|  
+|TextblockSingleSubscriptionsCount|Vous avez produit de toothis abonnement de {0} :|  
 |TextblockSingleApisCount|Ce produit contient {0} API :|  
 |TextblockMultipleApisCount|Ce produit contient {0} API :|  
-|TextblockHeaderSubscribe|S’abonner au produit|  
+|TextblockHeaderSubscribe|S’abonner tooproduct|  
 |TextblockSubscriptionDescription|Un nouvel abonnement sera créé ainsi :|  
 |TextblockSubscriptionLimitReached|Limite d’abonnements atteinte.|  
   
@@ -380,7 +380,7 @@ La Gestion des API Azure fournit les types de ressources suivants, utilisables d
   
 |Nom|Texte|  
 |----------|----------|  
-|TextboxExternalIdentitiesDisabled|La connexion est désactivée par les administrateurs pour l’instant.|  
+|TextboxExternalIdentitiesDisabled|Connexion est désactivée par les administrateurs de hello moment hello.|  
 |TextboxExternalIdentitiesSigninInvitation|Vous pouvez également vous connecter avec|  
 |TextboxExternalIdentitiesSigninInvitationPrimary|Connectez-vous avec :|  
   
@@ -394,12 +394,12 @@ La Gestion des API Azure fournit les types de ressources suivants, utilisables d
 |ErrorSsoTokenInvalid|Jeton SSO non valide.|  
 |ValidationErrorSpecificEmailAlreadyExists|Adresse de messagerie « {0} » déjà inscrite.|  
 |ValidationErrorSpecificEmailInvalid|Adresse de messagerie « {0} » non valide.|  
-|ValidationErrorPasswordInvalid|Le mot de passe n’est pas valide. Corrigez les erreurs, puis réessayez.|  
+|ValidationErrorPasswordInvalid|Le mot de passe n’est pas valide. Corrigez les erreurs hello et recommencez l’opération.|  
 |PropertyTooShort|{0} est trop court.|  
 |WebAuthenticationAddresserEmailInvalidErrorMessage|Adresse de messagerie non valide.|  
 |ValidationMessageNewPasswordConfirmationRequired|Confirmez le nouveau mot de passe.|  
 |ValidationErrorPasswordConfirmationRequired|Le mot de passe de confirmation est vide.|  
-|WebAuthenticationEmailChangeNotice|Un e-mail de confirmation de la modification a été envoyé à {0}. Suivez les instructions qu’il contient pour confirmer votre nouvelle adresse de messagerie. Si le message n’est pas arrivé dans votre boîte de réception d’ici quelques minutes, vérifiez votre dossier Courrier indésirable.|  
+|WebAuthenticationEmailChangeNotice|Message électronique de confirmation de modification est trop sur hello {0}. Suivez les instructions qu’il contient tooconfirm votre nouvelle adresse de messagerie. Si par courrier électronique hello n’arrive pas tooyour la boîte de réception hello quelques minutes, vérifiez votre dossier courrier indésirable.|  
 |WebAuthenticationEmailChangeNoticeHeader|Votre demande de modification de l’adresse de messagerie a été traitée.|  
 |WebAuthenticationEmailChangeNoticeTitle|Modification de l’adresse de messagerie demandée.|  
 |WebAuthenticationEmailHasBeenRevertedNotice|Votre adresse de messagerie existe déjà. La demande a été annulée.|  
@@ -412,13 +412,13 @@ La Gestion des API Azure fournit les types de ressources suivants, utilisables d
 |TextboxLabelEmailFirstName|Prénom|  
 |ValidationErrorFirstNameRequired|Le prénom est obligatoire.|  
 |ValidationErrorFirstNameInvalid|Prénom non valide.|  
-|NoticeInvalidInvitationToken|Veuillez noter que les liens de confirmation ne sont valides que pendant 48 heures. Si vous vous trouvez toujours dans cette plage de temps, vérifiez que votre lien est correct. Si votre lien a expiré, renouvelez l’action que vous tentez de confirmer.|  
+|NoticeInvalidInvitationToken|Veuillez noter que les liens de confirmation ne sont valides que pendant 48 heures. Si vous vous trouvez toujours dans cette plage de temps, vérifiez que votre lien est correct. Si votre liaison a expiré, puis répétez l’action hello que vous essayez de tooconfirm.|  
 |NoticeHeaderInvalidInvitationToken|Jeton d’invitation non valide.|  
 |NoticeTitleInvalidInvitationToken|Erreur de confirmation.|  
 |WebAuthenticationLastNameInvalidErrorMessage|Nom non valide.|  
 |TextboxLabelEmailLastName|Nom|  
 |ValidationErrorLastNameRequired|Le nom est obligatoire.|  
-|WebAuthenticationLinkExpiredNotice|Le lien de confirmation qui vous a été envoyé a expiré. `<a href={0}?token={1}>Resend confirmation email.</a\>`|  
+|WebAuthenticationLinkExpiredNotice|Lien de confirmation envoyé tooyou a expiré. `<a href={0}?token={1}>Resend confirmation email.</a\>`|  
 |NoticePasswordResetLinkInvalidOrExpired|Votre lien de réinitialisation du mot de passe n’est pas valide ou a expiré.|  
 |WebAuthenticationLinkExpiredNoticeTitle|Lien envoyé.|  
 |WebAuthenticationNewPasswordLabel|Nouveau mot de passe|  
@@ -433,52 +433,52 @@ La Gestion des API Azure fournit les types de ressources suivants, utilisables d
 |ValidationErrorPasswordInvalidDetailed|Le mot de passe est trop faible.|  
 |WebAuthenticationPasswordLabel|Mot de passe|  
 |ValidationErrorPasswordRequired|Le mot de passe est requis.|  
-|WebAuthenticationPasswordResetSendNotice|Un e-mail de confirmation de la modification de mot de passe a été envoyé à {0}. Suivez les instructions décrites dans l’e-mail pour poursuivre la procédure de modification du mot de passe.|  
+|WebAuthenticationPasswordResetSendNotice|Message électronique de confirmation du mot de passe modification est trop sur hello {0}. Suivez les instructions de hello dans hello messagerie toocontinue votre processus de modification de mot de passe.|  
 |WebAuthenticationPasswordResetSendNoticeHeader|Votre demande de réinitialisation de mot de passe a bien été traitée.|  
 |WebAuthenticationPasswordResetSendNoticeTitle|Réinitialisation de mot de passe demandée.|  
 |WebAuthenticationRequestNotFoundNotice|Demande introuvable.|  
 |WebAuthenticationSenderEmailRequiredErrorMessage|L’adresse de messagerie de l’expéditeur des notifications est vide.|  
-|WebAuthenticationSigninPasswordLabel|Confirmez la modification en entrant un mot de passe.|  
-|WebAuthenticationSignupConfirmNotice|Un e-mail de confirmation d’inscription a été envoyé à {0}.<br /\> Suivez les instructions décrites dans l’e-mail pour activer votre compte.<br /\> Si le message n’est pas arrivé dans votre boîte de réception d’ici quelques minutes, vérifiez votre dossier Courrier indésirable.|  
+|WebAuthenticationSigninPasswordLabel|Confirmez la modification de hello en entrant un mot de passe|  
+|WebAuthenticationSignupConfirmNotice|Message électronique de confirmation d’inscription est en cours trop {0}. < br /\> Veuillez suivez les instructions dans hello tooactivate de messagerie de votre compte. < br /\> si la messagerie de hello n’arrive pas dans votre boîte de réception dans hello quelques minutes, consultez votre dossier courrier indésirable.|  
 |WebAuthenticationSignupConfirmNoticeHeader|Votre compte a bien été créé.|  
 |WebAuthenticationSignupConfirmNoticeRepeatHeader|L’e-mail de confirmation d’inscription a été renvoyé.|  
 |WebAuthenticationSignupConfirmNoticeTitle|Compte créé|  
 |WebAuthenticationTokenRequiredErrorMessage|Le jeton est vide.|  
-|WebAuthenticationUserAlreadyRegisteredNotice|Il semble qu’un utilisateur associé à cette adresse de messagerie soit déjà inscrit dans le système. Si vous avez oublié votre mot de passe, essayez de le restaurer ou contactez notre équipe de support.|  
+|WebAuthenticationUserAlreadyRegisteredNotice|Apparemment, qu'un utilisateur avec cette adresse de messagerie est déjà inscrit dans le système de hello. Si vous avez oublié votre mot de passe, veuillez réessayer toorestore ou contactez notre équipe de support.|  
 |WebAuthenticationUserAlreadyRegisteredNoticeHeader|Utilisateur déjà inscrit.|  
 |WebAuthenticationUserAlreadyRegisteredNoticeTitle|Déjà inscrit.|  
 |ButtonLabelChangePassword|Modifier le mot de passe|  
 |ButtonLabelChangeAccountInfo|Modifier les informations du compte|  
 |ButtonLabelCloseAccount|Fermer le compte|  
-|WebAuthenticationInvalidCaptchaErrorMessage|Le texte entré ne correspond pas au texte de l’image. Réessayez.|  
-|ValidationErrorCredentialsInvalid|L’adresse de messagerie ou le mot de passe n’est pas valide. Corrigez les erreurs, puis réessayez.|  
+|WebAuthenticationInvalidCaptchaErrorMessage|Texte entré ne correspond pas à texte sur l’image de hello. Réessayez.|  
+|ValidationErrorCredentialsInvalid|L’adresse de messagerie ou le mot de passe n’est pas valide. Corrigez les erreurs hello et recommencez l’opération.|  
 |WebAuthenticationRequestIsNotValid|La demande n’est pas valide.|  
-|WebAuthenticationUserIsNotConfirm|Veuillez confirmer votre inscription avant de tenter de vous connecter.|  
+|WebAuthenticationUserIsNotConfirm|Veuillez confirmer votre inscription avant de tenter de toosign dans.|  
 |WebAuthenticationInvalidEmailFormated|L’adresse de messagerie n’est pas valide : {0}.|  
 |WebAuthenticationUserNotFound|Utilisateur non trouvé.|  
-|WebAuthenticationTenantNotRegistered|Votre compte appartient à un client Azure Active Directory qui n’est pas autorisé à accéder à ce portail.|  
+|WebAuthenticationTenantNotRegistered|Votre compte appartient locataire d’Azure Active Directory tooa qui n’est pas autorisé tooaccess ce portail.|  
 |WebAuthenticationAuthenticationFailed|L’authentification a échoué.|  
-|WebAuthenticationGooglePlusNotEnabled|L’authentification a échoué. Si vous avez autorisé l’application, contactez l’administrateur pour vérifier que l’authentification Google est configurée correctement.|  
+|WebAuthenticationGooglePlusNotEnabled|L’authentification a échoué. Si vous autorisé application hello, Veuillez contactez hello admin toomake que l’authentification Google est configurée correctement.|  
 |ValidationErrorAllowedTenantIsRequired|Le client autorisé est requis.|  
-|ValidationErrorTenantIsNotValid|Le client Azure Active Directory « {0} » n’est pas valide.|  
+|ValidationErrorTenantIsNotValid|client Azure Active Directory de Hello '{0}' n’est pas valide.|  
 |WebAuthenticationActiveDirectoryTitle|Azure Active Directory|  
 |WebAuthenticationLoginUsingYourProvider|Connectez-vous avec votre compte {0}.|  
-|WebAuthenticationUserLimitNotice|Ce service a atteint le nombre maximal d’utilisateurs autorisés. Veuillez `<a href="mailto:{0}"\>contact the administrator</a\>` pour mettre à niveau leur service et réactiver l’inscription de l’utilisateur.|  
+|WebAuthenticationUserLimitNotice|Ce service a atteint le nombre maximal de hello des utilisateurs autorisés. Veuillez `<a href="mailto:{0}"\>contact hello administrator</a\>` tooupgrade leur enregistrement d’utilisateur de service et de réactiver.|  
 |WebAuthenticationUserLimitNoticeHeader|Inscription des utilisateurs désactivée.|  
 |WebAuthenticationUserLimitNoticeTitle|Inscription des utilisateurs désactivée.|  
-|WebAuthenticationUserRegistrationDisabledNotice|L’inscription des utilisateurs a été désactivée par l’administrateur. Connectez-vous avec un fournisseur d’identité externe.|  
+|WebAuthenticationUserRegistrationDisabledNotice|L’inscription des utilisateurs a été désactivée par l’administrateur de hello. Connectez-vous avec un fournisseur d’identité externe.|  
 |WebAuthenticationUserRegistrationDisabledNoticeHeader|Inscription des utilisateurs désactivée.|  
 |WebAuthenticationUserRegistrationDisabledNoticeTitle|Inscription des utilisateurs désactivée.|  
-|WebAuthenticationSignupPendingConfirmationNotice|Pour pouvoir terminer la création de votre compte, nous devons vérifier votre adresse de messagerie. Nous avons envoyé un e-mail à {0}. Suivez les instructions décrites dans l’e-mail pour activer votre compte. Si le message n’est pas arrivé d’ici quelques minutes, vérifiez votre dossier Courrier indésirable.|  
-|WebAuthenticationSignupPendingConfirmationAccountFoundNotice|Nous avons trouvé un compte non confirmé associé à l’adresse de messagerie {0}. Pour pouvoir terminer la création de votre compte, nous devons vérifier votre adresse de messagerie. Nous avons envoyé un e-mail à {0}. Suivez les instructions décrites dans l’e-mail pour activer votre compte. Si le message n’est pas arrivé d’ici quelques minutes, vérifiez votre dossier Courrier indésirable.|  
+|WebAuthenticationSignupPendingConfirmationNotice|Nous pouvons achever la création de votre compte hello nous devons tooverify votre adresse de messagerie. Nous avons envoyé un message électronique trop {0}. Suivez les instructions de hello hello messagerie tooactivate à l’intérieur de votre compte. Si par courrier électronique hello n’arrive dans hello quelques minutes, vérifiez votre dossier courrier indésirable.|  
+|WebAuthenticationSignupPendingConfirmationAccountFoundNotice|Nous avons trouvé un compte non confirmé pour l’adresse de messagerie hello {0}. toocomplete hello la création de votre compte, que nous devons tooverify votre adresse de messagerie. Nous avons envoyé un message électronique trop {0}. Suivez les instructions de hello hello messagerie tooactivate à l’intérieur de votre compte. Par courrier électronique hello n’arrive dans hello quelques minutes, vérifiez votre dossier courrier indésirable|  
 |WebAuthenticationSignupConfirmationAlmostDone|C’est presque fini.|  
-|WebAuthenticationSignupConfirmationEmailSent|Nous avons envoyé un e-mail à {0}. Suivez les instructions décrites dans l’e-mail pour activer votre compte. Si le message n’est pas arrivé d’ici quelques minutes, vérifiez votre dossier Courrier indésirable.|  
-|WebAuthenticationEmailSentNotificationMessage|E-mail envoyé à {0}.|  
-|WebAuthenticationNoAadTenantConfigured|Aucun client Azure Active Directory n’est configuré pour le service.|  
-|CheckboxLabelUserRegistrationTermsConsentRequired|J’accepte les `<a data-toggle="modal" href="#" data-target="#terms"\>Terms of Use</a\>`.|  
+|WebAuthenticationSignupConfirmationEmailSent|Nous avons envoyé un message électronique trop {0}. Suivez les instructions de hello hello messagerie tooactivate à l’intérieur de votre compte. Si par courrier électronique hello n’arrive dans hello quelques minutes, vérifiez votre dossier courrier indésirable.|  
+|WebAuthenticationEmailSentNotificationMessage|Message électronique envoyé avec succès trop {0}|  
+|WebAuthenticationNoAadTenantConfigured|Aucun client Azure Active Directory est configuré pour le service hello.|  
+|CheckboxLabelUserRegistrationTermsConsentRequired|J’accepte toohello `<a data-toggle="modal" href="#" data-target="#terms"\>Terms of Use</a\>`.|  
 |TextblockUserRegistrationTermsProvided|Veuillez consulter les `<a data-toggle="modal" href="#" data-target="#terms"\>Terms of Use.</a\>`.|  
 |DialogHeadingTermsOfUse|Conditions d’utilisation|  
-|ValidationMessageConsentNotAccepted|Vous devez accepter les conditions d’utilisation pour pouvoir continuer.|  
+|ValidationMessageConsentNotAccepted|Vous devez accepter les conditions d’utilisation de toohello avant de pouvoir continuer.|  
   
 ###  <a name="SigninStrings"></a> SigninStrings  
   
@@ -506,8 +506,8 @@ La Gestion des API Azure fournit les types de ressources suivants, utilisables d
   
 |Nom|Texte|  
 |----------|----------|  
-|SubscriptionCancelConfirmation|Voulez-vous vraiment annuler cet abonnement ?|  
-|SubscriptionRenewConfirmation|Voulez-vous vraiment renouveler cet abonnement ?|  
+|SubscriptionCancelConfirmation|Êtes-vous sûr de vouloir toocancel cet abonnement ?|  
+|SubscriptionRenewConfirmation|Êtes-vous sûr de vouloir toorenew cet abonnement ?|  
 |WebDevelopersManageSubscriptions|Gérer les abonnements|  
 |WebDevelopersPrimaryKey|Clé primaire|  
 |WebDevelopersRegenerateLink|Régénérer|  
@@ -529,11 +529,11 @@ La Gestion des API Azure fournit les types de ressources suivants, utilisables d
   
 |Nom|Texte|  
 |----------|----------|  
-|SectionHeadingCloseAccount|Vous souhaitez fermer votre compte ?|  
+|SectionHeadingCloseAccount|Recherche tooclose votre compte ?|  
 |PageTitleDeveloperProfile|Profil|  
 |ButtonLabelHideKey|Masquer|  
 |ButtonLabelRegenerateKey|Régénérer|  
-|InformationMessageKeyWasRegenerated|Voulez-vous vraiment régénérer cette clé ?|  
+|InformationMessageKeyWasRegenerated|Êtes-vous sûr de vouloir tooregenerate cette clé ?|  
 |ButtonLabelShowKey|Afficher|  
   
 ###  <a name="UpdateProfileStrings"></a> UpdateProfileStrings  
@@ -565,16 +565,16 @@ La Gestion des API Azure fournit les types de ressources suivants, utilisables d
 |SubscriptionNameTemplate|Accès développeurs #{0}|  
 |TextboxLabelSubscriptionName|Nom d’abonnement|  
 |ValidationMessageSubscriptionNameRequired|Le nom d'abonnement ne peut pas être vide.|  
-|ApiManagementUserLimitReached|Ce service a atteint le nombre maximal d’utilisateurs autorisés. Veuillez passer à un niveau tarifaire supérieur.|  
+|ApiManagementUserLimitReached|Ce service a atteint le nombre maximal de hello des utilisateurs autorisés. Mettez à niveau tooa niveau de tarification supérieur.|  
   
 ##  <a name="glyphs"></a> Ressources de glyphes  
- Les modèles du portail des développeurs de la Gestion des API peuvent utiliser les glyphes [Glyphicons de Bootstrap](http://getbootstrap.com/components/#glyphicons). Cet ensemble de glyphes contient plus de 250 glyphes au format de police provenant de l’ensemble Halflings [Glyphicon](http://glyphicons.com/). Pour utiliser un glyphe de cet ensemble, utilisez la syntaxe suivante.  
+ Modèles portails de gestion des API développeur peuvent utiliser des glyphes hello à partir de [Glyphicons d’amorçage](http://getbootstrap.com/components/#glyphicons). Ce jeu de glyphes inclut plus de 250 glyphes dans un format de police à partir de hello [Glyphicon](http://glyphicons.com/) Halflings définie. toouse un glyphe à partir de ce définie, utilisez hello selon la syntaxe.  
   
 ```html  
 <span class="glyphicon glyphicon-user">  
 ```  
   
- Pour connaître la liste complète des glyphes, consultez [Glyphicons de Bootstrap](http://getbootstrap.com/components/#glyphicons).
+ Pour hello une liste complète des glyphes, consultez [Glyphicons d’amorçage](http://getbootstrap.com/components/#glyphicons).
 
 ## <a name="next-steps"></a>Étapes suivantes
-Pour plus d’informations sur l’utilisation de modèles, consultez [Comment personnaliser le portail des développeurs Gestion des API Azure à l’aide de modèles](api-management-developer-portal-templates.md).
+Pour plus d’informations sur l’utilisation des modèles, consultez [comment toocustomize hello portail des développeurs gestion des API à l’aide de modèles](api-management-developer-portal-templates.md).

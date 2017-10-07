@@ -1,6 +1,6 @@
 ---
-title: "Utiliser la passerelle Azure Application Gateway avec équilibreur de charge interne | Microsoft Docs"
-description: "Cette page fournit des instructions pour configurer une passerelle Application Gateway Azure avec un point de terminaison d'équilibrage de charge interne"
+title: "aaaUsing passerelle d’Application Azure avec équilibrage de charge interne | Documents Microsoft"
+description: "Cette page fournit des instructions tooconfigure une passerelle d’Application Azure avec un point de terminaison d’équilibrage de charge interne"
 documentationcenter: na
 services: application-gateway
 author: georgewallace
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/23/2017
 ms.author: gwallace
-ms.openlocfilehash: d6f3af61934c8c645be1f2c6b4c056fc7ee2e3aa
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 272ef84a02f92a8521c35aad6f1d9f9bf1675718
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-application-gateway-with-an-internal-load-balancer-ilb"></a>Création d'une passerelle Application Gateway avec un équilibrage de charge interne (ILB)
 
@@ -26,25 +26,25 @@ ms.lasthandoff: 07/11/2017
 > * [Azure Classic PowerShell](application-gateway-ilb.md)
 > * [Commandes PowerShell pour Azure Resource Manager](application-gateway-ilb-arm.md)
 
-Vous pouvez configurer une passerelle Application Gateway avec une adresse IP virtuelle côté Internet ou avec un point de terminaison interne non exposé à Internet, également appelé point de terminaison d'équilibrage de charge interne (ILB). La configuration de la passerelle avec un équilibrage de charge interne est utile pour les applications métier internes non exposées à Internet. C’est également utile pour les services/niveaux au sein d’une application multiniveau qui se trouve dans une limite de sécurité non exposée à Internet, mais la distribution de charge par tourniquet, l’adhérence de session ou la terminaison SSL sont tout de mêmes requises. Cet article vous guidera au cours des étapes de configuration d’une passerelle Application Gateway avec un équilibrage de charge interne.
+Passerelle d’application peut être configurée avec un ordinateur à adresse IP virtuelle d’internet ou avec un toohello de point de terminaison internes non exposée internet, également appelé point de terminaison équilibreur de charge interne (ILB). Configuration de passerelle hello avec un équilibrage de charge interne est utile pour des applications line-of-business internes ne pas exposées toointernet. Il est également utile pour les services/niveaux au sein d’une application à plusieurs niveaux, qui se trouve dans un toointernet n'exposée pas de limite de sécurité, mais nécessitent toujours de répartition de charge de tourniquet (Round Robin), caractère collant de session ou l’arrêt de SSL. Cet article vous guide tout au long des étapes de hello tooconfigure une passerelle d’application avec un équilibrage de charge interne.
 
 ## <a name="before-you-begin"></a>Avant de commencer
 
-1. Installez la version la plus récente des applets de commande PowerShell Azure à l'aide de Web Platform Installer. Vous pouvez télécharger et installer la dernière version à partir de la section **Windows PowerShell** de la [page Téléchargements](https://azure.microsoft.com/downloads/).
+1. Installez la version la plus récente des applets de commande PowerShell Azure hello à l’aide de hello Web Platform Installer. Vous pouvez télécharger et installer la version la plus récente hello de hello **Windows PowerShell** section Hello [page de téléchargement](https://azure.microsoft.com/downloads/).
 2. Vérifiez que vous disposez d'un réseau virtuel qui fonctionne avec un sous-réseau valide.
-3. Vérifiez que vous disposez de serveurs principaux dans le réseau virtuel ou avec une adresse IP/VIP affectée.
+3. Vérifiez que vous disposez de serveurs principaux dans le réseau virtuel de hello, ou avec une adresse IP publique/VIP attribué.
 
-Pour créer une passerelle Application Gateway, exécutez les étapes suivantes dans l'ordre indiqué. 
+toocreate une passerelle d’application, effectuez hello comme suit dans l’ordre de hello. 
 
 1. [Créer une passerelle Application Gateway](#create-a-new-application-gateway)
-2. [Configurer la passerelle](#configure-the-gateway)
-3. [Définir la configuration de la passerelle](#set-the-gateway-configuration)
-4. [Démarrer la passerelle](#start-the-gateway)
-5. [Vérifier la passerelle](#verify-the-gateway-status)
+2. [Configurer la passerelle de hello](#configure-the-gateway)
+3. [Jeu de configuration de la passerelle hello](#set-the-gateway-configuration)
+4. [Démarrer hello passerelle](#start-the-gateway)
+5. [Vérifiez que la passerelle de hello](#verify-the-gateway-status)
 
 ## <a name="create-an-application-gateway"></a>Créer une passerelle Application Gateway :
 
-**Pour créer la passerelle**, utilisez l’applet de commande `New-AzureApplicationGateway` en remplaçant les valeurs par les vôtres. Notez que la facturation de la passerelle ne démarre pas à ce stade. La facturation commence à une étape ultérieure, lorsque la passerelle a démarré correctement.
+**passerelle de hello toocreate**, utilisez hello `New-AzureApplicationGateway` applet de commande, en remplaçant les valeurs hello par les vôtres. Notez que la facturation pour la passerelle de hello ne démarre pas à ce stade. La facturation commence dans une étape ultérieure, lorsque la passerelle de hello a démarré correctement.
 
 ```powershell
 New-AzureApplicationGateway -Name AppGwTest -VnetName testvnet1 -Subnets @("Subnet-1")
@@ -58,9 +58,9 @@ Name       HTTP Status Code     Operation ID                             Error
 Successful OK                   55ef0460-825d-2981-ad20-b9a8af41b399
 ```
 
-**Pour valider** la création de la passerelle, vous pouvez utiliser l’applet de commande `Get-AzureApplicationGateway`. 
+**toovalidate** que passerelle de hello a été créé, vous pouvez utiliser hello `Get-AzureApplicationGateway` applet de commande. 
 
-Dans l’exemple, *Description*, *InstanceCount* et *GatewaySize* sont des paramètres facultatifs. La valeur par défaut pour *InstanceCount* est 2, avec une valeur maximale de 10. La valeur par défaut pour *GatewaySize* est Medium. Les autres valeurs disponibles sont Small et Large. *Vip* et *DnsName* s’affichent sans valeur car la passerelle n’a pas encore démarré. Ces valeurs seront créées une fois la passerelle en cours d'exécution. 
+Dans l’exemple hello, *Description*, *InstanceCount*, et *GatewaySize* sont des paramètres facultatifs. Hello la valeur par défaut de *InstanceCount* est 2, avec une valeur maximale de 10. Hello la valeur par défaut de *GatewaySize* est moyenne. Les autres valeurs disponibles sont Small et Large. *Adresse IP virtuelle* et *DnsName* sont affichés comme vide, car la passerelle de hello n’a pas encore démarré. Ceux-ci sont créés une fois la passerelle de hello en hello état en cours d’exécution. 
 
 ```powershell
 Get-AzureApplicationGateway AppGwTest
@@ -81,25 +81,25 @@ VirtualIPs:
 DnsName:
 ```
 
-## <a name="configure-the-gateway"></a>Configurer la passerelle
-La configuration d'une passerelle Application Gateway se compose de plusieurs valeurs. Les valeurs peuvent être liées ensemble pour construire la configuration.
+## <a name="configure-hello-gateway"></a>Configurer la passerelle de hello
+La configuration d'une passerelle Application Gateway se compose de plusieurs valeurs. les valeurs Hello peuvent être liées configuration de hello tooconstruct ensemble.
 
-Les valeurs sont :
+les valeurs Hello sont :
 
-* **Pool de serveurs principaux :** la liste des adresses IP des serveurs principaux. Les adresses IP répertoriées doivent appartenir au sous-réseau de réseau virtuel ou elles doivent être une adresse IP/VIP publique. 
-* **Paramètres du pool de serveurs principaux** : chaque pool comporte des paramètres comme le port, le protocole et une affinité basée sur les cookies. Ces paramètres sont liés à un pool et sont appliqués à tous les serveurs du pool.
-* **Port frontal :** ce port est le port public ouvert sur la passerelle Application Gateway. Le trafic atteint ce port, puis il est redirigé vers l'un des serveurs principaux.
-* **Écouteur :** l'écouteur a un port frontal, un protocole (Http ou Https, sensibles à la casse) et le nom du certificat SSL (en cas de configuration du déchargement SSL). 
-* **Règle** : la règle lie l’écouteur et le pool de serveurs principaux et définit le pool de serveurs principaux vers lequel le trafic doit être dirigé lorsqu’il atteint un écouteur spécifique. Actuellement, seule la règle de *base* est prise en charge. La règle *basic* est la distribution de charge par tourniquet (round robin).
+* **Pool de serveurs principaux :** liste hello d’adresses IP des serveurs principaux de hello. adresses IP de Hello répertoriés doivent appartenir soit de sous-réseau de réseau virtuel toohello ou doivent être une adresse IP/VIP publique. 
+* **Paramètres du pool de serveurs principaux** : chaque pool comporte des paramètres comme le port, le protocole et une affinité basée sur les cookies. Ces paramètres sont lié tooa pool et sont des serveurs tooall appliqué dans le pool de hello.
+* **Port de serveur frontal :** ce port est le port public de hello ouvert sur la passerelle d’application hello. Le trafic atteint ce port et obtient ensuite redirigé tooone des serveurs principaux de hello.
+* **Écouteur :** écouteur de hello possède un port de serveur frontal, un protocole (Http ou Https, ils respectent la casse) et le nom du certificat SSL hello (si le déchargement de la configuration de SSL). 
+* **La règle :** règle de hello lie le port d’écoute hello et pool de serveurs principaux hello et définit le principal serveur pool hello le trafic doit être dirigée toowhen il atteint un écouteur particulier. Actuellement, seuls hello *base* règle est pris en charge. Hello *base* règle est la distribution de la charge de tourniquet.
 
-Vous pouvez construire votre configuration en créant un objet de configuration ou en utilisant un fichier XML de configuration. Pour construire votre configuration à l'aide d'un fichier XML de configuration, utilisez l'exemple ci-dessous.
+Vous pouvez construire votre configuration en créant un objet de configuration ou en utilisant un fichier XML de configuration. votre configuration à l’aide d’un fichier XML de configuration, l’utilisation hello tooconstruct les exemples ci-dessous.
 
-Notez les points suivants :
+Notez hello suivantes :
 
-* L’élément *FrontendIPConfigurations* décrit les détails de l’équilibrage de charge interne pertinents pour la configuration de la passerelle Application Gateway avec un équilibrage de charge interne. 
-* Le paramètre *Type* de l’adresse IP frontale doit présenter la valeur « Private ».
-* Le paramètre *StaticIPAddress* doit être défini sur l’adresse IP interne souhaitée sur laquelle la passerelle reçoit le trafic. Notez que l’élément *StaticIPAddress* est facultatif. S'il n'est pas défini, une adresse IP interne disponible du sous-réseau déployé est choisie. 
-* La valeur de l’élément *Name* spécifié dans *FrontendIPConfiguration* doit être utilisée dans l’élément *FrontendIP* de HTTPListener pour faire référence à FrontendIPConfiguration.
+* Hello *configurations IP frontales adresse* élément décrit en détail équilibrage de charge interne hello pour la configuration de passerelle d’Application avec un équilibrage de charge interne. 
+* IP de serveur frontal Hello *Type* doit être défini too'Private'
+* Hello *StaticIPAddress* doit indiquer l’adresse IP interne toohello souhaitée sur le hello passerelle reçoit le trafic. Notez que hello *StaticIPAddress* élément est facultatif. Si ce n’est pas le cas, ensemble, une adresse IP interne disponible à partir du sous-réseau de hello déployé est choisie. 
+* Hello valeur Hello *nom* élément spécifié dans *configuration IP frontale* doit être utilisé dans hello HTTPListener *FrontendIP* élément toorefer toohello Configuration IP frontale.
   
   **Exemple de configuration XML**
 ```xml
@@ -156,8 +156,8 @@ Notez les points suivants :
 ```
 
 
-## <a name="set-the-gateway-configuration"></a>Définir la configuration de la passerelle
-Ensuite, vous allez définir la passerelle Application Gateway. Vous pouvez utiliser l’applet de commande `Set-AzureApplicationGatewayConfig` avec un objet de configuration ou avec un fichier XML de configuration. 
+## <a name="set-hello-gateway-configuration"></a>Jeu de configuration de la passerelle hello
+Ensuite, vous allez définir la passerelle d’application hello. Vous pouvez utiliser hello `Set-AzureApplicationGatewayConfig` applet de commande avec un objet de configuration, ou avec un fichier XML de configuration. 
 
 ```powershell
 Set-AzureApplicationGatewayConfig -Name AppGwTest -ConfigFile D:\config.xml
@@ -171,12 +171,12 @@ Name       HTTP Status Code     Operation ID                             Error
 Successful OK                   9b995a09-66fe-2944-8b67-9bb04fcccb9d
 ```
 
-## <a name="start-the-gateway"></a>Démarrer la passerelle
+## <a name="start-hello-gateway"></a>Démarrer hello passerelle
 
-Une fois la passerelle configurée, utilisez l’applet de commande `Start-AzureApplicationGateway` pour démarrer la passerelle. La facturation pour une passerelle Application Gateway commence une fois la passerelle démarrée avec succès. 
+Une fois que la passerelle de hello a été configurée, utilisez hello `Start-AzureApplicationGateway` passerelle de hello toostart applet de commande. Le coût d’une passerelle d’application commence une fois la passerelle de hello a démarré. 
 
 > [!NOTE]
-> La règle `Start-AzureApplicationGateway` peut prendre jusqu’à 15 à 20 minutes. 
+> Hello `Start-AzureApplicationGateway` applet de commande peut prendre les toocomplete too15 à 20 minutes. 
 > 
 > 
 
@@ -192,12 +192,12 @@ Name       HTTP Status Code     Operation ID                             Error
 Successful OK                   fc592db8-4c58-2c8e-9a1d-1c97880f0b9b
 ```
 
-## <a name="verify-the-gateway-status"></a>Vérifier l'état de la passerelle
+## <a name="verify-hello-gateway-status"></a>Vérifiez l’état de la passerelle hello
 
-Utilisez l’applet de commande `Get-AzureApplicationGateway` pour vérifier l’état de la passerelle. Si `Start-AzureApplicationGateway` a réussi à l’étape précédente, l’état doit être *En cours d’exécution*, et les paramètres Vip et DnsName doivent posséder des entrées valides. Cet exemple montre l'applet de commande sur la première ligne, suivie de la sortie. Dans cet exemple, la passerelle est en cours d’exécution et prête à prendre le trafic. 
+Hello d’utilisation `Get-AzureApplicationGateway` état de hello toocheck applet de commande de la passerelle. Si `Start-AzureApplicationGateway` a réussi à l’étape précédente de hello, hello état doit être *en cours d’exécution*, hello Vip et DnsName doit avoir des entrées valides. Cet exemple montre l’applet de commande hello sur la première ligne de hello, suivi par la sortie hello. Dans cet exemple, la passerelle de hello est en cours d’exécution et correspond au trafic tootake prêt. 
 
 > [!NOTE]
-> Remarque : la passerelle Application Gateway est configurée pour accepter le trafic sur le point de terminaison de l’équilibrage de charge interne configuré de 10.0.0.10 dans cet exemple.
+> configuration de la passerelle application Hello trafic tooaccept à hello configuré le point de terminaison d’équilibrage de charge interne de 10.0.0.10 dans cet exemple.
 
 ```powershell
 Get-AzureApplicationGateway AppGwTest 

@@ -1,6 +1,6 @@
 ---
-title: Journaux de diagnostic Azure Event Hubs | Microsoft Docs
-description: "Découvrez comment configurer les journaux de diagnostic pour Event Hubs dans Azure."
+title: "les journaux de diagnostic de concentrateurs d’événements aaaAzure | Documents Microsoft"
+description: "Découvrez comment tooset des journaux de diagnostic pour les concentrateurs d’événements dans Azure."
 keywords: 
 documentationcenter: 
 services: event-hubs
@@ -15,26 +15,26 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 06/27/2017
 ms.author: sethm;babanisa
-ms.openlocfilehash: 09bc62f4918635419d74ef3ae400a41d4ce58b5a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d2054e2e444e715e5077fe2608fe1e009e6c1d84
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="event-hubs-diagnostic-logs"></a>Journaux de diagnostic d’Event Hubs
 
 Vous pouvez afficher deux types de journaux pour Azure Event Hubs :
-* **[Journaux d’activité](../monitoring-and-diagnostics/monitoring-overview-activity-logs.md)**. Ces journaux comportent des informations sur les opérations effectuées sur un travail. Les journaux sont toujours activés.
-* **[Journaux de diagnostic](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md)**. Vous pouvez configurer les journaux de diagnostic pour obtenir des informations plus détaillées sur tous les événements associés à un travail. Les journaux de diagnostic couvrent les activités qui se déroulent entre la création du travail et sa suppression, notamment les mises à jour et les activités durant l’exécution du travail.
+* **[Journaux d’activité](../monitoring-and-diagnostics/monitoring-overview-activity-logs.md)**. Ces journaux comportent des informations sur les opérations effectuées sur un travail. Hello journaux sont toujours activés.
+* **[Journaux de diagnostic](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md)**. Vous pouvez configurer les journaux de diagnostic pour obtenir des informations plus détaillées sur tous les événements associés à un travail. Activités de couverture de journaux de diagnostic de hello création des travaux de hello jusqu'à ce que le travail de hello est supprimé, y compris les mises à jour et les activités qui se produisent pendant l’exécution du travail de hello.
 
 ## <a name="turn-on-diagnostic-logs"></a>Activer les journaux de diagnostic
-Les journaux de diagnostic sont désactivés par défaut. Pour activer les journaux de diagnostic, procédez comme suit :
+Les journaux de diagnostic sont désactivés par défaut. journaux de diagnostic tooenable :
 
-1.  Dans le [portail Azure](https://portal.azure.com), sous **Surveillance + gestion**, cliquez sur **Journaux de diagnostic**.
+1.  Bonjour [portail Azure](https://portal.azure.com), sous **analyse + gestion**, cliquez sur **les journaux de diagnostic**.
 
-    ![Navigation dans le panneau jusqu’aux journaux de diagnostic](./media/event-hubs-diagnostic-logs/image1.png)
+    ![Panneau navigation toodiagnostic journaux](./media/event-hubs-diagnostic-logs/image1.png)
 
-2.  Cliquez sur la ressource que vous souhaitez surveiller.
+2.  Cliquez sur ressource hello toomonitor.
 
 3.  Cliquez sur **Activer les diagnostics**.
 
@@ -42,32 +42,32 @@ Les journaux de diagnostic sont désactivés par défaut. Pour activer les journ
 
 4.  Pour l’**état**, cliquez sur **ACTIVÉ**.
 
-    ![Modifier l’état des journaux de diagnostic](./media/event-hubs-diagnostic-logs/image3.png)
+    ![Modifier le statut de hello de journaux de diagnostic](./media/event-hubs-diagnostic-logs/image3.png)
 
-5.  Définissez la cible d’archivage de votre choix, par exemple un compte de stockage, un Event Hub ou Azure Log Analytics.
+5.  Ensemble hello archive cible que vous le souhaitez. par exemple, un compte de stockage, un concentrateur d’événements ou Analytique de journal Azure.
 
-6.  Enregistrez les nouveaux paramètres de diagnostic.
+6.  Enregistrer les nouveaux paramètres de diagnostics hello.
 
-Les nouveaux paramètres prennent effet au bout de 10 minutes environ. Après cela, les journaux apparaissent dans la cible d’archivage configurée, dans le panneau **Journaux de diagnostic**.
+Les nouveaux paramètres prennent effet au bout de 10 minutes environ. Après cela, des journaux apparaissent dans la cible d’archivage hello configuré, sur hello **les journaux de diagnostic** panneau.
 
-Pour plus d’informations sur la configuration des diagnostics, consultez la [vue d’ensemble des journaux de diagnostic Azure](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md).
+Pour plus d’informations sur la configuration des diagnostics, consultez hello [vue d’ensemble des journaux de diagnostic Azure](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md).
 
 ## <a name="diagnostic-logs-categories"></a>Catégories de journaux de diagnostic
 Event Hubs capture les journaux de diagnostic pour deux catégories :
 
-* **ArchiveLogs** : journaux liés aux archives Event Hubs, en particulier aux erreurs d’archivage.
-* **OperationalLogs** : informations relatives à ce qui se passe lors des opérations Event Hubs, en particulier le type d’opération tel que la création d’un Event Hub, les ressources utilisées et l’état de l’opération.
+* **ArchiveLogs**: journaux liés tooEvent concentrateurs archives, plus précisément, consigne que les erreurs de tooarchive connexes.
+* **OperationalLogs**: plus d’informations sur ce qui se passe lors des opérations de concentrateurs d’événements, en particulier, hello du type d’opération, y compris la création du concentrateur d’événements, les ressources utilisées et hello l’état de fonctionnement de hello.
 
 ## <a name="diagnostic-logs-schema"></a>Schéma des journaux de diagnostic
-Tous les journaux sont stockés au format JSON (JavaScript Object Notation). Chaque entrée comporte des champs de type chaîne au format décrit dans les sections suivantes.
+Tous les journaux sont stockés au format JSON (JavaScript Object Notation). Chaque entrée comporte des champs de chaîne qui utilisent le format hello décrit dans les sections suivantes de hello.
 
 ### <a name="archive-logs-schema"></a>Schéma des journaux d’archivage
 
-Les chaînes JSON du journal d’archivage incluent les éléments listés dans le tableau suivant :
+Chaînes JSON de journal archive incluent les éléments répertoriés dans hello tableau suivant :
 
 Nom | Description
 ------- | -------
-TaskName | Description de la tâche en échec.
+TaskName | Description de la tâche hello qui a échoué.
 ActivityId | ID interne, utilisé à des fins de suivi.
 trackingId | ID interne, utilisé à des fins de suivi.
 resourceId | ID de ressource Azure Resource Manager.
@@ -80,7 +80,7 @@ durationInSeconds | Durée de la défaillance.
 Message | Message d’erreur.
 category | ArchiveLogs
 
-Le code suivant est un exemple de chaîne JSON de journal d’archivage :
+Hello de code suivant est un exemple d’un journal d’archive chaîne JSON :
 
 ```json
 {
@@ -94,18 +94,18 @@ Le code suivant est un exemple de chaîne JSON de journal d’archivage :
      "startTime": "9/22/2016 5:11:21 AM",
      "failures": 3,
      "durationInSeconds": 360,
-     "message": "Microsoft.WindowsAzure.Storage.StorageException: The remote server returned an error: (404) Not Found. ---> System.Net.WebException: The remote server returned an error: (404) Not Found.\r\n   at Microsoft.WindowsAzure.Storage.Shared.Protocol.HttpResponseParsers.ProcessExpectedStatusCodeNoException[T](HttpStatusCode expectedStatusCode, HttpStatusCode actualStatusCode, T retVal, StorageCommandBase`1 cmd, Exception ex)\r\n   at Microsoft.WindowsAzure.Storage.Blob.CloudBlockBlob.<PutBlockImpl>b__3e(RESTCommand`1 cmd, HttpWebResponse resp, Exception ex, OperationContext ctx)\r\n   at Microsoft.WindowsAzure.Storage.Core.Executor.Executor.EndGetResponse[T](IAsyncResult getResponseResult)\r\n   --- End of inner exception stack trace ---\r\n   at Microsoft.WindowsAzure.Storage.Core.Util.StorageAsyncResult`1.End()\r\n   at Microsoft.WindowsAzure.Storage.Core.Util.AsyncExtensions.<>c__DisplayClass4.<CreateCallbackVoid>b__3(IAsyncResult ar)\r\n--- End of stack trace from previous location where exception was thrown ---\r\n   at System.",
+     "message": "Microsoft.WindowsAzure.Storage.StorageException: hello remote server returned an error: (404) Not Found. ---> System.Net.WebException: hello remote server returned an error: (404) Not Found.\r\n   at Microsoft.WindowsAzure.Storage.Shared.Protocol.HttpResponseParsers.ProcessExpectedStatusCodeNoException[T](HttpStatusCode expectedStatusCode, HttpStatusCode actualStatusCode, T retVal, StorageCommandBase`1 cmd, Exception ex)\r\n   at Microsoft.WindowsAzure.Storage.Blob.CloudBlockBlob.<PutBlockImpl>b__3e(RESTCommand`1 cmd, HttpWebResponse resp, Exception ex, OperationContext ctx)\r\n   at Microsoft.WindowsAzure.Storage.Core.Executor.Executor.EndGetResponse[T](IAsyncResult getResponseResult)\r\n   --- End of inner exception stack trace ---\r\n   at Microsoft.WindowsAzure.Storage.Core.Util.StorageAsyncResult`1.End()\r\n   at Microsoft.WindowsAzure.Storage.Core.Util.AsyncExtensions.<>c__DisplayClass4.<CreateCallbackVoid>b__3(IAsyncResult ar)\r\n--- End of stack trace from previous location where exception was thrown ---\r\n   at System.",
      "category": "ArchiveLogs"
 }
 ```
 
 ### <a name="operational-logs-schema"></a>Schéma des journaux des opérations
 
-Les chaînes JSON du journal des opérations incluent les éléments répertoriés dans le tableau suivant :
+Chaînes JSON de journal des opérations incluent les éléments répertoriés dans hello tableau suivant :
 
 Nom | Description
 ------- | -------
-ActivityId | ID interne, utilisé à des fins de suivi.
+ActivityId | ID interne utilisé tootrack objectif.
 EventName | Nom d’opération.  
 resourceId | ID de ressource Azure Resource Manager.
 SubscriptionId | l'ID d'abonnement.
@@ -115,7 +115,7 @@ Statut | État de l’opération.
 Appelant | Appelant de l’opération (portail Azure ou client de gestion).
 category | OperationalLogs
 
-Le code suivant est un exemple de chaîne JSON de journal des opérations :
+Hello de code suivant est un exemple d’une chaîne JSON de journal des opérations :
 
 ```json
 Example:
@@ -133,6 +133,6 @@ Example:
 ```
 
 ## <a name="next-steps"></a>Étapes suivantes
-* [Présentation d’Event Hubs](event-hubs-what-is-event-hubs.md)
+* [Introduction tooEvent concentrateurs](event-hubs-what-is-event-hubs.md)
 * [Vue d’ensemble de l'API Event Hubs](event-hubs-api-overview.md)
 * [Prise en main des hubs d’événements](event-hubs-csharp-ephcs-getstarted.md)

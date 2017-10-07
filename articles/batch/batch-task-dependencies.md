@@ -1,6 +1,6 @@
 ---
-title: "Utiliser des dépendances de tâches pour exécuter des tâches basées sur l’achèvement d’autres tâches - Azure Batch | Microsoft Docs"
-description: "Créez des tâches qui dépendent de l’achèvement d’autres tâches pour le traitement de charges de travail de type MapReduce ou Big Data dans Azure Batch."
+title: "aaaUse tâche dépendances toorun tâches basées sur la réalisation de hello d’autres tâches - Azure Batch | Documents Microsoft"
+description: "Créez des tâches qui dépendent d’achèvement hello d’autres tâches de traitement de style MapReduce et données big similaires les charges de travail en traitement par lots Azure."
 services: batch
 documentationcenter: .net
 author: tamram
@@ -15,32 +15,32 @@ ms.workload: big-compute
 ms.date: 05/22/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 465306d2de8d1dbe6ba1f0cd74be720b78a50de3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: faf08ec38cb30b1f66acd51e256c31aea6215c62
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-task-dependencies-to-run-tasks-that-depend-on-other-tasks"></a>Créer des dépendances de tâches pour exécuter des tâches qui dépendent d’autres tâches
+# <a name="create-task-dependencies-toorun-tasks-that-depend-on-other-tasks"></a>Créer des interdépendances toorun les tâches qui dépendent d’autres tâches
 
-Vous pouvez définir des dépendances de tâche pour exécuter une tâche ou un ensemble de tâches uniquement après la fin d’une tâche parente. Voici quelques scénarios dont les dépendances de tâche sont utiles :
+Vous pouvez définir toorun des dépendances de tâche une tâche ou un ensemble de tâches uniquement après qu’une tâche parente est terminée. Voici quelques scénarios dont les dépendances de tâche sont utiles :
 
-* des charges de travail MapReduce dans le cloud ;
+* Charges de travail MapReduce de style dans le cloud de hello.
 * des travaux dont les tâches de traitement des données peuvent être exprimées sous la forme d’un graphe orienté acyclique (DAG) ;
-* Processus de pré-rendu et de post-rendu dans lesquels chaque tâche doit s’achever avant que la tâche suivante puisse commencer.
-* tout autre travail dont les tâches en aval dépendent de la sortie des tâches en amont.
+* Processus de rendu avant et après le rendu, où chaque tâche doit se terminer avant le début de la tâche suivante hello.
+* N’importe quel travail dans lequel les tâches en aval dépendent de sortie hello de tâches en amont.
 
-Avec les dépendances de tâches Batch, vous pouvez créer des tâches dont l’exécution est planifiée sur des nœuds de calcul à condition qu’une ou plusieurs tâches parentes aient été exécutées. Par exemple, vous pouvez créer un travail qui restitue chaque image d’un film 3D avec des tâches parallèles distinctes. La dernière tâche (dite de fusion) fusionne les images restituées dans la vidéo complète uniquement après restitution de toutes les images.
+Avec les dépendances de tâche de traitement par lots, vous pouvez créer des tâches qui sont planifiées pour l’exécution sur les nœuds de calcul après l’achèvement de hello d’une ou plusieurs tâches parent. Par exemple, vous pouvez créer un travail qui restitue chaque image d’un film 3D avec des tâches parallèles distinctes. tâche finale de Hello--hello « tâche de fusion »--fusions hello images rendue dans la vidéo complète de hello uniquement une fois toutes les images ont été correctement rendus.
 
-Par défaut, les tâches dépendantes sont planifiées pour que leur exécution ait lieu uniquement après la fin de l’exécution de la tâche parente. Vous pouvez indiquer une action de dépendance afin de remplacer le comportement par défaut et exécuter des tâches en cas d’échec de la tâche parente. Pour plus d’informations, consultez la section [Actions de dépendance](#dependency-actions).  
+Par défaut, les tâches dépendantes sont planifiées pour l’exécution uniquement après hello parent est terminée avec succès. Vous pouvez spécifier un comportement par défaut de dépendance action toooverride hello et exécuter des tâches en cas d’échec de la tâche parente de hello. Consultez hello [actions de dépendance](#dependency-actions) pour plus d’informations.  
 
-Vous pouvez créer des tâches qui dépendent d’autres tâches dans une relation un-à-un ou un-à-plusieurs. Vous pouvez également créer une dépendance de plage dans laquelle une tâche dépend de l’exécution d’un groupe de tâches au sein d’une plage spécifiée d’ID de tâches. Vous pouvez combiner ces trois scénarios de base pour créer des relations plusieurs-à-plusieurs.
+Vous pouvez créer des tâches qui dépendent d’autres tâches dans une relation un-à-un ou un-à-plusieurs. Vous pouvez également créer une dépendance de la plage où une tâche dépend d’achèvement hello d’un groupe de tâches au sein d’une plage d’ID de tâche spécifiée. Vous pouvez combiner ces trois relations plusieurs-à-plusieurs de toocreate des scénarios de base.
 
 ## <a name="task-dependencies-with-batch-net"></a>Dépendances de tâches avec Batch.NET
-Cet article explique comment configurer les dépendances de tâches à l’aide de la bibliothèque [Batch .NET][net_msdn]. Nous allons tout d’abord vous montrer comment [activer la dépendance de tâches](#enable-task-dependencies) dans vos travaux, puis vous expliquer comment [configurer une tâche avec des dépendances](#create-dependent-tasks). Nous décrivons également comment spécifier une action de dépendance pour exécuter des tâches dépendantes en cas d’échec de la tâche parente. Pour finir, nous passerons en revue les [scénarios de dépendance](#dependency-scenarios) pris en charge par Batch.
+Dans cet article, nous expliquons comment tooconfigure les dépendances de tâche à l’aide de hello [Batch .NET] [ net_msdn] bibliothèque. Nous avons tout d’abord montrent comment trop[activer interdépendance](#enable-task-dependencies) dans vos projets, puis d’illustrer comment trop[configurer une tâche avec des dépendances](#create-dependent-tasks). Nous expliquons également comment toospecify une dépendance action toorun tâches dépendantes si le parent de hello échoue. Enfin, nous évoquerons hello [scénarios dépendance](#dependency-scenarios) qui prend en charge de traitement par lots.
 
 ## <a name="enable-task-dependencies"></a>Activation des dépendances de tâches
-Pour utiliser les dépendances de tâches dans votre application Batch, vous devez d’abord configurer la tâche afin d’utiliser des dépendances de tâches. Dans Batch.NET, activez la dépendance de tâches sur votre [CloudJob][net_cloudjob] en définissant sa propriété [UsesTaskDependencies][net_usestaskdependencies] sur `true` :
+toouse les dépendances de tâches dans votre application de traitement par lots, vous devez d’abord configurer interdépendances toouse de travail hello. Dans .NET de lot, l’activer sur votre [CloudJob] [ net_cloudjob] en définissant son [UsesTaskDependencies] [ net_usestaskdependencies] propriété trop`true`:
 
 ```csharp
 CloudJob unboundJob = batchClient.JobOperations.CreateJob( "job001",
@@ -50,10 +50,10 @@ CloudJob unboundJob = batchClient.JobOperations.CreateJob( "job001",
 unboundJob.UsesTaskDependencies = true;
 ```
 
-Dans l’extrait de code précédent, « batchClient » est une instance de la classe [BatchClient][net_batchclient].
+Bonjour précédant l’extrait de code, « batchClient » est une instance de hello [BatchClient] [ net_batchclient] classe.
 
 ## <a name="create-dependent-tasks"></a>Création de tâches dépendantes
-Pour créer une tâche qui dépend de l’exécution d’une ou plusieurs tâches parentes, vous devez indiquer que la tâche « dépend » des autres tâches. Dans Batch.NET, configurez la propriété [CloudTask][net_cloudtask].[DependsOn][net_dependson] avec une instance de la classe [TaskDependencies][net_taskdependencies] :
+toocreate une tâche qui dépend d’achèvement hello d’une ou plusieurs tâches parent, vous pouvez spécifier que hello hello de tâche « dépend » autres tâches. Dans .NET de lot, configurer hello [CloudTask][net_cloudtask].[ DependsOn] [ net_dependson] propriété avec une instance de hello [TaskDependencies] [ net_taskdependencies] classe :
 
 ```csharp
 // Task 'Flowers' depends on completion of both 'Rain' and 'Sun'
@@ -64,29 +64,29 @@ new CloudTask("Flowers", "cmd.exe /c echo Flowers")
 },
 ```
 
-Cet extrait de code crée une tâche dépendante avec l’ID de tâche « Flowers ». La tâche « Flowers » dépend des tâches « Rain » et « Sun ». La tâche « Flowers » est programmée pour s’exécuter sur un nœud de calcul uniquement après la réussite de l’exécution des tâches « Rain » et « Sun ».
+Cet extrait de code crée une tâche dépendante avec l’ID de tâche « Flowers ». Hello « Fleurs » tâche dépend des tâches « Train » et « Sun ». La tâche « Fleurs » sera toorun planifiée sur un nœud de calcul uniquement une fois les tâches « Train » et « Sun » sont terminés.
 
 > [!NOTE]
-> Une tâche est considérée comme réussie lorsqu’elle se trouve à l’état **terminé** et que son **code de sortie** est `0`. Dans Batch.NET, la valeur de propriété [CloudTask][net_cloudtask].[State][net_taskstate] doit être `Completed` et la valeur de propriété [TaskExecutionInformation][net_taskexecutioninformation].[ExitCode][net_exitcode] de CloudTask doit être de `0`.
+> Une tâche est considérée comme toobe s’est terminée correctement quand il sera hello **terminé** état et son **code de sortie** est `0`. Dans .NET de traitement par lots, cela signifie une [CloudTask][net_cloudtask].[ État] [ net_taskstate] valeur de propriété `Completed` et hello du CloudTask [TaskExecutionInformation][net_taskexecutioninformation].[ ExitCode] [ net_exitcode] valeur de propriété est `0`.
 > 
 > 
 
 ## <a name="dependency-scenarios"></a>scénarios de dépendance
-Vous pouvez utiliser trois scénarios de dépendance de tâches de base dans Azure Batch : un-à-un, un-à-plusieurs et dépendance de plage d’ID de tâche. Ces scénarios peuvent être combinés pour créer un quatrième scénario : plusieurs-à-plusieurs.
+Vous pouvez utiliser trois scénarios de dépendance de tâches de base dans Azure Batch : un-à-un, un-à-plusieurs et dépendance de plage d’ID de tâche. Il peuvent être combiné tooprovide une quatrième scénario, plusieurs-à-plusieurs.
 
 | Scénario&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Exemple |  |
 |:---:| --- | --- |
 |  [Un-à-un](#one-to-one) |*taskB* dépend de *taskA* <p/> *taskB* n’est pas planifié pour s’exécuter tant que l’exécution de *taskA* n’est pas terminée |![Schéma : dépendance de tâches un-à-un][1] |
 |  [Un-à-plusieurs](#one-to-many) |*taskC* dépend de *taskA* et de *taskB* <p/> *taskC* n’est pas planifié pour s’exécuter tant que l’exécution de *taskA* et *taskB* n’est pas terminée |![Schéma : dépendance de tâches un-à-plusieurs][2] |
-|  [Plage d’ID de tâche](#task-id-range) |*taskD* dépend d’une plage de tâches <p/> *taskD* n’est pas planifié pour s’exécuter tant que l’exécution des tâches associées aux ID *1* à *10* n’est pas terminée |![Schéma : dépendance de plage d’ID de tâche][3] |
+|  [Plage d’ID de tâche](#task-id-range) |*taskD* dépend d’une plage de tâches <p/> *taskD* ne sera pas planifié pour l’exécution jusqu'à ce que les tâches hello avec des ID *1* via *10* terminées avec succès |![Schéma : dépendance de plage d’ID de tâche][3] |
 
 > [!TIP]
-> Vous pouvez créer des relations **plusieurs-à-plusieurs** où, par exemple, les tâches C, D, E et F dépendent toutes des tâches A et B. Cela est utile, par exemple, dans les scénarios de prétraitement parallélisés où vos tâches en aval dépendent de la sortie de plusieurs tâches en amont.
+> Vous pouvez créer **plusieurs-à-plusieurs** relations, telles que les tâches C, D, E et F chaque où dépendent de tâches A et B. Cela est utile, par exemple, dans des scénarios de prétraitement parallélisées où vos tâches en aval dépendent de sortie hello de plusieurs tâches en amont.
 > 
-> Dans les exemples de cette section, une tâche dépendante s’exécute uniquement après l’achèvement des tâches parentes. Ce comportement est le comportement par défaut d’une tâche dépendante. Vous pouvez exécuter une tâche dépendante après l’échec d’une tâche parente en indiquant l’action de dépendance destinée à se substituer au comportement par défaut. Pour plus d’informations, consultez la section [Actions de dépendance](#dependency-actions).
+> Dans les exemples hello dans cette section, une tâche dépendante s’exécute uniquement une fois hello parent tâches terminées. Ce comportement est le comportement par défaut de hello pour une tâche dépendante. Vous pouvez exécuter une tâche dépendante après l’échec d’une tâche parent en spécifiant un comportement par défaut de dépendance action toooverride hello. Consultez hello [actions de dépendance](#dependency-actions) pour plus d’informations.
 
 ### <a name="one-to-one"></a>Un-à-un
-Dans une relation un-à-un, une tâche dépend de la bonne exécution d’une tâche parente. Pour créer la dépendance, fournissez un ID de tâche unique à la méthode statique [TaskDependencies][net_taskdependencies].[OnId][net_onid] lorsque vous renseignez la propriété [DependsOn][net_dependson] de [CloudTask][net_cloudtask].
+Dans le type de relation, une tâche dépend hello tâche se termine correctement un seul parent. toocreate hello dépendance, fournissez un toohello d’ID de tâche unique [TaskDependencies][net_taskdependencies].[ OnId] [ net_onid] une méthode statique lorsque vous remplissez hello [DependsOn] [ net_dependson] propriété du [CloudTask] [ net_cloudtask].
 
 ```csharp
 // Task 'taskA' doesn't depend on any other tasks
@@ -100,7 +100,7 @@ new CloudTask("taskB", "cmd.exe /c echo taskB")
 ```
 
 ### <a name="one-to-many"></a>Un-à-plusieurs
-Dans une relation un-à-plusieurs, une tâche dépend de la bonne exécution de plusieurs tâches parentes. Pour créer la dépendance, fournissez une collection d’ID de tâche à la méthode statique [TaskDependencies][net_taskdependencies].[OnId][net_onids] lorsque vous renseignez la propriété [DependsOn][net_dependson] de [CloudTask][net_cloudtask].
+Dans une relation un-à-plusieurs, une tâche dépend à la fin de hello de plusieurs tâches parent. toocreate hello dépendance, fournissent une collection de tâches ID toohello [TaskDependencies][net_taskdependencies].[ OnIds] [ net_onids] une méthode statique lorsque vous remplissez hello [DependsOn] [ net_dependson] propriété du [CloudTask] [ net_cloudtask].
 
 ```csharp
 // 'Rain' and 'Sun' don't depend on any other tasks
@@ -116,13 +116,13 @@ new CloudTask("Flowers", "cmd.exe /c echo Flowers")
 ``` 
 
 ### <a name="task-id-range"></a>Plage d’ID de tâche
-Vous pouvez même créer une dépendance de plage de tâches parentes, une tâche dépend de la bonne exécution des tâches dont les ID figurent dans une plage spécifique.
-Pour créer la dépendance, fournissez le premier et le dernier ID de tâche dans la plage à la méthode statique [TaskDependencies][net_taskdependencies].[OnIdRange][net_onidrange] lorsque vous renseignez la propriété [DependsOn][net_dependson] de [CloudTask][net_cloudtask].
+Une dépendance sur une plage de tâches parentes, une tâche dépend à la fin de hello hello de tâches dont les ID se situent dans une plage.
+dépendance de hello toocreate, fournir tout d’abord les hello et dernier ID de tâches dans hello plage toohello [TaskDependencies][net_taskdependencies].[ OnIdRange] [ net_onidrange] une méthode statique lorsque vous remplissez hello [DependsOn] [ net_dependson] propriété du [CloudTask] [net_cloudtask].
 
 > [!IMPORTANT]
-> Lorsque vous utilisez des plages d’ID de tâche pour vos dépendances, les ID de tâche de la plage *doivent* être des représentations sous forme de chaîne de valeurs entières.
+> Lorsque vous utilisez des plages d’ID de tâche pour les dépendances, hello ID de tâche dans la plage de hello *doit* être représentations sous forme de chaîne de valeurs entières.
 > 
-> Chaque tâche de la plage doit satisfaire la dépendance soit en se terminant avec succès, soit en échouant avec une erreur associée à une action de dépendance définie sur **Satisfy**. Pour plus d’informations, consultez la section [Actions de dépendance](#dependency-actions).
+> Chaque tâche dans la plage de hello doit satisfaire la dépendance de hello, terminé ou en procédant avec un échec est l’action de dépendance mappé tooa définie trop**satisfaction**. Consultez hello [actions de dépendance](#dependency-actions) pour plus d’informations.
 >
 >
 
@@ -137,38 +137,38 @@ new CloudTask("3", "cmd.exe /c echo 3"),
 // Task 4 depends on a range of tasks, 1 through 3
 new CloudTask("4", "cmd.exe /c echo 4")
 {
-    // To use a range of tasks, their ids must be integer values.
-    // Note that we pass integers as parameters to TaskIdRange,
-    // but their ids (above) are string representations of the ids.
+    // toouse a range of tasks, their ids must be integer values.
+    // Note that we pass integers as parameters tooTaskIdRange,
+    // but their ids (above) are string representations of hello ids.
     DependsOn = TaskDependencies.OnIdRange(1, 3)
 },
 ```
 
 ## <a name="dependency-actions"></a>Actions de dépendance
 
-Par défaut, une tâche dépendante ou un ensemble de tâches s’exécute uniquement après la fin d’une tâche parente. Dans certains scénarios, vous pouvez exécuter des tâches dépendantes même si la tâche parente échoue. Vous pouvez remplacer le comportement par défaut en spécifiant une action de dépendance. Une action de dépendance spécifie si une tâche dépendante peut être exécutée en fonction de la réussite ou de l’échec de la tâche parente. 
+Par défaut, une tâche dépendante ou un ensemble de tâches s’exécute uniquement après la fin d’une tâche parente. Dans certains scénarios, vous pouvez vouloir toorun des tâches dépendantes même si la tâche parent hello échoue. Vous pouvez remplacer le comportement par défaut de hello en spécifiant une action de dépendance. Une action de dépendance Spécifie si une tâche dépendante est éligible toorun, en fonction de la réussite de hello ou l’échec de la tâche parente de hello. 
 
-Par exemple, supposons qu’une tâche dépendante attend des données de l’achèvement de la tâche amont. Si la tâche en amont échoue, la tâche dépendante peut toujours être en mesure de s’exécuter en utilisant des données plus anciennes. Dans ce cas, une action de dépendance peut spécifier que la tâche dépendante peut être exécutée malgré l’échec de la tâche parente.
+Par exemple, supposons qu’une tâche dépendante est en attente de données à partir de la fin de hello de tâche en amont hello. Si la tâche en amont hello échoue, tâche dépendante hello peut-être toujours en mesure de toorun à l’aide des données plus anciennes. Dans ce cas, une action de dépendance peut spécifier que cette tâche de dépendants hello est éligible toorun en dépit de l’échec hello de la tâche parente de hello.
 
-Une action de dépendance est basée sur une condition de sortie pour la tâche parente. Vous pouvez indiquer une action de dépendance pour toutes les conditions de sortie suivantes ; pour un environnement .NET, consultez la classe [ExitConditions][net_exitconditions] :
+Une action de dépendance est basée sur une condition de sortie de la tâche parente de hello. Vous pouvez spécifier une action de dépendance des hello suivant des conditions de sortie ; pour .NET, consultez hello [ExitConditions] [ net_exitconditions] classe pour plus d’informations :
 
 - Lorsqu’une erreur de prétraitement se produit.
-- Lorsqu’une erreur de chargement de fichier se produit. Si la tâche se termine avec un code de sortie qui a été spécifié via **exitCodes** ou **exitCodeRanges**, puis rencontre une erreur de chargement de fichier, l’action spécifiée par le code de sortie est prioritaire.
-- Lorsque la tâche se termine avec un code de sortie défini par la propriété **ExitCodes**.
-- Lorsque la tâche se termine avec un code de sortie dans une plage définie par la propriété **ExitCodeRanges**.
-- Le cas par défaut : si la tâche se termine avec un code de sortie non défini par **ExitCodes** ou **ExitCodeRanges**, ou si la tâche se termine avec une erreur de prétraitement et si la propriété **PreProcessingError** n’est pas définie, ou si la tâche échoue avec une erreur de chargement de fichier et si la propriété **FileUploadError** n’est pas définie. 
+- Lorsqu’une erreur de chargement de fichier se produit. Si la tâche hello se termine avec un code de sortie qui a été spécifié via **exitCodes** ou **exitCodeRanges**, puis rencontre une erreur de chargement du fichier, l’action hello spécifié par hello exit code est prioritaire.
+- Lorsque la tâche hello se termine avec un code de sortie défini par hello **ExitCodes** propriété.
+- Lorsque la tâche hello se termine avec un code de sortie qui se situe dans une plage spécifiée par hello **ExitCodeRanges** propriété.
+- Hello cas par défaut, si la tâche hello se termine avec un code de sortie non défini par **ExitCodes** ou **ExitCodeRanges**, ou si la tâche hello se termine avec une erreur de prétraitement et hello **PreProcessingError**  propriété n’est pas définie, ou si hello de tâches échoue avec un fichier télécharger erreur et hello **FileUploadError** propriété n’est pas définie. 
 
-Pour spécifier une action de dépendance dans .NET, définissez la propriété [ExitOptions][net_exitoptions].[ DependencyAction][net_dependencyaction] pour la condition de sortie. La propriété **DependencyAction** accepte l’une des deux valeurs suivantes :
+toospecify une action de dépendance dans .NET, jeu hello [ExitOptions][net_exitoptions].[ DependencyAction] [ net_dependencyaction] propriété de condition de sortie hello. Hello **DependencyAction** propriété prend l’une des deux valeurs :
 
-- Définir la propriété **DependencyAction** sur **Satisfy** indique que les tâches dépendantes sont autorisées à s’exécuter si la tâche parente se termine avec une erreur spécifiée.
-- Définir la propriété **DependencyAction** sur **Block** indique que les tâches dépendantes ne sont pas autorisées à s’exécuter.
+- Hello du paramètre **DependencyAction** propriété trop**satisfaction** indique que les tâches dépendantes sont éligible toorun si la tâche parente de hello se termine avec une erreur spécifiée.
+- Hello du paramètre **DependencyAction** propriété trop**bloc** indique que les tâches dépendantes ne sont pas éligible toorun.
 
-Le paramètre par défaut de la propriété **DependencyAction** est **Satisfy** pour le code de sortie 0 et **Block** pour toutes les autres conditions de sortie.
+Hello du paramètre par défaut pour hello **DependencyAction** propriété **satisfaction** pour le code de sortie 0, et **bloc** pour toutes les autres conditions de sortie.
 
-L’extrait de code suivant définit la propriété **DependencyAction** d’une tâche parente. Si la tâche parente se termine avec une erreur de prétraitement ou avec les codes d’erreur spécifiés, la tâche dépendante est bloquée. Si la tâche parente se termine avec une autre erreur non nulle, la tâche dépendante peut être exécutée.
+Hello extrait de code suivant définit hello **DependencyAction** propriété pour une tâche parente. Si tâche parente de hello se termine avec une erreur de traitement préliminaire ou par hello les codes d’erreur spécifié, hello dépendants tâche est bloquée. Si la tâche parente de hello se termine avec une autre erreur non nulle, les tâches dépendantes hello sont toorun éligible.
 
 ```csharp
-// Task A is the parent task.
+// Task A is hello parent task.
 new CloudTask("A", "cmd.exe /c echo A")
 {
     // Specify exit conditions for task A and their dependency actions.
@@ -179,13 +179,13 @@ new CloudTask("A", "cmd.exe /c echo A")
         {
             DependencyAction = DependencyAction.Block
         },
-        // If task A exits with the specified error codes, block any downstream tasks (in this example, task B).
+        // If task A exits with hello specified error codes, block any downstream tasks (in this example, task B).
         ExitCodes = new List<ExitCodeMapping>
         {
             new ExitCodeMapping(10, new ExitOptions() { DependencyAction = DependencyAction.Block }),
             new ExitCodeMapping(20, new ExitOptions() { DependencyAction = DependencyAction.Block })
         },
-        // If task A succeeds or fails with any other error, any downstream tasks become eligible to run 
+        // If task A succeeds or fails with any other error, any downstream tasks become eligible toorun 
         // (in this example, task B).
         Default = new ExitOptions
         {
@@ -193,7 +193,7 @@ new CloudTask("A", "cmd.exe /c echo A")
         }
     }
 },
-// Task B depends on task A. Whether it becomes eligible to run depends on how task A exits.
+// Task B depends on task A. Whether it becomes eligible toorun depends on how task A exits.
 new CloudTask("B", "cmd.exe /c echo B")
 {
     DependsOn = TaskDependencies.OnId("A")
@@ -201,18 +201,18 @@ new CloudTask("B", "cmd.exe /c echo B")
 ```
 
 ## <a name="code-sample"></a>Exemple de code
-L’exemple de projet [TaskDependencies][github_taskdependencies] est l’un des [exemples de code Azure Batch][github_samples] disponibles sur GitHub. La solution Visual Studio montre :
+Hello [TaskDependencies] [ github_taskdependencies] exemple de projet est un des hello [exemples de code Azure Batch] [ github_samples] sur GitHub. La solution Visual Studio montre :
 
-- Comment activer la dépendance d’une tâche
-- Comment créer des tâches qui dépendent d’autres tâches
-- Comment exécuter ces tâches sur un pool de nœuds de calcul
+- Comment tooenable tâche dépendant d’un travail
+- Comment toocreate tâches qui dépendent d’autres tâches
+- Comment tooexecute ces tâches sur un pool de nœuds de calcul.
 
 ## <a name="next-steps"></a>Étapes suivantes
 ### <a name="application-deployment"></a>Déploiement des applications
-La fonctionnalité [packages d’application](batch-application-packages.md) de Batch est un moyen facile de déployer et contrôler les versions des applications exécutées par vos tâches sur des nœuds de calcul.
+Hello [des packages d’application](batch-application-packages.md) fonctionnalité du lot fournit une facilement tooboth déployer et une version applications hello vos tâches s’exécutent sur les nœuds de calcul.
 
 ### <a name="installing-applications-and-staging-data"></a>Installation d’applications et de données intermédiaires
-Pour découvrir les méthodes de préparation des nœuds à l’exécution de tâches, consultez l’article [Installing applications and staging data on Batch compute nodes][forum_post] (Installation d’applications et de données intermédiaires sur les nœuds de calcul Batch) sur le forum Azure Batch. Rédigée par un membre de l’équipe Azure Batch, cette publication est une excellente introduction aux différentes façons de copier des applications, des données d’entrée de tâche et d’autres fichiers sur vos nœuds de calcul.
+Consultez [l’installation d’applications et de mise en attente de traitement par lots des nœuds de calcul] [ forum_post] dans le forum Azure Batch hello pour une vue d’ensemble des méthodes pour la préparation de vos nœuds toorun tâches. Écrit par un des membres de l’équipe Azure Batch hello, que cette publication est une bonne introduction sur les applications de toocopy de différentes façons de hello, les données d’entrée de tâches et autres tooyour fichiers nœuds de calcul.
 
 [forum_post]: https://social.msdn.microsoft.com/Forums/en-US/87b19671-1bdf-427a-972c-2af7e5ba82d9/installing-applications-and-staging-data-on-batch-compute-nodes?forum=azurebatch
 [github_taskdependencies]: https://github.com/Azure/azure-batch-samples/tree/master/CSharp/ArticleProjects/TaskDependencies

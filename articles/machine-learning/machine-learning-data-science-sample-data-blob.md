@@ -1,5 +1,5 @@
 ---
-title: "Échantillonner des données dans le stockage d'objets blob Azure | Microsoft Docs"
+title: "stockage d’objets blob aaaSample des données dans Azure | Documents Microsoft"
 description: "Échantillonner des données dans le stockage d’objets blob Azure"
 services: machine-learning,storage
 documentationcenter: 
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/24/2017
 ms.author: fashah;garye;bradsev
-ms.openlocfilehash: aa9ab454706429682a393c3d5758cebe20790e19
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: cceadf1fb1fb4804fc5b5a3da55c82854651026e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="heading"></a>Échantillonner des données dans le stockage d’objets blob Azure
 Ce document traite de l’échantillonnage des données conservées dans le stockage d’objets blob Azure par le biais du téléchargement de ces données par programmation, puis de leur échantillonnage à l’aide de procédures écrites dans Python.
 
-Le **menu** ci-après pointe vers des rubriques qui expliquent comment échantillonner des données dans différents environnements de stockage. 
+suivant de Hello **menu** lie tootopics qui décrivent comment toosample des données à partir de différents environnements de stockage. 
 
 [!INCLUDE [cap-sample-data-selector](../../includes/cap-sample-data-selector.md)]
 
 **Pourquoi échantillonner vos données ?**
-Si vous prévoyez d’analyser un jeu de données volumineux, il est généralement recommandé de sous-échantillonner les données afin de réduire leur taille sous une forme plus facilement exploitable, mais toujours représentative. Cette opération facilite la compréhension et l’exploration des données, ainsi que la conception de fonctionnalités. Son rôle dans le processus Cortana Analytics consiste à permettre le prototypage rapide des fonctions de traitement des données et des modèles d’apprentissage automatique.
+Si dataset hello vous envisagez de tooanalyze est grand, il est généralement un tooreduce de données recommandé toodown-exemple hello il tooa plus petite mais représentatif et plus facile à gérer la taille. Cette opération facilite la compréhension et l’exploration des données, ainsi que la conception de fonctionnalités. Son rôle dans hello Cortana Analytique processus est tooenable le prototypage rapide des fonctions de traitement des données de hello et modèles d’apprentissage automatique.
 
-Cette tâche d’échantillonnage est une étape du [processus TDSP (Team Data Science Process)](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/).
+Cette tâche d’échantillonnage est une étape Bonjour [processus de science des données équipe (TDSP)](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/).
 
 ## <a name="download-and-down-sample-data"></a>Télécharger et sous-échantillonner les données
-1. Téléchargez les données du stockage d’objets blob Azure à l’aide du service BLOB en utilisant l’exemple de code suivant : 
+1. Télécharger les données de salutation à partir du stockage d’objets blob Azure à l’aide du service d’objets blob hello hello suivant l’exemple de code Python à partir de : 
    
         from azure.storage.blob import BlobService
         import tables
@@ -49,16 +49,16 @@ Cette tâche d’échantillonnage est une étape du [processus TDSP (Team Data S
         blob_service=BlobService(account_name=STORAGEACCOUNTNAME,account_key=STORAGEACCOUNTKEY)
         blob_service.get_blob_to_path(CONTAINERNAME,BLOBNAME,LOCALFILENAME)
         t2=time.time()
-        print(("It takes %s seconds to download "+blobname) % (t2 - t1))
+        print(("It takes %s seconds toodownload "+blobname) % (t2 - t1))
 
-2. Lisez les données dans une trame de données pandas à partir du fichier téléchargé à l’étape précédente.
+2. Lire les données dans une trame de données Pandas à partir du fichier hello téléchargé.
    
         import pandas as pd
    
         #directly ready from file on disk
         dataframe_blobdata = pd.read_csv(LOCALFILE)
 
-3. Sous-échantillonnez les données en utilisant l’élément `random.choice` de `numpy`, comme suit :
+3. Bas-exemple données hello à l’aide de hello `numpy`de `random.choice` comme suit :
    
         # A 1 percent sample
         sample_ratio = 0.01 
@@ -66,16 +66,16 @@ Cette tâche d’échantillonnage est une étape du [processus TDSP (Team Data S
         sample_rows = np.random.choice(dataframe_blobdata.index.values, sample_size)
         dataframe_blobdata_sample = dataframe_blobdata.ix[sample_rows]
 
-Vous pouvez à présent travailler sur l’échantillon de 1 % de la trame de données ci-dessus à d’autres fins d’exploration et de génération de fonctionnalités.
+Vous pouvez maintenant travailler avec hello au-dessus de trame de données avec l’exemple de 1 pour cent hello pour une exploration plus approfondie et la génération de la fonctionnalité.
 
 ## <a name="heading"></a>Télécharger les données et les lire dans Azure Machine Learning
-Vous pouvez sous-échantillonner les données et les utiliser directement dans Azure Machine Learning en utilisant l’exemple de code ci-dessous :
+Vous pouvez utiliser hello exemple code toodown-exemple hello données suivantes et l’utiliser directement dans Azure Machine Learning :
 
-1. Écrivez la trame de données dans un fichier local :
+1. Écrire le fichier local de hello données frame tooa
    
         dataframe.to_csv(os.path.join(os.getcwd(),LOCALFILENAME), sep='\t', encoding='utf-8', index=False)
 
-2. Chargez le fichier local dans un objet blob Azure au moyen de l’exemple de code suivant :
+2. Télécharger hello fichier local tooan Azure blob à l’aide de hello suivant l’exemple de code :
    
         from azure.storage.blob import BlobService
         import tables
@@ -95,9 +95,9 @@ Vous pouvez sous-échantillonner les données et les utiliser directement dans A
         output_blob_service.put_block_blob_from_path(CONTAINERNAME,BLOBNAME,localfileprocessed)
    
         except:            
-            print ("Something went wrong with uploading to the blob:"+ BLOBNAME)
+            print ("Something went wrong with uploading toohello blob:"+ BLOBNAME)
 
-3. Lisez les données de l’objet blob Azure à l’aide du module [Importer les données](https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/) Azure Machine Learning, comme l’illustre l’image ci-dessous :
+3. Lire les données de hello hello blob Azure à l’aide d’Azure Machine Learning [importer des données](https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/) comme indiqué dans l’image hello ci-dessous :
 
 ![objet blob de lecteur](./media/machine-learning-data-science-sample-data-blob/reader_blob.png)
 

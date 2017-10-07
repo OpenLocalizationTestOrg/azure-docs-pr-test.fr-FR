@@ -1,6 +1,6 @@
 ---
-title: "Comment interroger des données de graphique dans Azure Cosmos DB ? | Microsoft Docs"
-description: "Apprendre à interroger des données de graphique dans Azure Cosmos DB"
+title: "aaaHow tooquery graphique des données dans la base de données Azure Cosmos ? | Microsoft Docs"
+description: "En savoir plus tooquery un graphique des données dans la base de données Azure Cosmos"
 services: cosmos-db
 documentationcenter: 
 author: dennyglee
@@ -15,28 +15,28 @@ ms.tgt_pltfrm: na
 ms.workload: 
 ms.date: 05/10/2017
 ms.author: denlee
-ms.openlocfilehash: 81713c72da037f127e81239d214d7a877247dca1
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: fdde881edd6c488e2fea51e5c9665e1d736009fa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-cosmos-db-how-to-query-with-the-graph-api-preview"></a>Azure Cosmos DB : Comment interroger avec l’API Graph (version préliminaire) ?
+# <a name="azure-cosmos-db-how-tooquery-with-hello-graph-api-preview"></a>Azure Cosmos DB : Comment tooquery avec hello l’API Graph (aperçu) ?
 
-L’[API Graph](graph-introduction.md) (version préliminaire) d’Azure Cosmos DB prend en charge les requêtes [GREMLINE](https://docs.mongodb.com/manual/tutorial/query-documents/). Cet article fournit des exemples de documents et de requêtes pour vous aider à démarrer. L’article relatif à la [prise en charge de Gremlin](gremlin-support.md) comporte des informations de référence détaillées sur Gremlin.
+Bonjour Azure Cosmos DB [API Graph](graph-introduction.md) (version préliminaire) prend en charge [GREMLINE](https://docs.mongodb.com/manual/tutorial/query-documents/) requêtes. Cet article fournit des exemples de documents et des requêtes tooget que vous avez démarré. Informations de référence détaillées GREMLINE sont fournie dans hello [prise en charge GREMLINE](gremlin-support.md) l’article.
 
-Cet article décrit les tâches suivantes : 
+Cet article traite des hello tâches suivantes : 
 
 > [!div class="checklist"]
 > * Interrogation des données avec Gremlin
 
 ## <a name="prerequisites"></a>Composants requis
 
-Pour le bon fonctionnement de ces requêtes, vous devez disposer d’un compte Azure Cosmos DB et de données de graphique dans le conteneur. Cela n’est pas le cas ? Lancez le [démarrage rapide de 5 minutes](create-graph-dotnet.md) ou le [didacticiel destiné aux développeurs](tutorial-query-graph.md) pour créer un compte et alimenter votre base de données. Vous pouvez exécuter les requêtes suivantes à l’aide de la [bibliothèque de graphiques Azure Cosmos DB .NET](graph-sdk-dotnet.md), la [console Gremlin](https://tinkerpop.apache.org/docs/current/reference/#gremlin-console), ou votre pilote Gremlin favori.
+Pour ces requêtes toowork, vous devez disposer d’un compte de base de données Azure Cosmos et un graphique des données dans le conteneur de hello. Cela n’est pas le cas ? Hello complète [démarrage rapide de 5 minutes](create-graph-dotnet.md) ou hello [didacticiel pour développeur](tutorial-query-graph.md) toocreate un compte et le remplir votre base de données. Vous pouvez exécuter hello suivant des requêtes à l’aide de hello [bibliothèque graph de Azure Cosmos DB .NET](graph-sdk-dotnet.md), [console de GREMLINE](https://tinkerpop.apache.org/docs/current/reference/#gremlin-console), ou votre pilote GREMLINE favori.
 
-## <a name="count-vertices-in-the-graph"></a>Compter le nombre de vertex du graphique
+## <a name="count-vertices-in-hello-graph"></a>Nombre des sommets dans le graphique de hello
 
-L’extrait de code suivant montre comment compter le nombre de vertex du graphique :
+Hello suivant extrait de code montre comment toocount hello nombre de sommets dans le graphique de hello :
 
 ```
 g.V().count()
@@ -44,7 +44,7 @@ g.V().count()
 
 ## <a name="filters"></a>Filtres
 
-Vous pouvez appliquer des filtres à l’aide des étapes `has` et `hasLabel` de Gremlin et les associer à l’aide de `and`, `or`, et `not` pour créer des filtres plus complexes. Azure Cosmos DB propose une indexation sans schéma de toutes les propriétés au sein de vos vertex et degrés pour les requêtes rapides :
+Vous pouvez effectuer des filtres à l’aide de GREMLINE `has` et `hasLabel` les étapes et les associer à l’aide de `and`, `or`, et `not` toobuild les filtres plus complexe. Azure Cosmos DB propose une indexation sans schéma de toutes les propriétés au sein de vos vertex et degrés pour les requêtes rapides :
 
 ```
 g.V().hasLabel('person').has('age', gt(40))
@@ -52,7 +52,7 @@ g.V().hasLabel('person').has('age', gt(40))
 
 ## <a name="projection"></a>Projection
 
-Vous pouvez projeter certaines propriétés dans les résultats de requête à l’aide de l’étape `values` :
+Vous pouvez projeter certaines propriétés dans les résultats de la requête hello à l’aide de hello `values` étape :
 
 ```
 g.V().hasLabel('person').values('firstName')
@@ -60,28 +60,28 @@ g.V().hasLabel('person').values('firstName')
 
 ## <a name="find-related-edges-and-vertices"></a>Rechercher des vertex et des bords associés
 
-Jusqu’ici, nous avons seulement abordé les opérateurs de requête fonctionnant dans n’importe quelle base de données. Les graphiques sont rapides et efficaces pour les opérations de traversée lorsque vous avez besoin d’accéder aux vertex et bords associés. Recherchons à présent tous les amis de Thomas. Nous suivons pour cela l’étape `outE` de Gremlin pour rechercher toutes les bords externes de Thomas afin de se diriger vers les vertex internes de ces bords en suivant l’étape `inV` de Gremlin :
+Jusqu’ici, nous avons seulement abordé les opérateurs de requête fonctionnant dans n’importe quelle base de données. Graphiques sont rapides et efficaces pour les opérations de parcours lorsque vous avez besoin toonavigate toorelated arêtes et les sommets. Recherchons à présent tous les amis de Thomas. Pour ce faire, nous à l’aide de GREMLINE `outE` toofind hello tous les out-bords Thomas à partir de l’étape, puis parcourir les sommets dans toohello entre les bords à l’aide de GREMLINE `inV` étape :
 
 ```cs
 g.V('thomas').outE('knows').inV().hasLabel('person')
 ```
 
-La requête suivante effectue deux sauts pour rechercher tous les « amis des amis de Thomas », en appelant `outE` et `inV` deux fois. 
+éditeur de requête suivant de Hello effectue deux sauts toofind tous « Amis de vos amis » de Thomas, en appelant `outE` et `inV` deux fois. 
 
 ```cs
 g.V('thomas').outE('knows').inV().hasLabel('person').outE('knows').inV().hasLabel('person')
 ```
 
-Vous pouvez créer des requêtes plus complexes et implémenter une logique de traversée de graphique puissante à l’aide de Gremlin, y compris en mixant des expressions de filtre, en exécutant des boucles à l’aide de l’étape `loop` et en mettant en œuvre la navigation conditionnelle à l’aide de l’étape `choose`. En savoir plus sur ce que la [prise en charge de Gremlin](gremlin-support.md) vous permet de faire !
+Vous pouvez générer des requêtes plus complexes et implémenter la logique de parcours puissant de graphique à l’aide de GREMLINE, y compris filtre mélange des expressions, exécution à l’aide de bouclage hello `loop` étape et la navigation conditionnelle implémentation à l’aide de hello `choose` étape. En savoir plus sur ce que la [prise en charge de Gremlin](gremlin-support.md) vous permet de faire !
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Dans ce didacticiel, vous avez appris à :
+Dans ce didacticiel, vous avez effectué les éléments suivants de hello :
 
 > [!div class="checklist"]
-> * Effectuer des interrogations à l’aide de Graph 
+> * Appris comment tooquery à l’aide du graphique 
 
-Vous pouvez maintenant poursuivre avec le didacticiel suivant montrant comment distribuer vos données globalement.
+Vous pouvez maintenant toolearn de didacticiel suivant toohello comment toodistribute vos données globalement.
 
 > [!div class="nextstepaction"]
 > [Distribuer vos données globalement](tutorial-global-distribution-documentdb.md)

@@ -1,5 +1,5 @@
 ---
-title: "Présentation des messages Azure IoT Hub | Microsoft Docs"
+title: messagerie de Azure IoT Hub aaaUnderstand | Documents Microsoft
 description: "Guide du développeur - Messagerie d’appareil-à-cloud et de cloud-à-appareil avec IoT Hub. Comprend des informations sur les formats de message et les protocoles de communication pris en charge."
 services: iot-hub
 documentationcenter: .net
@@ -14,29 +14,29 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/25/2017
 ms.author: dobett
-ms.openlocfilehash: f54398d7ac46bf178d2bb603669b399d25370736
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a610741e23e243f392f1c042f9ab4a00d42f734f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="device-to-cloud-and-cloud-to-device-messaging-with-iot-hub"></a>Messagerie d’appareil-à-cloud et de cloud-à-appareil avec IoT Hub
 
-Utilisez la messagerie IoT Hub pour communiquer avec vos appareils en :
+Utiliser l’IoT Hub toocommunicate de messagerie avec vos appareils par :
 
-* envoyant des messages [appareil-à-cloud][lnk-d2c] depuis vos appareils vers le back-end de votre solution ;
-* envoyant des messages [cloud-à-appareil][lnk-c2d] depuis le back-end de la solution vers vos appareils.
+* Envoi de [appareil-à-cloud] [ lnk-d2c] messages à partir de votre solution de tooyour périphériques back-end.
+* Envoi de [cloud-à-appareil] [ lnk-c2d] tooyour périphériques de fin de messages à partir de la solution hello précédent.
 
-Les principales propriétés de la fonctionnalité de messagerie IoT Hub sont la fiabilité et la durabilité des messages. Ces propriétés activent la résilience de la connectivité intermittente côté appareils et des pics de chargement dans le traitement d’événements côté cloud. IoT Hub implémente *au moins une fois* des garanties de remise pour l’envoi de messages appareil-à-cloud et cloud-à-appareil.
+Propriétés principales de la fonctionnalité de messagerie IoT Hub sont hello et des messages. Ces propriétés activent la connectivité de toointermittent de résilience côté hello d’appareil, et tooload des pics se produisent dans l’événement de traitement sur le côté du cloud hello. IoT Hub implémente *au moins une fois* des garanties de remise pour l’envoi de messages appareil-à-cloud et cloud-à-appareil.
 
-Pour obtenir une présentation des fonctionnalités IoT Hub, consultez les articles [Azure et IoT][lnk-azure-iot] et [Présentation du service Azure IoT Hub][lnk-iot-hub-overview].
+Pour une fonctionnalités toohello introduction d’IoT Hub, consultez les articles de hello [Azure et Internet of Things] [ lnk-azure-iot] et [vue d’ensemble de hello Azure IoT Hub service] [lnk-iot-hub-overview].
 
-## <a name="when-to-use-iot-hub-messaging"></a>Quand utiliser la messagerie IoT Hub
+## <a name="when-toouse-iot-hub-messaging"></a>Lors de la messagerie de toouse IoT Hub
 
-Utilisez les messages appareil-à-cloud pour envoyer des alertes et des données de télémétrie de série chronologique à partir de votre application pour appareil, et des messages cloud-à-appareil pour envoyer des notifications unidirectionnelles à votre application pour appareil.
+Utiliser les messages appareil-à-cloud pour l’envoi de télémétrie de série de temps et des alertes à partir de votre application et des messages cloud-à-appareil pour l’application de périphérique tooyour notifications unidirectionnel.
 
-* Reportez-vous à [l’aide sur la communication appareil-à-cloud][lnk-d2c-guidance] en cas de doute entre l’utilisation des messages appareil-à-cloud, des propriétés signalées ou du chargement de fichiers.
-* Reportez-vous à [l’aide sur la communication cloud-à-appareil][lnk-c2d-guidance] en cas de doute entre l’utilisation des messages cloud-à-appareil, des propriétés de votre choix ou des méthodes directes.
+* Consultez trop[des conseils de communication de périphérique dans le cloud] [ lnk-d2c-guidance] en cas de doute entre l’utilisation de messages appareil-à-cloud, les propriétés déclarées ou téléchargement du fichier.
+* Consultez trop[des conseils de communication Cloud-à-appareil] [ lnk-c2d-guidance] en cas de doute entre l’utilisation des messages cloud-à-appareil, propriétés ou méthodes directes.
 
 ## <a name="next-steps"></a>Étapes suivantes
 

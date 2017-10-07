@@ -1,5 +1,5 @@
 ---
-title: "Créer votre premier flux de travail entre des applications cloud et des services cloud : Azure Logic Apps| Microsoft Docs"
+title: aaaCreate votre premier flux de travail entre les applications cloud et les services de cloud computing - Azure Logic Apps | Documents Microsoft
 description: "Automatisez les processus d’entreprise dans le cas de scénarios d’intégration des systèmes et des Applications d’Entreprise (IAE) en créant et en exécutant des flux de travail dans Azure Logic Apps."
 author: jeffhollan
 manager: anneta
@@ -15,17 +15,17 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 03/31/2017
 ms.author: LADocs; jehollan; estfan
-ms.openlocfilehash: 204bf123509729b60b55c306050cef54aa7fecc5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 17ec589b1c8923b5ad3e6479fc856b6ac81754ab
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-your-first-logic-app-workflow-to-automate-processes-between-cloud-apps-and-cloud-services"></a>Créer votre premier flux de travail d’application logique pour automatiser les processus entre les applications cloud et les services cloud
+# <a name="create-your-first-logic-app-workflow-tooautomate-processes-between-cloud-apps-and-cloud-services"></a>Créer votre première application logique tooautomate processus entre les applications cloud et les services de cloud computing
 
-Vous pouvez automatiser des processus métier plus facilement et rapidement lorsque vous créez et exécutez des flux de travail et ce, sans avoir besoin d’écrire la plus petite ligne de code, grâce à [Azure Logic Apps](logic-apps-what-are-logic-apps.md). Le premier exemple indique comment créer un flux de travail d’application logique de base, qui vérifie la présence éventuelle de nouveau contenu dans un flux RSS, sur un site web. Lorsque de nouveaux éléments s’affichent dans le flux du site web, l’application logique envoie un e-mail depuis un compte Outlook ou Gmail.
+Vous pouvez automatiser des processus métier plus facilement et rapidement lorsque vous créez et exécutez des flux de travail et ce, sans avoir besoin d’écrire la plus petite ligne de code, grâce à [Azure Logic Apps](logic-apps-what-are-logic-apps.md). Ce premier exemple montre comment toocreate un workflow d’application logique de base qui vérifie un RSS flux pour le nouveau contenu sur un site Web. Lorsque de nouveaux éléments s’affichent dans les flux du site Web de hello, hello logique application envoie par courrier électronique à partir d’un compte Outlook ou Gmail.
 
-Pour créer et exécuter une application logique, vous avez besoin des éléments suivants :
+toocreate et exécuter une application logique, vous avez besoin de ces éléments :
 
 * Un abonnement Azure. Si vous ne disposez d’aucun abonnement, vous pouvez [commencer par créer gratuitement un compte Azure](https://azure.microsoft.com/free/). Sinon, vous pouvez souscrire à un [abonnement de type paiement à l’utilisation](https://azure.microsoft.com/pricing/purchase-options/).
 
@@ -38,114 +38,114 @@ En outre, cet exemple nécessite les éléments suivants :
     > [!TIP]
     > Si vous disposez d’un [compte Microsoft](https://account.microsoft.com/account) personnel, vous possédez un compte Outlook.com. Sinon, si vous disposez d’un compte Azure professionnel ou scolaire, vous possédez un compte **Office 365 Outlook**.
 
-* Un lien vers le flux RSS d’un site web. Cet exemple utilise le [flux RSS pour les témoignages du site web CNN.com](http://rss.cnn.com/rss/cnn_topstories.rss) : `http://rss.cnn.com/rss/cnn_topstories.rss`
+* Un tooa lien du site Web flux RSS. Cet exemple utilise hello [flux RSS pour les récits supérieur à partir du site Web de CNN.com hello](http://rss.cnn.com/rss/cnn_topstories.rss):`http://rss.cnn.com/rss/cnn_topstories.rss`
 
 ## <a name="add-a-trigger-that-starts-your-workflow"></a>Ajouter un déclencheur qui démarre votre flux de travail
 
-Un [*déclencheur*](./logic-apps-what-are-logic-apps.md#logic-app-concepts) est un événement qui démarre le flux de travail de votre application logique. Il s’agit du premier élément requis par votre application logique.
+A [ *déclencheur* ](./logic-apps-what-are-logic-apps.md#logic-app-concepts) est un événement qui démarre le workflow d’application logique et hello premier élément qui a besoin votre application logique.
 
-1. Connectez-vous au [portail Azure](https://portal.azure.com "portail Azure").
+1. Connectez-vous à toohello [portail Azure](https://portal.azure.com "portail Azure").
 
-2. Dans le menu de gauche, choisissez **Nouveau** > **Intégration d’entreprise** > **Application logique**, comme indiqué ici :
+2. Dans le menu de gauche hello, choisissez **nouveau** > **intégration** > **application logique** comme indiqué ici :
 
      ![portail Azure, nouveau, intégration d’entreprise, application logique](media/logic-apps-create-a-logic-app/azure-portal-create-logic-app.png)
 
    > [!TIP]
-   > Vous pouvez également sélectionner **Nouveau**, puis dans la zone de recherche, tapez `logic app`, puis appuyez sur Entrée. Ensuite, choisissez **Application logique** > **Créer**.
+   > Vous pouvez également choisir **nouveau**, puis dans la zone de recherche de hello, tapez `logic app`, puis appuyez sur ENTRÉE. Ensuite, choisissez **Application logique** > **Créer**.
 
-3. Nommez votre application logique et sélectionnez votre abonnement Azure. Créez ou sélectionnez un groupe de ressources Azure, qui permet d’organiser et de gérer des ressources Azure liées. Enfin, sélectionnez l’emplacement du centre de données pour l’hébergement de votre application logique. Lorsque vous êtes prêt, choisissez **Épingler au tableau de bord**, puis **Créer**.
+3. Nommez votre application logique et sélectionnez votre abonnement Azure. Créez ou sélectionnez un groupe de ressources Azure, qui permet d’organiser et de gérer des ressources Azure liées. Enfin, sélectionnez emplacement du centre de données hello pour l’hébergement de votre application logique. Lorsque vous êtes prêt, choisissez **code confidentiel toodashboard** , puis **créer**.
 
      ![Détails de l’application logique](media/logic-apps-create-a-logic-app/logic-app-settings.png)
 
    > [!NOTE]
-   > Lorsque vous sélectionnez l’option **Épingler au tableau de bord**, votre application logique s’affiche dans le tableau de bord Azure après le déploiement et s’ouvre automatiquement. Si votre application logique ne figure pas dans le tableau de bord, accédez à la mosaïque **Toutes les ressources**, choisissez **En savoir plus**, puis sélectionnez votre application logique. Vous pouvez également cliquer sur **Plus de services** dans le menu de gauche. Sous **Intégration d’entreprise**, choisissez **Applications logiques** et sélectionnez votre application logique.
+   > Lorsque vous sélectionnez **toodashboard du code confidentiel**, votre application logique apparaît sur hello du tableau de bord Azure après le déploiement et s’ouvre automatiquement. Si votre application logique n’apparaît pas dans le tableau de bord hello sur hello **toutes les ressources** vignette, choisissez **consultez plus**, puis sélectionnez votre application logique. Ou, dans le menu de gauche hello, choisissez **davantage de services**. Sous **Intégration d’entreprise**, choisissez **Applications logiques** et sélectionnez votre application logique.
 
-4. Lorsque vous ouvrez votre application logique pour la première fois, le Concepteur d’application logique affiche les modèles que vous pouvez utiliser pour commencer. Pour l’instant, choisissez **Application logique vide**, afin de développer votre application logique à partir de zéro.
+4. Lorsque vous ouvrez votre logique d’application pour hello première fois, hello Concepteur de logique d’application affiche les modèles que vous pouvez utiliser tooget a démarré. Pour l’instant, choisissez **Application logique vide**, afin de développer votre application logique à partir de zéro.
 
-    Le Concepteur d’application logique s’ouvre et affiche des services disponibles et *déclencheurs* que vous pouvez utiliser dans votre application logique.
+    Hello Concepteur d’application logique s’ouvre et affiche les services disponibles et *déclencheurs* que vous pouvez utiliser dans votre application logique.
 
-5. Dans la zone de recherche, saisissez `RSS`, puis sélectionnez le déclencheur suivant : **RSS - Lors de la publication d’un élément de flux**. 
+5. Dans la zone de recherche de hello, tapez `RSS`, puis sélectionnez ce déclencheur : **RSS - lorsqu’un élément de flux est publié.** 
 
     ![Déclencheur RSS](media/logic-apps-create-a-logic-app/rss-trigger.png)
 
-6. Indiquez le lien vers le flux RSS du site web dont vous souhaitez effectuer un suivi. 
+6. Entrez un lien de hello pour les flux RSS du site Web de hello que vous souhaitez tootrack. 
 
      Vous pouvez également modifier la **fréquence** et l’**intervalle**. 
      Ces paramètres déterminent la fréquence à laquelle votre application logique recherche de nouveaux éléments et renvoie tous les éléments détectés pendant cet intervalle de temps.
 
-     Pour les besoins de cet exemple, nous allons rechercher tous les jours les témoignages publiés sur le site web CNN.
+     Pour cet exemple, nous allons vérifier tous les jours pour les récits supérieur publiées du site Web CNN toohello.
 
      ![Définir un déclencheur avec le flux RSS, la fréquence et l’intervalle](media/logic-apps-create-a-logic-app/rss-trigger-setup.png)
 
-7. Enregistrez votre travail pour commencer (dans la barre de commandes du concepteur, choisissez **Enregistrer**.)
+7. Enregistrez votre travail pour commencer (Dans la barre de commandes du concepteur hello, choisissez **enregistrer**.)
 
    ![Enregistrer votre application logique](media/logic-apps-create-a-logic-app/save-logic-app.png)
 
-   Lorsque vous l’enregistrez, votre application logique est mise en service. À l’heure actuelle, elle vérifie uniquement la présence de nouveaux éléments dans le flux RSS spécifié. 
-   Pour rendre cet exemple plus utile, nous ajoutons une action que votre application logique exécute après l’activation de votre déclencheur.
+   Lorsque vous enregistrez, votre application logique soit disponible, mais actuellement, votre application logique vérifie uniquement les nouveaux éléments dans hello spécifié flux RSS. 
+   toomake cet exemple plus utile, que nous ajoutons une action de votre application de la logique s’exécute après votre déclencheur est activé.
 
-## <a name="add-an-action-that-responds-to-your-trigger"></a>Ajouter une action de réaction à votre déclencheur
+## <a name="add-an-action-that-responds-tooyour-trigger"></a>Ajouter une action qui répond tooyour déclencheur
 
-Une [*action*](./logic-apps-what-are-logic-apps.md#logic-app-concepts) est une tâche effectuée par le flux de travail de votre application logique. Après avoir ajouté un déclencheur à votre application logique, vous pouvez ajouter une action permettant d’effectuer des opérations avec les données générées par ce déclencheur. Dans notre exemple, nous ajoutons maintenant une action qui envoie un e-mail lorsque de nouveaux éléments apparaissent dans le flux RSS du site web.
+Une [*action*](./logic-apps-what-are-logic-apps.md#logic-app-concepts) est une tâche effectuée par le flux de travail de votre application logique. Après avoir ajouté une application de la logique de déclencheur tooyour, vous pouvez ajouter un opérateur de tooperform action avec les données générées par ce déclencheur. Dans notre exemple, nous permet maintenant d’ajouter une action qui envoie un e-mail lorsque de nouveaux éléments s’affichent dans le flux RSS du site Web de hello.
 
-1. Dans le concepteur, sous votre déclencheur, choisissez **Nouvelle étape** > **Ajouter une action**, comme indiqué ici :
+1. Dans le Concepteur de hello, sous votre déclencheur, choisissez **nouvelle étape** > **ajouter une action** comme indiqué ici :
 
    ![Ajouter une action](media/logic-apps-create-a-logic-app/add-new-action.png)
 
-   Le concepteur affiche les [connecteurs disponibles](../connectors/apis-list.md), afin que vous puissiez sélectionner une action à exécuter lorsque votre déclencheur est activé.
+   Hello concepteur affiche [connecteurs disponibles](../connectors/apis-list.md) afin que vous puissiez sélectionner une action tooperform lorsque le déclencheur est activé.
 
-2. En fonction de votre compte de messagerie, suivez les étapes relatives à Outlook ou Gmail.
+2. En fonction de votre compte de messagerie, les étapes hello pour Outlook ou Gmail.
 
-   * Pour envoyer un e-mail à partir de votre compte Outlook, saisissez `outlook` dans la zone de recherche. Sous **Services**, choisissez **Outlook.com** pour les comptes Microsoft personnels, ou **Office 365 Outlook** pour les comptes Azure professionnels ou scolaires. 
+   * messagerie toosend à partir de votre compte Outlook, dans la zone de recherche de hello, entrez `outlook`. Sous **Services**, choisissez **Outlook.com** pour les comptes Microsoft personnels, ou **Office 365 Outlook** pour les comptes Azure professionnels ou scolaires. 
    Sous **Actions**, sélectionnez **Envoi d’un courrier électronique**.
 
        ![Sélectionner l’action Envoi d’un courrier électronique d’Outlook](media/logic-apps-create-a-logic-app/actions.png)
 
-   * Pour envoyer un e-mail à partir de votre compte Gmail, saisissez `gmail` dans la zone de recherche. 
+   * messagerie toosend à partir de votre compte Gmail, dans la zone de recherche de hello, entrez `gmail`. 
    Sous **Actions**, sélectionnez **Envoyer un e-mail**.
 
        ![Choisissez Gmail - Envoyer un e-mail.](media/logic-apps-create-a-logic-app/actions-gmail.png)
 
-3. Lorsque vous êtes invité à saisir des informations d’identification, connectez-vous avec le nom d’utilisateur et le mot de passe de votre compte de messagerie. 
+3. Lorsque vous êtes invité à entrer les informations d’identification, connectez-vous à hello username et password pour votre compte de messagerie. 
 
-4. Fournissez les détails de cette action, comme l’adresse de messagerie de destination, et choisissez les paramètres relatifs aux données à inclure dans l’e-mail, par exemple :
+4. Fournir des détails de hello pour cette action, comme l’adresse de messagerie de destination hello et choisir les paramètres hello pour hello données tooinclude par courrier électronique de hello, par exemple :
 
-   ![Sélectionner les données à inclure dans l’e-mail](media/logic-apps-create-a-logic-app/rss-action-setup.png)
+   ![Sélectionnez les données tooinclude par courrier électronique](media/logic-apps-create-a-logic-app/rss-action-setup.png)
 
     Ainsi, si vous avez choisi Outlook, votre application logique peut ressembler à cet exemple :
 
     ![Application logique terminée](media/logic-apps-create-a-logic-app/save-run-complete-logic-app.png)
 
-5.  Enregistrez vos modifications. (dans la barre de commandes du concepteur, choisissez **Enregistrer**.)
+5.  Enregistrez vos modifications. (Dans la barre de commandes du concepteur hello, choisissez **enregistrer**.)
 
-6. Vous pouvez maintenant exécuter votre application logique manuellement, à des fins de test. Dans la barre de commandes du concepteur, choisissez **Exécuter**. Sinon, vous pouvez laisser votre application logique vérifier le flux RSS spécifié selon la planification que vous avez configurée.
+6. Vous pouvez maintenant exécuter votre application logique manuellement, à des fins de test. Dans la barre de commandes du concepteur hello, choisissez **exécuter**. Sinon, vous pouvez laisser votre application logique vérifier hello spécifié selon une planification hello que vous définissez des flux RSS.
 
-   Si votre application logique détecte de nouveaux éléments, l’application logique envoie un e-mail qui inclut vos données sélectionnées. 
-   Si aucun nouvel élément n’est détecté, votre application logique ignore l’action qui envoie un e-mail.
+   Si votre application logique détecte les nouveaux éléments, hello logique application envoie par courrier électronique qui inclut vos données sélectionnées. 
+   Si aucun nouvel élément n’est trouvé, votre application logique ignore action hello qui envoie le courrier électronique.
 
-7. Pour surveiller et vérifier l’historique de déclencheur et d’exécution de votre application logique, choisissez **Vue d’ensemble** dans le menu de votre application logique.
+7. toomonitor et vérification de votre application de la logique de l’exécuter et déclencher l’historique, dans le menu Application logique, choisissent **vue d’ensemble**.
 
    ![Surveiller et afficher l’historique de déclencheur et d’exécution de votre application logique](media/logic-apps-create-a-logic-app/logic-app-run-trigger-history.png)
 
    > [!TIP]
-   > Si vous ne trouvez pas les données que vous attendez, choisissez **Actualiser** dans la barre de commandes.
+   > Si vous ne trouvez pas les données de salutation que vous attendez, sur la barre de commandes hello, essayez de choisir **Actualiser**.
 
-   Pour en savoir plus sur l’état de votre application logique ou de l’historique de déclencheur et d’exécution correspondant, ou pour diagnostiquer les échecs de votre application logique, voir [Diagnostiquer des échecs d’applications logiques](logic-apps-diagnosing-failures.md).
+   toolearn plus en détail l’état de l’application de votre logique ou exécutez et déclencher l’historique ou toodiagnose votre application logique, consultez [dépanner votre application logique](logic-apps-diagnosing-failures.md).
 
       > [!NOTE]
-      > Votre application logique poursuit son exécution jusqu’à ce que vous la désactiviez. Pour désactiver votre application de façon temporaire, choisissez **Vue d’ensemble** dans le menu de votre application logique. Choisissez **Désactiver** dans la barre de commandes.
+      > Votre application logique poursuit son exécution jusqu’à ce que vous la désactiviez. tooturn hors de votre application pour l’instant, dans le menu Application logique, choisissez **vue d’ensemble**. Dans la barre de commandes hello, choisissez **désactiver**.
 
 Félicitations ! Vous venez de configurer et d’exécuter votre première application logique de base. Vous avez également appris comment créer des flux de travaux qui automatisent les processus et intégrer des services cloud et applications cloud, aisément et sans rédiger la moindre ligne de code.
 
 ## <a name="manage-your-logic-app"></a>Gérer votre application logique
 
-Vous pouvez effectuer des tâches telles que la vérification de l’état, la modification, l’affichage de l’historique, la désactivation ou la suppression de votre application logique.
+toomanage votre application, vous pouvez effectuer des tâches telles que vérifier l’état de hello, modifier, afficher l’historique, désactiver ou supprimer votre application logique.
 
-1. Connectez-vous au [portail Azure](https://portal.azure.com "portail Azure").
+1. Connectez-vous à toohello [portail Azure](https://portal.azure.com "portail Azure").
 
-2. Cliquez sur l’option **Plus de services** dans le menu de gauche. Sous **Intégration d’entreprise**, choisissez **Applications logiques**. Sélectionnez votre application logique. 
+2. Dans le menu de gauche hello, choisissez **davantage de services**. Sous **Intégration d’entreprise**, choisissez **Applications logiques**. Sélectionnez votre application logique. 
 
-   Dans le menu de l’application logique, vous pouvez accéder à ces tâches de gestion de l’application logique :
+   Dans le menu d’application hello logique, vous pouvez trouver ces tâches de gestion d’application logique :
 
    |Task|Étapes| 
    |:---|:---| 
@@ -154,14 +154,14 @@ Vous pouvez effectuer des tâches telles que la vérification de l’état, la m
    | Afficher la définition JSON du flux de travail de votre application | Choisissez **Affichage du code de l’application logique**. | 
    | Afficher les opérations effectuées sur votre application logique | Choisissez **Journal d’activité**. | 
    | Afficher les anciennes versions de votre application logique | Choisissez **Versions**. | 
-   | Désactiver votre application temporairement | Choisissez **Vue d’ensemble** et, dans la barre de commandes, sélectionnez **Désactiver**. | 
-   | Supprimer votre application | Choisissez **Vue d’ensemble** et, dans la barre de commandes, sélectionnez **Supprimer**. Entrez le nom de votre application logique et choisissez **Supprimer**. | 
+   | Désactiver votre application temporairement | Choisissez **vue d’ensemble**, puis dans la barre de commandes hello, choisissez **désactiver**. | 
+   | Supprimer votre application | Choisissez **vue d’ensemble**, puis dans la barre de commandes hello, choisissez **supprimer**. Entrez le nom de votre application logique et choisissez **Supprimer**. | 
 
 ## <a name="get-help"></a>Obtenir de l’aide
 
-Pour poser des questions ou y répondre et voir ce que font les autres utilisateurs d’Azure Logic Apps, visitez le [Forum Azure Logic Apps](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurelogicapps).
+tooask questions, répondre aux questions et savoir quels autres Azure Logic Apps font les utilisateurs, visitez hello [forum de Azure Logic Apps](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurelogicapps).
 
-Afin d’améliorer Azure Logic Apps ainsi que les connecteurs, votez pour des idées ou soumettez-en sur le [site de commentaires utilisateur Azure Logic Apps](http://aka.ms/logicapps-wish).
+toohelp améliorer Azure Logic Apps et connecteurs, voter pour ou envoyer vos idées à hello [site de commentaires utilisateur Azure Logic Apps](http://aka.ms/logicapps-wish).
 
 ## <a name="next-steps"></a>Étapes suivantes
 

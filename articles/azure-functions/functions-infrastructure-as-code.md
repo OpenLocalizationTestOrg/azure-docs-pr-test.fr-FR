@@ -1,6 +1,6 @@
 ---
-title: "Automatiser le déploiement de ressources pour une application de fonction dans Azure Functions | Microsoft Docs"
-description: "Découvrez comment créer un modèle Azure Resource Manager qui déploie votre application de fonction."
+title: "déploiement de ressources aaaAutomate pour une application de la fonction dans les fonctions de Azure | Documents Microsoft"
+description: "Découvrez comment toobuild un modèle Azure Resource Manager qui déploie votre application de la fonction."
 services: Functions
 documtationcenter: na
 author: lindydonna
@@ -16,15 +16,15 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 05/25/2017
 ms.author: glenga
-ms.openlocfilehash: 15496e4ab2858b2aa319d53f1c438a259a3d5e49
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: b0df0d4ef9fe93213f7b1cb1d1e6b4e14f8b3a30
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="automate-resource-deployment-for-your-function-app-in-azure-functions"></a>Automatiser le déploiement de ressources pour votre application de fonction dans Azure Functions
 
-Vous pouvez utiliser un modèle Azure Resource Manager pour déployer une application de fonction. Cet article présente les ressources et paramètres nécessaires pour effectuer cette opération. Vous devrez peut-être déployer des ressources supplémentaires, selon les [déclencheurs et liaisons](functions-triggers-bindings.md) présents dans votre application de fonction.
+Vous pouvez utiliser un toodeploy de modèle Azure Resource Manager une application de la fonction. Cet article présente les ressources de hello requis et les paramètres pour ce faire. Vous devrez peut-être toodeploy des ressources supplémentaires, en fonction de hello [les déclencheurs et les liaisons](functions-triggers-bindings.md) dans votre application de la fonction.
 
 Pour en savoir plus sur la création de modèles, voir [Création de modèles Azure Resource Manager](../azure-resource-manager/resource-group-authoring-templates.md).
 
@@ -56,9 +56,9 @@ Un compte de stockage Azure est nécessaire pour une application de fonction. Vo
 }
 ```
 
-En outre, les propriétés `AzureWebJobsStorage` et `AzureWebJobsDashboard` doivent être spécifiées comme paramètres d’application dans la configuration du site. Le runtime d’Azure Functions utilise la chaîne de connexion `AzureWebJobsStorage` pour créer des files d’attente internes. La chaîne de connexion `AzureWebJobsDashboard` est utilisée pour la connexion au stockage de table Azure et l’alimentation de l’onglet **Surveiller** du portail.
+Hello en outre, les propriétés `AzureWebJobsStorage` et `AzureWebJobsDashboard` doivent être spécifiés comme paramètres d’application dans la configuration du site hello. exécution de fonctions d’Azure Hello utilise hello `AzureWebJobsStorage` toocreate les files d’attente interne de chaîne de connexion. Hello la chaîne de connexion `AzureWebJobsDashboard` est utilisé toolog tooAzure Table stockage et la puissance hello **moniteur** hello portail.
 
-Ces propriétés sont spécifiées dans la collection `appSettings` de l’objet `siteConfig` :
+Ces propriétés sont spécifiées dans hello `appSettings` collection Bonjour `siteConfig` objet :
 
 ```json
 "appSettings": [
@@ -74,11 +74,11 @@ Ces propriétés sont spécifiées dans la collection `appSettings` de l’objet
 
 ### <a name="hosting-plan"></a>Plan d’hébergement
 
-La définition du plan d’hébergement varie, selon que vous utilisez un plan Consommation ou un plan App Service. Consultez [Déployer une application de fonction dans le plan Consommation](#consumption) et [Déployer une application de fonction dans le plan App Service](#app-service-plan).
+définition de Hello Hello plan d’hébergement varie selon que vous utilisez un plan de la consommation ou du Service d’applications. Consultez [déployer une application de fonction sur le plan de la consommation hello](#consumption) et [déployer une application de fonction sur hello plan App Service](#app-service-plan).
 
 ### <a name="function-app"></a>Conteneur de fonctions
 
-La ressource d’application de fonction est définie à l’aide d’une ressource de type **Microsoft.Web/Site** et de genre **functionapp** :
+ressources d’application Hello fonction est définie à l’aide d’une ressource de type **Microsoft.Web/Site** et type **functionapp**:
 
 ```json
 {
@@ -95,15 +95,15 @@ La ressource d’application de fonction est définie à l’aide d’une ressou
 
 <a name="consumption"></a>
 
-## <a name="deploy-a-function-app-on-the-consumption-plan"></a>Déployer une application de fonction dans le plan Consommation
+## <a name="deploy-a-function-app-on-hello-consumption-plan"></a>Déployer une application de fonction sur le plan de la consommation de hello
 
-Vous pouvez exécuter une application de fonction dans deux modes différents : le plan Consommation et le plan App Service. Le plan Consommation alloue automatiquement la puissance de calcul pendant l’exécution du code, augmente la taille des instances quand c’est nécessaire pour gérer la charge, puis descend en puissance quand le code n’est pas en cours d’exécution. Vous n’avez donc pas à payer pour des machines virtuelles inactives ni à disposer d’une capacité de réserve à l’avance. Pour en savoir plus sur les plans d’hébergement, consultez [Plans Consommation et App Service d’Azure Functions](functions-scale.md).
+Vous pouvez exécuter une application de la fonction dans deux modes différents : hello du plan de la consommation et hello plan App Service. plan de la consommation Hello alloue automatiquement la puissance de calcul lorsque votre code est en cours d’exécution, peut évoluer en tant que charge de toohandle nécessaires, puis met à l’échelle vers le bas lorsque le code n’est pas en cours d’exécution. Par conséquent, vous n’avez pas toopay pour les machines virtuelles inactives, et vous n’avez pas la capacité de tooreserve à l’avance. toolearn en savoir plus sur l’hébergement des plans, consultez [plans de consommation de fonctions d’Azure et le Service application](functions-scale.md).
 
 Pour un exemple de modèle Azure Resource Manager, consultez [Function app on Consumption plan] (Application de fonction dans le plan Consommation).
 
 ### <a name="create-a-consumption-plan"></a>Créer un plan Consommation
 
-Un plan Consommation est un type spécial de ressource « serverfarm ». Vous le spécifiez en utilisant la valeur `Dynamic` pour les propriétés `computeMode` et `sku` :
+Un plan Consommation est un type spécial de ressource « serverfarm ». Vous la spécifiez à l’aide de hello `Dynamic` valeur hello `computeMode` et `sku` propriétés :
 
 ```json
 {
@@ -119,9 +119,9 @@ Un plan Consommation est un type spécial de ressource « serverfarm ». Vous le
 }
 ```
 
-### <a name="create-a-function-app"></a>Créer une application de fonction
+### <a name="create-a-function-app"></a>Créer une Function App
 
-En outre, un plan Consommation nécessite deux paramètres supplémentaires dans la configuration du site : `WEBSITE_CONTENTAZUREFILECONNECTIONSTRING` et `WEBSITE_CONTENTSHARE`. Ces propriétés configurent le compte de stockage et le chemin de fichier où le code de l’application de fonction et la configuration sont stockés.
+En outre, un plan de la consommation nécessite deux paramètres supplémentaires dans la configuration du site hello : `WEBSITE_CONTENTAZUREFILECONNECTIONSTRING` et `WEBSITE_CONTENTSHARE`. Ces propriétés configurer hello stockage compte et le fichier de chemin d’accès où le code d’application hello fonction et la configuration sont stockés.
 
 ```json
 {
@@ -166,9 +166,9 @@ En outre, un plan Consommation nécessite deux paramètres supplémentaires dans
 
 <a name="app-service-plan"></a> 
 
-## <a name="deploy-a-function-app-on-the-app-service-plan"></a>Déployer une application de fonction dans le plan App Service
+## <a name="deploy-a-function-app-on-hello-app-service-plan"></a>Déployer une application de fonction sur hello plan App Service
 
-Dans le plan App Service, vos applications de fonction sont exécutées sur des machines virtuelles dédiées sur des références de base, Standard et Premium, à l’instar des applications web. Pour plus d’informations sur le fonctionnement du plan App Service, consultez l’article [Présentation détaillée des plans d’Azure App Service](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md). 
+Bonjour plan App Service, votre application de la fonction s’exécute sur des machines virtuelles dédiées sur Basic, Standard et Premium SKU, les applications tooweb similaire. Pour plus d’informations sur le fonctionne de hello plan App Service, consultez hello [vue d’ensemble approfondie des plans de Service d’applications Azure](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md). 
 
 Pour un exemple de modèle Azure Resource Manager, consultez [Function app on Azure App Service plan] (Application de fonction dans le plan Azure App Service).
 
@@ -192,12 +192,12 @@ Pour un exemple de modèle Azure Resource Manager, consultez [Function app on Az
 
 ### <a name="create-a-function-app"></a>Créer une application de fonction 
 
-Une fois que vous avez sélectionné une option de mise à l’échelle, créez une application de fonction. L’application est le conteneur regroupant toutes vos fonctions.
+Une fois que vous avez sélectionné une option de mise à l’échelle, créez une application de fonction. application Hello est un conteneur hello qui contient toutes vos fonctions.
 
-Une application de fonction dispose de nombreuses ressources enfant que vous pouvez utiliser dans votre développement, notamment les paramètres de l’application et les options de contrôle de code source. Vous pouvez également choisir de supprimer la ressource enfant **sourcecontrols** et utiliser une autre [option de déploiement](functions-continuous-deployment.md) à la place.
+Une application de fonction dispose de nombreuses ressources enfant que vous pouvez utiliser dans votre développement, notamment les paramètres de l’application et les options de contrôle de code source. Vous pouvez également choisir tooremove hello **sourcecontrols** ressource enfant et utilisez une autre [l’option de déploiement](functions-continuous-deployment.md) à la place.
 
 > [!IMPORTANT]
-> Il est important de comprendre comment les ressources sont déployées dans Azure pour déployer correctement votre application en utilisant Azure Resource Manager. Dans l’exemple suivant, les configurations de niveau supérieur sont appliquées à l’aide de **siteConfig**. Il est important de définir ces configurations à un niveau supérieur, car elles fournissent des informations au moteur de déploiement et au runtime Functions. Des informations de niveau supérieur sont requises avant que la ressource enfant **sourcecontrols/web** soit appliquée. Bien qu’il soit possible de configurer ces paramètres dans la ressource **configuration/appSettings** au niveau enfant, dans certains cas, votre application de fonction doit être déployée *avant* que la ressource **configuration/appSettings** soit appliquée. Par exemple, quand vous utilisez des fonctions avec [Logic Apps](../logic-apps/index.md), vos fonctions sont une dépendance d’une autre ressource.
+> toosuccessfully déployer votre application à l’aide du Gestionnaire de ressources Azure, il est important toounderstand comment les ressources sont déployées dans Azure. Bonjour l’exemple suivant, les configurations de niveau supérieur sont appliquées à l’aide de **configuration**. Il est important tooset ces configurations à un haut niveau, car ils fournissent des informations toohello fonctions runtime et le déploiement du moteur. Informations de niveau supérieur sont requis avant les enfants hello **sourcecontrols/web** ressource est appliquée. Bien qu’il soit possible de tooconfigure ces paramètres dans hello niveau enfant **configuration/appSettings** ressource, dans certains cas, votre application de la fonction doit être déployée *avant* **configuration/appSettings**  est appliqué. Par exemple, quand vous utilisez des fonctions avec [Logic Apps](../logic-apps/index.md), vos fonctions sont une dépendance d’une autre ressource.
 
 ```json
 {
@@ -252,25 +252,25 @@ Une application de fonction dispose de nombreuses ressources enfant que vous pou
 }
 ```
 > [!TIP]
-> Dans ce modèle, la valeur du paramètre d’application [Project](https://github.com/projectkudu/kudu/wiki/Customizing-deployments#using-app-settings-instead-of-a-deployment-file), qui définit le répertoire de base dans lequel le moteur de déploiement de fonctions (Kudu) recherche le code pouvant être déployé, est utilisée. Dans notre référentiel, nos fonctions se trouvent dans un sous-dossier du dossier **src**. Par conséquent, dans l’exemple précédent, nous définissons la valeur de paramètres d’application sur `src`. Si vos fonctions sont à la racine de votre référentiel, ou si vous ne déployez pas de contrôle de code source, vous pouvez supprimer cette valeur de paramètres d’application.
+> Ce modèle utilise hello [projet](https://github.com/projectkudu/kudu/wiki/Customizing-deployments#using-app-settings-instead-of-a-deployment-file) valeur de paramètres d’application qui définit le répertoire de base hello dans le hello moteur de déploiement de fonctions (Kudu) recherche de code pouvant être déployée. Dans notre référentiel, nos fonctions se trouvent dans un sous-dossier de hello **src** dossier. Par conséquent, dans hello précédent exemple, nous avons défini valeur de paramètres d’application hello trop`src`. Si vos fonctions se trouvent dans votre référentiel racine hello, ou si vous ne déployez pas de contrôle de code source, vous pouvez supprimer cette valeur de paramètres d’application.
 
 ## <a name="deploy-your-template"></a>Déployer votre modèle
 
-Vous pouvez utiliser une des méthodes suivantes pour déployer votre modèle :
+Vous pouvez utiliser les Hello suivant façons toodeploy votre modèle :
 
 * [PowerShell](../azure-resource-manager/resource-group-template-deploy.md)
 * [Interface de ligne de commande Azure](../azure-resource-manager/resource-group-template-deploy-cli.md)
 * [Portail Azure](../azure-resource-manager/resource-group-template-deploy-portal.md)
 * [API REST](../azure-resource-manager/resource-group-template-deploy-rest.md)
 
-### <a name="deploy-to-azure-button"></a>Bouton Déployer dans Azure
+### <a name="deploy-tooazure-button"></a>TooAzure bouton déployer
 
-Remplacez ```<url-encoded-path-to-azuredeploy-json>``` par une version [d’URL encodée](https://www.bing.com/search?q=url+encode) du chemin brut de votre fichier `azuredeploy.json` dans GitHub.
+Remplacez ```<url-encoded-path-to-azuredeploy-json>``` avec un [encodé en URL](https://www.bing.com/search?q=url+encode) version du chemin d’accès brutes de hello de votre `azuredeploy.json` fichier dans GitHub.
 
 Voici un exemple qui utilise markdown :
 
 ```markdown
-[![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/<url-encoded-path-to-azuredeploy-json>)
+[![Deploy tooAzure](http://azuredeploy.net/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/<url-encoded-path-to-azuredeploy-json>)
 ```
 
 Voici un exemple qui utilise HTML :
@@ -281,10 +281,10 @@ Voici un exemple qui utilise HTML :
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-En savoir plus sur le développement et la configuration d’Azure Functions.
+En savoir plus sur la façon de toodevelop et configurer les fonctions d’Azure.
 
-* [Informations de référence pour les développeurs sur Azure Functions](functions-reference.md)
-* [Guide pratique pour configurer les paramètres d’application de fonction Azure](functions-how-to-use-azure-function-app-settings.md)
+* [Référence du développeur Azure Functions](functions-reference.md)
+* [Fonctionnement des paramètres de l’application tooconfigure Azure](functions-how-to-use-azure-function-app-settings.md)
 * [Créer votre première fonction Azure](functions-create-first-azure-function.md)
 
 <!-- LINKS -->

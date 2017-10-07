@@ -1,6 +1,6 @@
 ---
-title: Association des abonnements Azure avec Azure Active Directory | Microsoft Docs
-description: "Connexion à Microsoft Azure et problèmes connexes, tels que la relation entre un abonnement Azure et Azure Active Directory."
+title: "aaaHow Azure abonnements sont associés à Active Directory de Azure | Documents Microsoft"
+description: "L’ouverture de session tooMicrosoft Azure et les problèmes tels que relation hello entre un abonnement Azure et l’Azure Active Directory."
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -16,62 +16,62 @@ ms.date: 08/24/2017
 ms.author: curtand
 ms.reviewer: jeffsta
 ms.custom: oldportal;it-pro;
-ms.openlocfilehash: 283c9903501a1e497e4dde81146d21edb869e9e2
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 4f831cfb972efec57083fcaa63adb43fde7b2faf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="how-azure-subscriptions-are-associated-with-azure-active-directory"></a>Association des abonnements Azure avec Azure Active Directory
-Cet article vous fournit des informations sur la relation entre un abonnement Azure et Azure Active Directory (Azure AD), et vous explique comment ajouter un abonnement existant à votre répertoire Azure AD.
+Cet article fournit des informations sur la relation hello entre un abonnement Azure et l’Azure Active Directory (Azure AD) et comment tooadd un répertoire de tooyour Azure AD abonnement existant.
 
-## <a name="your-azure-subscriptions-relationship-to-azure-ad"></a>Relation de votre abonnement Azure à Azure AD
-Votre abonnement Azure possède une relation d’approbation avec Azure AD, ce qui signifie qu’il fait confiance à l’annuaire pour authentifier les utilisateurs, les services et les périphériques. Plusieurs abonnements peuvent faire confiance au même répertoire, mais un abonnement ne fait confiance qu’à un seul répertoire. 
+## <a name="your-azure-subscriptions-relationship-tooazure-ad"></a>TooAzure de relation de votre abonnement Azure AD
+Votre abonnement Azure a une relation d’approbation avec Azure AD, ce qui signifie qu’il approuve les périphériques, services et utilisateurs Active Directory tooauthenticate hello. Plusieurs abonnements peuvent approuver hello même répertoire, mais chaque abonnement fait confiance à un seul répertoire. 
 
-La relation d’approbation dont dispose un abonnement avec un répertoire diffère de la relation qu’il possède avec d’autres ressources dans Azure (sites web, bases de données etc.). En cas d’expiration d’un abonnement, l’accès aux autres ressources associées à cet abonnement s’arrête également. En revanche, un répertoire Azure AD reste dans Azure. Vous pouvez associer un autre abonnement à ce répertoire et le gérer à l’aide d’un autre abonnement.
+relation d’approbation Hello ayant un abonnement à un annuaire diffère de la relation hello qu’il possède avec d’autres ressources dans Azure (sites Web, bases de données et ainsi de suite). Si un abonnement expire, l’accès toohello arrête également d’autres ressources associées d’abonnement de hello. Mais un annuaire Azure AD reste dans Azure, et vous pouvez associer un autre abonnement à ce répertoire et gérer le répertoire hello à l’aide d’un nouvel abonnement hello.
 
 ![diagramme relatif à l’association des abonnements](./media/active-directory-how-subscriptions-associated-directory/WAAD_OrgAccountSubscription.png)
 
-Tous les utilisateurs disposent d'un répertoire de base unique qui les authentifie, mais ils peuvent également être invités dans d'autres répertoires. Dans Azure AD, vous pouvez voir les répertoires dont votre compte d’utilisateur est membre ou invité.
+Tous les utilisateurs disposent d'un répertoire de base unique qui les authentifie, mais ils peuvent également être invités dans d'autres répertoires. Dans Azure AD, vous pouvez voir les répertoires hello dont votre compte d’utilisateur est membre ou invité.
 
 ## <a name="azure-ad-and-cloud-service-subscriptions"></a>Azure AD et les abonnements de service cloud
-Azure AD fournit l’annuaire principal et les fonctionnalités de gestion d’identité qui existent derrière la plupart des services cloud Microsoft, y compris :
+Azure AD fournit hello core annuaire et identité derrière la plupart des services de cloud de Microsoft, y compris les fonctionnalités de gestion :
 
-* Les tables Azure
+* Microsoft Azure
 * Microsoft Office 365
 * Microsoft Dynamics CRM Online
 * Microsoft Intune
 
-Quand vous vous inscrivez à ces services de cloud computing Microsoft, vous obtenez gratuitement le service Azure AD. Il n’est possible d’ajouter un nouvel abonnement Azure à un répertoire Azure AD que si vous êtes connecté avec un compte Microsoft. Si vous êtes connecté à Azure avec un compte professionnel ou scolaire, il est impossible d’ajouter un abonnement Azure à un répertoire existant, car votre compte professionnel ou scolaire ne peut pas être authentifié directement par Azure. 
+Vous obtenez hello service Azure AD gratuit lorsque vous vous inscrivez pour chacun de ces services de cloud de Microsoft. Si vous voulez tooadd un répertoire tooan Azure AD d’abonnement Azure supplémentaires, vous devez être connecté avec un compte Microsoft. Si vous connectez-vous tooAzure avec un travail ou scolaire de compte, vous ne pouvez pas ajouter un répertoire existant de tooan abonnement Azure, car votre compte professionnel ou scolaire ne peut pas être authentifié directement par Azure. 
 
-## <a name="to-add-an-existing-subscription-to-your-azure-ad-directory"></a>Pour ajouter un abonnement existant à votre répertoire Azure AD
-Vous devez vous connecter avec un compte qui existe à la fois dans le répertoire actif auquel l’abonnement est associé et dans le répertoire dans lequel vous souhaitez l’ajouter. 
+## <a name="tooadd-an-existing-subscription-tooyour-azure-ad-directory"></a>tooadd un répertoire de tooyour Azure AD abonnement existant
+Vous devez vous connecter avec un compte qui existe dans les deux répertoire actif hello quels hello abonnement est associé, et dans le répertoire de hello souhaité tooadd à. 
 
-1. Connectez-vous au [Centre des comptes Azure](https://account.windowsazure.com/Home/Index) avec un compte qui est l’administrateur du compte de l’abonnement et dont vous souhaitez transférer la propriété de l’abonnement.
-2. Vérifiez que l’utilisateur dont vous voulez être le propriétaire de l’abonnement est dans le répertoire cible.
+1. Connectez-vous à toohello [centre des comptes Azure](https://account.windowsazure.com/Home/Index) avec un compte qui est administrateur de compte de l’abonnement de hello hello compte dont la propriété souhaitée tootransfer.
+2. Vérifiez que hello utilisateur propriétaire de l’abonnement toobe hello est dans le répertoire de hello ciblé.
 3. Cliquez sur **Transférer la propriété de l’abonnement**.
-4. Spécifiez le destinataire. Le destinataire reçoit automatiquement un e-mail contenant un lien d’acceptation.
-5. Le destinataire clique sur le lien et suit les instructions, notamment pour la saisie des informations de paiement. Lorsque le destinataire a terminé, l’abonnement est transféré. 
-6. Le répertoire par défaut de l’abonnement est modifié pour être remplacé par le répertoire contenant l’utilisateur.
+4. Spécifiez le destinataire de hello. destinataire de Hello obtient automatiquement un message électronique contenant un lien d’acceptation.
+5. destinataire de Hello clique sur le lien de hello et suit les instructions hello, y compris comment entrer leurs informations de paiement. Destinataire de hello réussit, l’abonnement de hello est transféré. 
+6. répertoire par défaut de Hello d’abonnement de hello est modifié toohello répertoire utilisateur hello est dans.
 
 
-## <a name="suggestions-to-manage-both-a-subscription-and-a-directory"></a>Suggestions pour gérer un abonnement et un répertoire
-Les rôles administratifs d’un abonnement Azure gèrent les ressources liées à l'abonnement Azure. Cette section explique les différences entre les administrateurs d’abonnements Azure et les administrateurs d’annuaires Azure AD. Les rôles d’administration et les autres suggestions permettant de les utiliser pour gérer votre abonnement sont expliqués dans [Attribution de rôles d’administrateur dans Azure Active Directory](active-directory-assign-admin-roles.md).
+## <a name="suggestions-toomanage-both-a-subscription-and-a-directory"></a>Toomanage des suggestions à la fois un abonnement et un répertoire
+Hello des rôles d’administration pour un abonnement Azure gèrent les ressources liées toohello abonnement Azure. Cette section explique les différences de hello entre les administrateurs de l’abonnement Azure et les administrateurs d’annuaires Azure AD. Rôles d’administrateur et autres suggestions pour les utiliser toomanage votre abonnement sont couverts à [attribution de rôles d’administrateur dans Azure Active Directory](active-directory-assign-admin-roles.md).
 
-Le rôle d'administrateur de service vous est, par défaut, attribué dès lors que vous vous abonnez. Si d'autres personnes doivent se connecter et accéder aux services à l'aide de l'abonnement, vous pouvez les ajouter en tant que coadministrateurs. 
+Par défaut, vous est attribué le rôle d’administrateur de Service hello lorsque vous vous inscrivez. Si d’autres utilisateurs doivent toosign dans et accéder aux services à l’aide de hello même abonnement, vous pouvez les ajouter en tant que coadministrateurs. 
 
-Azure AD dispose d’un autre ensemble de rôles administratifs qui permet de gérer le répertoire et les fonctionnalités liées à l'identité. Par exemple, l'administrateur général d'un répertoire peut ajouter des utilisateurs et des groupes dans le répertoire ou requérir l'authentification multi-facteur des utilisateurs. Un utilisateur qui crée un répertoire est affecté au rôle d’administrateur général et peut attribuer des rôles d'administration à d'autres utilisateurs. Les rôles administratifs Azure AD sont également utilisés par d'autres services tels que Office 365 et Microsoft Intune. 
+Azure AD a un ensemble différent de répertoire de hello toomanage rôles d’administrateur et les fonctionnalités liées à identité. Par exemple, administrateur global de hello d’un annuaire peut ajouter des utilisateurs et le répertoire toohello de groupes ou exiger une authentification multifacteur pour les utilisateurs. Un utilisateur qui crée un répertoire est attribué le rôle d’administrateur général toohello et ils peuvent attribuer des rôles administratifs tooother utilisateurs. Les rôles administratifs Azure AD sont également utilisés par d'autres services tels que Office 365 et Microsoft Intune. 
 
 Les administrateurs d'abonnement Azure et les administrateurs de répertoires Azure AD possèdent deux rôles bien différents. 
-* Les administrateurs d’abonnement Azure peuvent gérer des ressources dans Azure et utiliser Azure AD dans le portail Azure (car le portail Azure est lui-même une ressource Azure). 
-* Les administrateurs de répertoires ne peuvent gérer des propriétés que dans le répertoire Azure AD.
+* Les administrateurs d’abonnements Azure peuvent gérer des ressources dans Azure et peuvent utiliser Azure AD dans hello portail Azure (car hello portail Azure lui-même est une ressource Azure). 
+* Administrateurs d’annuaires peuvent gérer les propriétés uniquement dans Windows Azure AD hello.
 
-Une personne peut se voir attribuer deux rôles, mais ceci n'est en aucun cas obligatoire. Un administrateur général de répertoires peut ne pas être administrateur de services ou coadministrateur d’un abonnement Azure, et inversement. L’utilisateur peut se connecter au portail Azure sans être un administrateur de l’abonnement, mais il ne peut pas gérer les répertoires de cet abonnement dans le portail. Toutefois, cet utilisateur peut gérer des répertoires à l’aide d’autres outils tels que Azure AD PowerShell ou le Centre d’administration Office 365.
+Une personne peut se voir attribuer deux rôles, mais ceci n'est en aucun cas obligatoire. Un administrateur général de répertoires peut ne pas être administrateur de services ou coadministrateur d’un abonnement Azure, et inversement. Sans être un administrateur d’abonnement de hello, utilisateur de hello toohello portail Azure peut se connecter, mais ne peut pas gérer les répertoires hello pour cet abonnement dans le portail de hello. Toutefois, cet utilisateur peut gérer les répertoires à l’aide d’autres outils tels que PowerShell Azure AD ou hello centre d’administration Office 365.
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Pour en savoir plus sur la façon de modifier les administrateurs d’un abonnement Azure, consultez [Transférer la propriété d’un abonnement Azure à un autre compte](../billing/billing-subscription-transfer.md)
-* Pour plus d’informations sur la façon dont l’accès aux ressources est contrôlé dans Microsoft Azure, voir [Présentation de l’accès aux ressources dans Azure](active-directory-understanding-resource-access.md)
-* Pour plus d’informations sur l’attribution des rôles dans Azure AD, voir [Attribution de rôles d’administrateur dans Azure Active Directory](active-directory-assign-admin-roles-azure-portal.md)
+* toolearn savoir plus sur les administrateurs de toochange pour un abonnement Azure, voir [transférer la propriété d’un compte de tooanother abonnement Azure](../billing/billing-subscription-transfer.md)
+* toolearn en savoir plus sur la façon dont l’accès aux ressources est contrôlé dans Microsoft Azure, consultez [présentation de l’accès aux ressources dans Azure](active-directory-understanding-resource-access.md)
+* Pour plus d’informations sur la façon de rôles tooassign dans Azure AD, consultez [attribution de rôles d’administrateur dans Azure Active Directory](active-directory-assign-admin-roles-azure-portal.md)
 
 <!--Image references-->
 [1]: ./media/active-directory-how-subscriptions-associated-directory/WAAD_PassThruAuth.png

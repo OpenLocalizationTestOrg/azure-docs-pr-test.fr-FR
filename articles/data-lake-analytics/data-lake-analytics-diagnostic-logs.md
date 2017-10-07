@@ -1,6 +1,6 @@
 ---
-title: "Affichage des journaux de diagnostic d’Azure Data Lake Analytics | Microsoft Docs"
-description: "Comprendre comment configurer les journaux de diagnostic et y accéder pour Azure Data Lake Analytics  "
+title: "journaux de diagnostic aaaViewing pour Analytique de LAC de données Azure | Documents Microsoft"
+description: "Comprendre comment toosetup et diagnostic d’accès des journaux de données Azure analytique de LAC "
 services: data-lake-analytics
 documentationcenter: 
 author: Blackmist
@@ -14,78 +14,78 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 07/31/2017
 ms.author: larryfr
-ms.openlocfilehash: 6c74db1659742aa41306388273bec46800ba7609
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 4cd1eb6f585c1ef96c358340232ef85721a972b4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="accessing-diagnostic-logs-for-azure-data-lake-analytics"></a>Accès aux journaux de diagnostic d’Azure Data Lake Analytics
 
-La journalisation de diagnostic vous permet de collecter les pistes d’audit d’accès aux données. Ces journaux fournissent des informations comme :
+Journalisation des diagnostics vous permet de pistes d’audit de toocollect données access. Ces journaux fournissent des informations comme :
 
-* Une liste des utilisateurs qui ont accédé aux données.
-* La fréquence à laquelle les données sont consultées.
-* La quantité de données stockées dans le compte.
+* Une liste d’utilisateurs qui ont accédé à des données de hello.
+* La fréquence à laquelle les données de salutation sont accessible.
+* La quantité de données est stockée dans le compte de hello.
 
 ## <a name="enable-logging"></a>Activation de la journalisation
 
-1. Connectez-vous au [portail Azure](https://portal.azure.com).
+1. Ouverture de session toohello [portail Azure](https://portal.azure.com).
 
-2. Ouvrez votre compte Data Lake Analytics et sélectionnez **Journaux de diagnostic** dans la section __Surveiller__. Ensuite, sélectionnez __Activer les diagnostics__.
+2. Ouvrez votre compte Analytique lac de données et sélectionnez **journaux de Diagnostic** de hello __moniteur__ section. Ensuite, sélectionnez __Activer les diagnostics__.
 
-    ![Activer les diagnostics pour collecter des journaux d’audit et de requêtes](./media/data-lake-analytics-diagnostic-logs/turn-on-logging.png)
+    ![Activer les diagnostics toocollect audit et les journaux de demandes](./media/data-lake-analytics-diagnostic-logs/turn-on-logging.png)
 
-3. Dans les __Paramètres de diagnostic__, définissez le statut sur __Activé__ et sélectionnez les options de journalisation.
+3. À partir de __paramètres de diagnostic__, définir hello état too__On__ et sélectionnez les options de journalisation.
 
-    ![Activer les diagnostics pour collecter des journaux d’audit et de requêtes](./media/data-lake-analytics-diagnostic-logs/enable-diagnostic-logs.png "Activer les journaux de diagnostic")
+    ![Activer les diagnostics toocollect audit et les journaux de demandes](./media/data-lake-analytics-diagnostic-logs/enable-diagnostic-logs.png "activer les journaux de diagnostic")
 
-   * Définissez **État** sur **Activé** pour activer la journalisation de diagnostic.
+   * Définissez **état** trop**sur** tooenable journalisation des Diagnostics.
 
-   * Vous pouvez choisir de stocker/traiter les données de trois manières différentes.
+   * Vous pouvez choisir les données toostore/processus hello de trois façons différentes.
 
-     * Sélectionnez __Archive to a storage account (Archiver dans un compte de stockage)__ pour stocker les journaux dans un compte de stockage Azure. Utilisez cette option si vous souhaitez archiver les données. Si vous sélectionnez cette option, vous devez fournir un compte de stockage Azure dans lequel enregistrer les journaux.
+     * Sélectionnez __archiver le compte de stockage tooa__ toostore enregistre dans un compte de stockage Azure. Utilisez cette option si vous souhaitez que les données de salutation tooarchive. Si vous sélectionnez cette option, vous devez fournir un stockage Azure compte toosave hello se connecte à.
 
-     * Sélectionnez **Stream to an Event hub (Transmettre à un Event Hub)** pour transmettre les données journalisées à un Event Hub Azure. Utilisez cette option si vous disposez d’un pipeline de traitement en aval qui analyse les journaux entrants en temps réel. Si vous sélectionnez cette option, vous devez fournir les informations relatives au Event Hub Azure que vous souhaitez utiliser.
+     * Sélectionnez **tooan concentrateur d’événements de flux** tooan de données de journal toostream concentrateur d’événements Azure. Utilisez cette option si vous disposez d’un pipeline de traitement en aval qui analyse les journaux entrants en temps réel. Si vous sélectionnez cette option, vous devez fournir les détails de hello pour hello concentrateur d’événements Azure vous souhaitez toouse.
 
-     * Sélectionnez __Send to Log Analytics (Envoyer à Log Analytics)__ pour envoyer les données au service Log Analytics. Utilisez cette option si vous souhaitez utiliser Log Analytics pour collecter et analyser les journaux.
-   * Spécifiez si vous souhaitez obtenir des journaux d’audit ou des journaux de demande ou les deux.  Un journal des requêtes capture chaque demande d’API. Un journal d’audit enregistre toutes les opérations qui sont déclenchées par cette demande d’API.
+     * Sélectionnez __envoyer tooLog Analytique__ toosend hello données toohello service d’Analytique de journal. Utilisez cette option si vous souhaitez toouse Analytique de journal toogather et analysez les journaux.
+   * Spécifiez si vous souhaitez que les journaux d’audit de tooget ou les journaux des requêtes ou les deux.  Un journal des requêtes capture chaque demande d’API. Un journal d’audit enregistre toutes les opérations qui sont déclenchées par cette demande d’API.
 
-   * Pour __Archiver dans un compte de stockage__, spécifiez le nombre de jours pendant lesquels conserver les données.
+   * Pour __archiver le compte de stockage tooa__, spécifiez nombre hello de données de hello tooretain jours.
 
    * Cliquez sur __Enregistrer__.
 
         > [!NOTE]
-        > Vous devez sélectionner __Archiver dans un compte de stockage__, __Diffuser vers Event Hub__ ou __Envoyer à Log Analytics__ avant de cliquer sur le bouton __Enregistrer__.
+        > Vous devez sélectionner __archiver le compte de stockage tooa__, __tooan concentrateur d’événements de flux__ ou __envoyer tooLog Analytique__ avant de cliquer sur hello __enregistrer__bouton.
 
-Une fois que vous avez activé les paramètres de diagnostic, vous pouvez retourner dans le panneau __Journaux de diagnostic__ pour consulter les journaux.
+Une fois que vous avez activé les paramètres de diagnostic, vous pouvez retourner toohello __les journaux de diagnostic__ panneau tooview hello journaux.
 
 ## <a name="view-logs"></a>Consulter les journaux
 
-### <a name="use-the-data-lake-analytics-view"></a>Utiliser la vue Data Lake Analytics
+### <a name="use-hello-data-lake-analytics-view"></a>Utiliser le mode de données Lake Analytique hello
 
-1. Dans le panneau de votre compte Data Lake Analytics, sous **Surveillance**, sélectionnez **Journaux de diagnostic**, puis sélectionnez l’entrée pour laquelle afficher les journaux.
+1. À partir de votre Analytique lac de données compte un panneau, sous **analyse**, sélectionnez **journaux de Diagnostic** et puis sélectionnez une entrée toodisplay ouvre une session.
 
     ![Afficher la journalisation des diagnostics](./media/data-lake-analytics-diagnostic-logs/view-diagnostic-logs.png "Afficher les journaux de diagnostic")
 
-2. Les journaux sont classés par **journaux d’audit** et **journaux de requêtes**.
+2. journaux Hello sont classés par **les journaux d’Audit** et **les journaux de demandes**.
 
     ![entrées de journal](./media/data-lake-analytics-diagnostic-logs/diagnostic-log-entries.png)
 
-   * Les journaux de demande capturent chaque demande d’API effectuée sur le compte Data Lake Analytics.
-   * Les journaux d’audit sont similaires aux journaux de requête, mais ils offrent une répartition beaucoup plus détaillée des opérations. Par exemple, un simple appel d’API de chargement dans un journal de demande peut entraîner plusieurs opérations « Ajouter » dans son journal d’audit.
+   * Les journaux de demandes de capture chaque demande d’API sur hello compte d’Analytique lac de données.
+   * Journaux d’audit sont les journaux toorequest similaire, mais fournissent une analyse beaucoup plus détaillée des opérations de hello. Par exemple, un simple appel d’API de chargement dans un journal de demande peut entraîner plusieurs opérations « Ajouter » dans son journal d’audit.
 
-3. Cliquez sur le lien **Télécharger** d’une entrée de journal pour le télécharger.
+3. Cliquez sur hello **télécharger** lien pour une toodownload d’entrée de journal du journal.
 
-### <a name="use-the-azure-storage-account-that-contains-log-data"></a>Utiliser le compte de Stockage Azure qui contient les données du journal
+### <a name="use-hello-azure-storage-account-that-contains-log-data"></a>Utiliser le compte de stockage Azure hello qui contient les données du journal
 
-1. Ouvrez le panneau du compte de Stockage Azure associé à Data Lake Analytics pour la journalisation, puis cliquez sur __Objets blob__. Le panneau **Service Blob** répertorie deux conteneurs.
+1. Ouvrir le panneau de compte de stockage Azure hello associé Analytique lac de données pour la journalisation, puis cliquez sur __BLOB__. Hello **service Blob** panneau répertorie deux conteneurs.
 
     ![Afficher la journalisation des diagnostics](./media/data-lake-analytics-diagnostic-logs/view-diagnostic-logs-storage-account.png "Afficher les journaux de diagnostic")
 
-   * Le conteneur **insights-logs-audit** contient les journaux d’audit.
-   * Le conteneur **insights-logs-requests** contient les journaux de demande.
-2. Les journaux sont stockés dans ces conteneurs selon la structure suivante :
+   * conteneur de Hello **insights-journaux-audit** contient les journaux d’audit de hello.
+   * conteneur de Hello **demandes de journaux insights** contient les journaux de demandes hello.
+2. Ces conteneurs, hello journaux sont stockés sous hello suivant structure :
 
         resourceId=/
           SUBSCRIPTIONS/
@@ -104,23 +104,23 @@ Une fois que vous avez activé les paramètres de diagnostic, vous pouvez retour
                                     PT1H.json
 
    > [!NOTE]
-   > Le panneau `##` dans le chemin d’accès contiennent l’année, le mois, le jour et l’heure auxquels le journal a été créé. Data Lake Analytics crée un fichier toutes les heures, par conséquent, `m=` contient toujours une valeur de `00`.
+   > Hello `##` contiennent des entrées dans le chemin d’accès hello hello year, month, day et les heures dans le hello journal a été créé. Data Lake Analytics crée un fichier toutes les heures, par conséquent, `m=` contient toujours une valeur de `00`.
 
-    Par exemple, le chemin d’accès complet à un journal d’audit peut être :
+    Par exemple, le chemin d’accès complet de hello tooan log peut être :
 
         https://adllogs.blob.core.windows.net/insights-logs-audit/resourceId=/SUBSCRIPTIONS/<sub-id>/RESOURCEGROUPS/myresourcegroup/PROVIDERS/MICROSOFT.DATALAKEANALYTICS/ACCOUNTS/mydatalakeanalytics/y=2016/m=07/d=18/h=04/m=00/PT1H.json
 
-    De même, le chemin d’accès complet à un journal de demande peut être :
+    De même, le journal des demandes tooa hello chemin d’accès complet peut être :
 
         https://adllogs.blob.core.windows.net/insights-logs-requests/resourceId=/SUBSCRIPTIONS/<sub-id>/RESOURCEGROUPS/myresourcegroup/PROVIDERS/MICROSOFT.DATALAKEANALYTICS/ACCOUNTS/mydatalakeanalytics/y=2016/m=07/d=18/h=14/m=00/PT1H.json
 
 ## <a name="log-structure"></a>Structure journal
 
-Les journaux d’audit et de demande présentent un format JSON structuré.
+Hello journaux d’audit et de la demande sont dans un format JSON structuré.
 
 ### <a name="request-logs"></a>journaux de demande
 
-Voici un exemple d’entrée dans le journal de demande au format JSON. Chaque objet blob a un objet racine appelé **enregistrements** qui contient un tableau d’objets du journal.
+Voici un exemple d’entrée dans le journal au format JSON de demande de hello. Chaque objet blob a un objet racine appelé **enregistrements** qui contient un tableau d’objets du journal.
 
     {
     "records":
@@ -154,30 +154,30 @@ Voici un exemple d’entrée dans le journal de demande au format JSON. Chaque o
 
 | Name | Type | Description |
 | --- | --- | --- |
-| time |Chaîne |L’horodatage (heure UTC) du journal. |
-| resourceId |String |L’identificateur de la ressource sur laquelle l’opération a eu lieu. |
-| category |Chaîne |La catégorie du journal. Par exemple, **Demandes**. |
-| operationName |Chaîne |Le nom de l’opération qui est journalisée. Par exemple, GetAggregatedJobHistory. |
-| resultType |Chaîne |L’état de l’opération. Par exemple, 200. |
-| callerIpAddress |Chaîne |L’adresse IP du client qui a effectué la demande. |
-| correlationId |String |L’identificateur du journal. Cette valeur peut être utilisée pour regrouper un ensemble d’entrées de journal associées. |
-| identité |Object |L’identité qui a généré le journal. |
-| properties |JSON |Consultez la section suivante (Schéma des propriétés de journal de demande) pour plus d’informations |
+| time |String |Hello horodateur (UTC) du journal de hello |
+| resourceId |String |Identificateur Hello de ressource de hello opération placer sur |
+| category |String |catégorie de journal Hello. Par exemple, **Demandes**. |
+| operationName |String |Nom de l’opération hello est connectée. Par exemple, GetAggregatedJobHistory. |
+| resultType |String |état Hello d’opération hello, par exemple, 200. |
+| callerIpAddress |String |adresse IP de Hello du client hello hello demande |
+| correlationId |String |Identificateur Hello du journal de hello. Cette valeur peut être utilisé toogroup un ensemble d’entrées de journal connexes. |
+| identité |Object |identité Hello qui a généré hello journal |
+| properties |JSON |Voir section suivante hello (schéma de propriétés d’un journal de demande) pour plus d’informations |
 
 #### <a name="request-log-properties-schema"></a>Schéma des propriétés de journal de demande
 
 | Name | Type | Description |
 | --- | --- | --- |
-| HttpMethod |Chaîne |La méthode HTTP utilisée pour l’opération. Par exemple, GET. |
-| Chemin |Chaîne |Le chemin d’accès vers l’emplacement où l’opération a eu lieu. |
-| RequestContentLength |int |La longueur du contenu de la demande HTTP. |
-| ClientRequestId |String |L’identificateur qui identifie de façon unique cette demande. |
-| StartTime |Chaîne |L’heure à laquelle le serveur a reçu la demande. |
-| EndTime |Chaîne |L’heure à laquelle le serveur a envoyé une réponse. |
+| HttpMethod |String |Hello méthode HTTP utilisée pour l’opération de hello. Par exemple, GET. |
+| Chemin |String |opération hello Hello a été effectuée sur |
+| RequestContentLength |int |longueur du contenu de la demande de hello HTTP Hello |
+| ClientRequestId |String |Identificateur Hello qui identifie de façon unique cette demande |
+| StartTime |String |heure Hello qui demande hello du serveur reçues hello |
+| EndTime |String |temps de Hello à quels hello serveur a envoyé une réponse |
 
 ### <a name="audit-logs"></a>Journaux d’audit
 
-Voici un exemple d’entrée dans le journal d’audit au format JSON. Chaque objet blob a un objet racine appelé **enregistrements** qui contient un tableau d’objets du journal.
+Voici un exemple d’entrée dans le journal d’audit d’au format JSON hello. Chaque objet blob a un objet racine appelé **enregistrements** qui contient un tableau d’objets du journal.
 
     {
     "records":
@@ -206,17 +206,17 @@ Voici un exemple d’entrée dans le journal d’audit au format JSON. Chaque ob
 
 | Name | Type | Description |
 | --- | --- | --- |
-| time |Chaîne |L’horodatage (heure UTC) du journal. |
-| resourceId |String |L’identificateur de la ressource sur laquelle l’opération a eu lieu. |
-| category |Chaîne |La catégorie du journal. Par exemple, **Audit**. |
-| operationName |Chaîne |Le nom de l’opération qui est journalisée. Par exemple, JobSubmitted. |
-| resultType |Chaîne |Un sous-état de l’état de la tâche (operationName). |
-| resultSignature |Chaîne |Informations supplémentaires sur l’état de la tâche (operationName). |
-| identité |Chaîne |L’utilisateur qui a demandé l’opération. Par exemple, susan@contoso.com. |
-| properties |JSON |Consultez la section suivante (Schéma des propriétés de journal d’audit) pour plus d’informations |
+| time |String |Hello horodateur (UTC) du journal de hello |
+| resourceId |String |Identificateur Hello de ressource de hello opération placer sur |
+| category |String |catégorie de journal Hello. Par exemple, **Audit**. |
+| operationName |String |Nom de l’opération hello est connectée. Par exemple, JobSubmitted. |
+| resultType |String |Un sous-état pour l’état de la tâche hello (NomOpération). |
+| resultSignature |String |Plus d’informations sur l’état du travail hello (NomOpération). |
+| identité |String |utilisateur Hello hello l’opération demandée. Par exemple, susan@contoso.com. |
+| properties |JSON |Voir section suivante hello (schéma des propriétés du journal d’Audit) pour plus d’informations |
 
 > [!NOTE]
-> **resultType** et **resultSignature** fournissent des informations sur le résultat d’une opération et contiennent uniquement une valeur si une opération est terminée. Par exemple, ils contiennent uniquement une valeur quand **operationName** contient la valeur **JobStarted** ou **JobEnded**.
+> **resultType** et **resultSignature** fournissent des informations sur le résultat de hello d’une opération et contenir uniquement une valeur si une opération est terminée. Par exemple, ils contiennent uniquement une valeur quand **operationName** contient la valeur **JobStarted** ou **JobEnded**.
 >
 >
 
@@ -224,20 +224,20 @@ Voici un exemple d’entrée dans le journal d’audit au format JSON. Chaque ob
 
 | Name | Type | Description |
 | --- | --- | --- |
-| JobId |Chaîne |L’ID affecté à la tâche. |
-| JobName |Chaîne |Le nom fourni pour la tâche. |
-| JobRunTime |Chaîne |Le runtime utilisé pour traiter la tâche. |
-| SubmitTime |Chaîne |L’heure (UTC) à laquelle la tâche a été envoyée. |
-| StartTime |String |L’heure à laquelle l’exécution de la tâche a commencé après la soumission (UTC). |
-| EndTime |String |L’heure à laquelle la tâche s’est terminée. |
-| Parallélisme |String |Le nombre d’unités Data Lake Analytics demandées pour cette tâche pendant la soumission. |
+| JobId |String |travail de Hello ID toohello attribué |
+| JobName |String |nom Hello qui a été fournie pour le travail de hello |
+| JobRunTime |String |Hello runtime utilisé la tâche de hello tooprocess |
+| SubmitTime |String |temps de Hello (au format UTC) que le travail hello a été soumis |
+| StartTime |String |Hello temps hello tâche de démarrage en cours d’exécution après l’envoi (au format UTC) |
+| EndTime |String |Hello temps hello tâche s’est terminée |
+| Parallélisme |String |nombre de Hello d’unités Analytique lac de données demandé pour ce travail lors de l’envoi |
 
 > [!NOTE]
-> **SubmitTime**, **StartTime**, **EndTime** et **Parallélisme** fournissent des informations sur une opération. Ces entrées ne contiennent une valeur que si cette opération a démarré ou est terminée. Par exemple, **SubmitTime** contient uniquement une valeur après que **operationName** a la valeur **JobSubmitted**.
+> **SubmitTime**, **StartTime**, **EndTime** et **Parallélisme** fournissent des informations sur une opération. Ces entrées ne contiennent une valeur que si cette opération a démarré ou est terminée. Par exemple, **SubmitTime** contient uniquement une valeur après **NomOpération** a la valeur de hello **JobSubmitted**.
 
-## <a name="process-the-log-data"></a>Traiter les données de journal
+## <a name="process-hello-log-data"></a>Données de journal hello de processus
 
-Azure Data Lake Analytics fournit un exemple de traitement et d’analyse des données de journal. Vous trouverez l’exemple à l’adresse [https://github.com/Azure/AzureDataLake/tree/master/Samples/AzureDiagnosticsSample](https://github.com/Azure/AzureDataLake/tree/master/Samples/AzureDiagnosticsSample).
+Analytique de LAC de données Azure fournit un exemple sur la façon de tooprocess et analyser les données de journal hello. Vous trouverez un exemple hello à [https://github.com/Azure/AzureDataLake/tree/master/Samples/AzureDiagnosticsSample](https://github.com/Azure/AzureDataLake/tree/master/Samples/AzureDiagnosticsSample).
 
 ## <a name="next-steps"></a>Étapes suivantes
 * [Présentation d’Azure Data Lake Analytics](data-lake-analytics-overview.md)

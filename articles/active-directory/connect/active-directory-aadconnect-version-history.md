@@ -14,24 +14,24 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 07/12/2017
 ms.author: billmath
-ms.openlocfilehash: d55cecf20abdf1637f0537e63a3dba5992a68741
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: b55e0f2d426e34ceef9869d5a6d1b0956d8bd076
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-ad-connect-version-release-history"></a>Azure AD Connect : historique de publication des versions
-L’équipe Azure Active Directory (Azure AD) met régulièrement à jour Azure AD Connect avec de nouvelles fonctions et fonctionnalités. Tous les ajouts ne sont pas applicables à toutes les configurations.
+équipe Azure Active Directory (Azure AD) de Hello met régulièrement à jour Azure AD Connect avec de nouvelles fonctionnalités. Pas tous les compléments sont des audiences tooall applicable.
 
-Cet article est conçu pour vous aider à conserver la trace des versions qui ont été publiées, et à comprendre si vous devez ou non effectuer la mise jour vers la version la plus récente.
+Cet article est conçu toohelp vous effectuer le suivi des versions hello qui ont été publiées et toounderstand tooupdate toohello version la plus récente si vous devez ou non.
 
 Voici la liste des rubriques connexes :
 
 
 Rubrique |  Détails
 --------- | --------- |
-Étapes de mise à niveau à partir d’Azure AD Connect | Différentes méthodes pour [effectuer une mise à niveau à partir d’une version précédente vers la dernière](active-directory-aadconnect-upgrade-previous-version.md) version Azure AD Connect.
-Autorisations requises | Pour plus d’informations sur les autorisations requises afin d’appliquer une mise à jour, consultez [Comptes et autorisations](./active-directory-aadconnect-accounts-permissions.md#upgrade).
+Tooupgrade étapes d’Azure AD Connect | Différentes méthodes trop[mise à niveau à partir d’une précédente toohello de version plus récente](active-directory-aadconnect-upgrade-previous-version.md) version d’Azure AD Connect.
+Autorisations requises | Pour les autorisations requises tooapply une mise à jour, consultez [comptes et autorisations](./active-directory-aadconnect-accounts-permissions.md#upgrade).
 Télécharger| [Téléchargez Azure AD Connect](http://go.microsoft.com/fwlink/?LinkId=615771).
 
 ## <a name="115610"></a>1.1.561.0
@@ -41,38 +41,38 @@ Télécharger| [Téléchargez Azure AD Connect](http://go.microsoft.com/fwlink/?
 
 #### <a name="fixed-issue"></a>Problème résolu
 
-* Correction d’un problème qui provoquait la suppression de la règle de synchronisation prête à l’emploi « Out to AD - user ImmutableId » :
+* Correction d’un problème qui a provoqué la règle de synchronisation d’out-of-box hello « sortie tooAD - ImmutableId de l’utilisateur » toobe supprimé :
 
-  * Le problème se produit lors de la mise à niveau d’Azure AD Connect, ou lorsque l’option de tâche de *mise à jour de la configuration de synchronisation* de l’assistant Azure AD Connect est utilisée pour mettre à jour la configuration de la synchronisation Azure AD Connect.
+  * problème de Hello se produit lorsque la mise à niveau de Azure AD Connect, ou lorsque hello option tâche *mise à jour de Configuration de la synchronisation* Bonjour Azure AD Connect Assistant est la configuration de la synchronisation tooupdate utilisé Azure AD Connect.
   
-  * Cette règle de synchronisation s’applique aux clients qui ont activé la fonctionnalité [msDS-ConsistencyGuid en tant que sourceAnchor](active-directory-aadconnect-design-concepts.md#using-msds-consistencyguid-as-sourceanchor). Cette fonctionnalité a été introduite dans la version 1.1.524.0 et les versions ultérieures. Lorsque la règle de synchronisation est supprimée, Azure AD Connect ne peut plus remplir l’attribut ms-DS-ConsistencyGuid local avec la valeur de l’attribut ObjectGuid. Cela n’empêche pas la configuration de nouveaux utilisateurs dans Azure AD.
+  * Cette règle de synchronisation est applicable toocustomers qui ont activé hello [msDS-ConsistencyGuid en tant que fonctionnalité d’ancre Source](active-directory-aadconnect-design-concepts.md#using-msds-consistencyguid-as-sourceanchor). Cette fonctionnalité a été introduite dans la version 1.1.524.0 et les versions ultérieures. Lors de la règle de synchronisation hello est supprimé, Azure AD Connect peut remplir n’est plus local attribut ms-DS-ConsistencyGuid AD hello valeur de l’attribut ObjectGuid. Cela n’empêche pas la configuration de nouveaux utilisateurs dans Azure AD.
   
-  * Le correctif garantit que la règle de synchronisation ne sera plus supprimée pendant la mise à niveau, ou au cours de la modification de la configuration, tant que la fonctionnalité est activée. Il garantit également que la règle de synchronisation est ajoutée après la mise à niveau vers cette version d’Azure AD Connect pour les clients existants ayant été affectés par ce problème.
+  * Hello correctif garantit cette règle de synchronisation hello est pas supprimée pendant la mise à niveau ou pendant la modification de la configuration, tant que fonctionnalité de hello est activée. Pour les clients existants qui ont été affectés par ce problème, corrigez d’hello garantit également que cette règle de synchronisation hello est ajoutée après la mise à niveau de version toothis d’Azure AD Connect.
 
-* Correction d’un problème qui oblige les règles de synchronisation prédéfinies à avoir une valeur de précédence inférieure à 100 :
+* Correction d’un problème qui provoque la valeur de priorité toohave qui est inférieur à 100 règles de synchronisation d’out-of-box :
 
-  * En général, les valeurs de précédence 0 - 99 sont réservées aux règles de synchronisation personnalisées. Au cours de la mise à niveau, les valeurs de précédence des règles de synchronisation prêtes à l’emploi sont mises à jour pour prendre en compte les modifications apportées aux règles de synchronisation. En raison de ce problème, les règles de synchronisation prêtes à l’emploi peuvent se voir attribuer une valeur de précédence inférieure à 100.
+  * En général, les valeurs de précédence 0 - 99 sont réservées aux règles de synchronisation personnalisées. Au cours de la mise à niveau, les valeurs de priorité hello pour les règles de synchronisation d’out-of-box sont tooaccommodate mis à jour les modifications de règle de synchronisation. En raison du problème de toothis, les règles de synchronisation d’out-of-box peuvent être assignés à une valeur de priorité qui est inférieur à 100.
   
-  * Le correctif empêche l’apparition du problème au cours d’une mise à niveau. Toutefois, il ne restaure pas les valeurs de précédence pour les clients existants ayant été affectés par le problème. Un correctif distinct sera fourni ultérieurement afin de faciliter la restauration.
+  * correctif de Hello empêche les problème de hello pendant la mise à niveau. Toutefois, il ne restaure pas les valeurs de priorité hello pour les clients existants qui ont été affectés par le problème de hello. Un correctif distinct sera fourni dans toohelp de futures hello avec la restauration de hello.
 
-* Correction d’un problème durant lequel [l’écran Filtrage par domaine ou unité d’organisation](active-directory-aadconnect-get-started-custom.md#domain-and-ou-filtering) de l’Assistant Azure AD Connect affiche l’option *Synchroniser tous les domaines et toutes les unités d’organisation* comme étant sélectionnée, même si le filtrage basé sur une unité d’organisation est activé.
+* Correction d’un problème où hello [écran de domaine et le filtrage de l’unité d’organisation](active-directory-aadconnect-get-started-custom.md#domain-and-ou-filtering) Bonjour Azure AD Connect de l’Assistant affiche *synchroniser tous les domaines et les unités d’organisation* option sélectionné, même si le filtrage basé sur une unité d’organisation est activé.
 
-*   Correction d’un problème qui entraînait l’affichage d’une erreur par l’[écran Configurer des partitions d’annuaire](active-directory-aadconnectsync-configure-filtering.md#organizational-unitbased-filtering) de Synchronization Service Manager lorsque l’utilisateur cliquait sur le bouton *Actualiser*. Le message d’erreur est le suivant : *« An error was encountered while refreshing domains: Unable to cast object of type ‘System.Collections.ArrayList’ to type ‘Microsoft.DirectoryServices.MetadirectoryServices.UI.PropertySheetBase.MaPropertyPages.PartitionObject »* (Une erreur s’est produite lors de l’actualisation des domaines : impossible de convertir l’objet de type 'System.Collections.ArrayList' en type 'Microsoft.DirectoryServices.MetadirectoryServices.UI.PropertySheetBase.MaPropertyPages.PartitionObject). L’erreur se produit lorsque le nouveau domaine Active Directory a été ajouté à une forêt Active Directory existante et que vous tentez de mettre à jour Azure AD Connect à l’aide du bouton Actualiser.
+*   Correction d’un problème qui a causé hello [écran de configurer les Partitions d’annuaire](active-directory-aadconnectsync-configure-filtering.md#organizational-unitbased-filtering) Bonjour Synchronization Service Manager tooreturn une erreur si hello *Actualiser* bouton est activé. message d’erreur Hello est *« une erreur s’est produite lors de l’actualisation des domaines : objet toocast impossible du type 'System.Collections.ArrayList' tootype ' Microsoft.DirectoryServices.MetadirectoryServices.UI.PropertySheetBase.MaPropertyPages.PartitionObject. »* Hello erreur se produit lorsque le nouveau domaine Active Directory a été ajouté à la forêt Active Directory existant tooan et que vous essayez tooupdate Azure AD Connect à l’aide de hello bouton Actualiser.
 
 #### <a name="new-features-and-improvements"></a>Améliorations et nouvelles fonctionnalités
 
-* La[fonctionnalité de mise à niveau automatique](active-directory-aadconnect-feature-automatic-upgrade.md) a été développée pour prendre en charge des clients présentant les configurations suivantes :
-  * Vous avez activé la fonctionnalité Écriture différée des appareils.
-  * Vous avez activé la fonctionnalité Écriture différée de groupe.
-  * L’installation n’est pas une configuration rapide ou une mise à niveau DirSync.
-  * Vous avez plus de 100 000 objets dans le métaverse.
-  * Vous vous connectez à plusieurs forêts. L’installation rapide se connecte à une seule forêt.
-  * Le compte de connecteur AD n’est plus le compte MSOL_ par défaut.
-  * Le serveur est défini sur le mode de transit.
-  * Vous avez activé la fonctionnalité Écriture différée d’utilisateur.
+* [Fonctionnalité de mise à niveau automatique](active-directory-aadconnect-feature-automatic-upgrade.md) a été clients toosupport développée par hello suivant configurations :
+  * Vous avez activé la fonctionnalité de l’écriture différée des appareils hello.
+  * Vous avez activé la fonctionnalité d’écriture différée de groupe de hello.
+  * installation de Hello n’est pas un paramètres Express ou une mise à niveau de DirSync.
+  * Vous avez plus de 100 000 objets hello métaverse.
+  * Vous vous connectez toomore qu’une seule forêt. Le programme d’installation Express connecte uniquement à tooone forêt.
+  * Hello compte Active Directory Connector n’est pas plus compte MSOL_ hello par défaut.
+  * serveur de Hello a la valeur toobe dans le mode de mise en lots.
+  * Vous avez activé la fonctionnalité d’écriture différée hello utilisateur.
   
   >[!NOTE]
-  >L’extension de la portée de la fonctionnalité de mise à niveau automatique affecte les clients utilisant Azure AD Connect build 1.1.105.0 et les versions ultérieures. Si vous ne voulez pas que votre serveur Azure AD Connect soit mis à niveau automatiquement, vous devez exécuter la cmdlet suivante sur votre serveur Azure AD Connect : `Set-ADSyncAutoUpgrade -AutoUpgradeState disabled`. Pour en savoir plus sur l’activation/la désactivation de la mise à niveau automatique, reportez-vous à l’article [Azure AD Connect : Mise à niveau automatique](active-directory-aadconnect-feature-automatic-upgrade.md).
+  >expansion d’étendue Hello de fonctionnalité de mise à niveau automatique de hello affecte les clients avec Azure AD Connect build 1.1.105.0 et après. Si vous ne souhaitez pas que votre toobe du serveur Azure AD Connect automatiquement mis à niveau, vous devez exécuter après l’applet de commande sur votre serveur Azure AD Connect : `Set-ADSyncAutoUpgrade -AutoUpgradeState disabled`. Pour plus d’informations sur l’activation/désactivation de la mise à niveau automatique, consultez tooarticle [Azure AD Connect : mise à niveau automatique](active-directory-aadconnect-feature-automatic-upgrade.md).
 
 ## <a name="115580"></a>1.1.558.0
 État : ne sera pas mis en production. Les modifications apportées à ce build sont incluses dans la version 1.1.561.0.
@@ -81,47 +81,47 @@ Télécharger| [Téléchargez Azure AD Connect](http://go.microsoft.com/fwlink/?
 
 #### <a name="fixed-issue"></a>Problème résolu
 
-* Correction d’un problème qui provoquait la suppression de la règle de synchronisation prête à l’emploi « Out to AD - user ImmutableId » lors de la mise à jour de la configuration de filtrage basé sur une unité d’organisation. Cette règle de synchronisation est requise pour la fonctionnalité [msDS-ConsistencyGuid en tant que sourceAnchor](active-directory-aadconnect-design-concepts.md#using-msds-consistencyguid-as-sourceanchor).
+* Correction d’un problème qui a provoqué hello out-of-box synchronisation règle « hors tooAD - ImmutableId de l’utilisateur » toobe supprimés lorsque la mise à jour de configuration de filtrage basé sur une unité d’organisation. Cette règle de synchronisation est nécessaire pour hello [msDS-ConsistencyGuid en tant que fonctionnalité d’ancre Source](active-directory-aadconnect-design-concepts.md#using-msds-consistencyguid-as-sourceanchor).
 
-* Correction d’un problème durant lequel [l’écran Filtrage par domaine ou unité d’organisation](active-directory-aadconnect-get-started-custom.md#domain-and-ou-filtering) de l’Assistant Azure AD Connect affiche l’option *Synchroniser tous les domaines et toutes les unités d’organisation* comme étant sélectionnée, même si le filtrage basé sur une unité d’organisation est activé.
+* Correction d’un problème où hello [écran de domaine et le filtrage de l’unité d’organisation](active-directory-aadconnect-get-started-custom.md#domain-and-ou-filtering) Bonjour Azure AD Connect de l’Assistant affiche *synchroniser tous les domaines et les unités d’organisation* option sélectionné, même si le filtrage basé sur une unité d’organisation est activé.
 
-*   Correction d’un problème qui entraînait l’affichage d’une erreur par l’[écran Configurer des partitions d’annuaire](active-directory-aadconnectsync-configure-filtering.md#organizational-unitbased-filtering) de Synchronization Service Manager lorsque l’utilisateur cliquait sur le bouton *Actualiser*. Le message d’erreur est le suivant : *« An error was encountered while refreshing domains: Unable to cast object of type ‘System.Collections.ArrayList’ to type ‘Microsoft.DirectoryServices.MetadirectoryServices.UI.PropertySheetBase.MaPropertyPages.PartitionObject »* (Une erreur s’est produite lors de l’actualisation des domaines : impossible de convertir l’objet de type 'System.Collections.ArrayList' en type 'Microsoft.DirectoryServices.MetadirectoryServices.UI.PropertySheetBase.MaPropertyPages.PartitionObject). L’erreur se produit lorsque le nouveau domaine Active Directory a été ajouté à une forêt Active Directory existante et que vous tentez de mettre à jour Azure AD Connect à l’aide du bouton Actualiser.
+*   Correction d’un problème qui a causé hello [écran de configurer les Partitions d’annuaire](active-directory-aadconnectsync-configure-filtering.md#organizational-unitbased-filtering) Bonjour Synchronization Service Manager tooreturn une erreur si hello *Actualiser* bouton est activé. message d’erreur Hello est *« une erreur s’est produite lors de l’actualisation des domaines : objet toocast impossible du type 'System.Collections.ArrayList' tootype ' Microsoft.DirectoryServices.MetadirectoryServices.UI.PropertySheetBase.MaPropertyPages.PartitionObject. »* Hello erreur se produit lorsque le nouveau domaine Active Directory a été ajouté à la forêt Active Directory existant tooan et que vous essayez tooupdate Azure AD Connect à l’aide de hello bouton Actualiser.
 
 #### <a name="new-features-and-improvements"></a>Améliorations et nouvelles fonctionnalités
 
-* La[fonctionnalité de mise à niveau automatique](active-directory-aadconnect-feature-automatic-upgrade.md) a été développée pour prendre en charge des clients présentant les configurations suivantes :
-  * Vous avez activé la fonctionnalité Écriture différée des appareils.
-  * Vous avez activé la fonctionnalité Écriture différée de groupe.
-  * L’installation n’est pas une configuration rapide ou une mise à niveau DirSync.
-  * Vous avez plus de 100 000 objets dans le métaverse.
-  * Vous vous connectez à plusieurs forêts. L’installation rapide se connecte à une seule forêt.
-  * Le compte de connecteur AD n’est plus le compte MSOL_ par défaut.
-  * Le serveur est défini sur le mode de transit.
-  * Vous avez activé la fonctionnalité Écriture différée d’utilisateur.
+* [Fonctionnalité de mise à niveau automatique](active-directory-aadconnect-feature-automatic-upgrade.md) a été clients toosupport développée par hello suivant configurations :
+  * Vous avez activé la fonctionnalité de l’écriture différée des appareils hello.
+  * Vous avez activé la fonctionnalité d’écriture différée de groupe de hello.
+  * installation de Hello n’est pas un paramètres Express ou une mise à niveau de DirSync.
+  * Vous avez plus de 100 000 objets hello métaverse.
+  * Vous vous connectez toomore qu’une seule forêt. Le programme d’installation Express connecte uniquement à tooone forêt.
+  * Hello compte Active Directory Connector n’est pas plus compte MSOL_ hello par défaut.
+  * serveur de Hello a la valeur toobe dans le mode de mise en lots.
+  * Vous avez activé la fonctionnalité d’écriture différée hello utilisateur.
   
   >[!NOTE]
-  >L’extension de la portée de la fonctionnalité de mise à niveau automatique affecte les clients utilisant Azure AD Connect build 1.1.105.0 et les versions ultérieures. Si vous ne voulez pas que votre serveur Azure AD Connect soit mis à niveau automatiquement, vous devez exécuter la cmdlet suivante sur votre serveur Azure AD Connect : `Set-ADSyncAutoUpgrade -AutoUpgradeState disabled`. Pour en savoir plus sur l’activation/la désactivation de la mise à niveau automatique, reportez-vous à l’article [Azure AD Connect : Mise à niveau automatique](active-directory-aadconnect-feature-automatic-upgrade.md).
+  >expansion d’étendue Hello de fonctionnalité de mise à niveau automatique de hello affecte les clients avec Azure AD Connect build 1.1.105.0 et après. Si vous ne souhaitez pas que votre toobe du serveur Azure AD Connect automatiquement mis à niveau, vous devez exécuter après l’applet de commande sur votre serveur Azure AD Connect : `Set-ADSyncAutoUpgrade -AutoUpgradeState disabled`. Pour plus d’informations sur l’activation/désactivation de la mise à niveau automatique, consultez tooarticle [Azure AD Connect : mise à niveau automatique](active-directory-aadconnect-feature-automatic-upgrade.md).
 
 ## <a name="115570"></a>1.1.557.0
 État : juillet 2017
 
 >[!NOTE]
->Cette version n’est pas disponible pour les clients par le biais de la fonction de mise à niveau automatique Azure AD Connect.
+>Cette build n’est pas disponible toocustomers via la fonctionnalité de connecter la mise à niveau automatique de hello Azure AD.
 
 ### <a name="azure-ad-connect"></a>Azure AD Connect
 
 #### <a name="fixed-issue"></a>Problème résolu
-* Correction d’un problème lié à la cmdlet Initialize-ADSyncDomainJoinedComputerSync, qui modifiait le domaine vérifié configuré sur l’objet de point de connexion de service existant, même si ce domaine était toujours valide. Ce problème se produit lorsque votre locataire Azure AD dispose de plusieurs domaines vérifiés qui peuvent être utilisés pour configurer le point de connexion de service.
+* Correction d’un problème avec l’applet de commande hello Initialize-ADSyncDomainJoinedComputerSync qui a provoqué le domaine vérifié de hello configuré sur l’objet point de hello existant service connexion toobe soit modifiée même si elle est toujours un domaine valide. Ce problème se produit lorsque votre client Azure AD a plusieurs domaines vérifiés qui peuvent être utilisé pour la configuration de point de connexion de service hello.
 
 #### <a name="new-features-and-improvements"></a>Améliorations et nouvelles fonctionnalités
-* La réécriture du mot de passe est désormais disponible en version préliminaire avec le cloud Microsoft Azure Government et Microsoft Cloud Allemagne. Pour en savoir plus sur la prise en charge d’Azure AD Connect pour les différentes instances de service, reportez-vous à l’article [Azure AD Connect : Considérations spéciales relatives aux instances](active-directory-aadconnect-instances.md).
+* La réécriture du mot de passe est désormais disponible en version préliminaire avec le cloud Microsoft Azure Government et Microsoft Cloud Allemagne. Pour plus d’informations sur la prise en charge d’Azure AD Connect hello différentes instances de service, consultez tooarticle [Azure AD Connect : Considérations spéciales pour les instances](active-directory-aadconnect-instances.md).
 
-* La cmdlet Initialize-ADSyncDomainJoinedComputerSync dispose désormais d’un nouveau paramètre facultatif, nommé AzureADDomain. Ce paramètre vous permet d’indiquer quel domaine vérifié doit être utilisé pour configurer le point de connexion de service.
+* applet de commande Hello Initialize-ADSyncDomainJoinedComputerSync a maintenant un nouveau paramètre facultatif nommé AzureADDomain. Ce paramètre vous permet de spécifier qui vérifié toobe de domaine utilisé pour la configuration de point de connexion de service hello.
 
 ### <a name="pass-through-authentication"></a>Authentification directe
 
 #### <a name="new-features-and-improvements"></a>Améliorations et nouvelles fonctionnalités
-* Le nom de l’agent requis pour l’authentification directe n’est plus *Connecteur Microsoft Azure AD Application Proxy*, mais *Agent d’authentification Microsoft Azure AD Connect*.
+* nom Hello d’agent hello requis pour l’authentification directe a été modifiée à partir de *connecteur de Proxy d’Application Microsoft Azure AD* trop*Agent d’authentification Microsoft Azure AD Connect*.
 
 * L’activation de l’authentification directe ne permet plus la synchronisation du hachage de mot de passe par défaut.
 
@@ -130,58 +130,58 @@ Télécharger| [Téléchargez Azure AD Connect](http://go.microsoft.com/fwlink/?
 État : juin 2017
 
 > [!IMPORTANT]
-> Des modifications de schéma et de règle de synchronisation ont été introduites dans cette build. Le service de synchronisation Azure AD Connect déclenchera des étapes d’importation et de synchronisation complètes après la mise à niveau. Ces modifications sont décrites en détail ci-dessous. Consultez l’article [Comment différer la synchronisation complète après la mise à niveau](active-directory-aadconnect-upgrade-previous-version.md#how-to-defer-full-synchronization-after-upgrade) pour reporter temporairement les étapes d’importation et de synchronisation complètes après la mise à niveau.
+> Des modifications de schéma et de règle de synchronisation ont été introduites dans cette build. Le service de synchronisation Azure AD Connect déclenchera des étapes d’importation et de synchronisation complètes après la mise à niveau. Détails des modifications de hello sont décrits ci-dessous. tootemporarily différer les étapes d’importation complète et synchronisation complète après mise à niveau, consultez le tooarticle [comment la synchronisation après mise à niveau de complète toodefer](active-directory-aadconnect-upgrade-previous-version.md#how-to-defer-full-synchronization-after-upgrade).
 >
 >
 
 ### <a name="azure-ad-connect-sync"></a>Synchronisation d’Azure AD Connect
 
 #### <a name="known-issue"></a>Problème connu
-* Il existe un problème qui affecte les clients utilisant le[filtrage basé sur une unité d’organisation](active-directory-aadconnectsync-configure-filtering.md#organizational-unitbased-filtering) avec la synchronisation Azure AD Connect. Lorsque vous accédez à la [page Domaine et Filtrage par unité d’organisation](active-directory-aadconnect-get-started-custom.md#domain-and-ou-filtering) dans l’assistant Azure AD Connect, le comportement suivant est attendu :
-  * Si le filtrage basé sur une unité d’organisation est activé, l’option **Synchroniser les domaines et les unités d’organisation sélectionnés** est sélectionnée.
-  * Dans le cas contraire, l’option **Synchroniser tous les domaines et toutes les unités d’organisation** est sélectionnée.
+* Il existe un problème qui affecte les clients utilisant le[filtrage basé sur une unité d’organisation](active-directory-aadconnectsync-configure-filtering.md#organizational-unitbased-filtering) avec la synchronisation Azure AD Connect. Lorsque vous accédez toohello [page domaine et unité d’organisation filtrage](active-directory-aadconnect-get-started-custom.md#domain-and-ou-filtering) dans l’Assistant de connexion hello Azure AD, hello suivant le comportement est attendu :
+  * Si le filtrage basé sur une unité d’organisation est activé, hello **domaines sélectionnés et les unités d’organisation de synchronisation** option est sélectionnée.
+  * Dans le cas contraire, hello **synchroniser tous les domaines et les unités d’organisation** option est sélectionnée.
 
-Le problème qui se pose est le suivant : l’option **Synchroniser tous les domaines et toutes les unités d’organisation** est toujours sélectionnée lorsque vous exécutez l’Assistant.  Cela se produit même si le filtrage basé sur une unité d’organisation a été configuré précédemment. Avant d’enregistrer les modifications apportées à la configuration AAD Connect, assurez-vous que **l’option Synchroniser les domaines et les unités d’organisation sélectionnés est sélectionnée** et vérifiez que toutes les unités d’organisation qui doivent être synchronisées sont activées à nouveau. Dans le cas contraire, le filtrage basé sur une unité d’organisation sera désactivé.
+Hello pose problème est que hello **synchroniser tous les domaines et les unités d’organisation option** est toujours sélectionnée lorsque vous exécutez l’Assistant de hello.  Cela se produit même si le filtrage basé sur une unité d’organisation a été configuré précédemment. Avant d’enregistrer les modifications de configuration AAD Connect, assurez-vous que hello **synchroniser les domaines sélectionnés et unités d’organisation est sélectionnée** et vérifiez que toutes les unités d’organisation qui doivent toosynchronize sont activées à nouveau. Dans le cas contraire, le filtrage basé sur une unité d’organisation sera désactivé.
 
 #### <a name="fixed-issues"></a>Problèmes résolus
 
-* Correction d’un problème lié à la réécriture du mot de passe, qui permet à un administrateur Azure Active Directory de réinitialiser le mot de passe d’un compte d’utilisateur privilégié Active Directory local. Le problème se produit lorsqu’Azure AD Connect se voit accorder l’autorisation de réinitialiser le mot de passe à la place du compte privilégié. Le problème est résolu dans cette version d’Azure AD Connect, car l’administrateur d’Azure AD n’est plus autorisé à réinitialiser le mot de passe d’un compte d’utilisateur privilégié AD local, sauf s’il est le propriétaire de ce compte. Pour en savoir plus, voir [Avis de sécurité Microsoft 4033453](https://technet.microsoft.com/library/security/4033453).
+* Correction d’un problème avec l’écriture différée de mot de passe qui permet une tooreset administrateur AD Azure mot de passe hello d’un site local AD privilégié du compte d’utilisateur. problème de Hello se produit lorsque Azure AD Connect a l’autorisation de réinitialiser le mot de passe hello sur le compte de hello privilégié. Hello problème est résolu dans cette version d’Azure AD Connect, en n’autorisant ne pas un tooreset administrateur AD Azure mot de passe hello arbitraire localement AD privilégié du compte d’utilisateur, sauf si l’administrateur de hello est propriétaire de hello de ce compte. Pour plus d’informations, consultez trop[4033453 avis de sécurité](https://technet.microsoft.com/library/security/4033453).
 
-* Correction d’un problème lié à la fonctionnalité [msDS-ConsistencyGuid en tant que sourceAnchor](https://docs.microsoft.com/azure/active-directory/connect/active-directory-aadconnect-design-concepts#using-msds-consistencyguid-as-sourceanchor), à cause duquel Azure AD Connect ne peut écrire de données en différé dans un attribut msDS-ConsistencyGuid local. Le problème se produit lorsqu’il y a plusieurs forêts AD locales ajoutées à Azure AD Connect et que *l’option Les identités utilisateurs existent sur plusieurs annuaires* est sélectionnée. Lorsqu’une configuration de ce type est utilisée, les règles de synchronisation résultantes ne remplissent pas l’attribut sourceAnchorBinary dans le métaverse. L’attribut sourceAnchorBinary est utilisé en tant qu’attribut source pour l’attribut msDS-ConsistencyGuid. Par conséquent, l’écriture différée vers l’attribut ms-DSConsistencyGuid n’a pas lieu. Afin de résoudre le problème, les règles de synchronisation suivantes ont été mises à jour pour faire en sorte que l’attribut sourceAnchorBinary du métaverse soit toujours rempli :
+* Correction d’un problème lié toohello [msDS-ConsistencyGuid comme ancre Source](https://docs.microsoft.com/azure/active-directory/connect/active-directory-aadconnect-design-concepts#using-msds-consistencyguid-as-sourceanchor) fonctionnalité où Azure AD Connect ne pas l’écriture différée tooon local attribut msDS-ConsistencyGuid d’Active Directory. Hello se produit lorsqu’il existe plusieurs locaux forêts AD ajouté tooAzure AD Connect et hello *identités utilisateurs existent sur plusieurs répertoires (option)* est sélectionnée. Lors de la configuration de ce type est utilisée, les règles de synchronisation résultant de hello ne remplissent pas attribut sourceAnchorBinary hello hello métaverse. attribut de sourceAnchorBinary Hello est utilisé en tant qu’attribut de source de hello pour l’attribut de l’attribut msDS-ConsistencyGuid. Par conséquent, l’écriture différée toohello ms-DSConsistencyGuid attribut n’a pas lieu. problème de hello toofix, les règles de synchronisation suivantes ont été tooensure mis à jour qui hello attribut sourceAnchorBinary Bonjour que métaverse est toujours rempli :
   * In from AD - InetOrgPerson AccountEnabled.xml
   * In from AD - InetOrgPerson Common.xml
   * In from AD - User AccountEnabled.xml
   * In from AD - User Common.xml
   * In from AD - User Join SOAInAAD.xml
 
-* Auparavant, même si la fonctionnalité [msDS-ConsistencyGuid en tant que sourceAnchor](https://docs.microsoft.com/azure/active-directory/connect/active-directory-aadconnect-design-concepts#using-msds-consistencyguid-as-sourceanchor) était désactivée, la règle de synchronisation « Out to AD – User ImmutableId » était encore ajoutée à Azure AD Connect. L’effet est sans gravité et n’entraîne pas l’écriture différée de l’attribut msDS-ConsistencyGuid. Pour éviter toute confusion, nous avons ajouté une logique pour vous assurer que la règle de synchronisation n’est ajoutée que lorsque la fonctionnalité est activée.
+* Auparavant, même si hello [msDS-ConsistencyGuid comme ancre Source](https://docs.microsoft.com/azure/active-directory/connect/active-directory-aadconnect-design-concepts#using-msds-consistencyguid-as-sourceanchor) fonctionnalité n’est pas activée, hello « sortie tooAD – ImmutableId de l’utilisateur » règle de synchronisation est encore ajoutée tooAzure AD Connect. effet de Hello est sans gravité et n’entraîne pas l’écriture différée de toooccur d’attribut msDS-ConsistencyGuid. toute confusion tooavoid, logique a été ajoutée tooensure qui hello la règle de synchronisation est ajouté uniquement lorsque la fonctionnalité de hello est activée.
 
-* Correction d’un problème qui provoquait l’échec de la synchronisation du hachage de mot de passe avec l’événement d’erreur 611. Ce problème se produit après qu’un ou plusieurs contrôleurs de domaine ont été supprimés de l’instance AD locale. À la fin de chaque cycle de synchronisation de mot de passe, le cookie de synchronisation émis par l’instance AD locale contient les ID d’appel des contrôleurs de domaine supprimés, avec 0 comme valeur USN (numéro de séquence de mise à jour). Le Gestionnaire de synchronisation des mots de passe ne parvient pas à conserver le cookie de synchronisation contenant la valeur USN de 0 et échoue avec l’événement d’erreur 611. Lors du prochain cycle de synchronisation, le Gestionnaire de synchronisation des mots de passe réutilise le dernier cookie de synchronisation persistant qui ne contient aucune valeur USN égale à 0. Cela entraîne la resynchronisation des mêmes modifications apportées aux mots de passe. Grâce à ce correctif, le Gestionnaire de synchronisation des mots de passe conserve correctement le cookie de synchronisation.
+* Correction d’un problème à l’origine avec l’événement d’erreur 611 toofail de synchronisation de hachage de mot de passe. Ce problème se produit après qu’un ou plusieurs contrôleurs de domaine ont été supprimés de l’instance AD locale. À la fin de hello de chaque cycle de synchronisation de mot de passe, hello cookie de synchronisation émis par local AD contient les ID d’appel hello supprimé des contrôleurs de domaine avec 0 comme valeur USN (numéro de séquence de mise à jour). Hello Gestionnaire de synchronisation de mot de passe est impossible toopersist synchronisation cookie contenante valeur USN de 0 et échoue avec l’événement d’erreur 611. Lors de la synchronisation suivante de hello cycle, hello du Gestionnaire de synchronisation de mot de passe réutilise hello dernière persistante cookie de synchronisation qui ne contient pas de valeur USN de 0. Cela entraîne des modifications de mot de passe même hello toobe resynchronisé. Ce correctif hello Gestionnaire de synchronisation de mot de passe est conservé cookie de synchronisation hello correctement.
 
-* Auparavant, même si la mise à niveau automatique était désactivée à l’aide de la cmdlet Set-ADSyncAutoUpgrade, le processus de mise à niveau automatique continuait de vérifier régulièrement les mises à niveau et s’appuyait sur le programme d’installation téléchargé pour respecter la désactivation. Grâce à ce correctif, le processus de mise à niveau automatique ne vérifie plus les mises à niveau régulièrement. Le correctif est appliqué automatiquement lorsque le programme d’installation de la mise à niveau de cette version d’Azure AD Connect est exécuté une fois.
+* Auparavant, même si la mise à niveau automatique a été désactivé à l’aide d’applet de commande hello ADSyncAutoUpgrade de jeu, hello processus de mise à niveau automatique continue toocheck pour la mise à niveau régulièrement et s’appuie sur la désactivation de toohonor hello téléchargé programme d’installation. Avec ce correctif, hello processus de mise à niveau automatique n’est plus mise à niveau vérifie régulièrement la présence. correctif de Hello est appliquée automatiquement lorsque le programme d’installation de mise à niveau pour cette version d’Azure AD Connect est exécutée une fois.
 
 #### <a name="new-features-and-improvements"></a>Améliorations et nouvelles fonctionnalités
 
-* Auparavant, la fonctionnalité [msDS-ConsistencyGuid en tant que Source Anchor](https://docs.microsoft.com/azure/active-directory/connect/active-directory-aadconnect-design-concepts#using-msds-consistencyguid-as-sourceanchor) n’était disponible que pour les nouveaux déploiements. Désormais, elle est disponible pour les déploiements existants. Plus précisément :
-  * Pour accéder à cette fonctionnalité, démarrez l’assistant Azure AD Connect, puis choisissez l’option *Mettre à jour sourceAnchor*.
-  * Cette option n’est visible que pour les déploiements existants qui utilisent objectGuid comme attribut sourceAnchor.
-  * Lorsque vous configurez l’option, l’assistant vérifie l’état de l’attribut msDS-ConsistencyGuid dans votre annuaire Active Directory local. Si l’attribut n’est configuré sur aucun objet utilisateur dans l’annuaire, l’assistant utilise msDS-ConsistencyGuid en tant qu’attribut sourceAnchor. Si l’attribut est configuré sur un ou plusieurs objets utilisateur dans l’annuaire, l’assistant détermine que l’attribut est utilisé par d’autres applications, qu’il n’est pas approprié en tant qu’attribut sourceAnchor et n’autorise pas le processus de modification de sourceAnchor à se poursuivre. Si vous êtes certain qu’attribut n’est pas utilisé par des applications existantes, contactez le Support technique pour plus d’informations sur la manière de supprimer l’erreur.
+* Auparavant, hello [msDS-ConsistencyGuid comme ancre Source](https://docs.microsoft.com/azure/active-directory/connect/active-directory-aadconnect-design-concepts#using-msds-consistencyguid-as-sourceanchor) fonctionnalité a été toonew disponible uniquement dans les déploiements. Il est désormais disponible tooexisting déploiements. Plus précisément :
+  * tooaccess hello fonctionnalité, démarrer l’Assistant de connexion hello Azure AD et choisissez hello *ancre Source de mise à jour* option.
+  * Cette option est visible tooexisting uniquement les déploiements qui utilisent objectGuid comme attribut sourceAnchor.
+  * Lorsque vous configurez l’option de hello, Assistant de hello valide état hello de l’attribut msDS-ConsistencyGuid de hello dans votre annuaire Active Directory local. Si l’attribut de hello n’est pas configurée sur n’importe quel objet utilisateur dans le répertoire de hello, Assistant de hello utilise hello msDS-ConsistencyGuid en tant qu’attribut de sourceAnchor hello. Si l’attribut de hello est configuré sur un ou plusieurs objets utilisateur dans le répertoire de hello, hello fermeture de l’Assistant attribut de hello est utilisé par d’autres applications et n’est pas approprié en tant qu’attribut sourceAnchor et n’autorise pas hello ancre Source modification tooproceed. Si vous êtes certain que cet attribut hello n’est pas utilisé par les applications existantes, vous devez toocontact prise en charge pour plus d’informations sur la façon dont toosuppress hello erreur.
 
-* Pour l’attribut **userCertificate** sur les objets périphériques, Azure AD Connect recherche désormais des valeurs de certificats requises pour [connecter des appareils joints au domaine à Azure AD pour Windows 10 ](https://docs.microsoft.com/azure/active-directory/active-directory-azureadjoin-devices-group-policy) et exclut le reste avant de se synchroniser avec Azure AD. La règle de synchronisation prête à l’emploi « Out to AAD - Device Join SOAInAD » a été mise à jour pour permettre ce comportement.
+* Spécifique trop**userCertificate** recherche les attributs des objets de l’appareil, Azure AD Connect maintenant des valeurs de certificats requis pour [tooAzure de périphériques joints au domaine Active Directory pour Windows 10 expérience de connexion](https://docs.microsoft.com/azure/active-directory/active-directory-azureadjoin-devices-group-policy) filtres et reste hello avant la synchronisation tooAzure AD. tooenable ce comportement, la règle de synchronisation d’out-of-box hello « Out tooAAD - appareil joindre SOAInAD » a été mis à jour.
 
-* Azure AD Connect prend désormais en charge l’écriture différée de l’attribut **cloudPublicDelegates** d’Exchange Online vers un attribut AD local **publicDelegates**. Cela permet à une boîte aux lettres Exchange Online d’obtenir des droits SendOnBehalfTo sur les boîtes aux lettres Exchange locales des utilisateurs. Une nouvelle règle de synchronisation prête à l’emploi « Out to AD - User Exchange hybride PublicDelegates writeback » a été ajoutée pour prendre en charge cette fonctionnalité. Cette règle n’est ajoutée à Azure AD Connect que lorsque la fonctionnalité Exchange hybride est activée.
+* Azure AD Connect maintenant prend en charge l’écriture différée d’Exchange Online **cloudPublicDelegates** tooon local d’attribut AD **publicDelegates** attribut. Cela permet de scénario hello où une boîte aux lettres Exchange Online peut être accordée toousers de droits SendOnBehalfTo avec boîte aux lettres de Exchange sur site. toosupport cette fonctionnalité, une nouvelle règle de synchronisation d’out-of-box « Out tooAD – l’écriture différée d’utilisateur Exchange hybride PublicDelegates » a été ajouté. Cette règle de synchronisation est ajoutée uniquement tooAzure AD se connecter quand Exchange hybride est activée.
 
-*   Azure AD Connect prend désormais en charge la synchronisation de l’attribut **altRecipient** d’Azure AD. Afin de prendre en charge cette modification, les règles de synchronisation prêtes à l’emploi suivantes ont été mises à jour pour inclure le flux d’attributs requis :
+*   Azure AD Connect prend désormais en charge la synchronisation de hello **altRecipient** attribut d’Azure AD. toosupport cette modification, suivant les règles de synchronisation d’out-of-box ont été mis à jour le flux d’attribut tooinclude hello requis :
   * Entrant depuis AD – Utilisateur Exchange
-  * Out to AAD - User ExchangeOnline
+  * Out tooAAD – utilisateur ExchangeOnline
   
-* L’attribut **cloudSOAExchMailbox** du métaverse indique si un utilisateur donné possède une boîte aux lettres Exchange Online ou non. Sa définition a été mise à jour pour inclure les autres types RecipientDisplayTypes d’Exchange Online en tant que boîtes aux lettres de salle de conférence et d’équipement. Pour activer cette modification, la définition de l’attribut cloudSOAExchMailbox, qui se trouve sous la règle de synchronisation prête à l’emploi « In from AAD - User Exchange Hybrid », a été mise à jour à partir de :
+* Hello **cloudSOAExchMailbox** attribut Bonjour métaverse indique si un utilisateur donné possède une boîte aux lettres Exchange Online ou non. Sa définition a été mis à jour tooinclude supplémentaires RecipientDisplayTypes en ligne Exchange en tant que ces boîtes aux lettres de salle de conférence et de l’équipement. tooenable cette modification, la définition de hello d’attribut hello cloudSOAExchMailbox, qui se trouve sous la règle de synchronisation d’out-of-box « Dans à partir de AAD – utilisateur Exchange hybride », a été mis à jour à partir de :
 
 ```
 CBool(IIF(IsNullOrEmpty([cloudMSExchRecipientDisplayType]),NULL,BitAnd([cloudMSExchRecipientDisplayType],&amp;HFF) = 0))
 ```
 
-... vers ce qui suit :
+... toohello suivantes :
 
 ```
 CBool(
@@ -199,7 +199,7 @@ CBool(
 
 ```
 
-* Ajout de l’ensemble de fonctions X509Certificate2-compatible pour la création d’expressions de règle de synchronisation pour gérer les valeurs de certificat dans l’attribut userCertificate :
+* Suivant de hello ajoutés ensemble de fonctions de X509Certificate2 compatible pour la création de valeurs certificat toohandle expressions des règles de synchronisation dans l’attribut userCertificate de hello :
 
     ||||
     | --- | --- | --- |
@@ -213,48 +213,48 @@ CBool(
     |CertKeyAlgorithmParams|CertHashString|Where|
     |||With|
 
-* Les modifications de schéma suivantes ont été introduites pour permettre aux clients de créer des règles de synchronisation personnalisées afin de suivre les paramètres sAMAccountName, domainNetBios et domainFQDN pour les objets de groupe, ainsi que le paramètre distinguishedName pour les objets utilisateur :
+* Modifications de schéma suivantes ont été introduites tooallow clients toocreate personnalisé de la synchronisation des règles tooflow sAMAccountName domainNetBios et domainFQDN pour les objets de groupe, ainsi que de distinguishedName pour les objets utilisateur :
 
-  * Les attributs suivants ont été ajoutés au schéma MV :
+  * TooMV schéma ont été ajoutés à des attributs suivants :
     * Groupe : AccountName
     * Groupe : domainNetBios
     * Groupe : domainFQDN
     * Personne : distinguishedName
 
-  * Les attributs suivants ont été ajoutés au schéma de connecteur Azure AD :
+  * Les attributs suivants ont été ajoutés tooAzure schéma de connecteur AD :
     * Groupe : OnPremisesSamAccountName
     * Groupe : NetbiosName
     * Groupe : DnsDomainName
     * Utilisateur : OnPremisesDistinguishedName
 
-* Le script de la cmdlet ADSyncDomainJoinedComputerSync dispose d’un nouveau paramètre facultatif, nommé AzureEnvironment. Ce paramètre est utilisé pour spécifier la région dans laquelle est hébergé le locataire Azure Active Directory correspondant. Les valeurs valides incluent :
+* Hello script d’applet de commande ADSyncDomainJoinedComputerSync a maintenant un nouveau paramètre facultatif nommé AzureEnvironment. paramètre Hello est utilisé toospecify le hello région client Azure Active Directory correspondant est hébergé dans. Les valeurs valides incluent :
   * AzureCloud (par défaut)
   * AzureChinaCloud
   * AzureGermanyCloud
   * USGovernment
  
-* Éditeur de règle de synchronisation mis à jour afin d’utiliser la valeur Joindre (et non plus Approvisionner) en tant que valeur par défaut du type de lien lors de la création de règle de synchronisation.
+* Toouse d’éditeur de règles de synchronisation des mises à jour joindre (au lieu de déployer) comme valeur par défaut de hello du type de lien lors de la création de règle de synchronisation.
 
 ### <a name="ad-fs-management"></a>Gestion AD FS.
 
 #### <a name="issues-fixed"></a>Problèmes résolus
 
-* Les URL suivantes correspondent à de nouveaux points de terminaison WS-Federation introduits par Azure afin d’améliorer la résilience contre les pannes de courant. Elles seront ajoutées à la configuration de réponse de la partie de confiance AD FS :
+* Suivants URL sont introduites par la résilience de tooimprove Azure AD contre la panne de l’authentification de nouveaux points de terminaison WS-Federation et sera ajouté tooon local AD FS configuration d’approbation de partie de confiance :
   * https://ests.Login.microsoftonline.com/login.srf
   * https://stamp2.login.microsoftonline.com/login.srf
   * https://ccs.login.microsoftonline.com/login.srf
   * https://ccs-sdf.login.microsoftonline.com/login.srf
   
-* Correction d’un problème qui forçait ADFS à générer une valeur de revendication incorrecte pour IssuerID. Le problème se produit s’il existe plusieurs domaines vérifiés dans le locataire Azure AD et que le suffixe de domaine de l’attribut userPrincipalName utilisé pour générer la revendication IssuerID présente une profondeur de 3 niveaux minimum (par exemple, johndoe@us.contoso.com). Le problème est résolu, grâce à la mise à jour de l’expression régulière utilisée par les règles de revendication.
+* Correction d’un problème qui a provoqué un valeur de revendication incorrect toogenerate AD FS pour IssuerID. problème de Hello se produit s’il existe plusieurs domaines vérifiés dans le locataire de hello Azure AD et le suffixe de domaine hello de hello userPrincipalName attribut utilisé toogenerate hello IssuerID revendication est au moins 3 niveaux approfondie (par exemple, johndoe@us.contoso.com). Hello est résolu en mettant à jour regex hello utilisé par les règles de revendication hello.
 
 #### <a name="new-features-and-improvements"></a>Améliorations et nouvelles fonctionnalités
-* Auparavant, la fonctionnalité de gestion des certificats ADFS fournie par Azure AD Connect ne pouvait être utilisée qu’avec des batteries ADFS gérées via Azure AD Connect. Désormais, vous pouvez utiliser la fonctionnalité avec les batteries ADFS qui ne sont pas gérées à l’aide d’Azure AD Connect.
+* Auparavant, hello gestion des certificats AD FS fonctionnalité fournie par Azure AD Connect peut uniquement être utilisée avec ADFS de batteries de serveurs gérés via Azure AD Connect. Maintenant, vous pouvez utiliser la fonctionnalité de hello avec les batteries de serveurs AD FS qui ne sont pas gérés à l’aide d’Azure AD Connect.
 
 ## <a name="115240"></a>1.1.524.0
 Publication : mai 2017
 
 > [!IMPORTANT]
-> Des modifications de schéma et de règle de synchronisation ont été introduites dans cette build. Le service de synchronisation Azure AD Connect déclenchera des étapes d’importation complète et de synchronisation complète après la mise à niveau. Ces modifications sont décrites en détail ci-dessous.
+> Des modifications de schéma et de règle de synchronisation ont été introduites dans cette build. Le service de synchronisation Azure AD Connect déclenchera des étapes d’importation complète et de synchronisation complète après la mise à niveau. Détails des modifications de hello sont décrits ci-dessous.
 >
 >
 
@@ -262,40 +262,40 @@ Publication : mai 2017
 
 Synchronisation d’Azure AD Connect
 
-* Résolution d’un problème provoquant une mise à niveau automatique sur le serveur Azure AD Connect, même si le client a désactivé la fonctionnalité à l’aide de l’applet de commande Set-ADSyncAutoUpgrade. Avec ce correctif, le processus de mise à niveau automatique sur le serveur continue de vérifier régulièrement la disponibilité des mises à niveau, mais le programme d’installation téléchargé respecte la configuration de la mise à niveau automatique.
-* Durant la mise à niveau sur place de DirSync, Azure AD Connect crée un compte de service Azure AD que le connecteur Azure AD peut utiliser pour la synchronisation avec Azure AD. Une fois le compte créé, Azure AD Connect s’authentifie auprès d’Azure AD en utilisant le compte. Parfois, l’authentification échoue en raison de problèmes temporaires, ce qui entraîne un échec de la mise à niveau sur place de DirSync avec l’erreur *« An error has occurred executing Configure AAD Sync task: AADSTS50034: To sign into this application, the account must be added to the xxx.onmicrosoft.com directory. »* (une erreur s’est produite l’exécution de la tâche Configurer AAD Sync : AADSTS50034 : Pour que vous puissiez vous connecter à cette application, le compte doit être ajouté dans l’annuaire xxx.onmicrosoft.com). Pour améliorer la résilience de la mise à niveau de DirSync, Azure AD Connect retente désormais l’étape d’authentification.
-* Un problème dans la build 443 avait pour effet que la mise à niveau sur place de DirSync réussissait, mais que les profils d’exécution requis pour la synchronisation d’annuaires n’étaient pas créés. Une logique de réparation est incluse dans cette build d’Azure AD Connect. Quand le client met à niveau vers cette build, Azure AD Connect détecte les profils d’exécution manquants et les crée.
-* Correction d’un problème entraînant l’échec du démarrage du processus de synchronisation de mot de passe avec l’ID d’événement 6900 et l’erreur *« Un élément avec la même clé a déjà été ajouté »*. Ce problème se produit si vous mettez à jour la configuration du filtrage de l’unité d’organisation afin d’inclure la partition de configuration Active Directory. Pour résoudre ce problème, le processus de synchronisation de mot de passe synchronise désormais les changements de mot de passe uniquement à partir de partitions de domaine Active Directory. Les partitions autres que de domaine, telles que les partitions de configuration sont ignorées.
-* Lors d’une installation rapide, Azure AD Connect crée un compte AD DS local que le connecteur Active Directory utilise pour communiquer avec l’AD DS local. Auparavant, le compte était créé avec l’indicateur PASSWD_NOTREQD défini sur l’attribut de contrôle de compte d’utilisateur (user-Account-Control), et un mot de passe aléatoire était défini sur le compte. Désormais, Azure AD Connect supprime explicitement l’indicateur PASSWD_NOTREQD une fois le mot de passe défini sur le compte.
-* Correction d’un problème qui entraînait l’échec de la mise à niveau de DirSync avec l’erreur *« a deadlock occurred in sql server which trying to acquire an application lock »* (un blocage s’est produit dans sql server qui tente d’acquérir un verrou d’application) lorsque l’attribut mailNickname figure dans le schéma AD local, mais n’est pas limité à la classe d’objets utilisateur AD.
-* Correction d’un problème qui avait pour effet de désactiver automatiquement la fonctionnalité d’écriture différée d’appareil quand un administrateur mettait à jour la configuration de la synchronisation Azure AD Connect à l’aide de l’Assistant Azure AD Connect. Ce problème résultait du fait que l’Assistant vérifiait les conditions préalables pour la configuration existante de l’écriture différée d’appareil dans l’AD local et que cette vérification échouait. La solution consiste à ignorer la vérification si l’écriture différée d’appareil est déjà activée.
-* Pour configurer le filtrage de l’unité d’organisation, vous pouvez utiliser l’Assistant Azure AD Connect ou Synchronization Service Manager. Auparavant, si vous utilisiez l’Assistant Azure AD Connect pour configurer le filtrage de l’unité d’organisation, les nouvelles unités d’organisation créées par la suite étaient incluses dans la synchronisation d’annuaires. Si vous ne souhaitiez pas que les nouvelles unités d’organisation soient incluses, vous deviez configurer le filtrage de l’unité d’organisation à l’aide de Synchronization Service Manager. Désormais, vous pouvez obtenir le même comportement en utilisant l’Assistant Azure AD Connect.
-* Correction du problème qui avait pour effet que des procédures stockées requises par Azure AD Connect étaient créées sous le schéma de l’administrateur effectuant l’installation, plutôt que sous le schéma dbo.
-* Résolution du problème qui avait pour effet que l’attribut TrackingId retourné par Azure AD était omis dans les journaux des événements du serveur AAD Connect. Le problème se produisait quand Azure AD Connect recevait un message de redirection d’Azure AD et qu’Azure AD Connect ne parvenait pas à se connecter au point de terminaison fourni. Le TrackingId est utilisé par les ingénieurs du Support pour établir une corrélation avec les journaux côté service lors du dépannage.
-* Quand Azure AD Connect recevait une erreur LargeObject d’Azure AD, Azure AD Connect générait un événement avec l’EventID 6941 et le message *« L’objet approvisionné est trop volumineux. Réduisez le nombre de valeurs d’attribut sur cet objet. »* En même temps, Azure AD Connect générait un événement trompeur avec l’EventID 6900 et le message *« Microsoft.Online.Coexistence.ProvisionRetryException : Impossible de communiquer avec le service Windows Azure Active Directory. »* Pour réduire les risques de confusion, Azure AD Connect ne génère plus cet événement lors de la réception de l’erreur LargeObject.
-* Résolution d’un problème qui avait pour effet que Synchronization Service Manager cessait de répondre en cas de tentative de mise à jour de la configuration d’un connecteur LDAP générique.
+* Correction d’un problème susceptible d’entraîner des toooccur de mise à niveau automatique sur le serveur d’Azure AD Connect hello même si le client a désactivé la fonctionnalité hello à l’aide d’applet de commande Set-ADSyncAutoUpgrade hello. Ce correctif hello processus de mise à niveau automatique sur le serveur de hello vérifie toujours pour la mise à niveau régulièrement, mais configuration de mise à niveau automatique de hello honore hello programme d’installation téléchargé.
+* Au cours de la mise à niveau de DirSync, Azure AD Connect crée un toobe de compte de service Azure AD utilisé par le connecteur de hello Azure AD pour la synchronisation avec Azure AD. Après la création de compte de hello, Azure AD Connect s’authentifie auprès d’Azure AD à l’aide du compte de hello. Parfois, l’authentification échoue en raison de problèmes temporaires, ce qui entraîne à son tour toofail mise à niveau in situ de DirSync avec l’erreur *« une erreur s’est produite l’exécution de la tâche Configurer AAD Sync : AADSTS50034 : toosign dans cette application, le compte de hello doit être ajouté toohello xxx.onmicrosoft.com répertoire. »* résilience de hello tooimprove de mise à niveau de DirSync, Azure AD Connect maintenant de nouvelles tentatives hello étape d’authentification.
+* En cas de problème avec la build 443 qui provoque toosucceed mise à niveau sur place de synchronisation d’annuaire, mais de profils d’exécution requis pour la synchronisation d’annuaires ne sont pas créés. Une logique de réparation est incluse dans cette build d’Azure AD Connect. Lorsque le client met à niveau toothis build, Azure AD Connect détecte pas les profils d’exécution et il les crée.
+* Correction d’un problème qui provoque le toostart de toofail de processus de synchronisation de mot de passe 6900 d’ID d’événement et d’erreur *« Un élément avec hello même clé a déjà été ajoutée »*. Ce problème se produit si vous mettez à jour OU le filtrage de partition de configuration configuration tooinclude AD. toofix ce problème, la synchronisation de mot de passe traiter maintenant synchronise les modifications de mot de passe des partitions de domaine Active Directory uniquement. Les partitions autres que de domaine, telles que les partitions de configuration sont ignorées.
+* Pendant l’installation d’Express, Azure AD Connect crée un site local de domaine Active Directory compte toobe utilisé par toocommunicate de connecteur hello AD locale Active Directory. Auparavant, compte de hello est créé avec l’indicateur PASSWD_NOTREQD hello défini sur l’attribut de contrôle de compte d’utilisateur hello et un mot de passe aléatoire est définie sur le compte de hello. Désormais, Azure AD Connect supprime explicitement indicateur PASSWD_NOTREQD hello après que hello le mot de passe est défini sur le compte de hello.
+* Correction d’un problème qui provoque l’erreur toofail de mise à niveau DirSync *« un blocage s’est produite dans sql server qui tooacquire lors de la tentative un verrou d’application »* lorsque attribut mailNickname de hello se trouve dans hello schéma Active Directory local, mais n’est pas délimité toohello classe d’objet utilisateur Active Directory.
+* Fixe à un problème qui provoque le dispositif d’écriture différée fonctionnalité tooautomatically désactivé lors de l’administrateur est mise à jour de configuration de la synchronisation Azure AD Connect à l’aide d’Assistant Azure AD Connect. Cela est dû à vérification des conditions préalables exécution hello Assistant de configuration de l’écriture différée de périphérique existante hello dans AD local et hello vérification échoue. correctif de Hello est vérification de hello tooskip si l’écriture différée de l’appareil est déjà activée précédemment.
+* tooconfigure unité d’organisation de filtrage, vous pouvez utiliser l’Assistant d’Azure AD Connect hello ou hello Synchronization Service Manager. Auparavant, si vous utilisez le filtrage de l’unité d’organisation de hello Azure AD Connect Assistant tooconfigure, nouvelles unités d’organisation créées par la suite sont incluses pour la synchronisation d’annuaires. Si vous ne souhaitez pas que les nouvelles unités d’organisation toobe inclus, vous devez configurer unité d’organisation à l’aide de filtrage hello Synchronization Service Manager. Maintenant, vous pouvez obtenir hello même comportement à l’aide d’Assistant Azure AD Connect.
+* Correction d’un problème qui provoque des procédures stockées requises par toobe Azure AD Connect créé sous le schéma hello Hello l’installation d’administration, au lieu de sous le schéma dbo de hello.
+* Correction d’un problème qui provoque l’attribut de TrackingId hello retourné par toobe Azure AD omis Bonjour AAD connecter Server Event Logs. problème de Hello se produit si Azure AD Connect reçoit un message de redirection à partir d’Azure AD et Azure AD Connect est le point de terminaison toohello tooconnect Impossible fourni. Hello TrackingId est utilisé par toocorrelate ingénieurs du Support technique avec les journaux du côté service lors du dépannage.
+* Lorsque Azure AD Connect reçoit LargeObject erreur d’Azure AD, Azure AD Connect génère un événement avec l’ID d’événement 6941 et le message *« objet approvisionné de hello est trop grande. Découpage d’hello plusieurs valeurs d’attribut sur cet objet. »* À hello même moment, Azure AD Connect également génère un événement trompeur avec EventID 6900 et message *« Microsoft.Online.Coexistence.ProvisionRetryException : Impossible de toocommunicate avec hello Windows service Azure Active Directory. »* toominimize confusions, Azure AD Connect n’est plus génère l’événement de ce dernier hello lorsque LargeObject erreur est reçue.
+* Correction d’un problème qui provoque hello toobecome Synchronization Service Manager ne répond plus lors de la tentative de configuration de hello tooupdate pour connecteur LDAP générique.
 
 **Nouvelles fonctionnalités/améliorations :**
 
 Synchronisation d’Azure AD Connect
-* Changements de règle de synchronisation - les changements de règle de synchronisation suivants ont été implémentés :
-  * Mise à jour de la règle de synchronisation par défaut définie pour ne pas exporter les attributs **userCertificate** et **userSMIMECertificate** si ceux-ci comportent plus de 15 valeurs.
-  * Les attributs AD **employeeID** et **msExchBypassModerationLink** sont désormais inclus dans l’ensemble de règles de synchronisation par défaut.
+* Synchroniser les modifications de règle – hello suivant de la règle de synchronisation des modifications ont été implémentées :
+  * Ensemble de règles de synchronisation de mises à jour par défaut toonot attributs d’exportation **userCertificate** et **userSMIMECertificate** si les attributs de hello ont des valeurs de plus de 15.
+  * Attributs AD **employeeID** et **msExchBypassModerationLink** sont désormais incluses dans l’ensemble de règles de synchronisation par défaut hello.
   * L’attribut AD **photo** a été supprimé de l’ensemble de règles de synchronisation par défaut.
-  * Ajout de **preferredDataLocation** au schéma Metaverse et au schéma du connecteur AAD. Les clients désireux de mettre à jour les attributs dans Azure AD peuvent implémenter des règles de synchronisation personnalisées à cette fin. Pour en savoir plus sur l’attribut, voir la section de l’article [Synchronisation Azure AD Connect : comment modifier la configuration par défaut - Activer la synchronisation de PreferredDataLocation](active-directory-aadconnectsync-change-the-configuration.md#enable-synchronization-of-preferreddatalocation).
-  * Ajout de **userType** au schéma Metaverse et au schéma du connecteur AAD. Les clients désireux de mettre à jour les attributs dans Azure AD peuvent implémenter des règles de synchronisation personnalisées à cette fin.
+  * Ajouté **preferredDataLocation** toohello métaverse schémas et connecteur AAD. Les clients qui souhaitent tooupdate que des attributs dans Azure AD peuvent implémenter personnalisé de synchronisation donc toodo de règles. toofind plus d’informations sur l’attribut de hello, consultez tooarticle section [synchronisation Azure AD Connect : comment toomake un toohello de modification par défaut de configuration - Activer la synchronisation de PreferredDataLocation](active-directory-aadconnectsync-change-the-configuration.md#enable-synchronization-of-preferreddatalocation).
+  * Ajouté **userType** toohello métaverse schémas et connecteur AAD. Les clients qui souhaitent tooupdate que des attributs dans Azure AD peuvent implémenter personnalisé de synchronisation donc toodo de règles.
 
-* Azure AD Connect permet désormais l’utilisation de l’attribut ConsistencyGuid en tant qu’attribut sourceAnchor pour les objets Active Directory locaux. En outre, Azure AD Connect remplit l’attribut ConsistencyGuid avec la valeur de l’attribut objectGuid s’il est vide. Cette fonctionnalité s’applique uniquement au nouveau déploiement. Pour en savoir plus sur cette fonctionnalité, voir la section de l’article [Principes de conception Azure AD Connect - Utilisation de msDS-ConsistencyGuid en tant que sourceAnchor](active-directory-aadconnect-design-concepts.md#using-msds-consistencyguid-as-sourceanchor).
-* Une nouvelle applet de commande de dépannage Invoke-ADSyncDiagnostics a été ajoutée pour faciliter le diagnostic des problèmes de synchronisation de hachage de mot de passe. Pour en savoir sur l’utilisation de la cmdlet, reportez-vous à l’article [Résolution des problèmes de synchronisation de mot de passe avec Azure AD Connect Sync](https://docs.microsoft.com/azure/active-directory/connect/active-directory-aadconnectsync-troubleshoot-password-synchronization).
-* Azure AD Connect prend désormais en charge la synchronisation d’objets Dossier public à extension messagerie à partir d’un AD local sur Azure AD. Vous pouvez activer la fonctionnalité à l’aide de l’Assistant Azure AD Connect accessible sous Fonctionnalités facultatives. Pour en savoir plus sur cette fonctionnalité, consultez l’article relatif à la [prise en charge du blocage du périmètre basé sur l’annuaire par Office 365 pour les dossiers publics activés par courrier en local](https://blogs.technet.microsoft.com/exchange/2017/05/19/office-365-directory-based-edge-blocking-support-for-on-premises-mail-enabled-public-folders).
-* Azure AD Connect nécessite la synchronisation d’un compte AD DS à partir de l’instance AD locale. Auparavant, lorsque vous installiez Azure AD Connect à l’aide du mode Express, vous pouviez fournir les informations d’identification d’un compte d’administrateur d’entreprise, et Azure AD Connect créait le compte AD DS requis. Toutefois, vous deviez fournir le compte AD DS pour une installation personnalisée et pour l’ajout de forêts à un déploiement existant. Désormais, vous pouvez également fournir les informations d’identification d’un compte d’administrateur d’entreprise au cours d’une installation personnalisée et laisser Azure AD Connect créer le compte AD DS requis.
-* Azure AD Connect prend désormais en charge SQL AOA. Vous devez activer SQL AOA avant d’installer Azure AD Connect. Pendant l’installation, Azure AD Connect détecte si l’instance SQL spécifiée est ou non activée pour SQL AOA. Si SQL AOA est activé, Azure AD Connect détermine si SQL AOA est configuré pour utiliser une réplication synchrone ou asynchrone. Lorsque vous configurez l’écouteur de groupe de disponibilité, il est recommandé de définir la propriété RegisterAllProvidersIP sur 0. En effet, Azure AD Connect utilise actuellement SQL Native Client pour se connecter à SQL, et SQL Native Client ne prend pas en charge l’utilisation de la propriété MultiSubNetFailover.
-* Si vous utilisez une base de données locale pour votre serveur Azure AD Connect et si avez atteint la limite de taille de 10 Go, le service de synchronisation ne démarre plus. Auparavant, vous deviez effectuer l’opération ShrinkDatabase sur la base de données locale pour récupérer un espace de base de données suffisant pour permettre le démarrage du service de synchronisation. Ensuite, vous pouviez utiliser Synchronization Service Manager pour supprimer l’historique d’exécution afin de récupérer davantage d’espace de base de données. Désormais, vous pouvez utiliser l’applet de commande Start-ADSyncPurgeRunHistory pour purger des données de l’historique d’exécution de la base de données locale afin de récupérer de l’espace de base de données. En outre, cette applet de commande prend en charge un mode hors connexion (en spécifiant le paramètre - offline) qui peut être utilisé lorsque le service de synchronisation ne s’exécute pas. Remarque : le mode hors connexion est utilisable uniquement si le service de synchronisation n’est pas en cours d’exécution et si la base de données utilisée est la base de données locale.
-* Pour réduire la quantité d’espace de stockage requis, Azure AD Connect compresse désormais les détails des erreurs de synchronisation avant de les stocker dans la base de données locale et les bases de données SQL. Lors de la mise à niveau vers cette version à partir d’une version antérieure d’Azure AD Connect, Azure AD Connect effectue une compression unique sur les détails d’erreur de synchronisation existants.
-* Précédemment, après mise à jour de la configuration du filtrage de l’unité d’organisation, vous deviez exécuter manuellement une importation complète pour être certain que les objets existants soient correctement inclus ou exclus dans la synchronisation d’annuaires. Désormais, Azure AD Connect déclenche automatiquement une importation complète lors du cycle de synchronisation suivant. De plus, l’importation complète s’applique uniquement aux connecteurs AD affectés par la mise à jour. Remarque : cette amélioration s’applique uniquement aux mises à jour du filtrage de l’unité d’organisation effectuées à l’aide de l’Assistant Azure AD Connect. Elle ne s’applique pas à une mise à jour du filtrage de l’unité d’organisation effectuée à l’aide de Synchronization Service Manager.
+* Azure AD Connect maintenant automatiquement Active hello utiliser ConsistencyGuid attribut comme attribut d’ancre Source hello pour local les objets Active Directory. En outre, Azure AD Connect remplit l’attribut de ConsistencyGuid hello avec la valeur de l’attribut objectGuid hello s’il est vide. Cette fonctionnalité est déploiement toonew applicables uniquement. toofind plus d’informations sur cette fonctionnalité, consultez tooarticle section [Azure AD Connect : concepts : à l’aide de msDS-ConsistencyGuid comme sourceAnchor de conception](active-directory-aadconnect-design-concepts.md#using-msds-consistencyguid-as-sourceanchor).
+* Nouvelle résolution des problèmes d’applet de commande Invoke-ADSyncDiagnostics a été ajouté toohelp diagnostiquer synchronisation du hachage de mot de passe les problèmes liés. Pour plus d’informations sur l’utilisation d’applet de commande hello, consultez tooarticle [résoudre les problèmes de synchronisation de mot de passe avec la synchronisation Azure AD Connect](https://docs.microsoft.com/azure/active-directory/connect/active-directory-aadconnectsync-troubleshoot-password-synchronization).
+* Azure AD Connect maintenant prend en charge la synchronisation du dossier Public paramètres des objets de locaux AD tooAzure AD. Vous pouvez activer la fonctionnalité de hello à l’aide d’Assistant Azure AD Connect sous fonctionnalités facultatives. toofind plus d’informations sur cette fonctionnalité, consultez tooarticle [Office 365 Directory basé le blocage Edge la prise en charge pour les dossiers publics avec messagerie local](https://blogs.technet.microsoft.com/exchange/2017/05/19/office-365-directory-based-edge-blocking-support-for-on-premises-mail-enabled-public-folders).
+* Azure AD Connect nécessite une toosynchronize de compte de domaine Active Directory sur site Active Directory. Auparavant, si vous avez installé Azure AD Connect à l’aide du mode de Express hello, vous pouvez fournir des informations d’identification hello d’un compte d’administrateur d’entreprise et Azure AD Connect créerait compte hello AD DS requis. Toutefois, pour une installation personnalisée et l’ajout de déploiement existant de forêts tooan, vous étiez requis tooprovide hello compte AD DS à la place. Maintenant, vous devez également hello option tooprovide hello des informations d’identification d’un compte d’administrateur d’entreprise au cours d’une installation personnalisée et permettent de créer le compte hello AD DS requis Azure AD Connect.
+* Azure AD Connect prend désormais en charge SQL AOA. Vous devez activer SQL AOA avant d’installer Azure AD Connect. Pendant l’installation, Azure AD Connect détecte si instance SQL de hello fournie est activée pour SQL AOA ou non. Si SQL AOA est activée, Azure AD Connect davantage détermine si SQL AOA est toouse configuré une réplication synchrone ou asynchrone. Lorsque vous configurez hello écouteur du groupe de disponibilité, il est recommandé de définir hello RegisterAllProvidersIP propriété too0. Il s’agit, car Azure AD Connect utilise actuellement SQL Native Client tooconnect tooSQL et SQL Native Client ne prend pas en charge hello propriété MultiSubNetFailover.
+* Si vous utilisez base de données locale en tant que base de données hello pour votre serveur Azure AD Connect et a atteint sa limite de taille de 10 Go, hello Service de synchronisation ne démarre plus. Auparavant, vous devez tooperform opération ShrinkDatabase sur hello LocalDB tooreclaim DB suffisamment d’espace pour toostart du Service de synchronisation hello. Après avoir qui, vous pouvez utilisez hello Synchronization Service Manager toodelete exécuter tooreclaim de l’historique plus d’espace de base de données. Maintenant, vous pouvez utiliser toopurge d’applet de commande Start-ADSyncPurgeRunHistory exécuter les données d’historique à partir de l’espace de base de données tooreclaim de base de données locale. En outre, cette applet de commande prend en charge le mode hors connexion (en spécifiant hello - paramètre hors connexion) qui peut être utilisé lorsque hello Service de synchronisation ne fonctionne pas. Remarque : en mode hors connexion hello utilisable uniquement si hello Service de synchronisation ne fonctionne pas et utilisé de la base de données hello est la base de données locale.
+* tooreduce hello d’espace de stockage requis, Azure AD Connect compresse maintenant les détails des erreurs de synchronisation avant de les stocker dans les bases de données de base de données locale/SQL. Lors de la mise à niveau à partir d’une version antérieure de Azure AD Connect toothis version, Azure AD Connect effectue une compression à usage unique sur les détails de l’erreur synchronisation existant.
+* Précédemment, après la mise à jour d’unité d’organisation de la configuration de filtrage, vous devez exécuter manuellement importation intégrale tooensure objets existants sont correctement inclus/exclus de la synchronisation d’annuaires. Désormais, Azure AD Connect déclenche automatiquement une importation intégrale durant la synchronisation suivante hello cycle. Importation supplémentaire, complète n’est appliqué toohello AD les connecteurs affectés par la mise à jour hello. Remarque : cette amélioration est applicable tooOU filtrage des mises à jour effectuées à l’aide d’Assistant uniquement de hello Azure AD Connect. Il n’est pas applicable tooOU filtrage des mises à jour apportées à l’aide de hello Synchronization Service Manager.
 * Auparavant, le filtrage de groupe prenait en charge uniquement les objets Utilisateurs, Groupes et Contacts. Désormais, le filtrage de groupe prend également en charge les objets Ordinateur.
-* Auparavant, vous pouviez supprimer les données de l’espace connecteur sans désactiver le planificateur de synchronisation Azure AD Connect. Désormais, Synchronization Service Manager bloque la suppression des données de l’espace connecteur s’il détecte que le planificateur est activé. De plus, un avertissement est renvoyé pour informer les utilisateurs concernant une perte potentielle de données en cas de suppression des données de l’espace connecteur.
-* Auparavant, vous deviez désactiver la transcription PowerShell pour que l’Assistant Azure AD Connect s’exécute correctement. Ce problème est partiellement résolu. Vous pouvez activer la transcription PowerShell si vous utilisez l’Assistant Azure AD Connect pour gérer la configuration de la synchronisation. Vous devez désactiver la transcription PowerShell si vous utilisez l’Assistant Azure AD Connect pour gérer la configuration ADFS.
+* Auparavant, vous pouviez supprimer les données de l’espace connecteur sans désactiver le planificateur de synchronisation Azure AD Connect. Maintenant, hello Synchronization Service Manager interdit la suppression hello de données de l’espace de connecteur s’il détecte que le planificateur hello est activée. En outre, un avertissement est renvoyé tooinform des clients sur la perte de données potentielle si hello données d’espace de connecteur est supprimé.
+* Auparavant, vous devez désactiver la transcription PowerShell pour Azure AD Connect Assistant toorun correctement. Ce problème est partiellement résolu. Vous pouvez activer la transcription PowerShell si vous utilisez une configuration de synchronisation toomanage l’Assistant Azure AD Connect. Vous devez désactiver la transcription PowerShell si vous utilisez la configuration AD FS de toomanage l’Assistant Azure AD Connect.
 
 
 
@@ -303,56 +303,56 @@ Synchronisation d’Azure AD Connect
 Publication : avril 2017
 
 **Problèmes résolus :**
-* Résolution du problème d’échec de l’installation d’Azure AD Connect sur une version localisée de Windows Server.
+* Problème de hello fixe où Azure AD Connect n’installera pas correctement sur une version localisée de Windows Server.
 
 ## <a name="114840"></a>1.1.484.0
 Publication : avril 2017
 
 **Problèmes connus :**
 
-* Cette version d’Azure AD Connect ne s’installe pas correctement si les conditions suivantes sont réunies :
+* Cette version d’Azure AD Connect ne s’installe pas correctement si hello conditions suivantes est réunie :
    1. Vous mettez à niveau DirSync sur place ou vous effectuez une nouvelle installation d’Azure AD Connect.
-   2. Vous utilisez une version localisée de Windows Server dans laquelle le nom du groupe d’administrateurs intégré sur le serveur n’est pas « Administrateurs ».
-   3. Vous utilisez la base de données locale SQL Server 2012 Express par défaut, installée avec Azure AD Connect, au lieu de fournir votre propre base de données SQL complète.
+   2. Vous utilisez une version localisée de Windows Server où nom hello du groupe d’administrateurs intégré sur le serveur de hello n’est pas « Administrateurs ».
+   3. Vous utilisez hello par défaut, SQL Server 2012 Express LocalDB installé avec Azure AD Connect, au lieu de fournir votre propre SQL complète.
 
 **Problèmes résolus :**
 
 Synchronisation d’Azure AD Connect
-* Résolution d’un problème amenant le planificateur de synchronisation à ignorer la totalité de l’étape de synchronisation s’il manque le profil d’exécution d’un ou de plusieurs connecteurs pour cette étape de synchronisation. Par exemple, vous avez ajouté manuellement un connecteur à l’aide de Synchronization Service Manager sans créer de profil d’exécution Importation d’écart associé. Ce correctif garantit que le planificateur de synchronisation continue à exécuter le profil Importation d’écart pour les autres connecteurs.
-* Résolution d’un problème amenant le service de synchronisation à arrêter immédiatement le traitement d’un profil d’exécution en cas de problème avec l’une des étapes de l’exécution. Ce correctif garantit que le service de synchronisation ignore cette étape d’exécution et continue à traiter la suite. Par exemple, vous disposez d’un profil d’exécution Importation d’écart pour votre connecteur AD avec plusieurs étapes d’exécution (une pour chaque domaine AD local). Le service de synchronisation exécutera le profil Importation d’écart avec les autres domaines AD même si l’un d’entre eux présente des problèmes de connectivité réseau.
-* Résolution d’un problème amenant la mise à jour du connecteur Azure AD à être ignorée lors de la mise à niveau automatique.
-* Résolution d’un problème amenant Azure AD Connect à déterminer de manière incorrecte si le serveur est un contrôleur de domaine lors de l’installation, ce qui provoque l’échec de la mise à niveau de DirSync.
-* Résolution d’un problème amenant la mise à niveau DirSync sur place à ne pas créer de profil d’exécution pour le connecteur Azure AD.
-* Résolution d’un problème amenant l’interface utilisateur Synchronization Service Manager à ne pas répondre lorsque vous essayez de configurer le connecteur LDAP générique.
+* Correction d’un problème où le Planificateur de synchronisation hello ignore étape de synchronisation entier hello si un ou plusieurs connecteurs ne disposez pas de profil d’exécution de cette étape de synchronisation. Par exemple, vous avez ajouté manuellement un connecteur à l’aide de hello Gestionnaire de Service de synchronisation sans créer une importation Delta pour ce profil d’exécution. Ce correctif garantit que le planificateur hello synchronisation continue toorun importation Delta pour tous les autres connecteurs.
+* Correction d’un problème où hello Service de synchronisation arrête immédiatement le traitement d’un profil d’exécution alors qu’elle ne rencontre un problème avec l’une des étapes de hello exécuter. Ce correctif garantit que hello ignore le Service de synchronisation qui permet d’exécuter étape et continue tooprocess hello rest. Par exemple, vous disposez d’un profil d’exécution Importation d’écart pour votre connecteur AD avec plusieurs étapes d’exécution (une pour chaque domaine AD local). Hello Service de synchronisation s’exécutera importation Delta avec hello autres domaines Active Directory même si un d’eux a des problèmes de connectivité réseau.
+* Correction d’un problème qui provoque le toobe de mise à jour de connecteur Azure AD hello ignoré au cours de la mise à niveau automatique.
+* Correction d’un problème que tooincorrectly Connect de Azure AD les causes déterminer si le serveur de hello est un contrôleur de domaine pendant l’installation, ce qui en activer provoque DirSync toofail de mise à niveau.
+* Fixe à un problème qui provoque DirSync toonot de mise à niveau sur place créer toute exécution profil pour hello connecteur Azure AD.
+* Correction d’un problème où interface utilisateur de gestionnaire de Service de synchronisation hello cesse de répondre lors de la tentative de tooconfigure connecteur LDAP générique.
 
 Gestion AD FS.
-* Résolution d’un problème d’échec de l’Assistant Azure AD Connect si le nœud principal AD FS a été déplacé vers un autre serveur.
+* Correction d’un problème où Assistant d’Azure AD Connect hello échoue si le nœud principal de hello AD FS a été déplacé tooanother server.
 
 Desktop SSO
-* Résolution d’un problème au sein de l’Assistant Azure AD Connect amenant l’écran de connexion à vous empêcher d’activer la fonctionnalité Desktop SSO si vous avez choisi la synchronisation de mot de passe comme option de connexion lors de la nouvelle installation.
+* Correction d’un problème dans l’Assistant d’Azure AD Connect hello où hello écran de connexion ne permet pas d’activer la fonctionnalité d’authentification unique de bureau si vous avez choisi de synchronisation de mot de passe en tant que votre option de connexion lors de l’installation de nouveau.
 
 **Nouvelles fonctionnalités/améliorations :**
 
 Synchronisation d’Azure AD Connect
-* Azure AD Connect Sync prend désormais en charge l’utilisation du compte de service virtuel, du compte de service géré et du compte de service géré de groupe en tant que comptes de service. Cela s’applique à la nouvelle installation d’Azure AD Connect uniquement. Lorsque vous installez Azure AD Connect :
+* Azure AD Sync vous connecter prend désormais en charge l’utilisation hello du compte de Service virtuel, compte de Service administré et compte de Service administré groupe comme compte de service. Installation de toonew d’Azure AD Connect seulement s’applique. Lorsque vous installez Azure AD Connect :
     * Par défaut, l’Assistant Azure AD Connect crée un compte de service virtuel et l’utilise en tant que compte de service.
-    * Si vous effectuez votre installation sur un contrôleur de domaine, Azure AD Connect revient au comportement précédent : il crée un compte d’utilisateur de domaine et l’utilise à la place du compte de service.
-    * Vous pouvez substituer le comportement par défaut en fournissant l’un des éléments suivants :
+    * Si vous installez sur un contrôleur de domaine, Azure AD Connect revient tooprevious comportement où il va créer un compte d’utilisateur de domaine et utilise à la place comme compte de service.
+    * Vous pouvez substituer le comportement par défaut de hello en fournissant des valeurs hello suivantes :
       * Un compte de service géré de groupe
       * Un compte de service géré
       * Un compte d’utilisateur de domaine
       * Un compte d’utilisateur local
-* Auparavant, si vous effectuiez une mise à niveau vers une nouvelle version d’Azure AD Connect contenant une mise à jour des connecteurs ou des modifications des règles de synchronisation, Azure AD Connect déclenchait un cycle de synchronisation complet. À présent, Azure AD Connect déclenche l’étape Importation complète uniquement pour les connecteurs avec mise à jour, et l’étape Synchronisation complète uniquement pour les connecteurs avec modifications des règles de synchronisation.
-* Auparavant, le seuil de suppression de l’exportation s’appliquait uniquement aux exportations déclenchées par le planificateur de synchronisation. À présent, la fonctionnalité inclut aussi les exportations déclenchées manuellement par le client à l’aide de Synchronization Service Manager.
-* Sur votre locataire Azure AD, une configuration de service indique si la fonctionnalité de synchronisation de mot de passe est activée pour votre locataire. Auparavant, les problèmes de configuration du service par Azure AD Connect étaient courants lorsque vous disposiez d’un serveur intermédiaire actif. À présent, Azure AD Connect tente d’assurer la cohérence entre la configuration de service et votre serveur Azure AD Connect actif uniquement.
+* Auparavant, si vous mettez à niveau tooa nouvelle build d’Azure AD Connect contenant connecteurs mettre à jour ou modifications de règle de synchronisation, Azure AD Connect déclenchera un cycle de synchronisation complète. À présent, Azure AD Connect déclenche l’étape Importation complète uniquement pour les connecteurs avec mise à jour, et l’étape Synchronisation complète uniquement pour les connecteurs avec modifications des règles de synchronisation.
+* Auparavant, hello exporter un seuil de suppression s’applique uniquement tooexports qui sont déclenchées par le biais du Planificateur de synchronisation hello. Fonctionnalité de hello est désormais exportations tooinclude manuellement déclenchées par client hello hello Synchronization Service Manager.
+* Sur votre locataire Azure AD, une configuration de service indique si la fonctionnalité de synchronisation de mot de passe est activée pour votre locataire. Auparavant, il est facile pour toobe de configuration de service hello incorrectement configuré par Azure AD Connect lorsque vous disposez d’un serveur intermédiaire et actif. Désormais, Azure AD Connect va tenter de configuration du service tookeep hello cohérente avec votre active server Azure AD Connect uniquement.
 * L’Assistant Azure AD Connect détecte désormais si AD local n’a pas activé la Corbeille AD et envoie un avertissement.
-* Auparavant, l’exportation vers Azure AD expirait et échouait si la taille combinée des objets du lot dépassait le seuil donné. À présent, le service de synchronisation tente de renvoyer les objets dans des lots distincts et plus petits en cas de problème.
-* L’application Gestion des clés du service de synchronisation a été supprimée du menu Démarrer de Windows. La gestion de la clé de chiffrement sera toujours prise en charge par l’interface de ligne de commande à l’aide de miiskmu.exe. Pour plus d’informations sur la gestion de la clé de chiffrement, reportez-vous à l’article [Abandon de la clé de chiffrement Azure AD Connect Sync](https://docs.microsoft.com/azure/active-directory/connect/active-directory-aadconnectsync-change-serviceacct-pass#abandoning-the-azure-ad-connect-sync-encryption-key).
-* Auparavant, si vous modifiiez le mot de passe du compte de service Azure AD Connect Sync, le service de synchronisation n’était pas en mesure de démarrer correctement. Vous deviez alors abandonner la clé de chiffrement et réinitialiser le mot de passe du compte de service Azure AD Connect Sync. À présent, cela n’est plus nécessaire.
+* Précédemment, exportation tooAzure AD expire et échoue si hello combiné à la taille des objets hello dans un lot de hello dépasse certain seuil. Maintenant, hello Service de synchronisation effectue de nouvelles tentatives tooresend des objets de hello dans des lots distincts, plus petits si hello problème est rencontré.
+* Hello, application de gestion de clés de Service de synchronisation a été supprimée à partir du Menu Démarrer de Windows. Gestion de clé de chiffrement continue toobe pris en charge via l’interface de ligne de commande à l’aide de miiskmu.exe. Pour plus d’informations sur la gestion de clé de chiffrement, consultez tooarticle [clé de chiffrement de connexion de synchronisation hello Azure AD Abandoning](https://docs.microsoft.com/azure/active-directory/connect/active-directory-aadconnectsync-change-serviceacct-pass#abandoning-the-azure-ad-connect-sync-encryption-key).
+* Auparavant, si vous modifiez le mot de passe du compte service de synchronisation des Azure AD Connect de hello, hello Service de synchronisation sera pas en mesure de démarrer correctement jusqu'à ce que vous avez abandonné la clé de chiffrement hello et réinitialisation du mot de passe de compte hello Azure AD Connect sync service. À présent, cela n’est plus nécessaire.
 
 Desktop SSO
 
-* L’Assistant Azure AD Connect ne requiert plus l’ouverture du port 9090 sur le réseau lors de la configuration de l’authentification directe et de Desktop SSO. Seul le port 443 est requis. 
+* Assistant Azure AD Connect ne nécessite plus toobe 9090 de port ouvert sur le réseau de hello lorsque vous configurez l’authentification directe et l’authentification unique de bureau. Seul le port 443 est requis. 
 
 ## <a name="114430"></a>1.1.443.0
 Publication : mars 2017
@@ -360,115 +360,115 @@ Publication : mars 2017
 **Problèmes résolus :**
 
 Synchronisation d’Azure AD Connect
-* Résolution d’un problème qui provoquait l’échec de l’assistant Azure AD Connect si le nom complet du connecteur Azure AD ne contenait pas le domaine onmicrosoft.com initialement affecté au client Azure AD.
-* Résolution d’un problème qui provoquait l’échec de l’assistant Azure AD Connect lors de la connexion à une base de données SQL lorsque le mot de passe du compte de service de synchronisation contenait des caractères spéciaux tels que l’apostrophe, les deux-points ou l’espace.
-* Correction d’un problème qui provoquait l’erreur « la dimage a une ancre qui est différente de celle de l’image » sur un serveur Azure AD Connect en mode intermédiaire après avoir exclu temporairement an objet Active Directory local de la synchronisation et l’avoir inclus à nouveau pour la synchronisation.
-* Correction d’un problème qui provoque l’erreur « l’objet se trouve par nom de domaine est un fantôme » sur un serveur Azure AD Connect en mode, intermédiaire une fois que vous avez exclu temporairement sur les sites Active Directory à partir de la synchronisation de l’objet et inclus à nouveau pour la synchronisation.
+* Correction d’un problème qui provoque Azure AD Connect Assistant toofail Si nom d’affichage hello Hello connecteur Azure AD ne contient-elle pas de hello initial onmicrosoft.com domaine affecté toohello Azure AD client.
+* Correction d’un problème qui provoque toofail d’Assistant Azure AD Connect lorsque vous rendez le base de données de connexion tooSQL lorsque hello de mot de passe du compte de Service de synchronisation de hello contient des caractères spéciaux tels que l’apostrophe, deux-points et un espace.
+* Correction d’un problème qui provoque l’erreur de hello toooccur de « hello dimage a une ancre qui est différente de celle des images de hello » sur un serveur en mode de mise en lots d’Azure AD Connect, une fois que vous avez temporairement exclus locale Active Directory de l’objet de la synchronisation et à nouveau pour incluse la synchronisation.
+* Correction d’un problème qui provoque l’erreur de hello toooccur de « objet hello localisé par le nom unique est un fantôme » sur un serveur en mode de mise en lots d’Azure AD Connect, une fois que vous avez temporairement exclus locale Active Directory de l’objet de la synchronisation et inclus à nouveau pour la synchronisation.
 
 Gestion AD FS.
-* Correction d’un problème qui empêchait l’assistant Azure AD Connect de mettre à jour la configuration AD FS et définir les bonnes revendications sur l’approbation de partie de confiance après configuration de l’ID de connexion secondaire.
-* Correction d’un problème qui empêchait l’assistant Azure AD Connect de traiter correctement les serveurs AD FS dont les comptes de service sont configurés à l’aide du format d’userPrincipalName au lieu du format sAMAccountName.
+* Correction d’un problème où Assistant Azure AD Connect ne pas mettre à jour la configuration AD FS et et hello revendications droite sur hello confiance après avoir configuré un autre ID de connexion.
+* Correction d’un problème où Assistant Azure AD Connect est dont les comptes de service sont configurés à l’aide d’userPrincipalName format au lieu du format de sAMAccountName les serveurs toocorrectly Impossible de handle AD FS.
 
 Authentification directe
-* Résolution d’un problème qui provoquait l’échec de l’assistant Azure AD Connect si l’authentification directe était activée mais que l’inscription de son connecteur échouait.
-* Résolution du problème qui provoquait le contournement des vérifications de validation par l’assistant Azure AD Connect sur la méthode de connexion sélectionnée lorsque la fonctionnalité d’authentification unique de bureau était activée.
+* Correction d’un problème qui provoque Azure AD Connect Assistant toofail si passer par le biais de l’authentification est activée, mais l’inscription de son connecteur échoue.
+* Correction d’un problème qui provoque Azure AD Connect, la validation toobypass Assistant vérifie sur la méthode de connexion sélectionné lors de la fonctionnalité d’authentification unique de bureau est activée.
 
 Réinitialisation de mot de passe
-* Résolution d’un problème qui peut entraîner l’absence de reconnexion du serveur Azure AAD Connect si la connexion a été arrêtée par un pare-feu ou un proxy.
+* Correction d’un problème qui peut entraîner hello Azure AAD Connect server toonot tentative toore-se connecter si la connexion de hello a été supprimée par un pare-feu ou un proxy.
 
 **Nouvelles fonctionnalités/améliorations :**
 
 Synchronisation d’Azure AD Connect
-* L’applet de commande Get-ADSyncScheduler renvoie désormais une nouvelle propriété booléenne nommée SyncCycleInProgress. Si la valeur renvoyée est true, cela signifie qu’il existe un cycle de synchronisation planifié en cours.
-* Le dossier de destination pour les journaux d’installation et de configuration d’Azure Connect AD a été déplacé de %localappdata%\AADConnect à %programdata%\AADConnect pour améliorer l’accessibilité aux fichiers journaux.
+* L’applet de commande Get-ADSyncScheduler renvoie désormais une nouvelle propriété booléenne nommée SyncCycleInProgress. Si hello a retourné la valeur est true, que cela signifie qu’il existe un cycle de synchronisation planifiée en cours d’exécution.
+* Dossier de destination pour le stockage Azure AD Connect installation et fichiers journaux d’installation a été déplacé à partir de fichiers journaux de la toohello %localappdata%\AADConnect too%programdata%\AADConnect tooimprove d’accessibilité.
 
 Gestion AD FS.
 * Prise en charge supplémentaire de la mise à jour du certificat SSL de batterie de serveurs AD FS.
 * Prise en charge ajoutée pour la gestion de serveurs AD FS 2016.
 * Vous pouvez maintenant spécifier un gMSA (compte de service géré de groupe) existant lors de l’installation d’AD FS.
-* Vous pouvez maintenant configurer SHA-256 comme algorithme de hachage de signature pour l’approbation de partie de confiance Azure AD.
+* Vous pouvez maintenant configurer SHA-256 comme algorithme de hachage de signature hello de confiance Azure AD.
 
 Réinitialisation de mot de passe
-* Introduction d’améliorations pour permettre au produit de fonctionner dans les environnements incluant des règles de pare-feu plus strictes.
-* Amélioration de la fiabilité de la connexion à Azure Service Bus.
+* Les améliorations introduites tooallow hello produit toofunction dans des environnements avec des règles de pare-feu plus strictes.
+* TooAzure de fiabilité améliorées de connexion Service Bus.
 
 ## <a name="113800"></a>1.1.380.0
 Publication : décembre 2016
 
 **Problème résolu :**
 
-* Résolution du problème d’absence de la règle de revendication issuerid pour Active Directory Federation Services (AD FS) dans la version.
+* Problème de hello fixe où hello issuerid de règles de revendication pour Active Directory Federation Services (ADFS) est manquant dans la génération.
 
 >[!NOTE]
->Cette version n’est pas disponible pour les clients par le biais de la fonction de mise à niveau automatique Azure AD Connect.
+>Cette build n’est pas disponible toocustomers via la fonctionnalité de connecter la mise à niveau automatique de hello Azure AD.
 
 ## <a name="113710"></a>1.1.371.0
 Publication : décembre 2016
 
 **Problème connu :**
 
-* Cette version de contenait pas la règle de revendication issuerid pour AD FS. La règle de revendication issuerid est nécessaire si vous fédérez plusieurs domaines avec Azure Active Directory (Azure AD). Si vous utilisez Azure AD Connect pour gérer votre déploiement AD FS local, la mise à niveau vers cette version supprime la règle de revendication issuerid existant dans votre configuration AD FS. Vous pouvez contourner ce problème en ajoutant la règle de revendication issuerid après l’installation ou la mise à niveau. Pour plus d’informations sur l’ajout de la règle de revendication issuerid, consultez l’article [Prise en charge de plusieurs domaines pour la fédération avec Azure AD](active-directory-aadconnect-multiple-domains.md).
+* règle de revendication issuerid Hello pour AD FS est manquant dans la génération. règle de revendication issuerid Hello est requise si vous vous fédérez plusieurs domaines avec Azure Active Directory (Azure AD). Si vous utilisez Azure AD Connect toomanage votre local déploiement AD FS, la mise à niveau de build de toothis supprime la règle de revendication issuerid hello existant de votre configuration AD FS. Vous pouvez contourner problème de hello en ajoutant la règle de revendication hello issuerid après hello installation/mise à niveau. Pour plus d’informations sur l’ajout de hello issuerid de règles de revendication, consultez l’article de toothis sur [prise en charge de plusieurs domaines pour fédérer avec Azure AD](active-directory-aadconnect-multiple-domains.md).
 
 **Problème résolu :**
 
-* Si le port 9090 n’est pas ouvert pour les connexions sortantes, l’installation ou la mise à niveau d’Azure AD Connect échoue.
+* Si le Port 9090 n’est pas ouvert pour les connexions sortantes hello, hello Azure AD Connect l’installation ou mise à niveau échoue.
 
 >[!NOTE]
->Cette version n’est pas disponible pour les clients par le biais de la fonction de mise à niveau automatique Azure AD Connect.
+>Cette build n’est pas disponible toocustomers via la fonctionnalité de connecter la mise à niveau automatique de hello Azure AD.
 
 ## <a name="113700"></a>1.1.370.0
 Publication : décembre 2016
 
 **Problèmes connus :**
 
-* Cette version de contenait pas la règle de revendication issuerid pour AD FS. La règle de revendication issuerid est nécessaire si vous fédérez plusieurs domaines avec Azure AD. Si vous utilisez Azure AD Connect pour gérer votre déploiement AD FS local, la mise à niveau vers cette version supprime la règle de revendication issuerid existant dans votre configuration AD FS. Vous pouvez contourner ce problème en ajoutant la règle de revendication issuerid après l’installation ou la mise à niveau. Pour plus d’informations sur l’ajout de la règle de revendication issuerid, consultez l’article [Prise en charge de plusieurs domaines pour la fédération avec Azure AD](active-directory-aadconnect-multiple-domains.md).
-* Le port 9090 doit être ouvert en sortie pour achever l’installation.
+* règle de revendication issuerid Hello pour AD FS est manquant dans la génération. règle de revendication issuerid Hello est requise si vous vous fédérez plusieurs domaines avec Azure AD. Si vous utilisez Azure AD Connect toomanage votre local déploiement AD FS, la mise à niveau de build de toothis supprime la règle de revendication issuerid hello existant de votre configuration AD FS. Vous pouvez contourner problème de hello en ajoutant la règle de revendication hello issuerid après installation/mise à niveau. Pour plus d’informations sur l’ajout d’issuerid de règles de revendication, consultez l’article de toothis sur [prise en charge de plusieurs domaines pour fédérer avec Azure AD](active-directory-aadconnect-multiple-domains.md).
+* Port 9090 doit être ouvert toocomplete sortant installation.
 
 **Nouvelles fonctionnalités :**
 
 * Authentification directe (version préliminaire).
 
 >[!NOTE]
->Cette version n’est pas disponible pour les clients par le biais de la fonction de mise à niveau automatique Azure AD Connect.
+>Cette build n’est pas disponible toocustomers via la fonctionnalité de connecter la mise à niveau automatique de hello Azure AD.
 
 ## <a name="113430"></a>1.1.343.0
 Publication : novembre 2016
 
 **Problème connu :**
 
-* Cette version de contenait pas la règle de revendication issuerid pour AD FS. La règle de revendication issuerid est nécessaire si vous fédérez plusieurs domaines avec Azure AD. Si vous utilisez Azure AD Connect pour gérer votre déploiement AD FS local, la mise à niveau vers cette version supprime la règle de revendication issuerid existant dans votre configuration AD FS. Vous pouvez contourner ce problème en ajoutant la règle de revendication issuerid après l’installation ou la mise à niveau. Pour plus d’informations sur l’ajout de la règle de revendication issuerid, consultez l’article [Prise en charge de plusieurs domaines pour la fédération avec Azure AD](active-directory-aadconnect-multiple-domains.md).
+* règle de revendication issuerid Hello pour AD FS est manquant dans la génération. règle de revendication issuerid Hello est requise si vous vous fédérez plusieurs domaines avec Azure AD. Si vous utilisez Azure AD Connect toomanage votre local déploiement AD FS, la mise à niveau de build de toothis supprime la règle de revendication issuerid hello existant de votre configuration AD FS. Vous pouvez contourner problème de hello en ajoutant la règle de revendication hello issuerid après installation/mise à niveau. Pour plus d’informations sur l’ajout d’issuerid de règles de revendication, consultez l’article de toothis sur [prise en charge de plusieurs domaines pour fédérer avec Azure AD](active-directory-aadconnect-multiple-domains.md).
 
 **Problèmes résolus :**
 
-* Parfois, l’installation d’Azure AD Connect échoue, car il est impossible de créer un compte de service local dont le mot de passe est conforme au niveau de complexité spécifié par la stratégie de mot de passe de l’organisation.
-* Correction d’un problème dans lequel les règles de jointure ne sont pas réévaluées lorsqu’un objet dans l’espace du connecteur devient simultanément hors de portée pour une règle de jointure et dans la portée d’une autre. Cela peut se produire si vous avez deux ou plusieurs règles de jointure dont les conditions de jointure s’excluent mutuellement.
+* Parfois, l’installation d’Azure AD Connect échoue, car il est impossible de toocreate un compte de service local dont un mot de passe est conforme hello de niveau de complexité spécifiée par la stratégie de mot de passe de l’organisation hello.
+* Correction d’un problème où les règles de jointure ne sont pas réévaluées lorsqu’un objet dans l’espace de connecteur hello devient simultanément hors de portée pour une règle de jointure et deviennent dans la portée d’un autre. Cela peut se produire si vous avez deux ou plusieurs règles de jointure dont les conditions de jointure s’excluent mutuellement.
 * Correction d’un problème dans lequel les règles de synchronisation entrante (à partir d’Azure AD) qui ne contiennent pas de règles de jointure ne sont pas traitées si elles ont des valeurs de priorité plus faibles que celles contenant des règles de jointure.
 
 **Améliorations :**
 
 * Ajout de la prise en charge de l’installation d’Azure AD Connect sur Windows Server 2016 standard ou version ultérieure.
-* Ajout de la prise en charge de l’utilisation de SQL Server 2016 comme base de données distante pour Azure AD Connect.
+* Ajout de la prise en charge l’utilisation de SQL Server 2016 comme base de données distante hello pour Azure AD Connect.
 
 ## <a name="112810"></a>1.1.281.0
 Publication : août 2016
 
 **Problèmes résolus :**
 
-* Les modifications apportées à l’intervalle de synchronisation n’ont pas lieu avant la fin du prochain cycle de synchronisation.
+* Intervalle de toosync de modifications ne prendront place jusqu'à ce qu’après hello prochain cycle de synchronisation est terminée.
 * L’Assistant Azure AD Connect n’accepte pas de compte Azure AD dont le nom d’utilisateur commence par un trait de soulignement (\_).
-* L’Assistant Azure AD Connect ne parvient pas à authentifier le compte Azure AD fourni si le mot de passe du compte contient un trop grand nombre de caractères spéciaux. Un message d’erreur du type « Impossible de valider les informations d’identification. Une erreur inattendue s’est produite. » est renvoyé.
-* La désinstallation du serveur intermédiaire désactive la synchronisation de mot de passe dans le client Azure AD et provoque l’échec de la synchronisation de mot de passe avec le serveur actif.
-* La synchronisation du mot de passe échoue dans de rares cas lorsqu’aucun hachage de mot de passe n’est stocké sur l’utilisateur.
-* Lorsque le serveur Azure AD Connect est activé pour le mode intermédiaire, l’écriture différée de mot de passe n’est pas temporairement désactivée.
-* L’assistant Azure AD Connect n’affiche pas la configuration réelle de synchronisation de mot de passe et d’écriture différée de mot de passe lorsque le serveur est en mode intermédiaire. Il les affiche toujours comme étant désactivées.
-* Les modifications apportées à la synchronisation de mot de passe et à l’écriture différée de mot de passe ne sont pas conservées par l’Assistant Azure AD lorsque le serveur est en mode intermédiaire.
+* Assistant Azure AD Connect échoue compte Azure AD de hello tooauthenticate si le mot de passe de compte hello contient trop de caractères spéciaux. Message d’erreur « Impossible de toovalidate les informations d’identification. Une erreur inattendue s’est produite. » est renvoyé.
+* Désinstallation du serveur de test désactive la synchronisation de mot de passe dans le locataire Azure AD et provoque le toofail de synchronisation de mot de passe avec le serveur actif.
+* Synchronisation de mot de passe échoue dans de rares cas, lorsqu’il n’existe aucun hachage de mot de passe stocké sur l’utilisateur de hello.
+* Lorsque le serveur Azure AD Connect est activé pour le mode intermédiaire, la réécriture du mot de passe n’est pas temporairement désactivée.
+* Assistant Azure AD Connect n’affiche pas de synchronisation de mot de passe réel hello et configuration de l’écriture différée de mot de passe lorsque le serveur est en mode de mise en lots. Il les affiche toujours comme étant désactivées.
+* Synchronisation toopassword des modifications de configuration et d’écriture différée de mot de passe ne sont pas conservés par l’Assistant Azure AD Connect lorsque le serveur est en mode de mise en lots.
 
 **Améliorations :**
 
-* Mise à jour de l’applet de commande Start-ADSyncSyncCycle pour indiquer si elle est en mesure ou non de démarrer correctement un nouveau cycle de synchronisation.
-* Ajout de l’applet de commande Stop-ADSyncSyncCycle pour terminer le cycle de synchronisation et l’opération en cours.
-* Mise à jour de l’applet de commande Stop-ADSyncScheduler pour terminer le cycle de synchronisation et l’opération en cours.
-* Lors de la configuration des [extensions d’annuaire](active-directory-aadconnectsync-feature-directory-extensions.md) dans l’Assistant Azure AD Connect, l’attribut Azure AD de type « chaîne Teletex » peut maintenant être sélectionné.
+* Mise à jour tooindicate d’applet de commande hello ADSyncSyncCycle de démarrer si elle est toosuccessfully en mesure de démarrer un nouveau cycle de synchronisation ou non.
+* Cycle de synchronisation tooterminate ajouté hello Stop-ADSyncSyncCycle applet de commande et l’opération, qui sont actuellement en cours d’exécution.
+* Cycle de synchronisation tooterminate mis à jour hello Stop-ADSyncScheduler applet de commande et l’opération, qui sont actuellement en cours d’exécution.
+* Lors de la configuration [extensions d’annuaire](active-directory-aadconnectsync-feature-directory-extensions.md) dans l’Assistant Azure AD Connect, hello Azure AD attribut de type « Chaîne télétexte » peut maintenant être sélectionné.
 
 ## <a name="111890"></a>1.1.189.0
 Publication : juin 2016
@@ -477,7 +477,7 @@ Publication : juin 2016
 
 * Vous pouvez maintenant installer Azure AD Connect sur un serveur compatible FIPS.
   * Pour la synchronisation du mot de passe, consultez [Synchronisation de mot de passe et FIPS](active-directory-aadconnectsync-implement-password-synchronization.md#password-synchronization-and-fips).
-* Correction d’un problème à cause duquel un nom NetBIOS ne pouvait pas être résolu pour le nom de domaine complet dans le connecteur Active Directory.
+* Correction d’un problème où un nom NetBIOS ne pourrait pas être résolu toohello nom de domaine complet dans hello connecteur Active Directory.
 
 ## <a name="111800"></a>1.1.180.0
 Publication : mai 2016
@@ -486,13 +486,13 @@ Publication : mai 2016
 
 * Vous avertit et vous permet de vérifier les domaines si vous ne l’avez pas fait avant d’exécuter Azure AD Connect.
 * Ajout de la prise en charge de [Microsoft Cloud Allemagne](active-directory-aadconnect-instances.md#microsoft-cloud-germany).
-* Ajout de la prise en charge de la toute dernière infrastructure [cloud Microsoft Azure Government](active-directory-aadconnect-instances.md#microsoft-azure-government-cloud) avec de nouvelles exigences d’URL.
+* Prise en charge de hello dernières [cloud de Microsoft Azure Government](active-directory-aadconnect-instances.md#microsoft-azure-government-cloud) infrastructure avec les nouvelles exigences de l’URL.
 
 **Problèmes résolus et améliorations :**
 
-* Ajout d’un filtrage à l’éditeur de règles de synchronisation pour faciliter la recherche de règles de synchronisation.
+* Toohello filtrage ajouté toomake de l’éditeur de règles de synchronisation il toofind facilement les règles de synchronisation.
 * Amélioration des performances lors de la suppression d’un espace connecteur.
-* Résolution d’un problème lorsqu’un même objet a été supprimé et ajouté dans la même exécution (appelé supprimer/ajouter).
+* Correction d’un problème lorsque hello même objet a été supprimé et ajouté dans hello même série (appelée delete/ajouter).
 * Une règle de synchronisation désactivée ne réactive plus les attributs et objets inclus lors d’une mise à niveau ou d’une actualisation de schéma d’annuaire.
 
 ## <a name="111300"></a>1.1.130.0
@@ -500,8 +500,8 @@ Publication : avril 2016
 
 **Nouvelles fonctionnalités :**
 
-* Ajout de la prise en charge des attributs à valeurs multiples dans les [extensions d’annuaire](active-directory-aadconnectsync-feature-directory-extensions.md).
-* Ajout de la prise en charge de variantes de configuration supplémentaires pour que la [mise à niveau automatique](active-directory-aadconnect-feature-automatic-upgrade.md) soit considérée comme éligible à la mise à niveau.
+* Prise en charge pour les attributs à valeurs multiples trop[extensions active](active-directory-aadconnectsync-feature-directory-extensions.md).
+* Prise en charge de plusieurs variantes de configuration pour [mise à niveau automatique](active-directory-aadconnect-feature-automatic-upgrade.md) toobe considérés comme éligibles pour la mise à niveau.
 * Ajout d’applets de commande pour le [planificateur personnalisé](active-directory-aadconnectsync-feature-scheduler.md#custom-scheduler).
 
 ## <a name="111190"></a>1.1.119.0
@@ -511,17 +511,17 @@ Publication : mars 2016
 
 * Nous nous sommes assurés que l’installation Express ne peut pas être utilisée sur Windows Server 2008 (version antérieure à R2), car la synchronisation du mot de passe n’est pas prise en charge sur ce système d’exploitation.
 * La mise à niveau à partir de DirSync avec une configuration de filtre personnalisée n’a pas fonctionné comme prévu.
-* Lors de la mise à niveau vers une version plus récente et sans aucune modification de la configuration, une importation/synchronisation complète ne doit pas être planifiée.
+* Lors de la mise à niveau tooa une version plus récente et il n’y aucune configuration toohello de modifications, une importation/la synchronisation complète ne doit pas être planifiée.
 
 ## <a name="111100"></a>1.1.110.0
 Publication : février 2016
 
 **Problèmes résolus :**
 
-* La mise à niveau à partir de versions antérieures ne fonctionne pas si l’installation ne se trouve pas dans le dossier C:\Program Files par défaut.
-* Si vous installez et désélectionnez **Démarrer le processus de synchronisation** à la fin de l’Assistant d’installation, la réexécution de ce dernier n’active pas le planificateur.
-* Le planificateur ne fonctionne pas comme prévu sur les serveurs où le format de date et d’heure n’est pas en-US. Il empêche également `Get-ADSyncScheduler` de retourner les heures correctes.
-* Si vous avez installé une version antérieure d’Azure AD Connect avec AD FS comme option de connexion et mise à niveau, vous ne pouvez pas réexécuter l’Assistant d’installation.
+* Mise à niveau à partir de versions antérieures ne fonctionne pas si l’installation de hello n’est pas dans le dossier C:\Program Files de par défaut hello.
+* Si vous installez et que vous désactivez **démarrer le processus de synchronisation hello** à fin hello de l’Assistant installation Bonjour, exécution de l’Assistant installation hello une deuxième fois n’active pas le planificateur hello.
+* Hello planificateur ne fonctionne pas comme prévu sur les serveurs où hello format de date/heure US-en n'est pas utilisée. Il bloque également `Get-ADSyncScheduler` tooreturn les moments appropriés.
+* Si vous avez installé une version antérieure d’Azure AD Connect avec AD FS comme hello mise à niveau et l’option de connexion, vous ne peut pas exécuter l’Assistant installation Bonjour à nouveau.
 
 ## <a name="111050"></a>1.1.105.0
 Publication : février 2016
@@ -529,27 +529,27 @@ Publication : février 2016
 **Nouvelles fonctionnalités :**
 
 * [Automatic upgrade](active-directory-aadconnect-feature-automatic-upgrade.md) pour les clients de la configuration rapide.
-* Prise en charge pour l’administrateur général par le biais d’Azure Multi-Factor Authentication et de Privileged Identity Management dans l’Assistant d’installation.
-  * Vous devez configurer votre proxy pour qu’il autorise également le trafic vers https://secure.aadcdn.microsoftonline-p.com si vous utilisez Multi-Factor Authentication.
-  * Vous devez ajouter https://secure.aadcdn.microsoftonline-p.com à votre liste de sites de confiance pour que Multi-Factor Authentication fonctionne correctement.
-* Autorisez la modification de la méthode de connexion de l’utilisateur après l’installation initiale.
-* Activez l’option [Filtrage par domaine et unité d’organisation](active-directory-aadconnect-get-started-custom.md#domain-and-ou-filtering) dans l’Assistant d’installation. Cela permet également la connexion à des forêts dans lesquelles tous les domaines ne sont pas disponibles.
-* [Scheduler](active-directory-aadconnectsync-feature-scheduler.md) est intégré dans le moteur de synchronisation.
+* Prise en charge pour un administrateur global à l’aide de l’authentification multifacteur Azure et Privileged Identity Management dans l’Assistant installation hello hello.
+  * Vous devez tooallow votre tooalso proxy autoriser le trafic toohttps://secure.aadcdn.microsoftonline-p.com si vous utilisez l’authentification multifacteur.
+  * Vous avez besoin de liste de sites de confiance tooadd https://secure.aadcdn.microsoftonline-p.com tooyour pour travail tooproperly de l’authentification multifacteur.
+* Autoriser la modification de la méthode d’authentification de l’utilisateur hello après l’installation initiale.
+* Autoriser [domaine et unité d’organisation filtrage](active-directory-aadconnect-get-started-custom.md#domain-and-ou-filtering) dans l’Assistant installation hello. Cela vous permet également de connexion tooforests où pas tous les domaines sont disponibles.
+* [Planificateur](active-directory-aadconnectsync-feature-scheduler.md) est généré dans le moteur de synchronisation toohello.
 
-**Fonctionnalités promues de version préliminaire à disponibilité générale :**
+**Fonctionnalités promues à partir de la version préliminaire tooGA :**
 
 * [Écriture différée des appareils](active-directory-aadconnect-feature-device-writeback.md).
 * [Extensions d’annuaire](active-directory-aadconnectsync-feature-directory-extensions.md).
 
 **Nouvelles fonctionnalités préliminaires :**
 
-* Le nouvel intervalle de cycle de synchronisation par défaut est de 30 minutes. (trois heures pour toutes les versions antérieures). Ajoute la prise en charge pour modifier le comportement du [planificateur](active-directory-aadconnectsync-feature-scheduler.md) .
+* Hello nouvelle valeur par défaut cycle de synchronisation intervalle est de 30 minutes. Utilisé toobe trois heures pour toutes les versions antérieures. Ajoute la prise en charge toochange hello [planificateur](active-directory-aadconnectsync-feature-scheduler.md) comportement.
 
 **Problèmes résolus :**
 
-* La page de vérification des domaines DNS n’a pas reconnu tous les domaines.
+* Hello Vérifiez la page de domaines DNS n’a pas toujours reconnaître les domaines hello.
 * Demande d’informations d’identification de l’administrateur de domaine lors de la configuration AD FS.
-* Les comptes AD locaux ne sont pas reconnus par l’Assistant d’installation lorsqu’ils sont situés dans un domaine avec une autre arborescence DNS que celle du domaine racine.
+* Hello localement les comptes Active Directory ne sont pas reconnues par l’Assistant installation hello si situé dans un domaine avec une autre arborescence DNS que le domaine racine de hello.
 
 ## <a name="1091310"></a>1.0.9131.0
 Publication : décembre 2015
@@ -557,17 +557,17 @@ Publication : décembre 2015
 **Problèmes résolus :**
 
 * La synchronisation de mot de passe peut ne pas fonctionner lorsque vous modifiez les mots de passe dans Active Directory Domain Services (AD DS), mais elle fonctionne lorsque vous définissez un mot de passe.
-* Lorsque vous avez un serveur proxy, l’authentification à Azure AD peut échouer durant le processus d’installation, ou si la mise à niveau est annulée sur la page de configuration.
+* Lorsque vous avez un serveur proxy, tooAzure d’authentification Active Directory risque d’échouer lors de l’installation, ou si une mise à niveau est annulée sur la page de configuration hello.
 * La mise à jour à partir d’une version antérieure d’Azure AD Connect avec une instance SQL Server complète échoue si vous n’êtes pas administrateur système SQL Server (SA).
-* La mise à jour à partir d’une version antérieure d’Azure AD Connect avec un serveur SQL Server distant affiche l’erreur « Impossible d’accéder à la base de données SQL ADSync ».
+* Mise à jour d’une version précédente d’Azure AD Connect avec un serveur SQL distant affiche erreur « Impossible de tooaccess hello de base de données SQL ADSync » de hello.
 
 ## <a name="1091250"></a>1.0.9125.0
 Publication : novembre 2015
 
 **Nouvelles fonctionnalités :**
 
-* Reconfiguration d’AD FS pour l’approbation Azure AD.
-* Actualisation du schéma Active Directory et nouvelle génération de règles de synchronisation.
+* Pouvez reconfigurer AD FS tooAzure AD trust.
+* Peut actualiser le schéma Active Directory de hello et régénérer les règles de synchronisation.
 * Désactivation d'une règle de synchronisation.
 * Définition d’« AuthoritativeNull » comme nouvelle chaîne littérale dans une règle de synchronisation.
 
@@ -583,47 +583,47 @@ Publication : novembre 2015
 **Problèmes résolus :**
 
 * Problèmes liés à la synchronisation de mot de passe :
-  * Le mot de passe d'un objet inclus dans l'étendue de la synchronisation alors qu'il ne l'était pas ne sera pas synchronisé. Cela est valable pour l’unité d’organisation et le filtrage des attributs.
-  * La sélection d'une nouvelle unité d'organisation à inclure dans la synchronisation ne requiert pas une synchronisation de mot de passe complète.
-  * Lorsqu'un utilisateur désactivé est activé, son mot de passe n'est pas synchronisée.
-  * La file d'attente des nouvelles tentatives de mot de passe est infinie et la limite de 5 000 objets supprimés a été supprimée.
-* Impossible de se connecter à Active Directory avec le niveau fonctionnel de forêt Windows Server 2016.
-* Impossible de modifier le groupe utilisé pour le filtrage de groupes après l’installation initiale.
-* Aucun profil utilisateur n’est plus créé sur le serveur Azure AD Connect pour chaque utilisateur effectuant une modification de mot de passe avec l’écriture différée du mot de passe activée.
-* Impossible d’utiliser des entiers longs dans des règles de synchronisation.
-* La case à cocher « Écriture différée des appareils » reste désactivée s’il existe des contrôleurs de domaine inaccessibles.
+  * Un objet déplacé hors de portée tooin-champ d’application n’aura pas son mot de passe synchronisé. Cela est valable pour l’unité d’organisation et le filtrage des attributs.
+  * Sélection d’un nouveau tooinclude d’unité d’organisation synchronisé ne nécessite pas une synchronisation de mot de passe.
+  * Mot de passe hello n’est pas synchronisée lorsqu’un utilisateur désactivé est activé.
+  * file d’attente des nouvelles tentatives de mot de passe Hello est infinie et limite précédente de hello de 5 000 objets toobe mis hors service a été supprimé.
+* N’a pas pu tooconnect tooActive active avec le niveau fonctionnel de forêt de Windows Server 2016.
+* N’a pas pu toochange groupe hello qui est utilisé pour le filtrage de groupe après l’installation initiale de hello.
+* Ne plus crée un nouveau profil utilisateur sur le serveur d’Azure AD Connect hello pour chaque utilisateur effectuant une modification de mot de passe avec écriture différée de mot de passe activée.
+* N’a pas pu toouse entier Long les valeurs des étendues de règles de synchronisation.
+* case à cocher « l’écriture différée de l’appareil » Hello reste désactivé s’il existe des contrôleurs de domaine inaccessibles.
 
 ## <a name="1086670"></a>1.0.8667.0
 Publication : août 2015
 
 **Nouvelles fonctionnalités :**
 
-* L’Assistant Installation d’Azure AD Connect est maintenant localisé dans toutes les langues de Windows Server.
+* Bonjour Azure AD Connect, l’Assistant installation est désormais localisé langues de Windows Server tooall.
 * Prise en charge du déverrouillage de compte lors de l’utilisation de la gestion des mots de passe d’Azure AD.
 
 **Problèmes résolus :**
 
-* L’Assistant Installation d’Azure AD Connect se bloque si un autre utilisateur continue l’installation à la place de la personne qui a commencé l’installation.
-* Si une désinstallation précédente d’Azure AD Connect ne parvient pas à désinstaller correctement Azure AD Connect Sync, il n’est pas possible de le réinstaller.
-* Impossible d’installer Azure AD Connect en utilisant l’installation rapide si l’utilisateur n’est pas dans le domaine racine de la forêt, ou si une version non anglaise d’Active Directory est utilisée.
-* Si le nom de domaine complet du compte d’utilisateur Active Directory ne peut pas être résolu, un message d’erreur trompeur « Échec de la validation du schéma » est affiché.
-* Si le compte utilisé sur le connecteur Active Directory est modifié en dehors de l’Assistant, l’Assistant échoue lors des exécutions suivantes.
-* L’installation d’Azure AD Connect sur un contrôleur de domaine échoue parfois.
+* Assistant installation de Azure AD Connect se bloque si un autre utilisateur poursuit installation plutôt que personne hello démarré pour la première installation de hello.
+* Si une précédente désinstallation d’Azure AD Connect échoue synchronisation d’Azure AD Connect toouninstall correctement, il n’est pas possible de tooreinstall.
+* Impossible d’installer Azure AD Connect à l’aide d’installation d’Express si hello n’est pas dans le domaine racine de hello de forêt de hello ou si une version non anglaise de Active Directory est utilisée.
+* Si hello nom de domaine complet de hello compte d’utilisateur Active Directory ne peut pas être résolu, un message d’erreur trompeur « Schema de hello n’a pas pu toocommit » est indiqué.
+* Si le compte hello utilisé sur hello connecteur Active Directory est modifié en dehors de l’Assistant de hello, Assistant de hello échoue lors des exécutions suivantes.
+* Azure AD Connect échoue parfois tooinstall sur un contrôleur de domaine.
 * Impossible d’activer et de désactiver le « Mode de préproduction » si des attributs d’extension ont été ajoutés.
-* L’écriture différée de mot de passe échoue dans certaines configurations en raison d’un mot de passe incorrect sur le connecteur Active Directory.
+* L’écriture différée de mot de passe échoue dans certaines configurations en raison d’un mot de passe incorrect sur hello connecteur Active Directory.
 * Impossible de mettre à niveau DirSync si un nom unique (DN) est utilisé lors du filtrage des attributs.
 * Utilisation du processeur excessive lors de la réinitialisation du mot de passe.
 
 **Fonctionnalités préliminaires supprimées :**
 
-* La fonctionnalité préliminaire [Écriture différée d’utilisateur](active-directory-aadconnect-feature-preview.md#user-writeback) a été temporairement supprimée suite aux commentaires des clients de la version préliminaire. Nous la rajouterons une fois que nous aurons traité ces commentaires.
+* fonctionnalité d’aperçu Hello [l’écriture différée de l’utilisateur](active-directory-aadconnect-feature-preview.md#user-writeback) a été temporairement supprimé en fonction des commentaires de nos clients de la version préliminaire. Il est ajouté ultérieurement une fois que nous avons abordé hello fourni des commentaires.
 
 ## <a name="1086410"></a>1.0.8641.0
 Publication : juin 2015
 
 **Version initiale d’Azure AD Connect.**
 
-Changement de nom d’Azure AD Sync en Azure AD Connect.
+Nom modifié à partir d’Azure AD Sync tooAzure AD Connect.
 
 **Nouvelles fonctionnalités :**
 
@@ -645,7 +645,7 @@ Publication : mai 2015
 
 **Nouvelle condition requise**
 
-* Azure AD Sync requiert maintenant que .NET Framework version 4.5.1 soit installé.
+* Azure AD Sync requiert désormais hello .NET Framework version 4.5.1 toobe est installé.
 
 **Problèmes résolus :**
 
@@ -656,17 +656,17 @@ Publication : avril 2015
 
 **Problèmes résolus et améliorations :**
 
-* Le connecteur Active Directory ne traite pas correctement les suppressions si la Corbeille est activée et qu’il existe plusieurs domaines dans la forêt.
-* Les performances des opérations d’importation ont été améliorées pour le connecteur Azure Active Directory.
-* Lorsqu’un groupe dépassait la limite d’appartenance (par défaut, la limite est définie à 50 000 objets), le groupe était supprimé dans Azure Active Directory. Désormais, le groupe n’est pas supprimé. Une erreur est générée et les nouveaux changements d’appartenance ne sont pas exportés.
-* Un nouvel objet ne peut pas être configuré si une suppression intermédiaire avec le même nom de domaine est déjà présente dans l’espace du connecteur.
-* Certains objets sont marqués pour synchronisation lors d’une synchronisation différentielle même si aucune modification intermédiaire n’est apportée à l’objet.
-* Forcer une synchronisation de mot de passe supprime également la liste des contrôleurs de domaine favoris.
+* Hello connecteur Active Directory ne traite pas correctement les suppressions si Corbeille hello est activée et il existe plusieurs domaines dans la forêt de hello.
+* performances Hello des opérations d’importation a été améliorée pour hello le connecteur Active Directory.
+* Lorsqu’un groupe a dépassé la limite d’appartenance hello (par défaut, la limite de hello a la valeur too50, 000 objets), groupe de hello a été supprimé dans Azure Active Directory. Avec le nouveau comportement de hello, groupe de hello n’est pas supprimé, une erreur est générée et nouvelle modification d’appartenance n’est pas exportées.
+* Un nouvel objet ne peut pas être configuré si une suppression intermédiaire avec hello que même nom de domaine est déjà présente dans l’espace de connecteur hello.
+* Certains objets sont marquées pour la synchronisation pendant une synchronisation delta bien qu’il n’existe aucune modification intermédiaire sur l’objet de hello.
+* Forcer une synchronisation de mot de passe supprime également la liste de contrôleur de domaine hello préféré.
 * CSExportAnalyzer a des problèmes avec certains états des objets.
 
 **Nouvelles fonctionnalités :**
 
-* Une jonction peut maintenant connecter au type d’objet « ANY » dans le métaverse.
+* Une jointure peut maintenant se connecter à trop « ANY » type d’objet dans hello MV.
 
 ## <a name="104850222"></a>1.0.485.0222
 Publication : février 2015
@@ -677,9 +677,9 @@ Publication : février 2015
 
 **Problèmes résolus :**
 
-* La synchronisation de mot de passe prend en compte l’attribut cloudFiltered utilisé par le filtrage des attributs. Les objets filtrés ne sont plus dans la portée pour la synchronisation de mot de passe.
-* Dans de rares situations où la topologie avait un grand nombre de contrôleurs de domaine, la synchronisation de mot de passe ne fonctionnait pas.
-* « Arrêt serveur » lors de l’importation à partir du connecteur Azure AD après l’activation de la gestion des appareils dans Azure AD/Intune.
+* Synchronisation de mot de passe respecte l’attribut cloudFiltered hello qui est utilisé par le filtrage d’attributs. Les objets filtrés ne sont plus dans la portée pour la synchronisation de mot de passe.
+* Dans les rares cas où la topologie de hello avait plusieurs contrôleurs de domaine, synchronisation de mot de passe ne fonctionne pas.
+* « Serveur arrêté » lors de l’importation à partir du connecteur Azure AD de hello après la gestion de périphérique a été activée dans Azure AD/Intune.
 * La jonction d’entités de sécurité externes à partir de plusieurs domaines dans la même forêt provoque une erreur de jonction ambiguë.
 
 ## <a name="104751202"></a>1.0.475.1202
@@ -688,19 +688,19 @@ Publication : décembre 2014
 **Nouvelles fonctionnalités :**
 
 * Il est maintenant possible d’effectuer la synchronisation de mot de passe avec le filtrage basé sur les attributs. Pour plus d’informations, consultez [Synchronisation de mot de passe avec filtrage](active-directory-aadconnectsync-configure-filtering.md).
-* L’attribut msDS-ExternalDirectoryObjectID est écrit en différé dans Active Directory. Cette fonctionnalité prend en charge les applications Office 365. Elle utilise OAuth2 pour accéder aux boîtes aux lettres en ligne et en local dans un déploiement d’Exchange hybride.
+* attribut msDS-ExternalDirectoryObjectID de Hello est réécrites tooActive active. Cette fonctionnalité prend en charge les applications Office 365. Il utilise OAuth2 tooaccess des boîtes aux lettres en ligne et en local dans un déploiement Exchange hybride.
 
 **Problèmes de mise à niveau résolus :**
 
-* Une version plus récente de l’Assistant Connexion est disponible sur le serveur.
-* Un chemin d’installation personnalisé était utilisé pour installer Azure AD Sync.
-* Un critère de jonction personnalisée non valide bloque la mise à niveau.
+* Une version plus récente de l’assistant de connexion hello est disponible sur le serveur de hello.
+* Un chemin d’installation personnalisé a été utilisé tooinstall Azure AD Sync.
+* Une jointure personnalisé incorrect critère blocs hello mise à niveau.
 
 **Autres correctifs :**
 
-* Résolution du problème des modèles pour Office Professionnel Plus.
+* Modèles de hello fixe pour Office Pro Plus.
 * Résolution des problèmes d’installation provoqué par des noms d’utilisateurs commençant par un tiret.
-* Résolution du problème de perte de la valeur de sourceAnchor lors d’une deuxième exécution de l’Assistant Installation.
+* Fixe perdante hello paramètre sourceAnchor lors de l’exécution de l’Assistant installation hello une deuxième fois.
 * Résolution du traçage ETW pour la synchronisation de mot de passe.
 
 ## <a name="104701023"></a>1.0.470.1023
@@ -708,20 +708,20 @@ Publication : octobre 2014
 
 **Nouvelles fonctionnalités :**
 
-* Synchronisation du mot de passe à partir de plusieurs configurations Active Directory locales vers Azure AD.
-* Interface utilisateur du programme d’installation localisée dans toutes les langues de Windows Server.
+* Synchronisation de mot de passe à partir de plusieurs locaux Active Directory tooAzure AD.
+* Langues de Windows Server tooall installation localisée l’interface utilisateur.
 
 **Mise à niveau à partir d’Azure Active Directory Sync 1.0 GA**
 
-Si vous avez déjà installé Azure AD Sync, vous devez effectuer une étape supplémentaire dans le cas où vous avez modifié les règles de synchronisation prédéfinies. Une fois que vous avez mis à niveau vers la version 1.0.470.1023, les règles de synchronisation que vous avez modifiées sont dupliquées. Pour chaque règle de synchronisation modifiée, procédez comme suit :
+Si vous avez déjà installé Azure AD Sync, il est une étape supplémentaire que vous avez tootake au cas où vous avez modifié une des règles de synchronisation d’out-of-box hello. Une fois que vous avez mis à niveau toohello 1.0.470.1023 version, vous avez modifié les règles de synchronisation hello sont dupliquées. Pour chaque règle de synchronisation modifiée, hello suivant :
 
-1.  Recherchez la règle de synchronisation que vous avez modifiée et notez les modifications.
-* Supprimez la règle de synchronisation.
-* Recherchez la nouvelle règle de synchronisation créée par Azure AD Sync et réappliquez les modifications.
+1.  Recherchez la règle de synchronisation hello vous avez modifié et prenez note des modifications de hello.
+* Supprimer la règle de synchronisation hello.
+* Localisez hello nouvelle règle de synchronisation qui est créée par Azure AD Sync et réappliquez les modifications hello.
 
-**Autorisation pour le compte Active Directory**
+**Autorisations pour hello compte Active Directory**
 
-Le compte Active Directory doit disposer d’autorisations supplémentaires pour permettre la lecture des hachages de mot de passe à partir d’Active Directory. Les autorisations à accorder sont nommées « Réplication des changements de répertoire » et « Réplication de toutes les modifications de l’annuaire ». Les deux autorisations sont nécessaires pour permettre la lecture des hachages de mot de passe.
+Hello compte Active Directory doit disposer de hachages de mot de passe des autorisations supplémentaires toobe tooread en mesure de hello à partir d’Active Directory. Hello autorisations toogrant sont nommées « Réplication des modifications d’annuaire » et « Répertoire de la réplication de toutes les modifications. » Les deux autorisations sont des hachages de mot de passe requis toobe tooread en mesure de hello.
 
 ## <a name="104190911"></a>1.0.419.0911
 Publication : septembre 2014

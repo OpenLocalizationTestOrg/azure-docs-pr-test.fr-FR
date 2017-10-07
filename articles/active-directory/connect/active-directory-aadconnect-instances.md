@@ -14,27 +14,27 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: billmath
-ms.openlocfilehash: e8321c3d16253226a5931cacbce6fa5d50b697bd
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 2a0d8a599cf84cd6530bdbb24951156510d2cf3f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-ad-connect-special-considerations-for-instances"></a>Azure AD Connect : considérations spéciales relatives aux instances
-Azure AD Connect est couramment utilisé avec l’instance mondiale d’Azure AD et Office 365. Mais il existe également d’autres instances, qui ont des exigences différentes en matière d’URL et autres considérations spéciales.
+Azure AD Connect est plus couramment utilisé avec hello world-wide instance de Azure AD et Office 365. Mais il existe également d’autres instances, qui ont des exigences différentes en matière d’URL et autres considérations spéciales.
 
 ## <a name="microsoft-cloud-germany"></a>Microsoft Cloud Allemagne
-[Microsoft Cloud Allemagne](http://www.microsoft.de/cloud-deutschland) est un cloud souverain géré par un client allemand approuvé dans le domaine des données.
+Hello [Microsoft Cloud Allemagne](http://www.microsoft.de/cloud-deutschland) est un cloud souverain exploité par un tiers de confiance de données en allemand.
 
-| URL à ouvrir dans le serveur proxy |
+| Tooopen URL de serveur proxy |
 | --- |
 | \*.microsoftonline.de |
 | \*.windows.net |
 | + Listes de révocation de certificat |
 
-Quand vous vous connectez à votre locataire Azure AD, vous devez utiliser un compte du domaine onmicrosoft.de.
+Lorsque vous vous connectez dans le locataire Azure AD de tooyour, vous devez utiliser un compte dans le domaine de onmicrosoft.de hello.
 
-Fonctionnalités actuellement absentes de Microsoft Cloud Allemagne :
+Fonctionnalités qui ne sont pas présentes dans hello Microsoft Cloud Allemagne :
 
 * **Azure AD Connect Health** n’est pas disponible.
 * Les **mises à jour automatiques** ne sont pas disponibles.
@@ -42,25 +42,25 @@ Fonctionnalités actuellement absentes de Microsoft Cloud Allemagne :
 * Les autres services Azure AD Premium ne sont pas disponibles.
 
 ## <a name="microsoft-azure-government-cloud"></a>Cloud Microsoft Azure Government
-Le [cloud Microsoft Azure Government](https://azure.microsoft.com/features/gov/) est un cloud du gouvernement des États-Unis.
+Hello [cloud de Microsoft Azure Government](https://azure.microsoft.com/features/gov/) est un cloud pour le gouvernement des États-Unis.
 
-Ce cloud a été pris en charge par des versions antérieures de DirSync. À partir de la build 1.1.180 d’Azure AD Connect, la nouvelle génération du cloud est prise en charge. Cette génération utilise des points de terminaison États-Unis uniquement et a sa propre liste d’URL à ouvrir dans votre serveur proxy.
+Ce cloud a été pris en charge par des versions antérieures de DirSync. À partir de la build 1.1.180 d’Azure AD Connect, hello nouvelle génération de cloud de hello est pris en charge. Cette génération à l’aide de points de terminaison en fonction des États-Unis uniquement et avoir une autre liste de tooopen de l’URL de votre serveur proxy.
 
-| URL à ouvrir dans le serveur proxy |
+| Tooopen URL de serveur proxy |
 | --- |
-| \*.microsoftonline.com |
+| \**.microsoftonline.com |
 | \*.microsoftonline.us |
 | \*.gov.us.microsoftonline.com |
 | + Listes de révocation de certificat |
 
-Azure AD Connect ne peut pas détecter automatiquement que votre locataire Azure AD se trouve dans le cloud Government. Au lieu de cela, vous devez effectuer les actions suivantes lorsque vous installez Azure AD Connect.
+Azure AD Connect n’est pas en mesure de détecter les tooautomatically que votre client Azure AD se trouve dans le cloud de gouvernement hello. Au lieu de cela, vous devez hello tootake suivant des actions lorsque vous installez Azure AD Connect.
 
-1. Lancez l’installation d’Azure AD Connect.
-2. Quand vous voyez apparaître la première page où vous êtes censé accepter le CLUF, ne poursuivez pas, mais laissez l’Assistant Installation en cours d’exécution.
-3. Lancez regedit et modifiez la clé de registre de la valeur `HKLM\SOFTWARE\Microsoft\Azure AD Connect\AzureInstance` à la valeur `2`.
-4. Revenez à l’Assistant Installation d’Azure AD Connect, acceptez le CLUF et continuez. Pendant l’installation, veillez à utiliser le chemin d’accès d’installation de la **configuration personnalisée** (et non l’installation rapide). Puis continuez l’installation normalement.
+1. Démarrer l’installation d’Azure AD Connect hello.
+2. Lorsque vous voyez hello première page où vous êtes supposé tooaccept hello CLUF, ne continuez pas, mais laissez l’Assistant installation de hello en cours d’exécution.
+3. Démarrez regedit et modifier la clé de Registre hello `HKLM\SOFTWARE\Microsoft\Azure AD Connect\AzureInstance` toohello valeur `2`.
+4. Assistant d’installation toohello Azure AD Connect revenir en arrière, accepter hello CLUF et continuer. Pendant l’installation, assurez-vous que toouse hello **configuration personnalisée** chemin d’accès de l’installation (et non l’installation Express). Poursuivez les installation Bonjour comme d’habitude.
 
-Fonctionnalités actuellement absentes du cloud Microsoft Azure Government :
+Fonctionnalités qui ne sont pas présentes dans le cloud de Microsoft Azure Government hello :
 
 * **Azure AD Connect Health** n’est pas disponible.
 * Les **mises à jour automatiques** ne sont pas disponibles.

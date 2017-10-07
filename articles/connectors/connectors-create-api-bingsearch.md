@@ -1,6 +1,6 @@
 ---
-title: "Ajouter le connecteur Recherche Bing à des applications logiques | Microsoft Docs"
-description: "Vue d’ensemble du connecteur Bing Search avec les paramètres de l’API REST"
+title: les applications logique connecteur aaaAdd hello recherche Bing | Documents Microsoft
+description: "Vue d’ensemble du connecteur de recherche Bing hello avec des paramètres de l’API REST"
 services: 
 suite: 
 documentationcenter: 
@@ -16,24 +16,24 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/07/2016
 ms.author: mandia; ladocs
-ms.openlocfilehash: 863a15d716161bfa9d3e041174504b73a2956e8d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 839b7d85367d1fdc63b91dcfe3166e177f10eaf1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-the-bing-search-connector"></a>Prise en main du connecteur Bing Search
-Connecte-vous à Bing Search pour rechercher des actualités, des vidéos et bien plus encore. Avec Bing Search, vous pouvez effectuer les opérations suivantes : 
+# <a name="get-started-with-hello-bing-search-connector"></a>Prise en main connecteur de recherche Bing hello
+Se connecter tooBing news toosearch de recherche, recherche les vidéos et bien plus encore. Avec Bing Search, vous pouvez effectuer les opérations suivantes : 
 
-* Créer votre flux d’activité en fonction des données que vous obtenez pendant votre recherche. 
-* Utiliser des actions pour rechercher des images, des actualités et bien plus encore. Ces actions obtiennent une réponse, puis mettent la sortie à la disposition d’autres actions. Par exemple, vous pouvez rechercher une vidéo, puis utiliser Twitter pour la publier dans un flux Twitter.
+* Générer des flux de votre entreprise en fonction des données hello que vous obtenez à partir de votre recherche. 
+* Utilisez les images toosearch actions, recherche hello actualités et bien plus encore. Ces actions Obtient une réponse et puis disposition de sortie de hello pour d’autres actions. Par exemple, vous pouvez rechercher une vidéo et ensuite utiliser Twitter toopost cette vidéo tooa que flux Twitter.
 
 Vous pouvez commencer par créer une application logique. Pour cela, consultez [Créer une application logique](../logic-apps/logic-apps-create-a-logic-app.md).
 
-## <a name="connector-specific-details"></a>Détails spécifiques aux connecteurs
+## <a name="connector-specific-details"></a>Détails spécifiques du connecteur
 
-Consultez tous les déclencheurs et les actions définies dans le swagger, ainsi que les éventuelles limites dans les [détails des connecteurs](/connectors/bingsearch/).
+Afficher les déclencheurs et les actions définies dans les swagger hello et également voir les limites Bonjour [détails du connecteur](/connectors/bingsearch/).
 
 ## <a name="more-connectors"></a>Autres connecteurs
-Revenir à la [liste des API](apis-list.md).
+Revenir en arrière toohello [liste des API](apis-list.md).
 

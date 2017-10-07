@@ -1,6 +1,6 @@
 ---
-title: "Rapports d’activité de connexion dans le portail Azure Active Directory | Microsoft Docs"
-description: "Présentation des rapports d’activité de connexion dans le portail Azure Active Directory"
+title: "rapports aaaSign sur l’activité dans le portail d’Azure Active Directory hello | Documents Microsoft"
+description: "Présentation des rapports toosign sur l’activité dans le portail d’Azure Active Directory hello"
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -15,47 +15,47 @@ ms.workload: identity
 ms.date: 07/19/2017
 ms.author: markvi
 ms.reviewer: dhanyahk
-ms.openlocfilehash: b9e61950654ba427b09dd608d354589a0804aaa5
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 49590d625a08d7dc189a629b89bab2261c2b4780
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="sign-in-activity-reports-in-the-azure-active-directory-portal"></a>Rapports d’activité de connexion dans le portail Azure Active Directory
+# <a name="sign-in-activity-reports-in-hello-azure-active-directory-portal"></a>Rapports d’activité de connexion dans le portail d’Azure Active Directory hello
 
-Grâce à la fonction de création de rapports Azure Active Directory (Azure AD) dans le [portail Azure](https://portal.azure.com), vous pouvez obtenir les informations dont vous avez besoin pour évaluer l’état de votre environnement.
+Avec Azure Active Directory (Azure AD) reporting Bonjour [portail Azure](https://portal.azure.com), vous pouvez obtenir des informations de hello nécessaires toodetermine faire de votre environnement.
 
-L’architecture de création de rapports dans Azure Active Directory comprend les composants suivants :
+Hello architecture des rapports dans Azure Active Directory se compose de hello suivant des composants :
 
 - **Activité** 
-    - **Activités de connexion** – Informations sur l’utilisation des applications gérées et les activités de connexion des utilisateurs
+    - **Activités de connexion** – informations sur l’utilisation de hello des applications gérées et les activités d’authentification des utilisateurs
     - **Activités du système** – Informations sur les activités du système liées aux utilisateurs et à la gestion des groupes, à vos applications gérées et aux activités de répertoire.
 - **Sécurité** 
-    - **Connexions risquées** : une connexion risquée est une tentative de connexion susceptible de provenir d’un utilisateur autre que le propriétaire légitime d’un compte d’utilisateur. Pour en savoir plus, consultez Connexions risquées.
+    - **Connexions risquées** -un risque de connexion est un indicateur pour une tentative de connexion qui ont peut-être été exécutée par une personne qui n’est pas propriétaire de légitime hello d’un compte d’utilisateur. Pour en savoir plus, consultez Connexions risquées.
     - **Utilisateurs avec indicateur de risque** : il s’agit d’un compte d’utilisateur susceptible d’être compromis. Pour en savoir plus, consultez Utilisateurs avec indicateur de risque.
 
-Cette rubrique vous donne une vue d’ensemble des activités de connexion.
+Cette rubrique donne une vue d’ensemble d’activités de connexion hello.
 
 ## <a name="pre-requisite"></a>Conditions préalables
 
-### <a name="who-can-access-the-data"></a>Qui peut accéder aux données ?
-* Utilisateurs ayant le rôle d’administrateur de sécurité ou de lecteur de la sécurité
+### <a name="who-can-access-hello-data"></a>Qui peut accéder à des données de salutation ?
+* Utilisateurs dans le rôle d’administrateur de la sécurité ou de sécurité Reader hello
 * Administrateurs généraux
 * Tous les utilisateurs (non administrateurs) peuvent accéder à leurs propres connexions 
 
-### <a name="what-azure-ad-license-do-you-need-to-access-sign-in-activity"></a>De quelle licence Azure AD avez-vous besoin pour accéder à l’activité de connexion ?
-* Votre client doit avoir une licence Azure AD Premium associée pour afficher tous les rapports d’activités de connexion.
+### <a name="what-azure-ad-license-do-you-need-tooaccess-sign-in-activity"></a>Licence Azure AD tooaccess activités avez-vous besoin ?
+* Votre client doit avoir une licence Azure AD Premium associée toosee hello tout signe-rapport activité
 
 
 ## <a name="signs-in-activities"></a>Activités de connexion
 
-Avec les informations fournies par le rapport sur les connexions des utilisateurs, trouvez des réponses aux questions telles que :
+Informations hello fournies par le rapport d’authentification de l’utilisateur du hello, trouver tooquestions réponses telles que :
 
-* Quel est le modèle de connexion d’un utilisateur ?
+* Quel est le modèle hello d’authentification d’un utilisateur ?
 * Combien d’utilisateurs se sont connectés au cours d’une semaine ?
-* Quel est l’état de ces connexions ?
+* Quel est état hello de ces connexions ?
 
-La zone **Connexions** de la section Activité de **Azure Active** constitue votre premier point d’entrée pour toutes les activités de connexion.
+Votre première entrée tooall de point de connexion activités données **connexions** dans la section d’activité de hello **Azure Active**.
 
 
 ![Activité de connexion](./media/active-directory-reporting-activity-sign-ins/61.png "Activité de connexion")
@@ -63,29 +63,29 @@ La zone **Connexions** de la section Activité de **Azure Active** constitue vot
 
 Un journal d’audit inclut un mode Liste par défaut, qui indique :
 
-- l’utilisateur associé ;
-- l’application à laquelle l’utilisateur est connecté ;
-- l’état de la connexion ;
-- l’heure de la connexion.
+- utilisateur Hello
+- Hello application hello l’utilisateur a connecté-de
+- état de la connexion Hello
+- temps de connexion Hello
 
 ![Activité de connexion](./media/active-directory-reporting-activity-sign-ins/41.png "Activité de connexion")
 
-Vous pouvez personnaliser le mode Liste en cliquant sur **Colonnes** dans la barre d’outils.
+Vous pouvez personnaliser l’affichage de liste hello en cliquant sur **colonnes** dans la barre d’outils hello.
 
 ![Activité de connexion](./media/active-directory-reporting-activity-sign-ins/19.png "Activité de connexion")
 
-Cela vous permet d’afficher des champs supplémentaires, ou de supprimer des champs qui sont déjà affichés.
+Cela vous permet de toodisplay des champs supplémentaires ou supprimer des champs qui sont déjà affichés.
 
 ![Activité de connexion](./media/active-directory-reporting-activity-sign-ins/42.png "Activité de connexion")
 
-En cliquant sur un élément dans le mode Liste, vous pouvez obtenir toutes les informations disponibles le concernant.
+En cliquant sur un élément dans la vue de liste hello, vous obtenez toutes les informations disponibles à ce sujet.
 
 ![Activité de connexion](./media/active-directory-reporting-activity-sign-ins/43.png "Activité de connexion")
 
 
 ## <a name="filtering-sign-in-activities"></a>Filtrage des activités de connexion
 
-Pour limiter les données transmises à un niveau qui vous convient, vous pouvez filtrer les données de connexion à l’aide des champs suivants :
+toonarrow bas hello signalés au niveau de tooa de données que fonctionne pour vous, vous pouvez filtrer les données de connexions hello hello suivant des champs à l’aide de :
 
 - Intervalle de temps
 - Utilisateur
@@ -96,7 +96,7 @@ Pour limiter les données transmises à un niveau qui vous convient, vous pouvez
 ![Activité de connexion](./media/active-directory-reporting-activity-sign-ins/44.png "Activité de connexion")
 
 
-Le filtre **Intervalle de temps** vous permet de définir un intervalle de temps pour les données renvoyées.  
+Hello **intervalle de temps** filtre active tooyou toodefine un laps de temps pour hello a retourné des données.  
 Les valeurs possibles sont les suivantes :
 
 - 1 mois
@@ -106,13 +106,13 @@ Les valeurs possibles sont les suivantes :
 
 Lorsque vous sélectionnez une plage personnalisée, vous pouvez configurer une heure de début et une heure de fin.
 
-Le filtre **Utilisateur** vous permet de spécifier le nom ou le nom d’utilisateur principal de l’utilisateur qui vous intéresse.
+Hello **utilisateur** filtre vous permet de nom de hello toospecify ou hello nom d’utilisateur principal (UPN) de l’utilisateur hello vous intéressent.
 
-Le filtre **Application** vous permet de spécifier le nom de l’application qui vous intéresse.
+Hello **application** filtre vous permet de nom de hello toospecify de l’application hello vous intéressent.
 
-Le filtre **Client** vous permet de spécifier des informations sur l’appareil qui vous intéresse.
+Hello **client** filtre vous permet de toospecify d’informations sur les appareils hello vous intéressent.
 
-Le filtre **État de la connexion** vous permet de sélectionner l’un des filtres suivants :
+Hello **état de la connexion** filtre vous permet de tooselect un Hello suivant filtre :
 
 - Tout
 - Succès
@@ -121,7 +121,7 @@ Le filtre **État de la connexion** vous permet de sélectionner l’un des filt
 
 ## <a name="sign-in-activities-shortcuts"></a>Raccourcis relatifs aux activités de connexion
 
-En plus d’Azure Active Directory, le portail Azure vous offre deux autres points d’entrée pour les données sur les activités de connexion :
+En outre tooAzure Active Directory, hello portail Azure vous offre deux entrée supplémentaire points activités toosign de données :
 
 - Utilisateurs et groupes
 - Applications d’entreprise
@@ -129,35 +129,35 @@ En plus d’Azure Active Directory, le portail Azure vous offre deux autres p
 
 ### <a name="users-and-groups-sign-ins-activities"></a>Activités de connexion des utilisateurs et des groupes
 
-Avec les informations fournies par le rapport sur les connexions des utilisateurs, trouvez des réponses aux questions telles que :
+Informations hello fournies par le rapport d’authentification de l’utilisateur du hello, trouver tooquestions réponses telles que :
 
-- Quel est le modèle de connexion d’un utilisateur ?
+- Quel est le modèle hello d’authentification d’un utilisateur ?
 - Combien d’utilisateurs se sont connectés au cours d’une semaine ?
-- Quel est l’état de ces connexions ?
+- Quel est état hello de ces connexions ?
 
 
 
-Votre point d’entrée pour ces données est le graphique des connexions des utilisateurs dans la section **Overview** (Vue d’ensemble) sous **Utilisateurs et groupes**.
+Vos données de toothis de point d’entrée sont hello utilisateur connectez-vous graphique Bonjour **vue d’ensemble** sous **utilisateurs et groupes**.
 
 ![Activité de connexion](./media/active-directory-reporting-activity-sign-ins/45.png "Activité de connexion")
 
-Le graphique des connexions des utilisateurs affiche les agrégations hebdomadaires des connexions de tous les utilisateurs au cours d’une période donnée. La valeur par défaut de cette période est de 30 jours.
+graphique d’ouverture de session utilisateur Hello montre agrégations hebdomadaire de la connexion ins pour tous les utilisateurs dans une période donnée. valeur par défaut de Hello pour hello laps de temps est de 30 jours.
 
 ![Activité de connexion](./media/active-directory-reporting-activity-sign-ins/46.png "Activité de connexion")
 
-Lorsque vous cliquez sur un jour dans le graphique des connexions, vous obtenez une liste détaillée des activités de connexion correspondantes.
+Lorsque vous cliquez sur un jour dans hello connectez-vous graphique, vous obtenez une liste détaillée des activités de connexion hello pour ce jour.
 
 ![Activité de connexion](./media/active-directory-reporting-activity-sign-ins/41.png "Activité de connexion")
 
-Chaque ligne dans la liste des activités de connexion vous fournit des informations détaillées sur la connexion sélectionnée, par exemple :
+Chaque ligne de hello connectez-vous activités liste donne que vous hello des informations détaillées sur hello sélectionné connectez-vous comme :
 
 * Qui s’est connecté ?
-* Qui a l’UPN associé ?
-* Quelle application a été la cible de la connexion ?
-* Quelle est l’adresse IP de la connexion ?
-* Quel est l’état de la connexion ?
+* Quel était hello liées UPN ?
+* Quelle application a été hello cible hello connectez-vous ?
+* Nouveautés d’adresse IP de hello de la connexion au hello ?
+* Quel était le statut hello de la connexion au hello ?
 
-L’option **Connexions** vous fournit une vue d’ensemble complète de toutes les connexions utilisateur.
+Hello **connexions** vous donne une vue d’ensemble complète de toutes les connexions utilisateur.
 
 ![Activité de connexion](./media/active-directory-reporting-activity-sign-ins/51.png "Activité de connexion")
 
@@ -168,29 +168,29 @@ L’option **Connexions** vous fournit une vue d’ensemble complète de toutes 
 En disposant d’une vue centrée sur les applications de vos données de connexion, vous pouvez répondre aux questions telles que :
 
 * Qui utilise mes applications ?
-* Quelles sont les 3 principales applications dans votre organisation ?
+* Quelles sont les principales 3 applications hello dans votre organisation ?
 * J’ai récemment déployé une application. Comment se comporte-t-elle ?
 
-Les 3 principales applications de votre organisation dans le rapport sur les 30 derniers jours apparaissant dans la section **Vue d’ensemble** sous **Enterprise applications** (Applications d’entreprise) constituent votre point d’entrée.
+Vos données de toothis de point d’entrée sont hello supérieur 3 applications dans votre organisation dans le dernier rapport de 30 jours hello Bonjour **vue d’ensemble** sous **des applications d’entreprise**.
 
 ![Activité de connexion](./media/active-directory-reporting-activity-sign-ins/64.png "Activité de connexion")
 
-Le graphique d’utilisation des applications affiche les agrégations hebdomadaires des connexions pour vos 3 principales applications au cours d’une période donnée. La valeur par défaut de cette période est de 30 jours.
+Hello application utilisation graphique agrégations hebdomadaires de connexions pour vos applications haut 3 dans un laps de temps donné. valeur par défaut de Hello pour hello laps de temps est de 30 jours.
 
 ![Activité de connexion](./media/active-directory-reporting-activity-sign-ins/47.png "Activité de connexion")
 
-Si vous le souhaitez, vous pouvez définir la focalisation sur une application spécifique.
+Si vous le souhaitez, vous pouvez définir le focus de hello sur une application spécifique.
 
 
 ![Reporting](./media/active-directory-reporting-activity-sign-ins/single_spp_usage_graph.png "Reporting")
 
-Lorsque vous cliquez sur un jour dans le graphique d’utilisation des applications, vous obtenez une liste détaillée des activités de connexion.
+Lorsque vous cliquez sur le graphique d’utilisation application hello par jour, vous obtenez une liste détaillée des activités de connexion hello.
 
 
 ![Activité de connexion](./media/active-directory-reporting-activity-sign-ins/48.png "Activité de connexion")
 
 
-L’option **Connexions** vous fournit une vue d’ensemble complète de tous les événements de connexion à vos applications.
+Hello **connexions** vous donne une vue d’ensemble complète de toutes les applications de tooyour d’événements de connexion.
 
 ![Activité de connexion](./media/active-directory-reporting-activity-sign-ins/49.png "Activité de connexion")
 
@@ -198,5 +198,5 @@ L’option **Connexions** vous fournit une vue d’ensemble complète de tous le
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Pour en savoir plus sur les codes d’erreur de l’activité des connexions, voir [Codes d’erreur des rapports d’activité des connexions dans le portail Azure Active Directory](active-directory-reporting-activity-sign-ins-errors.md).
+Si vous souhaitez tooknow plus d’informations sur les codes d’erreur activité de connexion, consultez hello [connexion activité rapport codes d’erreur portail d’Azure Active Directory hello](active-directory-reporting-activity-sign-ins-errors.md).
 

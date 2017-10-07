@@ -1,6 +1,6 @@
 ---
-title: "Prise en main de la diffusion de contenu vidéo à la demande (VoD) à l’aide du portail Azure | Microsoft Docs"
-description: "Ce didacticiel explique comment implémenter un service de base de diffusion de contenu vidéo à la demande (VoD) avec l’application Azure Media Services (AMS) à l’aide du portail Azure."
+title: "aaaGet démarré à la livraison de demande (VOD) à l’aide de hello portail Azure | Documents Microsoft"
+description: "Ce didacticiel vous guide tout au long des étapes hello d’implémentation d’un service de diffusion de contenu vidéo à la demande (VoD) base avec l’application Azure Media Services (AMS) à l’aide de hello portail Azure."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,150 +14,150 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 08/07/2017
 ms.author: juliako
-ms.openlocfilehash: a8eeeeff412837acba14b441a3c590edf7e3597a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 5c1c1b1f74ec1f1301120fe8e5a5ae183fe0338f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-delivering-content-on-demand-using-the-azure-portal"></a>Prendre en main la diffusion de contenus à la demande à l’aide du portail Azure
+# <a name="get-started-with-delivering-content-on-demand-using-hello-azure-portal"></a>Prise en main la diffusion de contenu sur demande à l’aide de hello portail Azure
 [!INCLUDE [media-services-selector-get-started](../../includes/media-services-selector-get-started.md)]
 
-Ce didacticiel explique comment implémenter un service de base de diffusion de contenu vidéo à la demande (VoD) avec l’application Azure Media Services (AMS) à l’aide du portail Azure.
+Ce didacticiel vous guide tout au long des étapes hello d’implémentation d’un service de diffusion de contenu vidéo à la demande (VoD) base avec l’application Azure Media Services (AMS) à l’aide de hello portail Azure.
 
 ## <a name="prerequisites"></a>Composants requis
-Les éléments suivants sont requis pour suivre le didacticiel :
+Hello Voici didacticiel de hello toocomplete requis :
 
 * Un compte Azure. Pour plus d'informations, consultez la page [Version d'évaluation gratuite d'Azure](https://azure.microsoft.com/pricing/free-trial/). 
-* Un compte Media Services. Pour créer un compte Media Services, consultez [Création d’un compte Media Services](media-services-portal-create-account.md).
+* Un compte Media Services. toocreate un compte Media Services, consultez [comment tooCreate un compte Media Services](media-services-portal-create-account.md).
 
-Ce didacticiel comprend les tâches suivantes :
+Ce didacticiel inclut hello tâches suivantes :
 
 1. Démarrer un point de terminaison de streaming.
 2. Télécharger un fichier vidéo.
-3. Encoder le fichier source en un ensemble de fichiers MP4 à débit adaptatif.
-4. Publier l'élément multimédia et obtenir les URL de diffusion et de téléchargement progressif.  
+3. Encoder le fichier de source de hello en un ensemble de fichiers MP4 à débit adaptatif.
+4. Publier les actifs hello et get de diffusion en continu et URL de téléchargement progressif.  
 5. Lire votre contenu.
 
 ## <a name="start-streaming-endpoints"></a>Démarrer les points de terminaison de streaming 
 
-Lorsque vous utilisez Azure Media Services, la diffusion de vidéos en continu à débit binaire adaptatif constitue l’un des scénarios les plus courants. Media Services assure l’empaquetage dynamique, qui vous permet de distribuer juste-à-temps un contenu encodé en MP4 à débit adaptatif dans un format de diffusion en continu pris en charge par Media Services (MPEG DASH, HLS, Smooth Streaming), sans qu’il vous soit nécessaire de stocker des versions pré-empaquetées de chacun de ces formats.
+Lorsque vous travaillez avec un des scénarios les plus courants de hello est diffusion vidéo via à débit adaptatif de diffusion en continu Azure Media Services. Media Services propose un empaquetage dynamique, ce qui vous permet de toodeliver votre vitesse de transmission adaptative MP4 encodés le contenu de diffusion en continu des formats pris en charge par Media Services (MPEG DASH, HLS, Smooth Streaming) juste-à-temps, sans que vous ayez toostore préconçue versions de chacune de ces formats de diffusion en continu.
 
 >[!NOTE]
->Une fois votre compte AMS créé, un point de terminaison de streaming **par défaut** est ajouté à votre compte à l’état **Arrêté**. Pour démarrer la diffusion en continu de votre contenu et tirer parti de l’empaquetage et du chiffrement dynamiques, le point de terminaison de streaming à partir duquel vous souhaitez diffuser du contenu doit se trouver à l’état **En cours d’exécution**. 
+>Création de votre compte AMS un **par défaut** point de terminaison de diffusion en continu est ajoutée tooyour compte Bonjour **arrêté** état. toostart de diffusion en continu de votre contenu et profitez de l’empaquetage dynamique et chiffrement dynamique, hello de point de terminaison de diffusion en continu à partir de laquelle vous souhaitez que le contenu toostream a toobe Bonjour **en cours d’exécution** état. 
 
-Pour démarrer le point de terminaison de streaming, procédez comme suit :
+toostart hello du point de terminaison de diffusion en continu, hello suivant :
 
-1. Connectez-vous au [portail Azure](https://portal.azure.com/).
-2. Dans la fenêtre Paramètres, cliquez sur Points de terminaison de streaming. 
-3. Cliquez sur le point de terminaison de diffusion en continu par défaut. 
+1. Connectez-vous à l’adresse hello [portail Azure](https://portal.azure.com/).
+2. Dans la fenêtre des paramètres hello, cliquez sur les points de terminaison de diffusion en continu. 
+3. Cliquez sur le point de terminaison de diffusion en continu de la valeur par défaut hello. 
 
-    La fenêtre DEFAULT STREAMING ENDPOINT DETAILS (DÉTAILS DU POINT DE TERMINAISON DE STREAMING PAR DÉFAUT) s’affiche.
+    fenêtre de détails par défaut du point de terminaison de diffusion en continu Hello s’affiche.
 
-4. Cliquez sur l’icône de démarrage.
-5. Cliquez sur le bouton Enregistrer pour enregistrer vos modifications.
+4. Cliquez sur l’icône Démarrer hello.
+5. Cliquez sur toosave de bouton hello enregistrer vos modifications.
 
 ## <a name="upload-files"></a>Charger des fichiers
-Pour diffuser des vidéos en continu à l’aide d’Azure Media Services, vous devez télécharger les vidéos source, les encoder en plusieurs débits binaires et publier le résultat. Cette section décrit la première étape du processus. 
+toostream vidéos à l’aide d’Azure Media Services, vous devez les vidéos de source tooupload hello, les encoder en plusieurs vitesses de transmission et publier les résultats hello. première étape de Hello est décrite dans cette section. 
 
-1. Dans la fenêtre **Paramètres**, cliquez sur **Éléments multimédias**.
+1. Bonjour **paramètre** fenêtre, cliquez sur **actifs**.
    
     ![Charger des fichiers](./media/media-services-portal-vod-get-started/media-services-upload.png)
-2. Cliquez sur le bouton **Télécharger** .
+2. Cliquez sur hello **télécharger** bouton.
    
-    La fenêtre **Upload a video asset** (Charger un élément multimédia vidéo) s’affiche.
+    Hello **télécharger un élément multimédia vidéo** fenêtre s’affiche.
    
    > [!NOTE]
    > Il n’existe aucune limite de taille de fichier.
    > 
    > 
-3. Accédez à la vidéo de votre choix sur votre ordinateur, sélectionnez-la, puis cliquez sur OK.  
+3. Parcourir vidéo toohello souhaité sur votre ordinateur, sélectionnez-le, puis appuyez sur OK.  
    
-    Le chargement démarre ; vous pouvez en voir la progression sous le nom du fichier.  
+    téléchargement de Hello démarre et vous pouvez voir la progression hello sous le nom de fichier hello.  
 
-Une fois le chargement terminé, le nouvel élément multimédia s’affiche dans la fenêtre **Éléments multimédias** . 
+Une fois le téléchargement de hello terminé, vous voyez hello un nouveau composant répertorié dans hello **actifs** fenêtre. 
 
 ## <a name="encode-assets"></a>Encoder des éléments multimédias
 
-Lorsque vous travaillez avec Azure Media Services, un des scénarios les plus courants est la diffusion de contenu à débit adaptatif à vos clients. Media Services prend en charge les technologies de streaming à débit adaptatif suivantes : HTTP Live Streaming (HLS), Smooth Streaming, MPEG DASH. Pour préparer vos vidéos au streaming à débit adaptatif, vous devez encoder votre vidéo source en fichiers à débit binaire multiple. Vous devez utiliser **Media Encoder Standard** pour encoder vos vidéos.  
+Lorsque vous travaillez avec un des scénarios les plus courants de hello transmet les clients tooyour de diffusion en continu à débit adaptatif Azure Media Services. Media Services prend en charge hello suivant des technologies de diffusion en continu de fichiers à débit adaptatif : HTTP Live Streaming (HLS), la diffusion en continu lisse, MPEG DASH. tooprepare vos vidéos pour de diffusion en continu à débit adaptatif, vous devez tooencode votre source vidéo dans des fichiers de débits. Vous devez utiliser hello **Media Encoder Standard** encodeur tooencode vos vidéos.  
 
-Media Services assure également l’empaquetage dynamique qui vous permet de diffuser des fichiers MP4 multidébit dans les formats de diffusion en continu MPEG DASH, HLS ou Smooth Streaming sans avoir à effectuer de ré-empaquetage dans ces formats. L’empaquetage dynamique vous permet de ne stocker et payer les fichiers que dans un seul format de stockage. Ensuite, Media Services crée et fournit la réponse appropriée en fonction des demandes des clients.
+Media Services fournit également un empaquetage dynamique, ce qui vous permet de toodeliver votre MP4s débits Bonjour suivant les formats de diffusion en continu : MPEG DASH, HLS, Smooth Streaming, sans que vous ayez toorepackage dans ces formats de diffusion en continu. Avec l’empaquetage dynamique, vous devez uniquement toostore et payer pour les fichiers hello dans un seul format de stockage et de Media Services génère et sert de réponse appropriée de hello en fonction des demandes d’un client.
 
-Pour tirer parti de l’empaquetage dynamique, vous devez encoder votre fichier source dans un ensemble de fichiers MP4 multidébit (les étapes de l’encodage sont décrites plus loin dans cette section).
+tootake parti de l’empaquetage dynamique, vous devez tooencode votre fichier source en un ensemble de fichiers MP4 à plusieurs débits (étapes de codage hello sont décrites plus loin dans cette section).
 
-### <a name="to-use-the-portal-to-encode"></a>Pour effectuer l’encodage à l’aide du portail
-Cette section décrit les étapes à suivre pour encoder votre contenu avec Media Encoder Standard.
+### <a name="toouse-hello-portal-tooencode"></a>tooencode de portail hello toouse
+Cette section décrit les étapes à suivre tooencode votre contenu avec Media Encoder Standard hello.
 
-1. Dans la fenêtre **Paramètres**, sélectionnez **Éléments multimédias**.  
-2. Dans la fenêtre **Éléments multimédias** , sélectionnez l’élément que vous souhaitez encoder.
-3. Appuyez sur le bouton **Encoder** .
-4. Dans la fenêtre **Encoder un élément multimédia**, sélectionnez le processeur Media Encoder Standard et choisissez une présélection. Pour plus d’informations sur les présélections, consultez les articles [Utilisation d’Azure Media Encoder Standard pour générer automatiquement une échelle des vitesses de transmission](media-services-autogen-bitrate-ladder-with-mes.md) et [Présélections de travaux pour MES (Media Encoder Standard)](media-services-mes-presets-overview.md). Si vous envisagez de contrôler la présélection d’encodage à utiliser, n’oubliez pas qu’il est important de sélectionner la présélection qui convient le mieux à votre vidéo d’entrée. Par exemple, si vous savez que votre vidéo d’entrée possède une résolution de 1920 x 1080 pixels, vous pouvez utiliser la présélection « H264 Multiple Bitrate 1080p ». Si vous disposez d’une vidéo basse résolution (640 x 360), il est préférable de ne pas utiliser la présélection « H264 – Vitesse de transmission multiple – 1 080 pixels ».
+1. Bonjour **paramètres** fenêtre, sélectionnez **actifs**.  
+2. Bonjour **actifs** fenêtre, asset hello select que vous aimeriez tooencode.
+3. Hello de presse **Encode** bouton.
+4. Bonjour **encoder un élément multimédia** fenêtre, processeur de « Media Encoder Standard » hello select et une présélection. Pour plus d’informations sur les présélections, consultez les articles [Utilisation d’Azure Media Encoder Standard pour générer automatiquement une échelle des vitesses de transmission](media-services-autogen-bitrate-ladder-with-mes.md) et [Présélections de travaux pour MES (Media Encoder Standard)](media-services-mes-presets-overview.md). Si vous envisagez toocontrol quelle valeur prédéfinie d’encodage est utilisée, gardez cela à l’esprit : il est important de tooselect hello prédéfini qui convient le mieux pour votre vidéo d’entrée. Par exemple, si vous connaissez votre vidéo d’entrée d’une résolution de 1920 x 1080 pixels, vous pouvez utiliser hello « H264 plusieurs débits binaires 1080p » prédéfini. Si vous disposez d’une vidéo basse résolution (640 x 360), il est préférable de ne pas utiliser la présélection « H264 – Vitesse de transmission multiple – 1 080 pixels ».
    
-   Pour des questions pratiques, vous avez la possibilité de modifier le nom de l’élément multimédia de sortie ainsi que le nom de la tâche.
+   Pour faciliter la gestion, vous avez une option de modification de nom hello de ressource en sortie hello et nom hello du travail de hello.
    
    ![Encoder des éléments multimédias](./media/media-services-portal-vod-get-started/media-services-encode1.png)
 5. Appuyez sur **Créer**.
 
 ### <a name="monitor-encoding-job-progress"></a>Suivi de la progression de la tâche d’encodage
-Pour surveiller la progression du travail d’encodage, cliquez sur **Paramètres** (en haut de la page), puis sélectionnez **Travaux**.
+progression de hello toomonitor Hello encodage de travail, cliquez sur **paramètres** (en hello haut hello), puis sélectionnez **travaux**.
 
-![Travaux](./media/media-services-portal-vod-get-started/media-services-jobs.png)
+![Tâches](./media/media-services-portal-vod-get-started/media-services-jobs.png)
 
 ## <a name="publish-content"></a>Publication de contenu
-Pour fournir aux utilisateurs une URL pouvant être utilisée pour diffuser en continu ou télécharger votre contenu, vous devez d’abord « publier » votre élément multimédia en créant un localisateur. Les localisateurs assurent l’accès aux fichiers contenus dans l’élément multimédia. Media Services prend en charge deux types de localisateurs : 
+tooprovide votre utilisateur avec une URL qui peut être utilisé toostream ou télécharger votre contenu, vous tout d’abord besoin trop « publier » votre élément multimédia en créant un localisateur. Les localisateurs offrent toofiles accès contenues dans l’élément multimédia de hello. Media Services prend en charge deux types de localisateurs : 
 
-* les localisateurs de diffusion en continu (OnDemandOrigin), utilisés pour la diffusion adaptative (par exemple, MPEG DASH, HLS ou Smooth Streaming) ; Pour créer un localisateur de diffusion en continu, votre élément multimédia doit contenir un fichier .ism ; 
+* Diffusion en continu les localisateurs (OnDemandOrigin), utilisés pour la diffusion adaptative en continu (par exemple, toostream MPEG DASH, HLS ou Smooth Streaming). toocreate un localisateur de diffusion en continu votre élément multimédia doit contenir un fichier .ism. 
 * les localisateurs progressifs (SAS), utilisés pour la diffusion de vidéo par téléchargement progressif.
 
-Les URL de diffusion en continu, que vous pouvez utiliser pour lire des éléments multimédias Smooth Streaming, ont le format suivant.
+Une URL de diffusion en continu a hello suivant le format et vous pouvez l’utiliser de ressources de diffusion en continu lisse tooplay.
 
     {streaming endpoint name-media services account name}.streaming.mediaservices.windows.net/{locator ID}/{filename}.ism/Manifest
 
-Pour créer une URL de diffusion en continu HLS, ajoutez (format=m3u8-aapl) à l’URL.
+ajouter des toobuild une URL de diffusion en continu de TLS (format = m3u8-aapl) toohello URL.
 
     {streaming endpoint name-media services account name}.streaming.mediaservices.windows.net/{locator ID}/{filename}.ism/Manifest(format=m3u8-aapl)
 
-Pour créer une URL de diffusion en continu MPEG DASH, ajoutez (format=mpd-time-csf) à l’URL.
+ajouter des toobuild une URL de diffusion en continu de MPEG DASH (format = mpd-heure-csf) toohello URL.
 
     {streaming endpoint name-media services account name}.streaming.mediaservices.windows.net/{locator ID}/{filename}.ism/Manifest(format=mpd-time-csf)
 
 
-Une URL SAS a le format suivant :
+Une URL SAS a hello suivant le format.
 
     {blob container name}/{asset name}/{file name}/{SAS signature}
 
 > [!NOTE]
-> Si vous avez utilisé le portail pour créer des localisateurs avant mars 2015, les localisateurs présentant une date d’expiration de deux ans sont ceux qui ont été créés.  
+> Si vous avez utilisé les localisateurs toocreate portail hello avant mars 2015, les localisateurs avec une date d’expiration de deux ans ont été créés.  
 > 
 > 
 
-Pour mettre à jour la date d’expiration d’un localisateur, utilisez les API [REST](https://docs.microsoft.com/rest/api/media/operations/locator#update_a_locator) ou [.NET](http://go.microsoft.com/fwlink/?LinkID=533259). Lorsque vous mettez à jour la date d’expiration d’un localisateur SAS, l’URL est modifiée.
+tooupdate une date d’expiration sur un localisateur, utilisez [reste](https://docs.microsoft.com/rest/api/media/operations/locator#update_a_locator) ou [.NET](http://go.microsoft.com/fwlink/?LinkID=533259) API. Lorsque vous mettez à jour date d’expiration de hello d’un localisateur SAS, hello URL change.
 
-### <a name="to-use-the-portal-to-publish-an-asset"></a>Pour publier un élément multimédia à l’aide du portail
-Pour utiliser le portail pour publier un élément multimédia, procédez comme suit :
+### <a name="toouse-hello-portal-toopublish-an-asset"></a>toouse hello toopublish portail un élément multimédia
+toouse hello toopublish portail un élément multimédia, hello suivant :
 
 1. Sélectionnez **Paramètres** > **Éléments multimédias**.
-2. Sélectionnez l’élément que vous souhaitez publier.
-3. Cliquez sur le bouton **Publier** .
-4. Sélectionnez le type de localisateur.
+2. Sélectionnez asset hello que vous souhaitez toopublish.
+3. Cliquez sur hello **publier** bouton.
+4. Sélectionnez le type de localisateur hello.
 5. Cliquez sur **Ajouter**.
    
     ![Publier](./media/media-services-portal-vod-get-started/media-services-publish1.png)
 
-L’URL est ajoutée à la liste des **URL publiées**.
+Hello URL est ajouté à la liste des toohello **URL de publication**.
 
-## <a name="play-content-from-the-portal"></a>Lecture de contenu sur le portail
-Le portail Azure propose un lecteur de contenu que vous pouvez utiliser pour tester votre vidéo.
+## <a name="play-content-from-hello-portal"></a>Lire le contenu à partir du portail de hello
+portail Azure Hello fournit un lecteur de contenu que vous pouvez utiliser tootest votre vidéo.
 
-Cliquez sur la vidéo de votre choix, puis sur le bouton **Lire** .
+Vidéo de hello souhaité, puis cliquez sur hello **lire** bouton.
 
 ![Publier](./media/media-services-portal-vod-get-started/media-services-play.png)
 
 Certaines considérations s’appliquent :
 
-* Pour commencer le streaming, démarrez l’exécution du point de terminaison de streaming **par défaut**.
-* Assurez-vous que la vidéo a été publiée.
-* Le **lecteur multimédia** effectue la lecture à partir du point de terminaison de diffusion en continu par défaut. Si vous souhaitez lire à partir d’un autre point de terminaison de diffusion en continu que celui par défaut, cliquez sur l’URL pour la copier et utilisez un autre lecteur, par exemple, le [lecteur Azure Media Services](http://amsplayer.azurewebsites.net/azuremediaplayer.html).
+* toobegin de diffusion en continu, démarrage en cours d’exécution hello **par défaut** point de terminaison de diffusion en continu.
+* Vérifiez que hello vidéo a été publié.
+* Cela **Media player** est lu à partir du point de terminaison de diffusion en continu de la valeur par défaut hello. Si vous souhaitez tooplay à partir d’un élément non défini par défaut diffusion en continu de point de terminaison, cliquez sur l’URL toocopy hello et utilisez un autre lecteur. par exemple, le [lecteur Azure Media Services](http://amsplayer.azurewebsites.net/azuremediaplayer.html).
 
 ## <a name="next-steps"></a>Étapes suivantes
 Consultez les parcours d’apprentissage de Media Services.

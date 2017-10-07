@@ -1,6 +1,6 @@
 ---
-title: Exemples de stockage Azure avec Java| Microsoft Docs
-description: "Affichez, téléchargez et exécutez des exemples de code et des applications pour Azure Storage. Découvrez des exemples de mise en route d’objets blob, de files d’attente, de tables et de fichiers à l’aide des bibliothèques clientes de stockage Java."
+title: "exemples de stockage aaaAzure à l’aide de Java | Documents Microsoft"
+description: "Affichez, téléchargez et exécutez des exemples de code et des applications pour Azure Storage. Découvrez la prise en main des exemples pour les objets BLOB, les files d’attente, les tables et les fichiers, à l’aide de bibliothèques clientes de stockage de Java hello."
 services: storage
 documentationcenter: na
 author: seguler
@@ -14,17 +14,17 @@ ms.tgt_pltfrm: na
 ms.workload: storage
 ms.date: 01/12/2017
 ms.author: seguler
-ms.openlocfilehash: 98e6022062b4ef5b5c71b54a0e94775b925d216b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e3b8fbe86e82dd58c2a13a3c68760cbf6e9a6e4b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-storage-samples-using-java"></a>Exemples de stockage Azure avec Java
 
 ## <a name="java-sample-index"></a>Index des exemples Java
 
-Le tableau suivant fournit une vue d’ensemble de notre référentiel d’exemples et des scénarios traités dans chaque exemple. Cliquez sur les liens pour afficher l’exemple de code correspondant dans GitHub.
+Hello tableau suivant fournit une vue d’ensemble de nos exemples de scénarios de référentiel et hello couvertes dans chaque exemple. Cliquez sur hello liens tooview hello exemple de code correspondant dans GitHub.
 
 <table style="font-size:90%"><thead><tr><th style="font-size:110%">Point de terminaison</th><th style="font-size:110%">Scénario</th><th style="font-size:110%">Exemple de code</th></tr></thead><tbody> 
 <tr> 
@@ -195,15 +195,15 @@ Le tableau suivant fournit une vue d’ensemble de notre référentiel d’exemp
 </table>
 <br/>
 
-## <a name="azure-code-samples-library"></a>Bibliothèque d’exemples de code Azure
+## <a name="azure-code-samples-library"></a>Bibliothèque Exemples de code Azure
 
-Pour voir la bibliothèque complète des exemples, consultez la bibliothèque d’[exemples de code Azure](https://azure.microsoft.com/resources/samples/?service=storage) pour trouver des exemples de stockage Azure que vous pouvez télécharger et exécuter localement. Les exemples de code fournis par la bibliothèque sont au format .zip. Vous pouvez également parcourir et cloner le dépôt GitHub pour chaque exemple.
+bibliothèque d’exemple complet tooview hello, accédez toohello [exemples de Code Azure](https://azure.microsoft.com/resources/samples/?service=storage) library, qui comprend des exemples pour le stockage Azure que vous pouvez télécharger et exécuter localement. Hello, exemple de Code de bibliothèque fournit un exemple de code au format .zip. Ou bien, vous pouvez parcourir et cloner le référentiel GitHub de hello pour chaque échantillon.
 
 [!INCLUDE [storage-java-samples-include](../../includes/storage-java-samples-include.md)]
 
 ## <a name="getting-started-guides"></a>Guides de prise en main
 
-Consultez les guides suivants si vous recherchez des instructions sur l’installation et la prise en main des bibliothèques clientes de stockage Azure.
+Extraire hello suivant guides si vous recherchez des instructions sur la façon de tooinstall et prise en main hello bibliothèques clientes de stockage Azure.
 
 * [Getting Started with Azure Blob Service in Java (Prise en main du service Azure Blob en Java)](storage-java-how-to-use-blob-storage.md)
 * [Getting Started with Azure Queue Service in Java (Prise en main du service de File d’attente Azure en Java)](storage-java-how-to-use-queue-storage.md)

@@ -1,5 +1,5 @@
 ---
-title: Journaux de diffusion en continu et console
+title: les journaux aaaStreaming et console
 description: Vue d'ensemble des journaux et de la console de diffusion en continu
 author: btardif
 manager: erikre
@@ -14,24 +14,24 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 10/12/2016
 ms.author: byvinyal
-ms.openlocfilehash: 120ce6b115820728b9f853e9ff349beb0ef29c9d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: bb4b8ce5358da12041e164dfff8f43790dd67924
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="streaming-logs-and-the-console"></a>Journaux en continu et console
+# <a name="streaming-logs-and-hello-console"></a>Journaux de diffusion en continu et hello Console
 ## <a name="streaming-logs"></a>Journaux en continu
-Le **portail Azure** intègre une fonction d’affichage des journaux de diffusion en continu qui vous permet de suivre les événements de vos applications **App Service** en temps réel.  
+Hello **portail Azure** fournit une visionneuse du journal en continu intégrée qui vous permet d’afficher les événements de suivi à partir de votre **du Service d’applications** applications en temps réel.  
 
 La configuration de cette fonction se fait en quelques étapes simples :
 
 * Écriture des suivis dans votre code
 * Activation des **journaux de diagnostic** pour votre application
-* Affichage du flux à partir de l’interface utilisateur **Journaux de streaming** dans le **portail Azure**.
+* Flux de hello vue à partir d’intégrées de hello **journaux de diffusion en continu** UI Bonjour **portail Azure**.
 
-### <a name="how-to-write-traces-in-your-code"></a>Écriture des suivis dans votre code
-L'écriture des suivis dans votre code est simple.  Dans C#, il suffit d'écrire le code suivant :
+### <a name="how-toowrite-traces-in-your-code"></a>Comment toowrite effectue le suivi dans votre code
+L'écriture des suivis dans votre code est simple.  En c#, il est aussi simple que l’écriture hello suivant de code :
 
 `````````````````````````
 Trace.TraceInformation("My trace statement");
@@ -45,34 +45,34 @@ Trace.TraceWarning("My warning statement");
 Trace.TraceError("My error statement");
 `````````````````````````
 
-La classe Trace se trouve dans l'espace de noms System.Diagnostics
+Hello classe Trace réside dans l’espace de noms System.Diagnostics hello.
 
-Dans une application node.js, vous pouvez écrire le code suivant pour atteindre le même résultat :
+Dans une application node.js, vous pouvez écrire ce code tooachieve hello même résultat :
 
 `````````````````````````
 console.log("My trace statement").
 `````````````````````````
 
-### <a name="how-to-enable-and-view-the-streaming-logs"></a>Activation et affichage des journaux en continu
-![][BrowseSitesScreenshot] Les diagnostics sont activés par application. Commencez par naviguer jusqu’au site pour lequel vous souhaitez activer cette fonctionnalité.  
+### <a name="how-tooenable-and-view-hello-streaming-logs"></a>Comment tooenable et vue hello des journaux de diffusion en continu
+![][BrowseSitesScreenshot] Les diagnostics sont activés par application. Commencez par parcourir le site de toohello que vous aimeriez tooenable cette fonctionnalité.  
 
-![][DiagnosticsLogs] À partir du menu Paramètres, faites défiler jusqu’à la section **Analyse** et cliquez sur **(1) Journaux de diagnostic**. Puis **(2) activez** **Journal des applications (Filesystem)** ou **Journal des applications (Blob)** L’option **Niveau** vous permet de modifier le niveau de gravité des suivis à capturer. Si vous souhaitez simplement vous familiariser avec la fonctionnalité, définissez-la sur **Verbose** pour être sûr que toutes vos instructions de suivi seront collectées.
+![][DiagnosticsLogs]À partir du menu Paramètres, faites défiler la liste toohello **analyse** section, puis cliquez sur **(1) des journaux de Diagnostic**. Puis **(2) activer** **journalisation des applications (système de fichiers)** ou **journalisation des applications (blob)** hello **niveau** option vous permet de modifier hello niveau de gravité de traces toocapture. Si vous essayez simplement tooget familiarisé avec la fonctionnalité de hello, définissez le niveau de hello trop**Verbose** tooensure toutes vos instructions de trace sont collectées.
 
-Cliquez sur **SAVE** en haut du volet pour afficher les journaux.
+Cliquez sur **enregistrer** haut hello Panneau de hello et que vous êtes prêt tooview journaux.
 
 > [!NOTE]
-> Plus le **niveau de gravité** est élevé, plus les ressources consommées dans le journal sont importantes et plus vous obtiendrez de suivis. Vérifiez que le **niveau de gravité** est configuré sur le niveau de détail approprié pour un site de production ou ayant un fort trafic. 
+> Bonjour supérieur Bonjour **au niveau de gravité** hello davantage de ressources sont consommé toolog et hello plus traces produites. Assurez-vous que **au niveau de gravité** est toohello configuré un niveau de détail approprié pour une production ou les sites à trafic important. 
 > 
 > 
 
-![][StreamingLogsScreenshot] Pour afficher les **journaux de streaming** au sein du portail Azure, cliquez sur **(1) Flux de journaux** également dans la section **Analyse** du menu Paramètres. Si des instructions de suivi sont en cours d’écriture sur votre application, vous devez les voir presque en temps réel dans les **(2) journaux de streaming**.
+![][StreamingLogsScreenshot]tooview hello **journaux de diffusion en continu** dans hello portail Azure, cliquez sur **flux du journal (1)** également dans hello **analyse** section du menu Paramètres de hello. Si votre application écrit activement les instructions de trace, vous devez les voir Bonjour **de diffusion en continu (2) connecte à l’interface utilisateur** quasiment en temps réel.
 
 ## <a name="console"></a>Console
-Le **portail Azure** fournit un accès à la console à votre application. Vous pouvez explorer le système de fichiers de l’application et exécuter les scripts powershell/cmd. Lorsque vous exécutez des commandes de la console, vous dépendez des mêmes autorisations que pour votre code d’application en cours d’exécution. Vous ne pouvez pas accéder aux répertoires protégés ni exécuter des scripts qui demandent des autorisations élevées.  
+Hello **portail Azure** fournit à l’application de console accès tooyour. Vous pouvez explorer le système de fichiers de l’application et exécuter les scripts powershell/cmd. Vous sont liés par hello autorisations mêmes définies en tant que code de votre application en cours d’exécution lors de l’exécution de commandes de la console. Répertoires de tooprotected Access ou des scripts en cours d’exécution qui nécessitent des autorisations élevées est bloquée.  
 
-![][ConsoleScreenshot] À partir du menu Paramètres, faites défiler jusqu’à la section **Outils de développement** et cliquez sur **Console (1)**. La **(2) console** s’ouvre alors à droite.
+![][ConsoleScreenshot]À partir du menu Paramètres, faites défiler la liste trop**outils de développement** section, puis cliquez sur **Console (1)** et hello **(2) console** toohello droite s’ouvre l’interface utilisateur.
 
-Pour vous familiariser avec la **console**, commencez par les commandes élémentaires suivantes :
+tooget familiarisé avec hello **console**, essayez les commandes de base telles que :
 
 `````````````````````````
 dir

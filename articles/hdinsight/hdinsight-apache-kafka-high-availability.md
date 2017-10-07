@@ -1,6 +1,6 @@
 ---
-title: "Haute disponibilité avec Apache Kafka - Azure HDInsight | Microsoft Docs"
-description: "Découvrez comment garantir une haute disponibilité avec Apache Kafka sur Azure HDInsight. Apprenez à rééquilibrer les réplicas de partition dans Kafka afin qu’ils soient répartis sur différents domaines d’erreur dans la région Azure qui contient HDInsight."
+title: "disponibilité aaaHigh avec Apache Kafka - Azure HDInsight | Documents Microsoft"
+description: "Découvrez comment tooensure haute disponibilité avec Kafka Apache sur Azure HDInsight. Découvrez comment toorebalance partitionner les réplicas dans Kafka afin qu’ils soient sur différents domaines d’erreur dans hello région Azure qui contient HDInsight."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -14,28 +14,28 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/26/2017
 ms.author: larryfr
-ms.openlocfilehash: f8164d1c3483b28e5f2abcc8035da78880daec1e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 337468f36b531f83c2999e87907de89cf3d19dd4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="high-availability-of-your-data-with-apache-kafka-preview-on-hdinsight"></a>Haute disponibilité de vos données avec Apache Kafka (version préliminaire) sur HDInsight
 
-Découvrez comment configurer des réplicas de partition pour les rubriques Kafka afin de tirer parti de la configuration de rack matériel sous-jacent. Cette configuration garantit la disponibilité des données stockées dans Kafka Apache sur HDInsight.
+Découvrez comment tooconfigure les réplicas de partition pour avantage de tootake Kafka rubriques du matériel sous-jacent en rack de configuration. Cette configuration garantit la disponibilité de hello des données stockées dans Kafka Apache sur HDInsight.
 
 ## <a name="fault-and-update-domains-with-kafka"></a>Domaines d’erreur et de mise à jour avec Kafka
 
-Un domaine d’erreur est un regroupement logique de matériel sous-jacent dans un datacenter Azure. Chaque domaine d’erreur partage une source d’alimentation et un commutateur réseau communs. Les ordinateurs virtuels et les disques gérés mettant en œuvre les nœuds au sein d’un cluster HDInsight sont répartis dans ces domaines d’erreur. Cette architecture limite l’impact potentiel des défaillances de matériel physique.
+Un domaine d’erreur est un regroupement logique de matériel sous-jacent dans un datacenter Azure. Chaque domaine d’erreur partage une source d’alimentation et un commutateur réseau communs. machines virtuelles de Hello et des disques gérés qui implémentent des nœuds hello au sein d’un cluster HDInsight sont distribués dans ces domaines d’erreur. Cette architecture limite l’impact potentiel de hello d’échecs de matériel physique.
 
-Chaque région Azure possède un certain nombre de domaines d’erreur. Pour obtenir la liste des domaines et le nombre de domaines d’erreur qu’ils contiennent, consultez la documentation [Groupes à haute disponibilité](../virtual-machines/linux/regions-and-availability.md#availability-sets).
+Chaque région Azure possède un certain nombre de domaines d’erreur. Pour obtenir la liste de domaines et nombre hello de domaines d’erreur qu’ils contiennent, consultez hello [à haute disponibilité](../virtual-machines/linux/regions-and-availability.md#availability-sets) documentation.
 
 > [!IMPORTANT]
-> Kafka n’est pas informé des domaines d’erreur. Lorsque vous créez une rubrique dans Kafka, ce dernier peut stocker tous les réplicas de partition dans le même domaine d’erreur. Pour résoudre ce problème, nous fournissons [l’outil de rééquilibrage de partitions Kafka](https://github.com/hdinsight/hdinsight-kafka-tools).
+> Kafka n’est pas informé des domaines d’erreur. Lorsque vous créez une rubrique dans Kafka, il peut stocker tous les réplicas de partition Bonjour même domaine par défaut. toosolve ce problème, nous fournissons hello [outil rééquilibrage de partition Kafka](https://github.com/hdinsight/hdinsight-kafka-tools).
 
-## <a name="when-to-rebalance-partition-replicas"></a>Quand rééquilibrer les réplicas de partition
+## <a name="when-toorebalance-partition-replicas"></a>Lorsque la partition toorebalance réplicas
 
-Pour garantir la haute disponibilité de vos données Kafka, vous devez rééquilibrer les réplicas de partition de votre rubrique aux heures suivantes :
+tooensure hello optimiser la disponibilité de vos données Kafka, vous devez rééquilibrer les réplicas de partition hello pour votre rubrique à hello suivant fois :
 
 * Lorsqu’une rubrique ou une partition est créée
 
@@ -46,15 +46,15 @@ Pour garantir la haute disponibilité de vos données Kafka, vous devez rééqui
 > [!IMPORTANT]
 > Il est recommandé d’utiliser une région Azure qui contient les trois domaines d’erreur, et un facteur de réplication de 3.
 
-Si vous devez utiliser une région qui contient uniquement deux domaines d’erreur, utilisez un facteur de réplication de 4 afin de répartir uniformément les réplicas sur les domaines d’erreur.
+Si vous devez utiliser une région qui contient uniquement deux domaines d’erreur, utilisez un facteur de réplication de 4 réplicas de hello toospread uniformément entre les deux domaines d’erreur hello.
 
-Pour obtenir un exemple de création de rubriques et de paramétrage du facteur de réplication, consultez le document [Démarrer avec Kafka sur HDInsight](hdinsight-apache-kafka-get-started.md).
+Pour obtenir un exemple de création de rubriques et le facteur de réplication paramètre hello, consultez hello [démarrer avec Kafka sur HDInsight](hdinsight-apache-kafka-get-started.md) document.
 
-## <a name="how-to-rebalance-partition-replicas"></a>Comment rééquilibrer les réplicas de partition
+## <a name="how-toorebalance-partition-replicas"></a>Réplicas de partition toorebalance
 
-Utilisez [l’outil rééquilibrage de partition Kafka](https://github.com/hdinsight/hdinsight-kafka-tools) pour rééquilibrer les rubriques sélectionnées. Cet outil doit être exécuté à partir d’une session SSH pour le nœud principal de votre cluster Kafka.
+Hello d’utilisation [outil rééquilibrage de partition Kafka](https://github.com/hdinsight/hdinsight-kafka-tools) toorebalance les rubriques sélectionnées. Cet outil doit être exécuté à partir d’un nœud principal SSH session toohello de votre cluster Kafka.
 
-Pour plus d’informations sur la connexion à HDInsight avec SSH, consultez le document [Utilisation de SSH avec HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md).
+Pour plus d’informations sur la connexion à l’aide de SSH de tooHDInsight, consultez la [utilisation de SSH avec HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md) document.
 
 ## <a name="next-steps"></a>Étapes suivantes
 

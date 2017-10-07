@@ -1,5 +1,5 @@
 ---
-title: "Azure Data Factory : Études de cas client | Microsoft Docs"
+title: "aaaAzure Data Factory - études de cas client | Documents Microsoft"
 description: "Découvrez comment certains de nos clients utilisent Azure Data Factory."
 services: data-factory
 documentationcenter: 
@@ -14,32 +14,32 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/14/2017
 ms.author: shlo
-ms.openlocfilehash: c5620a2c02ec4d2abfef40ab5c41bf6ad393a3d9
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 8787a27c10cb9509d8f0d811b4fed3100595e480
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-data-factory---customer-case-studies"></a>Azure Data Factory : Études de cas client
-Data Factory est un service de gestion des informations dans le cloud qui automatise le déplacement et la transformation des données. Des clients répartis dans plusieurs secteurs utilisent Data Factory et d’autres services Azure pour générer leurs pipelines d’analyse et résoudre des problèmes commerciaux.  Découvrez directement auprès de nos clients comment et pourquoi ils utilisent Data Factory.
+Fabrique de données est un service de gestion des informations sur le cloud qui automatise le déplacement de hello et la transformation de données. Clients entre les différents secteurs utilisent fabrique de données et d’autres services Azure de toobuild leurs pipelines analytique et résoudre les problèmes de leur entreprise.  Découvrez directement auprès de nos clients comment et pourquoi ils utilisent Data Factory.
 
 ## <a name="milliman"></a>Milliman
-[L’entreprise Top Actuarial transforme le secteur des assurances](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=20096)
+[Top Actuarial entreprise transforme le secteur des assurances hello](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=20096)
 
 ## <a name="rockwell-automation"></a>Rockwell Automation
-[L’entreprise d’automatisation industrielle réduit ses coûts jusqu’à 90 % grâce à des solutions Big Data](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=18356)
+[Industriels Automation entreprise réduit les coûts pour cent de too90 des Solutions de données volumineuses](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=18356)
 
 ## <a name="ziosk"></a>Ziosk
-[Quel jeu souhaitez-vous avec votre hamburger ? Ziosk le sait peut-être déjà.](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=18294)
+[Quel jeu que vous souhaitez toogo avec ce fait ? Ziosk le sait peut-être déjà.](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=18294)
 
 ## <a name="alaska-airlines"></a>Alaska Airlines
-[Cette compagnie aérienne utilise des tablettes et des services cloud pour offrir une expérience de vol plus attrayante](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=19357)
+[Compagnie aérienne utilise des tablettes, Services de cloud computing tooOffer plus attrayantes divertissement d’en cours](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=19357)
 
 ## <a name="tacoma-public-schools"></a>Écoles publiques de Tacoma
 [Prédiction des risques de décrochage scolaire par les élèves, augmentation du taux d'obtention grâce aux analyses cloud](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=20703)
 
 ## <a name="real-madrid-fc"></a>Real Madrid FC
-[Le Real Madrid permet à 450 millions de fans du monde entier de ressentir les émotions du stade grâce au cloud de Microsoft](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=20522)
+[Real Madrid met hello stade proche too450 millions ventilateurs monde hello avec hello Microsoft Cloud](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=20522)
 
 ## <a name="pier-1-imports"></a>Pier 1 Imports
 [Recherche d'une meilleure relation avec les clients par le biais du service Cloud Machine Learning](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=11257)

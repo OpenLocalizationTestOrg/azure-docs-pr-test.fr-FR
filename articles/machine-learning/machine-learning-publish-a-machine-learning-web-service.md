@@ -1,6 +1,6 @@
 ---
-title: "Déploiement d’un service web Machine Learning | Microsoft Docs"
-description: "Comment convertir une expérience de formation en expérience prédictive, la préparer en vue de son déploiement, puis la déployer en tant que service web Azure Machine Learning."
+title: aaaDeploy service web Machine Learning | Documents Microsoft
+description: "Comment tooconvert une formation expérimenter l’expérience de prédictive tooa, préparer pour le déploiement, puis le déployer en tant qu’un service web Azure Machine Learning."
 services: machine-learning
 documentationcenter: 
 author: garyericson
@@ -14,176 +14,176 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/06/2017
 ms.author: garye
-ms.openlocfilehash: 39761f94efc530452a41ef9f2130976803cff711
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9cb7af637632b2c3688c11483f29cf24df8fd065
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploy-an-azure-machine-learning-web-service"></a>Déploiement d’un service web Azure Machine Learning
-Microsoft Azure Machine Learning vous permet de générer, tester et déployer des solutions d’analyse prédictive.
+Azure Machine Learning vous permet de toobuild, tester et déployer des solutions d’analyses prédictives.
 
 D'un point de vue très général, cela s'effectue en trois étapes :
 
-* **[Créez une expérience d'apprentissage]** : Azure Machine Learning Studio est un environnement de développement visuel collaboratif qui vous permet d'effectuer l'apprentissage et de tester un modèle d'analyse prédictive à l'aide de données d'apprentissage que vous fournissez.
-* **[Convertissez-la en expérience prédictive]** : lorsque votre modèle a été formé avec des données existantes et que vous êtes prêt à l’utiliser pour la notation de nouvelles données, vous préparez et simplifiez votre expérience prédictive.
-* **[Déployez-la en tant que service web]** : vous pouvez déployer votre expérience prédictive sous la forme d’un [nouveau] service web Azure ou d’un service web Azure [classique]. Les utilisateurs peuvent envoyer des données à votre modèle et recevoir des prédictions de votre modèle.
+* **[Créer une expérience d’apprentissage]**  -Azure Machine Learning Studio est un environnement collaboratif de développement visuel que vous utilisez tootrain et testez un analytique prédictive de modèle à l’aide des données d’apprentissage que vous fournissez.
+* **[Convertir les expérience prédictive tooa]**  - une fois que votre modèle a été formé avec des données existantes et vous êtes prêt toouse il tooscore de nouvelles données, préparer et de simplifier votre expérience pour les prédictions.
+* **[Déployez-la en tant que service web]** : vous pouvez déployer votre expérience prédictive sous la forme d’un [nouveau] service web Azure ou d’un service web Azure [classique]. Les utilisateurs peuvent envoyer le modèle de données tooyour et recevoir les prédictions de votre modèle.
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 ## <a name="create-a-training-experiment"></a>Créez une expérience d'apprentissage
-Pour effectuer l'apprentissage d'un modèle d'analyse prédictive, utilisez Azure Machine Learning Studio pour créer une expérience d'apprentissage dans laquelle vous incluez plusieurs modules pour charger des données d'apprentissage, préparer les données en fonction de vos besoins, appliquer des algorithmes d'apprentissage automatique et évaluer les résultats. Vous pouvez effectuer une itération sur une expérience et essayer des algorithmes d'apprentissage automatique différents pour comparer et évaluer les résultats.
+tootrain un modèle prédictif analytique, vous utilisez Azure Machine Learning Studio toocreate une expérience d’apprentissage où inclure les données d’apprentissage de différents modules tooload, préparer les données hello si nécessaire, appliquer des algorithmes d’apprentissage automatique et évaluer les résultats de hello . Vous pouvez effectuer une itération sur une expérience essayez toocompare d’algorithmes d’apprentissage différentes et évaluer les résultats hello.
 
-Le processus de création et gestion d’expériences d’apprentissage est traité de manière plus approfondie dans d’autres sections. Pour plus d’informations, voir les articles suivants :
+processus Hello créer et gérer des expériences d’apprentissage est couvert plus en détail ailleurs. Pour plus d’informations, voir les articles suivants :
 
 * [créez une expérience simple dans Azure Machine Learning Studio](machine-learning-create-experiment.md)
 * [développez une solution prédictive avec Azure Machine Learning](machine-learning-walkthrough-develop-predictive-solution.md)
 * [importez vos données d'apprentissage dans Azure Machine Learning Studio](machine-learning-data-science-import-data.md)
 * [gérez des itérations d'expériences dans Azure Machine Learning Studio](machine-learning-manage-experiment-iterations.md)
 
-## <a name="convert-the-training-experiment-to-a-predictive-experiment"></a>Convertir l'expérience de formation en expérience prédictive
-Après avoir formé votre modèle, vous êtes prêt à convertir votre expérience d’apprentissage en expérience prédictive pour noter des nouvelles données.
+## <a name="convert-hello-training-experiment-tooa-predictive-experiment"></a>Convertir l’expérience prédictive des tooa expérience d’apprentissage hello
+Une fois que vous avez formé votre modèle, vous êtes prêt tooconvert votre formation d’expérimenter dans une expérience prédictive tooscore nouvelles données.
 
-En la convertissant en expérience prédictive, vous préparez votre modèle formé à être déployé en tant que service web de notation. Les utilisateurs du service web peuvent envoyer des données d’entrée à votre modèle, qui leur renvoie les résultats de sa prédiction. Lorsque vous convertissez l’expérience en expérience prédictive, tenez compte du mode d’utilisation de votre modèle par les autres utilisateurs.
+En convertissant tooa prédictive faire des essais, vous obtenez votre toobe prêt formé déployé comme un service web de score. Les utilisateurs du service web de hello peuvent envoyer modèle tooyour de données d’entrée et de votre modèle envoie les résultats de prédiction hello précédent. Lorsque vous convertissez tooa prédictive faire des essais, n’oubliez pas comment vous prévoyez vos toobe modèle utilisé par d’autres.
 
-Pour convertir votre expérience de formation en expérience prédictive, cliquez sur **Exécuter** en bas du canevas de l’expérience, cliquez sur **Configurer le service web**, puis sélectionnez **Service web prédictif**.
+tooconvert tooa de votre expérience d’apprentissage prédictive tester, cliquez sur **exécuter** bas hello du canevas de l’expérience hello, cliquez sur **configurer le Service Web**, puis sélectionnez **prédictive Service Web** .
 
-![Convertir une expérience de notation](./media/machine-learning-publish-a-machine-learning-web-service/figure-1.png)
+![Convertir l’expérience de tooscoring](./media/machine-learning-publish-a-machine-learning-web-service/figure-1.png)
 
-Pour plus d’informations sur la façon d’effectuer cette conversion, consultez [Guide pratique pour préparer votre modèle pour le déploiement dans Azure Machine Learning Studio](machine-learning-convert-training-experiment-to-scoring-experiment.md).
+Pour plus d’informations sur la façon de tooperform cette conversion, consultez [comment tooprepare votre modèle pour le déploiement dans Azure Machine Learning Studio](machine-learning-convert-training-experiment-to-scoring-experiment.md).
 
-Les étapes suivantes décrivent le déploiement d’une expérience prédictive comme nouveau service web. Vous pouvez également déployer l’expérience comme service web classique.
+Hello étapes suivantes décrivent déploiement d’une expérience prédictive comme un service web. Vous pouvez également déployer hello expérience en tant que service web de classique.
 
 ## <a name="deploy-it-as-a-web-service"></a>Déployez-la en tant que service web
 
-Vous pouvez déployer l’expérience prédictive comme nouveau service web ou comme service web classique.
+Vous pouvez déployer les expérience prédictive hello comme un service web ou service web standard.
 
-### <a name="deploy-the-predictive-experiment-as-a-new-web-service"></a>Déployer l’expérience prédictive comme nouveau service web
-À présent que l’expérience prédictive a été correctement préparée, vous pouvez la déployer comme nouveau service web Azure. En accédant au service web, les utilisateurs peuvent envoyer des données à votre modèle, qui renvoie alors ses prédictions.
+### <a name="deploy-hello-predictive-experiment-as-a-new-web-service"></a>Déployer l’expérience de prédictive hello comme un service web
+Maintenant que l’expérience de prédictive hello a été préparée, vous pouvez le déployer en tant qu’un nouveau service web Azure. À l’aide du service web de hello, les utilisateurs peuvent envoyer le modèle de données tooyour et modèle de hello retourne ses prédictions.
 
-Pour déployer votre expérience prédictive, cliquez sur **Exécuter** en bas de la zone de dessin de l’expérience. Une fois l’expérience terminée, cliquez sur **Déployer le service web**, puis sélectionnez **Déployer le service web [Nouveau]**.  La page de déploiement du portail de service web Machine Learning s’ouvre.
+toodeploy faire des essais, un sur votre prédictive **exécuter** bas hello hello expérimenter la zone de dessin. Une fois que l’expérience de hello est terminée, cliquez sur **déployer le Service Web** et sélectionnez **déployer le Service Web [nouveau]**.  page de déploiement Hello hello Machine Learning Web du portail de Service s’ouvre.
 
 > [!NOTE] 
-> Pour déployer un nouveau service web, vous devez disposer d’autorisations suffisantes dans l’abonnement dans lequel déployer le service web. Pour en savoir plus, consultez la rubrique [Gérer un service web à l’aide du portail des services web Azure Machine Learning](machine-learning-manage-new-webservice.md). 
+> toodeploy un nouveau service web, vous devez disposer des autorisations suffisantes dans hello abonnement toowhich vous déployez le service web de hello. Pour plus d’informations, consultez [gérer un service Web à l’aide du portail de Services Web de Azure Machine Learning hello](machine-learning-manage-new-webservice.md). 
 
 #### <a name="machine-learning-web-service-portal-deploy-experiment-page"></a>Page d’expérience de déploiement du portail du service web Machine Learning
-Sur la page de l’expérience de déploiement, entrez le nom du service web.
-Sélectionnez un plan de tarification. Si vous disposez d’un plan de tarification existant, vous pouvez le sélectionner. Sinon, vous devez créer un nouveau plan de tarification pour le service.
+Sur la page de déployer une expérience de hello, entrez un nom pour le service web de hello.
+Sélectionnez un plan de tarification. Si vous avez un plan de tarification existant, que vous pouvez le sélectionner, sinon vous devez créer un nouveau plan de prix pour le service de hello.
 
-1. Dans la liste déroulante **Plan tarifaire**, sélectionnez un plan existant ou choisissez l’option **Select new plan** (Sélectionner un nouveau plan).
-2. Dans **Plan Name**, (Nom du plan), tapez un nom qui identifiera le plan sur votre facture.
-3. Sélectionnez un des **niveaux de plans mensuels**. Les niveaux de plan s’appliquent par défaut aux plans de votre région par défaut et votre service web est déployé dans cette région.
+1. Bonjour **Plan tarifaire** liste déroulante, sélectionnez un plan existant ou hello **sélectionnez Nouveau plan** option.
+2. Dans **le nom du Plan**, tapez un nom qui identifie le plan hello sur votre facture.
+3. Sélectionnez une des hello **niveaux de planification mensuelle**. plan Hello niveaux par défaut toohello des plans pour votre région par défaut et votre service web est déployé toothat région.
 
-Cliquez sur **Déployer** pour ouvrir la page **Démarrage rapide** de votre service web.
+Cliquez sur **déployer** et hello **Quickstart** page de votre service web s’ouvre.
 
-La page Démarrage rapide du service web fournit des conseils et vous donne accès aux tâches couramment effectuées après la création d’un service web. À partir de là, vous pouvez facilement accéder à la fois à la page Test et à la page Utiliser.
+page de démarrage rapide du service web Hello vous donne accès et des conseils sur les tâches les plus courantes hello que vous allez effectuer après la création d’un service web. À ce stade, vous pouvez accéder facilement les pages de Test hello et consommer.
 
-<!-- ![Deploy the web service](./media/machine-learning-publish-a-machine-learning-web-service/figure-2.png)-->
+<!-- ![Deploy hello web service](./media/machine-learning-publish-a-machine-learning-web-service/figure-2.png)-->
 
 #### <a name="test-your-new-web-service"></a>Test de votre nouveau service web
-Pour tester votre nouveau service web, cliquez sur **Tester le service web** dans la section des tâches courantes. Dans la page de test, vous pouvez tester votre service web comme un service de requête-réponse (RRS) ou comme un service d’exécution de lots (BES).
+tootest votre nouveau service web, cliquez sur **tester un service web** sous tâches courantes. Sur la page de Test hello, vous pouvez tester votre service web en tant qu’un Service de requête-réponse (RR) ou un service de l’exécution par lots (BES).
 
-La page de test RRS affiche les entrées, les sorties et tous les paramètres globaux que vous avez définis pour l’expérience. Pour tester le service web, vous pouvez entrer manuellement les valeurs appropriées pour les entrées ou fournir un fichier au format CSV contenant les valeurs de test.
+page de test RR Hello affiche hello entrées, sorties et tous les paramètres globaux que vous avez définis pour une expérience de hello. service web de hello tootest, vous pouvez entrer manuellement les valeurs appropriées pour les entrées de hello ou fournissez un fichier de mise en forme CSV (valeurs) séparés par des virgules contenant les valeurs de test hello.
 
-Pour tester le service en tant que Service de requête-réponse (RRS), en mode d’affichage liste, entrez les valeurs appropriées pour les entrées et cliquez sur **Test Request-Response**(Tester la requête-réponse). Vos résultats de prédiction s’affichent dans la colonne de sortie à gauche de la page.
+tootest à l’aide d’enregistrements de ressources, à partir du mode liste hello, entrez les valeurs appropriées pour les entrées de hello et cliquez sur **demande-réponse de Test**. Vos résultats de prédiction s’affichent dans toohello de colonne de sortie hello gauche.
 
-![Déploiement du service web](./media/machine-learning-publish-a-machine-learning-web-service/figure-5-test-request-response.png)
+![Déployer le service web de hello](./media/machine-learning-publish-a-machine-learning-web-service/figure-5-test-request-response.png)
 
-Pour tester votre service d’exécution de lots (BES), cliquez sur **Lot**. Sur la page de test BES, cliquez sur Parcourir en dessous de votre entrée et sélectionnez un fichier CSV contenant les exemples de valeurs appropriés. Si vous n’avez pas de fichier CSV et que vous avez créé votre expérience prédictive à l’aide de Machine Learning Studio, vous pouvez télécharger le jeu de données à utiliser pour votre expérience prédictive.
+Cliquez sur votre BES, de tootest **lot**. Sur la page de test de traitement par lots hello, cliquez sur Parcourir sous votre entrée et sélectionnez un fichier CSV contenant les valeurs d’échantillonnage approprié. Si vous n’avez pas un fichier CSV, et que vous avez créé votre expérience prédictif à l’aide de la Machine Learning Studio, vous pouvez télécharger le jeu de données hello pour votre expérience prédictive et l’utiliser.
 
-Pour télécharger le jeu de données, ouvrez Machine Learning Studio. Ouvrez votre expérience prédictive et cliquez avec le bouton droit sur l’entrée correspondant à votre expérience. Dans le menu contextuel, sélectionnez **Jeu de données**, puis **Télécharger**.
+jeu de données toodownload hello, ouvrez Machine Learning Studio. Ouvrez votre expérience prédictive et cliquez avec le bouton droit sur une entrée hello pour votre expérience. Dans le menu contextuel de hello, sélectionnez **dataset** , puis sélectionnez **télécharger**.
 
-![Déploiement du service web](./media/machine-learning-publish-a-machine-learning-web-service/figure-7-mls-download.png)
+![Déployer le service web de hello](./media/machine-learning-publish-a-machine-learning-web-service/figure-7-mls-download.png)
 
-Cliquez sur **Test**. L’état de votre travail de traitement par lots s’affiche à droite sous **Test Batch Jobs**(Travaux de test de traitement par lots).
+Cliquez sur **Test**. état de Hello de votre travail de l’exécution par lots s’affiche juste toohello sous **traitements par lots de Test**.
 
-![Déploiement du service web](./media/machine-learning-publish-a-machine-learning-web-service/figure-6-test-batch-execution.png)
+![Déployer le service web de hello](./media/machine-learning-publish-a-machine-learning-web-service/figure-6-test-batch-execution.png)
 
-<!--![Test the web service](./media/machine-learning-publish-a-machine-learning-web-service/figure-3.png)-->
+<!--![Test hello web service](./media/machine-learning-publish-a-machine-learning-web-service/figure-3.png)-->
 
-Dans la page **CONFIGURATION**, vous pouvez modifier la description et le titre, mettre à jour la clé du compte de stockage et activer les exemples de données pour votre service web.
+Sur hello **CONFIGURATION** page, vous pouvez hello description de la modification, titre, mettre à jour la clé de compte de stockage hello et activer les exemples de données pour votre service web.
 
-![Configuration du service web](./media/machine-learning-publish-a-machine-learning-web-service/figure-8-arm-configure.png)
+![Configurer le service web de hello](./media/machine-learning-publish-a-machine-learning-web-service/figure-8-arm-configure.png)
 
-Une fois que vous avez déployé le service web, vous pouvez :
+Une fois que vous avez déployé le service web de hello, vous pouvez :
 
-* **y accéder** via l’API du service web
-* **le gérer** via le portail de services web Azure Machine Learning ou le portail Azure Classic
-* **le mettre à jour** si vous modifiez votre modèle
+* **Accès** par le biais d’API du service web hello.
+* **Gérer les** par le biais d’Azure Machine Learning portail de services web ou hello portail Azure classic.
+* **le mettre à jour** si vous modifiez votre modèle.
 
 #### <a name="access-your-new-web-service"></a>Accès à votre nouveau service web
-Une fois que vous avez déployé votre service web à partir de Machine Learning Studio, vous pouvez envoyer des données au service et recevoir des réponses par programme.
+Une fois que vous déployez votre service web à partir de la Machine Learning Studio, vous pouvez toohello données envoyer et recevoir des réponses par programme.
 
-La page **Utiliser** fournit toutes les informations dont vous avez besoin pour accéder à votre service web. Elle contient notamment la clé API pour activer l’accès autorisé au service.
+Hello **consommer** page fournit toutes les informations de hello vous devez tooaccess votre service web. Par exemple, la clé de hello API est fournie tooallow autorisé accès toohello.
 
-Pour plus d’informations sur l’accès à un service web Machine Learning, consultez [Utilisation d’un service web Azure Machine Learning](machine-learning-consume-web-services.md).
+Pour plus d’informations sur l’accès à un service web de Machine Learning, consultez [comment tooconsume un service Web de Azure Machine Learning](machine-learning-consume-web-services.md).
 
 #### <a name="manage-your-new-web-service"></a>Gestion de votre nouveau service web
-Vous pouvez gérer vos nouveaux services web par le biais du portail Service web Machine Learning. Dans la [page principale du portail](https://services.azureml-test.net/), cliquez sur **Services web**. Sur la page de services web, vous pouvez supprimer ou copier un service. Pour surveiller un service spécifique, cliquez sur le service, puis sur **Tableau de bord**. Pour surveiller les tâches de traitement par lots associées au service web, cliquez sur **Batch Request Log**(Journal de requête de traitement par lots).
+Vous pouvez gérer vos nouveaux services web par le biais du portail Service web Machine Learning. À partir de hello [page du portail principal](https://services.azureml-test.net/), cliquez sur **Services Web**. À partir de la page des services web hello, vous pouvez supprimer ou copie d’un service. toomonitor un service spécifique, cliquez sur le service hello et puis cliquez sur **tableau de bord**. traitements toomonitor associés hello web service, cliquez sur **journal des demandes de lot**.
 
-### <a name="deploy-the-predictive-experiment-as-a-classic-web-service"></a>Déployer l’expérience prédictive comme un service web classique
+### <a name="deploy-hello-predictive-experiment-as-a-classic-web-service"></a>Déployer l’expérience de prédictive hello comme service web classique
 
-Maintenant que l’expérience prédictive est correctement préparée, vous pouvez la publier en tant que service web Azure classique. En accédant au service web, les utilisateurs peuvent envoyer des données à votre modèle, qui renvoie alors ses prédictions.
+Maintenant que l’expérience de prédictive hello suffisamment préparé, vous pouvez le déployer en tant que service web Azure Classic. À l’aide du service web de hello, les utilisateurs peuvent envoyer le modèle de données tooyour et modèle de hello retourne ses prédictions.
 
-Pour déployer votre expérience prédictive, cliquez sur **Exécuter** en bas du canevas de l’expérience, puis cliquez sur **Déployer le service web**. Le service web est configuré et vous êtes placé dans le tableau de bord du service web.
+toodeploy faire des essais, un sur votre prédictive **exécuter** bas hello hello expérimenter la zone de dessin, puis cliquez sur **déployer le Service Web**. service web de Hello est configuré et vous sont placés dans le tableau de bord hello web service.
 
-![Déploiement du service web](./media/machine-learning-publish-a-machine-learning-web-service/figure-2.png)
+![Déployer le service web de hello](./media/machine-learning-publish-a-machine-learning-web-service/figure-2.png)
 
 #### <a name="test-your-classic-web-service"></a>Test de votre service web classique
 
-Vous pouvez tester le service web dans le portail des services web Azure Machine Learning ou dans Machine Learning Studio.
+Vous pouvez tester le service web de hello dans le portail de Services Web de Machine Learning hello ou de Machine Learning Studio.
 
-Pour tester le service web de requête-réponse, cliquez sur le bouton **Test** dans le tableau de bord du service web. Une boîte de dialogue s'affiche pour vous demander les données d'entrée du service. Il s'agit des colonnes attendues par l'expérience de notation. Entrez un jeu de données, puis cliquez sur **OK**. Les résultats générés par le service web sont affichés au bas du tableau de bord.
+tootest hello service web de réponse à la demande, cliquez sur hello **Test** bouton dans le tableau de bord hello web service. Une boîte de dialogue s’affiche tooask vous pour les données d’entrée de hello pour le service de hello. Ce sont les colonnes hello attendus par hello expérience de score. Entrez un jeu de données, puis cliquez sur **OK**. les résultats de Hello générés par le service web de hello sont affichés en bas de hello du tableau de bord hello.
 
-Vous pouvez cliquer sur le lien d’aperçu **Test** pour tester votre service dans le portail des services web Azure Machine Learning, comme indiqué précédemment dans la section relative au nouveau service web.
+Vous pouvez cliquer sur hello **Test** afficher un aperçu de lien tootest votre service dans le portail de Services Web de Azure Machine Learning hello comme indiqué précédemment dans hello nouvelle section de service web.
 
-Pour tester le service d’exécution de lots, cliquez sur le lien d’aperçu **Test**. Sur la page de test BES, cliquez sur Parcourir en dessous de votre entrée et sélectionnez un fichier CSV contenant les exemples de valeurs appropriés. Si vous n’avez pas de fichier CSV et que vous avez créé votre expérience prédictive à l’aide de Machine Learning Studio, vous pouvez télécharger le jeu de données à utiliser pour votre expérience prédictive.
+tootest hello Batch Execution Service, cliquez sur **Test** prévisualiser le lien. Sur la page de test de traitement par lots hello, cliquez sur Parcourir sous votre entrée et sélectionnez un fichier CSV contenant les valeurs d’échantillonnage approprié. Si vous n’avez pas un fichier CSV, et que vous avez créé votre expérience prédictif à l’aide de la Machine Learning Studio, vous pouvez télécharger le jeu de données hello pour votre expérience prédictive et l’utiliser.
 
-![Test du service web](./media/machine-learning-publish-a-machine-learning-web-service/figure-3.png)
+![Tester un service web de hello](./media/machine-learning-publish-a-machine-learning-web-service/figure-3.png)
 
-Dans la page **CONFIGURATION**, vous pouvez modifier le nom d’affichage du service et lui donner une description. Le nom et la description s’affichent dans le [portail Azure Classic](http://manage.windowsazure.com/) où vous gérez vos services web.
+Sur hello **CONFIGURATION** page, vous pouvez modifier le nom d’affichage hello du service de hello et lui donner une description. Hello nom et la description s’affiche dans hello [portail Azure classic](http://manage.windowsazure.com/) où vous gérez vos services web.
 
-Vous pouvez fournir une description de vos données d’entrée, de vos données de sortie et des paramètres de service web en saisissant une chaîne pour chaque colonne sous **SCHÉMA D’ENTRÉE**, **SCHÉMA DE SORTIE** et **PARAMÈTRE DU SERVICE WEB**. Ces descriptions sont utilisées dans la documentation relative à l'exemple de code fournie pour le service web.
+Vous pouvez fournir une description de vos données d’entrée, de vos données de sortie et des paramètres de service web en saisissant une chaîne pour chaque colonne sous **SCHÉMA D’ENTRÉE**, **SCHÉMA DE SORTIE** et **PARAMÈTRE DU SERVICE WEB**. Ces descriptions sont utilisées dans la documentation du code exemple hello fournie pour hello web service.
 
-Vous pouvez activer la journalisation pour diagnostiquer toute défaillance que vous observez lors de l’accès à votre service web. Pour plus d'informations, consultez [Activation de la journalisation pour les services web de Machine Learning](machine-learning-web-services-logging.md).
+Vous pouvez activer la journalisation toodiagnose toutes les erreurs que vous voyez lorsque vous accédez à votre service web. Pour plus d'informations, consultez [Activation de la journalisation pour les services web de Machine Learning](machine-learning-web-services-logging.md).
 
-![Configuration du service web](./media/machine-learning-publish-a-machine-learning-web-service/figure-4.png)
+![Configurer le service web de hello](./media/machine-learning-publish-a-machine-learning-web-service/figure-4.png)
 
-Vous pouvez également configurer les points de terminaison pour le service web dans le portail des services web Azure Machine Learning en procédant de façon similaire à la procédure décrite précédemment dans la section relative au nouveau service web. Les options sont différentes. Vous pouvez ajouter ou modifier la description du service, activer la journalisation et activer des exemples de données à des fins de test.
+Vous pouvez également configurer des points de terminaison hello pour le service web de hello Bonjour Azure Machine Learning Web Services portail similaire toohello procédure illustrée précédemment hello nouvelle section de service web. options de Hello sont différentes, vous pouvez ajouter ou modifier la description de service hello, activez la journalisation et activer exemples de données de test.
 
 #### <a name="access-your-classic-web-service"></a>Accès à votre service web classique
-Une fois que vous avez déployé votre service web à partir de Machine Learning Studio, vous pouvez envoyer des données au service et recevoir des réponses par programme.
+Une fois que vous déployez votre service web à partir de la Machine Learning Studio, vous pouvez toohello données envoyer et recevoir des réponses par programme.
 
-Le tableau de bord fournit toutes les informations dont vous avez besoin pour accéder à votre service web. Par exemple, la clé API est fournie afin de permettre un accès autorisé au service et des pages d'aide API sont fournies pour vous aider à commencer à écrire votre code.
+tableau de bord Hello fournit toutes les informations de hello vous devez tooaccess votre service web. Par exemple, une clé API hello est fourni tooallow autorisé service toohello d’accès, et des pages d’aide API sont fournies toohelp que commencer l’écriture de votre code.
 
-Pour plus d’informations sur l’accès à un service web Machine Learning, consultez [Utilisation d’un service web Azure Machine Learning](machine-learning-consume-web-services.md).
+Pour plus d’informations sur l’accès à un service web de Machine Learning, consultez [comment tooconsume un service Web de Azure Machine Learning](machine-learning-consume-web-services.md).
 
 #### <a name="manage-your-classic-web-service"></a>Gestion de votre service web classique
-Vous pouvez effectuer diverses actions pour analyser un service web. Vous pouvez le mettre à jour et le supprimer. Vous pouvez également ajouter des points de terminaison à un service web classique en plus du point de terminaison par défaut créé lors de son déploiement.
+Il existe diverses actions, vous pouvez effectuer toomonitor un service web. Vous pouvez le mettre à jour et le supprimer. Vous pouvez également ajouter le service web de points de terminaison supplémentaires tooa classique dans le point de terminaison par défaut de toohello addition qui est créé lors de son déploiement.
 
-Pour plus d’informations, consultez [Gérer un espace de travail Azure Machine Learning](machine-learning-manage-workspace.md) et [Gérer un service web à l’aide du portail des services web Azure Machine Learning](machine-learning-manage-new-webservice.md).
+Pour plus d’informations, consultez [gérer un espace de travail Azure Machine Learning](machine-learning-manage-workspace.md) et [gérer un service web à l’aide du portail de Services Web de Azure Machine Learning hello](machine-learning-manage-new-webservice.md).
 
-<!-- When this article gets published, fix the link and uncomment
-For more information on how to manage Azure Machine Learning web service endpoints using the REST API, see **Azure machine learning web service endpoints**.
+<!-- When this article gets published, fix hello link and uncomment
+For more information on how toomanage Azure Machine Learning web service endpoints using hello REST API, see **Azure machine learning web service endpoints**.
 -->
 
-## <a name="update-the-web-service"></a>Mise à jour du service web
-Vous pouvez apporter des modifications à votre service web, par exemple mettre à jour le modèle avec des données d'apprentissage supplémentaires, et le déployer à nouveau, en remplaçant le service web d'origine.
+## <a name="update-hello-web-service"></a>Mettre à jour hello web service
+Vous pouvez apporter des modifications tooyour web service, telles que la mise à jour du modèle de hello avec des données d’apprentissage supplémentaire et le déployer à nouveau, remplacement du service web d’origine de hello.
 
-Pour mettre à jour le service web, ouvrez l'expérience prédictive d'origine utilisée pour déployer le service web et effectuez une copie modifiable en cliquant sur **ENREGISTRER SOUS**. Effectuez vos modifications, puis cliquez sur **Déployer le service web**.
+service web de hello tooupdate, ouvrez l’expérience d’origine prédictive hello vous avez utilisé le service web de hello toodeploy et faire une copie modifiable en cliquant sur **SAVE AS**. Effectuez vos modifications, puis cliquez sur **Déployer le service web**.
 
-Étant donné que vous avez déjà déployé cette expérience, une invite vous demande si vous souhaitez remplacer (service web classique) ou mettre à jour (nouveau service web) le service existant. Si vous cliquez sur **OUI** ou **Mettre à jour**, le service web existant est arrêté et la nouvelle expérience prédictive est déployée à la place.
+Étant donné que vous avez déployé cette expérience avant, vous êtes invité si vous souhaitez toooverwrite (Classic Web Service) ou le service de mise à jour (un service web) hello existant. En cliquant sur **Oui** ou **mise à jour** arrête le service web existant de hello et déploie expérience de prédictive nouvelle hello est déployé à la place.
 
 > [!NOTE]
-> Si vous avez apporté des modifications de configuration dans le service web d'origine, par exemple, si vous saisissez un nouveau nom d'affichage ou une description, vous devrez saisir ces valeurs à nouveau.
+> Si vous avez des modifications de configuration dans le service web d’origine hello, par exemple, entrez un nouveau nom complet ou une description, vous devez tooenter ces valeurs à nouveau.
 > 
 > 
 
-Pour mettre à jour votre service web, vous pouvez reformer le modèle à l’aide d’un programme. Pour plus d'informations, consultez la page [Reformation des modèles Machine Learning par programme](machine-learning-retrain-models-programmatically.md).
+Une option de mise à jour de votre service web est modèle de hello tooretrain par programmation. Pour plus d'informations, consultez la page [Reformation des modèles Machine Learning par programme](machine-learning-retrain-models-programmatically.md).
 
 <!-- internal links -->
-[Créez une expérience d'apprentissage]: #create-a-training-experiment
-[Convertissez-la en expérience prédictive]: #convert-the-training-experiment-to-a-predictive-experiment.
+[Créer une expérience d’apprentissage]: #create-a-training-experiment
+[Convertir les expérience prédictive tooa]: #convert-the-training-experiment-to-a-predictive-experiment
 [Déployez-la en tant que service web]: #deploy-it-as-a-web-service.
 [nouveau]: #deploy-the-predictive-experiment-as-a-new-Web-service
 [classique]: #deploy-the-predictive-experiment-as-a-new-Web-service

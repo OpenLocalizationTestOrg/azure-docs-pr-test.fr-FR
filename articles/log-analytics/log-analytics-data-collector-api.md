@@ -1,6 +1,6 @@
 ---
-title: "API Collecte de données HTTP Log Analytics | Microsoft Docs"
-description: "L’API Collecte de données HTTP Log Analytics permet d’ajouter des données POST JSON au référentiel de Log Analytics à partir de tout client pouvant appeler l’API REST. Cet article explique comment utiliser l’API, et contient des exemples montrant comment publier des données à l’aide de différents langages de programmation."
+title: "aaaLog API de collecteur de données Analytique HTTP | Documents Microsoft"
+description: "Vous pouvez utiliser hello API du collecteur de données journal Analytique HTTP tooadd POST JSON toohello Analytique de journal référentiel de données à partir de n’importe quel client peut appeler hello API REST. Cet article décrit comment toouse hello API et a des exemples de données toopublish à l’aide de différents langages de programmation."
 services: log-analytics
 documentationcenter: 
 author: bwren
@@ -14,19 +14,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/13/2017
 ms.author: bwren
-ms.openlocfilehash: b0c45ff8c1d4c9d35fbb3c8839b38a20df277055
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: c2921082831c49da764d946ac9c4fab975a38185
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="send-data-to-log-analytics-with-the-http-data-collector-api"></a>Transmettre des données à Log Analytics avec l’API Collecte de données HTTP
-Cet article vous montre comment utiliser l’API Collecte de données HTTP pour transmettre des données à Log Analytics à partir d’un client API REST.  Il explique comment mettre en forme les données collectées par le script ou l’application, les inclure dans une requête et faire en sorte que Log Analytics autorise cette requête.  Il est illustré par des exemples pour PowerShell, C# et Python.
+# <a name="send-data-toolog-analytics-with-hello-http-data-collector-api"></a>Envoyer des données tooLog Analytique avec hello API du collecteur de données HTTP
+Cet article vous explique comment toouse hello API de collecteur de données HTTP toosend données tooLog Analytique d’un client de l’API REST.  Il décrit comment les tooformat les données collectées par le script ou l’application, incluez-le dans une demande et avoir cette demande d’autorisation de l’Analytique des journaux.  Il est illustré par des exemples pour PowerShell, C# et Python.
 
 ## <a name="concepts"></a>Concepts
-Vous pouvez utiliser l’API Collecte de données HTTP pour transmettre des données à Log Analytics à partir de tout client pouvant appeler l’API REST.  Il peut s’agir d’un runbook dans Azure Automation qui collecte les données de gestion à partir d’Azure ou d’un autre cloud, ou il peut s’agit d’un système de gestion alternatif utilisant Log Analytics pour consolider et analyser les données.
+Vous pouvez utiliser les API de collecteur de données HTTP toosend hello données tooLog Analytique à partir de n’importe quel client qui peut appeler une API REST.  Il peut s’agir d’un runbook dans Azure Automation qui recueille la gestion des données à partir d’Azure ou un autre cloud ou il peuvent être un système d’administration de remplacement qui utilise le journal Analytique tooconsolidate et analyser les données.
 
-Toutes les données du référentiel Log Analysis sont stockées en tant qu’enregistrement avec un type d’enregistrement particulier.  Vous formatez vos données à transmettre à l’API Collecte de données HTTP en tant qu’enregistrements multiples dans JSON.  Lorsque vous envoyez vos données, un enregistrement individuel est créé dans le référentiel pour chaque enregistrement dans la charge utile de la requête.
+Toutes les données dans le référentiel d’Analytique de journal hello est stocké comme un enregistrement avec un type d’enregistrement particulier.  Vous mettre en forme votre toohello toosend de données API du collecteur de données HTTP en tant que plusieurs enregistrements dans JSON.  Quand vous envoyez des données de hello, un enregistrement est créé dans le référentiel hello pour chaque enregistrement dans la charge utile de demande hello.
 
 
 ![Présentation la collecte de données HTTP](media/log-analytics-data-collector-api/overview.png)
@@ -34,7 +34,7 @@ Toutes les données du référentiel Log Analysis sont stockées en tant qu’en
 
 
 ## <a name="create-a-request"></a>Créer une demande
-Pour utiliser l’API Collecte de données HTTP, il vous suffit de créer une requête POST qui inclut les données à envoyer dans JavaScript Objet Notation (JSON).  Les trois tableaux suivants répertorient les attributs requis pour chaque requête. Nous décrivons chaque attribut de façon plus détaillée plus loin dans cet article.
+API de collecteur de données toouse hello HTTP, vous créez une demande POST qui comprend hello données toosend dans JavaScript Objet Notation (JSON).  Bonjour trois tables liste hello attributs qui sont requis pour chaque demande. Nous décrivons chaque attribut plus en détail plus loin dans l’article de hello.
 
 ### <a name="request-uri"></a>URI de demande
 | Attribut | Propriété |
@@ -46,30 +46,30 @@ Pour utiliser l’API Collecte de données HTTP, il vous suffit de créer une re
 ### <a name="request-uri-parameters"></a>Paramètres de l’URI de demande
 | Paramètre | Description |
 |:--- |:--- |
-| CustomerID |Identificateur unique de l’espace de travail de Microsoft Operations Management Suite. |
-| Ressource |Nom de ressource de l’API : / api/logs. |
-| Version de l'API |Version de l’API à utiliser avec cette demande. Actuellement, il s’agit de 2016-04-01. |
+| CustomerID |Bonjour identificateur unique pour l’espace de travail de Microsoft Operations Management Suite hello. |
+| Ressource |nom de la ressource Hello API : / api/logs. |
+| Version de l'API |version de Hello de toouse hello API avec cette demande. Actuellement, il s’agit de 2016-04-01. |
 
 ### <a name="request-headers"></a>En-têtes de requête
 | En-tête | Description |
 |:--- |:--- |
-| Authorization |Signature de l’autorisation. Plus loin dans cet article, vous pouvez lire comment créer un en-tête HMAC-SHA256. |
-| Log-Type |Spécifiez le type d’enregistrement des données envoyées. Actuellement, le type de journal prend en charge uniquement des caractères alphabétiques. Il ne prend pas en charge les caractères numériques ou spéciaux. |
-| x-ms-date |Date à laquelle la requête a été traitée, au format RFC 1123. |
-| time-generated-field |Nom d’un champ de données qui contient l’horodateur de l’élément de données. Si vous spécifiez un champ, son contenu est utilisé pour **TimeGenerated**. Si ce champ n’est pas spécifié, la valeur par défaut de **TimeGenerated** est l’heure d’ingestion du message. Le contenu du champ de message doit suivre le format ISO 8601 AAAA-MM-JJThh:mm:ssZ. |
+| Autorisation |signature de l’autorisation de Hello. Plus loin dans l’article hello, vous pouvez lire sur l’en-tête de toocreate un code HMAC-SHA256. |
+| Log-Type |Spécifier le type d’enregistrement de hello de données hello sont envoyées. Actuellement, type de journal hello prend en charge uniquement des caractères alphanumériques. Il ne prend pas en charge les caractères numériques ou spéciaux. |
+| x-ms-date |date de Hello cette demande hello a été traitée, au format RFC 1123. |
+| time-generated-field |nom Hello d’un champ dans les données de salutation qui contient l’horodatage de hello d’élément de données hello. Si vous spécifiez un champ, son contenu est utilisé pour **TimeGenerated**. Si ce champ n’est pas spécifié, la valeur par défaut pour hello **TimeGenerated** est temps de hello que hello message est intégré. contenu Hello hello du champ de message doit suivre le format hello ISO 8601 aaaa-MM-JJThh. |
 
 ## <a name="authorization"></a>Autorisation
-Toute demande adressée à l’API Collecte de données HTTP Log Analytics doit inclure un en-tête d’autorisation. Pour authentifier une demande, vous devez la signer avec la clé primaire ou secondaire de l’espace de travail qui effectue la demande. Ensuite, transmettez cette signature dans le cadre de la demande.   
+Les API du collecteur de données journal Analytique HTTP de toohello demande doit inclure un en-tête d’autorisation. tooauthenticate une demande, vous devez vous connecter demande hello avec hello primaire ou clé secondaire de hello pour espace de travail hello demande hello. Ensuite, passer cette signature dans le cadre de la demande de hello.   
 
-Voici le format de l’en-tête d’autorisation :
+Voici le format hello pour l’en-tête d’autorisation hello :
 
 ```
 Authorization: SharedKey <WorkspaceID>:<Signature>
 ```
 
-*WorkspaceID* est l’identificateur unique de l’espace de travail Operations Management Suite. *Signature* est une clé [HMAC](https://msdn.microsoft.com/library/system.security.cryptography.hmacsha256.aspx) construite à partir de la demande, puis calculée à l’aide de l’[algorithme SHA256](https://msdn.microsoft.com/library/system.security.cryptography.sha256.aspx). Ensuite, vous l’encodez à l’aide d’un encodage Base64.
+*Id_espace_de_travail* est l’identificateur unique de hello pour l’espace de travail Operations Management Suite hello. *Signature* est un [Hash-based Message Authentication Code (HMAC)](https://msdn.microsoft.com/library/system.security.cryptography.hmacsha256.aspx) qui est construit à partir de la demande de hello et puis calculée à l’aide de hello [algorithme SHA256](https://msdn.microsoft.com/library/system.security.cryptography.sha256.aspx). Ensuite, vous l’encodez à l’aide d’un encodage Base64.
 
-Utilisez ce format pour encoder la chaîne de signature **SharedKey** :
+Utilisez cette hello tooencode de format **SharedKey** chaîne de signature :
 
 ```
 StringToSign = VERB + "\n" +
@@ -85,16 +85,16 @@ Voici un exemple de chaîne de signature :
 POST\n1024\napplication/json\nx-ms-date:Mon, 04 Apr 2016 08:00:00 GMT\n/api/logs
 ```
 
-Lorsque vous avez la chaîne de signature, encodez-la en utilisant l’algorithme HMAC-SHA256 sur la chaîne encodée en UTF-8, puis encodez le résultat en Base64. Utilisez le format suivant :
+Lorsque vous avez chaîne de signature hello, encoder à l’aide de hello l’algorithme HMAC-SHA256 sur hello encodée en UTF-8 de chaîne et puis encoder résultat hello en Base64. Utilisez le format suivant :
 
 ```
 Signature=Base64(HMAC-SHA256(UTF8(StringToSign)))
 ```
 
-Les exemples fournis dans les sections suivantes comportent un exemple de code pour vous aider à créer un en-tête d’autorisation.
+exemples de Hello dans les sections suivantes hello ont toohelp de code d’exemple vous créez un en-tête d’autorisation.
 
 ## <a name="request-body"></a>Corps de la demande
-Le corps du message doit être au format JSON. Il doit inclure un ou plusieurs enregistrements avec les paires nom de propriété/valeur au format suivant :
+corps de Hello du message de type hello doit être au format JSON. Elle doit inclure un ou plusieurs enregistrements avec des paires de nom et la valeur de la propriété hello dans ce format :
 
 ```
 {
@@ -105,7 +105,7 @@ Le corps du message doit être au format JSON. Il doit inclure un ou plusieurs e
 }
 ```
 
-Vous pouvez regrouper plusieurs enregistrements par lot dans une seule requête en utilisant le format suivant. Tous les enregistrements doivent être du même type.
+Vous pouvez traiter plusieurs enregistrements dans une demande unique à l’aide de hello suivant le format. Tous les enregistrements de hello doivent être hello même type d’enregistrement.
 
 ```
 {
@@ -123,11 +123,11 @@ Vous pouvez regrouper plusieurs enregistrements par lot dans une seule requête 
 ```
 
 ## <a name="record-type-and-properties"></a>Type et propriétés d’enregistrement
-Vous définissez un type d’enregistrement personnalisé lorsque vous envoyez des données via l’API Collecte de données HTTP Log Analytics. Actuellement, vous ne pouvez pas écrire de données dans des types d’enregistrements existants qui ont été créés par d’autres types de données et solutions. Log Analytics lit les données entrantes, puis crée des propriétés correspondant aux types de données des valeurs que vous entrez.
+Vous définissez un type d’enregistrement personnalisé lorsque vous envoyez des données via l’API du collecteur de données journal Analytique HTTP de hello. Actuellement, vous ne peut pas écrire les données tooexisting types d’enregistrements qui ont été créés par d’autres types de données et les solutions. Analytique de journal lit les données entrantes hello et crée ensuite des propriétés qui correspondent aux types de données hello de valeurs hello que vous entrez.
 
-Chaque demande adressée à l’API Log Analytics doit inclure un en-tête **Log-Type** avec le nom du type d’enregistrement. Le suffixe **_CL** est automatiquement ajouté au nom que vous entrez pour le distinguer d’autres types de journaux en tant que journal personnalisé. Par exemple, si vous entrez le nom **MyNewRecordType**, Log Analytics crée un enregistrement du type **MyNewRecordType_CL**. Cela évite tout conflit entre les noms de type créés par l’utilisateur et ceux fournis dans les solutions Microsoft actuelles ou futures.
+Chaque toohello demande API Analytique de journal doit inclure un **Type de journal** en-tête dont le nom hello pour le type d’enregistrement hello. suffixe de Hello **_CL** nom toohello ajoutée automatiquement vous entrez toodistinguish à partir du journal des autres types en tant qu’un journal personnalisé. Par exemple, si vous entrez le nom de hello **MyNewRecordType**, Analytique de journal crée un enregistrement avec le type de hello **MyNewRecordType_CL**. Cela évite tout conflit entre les noms de type créés par l’utilisateur et ceux fournis dans les solutions Microsoft actuelles ou futures.
 
-Pour identifier le type de données d’une propriété, Log Analytics ajoute un suffixe au nom de celle-ci. Si une propriété contient une valeur null, elle n’est pas incluse dans cet enregistrement. Ce tableau répertorie les types de données de propriété et les suffixes correspondants :
+type de données d’une propriété tooidentify, Analytique de journal ajoute un nom de propriété toohello suffixe. Si une propriété contient une valeur null, propriété de hello n’est pas incluse dans l’enregistrement. Ce tableau répertorie le type de données de propriété hello et le suffixe correspondant :
 
 | Type de données de propriété | Suffixe |
 |:--- |:--- |
@@ -137,75 +137,75 @@ Pour identifier le type de données d’une propriété, Log Analytics ajoute un
 | Date/time |_t |
 | GUID |_g |
 
-Le type de données que Log Analytics utilise pour chaque propriété dépend de l’existence préalable ou non du type d’enregistrement pour le nouvel enregistrement.
+type de données Hello Analytique de journal utilise pour chaque propriété dépend de si hello type d’enregistrement pour le nouvel enregistrement de hello existe déjà.
 
-* Si le type d’enregistrement n’existe pas, Log Analytics en crée un. Log Analytics utilise une inférence de type JSON pour déterminer le type de données pour chaque propriété du nouvel enregistrement.
-* Si le type d’enregistrement existe, Log Analytics tente de créer un enregistrement en fonction des propriétés existantes. Si le type de données d’une propriété dans le nouvel enregistrement ne correspond pas et ne peut pas être converti vers le type existant, ou si l’enregistrement contient une propriété inexistante, Log Analytics crée une propriété portant le suffixe approprié.
+* Si le type d’enregistrement hello n’existe pas, Analytique de journal crée un nouveau. Analytique de journal utilise hello JSON inférence toodetermine hello type de données pour chaque propriété pour hello nouvel enregistrement.
+* Si le type d’enregistrement hello existe, Analytique de journal tente de toocreate un nouvel enregistrement basé sur les propriétés existantes. Si hello type de données pour une propriété dans le nouvel enregistrement de hello ne correspond à et ne peut pas être convertie toohello existant de type ou si hello enregistrement inclut une propriété qui n’existe pas, Analytique de journal crée une nouvelle propriété qui a le suffixe approprié de hello.
 
 Par exemple, l’entrée de soumission suivante créerait un enregistrement avec trois propriétés, **number_d**, **boolean_b**, et **string_s** :
 
 ![Exemple d’enregistrement 1](media/log-analytics-data-collector-api/record-01.png)
 
-Si vous envoyiez ensuite l’entrée suivante, avec toutes les valeurs mises en forme de chaînes, les propriétés ne changeraient pas. Ces valeurs peuvent être converties en types de données existants :
+Si vous avez envoyé ensuite cette entrée suivante, avec toutes les valeurs mises en forme en tant que chaînes, les propriétés hello ne modifie pas. Ces valeurs peuvent être des types de données tooexisting converti :
 
 ![Exemple d’enregistrement 2](media/log-analytics-data-collector-api/record-02.png)
 
-Mais, si vous faisiez ensuite l’envoi suivant, Log Analytics créerait les propriétés **boolean_d** et **string_d**. Les valeurs suivantes ne peuvent pas être converties :
+Mais, si vous avez ensuite cette soumission suivante, Analytique de journal créerait hello nouvelles propriétés **boolean_d** et **string_d**. Les valeurs suivantes ne peuvent pas être converties :
 
 ![Exemple d’enregistrement 3](media/log-analytics-data-collector-api/record-03.png)
 
-Si vous envoyiez ensuite l’entrée suivante, avant que la création du type d’enregistrement, Log Analytics créerait un enregistrement avec trois propriétés, **number_s**, **boolean_s** **string_s**. Dans cette entrée, toutes les valeurs initiales sont au format de chaîne :
+Si vous avez envoyé puis hello suivant d’entrée, avant la création de type d’enregistrement hello, Analytique de journal créerait un enregistrement avec trois propriétés, **nombre_succès**, **boolean_s**, et **string_s**. Dans cette entrée, chacune des valeurs initiales de hello est sous forme de chaîne :
 
 ![Exemple d’enregistrement 4](media/log-analytics-data-collector-api/record-04.png)
 
 ## <a name="data-limits"></a>Limites de données
-Il existe certaines contraintes sur les données publiées sur l’API de collecte de données de Log Analytics.
+Il existe certaines contraintes autour des données hello validées toohello collecte des données d’Analytique de journal API.
 
-* Un maximum de 30 Mo par publication sur l’API de collecte de données de Log Analytics. Il s’agit d’une limite de taille pour une publication unique. Si les données d’une publication unique sont supérieures à 30 Mo, vous devrez fractionner les données en segments de plus petite taille et les envoyer simultanément.
-* Maximum de 32 Ko pour les valeurs de champ. Si la valeur de champ est supérieure à 32 Ko, les données seront tronquées.
+* Maximum de 30 Mo par post tooLog API du collecteur de données Analytique. Il s’agit d’une limite de taille pour une publication unique. Si les données de salutation à partir d’une publication unique qui dépasse 30 Mo, vous devez fractionner hello données toosmaller taille blocs et les envoyer simultanément.
+* Maximum de 32 Ko pour les valeurs de champ. Si la valeur du champ hello est supérieure à 32 Ko, les données de salutation seront tronquées.
 * Le nombre maximal recommandé de champs pour un type donné est 50. Il s’agit d’une limite pratique du point de vue de la facilité d’utilisation et de l’expérience de recherche.  
 
 ## <a name="return-codes"></a>Codes de retour
-Le code d’état HTTP 200 signifie que la demande a été reçue et doit être traitée. Cela indique que l’opération a été accomplie avec succès.
+Hello, code d’état HTTP 200 signifie que cette demande hello a été reçue pour le traitement. Cela indique que hello est terminée avec succès.
 
-Ce tableau répertorie l’ensemble complet de codes d’état que le service peut retourner :
+Ce tableau répertorie hello ensemble complet de codes d’état que le service de hello peut retourner :
 
 | Code | État | Code d'erreur | Description |
 |:--- |:--- |:--- |:--- |
-| 200 |OK | |La demande a été acceptée. |
-| 400 |Demande incorrecte |InactiveCustomer |L’espace de travail a été fermé. |
-| 400 |Demande incorrecte |InvalidApiVersion |La version d’API que vous avez spécifiée n’est pas reconnue par le service. |
-| 400 |Demande incorrecte |InvalidCustomerId |L’ID d’espace de travail spécifié n’est pas valide. |
-| 400 |Demande incorrecte |InvalidDataFormat |Un JSON non valide a été envoyé. Il se peut que le corps de la réponse contiennent des informations supplémentaires sur la manière de résoudre l’erreur. |
-| 400 |Demande incorrecte |InvalidLogType |Le type de journal spécifié contient des caractères spéciaux ou numériques. |
-| 400 |Demande incorrecte |MissingApiVersion |La version de l’API n’était pas spécifiée. |
-| 400 |Demande incorrecte |MissingContentType |Le type de contenu n’était pas spécifié. |
-| 400 |Demande incorrecte |MissingLogType |Le type de journal de valeur requis n’était pas spécifié. |
-| 400 |Demande incorrecte |UnsupportedContentType |Le type de contenu n’était pas défini sur **application/json**. |
-| 403 |Interdit |InvalidAuthorization |Le serveur n’a pas pu authentifier la demande. Vérifiez que la clé de connexion et l’ID de l’espace de travail sont valides. |
-| 404 |Introuvable | | L’URL fournie est incorrecte, ou la demande est trop grande. |
-| 429 |Trop de demandes | | Le service reçoit un volume important de données à partir de votre compte. Relancez la requête ultérieurement. |
-| 500 |Erreur interne du serveur |UnspecifiedError |Le service a rencontré une erreur interne. Relancez la requête. |
-| 503 |Service indisponible |ServiceUnavailable |Le service est actuellement indisponible pour recevoir des demandes. Relancez la requête. |
+| 200 |OK | |demande de Hello a été acceptée. |
+| 400 |Demande incorrecte |InactiveCustomer |espace de travail Hello a été fermé. |
+| 400 |Demande incorrecte |InvalidApiVersion |version de Hello API que vous avez spécifié n’est pas reconnue par le service de hello. |
+| 400 |Demande incorrecte |InvalidCustomerId |ID d’espace de travail Hello spécifié n’est pas valide. |
+| 400 |Demande incorrecte |InvalidDataFormat |Un JSON non valide a été envoyé. corps de réponse Hello peut contenir plus d’informations sur la façon dont tooresolve hello erreur. |
+| 400 |Demande incorrecte |InvalidLogType |indiquer le type de journal Hello contenus des caractères spéciaux ou des valeurs numériques. |
+| 400 |Demande incorrecte |MissingApiVersion |version de l’API Hello n’a pas été spécifiée. |
+| 400 |Demande incorrecte |MissingContentType |type de contenu Hello n’a pas été spécifié. |
+| 400 |Demande incorrecte |MissingLogType |Hello obligatoire type de journal de valeur n’a pas été spécifié. |
+| 400 |Demande incorrecte |UnsupportedContentType |type de contenu Hello n’a pas été défini trop**application/json**. |
+| 403 |Interdit |InvalidAuthorization |service de Hello Échec de la demande de hello tooauthenticate. Vérifiez que cette clé d’espace de travail hello ID et de connexion sont valides. |
+| 404 |Introuvable | | URL de hello fourni est incorrect, ou demande de hello est trop grande. |
+| 429 |Trop de demandes | | Hello service rencontre un volume important de données à partir de votre compte. Réessayez plus tard la demande de hello. |
+| 500 |Erreur interne du serveur |UnspecifiedError |service de Hello a rencontré une erreur interne. Réessayez la demande de hello. |
+| 503 |Service indisponible |ServiceUnavailable |service de Hello est actuellement indisponible tooreceive demandes. Relancez la requête. |
 
 ## <a name="query-data"></a>Données de requête
-Pour interroger des données soumises par l’API Collecte de données HTTP Log Analytics, recherchez des enregistrements dont la valeur **Type** correspond à la valeur **LogType** que vous avez spécifiée, assortie de **_CL**. Par exemple, si vous avez utilisé **MyCustomLog**, vous devriez retourner tous les enregistrements avec **Type=MyCustomLog_CL**.
+données tooquery soumises par hello API du collecteur de journal Analytique HTTP données, rechercher des enregistrements avec **Type** qui est égale toohello **LogType** assorti de valeur que vous avez spécifié, **_CL**. Par exemple, si vous avez utilisé **MyCustomLog**, vous devriez retourner tous les enregistrements avec **Type=MyCustomLog_CL**.
 
 >[!NOTE]
-> Si vous avez mis à niveau votre espace de travail vers le [nouveau langage de requête dans Log Analytics](log-analytics-log-search-upgrade.md), remplacez la requête ci-dessus par la requête ci-dessous.
+> Si votre espace de travail a été mis à niveau toohello [Analytique de journal nouveau langage de requête](log-analytics-log-search-upgrade.md), puis hello au-dessus de requête pourrait être modifié toohello suivant.
 
 > `MyCustomLog_CL`
 
 ## <a name="sample-requests"></a>Exemples de demandes
-Les sections suivantes contiennent des exemples montrant comment envoyer des données à l’API Collecte de données HTTP Log Analytics à l’aide de différents langages de programmation.
+Dans les sections suivantes hello, vous trouverez des exemples de toosubmit données toohello API du collecteur de données journal Analytique HTTP à l’aide de différents langages de programmation.
 
-Pour chaque exemple, procédez comme suit pour définir les variables de l’en-tête d’autorisation :
+Pour chaque échantillon, effectuez ces étapes tooset les variables de hello pour l’en-tête d’autorisation hello :
 
-1. Dans le portail Operations Management Suite, sélectionnez la vignette **Paramètres**, puis l’onglet **Sources connectées**.
-2. À droite de **ID de l’espace de travail**, sélectionnez l’icône de copie, puis collez l’ID en tant que valeur de la variable **ID client**.
-3. À droite de **Clé primaire**, sélectionnez l’icône de copie, puis collez l’ID en tant que valeur de la variable **Clé partagée**.
+1. Dans le portail Operations Management Suite hello, sélectionnez hello **paramètres** vignette, puis sélectionnez hello **Sources connectées** onglet.
+2. toohello à droite de **ID de l’espace de travail**, sélectionnez l’icône de copie hello, puis collez hello ID en tant que valeur hello Hello **ID de client** variable.
+3. toohello à droite de **clé primaire**, sélectionnez l’icône de copie hello, puis collez hello ID en tant que valeur hello Hello **Shared Key** variable.
 
-Vous pouvez également modifier les variables pour le type de journal et les données JSON.
+Vous pouvez également modifier variables hello pour le type de journal hello et les données JSON.
 
 ### <a name="powershell-sample"></a>Exemple de code PowerShell
 ```
@@ -215,14 +215,14 @@ $CustomerId = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 # Replace with your Primary Key
 $SharedKey = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 
-# Specify the name of the record type that you'll be creating
+# Specify hello name of hello record type that you'll be creating
 $LogType = "MyRecordType"
 
-# Specify a field with the created time for the records
+# Specify a field with hello created time for hello records
 $TimeStampField = "DateValue"
 
 
-# Create two records with the same set of properties to create
+# Create two records with hello same set of properties toocreate
 $json = @"
 [{  "StringValue": "MyString1",
     "NumberValue": 42,
@@ -238,7 +238,7 @@ $json = @"
 }]
 "@
 
-# Create the function to create the authorization signature
+# Create hello function toocreate hello authorization signature
 Function Build-Signature ($customerId, $sharedKey, $date, $contentLength, $method, $contentType, $resource)
 {
     $xHeaders = "x-ms-date:" + $date
@@ -256,7 +256,7 @@ Function Build-Signature ($customerId, $sharedKey, $date, $contentLength, $metho
 }
 
 
-# Create the function to create and post the request
+# Create hello function toocreate and post hello request
 Function Post-OMSData($customerId, $sharedKey, $body, $logType)
 {
     $method = "POST"
@@ -287,7 +287,7 @@ Function Post-OMSData($customerId, $sharedKey, $body, $logType)
 
 }
 
-# Submit the data to the API endpoint
+# Submit hello data toohello API endpoint
 Post-OMSData -customerId $customerId -sharedKey $sharedKey -body ([System.Text.Encoding]::UTF8.GetBytes($json)) -logType $logType  
 ```
 
@@ -308,21 +308,21 @@ namespace OIAPIExample
         // An example JSON object, with key/value pairs
         static string json = @"[{""DemoField1"":""DemoValue1"",""DemoField2"":""DemoValue2""},{""DemoField3"":""DemoValue3"",""DemoField4"":""DemoValue4""}]";
 
-        // Update customerId to your Operations Management Suite workspace ID
+        // Update customerId tooyour Operations Management Suite workspace ID
         static string customerId = "xxxxxxxx-xxx-xxx-xxx-xxxxxxxxxxxx";
 
-        // For sharedKey, use either the primary or the secondary Connected Sources client authentication key   
+        // For sharedKey, use either hello primary or hello secondary Connected Sources client authentication key   
         static string sharedKey = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
 
-        // LogName is name of the event type that is being submitted to Log Analytics
+        // LogName is name of hello event type that is being submitted tooLog Analytics
         static string LogName = "DemoExample";
 
-        // You can use an optional field to specify the timestamp from the data. If the time field is not specified, Log Analytics assumes the time is the message ingestion time
+        // You can use an optional field toospecify hello timestamp from hello data. If hello time field is not specified, Log Analytics assumes hello time is hello message ingestion time
         static string TimeStampField = "";
 
         static void Main()
         {
-            // Create a hash for the API signature
+            // Create a hash for hello API signature
             var datestring = DateTime.UtcNow.ToString("r");
             string stringToHash = "POST\n" + json.Length + "\napplication/json\n" + "x-ms-date:" + datestring + "\n/api/logs";
             string hashedString = BuildSignature(stringToHash, sharedKey);
@@ -331,7 +331,7 @@ namespace OIAPIExample
             PostData(signature, datestring, json);
         }
 
-        // Build the API signature
+        // Build hello API signature
         public static string BuildSignature(string message, string secret)
         {
             var encoding = new System.Text.ASCIIEncoding();
@@ -344,7 +344,7 @@ namespace OIAPIExample
             }
         }
 
-        // Send a request to the POST API endpoint
+        // Send a request toohello POST API endpoint
         public static void PostData(string signature, string date, string json)
         {
             try
@@ -385,13 +385,13 @@ import hashlib
 import hmac
 import base64
 
-# Update the customer ID to your Operations Management Suite workspace ID
+# Update hello customer ID tooyour Operations Management Suite workspace ID
 customer_id = 'xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
 
-# For the shared key, use either the primary or the secondary Connected Sources client authentication key   
+# For hello shared key, use either hello primary or hello secondary Connected Sources client authentication key   
 shared_key = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 
-# The log type is the name of the event that is being submitted
+# hello log type is hello name of hello event that is being submitted
 log_type = 'WebMonitorTest'
 
 # An example JSON web monitor object
@@ -423,7 +423,7 @@ body = json.dumps(json_data)
 ######Functions######  
 #####################
 
-# Build the API signature
+# Build hello API signature
 def build_signature(customer_id, shared_key, date, content_length, method, content_type, resource):
     x_headers = 'x-ms-date:' + date
     string_to_hash = method + "\n" + str(content_length) + "\n" + content_type + "\n" + x_headers + "\n" + resource
@@ -433,7 +433,7 @@ def build_signature(customer_id, shared_key, date, content_length, method, conte
     authorization = "SharedKey {}:{}".format(customer_id,encoded_hash)
     return authorization
 
-# Build and send a request to the POST API
+# Build and send a request toohello POST API
 def post_data(customer_id, shared_key, body, log_type):
     method = 'POST'
     content_type = 'application/json'
@@ -460,4 +460,4 @@ post_data(customer_id, shared_key, body, log_type)
 ```
 
 ## <a name="next-steps"></a>Étapes suivantes
-- Utilisez l’[API Recherche de journal](log-analytics-log-search-api.md) pour récupérer des données à partir du référentiel Log Analytics.
+- Hello d’utilisation [API de recherche de journal](log-analytics-log-search-api.md) tooretrieve des données à partir du référentiel d’Analytique de journal hello.

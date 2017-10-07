@@ -1,6 +1,6 @@
 ---
-title: "Démarrage rapide du déploiement du Kit de développement Azure Stack | Microsoft Docs"
-description: "En savoir plus sur le déploiement du Kit de développement Azure Stack"
+title: "démarrage rapide de déploiement aaaAzure Kit de développement de pile | Documents Microsoft"
+description: "Découvrez comment toodeploy hello Kit de développement de pile Azure"
 services: azure-stack
 documentationcenter: 
 author: ErikjeMS
@@ -15,24 +15,24 @@ ms.topic: hero-article
 ms.date: 07/10/2017
 ms.author: erikje
 ms.custom: mvc
-ms.openlocfilehash: 81b6282addd1e88e4146367c4dd9a2ee7b8c84bf
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 7f9fcd3a620e2916a24e57990d93dc9ace2b1129
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-stack-development-kit-deployment-quickstart"></a>Démarrage rapide du déploiement du Kit de développement Azure Stack
 
-Le [Kit de développement Azure Stack](azure-stack-poc.md) est un environnement de développement et de test que vous pouvez déployer pour évaluer et présenter les fonctionnalités et services Azure Stack. Pour l’installer et le rendre opérationnel, vous devez préparer l’environnement matériel nécessaire et exécuter plusieurs scripts (cette opération peut prendre plusieurs heures). Une fois que vous aurez effectué ces étapes préalables, vous pourrez vous connecter aux portails de l’administrateur et du locataire pour gérer Azure Stack et tester des offres. 
+Hello [Kit de développement Azure pile](azure-stack-poc.md) est un environnement de développement et de test que vous pouvez déployer tooevaluate et illustrer les fonctionnalités de la pile d’Azure et les services. tooget, configurez-le et en cours d’exécution, vous aurez besoin de matériel d’environnement tooprepare hello et exécuter des scripts (Ceci peut prendre plusieurs heures). Après cela, vous pouvez connectez-vous toohello admin et locataire portails toomanage Azure pile et tester des offres. 
 
-1. [**Planifiez votre matériel, vos logiciels et votre réseau**](azure-stack-deploy.md). Vérifiez que l’ordinateur prévu pour héberger le Kit de développement (l’hôte du Kit de développement) a la configuration matérielle, logicielle et réseau requise. Vous devez également déterminer si vous allez utiliser Azure Active Directory ou les services de fédération Active Directory (AD FS). Avant de démarrer votre déploiement, assurez-vous que tous ces prérequis sont remplis pour que le processus d’installation s’exécute correctement. 
+1. [**Planifiez votre matériel, vos logiciels et votre réseau**](azure-stack-deploy.md). ordinateur Hello qui héberge le kit de développement hello (hôte de kit de développement hello) doit respecter la configuration réseau requise, logiciel et matériel. Vous devez également déterminer si vous allez utiliser Azure Active Directory ou les services de fédération Active Directory (AD FS). Être toocomply que ces conditions préalables avant de commencer votre déploiement afin que le processus d’installation Bonjour s’exécute correctement. 
 
-2. [**Téléchargez et extrayez le package de déploiement**](azure-stack-run-powershell-script.md#download-and-extract-the-development-kit). Vous pouvez télécharger le package de déploiement sur l’hôte du Kit de développement ou sur un autre ordinateur. Une fois extraits, les fichiers de déploiement occupent jusqu’à 60 Go d’espace disque. L’utilisation d’un autre ordinateur peut vous permettre d’avoir une configuration matérielle moins exigeante pour l’hôte du Kit de développement.
+2. [**Téléchargez et extrayez le package de déploiement hello**](azure-stack-run-powershell-script.md#download-and-extract-the-development-kit). Vous pouvez télécharger ordinateur hôte du kit de développement hello déploiement package toohello ou tooa un autre ordinateur. Hello extraites des fichiers prennent jusqu'à 60 Go d’espace disque libre, donc à l’aide d’un autre ordinateur peut aider à réduire hello configuration matérielle requise pour hôte de kit de développement hello de déploiement.
 
-3. [**Préparez l’hôte du Kit de développement**](azure-stack-run-powershell-script.md#prepare-the-development-kit-host) en utilisant le programme d’installation. Après cette étape, l’hôte du Kit de développement démarrera sur Cloudbuilder.vhdx (disque dur virtuel qui contient un système d’exploitation démarrable et les fichiers d’installation d’Azure Stack).
+3. [**Préparer l’hôte de kit de développement hello** ](azure-stack-run-powershell-script.md#prepare-the-development-kit-host) à l’aide du programme d’installation hello. Après cette étape, hôte de kit de développement hello démarrera toohello Cloudbuilder.vhdx (un disque dur virtuel qui inclut un système d’exploitation amorçable et le hello Azure pile installer les fichiers).
 
-4. [**Déployez le Kit de développement**](azure-stack-run-powershell-script.md#deploy-the-development-kit) sur l’hôte du Kit de développement.
+4. [**Déployer le kit de développement hello** ](azure-stack-run-powershell-script.md#deploy-the-development-kit) sur l’hôte de kit de développement hello.
 
-5. Si votre déploiement Azure Stack utilise Azure Active Directory, vous devez [inscrire Azure Stack auprès d’Azure](azure-stack-register.md) pour pouvoir ensuite [télécharger des éléments de la Place de marché Azure](azure-stack-download-azure-marketplace-item.md) dans Azure Stack.
+5. Si votre déploiement Azure pile utilise Azure Active Directory, vous devez [inscrire la pile d’Azure avec Azure](azure-stack-register.md) afin que vous puissiez [télécharger les éléments d’Azure marketplace](azure-stack-download-azure-marketplace-item.md) tooAzure pile.
 
-Après toutes ces étapes, l’environnement pour le Kit de développement est prêt, avec les portails de l’administrateur et du client. Vous pouvez maintenant [vous connecter et ouvrir une session](azure-stack-connect-azure-stack.md) sur le portail. Vous pouvez ensuite commencer à déployer des fournisseurs de ressources, créer des [offres](azure-stack-key-features.md#regions-services-plans-offers-and-subscriptions)et ajouter des éléments sur la [Place de marché](azure-stack-marketplace.md) Azure Stack.
+Après toutes ces étapes, l’environnement pour le Kit de développement est prêt, avec les portails de l’administrateur et du client. Ensuite, vous pouvez [vous connecter et connectez-vous](azure-stack-connect-azure-stack.md) toohello portal. Vous pouvez ensuite démarrer un déploiement de fournisseurs de ressources, la création de [offre](azure-stack-key-features.md#regions-services-plans-offers-and-subscriptions), et le remplissage hello Azure pile [marketplace](azure-stack-marketplace.md).

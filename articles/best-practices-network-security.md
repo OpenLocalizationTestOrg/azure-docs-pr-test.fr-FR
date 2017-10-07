@@ -1,6 +1,6 @@
 ---
-title: "Bonnes pratiques en matière de sécurité réseau | Microsoft Docs"
-description: "Découvrez quelques-unes des fonctionnalités clés disponibles dans Azure pour créer des environnements réseau sécurisés"
+title: "meilleures pratiques de la sécurité de réseau aaaAzure | Documents Microsoft"
+description: "Découvrez que certaines des principales fonctionnalités hello disponibles dans Azure toohelp créent des environnements de réseau sécurisés"
 services: virtual-network
 documentationcenter: na
 author: tracsman
@@ -14,302 +14,302 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/03/2017
 ms.author: jonor
-ms.openlocfilehash: fb5e399d4ab02a7f2805cc280b213bf5b44f6993
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b851b2862428a8bd5e7525c85584fc1c14ffcabe
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="microsoft-cloud-services-and-network-security"></a>Services de cloud computing et sécurité réseau Microsoft
-Les services cloud Microsoft offrent une grande évolutivité des services et de l’infrastructure, des capacités de niveau d'entreprise et de nombreuses options de connectivité hybride. Les clients peuvent choisir d’accéder à ces services avec Internet ou grâce à Azure ExpressRoute, qui fournit une connectivité réseau privée. La plateforme Microsoft Azure permet aux clients d’étendre leur infrastructure dans le cloud et de générer des architectures à plusieurs niveaux en toute transparence. Par ailleurs, des tiers peuvent activer des fonctionnalités améliorées en offrant des services de sécurité et des appliances virtuelles. Ce livre blanc fournit une vue d’ensemble des problèmes de sécurité et d’architecture dont les clients doivent tenir compte lorsqu’ils utilisent des services de cloud computing Microsoft auxquels ils accèdent avec ExpressRoute. Il décrit également la création de services plus sécurisés dans les réseaux virtuels Azure.
+Les services cloud Microsoft offrent une grande évolutivité des services et de l’infrastructure, des capacités de niveau d'entreprise et de nombreuses options de connectivité hybride. Clients peuvent choisir tooaccess ces services via hello Internet ou avec Azure ExpressRoute, qui assure la connectivité de réseau privé. plateforme de Microsoft Azure Hello permet clients tooseamlessly étendre leur infrastructure en nuage de hello et générer des architectures multicouches. Par ailleurs, des tiers peuvent activer des fonctionnalités améliorées en offrant des services de sécurité et des appliances virtuelles. Ce livre blanc fournit une vue d’ensemble des problèmes de sécurité et d’architecture dont les clients doivent tenir compte lorsqu’ils utilisent des services de cloud computing Microsoft auxquels ils accèdent avec ExpressRoute. Il décrit également la création de services plus sécurisés dans les réseaux virtuels Azure.
 
 ## <a name="fast-start"></a>Démarrage rapide
-Le schéma logique suivant peut vous orienter vers un exemple spécifique des différentes techniques de sécurité disponibles avec la plateforme Azure. Pour une consultation rapide, recherchez l'exemple le plus adapté à votre cas. Pour des explications plus complètes, lisez entièrement le document.
+Hello suivant le graphique de la logique peut diriger vous tooa exemple spécifique de hello de nombreuses techniques de sécurité disponibles avec hello plateforme Azure. Pour référence rapide, recherchez exemple hello mieux adapté à votre cas. Pour obtenir des explications développées, poursuivez la lecture sur papier hello.
 [![0]][0]
 
-[Exemple 1 : Créer un réseau de périmètre (également appelé DMZ, zone démilitarisée ou sous-réseau filtré) pour protéger les applications avec des groupes de sécurité réseau (NSG).](#example-1-build-a-perimeter-network-to-help-protect-applications-with-nsgs)</br>
-[Exemple 2 : Créer un réseau de périmètre pour protéger les applications avec un pare-feu et des groupes de sécurité réseau.](#example-2-build-a-perimeter-network-to-help-protect-applications-with-a-firewall-and-nsgs)</br>
-[Exemple 3 : Créer un réseau de périmètre pour protéger les réseaux avec un pare-feu, un routage défini par l’utilisateur (UDR) et un groupe de sécurité réseau.](#example-3-build-a-perimeter-network-to-help-protect-networks-with-a-firewall-and-udr-and-nsg)</br>
+[Exemple 1 : Créer un réseau de périmètre (également appelé DMZ, zone démilitarisée ou DMZ ou sous-réseau filtré) toohelp protéger les applications avec des groupes de sécurité réseau (NSG).](#example-1-build-a-perimeter-network-to-help-protect-applications-with-nsgs)</br>
+[Exemple 2 : Créer un périmètre réseau toohelp protéger les applications avec un pare-feu et des groupes de sécurité réseau.](#example-2-build-a-perimeter-network-to-help-protect-applications-with-a-firewall-and-nsgs)</br>
+[Exemple 3 : Créer un périmètre réseau toohelp protéger les réseaux à un pare-feu, un itinéraire défini par l’utilisateur (UDR) et un groupe de sécurité réseau.](#example-3-build-a-perimeter-network-to-help-protect-networks-with-a-firewall-and-udr-and-nsg)</br>
 [Exemple 4 : Ajouter une connexion hybride avec un réseau privé virtuel (VPN) d’appliance virtuelle de site à site.](#example-4-add-a-hybrid-connection-with-a-site-to-site-virtual-appliance-vpn)</br>
 [Exemple 5 : Ajouter une connexion hybride avec une passerelle VPN Azure de site à site.](#example-5-add-a-hybrid-connection-with-a-site-to-site-azure-vpn-gateway)</br>
 [Exemple 6 : Ajouter une connexion hybride avec ExpressRoute.](#example-6-add-a-hybrid-connection-with-expressroute)</br>
-Des exemples d'ajout de connexions entre réseaux virtuels, de haute disponibilité et de chaînage de service seront ajoutés à ce document dans les prochains mois.
+Exemples d’ajout de connexions entre les réseaux virtuels, la haute disponibilité et le chaînage des propriétés du service seront ajoutés toothis document sur hello prochains mois.
 
 ## <a name="microsoft-compliance-and-infrastructure-protection"></a>Conformité et protection des infrastructures Microsoft
-Microsoft propose plus de 40 certifications et attestations pour aider les entreprises à répondre aux exigences nationales, régionales et sectorielles régissant la collecte et l’utilisation des données des individus. Cette offre est la plus complète parmi tous les fournisseurs de services cloud.
+les organisations toohelp conforme aux nationales, régionales, et les exigences spécifiques régissant la collecte de hello et utilisation des données des individus, Microsoft offre plus de 40 attestations et certifications. Hello plus complète jeu de n’importe quel fournisseur de service cloud.
 
-Pour plus d'informations, consultez les informations de conformité du [Centre de gestion de la confidentialité Microsoft][TrustCenter].
+Pour plus d’informations, consultez les informations de compatibilité hello sur hello [Microsoft Trust Center][TrustCenter].
 
-Microsoft a adopté une approche complète pour protéger l’infrastructure cloud nécessaire à l’exécution de services mondiaux très évolutifs. L’infrastructure cloud de Microsoft inclut du matériel, des logiciels, des réseaux et du personnel d’administration et d’exploitation, en complément des centres de données physiques.
+Microsoft propose une approche complète tooprotect infrastructure nécessaire toorun une évolutivité globale services cloud. Infrastructure de cloud de Microsoft inclut le matériel, les logiciels, les réseaux et d’administration et le personnel chargé des opérations, en outre toohello physique centres de données.
 
 ![2]
 
-Cette approche fournit une base plus solide permettant aux clients de déployer leurs services dans le cloud de Microsoft. L’étape suivante explique aux clients comment concevoir et créer une architecture de sécurité afin de protéger ces services.
+Cette approche fournit une Fondation plus sécurisée pour les clients toodeploy leurs services Bonjour cloud de Microsoft. étape suivante de Hello pour les clients toodesign et créer un tooprotect d’architecture de sécurité de ces services.
 
 ## <a name="traditional-security-architectures-and-perimeter-networks"></a>Architectures de sécurité traditionnelles et réseaux de périmètre
-Bien que Microsoft investisse fortement dans la protection de l’infrastructure cloud, les clients doivent également protéger leurs services cloud et leurs groupes de ressources. Une approche multicouche de la sécurité constitue la meilleure défense. Une zone de sécurité de type réseau de périmètre protège les ressources réseau internes d’un réseau non approuvé. Un réseau de périmètre concerne la périphérie ou les parties du réseau qui se trouvent entre Internet et l'infrastructure informatique protégée de l’entreprise.
+Bien que Microsoft investissements massifs protéger l’infrastructure de cloud hello, les clients doivent également protéger leurs services de cloud computing et les groupes de ressources. Une approche multicouche de toosecurity fournit profitent hello. Une zone de sécurité de type réseau de périmètre protège les ressources réseau internes d’un réseau non approuvé. Un réseau de périmètre fait référence toohello bords ou des parties du réseau de hello qui se situent entre hello Internet et de l’entreprise hello protégé infrastructure informatique.
 
-Dans les réseaux d’entreprise classiques, l’infrastructure centrale est puissamment fortifiée sur les périmètres, avec plusieurs couches d’appareils de sécurité. La limite de chaque couche se compose d’appareils et de points d’application de stratégies. Chaque couche peut comprendre une combinaison des appareils de sécurité réseau suivants : des pare-feu, la prévention DoS (Denial of Service), des systèmes IDS (détection d’intrusion) / IPS (protection contre les intrusions) et des appareils VPN. L’application de stratégies peut prendre la forme de stratégies de pare-feu, de listes de contrôle d’accès (ACL) ou de routage spécifique. La première ligne de défense du réseau, acceptant directement le trafic entrant à partir d’Internet, est une combinaison de ces mécanismes visant à bloquer les attaques et le trafic dangereux, tout en autorisant la transmission des demandes légitimes plus loin dans le réseau. Ce trafic conduit directement aux ressources dans le réseau de périmètre. Cette ressource peut ensuite « communiquer » avec les ressources plus loin dans le réseau, en transitant par la limite suivante en vue d’une validation préalable. La couche la plus à l’extérieur est appelée réseau de périmètre, car cette partie du réseau est exposée à Internet, généralement avec une certaine forme de protection des deux côtés. La figure suivante montre un exemple de réseau de périmètre à sous-réseau unique dans un réseau d’entreprise, avec deux limites de sécurité.
+Dans les réseaux d’entreprise classique, l’infrastructure de base hello est fortement enrichi au périmètre hello, avec plusieurs couches de dispositifs de sécurité. limite de Hello de chaque couche se compose des appareils et des points de mise en œuvre de stratégie. Chaque couche peut inclure une combinaison de hello suivant de périphériques de sécurité réseau : pare-feu, protection contre les attaques de déni de Service (DoS), la détection d’Intrusion ou des systèmes de Protection (intrusion) et périphériques VPN. Application de la stratégie peut prendre l’écran hello de stratégies de pare-feu, de listes de contrôle d’accès (ACL) ou de routage spécifique. Hello première ligne de défense dans réseau hello, accepter directement de trafic entrant en provenance d’Internet, de hello est une combinaison de ces mécanismes tooblock attaques et du trafic dangereux tout en permettant aux demandes légitimes davantage dans un réseau de hello. Ce trafic achemine directement tooresources hello réseau de périmètre. Cette ressource peut ensuite « communiquer » avec tooresources plus en réseau hello, en transit limite suivant de hello pour la validation du premier. couche la plus éloignée Hello est appelé réseau de périmètre hello, car cette partie du réseau de hello est exposé toohello Internet, généralement avec une certaine forme de protection sur les deux côtés. Hello figure suivante montre un exemple d’un réseau de périmètre de sous-réseau unique dans un réseau d’entreprise, avec deux limites de sécurité.
 
 ![3]
 
-Plusieurs architectures sont utilisées pour implémenter un réseau de périmètre. Ces architectures peuvent aller d’un simple équilibreur de charge à un réseau de périmètre à sous-réseaux multiples, avec divers mécanismes à chaque limite visant à bloquer le trafic et à protéger les couches les plus profondes du réseau d’entreprise. La conception du réseau de périmètre dépend des besoins spécifiques de l’organisation et de sa tolérance au risque globale.
+Il existe de nombreuses architectures utilisés tooimplement un réseau de périmètre. Ces architectures peuvent avec divers mécanismes chaque trafic tooblock de limite de plage à partir d’un réseau de périmètre de plusieurs sous-réseaux de charge simple équilibrage tooa et protéger les couches les plus profondes hello hello réseau d’entreprise. Comment le réseau de périmètre hello est créée dépend de hello des besoins spécifiques de l’organisation de hello et sa tolérance au risque global.
 
-Tandis que les clients déplacent leurs charges de travail vers des clouds publics, il est essentiel de prendre en charge des fonctionnalités similaires pour l’architecture de réseau de périmètre dans Azure pour répondre aux exigences de conformité et de sécurité. Ce document fournit aux clients des instructions pour créer un environnement réseau sécurisé dans Azure. Il se concentre sur le réseau de périmètre, mais inclut également une discussion complète sur de nombreux aspects de la sécurité réseau. Cette discussion s’articule autour des questions suivantes :
+Les clients déplacent leurs clouds toopublic de charges de travail, il est critique toosupport des fonctionnalités similaires pour l’architecture de réseau de périmètre dans Azure toomeet conformité en matière de sécurité. Ce document fournit aux clients des instructions pour créer un environnement réseau sécurisé dans Azure. Il se concentre sur le réseau de périmètre hello, mais il inclut également des informations complètes sur de nombreux aspects de sécurité réseau. Hello suivant questions informe cette discussion :
 
 * Comment créer un réseau de périmètre dans Azure ?
-* Quelles sont les fonctionnalités Azure disponibles pour créer le réseau de périmètre ?
+* Quelles sont de réseau de périmètre hello fonctionnalités Azure disponibles toobuild hello ?
 * Comment les charges de travail principales peuvent-elles être protégées ?
-* Comment les communications Internet sont-elles contrôlées pour les charges de travail dans Azure ?
-* Comment les réseaux locaux peuvent-ils être protégés des déploiements dans Azure ?
+* Comment les charges de travail toohello de communication contrôlée Internet dans Azure ?
+* Comment hello sur des réseaux locaux peuvent être protégés à partir des déploiements dans Azure ?
 * Dans quels cas les fonctionnalités de sécurité Azure natives doivent-elles être utilisées par rapport aux appliances ou services tiers ?
 
-Le diagramme suivant montre les différentes couches de sécurité fournies aux clients par Azure. Ces couches sont natives à la fois sur la plateforme Azure elle-même et dans les fonctionnalités définies par le client :
+Hello suivant schéma montre les différentes couches de sécurité Qu'azure fournit toocustomers. Ces couches sont natif Bonjour plateforme Azure lui-même et fonctions définies par le client :
 
 ![4]
 
-Issue d’Internet, la protection DDoS Azure protège contre les attaques à grande échelle menées contre Azure. Les adresses IP publiques (points de terminaison) définies par les clients constituent la couche suivante servent à déterminer quel trafic peut traverser le service cloud pour atteindre le réseau virtuel. L’isolement du réseau virtuel Azure natif garantit l’isolement complet de tous les autres réseaux et la circulation du trafic uniquement au moyen des méthodes et des chemins d’accès configurés par l’utilisateur. Ces chemins d’accès et méthodes constituent la couche suivante, où les groupes de sécurité réseau, le routage défini par l’utilisateur et les appliances virtuelles réseau peuvent servir à créer des limites de sécurité afin de protéger les déploiements d’applications dans le réseau protégé.
+Entrant à partir de hello Internet, DDoS Azure vous aide à protéger contre les attaques à grande échelle sur Azure. couche de suivante Hello est définie par le client des adresses IP publiques (points de terminaison), qui sont utilisé toodetermine le trafic peut passer par le réseau virtuel de hello cloud service toohello. L’isolement du réseau virtuel Azure natif garantit l’isolement complet de tous les autres réseaux et la circulation du trafic uniquement au moyen des méthodes et des chemins d’accès configurés par l’utilisateur. Ces chemins d’accès et les méthodes sont la couche suivante hello, où les groupes de sécurité réseau et les dispositifs réseau virtuel UDR peuvent être utilisé toocreate sécurité limites tooprotect hello déploiements d’applications dans le réseau de hello protégé.
 
-La section suivante fournit une vue d’ensemble des réseaux virtuels Azure. Ces réseaux virtuels sont créés par les clients et leurs charges de travail déployées y sont connectées. Les réseaux virtuels constituent la base de toutes les fonctionnalités de sécurité réseau requises pour établir un réseau de périmètre afin de protéger les déploiements des clients dans Azure.
+Hello suivant présente une vue d’ensemble des réseaux virtuels Azure. Ces réseaux virtuels sont créés par les clients et leurs charges de travail déployées y sont connectées. Les réseaux virtuels sont base hello de toutes les fonctionnalités de sécurité réseau hello requis tooestablish un périmètre réseau tooprotect des déploiements clients dans Azure.
 
 ## <a name="overview-of-azure-virtual-networks"></a>Vue d’ensemble des réseaux virtuels Azure
-Avant que le trafic Internet puisse atteindre les réseaux virtuels Azure, il existe deux couches de sécurité inhérentes à la plateforme Azure :
+Avant que le trafic Internet pour pouvoir obtenir toohello réseaux virtuels Azure, il existe deux couches de sécurité, toohello inhérents à la plateforme Azure :
 
-1.    **Protection DDoS**: la protection DDoS est une couche du réseau physique Azure qui protège la plateforme Azure elle-même contre les attaques Internet à grande échelle. Ces attaques utilisent plusieurs nœuds « robot » pour tenter de surcharger un service Internet. Azure comprend un maillage de protection DDoS robuste sur toutes les connexions entrantes, sortantes et inter-régions Azure. Cette couche de protection DDoS ne comporte aucun attribut configurable par l’utilisateur et n’est pas accessible au client. La couche de protection DDoS protège Azure en tant que plateforme contre les attaques à grande échelle, et surveille également le trafic sortant et inter-régions Azure. Le client peut configurer des couches de résilience supplémentaires à l’aide d'appliances virtuelles réseau pour une protection contre une attaque à plus petite échelle qui ne viole pas la protection au niveau de la plateforme. Un exemple de DDoS en action : si une adresse IP internet a subi une attaque DDoS à grande échelle, Azure détecte les sources des attaques et nettoie le trafic malveillant avant qu’il n'atteigne sa destination prévue. Dans la plupart des cas, le point de terminaison attaqué n’est pas affecté par l’attaque. Dans de rares cas où un point de terminaison est affecté, aucun trafic n’est affecté vers d’autres points de terminaison, seul le point de terminaison attaqué. Les autres clients et services ne sont donc pas impactés par cette attaque. Il est très important de noter qu'Azure DDoS recherche uniquement les attaques à grande échelle. Il est possible que votre service spécifique puisse être submergé avant que les seuils de niveau de protection de plateforme soient dépassés. Par exemple, un site web sur un serveur A0 IIS unique pourrait être mis en mode hors connexion par une attaque DDoS avant que la protection contre les DDoS au niveau de la plateforme Azure ne l'identifie comme une menace.
+1.    **Protection DDoS**: protection DDoS est une couche de hello Azure réseau physique qui protège hello plateforme Azure lui-même contre les attaques par Internet à grande échelle. Ces attaques utiliser plusieurs nœuds de « robots » dans un toooverwhelm de la tentative d’un service Internet. Azure comprend un maillage de protection DDoS robuste sur toutes les connexions entrantes, sortantes et inter-régions Azure. Cette couche de protection DDoS possède pas d’attributs configurables par l’utilisateur et n’est pas accessible toohello client. couche de protection DDoS Hello protège Azure en tant que plateforme contre les attaques à grande échelle, il analyse également le trafic sortant et le trafic de région cross-Azure. À l’aide des équipements virtuels du réseau sur le réseau virtuel de hello, des couches supplémentaires de résilience peuvent être configurés par le client hello contre une attaque de l’échelle plus petite qui ne déclencher protection au niveau de plate-forme hello. Un exemple de DDoS en action ; Si un ordinateur à adresse IP d’internet a été attaqué par une attaque DDoS à grande échelle, Azure détecte des sources d’attaques de hello hello et lire à vitesse variable hello incriminée trafic avant d’atteindre sa destination prévue. Dans presque tous les cas, hello attaqué du point de terminaison n’est pas affecté par une attaque de hello. Aucun trafic n’est affecté tooother de points de terminaison, seul point de terminaison hello attaqué hello très rare qu’un point de terminaison est affecté. Les autres clients et services ne sont donc pas impactés par cette attaque. Il est critique toonote qu’Azure DDoS recherche uniquement les attaques à grande échelle. Il est possible que votre service spécifique peut être submergé avant le dépassement des seuils de niveau de protection de plateforme hello. Par exemple, un site web sur un serveur A0 IIS unique pourrait être mis en mode hors connexion par une attaque DDoS avant que la protection contre les DDoS au niveau de la plateforme Azure ne l'identifie comme une menace.
 
-2.  **Adresses IP publiques** : les adresse IP publique (activées par le biais de points de terminaison de service, d'adresses IP publiques, d'Application Gateway et d’autres fonctionnalités Azure qui présentent une adresse IP publique vers internet acheminée vers votre ressource) permettent à des services cloud ou à des groupes de ressources d'exposer des adresses IP Internet publiques et des ports. Le point de terminaison utilise la traduction d'adresses réseau (NAT) pour acheminer le trafic vers l'adresse et le port internes sur le réseau virtuel Azure. Il s’agit du principal chemin d’accès pour que le trafic externe passe dans le réseau virtuel. Les adresses IP publiques sont configurables de manière à déterminer quel trafic est transféré et comment et où il est traduit sur le réseau virtuel.
+2.  **Les adresses IP publiques**: adresse IP publique (activés via les points de terminaison de service, les adresses IP publiques, passerelle d’Application et autres fonctionnalités Azure qui présentent une ressource de tooyour internet routé publique IP adresse toohello) des adresses permettent aux services cloud ou les groupes de ressources toohave les adresses IP Internet publiques et les ports exposés. point de terminaison de Hello utilise l’adresse interne du toohello trafic tooroute traduction d’adresses réseau (NAT) et le port sur hello réseau virtuel Azure. Ce chemin d’accès est hello pour principal moyen toopass trafic externe au réseau virtuel de hello. adresses IP publiques de Hello sont configurable toodetermine le trafic qui est passé dans, et où et comment il est traduit sur le réseau virtuel de toohello.
 
-Une fois que le trafic a atteint le réseau virtuel, de nombreuses fonctionnalités entrent en jeu. Les réseaux virtuels Azure constituent la base à laquelle les clients joignent leurs charges de travail et à laquelle s’applique la sécurité de base au niveau du réseau. Il s’agit d’un réseau privé (une superposition du réseau virtuel) dans Azure pour les clients dotés des caractéristiques et fonctionnalités suivantes :
+Une fois que le trafic atteint le réseau virtuel de hello, il existe de nombreuses fonctionnalités qui entrent en jeu. Réseaux virtuels Azure sont hello fondation pour les clients tooattach leurs charges de travail et où la sécurité de base au niveau du réseau s’applique. Il est un réseau privé (une superposition du réseau virtuel) dans Azure pour les clients avec hello suivant les fonctionnalités et caractéristiques :
 
-* **Isolement de trafic**: un réseau virtuel est une limite d’isolement du trafic sur la plateforme Azure. Les machines virtuelles dans un réseau virtuel ne peuvent pas communiquer directement avec les machines virtuelles dans un autre réseau virtuel, même si les deux réseaux virtuels sont créés par le même client. Cet isolement est une propriété critique qui garantit que les machines virtuelles et les communications du client restent privées dans un réseau virtuel.
+* **Isolation du trafic**: un réseau virtuel est la limite de d’isolation du trafic hello sur hello plateforme Azure. Machines virtuelles (VM) dans un réseau virtuel ne peut pas communiquer directement tooVMs dans un réseau virtuel différent, même si les deux réseaux virtuels est créés par hello même client. Cet isolement est une propriété critique qui garantit que les machines virtuelles et les communications du client restent privées dans un réseau virtuel.
 
 >[!NOTE]
->L'isolement du trafic se rapporte uniquement au trafic *entrant* dans le réseau virtuel. Par défaut, le trafic sortant du réseau virtuel vers Internet est autorisé, mais peut être évité si les groupes de sécurité réseau l'exigent.
+>Isolation du trafic fait référence uniquement tootraffic *entrant* toohello des réseaux virtuels. Par le trafic sortant de valeur par défaut à partir de toohello de réseau virtuel hello internet est autorisée, mais peut être évitée si vous le souhaitez en groupes de sécurité réseau.
 >
 >
 
-* **Topologie multiniveau** : les réseaux virtuels permettent aux clients de définir une topologie multiniveau en allouant des sous-réseaux et en spécifiant des espaces d’adressage distincts pour différents éléments ou « niveaux » de leurs charges de travail. Ces regroupements et topologies logiques permettent aux clients de définir différentes stratégies d’accès selon les types de charges de travail et également de contrôler les flux de trafic entre les niveaux.
-* **Connexions entre différents locaux**: les clients peuvent établir des connexions entre locaux entre un réseau virtuel et plusieurs sites locaux ou d’autres réseaux virtuels dans Azure. Pour créer une connexion, les clients peuvent utiliser l’homologation de réseau virtuel, des passerelles VPN Azure, des appliances virtuelles de réseau tiers ou ExpressRoute. Azure prend en charge les VPN de site à site (S2S) à l’aide des protocoles IPsec/IKE standards et de la connectivité privée ExpressRoute.
-* **Groupe de sécurité réseau** : permet aux clients de créer des règles (listes de contrôle d’accès) avec le niveau de granularité souhaité : interfaces réseau, machines virtuelles individuelles ou sous-réseaux virtuels. Les clients peuvent contrôler l’accès en autorisant ou en refusant la communication entre les charges de travail au sein d’un réseau virtuel, à partir des systèmes sur les réseaux du client au moyen des connexions entre différents locaux ou de la communication Internet directe.
-* **Routage défini par l’utilisateur** et **transfert IP** : permettent de définir les chemins d’accès de communication entre les différents niveaux d’un réseau virtuel. Les clients peuvent déployer un pare-feu, les services IDS/IPS et d’autres appliances virtuelles et acheminer le trafic réseau à travers ces appliances de sécurité pour l’application de stratégies de limites de sécurité, l’audit et l’inspection.
-* **Appliances virtuelles réseau** dans Azure Marketplace : les appliances de sécurité telles que les pare-feu, les équilibreurs de charge, les systèmes de détection/prévention des intrusions sont disponibles dans Azure Marketplace et la galerie d’images de machines virtuelles. Pour finaliser un environnement réseau sécurisé multiniveau, les clients peuvent déployer ces appliances dans leurs réseaux virtuels et, en particulier, sur leurs limites de sécurité (notamment les sous-réseaux du réseau de périmètre).
+* **Topologie de plusieurs niveaux**: les réseaux virtuels permettent aux clients topologie à plusieurs niveaux de toodefine en allouant des sous-réseaux et désigner des espaces d’adressage distincts pour différents éléments ou à « couche » de leurs charges de travail. Ces regroupements logiques topologies activer la stratégie d’accès différents toodefine clients basée sur les types de charges de travail hello et également contrôlent le flux de trafic entre les couches de hello.
+* **Connexions entre différents locaux**: les clients peuvent établir des connexions entre locaux entre un réseau virtuel et plusieurs sites locaux ou d’autres réseaux virtuels dans Azure. tooconstruct une connexion, les clients peuvent utiliser d’homologation de réseau virtuel, les passerelles VPN Azure, les équipements virtuels réseau tiers ou ExpressRoute. Azure prend en charge les VPN de site à site (S2S) à l’aide des protocoles IPsec/IKE standards et de la connectivité privée ExpressRoute.
+* **Groupe de sécurité réseau** permet aux clients toocreate règles (ACL) au niveau de hello souhaité de granularité : interfaces, des ordinateurs virtuels individuels ou des sous-réseaux virtuels du réseau. Les clients peuvent contrôler l’accès en autoriser ou refuser la communication entre les charges de travail hello dans un réseau virtuel, à partir des systèmes sur des réseaux du client via la connectivité intersite, ou diriger la communication Internet.
+* **UDR** et **le transfert IP** permettent aux clients de chemins de communication hello toodefine entre différents niveaux au sein d’un réseau virtuel. Les clients peuvent déployer un pare-feu, les services IDS/IPS et d’autres appliances virtuelles et acheminer le trafic réseau à travers ces appliances de sécurité pour l’application de stratégies de limites de sécurité, l’audit et l’inspection.
+* **Réseau virtuel** Bonjour Azure Marketplace : appliances de sécurité telles que les pare-feu, les équilibreurs de charge et les ID/adresses IP sont disponibles dans Azure Marketplace de hello et hello Galerie d’images de machine virtuelle. Les clients peuvent déployer ces appareils dans leurs réseaux virtuels et en particulier, à leur environnement de réseau sécurisé sécurité limites (y compris les sous-réseaux de réseau de périmètre hello) toocomplete un à plusieurs niveaux.
 
-Avec ces fonctionnalités et capacités, le diagramme suivant est un exemple de conception d’architecture de réseau de périmètre dans Azure :
+Avec ces fonctionnalités et les fonctions, un exemple de la façon dont une architecture de réseau de périmètre peut être construite dans Azure est hello suivant schéma :
 
 ![5]
 
 ## <a name="perimeter-network-characteristics-and-requirements"></a>Caractéristiques et conditions requises d’un réseau de périmètre
-Le réseau de périmètre est la partie frontale du réseau, qui crée une interface directe avec les communications depuis Internet. Les paquets entrants doivent traverser les appliances de sécurité, notamment le pare-feu et les systèmes de détection et de prévention d’intrusion, avant d’atteindre les serveurs principaux. Les paquets Internet des charges de travail peuvent également traverser les appliances de sécurité dans le réseau de périmètre pour l’application des stratégies, l’inspection et les fins d’audit, avant de quitter le réseau. En outre, le réseau de périmètre peut héberger les passerelles VPN entre différents locaux entre les réseaux virtuels client et les réseaux locaux.
+réseau de périmètre Hello est la partie frontale hello de réseau hello, interagissant directement de communication de hello Internet. les paquets Hello entrants doivent traverser des appliances de sécurité hello, tels que les pare-feu hello, ID et adresses IP, avant d’atteindre les serveurs principaux de hello. Paquets Internet liées à partir de charges de travail hello peuvent également circuler via les appliances de sécurité hello dans le réseau de périmètre hello pour l’application des stratégies, d’inspection et de l’audit à des fins, avant de quitter le réseau de hello. En outre, réseau de périmètre hello peut héberger des passerelles VPN intersite entre les réseaux virtuels client et sur des réseaux locaux.
 
 ### <a name="perimeter-network-characteristics"></a>Caractéristiques d’un réseau de périmètre
-En référence à la figure précédente, voici certaines caractéristiques d'un bon réseau de périmètre :
+Faisant référence à la figure précédente hello, hello les caractéristiques d’un réseau de périmètre bon sont les suivantes :
 
 * Accès sur Internet :
-  * Le sous-réseau du réseau de périmètre lui-même est accessible sur Internet et communique directement avec Internet.
-  * Les adresses IP publiques, les adresses IP virtuelles et/ou points de terminaison de service transfèrent le trafic Internet vers le réseau frontal et les appareils.
-  * Le trafic entrant provenant d’Internet passe par les appareils de sécurité avant d’autres ressources sur le réseau frontal.
-  * Si la sécurité sortante est activée, le trafic passe par les appareils de sécurité, dernière étape avant d’être transféré vers Internet.
+  * sous-réseau de réseau de périmètre Hello lui-même est connecté à Internet, communique directement avec hello Internet.
+  * Les adresses IP publiques, des adresses IP virtuelles et/ou des points de terminaison de service passer les périphériques et réseau frontal du toohello du trafic Internet.
+  * Le trafic entrant à partir de hello Qu'internet transmet des dispositifs de sécurité avant les autres ressources sur le réseau frontal de hello.
+  * Si la sécurité de trafic sortant est activée, le trafic passe par le biais des dispositifs de sécurité, comme étape finale de hello, avant de le transmettre toohello Internet.
 * Réseau protégé :
-  * Il n’y a aucun chemin d’accès direct à partir d’Internet vers l’infrastructure centrale.
-  * Les canaux vers l’infrastructure centrale doivent traverser les appareils de sécurité comme les NSG, pare-feu ou périphériques VPN.
-  * Les autres appareils ne doivent pas créer de pont avec Internet et l’infrastructure centrale.
-  * Les appareils de sécurité sur les limites du réseau de périmètre accessibles sur Internet ou avec le réseau protégé (par exemple, les deux icônes pare-feu de l'illustration précédente) peuvent correspondre en réalité à une seule appliance virtuelle avec des règles ou des interfaces différenciées pour chaque limite. Par exemple, un seul appareil, avec séparation logique, pour gérer la charge des deux limites du réseau de périmètre.
+  * Il n’existe aucun chemin d’accès direct à partir de l’infrastructure de base toohello hello Internet.
+  * Infrastructure de base de canaux toohello doit traverser les dispositifs de sécurité telles que les groupes de sécurité réseau, les pare-feu ou les périphériques VPN.
+  * Autres périphériques pas doivent établir une passerelle Internet et hello infrastructure de base.
+  * Dispositifs de sécurité sur les deux hello exposés à Internet et de réseau protégé de hello faisant face à des limites du réseau de périmètre hello (par exemple, les icônes de pare-feu de hello deux sont affichées dans la figure précédente hello) peut être un équipement virtuel unique avec des règles différenciés ou interfaces pour chaque limite. Par exemple, un appareil physique, séparé logiquement, gestion de la charge pour les limites du réseau de périmètre hello hello.
 * Autres pratiques courantes et contraintes :
   * Les charges de travail ne doivent pas stocker d’informations professionnelles stratégiques.
-  * L’accès et les mises à jour des configurations et déploiements de réseau de périmètre sont limités aux seuls administrateurs autorisés.
+  * Déploiements et les configurations de réseau tooperimeter accès et les mises à jour sont des administrateurs de tooonly limitée autorisé.
 
 ### <a name="perimeter-network-requirements"></a>Conditions requises pour le réseau de périmètre
-Afin d’activer ces caractéristiques, suivez ces instructions sur les conditions requises du réseau virtuel pour implémenter un réseau de périmètre réussi :
+tooenable ces caractéristiques, suivez les instructions sur la configuration requise de réseau virtuel tooimplement un réseau de périmètre réussie :
 
-* **Architecture de sous-réseau :** spécifiez le réseau virtuel, tel qu’un sous-réseau entier dédié en tant que réseau de périmètre, séparé par d’autres sous-réseaux dans le même réseau virtuel. Cette séparation garantit que le trafic entre le réseau de périmètre et d’autres niveaux de sous-réseaux internes ou privés circule à travers un pare-feu ou une appliance virtuelle IDS/IPS.  Les itinéraires définis par l’utilisateur sur les sous-réseaux de limite sont tenus d'acheminer ce trafic vers l’appliance virtuelle.
-* **Groupe de sécurité réseau :** le sous-réseau du réseau de périmètre lui-même doit être ouvert pour permettre la communication avec Internet, mais cela ne signifie pas que les clients doivent contourner les NSG. Suivez les pratiques de sécurité courantes afin de réduire les surfaces du réseau exposées à Internet. Verrouillez les plages d'adresses à distance autorisées à accéder aux déploiements ou aux ports et aux protocoles d'application spécifiques ouverts. Il peut arriver, cependant, qu'un verrouillage complet ne soit pas possible. Par exemple, si des clients ont un site web externe dans Azure, le réseau de périmètre doit autoriser les demandes web entrantes à partir de toutes les adresses IP publiques, mais doit uniquement ouvrir les ports d’application web : TCP sur le port 80 et/ou TCP sur le port 443.
-* **Table de routage :** le sous-réseau du réseau de périmètre lui-même doit être en mesure de communiquer directement avec Internet, mais ne doit pas permettre une communication directe vers et à partir des réseaux principaux ou locaux sans passer par un pare-feu ou une appliance de sécurité.
-* **Configuration des appliances de sécurité :** pour acheminer et inspecter les paquets entre le réseau de périmètre et le reste des réseaux protégés, les appliances de sécurité comme le pare-feu et les appareils de détection et de prévention d’intrusion peuvent être multirésidents. Ils peuvent avoir des cartes réseau distinctes pour le réseau de périmètre et les sous-réseaux principaux. Les cartes réseau du réseau de périmètre communiquent directement vers et à partir d’Internet, avec les NSG correspondants et la table de routage du réseau de périmètre. Les cartes réseau se connectant aux sous-réseaux principaux disposent de NSG et de tables de routage plus restreints des sous-réseaux principaux correspondants.
-* **Fonctionnalités des appliances de sécurité :** les appliances de sécurité déployées du réseau de périmètre exécutent généralement les fonctionnalités suivantes :
-  * Pare-feu : application de règles de pare-feu ou de stratégies de contrôle d’accès pour les demandes entrantes.
-  * Détection et prévention des menaces : détection et atténuation des attaques malveillantes d’Internet.
+* **Architecture de sous-réseaux :** spécifiez hello virtuel réseau telles que dédié un sous-réseau complet en tant que réseau de périmètre hello, séparé des autres sous-réseaux Bonjour même réseau virtuel. Cette séparation garantit le trafic de hello entre le réseau de périmètre hello et d’autres flux de niveaux de sous-réseau interne ou privé via un pare-feu ou un équipement virtuel d’intrusion.  Itinéraires définis par l’utilisateur limite hello sous-réseaux sont requis tooforward cette appliance virtuelle toohello de trafic.
+* **Groupe de sécurité réseau :** sous-réseau de réseau de périmètre hello lui-même doit être ouvert tooallow la communication avec hello Internet, mais qui ne signifie pas que les clients doivent être en ignorant des groupes de sécurité réseau. Suivez courantes sécurité pratiques toominimize hello réseau surfaces exposées toohello Internet. Verrouiller des plages d’adresse distante hello autorisées des déploiements tooaccess hello ou protocoles d’application spécifique hello et les ports qui sont ouverts. Il peut arriver, cependant, qu'un verrouillage complet ne soit pas possible. Par exemple, si les clients ont un site Web externe dans Azure, réseau de périmètre hello doit autoriser les demandes web entrantes hello à partir de toute adresse IP publique, mais doit ouvrir uniquement les ports d’application web hello : TCP sur le port 80 et/ou TCP sur le port 443.
+* **Table de routage :** sous-réseau de réseau de périmètre hello lui-même doit être en mesure de toocommunicate toohello Internet directement, mais ne doit pas permettre tooand communication directe à partir de réseaux de fin ou locale précédent hello sans passer par un pare-feu ou Dispositif de sécurité.
+* **Configuration des appliances de sécurité :** tooroute et inspecter des paquets entre le réseau de périmètre hello et rest hello des réseaux de hello protégé, hello appliances de sécurité telles que les pare-feu, ID, et les appareils d’adresses IP multirésident. Ils peuvent avoir des cartes réseau distinctes pour le réseau de périmètre hello et sous-réseaux de back-end hello. cartes d’interface réseau dans le réseau de périmètre hello Hello communiquent directement tooand de hello Internet, avec hello NSG correspondante et périmètre de hello table de routage du réseau. NIC Hello connexion sous-réseaux de back-end toohello ont plus restreinte des tables de routage de sous-réseau principal hello et des groupes de sécurité réseau.
+* **Fonctionnalités des appliances de sécurité :** appliances de sécurité hello déployés dans le réseau de périmètre hello généralement effectuer hello suivant de fonctionnalités :
+  * Pare-feu : Application des règles de pare-feu ou des stratégies de contrôle d’accès pour les demandes entrantes hello.
+  * Détection et la prévention des menaces : détecter et atténuer les attaques malveillantes de hello Internet.
   * Audit et journalisation : gestion de journaux d’audit et d’analyse détaillés.
-  * Proxy inversé : redirection des demandes entrantes vers les serveurs principaux correspondants. La redirection implique le mappage et la traduction des adresses de destination sur les appareils frontaux, généralement des pare-feu, vers les adresses des serveurs principaux.
-  * Proxy de transfert : indication de NAT et exécution d’audits pour la communication initiée à partir du réseau virtuel vers Internet.
-  * Routeur : transfert du trafic entrant et entre sous-réseaux au sein du réseau virtuel.
-  * Périphérique VPN : action en tant que passerelles VPN entre différents locaux, pour la connectivité VPN entre différents locaux, entre les réseaux locaux client et les réseaux virtuels Azure.
-  * Serveur VPN : acceptation des clients VPN se connectant aux réseaux virtuels Azure.
+  * Proxy inversé : hello entrants de redirection des demandes toohello correspondant sur les serveurs principaux. Cette redirection implique le mappage et traduction des adresses de destination hello sur les appareils frontal hello, en général, pare-feu, toohello les adresses de serveur principal.
+  * Proxy avant : fournissant NAT et l’audit pour la communication initialisée à partir de toohello de réseau virtuel hello Internet.
+  * Routeur : Transfert entre sous-réseaux le trafic entrant et à l’intérieur du réseau virtuel de hello.
+  * Périphérique VPN : qui agit comme hello entre différents locaux pour les passerelles VPN intersite connectivité VPN entre le client sur des réseaux locaux et des réseaux virtuels Azure.
+  * Serveur VPN : acceptation de clients VPN connectant tooAzure des réseaux virtuels.
 
 > [!TIP]
-> Maintenez les deux groupes suivants séparés : les personnes autorisées à accéder au matériel de sécurité du réseau de périmètre et les personnes autorisées en tant qu’administrateurs de développement d’applications, de déploiement ou d’opérations. Conserver une distinction entre ces groupes permet une répartition des tâches et empêche qu’une seule personne contourne les contrôles de sécurité des applications et de sécurité réseau.
+> Conserver hello suivant deux groupes distincts : les personnes hello autorisé tooaccess hello périmètre réseau sécurité engrenage et hello personnes autorisées en tant qu’administrateurs de développement, de déploiement ou d’opérations de l’application. Conserver une distinction entre ces groupes permet une répartition des tâches et empêche qu’une seule personne contourne les contrôles de sécurité des applications et de sécurité réseau.
 >
 >
 
-### <a name="questions-to-be-asked-when-building-network-boundaries"></a>Questions à envisager lors de la création des limites du réseau
-Dans cette section, sauf mention contraire, le terme « réseaux » fait référence à des réseaux virtuels privés Azure créés par un administrateur d’abonnement. Le terme ne fait pas référence aux réseaux physiques sous-jacents dans Azure.
+### <a name="questions-toobe-asked-when-building-network-boundaries"></a>Toobe aux questions posée lors de la génération des limites du réseau
+Dans cette section, sauf mention, le terme hello « réseaux » fait référence tooprivate Azure réseaux virtuels créés par un administrateur de l’abonnement. terme de Hello ne fait pas référence toohello les réseaux physiques sous-jacents dans Azure.
 
-En outre, les réseaux virtuels Azure sont souvent utilisés pour étendre les réseaux locaux traditionnels. Il est possible d’incorporer des solutions de mise en réseau hybrides de site à site ou ExpressRoute avec les architectures de réseau de périmètre. Ce lien hybride est un aspect important de la création de limites de sécurité réseau.
+En outre, Azure les réseaux virtuels sont souvent utilisés tooextend traditionnel sur des réseaux locaux. Il est possible de tooincorporate site à site ou hybride ExpressRoute mise en réseau des solutions avec des architectures de réseau de périmètre. Ce lien hybride est un aspect important de la création de limites de sécurité réseau.
 
-Les trois questions suivantes sont essentielles lorsque vous créez un réseau avec un réseau de périmètre et plusieurs limites de sécurité.
+Hello trois questions suivantes sont critiques tooanswer lorsque vous créez un réseau avec un réseau de périmètre et plusieurs limites de sécurité.
 
 #### <a name="1-how-many-boundaries-are-needed"></a>1) Combien de limites sont nécessaires ?
-En premier lieu, il faut décider le nombre de limites de sécurité nécessaires dans un scénario donné :
+premier point de décision Hello est toodecide le nombre de limites de sécurité sont nécessaires dans un scénario donné :
 
-* Une seule limite : une sur le réseau de périmètre frontal entre le réseau virtuel et Internet.
-* Deux limites : une du côté Internet du réseau de périmètre, l’autre entre le sous-réseau du réseau de périmètre et les sous-réseaux principaux dans les réseaux virtuels Azure.
-* Trois limites : une du côté Internet du réseau de périmètre, une autre entre le réseau de périmètre et les sous-réseaux principaux et la dernière entre les sous-réseaux principaux et le réseau local.
-* N limites : nombre variable. Selon les besoins de sécurité, le nombre de limites de sécurité pouvant être appliquées dans un réseau donné n'a pas de limite.
+* Une limite : un réseau de périmètre frontal hello, entre le réseau virtuel de hello et hello Internet.
+* Deux frontières : un sur hello côté Internet du réseau de périmètre hello et l’autre entre le sous-réseau de réseau de périmètre hello et sous-réseaux principal hello hello réseaux virtuels Azure.
+* Trois limites : un côté hello Internet du réseau de périmètre hello entre le réseau de périmètre hello et sous-réseaux de back-end et entre des sous-réseaux hello principal et le réseau local de hello.
+* N limites : nombre variable. Selon les exigences de sécurité, il n’existe aucun toohello limiter le nombre de limites de sécurité qui peuvent être appliqués dans un réseau donné.
 
-Le nombre et le type des limites nécessaires varient en fonction de la tolérance au risque d’une société et du scénario spécifique implémenté. Cette décision est souvent prise conjointement par plusieurs groupes au sein d’une entreprise, parmi lesquels figurent souvent une équipe spécialiste des risques et de la conformité, une équipe chargée du réseau et de la plateforme et une équipe de développement des applications. Les personnes ayant des connaissances en matière de sécurité, des données impliquées et des technologies utilisées doivent avoir leur mot à dire dans cette décision, afin de garantir une position de sécurité appropriée pour chaque implémentation.
+Hello nombre et le type des limites nécessaires varient selon risque tolérance de panne et hello scénario spécifique une société en cours d’implémentation. Cette décision est souvent prise conjointement par plusieurs groupes au sein d’une entreprise, parmi lesquels figurent souvent une équipe spécialiste des risques et de la conformité, une équipe chargée du réseau et de la plateforme et une équipe de développement des applications. Personnes possédant des connaissances de sécurité, les données hello impliquées et les technologies hello utilisés doit être un prononcer cette possibilités de sécurité appropriés de décision tooensure hello pour chaque implémentation.
 
 > [!TIP]
-> Utilisez le plus petit nombre de limites afin de répondre aux exigences de sécurité pour une situation donnée. Plus le nombre de limites est élevé, plus les opérations et le dépannage peuvent être complexes, de même que les frais généraux impliqués dans la gestion de plusieurs stratégies de limites au fil du temps. Toutefois, des limites insuffisantes augmentent les risques. Il est essentiel de trouver le juste équilibre.
+> Utilisez hello plus petit nombre de limites qui répondent aux exigences de sécurité hello dans une situation donnée. Avec les limites de plus, opérations et la résolution des problèmes peuvent être plus difficile, ainsi hello gestion surcharge liées à la gestion hello plusieurs stratégies de limite dans le temps. Toutefois, des limites insuffisantes augmentent les risques. Solde de hello de recherche est critique.
 >
 >
 
 ![6]
 
-La figure précédente montre une vue d'ensemble d'un réseau à trois limites de sécurité. Ces limites se trouvent entre le réseau de périmètre et Internet, entre les sous-réseaux privés Azure frontaux et principaux et entre le sous-réseau Azure principal et le réseau d'entreprise local.
+Hello figure précédente montre une vue d’ensemble d’un réseau de limite de sécurité de trois. limites de Hello sont entre hello périmètre réseau et hello Internet, hello Azure frontaux et principaux des sous-réseaux privés et hello sous-réseau principal Azure et hello local d’entreprise.
 
-#### <a name="2-where-are-the-boundaries-located"></a>2) Où se trouvent les limites ?
-Une fois que le nombre de limites est décidé, la question de l’emplacement de leur implémentation constitue le point de décision suivant. Il existe généralement trois possibilités :
+#### <a name="2-where-are-hello-boundaries-located"></a>(2) dans lequel sont trouvent les limites de hello ?
+Une fois que le nombre hello de limites est décidé, où tooimplement les est hello point de décision suivant. Il existe généralement trois possibilités :
 
 * À l'aide d'un service Internet intermédiaire (par exemple, un pare-feu d'applications web cloud, non abordé dans ce document)
 * À l'aide des fonctionnalités natives et/ou des appliances de réseau virtuel dans Azure
-* À l'aide d’appareils physiques sur le réseau local
+* À l’aide de périphériques physiques sur le réseau local de hello
 
-Sur les réseaux exclusivement Azure, les options sont les fonctionnalités Azure natives (par exemple, les équilibreurs de charge Azure) ou les appliances virtuelles réseau à partir d’un riche écosystème de partenaires Azure (par exemple, les pare-feu Check Point).
+Sur les réseaux Azure purement, options de hello sont des fonctionnalités natives de Azure (par exemple, les équilibreurs de charge Azure) ou les dispositifs de réseau virtuel à partir de hello riche écosystème de partenaires de Azure (par exemple, les pare-feu de Point de vérification).
 
-Si une limite est nécessaire entre Azure et un réseau local, les appareils de sécurité peuvent résider sur n’importe quel côté de la connexion (ou sur les deux côtés). Par conséquent une décision doit être prise concernant l’emplacement du matériel de sécurité.
+Si une limite est nécessaire entre Azure et un réseau local, les dispositifs de sécurité hello peuvent résider sur chaque côté de la connexion de hello (ou les deux côtés). Par conséquent, une décision sur le matériel de sécurité tooplace hello emplacement.
 
-Dans la figure précédente, les limites Internet-réseau de périmètre et frontal-principal sont entièrement contenues dans Azure et doivent être des fonctionnalités Azure natives ou des appliances virtuelles réseau. Les appareils de sécurité sur la limite entre Azure (sous-réseau principal) et le réseau d’entreprise peuvent être du côté Azure ou du côté local ; une combinaison d’appareils des deux côtés est également possible. Ces options présentent des avantages et des inconvénients importants qui doivent être sérieusement envisagés.
+Dans la figure précédente hello, hello Internet-à-réseau des limites de hello avant-back-end entièrement contenus dans Azure et doivent être des fonctionnalités natives de Azure ou équipements virtuels du réseau. Dispositifs de sécurité sur hello limite entre Azure (principal ou sous-réseau) et réseau d’entreprise de hello peut être soit sur hello côté Azure côté local de hello ou même une combinaison d’appareils sur les deux côtés. Il peut y avoir des avantages importants et option tooeither inconvénients à prendre en compte au sérieux.
 
-Par exemple, l’utilisation d’un matériel de sécurité physique existant sur le réseau local présente l'avantage de ne pas nécessiter de nouveau matériel. Une reconfiguration suffit. L’inconvénient, cependant, est que tout le trafic doit revenir d’Azure vers le réseau local pour être vu par le matériel de sécurité. Ainsi, le trafic Azure à Azure pourrait subir une latence importante et affecter les performances des applications et l’expérience utilisateur s’il a été forcé vers le réseau local pour l’application de stratégies de sécurité.
+Par exemple, à l’aide du matériel de sécurité physique existant sur hello local côté réseau a parti hello qu’aucune nouvelle ENGRENAGE n’est nécessaire. Une reconfiguration suffit. Hello, toutefois, inconvénient que tout le trafic doit revenir à partir de toobe de réseau local toohello Azure vu par engrenage de sécurité hello. Ainsi le trafic Azure vers Azure peut entraîner une latence importante et affectent l’expérience utilisateur et les performances d’application, si elle a été forcé précédent toohello local du réseau pour l’application de stratégie de sécurité.
 
-#### <a name="3-how-are-the-boundaries-implemented"></a>3) Comment les limites sont-elles implémentées ?
-Chaque limite de sécurité aura probablement des exigences de fonctionnalités différentes (par exemple, des règles IDS et de pare-feu du côté Internet du réseau de périmètre, mais des listes de contrôle d’accès uniquement entre le réseau de périmètre et le sous-réseau principal). Le choix de l'appareil (ou du nombre d'appareils) à utiliser dépend du scénario et des exigences de sécurité. Dans la section suivante, les exemples 1, 2 et 3 abordent certaines des options qui peuvent être utilisées. L’examen des fonctionnalités réseau natives Azure et des appareils disponibles dans Azure à partir de l’écosystème de partenaires montre les nombreuses options disponibles pour résoudre la quasi-totalité des scénarios.
+#### <a name="3-how-are-hello-boundaries-implemented"></a>(3) l’implémentation des limites de hello ?
+Chaque limite de sécurité auront probablement placer les exigences de capacité différente (par exemple, les ID et les règles de pare-feu sur hello côté Internet du réseau de périmètre hello, mais uniquement les ACL entre le réseau de périmètre hello et sous-réseau principal). Choisir le périphérique (ou combien d’appareils) dépend de toouse hello scénario et sécurité requises. Bonjour suivant la section, les exemples 1, 2 et 3 décrivent certaines options qui peuvent être utilisées. Vérification des fonctionnalités de réseau natif Azure hello et appareils hello disponibles dans Azure à partir de l’écosystème de partenaires hello montre toosolve disponibles du large éventail d’options hello pratiquement n’importe quel scénario.
 
-Autre point de décision d’implémentation important : comment connecter le réseau local avec Azure ? Faut-il utiliser la passerelle virtuelle Azure ou une appliance virtuelle réseau ? Ces options sont évoquées plus en détail dans la section suivante (exemples 4, 5 et 6).
+Un autre point de décision d’implémentation de la clé est comment tooconnect hello sur le site réseau avec Azure. Utiliser hello passerelle virtuelle Azure ou un matériel de réseau virtuel ? Ces options sont décrites en détail dans hello après section (exemples 4, 5 et 6).
 
-En outre, le trafic entre les réseaux virtuels dans Azure peut être nécessaire. Ces scénarios seront ajoutés à une date ultérieure.
+En outre, le trafic entre les réseaux virtuels dans Azure peut être nécessaire. Ces scénarios seront ajoutées dans hello futures.
 
-Une fois que vous avez répondu aux questions précédentes, la section [Démarrage rapide](#fast-start) peut faciliter l’identification des exemples les plus appropriés pour un scénario donné.
+Une fois que vous connaissez les réponses hello toohello précédent questions, hello [Fast Start](#fast-start) section peut vous aider à identifier les exemples les plus appropriées pour un scénario donné.
 
 ## <a name="examples-building-security-boundaries-with-azure-virtual-networks"></a>Exemples : Création de limites de sécurité avec les réseaux virtuels Azure
-### <a name="example-1-build-a-perimeter-network-to-help-protect-applications-with-nsgs"></a>Exemple 1 : Créer un réseau de périmètre pour protéger les applications avec des groupes de sécurité réseau
-[Revenir à Démarrage rapide](#fast-start) | [Instructions de génération détaillées pour cet exemple][Example1]
+### <a name="example-1-build-a-perimeter-network-toohelp-protect-applications-with-nsgs"></a>Exemple 1, Build un toohelp de réseau de périmètre protéger les applications avec des groupes de sécurité réseau
+[Sauvegarder le début de tooFast](#fast-start) | [détaillé des instructions pour cet exemple de génération][Example1]
 
 [![7]][7]
 
 #### <a name="environment-description"></a>Description de l’environnement
-Dans cet exemple, il existe un abonnement qui contient les ressources suivantes :
+Dans cet exemple, il existe un abonnement qui contient hello suivant des ressources :
 
 - un seul groupe de ressources.
 - un réseau virtuel avec deux sous-réseaux « FrontEnd » et « BackEnd »,
-- un groupe de sécurité réseau est appliqué aux deux sous-réseaux,
+- Un groupe de sécurité réseau qui est appliquée tooboth sous-réseaux
 - un serveur Windows Server représentant un serveur web d’application (« IIS01 »),
 - deux serveurs Windows Server qui représentent les serveurs principaux d’applications (« AppVM01 », « AppVM02 »),
-- Un serveur Windows Server qui représente un serveur DNS (« DNS01 »)
-- Une adresse IP publique associée au serveur d’applications web
+- Un serveur Windows Server qui représente un serveur DNS (« DNS01 »),
+- Une adresse IP publique associée au serveur web d’application hello
 
-Pour accéder aux scripts et à un modèle Azure Resource Manager, consultez les [instructions de génération détaillées][Example1].
+Pour les scripts et un modèle Azure Resource Manager, consultez hello [des instructions de génération détaillées][Example1].
 
 #### <a name="nsg-description"></a>Description du groupe de sécurité réseau
 Dans cet exemple, un groupe NSG est créé, puis chargé avec six règles.
 
 > [!TIP]
-> En règle générale, vous devez d’abord créer les règles d’« autorisation » spécifiques, suivies des règles de « refus » plus générales. La priorité donnée indique quelles sont les règles évaluées en premier. Une fois qu’il a été déterminé que le trafic répond à une règle spécifique, aucune autre règle n’est évaluée. Les règles du groupe de sécurité réseau peuvent s’appliquer dans le sens entrant ou sortant (du point de vue du sous-réseau).
+> En règle générale, vous devez créer vos règles « Autoriser » spécifiques en premier lieu, suivie de hello plus générique « Refuser » règles. Hello priorité détermine les règles sont évaluées en premier. Une fois que le trafic est trouvé règle spécifique de tooapply tooa, aucune autre règle n’est évaluées. Les règles de groupe de sécurité réseau peuvent être appliquées dans soit hello direction entrante ou sortante (du point de vue hello du sous-réseau de hello).
 >
 >
 
-Les règles qui suivent sont générées de façon déclarative pour le trafic entrant :
+De façon déclarative, hello suivant les règles est généré pour le trafic entrant :
 
 1. Le trafic DNS interne (port 53) est autorisé.
-2. Le trafic RDP (port 3389) à partir d’Internet vers n’importe quelle machine virtuelle est autorisé.
-3. Le trafic HTTP (port 80) à partir d’Internet vers le serveur web (IIS01) est autorisé.
-4. Tout trafic (tous les ports) IIS01 vers AppVM1 est autorisé.
-5. Tout trafic (tous les ports) en provenance d’Internet vers l’ensemble du réseau virtuel (les deux sous-réseaux) est refusé.
-6. Tout trafic (tous les ports) en provenance du sous-réseau frontal vers le sous-réseau principal est refusé.
+2. Le trafic RDP (port 3389) à partir d’Internet de hello tooany ordinateur virtuel est autorisé.
+3. Le trafic HTTP (port 80) à partir du serveur de tooweb hello Internet (IIS01) est autorisé.
+4. Tout trafic (tous les ports) à partir de IIS01 tooAppVM1 est autorisée.
+5. Tout trafic (tous les ports) à partir de hello Internet toohello réseau virtuel entier (les deux sous-réseaux) est refusé.
+6. Tout trafic (tous les ports) à partir du sous-réseau principal de hello sous-réseau frontal toohello est refusé.
 
-Avec ces règles associées à chaque sous-réseau, si une requête HTTP est entrante à partir d'Internet vers le serveur web, les règles 3 (autoriser) et 5 (refuser) s'appliquent. Mais, étant donné que la règle 3 a une priorité plus élevée, elle est la seule à s’appliquer et la règle 5 n’entre pas en jeu. La requête HTTP est donc autorisée à accéder au serveur web. Si le même trafic tentait d’atteindre le serveur DNS01, la règle 5 (refus) serait la première à s’appliquer et le trafic ne serait pas autorisé à accéder au serveur. La règle 6 (refuser) bloque la communication du sous-réseau frontal vers le sous-réseau principal (à l'exception du trafic autorisé dans les règles 1 et 4). Cet ensemble de règles protège le réseau principal au cas où un attaquant compromettrait l'application web sur le serveur frontal. L’attaquant aurait un accès limité au réseau principal « protégé » (uniquement aux ressources exposées sur le serveur AppVM01).
+Avec ces sous-réseau tooeach dépendant de règles, si une requête HTTP a été entrante à partir de hello toohello le serveur web Internet, les deux règles 3 (autoriser) et 5 (refuser) s’appliquent. Mais, étant donné que la règle 3 a une priorité plus élevée, elle est la seule à s’appliquer et la règle 5 n’entre pas en jeu. Par conséquent, demande HTTP de hello serait autorisée serveur web de toohello. Si ce trafic même a essayé de serveur de hello DNS01 tooreach, règle 5 (refuser) serait hello tooapply premier et le trafic de hello serait pas toopass toohello server. Règle 6 (refuser) blocs hello sous-réseau frontal de communiquer avec le sous-réseau principal de toohello (à l’exception du trafic autorisé dans les règles 1 et 4). Cet ensemble de règles protège le réseau de serveur principal hello au cas où un intrus compromet l’application hello web frontal hello. les intrus Hello sont peu réseau « protégé » accès toohello principal (uniquement tooresources exposée sur le serveur de AppVM01 hello).
 
-Il existe une règle par défaut qui autorise le trafic sortant vers Internet. Pour cet exemple, nous allons autoriser le trafic sortant sans modifier les règles de trafic sortant. Pour verrouiller le trafic dans les deux sens, le routage défini par l’utilisateur est requis (voir l’exemple 3).
+Il existe une règle de trafic sortant par défaut qui autorise le trafic sortant toohello Internet. Pour cet exemple, nous allons autoriser le trafic sortant sans modifier les règles de trafic sortant. toolock vers le bas le trafic dans les deux directions, routage défini par l’utilisateur est requis (voir l’exemple 3).
 
 #### <a name="conclusion"></a>Conclusion
-Cet exemple est un moyen relativement simple et direct d’isoler le sous-réseau du serveur principal du trafic entrant. Pour plus d’informations, consultez les [instructions de génération détaillées][Example1]. Vous trouverez les instructions suivantes :
+Cet exemple est un moyen relativement simple et rapide d’isoler le sous-réseau principal hello le trafic entrant. Pour plus d’informations, consultez hello [des instructions de génération détaillées][Example1]. Vous trouverez les instructions suivantes :
 
-* Comment créer ce réseau de périmètre avec des scripts PowerShell classiques.
-* Comment créer ce réseau de périmètre avec un modèle Azure Resource Manager.
+* Comment toobuild ce périmètre réseau avec des scripts PowerShell classiques.
+* Comment toobuild ce périmètre réseau avec un modèle Azure Resource Manager.
 * Des descriptions détaillées de chaque commande NSG.
 * Des scénarios de flux de trafic détaillés, montrant comment le trafic est autorisé ou refusé dans chaque couche.
 
 
-### <a name="example-2-build-a-perimeter-network-to-help-protect-applications-with-a-firewall-and-nsgs"></a>Exemple 2 : Créer un réseau de périmètre pour protéger les applications avec un pare-feu et des groupes de sécurité réseau
-[Revenir à Démarrage rapide](#fast-start) | [Instructions de génération détaillées pour cet exemple][Example2]
+### <a name="example-2-build-a-perimeter-network-toohelp-protect-applications-with-a-firewall-and-nsgs"></a>Exemple 2 Build un toohelp de réseau de périmètre protéger des applications avec un pare-feu et des groupes de sécurité réseau
+[Sauvegarder le début de tooFast](#fast-start) | [détaillé des instructions pour cet exemple de génération][Example2]
 
 [![8]][8]
 
 #### <a name="environment-description"></a>Description de l’environnement
-Dans cet exemple, il existe un abonnement qui contient les ressources suivantes :
+Dans cet exemple, il existe un abonnement qui contient hello suivant des ressources :
 
 * un seul groupe de ressources.
 * un réseau virtuel avec deux sous-réseaux « FrontEnd » et « BackEnd »,
-* un groupe de sécurité réseau est appliqué aux deux sous-réseaux,
-* une appliance virtuelle réseau, dans ce cas un pare-feu, connectée au sous-réseau principal
+* Un groupe de sécurité réseau qui est appliquée tooboth sous-réseaux
+* Une appliance virtuelle de réseau, un pare-feu, dans ce cas connecté sous-réseau frontal de toohello
 * un serveur Windows Server représentant un serveur web d’application (« IIS01 »),
 * deux serveurs Windows Server qui représentent les serveurs principaux d’applications (« AppVM01 », « AppVM02 »),
 * Un serveur Windows Server qui représente un serveur DNS (« DNS01 »),
 
-Pour accéder aux scripts et à un modèle Azure Resource Manager, consultez les [instructions de génération détaillées][Example2].
+Pour les scripts et un modèle Azure Resource Manager, consultez hello [des instructions de génération détaillées][Example2].
 
 #### <a name="nsg-description"></a>Description du groupe de sécurité réseau
 Dans cet exemple, un groupe NSG est créé, puis chargé avec six règles.
 
 > [!TIP]
-> En règle générale, vous devez d’abord créer les règles d’« autorisation » spécifiques, suivies des règles de « refus » plus générales. La priorité donnée indique quelles sont les règles évaluées en premier. Une fois qu’il a été déterminé que le trafic répond à une règle spécifique, aucune autre règle n’est évaluée. Les règles du groupe de sécurité réseau peuvent s’appliquer dans le sens entrant ou sortant (du point de vue du sous-réseau).
+> En règle générale, vous devez créer vos règles « Autoriser » spécifiques en premier lieu, suivie de hello plus générique « Refuser » règles. Hello priorité détermine les règles sont évaluées en premier. Une fois que le trafic est trouvé règle spécifique de tooapply tooa, aucune autre règle n’est évaluées. Les règles de groupe de sécurité réseau peuvent être appliquées dans soit hello direction entrante ou sortante (du point de vue hello du sous-réseau de hello).
 >
 >
 
-Les règles qui suivent sont générées de façon déclarative pour le trafic entrant :
+De façon déclarative, hello suivant les règles est généré pour le trafic entrant :
 
 1. Le trafic DNS interne (port 53) est autorisé.
-2. Le trafic RDP (port 3389) à partir d’Internet vers n’importe quelle machine virtuelle est autorisé.
-3. Tout trafic Internet (tous les ports) vers l’appliance virtuelle réseau (pare-feu) est autorisé.
-4. Tout trafic (tous les ports) IIS01 vers AppVM1 est autorisé.
-5. Tout trafic (tous les ports) en provenance d’Internet vers l’ensemble du réseau virtuel (les deux sous-réseaux) est refusé.
-6. Tout trafic (tous les ports) en provenance du sous-réseau frontal vers le sous-réseau principal est refusé.
+2. Le trafic RDP (port 3389) à partir d’Internet de hello tooany ordinateur virtuel est autorisé.
+3. N’importe quel trafic (tous les ports) toohello réseau virtuel appliance Internet (pare-feu) est autorisée.
+4. Tout trafic (tous les ports) à partir de IIS01 tooAppVM1 est autorisée.
+5. Tout trafic (tous les ports) à partir de hello Internet toohello réseau virtuel entier (les deux sous-réseaux) est refusé.
+6. Tout trafic (tous les ports) à partir du sous-réseau principal de hello sous-réseau frontal toohello est refusé.
 
-Avec ces règles associées à chaque sous-réseau, si une requête HTTP est entrante à partir d'Internet vers le pare-feu, les règles 3 (autoriser) et 5 (refuser) s'appliquent. Mais, étant donné que la règle 3 a une priorité plus élevée, elle est la seule à s’appliquer et la règle 5 n’entre pas en jeu. La requête HTTP est donc autorisée à accéder au pare-feu. Si le même trafic tentait d’atteindre le serveur IIS01, même s’il se trouvait sur le sous-réseau frontal, la règle 5 (refus) s’appliquerait et le trafic ne serait pas autorisé à franchir le serveur. La règle 6 (refuser) bloque la communication du sous-réseau frontal vers le sous-réseau principal (à l'exception du trafic autorisé dans les règles 1 et 4). Cet ensemble de règles protège le réseau principal au cas où un attaquant compromettrait l'application web sur le serveur frontal. L’attaquant aurait un accès limité au réseau principal « protégé » (uniquement aux ressources exposées sur le serveur AppVM01).
+Avec ces sous-réseau tooeach dépendant de règles, si une requête HTTP a été entrante de pare-feu toohello hello, règles 3 (autoriser) et 5 (refuser) s’appliquent. Mais, étant donné que la règle 3 a une priorité plus élevée, elle est la seule à s’appliquer et la règle 5 n’entre pas en jeu. Par conséquent, la demande de hello HTTP serait autorisée toohello pare-feu. Si ce même trafic essayait serveur hello IIS01 de tooreach, même s’il est sur le sous-réseau frontal de hello, la règle 5 (refuser) s’appliquent, et le trafic de hello serait pas toopass toohello server. Règle 6 (refuser) blocs hello sous-réseau frontal de communiquer avec le sous-réseau principal de toohello (à l’exception du trafic autorisé dans les règles 1 et 4). Cet ensemble de règles protège le réseau de serveur principal hello au cas où un intrus compromet l’application hello web frontal hello. les intrus Hello sont peu réseau « protégé » accès toohello principal (uniquement tooresources exposée sur le serveur de AppVM01 hello).
 
-Il existe une règle par défaut qui autorise le trafic sortant vers Internet. Pour cet exemple, nous allons autoriser le trafic sortant sans modifier les règles de trafic sortant. Pour verrouiller le trafic dans les deux sens, le routage défini par l’utilisateur est requis (voir l’exemple 3).
+Il existe une règle de trafic sortant par défaut qui autorise le trafic sortant toohello Internet. Pour cet exemple, nous allons autoriser le trafic sortant sans modifier les règles de trafic sortant. toolock vers le bas le trafic dans les deux directions, routage défini par l’utilisateur est requis (voir l’exemple 3).
 
 #### <a name="firewall-rule-description"></a>Description de la règle de pare-feu
-Sur le pare-feu, vous devez créer des règles de transfert. Étant donné que cet exemple achemine uniquement le trafic Internet entrant vers le pare-feu, puis vers le serveur web, seule une règle de traduction d’adresses réseau (NAT) de transfert est requise.
+Sur le pare-feu hello, règles de transfert doivent être créé. Règle de cet exemple uniquement le trafic Internet-limite des itinéraires toohello pare-feu et les puis serveur toohello web, qu’un seul transfert traduction d’adresses réseau (NAT) est nécessaire.
 
-La règle de transfert accepte n'importe quelle adresse source entrante qui atteint le pare-feu, en essayant d'atteindre HTTP (port 80 ou 443 pour HTTPS). Elle est envoyée hors de l'interface locale du pare-feu et redirigée vers le serveur web avec l'adresse IP 10.0.1.5.
+règle de transfert de Hello accepte n’importe quelle adresse source entrant qui rencontre pare-feu hello lors de la tentative tooreach HTTP (port 80 ou 443 pour HTTPS). Il a envoyé en dehors de l’interface locale du pare-feu hello et rediriger le serveur web toohello hello adresse IP de 10.0.1.5.
 
 #### <a name="conclusion"></a>Conclusion
-Cet exemple est un moyen relativement simple de protéger votre application avec un pare-feu et d’isoler le sous-réseau principal du trafic entrant. Pour plus d’informations, consultez les [instructions de génération détaillées][Example2]. Vous trouverez les instructions suivantes :
+Cet exemple est une méthode relativement simple de protection de votre application avec un pare-feu et isoler le sous-réseau principal hello le trafic entrant. Pour plus d’informations, consultez hello [des instructions de génération détaillées][Example2]. Vous trouverez les instructions suivantes :
 
-* Comment créer ce réseau de périmètre avec des scripts PowerShell classiques.
-* Comment créer cet exemple avec un modèle Azure Resource Manager.
+* Comment toobuild ce périmètre réseau avec des scripts PowerShell classiques.
+* Comment toobuild cet exemple avec un modèle Azure Resource Manager.
 * Descriptions détaillées de chaque commande NSG et règle de pare-feu.
 * Des scénarios de flux de trafic détaillés, montrant comment le trafic est autorisé ou refusé dans chaque couche.
 
-### <a name="example-3-build-a-perimeter-network-to-help-protect-networks-with-a-firewall-and-udr-and-nsg"></a>Exemple 3 : Créer un réseau de périmètre pour protéger les réseaux avec un pare-feu, un routage défini par l’utilisateur et un groupe de sécurité réseau
-[Revenir à Démarrage rapide](#fast-start) | [Instructions de génération détaillées pour cet exemple][Example3]
+### <a name="example-3-build-a-perimeter-network-toohelp-protect-networks-with-a-firewall-and-udr-and-nsg"></a>Exemple 3 Build un toohelp de réseau de périmètre protéger les réseaux avec un pare-feu et UDR et un groupe de sécurité réseau
+[Sauvegarder le début de tooFast](#fast-start) | [détaillé des instructions pour cet exemple de génération][Example3]
 
 [![9]][9]
 
 #### <a name="environment-description"></a>Description de l’environnement
-Dans cet exemple, il existe un abonnement qui contient les ressources suivantes :
+Dans cet exemple, il existe un abonnement qui contient hello suivant des ressources :
 
 * un seul groupe de ressources.
 * Un réseau virtuel avec trois sous-réseaux : « SecNet », « FrontEnd » et « BackEnd »
-* Une appliance virtuelle du réseau, dans ce cas un pare-feu, connecté au sous-réseau SecNet
+* Un réseau virtuel, un pare-feu, dans ce cas connecté toohello SecNet sous-réseau
 * un serveur Windows Server représentant un serveur web d’application (« IIS01 »),
 * deux serveurs Windows Server qui représentent les serveurs principaux d’applications (« AppVM01 », « AppVM02 »),
 * Un serveur Windows Server qui représente un serveur DNS (« DNS01 »),
 
-Pour accéder aux scripts et à un modèle Azure Resource Manager, consultez les [instructions de génération détaillées][Example3].
+Pour les scripts et un modèle Azure Resource Manager, consultez hello [des instructions de génération détaillées][Example3].
 
 #### <a name="udr-description"></a>Description du routage défini par l’utilisateur
-Par défaut, les itinéraires système suivants sont définis en tant que :
+Par défaut, hello suivant les itinéraires du système est définie en tant que :
 
         Effective routes :
          Address Prefix    Next hop type    Next hop IP address Status   Source     
@@ -321,23 +321,23 @@ Par défaut, les itinéraires système suivants sont définis en tant que :
          {172.16.0.0/12}   Null                                 Active   Default    
          {192.168.0.0/16}  Null                                 Active   Default
 
-Le VNETLocal est toujours un ou plusieurs préfixes d’adresse définis constituant le réseau virtuel de ce réseau spécifique (autrement dit, il change de réseau virtuel en réseau virtuel, en fonction de la définition spécifique de chaque réseau virtuel). Les itinéraires système restants sont statiques et, par défaut, ils prennent la valeur indiquée dans le tableau.
+Hello VNETLocal est toujours un ou plusieurs préfixes d’adresse définie qui composent le réseau virtuel de hello pour ce réseau spécifique (autrement dit, il change de réseau toovirtual de réseau virtuel, selon la façon dont chaque réseau virtuel spécifique est définie). les itinéraires système restantes Hello sont statiques et par défaut indiquée dans le tableau de hello.
 
-Dans cet exemple, deux tables de routage sont créées, une pour chacun des sous-réseaux principal et frontal. Chaque table est chargée d’itinéraires statiques appropriés au sous-réseau donné. Dans cet exemple, chaque table possède trois itinéraires qui dirigent tout le trafic (0.0.0.0/0) à travers le pare-feu (tronçon suivant = adresse IP de l’appliance virtuelle) :
+Dans cet exemple, deux tables de routage sont créés, un pour les sous-réseaux frontaux et principaux hello. Chaque table est chargée avec des itinéraires statiques appropriés pour hello donné de sous-réseau. Dans cet exemple, chaque table possède trois itinéraires qui dirige tout le trafic (0.0.0.0/0) via le pare-feu hello (tronçon suivant = l’adresse IP virtuelle de matériel) :
 
-1. Trafic du sous-réseau local sans tronçon suivant défini pour autoriser le trafic du sous-réseau local à contourner le pare-feu.
-2. Le trafic réseau virtuel avec un tronçon suivant défini en tant que pare-feu. Ce tronçon suivant remplace la règle par défaut qui autorise un acheminement direct du trafic de réseau virtuel.
-3. Ensemble du trafic restant (0/0) avec un tronçon suivant défini comme pare-feu.
+1. Le trafic de sous-réseau local avec aucun saut suivant défini tooallow sous-réseau local toobypass hello pare-feu.
+2. Le trafic réseau virtuel avec un tronçon suivant défini en tant que pare-feu. Ce saut suivant remplace la règle par défaut hello qui permet de tooroute le trafic de réseau virtuel local directement.
+3. Tous les autres le trafic (0/0) avec un tronçon suivant défini en tant que les pare-feu hello.
 
 > [!TIP]
-> L’absence d’entrée de sous-réseau local dans l’itinéraire défini par l’utilisateur interrompt les communications du sous-réseau local.
+> N’ayant ne pas d’entrée de sous-réseau local hello dans hello UDR sauts sous-réseau local communications.
 >
-> * Dans notre exemple, il est essentiel que 10.0.1.0/24 pointe vers le VNETLocal ! Sinon, un paquet quittant le serveur Web (10.0.1.4) destiné à un autre serveur local (par exemple) 10.0.1.25 échouera, car il sera envoyé à la NVA. La NVA l'enverra alors au sous-réseau, et le sous-réseau le renverra au NVA, créant ainsi une boucle infinie.
-> * Les probabilités de boucle de routage sont généralement plus élevées sur des appliances avec plusieurs cartes d'interface réseau connectées à différents sous-réseaux, ce qui est souvent le cas des appliances locales traditionnelles.
+> * Dans notre exemple, 10.0.1.0/24 pointant tooVNETLocal est critique ! Sans lui, paquet en laissant hello serveur Web (10.0.1.4) destinés aux tooanother serveur local (par exemple) 10.0.1.25 échouera car ils seront envoyés toohello NVA. Hello NVA il enverra toohello sous-réseau et sous-réseau de hello il renverra toohello NVA dans une boucle infinie.
+> * risque de Hello d’une boucle de routage est généralement plus élevés sur les appareils avec plusieurs cartes réseau qui sont les sous-réseaux connectés tooseparate, ce qui est souvent d’équipements de local traditionnel.
 >
 >
 
-Une fois que les tables de routage sont créées, elles doivent être liées à leurs sous-réseaux. La table de routage du sous-réseau frontal, une fois créée et liée au sous-réseau, doit ressembler à ce qui suit :
+Une fois que les tables de routage hello sont créés, ils doivent être liée tootheir sous-réseaux. Hello sous-réseau frontal table de routage, une fois créé et lié toohello sous-réseau, ressemble à ce résultat :
 
         Effective routes :
          Address Prefix    Next hop type    Next hop IP address Status   Source     
@@ -347,167 +347,167 @@ Une fois que les tables de routage sont créées, elles doivent être liées à 
          {0.0.0.0/0}       VirtualAppliance 10.0.0.4            Active
 
 > [!NOTE]
-> UDR peut désormais être appliqué à ce sous-réseau de passerelle sur lequel le circuit ExpressRoute est connecté.
+> UDR peut désormais être sous-réseau de passerelle toohello appliquée sur le hello ExpressRoute circuit est connecté.
 >
-> Des exemples d'activation de votre réseau de périmètre avec ExpressRoute ou la mise en réseau de site à site sont présentés dans les exemples 3 et 4.
+> Exemples de tooenable périmètre de votre réseau avec ExpressRoute ou de mise en réseau de site à site sont présentés dans les exemples 3 et 4.
 >
 >
 
 #### <a name="ip-forwarding-description"></a>Description du transfert IP
-Le transfert IP est une fonctionnalité associée au routage défini par l’utilisateur. Le transfert IP un paramètre d’appliance virtuelle qui permet de recevoir du trafic pas spécialement adressé à l’appliance, puis de transférer ce trafic vers sa destination finale.
+Le transfert IP est un tooUDR de fonctionnalité d’accompagnement. Le transfert IP est un paramètre sur une appliance virtuelle qui lui permet de tooreceive le trafic adressé ne sont pas spécifiquement toohello appliance et puis transférer cette destination finale tooits de trafic.
 
-Par exemple, si AppVM01 fait une demande au serveur DNS01, l’UDR achemine ce trafic vers le pare-feu. Lorsque le transfert IP est activé, le trafic de la destination de DNS01 (10.0.2.4) est accepté par l’appliance (10.0.0.4), puis transféré vers sa destination finale (10.0.2.4). Si le transfert IP n’est pas activé sur le pare-feu, le trafic ne sera pas accepté par l’équipement, même si le tronçon suivant de la table d’itinéraires est le pare-feu. Pour utiliser une appliance virtuelle, il est essentiel de ne pas oublier d’activer le transfert IP avec le routage défini par l’utilisateur.
+Par exemple, si AppVM01 effectue une demande adressée au serveur DNS01 toohello, UDR achemine ce pare-feu toohello. Avec le transfert IP activé, trafic hello pour la destination de DNS01 hello (10.0.2.4) est accepté par l’application hello (10.0.0.4), puis transféré tooits sa destination finale (10.0.2.4). Sans le transfert IP activée sur le pare-feu hello, le trafic ne serait pas accepté par appliance de hello même si la table d’itinéraires hello a pare-feu hello en tant que tronçon suivant de hello. toouse une appliance virtuelle, il est critique tooremember tooenable avec UDR de transfert.
 
 #### <a name="nsg-description"></a>Description du groupe de sécurité réseau
-Dans cet exemple, un groupe NSG est créé, puis chargé avec une seule règle. Ce groupe est ensuite lié uniquement aux sous-réseaux frontaux et principaux (et pas au SecNet). La règle suivante est générée de manière déclarative :
+Dans cet exemple, un groupe NSG est créé, puis chargé avec une seule règle. Ce groupe est ensuite lié uniquement toohello frontaux et principaux sous-réseaux (pas hello SecNet). Déclarative hello règle est en cours de génération :
 
-* Tout trafic (tous les ports) en provenance d’Internet vers l’ensemble du réseau virtuel (tous les sous-réseaux) est refusé.
+* Tout trafic (tous les ports) à partir de hello Internet toohello réseau virtuel entier (tous les sous-réseaux) est refusé.
 
-Bien que dans cet exemple, on utilise des NSG, son principal objectif est celui d’une couche secondaire de défense contre les erreurs de configuration manuelle. L'objectif est de bloquer tout le trafic entrant à partir d'Internet vers les sous-réseaux frontaux ou principaux. Le trafic ne doit circuler que du sous-réseau SecNet au pare-feu (puis, le cas échéant, vers les sous-réseaux frontaux ou principaux). En outre, avec les règles UDR en place, tout trafic ayant atteint les sous-réseaux principal ou frontal est dirigé vers le pare-feu (grâce à l’UDR). Le pare-feu considèrerait ce trafic comme un flux asymétrique et abandonnerait le trafic sortant. Il existe par conséquent trois couches de sécurité protégeant les sous-réseaux :
+Bien que dans cet exemple, on utilise des NSG, son principal objectif est celui d’une couche secondaire de défense contre les erreurs de configuration manuelle. Hello vise tooblock tout le trafic entrant à partir de hello Internet tooeither hello sous-réseaux frontaux ou principaux. Flux uniquement le trafic via le pare-feu hello SecNet sous-réseau toohello (et, le cas échéant, sur des sous-réseaux toohello frontal ou principal). De plus, avec des règles UDR hello en place, tout le trafic qui faites-en hello frontaux ou principaux sous-réseaux serait dirigé out toohello pare-feu (Merci tooUDR). pare-feu de Hello verriez ce trafic comme flux asymétrique et tomberaient le trafic sortant de hello. Par conséquent il existe trois couches de sécurité protégeant des sous-réseaux hello :
 
 * Aucune adresse IP publique sur une carte d’interface réseau FrontEnd ou BackEnd.
-* Des groupes de sécurité réseau qui bloquent le trafic provenant d'Internet.
-* Le pare-feu qui supprime le trafic asymétrique.
+* Groupes de sécurité réseau qui empêche le trafic à partir de hello Internet.
+* Hello suppression asymétrique le trafic de pare-feu.
 
-Point intéressant concernant le groupe de sécurité réseau dans cet exemple : il contient une seule règle qui consiste à refuser le trafic Internet de l’ensemble du réseau virtuel, y compris le sous-réseau de sécurité. Toutefois, étant donné que le NSG est associé uniquement aux sous-réseaux frontaux et principaux, la règle n’est pas exécutée sur le trafic entrant du sous-réseau de sécurité. Par conséquent, le trafic circule vers le sous-réseau de sécurité.
+Un point intéressant concernant hello NSG dans cet exemple est qu’il contient uniquement une seule règle, ce qui est toodeny Internet trafic toohello réseau virtuel entier, y compris le sous-réseau de sécurité hello. Toutefois, étant donné que hello que NSG n’est lié toohello frontaux et principaux sous-réseaux, règle de hello n’est pas traité sur le trafic entrant sous-réseau de sécurité toohello. Par conséquent, le trafic acheminé sous-réseau de sécurité toohello.
 
 #### <a name="firewall-rules"></a>Règles de pare-feu
-Sur le pare-feu, vous devez créer des règles de transfert. Étant donné que le pare-feu bloque ou transfère le trafic entrant, sortant ou intra-réseau virtuel, de nombreuses règles de pare-feu sont requises. Tout trafic entrant atteint l’adresse IP publique de service de sécurité (sur différents ports) pour être traité par le pare-feu. L’une des meilleures pratiques consiste à faire un schéma des flux logiques avant de configurer les règles de sous-réseau et de pare-feu afin d’éviter la reprise du travail par la suite. La figure qui suit est une vue logique des règles de pare-feu de cet exemple :
+Sur le pare-feu hello, règles de transfert doivent être créé. Étant donné que les pare-feu hello sont de blocage ou transfert tout entrant, sortant et le trafic réseau intra-virtuel, de règles de pare-feu sont nécessaires. En outre, tout le trafic entrant atteint adresse IP publique de hello Service de sécurité (sur des ports différents), toobe traitée par le pare-feu hello. La meilleure pratique consiste toodiagram des flux logiques hello avant de configurer les sous-réseaux hello et règles de pare-feu, tooavoid reprendre ultérieurement. Bonjour figure suivante est une vue logique de règles de pare-feu hello pour cet exemple :
 
 ![10]
 
 > [!NOTE]
-> Les ports de gestion peuvent varier selon l’appliance virtuelle réseau utilisée. Dans cet exemple, il est fait référence à un pare-feu Barracuda NextGen Firewall utilisant les ports 22, 801 et 807. Consultez la documentation du fournisseur d’appliance pour rechercher les ports exacts utilisés pour la gestion de l’appareil utilisé.
+> En fonction de hello Qu'appliance virtuelle de réseau utilisé, les ports de gestion hello varient. Dans cet exemple, il est fait référence à un pare-feu Barracuda NextGen Firewall utilisant les ports 22, 801 et 807. Consultez hello appliance fournisseur documentation toofind hello exacte ports utilisés pour la gestion de périphérique hello utilisé.
 >
 >
 
 #### <a name="firewall-rules-description"></a>Description des règles de pare-feu
-Dans le diagramme logique précédent, le sous-réseau de sécurité n’est pas affiché, car le pare-feu est la seule ressource de ce sous-réseau. Ce diagramme présente les règles de pare-feu et la façon dont elles autorisent ou refusent logiquement les flux et non l’itinéraire réel. En outre, les ports externes sélectionnés pour le trafic RDP appartiennent à la plage supérieure de ports (8014 – 8026) et ont été sélectionnés pour s’aligner à peu près sur les deux derniers octets de l’adresse IP locale, pour faciliter la lecture (par exemple, l’adresse du serveur local 10.0.1.4 est associée à un port externe 8014). Cependant, tous les ports supérieurs non conflictuels peuvent être utilisés.
+Bonjour précédant diagramme logique, sous-réseau de sécurité hello n’est pas affiché, car le pare-feu de hello est la seule ressource de hello sur ce sous-réseau. diagramme de Hello affiche les règles de pare-feu hello et comment ils logiquement autoriser ou refuser des flux de trafic, pas hello routé chemin d’accès réel. En outre, des ports externes hello sélectionnés pour hello le trafic RDP sont des ports sont plus élevées (8014 – 8026) et ont été tooloosely sélectionné s’alignent hello a deux octets de l’adresse IP locale de hello pour faciliter la lisibilité (par exemple, l’adresse du serveur local 10.0.1.4 est associé avec le port externe 8014). Cependant, tous les ports supérieurs non conflictuels peuvent être utilisés.
 
 Pour cet exemple, nous avons besoin de sept types de règles :
 
 * Règles externes (pour le trafic entrant) :
-  1. Règle de gestion de pare-feu : cette règle de redirection de l’application autorise le trafic à traverser les ports de gestion de l’appliance virtuelle réseau.
-  2. Règles de RDP (pour chaque serveur Windows) : ces quatre règles (une pour chaque serveur) permettent la gestion des serveurs individuels avec RDP. Les quatre règles RDP peuvent être rassemblées en une règle, en fonction de la capacité de l’appliance virtuelle réseau utilisée.
-  3. Règles de trafic d’application : elles sont au nombre de deux, la première correspondant au trafic web frontal, et la seconde au trafic de l’ordinateur principal (par exemple, serveur web vers couche de données). La configuration de ces règles dépend de l’architecture réseau (sur lequel sont placés vos serveurs) et des flux de trafic (direction du flux de trafic et ports utilisés).
-     * La première règle permet au trafic d’application réel de parvenir au serveur d’applications. Les autres règles concernant la sécurité et la gestion, les règles de trafic d’application sont celles qui permettent aux utilisateurs externes ou aux services d’accéder aux applications. Pour cet exemple, il n’y a qu’un serveur web sur le port 80. Par conséquent, une seule règle d’application redirige le trafic entrant vers l’adresse IP externe, vers l’adresse IP interne des serveurs web. L’adresse réseau de la session de trafic redirigée sera traduite avec la traduction d’adresses réseau vers le serveur interne.
-     * La seconde règle est la règle du serveur principal qui permet au serveur web de communiquer avec le serveur AppVM01 (et non AppVM02) avec n’importe quel port.
+  1. Règle de pare-feu de gestion : règle de redirection de cette application permet le trafic toopass toohello les ports de gestion de l’appliance virtuelle de réseau hello.
+  2. Règles RDP (pour chaque serveur Windows) : ces quatre règles (une pour chaque serveur) autorisent la gestion des hello des serveurs individuels via RDP. quatre règles RDP Hello peuvent également être réduits dans une seule règle, selon les fonctions hello de l’appliance virtuelle sur le réseau hello utilisé.
+  3. Règles de trafic d’application : il y a deux de ces règles, hello tout d’abord pour le trafic web frontal de hello et hello seconde pour le trafic principal de hello (par exemple, niveau toodata web server). configuration Hello de ces règles varie selon l’architecture en réseau hello (où sont placés vos serveurs) et flux de trafic (le trafic hello direction du flux, et quels ports sont utilisés).
+     * règle de première Hello permet de serveur d’applications hello application réelle du trafic tooreach hello. Tandis que hello autres règles de sécurité et de gestion, règles de trafic d’application sont ce que permettent tooaccess d’utilisateurs ou des services externes aux applications de hello. Pour cet exemple, il n’y a qu’un serveur web sur le port 80. Par conséquent, une seule application règle de pare-feu redirige le trafic entrant toohello adresse IP externe, interne adresse IP des serveurs toohello web. session de trafic Hello redirigé se traduirait via NAT toohello interne au serveur.
+     * règle de seconde Hello est hello principal règle tooallow hello web tootalk toohello AppVM01 serveur (mais pas AppVM02) via n’importe quel port.
 * Règles internes (pour le trafic intra-réseau virtuel)
-  1. Règle sortant vers Internet : cette règle autorise le transfert du trafic en provenance de n’importe quel réseau vers les réseaux sélectionnés. Cette règle est généralement une règle par défaut déjà présente sur le pare-feu, mais à l’état désactivé. Pour cet exemple, cette règle doit être activée.
-  2. Règle DNS : cette règle autorise uniquement le trafic DNS (port 53) vers le serveur DNS. Pour cet environnement, la majeure partie du Front end vers le principal est bloquée. Cette règle autorise spécifiquement le DNS à partir de n'importe quel sous-réseau local.
-  3. Règle sous-réseau à sous-réseau : cette règle permet à n’importe quel serveur du sous-réseau principal de se connecter à n’importe quel serveur du sous-réseau frontal (mais pas l’inverse).
-* Règle de prévention de défaillance (pour le trafic ne répondant à aucun des éléments précédents) :
-  1. Règle Refuser tout le trafic : cette règle doit toujours être la dernière règle (en termes de priorité) et, par conséquent, si un trafic ne correspond à aucune des règles qui précèdent, il sera refusé par cette règle. Cette règle est une règle par défaut et est généralement mise en place et active. Généralement, aucune modification n’est nécessaire pour cette règle.
+  1. Règle de tooInternet sortantes : cette règle autorise le trafic de n’importe quel réseau toopass toohello sélectionné réseaux. Cette règle est généralement une règle par défaut déjà présent sur le pare-feu hello, mais dans un état désactivé. Pour cet exemple, cette règle doit être activée.
+  2. Règle de DNS : cette règle permet uniquement DNS (port 53) le trafic toopass toohello serveurDNS. Pour cet environnement, la plupart du trafic à partir de hello frontal toohello back-end est bloqué. Cette règle autorise spécifiquement le DNS à partir de n'importe quel sous-réseau local.
+  3. Règle de toosubnet de sous-réseau : cette règle est tooallow n’importe quel serveur hello sous-réseau principal tooconnect tooany serveur sur le sous-réseau frontal de hello (mais pas les hello inverse).
+* Règle de prévention de défaillance (pour le trafic qui ne correspond pas hello précédente) :
+  1. Refuser toutes les règles de trafic : cette règle de refus doit toujours être règle finale de hello (en termes de priorité), et par conséquent si un flux de trafic échoue toomatch des hello précédant les règles qu’il est supprimé par cette règle. Cette règle est une règle par défaut et est généralement mise en place et active. Aucune modification n’est généralement nécessaire toothis règle.
 
 > [!TIP]
-> Sur la deuxième règle de trafic d'application, pour simplifier cet exemple, n'importe quel port est autorisé. Dans un scénario réel, le port et les plages d'adresses les plus spécifiques doivent être utilisés afin de réduire la surface d'attaque de cette règle.
+> Sur hello n’importe quel port de trafic application deuxième règle, toosimplify cet exemple, est autorisé. Dans un scénario réel, les plages de port et l’adresse de la plus spécifiques hello doivent être surface d’attaque hello tooreduce utilisés de cette règle.
 >
 >
 
-Une fois les règles précédentes créées, il est important de revoir la priorité de chaque règle pour s’assurer que le trafic est autorisé ou rejeté de façon pertinente. Pour cet exemple, les règles sont classées par ordre de priorité.
+Une fois que les règles précédentes hello sont créés, il est important priorité hello tooreview chacun le trafic tooensure de règle est autorisée ou refusée comme vous le souhaitez. Pour cet exemple, les règles de hello sont dans l’ordre de priorité.
 
 #### <a name="conclusion"></a>Conclusion
-Cet exemple est plus complexe, mais il s'agit d'une manière plus complète de protéger et d'isoler le réseau par rapport aux exemples précédents. (L’exemple 2 protège uniquement l'application et l’exemple 1 isole simplement les sous-réseaux). Cette conception permet de surveiller le trafic dans les deux sens ; elle protège non seulement le serveur d’applications entrantes mais applique également la stratégie de sécurité réseau à tous les serveurs sur ce réseau. En outre, selon l’appliance utilisée, une connaissance et un audit complets du trafic sont possibles. Pour plus d’informations, consultez les [instructions de génération détaillées][Example3]. Vous trouverez les instructions suivantes :
+Cet exemple est plus complexe, mais un moyen de protection et l’isolement réseau de hello que hello exemples précédents de terminer. (Exemple 2 protège uniquement l’application hello et exemple 1 isole simplement les sous-réseaux). Cette conception permet de surveiller le trafic dans les deux directions et protège non seulement les serveurs d’application entrants hello mais applique la stratégie de sécurité réseau pour tous les serveurs sur ce réseau. En outre, en fonction de l’application hello utilisée, le trafic complète l’audit et reconnaissance peuvent être obtenus. Pour plus d’informations, consultez hello [des instructions de génération détaillées][Example3]. Vous trouverez les instructions suivantes :
 
-* Comment créer cet exemple de réseau de périmètre avec des scripts PowerShell classiques.
-* Comment créer cet exemple avec un modèle Azure Resource Manager.
+* Comment toobuild ce périmètre exemple réseau avec des scripts PowerShell classiques.
+* Comment toobuild cet exemple avec un modèle Azure Resource Manager.
 * Des descriptions détaillées de chaque UDR, commande NSG et règle de pare-feu.
 * Des scénarios de flux de trafic détaillés, montrant comment le trafic est autorisé ou refusé dans chaque couche.
 
 ### <a name="example-4-add-a-hybrid-connection-with-a-site-to-site-virtual-appliance-vpn"></a>Exemple 4 : Ajouter une connexion hybride avec un réseau VPN d’appliance virtuelle de site à site
-[Revenir à Démarrage rapide](#fast-start) | Instructions de génération détaillées bientôt disponibles
+[Sauvegarder tooFast début](#fast-start) | Build obtenir des instructions détaillées disponible prochainement
 
 [![11]][11]
 
 #### <a name="environment-description"></a>Description de l’environnement
-La mise en réseau hybride à l’aide d’une appliance virtuelle réseau (NVA) peut être ajoutée à l’un des types de réseaux de périmètre décrits dans les exemples 1, 2 ou 3.
+Tooany des types de réseau de périmètre hello décrits dans les exemples 1, 2 ou 3 peut être ajouté à un réseau hybride à l’aide d’une appliance virtuelle de réseau (NVA).
 
-Comme l’indique la figure précédente, une connexion VPN sur Internet (de site à site) permet de connecter un réseau local à un réseau virtuel Azure au moyen d’une appliance virtuelle réseau.
+Comme indiqué dans la figure précédente hello, une connexion VPN sur hello Internet (site à site) est utilisé tooconnect un tooan de réseau local sur un réseau virtuel Azure via une NVA.
 
 > [!NOTE]
-> Si vous utilisez ExpressRoute avec l'option d'homologation publique Azure activée, un itinéraire statique doit être créé. Cet itinéraire statique doit acheminer vers l'adresse IP du VPN de l’appliance virtuelle réseau hors de votre Internet d’entreprise et non par le biais de la connexion ExpressRoute. La traduction d’adresses réseau requise avec l'option d'homologation publique d’Azure ExpressRoute peut arrêter la session VPN.
+> Si vous utilisez ExpressRoute avec option d’homologation publique Azure hello activée, un itinéraire statique doit être créé. Cet itinéraire statique doit acheminer toohello adresse IP du VPN NVA votre Internet d’entreprise et non par l’intermédiaire de hello connexion ExpressRoute. session VPN hello peut provoquer des problèmes Hello NAT requis sur hello ExpressRoute l’homologation publique Azure une option.
 >
 >
 
-Une fois la connexion VPN en place, la NVA devient le « hub » central pour tous les réseaux et sous-réseaux. Les règles de transfert de pare-feu déterminent quels flux de trafic sont autorisés, se voient appliquer la traduction d’adresses réseau, sont redirigés ou sont refusés (même pour les flux de trafic entre le réseau local et Azure).
+Une fois que hello VPN est en place, hello NVA devient concentrateur central de hello pour tous les sous-réseaux et les réseaux. règles de transfert de pare-feu Hello déterminent les flux sont autorisées, le trafic sont traduites via NAT, sont redirigés ou sont supprimées (même pour les flux de trafic entre le réseau local de hello et Azure).
 
-Les flux de trafic doivent être envisagés avec précaution car ils peuvent être optimisés ou détériorés par ce modèle de conception, en fonction du cas d’utilisation.
+Flux de trafic doivent être envisagés avec précaution, car ils peuvent être optimisées ou détérioré par ce modèle de conception, hello spécifique en fonction des cas d’usage.
 
-L’utilisation de l’environnement créé dans l’exemple 3 et l’ajout d’une connexion réseau hybride VPN de site à site produisent la conception suivante :
+À l’aide d’environnement hello créé dans l’exemple 3 et ajout d’une connexion de réseau hybride VPN de site à site, puis génère hello suivant modèle :
 
 [![12]][12]
 
-Le routeur local ou tout autre appareil réseau compatible avec votre appliance virtuelle réseau pour VPN serait le client VPN. Cet appareil physique est responsable de l’initialisation et de la maintenance de la connexion VPN avec votre appliance virtuelle réseau.
+Hello local routeur ou tout autre périphérique réseau qui est compatible avec votre NVA pour VPN, serait client VPN de hello. Ce périphérique physique est responsable de l’initialisation et de maintenir la connexion VPN de hello avec votre NVA.
 
-Logiquement pour la NVA, le réseau ressemble à quatre « zones de sécurité » distinctes, les règles sur la NVA dirigeant principalement le trafic entre ces zones :
+Logiquement toohello NVA, réseau de hello ressemble à quatre distinct « zones de sécurité » avec des règles de hello sur en cours de NVA hello directeur principal de hello du trafic entre ces zones :
 
 ![13]
 
 #### <a name="conclusion"></a>Conclusion
-L’ajout d’une connexion réseau hybride VPN de site à site à un réseau virtuel Azure peut étendre le réseau local dans Azure de manière sécurisée. À l’aide d’une connexion VPN, votre trafic est chiffré et acheminé par Internet. La NVA, dans cet exemple, fournit un emplacement central pour appliquer et gérer la stratégie de sécurité. Pour plus d'informations, consultez les instructions de génération détaillées (bientôt disponibles). Vous trouverez les instructions suivantes :
+Ajout de Hello d’un tooan de connexion de réseau de site à site VPN hybride réseau virtuel Azure peut étendre hello sur réseau local à Azure de manière sécurisée. À l’aide d’une connexion VPN, le trafic est chiffré et achemine via hello Internet. Hello NVA dans cet exemple fournit un emplacement central de tooenforce et gérer la stratégie de sécurité hello. Pour plus d’informations, consultez hello détaillée (à venir) d’instructions de génération. Vous trouverez les instructions suivantes :
 
-* Comment créer cet exemple de réseau de périmètre avec des scripts PowerShell.
-* Comment créer cet exemple avec un modèle Azure Resource Manager.
+* Comment toobuild ce périmètre exemple réseau avec des scripts PowerShell.
+* Comment toobuild cet exemple avec un modèle Azure Resource Manager.
 * Des scénarios de flux de trafic détaillés, montrant comment le trafic circule dans cette conception.
 
 ### <a name="example-5-add-a-hybrid-connection-with-a-site-to-site-azure-vpn-gateway"></a>Exemple 5 : Ajouter une connexion hybride avec une passerelle VPN Azure de site à site
-[Revenir à Démarrage rapide](#fast-start) | Instructions de génération détaillées bientôt disponibles
+[Sauvegarder tooFast début](#fast-start) | Build obtenir des instructions détaillées disponible prochainement
 
 [![14]][14]
 
 #### <a name="environment-description"></a>Description de l’environnement
-La mise en réseau hybride à l’aide d’une passerelle VPN Azure peut être ajoutée à l’un des types de réseaux de périmètre décrits dans les exemples 1 ou 2.
+Type de réseau de périmètre tooeither décrit dans les exemples 1 ou 2 peut être ajouté à un réseau hybride à l’aide d’une passerelle VPN Azure.
 
-Comme l’indique la figure précédente, une connexion VPN sur Internet (de site à site) permet de connecter un réseau local à un réseau virtuel Azure au moyen d’une passerelle VPN Azure.
+Comme indiqué dans hello précédant figure, une connexion VPN sur hello Internet (site à site) est utilisé tooconnect un tooan de réseau local sur un réseau virtuel Azure via une passerelle VPN Azure.
 
 > [!NOTE]
-> Si vous utilisez ExpressRoute avec l'option d'homologation publique Azure activée, un itinéraire statique doit être créé. Cet itinéraire statique doit acheminer vers l'adresse IP du VPN de l’appliance virtuelle réseau hors de votre Internet d’entreprise et non par le biais du WAN ExpressRoute. La traduction d’adresses réseau requise avec l'option d'homologation publique d’Azure ExpressRoute peut arrêter la session VPN.
+> Si vous utilisez ExpressRoute avec option d’homologation publique Azure hello activée, un itinéraire statique doit être créé. Cet itinéraire statique doit acheminer toohello adresse IP du VPN NVA votre Internet d’entreprise et non par l’intermédiaire de hello ExpressRoute WAN. session VPN hello peut provoquer des problèmes Hello NAT requis sur hello ExpressRoute l’homologation publique Azure une option.
 >
 >
 
-La figure suivante montre les deux périphéries de réseau dans cet exemple. Sur la première périphérie, les appliances virtuelles réseau et les groupes de sécurité réseau contrôlent les flux de trafic pour les réseaux intra-Azure et entre Azure et Internet. La deuxième périphérie est la passerelle VPN Azure, une périphérie de réseau distincte et isolée entre le réseau local et Azure.
+Hello figure suivante illustre hello deux bords de réseau dans cet exemple. Sur les bords première hello hello NVA et des groupes de sécurité réseau contrôlent le flux de trafic pour les réseaux Azure au sein et entre Azure hello Internet. Hello deuxième arête est la passerelle VPN Azure hello, qui est un bord de réseau distinct et isolé entre locaux et Azure.
 
-Les flux de trafic doivent être envisagés avec précaution car ils peuvent être optimisés ou détériorés par ce modèle de conception, en fonction du cas d’utilisation.
+Flux de trafic doivent être envisagés avec précaution, car ils peuvent être optimisées ou détérioré par ce modèle de conception, hello spécifique en fonction des cas d’usage.
 
-L’utilisation de l’environnement créé dans l’exemple 1 et l’ajout d’une connexion réseau hybride VPN de site à site produisent la conception suivante :
+À l’aide d’environnement hello créé dans l’exemple 1 et ajout d’une connexion de réseau hybride VPN de site à site, puis génère hello suivant modèle :
 
 [![15]][15]
 
 #### <a name="conclusion"></a>Conclusion
-L’ajout d’une connexion réseau hybride VPN de site à site à un réseau virtuel Azure peut étendre le réseau local dans Azure de manière sécurisée. À l’aide de la passerelle VPN Azure native, votre trafic est chiffré IPSec et acheminé par Internet. En outre, la passerelle VPN Azure peut fournir une option à moindre coût (aucun coût de licence supplémentaire à l’instar des appliances virtuelles réseau tierces). Cette option est plus économique dans l’exemple 1, où aucune appliance virtuelle réseau n’est utilisée. Pour plus d'informations, consultez les instructions de génération détaillées (bientôt disponibles). Vous trouverez les instructions suivantes :
+Ajout de Hello d’un tooan de connexion de réseau de site à site VPN hybride réseau virtuel Azure peut étendre hello sur réseau local à Azure de manière sécurisée. À l’aide de la passerelle VPN Azure native de hello, votre trafic IPSec chiffré et achemine via hello Internet. En outre, à l’aide de la passerelle VPN Azure de hello peut fournir une option économique (aucune licence supplémentaire de coût comme avec les tiers NVAs). Cette option est plus économique dans l’exemple 1, où aucune appliance virtuelle réseau n’est utilisée. Pour plus d’informations, consultez hello détaillée (à venir) d’instructions de génération. Vous trouverez les instructions suivantes :
 
-* Comment créer cet exemple de réseau de périmètre avec des scripts PowerShell.
-* Comment créer cet exemple avec un modèle Azure Resource Manager.
+* Comment toobuild ce périmètre exemple réseau avec des scripts PowerShell.
+* Comment toobuild cet exemple avec un modèle Azure Resource Manager.
 * Des scénarios de flux de trafic détaillés, montrant comment le trafic circule dans cette conception.
 
 ### <a name="example-6-add-a-hybrid-connection-with-expressroute"></a>Exemple 6 : Ajouter une connexion hybride avec ExpressRoute
-[Revenir à Démarrage rapide](#fast-start) | Instructions de génération détaillées bientôt disponibles
+[Sauvegarder tooFast début](#fast-start) | Build obtenir des instructions détaillées disponible prochainement
 
 [![16]][16]
 
 #### <a name="environment-description"></a>Description de l’environnement
-La mise en réseau hybride à l’aide d’une connexion d’homologation privée ExpressRoute peut être ajoutée à l’un des types de réseaux de périmètre décrits dans les exemples 1 ou 2.
+Mise en réseau hybride à l’aide d’une ExpressRoute connexion d’homologation privée peut être ajouté un type de réseau de périmètre tooeither décrit dans les exemples 1 ou 2.
 
-Comme l’indique la figure précédente, l’homologation privée ExpressRoute fournit une connexion directe entre votre réseau local et le réseau virtuel Azure. Le trafic passe uniquement dans le réseau du prestataire de services et le réseau Microsoft Azure, sans jamais atteindre Internet.
+Comme indiqué dans hello précédant figure, l’homologation privée ExpressRoute fournit une connexion directe entre votre réseau local et le hello réseau virtuel Azure. Le trafic passe uniquement réseau de fournisseur de service hello et réseau de Microsoft Azure hello, jamais toucher hello Internet.
 
 > [!TIP]
-> L’utilisation d’ExpressRoute conserve le trafic réseau d’entreprise hors d’Internet. Il prend également en charge les accords de niveau de service de votre fournisseur ExpressRoute. La passerelle Azure peut transférer jusqu’à 10 Gbits/s avec ExpressRoute, tandis qu’avec les VPN de site à site, le débit maximal de la passerelle Azure est de 200 Mbits/s.
+> Le trafic réseau d’entreprise à l’aide d’ExpressRoute conserve les désactiver hello Internet. Il prend également en charge les accords de niveau de service de votre fournisseur ExpressRoute. Hello passerelle Azure peut passer des Gbits/s too10 grâce à ExpressRoute, alors que le site à site VPN débit maximal de passerelle Azure hello est 200 Mbits/s.
 >
 >
 
-Comme nous voyons sur le diagramme suivant, avec cette option, l’environnement dispose maintenant de deux périphéries de réseau. La NVA et le NSG contrôlent les flux de trafic pour les réseaux intra-Azure et entre Azure et Internet, tandis que la passerelle est une périphérie de réseau distincte et isolée entre le réseau local et Azure.
+Comme indiqué dans hello suivant schéma, avec cette hello option environnement a maintenant deux bords de réseau. Hello NVA et le groupe de sécurité réseau du trafic flux de contrôle pour les réseaux Azure au sein et entre Azure et hello Internet, alors que la passerelle de hello est un bord de réseau distinct et isolé entre locaux et Azure.
 
-Les flux de trafic doivent être envisagés avec précaution car ils peuvent être optimisés ou détériorés par ce modèle de conception, en fonction du cas d’utilisation.
+Flux de trafic doivent être envisagés avec précaution, car ils peuvent être optimisées ou détérioré par ce modèle de conception, hello spécifique en fonction des cas d’usage.
 
-L’utilisation de l’environnement créé dans l’exemple 1 et l’ajout d’une connexion réseau hybride ExpressRoute produisent la conception suivante :
+À l’aide d’environnement hello créé dans l’exemple 1, puis en ajoutant une connexion de réseau hybride ExpressRoute, génère hello suivant modèle :
 
 [![17]][17]
 
 #### <a name="conclusion"></a>Conclusion
-L’ajout d’une connexion réseau d’homologation privée ExpressRoute peut étendre le réseau local dans Azure d’une manière sécurisée, avec moins de latence et de meilleures performances. En outre, l’utilisation de la passerelle Azure native, comme dans cet exemple, fournit une option à moindre coût (aucune licence supplémentaire à l’instar des appliances virtuelles réseau tierces). Pour plus d'informations, consultez les instructions de génération détaillées (bientôt disponibles). Vous trouverez les instructions suivantes :
+Ajout de Hello d’une connexion de réseau privé de ExpressRoute homologation peut étendre des réseau local de hello dans Azure dans une latence sécurisée, inférieure, effectuer plus de manière. À l’aide de hello natif passerelle Azure, comme dans cet exemple, fournit également une option économique (non supplémentaire relatifs aux licences comme avec les tiers NVAs). Pour plus d’informations, consultez hello détaillée (à venir) d’instructions de génération. Vous trouverez les instructions suivantes :
 
-* Comment créer cet exemple de réseau de périmètre avec des scripts PowerShell.
-* Comment créer cet exemple avec un modèle Azure Resource Manager.
+* Comment toobuild ce périmètre exemple réseau avec des scripts PowerShell.
+* Comment toobuild cet exemple avec un modèle Azure Resource Manager.
 * Des scénarios de flux de trafic détaillés, montrant comment le trafic circule dans cette conception.
 
 ## <a name="references"></a>Références
@@ -519,7 +519,7 @@ L’ajout d’une connexion réseau d’homologation privée ExpressRoute peut �
 * Documentation relative au routage défini par l’utilisateur : [https://docs.microsoft.com/azure/virtual-network/virtual-networks-udr-overview](virtual-network/virtual-networks-udr-overview.md)
 * Passerelles virtuelles Azure : [https://docs.microsoft.com/azure/vpn-gateway/](https://docs.microsoft.com/azure/vpn-gateway/)
 * VPN de site à site : [https://docs.microsoft.com/azure/vpn-gateway/vpn-gateway-create-site-to-site-rm-powershell](vpn-gateway/vpn-gateway-create-site-to-site-rm-powershell.md)
-* Documentation relative à ExpressRoute (consultez les sections « Mise en route » et « Procédure ») : [https://docs.microsoft.com/azure/expressroute/](https://docs.microsoft.com/azure/expressroute/)
+* Documentation d’ExpressRoute (être toocheck que les sections « Getting Started » et « Comment » hello) : [https://docs.microsoft.com/azure/expressroute/](https://docs.microsoft.com/azure/expressroute/)
 
 <!--Image References-->
 [0]: ./media/best-practices-network-security/flowchart.png "Organigramme des options de sécurité"
@@ -531,7 +531,7 @@ L’ajout d’une connexion réseau d’homologation privée ExpressRoute peut �
 [7]: ./media/best-practices-network-security/example1design.png "Zone DMZ avec groupe de sécurité réseau (NSG)"
 [8]: ./media/best-practices-network-security/example2design.png "Zone DMZ entrante avec NVA et NSG"
 [9]: ./media/best-practices-network-security/example3design.png "Zone DMZ bidirectionnelle avec NVA, NSG et UDR"
-[10]: ./media/best-practices-network-security/example3firewalllogical.png "Affichage logique des règles de pare-feu"
+[10]: ./media/best-practices-network-security/example3firewalllogical.png "affichage logique de règles de pare-feu de hello"
 [11]: ./media/best-practices-network-security/example3designoptions.png "Zone DMZ avec réseau hybride connecté à une NVA"
 [12]: ./media/best-practices-network-security/example4designs2s.png "Zone DMZ avec NVA connectée à l’aide d’un VPN de site à site"
 [13]: ./media/best-practices-network-security/example4networklogical.png "Réseau logique du point de vue de la NVA"

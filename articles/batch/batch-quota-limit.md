@@ -1,6 +1,6 @@
 ---
-title: Quotas et limites du service Azure Batch | Microsoft Docs
-description: "En savoir plus sur les contraintes, les limites et les quotas par défaut d’Azure Batch, et comment demander une augmentation de quota"
+title: aaaService quotas et limites pour le traitement par lots Azure | Documents Microsoft
+description: "En savoir plus sur les quotas Azure Batch par défaut, les limites et les contraintes, et comment toorequest quota augmente"
 services: batch
 documentationcenter: 
 author: tamram
@@ -15,21 +15,21 @@ ms.topic: article
 ms.date: 06/28/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: f3f69ed8d3a985afe07e648e7512a88b25278ced
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6035d1c7618cfe97ebca3780e02a4ee34f54e534
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="batch-service-quotas-and-limits"></a>Quotas et limites du service Batch
 
-Comme avec d’autres services Azure, il existe des limites concernant certaines ressources associées au service Batch. La plupart de ces limites représentent des quotas par défaut appliqués par Azure au niveau de l’abonnement ou du compte. Cet article décrit ces paramètres par défaut, et comment vous pouvez demander une augmentation de ces quotas.
+Comme avec d’autres services Azure, il existe des limites sur certaines ressources associées hello service Batch. La plupart de ces limites sont des quotas par défaut appliqués par Azure à l’abonnement de hello ou au niveau du compte. Cet article décrit ces paramètres par défaut, et comment vous pouvez demander une augmentation de ces quotas.
 
-Gardez ces quotas à l’esprit lorsque vous concevez et mettez à l’échelle vos charges de travail Batch. Par exemple, si votre pool n’atteint pas le nombre de nœuds de calcul que vous avez spécifiés, il se peut que vous ayez atteint le quota limite de votre compte Batch ou un quota de cœurs de machine virtuelle régionaux pour votre abonnement.
+Gardez ces quotas à l’esprit lorsque vous concevez et mettez à l’échelle vos charges de travail Batch. Par exemple, si votre pool n’est pas atteindre le nombre de cibles de hello de nœuds de calcul que vous avez spécifié, vous pourrez avoir atteint limite du quota de cœurs hello pour votre compte Batch ou d’un quota de cœurs de machine virtuelle régional pour votre abonnement.
 
-Vous pouvez exécuter plusieurs charges de travail Batch dans un compte Batch ou répartir vos charges de travail entre plusieurs comptes Batch se trouvant dans le même abonnement mais dans différentes régions Azure.
+Vous pouvez exécuter plusieurs charges de travail de traitement par lots dans un seul compte de traitement par lots, ou distribuer vos charges de travail entre les comptes de traitement par lots qui se trouvent hello même abonnement, mais dans différentes régions Azure.
 
-Si vous envisagez d’exécuter des charges de travail de production dans Batch, vous devrez peut-être affecter à un ou plusieurs des quotas une valeur supérieure à la valeur par défaut. Si vous souhaitez augmenter un quota, vous pouvez ouvrir une [demande de service clientèle](#increase-a-quota) en ligne gratuitement.
+Si vous envisagez des charges de production toorun dans un lot, vous devrez peut-être tooincrease une ou plusieurs des quotas hello ci-dessus par défaut de hello. Si vous voulez tooraise un quota, vous pouvez ouvrir un en ligne [demande de support client](#increase-a-quota) sans frais.
 
 > [!NOTE]
 > Un quota est une limite de crédit, pas une garantie de capacité. Si vous avez des besoins de capacité à grande échelle, contactez le support Azure.
@@ -41,9 +41,9 @@ Si vous envisagez d’exécuter des charges de travail de production dans Batch,
 
 ## <a name="quotas-in-user-subscription-mode"></a>Quotas en mode Abonnement utilisateur
 
-Pour un compte Batch en mode d’allocation de pool défini sur **abonnement utilisateur**, les machines virtuelle Batch et les autres ressources, telles que les comptes de stockage, sont créées directement dans votre abonnement lors de la création d’un pool. Le quota de cœurs Azure Batch ne s’applique pas à un compte créé dans ce mode. Seuls s’appliquent les quotas de votre abonnement imposés aux cœurs de calcul régionaux et aux autres ressources. Pour en savoir plus sur ces quotas, consultez [Abonnement Azure et limites, quotas et contraintes de service](../azure-subscription-service-limits.md).
+Pour un compte de traitement lorsque le mode d’allocation de pool défini trop**abonnement utilisateur**, ordinateurs virtuels et autres ressources, telles que les comptes de stockage du lot, sont créés directement dans votre abonnement lorsqu’un pool est créé. quota de cœurs de traitement par lots Azure Hello n’applique pas de compte tooan créé dans ce mode. Au lieu de cela, les quotas hello dans votre abonnement pour les cœurs de calcul régional et d’autres ressources sont appliquées. Pour en savoir plus sur ces quotas, consultez [Abonnement Azure et limites, quotas et contraintes de service](../azure-subscription-service-limits.md).
 
-Lorsque vous planifiez l’utilisation des ressources pour un compte créé en mode Abonnement utilisateur, notez que les ressources Batch suivantes (en plus des cœurs de calcul) sont requises pour toute tranche de 40 machines virtuelles Linux ou de 20 machines virtuelles Windows :
+Lorsque vous planifiez l’utilisation des ressources pour un compte créé dans le mode d’abonnement utilisateur, hello Remarque suivant des ressources de lot (dans les cœurs de toocompute ajout) sont requis pour toutes les machines virtuelles Linux 40 ou 20 ordinateurs virtuels de Windows :
 
 | Ressource | Quota | Fournisseur |
 | --- | ---| --- |
@@ -54,7 +54,7 @@ Lorsque vous planifiez l’utilisation des ressources pour un compte créé en m
 | Un seul jeu de mise à l’échelle de machine virtuelle | Jeux de mise à l’échelle de machine virtuelle | Microsoft.Compute | 
 | Un seul équilibreur de charge | Équilibreurs de charge | Microsoft.Network | 
 
-Le quota de cœurs au niveau régional ou par famille de machine virtuelle doit être défini en fonction de la taille de machine virtuelle nécessaire pour votre ou vos pool(s) Batch :
+quota de cœurs Hello au niveau régional ou par famille de machine virtuelle doit être ensemble conséquente toohello taille de machine virtuelle requis pour votre pool de traitement par lots ou des pools :
 
 | Quota | Fournisseur |
 | --- | ---- |
@@ -76,32 +76,32 @@ Le quota de cœurs au niveau régional ou par famille de machine virtuelle doit 
 <sup>2</sup> inclut les fichiers de ressources et les variables d’environnement
 
 ## <a name="view-batch-quotas"></a>Afficher les quotas Batch
-Affichez vos quotas de compte Batch dans le [portail Azure][portal].
+Afficher les quotas de compte de votre lot Bonjour [portail Azure][portal].
 
-1. Sélectionnez **Comptes Batch** dans le portail, puis sélectionnez le compte Batch qui vous intéresse.
-2. Sélectionnez **Propriétés** dans le panneau de menu du compte Batch.
-3. Le panneau Propriétés affiche les **quotas** actuellement appliqués au compte Batch
+1. Sélectionnez **comptes du lot** dans hello portail, puis sélectionnez du compte Batch hello vous intéresse.
+2. Sélectionnez **propriétés** sur le panneau de menu du compte de traitement par lots hello.
+3. panneau des propriétés Hello affiche hello **quotas** actuellement appliqué toohello du compte Batch
    
     ![Quotas de compte Batch][account_quotas]
 
-Pour un compte Batch créé en mode Abonnement utilisateur, affichez les quotas d’abonnement associés dans le portail Azure.
+Pour un compte de traitement par lots créé en mode d’abonnement utilisateur, hello de vue liée quotas d’abonnement Bonjour portail Azure.
 
-1. Sélectionnez **Abonnements**, puis sélectionnez l’abonnement que vous utilisez pour le compte Batch.
+1. Sélectionnez **abonnements**, puis sélectionnez l’abonnement hello que vous utilisez pour hello compte Batch.
 
-2. Dans le panneau **Abonnement**, sélectionnez **Utilisation + quotas**.
+2. Sur hello **abonnement** panneau, sélectionnez **utilisation + quotas**.
 
 
 
 ## <a name="increase-a-quota"></a>Augmenter un quota
-Suivez ces étapes pour demander une augmentation de quota pour votre compte Batch ou votre abonnement à l’aide du [portail Azure][portal]. Le type d’augmentation de quota varie selon le mode d’allocation de pool de votre compte Batch.
+Suivez ces toorequest étapes augmenter d’un quota de votre compte de traitement par lots ou de votre abonnement à l’aide de hello [portail Azure][portal]. type Hello d’augmentation du quota dépend du mode d’allocation de pool hello de votre compte de traitement par lots.
 
 ### <a name="increase-a-batch-cores-quota"></a>Augmenter un quota de cœurs Batch 
 
-Si votre compte Batch a été créé en mode **Service Batch**, suivez ces étapes pour demander une augmentation du quota de cœurs Batch :
+Si votre compte Batch a été créé dans **lot service** mode, suivez ces étapes de toorequest une augmentation du quota de cœurs par lots :
 
-1. Sélectionnez la mosaïque **Aide + Support** dans le tableau de bord du portail, ou le point d’interrogation (**?**) dans le coin supérieur droit du portail.
+1. Sélectionnez hello **aide + support** vignette sur votre tableau de bord de portail, ou hello point d’interrogation (**?**) dans le coin supérieur droit de hello du portail de hello.
 2. Sélectionnez **Nouvelle demande de support** > **De base**.
-3. Sur le panneau **De base** :
+3. Sur hello **notions de base** panneau :
    
     a. **Type de problème** > **Quota**
    
@@ -112,22 +112,22 @@ Si votre compte Batch a été créé en mode **Service Batch**, suivez ces étap
     d. **Plan de support** > **Support quota - Inclus**
    
     Cliquez sur **Suivant**.
-4. Sur le panneau **Problème** :
+4. Sur hello **problème** panneau :
    
-    a. Sélectionnez un **niveau de gravité** en fonction de [l’impact sur votre activité][support_sev].
+    a. Sélectionnez un **gravité** selon tooyour [impact commercial][support_sev].
    
-    b. Dans **Détails**, spécifiez chaque quota que vous souhaitez modifier, le nom du compte Batch et la nouvelle limite.
+    b. Dans **détails**, spécifiez chaque quota que vous voulez toochange, nom du compte Batch hello et nouvelle limite de hello.
    
     Cliquez sur **Suivant**.
-5. Sur le panneau **Informations de contact** :
+5. Sur hello **les informations de Contact** panneau :
    
     a. Sélectionnez une **méthode de contact préférée**.
    
-    b. Vérifiez et entrez les informations de contact requises.
+    b. Vérifier et entrez les détails du contact hello requis.
    
-    Cliquez sur **Créer** pour envoyer la demande de support.
+    Cliquez sur **créer** toosubmit hello prise en charge de demande.
 
-Une fois que vous avez envoyé votre demande de support, le support Azure vous contactera. Notez que le traitement de la demande peut prendre jusqu’à 2 jours ouvrés.
+Une fois que vous avez envoyé votre demande de support, le support Azure vous contactera. Notez que la fin de la demande de hello peut prendre jusqu'à too2 prochains jours ouvrables.
 
 ### <a name="increase-a-subscription-cores-quota"></a>Augmenter un quota de cœurs d’abonnement
 
@@ -136,7 +136,7 @@ Si votre compte Batch a été créé en mode **Abonnement utilisateur** et si vo
 
 
 ## <a name="related-topics"></a>Rubriques connexes
-* [Création et gestion d’un compte Azure Batch dans le portail Azure](batch-account-create-portal.md)
+* [Créer un compte Azure Batch hello portail Azure](batch-account-create-portal.md)
 * [Vue d'ensemble des fonctionnalités d'Azure Batch](batch-api-basics.md)
 * [Abonnement Azure et limites, quotas et contraintes de service](../azure-subscription-service-limits.md)
 

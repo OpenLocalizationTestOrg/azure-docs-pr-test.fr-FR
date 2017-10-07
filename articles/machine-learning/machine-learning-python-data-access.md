@@ -1,6 +1,6 @@
 ---
-title: "Accès à des jeux de données grâce à la bibliothèque cliente Python Machine Learning | Microsoft Docs"
-description: "Installez et utilisez la bibliothèque cliente Python pour accéder et gérer les données d'apprentissage automatique d'Azure en toute sécurité à partir d'un environnement Python local."
+title: "jeux de données aaaAccess avec la bibliothèque cliente de Machine Learning Python | Documents Microsoft"
+description: "Installer et utiliser hello tooaccess de bibliothèque cliente de Python et gérer les données d’Azure Machine Learning en toute sécurité à partir d’un environnement local de Python."
 services: machine-learning
 documentationcenter: python
 author: bradsev
@@ -14,97 +14,97 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/24/2017
 ms.author: huvalo;bradsev
-ms.openlocfilehash: e3ae712e0f8d386f637520fbbff4b348bc86f32d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f55067118f13c52bf677930a20836ce6989f8187
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="access-datasets-with-python-using-the-azure-machine-learning-python-client-library"></a>Accédez aux jeux de données avec Python grâce à la bibliothèque cliente Python d'Azure Machine Learning
-L’aperçu de la bibliothèque cliente Python de Microsoft Azure Machine Learning offre un accès sécurisé à vos jeux de données Azure Machine Learning à partir d’un environnement Python local et permet la création et la gestion de jeux de données dans un espace de travail.
+# <a name="access-datasets-with-python-using-hello-azure-machine-learning-python-client-library"></a>Accès de jeux de données avec Python à l’aide de la bibliothèque cliente de hello Azure Machine Learning Python
+afficher un aperçu de Hello de bibliothèque cliente de Microsoft Azure Machine Learning Python permettre un accès sécurisé tooyour jeux de données Azure Machine Learning à partir d’un environnement local de Python et permet la création de hello et la gestion de jeux de données dans un espace de travail.
 
 Cette rubrique fournit des instructions pour les procédures suivantes :
 
-* installation de la bibliothèque cliente Python de Machine Learning 
-* accès et téléchargement des jeux de données, y compris des instructions sur l’obtention d’une autorisation d'accès aux jeux de données Azure Machine Learning depuis votre environnement Python local
+* installer la bibliothèque cliente de Machine Learning Python hello 
+* accéder à et de jeux de données, y compris des instructions sur la façon de télécharger tooget d’autorisation tooaccess jeux de données Azure Machine Learning à partir de votre environnement local de Python
 * accès aux jeux de données intermédiaires à partir d'expériences
-* utilisation de la bibliothèque cliente Python pour énumérer les jeux de données, accès aux métadonnées, lecture du contenu d'un jeu de données, création de nouveaux jeux de données et mise à jour des jeux de données existants
+* utiliser des datasets tooenumerate bibliothèque hello Python client accéder aux métadonnées, lire le contenu d’un dataset hello, créer de nouveaux datasets et mettre à jour des jeux de données existants
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 ## <a name="prerequisites"></a>Configuration requise
-La bibliothèque cliente Python a été testée dans les environnements suivants :
+bibliothèque cliente de Python Hello a été testé sous hello suivant environnements :
 
 * Windows, Mac et Linux
 * Python 2.7, 3.3 et 3.4
 
-Il a une dépendance sur les packages suivants :
+Il a une dépendance sur hello suivant des packages :
 
 * requêtes
 * python-dateutil
 * pandas
 
-Nous vous invitons à utiliser une distribution Python telle qu’[Anaconda](http://continuum.io/downloads#all) ou [Canopy](https://store.enthought.com/downloads/), qui est fournie avec Python, IPython et les trois packages listés ci-dessus installés. Bien que IPython n'est pas formellement requis, il s'agit d'un environnement idéal pour la manipulation et la visualisation interactive des données.
+Nous recommandons d’utiliser une distribution de Python comme [Anaconda](http://continuum.io/downloads#all) ou [Canopy](https://store.enthought.com/downloads/), qui sont fournis avec Python, notebooks et d’installer les packages hello trois répertoriés ci-dessus. Bien que IPython n'est pas formellement requis, il s'agit d'un environnement idéal pour la manipulation et la visualisation interactive des données.
 
-### <a name="installation"></a>Installation de la bibliothèque cliente Python d'Azure Machine Learning
-La bibliothèque cliente Python d’Azure Machine Learning doit également être installée pour effectuer les tâches décrites dans cette rubrique. Elle est disponible depuis le [Python Package Index](https://pypi.python.org/pypi/azureml). Pour l'installer dans votre environnement Python, exécutez la commande suivante à partir de votre environnement Python local :
+### <a name="installation"></a>Comment tooinstall hello bibliothèque cliente de Azure Machine Learning Python
+bibliothèque cliente de Azure Machine Learning Python Hello doit également être installé toocomplete des tâches hello présentées dans cette rubrique. Il est disponible à partir de hello [Python Package Index](https://pypi.python.org/pypi/azureml). tooinstall dans votre environnement de Python, exécutez hello après une commande à partir de votre environnement de Python local :
 
     pip install azureml
 
-Autrement, vous pouvez la télécharger et l'installer à partir des sources sur [github](https://github.com/Azure/Azure-MachineLearning-ClientLibrary-Python).
+Ou bien, vous pouvez télécharger et installer à partir de sources de hello sur [github](https://github.com/Azure/Azure-MachineLearning-ClientLibrary-Python).
 
     python setup.py install
 
-Si vous avez installé git sur votre ordinateur, vous pouvez utiliser pip pour l'installer directement à partir du référentiel git :
+Si vous avez git installé sur votre ordinateur, vous pouvez utiliser pip tooinstall directement à partir de référentiel git de hello :
 
     pip install git+https://github.com/Azure/Azure-MachineLearning-ClientLibrary-Python.git
 
 
-## <a name="datasetAccess"></a>Utilisation des extraits de code Studio pour accéder aux jeux de données
-La bibliothèque cliente Python vous offre un accès par programme à vos jeux de données existants à partir des expériences qui ont été exécutées.
+## <a name="datasetAccess"></a>Utiliser des datasets tooaccess Studio Code des extraits de code
+bibliothèque cliente de Python Hello vous donne un accès par programmation tooyour jeux de données existante à partir d’expériences qui ont été exécutées.
 
-Depuis l'interface web Studio, vous pouvez générer des extraits de code qui incluent toutes les informations nécessaires pour télécharger et désérialiser des jeux de données en tant qu'objets DataFrame de Pandas sur votre ordinateur local.
+À partir d’une interface web hello Studio, vous pouvez générer des extraits de code qui incluent toutes les toodownload d’informations nécessaires hello et désérialiser des jeux de données en tant qu’objets Pandas la trame de données sur votre ordinateur de l’emplacement.
 
 ### <a name="security"></a>Sécurité relative à l'accès aux données
-Les extraits de code fournis par Studio pour une utilisation avec la bibliothèque cliente Python incluent l'ID de votre d'espace de travail et le jeton d'autorisation. Ceux-ci vous permettent un accès complet à votre espace de travail et doivent être protégés, par exemple avec un mot de passe.
+extraits de code fournis par Studio pour utilisation avec la bibliothèque cliente de Python hello inclut votre id d’espace de travail et l’autorisation de Hello jeton. Ces fournissent l’espace de travail tooyour un accès complet et doivent être protégés comme un mot de passe.
 
-Pour des raisons de sécurité, la fonctionnalité d'extrait de code est uniquement disponible pour les utilisateurs qui ont leur rôle défini en tant que **Propriétaire** de l'espace de travail. Votre rôle s’affiche dans Azure Machine Learning Studio sur la page **UTILISATEURS** sous **Paramètres**.
+Pour des raisons de sécurité, fonctionnalité d’extrait de code hello est uniquement disponible toousers qui ont leur rôle défini en tant que **propriétaire** pour l’espace de travail hello. Votre rôle est affiché dans Azure Machine Learning Studio sur hello **utilisateurs** page sous **paramètres**.
 
 ![Sécurité][security]
 
-Si votre rôle n’est pas défini en tant que **Propriétaire**, vous pouvez demander à être invité à nouveau en tant que propriétaire ou demander au propriétaire de l’espace de travail de vous fournir l’extrait de code.
+Si votre rôle n’est pas défini en tant que **propriétaire**, vous pouvez soit demander toobe nouvelle en tant que propriétaire, ou demandez au propriétaire de tooprovide d’espace de travail hello hello vous avec l’extrait de code hello.
 
-Pour obtenir le jeton d'autorisation, vous pouvez effectuer l'une des opérations suivantes :
+jeton d’autorisation de hello tooobtain, vous pouvez effectuer hello suivantes :
 
-* Demander un jeton à un propriétaire. Les propriétaires peuvent accéder à leurs jetons d'autorisation à partir de la page Paramètres de leur espace de travail dans Studio. Sélectionnez **Paramètres** dans le volet gauche puis cliquez sur **JETONS D’AUTORISATION** pour voir les jetons principaux et secondaires.  Bien que les jetons d'autorisation principaux ou secondaires puissent être utilisés dans l'extrait de code, il est recommandé aux propriétaires de ne partager que les jetons d'autorisation secondaires.
+* Demander un jeton à un propriétaire. Propriétaires peuvent accéder à leurs jetons d’autorisation à partir de la page des paramètres de leur espace de travail dans Studio hello. Sélectionnez **paramètres** de hello gauche du volet et cliquez sur **jetons d’autorisation** toosee hello les jetons principaux et secondaires.  Bien hello principal ou jetons d’autorisation secondaire hello peuvent être utilisés dans l’extrait de code hello, il est recommandé que les propriétaires uniquement partagent les jetons d’autorisation secondaire hello.
 
 ![Jetons d’autorisation](./media/machine-learning-python-data-access/ml-python-access-settings-tokens.png)
 
-* Demander à être promu au rôle de propriétaire.  Pour cela, un propriétaire actuel de l'espace de travail doit tout d'abord vous supprimer de l'espace de travail puis vous y inviter à nouveau en tant que propriétaire.
+* Demandez à toorole toobe promue du propriétaire.  toodo cela, un propriétaire actuel du toofirst de besoins d’espace de travail hello vous supprimer à partir de l’espace de travail hello puis ré-vous inviter tooit en tant que propriétaire.
 
-Une fois que les développeurs ont obtenu l’ID de l’espace de travail et les jetons d’autorisation, ils peuvent accéder à l’espace de travail à l’aide de l’extrait de code, quel que soit leur rôle.
+Une fois que les développeurs ont obtenu les id d’espace de travail hello et l’autorisation jetons, ils sont en mesure de tooaccess espace de travail de hello à l’aide d’extrait de code hello, quelle que soit leur rôle.
 
-Les jetons d’autorisation sont gérés sur la page **JETONS D’AUTORISATION** sous **PARAMÈTRES**. Vous pouvez les régénérer, mais cette procédure entraîne la révocation de l’accès au jeton précédent.
+Jetons d’autorisation sont gérés sur hello **jetons d’autorisation** page sous **paramètres**. Vous pouvez régénérer les, mais cette procédure révoque le jeton précédent d’accès toohello.
 
 ### <a name="accessingDatasets"></a>Accès aux jeux de données depuis une application Python locale
-1. Dans Machine Learning Studio, cliquez sur **JEUX DE DONNÉES** dans la barre de navigation à gauche.
-2. Sélectionnez le jeu de données auquel vous souhaitez accéder. Vous pouvez sélectionner un des jeux de données depuis la liste **MES JEUX DE DONNÉES** ou **EXEMPLES**.
-3. Dans la barre d’outils inférieure, cliquez sur **Générer un code d’accès aux données**. Ce bouton est désactivé si les données sont dans un format incompatible avec la bibliothèque cliente Python.
+1. Dans la Machine Learning Studio, cliquez sur **jeux de données** dans la barre de navigation hello sur hello gauche.
+2. Sélectionnez le dataset hello tooaccess voulue. Vous pouvez sélectionner un des jeux de données hello hello **mes DATASETS** liste ou à partir de hello **exemples** liste.
+3. Dans la barre d’outils du bas hello, cliquez sur **Code d’accès aux données générer**. Si les données de salutation sont dans un format incompatible avec la bibliothèque cliente de Python hello, ce bouton est désactivé.
    
     ![JEUX DE DONNÉES][datasets]
-4. Sélectionnez l'extrait de code dans la fenêtre qui s'affiche et copiez-le dans votre presse-papiers.
+4. Sélectionnez l’extrait de code hello à partir de la fenêtre hello qui s’affiche et copiez-le tooyour Presse-papiers.
    
     ![Code d'accès][dataset-access-code]
-5. Collez le code dans le bloc-notes de votre application Python locale.
+5. Collez les code hello dans Bloc-notes hello de votre application Python locale.
    
     ![Bloc-notes][ipython-dataset]
 
 ## <a name="accessingIntermediateDatasets"></a>Accès aux jeux de données intermédiaires à partir d'expériences de Machine Learning
-Après l'exécution d'une expérience dans Machine Learning Studio, il est possible d'accéder aux jeux de données intermédiaires depuis les nœuds de modules de sortie. Les jeux de données intermédiaires sont des données qui ont été créées et utilisées pour les étapes intermédiaires lorsqu'un outil de modèle a été exécuté.
+Après l’exécution d’une expérience Bonjour Machine Learning Studio, il est possible tooaccess hello intermédiaire des groupes de données à partir des nœuds de sortie hello des modules. Les jeux de données intermédiaires sont des données qui ont été créées et utilisées pour les étapes intermédiaires lorsqu'un outil de modèle a été exécuté.
 
-Les jeux de données intermédiaires sont accessibles tant que le format de données est compatible avec la bibliothèque cliente Python.
+Jeux de données intermédiaires sont accessibles tant que format de données hello est compatible avec la bibliothèque cliente de Python hello.
 
-Les formats suivants sont pris en charge (ces constantes sont dans la classe `azureml.DataTypeIds` ) :
+Hello formats suivants sont pris en charge (dans ce cas, les constantes sont Bonjour `azureml.DataTypeIds` classe) :
 
 * Texte brut
 * CSV générique
@@ -112,57 +112,57 @@ Les formats suivants sont pris en charge (ces constantes sont dans la classe `az
 * CSV générique sans en-tête
 * TSV générique sans en-tête
 
-Vous pouvez déterminer le format en pointant sur un nœud de sortie de module. Celui-ci s'affiche avec le nom de nœud dans une infobulle.
+Vous pouvez déterminer le format de hello en pointant sur un nœud de sortie de module. Il s’affiche avec le nom du nœud hello, dans une info-bulle.
 
-Certains des modules, tels que le module [Fractionner][split], ont un format de sortie appelé `Dataset`, qui n’est pas pris en charge par la bibliothèque cliente Python.
+Certains des modules hello, par exemple hello [fractionnement] [ split] module, le format de sortie de tooa nommé `Dataset`, qui n’est pas pris en charge par la bibliothèque cliente de Python hello.
 
 ![Format de jeu de données][dataset-format]
 
-Vous devez utiliser un module de conversion, tel que [Convertir en CSV][convert-to-csv], afin d’obtenir un format de sortie pris en charge.
+Vous devez toouse un module de conversion, tel que [convertir tooCSV][convert-to-csv], tooget une sortie dans un format pris en charge.
 
 ![Format CSV générique][csv-format]
 
-Les étapes suivantes proposent un exemple qui créé une expérience, l'exécute et accède au jeu de données intermédiaire.
+Hello étapes suivantes montrent un exemple qui crée une expérience, exécute et accède au jeu de données intermédiaire hello.
 
 1. Création d'une nouvelle expérience.
 2. Insérez un module **Jeu de données Adult Census Income Binary Classification** .
-3. Insérez un module [Fractionner][split] puis connectez son entrée à une sortie de module de jeu de données.
-4. Insérez un module [Convertir en CSV][convert-to-csv], puis connectez son entrée à l’une des sorties du module [Fractionner][split].
-5. Enregistrez l'expérience, exécutez-la et attendez qu'elle ait fini de s'exécuter.
-6. Cliquez sur le nœud de sortie du module [Convertir en CSV][convert-to-csv].
-7. Lorsque le menu contextuel s’affiche, sélectionnez **Générer un code d’accès aux données**.
+3. Insérer un [fractionnement] [ split] module et vous connecter à sa sortie de module d’entrée toohello jeu de données.
+4. Insérer un [convertir tooCSV] [ convert-to-csv] module et se connecter à son tooone d’entrée de hello [fractionnement] [ split] module génère.
+5. Enregistrer l’expérience de hello, exécuter et attendez qu’elle toofinish en cours d’exécution.
+6. Cliquez sur le nœud de sortie hello sur hello [convertir tooCSV] [ convert-to-csv] module.
+7. Menu contextuel de hello, sélectionnez **Code d’accès aux données générer**.
    
     ![Menu contextuel][experiment]
-8. Sélectionnez l’extrait de code dans la fenêtre qui s’affiche et copiez-le dans votre presse-papiers.
+8. Sélectionnez l’extrait de code hello et copier tooyour Presse-papiers à partir de la fenêtre hello qui s’affiche.
    
     ![Code d'accès][intermediate-dataset-access-code]
-9. Collez le code dans votre bloc-notes.
+9. Collez le code de hello dans le bloc-notes.
    
     ![Bloc-notes][ipython-intermediate-dataset]
-10. Vous pouvez visualiser les données à l'aide de matplotlib. Cela les affiche dans un histogramme pour la colonne âge :
+10. Vous pouvez visualiser les données de salutation avec matplotlib ;. Cela affiche dans un histogramme pour la colonne d’âge hello :
     
     ![Histogramme][ipython-histogram]
 
-## <a name="clientApis"></a>Utilisation de la bibliothèque cliente Python de Machine Learning pour accéder, lire, créer et gérer des jeux de données
+## <a name="clientApis"></a>Utilisez tooaccess de bibliothèque client hello Machine Learning Python, lire, créer et gérer des jeux de données
 ### <a name="workspace"></a>Espace de travail
-L'espace de travail est le point d'entrée de la bibliothèque cliente Python. Il fournit la classe `Workspace` avec l'ID de votre espace de travail et le jeton d'autorisation pour créer une instance :
+espace de travail Hello est le point d’entrée hello pour la bibliothèque cliente de Python hello. Fournir hello `Workspace` classe avec votre espace de travail un id et l’autorisation toocreate jeton une instance :
 
     ws = Workspace(workspace_id='4c29e1adeba2e5a7cbeb0e4f4adfb4df',
                    authorization_token='f4f3ade2c6aefdb1afb043cd8bcf3daf')
 
 
 ### <a name="enumerate-datasets"></a>Énumérer les jeux de données
-Pour énumérer tous les jeux de données dans un espace de travail donné :
+tooenumerate tous les jeux de données dans un espace de travail donné :
 
     for ds in ws.datasets:
         print(ds.name)
 
-Pour énumérer uniquement les jeux de données créés par l'utilisateur :
+tooenumerate hello simplement créés par l’utilisateur des groupes de données :
 
     for ds in ws.user_datasets:
         print(ds.name)
 
-Pour énumérer uniquement les exemples de jeux de données :
+jeux de données tooenumerate hello simplement exemple :
 
     for ds in ws.example_datasets:
         print(ds.name)
@@ -177,9 +177,9 @@ Vous pouvez également y accéder par l'index :
 
 
 ### <a name="metadata"></a>Metadata
-Les jeux de données ont des métadonnées, en plus du contenu. (Les jeux de données intermédiaires sont une exception à cette règle et n'ont pas de métadonnées.)
+Jeux de données des métadonnées, dans toocontent d’addition. (Les jeux de données intermédiaires sont une règle d’exception toothis et n’ont pas toutes les métadonnées.)
 
-Certaines valeurs de métadonnées sont affectées par l'utilisateur lors de la création :
+Certaines valeurs de métadonnées sont affectés par l’utilisateur de hello lors de la création :
 
     print(ds.name)
     print(ds.description)
@@ -192,33 +192,33 @@ D'autres sont des valeurs affectées par Azure ML :
     print(ds.created_date)
     print(ds.size)
 
-Consultez la classe `SourceDataset` pour plus d'informations sur les métadonnées disponibles.
+Consultez hello `SourceDataset` classe pour les métadonnées disponibles plus on hello.
 
 ### <a name="read-contents"></a>Lire le contenu
-Les extraits de code fournis par Machine Learning Studio téléchargent automatiquement et désérialisent le jeu de données vers un objet DataFrame de Pandas. Cette opération est effectuée à l'aide de la méthode `to_dataframe` :
+extraits de code Hello fournis automatiquement par Machine Learning Studio, téléchargement et désérialiser l’objet de trame de données Pandas tooa hello dataset. Cette opération s’effectue par hello `to_dataframe` méthode :
 
     frame = ds.to_dataframe()
 
-Si vous préférez télécharger les données brutes et procéder vous-même à la désérialisation, cela est possible. Pour le moment, il s'agit de la seule option pour les formats tels que « ARFF » que la bibliothèque cliente Python ne peut pas désérialiser.
+Si vous préférez des données brutes toodownload hello et procédez vous-même à la désérialisation de hello, qui est une option. Au moment de hello, il s’agit de hello seule option de formats tels que 'ARFF', Impossible de désérialiser la bibliothèque client Python hello.
 
-Pour lire le contenu en texte :
+contenu de hello tooread sous forme de texte :
 
     text_data = ds.read_as_text()
 
-Pour lire le contenu en binaire :
+contenu de hello tooread sous forme binaire :
 
     binary_data = ds.read_as_binary()
 
-Vous pouvez également ouvrir un simple flux vers le contenu :
+Vous pouvez également ouvrir un contenu toohello :
 
     with ds.open() as file:
         binary_data_chunk = file.read(1000)
 
 
 ### <a name="create-a-new-dataset"></a>Créer un nouveau jeu de données
-La bibliothèque cliente Python vous permet de télécharger des jeux de données depuis votre programme Python. Ces jeux de données sont alors disponibles pour une utilisation dans votre espace de travail.
+bibliothèque cliente de Python Hello vous permet de tooupload des jeux de données à partir de votre programme Python. Ces jeux de données sont alors disponibles pour une utilisation dans votre espace de travail.
 
-Si vous avez vos données dans un DataFrame de Pandas, utilisez le code suivant :
+Si vous disposez de vos données dans une trame de données Pandas, utilisez hello suivant de code :
 
     from azureml import DataTypeIds
 
@@ -240,7 +240,7 @@ Si vos données sont déjà sérialisées, vous pouvez utiliser :
         description='my description'
     )
 
-La bibliothèque cliente Python est en mesure de sérialiser une trame de données Pandas aux formats suivants (ces constantes sont dans la classe `azureml.DataTypeIds` ) :
+la bibliothèque cliente Python Hello est en mesure de tooserialize met en forme une suivant de toohello Pandas de trame de données (dans ce cas, les constantes sont Bonjour `azureml.DataTypeIds` classe) :
 
 * Texte brut
 * CSV générique
@@ -249,17 +249,17 @@ La bibliothèque cliente Python est en mesure de sérialiser une trame de donné
 * TSV générique sans en-tête
 
 ### <a name="update-an-existing-dataset"></a>Mettre à jour un jeu de données existant
-Si vous essayez de télécharger un nouveau jeu de données avec un nom qui correspond à un jeu de données existant, vous devriez obtenir une erreur de conflit.
+Si vous essayez tooupload un nouveau dataset avec un nom qui correspond à un dataset existant, vous devez obtenir une erreur de conflit.
 
-Pour mettre à jour un jeu de données existant, vous devez d'abord obtenir la référence d'un jeu de données existant :
+tooupdate un dataset existant, vous devez tout d’abord tooget un jeu de données référence toohello existant :
 
     dataset = ws.datasets['existing dataset']
 
     print(dataset.data_type_id) # 'GenericCSV'
     print(dataset.name)         # 'existing dataset'
-    print(dataset.description)  # 'data up to jan 2015'
+    print(dataset.description)  # 'data up toojan 2015'
 
-Utilisez ensuite `update_from_dataframe` pour sérialiser et remplacer le contenu du jeu de données sur Azure :
+Utilisez ensuite `update_from_dataframe` tooserialize et remplacer contenu hello du jeu de données hello sur Azure :
 
     dataset = ws.datasets['existing dataset']
 
@@ -267,9 +267,9 @@ Utilisez ensuite `update_from_dataframe` pour sérialiser et remplacer le conten
 
     print(dataset.data_type_id) # 'GenericCSV'
     print(dataset.name)         # 'existing dataset'
-    print(dataset.description)  # 'data up to jan 2015'
+    print(dataset.description)  # 'data up toojan 2015'
 
-Si vous souhaitez sérialiser les données dans un format différent, spécifiez une valeur pour le paramètre en option `data_type_id` .
+Si vous souhaitez autre format tooserialize hello données tooa, spécifiez une valeur pour hello facultatif `data_type_id` paramètre.
 
     from azureml import DataTypeIds
 
@@ -282,39 +282,39 @@ Si vous souhaitez sérialiser les données dans un format différent, spécifiez
 
     print(dataset.data_type_id) # 'GenericTSV'
     print(dataset.name)         # 'existing dataset'
-    print(dataset.description)  # 'data up to jan 2015'
+    print(dataset.description)  # 'data up toojan 2015'
 
-Vous pouvez éventuellement définir une nouvelle description en spécifiant une valeur pour le paramètre `description` .
+Vous pouvez éventuellement définir une nouvelle description en spécifiant une valeur pour hello `description` paramètre.
 
     dataset = ws.datasets['existing dataset']
 
     dataset.update_from_dataframe(
         dataframe=frame2,
-        description='data up to feb 2015',
+        description='data up toofeb 2015',
     )
 
     print(dataset.data_type_id) # 'GenericCSV'
     print(dataset.name)         # 'existing dataset'
-    print(dataset.description)  # 'data up to feb 2015'
+    print(dataset.description)  # 'data up toofeb 2015'
 
-Vous pouvez éventuellement définir un nouveau nom en spécifiant une valeur pour le paramètre `name` . À partir de maintenant, vous allez récupérer le jeu de données uniquement à l'aide du nouveau nom. Le code suivant met à jour les données, le nom et la description.
+Vous pouvez éventuellement définir un nouveau nom en spécifiant une valeur pour hello `name` paramètre. Dès lors, vous allez récupérer hello le jeu de données à l’aide du nouveau nom uniquement hello. Hello suivant code met à jour la description, nom et les données de salutation.
 
     dataset = ws.datasets['existing dataset']
 
     dataset.update_from_dataframe(
         dataframe=frame2,
         name='existing dataset v2',
-        description='data up to feb 2015',
+        description='data up toofeb 2015',
     )
 
     print(dataset.data_type_id)                    # 'GenericCSV'
     print(dataset.name)                            # 'existing dataset v2'
-    print(dataset.description)                     # 'data up to feb 2015'
+    print(dataset.description)                     # 'data up toofeb 2015'
 
     print(ws.datasets['existing dataset v2'].name) # 'existing dataset v2'
     print(ws.datasets['existing dataset'].name)    # IndexError
 
-Les paramètres `data_type_id`, `name` et `description` sont facultatifs. Par défaut, ils indiquent leur valeur précédente. Le paramètre `dataframe` est toujours requis.
+Hello `data_type_id`, `name` et `description` paramètres sont facultatifs et la valeur précédente de tootheir par défaut. Hello `dataframe` paramètre est toujours requis.
 
 Si vos données sont déjà sérialisées, utilisez `update_from_raw_data` au lieu de `update_from_dataframe`. Si vous transmettez simplement `raw_data` au lieu de `dataframe`, cela fonctionne de la même manière.
 

@@ -1,6 +1,6 @@
 ---
-title: "Transformer des données à l’aide d’une activité Pig dans Azure Data Factory | Microsoft Docs"
-description: "Découvrez comment utiliser l'activité pig d’une fabrique de données Azure pour exécuter des requêtes pig sur un cluster HDInsight à la demande/ou votre propre cluster."
+title: "les données d’aaaTransform à l’aide d’activité Pig dans Azure Data Factory | Documents Microsoft"
+description: "Découvrez comment vous pouvez utiliser hello activité Pig dans un script de données Azure fabrique toorun Pig sur un cluster de HDInsight sur la demande/votre propre."
 services: data-factory
 documentationcenter: 
 author: sharonlo101
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/16/2017
 ms.author: shlo
-ms.openlocfilehash: 182a637ab98955129d269e2afc3ba581aa1a7c03
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3ad096c4a9e8603b09f574f6d129b4339a75d381
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="transform-data-using-pig-activity-in-azure-data-factory"></a>Transformer des données à l’aide d’une activité Pig dans Azure Data Factory
 > [!div class="op_single_selector" title1="Transformation Activities"]
@@ -33,10 +33,10 @@ ms.lasthandoff: 07/11/2017
 > * [Activité U-SQL Data Lake Analytics](data-factory-usql-activity.md)
 > * [Activité personnalisée .NET](data-factory-use-custom-activities.md)
 
-L’activité Pig de HDInsight d’un [pipeline](data-factory-create-pipelines.md) Data Factory exécute des requêtes Pig sur [votre propre](data-factory-compute-linked-services.md#azure-hdinsight-linked-service) cluster ou le cluster [à la demande](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service) HDInsight sous Windows ou Linux. Cet article s'appuie sur l'article [Activités de transformation des données](data-factory-data-transformation-activities.md) qui présente une vue d'ensemble de la transformation des données et les activités de transformation prises en charge.
+Hello activité HDInsight Pig dans une fabrique de données [pipeline](data-factory-create-pipelines.md) exécute des requêtes de Pig sur [votre propre](data-factory-compute-linked-services.md#azure-hdinsight-linked-service) ou [à la demande](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service) cluster HDInsight de basés sur Windows/Linux. Cet article s’appuie sur hello [activités de transformation des données](data-factory-data-transformation-activities.md) article, qui présente une vue d’ensemble de la transformation des données et des activités de transformation hello pris en charge.
 
 > [!NOTE] 
-> Si vous découvrez Azure Data Factory, lisez la [Présentation d’Azure Data Factory](data-factory-introduction.md) et suivez le didacticiel : [Générer votre premier pipeline de données](data-factory-build-your-first-pipeline.md) avant de lire cet article. 
+> Si vous êtes tooAzure nouvelle fabrique de données, lisez [Introduction tooAzure Data Factory](data-factory-introduction.md) et hello didacticiel : [générer votre première pipeline de données](data-factory-build-your-first-pipeline.md) avant de lire cet article. 
 
 ## <a name="syntax"></a>Syntaxe
 
@@ -79,20 +79,20 @@ L’activité Pig de HDInsight d’un [pipeline](data-factory-create-pipelines.m
 ## <a name="syntax-details"></a>Détails de la syntaxe
 | Propriété | Description | Requis |
 | --- | --- | --- |
-| name |Nom de l’activité |Oui |
-| Description |Texte décrivant la raison motivant l’activité. |Non |
+| name |Nom de l’activité hello |Oui |
+| description |Texte qui décrit quelle activité hello est utilisé pour |Non |
 | type |HDinsightPig |Oui |
-| inputs |Une ou plusieurs entrées utilisées par l'activité pig |Non |
-| outputs |Une ou plusieurs sorties produites par l’activité pig |Oui |
-| linkedServiceName |Référence au cluster HDInsight enregistré comme un service lié dans Data Factory |Oui |
-| script |Spécifier le script en ligne pig |Non |
-| chemin d'accès du script |Stockez le script pig dans un stockage d'objets blob Azure et indiquez le chemin d'accès au fichier. Utilisez la propriété ’script’ ou ’scriptPath’. Les deux propriétés ne peuvent pas être utilisées simultanément. Le nom de fichier respecte la casse. |Non |
-| defines |Spécifier les paramètres sous forme de paires clé/valeur pour le référencement au sein du script pig |Non |
+| inputs |Une ou plusieurs entrées consommée par hello activité Pig |Non |
+| outputs |Une ou plusieurs sorties produites par hello activité Pig |Oui |
+| linkedServiceName |Cluster HDInsight de référence toohello enregistré comme un service lié dans la fabrique de données |Oui |
+| script |Spécifiez hello Pig script inline |Non |
+| chemin d'accès du script |Stocker le script Pig hello dans un stockage d’objets blob Azure et fournir hello chemin d’accès toohello fichier. Utilisez la propriété ’script’ ou ’scriptPath’. Les deux propriétés ne peuvent pas être utilisées simultanément. nom de fichier Hello respecte la casse. |Non |
+| defines |Spécifiez les paramètres en tant que paires clé/valeur pour le référencement dans hello script Pig |Non |
 
 ## <a name="example"></a>Exemple
-Prenons un exemple d'analyse de journaux de jeux où vous souhaitez identifier le temps passé par les joueurs à jouer à des jeux créés par votre entreprise.
+Prenons l’exemple d’un exemple de jeu consigne analytique où vous souhaitez tooidentify hello temps de lecteurs jeux lancée par votre entreprise.
 
-L’exemple de journal de jeu suivant est un fichier séparé par des virgules (,). Il contient les champs suivants : ProfileID, SessionStart, Duration, SrcIPAddress et GameType.
+Hello suivant l’exemple de journal jeu est un fichier de séparés par des virgules (,). Il contient hello suivant champs – ID de profil, SessionStart, durée, SrcIPAddress et type de partie.
 
 ```
 1809,2014-05-04 12:04:25.3470000,14,221.117.223.75,CaptureFlag
@@ -102,7 +102,7 @@ L’exemple de journal de jeu suivant est un fichier séparé par des virgules (
 .....
 ```
 
-Le **script pig** pour traiter ces données :
+Hello **porc script** tooprocess ces données :
 
 ```
 PigSampleIn = LOAD 'wasb://adfwalkthrough@anandsub14.blob.core.windows.net/samplein/' USING PigStorage(',') AS (ProfileID:chararray, SessionStart:chararray, Duration:int, SrcIPAddress:chararray, GameType:chararray);
@@ -114,18 +114,18 @@ PigSampleOut = Foreach GroupProfile Generate PigSampleIn.ProfileID, SUM(PigSampl
 Store PigSampleOut into 'wasb://adfwalkthrough@anandsub14.blob.core.windows.net/sampleoutpig/' USING PigStorage (',');
 ```
 
-Pour exécuter ce script pig dans un pipeline Data Factory, appliquez les étapes suivantes :
+tooexecute cette Pig de script dans un pipeline de la fabrique de données, procédez comme hello comme suit :
 
-1. Créez un service lié pour inscrire [votre propre cluster de calcul HDInsight](data-factory-compute-linked-services.md#azure-hdinsight-linked-service) ou configurer un [cluster de calcul HDInsight à la demande](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service). Appelons ce service lié **HDInsightLinkedService**.
-2. Créez un [service lié](data-factory-azure-blob-connector.md) pour configurer la connexion au stockage d'objets blob Azure qui héberge les données. Appelons ce service lié **StorageLinkedService**.
-3. Créez des [jeux de données](data-factory-create-datasets.md) pointant vers les données d'entrée et de sortie. Appelons le jeu de données d’entrée **PigSampleIn** et le jeu de données de sortie **PigSampleOut**.
-4. Copiez la requête Pig dans le fichier configuré par le stockage d’objets Blob Azure à l’étape #2. Si le stockage Azure qui héberge les données est différent de celui qui héberge le fichier de requête, créez un service de stockage Azure lié distinct. Consultez le service lié dans la configuration de l’activité. Utilisez **scriptPath ** pour spécifier le chemin d’accès au fichier de script pig et **scriptLinkedService**. 
+1. Créer un service lié de tooregister [cluster de calcul de votre propre HDInsight](data-factory-compute-linked-services.md#azure-hdinsight-linked-service) ou configurer [cluster de calcul à la demande HDInsight](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service). Appelons ce service lié **HDInsightLinkedService**.
+2. Créer un [service lié](data-factory-azure-blob-connector.md) tooconfigure hello connexion tooAzure stockage d’objets Blob qui héberge les données de salutation. Appelons ce service lié **StorageLinkedService**.
+3. Créer [datasets](data-factory-create-datasets.md) pointant vers l’entrée de toohello et hello les données de sortie. Jeu de données d’entrée hello, nous allons appeler **PigSampleIn** et hello dataset de sortie **PigSampleOut**.
+4. Copier requête Pig de hello dans un stockage d’objets Blob Azure configuré à l’étape 2 de # de hello fichier. Si hello le stockage Azure qui héberge les données de salutation est différent de hello une qui héberge un fichier de requête hello, créez un service lié Azure Storage distinct. Voir la rubrique service toohello lié dans la configuration d’activité hello. Utilisez ** scriptPath ** le fichier script toopig toospecify hello chemin d’accès et **scriptLinkedService**. 
    
    > [!NOTE]
-   > Vous pouvez également fournir le script en ligne pig dans la définition d’activité à l’aide de la propriété **script** . Cependant, cela n’est pas recommandé car tous les caractères spéciaux du script au sein du document JSON doivent être placés dans une séquence d’échappement, ce qui risque d’entraîner des problèmes de débogage. La meilleure pratique consiste à suivre l’étape 4.
+   > Vous pouvez également fournir hello Pig script inline dans la définition d’activité hello à l’aide de hello **script** propriété. Toutefois, nous déconseillons cette approche en tant que tous les caractères spéciaux dans le script de hello doit toobe séquence d’échappement et peut provoquer des problèmes de débogage. Il est recommandé de Hello est toofollow étape #4.
    > 
    > 
-5. Créez le pipeline avec l'activité HDInsightPig. Cette activité traite les données d’entrée en exécutant le script Pig sur un cluster HDInsight.
+5. Créer le pipeline de hello avec hello HDInsightPig activité. Cette activité traite les données d’entrée hello en exécutant le script Pig sur un cluster HDInsight.
 
     ```JSON   
     {
@@ -159,15 +159,15 @@ Pour exécuter ce script pig dans un pipeline Data Factory, appliquez les étape
       }
     } 
     ```
-6. Déployez le pipeline. Consultez l’article [Création de pipelines](data-factory-create-pipelines.md) pour plus de détails. 
-7. Surveillez le pipeline à l'aide des vues de gestion et de surveillance Data Factory. Consultez l’article [Surveillance et gestion des pipelines Data Factory](data-factory-monitor-manage-pipelines.md) pour plus d'informations.
+6. Déploiement du pipeline de hello. Consultez l’article [Création de pipelines](data-factory-create-pipelines.md) pour plus de détails. 
+7. Surveiller le pipeline hello à l’aide de la surveillance de fabrique de données hello et vues de gestion. Consultez l’article [Surveillance et gestion des pipelines Data Factory](data-factory-monitor-manage-pipelines.md) pour plus d'informations.
 
 ## <a name="specifying-parameters-for-a-pig-script"></a>Spécification des paramètres d’un script Pig
-Prenons l'exemple suivant : des journaux de jeux sont reçus quotidiennement dans le stockage blob Azure et conservés dans un dossier partitionné selon la date et l’heure. Vous souhaitez paramétrer le script pig et fournir dynamiquement l'emplacement du dossier d'entrée pendant l'exécution mais aussi produire la sortie partitionnée par date et par heure.
+Envisagez de hello l’exemple suivant : journaux de jeu sont ingérés tous les jours dans le stockage d’objets Blob Azure et stockés dans un dossier date selon partitionnée et l’heure. Vous souhaitez que le script Pig tooparameterize hello et passez emplacement du dossier d’entrée hello dynamiquement pendant l’exécution et également exportent hello partitionnée avec la date et l’heure.
 
-Pour utiliser le script pig paramétré, procédez comme suit :
+toouse paramétrables script Pig, procédez comme hello suivant :
 
-* Définissez les paramètres dans **defines**.
+* Définir les paramètres de hello dans **définit**.
 
     ```JSON  
     {
@@ -205,7 +205,7 @@ Pour utiliser le script pig paramétré, procédez comme suit :
       }
     }
     ```  
-* Dans le script pig, reportez-vous aux paramètres à l'aide de ’**$parameterName**’ comme indiqué dans l'exemple suivant :
+* Bonjour Script Pig, font référence à l’aide des paramètres de toohello '**$parameterName**' comme indiqué dans hello l’exemple suivant :
 
     ```  
     PigSampleIn = LOAD '$Input' USING PigStorage(',') AS (ProfileID:chararray, SessionStart:chararray, Duration:int, SrcIPAddress:chararray, GameType:chararray);    

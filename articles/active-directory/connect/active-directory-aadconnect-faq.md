@@ -13,81 +13,81 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/13/2017
 ms.author: billmath
-ms.openlocfilehash: fd5988b2d4170166902bb5cc39603d4a0f83be59
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 39c0b127d3dcf6f45607ad8b4647a9ad79dfc732
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="frequently-asked-questions-for-azure-active-directory-connect"></a>Forum Aux Questions sur Azure Active Directory Connect
 
 ## <a name="general-installation"></a>Installation générale
-**Q : L’installation fonctionnera-t-elle si l’option 2FA est activée pour l’administrateur global AD Azure ?**  
-Cela est pris en charge avec les builds de février 2016.
+**Q : installation fonctionnera si hello un administrateur Global Azure AD a 2FA activé ?**  
+Hello des générations à partir de février 2016, cela est pris en charge.
 
-**Q : Existe-t-il une manière d’installer Azure AD Connect sans assistance ?**  
-L’installation d’Azure AD Connect n’est possible qu’à partir de l’Assistant Installation. Une installation automatique et silencieuse n’est pas prise en charge.
+**Q : existe-t-il un moyen de tooinstall sans assistance Azure AD Connect ?**  
+Il est uniquement pris en charge tooinstall Azure AD Connect à l’aide de l’Assistant installation hello. Une installation automatique et silencieuse n’est pas prise en charge.
 
 **Q : Je possède une forêt dans laquelle un domaine ne peut pas être contacté. Comment installer Azure AD Connect ?**  
-Cela est pris en charge avec les builds de février 2016.
+Hello des générations à partir de février 2016, cela est pris en charge.
 
-**Q : L’agent AD DS Health fonctionne-t-il sur Server Core ?**  
-Oui. Après avoir installé l’agent, vous pouvez terminer le processus d’inscription à l’aide de l’applet de commande PowerShell suivante : 
+**Q : hello travail de l’agent d’intégrité de domaine Active Directory sur server core ?**  
+Oui. Après avoir installé l’agent de hello, vous pouvez terminer le processus de l’inscription de hello à l’aide de hello suivant l’applet de commande PowerShell : 
 
 `Register-AzureADConnectHealthADDSAgent -Credentials $cred`
 
 ## <a name="network"></a>Réseau
-**Q : J’ai un pare-feu, un périphérique réseau ou autre chose qui limite la durée maximale pendant laquelle les connexions peuvent rester ouvertes sur mon réseau. Quel doit être le seuil de délai côté client lors de l’utilisation d’Azure AD Connect ?**  
-Tous les logiciels réseau, périphériques physiques ou autres limitant la durée maximale pendant laquelle les connexions peuvent rester ouvertes doivent utiliser un seuil d'au moins 5 minutes (300 secondes) pour la connectivité entre le serveur où est installé le client Azure AD Connect et Azure Active Directory. Cela s'applique également à tous les outils de synchronisation de Microsoft Identity précédemment publiés.
+**Q : je dispose d’un pare-feu, un périphérique réseau, ou quelque chose d’autre qui limite les connexions de durée maximale hello peut rester ouvert sur mon réseau. Quel doit être le seuil de délai côté client lors de l’utilisation d’Azure AD Connect ?**  
+Tous les logiciels de mise en réseau, périphériques physiques ou tout autre élément hello durée maximale de connexions peuvent ouvrir doit utiliser un seuil d’au moins 5 minutes (300 secondes) pour la connectivité entre les limites hello serveur sur lequel hello Azure AD Connect client est installé et Azure Active Directory. Cela s’applique également des outils de synchronisation de Microsoft Identity tooall précédemment publiée.
 
 **Q : Les domaines avec un nom en une seule partie sont-ils pris en charge ?**  
 Non, Azure AD Connect ne prend pas en charge les forêts/domaines locaux utilisant des noms de domaine en une seule partie.
 
 **Q : Les noms NetBios comportant un point sont-ils pris en charge ?**  
-Non, Azure AD Connect ne prend pas en charge les forêts/domaines locaux  dont le nom NetBios contient un point « . ».
+Non, Azure AD Connect ne prend pas en charge localement forêts/domaines où le nom NetBios hello contient un point «. » dans le nom de hello.
 
 ## <a name="federation"></a>Fédération
-**Q : Que faire si je reçois un e-mail me demandant de renouveler mon certificat Office 365**  
-Suivez les instructions décrites dans la rubrique [Renouveler les certificats](active-directory-aadconnect-o365-certs.md) concernant le renouvellement du certificat.
+**Q : que faire si je reçois un message électronique qui me demande toorenew mon certificat Office 365**  
+Utilisez les instructions de hello qui sont décrite dans hello [renouveler les certificats](active-directory-aadconnect-o365-certs.md) rubrique sur la façon dont toorenew hello certificat.
 
-**Q : « Mettre à jour automatiquement la partie de confiance » est défini pour la partie de confiance Office 365. Dois-je effectuer une action lorsque mon certificat de signature de jetons bascule automatiquement ?**  
-Utilisez les instructions décrites dans l’article [Renouveler les certificats](active-directory-aadconnect-o365-certs.md).
+**Q : « Mettre à jour automatiquement la partie de confiance » est défini pour la partie de confiance Office 365. Dois-je tootake n’importe quelle action lorsque mon automatiquement le certificat de signature de jeton survole ?**  
+Utilisez les instructions de hello qui sont décrite dans l’article de hello [renouveler les certificats](active-directory-aadconnect-o365-certs.md).
 
 ## <a name="environment"></a>Environnement
-**Q : Est-il possible de renommer le serveur une fois qu’Azure AD Connect est installé ?**  
-Non. La modification du nom du serveur empêche le moteur de synchronisation de se connecter à la base de données SQL et le service de démarrer.
+**Q : est-il pris en charge d’informatique toorename hello server après l’installation d’Azure AD Connect ?**  
+Non. Modification du nom de serveur hello toonot de moteur de synchronisation de hello cause sera en mesure de tooconnect toohello base de données SQL et le service de hello ne sera pas en mesure de toostart.
 
 ## <a name="identity-data"></a>Données d’identité
-**Q : L’attribut UPN (userPrincipalName) dans Azure AD ne correspond pas à l’UPN local. Pourquoi ?**  
+**Q : attribut de nom UPN (userPrincipalName) hello dans Azure AD ne correspond pas à hello UPN de local - pourquoi ?**  
 Reportez-vous aux articles suivants :
 
-* [Les noms d’utilisateur dans Office 365, Azure ou Intune ne correspondent pas à l’UPN local ou à l’ID de connexion secondaire](https://support.microsoft.com/en-us/kb/2523192)
-* [Les modifications ne sont pas synchronisées par l’outil de synchronisation Azure Active Directory une fois que vous avez modifié l’UPN d’un compte utilisateur afin qu’il utilise un autre domaine fédéré](https://support.microsoft.com/en-us/kb/2669550)
+* [Les noms d’utilisateur ne correspondent pas dans Office 365, Azure ou Intune hello UPN local ou l’ID de connexion de remplacement](https://support.microsoft.com/en-us/kb/2523192)
+* [Les modifications ne sont pas synchronisées par l’outil de synchronisation Azure Active Directory hello après avoir modifié hello UPN d’un toouse de compte d’utilisateur un autre domaine fédéré](https://support.microsoft.com/en-us/kb/2669550)
 
-Vous pouvez également configurer Azure AD pour permettre au moteur de synchronisation de mettre à jour userPrincipalName comme décrit dans [fonctionnalités du service de synchronisation Azure AD Connect](active-directory-aadconnectsyncservice-features.md).
+Vous pouvez également configurer Azure AD tooallow hello synchronisation moteur tooupdate hello userPrincipalName comme décrit dans [fonctionnalités de service de synchronisation Azure AD Connect](active-directory-aadconnectsyncservice-features.md).
 
-**Q : Est-ce que la correspondance approximative des objets Groupe/Contact AD locaux avec les objets Azure AD Groupe/Contact existants est prise en charge ?**  
+**Q : est informatique pris en charge toosoft correspondance locale objets AD groupe/Contact avec les objets groupe contacter Azure Active Directory existants ?**  
 Non, cela n’est pas pris en charge actuellement.
 
-**Q : Est-il possible de définir manuellement l’attribut ImmutableId sur des objets Groupe/Contact Azure AD existants pour la mise en correspondance exacte avec les objets Groupe/Contact locaux ?**  
+**Q : est-il informatique pris en charge toomanually définie ImmutableId attribut sur Azure AD groupe/Contact existant objets toohard établit une correspondance avec local tooon objets AD groupe/Contact ?**  
 Non, cela n’est pas pris en charge actuellement.
 
 
 
 ## <a name="custom-configuration"></a>Configuration personnalisée
-**Q : Où réside la documentation sur les applets de commande PowerShell pour Azure Active Directory ?**  
-À l’exception des applets de commande décrites sur ce site, les autres applets de commande PowerShell disponibles dans Azure AD Connect ne sont pas prises en charge par le client.
+**Q : où se trouvent les applets de commande PowerShell hello pour Azure AD Connect documentée ?**  
+Avec l’exception hello d’applets de commande hello sur ce site, autres applets de commande PowerShell trouvés dans Azure AD Connect ne sont pas pris en charge par le client.
 
-**Q : Puis-je utiliser « Exportation serveur/importation serveur » dans *Synchronization Service Manager* pour déplacer la configuration entre des serveurs ?**  
-Non. Cette option ne récupérera pas tous les paramètres de configuration et ne doit pas être utilisée. Vous devez plutôt utiliser l’Assistant pour créer la configuration de base sur le deuxième serveur et utiliser l’éditeur de règles de synchronisation pour générer des scripts PowerShell afin de déplacer une règle personnalisée entre les serveurs. Consultez la section [Migration « Swing »](active-directory-aadconnect-upgrade-previous-version.md#swing-migration).
+**Q : puis-je utiliser la fonctionnalité « Importation de serveur d’exportation serveur » trouvée dans *Synchronization Service Manager* configuration toomove entre les serveurs ?**  
+Non. Cette option ne récupérera pas tous les paramètres de configuration et ne doit pas être utilisée. À la place utilisez hello Assistant toocreate hello base de configuration sur le second serveur de hello et utiliser hello synchronisation règle éditeur toogenerate PowerShell scripts toomove toute règle personnalisée entre les serveurs. Consultez la section [Migration « Swing »](active-directory-aadconnect-upgrade-previous-version.md#swing-migration).
 
-**Q : Les mots de passe peuvent-ils être mis en cache pour la page de connexion Azure, et est-il possible d’empêcher cela, étant donné que la page contient un élément d’entrée de mot de passe avec l’attribut autocomplete = "false" ?**</br>
-Pour l’instant, nous ne prenons pas en charge la modification des attributs HTML du champ d’entrée de mot de passe, et notamment de la balise « autocomplete ». Nous travaillons actuellement à l’élaboration d’une fonctionnalité d’autorisation d’un code Javascript personnalisé qui vous permettra d’ajouter n’importe quel attribut au champ du mot de passe. Cette fonctionnalité devrait être accessible courant 2017.
+**Q : les mots de passe peuvent être mis en cache pour la page de hello signe dans Azure et peut cela impossible, car il contient un élément input de mot de passe avec la saisie semi-automatique hello = attribut « false » ?**</br>
+Actuellement, nous ne permettent pas de modification d’attributs HTML hello du champ de saisie du mot de passe hello, y compris la balise de la saisie semi-automatique hello. Nous travaillons actuellement sur une fonctionnalité qui permet de code Javascript personnalisé qui vous permettra de tooadd n’importe quel champ de mot de passe toohello attribut. Cette fonctionnalité devrait être accessible courant 2017.
 
-**Q : La page de connexion Azure affiche les noms d’utilisateur des utilisateurs qui se sont déjà connectés avec succès.  Est-il possible de désactiver ce comportement ?**</br>
-Pour l’instant, nous ne prenons pas en charge la modification des attributs HTML de la page de connexion. Nous travaillons actuellement à l’élaboration d’une fonctionnalité d’autorisation d’un code Javascript personnalisé qui vous permettra d’ajouter n’importe quel attribut au champ du mot de passe. Cette fonctionnalité devrait être accessible courant 2017.
+**Q : sur hello Azure-page de connexion, les noms d’utilisateur pour les utilisateurs qui ont précédemment connecté sont affichés.  Est-il possible de désactiver ce comportement ?**</br>
+Actuellement, nous ne permettent pas de modification d’attributs HTML hello de hello-page de connexion. Nous travaillons actuellement sur une fonctionnalité qui permet de code Javascript personnalisé qui vous permettra de tooadd n’importe quel champ de mot de passe toohello attribut. Cette fonctionnalité devrait être accessible courant 2017.
 
-**Q : Existe-t-il un moyen d’empêcher les sessions simultanées ?**</br>
+**Q : existe-t-il un moyen tooprevent sessions simultanées ?**</br>
 Non.
 
 
@@ -95,15 +95,15 @@ Non.
 ## <a name="troubleshooting"></a>Résolution des problèmes
 **Q : Comment puis-je obtenir de l’aide avec Azure AD Connect ?**
 
-[Recherche dans la Base de connaissances Microsoft (KB)](https://www.microsoft.com/en-us/Search/result.aspx?q=azure%20active%20directory%20connect&form=mssupport)
+[Rechercher hello Base de connaissances Microsoft (KB)](https://www.microsoft.com/en-us/Search/result.aspx?q=azure%20active%20directory%20connect&form=mssupport)
 
-* Recherchez dans la Base de connaissances Microsoft (KB) des solutions techniques aux problèmes courants couverts par la garantie de réparation et d’assistance, relatifs à la prise en charge d’Azure AD Connect.
+* Rechercher hello Base de connaissances Microsoft (KB) pour les problèmes de réparation toocommon solutions techniques sur la prise en charge d’Azure AD Connect.
 
 [Forums Microsoft Azure Active Directory](https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=WindowsAzureAD)
 
-* Vous pouvez naviguer et rechercher des questions et des réponses techniques de la communauté ou poser votre question en cliquant [ici](https://social.msdn.microsoft.com/Forums/azure/en-US/newthread?category=windowsazureplatform&forum=WindowsAzureAD&prof=required).
+* Vous pouvez rechercher et Parcourir pour technical questions et réponses à partir de la Communauté de hello ou demandez à votre propre question en cliquant sur [ici](https://social.msdn.microsoft.com/Forums/azure/en-US/newthread?category=windowsazureplatform&forum=WindowsAzureAD&prof=required).
 
 [Service clientèle Azure AD Connect](https://manage.windowsazure.com/?getsupport=true)
 
-* Cliquez sur ce lien pour bénéficier du support par le biais du portail Azure.
+* Utilisez cette prise en charge de tooget lien via hello portail Azure.
 

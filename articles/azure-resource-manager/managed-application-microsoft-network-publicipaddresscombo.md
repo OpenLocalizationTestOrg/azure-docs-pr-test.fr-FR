@@ -1,6 +1,6 @@
 ---
-title: "Élément d’interface utilisateur CredentialsCombo des applications gérées Azure | Microsoft Docs"
-description: "Décrit l’élément d’interface utilisateur Microsoft.Network.PublicIpAddressCombo pour les applications gérées Azure"
+title: "élément de l’interface utilisateur de PublicIpAddressCombo pour les applications gérées aaaAzure | Documents Microsoft"
+description: "Décrit les hello élément d’interface utilisateur de Microsoft.Network.PublicIpAddressCombo pour des Applications managées Azure"
 services: azure-resource-manager
 documentationcenter: na
 author: tabrezm
@@ -13,11 +13,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/12/2017
 ms.author: tabrezm;tomfitz
-ms.openlocfilehash: 2eb773f5f0cf389fc39bc3a0f5fbf9ac726d1949
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8ba689005c0eccda0a57bf628de4b5197886a950
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="microsoftnetworkpublicipaddresscombo-ui-element"></a>Élément d’interface utilisateur Microsoft.Network.PublicIpAddressCombo
 Groupe de contrôles pour la sélection d’une nouvelle adresse IP publique ou d’une adresse IP publique existante. Vous utilisez cet élément lors de la [création d’une application gérée Azure](managed-application-publishing.md).
@@ -25,9 +25,9 @@ Groupe de contrôles pour la sélection d’une nouvelle adresse IP publique ou 
 ## <a name="ui-sample"></a>Exemple d’interface utilisateur
 ![Microsoft.Network.PublicIpAddressCombo](./media/managed-application-elements/microsoft.network.publicipaddresscombo.png)
 
-- Si l’utilisateur sélectionne « Aucune » pour l’adresse IP publique, la zone de texte d’étiquette de nom du domaine est masquée.
-- Si l’utilisateur sélectionne une adresse IP publique existante, la zone de texte d’étiquette de nom du domaine est masquée. Sa valeur est l’étiquette de nom de domaine de l’adresse IP sélectionnée.
-- Le suffixe du nom de domaine (par exemple, westus.cloudapp.azure.com) se met à jour automatiquement en fonction de l’emplacement sélectionné.
+- Si l’utilisateur de hello sélectionne « None » pour l’adresse IP publique, une zone de texte d’étiquette du nom de domaine hello est masquée.
+- Si l’utilisateur de hello sélectionne une adresse IP publique existante, la zone de texte d’étiquette du nom de domaine hello est désactivée. Sa valeur est l’étiquette de nom de domaine hello d’adresse IP de hello sélectionné.
+- Hello domaine nom suffixe (par exemple, westus.cloudapp.azure.com) met à jour automatiquement en fonction de l’emplacement de hello sélectionné.
 
 ## <a name="schema"></a>Schéma
 ```json
@@ -61,20 +61,20 @@ Groupe de contrôles pour la sélection d’une nouvelle adresse IP publique ou 
 ```
 
 ## <a name="remarks"></a>Remarques
-- Si `constraints.required.domainNameLabel` est défini sur **true**, l’utilisateur doit fournir une étiquette de nom de domaine lors de la création d’une nouvelle adresse IP publique. Les adresses IP publiques existantes sans étiquette ne sont pas disponibles à la sélection.
-- Si `options.hideNone` est défini sur **true**, l’option de sélection **Aucune** pour l’adresse IP publique est masquée. La valeur par défaut est **false**.
-- Si `options.hideDomainNameLabel` est défini sur **true**, la zone de texte pour l’étiquette de nom de domaine est masquée. La valeur par défaut est **false**.
-- Si `options.hideExisting` est défini sur true, l’utilisateur n’est pas en mesure de choisir d’adresse IP publique existante. La valeur par défaut est **false**.
+- Si `constraints.required.domainNameLabel` est défini trop**true**, utilisateur de hello doit fournir une étiquette de nom de domaine lors de la création d’une nouvelle adresse IP publique. Les adresses IP publiques existantes sans étiquette ne sont pas disponibles à la sélection.
+- Si `options.hideNone` est défini trop**true**, puis hello option tooselect **aucun** pour l’adresse IP publique hello adresse est masquée. la valeur par défaut Hello est **false**.
+- Si `options.hideDomainNameLabel` est défini trop**true**, puis de la zone de texte hello pour l’étiquette de nom de domaine est masqué. la valeur par défaut Hello est **false**.
+- Si `options.hideExisting` a la valeur true, l’utilisateur hello n’est pas en mesure de toochoose une adresse IP publique existante. la valeur par défaut Hello est **false**.
 
 ## <a name="sample-output"></a>Exemple de sortie
-Si l’utilisateur ne sélectionne aucune adresse IP publique, la sortie doit être la suivante :
+Si l’utilisateur de hello ne sélectionne aucune adresse IP publique, hello sortie suivante est attendue :
 ```json
 {
   "newOrExistingOrNone": "none"
 }
 ```
 
-Si l’utilisateur sélectionne une nouvelle adresse IP publique ou une adresse IP publique existante, la sortie doit être la suivante :
+Si l’utilisateur de hello sélectionne une adresse IP nouvelle ou existante, hello sortie suivante est attendue :
 ```json
 {
   "name": "ip01",
@@ -87,6 +87,6 @@ Si l’utilisateur sélectionne une nouvelle adresse IP publique ou une adresse 
 - Lorsque `options.hideDomainNameLabel` est spécifié, `domainNameLabel` n’est pas déclaré.
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Pour voir une présentation des applications gérées, consultez [Vue d’ensemble des applications gérées Azure](managed-application-overview.md).
-* Pour voir une présentation de la création de définitions d’interface utilisateur, consultez la page [Prise en main de CreateUiDefinition](managed-application-createuidefinition-overview.md).
+* Pour une introduction toomanaged les applications, voir [vue d’ensemble de l’Application Azure géré](managed-application-overview.md).
+* Pour les définitions d’interface utilisateur toocreating une présentation, consultez [prise en main de CreateUiDefinition](managed-application-createuidefinition-overview.md).
 * Pour obtenir une description des propriétés communes des éléments d’interface utilisateur, consultez la page [Éléments de CreateUiDefinition](managed-application-createuidefinition-elements.md).

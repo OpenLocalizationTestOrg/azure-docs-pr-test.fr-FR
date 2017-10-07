@@ -1,6 +1,6 @@
 ---
-title: "Désactiver les connexions utilisateur pour une application d’entreprise dans Azure Active Directory | Microsoft Docs"
-description: "Comment désactiver une application d’entreprise afin qu’aucun utilisateur ne puisse s’y connecter dans Azure Active Directory"
+title: "aaaDisable connexions utilisateur pour une application d’entreprise dans Active Directory de Azure | Documents Microsoft"
+description: "Comment toodisable une application d’entreprise afin qu’aucun utilisateur ne peut se connecter tooit dans Azure Active Directory"
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -14,31 +14,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/04/2017
 ms.author: curtand
-ms.openlocfilehash: 5d27046370eada0c371c94fb573fa1bcf536f7cf
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4c560b59359d433b0852a7606cc2cc0204866234
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="disable-user-sign-ins-for-an-enterprise-app-in-azure-active-directory"></a>Désactiver les connexions utilisateur pour une application d’entreprise dans Azure Active Directory
-Il est facile de désactiver une application d’entreprise afin qu’aucun utilisateur ne puisse s’y connecter dans Azure Active Directory (Azure AD). Vous devez disposer des autorisations nécessaires pour gérer l’application d’entreprise, et vous devez être l’administrateur général du répertoire.
+Il est facile toodisable une application d’entreprise afin qu’aucun utilisateur ne peut se connecter tooit dans Azure Active Directory (Azure AD). Vous devez disposer des applications d’entreprise hello toomanage hello les autorisations appropriées, et vous devez être administrateur général pour le répertoire de hello.
 
 ## <a name="how-do-i-disable-user-sign-ins"></a>Comment désactiver les connexions des utilisateurs ?
-1. Connectez-vous au [portail Azure](https://portal.azure.com) en utilisant un compte d’administrateur général pour le répertoire.
-2. Sélectionnez **Plus de services**, saisissez **Azure Active Directory** dans la zone de texte, puis sélectionnez **Entrée**.
-3. Dans le panneau **Azure Active Directory** -  ***NomRépertoire*** (autrement dit, le panneau Azure AD du répertoire que vous gérez), sélectionnez **Applications d’entreprise**.
+1. Connectez-vous à toohello [portail Azure](https://portal.azure.com) avec un compte qui est un administrateur global pour le répertoire de hello.
+2. Sélectionnez **davantage de services**, entrez **Azure Active Directory** dans hello de zone de texte, puis sélectionnez **entrée**.
+3. Sur hello **Azure Active Directory** -  ***nom_répertoire*** blade (autrement dit, hello Azure AD panneau pour le répertoire hello vous gérez), sélectionnez **desapplicationsd’entreprise**.
 
     ![Ouverture des applications d’entreprise](./media/active-directory-coreapps-disable-app-azure-portal/open-enterprise-apps.png)
-4. Dans le panneau **Applications d’entreprise**, sélectionnez **Toutes les applications**. Vous verrez une liste des applications que vous pouvez gérer.
-5. Sur le panneau **Applications d’entreprise - Toutes les applications** , sélectionnez une application.
-6. Dans le panneau ***NomApplication*** (autrement dit, le panneau avec le nom de l’application sélectionnée dans le titre), sélectionnez **Propriétés**.
+4. Sur hello **des applications d’entreprise** panneau, sélectionnez **toutes les applications**. Vous consultez une liste d’applications hello que vous pouvez gérer.
+5. Sur hello **des applications d’entreprise - toutes les applications** panneau, sélectionnez une application.
+6. Sur hello ***appname*** blade (autrement dit, hello blade avec nom hello d’application sélectionné hello dans le titre de hello), sélectionnez **propriétés**.
 
-    ![Sélection de la commande Toutes les applications](./media/active-directory-coreapps-disable-app-azure-portal/select-app.png)
-7. Dans le panneau ***NomApplication*** - **Propriétés**, sélectionnez **Non** pour **Activé pour que les utilisateurs se connectent ?**.
-8. Sélectionnez la commande **Enregistrer** .
+    ![En sélectionnant hello toutes les commandes d’applications](./media/active-directory-coreapps-disable-app-azure-portal/select-app.png)
+7. Sur hello ***appname*** - **propriétés** panneau, sélectionnez **non** pour **activée pour les utilisateurs de toosign ?**.
+8. Sélectionnez hello **enregistrer** commande.
 
 ## <a name="next-steps"></a>Étapes suivantes
 * [Voir tous mes groupes](active-directory-groups-view-azure-portal.md)
-* [Affecter un utilisateur ou un groupe à une application d’entreprise](active-directory-coreapps-assign-user-azure-portal.md)
+* [Affecter une application d’entreprise tooan utilisateur ou un groupe](active-directory-coreapps-assign-user-azure-portal.md)
 * [Supprimer l’affectation d’un utilisateur ou d’un groupe à une application d’entreprise dans la version préliminaire d’Azure Active Directory](active-directory-coreapps-remove-assignment-azure-portal.md)
-* [Modifier le nom ou le logo d’une application d’entreprise dans la version préliminaire d’Azure Active Directory](active-directory-coreapps-change-app-logo-user-azure-portal.md)
+* [Modifier le nom hello ou un logo d’une application d’entreprise](active-directory-coreapps-change-app-logo-user-azure-portal.md)

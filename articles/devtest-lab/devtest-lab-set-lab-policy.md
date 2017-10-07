@@ -1,6 +1,6 @@
 ---
-title: "Gérer les stratégies de laboratoire dans Azure DevTest Labs | Microsoft Docs"
-description: "Apprenez à définir des stratégies de laboratoire telles que les tailles de machine virtuelle, le nombre maximal de machines virtuelles par utilisateur et l’arrêt automatique."
+title: "stratégies de laboratoire aaaManage dans Azure DevTest Labs | Documents Microsoft"
+description: "Découvrez comment les stratégies de laboratoire toodefine tels que des ordinateurs virtuels tailles, nombre maximal de machines virtuelles par utilisateur et l’automatisation de l’arrêt."
 services: devtest-lab,virtual-machines
 documentationcenter: na
 author: tomarcher
@@ -15,99 +15,99 @@ ms.topic: article
 ms.date: 03/13/2017
 ms.author: tarcher
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 328a4d893637d7150807855e118b485a2c3bbfc5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 351b3645a1fd729455884e5d177877c2986bd853
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-all-policies-for-a-lab-in-azure-devtest-labs"></a>Gérer toutes les stratégies d’un laboratoire dans Azure DevTest Labs
 
-Azure DevTest Labs vous permet de contrôler les coûts et de réduire le gaspillage dans vos laboratoires en gérant les stratégies (paramètres) de chacun d’entre eux. Cet article décrit étape par étape comment définir chaque stratégie.  
+Azure DevTest Labs vous permet de contrôler les coûts et de réduire le gaspillage dans vos laboratoires en gérant les stratégies (paramètres) de chacun d’entre eux. Cet article explique étape par étape en détail comment tooset chaque stratégie.  
 
 ## <a name="set-allowed-virtual-machine-sizes"></a>Définir les tailles de machine virtuelle autorisées
-La stratégie pour définir les tailles de machine virtuelle autorisées vous permet de spécifier les tailles de machine virtuelle autorisées dans le laboratoire et contribue ainsi à réduire les pertes de laboratoire. Si cette stratégie est activée, seules les tailles de machine virtuelle de cette liste peuvent être utilisées pour créer des machines virtuelles.
+Hello stratégie pour hello de paramètre autorisés tailles de machine virtuelle permet toominimize lab déchets en vous toospecify les tailles des machines virtuelles sont autorisées dans le laboratoire de hello. Si cette stratégie est activée, uniquement les tailles de machine virtuelle à partir de cette liste peuvent être utilisé toocreate VMs.
 
-1. Dans le panneau **Configuration et stratégies** du laboratoire, sélectionnez **Tailles de machine virtuelle autorisées**.
+1. Sur du laboratoire hello **stratégies de Configuration et** panneau, sélectionnez **tailles de machines virtuelles autorisées**.
    
     ![Tailles de machine virtuelle autorisées](./media/devtest-lab-set-lab-policy/allowed-vm-sizes.png)
 
-1. Sélectionnez **Activer** ou **Désactiver** pour activer ou désactiver cette stratégie.
+1. Sélectionnez **sur** tooenable cette stratégie, et **hors** toodisable il.
 
 1. Si vous activez cette stratégie, sélectionnez une ou plusieurs tailles de machine virtuelle pouvant être créées dans votre laboratoire.
 
 1. Sélectionnez **Enregistrer**.
 
 ## <a name="set-virtual-machines-per-user"></a>Définir les machines virtuelles par utilisateur
-La stratégie **Machines virtuelles par utilisateur** vous permet de spécifier le nombre maximal de machines virtuelles pouvant être créées par un utilisateur individuel. Si un utilisateur tente de créer ou de revendiquer une machine virtuelle alors que le nombre limite par utilisateur est atteint, un message d’erreur indique que la machine virtuelle ne peut pas être créée/revendiquée. 
+Hello stratégie pour **machines virtuelles par utilisateur** vous permet de toospecify hello nombre de machines virtuelles qui peuvent être créés par un utilisateur individuel. Si un utilisateur tente de toocreate ou la revendication d’une machine virtuelle lors de la limite d’utilisateurs hello a été atteint, un message d’erreur indique que hello que machine virtuelle ne peut pas être créé/demandé. 
 
-1. Dans le menu **Configuration et stratégies** du laboratoire, sélectionnez **Machines virtuelles par utilisateur**.
+1. Sur du laboratoire hello **stratégies de Configuration et** menu, sélectionnez **machines virtuelles par utilisateur**.
    
     ![Machines virtuelles par utilisateur](./media/devtest-lab-set-lab-policy/max-vms-per-user.png)
 
-1. Sélectionnez **Oui** pour limiter le nombre de machines virtuelles par utilisateur. Si vous ne souhaitez pas limiter le nombre de machines virtuelles par utilisateur, sélectionnez **Non**. Si vous sélectionnez **Oui**, entrez une valeur numérique indiquant le nombre maximal de machines virtuelles qu’un utilisateur peut créer ou revendiquer. 
+1. Sélectionnez **Oui** toolimit hello plusieurs ordinateurs virtuels par utilisateur. Si vous ne souhaitez pas toolimit hello plusieurs ordinateurs virtuels par utilisateur, sélectionnez **non**. Si vous sélectionnez **Oui**, entrez une valeur numérique indiquant le nombre maximal de hello de machines virtuelles qui peuvent être créés ou demandé par un utilisateur. 
 
-1. Sélectionnez **Oui** pour limiter le nombre de machines virtuelles pouvant utiliser un disque SSD. Si vous ne souhaitez pas limiter le nombre de machines virtuelles pouvant utiliser un disque SSD, sélectionnez **Non**. Si vous sélectionnez **Oui**, entrez une valeur indiquant le nombre maximal de machines virtuelles qu’un utilisateur peut créer à l’aide d’un disque SSD. 
+1. Sélectionnez **Oui** nombre de hello toolimit de machines virtuelles que vous pouvez utiliser des disques SSD (SSD). Si vous ne souhaitez pas le nombre de hello toolimit de machines virtuelles que vous pouvez utiliser des disques SSD, sélectionnez **non**. Si vous sélectionnez **Oui**, entrez une valeur qui indique le nombre maximal de hello de machines virtuelles qui peuvent être créés à l’aide de disques SSD. 
 
 1. Sélectionnez **Enregistrer**.
 
 ## <a name="set-virtual-machines-per-lab"></a>Définir les machines virtuelles par laboratoire
-La stratégie **Machines virtuelles par laboratoire** vous permet de spécifier le nombre maximal de machines virtuelles pouvant être créées pour le laboratoire actuel. Si un utilisateur tente de créer une machine virtuelle alors que le nombre limite par laboratoire est atteint, un message d’erreur indique que la machine virtuelle ne peut pas être créée. 
+Hello stratégie pour **machines virtuelles par lab** vous permet de toospecify hello nombre de machines virtuelles qui peuvent être créés pour les pratiques hello. Si un utilisateur tente toocreate une machine virtuelle lors de la limite de laboratoire hello a été atteint, un message d’erreur indique que hello que machine virtuelle ne peut pas être créé. 
 
-1. Dans le menu **Configuration et stratégies** du laboratoire, sélectionnez **Machines virtuelles par laboratoire**.
+1. Sur du laboratoire hello **stratégies de Configuration et** menu, sélectionnez **machines virtuelles par lab**.
    
     ![Machines virtuelles par laboratoire](./media/devtest-lab-set-lab-policy/max-vms-per-lab.png)
 
-1. Sélectionnez **Oui** pour limiter le nombre de machines virtuelles par laboratoire. Si vous ne souhaitez pas limiter le nombre de machines virtuelles par laboratoire, sélectionnez **Non**. Si vous sélectionnez **Oui**, entrez une valeur numérique indiquant le nombre maximal de machines virtuelles qu’un utilisateur peut créer ou revendiquer. 
+1. Sélectionnez **Oui** toolimit hello différentes machines virtuelles par lab. Si vous ne souhaitez pas le nombre de hello toolimit de machines virtuelles par lab, sélectionnez **non**. Si vous sélectionnez **Oui**, entrez une valeur numérique indiquant le nombre maximal de hello de machines virtuelles qui peuvent être créés ou demandé par un utilisateur. 
 
-1. Sélectionnez **Oui** pour limiter le nombre de machines virtuelles pouvant utiliser un disque SSD. Si vous ne souhaitez pas limiter le nombre de machines virtuelles pouvant utiliser un disque SSD, sélectionnez **Non**. Si vous sélectionnez **Oui**, entrez une valeur indiquant le nombre maximal de machines virtuelles qu’un utilisateur peut créer à l’aide d’un disque SSD. 
+1. Sélectionnez **Oui** nombre de hello toolimit de machines virtuelles que vous pouvez utiliser des disques SSD (SSD). Si vous ne souhaitez pas le nombre de hello toolimit de machines virtuelles que vous pouvez utiliser des disques SSD, sélectionnez **non**. Si vous sélectionnez **Oui**, entrez une valeur qui indique le nombre maximal de hello de machines virtuelles qui peuvent être créés à l’aide de disques SSD. 
 
 1. Sélectionnez **Enregistrer**.
 
 ## <a name="set-auto-shutdown"></a>Définir l’arrêt automatique
-La stratégie d’arrêt automatique vous permet d’indiquer l’heure à laquelle les machines virtuelles du laboratoire doivent s’arrêter et contribue ainsi à réduire les pertes de laboratoire.
+stratégie d’arrêt automatique Hello permet toominimize lab déchets, ce qui permet des temps de hello toospecify permettant d’arrêter des machines virtuelles de ce laboratoire.
 
-1. Dans le panneau **Configuration et stratégies**, sélectionnez **Arrêt automatique**.
+1. Sur du laboratoire hello **stratégies de Configuration et** panneau, sélectionnez **arrêt automatique**.
    
     ![Arrêt automatique](./media/devtest-lab-set-lab-policy/auto-shutdown.png)
 
-1. Sélectionnez **Activer** ou **Désactiver** pour activer ou désactiver cette stratégie.
+1. Sélectionnez **sur** tooenable cette stratégie, et **hors** toodisable il.
 
-1. Si vous activez cette stratégie, spécifiez l’heure (et le fuseau horaire) de l’arrêt pour toutes les machines virtuelles du laboratoire actif.
+1. Si vous activez cette stratégie, spécifiez tooshut de temps (et le fuseau horaire) hello tous les ordinateurs virtuels vers le bas dans le lab actuel de hello.
 
-1. Spécifiez **Oui** ou **Non** pour l’option d’envoi de notification 15 minutes avant l’heure d’arrêt automatique spécifiée. Si vous spécifiez **Oui**, entrez un point de terminaison d’URL webhook pour recevoir la notification. Pour plus d’informations sur les webhooks, consultez [Créer une fonction Azure d’API ou de webhook](../azure-functions/functions-create-a-web-hook-or-api-function.md). 
+1. Spécifiez **Oui** ou **non** pour hello option toosend un toohello préalable de 15 minutes de notification spécifié des temps d’arrêt automatique. Si vous spécifiez **Oui**, entrez une notification de webhook URL du point de terminaison tooreceive hello. Pour plus d’informations sur les webhooks, consultez [Créer une fonction Azure d’API ou de webhook](../azure-functions/functions-create-a-web-hook-or-api-function.md). 
 
 1. Sélectionnez **Enregistrer**.
 
-    Par défaut, une fois activée, cette stratégie s’applique à toutes les machines virtuelles dans le laboratoire en cours. Pour supprimer ce paramètre sur une machine virtuelle spécifique, ouvrez le panneau de la machine virtuelle et modifiez son paramètre **Arrêt automatique** . 
+    Par défaut, une fois activée, cette stratégie s’applique des machines virtuelles tooall pratiques hello. tooremove ce paramètre à partir d’un ordinateur virtuel spécifique, ouvrir le panneau et la modification de la machine virtuelle hello son **arrêt automatique** paramètre 
 
 ## <a name="set-auto-start"></a>Définir le démarrage automatique
-La stratégie de démarrage automatique vous permet de spécifier quand les machines virtuelles du laboratoire doivent être démarrées.  
+permet de stratégie de démarrage automatique Hello vous toospecify hello machines virtuelles dans le lab actuel de hello doit être démarré.  
 
-1. Dans le panneau **Configuration et stratégies**, sélectionnez **Démarrage automatique**.
+1. Sur du laboratoire hello **stratégies de Configuration et** panneau, sélectionnez **démarrage automatique**.
    
     ![Démarrage automatique](./media/devtest-lab-set-lab-policy/auto-start.png)
 
-2. Sélectionnez **Activer** ou **Désactiver** pour activer ou désactiver cette stratégie.
+2. Sélectionnez **sur** tooenable cette stratégie, et **hors** toodisable il.
 
-3. Si vous activez cette stratégie, spécifiez l’heure de démarrage programmée, le fuseau horaire et les jours de la semaine auxquels cette heure s’applique. 
+3. Si vous activez cette stratégie, spécifiez l’heure de début planifiée de hello, fuseau horaire et hello les jours de semaine hello pour le hello temps s’applique. 
 
 4. Sélectionnez **Enregistrer**.
 
-    Une fois activée, cette stratégie n’est pas automatiquement appliquée à toutes les machines virtuelles dans le laboratoire en cours. Pour appliquer ce paramètre à une machine virtuelle spécifique, ouvrez le panneau de la machine virtuelle et modifiez son paramètre **Démarrage automatique** . 
+    Une fois activée, cette stratégie n’est pas appliqué automatiquement tooany VM dans pratiques hello. tooapply tooa de ce paramètre ordinateur virtuel spécifique, la machine virtuelle hello ouvrir Panneau et change son **démarrage automatique** paramètre 
 
 ## <a name="set-expiration-date"></a>Définir une date d’expiration
-Lorsque vous [créez la machine virtuelle](devtest-lab-add-vm.md), vous pouvez définir une date d’expiration. Dans **Paramètres avancés**, choisissez l’icône de calendrier pour spécifier la date à laquelle la machine virtuelle doit être automatiquement supprimée.  Par défaut, la machine virtuelle n’expire jamais.
+Vous pouvez définir un délai d’expiration date à laquelle vous [créer hello VM](devtest-lab-add-vm.md). Dans **paramètres avancés**, choisissez toospecify d’icône de calendrier hello une date sur laquelle hello machine virtuelle est automatiquement supprimée.  Par défaut, hello VM n’expirera jamais.
 
 [!INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
 
 ## <a name="next-steps"></a>Étapes suivantes
-Une fois que vous avez défini et appliqué les différents paramètres de stratégies des machines virtuelles pour votre laboratoire, voici ce que vous pouvez essayer de faire :
+Une fois que vous avez définies et appliquées hello différents paramètres de stratégie de machine virtuelle pour votre laboratoire, Voici certaines choses tootry suivant :
 
-* [Comprendre les adresses IP partagées](devtest-lab-shared-ip.md) : explique comment les adresses IP partagées sont utilisées dans DevTest Labs pour réduire le nombre d’adresses IP publiques requises pour se connecter aux machines virtuelles de votre laboratoire.
-* [Configurer la gestion des coûts](devtest-lab-configure-cost-management.md) : montre comment utiliser le graphique **Tendance des coûts mensuels estimés**  
-  pour afficher le coût estimé à ce jour pour le mois en cours et le coût projeté pour la fin du mois.
-* [Créer une image personnalisée](devtest-lab-create-template.md) : quand vous créez une machine virtuelle, vous spécifiez une base, qui peut être soit une image personnalisée, soit une image Marketplace. Cet article explique comment créer une image personnalisée à partir d’un fichier VHD.
-* [Configurer des images Marketplace](devtest-lab-configure-marketplace-images.md) : Azure DevTest Labs prend en charge la création de machines virtuelles basées sur des images Azure Marketplace. Cet article explique comment spécifier, le cas échéant, les images Azure Marketplace pouvant être utilisées lors de la création de machines virtuelles dans un laboratoire.
-* [Créer une machine virtuelle dans un laboratoire](devtest-lab-add-vm-with-artifacts.md) : montre comment créer une machine virtuelle à partir d’une image de base (personnalisée ou Marketplace) et comment utiliser des artefacts dans votre machine virtuelle.
+* [Comprendre les adresses IP partagées](devtest-lab-shared-ip.md) -explique comment partagé IP adresses sont utilisées dans le nombre de hello DevTest Labs toominimize du laboratoire tooyour publique IP adresses requis tooconnect machines virtuelles.
+* [Configurer la gestion des coûts](devtest-lab-configure-cost-management.md) -illustre comment toouse hello **tendance du coût estimé mensuel** graphique  
+  tooview hello estimé coût-to-date du mois en cours et coût de fin de mois de hello projeté.
+* [Créer une image personnalisée](devtest-lab-create-template.md) : quand vous créez une machine virtuelle, vous spécifiez une base, qui peut être soit une image personnalisée, soit une image Marketplace. Cet article explique comment toocreate personnalisé de l’image à partir d’un fichier de disque dur virtuel.
+* [Configurer des images Marketplace](devtest-lab-configure-marketplace-images.md) : Azure DevTest Labs prend en charge la création de machines virtuelles basées sur des images Azure Marketplace. Cet article explique comment toospecify qui, le cas échéant, les images Azure Marketplace peuvent être utilisés lors de la création de machines virtuelles dans un laboratoire.
+* [Créer une machine virtuelle dans un laboratoire](devtest-lab-add-vm-with-artifacts.md) -illustre comment toocreate une machine virtuelle à partir d’une image de base (soit personnalisé ou Marketplace) et comment toowork des artefacts dans votre machine virtuelle.
 

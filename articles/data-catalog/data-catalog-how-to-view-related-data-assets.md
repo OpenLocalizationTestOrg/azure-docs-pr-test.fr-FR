@@ -1,6 +1,6 @@
 ---
-title: "Guide pratique pour afficher les ressources de données associées dans Azure Data Catalog | Microsoft Docs"
-description: "Cet article explique comment afficher les ressources de données associées à la ressource de données sélectionnée dans Azure Data Catalog."
+title: "aaaHow tooview liées à des ressources de données dans Azure Data Catalog | Documents Microsoft"
+description: "Cet article explique comment tooview associés à des ressources de données d’une ressource de données sélectionnée dans Azure Data Catalog."
 services: data-catalog
 documentationcenter: 
 author: steelanddata
@@ -14,17 +14,17 @@ ms.tgt_pltfrm: NA
 ms.workload: data-catalog
 ms.date: 08/17/2017
 ms.author: maroche
-ms.openlocfilehash: d45f2cabe712a7982f99a9d280fed4494fc4d377
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: b69686737070ac563a0318f48e693215c605f90b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-view-related-data-assets-in-azure-data-catalog"></a>Comment afficher les ressources de données associées dans Azure Data Catalog
-Azure Data Catalog vous permet d’afficher les ressources de données associées à la ressource de données sélectionnée, ainsi que les relations qui sont établies entre elles. 
+# <a name="how-tooview-related-data-assets-in-azure-data-catalog"></a>Comment tooview associées à des ressources de données dans Azure Data Catalog ?
+Azure Data Catalog vous permet de tooview données actifs tooa connexes sélectionné données actif et affichage des relations entre elles. 
 
 ## <a name="supported-data-sources"></a>Sources de données prises en charge 
-Lorsque vous inscrivez des ressources de données provenant des sources de données suivantes, Azure Data Catalog inscrit automatiquement les métadonnées concernant les relations de jointure qui existent entre les ressources de données sélectionnées. 
+Lorsque vous inscrivez des ressources de données à partir de hello les sources de données suivantes, Azure Data Catalog enregistre automatiquement les métadonnées sur les relations de jointure entre les ressources de données hello sélectionné. 
 
 - SQL Server
 - Base de données SQL Azure
@@ -32,23 +32,23 @@ Lorsque vous inscrivez des ressources de données provenant des sources de donn�
 - Oracle
 
 ## <a name="view-related-data-assets"></a>Afficher les ressources de données associées
-Pour afficher les ressources de données associées au jeu de données sélectionné, cliquez sur l’onglet **Relations**, comme illustré ci-dessous : 
+ressources de données tooview sont le jeu de données connexes tooa sélectionné, utilisez hello **relations** onglet comme indiqué dans hello suivant image : 
 
 ![Azure Data Catalog - Afficher les ressources de données associées](media\data-catalog-how-to-view-related-data-assets\relationships-tab.png)
 
-Dans cet exemple, la ressource de données **ProductSubcategory** a deux relations : 
+Dans cet exemple, il existe deux relations pour hello sélectionné **ProductSubcategory** ressource de données : 
 
-- La colonne ProductSubcategoryID de la table Product a une relation de clé étrangère avec la colonne ProductSubcategoryID présente dans la table ProductSubcategory sélectionnée. 
-- La colonne ProductCategoryID de la table ProductSubCategory a une relation de clé étrangère avec la colonne ProductCategoryID présente dans la table ProductCategory sélectionnée.
+- Colonne ProductSubcategoryID de la table Product de hello a une relation de clé étrangère avec la colonne ProductSubcategoryID de la table ProductSubcategory de hello sélectionné. 
+- Colonne ProductCategoryID de table ProductSubCategory de hello a une relation de clé étrangère avec la colonne ProductCategoryID de table ProductCategory de hello sélectionné.
 
 > [!NOTE]
-> Remarquez la direction de la flèche dans l’arborescence des relations.  
+> Notez la direction hello de flèche hello dans l’arborescence de relations hello.  
 
-Pour plus d’informations, telles que le nom complet de la colonne, déplacez la souris sur la colonne pour afficher une info-bulle semblable à celle-ci : 
+toosee plus d’informations, telles que nom complet de hello de colonne de hello, déplacez la souris de hello sur et vous voyez un toohello similaire de fenêtre contextuelle suit l’image : 
 
 ![Azure Data Catalog - Menu contextuel Relation](media\data-catalog-how-to-view-related-data-assets\relationship-popup.png)
 
-Pour inclure des relations entre ressources qui ont déjà été inscrites, vous devez réinscrire les ressources.
+tooinclude des relations entre des ressources qui ont déjà été inscrit, réinscrivez ces ressources.
 
 ## <a name="next-steps"></a>Étapes suivantes
-- [Gestion des ressources de données](data-catalog-how-to-manage.md)
+- [Comment les ressources de données toomanage](data-catalog-how-to-manage.md)

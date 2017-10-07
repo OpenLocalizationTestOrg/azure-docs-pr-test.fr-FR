@@ -1,6 +1,6 @@
 ---
-title: "Ajouter un utilisateur Azure Active Directory B2B Collaboration à un rôle | Microsoft Docs"
-description: "Ajouter un utilisateur invité à un rôle dans Azure Active Directory"
+title: "rôle tooa aaaAdd un B2B Active Directory de Azure collaboration | Documents Microsoft"
+description: "Ajouter un rôle tooa d’utilisateur invité dans Azure Active Directory"
 services: active-directory
 documentationcenter: 
 author: sasubram
@@ -16,15 +16,15 @@ ms.workload: identity
 ms.date: 03/15/2017
 ms.author: sasubram
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: e816349ea971c997f655b4d51672dba666bc3e89
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ccc58a0c8ecc73f8e79a8d827efdc0ff93846a96
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="grant-permissions-to-users-from-partner-organizations-in-your-azure-active-directory-tenant"></a>Accorder des autorisations aux utilisateurs d’organisations partenaires dans votre locataire Azure Active Directory
+# <a name="grant-permissions-toousers-from-partner-organizations-in-your-azure-active-directory-tenant"></a>Accorder des autorisations toousers des organisations partenaires dans votre locataire Azure Active Directory
 
-Les utilisateurs Azure Active Directory (Azure AD) B2B Collaboration sont ajoutés en tant qu’utilisateurs invités au répertoire et les autorisations des invités dans le répertoire sont restreintes par défaut. Votre entreprise a peut-être besoin que certains utilisateurs invités occupent des rôles avec davantage de privilèges dans votre organisation. Pour prendre la définition de rôles avec davantage de privilèges, les utilisateurs invités peuvent être ajoutés à n’importe quel rôle souhaité, en fonction des besoins de votre organisation.
+Azure Active Directory (Azure AD) B2B collaboration les utilisateurs sont ajoutés en tant que répertoire de toohello les utilisateurs invités et les autorisations invité dans le répertoire de hello sont limitées par défaut. Votre entreprise peut-être certains rôles invité utilisateurs toofill privilège plus élevé dans votre organisation. toosupport définition des rôles de privilège plus élevé, les utilisateurs invités peuvent être des rôles tooany ajouté souhaitée, en fonction des besoins de votre organisation.
 
 ## <a name="default-role"></a>Rôle par défaut
 

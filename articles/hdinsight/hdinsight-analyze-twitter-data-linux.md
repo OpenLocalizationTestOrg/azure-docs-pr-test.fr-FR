@@ -1,6 +1,6 @@
 ---
-title: "Analyser des données Twitter avec Apache Hive - Azure HDInsight | Documents Microsoft"
-description: "Découvrez comment utiliser Hive et Hadoop sur HDInsight pour transformer des données TWitter brutes en une table Hive utilisable pour effectuer des recherches."
+title: "aaaAnalyze données Twitter avec Apache Hive - Azure HDInsight | Documents Microsoft"
+description: "Découvrez comment toouse utiliser Hive et Hadoop dans HDInsight tootransform des données brutes TWitter dans une table Hive interrogeable."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,32 +16,32 @@ ms.topic: article
 ms.date: 08/07/2017
 ms.author: larryfr
 ms.custom: H1Hack27Feb2017,hdinsightactive
-ms.openlocfilehash: b8656123fa9c5158f366872ab050f370080ec18a
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 02c4d027c7bbf390ac1c3724c14f8d549ea5195e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="analyze-twitter-data-using-hive-and-hadoop-on-hdinsight"></a>Analyser des données Twitter avec Hive et Hadoop sur HDInsight
 
-Découvrez comment utiliser Apache Hive pour traiter des données Twitter. Une liste des utilisateurs de Twitter ayant envoyé le plus de tweets contenant un mot donné vous est ensuite retournée.
+Découvrez comment toouse tooprocess Apache Hive Twitter données. résultat de Hello est une liste d’utilisateurs Twitter envoyé hello la plupart des tweets qui contiennent un mot.
 
 > [!IMPORTANT]
-> Les étapes décrites dans ce document ont été testées sur HDInsight 3.6.
+> étapes de Hello dans ce document ont été testées sur HDInsight 3.6.
 >
-> Linux est le seul système d’exploitation utilisé sur HDInsight version 3.4 ou supérieure. Pour plus d’informations, consultez [Suppression de HDInsight sous Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+> Linux est hello seul système d’exploitation utilisé sur HDInsight version 3.4 ou supérieure. Pour plus d’informations, consultez [Suppression de HDInsight sous Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 
-## <a name="get-the-data"></a>Obtenir les données
+## <a name="get-hello-data"></a>Obtenir des données de hello
 
-Twitter vous permet de récupérer les [données de chaque tweet](https://dev.twitter.com/docs/platform-objects/tweets) sous la forme d’un document JavaScript Object Notation (JSON) via une API REST. [OAuth](http://oauth.net) est requis pour l'authentification de l'API.
+Twitter vous permet de tooretrieve hello [les données de chaque tweet](https://dev.twitter.com/docs/platform-objects/tweets) sous forme de document JavaScript Objet Notation (JSON) via une API REST. [OAuth](http://oauth.net) est requis pour l’authentification toohello API.
 
 ### <a name="create-a-twitter-application"></a>Création d'une application Twitter
 
-1. Depuis un navigateur Web, connectez-vous à [https://apps.twitter.com/](https://apps.twitter.com/). Cliquez sur le lien **Sign up now** si vous ne possédez pas de compte Twitter.
+1. À partir d’un navigateur web, connectez-vous trop[https://apps.twitter.com/](https://apps.twitter.com/). Cliquez sur hello **Inscrivez-vous dès maintenant** lien si vous n’avez pas un compte Twitter.
 
 2. Cliquez sur **Create New App**.
 
-3. Renseignez les champs **Name**, **Description** et **Website**. Vous pouvez créer une URL pour le champ **Website** . Le tableau suivant affiche quelques exemples de valeurs à utiliser :
+3. Renseignez les champs **Name**, **Description** et **Website**. Vous pouvez apporter une URL pour hello **site Web** champ. Hello tableau suivant illustre certaines toouse de valeurs d’exemple :
 
    | Champ | Valeur |
    |:--- |:--- |
@@ -51,24 +51,24 @@ Twitter vous permet de récupérer les [données de chaque tweet](https://dev.tw
 
 4. Cochez la case **Yes, I agree**, puis cliquez **Create your Twitter application**.
 
-5. Cliquez sur l'onglet **Permissions** . L'autorisation par défaut est **Read only**.
+5. Cliquez sur hello **autorisations** d’autorisations par défaut onglet hello sont **en lecture seule**.
 
-6. Cliquez sur l’onglet **Keys and Access Tokens** .
+6. Cliquez sur hello **clés et les jetons d’accès** onglet.
 
 7. Cliquez sur **Create my access token**.
 
-8. Cliquez sur **Test OAuth** dans le coin supérieur droit de la page.
+8. Cliquez sur **Test OAuth** dans hello haut à droite de la page de hello.
 
 9. Renseignez les valeurs **consumer key**, **Consumer secret**, **Access token** et **Access token secret**.
 
 ### <a name="download-tweets"></a>Téléchargement de tweets
 
-Le code Python suivant télécharge 10 000 tweets à partir de Twitter et les enregistrera dans un fichier nommé **tweets.txt**.
+Hello suivant code Python télécharge 10 000 tweet Twitter et enregistrer les fichiers tooa nommé **tweets.txt**.
 
 > [!NOTE]
-> Les étapes suivantes sont effectuées sur le cluster HDInsight, puisque Python a déjà été installé.
+> Hello suit est effectuée sur le cluster HDInsight de hello, puisque Python est déjà installé.
 
-1. Connectez-vous au cluster HDInsight à l’aide de SSH :
+1. Connecter le cluster HDInsight de toohello à l’aide de SSH :
 
     ```bash
     ssh USERNAME@CLUSTERNAME-ssh.azurehdinsight.net
@@ -76,7 +76,7 @@ Le code Python suivant télécharge 10 000 tweets à partir de Twitter et les e
 
     Pour en savoir plus, voir [Utilisation de SSH avec Hadoop Linux sur HDInsight depuis Linux, Unix ou OS X](hdinsight-hadoop-linux-use-ssh-unix.md).
 
-3. Utilisez les commandes suivantes pour installer [Tweepy](http://www.tweepy.org/), [Progressbar](https://pypi.python.org/pypi/progressbar/2.2) et d’autres packages requis :
+3. Suivant de hello utilisez commandes tooinstall [Tweepy](http://www.tweepy.org/), [Progressbar](https://pypi.python.org/pypi/progressbar/2.2)et d’autres packages requis :
 
    ```bash
    sudo apt install python-dev libffi-dev libssl-dev
@@ -89,13 +89,13 @@ Le code Python suivant télécharge 10 000 tweets à partir de Twitter et les e
    pip install tweepy progressbar pyOpenSSL requests[security]
    ```
 
-4. Utilisez la commande suivante pour créer un fichier nommé **gettweets.py** :
+4. Toocreate de commande suivant de hello d’utiliser un fichier nommé **gettweets.py**:
 
    ```bash
    nano gettweets.py
    ```
 
-5. Utilisez le texte suivant comme contenu du fichier **gettweets.py** :
+5. Hello utilisation après le texte en tant que contenu hello Hello **gettweets.py** fichier :
 
    ```python
    #!/usr/bin/python
@@ -112,29 +112,29 @@ Le code Python suivant télécharge 10 000 tweets à partir de Twitter et les e
    access_token='Your access token'
    access_token_secret='Your access token secret'
 
-   #The number of tweets we want to get
+   #hello number of tweets we want tooget
    max_tweets=10000
 
-   #Create the listener class that receives and saves tweets
+   #Create hello listener class that receives and saves tweets
    class listener(StreamListener):
-       #On init, set the counter to zero and create a progress bar
+       #On init, set hello counter toozero and create a progress bar
        def __init__(self, api=None):
            self.num_tweets = 0
            self.pbar = ProgressBar(widgets=[Percentage(), Bar()], maxval=max_tweets).start()
 
        #When data is received, do this
        def on_data(self, data):
-           #Append the tweet to the 'tweets.txt' file
+           #Append hello tweet toohello 'tweets.txt' file
            with open('tweets.txt', 'a') as tweet_file:
                tweet_file.write(data)
-               #Increment the number of tweets
+               #Increment hello number of tweets
                self.num_tweets += 1
-               #Check to see if we have hit max_tweets and exit if so
+               #Check toosee if we have hit max_tweets and exit if so
                if self.num_tweets >= max_tweets:
                    self.pbar.finish()
                    sys.exit(0)
                else:
-                   #increment the progress bar
+                   #increment hello progress bar
                    self.pbar.update(self.num_tweets)
            return True
 
@@ -142,68 +142,68 @@ Le code Python suivant télécharge 10 000 tweets à partir de Twitter et les e
        def on_error(self, status):
            print status
 
-   #Get the OAuth token
+   #Get hello OAuth token
    auth = OAuthHandler(consumer_key, consumer_secret)
    auth.set_access_token(access_token, access_token_secret)
-   #Use the listener class for stream processing
+   #Use hello listener class for stream processing
    twitterStream = Stream(auth, listener())
    #Filter for these topics
    twitterStream.filter(track=["azure","cloud","hdinsight"])
    ```
 
     > [!IMPORTANT]
-    > Remplacez les espaces réservés des éléments suivants par les informations de votre application twitter :
+    > Remplacer du texte d’espace réservé de hello pour hello suivant d’éléments avec des informations de hello à partir de votre application twitter :
     >
     > * `consumer_secret`
     > * `consumer_key`
     > * `access_token`
     > * `access_token_secret`
 
-6. Appuyez sur **Ctrl + X**, puis sur **Y** pour enregistrer le fichier.
+6. Utilisez **Ctrl + X**, puis **Y** fichier hello de toosave.
 
-7. Utilisez la commande suivante pour exécuter le fichier et télécharger des tweets :
+7. Utilisez hello suivant du fichier de commandes toorun hello et télécharger des tweets :
 
     ```bash
     python gettweets.py
     ```
 
-    Un indicateur de progression s’affiche. Il progresse jusqu’à 100 % au fur et à mesure que les tweets sont téléchargés.
+    Un indicateur de progression s’affiche. Il vaut too100 % hello tweet est téléchargés.
 
    > [!NOTE]
-   > Si la barre de progression n’avance pas, vous devez modifier le filtre pour effectuer le suivi des tendances. Lorsqu’il existe un grand nombre de tweets concernant la rubrique que vous filtrez, vous pouvez obtenir rapidement les 10 000 tweets nécessaires.
+   > Si l’opération prend beaucoup de temps pour tooadvance de barre de progression hello, vous devez modifier les rubriques des tendances de hello filtre tootrack. Lorsqu’il existe de nombreuses tweets sur la rubrique hello dans votre filtre, vous pouvez rapidement obtenir hello 10000 tweet si nécessaire.
 
-### <a name="upload-the-data"></a>Téléchargement des données
+### <a name="upload-hello-data"></a>Télécharger les données de salutation
 
-Pour télécharger les données vers le stockage HDInsight, utilisez les commandes suivantes :
+tooupload hello tooHDInsight stockage des données, hello utilisation suivant de commandes :
 
    ```bash
    hdfs dfs -mkdir -p /tutorials/twitter/data
    hdfs dfs -put tweets.txt /tutorials/twitter/data/tweets.txt
 ```
 
-Ces commandes stockent les données dans un emplacement accessible à tous les nœuds du cluster.
+Ces commandes stockent les données de salutation dans un emplacement accessible à tous les nœuds de cluster de hello.
 
-## <a name="run-the-hiveql-job"></a>Exécutez la tâche HiveQL
+## <a name="run-hello-hiveql-job"></a>Exécuter le travail de HiveQL hello
 
-1. Utilisez la commande suivante pour créer un fichier contenant des instructions HiveQL :
+1. Utilisez hello suivant commande toocreate un fichier contenant les instructions HiveQL :
 
    ```bash
    nano twitter.hql
    ```
 
-    Utilisez les données suivantes comme contenu du fichier :
+    Utilisez hello après le texte en tant que contenu hello du fichier de hello :
 
    ```hiveql
    set hive.exec.dynamic.partition = true;
    set hive.exec.dynamic.partition.mode = nonstrict;
    -- Drop table, if it exists
    DROP TABLE tweets_raw;
-   -- Create it, pointing toward the tweets logged from Twitter
+   -- Create it, pointing toward hello tweets logged from Twitter
    CREATE EXTERNAL TABLE tweets_raw (
        json_response STRING
    )
    STORED AS TEXTFILE LOCATION '/tutorials/twitter/data';
-   -- Drop and recreate the destination table
+   -- Drop and recreate hello destination table
    DROP TABLE tweets;
    CREATE TABLE tweets
    (
@@ -238,8 +238,8 @@ Ces commandes stockent les données dans un emplacement accessible à tous les n
        profile_image_url STRING,
        json_response STRING
    );
-   -- Select tweets from the imported data, parse the JSON,
-   -- and insert into the tweets table
+   -- Select tweets from hello imported data, parse hello JSON,
+   -- and insert into hello tweets table
    FROM tweets_raw
    INSERT OVERWRITE TABLE tweets
    SELECT
@@ -299,16 +299,16 @@ Ces commandes stockent les données dans un emplacement accessible à tous les n
    WHERE (length(json_response) > 500);
    ```
 
-2. Appuyez sur **Ctrl + X**, puis sur **Y** pour enregistrer le fichier.
-3. Utilisez la commande suivante pour exécuter le HiveQL contenu dans le fichier :
+2. Appuyez sur **Ctrl + X**, puis appuyez sur **Y** fichier hello de toosave.
+3. Utilisez hello suivant commande toorun hello que hiveql contenu dans le fichier de hello :
 
    ```bash
    beeline -u 'jdbc:hive2://headnodehost:10001/;transportMode=http' -i twitter.hql
    ```
 
-    Cette commande exécute le fichier **twitter.hql**. Une fois la requête terminée, vous voyez une invite `jdbc:hive2//localhost:10001/>`.
+    Cette commande s’exécute hello hello **twitter.hql** fichier. Une fois la requête de hello est terminée, vous voyez un `jdbc:hive2//localhost:10001/>` invite.
 
-4. À l’invite Beeline, utilisez la requête suivante pour vérifier que les données ont été importées :
+4. À partir de l’invite de commandes beeline hello, utilisez hello suivant tooverify de requête que les données ont été importées :
 
    ```hiveql
    SELECT name, screen_name, count(1) as cc
@@ -318,11 +318,11 @@ Ces commandes stockent les données dans un emplacement accessible à tous les n
        ORDER BY cc DESC LIMIT 10;
    ```
 
-    Cette requête renvoie un maximum de 10 tweets contenant le mot **Azure** dans le corps du message.
+    Cette requête retourne un maximum de 10 tweet contenant hello mot **Azure** dans le texte du message hello.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Vous avez appris à transformer un jeu de données JSON non structuré en une table Hive structurée. Pour en savoir plus sur Hive avec HDInsight, consultez les documents suivants :
+Vous avez appris comment tootransform un jeu de données JSON non structurée dans une table Hive structurée. toolearn en savoir plus sur la ruche sur HDInsight, consultez hello suivant des documents :
 
 * [Prise en main de HDInsight](hdinsight-hadoop-linux-tutorial-get-started.md)
 * [Analyse des données sur les retards de vol avec HDInsight](hdinsight-analyze-flight-delay-data-linux.md)

@@ -1,6 +1,6 @@
 ---
-title: "Élément d’interface utilisateur MultiStorageAccountCombo des applications gérées Azure | Microsoft Docs"
-description: "Décrit l’élément d’interface utilisateur MultiStorageAccountCombo pour les applications gérées Azure"
+title: "élément de l’interface utilisateur de MultiStorageAccountCombo pour les applications gérées aaaAzure | Documents Microsoft"
+description: "Décrit les hello élément d’interface utilisateur de Microsoft.Storage.MultiStorageAccountCombo pour des Applications managées Azure"
 services: azure-resource-manager
 documentationcenter: na
 author: tabrezm
@@ -13,11 +13,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/12/2017
 ms.author: tabrezm;tomfitz
-ms.openlocfilehash: 27843b116d949899e4eae65f342324f77ebca70b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 765be145b61c3dbf0a035a7a00aa18eee464a3eb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="microsoftstoragemultistorageaccountcombo-ui-element"></a>Élément d’interface utilisateur Microsoft.Storage.MultiStorageAccountCombo
 Groupe de contrôles pour la création de plusieurs comptes de stockage, avec des noms commençant par un préfixe commun. Vous utilisez cet élément lors de la [création d’une application gérée Azure](managed-application-publishing.md).
@@ -52,12 +52,12 @@ Groupe de contrôles pour la création de plusieurs comptes de stockage, avec de
 ```
 
 ## <a name="remarks"></a>Remarques
-- La valeur de `defaultValue.prefix` est concaténée avec un ou plusieurs entiers pour générer la séquence de noms de comptes de stockage. Par exemple, si `defaultValue.prefix` est **foobar** et `count` est **2**, les noms de comptes de stockage **foobar1** et **foobar2** sont générés. Le caractère unique des noms de comptes de stockage générés est validé automatiquement.
-- Les noms de comptes de stockage sont générés lexicographiquement en se basant sur `count`. Par exemple, si `count` est égal à 10, les noms de comptes de stockage se terminent par des entiers à 2 chiffres (01, 02, 03, etc..).
-- La valeur par défaut pour `defaultValue.prefix` est égale à **null** et pour `defaultValue.type` équivaut à **Premium_LRS**.
+- Hello valeur pour `defaultValue.prefix` est concaténée avec une ou plusieurs entiers toogenerate hello séquence des noms de compte de stockage. Par exemple, si `defaultValue.prefix` est **foobar** et `count` est **2**, les noms de comptes de stockage **foobar1** et **foobar2** sont générés. Le caractère unique des noms de comptes de stockage générés est validé automatiquement.
+- noms de compte de stockage Hello sont générés lexicographique en fonction `count`. Par exemple, si `count` est 10, puis les noms de compte de stockage hello se terminent par des entiers de 2 chiffres (01, 02, 03, etc..).
+- Hello la valeur par défaut de `defaultValue.prefix` est **null**et pour `defaultValue.type` est **Premium_LRS**.
 - Tout type non spécifié dans `constraints.allowedTypes` est masqué et tout type non spécifié dans `constraints.excludedTypes` s’affiche.
 `constraints.allowedTypes`et `constraints.excludedTypes` sont tous deux facultatifs, mais ne peuvent pas être utilisés simultanément.
-- En plus de générer des noms de comptes de stockage, `count` est utilisé pour définir le multiplicateur approprié pour l’élément. Il prend en charge une valeur statique, telle que **2**, ou une valeur dynamique issue d’un autre élément, comme `[steps('step1').storageAccountCount]`. La valeur par défaut est **1**.
+- Dans les noms de compte de stockage toogenerating de plus, `count` est tooset utilisé le multiplicateur approprié pour l’élément de hello. Il prend en charge une valeur statique, telle que **2**, ou une valeur dynamique issue d’un autre élément, comme `[steps('step1').storageAccountCount]`. la valeur par défaut Hello est **1**.
 
 ## <a name="sample-output"></a>Exemple de sortie
 ```json
@@ -70,6 +70,6 @@ Groupe de contrôles pour la création de plusieurs comptes de stockage, avec de
 ```
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Pour voir une présentation des applications gérées, consultez [Vue d’ensemble des applications gérées Azure](managed-application-overview.md).
-* Pour voir une présentation de la création de définitions d’interface utilisateur, consultez la page [Prise en main de CreateUiDefinition](managed-application-createuidefinition-overview.md).
+* Pour une introduction toomanaged les applications, voir [vue d’ensemble de l’Application Azure géré](managed-application-overview.md).
+* Pour les définitions d’interface utilisateur toocreating une présentation, consultez [prise en main de CreateUiDefinition](managed-application-createuidefinition-overview.md).
 * Pour obtenir une description des propriétés communes des éléments d’interface utilisateur, consultez la page [Éléments de CreateUiDefinition](managed-application-createuidefinition-elements.md).

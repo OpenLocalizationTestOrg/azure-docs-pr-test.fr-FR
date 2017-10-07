@@ -1,6 +1,6 @@
 ---
-title: "Gérer les serveurs et les coffres Azure Backup à l’aide du modèle de déploiement classique | Microsoft Docs"
-description: "Ce didacticiel vous apprend à gérer les serveurs et les coffres Azure Backup."
+title: "les coffres de sauvegarde Azure aaaManage et serveurs Azure en utilisant le modèle de déploiement classique hello | Documents Microsoft"
+description: Utilisez ce didacticiel toolearn comment les coffres toomanage Azure Backup et les serveurs.
 services: backup
 documentationcenter: 
 author: markgalioto
@@ -14,79 +14,79 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/14/2017
 ms.author: markgal;
-ms.openlocfilehash: 91451b2cdc42ed05ef7c1ba9c66ad5b4b45dd788
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 6c38b04f4a76604bfd639a9b2d58237ce44e2386
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-azure-backup-vaults-and-servers-using-the-classic-deployment-model"></a>Gérer les serveurs et les coffres Azure Backup à l’aide du modèle de déploiement classique
+# <a name="manage-azure-backup-vaults-and-servers-using-hello-classic-deployment-model"></a>Gérer les coffres de sauvegarde Azure et les serveurs à l’aide du modèle de déploiement classique de hello
 > [!div class="op_single_selector"]
 > * [Gestionnaire de ressources](backup-azure-manage-windows-server.md)
 > * [Classique](backup-azure-manage-windows-server-classic.md)
 >
 >
 
-Cet article offre une vue d’ensemble des tâches de gestion des sauvegardes disponibles via le portail Azure Classic et l’agent Microsoft Azure Backup.
+Dans cet article, vous trouverez une vue d’ensemble des tâches de gestion de sauvegarde hello disponibles via le portail Azure classic de hello et l’agent Microsoft Azure Backup de hello.
 
 > [!IMPORTANT]
-> Azure dispose de deux modèles de déploiement différents pour créer et utiliser des ressources : [le déploiement Resource Manager et le déploiement classique](../azure-resource-manager/resource-manager-deployment-model.md). Cet article traite du modèle de déploiement classique. Pour la plupart des nouveaux déploiements, Microsoft recommande d’utiliser le modèle Resource Manager.
+> Azure dispose de deux modèles de déploiement différents pour créer et utiliser des ressources : [le déploiement Resource Manager et le déploiement classique](../azure-resource-manager/resource-manager-deployment-model.md). Cet article décrit à l’aide du modèle de déploiement classique hello. Microsoft recommande que la plupart des nouveaux déploiements de modèle du Gestionnaire de ressources hello.
 
 > [!IMPORTANT]
-> Vous pouvez désormais mettre à niveau vos coffres de sauvegarde vers des coffres Recovery Services. Pour en savoir plus, consultez l’article [Mettre à niveau un coffre de sauvegarde vers un coffre Recovery Services](backup-azure-upgrade-backup-to-recovery-services.md). Microsoft vous recommande de mettre à niveau vos coffres de sauvegarde vers des coffres Recovery Services.<br/> À compter du 15 octobre 2017, vous ne pourrez plus vous servir de PowerShell pour créer des coffres de sauvegarde. **D’ici au 1er novembre 2017** :
->- tous les coffres de sauvegarde restants seront automatiquement mis à niveau vers des coffres Recovery Services.
->- Vous ne pourrez plus accéder à vos données de sauvegarde depuis le portail Classic. Au lieu de cela, vous devrez utiliser le portail Azure pour accéder à ces données au sein de coffres Recovery Services.
+> Vous pouvez maintenant mettre à niveau vos archivages de sauvegarde coffres tooRecovery Services. Pour plus d’informations, voir l’article hello [mise à niveau d’un tooa de coffre de sauvegarde de coffre Recovery Services](backup-azure-upgrade-backup-to-recovery-services.md). Microsoft vous encourage tooupgrade coffres des Services tooRecovery les coffres de votre sauvegarde.<br/> Après le 15 octobre 2017, vous ne pouvez pas utiliser les coffres de sauvegarde toocreate PowerShell. **D’ici au 1er novembre 2017** :
+>- Tous les coffres de sauvegarde restants seront les coffres des Services de tooRecovery automatiquement mis à niveau.
+>- Vous ne pourra plus être en mesure de tooaccess vos données de sauvegarde dans le portail classique de hello. Au lieu de cela, utilisez hello tooaccess portail Azure vos données de sauvegarde dans les coffres des Services de récupération.
 >
 
 ## <a name="management-portal-tasks"></a>Tâches du portail de gestion
-1. Connectez-vous au [portail de gestion](https://manage.windowsazure.com).
-2. Cliquez sur **Recovery Services**, puis sur le nom du coffre de sauvegarde pour afficher la page de démarrage rapide.
+1. Connectez-vous à toohello [portail de gestion](https://manage.windowsazure.com).
+2. Cliquez sur **Services de récupération**, puis cliquez sur nom hello de page de démarrage rapide de coffre de sauvegarde tooview hello.
 
     ![Recovery Services](./media/backup-azure-manage-windows-server-classic/rs-left-nav.png)
 
-Sélectionnez les options situées en haut de la page de démarrage rapide pour afficher les tâches de gestion disponibles.
+En sélectionnant les options de hello en hello haut hello démarrage rapide, vous pouvez voir les tâches de gestion disponibles hello.
 
 ![Gérer les onglets](./media/backup-azure-manage-windows-server-classic/qs-page.png)
 
-### <a name="dashboard"></a>Tableau de bord
-Sélectionnez **Tableau de bord** pour afficher l’aperçu de l’utilisation du serveur. La **vue d’ensemble de l’utilisation** inclut :
+### <a name="dashboard"></a>tableau de bord
+Sélectionnez **tableau de bord** présentation de l’utilisation de hello toosee pour le serveur de hello. Hello **présentation de l’utilisation** inclut :
 
-* Le nombre de serveurs Windows inscrits auprès du cloud
-* Le nombre de machines virtuelles Azure protégées dans le cloud
-* Le stockage total consommé dans Azure
-* L’état des travaux récents
+* nombre de Hello des serveurs Windows inscrits toocloud
+* nombre de Hello de machines virtuelles protégées dans le cloud
+* stockage total de Hello consommé dans Azure
+* état Hello des tâches récentes
 
-En bas du tableau de bord, vous pouvez réaliser les tâches suivantes :
+En bas de hello Hello du tableau de bord, vous pouvez effectuer hello tâches suivantes :
 
-* **Gérer un certificat** : si un certificat a été utilisé pour enregistrer le serveur, utilisez cette tâche pour mettre à jour le certificat. Si vous utilisez des informations d'identification de coffre, n'utilisiez pas **Manage certificate**.
-* **Supprimer** : permet de supprimer le coffre de sauvegarde actuel. Si un coffre de sauvegarde n'est plus utilisé, vous pouvez le supprimer pour libérer de l'espace de stockage. **Supprimer** est disponible uniquement une fois que tous les serveurs inscrits ont été supprimés du coffre.
+* **Gérer le certificat** - si un certificat était utilisé tooregister hello serveur, puis utiliser ce certificat de hello tooupdate. Si vous utilisez des informations d'identification de coffre, n'utilisiez pas **Manage certificate**.
+* **Supprimer** -coffre de sauvegarde en cours de suppressions hello. Si un coffre de sauvegarde est n’est plus utilisé, vous pouvez le supprimer toofree l’espace de stockage. **Supprimer** est activé uniquement après la suppression de tous les serveurs inscrits dans le coffre de hello.
 
 ![Tâches du tableau de bord Backup](./media/backup-azure-manage-windows-server-classic/dashboard-tasks.png)
 
 ## <a name="registered-items"></a>Éléments inscrits
-Sélectionnez **Éléments inscrits** pour afficher le nom des serveurs inscrits auprès de ce coffre.
+Sélectionnez **éléments inscrits** tooview les noms de hello des serveurs hello sont inscrits toothis coffre.
 
 ![Éléments inscrits](./media/backup-azure-manage-windows-server-classic/registered-items.png)
 
-Le filtre **Type** permet de filtrer les valeurs par défaut sur une machine virtuelle Azure. Sélectionnez **Windows Server** dans le menu déroulant pour afficher le nom des serveurs inscrits auprès de ce coffre.
+Hello **Type** filtre par défaut est tooAzure Machine virtuelle. les noms de hello tooview des serveurs hello toothis inscrits coffre, **Windows server** de hello menu déroulant.
 
-Exécutez ensuite les tâches suivantes :
+À ce stade, vous pouvez effectuer hello tâches suivantes :
 
-* **Autoriser la réinscription** : quand cette option est sélectionnée pour un serveur, vous pouvez utiliser **l’Assistant Inscription** dans l’agent de Sauvegarde Microsoft Azure local pour inscrire à nouveau le serveur auprès du coffre de sauvegarde. Vous devrez peut-être effectuer cette nouvelle inscription en raison d'une erreur dans le certificat ou de la nécessité de régénérer un serveur.
-* **Supprimer** : permet de supprimer un serveur du coffre de sauvegarde. Toutes les données stockées associées au serveur sont immédiatement supprimées.
+* **Autoriser la réinscription** - lorsque cette option est sélectionnée pour un serveur, vous pouvez utiliser hello **Assistant Inscription** dans hello Microsoft Azure Backup agent tooregister hello serveur local avec le coffre de sauvegarde hello une deuxième fois. . Vous devrez peut-être toore dans le Registre en raison de l’erreur tooan dans le certificat de hello ou si un serveur a rencontré toobe reconstruit.
+* **Supprimer** -supprime un serveur d’archivage de sauvegarde hello. Toutes les données stockée hello associées avec le serveur de hello est supprimé immédiatement.
 
     ![Tâches d’éléments inscrits](./media/backup-azure-manage-windows-server-classic/registered-items-tasks.png)
 
 ## <a name="protected-items"></a>Éléments protégés
-Sélectionnez **Éléments protégés** pour afficher les éléments sauvegardés à partir des serveurs.
+Sélectionnez **éléments protégés** éléments hello tooview qui ont été sauvegardées à partir de serveurs de hello.
 
 ![Éléments protégés](./media/backup-azure-manage-windows-server-classic/protected-items.png)
 
 ## <a name="configure"></a>Configuration
-Dans l’onglet **Configurer** , vous pouvez sélectionner l’option de redondance de stockage appropriée. Nous vous recommandons de sélectionner l’option de redondance de stockage juste après avoir créé un coffre et avant d’y inscrire des ordinateurs.
+À partir de hello **configurer** onglet, vous pouvez sélectionner option de redondance de stockage approprié hello. Hello meilleur temps tooselect hello option redondance du stockage est juste après la création d’un coffre et avant tous les ordinateurs sont inscrit tooit.
 
 > [!WARNING]
-> Une fois qu’un élément a été inscrit dans l’archivage, l’option de redondance de stockage est verrouillée et ne peut pas être modifiée.
+> Une fois qu’un élément a été inscrit toohello coffre, option de redondance du stockage hello est verrouillée et ne peut pas être modifiée.
 >
 >
 
@@ -96,11 +96,11 @@ Consultez cet article pour plus d’informations sur la [redondance du stockage]
 
 ## <a name="microsoft-azure-backup-agent-tasks"></a>Tâches de l’agent Microsoft Azure Backup
 ### <a name="console"></a>Console
-Ouvrez l’ **agent Microsoft Azure Backup** (vous pouvez le trouver en recherchant *Microsoft Azure Backup*sur votre ordinateur).
+Ouvrez hello **Microsoft Azure Backup agent** (vous pouvez le trouver en recherchant de votre ordinateur pour *Microsoft Azure Backup*).
 
 ![Agent Backup](./media/backup-azure-manage-windows-server-classic/snap-in-search.png)
 
-Dans les **Actions** disponibles à droite de la console de l’agent de sauvegarde, vous pouvez effectuer les tâches de gestion suivantes :
+À partir de hello **Actions** disponible à l’adresse hello à droite de la console de l’agent de sauvegarde hello effectuer hello les tâches de gestion suivantes :
 
 * Inscription du serveur
 * Planification d’une sauvegarde
@@ -110,75 +110,75 @@ Dans les **Actions** disponibles à droite de la console de l’agent de sauvega
 ![Actions de la console de l’agent](./media/backup-azure-manage-windows-server-classic/console-actions.png)
 
 > [!NOTE]
-> Pour **Récupérer des données**, consultez [Restauration de fichiers sur un serveur Windows ou un ordinateur client Windows](backup-azure-restore-windows-server.md).
+> trop**récupérer les données**, consultez [restaurer des fichiers tooa Windows server ou la machine du client Windows](backup-azure-restore-windows-server.md).
 >
 >
 
 ### <a name="modify-an-existing-backup"></a>Modifier une sauvegarde existante
-1. Dans l’agent Microsoft Azure Backup, cliquez sur **Planifier la sauvegarde**.
+1. Dans l’agent Microsoft Azure Backup hello, cliquez sur **planifier la sauvegarde**.
 
     ![Planifier une sauvegarde de Windows Server](./media/backup-azure-manage-windows-server-classic/schedule-backup.png)
-2. Dans **l’Assistant Planification de sauvegarde**, conservez l’option **Modifier les éléments ou les dates/heures de sauvegarde** sélectionnée, puis cliquez sur **Suivant**.
+2. Bonjour **Assistant Planification de sauvegarde** laisser hello **apporter des modifications heures ou les éléments de toobackup** option est sélectionnée, puis cliquez sur **suivant**.
 
     ![Modifier une sauvegarde planifiée](./media/backup-azure-manage-windows-server-classic/modify-or-stop-a-scheduled-backup.png)
-3. Si vous souhaitez ajouter ou modifier des éléments, cliquez sur **Ajouter des éléments** dans l’écran **Sélectionner les éléments à sauvegarder**.
+3. Si vous souhaitez tooadd ou de modifier les éléments sur hello **tooBackup de sélectionner les éléments** écran, cliquez sur **ajouter les éléments**.
 
-    Vous pouvez également définir les **Paramètres d’exclusion** sur cette page de l’Assistant. Si vous souhaitez exclure des fichiers ou des types de fichiers, lisez la procédure permettant d’ajouter des [paramètres d’exclusion](#exclusion-settings).
-4. Sélectionnez les fichiers et les dossiers que vous souhaitez sauvegarder, puis cliquez sur **OK**.
+    Vous pouvez également définir **paramètres d’Exclusion** à partir de cette page dans l’Assistant de hello. Si vous souhaitez que les fichiers tooexclude ou procédure hello pour l’ajout de lecture de types de fichiers [paramètres d’exclusion](#exclusion-settings).
+4. Sélectionnez les fichiers de hello et les dossiers que vous souhaitez tooback haut et cliquez sur **OK**.
 
     ![Sélectionner les éléments à sauvegarder](./media/backup-azure-manage-windows-server-classic/add-items-modify.png)
-5. Spécifiez la **planification de sauvegarde**, puis cliquez sur **Suivant**.
+5. Spécifiez hello **planification de sauvegarde** et cliquez sur **suivant**.
 
     Vous pouvez planifier des sauvegardes quotidiennes (au maximum 3 fois par jour) ou hebdomadaires.
 
     ![Spécifier votre planification de sauvegarde](./media/backup-azure-manage-windows-server-classic/specify-backup-schedule-modify-close.png)
 
    > [!NOTE]
-   > La définition de la planification de sauvegarde est décrite en détail dans cet [article](backup-azure-backup-cloud-as-tape.md).
+   > Spécifier la planification de sauvegarde hello est expliquée en détail dans ce [article](backup-azure-backup-cloud-as-tape.md).
    >
    >
-6. Sélectionnez la **Stratégie de rétention** pour la copie de sauvegarde et cliquez sur **Suivant**.
+6. Sélectionnez hello **stratégie de rétention** pour la copie de sauvegarde hello et cliquez sur **suivant**.
 
     ![Sélectionner votre stratégie de rétention](./media/backup-azure-manage-windows-server-classic/select-retention-policy-modify.png)
-7. Dans l’écran **Confirmation**, passez en revue les informations, puis cliquez sur **Terminer**.
-8. Dès que l’Assistant a terminé la création de la **planification de sauvegarde**, cliquez sur **Fermer**.
+7. Sur hello **Confirmation** hello consulter les informations de l’écran, puis cliquez sur **Terminer**.
+8. Une fois l’Assistant de hello termine la création de hello **planification de sauvegarde**, cliquez sur **fermer**.
 
-    Après la modification de la protection, vous pouvez confirmer le déclenchement correct des sauvegardes en accédant à l’onglet **Travaux** et en vérifiant que les modifications sont répercutées dans les tâches de sauvegarde.
+    Après la modification de protection, vous pouvez vérifier le déclenchement de sauvegardes par toohello de va **travaux** onglet et en s’assurant que les modifications sont répercutées dans hello des travaux de sauvegarde.
 
 ### <a name="enable-network-throttling"></a>Activation de la limitation du réseau
-L’agent Azure Backup contient un onglet Limitation qui vous permet de contrôler l’utilisation de la bande passante réseau pendant le transfert de données. Cela peut s’avérer utile si vous avez besoin de sauvegarder des données pendant les heures de travail, mais ne souhaitez pas que le processus de sauvegarde interfère avec le reste du trafic internet. La limitation du transfert de données s’applique aux activités de sauvegarde et de restauration.  
+agent de sauvegarde Azure Hello comprend un onglet de limitation qui vous permet de toocontrol utilisation de la bande passante réseau lors du transfert de données. Ce contrôle peut être utile si vous devez tooback des données pendant les heures de travail mais que vous ne souhaitez pas que toointerfere du processus de sauvegarde hello avec tout autre trafic internet. La limitation des données de transfert s’applique tooback des activités et de restauration.  
 
-Pour activer la limitation :
+tooenable de limitation :
 
-1. Dans **l’agent de Sauvegarde**, cliquez sur **Modifier les propriétés**.
-2. Cochez la case **Activer la limitation de la bande passante sur Internet pour les opérations de sauvegarde** .
+1. Bonjour **agent de sauvegarde**, cliquez sur **modifier les propriétés**.
+2. Sélectionnez hello **activer l’utilisation de la bande passante internet pour les opérations de sauvegarde de limitation** case à cocher.
 
     ![Limitation du réseau](./media/backup-azure-manage-windows-server-classic/throttling-dialog.png)
-3. Une fois que vous avez activé la limitation, spécifiez la bande passante autorisée pour le transfert des données de sauvegarde durant les **Heures de travail** et les **Heures chômées**.
+3. Une fois que vous avez activé la limitation, spécifiez hello autorisée de la bande passante pour transférer des données de sauvegarde pendant **des heures de travail** et **heures chômées**.
 
-    Les valeurs de bande passante, qui démarrent à 512 kilo-octets par seconde, peuvent aller jusqu’à 1 023 mégaoctets par seconde. Vous pouvez également définir le début et la fin des **Heures de travail**et identifier les jours de la semaine considérés comme des jours de travail. Les intervalles de temps situés en dehors des heures de travail sont considérés comme des périodes (heures) chômées.
+    valeurs de la bande passante Hello commencent à 512 kilo-octets par seconde (Kbits/s) et peuvent atteindre la too1023 les mégaoctets par seconde (Mbits/s). Vous pouvez également désigner le début de hello et de fin de **des heures de travail**, et les jours de semaine de hello sont considérés comme travail jours. temps de Hello en dehors de hello désigné des heures de travail est toobe pris en compte les heures chômées.
 4. Cliquez sur **OK**.
 
 ## <a name="exclusion-settings"></a>Paramètres d’exclusion
-1. Ouvrez l’ **agent Microsoft Azure Backup** (vous pouvez le trouver en recherchant *Microsoft Azure Backup*sur votre ordinateur).
+1. Ouvrez hello **Microsoft Azure Backup agent** (vous pouvez le trouver en recherchant de votre ordinateur pour *Microsoft Azure Backup*).
 
     ![Ouvrir l’agent Backup](./media/backup-azure-manage-windows-server-classic/snap-in-search.png)
-2. Dans l’agent Microsoft Azure Backup, cliquez sur **Planifier la sauvegarde**.
+2. Dans l’agent Microsoft Azure Backup hello, cliquez sur **planifier la sauvegarde**.
 
     ![Planifier une sauvegarde de Windows Server](./media/backup-azure-manage-windows-server-classic/schedule-backup.png)
-3. Dans l’Assistant Planification de sauvegarde, conservez l’option **Modifier les éléments ou les dates/heures de sauvegarde** sélectionnée, puis cliquez sur **Suivant**.
+3. Bonjour Assistant Planification de sauvegarde, laissez hello **apporter des modifications heures ou les éléments de toobackup** option est sélectionnée, puis cliquez sur **suivant**.
 
     ![Modifier une planification](./media/backup-azure-manage-windows-server-classic/modify-or-stop-a-scheduled-backup.png)
 4. Cliquez sur **Paramètres d’exclusion**.
 
-    ![Sélectionner des éléments à exclure](./media/backup-azure-manage-windows-server-classic/exclusion-settings.png)
+    ![Sélectionner des éléments tooexclude](./media/backup-azure-manage-windows-server-classic/exclusion-settings.png)
 5. Cliquez sur **Ajouter une exclusion**.
 
     ![Ajouter des exclusions](./media/backup-azure-manage-windows-server-classic/add-exclusion.png)
-6. Sélectionnez l’emplacement, puis cliquez sur **OK**.
+6. Sélectionnez l’emplacement de hello et cliquez ensuite sur **OK**.
 
     ![Sélectionnez un emplacement pour l’exclusion](./media/backup-azure-manage-windows-server-classic/exclusion-location.png)
-7. Ajoutez l’extension de fichier dans le champ **Type de fichier** .
+7. Extension de fichier hello Bonjour **Type de fichier** champ.
 
     ![Exclure par type de fichier](./media/backup-azure-manage-windows-server-classic/exclude-file-type.png)
 
@@ -186,15 +186,15 @@ Pour activer la limitation :
 
     ![Exemple de type de fichier](./media/backup-azure-manage-windows-server-classic/exclude-mp3.png)
 
-    Pour ajouter une autre extension, cliquez sur **Ajouter une exclusion** et entrez une autre extension de type de fichier (ajout d’une extension .jpeg).
+    tooadd une autre extension, cliquez sur **ajouter une Exclusion** et entrez une autre extension de fichier (l’ajout d’une extension .jpeg).
 
     ![Autre exemple de type de fichier](./media/backup-azure-manage-windows-server-classic/exclude-jpg.png)
-8. Lorsque vous avez ajouté toutes les extensions, cliquez sur **OK**.
-9. Suivez les instructions de l’Assistant Planification de sauvegarde en cliquant sur **Suivant** jusqu’à la **page de Confirmation**, puis cliquez sur **Terminer**.
+8. Lorsque vous avez ajouté toutes les extensions de hello, cliquez sur **OK**.
+9. Poursuivez hello Assistant Planification de sauvegarde en cliquant sur **suivant** jusqu'à hello **page de Confirmation**, puis cliquez sur **Terminer**.
 
     ![Confirmation de l’exclusion](./media/backup-azure-manage-windows-server-classic/finish-exclusions.png)
 
 ## <a name="next-steps"></a>Étapes suivantes
 * [Restaurer un serveur Windows Server ou un client Windows à partir d’Azure](backup-azure-restore-windows-server.md)
-* Pour en savoir plus sur Azure Backup, consultez la [vue d’ensemble d’Azure Backup](backup-introduction-to-azure-backup.md)
-* Consultez le [forum Azure Backup](http://go.microsoft.com/fwlink/p/?LinkId=290933)
+* toolearn en savoir plus sur Azure Backup, consultez [vue d’ensemble de la sauvegarde Azure](backup-introduction-to-azure-backup.md)
+* Visitez hello [Forum de sauvegarde Azure](http://go.microsoft.com/fwlink/p/?LinkId=290933)

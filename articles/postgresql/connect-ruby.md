@@ -1,6 +1,6 @@
 ---
-title: "Se connecter à la base de données Azure pour PostgreSQL à l’aide de Ruby | Microsoft Docs"
-description: "Ce guide de démarrage rapide fournit un exemple de code Ruby, que vous pouvez utiliser pour vous connecter et interroger des données de la base de données Azure pour PostgreSQL."
+title: "aaaConnect tooAzure base de données PostgreSQL à l’aide de Ruby | Documents Microsoft"
+description: "Ce démarrage rapide fournit un exemple de code Ruby, vous pouvez utiliser tooconnect et interroger des données à partir de la base de données Azure pour PostgreSQL."
 services: postgresql
 author: jasonwhowell
 ms.author: jasonh
@@ -11,17 +11,17 @@ ms.custom: mvc
 ms.devlang: ruby
 ms.topic: quickstart
 ms.date: 06/30/2017
-ms.openlocfilehash: 9153a5a843dd5c18f27a3af232fea3b152240fe1
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 7a0c8c92023452b40ca19d76fa659744f3e9a236
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-database-for-postgresql-use-ruby-to-connect-and-query-data"></a>Base de données Azure pour PostgreSQL : Utilisation de Ruby pour se connecter et interroger des données
-Ce guide de démarrage rapide vous explique comment vous connecter à une base de données Azure pour PostgreSQL en utilisant une application [Ruby](https://www.ruby-lang.org). Il détaille l’utilisation d’instructions SQL pour interroger la base de données, la mettre à jour, y insérer des données ou en supprimer. Cet article suppose que vous connaissez les bases du développement à l’aide de Ruby, mais que vous ne connaissez pas la base de données Azure pour PostgreSQL.
+# <a name="azure-database-for-postgresql-use-ruby-tooconnect-and-query-data"></a>Base de données Azure pour PostgreSQL : utilisez Ruby tooconnect et interroger des données
+Ce démarrage rapide montre comment tooconnect tooan Azure de base de données PostgreSQL utilisant un [Ruby](https://www.ruby-lang.org) application. Il montre comment toouse SQL instructions tooquery, insérer, mettre à jour et supprimer des données dans la base de données hello. Cet article suppose que vous êtes familiarisé avec le développement à l’aide de Ruby, mais que vous êtes tooworking nouvelle base de données Azure pour PostgreSQL.
 
 ## <a name="prerequisites"></a>Composants requis
-Ce guide de démarrage rapide s’appuie sur les ressources créées dans l’un de ces guides :
+Ce démarrage rapide utilise des ressources hello créés dans un de ces guides comme point de départ :
 - [Créer une base de données - Portail](quickstart-create-server-database-portal.md)
 - [Créer une base de données - Interface de ligne de commande Azure](quickstart-create-server-database-azure-cli.md)
 
@@ -29,49 +29,49 @@ Ce guide de démarrage rapide s’appuie sur les ressources créées dans l’u
 Installez Ruby sur votre ordinateur. 
 
 ### <a name="windows"></a>Windows
-- Téléchargez et installez la dernière version de [Ruby](http://rubyinstaller.org/downloads/).
-- Sur l’écran de fin du programme d’installation MSI, cochez la case relative à l’exécution de la commande « ridk install » pour installer MSYS2 et la chaîne d’outils de développement. Ensuite, cliquez sur **Terminer** pour lancer le programme d’installation suivant.
-- Le programme d’installation RubyInstaller2 pour Windows se lance. Saisissez « 2 » pour installer la mise à jour de la base de données de référentiel MSYS2. Une fois l’opération terminée, lorsque l’invite d’installation s’affiche à nouveau, fermez la fenêtre de commande.
-- Démarrez une nouvelle invite de commandes (cmd) à partir du menu Démarrer.
-- Testez l’installation de Ruby (`ruby -v`) pour afficher la version installée.
-- Testez l’installation de Gem (`gem -v`) pour afficher la version installée.
-- Compilez le module PostgreSQL pour Ruby à l’aide de Gem, en exécutant la commande `gem install pg`.
+- Télécharger et installer la version plus récente hello de [Ruby](http://rubyinstaller.org/downloads/).
+- Sur hello terminer d’écran du programme d’installation MSI hello, hello case indiquant que « exécuter 'installer ridk' tooinstall MSYS2 et chaîne d’outils de développement ». Puis cliquez sur **Terminer** programme d’installation de toolaunch hello suivant.
+- permet de lancer le programme d’installation de Hello RubyInstaller2 pour Windows. Type de mise à jour du référentiel de hello MSYS2 tooinstall 2. Après que qu’il se termine et retourne l’invite d’installation toohello, fermez la fenêtre de commande hello.
+- Lancez une nouvelle invite de commandes (cmd) à partir du menu Démarrer de hello.
+- Hello de test installation Ruby `ruby -v` toosee version installée de hello.
+- Tester l’installation de marque hello `gem -v` toosee version installée de hello.
+- Générer le module de PostgreSQL hello pour Ruby à l’aide de la marque en exécutant la commande hello `gem install pg`.
 
 ### <a name="macos"></a>MacOS
-- Installez Ruby à l’aide de Homebrew, en exécutant la commande `brew install ruby`. Pour accéder à d’autres options d’installation, consultez la [documentation d’installation](https://www.ruby-lang.org/en/documentation/installation/#homebrew) de Ruby.
-- Testez l’installation de Ruby (`ruby -v`) pour afficher la version installée.
-- Testez l’installation de Gem (`gem -v`) pour afficher la version installée.
-- Compilez le module PostgreSQL pour Ruby à l’aide de Gem, en exécutant la commande `gem install pg`.
+- Installer Ruby à l’aide de Homebrew en exécutant la commande hello `brew install ruby`. Pour plus d’options d’installation, consultez hello Ruby [la documentation d’installation](https://www.ruby-lang.org/en/documentation/installation/#homebrew)
+- Hello de test installation Ruby `ruby -v` toosee version installée de hello.
+- Tester l’installation de marque hello `gem -v` toosee version installée de hello.
+- Générer le module de PostgreSQL hello pour Ruby à l’aide de la marque en exécutant la commande hello `gem install pg`.
 
 ### <a name="linux-ubuntu"></a>Linux (Ubuntu)
-- Installez Ruby en exécutant la commande `sudo apt-get install ruby-full`. Pour accéder à d’autres options d’installation, consultez la [documentation d’installation](https://www.ruby-lang.org/en/documentation/installation/) de Ruby.
-- Testez l’installation de Ruby (`ruby -v`) pour afficher la version installée.
-- Installez les dernières mises à jour de Gem en exécutant la commande `sudo gem update --system`.
-- Testez l’installation de Gem (`gem -v`) pour afficher la version installée.
-- Installez les outils de compilation gcc, make, etc. en exécutant la commande `sudo apt-get install build-essential`.
-- Installer les bibliothèques PostgreSQL en exécutant la commande `sudo apt-get install libpq-dev`.
-- Générez le module pg Ruby à l’aide de Gem en exécutant la commande `sudo gem install pg`.
+- Installer Ruby en exécutant la commande hello `sudo apt-get install ruby-full`. Pour plus d’options d’installation, consultez hello Ruby [la documentation d’installation](https://www.ruby-lang.org/en/documentation/installation/).
+- Hello de test installation Ruby `ruby -v` toosee version installée de hello.
+- Installer les dernières mises à jour de hello pour la marque en exécutant la commande hello `sudo gem update --system`.
+- Tester l’installation de marque hello `gem -v` toosee version installée de hello.
+- Installer hello gcc, la marque et autres outils de génération, en exécutant la commande hello `sudo apt-get install build-essential`.
+- Installer les bibliothèques de PostgreSQL hello en exécutant la commande hello `sudo apt-get install libpq-dev`.
+- Générer le module de pg Ruby hello à l’aide de la marque en exécutant la commande hello `sudo gem install pg`.
 
 ## <a name="run-ruby-code"></a>Exécuter le code Ruby 
-- Enregistrez le code dans un fichier texte, puis enregistrez ce fichier dans un dossier du projet avec l’extension .rb. Exemples : `C:\rubypostgres\read.rb` ou `/home/username/rubypostgres/read.rb`.
-- Pour exécuter le code, lancez l’invite de commandes ou l’interpréteur de commandes Bash. Remplacez le répertoire dans votre dossier de projet `cd rubypostgres`, puis saisissez la commande `ruby read.rb` pour exécuter l’application.
+- Enregistrer le code de hello dans un fichier texte et enregistrez-le hello dans un dossier du projet avec .rb d’extension de fichier, tel que `C:\rubypostgres\read.rb` ou`/home/username/rubypostgres/read.rb`
+- le code hello toorun, lancez l’invite de commandes hello ou bash shell. Accédez au répertoire dans votre dossier de projet `cd rubypostgres`, puis tapez la commande hello `ruby read.rb` application hello de toorun.
 
 ## <a name="get-connection-information"></a>Obtenir des informations de connexion
-Obtenez les informations de connexion requises pour vous connecter à la base de données Azure pour PostgreSQL. Vous devez disposer du nom de serveur complet et des informations d’identification.
+Obtenir les informations nécessaires tooconnect toohello de hello connexion base de données Azure pour PostgreSQL. Vous devez hello des informations d’identification de nom et la connexion serveur complet.
 
-1. Connectez-vous au [portail Azure](https://portal.azure.com/).
-2. Dans le menu de gauche du portail Azure, cliquez sur **Toutes les ressources**, puis recherchez le serveur que vous venez de créer, par exemple **mypgserver-20170401**.
-3. Cliquez sur le nom du serveur **mypgserver-20170401**.
-4. Sélectionnez la page **Présentation** du serveur. Prenez note du **nom du serveur** et du **nom de connexion d’administrateur du serveur**.
- ![Base de données Azure pour PostgreSQL - Connexion d’administrateur du serveur](./media/connect-ruby/1-connection-string.png)
-5. Si vous avez oublié vos informations de connexion au serveur, accédez à la page **Vue d’ensemble** pour afficher le nom de connexion de l’administrateur du serveur. Si nécessaire, réinitialisez le mot de passe.
+1. Connectez-vous à toohello [portail Azure](https://portal.azure.com/).
+2. Hello menu de gauche dans le portail Azure, cliquez sur **toutes les ressources** et recherchez le serveur hello vous avez créé, tel que **mypgserver-20170401**.
+3. Cliquez sur le nom du serveur hello **mypgserver-20170401**.
+4. Serveur hello sélectionnez **vue d’ensemble** page. Prenez note de hello **nom du serveur** et **nom de connexion de serveur admin**.
+ ![Base de données Azure pour PostgreSQL - Connexion d’administrateur du serveur](./media/connect-ruby/1-connection-string.png)
+5. Si vous oubliez vos informations de connexion du serveur, accédez à toohello **vue d’ensemble** nom d’utilisateur admin page tooview hello Server. Si nécessaire, le mot de passe réinitialisé hello.
 
 ## <a name="connect-and-create-a-table"></a>Se connecter et créer une table
-Utilisez le code suivant pour vous connecter et créer une table à l’aide de l’instruction **CREATE TABLE**, suivie des instructions SQL **INSERT INTO** pour ajouter des lignes à la table.
+Suivante de hello utilisation tooconnect de code et créer une table à l’aide de **CREATE TABLE** instruction SQL, suivie de **INSERT INTO** lignes de tooadd d’instructions SQL dans la table de hello.
 
-Le code utilise un objet [PG::Connection](http://www.rubydoc.info/gems/pg/PG/Connection) objet avec le constructeur [new()](http://www.rubydoc.info/gems/pg/PG%2FConnection:initialize) pour se connecter à la base de données Azure pour PostgreSQL. Ensuite, il appelle la méthode [exec()](http://www.rubydoc.info/gems/pg/PG/Connection#exec-instance_method) pour exécuter les commandes DROP, CREATE TABLE et INSERT INTO. Le code vérifie les erreurs à l’aide de la classe [PG::Error](http://www.rubydoc.info/gems/pg/PG/Error). Ensuite, il appelle la méthode [close()](http://www.rubydoc.info/gems/pg/PG/Connection#lo_close-instance_method) pour fermer la connexion, avant de s’arrêter.
+code de Hello utilise un [PG::Connection](http://www.rubydoc.info/gems/pg/PG/Connection) objet avec constructeur [new()](http://www.rubydoc.info/gems/pg/PG%2FConnection:initialize) tooconnect tooAzure base de données PostgreSQL. Ensuite, il appelle la méthode [exec()](http://www.rubydoc.info/gems/pg/PG/Connection#exec-instance_method) les commandes toorun hello DROP, CREATE TABLE et INSERT INTO. Hello code vérifie les erreurs à l’aide de hello [PG::Error](http://www.rubydoc.info/gems/pg/PG/Error) classe. Ensuite, il appelle la méthode [close()](http://www.rubydoc.info/gems/pg/PG/Connection#lo_close-instance_method) connexion de hello tooclose avant la fin.
 
-Remplacez les chaînes `host`, `database`, `user` et `password` par vos propres valeurs. 
+Remplacez hello `host`, `database`, `user`, et `password` de chaînes avec vos propres valeurs. 
 ```ruby
 require 'pg'
 
@@ -84,7 +84,7 @@ begin
 
     # Initialize connection object.
     connection = PG::Connection.new(:host => host, :user => user, :dbname => database, :port => '5432', :password => password)
-    puts 'Successfully created connection to database'
+    puts 'Successfully created connection toodatabase'
 
     # Drop previous table of same name if one exists
     connection.exec('DROP TABLE IF EXISTS inventory;')
@@ -109,11 +109,11 @@ end
 ```
 
 ## <a name="read-data"></a>Lire les données
-Utilisez le code suivant pour vous connecter et lire des données à l’aide d’une instruction SQL **SELECT**. 
+Suivante de hello utilisation tooconnect de code et lire à l’aide de données hello un **sélectionnez** instruction SQL. 
 
-Le code utilise un objet [PG::Connection](http://www.rubydoc.info/gems/pg/PG/Connection) objet avec le constructeur [new()](http://www.rubydoc.info/gems/pg/PG%2FConnection:initialize) pour se connecter à la base de données Azure pour PostgreSQL. Ensuite, il appelle la méthode [exec()](http://www.rubydoc.info/gems/pg/PG/Connection#exec-instance_method) pour exécuter la commande SELECT, en conservant les résultats dans un jeu de résultats. La collection de jeu de résultats est itérée au sein de la boucle `resultSet.each do`, les valeurs de ligne actuelles étant conservées dans la variable `row`. Le code vérifie les erreurs à l’aide de la classe [PG::Error](http://www.rubydoc.info/gems/pg/PG/Error). Ensuite, il appelle la méthode [close()](http://www.rubydoc.info/gems/pg/PG/Connection#lo_close-instance_method) pour fermer la connexion, avant de s’arrêter.
+code de Hello utilise un [PG::Connection](http://www.rubydoc.info/gems/pg/PG/Connection) objet avec constructeur [new()](http://www.rubydoc.info/gems/pg/PG%2FConnection:initialize) tooconnect tooAzure base de données PostgreSQL. Ensuite, il appelle la méthode [exec()](http://www.rubydoc.info/gems/pg/PG/Connection#exec-instance_method) commande SELECT toorun hello, en conservant les résultats hello dans un jeu de résultats. Hello collection de jeu de résultats est itérée au sein hello `resultSet.each do` boucle, en conservant les valeurs de ligne actuelles hello Bonjour `row` variable. Hello code vérifie les erreurs à l’aide de hello [PG::Error](http://www.rubydoc.info/gems/pg/PG/Error) classe. Ensuite, il appelle la méthode [close()](http://www.rubydoc.info/gems/pg/PG/Connection#lo_close-instance_method) connexion de hello tooclose avant la fin.
 
-Remplacez les chaînes `host`, `database`, `user` et `password` par vos propres valeurs. 
+Remplacez hello `host`, `database`, `user`, et `password` de chaînes avec vos propres valeurs. 
 
 ```ruby
 require 'pg'
@@ -127,7 +127,7 @@ begin
 
     # Initialize connection object.
     connection = PG::Connection.new(:host => host, :user => user, :database => dbname, :port => '5432', :password => password)
-    puts 'Successfully created connection to database.'
+    puts 'Successfully created connection toodatabase.'
 
     resultSet = connection.exec('SELECT * from inventory;')
     resultSet.each do |row|
@@ -143,11 +143,11 @@ end
 ```
 
 ## <a name="update-data"></a>Mettre à jour des données
-Utilisez le code suivant pour vous connecter et mettre à jour les données à l’aide d’une instruction SQL **UPDATE**.
+Suivant de hello utilisation tooconnect de code et mettre à jour les données de hello à l’aide un **mettre à jour** instruction SQL.
 
-Le code utilise un objet [PG::Connection](http://www.rubydoc.info/gems/pg/PG/Connection) objet avec le constructeur [new()](http://www.rubydoc.info/gems/pg/PG%2FConnection:initialize) pour se connecter à la base de données Azure pour PostgreSQL. Ensuite, il appelle la méthode [exec()](http://www.rubydoc.info/gems/pg/PG/Connection#exec-instance_method) pour exécuter la commande UPDATE. Le code vérifie les erreurs à l’aide de la classe [PG::Error](http://www.rubydoc.info/gems/pg/PG/Error). Ensuite, il appelle la méthode [close()](http://www.rubydoc.info/gems/pg/PG/Connection#lo_close-instance_method) pour fermer la connexion, avant de s’arrêter.
+code de Hello utilise un [PG::Connection](http://www.rubydoc.info/gems/pg/PG/Connection) objet avec constructeur [new()](http://www.rubydoc.info/gems/pg/PG%2FConnection:initialize) tooconnect tooAzure base de données PostgreSQL. Ensuite, il appelle la méthode [exec()](http://www.rubydoc.info/gems/pg/PG/Connection#exec-instance_method) toorun hello commande de mise à jour. Hello code vérifie les erreurs à l’aide de hello [PG::Error](http://www.rubydoc.info/gems/pg/PG/Error) classe. Ensuite, il appelle la méthode [close()](http://www.rubydoc.info/gems/pg/PG/Connection#lo_close-instance_method) connexion de hello tooclose avant la fin.
 
-Remplacez les chaînes `host`, `database`, `user` et `password` par vos propres valeurs. 
+Remplacez hello `host`, `database`, `user`, et `password` de chaînes avec vos propres valeurs. 
 
 ```ruby
 require 'pg'
@@ -161,7 +161,7 @@ begin
 
     # Initialize connection object.
     connection = PG::Connection.new(:host => host, :user => user, :dbname => database, :port => '5432', :password => password)
-    puts 'Successfully created connection to database.'
+    puts 'Successfully created connection toodatabase.'
 
     # Modify some data in table.
     connection.exec('UPDATE inventory SET quantity = %d WHERE name = %s;' % [200, '\'banana\''])
@@ -177,11 +177,11 @@ end
 
 
 ## <a name="delete-data"></a>Suppression de données
-Utilisez le code suivant pour vous connecter et lire des données à l’aide d’une instruction SQL **DELETE**. 
+Suivante de hello utilisation tooconnect de code et lire à l’aide de données hello un **supprimer** instruction SQL. 
 
-Le code utilise un objet [PG::Connection](http://www.rubydoc.info/gems/pg/PG/Connection) objet avec le constructeur [new()](http://www.rubydoc.info/gems/pg/PG%2FConnection:initialize) pour se connecter à la base de données Azure pour PostgreSQL. Ensuite, il appelle la méthode [exec()](http://www.rubydoc.info/gems/pg/PG/Connection#exec-instance_method) pour exécuter la commande UPDATE. Le code vérifie les erreurs à l’aide de la classe [PG::Error](http://www.rubydoc.info/gems/pg/PG/Error). Ensuite, il appelle la méthode [close()](http://www.rubydoc.info/gems/pg/PG/Connection#lo_close-instance_method) pour fermer la connexion, avant de s’arrêter.
+code de Hello utilise un [PG::Connection](http://www.rubydoc.info/gems/pg/PG/Connection) objet avec constructeur [new()](http://www.rubydoc.info/gems/pg/PG%2FConnection:initialize) tooconnect tooAzure base de données PostgreSQL. Ensuite, il appelle la méthode [exec()](http://www.rubydoc.info/gems/pg/PG/Connection#exec-instance_method) toorun hello commande de mise à jour. Hello code vérifie les erreurs à l’aide de hello [PG::Error](http://www.rubydoc.info/gems/pg/PG/Error) classe. Ensuite, il appelle la méthode [close()](http://www.rubydoc.info/gems/pg/PG/Connection#lo_close-instance_method) connexion de hello tooclose avant la fin.
 
-Remplacez les chaînes `host`, `database`, `user` et `password` par vos propres valeurs. 
+Remplacez hello `host`, `database`, `user`, et `password` de chaînes avec vos propres valeurs. 
 
 ```ruby
 require 'pg'
@@ -195,7 +195,7 @@ begin
 
     # Initialize connection object.
     connection = PG::Connection.new(:host => host, :user => user, :dbname => database, :port => '5432', :password => password)
-    puts 'Successfully created connection to database.'
+    puts 'Successfully created connection toodatabase.'
 
     # Modify some data in table.
     connection.exec('DELETE FROM inventory WHERE name = %s;' % ['\'orange\''])

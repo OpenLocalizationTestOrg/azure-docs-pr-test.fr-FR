@@ -1,6 +1,6 @@
 ---
-title: "Configuration d’environnements de science des données dans Azure | Microsoft Docs"
-description: "Configurer des environnements de science des données dans Azure à utiliser dans le processus TDSP (Team Data Science Process)."
+title: "aaaSet des environnements de science des données dans Azure | Documents Microsoft"
+description: "Définir les données des environnements de science sur Azure à utiliser Bonjour processus de science des données de Team."
 services: machine-learning
 documentationcenter: 
 author: bradsev
@@ -14,21 +14,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/08/2017
 ms.author: bradsev
-ms.openlocfilehash: 4f2f66288428aa0aa41abb40ce0e43c4848543ff
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 11e16416296d687c15fdaf17558aebc2d04737c9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="set-up-data-science-environments-for-use-in-the-team-data-science-process"></a>Configuration d’environnements de science des données à utiliser dans le processus TDSP (Team Data Science Process)
-Le processus TDSP (Team Data Science Process) utilise différents environnements de science de données pour le stockage, le traitement et l’analyse de données. Il peut s’agir par exemple de Stockage Blob Azure, de plusieurs types de machines virtuelles Azure, de clusters HDInsight (Hadoop) et d’espaces de travail Azure Machine Learning. Le choix de l’environnement à utiliser dépend du type et de la quantité des données à modéliser, ainsi que de la destination cible de ces données dans le cloud. 
+# <a name="set-up-data-science-environments-for-use-in-hello-team-data-science-process"></a>Définir les données environnements science pour une utilisation dans hello processus de science des données équipe
+Hello processus de science des données équipe utilise différents environnements de science des données pour le stockage de hello, le traitement et analyse des données. Il peut s’agir par exemple de Stockage Blob Azure, de plusieurs types de machines virtuelles Azure, de clusters HDInsight (Hadoop) et d’espaces de travail Azure Machine Learning. décision Hello sur l’environnement dans lequel toouse varie selon le type de hello et de la quantité de données toobe modélisée et hello ciblent destination pour ces données dans le cloud de hello. 
 
-* Pour plus d’informations sur les questions à prendre en compte lors de cette décision, consultez la page [Planifier votre environnement de science des données Azure Machine Learning](machine-learning-data-science-plan-your-environment.md). 
-* Pour accéder à un catalogue de scénarios que vous pouvez rencontrer lorsque vous effectuez des analyses avancées, consultez la page [Scénarios du processus TDSP (Team Data Science Process)](machine-learning-data-science-plan-sample-scenarios.md)
+* Pour obtenir des conseils sur les questions tooconsider prendre cette décision, consultez [planifier votre Azure Machine Learning données Science environnement](machine-learning-data-science-plan-your-environment.md). 
+* Pour un catalogue de certains scénarios hello vous pouvez rencontrer lors de l’exécution d’analytique avancée, consultez [scénarios pour hello processus de science des données équipe](machine-learning-data-science-plan-sample-scenarios.md)
 
-Ce menu pointe vers des rubriques qui décrivent comment configurer les différents environnements de science de données utilisés par le processus TDSP (Team Data Science Process).
+Ce menu lie tootopics qui décrivent comment tooset des hello différents environnements de science des données utilisé par hello processus de science des données équipe.
 
 [!INCLUDE [data-science-environment-setup](../../includes/cap-setup-environments.md)]
 
-La **machine virtuelle pour la science des données de Microsoft (DSVM)** est également disponible sous forme d’image de machine virtuelle Azure. Cette machine virtuelle est préinstallée et configurée avec plusieurs outils couramment utilisés dans le cadre de l’analyse de données et de l’apprentissage automatique. La machine virtuelle DSVM est disponible sur Windows et Linux. Pour plus d’informations, consultez [Présentation de la machine virtuelle Science des données basée sur le cloud pour Linux et Windows](machine-learning-data-science-virtual-machine-overview.md).
+Hello **Machine virtuelle de science des données Microsoft (DSVM)** est également disponible sous forme d’image de machine virtuelle Azure (VM). Cette machine virtuelle est préinstallée et configurée avec plusieurs outils couramment utilisés dans le cadre de l’analyse de données et de l’apprentissage automatique. Hello DSVM est disponible sur Windows et Linux. Pour plus d’informations, consultez [toohello d’Introduction sur le cloud de Machine virtuelle pour la science des données pour Linux et Windows](machine-learning-data-science-virtual-machine-overview.md).
 

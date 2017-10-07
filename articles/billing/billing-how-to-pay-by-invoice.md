@@ -1,6 +1,6 @@
 ---
-title: "Paiement des abonnements Azure par facture | Microsoft Docs"
-description: "Décrit comment payer les abonnements Azure par facture"
+title: aaaPay pour les abonnements Azure par facture | Documents Microsoft
+description: "Décrit comment toopay pour les abonnements Azure par facture"
 services: 
 documentationcenter: 
 author: genlin
@@ -14,29 +14,29 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/14/2017
 ms.author: genli
-ms.openlocfilehash: edbeba95898a41e645b61aeaaec1fd897afadd61
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 416890cc1e5109ef4d2bf6a9c2a779ba835f410c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="submit-a-request-to-pay-azure-subscription-by-invoice"></a>Soumettre une demande de paiement d’abonnement Azure par facture
+# <a name="submit-a-request-toopay-azure-subscription-by-invoice"></a>Soumettre une demande de toopay abonnement Azure par facture
 
-Vous pouvez obtenir un mode de paiement par facture pour votre abonnement Azure en envoyant une demande au support Azure. Une fois votre demande approuvée, des instructions vous seront fournies pour paramétrer votre abonnement pour la méthode de paiement par facture.
+Vous pouvez modifier le paiement hello pour tooinvoice de votre abonnement Azure en envoyant une demande de support en tooAzure. Une fois votre demande est approuvée, vous recevez des instructions sur la façon de tooset votre abonnement pour le mode de paiement de facture hello.
 
 > [!IMPORTANT]
 > * Le paiement par facture est uniquement disponible pour les comptes professionnels.
-> * Les [services tiers et externes](billing-understand-your-azure-marketplace-charges.md) ne peuvent pas être achetés ou payés par facture. Si votre abonnement contient des ressources provenant de services externes tels que ClearDB ou SendGrid, vous devez les supprimer avant de choisir un paiement par facture. Pour acheter des services externes une fois que vous êtes passé au paiement par facture, vous avez besoin d’un abonnement distinct avec une carte bancaire.
-> * Une fois que vous passez au paiement par facture, vous ne pouvez pas repasser au paiement par carte bancaire.
+> * Les [services tiers et externes](billing-understand-your-azure-marketplace-charges.md) ne peuvent pas être achetés ou payés par facture. Si votre abonnement contient des ressources à partir des services externes tels que ClearDB ou SendGrid, vous devez les supprimer avant de modifier le salaire de tooinvoice. toopurchase des services externes après le basculement tooinvoice paie, vous devez un abonnement distinct avec une carte de crédit.
+> * Une fois que vous passez tooinvoice paie, vous ne pouvez pas changer paiement par carte de débit ou toocredit précédent.
 
 ## <a name="request-pay-by-invoice"></a>Demander un paiement par facture
 
-1. Connectez-vous au [portail Azure](https://portal.azure.com/). Sélectionnez **Aide + support** > **Nouvelle demande de support**.
+1. L’authentification à hello [portail Azure](https://portal.azure.com/). Sélectionnez **Aide + support** > **Nouvelle demande de support**.
 
     ![bouton Aide et support](./media/billing-how-to-pay-by-invoice/helpandsupport.png)
-1. Sélectionnez **Facturation** comme type de problème, sélectionnez l’abonnement que vous souhaitez payer par facture, choisissez un plan de support, puis cliquez sur **Suivant**.
-1. Dans le panneau **Problème**, sélectionnez **Payer by invoice** (Payer par facture) dans la zone **Type de problème**.
-1. Entrez les informations suivantes dans la zone **Détails** puis sélectionnez **Suivant**.
+1. Sélectionnez **facturation** en tant que type de problème hello, sélectionnez l’abonnement hello pour lequel vous souhaitez toopay par facture, sélectionnez un plan de support, puis **suivant**.
+1. Bonjour **problème** panneau, sélectionnez **payer par facture** Bonjour **Type de problème** boîte.
+1. Entrez hello informations Bonjour suivantes **détails** zone, puis sélectionnez **suivant**.
 
     * Nom de la société
     * Adresse de facturation
@@ -44,8 +44,8 @@ Vous pouvez obtenir un mode de paiement par facture pour votre abonnement Azure 
 
 1. Vérifiez vos coordonnées et votre méthode de contact préférée, puis cliquez sur **Créer**.
 
-Si nous avons besoin de vérifier votre solvabilité en raison du montant du crédit dont vous avez besoin, nous vous enverrons une demande de contrôle de solvabilité. Une fois la demande soumise, son traitement peut prendre de 5 à 7 jours.
+Si nous devons toorun un crédit vérification en raison de la quantité de hello de crédit dont vous avez besoin, nous vous enverrons une application de vérification de crédit. Une fois que vous envoyez application hello, demande de crédit hello peut prendre tooprocess de 5 à 7 jours.
 
 ## <a name="need-help-contact-support"></a>Vous avez besoin d’aide ? Contactez le support technique.
 
-Si vous avez besoin d’aide, [contactez le support technique](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) pour obtenir une prise en charge rapide de votre problème.
+Si vous avez besoin d’aide, [contactez le support technique](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) tooget votre problème résolu rapidement.

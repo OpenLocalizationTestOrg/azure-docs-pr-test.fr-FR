@@ -1,5 +1,5 @@
 ---
-title: "Inscrire Azure Stack | Microsoft Docs"
+title: aaaRegister Azure pile | Documents Microsoft
 description: "Inscrire Azure Stack auprès de votre abonnement Azure."
 services: azure-stack
 documentationcenter: 
@@ -14,18 +14,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/10/2017
 ms.author: erikje
-ms.openlocfilehash: f71ec571fee8e59ea9061cd619914b81a5bf701a
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 3a3c8e82bec3e1e26ecfe591ecc27b2b91f6f91e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="register-azure-stack-with-your-azure-subscription"></a>Inscrire Azure Stack auprès de votre abonnement Azure
 
-Pour les déploiements Azure Active Directory, vous pouvez inscrire Azure Stack auprès d’Azure pour télécharger des éléments de la Place de Marché à partir d’Azure et configurer la génération de rapports de données commerciales envoyés à Microsoft. 
+Pour les déploiements d’Azure Active Directory, vous pouvez inscrire Azure pile avec les éléments du marketplace toodownload Azure à partir d’Azure et tooset les données du rapport tooMicrosoft commerce. 
 
 > [!NOTE]
->L’inscription est recommandée, car elle vous permet de tester des fonctionnalités Azure Stack importantes, telles que la syndication de la Place de Marché et les rapports d’utilisation. Après avoir inscrit Azure Stack, l’utilisation est signalée à Azure Commerce. Vous pouvez la consulter sous l’abonnement utilisé pour l’inscription. Toute utilisation que les utilisateurs du kit de développement Azure Stack signalent ne leur sera pas facturée.
+>L’inscription est recommandée, car elle vous permet de tootest fonctionnalités importantes de la pile d’Azure, telles que la syndication de marketplace et des rapports d’utilisation. Après avoir enregistré la pile de Azure, l’utilisation est signalé tooAzure commerce. Vous pouvez le voir dans l’abonnement hello que vous avez utilisé pour l’inscription. Toute utilisation que les utilisateurs du kit de développement Azure Stack signalent ne leur sera pas facturée.
 >
 
 
@@ -33,10 +33,10 @@ Pour les déploiements Azure Active Directory, vous pouvez inscrire Azure Stack
 
 Avant d’inscrire Azure Stack auprès d’Azure, vous devez disposer des éléments suivants :
 
-- L’ID d’abonnement d’un abonnement Azure. Pour obtenir l’ID, connectez-vous à Azure, cliquez sur **Plus de services** > **Abonnements**, cliquez sur l’abonnement que vous voulez utiliser. Sous **Éléments principaux** vous trouverez alors l’**ID d’abonnement**. Les abonnements au cloud du gouvernement de Chine, d’Allemagne et des États-Unis ne sont pas pris en charge pour le moment.
-- Le nom d’utilisateur et le mot de passe d’un compte qui est un propriétaire de l’abonnement (les comptes MSA/2FA sont pris en charge)
-- L’annuaire Azure Active Directory de l’abonnement Azure. Pour trouver cet annuaire dans Azure, pointez sur votre avatar situé en haut à droite dans le portail Azure. 
-- Le fournisseur de ressources Azure Stack inscrit (pour plus d’informations, consultez la section **Inscrire un fournisseur de ressources Azure Stack** ci-dessous)
+- ID d’abonnement Hello pour un abonnement Azure. ID de hello tooget, connectez-vous tooAzure, cliquez sur **davantage de services** > **abonnements**, cliquez sur abonnement hello toouse et sous **Essentials** vous pouvez recherche hello **ID d’abonnement**. Les abonnements au cloud du gouvernement de Chine, d’Allemagne et des États-Unis ne sont pas pris en charge pour le moment.
+- Hello nom d’utilisateur et mot de passe d’un compte qui est propriétaire de l’abonnement de hello (MSA/2FA sont prises en charge)
+- Bonjour Azure Active Directory pour hello abonnement Azure. Vous trouverez ce répertoire dans Azure, en pointant sur votre avatar à hello coin supérieur droit de hello portail Azure. 
+- Fournisseur de ressources Azure pile hello inscrits (voir hello **inscrire le fournisseur de ressources Azure pile** section ci-dessous pour plus d’informations)
 
 Si vous n’avez pas d’abonnement Azure répondant à ces exigences, vous pouvez [créer un compte Azure gratuit ici](https://azure.microsoft.com/en-us/free/?b=17.06). L’inscription d’Azure Stack n’entraîne aucun frais sur votre abonnement Azure.
 
@@ -44,12 +44,12 @@ Si vous n’avez pas d’abonnement Azure répondant à ces exigences, vous pouv
 
 ## <a name="register-azure-stack-resource-provider-in-azure"></a>Inscrire un fournisseur de ressources Azure Stack dans Azure
 > [!NOTE] 
-> Cette étape ne doit être effectuée qu’une seule fois dans un environnement Azure Stack.
+> Cette étape doit seulement toobe effectuée une seule fois dans un environnement de la pile de Azure.
 >
 
 1. Démarrez PowerShell ISE en tant qu’administrateur.
-2. Connectez-vous au compte Azure qui est un propriétaire de l’abonnement Azure avec le paramètre -EnvironmentName défini sur « AzureCloud ».
-3. Inscrivez le fournisseur de ressources Azure « Microsoft.AzureStack ».
+2. Se connecter toohello compte Azure qui est propriétaire de hello abonnement Azure avec le paramètre - EnvironmentName défini trop « Cloud Azure ».
+3. Inscrire le fournisseur de ressources Azure hello « Microsoft.AzureStack ».
 
 Exemple : 
 ```Powershell
@@ -61,16 +61,16 @@ Register-AzureRmResourceProvider -ProviderNamespace Microsoft.AzureStack -Force
 ## <a name="register-azure-stack-with-azure"></a>Inscrire Azure Stack auprès d’Azure
 
 > [!NOTE]
->Toutes les étapes suivantes doivent être effectuées sur l’ordinateur hôte.
+>Toutes ces étapes doivent être effectuées sur l’ordinateur hôte hello.
 >
 
 1. [Installez PowerShell pour Azure Stack](azure-stack-powershell-install.md). 
-2. Copiez le [script RegisterWithAzure.ps1](https://go.microsoft.com/fwlink/?linkid=842959) dans un dossier (tel que C:\Temp).
+2. Hello de copie [RegisterWithAzure.ps1 script](https://go.microsoft.com/fwlink/?linkid=842959) dossier tooa (tel que C:\Temp).
 3. Démarrez PowerShell ISE en tant qu’administrateur.    
-4. Exécutez le script RegisterWithAzure.ps1, en remplaçant les espaces réservés suivants :
-    - *YourAccountName* est le propriétaire de l’abonnement Azure
-    - *YourID* est l’ID d’abonnement Azure que vous voulez utiliser pour inscrire Azure Stack
-    - *YourDirectory* est le nom de votre locataire Azure Active Directory dont fait partie votre abonnement Azure.
+4. Exécutez hello RegisterWithAzure.ps1 script, en remplaçant hello suivant des espaces réservés :
+    - *YourAccountName* est propriétaire de hello Hello abonnement Azure
+    - *YourID* est l’ID d’abonnement Azure hello que vous souhaitez toouse tooregister pile d’Azure
+    - *YourDirectory* hello désigne votre client Azure Active Directory dont fait partie de votre abonnement Azure.
 
     ```powershell
     RegisterWithAzure.ps1 -azureSubscriptionId YourID -azureDirectoryTenantName YourDirectory -azureAccountId YourAccountName
@@ -84,16 +84,16 @@ Register-AzureRmResourceProvider -ProviderNamespace Microsoft.AzureStack -Force
     -azureAccountId serviceadmin@contoso.onmicrosoft.com
     ```
     
-5. Aux deux invites, appuyez sur Entrée.
-6. Dans la fenêtre de connexion indépendante, entrez les informations d’identification de votre abonnement Azure.
+5. Deux invites de hello, appuyez sur ENTRÉE.
+6. Dans la fenêtre de connexion contextuelle hello, entrez vos informations d’identification de l’abonnement Azure.
 
-## <a name="verify-the-registration"></a>Vérifier l’inscription
+## <a name="verify-hello-registration"></a>Vérification de l’inscription de hello
 
-1. Connectez-vous au portail d’administration (https://adminportal.local.azurestack.external).
+1. Se connecter dans le portail d’administration toohello (https://adminportal.local.azurestack.external).
 2. Cliquez sur **Plus de services** > **Gestion de la Place de Marché** > **Ajouter à partir d’Azure**.
 3. Si une liste d’éléments disponibles dans Azure (tels que WordPress) s’affiche, l’activation a réussi.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-[Se connecter à Azure Stack](azure-stack-connect-azure-stack.md)
+[Se connecter tooAzure pile](azure-stack-connect-azure-stack.md)
 

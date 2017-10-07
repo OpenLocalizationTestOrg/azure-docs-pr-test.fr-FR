@@ -1,5 +1,5 @@
 ---
-title: "Configuration d’Azure AD Join pour vos utilisateurs | Microsoft Docs"
+title: "aaaSetting d’Azure AD Join pour vos utilisateurs | Documents Microsoft"
 description: "Explique comment les administrateurs peuvent configurer Azure AD Join pour l’inscription locale d’appareils et d’annuaires."
 services: active-directory
 documentationcenter: 
@@ -15,45 +15,45 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 05/16/2017
 ms.author: markvi
-ms.openlocfilehash: c37adc2654f7e931fdda22627e4a6ece2789fd86
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 60a5aeb11292cb6057ab1065c3ab77e5981d0cdb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="setting-up-azure-ad-join-in-your-organization"></a>Configuration d’Azure AD Join dans votre organisation
-Avant de configurer Azure Active Directory Join (Azure AD Join), vous devez synchroniser votre annuaire local d’utilisateurs avec le cloud ou créer manuellement les comptes gérés dans Azure AD.
+Avant de configurer Azure Active Directory Join (Azure AD Join), vous devez tooeither synchronisation vers le haut de votre annuaire local du cloud de toohello les utilisateurs ou créer manuellement des comptes gérés dans Azure AD.
 
-Des instructions détaillées pour la synchronisation de vos utilisateurs locaux avec Azure AD sont disponibles dans [Intégration de vos identités locales avec Azure Active Directory](active-directory-aadconnect.md).
+Obtenir des instructions détaillées pour la synchronisation de votre tooAzure d’utilisateurs local AD est couvert dans [intégrer vos identités locales avec Azure Active Directory](active-directory-aadconnect.md).
 
-Pour créer et gérer manuellement des utilisateurs dans Azure AD, reportez-vous à [Gestion des utilisateurs dans Azure AD](https://msdn.microsoft.com/library/azure/hh967609.aspx).
+toomanually créer et gérer des utilisateurs dans Azure AD, consultez trop[gestion des utilisateurs dans Azure AD](https://msdn.microsoft.com/library/azure/hh967609.aspx).
 
 ## <a name="set-up-device-registration"></a>Configuration de l’inscription des appareils
-1. Connectez-vous au portail Azure en tant qu’administrateur.
-2. Dans le volet gauche, sélectionnez **Active Directory**.
-3. Dans l’onglet **Annuaire** , sélectionnez votre annuaire.
-4. Sélectionnez l'onglet **Configurer** .
-5. Accédez à la section **Appareils** .
-6. Dans l’onglet **Appareils** , définissez les éléments suivants :  
-   * **NOMBRE MAXIMAL D’APPAREILS PAR UTILISATEUR**: sélectionnez le nombre maximal d’appareils qu’un utilisateur peut avoir dans Azure AD.  Si un utilisateur atteint ce quota, il ne sera pas en mesure d’ajouter des appareils tant qu’un ou plusieurs appareils existants n’auront pas été supprimés.
-   * **EXIGER MULTI-FACTOR AUTH POUR JOINDRE DES APPAREILS**: indiquez si les utilisateurs doivent fournir un second facteur d’authentification pour joindre leurs appareils à Azure AD. Pour plus d’informations sur Azure Multi-Factor Authentication, consultez [Prise en main avec Azure Multi-Factor Authentication dans le cloud](../multi-factor-authentication/multi-factor-authentication-get-started-cloud.md).
-   * **LES UTILISATEURS PEUVENT JOINDRE DES APPAREILS À AZURE AD**: sélectionnez les utilisateurs et groupes autorisés à joindre des appareils à Azure AD.
-   * **ADMINISTRATEURS SUPPLÉMENTAIRES SUR LES APPAREILS JOINTS À AZURE AD**: avec Azure AD Premium ou Enterprise Mobility Suite (EMS), vous pouvez choisir les utilisateurs qui bénéficient de droits d’administrateur local sur l’appareil. Les administrateurs globaux et les propriétaires des appareils bénéficient de droits d’administrateur local par défaut.
+1. Ouvrez une session toohello portail Azure en tant qu’administrateur.
+2. Dans le volet gauche de hello, sélectionnez **Active Directory**.
+3. Sur hello **répertoire** , sélectionnez votre annuaire.
+4. Sélectionnez hello **configurer** onglet.
+5. Accédez toohello **périphériques** section.
+6. Sur hello **périphériques** définir hello, onglet :  
+   * **NOMBRE de périphériques par utilisateur maximale**: sélectionnez hello le nombre maximal d’appareils qu’un utilisateur dans Azure AD.  Si un utilisateur atteint ce quota, elles seront pas en mesure de tooadd des périphériques supplémentaires jusqu'à ce qu’un ou plusieurs des appareils existants sont supprimés.
+   * **EXIGER l’authentification MULTIFACTEUR tooJOIN périphériques**: définir si les utilisateurs sont requis tooprovide une authentification de second facteur toojoin leur tooAzure appareil AD. Pour plus d’informations sur l’authentification multifacteur Azure, consultez [prise en main d’Azure multi-Factor Authentication dans le cloud de hello](../multi-factor-authentication/multi-factor-authentication-get-started-cloud.md).
+   * **Les utilisateurs peuvent les appareils AZURE AD JOIN**: sélectionnez hello utilisateurs et groupes sont autorisés à toojoin périphériques tooAzure AD.
+   * **AZURE de ON administrateurs supplémentaires à des appareils joints AD**: avec Azure AD Premium ou hello Enterprise Mobility Suite (EMS), vous pouvez choisir quels utilisateurs sont accordés des droits d’administrateur local toohello appareil. Les administrateurs globaux et les propriétaires des appareils bénéficient de droits d’administrateur local par défaut.
 
-<center>![Configuration de l’inscription des appareils](./media/active-directory-azureadjoin/active-directory-aadjoin-configure-devices.png) </center>
+<center>![Configuration de l’inscription des appareils](./media/active-directory-azureadjoin/active-directory-aadjoin-configure-devices.png)</center>
 
-Après avoir configuré Azure AD Join pour vos utilisateurs, ces derniers peuvent se connecter à Azure AD via leurs appareils d’entreprise ou personnels.
+Une fois que vous configurez Azure AD Join pour vos utilisateurs, ils peuvent se connecter tooAzure AD via leurs d’entreprise ou appareils personnels.
 
-Voici trois scénarios expliquant comment vous pouvez autoriser les utilisateurs à configurer Azure AD Join :
+Voici hello trois scénarios vous pouvez utiliser tooenable tooset de vos utilisateurs d’Azure AD Join :
 
-* Les utilisateurs joignent un appareil appartenant à l’entreprise directement à Azure AD.
-* Les utilisateurs joignent au domaine un appareil appartenant à l’entreprise à l’annuaire Active Directory local et l’étendent à Azure AD.
-* Les utilisateurs ajoutent des comptes professionnels ou scolaires à Windows sur un appareil personnel.
+* Les utilisateurs joindre un appareil d’entreprise directement tooAzure AD.
+* Toohello de périphérique aux utilisateurs appartenant à une société de jonction de domaine Active Directory local et puis étend hello appareil tooAzure AD.
+* Ajoutez les utilisateurs du travail ou scolaire comptes tooWindows sur un appareil personnel
 
 ## <a name="additional-information"></a>Informations supplémentaires
-* [Windows 10 pour l’entreprise : plusieurs manières d’utiliser des appareils professionnels](active-directory-azureadjoin-windows10-devices-overview.md)
-* [Extension des fonctionnalités du cloud aux appareils Windows 10 via Azure Active Directory Join](active-directory-azureadjoin-user-upgrade.md)
+* [Windows 10 pour les entreprises hello : appareils toouse de méthodes de travail](active-directory-azureadjoin-windows10-devices-overview.md)
+* [Extension cloud appareils tooWindows 10 de fonctionnalités via Azure Active Directory Join](active-directory-azureadjoin-user-upgrade.md)
 * [En savoir plus sur les scénarios d’utilisation pour Azure AD Join](active-directory-azureadjoin-deployment-aadjoindirect.md)
-* [Connecter des appareils joints au domaine à Azure AD pour des expériences Windows 10](active-directory-azureadjoin-devices-group-policy.md)
+* [Se connecter tooAzure de périphériques joints au domaine Active Directory pour des expériences Windows 10](active-directory-azureadjoin-devices-group-policy.md)
 * [Configuration d’Azure AD Join](active-directory-azureadjoin-setup.md)
 

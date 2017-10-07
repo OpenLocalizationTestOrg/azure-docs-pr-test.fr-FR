@@ -1,6 +1,6 @@
 ---
-title: "Connecter l’Explorateur Stockage à un abonnement Azure Stack"
-description: "Découvrir comment connecter l’Explorateur Stockage à un abonnement Azure Stack"
+title: "Explorateur de stockage d’aaaConnect tooan abonnement de la pile de Azure"
+description: "Découvrez comment tooconnect stockage Exporer tooan abonnement de la pile de Azure"
 services: azure-stack
 documentationcenter: 
 author: xiaofmao
@@ -14,85 +14,85 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 7/24/2017
 ms.author: xiaofmao
-ms.openlocfilehash: 3c1ee7665da41c0fae9ddd492127495fe7e5581b
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 8508fcf41a114ff58f57582b4a6021d8050aabe9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-storage-explorer-to-an-azure-stack-subscription"></a>Connecter l’Explorateur Stockage à un abonnement Azure Stack
+# <a name="connect-storage-explorer-tooan-azure-stack-subscription"></a>Connecter l’Explorateur de stockage tooan Azure pile abonnement
 
-L’Explorateur Stockage Azure (préversion) est une application autonome qui vous permet d’utiliser facilement les données de stockage Azure Stack sur Windows, macOS et Linux. Il existe plusieurs outils qui permettent de déplacer des données vers et à partir du stockage Azure Stack. Pour plus d’informations, consultez [Outils de transfert de données pour le stockage Azure Stack](azure-stack-storage-transfer.md).
+Explorateur de stockage Azure (aperçu) est une application autonome qui vous permet de travail tooeasily avec des données de pile le stockage Azure sur Windows, Mac OS et Linux. Il existe plusieurs outils tenant compte toomove données tooand à partir de la pile le stockage Azure. Pour plus d’informations, consultez [Outils de transfert de données pour le stockage Azure Stack](azure-stack-storage-transfer.md).
 
-Dans cet article, vous découvrez comment vous connecter à vos comptes de stockage Azure Stack à l’aide de l’Explorateur Stockage. 
+Dans cet article, vous apprendrez comment tooconnect tooyour stockage de Azure pile comptes à l’aide Explorateur de stockage. 
 
 Si vous n’avez pas installé l’Explorateur Stockage, [téléchargez](http://www.storageexplorer.com/)-le et installez-le.
 
-Une fois que vous êtes connecté à votre abonnement Azure Stack, vous pouvez utiliser les [articles sur l’Explorateur Stockage Azure](../vs-azure-tools-storage-manage-with-storage-explorer.md) pour utiliser vos données Azure Stack. 
+Après la connexion d’abonnement de Azure pile tooyour, vous pouvez utiliser hello [articles de l’Explorateur de stockage Azure](../vs-azure-tools-storage-manage-with-storage-explorer.md) toowork avec vos données de la pile de Azure. 
 
 ## <a name="prepare-an-azure-stack-subscription"></a>Préparer un abonnement Azure Stack
 
-Vous avez besoin d’un accès au bureau de la machine hôte d’Azure Stack ou d’une connexion VPN pour que l’Explorateur Stockage puisse accéder à l’abonnement Azure Stack. Pour savoir comment configurer une connexion VPN à Azure Stack, consultez [Connect to Azure Stack](azure-stack-connect-azure-stack.md#connect-to-azure-stack-with-vpn) (Se connecter à Azure Stack).
+Vous devez accéder au bureau de l’ordinateur hôte toohello Azure pile ou une connexion VPN pour l’abonnement de pile d’Azure Storage Explorer tooaccess hello. toolearn tooset d’un tooAzure de connexion VPN pile, voir [connecter tooAzure pile avec VPN](azure-stack-connect-azure-stack.md#connect-to-azure-stack-with-vpn).
 
-Pour le Kit de développement Azure Stack, vous devez exporter le certificat racine d’autorité Azure Stack.
+Pourquoi le Kit de développement de pile Azure, vous devez certificat d’autorité racine tooexport hello Azure pile.
 
-### <a name="to-export-and-then-import-the-azure-stack-certificate"></a>Pour exporter et importer le certificat Azure Stack
+### <a name="tooexport-and-then-import-hello-azure-stack-certificate"></a>tooexport, puis importer un certificat Azure pile hello
 
-1. Ouvrez `mmc.exe` sur une machine hôte Azure Stack ou sur une machine locale avec une connexion VPN à Azure Stack. 
+1. Ouvrez `mmc.exe` sur un ordinateur hôte de pile d’Azure, ou sur un ordinateur local avec un tooAzure de connexion VPN pile. 
 
-2. Dans **Fichier**, sélectionnez **Ajouter/Supprimer un composant logiciel enfichable**, ajoutez **Certificats** pour gérer le **compte d’ordinateur** d’un **ordinateur local**.
+2. Dans **fichier**, sélectionnez **ajouter/supprimer un composant logiciel enfichable**, puis ajoutez **certificats** toomanage **compte d’ordinateur** de **Local Ordinateur**.
 
 
 
 3. Sous **Racine de la console\Certificats (ordinateur local)\Autorités de certification racines de confiance\Certificats**, recherchez **AzureStackSelfSignedRootCert**.
 
-    ![Charger le certificat racine Azure Stack via mmc.exe][25]
+    ![Charger un certificat de racine hello Azure pile via mmc.exe][25]
 
-4. Cliquez avec le bouton droit sur le certificat, sélectionnez **Toutes les tâches** > **Exporter**, puis suivez les instructions pour exporter le certificat avec **X.509 encodé en base 64 (.cer)**.  
+4. Certificat de hello avec le bouton droit, sélectionnez **toutes les tâches** > **exporter**, puis suivez hello instructions tooexport hello certificat **codé à Base 64 X.509 (. CER)**.  
 
-    Le certificat exporté sera utilisé à l’étape suivante.
-5. Démarrez l’Explorateur Stockage (préversion) et, si vous voyez la boîte de dialogue **Connexion au stockage Azure**, cliquez sur Annuler.
+    certificat exporté de Hello sera utilisé à l’étape suivante de hello.
+5. Démarrage de l’Explorateur de stockage (version préliminaire), et si vous voyez hello **connecter tooAzure stockage** boîte de dialogue zone, annulez cette opération.
 
-6. Dans le menu **Modifier**, pointez sur **Certificats SSL**, puis cliquez sur **Importer les certificats**. Utilisez la boîte de dialogue du sélecteur de fichier pour rechercher et ouvrir le certificat que vous avez exporté à l’étape précédente.
+6. Sur hello **modifier** menu, pointez trop**certificats SSL**, puis cliquez sur **les certificats d’importation**. Utilisez le toofind boîte dialogue hello fichier sélecteur et certificat hello ouverts que vous avez exporté à l’étape précédente de hello.
 
-    Vous êtes invité à redémarrer l’Explorateur de stockage suite à l’importation.
+    Après l’importation, vous êtes invité à toorestart Explorateur de stockage.
 
-    ![Importer le certificat dans l’explorateur de stockage (version préliminaire)][27]
+    ![Importer un certificat hello dans l’Explorateur de stockage (version préliminaire)][27]
 
-Vous êtes maintenant prêts à connecter l’Explorateur Stockage à un abonnement Azure Stack.
+Vous êtes maintenant prêt tooconnect abonnement de pile d’Azure Storage Explorer tooan.
 
-### <a name="to-connect-an-azure-stack-subscription"></a>Connexion à un abonnement Azure Stack
+### <a name="tooconnect-an-azure-stack-subscription"></a>tooconnect un abonnement Azure pile
 
 
-1. Après le redémarrage de l’Explorateur de stockage (version préliminaire), sélectionnez le menu **Modifier** et vérifiez que l’option **Target Azure Stack** (Cibler Azure Stack) est sélectionnée. Si l’option n’est pas sélectionnée, sélectionnez-la et redémarrez l’Explorateur de stockage pour appliquer la modification. Cette configuration est requise pour la compatibilité avec votre environnement Azure Stack.
+1. Après le redémarrage de l’Explorateur de stockage (version préliminaire), sélectionnez hello **modifier** menu, puis assurez-vous que **cible Azure pile** est sélectionnée. Si elle n’est pas sélectionnée, sélectionnez-la et redémarrez l’Explorateur de stockage pour modifier un effet de tootake hello. Cette configuration est requise pour la compatibilité avec votre environnement Azure Stack.
 
     ![S’assurer que l’option Target Azure Stack (Cibler Azure Stack) est sélectionnée][28]
 
-7. Dans le volet gauche, sélectionnez **Gérer les comptes**.  
-    Tous les comptes Microsoft auxquels vous êtes connecté sont affichés.
+7. Dans le volet gauche de hello, sélectionnez **gérer les comptes**.  
+    Tous les comptes de Microsoft hello que vous êtes connecté en tooare affiché.
 
-8. Pour vous connecter au compte Azure Stack, sélectionnez **Ajouter un compte**.
+8. tooconnect toohello compte de la pile d’Azure, sélectionnez **ajouter un compte**.
 
     ![Ajouter un compte Azure Stack][29]
 
-9. Dans la boîte de dialogue **Connexion au stockage Azure**, sous **Environnement Azure**, sélectionnez **Utiliser l’environnement Azure Stack**, puis cliquez sur **Suivant**.
+9. Bonjour **connecter tooAzure stockage** boîte de dialogue **environnement Azure**, sélectionnez **utilisez Azure pile environnement**, puis cliquez sur **suivant**.
 
-10. Pour vous connecter au compte Azure Stack associé à au moins un abonnement Azure Stack actif, remplissez la boîte de dialogue **Se connecter à un environnement Azure Stack**.  
+10. toosign avec hello compte Azure pile qui est associé au moins un abonnement Azure pile actif, renseignez hello **connecter tooAzure environnement pile** boîte de dialogue.  
 
-    Les détails de chaque champ figurent ci-dessous :
+    Détails de Hello pour chaque champ sont les suivantes :
 
-    * **Nom de l’environnement** : le champ peut être personnalisé par l’utilisateur.
-    * **ARM resource endpoint** (Point de terminaison de ressource ARM) : les exemples de points de terminaison de ressource ARM :
+    * **Nom de l’environnement**: champ de hello peut être personnalisé par l’utilisateur.
+    * **Point de terminaison de ressource ARM**: hello des exemples de points de terminaison de ressource Azure Resource Manager :
 
         * Pour un opérateur cloud :<br> https://adminmanagement.local.azurestack.external   
         * Pour un locataire :<br> https://management.local.azurestack.external
  
-    * **ID de locataire** : Facultatif. La valeur est fournie uniquement lorsque le répertoire doit être spécifié.
+    * **ID de locataire** : Facultatif. Hello est donné uniquement lorsque hello répertoire doit être spécifié.
 
-12. Une fois que vous êtes connecté avec un compte Azure Stack, le volet gauche est renseigné avec les abonnements Azure Stack associés à ce compte. Sélectionnez les abonnements Azure Stack que vous souhaitez utiliser, puis sélectionnez **Appliquer**. (La case à cocher **Tous les abonnements** permet de sélectionner ou de désélectionner l’ensemble des abonnements Azure Stack répertoriés.)
+12. Après que vous être connecté avec un compte Azure pile, volet de gauche hello est remplie avec les abonnements de pile de Azure hello associés à ce compte. Sélectionnez les abonnements Azure pile hello que vous souhaitez toowork avec, puis sélectionnez **appliquer**. (Activant ou désactivant hello **tous les abonnements** case à cocher active ou désactive la sélection de tous ou aucun des hello répertorié abonnements de la pile de Azure.)
 
-    ![Sélectionner les abonnements Azure Stack après avoir renseigné la boîte de dialogue Custom Cloud Environment (Environnement cloud personnalisé)][30]  
-    Le volet de gauche affiche les comptes de stockage associés aux abonnements Azure Stack sélectionnés.
+    ![Sélectionnez les abonnements Azure pile hello après avoir complété la boîte de dialogue d’environnement en nuage personnalisée hello][30]  
+    volet de gauche de Hello affiche les comptes de stockage hello associées aux abonnements Azure pile de hello sélectionné.
 
     ![Liste des comptes de stockage, y compris les comptes d’abonnement Azure Stack][31]
 
@@ -101,7 +101,7 @@ Vous êtes maintenant prêts à connecter l’Explorateur Stockage à un abonnem
 * [Stockage Azure Stack : Différences et considérations](azure-stack-acs-differences.md)
 
 
-* Pour en savoir plus sur le stockage Azure, consultez [Présentation du stockage Microsoft Azure](../storage/common/storage-introduction.md)
+* toolearn en savoir plus sur le stockage Azure, consultez [Introduction tooMicrosoft stockage Azure](../storage/common/storage-introduction.md)
 
 [25]: ./media/azure-stack-storage-connect-se/add-certificate-azure-stack.png
 [26]: ./media/azure-stack-storage-connect-se/export-root-cert-azure-stack.png

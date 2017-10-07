@@ -1,6 +1,6 @@
 ---
-title: "Créer un environnement Azure App Service externe"
-description: "Explique comment créer un environnement App Service dans le cadre d’un plan App Service ou de manière autonome."
+title: aaaCreate un environnement externe Azure App Service
+description: "Explique comment toocreate un environnement App Service pendant que vous créez une application ou un autonome"
 services: app-service
 documentationcenter: na
 author: ccompy
@@ -13,24 +13,24 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/13/2017
 ms.author: ccompy
-ms.openlocfilehash: 2dfe531facbe84aac65c5f787851c015de719fee
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: f8619534ddd889ea65063733ac6ec11b206e799c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-external-app-service-environment"></a>Créer un environnement App Service externe #
 
-Un environnement Azure App Service est un déploiement d’Azure App Service dans un sous-réseau d’un réseau virtuel Azure. Il existe deux façons de déployer un environnement App Service (ASE, App Service Environment) :
+Un environnement Azure App Service est un déploiement d’Azure App Service dans un sous-réseau de réseau virtuel Azure. Il existe deux façons toodeploy un environnement App Service (ASE) :
 
-- À l’aide d’une adresse IP virtuelle définie sur une adresse IP externe. On parle alors d’environnement App Service externe.
-- À l’aide d’une adresse IP virtuelle définie sur une adresse IP interne. On parle alors d’environnement App Service ILB, car le point de terminaison interne est un équilibreur de charge interne (ILB, Internal Load Balancer).
+- avec une adresse IP virtuelle sur une adresse IP externe, solution souvent appelée ASE externe ;
+- Avec hello VIP sur une adresse IP interne, souvent appelé un environnement app service Équilibrage de charge interne, car le point de terminaison interne hello est un équilibreur de charge interne (ILB).
 
-Cet article vous explique comment créer un ASE externe. Pour une présentation de l’environnement App Service, consultez [Présentation de l’environnement App Service Environment][Intro]. Pour plus d’informations sur la création d’un environnement App Service ILB, consultez [Créer et utiliser un équilibreur de charge interne avec un environnement Azure App Service Environment][MakeILBASE].
+Cet article vous montre comment toocreate ASE externe. Pour une vue d’ensemble de hello ASE, consultez [un environnement App Service de toohello introduction][Intro]. Pour plus d’informations sur comment toocreate un équilibrage de charge interne ASE, consultez [créer et utiliser un environnement app service Équilibrage de charge interne][MakeILBASE].
 
 ## <a name="before-you-create-your-ase"></a>Avant de créer votre ASE ##
 
-Une fois l’environnement App Service créé, les éléments suivants ne peuvent plus être modifiés :
+Après avoir créé votre ASE, vous ne pouvez pas modifier suivant de hello :
 
 - Lieu
 - Abonnement
@@ -40,90 +40,90 @@ Une fois l’environnement App Service créé, les éléments suivants ne peuven
 - Taille du sous-réseau
 
 > [!NOTE]
-> Quand vous choisissez un réseau virtuel et spécifiez un sous-réseau, vérifiez que leur taille leur permet de prendre en compte les évolutions futures. Nous vous recommandons une taille de `/25` avec 128 adresses.
+> Lorsque vous sélectionnez un réseau virtuel et que vous spécifiez un sous-réseau, assurez-vous qu’il s’agit d’une croissance future tooaccommodate suffisante. Nous vous recommandons une taille de `/25` avec 128 adresses.
 >
 
-## <a name="three-ways-to-create-an-ase"></a>Trois façons de créer un ASE ##
+## <a name="three-ways-toocreate-an-ase"></a>Trois méthodes toocreate ASE ##
 
-Il existe trois façons de créer un environnement App Service :
+Il existe trois façons toocreate ASE :
 
-- **Dans le cadre d’un plan App Service**. Avec cette méthode, l’environnement App Service et le plan App Service sont créés lors de la même étape.
-- **De façon autonome**. Avec cette méthode, seul l’environnement App Service est créé. Le processus de création est plus avancé et permet de créer un environnement App Service avec un équilibreur de charge interne (ILB).
+- **Dans le cadre d’un plan App Service**. Cette méthode crée hello ASE et hello plan App Service en une seule étape.
+- **De façon autonome**. Avec cette méthode, seul l’environnement App Service est créé. Cette méthode est un toocreate de processus ASE plus avancée. Vous utilisez toocreate ASE avec un équilibrage de charge interne.
 - **À l’aide d’un modèle Azure Resource Manager**. Cette méthode est destinée aux utilisateurs expérimentés. Pour plus d’informations, consultez [Création d’un environnement ASE à l’aide des modèles Azure Resource Manager][MakeASEfromTemplate].
 
-Un environnement App Service externe a une adresse IP virtuelle publique, ce qui signifie que le trafic HTTP/HTTPS entrant dans les applications de l’environnement App Service atteint une adresse IP accessible via Internet. Un environnement App Service avec un équilibreur de charge interne (ILB) a une adresse IP issue du sous-réseau utilisé par l’environnement App Service. Les applications hébergées dans un environnement App Service ILB ne sont pas exposées directement à Internet.
+Un environnement app service externe a une adresse IP virtuelle publique, ce qui signifie que toutes les applications de toohello le trafic HTTP/HTTPS Bonjour ASE accède à une adresse IP accessible via internet. Un environnement app service avec un équilibrage de charge interne possède une adresse IP du sous-réseau hello utilisé par hello ASE. Hello applications hébergées dans un environnement app service Équilibrage de charge interne ne sont pas exposées directement toohello internet.
 
 ## <a name="create-an-ase-and-an-app-service-plan-together"></a>Créer un ASE et un plan App Service ensemble ##
 
-Le plan App Service est un conteneur d’applications. Lorsque vous créez une application dans App Service, vous devez sélectionner ou créer un plan App Service. Les environnements du modèle de conteneur contiennent les plans App Service, et les plans App Service contiennent les applications.
+Hello plan App Service est un conteneur d’applications. Lorsque vous créez une application dans App Service, vous devez sélectionner ou créer un plan App Service. environnements de modèle de conteneur Hello contiennent les plans de Service d’applications et les plans App Service applications.
 
-Pour créer un environnement App Service en même temps que le plan App Service :
+toocreate ASE pendant que vous créez un plan App Service :
 
-1. Dans le [portail Azure](https://portal.azure.com/), sélectionnez **Nouveau** > **Web + Mobile** > **Application web**.
+1. Bonjour [portail Azure](https://portal.azure.com/), sélectionnez **nouveau** > **Web + Mobile** > **application Web**.
 
     ![Création d’une application web][1]
 
-2. Sélectionnez votre abonnement. L’application et l’environnement App Service sont créés dans les mêmes abonnements.
+2. Sélectionnez votre abonnement. application Hello et hello ASE sont créés dans hello même abonnements.
 
-3. Sélectionnez ou créez un groupe de ressources. Vous pouvez utiliser des groupes de ressources pour gérer des ressources Azure connexes en tant qu’unité. Les groupes de ressources sont également utiles lorsque vous souhaitez établir des règles de contrôle d’accès en fonction du rôle (RBAC) pour vos applications. Pour plus d’informations, consultez [Présentation d’Azure Resource Manager][ARMOverview].
+3. Sélectionnez ou créez un groupe de ressources. Vous pouvez utiliser des groupes de ressources pour gérer des ressources Azure connexes en tant qu’unité. Les groupes de ressources sont également utiles lorsque vous souhaitez établir des règles de contrôle d’accès en fonction du rôle (RBAC) pour vos applications. Pour plus d’informations, consultez hello [vue d’ensemble du Gestionnaire de ressources Azure][ARMOverview].
 
-4. Cliquez sur le plan App Service, puis sélectionnez **Créer un nouveau**.
+4. Sélectionnez hello plan App Service, puis **créer un nouveau**.
 
     ![Nouveau plan App Service][2]
 
-5. Dans la liste déroulante **Emplacement**, sélectionnez la région où vous souhaitez créer l’environnement App Service. Si vous sélectionnez un environnement App Service existant, aucun environnement App Service n’est créé. Le plan App Service est créé dans l’environnement App Service que vous avez sélectionné. 
+5. Bonjour **emplacement** liste déroulante, sélectionnez hello la région où toocreate hello ASE. Si vous sélectionnez un environnement App Service existant, aucun environnement App Service n’est créé. Hello plan App Service est créé dans hello ASE que vous avez sélectionné. 
 
-6. Sélectionnez **Niveau tarifaire**, puis choisissez l’une des références SKU de tarification **Isolé**. Si vous choisissez une carte de référence SKU **Isolé** et un emplacement autre qu’un environnement App Service, un nouvel environnement App Service est créé à cet emplacement. Pour démarrer le processus de création d’un environnement App Service, cliquez sur **Sélectionner**. La référence SKU **Isolé** n’est disponible qu’avec un environnement App Service. Vous ne pouvez pas utiliser une autre référence SKU de tarification dans un environnement App Service qui n’est pas **Isolé**.
+6. Sélectionnez **niveau tarifaire**, sélectionnez une des hello **isolé** tarification références (SKU). Si vous choisissez une carte de référence SKU **Isolé** et un emplacement autre qu’un environnement App Service, un nouvel environnement App Service est créé à cet emplacement. toostart hello processus toocreate ASE, sélectionnez **sélectionnez**. Hello **isolé** référence (SKU) n’est disponible qu’en association avec un environnement app service. Vous ne pouvez pas utiliser une autre référence SKU de tarification dans un environnement App Service qui n’est pas **Isolé**.
 
     ![Sélection du niveau tarifaire][3]
 
-7. Indiquez le nom de votre ASE. Ce nom est utilisé dans le nom adressable de vos applications. Si le nom de l’environnement App Service est _appsvcenvdemo_, le nom du domaine est *.appsvcenvdemo.p.azurewebsites.net*. Si vous créez une application nommée *mytestapp*, elle est adressable à l’adresse mytestapp.appsvcenvdemo.p.azurewebsites.net. Vous ne pouvez pas utiliser d’espace blanc dans le nom. Si vous utilisez des majuscules dans le nom, le nom de domaine correspond à la version complète de ce nom en minuscules.
+7. Entrez le nom hello pour votre ASE. Ce nom est utilisé dans le nom de hello adressable pour vos applications. Si le nom de hello ASE hello est _appsvcenvdemo_, nom de domaine hello est *. appsvcenvdemo.p.azurewebsites.net*. Si vous créez une application nommée *mytestapp*, elle est adressable à l’adresse mytestapp.appsvcenvdemo.p.azurewebsites.net. Vous ne pouvez pas utiliser un espace blanc dans le nom de hello. Si vous utilisez des caractères majuscules, nom de domaine hello est hello total version en minuscule du même nom.
 
     ![Nom du nouveau plan App Service][4]
 
-8. Spécifiez les informations concernant votre réseau virtuel Azure. Choisissez **Créer un nouveau** ou **Sélectionner**. L’option permettant de sélectionner un réseau virtuel existant est disponible uniquement si un réseau virtuel se trouve dans la région sélectionnée. Si vous sélectionnez **Créer un nouveau**, entrez un nom pour le réseau virtuel. Un nouveau réseau virtuel Resource Manager portant ce nom est alors créé. Il utilise l’espace d’adressage `192.168.250.0/23` dans la région sélectionnée. Si vous choisissez **Sélectionner**, vous devez :
+8. Spécifiez les informations concernant votre réseau virtuel Azure. Choisissez **Créer un nouveau** ou **Sélectionner**. Hello option tooselect un réseau virtuel existant est disponible uniquement si vous avez un réseau virtuel dans une région de hello sélectionnée. Si vous sélectionnez **créer un nouveau**, entrez un nom pour hello réseau virtuel. Un nouveau réseau virtuel Resource Manager portant ce nom est alors créé. Il utilise l’espace d’adressage hello `192.168.250.0/23` dans une région de hello sélectionnée. Si vous choisissez **Sélectionner**, vous devez :
 
-    a. Sélectionner le bloc d’adresses du réseau virtuel, si vous en avez plusieurs
+    a. Sélectionner un bloc d’adresses réseau virtuel hello, si vous avez plusieurs.
 
     b. Entrer un nom pour le nouveau sous-réseau
 
-    c. Sélectionner la taille du sous-réseau. *Veillez à définir une taille de sous-réseau suffisamment grande pour s’adapter à toute future croissance de votre environnement App Service.* Nous recommandons `/25`, qui comprend 128 adresses et peut gérer un environnement App Service de taille maximale. Par exemple, `/28` est déconseillé, car 16 adresses seulement sont disponibles. L’infrastructure utilise au moins cinq adresses. Dans un sous-réseau `/28`, vous vous retrouvez avec une mise à l’échelle maximale de 11 instances.
+    c. Sélectionnez la taille du sous-réseau de hello hello. *N’oubliez pas de tooselect une taille suffisamment grande tooaccommodate une croissance future de votre ASE.* Nous recommandons `/25`, qui comprend 128 adresses et peut gérer un environnement App Service de taille maximale. Par exemple, `/28` est déconseillé, car 16 adresses seulement sont disponibles. L’infrastructure utilise au moins cinq adresses. Dans un sous-réseau `/28`, vous vous retrouvez avec une mise à l’échelle maximale de 11 instances.
 
-    d. Sélectionner la plage IP du sous-réseau
+    d. Sélectionnez plage IP de sous-réseau hello.
 
-9. Sélectionnez **Créer** pour créer l’environnement App Service. Ce processus crée également le plan App Service et l’application. L’environnement App Service, le plan App Service et l’application sont regroupés au sein du même abonnement et du même groupe de ressources. Si votre environnement App Service a besoin d’un groupe de ressources distinct, ou si vous avez besoin d’un environnement App Service ILB, procédez aux étapes permettant de créer un environnement App Service de manière autonome.
+9. Sélectionnez **créer** toocreate hello ASE. Ce processus crée également le plan App Service hello et application hello. Hello ASE, plan App Service et application sont tous sous hello même abonnement et également dans hello même groupe de ressources. Si votre ASE a besoin d’un groupe de ressources distinct, ou si vous avez besoin d’un environnement app service Équilibrage de charge interne, suivez hello étapes toocreate ASE par lui-même.
 
 ## <a name="create-an-ase-by-itself"></a>Créer un ASE autonome ##
 
-Lorsque vous créez un environnement App Service autonome, celui-ci est vide. Même vide, un environnement App Service occasionne des frais mensuels pour l’infrastructure. Effectuez les étapes permettant de créer un environnement App Service ILB ou un environnement App Service dans son propre groupe de ressources. Une fois l’environnement App Service créé, vous pouvez y créer des applications à l’aide de la procédure normale. Sélectionnez votre nouvel environnement App Service comme emplacement.
+Lorsque vous créez un environnement App Service autonome, celui-ci est vide. ASE vide entraîne toujours des frais mensuels pour l’infrastructure de hello. Suivez ces étapes de toocreate ASE avec un équilibrage de charge interne ou toocreate ASE dans son propre groupe de ressources. Après avoir créé votre ASE, vous pouvez créer des applications qu’il contient à l’aide du processus normal de hello. Sélectionnez votre nouvelle ASE en tant qu’emplacement de hello.
 
-1. Recherchez **App Service Environment** dans la Place de marché, ou sélectionnez **Nouveau** > **Web + mobile** > **App Service Environment**. 
+1. Recherche hello Azure Marketplace pour **environnement App Service**, ou sélectionnez **nouveau** > **Web Mobile** > **du Service d’applications Environnement**. 
 
-2. Entrez le nom de votre environnement App Service. Ce nom est utilisé pour les applications créées dans l’environnement App Service. Si le nom est *mynewdemoase*, le nom du sous-domaine est *.mynewdemoase.p.azurewebsites.net*. Si vous créez une application nommée *mytestapp*,celle-ci est adressable à l’adresse mytestapp.mynewdemoase.p.azurewebsites.net. Vous ne pouvez pas utiliser d’espace blanc dans le nom. Si vous utilisez des majuscules dans le nom, le nom de domaine correspond à la version complète de ce nom en minuscules. Si vous utilisez un équilibreur de charge interne (ILB), le nom de votre environnement App Service n’est pas utilisé dans votre sous-domaine, mais il est explicitement indiqué lors de la création de l’environnement App Service.
+2. Entrez le nom hello de votre ASE. Ce nom est utilisé pour les applications hello créées Bonjour ASE. Si le nom hello est *mynewdemoase*, le nom de sous-domaine hello est *. mynewdemoase.p.azurewebsites.net*. Si vous créez une application nommée *mytestapp*,celle-ci est adressable à l’adresse mytestapp.mynewdemoase.p.azurewebsites.net. Vous ne pouvez pas utiliser un espace blanc dans le nom de hello. Si vous utilisez des caractères majuscules, nom de domaine hello est hello total version en minuscule du nom de hello. Si vous utilisez un équilibreur de charge interne (ILB), le nom de votre environnement App Service n’est pas utilisé dans votre sous-domaine, mais il est explicitement indiqué lors de la création de l’environnement App Service.
 
     ![Attribution d’un nom à l’environnement App Service][5]
 
-3. Sélectionnez votre abonnement. Cet abonnement est également celui que toutes les applications de l’environnement App Service utilisent. Vous ne pouvez pas placer votre environnement App Service dans un réseau virtuel se trouvant dans un autre abonnement.
+3. Sélectionnez votre abonnement. Cet abonnement est également hello un type qui utilisent de toutes les applications Bonjour ASE. Vous ne pouvez pas placer votre environnement App Service dans un réseau virtuel se trouvant dans un autre abonnement.
 
-4. Sélectionnez ou spécifiez un nouveau groupe de ressources. Le groupe de ressources utilisé pour votre environnement App Service doit être le même que celui utilisé pour votre réseau virtuel. Si vous sélectionnez un réseau virtuel existant, la sélection du groupe de ressources pour votre environnement App Service est mise à jour pour refléter celle de votre réseau virtuel. *Si vous utilisez un modèle Resource Manager, vous pouvez créer un environnement App Service avec un groupe de ressources différent de celui du réseau virtuel.* Pour créer un environnement App Service à partir d’un modèle, consultez [Création d’un environnement ASE à l’aide des modèles Azure Resource Manager][MakeASEfromTemplate].
+4. Sélectionnez ou spécifiez un nouveau groupe de ressources. groupe de ressources Hello utilisée pour votre ASE doit être hello même que celui qui est utilisé pour votre réseau virtuel. Si vous sélectionnez un réseau virtuel existant, sélection du groupe de ressources pour votre ASE hello est tooreflect mis à jour de votre réseau virtuel. *Vous pouvez créer un environnement app service avec un groupe de ressources qui est différent du groupe de ressources du réseau virtuel hello si vous utilisez un modèle de gestionnaire de ressources.* toocreate ASE à partir d’un modèle, consultez [créer un environnement App Service à partir d’un modèle][MakeASEfromTemplate].
 
     ![Sélection du groupe de ressources][6]
 
 5. Sélectionnez le réseau virtuel et l’emplacement. Vous pouvez créer un réseau virtuel ou sélectionner un réseau virtuel existant : 
 
-    * Si vous sélectionnez un nouveau réseau virtuel, vous pouvez spécifier un nom et un emplacement. Le nouveau réseau virtuel se voit affecter la plage d’adresses 192.168.250.0/23 et un sous-réseau nommé default. Le sous-réseau reçoit la plage d’adresses 192.168.250.0/24. Vous pouvez uniquement sélectionner un réseau virtuel Resource Manager. La sélection du **type d’adresse IP virtuelle** détermine si votre environnement App Service est accessible directement à partir d’Internet (externe) ou s’il utilise un équilibreur de charge interne (ILB). Pour plus d’informations, consultez [Créer et utiliser un équilibreur de charge interne avec un environnement Azure App Service Environment][MakeILBASE]. 
+    * Si vous sélectionnez un nouveau réseau virtuel, vous pouvez spécifier un nom et un emplacement. Hello nouveau réseau virtuel a hello adresse plage 192.168.250.0/23 et un sous-réseau nommé par défaut. sous-réseau de Hello est défini comme 192.168.250.0/24. Vous pouvez uniquement sélectionner un réseau virtuel Resource Manager. Hello **Type d’adresse IP virtuelle** sélection détermine si votre ASE est directement accessible à partir de hello internet (externe) ou si elle utilise un équilibrage de charge interne. toolearn savoir plus sur ces options, consultez [créer et utiliser un équilibreur de charge interne avec un environnement App Service][MakeILBASE]. 
 
-      * Si vous sélectionnez un **Type d’adresse IP virtuelle** **Externe**, vous pouvez choisir le nombre d’adresses IP externes avec lesquelles est créé le système, en vue d’une utilisation du protocole SSL basé sur IP. 
+      * Si vous sélectionnez **externe** pour hello **Type d’adresse IP virtuelle**, vous pouvez sélectionner le système de hello d’adresses IP externes combien est créée avec fins SSL basé sur IP. 
     
-      * Si vous sélectionnez un **Type d’adresse IP virtuelle** **Interne**, vous devez spécifier le domaine que votre environnement App Service utilise. Vous pouvez déployer un environnement App Service dans un réseau virtuel qui utilise des plages d’adresses publiques ou privées. Pour utiliser un réseau virtuel avec une plage d’adresses publiques, vous devez créer le réseau virtuel à l’avance. 
+      * Si vous sélectionnez **interne** pour hello **Type d’adresse IP virtuelle**, vous devez spécifier le domaine de hello votre ASE utilise. Vous pouvez déployer un environnement App Service dans un réseau virtuel qui utilise des plages d’adresses publiques ou privées. toouse un réseau virtuel avec une plage d’adresses publiques, vous devez toocreate hello réseau virtuel à l’avance. 
     
-    * Si vous sélectionnez un réseau virtuel existant, un nouveau sous-réseau est créé en même temps que l’environnement App Service. *Vous ne pouvez pas utiliser un sous-réseau créé au préalable dans le portail. Si vous utilisez un modèle Resource Manager, vous pouvez créer un environnement App Service avec un sous-réseau existant.* Pour créer un environnement App Service à partir d’un modèle, consultez [Création d’un environnement ASE à l’aide des modèles Azure Resource Manager][MakeASEfromTemplate].
+    * Si vous sélectionnez un réseau virtuel existant, un nouveau sous-réseau est créé lors de la création de hello ASE. *Vous ne pouvez pas utiliser un sous-réseau créé au préalable dans le portail de hello. Si vous utilisez un modèle Resource Manager, vous pouvez créer un environnement App Service avec un sous-réseau existant.* toocreate ASE à partir d’un modèle, consultez [créer un environnement App Service à partir d’un modèle][MakeASEfromTemplate].
 
 ## <a name="app-service-environment-v1"></a>Environnement App Service v1 ##
 
-Vous pouvez toujours créer des instances de la première version d’App Service Environment (ASEv1). Pour commencer, recherchez **App Service Environment v1** dans la Place de marché. Créez l’environnement App Service de la même façon que pour un environnement App Service autonome. Une fois créée, votre instance d’ASEv1 comprend deux front-ends et deux Workers. Avec ASEv1, vous devez gérer les front-ends et les Workers. Ils ne sont pas ajoutés automatiquement lors de la création de vos plans App Service. Les front-ends servent de points de terminaison HTTP/HTTPS et envoient le trafic aux Workers. Les Workers correspondent aux rôles qui hébergent vos applications. Vous pouvez ajuster la quantité de front-ends et de Workers après la création de l’environnement App Service. 
+Vous pouvez toujours créer des instances de la première version de hello d’environnement App Service (ASEv1). toostart qui traitent, hello de recherche Marketplace pour **environnement App Service v1**. Vous créez hello ASE Bonjour même façon que vous créez hello autonome ASE. Une fois créée, votre instance d’ASEv1 comprend deux front-ends et deux Workers. Avec ASEv1, vous devez gérer les processus de travail et frontaux hello. Ils ne sont pas ajoutés automatiquement lors de la création de vos plans App Service. frontaux Hello agisse en tant que points de terminaison HTTP/HTTPS hello et envoyer le trafic toohello travailleurs. les travailleurs Hello sont des rôles hello hébergent vos applications. Vous pouvez ajuster la quantité de hello des serveurs frontaux et des travailleurs après avoir créé votre ASE. 
 
-Pour plus d’informations sur ASEv1, consultez [Présentation de l’environnement App Service v1][ASEv1Intro]. Pour plus d’informations sur la mise à l’échelle, la gestion et la surveillance d’ASEv1, consultez [Configuration d’un environnement App Service][ConfigureASEv1].
+toolearn en savoir plus sur ASEv1, consultez [Introduction toohello environnement App Service v1][ASEv1Intro]. Pour plus d’informations sur la mise à l’échelle, gérer et surveiller ASEv1, consultez [comment tooconfigure un environnement App Service][ConfigureASEv1].
 
 <!--Image references-->
 [1]: ./media/how_to_create_an_external_app_service_environment/createexternalase-create.png

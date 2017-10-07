@@ -1,6 +1,6 @@
 ---
-title: "Résolution des problèmes de ralentissement des performances de sauvegarde des fichiers et des dossiers dans Sauvegarde Azure | Microsoft Docs"
-description: "Apporte des conseils visant à vous aider à diagnostiquer la cause des problèmes de performances d’Azure Backup"
+title: "sauvegarde lente d’aaaTroubleshoot des fichiers et dossiers dans la sauvegarde Azure | Documents Microsoft"
+description: "Fournit des toohelp des conseils de dépannage vous diagnostiquez cause hello de problèmes de performances de sauvegarde Azure"
 services: backup
 documentationcenter: 
 author: genlin
@@ -14,76 +14,76 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/13/2017
 ms.author: genli
-ms.openlocfilehash: 1688846957df3fbf0df747a6cd2a94b481d851b4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 21d79bbd03c2706bc43fcc7c14020cffd6b919c7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshoot-slow-backup-of-files-and-folders-in-azure-backup"></a>Résolution des problèmes de sauvegarde lente de fichiers et de dossiers dans Azure Backup
-Cet article apporte des conseils visant à vous aider à diagnostiquer la cause du ralentissement des performances de sauvegarde des fichiers et des dossiers avec Azure Backup. Lorsque vous utilisez l’agent Azure Backup pour sauvegarder des fichiers, le processus de sauvegarde peut prendre plus longtemps que prévu. Ce ralentissement peut être dû à une ou plusieurs des raisons suivantes :
+Cet article fournit des conseils de dépannage toohelp vous diagnostiquez cause hello de ralentissement des performances de sauvegarde des fichiers et des dossiers lorsque vous utilisez Azure Backup. Lorsque vous utilisez hello Azure Backup agent tooback des fichiers, les processus de sauvegarde hello peut prendre plus longtemps que prévu. Ce délai peut résulter d’une ou plusieurs des éléments suivants de hello :
 
-* [Des goulots d’étranglement de performances ralentissent l’ordinateur en cours de sauvegarde.](#cause1)
-* [Un autre processus ou logiciel antivirus interfère avec le processus Azure Backup.](#cause2)
-* [L’agent de sauvegarde est en cours d’exécution sur une machine virtuelle Azure](#cause3)  
+* [Sur l’ordinateur de hello est en cours de sauvegarde sont les goulots d’étranglement de performances.](#cause1)
+* [Un autre processus ou un logiciel antivirus interfère avec hello les processus de sauvegarde Azure.](#cause2)
+* [l’agent de sauvegarde Hello est en cours d’exécution sur une machine virtuelle Azure (VM).](#cause3)  
 * [Vous sauvegardez un grand nombre de fichiers (plusieurs millions).](#cause4)
 
-Avant de commencer à résoudre le problème, nous vous recommandons de télécharger et d’installer le [dernier agent Azure Backup](http://aka.ms/azurebackup_agent). Nous apportons des mises à jour fréquentes à l’agent de sauvegarde afin de résoudre différents problèmes, d’ajouter des fonctionnalités et d’améliorer les performances.
+Avant de commencer la résolution des problèmes, nous vous recommandons de télécharger et installer hello [dernier agent Azure Backup](http://aka.ms/azurebackup_agent). Nous apporter des mises à jour fréquentes toohello sauvegarde agent toofix différents problèmes, ajouter des fonctionnalités et améliorer les performances.
 
-Par ailleurs, nous vous recommandons vivement de passer en revue le [Forum aux questions sur le service Azure Backup](backup-azure-backup-faq.md) pour vous assurer que vous ne rencontrez pas des problèmes de configuration courants.
+Nous vous recommandons également fortement de consulter hello [FAQ de service Azure Backup](backup-azure-backup-faq.md) toomake que vous n’êtes pas confronté un des problèmes courants de configuration hello.
 
 [!INCLUDE [support-disclaimer](../../includes/support-disclaimer.md)]
 
 <a id="cause1"></a>
 
-## <a name="cause-performance-bottlenecks-on-the-computer"></a>Cause : goulots d’étranglement de performances sur l’ordinateur
-La présence de goulots d’étranglement sur l’ordinateur en cours de sauvegarde peut engendrer des retards. Par exemple, la capacité de l’ordinateur à lire le disque ou à écrire dessus ou encore la disponibilité de la bande passante pour l’envoi de données peuvent créer des goulots d’étranglement.
+## <a name="cause-performance-bottlenecks-on-hello-computer"></a>Cause : Les goulots d’étranglement sur les ordinateur hello
+Les goulots d’étranglement sur ordinateur hello qui est en cours de sauvegarde peuvent entraîner des délais. Par exemple, hello toodisk de tooread ou d’écriture de capacité de l’ordinateur, ou données toosend de la bande passante disponible sur le réseau de hello, peut provoquer des goulots d’étranglement.
 
-Windows fournit un outil intégré appelé [Analyseur de performances](https://technet.microsoft.com/magazine/2008.08.pulse.aspx) (Performance Monitor ou Perfmon) pour détecter les goulots d’étranglement.
+Windows fournit un outil intégré appelé [l’Analyseur de performances](https://technet.microsoft.com/magazine/2008.08.pulse.aspx) (Perfmon) toodetect ces goulots d’étranglement.
 
 Voici quelques compteurs de performances et plages qui peuvent être utiles pour diagnostiquer les goulots d’étranglement et permettre des sauvegardes optimales.
 
 | Compteur | État |
 | --- | --- |
-| Disque logique (disque physique)--% temps d’inactivité |• 100 % à 50 % d’inactivité = sain</br>• 49 % à 20 % d’inactivité = avertissement ou analyse</br>• 19 % à 0 % d’inactivité = critique ou hors spécifications |
-| Disque logique (disque physique)--% moy. disque s/lecture ou disque s/écriture |• 0,001 ms à 0,015 ms = sain</br>• 0,015 ms à 0,025 ms = avertissement ou analyse</br>• 0,026 ms ou plus = critique ou hors spécifications |
+| Disque logique (disque physique)--% temps d’inactivité |• too50 inactif de 100 % %Idle = sain</br>• too20 inactif de 49 % %Idle = avertissement ou l’analyse</br>• too0 inactif de 19 % %Idle = critique ou des spécifications |
+| Disque logique (disque physique)--% moy. disque s/lecture ou disque s/écriture |• 0,001 ms de too0.015 ms = sain</br>• 0,015 ms de too0.025 ms = avertissement ou l’analyse</br>• 0,026 ms ou plus = critique ou hors spécifications |
 | Disque logique (disque physique)--Taille de file d’attente du disque actuelle (pour toutes les instances) |80 demandes pendant plus de 6 minutes |
-| Mémoire--Octets de réserve non paginée |• Moins de 60 % de la réserve utilisée = sain<br>• 61 à 80 % du pool consommé = avertissement ou analyse</br>• Plus de 80 % de la réserve utilisée = critique ou hors spécifications |
-| Mémoire--Octets de réserve paginée |• Moins de 60 % de la réserve utilisée = sain</br>• 61 à 80 % du pool consommé = avertissement ou analyse</br>• Plus de 80 % de la réserve utilisée = critique ou hors spécifications |
+| Mémoire--Octets de réserve non paginée |• Moins de 60 % de la réserve utilisée = sain<br>• 61 % too80 % du pool consommée = avertissement ou l’analyse</br>• Plus de 80 % de la réserve utilisée = critique ou hors spécifications |
+| Mémoire--Octets de réserve paginée |• Moins de 60 % de la réserve utilisée = sain</br>• 61 % too80 % du pool consommée = avertissement ou l’analyse</br>• Plus de 80 % de la réserve utilisée = critique ou hors spécifications |
 | Mémoire--Mégaoctets disponibles |• 50 % de mémoire disponible ou plus = sain</br>• 25 % de mémoire disponible = analyse</br>• 10 % de mémoire disponible = avertissement</br>• Moins de 100 Mo ou 5 % de mémoire disponible = critique ou hors spécifications |
-| Processeur--\%temps processeur (toutes les instances) |• Moins de 60 % utilisés = sain</br>• 61 à 90 % utilisés = analyse ou attention</br>• 91 % à 100 % utilisés = critique |
+| Processeur--\%temps processeur (toutes les instances) |• Moins de 60 % utilisés = sain</br>• 61 % too90 % consommée = analyse ou une attention</br>• 91 % too100 % consommée = critique |
 
 > [!NOTE]
-> Si vous déterminez que l’infrastructure est la cause du problème, nous vous recommandons de défragmenter les disques régulièrement pour de meilleures performances.
+> Si vous déterminez que l’infrastructure hello est responsable de hello, nous recommandons que vous défragmentez disques hello régulièrement pour de meilleures performances.
 >
 >
 
 <a id="cause2"></a>
 
 ## <a name="cause-another-process-or-antivirus-software-interfering-with-azure-backup"></a>Cause : un autre processus ou logiciel antivirus interfère avec Azure Backup
-Nous avons vu plusieurs exemples dans lesquels d’autres processus au sein du système Windows ont dégradé les performances du processus de l’agent Azure Backup. Par exemple, si vous utilisez l’agent Azure Backup et un autre programme pour sauvegarder des données ou si un logiciel antivirus est en cours d’exécution et qu’il verrouille les fichiers à sauvegarder, plusieurs verrouillages sur les fichiers peuvent provoquer des conflits. Dans ce cas, la sauvegarde risque d’échouer ou l’opération peut prendre plus longtemps que prévu.
+Nous avons vu plusieurs instances où autres processus Bonjour système Windows ont dégrader les performances de hello processus de l’agent Azure Backup. Par exemple, si vous utilisez hello Azure Backup agent et un autre programme tooback, les données, ou si un logiciel antivirus est en cours d’exécution et a un verrou sur les fichiers toobe sauvegardée, hello plusieurs verrous sur les fichiers peuvent entraîner des conflits. Dans ce cas, hello peut échouer ou tâche de hello peut prendre plus longtemps que prévu.
 
-La meilleure recommandation dans ce scénario consiste à désactiver l’autre programme de sauvegarde pour déterminer si le temps de sauvegarde de l’agent Azure Backup évolue. En règle générale, s’assurer que plusieurs opérations de sauvegarde n’interfèrent pas l’une sur l’autre est suffisant pour empêcher les conflits.
+Hello recommandation la mieux adaptée dans ce scénario est tooturn off hello autres toosee du programme de sauvegarde si l’heure de la sauvegarde hello pour l’agent de sauvegarde Azure hello change. En règle générale, s’assurer que plusieurs opérations de sauvegarde ne sont pas exécutés simultanément hello est suffisamment tooprevent de mutuel.
 
-Pour les programmes antivirus, nous vous recommandons d’exclure les fichiers et emplacements suivants :
+Pour les programmes antivirus, nous vous recommandons d’exclure les suivant hello fichiers et emplacements :
 
 * C:\Program Files\Microsoft Azure Recovery Services Agent\bin\cbengine.exe as a process
 * C:\Program Files\Microsoft Azure Recovery Services Agent\ folders
-* Nouvel emplacement (si l’emplacement standard n’est pas utilisé)
+* Emplacement de travail (si vous n’utilisez pas les emplacement standard hello)
 
 <a id="cause3"></a>
 
 ## <a name="cause-backup-agent-running-on-an-azure-virtual-machine"></a>Cause : l’agent de sauvegarde est en cours d’exécution sur une machine virtuelle Azure
-Si vous exécutez l’agent de sauvegarde sur une machine virtuelle, les performances seront plus lentes par rapport à une exécution sur un ordinateur physique. Cela s’explique par les limitations liées aux opérations d’E/S par seconde.  Toutefois, vous pouvez optimiser les performances en basculant les lecteurs de données sauvegardées vers un stockage premium Azure. Nous travaillons à la résolution de ce problème. Le correctif sera disponible dans une version ultérieure.
+Si vous exécutez l’agent de sauvegarde hello sur une machine virtuelle, les performances seront plus lente que lorsque vous l’exécutez sur un ordinateur physique. Ce comportement est attendu en raison de limitations de tooIOPS.  Toutefois, vous pouvez optimiser les performances de hello en basculant les lecteurs de données hello tooAzure stockage Premium sont en cours de sauvegarde. Nous travaillons sur la résolution de ce problème, et correction de hello sera disponible dans une version ultérieure.
 
 <a id="cause4"></a>
 
 ## <a name="cause-backing-up-a-large-number-millions-of-files"></a>Cause : vous sauvegardez un grand nombre de fichiers (plusieurs millions)
-Le déplacement d’un volume important de données prend plus de temps que le déplacement d’un volume plus restreint de données. Dans certains cas, la durée de la sauvegarde dépend non seulement de la taille des données, mais également du nombre de fichiers ou de dossiers. Cela se vérifie plus particulièrement lorsque des millions de petits fichiers (de quelques octets à quelques kilo-octets) sont sauvegardés.
+Le déplacement d’un volume important de données prend plus de temps que le déplacement d’un volume plus restreint de données. Dans certains cas, l’heure de la sauvegarde est lié toonot hello uniquement la taille des données de hello, mais également nombre hello des fichiers ou dossiers. Cela est particulièrement vrai lorsque des millions de petits fichiers (quelques octets tooa quelques kilo-octets) sont en cours de sauvegarde.
 
-Ce comportement se produit parce qu’Azure catalogue vos fichiers pendant que vous sauvegardez les données et les déplacez dans Azure. Dans certains cas rares, l’opération de catalogage peut prendre plus longtemps que prévu.
+Ce comportement se produit parce que pendant que vous êtes sauvegarde des données de hello et en la déplaçant tooAzure, Azure est catalogage simultanément vos fichiers. Dans certains cas rares, l’opération de catalogue hello peut prendre plus longtemps que prévu.
 
-Les indicateurs suivants peuvent vous aider à identifier le goulot d’étranglement et appliquer en conséquence les étapes suivantes :
+Hello suivant indicateurs peut vous aider à comprendre le goulot d’étranglement hello et de travail en conséquence sur les étapes suivantes de hello :
 
-* **L’interface utilisateur affiche la progression du transfert de données**. Les données sont toujours en cours de transfert. La bande passante réseau ou la taille des données engendrent peut-être un ralentissement.
-* **L’interface utilisateur n’affiche pas la progression du transfert de données**. Ouvrez les journaux sous C:\Microsoft Azure Recovery Services Agent\Temp, puis recherchez l’entrée FileProvider::EndData dans les journaux. Cette entrée signifie que le transfert de données est terminé et que l’opération de catalogage est en cours. N’annulez pas les tâches de sauvegarde. Attendez un peu plus longtemps que l’opération de catalogage soit terminée. Si le problème persiste, contactez le [support Azure](https://portal.azure.com/#create/Microsoft.Support).
+* **L’interface utilisateur affiche la progression hello pour transférer des données**. Hello données sont toujours transférées. la bande passante du réseau Hello ou taille hello des données pourrait provoquer des délais.
+* **L’interface utilisateur ne s’affichent pas progression hello pour transférer des données**. Ouvrez hello journaux situé C:\Microsoft Azure Recovery Services Agent\Temp, puis recherchent à hello entrée FileProvider::EndData dans les journaux hello. Cette entrée signifie que hello le transfert de données terminé et opération de catalogue hello se produit. Ne pas annuler les travaux de sauvegarde hello. Au lieu de cela, attendez un peu plus longtemps hello catalogue opération toofinish. Si hello problème persiste, contactez [prise en charge Azure](https://portal.azure.com/#create/Microsoft.Support).

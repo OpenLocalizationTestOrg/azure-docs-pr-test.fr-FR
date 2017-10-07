@@ -1,6 +1,6 @@
 ---
-title: "Application Android Azure Active Directory v2.0 | Microsoft Docs"
-description: "Génération d’une application Android qui connecte les utilisateurs à l’aide de leur compte Microsoft personnel et de leurs comptes professionnel ou scolaire et appelle l’API Graph à l’aide de bibliothèques tierces."
+title: "application Android d’aaaAzure Active Directory v2.0 | Documents Microsoft"
+description: "Comment une application Android qui se connecte à la fois personnelles compte Microsoft et comptes d’établissement scolaire et passe les appels aux utilisateurs de toobuild hello API Graph en utilisant des bibliothèques tierces."
 services: active-directory
 documentationcenter: 
 author: danieldobalian
@@ -15,58 +15,58 @@ ms.topic: article
 ms.date: 05/07/2017
 ms.author: dadobali
 ms.custom: aaddev
-ms.openlocfilehash: c0a5a818c61f7af7ff04bf890b54e8364f3b21b1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1dd40bd3bcea28c629abce09abaed66b38774162
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-sign-in-to-an-android-app-using-a-third-party-library-with-graph-api-using-the-v20-endpoint"></a>Ajouter l’authentification dans une application Android à l’aide d’une bibliothèque tierce avec l’API Graph à l’aide du point de terminaison v2.0
-La plateforme d’identité Microsoft utilise des normes ouvertes telles que OAuth2 et OpenID Connect. Les développeurs peuvent utiliser n’importe quelle bibliothèque qu’ils souhaitent intégrer à nos services. Pour aider les développeurs à utiliser notre plateforme avec d’autres bibliothèques, nous avons rédigé quelques procédures pas à pas comme celle-ci pour présenter la configuration des bibliothèques tierces pour se connecter à la plateforme d’identité de Microsoft. La plupart des bibliothèques qui implémentent [la spécification RFC6749 OAuth2](https://tools.ietf.org/html/rfc6749) peuvent se connecter à la plateforme Microsoft Identity.
+# <a name="add-sign-in-tooan-android-app-using-a-third-party-library-with-graph-api-using-hello-v20-endpoint"></a>Ajouter une application Android de tooan connectez-vous à l’aide d’une bibliothèque tierce avec l’API Graph à l’aide du point de terminaison hello v2.0
+plateforme d’identité Microsoft Hello utilise des normes ouvertes telles que OAuth2 et OpenID Connect. Les développeurs peuvent utiliser n’importe quelle bibliothèque qu’ils souhaitent toointegrate avec nos services. les développeurs de toohelp utilisent notre plateforme avec d’autres bibliothèques, nous avons comment écrit quelques procédures pas à pas, comme cette une toodemonstrate plateforme d’identité tooconnect toohello Microsoft tooconfigure des bibliothèques tierces. La plupart des bibliothèques qui implémentent [les spécifications hello RFC6749 OAuth2](https://tools.ietf.org/html/rfc6749) peut se connecter de plateforme d’identité Microsoft toohello.
 
-Avec l’application créée par cette procédure pas à pas, les utilisateurs peuvent se connecter à leur organisation, puis rechercher eux-mêmes dans leur entreprise à l’aide de l’API Graph.
+Avec l’application hello qui crée de cette procédure pas à pas, les utilisateurs peuvent se connecter tootheir organisation et puis rechercher eux-mêmes dans leur organisation à l’aide de l’API Graph de hello.
 
-Si vous découvrez OAuth2 ou OpenID Connect, cet exemple de configuration n’est peut-être pas très parlant pour vous. Nous vous recommandons de lire [Protocoles 2.0 - Flux du Code d’autorisation OAuth 2.0](active-directory-v2-protocols-oauth-code.md) pour plus d’informations.
-
-> [!NOTE]
-> Certaines fonctionnalités de notre plateforme qui ont une expression dans les normes OAuth2 ou OpenID Connect, comme la gestion de la stratégie d’accès conditionnel et d’Intune, requièrent l’utilisation de nos bibliothèques d’identité Microsoft Azure open source.
-> 
-> 
-
-Le point de terminaison v2.0 ne prend pas en charge l’intégralité des scénarios et fonctionnalités d’Azure Active Directory.
+Si vous êtes de nouveau tooOAuth2 ou OpenID Connect, une grande partie de cet exemple de configuration peut ne pas effectuer tooyou de sens. Nous vous recommandons de lire [Protocoles 2.0 - Flux du Code d’autorisation OAuth 2.0](active-directory-v2-protocols-oauth-code.md) pour plus d’informations.
 
 > [!NOTE]
-> Pour déterminer si vous devez utiliser le point de terminaison v2.0, consultez les [limites de v2.0](active-directory-v2-limitations.md).
+> Certaines fonctionnalités de notre plateforme qui n’ont pas une expression dans hello OAuth2 ou OpenID Connect des normes, telles que l’accès conditionnel et de gestion des stratégies Intune, requièrent vous toouse open source bibliothèques d’identité Microsoft Azure.
 > 
 > 
 
-## <a name="download-the-code-from-github"></a>Téléchargez le code à partir de GitHub
-Le code associé à ce didacticiel est stocké [sur GitHub](https://github.com/Azure-Samples/active-directory-android-native-oidcandroidlib-v2).  Pour suivre la procédure, vous pouvez [télécharger la structure de l’application au format .zip](https://github.com/Azure-Samples/active-directory-android-native-oidcandroidlib-v2/archive/skeleton.zip) ou la cloner :
+point de terminaison Hello v2.0 ne prend pas en charge toutes les fonctionnalités et scénarios d’Azure Active Directory.
+
+> [!NOTE]
+> toodetermine si vous devez utiliser le point de terminaison hello v2.0, en savoir plus sur [v2.0 limitations](active-directory-v2-limitations.md).
+> 
+> 
+
+## <a name="download-hello-code-from-github"></a>Télécharger le code de hello à partir de GitHub
+code Hello pour ce didacticiel est maintenue [sur GitHub](https://github.com/Azure-Samples/active-directory-android-native-oidcandroidlib-v2).  toofollow le long, vous pouvez [structure de l’application hello en tant qu’un fichier ZIP de téléchargement](https://github.com/Azure-Samples/active-directory-android-native-oidcandroidlib-v2/archive/skeleton.zip) ou un clone hello squelette :
 
 ```
 git clone --branch skeleton git@github.com:Azure-Samples/active-directory-android-native-oidcandroidlib-v2.git
 ```
 
-Vous pouvez aussi simplement télécharger l’exemple et commencer immédiatement :
+Vous pouvez également simplement télécharger l’exemple hello et démarrer immédiatement :
 
 ```
 git@github.com:Azure-Samples/active-directory-android-native-oidcandroidlib-v2.git
 ```
 
 ## <a name="register-an-app"></a>Inscription d’une application
-Créez une nouvelle application dans le [Portail d’inscription des applications](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList), ou suivez les étapes détaillées dans [Inscription d’une application avec le point de terminaison v2.0](active-directory-v2-app-registration.md).  Veillez à respecter les points suivants :
+Créer une application à hello [portail de l’enregistrement d’Application](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList), ou suivez hello étapes détaillées à [comment tooregister une application avec un point de terminaison hello v2.0](active-directory-v2-app-registration.md).  Veillez à respecter les points suivants :
 
-* Copiez **l’ID d’application** affecté à votre application, vous en aurez besoin rapidement.
-* ajouter la plateforme **Mobile** pour votre application ;
+* Hello de copie **Id d’Application** qui est attribué tooyour application, car vous en aurez besoin plus rapidement.
+* Ajouter hello **Mobile** plate-forme pour votre application.
 
-> Remarque : Le portail d’inscription des applications fournit une valeur **URI de redirection** . Toutefois, dans cet exemple, vous devez utiliser la valeur par défaut `https://login.microsoftonline.com/common/oauth2/nativeclient`.
+> Remarque : portail de l’enregistrement d’Application hello fournit un **URI de redirection** valeur. Toutefois, dans cet exemple, vous devez utiliser valeur par défaut hello `https://login.microsoftonline.com/common/oauth2/nativeclient`.
 > 
 > 
 
-## <a name="download-the-nxoauth2-third-party-library-and-create-a-workspace"></a>Téléchargez la bibliothèque tierce NXOAuth2 et créez un espace de travail
-Pour cette procédure pas à pas, vous allez utiliser OIDCAndroidLib de GitHub, une bibliothèque OAuth2 basée sur le code OpenID Connect de Google. Elle implémente le profil de l’application native et prend en charge le point de terminaison de l’autorisation de l’utilisateur final. Voici tout ce dont vous aurez besoin pour l’intégration avec la plateforme d’identité Microsoft.
+## <a name="download-hello-nxoauth2-third-party-library-and-create-a-workspace"></a>Télécharger des bibliothèques tierces de NXOAuth2 hello et créer un espace de travail
+Pour cette procédure pas à pas, vous allez utiliser hello OIDCAndroidLib à partir de GitHub, qui est une bibliothèque OAuth2 selon hello code d’OpenID Connect de Google. Il implémente le profil d’application native hello et prend en charge le point de terminaison hello d’autorisation d’utilisateur de hello. Il s’agit de tous les éléments hello que vous devez toointegrate avec la plateforme d’identité Microsoft hello.
 
-Clonez le référentiel OIDCAndroidLib sur votre ordinateur.
+Cloner l’ordinateur de tooyour hello OIDCAndroidLib référentiel.
 
 ```
 git@github.com:kalemontes/OIDCAndroidLib.git
@@ -75,69 +75,69 @@ git@github.com:kalemontes/OIDCAndroidLib.git
 ![androidStudio](../media/active-directory-android-native-oidcandroidlib-v2/emotes-url.png)
 
 ## <a name="set-up-your-android-studio-environment"></a>Configurer votre environnement Android Studio
-1. Créez un nouveau projet Android Studio et acceptez les valeurs par défaut dans l’assistant.
+1. Créer un projet Android Studio et acceptez les valeurs par défaut hello dans l’Assistant de hello.
    
     ![Créer un nouveau projet dans Android Studio](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample1.PNG)
    
     ![Cibler des appareils Android](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample2.PNG)
    
-    ![Ajouter une activité à un mobile](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample3.PNG)
-2. Pour configurer les modules de votre projet, déplacez le référentiel cloné à l’emplacement du projet. Vous pouvez également créer le projet puis le cloner directement dans l’emplacement du projet.
+    ![Ajouter une activité toomobile](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample3.PNG)
+2. tooset des modules de votre projet, déplacez hello cloné dépôt toohello l’emplacement du projet. Vous pouvez également créer des projets de hello et puis clonez-le directement toohello l’emplacement du projet.
    
     ![Modules de projet](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample4_1.PNG)
-3. Ouvrez les paramètres de modules du projet à l’aide du menu contextuel ou en utilisant le raccourci Ctrl + Alt + Maj + S.
+3. Ouvrez les paramètres de modules de projet hello à l’aide du menu contextuel de hello ou à l’aide du raccourci Ctrl + Alt + Maj + S de hello.
    
     ![Paramètres de modules de projet](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample4.PNG)
-4. Supprimez le module d’application par défaut pour conserver uniquement les paramètres de conteneur du projet.
+4. Supprimer le module d’application hello par défaut parce que vous souhaitez uniquement les paramètres de conteneur de projet hello.
    
-    ![Le module d’application par défaut](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample5.PNG)
-5. Importez des modules à partir du référentiel cloné dans le projet actuel.
+    ![module d’application Hello par défaut](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample5.PNG)
+5. Importer des modules à partir de projet actuel du toohello hello référentiel cloné.
    
     ![Importer un projet gradle](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample6.PNG) ![créer une nouvelle page de module](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample7.PNG)
-6. Répétez ces étapes pour le module `oidlib-sample` .
-7. Vérifiez les dépendances oidclib sur le module `oidlib-sample` .
+6. Répétez ces étapes pour hello `oidlib-sample` module.
+7. Vérification des dépendances d’oidclib hello sur hello `oidlib-sample` module.
    
-    ![Dépendances oidclib sur le module oidlib-sample](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample8.PNG)
+    ![oidclib des dépendances sur le module d’oidlib-exemple hello](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample8.PNG)
 8. Cliquez sur **OK** et attendez l’activité de synchronisation Gradle.
    
     Votre fichier settings.gradle doit ressembler à ceci :
    
     ![Capture d’écran de settings.gradle](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample8_1.PNG)
-9. Générez l’exemple d’application pour vérifier qu’il s’exécute correctement.
+9. Build hello exemple application toomake que cet exemple hello fonctionne correctement.
    
-    Vous ne pourrez pas encore l’utiliser avec Azure Active Directory. Vous devez d’abord configurer certains points de terminaison. Cela permet de vérifier l’absence de problèmes au niveau d’Android Studio avant de commencer à personnaliser l’exemple d’application.
-10. Générez et exécutez `oidlib-sample` comme cible dans Android Studio.
+    Vous ne pourra plus être en mesure de toouse cela avec Azure Active Directory encore. Nous devrons tooconfigure certains points de terminaison tout d’abord. Il s’agit de tooensure vous n’avez pas un problème dans Android Studio avant de commencer la personnalisation de hello, exemple d’application.
+10. Générez et exécutez `oidlib-sample` comme cible de hello dans Android Studio.
     
     ![Progression de la création d’oidlib-sample](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample9.png)
-11. Supprimez le répertoire `app ` conservé après la suppression du module du projet car Android Studio ne le supprime pas par sécurité.
+11. Supprimer hello `app ` active a été laissée lorsque vous retiré module de hello hello projet car Android Studio ne le supprime pas de sécurité.
     
-    ![Structure de fichier qui contient le répertoire d’application](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample12.PNG)
-12. Ouvrez le menu **Modifier les configurations** pour supprimer la configuration d’exécution également conservée lors de la suppression du module du projet.
+    ![Structure de fichier qui inclut le répertoire de l’application hello](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample12.PNG)
+12. Ouvrez hello **modifier les Configurations** menu tooremove hello exécuter configuration qui a été laissée également lorsque vous avez supprimé le module de hello à partir du projet de hello.
     
     ![Menu Modifier les configurations](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample10.PNG)
     ![Exécuter la configuration de l’application](../media/active-directory-android-native-oidcandroidlib-v2/SetUpSample11.PNG)
 
-## <a name="configure-the-endpoints-of-the-sample"></a>Configurer les points de terminaison de l’exemple
-Maintenant que `oidlib-sample` s’exécute correctement, vous allez modifier quelques points de terminaison pour qu’il fonctionne avec Azure Active Directory.
+## <a name="configure-hello-endpoints-of-hello-sample"></a>Configurer des points de terminaison hello de l’exemple hello
+Maintenant que vous avez hello `oidlib-sample` en cours d’exécution avec succès, permet de modifier certains points de terminaison tooget ce travail avec Azure Active Directory.
 
-### <a name="configure-your-client-by-editing-the-oidcclientconfxml-file"></a>Configurez votre client en modifiant le fichier oidc_clientconf.xml
-1. Dans la mesure où nous utilisons seulement les flux OAuth2 pour obtenir un jeton et appeler l’API Graph, nous allons définir le client pour OAuth2 seulement. Nous verrons OIDC dans un autre exemple.
+### <a name="configure-your-client-by-editing-hello-oidcclientconfxml-file"></a>Configurer votre client en modifiant le fichier de oidc_clientconf.xml hello
+1. Étant donné que vous utilisez OAuth2 flux tooget uniquement un jeton et appelez hello API Graph, définissez hello client toodo OAuth2 uniquement. Nous verrons OIDC dans un autre exemple.
    
     ```xml
         <bool name="oidc_oauth2only">true</bool>
     ```
-2. Configurez l’ID client que vous avez reçu à partir du portail d’inscription.
+2. Configurez votre ID client que vous avez reçu à partir du portail de l’enregistrement hello.
    
     ```xml
         <string name="oidc_clientId">86172f9d-a1ae-4348-aafa-7b3e5d1b36f5</string>
         <string name="oidc_clientSecret"></string>
     ```
-3. Configurez votre URI de redirection avec celle ci-dessous.
+3. Configurez votre URI de redirection par hello un ci-dessous.
    
     ```xml
         <string name="oidc_redirectUrl">https://login.microsoftonline.com/common/oauth2/nativeclient</string>
     ```
-4. Configurez les étendues dont vous avez besoin pour accéder à l’API Graph.
+4. Configurez vos étendues que vous avez besoin dans l’ordre tooaccess hello API Graph.
    
     ```xml
         <string-array name="oidc_scopes">
@@ -147,13 +147,13 @@ Maintenant que `oidlib-sample` s’exécute correctement, vous allez modifier qu
         </string-array>
     ```
 
-La valeur `User.Read` dans `oidc_scopes` vous permet de lire le profil de base de l’utilisateur connecté.
-Plus d’informations sur toutes les étendues disponibles, consultez [Étendues d’autorisation Microsoft Graph](https://graph.microsoft.io/docs/authorization/permission_scopes).
+Hello `User.Read` valeur `oidc_scopes` permet de vous tooread hello profil de base hello utilisateur connecté.
+Plus d’informations sur toutes les étendues disponibles hello à [étendues d’autorisation Microsoft Graph](https://graph.microsoft.io/docs/authorization/permission_scopes).
 
 Si vous souhaitez des explications sur `openid` ou `offline_access` en tant qu’étendues dans OpenID Connect, consultez [Protocoles 2.0 - Flux du Code d’autorisation OAuth 2.0](active-directory-v2-protocols-oauth-code.md).
 
-### <a name="configure-your-client-endpoints-by-editing-the-oidcendpointsxml-file"></a>Configurez vos points de terminaison clients en modifiant le fichier oidc_endpoints.xml
-* Ouvrez le fichier `oidc_endpoints.xml` et effectuez les modifications suivantes :
+### <a name="configure-your-client-endpoints-by-editing-hello-oidcendpointsxml-file"></a>Configurer vos points de terminaison client en modifiant le fichier de oidc_endpoints.xml hello
+* Ouvrez hello `oidc_endpoints.xml` et apportez hello modifications suivantes :
   
     ```xml
     <!-- Stores OpenID Connect provider endpoints. -->
@@ -168,12 +168,12 @@ Si vous souhaitez des explications sur `openid` ou `offline_access` en tant qu�
 Ces points de terminaison ne doivent jamais changer si vous utilisez OAuth2 comme protocole.
 
 > [!NOTE]
-> Les points de terminaison pour `userInfoEndpoint` et `revocationEndpoint` ne sont actuellement pas pris en charge par Azure Active Directory. Si vous laissez la valeur par défaut exemple.com, vous recevrez un rappel qu’ils ne sont pas disponibles dans l’exemple :-)
+> Hello des points de terminaison pour `userInfoEndpoint` et `revocationEndpoint` ne sont actuellement pas pris en charge par Azure Active Directory. Si vous laissez ces hello valeur par défaut exemple.com, rappel qu’ils ne sont pas disponibles dans l’exemple hello  :-)
 > 
 > 
 
 ## <a name="configure-a-graph-api-call"></a>Configurer un appel d’API Graph
-* Ouvrez le fichier `HomeActivity.java` et effectuez les modifications suivantes :
+* Ouvrez hello `HomeActivity.java` et apportez hello modifications suivantes :
   
     ```Java
        //TODO: set your protected resource url
@@ -182,10 +182,10 @@ Ces points de terminaison ne doivent jamais changer si vous utilisez OAuth2 comm
 
 Ici, un simple appel à l’API Graph renvoie nos informations.
 
-Ce sont toutes les modifications que vous devez faire. Exécutez l’application `oidlib-sample` , puis cliquez sur **Connexion**.
+Ce sont toutes les modifications de hello que vous avez besoin de toodo. Exécutez hello `oidlib-sample` application, puis cliquez sur **connectez-vous**.
 
-Une fois que vous avez été authentifié, sélectionnez le bouton **Request Protected Resource** (Demander une ressource protégée) pour tester votre appel à l’API Graph.
+Une fois que vous avez été authentifié avec succès, sélectionnez hello **demander la ressource protégée** bouton tootest votre toohello appel API Graph.
 
 ## <a name="get-security-updates-for-our-product"></a>Obtenir des mises à jour de sécurité pour notre produit
-Nous vous encourageons à activer les notifications d’incidents de sécurité en vous rendant sur [Security TechCenter](https://technet.microsoft.com/security/dd252948) et en vous abonnant aux alertes d’avis de sécurité.
+Nous vous encourageons tooget des notifications sur les incidents de sécurité en visitant hello [TechCenter sur la sécurité](https://technet.microsoft.com/security/dd252948) et l’abonnement d’alerte tooSecurity.
 

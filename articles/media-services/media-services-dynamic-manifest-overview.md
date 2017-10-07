@@ -1,6 +1,6 @@
 ---
-title: Filtres et manifestes dynamiques | Microsoft Docs
-description: "Cette rubrique décrit comment créer des filtres pour que votre client puisse les utiliser pour diffuser des sections spécifiques d’un flux. Media Services crée des manifestes dynamiques pour l’archivage de cette diffusion sélective."
+title: aaaFilters et des manifestes dynamiques | Documents Microsoft
+description: "Cette rubrique décrit comment toocreate filtre votre client peut utiliser les toostream des sections spécifiques d’un flux. Media Services crée les manifestes dynamique tooarchive cette diffusion sélective."
 services: media-services
 documentationcenter: 
 author: cenkdin
@@ -14,25 +14,25 @@ ms.devlang: ne
 ms.topic: article
 ms.date: 06/29/2017
 ms.author: cenkd;juliako
-ms.openlocfilehash: 4034fd0aa64627c107a43208dcca766f7f44d5d4
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 9527a011438c11da07a363d701ea736414412ecf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="filters-and-dynamic-manifests"></a>Filtres et manifestes dynamiques
-À partir de la version 2.11, Media Services vous permet de définir des filtres pour vos éléments multimédias. Ces filtres sont des règles côté serveur qui permettent à vos clients de choisir d'effectuer des opérations comme les suivantes : lecture d'une section d'une vidéo uniquement (au lieu de la vidéo entière), spécification d'un seul sous-ensemble de rendus audio et vidéo pouvant être gérés par l'appareil de votre client (au lieu de tous les rendus associés à l'élément multimédia). Ce filtrage de vos ressources est obtenu via des **manifestes dynamiques**créés à la demande de votre client pour diffuser une vidéo selon des filtres spécifiés.
+À compter de version 2.11, Media Services vous permet toodefine des filtres pour vos ressources. Ces filtres sont des règles côté serveur qui permettent à vos clients toochoose toodo opérations : lecture uniquement une section d’une vidéo (au lieu de hello vidéo complètes), ou spécifiez uniquement un sous-ensemble de formats audio et vidéo que les appareils de votre client peuvent traiter () au lieu de tous les formats de hello qui sont associés les actifs hello). Ce filtrage de vos ressources est archivé via **manifeste dynamique**s qui sont créées lors de toostream de demande de votre client une vidéo en fonction de filtres spécifiées.
 
-Cette rubrique décrit les scénarios courants dans lesquels l’utilisation de filtres s’avère très utile pour vos clients et établit des liens vers d’autres rubriques qui montrent comment créer par programme de tels filtres (actuellement, vous pouvez créer des filtres avec les API REST uniquement).
+Cette rubrique traite des scénarios courants dans lesquels l’utilisation de filtres serait tootopics tooyour très avantageux clients et des liens qui montrent comment toocreate filtres par programmation (actuellement, vous pouvez créer des filtres avec l’API REST uniquement).
 
 ## <a name="overview"></a>Vue d'ensemble
-Quand vous distribuez votre contenu aux clients (diffusion en continu d'événements en direct ou vidéo à la demande), votre objectif est de distribuer une vidéo de haute qualité à divers appareils dans des conditions de réseau différentes. Pour atteindre cet objectif, procédez comme suit :
+Lors de la remise de votre contenu toocustomers (diffusion en continu les événements en direct ou vidéo à la demande) votre objectif est toodeliver une unité de toovarious vidéo haute qualité dans des conditions réseau différents. tooachieve cet objectif hello suivant :
 
-* encodez votre flux dans un flux vidéo à débit binaire multiple ([débit binaire adaptatif](http://en.wikipedia.org/wiki/Adaptive_bitrate_streaming)) (les conditions de qualité et de réseau sont ainsi prises en charge) ; 
-* utilisez l' [empaquetage dynamique](media-services-dynamic-packaging-overview.md) pour empaqueter de nouveau votre flux dans différents protocoles dynamiquement (la diffusion en continu sur différents appareils est ainsi prise en charge). Media Services prend en charge la distribution des technologies de streaming à débit adaptatif suivantes : HTTP Live Streaming (HLS), Smooth Streaming et MPEG DASH. 
+* encoder votre flux toomulti à plusieurs débits ([à débit adaptatif](http://en.wikipedia.org/wiki/Adaptive_bitrate_streaming)) des flux vidéo (cela s’occupe des conditions réseau et de qualité) et 
+* utiliser les Services de support [empaquetage dynamique](media-services-dynamic-packaging-overview.md) toodynamically package nouveau votre flux de données dans les différents protocoles (cela s’occupe de la diffusion en continu sur différents appareils). Media Services prend en charge la remise de hello suivant des technologies de diffusion en continu de fichiers à débit adaptatif : HTTP Live Streaming (HLS), la diffusion en continu lisse et MPEG DASH. 
 
 ### <a name="manifest-files"></a>Fichiers manifeste
-Quand vous encodez un élément multimédia pour une diffusion à débit binaire adaptatif, un fichier **manifeste** (ou sélection) est créé (il s'agit d'un fichier texte ou XML). Le fichier **manifeste** inclut des métadonnées de diffusion en continu telles que les suivantes : type de piste (audio, vidéo ou texte), nom de piste, heure de début et de fin, débit binaire (qualités), langues de piste, fenêtre de présentation (fenêtre glissante de durée fixe), codec vidéo (FourCC). Il indique également au lecteur de récupérer le fragment suivant en fournissant des informations sur les fragments vidéo pouvant être lus suivants disponibles et leur emplacement. Les fragments (ou segments) correspondent aux « blocs » réels d'un contenu vidéo.
+Lorsque vous encodez un élément multimédia à débit adaptatif diffusion en continu, un **manifeste** (sélection) fichier est créé (fichier de hello est basée sur XML ou texte). Hello **manifeste** fichier inclut la diffusion en continu des métadonnées telles que : effectuer le suivi de type (audio, vidéo ou du texte), d’effectuer le suivi de nom, heure de début et de fin, la vitesse de transmission (qualités), langues de suivi, fenêtre de présentation (une fenêtre glissante de durée fixe), vidéo codec (FourCC). Il indique également le fragment suivant de hello lecteur tooretrieve hello en fournissant des informations sur hello suivant lisible fragments vidéo disponibles et leur emplacement. Fragments (ou segments) sont hello réel « blocs » d’un contenu vidéo.
 
 Voici un exemple de fichier manifeste : 
 
@@ -67,14 +67,14 @@ Voici un exemple de fichier manifeste :
     </SmoothStreamingMedia>
 
 ### <a name="dynamic-manifests"></a>Manifestes dynamiques
-Il existe des [scénarios](media-services-dynamic-manifest-overview.md#scenarios) dans lesquels votre client a besoin de davantage de flexibilité que celle décrite dans le fichier manifeste de l'élément multimédia par défaut. Par exemple :
+Il n’y [scénarios](media-services-dynamic-manifest-overview.md#scenarios) lorsque votre client a besoin de davantage de flexibilité que ce qui est décrit dans le fichier manifeste de l’actif hello par défaut. Par exemple :
 
-* Particularité de l'appareil : distribuez uniquement les rendus spécifiés et/ou les pistes de langue spécifiées qui sont prises en charge par l'appareil utilisé pour lire le contenu (« filtrage de rendu »). 
-* Réduisez le manifeste pour afficher un sous-clip d'un événement en direct (« filtrage de sous-clip »).
-* Découpez le début d'une vidéo (« découpage d'une vidéo »).
-* Ajustez la fenêtre de présentation (DVR) afin de fournir une longueur limitée de la fenêtre du DVR dans le lecteur (« ajustement de la fenêtre de présentation »).
+* Spécifiques au périphérique : fournir une seule hello spécifiée et/ou de formats spécifiée des pistes de langue sont pris en charge par le périphérique hello tooplayback utilisé hello (« filtrage associé ») du contenu. 
+* Réduire tooshow de manifeste hello un clip sous-chemin d’un événement en direct (« filtrage de découpage secondaire »).
+* Début de hello découpage d’une vidéo (« ajustement d’une vidéo »).
+* Ajustez la fenêtre de présentation (DVR) dans l’ordre tooprovide une longueur limitée de la fenêtre du magnétoscope numérique hello dans le lecteur hello (« fenêtre Présentation ajustement »).
 
-Pour obtenir cette flexibilité, Media Services propose des **manifestes dynamiques** basés sur des [filtres](media-services-dynamic-manifest-overview.md#filters)prédéfinis.  Une fois que vous avez défini les filtres, vos clients peuvent les utiliser pour diffuser un rendu spécifique ou des sous-clips de votre vidéo. Ils peuvent spécifier des filtres dans l'URL de diffusion en continu. Les filtres peuvent s’appliquer aux protocoles de streaming à débit adaptatif par [empaquetage dynamique](media-services-dynamic-packaging-overview.md): HLS, MPEG-DASH et Smooth Streaming. Par exemple :
+tooachieve cette souplesse, les offres de Services de support **manifestes dynamique** basé sur prédéfinis [filtres](media-services-dynamic-manifest-overview.md#filters).  Une fois que vous définissez des filtres de hello, vos clients pourraient utiliser toostream un format spécifique ou des clips secondaire de votre vidéo. Ils spécifiez filtres Bonjour URL de diffusion en continu. Filtres peut être appliqué tooadaptive à débit binaire protocoles pris en charge par [empaquetage dynamique](media-services-dynamic-packaging-overview.md): TLS, MPEG-DASH et diffusion en continu lisse. Par exemple :
 
 URL MPEG DASH avec filtre
 
@@ -85,53 +85,53 @@ URL Smooth Streaming avec filtre
     http://testendpoint-testaccount.streaming.mediaservices.windows.net/fecebb23-46f6-490d-8b70-203e86b0df58/BigBuckBunny.ism/Manifest(filter=MyLocalFilter)
 
 
-Pour plus d'informations sur la façon de distribuer votre contenu et générer des URL de diffusion en continu, consultez [Vue d'ensemble de la distribution de contenu](media-services-deliver-content-overview.md).
+Pour plus d’informations sur la façon toodeliver votre contenu et génération de diffusion en continu d’URL, consultez [vue d’ensemble du contenu de diffusion](media-services-deliver-content-overview.md).
 
 > [!NOTE]
-> Notez que les manifestes dynamiques ne changent pas l'élément multimédia ni son manifeste par défaut. Votre client peut choisir de demander un flux avec ou sans filtres. 
+> Notez que manifestes dynamique ne pas modifier l’élément multimédia de hello et hello manifeste par défaut pour cet élément multimédia. Votre client peut choisir de toorequest un flux de données avec ou sans filtres. 
 > 
 > 
 
 ### <a id="filters"></a>Filtres
 Il existe deux types de filtres d'éléments multimédias : 
 
-* les filtres globaux (applicables à n'importe quel élément multimédia dans le compte Azure Media Services et dont la durée de vie correspond à celle du compte) ; 
-* les filtres locaux (applicables uniquement à un élément multimédia avec lequel le filtre a été associé au moment de la création et dont la durée de vie correspond à celle de l'élément multimédia). 
+* Filtres globaux (peut être actif appliqué tooany Bonjour compte Azure Media Services, ont une durée de vie du compte de hello) et 
+* Filtres locaux (peut uniquement être asset tooan appliqué par le hello filtre a été associé lors de la création, ont une durée de vie de l’élément multimédia de hello). 
 
-Les filtres globaux et locaux ont exactement les mêmes propriétés. La principale différence entre les deux a trait aux scénarios auxquels ils sont les plus appropriés. Les filtres globaux conviennent généralement aux profils d'appareil (filtrage de rendu) alors que les filtres locaux peuvent être utilisés pour découper un élément multimédia spécifique.
+Types de filtres globaux et locaux ont exactement hello les mêmes propriétés. Hello principale différence hello deux est pour les scénarios de quel type d’un serveur de fichiers est plus adapté. Filtres globaux conviennent généralement pour les profils d’appareils (filtrage associé) dans laquelle les filtres locaux peuvent être utilisé tootrim une ressource spécifique.
 
 ## <a id="scenarios"></a>Scénarios courants
-Comme mentionné précédemment, quand vous distribuez votre contenu aux clients (diffusion en continu d'événements en direct ou vidéo à la demande), votre objectif est de distribuer une vidéo de haute qualité à divers appareils dans des conditions de réseau différentes. De plus, vous pouvez avoir d'autres impératifs impliquant le filtrage de vos éléments multimédias et l'utilisation de **manifestes dynamiques**. Les sections suivantes présentent brièvement différents scénarios de filtrage.
+Comme mentionné avant, lors de la remettre à votre contenu toocustomers (diffusion en continu les événements en direct ou vidéo à la demande) votre objectif est toodeliver une vidéo haute qualité appareils toovarious sous différentes conditions de réseau. De plus, vous pouvez avoir d'autres impératifs impliquant le filtrage de vos éléments multimédias et l'utilisation de **manifestes dynamiques**. Hello les sections suivantes donne une brève présentation des différents scénarios de filtrage.
 
-* Spécification d'un seul sous-ensemble de rendus audio et vidéos gérables par certains appareils (au lieu de tous les rendus associés à l'élément multimédia). 
-* Lecture d'une seule section d'une vidéo (au lieu de la vidéo entière).
+* Spécifiez uniquement un sous-ensemble de formats audio et vidéo capable de gérer certains appareils (au lieu de tous les formats hello qui sont associés à des actifs de hello). 
+* Lire uniquement une section d’une vidéo (au lieu de hello vidéo complètes).
 * Ajustement de la fenêtre de présentation DVR.
 
 ## <a name="rendition-filtering"></a>Filtrage de rendu
-Vous pouvez choisir d'encoder votre élément multimédia pour plusieurs profils d'encodage (H.264 Baseline, H.264 High, AACL, AACH, Dolby Digital Plus) et plusieurs qualités de débit binaire. Toutefois, tous les appareils client ne prennent pas en charge tous les profils et débits binaires de tous vos éléments multimédias. Par exemple, les anciens appareils Android prennent uniquement en charge H.264 Baseline+AACL. L'envoi de débits binaires plus élevés à un appareil qui ne peut pas en tirer partie ne fait que gaspiller la bande passante et entraîner des calculs inutiles pour l'appareil. Ce dernier doit en effet décoder toutes les informations données, pour finalement les réduire pour pouvoir les afficher.
+Vous pouvez choisir tooencode vos profils de toomultiple codage asset (ligne de base H.264, H.264 haute, AACL, AACH, Dolby Digital Plus) et plusieurs vitesses de transmission de qualité. Toutefois, tous les appareils client ne prennent pas en charge tous les profils et débits binaires de tous vos éléments multimédias. Par exemple, les anciens appareils Android prennent uniquement en charge H.264 Baseline+AACL. Envoi des appareils tooa débits binaires plus élevée qui ne peut pas obtenir les avantages de hello, gaspille de calcul de la bande passante et de périphérique. Ce périphérique doit décoder tous hello donné plus d’informations, tooscale uniquement il vers le bas pour l’affichage.
 
-Avec un manifeste dynamique, vous pouvez créer des profils d'appareil mobile, de console, HD/SD, etc. et inclure les pistes et les qualités que vous voulez intégrer dans chaque profil.
+Avec un manifeste dynamique, vous pouvez créer des profils d’appareils tels que mobile, de la console, HD/SD, etc. et inclure hello pistes et des qualités de laquelle vous souhaitez toobe une partie de chaque profil.
 
 ![Exemple de filtrage de rendu][renditions2]
 
-Dans l’exemple suivant, un encodeur a été utilisé pour encoder un élément multimédia mezzanine en sept rendus vidéo ISO MP4s (de 180 p à 1 080 p). L’élément multimédia encodé peut être empaqueté de manière dynamique dans l’un des protocoles de diffusion en continu suivants : HLS, Smooth et MPEG DASH.  En haut du diagramme, le manifeste HLS de l'élément multimédia sans aucun filtre apparaît (il contient les sept rendus).  Dans la partie inférieure gauche apparaît le manifeste HLS auquel un filtre nommé « ott » a été appliqué. Le filtre « ott » indique de supprimer tous les débits binaires inférieurs à 1 Mbit/s, ce qui entraîne la suppression des deux niveaux de qualité les plus bas dans la réponse.  Dans la partie inférieure droite apparaît le manifeste HLS auquel un filtre nommé « mobile » a été appliqué. Le filtre « mobile » indique de supprimer les rendus pour lesquels la résolution est supérieure à 720 p, ce qui entraîne la suppression des deux rendus à 1 080 p.
+Bonjour l’exemple suivant, un encodeur a été utilisé tooencode un élément mezzanine en sept formats vidéos ISO MP4s (à partir de 180p too1080p). Hello ressource encodée peut être dynamiquement empaqueté dans n’importe quel Hello suite de protocoles de diffusion en continu : MPEG DASH, Smooth Streaming et HLS.  Haut hello du diagramme de hello, hello TLS manifeste pour un composant de hello sans filtre s’affiche (il contient tous les formats de sept).  Dans la partie inférieure gauche de hello, hello que TLS manifeste toowhich a été appliqué un filtre nommé « ott » s’affiche. filtre de « ott » Hello spécifie tooremove toutes les vitesses de transmission ci-dessous 1 Mbits/s, ce qui a entraîné hello bas deux niveaux de qualité qui est supprimés dans la réponse de hello.  Dans hello en bas à droite, hello TLS toowhich manifeste a été appliqué un filtre nommé « mobile » s’affiche. le filtre « mobile » Hello détermine les formats tooremove où hello résolution est supérieure à 720p, ce qui a entraîné dans deux formats 1080p hello, qui est supprimés.
 
 ![Filtrage de rendu][renditions1]
 
 ## <a name="removing-language-tracks"></a>Suppression des pistes de langue
-Vos éléments multimédias peuvent inclure plusieurs langues audio telles que l'anglais, l'espagnol, le français, etc. Généralement, le Kit de développement logiciel (SDK) du lecteur gère la sélection de pistes audio par défaut et les pistes audio disponibles par sélection de l'utilisateur. Il est difficile de développer ces Kits de développement logiciel (SDK) de lecteur, car différentes implémentations sont requises entre les infrastructures de lecteur propres aux appareils. De plus, sur certaines plateformes, les API de lecteur sont limitées et n'incluent pas de fonctionnalité de sélection audio, ce qui ne permet pas aux utilisateurs de sélectionner ou de modifier la piste audio par défaut. Avec les filtres d'éléments multimédias, vous pouvez contrôler le comportement en créant des filtres qui incluent uniquement les langues audio souhaitées.
+Vos éléments multimédias peuvent inclure plusieurs langues audio telles que l'anglais, l'espagnol, le français, etc. En règle générale, les gestionnaires de hello du SDK du lecteur par défaut la sélection d’une piste audio et audio disponibles effectue le suivi par la sélection de l’utilisateur. Il est difficile à toodevelop ces kits de développement logiciel lecteur, elle nécessite des implémentations différentes sur les infrastructures de lecteur spécifique au périphérique. En outre, sur certaines plates-formes, les API de lecteur sont limités et n’incluent pas la fonctionnalité de sélection audio où les utilisateurs ne peuvent pas sélectionner ou modifier une piste audio hello par défaut. Avec des filtres actifs, vous pouvez contrôler le comportement de hello en créant des filtres qui incluent uniquement les langues audio souhaités.
 
 ![Filtrage des pistes de langue][language_filter]
 
 ## <a name="trimming-start-of-an-asset"></a>Découpage du début d'un élément multimédia
-Pour la plupart des événements de diffusion en continu en direct, les opérateurs exécutent des tests avant l'événement réel. Par exemple, ils peuvent inclure une ardoise comme celle-ci avant le début de l'événement : « Le programme va commencer dans un instant. » Si le programme est archivé, le test et les données de l'ardoise le sont également et ils sont donc inclus dans la présentation. Toutefois, ces informations ne doivent pas être montrées aux clients. Avec un manifeste dynamique, vous pouvez créer un filtre sur l'heure de début et supprimer les données indésirables du manifeste.
+Dans la plupart des événements de diffusion en continu live, opérateurs exécuter des tests avant l’événement réel de hello. Par exemple, ils peuvent inclure une séquence comme suit avant de démarrer hello d’événement de hello : « Programme commencera bientôt ». Si l’archivage de programme de hello, test de hello et les données de séquence sont également archivées et seront incluses dans la présentation de hello. Toutefois, ces informations ne doivent pas être affichées toohello clients. Avec un manifeste dynamique, vous pouvez créer un filtre d’heure de début et supprimer les données de hello indésirables de manifeste de hello.
 
 ![Découpage du début][trim_filter]
 
 ## <a name="creating-sub-clips-views-from-a-live-archive"></a>Création de sous-clips (vues) à partir d'une archive en direct
-De nombreux événements en direct ont une durée d'exécution longue et une archive en direct peut inclure plusieurs événements. Une fois l'événement en direct terminé, les diffuseurs peuvent décomposer l'archive en direct en séquences de démarrage et d'arrêt du programme logiques. Ensuite, il suffit de publier ces programmes virtuels séparément sans post-traitement de l'archive en direct et sans créer d'éléments multimédias distincts (qui ne bénéficieront pas des fragments mis en cache existants dans les CDN). Par exemple, ces programmes virtuels (sous-clips) peuvent correspondre aux mi-temps d'un match de football ou de basket, aux tours de batte au base-ball ou à des événements individuels d'une journée des Jeux Olympiques.
+De nombreux événements en direct ont une durée d'exécution longue et une archive en direct peut inclure plusieurs événements. Une fois que les chaînes de télévision hello événement dynamique se termine souhaitant toobreak des hello archive se trouvent dans la logique de programme de démarrage et arrêter des séquences. Publiez ensuite ces programmes virtuels séparément sans post traitement archive en direct de hello et ne créez ne pas de ressources distincts (qui bénéficieront pas de fragments de mise en cache existant hello Bonjour CDN). Parmi ces programmes virtuels (éléments de sous-menu) est trimestres hello de football ou de basket, tournées hello base-ball ou des événements individuels d’une après-midi du programme de jeux.
 
-Avec un manifeste dynamique, vous pouvez créer des filtres en utilisant des heures de début/fin et créer des vues virtuelles par-dessus votre archive en direct. 
+Avec un manifeste dynamique, vous pouvez créer des filtres à l’aide des heures de début et de fin et créer des vues virtuels par-dessus hello votre archive en direct. 
 
 ![Filtre de sous-clip][subclip_filter]
 
@@ -140,48 +140,48 @@ Avec un manifeste dynamique, vous pouvez créer des filtres en utilisant des heu
 ![Ski][skiing]
 
 ## <a name="adjusting-presentation-window-dvr"></a>Ajustement de la fenêtre de présentation (DVR)
-Actuellement, Azure Media Services propose une archive circulaire où la durée peut être configurée entre 5 minutes et 25 heures. Le filtrage de manifeste peut servir à créer une fenêtre DVR de substitution par-dessus l'archive, sans supprimer le média. Il existe de nombreux scénarios où les diffuseurs veulent fournir une fenêtre DVR limitée qui se déplace avec le bord en direct et qui garde en même temps une plus grande fenêtre d'archivage. Un diffuseur peut utiliser les données en dehors de la fenêtre DVR pour mettre en avant des clips ou il peut proposer des fenêtres DVR différentes pour différents appareils. Par exemple, la plupart des appareils mobiles ne gèrent pas les grandes fenêtres DVR (une fenêtre DVR peut durer 2 minutes pour les appareils mobiles quand elle dure une heure pour les clients de bureau).
+Actuellement, Azure Media Services propose archive circulaire où la durée de hello peut être configurée entre 5 minutes - 25 heures. Le filtrage de manifeste, toocreate utilisé une fenêtre du magnétoscope numérique propagée peut être par-dessus hello archive hello, sans supprimer le média. Il existe de nombreux scénarios où les chaînes de télévision que tooprovide une fenêtre du magnétoscope numérique limitée qui accompagne hello live edge et à hello même temps maintenir une plus grande fenêtre d’archivage. Une chaîne peut données hello toouse qui est en dehors des clips de toohighlight fenêtre hello magnétoscope numérique, ou he\she pouvez tooprovide différentes fenêtres de magnétoscope numérique pour différents appareils. Par exemple, la plupart des appareils mobiles de hello ne gère pas big windows magnétoscope numérique (vous pouvez avoir une fenêtre du magnétoscope numérique 2 minutes pour les appareils mobiles et 1 heure pour les clients de bureau).
 
 ![Fenêtre DVR][dvr_filter]
 
 ## <a name="adjusting-livebackoff-live-position"></a>Ajustement de LiveBackoff (position en direct)
-Le filtrage de manifeste peut servir à supprimer plusieurs secondes à partir du bord en direct d'un programme en direct. Cela permet aux diffuseurs de regarder la présentation sur le point de publication d'aperçu et de créer des points d'insertion d'annonce avant que les utilisateurs ne reçoivent le flux (généralement sauvegardé toutes les 30 secondes). Les diffuseurs peuvent ensuite transmettre ces annonces à leurs infrastructures client à temps pour qu'ils reçoivent et traitent les informations avant l'opportunité d'annonce.
+Le manifeste de filtrage peut être utilisé tooremove quelques secondes à partir de bord en direct de hello d’un programme en direct. Ainsi, les chaînes de télévision présentation de hello toowatch sur la composition d’aperçu hello point et créer des points d’insertion de publication avant de recevoir des visionneuses de hello flux hello (généralement sauvegardées-off en 30 secondes). Chaînes de télévision ensuite, pour ajouter ces infrastructures de client tootheir publications dans le temps pour les informations de hello tooreceived et processus avant d’opportunité de publication hello.
 
-Outre la prise en charge d'annonces, LiveBackoff peut servir à ajuster la position de téléchargement en direct du client afin que lorsque les clients dérivent et atteignent le bord en direct, ils puissent toujours obtenir des fragments du serveur au lieu d'obtenir des erreurs HTTP 404 ou 412.
+En outre toohello publication prend en charge, LiveBackoff peut être utilisé pour ajuster la position du téléchargement direct client afin que lorsque des clients dérive et atteint le bord de live hello toujours avoir fragments à partir du serveur au lieu d’obtenir des erreurs HTTP 404 ou 412.
 
 ![livebackoff_filter][livebackoff_filter]
 
 ## <a name="combining-multiple-rules-in-a-single-filter"></a>Combinaison de plusieurs règles dans un seul filtre
-Vous pouvez combiner plusieurs règles de filtrage dans un filtre unique. Par exemple, vous pouvez définir une règle de plage pour supprimer une ardoise d'une archive en direct et également filtrer les débits binaires disponibles. Pour plusieurs règles de filtrage, le résultat final est la composition (intersection uniquement) de ces règles.
+Vous pouvez combiner plusieurs règles de filtrage dans un filtre unique. Par exemple, vous pouvez définir une plage règle tooremove une séquence à réception d’une archive en direct et également filtrer les vitesses de transmission disponibles. Pour plusieurs fin hello de règles filtrage résultat est hello (intersection uniquement) de ces règles.
 
 ![plusieurs règles][multiple-rules]
 
 ## <a name="create-filters-programmatically"></a>Création de filtres par programme
-La rubrique suivante décrit les entités Media Services liées aux filtres. La rubrique indique également comment créer par programme des filtres.  
+Hello rubrique suivante décrit des entités Media Services toofilters connexes. rubrique de Hello montre également comment tooprogrammatically créer des filtres.  
 
 [Créez des filtres avec les API REST](media-services-rest-dynamic-manifest.md).
 
 ## <a name="combining-multiple-filters-filter-composition"></a>Combinaison de plusieurs filtres (composition de filtre)
 Vous pouvez également combiner plusieurs filtres dans une URL unique. 
 
-Le scénario suivant explique les avantages de la combinaison de filtres :
+Hello scénario suivant montre comment vous pouvez souhaiter toocombine filtres :
 
-1. Vous devez filtrer vos qualités vidéos pour des appareils mobiles tels qu’Android ou iPAD (afin de limiter les qualités vidéos). Pour supprimer les qualités indésirables, vous pouvez créer un filtre global adapté aux profils de vos appareils. Comme indiqué ci-dessus, les filtres globaux peuvent être utilisés pour tous vos éléments multimédia sous le même compte Media Services sans aucune autre association. 
-2. Vous pouvez aussi avoir besoin d’ajuster l’heure de début et de fin d’un élément multimédia. Pour ce faire, il vous suffit de créer un filtre local et de définir l’heure de début et de fin. 
-3. Vous pouvez combiner ces deux filtres (sans combinaison, vous devez ajouter le filtrage de la qualité au filtre de réglage, ce qui compliquera l’utilisation de filtres).
+1. Vous devez toofilter de votre vidéos qualités pour des périphériques mobiles Android ou iPAD (dans les qualités de vidéo toolimit ordre). tooremove hello qualités indésirables, vous devez créer un filtre global qui n’est approprié pour les profils de l’appareil. Comme indiqué ci-dessus, les filtres globaux peuvent être utilisés pour tous vos actifs sous hello même support services compte sans aucune autre association. 
+2. Vous souhaitez démarrer de hello tootrim et heure d’un élément multimédia de fin. tooachieve, vous créez un filtre local et définir l’heure de début et de fin hello. 
+3. Vous souhaitez toocombine de ces filtres (sans combinaison vous devriez tooadd qualité filtrage toohello ajustement filtre qui sera difficile l’utilisation de filtres).
 
-Pour combiner des filtres, vous devez définir les noms de filtre dans l’URL du manifeste ou de la liste de lecture en les délimitant avec des points-virgules. Supposons que vous ayez un filtre nommé *MyMobileDevice* qui filtre les qualités et un autre nommé *MyStartTime* qui définit une heure de début spécifique. Vous pouvez les combiner comme suit :
+filtres de toocombine, vous devez tooset hello filtre noms toohello manifeste/sélection URL avec séparés par des points-virgules. Supposons que vous avez un filtre nommé *MyMobileDevice* qui filtre les qualités et que vous avez un autre nommé *MyStartTime* tooset spécifique à une heure de début. Vous pouvez les combiner comme suit :
 
     http://teststreaming.streaming.mediaservices.windows.net/3d56a4d-b71d-489b-854f-1d67c0596966/64ff1f89-b430-43f8-87dd-56c87b7bd9e2.ism/Manifest(filter=MyMobileDevice;MyStartTime)
 
-Vous pouvez combiner jusqu’à 3 filtres. 
+Vous pouvez combiner des filtres de too3. 
 
 Pour plus d’informations, consultez [ce blog](https://azure.microsoft.com/blog/azure-media-services-release-dynamic-manifest-composition-remove-hls-audio-only-track-and-hls-i-frame-track-support/) .
 
 ## <a name="know-issues-and-limitations"></a>Problèmes connus et limitations
 * Le manifeste dynamique fonctionne dans les limites d'un groupe d'images (GOP) (images clés), par conséquent, le découpage est précis au niveau du GOP. 
 * Vous pouvez utiliser le même nom de filtre pour les filtres locaux et globaux. Notez que le filtre local a une priorité plus élevée et remplace les filtres globaux.
-* Si vous mettez à jour un filtre, il peut falloir jusqu'à 2 minutes pour que le point de terminaison de diffusion en continu actualise les règles. Si le contenu a été servi à l'aide de filtres (puis mis en cache dans des proxys et des caches CDN), la mise à jour de ces filtres peut entraîner des défaillances du lecteur. Il est recommandé d'effacer le cache après la mise à jour du filtre. Si cette option n'est pas possible, envisagez d'utiliser un filtre différent.
+* Si vous mettez à jour un filtre, peut prendre jusqu'à minutes too2 de règles de hello toorefresh de point de terminaison de diffusion en continu. Si le contenu hello a été traitée à l’aide de certains filtres (et mises en cache proxys et CDN caches), mise à jour de ces filtres peut entraîner des échecs de lecteur. Il est recommandé de cache de hello tooclear après la mise à jour de filtre de hello. Si cette option n'est pas possible, envisagez d'utiliser un filtre différent.
 
 ## <a name="media-services-learning-paths"></a>Parcours d’apprentissage de Media Services
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
@@ -190,7 +190,7 @@ Pour plus d’informations, consultez [ce blog](https://azure.microsoft.com/blog
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
 ## <a name="see-also"></a>Voir aussi
-[Vue d’ensemble de la distribution de contenu aux clients](media-services-deliver-content-overview.md)
+[Fourniture de contenu tooCustomers vue d’ensemble](media-services-deliver-content-overview.md)
 
 [renditions1]: ./media/media-services-dynamic-manifest-overview/media-services-rendition-filter.png
 [renditions2]: ./media/media-services-dynamic-manifest-overview/media-services-rendition-filter2.png

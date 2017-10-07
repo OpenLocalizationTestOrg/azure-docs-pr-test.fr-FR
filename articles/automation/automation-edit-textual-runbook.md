@@ -1,6 +1,6 @@
 ---
-title: Modifier des runbooks textuels dans Azure Automation
-description: "Cet article fournit différentes procédures pour travailler avec des runbooks PowerShell et de workflow PowerShell dans Azure Automation à l’aide de l’éditeur de texte."
+title: aaaEditing des runbooks textuelle dans Azure Automation
+description: "Cet article fournit des procédures différentes pour travailler avec PowerShell et les flux de travail PowerShell runbooks dans Azure Automation à l’aide de l’éditeur textuel hello."
 services: automation
 documentationcenter: 
 author: mgoedtel
@@ -14,94 +14,94 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/23/2016
 ms.author: magoedte;bwren
-ms.openlocfilehash: 21f30e1266a444a2258973f8acad3692077f535b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3fd87d457838f300ca6c94bc345e82c679a0e011
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="editing-textual-runbooks-in-azure-automation"></a>Modifier des runbooks textuels dans Azure Automation
-L’éditeur de texte dans Azure Automation peut être utilisé pour modifier des [Runbooks PowerShell](automation-runbook-types.md#powershell-runbooks) et des [Runbooks de flux de travail PowerShell](automation-runbook-types.md#powershell-workflow-runbooks). Il intègre les fonctionnalités standard d’autres éditeurs de code, par exemple IntelliSense et le codage en couleurs, avec des fonctionnalités spéciales supplémentaires pour vous aider à accéder aux ressources communes aux Runbooks.  Cet article fournit des instructions détaillées pour effectuer différentes fonctions avec cet éditeur.
+Hello éditeur textuel dans Azure Automation peut être utilisé tooedit [runbook PowerShell](automation-runbook-types.md#powershell-runbooks) et [les runbooks PowerShell Workflow](automation-runbook-types.md#powershell-workflow-runbooks). Cela a répertorie les principales fonctions de hello d’autres éditeurs de code comme intellisense et le codage en couleurs avec des fonctionnalités spéciales supplémentaires tooassist vous lors de l’accès toorunbooks courants de ressources.  Cet article fournit des instructions détaillées pour effectuer différentes fonctions avec cet éditeur.
 
-L’éditeur de texte inclut une fonctionnalité permettant d’insérer du code pour les activités, les ressources et les runbooks enfants dans un runbook. Plutôt que de taper le code vous-même, vous pouvez sélectionner le code approprié dans la liste des ressources disponibles et l’insérer dans le runbook.
+éditeur de texte Hello inclut un code de tooinsert de fonctionnalité pour les activités, les ressources et les runbooks enfants dans un runbook. Au lieu de taper dans le code hello vous-même, vous pouvez sélectionner dans la liste des ressources disponibles et hello insérer dans les runbook hello de code approprié.
 
-Dans Azure Automation, chaque runbook existe en deux versions : un brouillon et une version publiée. Vous devez modifier le brouillon du runbook, puis le publier afin qu’il puisse être exécuté. La version publiée ne peut pas être modifiée. Consultez [Publication d’un runbook](automation-creating-importing-runbook.md#publishing-a-runbook) pour plus d’informations.
+Dans Azure Automation, chaque runbook existe en deux versions : un brouillon et une version publiée. Vous modifiez hello brouillon du runbook de hello et publiez celui-ci pour pouvoir être exécuté. Impossible de modifier la version publiée de Hello. Consultez [Publication d’un runbook](automation-creating-importing-runbook.md#publishing-a-runbook) pour plus d’informations.
 
-Pour utiliser des [Runbooks graphiques](automation-runbook-types.md#graphical-runbooks), consultez [Création de graphiques dans Azure Automation](automation-graphical-authoring-intro.md).
+toowork avec [Runbooks graphiques](automation-runbook-types.md#graphical-runbooks), consultez [de création graphique dans Azure Automation](automation-graphical-authoring-intro.md).
 
-## <a name="to-edit-a-runbook-with-the-azure-portal"></a>Pour modifier un runbook avec le portail Azure
-Utilisez la procédure suivante pour ouvrir un runbook afin de le modifier dans l’éditeur de texte.
+## <a name="tooedit-a-runbook-with-hello-azure-portal"></a>tooedit un runbook avec hello portail Azure
+Utilisez hello suivant la procédure tooopen un runbook pour la modification dans l’éditeur de texte hello.
 
-1. Dans le portail Azure, sélectionnez votre compte Automation.
-2. Cliquez sur la vignette **Runbooks** pour ouvrir la liste des runbooks.
-3. Cliquez sur le nom du runbook que vous souhaitez modifier, puis cliquez sur le bouton **Modifier** .
-4. Effectuez la modification requise.
+1. Bonjour portail Azure, sélectionnez votre compte automation.
+2. Cliquez sur hello **Runbooks** vignette tooopen hello liste des runbooks.
+3. Cliquez sur le nom de hello de hello runbook vous souhaitez tooedit, puis cliquez sur hello **modifier** bouton.
+4. Effectuer hello requis de modification.
 5. Cliquez sur **Enregistrer** lorsque vos modifications sont terminées.
-6. Cliquez sur **Publier** si vous souhaitez que le dernier brouillon du runbook soit publié.
+6. Cliquez sur **publier** si vous souhaitez hello dernière version de hello runbook toobe est publié.
 
-### <a name="to-insert-a-cmdlet-into-a-runbook"></a>Pour insérer une applet de commande dans un runbook
-1. Dans le canevas de l’éditeur de texte, placez le curseur à l’emplacement où vous souhaitez placer l’applet de commande.
-2. Développez le nœud **Applets de commande** dans le contrôle Bibliothèque.
-3. Développez le module contenant l’applet de commande que vous souhaitez utiliser.
-4. Cliquez avec le bouton droit sur l’applet de commande à insérer, puis sélectionnez **Ajouter au canevas**.  Si plusieurs jeux de paramètres sont définis pour l’applet de commande, le jeu par défaut est ajouté.  Vous pouvez également développer l’applet de commande pour sélectionner un jeu de paramètres différent.
-5. Le code de l’applet de commande est inséré avec sa liste entière de paramètres.
-6. Indiquez une valeur appropriée à la place du type de données entouré par des accolades <> pour tous les paramètres requis.  Supprimez les paramètres dont vous n’avez pas besoin.
+### <a name="tooinsert-a-cmdlet-into-a-runbook"></a>tooinsert une applet de commande dans un runbook
+1. Hello canevas de l’éditeur de texte hello, positionnez hello curseur où vous souhaitez tooplace hello applet de commande.
+2. Développez hello **applets de commande** nœud Bonjour contrôle de la bibliothèque.
+3. Développez le module hello contenant l’applet de commande hello souhaité toouse.
+4. Cliquez avec le bouton droit sur tooinsert d’applet de commande hello et sélectionnez **ajouter toocanvas**.  Si l’applet de commande hello possède plusieurs paramètres définie, ensemble par défaut de hello est ajouté.  Vous pouvez également développer tooselect d’applet de commande hello un autre paramètre défini.
+5. le code Hello pour l’applet de commande hello est inséré avec son intégralité de la liste de paramètres.
+6. Indiquez la valeur appropriée à la place du type de données hello entouré d’accolades les <> pour tous les paramètres requis.  Supprimez les paramètres dont vous n’avez pas besoin.
 
-### <a name="to-insert-code-for-a-child-runbook-into-a-runbook"></a>Pour insérer du code pour un runbook enfant dans un runbook
-1. Dans le canevas de l’éditeur de texte, placez le curseur à l’emplacement où vous souhaitez placer le code pour le [runbook enfant](automation-child-runbooks.md).
-2. Développez le nœud **Runbooks** dans le contrôle Bibliothèque.
-3. Cliquez avec le bouton droit sur le runbook à insérer, puis sélectionnez **Ajouter au canevas**.
-4. Le code du runbook enfant est inséré avec des espaces réservés pour les paramètres des runbooks.
-5. Remplacez les espaces réservés par des valeurs appropriées pour chaque paramètre.
+### <a name="tooinsert-code-for-a-child-runbook-into-a-runbook"></a>code tooinsert d’un runbook enfant dans un runbook
+1. Hello canevas de l’éditeur de texte hello, positionnez hello curseur où vous voulez obtenir tooplace hello code hello [runbook enfant](automation-child-runbooks.md).
+2. Développez hello **Runbooks** nœud Bonjour contrôle de la bibliothèque.
+3. Cliquez avec le bouton droit sur hello runbook tooinsert et sélectionnez **ajouter toocanvas**.
+4. le code Hello pour le runbook enfant hello est inséré avec des espaces réservés pour tous les paramètres du runbook.
+5. Remplacez les espaces réservés de hello avec les valeurs appropriées pour chaque paramètre.
 
-### <a name="to-insert-an-asset-into-a-runbook"></a>Pour insérer une ressource dans un runbook
-1. Dans le canevas de l’éditeur de texte, placez le curseur à l’emplacement où vous souhaitez placer le code pour le runbook enfant.
-2. Développez le nœud **Ressources** dans le contrôle Bibliothèque.
-3. Développez le nœud pour le type de ressources souhaité.
-4. Cliquez avec le bouton droit sur la ressource à insérer, puis sélectionnez **Ajouter au canevas**.  Pour les [ressources variables](automation-variables.md), sélectionnez **Ajouter « Obtenir la variable » au canevas** ou **Ajouter « Définir la variable » au canevas** selon que vous souhaitez obtenir ou définir la variable.
-5. Le code de la ressource est inséré dans le runbook.
+### <a name="tooinsert-an-asset-into-a-runbook"></a>tooinsert un élément multimédia dans un runbook
+1. Hello canevas de l’éditeur de texte hello, positionnez hello curseur où vous voulez obtenir tooplace hello code hello enfant runbook.
+2. Développez hello **actifs** nœud Bonjour contrôle de la bibliothèque.
+3. Développez le nœud hello type hello d’élément.
+4. Cliquez avec le bouton droit sur hello asset tooinsert et sélectionnez **ajouter toocanvas**.  Pour [actifs variables](automation-variables.md), sélectionnez **ajouter « Obtenir la Variable » toocanvas** ou **ajouter « Définir la Variable » toocanvas** selon que vous souhaitez tooget ou définir la variable de hello.
+5. Insérer un code Hello pour un composant de hello dans les runbook hello.
 
-## <a name="to-edit-a-runbook-with-the-azure-portal"></a>Pour modifier un runbook avec le portail Azure
-Utilisez la procédure suivante pour ouvrir un runbook afin de le modifier dans l’éditeur de texte.
+## <a name="tooedit-a-runbook-with-hello-azure-portal"></a>tooedit un runbook avec hello portail Azure
+Utilisez hello suivant la procédure tooopen un runbook pour la modification dans l’éditeur de texte hello.
 
-1. Dans le portail Azure, sélectionnez **Automation** , puis cliquez sur le nom d'un compte Automation.
-2. Sélectionnez l'onglet **Runbooks** .
-3. Cliquez sur le nom du runbook que vous souhaitez modifier, puis sélectionnez l’onglet **Auteur** .
-4. Cliquez sur le bouton **Modifier** au bas de l’écran.
-5. Effectuez la modification requise.
+1. Bonjour portail Azure, sélectionnez **Automation** , puis cliquez sur nom hello d’un compte automation.
+2. Sélectionnez hello **Runbooks** onglet.
+3. Cliquez sur le nom de hello de hello runbook vous souhaitez tooedit, puis sélectionnez hello **auteur** onglet.
+4. Cliquez sur hello **modifier** bouton bas hello écran hello.
+5. Effectuer hello requis de modification.
 6. Cliquez sur **Enregistrer** lorsque vos modifications sont terminées.
-7. Cliquez sur **Publier** si vous souhaitez que le dernier brouillon du runbook soit publié.
+7. Cliquez sur **publier** si vous souhaitez hello dernière version de hello runbook toobe est publié.
 
-### <a name="to-insert-an-activity-into-a-runbook"></a>Pour insérer une activité dans un runbook
-1. Dans le canevas de l’éditeur de texte, placez le curseur à l’emplacement où vous souhaitez placer l’activité.
-2. En bas de l’écran, cliquez sur **Insérer**, puis sur **Activité**.
-3. Dans la colonne **Module d’intégration** , sélectionnez le module qui contient l’activité.
-4. Dans le volet **Activité** , sélectionnez une activité.
-5. Dans la colonne **Description** , notez la description de l’activité. Si vous le souhaitez, vous pouvez cliquer sur Voir l’aide détaillée afin de lancer l’aide pour l’activité dans le navigateur.
-6. Cliquez sur la flèche droite.  Si l’activité possède des paramètres, ils sont répertoriés à titre d’information.
-7. Cliquez sur le bouton représentant une coche.  Le code permettant d’exécuter l’activité est inséré dans le runbook.
-8. Si l’activité requiert des paramètres, indiquez une valeur appropriée à la place du type de données entouré par des accolades <>.
+### <a name="tooinsert-an-activity-into-a-runbook"></a>tooinsert une activité dans un Runbook
+1. Hello canevas de l’éditeur de texte hello, positionnez hello curseur où vous souhaitez que l’activité de hello tooplace.
+2. Au bas de hello d’écran hello, cliquez sur **insérer** , puis **activité**.
+3. Bonjour **Module d’intégration** module hello select qui contient l’activité hello, de la colonne.
+4. Bonjour **activité** volet, sélectionnez une activité.
+5. Bonjour **Description** colonne, la description de hello Remarque d’activité hello. Si vous le souhaitez, vous pouvez cliquer sur vue détaillée de l’aide de toolaunch aide pour l’activité hello dans le navigateur de hello.
+6. Cliquez sur droite hello.  Si l’activité hello possède des paramètres, ils seront répertoriés pour votre information.
+7. Cliquez sur le bouton de vérification hello.  Activité de code toorun hello sera insérée dans les runbook hello.
+8. Si l’activité hello requiert des paramètres, indiquez la valeur appropriée à la place du type de données hello entouré d’accolades <>.
 
-### <a name="to-insert-code-for-a-child-runbook-into-a-runbook"></a>Pour insérer du code pour un runbook enfant dans un runbook
-1. Dans le canevas de l’éditeur de texte, placez le curseur à l’emplacement où vous souhaitez placer le [runbook enfant](automation-child-runbooks.md).
-2. En bas de l’écran, cliquez sur **Insérer**, puis sur **Runbook**.
-3. Sélectionnez le runbook à insérer à partir de la colonne centrale, puis cliquez sur la flèche droite.
-4. Si le runbook possède des paramètres, ils sont répertoriés à titre d’information.
-5. Cliquez sur le bouton représentant une coche.  Le code permettant d’exécuter le runbook sélectionné est inséré dans le runbook en cours.
-6. Si le runbook requiert des paramètres, indiquez une valeur appropriée à la place du type de données entouré par des accolades <>.
+### <a name="tooinsert-code-for-a-child-runbook-into-a-runbook"></a>code tooinsert d’un runbook enfant dans un runbook
+1. Hello canevas de l’éditeur de texte hello, positionnez hello curseur où vous souhaitez tooplace hello [runbook enfant](automation-child-runbooks.md).
+2. Au bas de hello d’écran hello, cliquez sur **insérer** , puis **Runbook**.
+3. Sélectionnez hello runbook tooinsert à partir de la colonne du milieu hello et cliquez sur la flèche vers la droite hello.
+4. Si hello runbook possède des paramètres, ils seront répertoriés pour votre information.
+5. Cliquez sur le bouton de vérification hello.  Code toorun hello sélectionné runbook sera insérée dans les runbook en cours hello.
+6. Si hello runbook requiert des paramètres, indiquez la valeur appropriée à la place du type de données hello entouré d’accolades <>.
 
-### <a name="to-insert-an-asset-into-a-runbook"></a>Pour insérer une ressource dans un runbook
-1. Dans le canevas de l’éditeur de texte, placez le curseur à l’emplacement où vous souhaitez placer l’activité pour récupérer la ressource.
-2. En bas de l’écran, cliquez sur **Insérer**, puis sur **Paramètre**.
-3. Dans la colonne **Action du paramètre** , sélectionnez l’action que vous souhaitez.
-4. Faites votre choix parmi les ressources disponibles dans la colonne centrale.
-5. Cliquez sur le bouton représentant une coche.  Le code d’obtention ou de définition de la ressource est inséré dans le runbook.
+### <a name="tooinsert-an-asset-into-a-runbook"></a>tooinsert un élément multimédia dans un runbook
+1. Hello canevas de l’éditeur de texte hello, positionnez hello curseur où vous souhaitez que le tooplace hello activité tooretrieve hello immobilisation.
+2. Au bas de hello d’écran hello, cliquez sur **insérer** , puis **paramètre**.
+3. Bonjour **Action de paramètre** action Sélectionnez hello souhaitée, la colonne.
+4. Sélectionnez parmi les ressources disponibles hello dans la colonne du milieu hello.
+5. Cliquez sur le bouton de vérification hello.  Tooget de code ou ensemble hello actif sera insérée dans les runbook hello.
 
-## <a name="to-edit-an-azure-automation-runbook-using-windows-powershell"></a>Pour modifier un runbook Azure Automation à l’aide de Windows PowerShell
-Pour modifier un runbook avec Windows PowerShell, utilisez l’éditeur de votre choix et enregistrez-le dans un fichier .ps1. Vous pouvez utiliser l’applet de commande [Get-AzureAutomationRunbookDefinition](http://aka.ms/runbookauthor/cmdlet/getazurerunbookdefinition) pour récupérer le contenu du Runbook, puis l’applet de commande [Set-AzureAutomationRunbookDefinition](http://aka.ms/runbookauthor/cmdlet/setazurerunbookdefinition) pour remplacer le brouillon du Runbook existant par la version modifiée.
+## <a name="tooedit-an-azure-automation-runbook-using-windows-powershell"></a>tooedit un runbook Azure Automation à l’aide de Windows PowerShell
+tooedit un runbook avec Windows PowerShell, vous utilisez l’éditeur de hello de votre choix et l’enregistrer fichier .ps1 de tooa. Vous pouvez utiliser hello [Get-AzureAutomationRunbookDefinition](http://aka.ms/runbookauthor/cmdlet/getazurerunbookdefinition) contenu de hello tooretrieve applet de commande de hello runbook, puis [Set-AzureAutomationRunbookDefinition](http://aka.ms/runbookauthor/cmdlet/setazurerunbookdefinition) applet de commande tooreplace hello existant brouillon de runbook avec hello modifiés un.
 
-### <a name="to-retrieve-the-contents-of-a-runbook-using-windows-powershell"></a>Pour récupérer le contenu d’un runbook à l’aide de Windows PowerShell
-Les exemples de commandes suivants montrent comment récupérer le script d’un runbook et l’enregistrer dans un fichier de script. Dans cet exemple, le brouillon est récupéré. Il est également possible de récupérer la version publiée du runbook, bien que cette version ne puisse pas être modifiée.
+### <a name="tooretrieve-hello-contents-of-a-runbook-using-windows-powershell"></a>tooRetrieve hello le contenu d’un Runbook à l’aide de Windows PowerShell
+Hello suivant des exemples de commandes montrent comment tooretrieve hello script d’un runbook et enregistrer le fichier de script tooa. Dans cet exemple, brouillon hello est récupéré. Il s’agit également tooretrieve possible hello publié version hello runbook bien que cette version ne peut pas être modifiée.
 
     $automationAccountName = "MyAutomationAccount"
     $runbookName = "Sample-TestRunbook"
@@ -112,8 +112,8 @@ Les exemples de commandes suivants montrent comment récupérer le script d’un
 
     Out-File -InputObject $runbookContent -FilePath $scriptPath
 
-### <a name="to-change-the-contents-of-a-runbook-using-windows-powershell"></a>Pour modifier le contenu d’un runbook à l’aide de Windows PowerShell
-Les exemples de commandes suivants montrent comment remplacer le contenu existant d’un runbook par le contenu d’un fichier de script. Notez qu’il s’agit du même exemple de procédure que [Pour importer un Runbook à partir d’un fichier de script avec Windows PowerShell](automation-creating-importing-runbook.md).
+### <a name="toochange-hello-contents-of-a-runbook-using-windows-powershell"></a>tooChange hello le contenu d’un Runbook à l’aide de Windows PowerShell
+Hello exemples de commandes suivants montrent comment tooreplace hello contenu existant d’un runbook avec hello d’un fichier de script. Notez que cela est hello même exemple de procédure, comme dans [tooimport un runbook à partir d’un fichier de script avec Windows PowerShell](automation-creating-importing-runbook.md).
 
     $automationAccountName = "MyAutomationAccount"
     $runbookName = "Sample-TestRunbook"

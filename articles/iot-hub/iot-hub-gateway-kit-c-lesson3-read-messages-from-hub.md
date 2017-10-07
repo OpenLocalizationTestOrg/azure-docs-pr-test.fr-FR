@@ -1,12 +1,12 @@
 ---
 title: "Appareil SensorTag et passerelle Azure IoT - Leçon 3 : Lire des messages | Microsoft Docs"
-description: "Exécutez un exemple de code sur votre ordinateur hôte pour lire les messages à partir de votre IoT Hub."
+description: "Exécuter un exemple de code sur votre hôte ordinateur tooread hello des messages à partir de votre hub IoT."
 services: iot-hub
 documentationcenter: 
 author: shizn
 manager: timtl
 tags: 
-keywords: "données dans le cloud, collecte de données cloud, service de cloud iot, données iot"
+keywords: "données dans le cloud de hello, collecte de données de cloud, le service cloud iot, iot données"
 ROBOTS: NOINDEX
 redirect_url: /azure/iot-hub/iot-hub-gateway-kit-c-lesson1-set-up-nuc
 ms.assetid: cc88be24-b5c0-4ef2-ba21-4e8f77f3e167
@@ -17,52 +17,52 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: 45f3595c4848d5c283cdf95604adf8d2c8d6a809
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d3ffbe2e83f9d61c0088b8876a7f0eea62c1fbe1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="read-messages-from-your-iot-hub"></a>Lire des messages à partir de votre IoT Hub
 
 ## <a name="what-you-will-do"></a>Procédure à suivre
 
-- Exécutez l’exemple de code sur votre ordinateur hôte pour lire les messages provenant de votre IoT Hub.
+- Exécutez exemple de code sur votre hôte tooread ordinateur des messages à partir de votre hub IoT.
 
-Si vous rencontrez des problèmes, recherchez des solutions dans la [page de résolution des problèmes](iot-hub-gateway-kit-c-troubleshooting.md).
+Si vous rencontrez des problèmes, recherchez des solutions sur hello [page Résolution des problèmes](iot-hub-gateway-kit-c-troubleshooting.md).
 
 ## <a name="what-you-will-learn"></a>Contenu
 
-Découvrez comment utiliser l’outil gulp pour lire les messages à partir de votre IoT Hub.
+Comment toouse hello gulp tooread messages de l’outil à partir de votre hub IoT.
 
 ## <a name="what-you-need"></a>Ce dont vous avez besoin
 
-- L’exemple d’application BLE que vous avez exécuté dans la leçon 3.
+- Hello exemple d’application BLE qui vous a été correctement exécuté dans la leçon 3.
 
 ## <a name="get-your-iot-hub-and-device-connection-strings"></a>Obtenir vos chaînes de connexion d’IoT Hub et d’appareil
 
-La chaîne de connexion de l’appareil permet de connecter votre appareil (TI SensorTag ou appareil simulé) à votre IoT Hub. La chaîne de connexion IoT Hub sert à se connecter au registre des identités de votre IoT Hub pour gérer les appareils autorisés à se connecter à votre IoT Hub.
+chaîne de connexion de périphérique Hello est utilisé par votre appareil (TI SensorTag ou appareil simulé) tooconnect tooyour IoT de supervision. Hello chaîne de connexion de hub IoT est un registre des identités toohello tooconnect utilisés dans vos appareils IoT hub toomanage hello autorisées tooconnect tooyour IoT hub.
 
-- Répertoriez tous les IoT Hubs de votre groupe de ressources en exécutant la commande suivante :
+- Liste de tous vos hubs IoT dans votre groupe de ressources en exécutant hello de commande suivante :
 
    ```bash
    az iot hub list -g iot-gateway --query [].name
    ```
 
-   Si vous n’avez pas modifié la valeur, utilisez `iot-gateway` en tant que valeur de `{resource group name}`.
-- Obtenez la chaîne de connexion de l'IoT Hub en exécutant la commande suivante :
+   Utilisez `iot-gateway` en tant que valeur hello `{resource group name}` si vous n’avez modifié la valeur de hello.
+- Obtenir la chaîne de connexion de hub IoT hello en exécutant hello de commande suivante :
 
    ```bash
    az iot hub show-connection-string --name {my hub name} -g iot-gateway
    ```
 
-   `{my hub name}` est le nom que vous avez spécifié à la leçon 2.
+   `{my hub name}`est le nom hello que vous avez spécifié dans la leçon 2.
 
-## <a name="configure-the-device-connection-for-the-sample-code"></a>Configurer la connexion de l’appareil pour l'exemple de code
+## <a name="configure-hello-device-connection-for-hello-sample-code"></a>Configurer la connexion du périphérique pour l’exemple de code hello hello
 
-Mettez à jour le fichier de configuration d’appareil `config-azure.json` pour lire les messages de votre IoT Hub sur votre ordinateur hôte. Pour ce faire, procédez comme suit :
+Fichier de configuration de mise à jour hello périphérique `config-azure.json` afin que vous pouvez lire les messages de votre hub IoT sur votre ordinateur hôte. toodo, procédez comme suit :
 
-1. Ouvrez `config-azure.json` dans Visual Studio Code en exécutant la commande suivante dans une fenêtre de console :
+1. Ouvrez `config-azure.json` dans le Code de Visual Studio en exécutant hello commande dans une fenêtre de console suivante :
 
    ```bash
    # For Windows command prompt
@@ -71,29 +71,29 @@ Mettez à jour le fichier de configuration d’appareil `config-azure.json` pour
    code ~/.iot-hub-getting-started/config-azure.json
    ```
 
-2. Dans le fichier `config-azure.json`, effectuez les remplacements suivants :
+2. Rendre hello suivant remplacements Bonjour `config-azure.json` fichier :
 
    ![capture d’écran de configuration azure](media/iot-hub-gateway-kit-lessons/lesson3/config_azure.png)
 
-   Remplacez `[IoT hub connection string]` par la chaîne de connexion de l’IoT Hub obtenue.
+   Remplacez `[IoT hub connection string]` par hello chaîne de connexion de hub IoT que vous avez obtenu.
 
 ## <a name="read-messages-from-your-iot-hub"></a>Lire des messages à partir de votre IoT Hub
 
-Si vous avez un TI SensorTag, assurez-vous que vous avez déjà démarré votre SensorTag. Exécutez l’exemple d’application de passerelle et lisez les messages de l'IoT Hub à l'aide de la commande suivante :
+Si vous avez un TI SensorTag, assurez-vous que vous avez déjà démarré votre SensorTag. Exécuter l’application d’exemple hello passerelle et lire des messages de IoT Hub par hello de commande suivante :
 
 ```bash
 gulp run --iot-hub
 ```
 
-La commande exécute l’exemple d’application BLE qui lit et regroupe les données de température de votre SensorTag ou de l’appareil simulé et envoie le message à votre IoT Hub toutes les 2 secondes. Elle génère également un processus enfant pour recevoir le message.
+commande Hello exécute hello BLE exemple d’application qui lit et packages de données de température de votre SensorTag ou d’un appareil simulé et envoie tooyour IoT hub hello message toutes les 2 secondes. Il génère également un message de salutation tooreceive processus enfant.
 
-Les messages envoyés et reçus sont tous affichés instantanément sur la même fenêtre de console sur l’ordinateur hôte. L’exemple d’instance d’application se ferme automatiquement au bout de 40 secondes.
+messages de type Hello qui sont envoyés et reçus sont tous les hello afficher instantanément à même de fenêtre dans la console hello machine hôte. instance de l’application exemple Hello se termine automatiquement au bout de 40 secondes.
 
 ![Exemple d’application BLE avec des messages envoyés et reçus](media/iot-hub-gateway-kit-lessons/lesson3/gulp_run_read_hub.png)
 
 ## <a name="summary"></a>Résumé
 
-Vous avez exécuté un exemple de code pour lire des messages provenant de votre IoT Hub. Vous êtes prêt à lire les messages qui sont stockés dans votre stockage Table Azure.
+Vous avez exécuté un tooread de code d’exemple de messages à partir de votre hub IoT. Vous êtes prêt tooread les messages hello qui sont stockés dans votre stockage de table Windows Azure.
 
 ## <a name="next-steps"></a>Étapes suivantes
 [Créer une application de fonction Azure et un compte de stockage Azure](iot-hub-gateway-kit-c-lesson4-deploy-resource-manager-template.md)

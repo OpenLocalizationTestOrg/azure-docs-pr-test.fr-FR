@@ -1,7 +1,7 @@
 ---
-title: "Transfert de la propriété de l’abonnement Azure à un autre compte | Microsoft Docs"
-description: "Décrit comment transférer un abonnement Azure à un autre utilisateur et Forum Aux Questions (FAQ) concernant la procédure"
-keywords: "transférer abonnement azure, azure transfert abonnement, déplacer un abonnement azure vers un autre compte, changer abonnement azure, transférer abonnement azure à un autre compte"
+title: "aaaTransfer compte d’abonnement Azure la propriété tooanother | Documents Microsoft"
+description: "Décrit comment tootransfer un utilisateur de tooanother abonnement Azure et certaines questions fréquemment posées (FAQ sur) les processus hello"
+keywords: "transfert d’abonnement de transfert d’abonnement azure, azure, déplacer le compte d’abonnement azure tooanother, propriétaire de l’abonnement azure de modification, un compte de tooanother abonnement azure de transfert"
 services: 
 documentationcenter: 
 author: genlin
@@ -17,144 +17,144 @@ ms.topic: article
 ms.date: 06/13/2017
 ms.author: genli
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 8a856c39eb11546f35cb4e8c21e6bdcce98857a8
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: d2d9f5d9ccd34738701493e5f31c2f83a02f5d48
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="transfer-ownership-of-an-azure-subscription-to-another-account"></a>Transfert de la propriété d’un abonnement Azure à un autre compte
+# <a name="transfer-ownership-of-an-azure-subscription-tooanother-account"></a>Transférer la propriété d’un compte de tooanother abonnement Azure
 
-Vous pouvez transférer votre abonnement à un autre utilisateur pour les abonnements de type paiement à l’utilisation, Visual Studio, Action Pack ou BizSpark dans le centre des comptes. Nous prenons en charge le transfert de services externes Azure également pour ces types d’abonnements. 
+Vous pouvez transférer votre utilisateur de tooanother d’abonnement pour les abonnements de paiement à l’utilisation, Visual Studio, Action Pack ou BizSpark Bonjour centre des comptes. Nous prenons en charge le transfert hello de services externes Azure pour ces types d’abonnements. 
 
-Vous pouvez envisager de transférer la propriété d’un abonnement Azure :
+Vous pourriez tootransfer approprier un abonnement Azure si vous :
 
-* si vous devez transférer la propriété de facturation de votre abonnement Azure à quelqu’un d’autre ;
-* si vous souhaitez modifier le compte utilisé pour vous connecter à Azure (vous avez peut-être utilisé votre compte Microsoft au lieu de votre compte professionnel ou scolaire) ;
-* si vous voulez déplacer votre abonnement Azure d’un répertoire à un autre ;
-* si vous souhaitez consolider les différents clients que vous avez actuellement pour Azure et Office 365.
+* Devez toohand via la propriété de facturation de votre abonnement Azure de toosomeone else.
+* Choix de compte de hello toochange utilisé toosign pour Azure. Vous peut-être utilisé votre Account Microsoft mais destiné à toouse votre compte professionnel ou scolaire à la place.
+* Choix toomove votre abonnement Azure à partir d’un répertoire tooanother.
+* Avoir Azure et Office 365 dans différents, les clients et souhaitez tooconsolidate.
 
-Pour modifier votre abonnement et changer d’offre, consultez la page [Changer d’offre pour votre abonnement Azure](billing-how-to-switch-azure-offer.md). 
+toochange votre tooa abonnement autre offre, consultez [basculer votre offre de tooanother abonnement Azure](billing-how-to-switch-azure-offer.md). 
 
 ## <a name="transfer-ownership-of-an-azure-subscription"></a>Transfert de la propriété d’un abonnement Azure
 > [!VIDEO https://channel9.msdn.com/Series/Microsoft-Azure-Tutorials/Transfer-an-Azure-subscription/player]
 >
 >
 
-1. Accédez à <https://account.windowsazure.com/Subscriptions>. Vous devez être l’administrateur de compte pour effectuer un transfert de propriété. Pour déterminer qui est l’administrateur de compte de l’abonnement, consultez le [Forum aux questions](#faq).
+1. Accédez à <https://account.windowsazure.com/Subscriptions>. Vous avez toobe hello tooperform de l’administrateur de compte un transfert de propriété. toofind qui est hello administrateur de compte de l’abonnement de hello, consultez hello [Forum aux questions](#faq).
 
-2. Sélectionnez l’abonnement à transférer.
+2. Sélectionnez hello abonnement tootransfer.
 
-3. Cliquez sur l’option **Transférer un abonnement** . Si vous ne voyez pas apparaître la commande, cliquez sur [FAQ](#no-button).
+3. Cliquez sur hello **transférer un abonnement** option. Consultez [FAQ](#no-button) si vous ne voyez pas de bouton de hello.
 
    ![Onglet Abonnements du compte Azure](./media/billing-subscription-transfer/image1.png)
-4. Spécifiez le destinataire.
+4. Spécifiez le destinataire de hello.
 
    ![Boîte de dialogue Transférer un abonnement](./media/billing-subscription-transfer/image2.PNG)
-5. Le destinataire reçoit automatiquement un e-mail contenant un lien d’acceptation.
+5. destinataire de Hello obtient automatiquement un message électronique contenant un lien d’acceptation.
 
-   ![E-mail de transfert d’abonnement envoyé au destinataire](./media/billing-subscription-transfer/image3.png)
-6. Le destinataire clique sur le lien et suit les instructions, notamment pour la saisie des informations de paiement.
+   ![Abonnement transfert par courrier électronique toorecipient](./media/billing-subscription-transfer/image3.png)
+6. destinataire de Hello clique sur le lien de hello et suit les instructions hello, y compris comment entrer leurs informations de paiement.
 
    ![Page web de transfert du premier abonnement](./media/billing-subscription-transfer/image4.png)
 
    ![Page web de transfert du deuxième abonnement](./media/billing-subscription-transfer/image5.png)
-7. Vous avez réussi ! L’abonnement est à présent transféré.
+7. C’est terminé ! abonnement de Hello est maintenant transférée.
 
 ## <a name="transfer-subscription-ownership-for-enterprise-agreement-ea-customers"></a>Transférer la propriété de l’abonnement pour les clients Contrat Entreprise (EA)
-L’administrateur d’entreprise peut transférer la propriété des abonnements au sein d’une inscription. Pour commencer, consultez la rubrique [Transférer la propriété du compte](https://ea.azure.com/helpdocs/changeAccountOwnerForASubscription) dans le portail EA.
+Hello administrateur d’entreprise peut transférer la propriété des abonnements au sein d’une inscription. tooget démarré, consultez [transférer la propriété du compte](https://ea.azure.com/helpdocs/changeAccountOwnerForASubscription) dans le portail EA hello.
 
 ## <a name="next-steps-after-accepting-ownership-of-a-subscription"></a>Étapes suivantes après avoir accepté la propriété d’un abonnement
-1. Vous êtes désormais l’administrateur de compte. Examinez et mettez à jour l’administrateur du service et les coadministrateurs. Gérez les administrateurs dans le [portail Azure Classic](https://manage.windowsazure.com) en accédant aux paramètres. [En savoir plus sur les rôles d’administrateur](billing-add-change-azure-subscription-administrator.md).
+1. Vous êtes maintenant hello administrateur de compte. Passez en revue et mettre à jour de hello administrateur de Service et les Coadministrateurs. Gérer les administrateurs Bonjour [portail Azure classic](https://manage.windowsazure.com) en accédant tooSettings. [En savoir plus sur les rôles d’administrateur](billing-add-change-azure-subscription-administrator.md).
 
-2. Vous pouvez également utiliser le contrôle d’accès en fonction du rôle (RBAC) pour votre abonnement et vos services. Visitez le [portail Azure](https://portal.azure.com). [Pour en savoir plus sur le contrôle d’accès en fonction du rôle](../active-directory/role-based-access-control-configure.md)
+2. Vous pouvez également utiliser le contrôle d’accès en fonction du rôle (RBAC) pour votre abonnement et vos services. Visitez hello [portail Azure](https://portal.azure.com). [Pour en savoir plus sur le contrôle d’accès en fonction du rôle](../active-directory/role-based-access-control-configure.md)
 
 3. Mettez à jour les informations d’identification associées aux services de cet abonnement, notamment :
    
-   * Certificats de gestion accordant à l’utilisateur des droits d’administrateur sur les ressources d’abonnement. Pour plus d'informations, consultez [Create and upload a management certificate for Azure](../cloud-services/cloud-services-certs-create.md)
+   * Certificats de gestion qui accordent des droits d’administrateur utilisateur hello toosubscription ressources. Pour plus d'informations, consultez [Create and upload a management certificate for Azure](../cloud-services/cloud-services-certs-create.md)
    
    * Touches d’accès rapide pour les services tels que Storage. Pour plus d’informations, consultez [À propos des comptes de stockage Azure](../storage/common/storage-create-storage-account.md).
    
    * Informations d’identification d’accès à distance pour les services tels que les machines virtuelles Azure. 
 
-4. [Mettez à jour les alertes de facturation pour cet abonnement](billing-set-up-alerts.md) dans le [Centre des comptes Azure](https://account.windowsazure.com/Subscriptions). 
+4. [Mettre à jour des alertes de facturation pour cet abonnement](billing-set-up-alerts.md) à hello [centre des comptes Azure](https://account.windowsazure.com/Subscriptions). 
 
-5. Si vous collaborez avec un partenaire, envisagez de mettre à jour son ID de partenaire pour cet abonnement. Vous pouvez mettre à jour l’ID partenaire dans le [Centre des comptes Azure](https://account.windowsazure.com/Subscriptions).
+5. Si vous travaillez avec un partenaire, envisagez la mise à jour des ID de partenaire hello pour cet abonnement. Vous pouvez mettre à jour les ID de partenaire hello Bonjour [centre des comptes Azure](https://account.windowsazure.com/Subscriptions).
 
 <a id="faq"></a>
 
 ## <a name="frequently-asked-questions-faq"></a>Forum Aux Questions (FAQ)
-* <a name="whoisaa"></a> **Qui est l’administrateur de compte de l’abonnement ?**
+* <a name="whoisaa"></a>**Qui est administrateur du compte d’abonnement de hello hello ?**
 
-  L’administrateur de compte est la personne qui s’est inscrite ou a acheté l’abonnement Azure. Il est autorisé à accéder au [Centre des comptes](https://account.windowsazure.com/Home/Index) et à effectuer diverses tâches de gestion comme créer des abonnements, annuler des abonnements, modifier la facturation d’un abonnement et modifier l’administrateur de services fédérés. Si vous ne savez pas qui est l’administrateur de compte d’un abonnement, procédez comme suit pour le découvrir.
+  administrateur de compte Hello est hello personne inscrit ou acheté hello abonnement Azure. Ils sont autorisés tooaccess hello [centre des comptes](https://account.windowsazure.com/Home/Index) et d’effectuer diverses tâches de gestion telles que créer des abonnements, annuler les abonnements, remplacer la facturation hello pour un abonnement ou modifier hello administrateur de Service. Si vous ne savez pas qui est administrateur de compte hello pour un abonnement, utilisez hello suivant toofind étapes out.
 
-  1. Connectez-vous au [portail Azure](https://portal.azure.com).
-  2. Dans le menu Hub, sélectionnez **Abonnement**.
-  3. Sélectionnez l’abonnement que vous souhaitez vérifier, puis regardez sous **Paramètres**.
-  4. Sélectionner **Propriétés**. L’administrateur de compte de l’abonnement s’affiche dans la zone **Administrateur de compte** .  
+  1. Connectez-vous à toohello [portail Azure](https://portal.azure.com).
+  2. Dans le menu du Hub hello, sélectionnez **abonnement**.
+  3. Sélectionnez l’abonnement hello souhaité toocheck, puis regardez sous **paramètres**.
+  4. Sélectionner **Propriétés**. administrateur du compte d’abonnement de hello Hello s’affiche dans hello **Admin. compte** boîte.  
 
 * **Tous les éléments sont-ils transférés ? Notamment les groupes de ressources, les machines virtuelles, les disques et les autres services en cours d’exécution ?**
 
-  Oui, toutes les ressources telles que les machines virtuelles, les disques, et les sites web sont transférées vers le nouveau propriétaire. Cependant, les [rôles d’administrateur](billing-add-change-azure-subscription-administrator.md) et les stratégies de [contrôle d’accès en fonction du rôle (RBAC)](../active-directory/role-based-access-control-configure.md) que vous avez configurés ne sont pas transférés dans les différents annuaires.
+  Oui, toutes les ressources telles que des machines virtuelles, des disques, et sites Web transfert toohello nouveau propriétaire. Cependant, les [rôles d’administrateur](billing-add-change-azure-subscription-administrator.md) et les stratégies de [contrôle d’accès en fonction du rôle (RBAC)](../active-directory/role-based-access-control-configure.md) que vous avez configurés ne sont pas transférés dans les différents annuaires.
 
-* <a id="no-button"></a>**Pourquoi le bouton Transférer un abonnement ne s’affiche-t-il pas ?**
+* <a id="no-button"></a>**Pourquoi ne puis-je pas voir hello transférer un abonnement bouton ?**
 
-  Si vous ne voyez pas le bouton **Transférer un abonnement**, cela signifie que le transfert d’abonnement n’est pas pris en charge pour votre offre. [Contacter le support](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade).
+  Si vous ne voyez pas hello **transfert abonnement** bouton, nous ne prennent en charge de transfert d’abonnement pour votre offre. [Contacter le support](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade).
 
 * **Un transfert d’abonnement entraîne-t-il une interruption de service ?**
 
-  Le transfert n’a aucune incidence sur le service. Le transfert de l’abonnement annule l’abonnement sous l’administrateur de compte actuel et crée un abonnement sous le compte du destinataire. Le nouvel abonnement est associé aux services Azure sous-jacents. L’ID de l’abonnement reste inchangé.
+  Il n’existe aucun service de toohello impact. Transfert de l’abonnement de hello annule l’abonnement hello sous le compte administrateur hello et crée un abonnement sous le compte du destinataire hello. nouvel abonnement de Hello est toohello associé à des services Azure sous-jacente. Hello abonnement ID reste hello identiques.
 
-* **Comment utiliser ce processus pour modifier le répertoire d’abonnement ?**
+* **Comment utiliser ce répertoire de hello toochange processus pour l’abonnement ?**
 
-  Un abonnement Azure est créé dans le répertoire auquel appartient l’administrateur de compte. Pour modifier le répertoire, transférez l’abonnement sur un compte d’utilisateur situé dans le répertoire cible. Lorsque cet utilisateur exécute les étapes pour accepter le transfert, l’abonnement transite automatiquement vers le répertoire cible.
+  Un abonnement Azure est créé dans le répertoire de hello que hello administrateur de compte appartient. répertoire de hello toochange, transfert hello abonnement tooa un compte d’utilisateur dans le répertoire cible de hello. Lorsque cet utilisateur termine hello étapes tooaccept transfert, l’abonnement hello est répertoire cible de toohello automatiquement déplacé.
 
-* **Si je deviens titulaire d’un abonnement d’une autre organisation, cette dernière a-t-elle toujours accès à mes ressources ?**
+* **Si je prendre possession de facturation d’un abonnement à partir d’une autre organisation, ils continuent de toomy toohave accéder aux ressources ?**
 
-  Si l’abonnement est transféré à un autre client, les utilisateurs associés au client précédent perdent l’accès à l’abonnement. Même si un utilisateur n’est plus administrateur ou coadministrateur des services, il pourra toujours accéder à l’abonnement par le biais d’autres mécanismes de sécurité, notamment :
+  Si l’abonnement hello est transféré tooanother client, les utilisateurs de hello associés au client précédente de hello perdent accès toohello abonnement. Même si un utilisateur n’est pas un administrateur de Service ou Co-admin, ils peuvent toujours souscrire accès toohello via d’autres mécanismes de sécurité, y compris :
 
-  * Certificats de gestion accordant à l’utilisateur des droits d’administrateur sur les ressources d’abonnement. Pour plus d'informations, consultez la rubrique [Créer et télécharger un certificat de gestion pour Microsoft Azure](../cloud-services/cloud-services-certs-create.md).
+  * Certificats de gestion qui accordent des droits d’administrateur utilisateur hello toosubscription ressources. Pour plus d'informations, consultez la rubrique [Créer et télécharger un certificat de gestion pour Microsoft Azure](../cloud-services/cloud-services-certs-create.md).
   * Touches d’accès rapide pour les services tels que Storage. Pour plus d’informations, consultez la rubrique [À propos des comptes de stockage Azure](../storage/common/storage-create-storage-account.md).
   * Informations d’identification d’accès à distance pour les services tels que les machines virtuelles Azure.
 
- Le destinataire doit envisager la mise à jour des clés secrètes associées au service s’il doit restreindre l’accès aux ressources. La plupart des ressources peuvent être mises à jour en procédant comme suit :
+ Si destinataire de hello doit toorestrict d’accéder aux ressources tootheir, ils doivent envisager de mise à jour les clés secrètes associés hello service. La plupart des ressources peuvent être mis à jour à l’aide de hello comme suit :
 
-    1. Accédez au [portail Azure](https://portal.azure.com).
-    2. Dans le menu Hub, sélectionnez **Toutes les ressources**.
-    3. Sélectionnez la ressource. 
-    4. Dans le panneau des ressources, cliquez sur **Paramètres**. Ici, vous pouvez afficher et mettre à jour les clés secrètes existantes.
+    1. Accédez toohello [portail Azure](https://portal.azure.com).
+    2. Dans le menu du Hub hello, sélectionnez **toutes les ressources**.
+    3. Sélectionnez les ressources hello. 
+    4. Dans le panneau des ressources hello, cliquez sur **paramètres**. Ici, vous pouvez afficher et mettre à jour les clés secrètes existantes.
 
-* **Si je transfère l’abonnement au milieu d’un cycle de facturation, le destinataire paye-t-il pour l’intégralité du cycle ?**
+* **Si le transfert d’abonnement hello au milieu de hello Hello cycle de facturation, hello destinataire pour la facturation d’entière hello du cycle de paie ?**
 
-  L’expéditeur est responsable du paiement pour toute opération déclarée avant l’achèvement du transfert. Le destinataire est responsable des opérations déclarées à compter de la réalisation effective du transfert. Certaines opérations peuvent avoir été effectuées avant le transfert mais déclarées ultérieurement. L’utilisation figure sur la facture du destinataire.
+  Hello expéditeur est chargé de paiement pour toute utilisation a été signalée point toohello que le transfert de hello est terminée. Hello destinataire est chargé de d’utilisation signalée hello à partir de transfert et les versions ultérieures. Certaines opérations peuvent avoir été effectuées avant le transfert mais déclarées ultérieurement. l’utilisation de Hello est incluse dans la nomenclature de destinataire hello.
 
-* **Le destinataire a-t-il accès à l’historique des opérations et de facturation ?**
+* **Destinataire de hello a-t-il accès toousage et l’historique de facturation**
 
-  Les seules informations accessibles au destinataire sont le montant de la dernière facture, ou le solde actuel si l’abonnement a été transféré avant l’émission de la première facture. L’utilisation restante et l’historique de facturation ne sont pas transférés avec l’abonnement.
+  Hello uniquement des informations disponibles toohello destinataire est la quantité de hello de facture de dernière hello ou un si l’abonnement de hello a été transféré avant la génération d’une facture de première hello, hello solde actuel. abonnement de hello ne sont pas transférés reste Hello hello l’utilisation d’et l’historique de facturation.
 
-* **L’offre peut-elle être modifiée durant un transfert ?**
+* **Offre de hello peut être modifié durant un transfert ?**
 
-  L’offre doit rester inchangée. Pour modifier votre offre, consultez la page [Changer d’offre pour votre abonnement Azure](billing-how-to-switch-azure-offer.md).
+  Hello offre doit rester hello identiques. toochange votre offre, consultez [basculer votre offre de tooanother abonnement Azure](billing-how-to-switch-azure-offer.md).
 
-* **Puis-je transférer un abonnement sur un compte d’utilisateur dans un autre pays ?**
+* **Puis-je transférer un compte d’utilisateur abonnement tooa dans un autre pays ?**
 
-  Non, le transfert d’un abonnement sur un compte d’utilisateur dans un autre pays n’est pas pris en charge. Le compte d’utilisateur du destinataire doit se trouver dans le même pays.
+  Non, transfert d’un compte d’utilisateur abonnement tooa dans un autre pays n’est pas pris en charge. compte d’utilisateur du destinataire Hello doit être Bonjour même pays.
 
-* **Le destinataire peut-il utiliser un autre mode de paiement ?**
+* **Destinataire de hello permet à un autre moyen de paiement ?**
 
-  Oui. Mais l’historique de facturation de l’abonnement est désormais réparti entre deux comptes.  
+  Oui. Mais l’historique de facturation hello abonnement est divisé en deux comptes.  
 
-* **Le transfert d’un abonnement Azure a-t-il des conséquences sur le mode de paiement ?**
+* **Est de paiement hello affecté une fois que je transférés d’un abonnement Azure ?**
 
-  Afin d’accepter un transfert d’abonnement, une carte de crédit ou un mode de paiement similaire doit être fourni pour le paiement de l’abonnement. Par exemple, si Bob transfère un abonnement à Jane et que Jane accepte le transfert, Jane doit également fournir un mode de paiement qu’elle a utilisé pour payer l’abonnement. Une fois le transfert terminé, Jane reçoit une facture pour l’abonnement, et non Bob.
+  tooaccept un transfert d’abonnement, une carte de crédit ou paiement similaire doit être fourni toopay pour l’abonnement de hello. Par exemple, si Bob transfère un tooJane d’abonnement et Jane accepte le transfert de hello, Jane doit fournir un toopay de méthode de paiement pour l’abonnement de hello. Une fois le transfert hello est terminé, Jane est facturée pour l’abonnement hello pas Bob.
 
-* **Comment migrer des données et des services de mon abonnement Azure vers un nouvel abonnement ?**
+* **Comment migrer les données et services de mon abonnement de toonew abonnement Azure ?**
 
-  Si vous ne pouvez pas transférer la propriété de l’abonnement, vous pouvez migrer vos ressources manuellement. Consultez la page [Déplacer des ressources vers un nouveau groupe de ressources ou un nouvel abonnement](../azure-resource-manager/resource-group-move-resources.md).
+  Si vous ne pouvez pas transférer la propriété de l’abonnement, vous pouvez migrer vos ressources manuellement. Consultez [déplacer le groupe de ressources toonew ressources ou d’un abonnement](../azure-resource-manager/resource-group-move-resources.md).
 
 
 
 ## <a name="need-help-contact-support"></a>Vous avez besoin d’aide ? Contactez le support technique.
-Si vous avez besoin d’aide, [contactez le support technique](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) pour obtenir une prise en charge rapide de votre problème. 
+Si vous avez besoin d’aide, [contactez le support technique](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) tooget votre problème résolu rapidement. 
 
 

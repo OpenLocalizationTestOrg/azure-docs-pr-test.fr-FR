@@ -1,6 +1,6 @@
 ---
-title: "Options de génération de rapports avancés pour le SDK Azure Mobile Engagement pour Android"
-description: "Décrit comment générer des rapports avancés visant à capturer des analyses pour le SDK Azure Mobile Engagement pour Android"
+title: aaaAdvanced options pour Azure Mobile Engagement Android SDK reporting
+description: "Décrit comment toodo avancé reporting toocapture analytique pour Azure Mobile Engagement Android SDK"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,11 +14,11 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 08/10/2016
 ms.author: piyushjo;ricksal
-ms.openlocfilehash: 2a1445afa2c2fca1a31ad9c012b9c8a917ebf65c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5c8f4ea36c54715f4e09fd43c96132c15019a71b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="advanced-reporting-with-engagement-on-android"></a>Génération de rapports avancés avec Engagement sur Android
 > [!div class="op_single_selector"]
@@ -29,28 +29,28 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-Cette rubrique décrit des scénarios de génération de rapports supplémentaires dans votre application Android. Vous pouvez appliquer ces options à l’application créée dans le didacticiel [Prise en main](mobile-engagement-android-get-started.md) .
+Cette rubrique décrit des scénarios de génération de rapports supplémentaires dans votre application Android. Vous pouvez appliquer ces options de toohello application créé Bonjour [mise en route](mobile-engagement-android-get-started.md) didacticiel.
 
-## <a name="prerequisites"></a>Conditions préalables
+## <a name="prerequisites"></a>Composants requis
 [!INCLUDE [Prereqs](../../includes/mobile-engagement-android-prereqs.md)]
 
-Le didacticiel que vous avez suivi était délibérément direct et simple, mais vous disposez également d’options avancées.
+didacticiel Hello vous terminé a été délibérément simple et directe, mais il sont des options que vous pouvez choisir avancées.
 
 ## <a name="modifying-your-activity-classes"></a>Modification de vos classes `Activity`
-Dans le didacticiel de [Prise en main](mobile-engagement-android-get-started.md), il vous suffisait de configurer vos sous-classes `*Activity` pour qu’elles héritent des classes `Engagement*Activity` correspondantes. Par exemple, si votre activité héritée étendait `ListActivity`, vous deviez faire en sorte qu’elle étende `EngagementListActivity`.
+Bonjour [didacticiel de mise en route](mobile-engagement-android-get-started.md), vous n’aviez toodo a été toomake votre `*Activity` sous-classes héritent hello correspondant `Engagement*Activity` classes. Par exemple, si votre activité héritée étendait `ListActivity`, vous deviez faire en sorte qu’elle étende `EngagementListActivity`.
 
 > [!IMPORTANT]
-> Lorsque vous utilisez `EngagementListActivity` ou `EngagementExpandableListActivity`, assurez-vous que tout appel à `requestWindowFeature(...);` est effectué avant l'appel à `super.onCreate(...);`. Dans le cas contraire, un incident se produira.
+> Lorsque vous utilisez `EngagementListActivity` ou `EngagementExpandableListActivity`, assurez-vous que tout appel trop`requestWindowFeature(...);` est effectuée avant l’appel de hello trop`super.onCreate(...);`, sinon un incident se produit.
 > 
 > 
 
-Vous trouverez ces classes dans le dossier `src`. Vous pourrez les copier dans votre projet. Les classes se trouvent également dans **JavaDoc**.
+Vous pouvez trouver ces classes Bonjour `src` dossier, puis les copier dans votre projet. classes de Hello figurent également dans hello **JavaDoc**.
 
 ## <a name="alternate-method-call-startactivity-and-endactivity-manually"></a>Méthode alternative : appelez `startActivity()` et `endActivity()` manuellement
-Si vous ne pouvez pas ou ne voulez pas surcharger vos classes `Activity`, vous pouvez démarrer et terminer vos activités en appelant les méthodes d’`EngagementAgent` directement.
+Si vous ne pouvez pas ou ne souhaitez pas que toooverload votre `Activity` classes, vous pouvez à la place commencer et se terminer vos activités en appelant hello `EngagementAgent`de méthodes directement.
 
 > [!IMPORTANT]
-> Le Kit de développement logiciel (SDK) Android n'appelle jamais la méthode `endActivity()`, même quand l'application est fermée (sur Android, les applications ne sont jamais fermées). Il est donc *FORTEMENT* recommandé d’appeler la méthode `startActivity()` dans le rappel `onResume` de *TOUTES* vos activités, et la méthode `endActivity()` dans le rappel `onPause()` de *TOUTES* vos activités. Il s'agit de la seule façon d'empêcher la fuite de sessions. Dans le cas d'une fuite de session, le service Engagement n'est jamais déconnecté du serveur principal d'Engagement (étant donné que le service reste connecté tant qu'une session est en cours).
+> Hello du SDK Android n’appelle jamais hello `endActivity()` méthode, même lorsque l’application hello est fermée (sur Android, les applications ne sont jamais fermées). Par conséquent, il est *hautement* recommandé toocall hello `startActivity()` méthode Bonjour `onResume` rappel de *tous les* vos activités et hello `endActivity()` méthode Bonjour `onPause()` rappel de *tous les* vos activités. Il s’agit de toobe moyen hello uniquement assurer que les sessions ne sont pas divulguées. Si une session est perdue, hello service d’Engagement déconnecte jamais hello Engagement principal (étant donné que le service de hello reste connecté en tant qu’une session est en attente).
 > 
 > 
 
@@ -62,7 +62,7 @@ Voici un exemple :
       protected void onResume()
       {
         super.onResume();
-        String activityNameOnEngagement = EngagementAgentUtils.buildEngagementActivityName(getClass()); // Uses short class name and removes "Activity" at the end.
+        String activityNameOnEngagement = EngagementAgentUtils.buildEngagementActivityName(getClass()); // Uses short class name and removes "Activity" at hello end.
         EngagementAgent.getInstance(this).startActivity(this, activityNameOnEngagement, null);
       }
 
@@ -74,12 +74,12 @@ Voici un exemple :
       }
     }
 
-Cet exemple est similaire à la classe `EngagementActivity` et à ses variantes, dont le code source est fourni dans le dossier `src`.
+Cet exemple est semblable toohello `EngagementActivity` classe et ses variantes, dont le code source est fourni dans hello `src` dossier.
 
 ## <a name="using-applicationoncreate"></a>Utilisation de Application.onCreate()
-Tout code que vous placez dans `Application.onCreate()` et dans les autres rappels d’application sera exécuté pour l’ensemble des processus de votre application, notamment le service Engagement. Cela peut avoir des effets indésirables, tels que des allocations de mémoire et des threads inutiles dans le processus Engagement, ou des récepteurs ou services de diffusion en double.
+Tout code que vous placez dans `Application.onCreate()` et dans une autre application de rappels est exécutée pour les processus de tous les votre application, y compris le service d’Engagement hello. Elle peut avoir des effets secondaires indésirables, comme les allocations de mémoire inutiles et les threads de processus de hello Engagement, ou en double diffusion récepteurs ou des services.
 
-Si vous remplacez `Application.onCreate()`, nous vous recommandons d’ajouter l’extrait de code suivant au début de la fonction `Application.onCreate()` :
+Si vous substituez `Application.onCreate()`, nous vous recommandons d’ajouter des hello suivant extrait de code au début de hello de votre `Application.onCreate()` fonction :
 
      public void onCreate()
      {
@@ -89,17 +89,17 @@ Si vous remplacez `Application.onCreate()`, nous vous recommandons d’ajouter l
        ... Your code...
      }
 
-Vous pouvez faire la même chose pour `Application.onTerminate()`, `Application.onLowMemory()` et `Application.onConfigurationChanged(...)`.
+Vous pouvez effectuer hello même chose pour `Application.onTerminate()`, `Application.onLowMemory()`, et `Application.onConfigurationChanged(...)`.
 
-Vous pouvez également étendre `EngagementApplication` au lieu d'étendre `Application` : le rappel `Application.onCreate()` effectue la vérification du processus et appelle `Application.onApplicationProcessCreate()` uniquement si le processus actuel n'est pas celui qui héberge le service Engagement. Les mêmes règles s'appliquent pour les autres rappels.
+Vous pouvez également étendre `EngagementApplication` au lieu de l’extension `Application`: hello rappel `Application.onCreate()` hello vérification de processus et les appels `Application.onApplicationProcessCreate()` uniquement si le processus actuel de hello n’est pas hello un hello Engagement service d’hébergement, hello mêmes règles s’appliquent pour Bonjour autres rappels.
 
-## <a name="tags-in-the-androidmanifestxml-file"></a>Balises dans le fichier AndroidManifest.xml
-Dans la balise service du fichier AndroidManifest.xml, l’attribut `android:label` vous permet de choisir le nom du service Engagement tel qu’il apparaîtra aux utilisateurs finaux dans l’écran Services en cours d’exécution de leur téléphone. Nous vous recommandons d’affecter la valeur `"<Your application name>Service"` à cet attribut (par exemple `"AcmeFunGameService"`).
+## <a name="tags-in-hello-androidmanifestxml-file"></a>Balises dans le fichier AndroidManifest.xml hello
+Dans la balise de service hello dans le fichier AndroidManifest.xml hello, hello `android:label` attribut permet de vous toochoose hello nom de service de l’Engagement de hello tel qu’il apparaît aux utilisateurs de tooend l’écran hello « Services en cours d’exécution » de leur téléphone. Nous vous recommandons de définir cet attribut trop`"<Your application name>Service"` (par exemple, `"AcmeFunGameService"`).
 
-La spécification de l'attribut `android:process` permet au service Engagement d'être exécuté dans le cadre de son propre processus (l'exécution d'Engagement dans le même processus que votre application peut rendre votre thread principal/d'interface utilisateur moins réactif).
+En spécifiant hello `android:process` attribut garantit que hello Engagement service s’exécute dans son propre processus (en cours d’exécution Engagement Bonjour même processus que votre application effectue votre thread principal / l’interface utilisateur potentiellement moins sensible).
 
 ## <a name="building-with-proguard"></a>Génération avec ProGuard
-Si vous générez votre package d'application avec ProGuard, vous devez conserver certaines classes. Vous pouvez utiliser l'extrait de configuration suivant :
+Si vous générez votre package d’application avec ProGuard, vous devez tookeep certaines classes. Vous pouvez utiliser hello suivant extrait de configuration :
 
     -keep public class * extends android.os.IInterface
     -keep class com.microsoft.azure.engagement.reach.activity.EngagementWebAnnouncementActivity$EngagementReachContentJS {

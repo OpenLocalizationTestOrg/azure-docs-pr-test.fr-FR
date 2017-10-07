@@ -1,6 +1,6 @@
 ---
-title: "Mettre à niveau à partir de Mobile Services vers Azure App Service"
-description: "Découvrez comment facilement mettre à niveau votre application Mobile Services vers App Service Mobile Apps"
+title: "aaaUpgrade à partir des Services mobiles tooAzure du Service d’applications"
+description: "Découvrez comment tooeasily mettre à niveau votre tooan d’application Mobile Services application de Service d’applications mobiles"
 services: app-service\mobile
 documentationcenter: 
 author: ggailey777
@@ -14,79 +14,79 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 10/01/2016
 ms.author: glenga
-ms.openlocfilehash: 81173b34d0d3b07c5c49d867b1dc5060c7311f12
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 2b75a1b824e8ef0d36c9053f2f19af051479f928
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="upgrade-your-existing-net-azure-mobile-service-to-app-service"></a>Mettre à niveau votre application .NET Azure Mobile Services existante vers App Service
-App Service Mobile représente une nouvelle façon de créer des applications mobiles avec Microsoft Azure. Pour en savoir plus, consultez [Que sont les applications Mobile Apps ?]
+# <a name="upgrade-your-existing-net-azure-mobile-service-tooapp-service"></a>Mettre à niveau votre tooApp .NET Azure Mobile Service existant Service
+Service d’application Mobile est une nouvelle façon toobuild applications mobiles à l’aide de Microsoft Azure. toolearn, voir [quelles sont les applications mobiles ?].
 
-Cette rubrique décrit comment mettre à niveau une application principale .NET existante depuis Azure Mobile Services vers une nouvelle application App Service Mobile Apps. Pendant cette mise à niveau, votre application Mobile Services existante peut continuer à fonctionner.   Si vous devez mettre à niveau une application principale Node.js, voir [Mettre à niveau votre application .NET Azure Mobile Services existante vers App Service](app-service-mobile-node-backend-upgrading-from-mobile-services.md).
+Cette rubrique décrit comment tooupgrade une application de serveur principal .NET existante à partir d’Azure Mobile Services tooa nouvelle App Service Mobile Apps. Lorsque vous exécutez cette mise à niveau, votre application Mobile Services existante peut continuer toooperate.   Si vous devez tooupgrade une application principale de Node.js, consultez trop[la mise à niveau vos Services mobiles de Node.js](app-service-mobile-node-backend-upgrading-from-mobile-services.md).
 
-Quand un serveur principal mobile est mis à niveau vers Azure App Service, il a accès à toutes les fonctionnalités App Service et c’est la [tarification App Service]qui est appliquée, et non celle de Mobile Services.
+Une fois un service principal mobile tooAzure mis à niveau du Service d’applications, il a tooall d’accès aux fonctionnalités du Service de l’application et sont facturés en fonction de trop[tarification du Service d’applications], pas les Services mobiles de tarification.
 
 ## <a name="migrate-vs-upgrade"></a>Migration et mise à niveau
 [!INCLUDE [app-service-mobile-migrate-vs-upgrade](../../includes/app-service-mobile-migrate-vs-upgrade.md)]
 
 > [!TIP]
-> Il est recommandé d’ [effectuer une migration](app-service-mobile-migrating-from-mobile-services.md) avant une mise à niveau. Ainsi, vous pouvez placer les deux versions de votre application sur le même plan App Service sans générer de frais supplémentaires.
+> Il est recommandé d’ [effectuer une migration](app-service-mobile-migrating-from-mobile-services.md) avant une mise à niveau. De cette manière, vous pouvez placer les deux versions de votre application hello même un Plan App Service et entraîner une baisse sans coût supplémentaire.
 >
 >
 
 ### <a name="improvements-in-mobile-apps-net-server-sdk"></a>Améliorations du Kit de développement logiciel (SDK) serveur .NET Mobile Apps
-La mise à niveau vers le nouveau [Kit de développement logiciel (SDK) Mobile Apps](https://www.nuget.org/packages/Microsoft.Azure.Mobile.Server/) offre les avantages suivants :
+La mise à niveau toohello nouvelle [SDK des applications mobiles](https://www.nuget.org/packages/Microsoft.Azure.Mobile.Server/) fournit hello avantages suivants :
 
-* Plus de flexibilité sur les dépendances NuGet. L'environnement d'hébergement ne fournit plus ses propres versions des packages NuGet : vous pouvez donc utiliser d'autres versions compatibles. Toutefois, si de nouvelles résolutions de bogues critiques ou mises à jour de sécurité sont apportées au SDK du serveur mobile ou à ses dépendances, vous devez mettre à jour manuellement votre service.
-* Plus de souplesse dans le SDK mobile. Vous pouvez contrôler explicitement les fonctionnalités et itinéraires définis, comme l'authentification, les API de table et le point de terminaison de l'enregistrement Push. Pour en savoir plus, consultez [Utilisation du Kit de développement logiciel (SDK) serveur .NET pour Azure Mobile Apps](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md).
-* Prise en charge d'autres itinéraires et types de projets ASP.NET. Vous pouvez désormais héberger des contrôleurs d'API web et MVC dans votre projet de backend mobile.
-* Prise en charge de nouvelles fonctionnalités d'authentification App Service. Cela vous permet d'utiliser une configuration d'authentification commune à vos applications mobiles et web.
+* Plus de flexibilité sur les dépendances NuGet. Hello environnement d’hébergement n’est plus fournit sa propre version des packages NuGet, vous pouvez utiliser les autres versions compatibles. Toutefois, s’il existe de nouvelles bugfixes critique ou toohello de mises à jour de sécurité Mobile serveur SDK ou dépendances, vous devez mettre à jour manuellement votre service.
+* Plus de souplesse dans hello mobile SDK. Vous pouvez contrôler explicitement les fonctionnalités et les itinéraires sont configurés, telles que l’authentification, API, de table et hello du point de terminaison par émission de données d’inscription. toolearn, voir [comment toouse hello .NET server SDK pour les applications mobiles Azure](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md).
+* Prise en charge d'autres itinéraires et types de projets ASP.NET. Vous pouvez maintenant héberger contrôleurs MVC et les API Web Bonjour même projet comme projet de service principal mobile.
+* Prise en charge des nouvelles fonctionnalités de l’authentification du Service d’applications, ce qui vous toouse une configuration de l’authentification commune entre vos applications web et mobiles.
 
 ## <a name="overview"></a>Présentation de la mise à niveau de base
-Dans de nombreux cas, la mise à niveau consiste simplement à basculer vers le nouveau SDK serveur Mobile Apps et à republier votre code dans une nouvelle instance Mobile Apps. Il existe toutefois des scénarios qui nécessitent une configuration supplémentaire, tels que les scénarios d'authentification avancée et l'utilisation de tâches planifiées. Ils sont couverts individuellement dans les sections ultérieures.
+Dans de nombreux cas, la mise à niveau sera aussi simple que le basculement de serveur d’applications mobiles nouvelle toohello Kit de développement logiciel et si vous republiez votre code vers une nouvelle instance de l’application Mobile. Il existe toutefois des scénarios qui nécessitent une configuration supplémentaire, tels que les scénarios d'authentification avancée et l'utilisation de tâches planifiées. Chacun de ces est couvert en hello sections ultérieurement.
 
 > [!TIP]
-> Il est conseillé de lire et de comprendre entièrement le reste de cette rubrique avant de commencer une mise à niveau. Prenez note de toutes les fonctionnalités répertoriées ci-dessous que vous utilisez.
+> Il est recommandé de lire et comprendre reste hello de cette rubrique complètement avant de démarrer une mise à niveau. Prenez note de toutes les fonctionnalités répertoriées ci-dessous que vous utilisez.
 >
 >
 
-Les Kits de développement logiciel (SDK) clients Mobile Services ne sont **pas** compatibles avec le nouveau Kit de développement logiciel (SDK) serveur Mobile Apps. Afin d’assurer la continuité du service pour votre application, vous ne devez pas publier des modifications apportées à un site en train de desservir des clients publiés. Vous devez plutôt créer une application mobile qui sert de doublon. Vous pouvez placer cette application sur le même plan App Service pour éviter d’encourir des frais supplémentaires.
+sont des kits de développement logiciel client des Services mobiles Hello **pas** compatibles avec les serveurs d’applications mobiles nouvelle hello Kit de développement logiciel. Dans la continuité des activités tooprovide de commande de service pour votre application, vous ne devez pas publier site tooa de modifications actuellement le clients publiées. Vous devez plutôt créer une application mobile qui sert de doublon. Vous pouvez placer cette application sur hello du Service d’applications plan tooavoid encourir le coût financier supplémentaire.
 
-Vous avez alors deux versions de l’application : l’une qui reste la même et délivre les applications publiées et l’autre que vous pouvez mettre à niveau et cibler avec une nouvelle version du client. Vous pouvez déplacer et tester votre code à votre rythme, mais vous devez vous assurer que tous les correctifs de bogues que vous apportez sont appliqués aux deux versions. Une fois que le nombre souhaité d’applications clientes ont effectué la mise à jour vers la dernière version, vous supprimez l’application originale qui a migré si vous le souhaitez.
+Vous aurez alors deux versions de l’application hello : un qui reste identique hello et sert des applications publiées dans hello générique et hello autres dont vous pouvez ensuite mettre à niveau et la cible avec une nouvelle version du client. Vous pouvez déplacer et tester votre code à votre rythme, mais vous devez vous assurer que tous les correctifs de bogue que vous apportez obtenir tooboth appliqué. Une fois que vous estimez que nombre désiré de Bonjour générique, les applications clientes ont mis à jour la version la plus récente toohello, vous pouvez supprimer l’application hello de migrées d’origine si vous le souhaitez.
 
-Le processus de mise à niveau est le suivant :
+structure complète de Hello pour le processus de mise à niveau hello est la suivante :
 
 1. Créer une application Mobile App
-2. Mettre à jour le projet pour utiliser les nouveaux Kits de développement logiciel (SDK) serveur
+2. Mise à jour hello projet toouse hello nouveaux kits de développement logiciel serveur
 3. Publier une nouvelle version de votre application cliente
 4. (Facultatif) Supprimer l’instance originale qui a migré
 
 ## <a name="mobile-app-version"></a>Création d’une seconde instance d’application
-La première étape de la mise à niveau consiste à créer la ressource Mobile Apps qui hébergera la nouvelle version de votre application. Si vous avez déjà migré un service mobile existant, vous voulez créer cette version sur le même plan d’hébergement. Ouvrez le [portail Azure] et accédez à votre application migrée. Notez le plan App Service sur lequel elle s’exécute.
+Bonjour première étape de la mise à niveau est la ressource de l’application Mobile toocreate hello qui hébergera hello nouvelle version de votre application. Si vous avez déjà migré un service mobile existant, vous pouvez toocreate cette version sur hello même plan d’hébergement. Ouvrez hello [portail Azure] et accédez tooyour migrer l’application. Prenez note de hello du Plan App Service il s’exécute sur.
 
-Ensuite, créez la seconde instance d’application en suivant les [instructions de création d’un serveur principal .NET](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md#create-app). Quand vous êtes invité à sélectionner votre plan App Service ou « plan d’hébergement », choisissez celui de votre application qui a migré.
+Ensuite, créez seconde instance d’application hello en hello suivant [instructions de création de serveur principal .NET](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md#create-app). Lorsque tooselect invité à choisir de vous Plan App Service ou « plan d’hébergement » hello plan de votre application migrée.
 
-Vous souhaiterez probablement utiliser les mêmes base de données et hub de notifications que dans Mobile Services. Copiez ces valeurs en ouvrant le [portail Azure] et en accédant à l’application d’origine, puis cliquez sur **Paramètres** > **Paramètres d’application**. Sous **Chaînes de connexion**, copiez `MS_NotificationHubConnectionString` et `MS_TableConnectionString`. Accédez à votre nouveau site de mise à niveau et collez-les en remplaçant les valeurs existantes. Répétez ce processus pour tous les autres paramètres d’application dont votre application a besoin. Si vous n’utilisez pas un service qui a migré, vous pouvez lire des chaînes de connexion et des paramètres d’application sous l’onglet **Configurer** de la section Mobile Services du [portail Azure Classic].
+Vous pouvez toouse hello la même base de données et le concentrateur de Notification que vous l’avez fait dans les Services mobiles. Vous pouvez copier ces valeurs en ouvrant [portail Azure] , navigation dans les applications d’origine toohello, puis **paramètres** > **paramètres de l’Application**. Sous **Chaînes de connexion**, copiez `MS_NotificationHubConnectionString` et `MS_TableConnectionString`. Accédez tooyour un nouveau site de mise à niveau et les coller en remplaçant toutes les valeurs existantes. Répétez ce processus pour tous les autres paramètres d’application dont votre application a besoin. Si vous N'utilisez pas un service migré, vous pouvez lire des chaînes de connexion et les paramètres de l’application hello **configurer** onglet Hello section de Services mobiles de hello [portail Azure classic].
 
-Faites une copie du projet ASP.NET de votre application et publiez-la sur votre nouveau site. En utilisant une copie de votre application cliente mise à jour avec la nouvelle URL, vérifiez que tout fonctionne comme prévu.
+Effectuer une copie du projet ASP.NET de hello pour votre application et le publier tooyour nouveau site. À l’aide d’une copie de votre application client mis à jour avec la nouvelle URL de hello, valider que tout fonctionne comme prévu.
 
-## <a name="updating-the-server-project"></a>Mise à jour du projet serveur
-Mobile Apps fournit une nouveau [Kit de développement logiciel (SDK) Mobile App Server] qui fournit de nombreuses fonctionnalités identiques à celles du runtime Mobile Services. Tout d’abord, vous devez supprimer toutes les références aux packages Mobile Services. Dans le gestionnaire de packages NuGet, recherchez `WindowsAzure.MobileServices.Backend`. La plupart des applications affichent plusieurs packages, notamment `WindowsAzure.MobileServices.Backend.Tables` et `WindowsAzure.MobileServices.Backend.Entity`. Dans ce cas, commencez avec le package le plus bas dans l’arborescence des dépendances, notamment `Entity`et supprimez-le. Quand vous y êtes invité, ne supprimez pas tous les packages dépendants. Répétez ce processus jusqu’à ce que vous ayez supprimé `WindowsAzure.MobileServices.Backend` .
+## <a name="updating-hello-server-project"></a>Mise à jour de projet de serveur hello
+Applications mobiles fournit une nouvelle [serveur SDK de l’application Mobile] qui fournit la majeure partie de hello même fonctionnalité que l’exécution des Services mobiles hello. Tout d’abord, vous devez supprimer tous les packages de Services mobiles toohello références. Dans le Gestionnaire de package NuGet hello, recherchez `WindowsAzure.MobileServices.Backend`. La plupart des applications affichent plusieurs packages, notamment `WindowsAzure.MobileServices.Backend.Tables` et `WindowsAzure.MobileServices.Backend.Entity`. Dans ce cas, démarrez avec le package de hello plus bas dans l’arborescence des dépendances hello, tel que `Entity`et le supprimer. Quand vous y êtes invité, ne supprimez pas tous les packages dépendants. Répétez ce processus jusqu’à ce que vous ayez supprimé `WindowsAzure.MobileServices.Backend` .
 
 À ce stade, vous avez un projet qui ne fait plus référence aux SDK Mobile Services.
 
-Ensuite, vous allez ajouter des références aux SDK Mobile Apps. Pour cette mise à niveau, la plupart des développeurs préfèrent télécharger et installer le package `Microsoft.Azure.Mobile.Server.Quickstart` , car il permet d’extraire la totalité de l’ensemble requis.
+Vous allez ensuite ajouter des références hello SDK des applications mobiles. Cette mise à niveau, la plupart des développeurs seront toodownload et installer hello `Microsoft.Azure.Mobile.Server.Quickstart` du package, comme cela extraira dans ensemble hello requis.
 
-De nombreuses erreurs de compilateur proviennent des différences entre les SDK, mais elles sont faciles à corriger et elles sont décrites plus loin dans cette section.
+Il y a quelques erreurs du compilateur résultant des différences entre les kits de développement logiciel hello, mais ceux-ci sont tooaddress facile et sont traités dans le reste de hello de cette section.
 
 ### <a name="base-configuration"></a>Configuration de base
 Ensuite, dans WebApiConfig.cs, vous pouvez remplacer :
 
-        // Use this class to set configuration options for your mobile service
+        // Use this class tooset configuration options for your mobile service
         ConfigOptions options = new ConfigOptions();
 
-        // Use this class to set WebAPI configuration options
+        // Use this class tooset WebAPI configuration options
         HttpConfiguration config = ServiceConfig.Initialize(new ConfigBuilder(options));
 
 par
@@ -97,74 +97,74 @@ par
         .ApplyTo(config);
 
 > [!NOTE]
-> Si vous souhaitez en savoir plus sur le nouveau SDK serveur .NET et sur la façon d’ajouter/de supprimer des fonctionnalités de votre application, consultez la rubrique [Utilisation du Kit de développement logiciel (SDK) serveur .NET] .
+> Si vous le souhaitez toolearn plus sur hello nouveau .NET serveur SDK et comment tooadd ou supprimer des fonctionnalités à partir de votre application, consultez hello [comment toouse hello .NET server SDK] rubrique.
 >
 >
 
-Si votre application utilise les fonctionnalités d’authentification, vous devez également inscrire un intergiciel (middleware) OWIN. Dans ce cas, vous devez déplacer le code de configuration ci-dessus dans une nouvelle classe de démarrage OWIN.
+Si votre application effectue des fonctionnalités d’authentification hello, vous devez également tooregister un intergiciel (middleware) OWIN. Dans ce cas, vous devez déplacer hello au-dessus de code de configuration dans une nouvelle classe de démarrage OWIN.
 
-1. Ajoutez le package NuGet `Microsoft.Owin.Host.SystemWeb` s’il n’est pas déjà inclus dans votre projet.
+1. Ajoutez le package NuGet de hello `Microsoft.Owin.Host.SystemWeb` s’il n’est pas déjà inclus dans votre projet.
 2. Dans Visual Studio, cliquez avec le bouton droit sur votre projet, puis sélectionnez **Ajouter** -> **Nouvel élément**. Sélectionnez **Web** -> **Général** -> **Classe de démarrage OWIN**.
-3. Déplacez le code ci-dessus pour MobileAppConfiguration de `WebApiConfig.Register()` vers la méthode `Configuration()` de votre nouvelle classe de démarrage.
+3. Déplacer hello au-dessus de code pour MobileAppConfiguration de `WebApiConfig.Register()` toohello `Configuration()` méthode de votre nouvelle classe de démarrage.
 
-Assurez-vous que la méthode `Configuration()` se termine par :
+Vérifiez que hello `Configuration()` méthode se termine par :
 
         app.UseWebApi(config)
         app.UseAppServiceAuthentication(config);
 
-Il existe des modifications supplémentaires liées à l’authentification qui sont abordées dans la section dédiée à l’authentification ci-après.
+Il existe des modifications supplémentaires des tooauthentication connexes qui sont traitées dans la section de l’authentification complète hello ci-dessous.
 
 ### <a name="working-with-data"></a>Utilisation des données
-Dans Mobile Services, le nom de l’application mobile servait de nom de schéma par défaut dans la configuration Entity Framework.
+Dans les Services mobiles, nom de l’application mobile hello pris en charge en tant que nom de schéma par défaut hello dans le programme d’installation de hello Entity Framework.
 
-Pour vous assurer d’avoir le même schéma référencé que celui d’avant, utilisez la commande suivante pour définir le schéma dans le DbContext de votre application :
+tooensure que vous avez hello même schéma référencé comme avant, hello utilisation suivant le schéma de hello tooset Bonjour DbContext pour votre application :
 
         string schema = System.Configuration.ConfigurationManager.AppSettings.Get("MS_MobileServiceName");
 
-Vérifiez que MS_MobileServiceName est défini si vous effectuez l’étape ci-dessus. Vous pouvez également fournir un autre nom de schéma si votre application l’a personnalisé précédemment.
+Vérifiez que vous avez MS_MobileServiceName définie si vous hello ci-dessus. Vous pouvez également fournir un autre nom de schéma si votre application l’a personnalisé précédemment.
 
 ### <a name="system-properties"></a>Propriétés système
 #### <a name="naming"></a>Dénomination
-Dans le Kit de développement logiciel (SDK) serveur Azure Mobile Services, les propriétés système contiennent toujours un préfixe constitué de deux traits de soulignement (`__`) :
+Dans le serveur de Services mobiles Azure hello SDK, les propriétés système contiennent toujours un trait de soulignement double (`__`) préfixe pour les propriétés de hello :
 
 * __createdAt
 * __updatedAt
 * __deleted
 * __version
 
-Les Kits de développement logiciel (SDK) clients Mobile Services ont une logique spéciale pour l’analyse des propriétés système dans ce format.
+client des Services mobiles Hello kits de développement logiciel ont une logique spéciale pour l’analyse des propriétés système dans ce format.
 
-Dans Azure Mobile Apps, les propriétés système n’ont plus de format spécial et portent les noms suivants :
+Dans les applications mobiles Azure, propriétés système ont n’est plus une spéciale en forme et avez hello nom :
 
 * createdAt
 * updatedAt
 * deleted
 * version
 
-Les Kits de développement logiciel (SDK) clients Mobile Apps utilisent les nouveaux noms de propriétés système, donc aucune modification du code client n’est exigée. Toutefois, si vous effectuez directement des appels REST à votre service, alors vous devez modifier vos requêtes en conséquence.
+Hello Mobile Apps client kits de développement logiciel utilisez hello nouveau système propriétés noms, donc aucune modification n’est nécessaires tooclient code. Toutefois, si vous êtes directement reste appels tooyour service, puis vous devez modifier vos requêtes en conséquence.
 
 #### <a name="local-store"></a>Magasin local
-Les modifications apportées aux noms des propriétés système signifient qu’une base de données locale de synchronisation hors connexion pour Mobile Services n’est pas compatible avec Mobile Apps. Si possible, vous devez éviter de mettre à niveau des applications clientes depuis Mobile Services vers Mobile Apps tant que les modifications en attente n’ont pas été envoyées au serveur. Ensuite, l’application mise à niveau doit utiliser un nouveau nom de fichier de base de données.
+Hello modifications toohello noms de propriétés système signifient qu’une base de données locale de synchronisation hors connexion pour les Services mobiles n’est pas compatible avec les applications mobiles. Si possible, vous devez éviter de mettre à niveau les applications clientes tooMobile Mobile Services Qu'applications jusqu'à ce qu’après les modifications en attente ont été envoyées toohello server. Ensuite, application mis à niveau hello doit utiliser un nouveau nom de fichier de base de données.
 
-Si une application cliente est mise à niveau depuis Mobile Services vers Mobile Apps alors qu’il existe des modifications hors connexion en attente dans la file d’attente des opérations, alors la base de données système doit être mise à jour pour utiliser les nouveaux noms de colonne. Sur iOS, cette mise à jour est possible en utilisant de légères migrations pour modifier les noms de colonne. Sur Android et le client géré .NET, vous devez écrire du code SQL personnalisé pour renommer les colonnes de vos tables d’objets de données.
+Si une application cliente est mis à niveau à partir des Services mobiles tooMobile applications bien qu’il existe des modifications en mode hors connexion en attente dans la file d’attente de fonctionnement de hello, base de données système hello doit être mis à jour toouse hello nouveaux noms de colonnes. Sur iOS, il est possible à l’aide des noms de colonnes de migrations léger toochange hello. Sur Android et hello .NET client géré, vous devez écrire les colonnes hello personnalisé SQL toorename pour vos tables d’objet de données.
 
-Sur iOS, vous devez modifier votre schéma de base de données principal pour vos entités de données afin qu’il corresponde à ce qui suit. Notez que les propriétés `createdAt`, `updatedAt` et `version` n’ont plus de préfixe `ms_` :
+Sur iOS, vous devez modifier votre schéma de données de base pour vos données entités toomatch hello suit. Notez que les propriétés de hello `createdAt`, `updatedAt` et `version` n’ont plus un `ms_` préfixe :
 
 | Attribut | Type | Remarque |
 | --- | --- | --- |
 | id |Chaîne, marquée requise |clé primaire dans le magasin distant |
-| createdAt |Date |(facultatif) correspond à la propriété système createdAt |
-| updatedAt |Date |(facultatif) correspond à la propriété système updatedAt |
-| version |String |(facultatif) permet de détecter les conflits, correspond à version |
+| createdAt |Date |propriété de système de toocreatedAt maps (facultatif) |
+| updatedAt |Date |propriété de système de tooupdatedAt maps (facultatif) |
+| version |String |conflits toodetect utilisé (facultatif), tooversion de mappages |
 
 #### <a name="querying-system-properties"></a>Interrogation des propriétés système
-Dans Azure Mobile Services, les propriétés système ne sont pas envoyées par défaut, mais uniquement quand elles sont demandées à l’aide de la chaîne de requête `__systemProperties`. Par opposition, dans Azure Mobile Apps, les propriétés système sont **toujours sélectionnées** car elles font partie du modèle objet du SDK serveur.
+Dans les Services mobiles Azure, les propriétés système ne sont pas envoyées par défaut, mais uniquement lorsqu’elles sont demandées à l’aide de la chaîne de requête hello `__systemProperties`. En revanche, les propriétés sont dans le système d’applications mobiles Azure **toujours sélectionné** , car ils font partie du modèle d’objet hello serveur SDK.
 
-Cette modification affecte principalement les implémentations personnalisées des gestionnaires de domaine, comme les extensions de `MappedEntityDomainManager`. Dans Mobile Services, si un client ne demande jamais de propriétés système, il est possible d’utiliser un `MappedEntityDomainManager` qui ne correspond en fait pas à toutes les propriétés. Toutefois, dans Azure Mobile Apps, ces propriétés non mappées provoquent une erreur dans les requêtes GET.
+Cette modification affecte principalement les implémentations personnalisées des gestionnaires de domaine, comme les extensions de `MappedEntityDomainManager`. Dans les Services mobiles, si un client demande jamais les propriétés du système, il est possible de toouse un `MappedEntityDomainManager` qui ne correspondent pas réellement de toutes les propriétés. Toutefois, dans Azure Mobile Apps, ces propriétés non mappées provoquent une erreur dans les requêtes GET.
 
-Pour résoudre ce problème, le plus simple consiste à modifier vos DTO pour qu’ils héritent de `ITableData` au lieu de `EntityData`. Ensuite, ajoutez l’attribut `[NotMapped]` aux champs à omettre.
+Hello plus simple problème de hello tooresolve moyen est toomodify vos données afin qu’ils héritent de `ITableData` au lieu de `EntityData`. Ensuite, ajoutez hello `[NotMapped]` toohello les champs qui doivent être omis d’attribut.
 
-L’exemple suivant définit `TodoItem` sans aucune propriété système :
+Par exemple, suivant de hello définit `TodoItem` sans propriétés système :
 
     using System.ComponentModel.DataAnnotations.Schema;
 
@@ -189,86 +189,86 @@ L’exemple suivant définit `TodoItem` sans aucune propriété système :
         public byte[] Version { get; set; }
     }
 
-Remarque : si vous obtenez des erreurs sur `NotMapped`, ajoutez une référence à l’assembly `System.ComponentModel.DataAnnotations`.
+Remarque : Si vous obtenez des erreurs `NotMapped`, ajouter un assembly de toohello référence `System.ComponentModel.DataAnnotations`.
 
 ### <a name="cors"></a>CORS
-Mobile Services incluait une prise en charge de CORS en encapsulant la solution ASP.NET CORS. Cette couche d’encapsulation a été supprimée pour donner plus de contrôle au développeur, donc vous pouvez exploiter directement la [prise en charge ASP.NET CORS](http://www.asp.net/web-api/overview/security/enabling-cross-origin-requests-in-web-api).
+Services mobiles inclus une prise en charge pour le service CORS en insérant hello solution d’ASP.NET CORS. Cette couche d’habillage n’a été supprimé toogive développeur de hello plus de contrôle, et vous pouvez exploiter directement [prise en charge ASP.NET CORS](http://www.asp.net/web-api/overview/security/enabling-cross-origin-requests-in-web-api).
 
-Les principales sources de préoccupation en cas d’utilisation de CORS concernent les en-têtes `eTag` et `Location` qui doivent être autorisés pour que les Kits de développement logiciel (SDK) clients puissent fonctionner correctement.
+zones principales posant problème si vous utilisez CORS Hello sont que hello `eTag` et `Location` en-têtes doivent être autorisés par ordre de hello client SDK toowork correctement.
 
 ### <a name="push-notifications"></a>Notifications Push
-En matière de notifications Push, l'élément principal qui vous semblera peut-être manquant dans le kit de développement logiciel de serveur est la classe PushRegistrationHandler. Les inscriptions sont traitées légèrement différemment dans Mobile Apps et les inscriptions sans balise sont activées par défaut. La gestion des balises peut être accomplie à l'aide d'API personnalisées. Consultez les instructions liées à l’ [inscription des balises](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md#tags) pour plus d’informations.
+Pour envoyer des données, élément principal hello qui peuvent s’avérer manquant dans hello Kit de développement logiciel serveur est la classe de PushRegistrationHandler de hello. Les inscriptions sont traitées légèrement différemment dans Mobile Apps et les inscriptions sans balise sont activées par défaut. La gestion des balises peut être accomplie à l'aide d'API personnalisées. Consultez hello [l’inscription pour les balises](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md#tags) instructions pour plus d’informations.
 
 ### <a name="scheduled-jobs"></a>Tâches planifiées
-Les tâches planifiées ne sont pas intégrées à Mobile Apps, si bien que toutes les tâches existantes dans votre serveur principal .NET doivent être mises à niveau individuellement. Une option consiste à créer une [tâche web] planifiée sur le site de code Mobile App. Vous pouvez également configurer un contrôleur contenant le code de votre tâche et configurer [Azure Scheduler] pour traiter ce point de terminaison au moment prévu.
+Les tâches planifiées ne sont pas générés dans des applications mobiles, les travaux existants que vous avez dans votre service principal .NET devez toobe mis à jour individuellement. Une option est planifiée de toocreate [de tâche Web] sur le site de code de l’application Mobile hello. Vous pouvez également configurer un contrôleur qui contient votre code de projet et configurer hello [Azure Scheduler] toohit ce point de terminaison sur la planification de hello attendu.
 
 ### <a name="miscellaneous-changes"></a>Modifications diverses
-Tous les ApiController consommés par un client mobile doivent désormais avoir l’attribut `[MobileAppController]` . Celui-ci n’est plus inclus par défaut si bien que les autres ApiController ne sont pas affectés par les formateurs mobiles.
+Tous les ApiControllers qui seront utilisés par un client mobile doit maintenant avoir hello `[MobileAppController]` attribut. Cela n’est plus inclus par défaut afin que les autres toogo ApiControllers pas affecté par hello formateurs mobiles.
 
-L’objet `ApiServices` ne fait plus partie du SDK. Pour accéder aux paramètres de Mobile Apps, vous pouvez utiliser les éléments suivants :
+Hello `ApiServices` objet ne fait plus partie du Kit de développement logiciel de hello. tooaccess les paramètres de l’application Mobile, vous pouvez utiliser suivant de hello :
 
     MobileAppSettingsDictionary settings = this.Configuration.GetMobileAppSettingsProvider().GetMobileAppSettings();
 
-De même, la journalisation s’effectue désormais avec le traçage ASP.NET standard :
+De même, la journalisation est désormais possible à l’aide d’écriture de trace ASP.NET standard hello :
 
     ITraceWriter traceWriter = this.Configuration.Services.GetTraceWriter();
     traceWriter.Info("Hello, World");  
 
 ## <a name="authentication"></a>Considérations relatives à l’authentification
-Les composants d’authentification de Mobile Services sont maintenant déplacés vers la fonctionnalité d’authentification/autorisation App Service. Pour en savoir plus sur l’activation de cette fonctionnalité pour votre site, consultez la rubrique [Ajouter l’authentification à votre application mobile](app-service-mobile-ios-get-started-users.md) .
+composants d’authentification Hello de Services mobiles ont désormais été déplacés en fonction de l’authentification/autorisation du Service application hello. Vous pouvez en savoir plus sur l’activation de celle-ci pour votre site par la lecture de hello [application mobile d’Ajouter authentication tooyour](app-service-mobile-ios-get-started-users.md) rubrique.
 
-Pour certains fournisseurs, comme AAD, Facebook et Google, vous devez être en mesure d’exploiter l’inscription existante à partir de l’application de votre copie. Il vous suffit simplement d’accéder au portail du fournisseur d’identité et d’ajouter une nouvelle URL de redirection à l’inscription. Ensuite, configurez l’authentification/autorisation App Service avec l’ID client et le secret.
+Pour certains fournisseurs, tels que Google, Facebook et AAD, vous devez être en mesure de tooleverage une inscription existante hello à partir de votre application de copie. Simplement, vous avez besoin de portail du fournisseur d’identité toohello toonavigate et que vous ajoutez une nouvelle inscription de toohello URL de redirection. Puis configurez l’authentification/autorisation du Service application avec l’ID de client hello et secret.
 
 ### <a name="controller-action-authorization"></a>Autorisation des actions de contrôleur
-Toutes les instances de l’attribut `[AuthorizeLevel(AuthorizationLevel.User)]` doivent désormais être modifiées pour utiliser l’attribut `[Authorize]` ASP.NET standard. En outre, les contrôleurs sont désormais anonymes par défaut, comme dans d’autres applications ASP.NET.
-Si vous utilisez une des autres options AuthorizeLevel, comme Admin ou Application, notez qu’elles ont disparu. Vous pouvez à la place configurer AuthorizationFilters pour utiliser des secrets partagés ou configurer un principal du service AAD pour activer les appels de service à service en toute sécurité.
+Toutes les instances de hello `[AuthorizeLevel(AuthorizationLevel.User)]` l’attribut doit être présent toouse modifiée hello ASP.NET standard `[Authorize]` attribut. En outre, les contrôleurs sont désormais anonymes par défaut, comme dans d’autres applications ASP.NET.
+Si vous utilisez une des hello autres options AuthorizeLevel, telles que l’administrateur ou d’une Application, notez que ceux-ci ont disparu. Vous pouvez à la place configurer AuthorizationFilters des clés secrètes partagées ou configurer un Principal du Service AAD tooenable les appels de service en toute sécurité.
 
 ### <a name="getting-additional-user-information"></a>Obtention d’informations utilisateur supplémentaires
-Vous pouvez obtenir des informations utilisateur supplémentaires, notamment des jetons d’accès par le biais de la méthode `GetAppServiceIdentityAsync()` :
+Vous pouvez obtenir des informations utilisateur supplémentaires, y compris les jetons d’accès via hello `GetAppServiceIdentityAsync()` méthode :
 
         FacebookCredentials creds = await this.User.GetAppServiceIdentityAsync<FacebookCredentials>();
 
-De plus, si votre application accepte les dépendances vis-à-vis des ID utilisateur, notamment en les stockant dans une base de données, il est important de noter que les ID utilisateur sont différents entre Mobile Services et App Service Mobile Apps. Vous pouvez quand même obtenir l’ID utilisateur Mobile Services. Toutes les sous-classes ProviderCredentials ont une propriété UserId. Ainsi, en reprenant l’exemple précédent :
+En outre, si votre application prend des dépendances sur les ID utilisateur, telles que de les stocker dans une base de données, il est important de toonote qui hello ID utilisateur entre les Services mobiles et les applications Mobile App Service sont différents. Vous pouvez toujours obtenir hello ID d’utilisateur Mobile Services, cependant. Toutes les sous-classes de ProviderCredentials hello ont une propriété de nom d’utilisateur. Par conséquent, reprenons l’exemple hello avant :
 
         string mobileServicesUserId = creds.Provider + ":" + creds.UserId;
 
-si votre application accepte les dépendances vis-à-vis des ID utilisateur, il est important d’exploiter la même inscription avec un fournisseur d’identité dans la mesure du possible. Les ID utilisateur sont généralement limités à l'inscription de l'application qui a été utilisée, si bien que l'introduction d'une nouvelle inscription peut créer des problèmes de mise en correspondance des utilisateurs avec leurs données.
+Si votre application ne prend pas de dépendances sur l’ID d’utilisateur, il est important d’exploiter hello le même type d’enregistrement avec un fournisseur d’identité si possible. ID utilisateur sont généralement incluses dans l’étendue toohello inscription d’application qui a été utilisée, afin d’introduire une nouvelle inscription peut créer des problèmes avec les utilisateurs tootheir données correspondantes.
 
 ### <a name="custom-authentication"></a>Authentification personnalisée
-Si votre application utilise une solution d’authentification personnalisée, assurez-vous que le site mis à niveau a accès au système. Suivez les nouvelles instructions liées à l’authentification personnalisée indiquées dans [Présentation du Kit de développement logiciel (SDK) serveur .NET] pour intégrer votre solution. Notez que les composants d’authentification personnalisée sont encore en version préliminaire.
+Si votre application utilise une solution d’authentification personnalisée, vous pouvez toomake que ce site mis à niveau hello accès toohello système. Suivez les instructions de nouveau hello pour l’authentification personnalisée dans hello [vue d’ensemble du Kit de développement logiciel .NET server] toointegrate votre solution. Notez que les composants d’authentification personnalisée hello sont toujours en version préliminaire.
 
 ## <a name="updating-clients"></a>Mise à jour des clients
-Une fois que vous avez un serveur principal Mobile App opérationnel, vous pouvez travailler sur une nouvelle version de votre application cliente qui la consomme. Mobile Apps inclut également une nouvelle version des Kits de développement logiciel (SDK) clients, et comme pour la mise à niveau serveur ci-dessus, vous devez supprimer toutes les références aux Kits de développement logiciel (SDK) Mobile Services avant d’installer les versions Mobile Apps.
+Une fois que vous avez un serveur principal Mobile App opérationnel, vous pouvez travailler sur une nouvelle version de votre application cliente qui la consomme. Applications mobiles inclut également une nouvelle version du client de hello kits de développement logiciel et similaire toohello mise à niveau server ci-dessus, vous devez tooremove toutes les références toohello Mobile Services SDK avant l’installation des versions des applications mobiles hello.
 
-L’une des principales modifications entre les versions a trait aux constructeurs qui n’exigent plus de clé d’application. Désormais, vous passez simplement l’URL de votre application mobile. Par exemple, sur les clients .NET, le constructeur `MobileServiceClient` est désormais :
+Une des principales modifications de hello entre les versions de hello est que les constructeurs hello ne nécessitent plus une clé d’application. Vous maintenant transmettez simplement l’URL de hello de votre application Mobile. Par exemple, sur les clients .NET hello, hello `MobileServiceClient` constructeur est désormais :
 
         public static MobileServiceClient MobileService = new MobileServiceClient(
-            "https://contoso.azurewebsites.net", // URL of the Mobile App
+            "https://contoso.azurewebsites.net", // URL of hello Mobile App
         );
 
-Pour en savoir plus sur l’installation des nouveaux Kits de développement logiciel (SDK) et l’utilisation de la nouvelle structure, cliquez sur les liens ci-dessous :
+Vous pouvez lire sur l’installation hello nouveaux kits de développement logiciel et à l’aide de la nouvelle structure de hello via les liens hello ci-dessous :
 
 * [iOS version 3.0.0 ou ultérieure](app-service-mobile-ios-how-to-use-client-library.md)
 * [.NET (Windows/Xamarin) version 2.0.0 ou ultérieure](app-service-mobile-dotnet-how-to-use-client-library.md)
 
-Si votre application emploie des notifications Push, notez les instructions d’inscription spécifiques de chaque plateforme, car elles ont également fait l’objet de quelques modifications.
+Si votre application effectue utiliser de notifications push, notez hello instructions d’inscription spécifique pour chaque plate-forme, comme des modifications ont été certains il également.
 
-Une fois la nouvelle version cliente prête, essayez-la par rapport à votre projet de serveur mis à niveau. Après avoir vérifié qu’elle fonctionne, vous pouvez publier une nouvelle version de votre application pour vos clients. Enfin, une fois que vos clients ont eu l’occasion de recevoir ces mises à jour, vous pouvez supprimer la version Mobile Services de votre application. À ce stade, vous avez entièrement mis à niveau votre application vers App Service Mobile Apps avec le tout dernier SDK serveur Mobile Apps.
+Lorsque vous avez hello nouvelle version du client prêt, essayez-le par rapport à votre projet de serveur mis à niveau. Après avoir vérifié qu’il fonctionne, vous pouvez libérer une nouvelle version de toocustomers de votre application. Par la suite, une fois que vos clients ont eu une chance tooreceive ces mises à jour, vous pouvez supprimer la version des Services mobiles hello de votre application. À ce stade, vous avez mis à niveau tooan application de Service d’applications mobiles à l’aide du serveur d’applications mobiles dernière hello Kit de développement logiciel.
 
 <!-- URLs. -->
 
 [portail Azure]: https://portal.azure.com/
-[portail Azure Classic]: https://manage.windowsazure.com/
-[Que sont les applications Mobile Apps ?]: app-service-mobile-value-prop.md
+[portail Azure classic]: https://manage.windowsazure.com/
+[quelles sont les applications mobiles ?]: app-service-mobile-value-prop.md
 [I already use web sites and mobile services – how does App Service help me?]: /en-us/documentation/articles/app-service-mobile-value-prop-migration-from-mobile-services
-[Kit de développement logiciel (SDK) Mobile App Server]: http://www.nuget.org/packages/microsoft.azure.mobile.server
+[serveur SDK de l’application Mobile]: http://www.nuget.org/packages/microsoft.azure.mobile.server
 [Create a Mobile App]: app-service-mobile-xamarin-ios-get-started.md
-[Add push notifications to your mobile app]: app-service-mobile-xamarin-ios-get-started-push.md
-[Add authentication to your mobile app]: app-service-mobile-xamarin-ios-get-started-users.md
+[Add push notifications tooyour mobile app]: app-service-mobile-xamarin-ios-get-started-push.md
+[Add authentication tooyour mobile app]: app-service-mobile-xamarin-ios-get-started-users.md
 [Azure Scheduler]: /en-us/documentation/services/scheduler/
-[tâche web]: ../app-service-web/websites-webjobs-resources.md
-[Utilisation du Kit de développement logiciel (SDK) serveur .NET]: app-service-mobile-dotnet-backend-how-to-use-server-sdk.md
-[Migrate from Mobile Services to an App Service Mobile App]: app-service-mobile-migrating-from-mobile-services.md
-[Migrate your existing Mobile Service to App Service]: app-service-mobile-migrating-from-mobile-services.md
-[tarification App Service]: https://azure.microsoft.com/en-us/pricing/details/app-service/
-[Présentation du Kit de développement logiciel (SDK) serveur .NET]: app-service-mobile-dotnet-backend-how-to-use-server-sdk.md
+[de tâche Web]: ../app-service-web/websites-webjobs-resources.md
+[comment toouse hello .NET server SDK]: app-service-mobile-dotnet-backend-how-to-use-server-sdk.md
+[Migrate from Mobile Services tooan App Service Mobile App]: app-service-mobile-migrating-from-mobile-services.md
+[Migrate your existing Mobile Service tooApp Service]: app-service-mobile-migrating-from-mobile-services.md
+[tarification du Service d’applications]: https://azure.microsoft.com/en-us/pricing/details/app-service/
+[vue d’ensemble du Kit de développement logiciel .NET server]: app-service-mobile-dotnet-backend-how-to-use-server-sdk.md

@@ -1,6 +1,6 @@
 ---
-title: Remise continue pour les services cloud avec Visual Studio Online | Microsoft Docs
-description: "Apprenez à configurer la remise continue pour les applications cloud Azure sans enregistrer la clé de stockage de diagnostic sur les fichiers de configuration de service"
+title: remise aaaContinuous pour cloud services avec Visual Studio Online | Documents Microsoft
+description: "Découvrez comment tooset de livraison continue pour Azure cloud applications sans enregistrer les fichiers de configuration de service de clés toohello stockage de diagnostics"
 services: cloud-services
 documentationcenter: 
 author: cawa
@@ -14,83 +14,83 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 11/02/2016
 ms.author: cawa
-ms.openlocfilehash: 7e70f92d4d1333ca6cbac5876e5ccbc763bd915c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: dc87d049e46daf8b8a26ee4450ebd9b7910f287b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="securely-save-cloud-services-diagnostics-storage-key-and-setup-continuous-integration-and-deployment-to-azure-using-visual-studio-online"></a>Enregistrer en toute sécurité la clé de stockage de diagnostic des services cloud et configurer l’intégration et le déploiement continus dans Azure à l’aide de Visual Studio Online
- Il est aujourd’hui courant d’ouvrir les projets source. L’enregistrement des secrets de l’application dans les fichiers de configuration n’est plus sûr, dans la mesure où des failles de sécurité peuvent provoquer la révélation des secrets à partir des contrôles de code source publics. Le stockage des secrets sous forme de texte brut dans un fichier situé dans un pipeline d’intégration continue n’est pas sûr non plus, car les serveurs de génération peuvent constituer des ressources partagées dans l’environnement cloud. Cet article explique comment Visual Studio et Visual Studio Online limitent les risques liés à la sécurité lors du développement et du processus d’intégration continue.
+# <a name="securely-save-cloud-services-diagnostics-storage-key-and-setup-continuous-integration-and-deployment-tooazure-using-visual-studio-online"></a>Securely enregistrer Services Diagnostics clé de stockage Cloud et tooAzure d’intégration continue du programme d’installation et de déploiement à l’aide de Visual Studio Online
+ Il est aujourd'hui un communes des projets sources pratique tooopen. L’enregistrement des secrets de l’application dans les fichiers de configuration n’est plus sûr, dans la mesure où des failles de sécurité peuvent provoquer la révélation des secrets à partir des contrôles de code source publics. Le stockage de clé secrète comme texte en clair dans un fichier dans un pipeline de l’intégration continue n’est pas sécurisé soit depuis les serveurs de build peut être ressources partagées sur un environnement de Cloud hello. Cet article explique comment Visual Studio et Visual Studio Online permet d’atténuer les problèmes de sécurité hello pendant le développement et le processus d’intégration continue.
 
 ## <a name="remove-diagnostics-storage-key-secret-in-project-configuration-file"></a>Supprimer le secret de clé de stockage de diagnostic dans le fichier de configuration de projet
-L’extension des diagnostics des services cloud nécessite un stockage Azure pour l’enregistrement des résultats des diagnostics. La chaîne de connexion au stockage était par le passé spécifiée dans les fichiers de configuration des services cloud (.cscfg) et pouvait être vérifiée via le contrôle du code source. Dans la dernière version du Kit de développement logiciel (SDK) Azure, le comportement a été modifié pour stocker uniquement une chaîne de connexion partielle, la clé étant remplacée par un jeton. Les étapes suivantes décrivent le fonctionnement des nouveaux outils de services cloud :
+L’extension des diagnostics des services cloud nécessite un stockage Azure pour l’enregistrement des résultats des diagnostics. Auparavant, chaîne de connexion de stockage hello est spécifié dans les fichiers de configuration (.cscfg) de Services de cloud computing hello et peut être activé dans le contrôle de toosource. Dans la dernière version de Windows Azure SDK hello, nous avons modifié du store tooonly hello comportement un partielle chaîne de connexion avec la clé hello remplacé par un jeton. Hello comme suit décrire le fonctionnement des outils de Services de cloud computing hello nouvelle :
 
-### <a name="1-open-the-role-designer"></a>1. Ouvrez le Concepteur de rôle
-* Double-cliquez ou cliquez avec le bouton droit de la souris sur un rôle de service cloud pour ouvrir le Concepteur de rôle
+### <a name="1-open-hello-role-designer"></a>1. Ouvrez le Concepteur de rôle hello
+* Double-cliquez sur ou cliquez avec le bouton droit sur un concepteur de rôle Services de cloud computing rôle tooopen
 
 ![Ouvrez le Concepteur de rôle][0]
 
 ### <a name="2-under-diagnostics-section-a-new-check-box-dont-remove-storage-key-secret-from-project-is-added"></a>2. Dans la section Diagnostics, une nouvelle case à cocher « Ne pas supprimer le secret de clé de stockage du projet » a été ajoutée.
-* Si vous utilisez l’émulateur de stockage local, cette case est désactivée, car il n’existe aucun secret à gérer pour la chaîne de connexion locale, qui est UseDevelopmentStorage=true.
+* Si vous utilisez l’émulateur de stockage local hello, cette case à cocher est désactivée, car il n’existe aucun secret toomanage pour la chaîne de connexion locale hello, qui est UseDevelopmentStorage = true.
 
 ![La chaîne de connexion de l’émulateur de stockage local n’est pas secrète][1]
 
-* Si vous créez un nouveau projet, cette case est désactivée par défaut. De ce fait, la section Clé de stockage de la chaîne de connexion de stockage sélectionnée est remplacée par un jeton. La valeur du jeton se trouve sous le dossier AppData Roaming de l’utilisateur actuel, par exemple : C:\Utilisateurs\contosouser\AppData\Roaming\Microsoft\CloudService
+* Si vous créez un nouveau projet, cette case est désactivée par défaut. Ainsi, dans la section de clé de stockage hello de chaîne de connexion de stockage hello sélectionné qui est remplacé par un jeton. Hello valeur du jeton de hello trouverez sous le dossier AppData itinérant de l’utilisateur actuel hello, par exemple : C:\Users\contosouser\AppData\Roaming\Microsoft\CloudService
 
-> Notez que l’accès au dossier user\AppData est contrôlé par les droits de l’utilisateur connecté et est considéré comme un emplacement sécurisé pour stocker les secrets de développement.
+> Notez le dossier user\AppData hello est l’accès contrôlé par la connexion d’utilisateur et est considéré comme un emplacement sécurisé toostore les secrets de développement.
 > 
 > 
 
 ![La clé de stockage est enregistrée dans le dossier du profil utilisateur][2]
 
 ### <a name="3-select-a-diagnostics-storage-account"></a>3. Sélectionnez un compte de stockage de diagnostics
-* Sélectionnez un compte de stockage à partir de la boîte de dialogue ouverte en cliquant sur « ... » . Notez que la chaîne de connexion de stockage générée n’a pas la clé de compte de stockage.
+* Sélectionnez un compte de stockage à partir de la boîte de dialogue hello lancé en cliquant sur hello «... » . Notez la chaîne de connexion de stockage hello généré ne disposera de clé de compte de stockage hello.
 * Par exemple : DefaultEndpointsProtocol=https;AccountName=contosostorage;AccountKey=$(*clouddiagstrg.key*)
 
-### <a name="4----debugging-the-project"></a>4.    Débogage du projet
-* F5 pour lancer le débogage dans Visual Studio. Tout doit fonctionner comme avant.
+### <a name="4----debugging-hello-project"></a>4.    Débogage du projet de hello
+* F5 toostart de débogage dans Visual Studio. Tout doit fonctionner dans hello même façon qu’avant.
   ![Démarrer le débogage local][3]
 
 ### <a name="5-publish-project-from-visual-studio"></a>5. Publier un projet à partir de Visual Studio
-* Ouvrez la boîte de dialogue Publier et suivez les instructions de connexion pour publier l’application sur Azure.
+* Lancement hello boîte de dialogue Publier et poursuivre les instructions de connexion toopublish hello applicaion tooAzure.
 
 ### <a name="6-additional-information"></a>6. Informations supplémentaires
-> Remarque : le panneau Paramètres du Concepteur de rôle reste inchangé pour l’instant. Si vous souhaitez utiliser la fonctionnalité de gestion des secrets pour les diagnostics, accédez à l’onglet Configurations.
+> Remarque : panneau des paramètres dans le Concepteur de rôle hello hello resteront car il n’est pour l’instant. Si vous souhaitez la fonctionnalité de gestion des secrets toouse hello pour les diagnostics, accédez à onglet Configurations de toohello.
 > 
 > 
 
 ![Ajouter des paramètres][4]
 
-> Remarque : si cette option est activée, la clé Application Insights sera stockée en tant que texte brut. La clé est uniquement utilisée pour télécharger le contenu. Il n’existe donc aucun risque de compromission des données sensibles.
+> Remarque : Si activé, clé d’Application Insights hello sera stocké en tant que texte brut. Hello clé est uniquement utilisée pour télécharger contenu est donc aucune donnée sensible au risque de compromission.
 > 
 > 
 
 ## <a name="build-and-publish-a-cloud-services-project-using-visual-studio-online-task-templates"></a>Créer et publier un projet de service cloud à l’aide des modèles de tâches en ligne Visual Studio
-* Les étapes suivantes expliquent comment configurer l’intégration continue pour un projet de service cloud à l’aide des tâches en ligne Visual Studio :
+* Hello qui suit illustre comment toosetup intégration continue pour les Services de cloud computing de projet à l’aide de tâches en ligne de Visual Studio :
   ### <a name="1----obtain-a-vso-account"></a>1.    Obtenir un compte VSO
 * [Créer le compte Visual Studio Online] [ Create Visual Studio Online account] si vous n’avez pas déjà
 * [Créer le projet d’équipe] [ Create team project] dans votre compte en ligne de Visual Studio
 
 ### <a name="2----setup-source-control-in-visual-studio"></a>2.    Configurer le contrôle de code source dans Visual Studio
-* Connectez-vous à un projet d’équipe
+* Connecter le projet d’équipe tooa
 
-![Connectez-vous à un projet d’équipe][5]
+![Connecter tooteam projet][5]
 
-![Sélectionnez le projet d’équipe auquel vous connecter][6]
+![Sélectionnez tooconnect de projet d’équipe à][6]
 
-* Ajoutez votre projet au contrôle de code source
+* Ajouter votre contrôle toosource de projet
 
-![Ajoutez le projet au contrôle de code source][7]
+![Ajouter le contrôle toosource du projet][7]
 
-![Mappez le projet vers un dossier de contrôle de code source][8]
+![Mapper le dossier de contrôle de projet tooa source][8]
 
 * Archivez votre projet à partir de Team Explorer
 
-![Archivez le projet dans le contrôle de code source][9]
+![Vérifiez dans le projet de contrôle de toosource][9]
 
 ### <a name="3----configure-build-process"></a>3.    Configurer le processus de génération
-* Accédez à votre projet d’équipe et ajoutez un nouveau modèle de processus de génération
+* Parcourir le projet d’équipe tooyour et ajouter un processus de génération de nouveaux modèles
 
 ![Ajoutez une nouvelle génération][10]
 
@@ -100,7 +100,7 @@ L’extension des diagnostics des services cloud nécessite un stockage Azure po
 
 ![Sélectionnez le modèle de tâche de génération Visual Studio][12]
 
-* Modifiez l’entrée de tâche de génération. Veuillez personnaliser les paramètres de génération en fonction de vos besoins
+* Modifiez l’entrée de tâche de génération. Veuillez personnaliser build hello paramètres selon tooyour doivent
 
 ![Configurez la tâche de génération][13]
 
@@ -110,19 +110,19 @@ L’extension des diagnostics des services cloud nécessite un stockage Azure po
 
 ![Configurez les variables de génération][14]
 
-* Ajoutez une tâche pour charger la cible de génération
+* Ajouter une cible de build tooupload tâche
 
 ![Choisissez de publier la tâche de cible de génération][15]
 
 ![Configurez la publication de la tâche de cible de génération][16]
 
-* Exécutez la génération
+* Exécutez hello build
 
 ![Mettez la nouvelle génération en file d’attente][17]
 
 ![Affichez le résumé de génération][18]
 
-* Si la génération est réussie, vous verrez un résultat semblable à celui-ci
+* Si la génération de hello est réussie, vous verrez un toobelow similaire de résultat
 
 ![Résultat de la génération][19]
 
@@ -131,28 +131,28 @@ L’extension des diagnostics des services cloud nécessite un stockage Azure po
 
 ![Créez une nouvelle version][20]
 
-* Sélectionnez la tâche de déploiement des services cloud Azure
+* Sélectionnez la tâche de déploiement des Services Cloud Azure hello
 
 ![Sélectionnez la tâche de déploiement des services cloud Azure][21]
 
-* La clé de compte de stockage n’étant pas archivé dans le contrôle de code source, nous devons spécifier la clé secrète pour la configuration des extensions des diagnostics. Développez la section **Options avancées pour la création d’un service** et modifiez l’entrée de paramètre **Clés de compte de stockage de diagnostics**. Cette entrée inclut plusieurs lignes de la paire clé / valeur au format **[RoleName]:$(StorageAccountKey)**
+* Comme la clé de compte de stockage hello n’est pas activée dans le contrôle toosource, nous devons toospecify une clé secrète hello pour la définition d’extensions de diagnostic. Développez hello **des Options avancées pour la création d’un Service** section et modifier hello **clés de compte de stockage de Diagnostics** entrée de paramètre. Cette entrée utilise plusieurs lignes de la paire clé / valeur au format hello de **[RoleName]:$(StorageAccountKey)**
 
-> Remarque : si votre compte de stockage de diagnostics est dans le même abonnement que celui où vous allez publier l’application de services cloud, il est inutile d’entrer la clé dans l’entrée de tâche de déploiement ; le déploiement obtiendra automatiquement les informations de stockage à partir de votre abonnement
+> Remarque : Si votre compte de stockage est sous de diagnostics hello même abonnement qu’où vous allez publier l’application de Services de cloud computing hello, vous ne disposez tooenter hello clé dans l’entrée de tâche de déploiement hello ; déploiement de Hello récupèrera par programmation les informations de stockage hello à partir de votre abonnement
 > 
 > 
 
 ![Configurez la tâche de déploiement des services cloud][22]
 
-* Utilisez les variables de génération secrètes pour enregistrer les clés de stockage. Pour masquer une variable secrète, cliquez sur l’icône de verrou sur le côté droit de l’entrée Variables
+* Secret de l’utilisation de variables toosave build clés de stockage. entrée de Variables toomask une variable en tant que secret sur l’icône de verrou hello sur le côté droit de hello Hello
 
 ![Enregistrez les clés de stockage dans les variables de génération secrètes][23]
 
-* Créez une version et déployez votre projet dans Azure
+* Créez une version et de déployer votre tooAzure de projet
 
 ![Créez une nouvelle version][24]
 
 ## <a name="next-steps"></a>Étapes suivantes
-Pour en savoir plus sur la configuration des extensions de diagnostic pour les Services de Cloud Azure, consultez [activer les diagnostics dans Azure Cloud Services à l’aide de PowerShell][Enable diagnostics in Azure Cloud Services using PowerShell]
+toolearn en savoir plus sur la définition d’extensions de diagnostic pour les Services de Cloud Azure, consultez [activer les diagnostics dans Azure Cloud Services à l’aide de PowerShell][Enable diagnostics in Azure Cloud Services using PowerShell]
 
 [Create Visual Studio Online account]:https://www.visualstudio.com/team-services/
 [Create team project]: https://www.visualstudio.com/it-it/docs/setup-admin/team-services/connect-to-visual-studio-team-services

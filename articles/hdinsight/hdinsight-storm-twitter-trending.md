@@ -1,6 +1,6 @@
 ---
-title: Rubriques tendances Twitter avec Apache Storm sur HDInsight | Microsoft Docs
-description: "Découvrez comment utiliser Trident pour créer une topologie Apache Storm qui détermine les rubriques tendances à partir des hashtags sur Twitter."
+title: rubriques de tendances aaaTwitter avec Apache Storm sur HDInsight | Documents Microsoft
+description: "Découvrez comment toouse Trident toocreate une topologie d’Apache Storm qui détermine les rubriques des tendances sur Twitter selon hashtags."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,21 +16,21 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 04/14/2017
 ms.author: larryfr
-ms.openlocfilehash: d588221586f151319436525c5098b0bb2694e5f9
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0281b495d10833c63868b36856c96369b139c553
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="determine-twitter-trending-topics-with-apache-storm-on-hdinsight"></a>Détermination de rubriques tendances Twitter avec Apache Storm dans HDInsight
 
-Découvrez comment utiliser Trident pour créer une topologie Storm qui détermine les rubriques tendances (hashtags) sur Twitter.
+Découvrez comment toouse Trident toocreate une topologie Storm qui détermine l’analyse de tendances rubriques (balises de hachage) sur Twitter.
 
-Trident est une abstraction de haut niveau qui fournit des outils comme les jointures, les agrégations, le regroupement, les fonctions et les filtres. En outre, Trident ajoute des primitives pour le traitement incrémentiel avec état. L’exemple utilisé dans ce document est une topologie Trident avec un spout et une fonction personnalisés. Il utilise également plusieurs fonctions intégrées fournies par Trident.
+Trident est une abstraction de haut niveau qui fournit des outils comme les jointures, les agrégations, le regroupement, les fonctions et les filtres. En outre, Trident ajoute des primitives pour le traitement incrémentiel avec état. exemple Hello utilisé dans ce document est une topologie Trident avec un bec personnalisé et une fonction. Il utilise également plusieurs fonctions intégrées fournies par Trident.
 
 ## <a name="requirements"></a>Configuration requise
 
-* <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank">Java et le JDK 1.8</a>
+* <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank">Java et hello JDK 1.8</a>
 
 * <a href="http://maven.apache.org/what-is-maven.html" target="_blank">Maven</a>
 
@@ -38,23 +38,23 @@ Trident est une abstraction de haut niveau qui fournit des outils comme les join
 
 * Un compte de développeur Twitter
 
-## <a name="download-the-project"></a>Téléchargez le projet
+## <a name="download-hello-project"></a>Télécharger le projet de hello
 
-Utilisez le code suivant pour cloner le projet localement.
+Utilisez hello suivant du projet de hello tooclone code localement.
 
     git clone https://github.com/Blackmist/TwitterTrending
 
-## <a name="understanding-the-topology"></a>Présentation de la topologie
+## <a name="understanding-hello-topology"></a>Présentation de la topologie de hello
 
-Le diagramme suivant présente le flux des données dans cette topologie :
+diagramme qui suit de Hello montre de façon dont les données circulent dans cette topologie :
 
 ![Topologie](./media/hdinsight-storm-twitter-trending/trident.png)
 
 > [!NOTE]
-> Ce diagramme est un affichage très simplifié de la topologie. Plusieurs instances des composants sont réparties entre les nœuds du cluster.
+> Ce diagramme est une vue simplifiée d’une topologie de hello. Plusieurs instances de composants de hello sont répartis entre les nœuds de hello dans un cluster de hello.
 
 
-Le code Trident qui implémente la topologie est le suivant :
+Hello code Trident qui implémente la topologie de hello est comme suit :
 
     topology.newStream("spout", spout)
         .each(new Fields("tweet"), new HashtagExtractor(), new Fields("hashtag"))
@@ -64,55 +64,55 @@ Le code Trident qui implémente la topologie est le suivant :
         .applyAssembly(new FirstN(10, "count"))
         .each(new Fields("hashtag", "count"), new Debug());
 
-Le code effectue les opérations suivantes :
+Ce code exécute hello suivant des actions :
 
-1. Il crée un flux à partir du spout. Le spout extrait les tweets de Twitter et les filtres selon des mots clés spécifiques (amour, musique et café dans cet exemple).
+1. Crée un flux de données à partir de bec de hello. bec de Hello récupère tweet Twitter et les filtres de mots clés spécifiques (love, de musique et coffee dans cet exemple).
 
-2. HashtagExtractor, une fonction personnalisée, est utilisée pour extraire les hashtags de chaque tweet. Les hashtags sont transmis au flux de données.
+2. HashtagExtractor, une fonction personnalisée, est utilisé tooextract les balises de hachage à partir de chaque tweet. balises de hachage Hello sont émis toohello flux.
 
-3. Le flux est ensuite regroupé par hashtag et transmis à une agrégation. Elle produit un décompte du nombre de fois où chaque hashtag s’est produit. Ces données sont conservées en mémoire. Enfin, un nouveau flux de données contenant le hashtag et le compte est émis.
+3. flux de Hello est regroupée par balise de hachage et passée tooan aggregator. Elle produit un décompte du nombre de fois où chaque hashtag s’est produit. Ces données sont conservées en mémoire. Enfin, un flux de données qui contient la balise de hachage hello et nombre de hello est émis.
 
-4. L’assembly **FirstN** est appliqué pour renvoyer uniquement les 10 premières valeurs, sur la base du champ de compte.
+4. Hello **FirstN** assembly est tooreturn appliqué uniquement hello 10 premières valeurs, selon le champ nombre d’hello.
 
 > [!NOTE]
-> Pour plus d’informations sur l’utilisation de Trident, consultez la [Présentation de l’API Trident](http://storm.apache.org/releases/current/Trident-API-Overview.html).
+> Pour plus d’informations sur l’utilisation des Trident, consultez hello [présentation de l’API de Trident](http://storm.apache.org/releases/current/Trident-API-Overview.html) document.
 
-### <a name="the-spout"></a>Le spout
+### <a name="hello-spout"></a>bec de Hello
 
-Le spout **TwitterSpout** utilise [Twitter4j](http://twitter4j.org/en/) pour extraire des tweets de Twitter. Un filtre est créé pour les mots __aime__, **musique** et **café**. Les tweets (status) entrants qui correspondent au filtre sont stockés dans une file d’attente de blocage liée. Enfin, les éléments sont retirés de la file d’attente et émis dans la topologie.
+bec de Hello, **TwitterSpout**, utilise [Twitter4j](http://twitter4j.org/en/) tweets tooretrieve de Twitter. Un filtre est créé pour les mots hello __adorer__, **musique**, et **café**. Entrants tweets (état) qui correspondent au filtre de hello sont stockés dans une file d’attente de blocage lié. Enfin, les éléments sont extraites en file d’attente hello et émis toohello topologie.
 
-### <a name="the-hashtagextractor"></a>HashtagExtractor
+### <a name="hello-hashtagextractor"></a>Hello HashtagExtractor
 
-Pour extraire les hashtags, [getHashtagEntities](http://twitter4j.org/javadoc/twitter4j/EntitySupport.html#getHashtagEntities--) est utilisé pour récupérer tous les hashtags contenus dans le tweet. Ils sont transmis au flux de données.
+balises de hachage tooextract, [getHashtagEntities](http://twitter4j.org/javadoc/twitter4j/EntitySupport.html#getHashtagEntities--) est tooretrieve utilisé toutes les balises de hachage qui sont contenus dans un tweet de hello. Ces sont ensuite le flux de données toohello émis.
 
 ## <a name="configure-twitter"></a>Configurer Twitter
 
-Procédez comme suit pour inscrire une nouvelle application Twitter et obtenir les informations de jeton consommateur et d’accès nécessaires pour lire à partir de Twitter :
+Utilisez hello suivant les étapes tooregister une nouvelle application Twitter et obtenir des tooread du jeton informations nécessaires hello consommateur et d’accès Twitter :
 
-1. Accédez à [Applications Twitter](https://apps.twitter.com) et cliquez sur le bouton **Créer une nouvelle application**. Lorsque vous remplissez le formulaire, laissez le champ **URL de rappel** vide.
+1. Accédez trop[Twitter des applications](https://apps.twitter.com) et cliquez sur hello **créer une nouvelle application** bouton. Lors du remplissage sous forme de hello, laissez hello **URL de rappel** champ vide.
 
-2. Lorsque l’application est créée, cliquez sur l'onglet **Clés et jetons d'accès** .
+2. Lors de l’application hello est créée, cliquez sur hello **clés et les jetons d’accès** onglet.
 
-3. Copiez les informations de **Clé du client** et de **Question secrète du client**.
+3. Hello de copie **clé de consommateur** et **Secret de consommateur** plus d’informations.
 
-4. En bas de la page, sélectionnez **Créer mon jeton d’accès** si aucun jeton n’existe. Lorsque les jetons sont créés, copiez les informations de **Jeton d’accès** et de **Question secrète du jeton d’accès**.
+4. Au bas de hello de page de hello, sélectionnez **créer mon jeton d’accès** si aucun jeton n’existe. Création des jetons de hello, hello de copie **jeton d’accès** et **Secret du jeton d’accès** plus d’informations.
 
-5. Dans le projet **TwitterSpoutTopology** que vous avez cloné auparavant, ouvrez le fichier **resources/twitter4j.properties**, ajoutez les informations collectées dans les étapes précédentes, puis enregistrez le fichier.
+5. Bonjour **TwitterSpoutTopology** projet que vous avez précédemment cloné, ouvrez hello **resources/twitter4j.properties** de fichiers, ajouter des informations hello collectées dans les étapes précédentes hello, puis enregistrez le fichier de hello .
 
-## <a name="build-the-topology"></a>Génération de la topologie
+## <a name="build-hello-topology"></a>Créez une topologie de hello
 
-Utilisez le code suivant pour générer le projet :
+Utilisez hello suivant du projet de code toobuild hello :
 
         cd [directoryname]
         mvn compile
 
-## <a name="test-the-topology"></a>Test de la topologie
+## <a name="test-hello-topology"></a>Topologie de hello de test
 
-Utilisez la commande suivante pour tester la topologie en local :
+Utilisez hello suivant topologie commande tootest hello localement :
 
     mvn compile exec:java -Dstorm.topology=com.microsoft.example.TwitterTrendingTopology
 
-Après le démarrage de la topologie, vous devez voir des informations de débogage contenant les hashtags et les décomptes émis par la topologie. Le résultat doit ressembler au texte suivant :
+Après le démarrage de la topologie de hello, vous devez voir les informations de débogage qui contient le hachage de hello balises et les nombres émises par une topologie de hello. une sortie Hello doit apparaître toohello similaire après le texte :
 
     DEBUG: [Quicktellervalentine, 7]
     DEBUG: [GRAMMYs, 7]
@@ -126,9 +126,9 @@ Après le démarrage de la topologie, vous devez voir des informations de débog
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Maintenant que vous avez testé la topologie localement, découvrez comment déployer cette topologie : [Déploiement et gestion des topologies Storm sur HDInsight](hdinsight-storm-deploy-monitor-topology.md).
+Maintenant que vous avez testé la topologie hello localement, découvrez comment toodeploy hello topologie : [déployer et gérer les topologies d’Apache Storm sur HDInsight](hdinsight-storm-deploy-monitor-topology.md).
 
-Les rubriques Storm suivantes peuvent également vous intéresser :
+Vous pouvez également être intéressé par hello Storm rubriques suivantes :
 
 * [Développement de topologies Java pour Storm sur HDInsight à l’aide de Maven](hdinsight-storm-develop-java-topology.md)
 * [Développement de topologies C# pour Storm sur HDInsight à l’aide de Visual Studio](hdinsight-storm-develop-csharp-visual-studio-topology.md)

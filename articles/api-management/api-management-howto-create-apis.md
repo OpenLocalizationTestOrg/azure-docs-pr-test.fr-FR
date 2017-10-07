@@ -1,6 +1,6 @@
 ---
-title: "Création d'API dans Gestion des API Azure"
-description: "Apprenez à créer et à configurer des API dans Gestion des API Azure."
+title: aaaHow toocreate API de gestion des API Azure
+description: "Découvrez comment toocreate et configurer les API de gestion des API Azure."
 services: api-management
 documentationcenter: 
 author: steved0x
@@ -14,64 +14,64 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/15/2016
 ms.author: apimpm
-ms.openlocfilehash: ab08256fbc3caca05bf23a12016ad2acf4fc7412
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 48ed8d93947253aa1e67ad995927ed6101cac072
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-create-apis-in-azure-api-management"></a>Création d'API dans Gestion des API Azure
-Une API du service Gestion des API représente un ensemble d'opérations qui peuvent être appelées par des applications clientes. Les nouvelles API sont créées dans le portail des éditeurs, puis les opérations souhaitées sont ajoutées. Une fois les opérations ajoutées, l'API est ajoutée à un produit et peut être publiée. Une fois l'API publiée, les développeurs peuvent s'y abonner et l'utiliser.
+# <a name="how-toocreate-apis-in-azure-api-management"></a>Comment toocreate API de gestion des API Azure
+Une API du service Gestion des API représente un ensemble d'opérations qui peuvent être appelées par des applications clientes. Nouvelles API est créés dans le portail de publication hello et puis hello souhaité opérations sont ajoutées. Une fois ajoutées, les opérations hello hello API est ajouté tooa produit et peut être publié. Une fois qu’une API est publiée, il peut être souscrit tooand utilisée par les développeurs.
 
-Ce guide présente la première étape du processus : comment créer et configurer une nouvelle API dans Gestion des API. Pour plus d’informations sur l’ajout d’opérations et la publication d’un produit, consultez les rubriques [Ajout d’opérations à une API][How to add operations to an API] et [Création et publication d’un produit][How to create and publish a product].
+Ce guide montre la première étape de hello dans les processus hello : comment toocreate et configurer une nouvelle API de gestion des API. Pour plus d’informations sur l’ajout des opérations et la publication d’un produit, consultez [comment tooadd opérations tooan API] [ How tooadd operations tooan API] et [comment toocreate et publier un produit] [ How toocreate and publish a product].
 
-## <a name="create-new-api"> </a>Création d’une API
-Les API sont créées et configurées dans le portail des éditeurs. Pour accéder au portail des éditeurs, cliquez sur **Portail des éditeurs** dans le portail Azure de votre service Gestion des API.
+## <a name="create-new-api"></a>Création d’une API
+API est créés et configurés dans le portail de publication hello. tooaccess hello cliquez portail, du serveur de publication **portail de publication** Bonjour portail Azure pour votre service de gestion des API.
 
 ![Portail des éditeurs][api-management-management-console]
 
-> Si vous n’avez pas encore créé une instance de service Gestion des API, consultez la page de [création d’une instance de service Gestion des API][Create an API Management service instance] dans le didacticiel de [prise en main de Gestion des API Azure][Get started with Azure API Management].
+> Si vous n’avez pas encore créé une instance de service de gestion des API, consultez [de créer une instance de service de gestion des API] [ Create an API Management service instance] Bonjour [prise en main Azure API Management] [ Get started with Azure API Management] didacticiel.
 > 
 > 
 
-Cliquez sur **API** dans le menu **Gestion des API** à gauche, puis sur **Ajouter des API**.
+Cliquez sur **API** de hello **gestion des API** menu sur hello gauche, puis cliquez sur **ajouter API**.
 
 ![Create API][api-management-create-api]
 
-Utilisez la fenêtre **Ajouter une nouvelle API** pour configurer la nouvelle API.
+Hello d’utilisation **ajouter la nouvelle API** fenêtre tooconfigure hello nouvelle API.
 
 ![Ajouter une nouvelle API][api-management-add-new-api]
 
-Les champs suivants permettent de configurer la nouvelle API.
+Hello suivant les champs est utilisés tooconfigure hello nouvelle API.
 
-* **Titre d'API web** fournit un nom descriptif unique pour l'API. Il s’affiche dans les portails des développeurs et de publication.
-* **URL du service web** indique le service HTTP implémentant l'API. La gestion des API transmet les demandes à cette adresse.
-* Le **suffixe de l’URL d’API web** est ajouté à l’URL de base du service Gestion des API. L'URL de base est commune à toutes les API hébergées par une instance de service Gestion des API. Gestion des API distingue les API selon leur suffixe. Celui-ci doit donc être unique pour chaque API d'un éditeur donné.
-* **schéma d’URL d’API web** détermine quels sont les protocoles qui peuvent être utilisés pour accéder à l’API. Le protocole HTTPS est spécifié par défaut.
-* Pour ajouter éventuellement cette nouvelle API à un produit, cliquez sur la liste déroulante **Produits (facultatif)** et choisissez un produit. Cette étape peut être répétée plusieurs fois pour ajouter l'API à plusieurs produits.
+* **Nom de l’API Web** fournit un nom unique et descriptif pour hello API. Il est affiché dans les portails de développeur et éditeur hello.
+* **URL du service Web** références hello service HTTP hello API de mise en œuvre. Gestion des API transfère les demandes de toothis adresse.
+* **Suffixe d’URL de l’API Web** est l’URL de base toohello ajouté hello API de service de gestion. URL de base Hello est courant pour toutes les API hébergées par une instance de service de gestion des API. Gestion des API distingue les API par leur suffixe et par conséquent le suffixe de hello doit être unique pour toutes les API pour un serveur de publication donné.
+* **Schéma de l’URL de l’API Web** détermine les protocoles qui peuvent être utilisés tooaccess hello API. Le protocole HTTPS est spécifié par défaut.
+* toooptionally ajouter ce produit tooa de nouvelles API, cliquez sur hello **produits (facultatifs)** liste déroulante et choisissez un produit. Cette étape peut être répété à plusieurs reprises tooadd hello API toomultiple produits.
 
-Une fois les valeurs de votre choix configurées, cliquez sur **Enregistrer**. Une fois l'API créée, la page de résumé de l'API s'affiche dans le portail de publication.
+Une fois hello souhaité de valeurs sont configurées, cliquez sur **enregistrer**. Après la création de la nouvelle API de hello, hello page Résumé pour l’API de hello s’affiche dans le portail de publication hello.
 
-![API summary][api-management-api-summary]
+![Résumé des API][api-management-api-summary]
 
-## <a name="configure-api-settings"> </a>Configuration des paramètres de l’API
-L’onglet **Paramètres** permet de vérifier et de modifier la configuration d’une API. Les options **Nom d’API web**, **URL du service web** et **Suffixe d’URL de l’API web** sont définis initialement lors de la création de l’API. Vous pouvez les modifier ici. **Description** contient une description facultative et **Schéma d’URL d’API web** détermine quels sont les protocoles qui peuvent être utilisés pour accéder à l’API.
+## <a name="configure-api-settings"></a>Configuration des paramètres de l’API
+Vous pouvez utiliser hello **paramètres** onglet tooverify et modifier la configuration de hello d’API. **Nom de l’API Web**, **URL du service Web**, et **suffixe d’URL d’API Web** sont initialement définies lors de l’API de hello est créé et peut être modifié. **Description** fournit une description facultative, et **le modèle d’URL d’API Web** détermine les protocoles qui peuvent être utilisés tooaccess hello API.
 
 ![API settings][api-management-api-settings]
 
-Pour configurer l'authentification de la passerelle pour le service principal avec mise en œuvre de l'API, sélectionnez l’onglet **Sécurité** . La liste déroulante **Avec informations d’identification** peut servir à configurer l’authentification **HTTP de base** ou par **Certificats client**. Pour utiliser l'authentification HTTP de base, entrez simplement les informations d'identification de votre choix. Pour plus d’informations sur l’utilisation de l’authentification avec certificats client, consultez la page [Comment sécuriser les services principaux à l’aide d’une authentification de certificat client dans Gestion des API Azure][How to secure back-end services using client certificate authentication in Azure API Management].
+authentification de la passerelle tooconfigure hello principal de service application hello API, sélectionnez hello **sécurité** hello d’onglet **avec les informations d’identification** déroulante peut être utilisé tooconfigure **HTTP base** ou **les certificats clients** l’authentification. l’authentification de base toouse HTTP, il suffit d’entrer les informations d’identification de hello souhaité. Pour plus d’informations sur l’utilisation de l’authentification du certificat client, consultez [comment toosecure services de back-end à l’aide du client de certificat d’authentification dans la gestion des API Azure][How toosecure back-end services using client certificate authentication in Azure API Management].
 
-L’onglet **Sécurité** peut également être utilisé pour configurer **Autorisation utilisateur** avec OAuth 2.0. Pour plus d’informations, consultez la page [Comment autoriser des comptes de développeurs à l’aide d’OAuth 2.0 dans Gestion des API Azure][How to authorize developer accounts using OAuth 2.0 in Azure API Management].
+Hello **sécurité** onglet peut également être utilisé tooconfigure **autorisation de l’utilisateur** à l’aide d’OAuth 2.0. Pour plus d’informations, consultez [comment tooauthorize développeur comptes à l’aide OAuth 2.0 dans Azure API Management][How tooauthorize developer accounts using OAuth 2.0 in Azure API Management].
 
 ![Basic authentication settings][api-management-api-settings-credentials]
 
-Cliquez sur **Enregistrer** pour enregistrer les modifications apportées aux paramètres de l'API.
+Cliquez sur **enregistrer** toosave toutes les modifications que vous apportez toohello paramètres de l’API.
 
-## <a name="next-steps"> </a>Étapes suivantes
-Une fois l'API créée et les paramètres configurés, l'étape suivante consiste à ajouter les opérations à l'API, à ajouter l'API à un produit et à la publier pour la mettre à disposition des développeurs. Pour plus d'informations, consultez les articles suivants.
+## <a name="next-steps"></a>Étapes suivantes
+Une fois qu’une API est créée et configurés les paramètres hello, hello suivants étapes tooadd hello operations toohello API, ajouter hello API tooa produit et publiez-le afin qu’il soit disponible pour les développeurs. Pour plus d’informations, consultez hello suivant des articles.
 
-* [Ajout d’opérations à une API][How to add operations to an API]
-* [Création et publication d’un produit][How to create and publish a product]
+* [Comment tooadd opérations tooan API][How tooadd operations tooan API]
+* [Comment toocreate et publier un produit][How toocreate and publish a product]
 
 [api-management-create-api]: ./media/api-management-howto-create-apis/api-management-create-api.png
 [api-management-management-console]: ./media/api-management-howto-create-apis/api-management-management-console.png
@@ -87,10 +87,10 @@ Une fois l'API créée et les paramètres configurés, l'étape suivante consist
 [Configure API operations]: #configure-api-operations
 [Next steps]: #next-steps
 
-[How to add operations to an API]: api-management-howto-add-operations.md
-[How to create and publish a product]: api-management-howto-add-products.md
+[How tooadd operations tooan API]: api-management-howto-add-operations.md
+[How toocreate and publish a product]: api-management-howto-add-products.md
 
 [Get started with Azure API Management]: api-management-get-started.md
 [Create an API Management service instance]: api-management-get-started.md#create-service-instance
-[How to secure back-end services using client certificate authentication in Azure API Management]: api-management-howto-mutual-certificates.md
-[How to authorize developer accounts using OAuth 2.0 in Azure API Management]: api-management-howto-oauth2.md
+[How toosecure back-end services using client certificate authentication in Azure API Management]: api-management-howto-mutual-certificates.md
+[How tooauthorize developer accounts using OAuth 2.0 in Azure API Management]: api-management-howto-oauth2.md

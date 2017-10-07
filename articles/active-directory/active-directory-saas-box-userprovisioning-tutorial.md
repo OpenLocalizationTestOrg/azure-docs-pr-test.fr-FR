@@ -1,6 +1,6 @@
 ---
 title: "Tutorial: Intégration d'Azure Active Directory à Box | Microsoft Docs"
-description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et Box."
+description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et de zone."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,106 +13,106 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/19/2017
 ms.author: jeedes
-ms.openlocfilehash: 9f061f3f5a0a4825854b893150ceccc8951487de
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e92baabb174642c22c99e2a30bc9c71845b3b75f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-configuring-box-for-automatic-user-provisioning"></a>Didacticiel : Configuration de Box pour l’attribution automatique d’utilisateurs
 
-L’objectif de ce didacticiel est de vous montrer les étapes à effectuer dans Box et Azure AD pour approvisionner automatiquement des comptes utilisateur Azure AD dans Box, ainsi que pour annuler leur approvisionnement.
+objectif Hello de ce didacticiel est tooshow hello étapes tooperform dans la zone et Azure AD tooautomatically approvisionner et configurer des comptes d’utilisateur à partir d’Azure AD tooBox.
 
 ## <a name="prerequisites"></a>Composants requis
 
-Le scénario décrit dans ce didacticiel part du principe que vous disposez des éléments suivants :
+scénario de Hello décrite dans ce didacticiel part du principe que vous avez déjà hello éléments suivants :
 
-*   Un locataire Azure Active Directory
+*   Un locataire Azure Active Directory.
 *   Un abonnement Box pour lequel l’authentification unique est activée
 *   Un compte d’utilisateur Box avec des autorisations d’administrateur d’équipe
 
-## <a name="assigning-users-to-box"></a>Attribution d’utilisateurs à Box 
+## <a name="assigning-users-toobox"></a>Affectation d’utilisateurs tooBox 
 
-Azure Active Directory utilise un concept appelé « affectations » pour déterminer les utilisateurs devant recevoir l’accès aux applications sélectionnées. Dans le cadre de l’approvisionnement automatique des comptes d’utilisateur, les utilisateurs et les groupes qui ont été « attribués » à une application dans Azure AD sont synchronisés.
+Azure Active Directory utilise un concept appelé toodetermine « affectations » les utilisateurs qui doivent recevoir l’accès tooselected applications. Dans le contexte de hello de configuration de compte automatique d’utilisateurs, seuls les utilisateurs de hello et les groupes qui ont été « affectés » application tooan dans Azure AD est synchronisé.
 
-Avant de configurer et d’activer le service d’approvisionnement, vous devez déterminer quels utilisateurs et/ou groupes Azure AD ont besoin d’accéder à votre application Box. Une fois que vous avez choisi, vous pouvez attribuer ces utilisateurs à votre application Box en suivant les instructions fournies ici :
+Avant de configurer et de l’activation de hello service de configuration, vous devez toodecide quels utilisateurs ou des groupes dans Azure AD représentent hello utilisateurs qui doivent accéder à l’application Box tooyour. Après choisi, vous pouvez attribuer à ces utilisateurs l’application Box tooyour en suivant les instructions hello ici :
 
-[Affecter un utilisateur ou un groupe à une application d’entreprise](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-assign-user-azure-portal)
+[Affecter une application d’entreprise tooan utilisateur ou un groupe](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-assign-user-azure-portal)
 
 ## <a name="assign-users-and-groups"></a>Affecter des utilisateurs et des groupes
-L’onglet **Box > Utilisateurs et groupes** du portail Azure vous permet de spécifier quels utilisateurs et groupes doivent avoir accès à Box. L'affectation d'un utilisateur ou groupe entraîne les événements suivants :
+Hello **zone > utilisateurs et groupes** onglet Bonjour portail Azure vous permet de toospecify les utilisateurs et groupes doit avoir accès tooBox. Affectation d’un utilisateur ou un groupe, Bonjour suivant toooccur de choses :
 
-* Azure AD permet à l'utilisateur affecté (par affectation directe ou appartenance au groupe) de s'identifier auprès de Box. Si un utilisateur n’est pas attribué, Azure AD ne lui permet pas de se connecter à Box et retourne une erreur dans la page de connexion Azure AD.
-* Une mosaïque d'application pour Box est ajoutée au [lanceur d'applications](active-directory-appssoaccess-whatis.md#deploying-azure-ad-integrated-applications-to-users)de cet utilisateur.
-* Si la configuration automatique est activée, les utilisateurs et/ou groupes affectés sont ajoutés à la file d'attente d'approvisionnement automatique.
+* Azure AD autorise hello affecté utilisateur (soit par assignation directe ou l’appartenance au groupe) tooauthenticate tooBox. Si un utilisateur n’est pas affecté, Azure AD n’autorise pas les toosign dans tooBox et renvoie une erreur sur la page de connexion Azure AD hello.
+* Une vignette de l’application pour la zone est ajoutée à l’utilisateur toohello [Lanceur d’applications](active-directory-appssoaccess-whatis.md#deploying-azure-ad-integrated-applications-to-users).
+* Si la configuration automatique est activée, hello affecté utilisateurs et/ou groupes sont ajoutés toohello configuration toobe de file d’attente configuré automatiquement.
   
-  * Si seuls des objets utilisateur ont été configurés pour être attribués, tous les utilisateurs directement assignés sont placés dans la file d’attente d’attribution et tous les utilisateurs membres des groupes assignés sont placés dans la file d’attente d’attribution. 
-  * Si des objets de groupe ont été configurés pour être attribués, tous les objets du groupe affectés sont attribués dans Box, tout comme l’ensemble des utilisateurs membres de ces groupes. Les appartenances des groupes et des utilisateurs sont conservées lors de l'écriture dans Box.
+  * Si seuls les objets utilisateur ont été configuré toobe configuré, puis tous les utilisateurs directement attribués sont placés dans la file d’attente de la mise en service hello et tous les utilisateurs qui sont membres des groupes affectées sont placés dans hello mise en service de file d’attente. 
+  * Si les objets de groupe ont été configuré toobe configuré, tous les objets de groupe affecté sont approvisionné tooBox et tous les utilisateurs qui sont membres de ces groupes. les appartenances de groupe et utilisateur Hello sont conservés lors de tooBox en cours d’écriture.
 
-Vous pouvez utiliser l'onglet **Attributs > Authentification unique** pour configurer les attributs (ou revendications) de l'utilisateur présentés dans Box pendant l'authentification SAML, et l'onglet **Attributs > Approvisionnement** pour configurer le transfert des attributs utilisateur et groupe d'Azure AD vers Box lors des opérations d'approvisionnement.
+Vous pouvez utiliser hello **attributs > Single Sign-On** onglet tooconfigure les attributs de l’utilisateur (ou les revendications) est présenté tooBox pendant l’authentification SAML et hello **attributs > approvisionnement** onglet tooconfigure le flux des attributs utilisateur et de groupe à partir d’Azure AD tooBox lors de la configuration des opérations.
 
-### <a name="important-tips-for-assigning-users-to-box"></a>Conseils importants pour l’attribution d’utilisateurs à Box 
+### <a name="important-tips-for-assigning-users-toobox"></a>Conseils importants pour l’affectation d’utilisateurs tooBox 
 
-*   Dans un premier temps, il est recommandé de n’assigner qu’un seul utilisateur Azure AD à Box pour tester la configuration de l’attribution. Les autres utilisateurs et/ou groupes peuvent être affectés ultérieurement.
+*   Il est recommandé qu’une annonce Azure utilisateur attribué tooBox tootest hello service de la configuration. Les autres utilisateurs et/ou groupes peuvent être affectés ultérieurement.
 
-*   Quand vous assignez un utilisateur à Box, vous devez sélectionner un rôle d’utilisateur valide. Le rôle « Accès par défaut » ne fonctionne pas pour l’approvisionnement.
+*   Lorsque vous affectez un toobox d’utilisateur, vous devez sélectionner un rôle d’utilisateur valide. rôle de « Accès par défaut » Hello ne fonctionne pas pour la configuration.
 
-## <a name="enable-automated-user-provisioning"></a>Activer l’attribution automatique des utilisateurs
+## <a name="enable-automated-user-provisioning"></a>Activer l’approvisionnement automatique des utilisateurs
 
-Cette section explique comment connecter Azure AD à l’API d’approvisionnement de comptes d’utilisateur de Box pour créer, mettre à jour et désactiver les comptes d’utilisateur attribués dans Box, en fonction des attributions d’utilisateurs et de groupes dans Azure AD.
+Cette section guide tout au long de la connexion du compte d’utilisateur de votre tooBox AD Azure API de configuration et configurez hello toocreate du service de configuration, de mettre à jour et de désactiver les comptes d’utilisateur affecté dans la zone en fonction de l’affectation d’utilisateurs et de groupes dans Azure AD.
 
-Si la configuration automatique est activée, les utilisateurs et/ou groupes affectés sont ajoutés à la file d'attente d'approvisionnement automatique.
+Si la configuration automatique est activée, hello affecté utilisateurs et/ou groupes sont ajoutés toohello configuration toobe de file d’attente configuré automatiquement.
     
- * Si seuls des objets utilisateur ont été configurés pour être attribués, les utilisateurs directement assignés sont placés dans la file d’attente d’attribution et tous les utilisateurs membres des groupes assignés sont placés dans la file d’attente d’attribution. 
+ * Si seuls les objets utilisateur sont configuré toobe configurée, puis directement les utilisateurs sont placés dans la file d’attente de la mise en service hello et tous les utilisateurs qui sont membres des groupes affectées sont placés dans hello mise en service de file d’attente. 
     
- * Si des objets de groupe ont été configurés pour être attribués, tous les objets du groupe affectés sont attribués dans Box, tout comme l’ensemble des utilisateurs membres de ces groupes. Les appartenances des groupes et des utilisateurs sont conservées lors de l'écriture dans Box.
+ * Si les objets de groupe ont été configuré toobe configuré, tous les objets de groupe affecté sont approvisionné tooBox et tous les utilisateurs qui sont membres de ces groupes. les appartenances de groupe et utilisateur Hello sont conservés lors de tooBox en cours d’écriture.
 
 > [!TIP] 
-> Vous pouvez également choisir d’activer l’authentification unique SAML pour Box en suivant les instructions fournies dans le [portail Azure](https://portal.azure.com). L’authentification unique peut être configurée indépendamment de l’approvisionnement automatique, bien que chacune de ces deux fonctionnalités compléte l’autre.
+> Vous pouvez également choisir tooenabled basé sur SAML Single Sign-On pour la zone, en suivant les instructions hello fournies dans [portail Azure](https://portal.azure.com). L’authentification unique peut être configurée indépendamment de l’approvisionnement automatique, bien que chacune de ces deux fonctionnalités compléte l’autre.
 
-### <a name="to-configure-automatic-user-account-provisioning"></a>Pour configurer l’approvisionnement automatique des comptes d’utilisateur :
+### <a name="tooconfigure-automatic-user-account-provisioning"></a>tooconfigure compte le provisionnement utilisateur automatique :
 
-Cette section décrit comment activer l'approvisionnement des comptes d'utilisateurs Active Directory sur Box.
+objectif Hello de cette section est toooutline comment tooenable configuration d’utilisateur Active Directory de comptes de tooBox.
 
-1. Dans le [portail Azure](https://portal.azure.com), accédez à la section **Azure Active Directory > Applications d’entreprise > Toutes les applications**.
+1. Bonjour [portail Azure](https://portal.azure.com), parcourir toohello **Azure Active Directory > applications d’entreprise > toutes les applications** section.
 
-2. Si vous avez déjà configuré Box pour l’authentification unique, recherchez votre instance de Box à l’aide du champ de recherche. Sinon, sélectionnez **Ajouter** et recherchez **Box** dans la galerie d’applications. Sélectionnez Box dans les résultats de la recherche, puis ajoutez-le à votre liste d’applications.
+2. Si vous avez déjà configuré la zone pour l’authentification unique, recherchez votre instance de la zone à l’aide du champ de recherche hello. Sinon, sélectionnez **ajouter** et recherchez **zone** dans la galerie d’applications hello. Activez la case à partir des résultats de recherche hello et ajoutez-le à la liste des applications tooyour.
 
-3. Sélectionnez votre instance de Box, puis sélectionnez l’onglet **Approvisionnement**.
+3. Sélectionnez votre instance de la zone, puis hello **Provisioning** onglet.
 
-4. Définissez le **Mode d’approvisionnement** sur **Automatique**. 
+4. Ensemble hello **Mode d’approvisionnement** trop**automatique**. 
 
     ![approvisionnement](./media/active-directory-saas-box-userprovisioning-tutorial/provisioning.png)
 
-5. Sous la section **Informations d’identification de l’administrateur**, cliquez sur **Autoriser** pour ouvrir la boîte de dialogue de connexion à Box dans une nouvelle fenêtre de navigateur.
+5. Sous hello **informations d’identification administrateur** , cliquez sur **Authorize** tooopen une boîte de dialogue de connexion dans une nouvelle fenêtre de navigateur.
 
-6. Dans la page **Login to grant access to Box** (Se connecter pour autoriser l’accès à Box), saisissez les informations d’identification, puis cliquez sur **Authorize** (Autoriser). 
+6. Sur hello **connexion toogrant accès tooBox** page, fournir des informations d’identification hello requis, puis cliquez sur **Authorize**. 
    
     ![Activer l’approvisionnement automatique des utilisateurs](./media/active-directory-saas-box-userprovisioning-tutorial/IC769546.png "Activer l’approvisionnement automatique des utilisateurs")
 
-7. Cliquez sur **Grant access to Box** (Accorder l’accès à Box) pour autoriser cette opération et retourner au portail Azure. 
+7. Cliquez sur **Grant access tooBox** tooauthorize cette toohello opération et tooreturn portail Azure. 
    
     ![Activer l’approvisionnement automatique des utilisateurs](./media/active-directory-saas-box-userprovisioning-tutorial/IC769549.png "Activer l’approvisionnement automatique des utilisateurs")
 
-8. Dans le portail Azure, cliquez sur **Tester la connexion** pour vérifier qu’Azure AD peut se connecter à votre application Box. Si la connexion échoue, vérifiez que votre compte Box dispose des autorisations d’administrateur d’équipe et recommencez l’étape **Autoriser**.
+8. Bonjour portail Azure, cliquez sur **tester la connexion** tooensure AD Azure peut se connecter à l’application Box tooyour. Si hello connexion échoue, assurez-vous que votre compte Box a des autorisations d’administrateur d’équipe et essayez de hello **« Autoriser »** pas à pas.
 
-9. Entrez l’adresse e-mail d’une personne ou d’un groupe qui doit recevoir les notifications d’erreur d’approvisionnement dans le champ **E-mail de notification**, puis cochez la case.
+9. Entrez hello adresse de messagerie d’une personne ou un groupe qui doit recevoir des notifications d’erreur approvisionnement hello **courrier électronique de Notification** champ et la case à cocher hello.
 
 10. Cliquez sur **Enregistrer.**
 
-11. Dans la section Mappages, sélectionnez **Synchroniser les utilisateurs Azure Active Directory avec Box**.
+11. Sous la section des mappages de hello, sélectionnez **tooBox de synchronisation Azure Active Directory Users.**
 
-12. Dans la section **Mappages des attributs**, passez en revue les attributs utilisateur qui sont synchronisés entre Azure AD et Box. Les attributs sélectionnés en tant que propriétés de **Correspondance** sont utilisés pour établir une correspondance avec les comptes d’utilisateur Box en vue de mises à jour ultérieures. Cliquez sur le bouton Enregistrer pour valider les modifications.
+12. Bonjour **des mappages d’attributs** section, passez en revue les attributs utilisateur hello qui sont synchronisés à partir d’Azure AD tooBox. Hello attributs sélectionnés en tant que **correspondance** propriétés sont des comptes d’utilisateur hello toomatch utilisés dans la zone pour les opérations de mise à jour. Sélectionnez toocommit de bouton hello enregistrer toutes les modifications.
 
-13. Pour activer le service d’approvisionnement Azure AD pour Box, définissez le paramètre **État de l’approvisionnement** sur **Activé** dans la section Paramètres.
+13. tooenable hello service de configuration d’Azure AD de zone de modification hello **état d’approvisionnement** trop**sur** Bonjour section de paramètres
 
 14. Cliquez sur **Enregistrer.**
 
-Cette commande démarre la synchronisation initiale des utilisateurs et/ou des groupes affectés à Box dans la section Utilisateurs et Groupes. La synchronisation initiale prend plus de temps que les synchronisations suivantes, qui se produisent environ toutes les 20 minutes, tant que le service est en cours d’exécution. Vous pouvez utiliser la section **Détails de synchronisation** pour surveiller la progression et les liens vers les rapports d’activité d’approvisionnement, qui décrivent toutes les actions effectuées par le service de configuration dans votre application Box.
+Qui démarre la synchronisation initiale d’utilisateurs et/ou groupes affectés tooBox Bonjour les utilisateurs et la section groupes de hello. la synchronisation initiale Hello prend tooperform plus de temps que les synchronisations suivantes, qui se produisent toutes les 20 minutes environ tant que service de hello est en cours d’exécution. Vous pouvez utiliser hello **détails de synchronisation** section toomonitor cours et suivre des rapports d’activité tooprovisioning des liens, qui décrivent toutes les actions effectuées par hello service sur votre application de la zone de configuration.
 
-Vous pouvez désormais créer un compte de test. Patientez jusqu’à 20 minutes et vérifiez que le compte a bien été synchronisé avec Box.
+Vous pouvez à présent créer un compte de test. Attendez que les minutes too20 tooverify hello compte a été synchronisé toobox.
 
-Dans votre locataire Box, les utilisateurs synchronisés sont répertoriés sous **Utilisateurs gérés** dans la **Console d’administration**.
+Dans votre locataire Box, les utilisateurs synchronisés sont répertoriés sous **Managed Users** Bonjour **Console d’administration**.
 
 ![Statut d’intégration](./media/active-directory-saas-box-userprovisioning-tutorial/IC769556.png "Statut d’intégration")
 

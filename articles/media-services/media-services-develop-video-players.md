@@ -1,6 +1,6 @@
 ---
-title: "Développement d’applications de lecteur vidéo"
-description: "La rubrique fournit des liens vers les infrastructures de lecteur et les plug-ins que vous pouvez utiliser pour développer vos propres applications clientes qui permettront de faire appel à la diffusion multimédia en continu à partir de Media Services."
+title: "applications de lecteur vidéo aaaDevelop"
+description: "rubrique de Hello fournit des liens tooPlayer infrastructures et plug-ins que vous pouvez utiliser toodevelop vos propres applications clientes qui peuvent consommer de diffusion multimédia en continu de Media Services."
 author: Juliako
 manager: cfowler
 editor: 
@@ -14,34 +14,34 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/17/2017
 ms.author: juliako
-ms.openlocfilehash: 0e88baed8188890e80d4c2e7ee9d510fdabf6e43
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a66daa4f006a1f05271cc9ed6a02ea7ee460321d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="develop-video-player-applications"></a>Développement d’applications de lecteur vidéo
 ## <a name="overview"></a>Vue d'ensemble
-Azure Media Services fournit les outils dont vous avez besoin pour créer des applications de lecteur clientes riches et dynamiques pour la plupart des plateformes, notamment : appareils iOS, Android, Windows, Windows Phone, Xbox et décodeurs. Cette rubrique fournit également des liens vers les Kits de développement logiciel (SDK) et les infrastructures de lecteur que vous pouvez utiliser pour développer vos propres applications clientes afin d’utiliser la diffusion en continu de médias à partir d’Azure Media Services.
+Azure Media Services fournit des outils hello vous devez toocreate riche, les applications de lecteur client dynamiques pour la plupart des plateformes, y compris : iOS, appareils, les appareils Android, Windows, Windows Phone, Xbox et décodeurs boîtes. Cette rubrique fournit également des liens tooSDKs et des infrastructures de lecteur que vous pouvez utiliser toodevelop vos propres applications clientes qui peuvent consommer de diffusion multimédia en continu à partir d’Azure Media Services.
 
 >[!NOTE]
->Une fois votre compte AMS créé, un point de terminaison de streaming **par défaut** est ajouté à votre compte à l’état **Arrêté**. Pour démarrer la diffusion en continu de votre contenu et tirer parti de l’empaquetage et du chiffrement dynamiques, le point de terminaison de streaming à partir duquel vous souhaitez diffuser du contenu doit se trouver à l’état **En cours d’exécution**. 
+>Création de votre compte AMS un **par défaut** point de terminaison de diffusion en continu est ajoutée tooyour compte Bonjour **arrêté** état. toostart de diffusion en continu de votre contenu et profitez de l’empaquetage dynamique et chiffrement dynamique, hello de point de terminaison de diffusion en continu à partir de laquelle vous souhaitez que le contenu toostream a toobe Bonjour **en cours d’exécution** état. 
  
 ## <a name="azure-media-player"></a>Azure Media Player
-[Azure Media Player](http://aka.ms/ampinfo) est un lecteur vidéo web conçu pour lire du contenu multimédia à partir de Microsoft Azure Media Services sur une grande variété de navigateurs et d’appareils. Azure Media Player exploite des normes du secteur, telles que HTML5, Media Source Extensions (MSE) et Encrypted Media Extensions (EME), pour offrir une expérience enrichie de diffusion en continu adaptative. Lorsque ces normes ne sont pas disponibles sur un périphérique ou dans un navigateur, Azure Media Player utilise Flash et Silverlight comme technologies de secours. Quelle que soit la technologie de lecture utilisée, les développeurs bénéficient d’une interface JavaScript unifiée pour accéder aux API. Le contenu fourni par Azure Media Services peut ainsi être lu sur un large éventail de périphériques et de navigateurs sans effort supplémentaire.
+[Azure Media Player](http://aka.ms/ampinfo) un lecteur vidéo web repose tooplay précédent contenu multimédia à partir de Microsoft Azure Media Services sur un large éventail de navigateurs et périphériques. Azure Media Player utilise des normes industrielles telles que HTML5, Media Source Extensions (MSE) et les Extensions de média chiffré (EME) tooprovide une expérience de diffusion en continu adaptative enrichie. Lorsque ces normes ne sont pas disponibles sur un périphérique ou dans un navigateur, Azure Media Player utilise Flash et Silverlight comme technologies de secours. Quelle que soit la technologie de lecture hello utilisée, les développeurs auront un tooaccess d’interface unifiée JavaScript API. Cela permet de contenu pris en charge par toobe Azure Media Services lu sur un large éventail d’appareils et navigateurs sans effort supplémentaire.
 
-Microsoft Azure Media Services permet la distribution du contenu dans les formats de diffusion en continu DASH, Smooth Streaming et HLS pour la lecture. Azure Media Player prend en compte des différents formats et lit automatiquement le lien le mieux adapté aux capacités de la plateforme/du navigateur. Microsoft Azure Media Services assure également le chiffrement dynamique des ressources avec le chiffrement PlayReady ou le chiffrement d’enveloppe AES 128 bits. Lorsqu’il est configuré de manière appropriée, Azure Media Player permet le déchiffrement du contenu chiffré avec PlayReady et AES 128 bits. 
+Microsoft Azure Media Services permet toobe contenu pris en charge avec DASH, Smooth Streaming et HLS tooplay de formats de diffusion en continu sauvegarder le contenu. Azure Media Player prend en compte ces différents formats et automatiquement joué par hello lien meilleures en fonction des capacités de plateforme/navigateur hello. Microsoft Azure Media Services assure également le chiffrement dynamique des ressources avec le chiffrement PlayReady ou le chiffrement d’enveloppe AES 128 bits. Lorsqu’il est configuré de manière appropriée, Azure Media Player permet le déchiffrement du contenu chiffré avec PlayReady et AES 128 bits. 
 
 Pour plus d'informations :
 
 * [Azure Media Player](http://aka.ms/ampinfo)
 * [Documentation d’Azure Media Player](http://aka.ms/ampdocs) 
 * [Blog de prise en main d’Azure Media Player](https://azure.microsoft.com/blog/2015/04/15/announcing-azure-media-player/)
-* [Inscrivez-vous pour vous tenir informé des dernières informations concernant Azure Media Player](http://aka.ms/ampsignup)
+* [S’inscrire toostay des toodate avec hello plus récentes à partir d’Azure Media Player](http://aka.ms/ampsignup)
 * [Ajouter de nouvelles demandes de fonctionnalités, des idées et des commentaires](http://aka.ms/ampuservoice) 
 
 ## <a name="other-tools-for-creating-player-applications"></a>Autres outils pour la création d’applications de lecteur
-Vous pouvez également utiliser un des Kits de développement logiciel (SDK) suivants :
+Vous pouvez également utiliser une des hello suivant des kits de développement logiciel :
 
 * [Kit de développement logiciel (SDK) de client de diffusion en continu lisse](http://www.iis.net/downloads/microsoft/smooth-streaming) 
 * [Didacticiel d’application Windows Store de diffusion en continu lisse](media-services-build-smooth-streaming-apps.md)
@@ -52,15 +52,15 @@ Vous pouvez également utiliser un des Kits de développement logiciel (SDK) sui
 * [Développement d’applications vidéo pour XBOX](http://xbox.create.msdn.com/) 
 
 ## <a name="advertising"></a>Publicité
-Azure Media Services assure la prise en charge des insertions publicitaires via la plateforme Windows Media : Infrastructures de lecteur. Des infrastructures de lecteur avec prise en charge des publicités sont disponibles pour les périphériques Windows 8, Silverlight, Windows Phone 8 et iOS. Chaque infrastructure de lecteur contient un exemple de code qui montre comment implémenter une application de type lecteur. Il existe trois sortes de publicités différentes que vous pouvez insérer dans votre contenu multimédia :
+Azure Media Services assure la prise en charge pour l’insertion de publicités via hello plateforme Windows Media : Player Frameworks. Des infrastructures de lecteur avec prise en charge des publicités sont disponibles pour les périphériques Windows 8, Silverlight, Windows Phone 8 et iOS. Chaque player framework contient des exemples de code qui vous montre comment tooimplement une application de lecteur. Il existe trois sortes de publicités différentes que vous pouvez insérer dans votre contenu multimédia :
 
-Linéaire : publicité en plein cadre qui interrompt la vidéo principale
+Linéaire : publicité en plein cadre qui interrompent la vidéo principale de hello
 
-Non linéaire : publicité superposée qui s’affiche pendant la lecture de la vidéo principale ; il s’agit généralement d’un logo ou autre image statique apparaissant à l’intérieur du cadre du lecteur
+Non-linéaire : publicité superposée qui s’affichent lorsque la lecture de la vidéo principale hello, généralement un logo ou autre image statique est placé dans le lecteur hello
 
-Compagnon : publicité d’accompagnement qui s’affiche hors du cadre du lecteur
+Compagnon : publicité qui s’affichent en dehors du lecteur de hello
 
-Les publicités peuvent être placées à n’importe quel point dans la chronologie de la vidéo principale. Vous devez indiquer au lecteur les publicités à diffuser, ainsi que le moment auquel le faire. Cela s’effectue via un ensemble de fichiers XML standard : Video Ad Service Template (VAST), Digital Video Multiple Ad Playlist (VMAP), Media Abstract Sequencing Template (MAST) et Digital Video Player Ad Interface Definition (VPAID). Les fichiers VAST spécifient les publicités à afficher. Les fichiers VMAP indiquent quand diffuser les différentes publicités ; ils contiennent le code XML VAST. Les fichiers MAST permettent également de séquencer des publicités contenant aussi du code XML VAST. Les fichiers VPAID définissent une interface entre le lecteur vidéo et la publicité ou le serveur publicitaire. Pour plus d’informations, consultez la page [Insertion de publicités](https://msdn.microsoft.com/library/dn387398.aspx).
+Les publicités peuvent être placées à n’importe quel point dans la chronologie de la vidéo principale hello. Vous devez indiquer le lecteur hello lorsque tooplay hello ad et qui tooplay de publicités. Cela s’effectue via un ensemble de fichiers XML standard : Video Ad Service Template (VAST), Digital Video Multiple Ad Playlist (VMAP), Media Abstract Sequencing Template (MAST) et Digital Video Player Ad Interface Definition (VPAID). Les fichiers VAST spécifient quels toodisplay de publicités. Fichiers VMAP indiquent quand tooplay différentes publicités et contient du code XML VAST. Les fichiers MAST sont des publicités toosequence façon un autre contenant aussi du code XML VAST. Les fichiers VPAID définissent une interface entre le lecteur vidéo hello et Active Directory de hello ou serveur Active Directory. Pour plus d’informations, consultez la page [Insertion de publicités](https://msdn.microsoft.com/library/dn387398.aspx).
 
 Pour en savoir plus sur la prise en charge du sous-titrage et des publicités dans les vidéos en flux continu, consultez la page [Normes de sous-titrage et d’insertion de publicités prises en charge](https://msdn.microsoft.com/library/c49e0b4d-357e-4cca-95e5-2288924d1ff3#caption_ad).
 

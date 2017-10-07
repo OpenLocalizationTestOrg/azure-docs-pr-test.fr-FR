@@ -1,6 +1,6 @@
 ---
-title: "Documentation de la facturation Azure - Didacticiels, informations de référence sur les API | Microsoft Docs"
-description: "Apprenez à comprendre votre facturation Azure, ainsi qu’à gérer et analyser l’utilisation et les coûts. Didacticiels, FAQ, références d’API et autres documents."
+title: "aaaAzure Documentation facturation - didacticiels, référence de l’API | Documents Microsoft"
+description: "Découvrez comment toounderstand votre facturation Azure, ainsi que gérer et surveiller l’utilisation et les coûts. Didacticiels, FAQ, références d’API et autres documents."
 services: billing
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: f9d8cecf45e40909e39f894c62bcc572b610b014
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 663ea1a4526ed897e963d3daa9ed41a7bdbabef0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-billing-documentation"></a>Documentation de la facturation Azure
 
-Apprenez à comprendre votre facturation Azure et à gérer et analyser l’utilisation et les coûts. Des didacticiels, des FAQ, des références d’API et d’autres documents vous montrent comment gérer votre compte.
+Découvrez comment toounderstand votre facturation, Azure et surveiller l’utilisation et les coûts. Les didacticiels, les questions fréquentes, des références de l’API, et toute autre documentation indiquent comment toomanage votre compte.
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -125,7 +125,7 @@ Apprenez à comprendre votre facturation Azure et à gérer et analyser l’util
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
-                        <h3>Apprenez à utiliser les API</h3>
+                        <h3>En savoir plus toouse hello API</h3>
                         <p><a href="/azure/billing-usage-rate-card-overview">Présentation de l’API</a></p>
                         <p><a href="/azure/billing-usage-rate-card-partner-solution-cloudcruiser">Solution partenaire : Cloud Cruiser</a></p>
                         <p><a href="/azure/billing-usage-rate-card-partner-solution-cloudyn">Solution partenaire : Cloudyn</a></p>

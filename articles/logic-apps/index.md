@@ -1,6 +1,6 @@
 ---
-title: "Documentation Azure Logic Apps - Didacticiels, informations de référence sur les API | Microsoft Docs"
-description: "Apprenez à développer des applications logiques qui automatisent et simplifient les workflows métier en local et dans le cloud. Didacticiels, modèles et références d’API."
+title: "aaaAzure logique applications Documentation - didacticiels, référence de l’API | Documents Microsoft"
+description: "Découvrez les applications logique toodevelop automatisent et simplifient les workflows d’entreprise local et hello de cloud. Didacticiels, modèles et références d’API."
 services: logic-apps
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 7f9790a52365b76e9d3dd1fdf1a17ab2aaaf8b5a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5cc3a730b1b6abcb3ec0132f6e8ebf2e54775836
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="logic-apps-documentation"></a>Documentation Logic Apps
 
-Apprenez à développer des applications logiques qui simplifient et intègrent des workflows évolutifs dans le cloud. Des didacticiels, modèles et références d’API vous aident à concevoir et déployer des workflows métier automatisés en local et dans le cloud.
+Découvrez comment toodevelop Logic Apps qui simplifient et intégrer des flux de travail évolutive dans hello cloud. Didacticiels, des modèles et des API de référence vous aident à concevez et déployez des flux de travail métier automatisé locaux et hello cloud.
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -106,7 +106,7 @@ Apprenez à développer des applications logiques qui simplifient et intègrent 
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Prise en main de la création d’une API personnalisée à utiliser avec Logic Apps</h3>
+                        <h3>Commencer à créer un toouse API personnalisée avec Logic Apps</h3>
                     </div>
                 </div>
             </div>

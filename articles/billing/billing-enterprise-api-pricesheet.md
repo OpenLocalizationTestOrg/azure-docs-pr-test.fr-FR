@@ -1,6 +1,6 @@
 ---
-title: "API de facturation d’entreprise Azure - Grille tarifaire | Microsoft Docs"
-description: "Découvrez les API de création de rapports qui permettent aux clients Azure en entreprise d’extraire leurs données de consommation par programmation."
+title: "aaaAzure API d’entreprise facturation - PriceSheet | Documents Microsoft"
+description: "Découvrez hello API de Reporting qui permettent aux données de consommation de toopull clients entreprise Azure par programme."
 services: 
 documentationcenter: 
 author: aedwin
@@ -15,18 +15,18 @@ ms.tgt_pltfrm: na
 ms.workload: billing
 ms.date: 04/25/2017
 ms.author: aedwin
-ms.openlocfilehash: 2e7d6e883abe4cee13bc5f684baf2a1ea9c6c397
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 4cfe694c63fba266d117054b046d9caacb3b7197
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="reporting-apis-for-enterprise-customers---price-sheet"></a>API de création de rapports pour les clients en entreprise - Grille tarifaire
 
-L’API Grille tarifaire fournit les tarifs applicables pour chaque compteur selon l’abonnement et la période de facturation donnés.
+Hello API de feuille de prix fournit les taux applicable hello pour chacun des compteurs pour hello donné d’inscription et la période de facturation.
 
-##<a name="request"></a>Requête
-Les propriétés d’en-tête communes qui doivent être ajoutées sont spécifiées [ici](billing-enterprise-api.md). Si aucune période de facturation n’est spécifiée, les données de la période de facturation en cours sont retournées.
+##<a name="request"></a>Demande
+Propriétés d’en-tête commun nécessitant toobe ajouté sont spécifiées [ici](billing-enterprise-api.md). Si une période de facturation n’est pas spécifiée, puis les données de facturation actuel de hello période sont retournées.
 
 |Méthode | URI de demande|
 |-|-|
@@ -34,7 +34,7 @@ Les propriétés d’en-tête communes qui doivent être ajoutées sont spécifi
 |GET|https://consumption.azure.com/v2/enrollments/{enrollmentNumber}/billingPeriods/{billingPeriod}/pricesheet|
 
 > [!Note]
-> Pour utiliser la préversion de l’API, remplacez v2 par v1 dans l’URL ci-dessus.
+> version d’évaluation hello toouse de l’API, remplacez v2 v1 Bonjour au-dessus des URL.
 >
 
 ## <a name="response"></a>Réponse
@@ -68,22 +68,22 @@ Les propriétés d’en-tête communes qui doivent être ajoutées sont spécifi
     
 
 > [!Note]
->Si vous utilisez la préversion de l’API, le champ meterId n’est pas disponible.
+>Si vous utilisez hello API d’aperçu, le champ d’ID de jauge n’est pas disponible.
 >
 
 **Définitions des propriétés de réponse**
 
 |Nom de la propriété| Type| Description
 |-|-|-|
-|id| chaîne| ID unique qui représente un élément de grille tarifaire donné (compteur par période de facturation)|
-|billingPeriodId| chaîne| ID unique qui représente une période de facturation donnée|
-|meterId| chaîne| Identificateur du compteur. Il peut être mappé au meterId d’utilisation.|
-|meterName| chaîne| Nom du compteur|
-|unitOfMeasure| chaîne| Unité de mesure pour mesurer le service|
+|id| string| Hello Id unique qui représente un élément particulier de PriceSheet (compteur par période de facturation)|
+|billingPeriodId| string| Hello Id unique qui représente une période de facturation particulière|
+|meterId| string| Identificateur Hello pour le compteur de hello. Il peut être mappé toohello utilisation de l’ID de jauge.|
+|meterName| string| nom de compteur Hello|
+|unitOfMeasure| string| Hello unité de mesure de service de hello|
 |includedQuantity| décimal| Quantité incluse |
-|partNumber| chaîne| Numéro de référence associé au compteur|
-|unitPrice| décimal| Prix unitaire du compteur|
-|currencyCode| chaîne| Code de devise du prix unitaire|
+|partNumber| string| numéro de référence Hello associé hello compteur|
+|unitPrice| Décimal| prix unitaire Hello pour le compteur de hello|
+|currencyCode| string| code de devise Hello hello UnitPrice|
 <br/>
 ## <a name="see-also"></a>Voir aussi
 

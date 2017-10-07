@@ -1,6 +1,6 @@
 ---
 title: "Bien démarrer avec Azure Active Directory Domain Services | Microsoft Docs"
-description: "Activer Azure Active Directory Domain Services à l’aide du portail Azure (préversion)"
+description: "Activer Azure Active Directory Domain Services à l’aide de hello portail Azure (aperçu)"
 services: active-directory-ds
 documentationcenter: 
 author: mahesh-unnikrishnan
@@ -14,64 +14,64 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/28/2017
 ms.author: maheshu
-ms.openlocfilehash: 47507096a6245d4f1ba57a652ddf5167b3776ae9
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 79cbb21c4a50194f5ad8ca1a4a8493ee4a260a9d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="enable-azure-active-directory-domain-services-using-the-azure-portal-preview"></a>Activer Azure Active Directory Domain Services à l’aide du portail Azure (préversion)
-Cet article explique comment activer Azure Active Directory Domain Services (Azure AD DS) au moyen du portail Azure.
+# <a name="enable-azure-active-directory-domain-services-using-hello-azure-portal-preview"></a>Activer Azure Active Directory Domain Services à l’aide de hello portail Azure (aperçu)
+Cet article explique comment tooenable Active Directory domaine Services Azure (Azure AD DS) à l’aide de hello portail Azure.
 
 
-Pour lancer l’Assistant **Activer Azure AD Domain Services**, procédez comme suit :
+toolaunch hello **activer un domaine Azure AD Services** hello Assistant, complète comme suit :
 
-1. Accédez au [portail Azure](https://portal.azure.com).
-2. Dans le volet gauche, cliquez sur **Nouveau**.
-3. Dans le panneau **Nouveau**, tapez **Domain Services** dans la barre de recherche.
+1. Accédez toohello [portail Azure](https://portal.azure.com).
+2. Dans le volet gauche de hello, cliquez sur **nouveau**.
+3. Bonjour **nouveau** panneau, tapez **Services de domaine** dans la barre de recherche hello.
 
     ![Rechercher Domain Services](./media/getting-started/search-domain-services.png)
 
-4. Dans la liste des suggestions de recherche, cliquez pour sélectionner **Azure AD Domain Services**. Dans le panneau **Azure AD Domain Services**, cliquez sur le bouton **Créer**.
+4. Cliquez sur tooselect **les Services de domaine Active Directory de Azure** à partir de la liste de hello des suggestions de recherche. Sur hello **les Services de domaine Active Directory de Azure** panneau, cliquez sur hello **créer** bouton.
 
     ![Panneau Domain Services](./media/getting-started/domain-services-blade.png)
 
-5. L’Assistant **Activer Azure AD Domain Services** est lancé.
+5. Hello **activer un domaine Azure AD Services** Assistant est lancé.
 
 
 ## <a name="task-1-configure-basic-settings"></a>Tâche 1 : Configurer les paramètres de base
-Dans la page **Fonctions de base** de l’Assistant, vous pouvez spécifier le nom de domaine DNS pour le domaine managé. Vous pouvez également choisir le groupe de ressources et l’emplacement Azure sur lequel le domaine managé doit être déployé.
+Bonjour **notions de base** page de l’Assistant de hello, vous pouvez spécifier le nom de domaine DNS hello pour le domaine géré de hello. Vous pouvez également choisir le groupe de ressources hello et emplacement Azure toowhich hello managé domaine doit être déployé.
 
 ![Configurer les fonctions de base](./media/getting-started/domain-services-blade-basics.png)
 
-1. Choisissez le **Nom de domaine DNS** pour votre domaine managé.
+1. Choisissez hello **nom de domaine DNS** pour votre domaine géré.
 
-   * Le nom de domaine par défaut du répertoire (avec un suffixe **.onmicrosoft.com**) est spécifié par défaut.
+   * nom de domaine par défaut Hello du répertoire de hello (avec un **. onmicrosoft.com** suffixe) est spécifié par défaut.
 
-   * Vous pouvez également entrer un nom de domaine personnalisé. Dans cet exemple, le nom de domaine personnalisé est *contoso100.com*.
+   * Vous pouvez également entrer un nom de domaine personnalisé. Dans cet exemple, le nom de domaine personnalisé hello est *contoso100.com*.
 
      > [!WARNING]
-     > Le préfixe du nom de domaine spécifié (par exemple, *contoso100* dans le nom de domaine *contoso100.com*) doit contenir au maximum 15 caractères. Vous ne pouvez pas créer de domaine managé avec un préfixe de plus de 15 caractères.
+     > préfixe Hello de votre nom de domaine spécifié (par exemple, *contoso100* Bonjour *contoso100.com* nom de domaine) doit contenir au maximum 15 caractères. Vous ne pouvez pas créer de domaine managé avec un préfixe de plus de 15 caractères.
      >
      >
 
-2. Vérifiez que le nom de domaine DNS choisi pour le domaine géré n’existe pas au sein du réseau virtuel. Plus spécifiquement, vérifiez les poins suivants :
+2. Vérifiez que nom de domaine DNS hello choisie pour hello géré domaine n’existe pas déjà dans le réseau virtuel de hello. Plus spécifiquement, vérifiez les poins suivants :
 
-   * Vous disposez d’un domaine présentant le nom de domaine DNS au sein du réseau virtuel.
+   * Vous disposez déjà d’un domaine avec hello même nom de domaine DNS sur le réseau virtuel de hello.
 
-   * Le réseau virtuel dans lequel vous envisagez d’activer le domaine managé a une connexion VPN avec votre réseau local. Dans ce scénario, veillez à ne pas avoir de domaine portant le même nom de domaine DNS sur votre réseau local.
+   * réseau virtuel de Hello où vous prévoyez de domaine géré de hello tooenable a une connexion VPN avec votre réseau local. Dans ce scénario, assurez-vous de vous n’avez pas un domaine avec hello même nom de domaine DNS de votre réseau local.
 
-   * Il existe un service cloud portant ce nom sur le réseau virtuel.
+   * Vous avez un service cloud existant portant le même nom sur le réseau virtuel de hello.
 
-3. Choisissez le **type de réseau virtuel**. Le type de réseau virtuel **Resource Manager** est sélectionné par défaut. Nous vous recommandons d’utiliser ce type de réseau virtuel pour tous les nouveaux domaines managés.
+3. Choisissez hello **type de réseau virtuel**. Par défaut, hello **le Gestionnaire de ressources** type de réseau virtuel est sélectionné. Nous vous recommandons d’utiliser ce type de réseau virtuel pour tous les nouveaux domaines managés.
 
-4. Sélectionnez l’**Abonnement** Azure dans lequel vous souhaitez créer le domaine managé.
+4. Sélectionnez hello Azure **abonnement** dans lequel vous souhaitez que le domaine géré de toocreate hello.
 
-5. Sélectionnez le **Groupe de ressources** auquel le domaine managé doit appartenir. Vous avez le choix entre les options **Créer** ou **Utiliser l’existant** pour sélectionner le groupe de ressources.
+5. Sélectionnez hello **groupe de ressources** domaine géré de hello toowhich doit appartenir. Vous pouvez choisir soit hello **nouvel** ou **utiliser l’existante** groupe de ressources options tooselect hello.
 
-6. Choisissez l’**Emplacement** Azure dans lequel créer le domaine managé. Dans la page **Réseau** de l’Assistant, vous voyez uniquement les réseaux virtuels appartenant à l’emplacement que vous avez sélectionné.
+6. Choisissez hello Azure **emplacement** dans quels hello domaine géré doit être créé. Sur hello **réseau** page de l’Assistant de hello, vous voyez des réseaux virtuels uniquement appartenant emplacement toohello que vous avez sélectionné.
 
-7. Lorsque vous avez terminé, cliquez sur **OK** pour accéder à la page **Réseau** de l’Assistant.
+7. Lorsque vous avez terminé, cliquez sur **OK** toomove sur toohello **réseau** page d’Assistant de hello.
 
 
 ## <a name="next-step"></a>Étape suivante

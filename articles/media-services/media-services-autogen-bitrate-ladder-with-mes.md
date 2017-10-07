@@ -1,6 +1,6 @@
 ---
-title: "Utilisation d’Azure Media Encoder Standard pour générer automatiquement une échelle des vitesses de transmission | Microsoft Docs"
-description: "Cette rubrique explique comment utiliser Media Encoder Standard (MES) pour générer automatiquement une échelle des vitesses de transmission basée sur la résolution d’entrée et la vitesse de transmission. La résolution d’entrée et la vitesse de transmission ne seront jamais dépassées. Par exemple, si l’entrée est 720p à 3 Mbits/s, la sortie restera à 720p maximum démarrera à des vitesses inférieures à 3 Mbits/s."
+title: "tooauto d’Azure Media Encoder Standard aaaUse-générer une échelle de la vitesse de transmission | Documents Microsoft"
+description: "Cette rubrique montre comment toouse Media Encoder Standard (MES) tooauto-générer une échelle de la vitesse de transmission en fonction de la résolution d’entrée hello et la vitesse de transmission. vitesse de transmission et la résolution d’entrée hello ne seront jamais dépassées. Par exemple, si l’entrée de hello est 720p à 3 Mbits/s, sortie sera restent 720p au mieux et commence à un taux inférieurs à 3 Mbits/s."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,40 +14,40 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/20/2017
 ms.author: juliako
-ms.openlocfilehash: b5616aa9f8b15ab576d914fbae89a56f64c27f4a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 5437f54ac28c42ddd4f9d1986549d6da6261c5da
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-#  <a name="use-azure-media-encoder-standard-to-auto-generate-a-bitrate-ladder"></a>Utilisation d’Azure Media Encoder Standard pour générer automatiquement une échelle des vitesses de transmission
+#  <a name="use-azure-media-encoder-standard-tooauto-generate-a-bitrate-ladder"></a>Utiliser Azure Media Encoder Standard tooauto-générer une échelle de la vitesse de transmission
 
 ## <a name="overview"></a>Vue d'ensemble
 
-Cette rubrique explique comment utiliser Media Encoder Standard (MES) pour générer automatiquement une échelle des vitesses de transmission (paires vitesse-résolution) basée sur la résolution d’entrée et la vitesse de transmission. La présélection générée automatiquement ne dépassera jamais la résolution d’entrée et la vitesse de transmission. Par exemple, si l’entrée est 720p à 3 Mbits/s, la sortie restera à 720p maximum démarrera à des vitesses inférieures à 3 Mbits/s.
+Cette rubrique montre comment toouse Media Encoder Standard (MES) tooauto-générer une échelle de la vitesse de transmission (paires de résolution de la vitesse de transmission) en fonction de la résolution d’entrée hello et la vitesse de transmission. Hello générée automatiquement la présélection ne dépasse jamais vitesse de transmission et de résolution de hello d’entrée. Par exemple, si l’entrée de hello est 720p à 3 Mbits/s, sortie sera restent 720p au mieux et commence à un taux inférieurs à 3 Mbits/s.
 
 ### <a name="encoding-for-streaming-only"></a>Encodage pour la diffusion en continu uniquement
 
-Si votre objectif est d’encoder votre vidéo source uniquement pour la diffusion en continu, il vous faut alors utiliser la présélection « Diffusion adaptative en continu » lors de la création d’une tâche d’encodage. Lorsque vous utilisez la présélection **Diffusion adaptative**, l’encodeur MES limitera intelligemment l’échelle de vitesse de transmission. Mais vous ne pourrez pas contrôler les frais d’encodage car le service détermine le nombre de couches à utiliser et à quelle résolution. Vous pouvez consulter des exemples de couches de sortie produites par MES suite à un encodage avec la présélection **Diffusion adaptative** à la fin de cette rubrique. L’élément multimédia de sortie contiendra des fichiers MP4 où les flux audio et vidéo ne sont pas entrelacés.
+Si votre objectif est de tooencode votre source vidéo uniquement pour la diffusion en continu, puis vous faut-il utiliser hello « Diffusion adaptative en continu » prédéfini lors de la création d’une tâche d’encodage. Lorsque vous utilisez hello **diffusion adaptative en continu** prédéfinis, encodeur MES hello sera intelligemment imposer une échelle de la vitesse de transmission. Toutefois, vous ne serez pas hello toocontrol en mesure de codage des coûts, car le service de hello détermine combien couches toouse et à quelle résolution. Vous pouvez voir des exemples de couches de sortie produits par MES suite à l’encodage avec hello **diffusion adaptative en continu** prédéfinie à la fin de hello de cette rubrique. Hello de sortie actif contiennent des fichiers MP4 où audio et vidéo ne sont pas entrelacées.
 
 ### <a name="encoding-for-streaming-and-progressive-download"></a>Encodage pour le téléchargement progressif et la diffusion en continu
 
-Si votre objectif est d’encoder votre vidéo source pour la diffusion en continu ainsi que pour produire des fichiers MP4 pour le téléchargement progressif, il vous faut utiliser la présélection « Contenu adaptatif MP4 à plusieurs débits » lors de la création d’une tâche d’encodage. Lorsque vous utilisez la présélection **Contenu adaptative MP4 à plusieurs débits**, l’encodeur MES s’applique la même logique de codage que celle indiquée ci-dessus, mais maintenant la ressource en sortie contient des fichiers MP4 avec les flux audio et vidéo entrelacés. Vous pouvez utiliser un de ces fichiers MP4 (par exemple, la version la plus élevée à débit binaire) en tant que fichier de téléchargement progressif.
+Si votre objectif est de tooencode votre vidéo source pour la diffusion en continu, ainsi que des fichiers MP4 à tooproduce pour le téléchargement progressif, puis vous faut-il utiliser hello « Contenu adaptative MP4 à plusieurs débits » prédéfini lors de la création d’une tâche d’encodage. Lorsque vous utilisez hello **contenu adaptative MP4 à plusieurs débits** prédéfinis, encodeur MES hello applique hello même encodage logique comme indiqué ci-dessus, mais la ressource en sortie hello contiendra alors MP4 de fichiers audio et vidéo sont entrelacées. Vous pouvez utiliser un de ces fichiers MP4 (par exemple, hello version la plus récente à débit binaire) en tant qu’un fichier de téléchargement progressif.
 
 ## <a id="encoding_with_dotnet"></a>Encodage à l’aide du Kit de développement logiciel (SDK) .NET de Media Services
 
-Le code suivant utilise le Kit de développement logiciel (SDK) .NET de Media Services pour effectuer les tâches suivantes :
+Hello, exemple de code suivant utilise hello tooperform de Media Services .NET SDK tâches suivantes :
 
 - Création d’une tâche d’encodage.
-- Obtention d’une référence à l’encodeur Media Encoder Standard.
-- Ajout d’une tâche d’encodage au travail et spécification de l’option pour utiliser la présélection **Diffusion adaptative**. 
-- Création d’un élément multimédia de sortie qui contiendra l’élément multimédia encodé.
-- Ajout d’un gestionnaire d’événements pour vérifier la progression de la tâche.
-- Envoyez le travail.
+- Obtient un encodeur Media Encoder Standard toohello de référence.
+- Ajouter une tâche de toohello tâche codage et spécifiez toouse hello **diffusion adaptative en continu** prédéfini. 
+- Créer un élément multimédia de sortie qui contiendra les actifs de hello encodé.
+- Ajouter une événement Gestionnaire toocheck hello progression de la tâche.
+- Envoi de la tâche de hello.
 
 #### <a name="create-and-configure-a-visual-studio-project"></a>Créer et configurer un projet Visual Studio
 
-Configurez votre environnement de développement et ajoutez des informations de connexion au fichier app.config selon la procédure décrite dans l’article [Développement Media Services avec .NET](media-services-dotnet-how-to-use.md). 
+Configurer votre environnement de développement et de remplir le fichier app.config de hello avec les informations de connexion, comme décrit dans [développement Media Services avec .NET](media-services-dotnet-how-to-use.md). 
 
 #### <a name="example"></a>Exemple
 
@@ -61,7 +61,7 @@ Configurez votre environnement de développement et ajoutez des informations de 
     {
         class Program
         {
-        // Read values from the App.config file.
+        // Read values from hello App.config file.
         private static readonly string _AADTenantDomain =
         ConfigurationManager.AppSettings["AADTenantDomain"];
         private static readonly string _RESTAPIEndpoint =
@@ -80,7 +80,7 @@ Configurez votre environnement de développement et ajoutez des informations de 
             // Get an uploaded asset.
             var asset = _context.Assets.FirstOrDefault();
 
-            // Encode and generate the output using the "Adaptive Streaming" preset.
+            // Encode and generate hello output using hello "Adaptive Streaming" preset.
             EncodeToAdaptiveBitrateMP4Set(asset);
 
             Console.ReadLine();
@@ -91,8 +91,8 @@ Configurez votre environnement de développement et ajoutez des informations de 
             // Declare a new job.
             IJob job = _context.Jobs.Create("Media Encoder Standard Job");
 
-            // Get a media processor reference, and pass to it the name of the 
-            // processor to use for the specific task.
+            // Get a media processor reference, and pass tooit hello name of hello 
+            // processor toouse for hello specific task.
             IMediaProcessor processor = GetLatestMediaProcessorByName("Media Encoder Standard");
 
             // Create a task
@@ -101,11 +101,11 @@ Configurez votre environnement de développement et ajoutez des informations de 
             "Adaptive Streaming",
             TaskOptions.None);
 
-            // Specify the input asset to be encoded.
+            // Specify hello input asset toobe encoded.
             task.InputAssets.Add(asset);
-            // Add an output asset to contain the results of the job. 
+            // Add an output asset toocontain hello results of hello job. 
             // This output is specified as AssetCreationOptions.None, which 
-            // means the output asset is not encrypted. 
+            // means hello output asset is not encrypted. 
             task.OutputAssets.AddNew("Output asset",
             AssetCreationOptions.None);
 
@@ -159,7 +159,7 @@ Configurez votre environnement de développement et ajoutez des informations de 
 
 ## <a id="output"></a>Sortie
 
-Cette section présente trois exemples de couches de sortie produits par MES suite à un encodage avec la présélection **Diffusion adaptative**. 
+Cette section présente trois exemples de couches de sortie produits par MES suite à l’encodage avec hello **diffusion adaptative en continu** prédéfini. 
 
 ### <a name="example-1"></a>Exemple 1
 Une source avec une hauteur de « 1080 » et une fréquence d’images de « 29.970 » crée 6 couches vidéo :

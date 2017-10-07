@@ -1,6 +1,6 @@
 ---
-title: "Présentation du format des messages Azure IoT Hub | Microsoft Docs"
-description: "Le guide du développeur décrit le format et le contenu attendu des messages IoT Hub."
+title: format du message Azure IoT Hub aaaUnderstand | Documents Microsoft
+description: "Guide du développeur - format de hello décrit et contenu attendu de messages de IoT Hub."
 services: iot-hub
 documentationcenter: .net
 author: dominicbetts
@@ -14,58 +14,58 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/25/2017
 ms.author: dobett
-ms.openlocfilehash: e6eafb1a0030b022da2b5d0b787e092f3067c99f
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 3b1567e47bc32f70c0c252996648c4035ae81243
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-and-read-iot-hub-messages"></a>Créer et lire des messages IoT Hub
 
-Pour prendre en charge une interopérabilité transparente entre les différents protocoles, IoT Hub définit un format de message commun pour tous les protocoles d’appareil. Ce format est utilisé pour les messages [appareil-à-cloud][lnk-d2c] et [cloud-à-appareil][lnk-c2d]. Un [message IoT Hub][lnk-messaging] comprend les éléments suivants :
+toosupport une interopérabilité transparente entre les protocoles, IoT Hub définit un format identique pour tous les protocoles de périphérique. Ce format est utilisé pour les messages [appareil-à-cloud][lnk-d2c] et [cloud-à-appareil][lnk-c2d]. Un [message IoT Hub][lnk-messaging] comprend les éléments suivants :
 
 * Un ensemble de *propriétés système*. Propriétés interprétées ou définies par IoT Hub. Cet ensemble est prédéterminé.
-* Un ensemble de *propriétés de l’application*. Dictionnaire de propriétés de chaîne que l’application peut définir et auquel elle peut accéder sans avoir à désérialiser le corps du message. IoT Hub ne modifie jamais ces propriétés.
+* Un ensemble de *propriétés de l’application*. Dictionnaire de propriétés de chaîne hello application peut définir et d’accès, sans avoir besoin de corps du message toodeserialize hello. IoT Hub ne modifie jamais ces propriétés.
 * Un corps binaire opaque.
 
 Les valeurs et les noms de propriétés peuvent contenir uniquement des caractères alphanumériques ASCII, plus les caractères ``{'!', '#', '$', '%, '&', "'", '*', '*', '+', '-', '.', '^', '_', '`', '|', '~'}``, quand vous effectuez les opérations suivantes :
 
-* Envoyer des messages appareil-à-cloud à l’aide du protocole HTTP.
-* Envoyer des messages Cloud vers appareil.
+* Envoyer des messages appareil-à-cloud à l’aide du protocole HTTP de hello.
+* Envoyer des messages cloud-à-appareil.
 
-Pour plus d’informations sur l’encodage et le décodage des messages envoyés à l’aide de différents protocoles, consultez [Kits de développement logiciel (SDK) Azure IoT][lnk-sdks].
+Pour plus d’informations sur la façon tooencode et décoder les messages envoyés à l’aide de différents protocoles, consultez [kits de développement logiciel Azure IoT][lnk-sdks].
 
-Le tableau suivant répertorie l’ensemble des propriétés système dans les messages IoT Hub.
+Hello tableau suivant répertorie hello de propriétés système dans les messages d’IoT Hub.
 
 | Propriété | Description |
 | --- | --- |
-| MessageId |Identificateur correspondant au message défini par l’utilisateur utilisé pour les modèles demande-réponse. Format : une chaîne qui respecte la casse (jusqu’à 128 caractères) de caractères alphanumériques 7 bits ASCII + `{'-', ':',’.', '+', '%', '_', '#', '*', '?', '!', '(', ')', ',', '=', '@', ';', '$', '''}`. |
-| Numéro de séquence |Un numéro (unique par file d’attente d’appareil) affecté par IoT Hub à chaque message cloud-à-appareil. |
-| À |Une destination spécifiée dans les messages [cloud-à-appareil][lnk-c2d]. |
+| MessageId |Un identificateur définissable par l’utilisateur pour le message de salutation utilisé pour les modèles de demande-réponse. Format : Un chaînes respectant la casse (haut too128 caractères) de caractères ASCII 7 bits + `{'-', ':',’.', '+', '%', '_', '#', '*', '?', '!', '(', ')', ',', '=', '@', ';', '$', '''}`. |
+| Numéro de séquence |Nombre (unique pour chaque file d’attente de périphérique) affecté par IoT Hub tooeach cloud-à-appareil de message. |
+| trop|Une destination spécifiée dans les messages [cloud-à-appareil][lnk-c2d]. |
 | ExpiryTimeUtc |Date et heure d’expiration du message. |
-| EnqueuedTime |Date et heure de réception du message [Cloud-à-appareil][lnk-c2d] par IoT Hub. |
-| CorrelationId |Une propriété de chaîne d’un message de réponse qui contient généralement l'ID du message de la demande dans les modèles demande-réponse. |
-| UserId |Un ID utilisé pour spécifier l’origine des messages. Lorsque des messages sont générés par IoT Hub, la propriété est définie sur `{iot hub name}`. |
-| Ack |Un générateur de messages de commentaires. Cette propriété est utilisée dans les messages cloud-à-appareil pour demander à IoT Hub de générer des messages de commentaires à la suite de la consommation du message par l’appareil. Valeurs possibles : **none** (par défaut) : aucun message de commentaires n’est généré ; **positive** : recevoir un message de commentaires si le message est achevé ; **negative** : recevoir un message de commentaires si le message a expiré (ou si le nombre maximal de remises a été atteint) sans être achevé par l’appareil, ou **full** : propriétés à la fois positive et négative. Pour plus d’informations, consultez [Commentaires sur les messages][lnk-feedback]. |
-| ConnectionDeviceId |Un ID défini par IoT Hub sur les messages appareil-à-cloud. Elle contient la propriété **deviceId** de l’appareil qui a envoyé le message. |
-| ConnectionDeviceGenerationId |Un ID défini par IoT Hub sur les messages appareil vers cloud. Elle contient la propriété **generationId** (conformément aux [Propriétés d’identité des appareils][lnk-device-properties]) de l’appareil qui a envoyé le message. |
-| ConnectionAuthMethod |Une méthode d’authentification définie par IoT Hub sur les messages appareil-à-cloud. Cette propriété contient des informations sur la méthode d’authentification utilisée pour authentifier l’appareil qui a envoyé le message. Pour plus d’informations, consultez [Prévention d’usurpation d’identité entre un appareil et le cloud][lnk-antispoofing]. |
+| EnqueuedTime |Date et heure hello [Cloud-à-appareil] [ lnk-c2d] message a été reçu par IoT Hub. |
+| CorrelationId |Propriété de chaîne dans un message de réponse qui contient généralement hello ID du message de demande de hello, dans les modèles de demande-réponse. |
+| UserId |Un ID utilisé origine hello de toospecify de messages. Lorsque des messages sont générés par IoT Hub, il est défini trop`{iot hub name}`. |
+| Ack |Un générateur de messages de commentaires. Cette propriété est utilisée dans les messages de commentaires messages cloud-à-appareil toorequest IoT Hub toogenerate à la suite de la consommation de message de type hello hello par périphérique de hello. Les valeurs possibles : **aucun** (par défaut) : aucun message de commentaires est généré, **positif**: recevoir un message de commentaires si le message de salutation a été effectué, **négatif**: recevoir un message d’évaluation si hello est arrivé à expiration (ou nombre maximal de diffusions a été atteint) sans réalisée par périphérique hello ou **complète**: positives et négatives. Pour plus d’informations, consultez [Commentaires sur les messages][lnk-feedback]. |
+| ConnectionDeviceId |Un ID défini par IoT Hub sur les messages appareil vers cloud. Il contient hello **deviceId** du périphérique hello qui a envoyé le message de type hello. |
+| ConnectionDeviceGenerationId |Un ID défini par IoT Hub sur les messages appareil vers cloud. Il contient hello **ID de génération** (comme par [propriétés d’identité appareil][lnk-device-properties]) du périphérique hello qui a envoyé le message de type hello. |
+| ConnectionAuthMethod |Une méthode d’authentification définie par IoT Hub sur les messages appareil-à-cloud. Cette propriété contient des informations sur le périphérique hello hello d’authentification méthode utilisée tooauthenticate envoi de message de type hello. Pour plus d’informations, consultez [périphérique toocloud anti-usurpation][lnk-antispoofing]. |
 
 ## <a name="message-size"></a>Taille des messages
 
-IoT Hub mesure la taille des messages d’une façon indépendante du protocole, en considérant uniquement la charge utile réelle. La taille en octets est calculée comme la somme des éléments suivants :
+IoT Hub mesure la taille du message de manière agnostique du protocole, vous envisagez uniquement charge utile réelle de hello. taille en octets de Hello est calculé en tant que somme hello suivants de hello :
 
-* La taille du corps en octets.
-* La taille en octets de toutes les valeurs des propriétés système du message.
-* La taille en octets de tous les noms et valeurs des propriétés des utilisateurs.
+* taille du corps Hello en octets.
+* taille de Hello en octets de toutes les valeurs hello hello système de propriétés de message.
+* taille de Hello en octets de tous les noms de propriété d’utilisateur et de valeurs.
 
-Les noms et les valeurs des propriétés sont limités aux caractères ASCII ; ainsi, la longueur des chaînes est égale à la taille en octets.
+Les noms de propriété et les valeurs étant limité tooASCII caractères, la longueur des chaînes de hello hello est égal à la taille de hello en octets.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
 Pour plus d’informations sur les limites de taille des messages dans IoT Hub, consultez [Quotas et limitation IoT Hub][lnk-quotas].
 
-Pour savoir comment créer et lire des messages IoT Hub dans divers langages de programmation, consultez les didacticiels de [prise en main][lnk-get-started].
+toolearn toocreate et lecture de messages IoT Hub dans différents langages de programmation, voir hello [prise en main] [ lnk-get-started] didacticiels.
 
 [lnk-messaging]: iot-hub-devguide-messaging.md
 [lnk-quotas]: iot-hub-devguide-quotas-throttling.md

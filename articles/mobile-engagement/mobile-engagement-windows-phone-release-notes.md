@@ -1,5 +1,5 @@
 ---
-title: "Azure Mobile Engagement - Notes de publication du Kit de développement logiciel (SDK) Windows Phone Silverlight | Microsoft Docs"
+title: "aaaAzure Notes de version du Kit de développement logiciel de Silverlight Mobile Engagement Windows Phone | Documents Microsoft"
 description: "Azure Mobile Engagement - Notes de publication du Kit de développement logiciel (SDK) Windows Phone Silverlight"
 services: mobile-engagement
 documentationcenter: mobile
@@ -14,33 +14,33 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 11/03/2016
 ms.author: piyushjo
-ms.openlocfilehash: df754a3002750e6ba0b71b664c1df84d506808a4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f9af6ca91295dbecfa4c51fe4b3bad6626fa5999
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="windows-phone-silverlight-sdk-release-notes"></a>Notes de publication du Kit de développement logiciel (SDK) Windows Phone Silverlight
 ##<a name="331-11032016"></a>3.3.1 (11/03/2016)
-Partie du package NuGet *MicrosoftAzure.MobileEngagement* **v3.4.1**
+Partie de hello *MicrosoftAzure.MobileEngagement* package Nuget **v3.4.1**
 
 * Améliorations de la stabilité.
 
 ## <a name="330-04192016"></a>3.3.0 (04/19/2016)
-Partie du package NuGet *MicrosoftAzure.MobileEngagement***v3.4.0**
+Partie de hello *MicrosoftAzure.MobileEngagement* package Nuget **v3.4.0**
 
-* Ajout de l'API « TestLogLevel » aux journaux de console enable/disable/filter émis par le Kit de développement logiciel (SDK).
+* Ajouté « TestLogLevel « API tooenable/désactivation/filtre journaux émis par hello SDK.
 
 ## <a name="320-01222016"></a>3.2.0 (22/01/2016)
-Partie du package NuGet *MicrosoftAzure.MobileEngagement***v3.3.0**
+Partie de hello *MicrosoftAzure.MobileEngagement* package Nuget **v3.3.0**
 
 * Schémas personnalisés, ms-appx et ms-appdata disponibles sur les URL d'action.
 * Améliorations de la stabilité.
 
 ## <a name="310-11202015"></a>3.1.0 (20/11/2015)
-Partie du package NuGet *MicrosoftAzure.MobileEngagement***v3.2.0**
+Partie de hello *MicrosoftAzure.MobileEngagement* package Nuget **v3.2.0**
 
-* Incident fixe lors de la demande de l'ID de l'appareil juste après l'initialisation.
+* Fixe d’incident lors de la demande d’id de périphérique hello juste après l’initialisation de hello.
 * Améliorations des journaux de la console.
 
 ## <a name="300-04032015"></a>3.0.0 -> (03/04/2015)

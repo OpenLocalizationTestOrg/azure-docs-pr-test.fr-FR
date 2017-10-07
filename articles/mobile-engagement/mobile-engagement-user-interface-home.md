@@ -1,6 +1,6 @@
 ---
-title: Interface utilisateur d'Azure Engagement Mobile - Accueil
-description: "Apprenez à gérer votre application et vos projets existants à l'aide d'Azure Mobile Engagement"
+title: "aaaAzure l’Interface utilisateur Mobile Engagement - accueil"
+description: "Découvrez comment toomanage votre application existante et les projets à l’aide d’Azure Mobile Engagement"
 services: mobile-engagement
 documentationcenter: 
 author: piyushjo
@@ -14,53 +14,53 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 0f15cb975f57f6f5cab12d5118ff50a6fab14388
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 727dad188c5876d09db84634a17e10b280039c49
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-manage-your-existing-application-and-projects"></a>Gestion de votre application et de vos projets existants
-Cet article décrit la page **d’accueil** du portail **Mobile Engagement**. Le portail **Mobile Engagement** sert à surveiller et à gérer vos applications mobiles. Notez que pour utiliser le portail, vous devez tout d’abord créer un compte **Azure Mobile Engagement** . 
+# <a name="how-toomanage-your-existing-application-and-projects"></a>Comment toomanage vos projets et une application existante
+Cet article décrit hello **accueil** page Hello **Mobile Engagement** portal. Vous utilisez hello **Mobile Engagement** toomonitor portail et gérer vos applications mobiles. Notez que toostart à l’aide du portail hello vous devez tout d’abord toocreate un **Azure Mobile Engagement** compte. 
 
-Pour accéder à la page d’accueil, cliquez sur **Accueil** dans la partie supérieure gauche de la page. La page contient la liste de toutes vos applications qui font partie de la collection choisie. Sur cette page, vous bénéficiez d’une rapide vue d’ensemble de vos applications.
+page d’accueil tooget toohello, cliquez sur **domestique** sur hello haut à gauche de la page de hello. Il contient hello liste de toutes vos applications qui font partie de hello choisi la collection. Sur cette page, vous bénéficiez d’une rapide vue d’ensemble de vos applications.
 
-La page d’accueil contient également tous vos projets qui peuvent inclure toute application se trouvant dans votre compte. Notez que toute personne peut accéder à la page d’accueil de l’interface utilisateur en créant un compte. Toutefois, vous devez accorder une autorisation aux autres utilisateurs pour qu’ils puissent accéder à vos applications personnalisées dans **Mes projets**.
+page d’accueil Hello contient également tous les projets peuvent inclure n’importe quelle application qui se trouve dans votre compte. Notez que tout le monde peut accéder hello page d’accueil de l’interface utilisateur de hello en créant un compte, mais vous devez les utilisateurs de tooother toogrant autorisation pour qu’ils toohave accès tooyour des applications personnalisées dans **Mes projets**.
 
-Vous pouvez également afficher le tableau comparatif pour les applications sélectionnées. Sinon, choisissez d’afficher le tableau comparatif pour les applications sélectionnées dans un projet.
+Vous pouvez également afficher le graphique de comparaison hello pour les applications de hello sélectionné. Sinon, choisissez un comparatif tooview hello pour les applications sélectionnées dans un projet.
 
 ![Accueil 1][0]
 
 ## <a name="my-applications"></a>Mes applications
-La vue d’ensemble rapide de vos applications vous permet de sélectionner les applications que vous souhaitez ouvrir pour afficher les options détaillées du ruban. Vous pouvez cliquer sur le nom de votre application pour revenir à l'emplacement du ruban que vous avez visité le plus récemment dans votre application, ou cliquer sur l'icône d'engrenage pour accéder directement à la page « Paramètres » de votre application. Vous pouvez rechercher, filtrer ou trier les informations affichées sur les tables d'application. Vous pouvez également glisser-déposer les en-têtes de colonne pour modifier l'ordre.
+Hello une vue d’ensemble rapide de vos applications vous permet de tooselect l’application que vous aimeriez tooopen tooview hello détaillée des options de ruban. Vous pouvez cliquer sur nom hello emplacement de votre application tooreturn toohello la plus récente du ruban dans votre application, ou cliquez sur hello ENGRENAGE icône toogo toohello directement des page « Paramètres » de votre application. Vous pouvez rechercher, filtrer ou trier hello informations affichées sur les applications hello tables. Vous pouvez également glisser -déplacer hello en-têtes toochange hello ordre des colonnes du.
 
-Entre autres choses, la vue d’ensemble de vos applications inclut :
+Entre autres choses, vue d’ensemble de hello de vos applications inclut :
 
-* **Tendances des nouveaux utilisateurs**: évolution des nouveaux utilisateurs au cours des deux dernières semaines.
-* **Utilisateurs actifs**: nombre d’utilisateurs actifs au cours des 30 derniers jours.
-* **Tendance des utilisateurs actifs**: évolution des utilisateurs actifs au cours des deux dernières semaines.
-* **Sessions**: une session désigne une utilisation de l’application effectuée par un utilisateur, à partir du moment où il commence à l’utiliser jusqu’à ce qu’il arrête.
-* **Tendances des sessions** : évolution des sessions au cours des deux dernières semaines.
+* **Nouvelle tendance utilisateurs**: évolution de nouveaux utilisateurs sur hello deux dernières semaines.
+* **Utilisateurs actifs**: nombre d’utilisateurs actifs sur hello 30 derniers jours.
+* **Tendance d’utilisateurs actifs**: évolution d’utilisateurs actifs sur hello deux dernières semaines.
+* **Sessions**: une session est une utilisation de l’application hello effectuée par un utilisateur, à partir de l’heure de hello hello utilisateur lance, jusqu'à ce que l’utilisateur de hello s’arrête.
+* **Les tendances de session**: évolution de sessions sur hello deux dernières semaines.
 
-Une fois que vous cliquez sur une application, vous pouvez démarrer la surveillance et la gestion de vos applications via l’interface utilisateur. Par exemple :    
+Une fois que vous cliquez sur une application, vous pouvez démarrer l’analyse et la gestion de vos applications via l’interface utilisateur de hello. Par exemple :    
 
 * [Surveillance des données en temps réel concernant votre application](mobile-engagement-user-interface-monitor.md)
 * [Analyse des données historiques de votre application](mobile-engagement-user-interface-analytics.md)
-* [Création et gestion des segments d’utilisateurs afin d’identifier les modèles d’utilisation](mobile-engagement-user-interface-segments.md)
-* [Interaction avec les utilisateurs de votre application à l’aide de notifications Push](mobile-engagement-user-interface-reach.md)
+* [Créer et gérer des segments de modèles d’utilisation tooidentify les utilisateurs](mobile-engagement-user-interface-segments.md)
+* [Atteindre toohello les utilisateurs de votre application avec des notifications push](mobile-engagement-user-interface-reach.md)
 
 ## <a name="my-projects"></a>Mes projets :
-Vous pouvez utiliser des projets pour grouper vos applications et accorder des autorisations d’accès à vos applications à d’autres utilisateurs. Accordez des autorisations à d’autres utilisateurs en indiquant leur adresse de messagerie. Le bouton **Nouveau projet** permet de créer un projet en entrant uniquement le « nom » et la « description » de votre projet. Une fois un projet créé, vous pouvez cliquer sur le nom du projet pour modifier le nom et la description de votre produit et sélectionner toutes les applications que vous souhaitez voir dans ce projet.
+Vous pouvez utiliser des projets toogroup vos applications et accorder des autorisations tooother utilisateurs tooaccess vos applications. Vous accordez des autorisations d’utilisateurs de tooother en fournissant l’adresse de messagerie. Hello **nouveau projet** bouton vous permet de toocreate un nouveau projet en entrant uniquement le « nom » et « description » de votre nouveau projet. Une fois qu’un projet est créé, vous pouvez cliquer sur hello projet tooedit hello nom et une description de votre produit et votre tooselect toutes les applications hello souhaité toosee dans ce projet.
 
 ![Accueil 6][60]
 
 Les rôles sont les suivants :
 
-* **Observateur**: un observateur est un utilisateur qui peut voir uniquement les applications associées à un projet. Un observateur permet d'accéder aux données de l'analyse et du moniteur et d'examiner les résultats Reach. Un observateur ne peut pas modifier d'informations, ni gérer des applications ou des utilisateurs. Un observateur ne peut pas créer ou modifier le statut de la campagne Reach.
+* **Visionneuse**: un observateur est un utilisateur qui peut uniquement afficher les applications hello associés tooa projet. Un observateur permet d'accéder aux données de l'analyse et du moniteur et d'examiner les résultats Reach. Un observateur ne peut pas modifier d'informations, ni gérer des applications ou des utilisateurs. Un observateur ne peut pas créer ou modifier le statut de la campagne Reach.
 * **Développeur**: un développeur est un utilisateur qui peut faire tout ce qu’un observateur peut effectuer, ainsi que gérer des applications. Un développeur peut activer et désactiver les applications, modifier les informations des applications (telles que le package et la signature) et créer des campagnes Reach. Un développeur ne peut pas gérer les utilisateurs.
-* **Administrateur**: un administrateur est un utilisateur qui peut faire tout ce qu’un développeur peut effectuer, ainsi que gérer les utilisateurs. Un administrateur peut inviter des utilisateurs à participer à un projet, modifier les rôles des utilisateurs et les informations du projet. Les autorisations de niveau application peuvent également être définies dans « paramètres ».
+* **Administrateur**: un administrateur est un utilisateur qui peut faire tout ce qu’un développeur peut effectuer, ainsi que gérer les utilisateurs. Un administrateur peut inviter les utilisateurs toojoin un projet, peut modifier les rôles d’utilisateur et les informations du projet peut être modifiées. Les autorisations de niveau application peuvent également être définies dans « paramètres ».
 
-Cliquez sur un projet pour afficher toutes les applications qui font partie de ce projet. L’image suivante montre le tableau comparatif pour les applications sélectionnées.
+Cliquez sur un projet tooview toutes les applications hello qui font partie de ce projet. Hello suivant image montre comparatif hello pour les applications de hello sélectionné.
 
 ![Accueil 2][3]
 

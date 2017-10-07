@@ -1,6 +1,6 @@
 ---
-title: Blocs-notes Jupyter de la galerie Cortana Intelligence | Microsoft Docs
-description: "Découvrez les blocs-notes Jupyter dans la galerie Cortana Intelligence."
+title: aaaCortana Intelligence galerie Notebook blocs-notes | Documents Microsoft
+description: "Découvrez les blocs-notes Notebook Bonjour Cortana Intelligence galerie."
 services: machine-learning
 documentationcenter: 
 author: garyericson
@@ -14,59 +14,59 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/31/2017
 ms.author: roopalik;garye
-ms.openlocfilehash: ff7d5c372500c2cd392ed65a921d8a994b090f23
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 459968ddbcf1da17e6993dd577a90b4dd3847cfa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="discover-jupyter-notebooks-in-the-cortana-intelligence-gallery"></a>Découvrir les blocs-notes Jupyter dans la galerie Cortana Intelligence
+# <a name="discover-jupyter-notebooks-in-hello-cortana-intelligence-gallery"></a>Découvrir les blocs-notes Notebook Bonjour Cortana Intelligence galerie
 [!INCLUDE [machine-learning-gallery-item-selector](../../includes/machine-learning-gallery-item-selector.md)]
 
 ## <a name="jupyter-notebooks"></a>Blocs-notes Jupyter
 Les **[Blocs-notes Jupyter](https://gallery.cortanaintelligence.com/notebooks)** incluent du code, des visualisations de données et de la documentation dans un seul canevas interactif.
-Les blocs-notes dans la galerie fournissent des didacticiels et des explications détaillées sur les solutions et les techniques avancées de Machine Learning.
+Ordinateurs portables Bonjour galerie fournissent des didacticiels et des explications détaillées des techniques et les solutions d’apprentissage automatique avancée.
 
 ## <a name="discover"></a>Découvrez
-  Pour rechercher les ordinateurs portables dans la galerie, ouvrez le [galerie](http://gallery.cortanaintelligence.com) et cliquez sur **blocs-notes** en haut de la page d’accueil de la galerie.
+  toobrowse pour les ordinateurs portables Bonjour galerie, ouvrez hello [galerie](http://gallery.cortanaintelligence.com) et cliquez sur **blocs-notes** haut hello de page d’accueil de la galerie de hello.
 
- Le  **[Notebook blocs-notes](https://gallery.cortanaintelligence.com/notebooks)**  page affiche une liste des ordinateurs portables les plus populaires.
-Cliquez sur **Afficher tout** pour afficher tous les blocs-notes.
-Sur cette page, vous pouvez parcourir tous les blocs-notes de la galerie. Vous pouvez également effectuer une recherche en sélectionnant les critères de filtre sur la gauche de la page et en entrant les termes de la recherche en haut.
+ Le  **[Notebook blocs-notes](https://gallery.cortanaintelligence.com/notebooks)**  page affiche la liste des ordinateurs portables les plus populaires de hello.
+Cliquez sur **afficher tous les** tooview tous les ordinateurs portables.
+À partir de cette page, vous pouvez parcourir tous les ordinateurs portables Bonjour la galerie. Vous pouvez également rechercher en sélectionnant des critères de filtre sur la gauche hello de page de hello et Saisie des termes de recherche au hello haut.
 
- Cliquez sur bloc-notes pour ouvrir sa page de détails et lire des informations supplémentaires. Dans cette page, vous pouvez commenter, fournir un retour d’expérience ou poser des questions dans la section des commentaires. Vous pouvez même la partager avec des amis ou collègues à l’aide des fonctionnalités de partage de LinkedIn ou Twitter. Vous pouvez également envoyer par e-mail un lien vers le bloc-notes pour inviter d’autres utilisateurs à consulter la page.
+ Cliquez sur n’importe quel tooopen bloc-notes de page de détails de l’ordinateur portable et plus d’informations. Dans cette page, que vous pouvez mettre en commentaire, fournir des commentaires ou poser des questions dans la section des commentaires hello. Vous pouvez même le partager avec vos amis ou vos collègues à l’aide de hello partagent les fonctionnalités des LinkedIn ou Twitter. Vous pouvez également envoyer par courrier électronique un tooinvite de bloc-notes toothe lien page utilisateurs tooview hello.
 
 ![Partager cet élément avec des amis](media/machine-learning-gallery-how-to-use-contribute-publish/share-links.png)
 
 ![Ajouter vos propres commentaires](media/machine-learning-gallery-how-to-use-contribute-publish/comments.png)
 
 ## <a name="download"></a>Télécharger
-Vous pouvez télécharger une copie de tout bloc-notes à partir de la galerie dans votre espace de travail Machine Learning Studio.
+Vous pouvez télécharger une copie de tous les ordinateurs portables à partir de la galerie de hello dans votre espace de travail Machine Learning Studio.
 
-### <a name="download-from-the-gallery"></a>Télécharger à partir de la galerie
-Pour télécharger une copie du bloc-notes à partir de la galerie :
+### <a name="download-from-hello-gallery"></a>Télécharger à partir de la galerie de hello
+toodownload une copie d’un ordinateur portable à partir de la galerie de hello :
 
-1. Ouvrez la page Détails du bloc-notes dans la Galerie.
+1. Ouvrir la page des détails de l’ordinateur portable hello Bonjour la galerie
 2. Cliquez sur **Ouvrir dans Studio**.
-3. Sélectionnez la région et l’espace de travail à utiliser.
+3. Sélectionnez la région de hello et espace de travail toouse
    
-    ![Ouvrir le bloc-notes Jupyter à partir de la galerie](media/machine-learning-gallery-jupyter-notebooks/open-notebook-from-gallery.png)
+    ![Ouvrez le bloc-notes jupyter à partir de la galerie de hello](media/machine-learning-gallery-jupyter-notebooks/open-notebook-from-gallery.png)
 
-Lorsque vous cliquez sur **Ouvrir dans Studio**, le bloc-notes est chargé et ouvert dans votre espace de travail Machine Learning Studio (si vous n’êtes pas déjà connecté à Studio, vous êtes invité à vous connecter avec votre compte Microsoft préalablement à la copie de du bloc-notes vers votre espace de travail). Vous pourrez retrouver le bloc-notes plus tard en cliquant sur **Blocs-notes** sur le côté gauche de la page d’accueil de Studio.
+Lorsque vous cliquez sur **ouvrir dans Studio**, portable de hello est chargé dans votre espace de travail Machine Learning Studio et ouvert (si vous n’êtes pas déjà connecté dans tooStudio, vous serez toosign demandée en utilisant votre compte Microsoft avant hello ordinateur portable est copié tooyour espace de travail). Vous pouvez trouver les bloc-notes hello plus tard en cliquant sur **blocs-notes** sur hello à gauche de la page d’accueil Studio hello.
 
 ### <a name="download-in-machine-learning-studio"></a>Télécharger dans Machine Learning Studio
-Vous pouvez également ouvrir tout blocs-notes de la même galerie lorsque vous travaillez dans Machine Learning Studio :
+Vous pouvez également ouvrir des hello blocs-notes de la galerie mêmes lorsque vous travaillez dans Machine Learning Studio :
 
 1. Dans Machine Learning Studio, cliquez sur **+NOUVEAU**.
-2. Sélectionnez **Bloc-notes**. La liste des bloc-notes figurant dans la galerie s’affiche, dans laquelle vous pouvez opérer votre choix. Vous pouvez également chercher un bloc-notes spécifique à l’aide de la zone de recherche.
+2. Sélectionnez **bloc-notes** -une liste des ordinateurs portables à partir de la galerie de hello s’affiche que vous pouvez choisir parmi, ou vous pouvez trouver un bloc-notes spécifique à l’aide de la zone de recherche hello
 3. Pointez votre souris sur un bloc-notes, puis sélectionnez **Ouvrir le bloc-notes**.
    
     ![Ouvrir un bloc-notes de galerie à partir de Machine Learning Studio](media/machine-learning-gallery-jupyter-notebooks/open-notebook-from-studio.png)
 
-Une copie du bloc-notes est téléchargée et ouverte dans votre espace de travail dans la section Blocs-notes Jupyter de Machine Learning Studio.
-Le bloc-notes est répertorié, ainsi que vos autres blocs-notes, dans la page **Blocs-notes** de Studio (dans la [page d’accueil de Studio](https://studio.azureml.net/), cliquez sur **Blocs-notes** sur la gauche).
+Une copie de l’ordinateur portable de hello est téléchargée et ouverts dans votre espace de travail hello section Notebook blocs-notes de Machine Learning Studio.
+ordinateur portable de Hello apparaît, ainsi que de vos blocs-notes sur hello **blocs-notes** page de Studio (sur hello [page d’accueil Studio](https://studio.azureml.net/), cliquez sur **blocs-notes** sur hello gauche).
 
-**[ALLER À LA GALERIE >>](http://gallery.cortanaintelligence.com)**
+**[PRENDRE ME toohello galerie >>](http://gallery.cortanaintelligence.com)**
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 

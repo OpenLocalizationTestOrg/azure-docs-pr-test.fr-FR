@@ -1,6 +1,6 @@
 ---
-title: "Transformer des données à l’aide d’une activité de diffusion en continu Hadoop - Azure | Microsoft Docs"
-description: "Découvrez comment vous pouvez utiliser l’activité de diffusion en continu Hadoop dans une fabrique de données Azure pour transformer les données en exécutant des programmes de diffusion en continu Hadoop sur votre cluster HDInsight propre/à la demande."
+title: "les données d’aaaTransform à l’aide d’activité de diffusion en continu Hadoop - Azure | Documents Microsoft"
+description: "Découvrez comment vous pouvez utiliser hello activité de Streaming Hadoop dans un Azure data factory tootransform de données en exécutant des programmes de diffusion en continu Hadoop sur un cluster de HDInsight sur la demande/votre propre."
 services: data-factory
 documentationcenter: 
 author: sharonlo101
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/14/2017
 ms.author: shlo
-ms.openlocfilehash: bfe62aa60f5a0ff339e1d495d22a5fdfac10d5dc
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: a7ddb7268f47162709a9c8136ccd69e0b7d4ad7d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="transform-data-using-hadoop-streaming-activity-in-azure-data-factory"></a>Transformer des données à l’aide d’une activité de diffusion en continu Hadoop dans Azure Data Factory
 > [!div class="op_single_selector" title1="Transformation Activities"]
@@ -33,15 +33,15 @@ ms.lasthandoff: 08/18/2017
 > * [Activité U-SQL Data Lake Analytics](data-factory-usql-activity.md)
 > * [Activité personnalisée .NET](data-factory-use-custom-activities.md)
 
-Vous pouvez utiliser l’activité HDInsightStreamingActivity pour appeler une tâche de diffusion en continu Hadoop à partir d’un pipeline Azure Data Factory. L’extrait de code JSON suivant illustre la syntaxe pour l’utilisation de HDInsightStreamingActivity dans un fichier JSON de pipeline. 
+Vous pouvez utiliser hello HDInsightStreamingActivity activité appeler un travail Hadoop de diffusion en continu à partir d’un pipeline Azure Data Factory. Hello extrait de code JSON suivant illustre syntaxe hello pour l’utilisation de hello HDInsightStreamingActivity dans un fichier JSON de pipeline. 
 
-L’activité de streaming HDInsight dans un [pipeline](data-factory-create-pipelines.md) Data Factory exécute des programmes de streaming Hadoop sur votre cluster HDInsight [propre](data-factory-compute-linked-services.md#azure-hdinsight-linked-service) ou [à la demande](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service) sous Windows ou Linux. Cet article s'appuie sur l'article [Activités de transformation des données](data-factory-data-transformation-activities.md) qui présente une vue d'ensemble de la transformation des données et les activités de transformation prises en charge.
+Hello activité de diffusion en continu HDInsight dans une fabrique de données [pipeline](data-factory-create-pipelines.md) exécute les programmes de diffusion en continu Hadoop sur [votre propre](data-factory-compute-linked-services.md#azure-hdinsight-linked-service) ou [à la demande](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service) HDInsight de basés sur Windows/Linux cluster. Cet article s’appuie sur hello [activités de transformation des données](data-factory-data-transformation-activities.md) article, qui présente une vue d’ensemble de la transformation des données et des activités de transformation hello pris en charge.
 
 > [!NOTE] 
-> Si vous découvrez Azure Data Factory, lisez la [Présentation d’Azure Data Factory](data-factory-introduction.md) et suivez le didacticiel : [Générer votre premier pipeline de données](data-factory-build-your-first-pipeline.md) avant de lire cet article. 
+> Si vous êtes tooAzure nouvelle fabrique de données, lisez [Introduction tooAzure Data Factory](data-factory-introduction.md) et hello didacticiel : [générer votre première pipeline de données](data-factory-build-your-first-pipeline.md) avant de lire cet article. 
 
 ## <a name="json-sample"></a>Exemple JSON
-Le cluster HDInsight est automatiquement rempli avec les données (davinci.txt) et les exemples de programmes (wc.exe et cat.exe). Par défaut, le nom du conteneur utilisé par le cluster HDInsight est le nom du cluster lui-même. Par exemple, si votre nom de cluster est myhdicluster, le nom du conteneur d’objets blob associé est myhdicluster. 
+cluster HDInsight de Hello est automatiquement remplie avec les données (davinci.txt) et les exemples de programmes (wc.exe et cat.exe). Par défaut, le nom du conteneur de hello est utilisé par le cluster HDInsight de hello est nom hello de cluster hello lui-même. Par exemple, si votre nom de cluster est myhdicluster, nom du conteneur d’objets blob hello associé serait myhdicluster. 
 
 ```JSON
 {
@@ -89,30 +89,30 @@ Le cluster HDInsight est automatiquement rempli avec les données (davinci.txt) 
 }
 ```
 
-Notez les points suivants :
+Hello Notez les points suivants :
 
-1. Définissez **linkedServiceName** sur le nom du service lié qui pointe vers votre cluster HDInsight sur lequel est exécutée la tâche de diffusion en continu mapreduce.
-2. Affectez au type de l’activité la valeur **HDInsightStreaming**.
-3. Pour la propriété **mapper** , spécifiez le nom du fichier exécutable du mappeur. Dans l’exemple, cat.exe est le fichier exécutable du mappeur.
-4. Pour la propriété **reducer** , spécifiez le nom du fichier exécutable du raccord de réduction. Dans l’exemple, wc.exe est le fichier exécutable du raccord de réduction.
-5. Pour la propriété de type **input** , spécifiez le fichier en entrée (y compris son emplacement) du mappeur. Dans l’exemple « wasb://adfsample@<account name>.blob.core.windows.net/example/data/gutenberg/davinci.txt », adfsample est le conteneur de l’objet blob, example/data/Gutenberg est le dossier et davinci.txt est l’objet blob.
-6. Pour la propriété de type **output** , spécifiez le fichier en sortie (y compris son emplacement) du raccord de réduction. La sortie de la tâche de diffusion en continu Hadoop est écrite à l’emplacement spécifié pour cette propriété.
-7. Dans la section **filePaths** , spécifiez les chemins des fichiers exécutables du mappeur et du raccord de réduction. Dans l’exemple « adfsample/example/apps/wc.exe », adfsample est le conteneur de l’objet blob, example/apps est le dossier et wc.exe est le fichier exécutable.
-8. Pour la propriété **fileLinkedService** , spécifiez le service lié Azure Storage qui représente le stockage Azure qui contient les fichiers spécifiés dans la section filePaths.
-9. Pour la propriété **arguments** , spécifiez les arguments de la tâche de diffusion en continu.
-10. La propriété **getDebugInfo** est un élément facultatif. Si sa valeur est Failure, les journaux ne sont téléchargés qu’en cas d’échec. Si sa valeur est Toujours, les journaux sont toujours téléchargés, quel que soit l’état de l’exécution.
+1. Ensemble hello **linkedServiceName** toohello le nom de hello lié service qui pointe le cluster HDInsight de tooyour sur le hello mapreduce de diffusion en continu le travail est exécuté.
+2. Définir le type de hello d’activité hello trop**HDInsightStreaming**.
+3. Pourquoi **Mappeur** propriété, spécifiez le nom hello du fichier exécutable du mappeur. Dans l’exemple de hello, cat.exe est le Mappeur hello exécutable.
+4. Pourquoi **réducteur** propriété, spécifiez le nom hello du fichier exécutable du réducteur. Dans l’exemple de hello, wc.exe est hello fichier exécutable du réducteur.
+5. Pourquoi **d’entrée** la propriété de type, spécifiez le fichier d’entrée de hello (y compris l’emplacement de hello) pour le Mappeur hello. Dans l’exemple de hello : « wasb://adfsample@<account name>.blob.core.windows.net/example/data/gutenberg/davinci.txt » : adfsample est le conteneur d’objets blob hello, exemple/data/Gutenberg est hello dossier, et davinci.txt est l’objet blob de hello.
+6. Pourquoi **sortie** la propriété de type, spécifiez le fichier de sortie de hello (y compris l’emplacement de hello) pour le réducteur de hello. sortie de Hello du travail de diffusion en continu Hadoop hello est écrite emplacement toohello spécifiée pour cette propriété.
+7. Bonjour **filePaths** section, spécifiez des chemins d’accès hello pour hello exécutables du Mappeur et du réducteur. Dans l’exemple de hello : « adfsample/example/apps/wc.exe », adfsample est le conteneur d’objets blob hello, exemple/apps est le dossier de hello et wc.exe est hello exécutable.
+8. Pourquoi **fileLinkedService** propriété, spécifiez hello Azure Storage service lié qui représente hello le stockage Azure qui contient les fichiers hello spécifiés dans la section de filePaths hello.
+9. Pourquoi **arguments** propriété, spécifiez les arguments de hello pour hello travail de diffusion en continu.
+10. Hello **getDebugInfo** propriété est un élément facultatif. Lorsqu’il est défini tooFailure, les journaux de hello sont téléchargés uniquement en cas d’échec. Lorsqu’il est défini tooAlways, les journaux sont toujours téléchargées quel que soit l’état d’exécution hello.
 
 > [!NOTE]
-> Comme indiqué dans l’exemple, vous spécifiez un jeu de données de sortie pour l’activité de diffusion en continu Hadoop pour la propriété **outputs** . Il s’agit simplement d’un ensemble de données factice qui est nécessaire au fonctionnement de la planification de pipeline. Il est inutile de spécifier un jeu de données en entrée pour l’activité de la propriété **entrées** .  
+> Comme indiqué dans l’exemple de hello, vous spécifiez un dataset de sortie pour une activité de Streaming Hadoop de hello pour hello **génère** propriété. Ce jeu de données est uniquement un jeu de données factice qui est la planification de pipeline hello toodrive requis. Il est inutile toospecify tout jeu de données d’entrée pour l’activité hello pour hello **entrées** propriété.  
 > 
 > 
 
 ## <a name="example"></a>Exemple
-Le pipeline dans cette procédure pas à pas exécute le programme de diffusion en continu Map/Reduce de calcul du nombre de mots sur votre cluster Azure HDInsight. 
+pipeline Hello dans cette procédure pas à pas exécute le programme de mappage/réduction diffusion en continu hello statistiques sur votre cluster Azure HDInsight. 
 
 ### <a name="linked-services"></a>Services liés
 #### <a name="azure-storage-linked-service"></a>Service lié Azure Storage
-Tout d'abord, vous créez un service lié pour lier le stockage Azure qui est utilisé par le cluster Azure HDInsight à la fabrique de données Azure. Si vous copiez/collez le code suivant, n’oubliez pas de remplacer le nom de compte et la clé de compte par le nom et la clé de votre stockage Azure. 
+Tout d’abord, vous créez un hello toolink de service lié Azure Storage qui est utilisé par la fabrique de données Azure hello Azure HDInsight cluster toohello. Si vous copiez-collez hello suivant de code, n’oubliez pas de clé de compte et le nom de compte avec le nom de hello tooreplace et la clé de votre stockage Azure. 
 
 ```JSON
 {
@@ -127,7 +127,7 @@ Tout d'abord, vous créez un service lié pour lier le stockage Azure qui est ut
 ```
 
 #### <a name="azure-hdinsight-linked-service"></a>Service lié Azure HDInsight
-Tout d'abord, vous créez un service lié pour lier le cluster Azure HDInsight à la fabrique de données Azure. Si vous copiez/collez le code suivant, remplacez le nom du cluster HDInsight par le nom de votre cluster HDInsight et modifiez le nom d’utilisateur et le mot de passe. 
+Ensuite, créez un service lié de toolink votre fabrique de données Azure toohello cluster Azure HDInsight. Si vous copiez-collez hello suivant de code, remplacez le nom du cluster HDInsight avec nom hello de votre cluster HDInsight et modifier les valeurs nom et mot de passe utilisateur. 
 
 ```JSON
 {
@@ -144,9 +144,9 @@ Tout d'abord, vous créez un service lié pour lier le cluster Azure HDInsight �
 }
 ```
 
-### <a name="datasets"></a>Groupes de données
+### <a name="datasets"></a>JEUX DE DONNÉES
 #### <a name="output-dataset"></a>Jeu de données de sortie
-Le pipeline de cet exemple n’accepte pas d’entrées. Vous spécifiez un jeu de données de sortie pour l’activité de diffusion en continu HDInsight. Il s’agit simplement d’un ensemble de données factice qui est nécessaire au fonctionnement de la planification de pipeline. 
+pipeline Hello dans cet exemple ne prend pas d’entrées. Vous spécifiez un dataset de sortie pour une activité de diffusion en continu HDInsight de hello. Ce jeu de données est uniquement un jeu de données factice qui est la planification de pipeline hello toodrive requis. 
 
 ```JSON
 {
@@ -171,9 +171,9 @@ Le pipeline de cet exemple n’accepte pas d’entrées. Vous spécifiez un jeu 
 ```
 
 ### <a name="pipeline"></a>Pipeline
-Le pipeline de cet exemple n’a qu’une seule activité de type : **HDInsightStreaming**. 
+pipeline Hello dans cet exemple n'a qu’une seule activité qui est de type : **HDInsightStreaming**. 
 
-Le cluster HDInsight est automatiquement rempli avec les données (davinci.txt) et les exemples de programmes (wc.exe et cat.exe). Par défaut, le nom du conteneur utilisé par le cluster HDInsight est le nom du cluster lui-même. Par exemple, si votre nom de cluster est myhdicluster, le nom du conteneur d’objets blob associé est myhdicluster.  
+cluster HDInsight de Hello est automatiquement remplie avec les données (davinci.txt) et les exemples de programmes (wc.exe et cat.exe). Par défaut, le nom du conteneur de hello est utilisé par le cluster HDInsight de hello est nom hello de cluster hello lui-même. Par exemple, si votre nom de cluster est myhdicluster, nom du conteneur d’objets blob hello associé serait myhdicluster.  
 
 ```JSON
 {

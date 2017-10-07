@@ -1,6 +1,6 @@
 ---
-title: "Déployer une application Web liée à un référentiel GitHub | Microsoft Docs"
-description: "Utiliser un modèle Azure Resource Manager pour déployer une application Web qui contient un projet issu d'un référentiel GitHub."
+title: "aaaDeploy une application web qui est lié le référentiel GitHub de tooa | Documents Microsoft"
+description: "Utilisez un toodeploy de modèle Azure Resource Manager une application web qui contient un projet à partir d’un référentiel GitHub."
 services: app-service
 documentationcenter: 
 author: cephalin
@@ -14,33 +14,33 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/27/2016
 ms.author: cephalin
-ms.openlocfilehash: 77064802814296d0c21f004534e4264d2f97252e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8b23416c4c06a60991517e6ee4cd82bebc5a9d73
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deploy-a-web-app-linked-to-a-github-repository"></a>Déployer une application Web liée à un référentiel GitHub
-Dans cette rubrique, vous allez apprendre à créer un modèle Azure Resource Manager qui déploie une application Web liée à un projet dans un référentiel GitHub. Vous allez apprendre comment définir les ressources à déployer et configurer les paramètres qui sont spécifiés lors de l’exécution du déploiement. Vous pouvez utiliser ce modèle pour vos propres déploiements, ou le personnaliser afin qu’il réponde à vos besoins.
+# <a name="deploy-a-web-app-linked-tooa-github-repository"></a>Déployer un référentiel GitHub de web application lié tooa
+Dans cette rubrique, vous allez apprendre comment toocreate un modèle Azure Resource Manager qui déploie une application web qui est lié à project tooa dans un référentiel GitHub. Vous allez apprendre comment toodefine les ressources qui sont déployés et comment les paramètres toodefine sont spécifiés lorsque le déploiement de hello est exécutée. Vous pouvez utiliser ce modèle pour vos propres déploiements, ou personnaliser toomeet vos besoins.
 
 Pour en savoir plus sur la création de modèles, voir [Création de modèles Azure Resource Manager](../azure-resource-manager/resource-group-authoring-templates.md).
 
-Pour le modèle complet, consultez [Application Web liée au modèle GitHub](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-github-deploy/azuredeploy.json).
+Pour le modèle complète de hello, consultez [Web application lié tooGitHub modèle](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-github-deploy/azuredeploy.json).
 
 [!INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
 ## <a name="what-you-will-deploy"></a>Ce que vous allez déployer
-Avec ce modèle, vous allez déployer une application Web qui contient le code d'un projet dans GitHub.
+Avec ce modèle, vous allez déployer une application web qui contient le code hello à partir d’un projet dans GitHub.
 
-Pour exécuter automatiquement le déploiement, cliquez sur le bouton ci-dessous :
+toorun hello déploiement automatiquement, cliquez sur hello suivant bouton :
 
-[![Déploiement sur Azure](./media/app-service-web-arm-from-github-provision/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-web-app-github-deploy%2Fazuredeploy.json)
+[![Déployer tooAzure](./media/app-service-web-arm-from-github-provision/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-web-app-github-deploy%2Fazuredeploy.json)
 
 ## <a name="parameters"></a>Paramètres
 [!INCLUDE [app-service-web-deploy-web-parameters](../../includes/app-service-web-deploy-web-parameters.md)]
 
 ### <a name="repourl"></a>repoURL
-L'URL du référentiel GitHub qui contient le projet à déployer. Ce paramètre contient une valeur par défaut, mais cette valeur est uniquement destinée à vous montrer comment fournir l'URL du référentiel. Vous pouvez utiliser cette valeur lorsque vous testez le modèle, mais vous devrez fournir l'URL de votre propre référentiel lors de l'utilisation du modèle.
+URL de Hello pour le référentiel GitHub qui contient les hello projet toodeploy. Ce paramètre contient une valeur par défaut, mais cette valeur est uniquement prévue tooshow vous comment tooprovide hello URL du référentiel. Vous pouvez utiliser cette valeur lorsque le test de modèle de hello, mais vous pouvez tooprovide hello URL votre propre référentiel lorsque vous travaillez avec un modèle de hello.
 
     "repoURL": {
         "type": "string",
@@ -48,23 +48,23 @@ L'URL du référentiel GitHub qui contient le projet à déployer. Ce paramètre
     }
 
 ### <a name="branch"></a>branche
-La branche du référentiel à utiliser lors du déploiement de l'application. La valeur par défaut est master, mais vous pouvez fournir le nom de n'importe quelle branche dans le référentiel que vous souhaitez déployer.
+branche Hello de hello référentiel toouse lors du déploiement d’application hello. la valeur par défaut Hello est master, mais vous pouvez fournir nom hello de n’importe quelle branche dans le référentiel de hello que vous souhaitez toodeploy.
 
     "branch": {
         "type": "string",
         "defaultValue": "master"
     }
 
-## <a name="resources-to-deploy"></a>Ressources à déployer
+## <a name="resources-toodeploy"></a>Ressources toodeploy
 [!INCLUDE [app-service-web-deploy-web-host](../../includes/app-service-web-deploy-web-host.md)]
 
 ### <a name="web-app"></a>Application web
-Crée l'application Web qui est liée au projet dans GitHub. 
+Crée l’application hello web qui est le projet toohello lié dans GitHub. 
 
-Vous spécifiez le nom de l’application web par le biais du paramètre **siteName** et l’emplacement de l’application web par le biais du paramètre **siteLocation**. Dans l'élément **dependsOn** , le modèle définit l'application Web comme dépendante du plan d'hébergement de service. Étant donné qu'elle dépend du plan d'hébergement, l'application Web n'est pas créée tant que le plan d'hébergement est en cours de création. L'élément **dependsOn** est uniquement utilisé pour spécifier l'ordre de déploiement. Si vous ne marquez pas l'application Web comme dépendante du plan d'hébergement, Azure Resource Manager tentera de créer les deux ressources en même temps et vous pourriez recevoir une erreur si l'application Web est créée avant le plan d'hébergement.
+Vous spécifiez le nom hello de l’application web via hello hello **siteName** paramètre et l’emplacement de hello de l’application web via hello hello **sitelocation correspond** paramètre. Bonjour **dependsOn** élément, modèle de hello définit hello web application en tant que dépendant du service hello plan d’hébergement. Comme il est dépendant de hello plan d’hébergement, hello web app n’est pas créé tant que plan d’hébergement de hello est en cours de création. Hello **dependsOn** élément est uniquement un ordre de déploiement toospecify utilisé. Si vous ne marquez pas une application web hello comme dépendant de plan d’hébergement hello, Azure Resource Manager va tenter de toocreate les ressources à hello même temps et que vous receviez une erreur si l’application web hello est créée avant hello plan d’hébergement.
 
-L'application Web a également une ressource enfant qui est définie dans la section des **ressources** ci-dessous. Cette ressource enfant définit le contrôle de code source pour le projet déployé avec l'application Web. Dans ce modèle, le contrôle de code source est lié à un référentiel GitHub particulier. Le référentiel GitHub est défini avec le code **"RepoUrl":"https://github.com/davidebbo-test/Mvc52Application.git"** Vous pouvez coder en dur l'URL du référentiel lorsque vous souhaitez créer un modèle qui déploie de façon répétée un projet unique tout en nécessitant le nombre minimal de paramètres.
-Au lieu de coder en dur l'URL du référentiel, vous pouvez ajouter un paramètre pour l'URL du référentiel et utiliser cette valeur pour la propriété **RepoUrl** .
+l’application Hello web a également une ressource enfant qui est définie dans **ressources** section ci-dessous. Cette ressource enfant définit le contrôle de code source pour le projet hello déployé avec l’application web hello. Dans ce modèle, contrôle de code source hello est le référentiel GitHub particulier de tooa lié. référentiel GitHub de Hello est défini avec le code de hello **« RepoUrl » : « https://github.com/davidebbo-test/Mvc52Application.git »** vous pouvez coder en dur hello URL du référentiel lorsque vous souhaitez toocreate un modèle à plusieurs reprises déploie un projet unique tout en exigeant le nombre minimal de hello de paramètres.
+Au lieu de coder en dur hello URL du référentiel, vous pouvez ajouter un paramètre d’URL du référentiel hello et utilisez cette valeur pour hello **RepoUrl** propriété.
 
     {
       "apiVersion": "2015-08-01",
@@ -94,7 +94,7 @@ Au lieu de coder en dur l'URL du référentiel, vous pouvez ajouter un paramètr
       ]
     }
 
-## <a name="commands-to-run-deployment"></a>Commandes pour l’exécution du déploiement
+## <a name="commands-toorun-deployment"></a>Déploiement de toorun de commandes
 [!INCLUDE [app-service-deploy-commands](../../includes/app-service-deploy-commands.md)]
 
 ### <a name="powershell"></a>PowerShell
@@ -104,12 +104,12 @@ Au lieu de coder en dur l'URL du référentiel, vous pouvez ajouter un paramètr
 
     azure group deployment create -g {resource-group-name} --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-web-app-github-deploy/azuredeploy.json
 
-### <a name="azure-cli-20"></a>Azure CLI 2.0
+### <a name="azure-cli-20"></a>Azure CLI 2.0
 
     az group deployment create -g {resource-group-name} --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-web-app-github-deploy/azuredeploy.json --parameters '@azuredeploy.parameters.json'
 
 > [!NOTE] 
-> Pour le contenu du fichier de paramètres JSON, consultez [azuredeploy.parameters.json](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-github-deploy/azuredeploy.parameters.json).
+> Pour le contenu du fichier JSON de paramètres hello, consultez [azuredeploy.parameters.json](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-github-deploy/azuredeploy.parameters.json).
 >
 >
 

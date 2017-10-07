@@ -1,6 +1,6 @@
 ---
-title: "Convertir les données XML avec des transformations - Azure Logic Apps | Microsoft Docs"
-description: "Créer des transformations ou des mappages pour convertir les données XML entre les différents formats dans les applications logiques à l’aide du Kit de développement logiciel (SDK) d’intégration d’entreprise"
+title: "données XML aaaConvert transformations - Azure Logic Apps | Documents Microsoft"
+description: "Créer des transformations ou mapps tooconvert des données XML entre les formats dans la logique des applications à l’aide de hello SDK de l’intégration d’entreprise"
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: msftman
@@ -14,61 +14,61 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/08/2016
 ms.author: LADocs; padmavc
-ms.openlocfilehash: fb6027769377b3527b11f7831dab3bb8d7061c84
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b56ec1072c5058d3aefc7f88ac9b2748ebe56456
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="enterprise-integration-with-xml-transforms"></a>Intégration d’entreprise avec les transformations XML
 ## <a name="overview"></a>Vue d'ensemble
-Le connecteur Enterprise Integration Transform convertit les données d’un format vers un autre format. Vous pouvez, par exemple, avoir un message entrant qui contient la date du jour au format AnnéeMoisJour. Vous pouvez utiliser une transformation pour remettre en forme la date au format MoisJourAnnée.
+connecteur de transformation Hello Enterprise integration convertit les données d’un format tooanother de format. Par exemple, peut avoir un message entrant qui contient hello date actuelle au format de YearMonthDay hello. Vous pouvez utiliser un toobe de transformation tooreformat hello date au format de MonthDayYear hello.
 
 ## <a name="what-does-a-transform-do"></a>Que fait une transformation ?
-Une transformation, également appelée mappage, est composée d’un schéma XML source (l’entrée) et d’un schéma XML cible (la sortie). Vous pouvez utiliser différentes fonctions intégrées pour aider à manipuler ou à contrôler les données, y compris les manipulations de chaînes, les affectations conditionnelles, les expressions arithmétiques, les formateurs d'heure et de date et même les constructions de bouclage.
+Une transformation, qui est également appelé un mappage, se compose d’un schéma XML de la Source (hello d’entrée) et un schéma XML de la cible (sortie hello). Vous pouvez utiliser différentes fonctions intégrées toohelp manipuler ou contrôler les données de salutation, y compris les manipulations de chaînes, affectations conditionnelles, des expressions arithmétiques, formateurs d’heure date et même des constructions de bouclage.
 
-## <a name="how-to-create-a-transform"></a>Création d’une transformation
-Vous pouvez créer une transformation/un mappage à l’aide du [Kit de développement logiciel (SDK) Enterprise Integration](https://aka.ms/vsmapsandschemas)de Visual Studio. Lorsque vous avez terminé de créer et de tester la transformation, vous la téléchargez dans votre compte d’intégration. 
+## <a name="how-toocreate-a-transform"></a>Comment toocreate une transformation ?
+Vous pouvez créer un mappage de transformation/à l’aide de Visual Studio de hello [Enterprise Integration SDK](https://aka.ms/vsmapsandschemas). Lorsque vous avez terminé de créer et de test de transformation de hello, vous téléchargez la transformation que hello dans votre compte d’intégration. 
 
-## <a name="how-to-use-a-transform"></a>Utilisation d’une transformation
-Après avoir chargé la transformation / le mappage dans votre compte d’intégration, vous pouvez l’utiliser pour créer une application logique. L’application logique exécute vos transformations à chaque fois qu’elle est déclenchée (et qu’il existe du contenu d’entrée qui doit être transformé).
+## <a name="how-toouse-a-transform"></a>Comment toouse une transformation
+Après avoir téléchargé le mappage de la transformation hello dans votre compte d’intégration, vous pouvez l’utiliser toocreate une application logique. application de la logique de Hello exécute vos transformations chaque fois que l’application logique de hello est déclenchée (et il est contenu d’entrée toobe transformé).
 
-**Voici les étapes à suivre pour utiliser une transformation**:
+**Voici hello étapes toouse une transformation**:
 
 ### <a name="prerequisites"></a>Composants requis
 
-* Créer un compte d’intégration et y ajouter un mappage  
+* Créer un compte d’intégration et d’ajouter un mappage tooit  
 
-Maintenant que vous avez exécuté la configuration requise, il est temps de créer votre application logique :  
+Maintenant que vous avez pris en charge conditions préalables de hello, il est temps toocreate votre application logique :  
 
-1. Créez une application logique et [liez-la à votre compte d’intégration](../logic-apps/logic-apps-enterprise-integration-accounts.md "Découvrez comment lier un compte d’intégration à une application logique") qui contient le mappage.
-2. Ajouter un déclenchement de **Requête** à votre application logique  
+1. Créer une application de la logique et [lier le compte d’intégration tooyour](../logic-apps/logic-apps-enterprise-integration-accounts.md "savoir toolink une application de la logique de l’intégration compte tooa") qui contient le mappage de hello.
+2. Ajouter un **demande** application logique de tooyour déclencheur  
    ![](./media/logic-apps-enterprise-integration-transforms/transform-1.png)    
-3. Ajoutez l’action **Transformer XML** en sélectionnant d’abord **Ajouter une action**   
+3. Ajouter hello **transformer le XML** action en sélectionnant **ajouter une action**   
    ![](./media/logic-apps-enterprise-integration-transforms/transform-2.png)   
-4. Entrez le mot *transform* dans la zone de recherche afin de filtrer toutes les actions et d’obtenir celle que vous souhaitez utiliser  
+4. Entrez le mot hello *transformer* dans toofilter de zone de recherche hello tous hello toohello actions une que vous souhaitez toouse  
    ![](./media/logic-apps-enterprise-integration-transforms/transform-3.png)  
-5. Sélectionnez l’action **Transformer XML**   
-6. Ajoutez le **CONTENU** XML à transformer. Vous pouvez utiliser toute donnée XML que vous recevez dans la requête HTTP en tant que **CONTENU**. Dans cet exemple, sélectionnez le corps de la demande HTTP qui a déclenché l’application logique.
-7. Sélectionnez le nom du **MAPPAGE** que vous souhaitez utiliser pour effectuer la transformation. Le mappage doit déjà exister dans votre compte d’intégration. Lors d’une étape précédente, vous avez déjà attribué à votre application logique l’accès à votre compte d’intégration qui contient le mappage.      
+5. Sélectionnez hello **transformer le XML** action   
+6. Ajouter hello XML **contenu** qui vous transformez. Vous pouvez utiliser toutes les données XML que vous recevez dans la demande de hello HTTP en tant que hello **contenu**. Dans cet exemple, sélectionnez hello le corps de demande HTTP hello qui a déclenché application logique de hello.
+7. Nom hello sélectionnez Hello **carte** que vous souhaitez transformation de hello toouse tooperform. mappage de Hello doit déjà exister dans votre compte d’intégration. Dans une étape précédente, vous avez déjà donné votre logique application tooyour intégration compte d’accès qui contient votre mappage.      
    ![](./media/logic-apps-enterprise-integration-transforms/transform-4.png) 
 8. Enregistrez votre travail   
     ![](./media/logic-apps-enterprise-integration-transforms/transform-5.png) 
 
-À ce stade, vous avez terminé de configurer votre mappage. Dans une application réelle, vous souhaiterez peut-être stocker les données transformées dans une application métier, comme SalesForce. Vous pouvez facilement ajouter une action pour envoyer la sortie de la transformation à SalesForce. 
+À ce stade, vous avez terminé de configurer votre mappage. Dans une application réelle, vous pouvez vouloir toostore les données de salutation transformée dans une application métier telles que SalesForce. Vous pouvez facilement en tant que sortie action toosend hello hello transformer tooSalesforce. 
 
-Vous pouvez maintenant tester votre transformation en effectuant une demande au point de terminaison HTTP.  
+Vous pouvez maintenant tester votre fichier de transformation en effectuant un point de terminaison demande toohello HTTP.  
 
 ## <a name="features-and-use-cases"></a>Fonctionnalités et cas d’usage
-* La transformation créée dans un mappage peut être simple, par exemple la copie d'un nom et de l'adresse d'un document vers un autre. Vous pouvez aussi créer des transformations plus complexes à l'aide des opérations de mappage prêtes à l'emploi.  
+* transformation Hello créée dans un mappage peut être simple, telles que la copie d’un nom et une adresse à partir d’un document tooanother. Ou bien, vous pouvez créer des transformations plus complexes à l’aide des opérations de mappage de l’emploi de hello.  
 * Plusieurs fonctions ou opérations de mappage sont disponibles, y compris des chaînes, des fonctions de date et d'heure, et ainsi de suite.  
-* Vous pouvez effectuer une copie de données directe entre les schémas. Dans le Mappeur inclus dans le Kit de développement logiciel (SDK), il suffit de dessiner une ligne qui relie les éléments dans le schéma source à leurs équivalents dans le schéma de destination.  
-* Lors de la création d’un mappage, sa représentation graphique est affichée, notamment toutes les relations et les liens que vous créez.
-* Utilisez la fonctionnalité Tester le mappage pour ajouter un exemple de message XML. Avec un simple clic, vous pouvez tester le mappage que vous avez créé et afficher la sortie générée.  
+* Vous pouvez effectuer une copie de données directe entre les schémas hello. Bonjour que Mappeur inclus dans hello SDK, il s’agit aussi simple que le dessin d’une ligne qui connecte les éléments hello dans le schéma de source de hello avec leurs équivalents dans le schéma de destination hello.  
+* Lorsque vous créez un mappage, vous permet d’afficher une représentation graphique de la carte de hello, qui affiche toutes les relations hello et les liens que vous créez.
+* Utilisez hello Test Map fonctionnalité tooadd un exemple de message XML. D’un simple clic, vous pouvez tester la carte hello que vous avez créé et consultez la sortie de hello généré.  
 * Téléchargement de mappages existants  
-* Comprend la prise en charge du format XML.
+* Prend en charge pour le format XML hello.
 
 ## <a name="learn-more"></a>En savoir plus
-* [En savoir plus sur Enterprise Integration Pack](../logic-apps/logic-apps-enterprise-integration-overview.md "En savoir plus sur Enterprise Integration Pack")  
+* [En savoir plus sur hello Pack d’intégration Enterprise](../logic-apps/logic-apps-enterprise-integration-overview.md "en savoir plus sur le Pack d’intégration Enterprise")  
 * [En savoir plus sur les mappages](../logic-apps/logic-apps-enterprise-integration-maps.md "Découvrez les mappages d’intégration d’entreprise")  
 

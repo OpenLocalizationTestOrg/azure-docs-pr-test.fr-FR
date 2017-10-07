@@ -1,6 +1,6 @@
 ---
-title: "Se connecter à Azure Data Lake Store à partir de réseaux virtuels | Microsoft Docs"
-description: "Se connecter à Azure Data Lake Store à partir de réseaux virtuels Azure"
+title: "aaaConnect tooAzure Data Lake Store à partir de réseaux virtuels | Documents Microsoft"
+description: "Se connecter tooAzure Data Lake Store à partir de réseaux virtuels Azure"
 services: data-lake-store,data-catalog
 documentationcenter: 
 author: nitinme
@@ -14,27 +14,27 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 05/10/2017
 ms.author: nitinme
-ms.openlocfilehash: ff7d28d7b53e872b804788647b1e672fafcf6995
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c695dcf49fe4e1a87a90729cf085a938f3b51fe3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="access-azure-data-lake-store-from-vms-within-an-azure-vnet"></a>Accéder à Azure Data Lake Store à partir de machines virtuelles au sein d’un réseau virtuel Azure
-Azure Data Lake Store est un service PaaS qui s’exécute sur des adresses IP Internet publiques. En général, tout serveur qui peut se connecter à l’Internet public peut également se connecter aux points de terminaison Azure Data Lake Store. Par défaut, toutes les machines virtuelles qui se trouvent dans des réseaux virtuels Azure peuvent accéder à Internet et, ainsi, accéder à Azure Data Lake Store. Toutefois, il est possible de configurer des machines virtuelles dans un réseau virtuel afin qu’elles n’aient pas accès à Internet. Pour ces machines virtuelles, l’accès à Azure Data Lake Store est également restreint. Bloquer l’accès à l’Internet public pour des machines virtuelles dans des réseaux virtuels Azure peut être effectué à l’aide d’une des approches suivantes.
+Azure Data Lake Store est un service PaaS qui s’exécute sur des adresses IP Internet publiques. N’importe quel serveur qui peut se connecter peut Internet public de toohello généralement se connecter tooAzure Data Lake Store points de terminaison. Par défaut, toutes les machines virtuelles qui se trouvent dans des réseaux virtuels Azure peuvent accéder à Internet de hello et peuvent donc accéder à Azure Data Lake Store. Toutefois, il est de machines virtuelles de tooconfigure possibles dans un toonot de réseau virtuel ont accès toohello Internet. Pour ces ordinateurs virtuels, accès tooAzure Data Lake Store est restreint. Bloquer l’accès Internet public pour les machines virtuelles dans des réseaux virtuels Azure peut être effectuée à l’aide de l’approche de hello.
 
 * En configurant des groupes de sécurité réseau (NSG)
 * En configurant des itinéraires définis par l’utilisateur
-* En échangeant des itinéraires par le biais de BGP (protocole de routage dynamique standard du secteur) quand ExpressRoute bloque l’accès à Internet
+* En échangeant des routes via BGP (industrie standard protocole de routage dynamique) lorsque ExpressRoute est utilisé à ce bloc accéder toohello Internet
 
-Dans cet article, vous allez apprendre à activer l’accès à Azure Data Lake Store à partir de machines virtuelles Azure soumises à des restrictions d’accès aux ressources, à l’aide d’une des trois méthodes mentionnées ci-dessus.
+Dans cet article, vous allez apprendre comment tooenable accéder toohello Azure Data Lake Store à partir de machines virtuelles Azure qui ont été restreints tooaccess ressources à l’aide d’une des trois méthodes de hello répertoriés ci-dessus.
 
-## <a name="enabling-connectivity-to-azure-data-lake-store-from-vms-with-restricted-connectivity"></a>Activation de la connectivité à Azure Data Lake Store à partir de machines virtuelles bénéficiant d’une connectivité limitée
-Pour accéder à Azure Data Lake Store à partir de ces machines virtuelles, vous devez les configurer de manière à ce qu’elles puissent accéder à l’adresse IP associée au compte Azure Data Lake Store. Vous pouvez identifier les adresses IP de vos comptes Data Lake Store en résolvant les noms DNS de vos comptes (`<account>.azuredatalakestore.net`). Pour ce faire, vous pouvez utiliser des outils tels que **nslookup**. Ouvrez une invite de commandes sur votre ordinateur et exécutez la commande suivante :
+## <a name="enabling-connectivity-tooazure-data-lake-store-from-vms-with-restricted-connectivity"></a>L’activation de la connectivité tooAzure Data Lake Store à partir d’ordinateurs virtuels avec une connectivité limitée
+Magasin de Azure Data Lake tooaccess à partir de ces ordinateurs virtuels, vous devez les configurer une adresse IP de tooaccess hello où hello compte Azure Data Lake Store est disponible. Vous pouvez identifier les adresses IP de hello pour vos comptes Data Lake Store par la résolution de noms DNS de hello de vos comptes (`<account>.azuredatalakestore.net`). Pour ce faire, vous pouvez utiliser des outils tels que **nslookup**. Ouvrez une invite de commandes sur votre ordinateur et exécutez hello commande suivante.
 
     nslookup mydatastore.azuredatalakestore.net
 
-La sortie se présente comme suit. La valeur en regard de la propriété **Address** est l’adresse IP associée à votre compte Data Lake Store.
+sortie de Hello ressemble au suivant de hello. Hello valeur contre **adresse** propriété est l’adresse IP de hello associé à votre compte Data Lake Store.
 
     Non-authoritative answer:
     Name:    1434ceb1-3a4b-4bc0-9c69-a0823fd69bba-mydatastore.projectcabostore.net
@@ -43,13 +43,13 @@ La sortie se présente comme suit. La valeur en regard de la propriété **Addre
 
 
 ### <a name="enabling-connectivity-from-vms-restricted-by-using-nsg"></a>Activation de la connectivité à partir de machines virtuelles restreintes à l’aide d’un groupe de sécurité réseau
-Quand une règle de groupe de sécurité réseau est utilisée pour bloquer l’accès à Internet, vous pouvez créer un autre groupe de sécurité réseau qui autorise l’accès à l’adresse IP de Data Lake Store. Pour plus d’informations sur les règles de groupe de sécurité réseau, consultez [What is a Network Security Group?](../virtual-network/virtual-networks-nsg.md) (Qu’est-ce qu’un groupe de sécurité réseau ?). Pour savoir comment créer des groupes de sécurité réseau, consultez [How to manage NSGs using the Azure portal](../virtual-network/virtual-networks-create-nsg-arm-pportal.md) (Guide pratique pour gérer les groupes de sécurité réseau à l’aide du portail Azure).
+Lorsqu’une règle de groupe de sécurité réseau est utilisée tooblock accéder toohello Internet, vous pouvez ensuite créer un autre groupe de sécurité réseau qui permet l’accès toohello adresse IP du magasin lac de données. Pour plus d’informations sur les règles de groupe de sécurité réseau, consultez [What is a Network Security Group?](../virtual-network/virtual-networks-nsg.md) (Qu’est-ce qu’un groupe de sécurité réseau ?). Pour obtenir des instructions sur les groupes de sécurité réseau toocreate voir [comment toomanage groupes de sécurité réseau à l’aide de hello Azure portal](../virtual-network/virtual-networks-create-nsg-arm-pportal.md).
 
 ### <a name="enabling-connectivity-from-vms-restricted-by-using-udr-or-expressroute"></a>Activation de la connectivité à partir de machines virtuelles restreintes à l’aide d’un itinéraire défini par l’utilisateur ou d’ExpressRoute
-Quand des itinéraires, définis par l’utilisateur ou échangés par le biais de BGP, sont utilisés pour bloquer l’accès à Internet, un itinéraire spécial doit être configuré afin que les machines virtuelles dans ces sous-réseaux puissent accéder aux points de terminaison Data Lake Store. Pour plus d’informations, consultez [Présentation des itinéraires définis par l’utilisateur](../virtual-network/virtual-networks-udr-overview.md). Pour obtenir des instructions sur la création d’itinéraires définis par l’utilisateur, consultez [Création d’itinéraires définis par l’utilisateur (UDR) dans Resource Manager](../virtual-network/virtual-network-create-udr-arm-ps.md).
+Lorsque les itinéraires, soit UDRs ou des itinéraires BGP-échangés, sont utilisés tooblock accès toohello Internet, un itinéraire spéciale doit toobe configuré de sorte que les machines virtuelles dans ces sous-réseaux peuvent accéder à des points de terminaison Data Lake Store. Pour plus d’informations, consultez [Présentation des itinéraires définis par l’utilisateur](../virtual-network/virtual-networks-udr-overview.md). Pour obtenir des instructions sur la création d’itinéraires définis par l’utilisateur, consultez [Création d’itinéraires définis par l’utilisateur (UDR) dans Resource Manager](../virtual-network/virtual-network-create-udr-arm-ps.md).
 
 ### <a name="enabling-connectivity-from-vms-restricted-by-using-expressroute"></a>Activation de la connectivité à partir de machines virtuelles restreintes à l’aide d’ExpressRoute
-Quand un circuit ExpressRoute est configuré, les serveurs locaux peuvent accéder à Data Lake Store par le biais de l’appairage public. Pour plus d’informations sur la configuration d’ExpressRoute pour l’appairage public, consultez [Forum Aux Questions ExpressRoute](../expressroute/expressroute-faqs.md).
+Lorsqu’un circuit ExpressRoute est configuré, hello sur des serveurs locaux peuvent accéder à Data Lake Store via l’homologation publique. Pour plus d’informations sur la configuration d’ExpressRoute pour l’appairage public, consultez [Forum Aux Questions ExpressRoute](../expressroute/expressroute-faqs.md).
 
 ## <a name="see-also"></a>Voir aussi
 * [Présentation d'Azure Data Lake Store](data-lake-store-overview.md)

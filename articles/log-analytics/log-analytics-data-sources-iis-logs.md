@@ -1,6 +1,6 @@
 ---
-title: Journaux IIS dans Log Analytics | Microsoft Docs
-description: "Internet Information Services (IIS) enregistre l'activité des utilisateurs dans des fichiers journaux qui peuvent être collectés par Log Analytics.  Cet article décrit comment configurer la collecte des journaux IIS et des détails des enregistrements qu'ils créent dans le référentiel OMS."
+title: aaaIIS consigne dans le journal Analytique | Documents Microsoft
+description: "Internet Information Services (IIS) enregistre l'activité des utilisateurs dans des fichiers journaux qui peuvent être collectés par Log Analytics.  Cet article décrit comment collection tooconfigure de journaux IIS et les détails des enregistrements de hello créent dans le référentiel d’OMS hello."
 services: log-analytics
 documentationcenter: 
 author: bwren
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 07/12/2017
 ms.author: bwren
-ms.openlocfilehash: 2114bdafb3b9fe2eb0632271840b8b70a76d10f1
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: c5575351090cdabaf651bcb49867794ee3a4b6e6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="iis-logs-in-log-analytics"></a>Journaux IIS dans Log Analytics
 Internet Information Services (IIS) enregistre l'activité des utilisateurs dans des fichiers journaux qui peuvent être collectés par Log Analytics.  
@@ -31,63 +31,63 @@ Log Analytics regroupant les entrées des fichiers journaux créés par IIS, vou
 Log Analytics prend en charge uniquement les fichiers journaux IIS stockés au format W3C, et ne prend pas en charge les champs personnalisés ou IIS Advanced Logging.  
 Log Analytics ne collecte pas de journaux aux formats natifs NCSA ou IIS.
 
-Configurez les journaux IIS dans Log Analytics à partir du [menu Données dans Paramètres Log Analytics](log-analytics-data-sources.md#configuring-data-sources).  Aucune configuration n’est requise autre que la sélection de l’option **Collecter les fichiers journaux IIS au format W3C**.
+Configurer les journaux IIS dans le journal Analytique de hello [menu données de paramètres de journal Analytique](log-analytics-data-sources.md#configuring-data-sources).  Aucune configuration n’est requise autre que la sélection de l’option **Collecter les fichiers journaux IIS au format W3C**.
 
-Quand vous activez la collecte de journaux IIS, nous vous recommandons de configurer le paramètre de substitution de journal IIS sur chaque serveur.
+Nous recommandons que, lorsque vous activez la collecte de journaux IIS, vous devez configurer le paramètre de substitution journal hello IIS sur chaque serveur.
 
 ## <a name="data-collection"></a>Collecte des données
-Log Analytics collecte les entrées du journal IIS de chaque source connectée toutes les 15 minutes environ.  L’agent enregistre sa position dans chaque journal des événements à partir duquel il collecte.  Si l’agent est mis hors connexion, Log Analytics collecte les événements à partir de la position où il s’était arrêté, même si ces événements ont été créés lorsque l’agent était hors connexion.
+Log Analytics collecte les entrées du journal IIS de chaque source connectée toutes les 15 minutes environ.  l’agent Hello enregistre sa place dans chaque journal des événements qu’il collecte à partir de.  Si l’agent de hello est mis hors connexion, puis Analytique de journal collecte les événements à partir de l’endroit où il s’était arrêté, même si ces événements ont été créés lors de l’agent de hello est hors connexion.
 
 ## <a name="iis-log-record-properties"></a>Propriétés d’enregistrement de journal IIS
-Les enregistrements de journal IIS sont de type **W3CIISLog** et leurs propriétés sont décrites dans le tableau suivant :
+Enregistrements de journal IIS ont un type de **W3CIISLog** et ont des propriétés de hello Bonjour tableau suivant :
 
 | Propriété | Description |
 |:--- |:--- |
-| Ordinateur |Nom de l'ordinateur à partir duquel l'événement a été collecté. |
-| cIP |Adresse IP du client. |
-| csMethod |Méthode de la requête, par exemple GET ou POST. |
-| csReferer |Site à partir duquel l'utilisateur a suivi un lien vers le site actuel. |
-| csUserAgent |Type de navigateur du client. |
-| csUserName |Nom de l'utilisateur authentifié qui a accédé au serveur. Les utilisateurs anonymes sont indiqués par un trait d'union. |
-| csUriStem |Cible de la requête, par exemple une page web. |
-| csUriQuery |Requête, le cas échéant, que le client tentait d'effectuer. |
-| ManagementGroupName |Nom du groupe d’administration pour les agents Operations Manager.  Pour les autres agents, il s’agit d’AOI-\<workspace ID\> |
-| RemoteIPCountry |Pays de l'adresse IP du client. |
-| RemoteIPLatitude |Latitude de l'adresse IP du client. |
-| RemoteIPLongitude |Longitude de l'adresse IP du client. |
+| Ordinateur |Nom de l’ordinateur hello hello événements ont été collectée à partir de. |
+| cIP |Adresse IP du client de hello. |
+| csMethod |Méthode de demande de hello tels que GET ou POST. |
+| csReferer |Site que hello utilisateur cliqué sur le lien de site en cours de toohello. |
+| csUserAgent |Type de navigateur du client de hello. |
+| csUserName |Nom de hello de l’utilisateur qui a accédé hello serveur authentifié. Les utilisateurs anonymes sont indiqués par un trait d'union. |
+| csUriStem |Cible de la demande de hello telle qu’une page web. |
+| csUriQuery |La requête, le cas échéant, que le client hello tentait tooperform. |
+| ManagementGroupName |Nom du groupe d’administration hello pour les agents d’Operations Manager.  Pour les autres agents, il s’agit d’AOI-\<workspace ID\> |
+| RemoteIPCountry |Pays de l’adresse IP de hello du client de hello. |
+| RemoteIPLatitude |Latitude de l’adresse IP du client hello. |
+| RemoteIPLongitude |Longitude de l’adresse IP du client hello. |
 | scStatus |Code d'état HTTP. |
 | scSubStatus |Code d'erreur du sous-état. |
 | scWin32Status |Code d’état Windows. |
-| sIP |Adresse IP du serveur web. |
+| sIP |Adresse IP du serveur web de hello. |
 | SourceSystem |OpsMgr |
-| sPort |Port sur le serveur auquel client est connecté. |
-| sSiteName |Nom du site IIS. |
-| TimeGenerated |Date et heure de consignation de l'entrée. |
-| TimeTaken |Délai de traitement de la requête en millisecondes. |
+| sPort |Hello serveur hello client connecté au port. |
+| sSiteName |Nom de site IIS de hello. |
+| TimeGenerated |Date et heure hello est consignée. |
+| TimeTaken |Demande de longueur de hello tooprocess de temps en millisecondes. |
 
 ## <a name="log-searches-with-iis-logs"></a>Recherches de journaux avec les journaux IIS
-Le tableau suivant fournit plusieurs exemples de requêtes de journaux qui extraient des enregistrements de journaux IIS.
+Hello tableau suivant fournit des exemples de requêtes de journal qui extrait des enregistrements de journal IIS.
 
 | Interroger | Description |
 |:--- |:--- |
 | Type=W3CIISLog |Tous les enregistrements de journaux IIS. |
 | Type=W3CIISLog scStatus=500 |Tous les enregistrements de journaux IIS dont l’état renvoyé est 500. |
 | Type=W3CIISLog &#124; Measure count() by cIP |Nombre d’entrées de journaux IIS par adresse IP du client. |
-| Type=W3CIISLog csHost="www.contoso.com" &#124; Measure count() by csUriStem |Nombre d’entrées de journaux IIS par URL pour l'hôte www.contoso.com. |
+| Type=W3CIISLog csHost="www.contoso.com" &#124; Measure count() by csUriStem |Nombre d’IIS entrées du journal par URL pour hello hôte www.contoso.com. |
 | Type=W3CIISLog &#124; Measure Sum(csBytes) by Computer &#124; top 500000 |Nombre total d'octets reçus par chaque ordinateur IIS. |
 
 >[!NOTE]
-> Si vous avez mis à niveau votre espace de travail vers le [nouveau langage de requête Log Analytics](log-analytics-log-search-upgrade.md), les requêtes ci-dessus sont remplacées par les requêtes ci-dessous.
+> Si votre espace de travail a été mis à niveau toohello [Analytique de journal nouveau langage de requête](log-analytics-log-search-upgrade.md), puis hello ci-dessus requêtes modifierait toohello suivant.
 
 > | Interroger | Description |
 |:--- |:--- |
 | W3CIISLog |Tous les enregistrements de journaux IIS. |
 | W3CIISLog &#124; où scStatus==500 |Tous les enregistrements de journaux IIS dont l’état renvoyé est 500. |
 | W3CIISLog &#124; résumer count() par cIP |Nombre d’entrées de journaux IIS par adresse IP du client. |
-| W3CIISLog &#124; où csHost==« www.contoso.com » &#124; résumer count() par csUriStem |Nombre d’entrées de journaux IIS par URL pour l'hôte www.contoso.com. |
+| W3CIISLog &#124; où csHost==« www.contoso.com » &#124; résumer count() par csUriStem |Nombre d’IIS entrées du journal par URL pour hello hôte www.contoso.com. |
 | W3CIISLog &#124; résumer sum(csBytes) par ordinateur &#124; prendre 500000 |Nombre total d'octets reçus par chaque ordinateur IIS. |
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Configurez Log Analytics pour collecter d’autres [sources de données](log-analytics-data-sources.md) à analyser.
-* Découvrez les [recherches de journaux](log-analytics-log-searches.md) pour analyser les données collectées à partir de sources de données et de solutions.
-* Configurez les alertes dans Log Analytics pour être informé de façon proactive des conditions importantes rencontrées dans les journaux IIS.
+* Configurer le journal Analytique toocollect autres [des sources de données](log-analytics-data-sources.md) pour l’analyse.
+* En savoir plus sur [recherche de journal](log-analytics-log-searches.md) tooanalyze les données de salutation collectées à partir de sources de données et les solutions possibles.
+* Configurer des alertes Analytique de journal tooproactively vous avertir des conditions importantes trouvées dans les journaux IIS.

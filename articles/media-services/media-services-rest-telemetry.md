@@ -1,6 +1,6 @@
 ---
-title: "Configuration de la télémétrie Azure Media Services avec REST| Microsoft Docs"
-description: "Cet article vous montre comment utiliser la télémétrie d’Azure Media Services à l’aide de l’API REST."
+title: "aaaConfiguring télémétrie d’Azure Media Services avec REST | Documents Microsoft"
+description: "Cet article vous explique comment toouse hello télémétrie d’Azure Media Services à l’aide des API REST..."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,36 +14,36 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/09/2017
 ms.author: juliako
-ms.openlocfilehash: 7d785c6eb9a9e16ae4853cded3c7c142080c7a09
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: d0b6798c49be756fcebecf2e1e6ea497edd27cf0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configuring-azure-media-services-telemetry-with-rest"></a>Configuration de la télémétrie Azure Media Services avec REST
 
-Cette rubrique décrit les étapes générales que vous pouvez suivre lors de la configuration de la télémétrie d’Azure Media Services (AMS) à l’aide de l’API REST. 
+Cette rubrique décrit les étapes générales que vous pouvez entreprendre lors de la configuration de télémétrie d’Azure Media Services (AMS) hello à l’aide des API REST. 
 
 >[!NOTE]
->Pour une explication détaillée de la télémétrie AMS et de son utilisation, consultez la rubrique [Vue d’ensemble](media-services-telemetry-overview.md).
+>Pour une explication détaillée des éléments hello est données de télémétrie AMS et comment tooconsume, consultez hello [vue d’ensemble](media-services-telemetry-overview.md) rubrique.
 
-Les étapes décrites dans cette rubrique sont les suivantes :
+Hello les étapes décrites dans cette rubrique sont :
 
-- Obtention du compte de stockage associé au compte Media Services
-- Obtention des points de terminaison de notification
+- Prise en compte de stockage hello associé à un compte Media Services
+- Obtention des points de terminaison de Notification hello
 - Création d’un point de terminaison de notification pour la surveillance. 
 
-    Pour créer un point de terminaison de notification, définissez EndPointType sur AzureTable (2) et endPointAddress définie sur la table de stockage (par exemple, https://telemetryvalidationstore.table.core.windows.net/).
+    toocreate un point de terminaison de Notification, définissez hello EndPointType tooAzureTable (2) et la table de stockage toohello endPontAddress ensemble (par exemple, https://telemetryvalidationstore.table.core.windows.net/).
   
-- Obtenir les configurations de surveillance
+- Obtenir des configurations de l’analyse hello
 
-    Créez des paramètres de configuration de la surveillance pour les services que vous souhaitez surveiller. Pas plus d’un paramètre de configuration de la surveillance n’est autorisé. 
+    Créer une configuration d’analyse des paramètres pour hello services que vous souhaitez toomonitor. Pas plus d’un paramètre de configuration de la surveillance n’est autorisé. 
 
 - Ajouter une configuration de surveillance
 
 
  
-## <a name="get-the-storage-account-associated-with-a-media-services-account"></a>Obtenir le compte de stockage associé au compte Media Services
+## <a name="get-hello-storage-account-associated-with-a-media-services-account"></a>Obtention du compte de stockage hello associé à un compte Media Services
 
 ###<a name="request"></a>Demande
 
@@ -71,7 +71,7 @@ Les étapes décrites dans cette rubrique sont les suivantes :
     
     {"d":{"results":[{"__metadata":{"id":"https://wamsbnp1clus001rest-hs.cloudapp.net/api/StorageAccounts('telemetryvalidationstore')","uri":"https://wamsbnp1clus001rest-hs.cloudapp.net/api/StorageAccounts('telemetryvalidationstore')","type":"Microsoft.Cloud.Media.Vod.Rest.Data.Models.StorageAccount"},"Name":"telemetryvalidationstore","IsDefault":true,"BytesUsed":null}]}}
 
-## <a name="get-the-notification-endpoints"></a>Obtenir les points de terminaison de notification
+## <a name="get-hello-notification-endpoints"></a>Obtenir les points de terminaison de Notification hello
 
 ###<a name="request"></a>Demande
 
@@ -125,7 +125,7 @@ Les étapes décrites dans cette rubrique sont les suivantes :
     }
 
 >[!NOTE]
->N’oubliez pas de remplacer la valeur « https://telemetryvalidationstore.table.core.windows.net » par votre compte de stockage.
+>N’oubliez pas compte de stockage tooyour toochange hello « https://telemetryvalidationstore.table.core.windows.net » valeur.
 
 ###<a name="response"></a>Réponse
 
@@ -146,7 +146,7 @@ Les étapes décrites dans cette rubrique sont les suivantes :
     
     {"d":{"__metadata":{"id":"https://wamsbnp1clus001rest-hs.cloudapp.net/api/NotificationEndPoints('nb%3Anepid%3AUUID%3A76bb4faf-ea29-4815-840a-9a8e20102fc4')","uri":"https://wamsbnp1clus001rest-hs.cloudapp.net/api/NotificationEndPoints('nb%3Anepid%3AUUID%3A76bb4faf-ea29-4815-840a-9a8e20102fc4')","type":"Microsoft.Cloud.Media.Vod.Rest.Data.Models.NotificationEndPoint"},"Id":"nb:nepid:UUID:76bb4faf-ea29-4815-840a-9a8e20102fc4","Name":"monitoring","Created":"\/Date(1449033042667)\/","EndPointAddress":"https://telemetryvalidationstore.table.core.windows.net/","EndPointType":2}}
  
-## <a name="get-the-monitoring-configurations"></a>Obtenir les configurations de surveillance
+## <a name="get-hello-monitoring-configurations"></a>Obtenir des configurations de l’analyse hello
 
 ### <a name="request"></a>Demande
 

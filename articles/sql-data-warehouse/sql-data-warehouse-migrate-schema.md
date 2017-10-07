@@ -1,6 +1,6 @@
 ---
-title: "Migration de votre schéma vers SQL Data Warehouse | Microsoft Docs"
-description: "Conseils relatifs à la migration de votre schéma vers Microsoft Azure SQL Data Warehouse, dans le cadre du développement de solutions."
+title: "aaaMigrate votre entrepôt de données de tooSQL schéma | Documents Microsoft"
+description: "Conseils pour migrer votre tooAzure de schéma SQL Data Warehouse pour développer des solutions."
 services: sql-data-warehouse
 documentationcenter: NA
 author: sqlmojo
@@ -15,59 +15,59 @@ ms.workload: data-services
 ms.custom: migrate
 ms.date: 10/31/2016
 ms.author: joeyong;barbkess
-ms.openlocfilehash: 07ca2321852e276502187e768177e7e82bdfd080
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1309b743b78564575695038a4856d9d25a2b18d1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="migrate-your-schemas-to-sql-data-warehouse"></a>Migration de votre schéma vers SQL Data Warehouse
-Conseils pour la migration de vos schémas SQL vers SQL Data Warehouse. 
+# <a name="migrate-your-schemas-toosql-data-warehouse"></a>Migrer votre tooSQL schémas l’entrepôt de données
+Conseils pour la migration de votre tooSQL de schémas SQL Data Warehouse. 
 
 ## <a name="plan-your-schema-migration"></a>Planification de la migration du schéma
 
-Lorsque vous planifiez une migration, consultez la [vue d’ensemble des tables][table overview] pour vous familiariser avec les considérations relatives à la conception des tables tels que les statistiques, la distribution, le partitionnement et l’indexation.  Elle dresse également la liste de certaines [fonctionnalités de table non prises en charge][unsupported table features] et leurs solutions de contournement.
+Lorsque vous planifiez une migration, consultez hello [vue d’ensemble de la table] [ table overview] toobecome familiarisé avec les considérations de conception de table tels que les statistiques de distribution, le partitionnement et l’indexation.  Elle dresse également la liste de certaines [fonctionnalités de table non prises en charge][unsupported table features] et leurs solutions de contournement.
 
-## <a name="use-user-defined-schemas-to-consolidate-databases"></a>Utilisation des schémas définis par l’utilisateur pour consolider la base de données
+## <a name="use-user-defined-schemas-tooconsolidate-databases"></a>Utiliser des bases de données de schémas définis par l’utilisateur tooconsolidate
 
 Votre charge de travail existante a probablement plusieurs bases de données. Par exemple, un entrepôt de données SQL Server peut inclure une base de données de la zone de transit, une base de données de l’entrepôt de données et quelques bases de données de mini-Data Warehouse. Dans cette topologie, chaque base de données s’exécute comme une charge de travail distincte avec des stratégies de sécurité distinctes.
 
-À l’inverse, SQL Data Warehouse exécute l’intégralité de la charge de travail des entrepôts de données au sein d’une seule et même base de données. Les jointures entre plusieurs bases de données ne sont pas autorisées. Par conséquent, SQL Data Warehouse s’attend que l’ensemble des tables utilisées par l’entrepôt de données soient stockées au sein d’une seule et même base de données.
+En revanche, SQL Data Warehouse exécute la charge de travail entrepôt de données entière hello au sein d’une base de données. Les jointures entre plusieurs bases de données ne sont pas autorisées. Par conséquent, l’entrepôt de données SQL attend que toutes les tables utilisées par toobe de l’entrepôt de données hello stockée dans une base de données hello.
 
-Nous vous recommandons d’utiliser des schémas définis par l’utilisateur pour consolider votre charge de travail existante dans une seule base de données. Pour obtenir des exemples, consultez [Schémas définis par l’utilisateur](sql-data-warehouse-develop-user-defined-schemas.md)
+Nous recommandons l’utilisation de schémas définis par l’utilisateur tooconsolidate votre charge de travail existante dans une base de données. Pour obtenir des exemples, consultez [Schémas définis par l’utilisateur](sql-data-warehouse-develop-user-defined-schemas.md)
 
 ## <a name="use-compatible-data-types"></a>Utilisation des types de données compatibles
-Modifiez vos types de données pour être compatible avec SQL Data Warehouse. Consultez l’article sur les [types de données][data types] pour obtenir la liste des types de données non pris en charge et pris en charge. Cette rubrique fournit des solutions de contournement pour les types non pris en charge. Il fournit également une requête pour identifier les types existants qui ne sont pas pris en charge par SQL Data Warehouse.
+Modifiez votre toobe de types de données compatible avec l’entrepôt de données SQL. Consultez l’article sur les [types de données][data types] pour obtenir la liste des types de données non pris en charge et pris en charge. Cette rubrique fournit des solutions de contournement pour les types de hello non pris en charge. Il fournit également une requête tooidentify des types existants qui ne sont pas pris en charge dans l’entrepôt de données SQL.
 
 ## <a name="minimize-row-size"></a>Réduction de la taille de ligne
-Pour de meilleures performances, réduisez la longueur de ligne de vos tables. Étant donné qu’une longueur de ligne plus courte permet de meilleures performances, utilisez les types de données les plus courts. 
+Pour de meilleures performances, réduisez la longueur de la ligne hello de vos tables. Car plus courtes ligne entraîner des performances de toobetter, utilisez hello plus petit types de données qui fonctionnent pour vos données. 
 
-Pour la largeur de ligne de table, PolyBase a une limite de 1 Mo.  Si vous envisagez de charger des données sur SQL Data Warehouse avec PolyBase, mettez à jour vos tables pour vous assurer que la largeur de ligne maximale ne dépasse pas 1 Mo. 
+Pour la largeur de ligne de table, PolyBase a une limite de 1 Mo.  Si vous envisagez de données de tooload dans SQL Data Warehouse avec PolyBase, mettre à jour vos tableaux toohave des largeurs de ligne maximale de moins de 1 Mo. 
 
 <!--
-- For example, this table uses variable length data but the largest possible size of the row is still less than 1 MB. PolyBase will load data into this table.
+- For example, this table uses variable length data but hello largest possible size of hello row is still less than 1 MB. PolyBase will load data into this table.
 
-- This table uses variable length data and the defined row width is less than one MB. When loading rows, PolyBase allocates the full length of the variable-length data. The full length of this row is greater than one MB.  PolyBase will not load data into this table.  
+- This table uses variable length data and hello defined row width is less than one MB. When loading rows, PolyBase allocates hello full length of hello variable-length data. hello full length of this row is greater than one MB.  PolyBase will not load data into this table.  
 
 -->
 
-## <a name="specify-the-distribution-option"></a>Spécification de l’option de distribution
-SQL Data Warehouse est un système de base de données distribuées. Chaque table est distribuée ou répliquée sur les nœuds de calcul. Il existe une option de table qui vous permet de spécifier comment distribuer les données. Les options disponibles sont : tourniquet (Round Robin), répliquée, ou hachage distribué. Chaque option a ses avantages et inconvénients. Si vous ne spécifiez pas l’option de distribution, SQL Data Warehouse utilisera le tourniquet en tant que la valeur par défaut.
+## <a name="specify-hello-distribution-option"></a>Spécifiez l’option de distribution hello
+SQL Data Warehouse est un système de base de données distribuées. Chaque table est distribué ou répliquée sur les nœuds de calcul hello. Il existe une option de table qui vous permet de spécifier comment toodistribute hello des données. choix de Hello est tourniquet (Round Robin) répliquées, ou hachage distribué. Chaque option a ses avantages et inconvénients. Si vous ne spécifiez l’option de distribution hello, SQL Data Warehouse utilisera alternée comme valeur par défaut hello.
 
-- Tourniquet est la valeur par défaut. Il est le plus simple à utiliser, et charge les données aussi rapidement que possible, mais les jointures nécessiteront le déplacement de données, causant un ralentissement des performances des requêtes.
-- Les répliquées enregistrent une copie de la table dans chaque nœud de calcul. Les tables répliquées sont performantes, car elles ne nécessitent pas le déplacement des données pour les jointures et les agrégations. Elles requièrent cependant un stockage supplémentaire et sont par conséquent mieux adaptées à des tables plus petites.
-- Le hachage distribué distribue les lignes sur tous les nœuds via une fonction de hachage. Les tables de hachage distribué sont au cœur de SQL Data Warehouse car elles sont conçues pour fournir d’excellentes performances de requête sur des tables volumineuses. Cette option nécessite une bonne planification afin de sélectionner la meilleure colonne sur laquelle distribuer les données. Toutefois, si vous ne choisissez pas la meilleure colonne la première fois, vous pouvez facilement redistribuer les données sur une autre colonne. 
+- Tourniquet est par défaut de hello. Il est toouse la plus simple de hello et charge les données de hello aussi rapides que possible, mais les jointures nécessitera le déplacement des données, ce qui ralentissent les performances des requêtes.
+- Magasins répliquées une copie de la table hello sur chaque nœud de calcul. Les tables répliquées sont performantes, car elles ne nécessitent pas le déplacement des données pour les jointures et les agrégations. Elles requièrent cependant un stockage supplémentaire et sont par conséquent mieux adaptées à des tables plus petites.
+- Hachage distribué distribue les lignes hello sur tous les nœuds hello via une fonction de hachage. Tables de hachage distribuée sont cœur hello d’entrepôt de données SQL, car elles sont conçues tooprovide les performances de requête sur des tables volumineuses. Cette option requiert une planification tooselect hello meilleure colonne sur les données de hello toodistribute. Toutefois, si vous n’en choisissez hello de colonne meilleures hello première fois, vous pouvez distribuer facilement nouveau hello des données sur une autre colonne. 
 
-Pour choisir la meilleure option de distribution pour chaque table, consultez [Tables distribuées](sql-data-warehouse-tables-distribute.md).
+toochoose hello meilleure option de distribution pour chaque table, consultez [Distributed tables](sql-data-warehouse-tables-distribute.md).
 
 
 ## <a name="next-steps"></a>Étapes suivantes
-Après avoir avez correctement migré votre schéma de base de données vers SQL Data Warehouse, passez à l’un des articles suivants :
+Une fois que vous avez migré votre tooSQL de schéma de base de données Data Warehouse, passez tooone Hello suivant des articles :
 
 * [Migration de vos données][Migrate your data]
 * [Migration de votre code][Migrate your code]
 
-Pour en savoir plus sur les bonnes pratiques relatives à SQL Data Warehouse, consultez l’article sur les [bonnes pratiques][best practices].
+Pour plus d’informations sur les meilleures pratiques de l’entrepôt de données SQL, consultez hello [meilleures pratiques] [ best practices] l’article.
 
 <!--Image references-->
 

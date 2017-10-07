@@ -1,5 +1,5 @@
 ---
-title: "Surveillance des performances d’application web Azure | Microsoft Docs"
+title: "aaaMonitor performances d’application web Azure | Documents Microsoft"
 description: "Analyse des performances des applications pour les applications web Azure. Graphique de charge et de temps de réponse, informations de dépendance et alertes sur les performances."
 services: application-insights
 documentationcenter: .net
@@ -13,29 +13,29 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 05/05/2017
 ms.author: bwren
-ms.openlocfilehash: f2bbadfbcb93873ed910aeff050bd6896e2e8fec
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: d1083254e5c504b18f2ac5ae2368610dc2790436
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="monitor-azure-web-app-performance"></a>Surveillance des performances d'application web Azure
-Dans le [portail Azure](https://portal.azure.com), vous pouvez configurer la surveillance des performances d’application pour vos [applications web Azure](../app-service-web/app-service-web-overview.md). [Azure Application Insights](app-insights-overview.md) instrumente votre application afin qu’elle envoie des données de télémétrie concernant ses activités au service Application Insights, où elles sont stockées et analysées. Les graphiques de mesure et les outils de recherche peuvent alors être utilisés pour aider à diagnostiquer les problèmes, améliorer les performances et évaluer l’utilisation.
+Bonjour [Azure Portal](https://portal.azure.com) vous pouvez configurer d’analyse des performances des applications pour votre [Azure web apps](../app-service-web/app-service-web-overview.md). [Azure Application Insights](app-insights-overview.md) instrumente votre application toosend télémétrie relative à son toohello activités service Application Insights, où il est stocké et analysée. Là, les graphiques de métriques et outils de recherche peuvent être utilisés toohelp diagnostiquer les problèmes, améliorer les performances et évaluer l’utilisation.
 
 ## <a name="run-time-or-build-time"></a>En cours d’exécution ou en cours de création
-Vous pouvez configurer la surveillance par l’instrumentation de l’application de deux manières :
+Vous pouvez configurer la surveillance en instrumentant application hello de deux manières :
 
-* **En cours d’exécution** : vous pouvez sélectionner une extension de surveillance des performances lorsque votre application est déjà active. Il n’est pas nécessaire de reconstruire ou de réinstaller votre application. Vous obtenez un ensemble standard de packages qui analyse les temps de réponse, les taux de réussite, les exceptions, les dépendances, etc. 
-* **En cours de création** : vous pouvez installer un package dans votre application en cours de développement. Cette option est plus souple. Outre les mêmes packages standard, vous pouvez écrire du code pour personnaliser les données de télémétrie ou pour envoyer vos propres données de télémétrie. Vous pouvez consigner des activités spécifiques ou enregistrer les événements en fonction de la sémantique de votre domaine d’application. 
+* **En cours d’exécution** : vous pouvez sélectionner une extension de surveillance des performances lorsque votre application est déjà active. Il n’est pas toorebuild nécessaire ou réinstaller votre application. Vous obtenez un ensemble standard de packages qui analyse les temps de réponse, les taux de réussite, les exceptions, les dépendances, etc. 
+* **En cours de création** : vous pouvez installer un package dans votre application en cours de développement. Cette option est plus souple. En outre toohello mêmes packages standard, vous pouvez écrire des données de télémétrie code toocustomize hello ou toosend vos propres données de télémétrie. Vous pouvez enregistrer des activités spécifiques ou enregistrer les événements selon la sémantique de toohello de votre domaine d’application. 
 
 ## <a name="run-time-instrumentation-with-application-insights"></a>Instrumentation d’exécution avec Application Insights
-Si vous exécutez déjà une application web dans Azure, vous obtenez déjà certains éléments de surveillance, tels que le taux de demande et d’erreur. Ajoutez Application Insights pour bénéficier d’un plus grand nombre de fonctionnalités, telles que les temps de réponse, la surveillance des appels vers les dépendances, la détection intelligente et le puissant langage de requête Log Analytics. 
+Si vous exécutez déjà une application web dans Azure, vous obtenez déjà certains éléments de surveillance, tels que le taux de demande et d’erreur. Ajouter Application Insights tooget de plus, telles que le temps de réponse, la surveillance toodependencies d’appels, détection active et puissant langage de requête Analytique de journal hello. 
 
-1. **Sélectionnez Application Insights** dans le panneau de configuration Azure pour votre application web.
+1. **Sélectionnez l’Application Insights** dans hello Azure le panneau de configuration pour votre application web.
    
     ![Sous Surveillance, choisissez Application Insights](./media/app-insights-azure-web-apps/05-extend.png)
    
-   * Choisissez de créer une nouvelle ressource, sauf si vous avez déjà configuré une ressource Application Insights pour cette application par un autre itinéraire.
+   * Choisissez toocreate une nouvelle ressource, sauf si vous avez déjà défini une ressource Application Insights pour cette application par un autre itinéraire.
 2. **Instrumentez votre application web** après l’installation d’Application Insights. 
    
     ![Instrumenter votre application web](./media/app-insights-azure-web-apps/restart-web-app-for-insights.png)
@@ -48,59 +48,59 @@ Si vous exécutez déjà une application web dans Azure, vous obtenez déjà cer
     Clé :`APPINSIGHTS_JAVASCRIPT_ENABLED` 
     
     Valeur: `true`
-   * **Enregistrez** les paramètres et **Redémarrez** votre application.
-3. **Surveillez votre application web**.  [Explorez les données](#explore-the-data).
+   * **Enregistrer** hello paramètres et **redémarrer** votre application.
+3. **Surveillez votre application web**.  [Les données de salutation Expore](#explore-the-data).
 
-Par la suite, vous pourrez, si vous le souhaitez, générer l’application avec Application Insights.
+Une version ultérieure, vous pouvez générer application hello avec Application Insights si vous le souhaitez.
 
-*Comment supprimer Application Insights, ou basculer vers l’envoi vers une autre ressource ?*
+*Comment supprimer l’Application Insights, ou basculez toosending tooanother ressource ?*
 
-* Dans Azure, ouvrez le panneau de contrôle de l’application web, puis sous Outils, ouvrez **Extensions**. Supprimez l’extension Application Insights. Puis sous Surveillance, sélectionnez Application Insights et créez ou sélectionnez la ressource souhaitée.
+* Dans Azure, le panneau de contrôle web application hello ouvert et sous Outils de développement, ouvrez **Extensions**. Suppression de l’extension d’Application Insights hello. Puis sous analyse, choisissez Application Insights et créez ou sélectionnez la ressource hello souhaitée.
 
-## <a name="build-the-app-with-application-insights"></a>Générez l’application avec Application Insights
+## <a name="build-hello-app-with-application-insights"></a>Générez l’application hello avec Application Insights
 Application Insights peut fournir des données de télémétrie détaillée par l’installation d’un SDK dans votre application. En particulier, vous pouvez collecter les journaux de suivi, [écrire une télémétrie personnalisée](app-insights-api-custom-events-metrics.md), et obtenir des rapports d’exception plus détaillées.
 
 1. **Dans Visual Studio** (2013 mise à jour 2 ou ultérieure), configurez Application Insights pour votre projet.
 
-    Cliquez avec le bouton droit sur le projet web et sélectionnez **Ajouter > Application Insights** ou **Configurer Application Insights**.
+    Droit hello web projet, puis sélectionnez **Ajouter > Application Insights** ou **configurer Application Insights**.
    
-    ![Cliquez avec le bouton droit sur le projet web et sélectionnez Ajouter ou Configurer Application Insights.](./media/app-insights-azure-web-apps/03-add.png)
+    ![Droit hello web projet, puis choisissez Ajouter ou configurer Application Insights](./media/app-insights-azure-web-apps/03-add.png)
    
-    Si vous êtes invité à vous connecter, utilisez les informations d'identification de votre compte Azure.
+    Si vous êtes invité toosign dans, utiliser les informations d’identification de l’hello pour votre compte Azure.
    
-    Cette opération a deux effets :
+    opération de Hello a deux effets :
    
    1. Création d’une ressource Application Insights dans Azure, à l’endroit où vos données de télémétrie sont stockées, analysées et affichées.
-   2. Ajout du package NuGet Application Insights à votre code (si ce n’est pas déjà fait), et configuration du package pour l’envoi de données de télémétrie à la ressource Azure.
-2. **Testez la télémétrie** en exécutant l’application sur votre ordinateur de développement (F5).
-3. **Publiez l’application** sur Azure comme d’habitude. 
+   2. Ajoute hello NuGet Application Insights tooyour code du package (si elle n’existait pas déjà) et il configure toosend télémétrie toohello ressource Azure.
+2. **Tester les données de télémétrie hello** par application de hello en cours d’exécution sur votre ordinateur de développement (F5).
+3. **Publier l’application hello** tooAzure Bonjour normalement. 
 
-*Comment modifier la configuration pour envoyer des données vers une autre ressource Application Insights ?*
+*Comment modifier les ressources d’Application Insights différent toosending tooa ?*
 
-* Dans Visual Studio, cliquez avec le bouton droit sur le projet, choisissez **Configurer Application Insights** et sélectionnez la ressource de votre choix. Vous avez la possibilité de créer une nouvelle ressource. Procédez maintenant à la régénération et au redéploiement.
+* Dans le projet Visual Studio, avec le bouton hello, choisissez **configurer Application Insights** et choisissez la ressource hello souhaitée. Vous obtenez hello option toocreate une nouvelle ressource. Procédez maintenant à la régénération et au redéploiement.
 
-## <a name="explore-the-data"></a>Exploration des données
-1. Dans le panneau Application Insights du panneau de configuration de l’application web, des mesures actives, indiquant les demandes et les échecs ou les deux survenant au cours d’une seconde, s’affichent. L’affichage de ces informations est très utile lorsque vous republiez votre application. Vous pouvez voir immédiatement les problèmes.
-2. Cliquez sur la ressource Application Insights complète.
+## <a name="explore-hello-data"></a>Explorer les données de hello
+1. Sur le panneau d’Application Insights hello de votre Panneau de configuration web app, vous voyez des mesures en direct, qui affiche le nombre d’échecs et les demandes au sein d’une seconde ou deux d'entre eux qui se produisent. L’affichage de ces informations est très utile lorsque vous republiez votre application. Vous pouvez voir immédiatement les problèmes.
+2. Cliquez sur les ressources Application Insights complet toohello.
 
     ![Cliquez sur](./media/app-insights-azure-web-apps/view-in-application-insights.png)
 
     Vous pouvez également y accéder directement à partir de la navigation dans les ressources Azure.
 
-1. Cliquez sur n’importe quel graphique pour afficher plus de détails :
+1. Cliquez sur n’importe quel tooget graphique plus en détail :
    
-    ![Dans le panneau de vue d’ensemble d’Application Insights, cliquez sur un graphique](./media/app-insights-azure-web-apps/07-dependency.png)
+    ![Dans Panneau de vue d’ensemble hello Application Insights, cliquez sur un graphique](./media/app-insights-azure-web-apps/07-dependency.png)
    
     Vous pouvez [personnaliser les panneaux de mesures](app-insights-metrics-explorer.md).
-2. Cliquez de nouveau pour afficher des événements ainsi que leurs propriétés :
+2. Parcourez les plus toosee des événements individuels et leurs propriétés :
    
-    ![Cliquez sur un type d’événement pour ouvrir une recherche filtrée sur ce type](./media/app-insights-azure-web-apps/08-requests.png)
+    ![Cliquez sur un tooopen de type d’événement filtrée par une recherche sur ce type](./media/app-insights-azure-web-apps/08-requests.png)
    
-    Notez le lien «...» qui permet d’ouvrir toutes les propriétés.
+    Notez que hello tooopen du lien «... » toutes les propriétés.
    
     Vous pouvez [personnaliser les recherches](app-insights-diagnostic-search.md).
 
-Pour des recherches plus abouties sur vos données de télémétrie, utilisez le [langage de requête Log Analytics](app-insights-analytics-tour.md).
+Pour les recherches plus puissantes sur vos données de télémétrie, utilisez hello [de langage de requête Analytique de journal](app-insights-analytics-tour.md).
 
 ## <a name="more-telemetry"></a>Données de télémétrie supplémentaires
 
@@ -112,11 +112,11 @@ Pour des recherches plus abouties sur vos données de télémétrie, utilisez le
 > [!VIDEO https://channel9.msdn.com/events/Connect/2016/100/player]
 
 ## <a name="next-steps"></a>Étapes suivantes
-* [Exécuter le profileur sur une application dynamique](app-insights-profiler.md).
+* [Exécuter le Générateur de profils hello sur votre application en temps réel](app-insights-profiler.md).
 * [Azure Functions](https://github.com/christopheranderson/azure-functions-app-insights-sample) - analyse les fonctions Azure avec Application Insights
-* [Autorisation de l’envoi de diagnostics Azure](app-insights-azure-diagnostics.md) vers Application Insights.
-* [Analyse des mesures d’intégrité du service](../monitoring-and-diagnostics/insights-how-to-customize-monitoring.md) pour vous assurer que votre service est disponible et réactif.
+* [Activer les diagnostics Azure](app-insights-azure-diagnostics.md) toobe envoyé tooApplication Insights.
+* [Surveiller les mesures de contrôle d’intégrité de service](../monitoring-and-diagnostics/insights-how-to-customize-monitoring.md) toomake que votre service est disponible et réactive.
 * [Réceptions de notifications d’alerte](../monitoring-and-diagnostics/insights-receive-alert-notifications.md) lorsque des événements opérationnels se produisent ou que des mesures dépassent un seuil.
-* Utilisation [d’Application Insights pour les pages Web et les applications JavaScript](app-insights-javascript.md) pour obtenir les données de télémétrie du client à partir des navigateurs qui consultent une page web.
-* [Configuration des tests de disponibilité web](app-insights-monitor-web-app-availability.md) , pour recevoir des alertes en cas d’interruption de votre site.
+* Utilisez [Application Insights pour les applications JavaScript avec des pages web](app-insights-javascript.md) télémétrie de client tooget à partir de navigateurs hello visiter une page web.
+* [Configurer des tests web de disponibilité](app-insights-monitor-web-app-availability.md) toobe alerté si votre site est arrêté.
 

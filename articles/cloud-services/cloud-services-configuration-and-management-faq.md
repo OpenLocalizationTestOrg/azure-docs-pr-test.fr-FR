@@ -1,6 +1,6 @@
 ---
-title: "Questions fréquentes (FAQ) concernant les problèmes de configuration et de gestion pour Microsoft Azure Cloud Services | Microsoft Docs"
-description: "Cet article répertorie les questions fréquentes sur la configuration et la gestion pour Microsoft Azure Cloud Services."
+title: "problèmes de gestion et d’aaaConfiguration pour le FAQ de Microsoft Azure Cloud Services | Documents Microsoft"
+description: "Cet article répertorie les hello Forum aux questions sur la configuration et de gestion pour les Services de Cloud de Microsoft Azure."
 services: cloud-services
 documentationcenter: 
 author: genlin
@@ -15,20 +15,20 @@ ms.devlang: na
 ms.topic: article
 ms.date: 7/10/2017
 ms.author: genli
-ms.openlocfilehash: 42b5d2947df92b4486fe149d046168208083dde2
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 62ece142ac0ef5d45081cab333375b1a0a8f0ab7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configuration-and-management-issues-for-azure-cloud-services-frequently-asked-questions-faqs"></a>Problèmes de configuration et de gestion pour Azure Cloud Services : questions fréquentes (FAQ)
 
-Cet article comprend des questions fréquentes sur les problèmes de configuration et de gestion pour [Microsoft Azure Cloud Services](https://azure.microsoft.com/services/cloud-services). Vous pouvez également consulter la page [Taille de services cloud](cloud-services-sizes-specs.md) pour obtenir des informations sur la taille.
+Cet article comprend des questions fréquentes sur les problèmes de configuration et de gestion pour [Microsoft Azure Cloud Services](https://azure.microsoft.com/services/cloud-services). Vous pouvez également consulter hello [page de taille de machine virtuelle de Services Cloud](cloud-services-sizes-specs.md) pour les informations de taille.
 
 [!INCLUDE [support-disclaimer](../../includes/support-disclaimer.md)]
 
-## <a name="how-do-i-add-nosniff-to-my-website"></a>Comment ajouter des directives « nosniff » à mon site web ?
-Pour empêcher les clients de détecter les types MIME, ajoutez un paramètre au fichier *web.config*.
+## <a name="how-do-i-add-nosniff-toomy-website"></a>Comment ajouter le site Web de toomy « nosniff » ?
+les clients tooprevent à partir de la détection des types MIME de hello, ajoutez un paramètre dans votre *web.config* fichier.
 
 ```xml
 <configuration>
@@ -42,25 +42,25 @@ Pour empêcher les clients de détecter les types MIME, ajoutez un paramètre a
 </configuration>
 ```
 
-Vous pouvez également ajouter ce paramètre dans IIS. Utilisez la commande suivante avec l’article [tâches courantes de démarrage](cloud-services-startup-tasks-common.md#configure-iis-startup-with-appcmdexe).
+Vous pouvez également ajouter ce paramètre dans IIS. Suivant de hello d’utilisation de commandes avec hello [tâches courantes de démarrage](cloud-services-startup-tasks-common.md#configure-iis-startup-with-appcmdexe) l’article.
 
 ```cmd
 %windir%\system32\inetsrv\appcmd set config /section:httpProtocol /+customHeaders.[name='X-Content-Type-Options',value='nosniff']
 ```
 
 ## <a name="how-do-i-customize-iis-for-a-web-role"></a>Comment personnaliser IIS pour un rôle web ?
-Utilisez le script de démarrage IIS à partir de l’article [tâches courantes de démarrage](cloud-services-startup-tasks-common.md#configure-iis-startup-with-appcmdexe).
+Utiliser le script de démarrage IIS hello de hello [tâches courantes de démarrage](cloud-services-startup-tasks-common.md#configure-iis-startup-with-appcmdexe) l’article.
 
 ## <a name="i-cannot-scale-beyond-x-instances"></a>Je ne parviens pas à mettre à l’échelle au-delà de X instances
-Le nombre de cœurs que vous pouvez utiliser est limité dans votre abonnement Azure. La mise à l’échelle ne fonctionnera pas si vous avez utilisé tous les cœurs disponibles. Par exemple, si vous avez une limite de 100 cœurs, cela signifie que vous pouvez avoir 100 instances de machine virtuelle A1 pour votre service cloud ou 50 instances de machine virtuelle A2.
+Votre abonnement Azure a une limite de nombre de hello de cœurs que vous pouvez utiliser. Mise à l’échelle ne fonctionnera pas si vous avez utilisé tous les cœurs hello disponibles. Par exemple, si vous avez une limite de 100 cœurs, cela signifie que vous pouvez avoir 100 instances de machine virtuelle A1 pour votre service cloud ou 50 instances de machine virtuelle A2.
 
 ## <a name="how-can-i-implement-role-based-access-for-cloud-services"></a>Comment implémenter un accès en fonction du rôle pour les services cloud ?
-Les services cloud ne prennent pas en charge le modèle de contrôle d’accès en fonction du rôle (RBAC), car il ne s’agit pas d’un service Azure Resource Manager.
+Services de cloud computing ne prend en charge le modèle de contrôle d’accès en fonction du rôle (RBAC) hello, car il n’est pas un service Gestionnaire de ressources Azure en fonction.
 
 Consultez [Comparaison entre RBAC Azure et les administrateur d’abonnements classiques](../active-directory/role-based-access-control-what-is.md#azure-rbac-vs-classic-subscription-administrators).
 
-## <a name="how-do-i-set-the-idle-timeout-for-azure-load-balancer"></a>Comment définir le délai d’inactivité d’Azure Load Balancer ?
-Vous pouvez spécifier le délai d’expiration dans votre fichier de définition de service (csdef) comme ceci :
+## <a name="how-do-i-set-hello-idle-timeout-for-azure-load-balancer"></a>Comment définir le délai d’inactivité de hello pour l’équilibrage de charge Azure ?
+Vous pouvez spécifier le délai d’attente hello dans votre fichier de définition (csdef) de service comme suit :
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -80,57 +80,57 @@ Vous pouvez spécifier le délai d’expiration dans votre fichier de définitio
 ```
 Pour plus d’informations, consultez [Nouveau : délai d’inactivité configurable pour Azure Load Balancer](https://azure.microsoft.com/blog/new-configurable-idle-timeout-for-azure-load-balancer/).
 
-## <a name="can-microsoft-internal-engineers-rdp-to-cloud-service-instances-without-permission"></a>Les ingénieurs internes Microsoft peuvent-ils se connecter à des instances de service cloud sans autorisation via RDP ?
-Microsoft suit un processus strict qui ne permet pas à ses ingénieurs internes de se connecter à votre service cloud via RDP sans une autorisation écrite (par courrier électronique ou toute autre communication écrite) de la part du propriétaire ou de son représentant.
+## <a name="can-microsoft-internal-engineers-rdp-toocloud-service-instances-without-permission"></a>Peut les ingénieurs de Microsoft internes des instances de service de toocloud RDP sans autorisation ?
+Suit Microsoft un processus strict n’autorisera pas interne ingénieurs tooRDP dans votre service cloud sans autorisation écrite (par courrier électronique ou toute autre communication écrite) propriétaire de hello ou leur représentant.
 
-## <a name="why-is-the-certificate-chain-of-my-cloud-service-ssl-certificate-incomplete"></a>Pourquoi la chaîne de certificats du certificat SSL de mon service cloud est-elle incomplète ?
-Nous recommandons aux clients d’installer la chaîne de certificats complète (certificat feuille, certificats intermédiaires et certificat racine) au lieu du seul certificat feuille. Quand vous installez uniquement le certificat feuille, vous faites confiance à Windows pour générer la chaîne de certificats en parcourant la liste CTL. Si Azure ou Windows Update rencontre des problèmes réseau ou DNS intermittents pendant que Windows tente de valider le certificat, celui-ci peut être considéré comme non valide. En installant la chaîne de certificats complète, ce problème peut être évité. L’article du blog intitulé [How to install a chained SSL certificate](https://blogs.msdn.microsoft.com/azuredevsupport/2010/02/24/how-to-install-a-chained-ssl-certificate/) (Comment installer un certificat SSL chaîné) explique comment effectuer cette opération.
+## <a name="why-is-hello-certificate-chain-of-my-cloud-service-ssl-certificate-incomplete"></a>Pourquoi la chaîne de certificats hello de mon certificat SSL du service cloud est incomplète ?
+Nous recommandons aux clients d’installer chaîne de certificats complète hello (certificat de la feuille, les certificats intermédiaires et certificat racine) au lieu de simplement le certificat de feuille hello. Lorsque vous installez uniquement le certificat de feuille hello, vous fier à la chaîne de certificats Windows toobuild hello en parcourant hello CTL. En cas problèmes réseau intermittent ou DNS dans Azure ou de mise à jour Windows lorsque Windows tente de certificat de hello toovalidate, certificat de hello peut être considéré comme non valide. En installant la chaîne de certificats complète hello, ce problème peut être évité. Hello blog à [comment tooinstall un certificat SSL chaîné](https://blogs.msdn.microsoft.com/azuredevsupport/2010/02/24/how-to-install-a-chained-ssl-certificate/) montre comment toodo cela.
 
-## <a name="how-do-i-associate-a-static-ip-address-to-my-cloud-service"></a>Comment associer une adresse IP statique à mon service cloud ?
-Pour configurer une adresse IP statique, vous devez créer une adresse IP réservée. Cette adresse IP réservée peut être associée à un nouveau service cloud ou à un déploiement existant. Pour plus d’informations, consultez les documents suivants :
-* [Comment créer une adresse IP réservée](../virtual-network/virtual-networks-reserved-public-ip.md#manage-reserved-vips)
-* [Réserver l’adresse IP d’un service cloud existant](../virtual-network/virtual-networks-reserved-public-ip.md#reserve-the-ip-address-of-an-existing-cloud-service)
-* [Associer une adresse IP réservée à un nouveau service cloud](../virtual-network/virtual-networks-reserved-public-ip.md#associate-a-reserved-ip-to-a-new-cloud-service)
-* [Associer une adresse IP réservée à un déploiement en cours d’exécution](../virtual-network/virtual-networks-reserved-public-ip.md#associate-a-reserved-ip-to-a-running-deployment)
-* [Associer une adresse IP réservée à un service cloud à l’aide d’un fichier de configuration de service](../virtual-network/virtual-networks-reserved-public-ip.md#associate-a-reserved-ip-to-a-cloud-service-by-using-a-service-configuration-file)
+## <a name="how-do-i-associate-a-static-ip-address-toomy-cloud-service"></a>Comment pour associer un service de cloud des toomy d’adresses IP statique ?
+tooset une adresse IP statique, vous devez toocreate une adresse IP réservée. Cette adresse IP réservée peut être associé tooa nouveau cloud service ou tooan déploiement existant. Hello suivant des documents pour plus d’informations, consultez :
+* [Comment toocreate une adresse IP réservée](../virtual-network/virtual-networks-reserved-public-ip.md#manage-reserved-vips)
+* [Réserver l’adresse IP de hello d’un service cloud existant](../virtual-network/virtual-networks-reserved-public-ip.md#reserve-the-ip-address-of-an-existing-cloud-service)
+* [Associer un réservée IP tooa nouveau service cloud](../virtual-network/virtual-networks-reserved-public-ip.md#associate-a-reserved-ip-to-a-new-cloud-service)
+* [Associer un tooa IP réservée déploiement en cours d’exécution](../virtual-network/virtual-networks-reserved-public-ip.md#associate-a-reserved-ip-to-a-running-deployment)
+* [Associer un service de cloud tooa IP réservé à l’aide d’un fichier de configuration de service](../virtual-network/virtual-networks-reserved-public-ip.md#associate-a-reserved-ip-to-a-cloud-service-by-using-a-service-configuration-file)
 
-## <a name="what-is-the-quota-limit-for-my-cloud-service"></a>Quelle est la limite de quota de mon service cloud ?
+## <a name="what-is-hello-quota-limit-for-my-cloud-service"></a>Quelle est la limite de quota hello pour mon service cloud ?
 Consultez [Limites spécifiques des services](../azure-subscription-service-limits.md#subscription-limits).
 
-## <a name="why-does-the-drive-on-my-cloud-service-vm-show-very-little-free-disk-space"></a>Pourquoi le lecteur de la machine virtuelle de mon service cloud dispose-t-il d’aussi peu d’espace disque ?
-Il s’agit d’un comportement normal qui ne devrait pas causer de problèmes à votre application. La journalisation est activée pour le lecteur % des machines virtuelles Azure PaaS, ce qui dans l’absolu a pour effet de consommer normalement le double d’espace que les fichiers. Cependant, cela ne pose pas de problème, et ce pour plusieurs raisons.
+## <a name="why-does-hello-drive-on-my-cloud-service-vm-show-very-little-free-disk-space"></a>Pourquoi le lecteur hello sur mon ordinateur virtuel de service cloud affiche-t-il très peu d’espace disque libre ?
+Ce comportement est attendu, et il ne doit pas provoquer de n’importe quelle application tooyour de problème. La journalisation est activée pour hello % uproot lecteur dans les machines virtuelles Azure PaaS, qui consomme essentiellement de double hello quantité d’espace qui occupent généralement de fichiers. Cependant, il existe plusieurs choses toobe des essentiellement en faites pas un problème.
 
-La taille du lecteur %approot% est calculée selon la formule <taille du fichier .cspkg + taille maximale du journal > + marge d’espace libre> ou est égale à 1,5 Go, la valeur la plus grande étant retenue. La taille de votre machine virtuelle n’a pas d’incidence sur ce calcul. (La taille de machine virtuelle affecte uniquement la taille du lecteur C: temporaire.) 
+taille du lecteur % % approot Hello est calculée sous la forme < taille de fichier .cspkg + taille maximale de journal > + une marge d’espace libre, ou 1,5 Go, selon ce qui est plus grand. taille de Hello de votre machine virtuelle n’a aucune incidence sur ce calcul. (hello taille de machine virtuelle affecte uniquement taille hello du lecteur C: temporaire de hello). 
 
-L’écriture sur le lecteur %approot% n’est pas prise en charge. Si vous écrivez sur la machine virtuelle Azure, vous devez le faire dans une ressource LocalStorage temporaire (ou une autre option, telle que le Stockage Blob, Azure Files, etc..). Autrement dit, la quantité d’espace libre dans le dossier %approot % n’est pas significative. Pour savoir avec certitude si votre application écrit ou non sur le lecteur %approot%, vous pouvez toujours laisser votre service s’exécuter pendant quelques jours et comparer sa taille avant et après. 
+Il est le lecteur % approot non pris en charge toowrite toohello %. Si vous écrivez toohello machine virtuelle Azure, vous devez le faire dans une ressource LocalStorage temporaire (ou une autre option, tels que le stockage Blob, les fichiers Azure, etc..). Par conséquent, la quantité hello d’espace libre sur le dossier approot hello % n’est pas significative. Si vous n’êtes pas sûr si votre application écrit toohello approot lecteur, vous pouvez toujours laisser votre service s’exécutent pendant quelques jours et ensuite comparer hello « avant » et « après » tailles. 
 
-Azure n’écrit rien sur le lecteur %approot%. Une fois le disque dur virtuel créé à partir de votre fichier .cspkg et monté dans la machine virtuelle Azure, votre application est la seule à pouvoir écrire sur ce lecteur. 
+Azure ne sera pas rien écrire toohello approot lecteur. Une fois hello disque dur virtuel est créé à partir de votre fichier .cspkg et monté dans hello Azure VM, seul hello peut écrire toothis lecteur est votre application. 
 
-Les paramètres de journal n’étant pas configurables, vous ne pouvez pas les désactiver.
+paramètres du journal Hello étant non configurable, vous ne pouvez pas le désactiver.
 
-## <a name="what-are-the-features-and-capabilities-that-azure-basic-ipsids-and-ddos-provides"></a>Quelles fonctionnalités et capacités IPS/ID et DDOS de base trouve-t-on sur Azure ?
-Azure propose des fonctionnalités IPS/IDS sur les serveurs physiques des centres de données pour assurer une protection contre les menaces. Par ailleurs, les clients peuvent déployer des solutions de sécurité tierces, telles que des pare-feu d’applications web, des pare-feu réseau, des logiciels anti-programmes malveillants, des systèmes de détection et de prévention des intrusions (IDS/IPS), etc. Pour plus d’informations, consultez [Protégez vos données et vos biens en respectant les normes internationales de sécurité](https://www.microsoft.com/en-us/trustcenter/Security/AzureSecurity).
+## <a name="what-are-hello-features-and-capabilities-that-azure-basic-ipsids-and-ddos-provides"></a>Quelles sont les fonctions hello et fonctionnalités qui fournit des adresses IP/ID de base Azure et DDOS ?
+Azure a des adresses IP/ID dans toodefend de serveurs physiques de centre de données contre les menaces. Par ailleurs, les clients peuvent déployer des solutions de sécurité tierces, telles que des pare-feu d’applications web, des pare-feu réseau, des logiciels anti-programmes malveillants, des systèmes de détection et de prévention des intrusions (IDS/IPS), etc. Pour plus d’informations, consultez [Protégez vos données et vos biens en respectant les normes internationales de sécurité](https://www.microsoft.com/en-us/trustcenter/Security/AzureSecurity).
 
-Microsoft surveille en continu les serveurs, les réseaux et les applications pour détecter les menaces. L’approche concertée de la gestion des menaces d’Azure utilise également la détection d’intrusion, la prévention des attaques par déni de service distribué (DDoS), le test de pénétration, l’analytique des comportements, la détection d’anomalies et le Machine Learning pour renforcer constamment ses défenses et réduire les risques. Microsoft Antimalware pour Azure protège les services cloud et les machines virtuelles Azure. Vous avez la possibilité de déployer des solutions de sécurité tierces supplémentaires, telles que des pare-feu d’applications web, des pare-feu réseau, des logiciels anti-programmes malveillants, des systèmes de détection et de prévention des intrusions (IDS/IPS), etc.
+Microsoft surveille en permanence les menaces toodetect serveurs, réseaux et applications. L’approche multifronts menace pour la gestion de Azure utilise la détection d’intrusion, distribuée par déni de service (distribué DDoS) attaques prévention des tests d’intrusion, comportementales analytique, la détection d’anomalies et apprentissage tooconstantly renforcer sa protection et réduire les risques. Microsoft Antimalware pour Azure protège les services cloud et les machines virtuelles Azure. Vous avez hello option toodeploy tiers des solutions de sécurité en outre, tels que des murs d’incendie web application, pare-feu de réseau, logiciel anti-programme malveillant, détection et la prévention des intrusions (intrusion) et bien plus encore.
 
-## <a name="why-does-iis-stop-writing-to-the-log-directory"></a>Pourquoi IIS cesse-t-il d’écrire dans le répertoire des journaux ?
-Vous avez épuisé le quota de stockage local réservé à l’écriture dans le répertoire des journaux. Pour corriger ce problème, vous avez trois solutions :
-* Activez les diagnostics pour IIS et déplacez régulièrement les diagnostics sur le Stockage Blob.
-* Supprimez manuellement les fichiers journaux du répertoire de journalisation.
+## <a name="why-does-iis-stop-writing-toohello-log-directory"></a>Pourquoi IIS arrête l’écriture du répertoire du journal toohello ?
+Quota de stockage local hello pour l’écriture du répertoire du journal toohello avoir épuisé. Pour corriger ce problème, vous avez trois solutions :
+* Activer les diagnostics pour IIS et avez hello diagnostics régulièrement déplacées tooblob stockage.
+* Supprimez manuellement les fichiers journaux de hello répertoire de journalisation.
 * Augmentez la limite de quota pour les ressources locales.
 
-Pour plus d’informations, consultez les documents suivants :
+Pour plus d’informations, consultez hello suivant des documents :
 * [Stocker et afficher des données de diagnostic dans le stockage Azure](cloud-services-dotnet-diagnostics-storage.md)
 * [Le service Journaux IIS cesse d’écrire dans le service cloud](https://blogs.msdn.microsoft.com/cie/2013/12/21/iis-logs-stops-writing-in-cloud-service/)
 
-## <a name="what-is-the-purpose-of-the-windows-azure-tools-encryption-certificate-for-extensions"></a>À quoi sert le « certificat de chiffrement Windows Azure Tools pour les extensions » ?
-Ces certificats sont créés automatiquement chaque fois qu’une extension est ajoutée au service cloud. Il s’agit le plus souvent de l’extension WAD ou RDP, mais il peut s’agit d’autres extensions, notamment Antimalware ou Log Collector. Ces certificats sont utilisés uniquement pour chiffrer et déchiffrer la configuration privée de l’extension. Dans la mesure où la date d’expiration n’est jamais vérifiée, l’expiration du certificat ne pose pas de problème. 
+## <a name="what-is-hello-purpose-of-hello-windows-azure-tools-encryption-certificate-for-extensions"></a>À quoi sert hello Hello « Windows Azure Tools chiffrement pour les Extensions de certificat » ?
+Ces certificats sont automatiquement créés chaque fois qu’une extension est ajoutée toohello le service cloud. En règle générale, il s’agit hello extension des diagnostics Windows AZURE ou hello extension du protocole RDP, mais il peut s’agir d’autres personnes, par exemple hello extension anti-programme malveillant ou Log Collector. Ces certificats sont utilisés uniquement pour chiffrer et déchiffrer la configuration privée d’hello pour l’extension de hello. date d’expiration de Hello n’est jamais vérifiée, peu importe si hello certificat a expiré. 
 
-Vous pouvez ignorer ces certificats. Si vous voulez nettoyer les certificats, vous pouvez essayer de tous les supprimer. Azure génère une erreur si vous essayez de supprimer un certificat en cours d’utilisation.
+Vous pouvez ignorer ces certificats. Si vous souhaitez nettoyer les certificats de hello, essayez de supprimer toutes les. Azure génère une erreur si vous essayez de toodelete un certificat qui est en cours d’utilisation.
 
-## <a name="how-can-i-generate-a-certificate-signing-request-csr-without-rdp-ing-in-to-the-instance"></a>Comment générer une demande de signature de certificat sans se connecter à l’instance via le protocole RDP ?
-Consultez le document d’instructions suivant :
+## <a name="how-can-i-generate-a-certificate-signing-request-csr-without-rdp-ing-in-toohello-instance"></a>Comment puis-je générer un certificat de demande (signature) sans « RDP effectue une opération » dans l’instance de toohello ?
+Consultez hello suivant Guide :
 
 >[Obtention d’un certificat pour une utilisation avec Windows Azure Web Sites (WAWS)](https://azure.microsoft.com/blog/obtaining-a-certificate-for-use-with-windows-azure-web-sites-waws/)
 
-Notez qu’une demande de signature de certificat consiste simplement en un fichier texte. Il N’EST PAS nécessaire de le créer à partir de la machine sur laquelle le certificat est finalement utilisé. Même si ce document est écrit pour un service d’application (App Service), la création d’une demande de signature de certificat est générique et s’applique aussi aux services cloud.
+Notez qu’une demande de signature de certificat consiste simplement en un fichier texte. Il n’a pas toobe créé à partir de l’ordinateur de hello où hello certificat sera finalement être utilisé. Bien que ce document est destiné à un Service d’application, hello la création de signature de certificat est générique et s’applique également pour les Services Cloud.

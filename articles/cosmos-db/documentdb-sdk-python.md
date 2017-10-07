@@ -1,6 +1,6 @@
 ---
-title: API, SDK et ressources Python Azure Cosmos DB | Microsoft Docs
-description: "Découvrez l’API et le Kit de développement logiciel (SDK) Python, y compris les dates de publication, les dates de suppression et les modifications apportées entre chaque version du Kit de développement logiciel (SDK) Python Azure Cosmos DB."
+title: "aaaAzure Cosmos DB Python API, Kit de développement logiciel et les ressources | Documents Microsoft"
+description: "Découvrez les hello Python API et Kit de développement logiciel, y compris les dates de publication, les dates de retrait et les modifications apportées entre chaque version du Kit de développement logiciel Azure Cosmos DB Python de hello."
 services: cosmos-db
 documentationcenter: python
 author: rnagpal
@@ -15,11 +15,11 @@ ms.topic: article
 ms.date: 05/24/2017
 ms.author: rnagpal
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 70d2550f713ff0e9daed235eb8053589b8682633
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 1a164b72d2bd819de87df0229357b82e2177af2f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-cosmos-db-python-sdk-release-notes-and-resources"></a>Kit de développement logiciel (SDK) Python Azure Cosmos DB : notes de publication et ressources
 > [!div class="op_single_selector"]
@@ -43,9 +43,9 @@ ms.lasthandoff: 08/18/2017
 
 <tr><td>**Instructions d’installation du Kit de développement logiciel (SDK)**</td><td>[Instructions d’installation du Kit de développement logiciel (SDK) Python](http://azure.github.io/azure-documentdb-python/)</td></tr>
 
-<tr><td>**Contribution au Kit de développement logiciel (SDK)**</td><td>[GitHub](https://github.com/Azure/azure-documentdb-python)</td></tr>
+<tr><td>**Contribuent tooSDK**</td><td>[GitHub](https://github.com/Azure/azure-documentdb-python)</td></tr>
 
-<tr><td>**Prise en main**</td><td>[Bien démarrer avec le Kit de développement logiciel (SDK) Python](documentdb-python-application.md)</td></tr>
+<tr><td>**Prise en main**</td><td>[Prise en main hello Python SDK](documentdb-python-application.md)</td></tr>
 
 <tr><td>**Plateforme actuellement prise en charge**</td><td>[Python 2.7](https://www.python.org/downloads/) et [Python 3.5](https://www.python.org/downloads/)</td></tr>
 </table></br>
@@ -58,13 +58,13 @@ ms.lasthandoff: 08/18/2017
 ### <a name="a-name210210"></a><a name="2.1.0"/>2.1.0
 * Ajout de la prise en charge des requêtes d’agrégation (COUNT, MIN, MAX, SUM et AVG).
 * Ajout d’une option permettant de désactiver la vérification SSL pendant son exécution sur l’émulateur Cosmos DB.
-* Suppression de la restriction du module de demandes dépendantes qui devait correspondre exactement à la version 2.10.0.
-* Débit minimal réduit sur les collections partitionnées de 10 100 unités de demande/s à 2 500 unités de demande/s.
+* Supprimé la restriction hello de demandes dépendantes module toobe 2.10.0 exactement.
+* Réduisez le débit minimal sur les collections partitionnées de 10,100 ur/s too2500 ur/s.
 * Ajout de la prise en charge de l’activation de la journalisation de script pendant l’exécution de la procédure stockée.
-* Version de l’API REST passée à « 2017-01-19 » à l’occasion de cette publication.
+* Version de l’API REST pour agrandir trop ' 2017-01-19 » avec cette version.
 
 ### <a name="a-name201201"></a><a name="2.0.1"/>2.0.1
-* Modifications éditoriales apportées aux commentaires de documentation.
+* Apportées les modifications rédactionnelles toodocumentation commentaires.
 
 ### <a name="a-name200200"></a><a name="2.0.0"/>2.0.0
 * Ajout de la prise en charge de Python 3.5.
@@ -73,33 +73,33 @@ ms.lasthandoff: 08/18/2017
 * Ajout de la prise en charge des requêtes TOP/ORDERBY pour les collections partitionnées.
 
 ### <a name="a-name190190"></a><a name="1.9.0"/>1.9.0
-* Ajout de la prise en charge d’une stratégie de nouvelle tentative pour les requêtes limitées. (Les requêtes limitées reçoivent une exception de taux de requête excessif, code d’erreur 429.) Par défaut, Azure Cosmos DB accepte neuf nouvelles tentatives pour chaque requête lorsque le code d’erreur 429 est renvoyé, conformément à l’heure de retryAfter spécifiée dans l’en-tête de réponse. Il est désormais possible de définir un intervalle fixe de nouvelle tentative dans la propriété RetryOptions sur l’objet ConnectionPolicy, si vous souhaitez ignorer le temps retryAfter retourné par le serveur entre chaque nouvelle tentative. Azure Cosmos DB attend maintenant au maximum 30 secondes pour chaque requête limitée (quel que soit le nombre de nouvelles tentatives) et renvoie la réponse avec un code d’erreur 429. Cette durée peut également être remplacée dans la propriété RetryOptions sur l’objet ConnectionPolicy.
-* Cosmos DB renvoie maintenant x-ms-throttle-retry-count et x-ms-throttle-retry-wait-time-ms comme en-têtes de réponse dans chaque requête pour signaler le nombre limite de nouvelles tentatives et le cumul de temps d’attente observé par la requête entre les nouvelles tentatives.
-* Suppression de la classe RetryPolicy et de la propriété correspondante (retry_policy) exposées sur la classe document_client, et introduction d’une classe RetryOptions qui expose la propriété RetryOptions sur la classe ConnectionPolicy pouvant être utilisée pour substituer certaines des options de nouvelle tentative par défaut.
+* Ajout de la prise en charge d’une stratégie de nouvelle tentative pour les requêtes limitées. (Les requêtes limitées reçoivent une exception de taux de requête excessif, code d’erreur 429.) Par défaut, base de données Azure Cosmos tentatives de neuf pour chaque demande lorsque le code d’erreur 429 est rencontrée, en respectant le temps de retryAfter hello dans l’en-tête de réponse hello. Un intervalle fixe peut désormais être défini en tant que partie de hello RetryOptions propriété sur l’objet de ConnectionPolicy hello si vous souhaitez que tooignore hello retryAfter retourné par serveur entre les tentatives de hello. Base de données Azure Cosmos attend maintenant un maximum de 30 secondes pour chaque demande qui est limitée (quel que soit le nombre de tentatives) et retourne la réponse hello avec le code d’erreur 429. Cette durée peut également être remplacées Bonjour propriété RetryOptions sur ConnectionPolicy objet.
+* COSMOS DB retourne x-ms-limitation de bande passante--nombre de tentatives et x-ms-throttle-retry-wait-time-ms comme en-têtes de réponse hello dans chaque limitation hello toodenote des demandes délai entre deux tentatives nombre et hello cummulative hello demander d’attente entre les tentatives de hello.
+* Classe de RetryPolicy hello supprimé et la propriété correspondante, hello (retry_policy) exposées sur la classe de document_client hello et au lieu de cela introduit une classe RetryOptions exposition propriété RetryOptions hello classe ConnectionPolicy qui peut être utilisé toooverride options des par défaut de hello de nouvelle tentative.
 
 ### <a name="a-name180180"></a><a name="1.8.0"/>1.8.0
-* Ajout de la prise en charge des comptes de base de données de plusieurs régions.
+* Prise en charge de hello ajouté pour les comptes de la base de données de plusieurs régions.
 
 ### <a name="a-name170170"></a><a name="1.7.0"/>1.7.0
-* Ajout de la fonctionnalité de durée de vie (TTL) pour les documents.
+* Hello ajouté prend en charge pour la fonctionnalité tooLive(TTL) de temps pour les documents.
 
 ### <a name="a-name161161"></a><a name="1.6.1"/>1.6.1
-* Résolution des bogues liés au partitionnement côté serveur pour autoriser des caractères spéciaux dans le chemin d’accès à la clé de partition.
+* Correctifs de bogues liés côté tooserver partitionnement tooallow des caractères spéciaux dans le chemin d’accès de partitionkey.
 
 ### <a name="a-name160160"></a><a name="1.6.0"/>1.6.0
 * Implémentation des [collections partitionnées](partition-data.md) et des [niveaux de performances définis par l’utilisateur](performance-levels.md). 
 
 ### <a name="a-name150150"></a><a name="1.5.0"/>1.5.0
-* Ajoutez des programmes de résolution de partitions par hachage et par spécification de plages de valeurs pour vous aider lors du partitionnement des applications sur plusieurs partitions.
+* Ajouter & age de hachage tooassist de programmes de résolution de partition avec des applications de partitionnement sur plusieurs partitions.
 
 ### <a name="a-name142142"></a><a name="1.4.2"/>1.4.2
-* Implémentation de l’opération Upsert. Nouvelles méthodes UpsertXXX ajoutées pour prendre en charge la fonctionnalité Upsert.
+* Implémentation de l’opération Upsert. Nouvelles méthodes UpsertXXX a ajouté une fonctionnalité de Upsert toosupport.
 * Implémenter l'ID en fonction du routage. Aucune modification d'API publique, toutes les modifications en interne.
 
 ### <a name="a-name120120"></a><a name="1.2.0"/>1.2.0
 * Prise en charge de l'index géospatial.
 * Validation de la propriété ID pour toutes les ressources. Les ID des ressources ne peuvent pas contenir les caractères ?, /, #, \, ou se terminer par un espace.
-* Ajoute le nouvel en-tête « progression de la transformation de l'index » à ResourceResponse.
+* Ajoute un nouveau tooResourceResponse de « cours de transformation d’index » en-tête.
 
 ### <a name="a-name110110"></a><a name="1.1.0"/>1.1.0
 * Implémente la stratégie d’indexation V2.
@@ -111,14 +111,14 @@ ms.lasthandoff: 08/18/2017
 * Kit de développement logiciel (SDK) GA
 
 ## <a name="release--retirement-dates"></a>Dates de lancement et de suppression
-Microsoft fournira une notification au moins **12 mois** avant le retrait d’un Kit de développement logiciel (SDK) pour faciliter la transition vers une version plus récente/prise en charge.
+Microsoft enverra une notification au moins **12 mois** avant la mise hors service d’un kit de développement dans la version plus récente/prise en charge ordre toosmooth hello transition tooa.
 
-Les nouvelles fonctionnalités et fonctions, et les optimisations sont uniquement ajoutées au Kit de développement logiciel (SDK) actuel. Par conséquent, il est recommandé de toujours passer à la dernière version du Kit de développement logiciel (SDK) dès que possible. 
+Nouvelles fonctionnalités et les fonctionnalités et les optimisations sont ajoutées uniquement toohello actuel kit de développement logiciel, par conséquent il est recommandé que vous toohello mise à niveau toujours la dernière SDK version dès que possible. 
 
-Le service rejette toute requête envoyée à Cosmos DB à l’aide d’un Kit de développement logiciel (SDK) supprimé.
+N’importe quel tooCosmos demande à l’aide d’un kit de développement logiciel mis hors service de base de données seront rejetées par le service de hello.
 
 > [!WARNING]
-> Toutes les versions du Kit de développement logiciel (SDK) Azure DocumentDB pour Python antérieures à la version **1.0.0** seront supprimées le **29 février 2016**. 
+> Toutes les versions de hello Kit de développement logiciel Azure DocumentDB pour tooversion préalable de Python **1.0.0** sera retiré le **29 février 2016**. 
 > 
 > 
 
@@ -152,5 +152,5 @@ Le service rejette toute requête envoyée à Cosmos DB à l’aide d’un Kit d
 [!INCLUDE [cosmos-db-sdk-faq](../../includes/cosmos-db-sdk-faq.md)]
 
 ## <a name="see-also"></a>Voir aussi
-Pour en savoir plus sur Cosmos DB, consultez la page du service [Microsoft Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/). 
+toolearn savoir plus sur Cosmos DB, consultez [base de données Microsoft Azure Cosmos](https://azure.microsoft.com/services/cosmos-db/) page du service. 
 

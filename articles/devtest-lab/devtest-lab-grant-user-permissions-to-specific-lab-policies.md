@@ -1,6 +1,6 @@
 ---
-title: "Accorder des autorisations à des utilisateurs sur des stratégies de laboratoire spécifiques | Microsoft Docs"
-description: "Découvrez comment accorder des autorisations aux utilisateurs sur des stratégies de laboratoire spécifique dans DevTest Labs selon les besoins de chaque utilisateur"
+title: "stratégies de laboratoire aaaGrant utilisateur autorisations toospecific | Documents Microsoft"
+description: "Découvrez comment les stratégies toogrant utilisateur autorisations toospecific lab dans DevTest Labs en fonction des besoins de chaque utilisateur"
 services: devtest-lab,virtual-machines,visual-studio-online
 documentationcenter: na
 author: tomarcher
@@ -14,37 +14,37 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/25/2016
 ms.author: tarcher
-ms.openlocfilehash: 0bd9f83257834d9681479ba9117c48ffd6d6e166
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 35647ab837243188f06566cdf365b67fe33a3865
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="grant-user-permissions-to-specific-lab-policies"></a>Accorder des autorisations à des utilisateurs sur des stratégies de laboratoire spécifiques
+# <a name="grant-user-permissions-toospecific-lab-policies"></a>Accorder des autorisations utilisateur toospecific des stratégies de laboratoire
 ## <a name="overview"></a>Vue d'ensemble
-Cet article explique comment utiliser PowerShell pour accorder à des utilisateurs des autorisations sur une stratégie de laboratoire particulière. De cette façon, les autorisations peuvent être appliquées selon les besoins de chaque utilisateur. Par exemple, vous pouvez accorder à un utilisateur la possibilité de modifier les paramètres de stratégie d’une machine virtuelle, mais pas les stratégies de coût.
+Cet article explique comment toouse stratégie de PowerShell toogrant utilisateurs autorisations tooa lab particulier. De cette façon, les autorisations peuvent être appliquées selon les besoins de chaque utilisateur. Par exemple, vous pourriez toogrant un paramètre de stratégie utilisateur particulier hello hello capacité toochange machine virtuelle, mais pas hello coût des stratégies.
 
 ## <a name="policies-as-resources"></a>Stratégies en tant que ressources
-Comme expliqué dans l’article [Contrôle d’accès en fonction du rôle Azure](../active-directory/role-based-access-control-configure.md) , RBAC permet une gestion précise de l’accès aux ressources pour Azure. Avec le contrôle d’accès en fonction du rôle, vous pouvez séparer les tâches au sein de votre équipe chargée des opérations de développement et accorder aux utilisateurs uniquement les accès nécessaires pour accomplir leur travail.
+Comme indiqué dans hello [Azure Role-based Access Control](../active-directory/role-based-access-control-configure.md) article, RBAC permet la gestion accès affiné des ressources Azure. À l’aide de RBAC, vous pouvez séparer les droits au sein de votre équipe DevOps et accorder uniquement hello quantité toousers d’accès dont ils ont besoin tooperform leur travail.
 
-Dans DevTest Labs, une stratégie est un type de ressource qui active l’action RBAC **Microsoft.DevTestLab/labs/policySets/policies/**. Chaque stratégie de laboratoire est une ressource de type stratégie et peut être affectée comme étendue à un rôle RBAC.
+Dans DevTest Labs, une stratégie est un type de ressource qui permet l’action de RBAC hello **Microsoft.DevTestLab/labs/policySets/policies/**. Chaque stratégie lab est une ressource de type de ressource de stratégie de hello et peut être affecté comme un rôle RBAC tooan étendue.
 
-Par exemple, pour accorder l’autorisation de lecture/écriture aux utilisateurs la **autorisé des tailles de machine virtuelle** stratégie, vous devez créer un rôle personnalisé qui fonctionne avec les **Microsoft.DevTestLab/labs/policySets/policies/*** action et ensuite affecter les utilisateurs appropriés à ce rôle personnalisé dans l’étendue de **Microsoft.DevTestLab/labs/policySets/policies/AllowedVmSizesInLab**.
+Par exemple, dans l’ordre toogrant les utilisateurs en lecture/écriture autorisation toohello **autorisé des tailles de machine virtuelle** stratégie, vous devez créer un rôle personnalisé qui fonctionne avec hello **Microsoft.DevTestLab/labs/policySets/policies/** * action et puis affecter hello utilisateurs appropriés toothis personnalisé rôle dans la portée de hello de **Microsoft.DevTestLab/labs/policySets/policies/AllowedVmSizesInLab**.
 
-Pour en savoir plus sur les rôles personnalisés dans RBAC, consultez [Contrôle d’accès des rôles personnalisés](../active-directory/role-based-access-control-custom-roles.md).
+toolearn savoir plus sur les rôles personnalisés dans RBAC, consultez hello [rôles de personnaliser le contrôle d’accès](../active-directory/role-based-access-control-custom-roles.md).
 
 ## <a name="creating-a-lab-custom-role-using-powershell"></a>Création d’un rôle personnalisé de laboratoire en utilisant PowerShell
-Pour commencer, vous devez lire l’article suivant, qui explique comment installer et configurer les applets de commande Azure PowerShell : [https://azure.microsoft.com/blog/azps-1-0-pre](https://azure.microsoft.com/blog/azps-1-0-pre).
+Tooget commande a démarré, vous devez hello tooread suivant l’article, qui explique comment tooinstall et configurer les applets de commande PowerShell Azure hello : [https://azure.microsoft.com/blog/azps-1-0-pre](https://azure.microsoft.com/blog/azps-1-0-pre).
 
-Une fois que vous avez configuré les applets de commande Azure PowerShell, vous pouvez effectuer les tâches suivantes :
+Une fois que vous avez configuré hello applets de commande PowerShell de Azure, vous pouvez effectuer hello tâches suivantes :
 
-* Répertorier toutes les opérations/actions d’un fournisseur de ressources
+* Liste de toutes les opérations de hello/actions pour un fournisseur de ressources
 * Répertorier les actions d’un rôle particulier :
 * Créer un rôle personnalisé
 
-Le script PowerShell suivant montre des exemples permettant d’effectuer ces tâches :
+Hello PowerShell script suivant illustre des exemples de tooperform ces tâches :
 
-    ‘List all the operations/actions for a resource provider.
+    ‘List all hello operations/actions for a resource provider.
     Get-AzureRmProviderOperation -OperationSearchString "Microsoft.DevTestLab/*"
 
     ‘List actions in a particular role.
@@ -60,10 +60,10 @@ Le script PowerShell suivant montre des exemples permettant d’effectuer ces t�
     $policyRoleDef.Actions.Add("Microsoft.DevTestLab/labs/policySets/policies/*")
     $policyRoleDef = (New-AzureRmRoleDefinition -Role $policyRoleDef)
 
-## <a name="assigning-permissions-to-a-user-for-a-specific-policy-using-custom-roles"></a>Attribution d'autorisations à un utilisateur pour une stratégie spécifique à l'aide de rôles personnalisés
-Une fois que vous avez défini vos rôles personnalisés, vous pouvez les attribuer aux utilisateurs. Pour affecter un rôle personnalisé à un utilisateur, vous devez d’abord obtenir **l’ObjectId** représentant cet utilisateur. Pour cela, utilisez l’applet de commande **Get-AzureRmADUser** .
+## <a name="assigning-permissions-tooa-user-for-a-specific-policy-using-custom-roles"></a>Affectation d’autorisations tooa utilisateur pour une stratégie spécifique à l’aide de rôles personnalisés
+Une fois que vous avez défini vos rôles personnalisés, vous pouvez les affecter toousers. Dans l’ordre tooassign un utilisateur tooa de rôle personnalisé, vous devez d’abord obtenir hello **ObjectId** représentant cet utilisateur. toodo qui, utilisez hello **Get-AzureRmADUser** applet de commande.
 
-Dans l’exemple suivant, **l’ObjectId** de l’utilisateur *SomeUser* est 05DEFF7B-0AC3-4ABF-B74D-6A72CD5BF3F3.
+Dans l’exemple suivant de hello, hello **ObjectId** Hello *SomeUser* utilisateur est 05DEFF7B-0AC3-4ABF-B74D-6A72CD5BF3F3.
 
     PS C:\>Get-AzureRmADUser -SearchString "SomeUser"
 
@@ -71,11 +71,11 @@ Dans l’exemple suivant, **l’ObjectId** de l’utilisateur *SomeUser* est 05D
     -----------                    ----                           --------
     someuser@hotmail.com                                          05DEFF7B-0AC3-4ABF-B74D-6A72CD5BF3F3
 
-Une fois que vous disposez de **l’ObjectId** de l’utilisateur et d’un nom de rôle personnalisé, vous pouvez affecter ce rôle à l’utilisateur avec l’applet de commande **New-AzureRmRoleAssignment** :
+Une fois que vous avez hello **ObjectId** pour l’utilisateur de hello et un nom de rôle personnalisé, vous pouvez l’affecter rôle toohello avec hello **New-AzureRmRoleAssignment** applet de commande :
 
     PS C:\>New-AzureRmRoleAssignment -ObjectId 05DEFF7B-0AC3-4ABF-B74D-6A72CD5BF3F3 -RoleDefinitionName "Policy Contributor" -Scope /subscriptions/<SubscriptionID>/resourceGroups/<ResourceGroupName>/providers/Microsoft.DevTestLab/labs/<LabName>/policySets/policies/AllowedVmSizesInLab
 
-Dans l’exemple précédent, la stratégie **AllowedVmSizesInLab** est utilisée. Vous pouvez utiliser une des stratégies suivantes :
+Dans l’exemple précédent de hello, hello **AllowedVmSizesInLab** stratégie est utilisée. Vous pouvez utiliser un des hello les stratégies suivantes :
 
 * MaxVmsAllowedPerUser
 * MaxVmsAllowedPerLab
@@ -85,11 +85,11 @@ Dans l’exemple précédent, la stratégie **AllowedVmSizesInLab** est utilisé
 [!INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
 
 ## <a name="next-steps"></a>Étapes suivantes
-Après avoir accordé aux utilisateurs des autorisations sur des stratégies de laboratoire spécifiques, voici des étapes à prendre en compte :
+Une fois vous avez accordé des stratégies de laboratoire autorisations toospecific utilisateur, Voici certains tooconsider étapes suivant :
 
-* [Sécuriser l’accès à un laboratoire](devtest-lab-add-devtest-user.md).
+* [Laboratoire tooa de sécuriser l’accès](devtest-lab-add-devtest-user.md).
 * [Définir des stratégies de laboratoire](devtest-lab-set-lab-policy.md).
 * [Créer un modèle de laboratoire](devtest-lab-create-template.md).
 * [Créer des artefacts personnalisés pour vos machines virtuelles](devtest-lab-artifact-author.md).
-* [Ajouter une machine virtuelle avec des artefacts à un laboratoire](devtest-lab-add-vm-with-artifacts.md).
+* [Ajouter une machine virtuelle avec lab de tooa artefacts](devtest-lab-add-vm-with-artifacts.md).
 

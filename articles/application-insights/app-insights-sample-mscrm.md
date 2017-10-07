@@ -1,5 +1,5 @@
 ---
-title: Microsoft Dynamics CRM et Azure Application Insights | Microsoft Docs
+title: aaaMicrosoft Dynamics CRM et Azure Application Insights | Documents Microsoft
 description: "Obtenez des données de télémétrie à partir de Microsoft Dynamics CRM Online à l’aide d’Application Insights. Procédure pas à pas de configuration, obtention de données, visualisation et exportation."
 services: application-insights
 documentationcenter: 
@@ -13,80 +13,80 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/16/2017
 ms.author: bwren
-ms.openlocfilehash: a9593d5f198e05db80451a599428a296ed02e781
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: a39398060d6553fb18a26c101f085b7d87443636
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="walkthrough-enabling-telemetry-for-microsoft-dynamics-crm-online-using-application-insights"></a>Procédure pas à pas : activation de télémétrie pour Microsoft Dynamics CRM Online à l’aide d’Application Insights
-Cet article décrit comment obtenir des données de télémétrie à partir de [Microsoft Dynamics CRM Online](https://www.dynamics.com/) à l’aide [d’Azure Application Insights](https://azure.microsoft.com/services/application-insights/). Nous explorerons le processus complet d’ajout de script Application Insights à votre application, de capture de données et de visualisation des données.
+Cet article vous montre comment les données de télémétrie tooget de [Microsoft Dynamics CRM Online](https://www.dynamics.com/) à l’aide de [Azure Application Insights](https://azure.microsoft.com/services/application-insights/). Nous examinerons hello ensemble du processus de l’ajout d’Application Insights script tooyour application, la capture des données et visualisation des données.
 
 > [!NOTE]
-> [Parcourez l’exemple de solution](https://dynamicsandappinsights.codeplex.com/).
+> [Parcourir l’exemple de solution hello](https://dynamicsandappinsights.codeplex.com/).
 > 
 > 
 
-## <a name="add-application-insights-to-new-or-existing-crm-online-instance"></a>Ajouter Application Insights à une instance de CRM Online nouvelle ou existante
-Pour analyser votre application, vous devez y ajouter un Kit de développement logiciel (SDK) Application Insights. Le kit de développement logiciel (SDK) envoie les données de télémétrie au [portail Application Insights](https://portal.azure.com), où vous pouvez utiliser nos puissants outils de diagnostic et d’analyse ou exporter les données vers un emplacement de stockage.
+## <a name="add-application-insights-toonew-or-existing-crm-online-instance"></a>Ajouter Application Insights toonew ou l’instance existante de CRM Online
+toomonitor votre application, vous ajoutez une application de tooyour Application Insights SDK. Hello SDK envoie télémétrie toohello [portail Application Insights](https://portal.azure.com), où vous pouvez utiliser nos puissantes analyses et les outils de diagnostic, ou exporter hello données toostorage.
 
 ### <a name="create-an-application-insights-resource-in-azure"></a>Créer une ressource Application Insights dans Azure
 1. Obtenez un [compte dans Microsoft Azure](http://azure.com/pricing). 
-2. Connectez-vous au [portail Azure](https://portal.azure.com) et ajoutez une nouvelle ressource Application Insights. C’est là où vos données seront traitées et affichées.
+2. L’authentification à hello [portail Azure](https://portal.azure.com) et ajouter une nouvelle ressource Application Insights. C’est là où vos données seront traitées et affichées.
    
     ![Cliquez sur +, Services de développement, Application Insights.](./media/app-insights-sample-mscrm/01.png)
    
-    Choisissez le type d'application ASP.NET.
-3. Ouvrez la page Mise en route et ouvrez « Analyse et diagnostic côté client ».
+    Choisissez ASP.NET en tant que type de l’application hello.
+3. Ouvrez la page de prise en main de hello « analyse et de diagnostiquer côté client ».
    
     ![Extrait de code pour l’insertion dans votre page web](./media/app-insights-sample-mscrm/03.png)
 
-**Laissez la page de code ouverte** pendant que vous effectuez l’étape suivante dans une autre fenêtre de navigateur. Vous aurez bientôt besoin du code. 
+**Maintenir la page de codes hello** pendant que vous hello étape suivante dans une autre fenêtre de navigateur. Vous devez les code hello bientôt. 
 
 ### <a name="create-a-javascript-web-resource-in-microsoft-dynamics-crm"></a>Créer une ressource web JavaScript dans Microsoft Dynamics CRM
 1. Ouvrez votre instance de CRM Online et connectez-vous avec des privilèges d’administrateur.
-2. Ouvrez les paramètres Microsoft Dynamics CRM, Personnalisations, Personnaliser le système
+2. Ouvrez Microsoft Dynamics CRM paramètres, des personnalisations, personnaliser hello système
    
     ![Paramètres Microsoft Dynamics CRM](./media/app-insights-sample-mscrm/04.png)
    
     ![Paramètres > Personnalisations](./media/app-insights-sample-mscrm/05.png)
 
-    ![Personnalisez l’option de système](./media/app-insights-sample-mscrm/06.png)
+    ![Personnaliser l’option de système de hello](./media/app-insights-sample-mscrm/06.png)
 
 1. Créez une ressource JavaScript.
    
     ![Nouvelle boîte de dialogue ressource web](./media/app-insights-sample-mscrm/07.png)
    
-    Donnez-lui un nom, sélectionnez **Script (JScript)** et ouvrez l’éditeur de texte.
+    Donnez-lui un nom, sélectionnez **Script (JScript)** et éditeur de texte hello ouvert.
    
-    ![Ouvrez l’éditeur de texte](./media/app-insights-sample-mscrm/08.png)
-2. Copiez le code à partir d’Application Insights. Lors de la copie, veillez à ignorer les balises de script. Reportez-vous à la capture d’écran ci-dessous :
+    ![Éditeur de texte hello ouvert](./media/app-insights-sample-mscrm/08.png)
+2. Copiez le code de hello d’Application Insights. Lors de la copie que les balises de script que tooignore. Reportez-vous à la capture d’écran ci-dessous :
    
     ![Définissez votre clé d’instrumentation](./media/app-insights-sample-mscrm/09.png)
    
-    Le code contient la clé d’instrumentation qui identifie votre ressource Application Insights.
+    code de Hello inclut la clé d’instrumentation hello qui identifie votre ressource Application insights.
 3. Enregistrez et publiez.
    
     ![Enregistrez et publiez](./media/app-insights-sample-mscrm/10.png)
 
 ### <a name="instrument-forms"></a>Instrumenter les formulaires
-1. Dans Microsoft CRM Online, ouvrez le formulaire Compte.
+1. Dans Microsoft CRM Online, ouvrez le formulaire de compte hello
    
     ![Formulaire de compte](./media/app-insights-sample-mscrm/11.png)
-2. Ouvrez les propriétés de formulaire.
+2. Ouvrez l’écran hello propriétés
    
     ![Propriétés de formulaire](./media/app-insights-sample-mscrm/12.png)
-3. Ajoutez la ressource web JavaScript que vous avez créée.
+3. Ajouter hello ressource web JavaScript que vous avez créé
    
     ![Ajoutez un menu](./media/app-insights-sample-mscrm/13.png)
    
-    ![Ajoutez la ressource web](./media/app-insights-sample-mscrm/14.png)
+    ![Ajouter une ressource web de hello](./media/app-insights-sample-mscrm/14.png)
 4. Enregistrez et publiez vos personnalisations de formulaire.
 
 ## <a name="metrics-captured"></a>Mesures capturées
-Vous avez maintenant configuré la capture de télémétrie pour le formulaire. Chaque fois qu’il sera utilisé, des données seront envoyées à votre ressource Application Insights.
+Vous avez maintenant configuré la capture de données de télémétrie pour écran de hello. Chaque fois qu’il est utilisé, les données sont envoyées ressource d’Application Insights tooyour.
 
-Voici des exemples de données qui seront affichées.
+Voici les exemples de données hello qui s’affiche.
 
 #### <a name="application-health"></a>Intégrité d’application
 ![Exemple de temps de chargement de la page](./media/app-insights-sample-mscrm/15.png)
@@ -97,7 +97,7 @@ Exceptions du navigateur :
 
 ![Graphique des exceptions du navigateur](./media/app-insights-sample-mscrm/17.png)
 
-Cliquez sur le graphique pour obtenir plus de détails :
+Cliquez sur hello graphique tooget plus en détail :
 
 ![Liste des exceptions](./media/app-insights-sample-mscrm/18.png)
 
@@ -130,13 +130,13 @@ Cliquez sur le graphique pour obtenir plus de détails :
 ![Pages par session](./media/app-insights-sample-mscrm/30.png)
 
 ## <a name="sample-code"></a>Exemple de code
-[Parcourez l'exemple de code](https://dynamicsandappinsights.codeplex.com/).
+[Parcourir le code d’exemple hello](https://dynamicsandappinsights.codeplex.com/).
 
 ## <a name="power-bi"></a>Power BI
-Vous pouvez effectuer une analyse encore plus approfondie si vous [exportez les données vers Microsoft Power BI](app-insights-export-power-bi.md).
+Vous pouvez faire de même effectuer une analyse si vous [exporter les données de hello tooMicrosoft Power BI](app-insights-export-power-bi.md).
 
 ## <a name="sample-microsoft-dynamics-crm-solution"></a>Exemple de solution Microsoft Dynamics CRM
-[Voici l’exemple de solution implémenté dans Microsoft Dynamics CRM](https://dynamicsandappinsights.codeplex.com/).
+[Voici les solutions d’exemple hello implémentée dans Microsoft Dynamics CRM](https://dynamicsandappinsights.codeplex.com/).
 
 ## <a name="learn-more"></a>En savoir plus
 * [Présentation d’Application Insights](app-insights-overview.md)

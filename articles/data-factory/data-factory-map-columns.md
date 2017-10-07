@@ -1,6 +1,6 @@
 ---
-title: "Mappage de colonnes de jeux de données dans Azure Data Factory | Microsoft Docs"
-description: "Découvrez comment mapper des colonnes source sur des colonnes de destination."
+title: "colonnes de jeu de données aaaMapping dans Azure Data Factory | Documents Microsoft"
+description: "Découvrez comment toomap source colonnes toodestination colonnes."
 services: data-factory
 documentationcenter: 
 author: linda33wj
@@ -13,31 +13,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/20/2017
 ms.author: jingwang
-ms.openlocfilehash: a50661b377cfbbff3f1f762342cb275d5da82cea
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8f78d4af675bec0a70e5f6e83ec1ffb511408b5a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="map-source-dataset-columns-to-destination-dataset-columns"></a>Mapper des colonnes d’un jeu de données source sur des colonnes d’un jeu de données de destination
-Le mappage de colonnes peut être utilisé pour spécifier la façon dont les colonnes spécifiées dans la « structure » de la table source sont mappées vers les colonnes spécifiées dans la « structure » de la table du récepteur. La propriété **columnMapping** est disponible dans la section **typeProperties** de l’activité de copie.
+# <a name="map-source-dataset-columns-toodestination-dataset-columns"></a>Mapper les colonnes de jeu de données source dataset colonnes toodestination
+Mappage de colonnes peut être utilisé toospecify comment les colonnes spécifiées dans hello « structure » de toocolumns de mappage de table source spécifiés dans « structure hello » de la table du récepteur. Hello **columnMapping** propriété n’est disponible dans hello **typeProperties** section Hello activité de copie.
 
-Le mappage de colonnes prend en charge les scénarios suivants :
+Mappage de colonnes prend en charge hello les scénarios suivants :
 
-* Toutes les colonnes de la structure du jeu de données source sont mappées sur toutes les colonnes de la structure du jeu de données récepteur.
-* Un sous-ensemble des colonnes de la structure du jeu de données source est mappé sur toutes les colonnes de la structure du jeu de données récepteur.
+* Toutes les colonnes de structure de jeu de données source hello sont mappés tooall des colonnes dans la structure de jeu de données récepteur hello.
+* Un sous-ensemble de colonnes hello dans la structure de jeu de données source hello est tooall mappé pour les colonnes de structure de jeu de données récepteur hello.
 
-Voici une liste de conditions d’erreur qui entraînent la levée d’une exception :
+Hello Voici les conditions d’erreur qui provoque une exception :
 
-* La « structure » de la table du récepteur contient un nombre de colonnes inférieur ou supérieur à celui spécifié par le mappage de colonnes.
+* Moins de colonnes ou plus de colonnes dans hello « structure » de la table du récepteur que spécifié dans le mappage de hello.
 * Mappage en double.
-* Le résultat de la requête SQL ne comprend pas de nom de colonne qui soit spécifié dans le mappage.
+* Résultat de la requête SQL n’a pas un nom de colonne qui est spécifié dans le mappage de hello.
 
 > [!NOTE]
-> Les exemples suivants concernent SQL Azure et les objets blob Azure, mais sont applicables à tout magasin de données prenant en charge les jeux de données rectangulaires. Ajustez les définitions du jeu de données et du service lié dans les exemples de sorte qu’elles pointent vers les données de la source de données appropriée.
+> Hello exemples suivants sont pour SQL Azure et les objets Blob Azure, mais banque de données applicable tooany qui prend en charge les jeux de données rectangulaire. Ajustez le jeu de données et les définitions de service lié dans toodata de toopoint d’exemples dans la source de données correspondante hello.
 
-## <a name="sample-1--column-mapping-from-azure-sql-to-azure-blob"></a>Exemple 1 : mappage de colonnes depuis SQL Azure vers un objet blob Azure
-Dans cet exemple, la table d’entrée possède une structure et pointe vers une table SQL comprise dans une base de données SQL Azure.
+## <a name="sample-1--column-mapping-from-azure-sql-tooazure-blob"></a>Exemple 1 : colonne de mappage à partir de l’objet blob de tooAzure SQL Azure
+Dans cet exemple, table d’entrée de hello possède une structure et qu’elle pointe tooa SQL table dans une base de données SQL Azure.
 
 ```json
 {
@@ -70,7 +70,7 @@ Dans cet exemple, la table d’entrée possède une structure et pointe vers une
 }
 ```
 
-Dans cet exemple, la table de sortie possède une structure et pointe vers un objet blob compris dans un stockage d’objets blob Azure.
+Dans cet exemple, table de sortie hello possède une structure et qu’elle pointe tooa blob dans un stockage d’objets blob Azure.
 
 ```json
 {
@@ -103,7 +103,7 @@ Dans cet exemple, la table de sortie possède une structure et pointe vers un ob
 }
 ```
 
-Le JSON suivant définit une activité de copie dans un pipeline. Les colonnes de la source sont mappées sur les colonnes du récepteur (**columnMappings**) à l’aide de la propriété **Translator**.
+Hello suivant JSON définit une activité de copie dans un pipeline. colonnes de Hello à partir de la source mappées toocolumns dans le récepteur (**columnMappings**) à l’aide de hello **traducteur** propriété.
 
 ```json
 {
@@ -137,8 +137,8 @@ Le JSON suivant définit une activité de copie dans un pipeline. Les colonnes d
 
 ![Flux du mappage de colonnes](./media/data-factory-map-columns/column-mapping-flow.png)
 
-## <a name="sample-2--column-mapping-with-sql-query-from-azure-sql-to-azure-blob"></a>Exemple 2 : mappage de colonnes à l’aide d’une requête SQL depuis SQL Azure vers un objet blob Azure
-Dans cet exemple, une requête SQL est utilisée pour extraire des données de SQL Azure au lieu de simplement spécifier le nom de la table et le nom des colonnes dans la section « structure ». 
+## <a name="sample-2--column-mapping-with-sql-query-from-azure-sql-tooazure-blob"></a>Exemple 2 : requête SQL à partir de l’objet blob de Azure SQL tooAzure de mappage de colonne
+Dans cet exemple, une requête SQL est utilisé tooextract des données à partir de SQL Azure au lieu de simplement spécifier nom de la table hello et noms de colonne hello dans la section « structure ». 
 
 ```json
 {
@@ -170,13 +170,13 @@ Dans cet exemple, une requête SQL est utilisée pour extraire des données de 
         }
 }
 ```
-Dans ce cas, les résultats de la requête sont d’abord mappés vers les colonnes spécifiées dans la « structure » de la source. Ensuite, les colonnes de la « structure » de la source sont mappées vers les colonnes de la « structure » du récepteur avec les règles spécifiées dans columnMappings.  Supposons que la requête retourne cinq colonnes, c’est-à-dire deux colonnes de plus que celles spécifiées dans la « structure » de la source.
+Dans ce cas, les résultats de requête hello sont premier toocolumns mappé spécifié dans « structure » de la source. Ensuite, les colonnes de hello à partir de la source « structure » sont mappés toocolumns de récepteur « structure » avec les règles spécifiées dans columnMappings.  Supposons que la requête de hello retourne 5 colonnes, les deux plus de colonnes que celles spécifiées dans hello « structure » de la source.
 
 **Flux du mappage de colonnes**
 
 ![Flux du mappage de colonnes 2](./media/data-factory-map-columns/column-mapping-flow-2.png)
 
 ## <a name="next-steps"></a>Étapes suivantes
-Suivez le didacticiel sur l’activité de copie dans l’article suivant : 
+Consultez l’article de hello pour obtenir un didacticiel sur l’utilisation de l’activité de copie : 
 
-- [Copie de données à partir du Stockage Blob vers une base de données SQL](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)
+- [Copier les données de stockage d’objets Blob tooSQL de base de données](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)

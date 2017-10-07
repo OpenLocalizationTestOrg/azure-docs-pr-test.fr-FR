@@ -1,6 +1,6 @@
 ---
-title: "Package et modèle Cloud Service dans Azure | Microsoft Docs"
-description: "Décrit le modèle de service cloud (.csdef, .cscfg) et le package (.cspkg) dans Azure."
+title: "aaaWhat est un modèle de Service Cloud et un package | Documents Microsoft"
+description: "Décrit le modèle de service cloud hello (.csdef, .cscfg) et de package (.cspkg) dans Azure"
 services: cloud-services
 documentationcenter: 
 author: Thraka
@@ -14,21 +14,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/05/2017
 ms.author: adegeo
-ms.openlocfilehash: 21fbdbc4c24440c6fbbd7487cfbb2e0a3140aa96
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 5280cdca4810859b6afdbbe1359fc2fabe871894
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="what-is-the-cloud-service-model-and-how-do-i-package-it"></a>Qu’est-ce que le modèle Cloud Service, et comment en créer un package ?
-Un service cloud est créé à partir de trois composants : la définition de service *(.csdef)*, la configuration de service*(.cscfg)* et un package de service *(.cspkg)*. Les deux fichiers XML **ServiceDefinition.csdef** et **ServiceConfig.cscfg** décrivent la structure du service cloud et sa configuration, qui désignent collectivement le modèle. Le fichier ZIP **ServicePackage.cspkg** est généré à partir du fichier **ServiceDefinition.csdef** et il contient, entre autres, toutes les dépendances binaires requises. Azure crée un service cloud à partir des fichiers **ServicePackage.cspkg** et **ServiceConfig.cscfg**.
+# <a name="what-is-hello-cloud-service-model-and-how-do-i-package-it"></a>Nouveautés du modèle de Service de cloud computing hello et comment il package ?
+Un service cloud est créé à partir de trois composants, définition de service hello *(.csdef)*, la configuration de service de hello *(.cscfg)*et un package de service *(.cspkg)*. Les deux hello **ServiceDefinition.csdef** et **ServiceConfig.cscfg** fichiers basé sur XML et décrivent structure hello du service de cloud computing hello et la façon dont il est configuré ; collectivement appelé modèle de hello. Hello **ServicePackage.cspkg** est un fichier zip qui est généré à partir de hello **ServiceDefinition.csdef** et entre autres choses, contient toutes les dépendances de fichier binaire hello requis. Azure crée un service cloud à partir de ces deux hello **ServicePackage.cspkg** et hello **ServiceConfig.cscfg**.
 
-Une fois que le service cloud s’exécute dans Azure, vous pouvez le reconfigurer via le fichier **ServiceConfig.cscfg** , mais vous ne pouvez pas en modifier la définition.
+Une fois que le service de cloud computing hello s’exécute dans Azure, vous pouvez le reconfigurer via hello **ServiceConfig.cscfg** fichier, mais vous ne pouvez pas modifier la définition de hello.
 
-## <a name="what-would-you-like-to-know-more-about"></a>Quels sont les sujets sur lesquels vous souhaitez avoir des informations supplémentaires ?
-* Je souhaite en savoir plus sur les fichiers [ServiceDefinition.csdef](#csdef) et [ServiceConfig.cscfg](#cscfg).
+## <a name="what-would-you-like-tooknow-more-about"></a>Sur quel contenu souhaitez-vous tooknow plus ?
+* Je veux tooknow plus hello [ServiceDefinition.csdef](#csdef) et [ServiceConfig.cscfg](#cscfg) fichiers.
 * Je connais déjà cela, mais donnez-moi [quelques exemples](#next-steps) de configuration.
-* Je souhaite créer le fichier [ServicePackage.cspkg](#cspkg).
+* Je veux toocreate hello [ServicePackage.cspkg](#cspkg).
 * J’utilise Visual Studio et souhaite...
   * [Création d'un service cloud][vs_create]
   * [Reconfigurer un service cloud existant][vs_reconfigure]
@@ -38,7 +38,7 @@ Une fois que le service cloud s’exécute dans Azure, vous pouvez le reconfigur
 <a name="csdef"></a>
 
 ## <a name="servicedefinitioncsdef"></a>ServiceDefinition.csdef
-Le fichier **ServiceDefinition.csdef** spécifie les paramètres qui sont utilisés par Azure pour configurer un service cloud. Le [schéma de définition du service Azure (fichier .csdef)](https://msdn.microsoft.com/library/azure/ee758711.aspx) indique le format autorisé pour un fichier de définition de service. L’exemple suivant présente les paramètres qui peuvent être définis pour le rôle web et le rôle de travail :
+Hello **ServiceDefinition.csdef** fichier spécifie les paramètres de hello sont utilisées par Azure tooconfigure un service cloud. Hello [schéma de définition de Service Azure (fichier de .csdef)](https://msdn.microsoft.com/library/azure/ee758711.aspx) fournit le format autorisé de hello pour un fichier de définition de service. Hello suivant montre les paramètres hello qui peuvent être définis pour hello Web et rôles de travail :
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -89,38 +89,38 @@ Le fichier **ServiceDefinition.csdef** spécifie les paramètres qui sont utilis
 </ServiceDefinition>
 ```
 
-Vous pouvez vous reporter au [schéma de définition de service](https://msdn.microsoft.com/library/azure/ee758711.aspx) pour mieux comprendre le schéma XML utilisé ici. Toutefois, voici une brève explication de certains éléments :
+Vous pouvez faire référence toohello [schéma de définition du Service](https://msdn.microsoft.com/library/azure/ee758711.aspx) pour mieux comprendre le fonctionnement du schéma XML de hello utilisé ici, toutefois, voici une explication rapide de certains des éléments de hello :
 
 **Sites**  
-Contient les définitions des sites ou applications web hébergés dans IIS 7.0.
+Contient les définitions de hello pour les applications web ou des sites Web qui sont hébergées dans IIS 7.
 
 **InputEndpoints**  
-Contient les définitions des points de terminaison qui permettent de contacter le service cloud.
+Contient des définitions de hello pour les points de terminaison utilisé toocontact hello cloud service.
 
 **InternalEndpoints**  
-Contient les définitions des points de terminaison qui sont utilisés par les instances de rôle pour communiquer entre eux.
+Contient les définitions de hello pour les points de terminaison qui sont utilisés par toocommunicate d’instances de rôle entre eux.
 
 **ConfigurationSettings**  
-Contient les définitions de paramètre des fonctionnalités d’un rôle spécifique.
+Contient les définitions de paramètre hello pour les fonctionnalités d’un rôle spécifique.
 
-**Certificates**  
-Contient les définitions des certificats nécessaires à un rôle. L’exemple de code précédent illustre un certificat qui est utilisé pour la configuration d’Azure Connect.
+**Certificats**  
+Contient les définitions de hello pour les certificats qui sont nécessaires pour un rôle. exemple de code précédent Hello montre un certificat qui est utilisé pour la configuration de hello de Connect de Azure.
 
 **LocalResources**  
-Contient les définitions des ressources de stockage local. Une ressource de stockage local est un répertoire réservé dans le système de fichiers de la machine virtuelle dans lequel s’exécute l’instance d’un rôle.
+Contient les définitions de hello pour les ressources de stockage local. Une ressource de stockage local est un répertoire réservé sur le système de fichiers hello de machine virtuelle de hello dans lequel une instance d’un rôle est en cours d’exécution.
 
 **Imports**  
-Contient les définitions des modules importés. L’exemple de code précédent illustre les modules Connexion Bureau à distance et Azure Connect.
+Contient les définitions de hello pour les modules importés. exemple de code précédent Hello présente les modules de hello pour la connexion Bureau à distance et Azure Connect.
 
 **Startup**  
-Contient les tâches qui sont exécutées au démarrage du rôle. Les tâches sont définies dans un fichier .cmd ou exécutable.
+Contient des tâches qui sont exécutées lorsque le rôle de hello démarre. tâches de Hello sont définies dans un fichier .cmd ou fichier exécutable.
 
 <a name="cscfg"></a>
 
 ## <a name="serviceconfigurationcscfg"></a>ServiceConfiguration.cscfg
-La configuration des paramètres du service cloud est déterminée par les valeurs indiquées dans le fichier **ServiceConfiguration.cscfg** . Vous spécifiez le nombre d’instances que vous souhaitez déployer pour chaque rôle dans ce fichier. Les valeurs des paramètres de configuration que vous avez définis dans le fichier de définition de service sont ajoutées au fichier de configuration de service. Les empreintes numériques des certificats de gestion qui sont associés au service cloud sont également ajoutées au fichier. Le [schéma de configuration du service Azure (fichier .cscfg)](https://msdn.microsoft.com/library/azure/ee758710.aspx) indique le format autorisé pour un fichier de configuration de service.
+configuration de Hello de paramètres hello pour votre service cloud est déterminée par les valeurs hello Bonjour **ServiceConfiguration.cscfg** fichier. Vous spécifiez le nombre de hello d’instances que vous souhaitez toodeploy pour chaque rôle dans ce fichier. les valeurs Hello hello paramètres de configuration que vous avez définie dans le fichier de définition de service hello sont ajoutés toohello fichier de configuration de service. empreintes numériques de Hello pour les certificats de gestion qui sont associés au service de cloud computing hello sont également ajoutés toohello fichier. Hello [schéma de Configuration du Service Azure (.cscfg fichier)](https://msdn.microsoft.com/library/azure/ee758710.aspx) fournit le format autorisé de hello pour un fichier de configuration de service.
 
-Le fichier de configuration de service n’est pas fourni dans le package de l’application, mais est chargé vers Azure en tant que fichier distinct et permet de configurer le service cloud. Vous pouvez charger un nouveau fichier de configuration de service sans redéployer votre service cloud. Les valeurs de configuration du service cloud peuvent être modifiées pendant l’exécution du service cloud. L’exemple suivant présente les paramètres de configuration qui peuvent être définis pour le rôle web et le rôle de travail :
+Hello fichier de configuration de service n’est pas fourni avec l’application hello, mais est tooAzure téléchargé dans un fichier distinct et est utilisé tooconfigure hello service cloud. Vous pouvez charger un nouveau fichier de configuration de service sans redéployer votre service cloud. les valeurs de configuration Hello pour le service cloud hello peuvent être modifiés pendant l’exécution du service de cloud computing hello. Hello suivant montre les paramètres de configuration hello qui peuvent être définis pour hello Web et rôles de travail :
 
 ```xml
 <?xml version="1.0"?>
@@ -140,28 +140,28 @@ Le fichier de configuration de service n’est pas fourni dans le package de l�
 </ServiceConfiguration>
 ```
 
-Vous pouvez vous reporter au [schéma de configuration de service](https://msdn.microsoft.com/library/azure/ee758710.aspx) pour mieux comprendre le schéma XML utilisé ici. Toutefois, voici une brève explication des éléments :
+Vous pouvez faire référence toohello [schéma de Configuration de Service](https://msdn.microsoft.com/library/azure/ee758710.aspx) pour une meilleure compréhension hello XSD utilisé ici, toutefois, voici une explication rapide des éléments de hello :
 
-**rôle web**  
-Configure le nombre d’instances du rôle en cours d’exécution. Pour empêcher le service cloud d’être potentiellement indisponible pendant les mises à niveau, il est conseillé de déployer plusieurs instances de vos rôles web. En déployant plus d’une instance, vous respectez les recommandations du [contrat de niveau de service de Calcul Azure](http://azure.microsoft.com/support/legal/sla/), ce qui garantit une connectivité externe à 99,95 % pour les rôles Internet lorsque deux instances de rôle au moins sont déployées pour un service.
+**Instances**  
+Configure le nombre hello de l’exécution des instances de rôle de hello. tooprevent votre cloud service devienne indisponible pendant les mises à niveau, il est recommandé de déployer plusieurs instances de vos rôles web. En déployant plusieurs instances, vous respectez les instructions toohello Bonjour [Azure Compute contrat (SLA)](http://azure.microsoft.com/support/legal/sla/), ce qui garantit une connectivité externe à 99,95 % pour les rôles Internet lorsque deux ou plusieurs rôles instances sont déployées pour un service.
 
 **ConfigurationSettings**  
-Configure les paramètres des instances en cours d’exécution d’un rôle. Le nom des éléments `<Setting>` doit correspondre aux définitions de paramètre dans le fichier de définition de service.
+Configure les paramètres hello pour hello instances pour un rôle en cours d’exécution. nom Hello Hello `<Setting>` éléments doivent correspondre à des définitions de paramètre hello dans le fichier de définition de service hello.
 
-**Certificates**  
-Configure les certificats utilisés par le service. L’exemple de code précédent montre comment définir le certificat pour le module RemoteAccess. La valeur de l’attribut *thumbprint* doit être définie sur l’empreinte numérique du certificat à utiliser.
+**Certificats**  
+Configure les certificats de hello sont utilisées par le service de hello. exemple de code Hello précédent montre comment toodefine hello certificat pour le module RemoteAccess de hello. Hello valeur Hello *l’empreinte numérique* attribut doit être défini à l’empreinte numérique toohello de hello certificat toouse.
 
 <p/>
 
 > [!NOTE]
-> L’empreinte du certificat peut être ajoutée au fichier de configuration à l’aide d’un éditeur de texte. La valeur peut également être ajoutée dans l’onglet **Certificats** de la page **Propriétés** du rôle dans Visual Studio.
+> fichier de configuration toohello peut être ajouté à l’empreinte numérique Hello pour le certificat de hello, à l’aide d’un éditeur de texte. Ou, à la valeur de hello peut être ajoutée sur hello **certificats** onglet Hello **propriétés** page de rôle hello dans Visual Studio.
 > 
 > 
 
 ## <a name="defining-ports-for-role-instances"></a>Définition des ports pour les instances de rôle
-Azure n’autorise qu’un point d’entrée à un rôle web. En d’autres termes, tout le trafic s’effectue via une adresse IP. Vous pouvez configurer vos sites web pour partager un port en configurant l’en-tête de l’hôte pour diriger la demande vers l’emplacement approprié. Vous pouvez également configurer les applications pour qu’elles écoutent aux ports connus sur l’adresse IP.
+Azure ne permet qu’un seul rôle web de tooa de point d’entrée. En d’autres termes, tout le trafic s’effectue via une adresse IP. Vous pouvez configurer vos sites Web de tooshare un port en configurant hello hôte en-tête toodirect hello demande toohello emplacement correct. Vous pouvez également configurer les ports de toowell connue toolisten applications sur l’adresse IP de hello.
 
-L’exemple suivant illustre la configuration d’un rôle web avec un site web et une application web. Le site web est configuré comme emplacement d’entrée par défaut sur le port 80, et les applications web sont configurées pour recevoir des demandes d’un en-tête d’hôte différent, appelé « mail.mysite.cloudapp.net ».
+Hello exemple suivant illustre les configuration hello pour un rôle web avec un site Web et l’application web. site Web de Hello est configuré en tant qu’emplacement d’entrée hello par défaut sur le port 80, et les applications web hello sont demandes tooreceive configuré à partir d’un en-tête d’hôte de remplacement est appelé « mail.mysite.cloudapp.net ».
 
 ```xml
 <WebRole>
@@ -196,55 +196,55 @@ L’exemple suivant illustre la configuration d’un rôle web avec un site web 
 ```
 
 
-## <a name="changing-the-configuration-of-a-role"></a>Modification de la configuration d’un rôle
-Vous pouvez mettre à jour la configuration du service cloud pendant son exécution dans Azure, sans le mettre hors connexion. Pour modifier les informations de configuration, vous pouvez charger un nouveau fichier de configuration ou modifier le fichier de configuration existant et l’appliquer à votre service en cours d’exécution. Les modifications suivantes peuvent être apportées à la configuration d’un service :
+## <a name="changing-hello-configuration-of-a-role"></a>La modification de la configuration d’un rôle hello
+Vous pouvez mettre à jour de configuration hello de votre service cloud pendant son exécution dans Azure, sans mise hors service de hello. toochange les informations de configuration, vous pouvez télécharger un fichier de configuration, ou modifier le fichier de configuration hello dans placer et appliquez-le tooyour service en cours d’exécution. Hello modifications suivantes peuvent être apportées configuration toohello d’un service :
 
-* **Modification des valeurs des paramètres de configuration**  
-  Lorsqu’un paramètre de configuration est changé, une instance de rôle peut choisir d’appliquer la modification pendant que l’instance est en ligne ou de recycler l’instance normalement et d’appliquer la modification pendant qu’elle est hors connexion.
-* **Modification de la topologie de service des instances de rôle**  
-  Les modifications de la topologie n’affectent pas les instances en cours d’exécution, sauf lorsqu’une instance est supprimée. Généralement, vous n’avez pas besoin de recycler les instances restantes, mais vous pouvez choisir de recycler des instances de rôle en réponse à une modification de la topologie.
-* **Modification de l’empreinte de certificat**  
-  Vous ne pouvez mettre à jour un certificat que lorsqu’une instance de rôle est hors connexion. Si un certificat est ajouté, supprimé ou modifié pendant qu’une instance de rôle est en ligne, Azure la met normalement hors connexion pour mettre à jour le certificat avant de la remettre en ligne une fois la modification effectuée.
+* **Modification des valeurs de paramètres de configuration hello**  
+  Lorsqu’une configuration définissant les modifications, une instance de rôle choisissez tooapply hello changer pendant que l’instance de hello est en ligne, ou toorecycle hello l’instance normalement et appliquer hello lors de l’instance de hello est hors connexion.
+* **La modification de topologie du service hello d’instances de rôle**  
+  Les modifications de la topologie n’affectent pas les instances en cours d’exécution, sauf lorsqu’une instance est supprimée. Toutes les instances restantes n’est généralement pas nécessaire toobe recyclé ; Toutefois, vous pouvez choisir toorecycle instances de rôle dans la modification de topologie tooa de réponse.
+* **Modification de l’empreinte numérique du certificat hello**  
+  Vous ne pouvez mettre à jour un certificat que lorsqu’une instance de rôle est hors connexion. Si un certificat est ajouté, supprimé ou modifié pendant qu’une instance de rôle est en ligne, Azure prend le certificat de hello hello instance tooupdate hors connexion et la remettre en ligne une fois hello modification effectuée normalement.
 
 ### <a name="handling-configuration-changes-with-service-runtime-events"></a>Gestion des modifications de configuration à l’aide des événements de service Runtime
-La [bibliothèque Runtime Azure](https://msdn.microsoft.com/library/azure/mt419365.aspx) inclut l’espace de noms [Microsoft.WindowsAzure.ServiceRuntime](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.aspx), qui fournit des classes pour interagir avec l’environnement Azure à partir d’un rôle. La classe [RoleEnvironment](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleenvironment.aspx) définit les événements suivants qui sont déclenchés avant et après une modification de la configuration :
+Hello [bibliothèque du Runtime Azure](https://msdn.microsoft.com/library/azure/mt419365.aspx) inclut hello [Microsoft.WindowsAzure.ServiceRuntime](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.aspx) espace de noms, qui fournit des classes pour interagir avec hello environnement Azure à partir d’un rôle. Hello [RoleEnvironment](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleenvironment.aspx) classe définit hello suivant des événements qui sont déclenchés avant et après une modification de configuration :
 
 * **[Modification](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleenvironment.changing.aspx) d’un événement**  
-  Se produit avant que la modification de la configuration ne soit appliquée à une instance spécifiée d’un rôle, ce qui vous permet de supprimer les instances de rôle si nécessaire.
+  Cela se produit avant la modification de la configuration hello tooa appliqué les instance spécifiée d’un rôle, ce qui vous donne un tootake chance vers le bas les instances de rôle hello si nécessaire.
 * **[Événement](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleenvironment.changed.aspx) modifié**  
-  Se produit après l’application de la modification de la configuration à l’instance spécifiée d’un rôle.
+  Se produit après la modification de la configuration hello tooa appliqué les instance spécifiée d’un rôle.
 
 > [!NOTE]
-> Comme les modifications de certificat placent toujours les instances d’un rôle hors connexion, elles ne déclenchent pas les événements RoleEnvironment.Changing ou RoleEnvironment.Changed.
+> Étant donné que les modifications de certificat toujours hors connexion des instances de hello d’un rôle, elles ne déclenchent pas les événements RoleEnvironment.Changing ou RoleEnvironment.Changed hello.
 > 
 > 
 
 <a name="cspkg"></a>
 
 ## <a name="servicepackagecspkg"></a>ServicePackage.cspkg
-Pour déployer une application en tant que service cloud dans Azure, vous devez d’abord créer un package de l’application dans le format approprié. Vous pouvez utiliser l’outil de ligne de commande **CSPack** (installé avec le [Kit de développement logiciel (SDK) Azure](https://azure.microsoft.com/downloads/)) pour créer le fichier de package en tant qu’alternative à Visual Studio.
+toodeploy une application comme un service cloud dans Azure, vous devez première application hello de package au format approprié de hello. Vous pouvez utiliser hello **CSPack** outil de ligne de commande (installé avec hello [Azure SDK](https://azure.microsoft.com/downloads/)) fichier de package toocreate hello en tant qu’une autre tooVisual Studio.
 
-**CSPack** utilise le contenu du fichier de définition de service et du fichier de configuration de service pour définir le contenu du package. **CSPack** génère un fichier de package d’application (.cspkg) que vous pouvez charger dans Azure à l’aide du [portail Azure](cloud-services-how-to-create-deploy-portal.md#create-and-deploy). Par défaut, le package est nommé `[ServiceDefinitionFileName].cspkg`, mais vous pouvez indiquer un autre nom à l’aide de l’option `/out` de **CSPack**.
+**CSPack** utilise hello contenu hello service définition du service de fichiers et configuration toodefine hello du contenu du fichier de package de hello. **CSPack** génère un fichier de package d’application (.cspkg) que vous pouvez télécharger tooAzure à l’aide de hello [portail Azure](cloud-services-how-to-create-deploy-portal.md#create-and-deploy). Par défaut, le package de hello est nommé `[ServiceDefinitionFileName].cspkg`, mais vous pouvez spécifier un nom différent à l’aide de hello `/out` option de **CSPack**.
 
 **CSPack** se situe dans  
 `C:\Program Files\Microsoft SDKs\Azure\.NET SDK\[sdk-version]\bin\`
 
 > [!NOTE]
-> Le fichier CSPack.exe (sur Windows) est disponible en exécutant le raccourci de l’ **invite de commandes Microsoft Azure** , qui est installé avec le Kit de développement logiciel (SDK).  
+> CSPack.exe (sous windows) est disponible en exécutant hello **invite de commandes Microsoft Azure** raccourci qui est installé avec le Kit de développement logiciel de hello.  
 > 
-> Exécutez le programme CSPack.exe pour consulter la documentation relative à l’ensemble des commutateurs et commandes possibles.
+> Réexécutez hello CSPack.exe par lui-même documentation toosee sur tous les commutateurs hello et les commandes.
 > 
 > 
 
 <p />
 
 > [!TIP]
-> Exécutez votre service cloud localement dans **l’émulateur de calcul Microsoft Azure** et utilisez l’option **/copyonly**. Cette option copie les fichiers binaires de l’application dans une disposition de répertoire d’où ils peuvent être exécutés dans l’émulateur de calcul.
+> Exécuter votre service cloud localement Bonjour **émulateur de calcul Azure Microsoft**, utilisez hello **/copyonly** option. Cette option copie les fichiers binaires hello organisée en répertoires tooa application hello à partir duquel ils peuvent être exécutés dans l’émulateur de calcul hello.
 > 
 > 
 
-### <a name="example-command-to-package-a-cloud-service"></a>Exemple de commande pour créer un package de service cloud
-L’exemple suivant crée un package d’application qui contient les informations relatives à un rôle web. La commande spécifie le fichier de définition de service à utiliser, le répertoire dans lequel les fichiers binaires se trouvent, et le nom du fichier de package.
+### <a name="example-command-toopackage-a-cloud-service"></a>Exemple commande toopackage un service cloud
+Hello exemple suivant crée un package d’application qui contient des informations de hello pour un rôle web. commande Hello spécifie toouse de fichier de définition de service hello, répertoire hello où les fichiers binaires peuvent être trouvés et hello nom hello du fichier de package.
 
 ```cmd
 cspack [DirectoryName]\[ServiceDefinition]
@@ -253,7 +253,7 @@ cspack [DirectoryName]\[ServiceDefinition]
        /out:[OutputFileName]
 ```
 
-Si l’application contient à la fois un rôle web et un rôle de travail, la commande suivante est utilisée :
+Si l’application hello contient un rôle web et un rôle de travail, hello commande suivante est utilisée :
 
 ```cmd
 cspack [DirectoryName]\[ServiceDefinition]
@@ -263,18 +263,18 @@ cspack [DirectoryName]\[ServiceDefinition]
        /role:[RoleName];[RoleBinariesDirectory];[RoleAssemblyName]
 ```
 
-Où les variables sont définies comme suit :
+Où les variables de hello sont définies comme suit :
 
 | Variable | Valeur |
 | --- | --- |
-| \[DirectoryName\] |Sous-répertoire du répertoire racine du projet qui contient le fichier .csdef du projet Azure. |
-| \[ServiceDefinition\] |Nom du fichier de définition de service. Par défaut, ce fichier se nomme ServiceDefinition.csdef. |
-| \[OutputFileName\] |Nom du fichier de package généré. En règle générale, il correspond au nom de l’application. Si aucun nom de fichier n’est spécifié, le package d’application est créé sous le nom \[ApplicationName\].cspkg. |
-| \[RoleName\] |Nom du rôle défini dans le fichier de définition de service. |
-| \[RoleBinariesDirectory] |Emplacement des fichiers binaires correspondant au rôle. |
-| \[VirtualPath\] |Répertoires physiques pour chaque chemin d’accès virtuel défini dans la section Sites de la définition de service. |
-| \[PhysicalPath\] |Répertoires physiques du contenu pour chaque chemin d’accès virtuel défini dans le nœud Site de la définition de service. |
-| \[RoleAssemblyName\] |Nom du fichier binaire correspondant au rôle. |
+| \[DirectoryName\] |Bonjour sous-répertoire hello répertoire racine du projet qui contient le fichier de .csdef hello Hello projet Windows Azure. |
+| \[ServiceDefinition\] |nom de Hello du fichier de définition de service hello. Par défaut, ce fichier se nomme ServiceDefinition.csdef. |
+| \[OutputFileName\] |Hello nom hello généré pour le fichier de package. En règle générale, il a la valeur nom toohello de l’application hello. Si aucun nom de fichier n’est spécifié, le package d’application hello est créé en tant que \[ApplicationName\].cspkg. |
+| \[RoleName\] |nom Hello du rôle hello tel que défini dans le fichier de définition de service hello. |
+| \[RoleBinariesDirectory] |emplacement Hello des fichiers binaires de hello pour le rôle de hello. |
+| \[VirtualPath\] |répertoires physiques de Hello pour chaque chemin d’accès virtuel défini dans la section de Sites hello de définition du service hello. |
+| \[PhysicalPath\] |Bonjour répertoires physiques du contenu hello pour chaque chemin d’accès virtuel défini dans le nœud de site hello de définition du service hello. |
+| \[RoleAssemblyName\] |nom de Hello du fichier binaire de hello pour le rôle de hello. |
 
 ## <a name="next-steps"></a>Étapes suivantes
 Je crée un package de service cloud et je souhaite...

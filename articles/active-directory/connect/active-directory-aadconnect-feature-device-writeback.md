@@ -1,6 +1,6 @@
 ---
 title: "Azure AD Connect : Activation de l’écriture différée des appareils | Microsoft Docs"
-description: "Ce document explique comment activer l’écriture différée des appareils à l’aide d’Azure AD Connect"
+description: "Ce document comment les détails de l’écriture différée de l’appareil tooenable à l’aide d’Azure AD Connect"
 services: active-directory
 documentationcenter: 
 author: billmath
@@ -14,46 +14,46 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/13/2017
 ms.author: billmath
-ms.openlocfilehash: 3b14013894b7fabdd4658a64f8fdfd29216ba268
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 2566a514137fed85b21929207cf3230e6878ebbe
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-ad-connect-enabling-device-writeback"></a>Azure AD Connect : Activation de l’écriture différée des appareils
 > [!NOTE]
-> L’écriture différée sur appareil nécessite un abonnement Azure AD Premium.
+> Un tooAzure abonnement Premium d’Active Directory est requis pour l’écriture différée de l’appareil.
 > 
 > 
 
-La documentation suivante fournit des informations sur l’activation de la fonctionnalité d’écriture différée des appareils dans Azure AD Connect. L’écriture différée des appareils est utilisée dans les scénarios suivants :
+Hello suivant documentation fournit des informations sur la façon dont l’écriture différée des appareils tooenable hello fonctionnalité dans Azure AD Connect. L’écriture différée de l’appareil est utilisée dans hello les scénarios suivants :
 
-* Activer l’accès conditionnel basé sur les appareils pour les applications protégées ADFS (2012 R2 ou version ultérieure) (approbations de la partie de confiance).
+* Activer l’accès conditionnel basé sur les appareils tooADFS (2012 R2 ou version ultérieure) protégé par des applications (de confiance).
 
-Cela fournit une sécurité supplémentaire et l’assurance que l’accès aux applications est accordé uniquement aux appareils de confiance. Pour plus d’informations sur l’accès conditionnel, consultez [Gestion des risques avec accès conditionnel](../active-directory-conditional-access.md) et [Configuration d’un accès conditionnel en local à l’aide du service d’inscription d’appareils Azure Active Directory](../active-directory-conditional-access-automatic-device-registration-setup.md).
+Cela offre une sécurité supplémentaire et assurance que tooapplications d’accès est accordé uniquement les appareils de tootrusted. Pour plus d’informations sur l’accès conditionnel, consultez [Gestion des risques avec accès conditionnel](../active-directory-conditional-access.md) et [Configuration d’un accès conditionnel en local à l’aide du service d’inscription d’appareils Azure Active Directory](../active-directory-conditional-access-automatic-device-registration-setup.md).
 
 > [!IMPORTANT]
-> <li>Les appareils doivent se trouver dans la même forêt que les utilisateurs. Étant donné que les appareils doivent être réécrits dans une seule forêt, cette fonctionnalité ne prend pas en charge un déploiement à plusieurs forêts d’utilisateurs pour l’instant.</li>
-> <li>Vous ne pouvez ajouter qu’un seul objet de configuration d’enregistrement d’appareil à la forêt Active Directory locale. Cette fonctionnalité n’est pas compatible avec une topologie dans laquelle le domaine Active Directory local est synchronisé à plusieurs annuaires Azure AD.</li>> 
+> <li>Les appareils doivent se trouver dans hello de la même forêt en tant qu’utilisateurs de hello. Étant donné que les appareils doivent être réécrites tooa une seule forêt, cette fonctionnalité ne prend pas en charge un déploiement à plusieurs forêts de l’utilisateur.</li>
+> <li>Objet de configuration qu’un périphérique d’enregistrement peut être ajouté forêt d’Active Directory toohello local. Cette fonctionnalité n’est pas compatible avec une topologie où hello locale Active Directory est synchronisé toomultiple Azure AD répertoires.</li>> 
 
 ## <a name="part-1-install-azure-ad-connect"></a>1re partie : Installer Azure AD Connect
-1. Installez Azure AD Connect à l’aide de paramètres personnalisés ou Express. Microsoft recommande de commencer par synchroniser correctement tous les utilisateurs et groupes avant d’activer l’écriture différée des appareils.
+1. Installez Azure AD Connect à l’aide de paramètres personnalisés ou Express. Microsoft vous recommande de toostart avec tous les utilisateurs et groupes ont bien été synchronisées avant d’activer l’écriture différée de l’appareil.
 
 ## <a name="part-2-prepare-active-directory"></a>Partie 2 : Préparer Active Directory
-Utilisez les étapes suivantes pour préparer l’utilisation de l’écriture différée des appareils.
+Utilisez hello suivant tooprepare étapes pour l’utilisation de l’écriture différée de l’appareil.
 
-1. À partir de l’ordinateur sur lequel est installé Azure AD Connect, lancez PowerShell en mode élevé.
-2. Si le module Active Directory PowerShell n’est PAS installé, installez-le à l’aide de la commande suivante :
+1. À partir de l’ordinateur hello sur lequel est installé Azure AD Connect, lancez PowerShell avec élévation de privilèges.
+2. Si le module d’Active Directory PowerShell hello n’est pas installé, installer à l’aide de hello de commande suivante :
    
    `Add-WindowsFeature RSAT-AD-PowerShell`
-3. Si le module Azure Active Directory PowerShell n’est PAS installé, téléchargez-le et installez-le à partir du [Module Azure Active Directory pour Windows PowerShell (version 64 bits)](http://go.microsoft.com/fwlink/p/?linkid=236297). Ce composant a une dépendance à l’assistant de connexion, qui est installé avec Azure AD Connect.
-4. Avec les informations d’identification d’administrateur d’entreprise, exécutez les commandes suivantes, puis quittez PowerShell.
+3. Si le module d’Azure Active Directory PowerShell hello n’est pas installé, puis télécharger et l’installer à partir de [Azure Module Active Directory pour Windows PowerShell (version 64 bits)](http://go.microsoft.com/fwlink/p/?linkid=236297). Ce composant a une dépendance sur hello-assistant de connexion, qui est installé avec Azure AD Connect.
+4. Avec l’identification d’administrateur d’entreprise, exécutez hello suivant de commandes, puis quittez PowerShell.
    
    `Import-Module 'C:\Program Files\Microsoft Azure Active Directory Connect\AdPrep\AdSyncPrep.psm1'`
    
    `Initialize-ADSyncDeviceWriteback {Optional:–DomainName [name] Optional:-AdConnectorAccount [account]}`
 
-Les informations d’identification d’administrateur d’entreprise sont requises, car des modifications à l’espace de noms de configuration sont nécessaires. Un administrateur de domaine ne dispose pas des autorisations suffisantes.
+Identification d’administrateur d’entreprise est nécessaires, car l’espace de noms de modifications toohello configuration sont nécessaires. Un administrateur de domaine ne dispose pas des autorisations suffisantes.
 
 ![Powershell pour l’activation de l’écriture différée des appareils](./media/active-directory-aadconnect-feature-device-writeback/powershell.png)
 
@@ -61,74 +61,74 @@ Description :
 
 * Si elles n’existent pas, des conteneurs et des objets sont créés et configurés sous CN=Device Registration Configuration,CN=Services,CN=Configuration,[forest-dn].
 * Si elles existent, des conteneurs et des objets sont créés et configurés sous CN=RegisteredDevices,[domain-dn]. Les objets d’appareil seront créés dans ce conteneur.
-* Définit les autorisations nécessaires sur le compte Azure AD Connector pour gérer des appareils sur votre Active Directory.
-* Ne doit s’exécuter que sur une seule forêt, même si Azure AD Connect est installé sur plusieurs forêts.
+* Définit les autorisations nécessaires sur hello compte du connecteur Azure AD, appareils toomanage sur votre annuaire Active Directory.
+* Ne doit toorun sur une forêt, même si Azure AD Connect est installé sur plusieurs forêts.
 
 Paramètres :
 
 * DomainName : domaine Active Directory où les objets d’appareil seront créés. Remarque : tous les appareils pour une forêt Active Directory donnée seront créés dans un domaine unique.
-* AdConnectorAccount : compte Active Directory qui servira à Azure AD Connect pour gérer des objets dans le répertoire. C'est le compte utilisé par la synchronisation Azure AD Connect pour se connecter à AD. Si vous avez procédé à l'installation à l'aide de paramètres Express, c'est le compte précédé de MSOL_.
+* AdConnectorAccount : Compte Active Directory qui sera utilisé par les objets Azure AD Connect toomanage dans le répertoire de hello. Il s’agit de compte hello utilisé par Azure AD Connect synchronisation tooconnect tooAD. Si vous avez installé à l’aide de la configuration rapide, il est compte hello précédé MSOL_.
 
 ## <a name="part-3-enable-device-writeback-in-azure-ad-connect"></a>3ème partie : Activer l’écriture différée des appareils dans Azure AD Connect
-Utilisez la procédure suivante pour activer l’écriture différée des appareils dans Azure AD Connect.
+Utilisez hello suivant la procédure tooenable périphérique l’écriture différée dans Azure AD Connect.
 
-1. Réexécutez l’Assistant d’installation. Sélectionnez **Personnalisation des options de synchronisation** à partir de la page Tâches supplémentaires et cliquez sur **Suivant**.
+1. Réexécutez l’Assistant installation de hello. Sélectionnez **personnaliser les options de synchronisation** hello des tâches supplémentaires de page, puis cliquez sur **suivant**.
    ![Installation personnalisée - Personnaliser les options de synchronisation](./media/active-directory-aadconnect-feature-device-writeback/devicewriteback2.png)
-2. Sur la page Fonctionnalités facultatives, l’écriture différée des appareils ne sera plus grisée. Notez que si les étapes de préparation d’Azure AD Connect ne sont pas terminées, l’écriture différée des appareils sera grisée sur la page Fonctionnalités facultatives. Cochez la case correspondant à l’écriture différée des appareils, puis cliquez sur **Suivant**. Si la case à cocher est toujours décochée, consultez la [section de résolution des problèmes](#the-writeback-checkbox-is-still-disabled).
+2. Dans la page de fonctionnalités facultatives de hello, l’écriture différée de l’appareil sera n’est plus grisée. Veuillez noter que les étapes de préparation Azure AD Connect ne sont pas terminées si hello l’écriture différée de l’appareil sera grisée dans la page des fonctionnalités facultatives hello. Cochez la case hello pour l’écriture différée de l’appareil, cliquez sur **suivant**. Si la case à cocher hello est toujours désactivé, consultez hello [section Dépannage](#the-writeback-checkbox-is-still-disabled).
    ![Installation personnalisée - Fonctionnalités facultatives de l’écriture différée des appareils](./media/active-directory-aadconnect-feature-device-writeback/devicewriteback3.png)
-3. Dans la page de l’écriture différée, vous verrez le domaine fourni en tant que forêt d’écriture différée d’appareil par défaut.
+3. Sur la page de l’écriture différée de hello, vous verrez le domaine de hello fourni forêt de l’écriture différée appareil hello par défaut.
    ![Installation personnalisée - Forêt cible de l’écriture différée des appareils](./media/active-directory-aadconnect-feature-device-writeback/devicewriteback4.png)
-4. Terminez l’installation de l’Assistant sans autre modification de la configuration. Si nécessaire, consultez [Installation personnalisée d’Azure AD Connect](active-directory-aadconnect-get-started-custom.md)
+4. Terminer l’installation de hello Hello Assistant sans aucune modification de configuration supplémentaire. Si nécessaire, consultez trop[installation personnalisée d’Azure AD Connect.](active-directory-aadconnect-get-started-custom.md)
 
 ## <a name="enable-conditional-access"></a>Activer l’accès conditionnel
-Des instructions détaillées pour activer ce scénario sont disponibles dans [Configuration d’un accès conditionnel en local à l’aide du service d’inscription d’appareils Azure Active Directory](../active-directory-conditional-access-automatic-device-registration-setup.md)
+Tooenable obtenir des instructions détaillées ce scénario sont disponibles dans [configuration d’accès conditionnel en local à l’aide d’Azure Active Directory Device Registration](../active-directory-conditional-access-automatic-device-registration-setup.md).
 
-## <a name="verify-devices-are-synchronized-to-active-directory"></a>Vérifier la synchronisation des appareils avec Active Directory
-L’écriture différée des appareils doit désormais fonctionner correctement. Sachez que la réécriture des objets d’appareil dans AD peut prendre jusqu’à 3 heures.  Pour vérifier que vos appareils sont correctement synchronisés, procédez comme suit après la fin des règles de synchronisation :
+## <a name="verify-devices-are-synchronized-tooactive-directory"></a>Vérifiez que les appareils sont synchronisé tooActive Active
+L’écriture différée des appareils doit désormais fonctionner correctement. N’oubliez pas qu’il peut prendre jusqu'à heures too3 pour appareil objets toobe réécriture tooAD.  tooverify que vos appareils sont en cours de synchronisation correctement, procédez comme hello suivant après que les règles de synchronisation hello terminé :
 
 1. Lancez le Centre d’administration Active Directory.
-2. Développez RegisteredDevices au sein du domaine en cours de fédération.
+2. Développez RegisteredDevices, au sein de hello domaine fédéré en cours.
    ![Active Directory - Appareils inscrits au Centre d’administration](./media/active-directory-aadconnect-feature-device-writeback/devicewriteback5.png)
 3. Les appareils enregistrés actuels sont répertoriés à cet emplacement.
    ![Active Directory - Liste des appareils inscrits au Centre d’administration](./media/active-directory-aadconnect-feature-device-writeback/devicewriteback6.png)
 
-## <a name="troubleshooting"></a>Résolution de problèmes
-### <a name="the-writeback-checkbox-is-still-disabled"></a>La case à cocher de l'écriture différée est toujours désactivée.
-Si la case à cocher pour l'écriture différée des appareils n'est pas activée alors que vous avez suivi les étapes ci-dessus, la procédure suivante vous guidera dans ce que l'Assistant d'installation vérifie avant l'activation de la case.
+## <a name="troubleshooting"></a>Résolution des problèmes
+### <a name="hello-writeback-checkbox-is-still-disabled"></a>case à cocher de l’écriture différée Hello est toujours désactivé.
+Si la case à cocher hello pour l’écriture différée de l’appareil n’est pas activée même si vous avez suivi les étapes de hello ci-dessus, hello suit vous guide via l’installation hello Assistant consiste à vérifier avant de hello est activée.
 
 Commençons par le début :
 
-* Assurez-vous qu'au moins une forêt a Windows Server 2012R2. Le type d'objet d'appareil doit être présent.
-* Si l'Assistant d'installation est déjà en cours d'exécution, les modifications ne seront pas détectées. Dans ce cas, terminez l'Assistant installation et exécutez-le à nouveau.
-* Assurez-vous que le compte que vous fournissez dans le script d'initialisation est bien l'utilisateur utilisé par le connecteur Active Directory. Pour ce faire, procédez comme suit :
-  * Dans le menu Démarrer, ouvrez **Service de synchronisation**.
-  * Ouvrez l’onglet **Connecteurs** .
-  * Trouvez le connecteur de type services de domaine Active Directory et sélectionnez-le.
+* Assurez-vous qu'au moins une forêt a Windows Server 2012R2. type d’objet périphérique Hello doit être présent.
+* Si l’Assistant installation hello est déjà en cours d’exécution, toutes les modifications ne seront pas détectées. Dans ce cas, terminez l’Assistant installation hello et exécutez-le à nouveau.
+* Assurez-vous que le compte hello que vous fournissez dans le script d’initialisation hello est réellement hello correct utilisateur utilisé par hello connecteur Active Directory. tooverify, procédez comme suit :
+  * À partir du menu Démarrer de hello, ouvrez **Service de synchronisation**.
+  * Ouvrez hello **connecteurs** onglet.
+  * Recherche hello connecteur avec type de Services de domaine Active Directory et sélectionnez-le.
   * Sous **Actions**, sélectionnez **Propriétés**.
-  * Accédez à **Se connecter à la forêt Active Directory**. Vérifiez que le nom de domaine et le nom d’utilisateur spécifiés sur cet écran correspondent au compte fourni pour le script.
+  * Accédez trop**connecter tooActive Directory forêt**. Vérifiez que hello domaine et nom d’utilisateur spécifié sur ce script de toohello écran correspondance hello compte fourni.
     ![Compte de connecteur dans Sync Service Manager](./media/active-directory-aadconnect-feature-device-writeback/connectoraccount.png)
 
 Vérifiez la configuration dans Active Directory :
 
-* Vérifiez que le Service d’inscription de l’appareil se trouve à l’emplacement ci-dessous (CN = DeviceRegistrationService, CN = Services d’inscription de périphérique, CN = Inscription de l’appareil, CN = Services, CN = Configuration) dans le contexte d’appellation de configuration.
+* Vérifiez que hello Device Registration Service se trouve dans un emplacement hello ci-dessous (CN = DeviceRegistrationService, CN = Services d’inscription de périphérique, CN = Device Registration Configuration, CN = Services, CN = Configuration) sous le contexte d’appellation de configuration.
 
 ![Résoudre les problèmes, DeviceRegistrationService dans l’espace de noms de configuration](./media/active-directory-aadconnect-feature-device-writeback/troubleshoot1.png)
 
-* Vérifiez qu'il n'y a qu'un seul objet de configuration en recherchant l'espace de noms de configuration. S'il en existe plusieurs, supprimez le doublon.
+* Vérifiez qu’un seul objet de configuration en recherchant l’espace de noms de configuration hello. S’il en existe plusieurs, supprimez hello.
 
-![Résoudre les problèmes, rechercher les objets en double](./media/active-directory-aadconnect-feature-device-writeback/troubleshoot2.png)
+![Résoudre les problèmes, recherchez les objets dupliqués hello](./media/active-directory-aadconnect-feature-device-writeback/troubleshoot2.png)
 
-* Sur l'objet Service d'inscription de l'appareil, assurez-vous que l'attribut msDS-DeviceLocation est présent et a une valeur. Recherchez cet emplacement et assurez-vous qu'il est présent avec l'attribut objectType msDS-DeviceContainer.
+* Sur l’objet de Service d’inscription de périphérique hello, assurez-vous que hello attribut msDS-DeviceLocation est présent et a une valeur. Recherche de cet emplacement et l’Assurez-vous qu’il est présent avec hello objectType msDS-DeviceContainer.
 
 ![Résoudre les problèmes, msDS-DeviceLocation](./media/active-directory-aadconnect-feature-device-writeback/troubleshoot3.png)
 
 ![Résoudre les problèmes, classe d’objet RegisteredDevices](./media/active-directory-aadconnect-feature-device-writeback/troubleshoot4.png)
 
-* Vérifiez que le compte utilisé par le connecteur Active Directory dispose des autorisations requise sur le conteneur d’appareils inscrits trouvé à l’étape précédente. Voici les autorisations attendues sur ce conteneur :
+* Vérifier le compte de hello utilisé par hello que connecteur Active Directory a les autorisations requises sur conteneur de périphériques inscrits hello trouvé par l’étape précédente de hello. Il s’agit d’autorisations hello attendu sur ce conteneur :
 
 ![Résoudre les problèmes, vérifier les autorisations du conteneur](./media/active-directory-aadconnect-feature-device-writeback/troubleshoot5.png)
 
-* Vérifiez que le compte Active Directory dispose des autorisations sur CN = Inscription de l’appareil, CN = Services, CN = Objet de Configuration.
+* Vérifiez hello compte Active Directory dispose des autorisations sur hello CN = Device Registration Configuration, CN = Services, CN = l’objet de Configuration.
 
 ![Résoudre les problèmes, vérifier les autorisations de la configuration de l’inscription des appareils](./media/active-directory-aadconnect-feature-device-writeback/troubleshoot6.png)
 
