@@ -1,6 +1,6 @@
 ---
-title: "Créer des groupes d’actions avec les modèles Resource Manager | Microsoft Docs"
-description: "Découvrez comment créer un groupe d’actions à l’aide d’un modèle Azure Resource Manager."
+title: "groupes d’actions aaaCreate avec modèles Resource Manager | Documents Microsoft"
+description: "Découvrez comment toocreate une action de groupe à l’aide d’un modèle Azure Resource Manager."
 author: anirudhcavale
 manager: orenr
 editor: 
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/31/2017
 ms.author: ancav
-ms.openlocfilehash: 76bf353cac13f1c2169380f8dd3c1e163d4f3f41
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 9902b33cad99bd99b3deda0cf6f4ff12278c89c3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-an-action-group-with-a-resource-manager-template"></a><span data-ttu-id="0ba28-103">Créer un groupe d’actions avec un modèle Resource Manager</span><span class="sxs-lookup"><span data-stu-id="0ba28-103">Create an action group with a Resource Manager template</span></span>
-<span data-ttu-id="0ba28-104">Cet article vous explique comment utiliser un [modèle Azure Resource Manager](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-authoring-templates) pour configurer les groupes d’action.</span><span class="sxs-lookup"><span data-stu-id="0ba28-104">This article shows you how to use an [Azure Resource Manager template](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-authoring-templates) to configure action groups.</span></span> <span data-ttu-id="0ba28-105">À l’aide de modèles, vous pouvez configurer automatiquement des groupes d’actions qui peuvent être réutilisés dans certains types d’alertes.</span><span class="sxs-lookup"><span data-stu-id="0ba28-105">By using templates, you can automatically set up action groups that can be reused in certain types of alerts.</span></span> <span data-ttu-id="0ba28-106">Ces groupes d’actions vous assurent que toutes les parties concernées sont averties lorsqu’une alerte est déclenchée.</span><span class="sxs-lookup"><span data-stu-id="0ba28-106">These action groups ensure that all the correct parties are notified when an alert is triggered.</span></span>
+# <a name="create-an-action-group-with-a-resource-manager-template"></a><span data-ttu-id="8098e-103">Créer un groupe d’actions avec un modèle Resource Manager</span><span class="sxs-lookup"><span data-stu-id="8098e-103">Create an action group with a Resource Manager template</span></span>
+<span data-ttu-id="8098e-104">Cet article vous explique comment toouse un [modèle Azure Resource Manager](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-authoring-templates) tooconfigure groupes d’actions.</span><span class="sxs-lookup"><span data-stu-id="8098e-104">This article shows you how toouse an [Azure Resource Manager template](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-authoring-templates) tooconfigure action groups.</span></span> <span data-ttu-id="8098e-105">À l’aide de modèles, vous pouvez configurer automatiquement des groupes d’actions qui peuvent être réutilisés dans certains types d’alertes.</span><span class="sxs-lookup"><span data-stu-id="8098e-105">By using templates, you can automatically set up action groups that can be reused in certain types of alerts.</span></span> <span data-ttu-id="8098e-106">Ces groupes d’actions vous assurer que tous les hello correct parties sont avertis lorsqu’une alerte est déclenchée.</span><span class="sxs-lookup"><span data-stu-id="8098e-106">These action groups ensure that all hello correct parties are notified when an alert is triggered.</span></span>
 
-<span data-ttu-id="0ba28-107">Étapes élémentaires :</span><span class="sxs-lookup"><span data-stu-id="0ba28-107">The basic steps are:</span></span>
+<span data-ttu-id="8098e-107">les étapes de base Hello sont :</span><span class="sxs-lookup"><span data-stu-id="8098e-107">hello basic steps are:</span></span>
 
-1. <span data-ttu-id="0ba28-108">Créez un modèle sous la forme d’un fichier JSON qui décrit comment créer le groupe d’actions.</span><span class="sxs-lookup"><span data-stu-id="0ba28-108">Create a template as a JSON file that describes how to create the action group.</span></span>
+1. <span data-ttu-id="8098e-108">Créer un modèle en tant qu’un fichier JSON qui décrit comment toocreate hello groupe d’actions.</span><span class="sxs-lookup"><span data-stu-id="8098e-108">Create a template as a JSON file that describes how toocreate hello action group.</span></span>
 
-2. <span data-ttu-id="0ba28-109">Déployez le modèle à l’aide de [n’importe quelle méthode de déploiement](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-template-deploy).</span><span class="sxs-lookup"><span data-stu-id="0ba28-109">Deploy the template by using [any deployment method](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-template-deploy).</span></span>
+2. <span data-ttu-id="8098e-109">Déployer le modèle de hello à l’aide de [n’importe quelle méthode de déploiement](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-template-deploy).</span><span class="sxs-lookup"><span data-stu-id="8098e-109">Deploy hello template by using [any deployment method](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-template-deploy).</span></span>
 
-<span data-ttu-id="0ba28-110">Nous allons tout d’abord présenter comment créer un modèle Resource Manager pour un groupe d’actions où les définitions d’action sont codées en dur dans le modèle.</span><span class="sxs-lookup"><span data-stu-id="0ba28-110">First, we describe how to create a Resource Manager template for an action group where the action definitions are hard-coded in the template.</span></span> <span data-ttu-id="0ba28-111">Nous allons ensuite expliquer comment créer un modèle qui utilise les informations de configuration de webhook comme des paramètres d’entrée lorsque le modèle est déployé.</span><span class="sxs-lookup"><span data-stu-id="0ba28-111">Second, we describe how to create a template that takes the webhook configuration information as input parameters when the template is deployed.</span></span>
+<span data-ttu-id="8098e-110">Tout d’abord, nous allons décrire comment toocreate un modèle de gestionnaire de ressources pour une action de groupe dans lequel les définitions d’action hello sont codés en dur dans le modèle de hello.</span><span class="sxs-lookup"><span data-stu-id="8098e-110">First, we describe how toocreate a Resource Manager template for an action group where hello action definitions are hard-coded in hello template.</span></span> <span data-ttu-id="8098e-111">Ensuite, nous décrivons comment toocreate un modèle qui prend les informations de configuration de webhook hello en tant que paramètres d’entrée lorsque le modèle de hello est déployé.</span><span class="sxs-lookup"><span data-stu-id="8098e-111">Second, we describe how toocreate a template that takes hello webhook configuration information as input parameters when hello template is deployed.</span></span>
 
-## <a name="resource-manager-templates-for-an-action-group"></a><span data-ttu-id="0ba28-112">Modèles Resource Manager pour un groupe d’actions</span><span class="sxs-lookup"><span data-stu-id="0ba28-112">Resource Manager templates for an action group</span></span>
+## <a name="resource-manager-templates-for-an-action-group"></a><span data-ttu-id="8098e-112">Modèles Resource Manager pour un groupe d’actions</span><span class="sxs-lookup"><span data-stu-id="8098e-112">Resource Manager templates for an action group</span></span>
 
-<span data-ttu-id="0ba28-113">Pour créer un groupe d’actions à l’aide d’un modèle Resource Manager, vous créez une ressource de type `Microsoft.Insights/actionGroups`.</span><span class="sxs-lookup"><span data-stu-id="0ba28-113">To create an action group by using a Resource Manager template, you create a resource of the type `Microsoft.Insights/actionGroups`.</span></span> <span data-ttu-id="0ba28-114">Vous renseignez ensuite toutes les propriétés associées.</span><span class="sxs-lookup"><span data-stu-id="0ba28-114">Then you fill in all related properties.</span></span> <span data-ttu-id="0ba28-115">Voici deux exemples de modèles qui créent un groupe d’actions.</span><span class="sxs-lookup"><span data-stu-id="0ba28-115">Here are two sample templates that create an action group.</span></span>
+<span data-ttu-id="8098e-113">toocreate un groupe d’actions à l’aide d’un modèle de gestionnaire de ressources, vous créez une ressource de type de hello `Microsoft.Insights/actionGroups`.</span><span class="sxs-lookup"><span data-stu-id="8098e-113">toocreate an action group by using a Resource Manager template, you create a resource of hello type `Microsoft.Insights/actionGroups`.</span></span> <span data-ttu-id="8098e-114">Puis, renseignez toutes les propriétés associées.</span><span class="sxs-lookup"><span data-stu-id="8098e-114">Then you fill in all related properties.</span></span> <span data-ttu-id="8098e-115">Voici deux exemples de modèles qui créent un groupe d’actions.</span><span class="sxs-lookup"><span data-stu-id="8098e-115">Here are two sample templates that create an action group.</span></span>
 
 ```json
 {
@@ -43,13 +43,13 @@ ms.lasthandoff: 08/29/2017
     "actionGroupName": {
       "type": "string",
       "metadata": {
-        "description": "Unique name (within the Resource Group) for the Action group."
+        "description": "Unique name (within hello Resource Group) for hello Action group."
       }
     },
     "actionGroupShortName": {
       "type": "string",
       "metadata": {
-        "description": "Short name (maximum 12 characters) for the Action group."
+        "description": "Short name (maximum 12 characters) for hello Action group."
       }
     }
   },
@@ -114,13 +114,13 @@ ms.lasthandoff: 08/29/2017
     "actionGroupName": {
       "type": "string",
       "metadata": {
-        "description": "Unique name (within the Resource Group) for the Action group."
+        "description": "Unique name (within hello Resource Group) for hello Action group."
       }
     },
     "actionGroupShortName": {
       "type": "string",
       "metadata": {
-        "description": "Short name (maximum 12 characters) for the Action group."
+        "description": "Short name (maximum 12 characters) for hello Action group."
       }
     },
     "webhookReceiverName": {
@@ -168,7 +168,7 @@ ms.lasthandoff: 08/29/2017
 ```
 
 
-## <a name="next-steps"></a><span data-ttu-id="0ba28-116">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="0ba28-116">Next steps</span></span>
-* <span data-ttu-id="0ba28-117">En savoir plus sur les [groupes d’actions](monitoring-action-groups.md).</span><span class="sxs-lookup"><span data-stu-id="0ba28-117">Learn more about [action groups](monitoring-action-groups.md).</span></span>
-* <span data-ttu-id="0ba28-118">En savoir plus sur les [alertes](monitoring-overview-alerts.md).</span><span class="sxs-lookup"><span data-stu-id="0ba28-118">Learn more about [alerts](monitoring-overview-alerts.md).</span></span>
-* <span data-ttu-id="0ba28-119">En savoir pour sur l’ajout d’[alertes à l’aide d’un modèle Resource Manager](monitoring-create-activity-log-alerts-with-resource-manager-template.md).</span><span class="sxs-lookup"><span data-stu-id="0ba28-119">Learn how to add [alerts by using a Resource Manager template](monitoring-create-activity-log-alerts-with-resource-manager-template.md).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="8098e-116">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="8098e-116">Next steps</span></span>
+* <span data-ttu-id="8098e-117">En savoir plus sur les [groupes d’actions](monitoring-action-groups.md).</span><span class="sxs-lookup"><span data-stu-id="8098e-117">Learn more about [action groups](monitoring-action-groups.md).</span></span>
+* <span data-ttu-id="8098e-118">En savoir plus sur les [alertes](monitoring-overview-alerts.md).</span><span class="sxs-lookup"><span data-stu-id="8098e-118">Learn more about [alerts](monitoring-overview-alerts.md).</span></span>
+* <span data-ttu-id="8098e-119">Découvrez comment tooadd [alertes à l’aide d’un modèle de gestionnaire de ressources](monitoring-create-activity-log-alerts-with-resource-manager-template.md).</span><span class="sxs-lookup"><span data-stu-id="8098e-119">Learn how tooadd [alerts by using a Resource Manager template](monitoring-create-activity-log-alerts-with-resource-manager-template.md).</span></span>

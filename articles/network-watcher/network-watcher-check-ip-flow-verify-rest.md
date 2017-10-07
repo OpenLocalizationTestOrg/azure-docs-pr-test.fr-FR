@@ -1,6 +1,6 @@
 ---
-title: "Vérifier le trafic avec la vérification des flux IP d’Azure Network Watcher - REST | Microsoft Docs"
-description: "Cet article explique comment savoir si le trafic en direction ou en provenance d’une machine virtuelle est autorisé ou refusé"
+title: "vérification du trafic aaaVerify le transfert IP de l’Observateur réseau Azure - REST | Documents Microsoft"
+description: "Cet article décrit comment toocheck si tooor le trafic à partir d’un ordinateur virtuel est autorisé ou refusé"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,52 +14,52 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: 6d3ce00a7d4f9c0cd57fa8815625a1065b03b5b5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 956db0d326db597c6c402a9e8d4a5522c47c02d6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="check-if-traffic-is-allowed-or-denied-with-ip-flow-verify-a-component-of-azure-network-watcher"></a><span data-ttu-id="8ce97-103">Vérifier si le trafic est autorisé ou refusé avec le composant de vérification des flux IP d’Azure Network Watcher</span><span class="sxs-lookup"><span data-stu-id="8ce97-103">Check if traffic is allowed or denied with IP flow verify a component of Azure Network Watcher</span></span>
+# <a name="check-if-traffic-is-allowed-or-denied-with-ip-flow-verify-a-component-of-azure-network-watcher"></a><span data-ttu-id="d9d50-103">Vérifier si le trafic est autorisé ou refusé avec le composant de vérification des flux IP d’Azure Network Watcher</span><span class="sxs-lookup"><span data-stu-id="d9d50-103">Check if traffic is allowed or denied with IP flow verify a component of Azure Network Watcher</span></span>
 
 > [!div class="op_single_selector"]
-> - [<span data-ttu-id="8ce97-104">Portail Azure</span><span class="sxs-lookup"><span data-stu-id="8ce97-104">Azure portal</span></span>](network-watcher-check-ip-flow-verify-portal.md)
-> - [<span data-ttu-id="8ce97-105">PowerShell</span><span class="sxs-lookup"><span data-stu-id="8ce97-105">PowerShell</span></span>](network-watcher-check-ip-flow-verify-powershell.md)
-> - [<span data-ttu-id="8ce97-106">CLI 1.0</span><span class="sxs-lookup"><span data-stu-id="8ce97-106">CLI 1.0</span></span>](network-watcher-check-ip-flow-verify-cli-nodejs.md)
-> - [<span data-ttu-id="8ce97-107">CLI 2.0</span><span class="sxs-lookup"><span data-stu-id="8ce97-107">CLI 2.0</span></span>](network-watcher-check-ip-flow-verify-cli.md)
-> - [<span data-ttu-id="8ce97-108">API REST Azure</span><span class="sxs-lookup"><span data-stu-id="8ce97-108">Azure REST API</span></span>](network-watcher-check-ip-flow-verify-rest.md)
+> - [<span data-ttu-id="d9d50-104">Portail Azure</span><span class="sxs-lookup"><span data-stu-id="d9d50-104">Azure portal</span></span>](network-watcher-check-ip-flow-verify-portal.md)
+> - [<span data-ttu-id="d9d50-105">PowerShell</span><span class="sxs-lookup"><span data-stu-id="d9d50-105">PowerShell</span></span>](network-watcher-check-ip-flow-verify-powershell.md)
+> - [<span data-ttu-id="d9d50-106">CLI 1.0</span><span class="sxs-lookup"><span data-stu-id="d9d50-106">CLI 1.0</span></span>](network-watcher-check-ip-flow-verify-cli-nodejs.md)
+> - [<span data-ttu-id="d9d50-107">CLI 2.0</span><span class="sxs-lookup"><span data-stu-id="d9d50-107">CLI 2.0</span></span>](network-watcher-check-ip-flow-verify-cli.md)
+> - [<span data-ttu-id="d9d50-108">API REST Azure</span><span class="sxs-lookup"><span data-stu-id="d9d50-108">Azure REST API</span></span>](network-watcher-check-ip-flow-verify-rest.md)
 
 
-<span data-ttu-id="8ce97-109">La vérification des flux IP est une fonctionnalité de Network Watcher qui vous permet de vérifier si le trafic en direction ou en provenance d’une machine virtuelle est autorisé.</span><span class="sxs-lookup"><span data-stu-id="8ce97-109">IP flow verify is a feature of Network Watcher that allows you to verify if traffic is allowed to or from a virtual machine.</span></span> <span data-ttu-id="8ce97-110">La validation peut être exécutée pour le trafic entrant ou sortant.</span><span class="sxs-lookup"><span data-stu-id="8ce97-110">The validation can be run for incoming or outgoing traffic.</span></span> <span data-ttu-id="8ce97-111">Cette fonctionnalité est très utile pour définir si une machine virtuelle peut actuellement communiquer avec une ressource externe ou un serveur back-end.</span><span class="sxs-lookup"><span data-stu-id="8ce97-111">This scenario is useful to get a current state of whether a virtual machine can talk to an external resource or backend.</span></span> <span data-ttu-id="8ce97-112">La vérification des flux IP peut être utilisée pour vérifier si les règles de votre groupe de sécurité réseau sont correctement configurées et pour résoudre les problèmes de flux bloqués par les règles de groupe de sécurité réseau.</span><span class="sxs-lookup"><span data-stu-id="8ce97-112">IP flow verify can be used to verify if your Network Security Group (NSG) rules are properly configured and troubleshoot flows that are being blocked by NSG rules.</span></span> <span data-ttu-id="8ce97-113">La vérification des flux IP permet aussi de s’assurer que le trafic que vous souhaitez bloquer est correctement bloqué par le groupe de sécurité réseau.</span><span class="sxs-lookup"><span data-stu-id="8ce97-113">Another reason for using IP flow verify is to ensure traffic that you want blocked is being blocked properly by the NSG.</span></span>
+<span data-ttu-id="d9d50-109">Vérifiez que les flux IP est une fonctionnalité de l’Observateur réseau qui vous permet de tooverify si le trafic est autorisé à tooor à partir d’un ordinateur virtuel.</span><span class="sxs-lookup"><span data-stu-id="d9d50-109">IP flow verify is a feature of Network Watcher that allows you tooverify if traffic is allowed tooor from a virtual machine.</span></span> <span data-ttu-id="d9d50-110">la validation de Hello peut être exécutée pour le trafic entrant ou sortant.</span><span class="sxs-lookup"><span data-stu-id="d9d50-110">hello validation can be run for incoming or outgoing traffic.</span></span> <span data-ttu-id="d9d50-111">Ce scénario est utile tooget un état actuel de si un ordinateur virtuel peut communiquer avec les ressources externes tooan ou principal.</span><span class="sxs-lookup"><span data-stu-id="d9d50-111">This scenario is useful tooget a current state of whether a virtual machine can talk tooan external resource or backend.</span></span> <span data-ttu-id="d9d50-112">Les flux IP vérifier peut être utilisé tooverify si vos règles de groupe de sécurité réseau (NSG) sont correctement configurés et résoudre les problèmes de flux qui sont bloqués par les règles du groupe de sécurité réseau.</span><span class="sxs-lookup"><span data-stu-id="d9d50-112">IP flow verify can be used tooverify if your Network Security Group (NSG) rules are properly configured and troubleshoot flows that are being blocked by NSG rules.</span></span> <span data-ttu-id="d9d50-113">Une autre raison de l’utilisation de IP flux Vérifiez à bloquer le trafic de tooensure est bloqué correctement par hello groupe de sécurité réseau.</span><span class="sxs-lookup"><span data-stu-id="d9d50-113">Another reason for using IP flow verify is tooensure traffic that you want blocked is being blocked properly by hello NSG.</span></span>
 
-## <a name="before-you-begin"></a><span data-ttu-id="8ce97-114">Avant de commencer</span><span class="sxs-lookup"><span data-stu-id="8ce97-114">Before you begin</span></span>
+## <a name="before-you-begin"></a><span data-ttu-id="d9d50-114">Avant de commencer</span><span class="sxs-lookup"><span data-stu-id="d9d50-114">Before you begin</span></span>
 
-<span data-ttu-id="8ce97-115">ARMclient permet d’appeler l’API REST à l’aide de PowerShell.</span><span class="sxs-lookup"><span data-stu-id="8ce97-115">ARMclient is used to call the REST API using PowerShell.</span></span> <span data-ttu-id="8ce97-116">ARMClient est accessible sur le site chocolatey à partir de la page [ARMClient sur Chocolatey](https://chocolatey.org/packages/ARMClient).</span><span class="sxs-lookup"><span data-stu-id="8ce97-116">ARMClient is found on chocolatey at [ARMClient on Chocolatey](https://chocolatey.org/packages/ARMClient)</span></span>
+<span data-ttu-id="d9d50-115">ARMclient est utilisé toocall hello REST API à l’aide de PowerShell.</span><span class="sxs-lookup"><span data-stu-id="d9d50-115">ARMclient is used toocall hello REST API using PowerShell.</span></span> <span data-ttu-id="d9d50-116">ARMClient est accessible sur le site chocolatey à partir de la page [ARMClient sur Chocolatey](https://chocolatey.org/packages/ARMClient).</span><span class="sxs-lookup"><span data-stu-id="d9d50-116">ARMClient is found on chocolatey at [ARMClient on Chocolatey](https://chocolatey.org/packages/ARMClient)</span></span>
 
-<span data-ttu-id="8ce97-117">Ce scénario suppose que vous ayez déjà suivi la procédure décrite dans [Créer une instance d’Azure Network Watcher](network-watcher-create.md) pour créer un Network Watcher.</span><span class="sxs-lookup"><span data-stu-id="8ce97-117">This scenario assumes you have already followed the steps in [Create a Network Watcher](network-watcher-create.md) to create a Network Watcher.</span></span>
+<span data-ttu-id="d9d50-117">Ce scénario suppose que vous avez déjà suivi les étapes hello dans [créer un observateur réseau](network-watcher-create.md) toocreate un observateur réseau.</span><span class="sxs-lookup"><span data-stu-id="d9d50-117">This scenario assumes you have already followed hello steps in [Create a Network Watcher](network-watcher-create.md) toocreate a Network Watcher.</span></span>
 
-## <a name="scenario"></a><span data-ttu-id="8ce97-118">Scénario</span><span class="sxs-lookup"><span data-stu-id="8ce97-118">Scenario</span></span>
+## <a name="scenario"></a><span data-ttu-id="d9d50-118">Scénario</span><span class="sxs-lookup"><span data-stu-id="d9d50-118">Scenario</span></span>
 
-<span data-ttu-id="8ce97-119">Ce scénario utilise la vérification des flux IP pour vérifier si une machine virtuelle peut communiquer avec une autre machine par le biais du port 443.</span><span class="sxs-lookup"><span data-stu-id="8ce97-119">This scenario uses IP flow Verify to verify if a virtual machine can talk to another machine over port 443.</span></span> <span data-ttu-id="8ce97-120">Si le trafic est refusé, la règle de sécurité refusant ce trafic est renvoyée.</span><span class="sxs-lookup"><span data-stu-id="8ce97-120">If the traffic is denied, it returns the security rule that is denying that traffic.</span></span> <span data-ttu-id="8ce97-121">Pour en savoir plus sur la vérification des flux IP, consultez [Vue d’ensemble de la vérification des flux IP](network-watcher-ip-flow-verify-overview.md).</span><span class="sxs-lookup"><span data-stu-id="8ce97-121">To learn more about IP flow Verify, visit [IP flow verify overview](network-watcher-ip-flow-verify-overview.md)</span></span>
+<span data-ttu-id="d9d50-119">Ce scénario utilise IP flux Vérifiez tooverify si une machine virtuelle peut communiquer avec l’ordinateur de tooanother sur le port 443.</span><span class="sxs-lookup"><span data-stu-id="d9d50-119">This scenario uses IP flow Verify tooverify if a virtual machine can talk tooanother machine over port 443.</span></span> <span data-ttu-id="d9d50-120">Si le trafic de hello est refusé, elle retourne la règle de sécurité hello refuse ce trafic.</span><span class="sxs-lookup"><span data-stu-id="d9d50-120">If hello traffic is denied, it returns hello security rule that is denying that traffic.</span></span> <span data-ttu-id="d9d50-121">toolearn en savoir plus sur les flux d’IP Verify, visitez [les flux IP vérifier la vue d’ensemble](network-watcher-ip-flow-verify-overview.md)</span><span class="sxs-lookup"><span data-stu-id="d9d50-121">toolearn more about IP flow Verify, visit [IP flow verify overview](network-watcher-ip-flow-verify-overview.md)</span></span>
 
-<span data-ttu-id="8ce97-122">Dans ce scénario, vous allez :</span><span class="sxs-lookup"><span data-stu-id="8ce97-122">In this scenario, you:</span></span>
+<span data-ttu-id="d9d50-122">Dans ce scénario, vous allez :</span><span class="sxs-lookup"><span data-stu-id="d9d50-122">In this scenario, you:</span></span>
 
-* <span data-ttu-id="8ce97-123">Récupérer une machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="8ce97-123">Retrieve a virtual machine</span></span>
-* <span data-ttu-id="8ce97-124">Appeler la vérification des flux IP</span><span class="sxs-lookup"><span data-stu-id="8ce97-124">Call IP flow verify</span></span>
-* <span data-ttu-id="8ce97-125">Vérifier les résultats</span><span class="sxs-lookup"><span data-stu-id="8ce97-125">Verify results</span></span>
+* <span data-ttu-id="d9d50-123">Récupérer une machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="d9d50-123">Retrieve a virtual machine</span></span>
+* <span data-ttu-id="d9d50-124">Appeler la vérification des flux IP</span><span class="sxs-lookup"><span data-stu-id="d9d50-124">Call IP flow verify</span></span>
+* <span data-ttu-id="d9d50-125">Vérifier les résultats</span><span class="sxs-lookup"><span data-stu-id="d9d50-125">Verify results</span></span>
 
-## <a name="log-in-with-armclient"></a><span data-ttu-id="8ce97-126">Se connecter à ARMClient</span><span class="sxs-lookup"><span data-stu-id="8ce97-126">Log in with ARMClient</span></span>
+## <a name="log-in-with-armclient"></a><span data-ttu-id="d9d50-126">Se connecter à ARMClient</span><span class="sxs-lookup"><span data-stu-id="d9d50-126">Log in with ARMClient</span></span>
 
 ```PowerShell
 armclient login
 ```
 
-## <a name="retrieve-a-virtual-machine"></a><span data-ttu-id="8ce97-127">Récupérer une machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="8ce97-127">Retrieve a virtual machine</span></span>
+## <a name="retrieve-a-virtual-machine"></a><span data-ttu-id="d9d50-127">Récupérer une machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="d9d50-127">Retrieve a virtual machine</span></span>
 
-<span data-ttu-id="8ce97-128">Exécutez le script suivant pour renvoyer une machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="8ce97-128">Run the following script to return a virtual machine.</span></span> <span data-ttu-id="8ce97-129">Le code suivant a besoin de valeurs pour les variables :</span><span class="sxs-lookup"><span data-stu-id="8ce97-129">The following code needs values for the variables:</span></span>
+<span data-ttu-id="d9d50-128">Exécutez hello suivant script tooreturn une machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="d9d50-128">Run hello following script tooreturn a virtual machine.</span></span> <span data-ttu-id="d9d50-129">Hello suivant code a besoin de valeurs pour les variables de hello :</span><span class="sxs-lookup"><span data-stu-id="d9d50-129">hello following code needs values for hello variables:</span></span>
 
-* <span data-ttu-id="8ce97-130">**subscriptionId** - L’ID d’abonnement à utiliser.</span><span class="sxs-lookup"><span data-stu-id="8ce97-130">**subscriptionId** - The subscription Id to use.</span></span>
-* <span data-ttu-id="8ce97-131">**resourceGroupName** - Le nom d’un groupe de ressources qui contient les machines virtuelles.</span><span class="sxs-lookup"><span data-stu-id="8ce97-131">**resourceGroupName** - The name of a resource group that contains virtual machines.</span></span>
+* <span data-ttu-id="d9d50-130">**ID d’abonnement** -hello toouse de Id d’abonnement.</span><span class="sxs-lookup"><span data-stu-id="d9d50-130">**subscriptionId** - hello subscription Id toouse.</span></span>
+* <span data-ttu-id="d9d50-131">**resourceGroupName** hello - nom du groupe de ressources qui contient des machines virtuelles.</span><span class="sxs-lookup"><span data-stu-id="d9d50-131">**resourceGroupName** - hello name of a resource group that contains virtual machines.</span></span>
 
 ```powershell
 $subscriptionId = "<subscription id>"
@@ -68,7 +68,7 @@ $resourceGroupName = "<resource group name>"
 armclient get https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Compute/virtualMachines?api-version=2015-05-01-preview
 ```
 
-<span data-ttu-id="8ce97-132">Les informations nécessaires sont l’ID sous le type de `Microsoft.Compute/virtualMachines`.</span><span class="sxs-lookup"><span data-stu-id="8ce97-132">The information that is needed is the id under the type `Microsoft.Compute/virtualMachines`.</span></span> <span data-ttu-id="8ce97-133">Les résultats doivent ressembler à l’exemple de code suivant :</span><span class="sxs-lookup"><span data-stu-id="8ce97-133">The results should be similar to the following code sample:</span></span>
+<span data-ttu-id="d9d50-132">informations nécessaires Hello sont id hello sous le type hello `Microsoft.Compute/virtualMachines`.</span><span class="sxs-lookup"><span data-stu-id="d9d50-132">hello information that is needed is hello id under hello type `Microsoft.Compute/virtualMachines`.</span></span> <span data-ttu-id="d9d50-133">les résultats de Hello doivent être similaires toohello suivant l’exemple de code :</span><span class="sxs-lookup"><span data-stu-id="d9d50-133">hello results should be similar toohello following code sample:</span></span>
 
 ```json
 ...,
@@ -98,17 +98,17 @@ pute/virtualMachines/ContosoVM/extensions/CustomScriptExtension"
 }
 ```
 
-## <a name="call-ip-flow-verify"></a><span data-ttu-id="8ce97-134">Appeler la vérification des flux IP</span><span class="sxs-lookup"><span data-stu-id="8ce97-134">Call IP flow Verify</span></span>
+## <a name="call-ip-flow-verify"></a><span data-ttu-id="d9d50-134">Appeler la vérification des flux IP</span><span class="sxs-lookup"><span data-stu-id="d9d50-134">Call IP flow Verify</span></span>
 
-<span data-ttu-id="8ce97-135">L’exemple suivant crée une demande pour vérifier le trafic d’une machine virtuelle spécifiée.</span><span class="sxs-lookup"><span data-stu-id="8ce97-135">The following example creates a request to verify the traffic for a specified virtual machine.</span></span> <span data-ttu-id="8ce97-136">La réponse renvoyée indique si le trafic est autorisé ou si le trafic est refusé.</span><span class="sxs-lookup"><span data-stu-id="8ce97-136">The response returns if the traffic is allowed or if the traffic is denied.</span></span> <span data-ttu-id="8ce97-137">Si le trafic est refusé, elle indique également quelle règle bloque le trafic.</span><span class="sxs-lookup"><span data-stu-id="8ce97-137">If traffic is denied it also returns what rule blocks the traffic.</span></span>
+<span data-ttu-id="d9d50-135">Hello exemple suivant crée un demande tooverify hello du trafic d’un ordinateur virtuel spécifié.</span><span class="sxs-lookup"><span data-stu-id="d9d50-135">hello following example creates a request tooverify hello traffic for a specified virtual machine.</span></span> <span data-ttu-id="d9d50-136">réponse de Hello retourne si hello le trafic est autorisé ou si le trafic de hello est refusé.</span><span class="sxs-lookup"><span data-stu-id="d9d50-136">hello response returns if hello traffic is allowed or if hello traffic is denied.</span></span> <span data-ttu-id="d9d50-137">Si le trafic est refusé qu'il retourne également les blocs de règles hello du trafic.</span><span class="sxs-lookup"><span data-stu-id="d9d50-137">If traffic is denied it also returns what rule blocks hello traffic.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="8ce97-138">La vérification des flux IP nécessite l’attribution de la ressource de machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="8ce97-138">IP flow verify requires that the VM resource is allocated.</span></span>
+> <span data-ttu-id="d9d50-138">Les flux IP vérifier requiert que la ressource de machine virtuelle hello est allouée.</span><span class="sxs-lookup"><span data-stu-id="d9d50-138">IP flow verify requires that hello VM resource is allocated.</span></span>
 
-<span data-ttu-id="8ce97-139">Le script requiert l’ID de la ressource d’une machine virtuelle et d’une carte d’interface réseau sur la machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="8ce97-139">The script requires the resource Id of a virtual machine and of a network interface card on the virtual machine.</span></span> <span data-ttu-id="8ce97-140">Ces valeurs sont fournies par le résultat précédent.</span><span class="sxs-lookup"><span data-stu-id="8ce97-140">These values are provided by the preceding output.</span></span>
+<span data-ttu-id="d9d50-139">script de Hello nécessite un Id d’un ordinateur virtuel et d’une carte d’interface réseau sur l’ordinateur virtuel de hello de la ressource hello.</span><span class="sxs-lookup"><span data-stu-id="d9d50-139">hello script requires hello resource Id of a virtual machine and of a network interface card on hello virtual machine.</span></span> <span data-ttu-id="d9d50-140">Ces valeurs sont fournies par hello précédant la sortie.</span><span class="sxs-lookup"><span data-stu-id="d9d50-140">These values are provided by hello preceding output.</span></span>
 
 > [!Important]
-> <span data-ttu-id="8ce97-141">Pour tous les appels REST de Network Watcher, le nom du groupe de ressources dans l’URI de requête correspond à celui qui contient l’instance de Network Watcher, et non les ressources sur lesquelles vous exécutez les actions de diagnostic.</span><span class="sxs-lookup"><span data-stu-id="8ce97-141">For all Network Watcher REST calls the resource group name in the request URI is the one that contains the Network Watcher instance, not the resources you are performing the diagnostic actions on.</span></span>
+> <span data-ttu-id="d9d50-141">Pour le reste de l’Observateur réseau tous les appels hello nom de groupe de ressources dans l’URI est hello qui contient d’instance de l’Observateur réseau hello, pas les ressources hello vous effectuez des actions de diagnostic hello sur la demande hello.</span><span class="sxs-lookup"><span data-stu-id="d9d50-141">For all Network Watcher REST calls hello resource group name in hello request URI is hello one that contains hello Network Watcher instance, not hello resources you are performing hello diagnostic actions on.</span></span>
 
 ```powershell
 $subscriptionId = "<subscription id>"
@@ -141,11 +141,11 @@ $requestBody = @"
 armclient post "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/ipFlowVerify?api-version=2016-12-01" $requestBody -verbose
 ```
 
-## <a name="understanding-the-results"></a><span data-ttu-id="8ce97-142">Compréhension des résultats</span><span class="sxs-lookup"><span data-stu-id="8ce97-142">Understanding the results</span></span>
+## <a name="understanding-hello-results"></a><span data-ttu-id="d9d50-142">Présentation des résultats de hello</span><span class="sxs-lookup"><span data-stu-id="d9d50-142">Understanding hello results</span></span>
 
-<span data-ttu-id="8ce97-143">La réponse que vous obtenez en retour vous indique si le trafic est autorisé ou refusé.</span><span class="sxs-lookup"><span data-stu-id="8ce97-143">The response you get back tells you whether the traffic is allowed or denied.</span></span> <span data-ttu-id="8ce97-144">La réponse ressemble à l’un des exemples suivants :</span><span class="sxs-lookup"><span data-stu-id="8ce97-144">The response looks like one of the following examples:</span></span>
+<span data-ttu-id="d9d50-143">Hello réponse renvoyée indique si le trafic de hello est autorisé ou refusé.</span><span class="sxs-lookup"><span data-stu-id="d9d50-143">hello response you get back tells you whether hello traffic is allowed or denied.</span></span> <span data-ttu-id="d9d50-144">réponse de Hello ressemble à un des hello exemple suivant :</span><span class="sxs-lookup"><span data-stu-id="d9d50-144">hello response looks like one of hello following examples:</span></span>
 
-<span data-ttu-id="8ce97-145">**Autorisé**</span><span class="sxs-lookup"><span data-stu-id="8ce97-145">**Allowed**</span></span>
+<span data-ttu-id="d9d50-145">**Autorisé**</span><span class="sxs-lookup"><span data-stu-id="d9d50-145">**Allowed**</span></span>
 
 ```json
 {
@@ -154,7 +154,7 @@ armclient post "https://management.azure.com/subscriptions/${subscriptionId}/Res
 }
 ```
 
-<span data-ttu-id="8ce97-146">**Refusé**</span><span class="sxs-lookup"><span data-stu-id="8ce97-146">**Denied**</span></span>
+<span data-ttu-id="d9d50-146">**Refusé**</span><span class="sxs-lookup"><span data-stu-id="d9d50-146">**Denied**</span></span>
 
 ```json
 {
@@ -163,9 +163,9 @@ armclient post "https://management.azure.com/subscriptions/${subscriptionId}/Res
 }
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="8ce97-147">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="8ce97-147">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="d9d50-147">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="d9d50-147">Next steps</span></span>
 
-<span data-ttu-id="8ce97-148">Si le trafic est bloqué alors qu’il ne devrait pas l’être, consultez [Gérer les groupes de sécurité réseau à partir du portail](../virtual-network/virtual-network-manage-nsg-arm-portal.md) pour en savoir plus sur les groupes de sécurité réseau.</span><span class="sxs-lookup"><span data-stu-id="8ce97-148">If traffic is being blocked and it should not be, see [Manage Network Security Groups](../virtual-network/virtual-network-manage-nsg-arm-portal.md) to learn more about Network Security Groups.</span></span>
+<span data-ttu-id="d9d50-148">Si le trafic est bloqué et ne doit pas être, consultez [gérer les groupes de sécurité réseau](../virtual-network/virtual-network-manage-nsg-arm-portal.md) toolearn plus d’informations sur les groupes de sécurité réseau.</span><span class="sxs-lookup"><span data-stu-id="d9d50-148">If traffic is being blocked and it should not be, see [Manage Network Security Groups](../virtual-network/virtual-network-manage-nsg-arm-portal.md) toolearn more about Network Security Groups.</span></span>
 
 
 

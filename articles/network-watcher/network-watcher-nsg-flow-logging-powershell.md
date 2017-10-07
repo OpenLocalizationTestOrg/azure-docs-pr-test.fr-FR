@@ -1,6 +1,6 @@
 ---
-title: "Gérer les journaux des flux de groupe de sécurité réseau avec Azure Network Watcher - PowerShell | Microsoft Docs"
-description: "Cette page explique comment gérer les journaux des flux de groupe de sécurité réseau dans Azure Network Watcher avec PowerShell"
+title: "aaaManage flux de groupe de sécurité réseau se connecte avec l’Observateur réseau de Azure - PowerShell | Documents Microsoft"
+description: "Cette page explique le fonctionnement des journaux dans l’Observateur réseau de Azure avec PowerShell toomanage flux de groupe de sécurité réseau"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,34 +14,34 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: 9fa2e2e1c09b119bd2a1e149fd2cc080957af296
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 987e8728fb6459fd6ff8eb5cd3d36ff855f2ccfc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="configuring-network-security-group-flow-logs-with-powershell"></a><span data-ttu-id="65e5a-103">Configuration des journaux des flux de groupe de sécurité réseau avec PowerShell</span><span class="sxs-lookup"><span data-stu-id="65e5a-103">Configuring Network Security Group Flow logs with PowerShell</span></span>
+# <a name="configuring-network-security-group-flow-logs-with-powershell"></a><span data-ttu-id="2ded0-103">Configuration des journaux des flux de groupe de sécurité réseau avec PowerShell</span><span class="sxs-lookup"><span data-stu-id="2ded0-103">Configuring Network Security Group Flow logs with PowerShell</span></span>
 
 > [!div class="op_single_selector"]
-> - [<span data-ttu-id="65e5a-104">portail Azure</span><span class="sxs-lookup"><span data-stu-id="65e5a-104">Azure portal</span></span>](network-watcher-nsg-flow-logging-portal.md)
-> - [<span data-ttu-id="65e5a-105">PowerShell</span><span class="sxs-lookup"><span data-stu-id="65e5a-105">PowerShell</span></span>](network-watcher-nsg-flow-logging-powershell.md)
-> - [<span data-ttu-id="65e5a-106">CLI 1.0</span><span class="sxs-lookup"><span data-stu-id="65e5a-106">CLI 1.0</span></span>](network-watcher-nsg-flow-logging-cli-nodejs.md)
-> - [<span data-ttu-id="65e5a-107">CLI 2.0</span><span class="sxs-lookup"><span data-stu-id="65e5a-107">CLI 2.0</span></span>](network-watcher-nsg-flow-logging-cli.md)
-> - [<span data-ttu-id="65e5a-108">API REST</span><span class="sxs-lookup"><span data-stu-id="65e5a-108">REST API</span></span>](network-watcher-nsg-flow-logging-rest.md)
+> - [<span data-ttu-id="2ded0-104">portail Azure</span><span class="sxs-lookup"><span data-stu-id="2ded0-104">Azure portal</span></span>](network-watcher-nsg-flow-logging-portal.md)
+> - [<span data-ttu-id="2ded0-105">PowerShell</span><span class="sxs-lookup"><span data-stu-id="2ded0-105">PowerShell</span></span>](network-watcher-nsg-flow-logging-powershell.md)
+> - [<span data-ttu-id="2ded0-106">CLI 1.0</span><span class="sxs-lookup"><span data-stu-id="2ded0-106">CLI 1.0</span></span>](network-watcher-nsg-flow-logging-cli-nodejs.md)
+> - [<span data-ttu-id="2ded0-107">CLI 2.0</span><span class="sxs-lookup"><span data-stu-id="2ded0-107">CLI 2.0</span></span>](network-watcher-nsg-flow-logging-cli.md)
+> - [<span data-ttu-id="2ded0-108">API REST</span><span class="sxs-lookup"><span data-stu-id="2ded0-108">REST API</span></span>](network-watcher-nsg-flow-logging-rest.md)
 
-<span data-ttu-id="65e5a-109">Les journaux des flux de groupe de sécurité réseau désignent une fonctionnalité de Network Watcher qui vous permet de visualiser des informations sur le trafic IP d’entrée et de sortie par le biais d’un groupe de sécurité réseau.</span><span class="sxs-lookup"><span data-stu-id="65e5a-109">Network Security Group flow logs are a feature of Network Watcher that allows you to view information about ingress and egress IP traffic through a Network Security Group.</span></span> <span data-ttu-id="65e5a-110">Ces flux de journaux sont écrits au format json et affichent les flux entrants et sortants en fonction de la règle, la carte réseau à laquelle le flux s’applique, des informations à 5 tuples sur le flux (adresse IP source/de destination, port source/de destination, protocole), ainsi que l’autorisation ou le refus du trafic.</span><span class="sxs-lookup"><span data-stu-id="65e5a-110">These flow logs are written in json format and show outbound and inbound flows on a per rule basis, the NIC the flow applies to, 5-tuple information about the flow (Source/Destination IP, Source/Destination Port, Protocol), and if the traffic was allowed or denied.</span></span>
+<span data-ttu-id="2ded0-109">Journaux du groupe de sécurité réseau de flux sont une fonctionnalité de l’Observateur réseau qui vous permet de tooview d’informations sur le trafic IP entrant et sortant via un groupe de sécurité réseau.</span><span class="sxs-lookup"><span data-stu-id="2ded0-109">Network Security Group flow logs are a feature of Network Watcher that allows you tooview information about ingress and egress IP traffic through a Network Security Group.</span></span> <span data-ttu-id="2ded0-110">Ces flux de journaux est écrits au format json et affiche sortant des flux entrants sur une base par la règle, hello flux hello de carte réseau s’applique, 5-tuple d’informations sur le flux hello (protocole IP Source et de Destination, Port Source et de Destination) et si hello le trafic a été autorisé ou refusé.</span><span class="sxs-lookup"><span data-stu-id="2ded0-110">These flow logs are written in json format and show outbound and inbound flows on a per rule basis, hello NIC hello flow applies to, 5-tuple information about hello flow (Source/Destination IP, Source/Destination Port, Protocol), and if hello traffic was allowed or denied.</span></span>
 
-## <a name="register-insights-provider"></a><span data-ttu-id="65e5a-111">Inscription du fournisseur Insights</span><span class="sxs-lookup"><span data-stu-id="65e5a-111">Register Insights provider</span></span>
+## <a name="register-insights-provider"></a><span data-ttu-id="2ded0-111">Inscription du fournisseur Insights</span><span class="sxs-lookup"><span data-stu-id="2ded0-111">Register Insights provider</span></span>
 
-<span data-ttu-id="65e5a-112">Pour que les journaux de flux puissent correctement fonctionner, le fournisseur **Microsoft.Insights** doit être inscrit.</span><span class="sxs-lookup"><span data-stu-id="65e5a-112">In order for flow logging to work successfully, the **Microsoft.Insights** provider must be registered.</span></span> <span data-ttu-id="65e5a-113">Si vous ne savez pas si le fournisseur **Microsoft.Insights** est inscrit, exécutez le script suivant.</span><span class="sxs-lookup"><span data-stu-id="65e5a-113">If you are not sure if the **Microsoft.Insights** provider is registered, run the following script.</span></span>
+<span data-ttu-id="2ded0-112">Dans l’ordre pour le flux de journalisation toowork hello avec succès, **Microsoft.Insights** fournisseur doit être enregistré.</span><span class="sxs-lookup"><span data-stu-id="2ded0-112">In order for flow logging toowork successfully, hello **Microsoft.Insights** provider must be registered.</span></span> <span data-ttu-id="2ded0-113">Si vous n’êtes pas sûr si hello **Microsoft.Insights** fournisseur est inscrit, hello exécution de script suivant.</span><span class="sxs-lookup"><span data-stu-id="2ded0-113">If you are not sure if hello **Microsoft.Insights** provider is registered, run hello following script.</span></span>
 
 ```powershell
 Register-AzureRmResourceProvider -ProviderNamespace Microsoft.Insights
 ```
 
-## <a name="enable-network-security-group-flow-logs"></a><span data-ttu-id="65e5a-114">Activer les journaux des flux de groupe de sécurité réseau</span><span class="sxs-lookup"><span data-stu-id="65e5a-114">Enable Network Security Group Flow logs</span></span>
+## <a name="enable-network-security-group-flow-logs"></a><span data-ttu-id="2ded0-114">Activer les journaux des flux de groupe de sécurité réseau</span><span class="sxs-lookup"><span data-stu-id="2ded0-114">Enable Network Security Group Flow logs</span></span>
 
-<span data-ttu-id="65e5a-115">La commande d’activation des journaux de flux est illustrée dans l’exemple suivant :</span><span class="sxs-lookup"><span data-stu-id="65e5a-115">The command to enable flow logs is shown in the following example:</span></span>
+<span data-ttu-id="2ded0-115">les journaux de flux de tooenable commande Hello est présenté dans hello l’exemple suivant :</span><span class="sxs-lookup"><span data-stu-id="2ded0-115">hello command tooenable flow logs is shown in hello following example:</span></span>
 
 ```powershell
 $NW = Get-AzurermNetworkWatcher -ResourceGroupName NetworkWatcherRg -Name NetworkWatcher_westcentralus
@@ -51,28 +51,28 @@ Get-AzureRmNetworkWatcherFlowLogStatus -NetworkWatcher $NW -TargetResourceId $ns
 Set-AzureRmNetworkWatcherConfigFlowLog -NetworkWatcher $NW -TargetResourceId $nsg.Id -StorageAccountId $storageAccount.Id -EnableFlowLog $true
 ```
 
-## <a name="disable-network-security-group-flow-logs"></a><span data-ttu-id="65e5a-116">Désactiver les journaux des flux de groupe de sécurité réseau</span><span class="sxs-lookup"><span data-stu-id="65e5a-116">Disable Network Security Group Flow logs</span></span>
+## <a name="disable-network-security-group-flow-logs"></a><span data-ttu-id="2ded0-116">Désactiver les journaux des flux de groupe de sécurité réseau</span><span class="sxs-lookup"><span data-stu-id="2ded0-116">Disable Network Security Group Flow logs</span></span>
 
-<span data-ttu-id="65e5a-117">Utilisez l’exemple suivant pour désactiver les journaux de flux :</span><span class="sxs-lookup"><span data-stu-id="65e5a-117">Use the following example to disable flow logs:</span></span>
+<span data-ttu-id="2ded0-117">Hello utilisation suivant des journaux de flux toodisable exemple :</span><span class="sxs-lookup"><span data-stu-id="2ded0-117">Use hello following example toodisable flow logs:</span></span>
 
 ```powershell
 Set-AzureRmNetworkWatcherConfigFlowLog -NetworkWatcher $NW -TargetResourceId $nsg.Id -StorageAccountId $storageAccount.Id -EnableFlowLog $false
 ```
 
-## <a name="download-a-flow-log"></a><span data-ttu-id="65e5a-118">Télécharger un journal de flux</span><span class="sxs-lookup"><span data-stu-id="65e5a-118">Download a Flow log</span></span>
+## <a name="download-a-flow-log"></a><span data-ttu-id="2ded0-118">Télécharger un journal de flux</span><span class="sxs-lookup"><span data-stu-id="2ded0-118">Download a Flow log</span></span>
 
-<span data-ttu-id="65e5a-119">L’emplacement de stockage d’un journal de flux est défini au moment de la création.</span><span class="sxs-lookup"><span data-stu-id="65e5a-119">The storage location of a flow log is defined at creation.</span></span> <span data-ttu-id="65e5a-120">L’explorateur de stockage Microsoft Azure est un outil très pratique pour accéder à ces journaux de flux enregistrés dans un compte de stockage. Vous pouvez le télécharger ici : http://storageexplorer.com/</span><span class="sxs-lookup"><span data-stu-id="65e5a-120">A convenient tool to access these flow logs saved to a storage account is Microsoft Azure Storage Explorer, which can be downloaded here:  http://storageexplorer.com/</span></span>
+<span data-ttu-id="2ded0-119">emplacement de stockage Hello d’un journal de flux est définie lors de la création.</span><span class="sxs-lookup"><span data-stu-id="2ded0-119">hello storage location of a flow log is defined at creation.</span></span> <span data-ttu-id="2ded0-120">Un tooaccess outil pratique ces compte de stockage de journaux enregistrés tooa est Microsoft Azure Storage Explorer, qui peut être téléchargée ici : http://storageexplorer.com/</span><span class="sxs-lookup"><span data-stu-id="2ded0-120">A convenient tool tooaccess these flow logs saved tooa storage account is Microsoft Azure Storage Explorer, which can be downloaded here:  http://storageexplorer.com/</span></span>
 
-<span data-ttu-id="65e5a-121">Si un compte de stockage est spécifié, les fichiers de capture de paquets sont enregistrés dans un compte de stockage à l’emplacement suivant :</span><span class="sxs-lookup"><span data-stu-id="65e5a-121">If a storage account is specified, packet capture files are saved to a storage account at the following location:</span></span>
+<span data-ttu-id="2ded0-121">Si un compte de stockage est spécifié, les fichiers de capture de paquet sont enregistrés compte de stockage tooa hello l’emplacement suivant :</span><span class="sxs-lookup"><span data-stu-id="2ded0-121">If a storage account is specified, packet capture files are saved tooa storage account at hello following location:</span></span>
 
 ```
 https://{storageAccountName}.blob.core.windows.net/insights-logs-networksecuritygroupflowevent/resourceId%3D/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/microsoft.network/networksecuritygroups/{nsgName}/{year}/{month}/{day}/PT1H.json
 ```
 
-<span data-ttu-id="65e5a-122">Pour plus d’informations sur la structure du journal, consultez [Network Security Group Flow log Overview (Présentation de la journalisation des flux de groupe de sécurité réseau)](network-watcher-nsg-flow-logging-overview.md).</span><span class="sxs-lookup"><span data-stu-id="65e5a-122">For information about the structure of the log visit [Network Security Group Flow log Overview](network-watcher-nsg-flow-logging-overview.md)</span></span>
+<span data-ttu-id="2ded0-122">Pour plus d’informations sur la structure hello du journal de hello visitez [journal vue d’ensemble des flux de groupe de sécurité réseau](network-watcher-nsg-flow-logging-overview.md)</span><span class="sxs-lookup"><span data-stu-id="2ded0-122">For information about hello structure of hello log visit [Network Security Group Flow log Overview](network-watcher-nsg-flow-logging-overview.md)</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="65e5a-123">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="65e5a-123">Next Steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="2ded0-123">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="2ded0-123">Next Steps</span></span>
 
-<span data-ttu-id="65e5a-124">Découvrez comment [visualiser vos journaux de flux de groupe de sécurité réseau avec Power BI](network-watcher-visualize-nsg-flow-logs-power-bi.md).</span><span class="sxs-lookup"><span data-stu-id="65e5a-124">Learn how to [Visualize your NSG flow logs with PowerBI](network-watcher-visualize-nsg-flow-logs-power-bi.md)</span></span>
+<span data-ttu-id="2ded0-124">Découvrez comment trop[visualiser vos journaux de flux de groupe de sécurité réseau avec Power BI](network-watcher-visualize-nsg-flow-logs-power-bi.md)</span><span class="sxs-lookup"><span data-stu-id="2ded0-124">Learn how too[Visualize your NSG flow logs with PowerBI](network-watcher-visualize-nsg-flow-logs-power-bi.md)</span></span>
 
-<span data-ttu-id="65e5a-125">Découvrez comment [visualiser vos journaux de flux de groupe de sécurité réseau avec des outils open source](network-watcher-visualize-nsg-flow-logs-open-source-tools.md).</span><span class="sxs-lookup"><span data-stu-id="65e5a-125">Learn how to [Visualize your NSG flow logs with open source tools](network-watcher-visualize-nsg-flow-logs-open-source-tools.md)</span></span>
+<span data-ttu-id="2ded0-125">Découvrez comment trop[visualiser vos journaux de flux de groupe de sécurité réseau avec les outils open source](network-watcher-visualize-nsg-flow-logs-open-source-tools.md)</span><span class="sxs-lookup"><span data-stu-id="2ded0-125">Learn how too[Visualize your NSG flow logs with open source tools](network-watcher-visualize-nsg-flow-logs-open-source-tools.md)</span></span>

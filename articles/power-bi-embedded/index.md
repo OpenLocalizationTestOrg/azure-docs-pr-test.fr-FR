@@ -1,6 +1,6 @@
 ---
-title: "Documentation Azure Power BI Embedded - Didacticiels, informations de référence sur les API | Microsoft Docs"
-description: "Apprenez à incorporer des visualisations de données et des rapports interactifs Power BI dans des applications. Didacticiels, références d’API et autres documents."
+title: "aaaAzure Documentation Power BI Embedded - didacticiels, référence de l’API | Documents Microsoft"
+description: "Découvrez comment tooembed Power BI des visualisations de données et des rapports interactifs à des applications. Didacticiels, références d’API et autres documents."
 services: power-bi-embedded
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: c1e12dc71ce823425971beeb9db1cc5abd2aa12b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e01a812ccc3b8daeb0569df90bad87f12c649db5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="power-bi-embedded-documentation"></a>Documentation Power BI Embedded
 
-Découvrez comment ajouter des visualisations de données et des rapports interactifs à des applications avec Power BI Embedded. Des didacticiels, références d’API et autres documents vous montrent comment intégrer en toute transparence des rapports et des tableaux de bord Power BI dans des applications.
+Découvrez comment tooadd tooapplications des rapports interactifs avec Power BI Embedded et visualisations de données. Didacticiels, des références de l’API et toute autre documentation montrent comment tooseamlessly incorporer des rapports Power BI et tableaux de bord dans des applications.
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -88,7 +88,7 @@ Découvrez comment ajouter des visualisations de données et des rapports intera
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Prise en main de la création de rapports Power BI avec la galerie d’exemples</h3>
+                        <h3>Commencer à créer des rapports Power BI avec la galerie d’exemples hello</h3>
                     </div>
                 </div>
             </div>

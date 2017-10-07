@@ -1,6 +1,6 @@
 ---
-title: "Diagnostiquer les échecs d’artefacts dans une machine virtuelle Azure DevTest Labs | Microsoft Docs"
-description: "Découvrez comment résoudre les échecs des artefacts dans DevTest Labs."
+title: "échecs d’artefact aaaDiagnose dans une machine virtuelle de Azure DevTest Labs | Documents Microsoft"
+description: "Découvrez comment les échecs d’artefact tootroubleshoot dans DevTest Labs"
 services: devtest-lab,virtual-machines
 documentationcenter: na
 author: tomarcher
@@ -14,53 +14,53 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/18/2017
 ms.author: tarcher
-ms.openlocfilehash: e4f2946d0ba0756f36622aded0e8594acabb9527
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 40b3cea72cf071cc5d9a6d002d309d923c3d3084
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="diagnose-artifact-failures-in-the-lab"></a><span data-ttu-id="20586-103">Diagnostiquer les échecs d’artefacts dans le labo</span><span class="sxs-lookup"><span data-stu-id="20586-103">Diagnose artifact failures in the lab</span></span> 
-<span data-ttu-id="20586-104">Une fois que vous avez créé un artefact, vous pouvez vérifier si la procédure a réussi ou échoué.</span><span class="sxs-lookup"><span data-stu-id="20586-104">After you have created an artifact, you can check to see if it succeeded or failed.</span></span> <span data-ttu-id="20586-105">Les journaux d’artefact de DevTest Labs fournissent des informations qui permettent de diagnostiquer un échec d’artefact.</span><span class="sxs-lookup"><span data-stu-id="20586-105">Artifact logs in DevTest Labs provide information you can use to diagnose an artifact failure.</span></span> <span data-ttu-id="20586-106">Il existe plusieurs façons d’afficher les informations du journal de l’artefact pour une machine virtuelle Windows.</span><span class="sxs-lookup"><span data-stu-id="20586-106">There are a couple different ways you can view the artifact log information for a Windows VM.</span></span>
+# <a name="diagnose-artifact-failures-in-hello-lab"></a><span data-ttu-id="4b88c-103">Diagnostiquer les échecs d’artefact dans le laboratoire de hello</span><span class="sxs-lookup"><span data-stu-id="4b88c-103">Diagnose artifact failures in hello lab</span></span> 
+<span data-ttu-id="4b88c-104">Après avoir créé un artefact, vous pouvez vérifier toosee si elle a réussi ou échoué.</span><span class="sxs-lookup"><span data-stu-id="4b88c-104">After you have created an artifact, you can check toosee if it succeeded or failed.</span></span> <span data-ttu-id="4b88c-105">Journaux d’artefact dans DevTest Labs fournissent des informations vous pouvez utiliser toodiagnose un échec de l’artefact.</span><span class="sxs-lookup"><span data-stu-id="4b88c-105">Artifact logs in DevTest Labs provide information you can use toodiagnose an artifact failure.</span></span> <span data-ttu-id="4b88c-106">Il existe plusieurs façons différentes, vous pouvez afficher les informations de journal d’artefact hello pour une machine virtuelle Windows.</span><span class="sxs-lookup"><span data-stu-id="4b88c-106">There are a couple different ways you can view hello artifact log information for a Windows VM.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="20586-107">Pour que les échecs sont correctement identifiés et expliqués, il est important que l’artefact soit correctement structuré.</span><span class="sxs-lookup"><span data-stu-id="20586-107">To ensure that failures are correctly identified and explained, it is important that the artifact is properly structured.</span></span> <span data-ttu-id="20586-108">Pour plus d’informations sur la bonne façon de créer un artefact, consultez la page [Créer des artefacts personnalisés](devtest-lab-artifact-author.md).</span><span class="sxs-lookup"><span data-stu-id="20586-108">For information about how to correctly construct an artifact, see [Create custom artifacts](devtest-lab-artifact-author.md).</span></span> <span data-ttu-id="20586-109">Par ailleurs, l’artefact [Types de paramètres de test](https://github.com/Azure/azure-devtestlab/tree/master/Artifacts/windows-test-paramtypes) est un exemple d’artefact structuré correctement.</span><span class="sxs-lookup"><span data-stu-id="20586-109">And to see an example of a properly structured artifact, check out this [Test Parameter Types](https://github.com/Azure/azure-devtestlab/tree/master/Artifacts/windows-test-paramtypes) artifact.</span></span>
+> <span data-ttu-id="4b88c-107">tooensure que les échecs sont correctement identifiés et expliqués, il est important de cet artefact hello est correctement structuré.</span><span class="sxs-lookup"><span data-stu-id="4b88c-107">tooensure that failures are correctly identified and explained, it is important that hello artifact is properly structured.</span></span> <span data-ttu-id="4b88c-108">Pour plus d’informations sur comment toocorrectly construire un artefact, consultez [créer des artefacts personnalisés](devtest-lab-artifact-author.md).</span><span class="sxs-lookup"><span data-stu-id="4b88c-108">For information about how toocorrectly construct an artifact, see [Create custom artifacts](devtest-lab-artifact-author.md).</span></span> <span data-ttu-id="4b88c-109">Et toosee, par exemple, d’un objet structuré correctement, consultez ce [les Types de paramètres de Test](https://github.com/Azure/azure-devtestlab/tree/master/Artifacts/windows-test-paramtypes) artefact.</span><span class="sxs-lookup"><span data-stu-id="4b88c-109">And toosee an example of a properly structured artifact, check out this [Test Parameter Types](https://github.com/Azure/azure-devtestlab/tree/master/Artifacts/windows-test-paramtypes) artifact.</span></span>
 
-## <a name="troubleshoot-artifact-failures-using-the-azure-portal"></a><span data-ttu-id="20586-110">Résoudre les échecs des artefacts avec le Portail Azure</span><span class="sxs-lookup"><span data-stu-id="20586-110">Troubleshoot artifact failures using the Azure portal</span></span>
-<span data-ttu-id="20586-111">Pour utiliser le Portail Azure afin de diagnostiquer les échecs à la création d’un artefact, suivez les étapes ci-dessous :</span><span class="sxs-lookup"><span data-stu-id="20586-111">To use the Azure portal to diagnose failures during artifact creation, follow these steps:</span></span>
+## <a name="troubleshoot-artifact-failures-using-hello-azure-portal"></a><span data-ttu-id="4b88c-110">Résoudre les échecs d’artefact à l’aide de hello portail Azure</span><span class="sxs-lookup"><span data-stu-id="4b88c-110">Troubleshoot artifact failures using hello Azure portal</span></span>
+<span data-ttu-id="4b88c-111">échecs de toodiagnose portail Azure hello toouse lors de la création de l’artefact, procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="4b88c-111">toouse hello Azure portal toodiagnose failures during artifact creation, follow these steps:</span></span>
 
-1. <span data-ttu-id="20586-112">Dans la liste de ressources, sélectionnez votre labo.</span><span class="sxs-lookup"><span data-stu-id="20586-112">From the list of resources, select your lab.</span></span>
+1. <span data-ttu-id="4b88c-112">Dans la liste hello des ressources, sélectionnez votre laboratoire.</span><span class="sxs-lookup"><span data-stu-id="4b88c-112">From hello list of resources, select your lab.</span></span>
 
-2. <span data-ttu-id="20586-113">Choisissez la machine virtuelle Windows qui inclut l’artefact à analyser.</span><span class="sxs-lookup"><span data-stu-id="20586-113">Choose the Windows VM that includes the artifact you want to investigate.</span></span>
+2. <span data-ttu-id="4b88c-113">Choisissez hello machine virtuelle Windows qui inclut l’artefact hello souhaité tooinvestigate.</span><span class="sxs-lookup"><span data-stu-id="4b88c-113">Choose hello Windows VM that includes hello artifact you want tooinvestigate.</span></span>
 
-3. <span data-ttu-id="20586-114">Dans le volet gauche sous **GÉNÉRAL**, choisissez **Artefacts**.</span><span class="sxs-lookup"><span data-stu-id="20586-114">In the left panel under **GENERAL**, choose **Artifacts**.</span></span> <span data-ttu-id="20586-115">La liste des artefacts associés à cette machine virtuelle s’affiche, indiquant le nom de l’artefact et son état.</span><span class="sxs-lookup"><span data-stu-id="20586-115">A list of artifacts associated with that VM appears, indicating the name of the artifact and its status.</span></span>
+3. <span data-ttu-id="4b88c-114">Dans le volet gauche, hello sous **général**, choisissez **artefacts**.</span><span class="sxs-lookup"><span data-stu-id="4b88c-114">In hello left panel under **GENERAL**, choose **Artifacts**.</span></span> <span data-ttu-id="4b88c-115">Une liste des artefacts associés à cette machine virtuelle s’affiche, indique nom hello d’artefact de hello et son état.</span><span class="sxs-lookup"><span data-stu-id="4b88c-115">A list of artifacts associated with that VM appears, indicating hello name of hello artifact and its status.</span></span>
 
    ![Exemple de dépôt git d'artefacts](./media/devtest-lab-troubleshoot-artifact-failure/devtest-lab-artifacts-failure.png)
 
-4. <span data-ttu-id="20586-117">Choisissez un artefact qui présente l’état **Échec**.</span><span class="sxs-lookup"><span data-stu-id="20586-117">Choose an artifact that shows a status of **Failed**.</span></span> <span data-ttu-id="20586-118">L’artefact s’ouvre et affiche un message d’extension comportant des détails sur son échec.</span><span class="sxs-lookup"><span data-stu-id="20586-118">The artifact opens and shows an extension message that includes details about the failure of the artifact.</span></span>
+4. <span data-ttu-id="4b88c-117">Choisissez un artefact qui présente l’état **Échec**.</span><span class="sxs-lookup"><span data-stu-id="4b88c-117">Choose an artifact that shows a status of **Failed**.</span></span> <span data-ttu-id="4b88c-118">artefact de Hello s’ouvre et affiche un message d’extension qui inclut des détails sur les échecs de hello d’artefact de hello.</span><span class="sxs-lookup"><span data-stu-id="4b88c-118">hello artifact opens and shows an extension message that includes details about hello failure of hello artifact.</span></span>
 
    ![Exemple de dépôt git d'artefacts](./media/devtest-lab-troubleshoot-artifact-failure/devtest-lab-artifact-error.png)
 
 
-## <a name="troubleshoot-artifact-failures-from-within-the-vm"></a><span data-ttu-id="20586-120">Résoudre les échecs des artefacts au sein de la machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="20586-120">Troubleshoot artifact failures from within the VM</span></span>
-<span data-ttu-id="20586-121">Pour afficher les journaux d’artefacts au sein de la machine virtuelle, suivez les étapes ci-dessous :</span><span class="sxs-lookup"><span data-stu-id="20586-121">To view the artifact logs from within the virtual machine, follow these steps:</span></span>
+## <a name="troubleshoot-artifact-failures-from-within-hello-vm"></a><span data-ttu-id="4b88c-120">Résoudre les échecs d’artefact de hello machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="4b88c-120">Troubleshoot artifact failures from within hello VM</span></span>
+<span data-ttu-id="4b88c-121">tooview des journaux à partir de l’artefact de hello dans la machine virtuelle de hello, procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="4b88c-121">tooview hello artifact logs from within hello virtual machine, follow these steps:</span></span>
 
-1. <span data-ttu-id="20586-122">Connectez-vous à la machine virtuelle qui contient l’artefact à diagnostiquer.</span><span class="sxs-lookup"><span data-stu-id="20586-122">Log in to the VM that contains the artifact you want to diagnose.</span></span>
+1. <span data-ttu-id="4b88c-122">Connectez-vous toohello machine virtuelle qui contient l’artefact hello souhaité toodiagnose.</span><span class="sxs-lookup"><span data-stu-id="4b88c-122">Log in toohello VM that contains hello artifact you want toodiagnose.</span></span>
 
-2. <span data-ttu-id="20586-123">Accédez à C:\Packages\Plugins\Microsoft.Compute.CustomScriptExtension\1.9\Status, « 1.9 » étant le numéro de version CSE.</span><span class="sxs-lookup"><span data-stu-id="20586-123">Navigate to C:\Packages\Plugins\Microsoft.Compute.CustomScriptExtension\1.9\Status where "1.9 is the CSE version number.</span></span>
+2. <span data-ttu-id="4b88c-123">Accédez tooC:\Packages\Plugins\Microsoft.Compute.CustomScriptExtension\1.9\Status où « 1.9 est le numéro de version d’extension côté client hello.</span><span class="sxs-lookup"><span data-stu-id="4b88c-123">Navigate tooC:\Packages\Plugins\Microsoft.Compute.CustomScriptExtension\1.9\Status where "1.9 is hello CSE version number.</span></span>
 
    ![Exemple de dépôt git d'artefacts](./media/devtest-lab-troubleshoot-artifact-failure/devtest-lab-artifact-error-vm-status.png)
 
-3. <span data-ttu-id="20586-125">Ouvrez le fichier **état** pour afficher les informations qui vous aideront à diagnostiquer les échecs d’artefacts de cette machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="20586-125">Open the **status** file to view information that helps diagnose artifact failures for that VM.</span></span>
+3. <span data-ttu-id="4b88c-125">Ouvrez hello **état** fichier tooview les informations que vous aide à diagnostiquer les échecs de l’artefact pour cette machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="4b88c-125">Open hello **status** file tooview information that helps diagnose artifact failures for that VM.</span></span>
 
 
 
 
 [!INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
 
-## <a name="related-blog-posts"></a><span data-ttu-id="20586-126">Billets de blog connexes</span><span class="sxs-lookup"><span data-stu-id="20586-126">Related blog posts</span></span>
-* [<span data-ttu-id="20586-127">Joindre une machine virtuelle à un domaine AD existant à l’aide d’un modèle Resource Manager dans Azure DevTest Labs</span><span class="sxs-lookup"><span data-stu-id="20586-127">Join a VM to existing AD Domain using a resource manager template in Azure DevTest Labs</span></span>](http://www.visualstudiogeeks.com/blog/DevOps/Join-a-VM-to-existing-AD-domain-using-ARM-template-AzureDevTestLabs)
+## <a name="related-blog-posts"></a><span data-ttu-id="4b88c-126">Billets de blog connexes</span><span class="sxs-lookup"><span data-stu-id="4b88c-126">Related blog posts</span></span>
+* [<span data-ttu-id="4b88c-127">Joindre un domaine Active Directory à l’aide d’un modèle de gestionnaire de ressources dans Azure DevTest Labs de tooexisting machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="4b88c-127">Join a VM tooexisting AD Domain using a resource manager template in Azure DevTest Labs</span></span>](http://www.visualstudiogeeks.com/blog/DevOps/Join-a-VM-to-existing-AD-domain-using-ARM-template-AzureDevTestLabs)
 
-## <a name="next-steps"></a><span data-ttu-id="20586-128">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="20586-128">Next steps</span></span>
-* <span data-ttu-id="20586-129">Découvrez comment [ajouter un référentiel Git à un labo](devtest-lab-add-artifact-repo.md).</span><span class="sxs-lookup"><span data-stu-id="20586-129">Learn how to [add a Git repository to a lab](devtest-lab-add-artifact-repo.md).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="4b88c-128">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="4b88c-128">Next steps</span></span>
+* <span data-ttu-id="4b88c-129">Découvrez comment trop[ajouter un laboratoire tooa du référentiel Git](devtest-lab-add-artifact-repo.md).</span><span class="sxs-lookup"><span data-stu-id="4b88c-129">Learn how too[add a Git repository tooa lab](devtest-lab-add-artifact-repo.md).</span></span>
 

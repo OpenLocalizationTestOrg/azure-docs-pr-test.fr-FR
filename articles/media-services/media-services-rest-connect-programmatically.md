@@ -1,6 +1,6 @@
 ---
-title: "Connexion à un compte Media Services à l’aide de l’API REST | Microsoft Docs"
-description: "Cette rubrique montre comment se connecter à Media Services avec l’API REST."
+title: "aaaConnecting tooMedia compte de Services à l’aide des API REST | Documents Microsoft"
+description: Cette rubrique montre comment utiliser de Services tooconnect tooMedia REST API.
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,54 +14,54 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 09/26/2016
 ms.author: juliako
-ms.openlocfilehash: 4feb0eb81823835e8e0b701463d85b27f5598019
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1d5064a3612dc96f5c5ad910d183d84fb70a3b6a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connecting-to-media-services-account-using-media-services-rest-api"></a><span data-ttu-id="a5428-103">Connexion à un compte Media Services à l’aide de l’API REST</span><span class="sxs-lookup"><span data-stu-id="a5428-103">Connecting to Media Services Account using Media Services REST API</span></span>
+# <a name="connecting-toomedia-services-account-using-media-services-rest-api"></a><span data-ttu-id="9fcca-103">Connexion tooMedia compte de Services à l’aide des API REST Media Services</span><span class="sxs-lookup"><span data-stu-id="9fcca-103">Connecting tooMedia Services Account using Media Services REST API</span></span>
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="a5428-104">.NET</span><span class="sxs-lookup"><span data-stu-id="a5428-104">.NET</span></span>](media-services-dotnet-connect-programmatically.md)
-> * [<span data-ttu-id="a5428-105">REST</span><span class="sxs-lookup"><span data-stu-id="a5428-105">REST</span></span>](media-services-rest-connect-programmatically.md)
+> * [<span data-ttu-id="9fcca-104">.NET</span><span class="sxs-lookup"><span data-stu-id="9fcca-104">.NET</span></span>](media-services-dotnet-connect-programmatically.md)
+> * [<span data-ttu-id="9fcca-105">REST</span><span class="sxs-lookup"><span data-stu-id="9fcca-105">REST</span></span>](media-services-rest-connect-programmatically.md)
 > 
 > 
 
-<span data-ttu-id="a5428-106">Cette rubrique décrit comment obtenir une connexion à Microsoft Azure Media Services par programme lorsque vous programmez avec l’API REST Media Services.</span><span class="sxs-lookup"><span data-stu-id="a5428-106">This topic describes how to obtain a programmatic connection to Microsoft Azure Media Services when you are programming with the Media Services REST API.</span></span>
+<span data-ttu-id="9fcca-106">Cette rubrique décrit comment tooobtain un tooMicrosoft de connexion par programmation Azure Media Services lorsque vous programmez avec hello API REST Media Services.</span><span class="sxs-lookup"><span data-stu-id="9fcca-106">This topic describes how tooobtain a programmatic connection tooMicrosoft Azure Media Services when you are programming with hello Media Services REST API.</span></span>
 
-<span data-ttu-id="a5428-107">Vous avez besoin de deux choses pour accéder à Microsoft Azure Media Services : un jeton d’accès fourni par Azure Access Control Service (ACS) et l’URI de Media Services.</span><span class="sxs-lookup"><span data-stu-id="a5428-107">Two things are required when accessing Microsoft Azure Media Services: An access token provided by Azure Access Control Services (ACS), and the URI of Media Services itself.</span></span> <span data-ttu-id="a5428-108">Vous pouvez utiliser la méthode de votre choix lors de la création de ces demandes, tant que vous spécifiez les valeurs d’en-têtes appropriées et transmettez le jeton d’accès correctement lors de l’appel dans Media Services.</span><span class="sxs-lookup"><span data-stu-id="a5428-108">You can use any means you want when creating these requests as long as you specify the correct header values and pass in the access token correctly when calling into Media Services.</span></span>
+<span data-ttu-id="9fcca-107">Deux éléments sont requis pour accéder à Microsoft Azure Media Services : un jeton d’accès fourni par Azure Access Control Services (ACS) et hello URI de Media Services lui-même.</span><span class="sxs-lookup"><span data-stu-id="9fcca-107">Two things are required when accessing Microsoft Azure Media Services: An access token provided by Azure Access Control Services (ACS), and hello URI of Media Services itself.</span></span> <span data-ttu-id="9fcca-108">Vous pouvez utiliser la méthode de que votre choix lors de la création de ces demandes tant que vous spécifiez des valeurs d’en-tête correctes hello et transmettez correctement dans le jeton d’accès hello lors de l’appel dans Media Services.</span><span class="sxs-lookup"><span data-stu-id="9fcca-108">You can use any means you want when creating these requests as long as you specify hello correct header values and pass in hello access token correctly when calling into Media Services.</span></span>
 
-<span data-ttu-id="a5428-109">Les étapes suivantes décrivent le flux de travail habituel lors de l’utilisation de l’API REST Media Services pour se connecter à Media Services :</span><span class="sxs-lookup"><span data-stu-id="a5428-109">The following steps describe the most common workflow when using the Media Services REST API to connect to Media Services:</span></span>
+<span data-ttu-id="9fcca-109">Hello comme suit décrire les flux de travail courants hello lorsque des Services à l’aide de hello API REST Media Services tooconnect tooMedia :</span><span class="sxs-lookup"><span data-stu-id="9fcca-109">hello following steps describe hello most common workflow when using hello Media Services REST API tooconnect tooMedia Services:</span></span>
 
-1. <span data-ttu-id="a5428-110">Obtention d’un jeton d’accès</span><span class="sxs-lookup"><span data-stu-id="a5428-110">Getting an access token</span></span> 
-2. <span data-ttu-id="a5428-111">Connexion à l’URI Media Services</span><span class="sxs-lookup"><span data-stu-id="a5428-111">Connecting to the Media Services URI</span></span> 
+1. <span data-ttu-id="9fcca-110">Obtention d’un jeton d’accès</span><span class="sxs-lookup"><span data-stu-id="9fcca-110">Getting an access token</span></span> 
+2. <span data-ttu-id="9fcca-111">Connexion toohello URI Media Services</span><span class="sxs-lookup"><span data-stu-id="9fcca-111">Connecting toohello Media Services URI</span></span> 
    
    > [!NOTE]
-   > <span data-ttu-id="a5428-112">Après vous être connecté à https://media.windows.net, vous recevrez une redirection 301 spécifiant un autre URI Media Services.</span><span class="sxs-lookup"><span data-stu-id="a5428-112">After successfully connecting to https://media.windows.net, you will receive a 301 redirect specifying another Media Services URI.</span></span> <span data-ttu-id="a5428-113">Vous devez faire d’autres appels au nouvel URI.</span><span class="sxs-lookup"><span data-stu-id="a5428-113">You must make subsequent calls to the new URI.</span></span>
-   > <span data-ttu-id="a5428-114">Vous pouvez également recevoir une réponse HTTP/1.1 200 qui contient la description des métadonnées de l’API ODATA.</span><span class="sxs-lookup"><span data-stu-id="a5428-114">You may also receive a HTTP/1.1 200 response that contains the ODATA API metadata description.</span></span>
+   > <span data-ttu-id="9fcca-112">Après vous être connecté toohttps://media.windows.net, vous recevrez une redirection 301 spécifiant un autre URI de Media Services.</span><span class="sxs-lookup"><span data-stu-id="9fcca-112">After successfully connecting toohttps://media.windows.net, you will receive a 301 redirect specifying another Media Services URI.</span></span> <span data-ttu-id="9fcca-113">Vous devez effectuer les appels suivants toohello nouvel URI.</span><span class="sxs-lookup"><span data-stu-id="9fcca-113">You must make subsequent calls toohello new URI.</span></span>
+   > <span data-ttu-id="9fcca-114">Vous pouvez également recevoir une réponse HTTP/1.1 200 contenant hello description de métadonnées des API ODATA.</span><span class="sxs-lookup"><span data-stu-id="9fcca-114">You may also receive a HTTP/1.1 200 response that contains hello ODATA API metadata description.</span></span>
    > 
    > 
-3. <span data-ttu-id="a5428-115">Envoyez vos appels d’API suivants vers la nouvelle URL.</span><span class="sxs-lookup"><span data-stu-id="a5428-115">Post your subsequent API calls to the new URL.</span></span> 
+3. <span data-ttu-id="9fcca-115">Valider votre API suivants appelle toohello nouvelle URL.</span><span class="sxs-lookup"><span data-stu-id="9fcca-115">Post your subsequent API calls toohello new URL.</span></span> 
    
-    <span data-ttu-id="a5428-116">Par exemple, si après avoir essayé de vous connecter, vous avez les éléments suivants :</span><span class="sxs-lookup"><span data-stu-id="a5428-116">For example, if after trying to connect, you got the following:</span></span>
+    <span data-ttu-id="9fcca-116">Par exemple, si, après la tentative de tooconnect, que vous avez obtenu suivant de hello :</span><span class="sxs-lookup"><span data-stu-id="9fcca-116">For example, if after trying tooconnect, you got hello following:</span></span>
    
         HTTP/1.1 301 Moved Permanently
         Location: https://wamsbayclus001rest-hs.cloudapp.net/api/
    
-    <span data-ttu-id="a5428-117">Vous devez enregistrer vos appels d’API suivants à https://wamsbayclus001rest-hs.cloudapp.net/api/.</span><span class="sxs-lookup"><span data-stu-id="a5428-117">You should post your subsequent API calls to https://wamsbayclus001rest-hs.cloudapp.net/api/.</span></span>
+    <span data-ttu-id="9fcca-117">Vous devez enregistrer votre ultérieures API appels toohttps://wamsbayclus001rest-hs.cloudapp.net/api/.</span><span class="sxs-lookup"><span data-stu-id="9fcca-117">You should post your subsequent API calls toohttps://wamsbayclus001rest-hs.cloudapp.net/api/.</span></span>
 
     >[!NOTE]
-    ><span data-ttu-id="a5428-118">Un nombre limite de 1 000 000 a été défini pour les différentes stratégies AMS (par exemple, pour la stratégie de localisateur ou pour ContentKeyAuthorizationPolicy).</span><span class="sxs-lookup"><span data-stu-id="a5428-118">There is a limit of 1,000,000 policies for different AMS policies (for example, for Locator policy or ContentKeyAuthorizationPolicy).</span></span> <span data-ttu-id="a5428-119">Vous devez utiliser le même ID de stratégie si vous utilisez toujours les mêmes jours / autorisations d’accès, par exemple, les stratégies pour les localisateurs destinées à demeurer en place pendant une longue période (stratégies sans chargement).</span><span class="sxs-lookup"><span data-stu-id="a5428-119">You should use the same policy ID if you are always using the same days / access permissions, for example, policies for locators that are intended to remain in place for a long time (non-upload policies).</span></span> <span data-ttu-id="a5428-120">Pour plus d’informations, consultez [cette rubrique](media-services-dotnet-manage-entities.md#limit-access-policies) .</span><span class="sxs-lookup"><span data-stu-id="a5428-120">For more information, see [this](media-services-dotnet-manage-entities.md#limit-access-policies) topic.</span></span>
+    ><span data-ttu-id="9fcca-118">Un nombre limite de 1 000 000 a été défini pour les différentes stratégies AMS (par exemple, pour la stratégie de localisateur ou pour ContentKeyAuthorizationPolicy).</span><span class="sxs-lookup"><span data-stu-id="9fcca-118">There is a limit of 1,000,000 policies for different AMS policies (for example, for Locator policy or ContentKeyAuthorizationPolicy).</span></span> <span data-ttu-id="9fcca-119">Vous devez utiliser hello ID de stratégie même si vous utilisez toujours hello même jours / autorisations d’accès, par exemple, les stratégies pour les localisateurs sont tooremain prévue en place pendant une longue période (non-téléchargement stratégies).</span><span class="sxs-lookup"><span data-stu-id="9fcca-119">You should use hello same policy ID if you are always using hello same days / access permissions, for example, policies for locators that are intended tooremain in place for a long time (non-upload policies).</span></span> <span data-ttu-id="9fcca-120">Pour plus d’informations, consultez [cette rubrique](media-services-dotnet-manage-entities.md#limit-access-policies) .</span><span class="sxs-lookup"><span data-stu-id="9fcca-120">For more information, see [this](media-services-dotnet-manage-entities.md#limit-access-policies) topic.</span></span>
 
-## <a name="access-control-address"></a><span data-ttu-id="a5428-121">Adresse de contrôle d’accès</span><span class="sxs-lookup"><span data-stu-id="a5428-121">Access control address</span></span>
-<span data-ttu-id="a5428-122">L’adresse de contrôle d’accès de Media Services est https://wamsprodglobal001acs.accesscontrol.windows.net (à l’exception de la région Chine du Nord, où l’adresse est https://wamsprodglobal001acs.accesscontrol.chinacloudapi.cn).</span><span class="sxs-lookup"><span data-stu-id="a5428-122">Media Services access control address is https://wamsprodglobal001acs.accesscontrol.windows.net, except for North China region, where it is https://wamsprodglobal001acs.accesscontrol.chinacloudapi.cn.</span></span>
+## <a name="access-control-address"></a><span data-ttu-id="9fcca-121">Adresse de contrôle d’accès</span><span class="sxs-lookup"><span data-stu-id="9fcca-121">Access control address</span></span>
+<span data-ttu-id="9fcca-122">L’adresse de contrôle d’accès de Media Services est https://wamsprodglobal001acs.accesscontrol.windows.net (à l’exception de la région Chine du Nord, où l’adresse est https://wamsprodglobal001acs.accesscontrol.chinacloudapi.cn).</span><span class="sxs-lookup"><span data-stu-id="9fcca-122">Media Services access control address is https://wamsprodglobal001acs.accesscontrol.windows.net, except for North China region, where it is https://wamsprodglobal001acs.accesscontrol.chinacloudapi.cn.</span></span>
 
-## <a name="getting-an-access-token"></a><span data-ttu-id="a5428-123">Obtention d’un jeton d’accès</span><span class="sxs-lookup"><span data-stu-id="a5428-123">Getting an access token</span></span>
-<span data-ttu-id="a5428-124">Pour accéder à Media Services directement par le biais de l’API REST, obtenez un jeton d’accès ACS et utilisez-le lors de chaque demande HTTP adressée au service.</span><span class="sxs-lookup"><span data-stu-id="a5428-124">To access Media Services directly through the REST API, retrieve an access token from ACS and use it during every HTTP request you make into the service.</span></span> <span data-ttu-id="a5428-125">Ce jeton est semblable aux autres jetons fournis par ACS basés sur les revendications d’accès fournies dans l’en-tête d’une demande HTTP et à l’aide du protocole OAuth v2.</span><span class="sxs-lookup"><span data-stu-id="a5428-125">This token is similar to other tokens provided by ACS based on access claims provided in the header of an HTTP request and using the OAuth v2 protocol.</span></span> <span data-ttu-id="a5428-126">Il n’existe pas d’autre condition préalable pour vous connecter directement à Media Services.</span><span class="sxs-lookup"><span data-stu-id="a5428-126">You do not need any other prerequisites before directly connecting to Media Services.</span></span>
+## <a name="getting-an-access-token"></a><span data-ttu-id="9fcca-123">Obtention d’un jeton d’accès</span><span class="sxs-lookup"><span data-stu-id="9fcca-123">Getting an access token</span></span>
+<span data-ttu-id="9fcca-124">tooaccess Media Services directement via l’API REST de hello, extraire un jeton d’accès d’ACS et utilisez-le lors de chaque demande HTTP adressée en service de hello.</span><span class="sxs-lookup"><span data-stu-id="9fcca-124">tooaccess Media Services directly through hello REST API, retrieve an access token from ACS and use it during every HTTP request you make into hello service.</span></span> <span data-ttu-id="9fcca-125">Ce jeton est similaire tooother jetons fournis par ACS basée sur les revendications d’accès fournies dans l’en-tête hello d’une requête HTTP et à l’aide du protocole de hello OAuth v2.</span><span class="sxs-lookup"><span data-stu-id="9fcca-125">This token is similar tooother tokens provided by ACS based on access claims provided in hello header of an HTTP request and using hello OAuth v2 protocol.</span></span> <span data-ttu-id="9fcca-126">Il est inutile toute autre condition requise avant la connexion directe tooMedia Services.</span><span class="sxs-lookup"><span data-stu-id="9fcca-126">You do not need any other prerequisites before directly connecting tooMedia Services.</span></span>
 
-<span data-ttu-id="a5428-127">L’exemple suivant montre l’en-tête et le corps de demande HTTP qui permet de récupérer un jeton.</span><span class="sxs-lookup"><span data-stu-id="a5428-127">The following example shows the HTTP request header and body used to retrieve a token.</span></span>
+<span data-ttu-id="9fcca-127">Hello suivant montre en-tête de demande HTTP hello et tooretrieve du corps utilisé un jeton.</span><span class="sxs-lookup"><span data-stu-id="9fcca-127">hello following example shows hello HTTP request header and body used tooretrieve a token.</span></span>
 
-<span data-ttu-id="a5428-128">**En-tête**:</span><span class="sxs-lookup"><span data-stu-id="a5428-128">**Header**:</span></span>
+<span data-ttu-id="9fcca-128">**En-tête**:</span><span class="sxs-lookup"><span data-stu-id="9fcca-128">**Header**:</span></span>
 
     POST https://wamsprodglobal001acs.accesscontrol.windows.net/v2/OAuth2-13 HTTP/1.1
     Content-Type: application/x-www-form-urlencoded
@@ -72,21 +72,21 @@ ms.lasthandoff: 07/11/2017
     Accept: application/json
 
 
-<span data-ttu-id="a5428-129">**Corps**:</span><span class="sxs-lookup"><span data-stu-id="a5428-129">**Body**:</span></span>
+<span data-ttu-id="9fcca-129">**Corps**:</span><span class="sxs-lookup"><span data-stu-id="9fcca-129">**Body**:</span></span>
 
-<span data-ttu-id="a5428-130">Il convient de vérifier les valeurs client_id et client_secret dans le corps de cette demande ; client_id et client_secret correspondent aux valeurs AccountName et AccountKey, respectivement.</span><span class="sxs-lookup"><span data-stu-id="a5428-130">You need to prove the client_id and client_secret values in the body of this request; client_id and client_secret correspond to the AccountName and AccountKey values, respectively.</span></span> <span data-ttu-id="a5428-131">Ces valeurs sont fournies par Media Services pour vous lorsque vous configurez votre compte.</span><span class="sxs-lookup"><span data-stu-id="a5428-131">These values are provided to you by Media Services when you set up your account.</span></span> 
+<span data-ttu-id="9fcca-130">Vous avez besoin de hello tooprove client_id et client_secret de valeurs dans le corps hello de cette demande ; client_id et client_secret correspondent toohello AccountName et AccountKey valeurs, respectivement.</span><span class="sxs-lookup"><span data-stu-id="9fcca-130">You need tooprove hello client_id and client_secret values in hello body of this request; client_id and client_secret correspond toohello AccountName and AccountKey values, respectively.</span></span> <span data-ttu-id="9fcca-131">Ces valeurs sont fournies tooyou par Media Services lorsque vous configurez votre compte.</span><span class="sxs-lookup"><span data-stu-id="9fcca-131">These values are provided tooyou by Media Services when you set up your account.</span></span> 
 
-<span data-ttu-id="a5428-132">Notez que la valeur AccountKey de votre compte Media Services doit être encodée dans l’URL (consultez [Encodage par pourcentage](http://tools.ietf.org/html/rfc3986#section-2.1) quand vous l’utilisez comme valeur client_secret dans votre demande de jeton d’accès).</span><span class="sxs-lookup"><span data-stu-id="a5428-132">Note that the AccountKey for your Media Services account must be URL-encoded (see [Percent-Encoding](http://tools.ietf.org/html/rfc3986#section-2.1) when using it as the client_secret value in your access token request.</span></span>
+<span data-ttu-id="9fcca-132">Notez que AccountKey hello pour votre compte Media Services doit être encodé en URL (consultez [encodage pourcentage](http://tools.ietf.org/html/rfc3986#section-2.1) lors de son utilisation en tant que valeur de client_secret hello dans votre demande de jeton d’accès.</span><span class="sxs-lookup"><span data-stu-id="9fcca-132">Note that hello AccountKey for your Media Services account must be URL-encoded (see [Percent-Encoding](http://tools.ietf.org/html/rfc3986#section-2.1) when using it as hello client_secret value in your access token request.</span></span>
 
     grant_type=client_credentials&client_id=ams_account_name&client_secret=URL_encoded_ams_account_key&scope=urn%3aWindowsAzureMediaServices
 
 
-<span data-ttu-id="a5428-133">Par exemple :</span><span class="sxs-lookup"><span data-stu-id="a5428-133">For example:</span></span> 
+<span data-ttu-id="9fcca-133">Par exemple :</span><span class="sxs-lookup"><span data-stu-id="9fcca-133">For example:</span></span> 
 
     grant_type=client_credentials&client_id=amstestaccount001&client_secret=wUNbKhNj07oqjqU3Ah9R9f4kqTJ9avPpfe6Pk3YZ7ng%3d&scope=urn%3aWindowsAzureMediaServices
 
 
-<span data-ttu-id="a5428-134">L’exemple suivant montre la réponse HTTP qui contient le jeton d’accès dans le corps de réponse.</span><span class="sxs-lookup"><span data-stu-id="a5428-134">The following example shows the HTTP response that contains the access token in the response body.</span></span>
+<span data-ttu-id="9fcca-134">Hello suivant montre réponse HTTP hello qui contient les accès hello jeton dans le corps de la réponse hello.</span><span class="sxs-lookup"><span data-stu-id="9fcca-134">hello following example shows hello HTTP response that contains hello access token in hello response body.</span></span>
 
     HTTP/1.1 200 OK
     Cache-Control: no-cache, no-store
@@ -108,20 +108,20 @@ ms.lasthandoff: 07/11/2017
 
 
 > [!NOTE]
-> <span data-ttu-id="a5428-135">Il est recommandé de mettre en cache les valeurs « access_token » et « expires_in » sur un stockage externe.</span><span class="sxs-lookup"><span data-stu-id="a5428-135">It is recommended to cache the "access_token " and "expires_in " values to an external storage.</span></span> <span data-ttu-id="a5428-136">Les données du jeton peuvent être récupérées ultérieurement à partir du stockage et réutilisées dans vos appels d’API REST Media Services.</span><span class="sxs-lookup"><span data-stu-id="a5428-136">The token data could later be retrieved from the storage and re-used in your Media Services REST API calls.</span></span> <span data-ttu-id="a5428-137">Ceci est particulièrement utile pour les scénarios où le jeton peut être partagé en toute sécurité entre plusieurs processus ou ordinateurs.</span><span class="sxs-lookup"><span data-stu-id="a5428-137">This is especially useful for scenarios where the token can be securely shared among multiple processes or computers.</span></span>
+> <span data-ttu-id="9fcca-135">Il est recommandé de toocache hello « access_token » et « expires_in » valeurs tooan stockage externe.</span><span class="sxs-lookup"><span data-stu-id="9fcca-135">It is recommended toocache hello "access_token " and "expires_in " values tooan external storage.</span></span> <span data-ttu-id="9fcca-136">données du jeton Hello ultérieurement pourraient être récupérées à partir du stockage de hello et réutilisées dans vos appels d’API REST Media Services.</span><span class="sxs-lookup"><span data-stu-id="9fcca-136">hello token data could later be retrieved from hello storage and re-used in your Media Services REST API calls.</span></span> <span data-ttu-id="9fcca-137">Cela est particulièrement utile pour les scénarios où le jeton de hello peut être partagé en toute sécurité entre plusieurs processus ou ordinateurs.</span><span class="sxs-lookup"><span data-stu-id="9fcca-137">This is especially useful for scenarios where hello token can be securely shared among multiple processes or computers.</span></span>
 > 
 > 
 
-<span data-ttu-id="a5428-138">Veillez à analyser la valeur « expires_in » du jeton d’accès et à mettre à jour vos appels d’API REST avec de nouveaux jetons le cas échéant.</span><span class="sxs-lookup"><span data-stu-id="a5428-138">Make sure to monitor the "expires_in" value of the access token and update your REST API calls with new tokens as needed.</span></span>
+<span data-ttu-id="9fcca-138">Assurez-vous que valeur « expires_in » de hello toomonitor d’accès de hello jeton et mettre à jour vos appels d’API REST avec les nouveaux jetons en fonction des besoins.</span><span class="sxs-lookup"><span data-stu-id="9fcca-138">Make sure toomonitor hello "expires_in" value of hello access token and update your REST API calls with new tokens as needed.</span></span>
 
-### <a name="connecting-to-the-media-services-uri"></a><span data-ttu-id="a5428-139">Connexion à l’URI Media Services</span><span class="sxs-lookup"><span data-stu-id="a5428-139">Connecting to the Media Services URI</span></span>
-<span data-ttu-id="a5428-140">L’URI racine pour Media Services est https://media.windows.net/.</span><span class="sxs-lookup"><span data-stu-id="a5428-140">The root URI for Media Services is https://media.windows.net/.</span></span> <span data-ttu-id="a5428-141">Pour commencer, connectez-vous à cet URI. Si vous obtenez une redirection 301 en réponse, adressez les appels suivants au nouvel URI.</span><span class="sxs-lookup"><span data-stu-id="a5428-141">You should initially connect to this URI, and if you get a 301 redirect back in response, you should make subsequent calls to the new URI.</span></span> <span data-ttu-id="a5428-142">En outre, n’utilisez pas de logique de redirection automatique/de suivi dans vos demandes.</span><span class="sxs-lookup"><span data-stu-id="a5428-142">In addition, do not use any auto-redirect/follow logic in your requests.</span></span> <span data-ttu-id="a5428-143">Les verbes HTTP et les corps de demande ne seront pas transférés au nouvel URI.</span><span class="sxs-lookup"><span data-stu-id="a5428-143">HTTP verbs and request bodies will not be forwarded to the new URI.</span></span>
+### <a name="connecting-toohello-media-services-uri"></a><span data-ttu-id="9fcca-139">Connexion toohello URI Media Services</span><span class="sxs-lookup"><span data-stu-id="9fcca-139">Connecting toohello Media Services URI</span></span>
+<span data-ttu-id="9fcca-140">Hello URI racine de Media Services est https://media.windows.net/.</span><span class="sxs-lookup"><span data-stu-id="9fcca-140">hello root URI for Media Services is https://media.windows.net/.</span></span> <span data-ttu-id="9fcca-141">Vous devez connecter initialement toothis URI, et si vous obtenez une redirection 301 en réponse, vous devez effectuer les appels suivants toohello nouvel URI.</span><span class="sxs-lookup"><span data-stu-id="9fcca-141">You should initially connect toothis URI, and if you get a 301 redirect back in response, you should make subsequent calls toohello new URI.</span></span> <span data-ttu-id="9fcca-142">En outre, n’utilisez pas de logique de redirection automatique/de suivi dans vos demandes.</span><span class="sxs-lookup"><span data-stu-id="9fcca-142">In addition, do not use any auto-redirect/follow logic in your requests.</span></span> <span data-ttu-id="9fcca-143">Verbes HTTP et le corps de requête ne seront pas transférées toohello nouvel URI.</span><span class="sxs-lookup"><span data-stu-id="9fcca-143">HTTP verbs and request bodies will not be forwarded toohello new URI.</span></span>
 
-<span data-ttu-id="a5428-144">Notez que l’URI racine pour le téléchargement des fichiers de ressource est https://votrecomptedestockage.blob.core.windows.net/, où le nom du compte de stockage est le même que celui utilisé lors de la configuration de votre compte Media Services.</span><span class="sxs-lookup"><span data-stu-id="a5428-144">Note that the root URI for uploading and downloading Asset files is https://yourstorageaccount.blob.core.windows.net/ where the storage account name is the same one you used during your Media Services account setup.</span></span>
+<span data-ttu-id="9fcca-144">Notez cette racine hello URI pour le téléchargement des fichiers de ressources est https://yourstorageaccount.blob.core.windows.net/ où le nom de compte de stockage hello est hello celui que vous avez utilisé lors de la configuration de votre compte Media Services.</span><span class="sxs-lookup"><span data-stu-id="9fcca-144">Note that hello root URI for uploading and downloading Asset files is https://yourstorageaccount.blob.core.windows.net/ where hello storage account name is hello same one you used during your Media Services account setup.</span></span>
 
-<span data-ttu-id="a5428-145">L’exemple suivant montre la demande HTTP vers l’URI racine de Media Services (https://media.windows.net/).</span><span class="sxs-lookup"><span data-stu-id="a5428-145">The following example demonstrates HTTP request to the Media Services root URI (https://media.windows.net/).</span></span> <span data-ttu-id="a5428-146">La demande obtient une redirection 301 en réponse.</span><span class="sxs-lookup"><span data-stu-id="a5428-146">The request gets a 301 redirect back in response.</span></span> <span data-ttu-id="a5428-147">La requête suivante utilise le nouvel URI (https://wamsbayclus001rest-hs.cloudapp.net/api/).</span><span class="sxs-lookup"><span data-stu-id="a5428-147">The subsequent request is using the new URI (https://wamsbayclus001rest-hs.cloudapp.net/api/).</span></span>     
+<span data-ttu-id="9fcca-145">Hello, l’exemple suivant montre comment HTTP demande toohello Media Services URI racine (https://media.windows.net/).</span><span class="sxs-lookup"><span data-stu-id="9fcca-145">hello following example demonstrates HTTP request toohello Media Services root URI (https://media.windows.net/).</span></span> <span data-ttu-id="9fcca-146">demande de Hello Obtient une redirection 301 en réponse.</span><span class="sxs-lookup"><span data-stu-id="9fcca-146">hello request gets a 301 redirect back in response.</span></span> <span data-ttu-id="9fcca-147">Hello demande suivante est à l’aide de hello nouvel URI (https://wamsbayclus001rest-hs.cloudapp.net/api/).</span><span class="sxs-lookup"><span data-stu-id="9fcca-147">hello subsequent request is using hello new URI (https://wamsbayclus001rest-hs.cloudapp.net/api/).</span></span>     
 
-<span data-ttu-id="a5428-148">**Demande HTTP**:</span><span class="sxs-lookup"><span data-stu-id="a5428-148">**HTTP Request**:</span></span>
+<span data-ttu-id="9fcca-148">**Demande HTTP**:</span><span class="sxs-lookup"><span data-stu-id="9fcca-148">**HTTP Request**:</span></span>
 
     GET https://media.windows.net/ HTTP/1.1
     Authorization: Bearer http%3a%2f%2fschemas.xmlsoap.org%2fws%2f2005%2f05%2fidentity%2fclaims%2fnameidentifier=amstestaccount001&urn%3aSubscriptionId=z7f19258-6753-4ca2-b1ae-193798e2c9d8&http%3a%2f%2fschemas.microsoft.com%2faccesscontrolservice%2f2010%2f07%2fclaims%2fidentityprovider=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&Audience=urn%3aWindowsAzureMediaServices&ExpiresOn=1421500579&Issuer=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&HMACSHA256=ElVWXOnMVggFQl%2ft9vhdcv1qH1n%2fE8l3hRef4zPmrzg%3d
@@ -130,7 +130,7 @@ ms.lasthandoff: 07/11/2017
     Host: media.windows.net
 
 
-<span data-ttu-id="a5428-149">**Réponse HTTP**:</span><span class="sxs-lookup"><span data-stu-id="a5428-149">**HTTP Response**:</span></span>
+<span data-ttu-id="9fcca-149">**Réponse HTTP**:</span><span class="sxs-lookup"><span data-stu-id="9fcca-149">**HTTP Response**:</span></span>
 
     HTTP/1.1 301 Moved Permanently
     Location: https://wamsbayclus001rest-hs.cloudapp.net/api/
@@ -143,11 +143,11 @@ ms.lasthandoff: 07/11/2017
     Content-Length: 164
 
     <html><head><title>Object moved</title></head><body>
-    <h2>Object moved to <a href="https://wamsbayclus001rest-hs.cloudapp.net/api/">here</a>.</h2>
+    <h2>Object moved too<a href="https://wamsbayclus001rest-hs.cloudapp.net/api/">here</a>.</h2>
     </body></html>
 
 
-<span data-ttu-id="a5428-150">**Demande HTTP** (à l’aide du nouvel URI) :</span><span class="sxs-lookup"><span data-stu-id="a5428-150">**HTTP Request** (using the new URI):</span></span>
+<span data-ttu-id="9fcca-150">**Requête HTTP** (à l’aide de hello nouvel URI) :</span><span class="sxs-lookup"><span data-stu-id="9fcca-150">**HTTP Request** (using hello new URI):</span></span>
 
     GET https://wamsbayclus001rest-hs.cloudapp.net/api/ HTTP/1.1
     Authorization: Bearer http%3a%2f%2fschemas.xmlsoap.org%2fws%2f2005%2f05%2fidentity%2fclaims%2fnameidentifier=amstestaccount001&urn%3aSubscriptionId=z7f19258-2233-4ca2-b1ae-193798e2c9d8&http%3a%2f%2fschemas.microsoft.com%2faccesscontrolservice%2f2010%2f07%2fclaims%2fidentityprovider=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&Audience=urn%3aWindowsAzureMediaServices&ExpiresOn=1421500579&Issuer=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&HMACSHA256=ElVWXOnMVggFQl%2ft9vhdcv1qH1n%2fE8l3hRef4zPmrzg%3d
@@ -156,7 +156,7 @@ ms.lasthandoff: 07/11/2017
     Host: wamsbayclus001rest-hs.cloudapp.net
 
 
-<span data-ttu-id="a5428-151">**Réponse HTTP**:</span><span class="sxs-lookup"><span data-stu-id="a5428-151">**HTTP Response**:</span></span>
+<span data-ttu-id="9fcca-151">**Réponse HTTP**:</span><span class="sxs-lookup"><span data-stu-id="9fcca-151">**HTTP Response**:</span></span>
 
     HTTP/1.1 200 OK
     Cache-Control: no-cache
@@ -176,13 +176,13 @@ ms.lasthandoff: 07/11/2017
 
 
 > [!NOTE]
-> <span data-ttu-id="a5428-152">Après l’obtention du nouvel URI, il convient de l’utiliser pour communiquer avec Media Services.</span><span class="sxs-lookup"><span data-stu-id="a5428-152">Once you get the new URI, that is the URI that should be used to communicate with Media Services.</span></span> 
+> <span data-ttu-id="9fcca-152">Une fois que vous obtenez hello nouvel URI, qui est hello URI qui doit être utilisé toocommunicate avec Media Services.</span><span class="sxs-lookup"><span data-stu-id="9fcca-152">Once you get hello new URI, that is hello URI that should be used toocommunicate with Media Services.</span></span> 
 > 
 > 
 
-## <a name="media-services-learning-paths"></a><span data-ttu-id="a5428-153">Parcours d’apprentissage de Media Services</span><span class="sxs-lookup"><span data-stu-id="a5428-153">Media Services learning paths</span></span>
+## <a name="media-services-learning-paths"></a><span data-ttu-id="9fcca-153">Parcours d’apprentissage de Media Services</span><span class="sxs-lookup"><span data-stu-id="9fcca-153">Media Services learning paths</span></span>
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-## <a name="provide-feedback"></a><span data-ttu-id="a5428-154">Fournir des commentaires</span><span class="sxs-lookup"><span data-stu-id="a5428-154">Provide feedback</span></span>
+## <a name="provide-feedback"></a><span data-ttu-id="9fcca-154">Fournir des commentaires</span><span class="sxs-lookup"><span data-stu-id="9fcca-154">Provide feedback</span></span>
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 

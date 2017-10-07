@@ -1,5 +1,5 @@
 ---
-title: "Connecter Intel Edison (Node) à Azure IoT - Leçon 2 : Outils Azure (Ubuntu) | Microsoft Docs"
+title: "Se connecter tooAzure Intel Edison (nœud) IoT - leçon 2 : Windows Azure tools (Ubuntu) | Documents Microsoft"
 description: "Sur Ubuntu, installez Python et l’interface de ligne de commande Azure (Azure CLI)."
 services: iot-hub
 documentationcenter: 
@@ -17,36 +17,36 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: 65248e14d0ea05a44efe76e66e1ef519285982b3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ca2996b779a4d3cde833c5f2824d19ec46241bae
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-azure-tools-ubuntu-1604"></a><span data-ttu-id="04aef-104">Obtenir les outils Azure (Ubuntu 16.04)</span><span class="sxs-lookup"><span data-stu-id="04aef-104">Get Azure tools (Ubuntu 16.04)</span></span>
+# <a name="get-azure-tools-ubuntu-1604"></a><span data-ttu-id="82155-104">Obtenir les outils Azure (Ubuntu 16.04)</span><span class="sxs-lookup"><span data-stu-id="82155-104">Get Azure tools (Ubuntu 16.04)</span></span>
 > [!div class="op_single_selector"]
-> * <span data-ttu-id="04aef-105">[Windows 7 et versions ultérieures][windows]</span><span class="sxs-lookup"><span data-stu-id="04aef-105">[Windows 7 and later][windows]</span></span>
-> * <span data-ttu-id="04aef-106">[Ubuntu 16.04][ubuntu]</span><span class="sxs-lookup"><span data-stu-id="04aef-106">[Ubuntu 16.04][ubuntu]</span></span>
-> * <span data-ttu-id="04aef-107">[macOS 10.10][macos]</span><span class="sxs-lookup"><span data-stu-id="04aef-107">[macOS 10.10][macos]</span></span>
+> * <span data-ttu-id="82155-105">[Windows 7 et versions ultérieures][windows]</span><span class="sxs-lookup"><span data-stu-id="82155-105">[Windows 7 and later][windows]</span></span>
+> * <span data-ttu-id="82155-106">[Ubuntu 16.04][ubuntu]</span><span class="sxs-lookup"><span data-stu-id="82155-106">[Ubuntu 16.04][ubuntu]</span></span>
+> * <span data-ttu-id="82155-107">[macOS 10.10][macos]</span><span class="sxs-lookup"><span data-stu-id="82155-107">[macOS 10.10][macos]</span></span>
 
-## <a name="what-you-will-do"></a><span data-ttu-id="04aef-108">Procédure à suivre</span><span class="sxs-lookup"><span data-stu-id="04aef-108">What you will do</span></span>
-<span data-ttu-id="04aef-109">Installez l’interface de ligne de commande Azure (Azure CLI).</span><span class="sxs-lookup"><span data-stu-id="04aef-109">Install the Azure command-line interface (Azure CLI).</span></span> <span data-ttu-id="04aef-110">Si vous rencontrez des problèmes, recherchez des solutions sur la [page de résolution des problèmes][troubleshooting].</span><span class="sxs-lookup"><span data-stu-id="04aef-110">If you have any problems, look for solutions on the [troubleshooting page][troubleshooting].</span></span>
+## <a name="what-you-will-do"></a><span data-ttu-id="82155-108">Procédure à suivre</span><span class="sxs-lookup"><span data-stu-id="82155-108">What you will do</span></span>
+<span data-ttu-id="82155-109">Installez hello Azure interface de ligne de commande (CLI d’Azure).</span><span class="sxs-lookup"><span data-stu-id="82155-109">Install hello Azure command-line interface (Azure CLI).</span></span> <span data-ttu-id="82155-110">Si vous rencontrez des problèmes, recherchez des solutions sur hello [page Résolution des problèmes][troubleshooting].</span><span class="sxs-lookup"><span data-stu-id="82155-110">If you have any problems, look for solutions on hello [troubleshooting page][troubleshooting].</span></span>
 
-## <a name="what-you-will-learn"></a><span data-ttu-id="04aef-111">Contenu</span><span class="sxs-lookup"><span data-stu-id="04aef-111">What you will learn</span></span>
-<span data-ttu-id="04aef-112">Cet article portera sur les éléments suivants :</span><span class="sxs-lookup"><span data-stu-id="04aef-112">In this article, you will learn:</span></span>
-* <span data-ttu-id="04aef-113">Installation de l’interface de ligne de commande Azure.</span><span class="sxs-lookup"><span data-stu-id="04aef-113">How to install the Azure CLI.</span></span>
-* <span data-ttu-id="04aef-114">Ajout d’un sous-groupe IoT de l’interface de ligne de commande Azure.</span><span class="sxs-lookup"><span data-stu-id="04aef-114">How to add an IoT subgroup of the Azure CLI.</span></span>
+## <a name="what-you-will-learn"></a><span data-ttu-id="82155-111">Contenu</span><span class="sxs-lookup"><span data-stu-id="82155-111">What you will learn</span></span>
+<span data-ttu-id="82155-112">Cet article portera sur les éléments suivants :</span><span class="sxs-lookup"><span data-stu-id="82155-112">In this article, you will learn:</span></span>
+* <span data-ttu-id="82155-113">Comment tooinstall hello CLI d’Azure.</span><span class="sxs-lookup"><span data-stu-id="82155-113">How tooinstall hello Azure CLI.</span></span>
+* <span data-ttu-id="82155-114">Comment tooadd un sous-groupe IoT Hello CLI d’Azure.</span><span class="sxs-lookup"><span data-stu-id="82155-114">How tooadd an IoT subgroup of hello Azure CLI.</span></span>
 
-## <a name="what-you-need"></a><span data-ttu-id="04aef-115">Ce dont vous avez besoin</span><span class="sxs-lookup"><span data-stu-id="04aef-115">What you need</span></span>
-* <span data-ttu-id="04aef-116">Un ordinateur Ubuntu connecté à Internet.</span><span class="sxs-lookup"><span data-stu-id="04aef-116">An Ubuntu computer with an Internet connection.</span></span>
-* <span data-ttu-id="04aef-117">Un abonnement Azure actif.</span><span class="sxs-lookup"><span data-stu-id="04aef-117">An active Azure subscription.</span></span> <span data-ttu-id="04aef-118">Si vous ne possédez pas de compte, vous pouvez créer un [compte d’évaluation gratuit](http://azure.microsoft.com/pricing/free-trial/) en quelques minutes.</span><span class="sxs-lookup"><span data-stu-id="04aef-118">If you don't have an account, you can create a [free trial account](http://azure.microsoft.com/pricing/free-trial/) in just a few minutes.</span></span>
+## <a name="what-you-need"></a><span data-ttu-id="82155-115">Ce dont vous avez besoin</span><span class="sxs-lookup"><span data-stu-id="82155-115">What you need</span></span>
+* <span data-ttu-id="82155-116">Un ordinateur Ubuntu connecté à Internet.</span><span class="sxs-lookup"><span data-stu-id="82155-116">An Ubuntu computer with an Internet connection.</span></span>
+* <span data-ttu-id="82155-117">Un abonnement Azure actif.</span><span class="sxs-lookup"><span data-stu-id="82155-117">An active Azure subscription.</span></span> <span data-ttu-id="82155-118">Si vous ne possédez pas de compte, vous pouvez créer un [compte d’évaluation gratuit](http://azure.microsoft.com/pricing/free-trial/) en quelques minutes.</span><span class="sxs-lookup"><span data-stu-id="82155-118">If you don't have an account, you can create a [free trial account](http://azure.microsoft.com/pricing/free-trial/) in just a few minutes.</span></span>
 
-## <a name="install-the-azure-cli"></a><span data-ttu-id="04aef-119">Installer l’interface de ligne de commande Microsoft Azure</span><span class="sxs-lookup"><span data-stu-id="04aef-119">Install the Azure CLI</span></span>
-<span data-ttu-id="04aef-120">L’interface de ligne de commande Azure fournit une expérience de ligne de commande multiplateforme pour Azure, permettant de travailler directement à partir de la ligne de commande pour configurer et gérer des ressources.</span><span class="sxs-lookup"><span data-stu-id="04aef-120">The Azure CLI provides a multiplatform command-line experience for Azure, enabling you to work directly from your command line to provision and manage resources.</span></span>
+## <a name="install-hello-azure-cli"></a><span data-ttu-id="82155-119">Installer hello CLI d’Azure</span><span class="sxs-lookup"><span data-stu-id="82155-119">Install hello Azure CLI</span></span>
+<span data-ttu-id="82155-120">Hello CLI d’Azure fournit une expérience en ligne de commande multiplateforme pour Azure, ce qui vous toowork directement à partir de votre tooprovision de ligne de commande et gérer les ressources.</span><span class="sxs-lookup"><span data-stu-id="82155-120">hello Azure CLI provides a multiplatform command-line experience for Azure, enabling you toowork directly from your command line tooprovision and manage resources.</span></span>
 
-<span data-ttu-id="04aef-121">Pour installer la dernière version d’Azure CLI, procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="04aef-121">To install the latest Azure CLI, follow these steps:</span></span>
+<span data-ttu-id="82155-121">tooinstall hello dernière CLI d’Azure, procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="82155-121">tooinstall hello latest Azure CLI, follow these steps:</span></span>
 
-1. <span data-ttu-id="04aef-122">Exécutez les commandes suivantes dans une fenêtre de Terminal.</span><span class="sxs-lookup"><span data-stu-id="04aef-122">Run the following commands in a terminal window.</span></span> <span data-ttu-id="04aef-123">L’installation de l’interface de ligne de commande Azure peut prendre cinq minutes.</span><span class="sxs-lookup"><span data-stu-id="04aef-123">It might take five minutes to install the Azure CLI.</span></span>
+1. <span data-ttu-id="82155-122">Exécutez hello suivant les commandes dans une fenêtre de terminal.</span><span class="sxs-lookup"><span data-stu-id="82155-122">Run hello following commands in a terminal window.</span></span> <span data-ttu-id="82155-123">Il peut prendre cinq minutes tooinstall hello CLI d’Azure.</span><span class="sxs-lookup"><span data-stu-id="82155-123">It might take five minutes tooinstall hello Azure CLI.</span></span>
 
    ```bash
    sudo apt-get update
@@ -57,21 +57,21 @@ ms.lasthandoff: 07/11/2017
    sudo pip install --upgrade azure-cli
    sudo pip install --upgrade azure-cli-iot
    ```
-2. <span data-ttu-id="04aef-124">Vérifiez l’installation en exécutant la commande suivante :</span><span class="sxs-lookup"><span data-stu-id="04aef-124">Verify the installation by running the following command:</span></span>
+2. <span data-ttu-id="82155-124">Hello Vérifiez-la en exécutant hello de commande suivante :</span><span class="sxs-lookup"><span data-stu-id="82155-124">Verify hello installation by running hello following command:</span></span>
 
    ```bash
    az iot -h
    ```
 
-<span data-ttu-id="04aef-125">Si l’installation a réussi, vous devez voir la sortie suivante.</span><span class="sxs-lookup"><span data-stu-id="04aef-125">You should see the following output if the installation is successful.</span></span>
+<span data-ttu-id="82155-125">Vous devez voir suivant de hello de sortie si l’installation de hello a réussi.</span><span class="sxs-lookup"><span data-stu-id="82155-125">You should see hello following output if hello installation is successful.</span></span>
 
-![Sortie indiquant la réussite](media/iot-hub-intel-edison-lessons/lesson2/az_iot_help_ubuntu.png)
+![Sortie qui indique la réussite](media/iot-hub-intel-edison-lessons/lesson2/az_iot_help_ubuntu.png)
 
-## <a name="summary"></a><span data-ttu-id="04aef-127">Résumé</span><span class="sxs-lookup"><span data-stu-id="04aef-127">Summary</span></span>
-<span data-ttu-id="04aef-128">Vous avez installé l’interface de ligne de commande Azure.</span><span class="sxs-lookup"><span data-stu-id="04aef-128">You've installed the Azure CLI.</span></span> <span data-ttu-id="04aef-129">La tâche suivante consiste à créer votre Azure IoT Hub et votre identité d’appareil à l’aide de l’interface de ligne de commande Azure.</span><span class="sxs-lookup"><span data-stu-id="04aef-129">Your next task is to create your Azure IoT hub and device identity using the Azure CLI.</span></span>
+## <a name="summary"></a><span data-ttu-id="82155-127">Résumé</span><span class="sxs-lookup"><span data-stu-id="82155-127">Summary</span></span>
+<span data-ttu-id="82155-128">Vous avez installé hello CLI d’Azure.</span><span class="sxs-lookup"><span data-stu-id="82155-128">You've installed hello Azure CLI.</span></span> <span data-ttu-id="82155-129">La tâche suivante est toocreate votre Azure IoT hub et l’identité de l’appareil à l’aide hello CLI d’Azure.</span><span class="sxs-lookup"><span data-stu-id="82155-129">Your next task is toocreate your Azure IoT hub and device identity using hello Azure CLI.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="04aef-130">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="04aef-130">Next steps</span></span>
-<span data-ttu-id="04aef-131">[Créer votre IoT Hub et inscrire Intel Edison][create-your-iot-hub-and-register-intel-edison]</span><span class="sxs-lookup"><span data-stu-id="04aef-131">[Create your IoT hub and register Intel Edison][create-your-iot-hub-and-register-intel-edison]</span></span>
+## <a name="next-steps"></a><span data-ttu-id="82155-130">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="82155-130">Next steps</span></span>
+<span data-ttu-id="82155-131">[Créer votre IoT Hub et inscrire Intel Edison][create-your-iot-hub-and-register-intel-edison]</span><span class="sxs-lookup"><span data-stu-id="82155-131">[Create your IoT hub and register Intel Edison][create-your-iot-hub-and-register-intel-edison]</span></span>
 
 
 <!-- Images and links -->

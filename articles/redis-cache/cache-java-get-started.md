@@ -1,5 +1,5 @@
 ---
-title: Utilisation du Cache Redis Azure avec Java | Microsoft Docs
+title: aaaHow toouse du Cache Redis Azure avec Java | Documents Microsoft
 description: Prise en main du Cache Redis Azure avec Java
 services: redis-cache
 documentationcenter: 
@@ -14,39 +14,39 @@ ms.tgt_pltfrm: cache-redis
 ms.workload: tbd
 ms.date: 04/13/2017
 ms.author: sdanie
-ms.openlocfilehash: 3cfad3a7279b5f9bbff1e6cd9794c492e3544752
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7768e879d71f61585b59cf4bd6634ba3f12e001d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-azure-redis-cache-with-java"></a><span data-ttu-id="4c2ed-103">Utilisation du Cache Redis Azure avec Java</span><span class="sxs-lookup"><span data-stu-id="4c2ed-103">How to use Azure Redis Cache with Java</span></span>
+# <a name="how-toouse-azure-redis-cache-with-java"></a><span data-ttu-id="49d6b-103">Comment toouse Azure Redis Cache avec Java</span><span class="sxs-lookup"><span data-stu-id="49d6b-103">How toouse Azure Redis Cache with Java</span></span>
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="4c2ed-104">.NET</span><span class="sxs-lookup"><span data-stu-id="4c2ed-104">.NET</span></span>](cache-dotnet-how-to-use-azure-redis-cache.md)
-> * [<span data-ttu-id="4c2ed-105">ASP.NET</span><span class="sxs-lookup"><span data-stu-id="4c2ed-105">ASP.NET</span></span>](cache-web-app-howto.md)
-> * [<span data-ttu-id="4c2ed-106">Node.JS</span><span class="sxs-lookup"><span data-stu-id="4c2ed-106">Node.js</span></span>](cache-nodejs-get-started.md)
-> * [<span data-ttu-id="4c2ed-107">Java</span><span class="sxs-lookup"><span data-stu-id="4c2ed-107">Java</span></span>](cache-java-get-started.md)
-> * [<span data-ttu-id="4c2ed-108">Python</span><span class="sxs-lookup"><span data-stu-id="4c2ed-108">Python</span></span>](cache-python-get-started.md)
+> * [<span data-ttu-id="49d6b-104">.NET</span><span class="sxs-lookup"><span data-stu-id="49d6b-104">.NET</span></span>](cache-dotnet-how-to-use-azure-redis-cache.md)
+> * [<span data-ttu-id="49d6b-105">ASP.NET</span><span class="sxs-lookup"><span data-stu-id="49d6b-105">ASP.NET</span></span>](cache-web-app-howto.md)
+> * [<span data-ttu-id="49d6b-106">Node.JS</span><span class="sxs-lookup"><span data-stu-id="49d6b-106">Node.js</span></span>](cache-nodejs-get-started.md)
+> * [<span data-ttu-id="49d6b-107">Java</span><span class="sxs-lookup"><span data-stu-id="49d6b-107">Java</span></span>](cache-java-get-started.md)
+> * [<span data-ttu-id="49d6b-108">Python</span><span class="sxs-lookup"><span data-stu-id="49d6b-108">Python</span></span>](cache-python-get-started.md)
 > 
 > 
 
-<span data-ttu-id="4c2ed-109">Le Cache Redis Azure permet d’accéder à un cache Redis dédié géré par Microsoft.</span><span class="sxs-lookup"><span data-stu-id="4c2ed-109">Azure Redis Cache gives you access to a dedicated Redis cache, managed by Microsoft.</span></span> <span data-ttu-id="4c2ed-110">Votre cache est accessible à partir de n'importe quelle application dans Microsoft Azure.</span><span class="sxs-lookup"><span data-stu-id="4c2ed-110">Your cache is accessible from any application within Microsoft Azure.</span></span>
+<span data-ttu-id="49d6b-109">Azure Cache Redis vous donne accès tooa dédié Redis cache, géré par Microsoft.</span><span class="sxs-lookup"><span data-stu-id="49d6b-109">Azure Redis Cache gives you access tooa dedicated Redis cache, managed by Microsoft.</span></span> <span data-ttu-id="49d6b-110">Votre cache est accessible à partir de n'importe quelle application dans Microsoft Azure.</span><span class="sxs-lookup"><span data-stu-id="49d6b-110">Your cache is accessible from any application within Microsoft Azure.</span></span>
 
-<span data-ttu-id="4c2ed-111">Cette rubrique montre comment utiliser le Cache Redis Azure avec Java.</span><span class="sxs-lookup"><span data-stu-id="4c2ed-111">This topic shows you how to get started with Azure Redis Cache using Java.</span></span>
+<span data-ttu-id="49d6b-111">Cette rubrique vous indique comment tooget a démarré avec le Cache Redis Azure à l’aide de Java.</span><span class="sxs-lookup"><span data-stu-id="49d6b-111">This topic shows you how tooget started with Azure Redis Cache using Java.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="4c2ed-112">Composants requis</span><span class="sxs-lookup"><span data-stu-id="4c2ed-112">Prerequisites</span></span>
-<span data-ttu-id="4c2ed-113">[Jedis](https://github.com/xetorthio/jedis) : client Java pour Redis</span><span class="sxs-lookup"><span data-stu-id="4c2ed-113">[Jedis](https://github.com/xetorthio/jedis) - Java client for Redis</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="49d6b-112">Composants requis</span><span class="sxs-lookup"><span data-stu-id="49d6b-112">Prerequisites</span></span>
+<span data-ttu-id="49d6b-113">[Jedis](https://github.com/xetorthio/jedis) : client Java pour Redis</span><span class="sxs-lookup"><span data-stu-id="49d6b-113">[Jedis](https://github.com/xetorthio/jedis) - Java client for Redis</span></span>
 
-<span data-ttu-id="4c2ed-114">Ce didacticiel utilise Jedis, mais vous pouvez utiliser n'importe quel client Java parmi ceux répertoriés ici : [http://redis.io/clients](http://redis.io/clients).</span><span class="sxs-lookup"><span data-stu-id="4c2ed-114">This tutorial uses Jedis, but you can use any Java client listed at [http://redis.io/clients](http://redis.io/clients).</span></span>
+<span data-ttu-id="49d6b-114">Ce didacticiel utilise Jedis, mais vous pouvez utiliser n'importe quel client Java parmi ceux répertoriés ici : [http://redis.io/clients](http://redis.io/clients).</span><span class="sxs-lookup"><span data-stu-id="49d6b-114">This tutorial uses Jedis, but you can use any Java client listed at [http://redis.io/clients](http://redis.io/clients).</span></span>
 
-## <a name="create-a-redis-cache-on-azure"></a><span data-ttu-id="4c2ed-115">Créer un Cache Redis sur Azure</span><span class="sxs-lookup"><span data-stu-id="4c2ed-115">Create a Redis cache on Azure</span></span>
+## <a name="create-a-redis-cache-on-azure"></a><span data-ttu-id="49d6b-115">Créer un Cache Redis sur Azure</span><span class="sxs-lookup"><span data-stu-id="49d6b-115">Create a Redis cache on Azure</span></span>
 [!INCLUDE [redis-cache-create](../../includes/redis-cache-create.md)]
 
-## <a name="retrieve-the-host-name-and-access-keys"></a><span data-ttu-id="4c2ed-116">Récupérer les clés d’accès et le nom hôte</span><span class="sxs-lookup"><span data-stu-id="4c2ed-116">Retrieve the host name and access keys</span></span>
+## <a name="retrieve-hello-host-name-and-access-keys"></a><span data-ttu-id="49d6b-116">Récupérer les clés d’accès et nom d’hôte hello</span><span class="sxs-lookup"><span data-stu-id="49d6b-116">Retrieve hello host name and access keys</span></span>
 [!INCLUDE [redis-cache-create](../../includes/redis-cache-access-keys.md)]
 
-## <a name="connect-to-the-cache-securely-using-ssl"></a><span data-ttu-id="4c2ed-117">Connexion au cache en toute sécurité à l’aide de SSL</span><span class="sxs-lookup"><span data-stu-id="4c2ed-117">Connect to the cache securely using SSL</span></span>
-<span data-ttu-id="4c2ed-118">Les dernières versions de [jedis](https://github.com/xetorthio/jedis) prennent en charge la connexion au Cache Redis Azure avec SSL.</span><span class="sxs-lookup"><span data-stu-id="4c2ed-118">The latest builds of [jedis](https://github.com/xetorthio/jedis) provide support for connecting to Azure Redis Cache using SSL.</span></span> <span data-ttu-id="4c2ed-119">L’exemple suivant montre comment se connecter au Cache Redis Azure à l’aide du point de terminaison SSL 6380.</span><span class="sxs-lookup"><span data-stu-id="4c2ed-119">The following example shows how to connect to Azure Redis Cache using the SSL endpoint of 6380.</span></span> <span data-ttu-id="4c2ed-120">Remplacez `<name>` par le nom de votre cache et `<key>` par votre clé primaire ou secondaire tel que décrit dans la section précédente [Récupérer les clés d’accès et le nom hôte](#retrieve-the-host-name-and-access-keys).</span><span class="sxs-lookup"><span data-stu-id="4c2ed-120">Replace `<name>` with the name of your cache and `<key>` with either your primary or secondary key as described in the previous [Retrieve the host name and access keys](#retrieve-the-host-name-and-access-keys) section.</span></span>
+## <a name="connect-toohello-cache-securely-using-ssl"></a><span data-ttu-id="49d6b-117">Se connecter cache toohello en toute sécurité à l’aide de SSL</span><span class="sxs-lookup"><span data-stu-id="49d6b-117">Connect toohello cache securely using SSL</span></span>
+<span data-ttu-id="49d6b-118">Hello dernières builds de [jedis](https://github.com/xetorthio/jedis) prennent en charge pour la connexion tooAzure Cache Redis à l’aide de SSL.</span><span class="sxs-lookup"><span data-stu-id="49d6b-118">hello latest builds of [jedis](https://github.com/xetorthio/jedis) provide support for connecting tooAzure Redis Cache using SSL.</span></span> <span data-ttu-id="49d6b-119">Hello, l’exemple suivant montre comment la tooconnect tooAzure Redis Cache à l’aide hello point de terminaison SSL de 6380.</span><span class="sxs-lookup"><span data-stu-id="49d6b-119">hello following example shows how tooconnect tooAzure Redis Cache using hello SSL endpoint of 6380.</span></span> <span data-ttu-id="49d6b-120">Remplacez `<name>` avec nom hello de votre cache et `<key>` avec l’option votre clé primaire ou secondaire comme décrit dans hello précédente [récupérer les clés d’accès et nom d’hôte hello](#retrieve-the-host-name-and-access-keys) section.</span><span class="sxs-lookup"><span data-stu-id="49d6b-120">Replace `<name>` with hello name of your cache and `<key>` with either your primary or secondary key as described in hello previous [Retrieve hello host name and access keys](#retrieve-the-host-name-and-access-keys) section.</span></span>
 
     boolean useSsl = true;
     /* In this line, replace <name> with your cache name: */
@@ -54,11 +54,11 @@ ms.lasthandoff: 07/11/2017
     shardInfo.setPassword("<key>"); /* Use your access key. */
 
 > [!NOTE]
-> <span data-ttu-id="4c2ed-121">Le port non SSL est désactivé pour les nouvelles instances Cache Redis Azure.</span><span class="sxs-lookup"><span data-stu-id="4c2ed-121">The non-SSL port is disabled for new Azure Redis Cache instances.</span></span> <span data-ttu-id="4c2ed-122">Si vous utilisez un autre client qui ne prend pas en charge SSL, la procédure d’activation du port non SSL est expliquée [ici](cache-configure.md#access-ports).</span><span class="sxs-lookup"><span data-stu-id="4c2ed-122">If you are using a different client that doesn't support SSL, see [How to enable the non-SSL port](cache-configure.md#access-ports).</span></span>
+> <span data-ttu-id="49d6b-121">port non-SSL de Hello est désactivé pour les nouvelles instances de Cache Redis Azure.</span><span class="sxs-lookup"><span data-stu-id="49d6b-121">hello non-SSL port is disabled for new Azure Redis Cache instances.</span></span> <span data-ttu-id="49d6b-122">Si vous utilisez un autre client qui ne prennent pas en charge SSL, consultez [comment tooenable hello port non-SSL](cache-configure.md#access-ports).</span><span class="sxs-lookup"><span data-stu-id="49d6b-122">If you are using a different client that doesn't support SSL, see [How tooenable hello non-SSL port](cache-configure.md#access-ports).</span></span>
 > 
 > 
 
-## <a name="add-something-to-the-cache-and-retrieve-it"></a><span data-ttu-id="4c2ed-123">Ajouter un élément au cache et le récupérer</span><span class="sxs-lookup"><span data-stu-id="4c2ed-123">Add something to the cache and retrieve it</span></span>
+## <a name="add-something-toohello-cache-and-retrieve-it"></a><span data-ttu-id="49d6b-123">Ajoutez un élément toohello mettre en cache et récupérer</span><span class="sxs-lookup"><span data-stu-id="49d6b-123">Add something toohello cache and retrieve it</span></span>
     package com.mycompany.app;
     import redis.clients.jedis.Jedis;
     import redis.clients.jedis.JedisShardInfo;
@@ -78,6 +78,6 @@ ms.lasthandoff: 07/11/2017
     }
 
 
-## <a name="next-steps"></a><span data-ttu-id="4c2ed-124">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="4c2ed-124">Next steps</span></span>
-* <span data-ttu-id="4c2ed-125">[Activez les diagnostics du cache](https://msdn.microsoft.com/library/azure/dn763945.aspx#EnableDiagnostics) afin de pouvoir [surveiller](https://msdn.microsoft.com/library/azure/dn763945.aspx) l’intégrité de votre cache.</span><span class="sxs-lookup"><span data-stu-id="4c2ed-125">[Enable cache diagnostics](https://msdn.microsoft.com/library/azure/dn763945.aspx#EnableDiagnostics) so you can [monitor](https://msdn.microsoft.com/library/azure/dn763945.aspx) the health of your cache.</span></span>
-* <span data-ttu-id="4c2ed-126">Lisez la [documentation Redis](http://redis.io/documentation)officielle.</span><span class="sxs-lookup"><span data-stu-id="4c2ed-126">Read the official [Redis documentation](http://redis.io/documentation).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="49d6b-124">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="49d6b-124">Next steps</span></span>
+* <span data-ttu-id="49d6b-125">[Activer les diagnostics de cache](https://msdn.microsoft.com/library/azure/dn763945.aspx#EnableDiagnostics) afin de pouvoir [moniteur](https://msdn.microsoft.com/library/azure/dn763945.aspx) hello d’intégrité de votre cache.</span><span class="sxs-lookup"><span data-stu-id="49d6b-125">[Enable cache diagnostics](https://msdn.microsoft.com/library/azure/dn763945.aspx#EnableDiagnostics) so you can [monitor](https://msdn.microsoft.com/library/azure/dn763945.aspx) hello health of your cache.</span></span>
+* <span data-ttu-id="49d6b-126">Lecture hello officielle [Redis documentation](http://redis.io/documentation).</span><span class="sxs-lookup"><span data-stu-id="49d6b-126">Read hello official [Redis documentation](http://redis.io/documentation).</span></span>

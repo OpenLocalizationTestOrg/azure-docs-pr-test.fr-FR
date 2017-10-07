@@ -1,6 +1,6 @@
 ---
-title: "Prise en main des applications à page unique NodeJS AngularJS Azure AD 2.0 | Microsoft Docs"
-description: "Génération d’une application à page unique AngularJS qui connecte les utilisateurs avec les comptes Microsoft personnels et les comptes professionnels ou scolaires."
+title: "aaaAzure AD v2.0 application à page unique NodeJS AngularJS prise en main | Documents Microsoft"
+description: Comment toobuild une application angulaire JS seule Page qui se connecte aux utilisateurs avec Microsoft personnel des comptes et utiliser comptes professionnels ou scolaires.
 services: active-directory
 documentationcenter: 
 author: navyasric
@@ -15,54 +15,54 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: nacanuma
 ms.custom: aaddev
-ms.openlocfilehash: 0e90171afd9c4c782fbb18375ab2d147497ef442
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1ab450caf08ab05fba140b94b1b8de652e99cbc1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-sign-in-to-an-angularjs-single-page-app---nodejs"></a><span data-ttu-id="9e15d-103">Ajouter une connexion à une application AngularJS à une seule page - NodeJS</span><span class="sxs-lookup"><span data-stu-id="9e15d-103">Add sign-in to an AngularJS single page app - NodeJS</span></span>
-<span data-ttu-id="9e15d-104">Dans cet article, nous allons ajouter la connexion avec des comptes Microsoft à une application AngularJS à l’aide du point de terminaison Azure Active Directory v2.0.</span><span class="sxs-lookup"><span data-stu-id="9e15d-104">In this article we'll add sign in with Microsoft powered accounts to an AngularJS app using the Azure Active Directory v2.0 endpoint.</span></span> <span data-ttu-id="9e15d-105">Le point de terminaison v2.0 permet d’effectuer une intégration simple dans votre application et d’authentifier les utilisateurs avec des comptes personnels ou professionnels/scolaires.</span><span class="sxs-lookup"><span data-stu-id="9e15d-105">the v2.0 endpoint enable you to perform a single integration in your app and authenticate users with both personal and work/school accounts.</span></span>
+# <a name="add-sign-in-tooan-angularjs-single-page-app---nodejs"></a><span data-ttu-id="25fa9-103">Ajouter l’application à page unique connexion tooan AngularJS - NodeJS</span><span class="sxs-lookup"><span data-stu-id="25fa9-103">Add sign-in tooan AngularJS single page app - NodeJS</span></span>
+<span data-ttu-id="25fa9-104">Dans cet article, nous allons ajouter connectez-vous avec Microsoft sous tension comptes tooan AngularJS application à l’aide du point de terminaison v2.0 hello Azure Active Directory.</span><span class="sxs-lookup"><span data-stu-id="25fa9-104">In this article we'll add sign in with Microsoft powered accounts tooan AngularJS app using hello Azure Active Directory v2.0 endpoint.</span></span> <span data-ttu-id="25fa9-105">point de terminaison Hello v2.0 vous tooperform une intégration unique dans votre application et authentifier les utilisateurs avec des comptes personnels et de travail/school.</span><span class="sxs-lookup"><span data-stu-id="25fa9-105">hello v2.0 endpoint enable you tooperform a single integration in your app and authenticate users with both personal and work/school accounts.</span></span>
 
-<span data-ttu-id="9e15d-106">Cet exemple est une application à page unique de liste de tâches qui stocke les tâches dans une API REST du serveur principal, écrite en NodeJS et sécurisée à l’aide de jetons du porteur OAuth d’Azure AD.</span><span class="sxs-lookup"><span data-stu-id="9e15d-106">This sample is a simple To-Do List single page app that stores tasks in a backend REST API, written in NodeJS and secured using OAuth bearer tokens from Azure AD.</span></span>  <span data-ttu-id="9e15d-107">L’application AngularJS utilisera notre bibliothèque d’authentification open source JavaScript [adal.js](https://github.com/AzureAD/azure-activedirectory-library-for-js) afin de gérer l’intégralité du processus de connexion et d’acquérir les jetons utilisés pour appeler l’API REST.</span><span class="sxs-lookup"><span data-stu-id="9e15d-107">The AngularJS app will use our open source JavaScript authentication library [adal.js](https://github.com/AzureAD/azure-activedirectory-library-for-js) to handle the entire sign in process and acquire tokens for calling the REST API.</span></span>  <span data-ttu-id="9e15d-108">Le même modèle peut être appliqué pour l’authentification d’autres API REST, comme les API [Microsoft Graph](https://graph.microsoft.com) ou Azure Resource Manager.</span><span class="sxs-lookup"><span data-stu-id="9e15d-108">The same pattern can be applied to authenticate to other REST APIs, like the [Microsoft Graph](https://graph.microsoft.com) or the Azure Resource Manager APIs.</span></span>
+<span data-ttu-id="25fa9-106">Cet exemple est une application à page unique de liste de tâches qui stocke les tâches dans une API REST du serveur principal, écrite en NodeJS et sécurisée à l’aide de jetons du porteur OAuth d’Azure AD.</span><span class="sxs-lookup"><span data-stu-id="25fa9-106">This sample is a simple To-Do List single page app that stores tasks in a backend REST API, written in NodeJS and secured using OAuth bearer tokens from Azure AD.</span></span>  <span data-ttu-id="25fa9-107">Hello AngularJS application utilisera notre bibliothèque d’authentification de JavaScript open source [adal.js](https://github.com/AzureAD/azure-activedirectory-library-for-js) toohandle hello du processus de connexion entière et acquérir des jetons pour hello appel API REST.</span><span class="sxs-lookup"><span data-stu-id="25fa9-107">hello AngularJS app will use our open source JavaScript authentication library [adal.js](https://github.com/AzureAD/azure-activedirectory-library-for-js) toohandle hello entire sign in process and acquire tokens for calling hello REST API.</span></span>  <span data-ttu-id="25fa9-108">Hello même modèle peut être appliqué tooauthenticate tooother API REST, comme hello [Microsoft Graph](https://graph.microsoft.com) ou hello API du Gestionnaire de ressources Azure.</span><span class="sxs-lookup"><span data-stu-id="25fa9-108">hello same pattern can be applied tooauthenticate tooother REST APIs, like hello [Microsoft Graph](https://graph.microsoft.com) or hello Azure Resource Manager APIs.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="9e15d-109">Les scénarios et les fonctionnalités Azure Active Directory ne sont pas tous pris en charge par le point de terminaison v2.0.</span><span class="sxs-lookup"><span data-stu-id="9e15d-109">Not all Azure Active Directory scenarios & features are supported by the v2.0 endpoint.</span></span>  <span data-ttu-id="9e15d-110">Pour déterminer si vous devez utiliser le point de terminaison v2.0, consultez les [limitations de v2.0](active-directory-v2-limitations.md).</span><span class="sxs-lookup"><span data-stu-id="9e15d-110">To determine if you should use the v2.0 endpoint, read about [v2.0 limitations](active-directory-v2-limitations.md).</span></span>
+> <span data-ttu-id="25fa9-109">Pas tous les scénarios Azure Active Directory et les fonctionnalités sont prises en charge par le point de terminaison hello v2.0.</span><span class="sxs-lookup"><span data-stu-id="25fa9-109">Not all Azure Active Directory scenarios & features are supported by hello v2.0 endpoint.</span></span>  <span data-ttu-id="25fa9-110">toodetermine si vous devez utiliser le point de terminaison hello v2.0, en savoir plus sur [v2.0 limitations](active-directory-v2-limitations.md).</span><span class="sxs-lookup"><span data-stu-id="25fa9-110">toodetermine if you should use hello v2.0 endpoint, read about [v2.0 limitations](active-directory-v2-limitations.md).</span></span>
 > 
 > 
 
-## <a name="download"></a><span data-ttu-id="9e15d-111">Télécharger</span><span class="sxs-lookup"><span data-stu-id="9e15d-111">Download</span></span>
-<span data-ttu-id="9e15d-112">Pour commencer, vous devez télécharger et installer [node.js](https://nodejs.org).</span><span class="sxs-lookup"><span data-stu-id="9e15d-112">To get started, you'll need to download & install [node.js](https://nodejs.org).</span></span>  <span data-ttu-id="9e15d-113">Vous pouvez ensuite cloner ou [télécharger](https://github.com/AzureADQuickStarts/AppModelv2-SinglePageApp-AngularJS-NodeJS/archive/skeleton.zip) une application squelette :</span><span class="sxs-lookup"><span data-stu-id="9e15d-113">Then you can clone or [download](https://github.com/AzureADQuickStarts/AppModelv2-SinglePageApp-AngularJS-NodeJS/archive/skeleton.zip) a skeleton app:</span></span>
+## <a name="download"></a><span data-ttu-id="25fa9-111">Télécharger</span><span class="sxs-lookup"><span data-stu-id="25fa9-111">Download</span></span>
+<span data-ttu-id="25fa9-112">tooget démarré, vous devez toodownload & installer [node.js](https://nodejs.org).</span><span class="sxs-lookup"><span data-stu-id="25fa9-112">tooget started, you'll need toodownload & install [node.js](https://nodejs.org).</span></span>  <span data-ttu-id="25fa9-113">Vous pouvez ensuite cloner ou [télécharger](https://github.com/AzureADQuickStarts/AppModelv2-SinglePageApp-AngularJS-NodeJS/archive/skeleton.zip) une application squelette :</span><span class="sxs-lookup"><span data-stu-id="25fa9-113">Then you can clone or [download](https://github.com/AzureADQuickStarts/AppModelv2-SinglePageApp-AngularJS-NodeJS/archive/skeleton.zip) a skeleton app:</span></span>
 
 ```
 git clone --branch skeleton https://github.com/AzureADQuickStarts/AppModelv2-SinglePageApp-AngularJS-NodeJS.git
 ```
 
-<span data-ttu-id="9e15d-114">L’application squelette comprend l’ensemble du code réutilisable associé à une application AngularJS simple, mais n’intègre pas l’ensemble des éléments liés à l’identité.</span><span class="sxs-lookup"><span data-stu-id="9e15d-114">The skeleton app includes all the boilerplate code for a simple AngularJS app, but is missing all of the identity-related pieces.</span></span>  <span data-ttu-id="9e15d-115">Si vous ne souhaitez pas suivre la procédure, vous pouvez cloner ou [télécharger](https://github.com/AzureADQuickStarts/AppModelv2-SinglePageApp-AngularJS-NodeJS/archive/complete.zip) l’exemple terminé.</span><span class="sxs-lookup"><span data-stu-id="9e15d-115">If you don't want to follow along, you can instead clone or [download](https://github.com/AzureADQuickStarts/AppModelv2-SinglePageApp-AngularJS-NodeJS/archive/complete.zip) the completed sample.</span></span>
+<span data-ttu-id="25fa9-114">application squelette Hello inclut tout le code réutilisable hello pour une application AngularJS simple, mais il manque l’intégralité des hello liées à l’identité.</span><span class="sxs-lookup"><span data-stu-id="25fa9-114">hello skeleton app includes all hello boilerplate code for a simple AngularJS app, but is missing all of hello identity-related pieces.</span></span>  <span data-ttu-id="25fa9-115">Si vous ne souhaitez pas toofollow le long, vous pouvez à la place cloner ou [télécharger](https://github.com/AzureADQuickStarts/AppModelv2-SinglePageApp-AngularJS-NodeJS/archive/complete.zip) exemple hello s’est terminée.</span><span class="sxs-lookup"><span data-stu-id="25fa9-115">If you don't want toofollow along, you can instead clone or [download](https://github.com/AzureADQuickStarts/AppModelv2-SinglePageApp-AngularJS-NodeJS/archive/complete.zip) hello completed sample.</span></span>
 
 ```
 git clone https://github.com/AzureADSamples/SinglePageApp-AngularJS-NodeJS.git
 ```
 
-## <a name="register-an-app"></a><span data-ttu-id="9e15d-116">Inscription d’une application</span><span class="sxs-lookup"><span data-stu-id="9e15d-116">Register an app</span></span>
-<span data-ttu-id="9e15d-117">Dans un premier temps, créez une application dans le [portail d’inscription des applications](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList), ou suivez cette [procédure détaillée](active-directory-v2-app-registration.md).</span><span class="sxs-lookup"><span data-stu-id="9e15d-117">First, create an app in the [App Registration Portal](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList), or follow these [detailed steps](active-directory-v2-app-registration.md).</span></span>  <span data-ttu-id="9e15d-118">Veillez à respecter les points suivants :</span><span class="sxs-lookup"><span data-stu-id="9e15d-118">Make sure to:</span></span>
+## <a name="register-an-app"></a><span data-ttu-id="25fa9-116">Inscription d’une application</span><span class="sxs-lookup"><span data-stu-id="25fa9-116">Register an app</span></span>
+<span data-ttu-id="25fa9-117">Tout d’abord, créez une application dans hello [portail de l’enregistrement d’application](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList), ou procédez [une procédure détaillée](active-directory-v2-app-registration.md).</span><span class="sxs-lookup"><span data-stu-id="25fa9-117">First, create an app in hello [App Registration Portal](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList), or follow these [detailed steps](active-directory-v2-app-registration.md).</span></span>  <span data-ttu-id="25fa9-118">Veillez à respecter les points suivants :</span><span class="sxs-lookup"><span data-stu-id="25fa9-118">Make sure to:</span></span>
 
-* <span data-ttu-id="9e15d-119">ajouter la plateforme **web** pour votre application ;</span><span class="sxs-lookup"><span data-stu-id="9e15d-119">Add the **Web** platform for your app.</span></span>
-* <span data-ttu-id="9e15d-120">entrer l’ **URI de redirection**approprié.</span><span class="sxs-lookup"><span data-stu-id="9e15d-120">Enter the correct **Redirect URI**.</span></span> <span data-ttu-id="9e15d-121">La valeur par défaut pour cet exemple est `http://localhost:8080`.</span><span class="sxs-lookup"><span data-stu-id="9e15d-121">The default for this sample is `http://localhost:8080`.</span></span>
-* <span data-ttu-id="9e15d-122">Laissez la case **Autoriser un flux implicite** sélectionnée.</span><span class="sxs-lookup"><span data-stu-id="9e15d-122">Leave the **Allow Implicit Flow** checkbox enabled.</span></span> 
+* <span data-ttu-id="25fa9-119">Ajouter hello **Web** plate-forme pour votre application.</span><span class="sxs-lookup"><span data-stu-id="25fa9-119">Add hello **Web** platform for your app.</span></span>
+* <span data-ttu-id="25fa9-120">Entrez hello correct **URI de redirection**.</span><span class="sxs-lookup"><span data-stu-id="25fa9-120">Enter hello correct **Redirect URI**.</span></span> <span data-ttu-id="25fa9-121">valeur par défaut de Hello pour cet exemple est `http://localhost:8080`.</span><span class="sxs-lookup"><span data-stu-id="25fa9-121">hello default for this sample is `http://localhost:8080`.</span></span>
+* <span data-ttu-id="25fa9-122">Laissez hello **autorise le flux implicite** case à cocher activée.</span><span class="sxs-lookup"><span data-stu-id="25fa9-122">Leave hello **Allow Implicit Flow** checkbox enabled.</span></span> 
 
-<span data-ttu-id="9e15d-123">Copiez l’ **ID d’application** affecté à votre application ; vous en aurez besoin rapidement.</span><span class="sxs-lookup"><span data-stu-id="9e15d-123">Copy down the **Application ID** that is assigned to your app, you'll need it shortly.</span></span> 
+<span data-ttu-id="25fa9-123">Copie vers le bas hello **ID d’Application** qui est attribué tooyour application, vous en aurez besoin dans quelques instants.</span><span class="sxs-lookup"><span data-stu-id="25fa9-123">Copy down hello **Application ID** that is assigned tooyour app, you'll need it shortly.</span></span> 
 
-## <a name="install-adaljs"></a><span data-ttu-id="9e15d-124">Installer adal.js</span><span class="sxs-lookup"><span data-stu-id="9e15d-124">Install adal.js</span></span>
-<span data-ttu-id="9e15d-125">Pour commencer, accédez au projet téléchargé, puis installez adal.js.</span><span class="sxs-lookup"><span data-stu-id="9e15d-125">To start, navigate to project you downloaded and install adal.js.</span></span>  <span data-ttu-id="9e15d-126">Si [bower](http://bower.io/) est installé, il vous suffit d’exécuter cette commande.</span><span class="sxs-lookup"><span data-stu-id="9e15d-126">If you have [bower](http://bower.io/) installed, you can just run this command.</span></span>  <span data-ttu-id="9e15d-127">En cas d’incompatibilité de versions de dépendance, sélectionnez la version la plus élevée.</span><span class="sxs-lookup"><span data-stu-id="9e15d-127">For any dependency version mismatches, just choose the higher version.</span></span>
+## <a name="install-adaljs"></a><span data-ttu-id="25fa9-124">Installer adal.js</span><span class="sxs-lookup"><span data-stu-id="25fa9-124">Install adal.js</span></span>
+<span data-ttu-id="25fa9-125">toostart, accédez tooproject que vous avez téléchargé et installez adal.js.</span><span class="sxs-lookup"><span data-stu-id="25fa9-125">toostart, navigate tooproject you downloaded and install adal.js.</span></span>  <span data-ttu-id="25fa9-126">Si [bower](http://bower.io/) est installé, il vous suffit d’exécuter cette commande.</span><span class="sxs-lookup"><span data-stu-id="25fa9-126">If you have [bower](http://bower.io/) installed, you can just run this command.</span></span>  <span data-ttu-id="25fa9-127">Pour toutes les incompatibilités au niveau de la version de dépendance, choisissez une version supérieure hello.</span><span class="sxs-lookup"><span data-stu-id="25fa9-127">For any dependency version mismatches, just choose hello higher version.</span></span>
 
 ```
 bower install adal-angular#experimental
 ```
 
-<span data-ttu-id="9e15d-128">Sinon, vous pouvez télécharger manuellement [adal.js](https://raw.githubusercontent.com/AzureAD/azure-activedirectory-library-for-js/experimental/dist/adal.min.js) et [adal-angular.js](https://raw.githubusercontent.com/AzureAD/azure-activedirectory-library-for-js/experimental/dist/adal-angular.min.js).</span><span class="sxs-lookup"><span data-stu-id="9e15d-128">Alternatively, you can manually download [adal.js](https://raw.githubusercontent.com/AzureAD/azure-activedirectory-library-for-js/experimental/dist/adal.min.js) and [adal-angular.js](https://raw.githubusercontent.com/AzureAD/azure-activedirectory-library-for-js/experimental/dist/adal-angular.min.js).</span></span>  <span data-ttu-id="9e15d-129">Ajoutez les deux fichiers au répertoire `app/lib/adal-angular-experimental/dist` .</span><span class="sxs-lookup"><span data-stu-id="9e15d-129">Add both files to the `app/lib/adal-angular-experimental/dist` directory.</span></span>
+<span data-ttu-id="25fa9-128">Sinon, vous pouvez télécharger manuellement [adal.js](https://raw.githubusercontent.com/AzureAD/azure-activedirectory-library-for-js/experimental/dist/adal.min.js) et [adal-angular.js](https://raw.githubusercontent.com/AzureAD/azure-activedirectory-library-for-js/experimental/dist/adal-angular.min.js).</span><span class="sxs-lookup"><span data-stu-id="25fa9-128">Alternatively, you can manually download [adal.js](https://raw.githubusercontent.com/AzureAD/azure-activedirectory-library-for-js/experimental/dist/adal.min.js) and [adal-angular.js](https://raw.githubusercontent.com/AzureAD/azure-activedirectory-library-for-js/experimental/dist/adal-angular.min.js).</span></span>  <span data-ttu-id="25fa9-129">Ajoutez les deux fichiers toohello `app/lib/adal-angular-experimental/dist` active.</span><span class="sxs-lookup"><span data-stu-id="25fa9-129">Add both files toohello `app/lib/adal-angular-experimental/dist` directory.</span></span>
 
-<span data-ttu-id="9e15d-130">Ouvrez maintenant le projet dans votre éditeur de texte favori, puis chargez adal.js à la fin du corps de la page :</span><span class="sxs-lookup"><span data-stu-id="9e15d-130">Now open the project in your favorite text editor, and load adal.js at the end of the page body:</span></span>
+<span data-ttu-id="25fa9-130">Ouvrez projet de hello dans votre éditeur de texte et charger adal.js à fin hello hello du corps de page :</span><span class="sxs-lookup"><span data-stu-id="25fa9-130">Now open hello project in your favorite text editor, and load adal.js at hello end of hello page body:</span></span>
 
 ```html
 <!--index.html-->
@@ -75,31 +75,31 @@ bower install adal-angular#experimental
 ...
 ```
 
-## <a name="set-up-the-rest-api"></a><span data-ttu-id="9e15d-131">Configurer l’API REST</span><span class="sxs-lookup"><span data-stu-id="9e15d-131">Set up the REST API</span></span>
-<span data-ttu-id="9e15d-132">Pendant la configuration, tentons de lancer l’API REST du serveur principal.</span><span class="sxs-lookup"><span data-stu-id="9e15d-132">While we're setting things up, lets get the backend REST API working.</span></span>  <span data-ttu-id="9e15d-133">Dans une invite de commande, installez l’ensemble des packages en exécutant (assurez-vous d’être dans le répertoire de niveau supérieur du projet) :</span><span class="sxs-lookup"><span data-stu-id="9e15d-133">In a command prompt, install all the necessary packages by running (make sure you're in the top-level directory of the project):</span></span>
+## <a name="set-up-hello-rest-api"></a><span data-ttu-id="25fa9-131">Configurer hello API REST</span><span class="sxs-lookup"><span data-stu-id="25fa9-131">Set up hello REST API</span></span>
+<span data-ttu-id="25fa9-132">Pendant que nous configurons choses, permet l’utilisation d’API REST get hello back-end.</span><span class="sxs-lookup"><span data-stu-id="25fa9-132">While we're setting things up, lets get hello backend REST API working.</span></span>  <span data-ttu-id="25fa9-133">Dans une invite de commandes, installez tous les packages nécessaires hello en exécutant (Assurez-vous que vous êtes dans le répertoire de niveau supérieur de hello du projet de hello) :</span><span class="sxs-lookup"><span data-stu-id="25fa9-133">In a command prompt, install all hello necessary packages by running (make sure you're in hello top-level directory of hello project):</span></span>
 
 ```
 npm install
 ```
 
-<span data-ttu-id="9e15d-134">Ouvrez maintenant `config.js`, puis remplacez la valeur `audience` :</span><span class="sxs-lookup"><span data-stu-id="9e15d-134">Now open `config.js` and replace the `audience` value:</span></span>
+<span data-ttu-id="25fa9-134">À présent ouvrir `config.js` et remplacer hello `audience` valeur :</span><span class="sxs-lookup"><span data-stu-id="25fa9-134">Now open `config.js` and replace hello `audience` value:</span></span>
 
 ```js
 exports.creds = {
 
-     // TODO: Replace this value with the Application ID from the registration portal
+     // TODO: Replace this value with hello Application ID from hello registration portal
      audience: '<Your-application-id>',
 
      ...
 }
 ```
 
-<span data-ttu-id="9e15d-135">L’API REST utilise cette valeur pour valider les jetons reçus de l’application Angular, dans les requêtes AJAX.</span><span class="sxs-lookup"><span data-stu-id="9e15d-135">The REST API will use this value to validate tokens it receives from the Angular app on AJAX requests.</span></span>  <span data-ttu-id="9e15d-136">Notez que cette API REST simple stocke les données en mémoire. Lorsque vous arrêtez le serveur, vous perdez l’ensemble des tâches précédemment créées.</span><span class="sxs-lookup"><span data-stu-id="9e15d-136">Note that this simple REST API stores data in-memory - so each time to stop the server, you will lose all previously created tasks.</span></span>
+<span data-ttu-id="25fa9-135">Hello API REST utilisera cette jetons toovalidate de valeur qu’il reçoit à partir de l’application angulaire hello sur les requêtes AJAX.</span><span class="sxs-lookup"><span data-stu-id="25fa9-135">hello REST API will use this value toovalidate tokens it receives from hello Angular app on AJAX requests.</span></span>  <span data-ttu-id="25fa9-136">Notez que cette API REST simple stocke les données en mémoire - pour chaque serveur de hello toostop temps, vous perdrez toutes les tâches créées précédemment.</span><span class="sxs-lookup"><span data-stu-id="25fa9-136">Note that this simple REST API stores data in-memory - so each time toostop hello server, you will lose all previously created tasks.</span></span>
 
-<span data-ttu-id="9e15d-137">Nous n’évoquerons pas plus en avant le fonctionnement de l’API REST.</span><span class="sxs-lookup"><span data-stu-id="9e15d-137">That's all the time we're going to spend discussing how the REST API works.</span></span>  <span data-ttu-id="9e15d-138">N’hésitez pas à examiner le code, mais si vous souhaitez en savoir plus sur la sécurisation des API web à l’aide d’Azure AD, consultez [cet article](active-directory-v2-devquickstarts-node-api.md).</span><span class="sxs-lookup"><span data-stu-id="9e15d-138">Feel free to poke around in the code, but if you want to learn more about securing web APIs with Azure AD, check out [this article](active-directory-v2-devquickstarts-node-api.md).</span></span> 
+<span data-ttu-id="25fa9-137">C’est tout temps hello, nous allons toospend décrivant le fonctionne de l’API REST de hello.</span><span class="sxs-lookup"><span data-stu-id="25fa9-137">That's all hello time we're going toospend discussing how hello REST API works.</span></span>  <span data-ttu-id="25fa9-138">Pensez toopoke libre dans le code hello, mais si vous souhaitez toolearn plus d’informations sur la sécurisation d’API avec Azure AD, consultez [cet article](active-directory-v2-devquickstarts-node-api.md).</span><span class="sxs-lookup"><span data-stu-id="25fa9-138">Feel free toopoke around in hello code, but if you want toolearn more about securing web APIs with Azure AD, check out [this article](active-directory-v2-devquickstarts-node-api.md).</span></span> 
 
-## <a name="sign-users-in"></a><span data-ttu-id="9e15d-139">Connecter les utilisateurs</span><span class="sxs-lookup"><span data-stu-id="9e15d-139">Sign users in</span></span>
-<span data-ttu-id="9e15d-140">Il est temps d’écrire du code d’identité.</span><span class="sxs-lookup"><span data-stu-id="9e15d-140">Time to write some identity code.</span></span>  <span data-ttu-id="9e15d-141">Vous avez peut-être remarqué que adal.js contient un fournisseur AngularJS, qui se combine parfaitement aux mécanismes de routage Angular.</span><span class="sxs-lookup"><span data-stu-id="9e15d-141">You might have already noticed that adal.js contains an AngularJS provider, which plays nicely with Angular routing mechanisms.</span></span>  <span data-ttu-id="9e15d-142">Commencez par ajouter le module adal à l’application :</span><span class="sxs-lookup"><span data-stu-id="9e15d-142">Start by adding the adal module to the app:</span></span>
+## <a name="sign-users-in"></a><span data-ttu-id="25fa9-139">Connecter les utilisateurs</span><span class="sxs-lookup"><span data-stu-id="25fa9-139">Sign users in</span></span>
+<span data-ttu-id="25fa9-140">Temps toowrite du code d’identité.</span><span class="sxs-lookup"><span data-stu-id="25fa9-140">Time toowrite some identity code.</span></span>  <span data-ttu-id="25fa9-141">Vous avez peut-être remarqué que adal.js contient un fournisseur AngularJS, qui se combine parfaitement aux mécanismes de routage Angular.</span><span class="sxs-lookup"><span data-stu-id="25fa9-141">You might have already noticed that adal.js contains an AngularJS provider, which plays nicely with Angular routing mechanisms.</span></span>  <span data-ttu-id="25fa9-142">Commencez par ajouter hello module adal toohello application :</span><span class="sxs-lookup"><span data-stu-id="25fa9-142">Start by adding hello adal module toohello app:</span></span>
 
 ```js
 // app/scripts/app.js
@@ -111,7 +111,7 @@ angular.module('todoApp', ['ngRoute','AdalAngular'])
 ...
 ```
 
-<span data-ttu-id="9e15d-143">Vous pouvez désormais initialiser l’élément `adalProvider` avec votre ID d’application :</span><span class="sxs-lookup"><span data-stu-id="9e15d-143">You can now initialize the `adalProvider` with your Application ID:</span></span>
+<span data-ttu-id="25fa9-143">Vous pouvez désormais initialiser hello `adalProvider` avec votre ID d’Application :</span><span class="sxs-lookup"><span data-stu-id="25fa9-143">You can now initialize hello `adalProvider` with your Application ID:</span></span>
 
 ```js
 // app/scripts/app.js
@@ -120,22 +120,22 @@ angular.module('todoApp', ['ngRoute','AdalAngular'])
 
 adalProvider.init({
 
-        // Use this value for the public instance of Azure AD
+        // Use this value for hello public instance of Azure AD
         instance: 'https://login.microsoftonline.com/', 
 
-        // The 'common' endpoint is used for multi-tenant applications like this one
+        // hello 'common' endpoint is used for multi-tenant applications like this one
         tenant: 'common',
 
-        // Your application id from the registration portal
+        // Your application id from hello registration portal
         clientId: '<Your-application-id>',
 
-        // If you're using IE, uncommment this line - the default HTML5 sessionStorage does not work for localhost.
+        // If you're using IE, uncommment this line - hello default HTML5 sessionStorage does not work for localhost.
         //cacheLocation: 'localStorage',
 
     }, $httpProvider);
 ```
 
-<span data-ttu-id="9e15d-144">Très bien, désormais adal.js possède toutes les informations nécessaires pour sécuriser votre application et connecter les utilisateurs.</span><span class="sxs-lookup"><span data-stu-id="9e15d-144">Great, now adal.js has all the information it needs to secure your app and sign users in.</span></span>  <span data-ttu-id="9e15d-145">Pour forcer la connexion via un itinéraire particulier dans l’application, il vous suffit d’une ligne de code :</span><span class="sxs-lookup"><span data-stu-id="9e15d-145">To force sign in for a particular route in the app, all it takes is one line of code:</span></span>
+<span data-ttu-id="25fa9-144">Très bien adal.js a toutes les informations de hello, elle doit toosecure vos utilisateurs d’application et connectez-vous dans.</span><span class="sxs-lookup"><span data-stu-id="25fa9-144">Great, now adal.js has all hello information it needs toosecure your app and sign users in.</span></span>  <span data-ttu-id="25fa9-145">connexions tooforce pour un itinéraire particulier dans une application hello, il sont une ligne de code :</span><span class="sxs-lookup"><span data-stu-id="25fa9-145">tooforce sign in for a particular route in hello app, all it takes is one line of code:</span></span>
 
 ```js
 // app/scripts/app.js
@@ -145,37 +145,37 @@ adalProvider.init({
 }).when("/TodoList", {
     controller: "todoListCtrl",
     templateUrl: "/static/views/TodoList.html",
-    requireADLogin: true, // Ensures that the user must be logged in to access the route
+    requireADLogin: true, // Ensures that hello user must be logged in tooaccess hello route
 })
 
 ...
 ```
 
-<span data-ttu-id="9e15d-146">Désormais, lorsqu’un utilisateur clique sur le lien `TodoList` , adal.js redirige automatiquement vers Azure AD pour la connexion, si nécessaire.</span><span class="sxs-lookup"><span data-stu-id="9e15d-146">Now when a user clicks the `TodoList` link, adal.js will automatically redirect to Azure AD for sign-in if necessary.</span></span>  <span data-ttu-id="9e15d-147">Vous pouvez également envoyer explicitement des requêtes de connexion et de déconnexion en invoquant adal.js dans vos contrôleurs :</span><span class="sxs-lookup"><span data-stu-id="9e15d-147">You can also explicitly send sign-in and sign-out requests by invoking adal.js in your controllers:</span></span>
+<span data-ttu-id="25fa9-146">Quand un utilisateur clique sur hello `TodoList` lien, adal.js redirige automatiquement tooAzure AD pour la connexion si nécessaire.</span><span class="sxs-lookup"><span data-stu-id="25fa9-146">Now when a user clicks hello `TodoList` link, adal.js will automatically redirect tooAzure AD for sign-in if necessary.</span></span>  <span data-ttu-id="25fa9-147">Vous pouvez également envoyer explicitement des requêtes de connexion et de déconnexion en invoquant adal.js dans vos contrôleurs :</span><span class="sxs-lookup"><span data-stu-id="25fa9-147">You can also explicitly send sign-in and sign-out requests by invoking adal.js in your controllers:</span></span>
 
 ```js
 // app/scripts/homeCtrl.js
 
 angular.module('todoApp')
-// Load adal.js the same way for use in controllers and views   
+// Load adal.js hello same way for use in controllers and views   
 .controller('homeCtrl', ['$scope', 'adalAuthenticationService','$location', function ($scope, adalService, $location) {
     $scope.login = function () {
 
-        // Redirect the user to sign in
+        // Redirect hello user toosign in
         adalService.login();
 
     };
     $scope.logout = function () {
 
-        // Redirect the user to log out    
+        // Redirect hello user toolog out    
         adalService.logOut();
 
     };
 ...
 ```
 
-## <a name="display-user-info"></a><span data-ttu-id="9e15d-148">Afficher les informations utilisateur</span><span class="sxs-lookup"><span data-stu-id="9e15d-148">Display user info</span></span>
-<span data-ttu-id="9e15d-149">Maintenant que l’utilisateur est connecté, il vous faudra probablement accéder à ses données d’authentification dans votre application.</span><span class="sxs-lookup"><span data-stu-id="9e15d-149">Now that the user is signed in, you'll probably need to access the signed-in user's authentication data in your application.</span></span>  <span data-ttu-id="9e15d-150">Adal.js expose ces informations pour vous dans l’objet `userInfo` .</span><span class="sxs-lookup"><span data-stu-id="9e15d-150">Adal.js exposes this information for you in the `userInfo` object.</span></span>  <span data-ttu-id="9e15d-151">Pour accéder à cet objet dans une vue, ajoutez adal.js sur l’étendue racine du contrôleur correspondant :</span><span class="sxs-lookup"><span data-stu-id="9e15d-151">To access this object in a view, first add adal.js to the root scope of the corresponding controller:</span></span>
+## <a name="display-user-info"></a><span data-ttu-id="25fa9-148">Afficher les informations utilisateur</span><span class="sxs-lookup"><span data-stu-id="25fa9-148">Display user info</span></span>
+<span data-ttu-id="25fa9-149">Maintenant que hello utilisateur n’est connecté, vous devez probablement des données d’authentification tooaccess hello signé de l’utilisateur dans votre application.</span><span class="sxs-lookup"><span data-stu-id="25fa9-149">Now that hello user is signed in, you'll probably need tooaccess hello signed-in user's authentication data in your application.</span></span>  <span data-ttu-id="25fa9-150">Adal.js expose ces informations pour vous dans hello `userInfo` objet.</span><span class="sxs-lookup"><span data-stu-id="25fa9-150">Adal.js exposes this information for you in hello `userInfo` object.</span></span>  <span data-ttu-id="25fa9-151">tooaccess cet objet dans une vue, ajoutez d’abord étendue de racine adal.js toohello de contrôleur correspondant de hello :</span><span class="sxs-lookup"><span data-stu-id="25fa9-151">tooaccess this object in a view, first add adal.js toohello root scope of hello corresponding controller:</span></span>
 
 ```js
 // app/scripts/userDataCtrl.js
@@ -185,14 +185,14 @@ angular.module('todoApp')
 .controller('userDataCtrl', ['$scope', 'adalAuthenticationService', function ($scope, adalService) {}]);
 ```
 
-<span data-ttu-id="9e15d-152">Vous pouvez ensuite directement traiter l’objet `userInfo` dans votre vue :</span><span class="sxs-lookup"><span data-stu-id="9e15d-152">Then you can directly address the `userInfo` object in your view:</span></span> 
+<span data-ttu-id="25fa9-152">Ensuite, vous pouvez adresser directement hello `userInfo` objet dans votre affichage :</span><span class="sxs-lookup"><span data-stu-id="25fa9-152">Then you can directly address hello `userInfo` object in your view:</span></span> 
 
 ```html
 <!--app/views/UserData.html-->
 
 ...
 
-    <!--Get the user's profile information from the ADAL userInfo object-->
+    <!--Get hello user's profile information from hello ADAL userInfo object-->
     <tr ng-repeat="(key, value) in userInfo.profile">
         <td>{{key}}</td>
         <td>{{value}}</td>
@@ -200,14 +200,14 @@ angular.module('todoApp')
 ...
 ```
 
-<span data-ttu-id="9e15d-153">Vous pouvez également utiliser l’objet `userInfo` afin de déterminer si l’utilisateur est connecté ou non.</span><span class="sxs-lookup"><span data-stu-id="9e15d-153">You can also use the `userInfo` object to determine if the user is signed in or not.</span></span>
+<span data-ttu-id="25fa9-153">Vous pouvez également utiliser hello `userInfo` toodetermine de l’objet si hello utilisateur n’est connecté ou non.</span><span class="sxs-lookup"><span data-stu-id="25fa9-153">You can also use hello `userInfo` object toodetermine if hello user is signed in or not.</span></span>
 
 ```html
 <!--index.html-->
 
 ...
 
-    <!--Use the ADAL userInfo object to show the right login/logout button-->
+    <!--Use hello ADAL userInfo object tooshow hello right login/logout button-->
     <ul class="nav navbar-nav navbar-right">
         <li><a class="btn btn-link" ng-show="userInfo.isAuthenticated" ng-click="logout()">Logout</a></li>
         <li><a class="btn btn-link" ng-hide="userInfo.isAuthenticated" ng-click="login()">Login</a></li>
@@ -215,12 +215,12 @@ angular.module('todoApp')
 ...
 ```
 
-## <a name="call-the-rest-api"></a><span data-ttu-id="9e15d-154">Appeler l’API REST</span><span class="sxs-lookup"><span data-stu-id="9e15d-154">Call the REST API</span></span>
-<span data-ttu-id="9e15d-155">Enfin, il est temps d’obtenir certains jetons et d’appeler l’API REST afin de créer, de lire, de mettre à jour et de supprimer les tâches.</span><span class="sxs-lookup"><span data-stu-id="9e15d-155">Finally, it's time to get some tokens and call the REST API to create, read, update, and delete tasks.</span></span>  <span data-ttu-id="9e15d-156">Devinez quoi ?</span><span class="sxs-lookup"><span data-stu-id="9e15d-156">Well guess what?</span></span>  <span data-ttu-id="9e15d-157">Vous n’avez *rien*à faire.</span><span class="sxs-lookup"><span data-stu-id="9e15d-157">You don't have to do *a thing*.</span></span>  <span data-ttu-id="9e15d-158">Adal.js se charge automatiquement d’obtenir, de mettre en cache et d’actualiser les jetons.</span><span class="sxs-lookup"><span data-stu-id="9e15d-158">Adal.js will automatically take care of getting, caching, and refreshing tokens.</span></span>  <span data-ttu-id="9e15d-159">Il joint également ces jetons aux requêtes AJAX sortantes que vous envoyez à l’API REST.</span><span class="sxs-lookup"><span data-stu-id="9e15d-159">It will also take care of attaching those tokens to outgoing AJAX requests that you send to the REST API.</span></span>  
+## <a name="call-hello-rest-api"></a><span data-ttu-id="25fa9-154">Appeler l’API REST de hello</span><span class="sxs-lookup"><span data-stu-id="25fa9-154">Call hello REST API</span></span>
+<span data-ttu-id="25fa9-155">Enfin, il est temps tooget certains jetons et un appel hello toocreate de l’API REST, lire, mettre à jour et supprimer des tâches.</span><span class="sxs-lookup"><span data-stu-id="25fa9-155">Finally, it's time tooget some tokens and call hello REST API toocreate, read, update, and delete tasks.</span></span>  <span data-ttu-id="25fa9-156">Devinez quoi ?</span><span class="sxs-lookup"><span data-stu-id="25fa9-156">Well guess what?</span></span>  <span data-ttu-id="25fa9-157">Vous n’avez pas toodo *une chose*.</span><span class="sxs-lookup"><span data-stu-id="25fa9-157">You don't have toodo *a thing*.</span></span>  <span data-ttu-id="25fa9-158">Adal.js se charge automatiquement d’obtenir, de mettre en cache et d’actualiser les jetons.</span><span class="sxs-lookup"><span data-stu-id="25fa9-158">Adal.js will automatically take care of getting, caching, and refreshing tokens.</span></span>  <span data-ttu-id="25fa9-159">Il se charge également de joindre ces jetons que toooutgoing AJAX demande que vous envoyez toohello API REST.</span><span class="sxs-lookup"><span data-stu-id="25fa9-159">It will also take care of attaching those tokens toooutgoing AJAX requests that you send toohello REST API.</span></span>  
 
-<span data-ttu-id="9e15d-160">Comment ceci fonctionne-t-il ?</span><span class="sxs-lookup"><span data-stu-id="9e15d-160">How exactly does this work?</span></span> <span data-ttu-id="9e15d-161">Ces résultats sont obtenus à l’aide des [intercepteurs AngularJS](https://docs.angularjs.org/api/ng/service/$http) magiques, grâce auxquels adal.js peut transformer les messages http entrants et sortants.</span><span class="sxs-lookup"><span data-stu-id="9e15d-161">It's all thanks to the magic of [AngularJS interceptors](https://docs.angularjs.org/api/ng/service/$http), which allows adal.js to transform outgoing and incoming http messages.</span></span>  <span data-ttu-id="9e15d-162">En outre, adal.js suppose que l’ensemble des requêtes envoyées sur le domaine de la fenêtre doivent utiliser les jetons destinés à l’ID d’application de l’application AngularJS.</span><span class="sxs-lookup"><span data-stu-id="9e15d-162">Furthermore, adal.js assumes that any requests send to the same domain as the window should use tokens intended for the same Application ID as the AngularJS app.</span></span>  <span data-ttu-id="9e15d-163">Dès lors, nous avons utilisé un ID d’application identique dans l’application Angular et dans l’API REST NodeJS.</span><span class="sxs-lookup"><span data-stu-id="9e15d-163">This is why we used the same Application ID in both the Angular app and in the NodeJS REST API.</span></span>  <span data-ttu-id="9e15d-164">Cela va de soi, vous pouvez ignorer ce comportement et demander à adal.js d’obtenir des jetons pour d’autres API REST, si nécessaire. Toutefois, pour ce scénario simple, les valeurs par défaut sont suffisantes.</span><span class="sxs-lookup"><span data-stu-id="9e15d-164">Of course, you can override this behavior and tell adal.js to get tokens for other REST APIs if necessary - but for this simple scenario the defaults will do.</span></span>
+<span data-ttu-id="25fa9-160">Comment ceci fonctionne-t-il ?</span><span class="sxs-lookup"><span data-stu-id="25fa9-160">How exactly does this work?</span></span> <span data-ttu-id="25fa9-161">Il s’agit de tous les magique de toohello Merci de [AngularJS intercepteurs](https://docs.angularjs.org/api/ng/service/$http), ce qui permet de adal.js tootransform des messages http entrants et sortants.</span><span class="sxs-lookup"><span data-stu-id="25fa9-161">It's all thanks toohello magic of [AngularJS interceptors](https://docs.angularjs.org/api/ng/service/$http), which allows adal.js tootransform outgoing and incoming http messages.</span></span>  <span data-ttu-id="25fa9-162">En outre, adal.js suppose que toutes les demandes d’envoi toohello même domaine comme fenêtre hello doit utiliser des jetons destinés à hello même ID d’Application comme hello application AngularJS.</span><span class="sxs-lookup"><span data-stu-id="25fa9-162">Furthermore, adal.js assumes that any requests send toohello same domain as hello window should use tokens intended for hello same Application ID as hello AngularJS app.</span></span>  <span data-ttu-id="25fa9-163">C’est pourquoi nous avons utilisé hello même ID d’Application dans les deux applications angulaire hello et hello NodeJS REST API.</span><span class="sxs-lookup"><span data-stu-id="25fa9-163">This is why we used hello same Application ID in both hello Angular app and in hello NodeJS REST API.</span></span>  <span data-ttu-id="25fa9-164">Bien entendu, vous pouvez substituer ce comportement et indiquer adal.js tooget jetons pour les autres API REST si nécessaire - mais ce pourquoi ce scénario simple effectuera les valeurs par défaut.</span><span class="sxs-lookup"><span data-stu-id="25fa9-164">Of course, you can override this behavior and tell adal.js tooget tokens for other REST APIs if necessary - but for this simple scenario hello defaults will do.</span></span>
 
-<span data-ttu-id="9e15d-165">Voici un extrait qui montre combien il est facile d’envoyer des requêtes à l’aide de jetons du porteur, à partir d’Azure AD :</span><span class="sxs-lookup"><span data-stu-id="9e15d-165">Here's a snippet that shows how easy it is to send requests with bearer tokens from Azure AD:</span></span>
+<span data-ttu-id="25fa9-165">Voici un extrait de code qui montre comment il est facile de demandes toosend avec jetons de support auprès d’Azure AD :</span><span class="sxs-lookup"><span data-stu-id="25fa9-165">Here's a snippet that shows how easy it is toosend requests with bearer tokens from Azure AD:</span></span>
 
 ```js
 // app/scripts/todoListSvc.js
@@ -230,20 +230,20 @@ return $http.get('/api/tasks');
 ...
 ```
 
-<span data-ttu-id="9e15d-166">Félicitations !</span><span class="sxs-lookup"><span data-stu-id="9e15d-166">Congratulations!</span></span>  <span data-ttu-id="9e15d-167">Votre application intégrée Azure AD à page unique est désormais terminée.</span><span class="sxs-lookup"><span data-stu-id="9e15d-167">Your Azure AD integrated single page app is now complete.</span></span>  <span data-ttu-id="9e15d-168">Vous pouvez lui tirer votre chapeau.</span><span class="sxs-lookup"><span data-stu-id="9e15d-168">Go ahead, take a bow.</span></span>  <span data-ttu-id="9e15d-169">Elle peut authentifier les utilisateurs, appeler de manière sécurisée son API REST du serveur principal à l’aide d’OpenID Connect, et obtenir des informations de base sur l’utilisateur.</span><span class="sxs-lookup"><span data-stu-id="9e15d-169">It can authenticate users, securely call its backend REST API using OpenID Connect, and get basic information about the user.</span></span>  <span data-ttu-id="9e15d-170">Dès le départ, elle prend en charge l’ensemble des utilisateurs disposant d’un compte Microsoft personnel ou un compte professionnel/scolaire d’Azure AD.</span><span class="sxs-lookup"><span data-stu-id="9e15d-170">Out of the box, it supports any user with a personal Microsoft Account or a work/school account from Azure AD.</span></span>  <span data-ttu-id="9e15d-171">Testez l’application en exécutant :</span><span class="sxs-lookup"><span data-stu-id="9e15d-171">Give the app a try by running:</span></span>
+<span data-ttu-id="25fa9-166">Félicitations !</span><span class="sxs-lookup"><span data-stu-id="25fa9-166">Congratulations!</span></span>  <span data-ttu-id="25fa9-167">Votre application intégrée Azure AD à page unique est désormais terminée.</span><span class="sxs-lookup"><span data-stu-id="25fa9-167">Your Azure AD integrated single page app is now complete.</span></span>  <span data-ttu-id="25fa9-168">Vous pouvez lui tirer votre chapeau.</span><span class="sxs-lookup"><span data-stu-id="25fa9-168">Go ahead, take a bow.</span></span>  <span data-ttu-id="25fa9-169">Il peut authentifier les utilisateurs en toute sécurité appeler son principal API REST en utilisant OpenID Connect et obtenir des informations de base sur l’utilisateur de hello.</span><span class="sxs-lookup"><span data-stu-id="25fa9-169">It can authenticate users, securely call its backend REST API using OpenID Connect, and get basic information about hello user.</span></span>  <span data-ttu-id="25fa9-170">La boîte de hello, il prend en charge tout utilisateur disposant d’un personnel Account de Microsoft ou un compte de travail/école d’Azure AD.</span><span class="sxs-lookup"><span data-stu-id="25fa9-170">Out of hello box, it supports any user with a personal Microsoft Account or a work/school account from Azure AD.</span></span>  <span data-ttu-id="25fa9-171">Essayer application hello en exécutant :</span><span class="sxs-lookup"><span data-stu-id="25fa9-171">Give hello app a try by running:</span></span>
 
 ```
 node server.js
 ```
 
-<span data-ttu-id="9e15d-172">Dans un navigateur, accédez à `http://localhost:8080`.</span><span class="sxs-lookup"><span data-stu-id="9e15d-172">In a browser navigate to `http://localhost:8080`.</span></span>  <span data-ttu-id="9e15d-173">Connectez-vous à un compte personnel Microsoft ou à un compte scolaire/professionnel.</span><span class="sxs-lookup"><span data-stu-id="9e15d-173">Sign in using either a personal Microsoft account or a work/school account.</span></span>  <span data-ttu-id="9e15d-174">Ajoutez des tâches à la liste des tâches de l’utilisateur, puis déconnectez-vous.</span><span class="sxs-lookup"><span data-stu-id="9e15d-174">Add tasks to the user's to-do list, and sign out.</span></span>  <span data-ttu-id="9e15d-175">Essayez de vous connecter avec l’autre type de compte.</span><span class="sxs-lookup"><span data-stu-id="9e15d-175">Try signing in with the other type of account.</span></span> <span data-ttu-id="9e15d-176">Si vous avez besoin qu’un locataire Azure AD crée des utilisateurs scolaires/professionnels, [découvrez comment en obtenir un ici](active-directory-howto-tenant.md) (c’est gratuit).</span><span class="sxs-lookup"><span data-stu-id="9e15d-176">If you need an Azure AD tenant to create work/school users, [learn how to get one here](active-directory-howto-tenant.md) (it's free).</span></span>
+<span data-ttu-id="25fa9-172">Dans un navigateur, accédez trop`http://localhost:8080`.</span><span class="sxs-lookup"><span data-stu-id="25fa9-172">In a browser navigate too`http://localhost:8080`.</span></span>  <span data-ttu-id="25fa9-173">Connectez-vous à un compte personnel Microsoft ou à un compte scolaire/professionnel.</span><span class="sxs-lookup"><span data-stu-id="25fa9-173">Sign in using either a personal Microsoft account or a work/school account.</span></span>  <span data-ttu-id="25fa9-174">Ajouter la liste des tâches de l’utilisateur de tâches toohello et se déconnecter.  Essayez de vous connecter à l’aide de hello autre type de compte.</span><span class="sxs-lookup"><span data-stu-id="25fa9-174">Add tasks toohello user's to-do list, and sign out.  Try signing in with hello other type of account.</span></span> <span data-ttu-id="25fa9-175">Si vous avez besoin d’un utilisateurs de travail/scolaire toocreate de client Azure AD, [Découvrez comment ici d’un tooget](active-directory-howto-tenant.md) (il est disponible).</span><span class="sxs-lookup"><span data-stu-id="25fa9-175">If you need an Azure AD tenant toocreate work/school users, [learn how tooget one here](active-directory-howto-tenant.md) (it's free).</span></span>
 
-<span data-ttu-id="9e15d-177">Pour poursuivre l’apprentissage sur le point de terminaison v2.0, consultez de nouveau notre [guide du développeur v2.0](active-directory-appmodel-v2-overview.md).</span><span class="sxs-lookup"><span data-stu-id="9e15d-177">To continue learning about the the v2.0 endpoint, head back to our [v2.0 developer guide](active-directory-appmodel-v2-overview.md).</span></span>  <span data-ttu-id="9e15d-178">Pour obtenir des ressources supplémentaires, consultez :</span><span class="sxs-lookup"><span data-stu-id="9e15d-178">For additional resources, check out:</span></span>
+<span data-ttu-id="25fa9-176">toocontinue en savoir plus sur hello hello du point de terminaison v2.0, head arrière tooour [guide du développeur v2.0](active-directory-appmodel-v2-overview.md).</span><span class="sxs-lookup"><span data-stu-id="25fa9-176">toocontinue learning about hello hello v2.0 endpoint, head back tooour [v2.0 developer guide](active-directory-appmodel-v2-overview.md).</span></span>  <span data-ttu-id="25fa9-177">Pour obtenir des ressources supplémentaires, consultez :</span><span class="sxs-lookup"><span data-stu-id="25fa9-177">For additional resources, check out:</span></span>
 
-* [<span data-ttu-id="9e15d-179">Exemples Azure sur GitHub >></span><span class="sxs-lookup"><span data-stu-id="9e15d-179">Azure-Samples on GitHub >></span></span>](https://github.com/Azure-Samples)
-* [<span data-ttu-id="9e15d-180">Azure AD sur Stack Overflow >></span><span class="sxs-lookup"><span data-stu-id="9e15d-180">Azure AD on Stack Overflow >></span></span>](http://stackoverflow.com/questions/tagged/azure-active-directory)
-* <span data-ttu-id="9e15d-181">Documentation Azure AD sur [Azure.com >>](https://azure.microsoft.com/documentation/services/active-directory/)</span><span class="sxs-lookup"><span data-stu-id="9e15d-181">Azure AD documentation on [Azure.com >>](https://azure.microsoft.com/documentation/services/active-directory/)</span></span>
+* [<span data-ttu-id="25fa9-178">Exemples Azure sur GitHub &gt;&gt;</span><span class="sxs-lookup"><span data-stu-id="25fa9-178">Azure-Samples on GitHub >></span></span>](https://github.com/Azure-Samples)
+* [<span data-ttu-id="25fa9-179">Azure AD sur Stack Overflow &gt;&gt;</span><span class="sxs-lookup"><span data-stu-id="25fa9-179">Azure AD on Stack Overflow >></span></span>](http://stackoverflow.com/questions/tagged/azure-active-directory)
+* <span data-ttu-id="25fa9-180">Documentation Azure AD sur [Azure.com >>](https://azure.microsoft.com/documentation/services/active-directory/)</span><span class="sxs-lookup"><span data-stu-id="25fa9-180">Azure AD documentation on [Azure.com >>](https://azure.microsoft.com/documentation/services/active-directory/)</span></span>
 
-## <a name="get-security-updates-for-our-products"></a><span data-ttu-id="9e15d-182">Obtenir les mises à jour de sécurité de nos produits</span><span class="sxs-lookup"><span data-stu-id="9e15d-182">Get security updates for our products</span></span>
-<span data-ttu-id="9e15d-183">Nous vous encourageons à activer les notifications d’incidents de sécurité en vous rendant sur [cette page](https://technet.microsoft.com/security/dd252948) et en vous abonnant aux alertes d’avis de sécurité.</span><span class="sxs-lookup"><span data-stu-id="9e15d-183">We encourage you to get notifications of when security incidents occur by visiting [this page](https://technet.microsoft.com/security/dd252948) and subscribing to Security Advisory Alerts.</span></span>
+## <a name="get-security-updates-for-our-products"></a><span data-ttu-id="25fa9-181">Obtenir les mises à jour de sécurité de nos produits</span><span class="sxs-lookup"><span data-stu-id="25fa9-181">Get security updates for our products</span></span>
+<span data-ttu-id="25fa9-182">Nous vous conseillons de notifications tooget les incidents de sécurité se produire en vous rendant sur [cette page](https://technet.microsoft.com/security/dd252948) et l’abonnement d’alerte tooSecurity.</span><span class="sxs-lookup"><span data-stu-id="25fa9-182">We encourage you tooget notifications of when security incidents occur by visiting [this page](https://technet.microsoft.com/security/dd252948) and subscribing tooSecurity Advisory Alerts.</span></span>
 

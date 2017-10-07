@@ -1,5 +1,5 @@
 ---
-title: "Limites et valeurs par défaut de Scheduler"
+title: "aaaScheduler limites et des valeurs par défaut"
 description: "Limites et valeurs par défaut de Scheduler"
 services: scheduler
 documentationcenter: .NET
@@ -14,35 +14,35 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/18/2016
 ms.author: deli
-ms.openlocfilehash: db6b1c196cb468f41c7a7ce34758de346b522abb
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6fe0600d3ce3249d5aab1b877369b175316b5437
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="scheduler-limits-and-defaults"></a><span data-ttu-id="b084d-103">Limites et valeurs par défaut de Scheduler</span><span class="sxs-lookup"><span data-stu-id="b084d-103">Scheduler Limits and Defaults</span></span>
-## <a name="scheduler-quotas-limits-defaults-and-throttles"></a><span data-ttu-id="b084d-104">Limitations, valeurs par défaut, limites et quotas de Scheduler</span><span class="sxs-lookup"><span data-stu-id="b084d-104">Scheduler Quotas, Limits, Defaults, and Throttles</span></span>
+# <a name="scheduler-limits-and-defaults"></a><span data-ttu-id="a69a0-103">Limites et valeurs par défaut de Scheduler</span><span class="sxs-lookup"><span data-stu-id="a69a0-103">Scheduler Limits and Defaults</span></span>
+## <a name="scheduler-quotas-limits-defaults-and-throttles"></a><span data-ttu-id="a69a0-104">Limitations, valeurs par défaut, limites et quotas de Scheduler</span><span class="sxs-lookup"><span data-stu-id="a69a0-104">Scheduler Quotas, Limits, Defaults, and Throttles</span></span>
 [!INCLUDE [scheduler-limits-table](../../includes/scheduler-limits-table.md)]
 
-## <a name="the-x-ms-request-id-header"></a><span data-ttu-id="b084d-105">L'en-tête x-ms-request-id</span><span class="sxs-lookup"><span data-stu-id="b084d-105">The x-ms-request-id Header</span></span>
-<span data-ttu-id="b084d-106">Chaque requête adressée au service de Scheduler retourne un en-tête de réponse nommé**x-ms-request-id**.</span><span class="sxs-lookup"><span data-stu-id="b084d-106">Every request made against the Scheduler service returns a response header named**x-ms-request-id**.</span></span> <span data-ttu-id="b084d-107">Cet en-tête contient une valeur opaque qui identifie de façon unique la requête.</span><span class="sxs-lookup"><span data-stu-id="b084d-107">This header contains an opaque value that uniquely identifies the request.</span></span>
+## <a name="hello-x-ms-request-id-header"></a><span data-ttu-id="a69a0-105">Hello x-ms-request-id en-tête</span><span class="sxs-lookup"><span data-stu-id="a69a0-105">hello x-ms-request-id Header</span></span>
+<span data-ttu-id="a69a0-106">Chaque demande adressée à hello service Planificateur renvoie un en-tête de réponse nommé**x-ms-request-id**. Cet en-tête contient une valeur opaque qui identifie de façon unique la demande de hello.</span><span class="sxs-lookup"><span data-stu-id="a69a0-106">Every request made against hello Scheduler service returns a response header named**x-ms-request-id**. This header contains an opaque value that uniquely identifies hello request.</span></span>
 
-<span data-ttu-id="b084d-108">Si une requête échoue constamment et que vous avez vérifié qu'elle est formulée correctement, vous pouvez utiliser cette valeur pour signaler l'erreur à Microsoft.</span><span class="sxs-lookup"><span data-stu-id="b084d-108">If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft.</span></span> <span data-ttu-id="b084d-109">Dans votre rapport, incluez la valeur de x-ms-request-id, l’heure approximative de la requête, l’identificateur de l’abonnement, la collection de travaux et/ou la tâche et le type d’opération tenté par la requête.</span><span class="sxs-lookup"><span data-stu-id="b084d-109">In your report, include the value of x-ms-request-id, the approximate time that the request was made, the identifier of the subscription, job collection, and/or job, and the type of operation that the request attempted.</span></span>
+<span data-ttu-id="a69a0-107">Si une demande est régulièrement défectueux et que vous avez vérifié que la demande de hello est correctement formulée, vous pouvez utiliser cette tooMicrosoft d’erreur valeur tooreport hello.</span><span class="sxs-lookup"><span data-stu-id="a69a0-107">If a request is consistently failing and you have verified that hello request is properly formulated, you may use this value tooreport hello error tooMicrosoft.</span></span> <span data-ttu-id="a69a0-108">Dans votre rapport, inclure la valeur de hello durée approximative de x-ms-request-id hello cette demande hello a été apportée, hello identificateur d’abonnement de hello, collection de travaux et/ou de travail, et hello du type d’opération hello a tenté de demande.</span><span class="sxs-lookup"><span data-stu-id="a69a0-108">In your report, include hello value of x-ms-request-id, hello approximate time that hello request was made, hello identifier of hello subscription, job collection, and/or job, and hello type of operation that hello request attempted.</span></span>
 
-## <a name="see-also"></a><span data-ttu-id="b084d-110">Voir aussi</span><span class="sxs-lookup"><span data-stu-id="b084d-110">See Also</span></span>
- [<span data-ttu-id="b084d-111">Présentation d'Azure Scheduler</span><span class="sxs-lookup"><span data-stu-id="b084d-111">What is Scheduler?</span></span>](scheduler-intro.md)
+## <a name="see-also"></a><span data-ttu-id="a69a0-109">Voir aussi</span><span class="sxs-lookup"><span data-stu-id="a69a0-109">See Also</span></span>
+ [<span data-ttu-id="a69a0-110">Présentation d'Azure Scheduler</span><span class="sxs-lookup"><span data-stu-id="a69a0-110">What is Scheduler?</span></span>](scheduler-intro.md)
 
- [<span data-ttu-id="b084d-112">Concepts, terminologie et hiérarchie d’entités d’Azure Scheduler</span><span class="sxs-lookup"><span data-stu-id="b084d-112">Azure Scheduler concepts, terminology, and entity hierarchy</span></span>](scheduler-concepts-terms.md)
+ [<span data-ttu-id="a69a0-111">Concepts, terminologie et hiérarchie d’entités d’Azure Scheduler</span><span class="sxs-lookup"><span data-stu-id="a69a0-111">Azure Scheduler concepts, terminology, and entity hierarchy</span></span>](scheduler-concepts-terms.md)
 
- [<span data-ttu-id="b084d-113">Prise en main de Scheduler dans le portail Azure</span><span class="sxs-lookup"><span data-stu-id="b084d-113">Get started using Scheduler in the Azure portal</span></span>](scheduler-get-started-portal.md)
+ [<span data-ttu-id="a69a0-112">Prise en main du planificateur Bonjour portail Azure</span><span class="sxs-lookup"><span data-stu-id="a69a0-112">Get started using Scheduler in hello Azure portal</span></span>](scheduler-get-started-portal.md)
 
- [<span data-ttu-id="b084d-114">Plans et facturation dans Azure Scheduler</span><span class="sxs-lookup"><span data-stu-id="b084d-114">Plans and billing in Azure Scheduler</span></span>](scheduler-plans-billing.md)
+ [<span data-ttu-id="a69a0-113">Plans et facturation dans Azure Scheduler</span><span class="sxs-lookup"><span data-stu-id="a69a0-113">Plans and billing in Azure Scheduler</span></span>](scheduler-plans-billing.md)
 
- [<span data-ttu-id="b084d-115">Informations de référence sur l’API REST d’Azure Scheluler</span><span class="sxs-lookup"><span data-stu-id="b084d-115">Azure Scheduler REST API reference</span></span>](https://msdn.microsoft.com/library/mt629143)
+ [<span data-ttu-id="a69a0-114">Informations de référence sur l’API REST d’Azure Scheluler</span><span class="sxs-lookup"><span data-stu-id="a69a0-114">Azure Scheduler REST API reference</span></span>](https://msdn.microsoft.com/library/mt629143)
 
- [<span data-ttu-id="b084d-116">Informations de référence sur les applets de commande PowerShell d’Azure Scheluler</span><span class="sxs-lookup"><span data-stu-id="b084d-116">Azure Scheduler PowerShell cmdlets reference</span></span>](scheduler-powershell-reference.md)
+ [<span data-ttu-id="a69a0-115">Informations de référence sur les applets de commande PowerShell d’Azure Scheluler</span><span class="sxs-lookup"><span data-stu-id="a69a0-115">Azure Scheduler PowerShell cmdlets reference</span></span>](scheduler-powershell-reference.md)
 
- [<span data-ttu-id="b084d-117">Haute disponibilité et fiabilité d’Azure Scheluler</span><span class="sxs-lookup"><span data-stu-id="b084d-117">Azure Scheduler high-availability and reliability</span></span>](scheduler-high-availability-reliability.md)
+ [<span data-ttu-id="a69a0-116">Haute disponibilité et fiabilité d’Azure Scheluler</span><span class="sxs-lookup"><span data-stu-id="a69a0-116">Azure Scheduler high-availability and reliability</span></span>](scheduler-high-availability-reliability.md)
 
- [<span data-ttu-id="b084d-118">Authentification sortante d’Azure Scheluler</span><span class="sxs-lookup"><span data-stu-id="b084d-118">Azure Scheduler outbound authentication</span></span>](scheduler-outbound-authentication.md)
+ [<span data-ttu-id="a69a0-117">Authentification sortante d’Azure Scheluler</span><span class="sxs-lookup"><span data-stu-id="a69a0-117">Azure Scheduler outbound authentication</span></span>](scheduler-outbound-authentication.md)
 

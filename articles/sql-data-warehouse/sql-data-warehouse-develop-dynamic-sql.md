@@ -1,5 +1,5 @@
 ---
-title: "Code SQL dynamique dans SQL Data Warehouse | Microsoft Docs"
+title: aaaDynamic SQL dans SQL Data Warehouse | Documents Microsoft
 description: "Conseils relatifs à l’utilisation de code SQL dynamique dans Azure SQL Data Warehouse pour le développement de solutions."
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,16 +15,16 @@ ms.workload: data-services
 ms.custom: queries
 ms.date: 10/31/2016
 ms.author: jrj;barbkess
-ms.openlocfilehash: 29228676373aee8dbc7b1b2a7d92ffc978333804
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4d66eecb37621510f657d1ec9a2a935daaa16052
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="dynamic-sql-in-sql-data-warehouse"></a><span data-ttu-id="ad7e5-103">Code SQL dynamique dans SQL Data Warehouse</span><span class="sxs-lookup"><span data-stu-id="ad7e5-103">Dynamic SQL in SQL Data Warehouse</span></span>
-<span data-ttu-id="ad7e5-104">Quand vous développez le code d’une application pour SQL Data Warehouse, vous pouvez avoir besoin d’utiliser un code SQL dynamique de façon à offrir des solutions flexibles, génériques et modulaires.</span><span class="sxs-lookup"><span data-stu-id="ad7e5-104">When developing application code for SQL Data Warehouse you may need to use dynamic sql to help deliver flexible, generic and modular solutions.</span></span> <span data-ttu-id="ad7e5-105">SQL Data Warehouse ne prend pas en charge les données de type objet blob pour l’instant.</span><span class="sxs-lookup"><span data-stu-id="ad7e5-105">SQL Data Warehouse does not support blob data types at this time.</span></span> <span data-ttu-id="ad7e5-106">Cette restriction peut limiter la taille de vos chaînes, car les types d’objet blob comprennent les types varchar(max) et nvarchar(max).</span><span class="sxs-lookup"><span data-stu-id="ad7e5-106">This may limit the size of your strings as blob types include both varchar(max) and nvarchar(max) types.</span></span> <span data-ttu-id="ad7e5-107">Si vous avez utilisé ces types dans votre code d’application pendant la création de chaînes de très grande taille, vous devez segmenter le code et utiliser plutôt l’instruction EXEC.</span><span class="sxs-lookup"><span data-stu-id="ad7e5-107">If you have used these types in your application code when building very large strings, you will need to break the code into chunks and use the EXEC statement instead.</span></span>
+# <a name="dynamic-sql-in-sql-data-warehouse"></a><span data-ttu-id="66ade-103">Code SQL dynamique dans SQL Data Warehouse</span><span class="sxs-lookup"><span data-stu-id="66ade-103">Dynamic SQL in SQL Data Warehouse</span></span>
+<span data-ttu-id="66ade-104">Lors du développement de code d’application pour SQL Data Warehouse, vous pouvez peut-être toouse sql dynamique toohelp offrent des solutions flexibles, génériques et modulaires.</span><span class="sxs-lookup"><span data-stu-id="66ade-104">When developing application code for SQL Data Warehouse you may need toouse dynamic sql toohelp deliver flexible, generic and modular solutions.</span></span> <span data-ttu-id="66ade-105">SQL Data Warehouse ne prend pas en charge les données de type objet blob pour l’instant.</span><span class="sxs-lookup"><span data-stu-id="66ade-105">SQL Data Warehouse does not support blob data types at this time.</span></span> <span data-ttu-id="66ade-106">Cela peut limiter la taille de hello vos chaînes en tant que types d’objets blob incluent les types varchar (max) et nvarchar (max).</span><span class="sxs-lookup"><span data-stu-id="66ade-106">This may limit hello size of your strings as blob types include both varchar(max) and nvarchar(max) types.</span></span> <span data-ttu-id="66ade-107">Si vous avez utilisé ces types dans votre code d’application lors de la génération de chaînes de très grande taille, vous devez code hello de toobreak en segments et de l’instruction use hello EXEC à la place.</span><span class="sxs-lookup"><span data-stu-id="66ade-107">If you have used these types in your application code when building very large strings, you will need toobreak hello code into chunks and use hello EXEC statement instead.</span></span>
 
-<span data-ttu-id="ad7e5-108">Voici un exemple simple :</span><span class="sxs-lookup"><span data-stu-id="ad7e5-108">A simple example:</span></span>
+<span data-ttu-id="66ade-108">Voici un exemple simple :</span><span class="sxs-lookup"><span data-stu-id="66ade-108">A simple example:</span></span>
 
 ```sql
 DECLARE @sql_fragment1 VARCHAR(8000)=' SELECT name '
@@ -34,15 +34,15 @@ DECLARE @sql_fragment1 VARCHAR(8000)=' SELECT name '
 EXEC( @sql_fragment1 + @sql_fragment2 + @sql_fragment3);
 ```
 
-<span data-ttu-id="ad7e5-109">Si la chaîne est courte, vous pouvez utiliser [sp_executesql][sp_executesql] normalement.</span><span class="sxs-lookup"><span data-stu-id="ad7e5-109">If the string is short you can use [sp_executesql][sp_executesql] as normal.</span></span>
+<span data-ttu-id="66ade-109">Si la chaîne de hello est courte, vous pouvez utiliser [sp_executesql] [ sp_executesql] normalement.</span><span class="sxs-lookup"><span data-stu-id="66ade-109">If hello string is short you can use [sp_executesql][sp_executesql] as normal.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="ad7e5-110">Les instructions exécutées en tant qu'instructions SQL dynamiques sont toujours soumises à l'ensemble des règles de validation TSQL.</span><span class="sxs-lookup"><span data-stu-id="ad7e5-110">Statements executed as dynamic SQL will still be subject to all TSQL validation rules.</span></span>
+> <span data-ttu-id="66ade-110">Instructions exécutées en tant que code SQL dynamique sera toujours les règles de validation d’objet tooall TSQL.</span><span class="sxs-lookup"><span data-stu-id="66ade-110">Statements executed as dynamic SQL will still be subject tooall TSQL validation rules.</span></span>
 > 
 > 
 
-## <a name="next-steps"></a><span data-ttu-id="ad7e5-111">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="ad7e5-111">Next steps</span></span>
-<span data-ttu-id="ad7e5-112">Pour obtenir des conseils supplémentaires en matière de développement, consultez la [vue d’ensemble du développement][development overview].</span><span class="sxs-lookup"><span data-stu-id="ad7e5-112">For more development tips, see [development overview][development overview].</span></span>
+## <a name="next-steps"></a><span data-ttu-id="66ade-111">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="66ade-111">Next steps</span></span>
+<span data-ttu-id="66ade-112">Pour obtenir des conseils supplémentaires en matière de développement, consultez la [vue d’ensemble du développement][development overview].</span><span class="sxs-lookup"><span data-stu-id="66ade-112">For more development tips, see [development overview][development overview].</span></span>
 
 <!--Image references-->
 

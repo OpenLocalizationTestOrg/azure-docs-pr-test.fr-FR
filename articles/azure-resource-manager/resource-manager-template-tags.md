@@ -1,6 +1,6 @@
 ---
-title: "Appliquer des balises aux ressources Azure dans un modèle | Microsoft Docs"
-description: "Explique comment appliquer des balises aux ressources dans un modèle Azure Resource Manager"
+title: "aaaTag Azure ressources dans le modèle | Documents Microsoft"
+description: "Montre comment tooapply les balises tooresources dans un modèle Azure Resource Manager"
 services: azure-resource-manager
 documentationcenter: 
 author: tfitzmac
@@ -14,20 +14,20 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/20/2017
 ms.author: tomfitz
-ms.openlocfilehash: adc10ade79af3087a8b24ea5b6709182cb1edb92
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 9e07837a4ca3ceffc9da3443e9390c95562eda99
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tag-resources-in-azure-resource-manager-templates"></a><span data-ttu-id="4f992-103">Appliquer des balises dans les modèles Azure Resource Manager</span><span class="sxs-lookup"><span data-stu-id="4f992-103">Tag resources in Azure Resource Manager templates</span></span>
+# <a name="tag-resources-in-azure-resource-manager-templates"></a><span data-ttu-id="20c72-103">Appliquer des balises dans les modèles Azure Resource Manager</span><span class="sxs-lookup"><span data-stu-id="20c72-103">Tag resources in Azure Resource Manager templates</span></span>
 [!INCLUDE [resource-manager-tag-introduction](../../includes/resource-manager-tag-introduction.md)]
 
-## <a name="add-tags-to-your-template"></a><span data-ttu-id="4f992-104">Ajouter des balises à votre modèle</span><span class="sxs-lookup"><span data-stu-id="4f992-104">Add tags to your template</span></span>
+## <a name="add-tags-tooyour-template"></a><span data-ttu-id="20c72-104">Ajouter un modèle de tooyour de balises</span><span class="sxs-lookup"><span data-stu-id="20c72-104">Add tags tooyour template</span></span>
 
 [!INCLUDE [resource-manager-tags-in-templates](../../includes/resource-manager-tags-in-templates.md)]
 
-## <a name="next-steps"></a><span data-ttu-id="4f992-105">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="4f992-105">Next steps</span></span>
-* <span data-ttu-id="4f992-106">Pour obtenir des informations sur la gestion des balises, consultez [Organisation des ressources Azure à l’aide de balises](resource-group-using-tags.md).</span><span class="sxs-lookup"><span data-stu-id="4f992-106">For information about managing tags, see [Use tags to organize your Azure resources](resource-group-using-tags.md).</span></span>
-* <span data-ttu-id="4f992-107">Pour obtenir des conseils sur l’utilisation de Resource Manager par les entreprises pour gérer efficacement les abonnements, voir [Structure d’Azure Enterprise - Gouvernance normative de l’abonnement](resource-manager-subscription-governance.md).</span><span class="sxs-lookup"><span data-stu-id="4f992-107">For guidance on how enterprises can use Resource Manager to effectively manage subscriptions, see [Azure enterprise scaffold - prescriptive subscription governance](resource-manager-subscription-governance.md).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="20c72-105">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="20c72-105">Next steps</span></span>
+* <span data-ttu-id="20c72-106">Pour plus d’informations sur la gestion des balises, consultez [utilisez balises tooorganize vos ressources Azure](resource-group-using-tags.md).</span><span class="sxs-lookup"><span data-stu-id="20c72-106">For information about managing tags, see [Use tags tooorganize your Azure resources](resource-group-using-tags.md).</span></span>
+* <span data-ttu-id="20c72-107">Pour obtenir des conseils comment les entreprises peuvent utiliser le Gestionnaire de ressources tooeffectively gérer les abonnements, consultez [une vue de structure Azure enterprise - gouvernance de l’abonnement normative](resource-manager-subscription-governance.md).</span><span class="sxs-lookup"><span data-stu-id="20c72-107">For guidance on how enterprises can use Resource Manager tooeffectively manage subscriptions, see [Azure enterprise scaffold - prescriptive subscription governance](resource-manager-subscription-governance.md).</span></span>
 

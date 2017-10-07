@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory avec SanSan | Microsoft Docs"
-description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et SanSan."
+description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et Sansan."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,220 +13,220 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/05/2017
 ms.author: jeedes
-ms.openlocfilehash: e1a9653d5feea910308cefabdbdfe3a6af44bbe4
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: f58cc613a2e3a240e555b61a34db4155eb9dff71
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-azure-active-directory-integration-with-sansan"></a><span data-ttu-id="a9c56-103">Didacticiel : Intégration d’Azure Active Directory avec SanSan</span><span class="sxs-lookup"><span data-stu-id="a9c56-103">Tutorial: Azure Active Directory integration with Sansan</span></span>
+# <a name="tutorial-azure-active-directory-integration-with-sansan"></a><span data-ttu-id="a0565-103">Didacticiel : Intégration d’Azure Active Directory avec SanSan</span><span class="sxs-lookup"><span data-stu-id="a0565-103">Tutorial: Azure Active Directory integration with Sansan</span></span>
 
-<span data-ttu-id="a9c56-104">Dans ce didacticiel, vous allez apprendre à intégrer SanSan avec Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="a9c56-104">In this tutorial, you learn how to integrate Sansan with Azure Active Directory (Azure AD).</span></span>
+<span data-ttu-id="a0565-104">Dans ce didacticiel, vous apprendrez comment toointegrate Sansan avec Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="a0565-104">In this tutorial, you learn how toointegrate Sansan with Azure Active Directory (Azure AD).</span></span>
 
-<span data-ttu-id="a9c56-105">L’intégration de SanSan avec Azure AD vous offre les avantages suivants :</span><span class="sxs-lookup"><span data-stu-id="a9c56-105">Integrating Sansan with Azure AD provides you with the following benefits:</span></span>
+<span data-ttu-id="a0565-105">Intégration Sansan à Azure AD offre hello avantages suivants :</span><span class="sxs-lookup"><span data-stu-id="a0565-105">Integrating Sansan with Azure AD provides you with hello following benefits:</span></span>
 
-- <span data-ttu-id="a9c56-106">Vous pouvez contrôler dans Azure AD qui a accès à SanSan.</span><span class="sxs-lookup"><span data-stu-id="a9c56-106">You can control in Azure AD who has access to Sansan</span></span>
-- <span data-ttu-id="a9c56-107">Vous pouvez autoriser les utilisateurs à se connecter automatiquement à SanSan (via l’authentification unique) avec leur compte Azure AD.</span><span class="sxs-lookup"><span data-stu-id="a9c56-107">You can enable your users to automatically get signed-on to Sansan (Single Sign-On) with their Azure AD accounts</span></span>
-- <span data-ttu-id="a9c56-108">Vous pouvez gérer vos comptes à partir d’un emplacement central : le portail Azure.</span><span class="sxs-lookup"><span data-stu-id="a9c56-108">You can manage your accounts in one central location - the Azure portal</span></span>
+- <span data-ttu-id="a0565-106">Vous pouvez contrôler dans Azure AD qui a accès tooSansan</span><span class="sxs-lookup"><span data-stu-id="a0565-106">You can control in Azure AD who has access tooSansan</span></span>
+- <span data-ttu-id="a0565-107">Vous pouvez activer vos utilisateurs tooautomatically get connecté tooSansan (Single Sign-On) avec leurs comptes Azure AD</span><span class="sxs-lookup"><span data-stu-id="a0565-107">You can enable your users tooautomatically get signed-on tooSansan (Single Sign-On) with their Azure AD accounts</span></span>
+- <span data-ttu-id="a0565-108">Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure</span><span class="sxs-lookup"><span data-stu-id="a0565-108">You can manage your accounts in one central location - hello Azure portal</span></span>
 
-<span data-ttu-id="a9c56-109">Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="a9c56-109">If you want to know more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
+<span data-ttu-id="a0565-109">Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="a0565-109">If you want tooknow more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="a9c56-110">Conditions préalables</span><span class="sxs-lookup"><span data-stu-id="a9c56-110">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="a0565-110">Composants requis</span><span class="sxs-lookup"><span data-stu-id="a0565-110">Prerequisites</span></span>
 
-<span data-ttu-id="a9c56-111">Pour configurer l’intégration d’Azure AD avec SanSan, vous avez besoin des éléments suivants :</span><span class="sxs-lookup"><span data-stu-id="a9c56-111">To configure Azure AD integration with Sansan, you need the following items:</span></span>
+<span data-ttu-id="a0565-111">tooconfigure intégration d’Azure AD avec Sansan, vous devez hello éléments suivants :</span><span class="sxs-lookup"><span data-stu-id="a0565-111">tooconfigure Azure AD integration with Sansan, you need hello following items:</span></span>
 
-- <span data-ttu-id="a9c56-112">Un abonnement Azure AD</span><span class="sxs-lookup"><span data-stu-id="a9c56-112">An Azure AD subscription</span></span>
-- <span data-ttu-id="a9c56-113">Un abonnement SanSan pour lequel l’authentification unique est activée</span><span class="sxs-lookup"><span data-stu-id="a9c56-113">A Sansan single sign-on enabled subscription</span></span>
+- <span data-ttu-id="a0565-112">Un abonnement Azure AD</span><span class="sxs-lookup"><span data-stu-id="a0565-112">An Azure AD subscription</span></span>
+- <span data-ttu-id="a0565-113">Un abonnement SanSan pour lequel l’authentification unique est activée</span><span class="sxs-lookup"><span data-stu-id="a0565-113">A Sansan single sign-on enabled subscription</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="a9c56-114">Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.</span><span class="sxs-lookup"><span data-stu-id="a9c56-114">To test the steps in this tutorial, we do not recommend using a production environment.</span></span>
+> <span data-ttu-id="a0565-114">tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.</span><span class="sxs-lookup"><span data-stu-id="a0565-114">tootest hello steps in this tutorial, we do not recommend using a production environment.</span></span>
 
-<span data-ttu-id="a9c56-115">Vous devez en outre suivre les recommandations ci-dessous :</span><span class="sxs-lookup"><span data-stu-id="a9c56-115">To test the steps in this tutorial, you should follow these recommendations:</span></span>
+<span data-ttu-id="a0565-115">tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :</span><span class="sxs-lookup"><span data-stu-id="a0565-115">tootest hello steps in this tutorial, you should follow these recommendations:</span></span>
 
-- <span data-ttu-id="a9c56-116">N’utilisez pas votre environnement de production, sauf si cela est nécessaire.</span><span class="sxs-lookup"><span data-stu-id="a9c56-116">Do not use your production environment, unless it is necessary.</span></span>
-- <span data-ttu-id="a9c56-117">Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="a9c56-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
+- <span data-ttu-id="a0565-116">N’utilisez pas votre environnement de production, sauf si cela est nécessaire.</span><span class="sxs-lookup"><span data-stu-id="a0565-116">Do not use your production environment, unless it is necessary.</span></span>
+- <span data-ttu-id="a0565-117">Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="a0565-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
 
-## <a name="scenario-description"></a><span data-ttu-id="a9c56-118">Description du scénario</span><span class="sxs-lookup"><span data-stu-id="a9c56-118">Scenario description</span></span>
-<span data-ttu-id="a9c56-119">Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test.</span><span class="sxs-lookup"><span data-stu-id="a9c56-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="a9c56-120">Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :</span><span class="sxs-lookup"><span data-stu-id="a9c56-120">The scenario outlined in this tutorial consists of two main building blocks:</span></span>
+## <a name="scenario-description"></a><span data-ttu-id="a0565-118">Description du scénario</span><span class="sxs-lookup"><span data-stu-id="a0565-118">Scenario description</span></span>
+<span data-ttu-id="a0565-119">Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test.</span><span class="sxs-lookup"><span data-stu-id="a0565-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="a0565-120">scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :</span><span class="sxs-lookup"><span data-stu-id="a0565-120">hello scenario outlined in this tutorial consists of two main building blocks:</span></span>
 
-1. <span data-ttu-id="a9c56-121">Ajout de SanSan à partir de la galerie</span><span class="sxs-lookup"><span data-stu-id="a9c56-121">Adding Sansan from the gallery</span></span>
-2. <span data-ttu-id="a9c56-122">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="a9c56-122">Configuring and testing Azure AD single sign-on</span></span>
+1. <span data-ttu-id="a0565-121">Ajout de Sansan à partir de la galerie de hello</span><span class="sxs-lookup"><span data-stu-id="a0565-121">Adding Sansan from hello gallery</span></span>
+2. <span data-ttu-id="a0565-122">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="a0565-122">Configuring and testing Azure AD single sign-on</span></span>
 
-## <a name="adding-sansan-from-the-gallery"></a><span data-ttu-id="a9c56-123">Ajout de SanSan à partir de la galerie</span><span class="sxs-lookup"><span data-stu-id="a9c56-123">Adding Sansan from the gallery</span></span>
-<span data-ttu-id="a9c56-124">Pour configurer l’intégration de SanSan à Azure AD, vous devez ajouter SanSan à partir de la galerie à votre liste d’applications SaaS managées.</span><span class="sxs-lookup"><span data-stu-id="a9c56-124">To configure the integration of Sansan into Azure AD, you need to add Sansan from the gallery to your list of managed SaaS apps.</span></span>
+## <a name="adding-sansan-from-hello-gallery"></a><span data-ttu-id="a0565-123">Ajout de Sansan à partir de la galerie de hello</span><span class="sxs-lookup"><span data-stu-id="a0565-123">Adding Sansan from hello gallery</span></span>
+<span data-ttu-id="a0565-124">intégration de hello tooconfigure de Sansan dans Azure AD, vous devez tooadd Sansan à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.</span><span class="sxs-lookup"><span data-stu-id="a0565-124">tooconfigure hello integration of Sansan into Azure AD, you need tooadd Sansan from hello gallery tooyour list of managed SaaS apps.</span></span>
 
-<span data-ttu-id="a9c56-125">**Pour ajouter SanSan à partir de la galerie, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="a9c56-125">**To add Sansan from the gallery, perform the following steps:**</span></span>
+<span data-ttu-id="a0565-125">**tooadd Sansan à partir de la galerie hello, procédez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="a0565-125">**tooadd Sansan from hello gallery, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="a9c56-126">Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**.</span><span class="sxs-lookup"><span data-stu-id="a9c56-126">In the **[Azure portal](https://portal.azure.com)**, on the left navigation panel, click **Azure Active Directory** icon.</span></span> 
+1. <span data-ttu-id="a0565-126">Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.</span><span class="sxs-lookup"><span data-stu-id="a0565-126">In hello **[Azure portal](https://portal.azure.com)**, on hello left navigation panel, click **Azure Active Directory** icon.</span></span> 
 
     ![Active Directory][1]
 
-2. <span data-ttu-id="a9c56-128">Accédez à **Applications d’entreprise**.</span><span class="sxs-lookup"><span data-stu-id="a9c56-128">Navigate to **Enterprise applications**.</span></span> <span data-ttu-id="a9c56-129">Accédez ensuite à **Toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="a9c56-129">Then go to **All applications**.</span></span>
+2. <span data-ttu-id="a0565-128">Accédez trop**des applications d’entreprise**.</span><span class="sxs-lookup"><span data-stu-id="a0565-128">Navigate too**Enterprise applications**.</span></span> <span data-ttu-id="a0565-129">Passez trop**toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="a0565-129">Then go too**All applications**.</span></span>
 
     ![Applications][2]
     
-3. <span data-ttu-id="a9c56-131">Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.</span><span class="sxs-lookup"><span data-stu-id="a9c56-131">To add new application, click **New application** button on the top of dialog.</span></span>
+3. <span data-ttu-id="a0565-131">tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.</span><span class="sxs-lookup"><span data-stu-id="a0565-131">tooadd new application, click **New application** button on hello top of dialog.</span></span>
 
     ![Applications][3]
 
-4. <span data-ttu-id="a9c56-133">Dans la zone de recherche, tapez **SanSan**.</span><span class="sxs-lookup"><span data-stu-id="a9c56-133">In the search box, type **Sansan**.</span></span>
+4. <span data-ttu-id="a0565-133">Dans la zone de recherche de hello, tapez **Sansan**.</span><span class="sxs-lookup"><span data-stu-id="a0565-133">In hello search box, type **Sansan**.</span></span>
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-sansan-tutorial/tutorial_sansan_search.png)
 
-5. <span data-ttu-id="a9c56-135">Dans le volet de résultats, sélectionnez **SanSan**, puis cliquez sur le bouton **Ajouter** pour ajouter l’application.</span><span class="sxs-lookup"><span data-stu-id="a9c56-135">In the results panel, select **Sansan**, and then click **Add** button to add the application.</span></span>
+5. <span data-ttu-id="a0565-135">Dans le volet de résultats hello, sélectionnez **Sansan**, puis cliquez sur **ajouter** bouton application hello de tooadd.</span><span class="sxs-lookup"><span data-stu-id="a0565-135">In hello results panel, select **Sansan**, and then click **Add** button tooadd hello application.</span></span>
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-sansan-tutorial/tutorial_sansan_addfromgallery.png)
 
-##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="a9c56-137">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="a9c56-137">Configuring and testing Azure AD single sign-on</span></span>
-<span data-ttu-id="a9c56-138">Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec SanSan sur un utilisateur de test nommé « Britta Simon ».</span><span class="sxs-lookup"><span data-stu-id="a9c56-138">In this section, you configure and test Azure AD single sign-on with Sansan based on a test user called "Britta Simon".</span></span>
+##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="a0565-137">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="a0565-137">Configuring and testing Azure AD single sign-on</span></span>
+<span data-ttu-id="a0565-138">Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec SanSan sur un utilisateur de test nommé « Britta Simon ».</span><span class="sxs-lookup"><span data-stu-id="a0565-138">In this section, you configure and test Azure AD single sign-on with Sansan based on a test user called "Britta Simon".</span></span>
 
-<span data-ttu-id="a9c56-139">Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur SanSan équivalent à l’utilisateur dans Azure AD.</span><span class="sxs-lookup"><span data-stu-id="a9c56-139">For single sign-on to work, Azure AD needs to know what the counterpart user in Sansan is to a user in Azure AD.</span></span> <span data-ttu-id="a9c56-140">En d’autres termes, il faut établir une relation entre l’utilisateur Azure AD et l’utilisateur SanSan associé.</span><span class="sxs-lookup"><span data-stu-id="a9c56-140">In other words, a link relationship between an Azure AD user and the related user in Sansan needs to be established.</span></span>
+<span data-ttu-id="a0565-139">Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans Sansan est tooa utilisateur dans Azure AD.</span><span class="sxs-lookup"><span data-stu-id="a0565-139">For single sign-on toowork, Azure AD needs tooknow what hello counterpart user in Sansan is tooa user in Azure AD.</span></span> <span data-ttu-id="a0565-140">En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans Sansan doit toobe établie.</span><span class="sxs-lookup"><span data-stu-id="a0565-140">In other words, a link relationship between an Azure AD user and hello related user in Sansan needs toobe established.</span></span>
 
-<span data-ttu-id="a9c56-141">Dans SanSan, affectez la valeur de **nom d’utilisateur** dans Azure AD comme valeur de **Username** pour établir la relation de lien.</span><span class="sxs-lookup"><span data-stu-id="a9c56-141">In Sansan, assign the value of the **user name** in Azure AD as the value of the **Username** to establish the link relationship.</span></span>
+<span data-ttu-id="a0565-141">Dans Sansan, affecter la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** relation de lien tooestablish hello.</span><span class="sxs-lookup"><span data-stu-id="a0565-141">In Sansan, assign hello value of hello **user name** in Azure AD as hello value of hello **Username** tooestablish hello link relationship.</span></span>
 
-<span data-ttu-id="a9c56-142">Pour configurer et tester l’authentification unique Azure AD avec SanSan, vous devez suivre les indications des sections suivantes :</span><span class="sxs-lookup"><span data-stu-id="a9c56-142">To configure and test Azure AD single sign-on with Sansan, you need to complete the following building blocks:</span></span>
+<span data-ttu-id="a0565-142">tooconfigure et test Azure AD l’authentification unique avec Sansan, vous devez hello toocomplete suivant des blocs de construction :</span><span class="sxs-lookup"><span data-stu-id="a0565-142">tooconfigure and test Azure AD single sign-on with Sansan, you need toocomplete hello following building blocks:</span></span>
 
-1. <span data-ttu-id="a9c56-143">**[Configuration de l’authentification unique Azure AD](#configuring-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.</span><span class="sxs-lookup"><span data-stu-id="a9c56-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - to enable your users to use this feature.</span></span>
-2. <span data-ttu-id="a9c56-144">**[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="a9c56-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.</span></span>
-3. <span data-ttu-id="a9c56-145">**[Création d’un utilisateur de test SanSan](#creating-a-sansan-test-user)** pour avoir un équivalent de Britta Simon dans SanSan, lié à la représentation Azure AD associée.</span><span class="sxs-lookup"><span data-stu-id="a9c56-145">**[Creating a Sansan test user](#creating-a-sansan-test-user)** - to have a counterpart of Britta Simon in Sansan that is linked to the Azure AD representation of user.</span></span>
-4. <span data-ttu-id="a9c56-146">**[Affectation de l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.</span><span class="sxs-lookup"><span data-stu-id="a9c56-146">**[Assigning the Azure AD test user](#assigning-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.</span></span>
-5. <span data-ttu-id="a9c56-147">**[Testing Single Sign-On](#testing-single-sign-on)** pour vérifier si la configuration fonctionne.</span><span class="sxs-lookup"><span data-stu-id="a9c56-147">**[Testing Single Sign-On](#testing-single-sign-on)** - to verify whether the configuration works.</span></span>
+1. <span data-ttu-id="a0565-143">**[Configuration d’Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.</span><span class="sxs-lookup"><span data-stu-id="a0565-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - tooenable your users toouse this feature.</span></span>
+2. <span data-ttu-id="a0565-144">**[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="a0565-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - tootest Azure AD single sign-on with Britta Simon.</span></span>
+3. <span data-ttu-id="a0565-145">**[Création d’un utilisateur de test Sansan](#creating-a-sansan-test-user)**  -toohave un équivalent de Britta Simon dans Sansan est la représentation sous forme de toohello lié Azure AD de l’utilisateur.</span><span class="sxs-lookup"><span data-stu-id="a0565-145">**[Creating a Sansan test user](#creating-a-sansan-test-user)** - toohave a counterpart of Britta Simon in Sansan that is linked toohello Azure AD representation of user.</span></span>
+4. <span data-ttu-id="a0565-146">**[Utilisateur de test affectation hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="a0565-146">**[Assigning hello Azure AD test user](#assigning-the-azure-ad-test-user)** - tooenable Britta Simon toouse Azure AD single sign-on.</span></span>
+5. <span data-ttu-id="a0565-147">**[Test de l’authentification unique sur](#testing-single-sign-on)**  -tooverify hello indique si les tâches de configuration.</span><span class="sxs-lookup"><span data-stu-id="a0565-147">**[Testing Single Sign-On](#testing-single-sign-on)** - tooverify whether hello configuration works.</span></span>
 
-### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="a9c56-148">Configuration de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="a9c56-148">Configuring Azure AD single sign-on</span></span>
+### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="a0565-148">Configuration de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="a0565-148">Configuring Azure AD single sign-on</span></span>
 
-<span data-ttu-id="a9c56-149">Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure et configurer l’authentification unique dans votre application SanSan.</span><span class="sxs-lookup"><span data-stu-id="a9c56-149">In this section, you enable Azure AD single sign-on in the Azure portal and configure single sign-on in your Sansan application.</span></span>
+<span data-ttu-id="a0565-149">Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application Sansan.</span><span class="sxs-lookup"><span data-stu-id="a0565-149">In this section, you enable Azure AD single sign-on in hello Azure portal and configure single sign-on in your Sansan application.</span></span>
 
-<span data-ttu-id="a9c56-150">**Pour configurer l’authentification unique Azure AD avec SanSan, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="a9c56-150">**To configure Azure AD single sign-on with Sansan, perform the following steps:**</span></span>
+<span data-ttu-id="a0565-150">**tooconfigure Azure AD single sign-on avec Sansan, effectuez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="a0565-150">**tooconfigure Azure AD single sign-on with Sansan, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="a9c56-151">Dans le portail Azure, sur la page d’intégration de l’application **SanSan**, cliquez sur **Authentification unique**.</span><span class="sxs-lookup"><span data-stu-id="a9c56-151">In the Azure portal, on the **Sansan** application integration page, click **Single sign-on**.</span></span>
+1. <span data-ttu-id="a0565-151">Bonjour portail Azure, sur hello **Sansan** page d’intégration d’application, cliquez sur **l’authentification unique**.</span><span class="sxs-lookup"><span data-stu-id="a0565-151">In hello Azure portal, on hello **Sansan** application integration page, click **Single sign-on**.</span></span>
 
     ![Configurer l’authentification unique][4]
 
-2. <span data-ttu-id="a9c56-153">Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="a9c56-153">On the **Single sign-on** dialog, select **Mode** as **SAML-based Sign-on** to enable single sign-on.</span></span>
+2. <span data-ttu-id="a0565-153">Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="a0565-153">On hello **Single sign-on** dialog, select **Mode** as   **SAML-based Sign-on** tooenable single sign-on.</span></span>
  
     ![Configurer l’authentification unique](./media/active-directory-saas-sansan-tutorial/tutorial_sansan_samlbase.png)
 
-3. <span data-ttu-id="a9c56-155">Dans la section **Domaine et URL SanSan**, procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="a9c56-155">On the **Sansan Domain and URLs** section, perform the following steps:</span></span>
+3. <span data-ttu-id="a0565-155">Sur hello **Sansan domaine et les URL** section, effectuer hello comme suit :</span><span class="sxs-lookup"><span data-stu-id="a0565-155">On hello **Sansan Domain and URLs** section, perform hello following steps:</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-sansan-tutorial/tutorial_sansan_url.png)
 
-    <span data-ttu-id="a9c56-157">a.</span><span class="sxs-lookup"><span data-stu-id="a9c56-157">a.</span></span> <span data-ttu-id="a9c56-158">Dans la zone de texte **URL de connexion**, tapez une URL au format suivant :</span><span class="sxs-lookup"><span data-stu-id="a9c56-158">In the **Sign-on URL** textbox, type a URL using the following patterns:</span></span> 
+    <span data-ttu-id="a0565-157">a.</span><span class="sxs-lookup"><span data-stu-id="a0565-157">a.</span></span> <span data-ttu-id="a0565-158">Bonjour **URL de connexion** modèles de zone de texte, tapez une URL à l’aide de hello suivant :</span><span class="sxs-lookup"><span data-stu-id="a0565-158">In hello **Sign-on URL** textbox, type a URL using hello following patterns:</span></span> 
     
-    | <span data-ttu-id="a9c56-159">Environnement</span><span class="sxs-lookup"><span data-stu-id="a9c56-159">Environment</span></span> | <span data-ttu-id="a9c56-160">URL</span><span class="sxs-lookup"><span data-stu-id="a9c56-160">URL</span></span> |
+    | <span data-ttu-id="a0565-159">Environnement</span><span class="sxs-lookup"><span data-stu-id="a0565-159">Environment</span></span> | <span data-ttu-id="a0565-160">URL</span><span class="sxs-lookup"><span data-stu-id="a0565-160">URL</span></span> |
     |:--- |:--- |
-    | <span data-ttu-id="a9c56-161">Web PC</span><span class="sxs-lookup"><span data-stu-id="a9c56-161">PC web</span></span> |`https://ap.sansan.com/v/saml2/<company name>/acs` |
-    | <span data-ttu-id="a9c56-162">Application mobile native</span><span class="sxs-lookup"><span data-stu-id="a9c56-162">Native Mobile app</span></span> |`https://internal.api.sansan.com/saml2/<company name>/acs` |
-    | <span data-ttu-id="a9c56-163">Paramètres de navigateur mobile</span><span class="sxs-lookup"><span data-stu-id="a9c56-163">Mobile browser settings</span></span> |`https://ap.sansan.com/s/saml2/<company name>/acs` |  
+    | <span data-ttu-id="a0565-161">Web PC</span><span class="sxs-lookup"><span data-stu-id="a0565-161">PC web</span></span> |`https://ap.sansan.com/v/saml2/<company name>/acs` |
+    | <span data-ttu-id="a0565-162">Application mobile native</span><span class="sxs-lookup"><span data-stu-id="a0565-162">Native Mobile app</span></span> |`https://internal.api.sansan.com/saml2/<company name>/acs` |
+    | <span data-ttu-id="a0565-163">Paramètres de navigateur mobile</span><span class="sxs-lookup"><span data-stu-id="a0565-163">Mobile browser settings</span></span> |`https://ap.sansan.com/s/saml2/<company name>/acs` |  
 
-    <span data-ttu-id="a9c56-164">b.</span><span class="sxs-lookup"><span data-stu-id="a9c56-164">b.</span></span> <span data-ttu-id="a9c56-165">Dans la zone de texte **Identificateur**, tapez une URL au format suivant :</span><span class="sxs-lookup"><span data-stu-id="a9c56-165">In the **Identifier** textbox, type a URL using the following patterns:</span></span>
-    | <span data-ttu-id="a9c56-166">Environnement</span><span class="sxs-lookup"><span data-stu-id="a9c56-166">Environment</span></span>             | <span data-ttu-id="a9c56-167">URL</span><span class="sxs-lookup"><span data-stu-id="a9c56-167">URL</span></span> |
+    <span data-ttu-id="a0565-164">b.</span><span class="sxs-lookup"><span data-stu-id="a0565-164">b.</span></span> <span data-ttu-id="a0565-165">Bonjour **identificateur** modèles de zone de texte, tapez une URL à l’aide de hello suivant :</span><span class="sxs-lookup"><span data-stu-id="a0565-165">In hello **Identifier** textbox, type a URL using hello following patterns:</span></span>
+    | <span data-ttu-id="a0565-166">Environnement</span><span class="sxs-lookup"><span data-stu-id="a0565-166">Environment</span></span>             | <span data-ttu-id="a0565-167">URL</span><span class="sxs-lookup"><span data-stu-id="a0565-167">URL</span></span> |
     | :-- | :-- |
-    | <span data-ttu-id="a9c56-168">Web PC</span><span class="sxs-lookup"><span data-stu-id="a9c56-168">PC web</span></span>                  | `https://ap.sansan.com/v/saml2/<company name>`|
-    | <span data-ttu-id="a9c56-169">Application mobile native</span><span class="sxs-lookup"><span data-stu-id="a9c56-169">Native Mobile app</span></span>       | `https://internal.api.sansan.com/saml2/<company name>` |
-    | <span data-ttu-id="a9c56-170">Paramètres de navigateur mobile</span><span class="sxs-lookup"><span data-stu-id="a9c56-170">Mobile browser settings</span></span> | `https://ap.sansan.com/s/saml2/<company name>` |
+    | <span data-ttu-id="a0565-168">Web PC</span><span class="sxs-lookup"><span data-stu-id="a0565-168">PC web</span></span>                  | `https://ap.sansan.com/v/saml2/<company name>`|
+    | <span data-ttu-id="a0565-169">Application mobile native</span><span class="sxs-lookup"><span data-stu-id="a0565-169">Native Mobile app</span></span>       | `https://internal.api.sansan.com/saml2/<company name>` |
+    | <span data-ttu-id="a0565-170">Paramètres de navigateur mobile</span><span class="sxs-lookup"><span data-stu-id="a0565-170">Mobile browser settings</span></span> | `https://ap.sansan.com/s/saml2/<company name>` |
 
     > [!NOTE] 
-    > <span data-ttu-id="a9c56-171">Il ne s’agit pas de valeurs réelles.</span><span class="sxs-lookup"><span data-stu-id="a9c56-171">These values are not real.</span></span> <span data-ttu-id="a9c56-172">Mettez à jour ces valeurs avec l’URL de connexion et l’identificateur réels.</span><span class="sxs-lookup"><span data-stu-id="a9c56-172">Update these values with the actual Sign-On URL and Identifier.</span></span> <span data-ttu-id="a9c56-173">Pour obtenir ces valeurs, contactez l’[équipe de support technique SanSan](https://www.sansan.com/form/contact).</span><span class="sxs-lookup"><span data-stu-id="a9c56-173">Contact [Sansan Client support team](https://www.sansan.com/form/contact) to get these values.</span></span> 
+    > <span data-ttu-id="a0565-171">Il ne s’agit pas de valeurs réelles.</span><span class="sxs-lookup"><span data-stu-id="a0565-171">These values are not real.</span></span> <span data-ttu-id="a0565-172">Mettre à jour les valeurs de hello réel Sign-On URL et l’identificateur.</span><span class="sxs-lookup"><span data-stu-id="a0565-172">Update these values with hello actual Sign-On URL and Identifier.</span></span> <span data-ttu-id="a0565-173">Contact [équipe de support Client de Sansan](https://www.sansan.com/form/contact) tooget ces valeurs.</span><span class="sxs-lookup"><span data-stu-id="a0565-173">Contact [Sansan Client support team](https://www.sansan.com/form/contact) tooget these values.</span></span> 
 
-4. <span data-ttu-id="a9c56-174">Dans la section **Certificat de signature SAML**, cliquez sur **Téléchargez le certificat (Base64)** puis enregistrez le fichier du certificat sur votre ordinateur.</span><span class="sxs-lookup"><span data-stu-id="a9c56-174">On the **SAML Signing Certificate** section, click **Certificate(Base64)** and then save the certificate file on your computer.</span></span>
+4. <span data-ttu-id="a0565-174">Sur hello **le certificat de signature SAML** , cliquez sur **Certificate(Base64)** , puis enregistrez le fichier de certificat hello sur votre ordinateur.</span><span class="sxs-lookup"><span data-stu-id="a0565-174">On hello **SAML Signing Certificate** section, click **Certificate(Base64)** and then save hello certificate file on your computer.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-sansan-tutorial/tutorial_sansan_certificate.png) 
 
-5. <span data-ttu-id="a9c56-176">Cliquez sur le bouton **Enregistrer** .</span><span class="sxs-lookup"><span data-stu-id="a9c56-176">Click **Save** button.</span></span>
+5. <span data-ttu-id="a0565-176">Cliquez sur le bouton **Enregistrer** .</span><span class="sxs-lookup"><span data-stu-id="a0565-176">Click **Save** button.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-sansan-tutorial/tutorial_general_400.png)
 
-6. <span data-ttu-id="a9c56-178">Dans la section **Configuration de SanSan**, cliquez sur **Configurer SanSan** pour ouvrir la fenêtre **Configurer l’authentification**.</span><span class="sxs-lookup"><span data-stu-id="a9c56-178">On the **Sansan Configuration** section, click **Configure Sansan** to open **Configure sign-on** window.</span></span> <span data-ttu-id="a9c56-179">Copiez **l’URL de déconnexion, l’ID d’entité SAML et l’URL du service d’authentification unique SAML** à partir de la **section Référence rapide.**</span><span class="sxs-lookup"><span data-stu-id="a9c56-179">Copy the **Sign-Out URL, SAML Entity ID, and SAML Single Sign-On Service URL** from the **Quick Reference section.**</span></span>
+6. <span data-ttu-id="a0565-178">Sur hello **Sansan Configuration** , cliquez sur **Sansan de configurer** tooopen **configurer l’authentification** fenêtre.</span><span class="sxs-lookup"><span data-stu-id="a0565-178">On hello **Sansan Configuration** section, click **Configure Sansan** tooopen **Configure sign-on** window.</span></span> <span data-ttu-id="a0565-179">Hello de copie **URL de déconnexion, ID d’entité SAML et SAML Sign-On URL du Service unique** de hello **section de référence rapide.**</span><span class="sxs-lookup"><span data-stu-id="a0565-179">Copy hello **Sign-Out URL, SAML Entity ID, and SAML Single Sign-On Service URL** from hello **Quick Reference section.**</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-sansan-tutorial/tutorial_sansan_configure.png) 
 
-7. <span data-ttu-id="a9c56-181">Pour configurer l’authentification unique côté **SanSan**, vous devez envoyer le **Certificat**, l’**URL de déconnexion**, l’**ID d’entité SAML** et l’**URL du service d’authentification unique SAML** téléchargés à l’[équipe de support technique SanSan](https://www.sansan.com/form/contact).</span><span class="sxs-lookup"><span data-stu-id="a9c56-181">To configure single sign-on on **Sansan** side, you need to send the downloaded **Certificate**, **Sign-Out URL**, **SAML Entity ID**, and **SAML Single Sign-On Service URL** to [Sansan support team](https://www.sansan.com/form/contact).</span></span> <span data-ttu-id="a9c56-182">Celles-ci configurent ensuite ce paramètre pour que la connexion SSO SAML soit définie correctement des deux côtés.</span><span class="sxs-lookup"><span data-stu-id="a9c56-182">They set this setting to have the SAML SSO connection set properly on both sides.</span></span>
+7. <span data-ttu-id="a0565-181">tooconfigure l’authentification unique sur **Sansan** côté, vous devez hello toosend téléchargé **certificat**, **URL de déconnexion**, **ID d’entité SAML**, et **SAML Sign-On URL du Service unique** trop[équipe de support Sansan](https://www.sansan.com/form/contact).</span><span class="sxs-lookup"><span data-stu-id="a0565-181">tooconfigure single sign-on on **Sansan** side, you need toosend hello downloaded **Certificate**, **Sign-Out URL**, **SAML Entity ID**, and **SAML Single Sign-On Service URL** too[Sansan support team](https://www.sansan.com/form/contact).</span></span> <span data-ttu-id="a0565-182">Ils définir ce hello toohave de paramètre connexion SSO SAML correctement des deux côtés.</span><span class="sxs-lookup"><span data-stu-id="a0565-182">They set this setting toohave hello SAML SSO connection set properly on both sides.</span></span>
 
 >[!NOTE]
-><span data-ttu-id="a9c56-183">Les paramètres de navigateur PC fonctionnent également avec l’application mobile et le navigateur mobile avec Web PC.</span><span class="sxs-lookup"><span data-stu-id="a9c56-183">PC browser setting also work for Mobile app and Mobile browser along with PC web.</span></span>  
+><span data-ttu-id="a0565-183">Les paramètres de navigateur PC fonctionnent également avec l’application mobile et le navigateur mobile avec Web PC.</span><span class="sxs-lookup"><span data-stu-id="a0565-183">PC browser setting also work for Mobile app and Mobile browser along with PC web.</span></span>  
 
 > [!TIP]
-> <span data-ttu-id="a9c56-184">Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.</span><span class="sxs-lookup"><span data-stu-id="a9c56-184">You can now read a concise version of these instructions inside the [Azure portal](https://portal.azure.com), while you are setting up the app!</span></span>  <span data-ttu-id="a9c56-185">Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas.</span><span class="sxs-lookup"><span data-stu-id="a9c56-185">After adding this app from the **Active Directory > Enterprise Applications** section, simply click the **Single Sign-On** tab and access the embedded documentation through the **Configuration** section at the bottom.</span></span> <span data-ttu-id="a9c56-186">Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="a9c56-186">You can read more about the embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
+> <span data-ttu-id="a0565-184">Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !</span><span class="sxs-lookup"><span data-stu-id="a0565-184">You can now read a concise version of these instructions inside hello [Azure portal](https://portal.azure.com), while you are setting up hello app!</span></span>  <span data-ttu-id="a0565-185">Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello.</span><span class="sxs-lookup"><span data-stu-id="a0565-185">After adding this app from hello **Active Directory > Enterprise Applications** section, simply click hello **Single Sign-On** tab and access hello embedded documentation through hello **Configuration** section at hello bottom.</span></span> <span data-ttu-id="a0565-186">Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="a0565-186">You can read more about hello embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
 
-### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="a9c56-187">Création d’un utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="a9c56-187">Creating an Azure AD test user</span></span>
-<span data-ttu-id="a9c56-188">L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.</span><span class="sxs-lookup"><span data-stu-id="a9c56-188">The objective of this section is to create a test user in the Azure portal called Britta Simon.</span></span>
+### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="a0565-187">Création d’un utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="a0565-187">Creating an Azure AD test user</span></span>
+<span data-ttu-id="a0565-188">objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.</span><span class="sxs-lookup"><span data-stu-id="a0565-188">hello objective of this section is toocreate a test user in hello Azure portal called Britta Simon.</span></span>
 
 ![Créer un utilisateur Azure AD][100]
 
-<span data-ttu-id="a9c56-190">**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="a9c56-190">**To create a test user in Azure AD, perform the following steps:**</span></span>
+<span data-ttu-id="a0565-190">**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="a0565-190">**toocreate a test user in Azure AD, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="a9c56-191">Dans le panneau de navigation gauche du **portail Azure**, cliquez sur l’icône **Azure Active Directory**.</span><span class="sxs-lookup"><span data-stu-id="a9c56-191">In the **Azure portal**, on the left navigation pane, click **Azure Active Directory** icon.</span></span>
+1. <span data-ttu-id="a0565-191">Bonjour **portail Azure**, on hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.</span><span class="sxs-lookup"><span data-stu-id="a0565-191">In hello **Azure portal**, on hello left navigation pane, click **Azure Active Directory** icon.</span></span>
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-sansan-tutorial/create_aaduser_01.png) 
 
-2. <span data-ttu-id="a9c56-193">Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.</span><span class="sxs-lookup"><span data-stu-id="a9c56-193">To display the list of users, go to **Users and groups** and click **All users**.</span></span>
+2. <span data-ttu-id="a0565-193">liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes** et cliquez sur **tous les utilisateurs**.</span><span class="sxs-lookup"><span data-stu-id="a0565-193">toodisplay hello list of users, go too**Users and groups** and click **All users**.</span></span>
     
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-sansan-tutorial/create_aaduser_02.png) 
 
-3. <span data-ttu-id="a9c56-195">Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue.</span><span class="sxs-lookup"><span data-stu-id="a9c56-195">To open the **User** dialog, click **Add** on the top of the dialog.</span></span>
+3. <span data-ttu-id="a0565-195">tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello de boîte de dialogue hello.</span><span class="sxs-lookup"><span data-stu-id="a0565-195">tooopen hello **User** dialog, click **Add** on hello top of hello dialog.</span></span>
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-sansan-tutorial/create_aaduser_03.png) 
 
-4. <span data-ttu-id="a9c56-197">Dans la boîte de dialogue **Utilisateur**, procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="a9c56-197">On the **User** dialog page, perform the following steps:</span></span>
+4. <span data-ttu-id="a0565-197">Sur hello **utilisateur** boîte de dialogue de page, effectuer hello comme suit :</span><span class="sxs-lookup"><span data-stu-id="a0565-197">On hello **User** dialog page, perform hello following steps:</span></span>
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-sansan-tutorial/create_aaduser_04.png) 
 
-    <span data-ttu-id="a9c56-199">a.</span><span class="sxs-lookup"><span data-stu-id="a9c56-199">a.</span></span> <span data-ttu-id="a9c56-200">Dans la zone de texte **Nom**, entrez **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="a9c56-200">In the **Name** textbox, type **BrittaSimon**.</span></span>
+    <span data-ttu-id="a0565-199">a.</span><span class="sxs-lookup"><span data-stu-id="a0565-199">a.</span></span> <span data-ttu-id="a0565-200">Bonjour **nom** zone de texte, type **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="a0565-200">In hello **Name** textbox, type **BrittaSimon**.</span></span>
 
-    <span data-ttu-id="a9c56-201">b.</span><span class="sxs-lookup"><span data-stu-id="a9c56-201">b.</span></span> <span data-ttu-id="a9c56-202">Dans la zone de texte **Nom d’utilisateur**, tapez **l’adresse e-mail** de Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="a9c56-202">In the **User name** textbox, type the **email address** of BrittaSimon.</span></span>
+    <span data-ttu-id="a0565-201">b.</span><span class="sxs-lookup"><span data-stu-id="a0565-201">b.</span></span> <span data-ttu-id="a0565-202">Bonjour **nom d’utilisateur** hello de type zone de texte **adresse de messagerie** de BrittaSimon.</span><span class="sxs-lookup"><span data-stu-id="a0565-202">In hello **User name** textbox, type hello **email address** of BrittaSimon.</span></span>
 
-    <span data-ttu-id="a9c56-203">c.</span><span class="sxs-lookup"><span data-stu-id="a9c56-203">c.</span></span> <span data-ttu-id="a9c56-204">Sélectionnez **Afficher le mot de passe** et notez la valeur du **mot de passe**.</span><span class="sxs-lookup"><span data-stu-id="a9c56-204">Select **Show Password** and write down the value of the **Password**.</span></span>
+    <span data-ttu-id="a0565-203">c.</span><span class="sxs-lookup"><span data-stu-id="a0565-203">c.</span></span> <span data-ttu-id="a0565-204">Sélectionnez **afficher le mot de passe** et notez la valeur hello hello **mot de passe**.</span><span class="sxs-lookup"><span data-stu-id="a0565-204">Select **Show Password** and write down hello value of hello **Password**.</span></span>
 
-    <span data-ttu-id="a9c56-205">d.</span><span class="sxs-lookup"><span data-stu-id="a9c56-205">d.</span></span> <span data-ttu-id="a9c56-206">Cliquez sur **Create**.</span><span class="sxs-lookup"><span data-stu-id="a9c56-206">Click **Create**.</span></span>
+    <span data-ttu-id="a0565-205">d.</span><span class="sxs-lookup"><span data-stu-id="a0565-205">d.</span></span> <span data-ttu-id="a0565-206">Cliquez sur **Create**.</span><span class="sxs-lookup"><span data-stu-id="a0565-206">Click **Create**.</span></span>
  
-### <a name="creating-a-sansan-test-user"></a><span data-ttu-id="a9c56-207">Création d’un utilisateur de test SanSan</span><span class="sxs-lookup"><span data-stu-id="a9c56-207">Creating a Sansan test user</span></span>
+### <a name="creating-a-sansan-test-user"></a><span data-ttu-id="a0565-207">Création d’un utilisateur de test SanSan</span><span class="sxs-lookup"><span data-stu-id="a0565-207">Creating a Sansan test user</span></span>
 
-<span data-ttu-id="a9c56-208">Dans cette section, vous allez créer un utilisateur appelé Britta Simon dans SanSan.</span><span class="sxs-lookup"><span data-stu-id="a9c56-208">In this section, you create a user called Britta Simon in SanSan.</span></span> <span data-ttu-id="a9c56-209">Avant de procéder à l’authentification unique, tous les utilisateurs de SanSan doivent être approvisionnés dans cette application.</span><span class="sxs-lookup"><span data-stu-id="a9c56-209">SanSan application needs the user to be provisioned in the application before doing SSO.</span></span> 
+<span data-ttu-id="a0565-208">Dans cette section, vous allez créer un utilisateur appelé Britta Simon dans SanSan.</span><span class="sxs-lookup"><span data-stu-id="a0565-208">In this section, you create a user called Britta Simon in SanSan.</span></span> <span data-ttu-id="a0565-209">Application de SanSan doit hello utilisateur toobe est configuré dans l’application hello avant de procéder à l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="a0565-209">SanSan application needs hello user toobe provisioned in hello application before doing SSO.</span></span> 
 
 >[!NOTE]
-><span data-ttu-id="a9c56-210">Si vous avez besoin de créer un utilisateur manuellement ou un groupe d’utilisateurs, vous devez contacter l’[équipe de support technique SanSan](https://www.sansan.com/form/contact).</span><span class="sxs-lookup"><span data-stu-id="a9c56-210">If you need to create a user manually or batch of users, you need to contact the [Sansan support team](https://www.sansan.com/form/contact).</span></span> 
+><span data-ttu-id="a0565-210">Si vous devez toocreate un utilisateur manuellement ou par lots des utilisateurs, vous devez toocontact hello [équipe de support Sansan](https://www.sansan.com/form/contact).</span><span class="sxs-lookup"><span data-stu-id="a0565-210">If you need toocreate a user manually or batch of users, you need toocontact hello [Sansan support team](https://www.sansan.com/form/contact).</span></span> 
 
-### <a name="assigning-the-azure-ad-test-user"></a><span data-ttu-id="a9c56-211">Affectation de l’utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="a9c56-211">Assigning the Azure AD test user</span></span>
+### <a name="assigning-hello-azure-ad-test-user"></a><span data-ttu-id="a0565-211">Affectation d’utilisateur de test hello Azure AD</span><span class="sxs-lookup"><span data-stu-id="a0565-211">Assigning hello Azure AD test user</span></span>
 
-<span data-ttu-id="a9c56-212">Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à SanSan.</span><span class="sxs-lookup"><span data-stu-id="a9c56-212">In this section, you enable Britta Simon to use Azure single sign-on by granting access to Sansan.</span></span>
+<span data-ttu-id="a0565-212">Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooSansan.</span><span class="sxs-lookup"><span data-stu-id="a0565-212">In this section, you enable Britta Simon toouse Azure single sign-on by granting access tooSansan.</span></span>
 
 ![Affecter des utilisateurs][200] 
 
-<span data-ttu-id="a9c56-214">**Pour affecter Britta Simon à SanSan, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="a9c56-214">**To assign Britta Simon to Sansan, perform the following steps:**</span></span>
+<span data-ttu-id="a0565-214">**tooassign Britta Simon tooSansan, effectuez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="a0565-214">**tooassign Britta Simon tooSansan, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="a9c56-215">Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="a9c56-215">In the Azure portal, open the applications view, and then navigate to the directory view and go to **Enterprise applications** then click **All applications**.</span></span>
+1. <span data-ttu-id="a0565-215">Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="a0565-215">In hello Azure portal, open hello applications view, and then navigate toohello directory view and go too**Enterprise applications** then click **All applications**.</span></span>
 
     ![Affecter des utilisateurs][201] 
 
-2. <span data-ttu-id="a9c56-217">Dans la liste des applications, sélectionnez **SanSan**.</span><span class="sxs-lookup"><span data-stu-id="a9c56-217">In the applications list, select **Sansan**.</span></span>
+2. <span data-ttu-id="a0565-217">Dans la liste des applications hello, sélectionnez **Sansan**.</span><span class="sxs-lookup"><span data-stu-id="a0565-217">In hello applications list, select **Sansan**.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-sansan-tutorial/tutorial_sansan_app.png) 
 
-3. <span data-ttu-id="a9c56-219">Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="a9c56-219">In the menu on the left, click **Users and groups**.</span></span>
+3. <span data-ttu-id="a0565-219">Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="a0565-219">In hello menu on hello left, click **Users and groups**.</span></span>
 
     ![Affecter des utilisateurs][202] 
 
-4. <span data-ttu-id="a9c56-221">Cliquez sur le bouton **Ajouter**.</span><span class="sxs-lookup"><span data-stu-id="a9c56-221">Click **Add** button.</span></span> <span data-ttu-id="a9c56-222">Ensuite, sélectionnez **Utilisateurs et groupes** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="a9c56-222">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
+4. <span data-ttu-id="a0565-221">Cliquez sur le bouton **Ajouter**.</span><span class="sxs-lookup"><span data-stu-id="a0565-221">Click **Add** button.</span></span> <span data-ttu-id="a0565-222">Ensuite, sélectionnez **Utilisateurs et groupes** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="a0565-222">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
 
     ![Affecter des utilisateurs][203]
 
-5. <span data-ttu-id="a9c56-224">Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.</span><span class="sxs-lookup"><span data-stu-id="a9c56-224">On **Users and groups** dialog, select **Britta Simon** in the Users list.</span></span>
+5. <span data-ttu-id="a0565-224">Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.</span><span class="sxs-lookup"><span data-stu-id="a0565-224">On **Users and groups** dialog, select **Britta Simon** in hello Users list.</span></span>
 
-6. <span data-ttu-id="a9c56-225">Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="a9c56-225">Click **Select** button on **Users and groups** dialog.</span></span>
+6. <span data-ttu-id="a0565-225">Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="a0565-225">Click **Select** button on **Users and groups** dialog.</span></span>
 
-7. <span data-ttu-id="a9c56-226">Cliquez sur le bouton **Affecter** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="a9c56-226">Click **Assign** button on **Add Assignment** dialog.</span></span>
+7. <span data-ttu-id="a0565-226">Cliquez sur le bouton **Affecter** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="a0565-226">Click **Assign** button on **Add Assignment** dialog.</span></span>
     
-### <a name="testing-single-sign-on"></a><span data-ttu-id="a9c56-227">Test de l’authentification unique</span><span class="sxs-lookup"><span data-stu-id="a9c56-227">Testing single sign-on</span></span>
+### <a name="testing-single-sign-on"></a><span data-ttu-id="a0565-227">Test de l’authentification unique</span><span class="sxs-lookup"><span data-stu-id="a0565-227">Testing single sign-on</span></span>
 
-<span data-ttu-id="a9c56-228">Dans cette section, vous allez tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.</span><span class="sxs-lookup"><span data-stu-id="a9c56-228">In this section, you test your Azure AD single sign-on configuration using the Access Panel.</span></span>
+<span data-ttu-id="a0565-228">Dans cette section, vous tester votre configuration Azure AD unique de session à l’aide de hello panneau d’accès.</span><span class="sxs-lookup"><span data-stu-id="a0565-228">In this section, you test your Azure AD single sign-on configuration using hello Access Panel.</span></span>
 
-<span data-ttu-id="a9c56-229">Lorsque vous cliquez sur la vignette SanSan dans le volet d’accès, vous devez être connecté automatiquement à votre application SanSan.</span><span class="sxs-lookup"><span data-stu-id="a9c56-229">When you click the Sansan tile in the Access Panel, you should get automatically signed-on to your Sansan application.</span></span>
-<span data-ttu-id="a9c56-230">Pour plus d’informations sur le panneau d’accès, consultez [Présentation du panneau d’accès](active-directory-saas-access-panel-introduction.md).</span><span class="sxs-lookup"><span data-stu-id="a9c56-230">For more information about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).</span></span>
+<span data-ttu-id="a0565-229">Lorsque vous cliquez sur mosaïque Sansan hello hello volet d’accès, vous devez obtenir automatiquement signé sur tooyour Sansan application.</span><span class="sxs-lookup"><span data-stu-id="a0565-229">When you click hello Sansan tile in hello Access Panel, you should get automatically signed-on tooyour Sansan application.</span></span>
+<span data-ttu-id="a0565-230">Pour plus d’informations sur hello volet d’accès, consultez [Introduction toohello volet d’accès](active-directory-saas-access-panel-introduction.md).</span><span class="sxs-lookup"><span data-stu-id="a0565-230">For more information about hello Access Panel, see [Introduction toohello Access Panel](active-directory-saas-access-panel-introduction.md).</span></span>
 
-## <a name="additional-resources"></a><span data-ttu-id="a9c56-231">Ressources supplémentaires</span><span class="sxs-lookup"><span data-stu-id="a9c56-231">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="a0565-231">Ressources supplémentaires</span><span class="sxs-lookup"><span data-stu-id="a0565-231">Additional resources</span></span>
 
-* [<span data-ttu-id="a9c56-232">Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="a9c56-232">List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
-* [<span data-ttu-id="a9c56-233">Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?</span><span class="sxs-lookup"><span data-stu-id="a9c56-233">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
+* [<span data-ttu-id="a0565-232">Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="a0565-232">List of Tutorials on How tooIntegrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
+* [<span data-ttu-id="a0565-233">Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?</span><span class="sxs-lookup"><span data-stu-id="a0565-233">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->
 

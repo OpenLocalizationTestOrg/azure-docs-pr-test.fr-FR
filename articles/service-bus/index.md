@@ -1,6 +1,6 @@
 ---
-title: "Documentation Azure Service Bus - Didacticiels, informations de référence sur les API | Microsoft Docs"
-description: "Apprenez à configurer une messagerie permettant de connecter les applications et services entre les environnements cloud et locaux.  Didacticiels, vidéos, références d’API et autres."
+title: "aaaAzure Documentation du Service Bus - didacticiels, référence de l’API | Documents Microsoft"
+description: "Découvrez comment tooset la messagerie qui connecte les applications et services locaux et les environnements de cloud computing.  Didacticiels, vidéos, références d’API et autres."
 services: service-bus
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 03/14/2017
 ms.author: carolz
-ms.openlocfilehash: 3401257f406c71ff26d0eb2f7ca5f7e830d91882
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 68df38c39d6f5da112b44025aaf393df542ce01a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 #<a name="service-bus-documentation"></a>Documentation Service Bus
 
-Découvrez comment utiliser Service Bus et Relay pour connecter vos environnements locaux et cloud. Des didacticiels, vidéos, références d’API et autres documents vous montrent comment configurer la messagerie dans le cloud entre vos applications et services.
+Découvrez comment tooconnect de toouse Service Bus et de relais entre les locaux et les environnements de cloud computing. Didacticiels, des vidéos, des références de l’API et autres afficher documentation comment tooset de messagerie entre les applications et services cloud.
 
 <ul class="panelContent cardsFTitle">
     <li>

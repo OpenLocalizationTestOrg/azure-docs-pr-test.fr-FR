@@ -10,7 +10,7 @@
 ### [Services Cloud](cdn-cloud-service-with-cdn.md)
 ### [Stockage](cdn-create-a-storage-account-with-cdn.md)
 ### [Partage de ressources cross-origin](cdn-cors.md)
-### [Mapper un domaine personnalisé à CDN](cdn-map-content-to-custom-domain.md)
+### [Mapper un domaine personnalisé de tooCDN](cdn-map-content-to-custom-domain.md)
 ### [Activer le protocole HTTPS pour un domaine personnalisé](cdn-custom-ssl.md)
 ## Optimiser le contenu
 ### [Vue d’ensemble de l’optimisation](cdn-optimization-overview.md)
@@ -21,7 +21,7 @@
 ## Gérer
 ### [Gérer avec PowerShell](cdn-manage-powershell.md)
 ### Configurer la durée de vie
-#### [Web Apps/Services Cloud, ASP.NET ou contenu IIS](cdn-manage-expiration-of-cloud-service-content.md)
+#### [Web Apps/Cloud Services, ASP.NET ou contenu IIS](cdn-manage-expiration-of-cloud-service-content.md)
 #### [Contenu de service BLOB de stockage](cdn-manage-expiration-of-blob-content.md)
 ### [Restreindre l’accès par pays](cdn-restrict-access-by-country.md)
 ### [Compression des fichiers pour améliorer les performances](cdn-improve-performance.md)
